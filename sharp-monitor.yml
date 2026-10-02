@@ -1,0 +1,34 @@
+name: sharp-monitor
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"   # GitHub may delay runs a few minutes; the script self-throttles to your credit budget
+  workflow_dispatch:          # "Run workflow" button for a manual test
+
+concurrency: sharp-monitor
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/cache/restore@v4
+        with:
+          path: state.json
+          key: sharp-state-${{ github.run_id }}
+          restore-keys: sharp-state-
+      - name: Check lines
+        env:
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+          SPORTS: ${{ vars.SPORTS }}
+        run: python sharp_monitor.py
+      - uses: actions/cache/save@v4
+        if: always()
+        with:
+          path: state.json
+          key: sharp-state-${{ github.run_id }}
