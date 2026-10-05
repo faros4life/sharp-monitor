@@ -25,16 +25,17 @@ API = "https://api.the-odds-api.com/v4"
 KEY = os.environ.get("ODDS_API_KEY", "")
 NTFY_TOPIC = os.environ.get("NTFY_TOPIC", "")
 STATE_FILE = os.environ.get("STATE_FILE", "state.json")
-SHARP = os.environ.get("SHARP_BOOK", "pinnacle")
-RETAIL = [b.strip() for b in os.environ.get(
-    "RETAIL_BOOKS", "draftkings,fanduel,betmgm,williamhill_us,espnbet,betrivers"
+SHARP = os.environ.get("SHARP_BOOK", "") or "pinnacle"
+# Books you can actually bet. Sharp book + these must stay <= 10 to cost 1 credit per market.
+RETAIL = [b.strip() for b in (os.environ.get("RETAIL_BOOKS", "") or
+    "hardrockbet_fl,prophetx,novig,kalshi,polymarket,betmgm,fanduel,draftkings"
 ).split(",") if b.strip()]
-LOOKAHEAD_H = float(os.environ.get("LOOKAHEAD_HOURS", "24"))
-WINDOW_H = float(os.environ.get("MOVE_WINDOW_HOURS", "6"))   # compare against lines seen in this window
-ACTIVE_START_ET = int(os.environ.get("ACTIVE_START_ET", "9"))  # only poll 9am..midnight ET
-ACTIVE_END_ET = int(os.environ.get("ACTIVE_END_ET", "24"))
-RESERVE = int(os.environ.get("CREDIT_RESERVE", "15"))          # never spend below this
-MIN_INTERVAL = float(os.environ.get("MIN_INTERVAL_MIN", "5"))  # fastest polling per sport
+LOOKAHEAD_H = float(os.environ.get("LOOKAHEAD_HOURS", "") or "24")
+WINDOW_H = float(os.environ.get("MOVE_WINDOW_HOURS", "") or "6")   # compare against lines seen in this window
+ACTIVE_START_ET = int(os.environ.get("ACTIVE_START_ET", "") or "9")  # only poll 9am..midnight ET
+ACTIVE_END_ET = int(os.environ.get("ACTIVE_END_ET", "") or "24")
+RESERVE = int(os.environ.get("CREDIT_RESERVE", "") or "15")          # never spend below this
+MIN_INTERVAL = float(os.environ.get("MIN_INTERVAL_MIN", "") or "5")  # fastest polling per sport
 ONLY = [s.strip() for s in os.environ.get("SPORTS", "").split(",") if s.strip()]
 
 SPORTS = {
@@ -43,7 +44,8 @@ SPORTS = {
     "basketball_nba":         dict(label="NBA",   markets=["spreads", "totals"], spread=1.0, total=1.5, keys=[]),
     "basketball_wnba":        dict(label="WNBA",  markets=["spreads", "totals"], spread=1.0, total=1.5, keys=[]),
     "basketball_ncaab":       dict(label="NCAAB", markets=["spreads", "totals"], spread=1.0, total=1.5, keys=[]),
-    "baseball_mlb":           dict(label="MLB",   markets=["h2h", "totals"], ml=0.03, total=0.5),
+    "baseball_mlb":           dict(label="MLB",   markets=["h2h", "spreads", "totals"], ml=0.03, rl=0.03, total=0.5,
+                                   spread=1.0, keys=[]),
     "icehockey_nhl":          dict(label="NHL",   markets=["h2h", "totals"], ml=0.03, total=0.5),
 }
 
@@ -134,8 +136,14 @@ def sharp_values(lines):
     """Flatten the sharp book's lines into comparable values: {mkey: value}."""
     v = {}
     sb = lines.get(SHARP, {})
-    for team, (pt, _) in sb.get("spreads", {}).items():
+    sp = sb.get("spreads", {})
+    for team, (pt, _) in sp.items():
         v[f"spreads|{team}"] = pt
+    if len(sp) == 2:  # no-vig price of each side at its current point (used for MLB run lines)
+        probs = {t: am_to_prob(pr) for t, (_, pr) in sp.items()}
+        tot = sum(probs.values())
+        for t, (pt, _) in sp.items():
+            v[f"rl|{t}|{pt:g}"] = probs[t] / tot
     if "Over" in sb.get("totals", {}):
         v["totals|Over"] = sb["totals"]["Over"][0]
     h = sb.get("h2h", {})
@@ -145,6 +153,20 @@ def sharp_values(lines):
         for t, p in probs.items():
             v[f"h2h|{t}"] = p / tot
     return v
+
+
+NAMES = {"hardrockbet_fl": "Hard Rock FL", "hardrockbet": "Hard Rock", "prophetx": "ProphetX",
+         "novig": "Novig", "kalshi": "Kalshi", "polymarket": "Polymarket", "betmgm": "BetMGM", "fanduel": "FanDuel", "draftkings": "DraftKings",
+         "pinnacle": "Pinnacle"}
+
+
+def nm(b):
+    return NAMES.get(b, b)
+
+
+def also(books, best):
+    rest = [nm(b) for b in dict.fromkeys(books) if b != best]
+    return f" (also: {', '.join(rest)})" if rest else ""
 
 
 def crossed_key(old, new, keys):
@@ -177,8 +199,9 @@ def detect(event, cfg, lines, base):
         if pt > new:
             alerts.append(dict(
                 id=f"{event['id']}|spr|{team}|{new}", game=game, start=start,
-                text=f"{team} {fmt_pt(pt)} ({fmt_price(pr)}) at {b}",
-                why=f"{SHARP} moved {fmt_pt(old)} -> {fmt_pt(new)}; bet only at {fmt_pt(new + 0.5)} or better"))
+                text=f"{team} {fmt_pt(pt)} ({fmt_price(pr)}) at {nm(b)}"
+                     + also([x[2] for x in offers if x[0] > new], b),
+                why=f"{nm(SHARP)} moved {fmt_pt(old)} -> {fmt_pt(new)}; bet only at {fmt_pt(new + 0.5)} or better"))
 
     # Totals
     if "Over" in sb.get("totals", {}):
@@ -198,8 +221,31 @@ def detect(event, cfg, lines, base):
                 if ok:
                     alerts.append(dict(
                         id=f"{event['id']}|tot|{side}|{new}", game=game, start=start,
-                        text=f"{side} {pt:g} ({fmt_price(pr)}) at {b}",
-                        why=f"{SHARP} total moved {old:g} -> {new:g}; bet only at {thr:g} or better"))
+                        text=f"{side} {pt:g} ({fmt_price(pr)}) at {nm(b)}"
+                             + also([x[2] for x in offers if (x[0] < new if side == "Over" else x[0] > new)], b),
+                        why=f"{nm(SHARP)} total moved {old:g} -> {new:g}; bet only at {thr:g} or better"))
+
+    # Run lines (MLB): point usually stays at 1.5, so watch the price at that point.
+    # Sharp side = team whose no-vig run-line probability rose at an unchanged point.
+    if "rl" in cfg and len(sb.get("spreads", {})) == 2:
+        sv = sharp_values({SHARP: sb})
+        for team, (pt, _) in sb["spreads"].items():
+            k = f"rl|{team}|{pt:g}"
+            new, old = sv.get(k), base.get(k)
+            if old is None or new - old < cfg["rl"]:
+                continue
+            offers = [(pr, b) for b, d in retail.items()
+                      for t, (p2, pr) in d.get("spreads", {}).items() if t == team and p2 == pt]
+            if not offers:
+                continue
+            pr, b = max(offers, key=lambda x: 1 / am_to_prob(x[0]))
+            if am_to_prob(pr) < new:
+                alerts.append(dict(
+                    id=f"{event['id']}|rl|{team}|{pt:g}|{round(new, 2)}", game=game, start=start,
+                    text=f"{team} {fmt_pt(pt)} RL {fmt_price(pr)} at {nm(b)}"
+                         + also([x[1] for x in offers if am_to_prob(x[0]) < new], b),
+                    why=(f"{nm(SHARP)} {fmt_pt(pt)} fair moved {fmt_price(prob_to_am(old))} -> "
+                         f"{fmt_price(prob_to_am(new))}; bet only at {fmt_price(prob_to_am(new))} or better")))
 
     # Moneyline (MLB/NHL): sharp side = team whose no-vig win prob rose.
     if "ml" in cfg and len(sb.get("h2h", {})) == 2:
@@ -215,8 +261,9 @@ def detect(event, cfg, lines, base):
             if am_to_prob(pr) < new:  # retail price beats the sharp fair price
                 alerts.append(dict(
                     id=f"{event['id']}|ml|{team}|{round(new, 2)}", game=game, start=start,
-                    text=f"{team} ML {fmt_price(pr)} at {b}",
-                    why=(f"{SHARP} fair moved {fmt_price(prob_to_am(old))} -> {fmt_price(prob_to_am(new))}; "
+                    text=f"{team} ML {fmt_price(pr)} at {nm(b)}"
+                         + also([x[1] for x in offers if am_to_prob(x[0]) < new], b),
+                    why=(f"{nm(SHARP)} fair moved {fmt_price(prob_to_am(old))} -> {fmt_price(prob_to_am(new))}; "
                          f"bet only at {fmt_price(prob_to_am(new))} or better")))
     return alerts
 
@@ -263,6 +310,7 @@ def run():
         if evs:
             active.append(key)
     interval = poll_interval_min(st, active)
+    print(f"Books: {SHARP} (sharp) vs {RETAIL}")
     print(f"Active sports: {active}; credits left: {st.get('remaining')}; interval: {interval:.0f} min")
 
     books = ",".join([SHARP] + RETAIL)
@@ -288,7 +336,9 @@ def run():
                 continue
             h = st["hist"].setdefault(ev["id"], {"start": ev["commence_time"], "obs": []})
             cutoff = time.time() - WINDOW_H * 3600
-            h["obs"] = [o for o in h["obs"] if o[0] >= cutoff]
+            # Keep readings inside the window; if polls are spaced wider than the window,
+            # keep the most recent older reading so there is always something to compare to.
+            h["obs"] = [o for o in h["obs"] if o[0] >= cutoff] or h["obs"][-1:]
             if h["obs"]:
                 # baseline: earliest value seen in the window for each market key
                 base = {}
