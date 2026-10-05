@@ -30,6 +30,12 @@ SHARP = os.environ.get("SHARP_BOOK", "") or "pinnacle"
 RETAIL = [b.strip() for b in (os.environ.get("RETAIL_BOOKS", "") or
     "hardrockbet_fl,prophetx,novig,kalshi,polymarket,betmgm,fanduel,draftkings"
 ).split(",") if b.strip()]
+# Second sharp-leaning book that must agree with the sharp move ("none" to turn off).
+CONFIRM = os.environ.get("CONFIRM_BOOK", "") or "betonlineag"
+if CONFIRM.lower() == "none":
+    CONFIRM = ""
+BOOKS = list(dict.fromkeys([SHARP] + RETAIL + ([CONFIRM] if CONFIRM else [])))
+LOG_DAYS = 45   # keep graded alerts this long
 LOOKAHEAD_H = float(os.environ.get("LOOKAHEAD_HOURS", "") or "24")
 WINDOW_H = float(os.environ.get("MOVE_WINDOW_HOURS", "") or "6")   # compare against lines seen in this window
 ACTIVE_START_ET = int(os.environ.get("ACTIVE_START_ET", "") or "9")  # only poll 9am..midnight ET
@@ -132,10 +138,10 @@ def book_lines(event):
     return out
 
 
-def sharp_values(lines):
-    """Flatten the sharp book's lines into comparable values: {mkey: value}."""
+def sharp_values(lines, book=None):
+    """Flatten one book's lines (sharp book by default) into comparable values: {mkey: value}."""
     v = {}
-    sb = lines.get(SHARP, {})
+    sb = lines.get(book or SHARP, {})
     sp = sb.get("spreads", {})
     for team, (pt, _) in sp.items():
         v[f"spreads|{team}"] = pt
@@ -157,7 +163,7 @@ def sharp_values(lines):
 
 NAMES = {"hardrockbet_fl": "Hard Rock FL", "hardrockbet": "Hard Rock", "prophetx": "ProphetX",
          "novig": "Novig", "kalshi": "Kalshi", "polymarket": "Polymarket", "betmgm": "BetMGM", "fanduel": "FanDuel", "draftkings": "DraftKings",
-         "pinnacle": "Pinnacle"}
+         "pinnacle": "Pinnacle", "betonlineag": "BetOnline", "lowvig": "LowVig"}
 
 
 def nm(b):
@@ -180,8 +186,27 @@ def detect(event, cfg, lines, base):
     alerts = []
     sb = lines.get(SHARP, {})
     retail = {b: lines[b] for b in RETAIL if b in lines}
+    cv = sharp_values(lines, CONFIRM) if CONFIRM else {}
     game = f"{event['away_team']} @ {event['home_team']}"
     start = parse_iso(event["commence_time"]).astimezone(ET).strftime("%a %-I:%M %p ET")
+
+    def agree(key, old, new):
+        """Does the confirm book sit on the moved side of the sharp move? yes / no / na (no line)."""
+        if not CONFIRM:
+            return "off"
+        c = cv.get(key)
+        if c is None:
+            return "na"
+        mid = (old + new) / 2
+        return "yes" if ((c <= mid + 1e-9) if new < old else (c >= mid - 1e-9)) else "no"
+
+    def add(kind, side, pt, price, book, new_key, text, why, conf):
+        if conf == "no":
+            return  # confirm book disagrees: likely noise or stale sharp data
+        note = {"yes": f" (confirmed by {nm(CONFIRM)})", "na": f" ({nm(SHARP)} only)", "off": ""}[conf]
+        alerts.append(dict(id=f"{event['id']}|{new_key}", ev=event["id"], game=game, start=start,
+                           commence=event["commence_time"], kind=kind, side=side, pt=pt, price=price,
+                           book=book, conf=conf, text=text, why=why + note))
 
     # Spreads: sharp side = team whose number got worse (money pushed it).
     for team, (new, _) in sb.get("spreads", {}).items():
@@ -197,11 +222,10 @@ def detect(event, cfg, lines, base):
             continue
         pt, pr, b = max(offers, key=lambda x: (x[0], x[1]))
         if pt > new:
-            alerts.append(dict(
-                id=f"{event['id']}|spr|{team}|{new}", game=game, start=start,
-                text=f"{team} {fmt_pt(pt)} ({fmt_price(pr)}) at {nm(b)}"
-                     + also([x[2] for x in offers if x[0] > new], b),
-                why=f"{nm(SHARP)} moved {fmt_pt(old)} -> {fmt_pt(new)}; bet only at {fmt_pt(new + 0.5)} or better"))
+            add("spr", team, pt, pr, b, f"spr|{team}|{new}",
+                f"{team} {fmt_pt(pt)} ({fmt_price(pr)}) at {nm(b)}" + also([x[2] for x in offers if x[0] > new], b),
+                f"{nm(SHARP)} moved {fmt_pt(old)} -> {fmt_pt(new)}; bet only at {fmt_pt(new + 0.5)} or better",
+                agree(f"spreads|{team}", old, new))
 
     # Totals
     if "Over" in sb.get("totals", {}):
@@ -219,11 +243,11 @@ def detect(event, cfg, lines, base):
                     pt, pr, b = max(offers, key=lambda x: (x[0], x[1]))
                     ok, thr = pt > new, new + 0.5
                 if ok:
-                    alerts.append(dict(
-                        id=f"{event['id']}|tot|{side}|{new}", game=game, start=start,
-                        text=f"{side} {pt:g} ({fmt_price(pr)}) at {nm(b)}"
-                             + also([x[2] for x in offers if (x[0] < new if side == "Over" else x[0] > new)], b),
-                        why=f"{nm(SHARP)} total moved {old:g} -> {new:g}; bet only at {thr:g} or better"))
+                    add("tot", side, pt, pr, b, f"tot|{side}|{new}",
+                        f"{side} {pt:g} ({fmt_price(pr)}) at {nm(b)}"
+                        + also([x[2] for x in offers if (x[0] < new if side == "Over" else x[0] > new)], b),
+                        f"{nm(SHARP)} total moved {old:g} -> {new:g}; bet only at {thr:g} or better",
+                        agree("totals|Over", old, new))
 
     # Run lines (MLB): point usually stays at 1.5, so watch the price at that point.
     # Sharp side = team whose no-vig run-line probability rose at an unchanged point.
@@ -240,12 +264,12 @@ def detect(event, cfg, lines, base):
                 continue
             pr, b = max(offers, key=lambda x: 1 / am_to_prob(x[0]))
             if am_to_prob(pr) < new:
-                alerts.append(dict(
-                    id=f"{event['id']}|rl|{team}|{pt:g}|{round(new, 2)}", game=game, start=start,
-                    text=f"{team} {fmt_pt(pt)} RL {fmt_price(pr)} at {nm(b)}"
-                         + also([x[1] for x in offers if am_to_prob(x[0]) < new], b),
-                    why=(f"{nm(SHARP)} {fmt_pt(pt)} fair moved {fmt_price(prob_to_am(old))} -> "
-                         f"{fmt_price(prob_to_am(new))}; bet only at {fmt_price(prob_to_am(new))} or better")))
+                add("rl", team, pt, pr, b, f"rl|{team}|{pt:g}|{round(new, 2)}",
+                    f"{team} {fmt_pt(pt)} RL {fmt_price(pr)} at {nm(b)}"
+                    + also([x[1] for x in offers if am_to_prob(x[0]) < new], b),
+                    (f"{nm(SHARP)} {fmt_pt(pt)} fair moved {fmt_price(prob_to_am(old))} -> "
+                     f"{fmt_price(prob_to_am(new))}; bet only at {fmt_price(prob_to_am(new))} or better"),
+                    agree(k, old, new))
 
     # Moneyline (MLB/NHL): sharp side = team whose no-vig win prob rose.
     if "ml" in cfg and len(sb.get("h2h", {})) == 2:
@@ -259,13 +283,108 @@ def detect(event, cfg, lines, base):
                 continue
             pr, b = max(offers, key=lambda x: 1 / am_to_prob(x[0]))
             if am_to_prob(pr) < new:  # retail price beats the sharp fair price
-                alerts.append(dict(
-                    id=f"{event['id']}|ml|{team}|{round(new, 2)}", game=game, start=start,
-                    text=f"{team} ML {fmt_price(pr)} at {nm(b)}"
-                         + also([x[1] for x in offers if am_to_prob(x[0]) < new], b),
-                    why=(f"{nm(SHARP)} fair moved {fmt_price(prob_to_am(old))} -> {fmt_price(prob_to_am(new))}; "
-                         f"bet only at {fmt_price(prob_to_am(new))} or better")))
+                add("ml", team, None, pr, b, f"ml|{team}|{round(new, 2)}",
+                    f"{team} ML {fmt_price(pr)} at {nm(b)}" + also([x[1] for x in offers if am_to_prob(x[0]) < new], b),
+                    (f"{nm(SHARP)} fair moved {fmt_price(prob_to_am(old))} -> {fmt_price(prob_to_am(new))}; "
+                     f"bet only at {fmt_price(prob_to_am(new))} or better"),
+                    agree(f"h2h|{team}", old, new))
     return alerts
+
+
+# ---------------------------------------------------------------- closing-line tracking
+def close_value(e, vals):
+    """The sharp book's current number for a logged alert's market (None if not comparable)."""
+    if e["kind"] == "spr":
+        return vals.get(f"spreads|{e['side']}")
+    if e["kind"] == "tot":
+        return vals.get("totals|Over")
+    if e["kind"] == "ml":
+        return vals.get(f"h2h|{e['side']}")
+    if e["kind"] == "rl":
+        return vals.get(f"rl|{e['side']}|{e['pt']:g}")
+    return None
+
+
+def grade(e):
+    """CLV vs the sharp closing number: (value, text). Positive = beat the close."""
+    c = e.get("close")
+    if c is None:
+        return None
+    if e["kind"] == "spr":
+        v = e["pt"] - c
+        return v, f"{v:+g} pts"
+    if e["kind"] == "tot":
+        v = (c - e["pt"]) if e["side"] == "Over" else (e["pt"] - c)
+        return v, f"{v:+g} pts"
+    v = (c / am_to_prob(e["price"]) - 1) * 100   # % edge of your price vs closing fair odds
+    return v, f"{v:+.1f}%"
+
+
+def describe(e):
+    if e["kind"] == "spr":
+        return f"{e['side']} {fmt_pt(e['pt'])} ({fmt_price(e['price'])})"
+    if e["kind"] == "tot":
+        return f"{e['side']} {e['pt']:g} ({fmt_price(e['price'])})"
+    if e["kind"] == "rl":
+        return f"{e['side']} {fmt_pt(e['pt'])} RL {fmt_price(e['price'])}"
+    return f"{e['side']} ML {fmt_price(e['price'])}"
+
+
+def graded(st, n, days=None):
+    out = []
+    for e in st["log"]:
+        if parse_iso(e["start"]) > n:
+            continue
+        if days and parse_iso(e["start"]) < n - timedelta(days=days):
+            continue
+        g = grade(e)
+        if g:
+            out.append((e, g))
+    return out
+
+
+def recap(st, n):
+    """Once per ET day: push a recap of newly graded alerts (if any)."""
+    today = n.astimezone(ET).date().isoformat()
+    if st.get("recap_day") == today:
+        return
+    st["recap_day"] = today
+    new = [(e, g) for e, g in graded(st, n) if not e.get("reported")]
+    for e, _ in new:
+        e["reported"] = True
+    if not new:
+        return
+    beat = sum(1 for _, (v, _) in new if v > 0)
+    lines = [f"{'✅' if v > 0 else ('➖' if v == 0 else '❌')} {e['sport']} {describe(e)}: {t}"
+             for e, (v, t) in new[:12]]
+    month = graded(st, n, 30)
+    mbeat = sum(1 for _, (v, _) in month if v > 0)
+    body = (f"{beat} of {len(new)} alerts beat {nm(SHARP)}'s closing number.\n" + "\n".join(lines)
+            + (f"\n+{len(new) - 12} more" if len(new) > 12 else "")
+            + f"\nLast 30 days: {mbeat}/{len(month)} beat the close")
+    notify("Sharp recap", body)
+
+
+CONF_LABEL = {"yes": "Yes", "na": "Pinnacle only", "off": "-"}
+
+
+def write_summary(st, n):
+    """Table of the last 30 days' graded alerts on the GitHub run page."""
+    path = os.environ.get("GITHUB_STEP_SUMMARY")
+    if not path:
+        return
+    month = graded(st, n, 30)
+    beat = sum(1 for _, (v, _) in month if v > 0)
+    rows = ["| Date | Sport | Bet | Book | Confirmed | vs close |", "|---|---|---|---|---|---|"]
+    for e, (v, t) in sorted(month, key=lambda x: x[0]["start"], reverse=True):
+        d = parse_iso(e["start"]).astimezone(ET).strftime("%b %-d")
+        rows.append(f"| {d} | {e['sport']} | {describe(e)} | {nm(e['book'])} | {CONF_LABEL.get(e.get('conf'), '')} | "
+                    f"{'✅' if v > 0 else ('➖' if v == 0 else '❌')} {t} |")
+    pending = sum(1 for e in st["log"] if parse_iso(e["start"]) > n)
+    with open(path, "a") as f:
+        f.write(f"## Sharp alerts vs closing line (last 30 days)\n\n**{beat} of {len(month)} beat "
+                f"{nm(SHARP)}'s close.** {pending} alert(s) waiting for their game to start.\n\n"
+                + "\n".join(rows) + "\n")
 
 
 # ---------------------------------------------------------------- main loop
@@ -278,7 +397,7 @@ def poll_interval_min(st, active_sports):
     nxt = (n.replace(day=28) + timedelta(days=4)).replace(day=1)
     days_left = max((nxt.date() - n.date()).days, 1)
     daily = max(rem - RESERVE, 0) / days_left
-    cost = sum(len(SPORTS[s]["markets"]) * math.ceil((len(RETAIL) + 1) / 10) for s in active_sports)
+    cost = sum(len(SPORTS[s]["markets"]) * math.ceil(len(BOOKS) / 10) for s in active_sports)
     if daily <= 0 or cost == 0:
         return float("inf")
     active_min = (ACTIVE_END_ET - ACTIVE_START_ET) * 60
@@ -292,11 +411,13 @@ def run():
     st.setdefault("hist", {})
     st.setdefault("last_poll", {})
     st.setdefault("alerted", {})
+    st.setdefault("log", [])
     n = now_utc()
     hour_et = n.astimezone(ET).hour
     if not (ACTIVE_START_ET <= hour_et < ACTIVE_END_ET):
         print("Outside active hours; skipping.")
         return
+    recap(st, n)  # once a day: how yesterday's alerts did vs the closing line
 
     # Free endpoints: which sports are in season, and which have games soon.
     sports, _ = http_get("/sports", {})
@@ -310,10 +431,10 @@ def run():
         if evs:
             active.append(key)
     interval = poll_interval_min(st, active)
-    print(f"Books: {SHARP} (sharp) vs {RETAIL}")
+    print(f"Books: {SHARP} (sharp)" + (f" + {CONFIRM} (confirm)" if CONFIRM else "") + f" vs {RETAIL}")
     print(f"Active sports: {active}; credits left: {st.get('remaining')}; interval: {interval:.0f} min")
 
-    books = ",".join([SHARP] + RETAIL)
+    books = ",".join(BOOKS)
     sent = 0
     for key in active:
         if st.get("remaining") is not None and st["remaining"] <= RESERVE:
@@ -334,6 +455,11 @@ def run():
             vals = sharp_values(lines)
             if not vals:
                 continue
+            for e in st["log"]:  # keep each pending alert's closing number current
+                if e["ev"] == ev["id"]:
+                    c = close_value(e, vals)
+                    if c is not None:
+                        e["close"] = c
             h = st["hist"].setdefault(ev["id"], {"start": ev["commence_time"], "obs": []})
             cutoff = time.time() - WINDOW_H * 3600
             # Keep readings inside the window; if polls are spaced wider than the window,
@@ -351,13 +477,22 @@ def run():
                     notify(f"Sharp alert {cfg['label']}",
                            f"{a['text']}\n{a['game']}, {a['start']}\n{a['why']}")
                     st["alerted"][a["id"]] = time.time()
+                    e = {k: a[k] for k in ("id", "ev", "game", "kind", "side", "pt", "price", "book", "conf")}
+                    e.update(sport=cfg["label"], start=a["commence"], t=time.time())
+                    e["close"] = close_value(e, vals)
+                    # one scorecard entry per bet, even if the line keeps moving and we push again
+                    if not any(x["ev"] == e["ev"] and x["kind"] == e["kind"] and x["side"] == e["side"]
+                               for x in st["log"]):
+                        st["log"].append(e)
                     sent += 1
             h["obs"].append([time.time(), vals])
 
     # Tidy: drop started games and old alert keys.
     st["hist"] = {k: v for k, v in st["hist"].items() if parse_iso(v["start"]) > n}
     st["alerted"] = {k: t for k, t in st["alerted"].items() if t > time.time() - 3 * 86400}
+    st["log"] = [e for e in st["log"] if parse_iso(e["start"]) > n - timedelta(days=LOG_DAYS)]
     save_state(st)
+    write_summary(st, n)
     print(f"Done. Alerts sent: {sent}. Credits left: {st.get('remaining')}")
 
 
