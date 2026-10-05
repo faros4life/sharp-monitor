@@ -37,7 +37,9 @@ if CONFIRM.lower() == "none":
 BOOKS = list(dict.fromkeys([SHARP] + RETAIL + ([CONFIRM] if CONFIRM else [])))
 LOG_DAYS = 45   # keep graded alerts this long
 LOOKAHEAD_H = float(os.environ.get("LOOKAHEAD_HOURS", "") or "24")
-WINDOW_H = float(os.environ.get("MOVE_WINDOW_HOURS", "") or "6")   # compare against lines seen in this window
+WINDOW_H = float(os.environ.get("MOVE_WINDOW_HOURS", "") or "2")   # compare against lines seen in this window (catches fast moves)
+# Moneyline / run line: your book must beat the new sharp fair price by at least this much (0.02 = 2%).
+MIN_EDGE = float(os.environ.get("MIN_EDGE", "") or "0.02")
 ACTIVE_START_ET = int(os.environ.get("ACTIVE_START_ET", "") or "9")  # only poll 9am..midnight ET
 ACTIVE_END_ET = int(os.environ.get("ACTIVE_END_ET", "") or "24")
 RESERVE = int(os.environ.get("CREDIT_RESERVE", "") or "15")          # never spend below this
@@ -52,7 +54,8 @@ SPORTS = {
     "basketball_ncaab":       dict(label="NCAAB", markets=["spreads", "totals"], spread=1.0, total=1.5, keys=[]),
     "baseball_mlb":           dict(label="MLB",   markets=["h2h", "spreads", "totals"], ml=0.03, rl=0.03, total=0.5,
                                    spread=1.0, keys=[]),
-    "icehockey_nhl":          dict(label="NHL",   markets=["h2h", "totals"], ml=0.03, total=0.5),
+    "icehockey_nhl":          dict(label="NHL",   markets=["h2h", "spreads", "totals"], ml=0.03, rl=0.03, total=0.5,
+                                   spread=1.0, keys=[], rl_name="PL"),
 }
 
 
@@ -175,6 +178,16 @@ def also(books, best):
     return f" (also: {', '.join(rest)})" if rest else ""
 
 
+def edge_ok(price, fair):
+    """True when betting `price` beats fair win probability `fair` by at least MIN_EDGE."""
+    return fair / am_to_prob(price) - 1 >= MIN_EDGE - 1e-9
+
+
+def edge_price(fair):
+    """Worst American price that still clears MIN_EDGE against `fair`."""
+    return prob_to_am(fair / (1 + MIN_EDGE))
+
+
 def crossed_key(old, new, keys):
     lo, hi = sorted((abs(old), abs(new)))
     return any(lo <= k <= hi and lo != hi for k in keys) if keys else False
@@ -249,7 +262,7 @@ def detect(event, cfg, lines, base):
                         f"{nm(SHARP)} total moved {old:g} -> {new:g}; bet only at {thr:g} or better",
                         agree("totals|Over", old, new))
 
-    # Run lines (MLB): point usually stays at 1.5, so watch the price at that point.
+    # Run lines (MLB) and puck lines (NHL): point usually stays at 1.5, so watch the price at that point.
     # Sharp side = team whose no-vig run-line probability rose at an unchanged point.
     if "rl" in cfg and len(sb.get("spreads", {})) == 2:
         sv = sharp_values({SHARP: sb})
@@ -263,12 +276,12 @@ def detect(event, cfg, lines, base):
             if not offers:
                 continue
             pr, b = max(offers, key=lambda x: 1 / am_to_prob(x[0]))
-            if am_to_prob(pr) < new:
+            if edge_ok(pr, new):
                 add("rl", team, pt, pr, b, f"rl|{team}|{pt:g}|{round(new, 2)}",
-                    f"{team} {fmt_pt(pt)} RL {fmt_price(pr)} at {nm(b)}"
-                    + also([x[1] for x in offers if am_to_prob(x[0]) < new], b),
+                    f"{team} {fmt_pt(pt)} {cfg.get('rl_name', 'RL')} {fmt_price(pr)} at {nm(b)}"
+                    + also([x[1] for x in offers if edge_ok(x[0], new)], b),
                     (f"{nm(SHARP)} {fmt_pt(pt)} fair moved {fmt_price(prob_to_am(old))} -> "
-                     f"{fmt_price(prob_to_am(new))}; bet only at {fmt_price(prob_to_am(new))} or better"),
+                     f"{fmt_price(prob_to_am(new))}; bet only at {fmt_price(edge_price(new))} or better"),
                     agree(k, old, new))
 
     # Moneyline (MLB/NHL): sharp side = team whose no-vig win prob rose.
@@ -282,11 +295,11 @@ def detect(event, cfg, lines, base):
             if not offers:
                 continue
             pr, b = max(offers, key=lambda x: 1 / am_to_prob(x[0]))
-            if am_to_prob(pr) < new:  # retail price beats the sharp fair price
+            if edge_ok(pr, new):  # retail price beats the sharp fair price by MIN_EDGE
                 add("ml", team, None, pr, b, f"ml|{team}|{round(new, 2)}",
-                    f"{team} ML {fmt_price(pr)} at {nm(b)}" + also([x[1] for x in offers if am_to_prob(x[0]) < new], b),
+                    f"{team} ML {fmt_price(pr)} at {nm(b)}" + also([x[1] for x in offers if edge_ok(x[0], new)], b),
                     (f"{nm(SHARP)} fair moved {fmt_price(prob_to_am(old))} -> {fmt_price(prob_to_am(new))}; "
-                     f"bet only at {fmt_price(prob_to_am(new))} or better"),
+                     f"bet only at {fmt_price(edge_price(new))} or better"),
                     agree(f"h2h|{team}", old, new))
     return alerts
 
@@ -326,7 +339,7 @@ def describe(e):
     if e["kind"] == "tot":
         return f"{e['side']} {e['pt']:g} ({fmt_price(e['price'])})"
     if e["kind"] == "rl":
-        return f"{e['side']} {fmt_pt(e['pt'])} RL {fmt_price(e['price'])}"
+        return f"{e['side']} {fmt_pt(e['pt'])} {'PL' if e.get('sport') == 'NHL' else 'RL'} {fmt_price(e['price'])}"
     return f"{e['side']} ML {fmt_price(e['price'])}"
 
 
