@@ -2,8 +2,8 @@ name: sharp-monitor
 
 on:
   schedule:
-    - cron: "*/10 * * * *"   # GitHub may delay runs a few minutes; the script self-throttles to your credit budget
-  workflow_dispatch:          # "Run workflow" button for a manual test
+    - cron: "*/5 * * * *"   # backup; cron-job.org is the real 5-minute timer
+  workflow_dispatch:          # used by cron-job.org and the "Run workflow" button
 
 concurrency: sharp-monitor
 
@@ -26,6 +26,9 @@ jobs:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
           SPORTS: ${{ vars.SPORTS }}
+          RETAIL_BOOKS: ${{ vars.RETAIL_BOOKS }}
+          SHARP_BOOK: ${{ vars.SHARP_BOOK }}
+          ACTIVE_START_ET: "6"
         run: python sharp_monitor.py
       - uses: actions/cache/save@v4
         if: always()
