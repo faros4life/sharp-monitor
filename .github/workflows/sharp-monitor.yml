@@ -19,7 +19,7 @@ jobs:
       - uses: actions/cache/restore@v4
         with:
           path: state.json
-          key: sharp-state-${{ github.run_id }}
+          key: sharp-state-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: sharp-state-
       - name: Check lines
         env:
@@ -34,4 +34,4 @@ jobs:
         if: always()
         with:
           path: state.json
-          key: sharp-state-${{ github.run_id }}
+          key: sharp-state-${{ github.run_id }}-${{ github.run_attempt }}
