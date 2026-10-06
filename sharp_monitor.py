@@ -52,10 +52,12 @@ SPORTS = {
     "basketball_nba":         dict(label="NBA",   markets=["spreads", "totals"], spread=1.0, total=1.5, keys=[]),
     "basketball_wnba":        dict(label="WNBA",  markets=["spreads", "totals"], spread=1.0, total=1.5, keys=[]),
     "basketball_ncaab":       dict(label="NCAAB", markets=["spreads", "totals"], spread=1.0, total=1.5, keys=[]),
+    # MLB/NHL "spreads" are run/puck lines: watched by price at a fixed +/-1.5 (rl), never by point moves,
+    # because a point flip (+1.5 -> -1.5) just means the favorite changed (the moneyline alert covers that).
     "baseball_mlb":           dict(label="MLB",   markets=["h2h", "spreads", "totals"], ml=0.03, rl=0.03, total=0.5,
-                                   spread=1.0, keys=[]),
+                                   no_point_moves=True),
     "icehockey_nhl":          dict(label="NHL",   markets=["h2h", "spreads", "totals"], ml=0.03, rl=0.03, total=0.5,
-                                   spread=1.0, keys=[], rl_name="PL"),
+                                   no_point_moves=True, rl_name="PL"),
 }
 
 
@@ -222,7 +224,7 @@ def detect(event, cfg, lines, base):
                            book=book, conf=conf, text=text, why=why + note))
 
     # Spreads: sharp side = team whose number got worse (money pushed it).
-    for team, (new, _) in sb.get("spreads", {}).items():
+    for team, (new, _) in ({} if cfg.get("no_point_moves") else sb.get("spreads", {})).items():
         old = base.get(f"spreads|{team}")
         if old is None or new >= old:
             continue
