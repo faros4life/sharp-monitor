@@ -28,6 +28,8 @@ jobs:
           SPORTS: ${{ vars.SPORTS }}
           RETAIL_BOOKS: ${{ vars.RETAIL_BOOKS }}
           SHARP_BOOK: ${{ vars.SHARP_BOOK }}
+          MAX_JUICE: ${{ vars.MAX_JUICE }}
+          NCAAF_TOP25: ${{ vars.NCAAF_TOP25 }}
           ACTIVE_START_ET: "6"
         run: python sharp_monitor.py
       - uses: actions/cache/save@v4
