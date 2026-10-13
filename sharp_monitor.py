@@ -45,6 +45,13 @@ ACTIVE_END_ET = int(os.environ.get("ACTIVE_END_ET", "") or "24")
 RESERVE = int(os.environ.get("CREDIT_RESERVE", "") or "15")          # never spend below this
 MIN_INTERVAL = float(os.environ.get("MIN_INTERVAL_MIN", "") or "5")  # fastest polling per sport
 ONLY = [s.strip() for s in os.environ.get("SPORTS", "").split(",") if s.strip()]
+# College football: "filter" = only push alerts for games with an AP Top 25 team (others are still
+# scored silently for comparison), "tag" = push everything but label Top 25 / non-Top 25, "off" = no change.
+NCAAF_TOP25 = (os.environ.get("NCAAF_TOP25", "") or "filter").lower()
+# Spreads/totals: skip alerts when the best available price is worse than this (e.g. -130). "off" disables.
+_mj = (os.environ.get("MAX_JUICE", "") or "-130").strip().lower()
+MAX_JUICE = None if _mj in ("off", "none", "0") else float(_mj)
+RANKINGS_URL = "https://site.api.espn.com/apis/site/v2/sports/football/college-football/rankings"
 
 SPORTS = {
     "americanfootball_nfl":   dict(label="NFL",   markets=["spreads", "totals"], spread=1.0, total=1.0, keys=[3, 7]),
@@ -190,9 +197,76 @@ def edge_price(fair):
     return prob_to_am(fair / (1 + MIN_EDGE))
 
 
+def too_juiced(price):
+    """Spread/total price worse than MAX_JUICE (e.g. -150 when the cap is -130)."""
+    return MAX_JUICE is not None and price < 0 and price < MAX_JUICE
+
+
 def crossed_key(old, new, keys):
     lo, hi = sorted((abs(old), abs(new)))
     return any(lo <= k <= hi and lo != hi for k in keys) if keys else False
+
+
+# ---------------------------------------------------------------- AP Top 25 (college football)
+ALIASES = {"ole miss": ["mississippi"], "usc": ["southern california", "southern cal"],
+           "miami": ["miami (fl)", "miami fl", "miami florida"], "lsu": ["louisiana state"],
+           "smu": ["southern methodist"], "byu": ["brigham young"], "ucf": ["central florida"],
+           "tcu": ["texas christian"], "pitt": ["pittsburgh"], "uconn": ["connecticut"]}
+
+
+def _norm(x):
+    return " ".join(str(x).lower().replace(".", "").replace("&", " and ").split())
+
+
+def load_top25(st, n):
+    """{rank: [name variants]} from ESPN's AP poll, cached once per ET day. None if unavailable."""
+    today = n.astimezone(ET).date().isoformat()
+    cache = st.get("top25")
+    if cache and cache.get("day") == today:
+        return cache.get("teams")
+    teams = None
+    try:
+        req = urllib.request.Request(RANKINGS_URL, headers={"User-Agent": "Mozilla/5.0"})
+        with urllib.request.urlopen(req, timeout=20) as r:
+            data = json.loads(r.read().decode())
+        polls = data.get("rankings", [])
+        ap = next((p for p in polls if "ap" in _norm(p.get("name", "")).split()
+                   or _norm(p.get("type", "")) == "ap"), polls[0] if polls else None)
+        if ap:
+            teams = []
+            for r_ in ap.get("ranks", []):
+                t = r_.get("team", {})
+                loc = _norm(t.get("location", "") or t.get("nickname", ""))
+                locs = [loc] + ALIASES.get(loc, []) + [_norm(t.get("nickname", "")), _norm(t.get("abbreviation", ""))]
+                teams.append({"rank": r_.get("current"), "locs": [x for x in dict.fromkeys(locs) if x],
+                              "mascot": _norm(t.get("name", "")), "label": t.get("location") or t.get("nickname", "")})
+            teams = teams or None
+    except Exception as ex:
+        print(f"Top 25 fetch failed: {ex}")
+    if teams is not None or not cache:
+        st["top25"] = {"day": today if teams is not None else "", "teams": teams}
+    return teams if teams is not None else (cache or {}).get("teams")
+
+
+def top25_rank(team_name, teams):
+    """(rank, label) if an Odds API team name ('Georgia Bulldogs') is in the Top 25, else None."""
+    full = _norm(team_name)
+    for t in teams or []:
+        for loc in t["locs"]:
+            if full == loc or (full.startswith(loc + " ") and (not t["mascot"] or full.endswith(" " + t["mascot"])
+                                                               or full == f"{loc} {t['mascot']}")):
+                return t["rank"], t["label"]
+    return None
+
+
+def top25_tag(event, teams):
+    """(is_top25, ' [Top 25: #5 Indiana]' / ' [non-Top 25]' / ' [Top 25 n/a]')."""
+    if teams is None:
+        return True, " [Top 25 n/a]"
+    hits = [h for h in (top25_rank(event["away_team"], teams), top25_rank(event["home_team"], teams)) if h]
+    if hits:
+        return True, " [Top 25: " + ", ".join(f"#{r} {lbl}" for r, lbl in hits) + "]"
+    return False, " [non-Top 25]"
 
 
 # ---------------------------------------------------------------- detection
@@ -236,7 +310,7 @@ def detect(event, cfg, lines, base):
         if not offers:
             continue
         pt, pr, b = max(offers, key=lambda x: (x[0], x[1]))
-        if pt > new:
+        if pt > new and not too_juiced(pr):
             add("spr", team, pt, pr, b, f"spr|{team}|{new}",
                 f"{team} {fmt_pt(pt)} ({fmt_price(pr)}) at {nm(b)}" + also([x[2] for x in offers if x[0] > new], b),
                 f"{nm(SHARP)} moved {fmt_pt(old)} -> {fmt_pt(new)}; bet only at {fmt_pt(new + 0.5)} or better",
@@ -257,7 +331,7 @@ def detect(event, cfg, lines, base):
                 else:
                     pt, pr, b = max(offers, key=lambda x: (x[0], x[1]))
                     ok, thr = pt > new, new + 0.5
-                if ok:
+                if ok and not too_juiced(pr):
                     add("tot", side, pt, pr, b, f"tot|{side}|{new}",
                         f"{side} {pt:g} ({fmt_price(pr)}) at {nm(b)}"
                         + also([x[2] for x in offers if (x[0] < new if side == "Over" else x[0] > new)], b),
@@ -364,19 +438,26 @@ def recap(st, n):
     if st.get("recap_day") == today:
         return
     st["recap_day"] = today
-    new = [(e, g) for e, g in graded(st, n) if not e.get("reported")]
-    for e, _ in new:
+    allnew = [(e, g) for e, g in graded(st, n) if not e.get("reported")]
+    for e, _ in allnew:
         e["reported"] = True
-    if not new:
+    new = [(e, g) for e, g in allnew if not e.get("muted")]
+    if not allnew:
         return
     beat = sum(1 for _, (v, _) in new if v > 0)
     lines = [f"{'✅' if v > 0 else ('➖' if v == 0 else '❌')} {e['sport']} {describe(e)}: {t}"
              for e, (v, t) in new[:12]]
-    month = graded(st, n, 30)
+    month = [x for x in graded(st, n, 30) if not x[0].get("muted")]
     mbeat = sum(1 for _, (v, _) in month if v > 0)
     body = (f"{beat} of {len(new)} alerts beat {nm(SHARP)}'s closing number.\n" + "\n".join(lines)
             + (f"\n+{len(new) - 12} more" if len(new) > 12 else "")
             + f"\nLast 30 days: {mbeat}/{len(month)} beat the close")
+    cfb = [x for x in graded(st, n, 30) if "t25" in x[0]]
+    if cfb:
+        def split(flag):
+            g = [v for e, (v, _) in cfb if e["t25"] is flag]
+            return f"{sum(1 for v in g if v > 0)}/{len(g)}"
+        body += f"\nCollege 30d beat close: Top 25 {split(True)}, non-Top 25 {split(False)} (not sent)"
     notify("Sharp recap", body)
 
 
@@ -451,6 +532,7 @@ def run():
 
     books = ",".join(BOOKS)
     sent = 0
+    top25 = load_top25(st, n) if (NCAAF_TOP25 != "off" and "americanfootball_ncaaf" in active) else None
     for key in active:
         if st.get("remaining") is not None and st["remaining"] <= RESERVE:
             print("Credit reserve reached; stopping.")
@@ -486,20 +568,28 @@ def run():
                 for _, v in h["obs"]:
                     for k, x in v.items():
                         base.setdefault(k, x)
+                is_t25, tag = (top25_tag(ev, top25) if key == "americanfootball_ncaaf" and NCAAF_TOP25 != "off"
+                               else (None, ""))
                 for a in detect(ev, cfg, lines, base):
                     if a["id"] in st["alerted"]:
                         continue
-                    notify(f"Sharp alert {cfg['label']}",
-                           f"{a['text']}\n{a['game']}, {a['start']}\n{a['why']}")
+                    if is_t25 is False and NCAAF_TOP25 == "filter":
+                        print(f"Skipped (non-Top 25): {a['text']} | {a['game']}")
+                    else:
+                        notify(f"Sharp alert {cfg['label']}",
+                               f"{a['text']}\n{a['game']}{tag}, {a['start']}\n{a['why']}")
                     st["alerted"][a["id"]] = time.time()
                     e = {k: a[k] for k in ("id", "ev", "game", "kind", "side", "pt", "price", "book", "conf")}
                     e.update(sport=cfg["label"], start=a["commence"], t=time.time())
+                    if is_t25 is not None:
+                        e["t25"] = is_t25
+                        e["muted"] = bool(is_t25 is False and NCAAF_TOP25 == "filter")
                     e["close"] = close_value(e, vals)
                     # one scorecard entry per bet, even if the line keeps moving and we push again
                     if not any(x["ev"] == e["ev"] and x["kind"] == e["kind"] and x["side"] == e["side"]
                                for x in st["log"]):
                         st["log"].append(e)
-                    sent += 1
+                    sent += 0 if (is_t25 is False and NCAAF_TOP25 == "filter") else 1
             h["obs"].append([time.time(), vals])
 
     # Tidy: drop started games and old alert keys.
