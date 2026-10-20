@@ -312,7 +312,7 @@ def detect(event, cfg, lines, base):
         alerts.append(dict(id=f"{event['id']}|{new_key}", ev=event["id"], game=game, start=start,
                            commence=event["commence_time"], kind=kind, side=side, pt=pt, price=price,
                            book=book, conf=conf, text=text, why=why + note,
-                           mag=round(mag, 2), nb=nb, edge=edge, nconf=nc))
+                           mag=round(mag, 2), nb=nb, edge=edge, nconf=nc, cby=[nm(b) for b in cnames] if conf == "yes" else []))
 
     # Spreads: sharp side = team whose number got worse (money pushed it).
     for team, (new, _) in ({} if cfg.get("no_point_moves") else sb.get("spreads", {})).items():
@@ -726,6 +726,31 @@ def weekly_recap(st, n):
     notify("Sharp weekly recap", "\n".join(lines))
 
 
+def write_alerts_file(st, n):
+    """alerts.json: every alert from the last 45 days (bet, book, price, grade, confirm books, result) for agents/other tools.
+    Rewritten each run; the workflow commits it only when it changed."""
+    path = os.environ.get("ALERTS_FILE", "") or "alerts.json"
+    out = []
+    for e in sorted(st["log"], key=lambda x: x["start"], reverse=True):
+        res = e.get("res")
+        g = grade(e)
+        out.append({
+            "start_utc": e["start"], "game": e["game"], "sport": e["sport"], "bet": describe(e),
+            "book": nm(e["book"]), "price": e["price"], "point": e.get("pt"),
+            "grade": e.get("grade"), "score": e.get("score"), "late": bool(e.get("late")),
+            "minutes_before_start": e.get("lead"), "confirm": e.get("conf"), "confirmed_by": e.get("cby", []),
+            "sent_to_phone": not e.get("muted", False),
+            "top25": e.get("t25"), "result": res["r"] if res else None, "final": res["score"] if res else None,
+            "beat_close": (g[0] > 0) if g else None, "clv": g[1] if g else None,
+            "units_flat": round(units(e, res["r"]), 2) if res else None})
+    try:
+        with open(path, "w") as f:
+            json.dump({"note": "Sharp-monitor alerts, newest first. result: W/L/P or null (pending). units_flat = 1u risked at the alert price.",
+                       "alerts": out}, f, indent=1, sort_keys=True)
+    except Exception as ex:
+        print(f"alerts file failed: {ex}")
+
+
 CONF_LABEL = {"yes": "Yes", "na": "Pinnacle only", "off": "-"}
 
 
@@ -860,7 +885,7 @@ def run():
                                f"Grade {grade} ({score}/100) | "
                                + (f"LATE: starts in {lead_text(lead)}" if late else f"starts in {lead_text(lead)}"))
                     st["alerted"][a["id"]] = time.time()
-                    e = {k: a[k] for k in ("id", "ev", "game", "kind", "side", "pt", "price", "book", "conf", "nconf")}
+                    e = {k: a[k] for k in ("id", "ev", "game", "kind", "side", "pt", "price", "book", "conf", "nconf", "cby")}
                     e.update(sport=cfg["label"], start=a["commence"], t=time.time(), lead=round(lead), late=late,
                              score=score, grade=grade)
                     if is_t25 is not None:
@@ -880,6 +905,7 @@ def run():
     st["log"] = [e for e in st["log"] if parse_iso(e["start"]) > n - timedelta(days=LOG_DAYS)]
     save_state(st)
     write_summary(st, n)
+    write_alerts_file(st, n)
     print(f"Done. Alerts sent: {sent}. Credits left: {st.get('remaining')}")
 
 
