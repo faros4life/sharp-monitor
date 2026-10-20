@@ -30,6 +30,9 @@ jobs:
           SHARP_BOOK: ${{ vars.SHARP_BOOK }}
           MAX_JUICE: ${{ vars.MAX_JUICE }}
           NCAAF_TOP25: ${{ vars.NCAAF_TOP25 }}
+          RECAP_REPLAY_HOURS: ${{ vars.RECAP_REPLAY_HOURS }}
+          LATE_MINUTES: ${{ vars.LATE_MINUTES }}
+          LATE_MODE: ${{ vars.LATE_MODE }}
           ACTIVE_START_ET: "6"
         run: python sharp_monitor.py
       - uses: actions/cache/save@v4
