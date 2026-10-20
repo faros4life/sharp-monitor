@@ -673,6 +673,43 @@ def recap(st, n):
     notify_chunks("Sharp recap", header, lines, footer)
 
 
+def weekly_recap(st, n):
+    """Mondays (first run after the daily recap): Monday-to-Sunday totals for the week that just ended, in addition to the daily."""
+    et = n.astimezone(ET)
+    if et.weekday() != 0 or st.get("weekly_day") == et.date().isoformat():
+        return
+    st["weekly_day"] = et.date().isoformat()
+    start = (et - timedelta(days=7)).replace(hour=0, minute=0, second=0, microsecond=0)
+    end = et.replace(hour=0, minute=0, second=0, microsecond=0)
+    wk = [x for x in graded(st, n, 9) if not x[0].get("muted") and start <= parse_iso(x[0]["start"]).astimezone(ET) < end]
+    if not wk:
+        return
+
+    def rl(items):
+        w_, l_, p_, u_ = record(items)
+        return f"{w_}-{l_}" + (f"-{p_}" if p_ else "") + f" ({u_:+.2f}u)"
+    clv = [x for x in wk if x[1]]
+    beat = sum(1 for _, g in clv if g[0] > 0)
+    pend = sum(1 for e, _ in wk if not e.get("res"))
+    lines = [f"Week {start.strftime('%b %-d')} - {(end - timedelta(days=1)).strftime('%b %-d')}: {rl(wk)} flat"
+             + (f" | {beat} of {len(clv)} beat {nm(SHARP)}'s close" if clv else "")
+             + (f" | {pend} ungraded" if pend else "")]
+    lines.append("By day:")
+    for i in range(7):
+        d0 = start + timedelta(days=i)
+        day = [x for x in wk if parse_iso(x[0]["start"]).astimezone(ET).date() == d0.date()]
+        if day:
+            lines.append(f"{d0.strftime('%a %b %-d')}: {rl(day)}")
+    lines.append("By sport:")
+    for sp in sorted({x[0]["sport"] for x in wk}):
+        lines.append(f"{sp}: {rl([x for x in wk if x[0]['sport'] == sp])}")
+    tagged = [x for x in wk if x[0].get("res") and x[0].get("grade")]
+    if tagged:
+        lines.append("By grade: " + ", ".join(f"{gr} {rl([x for x in tagged if x[0]['grade'] == gr])}"
+                                              for gr in "ABCD" if any(x[0]["grade"] == gr for x in tagged)))
+    notify("Sharp weekly recap", "\n".join(lines))
+
+
 CONF_LABEL = {"yes": "Yes", "na": "Pinnacle only", "off": "-"}
 
 
@@ -733,6 +770,7 @@ def run():
         return
     settle_pending(st, n)  # final scores + W/L for finished games
     recap(st, n)  # once a day: how yesterday's alerts did (W/L, score, closing line)
+    weekly_recap(st, n)  # Mondays: last Monday-Sunday totals
 
     # Free endpoints: which sports are in season, and which have games soon.
     sports, _ = http_get("/sports", {})
