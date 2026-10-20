@@ -277,6 +277,52 @@ def top25_tag(event, teams):
     return False, " [non-Top 25]"
 
 
+# ---------------------------------------------------------------- estimated edge (EV) for spreads/totals
+# Approximate chance the final margin (spreads) or total lands exactly on each number, by sport.
+# Each half point between the bettor's number and Pinnacle's new number is worth about half that chance.
+NFL_MARGIN = {1: .035, 2: .035, 3: .15, 4: .05, 5: .035, 6: .055, 7: .09, 8: .03, 9: .02, 10: .055,
+              11: .025, 12: .02, 13: .025, 14: .045, 16: .02, 17: .035, 21: .03}
+NCAAF_MARGIN = {1: .03, 2: .03, 3: .08, 4: .035, 6: .035, 7: .06, 10: .045, 14: .045, 17: .03, 21: .03}
+NFL_TOTAL_KEYS = {37: .04, 40: .035, 41: .045, 43: .035, 44: .04, 47: .04, 51: .035, 54: .03}
+
+
+def number_mass(sport, kind, k, line):
+    k = int(round(abs(k))) if kind == "spr" else int(round(k))
+    if kind == "spr":
+        if sport == "NFL":
+            return NFL_MARGIN.get(k, .015)
+        if sport == "NCAAF":
+            return NCAAF_MARGIN.get(k, .025)
+        return .03 if k <= 12 else .025          # NBA / NCAAB / WNBA
+    if sport in ("NHL", "MLB"):                   # goals/runs: Poisson around the line (MLB fatter tails)
+        lam = max(float(line), 0.5)
+        pm = math.exp(-lam) * lam ** k / math.factorial(k) if k >= 0 else 0
+        return pm * (0.8 if sport == "MLB" else 1.0)
+    if sport == "NFL":
+        return NFL_TOTAL_KEYS.get(k, .025)
+    if sport == "NCAAF":
+        return .02
+    return .022                                    # basketball totals
+
+
+def half_point_value(sport, kind, a, b, line):
+    """Win-probability gained moving from number a to the better number b (b > a in the bettor's favour)."""
+    lo, hi = sorted((a, b))
+    v, x = 0.0, lo
+    while x < hi - 1e-9:
+        nxt = x + 0.5
+        k = nxt if abs(nxt - round(nxt)) < 1e-9 else x   # the whole number this half step touches
+        v += number_mass(sport, kind, k, line) / 2
+        x = nxt
+    return v
+
+
+def ev_pct(p, price):
+    """Expected value per 1 unit risked at American `price` with win chance p (pushes counted as half)."""
+    dec = 1 + (100 / abs(price) if price < 0 else price / 100)
+    return p * (dec - 1) - (1 - p)
+
+
 # ---------------------------------------------------------------- detection
 def detect(event, cfg, lines, base):
     """Compare sharp lines now vs. baseline values; return list of alert dicts."""
@@ -304,7 +350,7 @@ def detect(event, cfg, lines, base):
             return "na"
         return "yes" if len(yes) >= len(no) and yes else "no"
 
-    def add(kind, side, pt, price, book, new_key, text, why, conf, mag=1.0, nb=1, edge=None):
+    def add(kind, side, pt, price, book, new_key, text, why, conf, mag=1.0, nb=1, edge=None, evp=None):
         nc = len(cnames) if conf == "yes" else 0
         if conf == "no":
             return  # confirm book disagrees: likely noise or stale sharp data
@@ -312,7 +358,8 @@ def detect(event, cfg, lines, base):
         alerts.append(dict(id=f"{event['id']}|{new_key}", ev=event["id"], game=game, start=start,
                            commence=event["commence_time"], kind=kind, side=side, pt=pt, price=price,
                            book=book, conf=conf, text=text, why=why + note,
-                           mag=round(mag, 2), nb=nb, edge=edge, nconf=nc, cby=[nm(b) for b in cnames] if conf == "yes" else []))
+                           mag=round(mag, 2), nb=nb, edge=edge, nconf=nc, cby=[nm(b) for b in cnames] if conf == "yes" else [],
+                           evp=round(100 * (evp if evp is not None else edge), 1) if (evp is not None or edge is not None) else None))
 
     # Spreads: sharp side = team whose number got worse (money pushed it).
     for team, (new, _) in ({} if cfg.get("no_point_moves") else sb.get("spreads", {})).items():
@@ -328,11 +375,14 @@ def detect(event, cfg, lines, base):
             continue
         pt, pr, b = max(offers, key=lambda x: (x[0], x[1]))
         if pt > new and not too_juiced(pr):
+            opp = [p2 for t2, (_, p2) in sb["spreads"].items() if t2 != team]
+            p0 = (am_to_prob(sb["spreads"][team][1]) / (am_to_prob(sb["spreads"][team][1]) + am_to_prob(opp[0]))) if opp else 0.5
+            evp = ev_pct(min(max(p0 + half_point_value(cfg["label"], "spr", new, pt, new), .01), .99), pr)
             add("spr", team, pt, pr, b, f"spr|{team}|{new}",
                 f"{team} {fmt_pt(pt)} ({fmt_price(pr)}) at {nm(b)}" + also([x[2] for x in offers if x[0] > new], b),
                 f"{nm(SHARP)} moved {fmt_pt(old)} -> {fmt_pt(new)}; bet only at {fmt_pt(new + 0.5)} or better",
                 agree(f"spreads|{team}", old, new),
-                mag=move / (cfg.get("spread") or 1), nb=len([x for x in offers if x[0] > new]))
+                mag=move / (cfg.get("spread") or 1), nb=len([x for x in offers if x[0] > new]), evp=evp)
 
     # Totals
     if "Over" in sb.get("totals", {}):
@@ -350,13 +400,17 @@ def detect(event, cfg, lines, base):
                     pt, pr, b = max(offers, key=lambda x: (x[0], x[1]))
                     ok, thr = pt > new, new + 0.5
                 if ok and not too_juiced(pr):
+                    tt = sb["totals"]
+                    p0 = (am_to_prob(tt[side][1]) / (am_to_prob(tt["Over"][1]) + am_to_prob(tt["Under"][1]))
+                          if "Under" in tt and side in tt else 0.5)
+                    evp = ev_pct(min(max(p0 + half_point_value(cfg["label"], "tot", pt, new, new), .01), .99), pr)
                     add("tot", side, pt, pr, b, f"tot|{side}|{new}",
                         f"{side} {pt:g} ({fmt_price(pr)}) at {nm(b)}"
                         + also([x[2] for x in offers if (x[0] < new if side == "Over" else x[0] > new)], b),
                         f"{nm(SHARP)} total moved {old:g} -> {new:g}; bet only at {thr:g} or better",
                         agree("totals|Over", old, new),
                         mag=abs(new - old) / cfg["total"],
-                        nb=len([x for x in offers if (x[0] < new if side == "Over" else x[0] > new)]))
+                        nb=len([x for x in offers if (x[0] < new if side == "Over" else x[0] > new)]), evp=evp)
 
     # Run lines (MLB) and puck lines (NHL): point usually stays at 1.5, so watch the price at that point.
     # Sharp side = team whose no-vig run-line probability rose at an unchanged point.
@@ -605,7 +659,7 @@ def line_for(e, g):
     if g:
         s += f" | CLV {g[1]}"
     if e.get("grade"):
-        s += f" | {e['grade']}{e['score']}" + (" LATE" if e.get("late") else "")
+        s += f" | {e['grade']}{e['score']}" + (f" {e['evp']:+.1f}%" if e.get("evp") is not None else "") + (" LATE" if e.get("late") else "")
     return s
 
 
@@ -686,6 +740,12 @@ def recap(st, n):
             rec_line(f"{lab}", [x for x in nc_items if sel(x[0]["nconf"])])
             for lab, sel in (("0-1", lambda k: k <= 1), ("2", lambda k: k == 2), ("3+", lambda k: k >= 3))
             if any(sel(x[0]["nconf"]) for x in nc_items))
+    ev_items = [x for x in month if x[0].get("res") and x[0].get("evp") is not None]
+    if ev_items:
+        footer += "\nBy edge (30d): " + ", ".join(
+            rec_line(lab, [x for x in ev_items if sel(x[0]["evp"])])
+            for lab, sel in (("<0%", lambda v: v < 0), ("0-3%", lambda v: 0 <= v < 3), ("3%+", lambda v: v >= 3))
+            if any(sel(x[0]["evp"]) for x in ev_items))
     notify_chunks("Sharp recap", header, lines, footer)
 
 
@@ -737,7 +797,7 @@ def write_alerts_file(st, n):
         out.append({
             "start_utc": e["start"], "game": e["game"], "sport": e["sport"], "bet": describe(e),
             "book": nm(e["book"]), "price": e["price"], "point": e.get("pt"),
-            "grade": e.get("grade"), "score": e.get("score"), "late": bool(e.get("late")),
+            "grade": e.get("grade"), "score": e.get("score"), "edge_pct": e.get("evp"), "late": bool(e.get("late")),
             "minutes_before_start": e.get("lead"), "confirm": e.get("conf"), "confirmed_by": e.get("cby", []),
             "sent_to_phone": not e.get("muted", False),
             "top25": e.get("t25"), "result": res["r"] if res else None, "final": res["score"] if res else None,
@@ -768,7 +828,7 @@ def write_summary(st, n):
         d = parse_iso(e["start"]).astimezone(ET).strftime("%b %-d")
         res = e.get("res")
         c = (ICON["W" if g[0] > 0 else ("P" if g[0] == 0 else "L")] + " " + g[1]) if g else ""
-        gr = f"{e['grade']} {e['score']}" if e.get("grade") else ""
+        gr = (f"{e['grade']} {e['score']}" if e.get("grade") else "") + (f" / {e['evp']:+.1f}%" if e.get("evp") is not None else "")
         tm = (("LATE " if e.get("late") else "") + lead_text(e["lead"])) if "lead" in e else ""
         rows.append(f"| {d} | {e['sport']} | {describe(e)} | {nm(e['book'])} | {CONF_LABEL.get(e.get('conf'), '')}{' (' + str(e['nconf']) + ')' if e.get('nconf') else ''} | {gr} | {tm} | "
                     f"{ICON[res['r']] + ' ' + res['r'] if res else ''} | {res['score'] if res else ''} | {c} |")
@@ -882,10 +942,10 @@ def run():
                     else:
                         notify(f"Sharp alert {cfg['label']}" + (" LATE" if late else ""),
                                f"{a['text']}\n{a['game']}{tag}, {a['start']}\n{a['why']}\n"
-                               f"Grade {grade} ({score}/100) | "
+                               f"Grade {grade} ({score}/100)" + (f" | Edge {a['evp']:+.1f}%" if a.get("evp") is not None else "") + " | "
                                + (f"LATE: starts in {lead_text(lead)}" if late else f"starts in {lead_text(lead)}"))
                     st["alerted"][a["id"]] = time.time()
-                    e = {k: a[k] for k in ("id", "ev", "game", "kind", "side", "pt", "price", "book", "conf", "nconf", "cby")}
+                    e = {k: a[k] for k in ("id", "ev", "game", "kind", "side", "pt", "price", "book", "conf", "nconf", "cby", "evp")}
                     e.update(sport=cfg["label"], start=a["commence"], t=time.time(), lead=round(lead), late=late,
                              score=score, grade=grade)
                     if is_t25 is not None:
