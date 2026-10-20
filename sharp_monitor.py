@@ -31,10 +31,12 @@ RETAIL = [b.strip() for b in (os.environ.get("RETAIL_BOOKS", "") or
     "hardrockbet_fl,prophetx,novig,kalshi,polymarket,betmgm,fanduel,draftkings"
 ).split(",") if b.strip()]
 # Second sharp-leaning book that must agree with the sharp move ("none" to turn off).
-CONFIRM = os.environ.get("CONFIRM_BOOK", "") or "betonlineag"
-if CONFIRM.lower() == "none":
-    CONFIRM = ""
-BOOKS = list(dict.fromkeys([SHARP] + RETAIL + ([CONFIRM] if CONFIRM else [])))
+# CONFIRM_BOOK may list several, comma separated: a sharp move is confirmed when at least as many of them
+# agree as disagree (books with no line are ignored).
+_cb = os.environ.get("CONFIRM_BOOK", "") or "betonlineag,matchbook,betfair_ex_eu,smarkets"
+CONFIRMS = [] if _cb.strip().lower() == "none" else [b.strip() for b in _cb.split(",") if b.strip()]
+CONFIRM = CONFIRMS[0] if CONFIRMS else ""
+BOOKS = list(dict.fromkeys([SHARP] + RETAIL + CONFIRMS))
 LOG_DAYS = 45   # keep graded alerts this long
 LOOKAHEAD_H = float(os.environ.get("LOOKAHEAD_HOURS", "") or "24")
 WINDOW_H = float(os.environ.get("MOVE_WINDOW_HOURS", "") or "2")   # compare against lines seen in this window (catches fast moves)
@@ -181,7 +183,7 @@ def sharp_values(lines, book=None):
 
 NAMES = {"hardrockbet_fl": "Hard Rock FL", "hardrockbet": "Hard Rock", "prophetx": "ProphetX",
          "novig": "Novig", "kalshi": "Kalshi", "polymarket": "Polymarket", "betmgm": "BetMGM", "fanduel": "FanDuel", "draftkings": "DraftKings",
-         "pinnacle": "Pinnacle", "betonlineag": "BetOnline", "lowvig": "LowVig"}
+         "pinnacle": "Pinnacle", "betonlineag": "BetOnline", "lowvig": "LowVig", "matchbook": "Matchbook", "betfair_ex_eu": "Betfair", "smarkets": "Smarkets"}
 
 
 def nm(b):
@@ -281,28 +283,36 @@ def detect(event, cfg, lines, base):
     alerts = []
     sb = lines.get(SHARP, {})
     retail = {b: lines[b] for b in RETAIL if b in lines}
-    cv = sharp_values(lines, CONFIRM) if CONFIRM else {}
+    cvs = {b: sharp_values(lines, b) for b in CONFIRMS if b in lines}
+    cnames = []
     game = f"{event['away_team']} @ {event['home_team']}"
     start = parse_iso(event["commence_time"]).astimezone(ET).strftime("%a %-I:%M %p ET")
 
     def agree(key, old, new):
         """Does the confirm book sit on the moved side of the sharp move? yes / no / na (no line)."""
-        if not CONFIRM:
+        if not CONFIRMS:
             return "off"
-        c = cv.get(key)
-        if c is None:
-            return "na"
         mid = (old + new) / 2
-        return "yes" if ((c <= mid + 1e-9) if new < old else (c >= mid - 1e-9)) else "no"
+        yes, no = [], []
+        for b, cv in cvs.items():
+            c = cv.get(key)
+            if c is None:
+                continue
+            (yes if ((c <= mid + 1e-9) if new < old else (c >= mid - 1e-9)) else no).append(b)
+        cnames[:] = yes
+        if not yes and not no:
+            return "na"
+        return "yes" if len(yes) >= len(no) and yes else "no"
 
     def add(kind, side, pt, price, book, new_key, text, why, conf, mag=1.0, nb=1, edge=None):
+        nc = len(cnames) if conf == "yes" else 0
         if conf == "no":
             return  # confirm book disagrees: likely noise or stale sharp data
-        note = {"yes": f" (confirmed by {nm(CONFIRM)})", "na": f" ({nm(SHARP)} only)", "off": ""}[conf]
+        note = {"yes": f" (confirmed by {', '.join(nm(b) for b in cnames)})", "na": f" ({nm(SHARP)} only)", "off": ""}[conf]
         alerts.append(dict(id=f"{event['id']}|{new_key}", ev=event["id"], game=game, start=start,
                            commence=event["commence_time"], kind=kind, side=side, pt=pt, price=price,
                            book=book, conf=conf, text=text, why=why + note,
-                           mag=round(mag, 2), nb=nb, edge=edge))
+                           mag=round(mag, 2), nb=nb, edge=edge, nconf=nc))
 
     # Spreads: sharp side = team whose number got worse (money pushed it).
     for team, (new, _) in ({} if cfg.get("no_point_moves") else sb.get("spreads", {})).items():
@@ -670,6 +680,12 @@ def recap(st, n):
         footer += ("\nTiming (30d): " + rec_line("Early", [x for x in tagged if not x[0].get("late")]) + " | "
                    + rec_line("Late" + (" (not sent)" if LATE_MODE == "mute" else ""),
                               [x for x in tagged if x[0].get("late")]))
+    nc_items = [x for x in month if x[0].get("res") and "nconf" in x[0]]
+    if nc_items:
+        footer += "\nBy confirm books (30d): " + ", ".join(
+            rec_line(f"{lab}", [x for x in nc_items if sel(x[0]["nconf"])])
+            for lab, sel in (("0-1", lambda k: k <= 1), ("2", lambda k: k == 2), ("3+", lambda k: k >= 3))
+            if any(sel(x[0]["nconf"]) for x in nc_items))
     notify_chunks("Sharp recap", header, lines, footer)
 
 
@@ -729,7 +745,7 @@ def write_summary(st, n):
         c = (ICON["W" if g[0] > 0 else ("P" if g[0] == 0 else "L")] + " " + g[1]) if g else ""
         gr = f"{e['grade']} {e['score']}" if e.get("grade") else ""
         tm = (("LATE " if e.get("late") else "") + lead_text(e["lead"])) if "lead" in e else ""
-        rows.append(f"| {d} | {e['sport']} | {describe(e)} | {nm(e['book'])} | {CONF_LABEL.get(e.get('conf'), '')} | {gr} | {tm} | "
+        rows.append(f"| {d} | {e['sport']} | {describe(e)} | {nm(e['book'])} | {CONF_LABEL.get(e.get('conf'), '')}{' (' + str(e['nconf']) + ')' if e.get('nconf') else ''} | {gr} | {tm} | "
                     f"{ICON[res['r']] + ' ' + res['r'] if res else ''} | {res['score'] if res else ''} | {c} |")
     pending = sum(1 for e in st["log"] if parse_iso(e["start"]) > n)
     with open(path, "a") as f:
@@ -844,7 +860,7 @@ def run():
                                f"Grade {grade} ({score}/100) | "
                                + (f"LATE: starts in {lead_text(lead)}" if late else f"starts in {lead_text(lead)}"))
                     st["alerted"][a["id"]] = time.time()
-                    e = {k: a[k] for k in ("id", "ev", "game", "kind", "side", "pt", "price", "book", "conf")}
+                    e = {k: a[k] for k in ("id", "ev", "game", "kind", "side", "pt", "price", "book", "conf", "nconf")}
                     e.update(sport=cfg["label"], start=a["commence"], t=time.time(), lead=round(lead), late=late,
                              score=score, grade=grade)
                     if is_t25 is not None:
