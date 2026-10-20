@@ -7,6 +7,9 @@ on:
 
 concurrency: sharp-monitor
 
+permissions:
+  contents: write
+
 jobs:
   run:
     runs-on: ubuntu-latest
@@ -40,3 +43,14 @@ jobs:
         with:
           path: state.json
           key: sharp-state-${{ github.run_id }}-${{ github.run_attempt }}
+      - name: Publish alerts.json
+        if: always()
+        run: |
+          if [ -f alerts.json ] && [ -n "$(git status --porcelain alerts.json)" ]; then
+            git config user.name "sharp-monitor"
+            git config user.email "sharp-monitor@users.noreply.github.com"
+            git add alerts.json
+            git commit -m "Update alerts.json"
+            git pull --rebase -q || true
+            git push || true
+          fi
