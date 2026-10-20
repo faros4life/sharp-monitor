@@ -51,6 +51,12 @@ NCAAF_TOP25 = (os.environ.get("NCAAF_TOP25", "") or "filter").lower()
 # Spreads/totals: skip alerts when the best available price is worse than this (e.g. -130). "off" disables.
 _mj = (os.environ.get("MAX_JUICE", "") or "-130").strip().lower()
 MAX_JUICE = None if _mj in ("off", "none", "0") else float(_mj)
+# One-time replay: set RECAP_REPLAY_HOURS (e.g. 36) to re-send a full results recap for the last N hours of alerts.
+REPLAY_H = float(os.environ.get("RECAP_REPLAY_HOURS", "") or "0")
+# Alerts that fire this close to the start (minutes) are tagged LATE. LATE_MODE: "tag" = push with a LATE label (default),
+# "mute" = log and grade them but do not push. Either way early vs late results are compared in the recap.
+LATE_MIN = float(os.environ.get("LATE_MINUTES", "") or "60")
+LATE_MODE = (os.environ.get("LATE_MODE", "") or "tag").lower()
 RANKINGS_URL = "https://site.api.espn.com/apis/site/v2/sports/football/college-football/rankings"
 
 SPORTS = {
@@ -289,13 +295,14 @@ def detect(event, cfg, lines, base):
         mid = (old + new) / 2
         return "yes" if ((c <= mid + 1e-9) if new < old else (c >= mid - 1e-9)) else "no"
 
-    def add(kind, side, pt, price, book, new_key, text, why, conf):
+    def add(kind, side, pt, price, book, new_key, text, why, conf, mag=1.0, nb=1, edge=None):
         if conf == "no":
             return  # confirm book disagrees: likely noise or stale sharp data
         note = {"yes": f" (confirmed by {nm(CONFIRM)})", "na": f" ({nm(SHARP)} only)", "off": ""}[conf]
         alerts.append(dict(id=f"{event['id']}|{new_key}", ev=event["id"], game=game, start=start,
                            commence=event["commence_time"], kind=kind, side=side, pt=pt, price=price,
-                           book=book, conf=conf, text=text, why=why + note))
+                           book=book, conf=conf, text=text, why=why + note,
+                           mag=round(mag, 2), nb=nb, edge=edge))
 
     # Spreads: sharp side = team whose number got worse (money pushed it).
     for team, (new, _) in ({} if cfg.get("no_point_moves") else sb.get("spreads", {})).items():
@@ -314,7 +321,8 @@ def detect(event, cfg, lines, base):
             add("spr", team, pt, pr, b, f"spr|{team}|{new}",
                 f"{team} {fmt_pt(pt)} ({fmt_price(pr)}) at {nm(b)}" + also([x[2] for x in offers if x[0] > new], b),
                 f"{nm(SHARP)} moved {fmt_pt(old)} -> {fmt_pt(new)}; bet only at {fmt_pt(new + 0.5)} or better",
-                agree(f"spreads|{team}", old, new))
+                agree(f"spreads|{team}", old, new),
+                mag=move / (cfg.get("spread") or 1), nb=len([x for x in offers if x[0] > new]))
 
     # Totals
     if "Over" in sb.get("totals", {}):
@@ -336,7 +344,9 @@ def detect(event, cfg, lines, base):
                         f"{side} {pt:g} ({fmt_price(pr)}) at {nm(b)}"
                         + also([x[2] for x in offers if (x[0] < new if side == "Over" else x[0] > new)], b),
                         f"{nm(SHARP)} total moved {old:g} -> {new:g}; bet only at {thr:g} or better",
-                        agree("totals|Over", old, new))
+                        agree("totals|Over", old, new),
+                        mag=abs(new - old) / cfg["total"],
+                        nb=len([x for x in offers if (x[0] < new if side == "Over" else x[0] > new)]))
 
     # Run lines (MLB) and puck lines (NHL): point usually stays at 1.5, so watch the price at that point.
     # Sharp side = team whose no-vig run-line probability rose at an unchanged point.
@@ -358,7 +368,9 @@ def detect(event, cfg, lines, base):
                     + also([x[1] for x in offers if edge_ok(x[0], new)], b),
                     (f"{nm(SHARP)} {fmt_pt(pt)} fair moved {fmt_price(prob_to_am(old))} -> "
                      f"{fmt_price(prob_to_am(new))}; bet only at {fmt_price(edge_price(new))} or better"),
-                    agree(k, old, new))
+                    agree(k, old, new),
+                    mag=(new - old) / cfg["rl"], nb=len([x for x in offers if edge_ok(x[0], new)]),
+                    edge=new / am_to_prob(pr) - 1)
 
     # Moneyline (MLB/NHL): sharp side = team whose no-vig win prob rose.
     if "ml" in cfg and len(sb.get("h2h", {})) == 2:
@@ -376,7 +388,9 @@ def detect(event, cfg, lines, base):
                     f"{team} ML {fmt_price(pr)} at {nm(b)}" + also([x[1] for x in offers if edge_ok(x[0], new)], b),
                     (f"{nm(SHARP)} fair moved {fmt_price(prob_to_am(old))} -> {fmt_price(prob_to_am(new))}; "
                      f"bet only at {fmt_price(edge_price(new))} or better"),
-                    agree(f"h2h|{team}", old, new))
+                    agree(f"h2h|{team}", old, new),
+                    mag=(new - old) / cfg["ml"], nb=len([x for x in offers if edge_ok(x[0], new)]),
+                    edge=new / am_to_prob(pr) - 1)
     return alerts
 
 
@@ -419,7 +433,145 @@ def describe(e):
     return f"{e['side']} ML {fmt_price(e['price'])}"
 
 
+# ---------------------------------------------------------------- timing and confidence grade
+def lead_text(m):
+    m = max(int(round(m)), 0)
+    return f"{m}m" if m < 60 else f"{m // 60}h{m % 60:02d}m"
+
+
+def sport_rate(st, n, label):
+    """(share of this sport's last-30-day alerts that beat the close, sample size)."""
+    g = [c for e, c in graded(st, n, 30) if c and e["sport"] == label and not e.get("muted")]
+    return (sum(1 for v, _ in g if v > 0) / len(g), len(g)) if g else (None, 0)
+
+
+def confidence(a, st, n, lead_min):
+    """0-100 heuristic and an A-D grade. Not a win probability: the recap shows how each grade has actually done.
+    25 confirm book agrees (10 if Pinnacle only) + 25 size of the sharp move vs the sport's trigger (caps at 3x)
+    + 15 books offering the number (1=5, 2=10, 3+=15) + 15 price (edge vs fair, or juice) + 15 sport's 30-day
+    beat-the-close rate (neutral 50% until 10 samples) + 5 lead time (3h+ = 5, 1h+ = 3, under 1h = 0)."""
+    s = {"yes": 25, "na": 10}.get(a.get("conf"), 0)
+    s += min(a.get("mag", 1.0), 3.0) / 3.0 * 25
+    s += {1: 5, 2: 10}.get(a.get("nb", 1), 15)
+    if a.get("edge") is not None:
+        s += min(max(a["edge"], 0) / 0.06, 1.0) * 15
+    else:
+        p = float(a["price"])
+        s += 15 if p >= -110 else 10 if p >= -120 else 5 if p >= -130 else 0
+    rate, cnt = sport_rate(st, n, a.get("sport") or a.get("label") or "")
+    s += (rate if cnt >= 10 else 0.5) * 15
+    s += 5 if lead_min >= 180 else 3 if lead_min >= 60 else 0
+    s = int(round(min(max(s, 0), 100)))
+    return s, ("A" if s >= 75 else "B" if s >= 60 else "C" if s >= 45 else "D")
+
+
+# ---------------------------------------------------------------- final scores (ESPN, free) and W/L
+ESPN_PATH = {"NFL": "football/nfl", "NCAAF": "football/college-football", "NBA": "basketball/nba",
+             "WNBA": "basketball/wnba", "NCAAB": "basketball/mens-college-basketball",
+             "MLB": "baseball/mlb", "NHL": "hockey/nhl"}
+ESPN_EXTRA = {"NCAAF": {"groups": "80"}, "NCAAB": {"groups": "50"}}
+_SB_CACHE = {}
+
+
+def espn_scoreboard(sport, day):
+    """Finished/pending games for one sport on one ET date: [{done, so, away, home}] (cached per run)."""
+    key = (sport, day)
+    if key in _SB_CACHE:
+        return _SB_CACHE[key]
+    games = []
+    try:
+        q = {"dates": day.replace("-", ""), "limit": "400"}
+        q.update(ESPN_EXTRA.get(sport, {}))
+        url = f"https://site.api.espn.com/apis/site/v2/sports/{ESPN_PATH[sport]}/scoreboard?" + urllib.parse.urlencode(q)
+        req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+        with urllib.request.urlopen(req, timeout=20) as r:
+            data = json.loads(r.read().decode())
+        for ev in data.get("events", []):
+            comp = (ev.get("competitions") or [{}])[0]
+            ty = (comp.get("status") or ev.get("status") or {}).get("type", {})
+            g = {"done": bool(ty.get("completed")),
+                 "so": "so" in str(ty.get("shortDetail", "")).lower().split("/")}
+            for c in comp.get("competitors", []):
+                t = c.get("team", {})
+                names = {_norm(t[k]) for k in ("displayName", "shortDisplayName", "location", "name") if t.get(k)}
+                try:
+                    pts = int(float(c.get("score")))
+                except (TypeError, ValueError):
+                    pts = None
+                g[c.get("homeAway")] = {"names": names, "loc": _norm(t.get("location", "")),
+                                        "abbr": t.get("abbreviation", ""), "pts": pts}
+            if "home" in g and "away" in g:
+                games.append(g)
+    except Exception as ex:
+        print(f"Scoreboard fetch failed ({sport} {day}): {ex}")
+        return []  # not cached: try again next run
+    _SB_CACHE[key] = games
+    return games
+
+
+def team_match(odds_name, side):
+    full = _norm(odds_name)
+    if full in side["names"]:
+        return True
+    for alias in [side["loc"]] + [a for k, v in ALIASES.items() if k == side["loc"] for a in v]:
+        if alias and (full == alias or full.startswith(alias + " ")):
+            return True
+    return any(full == alias for alias in ALIASES.get(full, []) if alias in side["names"])
+
+
+def find_game(e):
+    away, home = e["game"].split(" @ ", 1)
+    start = parse_iso(e["start"]).astimezone(ET)
+    for off in (0, 1):  # late games can be filed under the next ET date
+        day = (start + timedelta(days=off)).date().isoformat()
+        for g in espn_scoreboard(e["sport"], day):
+            if team_match(away, g["away"]) and team_match(home, g["home"]):
+                return g
+    return None
+
+
+def settle(e, g):
+    """('W'|'L'|'P', 'AWY 27, HME 24') at the alert number, or None if not final yet."""
+    a, h = g["away"]["pts"], g["home"]["pts"]
+    if not g["done"] or a is None or h is None:
+        return None
+    away, home = e["game"].split(" @ ", 1)
+    if e["kind"] == "tot":
+        tot = a + h - (1 if (g["so"] and e["sport"] == "NHL") else 0)  # shootout goal doesn't count toward totals
+        d = tot - e["pt"]
+        if e["side"] == "Under":
+            d = -d
+    else:
+        mine_home = _norm(e["side"]) == _norm(home)
+        my, opp = (h, a) if mine_home else (a, h)
+        d = (my - opp) + (e["pt"] if e["kind"] in ("spr", "rl") else 0)
+    r = "W" if d > 1e-9 else ("L" if d < -1e-9 else "P")
+    return r, f"{g['away']['abbr'] or away} {a}, {g['home']['abbr'] or home} {h}"
+
+
+def units(e, r):
+    """Flat 1 unit risked at the alert price."""
+    if r == "L":
+        return -1.0
+    if r == "P":
+        return 0.0
+    p = float(e["price"])
+    return 100 / abs(p) if p < 0 else p / 100
+
+
+def settle_pending(st, n):
+    """Fill in final score + W/L for alerts whose game should be over (cheap: one scoreboard call per sport/day)."""
+    for e in st["log"]:
+        if e.get("res") or parse_iso(e["start"]) > n - timedelta(hours=3) or e["sport"] not in ESPN_PATH:
+            continue
+        g = find_game(e)
+        s = settle(e, g) if g else None
+        if s:
+            e["res"] = {"r": s[0], "score": s[1]}
+
+
 def graded(st, n, days=None):
+    """Started alerts that have a closing number and/or a final result: [(e, clv)] (clv may be None)."""
     out = []
     for e in st["log"]:
         if parse_iso(e["start"]) > n:
@@ -427,59 +579,125 @@ def graded(st, n, days=None):
         if days and parse_iso(e["start"]) < n - timedelta(days=days):
             continue
         g = grade(e)
-        if g:
+        if g or e.get("res"):
             out.append((e, g))
     return out
 
 
+ICON = {"W": "\u2705", "L": "\u274c", "P": "\u2796"}
+
+
+def line_for(e, g):
+    res = e.get("res")
+    icon = ICON[res["r"]] if res else "\u23f3"
+    word = {"W": "WON", "L": "LOST", "P": "PUSH"}[res["r"]] + " " if res else ""
+    s = f"{icon} {word}{e['sport']} {describe(e)}: " + (res["score"] if res else "score pending")
+    if g:
+        s += f" | CLV {g[1]}"
+    if e.get("grade"):
+        s += f" | {e['grade']}{e['score']}" + (" LATE" if e.get("late") else "")
+    return s
+
+
+def record(items):
+    w = sum(1 for e, _ in items if e.get("res", {}).get("r") == "W")
+    l = sum(1 for e, _ in items if e.get("res", {}).get("r") == "L")
+    p = sum(1 for e, _ in items if e.get("res", {}).get("r") == "P")
+    u = sum(units(e, e["res"]["r"]) for e, _ in items if e.get("res"))
+    return w, l, p, u
+
+
+def notify_chunks(title, header, lines, footer):
+    """ntfy bodies cap near 4 KB: split long recaps into numbered parts instead of dropping alerts."""
+    parts, cur = [], []
+    size = len(header) + len(footer) + 40
+    for ln in lines:
+        if size + len(ln) + 1 > 3300 and cur:
+            parts.append(cur)
+            cur, size = [], 40
+        cur.append(ln)
+        size += len(ln.encode()) + 1
+    parts.append(cur)
+    for i, chunk in enumerate(parts, 1):
+        body = (header + "\n" if i == 1 else "") + "\n".join(chunk) + (("\n" + footer) if i == len(parts) else "")
+        notify(title + (f" ({i}/{len(parts)})" if len(parts) > 1 else ""), body)
+
+
 def recap(st, n):
-    """Once per ET day: push a recap of newly graded alerts (if any)."""
+    """Once per ET day: push a recap (W/L, final score, CLV) of every newly settled alert, none dropped."""
     today = n.astimezone(ET).date().isoformat()
-    if st.get("recap_day") == today:
+    replay = REPLAY_H > 0 and st.get("replay_done") != f"{today}:{REPLAY_H:g}"
+    if st.get("recap_day") == today and not replay:
         return
     st["recap_day"] = today
-    allnew = [(e, g) for e, g in graded(st, n) if not e.get("reported")]
+    if replay:
+        st["replay_done"] = f"{today}:{REPLAY_H:g}"
+        cutoff = n - timedelta(hours=REPLAY_H)
+        allnew = [(e, g) for e, g in graded(st, n) if parse_iso(e["start"]) >= cutoff]
+    else:
+        allnew = [(e, g) for e, g in graded(st, n) if not e.get("reported")]
+    # alerts still waiting on a final score stay unreported until it posts (or 2 days pass)
     for e, _ in allnew:
-        e["reported"] = True
-    new = [(e, g) for e, g in allnew if not e.get("muted")]
-    if not allnew:
+        if e.get("res") or parse_iso(e["start"]) < n - timedelta(days=2):
+            e["reported"] = True
+    new = [(e, g) for e, g in allnew if not e.get("muted") and (replay or e.get("reported"))]
+    if not new:
         return
-    beat = sum(1 for _, (v, _) in new if v > 0)
-    lines = [f"{'✅' if v > 0 else ('➖' if v == 0 else '❌')} {e['sport']} {describe(e)}: {t}"
-             for e, (v, t) in new[:12]]
+    w, l, p, u = record(new)
+    clv = [(e, g) for e, g in new if g]
+    beat = sum(1 for _, g in clv if g[0] > 0)
+    header = (f"{'Replay: ' if replay else ''}Results {w}-{l}" + (f"-{p}" if p else "") + f" ({u:+.2f}u flat)"
+              + (f" | {beat} of {len(clv)} beat {nm(SHARP)}'s close" if clv else ""))
+    lines = [line_for(e, g) for e, g in sorted(new, key=lambda x: x[0]["start"])]
     month = [x for x in graded(st, n, 30) if not x[0].get("muted")]
-    mbeat = sum(1 for _, (v, _) in month if v > 0)
-    body = (f"{beat} of {len(new)} alerts beat {nm(SHARP)}'s closing number.\n" + "\n".join(lines)
-            + (f"\n+{len(new) - 12} more" if len(new) > 12 else "")
-            + f"\nLast 30 days: {mbeat}/{len(month)} beat the close")
-    cfb = [x for x in graded(st, n, 30) if "t25" in x[0]]
+    mw, ml, mp, mu = record(month)
+    mclv = [x for x in month if x[1]]
+    footer = (f"Last 30 days: {mw}-{ml}" + (f"-{mp}" if mp else "") + f" ({mu:+.2f}u), "
+              f"{sum(1 for _, g in mclv if g[0] > 0)}/{len(mclv)} beat the close")
+    cfb = [x for x in graded(st, n, 30) if "t25" in x[0] and x[1]]
     if cfb:
         def split(flag):
             g = [v for e, (v, _) in cfb if e["t25"] is flag]
             return f"{sum(1 for v in g if v > 0)}/{len(g)}"
-        body += f"\nCollege 30d beat close: Top 25 {split(True)}, non-Top 25 {split(False)} (not sent)"
-    notify("Sharp recap", body)
+        footer += f"\nCollege 30d beat close: Top 25 {split(True)}, non-Top 25 {split(False)} (not sent)"
+    def rec_line(label, items):
+        w_, l_, p_, u_ = record(items)
+        return f"{label} {w_}-{l_}" + (f"-{p_}" if p_ else "") + f" ({u_:+.2f}u)"
+    tagged = [x for x in month if x[0].get("res") and x[0].get("grade")]
+    if tagged:
+        footer += "\nBy grade (30d): " + ", ".join(rec_line(gr, [x for x in tagged if x[0]["grade"] == gr])
+                                                    for gr in "ABCD" if any(x[0]["grade"] == gr for x in tagged))
+        footer += ("\nTiming (30d): " + rec_line("Early", [x for x in tagged if not x[0].get("late")]) + " | "
+                   + rec_line("Late" + (" (not sent)" if LATE_MODE == "mute" else ""),
+                              [x for x in tagged if x[0].get("late")]))
+    notify_chunks("Sharp recap", header, lines, footer)
 
 
 CONF_LABEL = {"yes": "Yes", "na": "Pinnacle only", "off": "-"}
 
 
 def write_summary(st, n):
-    """Table of the last 30 days' graded alerts on the GitHub run page."""
+    """Table of the last 30 days' alerts (result, score, vs close) on the GitHub run page."""
     path = os.environ.get("GITHUB_STEP_SUMMARY")
     if not path:
         return
     month = graded(st, n, 30)
-    beat = sum(1 for _, (v, _) in month if v > 0)
-    rows = ["| Date | Sport | Bet | Book | Confirmed | vs close |", "|---|---|---|---|---|---|"]
-    for e, (v, t) in sorted(month, key=lambda x: x[0]["start"], reverse=True):
+    w, l, p, u = record(month)
+    clv = [x for x in month if x[1]]
+    beat = sum(1 for _, g in clv if g[0] > 0)
+    rows = ["| Date | Sport | Bet | Book | Confirmed | Grade | Timing | Result | Score | vs close |", "|---|---|---|---|---|---|---|---|---|---|"]
+    for e, g in sorted(month, key=lambda x: x[0]["start"], reverse=True):
         d = parse_iso(e["start"]).astimezone(ET).strftime("%b %-d")
-        rows.append(f"| {d} | {e['sport']} | {describe(e)} | {nm(e['book'])} | {CONF_LABEL.get(e.get('conf'), '')} | "
-                    f"{'✅' if v > 0 else ('➖' if v == 0 else '❌')} {t} |")
+        res = e.get("res")
+        c = (ICON["W" if g[0] > 0 else ("P" if g[0] == 0 else "L")] + " " + g[1]) if g else ""
+        gr = f"{e['grade']} {e['score']}" if e.get("grade") else ""
+        tm = (("LATE " if e.get("late") else "") + lead_text(e["lead"])) if "lead" in e else ""
+        rows.append(f"| {d} | {e['sport']} | {describe(e)} | {nm(e['book'])} | {CONF_LABEL.get(e.get('conf'), '')} | {gr} | {tm} | "
+                    f"{ICON[res['r']] + ' ' + res['r'] if res else ''} | {res['score'] if res else ''} | {c} |")
     pending = sum(1 for e in st["log"] if parse_iso(e["start"]) > n)
     with open(path, "a") as f:
-        f.write(f"## Sharp alerts vs closing line (last 30 days)\n\n**{beat} of {len(month)} beat "
-                f"{nm(SHARP)}'s close.** {pending} alert(s) waiting for their game to start.\n\n"
+        f.write(f"## Sharp alerts, last 30 days\n\n**Record {w}-{l}-{p} ({u:+.2f}u flat).** "
+                f"{beat} of {len(clv)} beat {nm(SHARP)}'s close. {pending} alert(s) waiting for their game to start.\n\n"
                 + "\n".join(rows) + "\n")
 
 
@@ -513,7 +731,8 @@ def run():
     if not (ACTIVE_START_ET <= hour_et < ACTIVE_END_ET):
         print("Outside active hours; skipping.")
         return
-    recap(st, n)  # once a day: how yesterday's alerts did vs the closing line
+    settle_pending(st, n)  # final scores + W/L for finished games
+    recap(st, n)  # once a day: how yesterday's alerts did (W/L, score, closing line)
 
     # Free endpoints: which sports are in season, and which have games soon.
     sports, _ = http_get("/sports", {})
@@ -573,14 +792,23 @@ def run():
                 for a in detect(ev, cfg, lines, base):
                     if a["id"] in st["alerted"]:
                         continue
+                    lead = (parse_iso(a["commence"]) - now_utc()).total_seconds() / 60
+                    late = lead < LATE_MIN
+                    a["sport"] = cfg["label"]
+                    score, grade = confidence(a, st, n, lead)
                     if is_t25 is False and NCAAF_TOP25 == "filter":
                         print(f"Skipped (non-Top 25): {a['text']} | {a['game']}")
+                    elif late and LATE_MODE == "mute":
+                        print(f"Not sent (late, {lead_text(lead)} to start): {a['text']} | {a['game']}")
                     else:
-                        notify(f"Sharp alert {cfg['label']}",
-                               f"{a['text']}\n{a['game']}{tag}, {a['start']}\n{a['why']}")
+                        notify(f"Sharp alert {cfg['label']}" + (" LATE" if late else ""),
+                               f"{a['text']}\n{a['game']}{tag}, {a['start']}\n{a['why']}\n"
+                               f"Grade {grade} ({score}/100) | "
+                               + (f"LATE: starts in {lead_text(lead)}" if late else f"starts in {lead_text(lead)}"))
                     st["alerted"][a["id"]] = time.time()
                     e = {k: a[k] for k in ("id", "ev", "game", "kind", "side", "pt", "price", "book", "conf")}
-                    e.update(sport=cfg["label"], start=a["commence"], t=time.time())
+                    e.update(sport=cfg["label"], start=a["commence"], t=time.time(), lead=round(lead), late=late,
+                             score=score, grade=grade)
                     if is_t25 is not None:
                         e["t25"] = is_t25
                         e["muted"] = bool(is_t25 is False and NCAAF_TOP25 == "filter")
@@ -589,7 +817,7 @@ def run():
                     if not any(x["ev"] == e["ev"] and x["kind"] == e["kind"] and x["side"] == e["side"]
                                for x in st["log"]):
                         st["log"].append(e)
-                    sent += 0 if (is_t25 is False and NCAAF_TOP25 == "filter") else 1
+                    sent += 0 if ((is_t25 is False and NCAAF_TOP25 == "filter") or (late and LATE_MODE == "mute")) else 1
             h["obs"].append([time.time(), vals])
 
     # Tidy: drop started games and old alert keys.
