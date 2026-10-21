@@ -37,7 +37,8 @@ PM_MTYPE = {"moneyline": "moneyline", "spreads": "spread", "spread": "spread", "
 OUT_DIR = os.environ.get("LIQ_DIR", "") or "liquidity"
 STATE_FILE = os.path.join(OUT_DIR, "state.json")
 ALERTS_FILE = os.path.join(OUT_DIR, "alerts.json")
-PRIMARY_MIN = float(os.environ.get("LIQ_PRIMARY_MIN", "") or "50000")
+PRIMARY_MIN = float(os.environ.get("LIQ_PRIMARY_MIN", "") or "25000")   # floor for NEW money on one side
+REL_MIN = float(os.environ.get("LIQ_REL_MIN", "") or "0.10")             # ...and >= 10% of what was already on that side
 SECOND_MIN = float(os.environ.get("LIQ_SECOND_MIN", "") or "10000")
 LEAGUES = [x.strip().upper() for x in (os.environ.get("LIQ_LEAGUES", "") or "NFL,NCAAF,NBA,NHL").split(",") if x.strip()]
 BOOKS = [x.strip().lower() for x in (os.environ.get("LIQ_BOOKS", "") or "kalshi,novig,polymarket").split(",") if x.strip()]
@@ -79,7 +80,11 @@ def k_liquidity(mk):
     v = num(mk.get("liquidity"))
     return v / 100.0 if v is not None else None
 NEAR = float(os.environ.get("LIQ_NEAR", "") or "0.03")      # only bids within 3c of that side's best bid count
-RATIO = float(os.environ.get("LIQ_RATIO", "") or "3")       # alert side needs >= 3x the other side's near depth
+RATIO = float(os.environ.get("LIQ_RATIO", "") or "3")       # new money on the alert side must be >= 3x new money on the other side
+BAND_ML = (0.15, 0.85)    # moneyline sides priced 15-85c
+BAND_LINE = (0.30, 0.70)  # spread/total sides priced 30-70c (main lines, not alternates)
+FRESH_MIN = float(os.environ.get("LIQ_FRESH_MIN", "") or "60")   # compare against a reading at most this many minutes old
+STATE_VERSION = 2
 NTFY_TOPIC = os.environ.get("LIQ_NTFY_TOPIC", "")                       # optional push; empty = file only
 K_SERIES_RE = re.compile(r"^KX(" + "|".join(LEAGUES) + r")(GAME|SPREAD|TOTAL)$")
 K_MTYPE = {"GAME": "moneyline", "SPREAD": "spread", "TOTAL": "total"}
@@ -290,7 +295,7 @@ def kalshi_rows(days):
                                      side_label=label if x == "yes" else f"NOT {label}", depth=dep[x], other_depth=dep[other],
                                      total_depth=tot[x],
                                      price=round(1 - best_other, 4) if best_other is not None else None,
-                                     ref={"market_ticker": mk["ticker"], "kalshi_side": x}))
+                                     event=ev.get("event_ticker"), ref={"market_ticker": mk["ticker"], "kalshi_side": x}))
     print(f"Kalshi: {calls} books read in {time.time() - T0:.0f}s" + (" (time budget hit)" if out_of_time() else ""))
     return rows
 
@@ -553,12 +558,52 @@ def notify(title, body):
 
 
 # ---------------------------------------------------------------- main
+def merge_kalshi_ml(rows):
+    """Kalshi lists one market per team. Team A's side = YES on A's market + NO on B's market; combine per game."""
+    keep, groups = [], {}
+    for r in rows:
+        if r["book"] == "kalshi" and r["market"] == "moneyline" and r["side"] in (0, 1) and r.get("event"):
+            groups.setdefault((r["event"], r["side"]), []).append(r)
+        else:
+            keep.append(r)
+    for (ev, side), rs in groups.items():
+        opp = groups.get((ev, 1 - side), [])
+        yes = [r for r in rs if r["ref"]["kalshi_side"] == "yes"] or rs
+        base = dict(yes[0])
+        base["depth"] = sum(r["depth"] for r in rs)
+        base["other_depth"] = sum(r["depth"] for r in opp)
+        base["total_depth"] = sum(r.get("total_depth", r["depth"]) for r in rs)
+        prices = [r["price"] for r in rs if r["price"] is not None]
+        base["price"] = min(prices) if prices else None   # cheapest way to buy this team
+        base["side_label"] = base["teams"][side] if base.get("teams") else base["side_label"]
+        keep.append(base)
+    return keep
+
+
+def in_band(r):
+    if r["price"] is None:
+        return False
+    lo, hi = BAND_ML if r["market"] == "moneyline" else BAND_LINE
+    return lo <= r["price"] <= hi
+
+
+def row_key(r):
+    if r["book"] == "kalshi" and r["market"] == "moneyline" and r.get("event"):
+        return f"kalshi|{r['event']}|ml|{r['side']}"
+    return f"{r['book']}|{json.dumps(r['ref'], sort_keys=True)}"
+
+
 def run():
     n = now_utc()
     today = n.astimezone(ET).date()
     days = {today, today + timedelta(days=1)}
-    state = load(STATE_FILE, {"alerted": {}})
+    state = load(STATE_FILE, {})
     alerts = load(ALERTS_FILE, {"alerts": []}).get("alerts", [])
+    if state.get("v") != STATE_VERSION:   # v1 logged standing market-maker size: start the record clean
+        print("New rules (v2): clearing v1 alerts and state")
+        state, alerts = {"v": STATE_VERSION, "alerted": {}, "seen": {}}, []
+    state.setdefault("alerted", {})
+    state.setdefault("seen", {})
     settle(alerts, n)
 
     rows = []
@@ -568,52 +613,75 @@ def run():
         rows += novig_rows(days, n)
     if "polymarket" in BOOKS:
         rows += pm_rows(days, n)
-    print(f"Rows: {len(rows)} (book/market/side)")
+    rows = merge_kalshi_ml(rows)
+    rows = [r for r in rows if in_band(r)]
+    print(f"Rows: {len(rows)} main-line sides (book/market/side)")
+
+    # new money since the last reading of the same side (and of the opposite side of that market)
+    now_s = n.timestamp()
+    prev = state["seen"]
+    by_key = {row_key(r): r for r in rows}
+    for k, r in by_key.items():
+        p = prev.get(k)
+        fresh = p and now_s - p["t"] <= FRESH_MIN * 60
+        r["delta"] = (r["depth"] - p["d"]) if fresh else None
+        r["other_delta"] = (r["other_depth"] - p["o"]) if fresh else None
+    state["seen"] = {k: {"d": round(r["depth"]), "o": round(r["other_depth"]), "t": now_s} for k, r in by_key.items()}
 
     fired = 0
-    for r in rows:
-        if r["depth"] < PRIMARY_MIN or r["depth"] < RATIO * r["other_depth"]:
-            continue  # need $50k near the price AND one-sided (>= 3x the other side): two-sided size is market making
-        key = f"{r['book']}|{json.dumps(r['ref'], sort_keys=True)}"
+    for key, r in by_key.items():
+        if r["delta"] is None:
+            continue  # first reading of this side: baseline only
+        need = max(PRIMARY_MIN, REL_MIN * (r["depth"] - r["delta"]))
+        if r["delta"] < need:
+            continue  # need $25k+ of NEW bids, and >= 10% of what was already there (scales with the book)
+        if r["delta"] < RATIO * max(r["other_delta"] or 0, 0):
+            continue  # both sides growing together = market making
+        if r["depth"] <= r["other_depth"]:
+            continue  # this side must now be the heavier one
         if key in state["alerted"]:
             continue
         # same side of the same game & market on the other book(s): best depth there
         others = {}
-        for o in rows:
+        for o in by_key.values():
             if o["book"] == r["book"] or o["market"] != r["market"]:
                 continue
             how = same_game(r, o)
             if how and same_side(r, o, how):
                 if o["depth"] > others.get(o["book"], {}).get("depth", -1):
-                    others[o["book"]] = {"depth": round(o["depth"]), "price": o["price"], "label": o["side_label"]}
-        second = {b: v for b, v in others.items() if v["depth"] >= SECOND_MIN}
+                    others[o["book"]] = {"depth": round(o["depth"]), "price": o["price"], "label": o["side_label"],
+                                         "heavier": o["depth"] > o["other_depth"]}
+        second = {b: v for b, v in others.items() if v["depth"] >= SECOND_MIN and v.get("heavier")}
         a = {
             "alerted_utc": n.strftime("%Y-%m-%dT%H:%M:%SZ"), "book": r["book"], "league": r["league"],
             "date": r["date"], "game": r["game"], "market": r["market"], "side": side_key(r), "side_label": r["side_label"],
             "price": r["price"], "price_american": american(r["price"]),
             "depth_by_book": dict({r["book"]: {"this_side": round(r["depth"]), "other_side": round(r["other_depth"]),
                                                  "this_side_all_levels": round(r.get("total_depth", r["depth"])),
-                                                 "ratio": round(r["depth"] / max(r["other_depth"], 1), 1)}},
-                                  **{b: {"this_side": v["depth"], "label": v["label"], "price": v["price"]} for b, v in others.items()}),
+                                                 "ratio": round(r["depth"] / max(r["other_depth"], 1), 1),
+                                                 "new_this_side": round(r["delta"]), "new_other_side": round(r["other_delta"] or 0)}},
+                                  **{b: {"this_side": v["depth"], "label": v["label"], "price": v["price"], "heavier_side": v["heavier"]}
+                                    for b, v in others.items()}),
             "second_book": sorted(second) if second else ("none_10k" if others else "no_match"),
             "rule_met": bool(second), "books_live": BOOKS, "ref": r["ref"], "result": None, "units_flat": None,
         }
         alerts.insert(0, a)
         state["alerted"][key] = a["alerted_utc"]
         fired += 1
-        print(f"ALERT {a['league']} {a['game']} | {a['market']} {a['side_label']} | {r['book']} ${r['depth']:,.0f}"
+        print(f"ALERT {a['league']} {a['game']} | {a['market']} {a['side_label']} | {r['book']} +${r['delta']:,.0f} new (now ${r['depth']:,.0f})"
               f" | 2nd: {a['second_book']}")
         notify(f"Liquidity {a['league']}" + (" RULE MET" if a["rule_met"] else ""),
                f"{a['side_label']} ({a['market']}) on {r['book']}\n{a['game']}\n"
-               f"Bids ${r['depth']:,.0f} this side vs ${r['other_depth']:,.0f} other side\n"
+               f"+${r['delta']:,.0f} new bids; now ${r['depth']:,.0f} vs ${r['other_depth']:,.0f} other side\n"
                + (f"Price {r['price']:.2f} ({a['price_american']:+d})\n" if a['price_american'] else "")
                + "2nd book: " + (", ".join(f"{b} ${v['depth']:,}" for b, v in others.items()) or "no match"))
 
     cutoff = (n - timedelta(days=60)).strftime("%Y-%m-%dT%H:%M:%SZ")
     alerts = [a for a in alerts if a["alerted_utc"] >= cutoff]
     state["alerted"] = {k: v for k, v in state["alerted"].items() if v >= cutoff}
+    state["v"] = STATE_VERSION
     save(ALERTS_FILE, {"note": ("Liquidity paper alerts (Kalshi + Novig + Polymarket public books), newest first. One alert per book+market+side "
-                                "with >= $%d resting bids within %.0fc of the best bid on that side and >= %gx the other side's near bids. rule_met = another book also had >= $%d on the same side "
+                                "where >= $%d (and >= 10%% of the side's prior size) of NEW bids (within %.0fc of the best bid) arrived on one side since the last check (<= 60 min), at >= %gx any new money on the other side, leaving that side heavier. Main lines only (ML 15-85c, spread/total 30-70c); Kalshi moneylines combined per game. rule_met = another book also had >= $%d on the same side, and it is the heavier side there, "
                                 "of the same game & market (second_book lists them; 'no_match' = game not found on the other book). "
                                 "price = cost to buy that side when alerted (0-1). result W/L/P/VOID from the exchange's own "
                                 "settlement; units_flat = 1u at price." % (PRIMARY_MIN, NEAR * 100, RATIO, SECOND_MIN)),
