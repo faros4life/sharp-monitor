@@ -1,9 +1,24 @@
 # Liquidity alerts (paper)
 
-Updated Wed Oct 21, 6:43 PM ET. This run: 0 new, 31 not confirmed, 26 pending. Open alerts: 0.
+Updated Wed Oct 21, 7:11 PM ET. This run: 16 new, 8 not confirmed, 23 pending. Open alerts: 16.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| | | No alerts yet | | | | | | | | | |
+| Oct 21 7:11PM | NBA | Jazz vs. Grizzlies | moneyline: Grizzlies | polymarket | $155k | -127 | ✅ kalshi |  | +0.0c |  | pending |
+| Oct 21 7:11PM | NBA | Timberwolves vs. Heat | moneyline: Heat | polymarket | $510k | -122 | ✅ kalshi |  | +0.0c |  | pending |
+| Oct 21 7:11PM | NBA | Timberwolves vs. Heat | spread: Heat (-1.5) | polymarket | $32k | -108 | ✅ kalshi |  | +0.0c |  | pending |
+| Oct 21 7:11PM | NHL | Philadelphia Flyers @ Buffalo Sabres | spread: PHI +1.5 (-1.5) | novig | $662k | -138 |  |  | +0.0c |  | pending |
+| Oct 21 7:11PM | NCAAF | James Madison @ Appalachian State | moneyline: JMU (0) | novig | $207k | -365 |  |  | +0.0c |  | pending |
+| Oct 21 7:11PM | NBA | Sacramento Kings @ Los Angeles Clippers | moneyline: LAC (0) | novig | $180k | -182 |  |  | +0.0c |  | pending |
+| Oct 21 7:11PM | NBA | Denver Nuggets @ Oklahoma City Thunder | total: Under 235.5 (235.5) | novig | $90k | -104 |  |  | +0.0c |  | pending |
+| Oct 21 7:11PM | NBA | Cleveland Cavaliers @ Philadelphia 76ers | moneyline: PHI (0) | novig | $152k | -141 |  |  | +0.0c |  | pending |
+| Oct 21 7:11PM | NBA | Golden State Warriors @ Los Angeles Lakers | spread: LAL -6.5 (-6.5) | novig | $509k | -104 |  |  | +0.0c |  | pending |
+| Oct 21 7:11PM | NBA | Golden State Warriors @ Los Angeles Lakers | moneyline: LAL (0) | novig | $138k | -203 |  |  | +0.0c |  | pending |
+| Oct 21 7:11PM | NBA | Dallas Mavericks @ Houston Rockets | moneyline: HOU (0) | novig | $999k | -365 |  | ❌ | +0.0c |  | pending |
+| Oct 21 7:11PM | NBA | Utah Jazz @ Memphis Grizzlies | moneyline: MEM (0) | novig | $652k | -125 |  |  | +0.0c |  | pending |
+| Oct 21 7:11PM | NBA | Charlotte Hornets @ Brooklyn Nets | spread: CHA -1.5 (1.5) | novig | $634k | -102 |  | ❌ | +0.0c |  | pending |
+| Oct 21 7:11PM | NHL | Philadelphia vs Buffalo: Total Goals | total: Over 5.5 goals scored | kalshi | $70k | -127 | ✅ polymarket |  | +0.0c |  | pending |
+| Oct 21 7:11PM | NBA | Utah vs Memphis | moneyline: Memphis | kalshi | $484k | -127 | ✅ polymarket |  | +0.0c |  | pending |
+| Oct 21 7:11PM | NBA | Golden State vs Los Angeles L | moneyline: Los Angeles L | kalshi | $150k | -203 |  |  | +0.0c |  | pending |
