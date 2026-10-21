@@ -13,7 +13,7 @@ permissions:
 jobs:
   run:
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 12
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -25,7 +25,7 @@ jobs:
           LIQ_SECOND_MIN: ${{ vars.LIQ_SECOND_MIN }}
           LIQ_LEAGUES: ${{ vars.LIQ_LEAGUES }}
           LIQ_NTFY_TOPIC: ${{ vars.LIQ_NTFY_TOPIC }}
-        run: python liquidity_monitor.py
+        run: python -u liquidity_monitor.py
       - name: Commit state and alerts
         if: always()
         run: |
