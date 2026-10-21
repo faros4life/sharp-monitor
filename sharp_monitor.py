@@ -713,11 +713,18 @@ def recap(st, n):
     header = (f"{'Replay: ' if replay else ''}Results {w}-{l}" + (f"-{p}" if p else "") + f" ({u:+.2f}u flat)"
               + (f" | {beat} of {len(clv)} beat {nm(SHARP)}'s close" if clv else ""))
     lines = [line_for(e, g) for e, g in sorted(new, key=lambda x: x[0]["start"])]
-    month = [x for x in graded(st, n, 30) if not x[0].get("muted")]
+    allm = [x for x in graded(st, n, 30) if not x[0].get("muted")]
+    month = [x for x in allm if x[0]["sport"] != "NBA"]   # NBA is its own bucket, not part of the system record
     mw, ml, mp, mu = record(month)
     mclv = [x for x in month if x[1]]
-    footer = (f"Last 30 days: {mw}-{ml}" + (f"-{mp}" if mp else "") + f" ({mu:+.2f}u), "
+    footer = (f"Last 30 days (ex-NBA): {mw}-{ml}" + (f"-{mp}" if mp else "") + f" ({mu:+.2f}u), "
               f"{sum(1 for _, g in mclv if g[0] > 0)}/{len(mclv)} beat the close")
+    nba = [x for x in allm if x[0]["sport"] == "NBA"]
+    if nba:
+        bw, bl, bp, bu = record(nba)
+        bclv = [x for x in nba if x[1]]
+        footer += (f"\nNBA (30d): {bw}-{bl}" + (f"-{bp}" if bp else "") + f" ({bu:+.2f}u), "
+                   f"{sum(1 for _, g in bclv if g[0] > 0)}/{len(bclv)} beat the close")
     cfb = [x for x in graded(st, n, 30) if "t25" in x[0] and x[1]]
     if cfb:
         def split(flag):
@@ -726,14 +733,20 @@ def recap(st, n):
         footer += f"\nCollege 30d beat close: Top 25 {split(True)}, non-Top 25 {split(False)} (not sent)"
     def rec_line(label, items):
         w_, l_, p_, u_ = record(items)
-        return f"{label} {w_}-{l_}" + (f"-{p_}" if p_ else "") + f" ({u_:+.2f}u)"
-    tagged = [x for x in month if x[0].get("res") and x[0].get("grade")]
+        c_ = [x for x in items if x[1]]
+        bc = f", {round(100 * sum(1 for x in c_ if x[1][0] > 0) / len(c_))}% beat close" if c_ else ""
+        return f"{label} {w_}-{l_}" + (f"-{p_}" if p_ else "") + f" ({u_:+.2f}u{bc})"
+    tagged = [x for x in month if x[0].get("res") and x[0].get("grade")]   # ex-NBA, ties to the headline record
     if tagged:
         footer += "\nBy grade (30d): " + ", ".join(rec_line(gr, [x for x in tagged if x[0]["grade"] == gr])
                                                     for gr in "ABCD" if any(x[0]["grade"] == gr for x in tagged))
         footer += ("\nTiming (30d): " + rec_line("Early", [x for x in tagged if not x[0].get("late")]) + " | "
                    + rec_line("Late" + (" (not sent)" if LATE_MODE == "mute" else ""),
                               [x for x in tagged if x[0].get("late")]))
+    nba_t = [x for x in nba if x[0].get("res") and x[0].get("grade")]
+    if len(nba_t) >= 10:
+        footer += "\nNBA by grade (30d): " + ", ".join(rec_line(gr, [x for x in nba_t if x[0]["grade"] == gr])
+                                                        for gr in "ABCD" if any(x[0]["grade"] == gr for x in nba_t))
     nc_items = [x for x in month if x[0].get("res") and "nconf" in x[0]]
     if nc_items:
         footer += "\nBy confirm books (30d): " + ", ".join(
@@ -757,9 +770,11 @@ def weekly_recap(st, n):
     st["weekly_day"] = et.date().isoformat()
     start = (et - timedelta(days=7)).replace(hour=0, minute=0, second=0, microsecond=0)
     end = et.replace(hour=0, minute=0, second=0, microsecond=0)
-    wk = [x for x in graded(st, n, 9) if not x[0].get("muted") and start <= parse_iso(x[0]["start"]).astimezone(ET) < end]
-    if not wk:
+    wk_all = [x for x in graded(st, n, 9) if not x[0].get("muted") and start <= parse_iso(x[0]["start"]).astimezone(ET) < end]
+    if not wk_all:
         return
+    wk = [x for x in wk_all if x[0]["sport"] != "NBA"]       # system record ex-NBA (matches the daily footer)
+    wk_nba = [x for x in wk_all if x[0]["sport"] == "NBA"]
 
     def rl(items):
         w_, l_, p_, u_ = record(items)
@@ -767,7 +782,7 @@ def weekly_recap(st, n):
     clv = [x for x in wk if x[1]]
     beat = sum(1 for _, g in clv if g[0] > 0)
     pend = sum(1 for e, _ in wk if not e.get("res"))
-    lines = [f"Week {start.strftime('%b %-d')} - {(end - timedelta(days=1)).strftime('%b %-d')}: {rl(wk)} flat"
+    lines = [f"Week {start.strftime('%b %-d')} - {(end - timedelta(days=1)).strftime('%b %-d')} (ex-NBA): {rl(wk)} flat"
              + (f" | {beat} of {len(clv)} beat {nm(SHARP)}'s close" if clv else "")
              + (f" | {pend} ungraded" if pend else "")]
     lines.append("By day:")
@@ -783,6 +798,13 @@ def weekly_recap(st, n):
     if tagged:
         lines.append("By grade: " + ", ".join(f"{gr} {rl([x for x in tagged if x[0]['grade'] == gr])}"
                                               for gr in "ABCD" if any(x[0]["grade"] == gr for x in tagged)))
+    if wk_nba:
+        nclv = [x for x in wk_nba if x[1]]
+        lines.append(f"NBA (own bucket): {rl(wk_nba)}" + (f" | {sum(1 for _, g in nclv if g[0] > 0)} of {len(nclv)} beat the close" if nclv else ""))
+        nt = [x for x in wk_nba if x[0].get("res") and x[0].get("grade")]
+        if len(nt) >= 10:
+            lines.append("NBA by grade: " + ", ".join(f"{gr} {rl([x for x in nt if x[0]['grade'] == gr])}"
+                                                      for gr in "ABCD" if any(x[0]["grade"] == gr for x in nt)))
     notify("Sharp weekly recap", "\n".join(lines))
 
 
