@@ -27,6 +27,7 @@ jobs:
           LIQ_SECOND_MIN: ${{ vars.LIQ_SECOND_MIN }}
           LIQ_LEAGUES: ${{ vars.LIQ_LEAGUES }}
           LIQ_NTFY_TOPIC: ${{ vars.LIQ_NTFY_TOPIC }}
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}   # read-only sportsbook prices at alert time (Hard Rock etc.)
         run: python -u liquidity_monitor.py
       - name: Commit state and alerts
         if: always()
