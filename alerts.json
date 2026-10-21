@@ -5162,5 +5162,6 @@
    "units_flat": 0.83
   }
  ],
- "note": "Sharp-monitor alerts, newest first. result: W/L/P or null (pending). units_flat = 1u risked at the alert price."
+ "all_alerts": [],
+ "note": "alerts = one entry per bet (game/market/side), used for the record; result W/L/P or null. all_alerts = every alert sent, newest first, repeats marked repeat=true (logged from Oct 21). units_flat = 1u risked at the first alert's price. pushed_to_phone/sent_to_phone = not muted (delivery to the phone is not confirmed)."
 }
