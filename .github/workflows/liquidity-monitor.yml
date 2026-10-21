@@ -2,7 +2,7 @@ name: liquidity-monitor
 
 on:
   schedule:
-    - cron: "*/5 * * * *"   # GitHub may delay scheduled runs; add a cron-job.org trigger for a true 5 minutes
+    - cron: "*/10 * * * *"   # every 10 min: a full run takes ~4.5 min
   workflow_dispatch:
 
 concurrency:
