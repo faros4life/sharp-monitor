@@ -59,6 +59,9 @@ REPLAY_H = float(os.environ.get("RECAP_REPLAY_HOURS", "") or "0")
 # "mute" = log and grade them but do not push. Either way early vs late results are compared in the recap.
 LATE_MIN = float(os.environ.get("LATE_MINUTES", "") or "60")
 LATE_MODE = (os.environ.get("LATE_MODE", "") or "tag").lower()
+# Repeat alerts (line kept moving on a bet already alerted): "mute" = log them in alerts.json but don't push (default),
+# "send" = push them too.
+REPEAT_MODE = (os.environ.get("REPEAT_MODE", "") or "mute").lower()
 RANKINGS_URL = "https://site.api.espn.com/apis/site/v2/sports/football/college-football/rankings"
 
 SPORTS = {
@@ -972,10 +975,15 @@ def run():
                     late = lead < LATE_MIN
                     a["sport"] = cfg["label"]
                     score, grade = confidence(a, st, n, lead)
+                    # repeat = the line kept moving on a bet already alerted (same game/market/side)
+                    repeat = any(x["ev"] == a["ev"] and x["kind"] == a["kind"] and x["side"] == a["side"]
+                                 for x in st["log"])
                     if is_t25 is False and NCAAF_TOP25 == "filter":
                         print(f"Skipped (non-Top 25): {a['text']} | {a['game']}")
                     elif late and LATE_MODE == "mute":
                         print(f"Not sent (late, {lead_text(lead)} to start): {a['text']} | {a['game']}")
+                    elif repeat and REPEAT_MODE == "mute":
+                        print(f"Not sent (repeat): {a['text']} | {a['game']}")
                     else:
                         notify(f"Sharp alert {cfg['label']}" + (" LATE" if late else ""),
                                f"{a['text']}\n{a['game']}{tag}, {a['start']}\n{a['why']}\n"
@@ -989,15 +997,15 @@ def run():
                         e["t25"] = is_t25
                         e["muted"] = bool(is_t25 is False and NCAAF_TOP25 == "filter")
                     e["close"] = close_value(e, vals)
-                    # one scorecard entry per bet, even if the line keeps moving and we push again
-                    repeat = any(x["ev"] == e["ev"] and x["kind"] == e["kind"] and x["side"] == e["side"]
-                                 for x in st["log"])
+                    # one scorecard entry per bet, even if the line keeps moving
                     if not repeat:
                         st["log"].append(e)
                     # every alert, repeats included (the record above still counts one bet per game/market/side)
                     st.setdefault("sent", []).append(dict(e, repeat=repeat, text=a["text"], why=a["why"],
-                                                          pushed=not e.get("muted") and not (late and LATE_MODE == "mute")))
-                    sent += 0 if ((is_t25 is False and NCAAF_TOP25 == "filter") or (late and LATE_MODE == "mute")) else 1
+                                                          pushed=not e.get("muted") and not (late and LATE_MODE == "mute")
+                                                          and not (repeat and REPEAT_MODE == "mute")))
+                    sent += 0 if ((is_t25 is False and NCAAF_TOP25 == "filter") or (late and LATE_MODE == "mute")
+                                  or (repeat and REPEAT_MODE == "mute")) else 1
             h["obs"].append([time.time(), vals])
 
     # Tidy: drop started games and old alert keys.
