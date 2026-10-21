@@ -803,10 +803,25 @@ def write_alerts_file(st, n):
             "top25": e.get("t25"), "result": res["r"] if res else None, "final": res["score"] if res else None,
             "beat_close": (g[0] > 0) if g else None, "clv": g[1] if g else None,
             "units_flat": round(units(e, res["r"]), 2) if res else None})
+    bets = {(e["ev"], e["kind"], e["side"]): e for e in st["log"]}
+    every = []
+    for e in sorted(st.get("sent", []), key=lambda x: x["t"], reverse=True):
+        b = bets.get((e["ev"], e["kind"], e["side"]), {})
+        res = b.get("res")
+        every.append({
+            "sent_et": datetime.fromtimestamp(e["t"], ET).strftime("%Y-%m-%d %H:%M"), "start_utc": e["start"],
+            "game": e["game"], "sport": e["sport"], "bet": describe(e), "book": nm(e["book"]), "price": e["price"],
+            "alert_text": e.get("text"), "why": e.get("why"), "grade": e.get("grade"), "score": e.get("score"),
+            "edge_pct": e.get("evp"), "confirmed_by": e.get("cby", []), "late": bool(e.get("late")),
+            "minutes_before_start": e.get("lead"), "repeat": e["repeat"], "pushed_to_phone": e["pushed"],
+            "bet_result": res["r"] if res else None, "final": res["score"] if res else None})
     try:
         with open(path, "w") as f:
-            json.dump({"note": "Sharp-monitor alerts, newest first. result: W/L/P or null (pending). units_flat = 1u risked at the alert price.",
-                       "alerts": out}, f, indent=1, sort_keys=True)
+            json.dump({"note": ("alerts = one entry per bet (game/market/side), used for the record; result W/L/P or null. "
+                                "all_alerts = every alert sent, newest first, repeats marked repeat=true (logged from Oct 21). "
+                                "units_flat = 1u risked at the first alert's price. pushed_to_phone/sent_to_phone = not muted "
+                                "(delivery to the phone is not confirmed)."),
+                       "alerts": out, "all_alerts": every}, f, indent=1, sort_keys=True)
     except Exception as ex:
         print(f"alerts file failed: {ex}")
 
@@ -953,9 +968,13 @@ def run():
                         e["muted"] = bool(is_t25 is False and NCAAF_TOP25 == "filter")
                     e["close"] = close_value(e, vals)
                     # one scorecard entry per bet, even if the line keeps moving and we push again
-                    if not any(x["ev"] == e["ev"] and x["kind"] == e["kind"] and x["side"] == e["side"]
-                               for x in st["log"]):
+                    repeat = any(x["ev"] == e["ev"] and x["kind"] == e["kind"] and x["side"] == e["side"]
+                                 for x in st["log"])
+                    if not repeat:
                         st["log"].append(e)
+                    # every alert, repeats included (the record above still counts one bet per game/market/side)
+                    st.setdefault("sent", []).append(dict(e, repeat=repeat, text=a["text"], why=a["why"],
+                                                          pushed=not e.get("muted") and not (late and LATE_MODE == "mute")))
                     sent += 0 if ((is_t25 is False and NCAAF_TOP25 == "filter") or (late and LATE_MODE == "mute")) else 1
             h["obs"].append([time.time(), vals])
 
@@ -963,6 +982,7 @@ def run():
     st["hist"] = {k: v for k, v in st["hist"].items() if parse_iso(v["start"]) > n}
     st["alerted"] = {k: t for k, t in st["alerted"].items() if t > time.time() - 3 * 86400}
     st["log"] = [e for e in st["log"] if parse_iso(e["start"]) > n - timedelta(days=LOG_DAYS)]
+    st["sent"] = [e for e in st.get("sent", []) if parse_iso(e["start"]) > n - timedelta(days=LOG_DAYS)]
     save_state(st)
     write_summary(st, n)
     write_alerts_file(st, n)
