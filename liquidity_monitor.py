@@ -85,8 +85,12 @@ RATIO = float(os.environ.get("LIQ_RATIO", "") or "3")       # new money on the a
 BAND_ML = (0.15, 0.85)    # moneyline sides priced 15-85c
 BAND_LINE = (0.30, 0.70)  # spread/total sides priced 30-70c (main lines, not alternates)
 FRESH_MIN = float(os.environ.get("LIQ_FRESH_MIN", "") or "60")   # compare against a reading at most this many minutes old
-STATE_VERSION = 3
+STATE_VERSION = 4   # v4: new money measured on total side depth (all levels)
 NTFY_TOPIC = os.environ.get("LIQ_NTFY_TOPIC", "")                       # optional push; empty = file only
+ODDS_KEY = os.environ.get("ODDS_API_KEY", "")                             # optional: sportsbook prices at alert time
+ODDS_SPORT = {"NFL": "americanfootball_nfl", "NCAAF": "americanfootball_ncaaf", "NBA": "basketball_nba", "NHL": "icehockey_nhl"}
+ODDS_MKT = {"moneyline": "h2h", "spread": "spreads", "total": "totals"}
+RUN_T0 = time.time()
 K_SERIES_RE = re.compile(r"^KX(" + "|".join(LEAGUES) + r")(GAME|SPREAD|TOTAL)$")
 K_MTYPE = {"GAME": "moneyline", "SPREAD": "spread", "TOTAL": "total"}
 N_MTYPE = {"MONEY": "moneyline", "MONEYLINE": "moneyline", "SPREAD": "spread", "TOTAL": "total"}
@@ -342,7 +346,8 @@ def kalshi_rows(days):
             rows.append(dict(book="kalshi", league=league, date=d.isoformat(), teams=list(teams) if teams else None,
                              game=ev.get("title") or ev.get("event_ticker"), market=K_MTYPE[kind], side=side, line=line,
                              side_label=label if x == "yes" else f"NOT {label}", depth=dep[x], other_depth=dep[other],
-                             total_depth=tot[x],
+                             total_depth=tot[x], other_total=tot[other],
+                             best_bid=max((p for p, _ in bids[x]), default=None),
                              price=round(1 - best_other, 4) if best_other is not None else None,
                              event=ev.get("event_ticker"), start=k_start(mk), mid=mk["ticker"],
                              ref={"market_ticker": mk["ticker"], "kalshi_side": x}))
@@ -393,23 +398,36 @@ def novig_rows(days, n):
     seen_types = sorted({m.get("marketType", "") for m in mks if m.get("eventId") in ev_by})
     print(f"Novig: {len(ev_by)} events in leagues, market types seen: {seen_types}")
     rows, calls, skipped = [], 0, 0
-    lo_ml, lo_ln = BAND_ML, BAND_LINE
     direction = {"done": False, "ok": True}
-    for mk in sorted(mks, key=lambda m: m.get("startsTs") or 0):   # soonest games first
+    # Pick each game's main strike from the catalog bids BEFORE reading any order book:
+    # in-band markets only, and for spreads/totals only the strike nearest 50c per game+market.
+    picks = {}
+    for mk in mks:
         e = ev_by.get(mk.get("eventId"))
         mtype = N_MTYPE.get((mk.get("marketType") or "").upper())
-        if not e or not mtype or mk.get("status") != "OPEN" or calls >= MAX_CALLS:
-            continue
-        # skip alternates before reading the book: the catalog carries each outcome's best bid
         oc = mk.get("outcomes") or []
+        if not e or not mtype or mk.get("status") != "OPEN" or len(oc) != 2:
+            continue
         bids = [num((o.get("bid") or {}).get("price")) for o in oc]
-        if len(oc) == 2:
-            band = lo_ml if mtype == "moneyline" else lo_ln
-            costs = [1 - bids[1 - i] for i in (0, 1) if bids[1 - i] is not None]
-            if not costs or not any(band[0] <= c <= band[1] for c in costs):
+        costs = [1 - bids[1 - i] for i in (0, 1) if bids[1 - i] is not None]
+        band = BAND_ML if mtype == "moneyline" else BAND_LINE
+        inb = [c for c in costs if band[0] <= c <= band[1]]
+        if not inb:
+            skipped += 1
+            continue
+        dist = min(abs(c - 0.5) for c in inb)
+        k = (mk["eventId"], mtype)
+        if k not in picks or dist < picks[k][0]:
+            if k in picks:
                 skipped += 1
-                continue
-        if out_of_time():
+            picks[k] = (dist, mk)
+        else:
+            skipped += 1
+    chosen = sorted((v[1] for v in picks.values()), key=lambda m: m.get("startsTs") or 0)   # soonest games first
+    for mk in chosen:
+        e = ev_by.get(mk.get("eventId"))
+        mtype = N_MTYPE.get((mk.get("marketType") or "").upper())
+        if calls >= MAX_CALLS or out_of_time():
             break
         try:
             book = get(f"{NOVIG}/v3/public/catalog/markets/{mk['marketId']}/book", {"depth": 20})
@@ -464,11 +482,12 @@ def novig_rows(days, n):
                              line=line, mid=mk["marketId"],
                              side_label=name + (f" ({strike})" if strike else ""), depth=dep[o["outcomeId"]],
                              other_depth=dep[other["outcomeId"]], total_depth=tot[o["outcomeId"]],
+                             other_total=tot[other["outcomeId"]], best_bid=max((p for p, _ in lv[o["outcomeId"]]), default=None),
                              price=round(1 - best_other, 4) if best_other is not None else None,
                              start=e["startsTs"] / 1000, ref={"market_id": mk["marketId"], "outcome_id": o["outcomeId"]}))
     if not direction["done"]:
         print("Novig direction test: not run (no book with both catalog bid and orders this run)")
-    print(f"Novig: {calls} books read in {time.time() - T0:.0f}s, {skipped} alternate/empty lines skipped"
+    print(f"Novig: {calls} books read in {time.time() - T0:.0f}s of {len(chosen)} main lines, {skipped} alternate/empty lines skipped"
           + (" (time budget hit)" if out_of_time() else ""))
     if direction["done"] and not direction["ok"]:
         return []
@@ -576,7 +595,8 @@ def pm_rows(days, n):
                              teams=list(teams), game=ev.get("title"), market=mtype, side=side, line=line,
                              side_label=name + (f" ({line:+g})" if (line is not None and mtype == "spread")
                                                 else (f" ({line:g})" if line is not None else "")),
-                             depth=dep[i], other_depth=dep[1 - i], total_depth=tot[i],
+                             depth=dep[i], other_depth=dep[1 - i], total_depth=tot[i], other_total=tot[1 - i],
+                             best_bid=max((p for p, _ in bids[i]), default=None),
                              price=round(1 - best_other, 4) if best_other is not None else None,
                              start=start.timestamp(), mid=str(mk.get("id")),
                              ref={"pm_market_id": str(mk.get("id")), "outcome_index": i}))
@@ -647,7 +667,7 @@ def settle(alerts, n):
             continue
         if r:
             a["result"] = r
-            p = a.get("price")
+            p = a.get("best_price") or a.get("price")   # graded at the best price available across books at alert time
             a["units_flat"] = round((1 - p) / p, 2) if (r == "W" and p) else (-1.0 if r == "L" else 0.0)
             a["settled_utc"] = n.strftime("%Y-%m-%dT%H:%M:%SZ")
 
@@ -679,6 +699,9 @@ def merge_kalshi_ml(rows):
         base["depth"] = sum(r["depth"] for r in rs)
         base["other_depth"] = sum(r["depth"] for r in opp)
         base["total_depth"] = sum(r.get("total_depth", r["depth"]) for r in rs)
+        base["other_total"] = sum(r.get("total_depth", r["depth"]) for r in opp)
+        bbs = [r["best_bid"] for r in rs if r.get("best_bid") is not None]
+        base["best_bid"] = max(bbs) if bbs else None
         prices = [r["price"] for r in rs if r["price"] is not None]
         base["price"] = min(prices) if prices else None   # cheapest way to buy this team
         base["side_label"] = base["teams"][side] if base.get("teams") else base["side_label"]
@@ -717,6 +740,98 @@ SHARP_FILE = os.environ.get("SHARP_ALERTS", "") or "alerts.json"   # the sharp-m
 CONFIRM_KEEP = 0.75    # a pending alert confirms only if >= 75% of the new money is still there on the next check
 PULLED_KEEP = 0.25     # after alerting, if < 25% of the new money remains before the game, mark it pulled
 PENDING_MAX_MIN = 30
+
+
+def matches(r, rows, check_line=True):
+    """Rows on any book (including r's own) for the same game, market, side and line as r."""
+    out = []
+    for o in rows:
+        if o["market"] != r["market"]:
+            continue
+        if o is r:
+            out.append(o)
+            continue
+        how = same_game(r, o)
+        if how and same_side(r, o, how, check_line=check_line):
+            out.append(o)
+    return out
+
+
+def best_across(r, rows):
+    """Cheapest cost to buy r's side (same game/market/side/line) across every book read: (price, book)."""
+    best = None
+    for o in matches(r, rows):
+        if o["price"] is not None and (best is None or o["price"] < best[0]):
+            best = (o["price"], o["book"])
+    return best or (r["price"], r["book"])
+
+
+def opposite(o, rows):
+    """The other side of the same market on the same book (for a fair mid price)."""
+    for x in rows:
+        same_mkt = x.get("mid") == o.get("mid") or (x["book"] == "kalshi" and x["market"] == "moneyline")   # Kalshi ML: merged per game
+        if x is not o and x["book"] == o["book"] and same_mkt and x["market"] == o["market"] \
+                and x.get("event", x["game"]) == o.get("event", o["game"]) and x["side"] != o["side"]:
+            return x
+    return None
+
+
+def price_rule(r, rows, best_price):
+    if r["market"] in ("spread", "total"):
+        am = american(best_price)
+        return "fails_cap" if (am is not None and am < -130) else "ok"
+    fair = []
+    for o in matches(r, rows):
+        opp = opposite(o, rows)
+        if o["price"] is not None and opp is not None and opp["price"] is not None:
+            fair.append((o["price"] + 1 - opp["price"]) / 2)   # mid of buy-this-side and 1 - buy-other-side
+    if not fair or not best_price:
+        return "ml_edge_unknown"
+    edge = (sum(fair) / len(fair)) / best_price - 1
+    return "ml_edge_ok" if edge >= 0.02 else "ml_edge_fail"
+
+
+_ODDS = {}
+
+
+def odds_prices(r):
+    """Sportsbook prices for r's side from The Odds API (us + us_ex), read-only. {} when no key or no match."""
+    sport, mkt = ODDS_SPORT.get(r["league"]), ODDS_MKT.get(r["market"])
+    if not ODDS_KEY or not sport or not mkt:
+        return {}
+    ck = (sport, mkt)
+    if ck not in _ODDS:
+        try:
+            _ODDS[ck] = get(f"https://api.the-odds-api.com/v4/sports/{sport}/odds",
+                            {"apiKey": ODDS_KEY, "regions": "us,us_ex", "markets": mkt, "oddsFormat": "american"})
+        except Exception as ex:
+            print(f"Odds API failed ({sport} {mkt}): {ex}")
+            _ODDS[ck] = []
+    out = {}
+    for ev in _ODDS[ck] or []:
+        try:
+            d = datetime.fromisoformat(ev["commence_time"].replace("Z", "+00:00")).astimezone(ET).date().isoformat()
+        except Exception:
+            continue
+        erow = {"league": r["league"], "date": d, "teams": [ev.get("away_team", ""), ev.get("home_team", "")]}
+        how = same_game(r, erow)
+        if not how:
+            continue
+        for bk in ev.get("bookmakers", []):
+            for m in bk.get("markets", []):
+                for o in m.get("outcomes", []):
+                    name, pt = o.get("name", ""), o.get("point")
+                    if r["market"] == "total":
+                        side = "OVER" if name.lower() == "over" else ("UNDER" if name.lower() == "under" else None)
+                    else:
+                        side = team_side(name, erow["teams"])
+                    if side is None:
+                        continue
+                    orow = {"market": r["market"], "side": side, "line": pt}
+                    if same_side(r, orow, how, check_line=False):
+                        out[bk["key"]] = {"price": o.get("price"), "point": pt}
+        break
+    return out
 
 
 def fill_starts(rows):
@@ -821,6 +936,49 @@ def is_top25(r):
     return None if unsure else False
 
 
+def fmt_clv(a):
+    v = a.get("clv_cents")
+    return f"{v:+.1f}c" if v is not None else ""
+
+
+def write_page(alerts, n, stats):
+    """liquidity/README.md: a readable table GitHub shows as a web page at github.com/<repo>/tree/main/liquidity."""
+    def money(x):
+        return f"${x/1000:,.0f}k" if x is not None else ""
+    lines = ["# Liquidity alerts (paper)", "",
+             f"Updated {n.astimezone(ET).strftime('%a %b %-d, %-I:%M %p ET')}. {stats}", "",
+             "New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. "
+             "**Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. "
+             "**CLV** = cents the exchange price moved toward this side before the game.", ""]
+    graded = [a for a in alerts if a.get("result") in ("W", "L", "P")]
+    if graded:
+        w = sum(1 for a in graded if a["result"] == "W"); l = sum(1 for a in graded if a["result"] == "L")
+        u = sum(a.get("units_flat") or 0 for a in graded)
+        rm = [a for a in graded if a.get("rule_met")]
+        lines += [f"**Record:** {w}-{l} ({u:+.2f}u flat)" + (f" | rule met: {sum(1 for a in rm if a['result']=='W')}-"
+                  f"{sum(1 for a in rm if a['result']=='L')}" if rm else ""), ""]
+    lines += ["| Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |",
+              "|---|---|---|---|---|---|---|---|---|---|---|---|"]
+    for a in alerts[:200]:
+        t = datetime.fromisoformat(a["alerted_utc"].replace("Z", "+00:00")).astimezone(ET).strftime("%b %-d %-I:%M%p")
+        nb = ((a.get("depth_by_book") or {}).get(a["book"]) or {}).get("new_this_side")
+        pa = a.get("price_american")
+        lines.append(f"| {t} | {a['league']} | {a['game']} | {a['market']}: {a['side_label']} | {a['book']} | {money(nb)} | "
+                     f"{(f'{pa:+d}' if pa else '')} | {'✅ ' + ','.join(a['second_book']) if a.get('rule_met') else ''} | "
+                     f"{'✅' if a.get('sharp_agree') else ('❌' if a.get('sharp_oppose') else '')} | "
+                     f"{fmt_clv(a)} | "
+                     f"{'yes' if a.get('pulled') else ''} | {a.get('result') or 'pending'} |")
+    if not alerts:
+        lines.append("| | | No alerts yet | | | | | | | | | |")
+    save_text(os.path.join(OUT_DIR, "README.md"), "\n".join(lines) + "\n")
+
+
+def save_text(path, text):
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, "w") as f:
+        f.write(text)
+
+
 def run():
     n = now_utc()
     now_s = n.timestamp()
@@ -849,7 +1007,9 @@ def run():
     by_key = {row_key(r): r for r in main_line_only([r for r in pre.values() if in_band(r)])}   # main lines (for new triggers)
     print(f"Rows: {len(rows)} sides; {len(by_key)} pregame main-line sides")
 
-    # --- open alerts: closing price (last pregame price) and pulled money
+    pre_rows = list(pre.values())
+
+    # --- open alerts: closing price (last pregame price), pulled money, 15-minute actionability
     for a in alerts:
         r = pre.get(a.get("key"))
         if a.get("result") is not None or not r:
@@ -857,20 +1017,35 @@ def run():
         a["close_price"] = r["price"]
         a["clv_cents"] = round(100 * (r["price"] - a["price"]), 1) if (r["price"] is not None and a.get("price")) else None
         base, new = a.get("base_depth"), a.get("new_money")
-        if base is not None and new and not a.get("pulled") and r["depth"] < base + PULLED_KEEP * new:
+        tot = r.get("total_depth", r["depth"])
+        if base is not None and new and not a.get("pulled") and tot < base + PULLED_KEEP * new:
             a["pulled"] = True
             a["pulled_utc"] = n.strftime("%Y-%m-%dT%H:%M:%SZ")
-            print(f"PULLED {a['game']} | {a['side_label']} ({a['book']}): now ${r['depth']:,.0f} vs ${base + new:,.0f} at alert")
+            print(f"PULLED {a['game']} | {a['side_label']} ({a['book']}): now ${tot:,.0f} vs ${base + new:,.0f} at alert")
+        age_m = (now_s - datetime.fromisoformat(a["alerted_utc"].replace("Z", "+00:00")).timestamp()) / 60
+        if "price_after_15m" not in a and age_m >= 15:
+            bp, bb = best_across(r, pre_rows)
+            a["price_after_15m"], a["price_after_15m_book"] = bp, bb
+            a["still_actionable"] = (bp is not None and a.get("best_price") is not None and bp <= a["best_price"] + 1e-9)
 
-    # --- new money since the last reading
+    # --- new money since the last reading, on TOTAL side depth (all levels): a 1c move in the best bid can pull a
+    # standing market-maker wall into the near-price window, so near depth would show phantom new money.
     prev = state["seen"]
     for k, r in by_key.items():
         p = prev.get(k)
         fresh = p and now_s - p["t"] <= FRESH_MIN * 60
-        r["delta"] = (r["depth"] - p["d"]) if fresh else None
-        r["other_delta"] = (r["other_depth"] - p["o"]) if fresh else None
+        r["tot"] = r.get("total_depth", r["depth"])
+        r["otot"] = r.get("other_total", r["other_depth"])
+        r["delta"] = (r["tot"] - p["d"]) if fresh else None
+        r["other_delta"] = (r["otot"] - p["o"]) if fresh else None
         r["prev_depth"] = p["d"] if fresh else None
-    state["seen"] = {k: {"d": round(r["depth"]), "o": round(r["other_depth"]), "t": now_s} for k, r in by_key.items()}
+        r["prev_bid"] = p.get("b") if fresh else None
+        r["prev_nd"] = p.get("nd") if fresh else None
+    state["seen"] = {k: {"d": round(r["tot"]), "o": round(r["otot"]), "t": now_s, "b": r.get("best_bid"),
+                         "nd": round(r["delta"]) if r["delta"] is not None else None} for k, r in by_key.items()}
+
+    def improved(now_bid, then_bid):
+        return None if (now_bid is None or then_bid is None) else now_bid > then_bid + 1e-9
 
     sharp = sharp_alerts(n)
     fired = dropped = 0
@@ -892,7 +1067,7 @@ def run():
             dropped += 1
             print(f"Not confirmed (pending > {PENDING_MAX_MIN} min, dropped): {r['game']} | {r['side_label']} ({r['book']})")
             continue
-        if r["depth"] < pd["base"] + CONFIRM_KEEP * pd["new"] or r["depth"] <= r["other_depth"]:
+        if r["tot"] < pd["base"] + CONFIRM_KEEP * pd["new"] or r["tot"] <= r["otot"]:
             dropped += 1
             print(f"Not confirmed (money pulled or side no longer heavier): {r['game']} | {r['side_label']} ({r['book']})")
             continue
@@ -903,9 +1078,11 @@ def run():
             how = same_game(r, o)
             if how and same_side(r, o, how) and o["depth"] > others.get(o["book"], {}).get("depth", -1):
                 others[o["book"]] = {"depth": round(o["depth"]), "price": o["price"], "label": o["side_label"],
-                                     "heavier": o["depth"] > o["other_depth"]}
+                                     "heavier": o["depth"] > o["other_depth"],
+                                     "fresh": max(o.get("delta") or 0, o.get("prev_nd") or 0) >= SECOND_MIN}
         second = {b: v for b, v in others.items() if v["depth"] >= SECOND_MIN and v.get("heavier")}
         agree, oppose = sharp_view(r, sharp)
+        bp, bpb = best_across(r, pre_rows)
         a = {
             "alerted_utc": n.strftime("%Y-%m-%dT%H:%M:%SZ"), "first_seen_utc": pd["first_utc"], "confirmed_after_min": round(age),
             "key": key, "book": r["book"], "league": r["league"], "date": r["date"], "game": r["game"],
@@ -914,7 +1091,7 @@ def run():
             "price": r["price"], "price_american": american(r["price"]), "price_when_first_seen": pd["price"],
             "base_depth": pd["base"], "new_money": pd["new"],
             "depth_by_book": dict({r["book"]: {"this_side": round(r["depth"]), "other_side": round(r["other_depth"]),
-                                                 "this_side_all_levels": round(r.get("total_depth", r["depth"])),
+                                                 "this_side_all_levels": round(r["tot"]), "other_side_all_levels": round(r["otot"]),
                                                  "ratio": round(r["depth"] / max(r["other_depth"], 1), 1),
                                                  "new_this_side": pd["new"], "new_other_side": pd["new_other"]}},
                                   **{b: {"this_side": v["depth"], "label": v["label"], "price": v["price"], "heavier_side": v["heavier"]}
@@ -923,16 +1100,23 @@ def run():
             "rule_met": bool(second), "sharp_agree": agree, "sharp_oppose": oppose,
             "top25": is_top25(r) if r["league"] == "NCAAF" else None,
             "books_live": BOOKS, "ref": r["ref"], "pulled": False, "close_price": r["price"], "clv_cents": 0.0,
+            "bid_improved_at_pending": pd.get("bid_improved"), "bid_improved": improved(r.get("best_bid"), pd.get("bb")),
+            "best_price": bp, "best_price_book": bpb, "best_price_american": american(bp),
+            "prices_by_book": odds_prices(r),
+            "second_book_fresh": any(v.get("fresh") for v in second.values()),
+            "lead_min": round((r["start"] - now_s) / 60) if r.get("start") else None,
+            "price_rule": price_rule(r, pre_rows, bp),
             "result": None, "units_flat": None,
         }
         alerts.insert(0, a)
         state["alerted"][key] = a["alerted_utc"]
         fired += 1
         print(f"ALERT {a['league']} {a['game']} | {a['market']} {a['side_label']} | {r['book']} +${pd['new']:,.0f} new, held "
-              f"{round(age)}m (now ${r['depth']:,.0f}) | 2nd: {a['second_book']} | sharp agree: {len(agree)} oppose: {len(oppose)}")
+              f"{round(age)}m (now ${r['tot']:,.0f}) | 2nd: {a['second_book']} | sharp agree: {len(agree)} oppose: {len(oppose)}"
+              f" | best {bp} on {bpb} | {a['price_rule']}")
         notify(f"Liquidity {a['league']}" + (" RULE MET" if a["rule_met"] else "") + (" + SHARP" if agree else ""),
                f"{a['side_label']} ({a['market']}) on {r['book']}\n{a['game']}\n"
-               f"+${pd['new']:,.0f} new bids, still there after {round(age)}m; now ${r['depth']:,.0f} vs ${r['other_depth']:,.0f}\n"
+               f"+${pd['new']:,.0f} new bids, still there after {round(age)}m; now ${r['tot']:,.0f} vs ${r['otot']:,.0f}\n"
                + (f"Price {r['price']:.2f} ({a['price_american']:+d})\n" if a['price_american'] else "")
                + "2nd book: " + (", ".join(f"{b} ${v['depth']:,}" for b, v in others.items()) or "no match")
                + (f"\nSharp alert agrees: {', '.join(agree)}" if agree else ""))
@@ -946,11 +1130,14 @@ def run():
             continue  # need $25k+ of NEW bids, and >= 10% of what was already there (scales with the book)
         if r["delta"] < RATIO * max(r["other_delta"] or 0, 0):
             continue  # both sides growing together = market making
-        if r["depth"] <= r["other_depth"]:
+        if r["tot"] <= r["otot"]:
             continue  # this side must now be the heavier one
+        bi = improved(r.get("best_bid"), r.get("prev_bid"))
         state["pending"][key] = {"t": now_s, "first_utc": n.strftime("%Y-%m-%dT%H:%M:%SZ"), "base": round(r["prev_depth"]),
-                                 "new": round(r["delta"]), "new_other": round(r["other_delta"] or 0), "price": r["price"]}
-        print(f"Pending (confirm next check): {r['game']} | {r['side_label']} ({r['book']}) +${r['delta']:,.0f}")
+                                 "new": round(r["delta"]), "new_other": round(r["other_delta"] or 0), "price": r["price"],
+                                 "bb": r.get("best_bid"), "bid_improved": bi}
+        print(f"Pending (confirm next check): {r['game']} | {r['side_label']} ({r['book']}) +${r['delta']:,.0f}"
+              f" | bid improved: {bi}")
 
     cutoff = (n - timedelta(days=60)).strftime("%Y-%m-%dT%H:%M:%SZ")
     alerts = [a for a in alerts if a["alerted_utc"] >= cutoff]
@@ -958,18 +1145,25 @@ def run():
     state["v"] = STATE_VERSION
     save(ALERTS_FILE, {"note": (
         "Liquidity paper alerts (Kalshi + Novig + Polymarket public books), newest first. Trigger: >= $%d (and >= 10%% of the "
-        "side's prior size, capped at $100k) of NEW bids within %.0fc of the best bid on one side since the last check, >= %gx any new money on the "
+        "side's prior size, capped at $100k) of NEW bids on one side since the last check, measured on total side depth (all price "
+        "levels; near-price depth within %.0fc is shown and used for the second-book test), >= %gx any new money on the "
         "other side, leaving that side heavier; main lines only (ML 15-85c, spread/total 30-70c), pregame; Kalshi moneylines "
         "combined per game. Spoof filter: logged only if >= 75%% of the new money is still there on the next check "
         "(confirmed_after_min). pulled = the new money later disappeared before the game. rule_met = another book has >= $%d on "
         "the same side and it is the heavier side there. sharp_agree/sharp_oppose = sharp-monitor (Pinnacle move) alerts on the "
         "same game & market. price = cost to buy the side when logged (0-1); close_price = last pregame price; clv_cents = "
         "close_price - price (positive = the market moved toward this side). result W/L/P/VOID from the exchange's settlement; "
-        "units_flat = 1u at price." % (PRIMARY_MIN, NEAR * 100, RATIO, SECOND_MIN)),
+        "units_flat = 1u at best_price (cheapest across books at alert). Log-only fields: bid_improved (best bid on the alert side "
+        "rose between readings), best_price/best_price_book, prices_by_book (Odds API sportsbooks), second_book_fresh (second book "
+        "added >= $10k on the side in the last two checks), lead_min, price_rule (fails_cap = worse than -130 on spread/total; "
+        "ml_edge_ok/fail = 2%% edge vs cross-book fair mid), price_after_15m/still_actionable." % (PRIMARY_MIN, NEAR * 100, RATIO, SECOND_MIN)),
         "alerts": alerts})
     save(STATE_FILE, state)
+    stats = (f"This run: {fired} new, {dropped} not confirmed, {len(state['pending'])} pending. "
+             f"Open alerts: {sum(1 for a in alerts if a['result'] is None)}.")
+    write_page(alerts, n, stats)
     print(f"Done. New alerts: {fired}. Not confirmed: {dropped}. Pending: {len(state['pending'])}. "
-          f"Open alerts: {sum(1 for a in alerts if a['result'] is None)}")
+          f"Open alerts: {sum(1 for a in alerts if a['result'] is None)}. Total run: {time.time() - RUN_T0:.0f}s")
 
 
 if __name__ == "__main__":
