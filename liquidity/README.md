@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Wed Oct 21, 7:11 PM ET. This run: 16 new, 8 not confirmed, 23 pending. Open alerts: 16.
+Updated Wed Oct 21, 7:48 PM ET. This run: 0 new, 23 not confirmed, 18 pending. Open alerts: 16.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -19,6 +19,6 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 21 7:11PM | NBA | Dallas Mavericks @ Houston Rockets | moneyline: HOU (0) | novig | $999k | -365 |  | ❌ | +0.0c |  | pending |
 | Oct 21 7:11PM | NBA | Utah Jazz @ Memphis Grizzlies | moneyline: MEM (0) | novig | $652k | -125 |  |  | +0.0c |  | pending |
 | Oct 21 7:11PM | NBA | Charlotte Hornets @ Brooklyn Nets | spread: CHA -1.5 (1.5) | novig | $634k | -102 |  | ❌ | +0.0c |  | pending |
-| Oct 21 7:11PM | NHL | Philadelphia vs Buffalo: Total Goals | total: Over 5.5 goals scored | kalshi | $70k | -127 | ✅ polymarket |  | +0.0c |  | pending |
+| Oct 21 7:11PM | NHL | Philadelphia vs Buffalo: Total Goals | total: Over 5.5 goals scored | kalshi | $70k | -127 | ✅ polymarket |  | -9.0c | yes | pending |
 | Oct 21 7:11PM | NBA | Utah vs Memphis | moneyline: Memphis | kalshi | $484k | -127 | ✅ polymarket |  | +0.0c |  | pending |
 | Oct 21 7:11PM | NBA | Golden State vs Los Angeles L | moneyline: Los Angeles L | kalshi | $150k | -203 |  |  | +0.0c |  | pending |
