@@ -6,9 +6,9 @@ Reads public order books (no keys) for NFL / NCAAF / NBA / NHL games today and t
 markets only (moneyline, spread, total), and logs a paper alert when one side of a game's market has
 heavy resting BIDS.
 
-Rule (Peter): >= $50,000 bid depth on one side on one book AND >= $10,000 on that same side on
-another book. Every $50k leg is logged; `rule_met` says whether a second book also had $10k+.
-A third book (ProphetX) slots in once its API key arrives.
+Trigger: >= $25,000 of NEW bids on one side (and >= 10% of what was there, capped at $100k), confirmed
+on the next check (spoof filter). `rule_met` says whether a second book also has $10k+ on the same side
+and the same line. ProphetX slots in once its API key arrives.
 
 Bids only: on both exchanges every resting order is a bid to buy one side (a YES bid at p is also a
 NO offer at 1-p), so each side's depth is counted from that side's own bids, never both ways.
@@ -191,6 +191,14 @@ def near_depth(levels):
     return sum(p * q for p, q in levels if p >= best - NEAR - 1e-9)
 
 
+LINE_TOL = float(os.environ.get("LIQ_LINE_TOL", "") or "0")   # second-book match needs the same line (0 = exact)
+
+
+def signed_num(text):
+    m = re.search(r"([+-]\d+(?:\.\d+)?)", text or "")
+    return float(m.group(1)) if m else None
+
+
 def american(p):
     if not p or p <= 0 or p >= 1:
         return None
@@ -254,10 +262,26 @@ def k_start(mk):
     return None
 
 
+def k_sort_time(mk):
+    """Soonest-first ordering for Kalshi markets: start time when given, else the market's close/expiry time."""
+    st = k_start(mk)
+    if st:
+        return st
+    for f in ("expected_expiration_time", "close_time"):
+        v = mk.get(f)
+        if v:
+            try:
+                return datetime.fromisoformat(v.replace("Z", "+00:00")).timestamp()
+            except ValueError:
+                pass
+    return float("inf")
+
+
 def kalshi_rows(days):
-    """[{book, league, date, teams, market, side(0/1/'OVER'/'UNDER'), depth, other_depth, price, ...}]"""
+    """[{book, league, date, teams, market, side(0/1/'OVER'/'UNDER'), line, depth, other_depth, price, ...}]"""
     rows, calls = [], 0
     start_clock()
+    todo = []   # gather every candidate market first, then read books soonest-start-first (never alphabetical by series)
     for s in k_series():
         m = K_SERIES_RE.match(s)
         league, kind = (m.group(1), m.group(2)) if m else (s[2:-4], "GAME")
@@ -270,46 +294,60 @@ def kalshi_rows(days):
             d = k_event_date(ev.get("event_ticker", ""))
             if d not in days:
                 continue
-            teams = split_teams(ev.get("title", ""))
             for mk in ev.get("markets") or []:
-                if (mk.get("status") or "active") not in ("active", "open", "initialized") or calls >= MAX_CALLS:
+                if (mk.get("status") or "active") not in ("active", "open", "initialized"):
                     continue
                 liq = k_liquidity(mk)
                 if liq is not None and liq < PRIMARY_MIN:
-                    continue  # whole book (both sides) under $50k: can't trigger
+                    continue  # whole book (both sides) under PRIMARY_MIN ($25k): new money that size can't be there
                 if K_MTYPE[kind] != "moneyline":
                     yb = k_price(mk, "yes_bid")
                     if yb is not None and not (0.2 <= yb <= 0.8):
                         continue  # far-off alternate strike, not the main line
-                if out_of_time():
-                    break
-                try:
-                    book = get(f"{KALSHI}/markets/{mk['ticker']}/orderbook")
-                    calls += 1
-                except Exception as ex:
-                    print(f"Kalshi book failed {mk['ticker']}: {ex}")
-                    continue
-                bids = {x: k_levels(book, x) for x in ("yes", "no")}
-                dep = {x: near_depth(bids[x]) for x in ("yes", "no")}
-                tot = {x: sum(p * q for p, q in bids[x]) for x in ("yes", "no")}
-                label = mk.get("yes_sub_title") or mk.get("subtitle") or mk.get("title") or mk["ticker"]
-                for x in ("yes", "no"):
-                    other = "no" if x == "yes" else "yes"
-                    best_other = max((p for p, _ in bids[other]), default=None)
-                    if K_MTYPE[kind] == "total":
-                        over_yes = "under" not in label.lower()
-                        side = ("OVER" if over_yes else "UNDER") if x == "yes" else ("UNDER" if over_yes else "OVER")
-                    else:
-                        t = team_side(label, teams) if teams else None
-                        side = None if t is None else (t if x == "yes" else 1 - t)
-                    rows.append(dict(book="kalshi", league=league, date=d.isoformat(), teams=list(teams) if teams else None,
-                                     game=ev.get("title") or ev.get("event_ticker"), market=K_MTYPE[kind], side=side,
-                                     side_label=label if x == "yes" else f"NOT {label}", depth=dep[x], other_depth=dep[other],
-                                     total_depth=tot[x],
-                                     price=round(1 - best_other, 4) if best_other is not None else None,
-                                     event=ev.get("event_ticker"), start=k_start(mk),
-                                     ref={"market_ticker": mk["ticker"], "kalshi_side": x}))
-    print(f"Kalshi: {calls} books read in {time.time() - T0:.0f}s" + (" (time budget hit)" if out_of_time() else ""))
+                todo.append((d, k_sort_time(mk), 0 if kind == "GAME" else 1, league, kind, ev, mk))
+    todo.sort(key=lambda t: (t[0], t[1], t[2]))
+    for d, _, _, league, kind, ev, mk in todo:
+        if calls >= MAX_CALLS or out_of_time():
+            break
+        teams = split_teams(ev.get("title", ""))
+        try:
+            book = get(f"{KALSHI}/markets/{mk['ticker']}/orderbook")
+            calls += 1
+        except Exception as ex:
+            print(f"Kalshi book failed {mk['ticker']}: {ex}")
+            continue
+        bids = {x: k_levels(book, x) for x in ("yes", "no")}
+        dep = {x: near_depth(bids[x]) for x in ("yes", "no")}
+        tot = {x: sum(p * q for p, q in bids[x]) for x in ("yes", "no")}
+        label = mk.get("yes_sub_title") or mk.get("subtitle") or mk.get("title") or mk["ticker"]
+        strike = num(mk.get("floor_strike"))
+        if strike is None and K_MTYPE[kind] != "moneyline":
+            ms = re.search(r"over ([\d.]+)", label.lower())
+            strike = float(ms.group(1)) if ms else None
+        if strike is not None and f"{strike:g}" not in label:
+            label = f"{label} [{strike:g}]"
+        for x in ("yes", "no"):
+            other = "no" if x == "yes" else "yes"
+            best_other = max((p for p, _ in bids[other]), default=None)
+            line = None
+            if K_MTYPE[kind] == "total":
+                over_yes = "under" not in label.lower()
+                side = ("OVER" if over_yes else "UNDER") if x == "yes" else ("UNDER" if over_yes else "OVER")
+                line = strike
+            else:
+                t = team_side(label, teams) if teams else None
+                side = None if t is None else (t if x == "yes" else 1 - t)
+                if K_MTYPE[kind] == "spread" and strike is not None:
+                    line = -strike if x == "yes" else strike   # YES "X wins by over S" = X -S; NO = the other team +S
+            rows.append(dict(book="kalshi", league=league, date=d.isoformat(), teams=list(teams) if teams else None,
+                             game=ev.get("title") or ev.get("event_ticker"), market=K_MTYPE[kind], side=side, line=line,
+                             side_label=label if x == "yes" else f"NOT {label}", depth=dep[x], other_depth=dep[other],
+                             total_depth=tot[x],
+                             price=round(1 - best_other, 4) if best_other is not None else None,
+                             event=ev.get("event_ticker"), start=k_start(mk), mid=mk["ticker"],
+                             ref={"market_ticker": mk["ticker"], "kalshi_side": x}))
+    print(f"Kalshi: {calls} books read in {time.time() - T0:.0f}s of {len(todo)} candidates"
+          + (" (time budget hit)" if out_of_time() else ""))
     return rows
 
 
@@ -356,6 +394,7 @@ def novig_rows(days, n):
     print(f"Novig: {len(ev_by)} events in leagues, market types seen: {seen_types}")
     rows, calls, skipped = [], 0, 0
     lo_ml, lo_ln = BAND_ML, BAND_LINE
+    direction = {"done": False, "ok": True}
     for mk in sorted(mks, key=lambda m: m.get("startsTs") or 0):   # soonest games first
         e = ev_by.get(mk.get("eventId"))
         mtype = N_MTYPE.get((mk.get("marketType") or "").upper())
@@ -380,6 +419,22 @@ def novig_rows(days, n):
             continue
         orders = book.get("orders") or {}
         outs = mk.get("outcomes") or []
+        if not direction["done"]:
+            # Direction test: the best (highest) order in outcome X's book should equal the catalog's bid for X
+            # if the per-outcome orders are BIDS. If they're the take side instead, Novig is excluded this run.
+            for o in outs:
+                cat_bid = num((o.get("bid") or {}).get("price"))
+                prices = [float(r["price"]) for r in orders.get(o["outcomeId"], [])]
+                if cat_bid is not None and prices:
+                    best = max(prices)
+                    direction["done"] = True
+                    direction["ok"] = abs(best - cat_bid) < 1e-6
+                    print(f"Novig direction test: market {mk['marketId']} outcome '{o.get('name')}': best book order "
+                          f"{best} vs catalog bid {cat_bid} -> " + ("MATCH: orders are bids for that outcome"
+                          if direction["ok"] else "MISMATCH: orders are NOT the outcome's bids; Novig excluded this run"))
+                    break
+            if direction["done"] and not direction["ok"]:
+                break
         if len(outs) != 2:
             continue  # main markets are two-way
         teams = split_teams(e.get("description") or mk.get("description") or "")
@@ -396,14 +451,27 @@ def novig_rows(days, n):
             else:
                 side = team_side(name, teams) if teams else None
             strike = mk.get("strike")
+            if mtype == "total":
+                line = num(strike)
+            elif mtype == "spread":
+                line = signed_num(name)   # outcome names carry the side's own line, e.g. 'PHX +21.5'
+                if line is None and num(strike) is not None and side in (0, 1):
+                    line = num(strike) if side == 1 else -num(strike)   # strike = home (2nd-listed) handicap
+            else:
+                line = None
             rows.append(dict(book="novig", league=N_LEAGUE.get((e.get("league") or "").upper().strip()), date=d,
                              teams=list(teams) if teams else None, game=e.get("description"), market=mtype, side=side,
+                             line=line, mid=mk["marketId"],
                              side_label=name + (f" ({strike})" if strike else ""), depth=dep[o["outcomeId"]],
                              other_depth=dep[other["outcomeId"]], total_depth=tot[o["outcomeId"]],
                              price=round(1 - best_other, 4) if best_other is not None else None,
                              start=e["startsTs"] / 1000, ref={"market_id": mk["marketId"], "outcome_id": o["outcomeId"]}))
+    if not direction["done"]:
+        print("Novig direction test: not run (no book with both catalog bid and orders this run)")
     print(f"Novig: {calls} books read in {time.time() - T0:.0f}s, {skipped} alternate/empty lines skipped"
           + (" (time budget hit)" if out_of_time() else ""))
+    if direction["done"] and not direction["ok"]:
+        return []
     return rows
 
 
@@ -444,6 +512,7 @@ def pm_start(st):
 def pm_rows(days, n):
     rows, calls = [], 0
     start_clock()
+    todo = []   # gather all leagues' candidate markets, then read books soonest-start-first
     for lg in LEAGUES:
         tag = PM_TAGS.get(lg)
         if not tag:
@@ -472,39 +541,47 @@ def pm_rows(days, n):
                 if not start or start <= n or start.astimezone(ET).date() not in days:
                     continue
                 outs, tids = jl(mk.get("outcomes")), jl(mk.get("clobTokenIds"))
-                if len(outs) != 2 or len(tids) != 2 or calls >= MAX_CALLS:
+                if len(outs) != 2 or len(tids) != 2:
                     continue
                 pl = num(mk.get("liquidityClob")) or num(mk.get("liquidityNum")) or num(mk.get("liquidity"))
                 if pl is not None and pl < PRIMARY_MIN:
-                    continue  # whole book under $50k: can't trigger
-                if out_of_time():
-                    break
-                books = []
-                for t in tids:
-                    try:
-                        books.append(get(f"{PM_CLOB}/book", {"token_id": t}))
-                        calls += 1
-                    except Exception as ex:
-                        print(f"Polymarket book failed {t}: {ex}")
-                        books.append({})
-                bids = [[(float(b["price"]), float(b["size"])) for b in (bk.get("bids") or [])] for bk in books]
-                dep = [near_depth(b) for b in bids]
-                tot = [sum(p * q for p, q in b) for b in bids]
-                line = mk.get("line")
-                for i in (0, 1):
-                    name = str(outs[i])
-                    if mtype == "total":
-                        side = "OVER" if "over" in name.lower() else ("UNDER" if "under" in name.lower() else None)
-                    else:
-                        side = team_side(name, teams)
-                    best_other = max((p for p, _ in bids[1 - i]), default=None)
-                    rows.append(dict(book="polymarket", league=lg, date=start.astimezone(ET).date().isoformat(),
-                                     teams=list(teams), game=ev.get("title"), market=mtype, side=side,
-                                     side_label=name + (f" ({line})" if line not in (None, "") else ""),
-                                     depth=dep[i], other_depth=dep[1 - i], total_depth=tot[i],
-                                     price=round(1 - best_other, 4) if best_other is not None else None,
-                                     start=start.timestamp(), ref={"pm_market_id": str(mk.get("id")), "outcome_index": i}))
-    print(f"Polymarket: {calls} books read in {time.time() - T0:.0f}s" + (" (time budget hit)" if out_of_time() else ""))
+                    continue  # whole book under PRIMARY_MIN ($25k): new money that size can't be there
+                todo.append((start, lg, ev, teams, mk, mtype, outs, tids))
+    todo.sort(key=lambda t: t[0])
+    for start, lg, ev, teams, mk, mtype, outs, tids in todo:
+        if calls >= MAX_CALLS or out_of_time():
+            break
+        books = []
+        for t in tids:
+            try:
+                books.append(get(f"{PM_CLOB}/book", {"token_id": t}))
+                calls += 1
+            except Exception as ex:
+                print(f"Polymarket book failed {t}: {ex}")
+                books.append({})
+        bids = [[(float(b["price"]), float(b["size"])) for b in (bk.get("bids") or [])] for bk in books]
+        dep = [near_depth(b) for b in bids]
+        tot = [sum(p * q for p, q in b) for b in bids]
+        ln = num(mk.get("line"))
+        for i in (0, 1):
+            name = str(outs[i])
+            if mtype == "total":
+                side = "OVER" if "over" in name.lower() else ("UNDER" if "under" in name.lower() else None)
+                line = ln
+            else:
+                side = team_side(name, teams)
+                line = None if (mtype != "spread" or ln is None) else (ln if i == 0 else -ln)   # line is the 1st outcome's
+            best_other = max((p for p, _ in bids[1 - i]), default=None)
+            rows.append(dict(book="polymarket", league=lg, date=start.astimezone(ET).date().isoformat(),
+                             teams=list(teams), game=ev.get("title"), market=mtype, side=side, line=line,
+                             side_label=name + (f" ({line:+g})" if (line is not None and mtype == "spread")
+                                                else (f" ({line:g})" if line is not None else "")),
+                             depth=dep[i], other_depth=dep[1 - i], total_depth=tot[i],
+                             price=round(1 - best_other, 4) if best_other is not None else None,
+                             start=start.timestamp(), mid=str(mk.get("id")),
+                             ref={"pm_market_id": str(mk.get("id")), "outcome_index": i}))
+    print(f"Polymarket: {calls} books read in {time.time() - T0:.0f}s of {len(todo)} candidate markets"
+          + (" (time budget hit)" if out_of_time() else ""))
     return rows
 
 
@@ -536,12 +613,17 @@ def same_game(a, b):
     return None
 
 
-def same_side(a, b, how):
+def same_side(a, b, how, check_line=True):
     if a["side"] is None or b["side"] is None:
         return False
     if a["market"] == "total" or b["market"] == "total":
-        return a["side"] == b["side"]
-    return a["side"] == (b["side"] if how == "same" else 1 - b["side"])
+        ok = a["side"] == b["side"]
+    else:
+        ok = a["side"] == (b["side"] if how == "same" else 1 - b["side"])
+    if ok and check_line and a["market"] == b["market"] and a["market"] in ("spread", "total"):
+        la, lb = a.get("line"), b.get("line")
+        ok = la is not None and lb is not None and abs(la - lb) <= LINE_TOL + 1e-9   # same line, not just same side
+    return ok
 
 
 def side_key(r):
@@ -602,6 +684,20 @@ def merge_kalshi_ml(rows):
         base["side_label"] = base["teams"][side] if base.get("teams") else base["side_label"]
         keep.append(base)
     return keep
+
+
+def main_line_only(rows):
+    """Spreads/totals: if several strikes of the same book+game+market are in band, keep only the one closest to 50c."""
+    groups, out = {}, []
+    for r in rows:
+        if r["market"] in ("spread", "total") and r.get("mid"):
+            groups.setdefault((r["book"], r["game"], r["market"]), {}).setdefault(r["mid"], []).append(r)
+        else:
+            out.append(r)
+    for mids in groups.values():
+        best = min(mids.values(), key=lambda rs: min(abs((x["price"] if x["price"] is not None else 0) - 0.5) for x in rs))
+        out += best
+    return out
 
 
 def in_band(r):
@@ -677,14 +773,20 @@ def sharp_view(r, sharp):
         how = same_game(r, x)
         if not how:
             continue
-        (agree if same_side(r, x, how) else oppose).append(x["bet"])
+        (agree if same_side(r, x, how, check_line=False) else oppose).append(x["bet"])
     return agree, oppose
 
 
 _T25 = {}
+_NORM = {"st": "state", "st.": "state"}
+
+
+def _words(x):
+    return [_NORM.get(w, w) for w in re.findall(r"[a-z0-9&.]+", (x or "").lower().replace("(", " ").replace(")", " "))]
 
 
 def top25_names():
+    """[(location words, nickname words)] from ESPN's AP poll, once per run."""
     if "v" in _T25:
         return _T25["v"]
     names = None
@@ -692,7 +794,7 @@ def top25_names():
         d = get("https://site.api.espn.com/apis/site/v2/sports/football/college-football/rankings")
         polls = d.get("rankings", [])
         ap = next((p for p in polls if "ap" in (p.get("name", "") + " " + p.get("type", "")).lower().split()), polls[0] if polls else None)
-        names = [((t.get("team") or {}).get("location") or "") + " " + ((t.get("team") or {}).get("nickname") or "")
+        names = [(_words((t.get("team") or {}).get("location")), _words((t.get("team") or {}).get("name")))
                  for t in (ap or {}).get("ranks", [])] or None
     except Exception as ex:
         print(f"Top 25 fetch failed: {ex}")
@@ -701,14 +803,22 @@ def top25_names():
 
 
 def is_top25(r):
+    """True only on a full school match: 'Michigan' or 'Michigan Wolverines' matches Michigan, 'Michigan State' does not.
+    None when it can't tell (no poll, or a nickname-only name like 'Tigers')."""
     names = top25_names()
     if not names or not r.get("teams"):
         return None
+    unsure = False
     for t in r["teams"]:
-        tt = toks(t)
-        if any(tt and tt <= toks(nm) or (toks(nm) and toks(nm) <= tt) for nm in names):
-            return True
-    return False
+        tw = [w.rstrip(".") for w in _words(t)]
+        for loc, nick in names:
+            loc = [w.rstrip(".") for w in loc]
+            nick = [w.rstrip(".") for w in nick]
+            if tw == loc or tw == loc + nick:
+                return True
+            if nick and tw == nick:
+                unsure = True
+    return None if unsure else False
 
 
 def run():
@@ -736,7 +846,7 @@ def run():
     fill_starts(rows)
     all_by_key = {row_key(r): r for r in rows}                  # every side (for closing price / pulled checks)
     pre = {k: r for k, r in all_by_key.items() if not r.get("start") or r["start"] > now_s}   # pregame only
-    by_key = {k: r for k, r in pre.items() if in_band(r)}       # main lines (for new triggers)
+    by_key = {row_key(r): r for r in main_line_only([r for r in pre.values() if in_band(r)])}   # main lines (for new triggers)
     print(f"Rows: {len(rows)} sides; {len(by_key)} pregame main-line sides")
 
     # --- open alerts: closing price (last pregame price) and pulled money
@@ -772,10 +882,16 @@ def run():
         if not r or key in state["alerted"]:
             if age > PENDING_MAX_MIN or key in state["alerted"]:
                 state["pending"].pop(key, None)
+                if key not in state["alerted"]:
+                    dropped += 1
             continue
         if age < 2:
             continue  # same run / too soon to judge
         state["pending"].pop(key, None)
+        if age > PENDING_MAX_MIN:
+            dropped += 1
+            print(f"Not confirmed (pending > {PENDING_MAX_MIN} min, dropped): {r['game']} | {r['side_label']} ({r['book']})")
+            continue
         if r["depth"] < pd["base"] + CONFIRM_KEEP * pd["new"] or r["depth"] <= r["other_depth"]:
             dropped += 1
             print(f"Not confirmed (money pulled or side no longer heavier): {r['game']} | {r['side_label']} ({r['book']})")
