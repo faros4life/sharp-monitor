@@ -5,7 +5,9 @@ on:
     - cron: "*/5 * * * *"   # GitHub may delay scheduled runs; add a cron-job.org trigger for a true 5 minutes
   workflow_dispatch:
 
-concurrency: liquidity-monitor
+concurrency:
+  group: liquidity-monitor
+  cancel-in-progress: false   # queue runs, never two at once
 
 permissions:
   contents: write
@@ -32,6 +34,7 @@ jobs:
           if [ -n "$(git status --porcelain liquidity)" ]; then
             git config user.name "liquidity-monitor"
             git config user.email "liquidity-monitor@users.noreply.github.com"
+            git pull --rebase --autostash -q   # pick up the sharp-monitor's commits first
             git add liquidity
             git commit -m "Update liquidity alerts"
             for i in 1 2 3; do
