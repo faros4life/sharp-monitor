@@ -5,7 +5,7 @@
    "alert_key": "2026-10-22 07:25|Denver Nuggets @ Oklahoma City Thunder|Oklahoma City Thunder -8.5 (-108)",
    "bet": "Oklahoma City Thunder -8.5 (-108)",
    "book": "novig",
-   "checked_utc": "2026-10-22T12:45:46Z",
+   "checked_utc": "2026-10-22T12:47:30Z",
    "first": {
     "alert_line": -8.5,
     "alert_price": -108,
@@ -101,8 +101,8 @@
      },
      {
       "american": -113,
-      "contracts": 482889,
-      "dollars": 255931,
+      "contracts": 490889,
+      "dollars": 260171,
       "price": 0.53
      },
      {
@@ -113,8 +113,8 @@
      },
      {
       "american": -117,
-      "contracts": 668173,
-      "dollars": 360813,
+      "contracts": 660173,
+      "dollars": 356493,
       "price": 0.54
      },
      {
@@ -160,15 +160,16 @@
     "market_id": "01a0fde3-df64-7e21-a4fc-b5e9a54a6daf",
     "novig_label": "OKC -8.5",
     "novig_line": -8.5,
-    "resting_bids_on_this_side_dollars": 2099252,
+    "resting_bids_on_this_side_dollars": 2099172,
     "status": "ok"
    },
-   "lead_min_now": 774,
+   "lead_min_now": 772,
    "prophetx_first": {
     "checked_utc": "2026-10-22T12:45:46Z",
     "status": "market_not_on_prophetx"
    },
    "prophetx_latest": {
+    "px_markets_of_type": 2,
     "status": "market_not_on_prophetx"
    },
    "sent_et": "2026-10-22 07:25",
@@ -177,5 +178,5 @@
   }
  ],
  "note": "Exchange book check (FLAG ONLY) for sharp-monitor phone alerts with 2h+ lead. latest/first = Novig (public order books, no key); prophetx_latest/prophetx_first = ProphetX (read-only key): best_price_american, dollars_at_best and dollars_at_alert_price_or_better = amount you could bet at the alert price or better, buy_levels = the ladder. Novig fields: best_price = cheapest cost to BUY the alert side now (0-1, with American); dollars_at_alert_price_or_better = dollars you could buy at the alert's price or better on the same line; exact_line=false means Novig had no market at the alert's line and the nearest line is shown. resting_bids_on_this_side_dollars = others bidding the same side. 'first' = first check after the alert, 'latest' = this run. Novig orders are bids (verified Oct 21).",
- "updated_utc": "2026-10-22T12:45:46Z"
+ "updated_utc": "2026-10-22T12:47:30Z"
 }
