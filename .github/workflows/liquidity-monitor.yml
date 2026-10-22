@@ -28,6 +28,8 @@ jobs:
           LIQ_LEAGUES: ${{ vars.LIQ_LEAGUES }}
           LIQ_NTFY_TOPIC: ${{ vars.LIQ_NTFY_TOPIC }}
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}   # read-only sportsbook prices at alert time (Hard Rock etc.)
+          PROPHETX_ACCESS_KEY: ${{ secrets.PROPHETX_ACCESS_KEY }}   # read-only: login + markets, never orders
+          PROPHETX_SECRET_KEY: ${{ secrets.PROPHETX_SECRET_KEY }}
         run: python -u liquidity_monitor.py
       - name: Commit state and alerts
         if: always()
