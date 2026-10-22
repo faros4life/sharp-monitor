@@ -1,6 +1,285 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-22T16:30:14Z",
+   "base_depth": 1879088,
+   "best_price": 0.55,
+   "best_price_american": -122,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.55,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 9,
+   "date": "2026-10-22",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -10320,
+     "new_this_side": 104320,
+     "other_side": 1608947,
+     "other_side_all_levels": 1676255,
+     "ratio": 1.2,
+     "this_side": 1863544,
+     "this_side_all_levels": 1961020
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "CHI -2.5 (-2.5)",
+     "price": 0.55,
+     "this_side": 142974
+    }
+   },
+   "first_seen_utc": "2026-10-22T16:21:23Z",
+   "game": "New England vs Chicago: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNFLSPREAD-26OCT22NECHI-CHI3\"}",
+   "lead_min": 465,
+   "league": "NFL",
+   "line": -2.5,
+   "market": "spread",
+   "new_money": 104320,
+   "price": 0.55,
+   "price_american": -122,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.55,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -3.0,
+     "price": -102
+    },
+    "betonlineag": {
+     "point": -3.0,
+     "price": -112
+    },
+    "betopenly": {
+     "point": -2.5,
+     "price": -117
+    },
+    "betrivers": {
+     "point": -3.0,
+     "price": -110
+    },
+    "betus": {
+     "point": -3.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": -3.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": -3.0,
+     "price": -102
+    },
+    "fanatics": {
+     "point": -3.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": -3.0,
+     "price": -105
+    },
+    "kalshi": {
+     "point": -2.5,
+     "price": -122
+    },
+    "lowvig": {
+     "point": -3.0,
+     "price": -104
+    },
+    "mybookieag": {
+     "point": -3.0,
+     "price": -110
+    },
+    "novig": {
+     "point": -2.5,
+     "price": -122
+    },
+    "polymarket": {
+     "point": -2.5,
+     "price": -122
+    },
+    "prophetx": {
+     "point": -2.5,
+     "price": -121
+    },
+    "williamhill_us": {
+     "point": -3.0,
+     "price": -115
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNFLSPREAD-26OCT22NECHI-CHI3"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Chicago",
+   "side_label": "Chicago wins by over 2.5 points",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-23T00:15:00Z",
+   "teams": [
+    "New England",
+    "Chicago"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-22T16:30:14Z",
+   "base_depth": 130213,
+   "best_price": 0.685,
+   "best_price_american": -217,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.69,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 9,
+   "date": "2026-10-22",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 9822,
+     "new_this_side": 30379,
+     "other_side": 71165,
+     "other_side_all_levels": 80478,
+     "ratio": 1.8,
+     "this_side": 125836,
+     "this_side_all_levels": 155228
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "EDM +1.5 (1.5)",
+     "price": 0.685,
+     "this_side": 18790
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Oilers (+1.5)",
+     "price": 0.7,
+     "this_side": 33595
+    }
+   },
+   "first_seen_utc": "2026-10-22T16:21:23Z",
+   "game": "Carolina vs Edmonton: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLSPREAD-26OCT22CAREDM-CAR2\"}",
+   "lead_min": 510,
+   "league": "NHL",
+   "line": 1.5,
+   "market": "spread",
+   "new_money": 30379,
+   "price": 0.69,
+   "price_american": -223,
+   "price_rule": "fails_cap",
+   "price_when_first_seen": 0.69,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 1.5,
+     "price": -235
+    },
+    "betonlineag": {
+     "point": 1.5,
+     "price": -250
+    },
+    "betopenly": {
+     "point": 1.5,
+     "price": -228
+    },
+    "betrivers": {
+     "point": 1.5,
+     "price": -265
+    },
+    "betus": {
+     "point": 1.5,
+     "price": -250
+    },
+    "bovada": {
+     "point": 1.5,
+     "price": -245
+    },
+    "draftkings": {
+     "point": 1.5,
+     "price": -250
+    },
+    "fanatics": {
+     "point": 1.5,
+     "price": -240
+    },
+    "fanduel": {
+     "point": 1.5,
+     "price": -240
+    },
+    "kalshi": {
+     "point": 1.5,
+     "price": -223
+    },
+    "lowvig": {
+     "point": 1.5,
+     "price": -250
+    },
+    "mybookieag": {
+     "point": 1.5,
+     "price": -246
+    },
+    "novig": {
+     "point": 1.5,
+     "price": -223
+    },
+    "polymarket": {
+     "point": 1.5,
+     "price": -233
+    },
+    "prophetx": {
+     "point": 1.5,
+     "price": -215
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNHLSPREAD-26OCT22CAREDM-CAR2"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "polymarket"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Edmonton",
+   "side_label": "NOT Carolina wins by over 1.5 goals",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-23T01:00:00Z",
+   "teams": [
+    "Carolina",
+    "Edmonton"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-22T16:10:11Z",
    "base_depth": 72553,
    "best_price": 0.515,
@@ -51,6 +330,8 @@
    "market": "spread",
    "new_money": 74064,
    "price": 0.52,
+   "price_after_15m": 0.52,
+   "price_after_15m_book": "novig",
    "price_american": -108,
    "price_rule": "ok",
    "price_when_first_seen": 0.52,
@@ -139,6 +420,7 @@
    "side_label": "76ers (-2.5)",
    "start_source": "polymarket",
    "start_utc": "2026-10-22T23:00:00Z",
+   "still_actionable": false,
    "teams": [
     "Cavaliers",
     "76ers"
@@ -203,6 +485,8 @@
    "market": "moneyline",
    "new_money": 226725,
    "price": 0.44,
+   "price_after_15m": 0.44,
+   "price_after_15m_book": "novig",
    "price_american": 127,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.44,
@@ -293,6 +577,7 @@
    "side_label": "Cleveland",
    "start_source": "polymarket",
    "start_utc": "2026-10-22T23:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Cleveland",
     "Philadelphia"
