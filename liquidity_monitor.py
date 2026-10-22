@@ -662,6 +662,20 @@ PX_ACCESS = os.environ.get("PROPHETX_ACCESS_KEY", "")
 PX_SECRET = os.environ.get("PROPHETX_SECRET_KEY", "")
 PX_TOURNAMENTS = {"NHL": 234, "NFL": 31, "NCAAF": 27653, "NBA": 132}
 _PXT = {"token": None}
+PX_FEE = float(os.environ.get("PX_FEE", "") or "0.02")   # ProphetX takes 2% of winnings: prices compared after the fee
+# Taker fees per contract = coef x P x (1 - P) (checked Oct 22, 2026): Kalshi 0.07 (schedule eff. Jul 7, 2026);
+# Polymarket global book 0.03 (Fee Structure V2, Mar 30, 2026). Novig pregame straights: no fee.
+TAKER_COEF = {"kalshi": float(os.environ.get("KALSHI_FEE", "") or "0.07"),
+              "polymarket": float(os.environ.get("PM_FEE", "") or "0.03"), "novig": 0.0}
+
+
+def eff_cost(book, c):
+    """Cost to buy one $1 contract after taker fees / fee on winnings (what you really pay per $1 of payout)."""
+    if c is None or c <= 0 or c >= 1:
+        return c
+    if book == "prophetx":
+        return round(1 / (1 + (1 - PX_FEE) * (1 - c) / c), 4)
+    return round(c + TAKER_COEF.get(book, 0.0) * c * (1 - c), 4)
 
 
 def px_call(path, body=None):
@@ -782,6 +796,7 @@ def px_rows(days, n):
                              if x.get("price") is not None]
                     best_own = max((x["price"] for x in levels if x.get("price") is not None), default=None)
                     cost = round(am_prob(best_own), 4) if best_own is not None else None
+
                     mid = f"{e['event_id']}|{mk.get('id')}|{gkey}"
                     rows.append(dict(book="prophetx", league=lg, date=st.astimezone(ET).date().isoformat(), teams=list(teams),
                                      game=e.get("name"), market=mtype, side=side, line=line,
@@ -982,12 +997,13 @@ def matches(r, rows, check_line=True):
 
 
 def best_across(r, rows):
-    """Cheapest cost to buy r's side (same game/market/side/line) across every book read: (price, book)."""
+    """Cheapest cost to buy r's side (same game/market/side/line) across every book read, AFTER fees: (price, book)."""
     best = None
     for o in matches(r, rows):
-        if o["price"] is not None and (best is None or o["price"] < best[0]):
-            best = (o["price"], o["book"])
-    return best or (r["price"], r["book"])
+        e = eff_cost(o["book"], o["price"])
+        if e is not None and (best is None or e < best[0]):
+            best = (e, o["book"])
+    return best or (eff_cost(r["book"], r["price"]), r["book"])
 
 
 def opposite(o, rows):
