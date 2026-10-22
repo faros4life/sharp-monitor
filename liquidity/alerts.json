@@ -1,6 +1,605 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-22T14:50:11Z",
+   "base_depth": 75789,
+   "best_price": 0.5,
+   "best_price_american": -100,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 9,
+   "date": "2026-10-22",
+   "depth_by_book": {
+    "novig": {
+     "heavier_side": true,
+     "label": "NYI (0)",
+     "price": 0.5,
+     "this_side": 26234
+    },
+    "polymarket": {
+     "new_other_side": 3164,
+     "new_this_side": 52935,
+     "other_side": 71650,
+     "other_side_all_levels": 90610,
+     "ratio": 1.6,
+     "this_side": 118096,
+     "this_side_all_levels": 132498
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "New York Islanders",
+     "price": 0.495,
+     "this_side": 10346
+    }
+   },
+   "first_seen_utc": "2026-10-22T14:41:06Z",
+   "game": "Kings vs. Islanders",
+   "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"4950282\"}",
+   "lead_min": 520,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 52935,
+   "price": 0.5,
+   "price_american": -100,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.5,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -105
+    },
+    "betonlineag": {
+     "point": null,
+     "price": 102
+    },
+    "betopenly": {
+     "point": null,
+     "price": 104
+    },
+    "betrivers": {
+     "point": null,
+     "price": -107
+    },
+    "betus": {
+     "point": null,
+     "price": -105
+    },
+    "bovada": {
+     "point": null,
+     "price": -108
+    },
+    "draftkings": {
+     "point": null,
+     "price": -105
+    },
+    "fanatics": {
+     "point": null,
+     "price": -105
+    },
+    "fanduel": {
+     "point": null,
+     "price": -104
+    },
+    "kalshi": {
+     "point": null,
+     "price": 100
+    },
+    "lowvig": {
+     "point": null,
+     "price": 102
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -107
+    },
+    "novig": {
+     "point": null,
+     "price": 100
+    },
+    "polymarket": {
+     "point": null,
+     "price": 100
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": 100
+    },
+    "prophetx": {
+     "point": null,
+     "price": 102
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -105
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 1,
+    "pm_market_id": "4950282"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Islanders",
+   "side_label": "Islanders",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-22T23:30:00Z",
+   "teams": [
+    "Kings",
+    "Islanders"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-22T14:50:11Z",
+   "base_depth": 87893,
+   "best_price": 0.57,
+   "best_price_american": -133,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.58,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 9,
+   "date": "2026-10-22",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Boston",
+     "price": 0.58,
+     "this_side": 253663
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "BOS (0)",
+     "price": 0.57,
+     "this_side": 25594
+    },
+    "polymarket": {
+     "new_other_side": 4471,
+     "new_this_side": 45205,
+     "other_side": 61063,
+     "other_side_all_levels": 74159,
+     "ratio": 1.5,
+     "this_side": 88939,
+     "this_side_all_levels": 130185
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "Boston Bruins",
+     "price": 0.5763,
+     "this_side": 4951
+    }
+   },
+   "first_seen_utc": "2026-10-22T14:41:06Z",
+   "game": "Predators vs. Bruins",
+   "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"4950277\"}",
+   "lead_min": 490,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 45205,
+   "price": 0.58,
+   "price_american": -138,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.58,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -145
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -140
+    },
+    "betopenly": {
+     "point": null,
+     "price": -136
+    },
+    "betrivers": {
+     "point": null,
+     "price": -148
+    },
+    "betus": {
+     "point": null,
+     "price": -140
+    },
+    "bovada": {
+     "point": null,
+     "price": -145
+    },
+    "draftkings": {
+     "point": null,
+     "price": -148
+    },
+    "fanatics": {
+     "point": null,
+     "price": -145
+    },
+    "fanduel": {
+     "point": null,
+     "price": -146
+    },
+    "kalshi": {
+     "point": null,
+     "price": -138
+    },
+    "lowvig": {
+     "point": null,
+     "price": -140
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -146
+    },
+    "novig": {
+     "point": null,
+     "price": -130
+    },
+    "polymarket": {
+     "point": null,
+     "price": -138
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -144
+    },
+    "prophetx": {
+     "point": null,
+     "price": -136
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -150
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 1,
+    "pm_market_id": "4950277"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi",
+    "novig"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Bruins",
+   "side_label": "Bruins",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-22T23:00:00Z",
+   "teams": [
+    "Predators",
+    "Bruins"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-22T14:50:11Z",
+   "base_depth": 123778,
+   "best_price": 0.655,
+   "best_price_american": -190,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.65,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 9,
+   "date": "2026-10-22",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -10880,
+     "new_this_side": 52202,
+     "other_side": 51721,
+     "other_side_all_levels": 65518,
+     "ratio": 3.3,
+     "this_side": 171966,
+     "this_side_all_levels": 184444
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "NSH +1.5 (-1.5)",
+     "price": 0.655,
+     "this_side": 42452
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Predators (+1.5)",
+     "price": 0.65,
+     "this_side": 52407
+    }
+   },
+   "first_seen_utc": "2026-10-22T14:41:06Z",
+   "game": "Nashville vs Boston: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLSPREAD-26OCT22NSHBOS-BOS2\"}",
+   "lead_min": 490,
+   "league": "NHL",
+   "line": 1.5,
+   "market": "spread",
+   "new_money": 52202,
+   "price": 0.65,
+   "price_american": -186,
+   "price_rule": "fails_cap",
+   "price_when_first_seen": 0.65,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 1.5,
+     "price": -200
+    },
+    "betonlineag": {
+     "point": 1.5,
+     "price": -195
+    },
+    "betopenly": {
+     "point": 1.5,
+     "price": -188
+    },
+    "betrivers": {
+     "point": 1.5,
+     "price": -220
+    },
+    "betus": {
+     "point": 1.5,
+     "price": -195
+    },
+    "bovada": {
+     "point": 1.5,
+     "price": -205
+    },
+    "draftkings": {
+     "point": 1.5,
+     "price": -198
+    },
+    "fanatics": {
+     "point": 1.5,
+     "price": -205
+    },
+    "fanduel": {
+     "point": 1.5,
+     "price": -205
+    },
+    "kalshi": {
+     "point": 1.5,
+     "price": -186
+    },
+    "lowvig": {
+     "point": 1.5,
+     "price": -195
+    },
+    "mybookieag": {
+     "point": 1.5,
+     "price": -206
+    },
+    "novig": {
+     "point": 1.5,
+     "price": -190
+    },
+    "polymarket": {
+     "point": 1.5,
+     "price": -186
+    },
+    "prophetx": {
+     "point": 1.5,
+     "price": -190
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNHLSPREAD-26OCT22NSHBOS-BOS2"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "polymarket"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Nashville",
+   "side_label": "NOT Boston wins by over 1.5 goals",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-22T23:00:00Z",
+   "teams": [
+    "Nashville",
+    "Boston"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-22T14:50:11Z",
+   "base_depth": 261031,
+   "best_price": 0.57,
+   "best_price_american": -133,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.58,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 9,
+   "date": "2026-10-22",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -43852,
+     "new_this_side": 57460,
+     "other_side": 228064,
+     "other_side_all_levels": 264736,
+     "ratio": 1.1,
+     "this_side": 253663,
+     "this_side_all_levels": 338595
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "BOS (0)",
+     "price": 0.57,
+     "this_side": 25594
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Bruins",
+     "price": 0.58,
+     "this_side": 88939
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "Boston Bruins",
+     "price": 0.5763,
+     "this_side": 4951
+    }
+   },
+   "first_seen_utc": "2026-10-22T14:41:06Z",
+   "game": "Nashville vs Boston",
+   "key": "kalshi|KXNHLGAME-26OCT22NSHBOS|ml|1",
+   "lead_min": 490,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 57460,
+   "price": 0.58,
+   "price_american": -138,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.58,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -145
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -140
+    },
+    "betopenly": {
+     "point": null,
+     "price": -136
+    },
+    "betrivers": {
+     "point": null,
+     "price": -148
+    },
+    "betus": {
+     "point": null,
+     "price": -140
+    },
+    "bovada": {
+     "point": null,
+     "price": -145
+    },
+    "draftkings": {
+     "point": null,
+     "price": -148
+    },
+    "fanatics": {
+     "point": null,
+     "price": -145
+    },
+    "fanduel": {
+     "point": null,
+     "price": -146
+    },
+    "kalshi": {
+     "point": null,
+     "price": -138
+    },
+    "lowvig": {
+     "point": null,
+     "price": -140
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -146
+    },
+    "novig": {
+     "point": null,
+     "price": -130
+    },
+    "polymarket": {
+     "point": null,
+     "price": -138
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -144
+    },
+    "prophetx": {
+     "point": null,
+     "price": -136
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -150
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNHLGAME-26OCT22NSHBOS-BOS"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "polymarket"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Boston",
+   "side_label": "Boston",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-22T23:00:00Z",
+   "teams": [
+    "Nashville",
+    "Boston"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-22T14:20:54Z",
    "base_depth": 1487516,
    "best_price": 0.8589,
