@@ -123,12 +123,13 @@
     "outcome_index": 1,
     "pm_market_id": "5722993"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "kalshi"
    ],
    "second_book_fresh": true,
+   "settled_utc": "2026-10-22T05:18:04Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Trail Blazers",
@@ -136,7 +137,7 @@
    "start_utc": "2026-10-22T02:00:00Z",
    "still_actionable": true,
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.72
   },
   {
    "alerted_utc": "2026-10-22T00:09:15Z",
@@ -724,7 +725,8 @@
    "price_rule": "fails_cap",
    "price_when_first_seen": 0.64,
    "prices_by_book": {},
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-22T05:18:04Z",
    "ref": {
     "market_id": "01a15f1c-28aa-73a2-8a39-52c98a9cebf1",
     "outcome_id": "01a15f1c-28aa-73a2-8a39-52e8aa8801ef"
@@ -1648,8 +1650,8 @@
     "novig",
     "polymarket"
    ],
-   "close_price": 0.5,
-   "clv_cents": -1.0,
+   "close_price": 0.495,
+   "clv_cents": -1.5,
    "confirmed_after_min": 28,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -1762,8 +1764,8 @@
     "novig",
     "polymarket"
    ],
-   "close_price": 0.59,
-   "clv_cents": 0.5,
+   "close_price": 0.595,
+   "clv_cents": 1.0,
    "confirmed_after_min": 28,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -2510,10 +2512,11 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBAGAME-26OCT21GSWLAL-LAL"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": "no_match",
    "second_book_fresh": false,
+   "settled_utc": "2026-10-22T05:18:04Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Los Angeles L",
@@ -2521,7 +2524,7 @@
    "start_utc": "2026-10-22T05:00:00Z",
    "still_actionable": true,
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.49
   }
  ],
  "note": "Liquidity paper alerts (Kalshi + Novig + Polymarket public books), newest first. Trigger: >= $25000 (and >= 10% of the side's prior size, capped at $100k) of NEW bids on one side since the last check, measured on total side depth (all price levels; near-price depth within 3c is shown and used for the second-book test), >= 3x any new money on the other side, leaving that side heavier; main lines only (ML 15-85c, spread/total 30-70c), pregame; Kalshi moneylines combined per game. Spoof filter: logged only if >= 75% of the new money is still there on the next check (confirmed_after_min). pulled = the new money later disappeared before the game. rule_met = another book has >= $10000 on the same side and it is the heavier side there. sharp_agree/sharp_oppose = sharp-monitor (Pinnacle move) alerts on the same game & market. price = cost to buy the side when logged (0-1); close_price = last pregame price; clv_cents = close_price - price (positive = the market moved toward this side). result W/L/P/VOID from the exchange's settlement; units_flat = 1u at best_price (cheapest across books at alert). Log-only fields: bid_improved (best bid on the alert side rose between readings), best_price/best_price_book, prices_by_book (Odds API sportsbooks), second_book_fresh (second book added >= $10k on the side in the last two checks), lead_min, price_rule (fails_cap = worse than -130 on spread/total; ml_edge_ok/fail = 2% edge vs cross-book fair mid), price_after_15m/still_actionable."
