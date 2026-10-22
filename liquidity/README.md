@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Oct 22, 6:53 AM ET. This run: 0 new, 20 not confirmed, 3 pending. Open alerts: 19.
+Updated Thu Oct 22, 7:27 AM ET. This run: 0 new, 3 not confirmed, 14 pending. Open alerts: 19.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,7 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Oct 21 8:09PM | NBA | Suns vs. Trail Blazers | moneyline: Trail Blazers | polymarket | $396k | -138 | ✅ kalshi |  | +2.0c |  | W |
 | Oct 21 8:09PM | NBA | Kings vs. Clippers | moneyline: Kings | polymarket | $289k | +170 |  |  | +0.0c |  | L |
-| Oct 21 8:09PM | NHL | San Jose Sharks @ Ottawa Senators | total: Under 6.5 (6.5) | novig | $27k | -115 |  |  | -0.5c |  | pending |
+| Oct 21 8:09PM | NHL | San Jose Sharks @ Ottawa Senators | total: Under 6.5 (6.5) | novig | $27k | -115 |  |  | -1.0c |  | pending |
 | Oct 21 8:09PM | NHL | Florida Panthers @ Pittsburgh Penguins | total: Over 6.5 (6.5) | novig | $49k | -127 | ✅ kalshi |  | +0.0c |  | pending |
 | Oct 21 8:09PM | NHL | Winnipeg Jets @ Dallas Stars | total: Over 5.5 (5.5) | novig | $82k | -113 | ✅ kalshi |  | -1.5c | yes | pending |
 | Oct 21 8:09PM | NHL | Vegas Golden Knights @ St. Louis Blues | spread: STL +1.5 (1.5) | novig | $138k | -228 |  |  | -1.0c | yes | pending |
