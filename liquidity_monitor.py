@@ -162,6 +162,32 @@ for _blk in re.split(r"(?:NBA|NFL|NHL):", TEAMS)[1:]:
             ALIAS.setdefault(_w[0], set()).add(_w[1])
 
 
+# Exchange abbreviations (Novig labels sides 'OKC -8.5', 'DEN', 'MEM +11.5') -> city/nickname words.
+ABBR = """atl atlanta|bos boston|bkn brooklyn|cha charlotte|chi chicago|cle cleveland|dal dallas|den denver|det detroit|
+gsw golden|hou houston|ind indiana|lac clippers chargers|lal lakers|mem memphis|mia miami|mil milwaukee|min minnesota|
+nop orleans|nyk knicks york|okc oklahoma|orl orlando|phi philadelphia|phx phoenix|por portland|sac sacramento|
+sas antonio|tor toronto|uta utah|was washington|wsh washington|ana anaheim|buf buffalo|cgy calgary|car carolina|
+col colorado|cbj columbus|edm edmonton|fla florida|lak kings|mtl montreal|nsh nashville|njd jersey|nyi islanders|
+nyr rangers|ott ottawa|pit pittsburgh|sjs jose|sea seattle|stl louis|tbl tampa|van vancouver|vgk vegas|wpg winnipeg|
+ari arizona|bal baltimore|cin cincinnati|gb green|jax jacksonville|kc kansas|lv vegas|lar rams|ne england|no orleans|
+nyg giants|nyj jets|sf francisco|tb tampa|ten tennessee"""
+for _pair in ABBR.split("|"):
+    _w = _pair.split()
+    if len(_w) >= 2:
+        ALIAS.setdefault(_w[0], set()).update(_w[1:])
+
+
+def abbr_match(abbr, team):
+    """College/other abbreviations not in the table: 'ECU' = East Carolina (U), 'MEM' = Memphis, 'UNLV' etc."""
+    abbr = abbr.lower()
+    words = [w for w in re.findall(r"[a-z0-9]+", (team or "").lower()) if w not in ("of", "the", "at")]
+    if not words or not (2 <= len(abbr) <= 5):
+        return False
+    initials = "".join(w[0] for w in words)
+    return abbr in (initials, initials + "u", "u" + initials, initials + "s", initials + "su") \
+        or (len(abbr) >= 3 and words[0].startswith(abbr))
+
+
 def toks(s):
     base = {w for w in re.findall(r"[a-z0-9]+", (s or "").lower()) if w not in STOP and not re.fullmatch(r"\d+(\.\d+)?", w)}
     for w in list(base):
@@ -183,7 +209,11 @@ def team_side(text, teams):
     t = toks(text)
     hits = [len(t & toks(x)) for x in teams]
     if hits[0] == hits[1]:
-        return None
+        # no name overlap: try the side's abbreviation ('ECU +6.5', 'MEM') against each team's name
+        ab = [w for w in re.findall(r"[A-Za-z]{2,5}", text or "") if w.isupper()]
+        hits = [sum(1 for a in ab if abbr_match(a, x)) for x in teams]
+        if hits[0] == hits[1]:
+            return None
     return 0 if hits[0] > hits[1] else 1
 
 
