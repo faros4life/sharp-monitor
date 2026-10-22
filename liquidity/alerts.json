@@ -1,6 +1,224 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-22T15:30:14Z",
+   "base_depth": 5714671,
+   "best_price": 0.595,
+   "best_price_american": -147,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.6,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-22",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -905,
+     "new_this_side": 246641,
+     "other_side": 4077374,
+     "other_side_all_levels": 4396718,
+     "ratio": 1.4,
+     "this_side": 5536409,
+     "this_side_all_levels": 5942873
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "CHI (0)",
+     "price": 0.595,
+     "this_side": 444834
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Chicago Bears",
+     "price": 0.5968,
+     "this_side": 254032
+    }
+   },
+   "first_seen_utc": "2026-10-22T15:20:12Z",
+   "game": "New England vs Chicago",
+   "key": "kalshi|KXNFLGAME-26OCT22NECHI|ml|1",
+   "lead_min": 525,
+   "league": "NFL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 246641,
+   "price": 0.6,
+   "price_american": -150,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.6,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -155
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -162
+    },
+    "betopenly": {
+     "point": null,
+     "price": -142
+    },
+    "betrivers": {
+     "point": null,
+     "price": -159
+    },
+    "betus": {
+     "point": null,
+     "price": -160
+    },
+    "bovada": {
+     "point": null,
+     "price": -165
+    },
+    "draftkings": {
+     "point": null,
+     "price": -155
+    },
+    "fanatics": {
+     "point": null,
+     "price": -165
+    },
+    "fanduel": {
+     "point": null,
+     "price": -158
+    },
+    "kalshi": {
+     "point": null,
+     "price": -150
+    },
+    "limitless": {
+     "point": null,
+     "price": -156
+    },
+    "lowvig": {
+     "point": null,
+     "price": -162
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -157
+    },
+    "novig": {
+     "point": null,
+     "price": -147
+    },
+    "polymarket": {
+     "point": null,
+     "price": -150
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -147
+    },
+    "prophetx": {
+     "point": null,
+     "price": -148
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -162
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNFLGAME-26OCT22NECHI-CHI"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "prophetx"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Chicago",
+   "side_label": "Chicago",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-23T00:15:00Z",
+   "teams": [
+    "New England",
+    "Chicago"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-22T15:30:14Z",
+   "base_depth": 1996183,
+   "best_price": 0.7728,
+   "best_price_american": -340,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.76,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-23",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -1671,
+     "new_this_side": 153679,
+     "other_side": 259017,
+     "other_side_all_levels": 330427,
+     "ratio": 7.0,
+     "this_side": 1822743,
+     "this_side_all_levels": 2160212
+    }
+   },
+   "first_seen_utc": "2026-10-22T15:20:12Z",
+   "game": "West Virginia vs TCU",
+   "key": "kalshi|KXNCAAFGAME-26OCT23WVUTCU|ml|1",
+   "lead_min": 2130,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 153679,
+   "price": 0.76,
+   "price_american": -317,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.76,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26OCT23WVUTCU-TCU"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "no_match",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "TCU",
+   "side_label": "TCU",
+   "start_source": "kalshi",
+   "start_utc": "2026-10-24T03:00:00Z",
+   "teams": [
+    "West Virginia",
+    "TCU"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-22T15:20:12Z",
    "base_depth": 190697,
    "best_price": 0.5739,
@@ -130,7 +348,8 @@
      "price": -150
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-22T15:30:14Z",
    "ref": {
     "outcome_index": 1,
     "pm_market_id": "5765055"
@@ -364,6 +583,8 @@
    "market": "total",
    "new_money": 25874,
    "price": 0.53,
+   "price_after_15m": 0.525,
+   "price_after_15m_book": "novig",
    "price_american": -113,
    "price_rule": "ok",
    "price_when_first_seen": 0.53,
@@ -452,6 +673,7 @@
    "side_label": "Over (6.5)",
    "start_source": "polymarket",
    "start_utc": "2026-10-22T23:00:00Z",
+   "still_actionable": false,
    "teams": [
     "Ducks",
     "Devils"
@@ -516,6 +738,8 @@
    "market": "total",
    "new_money": 42709,
    "price": 0.53,
+   "price_after_15m": 0.525,
+   "price_after_15m_book": "novig",
    "price_american": -113,
    "price_rule": "ok",
    "price_when_first_seen": 0.53,
@@ -604,6 +828,7 @@
    "side_label": "Over 6.5 goals scored",
    "start_source": "polymarket",
    "start_utc": "2026-10-22T23:00:00Z",
+   "still_actionable": false,
    "teams": [
     "Anaheim",
     "New Jersey"
@@ -662,6 +887,8 @@
    "market": "moneyline",
    "new_money": 118152,
    "price": 0.51,
+   "price_after_15m": 0.51,
+   "price_after_15m_book": "novig",
    "price_american": -104,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.51,
@@ -752,6 +979,7 @@
    "side_label": "Los Angeles",
    "start_source": "prophetx",
    "start_utc": "2026-10-22T23:30:00Z",
+   "still_actionable": true,
    "teams": [
     "Los Angeles",
     "New York I"
@@ -804,6 +1032,8 @@
    "market": "moneyline",
    "new_money": 38496,
    "price": 0.73,
+   "price_after_15m": 0.725,
+   "price_after_15m_book": "novig",
    "price_american": -270,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.73,
@@ -868,6 +1098,7 @@
    "side_label": "Portland",
    "start_source": "novig",
    "start_utc": "2026-10-24T02:05:00Z",
+   "still_actionable": true,
    "teams": [
     "Portland",
     "Sacramento"
