@@ -1,0 +1,39 @@
+name: book-check
+
+on:
+  schedule:
+    - cron: "3-59/10 * * * *"   # every 10 min, offset from the other monitors
+  workflow_dispatch:
+
+concurrency:
+  group: book-check
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Check exchange books for phone alerts
+        run: python -u book_check.py
+      - name: Commit book check
+        if: always()
+        run: |
+          if [ -n "$(git status --porcelain books)" ]; then
+            git config user.name "book-check"
+            git config user.email "book-check@users.noreply.github.com"
+            git pull --rebase --autostash -q
+            git add books
+            git commit -m "Update book check"
+            for i in 1 2 3; do
+              git pull --rebase -q && git push && break
+              sleep 5
+            done
+          fi
