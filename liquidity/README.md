@@ -1,11 +1,14 @@
 # Liquidity alerts (paper)
 
-Updated Thu Oct 22, 11:50 AM ET. This run: 3 new, 0 not confirmed, 4 pending. Open alerts: 22.
+Updated Thu Oct 22, 12:00 PM ET. This run: 3 new, 1 not confirmed, 2 pending. Open alerts: 25.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Oct 22 12:00PM | NBA | Cleveland Cavaliers @ Philadelphia 76ers | moneyline: PHI (0) | novig | $26k | -133 | ✅ polymarket,prophetx | ❌ | +0.0c |  | pending |
+| Oct 22 12:00PM | NHL | Florida vs Pittsburgh: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $69k | +113 |  |  | +0.0c |  | pending |
+| Oct 22 12:00PM | NCAAF | Duke vs Virginia | moneyline: Virginia | kalshi | $74k | -122 |  |  | +0.0c |  | pending |
 | Oct 22 11:50AM | NCAAF | James Madison vs Appalachian St.: Spread | spread: James Madison wins by over 11.5 points | kalshi | $156k | -100 |  | ✅ | +0.0c |  | pending |
 | Oct 22 11:50AM | NCAAF | Vanderbilt vs Kentucky | moneyline: Kentucky | kalshi | $122k | -400 |  |  | +0.0c |  | pending |
 | Oct 22 11:50AM | NCAAF | Army vs Tulsa | moneyline: Tulsa | kalshi | $292k | -113 |  |  | +0.0c |  | pending |
@@ -22,7 +25,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 22 11:10AM | NBA | Portland vs Sacramento | moneyline: Portland | kalshi | $38k | -270 |  |  | +0.0c |  | pending |
 | Oct 22 11:01AM | NHL | Anaheim vs New Jersey | moneyline: New Jersey | kalshi | $58k | -203 | ✅ novig,polymarket,prophetx |  | +0.0c |  | pending |
 | Oct 22 11:01AM | NCAAF | Liberty vs Kennesaw St. | moneyline: Liberty | kalshi | $139k | -355 | ✅ novig,prophetx |  | +0.0c |  | pending |
-| Oct 22 11:01AM | NCAAF | James Madison vs Appalachian St. | moneyline: James Madison | kalshi | $2,008k | -376 | ✅ novig,prophetx | ✅ | +0.0c |  | pending |
+| Oct 22 11:01AM | NCAAF | James Madison vs Appalachian St. | moneyline: James Madison | kalshi | $2,008k | -376 | ✅ novig,prophetx | ✅ | +1.0c |  | pending |
 | Oct 22 10:50AM | NHL | Kings vs. Islanders | moneyline: Islanders | polymarket | $53k | -100 | ✅ novig |  | +0.0c |  | pending |
 | Oct 22 10:50AM | NHL | Predators vs. Bruins | moneyline: Bruins | polymarket | $45k | -138 | ✅ kalshi,novig |  | +0.0c |  | pending |
 | Oct 22 10:50AM | NHL | Nashville vs Boston: Spread | spread: NOT Boston wins by over 1.5 goals | kalshi | $52k | -186 | ✅ novig,polymarket |  | +0.0c |  | pending |
