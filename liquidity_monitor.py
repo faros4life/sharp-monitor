@@ -86,7 +86,7 @@ RATIO = float(os.environ.get("LIQ_RATIO", "") or "3")       # new money on the a
 BAND_ML = (0.15, 0.85)    # moneyline sides priced 15-85c
 BAND_LINE = (0.30, 0.70)  # spread/total sides priced 30-70c (main lines, not alternates)
 FRESH_MIN = float(os.environ.get("LIQ_FRESH_MIN", "") or "60")   # compare against a reading at most this many minutes old
-STATE_VERSION = 4   # v4: new money measured on total side depth (all levels)
+STATE_VERSION = 5   # v5: Novig sizes fixed (1 contract = 1c, not $1); record restarts clean
 NTFY_TOPIC = os.environ.get("LIQ_NTFY_TOPIC", "")                       # optional push; empty = file only
 ODDS_KEY = os.environ.get("ODDS_API_KEY", "")                             # optional: sportsbook prices at alert time
 ODDS_SPORT = {"NFL": "americanfootball_nfl", "NCAAF": "americanfootball_ncaaf", "NBA": "basketball_nba", "NHL": "icehockey_nhl"}
@@ -496,7 +496,8 @@ def novig_rows(days, n):
             continue  # main markets are two-way
         teams = split_teams(e.get("description") or mk.get("description") or "")
         d = datetime.fromtimestamp(e["startsTs"] / 1000, ET).date().isoformat()
-        lv = {o["outcomeId"]: [(float(r["price"]), int(r["qty"])) for r in orders.get(o["outcomeId"], [])] for o in outs}
+        # Novig: 1 contract pays 1c, so qty/100 = contracts in $1 units (dollars = price x qty / 100)
+        lv = {o["outcomeId"]: [(float(r["price"]), int(r["qty"]) / 100.0) for r in orders.get(o["outcomeId"], [])] for o in outs}
         dep = {k: near_depth(v) for k, v in lv.items()}
         tot = {k: sum(p * q for p, q in v) for k, v in lv.items()}
         for i, o in enumerate(outs):
@@ -835,16 +836,59 @@ def side_key(r):
 
 
 # ---------------------------------------------------------------- settlement, notify
+_SM = {}
+
+
+def espn_result(a, n):
+    """Grade from ESPN final scores (the sharp-monitor's own scoring) when the exchange won't give a result."""
+    if "mod" not in _SM:
+        try:
+            import sharp_monitor as sm
+            _SM["mod"] = sm
+        except Exception as ex:
+            print(f"ESPN grading unavailable: {ex}")
+            _SM["mod"] = None
+    sm = _SM["mod"]
+    teams = a.get("teams")
+    if not sm or not teams or not a.get("start_utc"):
+        return None
+    if datetime.fromisoformat(a["start_utc"].replace("Z", "+00:00")) > n - timedelta(hours=3):
+        return None   # not over yet
+    kind = {"moneyline": "ml", "spread": "spr", "total": "tot"}.get(a["market"])
+    side = a.get("side")
+    if kind == "tot":
+        side = "Over" if side == "OVER" else ("Under" if side == "UNDER" else None)
+    if kind is None or side is None or (kind != "ml" and a.get("line") is None):
+        return None
+    for g_order in ((teams[0], teams[1]), (teams[1], teams[0])):   # some books list home first
+        e = {"game": f"{g_order[0]} @ {g_order[1]}", "sport": a["league"], "start": a["start_utc"], "kind": kind,
+             "side": side, "pt": a.get("line") if kind != "ml" else None}
+        try:
+            g = sm.find_game(e)
+            res = sm.settle(e, g) if g else None
+        except Exception as ex:
+            print(f"ESPN grading failed {a.get('game')}: {ex}")
+            return None
+        if res:
+            return res[0]
+    return None
+
+
 def settle(alerts, n):
     today = n.astimezone(ET).date().isoformat()
     for a in alerts:
         if a.get("result") is not None or (a.get("date") or "9999") > today:
             continue
         try:
-            r = {"kalshi": kalshi_result, "novig": novig_result, "polymarket": pm_result}[a["book"]](a["ref"])
+            r = {"kalshi": kalshi_result, "novig": novig_result, "polymarket": pm_result}.get(a["book"], lambda _r: None)(a["ref"])
         except Exception as ex:
-            print(f"settle lookup failed {a['ref']}: {ex}")
-            continue
+            r = None
+            if "404" not in str(ex):
+                print(f"settle lookup failed {a['ref']}: {ex}")
+        if r is None:
+            r = espn_result(a, n)
+            if r:
+                a["graded_by"] = "espn"
         if r:
             a["result"] = r
             p = a.get("best_price") or a.get("price")   # graded at the best price available across books at alert time
@@ -1269,7 +1313,8 @@ def run():
             "alerted_utc": n.strftime("%Y-%m-%dT%H:%M:%SZ"), "first_seen_utc": pd["first_utc"], "confirmed_after_min": round(age),
             "key": key, "book": r["book"], "league": r["league"], "date": r["date"], "game": r["game"],
             "start_utc": datetime.fromtimestamp(r["start"], timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ") if r.get("start") else None,
-            "market": r["market"], "side": side_key(r), "side_label": r["side_label"],
+            "market": r["market"], "side": side_key(r), "side_label": r["side_label"], "line": r.get("line"),
+            "teams": r.get("teams"),
             "price": r["price"], "price_american": american(r["price"]), "price_when_first_seen": pd["price"],
             "base_depth": pd["base"], "new_money": pd["new"],
             "depth_by_book": dict({r["book"]: {"this_side": round(r["depth"]), "other_side": round(r["other_depth"]),
