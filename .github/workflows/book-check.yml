@@ -29,14 +29,18 @@ jobs:
       - name: Commit book check
         if: always()
         run: |
+          # Save our file over whatever is upstream (only this workflow writes books/), never a merge.
           if [ -n "$(git status --porcelain books)" ]; then
             git config user.name "book-check"
             git config user.email "book-check@users.noreply.github.com"
-            git pull --rebase --autostash -q
-            git add books
-            git commit -m "Update book check"
-            for i in 1 2 3; do
-              git pull --rebase -q && git push && break
+            rm -rf "$RUNNER_TEMP/out" && mkdir -p "$RUNNER_TEMP/out" && cp -r books "$RUNNER_TEMP/out/"
+            for i in 1 2 3 4 5; do
+              git fetch -q origin main && git reset -q --hard origin/main
+              rm -rf books && cp -r "$RUNNER_TEMP/out/books" .
+              git add -A books
+              git diff --cached --quiet && break
+              git commit -q -m "Update book check"
+              git push -q origin HEAD:main && break
               sleep 5
             done
           fi
