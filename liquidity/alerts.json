@@ -1,6 +1,152 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-22T16:55:20Z",
+   "base_depth": 179946,
+   "best_price": 0.49,
+   "best_price_american": 104,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.49,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-10-22",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -1318,
+     "new_this_side": 42889,
+     "other_side": 74464,
+     "other_side_all_levels": 128020,
+     "ratio": 2.2,
+     "this_side": 165808,
+     "this_side_all_levels": 221271
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "CLE +2.5 (-2.5)",
+     "price": 0.49,
+     "this_side": 24575
+    },
+    "polymarket": {
+     "heavier_side": false,
+     "label": "Cavaliers (+2.5)",
+     "price": 0.49,
+     "this_side": 91127
+    }
+   },
+   "first_seen_utc": "2026-10-22T16:50:10Z",
+   "game": "Cleveland vs Philadelphia: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBASPREAD-26OCT22CLEPHI-PHI3\"}",
+   "lead_min": 365,
+   "league": "NBA",
+   "line": 2.5,
+   "market": "spread",
+   "new_money": 42889,
+   "price": 0.49,
+   "price_american": 104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.49,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 2.5,
+     "price": -102
+    },
+    "betonlineag": {
+     "point": 2.5,
+     "price": -105
+    },
+    "betopenly": {
+     "point": 3.0,
+     "price": 100
+    },
+    "betrivers": {
+     "point": 3.5,
+     "price": -114
+    },
+    "betus": {
+     "point": 3.0,
+     "price": -115
+    },
+    "bovada": {
+     "point": 2.5,
+     "price": -105
+    },
+    "draftkings": {
+     "point": 2.5,
+     "price": -110
+    },
+    "fanatics": {
+     "point": 3.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 2.5,
+     "price": -106
+    },
+    "kalshi": {
+     "point": 2.5,
+     "price": 104
+    },
+    "lowvig": {
+     "point": 2.5,
+     "price": -101
+    },
+    "mybookieag": {
+     "point": 3.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 2.5,
+     "price": 104
+    },
+    "polymarket": {
+     "point": 2.5,
+     "price": 104
+    },
+    "prophetx": {
+     "point": 1.0,
+     "price": 125
+    },
+    "williamhill_us": {
+     "point": 3.0,
+     "price": -105
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNBASPREAD-26OCT22CLEPHI-PHI3"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [
+    "Cleveland Cavaliers +3.5 (-115)"
+   ],
+   "sharp_oppose": [],
+   "side": "Cleveland",
+   "side_label": "NOT Philadelphia wins by over 2.5 points",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-22T23:00:00Z",
+   "teams": [
+    "Cleveland",
+    "Philadelphia"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-22T16:50:10Z",
    "base_depth": 118775,
    "best_price": 0.5026,
@@ -1340,8 +1486,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": 1.0,
+   "close_price": 0.52,
+   "clv_cents": 2.0,
    "confirmed_after_min": 10,
    "date": "2026-10-22",
    "depth_by_book": {
