@@ -253,6 +253,17 @@ TAKER_COEF = {"kalshi": float(os.environ.get("KALSHI_FEE", "") or "0.07"),
               "polymarket": float(os.environ.get("PM_FEE", "") or "0.03")}   # per contract = coef x P x (1-P)
 
 
+def pm_fee_coef(mk):
+    """Polymarket fee for this market from gamma: zero-fee markets (feesEnabled false, feeType zero_fees, or rate 0) pay
+    nothing; otherwise the default taker coefficient."""
+    fs = mk.get("feeSchedule") or {}
+    if mk.get("feesEnabled") is False or str(mk.get("feeType") or "").lower() == "zero_fees":
+        return 0.0
+    if fs.get("rate") is not None and lm.num(fs.get("rate")) == 0:
+        return 0.0
+    return TAKER_COEF["polymarket"]
+
+
 def ladder_result(levels, price, line, book_line, extra=None, fee_coef=0.0):
     """levels: [(cost 0-1, dollars)] you can BUY at. Prices compared AFTER the taker fee (coef x P x (1-P) per contract).
     Returns the common result block."""
@@ -406,7 +417,7 @@ def pm_check(al, mtype, side, line, price, teams):
         except Exception as ex:
             return {"status": f"error: {str(ex)[:80]}"}
         levels = [(float(a["price"]), float(a["price"]) * float(a["size"])) for a in (book.get("asks") or [])]
-        return ladder_result(levels, price, line, pline, {"market_id": str(mk.get("id"))}, TAKER_COEF["polymarket"])
+        return ladder_result(levels, price, line, pline, {"market_id": str(mk.get("id")), "fee_type": mk.get("feeType")}, pm_fee_coef(mk))
     return {"status": "game_not_on_polymarket"}
 
 
@@ -681,8 +692,8 @@ def run():
                             "2%% fee on winnings, displayed price kept as best_price_american_displayed): "
                             "best_price_american, dollars_at_best and dollars_at_alert_price_or_better = amount you could bet "
                             "at the alert price or better, buy_levels = the ladder. kalshi_latest/_first and polymarket_latest/_first: "
-                            "same fields (public books, no key), prices AFTER taker fees (Kalshi 0.07, Polymarket global 0.03 x P x (1-P) per "
-                            "contract; displayed price kept as best_price_american_displayed). Novig pregame: no fee. hardrock_latest/_first: Hard Rock sportsbook price and line via The Odds API "
+                            "same fields (public books, no key), prices AFTER taker fees (Kalshi 0.07, Polymarket global 0.03 x P x (1-P) per contract unless gamma marks the market zero-fee; "
+                            "displayed price kept as best_price_american_displayed). Novig pregame: no fee. hardrock_latest/_first: Hard Rock sportsbook price and line via The Odds API "
                             "(no order book; refreshed every 30 min). best_now = best gettable price across the books, plus total "
                             "dollars at the alert price or better on books with the exact line. Novig fields: best_price = cheapest cost to BUY the alert side now (0-1, with American); "
                             "dollars_at_alert_price_or_better = dollars you could buy at the alert's price or better on the "
