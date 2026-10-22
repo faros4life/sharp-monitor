@@ -34,14 +34,19 @@ jobs:
       - name: Commit state and alerts
         if: always()
         run: |
+          # Save our files over whatever is upstream (only this workflow writes liquidity/), never a merge:
+          # a merge here once wrote conflict markers into state.json.
           if [ -n "$(git status --porcelain liquidity)" ]; then
             git config user.name "liquidity-monitor"
             git config user.email "liquidity-monitor@users.noreply.github.com"
-            git pull --rebase --autostash -q   # pick up the sharp-monitor's commits first
-            git add liquidity
-            git commit -m "Update liquidity alerts"
-            for i in 1 2 3; do
-              git pull --rebase -q && git push && break
+            rm -rf "$RUNNER_TEMP/out" && mkdir -p "$RUNNER_TEMP/out" && cp -r liquidity "$RUNNER_TEMP/out/"
+            for i in 1 2 3 4 5; do
+              git fetch -q origin main && git reset -q --hard origin/main
+              rm -rf liquidity && cp -r "$RUNNER_TEMP/out/liquidity" .
+              git add -A liquidity
+              git diff --cached --quiet && break
+              git commit -q -m "Update liquidity alerts"
+              git push -q origin HEAD:main && break
               sleep 5
             done
           fi
