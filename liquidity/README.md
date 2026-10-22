@@ -1,11 +1,13 @@
 # Liquidity alerts (paper)
 
-Updated Thu Oct 22, 1:01 PM ET. This run: 1 new, 0 not confirmed, 2 pending. Open alerts: 32.
+Updated Thu Oct 22, 1:10 PM ET. This run: 2 new, 0 not confirmed, 7 pending. Open alerts: 34.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Oct 22 1:10PM | NCAAF | East Carolina vs Memphis: Spread | spread: Memphis wins by over 10.5 points | kalshi | $113k | +104 | ✅ novig,prophetx |  | +0.0c |  | pending |
+| Oct 22 1:10PM | NBA | Cleveland vs Philadelphia: Total Points | total: NOT Over 237.5 points | kalshi | $34k | -108 | ✅ novig | ❌ | +0.0c |  | pending |
 | Oct 22 1:01PM | NBA | Cleveland vs Philadelphia: Spread | spread: NOT Philadelphia wins by over 2.5 points | kalshi | $43k | +104 | ✅ novig | ✅ | +0.0c |  | pending |
 | Oct 22 12:50PM | NHL | Utah vs Seattle: Total Goals | total: Over 6.5 goals scored | kalshi | $49k | -104 | ✅ novig,polymarket |  | +0.0c |  | pending |
 | Oct 22 12:50PM | NHL | Vegas vs St. Louis: Spread | spread: NOT Vegas wins by over 1.5 goals | kalshi | $175k | -213 | ✅ novig,polymarket |  | +0.0c |  | pending |
@@ -23,7 +25,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 22 11:40AM | NCAAF | Akron vs Kent St. | moneyline: Kent St. | kalshi | $52k | -138 |  |  | +0.0c |  | pending |
 | Oct 22 11:40AM | NBA | Cleveland vs Philadelphia | moneyline: Philadelphia | kalshi | $270k | -138 | ✅ novig,polymarket,prophetx |  | -1.0c | yes | pending |
 | Oct 22 11:30AM | NFL | New England vs Chicago | moneyline: Chicago | kalshi | $247k | -150 | ✅ novig,prophetx |  | +0.0c | yes | pending |
-| Oct 22 11:30AM | NCAAF | West Virginia vs TCU | moneyline: TCU | kalshi | $154k | -317 |  |  | +0.0c |  | pending |
+| Oct 22 11:30AM | NCAAF | West Virginia vs TCU | moneyline: TCU | kalshi | $154k | -317 |  |  | +1.0c |  | pending |
 | Oct 22 11:20AM | NBA | Cavaliers vs. 76ers | moneyline: 76ers | polymarket | $337k | -133 | ✅ novig |  | +0.0c | yes | pending |
 | Oct 22 11:20AM | NFL | New England Patriots @ Chicago Bears | moneyline: CHI (0) | novig | $88k | -147 | ✅ kalshi,prophetx |  | +0.0c |  | pending |
 | Oct 22 11:10AM | NHL | Ducks vs. Devils | total: Over (6.5) | polymarket | $26k | -113 | ✅ kalshi,novig,prophetx |  | +0.0c |  | pending |
