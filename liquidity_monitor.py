@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Exchange liquidity monitor (paper alerts) - Kalshi + Novig + Polymarket.
+Exchange liquidity monitor (paper alerts) - Kalshi + Novig + Polymarket, with ProphetX as a confirming book.
 
 Reads public order books (no keys) for NFL / NCAAF / NBA / NHL games today and tomorrow (ET), main
 markets only (moneyline, spread, total), and logs a paper alert when one side of a game's market has
@@ -42,7 +42,8 @@ REL_MIN = float(os.environ.get("LIQ_REL_MIN", "") or "0.10")             # ...an
 NEED_CAP = float(os.environ.get("LIQ_NEED_CAP", "") or "100000")         # ...but never more than $100k (big books)
 SECOND_MIN = float(os.environ.get("LIQ_SECOND_MIN", "") or "10000")
 LEAGUES = [x.strip().upper() for x in (os.environ.get("LIQ_LEAGUES", "") or "NFL,NCAAF,NBA,NHL").split(",") if x.strip()]
-BOOKS = [x.strip().lower() for x in (os.environ.get("LIQ_BOOKS", "") or "kalshi,novig,polymarket").split(",") if x.strip()]
+BOOKS = [x.strip().lower() for x in (os.environ.get("LIQ_BOOKS", "") or "kalshi,novig,polymarket,prophetx").split(",") if x.strip()]
+CONFIRM_ONLY_BOOKS = {"prophetx"}   # read for second-book confirmation and best price; never starts an alert (no settlement read yet)
 MAX_CALLS = int(os.environ.get("LIQ_MAX_BOOKS", "") or "900")          # order-book calls per book per run
 SLEEP = float(os.environ.get("LIQ_SLEEP", "") or "0.06")
 BUDGET_S = float(os.environ.get("LIQ_BUDGET_SEC", "") or "150")   # max seconds reading books, per exchange, per run
@@ -231,6 +232,14 @@ LINE_TOL = float(os.environ.get("LIQ_LINE_TOL", "") or "0")   # second-book matc
 def signed_num(text):
     m = re.search(r"([+-]\d+(?:\.\d+)?)", text or "")
     return float(m.group(1)) if m else None
+
+
+def near_dollars(levels):
+    """Like near_depth, for books whose sizes are already dollars (ProphetX maker stake)."""
+    if not levels:
+        return 0.0
+    best = max(p for p, _ in levels)
+    return sum(q for p, q in levels if p >= best - NEAR - 1e-9)
 
 
 def american(p):
@@ -646,6 +655,147 @@ def pm_result(ref):
     return "W" if p >= 0.99 else ("L" if p <= 0.01 else "P")
 
 
+# ---------------------------------------------------------------- ProphetX (read-only key; confirming book)
+PX_BASE = os.environ.get("PX_BASE", "") or "https://cash.api.prophetx.co/partner"
+PX_ACCESS = os.environ.get("PROPHETX_ACCESS_KEY", "")
+PX_SECRET = os.environ.get("PROPHETX_SECRET_KEY", "")
+PX_TOURNAMENTS = {"NHL": 234, "NFL": 31, "NCAAF": 27653, "NBA": 132}
+_PXT = {"token": None}
+
+
+def px_call(path, body=None):
+    for i in range(4):
+        req = urllib.request.Request(PX_BASE + path, data=json.dumps(body).encode() if body is not None else None,
+                                     method="POST" if body is not None else "GET",
+                                     headers={"Content-Type": "application/json", "Accept": "application/json",
+                                              **({"Authorization": f"Bearer {_PXT['token']}"} if _PXT["token"] else {})})
+        try:
+            with urllib.request.urlopen(req, timeout=25) as r:
+                out = json.loads(r.read().decode())
+            time.sleep(1.1)   # ProphetX rate limit
+            return out
+        except urllib.error.HTTPError as ex:
+            if ex.code == 429 and i < 3:
+                time.sleep(int(ex.headers.get("Retry-After") or 0) or 5 * (i + 1))
+                continue
+            raise
+
+
+def px_lines(mk):
+    """[(outcome price levels, line)]: moneylines carry 'selections'; spreads/totals nest one entry per line."""
+    out = [(lv, num(mk.get("strike"))) for lv in (mk.get("selections") or []) if lv]
+    if out:
+        return out
+    for val in mk.values():
+        if isinstance(val, list) and val and isinstance(val[0], dict) and "selections" in val[0]:
+            for ln in val:
+                lnum = num(ln.get("line")) if ln.get("line") is not None else num(ln.get("strike"))
+                out += [(lv, lnum) for lv in (ln.get("selections") or []) if lv]
+    return out
+
+
+def am_prob(a):
+    a = float(a)
+    return 100 / (a + 100) if a > 0 else -a / (-a + 100)
+
+
+def px_rows(days, n):
+    """ProphetX lists, per outcome, the prices a bettor can TAKE. Those are resting orders from makers on the other
+    outcome, so money wanting side X = the ladder listed under X's opponent (maker stake = 'quantity'), at bid
+    price 1 - p(taker price). Cost to buy X = p(best price on X's own ladder)."""
+    if not (PX_ACCESS and PX_SECRET):
+        print("ProphetX: no key secrets, skipped")
+        return []
+    start_clock()
+    rows, calls = [], 0
+    try:
+        d = px_call("/auth/login", {"access_key": PX_ACCESS, "secret_key": PX_SECRET})
+        _PXT["token"] = (d.get("data") or {}).get("access_token")
+    except Exception as ex:
+        print(f"ProphetX login failed: {ex}")
+        return []
+    todo = []
+    for lg in LEAGUES:
+        tid = PX_TOURNAMENTS.get(lg)
+        if not tid:
+            continue
+        try:
+            evs = (px_call(f"/mm/get_sport_events?tournament_id={tid}").get("data") or {}).get("sport_events") or []
+        except Exception as ex:
+            print(f"ProphetX events failed ({lg}): {ex}")
+            continue
+        for e in evs:
+            try:
+                st = datetime.fromisoformat(e["scheduled"].replace("Z", "+00:00"))
+            except Exception:
+                continue
+            if st <= n or st.astimezone(ET).date() not in days or (e.get("status") or "not_started") != "not_started":
+                continue
+            todo.append((st, lg, e))
+    todo.sort(key=lambda t: t[0])
+    for st, lg, e in todo:
+        if out_of_time():
+            break
+        comps = e.get("competitors") or []
+        home = next((c.get("display_name") or c.get("name") for c in comps if c.get("side") == "home"), None)
+        away = next((c.get("display_name") or c.get("name") for c in comps if c.get("side") == "away"), None)
+        teams = (away, home) if (home and away) else split_teams(e.get("name") or "")
+        if not teams:
+            continue
+        try:
+            data = px_call(f"/v4/mm/get_markets?event_id={e['event_id']}").get("data") or {}
+            calls += 1
+        except Exception as ex:
+            print(f"ProphetX markets failed {e.get('event_id')}: {ex}")
+            continue
+        mks = data if isinstance(data, list) else (data.get("markets") or data.get(str(e["event_id"])) or [])
+        for mk in mks:
+            mtype = (mk.get("type") or "").lower()
+            if mtype not in ("moneyline", "spread", "total") or (mk.get("sub_type") or mtype).lower() != mtype \
+                    or (mk.get("status") or "active") != "active":
+                continue
+            by_line = {}
+            for levels, mline in px_lines(mk):
+                f = levels[0]
+                name = f.get("name") or ""
+                if mtype == "total":
+                    side = "OVER" if "over" in name.lower() else ("UNDER" if "under" in name.lower() else None)
+                    line = num(f.get("strike")) or mline
+                    gkey = line
+                else:
+                    side = team_side(name, teams)
+                    line = num(f.get("strike")) if mtype == "spread" else None
+                    gkey = abs(line) if line is not None else 0
+                if side is None:
+                    continue
+                by_line.setdefault(gkey, []).append((side, line, name, levels))
+            for gkey, outs in by_line.items():
+                if len(outs) != 2:
+                    continue
+                for i in (0, 1):
+                    side, line, name, levels = outs[i]
+                    opp_levels = outs[1 - i][3]
+                    bids = [(round(1 - am_prob(x["price"]), 4), float(x.get("quantity") or 0)) for x in opp_levels
+                            if x.get("price") is not None]
+                    obids = [(round(1 - am_prob(x["price"]), 4), float(x.get("quantity") or 0)) for x in levels
+                             if x.get("price") is not None]
+                    best_own = max((x["price"] for x in levels if x.get("price") is not None), default=None)
+                    cost = round(am_prob(best_own), 4) if best_own is not None else None
+                    mid = f"{e['event_id']}|{mk.get('id')}|{gkey}"
+                    rows.append(dict(book="prophetx", league=lg, date=st.astimezone(ET).date().isoformat(), teams=list(teams),
+                                     game=e.get("name"), market=mtype, side=side, line=line,
+                                     side_label=name + (f" ({line:+g})" if (line is not None and mtype == "spread") else
+                                                        (f" ({line:g})" if line is not None else "")),
+                                     depth=near_dollars(bids), other_depth=near_dollars(obids),
+                                     total_depth=sum(q for _, q in bids), other_total=sum(q for _, q in obids),
+                                     best_bid=max((p for p, _ in bids), default=None), price=cost,
+                                     start=st.timestamp(), mid=mid,
+                                     ref={"px_event": e["event_id"], "px_market": mk.get("id"), "line": gkey, "side": str(side)}))
+    print(f"ProphetX: {calls} games read in {time.time() - T0:.0f}s of {len(todo)} candidates"
+          + (" (time budget hit)" if out_of_time() else ""))
+    return rows
+
+
 # ---------------------------------------------------------------- matching across books
 def game_key(row):
     """Same game on both books: same date and both teams' names overlap."""
@@ -1030,6 +1180,8 @@ def run():
         rows += novig_rows(days, n)
     if "polymarket" in BOOKS:
         rows += pm_rows(days, n)
+    if "prophetx" in BOOKS:
+        rows += px_rows(days, n)
     rows = merge_kalshi_ml(rows)
     fill_starts(rows)
     all_by_key = {row_key(r): r for r in rows}                  # every side (for closing price / pulled checks)
@@ -1155,6 +1307,8 @@ def run():
     for key, r in by_key.items():
         if r["delta"] is None or key in state["alerted"] or key in state["pending"]:
             continue
+        if r["book"] in CONFIRM_ONLY_BOOKS:
+            continue  # confirming book only: counts as a second book and for best price, never starts an alert
         need = min(max(PRIMARY_MIN, REL_MIN * r["prev_depth"]), NEED_CAP)
         if r["delta"] < need:
             continue  # need $25k+ of NEW bids, and >= 10% of what was already there (scales with the book)
