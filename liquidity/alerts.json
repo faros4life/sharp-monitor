@@ -1,6 +1,154 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-22T19:30:12Z",
+   "base_depth": 201714,
+   "best_price": 0.52,
+   "best_price_american": -108,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 7,
+   "date": "2026-10-22",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "NOT Oklahoma City wins by over 8.5 points",
+     "price": 0.52,
+     "this_side": 339629
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "DEN +8.5 (-8.5)",
+     "price": 0.52,
+     "this_side": 46527
+    },
+    "polymarket": {
+     "new_other_side": 11073,
+     "new_this_side": 33580,
+     "other_side": 87713,
+     "other_side_all_levels": 151756,
+     "ratio": 2.1,
+     "this_side": 184945,
+     "this_side_all_levels": 234773
+    }
+   },
+   "first_seen_utc": "2026-10-22T19:23:10Z",
+   "game": "Nuggets vs. Thunder",
+   "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"5769221\"}",
+   "lead_min": 360,
+   "league": "NBA",
+   "line": 8.5,
+   "market": "spread",
+   "new_money": 33580,
+   "price": 0.52,
+   "price_american": -108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.53,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 8.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 8.0,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 8.5,
+     "price": 100
+    },
+    "betrivers": {
+     "point": 8.5,
+     "price": -117
+    },
+    "betus": {
+     "point": 8.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 8.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 8.5,
+     "price": -115
+    },
+    "fanatics": {
+     "point": 8.0,
+     "price": -105
+    },
+    "fanduel": {
+     "point": 8.5,
+     "price": -114
+    },
+    "kalshi": {
+     "point": 8.5,
+     "price": -108
+    },
+    "lowvig": {
+     "point": 8.0,
+     "price": -106
+    },
+    "mybookieag": {
+     "point": 8.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 8.5,
+     "price": -108
+    },
+    "polymarket": {
+     "point": 8.5,
+     "price": -108
+    },
+    "prophetx": {
+     "point": 9.0,
+     "price": -119
+    },
+    "williamhill_us": {
+     "point": 8.0,
+     "price": -115
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 1,
+    "pm_market_id": "5769221"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi",
+    "novig"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [],
+   "sharp_oppose": [
+    "Oklahoma City Thunder -8.5 (-120)",
+    "Oklahoma City Thunder -8.5 (-108)"
+   ],
+   "side": "Nuggets",
+   "side_label": "Nuggets (+8.5)",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-23T01:30:00Z",
+   "teams": [
+    "Nuggets",
+    "Thunder"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-22T19:10:11Z",
    "base_depth": 880250,
    "best_price": 0.4774,
@@ -39,6 +187,8 @@
    "market": "moneyline",
    "new_money": 236520,
    "price": 0.46,
+   "price_after_15m": 0.4774,
+   "price_after_15m_book": "kalshi",
    "price_american": 117,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.46,
@@ -58,6 +208,7 @@
    "side_label": "Tennessee",
    "start_source": "kalshi",
    "start_utc": "2026-10-24T03:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Tennessee",
     "South Carolina"
