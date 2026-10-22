@@ -1,7 +1,7 @@
 {
  "alerts": [
   {
-   "alerted_utc": "2026-10-22T16:10:11Z",
+   "alerted_utc": "2026-10-22T16:15:45Z",
    "base_depth": 72553,
    "best_price": 0.515,
    "best_price_american": -106,
@@ -17,35 +17,35 @@
    ],
    "close_price": 0.52,
    "clv_cents": 0.0,
-   "confirmed_after_min": 10,
+   "confirmed_after_min": 15,
    "date": "2026-10-22",
    "depth_by_book": {
     "kalshi": {
      "heavier_side": false,
      "label": "Philadelphia wins by over 2.5 points",
      "price": 0.52,
-     "this_side": 92908
+     "this_side": 92603
     },
     "novig": {
      "heavier_side": true,
      "label": "PHI -2.5 (-2.5)",
      "price": 0.515,
-     "this_side": 28254
+     "this_side": 28252
     },
     "polymarket": {
      "new_other_side": -4483,
      "new_this_side": 74064,
      "other_side": 74380,
-     "other_side_all_levels": 95905,
+     "other_side_all_levels": 97070,
      "ratio": 1.8,
-     "this_side": 130731,
-     "this_side_all_levels": 155607
+     "this_side": 130379,
+     "this_side_all_levels": 156421
     }
    },
    "first_seen_utc": "2026-10-22T16:00:17Z",
    "game": "Cavaliers vs. 76ers",
    "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"5765056\"}",
-   "lead_min": 410,
+   "lead_min": 404,
    "league": "NBA",
    "line": -2.5,
    "market": "spread",
@@ -147,7 +147,7 @@
    "units_flat": null
   },
   {
-   "alerted_utc": "2026-10-22T16:10:11Z",
+   "alerted_utc": "2026-10-22T16:15:45Z",
    "base_depth": 681645,
    "best_price": 0.44,
    "best_price_american": 127,
@@ -163,29 +163,29 @@
    ],
    "close_price": 0.44,
    "clv_cents": 0.0,
-   "confirmed_after_min": 10,
+   "confirmed_after_min": 15,
    "date": "2026-10-22",
    "depth_by_book": {
     "kalshi": {
      "new_other_side": 71824,
      "new_this_side": 226725,
-     "other_side": 671588,
-     "other_side_all_levels": 899015,
-     "ratio": 1.1,
-     "this_side": 749264,
-     "this_side_all_levels": 926284
+     "other_side": 671077,
+     "other_side_all_levels": 898499,
+     "ratio": 1.2,
+     "this_side": 786727,
+     "this_side_all_levels": 963555
     },
     "novig": {
      "heavier_side": false,
      "label": "CLE (0)",
      "price": 0.44,
-     "this_side": 58075
+     "this_side": 56688
     },
     "polymarket": {
      "heavier_side": false,
      "label": "Cavaliers",
      "price": 0.44,
-     "this_side": 165213
+     "this_side": 164735
     },
     "prophetx": {
      "heavier_side": false,
@@ -197,7 +197,7 @@
    "first_seen_utc": "2026-10-22T16:00:17Z",
    "game": "Cleveland vs Philadelphia",
    "key": "kalshi|KXNBAGAME-26OCT22CLEPHI|ml|0",
-   "lead_min": 410,
+   "lead_min": 404,
    "league": "NBA",
    "line": null,
    "market": "moneyline",
@@ -315,8 +315,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.565,
-   "clv_cents": -0.5,
+   "close_price": 0.57,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -357,6 +357,8 @@
    "market": "moneyline",
    "new_money": 26003,
    "price": 0.57,
+   "price_after_15m": 0.57,
+   "price_after_15m_book": "novig",
    "price_american": -133,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.57,
@@ -450,6 +452,7 @@
    "side_label": "PHI (0)",
    "start_source": "polymarket",
    "start_utc": "2026-10-22T23:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Cleveland Cavaliers",
     "Philadelphia 76ers"
@@ -508,6 +511,8 @@
    "market": "total",
    "new_money": 69471,
    "price": 0.47,
+   "price_after_15m": 0.47,
+   "price_after_15m_book": "novig",
    "price_american": 113,
    "price_rule": "ok",
    "price_when_first_seen": 0.47,
@@ -592,6 +597,7 @@
    "side_label": "NOT Over 6.5 goals scored",
    "start_source": "prophetx",
    "start_utc": "2026-10-22T23:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Florida",
     "Pittsburgh"
@@ -644,6 +650,8 @@
    "market": "moneyline",
    "new_money": 74462,
    "price": 0.55,
+   "price_after_15m": 0.5505,
+   "price_after_15m_book": "prophetx",
    "price_american": -122,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.55,
@@ -710,7 +718,7 @@
     }
    },
    "pulled": true,
-   "pulled_utc": "2026-10-22T16:10:11Z",
+   "pulled_utc": "2026-10-22T16:15:45Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26OCT23DUKEUVA-UVA"
@@ -725,6 +733,7 @@
    "side_label": "Virginia",
    "start_source": "prophetx",
    "start_utc": "2026-10-23T23:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Duke",
     "Virginia"
@@ -909,7 +918,7 @@
    "price_when_first_seen": 0.8,
    "prices_by_book": {},
    "pulled": true,
-   "pulled_utc": "2026-10-22T16:10:11Z",
+   "pulled_utc": "2026-10-22T16:15:45Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26OCT23VANUK-UK"
