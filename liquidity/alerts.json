@@ -1,6 +1,313 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-22T15:20:12Z",
+   "base_depth": 190697,
+   "best_price": 0.5739,
+   "best_price_american": -135,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.57,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-22",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": false,
+     "label": "Philadelphia",
+     "price": 0.58,
+     "this_side": 553815
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "PHI (0)",
+     "price": 0.575,
+     "this_side": 60406
+    },
+    "polymarket": {
+     "new_other_side": -6460,
+     "new_this_side": 337283,
+     "other_side": 115951,
+     "other_side_all_levels": 190173,
+     "ratio": 4.4,
+     "this_side": 508571,
+     "this_side_all_levels": 531304
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "Philadelphia 76ers",
+     "price": 0.569,
+     "this_side": 25453
+    }
+   },
+   "first_seen_utc": "2026-10-22T15:10:10Z",
+   "game": "Cavaliers vs. 76ers",
+   "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"5765055\"}",
+   "lead_min": 460,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 337283,
+   "price": 0.57,
+   "price_american": -133,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.57,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -145
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -137
+    },
+    "betopenly": {
+     "point": null,
+     "price": -136
+    },
+    "betrivers": {
+     "point": null,
+     "price": -157
+    },
+    "betus": {
+     "point": null,
+     "price": -140
+    },
+    "bovada": {
+     "point": null,
+     "price": -145
+    },
+    "draftkings": {
+     "point": null,
+     "price": -142
+    },
+    "fanatics": {
+     "point": null,
+     "price": -145
+    },
+    "fanduel": {
+     "point": null,
+     "price": -144
+    },
+    "kalshi": {
+     "point": null,
+     "price": -138
+    },
+    "lowvig": {
+     "point": null,
+     "price": -135
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -157
+    },
+    "novig": {
+     "point": null,
+     "price": -135
+    },
+    "polymarket": {
+     "point": null,
+     "price": -133
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -138
+    },
+    "prophetx": {
+     "point": null,
+     "price": -132
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -150
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 1,
+    "pm_market_id": "5765055"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "76ers",
+   "side_label": "76ers",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-22T23:00:00Z",
+   "teams": [
+    "Cavaliers",
+    "76ers"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-22T15:20:12Z",
+   "base_depth": 373260,
+   "best_price": 0.595,
+   "best_price_american": -147,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.595,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-22",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Chicago",
+     "price": 0.6,
+     "this_side": 5554836
+    },
+    "novig": {
+     "new_other_side": 6866,
+     "new_this_side": 88246,
+     "other_side": 377745,
+     "other_side_all_levels": 377901,
+     "ratio": 1.2,
+     "this_side": 449266,
+     "this_side_all_levels": 449433
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Chicago Bears",
+     "price": 0.6,
+     "this_side": 255860
+    }
+   },
+   "first_seen_utc": "2026-10-22T15:10:10Z",
+   "game": "New England Patriots @ Chicago Bears",
+   "key": "novig|{\"market_id\": \"01a136e2-e711-7b40-ba2e-558486cfcd10\", \"outcome_id\": \"01a136e2-e711-7b40-ba2e-55937515f4f7\"}",
+   "lead_min": 535,
+   "league": "NFL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 88246,
+   "price": 0.595,
+   "price_american": -147,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.595,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -155
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -162
+    },
+    "betopenly": {
+     "point": null,
+     "price": -142
+    },
+    "betrivers": {
+     "point": null,
+     "price": -159
+    },
+    "betus": {
+     "point": null,
+     "price": -160
+    },
+    "bovada": {
+     "point": null,
+     "price": -165
+    },
+    "draftkings": {
+     "point": null,
+     "price": -155
+    },
+    "fanatics": {
+     "point": null,
+     "price": -165
+    },
+    "fanduel": {
+     "point": null,
+     "price": -158
+    },
+    "kalshi": {
+     "point": null,
+     "price": -150
+    },
+    "limitless": {
+     "point": null,
+     "price": -156
+    },
+    "lowvig": {
+     "point": null,
+     "price": -162
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -157
+    },
+    "novig": {
+     "point": null,
+     "price": -147
+    },
+    "polymarket": {
+     "point": null,
+     "price": -150
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -147
+    },
+    "prophetx": {
+     "point": null,
+     "price": -148
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -162
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a136e2-e711-7b40-ba2e-558486cfcd10",
+    "outcome_id": "01a136e2-e711-7b40-ba2e-55937515f4f7"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi",
+    "prophetx"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Chicago Bears",
+   "side_label": "CHI (0)",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-23T00:15:00Z",
+   "teams": [
+    "New England Patriots",
+    "Chicago Bears"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-22T15:10:10Z",
    "base_depth": 85049,
    "best_price": 0.5242,
@@ -625,6 +932,8 @@
    "market": "moneyline",
    "new_money": 58377,
    "price": 0.67,
+   "price_after_15m": 0.665,
+   "price_after_15m_book": "novig",
    "price_american": -203,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.67,
@@ -717,6 +1026,7 @@
    "side_label": "New Jersey",
    "start_source": "polymarket",
    "start_utc": "2026-10-22T23:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Anaheim",
     "New Jersey"
@@ -775,6 +1085,8 @@
    "market": "moneyline",
    "new_money": 139402,
    "price": 0.78,
+   "price_after_15m": 0.775,
+   "price_after_15m_book": "novig",
    "price_american": -355,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.78,
@@ -858,6 +1170,7 @@
    "side_label": "Liberty",
    "start_source": "prophetx",
    "start_utc": "2026-10-22T23:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Liberty",
     "Kennesaw St."
@@ -916,6 +1229,8 @@
    "market": "moneyline",
    "new_money": 2007917,
    "price": 0.79,
+   "price_after_15m": 0.8,
+   "price_after_15m_book": "novig",
    "price_american": -376,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.79,
@@ -1001,6 +1316,7 @@
    "side_label": "James Madison",
    "start_source": "prophetx",
    "start_utc": "2026-10-22T23:00:00Z",
+   "still_actionable": true,
    "teams": [
     "James Madison",
     "Appalachian St."
