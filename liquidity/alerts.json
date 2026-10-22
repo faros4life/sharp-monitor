@@ -1,6 +1,574 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-22T15:10:10Z",
+   "base_depth": 85049,
+   "best_price": 0.5242,
+   "best_price_american": -110,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.53,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 9,
+   "date": "2026-10-22",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Over 6.5 goals scored",
+     "price": 0.53,
+     "this_side": 196529
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "Over 6.5 (6.5)",
+     "price": 0.525,
+     "this_side": 31499
+    },
+    "polymarket": {
+     "new_other_side": -4374,
+     "new_this_side": 25874,
+     "other_side": 41555,
+     "other_side_all_levels": 50663,
+     "ratio": 2.2,
+     "this_side": 92960,
+     "this_side_all_levels": 110923
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "over 6.5 (6.5)",
+     "price": 0.5192,
+     "this_side": 10194
+    }
+   },
+   "first_seen_utc": "2026-10-22T15:01:39Z",
+   "game": "Ducks vs. Devils",
+   "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"4950275\"}",
+   "lead_min": 470,
+   "league": "NHL",
+   "line": 6.5,
+   "market": "total",
+   "new_money": 25874,
+   "price": 0.53,
+   "price_american": -113,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.53,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 6.5,
+     "price": -115
+    },
+    "betonlineag": {
+     "point": 6.5,
+     "price": -113
+    },
+    "betopenly": {
+     "point": 6.5,
+     "price": -105
+    },
+    "betrivers": {
+     "point": 6.5,
+     "price": -114
+    },
+    "betus": {
+     "point": 6.5,
+     "price": -115
+    },
+    "bovada": {
+     "point": 6.5,
+     "price": -115
+    },
+    "draftkings": {
+     "point": 6.5,
+     "price": -115
+    },
+    "fanatics": {
+     "point": 6.5,
+     "price": -115
+    },
+    "fanduel": {
+     "point": 6.5,
+     "price": -115
+    },
+    "kalshi": {
+     "point": 6.5,
+     "price": -113
+    },
+    "lowvig": {
+     "point": 6.5,
+     "price": -113
+    },
+    "mybookieag": {
+     "point": 6.5,
+     "price": -113
+    },
+    "novig": {
+     "point": 6.5,
+     "price": -111
+    },
+    "polymarket": {
+     "point": 6.5,
+     "price": -113
+    },
+    "prophetx": {
+     "point": 6.5,
+     "price": -108
+    },
+    "williamhill_us": {
+     "point": 6.5,
+     "price": -115
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 0,
+    "pm_market_id": "4950275"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "OVER",
+   "side_label": "Over (6.5)",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-22T23:00:00Z",
+   "teams": [
+    "Ducks",
+    "Devils"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-22T15:10:10Z",
+   "base_depth": 177738,
+   "best_price": 0.5242,
+   "best_price_american": -110,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.53,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 9,
+   "date": "2026-10-22",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -12340,
+     "new_this_side": 42709,
+     "other_side": 106940,
+     "other_side_all_levels": 113041,
+     "ratio": 1.8,
+     "this_side": 196529,
+     "this_side_all_levels": 217480
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "Over 6.5 (6.5)",
+     "price": 0.525,
+     "this_side": 31499
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Over (6.5)",
+     "price": 0.53,
+     "this_side": 92960
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "over 6.5 (6.5)",
+     "price": 0.5192,
+     "this_side": 10194
+    }
+   },
+   "first_seen_utc": "2026-10-22T15:01:39Z",
+   "game": "Anaheim vs New Jersey: Total Goals",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNHLTOTAL-26OCT22ANANJ-7\"}",
+   "lead_min": 470,
+   "league": "NHL",
+   "line": 6.5,
+   "market": "total",
+   "new_money": 42709,
+   "price": 0.53,
+   "price_american": -113,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.53,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 6.5,
+     "price": -115
+    },
+    "betonlineag": {
+     "point": 6.5,
+     "price": -113
+    },
+    "betopenly": {
+     "point": 6.5,
+     "price": -105
+    },
+    "betrivers": {
+     "point": 6.5,
+     "price": -114
+    },
+    "betus": {
+     "point": 6.5,
+     "price": -115
+    },
+    "bovada": {
+     "point": 6.5,
+     "price": -115
+    },
+    "draftkings": {
+     "point": 6.5,
+     "price": -115
+    },
+    "fanatics": {
+     "point": 6.5,
+     "price": -115
+    },
+    "fanduel": {
+     "point": 6.5,
+     "price": -115
+    },
+    "kalshi": {
+     "point": 6.5,
+     "price": -113
+    },
+    "lowvig": {
+     "point": 6.5,
+     "price": -113
+    },
+    "mybookieag": {
+     "point": 6.5,
+     "price": -113
+    },
+    "novig": {
+     "point": 6.5,
+     "price": -111
+    },
+    "polymarket": {
+     "point": 6.5,
+     "price": -113
+    },
+    "prophetx": {
+     "point": 6.5,
+     "price": -108
+    },
+    "williamhill_us": {
+     "point": 6.5,
+     "price": -115
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNHLTOTAL-26OCT22ANANJ-7"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "OVER",
+   "side_label": "Over 6.5 goals scored",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-22T23:00:00Z",
+   "teams": [
+    "Anaheim",
+    "New Jersey"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-22T15:10:10Z",
+   "base_depth": 255502,
+   "best_price": 0.51,
+   "best_price_american": -104,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 9,
+   "date": "2026-10-22",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 5247,
+     "new_this_side": 118152,
+     "other_side": 212453,
+     "other_side_all_levels": 268144,
+     "ratio": 1.4,
+     "this_side": 307207,
+     "this_side_all_levels": 358106
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "LAK (0)",
+     "price": 0.51,
+     "this_side": 28562
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Los Angeles Kings",
+     "price": 0.5098,
+     "this_side": 11318
+    }
+   },
+   "first_seen_utc": "2026-10-22T15:01:39Z",
+   "game": "Los Angeles vs New York I",
+   "key": "kalshi|KXNHLGAME-26OCT22LANYI|ml|0",
+   "lead_min": 500,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 118152,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -115
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -116
+    },
+    "betopenly": {
+     "point": null,
+     "price": -104
+    },
+    "betrivers": {
+     "point": null,
+     "price": -112
+    },
+    "betus": {
+     "point": null,
+     "price": -115
+    },
+    "bovada": {
+     "point": null,
+     "price": -112
+    },
+    "draftkings": {
+     "point": null,
+     "price": -115
+    },
+    "fanatics": {
+     "point": null,
+     "price": -115
+    },
+    "fanduel": {
+     "point": null,
+     "price": -115
+    },
+    "kalshi": {
+     "point": null,
+     "price": -104
+    },
+    "lowvig": {
+     "point": null,
+     "price": -116
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -113
+    },
+    "novig": {
+     "point": null,
+     "price": -104
+    },
+    "polymarket": {
+     "point": null,
+     "price": -104
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -104
+    },
+    "prophetx": {
+     "point": null,
+     "price": -104
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -114
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNHLGAME-26OCT22LANYI-LA"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "prophetx"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Los Angeles",
+   "side_label": "Los Angeles",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-22T23:30:00Z",
+   "teams": [
+    "Los Angeles",
+    "New York I"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-22T15:10:10Z",
+   "base_depth": 283592,
+   "best_price": 0.725,
+   "best_price_american": -264,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.73,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 9,
+   "date": "2026-10-23",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 1930,
+     "new_this_side": 38496,
+     "other_side": 46199,
+     "other_side_all_levels": 123670,
+     "ratio": 2.7,
+     "this_side": 125260,
+     "this_side_all_levels": 313087
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "POR (0)",
+     "price": 0.725,
+     "this_side": 5282
+    }
+   },
+   "first_seen_utc": "2026-10-22T15:01:39Z",
+   "game": "Portland vs Sacramento",
+   "key": "kalshi|KXNBAGAME-26OCT23PORSAC|ml|0",
+   "lead_min": 2095,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 38496,
+   "price": 0.73,
+   "price_american": -270,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.73,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -300
+    },
+    "betrivers": {
+     "point": null,
+     "price": -265
+    },
+    "bovada": {
+     "point": null,
+     "price": -310
+    },
+    "draftkings": {
+     "point": null,
+     "price": -305
+    },
+    "fanatics": {
+     "point": null,
+     "price": -285
+    },
+    "fanduel": {
+     "point": null,
+     "price": -270
+    },
+    "kalshi": {
+     "point": null,
+     "price": -285
+    },
+    "novig": {
+     "point": null,
+     "price": -264
+    },
+    "polymarket": {
+     "point": null,
+     "price": -270
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -270
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -285
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBAGAME-26OCT23PORSAC-POR"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "none_10k",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Portland",
+   "side_label": "Portland",
+   "start_source": "novig",
+   "start_utc": "2026-10-24T02:05:00Z",
+   "teams": [
+    "Portland",
+    "Sacramento"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-22T15:01:39Z",
    "base_depth": 512325,
    "best_price": 0.665,
@@ -491,6 +1059,8 @@
    "market": "moneyline",
    "new_money": 52935,
    "price": 0.5,
+   "price_after_15m": 0.5,
+   "price_after_15m_book": "novig",
    "price_american": -100,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.5,
@@ -581,6 +1151,7 @@
    "side_label": "Islanders",
    "start_source": "polymarket",
    "start_utc": "2026-10-22T23:30:00Z",
+   "still_actionable": true,
    "teams": [
     "Kings",
     "Islanders"
@@ -645,6 +1216,8 @@
    "market": "moneyline",
    "new_money": 45205,
    "price": 0.58,
+   "price_after_15m": 0.57,
+   "price_after_15m_book": "novig",
    "price_american": -138,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.58,
@@ -736,6 +1309,7 @@
    "side_label": "Bruins",
    "start_source": "polymarket",
    "start_utc": "2026-10-22T23:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Predators",
     "Bruins"
@@ -794,6 +1368,8 @@
    "market": "spread",
    "new_money": 52202,
    "price": 0.65,
+   "price_after_15m": 0.655,
+   "price_after_15m_book": "novig",
    "price_american": -186,
    "price_rule": "fails_cap",
    "price_when_first_seen": 0.65,
@@ -877,6 +1453,7 @@
    "side_label": "NOT Boston wins by over 1.5 goals",
    "start_source": "polymarket",
    "start_utc": "2026-10-22T23:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Nashville",
     "Boston"
@@ -941,6 +1518,8 @@
    "market": "moneyline",
    "new_money": 57460,
    "price": 0.58,
+   "price_after_15m": 0.57,
+   "price_after_15m_book": "novig",
    "price_american": -138,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.58,
@@ -1032,6 +1611,7 @@
    "side_label": "Boston",
    "start_source": "polymarket",
    "start_utc": "2026-10-22T23:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Nashville",
     "Boston"
