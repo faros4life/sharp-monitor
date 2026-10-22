@@ -1074,16 +1074,32 @@ def odds_prices(r):
     return out
 
 
+START_PRIORITY = {"polymarket": 0, "prophetx": 1, "novig": 2, "kalshi": 9}   # Kalshi's time field is not the tip-off
+
+
 def fill_starts(rows):
-    """Kalshi doesn't always give a start time: borrow it from the same game on another book."""
-    known = [r for r in rows if r.get("start")]
+    """One start time per game across all books: take it from the most reliable book that lists the game
+    (Polymarket gameStartTime, then ProphetX scheduled, then Novig, Kalshi only if nothing else). Lead-time buckets
+    are computed from this, so every book's entry for a game carries the same start."""
+    groups = {}
     for r in rows:
-        if r.get("start"):
-            continue
-        for o in known:
-            if o["book"] != r["book"] and same_game(r, o):
-                r["start"] = o["start"]
-                break
+        groups.setdefault((r.get("league"), r.get("date")), []).append(r)
+    for grp in groups.values():
+        clusters = []   # [[rows of one game]]
+        for r in grp:
+            for c in clusters:
+                if r.get("teams") and c[0].get("teams") and same_game(r, c[0]):
+                    c.append(r)
+                    break
+            else:
+                clusters.append([r])
+        for c in clusters:
+            src = sorted((x for x in c if x.get("start")), key=lambda x: START_PRIORITY.get(x["book"], 5))
+            if not src:
+                continue
+            st, book = src[0]["start"], src[0]["book"]
+            for x in c:
+                x["start"], x["start_source"] = st, book
 
 
 def sharp_alerts(n):
@@ -1329,6 +1345,7 @@ def run():
             "alerted_utc": n.strftime("%Y-%m-%dT%H:%M:%SZ"), "first_seen_utc": pd["first_utc"], "confirmed_after_min": round(age),
             "key": key, "book": r["book"], "league": r["league"], "date": r["date"], "game": r["game"],
             "start_utc": datetime.fromtimestamp(r["start"], timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ") if r.get("start") else None,
+            "start_source": r.get("start_source"),
             "market": r["market"], "side": side_key(r), "side_label": r["side_label"], "line": r.get("line"),
             "teams": r.get("teams"),
             "price": r["price"], "price_american": american(r["price"]), "price_when_first_seen": pd["price"],
