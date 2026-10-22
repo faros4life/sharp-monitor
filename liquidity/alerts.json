@@ -1,6 +1,161 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-22T17:40:11Z",
+   "base_depth": 126890,
+   "best_price": 0.555,
+   "best_price_american": -125,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.56,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 8,
+   "date": "2026-10-22",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Ottawa",
+     "price": 0.55,
+     "this_side": 300656
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "OTT (0)",
+     "price": 0.555,
+     "this_side": 57339
+    },
+    "polymarket": {
+     "new_other_side": -4412,
+     "new_this_side": 52685,
+     "other_side": 135416,
+     "other_side_all_levels": 153169,
+     "ratio": 1.1,
+     "this_side": 147313,
+     "this_side_all_levels": 172462
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "Ottawa Senators",
+     "price": 0.5516,
+     "this_side": 16128
+    }
+   },
+   "first_seen_utc": "2026-10-22T17:32:37Z",
+   "game": "Sharks vs. Senators",
+   "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"4950267\"}",
+   "lead_min": 320,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 52685,
+   "price": 0.56,
+   "price_american": -127,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.56,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -135
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -130
+    },
+    "betopenly": {
+     "point": null,
+     "price": -128
+    },
+    "betrivers": {
+     "point": null,
+     "price": -137
+    },
+    "betus": {
+     "point": null,
+     "price": -130
+    },
+    "bovada": {
+     "point": null,
+     "price": -133
+    },
+    "draftkings": {
+     "point": null,
+     "price": -135
+    },
+    "fanatics": {
+     "point": null,
+     "price": -130
+    },
+    "fanduel": {
+     "point": null,
+     "price": -128
+    },
+    "kalshi": {
+     "point": null,
+     "price": -122
+    },
+    "lowvig": {
+     "point": null,
+     "price": -130
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -134
+    },
+    "novig": {
+     "point": null,
+     "price": -125
+    },
+    "polymarket": {
+     "point": null,
+     "price": -127
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -133
+    },
+    "prophetx": {
+     "point": null,
+     "price": -123
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -134
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 1,
+    "pm_market_id": "4950267"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi",
+    "novig"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Senators",
+   "side_label": "Senators",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-22T23:00:00Z",
+   "teams": [
+    "Sharks",
+    "Senators"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-22T17:32:37Z",
    "base_depth": 183894,
    "best_price": 0.705,
@@ -447,6 +602,8 @@
    "market": "spread",
    "new_money": 41871,
    "price": 0.67,
+   "price_after_15m": 0.6766,
+   "price_after_15m_book": "polymarket",
    "price_american": -203,
    "price_rule": "fails_cap",
    "price_when_first_seen": 0.67,
@@ -529,6 +686,7 @@
    "side_label": "NOT Ottawa wins by over 1.5 goals",
    "start_source": "polymarket",
    "start_utc": "2026-10-22T23:00:00Z",
+   "still_actionable": true,
    "teams": [
     "San Jose",
     "Ottawa"
@@ -587,6 +745,8 @@
    "market": "spread",
    "new_money": 101226,
    "price": 0.5,
+   "price_after_15m": 0.5,
+   "price_after_15m_book": "novig",
    "price_american": -100,
    "price_rule": "ok",
    "price_when_first_seen": 0.5,
@@ -669,6 +829,7 @@
    "side_label": "NOT Liberty wins by over 9.5 points",
    "start_source": "prophetx",
    "start_utc": "2026-10-22T23:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Liberty",
     "Kennesaw St."
@@ -727,6 +888,8 @@
    "market": "moneyline",
    "new_money": 40489,
    "price": 0.65,
+   "price_after_15m": 0.6475,
+   "price_after_15m_book": "prophetx",
    "price_american": -186,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.65,
@@ -818,6 +981,7 @@
    "side_label": "Dallas",
    "start_source": "prophetx",
    "start_utc": "2026-10-23T00:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Winnipeg",
     "Dallas"
@@ -876,6 +1040,8 @@
    "market": "moneyline",
    "new_money": 57882,
    "price": 0.44,
+   "price_after_15m": 0.4555,
+   "price_after_15m_book": "prophetx",
    "price_american": 127,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.44,
@@ -967,6 +1133,7 @@
    "side_label": "San Jose",
    "start_source": "polymarket",
    "start_utc": "2026-10-22T23:00:00Z",
+   "still_actionable": true,
    "teams": [
     "San Jose",
     "Ottawa"
@@ -1013,6 +1180,8 @@
    "market": "moneyline",
    "new_money": 961058,
    "price": 0.76,
+   "price_after_15m": 0.7728,
+   "price_after_15m_book": "kalshi",
    "price_american": -317,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.76,
@@ -1032,6 +1201,7 @@
    "side_label": "Oregon",
    "start_source": "kalshi",
    "start_utc": "2026-10-24T03:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Oregon",
     "Illinois"
@@ -1078,6 +1248,8 @@
    "market": "moneyline",
    "new_money": 39447,
    "price": 0.82,
+   "price_after_15m": 0.8303,
+   "price_after_15m_book": "kalshi",
    "price_american": -456,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.82,
@@ -1097,6 +1269,7 @@
    "side_label": "Louisiana Tech",
    "start_source": "kalshi",
    "start_utc": "2026-10-24T03:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Old Dominion",
     "Louisiana Tech"
@@ -1143,6 +1316,8 @@
    "market": "moneyline",
    "new_money": 98012,
    "price": 0.83,
+   "price_after_15m": 0.8399,
+   "price_after_15m_book": "kalshi",
    "price_american": -488,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.83,
@@ -1162,6 +1337,7 @@
    "side_label": "Oklahoma St.",
    "start_source": "kalshi",
    "start_utc": "2026-10-24T03:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Colorado",
     "Oklahoma St."
