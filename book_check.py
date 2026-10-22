@@ -181,7 +181,17 @@ def px_check(al, mtype, side, line, price, teams):
                       f"{json.dumps({k: first.get(k) for k in ('name', 'display_name', 'price', 'strike', 'quantity', 'value')})}")
             cands.append((mk, levels, lvl_line if mtype != "moneyline" else None))
     if not cands:
-        return {"status": "market_not_on_prophetx"}
+        # diagnostic (one line per miss): how ProphetX lists this game's markets of that kind
+        seen = []
+        for mk in px_markets(e["event_id"]):
+            t = (mk.get("type") or "").lower()
+            if t == mtype or mtype in t or (mk.get("sub_type") or "").lower().startswith(mtype):
+                sel = [((lv or [{}])[0].get("name"), (lv or [{}])[0].get("strike"), (lv or [{}])[0].get("price"))
+                       for lv in (mk.get("selections") or [])]
+                seen.append(f"{mk.get('name')}|type={mk.get('type')}|sub={mk.get('sub_type')}|status={mk.get('status')}|"
+                            f"strike={mk.get('strike')}|sel={sel}")
+        print(f"  ProphetX miss for {al['bet']}: {len(seen)} {mtype} markets: " + " ;; ".join(seen[:6]))
+        return {"status": "market_not_on_prophetx", "px_markets_of_type": len(seen)}
     if line is None:
         mk, levels, pline = cands[0]
     else:
