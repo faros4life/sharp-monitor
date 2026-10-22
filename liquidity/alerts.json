@@ -1,6 +1,306 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-22T16:10:11Z",
+   "base_depth": 72553,
+   "best_price": 0.515,
+   "best_price_american": -106,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-22",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": false,
+     "label": "Philadelphia wins by over 2.5 points",
+     "price": 0.52,
+     "this_side": 92908
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "PHI -2.5 (-2.5)",
+     "price": 0.515,
+     "this_side": 28254
+    },
+    "polymarket": {
+     "new_other_side": -4483,
+     "new_this_side": 74064,
+     "other_side": 74380,
+     "other_side_all_levels": 95905,
+     "ratio": 1.8,
+     "this_side": 130731,
+     "this_side_all_levels": 155607
+    }
+   },
+   "first_seen_utc": "2026-10-22T16:00:17Z",
+   "game": "Cavaliers vs. 76ers",
+   "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"5765056\"}",
+   "lead_min": 410,
+   "league": "NBA",
+   "line": -2.5,
+   "market": "spread",
+   "new_money": 74064,
+   "price": 0.52,
+   "price_american": -108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.52,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -2.5,
+     "price": -115
+    },
+    "betonlineag": {
+     "point": -3.0,
+     "price": -105
+    },
+    "betopenly": {
+     "point": -2.5,
+     "price": -103
+    },
+    "betrivers": {
+     "point": -3.5,
+     "price": -107
+    },
+    "betus": {
+     "point": -3.0,
+     "price": -105
+    },
+    "bovada": {
+     "point": -2.5,
+     "price": -115
+    },
+    "draftkings": {
+     "point": -2.5,
+     "price": -110
+    },
+    "fanatics": {
+     "point": -2.5,
+     "price": -115
+    },
+    "fanduel": {
+     "point": -3.5,
+     "price": -104
+    },
+    "kalshi": {
+     "point": -2.5,
+     "price": -108
+    },
+    "lowvig": {
+     "point": -3.0,
+     "price": -101
+    },
+    "mybookieag": {
+     "point": -3.0,
+     "price": -110
+    },
+    "novig": {
+     "point": -2.5,
+     "price": -106
+    },
+    "polymarket": {
+     "point": -2.5,
+     "price": -108
+    },
+    "prophetx": {
+     "point": -2.5,
+     "price": -107
+    },
+    "williamhill_us": {
+     "point": -3.0,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 0,
+    "pm_market_id": "5765056"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [
+    "Cleveland Cavaliers +3.5 (-115)"
+   ],
+   "side": "76ers",
+   "side_label": "76ers (-2.5)",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-22T23:00:00Z",
+   "teams": [
+    "Cavaliers",
+    "76ers"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-22T16:10:11Z",
+   "base_depth": 681645,
+   "best_price": 0.44,
+   "best_price_american": 127,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.44,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-22",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 71824,
+     "new_this_side": 226725,
+     "other_side": 671588,
+     "other_side_all_levels": 899015,
+     "ratio": 1.1,
+     "this_side": 749264,
+     "this_side_all_levels": 926284
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "CLE (0)",
+     "price": 0.44,
+     "this_side": 58075
+    },
+    "polymarket": {
+     "heavier_side": false,
+     "label": "Cavaliers",
+     "price": 0.44,
+     "this_side": 165213
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "Cleveland Cavaliers",
+     "price": 0.4367,
+     "this_side": 32321
+    }
+   },
+   "first_seen_utc": "2026-10-22T16:00:17Z",
+   "game": "Cleveland vs Philadelphia",
+   "key": "kalshi|KXNBAGAME-26OCT22CLEPHI|ml|0",
+   "lead_min": 410,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 226725,
+   "price": 0.44,
+   "price_american": 127,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.44,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": 120
+    },
+    "betonlineag": {
+     "point": null,
+     "price": 117
+    },
+    "betopenly": {
+     "point": null,
+     "price": 130
+    },
+    "betrivers": {
+     "point": null,
+     "price": 130
+    },
+    "betus": {
+     "point": null,
+     "price": 120
+    },
+    "bovada": {
+     "point": null,
+     "price": 120
+    },
+    "draftkings": {
+     "point": null,
+     "price": 120
+    },
+    "fanatics": {
+     "point": null,
+     "price": 120
+    },
+    "fanduel": {
+     "point": null,
+     "price": 124
+    },
+    "kalshi": {
+     "point": null,
+     "price": 127
+    },
+    "lowvig": {
+     "point": null,
+     "price": 119
+    },
+    "mybookieag": {
+     "point": null,
+     "price": 125
+    },
+    "novig": {
+     "point": null,
+     "price": 127
+    },
+    "polymarket": {
+     "point": null,
+     "price": 127
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": 133
+    },
+    "prophetx": {
+     "point": null,
+     "price": 129
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": 130
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBAGAME-26OCT22CLEPHI-CLE"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "none_10k",
+   "second_book_fresh": false,
+   "sharp_agree": [
+    "Cleveland Cavaliers +3.5 (-115)"
+   ],
+   "sharp_oppose": [],
+   "side": "Cleveland",
+   "side_label": "Cleveland",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-22T23:00:00Z",
+   "teams": [
+    "Cleveland",
+    "Philadelphia"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-22T16:00:17Z",
    "base_depth": 51913,
    "best_price": 0.57,
@@ -15,8 +315,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.57,
-   "clv_cents": 0.0,
+   "close_price": 0.565,
+   "clv_cents": -0.5,
    "confirmed_after_min": 10,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -409,7 +709,8 @@
      "price": -124
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-22T16:10:11Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26OCT23DUKEUVA-UVA"
@@ -470,6 +771,8 @@
    "market": "spread",
    "new_money": 155535,
    "price": 0.5,
+   "price_after_15m": 0.5148,
+   "price_after_15m_book": "prophetx",
    "price_american": -100,
    "price_rule": "ok",
    "price_when_first_seen": 0.5,
@@ -552,6 +855,7 @@
    "side_label": "James Madison wins by over 11.5 points",
    "start_source": "prophetx",
    "start_utc": "2026-10-22T23:00:00Z",
+   "still_actionable": true,
    "teams": [
     "James Madison",
     "Appalachian St."
@@ -598,11 +902,14 @@
    "market": "moneyline",
    "new_money": 121553,
    "price": 0.8,
+   "price_after_15m": 0.8112,
+   "price_after_15m_book": "kalshi",
    "price_american": -400,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.8,
    "prices_by_book": {},
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-22T16:10:11Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26OCT23VANUK-UK"
@@ -617,6 +924,7 @@
    "side_label": "Kentucky",
    "start_source": "kalshi",
    "start_utc": "2026-10-24T03:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Vanderbilt",
     "Kentucky"
@@ -669,6 +977,8 @@
    "market": "moneyline",
    "new_money": 292002,
    "price": 0.53,
+   "price_after_15m": 0.5463,
+   "price_after_15m_book": "prophetx",
    "price_american": -113,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.53,
@@ -749,6 +1059,7 @@
    "side_label": "Tulsa",
    "start_source": "prophetx",
    "start_utc": "2026-10-24T00:30:00Z",
+   "still_actionable": true,
    "teams": [
     "Army",
     "Tulsa"
