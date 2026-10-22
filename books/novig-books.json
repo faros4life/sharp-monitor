@@ -5,7 +5,7 @@
    "alert_key": "2026-10-22 07:25|Denver Nuggets @ Oklahoma City Thunder|Oklahoma City Thunder -8.5 (-108)",
    "bet": "Oklahoma City Thunder -8.5 (-108)",
    "book": "novig",
-   "checked_utc": "2026-10-22T12:47:30Z",
+   "checked_utc": "2026-10-22T12:48:57Z",
    "first": {
     "alert_line": -8.5,
     "alert_price": -108,
@@ -163,14 +163,53 @@
     "resting_bids_on_this_side_dollars": 2099172,
     "status": "ok"
    },
-   "lead_min_now": 772,
+   "lead_min_now": 771,
    "prophetx_first": {
     "checked_utc": "2026-10-22T12:45:46Z",
     "status": "market_not_on_prophetx"
    },
    "prophetx_latest": {
-    "px_markets_of_type": 2,
-    "status": "market_not_on_prophetx"
+    "alert_line": -8.5,
+    "alert_price": -108,
+    "best_price_american": -110,
+    "buy_levels": [
+     {
+      "american": -110,
+      "dollars": 18,
+      "to_win": 66
+     },
+     {
+      "american": -111,
+      "dollars": 2071,
+      "to_win": 1866
+     },
+     {
+      "american": -112,
+      "dollars": 11,
+      "to_win": 20
+     },
+     {
+      "american": -113,
+      "dollars": 2433,
+      "to_win": 2173
+     },
+     {
+      "american": -122,
+      "dollars": 243,
+      "to_win": 199
+     },
+     {
+      "american": -295,
+      "dollars": 295,
+      "to_win": 100
+     }
+    ],
+    "dollars_at_alert_price_or_better": 0,
+    "dollars_at_best": 18,
+    "exact_line": true,
+    "market_name": "Spread",
+    "prophetx_line": -8.5,
+    "status": "ok"
    },
    "sent_et": "2026-10-22 07:25",
    "sport": "NBA",
@@ -178,5 +217,5 @@
   }
  ],
  "note": "Exchange book check (FLAG ONLY) for sharp-monitor phone alerts with 2h+ lead. latest/first = Novig (public order books, no key); prophetx_latest/prophetx_first = ProphetX (read-only key): best_price_american, dollars_at_best and dollars_at_alert_price_or_better = amount you could bet at the alert price or better, buy_levels = the ladder. Novig fields: best_price = cheapest cost to BUY the alert side now (0-1, with American); dollars_at_alert_price_or_better = dollars you could buy at the alert's price or better on the same line; exact_line=false means Novig had no market at the alert's line and the nearest line is shown. resting_bids_on_this_side_dollars = others bidding the same side. 'first' = first check after the alert, 'latest' = this run. Novig orders are bids (verified Oct 21).",
- "updated_utc": "2026-10-22T12:47:30Z"
+ "updated_utc": "2026-10-22T12:48:57Z"
 }
