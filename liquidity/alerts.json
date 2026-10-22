@@ -1,6 +1,71 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-22T17:59:33Z",
+   "base_depth": 131463,
+   "best_price": 0.6168,
+   "best_price_american": -161,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.6,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 9,
+   "date": "2026-10-23",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 263,
+     "new_this_side": 38138,
+     "other_side": 135872,
+     "other_side_all_levels": 151458,
+     "ratio": 0.6,
+     "this_side": 77311,
+     "this_side_all_levels": 169973
+    }
+   },
+   "first_seen_utc": "2026-10-22T17:50:10Z",
+   "game": "Bowling Green vs Buffalo",
+   "key": "kalshi|KXNCAAFGAME-26OCT23BGSUBUFF|ml|1",
+   "lead_min": 1980,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 38138,
+   "price": 0.6,
+   "price_american": -150,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.6,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26OCT23BGSUBUFF-BUFF"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "no_match",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Buffalo",
+   "side_label": "Buffalo",
+   "start_source": "kalshi",
+   "start_utc": "2026-10-24T03:00:00Z",
+   "teams": [
+    "Bowling Green",
+    "Buffalo"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-22T17:50:10Z",
    "base_depth": 548458,
    "best_price": 0.74,
@@ -15,8 +80,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.75,
-   "clv_cents": 0.0,
+   "close_price": 0.74,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -755,6 +820,8 @@
    "market": "moneyline",
    "new_money": 52685,
    "price": 0.56,
+   "price_after_15m": 0.555,
+   "price_after_15m_book": "novig",
    "price_american": -127,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.56,
@@ -846,6 +913,7 @@
    "side_label": "Senators",
    "start_source": "polymarket",
    "start_utc": "2026-10-22T23:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Sharks",
     "Senators"
@@ -2465,7 +2533,8 @@
      "price": -105
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-22T17:59:33Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNBASPREAD-26OCT22CLEPHI-PHI3"
