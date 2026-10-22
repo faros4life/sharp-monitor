@@ -9,15 +9,17 @@ started, read the Novig order book for that game's market at the alert's line an
   - dollars available to buy the alert side at each price, and in total at the alert price or better,
   - dollars resting as bids ON the alert side (others wanting the same side).
 
-No API key: uses Novig's public, unsigned catalog and book routes (the same ones the liquidity monitor reads).
-Output: books/novig-books.json. Reads alerts.json (sharp-monitor) and never writes to it.
-ProphetX slots in later once its partner key arrives.
+Novig: public, unsigned catalog and book routes (no key). ProphetX: read-only, with the PROPHETX_ACCESS_KEY /
+PROPHETX_SECRET_KEY GitHub secrets (login -> markets; never places, changes or cancels orders).
+Output: books/novig-books.json (both books per alert). Reads alerts.json (sharp-monitor) and never writes to it.
 """
 import json
 import os
 import re
 import sys
 import time
+import urllib.error
+import urllib.request
 from datetime import datetime, timedelta, timezone
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -67,6 +69,133 @@ def parse_bet(bet, teams):
         return None, None, None, None
     line = 0.0 if ms.group(2) == "PK" else float(ms.group(2))
     return "spread", lm.team_side(ms.group(1), teams), line, price
+
+
+# ---------------------------------------------------------------- ProphetX (read-only)
+PX_BASE = os.environ.get("PX_BASE", "") or "https://cash.api.prophetx.co/partner"
+PX_ACCESS = os.environ.get("PROPHETX_ACCESS_KEY", "")
+PX_SECRET = os.environ.get("PROPHETX_SECRET_KEY", "")
+PX_TOURNAMENTS = {"NHL": 234, "NFL": 31, "NCAAF": 27653, "NBA": 132}
+_PX = {"token": None, "events": {}, "markets": {}, "logged_shape": False}
+
+
+def px_call(path, body=None):
+    for i in range(4):
+        req = urllib.request.Request(PX_BASE + path, data=json.dumps(body).encode() if body is not None else None,
+                                     method="POST" if body is not None else "GET",
+                                     headers={"Content-Type": "application/json", "Accept": "application/json",
+                                              **({"Authorization": f"Bearer {_PX['token']}"} if _PX["token"] else {})})
+        try:
+            with urllib.request.urlopen(req, timeout=25) as r:
+                out = json.loads(r.read().decode())
+            time.sleep(1.1)   # ProphetX rate limit
+            return out
+        except urllib.error.HTTPError as ex:
+            if ex.code == 429 and i < 3:
+                time.sleep(int(ex.headers.get("Retry-After") or 0) or 5 * (i + 1))
+                continue
+            raise
+
+
+def px_login():
+    if _PX["token"] or not (PX_ACCESS and PX_SECRET):
+        return bool(_PX["token"])
+    d = px_call("/auth/login", {"access_key": PX_ACCESS, "secret_key": PX_SECRET})
+    _PX["token"] = (d.get("data") or {}).get("access_token")
+    return bool(_PX["token"])
+
+
+def px_events(league):
+    if league not in _PX["events"]:
+        tid = PX_TOURNAMENTS.get(league)
+        evs = []
+        if tid:
+            d = px_call(f"/mm/get_sport_events?tournament_id={tid}")
+            evs = (d.get("data") or {}).get("sport_events") or []
+        _PX["events"][league] = evs
+    return _PX["events"][league]
+
+
+def px_markets(event_id):
+    if event_id not in _PX["markets"]:
+        d = px_call(f"/v4/mm/get_markets?event_id={event_id}")
+        data = d.get("data") or {}
+        _PX["markets"][event_id] = data if isinstance(data, list) else (data.get("markets") or data.get(str(event_id)) or [])
+    return _PX["markets"][event_id]
+
+
+def px_check(al, mtype, side, line, price, teams):
+    """Best ProphetX price for the alert side and dollars you could bet at the alert price or better.
+    ProphetX lists, per outcome, the prices a bettor can take with 'value' = amount bettable at that price."""
+    if not px_login():
+        return {"status": "no_prophetx_key"}
+    st = datetime.fromisoformat(al["start_utc"].replace("Z", "+00:00"))
+    arow = {"league": al["sport"], "date": st.astimezone(lm.ET).date().isoformat(), "teams": list(teams)}
+    ev, how = None, None
+    for e in px_events(al["sport"]):
+        comps = e.get("competitors") or []
+        home = next((c.get("display_name") or c.get("name") for c in comps if c.get("side") == "home"), None)
+        away = next((c.get("display_name") or c.get("name") for c in comps if c.get("side") == "away"), None)
+        if not home or not away:
+            tt = lm.split_teams(e.get("name") or "")
+            if not tt:
+                continue
+            away, home = tt
+        try:
+            d = datetime.fromisoformat(e["scheduled"].replace("Z", "+00:00")).astimezone(lm.ET).date().isoformat()
+        except Exception:
+            continue
+        erow = {"league": al["sport"], "date": d, "teams": [away, home]}
+        h = lm.same_game(arow, erow)
+        if h:
+            ev, how = (e, erow), h
+            break
+    if not ev:
+        return {"status": "game_not_on_prophetx"}
+    e, erow = ev
+    cands = []
+    for mk in px_markets(e["event_id"]):
+        if (mk.get("type") or "").lower() != mtype or (mk.get("status") or "active") != "active":
+            continue
+        for levels in mk.get("selections") or []:
+            if not levels:
+                continue
+            first = levels[0]
+            name = first.get("name") or first.get("display_name") or ""
+            if mtype == "total":
+                oside = "OVER" if "over" in name.lower() else ("UNDER" if "under" in name.lower() else None)
+                ok = oside == side
+            else:
+                t = lm.team_side(name, erow["teams"])
+                ok = t is not None and (t == side if how == "same" else t == 1 - side)
+            if not ok:
+                continue
+            lvl_line = lm.num(first.get("strike"))
+            if mtype == "spread" and not lvl_line:
+                lvl_line = lm.num(mk.get("strike"))
+            if mtype == "total" and not lvl_line:
+                lvl_line = lm.num(mk.get("strike"))
+            if not _PX["logged_shape"] and mtype in ("spread", "total"):
+                _PX["logged_shape"] = True
+                print(f"  ProphetX {mtype} sample: market strike {mk.get('strike')} | level: "
+                      f"{json.dumps({k: first.get(k) for k in ('name', 'display_name', 'price', 'strike', 'quantity', 'value')})}")
+            cands.append((mk, levels, lvl_line if mtype != "moneyline" else None))
+    if not cands:
+        return {"status": "market_not_on_prophetx"}
+    if line is None:
+        mk, levels, pline = cands[0]
+    else:
+        mk, levels, pline = min(cands, key=lambda c: abs((c[2] if c[2] is not None else 1e9) - line))
+    lv = sorted(({"american": int(x["price"]), "dollars": round(float(x.get("value") or 0)),
+                  "to_win": round(float(x.get("quantity") or 0))} for x in levels if x.get("price") is not None),
+                key=lambda x: -x["american"])   # best price first (higher American = better for the bettor)
+    best = lv[0] if lv else None
+    at_or_better = sum(x["dollars"] for x in lv if price is not None and x["american"] >= price)
+    return {"status": "ok", "market_name": mk.get("name"), "prophetx_line": pline, "alert_line": line,
+            "exact_line": (line is None) or (pline is not None and abs(pline - line) < 1e-9),
+            "alert_price": price, "best_price_american": best["american"] if best else None,
+            "dollars_at_best": best["dollars"] if best else 0,
+            "dollars_at_alert_price_or_better": round(at_or_better), "buy_levels": lv[:10]}
 
 
 def novig_catalog(lo_ms, hi_ms):
@@ -211,23 +340,37 @@ def run():
                 res = check_alert(al, evs_by, mks_by_event)
             except Exception as ex:
                 res = {"status": f"error: {ex}"}
+            try:
+                tms = lm.split_teams(al["game"])
+                mt, sd, ln, pr = parse_bet(al["bet"], tms) if tms else (None, None, None, None)
+                pres = px_check(al, mt, sd, ln, pr, tms) if (mt and sd is not None) else {"status": "bet_not_mapped"}
+            except Exception as ex:
+                pres = {"status": f"error: {str(ex)[:120]}"}
             now_iso = n.strftime("%Y-%m-%dT%H:%M:%SZ")
             entry = {"alert_key": key, "sent_et": al["sent_et"], "sport": al["sport"], "game": al["game"],
                      "bet": al["bet"], "alert_book": al.get("book"), "grade": al.get("grade"), "start_utc": al["start_utc"],
                      "lead_min_now": round((st - n).total_seconds() / 60), "book": "novig", "checked_utc": now_iso,
-                     "latest": res, "first": (prev.get(key) or {}).get("first") or dict(res, checked_utc=now_iso)}
+                     "latest": res, "first": (prev.get(key) or {}).get("first") or dict(res, checked_utc=now_iso),
+                     "prophetx_latest": pres,
+                     "prophetx_first": (prev.get(key) or {}).get("prophetx_first") or dict(pres, checked_utc=now_iso)}
             checks.append(entry)
             print(f"{al['sport']} {al['game']} | {al['bet']} -> {res.get('status')}"
                   + (f" | best {res.get('best_price_american')} (${res.get('dollars_at_best')}), "
                      f"${res.get('dollars_at_alert_price_or_better')} at alert price or better, line {res.get('novig_line')}"
-                     f"{'' if res.get('exact_line') else ' (NOT exact)'}" if res.get("status") == "ok" else ""))
+                     f"{'' if res.get('exact_line') else ' (NOT exact)'}" if res.get("status") == "ok" else "")
+                  + f" || ProphetX -> {pres.get('status')}"
+                  + (f" | best {pres.get('best_price_american')} (${pres.get('dollars_at_best')}), "
+                     f"${pres.get('dollars_at_alert_price_or_better')} at alert price or better, line {pres.get('prophetx_line')}"
+                     f"{'' if pres.get('exact_line') else ' (NOT exact)'}" if pres.get("status") == "ok" else ""))
     # keep finished checks for 2 days so the record survives the game start
     keep_after = (n - timedelta(days=2)).strftime("%Y-%m-%dT%H:%M:%SZ")
     done = [c for k, c in prev.items() if k not in {c["alert_key"] for c in checks} and c.get("start_utc", "") >= keep_after]
     os.makedirs(os.path.dirname(OUT_FILE), exist_ok=True)
     with open(OUT_FILE, "w") as f:
-        json.dump({"note": ("Exchange book check (FLAG ONLY) for sharp-monitor phone alerts with 2h+ lead. book=novig (public "
-                            "order books, no key). best_price = cheapest cost to BUY the alert side now (0-1, with American); "
+        json.dump({"note": ("Exchange book check (FLAG ONLY) for sharp-monitor phone alerts with 2h+ lead. latest/first = "
+                            "Novig (public order books, no key); prophetx_latest/prophetx_first = ProphetX (read-only key): "
+                            "best_price_american, dollars_at_best and dollars_at_alert_price_or_better = amount you could bet "
+                            "at the alert price or better, buy_levels = the ladder. Novig fields: best_price = cheapest cost to BUY the alert side now (0-1, with American); "
                             "dollars_at_alert_price_or_better = dollars you could buy at the alert's price or better on the "
                             "same line; exact_line=false means Novig had no market at the alert's line and the nearest "
                             "line is shown. resting_bids_on_this_side_dollars = others bidding the same side. 'first' = first "
