@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Oct 22, 4:11 AM ET. This run: 0 new, 4 not confirmed, 11 pending. Open alerts: 19.
+Updated Thu Oct 22, 4:59 AM ET. This run: 0 new, 11 not confirmed, 9 pending. Open alerts: 19.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -16,7 +16,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 21 8:09PM | NHL | Vegas Golden Knights @ St. Louis Blues | spread: STL +1.5 (1.5) | novig | $138k | -228 |  |  | -1.0c | yes | pending |
 | Oct 21 8:09PM | NHL | Nashville Predators @ Boston Bruins | spread: NSH +1.5 (-1.5) | novig | $539k | -178 |  |  | +1.0c | yes | pending |
 | Oct 21 8:09PM | NHL | Anaheim Ducks @ New Jersey Devils | moneyline: NJD (0) | novig | $174k | -178 |  |  | +0.5c | yes | pending |
-| Oct 21 8:09PM | NCAAF | East Carolina @ Memphis | moneyline: MEM (0) | novig | $918k | -355 |  |  | +0.0c | yes | pending |
+| Oct 21 8:09PM | NCAAF | East Carolina @ Memphis | moneyline: MEM (0) | novig | $918k | -355 |  |  | +0.5c | yes | pending |
 | Oct 21 8:09PM | NBA | Sacramento Kings @ Los Angeles Clippers | spread: SAC +5.5 (-5.5) | novig | $678k | -106 |  |  | +0.0c |  | pending |
 | Oct 21 8:09PM | NCAAF | East Carolina vs Memphis | moneyline: Memphis | kalshi | $290k | -355 |  |  | +0.0c | yes | pending |
 | Oct 21 7:11PM | NBA | Jazz vs. Grizzlies | moneyline: Grizzlies | polymarket | $155k | -127 | ✅ kalshi |  | +0.0c |  | W |
