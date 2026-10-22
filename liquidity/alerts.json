@@ -1,6 +1,153 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-22T20:50:10Z",
+   "base_depth": 295745,
+   "best_price": 0.515,
+   "best_price_american": -106,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-22",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 23597,
+     "new_this_side": 113797,
+     "other_side": 137038,
+     "other_side_all_levels": 201058,
+     "ratio": 2.7,
+     "this_side": 369417,
+     "this_side_all_levels": 410846
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "DEN +8.5 (-8.5)",
+     "price": 0.515,
+     "this_side": 46155
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Nuggets (+8.5)",
+     "price": 0.52,
+     "this_side": 170957
+    }
+   },
+   "first_seen_utc": "2026-10-22T20:40:17Z",
+   "game": "Denver vs Oklahoma City: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBASPREAD-26OCT22DENOKC-OKC9\"}",
+   "lead_min": 280,
+   "league": "NBA",
+   "line": 8.5,
+   "market": "spread",
+   "new_money": 113797,
+   "price": 0.52,
+   "price_american": -108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.52,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 8.5,
+     "price": -115
+    },
+    "betonlineag": {
+     "point": 8.0,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 8.5,
+     "price": -104
+    },
+    "betrivers": {
+     "point": 8.5,
+     "price": -117
+    },
+    "betus": {
+     "point": 8.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 8.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 8.5,
+     "price": -115
+    },
+    "fanatics": {
+     "point": 8.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 8.5,
+     "price": -114
+    },
+    "kalshi": {
+     "point": 8.5,
+     "price": -108
+    },
+    "lowvig": {
+     "point": 8.0,
+     "price": -106
+    },
+    "mybookieag": {
+     "point": 8.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 8.5,
+     "price": -106
+    },
+    "polymarket": {
+     "point": 8.5,
+     "price": -108
+    },
+    "prophetx": {
+     "point": 9.0,
+     "price": -117
+    },
+    "williamhill_us": {
+     "point": 8.0,
+     "price": -115
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNBASPREAD-26OCT22DENOKC-OKC9"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "polymarket"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [
+    "Oklahoma City Thunder -8.5 (-120)",
+    "Oklahoma City Thunder -8.5 (-108)"
+   ],
+   "side": "Denver",
+   "side_label": "NOT Oklahoma City wins by over 8.5 points",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-23T01:30:00Z",
+   "teams": [
+    "Denver",
+    "Oklahoma City"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-22T20:20:10Z",
    "base_depth": 200651,
    "best_price": 0.5075,
@@ -2071,8 +2218,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.78,
-   "clv_cents": 0.0,
+   "close_price": 0.79,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -2877,7 +3024,8 @@
      "price": -335
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-22T20:50:10Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNBAGAME-26OCT22DENOKC-OKC"
@@ -4000,8 +4148,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.69,
-   "clv_cents": 0.0,
+   "close_price": 0.7,
+   "clv_cents": 1.0,
    "confirmed_after_min": 12,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -6404,8 +6552,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.565,
-   "clv_cents": -0.5,
+   "close_price": 0.57,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -7251,8 +7399,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.59,
-   "clv_cents": 1.0,
+   "close_price": 0.58,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-10-23",
    "depth_by_book": {
@@ -7705,8 +7853,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.57,
-   "clv_cents": 0.0,
+   "close_price": 0.56,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-22",
    "depth_by_book": {
