@@ -124,6 +124,23 @@ def px_markets(event_id):
     return _PX["markets"][event_id]
 
 
+def px_lines(mk):
+    """[(outcome price levels, line)] for a market. Moneylines carry 'selections' directly; spreads/totals nest one
+    entry per line (e.g. market_lines: [{line: -8.5, selections: [[...], [...]]}])."""
+    out = [(lv, lm.num(mk.get("strike"))) for lv in (mk.get("selections") or []) if lv]
+    if out:
+        return out
+    for key, val in mk.items():
+        if isinstance(val, list) and val and isinstance(val[0], dict) and "selections" in val[0]:
+            for ln in val:
+                lnum = lm.num(ln.get("line")) if ln.get("line") is not None else lm.num(ln.get("strike"))
+                out += [(lv, lnum) for lv in (ln.get("selections") or []) if lv]
+    if not out and not _PX.get("keys_logged"):
+        _PX["keys_logged"] = True
+        print(f"  ProphetX market keys ({mk.get('name')}): {sorted(mk.keys())}")
+    return out
+
+
 def px_check(al, mtype, side, line, price, teams):
     """Best ProphetX price for the alert side and dollars you could bet at the alert price or better.
     ProphetX lists, per outcome, the prices a bettor can take with 'value' = amount bettable at that price."""
@@ -157,7 +174,9 @@ def px_check(al, mtype, side, line, price, teams):
     for mk in px_markets(e["event_id"]):
         if (mk.get("type") or "").lower() != mtype or (mk.get("status") or "active") != "active":
             continue
-        for levels in mk.get("selections") or []:
+        if (mk.get("sub_type") or mtype).lower() != mtype:
+            continue   # full game only (skip first_half_spread etc.)
+        for levels, mline in px_lines(mk):
             if not levels:
                 continue
             first = levels[0]
@@ -171,9 +190,13 @@ def px_check(al, mtype, side, line, price, teams):
             if not ok:
                 continue
             lvl_line = lm.num(first.get("strike"))
+            if not lvl_line:
+                lvl_line = lm.num(first.get("line"))
+            if not lvl_line and mline is not None:
+                lvl_line = mline if mtype == "total" else None
             if mtype == "spread" and not lvl_line:
-                lvl_line = lm.num(mk.get("strike"))
-            if mtype == "total" and not lvl_line:
+                lvl_line = lm.signed_num((first.get("display_name") or "").replace(str(first.get("display_price") or "#"), ""))
+            if not lvl_line:
                 lvl_line = lm.num(mk.get("strike"))
             if not _PX["logged_shape"] and mtype in ("spread", "total"):
                 _PX["logged_shape"] = True
