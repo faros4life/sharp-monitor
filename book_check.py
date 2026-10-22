@@ -515,9 +515,10 @@ def check_alert(al, evs_by, mks_by_event):
     for r in orders.get(other, []):
         c = round(1 - float(r["price"]), 4)
         asks[c] = asks.get(c, 0) + int(r["qty"])
-    ask_levels = [{"price": c, "american": lm.american(c), "contracts": q, "dollars": round(c * q)}
+    # Novig: 1 contract pays 1c, so dollars = price x contracts / 100
+    ask_levels = [{"price": c, "american": lm.american(c), "contracts": q, "dollars": round(c * q / 100)}
                   for c, q in sorted(asks.items())]
-    bids_mine = sum(float(r["price"]) * int(r["qty"]) for r in orders.get(mine, []))
+    bids_mine = sum(float(r["price"]) * int(r["qty"]) / 100 for r in orders.get(mine, []))
     alert_prob = am_to_prob(price) if price is not None else None
     # compare in American odds as displayed (higher = better for the bettor), so -108 on Novig (52.0c) counts as -108
     at_or_better = sum(lv["dollars"] for lv in ask_levels
