@@ -231,6 +231,218 @@ def px_check(al, mtype, side, line, price, teams):
             "dollars_at_alert_price_or_better": round(at_or_better), "buy_levels": lv[:10]}
 
 
+# ---------------------------------------------------------------- Kalshi + Polymarket (public, no key)
+_KC = {"events": {}, "books": {}}
+_PMC = {"events": {}}
+
+
+def ladder_result(levels, price, line, book_line, extra=None):
+    """levels: [(cost 0-1, dollars)] you can BUY at. Returns the common result block."""
+    agg = {}
+    for c, dol in levels:
+        if c is None or c <= 0 or c >= 1 or dol <= 0:
+            continue
+        agg[round(c, 4)] = agg.get(round(c, 4), 0) + dol
+    lv = [{"price": c, "american": lm.american(c), "dollars": round(d)} for c, d in sorted(agg.items())]
+    best = lv[0] if lv else None
+    at_or_better = sum(x["dollars"] for x in lv if price is not None and x["american"] is not None and x["american"] >= price)
+    out = {"status": "ok" if lv else "no_liquidity", "line": book_line, "alert_line": line,
+           "exact_line": (line is None) or (book_line is not None and abs(book_line - line) < 1e-9),
+           "alert_price": price, "best_price": best["price"] if best else None,
+           "best_price_american": best["american"] if best else None, "dollars_at_best": best["dollars"] if best else 0,
+           "dollars_at_alert_price_or_better": round(at_or_better), "buy_levels": lv[:10]}
+    out.update(extra or {})
+    return out
+
+
+def kalshi_check(al, mtype, side, line, price, teams):
+    """Kalshi: buy YES = take NO bids at 1-p; buy NO = take YES bids at 1-p (sizes are contracts at $1)."""
+    lg = al["sport"]
+    series = f"KX{lg}" + {"moneyline": "GAME", "spread": "SPREAD", "total": "TOTAL"}[mtype]
+    if series not in _KC["events"]:
+        try:
+            _KC["events"][series] = lm.k_paged("/events", "events", {"series_ticker": series, "status": "open",
+                                                                    "with_nested_markets": "true", "limit": 200})
+        except Exception as ex:
+            print(f"  Kalshi events failed {series}: {ex}")
+            _KC["events"][series] = []
+    st = datetime.fromisoformat(al["start_utc"].replace("Z", "+00:00"))
+    arow = {"league": lg, "date": st.astimezone(lm.ET).date().isoformat(), "teams": list(teams)}
+    for ev in _KC["events"][series]:
+        d = lm.k_event_date(ev.get("event_ticker", ""))
+        kt = lm.split_teams(ev.get("title", ""))
+        if not d or not kt:
+            continue
+        erow = {"league": lg, "date": d.isoformat(), "teams": list(kt)}
+        how = lm.same_game(arow, erow)
+        if not how:
+            continue
+        want = side if (side in ("OVER", "UNDER") or how == "same") else 1 - side   # alert side in Kalshi's team order
+        options = []   # (market, take 'yes' or 'no', kalshi line for the alert side)
+        for mk in ev.get("markets") or []:
+            label = mk.get("yes_sub_title") or mk.get("subtitle") or mk.get("title") or ""
+            strike = lm.num(mk.get("floor_strike"))
+            if strike is None and mtype != "moneyline":
+                ms = re.search(r"over ([\d.]+)", label.lower())
+                strike = float(ms.group(1)) if ms else None
+            if mtype == "total":
+                over_yes = "under" not in label.lower()
+                buy = "yes" if (want == "OVER") == over_yes else "no"
+                options.append((mk, buy, strike))
+            else:
+                t = lm.team_side(label, kt)
+                if t is None:
+                    continue
+                if mtype == "moneyline":
+                    options.append((mk, "yes" if t == want else "no", None))
+                else:   # 'T wins by over S': YES = T -S; NO = other team +S
+                    if t == want:
+                        options.append((mk, "yes", -strike if strike is not None else None))
+                    else:
+                        options.append((mk, "no", strike))
+        if not options:
+            return {"status": "market_not_on_kalshi"}
+        if mtype == "moneyline":
+            picks = options   # both team markets can buy the side: combine
+        else:
+            best_opt = min(options, key=lambda o: abs((o[2] if o[2] is not None else 1e9) - (line if line is not None else 0)))
+            picks = [best_opt]
+        levels, kline = [], picks[0][2]
+        for mk, buy, _ in picks:
+            t = mk["ticker"]
+            if t not in _KC["books"]:
+                try:
+                    _KC["books"][t] = lm.get(f"{lm.KALSHI}/markets/{t}/orderbook")
+                except Exception as ex:
+                    print(f"  Kalshi book failed {t}: {ex}")
+                    _KC["books"][t] = {}
+            take = "no" if buy == "yes" else "yes"
+            for p, q in lm.k_levels(_KC["books"][t], take):
+                c = 1 - p
+                levels.append((c, c * q))
+        return ladder_result(levels, price, line, kline, {"markets": [o[0]["ticker"] for o in picks]})
+    return {"status": "game_not_on_kalshi"}
+
+
+def pm_check(al, mtype, side, line, price, teams):
+    """Polymarket: buy an outcome = take the asks on that outcome's token."""
+    lg = al["sport"]
+    tag = lm.PM_TAGS.get(lg)
+    if not tag:
+        return {"status": "league_not_mapped"}
+    if tag not in _PMC["events"]:
+        evs, off = [], 0
+        try:
+            while off < 2000:
+                page = lm.get(f"{lm.PM_GAMMA}/events", {"tag_slug": tag, "active": "true", "closed": "false", "limit": 200, "offset": off})
+                page = page if isinstance(page, list) else page.get("data", [])
+                evs += page
+                if len(page) < 200:
+                    break
+                off += 200
+        except Exception as ex:
+            print(f"  Polymarket events failed {tag}: {ex}")
+        _PMC["events"][tag] = evs
+    st = datetime.fromisoformat(al["start_utc"].replace("Z", "+00:00"))
+    arow = {"league": lg, "date": st.astimezone(lm.ET).date().isoformat(), "teams": list(teams)}
+    for ev in _PMC["events"][tag]:
+        pt = lm.split_teams(ev.get("title", ""))
+        if not pt:
+            continue
+        cands = []
+        for mk in ev.get("markets") or []:
+            mt = lm.PM_MTYPE.get((mk.get("sportsMarketType") or "").lower())
+            if mt != mtype or mk.get("closed"):
+                continue
+            stp = lm.pm_start(mk.get("gameStartTime") or ev.get("startTime") or ev.get("endDate"))
+            if not stp:
+                continue
+            erow = {"league": lg, "date": stp.astimezone(lm.ET).date().isoformat(), "teams": list(pt)}
+            how = lm.same_game(arow, erow)
+            if not how:
+                continue
+            outs, tids = lm.jl(mk.get("outcomes")), lm.jl(mk.get("clobTokenIds"))
+            if len(outs) != 2 or len(tids) != 2:
+                continue
+            ln = lm.num(mk.get("line"))
+            for i in (0, 1):
+                name = str(outs[i])
+                if mtype == "total":
+                    ok = ("over" in name.lower() and side == "OVER") or ("under" in name.lower() and side == "UNDER")
+                    oline = ln
+                else:
+                    t = lm.team_side(name, pt)
+                    ok = t is not None and (t == side if how == "same" else t == 1 - side)
+                    oline = None if (mtype != "spread" or ln is None) else (ln if i == 0 else -ln)
+                if ok:
+                    cands.append((mk, tids[i], oline))
+        if not cands:
+            continue
+        mk, tid, pline = (cands[0] if line is None else
+                          min(cands, key=lambda c: abs((c[2] if c[2] is not None else 1e9) - line)))
+        try:
+            book = lm.get(f"{lm.PM_CLOB}/book", {"token_id": tid})
+        except Exception as ex:
+            return {"status": f"error: {str(ex)[:80]}"}
+        levels = [(float(a["price"]), float(a["price"]) * float(a["size"])) for a in (book.get("asks") or [])]
+        return ladder_result(levels, price, line, pline, {"market_id": str(mk.get("id"))})
+    return {"status": "game_not_on_polymarket"}
+
+
+# ---------------------------------------------------------------- Hard Rock (sportsbook, via The Odds API)
+ODDS_KEY = os.environ.get("ODDS_API_KEY", "")
+HR_BOOKS = os.environ.get("HR_BOOKS", "") or "hardrockbet"
+HR_REFRESH_MIN = float(os.environ.get("HR_REFRESH_MIN", "") or "30")   # credit saver: re-read Hard Rock at most every 30 min
+_HR = {}
+ODDS_SPORT = {"NFL": "americanfootball_nfl", "NCAAF": "americanfootball_ncaaf", "NBA": "basketball_nba", "NHL": "icehockey_nhl"}
+ODDS_MKT = {"moneyline": "h2h", "spread": "spreads", "total": "totals"}
+
+
+def hr_check(al, mtype, side, line, price, teams):
+    """Hard Rock price for the alert side (no order book: price and line only)."""
+    if not ODDS_KEY:
+        return {"status": "no_odds_key"}
+    sport, mkt = ODDS_SPORT.get(al["sport"]), ODDS_MKT.get(mtype)
+    if not sport or not mkt:
+        return {"status": "league_not_mapped"}
+    ck = (sport, mkt)
+    if ck not in _HR:
+        try:
+            _HR[ck] = lm.get(f"https://api.the-odds-api.com/v4/sports/{sport}/odds",
+                             {"apiKey": ODDS_KEY, "bookmakers": HR_BOOKS, "markets": mkt, "oddsFormat": "american"})
+        except Exception as ex:
+            return {"status": f"error: {str(ex)[:80]}"}
+    st = datetime.fromisoformat(al["start_utc"].replace("Z", "+00:00"))
+    arow = {"league": al["sport"], "date": st.astimezone(lm.ET).date().isoformat(), "teams": list(teams)}
+    for ev in _HR[ck] or []:
+        try:
+            d = datetime.fromisoformat(ev["commence_time"].replace("Z", "+00:00")).astimezone(lm.ET).date().isoformat()
+        except Exception:
+            continue
+        erow = {"league": al["sport"], "date": d, "teams": [ev.get("away_team", ""), ev.get("home_team", "")]}
+        how = lm.same_game(arow, erow)
+        if not how:
+            continue
+        for bk in ev.get("bookmakers", []):
+            for m in bk.get("markets", []):
+                for o in m.get("outcomes", []):
+                    name, pt = o.get("name", ""), o.get("point")
+                    if mtype == "total":
+                        ok = name.lower() == side.lower() if isinstance(side, str) else False
+                    else:
+                        t = lm.team_side(name, erow["teams"])
+                        ok = t is not None and (t == side if how == "same" else t == 1 - side)
+                    if ok:
+                        hl = float(pt) if pt is not None else None
+                        exact = (line is None) or (hl is not None and abs(hl - line) < 1e-9)
+                        return {"status": "ok", "book_key": bk["key"], "price_american": o.get("price"), "line": hl,
+                                "alert_line": line, "exact_line": exact, "alert_price": price,
+                                "at_alert_price_or_better": (exact and price is not None and o.get("price") is not None
+                                                             and o["price"] >= price)}
+        return {"status": "market_not_on_hardrock"}
+    return {"status": "game_not_on_hardrock"}
+
+
 def novig_catalog(lo_ms, hi_ms):
     evs = lm.n_paged("/v3/public/catalog/events", {"startsAfter": lo_ms, "startsBefore": hi_ms, "limit": 5000})
     mks = lm.n_paged("/v3/public/catalog/markets", {"startsAfter": lo_ms, "startsBefore": hi_ms, "limit": 5000})
@@ -373,12 +585,25 @@ def run():
                 res = check_alert(al, evs_by, mks_by_event)
             except Exception as ex:
                 res = {"status": f"error: {ex}"}
-            try:
-                tms = lm.split_teams(al["game"])
-                mt, sd, ln, pr = parse_bet(al["bet"], tms) if tms else (None, None, None, None)
-                pres = px_check(al, mt, sd, ln, pr, tms) if (mt and sd is not None) else {"status": "bet_not_mapped"}
-            except Exception as ex:
-                pres = {"status": f"error: {str(ex)[:120]}"}
+            tms = lm.split_teams(al["game"])
+            mt, sd, ln, pr = parse_bet(al["bet"], tms) if tms else (None, None, None, None)
+            extra = {}
+            for bname, fn in (("prophetx", px_check), ("kalshi", kalshi_check), ("polymarket", pm_check)):
+                try:
+                    extra[bname] = fn(al, mt, sd, ln, pr, tms) if (mt and sd is not None) else {"status": "bet_not_mapped"}
+                except Exception as ex:
+                    extra[bname] = {"status": f"error: {str(ex)[:120]}"}
+            pres = extra["prophetx"]
+            old = (prev.get(key) or {}).get("hardrock_latest")
+            if old and old.get("checked_utc") and (n - datetime.fromisoformat(old["checked_utc"].replace("Z", "+00:00"))
+                                                   ).total_seconds() < HR_REFRESH_MIN * 60:
+                extra["hardrock"] = old   # reuse: saves Odds API credits
+            else:
+                try:
+                    extra["hardrock"] = dict(hr_check(al, mt, sd, ln, pr, tms) if (mt and sd is not None)
+                                             else {"status": "bet_not_mapped"}, checked_utc=n.strftime("%Y-%m-%dT%H:%M:%SZ"))
+                except Exception as ex:
+                    extra["hardrock"] = {"status": f"error: {str(ex)[:120]}", "checked_utc": n.strftime("%Y-%m-%dT%H:%M:%SZ")}
             now_iso = n.strftime("%Y-%m-%dT%H:%M:%SZ")
             entry = {"alert_key": key, "sent_et": al["sent_et"], "sport": al["sport"], "game": al["game"],
                      "bet": al["bet"], "alert_book": al.get("book"), "grade": al.get("grade"), "start_utc": al["start_utc"],
@@ -386,6 +611,26 @@ def run():
                      "latest": res, "first": (prev.get(key) or {}).get("first") or dict(res, checked_utc=now_iso),
                      "prophetx_latest": pres,
                      "prophetx_first": (prev.get(key) or {}).get("prophetx_first") or dict(pres, checked_utc=now_iso)}
+            for bname in ("kalshi", "polymarket", "hardrock"):
+                entry[f"{bname}_latest"] = extra[bname]
+                entry[f"{bname}_first"] = (prev.get(key) or {}).get(f"{bname}_first") or dict(extra[bname], checked_utc=now_iso)
+            # best gettable price across all four books right now (American, higher = better for you)
+            allb = {"novig": res, **extra}
+            okb = {b: r_ for b, r_ in allb.items() if b != "hardrock" and r_.get("status") == "ok"
+                   and r_.get("best_price_american") is not None}
+            if okb:
+                bb = max(okb, key=lambda b: okb[b]["best_price_american"])
+                entry["best_now"] = {"book": bb, "american": okb[bb]["best_price_american"],
+                                     "line": okb[bb].get("line", okb[bb].get("novig_line", okb[bb].get("prophetx_line"))),
+                                     "exact_line": okb[bb].get("exact_line"),
+                                     "dollars_at_alert_price_or_better_all_books":
+                                         sum(r_.get("dollars_at_alert_price_or_better") or 0 for r_ in okb.values()
+                                             if r_.get("exact_line"))}
+            hr = extra.get("hardrock") or {}
+            if hr.get("status") == "ok" and hr.get("exact_line") and hr.get("price_american") is not None:
+                if "best_now" not in entry or hr["price_american"] > entry["best_now"]["american"]:
+                    entry["best_now"] = dict(entry.get("best_now") or {}, book="hardrock", american=hr["price_american"],
+                                             line=hr.get("line"), exact_line=True)
             checks.append(entry)
             print(f"{al['sport']} {al['game']} | {al['bet']} -> {res.get('status')}"
                   + (f" | best {res.get('best_price_american')} (${res.get('dollars_at_best')}), "
@@ -394,7 +639,16 @@ def run():
                   + f" || ProphetX -> {pres.get('status')}"
                   + (f" | best {pres.get('best_price_american')} (${pres.get('dollars_at_best')}), "
                      f"${pres.get('dollars_at_alert_price_or_better')} at alert price or better, line {pres.get('prophetx_line')}"
-                     f"{'' if pres.get('exact_line') else ' (NOT exact)'}" if pres.get("status") == "ok" else ""))
+                     f"{'' if pres.get('exact_line') else ' (NOT exact)'}" if pres.get("status") == "ok" else "")
+                  + "".join(f" || {b.title()} -> {extra[b].get('status')}"
+                            + (f" | best {extra[b].get('best_price_american')} (${extra[b].get('dollars_at_best')}), "
+                               f"${extra[b].get('dollars_at_alert_price_or_better')} at alert price or better, line {extra[b].get('line')}"
+                               f"{'' if extra[b].get('exact_line') else ' (NOT exact)'}" if extra[b].get("status") == "ok" else "")
+                            for b in ("kalshi", "polymarket"))
+                  + (f" || Hard Rock -> {extra['hardrock'].get('status')}"
+                     + (f" | {extra['hardrock'].get('price_american')} at {extra['hardrock'].get('line')}"
+                        f"{'' if extra['hardrock'].get('exact_line') else ' (NOT exact)'}"
+                        if extra['hardrock'].get('status') == 'ok' else "")))
     # keep finished checks for 2 days so the record survives the game start
     keep_after = (n - timedelta(days=2)).strftime("%Y-%m-%dT%H:%M:%SZ")
     done = [c for k, c in prev.items() if k not in {c["alert_key"] for c in checks} and c.get("start_utc", "") >= keep_after]
@@ -403,7 +657,10 @@ def run():
         json.dump({"note": ("Exchange book check (FLAG ONLY) for sharp-monitor phone alerts with 2h+ lead. latest/first = "
                             "Novig (public order books, no key); prophetx_latest/prophetx_first = ProphetX (read-only key): "
                             "best_price_american, dollars_at_best and dollars_at_alert_price_or_better = amount you could bet "
-                            "at the alert price or better, buy_levels = the ladder. Novig fields: best_price = cheapest cost to BUY the alert side now (0-1, with American); "
+                            "at the alert price or better, buy_levels = the ladder. kalshi_latest/_first and polymarket_latest/_first: "
+                            "same fields (public books, no key). hardrock_latest/_first: Hard Rock sportsbook price and line via The Odds API "
+                            "(no order book; refreshed every 30 min). best_now = best gettable price across the books, plus total "
+                            "dollars at the alert price or better on books with the exact line. Novig fields: best_price = cheapest cost to BUY the alert side now (0-1, with American); "
                             "dollars_at_alert_price_or_better = dollars you could buy at the alert's price or better on the "
                             "same line; exact_line=false means Novig had no market at the alert's line and the nearest "
                             "line is shown. resting_bids_on_this_side_dollars = others bidding the same side. 'first' = first "
