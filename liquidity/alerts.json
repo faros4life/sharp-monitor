@@ -1,6 +1,147 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-22T18:20:11Z",
+   "base_depth": 2512342,
+   "best_price": 0.785,
+   "best_price_american": -365,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.78,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-22",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -12,
+     "new_this_side": 123652,
+     "other_side": 274383,
+     "other_side_all_levels": 375580,
+     "ratio": 7.8,
+     "this_side": 2144140,
+     "this_side_all_levels": 2635130
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "MEM (0)",
+     "price": 0.785,
+     "this_side": 84196
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Memphis",
+     "price": 0.7849,
+     "this_side": 24967
+    }
+   },
+   "first_seen_utc": "2026-10-22T18:10:09Z",
+   "game": "East Carolina vs Memphis",
+   "key": "kalshi|KXNCAAFGAME-26OCT22ECUMEM|ml|1",
+   "lead_min": 310,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 123652,
+   "price": 0.78,
+   "price_american": -355,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.78,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -425
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -435
+    },
+    "betrivers": {
+     "point": null,
+     "price": -400
+    },
+    "betus": {
+     "point": null,
+     "price": -430
+    },
+    "bovada": {
+     "point": null,
+     "price": -435
+    },
+    "draftkings": {
+     "point": null,
+     "price": -425
+    },
+    "fanatics": {
+     "point": null,
+     "price": -425
+    },
+    "fanduel": {
+     "point": null,
+     "price": -430
+    },
+    "kalshi": {
+     "point": null,
+     "price": -355
+    },
+    "lowvig": {
+     "point": null,
+     "price": -435
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -429
+    },
+    "novig": {
+     "point": null,
+     "price": -365
+    },
+    "polymarket": {
+     "point": null,
+     "price": -376
+    },
+    "prophetx": {
+     "point": null,
+     "price": -365
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -400
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26OCT22ECUMEM-MEM"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "prophetx"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Memphis",
+   "side_label": "Memphis",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-22T23:30:00Z",
+   "teams": [
+    "East Carolina",
+    "Memphis"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-22T18:10:09Z",
    "base_depth": 110919,
    "best_price": 0.65,
@@ -729,6 +870,8 @@
    "market": "moneyline",
    "new_money": 38138,
    "price": 0.6,
+   "price_after_15m": 0.6168,
+   "price_after_15m_book": "kalshi",
    "price_american": -150,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.6,
@@ -748,6 +891,7 @@
    "side_label": "Buffalo",
    "start_source": "kalshi",
    "start_utc": "2026-10-24T03:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Bowling Green",
     "Buffalo"
@@ -932,8 +1076,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.55,
-   "clv_cents": 0.0,
+   "close_price": 0.545,
+   "clv_cents": -0.5,
    "confirmed_after_min": 10,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -3244,7 +3388,8 @@
      "price": -105
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-22T18:20:11Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNBASPREAD-26OCT22CLEPHI-PHI3"
@@ -5633,8 +5778,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.6,
-   "clv_cents": 0.5,
+   "close_price": 0.595,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-10-22",
    "depth_by_book": {
