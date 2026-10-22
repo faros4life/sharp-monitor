@@ -1,10 +1,10 @@
 {
  "alerts": [
   {
-   "alerted_utc": "2026-10-22T18:30:16Z",
+   "alerted_utc": "2026-10-22T18:36:23Z",
    "base_depth": 50833,
-   "best_price": 0.48,
-   "best_price_american": 108,
+   "best_price": 0.485,
+   "best_price_american": 106,
    "best_price_book": "novig",
    "bid_improved": false,
    "bid_improved_at_pending": false,
@@ -17,29 +17,29 @@
    ],
    "close_price": 0.48,
    "clv_cents": 0.0,
-   "confirmed_after_min": 10,
+   "confirmed_after_min": 16,
    "date": "2026-10-22",
    "depth_by_book": {
     "kalshi": {
      "heavier_side": true,
      "label": "NOT Over 6.5 goals scored",
      "price": 0.49,
-     "this_side": 153415
+     "this_side": 154398
     },
     "novig": {
      "heavier_side": true,
      "label": "Under 6.5 (6.5)",
-     "price": 0.48,
-     "this_side": 25495
+     "price": 0.485,
+     "this_side": 25479
     },
     "polymarket": {
      "new_other_side": 8642,
      "new_this_side": 35519,
      "other_side": 39479,
-     "other_side_all_levels": 50946,
+     "other_side_all_levels": 50955,
      "ratio": 1.9,
-     "this_side": 73552,
-     "this_side_all_levels": 87067
+     "this_side": 73334,
+     "this_side_all_levels": 87043
     },
     "prophetx": {
      "heavier_side": false,
@@ -51,7 +51,7 @@
    "first_seen_utc": "2026-10-22T18:20:11Z",
    "game": "Hurricanes vs. Oilers",
    "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"4950300\"}",
-   "lead_min": 390,
+   "lead_min": 384,
    "league": "NHL",
    "line": 6.5,
    "market": "total",
@@ -107,11 +107,11 @@
     },
     "mybookieag": {
      "point": 6.5,
-     "price": -101
+     "price": -105
     },
     "novig": {
      "point": 6.5,
-     "price": 106
+     "price": 108
     },
     "polymarket": {
      "point": 6.5,
@@ -152,10 +152,10 @@
    "units_flat": null
   },
   {
-   "alerted_utc": "2026-10-22T18:30:16Z",
+   "alerted_utc": "2026-10-22T18:36:23Z",
    "base_depth": 110403,
-   "best_price": 0.48,
-   "best_price_american": 108,
+   "best_price": 0.485,
+   "best_price_american": 106,
    "best_price_book": "novig",
    "bid_improved": false,
    "bid_improved_at_pending": false,
@@ -168,29 +168,29 @@
    ],
    "close_price": 0.49,
    "clv_cents": 0.0,
-   "confirmed_after_min": 10,
+   "confirmed_after_min": 16,
    "date": "2026-10-22",
    "depth_by_book": {
     "kalshi": {
      "new_other_side": 7484,
      "new_this_side": 62028,
-     "other_side": 85036,
-     "other_side_all_levels": 96203,
-     "ratio": 1.8,
-     "this_side": 153415,
-     "this_side_all_levels": 186759
+     "other_side": 89630,
+     "other_side_all_levels": 100930,
+     "ratio": 1.7,
+     "this_side": 154398,
+     "this_side_all_levels": 187846
     },
     "novig": {
      "heavier_side": true,
      "label": "Under 6.5 (6.5)",
-     "price": 0.48,
-     "this_side": 25495
+     "price": 0.485,
+     "this_side": 25479
     },
     "polymarket": {
      "heavier_side": true,
      "label": "Under (6.5)",
      "price": 0.48,
-     "this_side": 73552
+     "this_side": 73334
     },
     "prophetx": {
      "heavier_side": false,
@@ -202,7 +202,7 @@
    "first_seen_utc": "2026-10-22T18:20:11Z",
    "game": "Carolina vs Edmonton: Total Goals",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLTOTAL-26OCT22CAREDM-7\"}",
-   "lead_min": 390,
+   "lead_min": 384,
    "league": "NHL",
    "line": 6.5,
    "market": "total",
@@ -258,11 +258,11 @@
     },
     "mybookieag": {
      "point": 6.5,
-     "price": -101
+     "price": -105
     },
     "novig": {
      "point": 6.5,
-     "price": 106
+     "price": 108
     },
     "polymarket": {
      "point": 6.5,
@@ -353,6 +353,8 @@
    "market": "moneyline",
    "new_money": 123652,
    "price": 0.78,
+   "price_after_15m": 0.785,
+   "price_after_15m_book": "novig",
    "price_american": -355,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.78,
@@ -418,8 +420,7 @@
      "price": -400
     }
    },
-   "pulled": true,
-   "pulled_utc": "2026-10-22T18:30:16Z",
+   "pulled": false,
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26OCT22ECUMEM-MEM"
@@ -437,6 +438,7 @@
    "side_label": "Memphis",
    "start_source": "prophetx",
    "start_utc": "2026-10-22T23:30:00Z",
+   "still_actionable": true,
    "teams": [
     "East Carolina",
     "Memphis"
@@ -1778,7 +1780,7 @@
    "price_when_first_seen": 0.75,
    "prices_by_book": {},
    "pulled": true,
-   "pulled_utc": "2026-10-22T18:30:16Z",
+   "pulled_utc": "2026-10-22T18:36:23Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26OCT23ISUARIZ-ARIZ"
