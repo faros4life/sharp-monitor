@@ -1,6 +1,331 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-22T15:50:11Z",
+   "base_depth": 465606,
+   "best_price": 0.5148,
+   "best_price_american": -106,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-22",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 27105,
+     "new_this_side": 155535,
+     "other_side": 423761,
+     "other_side_all_levels": 511540,
+     "ratio": 1.3,
+     "this_side": 551459,
+     "this_side_all_levels": 620430
+    }
+   },
+   "first_seen_utc": "2026-10-22T15:40:39Z",
+   "game": "James Madison vs Appalachian St.: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFSPREAD-26OCT22JMUAPP-JMU12\"}",
+   "lead_min": 430,
+   "league": "NCAAF",
+   "line": -11.5,
+   "market": "spread",
+   "new_money": 155535,
+   "price": 0.5,
+   "price_american": -100,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.5,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -11.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": -12.0,
+     "price": -110
+    },
+    "betrivers": {
+     "point": -11.0,
+     "price": -110
+    },
+    "betus": {
+     "point": -12.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": -12.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": -11.5,
+     "price": -110
+    },
+    "fanatics": {
+     "point": -12.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": -11.5,
+     "price": -112
+    },
+    "kalshi": {
+     "point": -11.5,
+     "price": 100
+    },
+    "lowvig": {
+     "point": -12.0,
+     "price": -106
+    },
+    "mybookieag": {
+     "point": -12.0,
+     "price": -110
+    },
+    "novig": {
+     "point": -11.5,
+     "price": -102
+    },
+    "polymarket": {
+     "point": -13.5,
+     "price": 117
+    },
+    "prophetx": {
+     "point": -13.0,
+     "price": 108
+    },
+    "williamhill_us": {
+     "point": -12.0,
+     "price": -107
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFSPREAD-26OCT22JMUAPP-JMU12"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "no_match",
+   "second_book_fresh": false,
+   "sharp_agree": [
+    "James Madison Dukes -10.5 (-110)"
+   ],
+   "sharp_oppose": [],
+   "side": "James Madison",
+   "side_label": "James Madison wins by over 11.5 points",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-22T23:00:00Z",
+   "teams": [
+    "James Madison",
+    "Appalachian St."
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-22T15:50:11Z",
+   "base_depth": 1624717,
+   "best_price": 0.8112,
+   "best_price_american": -430,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.8,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-23",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 5,
+     "new_this_side": 121553,
+     "other_side": 574666,
+     "other_side_all_levels": 656003,
+     "ratio": 2.2,
+     "this_side": 1292933,
+     "this_side_all_levels": 1745340
+    }
+   },
+   "first_seen_utc": "2026-10-22T15:40:39Z",
+   "game": "Vanderbilt vs Kentucky",
+   "key": "kalshi|KXNCAAFGAME-26OCT23VANUK|ml|1",
+   "lead_min": 2110,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 121553,
+   "price": 0.8,
+   "price_american": -400,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.8,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26OCT23VANUK-UK"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "no_match",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Kentucky",
+   "side_label": "Kentucky",
+   "start_source": "kalshi",
+   "start_utc": "2026-10-24T03:00:00Z",
+   "teams": [
+    "Vanderbilt",
+    "Kentucky"
+   ],
+   "top25": true,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-22T15:50:11Z",
+   "base_depth": 527522,
+   "best_price": 0.5463,
+   "best_price_american": -120,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.53,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-23",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -19665,
+     "new_this_side": 292002,
+     "other_side": 302285,
+     "other_side_all_levels": 480339,
+     "ratio": 2.2,
+     "this_side": 658675,
+     "this_side_all_levels": 821872
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Tulsa",
+     "price": 0.5413,
+     "this_side": 4154
+    }
+   },
+   "first_seen_utc": "2026-10-22T15:40:39Z",
+   "game": "Army vs Tulsa",
+   "key": "kalshi|KXNCAAFGAME-26OCT23ARMYTLSA|ml|1",
+   "lead_min": 1960,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 292002,
+   "price": 0.53,
+   "price_american": -113,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.53,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -120
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -120
+    },
+    "betrivers": {
+     "point": null,
+     "price": -129
+    },
+    "betus": {
+     "point": null,
+     "price": -120
+    },
+    "bovada": {
+     "point": null,
+     "price": -125
+    },
+    "draftkings": {
+     "point": null,
+     "price": -120
+    },
+    "fanatics": {
+     "point": null,
+     "price": -125
+    },
+    "fanduel": {
+     "point": null,
+     "price": -125
+    },
+    "kalshi": {
+     "point": null,
+     "price": -113
+    },
+    "lowvig": {
+     "point": null,
+     "price": -120
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -121
+    },
+    "novig": {
+     "point": null,
+     "price": -115
+    },
+    "polymarket": {
+     "point": null,
+     "price": -117
+    },
+    "prophetx": {
+     "point": null,
+     "price": -118
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -120
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26OCT23ARMYTLSA-TLSA"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "none_10k",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Tulsa",
+   "side_label": "Tulsa",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-24T00:30:00Z",
+   "teams": [
+    "Army",
+    "Tulsa"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-22T15:40:39Z",
    "base_depth": 383035,
    "best_price": 0.5772,
@@ -145,8 +470,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.58,
-   "clv_cents": 0.0,
+   "close_price": 0.57,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -260,7 +585,8 @@
      "price": -155
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-22T15:50:11Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNBAGAME-26OCT22CLEPHI-PHI"
@@ -337,6 +663,8 @@
    "market": "moneyline",
    "new_money": 246641,
    "price": 0.6,
+   "price_after_15m": 0.595,
+   "price_after_15m_book": "novig",
    "price_american": -150,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.6,
@@ -414,7 +742,8 @@
      "price": -162
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-22T15:50:11Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNFLGAME-26OCT22NECHI-CHI"
@@ -432,6 +761,7 @@
    "side_label": "Chicago",
    "start_source": "prophetx",
    "start_utc": "2026-10-23T00:15:00Z",
+   "still_actionable": true,
    "teams": [
     "New England",
     "Chicago"
@@ -478,6 +808,8 @@
    "market": "moneyline",
    "new_money": 153679,
    "price": 0.76,
+   "price_after_15m": 0.7728,
+   "price_after_15m_book": "kalshi",
    "price_american": -317,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.76,
@@ -497,6 +829,7 @@
    "side_label": "TCU",
    "start_source": "kalshi",
    "start_utc": "2026-10-24T03:00:00Z",
+   "still_actionable": true,
    "teams": [
     "West Virginia",
     "TCU"
