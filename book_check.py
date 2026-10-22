@@ -77,6 +77,16 @@ PX_ACCESS = os.environ.get("PROPHETX_ACCESS_KEY", "")
 PX_SECRET = os.environ.get("PROPHETX_SECRET_KEY", "")
 PX_TOURNAMENTS = {"NHL": 234, "NFL": 31, "NCAAF": 27653, "NBA": 132}
 _PX = {"token": None, "events": {}, "markets": {}, "logged_shape": False}
+PX_FEE = float(os.environ.get("PX_FEE", "") or "0.02")   # ProphetX takes 2% of winnings
+
+
+def after_fee(american, fee):
+    """Effective American odds after a fee on winnings: -107 at 2% -> about -109; +455 -> +446."""
+    if american is None or not fee:
+        return american
+    win = (100 / abs(american)) if american < 0 else american / 100   # winnings per $1 risked
+    win *= (1 - fee)
+    return round(-100 / win) if win < 1 else round(win * 100)
 
 
 def px_call(path, body=None):
@@ -219,14 +229,17 @@ def px_check(al, mtype, side, line, price, teams):
         mk, levels, pline = cands[0]
     else:
         mk, levels, pline = min(cands, key=lambda c: abs((c[2] if c[2] is not None else 1e9) - line))
-    lv = sorted(({"american": int(x["price"]), "dollars": round(float(x.get("value") or 0)),
+    lv = sorted(({"american": int(x["price"]), "american_after_fee": after_fee(int(x["price"]), PX_FEE),
+                  "dollars": round(float(x.get("value") or 0)),
                   "to_win": round(float(x.get("quantity") or 0))} for x in levels if x.get("price") is not None),
                 key=lambda x: -x["american"])   # best price first (higher American = better for the bettor)
     best = lv[0] if lv else None
-    at_or_better = sum(x["dollars"] for x in lv if price is not None and x["american"] >= price)
+    # compare AFTER ProphetX's 2% fee on winnings
+    at_or_better = sum(x["dollars"] for x in lv if price is not None and x["american_after_fee"] >= price)
     return {"status": "ok", "market_name": mk.get("name"), "prophetx_line": pline, "alert_line": line,
             "exact_line": (line is None) or (pline is not None and abs(pline - line) < 1e-9),
-            "alert_price": price, "best_price_american": best["american"] if best else None,
+            "alert_price": price, "best_price_american": best["american_after_fee"] if best else None,
+            "best_price_american_displayed": best["american"] if best else None, "fee_on_winnings": PX_FEE,
             "dollars_at_best": best["dollars"] if best else 0,
             "dollars_at_alert_price_or_better": round(at_or_better), "buy_levels": lv[:10]}
 
@@ -236,20 +249,28 @@ _KC = {"events": {}, "books": {}}
 _PMC = {"events": {}}
 
 
-def ladder_result(levels, price, line, book_line, extra=None):
-    """levels: [(cost 0-1, dollars)] you can BUY at. Returns the common result block."""
+TAKER_COEF = {"kalshi": float(os.environ.get("KALSHI_FEE", "") or "0.07"),
+              "polymarket": float(os.environ.get("PM_FEE", "") or "0.03")}   # per contract = coef x P x (1-P)
+
+
+def ladder_result(levels, price, line, book_line, extra=None, fee_coef=0.0):
+    """levels: [(cost 0-1, dollars)] you can BUY at. Prices compared AFTER the taker fee (coef x P x (1-P) per contract).
+    Returns the common result block."""
     agg = {}
     for c, dol in levels:
         if c is None or c <= 0 or c >= 1 or dol <= 0:
             continue
         agg[round(c, 4)] = agg.get(round(c, 4), 0) + dol
-    lv = [{"price": c, "american": lm.american(c), "dollars": round(d)} for c, d in sorted(agg.items())]
+    lv = [{"price": c, "american_displayed": lm.american(c), "price_after_fee": round(c + fee_coef * c * (1 - c), 4),
+           "american": lm.american(round(c + fee_coef * c * (1 - c), 4)), "dollars": round(d)} for c, d in sorted(agg.items())]
     best = lv[0] if lv else None
     at_or_better = sum(x["dollars"] for x in lv if price is not None and x["american"] is not None and x["american"] >= price)
     out = {"status": "ok" if lv else "no_liquidity", "line": book_line, "alert_line": line,
            "exact_line": (line is None) or (book_line is not None and abs(book_line - line) < 1e-9),
-           "alert_price": price, "best_price": best["price"] if best else None,
-           "best_price_american": best["american"] if best else None, "dollars_at_best": best["dollars"] if best else 0,
+           "alert_price": price, "best_price": best["price_after_fee"] if best else None,
+           "best_price_american": best["american"] if best else None,
+           "best_price_american_displayed": best["american_displayed"] if best else None, "taker_fee_coef": fee_coef,
+           "dollars_at_best": best["dollars"] if best else 0,
            "dollars_at_alert_price_or_better": round(at_or_better), "buy_levels": lv[:10]}
     out.update(extra or {})
     return out
@@ -320,7 +341,7 @@ def kalshi_check(al, mtype, side, line, price, teams):
             for p, q in lm.k_levels(_KC["books"][t], take):
                 c = 1 - p
                 levels.append((c, c * q))
-        return ladder_result(levels, price, line, kline, {"markets": [o[0]["ticker"] for o in picks]})
+        return ladder_result(levels, price, line, kline, {"markets": [o[0]["ticker"] for o in picks]}, TAKER_COEF["kalshi"])
     return {"status": "game_not_on_kalshi"}
 
 
@@ -385,7 +406,7 @@ def pm_check(al, mtype, side, line, price, teams):
         except Exception as ex:
             return {"status": f"error: {str(ex)[:80]}"}
         levels = [(float(a["price"]), float(a["price"]) * float(a["size"])) for a in (book.get("asks") or [])]
-        return ladder_result(levels, price, line, pline, {"market_id": str(mk.get("id"))})
+        return ladder_result(levels, price, line, pline, {"market_id": str(mk.get("id"))}, TAKER_COEF["polymarket"])
     return {"status": "game_not_on_polymarket"}
 
 
@@ -656,10 +677,12 @@ def run():
     os.makedirs(os.path.dirname(OUT_FILE), exist_ok=True)
     with open(OUT_FILE, "w") as f:
         json.dump({"note": ("Exchange book check (FLAG ONLY) for sharp-monitor phone alerts with 2h+ lead. latest/first = "
-                            "Novig (public order books, no key); prophetx_latest/prophetx_first = ProphetX (read-only key): "
+                            "Novig (public order books, no key); prophetx_latest/prophetx_first = ProphetX (read-only key; prices are AFTER its "
+                            "2%% fee on winnings, displayed price kept as best_price_american_displayed): "
                             "best_price_american, dollars_at_best and dollars_at_alert_price_or_better = amount you could bet "
                             "at the alert price or better, buy_levels = the ladder. kalshi_latest/_first and polymarket_latest/_first: "
-                            "same fields (public books, no key). hardrock_latest/_first: Hard Rock sportsbook price and line via The Odds API "
+                            "same fields (public books, no key), prices AFTER taker fees (Kalshi 0.07, Polymarket global 0.03 x P x (1-P) per "
+                            "contract; displayed price kept as best_price_american_displayed). Novig pregame: no fee. hardrock_latest/_first: Hard Rock sportsbook price and line via The Odds API "
                             "(no order book; refreshed every 30 min). best_now = best gettable price across the books, plus total "
                             "dollars at the alert price or better on books with the exact line. Novig fields: best_price = cheapest cost to BUY the alert side now (0-1, with American); "
                             "dollars_at_alert_price_or_better = dollars you could buy at the alert's price or better on the "
