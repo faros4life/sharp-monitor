@@ -22,6 +22,9 @@ jobs:
         with:
           python-version: "3.12"
       - name: Check exchange books for phone alerts
+        env:
+          PROPHETX_ACCESS_KEY: ${{ secrets.PROPHETX_ACCESS_KEY }}   # read-only use: login + markets, never orders
+          PROPHETX_SECRET_KEY: ${{ secrets.PROPHETX_SECRET_KEY }}
         run: python -u book_check.py
       - name: Commit book check
         if: always()
