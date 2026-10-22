@@ -145,7 +145,9 @@ def check_alert(al, evs_by, mks_by_event):
                   for c, q in sorted(asks.items())]
     bids_mine = sum(float(r["price"]) * int(r["qty"]) for r in orders.get(mine, []))
     alert_prob = am_to_prob(price) if price is not None else None
-    at_or_better = sum(lv["dollars"] for lv in ask_levels if alert_prob is not None and lv["price"] <= alert_prob + 1e-9)
+    # compare in American odds as displayed (higher = better for the bettor), so -108 on Novig (52.0c) counts as -108
+    at_or_better = sum(lv["dollars"] for lv in ask_levels
+                       if price is not None and lv["american"] is not None and lv["american"] >= price)
     best = ask_levels[0] if ask_levels else None
     return {
         "status": "ok",
