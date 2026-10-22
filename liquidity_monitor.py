@@ -1240,8 +1240,14 @@ def run():
     now_s = n.timestamp()
     today = n.astimezone(ET).date()
     days = {today, today + timedelta(days=1)}
-    state = load(STATE_FILE, {})
-    alerts = load(ALERTS_FILE, {"alerts": []}).get("alerts", [])
+    state = load(STATE_FILE, None)
+    doc = load(ALERTS_FILE, {"alerts": []})
+    alerts = doc.get("alerts", [])
+    if state is None:
+        # unreadable state (e.g. damaged by a save collision): KEEP the alert record, rebuild baselines and dedupe keys
+        print("State file unreadable: keeping the alert record, rebuilding baselines")
+        state = {"v": doc.get("v", STATE_VERSION),
+                 "alerted": {a["key"]: a["alerted_utc"] for a in alerts if a.get("key")}}
     if state.get("v") != STATE_VERSION:   # older rules logged standing market-maker size: start the record clean
         print(f"New rules (v{STATE_VERSION}): clearing old alerts and state")
         state, alerts = {"v": STATE_VERSION}, []
@@ -1419,7 +1425,7 @@ def run():
         "rose between readings), best_price/best_price_book, prices_by_book (Odds API sportsbooks), second_book_fresh (second book "
         "added >= $10k on the side in the last two checks), lead_min, price_rule (fails_cap = worse than -130 on spread/total; "
         "ml_edge_ok/fail = 2%% edge vs cross-book fair mid), price_after_15m/still_actionable." % (PRIMARY_MIN, NEAR * 100, RATIO, SECOND_MIN)),
-        "alerts": alerts})
+        "v": STATE_VERSION, "alerts": alerts})
     save(STATE_FILE, state)
     stats = (f"This run: {fired} new, {dropped} not confirmed, {len(state['pending'])} pending. "
              f"Open alerts: {sum(1 for a in alerts if a['result'] is None)}.")
