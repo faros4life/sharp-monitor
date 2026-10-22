@@ -1,6 +1,773 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-22T17:20:13Z",
+   "base_depth": 169478,
+   "best_price": 0.6766,
+   "best_price_american": -209,
+   "best_price_book": "polymarket",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.67,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-22",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 12662,
+     "new_this_side": 41871,
+     "other_side": 71290,
+     "other_side_all_levels": 90212,
+     "ratio": 2.8,
+     "this_side": 201330,
+     "this_side_all_levels": 210190
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Sharks (+1.5)",
+     "price": 0.67,
+     "this_side": 86322
+    }
+   },
+   "first_seen_utc": "2026-10-22T17:10:10Z",
+   "game": "San Jose vs Ottawa: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLSPREAD-26OCT22SJOTT-OTT2\"}",
+   "lead_min": 340,
+   "league": "NHL",
+   "line": 1.5,
+   "market": "spread",
+   "new_money": 41871,
+   "price": 0.67,
+   "price_american": -203,
+   "price_rule": "fails_cap",
+   "price_when_first_seen": 0.67,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 1.5,
+     "price": -210
+    },
+    "betonlineag": {
+     "point": 1.5,
+     "price": -215
+    },
+    "betopenly": {
+     "point": 1.5,
+     "price": -202
+    },
+    "betrivers": {
+     "point": 1.5,
+     "price": -230
+    },
+    "betus": {
+     "point": 1.5,
+     "price": -215
+    },
+    "bovada": {
+     "point": 1.5,
+     "price": -230
+    },
+    "draftkings": {
+     "point": 1.5,
+     "price": -218
+    },
+    "fanatics": {
+     "point": 1.5,
+     "price": -225
+    },
+    "fanduel": {
+     "point": 1.5,
+     "price": -235
+    },
+    "kalshi": {
+     "point": 1.5,
+     "price": -203
+    },
+    "lowvig": {
+     "point": 1.5,
+     "price": -215
+    },
+    "mybookieag": {
+     "point": 1.5,
+     "price": -224
+    },
+    "novig": {
+     "point": 1.5,
+     "price": -199
+    },
+    "polymarket": {
+     "point": 1.5,
+     "price": -203
+    },
+    "prophetx": {
+     "point": 1.5,
+     "price": -205
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNHLSPREAD-26OCT22SJOTT-OTT2"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "polymarket"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "San Jose",
+   "side_label": "NOT Ottawa wins by over 1.5 goals",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-22T23:00:00Z",
+   "teams": [
+    "San Jose",
+    "Ottawa"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-22T17:20:13Z",
+   "base_depth": 431738,
+   "best_price": 0.5,
+   "best_price_american": -100,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-22",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 18932,
+     "new_this_side": 101226,
+     "other_side": 254710,
+     "other_side_all_levels": 345890,
+     "ratio": 1.9,
+     "this_side": 480860,
+     "this_side_all_levels": 532887
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "KENN +9.5 (9.5)",
+     "price": 0.5,
+     "this_side": 50729
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "Kennesaw State +9.5 (+9.5)",
+     "price": 0.5025,
+     "this_side": 19086
+    }
+   },
+   "first_seen_utc": "2026-10-22T17:10:10Z",
+   "game": "Liberty vs Kennesaw St.: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFSPREAD-26OCT22LIBKENN-LIB10\"}",
+   "lead_min": 340,
+   "league": "NCAAF",
+   "line": 9.5,
+   "market": "spread",
+   "new_money": 101226,
+   "price": 0.5,
+   "price_american": -100,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.5,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 9.5,
+     "price": -108
+    },
+    "betonlineag": {
+     "point": 9.5,
+     "price": -110
+    },
+    "betrivers": {
+     "point": 9.0,
+     "price": -112
+    },
+    "betus": {
+     "point": 9.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 9.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 9.5,
+     "price": -110
+    },
+    "fanatics": {
+     "point": 9.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 9.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": 9.5,
+     "price": 100
+    },
+    "lowvig": {
+     "point": 9.5,
+     "price": -106
+    },
+    "mybookieag": {
+     "point": 9.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 9.5,
+     "price": 100
+    },
+    "polymarket": {
+     "point": 8.5,
+     "price": 104
+    },
+    "prophetx": {
+     "point": 9.0,
+     "price": 102
+    },
+    "williamhill_us": {
+     "point": 9.5,
+     "price": -107
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAFSPREAD-26OCT22LIBKENN-LIB10"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Kennesaw St.",
+   "side_label": "NOT Liberty wins by over 9.5 points",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-22T23:00:00Z",
+   "teams": [
+    "Liberty",
+    "Kennesaw St."
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-22T17:20:13Z",
+   "base_depth": 279405,
+   "best_price": 0.6475,
+   "best_price_american": -184,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.65,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-22",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 6040,
+     "new_this_side": 40489,
+     "other_side": 194407,
+     "other_side_all_levels": 213258,
+     "ratio": 1.5,
+     "this_side": 296722,
+     "this_side_all_levels": 322903
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "DAL (0)",
+     "price": 0.65,
+     "this_side": 45025
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Dallas Stars",
+     "price": 0.6429,
+     "this_side": 16103
+    }
+   },
+   "first_seen_utc": "2026-10-22T17:10:10Z",
+   "game": "Winnipeg vs Dallas",
+   "key": "kalshi|KXNHLGAME-26OCT22WPGDAL|ml|1",
+   "lead_min": 400,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 40489,
+   "price": 0.65,
+   "price_american": -186,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.65,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -200
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -195
+    },
+    "betopenly": {
+     "point": null,
+     "price": -182
+    },
+    "betrivers": {
+     "point": null,
+     "price": -205
+    },
+    "betus": {
+     "point": null,
+     "price": -190
+    },
+    "bovada": {
+     "point": null,
+     "price": -198
+    },
+    "draftkings": {
+     "point": null,
+     "price": -205
+    },
+    "fanatics": {
+     "point": null,
+     "price": -200
+    },
+    "fanduel": {
+     "point": null,
+     "price": -200
+    },
+    "kalshi": {
+     "point": null,
+     "price": -186
+    },
+    "lowvig": {
+     "point": null,
+     "price": -195
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -198
+    },
+    "novig": {
+     "point": null,
+     "price": -186
+    },
+    "polymarket": {
+     "point": null,
+     "price": -186
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -186
+    },
+    "prophetx": {
+     "point": null,
+     "price": -180
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -209
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNHLGAME-26OCT22WPGDAL-DAL"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "prophetx"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Dallas",
+   "side_label": "Dallas",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-23T00:00:00Z",
+   "teams": [
+    "Winnipeg",
+    "Dallas"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-22T17:20:13Z",
+   "base_depth": 272799,
+   "best_price": 0.4555,
+   "best_price_american": 120,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.44,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-22",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -194093,
+     "new_this_side": 57882,
+     "other_side": 230350,
+     "other_side_all_levels": 301436,
+     "ratio": 1.3,
+     "this_side": 295855,
+     "this_side_all_levels": 347585
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Sharks",
+     "price": 0.45,
+     "this_side": 137612
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "San Jose Sharks",
+     "price": 0.4505,
+     "this_side": 19107
+    }
+   },
+   "first_seen_utc": "2026-10-22T17:10:10Z",
+   "game": "San Jose vs Ottawa",
+   "key": "kalshi|KXNHLGAME-26OCT22SJOTT|ml|0",
+   "lead_min": 340,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 57882,
+   "price": 0.44,
+   "price_american": 127,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.44,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": 110
+    },
+    "betonlineag": {
+     "point": null,
+     "price": 115
+    },
+    "betopenly": {
+     "point": null,
+     "price": 117
+    },
+    "betrivers": {
+     "point": null,
+     "price": 116
+    },
+    "betus": {
+     "point": null,
+     "price": 110
+    },
+    "bovada": {
+     "point": null,
+     "price": 107
+    },
+    "draftkings": {
+     "point": null,
+     "price": 114
+    },
+    "fanatics": {
+     "point": null,
+     "price": 110
+    },
+    "fanduel": {
+     "point": null,
+     "price": 106
+    },
+    "kalshi": {
+     "point": null,
+     "price": 127
+    },
+    "lowvig": {
+     "point": null,
+     "price": 115
+    },
+    "mybookieag": {
+     "point": null,
+     "price": 109
+    },
+    "novig": {
+     "point": null,
+     "price": 122
+    },
+    "polymarket": {
+     "point": null,
+     "price": 122
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": 127
+    },
+    "prophetx": {
+     "point": null,
+     "price": 122
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": 114
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNHLGAME-26OCT22SJOTT-SJ"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "polymarket",
+    "prophetx"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "San Jose",
+   "side_label": "San Jose",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-22T23:00:00Z",
+   "teams": [
+    "San Jose",
+    "Ottawa"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-22T17:20:13Z",
+   "base_depth": 2232491,
+   "best_price": 0.7728,
+   "best_price_american": -340,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.76,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-23",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 518,
+     "new_this_side": 961058,
+     "other_side": 222854,
+     "other_side_all_levels": 303652,
+     "ratio": 12.8,
+     "this_side": 2857818,
+     "this_side_all_levels": 3184591
+    }
+   },
+   "first_seen_utc": "2026-10-22T17:10:10Z",
+   "game": "Oregon vs Illinois",
+   "key": "kalshi|KXNCAAFGAME-26OCT23OREILL|ml|0",
+   "lead_min": 2020,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 961058,
+   "price": 0.76,
+   "price_american": -317,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.76,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26OCT23OREILL-ORE"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "no_match",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Oregon",
+   "side_label": "Oregon",
+   "start_source": "kalshi",
+   "start_utc": "2026-10-24T03:00:00Z",
+   "teams": [
+    "Oregon",
+    "Illinois"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-22T17:20:13Z",
+   "base_depth": 333389,
+   "best_price": 0.8303,
+   "best_price_american": -489,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.82,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-23",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 1520,
+     "new_this_side": 39447,
+     "other_side": 68896,
+     "other_side_all_levels": 76852,
+     "ratio": 3.2,
+     "this_side": 218900,
+     "this_side_all_levels": 380471
+    }
+   },
+   "first_seen_utc": "2026-10-22T17:10:10Z",
+   "game": "Old Dominion vs Louisiana Tech",
+   "key": "kalshi|KXNCAAFGAME-26OCT23ODULT|ml|1",
+   "lead_min": 2020,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 39447,
+   "price": 0.82,
+   "price_american": -456,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.82,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26OCT23ODULT-LT"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "no_match",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Louisiana Tech",
+   "side_label": "Louisiana Tech",
+   "start_source": "kalshi",
+   "start_utc": "2026-10-24T03:00:00Z",
+   "teams": [
+    "Old Dominion",
+    "Louisiana Tech"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-22T17:20:13Z",
+   "base_depth": 553854,
+   "best_price": 0.8399,
+   "best_price_american": -525,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.83,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-23",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 3493,
+     "new_this_side": 98012,
+     "other_side": 55774,
+     "other_side_all_levels": 121157,
+     "ratio": 5.2,
+     "this_side": 291386,
+     "this_side_all_levels": 653289
+    }
+   },
+   "first_seen_utc": "2026-10-22T17:10:10Z",
+   "game": "Colorado vs Oklahoma St.",
+   "key": "kalshi|KXNCAAFGAME-26OCT23COLOOKST|ml|1",
+   "lead_min": 2020,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 98012,
+   "price": 0.83,
+   "price_american": -488,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.83,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26OCT23COLOOKST-OKST"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "no_match",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Oklahoma St.",
+   "side_label": "Oklahoma St.",
+   "start_source": "kalshi",
+   "start_utc": "2026-10-24T03:00:00Z",
+   "teams": [
+    "Colorado",
+    "Oklahoma St."
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-22T17:10:10Z",
    "base_depth": 690998,
    "best_price": 0.505,
@@ -332,6 +1099,8 @@
    "market": "spread",
    "new_money": 42889,
    "price": 0.49,
+   "price_after_15m": 0.49,
+   "price_after_15m_book": "novig",
    "price_american": 104,
    "price_rule": "ok",
    "price_when_first_seen": 0.49,
@@ -420,6 +1189,7 @@
    "side_label": "NOT Philadelphia wins by over 2.5 points",
    "start_source": "polymarket",
    "start_utc": "2026-10-22T23:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Cleveland",
     "Philadelphia"
