@@ -1,13 +1,16 @@
 # Liquidity alerts (paper)
 
-Updated Thu Oct 22, 11:34 AM ET. This run: 2 new, 2 not confirmed, 3 pending. Open alerts: 16.
+Updated Thu Oct 22, 11:40 AM ET. This run: 3 new, 0 not confirmed, 3 pending. Open alerts: 19.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Oct 22 11:34AM | NFL | New England vs Chicago | moneyline: Chicago | kalshi | $247k | -150 | ✅ novig,prophetx |  | +0.0c |  | pending |
-| Oct 22 11:34AM | NCAAF | West Virginia vs TCU | moneyline: TCU | kalshi | $154k | -317 |  |  | +0.0c |  | pending |
+| Oct 22 11:40AM | NCAAF | Miami (OH) vs Central Michigan | moneyline: Miami (OH) | kalshi | $44k | -127 |  |  | +0.0c |  | pending |
+| Oct 22 11:40AM | NCAAF | Akron vs Kent St. | moneyline: Kent St. | kalshi | $52k | -138 |  |  | +0.0c |  | pending |
+| Oct 22 11:40AM | NBA | Cleveland vs Philadelphia | moneyline: Philadelphia | kalshi | $270k | -138 | ✅ novig,polymarket,prophetx |  | +0.0c |  | pending |
+| Oct 22 11:30AM | NFL | New England vs Chicago | moneyline: Chicago | kalshi | $247k | -150 | ✅ novig,prophetx |  | +0.0c |  | pending |
+| Oct 22 11:30AM | NCAAF | West Virginia vs TCU | moneyline: TCU | kalshi | $154k | -317 |  |  | +0.0c |  | pending |
 | Oct 22 11:20AM | NBA | Cavaliers vs. 76ers | moneyline: 76ers | polymarket | $337k | -133 | ✅ novig |  | +0.0c | yes | pending |
 | Oct 22 11:20AM | NFL | New England Patriots @ Chicago Bears | moneyline: CHI (0) | novig | $88k | -147 | ✅ kalshi,prophetx |  | +0.0c |  | pending |
 | Oct 22 11:10AM | NHL | Ducks vs. Devils | total: Over (6.5) | polymarket | $26k | -113 | ✅ kalshi,novig,prophetx |  | +0.0c |  | pending |
