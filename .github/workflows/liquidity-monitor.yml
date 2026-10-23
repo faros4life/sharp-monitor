@@ -25,7 +25,7 @@ jobs:
         env:
           LIQ_PRIMARY_MIN: ${{ vars.LIQ_PRIMARY_MIN }}
           LIQ_SECOND_MIN: ${{ vars.LIQ_SECOND_MIN }}
-          LIQ_LEAGUES: ${{ vars.LIQ_LEAGUES }}
+          LIQ_LEAGUES: "NFL,NCAAF,NBA,NHL"   # MLB, NCAAB, tennis run separately (liquidity-extra)
           LIQ_NTFY_TOPIC: ${{ vars.LIQ_NTFY_TOPIC }}
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}   # read-only sportsbook prices at alert time (Hard Rock etc.)
           PROPHETX_ACCESS_KEY: ${{ secrets.PROPHETX_ACCESS_KEY }}   # read-only: login + markets, never orders
