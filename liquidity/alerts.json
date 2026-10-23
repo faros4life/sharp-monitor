@@ -1,6 +1,298 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-23T04:00:15Z",
+   "base_depth": 314831,
+   "best_price": 0.52,
+   "best_price_american": -108,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-23",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 62196,
+     "new_this_side": 231925,
+     "other_side": 156677,
+     "other_side_all_levels": 256201,
+     "ratio": 3.1,
+     "this_side": 478260,
+     "this_side_all_levels": 558572
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "Under 47.5 (47.5)",
+     "price": 0.52,
+     "this_side": 39131
+    }
+   },
+   "first_seen_utc": "2026-10-23T03:50:09Z",
+   "game": "Duke vs Virginia: Total Points",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFTOTAL-26OCT23DUKEUVA-48\"}",
+   "lead_min": 1140,
+   "league": "NCAAF",
+   "line": 47.5,
+   "market": "total",
+   "new_money": 231925,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 47.5,
+     "price": -112
+    },
+    "betonlineag": {
+     "point": 47.0,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 47.5,
+     "price": -105
+    },
+    "betrivers": {
+     "point": 47.5,
+     "price": -113
+    },
+    "betus": {
+     "point": 47.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 47.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 46.5,
+     "price": -102
+    },
+    "fanatics": {
+     "point": 47.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 46.5,
+     "price": -105
+    },
+    "kalshi": {
+     "point": 47.5,
+     "price": -104
+    },
+    "lowvig": {
+     "point": 47.0,
+     "price": -108
+    },
+    "mybookieag": {
+     "point": 47.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 47.5,
+     "price": -108
+    },
+    "polymarket": {
+     "point": 47.5,
+     "price": -113
+    },
+    "prophetx": {
+     "point": 47.0,
+     "price": -102
+    },
+    "williamhill_us": {
+     "point": 47.0,
+     "price": -108
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAFTOTAL-26OCT23DUKEUVA-48"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "NOT Over 47.5 points",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-23T23:00:00Z",
+   "teams": [
+    "Duke",
+    "Virginia"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-23T04:00:15Z",
+   "base_depth": 325681,
+   "best_price": 0.465,
+   "best_price_american": 115,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.46,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-23",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -20584,
+     "new_this_side": 50062,
+     "other_side": 186174,
+     "other_side_all_levels": 379555,
+     "ratio": 1.2,
+     "this_side": 224325,
+     "this_side_all_levels": 388305
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "ORL (0)",
+     "price": 0.465,
+     "this_side": 14264
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Magic",
+     "price": 0.48,
+     "this_side": 24198
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "Orlando Magic",
+     "price": 0.4762,
+     "this_side": 5535
+    }
+   },
+   "first_seen_utc": "2026-10-23T03:50:09Z",
+   "game": "Minnesota vs Orlando",
+   "key": "kalshi|KXNBAGAME-26OCT23MINORL|ml|1",
+   "lead_min": 1140,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 50062,
+   "price": 0.46,
+   "price_american": 117,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.46,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": 105
+    },
+    "betonlineag": {
+     "point": null,
+     "price": 105
+    },
+    "betopenly": {
+     "point": null,
+     "price": 106
+    },
+    "betrivers": {
+     "point": null,
+     "price": 106
+    },
+    "betus": {
+     "point": null,
+     "price": 105
+    },
+    "bovada": {
+     "point": null,
+     "price": 100
+    },
+    "draftkings": {
+     "point": null,
+     "price": 105
+    },
+    "fanatics": {
+     "point": null,
+     "price": 100
+    },
+    "fanduel": {
+     "point": null,
+     "price": 108
+    },
+    "kalshi": {
+     "point": null,
+     "price": 117
+    },
+    "lowvig": {
+     "point": null,
+     "price": 107
+    },
+    "mybookieag": {
+     "point": null,
+     "price": 104
+    },
+    "novig": {
+     "point": null,
+     "price": 113
+    },
+    "polymarket": {
+     "point": null,
+     "price": 108
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": 113
+    },
+    "prophetx": {
+     "point": null,
+     "price": 110
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": 105
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBAGAME-26OCT23MINORL-ORL"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "polymarket"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Orlando",
+   "side_label": "Orlando",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-23T23:00:00Z",
+   "teams": [
+    "Minnesota",
+    "Orlando"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-23T03:40:10Z",
    "base_depth": 9113,
    "best_price": 0.52,
@@ -45,6 +337,8 @@
    "market": "total",
    "new_money": 31803,
    "price": 0.52,
+   "price_after_15m": 0.52,
+   "price_after_15m_book": "novig",
    "price_american": -108,
    "price_rule": "ok",
    "price_when_first_seen": 0.52,
@@ -131,6 +425,7 @@
    "side_label": "Under 47.5 (47.5)",
    "start_source": "prophetx",
    "start_utc": "2026-10-23T23:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Duke",
     "Virginia"
@@ -177,6 +472,8 @@
    "market": "total",
    "new_money": 26265,
    "price": 0.49,
+   "price_after_15m": 0.4977,
+   "price_after_15m_book": "prophetx",
    "price_american": 104,
    "price_rule": "ok",
    "price_when_first_seen": 0.49,
@@ -261,6 +558,7 @@
    "side_label": "NOT Over 53.5 points",
    "start_source": "prophetx",
    "start_utc": "2026-10-24T00:30:00Z",
+   "still_actionable": false,
    "teams": [
     "Army",
     "Tulsa"
@@ -283,8 +581,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": -1.0,
+   "close_price": 0.51,
+   "clv_cents": 0.0,
    "confirmed_after_min": 11,
    "date": "2026-10-23",
    "depth_by_book": {
@@ -1699,7 +1997,8 @@
      "price": 107
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-23T04:00:15Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNHLGAME-26OCT23TBCOL-TB"
@@ -7357,6 +7656,7 @@
    },
    "first_seen_utc": "2026-10-22T20:50:10Z",
    "game": "Carolina vs Edmonton",
+   "graded_by": "espn",
    "key": "kalshi|KXNHLGAME-26OCT22CAREDM|ml|0",
    "lead_min": 233,
    "league": "NHL",
@@ -7445,7 +7745,7 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNHLGAME-26OCT22CAREDM-CAR"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig",
@@ -7453,6 +7753,7 @@
     "prophetx"
    ],
    "second_book_fresh": false,
+   "settled_utc": "2026-10-23T04:00:15Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Carolina",
@@ -7465,7 +7766,7 @@
     "Edmonton"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-22T20:50:10Z",
@@ -8325,6 +8626,7 @@
    },
    "first_seen_utc": "2026-10-22T19:40:10Z",
    "game": "Hurricanes vs. Oilers",
+   "graded_by": "espn",
    "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"4950297\"}",
    "lead_min": 310,
    "league": "NHL",
@@ -8413,12 +8715,13 @@
     "outcome_index": 0,
     "pm_market_id": "4950297"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "prophetx"
    ],
    "second_book_fresh": false,
+   "settled_utc": "2026-10-23T04:00:15Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Hurricanes",
@@ -8431,7 +8734,7 @@
     "Oilers"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-22T19:50:10Z",
@@ -9581,6 +9884,7 @@
    },
    "first_seen_utc": "2026-10-22T18:20:11Z",
    "game": "Carolina vs Edmonton: Total Goals",
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLTOTAL-26OCT22CAREDM-7\"}",
    "lead_min": 390,
    "league": "NHL",
@@ -9665,13 +9969,14 @@
     "kalshi_side": "no",
     "market_ticker": "KXNHLTOTAL-26OCT22CAREDM-7"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig",
     "polymarket"
    ],
    "second_book_fresh": true,
+   "settled_utc": "2026-10-23T04:00:15Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -9684,7 +9989,7 @@
     "Edmonton"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-22T18:20:11Z",
@@ -9970,7 +10275,7 @@
     "outcome_index": 0,
     "pm_market_id": "4950302"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "kalshi",
@@ -9978,6 +10283,7 @@
     "prophetx"
    ],
    "second_book_fresh": true,
+   "settled_utc": "2026-10-23T04:00:15Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Wild",
@@ -9990,7 +10296,7 @@
     "Flames"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-22T18:10:09Z",
@@ -10203,6 +10509,7 @@
    },
    "first_seen_utc": "2026-10-22T18:03:57Z",
    "game": "Carolina vs Edmonton",
+   "graded_by": "espn",
    "key": "kalshi|KXNHLGAME-26OCT22CAREDM|ml|1",
    "lead_min": 410,
    "league": "NHL",
@@ -10291,12 +10598,13 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNHLGAME-26OCT22CAREDM-EDM"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
+   "settled_utc": "2026-10-23T04:00:15Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Edmonton",
@@ -10309,7 +10617,7 @@
     "Edmonton"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.13
   },
   {
    "alerted_utc": "2026-10-22T18:10:09Z",
@@ -13645,6 +13953,7 @@
    },
    "first_seen_utc": "2026-10-22T16:21:23Z",
    "game": "Carolina vs Edmonton: Spread",
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLSPREAD-26OCT22CAREDM-CAR2\"}",
    "lead_min": 510,
    "league": "NHL",
@@ -13725,13 +14034,14 @@
     "kalshi_side": "no",
     "market_ticker": "KXNHLSPREAD-26OCT22CAREDM-CAR2"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig",
     "polymarket"
    ],
    "second_book_fresh": false,
+   "settled_utc": "2026-10-23T04:00:15Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Edmonton",
@@ -13744,7 +14054,7 @@
     "Edmonton"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.46
   },
   {
    "alerted_utc": "2026-10-22T16:10:11Z",
