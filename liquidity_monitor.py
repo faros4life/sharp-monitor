@@ -48,8 +48,9 @@ LEAGUES = [x.strip().upper() for x in (os.environ.get("LIQ_LEAGUES", "") or "NFL
 LEAGUE_PRIORITY = {"NFL": 0, "NCAAF": 0, "NBA": 0, "NHL": 0, "MLB": 1, "NCAAB": 1, "TENNIS": 2}
 PAPER_ONLY = {"TENNIS"}
 ML_ONLY = {"TENNIS"}   # tennis: match winner only (no set/game handicaps or totals)
-EXTRA_CALLS = int(os.environ.get("LIQ_EXTRA_BOOKS", "") or "500")      # extra book reads per exchange for added leagues
-EXTRA_STOP_S = float(os.environ.get("LIQ_EXTRA_STOP_SEC", "") or "100") # added leagues stop at this many seconds per exchange
+EXTRA_CALLS = int(os.environ.get("LIQ_EXTRA_BOOKS", "") or "150")      # added leagues: at most this many book reads per exchange
+EXTRA_S = float(os.environ.get("LIQ_EXTRA_SEC", "") or "25")           # ...and at most this many seconds, AFTER the original leagues
+PX_LEAGUES = {"NFL", "NCAAF", "NBA", "NHL"}   # ProphetX (confirm-only book): original leagues only
 BOOKS = [x.strip().lower() for x in (os.environ.get("LIQ_BOOKS", "") or "kalshi,novig,polymarket,prophetx").split(",") if x.strip()]
 CONFIRM_ONLY_BOOKS = {"prophetx"}   # read for second-book confirmation and best price; never starts an alert (no settlement read yet)
 MAX_CALLS = int(os.environ.get("LIQ_MAX_BOOKS", "") or "900")          # order-book calls per book per run
@@ -58,9 +59,13 @@ BUDGET_S = float(os.environ.get("LIQ_BUDGET_SEC", "") or "150")   # max seconds 
 T0 = time.time()
 
 
+_EX = {"t": None, "n0": 0}
+
+
 def start_clock():
     global T0
     T0 = time.time()
+    _EX.update(t=None, n0=0)
 
 
 def out_of_time():
@@ -75,7 +80,9 @@ def over_limit(lg, calls):
     """Original leagues: the original caps (MAX_CALLS reads, BUDGET_S seconds). Added leagues: only leftover capacity."""
     if prio(lg) == 0:
         return calls >= MAX_CALLS or out_of_time()
-    return calls >= MAX_CALLS + EXTRA_CALLS or time.time() - T0 > min(EXTRA_STOP_S, BUDGET_S)
+    if _EX["t"] is None:   # first added-league read: start its own small time box
+        _EX.update(t=time.time(), n0=calls)
+    return calls - _EX["n0"] >= EXTRA_CALLS or time.time() - _EX["t"] > EXTRA_S or out_of_time()
 
 
 def num(x):
@@ -824,9 +831,7 @@ def px_rows(days, n):
         print(f"ProphetX login failed: {ex}")
         return []
     todo = []
-    tours = [(lg, PX_TOURNAMENTS[lg]) for lg in LEAGUES if lg in PX_TOURNAMENTS]
-    if any(lg in LEAGUES and lg not in PX_TOURNAMENTS for lg in ("MLB", "NCAAB", "TENNIS")):
-        tours += px_find_tournaments()
+    tours = [(lg, PX_TOURNAMENTS[lg]) for lg in LEAGUES if lg in PX_TOURNAMENTS and lg in PX_LEAGUES]
     for lg, tid in tours:
         try:
             evs = (px_call(f"/mm/get_sport_events?tournament_id={tid}").get("data") or {}).get("sport_events") or []
