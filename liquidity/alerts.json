@@ -1,6 +1,112 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-23T01:30:12Z",
+   "base_depth": 2643,
+   "best_price": 0.6757,
+   "best_price_american": -208,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.66,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-22",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 5987,
+     "new_this_side": 28283,
+     "other_side": 10301,
+     "other_side_all_levels": 20364,
+     "ratio": 2.4,
+     "this_side": 25192,
+     "this_side_all_levels": 33565
+    }
+   },
+   "first_seen_utc": "2026-10-23T01:20:09Z",
+   "game": "Los Angeles vs New York I: Total Goals",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLTOTAL-26OCT22LANYI-6\"}",
+   "lead_min": 60,
+   "league": "NHL",
+   "line": 5.5,
+   "market": "total",
+   "new_money": 28283,
+   "price": 0.66,
+   "price_american": -194,
+   "price_rule": "fails_cap",
+   "price_when_first_seen": 0.66,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 5.5,
+     "price": -210
+    },
+    "draftkings": {
+     "point": 5.5,
+     "price": -195
+    },
+    "fanatics": {
+     "point": 5.5,
+     "price": -245
+    },
+    "fanduel": {
+     "point": 5.5,
+     "price": -215
+    },
+    "kalshi": {
+     "point": 5.5,
+     "price": -194
+    },
+    "mybookieag": {
+     "point": 5.5,
+     "price": -200
+    },
+    "novig": {
+     "point": 5.5,
+     "price": -194
+    },
+    "polymarket": {
+     "point": 5.5,
+     "price": -194
+    },
+    "prophetx": {
+     "point": 5.5,
+     "price": -215
+    },
+    "williamhill_us": {
+     "point": 5.5,
+     "price": -205
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNHLTOTAL-26OCT22LANYI-6"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "no_match",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "NOT Over 5.5 goals scored",
+   "start_source": "kalshi",
+   "start_utc": "2026-10-23T02:30:00Z",
+   "teams": [
+    "Los Angeles",
+    "New York I"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-23T01:20:09Z",
    "base_depth": 49492,
    "best_price": 0.495,
@@ -307,8 +413,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.84,
-   "clv_cents": 5.0,
+   "close_price": 0.87,
+   "clv_cents": 8.0,
    "confirmed_after_min": 10,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -425,8 +531,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.79,
-   "clv_cents": 5.0,
+   "close_price": 0.83,
+   "clv_cents": 9.0,
    "confirmed_after_min": 10,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -1325,8 +1431,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.22,
-   "clv_cents": -30.0,
+   "close_price": 0.18,
+   "clv_cents": -34.0,
    "confirmed_after_min": 12,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -2082,8 +2188,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.23,
-   "clv_cents": -26.0,
+   "close_price": 0.52,
+   "clv_cents": 3.0,
    "confirmed_after_min": 14,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -3239,8 +3345,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.41,
-   "clv_cents": -8.0,
+   "close_price": 0.56,
+   "clv_cents": 7.0,
    "confirmed_after_min": 9,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -4930,8 +5036,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.6,
-   "clv_cents": 2.0,
+   "close_price": 0.74,
+   "clv_cents": 16.0,
    "confirmed_after_min": 17,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -5228,8 +5334,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.55,
-   "clv_cents": 1.0,
+   "close_price": 0.53,
+   "clv_cents": -1.0,
    "confirmed_after_min": 17,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -5495,7 +5601,8 @@
      "price": -115
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-23T01:30:12Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNBASPREAD-26OCT22DENOKC-OKC9"
@@ -5663,8 +5770,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.29,
-   "clv_cents": -23.0,
+   "close_price": 0.23,
+   "clv_cents": -29.0,
    "confirmed_after_min": 9,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -5962,8 +6069,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.08,
-   "clv_cents": -47.0,
+   "close_price": 0.03,
+   "clv_cents": -52.0,
    "confirmed_after_min": 9,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -7445,8 +7552,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.57,
-   "clv_cents": 8.0,
+   "close_price": 0.37,
+   "clv_cents": -12.0,
    "confirmed_after_min": 10,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -7600,8 +7707,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.39,
-   "clv_cents": -39.0,
+   "close_price": 0.35,
+   "clv_cents": -43.0,
    "confirmed_after_min": 10,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -7904,8 +8011,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.66,
-   "clv_cents": 0.0,
+   "close_price": 0.5,
+   "clv_cents": -16.0,
    "confirmed_after_min": 6,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -8064,8 +8171,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.45,
-   "clv_cents": -2.0,
+   "close_price": 0.49,
+   "clv_cents": 2.0,
    "confirmed_after_min": 6,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -10103,8 +10210,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.81,
-   "clv_cents": 16.0,
+   "close_price": 0.39,
+   "clv_cents": -26.0,
    "confirmed_after_min": 10,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -10256,8 +10363,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.93,
-   "clv_cents": 49.0,
+   "close_price": 0.98,
+   "clv_cents": 54.0,
    "confirmed_after_min": 10,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -10477,8 +10584,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.82,
-   "clv_cents": 0.0,
+   "close_price": 0.83,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-23",
    "depth_by_book": {
@@ -10903,8 +11010,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.67,
-   "clv_cents": 18.0,
+   "close_price": 0.42,
+   "clv_cents": -7.0,
    "confirmed_after_min": 11,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -11353,8 +11460,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.65,
-   "clv_cents": 10.0,
+   "close_price": 0.76,
+   "clv_cents": 21.0,
    "confirmed_after_min": 9,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -11495,8 +11602,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.69,
-   "clv_cents": 0.0,
+   "close_price": 0.76,
+   "clv_cents": 7.0,
    "confirmed_after_min": 9,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -11789,8 +11896,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": 9.0,
+   "close_price": 0.34,
+   "clv_cents": -10.0,
    "confirmed_after_min": 10,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -12389,8 +12496,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.23,
-   "clv_cents": -27.0,
+   "close_price": 0.28,
+   "clv_cents": -22.0,
    "confirmed_after_min": 10,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -12864,8 +12971,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.47,
-   "clv_cents": -11.0,
+   "close_price": 0.67,
+   "clv_cents": 9.0,
    "confirmed_after_min": 10,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -13024,8 +13131,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.72,
-   "clv_cents": 12.0,
+   "close_price": 0.75,
+   "clv_cents": 15.0,
    "confirmed_after_min": 10,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -14148,8 +14255,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.98,
-   "clv_cents": 31.0,
+   "close_price": null,
+   "clv_cents": null,
    "confirmed_after_min": 11,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -14308,8 +14415,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.97,
-   "clv_cents": 19.0,
+   "close_price": null,
+   "clv_cents": null,
    "confirmed_after_min": 11,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -14453,8 +14560,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.71,
-   "clv_cents": -8.0,
+   "close_price": 0.76,
+   "clv_cents": -3.0,
    "confirmed_after_min": 11,
    "date": "2026-10-22",
    "depth_by_book": {
