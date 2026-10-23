@@ -1,6 +1,151 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-23T23:57:17Z",
+   "base_depth": 91886,
+   "best_price": 0.58,
+   "best_price_american": -138,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.58,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 7,
+   "date": "2026-10-23",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "NOT Milwaukee wins by over 1.5 runs",
+     "price": 0.58,
+     "this_side": 1612500
+    },
+    "novig": {
+     "new_other_side": -869,
+     "new_this_side": 84461,
+     "other_side": 58079,
+     "other_side_all_levels": 58508,
+     "ratio": 3.0,
+     "this_side": 172042,
+     "this_side_all_levels": 172043
+    },
+    "polymarket": {
+     "heavier_side": false,
+     "label": "Tampa Bay Rays (+1.5)",
+     "price": 0.58,
+     "this_side": 60617
+    }
+   },
+   "first_seen_utc": "2026-10-23T23:50:15Z",
+   "game": "Tampa Bay Rays @ Milwaukee Brewers",
+   "key": "novig|{\"market_id\": \"01a1577c-d666-7e81-852e-6c4d5457124b\", \"outcome_id\": \"01a1577c-d666-7e81-852e-6c68d5ba3df1\"}",
+   "lead_min": 3,
+   "league": "MLB",
+   "line": 1.5,
+   "market": "spread",
+   "new_money": 84461,
+   "paper_only": false,
+   "price": 0.58,
+   "price_american": -138,
+   "price_rule": "fails_cap",
+   "price_when_first_seen": 0.58,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 1.5,
+     "price": -150
+    },
+    "betonlineag": {
+     "point": 1.5,
+     "price": -141
+    },
+    "betopenly": {
+     "point": 1.5,
+     "price": -138
+    },
+    "betrivers": {
+     "point": 1.0,
+     "price": 108
+    },
+    "betus": {
+     "point": 1.5,
+     "price": -145
+    },
+    "bovada": {
+     "point": 1.5,
+     "price": -140
+    },
+    "draftkings": {
+     "point": 1.5,
+     "price": -149
+    },
+    "fanatics": {
+     "point": 1.5,
+     "price": -150
+    },
+    "fanduel": {
+     "point": 1.5,
+     "price": -152
+    },
+    "kalshi": {
+     "point": 1.5,
+     "price": -138
+    },
+    "lowvig": {
+     "point": 1.5,
+     "price": -139
+    },
+    "mybookieag": {
+     "point": 1.5,
+     "price": -148
+    },
+    "novig": {
+     "point": 1.5,
+     "price": -138
+    },
+    "polymarket": {
+     "point": 2.5,
+     "price": -233
+    },
+    "prophetx": {
+     "point": 1.0,
+     "price": 115
+    },
+    "williamhill_us": {
+     "point": 1.5,
+     "price": -138
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a1577c-d666-7e81-852e-6c4d5457124b",
+    "outcome_id": "01a1577c-d666-7e81-852e-6c68d5ba3df1"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Tampa Bay Rays",
+   "side_label": "TB +1.5 (-1.5)",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-24T00:00:00Z",
+   "teams": [
+    "Tampa Bay Rays",
+    "Milwaukee Brewers"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-23T22:00:21Z",
    "base_depth": 9313,
    "best_price": 0.83,
@@ -208,7 +353,8 @@
      "price": -190
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-23T23:57:17Z",
    "ref": {
     "outcome_index": 1,
     "pm_market_id": "5969232"
@@ -622,8 +768,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.63,
-   "clv_cents": 0.0,
+   "close_price": 0.64,
+   "clv_cents": 1.0,
    "confirmed_after_min": 8,
    "date": "2026-10-23",
    "depth_by_book": {
@@ -1003,8 +1149,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 1.0,
+   "close_price": 0.51,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-10-23",
    "depth_by_book": {
@@ -1301,8 +1447,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.49,
-   "clv_cents": -2.0,
+   "close_price": 0.5,
+   "clv_cents": -1.0,
    "confirmed_after_min": 3,
    "date": "2026-10-23",
    "depth_by_book": {
