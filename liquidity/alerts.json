@@ -1,6 +1,274 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-23T03:40:10Z",
+   "base_depth": 9113,
+   "best_price": 0.52,
+   "best_price_american": -108,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 9,
+   "date": "2026-10-23",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "NOT Over 47.5 points",
+     "price": 0.51,
+     "this_side": 233550
+    },
+    "novig": {
+     "new_other_side": 10594,
+     "new_this_side": 31803,
+     "other_side": 13906,
+     "other_side_all_levels": 29366,
+     "ratio": 2.8,
+     "this_side": 39127,
+     "this_side_all_levels": 41093
+    }
+   },
+   "first_seen_utc": "2026-10-23T03:31:39Z",
+   "game": "Duke @ Virginia",
+   "key": "novig|{\"market_id\": \"01a14d4e-d411-7412-a0d0-a90667787dd9\", \"outcome_id\": \"01a14d4e-d411-7412-a0d0-a92c08d62f0e\"}",
+   "lead_min": 1160,
+   "league": "NCAAF",
+   "line": 47.5,
+   "market": "total",
+   "new_money": 31803,
+   "price": 0.52,
+   "price_american": -108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.52,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 47.5,
+     "price": -115
+    },
+    "betonlineag": {
+     "point": 47.0,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 47.0,
+     "price": 100
+    },
+    "betrivers": {
+     "point": 47.5,
+     "price": -113
+    },
+    "betus": {
+     "point": 47.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 47.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 46.5,
+     "price": -105
+    },
+    "fanatics": {
+     "point": 47.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 46.5,
+     "price": -105
+    },
+    "kalshi": {
+     "point": 47.5,
+     "price": -104
+    },
+    "lowvig": {
+     "point": 47.0,
+     "price": -108
+    },
+    "mybookieag": {
+     "point": 47.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 47.5,
+     "price": -108
+    },
+    "polymarket": {
+     "point": 47.5,
+     "price": -113
+    },
+    "prophetx": {
+     "point": 47.0,
+     "price": -102
+    },
+    "williamhill_us": {
+     "point": 47.0,
+     "price": -108
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a14d4e-d411-7412-a0d0-a90667787dd9",
+    "outcome_id": "01a14d4e-d411-7412-a0d0-a92c08d62f0e"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "Under 47.5 (47.5)",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-23T23:00:00Z",
+   "teams": [
+    "Duke",
+    "Virginia"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-23T03:40:10Z",
+   "base_depth": 189341,
+   "best_price": 0.4952,
+   "best_price_american": 102,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.49,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 9,
+   "date": "2026-10-23",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 7735,
+     "new_this_side": 26265,
+     "other_side": 124976,
+     "other_side_all_levels": 211173,
+     "ratio": 1.1,
+     "this_side": 142606,
+     "this_side_all_levels": 221620
+    }
+   },
+   "first_seen_utc": "2026-10-23T03:31:39Z",
+   "game": "Army vs Tulsa: Total Points",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFTOTAL-26OCT23ARMYTLSA-54\"}",
+   "lead_min": 1250,
+   "league": "NCAAF",
+   "line": 53.5,
+   "market": "total",
+   "new_money": 26265,
+   "price": 0.49,
+   "price_american": 104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.49,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 54.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 54.5,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 54.5,
+     "price": -101
+    },
+    "betrivers": {
+     "point": 54.5,
+     "price": -113
+    },
+    "betus": {
+     "point": 54.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 54.0,
+     "price": -105
+    },
+    "draftkings": {
+     "point": 54.5,
+     "price": -112
+    },
+    "fanatics": {
+     "point": 53.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 54.5,
+     "price": -114
+    },
+    "kalshi": {
+     "point": 54.5,
+     "price": -108
+    },
+    "lowvig": {
+     "point": 54.5,
+     "price": -108
+    },
+    "mybookieag": {
+     "point": 54.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 54.5,
+     "price": -111
+    },
+    "polymarket": {
+     "point": 53.5,
+     "price": 104
+    },
+    "prophetx": {
+     "point": 52.0,
+     "price": 120
+    },
+    "williamhill_us": {
+     "point": 54.5,
+     "price": -112
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAFTOTAL-26OCT23ARMYTLSA-54"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "no_match",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "NOT Over 53.5 points",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-24T00:30:00Z",
+   "teams": [
+    "Army",
+    "Tulsa"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-23T03:31:39Z",
    "base_depth": 138770,
    "best_price": 0.5275,
@@ -311,6 +579,8 @@
    "market": "moneyline",
    "new_money": 143948,
    "price": 0.71,
+   "price_after_15m": 0.7244,
+   "price_after_15m_book": "kalshi",
    "price_american": -245,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.71,
@@ -391,6 +661,7 @@
    "side_label": "NC St.",
    "start_source": "kalshi",
    "start_utc": "2026-10-24T05:30:00Z",
+   "still_actionable": true,
    "teams": [
     "NC St.",
     "Stanford"
@@ -1540,10 +1811,11 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNHLGAME-26OCT22MINCGY-CGY"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": "no_match",
    "second_book_fresh": false,
+   "settled_utc": "2026-10-23T03:40:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Calgary",
@@ -1556,7 +1828,7 @@
     "Calgary"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.44
   },
   {
    "alerted_utc": "2026-10-23T01:44:51Z",
@@ -6589,8 +6861,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.3,
-   "clv_cents": -20.0,
+   "close_price": 0.39,
+   "clv_cents": -11.0,
    "confirmed_after_min": 17,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -6852,13 +7124,14 @@
     "kalshi_side": "no",
     "market_ticker": "KXNHLSPREAD-26OCT22MINCGY-MIN2"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig",
     "polymarket"
    ],
    "second_book_fresh": true,
+   "settled_utc": "2026-10-23T03:40:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Calgary",
@@ -6871,7 +7144,7 @@
     "Calgary"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.74
   },
   {
    "alerted_utc": "2026-10-22T21:07:13Z",
@@ -7042,8 +7315,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": -2.0,
+   "close_price": 0.48,
+   "clv_cents": -6.0,
    "confirmed_after_min": 17,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -7202,8 +7475,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.64,
-   "clv_cents": 12.0,
+   "close_price": 0.54,
+   "clv_cents": 2.0,
    "confirmed_after_min": 10,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -7501,6 +7774,7 @@
    },
    "first_seen_utc": "2026-10-22T20:01:36Z",
    "game": "East Carolina vs Memphis: Total Points",
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFTOTAL-26OCT22ECUMEM-55\"}",
    "lead_min": 200,
    "league": "NCAAF",
@@ -7581,12 +7855,13 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFTOTAL-26OCT22ECUMEM-55"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": true,
+   "settled_utc": "2026-10-23T03:40:10Z",
    "sharp_agree": [
     "Over 53.5 (-117)"
    ],
@@ -7601,7 +7876,7 @@
     "Memphis"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.9
   },
   {
    "alerted_utc": "2026-10-22T20:10:10Z",
@@ -7618,8 +7893,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.24,
-   "clv_cents": -39.0,
+   "close_price": 0.19,
+   "clv_cents": -44.0,
    "confirmed_after_min": 9,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -9448,6 +9723,7 @@
    },
    "first_seen_utc": "2026-10-22T18:10:09Z",
    "game": "East Carolina vs Memphis",
+   "graded_by": "espn",
    "key": "kalshi|KXNCAAFGAME-26OCT22ECUMEM|ml|1",
    "lead_min": 310,
    "league": "NCAAF",
@@ -9528,13 +9804,14 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26OCT22ECUMEM-MEM"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig",
     "prophetx"
    ],
    "second_book_fresh": false,
+   "settled_utc": "2026-10-23T03:40:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Memphis",
@@ -9547,7 +9824,7 @@
     "Memphis"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.27
   },
   {
    "alerted_utc": "2026-10-22T18:10:09Z",
@@ -9846,7 +10123,7 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNHLGAME-26OCT22MINCGY-MIN"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig",
@@ -9854,6 +10131,7 @@
     "prophetx"
    ],
    "second_book_fresh": true,
+   "settled_utc": "2026-10-23T03:40:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Minnesota",
@@ -9866,7 +10144,7 @@
     "Calgary"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-22T18:10:09Z",
@@ -9883,8 +10161,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.49,
-   "clv_cents": 2.0,
+   "close_price": 0.52,
+   "clv_cents": 5.0,
    "confirmed_after_min": 6,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -10110,8 +10388,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.74,
-   "clv_cents": 0.0,
+   "close_price": 0.81,
+   "clv_cents": 7.0,
    "confirmed_after_min": 6,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -12473,6 +12751,7 @@
    },
    "first_seen_utc": "2026-10-22T17:01:29Z",
    "game": "East Carolina vs Memphis: Spread",
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFSPREAD-26OCT22ECUMEM-MEM11\"}",
    "lead_min": 380,
    "league": "NCAAF",
@@ -12553,13 +12832,14 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFSPREAD-26OCT22ECUMEM-MEM11"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig",
     "prophetx"
    ],
    "second_book_fresh": true,
+   "settled_utc": "2026-10-23T03:40:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Memphis",
@@ -12572,7 +12852,7 @@
     "Memphis"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-22T17:10:10Z",
@@ -12885,8 +13165,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.78,
-   "clv_cents": 27.0,
+   "close_price": 0.62,
+   "clv_cents": 11.0,
    "confirmed_after_min": 10,
    "date": "2026-10-22",
    "depth_by_book": {
