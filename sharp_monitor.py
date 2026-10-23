@@ -14,6 +14,7 @@ import math
 import os
 import sys
 import time
+import unicodedata
 import urllib.parse
 import urllib.request
 from datetime import datetime, timedelta, timezone
@@ -222,11 +223,21 @@ def crossed_key(old, new, keys):
 ALIASES = {"ole miss": ["mississippi"], "usc": ["southern california", "southern cal"],
            "miami": ["miami (fl)", "miami fl", "miami florida"], "lsu": ["louisiana state"],
            "smu": ["southern methodist"], "byu": ["brigham young"], "ucf": ["central florida"],
-           "tcu": ["texas christian"], "pitt": ["pittsburgh"], "uconn": ["connecticut"]}
+           "tcu": ["texas christian"], "pitt": ["pittsburgh"], "uconn": ["connecticut"],
+           # ESPN short names vs the Odds API's full names (grading)
+           "app state": ["appalachian state"], "southern miss": ["southern mississippi"], "massachusetts": ["umass"],
+           "umass": ["massachusetts"], "the citadel": ["citadel"], "sam houston": ["sam houston state"],
+           "ul monroe": ["louisiana monroe", "louisiana-monroe", "ulm"], "louisiana": ["louisiana lafayette", "louisiana-lafayette"],
+           "fiu": ["florida international"], "utsa": ["ut san antonio", "texas san antonio"], "nc state": ["north carolina state"],
+           "uab": ["alabama birmingham"], "unlv": ["nevada las vegas"]}
 
 
 def _norm(x):
-    return " ".join(str(x).lower().replace(".", "").replace("&", " and ").split())
+    # accents and apostrophes off so "San José State", "Hawai'i" and "Montréal" match the plain spellings
+    x = "".join(ch for ch in unicodedata.normalize("NFKD", str(x)) if not unicodedata.combining(ch))
+    for ch in ("'", "\u2019", "\u02bb", "`"):
+        x = x.replace(ch, "")
+    return " ".join(x.lower().replace(".", "").replace("&", " and ").split())
 
 
 def load_top25(st, n):
@@ -537,18 +548,19 @@ ESPN_PATH = {"NFL": "football/nfl", "NCAAF": "football/college-football", "NBA":
              "WNBA": "basketball/wnba", "NCAAB": "basketball/mens-college-basketball",
              "MLB": "baseball/mlb", "NHL": "hockey/nhl"}
 ESPN_EXTRA = {"NCAAF": {"groups": "80"}, "NCAAB": {"groups": "50"}}
+ESPN_MORE = {"NCAAF": [{"groups": "81"}]}   # FCS scoreboard too (e.g. The Citadel at Texas A&M)
 _SB_CACHE = {}
 
 
-def espn_scoreboard(sport, day):
+def espn_scoreboard(sport, day, extra=None):
     """Finished/pending games for one sport on one ET date: [{done, so, away, home}] (cached per run)."""
-    key = (sport, day)
+    key = (sport, day, json.dumps(extra, sort_keys=True) if extra else None)
     if key in _SB_CACHE:
         return _SB_CACHE[key]
     games = []
     try:
         q = {"dates": day.replace("-", ""), "limit": "400"}
-        q.update(ESPN_EXTRA.get(sport, {}))
+        q.update(extra if extra is not None else ESPN_EXTRA.get(sport, {}))
         url = f"https://site.api.espn.com/apis/site/v2/sports/{ESPN_PATH[sport]}/scoreboard?" + urllib.parse.urlencode(q)
         req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
         with urllib.request.urlopen(req, timeout=20) as r:
@@ -565,7 +577,7 @@ def espn_scoreboard(sport, day):
                     pts = int(float(c.get("score")))
                 except (TypeError, ValueError):
                     pts = None
-                g[c.get("homeAway")] = {"names": names, "loc": _norm(t.get("location", "")),
+                g[c.get("homeAway")] = {"names": names, "loc": _norm(t.get("location", "")), "mascot": _norm(t.get("name", "")),
                                         "abbr": t.get("abbreviation", ""), "pts": pts}
             if "home" in g and "away" in g:
                 games.append(g)
@@ -586,14 +598,25 @@ def team_match(odds_name, side):
     return any(full == alias for alias in ALIASES.get(full, []) if alias in side["names"])
 
 
+def mascot_match(odds_name, side):
+    """Loose fallback: the odds name ends with ESPN's nickname ('... Mountaineers'). Used only when BOTH teams match."""
+    m = side.get("mascot")
+    full = _norm(odds_name)
+    return bool(m) and (full == m or full.endswith(" " + m))
+
+
 def find_game(e):
     away, home = e["game"].split(" @ ", 1)
     start = parse_iso(e["start"]).astimezone(ET)
-    for off in (0, 1):  # late games can be filed under the next ET date
-        day = (start + timedelta(days=off)).date().isoformat()
-        for g in espn_scoreboard(e["sport"], day):
-            if team_match(away, g["away"]) and team_match(home, g["home"]):
-                return g
+    boards = [None] + ESPN_MORE.get(e["sport"], [])
+    for test in (team_match, mascot_match):   # exact names first, nicknames only if no exact match anywhere
+        for extra in boards:
+            for off in (0, 1):  # late games can be filed under the next ET date
+                day = (start + timedelta(days=off)).date().isoformat()
+                hits = [g for g in espn_scoreboard(e["sport"], day, extra)
+                        if test(away, g["away"]) and test(home, g["home"])]
+                if hits and (test is team_match or len(hits) == 1):   # nickname match must be unique
+                    return hits[0]
     return None
 
 
@@ -907,7 +930,13 @@ def run():
     n = now_utc()
     hour_et = n.astimezone(ET).hour
     if not (ACTIVE_START_ET <= hour_et < ACTIVE_END_ET):
-        print("Outside active hours; skipping.")
+        # no odds polling overnight, but keep grading finished games (ESPN is free) so late games don't wait till morning
+        before = sum(1 for e in st["log"] if e.get("res"))
+        settle_pending(st, n)
+        if sum(1 for e in st["log"] if e.get("res")) != before:
+            save_state(st)
+            write_alerts_file(st, n)
+        print("Outside active hours; graded finished games only.")
         return
     settle_pending(st, n)  # final scores + W/L for finished games
     recap(st, n)  # once a day: how yesterday's alerts did (W/L, score, closing line)
