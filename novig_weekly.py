@@ -89,6 +89,34 @@ def f(x):
         return 0.0
 
 
+def sub_wallets(ws, we):
+    """Sub-wallets (e.g. 'auto-place'): balance now + the week's settled bets there."""
+    try:
+        d = nv.get("/v3/account/subaccounts")
+        subs = d.get("items") if isinstance(d, dict) else d
+    except Exception as ex:
+        return [f"SUB-WALLETS: unavailable ({str(ex)[:80]})", ""]
+    if not subs:
+        return []
+    L = ["SUB-WALLETS (separate from the main wallet above)"]
+    for sb in subs:
+        kid = sb.get("keyId")
+        line = f"  {sb.get('label') or kid}: balance {money(f(sb.get('balance')))}"
+        try:
+            st = [p for p in paged("/v3/history/positions", {"keyId": kid, "status": "SETTLED", "limit": 5000})
+                  if p.get("settledTs") and ms(ws) <= int(p["settledTs"]) < ms(we)]
+            if st:
+                w = sum(1 for p in st if str(p.get("result")).upper() == "WIN")
+                l_ = sum(1 for p in st if str(p.get("result")).upper() == "LOSS")
+                line += f" | week: {len(st)} settled ({w}-{l_}), P&L {money(sum(f(p.get('pnl')) for p in st))}"
+            else:
+                line += " | no settled bets this week"
+        except Exception:
+            pass
+        L.append(line)
+    return L + [""]
+
+
 def build(now):
     off = int(os.environ.get("WEEK_OFFSET", "") or "0")
     today = now.astimezone(ET).date()
@@ -139,6 +167,7 @@ def build(now):
           f"  Week start:         {money(bal_start)}",
           f"  Week end:           {money(bal_end)}",
           f"  Change in week:     {money(bal_end - bal_start)}", ""]
+    L += sub_wallets(ws, we)
     L += ["LEDGER (week, by kind)"] + [f"  {k:<15} {money(v)}" for k, v in sorted(kinds.items())] + \
          [f"  {'TOTAL':<15} {money(sum(kinds.values()))}   (equals change in week)", ""]
     L += ["SETTLED BETS (week)",
@@ -167,9 +196,28 @@ def send(subject, body):
         raise SystemExit("Email not configured (GMAIL_ADDRESS / GMAIL_APP_PASSWORD secrets). Nothing sent.")
     msg = MIMEText(body, "plain", "utf-8")
     msg["Subject"], msg["From"], msg["To"] = subject, user, to
-    with smtplib.SMTP_SSL("smtp.gmail.com", 465, timeout=30) as s:
-        s.login(user, pw)
-        s.sendmail(user, [to], msg.as_string())
+    print(f"Email: address set ({len(user)} chars, {'gmail' if user.lower().endswith('@gmail.com') else 'NOT gmail'}); "
+          f"app password {len(pw)} chars ({'OK length' if len(pw) == 16 else 'should be 16 letters'})")
+    errors = []
+    for how in ("ssl465", "starttls587"):
+        try:
+            if how == "ssl465":
+                s = smtplib.SMTP_SSL("smtp.gmail.com", 465, timeout=30)
+            else:
+                s = smtplib.SMTP("smtp.gmail.com", 587, timeout=30)
+                s.ehlo()
+                s.starttls()
+                s.ehlo()
+            with s:
+                s.login(user, pw)
+                s.sendmail(user, [to], msg.as_string())
+            return
+        except smtplib.SMTPAuthenticationError as ex:
+            errors.append(f"{how}: Gmail refused the login ({ex.smtp_code}) {ex.smtp_error.decode(errors='ignore')[:120]}")
+            break
+        except Exception as ex:
+            errors.append(f"{how}: {type(ex).__name__} {str(ex)[:120]}")
+    raise SystemExit("Email not sent. " + " | ".join(errors))
 
 
 def main():
