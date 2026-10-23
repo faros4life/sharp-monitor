@@ -1,6 +1,72 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-23T16:50:15Z",
+   "base_depth": 662724,
+   "best_price": 0.5375,
+   "best_price_american": -116,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-23",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 13436,
+     "new_this_side": 209661,
+     "other_side": 247363,
+     "other_side_all_levels": 672472,
+     "ratio": 1.6,
+     "this_side": 395943,
+     "this_side_all_levels": 831830
+    }
+   },
+   "first_seen_utc": "2026-10-23T16:40:14Z",
+   "game": "Bublik vs Khachanov",
+   "key": "kalshi|KXATPMATCH-26OCT23BUBKHA|ml|0",
+   "lead_min": 40,
+   "league": "TENNIS",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 209661,
+   "paper_only": true,
+   "price": 0.52,
+   "price_american": -108,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.54,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXATPMATCH-26OCT23BUBKHA-BUB"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "no_match",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Bublik",
+   "side_label": "Bublik",
+   "start_source": "kalshi",
+   "start_utc": "2026-10-23T17:30:00Z",
+   "teams": [
+    "Bublik",
+    "Khachanov"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-23T16:40:14Z",
    "base_depth": 132665,
    "best_price": 0.5,
@@ -127,7 +193,8 @@
      "price": -112
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-23T16:50:15Z",
    "ref": {
     "outcome_index": 1,
     "pm_market_id": "5969348"
@@ -472,8 +539,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.65,
-   "clv_cents": 1.0,
+   "close_price": 0.64,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-10-23",
    "depth_by_book": {
