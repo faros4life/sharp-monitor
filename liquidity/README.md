@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Oct 23, 4:10 AM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 69.
+Updated Fri Oct 23, 4:20 AM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 70.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -8,6 +8,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Oct 23 4:20AM | NCAAF | Indiana vs Michigan | moneyline: Indiana | kalshi | $113k | -257 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Oct 23 4:10AM | NBA | New Orleans vs Utah: Spread | spread: NOT Utah wins by over 2.5 points | kalshi | $35k | -108 | ✅ novig,polymarket |  | +0.0c |  | pending |
 | Oct 23 3:52AM | NBA | Los Angeles C vs Los Angeles L: Total Points | total: Over 228.5 points | kalshi | $43k | -104 |  |  | +0.0c |  | pending |
 | Oct 23 3:52AM | NCAAF | Wagner vs Duquesne | moneyline: Duquesne | kalshi | $29k | -456 |  |  | +0.0c |  | pending |

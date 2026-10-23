@@ -1,6 +1,151 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-23T08:20:11Z",
+   "base_depth": 2025162,
+   "best_price": 0.73,
+   "best_price_american": -270,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.72,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 9,
+   "date": "2026-10-24",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -2925,
+     "new_this_side": 113302,
+     "other_side": 522921,
+     "other_side_all_levels": 730285,
+     "ratio": 3.7,
+     "this_side": 1936650,
+     "this_side_all_levels": 2367717
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "IND (0)",
+     "price": 0.73,
+     "this_side": 35754
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Indiana",
+     "price": 0.726,
+     "this_side": 10888
+    }
+   },
+   "first_seen_utc": "2026-10-23T08:10:43Z",
+   "game": "Indiana vs Michigan",
+   "key": "kalshi|KXNCAAFGAME-26OCT24INDMICH|ml|0",
+   "lead_min": 1900,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 113302,
+   "price": 0.72,
+   "price_american": -257,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.72,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -285
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -280
+    },
+    "betopenly": {
+     "point": null,
+     "price": -276
+    },
+    "betrivers": {
+     "point": null,
+     "price": -315
+    },
+    "betus": {
+     "point": null,
+     "price": -280
+    },
+    "bovada": {
+     "point": null,
+     "price": -290
+    },
+    "draftkings": {
+     "point": null,
+     "price": -290
+    },
+    "fanatics": {
+     "point": null,
+     "price": -285
+    },
+    "fanduel": {
+     "point": null,
+     "price": -295
+    },
+    "kalshi": {
+     "point": null,
+     "price": -270
+    },
+    "lowvig": {
+     "point": null,
+     "price": -280
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -295
+    },
+    "novig": {
+     "point": null,
+     "price": -270
+    },
+    "polymarket": {
+     "point": null,
+     "price": -257
+    },
+    "prophetx": {
+     "point": null,
+     "price": -265
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -290
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26OCT24INDMICH-IND"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "prophetx"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Indiana",
+   "side_label": "Indiana",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-24T16:00:00Z",
+   "teams": [
+    "Indiana",
+    "Michigan"
+   ],
+   "top25": true,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-23T08:10:43Z",
    "base_depth": 102107,
    "best_price": 0.52,
