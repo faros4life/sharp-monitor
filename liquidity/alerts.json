@@ -1,6 +1,157 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-23T02:15:46Z",
+   "base_depth": 298822,
+   "best_price": 0.575,
+   "best_price_american": -135,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.59,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 6,
+   "date": "2026-10-23",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -13549,
+     "new_this_side": 189402,
+     "other_side": 104170,
+     "other_side_all_levels": 189883,
+     "ratio": 3.7,
+     "this_side": 381565,
+     "this_side_all_levels": 570181
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "GSW (0)",
+     "price": 0.575,
+     "this_side": 17800
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Warriors",
+     "price": 0.58,
+     "this_side": 33716
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Golden State Warriors",
+     "price": 0.5798,
+     "this_side": 9615
+    }
+   },
+   "first_seen_utc": "2026-10-23T02:10:10Z",
+   "game": "Memphis vs Golden State",
+   "key": "kalshi|KXNBAGAME-26OCT23MEMGSW|ml|1",
+   "lead_min": 1424,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 189402,
+   "price": 0.59,
+   "price_american": -144,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.59,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -150
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -147
+    },
+    "betrivers": {
+     "point": null,
+     "price": -137
+    },
+    "betus": {
+     "point": null,
+     "price": -145
+    },
+    "bovada": {
+     "point": null,
+     "price": -145
+    },
+    "draftkings": {
+     "point": null,
+     "price": -155
+    },
+    "fanatics": {
+     "point": null,
+     "price": -150
+    },
+    "fanduel": {
+     "point": null,
+     "price": -156
+    },
+    "kalshi": {
+     "point": null,
+     "price": -144
+    },
+    "lowvig": {
+     "point": null,
+     "price": -146
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -154
+    },
+    "novig": {
+     "point": null,
+     "price": -138
+    },
+    "polymarket": {
+     "point": null,
+     "price": -138
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -144
+    },
+    "prophetx": {
+     "point": null,
+     "price": -138
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -150
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBAGAME-26OCT23MEMGSW-GSW"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "polymarket"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Golden State",
+   "side_label": "Golden State",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-24T02:00:00Z",
+   "teams": [
+    "Memphis",
+    "Golden State"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-23T02:10:10Z",
    "base_depth": 617907,
    "best_price": 0.6855,
@@ -235,8 +386,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.71,
-   "clv_cents": 3.0,
+   "close_price": 0.72,
+   "clv_cents": 4.0,
    "confirmed_after_min": 5,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -310,7 +461,8 @@
      "price": -260
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-23T02:15:46Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNHLGAME-26OCT22MINCGY-CGY"
@@ -348,8 +500,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.72,
-   "clv_cents": 5.0,
+   "close_price": 0.76,
+   "clv_cents": 9.0,
    "confirmed_after_min": 15,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -726,8 +878,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.63,
-   "clv_cents": 1.0,
+   "close_price": 0.47,
+   "clv_cents": -15.0,
    "confirmed_after_min": 8,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -871,8 +1023,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.76,
-   "clv_cents": -3.0,
+   "close_price": 0.94,
+   "clv_cents": 15.0,
    "confirmed_after_min": 10,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -2189,8 +2341,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.62,
-   "clv_cents": 2.0,
+   "close_price": 0.75,
+   "clv_cents": 15.0,
    "confirmed_after_min": 9,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -4899,8 +5051,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.6,
-   "clv_cents": 9.0,
+   "close_price": 0.68,
+   "clv_cents": 17.0,
    "confirmed_after_min": 16,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -5355,8 +5507,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": 0.0,
+   "close_price": 0.37,
+   "clv_cents": -13.0,
    "confirmed_after_min": 17,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -5808,8 +5960,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.67,
-   "clv_cents": 13.0,
+   "close_price": 0.49,
+   "clv_cents": -5.0,
    "confirmed_after_min": 17,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -5968,8 +6120,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.67,
-   "clv_cents": 15.0,
+   "close_price": 0.64,
+   "clv_cents": 12.0,
    "confirmed_after_min": 10,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -6384,8 +6536,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.64,
-   "clv_cents": 1.0,
+   "close_price": 0.51,
+   "clv_cents": -12.0,
    "confirmed_after_min": 9,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -7723,8 +7875,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": 1.0,
+   "close_price": 0.52,
+   "clv_cents": 2.0,
    "confirmed_after_min": 9,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -8183,8 +8335,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.38,
-   "clv_cents": -40.0,
+   "close_price": 0.45,
+   "clv_cents": -33.0,
    "confirmed_after_min": 10,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -8487,8 +8639,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.3,
-   "clv_cents": -36.0,
+   "close_price": 0.29,
+   "clv_cents": -37.0,
    "confirmed_after_min": 6,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -8647,8 +8799,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.34,
-   "clv_cents": -13.0,
+   "close_price": 0.51,
+   "clv_cents": 4.0,
    "confirmed_after_min": 6,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -8874,8 +9026,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.62,
-   "clv_cents": -12.0,
+   "close_price": 0.66,
+   "clv_cents": -8.0,
    "confirmed_after_min": 6,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -10575,6 +10727,7 @@
    },
    "first_seen_utc": "2026-10-22T17:10:10Z",
    "game": "Liberty vs Kennesaw St.: Spread",
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFSPREAD-26OCT22LIBKENN-LIB10\"}",
    "lead_min": 340,
    "league": "NCAAF",
@@ -10655,12 +10808,13 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFSPREAD-26OCT22LIBKENN-LIB10"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": true,
+   "settled_utc": "2026-10-23T02:15:46Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Kennesaw St.",
@@ -10673,7 +10827,7 @@
     "Kennesaw St."
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-22T17:20:13Z",
@@ -10690,8 +10844,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.3,
-   "clv_cents": -35.0,
+   "close_price": 0.24,
+   "clv_cents": -41.0,
    "confirmed_after_min": 10,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -11643,8 +11797,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 1.0,
+   "close_price": 0.69,
+   "clv_cents": 18.0,
    "confirmed_after_min": 10,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -11943,8 +12097,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.8,
-   "clv_cents": 25.0,
+   "close_price": 0.79,
+   "clv_cents": 24.0,
    "confirmed_after_min": 9,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -12085,8 +12239,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.58,
-   "clv_cents": -11.0,
+   "close_price": 0.8,
+   "clv_cents": 11.0,
    "confirmed_after_min": 9,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -13621,8 +13775,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.85,
-   "clv_cents": 25.0,
+   "close_price": 0.82,
+   "clv_cents": 22.0,
    "confirmed_after_min": 10,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -14477,8 +14631,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": -1.0,
+   "close_price": 0.49,
+   "clv_cents": -2.0,
    "confirmed_after_min": 9,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -14939,6 +15093,7 @@
    },
    "first_seen_utc": "2026-10-22T14:50:11Z",
    "game": "Liberty vs Kennesaw St.",
+   "graded_by": "espn",
    "key": "kalshi|KXNCAAFGAME-26OCT22LIBKENN|ml|0",
    "lead_min": 478,
    "league": "NCAAF",
@@ -15019,13 +15174,14 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26OCT22LIBKENN-LIB"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig",
     "prophetx"
    ],
    "second_book_fresh": true,
+   "settled_utc": "2026-10-23T02:15:46Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Liberty",
@@ -15038,7 +15194,7 @@
     "Kennesaw St."
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.29
   },
   {
    "alerted_utc": "2026-10-22T15:01:39Z",
