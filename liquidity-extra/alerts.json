@@ -1,6 +1,72 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-23T17:15:22Z",
+   "base_depth": 142772,
+   "best_price": 0.6952,
+   "best_price_american": -228,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.68,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-10-23",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 51883,
+     "new_this_side": 156650,
+     "other_side": 47001,
+     "other_side_all_levels": 109171,
+     "ratio": 2.7,
+     "this_side": 126181,
+     "this_side_all_levels": 294310
+    }
+   },
+   "first_seen_utc": "2026-10-23T17:10:15Z",
+   "game": "Cobolli vs Nakashima",
+   "key": "kalshi|KXATPMATCH-26OCT23COBNAK|ml|1",
+   "lead_min": 165,
+   "league": "TENNIS",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 156650,
+   "paper_only": true,
+   "price": 0.68,
+   "price_american": -213,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.7,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXATPMATCH-26OCT23COBNAK-NAK"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "no_match",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Nakashima",
+   "side_label": "Nakashima",
+   "start_source": "kalshi",
+   "start_utc": "2026-10-23T20:00:00Z",
+   "teams": [
+    "Cobolli",
+    "Nakashima"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-23T16:50:15Z",
    "base_depth": 662724,
    "best_price": 0.5375,
@@ -52,10 +118,11 @@
     "kalshi_side": "yes",
     "market_ticker": "KXATPMATCH-26OCT23BUBKHA-BUB"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": "no_match",
    "second_book_fresh": false,
+   "settled_utc": "2026-10-23T17:15:22Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Bublik",
@@ -68,7 +135,7 @@
     "Khachanov"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.86
   },
   {
    "alerted_utc": "2026-10-23T16:40:14Z",
@@ -552,8 +619,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.63,
-   "clv_cents": -1.0,
+   "close_price": 0.62,
+   "clv_cents": -2.0,
    "confirmed_after_min": 10,
    "date": "2026-10-23",
    "depth_by_book": {
