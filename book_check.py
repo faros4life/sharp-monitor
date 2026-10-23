@@ -75,7 +75,7 @@ def parse_bet(bet, teams, lg=None):
 PX_BASE = os.environ.get("PX_BASE", "") or "https://cash.api.prophetx.co/partner"
 PX_ACCESS = os.environ.get("PROPHETX_ACCESS_KEY", "")
 PX_SECRET = os.environ.get("PROPHETX_SECRET_KEY", "")
-PX_TOURNAMENTS = {"NHL": 234, "NFL": 31, "NCAAF": 27653, "NBA": 132, "MLB": 109}
+PX_TOURNAMENTS = {"NHL": 234, "NFL": 31, "NCAAF": 27653, "NBA": 132, "MLB": 109, "NCAAB": 648}
 _PX = {"token": None, "events": {}, "markets": {}, "logged_shape": False}
 PX_FEE = float(os.environ.get("PX_FEE", "") or "0.02")   # ProphetX takes 2% of winnings
 
@@ -120,8 +120,11 @@ def px_events(league):
         tid = PX_TOURNAMENTS.get(league)
         evs = []
         if tid:
-            d = px_call(f"/mm/get_sport_events?tournament_id={tid}")
-            evs = (d.get("data") or {}).get("sport_events") or []
+            try:
+                d = px_call(f"/mm/get_sport_events?tournament_id={tid}")
+                evs = (d.get("data") or {}).get("sport_events") or []
+            except Exception as ex:   # 404 = no games listed (off-season)
+                print(f"  ProphetX events unavailable ({league}): {str(ex)[:60]}")
         _PX["events"][league] = evs
     return _PX["events"][league]
 
