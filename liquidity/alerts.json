@@ -1,6 +1,147 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-23T09:43:48Z",
+   "base_depth": 84777,
+   "best_price": 0.495,
+   "best_price_american": 102,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 17,
+   "date": "2026-10-23",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -3743,
+     "new_this_side": 27308,
+     "other_side": 47122,
+     "other_side_all_levels": 96761,
+     "ratio": 1.3,
+     "this_side": 60425,
+     "this_side_all_levels": 112137
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "IND -6.5 (-6.5)",
+     "price": 0.495,
+     "this_side": 12950
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Pacers (-6.5)",
+     "price": 0.49,
+     "this_side": 30340
+    }
+   },
+   "first_seen_utc": "2026-10-23T09:26:34Z",
+   "game": "Dallas vs Indiana: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNBASPREAD-26OCT23DALIND-IND7\"}",
+   "lead_min": 796,
+   "league": "NBA",
+   "line": -6.5,
+   "market": "spread",
+   "new_money": 27308,
+   "price": 0.5,
+   "price_american": -100,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.5,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -6.5,
+     "price": -105
+    },
+    "betonlineag": {
+     "point": -6.0,
+     "price": -115
+    },
+    "betrivers": {
+     "point": -5.5,
+     "price": -118
+    },
+    "betus": {
+     "point": -6.5,
+     "price": -106
+    },
+    "bovada": {
+     "point": -6.0,
+     "price": -115
+    },
+    "draftkings": {
+     "point": -6.5,
+     "price": -110
+    },
+    "fanatics": {
+     "point": -6.5,
+     "price": -105
+    },
+    "fanduel": {
+     "point": -6.5,
+     "price": -105
+    },
+    "kalshi": {
+     "point": -6.5,
+     "price": 100
+    },
+    "lowvig": {
+     "point": -6.0,
+     "price": -111
+    },
+    "mybookieag": {
+     "point": -6.0,
+     "price": -110
+    },
+    "novig": {
+     "point": -6.5,
+     "price": 102
+    },
+    "polymarket": {
+     "point": -6.5,
+     "price": 104
+    },
+    "prophetx": {
+     "point": -5.0,
+     "price": -126
+    },
+    "williamhill_us": {
+     "point": -6.0,
+     "price": -115
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBASPREAD-26OCT23DALIND-IND7"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "polymarket"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Indiana",
+   "side_label": "Indiana wins by over 6.5 points",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-23T23:00:00Z",
+   "teams": [
+    "Dallas",
+    "Indiana"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-23T08:20:11Z",
    "base_depth": 2025162,
    "best_price": 0.73,
@@ -448,8 +589,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.82,
-   "clv_cents": 0.0,
+   "close_price": 0.83,
+   "clv_cents": 1.0,
    "confirmed_after_min": 18,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -2699,8 +2840,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.49,
-   "clv_cents": 0.0,
+   "close_price": 0.5,
+   "clv_cents": 1.0,
    "confirmed_after_min": 18,
    "date": "2026-10-23",
    "depth_by_book": {
