@@ -1,0 +1,22 @@
+name: px-lookup
+
+on:
+  workflow_dispatch:   # manual only: list ProphetX tournament names/IDs (read-only)
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: List ProphetX tournaments (no orders)
+        env:
+          PROPHETX_ACCESS_KEY: ${{ secrets.PROPHETX_ACCESS_KEY }}
+          PROPHETX_SECRET_KEY: ${{ secrets.PROPHETX_SECRET_KEY }}
+        run: python -u px_lookup.py
