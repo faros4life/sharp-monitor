@@ -1,0 +1,52 @@
+name: liquidity-extra
+
+on:
+  schedule:
+    - cron: "5-59/10 * * * *"   # backup timer; cron-job.org is the real one
+  workflow_dispatch:
+
+concurrency:
+  group: liquidity-extra
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Check MLB, NCAAB and tennis books (paper)
+        env:
+          LIQ_LEAGUES: "MLB,NCAAB,TENNIS"    # separate from the main record (liquidity/)
+          LIQ_DIR: "liquidity-extra"
+          LIQ_BOOKS: "kalshi,novig,polymarket"
+          LIQ_EXTRA_BOOKS: "900"             # this run has only these leagues: give them the normal read limits
+          LIQ_EXTRA_SEC: "150"
+          LIQ_PRIMARY_MIN: ${{ vars.LIQ_PRIMARY_MIN }}
+          LIQ_SECOND_MIN: ${{ vars.LIQ_SECOND_MIN }}
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}   # read-only sportsbook prices at alert time (MLB/NCAAB only)
+        run: python -u liquidity_monitor.py
+      - name: Commit state and alerts
+        if: always()
+        run: |
+          # Only this workflow writes liquidity-extra/; save over upstream, never a merge.
+          if [ -n "$(git status --porcelain liquidity-extra)" ]; then
+            git config user.name "liquidity-extra"
+            git config user.email "liquidity-extra@users.noreply.github.com"
+            rm -rf "$RUNNER_TEMP/out" && mkdir -p "$RUNNER_TEMP/out" && cp -r liquidity-extra "$RUNNER_TEMP/out/"
+            for i in 1 2 3 4 5; do
+              git fetch -q origin main && git reset -q --hard origin/main
+              rm -rf liquidity-extra && cp -r "$RUNNER_TEMP/out/liquidity-extra" .
+              git add -A liquidity-extra
+              git diff --cached --quiet && break
+              git commit -q -m "Update extra-league liquidity alerts"
+              git push -q origin HEAD:main && break
+              sleep 5
+            done
+          fi
