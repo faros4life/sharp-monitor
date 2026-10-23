@@ -53,6 +53,7 @@ def main():
     print("1) KEY CHECK")
     if not nv.ready():
         print("   STOP: signed reads not available or key is not read-only.")
+        print("   " + nv.diagnose())
         sys.exit(1)
     print(f"   OK: scope = {nv.scope()} (read-only). Client is GET-only.")
 
