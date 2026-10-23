@@ -75,7 +75,7 @@ def parse_bet(bet, teams, lg=None):
 PX_BASE = os.environ.get("PX_BASE", "") or "https://cash.api.prophetx.co/partner"
 PX_ACCESS = os.environ.get("PROPHETX_ACCESS_KEY", "")
 PX_SECRET = os.environ.get("PROPHETX_SECRET_KEY", "")
-PX_TOURNAMENTS = {"NHL": 234, "NFL": 31, "NCAAF": 27653, "NBA": 132}
+PX_TOURNAMENTS = {"NHL": 234, "NFL": 31, "NCAAF": 27653, "NBA": 132, "MLB": 109}
 _PX = {"token": None, "events": {}, "markets": {}, "logged_shape": False}
 PX_FEE = float(os.environ.get("PX_FEE", "") or "0.02")   # ProphetX takes 2% of winnings
 
