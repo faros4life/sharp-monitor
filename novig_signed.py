@@ -112,3 +112,18 @@ def get(path, params=None):
 
 def scope():
     return _S["scope"]
+
+
+def diagnose():
+    """Safe facts about the configured key (nothing secret): ID length, key type, public-key fingerprint."""
+    import re
+    from cryptography.hazmat.primitives import serialization
+    kid, pem = os.environ.get("NOVIG_READ_KEY_ID", "").strip(), os.environ.get("NOVIG_READ_KEY_PEM", "")
+    out = [f"key id: {len(kid)} chars, {'uuid format' if re.fullmatch(r'[0-9a-f-]{36}', kid) else 'NOT a uuid'}"]
+    try:
+        k = serialization.load_pem_private_key(pem.replace("\\n", "\n").encode(), password=None)
+        der = k.public_key().public_bytes(serialization.Encoding.DER, serialization.PublicFormat.SubjectPublicKeyInfo)
+        out.append(f"key type: {type(k).__name__}; public fingerprint starts {hashlib.sha256(der).hexdigest()[:12]}")
+    except Exception as ex:
+        out.append(f"pem: does not load ({type(ex).__name__})")
+    return " | ".join(out)
