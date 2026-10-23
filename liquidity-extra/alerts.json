@@ -1,5 +1,80 @@
 {
- "alerts": [],
+ "alerts": [
+  {
+   "alerted_utc": "2026-10-23T15:40:14Z",
+   "base_depth": 180444,
+   "best_price": 0.65,
+   "best_price_american": -186,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.64,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-23",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 6520,
+     "new_this_side": 36405,
+     "other_side": 58303,
+     "other_side_all_levels": 71849,
+     "ratio": 2.8,
+     "this_side": 163816,
+     "this_side_all_levels": 229894
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "A. Fils (0)",
+     "price": 0.65,
+     "this_side": 19434
+    }
+   },
+   "first_seen_utc": "2026-10-23T15:30:18Z",
+   "game": "Fils vs Michelsen",
+   "key": "kalshi|KXATPMATCH-26OCT23FILMIC|ml|0",
+   "lead_min": 50,
+   "league": "TENNIS",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 36405,
+   "paper_only": true,
+   "price": 0.64,
+   "price_american": -178,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.64,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXATPMATCH-26OCT23FILMIC-FIL"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Fils",
+   "side_label": "Fils",
+   "start_source": "novig",
+   "start_utc": "2026-10-23T16:30:00Z",
+   "teams": [
+    "Fils",
+    "Michelsen"
+   ],
+   "top25": null,
+   "units_flat": null
+  }
+ ],
  "note": "Liquidity paper alerts (Kalshi + Novig + Polymarket public books), newest first. Trigger: >= $25000 (and >= 10% of the side's prior size, capped at $100k) of NEW bids on one side since the last check, measured on total side depth (all price levels; near-price depth within 3c is shown and used for the second-book test), >= 3x any new money on the other side, leaving that side heavier; main lines only (ML 15-85c, spread/total 30-70c), pregame; Kalshi moneylines combined per game. Spoof filter: logged only if >= 75% of the new money is still there on the next check (confirmed_after_min). pulled = the new money later disappeared before the game. rule_met = another book has >= $10000 on the same side and it is the heavier side there. sharp_agree/sharp_oppose = sharp-monitor (Pinnacle move) alerts on the same game & market. price = cost to buy the side when logged (0-1); close_price = last pregame price; clv_cents = close_price - price (positive = the market moved toward this side). result W/L/P/VOID from the exchange's settlement; units_flat = 1u at best_price (cheapest across books at alert). Log-only fields: bid_improved (best bid on the alert side rose between readings), best_price/best_price_book, prices_by_book (Odds API sportsbooks), second_book_fresh (second book added >= $10k on the side in the last two checks), lead_min, price_rule (fails_cap = worse than -130 on spread/total; ml_edge_ok/fail = 2% edge vs cross-book fair mid), price_after_15m/still_actionable. Leagues: NFL, NCAAF, NBA, NHL, plus MLB and NCAAB (added Oct 23, same rules; read after the original leagues with leftover capacity) and TENNIS (ATP/WTA match winner, paper_only = true: data collection only, never pushed, not a betting lane; graded only from Kalshi/Polymarket settlement).",
  "v": 5
 }
