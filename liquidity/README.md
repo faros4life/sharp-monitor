@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Oct 23, 4:59 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 70.
+Updated Fri Oct 23, 5:07 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 70.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -116,7 +116,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 22 1:50PM | NCAAF | Syracuse vs North Carolina | moneyline: North Carolina | kalshi | $124k | -317 |  |  | +1.0c | yes | pending |
 | Oct 22 1:50PM | NCAAF | Iowa St. vs Arizona | moneyline: Arizona | kalshi | $167k | -300 |  |  | +0.0c | yes | pending |
 | Oct 22 1:50PM | NCAAF | Iowa vs Minnesota | moneyline: Iowa | kalshi | $146k | -233 |  |  | +1.0c | yes | pending |
-| Oct 22 1:50PM | NCAAF | Eastern Michigan vs Ohio | moneyline: Ohio | kalshi | $52k | -426 |  |  | -1.0c |  | pending |
+| Oct 22 1:50PM | NCAAF | Eastern Michigan vs Ohio | moneyline: Ohio | kalshi | $52k | -426 |  |  | -2.0c |  | pending |
 | Oct 22 1:40PM | NHL | Sharks vs. Senators | moneyline: Senators | polymarket | $53k | -127 | ✅ kalshi,novig |  | +0.0c |  | L |
 | Oct 22 1:32PM | NHL | New York R vs Toronto: Spread | spread: NOT New York R wins by over 1.5 goals | kalshi | $40k | -233 |  |  | +7.0c | yes | W |
 | Oct 22 1:32PM | NHL | Florida vs Pittsburgh: Spread | spread: NOT Pittsburgh wins by over 1.5 goals | kalshi | $43k | -223 | ✅ novig |  | -38.0c | yes | L |
