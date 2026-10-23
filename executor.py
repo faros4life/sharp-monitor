@@ -93,14 +93,27 @@ def read_verdicts(M):
             LOG.append("verdict email with unreadable JSON")
             continue
         for p in arr if isinstance(arr, list) else []:
-            if isinstance(p, dict) and p.get("play_key"):
-                plays.append(p)
+            if isinstance(p, dict) and (p.get("play_key") or derive_key(p)):
+                plays.append(dict(p, play_key=p.get("play_key") or derive_key(p)))
     seen, out = set(), []
     for p in plays:
         if p["play_key"] not in seen:
             seen.add(p["play_key"])
             out.append(p)
     return out
+
+
+def derive_key(p):
+    """No play_key (e.g. a raw alerts.json entry): sport|game|market|side, so repeat alerts on one play count once."""
+    try:
+        teams = lm.split_teams(p.get("game") or "")
+        mt, sd, _, _ = bc.parse_bet(p.get("bet") or "", teams, (p.get("sport") or "").upper()) if teams else (None, None, None, None)
+        if not mt or sd is None:
+            return None
+        side = sd if isinstance(sd, str) else teams[sd]
+        return f"{(p.get('sport') or '').upper()}|{p.get('game')}|{'side' if mt in ('spread', 'moneyline') else mt}|{side}"
+    except Exception:
+        return None
 
 
 def already_handled(M, p):
