@@ -1,6 +1,449 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-23T15:02:07Z",
+   "base_depth": 319125,
+   "best_price": 0.55,
+   "best_price_american": -122,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.55,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 18,
+   "date": "2026-10-23",
+   "depth_by_book": {
+    "novig": {
+     "heavier_side": true,
+     "label": "BOS (0)",
+     "price": 0.55,
+     "this_side": 59807
+    },
+    "polymarket": {
+     "new_other_side": -3880,
+     "new_this_side": 111553,
+     "other_side": 103232,
+     "other_side_all_levels": 129276,
+     "ratio": 4.0,
+     "this_side": 415027,
+     "this_side_all_levels": 440476
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Boston Celtics",
+     "price": 0.5475,
+     "this_side": 29024
+    }
+   },
+   "first_seen_utc": "2026-10-23T14:44:23Z",
+   "game": "Knicks vs. Celtics",
+   "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"5792063\"}",
+   "lead_min": 478,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 111553,
+   "paper_only": false,
+   "price": 0.55,
+   "price_american": -122,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.55,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -135
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -130
+    },
+    "betopenly": {
+     "point": null,
+     "price": -120
+    },
+    "betrivers": {
+     "point": null,
+     "price": -136
+    },
+    "betus": {
+     "point": null,
+     "price": -130
+    },
+    "bovada": {
+     "point": null,
+     "price": -130
+    },
+    "draftkings": {
+     "point": null,
+     "price": -130
+    },
+    "fanatics": {
+     "point": null,
+     "price": -130
+    },
+    "fanduel": {
+     "point": null,
+     "price": -134
+    },
+    "kalshi": {
+     "point": null,
+     "price": -122
+    },
+    "lowvig": {
+     "point": null,
+     "price": -128
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -141
+    },
+    "novig": {
+     "point": null,
+     "price": -122
+    },
+    "polymarket": {
+     "point": null,
+     "price": -122
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -127
+    },
+    "prophetx": {
+     "point": null,
+     "price": -121
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -140
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 1,
+    "pm_market_id": "5792063"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "prophetx"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [],
+   "sharp_oppose": [
+    "New York Knicks +2.5 (+100)"
+   ],
+   "side": "Celtics",
+   "side_label": "Celtics",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-23T23:00:00Z",
+   "teams": [
+    "Knicks",
+    "Celtics"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-23T15:02:07Z",
+   "base_depth": 20459,
+   "best_price": 0.51,
+   "best_price_american": -104,
+   "best_price_book": "novig",
+   "bid_improved": true,
+   "bid_improved_at_pending": false,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 18,
+   "date": "2026-10-23",
+   "depth_by_book": {
+    "novig": {
+     "new_other_side": 7147,
+     "new_this_side": 28413,
+     "other_side": 46309,
+     "other_side_all_levels": 46423,
+     "ratio": 1.1,
+     "this_side": 48941,
+     "this_side_all_levels": 52070
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "Connecticut -14.5 (-14.5)",
+     "price": 0.5074,
+     "this_side": 9409
+    }
+   },
+   "first_seen_utc": "2026-10-23T14:44:23Z",
+   "game": "Massachusetts @ Connecticut",
+   "key": "novig|{\"market_id\": \"01a14d4f-7e63-7ac1-810e-691122ccfb65\", \"outcome_id\": \"01a14d4f-7e63-7ac1-810e-692244e2674c\"}",
+   "lead_min": 478,
+   "league": "NCAAF",
+   "line": -14.5,
+   "market": "spread",
+   "new_money": 28413,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.5,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "market_id": "01a14d4f-7e63-7ac1-810e-691122ccfb65",
+    "outcome_id": "01a14d4f-7e63-7ac1-810e-692244e2674c"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "none_10k",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Connecticut",
+   "side_label": "CONN -14.5 (-14.5)",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-23T23:00:00Z",
+   "teams": [
+    "Massachusetts",
+    "Connecticut"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-23T15:02:07Z",
+   "base_depth": 79928,
+   "best_price": 0.56,
+   "best_price_american": -127,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.56,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 18,
+   "date": "2026-10-23",
+   "depth_by_book": {
+    "novig": {
+     "new_other_side": 12929,
+     "new_this_side": 40768,
+     "other_side": 60269,
+     "other_side_all_levels": 60362,
+     "ratio": 2.0,
+     "this_side": 120284,
+     "this_side_all_levels": 120516
+    }
+   },
+   "first_seen_utc": "2026-10-23T14:44:23Z",
+   "game": "Duke @ Virginia",
+   "key": "novig|{\"market_id\": \"01a14d4b-edaa-7031-9198-b9166dbcf65c\", \"outcome_id\": \"01a14d4b-edaa-7031-9198-b924438f1e99\"}",
+   "lead_min": 478,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 40768,
+   "paper_only": false,
+   "price": 0.56,
+   "price_american": -127,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.56,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "market_id": "01a14d4b-edaa-7031-9198-b9166dbcf65c",
+    "outcome_id": "01a14d4b-edaa-7031-9198-b924438f1e99"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "no_match",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UVA (0)",
+   "side_label": "UVA (0)",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-23T23:00:00Z",
+   "teams": [
+    "Duke",
+    "Virginia"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-23T15:02:07Z",
+   "base_depth": 350568,
+   "best_price": 0.6069,
+   "best_price_american": -154,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.59,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 18,
+   "date": "2026-10-23",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 39585,
+     "new_this_side": 254847,
+     "other_side": 93032,
+     "other_side_all_levels": 165851,
+     "ratio": 6.3,
+     "this_side": 585015,
+     "this_side_all_levels": 614923
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "MTL (0)",
+     "price": 0.61,
+     "this_side": 37300
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Canadiens",
+     "price": 0.61,
+     "this_side": 217493
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Montreal Canadiens",
+     "price": 0.6063,
+     "this_side": 12847
+    }
+   },
+   "first_seen_utc": "2026-10-23T14:44:23Z",
+   "game": "Montreal vs Chicago",
+   "key": "kalshi|KXNHLGAME-26OCT23MTLCHI|ml|0",
+   "lead_min": 538,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 254847,
+   "paper_only": false,
+   "price": 0.59,
+   "price_american": -144,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.59,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -170
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -170
+    },
+    "betopenly": {
+     "point": null,
+     "price": -153
+    },
+    "betrivers": {
+     "point": null,
+     "price": -155
+    },
+    "betus": {
+     "point": null,
+     "price": -170
+    },
+    "draftkings": {
+     "point": null,
+     "price": -170
+    },
+    "fanatics": {
+     "point": null,
+     "price": -170
+    },
+    "fanduel": {
+     "point": null,
+     "price": -164
+    },
+    "kalshi": {
+     "point": null,
+     "price": -156
+    },
+    "lowvig": {
+     "point": null,
+     "price": -170
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -170
+    },
+    "novig": {
+     "point": null,
+     "price": -156
+    },
+    "polymarket": {
+     "point": null,
+     "price": -156
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -150
+    },
+    "prophetx": {
+     "point": null,
+     "price": -154
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -164
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNHLGAME-26OCT23MTLCHI-MTL"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Montreal",
+   "side_label": "Montreal",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-24T00:00:00Z",
+   "teams": [
+    "Montreal",
+    "Chicago"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-23T12:21:25Z",
    "base_depth": 79525,
    "best_price": 0.54,
@@ -132,7 +575,8 @@
      "price": -125
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-23T14:25:16Z",
    "ref": {
     "outcome_index": 1,
     "pm_market_id": "5797983"
@@ -172,8 +616,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.56,
-   "clv_cents": 3.0,
+   "close_price": 0.58,
+   "clv_cents": 5.0,
    "confirmed_after_min": 20,
    "date": "2026-10-23",
    "depth_by_book": {
@@ -274,7 +718,7 @@
     }
    },
    "pulled": true,
-   "pulled_utc": "2026-10-23T14:35:04Z",
+   "pulled_utc": "2026-10-23T14:25:16Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNBASPREAD-26OCT23PORSAC-POR9"
@@ -420,7 +864,7 @@
     }
    },
    "pulled": true,
-   "pulled_utc": "2026-10-23T14:35:04Z",
+   "pulled_utc": "2026-10-23T14:25:16Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNBATOTAL-26OCT23LACLAL-229"
@@ -568,7 +1012,7 @@
     }
    },
    "pulled": true,
-   "pulled_utc": "2026-10-23T14:35:04Z",
+   "pulled_utc": "2026-10-23T14:25:16Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNBASPREAD-26OCT23MEMGSW-GSW4"
@@ -713,7 +1157,8 @@
      "price": -110
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-23T14:25:16Z",
    "ref": {
     "outcome_index": 1,
     "pm_market_id": "5792078"
@@ -751,8 +1196,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.505,
-   "clv_cents": 0.5,
+   "close_price": 0.51,
+   "clv_cents": 1.0,
    "confirmed_after_min": 20,
    "date": "2026-10-23",
    "depth_by_book": {
@@ -1033,8 +1478,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": 2.0,
+   "close_price": 0.52,
+   "clv_cents": 3.0,
    "confirmed_after_min": 19,
    "date": "2026-10-23",
    "depth_by_book": {
@@ -2433,7 +2878,7 @@
     }
    },
    "pulled": true,
-   "pulled_utc": "2026-10-23T14:35:04Z",
+   "pulled_utc": "2026-10-23T14:25:16Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNBATOTAL-26OCT23LACLAL-229"
@@ -4436,8 +4881,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": -1.0,
+   "close_price": 0.51,
+   "clv_cents": 0.0,
    "confirmed_after_min": 19,
    "date": "2026-10-23",
    "depth_by_book": {
