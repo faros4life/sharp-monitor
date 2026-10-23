@@ -1,6 +1,681 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-23T17:00:18Z",
+   "base_depth": 178167,
+   "best_price": 0.5,
+   "best_price_american": -100,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-23",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": false,
+     "label": "Milwaukee wins by over 1.5 points",
+     "price": 0.5,
+     "this_side": 110649
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "MIL -1.5 (-1.5)",
+     "price": 0.5,
+     "this_side": 24087
+    },
+    "polymarket": {
+     "new_other_side": -18692,
+     "new_this_side": 66121,
+     "other_side": 96946,
+     "other_side_all_levels": 129929,
+     "ratio": 2.0,
+     "this_side": 197667,
+     "this_side_all_levels": 236617
+    }
+   },
+   "first_seen_utc": "2026-10-23T16:50:11Z",
+   "game": "Bulls vs. Bucks",
+   "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"6036698\"}",
+   "lead_min": 180,
+   "league": "NBA",
+   "line": -1.5,
+   "market": "spread",
+   "new_money": 66121,
+   "paper_only": false,
+   "price": 0.5,
+   "price_american": -100,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.5,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -1.5,
+     "price": -105
+    },
+    "betonlineag": {
+     "point": -1.0,
+     "price": -115
+    },
+    "betopenly": {
+     "point": -1.5,
+     "price": 110
+    },
+    "betrivers": {
+     "point": 0.5,
+     "price": -110
+    },
+    "betus": {
+     "point": -1.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": -1.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": -1.5,
+     "price": -102
+    },
+    "fanatics": {
+     "point": -1.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": -1.5,
+     "price": 100
+    },
+    "kalshi": {
+     "point": -1.5,
+     "price": 100
+    },
+    "lowvig": {
+     "point": -1.0,
+     "price": -111
+    },
+    "mybookieag": {
+     "point": -1.0,
+     "price": -110
+    },
+    "novig": {
+     "point": -1.5,
+     "price": 102
+    },
+    "polymarket": {
+     "point": -1.5,
+     "price": 100
+    },
+    "prophetx": {
+     "point": -1.0,
+     "price": -107
+    },
+    "williamhill_us": {
+     "point": -1.5,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 0,
+    "pm_market_id": "6036698"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "none_10k",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Bucks",
+   "side_label": "Bucks (-1.5)",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-23T20:00:00Z",
+   "teams": [
+    "Bulls",
+    "Bucks"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-23T17:00:18Z",
+   "base_depth": 198461,
+   "best_price": 0.5375,
+   "best_price_american": -116,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-23",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -4471,
+     "new_this_side": 29163,
+     "other_side": 119136,
+     "other_side_all_levels": 187481,
+     "ratio": 1.4,
+     "this_side": 170419,
+     "this_side_all_levels": 229729
+    }
+   },
+   "first_seen_utc": "2026-10-23T16:50:11Z",
+   "game": "UMass vs UConn: Total Points",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFTOTAL-26OCT23MASSCONN-53\"}",
+   "lead_min": 540,
+   "league": "NCAAF",
+   "line": 52.5,
+   "market": "total",
+   "new_money": 29163,
+   "paper_only": false,
+   "price": 0.52,
+   "price_american": -108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.52,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 53.5,
+     "price": -108
+    },
+    "betonlineag": {
+     "point": 53.0,
+     "price": -115
+    },
+    "betopenly": {
+     "point": 53.5,
+     "price": 101
+    },
+    "betrivers": {
+     "point": 51.5,
+     "price": -115
+    },
+    "betus": {
+     "point": 53.0,
+     "price": -115
+    },
+    "bovada": {
+     "point": 53.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 53.5,
+     "price": -108
+    },
+    "fanatics": {
+     "point": 53.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 52.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": 52.5,
+     "price": -108
+    },
+    "lowvig": {
+     "point": 53.0,
+     "price": -114
+    },
+    "mybookieag": {
+     "point": 53.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 53.5,
+     "price": 104
+    },
+    "polymarket": {
+     "point": 53.5,
+     "price": 104
+    },
+    "prophetx": {
+     "point": 52.5,
+     "price": -108
+    },
+    "williamhill_us": {
+     "point": 53.0,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFTOTAL-26OCT23MASSCONN-53"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "no_match",
+   "second_book_fresh": false,
+   "sharp_agree": [
+    "Over 51.5 (-115)",
+    "Over 50.5 (-110)",
+    "Over 50.5 (-104)"
+   ],
+   "sharp_oppose": [],
+   "side": "OVER",
+   "side_label": "Over 52.5 points",
+   "start_source": "kalshi",
+   "start_utc": "2026-10-24T02:00:00Z",
+   "teams": [
+    "UMass",
+    "UConn"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-23T17:00:18Z",
+   "base_depth": 690950,
+   "best_price": 0.5175,
+   "best_price_american": -107,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-23",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 52572,
+     "new_this_side": 293728,
+     "other_side": 528803,
+     "other_side_all_levels": 674084,
+     "ratio": 1.7,
+     "this_side": 899857,
+     "this_side_all_levels": 987221
+    }
+   },
+   "first_seen_utc": "2026-10-23T16:50:11Z",
+   "game": "NC St. vs Stanford: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFSPREAD-26OCT23NCSTSTAN-NCST8\"}",
+   "lead_min": 750,
+   "league": "NCAAF",
+   "line": -7.5,
+   "market": "spread",
+   "new_money": 293728,
+   "paper_only": false,
+   "price": 0.5,
+   "price_american": -100,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.5,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -7.5,
+     "price": -108
+    },
+    "betonlineag": {
+     "point": -7.5,
+     "price": -110
+    },
+    "betopenly": {
+     "point": -7.5,
+     "price": 101
+    },
+    "betrivers": {
+     "point": -8.0,
+     "price": -109
+    },
+    "betus": {
+     "point": -7.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": -7.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": -7.5,
+     "price": -110
+    },
+    "fanatics": {
+     "point": -7.5,
+     "price": -105
+    },
+    "fanduel": {
+     "point": -7.5,
+     "price": -105
+    },
+    "kalshi": {
+     "point": -7.5,
+     "price": 100
+    },
+    "lowvig": {
+     "point": -7.5,
+     "price": -106
+    },
+    "mybookieag": {
+     "point": -7.5,
+     "price": -110
+    },
+    "novig": {
+     "point": -7.5,
+     "price": -102
+    },
+    "polymarket": {
+     "point": 20.5,
+     "price": -9900
+    },
+    "prophetx": {
+     "point": -7.0,
+     "price": -124
+    },
+    "williamhill_us": {
+     "point": -7.5,
+     "price": -107
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFSPREAD-26OCT23NCSTSTAN-NCST8"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "no_match",
+   "second_book_fresh": false,
+   "sharp_agree": [
+    "NC State Wolfpack -7 (-124)"
+   ],
+   "sharp_oppose": [],
+   "side": "NC St.",
+   "side_label": "NC St. wins by over 7.5 points",
+   "start_source": "kalshi",
+   "start_utc": "2026-10-24T05:30:00Z",
+   "teams": [
+    "NC St.",
+    "Stanford"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-23T17:00:18Z",
+   "base_depth": 328443,
+   "best_price": 0.5275,
+   "best_price_american": -112,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-23",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 112673,
+     "new_this_side": 519921,
+     "other_side": 569199,
+     "other_side_all_levels": 646370,
+     "ratio": 1.3,
+     "this_side": 753188,
+     "this_side_all_levels": 848071
+    }
+   },
+   "first_seen_utc": "2026-10-23T16:50:11Z",
+   "game": "UMass vs UConn: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFSPREAD-26OCT23MASSCONN-CONN14\"}",
+   "lead_min": 540,
+   "league": "NCAAF",
+   "line": -13.5,
+   "market": "spread",
+   "new_money": 519921,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -13.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": -13.5,
+     "price": -112
+    },
+    "betopenly": {
+     "point": -13.5,
+     "price": -101
+    },
+    "betrivers": {
+     "point": -13.5,
+     "price": -109
+    },
+    "betus": {
+     "point": -13.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": -13.5,
+     "price": -115
+    },
+    "draftkings": {
+     "point": -13.5,
+     "price": -108
+    },
+    "fanatics": {
+     "point": -13.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": -13.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": -13.5,
+     "price": -104
+    },
+    "lowvig": {
+     "point": -13.5,
+     "price": -108
+    },
+    "novig": {
+     "point": -13.5,
+     "price": -102
+    },
+    "polymarket": {
+     "point": -13.5,
+     "price": -104
+    },
+    "prophetx": {
+     "point": -13.5,
+     "price": -102
+    },
+    "williamhill_us": {
+     "point": -13.5,
+     "price": -112
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFSPREAD-26OCT23MASSCONN-CONN14"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "no_match",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [
+    "UMass Minutemen +14.5 (-117)"
+   ],
+   "side": "UConn",
+   "side_label": "UConn wins by over 13.5 points",
+   "start_source": "kalshi",
+   "start_utc": "2026-10-24T02:00:00Z",
+   "teams": [
+    "UMass",
+    "UConn"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-23T17:00:18Z",
+   "base_depth": 127828,
+   "best_price": 0.47,
+   "best_price_american": 113,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.47,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-24",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -10355,
+     "new_this_side": 57429,
+     "other_side": 43985,
+     "other_side_all_levels": 110326,
+     "ratio": 2.9,
+     "this_side": 129400,
+     "this_side_all_levels": 184757
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "WMU +2.5 (-2.5)",
+     "price": 0.47,
+     "this_side": 20034
+    }
+   },
+   "first_seen_utc": "2026-10-23T16:50:11Z",
+   "game": "Western Michigan vs Toledo: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFSPREAD-26OCT24WMUTOL-TOL3\"}",
+   "lead_min": 1380,
+   "league": "NCAAF",
+   "line": 2.5,
+   "market": "spread",
+   "new_money": 57429,
+   "paper_only": false,
+   "price": 0.47,
+   "price_american": 113,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.47,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 3.5,
+     "price": -112
+    },
+    "betonlineag": {
+     "point": 3.0,
+     "price": -118
+    },
+    "betrivers": {
+     "point": 3.0,
+     "price": -107
+    },
+    "betus": {
+     "point": 3.0,
+     "price": -115
+    },
+    "bovada": {
+     "point": 3.0,
+     "price": -115
+    },
+    "draftkings": {
+     "point": 3.0,
+     "price": -115
+    },
+    "fanatics": {
+     "point": 3.0,
+     "price": -120
+    },
+    "fanduel": {
+     "point": 2.5,
+     "price": 102
+    },
+    "kalshi": {
+     "point": 2.5,
+     "price": 113
+    },
+    "lowvig": {
+     "point": 3.0,
+     "price": -114
+    },
+    "mybookieag": {
+     "point": 3.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 2.5,
+     "price": 113
+    },
+    "polymarket": {
+     "point": 2.5,
+     "price": 113
+    },
+    "prophetx": {
+     "point": 3.5,
+     "price": -126
+    },
+    "williamhill_us": {
+     "point": 3.0,
+     "price": -115
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAFSPREAD-26OCT24WMUTOL-TOL3"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Western Michigan",
+   "side_label": "NOT Toledo wins by over 2.5 points",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-24T16:00:00Z",
+   "teams": [
+    "Western Michigan",
+    "Toledo"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-23T16:50:11Z",
    "base_depth": 438274,
    "best_price": 0.555,
@@ -922,6 +1597,8 @@
    "new_money": 41582,
    "paper_only": false,
    "price": 0.51,
+   "price_after_15m": 0.5,
+   "price_after_15m_book": "novig",
    "price_american": -104,
    "price_rule": "ok",
    "price_when_first_seen": 0.51,
@@ -1011,6 +1688,7 @@
    "side_label": "Over 235.5 points",
    "start_source": "polymarket",
    "start_utc": "2026-10-24T00:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Detroit",
     "Miami"
@@ -1058,6 +1736,8 @@
    "new_money": 50304,
    "paper_only": false,
    "price": 0.5,
+   "price_after_15m": 0.5175,
+   "price_after_15m_book": "kalshi",
    "price_american": -100,
    "price_rule": "ok",
    "price_when_first_seen": 0.5,
@@ -1136,6 +1816,7 @@
    "side_label": "NOT UConn wins by over 13.5 points",
    "start_source": "kalshi",
    "start_utc": "2026-10-24T02:00:00Z",
+   "still_actionable": true,
    "teams": [
     "UMass",
     "UConn"
@@ -1189,6 +1870,8 @@
    "new_money": 30922,
    "paper_only": false,
    "price": 0.52,
+   "price_after_15m": 0.51,
+   "price_after_15m_book": "novig",
    "price_american": -108,
    "price_rule": "ok",
    "price_when_first_seen": 0.52,
@@ -1258,7 +1941,8 @@
      "price": -115
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-23T17:00:18Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNBATOTAL-26OCT23NYKBOS-222"
@@ -1277,6 +1961,7 @@
    "side_label": "NOT Over 221.5 points",
    "start_source": "prophetx",
    "start_utc": "2026-10-23T23:00:00Z",
+   "still_actionable": true,
    "teams": [
     "New York",
     "Boston"
@@ -1342,6 +2027,8 @@
    "new_money": 46719,
    "paper_only": false,
    "price": 0.5,
+   "price_after_15m": 0.495,
+   "price_after_15m_book": "novig",
    "price_american": -100,
    "price_rule": "ok",
    "price_when_first_seen": 0.5,
@@ -1432,6 +2119,7 @@
    "side_label": "NOT Toronto wins by over 8.5 points",
    "start_source": "polymarket",
    "start_utc": "2026-10-23T23:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Toronto",
     "Washington"
@@ -1491,6 +2179,8 @@
    "new_money": 49482,
    "paper_only": false,
    "price": 0.51,
+   "price_after_15m": 0.51,
+   "price_after_15m_book": "novig",
    "price_american": -104,
    "price_rule": "ok",
    "price_when_first_seen": 0.51,
@@ -1582,6 +2272,7 @@
    "side_label": "NOT Portland wins by over 10.5 points",
    "start_source": "prophetx",
    "start_utc": "2026-10-24T02:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Portland",
     "Sacramento"
@@ -1629,6 +2320,8 @@
    "new_money": 204871,
    "paper_only": false,
    "price": 0.41,
+   "price_after_15m": 0.4269,
+   "price_after_15m_book": "kalshi",
    "price_american": 144,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.41,
@@ -1648,6 +2341,7 @@
    "side_label": "Western Michigan",
    "start_source": "kalshi",
    "start_utc": "2026-10-24T03:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Western Michigan",
     "Toledo"
@@ -7888,8 +8582,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.54,
-   "clv_cents": 5.0,
+   "close_price": 0.55,
+   "clv_cents": 6.0,
    "confirmed_after_min": 18,
    "date": "2026-10-23",
    "depth_by_book": {
@@ -8029,8 +8723,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": -1.0,
+   "close_price": 0.51,
+   "clv_cents": 0.0,
    "confirmed_after_min": 19,
    "date": "2026-10-23",
    "depth_by_book": {
@@ -8615,8 +9309,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 0.0,
+   "close_price": 0.525,
+   "clv_cents": 0.5,
    "confirmed_after_min": 9,
    "date": "2026-10-23",
    "depth_by_book": {
@@ -8757,8 +9451,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": 4.0,
+   "close_price": 0.52,
+   "clv_cents": 3.0,
    "confirmed_after_min": 9,
    "date": "2026-10-23",
    "depth_by_book": {
