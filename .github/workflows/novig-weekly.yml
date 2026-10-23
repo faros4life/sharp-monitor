@@ -28,5 +28,6 @@ jobs:
           NOVIG_READ_KEY_PEM: ${{ secrets.NOVIG_READ_KEY_PEM }}
           GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}   # pgoranites+bets@ -> Gmail filter -> Bets label
           WEEK_OFFSET: ${{ github.event.inputs.week_offset || '0' }}
         run: python -u novig_weekly.py
