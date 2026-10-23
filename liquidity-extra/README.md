@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Oct 23, 5:40 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 9.
+Updated Fri Oct 23, 5:50 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 9.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,7 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Oct 23 5:17PM | MLB | Tampa Bay vs Milwaukee: Total Runs | total: NOT Over 6.5 runs scored | kalshi | $159k | +104 | ✅ polymarket |  | +0.0c | yes | pending |
 | Oct 23 4:46PM | TENNIS | Van Assche vs Musetti | moneyline: Musetti | kalshi | $85k | -203 |  |  | +12.0c | yes | pending |
-| Oct 23 4:08PM | MLB | Tampa Bay vs Milwaukee: Spread | spread: NOT Milwaukee wins by over 1.5 runs | kalshi | $204k | -138 | ✅ novig,polymarket |  | +1.0c | yes | pending |
+| Oct 23 4:08PM | MLB | Tampa Bay vs Milwaukee: Spread | spread: NOT Milwaukee wins by over 1.5 runs | kalshi | $204k | -138 | ✅ novig,polymarket |  | +0.0c | yes | pending |
 | Oct 23 4:08PM | MLB | Game 1: Tampa Bay vs Milwaukee | moneyline: Milwaukee | kalshi | $114k | -170 | ✅ novig,polymarket,prophetx |  | +0.0c | yes | pending |
 | Oct 23 3:43PM | TENNIS | Struff vs Bergs | moneyline: Struff | kalshi | $154k | -144 |  |  | +27.0c |  | W |
 | Oct 23 1:40PM | MLB | Tampa Bay Rays vs. Milwaukee Brewers | spread: Tampa Bay Rays (+1.5) | polymarket | $29k | -144 | ✅ kalshi,novig |  | -1.0c | yes | pending |
