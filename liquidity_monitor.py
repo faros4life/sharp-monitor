@@ -32,7 +32,8 @@ KALSHI = os.environ.get("KALSHI_API", "") or "https://api.elections.kalshi.com/t
 NOVIG = os.environ.get("NOVIG_API", "") or "https://api.novig.com"
 PM_GAMMA = os.environ.get("PM_GAMMA", "") or "https://gamma-api.polymarket.com"
 PM_CLOB = os.environ.get("PM_CLOB", "") or "https://clob.polymarket.com"
-PM_TAGS = {"NFL": "nfl", "NCAAF": "cfb", "NBA": "nba", "NHL": "nhl"}
+PM_TAGS = {"NFL": "nfl", "NCAAF": "cfb", "NBA": "nba", "NHL": "nhl", "MLB": "mlb", "NCAAB": "cbb"}
+PM_TAGS_MULTI = {"TENNIS": ["atp", "wta"]}   # tennis: both tours, one paper-only league
 PM_MTYPE = {"moneyline": "moneyline", "spreads": "spread", "spread": "spread", "totals": "total", "total": "total"}
 OUT_DIR = os.environ.get("LIQ_DIR", "") or "liquidity"
 STATE_FILE = os.path.join(OUT_DIR, "state.json")
@@ -41,7 +42,14 @@ PRIMARY_MIN = float(os.environ.get("LIQ_PRIMARY_MIN", "") or "25000")   # floor 
 REL_MIN = float(os.environ.get("LIQ_REL_MIN", "") or "0.10")             # ...and >= 10% of what was already on that side
 NEED_CAP = float(os.environ.get("LIQ_NEED_CAP", "") or "100000")         # ...but never more than $100k (big books)
 SECOND_MIN = float(os.environ.get("LIQ_SECOND_MIN", "") or "10000")
-LEAGUES = [x.strip().upper() for x in (os.environ.get("LIQ_LEAGUES", "") or "NFL,NCAAF,NBA,NHL").split(",") if x.strip()]
+LEAGUES = [x.strip().upper() for x in (os.environ.get("LIQ_LEAGUES", "") or "NFL,NCAAF,NBA,NHL,MLB,NCAAB,TENNIS").split(",") if x.strip()]
+# Read order: the original leagues first with their original read limits (so their record is unchanged), then the
+# added leagues with whatever time is left. Tennis is PAPER ONLY: logged, never pushed, never an alert lane.
+LEAGUE_PRIORITY = {"NFL": 0, "NCAAF": 0, "NBA": 0, "NHL": 0, "MLB": 1, "NCAAB": 1, "TENNIS": 2}
+PAPER_ONLY = {"TENNIS"}
+ML_ONLY = {"TENNIS"}   # tennis: match winner only (no set/game handicaps or totals)
+EXTRA_CALLS = int(os.environ.get("LIQ_EXTRA_BOOKS", "") or "500")      # extra book reads per exchange for added leagues
+EXTRA_STOP_S = float(os.environ.get("LIQ_EXTRA_STOP_SEC", "") or "100") # added leagues stop at this many seconds per exchange
 BOOKS = [x.strip().lower() for x in (os.environ.get("LIQ_BOOKS", "") or "kalshi,novig,polymarket,prophetx").split(",") if x.strip()]
 CONFIRM_ONLY_BOOKS = {"prophetx"}   # read for second-book confirmation and best price; never starts an alert (no settlement read yet)
 MAX_CALLS = int(os.environ.get("LIQ_MAX_BOOKS", "") or "900")          # order-book calls per book per run
@@ -57,6 +65,17 @@ def start_clock():
 
 def out_of_time():
     return time.time() - T0 > BUDGET_S
+
+
+def prio(lg):
+    return LEAGUE_PRIORITY.get(lg, 1)
+
+
+def over_limit(lg, calls):
+    """Original leagues: the original caps (MAX_CALLS reads, BUDGET_S seconds). Added leagues: only leftover capacity."""
+    if prio(lg) == 0:
+        return calls >= MAX_CALLS or out_of_time()
+    return calls >= MAX_CALLS + EXTRA_CALLS or time.time() - T0 > min(EXTRA_STOP_S, BUDGET_S)
 
 
 def num(x):
@@ -89,14 +108,25 @@ FRESH_MIN = float(os.environ.get("LIQ_FRESH_MIN", "") or "60")   # compare again
 STATE_VERSION = 5   # v5: Novig sizes fixed (1 contract = 1c, not $1); record restarts clean
 NTFY_TOPIC = os.environ.get("LIQ_NTFY_TOPIC", "")                       # optional push; empty = file only
 ODDS_KEY = os.environ.get("ODDS_API_KEY", "")                             # optional: sportsbook prices at alert time
-ODDS_SPORT = {"NFL": "americanfootball_nfl", "NCAAF": "americanfootball_ncaaf", "NBA": "basketball_nba", "NHL": "icehockey_nhl"}
+ODDS_SPORT = {"NFL": "americanfootball_nfl", "NCAAF": "americanfootball_ncaaf", "NBA": "basketball_nba", "NHL": "icehockey_nhl",
+              "MLB": "baseball_mlb", "NCAAB": "basketball_ncaab"}   # no tennis (paper only, saves credits)
 ODDS_MKT = {"moneyline": "h2h", "spread": "spreads", "total": "totals"}
 RUN_T0 = time.time()
-K_SERIES_RE = re.compile(r"^KX(" + "|".join(LEAGUES) + r")(GAME|SPREAD|TOTAL)$")
 K_MTYPE = {"GAME": "moneyline", "SPREAD": "spread", "TOTAL": "total"}
+K_CODE = {"NCAAB": ["NCAAMB"]}   # Kalshi series codes that differ from our league name
+K_SERIES = {}                    # Kalshi series ticker -> (league, kind)
+for _lg in LEAGUES:
+    if _lg == "TENNIS":
+        K_SERIES.update({"KXATPMATCH": ("TENNIS", "GAME"), "KXWTAMATCH": ("TENNIS", "GAME")})
+        continue
+    for _c in K_CODE.get(_lg, [_lg]):
+        for _k in K_MTYPE:
+            K_SERIES[f"KX{_c}{_k}"] = (_lg, _k)
 N_MTYPE = {"MONEY": "moneyline", "MONEYLINE": "moneyline", "SPREAD": "spread", "TOTAL": "total"}
 N_LEAGUE = {"NFL": "NFL", "NBA": "NBA", "NHL": "NHL", "NCAAF": "NCAAF", "NCAAFB": "NCAAF", "CFB": "NCAAF",
-            "COLLEGE FOOTBALL": "NCAAF", "NCAA FOOTBALL": "NCAAF"}
+            "COLLEGE FOOTBALL": "NCAAF", "NCAA FOOTBALL": "NCAAF", "MLB": "MLB", "BASEBALL": "MLB",
+            "NCAAB": "NCAAB", "NCAAMB": "NCAAB", "NCAABB": "NCAAB", "CBB": "NCAAB", "COLLEGE BASKETBALL": "NCAAB",
+            "NCAA BASKETBALL": "NCAAB", "ATP": "TENNIS", "WTA": "TENNIS", "TENNIS": "TENNIS"}
 MON = {m: i for i, m in enumerate(["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"], 1)}
 STOP = {"at", "vs", "v", "the", "fc", "state", "st", "university", "of", "and", "game", "winner", "points", "scored",
         "wins", "by", "over", "under", "more", "than", "total", "spread", "moneyline", "football", "basketball", "hockey"}
@@ -178,6 +208,25 @@ for _pair in ABBR.split("|"):
         ALIAS.setdefault(_w[0], set()).update(_w[1:])
 
 
+MLB_TEAMS = """diamondbacks arizona|dbacks arizona|braves atlanta|orioles baltimore|red boston|sox|cubs chicago|reds cincinnati|
+guardians cleveland|rockies colorado|tigers detroit|astros houston|royals kansas|angels anaheim angeles|dodgers angeles|
+marlins miami|brewers milwaukee|twins minnesota|mets york|yankees york|athletics oakland sacramento|as athletics|phillies philadelphia|
+pirates pittsburgh|padres diego|giants francisco|mariners seattle|cardinals louis|rays tampa|rangers texas|blue toronto|jays toronto|
+nationals washington|nats washington"""
+MLB_ABBR = """ari arizona diamondbacks|az arizona diamondbacks|atl atlanta braves|bal baltimore orioles|bos boston|chc cubs|
+cws white|chw white|cin cincinnati reds|cle cleveland guardians|col colorado rockies|det detroit tigers|hou houston astros|
+kc kansas royals|kcr kansas royals|laa angels|lad dodgers|mia miami marlins|mil milwaukee brewers|min minnesota twins|
+nym mets|nyy yankees|ath athletics|oak athletics|phi philadelphia phillies|pit pittsburgh pirates|sd diego padres|
+sdp diego padres|sf francisco giants|sfg francisco giants|sea seattle mariners|stl louis cardinals|tb tampa rays|
+tbr tampa rays|tex texas rangers|tor toronto jays|wsh washington nationals|was washington nationals|wsn washington nationals"""
+MLB_ALIAS = {}
+for _blk in (MLB_TEAMS, MLB_ABBR):
+    for _pair in _blk.replace("\n", "").split("|"):
+        _w = _pair.split()
+        if len(_w) >= 2:
+            MLB_ALIAS.setdefault(_w[0], set()).update(_w[1:])
+
+
 def abbr_match(abbr, team):
     """College/other abbreviations not in the table: 'ECU' = East Carolina (U), 'MEM' = Memphis, 'UNLV' etc."""
     abbr = abbr.lower()
@@ -189,10 +238,11 @@ def abbr_match(abbr, team):
         or (len(abbr) >= 3 and words[0].startswith(abbr))
 
 
-def toks(s):
+def toks(s, lg=None):
     base = {w for w in re.findall(r"[a-z0-9]+", (s or "").lower()) if w not in STOP and not re.fullmatch(r"\d+(\.\d+)?", w)}
+    table = MLB_ALIAS if lg == "MLB" else ({} if lg == "TENNIS" else ALIAS)   # tennis: player names as written
     for w in list(base):
-        base |= ALIAS.get(w, set())
+        base |= table.get(w, set())
     return base
 
 
@@ -205,10 +255,10 @@ def split_teams(title):
     return None
 
 
-def team_side(text, teams):
+def team_side(text, teams, lg=None):
     """Which of the game's two teams does `text` name? 0, 1 or None."""
-    t = toks(text)
-    hits = [len(t & toks(x)) for x in teams]
+    t = toks(text, lg)
+    hits = [len(t & toks(x, lg)) for x in teams]
     if hits[0] == hits[1]:
         # no name overlap: try the side's abbreviation ('ECU +6.5', 'MEM') against each team's name
         ab = [w for w in re.findall(r"[A-Za-z]{2,5}", text or "") if w.isupper()]
@@ -272,18 +322,22 @@ def k_paged(path, key, params):
 
 
 def k_series():
-    found = set()
+    found, unwired = set(), set()
     for params in ({"category": "Sports"}, {}):
         try:
             for s in k_paged("/series", "series", dict(params, limit=1000)):
                 t = (s.get("ticker") or "").upper()
-                if K_SERIES_RE.match(t):
+                if t in K_SERIES:
                     found.add(t)
+                elif re.match(r"^KX(MLB|NCAAMB|ATP|WTA|TENNIS)", t):
+                    unwired.add(t)
         except Exception as ex:
             print(f"Kalshi series listing failed ({params}): {ex}")
         if found:
             break
-    return sorted(found or {f"KX{lg}{k}" for lg in LEAGUES for k in K_MTYPE})
+    if unwired:
+        print("Kalshi series seen but not read (FYI): " + ", ".join(sorted(unwired)[:25]))
+    return sorted(found or set(K_SERIES))
 
 
 def k_levels(book, side):
@@ -326,8 +380,7 @@ def kalshi_rows(days):
     start_clock()
     todo = []   # gather every candidate market first, then read books soonest-start-first (never alphabetical by series)
     for s in k_series():
-        m = K_SERIES_RE.match(s)
-        league, kind = (m.group(1), m.group(2)) if m else (s[2:-4], "GAME")
+        league, kind = K_SERIES.get(s, (s[2:-4], "GAME"))
         try:
             evs = k_paged("/events", "events", {"series_ticker": s, "status": "open", "with_nested_markets": "true", "limit": 200})
         except Exception as ex:
@@ -348,9 +401,11 @@ def kalshi_rows(days):
                     if yb is not None and not (0.2 <= yb <= 0.8):
                         continue  # far-off alternate strike, not the main line
                 todo.append((d, k_sort_time(mk), 0 if kind == "GAME" else 1, league, kind, ev, mk))
-    todo.sort(key=lambda t: (t[0], t[1], t[2]))
+    todo.sort(key=lambda t: (prio(t[3]), t[0], t[1], t[2]))   # original leagues first, then added ones
     for d, _, _, league, kind, ev, mk in todo:
-        if calls >= MAX_CALLS or out_of_time():
+        if over_limit(league, calls):
+            if prio(league) == 0 and not out_of_time():
+                continue   # original leagues' cap reached: move on to the added leagues
             break
         teams = split_teams(ev.get("title", ""))
         try:
@@ -378,7 +433,7 @@ def kalshi_rows(days):
                 side = ("OVER" if over_yes else "UNDER") if x == "yes" else ("UNDER" if over_yes else "OVER")
                 line = strike
             else:
-                t = team_side(label, teams) if teams else None
+                t = team_side(label, teams, league) if teams else None
                 side = None if t is None else (t if x == "yes" else 1 - t)
                 if K_MTYPE[kind] == "spread" and strike is not None:
                     line = -strike if x == "yes" else strike   # YES "X wins by over S" = X -S; NO = the other team +S
@@ -435,6 +490,9 @@ def novig_rows(days, n):
         if lg in LEAGUES:
             ev_by[e["eventId"]] = e
     seen_types = sorted({m.get("marketType", "") for m in mks if m.get("eventId") in ev_by})
+    other_lgs = sorted({(e.get("league") or "").upper().strip() for e in evs} - set(N_LEAGUE))
+    if other_lgs:
+        print(f"Novig leagues not read (FYI): {other_lgs[:25]}")
     print(f"Novig: {len(ev_by)} events in leagues, market types seen: {seen_types}")
     rows, calls, skipped = [], 0, 0
     direction = {"done": False, "ok": True}
@@ -446,6 +504,8 @@ def novig_rows(days, n):
         mtype = N_MTYPE.get((mk.get("marketType") or "").upper())
         oc = mk.get("outcomes") or []
         if not e or not mtype or mk.get("status") != "OPEN" or len(oc) != 2:
+            continue
+        if mtype != "moneyline" and N_LEAGUE.get((e.get("league") or "").upper().strip()) in ML_ONLY:
             continue
         bids = [num((o.get("bid") or {}).get("price")) for o in oc]
         costs = [1 - bids[1 - i] for i in (0, 1) if bids[1 - i] is not None]
@@ -462,11 +522,15 @@ def novig_rows(days, n):
             picks[k] = (dist, mk)
         else:
             skipped += 1
-    chosen = sorted((v[1] for v in picks.values()), key=lambda m: m.get("startsTs") or 0)   # soonest games first
+    def n_lg(m):
+        return N_LEAGUE.get((ev_by[m["eventId"]].get("league") or "").upper().strip())
+    chosen = sorted((v[1] for v in picks.values()), key=lambda m: (prio(n_lg(m)), m.get("startsTs") or 0))   # soonest first
     for mk in chosen:
         e = ev_by.get(mk.get("eventId"))
         mtype = N_MTYPE.get((mk.get("marketType") or "").upper())
-        if calls >= MAX_CALLS or out_of_time():
+        if over_limit(n_lg(mk), calls):
+            if prio(n_lg(mk)) == 0 and not out_of_time():
+                continue
             break
         try:
             book = get(f"{NOVIG}/v3/public/catalog/markets/{mk['marketId']}/book", {"depth": 20})
@@ -507,7 +571,7 @@ def novig_rows(days, n):
             if mtype == "total":
                 side = "OVER" if "over" in name.lower() else ("UNDER" if "under" in name.lower() else None)
             else:
-                side = team_side(name, teams) if teams else None
+                side = team_side(name, teams, n_lg(mk)) if teams else None
             strike = mk.get("strike")
             if mtype == "total":
                 line = num(strike)
@@ -572,30 +636,33 @@ def pm_rows(days, n):
     rows, calls = [], 0
     start_clock()
     todo = []   # gather all leagues' candidate markets, then read books soonest-start-first
+    seen_mk = set()
     for lg in LEAGUES:
-        tag = PM_TAGS.get(lg)
-        if not tag:
-            continue
-        evs, off = [], 0
-        try:
-            while off < 2000:
-                page = get(f"{PM_GAMMA}/events", {"tag_slug": tag, "active": "true", "closed": "false", "limit": 200, "offset": off})
-                page = page if isinstance(page, list) else page.get("data", [])
-                evs += page
-                if len(page) < 200:
-                    break
-                off += 200
-        except Exception as ex:
-            print(f"Polymarket events failed ({tag}): {ex}")
-            continue
+        tags = PM_TAGS_MULTI.get(lg) or ([PM_TAGS[lg]] if PM_TAGS.get(lg) else [])
+        evs = []
+        for tag in tags:
+            off = 0
+            try:
+                while off < 2000:
+                    page = get(f"{PM_GAMMA}/events", {"tag_slug": tag, "active": "true", "closed": "false", "limit": 200, "offset": off})
+                    page = page if isinstance(page, list) else page.get("data", [])
+                    evs += page
+                    if len(page) < 200:
+                        break
+                    off += 200
+            except Exception as ex:
+                print(f"Polymarket events failed ({tag}): {ex}")
         for ev in evs:
             teams = split_teams(ev.get("title", ""))
             if not teams:
                 continue
             for mk in ev.get("markets") or []:
                 mtype = PM_MTYPE.get((mk.get("sportsMarketType") or "").lower())
-                if not mtype or mk.get("closed") or mk.get("active") is False:
+                if not mtype or mk.get("closed") or mk.get("active") is False or str(mk.get("id")) in seen_mk:
                     continue
+                if lg in ML_ONLY and mtype != "moneyline":
+                    continue
+                seen_mk.add(str(mk.get("id")))
                 start = pm_start(mk.get("gameStartTime") or ev.get("startTime") or ev.get("endDate"))
                 if not start or start <= n or start.astimezone(ET).date() not in days:
                     continue
@@ -606,9 +673,11 @@ def pm_rows(days, n):
                 if pl is not None and pl < PRIMARY_MIN:
                     continue  # whole book under PRIMARY_MIN ($25k): new money that size can't be there
                 todo.append((start, lg, ev, teams, mk, mtype, outs, tids))
-    todo.sort(key=lambda t: t[0])
+    todo.sort(key=lambda t: (prio(t[1]), t[0]))   # original leagues first, soonest first
     for start, lg, ev, teams, mk, mtype, outs, tids in todo:
-        if calls >= MAX_CALLS or out_of_time():
+        if over_limit(lg, calls):
+            if prio(lg) == 0 and not out_of_time():
+                continue
             break
         books = []
         for t in tids:
@@ -628,7 +697,7 @@ def pm_rows(days, n):
                 side = "OVER" if "over" in name.lower() else ("UNDER" if "under" in name.lower() else None)
                 line = ln
             else:
-                side = team_side(name, teams)
+                side = team_side(name, teams, lg)
                 line = None if (mtype != "spread" or ln is None) else (ln if i == 0 else -ln)   # line is the 1st outcome's
             best_other = max((p for p, _ in bids[1 - i]), default=None)
             rows.append(dict(book="polymarket", league=lg, date=start.astimezone(ET).date().isoformat(),
@@ -714,6 +783,31 @@ def am_prob(a):
     return 100 / (a + 100) if a > 0 else -a / (-a + 100)
 
 
+def px_find_tournaments():
+    """ProphetX tournament ids for the added leagues, found by name (one call). Tennis: ATP/WTA singles events only."""
+    try:
+        tl = ((px_call("/mm/get_tournaments").get("data") or {}).get("tournaments")) or []
+    except Exception as ex:
+        print(f"ProphetX tournaments failed: {ex}")
+        return []
+    out = []
+    for t in tl:
+        nm = (t.get("name") or "").strip()
+        lo = nm.lower()
+        lg = None
+        if lo in ("mlb", "major league baseball"):
+            lg = "MLB"
+        elif lo in ("ncaab", "ncaa basketball", "college basketball", "ncaam", "ncaa men's basketball") or \
+                ("ncaa" in lo and "basketball" in lo and "women" not in lo):
+            lg = "NCAAB"
+        elif lo.startswith(("atp", "wta")) and not any(w in lo for w in ("doubles", "challenger", "itf", "qualif")):
+            lg = "TENNIS"
+        if lg in LEAGUES and t.get("id") is not None:
+            out.append((lg, t["id"]))
+    print("ProphetX added tournaments: " + (", ".join(f"{lg} {tid}" for lg, tid in out[:30]) or "none found"))
+    return out
+
+
 def px_rows(days, n):
     """ProphetX lists, per outcome, the prices a bettor can TAKE. Those are resting orders from makers on the other
     outcome, so money wanting side X = the ladder listed under X's opponent (maker stake = 'quantity'), at bid
@@ -730,10 +824,10 @@ def px_rows(days, n):
         print(f"ProphetX login failed: {ex}")
         return []
     todo = []
-    for lg in LEAGUES:
-        tid = PX_TOURNAMENTS.get(lg)
-        if not tid:
-            continue
+    tours = [(lg, PX_TOURNAMENTS[lg]) for lg in LEAGUES if lg in PX_TOURNAMENTS]
+    if any(lg in LEAGUES and lg not in PX_TOURNAMENTS for lg in ("MLB", "NCAAB", "TENNIS")):
+        tours += px_find_tournaments()
+    for lg, tid in tours:
         try:
             evs = (px_call(f"/mm/get_sport_events?tournament_id={tid}").get("data") or {}).get("sport_events") or []
         except Exception as ex:
@@ -747,9 +841,11 @@ def px_rows(days, n):
             if st <= n or st.astimezone(ET).date() not in days or (e.get("status") or "not_started") != "not_started":
                 continue
             todo.append((st, lg, e))
-    todo.sort(key=lambda t: t[0])
+    todo.sort(key=lambda t: (prio(t[1]), t[0]))
     for st, lg, e in todo:
-        if out_of_time():
+        if over_limit(lg, 0):
+            if prio(lg) == 0 and not out_of_time():
+                continue
             break
         comps = e.get("competitors") or []
         home = next((c.get("display_name") or c.get("name") for c in comps if c.get("side") == "home"), None)
@@ -766,6 +862,8 @@ def px_rows(days, n):
         mks = data if isinstance(data, list) else (data.get("markets") or data.get(str(e["event_id"])) or [])
         for mk in mks:
             mtype = (mk.get("type") or "").lower()
+            if lg in ML_ONLY and mtype != "moneyline":
+                continue
             if mtype not in ("moneyline", "spread", "total") or (mk.get("sub_type") or mtype).lower() != mtype \
                     or (mk.get("status") or "active") != "active":
                 continue
@@ -778,7 +876,7 @@ def px_rows(days, n):
                     line = num(f.get("strike")) or mline
                     gkey = line
                 else:
-                    side = team_side(name, teams)
+                    side = team_side(name, teams, lg)
                     line = num(f.get("strike")) if mtype == "spread" else None
                     gkey = abs(line) if line is not None else 0
                 if side is None:
@@ -821,7 +919,8 @@ def game_key(row):
 def same_game(a, b):
     if a["league"] != b["league"] or a["date"] != b["date"] or not a["teams"] or not b["teams"]:
         return None
-    ta, tb = [toks(x) for x in a["teams"]], [toks(x) for x in b["teams"]]
+    lg = a["league"]
+    ta, tb = [toks(x, lg) for x in a["teams"]], [toks(x, lg) for x in b["teams"]]
     if ta[0] & tb[0] and ta[1] & tb[1]:
         return "same"
     if ta[0] & tb[1] and ta[1] & tb[0]:
@@ -865,8 +964,8 @@ def espn_result(a, n):
             _SM["mod"] = None
     sm = _SM["mod"]
     teams = a.get("teams")
-    if not sm or not teams or not a.get("start_utc"):
-        return None
+    if not sm or not teams or not a.get("start_utc") or a.get("league") not in getattr(sm, "ESPN_PATH", {}):
+        return None   # e.g. tennis: graded only from the exchange's own settlement
     if datetime.fromisoformat(a["start_utc"].replace("Z", "+00:00")) > n - timedelta(hours=3):
         return None   # not over yet
     kind = {"moneyline": "ml", "spread": "spr", "total": "tot"}.get(a["market"])
@@ -1064,7 +1163,7 @@ def odds_prices(r):
                     if r["market"] == "total":
                         side = "OVER" if name.lower() == "over" else ("UNDER" if name.lower() == "under" else None)
                     else:
-                        side = team_side(name, erow["teams"])
+                        side = team_side(name, erow["teams"], r["league"])
                     if side is None:
                         continue
                     orow = {"market": r["market"], "side": side, "line": pt}
@@ -1122,12 +1221,12 @@ def sharp_alerts(n):
         if bet.startswith(("Over", "Under")):
             market, side = "total", ("OVER" if bet.startswith("Over") else "UNDER")
         elif " ML " in bet:
-            market, side = "moneyline", (team_side(bet.split(" ML ")[0], teams) if teams else None)
+            market, side = "moneyline", (team_side(bet.split(" ML ")[0], teams, x.get("sport")) if teams else None)
         elif re.search(r" (PL|RL) ", bet):
             continue
         else:
             m = re.match(r"^(.*?) [+-]?\d", bet)
-            market, side = "spread", (team_side(m.group(1), teams) if (m and teams) else None)
+            market, side = "spread", (team_side(m.group(1), teams, x.get("sport")) if (m and teams) else None)
         if side is None:
             continue
         out.append(dict(league=x.get("sport"), date=st.astimezone(ET).date().isoformat(), teams=list(teams) if teams else None,
@@ -1267,7 +1366,8 @@ def run():
     rows = merge_kalshi_ml(rows)
     fill_starts(rows)
     all_by_key = {row_key(r): r for r in rows}                  # every side (for closing price / pulled checks)
-    pre = {k: r for k, r in all_by_key.items() if not r.get("start") or r["start"] > now_s}   # pregame only
+    pre = {k: r for k, r in all_by_key.items()
+           if (r["start"] > now_s if r.get("start") else r.get("league") not in PAPER_ONLY)}   # pregame only (tennis: start must be known)
     by_key = {row_key(r): r for r in main_line_only([r for r in pre.values() if in_band(r)])}   # main lines (for new triggers)
     print(f"Rows: {len(rows)} sides; {len(by_key)} pregame main-line sides")
 
@@ -1373,6 +1473,7 @@ def run():
             "lead_min": round((r["start"] - now_s) / 60) if r.get("start") else None,
             "price_rule": price_rule(r, pre_rows, bp),
             "result": None, "units_flat": None,
+            "paper_only": r["league"] in PAPER_ONLY,
         }
         alerts.insert(0, a)
         state["alerted"][key] = a["alerted_utc"]
@@ -1380,12 +1481,13 @@ def run():
         print(f"ALERT {a['league']} {a['game']} | {a['market']} {a['side_label']} | {r['book']} +${pd['new']:,.0f} new, held "
               f"{round(age)}m (now ${r['tot']:,.0f}) | 2nd: {a['second_book']} | sharp agree: {len(agree)} oppose: {len(oppose)}"
               f" | best {bp} on {bpb} | {a['price_rule']}")
-        notify(f"Liquidity {a['league']}" + (" RULE MET" if a["rule_met"] else "") + (" + SHARP" if agree else ""),
-               f"{a['side_label']} ({a['market']}) on {r['book']}\n{a['game']}\n"
-               f"+${pd['new']:,.0f} new bids, still there after {round(age)}m; now ${r['tot']:,.0f} vs ${r['otot']:,.0f}\n"
-               + (f"Price {r['price']:.2f} ({a['price_american']:+d})\n" if a['price_american'] else "")
-               + "2nd book: " + (", ".join(f"{b} ${v['depth']:,}" for b, v in others.items()) or "no match")
-               + (f"\nSharp alert agrees: {', '.join(agree)}" if agree else ""))
+        if r["league"] not in PAPER_ONLY:   # tennis never pushes, whatever the topic setting
+            notify(f"Liquidity {a['league']}" + (" RULE MET" if a["rule_met"] else "") + (" + SHARP" if agree else ""),
+                   f"{a['side_label']} ({a['market']}) on {r['book']}\n{a['game']}\n"
+                   f"+${pd['new']:,.0f} new bids, still there after {round(age)}m; now ${r['tot']:,.0f} vs ${r['otot']:,.0f}\n"
+                   + (f"Price {r['price']:.2f} ({a['price_american']:+d})\n" if a['price_american'] else "")
+                   + "2nd book: " + (", ".join(f"{b} ${v['depth']:,}" for b, v in others.items()) or "no match")
+                   + (f"\nSharp alert agrees: {', '.join(agree)}" if agree else ""))
 
     # --- new signals -> pending (confirmed or dropped on the next check)
     for key, r in by_key.items():
@@ -1424,7 +1526,10 @@ def run():
         "units_flat = 1u at best_price (cheapest across books at alert). Log-only fields: bid_improved (best bid on the alert side "
         "rose between readings), best_price/best_price_book, prices_by_book (Odds API sportsbooks), second_book_fresh (second book "
         "added >= $10k on the side in the last two checks), lead_min, price_rule (fails_cap = worse than -130 on spread/total; "
-        "ml_edge_ok/fail = 2%% edge vs cross-book fair mid), price_after_15m/still_actionable." % (PRIMARY_MIN, NEAR * 100, RATIO, SECOND_MIN)),
+        "ml_edge_ok/fail = 2%% edge vs cross-book fair mid), price_after_15m/still_actionable. Leagues: NFL, NCAAF, NBA, NHL, "
+        "plus MLB and NCAAB (added Oct 23, same rules; read after the original leagues with leftover capacity) and TENNIS "
+        "(ATP/WTA match winner, paper_only = true: data collection only, never pushed, not a betting lane; graded only from "
+        "Kalshi/Polymarket settlement)." % (PRIMARY_MIN, NEAR * 100, RATIO, SECOND_MIN)),
         "v": STATE_VERSION, "alerts": alerts})
     save(STATE_FILE, state)
     stats = (f"This run: {fired} new, {dropped} not confirmed, {len(state['pending'])} pending. "
