@@ -50,7 +50,7 @@ PAPER_ONLY = {"TENNIS"}
 ML_ONLY = {"TENNIS"}   # tennis: match winner only (no set/game handicaps or totals)
 EXTRA_CALLS = int(os.environ.get("LIQ_EXTRA_BOOKS", "") or "150")      # added leagues: at most this many book reads per exchange
 EXTRA_S = float(os.environ.get("LIQ_EXTRA_SEC", "") or "25")           # ...and at most this many seconds, AFTER the original leagues
-PX_LEAGUES = {"NFL", "NCAAF", "NBA", "NHL", "MLB"}   # ProphetX (confirm-only book); tennis IDs change weekly, NCAAB TBD
+PX_LEAGUES = {"NFL", "NCAAF", "NBA", "NHL", "MLB", "NCAAB"}   # ProphetX (confirm-only book); tennis IDs change weekly
 BOOKS = [x.strip().lower() for x in (os.environ.get("LIQ_BOOKS", "") or "kalshi,novig,polymarket,prophetx").split(",") if x.strip()]
 CONFIRM_ONLY_BOOKS = {"prophetx"}   # read for second-book confirmation and best price; never starts an alert (no settlement read yet)
 MAX_CALLS = int(os.environ.get("LIQ_MAX_BOOKS", "") or "900")          # order-book calls per book per run
@@ -736,7 +736,7 @@ def pm_result(ref):
 PX_BASE = os.environ.get("PX_BASE", "") or "https://cash.api.prophetx.co/partner"
 PX_ACCESS = os.environ.get("PROPHETX_ACCESS_KEY", "")
 PX_SECRET = os.environ.get("PROPHETX_SECRET_KEY", "")
-PX_TOURNAMENTS = {"NHL": 234, "NFL": 31, "NCAAF": 27653, "NBA": 132, "MLB": 109}
+PX_TOURNAMENTS = {"NHL": 234, "NFL": 31, "NCAAF": 27653, "NBA": 132, "MLB": 109, "NCAAB": 648}
 _PXT = {"token": None}
 PX_FEE = float(os.environ.get("PX_FEE", "") or "0.02")   # ProphetX takes 2% of winnings: prices compared after the fee
 # Taker fees per contract = coef x P x (1 - P) (checked Oct 22, 2026): Kalshi 0.07 (schedule eff. Jul 7, 2026);
@@ -836,7 +836,8 @@ def px_rows(days, n):
         try:
             evs = (px_call(f"/mm/get_sport_events?tournament_id={tid}").get("data") or {}).get("sport_events") or []
         except Exception as ex:
-            print(f"ProphetX events failed ({lg}): {ex}")
+            if "404" not in str(ex):   # 404 = no games listed yet (e.g. NCAAB before the opener)
+                print(f"ProphetX events failed ({lg}): {ex}")
             continue
         for e in evs:
             try:
