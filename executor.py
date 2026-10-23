@@ -96,9 +96,10 @@ def read_verdicts(M):
             if isinstance(p, dict) and (p.get("play_key") or derive_key(p)):
                 plays.append(dict(p, play_key=p.get("play_key") or derive_key(p)))
     seen, out = set(), []
-    for p in plays:
-        if p["play_key"] not in seen:
-            seen.add(p["play_key"])
+    for p in plays:   # one play per game+side, whatever key it arrived with (spread and ML on a team = one play)
+        keys = {p["play_key"], derive_key(p) or p["play_key"]}
+        if not keys & seen:
+            seen |= keys
             out.append(p)
     return out
 
@@ -116,8 +117,27 @@ def derive_key(p):
         return None
 
 
+def wp(key):
+    """Token written ONLY on WOULD PLACE / PLACED entries, so the opposite side can find a side already taken."""
+    return "xwp" + hashlib.sha1(key.encode()).hexdigest()[:12]
+
+
+def opposite_key(p):
+    k = derive_key(p)
+    if not k:
+        return None
+    sport, game, kind, side = k.split("|", 3)
+    if kind == "total":
+        return f"{sport}|{game}|total|{'UNDER' if side == 'OVER' else 'OVER'}"
+    teams = lm.split_teams(game) or ()
+    other = [t for t in teams if t != side]
+    return f"{sport}|{game}|side|{other[0]}" if other else None
+
+
 def already_handled(M, p):
-    return bool(gsearch(M, pid(p["play_key"])))
+    """Handled before under its own key OR under the play's game+side key (so a re-sent play never runs twice)."""
+    keys = {p["play_key"], derive_key(p) or p["play_key"]}
+    return any(gsearch(M, pid(k)) for k in keys)
 
 
 # ---------------------------------------------------------------- Polymarket US (public gateway, no key)
@@ -337,10 +357,11 @@ def stake_for(am):
     return round(risk, 2), round(win, 2)
 
 
-def evaluate(p, now, evs_by, mks_by_event, pos):
+def evaluate(p, now, evs_by, mks_by_event, pos, taken=None):
     al = {"sport": (p.get("sport") or "").upper(), "game": p.get("game") or "", "bet": p.get("bet") or "",
           "start_utc": p.get("start_utc") or ""}
-    out = {"play": p, "pid": pid(p["play_key"])}
+    dk = derive_key(p)
+    out = {"play": p, "pid": pid(p["play_key"]) + (f" {pid(dk)}" if dk and dk != p["play_key"] else "")}
     text = f" {al['bet']} {p.get('market') or ''} ".lower()
     if al["sport"] in BANNED_SPORTS or any(w in text for w in BANNED_WORDS):
         return dict(out, verdict="SKIP", reason="banned market/sport")
@@ -386,6 +407,9 @@ def evaluate(p, now, evs_by, mks_by_event, pos):
         except Exception:
             pass
     out.update(mtype=mtype, side=side, line=line, price=price, lead=round(lead), books=res)
+    ok_ = opposite_key(p)
+    if taken and ok_ and taken(ok_):
+        return dict(out, verdict="SKIP", reason="CONFLICT: the other side of this game was already taken (first side stays)")
     c = novig_conflict(al, mtype, side, teams, res["novig"], pos, mks_by_event)
     if c == "conflict":
         return dict(out, verdict="SKIP", reason="CONFLICT: opposite side already held on Novig (first side stays)")
@@ -503,7 +527,9 @@ def money(x):
 
 def fmt(r):
     p = r["play"]
-    head = f"[{r['pid']}] {p.get('sport')} {p.get('game')} | {p.get('bet')}"
+    dk = derive_key(p)
+    tag = r["pid"] + (f" {wp(dk)}" if (r["verdict"] != "SKIP" and dk) else "")
+    head = f"[{tag}] {p.get('sport')} {p.get('game')} | {p.get('bet')}"
     if r["verdict"] == "SKIP":
         return f"SKIP  {head}\n      reason: {r['reason']}"
     moved = r["mtype"] != "moneyline" and r.get("take_line") is not None and abs(r["take_line"] - r["line"]) > 1e-9
@@ -560,12 +586,20 @@ def main():
     for mk in mks:
         mks_by_event.setdefault(mk.get("eventId"), []).append(mk)
     pos = novig_positions()
-    results = []
+    results, taken_now = [], set()
+    M2 = imap_open()
+
+    def taken(k):   # this run, or any earlier WOULD PLACE / PLACED entry
+        return k in taken_now or bool(gsearch(M2, wp(k)))
     for p in new:
         try:
-            results.append(evaluate(p, now, evs_by, mks_by_event, pos))
+            r = evaluate(p, now, evs_by, mks_by_event, pos, taken)
+            results.append(r)
+            if r["verdict"] != "SKIP" and derive_key(p):
+                taken_now.add(derive_key(p))
         except Exception as ex:
             results.append({"play": p, "pid": pid(p["play_key"]), "verdict": "SKIP", "reason": f"error: {str(ex)[:100]}"})
+    M2.logout()
     nw = sum(1 for r in results if r["verdict"] == "WOULD PLACE")
     body = [f"AUTO-PLACE DRY RUN | {now.astimezone(lm.ET).strftime('%a %b %d %I:%M %p ET')} | NOTHING WAS PLACED", "",
             f"Unit {money(UNIT)} | + money risks the unit, - money risks to win the unit | prices are AFTER fees.",
