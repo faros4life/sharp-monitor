@@ -124,14 +124,27 @@ def pmus_events(sport):
 
 
 def pmus_type(mk):
+    """FULL-GAME markets only: never halves, quarters, periods, innings or team totals."""
     smt = (mk.get("sportsMarketType") or mk.get("sportsMarketTypeV2") or mk.get("marketType") or "").lower()
-    if "spread" in smt or "handicap" in smt:
+    if "full_game" not in smt or any(w in smt for w in ("half", "quarter", "period", "inning", "team_total", "player")):
+        return None
+    if any(w in smt for w in ("spread", "handicap", "run_line", "puck_line")):
         return "spread"
     if "total" in smt or "over_under" in smt:
         return "total"
     if "winner" in smt or "money" in smt:
         return "moneyline"
     return None
+
+
+def pmus_side_team(s, ev, teams, sport):
+    """Which game team a market side is: by teamId against the event's teams, else by its description."""
+    tid = s.get("teamId") or s.get("participantId")
+    if tid is not None:
+        for t in ev.get("teams") or []:
+            if str(t.get("id")) == str(tid) or str(t.get("participantId")) == str(tid):
+                return lm.team_side(t.get("name") or "", list(teams), sport)
+    return lm.team_side(s.get("description") or s.get("identifier") or "", list(teams), sport)
 
 
 def pmus_game_markets(ev, markets):
@@ -189,11 +202,14 @@ def pmus_check(al, mtype, side, line, price, teams):
                 if mtype == "total":
                     ok = ("over" in desc.lower() and side == "OVER") or ("under" in desc.lower() and side == "UNDER")
                 else:
-                    t = lm.team_side(desc, list(teams), al["sport"])
-                    ok = t == side
+                    ok = pmus_side_team(s, ev, teams, al["sport"]) == side
                 if ok:
                     ln = lm.num(mk.get("line"))
-                    sline = ln if (mtype != "spread" or s.get("long") is not False) else (-ln if ln is not None else None)
+                    if mtype == "spread":   # the side's own signed line is in its label, e.g. "+12.50" / "-12.50"
+                        sl = lm.signed_num(desc)
+                        sline = sl if sl is not None else (ln if s.get("long") is not False else (-ln if ln is not None else None))
+                    else:
+                        sline = ln
                     cands.append((mk, bool(s.get("long", True)), sline))
         if not cands:
             seen, types = [], set()
@@ -224,17 +240,22 @@ def pmus_check(al, mtype, side, line, price, teams):
 
 
 # ---------------------------------------------------------------- Novig positions (read-only key) for dedupe/conflict
+_NVERR = {"why": ""}
+
+
 def novig_positions():
     try:
         import novig_signed as nv
         if not nv.ready():
+            _NVERR["why"] = "key not ready"
             return None
         d = nv.get("/v3/portfolio/positions", {"keyId": nv._S["id"]})
         out = []
         for v in (d.values() if isinstance(d, dict) else [d]):
             out += v if isinstance(v, list) else (v.get("items") or [] if isinstance(v, dict) else [])
         return [p for p in out if int(p.get("qty") or 0) > 0]
-    except Exception:
+    except Exception as ex:
+        _NVERR["why"] = str(ex)[:120]
         return None
 
 
@@ -453,7 +474,7 @@ def main():
         if r.get("books"):
             body += book_lines(r)
         body.append("")
-    body.append("Novig positions check: " + ("done" if pos is not None else "unavailable this run"))
+    body.append("Novig positions check: " + ("done" if pos is not None else f"UNAVAILABLE ({_NVERR['why']}) - live mode would place nothing"))
     send(f"DRY RUN | {nw} would place, {len(results) - nw} skipped | {now.astimezone(lm.ET).strftime('%b %d %I:%M %p')}",
          "\n".join(body))
     print(f"Dry-run email sent: {nw} would place, {len(results) - nw} skipped.")   # counts only
