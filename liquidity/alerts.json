@@ -1,6 +1,152 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-23T17:18:40Z",
+   "base_depth": 120797,
+   "best_price": 0.51,
+   "best_price_american": -104,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 18,
+   "date": "2026-10-23",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -16635,
+     "new_this_side": 46862,
+     "other_side": 67791,
+     "other_side_all_levels": 112905,
+     "ratio": 1.4,
+     "this_side": 93612,
+     "this_side_all_levels": 156146
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "Under 240.5 (240.5)",
+     "price": 0.51,
+     "this_side": 27492
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Under (240.5)",
+     "price": 0.51,
+     "this_side": 51734
+    }
+   },
+   "first_seen_utc": "2026-10-23T17:00:18Z",
+   "game": "Chicago vs Milwaukee: Total Points",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBATOTAL-26OCT23CHIMIL-241\"}",
+   "lead_min": 161,
+   "league": "NBA",
+   "line": 240.5,
+   "market": "total",
+   "new_money": 46862,
+   "paper_only": false,
+   "price": 0.52,
+   "price_american": -108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.52,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 240.5,
+     "price": -118
+    },
+    "betonlineag": {
+     "point": 239.5,
+     "price": -107
+    },
+    "betopenly": {
+     "point": 239.5,
+     "price": 104
+    },
+    "betrivers": {
+     "point": 239.5,
+     "price": -109
+    },
+    "betus": {
+     "point": 239.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 240.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 240.5,
+     "price": -110
+    },
+    "fanatics": {
+     "point": 240.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 239.5,
+     "price": -104
+    },
+    "kalshi": {
+     "point": 240.5,
+     "price": -108
+    },
+    "lowvig": {
+     "point": 239.5,
+     "price": -104
+    },
+    "mybookieag": {
+     "point": 239.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 240.5,
+     "price": -104
+    },
+    "polymarket": {
+     "point": 240.5,
+     "price": -104
+    },
+    "prophetx": {
+     "point": 240.0,
+     "price": -102
+    },
+    "williamhill_us": {
+     "point": 239.5,
+     "price": -115
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNBATOTAL-26OCT23CHIMIL-241"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "polymarket"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "NOT Over 240.5 points",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-23T20:00:00Z",
+   "teams": [
+    "Chicago",
+    "Milwaukee"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-23T17:00:18Z",
    "base_depth": 178167,
    "best_price": 0.5,
@@ -52,6 +198,8 @@
    "new_money": 66121,
    "paper_only": false,
    "price": 0.5,
+   "price_after_15m": 0.495,
+   "price_after_15m_book": "novig",
    "price_american": -100,
    "price_rule": "ok",
    "price_when_first_seen": 0.5,
@@ -136,6 +284,7 @@
    "side_label": "Bucks (-1.5)",
    "start_source": "polymarket",
    "start_utc": "2026-10-23T20:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Bulls",
     "Bucks"
@@ -183,6 +332,8 @@
    "new_money": 29163,
    "paper_only": false,
    "price": 0.52,
+   "price_after_15m": 0.5375,
+   "price_after_15m_book": "kalshi",
    "price_american": -108,
    "price_rule": "ok",
    "price_when_first_seen": 0.52,
@@ -271,6 +422,7 @@
    "side_label": "Over 52.5 points",
    "start_source": "kalshi",
    "start_utc": "2026-10-24T02:00:00Z",
+   "still_actionable": true,
    "teams": [
     "UMass",
     "UConn"
@@ -318,6 +470,8 @@
    "new_money": 293728,
    "paper_only": false,
    "price": 0.5,
+   "price_after_15m": 0.5175,
+   "price_after_15m_book": "kalshi",
    "price_american": -100,
    "price_rule": "ok",
    "price_when_first_seen": 0.5,
@@ -404,6 +558,7 @@
    "side_label": "NC St. wins by over 7.5 points",
    "start_source": "kalshi",
    "start_utc": "2026-10-24T05:30:00Z",
+   "still_actionable": true,
    "teams": [
     "NC St.",
     "Stanford"
@@ -451,6 +606,8 @@
    "new_money": 519921,
    "paper_only": false,
    "price": 0.51,
+   "price_after_15m": 0.5275,
+   "price_after_15m_book": "kalshi",
    "price_american": -104,
    "price_rule": "ok",
    "price_when_first_seen": 0.51,
@@ -533,6 +690,7 @@
    "side_label": "UConn wins by over 13.5 points",
    "start_source": "kalshi",
    "start_utc": "2026-10-24T02:00:00Z",
+   "still_actionable": true,
    "teams": [
     "UMass",
     "UConn"
@@ -586,6 +744,8 @@
    "new_money": 57429,
    "paper_only": false,
    "price": 0.47,
+   "price_after_15m": 0.47,
+   "price_after_15m_book": "novig",
    "price_american": 113,
    "price_rule": "ok",
    "price_when_first_seen": 0.47,
@@ -668,6 +828,7 @@
    "side_label": "NOT Toledo wins by over 2.5 points",
    "start_source": "prophetx",
    "start_utc": "2026-10-24T16:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Western Michigan",
     "Toledo"
@@ -876,7 +1037,7 @@
    "new_money": 156980,
    "paper_only": false,
    "price": 0.52,
-   "price_after_15m": 0.505,
+   "price_after_15m": 0.51,
    "price_after_15m_book": "novig",
    "price_american": -108,
    "price_rule": "ok",
@@ -966,7 +1127,7 @@
    "side_label": "Celtics (-2.5)",
    "start_source": "polymarket",
    "start_utc": "2026-10-23T23:00:00Z",
-   "still_actionable": true,
+   "still_actionable": false,
    "teams": [
     "Knicks",
     "Celtics"
@@ -4627,8 +4788,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.495,
-   "clv_cents": -0.5,
+   "close_price": 0.51,
+   "clv_cents": 1.0,
    "confirmed_after_min": 20,
    "date": "2026-10-23",
    "depth_by_book": {
@@ -5873,7 +6034,8 @@
      "price": -115
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-23T17:18:40Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNBASPREAD-26OCT23DALIND-IND7"
