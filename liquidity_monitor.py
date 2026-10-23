@@ -245,8 +245,14 @@ def abbr_match(abbr, team):
         or (len(abbr) >= 3 and words[0].startswith(abbr))
 
 
+PHRASES = (("north carolina state", "nc state"),)   # same school, different spellings across books
+
+
 def toks(s, lg=None):
-    base = {w for w in re.findall(r"[a-z0-9]+", (s or "").lower()) if w not in STOP and not re.fullmatch(r"\d+(\.\d+)?", w)}
+    s = re.sub(r"(?<=[a-z])\.(?=[a-z])|(?<=[a-z])\.(?=\s|$)", "", (s or "").lower())   # "N.C." -> "nc", "St." -> "st" (keeps 8.5)
+    for a, b in PHRASES:
+        s = s.replace(a, b)
+    base = {w for w in re.findall(r"[a-z0-9]+", s) if w not in STOP and not re.fullmatch(r"\d+(\.\d+)?", w)}
     table = MLB_ALIAS if lg == "MLB" else ({} if lg == "TENNIS" else ALIAS)   # tennis: player names as written
     for w in list(base):
         base |= table.get(w, set())
