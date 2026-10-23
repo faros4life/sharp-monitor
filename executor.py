@@ -48,8 +48,11 @@ def gmail():
 
 
 # ---------------------------------------------------------------- verdicts in, dedupe
+RULES = "r2"   # bump when routing rules change so open plays are re-evaluated once (r2: equivalent-price lines, Oct 23)
+
+
 def pid(play_key):
-    return "xpid" + hashlib.sha1(play_key.encode()).hexdigest()[:12]
+    return "xpid" + hashlib.sha1((RULES + "|" + play_key).encode()).hexdigest()[:12]
 
 
 def imap_open():
@@ -148,7 +151,14 @@ def pmus_side_team(s, ev, teams, sport):
 
 
 def pmus_game_markets(ev, markets):
-    """All markets of one game: by gameId (from the listed winner market or the event), else by event id."""
+    """All markets of one game (cached per run): by gameId, else the event's own page."""
+    ck = ("game", ev.get("slug") or ev.get("id") or id(ev))
+    if ck not in _PMUS:
+        _PMUS[ck] = _pmus_game_markets(ev, markets)
+    return _PMUS[ck]
+
+
+def _pmus_game_markets(ev, markets):
     gid = next((m.get("gameId") for m in markets if m.get("gameId")), None) or ev.get("gameId")
     tries = []
     if gid:
@@ -334,22 +344,27 @@ def evaluate(p, now, evs_by, mks_by_event, pos):
     mtype, side, line, price = bc.parse_bet(al["bet"], teams, al["sport"]) if teams else (None, None, None, None)
     if not mtype or side is None or price is None:
         return dict(out, verdict="SKIP", reason="could not read the bet")
-    res = {}
-    try:
-        res["novig"] = bc.check_alert(al, evs_by, mks_by_event)
-    except Exception as ex:
-        res["novig"] = {"status": f"error: {str(ex)[:80]}"}
+    def probe(ln):
+        """Each book's ladder at one line (the books pick their nearest strike; kept only if it IS this line)."""
+        got = {}
+        try:
+            got["novig"] = bc.check_alert(dict(al, bet=bet_at(al["bet"], mtype, line, ln)), evs_by, mks_by_event)
+        except Exception as ex:
+            got["novig"] = {"status": f"error: {str(ex)[:80]}"}
+        for b, fn in (("prophetx", bc.px_check), ("kalshi", bc.kalshi_check), ("polymarket_us", pmus_check)):
+            try:
+                got[b] = fn(al, mtype, side, ln, price, teams)
+            except Exception as ex:
+                got[b] = {"status": f"error: {str(ex)[:80]}"}
+        return got
+
+    res = probe(line)   # the alert line (also what the report's book table shows)
     if res["novig"].get("status") == "game_not_on_novig":   # show what Novig lists that day (names only)
         day = datetime.fromisoformat(al["start_utc"].replace("Z", "+00:00")).astimezone(lm.ET).date()
         res["novig"]["seen"] = sorted({e.get("description") for e in evs_by.values()
                                        if lm.N_LEAGUE.get((e.get("league") or "").upper().strip()) == al["sport"]
                                        and datetime.fromtimestamp(e["startsTs"] / 1000, lm.ET).date() == day
                                        and (set(lm.toks(e.get("description"))) & (lm.toks(teams[0]) | lm.toks(teams[1])))})[:6]
-    for b, fn in (("prophetx", bc.px_check), ("kalshi", bc.kalshi_check), ("polymarket_us", pmus_check)):
-        try:
-            res[b] = fn(al, mtype, side, line, price, teams)
-        except Exception as ex:
-            res[b] = {"status": f"error: {str(ex)[:80]}"}
     if res["prophetx"].get("status") == "game_not_on_prophetx":
         try:
             words = lm.toks(teams[0]) | lm.toks(teams[1])
@@ -363,36 +378,109 @@ def evaluate(p, now, evs_by, mks_by_event, pos):
         return dict(out, verdict="SKIP", reason="CONFLICT: opposite side already held on Novig (first side stays)")
     if c == "duplicate":
         return dict(out, verdict="SKIP", reason="duplicate: already holding this side on Novig")
+
+    # --- every nearby line on every book, converted to its EQUIVALENT price at the alert line (Peter, Oct 23)
+    ladders = {}   # (book, line) -> result
+    lines = [line] if (mtype == "moneyline" or line is None) else [line + d for d in (0, -0.5, 0.5, -1.0, 1.0)]
+    for ln in lines:
+        got = res if ln == line else probe(ln)
+        for b, r in got.items():
+            bl = book_line(r) if mtype != "moneyline" else None
+            if r.get("status") == "ok" and r.get("best_price_american") is not None and \
+                    (mtype == "moneyline" or (bl is not None and abs(bl - ln) < 1e-9)):
+                ladders[(b, bl)] = r
+    hp, hp_src = half_point(ladders, mtype, side, al["sport"])
+    alert_cost = american_to_prob(price)
     cands = []
-    for b, r in res.items():
-        am = r.get("best_price_american")
-        if r.get("status") != "ok" or am is None:
+    for (b, bl), r in ladders.items():
+        hb = 0.0 if mtype == "moneyline" else better_halfpoints(mtype, side, line, bl)
+        am = r["best_price_american"]
+        c_eq = american_to_prob(am) - hb * hp
+        if c_eq > alert_cost + 1e-9:
             continue
-        if not (r.get("exact_line") or line_ok(mtype, side, line, book_line(r))):
+        thr = lm.american(min(max(alert_cost + hb * hp, 0.01), 0.99))   # worst acceptable real price at this line
+        avail = sum(d for a, d in levels(b, r) if a is not None and thr is not None and a >= thr)
+        if avail <= 0:
             continue
-        if am >= price and (r.get("dollars_at_alert_price_or_better") or 0) > 0:
-            cands.append((b, am, r.get("dollars_at_alert_price_or_better") or 0))
+        cands.append({"book": b, "line": bl, "am": am, "eq": lm.american(min(max(c_eq, 0.01), 0.99)), "c_eq": c_eq,
+                      "hb": hb, "avail": avail})
     if not cands:
-        live = [r for r in res.values() if r.get("status") == "ok"]
-        if live and not any(r.get("exact_line") or line_ok(mtype, side, line, book_line(r)) for r in live):
-            return dict(out, verdict="SKIP", reason=f"line: alert line {line:+g} no longer offered on any book" if line is not None
-                        else "line: not offered")
-        return dict(out, verdict="SKIP", reason=f"price: alert number {price:+d} not available after fees on any book")
-    def line_score(b):   # higher = better line for this side (tie-break at equal price)
-        bl = book_line(res[b])
-        if bl is None or mtype == "moneyline":
-            return 0
-        return -bl if (mtype == "total" and side == "OVER") else bl
-    cands.sort(key=lambda x: (-x[1], -line_score(x[0])))
-    full = [c for c in cands if c[2] >= stake_for(c[1])[0]]
-    b, am, avail = (full or cands)[0]
-    if mtype in ("spread", "total") and am < CAP_LINE:
-        return dict(out, verdict="SKIP", reason=f"price cap: best {am:+d} is worse than {CAP_LINE}")
-    risk, win = stake_for(am)
-    bl = book_line(res[b])
-    return dict(out, verdict="WOULD PLACE", book=b, american=am, risk=risk, to_win=win, fillable=round(min(avail, risk), 2),
-                partial=avail < risk, others=[c for c in cands if c[0] != b],
-                better_line=(bl if (bl is not None and line is not None and abs(bl - line) > 1e-9) else None))
+        if not ladders:
+            return dict(out, verdict="SKIP", reason="no book lists this market near the alert line")
+        return dict(out, verdict="SKIP", reason=f"price: nothing at or better than {price:+d} at {fmt_line(mtype, line)} "
+                                                f"(equivalent, after fees; half point = {hp * 100:.1f}c {hp_src})")
+    capped = [c for c in cands if not (mtype in ("spread", "total") and c["am"] < CAP_LINE)]
+    if not capped:
+        best = min(cands, key=lambda c: c["c_eq"])
+        return dict(out, verdict="SKIP", reason=f"price cap: best take is {best['book']} {best['am']:+d} at "
+                                                f"{fmt_line(mtype, best['line'])}, worse than {CAP_LINE}")
+    capped.sort(key=lambda c: (round(c["c_eq"], 6), -c["hb"]))   # best equivalent price; tie -> better line
+    full = [c for c in capped if c["avail"] >= stake_for(c["am"])[0]]
+    pick = (full or capped)[0]
+    risk, win = stake_for(pick["am"])
+    return dict(out, verdict="WOULD PLACE", book=pick["book"], american=pick["am"], take_line=pick["line"],
+                equiv=pick["eq"], hp=hp, hp_src=hp_src, risk=risk, to_win=win,
+                fillable=round(min(pick["avail"], risk), 2), partial=pick["avail"] < risk,
+                others=[c for c in capped if c is not pick][:5])
+
+
+def fmt_line(mtype, ln):
+    if mtype == "moneyline" or ln is None:
+        return "ML"
+    return f"{ln:+g}" if mtype == "spread" else f"{ln:g}"
+
+
+def bet_at(bet, mtype, alert_line, ln):
+    """The alert text with its line swapped (Novig's checker reads the line from the bet text)."""
+    if mtype == "moneyline" or alert_line is None or ln == alert_line:
+        return bet
+    old = f"{alert_line:+g}" if mtype == "spread" else f"{alert_line:g}"
+    new = f"{ln:+g}" if mtype == "spread" else f"{ln:g}"
+    return bet.replace(old, new, 1) if old in bet else bet.replace(f"{abs(alert_line):g}", f"{abs(ln):g}", 1)
+
+
+def better_halfpoints(mtype, side, alert_line, bl):
+    """How many half points better (+) or worse (-) the book's line is for this side."""
+    if alert_line is None or bl is None:
+        return 0.0
+    d = (bl - alert_line) if (mtype == "spread" or side == "UNDER") else (alert_line - bl)
+    return d / 0.5
+
+
+HP_FALLBACK = {"NBA": 0.027, "NCAAB": 0.030, "NFL": 0.030, "NCAAF": 0.028, "NHL": 0.09, "MLB": 0.07}
+
+
+def half_point(ladders, mtype, side, sport):
+    """Value of a half point (probability) from the live ladders: price gap between adjacent lines on the same book.
+    Median across books, kept within 0.5x-2x of the standard value; standard value when the ladders can't say."""
+    fb = HP_FALLBACK.get(sport, 0.03)
+    if mtype == "moneyline":
+        return 0.0, ""
+    gaps = []
+    by_book = {}
+    for (b, bl), r in ladders.items():
+        by_book.setdefault(b, {})[bl] = american_to_prob(r["best_price_american"])
+    for b, m in by_book.items():
+        ls = sorted(m)
+        for x, y in zip(ls, ls[1:]):
+            if abs((y - x) - 0.5) < 1e-9:
+                gaps.append(abs(m[y] - m[x]))
+    if not gaps:
+        return fb, "(standard)"
+    gaps.sort()
+    g = gaps[len(gaps) // 2]
+    return min(max(g, fb / 2), fb * 2), f"(live, {len(gaps)} gap{'s' if len(gaps) > 1 else ''})"
+
+
+def levels(book, r):
+    """[(American price after fees, dollars)] from a checker's ladder."""
+    out = []
+    for x in r.get("buy_levels") or []:
+        a = x.get("american_after_fee", x.get("american"))
+        out.append((a, x.get("dollars") or 0))
+    if not out and r.get("best_price_american") is not None:
+        out.append((r["best_price_american"], r.get("dollars_at_alert_price_or_better") or 0))
+    return out
 
 
 # ---------------------------------------------------------------- report
@@ -405,13 +493,14 @@ def fmt(r):
     head = f"[{r['pid']}] {p.get('sport')} {p.get('game')} | {p.get('bet')}"
     if r["verdict"] == "SKIP":
         return f"SKIP  {head}\n      reason: {r['reason']}"
-    s = (f"WOULD PLACE  {head}\n      {r['book']} at {r['american']:+d} after fees"
-         + (f" on a BETTER line {r['better_line']:+g}" if r.get("better_line") is not None and r['mtype'] == 'spread'
-            else (f" on a BETTER line {r['better_line']:g}" if r.get("better_line") is not None else ""))
+    moved = r["mtype"] != "moneyline" and r.get("take_line") is not None and abs(r["take_line"] - r["line"]) > 1e-9
+    s = (f"WOULD PLACE  {head}\n      {r['book']} {fmt_line(r['mtype'], r.get('take_line'))} at {r['american']:+d} after fees"
+         + (f" (= {r['equiv']:+d} at {fmt_line(r['mtype'], r['line'])}; half point {r['hp'] * 100:.1f}c {r['hp_src']})" if moved else "")
          + f" | risk {money(r['risk'])} to win {money(r['to_win'])}"
-         + (f" | only {money(r['fillable'])} fillable at {r['price']:+d} or better (partial)" if r["partial"] else ""))
+         + (f" | only {money(r['fillable'])} fillable at an equivalent price (partial)" if r["partial"] else ""))
     if r.get("others"):
-        s += "\n      also at the number: " + ", ".join(f"{b} {am:+d} ({money(d)} avail)" for b, am, d in r["others"])
+        s += "\n      next best: " + ", ".join(f"{c['book']} {fmt_line(r['mtype'], c['line'])} {c['am']:+d} (= {c['eq']:+d}, "
+                                             f"{money(c['avail'])})" for c in r["others"])
     return s
 
 
@@ -468,7 +557,9 @@ def main():
     body = [f"AUTO-PLACE DRY RUN | {now.astimezone(lm.ET).strftime('%a %b %d %I:%M %p ET')} | NOTHING WAS PLACED", "",
             f"Unit {money(UNIT)} | + money risks the unit, - money risks to win the unit | prices are AFTER fees.",
             "Checks: banned, late (<60 min), duplicate/conflict (Novig positions only until other keys exist), "
-            "alert number or better, -130 cap on spreads/totals. Balances not checked yet (no trading keys).", ""]
+            "-130 cap on the price taken. Routing: every line within 1 point on every book is converted to its "
+            "EQUIVALENT price at the alert line (half point from the live ladders, standard value as fallback); best "
+            "equivalent price wins, ties go to the better line. Balances not checked yet (no trading keys).", ""]
     for r in results:
         body.append(fmt(r))
         if r.get("books"):
