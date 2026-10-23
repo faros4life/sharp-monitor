@@ -196,9 +196,16 @@ def pmus_check(al, mtype, side, line, price, teams):
                     sline = ln if (mtype != "spread" or s.get("long") is not False) else (-ln if ln is not None else None)
                     cands.append((mk, bool(s.get("long", True)), sline))
         if not cands:
-            seen = [f"{mk.get('sportsMarketType') or mk.get('marketType')} line={mk.get('line')} sides="
-                    + "/".join(f"{s.get('description') or s.get('identifier')}({'L' if s.get('long') else 'S'})"
-                               for s in mk.get("marketSides") or []) for mk in markets[:8]]
+            seen, types = [], set()
+            for mk in markets:   # one example per team-level market type (skip player props)
+                t = str(mk.get("sportsMarketType") or mk.get("marketType"))
+                if "player" in t.lower() or t in types:
+                    continue
+                types.add(t)
+                seen.append(f"{t} line={mk.get('line')} sides="
+                            + "/".join(f"{s.get('description') or s.get('identifier')}({'L' if s.get('long') else 'S'})"
+                                       for s in mk.get("marketSides") or []))
+            seen = seen[:12]
             seen.append(f"fetch: {_PMUS.get('how', '-')}")
             return {"status": "market_not_on_polymarket_us", "seen": seen}
         mk, is_long, pline = (cands[0] if line is None else
