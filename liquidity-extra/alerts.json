@@ -1,6 +1,152 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-23T17:40:14Z",
+   "base_depth": 142672,
+   "best_price": 0.58,
+   "best_price_american": -138,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.59,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-23",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "NOT Milwaukee wins by over 1.5 runs",
+     "price": 0.58,
+     "this_side": 1081157
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "TB +1.5 (-1.5)",
+     "price": 0.58,
+     "this_side": 55196
+    },
+    "polymarket": {
+     "new_other_side": -3650,
+     "new_this_side": 28844,
+     "other_side": 80624,
+     "other_side_all_levels": 108338,
+     "ratio": 1.5,
+     "this_side": 121807,
+     "this_side_all_levels": 170027
+    }
+   },
+   "first_seen_utc": "2026-10-23T17:30:19Z",
+   "game": "Tampa Bay Rays vs. Milwaukee Brewers",
+   "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"5969233\"}",
+   "lead_min": 380,
+   "league": "MLB",
+   "line": 1.5,
+   "market": "spread",
+   "new_money": 28844,
+   "paper_only": false,
+   "price": 0.59,
+   "price_american": -144,
+   "price_rule": "fails_cap",
+   "price_when_first_seen": 0.59,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 1.5,
+     "price": -150
+    },
+    "betonlineag": {
+     "point": 1.5,
+     "price": -144
+    },
+    "betopenly": {
+     "point": 1.5,
+     "price": -138
+    },
+    "betrivers": {
+     "point": 1.5,
+     "price": -143
+    },
+    "betus": {
+     "point": 1.5,
+     "price": -150
+    },
+    "bovada": {
+     "point": 1.5,
+     "price": -145
+    },
+    "draftkings": {
+     "point": 1.5,
+     "price": -149
+    },
+    "fanatics": {
+     "point": 1.5,
+     "price": -150
+    },
+    "fanduel": {
+     "point": 1.5,
+     "price": -150
+    },
+    "kalshi": {
+     "point": 1.5,
+     "price": -138
+    },
+    "lowvig": {
+     "point": 1.5,
+     "price": -142
+    },
+    "mybookieag": {
+     "point": 1.5,
+     "price": -147
+    },
+    "novig": {
+     "point": 1.5,
+     "price": -138
+    },
+    "polymarket": {
+     "point": 2.5,
+     "price": -245
+    },
+    "prophetx": {
+     "point": 1.0,
+     "price": 110
+    },
+    "williamhill_us": {
+     "point": 1.5,
+     "price": -148
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 1,
+    "pm_market_id": "5969233"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi",
+    "novig"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Tampa Bay Rays",
+   "side_label": "Tampa Bay Rays (+1.5)",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-24T00:00:00Z",
+   "teams": [
+    "Tampa Bay Rays",
+    "Milwaukee Brewers"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-23T17:30:19Z",
    "base_depth": 85203,
    "best_price": 0.51,
@@ -168,8 +314,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.61,
-   "clv_cents": -7.0,
+   "close_price": 0.6,
+   "clv_cents": -8.0,
    "confirmed_after_min": 5,
    "date": "2026-10-23",
    "depth_by_book": {
@@ -193,6 +339,8 @@
    "new_money": 156650,
    "paper_only": true,
    "price": 0.68,
+   "price_after_15m": 0.6168,
+   "price_after_15m_book": "kalshi",
    "price_american": -213,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.7,
@@ -212,6 +360,7 @@
    "side_label": "Nakashima",
    "start_source": "kalshi",
    "start_utc": "2026-10-23T20:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Cobolli",
     "Nakashima"
@@ -772,8 +921,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.85,
-   "clv_cents": 21.0,
+   "close_price": 0.94,
+   "clv_cents": 30.0,
    "confirmed_after_min": 10,
    "date": "2026-10-23",
    "depth_by_book": {
