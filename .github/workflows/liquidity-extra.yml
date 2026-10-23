@@ -25,12 +25,14 @@ jobs:
         env:
           LIQ_LEAGUES: "MLB,NCAAB,TENNIS"    # separate from the main record (liquidity/)
           LIQ_DIR: "liquidity-extra"
-          LIQ_BOOKS: "kalshi,novig,polymarket"
+          LIQ_BOOKS: "kalshi,novig,polymarket,prophetx"   # ProphetX: MLB only (confirming book)
           LIQ_EXTRA_BOOKS: "900"             # this run has only these leagues: give them the normal read limits
           LIQ_EXTRA_SEC: "150"
           LIQ_PRIMARY_MIN: ${{ vars.LIQ_PRIMARY_MIN }}
           LIQ_SECOND_MIN: ${{ vars.LIQ_SECOND_MIN }}
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}   # read-only sportsbook prices at alert time (MLB/NCAAB only)
+          PROPHETX_ACCESS_KEY: ${{ secrets.PROPHETX_ACCESS_KEY }}   # read-only: login + markets, never orders
+          PROPHETX_SECRET_KEY: ${{ secrets.PROPHETX_SECRET_KEY }}
         run: python -u liquidity_monitor.py
       - name: Commit state and alerts
         if: always()
