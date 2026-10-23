@@ -140,10 +140,11 @@ def pmus_game_markets(ev, markets):
     tries = []
     if gid:
         tries.append(("gameId", f"{PMUS}/v1/markets", {"gameId": gid, "limit": 100}))
-    if ev.get("id"):
-        tries.append(("event id", f"{PMUS}/v1/event/id/{ev['id']}", None))
     if ev.get("slug"):
-        tries.append(("event slug", f"{PMUS}/v1/event/slug/{ev['slug']}", None))
+        tries.append(("event slug", f"{PMUS}/v1/events/slug/{ev['slug']}", None))
+        tries.append(("events?slug", f"{PMUS}/v1/events", {"slug": ev["slug"]}))
+    if ev.get("id"):
+        tries.append(("events?id", f"{PMUS}/v1/events", {"id": ev["id"]}))
     for how, url, params in tries:
         try:
             d = lm.get(url, params)
@@ -153,6 +154,8 @@ def pmus_game_markets(ev, markets):
         mks = d.get("markets") if isinstance(d, dict) else d
         if isinstance(d, dict) and not mks:
             mks = (d.get("event") or {}).get("markets")
+        if isinstance(d, dict) and not mks and d.get("events"):
+            mks = [m for e in d["events"] for m in (e.get("markets") or [])]
         if mks:
             _PMUS["how"] = f"{how}: {len(mks)} markets"
             return [m for m in mks if isinstance(m, dict)]
@@ -347,7 +350,12 @@ def evaluate(p, now, evs_by, mks_by_event, pos):
             return dict(out, verdict="SKIP", reason=f"line: alert line {line:+g} no longer offered on any book" if line is not None
                         else "line: not offered")
         return dict(out, verdict="SKIP", reason=f"price: alert number {price:+d} not available after fees on any book")
-    cands.sort(key=lambda x: -x[1])
+    def line_score(b):   # higher = better line for this side (tie-break at equal price)
+        bl = book_line(res[b])
+        if bl is None or mtype == "moneyline":
+            return 0
+        return -bl if (mtype == "total" and side == "OVER") else bl
+    cands.sort(key=lambda x: (-x[1], -line_score(x[0])))
     full = [c for c in cands if c[2] >= stake_for(c[1])[0]]
     b, am, avail = (full or cands)[0]
     if mtype in ("spread", "total") and am < CAP_LINE:
