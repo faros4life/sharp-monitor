@@ -1,0 +1,23 @@
+name: novig-read-test
+
+on:
+  workflow_dispatch:   # manual only: one read-only test of the signed Novig API
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Read-only Novig test (GET requests only)
+        env:
+          NOVIG_READ_KEY_ID: ${{ secrets.NOVIG_READ_KEY_ID }}
+          NOVIG_READ_KEY_PEM: ${{ secrets.NOVIG_READ_KEY_PEM }}
+        run: python -u novig_read_test.py
