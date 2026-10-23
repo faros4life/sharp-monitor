@@ -51,7 +51,7 @@ def am_to_prob(a):
     return 100 / (a + 100) if a > 0 else -a / (-a + 100)
 
 
-def parse_bet(bet, teams):
+def parse_bet(bet, teams, lg=None):
     """'Oklahoma City Thunder -8.5 (-120)' -> ('spread', team_index, -8.5, -120); 'Under 221 (-111)' -> ('total', 'UNDER', 221, -111)."""
     m = re.search(r"\(([+-]\d+)\)\s*$", bet)
     price = int(m.group(1)) if m else None
@@ -61,14 +61,14 @@ def parse_bet(bet, teams):
     if " ML " in bet:
         team = bet.split(" ML ")[0]
         mp = re.search(r"ML ([+-]\d+)", bet)
-        return "moneyline", lm.team_side(team, teams), None, int(mp.group(1)) if mp else price
+        return "moneyline", lm.team_side(team, teams, lg), None, int(mp.group(1)) if mp else price
     if re.search(r" (PL|RL) ", bet):
         return None, None, None, None   # puck/run lines: not mapped yet
     ms = re.match(r"^(.*?) ([+-]?\d+(?:\.\d+)?|PK) \(", bet)
     if not ms:
         return None, None, None, None
     line = 0.0 if ms.group(2) == "PK" else float(ms.group(2))
-    return "spread", lm.team_side(ms.group(1), teams), line, price
+    return "spread", lm.team_side(ms.group(1), teams, lg), line, price
 
 
 # ---------------------------------------------------------------- ProphetX (read-only)
@@ -195,7 +195,7 @@ def px_check(al, mtype, side, line, price, teams):
                 oside = "OVER" if "over" in name.lower() else ("UNDER" if "under" in name.lower() else None)
                 ok = oside == side
             else:
-                t = lm.team_side(name, erow["teams"])
+                t = lm.team_side(name, erow["teams"], al["sport"])
                 ok = t is not None and (t == side if how == "same" else t == 1 - side)
             if not ok:
                 continue
@@ -290,7 +290,7 @@ def ladder_result(levels, price, line, book_line, extra=None, fee_coef=0.0):
 def kalshi_check(al, mtype, side, line, price, teams):
     """Kalshi: buy YES = take NO bids at 1-p; buy NO = take YES bids at 1-p (sizes are contracts at $1)."""
     lg = al["sport"]
-    series = f"KX{lg}" + {"moneyline": "GAME", "spread": "SPREAD", "total": "TOTAL"}[mtype]
+    series = f"KX{lm.K_CODE.get(lg, [lg])[0]}" + {"moneyline": "GAME", "spread": "SPREAD", "total": "TOTAL"}[mtype]
     if series not in _KC["events"]:
         try:
             _KC["events"][series] = lm.k_paged("/events", "events", {"series_ticker": series, "status": "open",
@@ -322,7 +322,7 @@ def kalshi_check(al, mtype, side, line, price, teams):
                 buy = "yes" if (want == "OVER") == over_yes else "no"
                 options.append((mk, buy, strike))
             else:
-                t = lm.team_side(label, kt)
+                t = lm.team_side(label, kt, al["sport"])
                 if t is None:
                     continue
                 if mtype == "moneyline":
@@ -403,7 +403,7 @@ def pm_check(al, mtype, side, line, price, teams):
                     ok = ("over" in name.lower() and side == "OVER") or ("under" in name.lower() and side == "UNDER")
                     oline = ln
                 else:
-                    t = lm.team_side(name, pt)
+                    t = lm.team_side(name, pt, al["sport"])
                     ok = t is not None and (t == side if how == "same" else t == 1 - side)
                     oline = None if (mtype != "spread" or ln is None) else (ln if i == 0 else -ln)
                 if ok:
@@ -462,7 +462,7 @@ def hr_check(al, mtype, side, line, price, teams):
                     if mtype == "total":
                         ok = name.lower() == side.lower() if isinstance(side, str) else False
                     else:
-                        t = lm.team_side(name, erow["teams"])
+                        t = lm.team_side(name, erow["teams"], al["sport"])
                         ok = t is not None and (t == side if how == "same" else t == 1 - side)
                     if ok:
                         hl = float(pt) if pt is not None else None
@@ -496,7 +496,7 @@ def check_alert(al, evs_by, mks_by_event):
     teams = lm.split_teams(al["game"])
     if not teams:
         return {"status": "no_teams"}
-    mtype, side, line, price = parse_bet(al["bet"], teams)
+    mtype, side, line, price = parse_bet(al["bet"], teams, al.get("sport"))
     if not mtype or side is None:
         return {"status": "bet_not_mapped"}
     st = datetime.fromisoformat(al["start_utc"].replace("Z", "+00:00"))
@@ -526,7 +526,7 @@ def check_alert(al, evs_by, mks_by_event):
                 oside = "OVER" if "over" in name.lower() else ("UNDER" if "under" in name.lower() else None)
                 ok = oside == side
             else:
-                t = lm.team_side(name, erow["teams"])
+                t = lm.team_side(name, erow["teams"], al["sport"])
                 ok = t is not None and (t == side if how == "same" else t == 1 - side)
             if ok:
                 cands.append((mk, i, outcome_line(mtype, name, mk.get("strike"), i, erow["teams"])))
@@ -619,7 +619,7 @@ def run():
             except Exception as ex:
                 res = {"status": f"error: {ex}"}
             tms = lm.split_teams(al["game"])
-            mt, sd, ln, pr = parse_bet(al["bet"], tms) if tms else (None, None, None, None)
+            mt, sd, ln, pr = parse_bet(al["bet"], tms, al.get("sport")) if tms else (None, None, None, None)
             extra = {}
             for bname, fn in (("prophetx", px_check), ("kalshi", kalshi_check), ("polymarket", pm_check)):
                 try:
