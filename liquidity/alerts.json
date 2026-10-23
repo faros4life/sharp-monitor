@@ -1,6 +1,132 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-23T03:20:10Z",
+   "base_depth": 1274464,
+   "best_price": 0.7244,
+   "best_price_american": -263,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.71,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-23",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -61,
+     "new_this_side": 143948,
+     "other_side": 570783,
+     "other_side_all_levels": 663207,
+     "ratio": 2.0,
+     "this_side": 1139122,
+     "this_side_all_levels": 1442993
+    }
+   },
+   "first_seen_utc": "2026-10-23T03:10:09Z",
+   "game": "NC St. vs Stanford",
+   "key": "kalshi|KXNCAAFGAME-26OCT23NCSTSTAN|ml|0",
+   "lead_min": 1570,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 143948,
+   "price": 0.71,
+   "price_american": -245,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.71,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -275
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -270
+    },
+    "betrivers": {
+     "point": null,
+     "price": -250
+    },
+    "betus": {
+     "point": null,
+     "price": -270
+    },
+    "bovada": {
+     "point": null,
+     "price": -260
+    },
+    "draftkings": {
+     "point": null,
+     "price": -265
+    },
+    "fanatics": {
+     "point": null,
+     "price": -265
+    },
+    "fanduel": {
+     "point": null,
+     "price": -260
+    },
+    "kalshi": {
+     "point": null,
+     "price": -245
+    },
+    "lowvig": {
+     "point": null,
+     "price": -270
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -270
+    },
+    "novig": {
+     "point": null,
+     "price": -239
+    },
+    "polymarket": {
+     "point": null,
+     "price": -245
+    },
+    "prophetx": {
+     "point": null,
+     "price": -235
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -265
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26OCT23NCSTSTAN-NCST"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "no_match",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "NC St.",
+   "side_label": "NC St.",
+   "start_source": "kalshi",
+   "start_utc": "2026-10-24T05:30:00Z",
+   "teams": [
+    "NC St.",
+    "Stanford"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-23T03:00:34Z",
    "base_depth": 172964,
    "best_price": 0.5275,
@@ -39,6 +165,8 @@
    "market": "total",
    "new_money": 25838,
    "price": 0.51,
+   "price_after_15m": 0.5275,
+   "price_after_15m_book": "kalshi",
    "price_american": -104,
    "price_rule": "ok",
    "price_when_first_seen": 0.51,
@@ -119,6 +247,7 @@
    "side_label": "NOT Over 50.5 points",
    "start_source": "kalshi",
    "start_utc": "2026-10-24T02:00:00Z",
+   "still_actionable": true,
    "teams": [
     "UMass",
     "UConn"
@@ -171,6 +300,8 @@
    "market": "spread",
    "new_money": 49034,
    "price": 0.49,
+   "price_after_15m": 0.49,
+   "price_after_15m_book": "novig",
    "price_american": 104,
    "price_rule": "ok",
    "price_when_first_seen": 0.49,
@@ -255,6 +386,7 @@
    "side_label": "NOT Air Force wins by over 5.5 points",
    "start_source": "prophetx",
    "start_utc": "2026-10-24T01:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Air Force",
     "Wyoming"
@@ -319,6 +451,8 @@
    "market": "moneyline",
    "new_money": 300759,
    "price": 0.46,
+   "price_after_15m": 0.445,
+   "price_after_15m_book": "novig",
    "price_american": 117,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.46,
@@ -406,6 +540,7 @@
    "side_label": "New Orleans",
    "start_source": "polymarket",
    "start_utc": "2026-10-24T01:30:00Z",
+   "still_actionable": true,
    "teams": [
     "New Orleans",
     "Utah"
@@ -1052,8 +1187,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.63,
-   "clv_cents": -5.0,
+   "close_price": 0.76,
+   "clv_cents": 8.0,
    "confirmed_after_min": 5,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -1546,8 +1681,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.32,
-   "clv_cents": -30.0,
+   "close_price": 0.29,
+   "clv_cents": -33.0,
    "confirmed_after_min": 8,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -3011,8 +3146,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.88,
-   "clv_cents": 28.0,
+   "close_price": 0.91,
+   "clv_cents": 31.0,
    "confirmed_after_min": 9,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -3859,12 +3994,13 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFTOTAL-26OCT22JMUAPP-57"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": true,
+   "settled_utc": "2026-10-23T03:20:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -3877,7 +4013,7 @@
     "Appalachian St."
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-22T22:16:55Z",
@@ -6633,8 +6769,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": -1.0,
+   "close_price": 0.5,
+   "clv_cents": -4.0,
    "confirmed_after_min": 17,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -6793,8 +6929,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.77,
-   "clv_cents": 25.0,
+   "close_price": 0.8,
+   "clv_cents": 28.0,
    "confirmed_after_min": 10,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -7209,8 +7345,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.48,
-   "clv_cents": -15.0,
+   "close_price": 0.29,
+   "clv_cents": -34.0,
    "confirmed_after_min": 9,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -8818,13 +8954,14 @@
     "outcome_index": 1,
     "pm_market_id": "4950300"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "kalshi",
     "novig"
    ],
    "second_book_fresh": true,
+   "settled_utc": "2026-10-23T03:20:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -8837,7 +8974,7 @@
     "Oilers"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-22T18:30:16Z",
@@ -9313,8 +9450,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.38,
-   "clv_cents": -28.0,
+   "close_price": 0.25,
+   "clv_cents": -41.0,
    "confirmed_after_min": 6,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -9473,8 +9610,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.48,
-   "clv_cents": 1.0,
+   "close_price": 0.51,
+   "clv_cents": 4.0,
    "confirmed_after_min": 6,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -9700,8 +9837,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.55,
-   "clv_cents": -19.0,
+   "close_price": 0.52,
+   "clv_cents": -22.0,
    "confirmed_after_min": 6,
    "date": "2026-10-22",
    "depth_by_book": {
@@ -10345,13 +10482,14 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFTOTAL-26OCT22JMUAPP-57"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig",
     "prophetx"
    ],
    "second_book_fresh": false,
+   "settled_utc": "2026-10-23T03:20:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -10364,7 +10502,7 @@
     "Appalachian St."
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.94
   },
   {
    "alerted_utc": "2026-10-22T17:50:10Z",
@@ -13912,10 +14050,11 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFSPREAD-26OCT22JMUAPP-JMU12"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": "no_match",
    "second_book_fresh": false,
+   "settled_utc": "2026-10-23T03:20:10Z",
    "sharp_agree": [
     "James Madison Dukes -10.5 (-110)"
    ],
@@ -13930,7 +14069,7 @@
     "Appalachian St."
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-22T15:50:11Z",
@@ -15997,13 +16136,14 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26OCT22JMUAPP-JMU"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig",
     "prophetx"
    ],
    "second_book_fresh": false,
+   "settled_utc": "2026-10-23T03:20:10Z",
    "sharp_agree": [
     "James Madison Dukes -10.5 (-110)"
    ],
@@ -16018,7 +16158,7 @@
     "Appalachian St."
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-22T14:50:11Z",
