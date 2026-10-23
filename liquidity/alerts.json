@@ -1,137 +1,7 @@
 {
  "alerts": [
   {
-   "alerted_utc": "2026-10-23T05:59:47Z",
-   "base_depth": 282901,
-   "best_price": 0.5175,
-   "best_price_american": -107,
-   "best_price_book": "kalshi",
-   "bid_improved": false,
-   "bid_improved_at_pending": false,
-   "book": "kalshi",
-   "books_live": [
-    "kalshi",
-    "novig",
-    "polymarket",
-    "prophetx"
-   ],
-   "close_price": 0.5,
-   "clv_cents": 0.0,
-   "confirmed_after_min": 19,
-   "date": "2026-10-23",
-   "depth_by_book": {
-    "kalshi": {
-     "new_other_side": 8570,
-     "new_this_side": 30900,
-     "other_side": 153231,
-     "other_side_all_levels": 248196,
-     "ratio": 1.3,
-     "this_side": 195813,
-     "this_side_all_levels": 312719
-    }
-   },
-   "first_seen_utc": "2026-10-23T05:40:38Z",
-   "game": "Duke vs Virginia: Spread",
-   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFSPREAD-26OCT23DUKEUVA-UVA3\"}",
-   "lead_min": 1020,
-   "league": "NCAAF",
-   "line": -2.5,
-   "market": "spread",
-   "new_money": 30900,
-   "price": 0.5,
-   "price_american": -100,
-   "price_rule": "ok",
-   "price_when_first_seen": 0.5,
-   "prices_by_book": {
-    "betmgm": {
-     "point": -2.5,
-     "price": -110
-    },
-    "betonlineag": {
-     "point": -2.0,
-     "price": -118
-    },
-    "betopenly": {
-     "point": -2.5,
-     "price": 101
-    },
-    "betrivers": {
-     "point": -2.0,
-     "price": -114
-    },
-    "betus": {
-     "point": -2.5,
-     "price": -110
-    },
-    "bovada": {
-     "point": -2.5,
-     "price": -110
-    },
-    "draftkings": {
-     "point": -2.5,
-     "price": -110
-    },
-    "fanatics": {
-     "point": -2.5,
-     "price": -110
-    },
-    "fanduel": {
-     "point": -2.5,
-     "price": -110
-    },
-    "kalshi": {
-     "point": -2.5,
-     "price": 100
-    },
-    "lowvig": {
-     "point": -2.0,
-     "price": -114
-    },
-    "mybookieag": {
-     "point": -2.5,
-     "price": -110
-    },
-    "novig": {
-     "point": -2.5,
-     "price": 102
-    },
-    "polymarket": {
-     "point": -1.5,
-     "price": -108
-    },
-    "prophetx": {
-     "point": -2.0,
-     "price": -104
-    },
-    "williamhill_us": {
-     "point": -2.5,
-     "price": -110
-    }
-   },
-   "pulled": false,
-   "ref": {
-    "kalshi_side": "yes",
-    "market_ticker": "KXNCAAFSPREAD-26OCT23DUKEUVA-UVA3"
-   },
-   "result": null,
-   "rule_met": false,
-   "second_book": "no_match",
-   "second_book_fresh": false,
-   "sharp_agree": [],
-   "sharp_oppose": [],
-   "side": "Virginia",
-   "side_label": "Virginia wins by over 2.5 points",
-   "start_source": "prophetx",
-   "start_utc": "2026-10-23T23:00:00Z",
-   "teams": [
-    "Duke",
-    "Virginia"
-   ],
-   "top25": false,
-   "units_flat": null
-  },
-  {
-   "alerted_utc": "2026-10-23T05:59:47Z",
+   "alerted_utc": "2026-10-23T05:50:10Z",
    "base_depth": 79104,
    "best_price": 0.53,
    "best_price_american": -113,
@@ -147,34 +17,36 @@
    ],
    "close_price": 0.52,
    "clv_cents": 0.0,
-   "confirmed_after_min": 19,
+   "confirmed_after_min": 10,
    "date": "2026-10-23",
    "depth_by_book": {
     "kalshi": {
      "new_other_side": -2523,
      "new_this_side": 26274,
-     "other_side": 48626,
-     "other_side_all_levels": 86730,
-     "ratio": 1.6,
-     "this_side": 77840,
-     "this_side_all_levels": 129109
+     "other_side": 46491,
+     "other_side_all_levels": 83287,
+     "ratio": 1.7,
+     "this_side": 78440,
+     "this_side_all_levels": 129718
     },
     "novig": {
      "heavier_side": true,
      "label": "CHA +3.5 (3.5)",
      "price": 0.53,
-     "this_side": 10645
+     "this_side": 11301
     }
    },
    "first_seen_utc": "2026-10-23T05:40:38Z",
    "game": "Atlanta vs Charlotte: Spread",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBASPREAD-26OCT23ATLCHA-ATL4\"}",
-   "lead_min": 1020,
+   "lead_min": 1030,
    "league": "NBA",
    "line": 3.5,
    "market": "spread",
    "new_money": 26274,
    "price": 0.52,
+   "price_after_15m": 0.53,
+   "price_after_15m_book": "novig",
    "price_american": -108,
    "price_rule": "ok",
    "price_when_first_seen": 0.52,
@@ -188,8 +60,8 @@
      "price": -115
     },
     "betopenly": {
-     "point": 3.0,
-     "price": 106
+     "point": 2.5,
+     "price": 104
     },
     "betrivers": {
      "point": 3.5,
@@ -261,6 +133,7 @@
    "side_label": "NOT Atlanta wins by over 3.5 points",
    "start_source": "polymarket",
    "start_utc": "2026-10-23T23:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Atlanta",
     "Charlotte"
@@ -580,8 +453,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": 0.0,
+   "close_price": 0.51,
+   "clv_cents": 1.0,
    "confirmed_after_min": 17,
    "date": "2026-10-23",
    "depth_by_book": {
@@ -616,8 +489,8 @@
    "market": "total",
    "new_money": 35098,
    "price": 0.5,
-   "price_after_15m": 0.51,
-   "price_after_15m_book": "novig",
+   "price_after_15m": 0.5196,
+   "price_after_15m_book": "prophetx",
    "price_american": -100,
    "price_rule": "ok",
    "price_when_first_seen": 0.5,
