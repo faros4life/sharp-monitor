@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Oct 23, 4:48 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 70.
+Updated Fri Oct 23, 4:59 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 70.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -154,7 +154,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 22 11:10AM | NHL | Ducks vs. Devils | total: Over (6.5) | polymarket | $26k | -113 | ✅ kalshi,novig,prophetx |  | +1.0c | yes | L |
 | Oct 22 11:10AM | NHL | Anaheim vs New Jersey: Total Goals | total: Over 6.5 goals scored | kalshi | $43k | -113 | ✅ novig,polymarket,prophetx |  | -23.0c | yes | L |
 | Oct 22 11:10AM | NHL | Los Angeles vs New York I | moneyline: Los Angeles | kalshi | $118k | -104 | ✅ prophetx |  |  | yes | W |
-| Oct 22 11:10AM | NBA | Portland vs Sacramento | moneyline: Portland | kalshi | $38k | -270 |  |  | +2.0c | yes | pending |
+| Oct 22 11:10AM | NBA | Portland vs Sacramento | moneyline: Portland | kalshi | $38k | -270 |  |  | +3.0c | yes | pending |
 | Oct 22 11:01AM | NHL | Anaheim vs New Jersey | moneyline: New Jersey | kalshi | $58k | -203 | ✅ novig,polymarket,prophetx |  |  | yes | W |
 | Oct 22 11:01AM | NCAAF | Liberty vs Kennesaw St. | moneyline: Liberty | kalshi | $139k | -355 | ✅ novig,prophetx |  |  | yes | W |
 | Oct 22 11:01AM | NCAAF | James Madison vs Appalachian St. | moneyline: James Madison | kalshi | $2,008k | -376 | ✅ novig,prophetx | ✅ | -10.0c | yes | L |
