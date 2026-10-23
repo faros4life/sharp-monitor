@@ -79,7 +79,7 @@ def body_text(raw):
 
 def read_verdicts(M):
     plays = []
-    for uid in gsearch(M, "subject:AUTO-PLACE VERDICTS newer_than:2d"):
+    for uid in gsearch(M, "subject:AUTO-PLACE VERDICTS -subject:TEST newer_than:2d"):   # Muse's verdicts only, never tests
         typ, data = M.uid("FETCH", uid, "(RFC822)")
         if typ != "OK" or not data or not data[0]:
             continue
@@ -93,7 +93,8 @@ def read_verdicts(M):
             LOG.append("verdict email with unreadable JSON")
             continue
         for p in arr if isinstance(arr, list) else []:
-            if isinstance(p, dict) and (p.get("play_key") or derive_key(p)):
+            if isinstance(p, dict) and not str(p.get("play_key") or "").upper().startswith("TEST") \
+                    and (p.get("play_key") or derive_key(p)):
                 plays.append(dict(p, play_key=p.get("play_key") or derive_key(p)))
     seen, out = set(), []
     for p in plays:   # one play per game+side, whatever key it arrived with (spread and ML on a team = one play)
