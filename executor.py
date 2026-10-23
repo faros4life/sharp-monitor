@@ -154,7 +154,10 @@ def pmus_check(al, mtype, side, line, price, teams):
                     sline = ln if (mtype != "spread" or s.get("long") is not False) else (-ln if ln is not None else None)
                     cands.append((mk, bool(s.get("long", True)), sline))
         if not cands:
-            return {"status": "market_not_on_polymarket_us"}
+            seen = [f"{mk.get('sportsMarketType') or mk.get('marketType')} line={mk.get('line')} sides="
+                    + "/".join(f"{s.get('description') or s.get('identifier')}({'L' if s.get('long') else 'S'})"
+                               for s in mk.get("marketSides") or []) for mk in (ev.get("markets") or [])[:8]]
+            return {"status": "market_not_on_polymarket_us", "seen": seen}
         mk, is_long, pline = (cands[0] if line is None else
                               min(cands, key=lambda c: abs((c[2] if c[2] is not None else 1e9) - line)))
         book = (lm.get(f"{PMUS}/v1/markets/{mk['slug']}/book") or {}).get("marketData") or {}
@@ -166,7 +169,8 @@ def pmus_check(al, mtype, side, line, price, teams):
         else:         # buy NO = sell YES into bids: cost 1 - bid
             levels = [(round(1 - px(b), 4), (1 - px(b)) * lm.num(b.get("qty"))) for b in book.get("bids") or [] if px(b) is not None]
         return bc.ladder_result(levels, price, line, pline, {"market_slug": mk["slug"], "long_side": is_long}, PMUS_FEE)
-    return {"status": "game_not_on_polymarket_us"}
+    return {"status": "game_not_on_polymarket_us",
+            "seen": [ev.get("title") for ev in pmus_events(al["sport"])[:0]] or [f"{len(pmus_events(al['sport']))} {al['sport']} events listed"]}
 
 
 # ---------------------------------------------------------------- Novig positions (read-only key) for dedupe/conflict
@@ -246,11 +250,24 @@ def evaluate(p, now, evs_by, mks_by_event, pos):
         res["novig"] = bc.check_alert(al, evs_by, mks_by_event)
     except Exception as ex:
         res["novig"] = {"status": f"error: {str(ex)[:80]}"}
+    if res["novig"].get("status") == "game_not_on_novig":   # show what Novig lists that day (names only)
+        day = datetime.fromisoformat(al["start_utc"].replace("Z", "+00:00")).astimezone(lm.ET).date()
+        res["novig"]["seen"] = sorted({e.get("description") for e in evs_by.values()
+                                       if lm.N_LEAGUE.get((e.get("league") or "").upper().strip()) == al["sport"]
+                                       and datetime.fromtimestamp(e["startsTs"] / 1000, lm.ET).date() == day
+                                       and (set(lm.toks(e.get("description"))) & (lm.toks(teams[0]) | lm.toks(teams[1])))})[:6]
     for b, fn in (("prophetx", bc.px_check), ("kalshi", bc.kalshi_check), ("polymarket_us", pmus_check)):
         try:
             res[b] = fn(al, mtype, side, line, price, teams)
         except Exception as ex:
             res[b] = {"status": f"error: {str(ex)[:80]}"}
+    if res["prophetx"].get("status") == "game_not_on_prophetx":
+        try:
+            words = lm.toks(teams[0]) | lm.toks(teams[1])
+            res["prophetx"]["seen"] = [e.get("name") for e in bc.px_events(al["sport"])
+                                       if set(lm.toks(e.get("name"))) & words][:6]
+        except Exception:
+            pass
     out.update(mtype=mtype, side=side, line=line, price=price, lead=round(lead), books=res)
     c = novig_conflict(al, mtype, side, teams, res["novig"], pos, mks_by_event)
     if c == "conflict":
@@ -306,7 +323,8 @@ def book_lines(r):
             out.append(f"        {b:<14} best {x.get('best_price_american')} line {ln}{'' if x.get('exact_line') else ' (not exact)'}"
                        f" | {money(x.get('dollars_at_alert_price_or_better') or 0)} at alert price or better")
         else:
-            out.append(f"        {b:<14} {x.get('status', 'not checked')}")
+            out.append(f"        {b:<14} {x.get('status', 'not checked')}"
+                       + (f" | listed: {'; '.join(str(v) for v in x['seen'])}" if x.get("seen") else ""))
     return out
 
 
