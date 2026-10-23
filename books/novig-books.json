@@ -12,7 +12,7 @@
    },
    "bet": "Under 237 (-122)",
    "book": "novig",
-   "checked_utc": "2026-10-23T09:20:10Z",
+   "checked_utc": "2026-10-23T09:30:15Z",
    "first": {
     "alert_line": 237.0,
     "alert_price": -122,
@@ -275,8 +275,8 @@
      },
      {
       "american": -120,
-      "contracts": 392026,
-      "dollars": 2137,
+      "contracts": 416626,
+      "dollars": 2271,
       "price": 0.545
      },
      {
@@ -298,10 +298,10 @@
       "price": 0.57
      },
      {
-      "american": -138,
-      "contracts": 65000,
-      "dollars": 377,
-      "price": 0.58
+      "american": -135,
+      "contracts": 85000,
+      "dollars": 489,
+      "price": 0.575
      },
      {
       "american": -99900,
@@ -310,16 +310,16 @@
       "price": 0.999
      }
     ],
-    "dollars_at_alert_price_or_better": 2513,
+    "dollars_at_alert_price_or_better": 2647,
     "dollars_at_best": 222,
     "exact_line": false,
     "market_id": "01a16352-528f-7cd1-a339-8943beb81d28",
     "novig_label": "Under 236.5",
     "novig_line": 236.5,
-    "resting_bids_on_this_side_dollars": 7840,
+    "resting_bids_on_this_side_dollars": 7712,
     "status": "ok"
    },
-   "lead_min_now": 830,
+   "lead_min_now": 820,
    "polymarket_first": {
     "alert_line": 237.0,
     "alert_price": -122,
@@ -439,7 +439,7 @@
      {
       "american": -150,
       "american_displayed": -150,
-      "dollars": 2287,
+      "dollars": 2213,
       "price": 0.6,
       "price_after_fee": 0.6
      },
@@ -2371,5 +2371,5 @@
   }
  ],
  "note": "Exchange book check (FLAG ONLY) for sharp-monitor phone alerts with 2h+ lead. latest/first = Novig (public order books, no key); prophetx_latest/prophetx_first = ProphetX (read-only key; prices are AFTER its 2%% fee on winnings, displayed price kept as best_price_american_displayed): best_price_american, dollars_at_best and dollars_at_alert_price_or_better = amount you could bet at the alert price or better, buy_levels = the ladder. kalshi_latest/_first and polymarket_latest/_first: same fields (public books, no key), prices AFTER taker fees (Kalshi 0.07, Polymarket global 0.03 x P x (1-P) per contract unless gamma marks the market zero-fee; displayed price kept as best_price_american_displayed). Novig pregame: no fee. hardrock_latest/_first: Hard Rock sportsbook price and line via The Odds API (no order book; refreshed every 30 min). best_now = best gettable price across the books, plus total dollars at the alert price or better on books with the exact line. Novig fields: best_price = cheapest cost to BUY the alert side now (0-1, with American); dollars_at_alert_price_or_better = dollars you could buy at the alert's price or better on the same line; exact_line=false means Novig had no market at the alert's line and the nearest line is shown. resting_bids_on_this_side_dollars = others bidding the same side. 'first' = first check after the alert, 'latest' = this run. Novig orders are bids (verified Oct 21).",
- "updated_utc": "2026-10-23T09:20:10Z"
+ "updated_utc": "2026-10-23T09:30:15Z"
 }
