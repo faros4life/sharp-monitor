@@ -17,7 +17,6 @@ from datetime import datetime, timedelta, timezone
 import novig_signed as nv
 
 PUBLIC = "https://api.novig.com"
-PRIMARY_WALLET = "3ad91a5a-0e05-42d7-b2d4-84006a4e7a16"   # management key id = primary wallet (not secret)
 
 
 def pub(path, params):
@@ -45,7 +44,12 @@ def items_count(d):
             if isinstance(v, dict) and "items" in v:
                 tot += len(v["items"])
                 f = f or fields(v["items"])
+            elif isinstance(v, list):   # per-wallet arrays (positions)
+                tot += len(v)
+                f = f or fields(v)
         return tot, f
+    if isinstance(d, list):
+        return len(d), fields(d)
     return None, fields(d)
 
 
@@ -91,13 +95,15 @@ def main():
         print(f"   seq signed {s.get('seq')} vs public {p.get('seq')} | signed fields {fields(s)}")
 
     print("\n4) ACCOUNT (counts and field names only)")
+    me = nv._S["id"]   # a management::read key's OWN id addresses the primary wallet
     for label, path, params in [
             ("balance", "/v3/account/balance", {}),
-            ("subaccounts", "/v3/account/subaccounts", {}),
-            ("open orders", "/v3/orders", {"keyId": PRIMARY_WALLET, "status": "OPEN", "limit": 500}),
-            ("filled orders", "/v3/orders", {"keyId": PRIMARY_WALLET, "status": "FILLED", "limit": 500}),
-            ("fills", "/v3/fills", {"keyId": PRIMARY_WALLET, "limit": 500}),
-            ("positions", "/v3/positions", {"keyId": PRIMARY_WALLET, "limit": 500})]:
+            ("open orders", "/v3/orders", {"keyId": me, "status": "OPEN", "limit": 500}),
+            ("filled orders", "/v3/orders", {"keyId": me, "status": "FILLED", "limit": 500}),
+            ("open orders (no keyId)", "/v3/orders", {"status": "OPEN", "limit": 500}),
+            ("fills", "/v3/portfolio/fills", {"keyId": me, "limit": 500}),
+            ("positions", "/v3/portfolio/positions", {"keyId": me}),
+            ("settled bets (history)", "/v3/history/positions", {"keyId": me, "status": "SETTLED", "limit": 500})]:
         try:
             d = nv.get(path, params)
             if label == "balance":
