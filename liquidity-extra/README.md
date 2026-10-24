@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Oct 24, 7:50 AM ET. This run: 1 new, 1 not confirmed, 1 pending. Open alerts: 12.
+Updated Sat Oct 24, 7:52 AM ET. This run: 0 new, 1 not confirmed, 0 pending. Open alerts: 12.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -9,15 +9,15 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Oct 24 7:50AM | MLB | Tampa Bay Rays vs. Milwaukee Brewers | total: Over (6.5) | polymarket | $66k | -100 | ✅ kalshi,novig |  | +0.0c |  | pending |
-| Oct 24 7:30AM | TENNIS | Okamura vs Ishii | moneyline: Ishii | kalshi | $33k | -223 |  |  | +11.0c |  | pending |
+| Oct 24 7:30AM | TENNIS | Okamura vs Ishii | moneyline: Ishii | kalshi | $33k | -223 |  |  | +19.0c |  | pending |
 | Oct 24 6:40AM | TENNIS | Fearnley vs Carreno Busta | moneyline: Fearnley | kalshi | $68k | -223 |  |  |  | yes | W |
 | Oct 24 6:18AM | TENNIS | Marozsan vs Sorger | moneyline: Marozsan | kalshi | $29k | -525 |  |  | -1.0c |  | pending |
 | Oct 24 6:10AM | TENNIS | Rybakina vs Shnaider | moneyline: Rybakina | kalshi | $476k | -186 |  |  |  |  | W |
 | Oct 24 5:30AM | TENNIS | Giron vs Hanfmann | moneyline: Hanfmann | kalshi | $26k | -567 |  |  | +4.0c |  | W |
 | Oct 24 5:00AM | TENNIS | Tirante vs Mannarino | moneyline: Tirante | kalshi | $31k | -133 | ✅ novig |  | +3.0c |  | pending |
-| Oct 24 4:40AM | TENNIS | Schwaerzler vs Droguet | moneyline: Droguet | kalshi | $26k | -270 |  |  | -3.0c | yes | pending |
+| Oct 24 4:40AM | TENNIS | Schwaerzler vs Droguet | moneyline: Droguet | kalshi | $26k | -270 |  |  | -7.0c | yes | pending |
 | Oct 24 4:40AM | TENNIS | Paul vs Fritz | moneyline: Fritz | kalshi | $38k | -170 | ✅ novig |  | +0.0c |  | pending |
-| Oct 24 4:40AM | TENNIS | Basilashvili vs Tsitsipas | moneyline: Tsitsipas | kalshi | $43k | -245 | ✅ novig |  | -9.0c | yes | pending |
+| Oct 24 4:40AM | TENNIS | Basilashvili vs Tsitsipas | moneyline: Tsitsipas | kalshi | $43k | -245 | ✅ novig |  | -3.0c | yes | pending |
 | Oct 24 3:50AM | TENNIS | Fernandez vs Bouzkova | moneyline: Bouzkova | kalshi | $90k | -156 |  |  | +0.0c |  | L |
 | Oct 24 3:00AM | TENNIS | Medvedev vs Bublik | moneyline: Medvedev | kalshi | $26k | -186 | ✅ novig |  | +1.0c | yes | pending |
 | Oct 24 1:50AM | MLB | Tampa Bay Rays vs. Milwaukee Brewers | moneyline: Tampa Bay Rays | polymarket | $110k | +113 | ✅ kalshi |  | +0.0c |  | pending |
@@ -29,7 +29,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 23 8:47PM | TENNIS | Boulter vs Siniakova | moneyline: Siniakova | kalshi | $42k | -156 |  |  | +1.0c |  | W |
 | Oct 23 8:30PM | MLB | Game 2: Tampa Bay vs Milwaukee | moneyline: Game 2: Tampa Bay | kalshi | $51k | +144 |  |  | +6.0c |  | pending |
 | Oct 23 7:57PM | MLB | Tampa Bay Rays @ Milwaukee Brewers | spread: TB +1.5 (-1.5) | novig | $84k | -138 | ✅ kalshi |  | +0.0c |  | W |
-| Oct 23 6:00PM | TENNIS | Fils vs Struff | moneyline: Fils | kalshi | $27k | -456 |  |  | +0.0c |  | pending |
+| Oct 23 6:00PM | TENNIS | Fils vs Struff | moneyline: Fils | kalshi | $27k | -456 |  |  | -1.0c |  | pending |
 | Oct 23 5:54PM | MLB | Tampa Bay Rays vs. Milwaukee Brewers | moneyline: Milwaukee Brewers | polymarket | $75k | -178 | ✅ kalshi,prophetx |  | +0.0c | yes | W |
 | Oct 23 5:17PM | MLB | Tampa Bay vs Milwaukee: Total Runs | total: NOT Over 6.5 runs scored | kalshi | $159k | +104 | ✅ polymarket |  | +29.0c | yes | W |
 | Oct 23 4:46PM | TENNIS | Van Assche vs Musetti | moneyline: Musetti | kalshi | $85k | -203 |  |  | +12.0c | yes | W |
