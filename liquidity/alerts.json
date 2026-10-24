@@ -1,11 +1,11 @@
 {
  "alerts": [
   {
-   "alerted_utc": "2026-10-24T16:34:43Z",
-   "base_depth": 70304,
-   "best_price": 0.77,
-   "best_price_american": -335,
-   "best_price_book": "novig",
+   "alerted_utc": "2026-10-24T16:24:28Z",
+   "base_depth": 97803,
+   "best_price": 0.7184,
+   "best_price_american": -255,
+   "best_price_book": "prophetx",
    "bid_improved": false,
    "bid_improved_at_pending": false,
    "book": "novig",
@@ -15,110 +15,112 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.77,
+   "close_price": 0.72,
    "clv_cents": 0.0,
-   "confirmed_after_min": 19,
+   "confirmed_after_min": 17,
    "date": "2026-10-24",
    "depth_by_book": {
     "novig": {
-     "new_other_side": 6964,
-     "new_this_side": 28102,
-     "other_side": 27448,
-     "other_side_all_levels": 27550,
-     "ratio": 3.3,
-     "this_side": 91552,
-     "this_side_all_levels": 91722
+     "new_other_side": 1140,
+     "new_this_side": 28543,
+     "other_side": 41134,
+     "other_side_all_levels": 41453,
+     "ratio": 3.0,
+     "this_side": 122879,
+     "this_side_all_levels": 123588
     },
     "prophetx": {
      "heavier_side": true,
-     "label": "Oregon",
-     "price": 0.7674,
-     "this_side": 11971
+     "label": "BYU",
+     "price": 0.7143,
+     "this_side": 11436
     }
    },
-   "first_seen_utc": "2026-10-24T16:16:02Z",
-   "game": "Oregon @ Illinois",
-   "key": "novig|{\"market_id\": \"01a14e0b-fffb-74f2-8680-511aa11bb015\", \"outcome_id\": \"01a14e0b-fffb-74f2-8680-5135bf8dd35d\"}",
-   "lead_min": 145,
+   "first_seen_utc": "2026-10-24T16:07:05Z",
+   "game": "BYU @ UCF",
+   "key": "novig|{\"market_id\": \"01a142e4-2405-7d50-89d5-4ad3c12d0071\", \"outcome_id\": \"01a142e4-2405-7d50-89d5-4af0cce14771\"}",
+   "lead_min": 186,
    "league": "NCAAF",
    "line": null,
    "market": "moneyline",
-   "new_money": 28102,
+   "new_money": 28543,
    "paper_only": false,
-   "price": 0.77,
-   "price_american": -335,
+   "price": 0.72,
+   "price_after_15m": 0.7184,
+   "price_after_15m_book": "prophetx",
+   "price_american": -257,
    "price_rule": "ml_edge_fail",
-   "price_when_first_seen": 0.77,
+   "price_when_first_seen": 0.72,
    "prices_by_book": {
     "betmgm": {
      "point": null,
-     "price": -375
+     "price": -275
     },
     "betonlineag": {
      "point": null,
-     "price": -395
+     "price": -290
     },
     "betopenly": {
      "point": null,
-     "price": -332
+     "price": -262
     },
     "betrivers": {
      "point": null,
-     "price": -400
+     "price": -315
     },
     "betus": {
      "point": null,
-     "price": -380
+     "price": -285
     },
     "bovada": {
      "point": null,
-     "price": -400
+     "price": -280
     },
     "draftkings": {
      "point": null,
-     "price": -395
+     "price": -290
     },
     "fanatics": {
      "point": null,
-     "price": -375
+     "price": -275
     },
     "fanduel": {
      "point": null,
-     "price": -400
+     "price": -300
     },
     "kalshi": {
      "point": null,
-     "price": -335
+     "price": -270
     },
     "lowvig": {
      "point": null,
-     "price": -395
+     "price": -290
     },
     "mybookieag": {
      "point": null,
-     "price": -391
+     "price": -319
     },
     "novig": {
      "point": null,
-     "price": -335
+     "price": -257
     },
     "polymarket": {
      "point": null,
-     "price": -355
+     "price": -257
     },
     "prophetx": {
      "point": null,
-     "price": -330
+     "price": -250
     },
     "williamhill_us": {
      "point": null,
-     "price": -390
+     "price": -290
     }
    },
    "pulled": false,
    "ref": {
-    "market_id": "01a14e0b-fffb-74f2-8680-511aa11bb015",
-    "outcome_id": "01a14e0b-fffb-74f2-8680-5135bf8dd35d"
+    "market_id": "01a142e4-2405-7d50-89d5-4ad3c12d0071",
+    "outcome_id": "01a142e4-2405-7d50-89d5-4af0cce14771"
    },
    "result": null,
    "rule_met": true,
@@ -127,26 +129,29 @@
    ],
    "second_book_fresh": false,
    "sharp_agree": [],
-   "sharp_oppose": [],
-   "side": "Oregon",
-   "side_label": "ORE (0)",
-   "start_source": "prophetx",
-   "start_utc": "2026-10-24T19:00:00Z",
-   "teams": [
-    "Oregon",
-    "Illinois"
+   "sharp_oppose": [
+    "UCF Knights +8 (-119)"
    ],
-   "top25": false,
+   "side": "BYU",
+   "side_label": "BYU (0)",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-24T19:30:00Z",
+   "still_actionable": true,
+   "teams": [
+    "BYU",
+    "UCF"
+   ],
+   "top25": true,
    "units_flat": null
   },
   {
-   "alerted_utc": "2026-10-24T16:34:43Z",
-   "base_depth": 337038,
+   "alerted_utc": "2026-10-24T16:07:05Z",
+   "base_depth": 208532,
    "best_price": 0.5375,
    "best_price_american": -116,
    "best_price_book": "kalshi",
-   "bid_improved": false,
-   "bid_improved_at_pending": true,
+   "bid_improved": true,
+   "bid_improved_at_pending": false,
    "book": "kalshi",
    "books_live": [
     "kalshi",
@@ -154,34 +159,36 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 0.0,
-   "confirmed_after_min": 19,
+   "close_price": 0.53,
+   "clv_cents": 1.0,
+   "confirmed_after_min": 18,
    "date": "2026-10-24",
    "depth_by_book": {
     "kalshi": {
-     "new_other_side": -15434,
-     "new_this_side": 119886,
-     "other_side": 327971,
-     "other_side_all_levels": 414063,
-     "ratio": 1.4,
-     "this_side": 447834,
-     "this_side_all_levels": 515933
+     "new_other_side": -3646,
+     "new_this_side": 26353,
+     "other_side": 140377,
+     "other_side_all_levels": 213778,
+     "ratio": 2.2,
+     "this_side": 304368,
+     "this_side_all_levels": 381703
     }
    },
-   "first_seen_utc": "2026-10-24T16:16:02Z",
+   "first_seen_utc": "2026-10-24T15:49:28Z",
    "game": "Baylor vs Kansas: Total Points",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFTOTAL-26OCT24BAYKU-54\"}",
-   "lead_min": 25,
+   "lead_min": 53,
    "league": "NCAAF",
    "line": 53.5,
    "market": "total",
-   "new_money": 119886,
+   "new_money": 26353,
    "paper_only": false,
    "price": 0.52,
+   "price_after_15m": 0.5375,
+   "price_after_15m_book": "kalshi",
    "price_american": -108,
    "price_rule": "ok",
-   "price_when_first_seen": 0.52,
+   "price_when_first_seen": 0.51,
    "prices_by_book": {
     "betmgm": {
      "point": 54.5,
@@ -205,7 +212,7 @@
     },
     "draftkings": {
      "point": 54.5,
-     "price": -110
+     "price": -108
     },
     "fanatics": {
      "point": 54.5,
@@ -224,7 +231,7 @@
      "price": -114
     },
     "mybookieag": {
-     "point": 54.5,
+     "point": 54.0,
      "price": -110
     },
     "novig": {
@@ -233,11 +240,11 @@
     },
     "polymarket": {
      "point": 53.5,
-     "price": -117
+     "price": -113
     },
     "prophetx": {
      "point": 54.5,
-     "price": -101
+     "price": -105
     },
     "williamhill_us": {
      "point": 54.5,
@@ -254,7 +261,6 @@
    "second_book": "no_match",
    "second_book_fresh": false,
    "sharp_agree": [
-    "Over 53.5 (-110)",
     "Over 52.5 (-115)"
    ],
    "sharp_oppose": [],
@@ -262,6 +268,7 @@
    "side_label": "Over 53.5 points",
    "start_source": "prophetx",
    "start_utc": "2026-10-24T17:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Baylor",
     "Kansas"
@@ -270,91 +277,11 @@
    "units_flat": null
   },
   {
-   "alerted_utc": "2026-10-24T16:34:43Z",
-   "base_depth": 80065,
-   "best_price": 0.565,
-   "best_price_american": -130,
-   "best_price_book": "novig",
-   "bid_improved": false,
-   "bid_improved_at_pending": true,
-   "book": "kalshi",
-   "books_live": [
-    "kalshi",
-    "novig",
-    "polymarket",
-    "prophetx"
-   ],
-   "close_price": 0.58,
-   "clv_cents": 0.0,
-   "confirmed_after_min": 19,
-   "date": "2026-10-24",
-   "depth_by_book": {
-    "kalshi": {
-     "new_other_side": -4016,
-     "new_this_side": 34209,
-     "other_side": 40801,
-     "other_side_all_levels": 68288,
-     "ratio": 1.8,
-     "this_side": 73104,
-     "this_side_all_levels": 107795
-    },
-    "novig": {
-     "heavier_side": true,
-     "label": "BUT (0)",
-     "price": 0.565,
-     "this_side": 11658
-    },
-    "prophetx": {
-     "heavier_side": true,
-     "label": "Butler",
-     "price": 0.5902,
-     "this_side": 310
-    }
-   },
-   "first_seen_utc": "2026-10-24T16:16:02Z",
-   "game": "Butler vs Drake",
-   "key": "kalshi|KXNCAAFGAME-26OCT24BUTDRKE|ml|0",
-   "lead_min": 25,
-   "league": "NCAAF",
-   "line": null,
-   "market": "moneyline",
-   "new_money": 34209,
-   "paper_only": false,
-   "price": 0.58,
-   "price_american": -138,
-   "price_rule": "ml_edge_fail",
-   "price_when_first_seen": 0.58,
-   "prices_by_book": {},
-   "pulled": false,
-   "ref": {
-    "kalshi_side": "yes",
-    "market_ticker": "KXNCAAFGAME-26OCT24BUTDRKE-BUT"
-   },
-   "result": null,
-   "rule_met": true,
-   "second_book": [
-    "novig"
-   ],
-   "second_book_fresh": false,
-   "sharp_agree": [],
-   "sharp_oppose": [],
-   "side": "Butler",
-   "side_label": "Butler",
-   "start_source": "prophetx",
-   "start_utc": "2026-10-24T17:00:00Z",
-   "teams": [
-    "Butler",
-    "Drake"
-   ],
-   "top25": false,
-   "units_flat": null
-  },
-  {
-   "alerted_utc": "2026-10-24T15:57:45Z",
+   "alerted_utc": "2026-10-24T15:49:28Z",
    "base_depth": 71557,
-   "best_price": 0.4975,
-   "best_price_american": 101,
-   "best_price_book": "polymarket",
+   "best_price": 0.4952,
+   "best_price_american": 102,
+   "best_price_book": "prophetx",
    "bid_improved": false,
    "bid_improved_at_pending": true,
    "book": "polymarket",
@@ -366,23 +293,29 @@
    ],
    "close_price": 0.5,
    "clv_cents": 1.0,
-   "confirmed_after_min": 17,
+   "confirmed_after_min": 9,
    "date": "2026-10-24",
    "depth_by_book": {
     "polymarket": {
      "new_other_side": -21256,
      "new_this_side": 37047,
-     "other_side": 68944,
-     "other_side_all_levels": 78909,
-     "ratio": 1.6,
-     "this_side": 108607,
-     "this_side_all_levels": 118117
+     "other_side": 71199,
+     "other_side_all_levels": 81164,
+     "ratio": 1.5,
+     "this_side": 109238,
+     "this_side_all_levels": 118747
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "Houston Rockets",
+     "price": 0.4902,
+     "this_side": 14335
     }
    },
    "first_seen_utc": "2026-10-24T15:40:54Z",
    "game": "Rockets vs. Hawks",
    "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"5847755\"}",
-   "lead_min": 512,
+   "lead_min": 521,
    "league": "NBA",
    "line": null,
    "market": "moneyline",
@@ -403,6 +336,10 @@
      "point": null,
      "price": -104
     },
+    "betopenly": {
+     "point": null,
+     "price": 108
+    },
     "betrivers": {
      "point": null,
      "price": 104
@@ -413,7 +350,7 @@
     },
     "bovada": {
      "point": null,
-     "price": -110
+     "price": -105
     },
     "draftkings": {
      "point": null,
@@ -441,7 +378,7 @@
     },
     "mybookieag": {
      "point": null,
-     "price": -103
+     "price": 100
     },
     "novig": {
      "point": null,
@@ -461,7 +398,7 @@
     },
     "williamhill_us": {
      "point": null,
-     "price": -110
+     "price": -105
     }
    },
    "pulled": false,
@@ -471,7 +408,7 @@
    },
    "result": null,
    "rule_met": false,
-   "second_book": "no_match",
+   "second_book": "none_10k",
    "second_book_fresh": false,
    "sharp_agree": [],
    "sharp_oppose": [],
@@ -485,6 +422,291 @@
     "Hawks"
    ],
    "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-24T15:49:28Z",
+   "base_depth": 130498,
+   "best_price": 0.73,
+   "best_price_american": -270,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.73,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 9,
+   "date": "2026-10-24",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Indiana",
+     "price": 0.73,
+     "this_side": 4097226
+    },
+    "novig": {
+     "new_other_side": -9178,
+     "new_this_side": 34363,
+     "other_side": 66216,
+     "other_side_all_levels": 66462,
+     "ratio": 2.6,
+     "this_side": 172540,
+     "this_side_all_levels": 172783
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Indiana",
+     "price": 0.7297,
+     "this_side": 38683
+    }
+   },
+   "first_seen_utc": "2026-10-24T15:40:54Z",
+   "game": "Indiana @ Michigan",
+   "key": "novig|{\"market_id\": \"01a14577-57e4-7b23-b5c8-4ad775c0856f\", \"outcome_id\": \"01a14577-57e4-7b23-b5c8-4af436892b48\"}",
+   "lead_min": 11,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 34363,
+   "paper_only": false,
+   "price": 0.73,
+   "price_american": -270,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.73,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -300
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -305
+    },
+    "betopenly": {
+     "point": null,
+     "price": -269
+    },
+    "betrivers": {
+     "point": null,
+     "price": -345
+    },
+    "betus": {
+     "point": null,
+     "price": -299
+    },
+    "bovada": {
+     "point": null,
+     "price": -290
+    },
+    "draftkings": {
+     "point": null,
+     "price": -298
+    },
+    "fanatics": {
+     "point": null,
+     "price": -300
+    },
+    "fanduel": {
+     "point": null,
+     "price": -310
+    },
+    "kalshi": {
+     "point": null,
+     "price": -270
+    },
+    "lowvig": {
+     "point": null,
+     "price": -300
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -300
+    },
+    "novig": {
+     "point": null,
+     "price": -270
+    },
+    "polymarket": {
+     "point": null,
+     "price": -270
+    },
+    "prophetx": {
+     "point": null,
+     "price": -270
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -295
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a14577-57e4-7b23-b5c8-4ad775c0856f",
+    "outcome_id": "01a14577-57e4-7b23-b5c8-4af436892b48"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi",
+    "prophetx"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [
+    "Indiana Hoosiers -7 (-114)"
+   ],
+   "sharp_oppose": [],
+   "side": "Indiana",
+   "side_label": "IND (0)",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-24T16:00:00Z",
+   "teams": [
+    "Indiana",
+    "Michigan"
+   ],
+   "top25": true,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-24T15:49:28Z",
+   "base_depth": 251182,
+   "best_price": 0.5311,
+   "best_price_american": -113,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.4,
+   "clv_cents": -12.0,
+   "confirmed_after_min": 9,
+   "date": "2026-10-24",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 20832,
+     "new_this_side": 101015,
+     "other_side": 380110,
+     "other_side_all_levels": 448631,
+     "ratio": 1.0,
+     "this_side": 395246,
+     "this_side_all_levels": 469831
+    }
+   },
+   "first_seen_utc": "2026-10-24T15:40:54Z",
+   "game": "Texas Tech vs Cincinnati: Total Points",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFTOTAL-26OCT24TTUCIN-58\"}",
+   "lead_min": 11,
+   "league": "NCAAF",
+   "line": 57.5,
+   "market": "total",
+   "new_money": 101015,
+   "paper_only": false,
+   "price": 0.52,
+   "price_after_15m": 0.5574,
+   "price_after_15m_book": "kalshi",
+   "price_american": -108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.52,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 57.5,
+     "price": -120
+    },
+    "betonlineag": {
+     "point": 58.0,
+     "price": -115
+    },
+    "betopenly": {
+     "point": 58.5,
+     "price": 106
+    },
+    "betrivers": {
+     "point": 58.0,
+     "price": -109
+    },
+    "betus": {
+     "point": 58.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 58.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 58.5,
+     "price": -105
+    },
+    "fanatics": {
+     "point": 58.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 57.5,
+     "price": -115
+    },
+    "kalshi": {
+     "point": 58.5,
+     "price": 100
+    },
+    "lowvig": {
+     "point": 58.0,
+     "price": -114
+    },
+    "mybookieag": {
+     "point": 57.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 58.5,
+     "price": 104
+    },
+    "polymarket": {
+     "point": 57.5,
+     "price": -108
+    },
+    "prophetx": {
+     "point": 57.5,
+     "price": -112
+    },
+    "williamhill_us": {
+     "point": 58.0,
+     "price": -113
+    }
+   },
+   "pulled": true,
+   "pulled_utc": "2026-10-24T16:07:05Z",
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFTOTAL-26OCT24TTUCIN-58"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "no_match",
+   "second_book_fresh": false,
+   "sharp_agree": [
+    "Over 56.5 (-110)"
+   ],
+   "sharp_oppose": [],
+   "side": "OVER",
+   "side_label": "Over 57.5 points",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-24T16:00:00Z",
+   "still_actionable": false,
+   "teams": [
+    "Texas Tech",
+    "Cincinnati"
+   ],
+   "top25": true,
    "units_flat": null
   },
   {
@@ -869,8 +1091,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.39,
-   "clv_cents": -12.0,
+   "close_price": 0.24,
+   "clv_cents": -27.0,
    "confirmed_after_min": 18,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -964,7 +1186,7 @@
     }
    },
    "pulled": true,
-   "pulled_utc": "2026-10-24T16:16:02Z",
+   "pulled_utc": "2026-10-24T16:07:05Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFSPREAD-26OCT24RICEFAU-FAU10"
@@ -1006,8 +1228,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.69,
-   "clv_cents": 16.0,
+   "close_price": 0.6,
+   "clv_cents": 7.0,
    "confirmed_after_min": 18,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -1095,7 +1317,7 @@
     }
    },
    "pulled": true,
-   "pulled_utc": "2026-10-24T16:16:02Z",
+   "pulled_utc": "2026-10-24T16:07:05Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFTOTAL-26OCT24PITTMIA-52"
@@ -1138,8 +1360,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": 1.0,
+   "close_price": 0.5,
+   "clv_cents": 0.0,
    "confirmed_after_min": 17,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -1241,7 +1463,7 @@
     }
    },
    "pulled": true,
-   "pulled_utc": "2026-10-24T16:16:02Z",
+   "pulled_utc": "2026-10-24T16:07:05Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFSPREAD-26OCT24TTUCIN-TTU12"
@@ -1354,8 +1576,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.46,
-   "clv_cents": 2.0,
+   "close_price": 0.47,
+   "clv_cents": 3.0,
    "confirmed_after_min": 18,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -1679,8 +1901,7 @@
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.55,
    "prices_by_book": {},
-   "pulled": true,
-   "pulled_utc": "2026-10-24T16:16:02Z",
+   "pulled": false,
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26OCT24ARPBFAMU-FAMU"
@@ -1996,8 +2217,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.42,
-   "clv_cents": -7.0,
+   "close_price": 0.49,
+   "clv_cents": 0.0,
    "confirmed_after_min": 18,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -2139,8 +2360,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.49,
-   "clv_cents": -2.0,
+   "close_price": 0.43,
+   "clv_cents": -8.0,
    "confirmed_after_min": 18,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -2276,8 +2497,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.49,
-   "clv_cents": -2.0,
+   "close_price": 0.48,
+   "clv_cents": -3.0,
    "confirmed_after_min": 18,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -2552,8 +2773,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.55,
-   "clv_cents": 4.0,
+   "close_price": 0.6,
+   "clv_cents": 9.0,
    "confirmed_after_min": 17,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -2661,7 +2882,7 @@
     }
    },
    "pulled": true,
-   "pulled_utc": "2026-10-24T16:16:02Z",
+   "pulled_utc": "2026-10-24T16:07:05Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFTOTAL-26OCT24LSUAUB-52"
@@ -2801,8 +3022,7 @@
      "price": -390
     }
    },
-   "pulled": true,
-   "pulled_utc": "2026-10-24T15:57:45Z",
+   "pulled": false,
    "ref": {
     "market_id": "01a14df0-a5fd-7ca1-aecb-d5d467712f02",
     "outcome_id": "01a14df0-a5fd-7ca1-aecb-d5e61407a55f"
@@ -3282,8 +3502,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.6,
-   "clv_cents": 8.0,
+   "close_price": 0.52,
+   "clv_cents": 0.0,
    "confirmed_after_min": 8,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -3586,8 +3806,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.65,
-   "clv_cents": 13.0,
+   "close_price": 0.82,
+   "clv_cents": 30.0,
    "confirmed_after_min": 17,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -3683,7 +3903,7 @@
     }
    },
    "pulled": true,
-   "pulled_utc": "2026-10-24T16:16:02Z",
+   "pulled_utc": "2026-10-24T16:07:05Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFSPREAD-26OCT24RUTGNW-NW15"
@@ -4820,8 +5040,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.26,
-   "clv_cents": -21.0,
+   "close_price": 0.29,
+   "clv_cents": -18.0,
    "confirmed_after_min": 18,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -4955,8 +5175,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.43,
-   "clv_cents": -9.0,
+   "close_price": 0.46,
+   "clv_cents": -6.0,
    "confirmed_after_min": 18,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -5058,7 +5278,7 @@
     }
    },
    "pulled": true,
-   "pulled_utc": "2026-10-24T16:16:02Z",
+   "pulled_utc": "2026-10-24T16:07:05Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFTOTAL-26OCT24CALSMU-56"
@@ -5637,8 +5857,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.59,
-   "clv_cents": 10.0,
+   "close_price": 0.57,
+   "clv_cents": 8.0,
    "confirmed_after_min": 16,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -6367,8 +6587,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.45,
-   "clv_cents": -7.0,
+   "close_price": 0.26,
+   "clv_cents": -26.0,
    "confirmed_after_min": 17,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -6730,8 +6950,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.73,
-   "clv_cents": 21.0,
+   "close_price": 0.79,
+   "clv_cents": 27.0,
    "confirmed_after_min": 18,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -7438,8 +7658,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.4,
-   "clv_cents": -11.0,
+   "close_price": 0.49,
+   "clv_cents": -2.0,
    "confirmed_after_min": 8,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -7808,7 +8028,7 @@
     }
    },
    "pulled": true,
-   "pulled_utc": "2026-10-24T16:16:02Z",
+   "pulled_utc": "2026-10-24T16:07:05Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFTOTAL-26OCT24INDMICH-43"
@@ -7848,8 +8068,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.41,
-   "clv_cents": -12.0,
+   "close_price": 0.33,
+   "clv_cents": -20.0,
    "confirmed_after_min": 20,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -7957,7 +8177,7 @@
     }
    },
    "pulled": true,
-   "pulled_utc": "2026-10-24T16:16:02Z",
+   "pulled_utc": "2026-10-24T16:07:05Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFSPREAD-26OCT24LSUAUB-LSU8"
@@ -8325,8 +8545,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.6,
-   "clv_cents": 9.0,
+   "close_price": 0.64,
+   "clv_cents": 13.0,
    "confirmed_after_min": 18,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -8897,8 +9117,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.47,
-   "clv_cents": -4.0,
+   "close_price": 0.31,
+   "clv_cents": -20.0,
    "confirmed_after_min": 10,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -8992,7 +9212,7 @@
     }
    },
    "pulled": true,
-   "pulled_utc": "2026-10-24T16:16:02Z",
+   "pulled_utc": "2026-10-24T16:07:05Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFSPREAD-26OCT24PITTMIA-MIA21"
@@ -10786,8 +11006,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.38,
-   "clv_cents": -13.0,
+   "close_price": 0.27,
+   "clv_cents": -24.0,
    "confirmed_after_min": 18,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -11560,8 +11780,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.58,
-   "clv_cents": 8.0,
+   "close_price": 0.65,
+   "clv_cents": 15.0,
    "confirmed_after_min": 21,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -11665,7 +11885,7 @@
     }
    },
    "pulled": true,
-   "pulled_utc": "2026-10-24T16:16:02Z",
+   "pulled_utc": "2026-10-24T16:07:05Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFSPREAD-26OCT24WVUTCU-TCU11"
@@ -14499,8 +14719,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": 0.0,
+   "close_price": 0.51,
+   "clv_cents": 1.0,
    "confirmed_after_min": 19,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -14604,7 +14824,7 @@
     }
    },
    "pulled": true,
-   "pulled_utc": "2026-10-24T16:16:02Z",
+   "pulled_utc": "2026-10-24T16:07:05Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFSPREAD-26OCT24TTUCIN-TTU12"
@@ -17019,8 +17239,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.4,
-   "clv_cents": -7.0,
+   "close_price": 0.17,
+   "clv_cents": -30.0,
    "confirmed_after_min": 10,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -17118,7 +17338,7 @@
     }
    },
    "pulled": true,
-   "pulled_utc": "2026-10-24T16:16:02Z",
+   "pulled_utc": "2026-10-24T16:07:05Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFSPREAD-26OCT24WMUTOL-TOL3"
@@ -22440,8 +22660,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.69,
-   "clv_cents": -3.0,
+   "close_price": 0.76,
+   "clv_cents": 4.0,
    "confirmed_after_min": 9,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -22548,7 +22768,7 @@
     }
    },
    "pulled": true,
-   "pulled_utc": "2026-10-24T16:16:02Z",
+   "pulled_utc": "2026-10-24T16:07:05Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26OCT24INDMICH-IND"
@@ -22878,8 +23098,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.79,
-   "clv_cents": -3.0,
+   "close_price": 0.75,
+   "clv_cents": -7.0,
    "confirmed_after_min": 18,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -22959,8 +23179,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.55,
-   "clv_cents": -11.0,
+   "close_price": 0.66,
+   "clv_cents": 0.0,
    "confirmed_after_min": 18,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -23040,8 +23260,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.7,
-   "clv_cents": -13.0,
+   "close_price": 0.72,
+   "clv_cents": -11.0,
    "confirmed_after_min": 18,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -23183,8 +23403,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.54,
-   "clv_cents": 5.0,
+   "close_price": 0.7,
+   "clv_cents": 21.0,
    "confirmed_after_min": 19,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -23267,7 +23487,7 @@
     }
    },
    "pulled": true,
-   "pulled_utc": "2026-10-24T16:16:02Z",
+   "pulled_utc": "2026-10-24T16:07:05Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFSPREAD-26OCT24PITTMIA-MIA21"
@@ -24186,8 +24406,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.81,
-   "clv_cents": 9.0,
+   "close_price": 0.85,
+   "clv_cents": 13.0,
    "confirmed_after_min": 17,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -24293,7 +24513,8 @@
      "price": -280
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-24T16:07:05Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26OCT24LSUAUB-LSU"
