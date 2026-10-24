@@ -1,6 +1,131 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-24T04:10:14Z",
+   "base_depth": 19865,
+   "best_price": 0.67,
+   "best_price_american": -203,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.68,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-24",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 7364,
+     "new_this_side": 26614,
+     "other_side": 11262,
+     "other_side_all_levels": 12580,
+     "ratio": 3.1,
+     "this_side": 34816,
+     "this_side_all_levels": 42039
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "TB +1.5 (-1.5)",
+     "price": 0.67,
+     "this_side": 1831
+    }
+   },
+   "first_seen_utc": "2026-10-24T04:00:20Z",
+   "game": "Tampa Bay vs Milwaukee: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXMLBSPREAD-26OCT242000TBMIL-MIL2\"}",
+   "lead_min": 1190,
+   "league": "MLB",
+   "line": 1.5,
+   "market": "spread",
+   "new_money": 26614,
+   "paper_only": false,
+   "price": 0.68,
+   "price_american": -213,
+   "price_rule": "fails_cap",
+   "price_when_first_seen": 0.67,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 1.5,
+     "price": -225
+    },
+    "betonlineag": {
+     "point": 1.5,
+     "price": -210
+    },
+    "betopenly": {
+     "point": 1.5,
+     "price": -199
+    },
+    "betus": {
+     "point": 1.5,
+     "price": -210
+    },
+    "bovada": {
+     "point": -1.5,
+     "price": 195
+    },
+    "draftkings": {
+     "point": 1.5,
+     "price": -219
+    },
+    "fanatics": {
+     "point": 1.5,
+     "price": -225
+    },
+    "fanduel": {
+     "point": -1.5,
+     "price": 190
+    },
+    "kalshi": {
+     "point": 1.5,
+     "price": -213
+    },
+    "lowvig": {
+     "point": 1.5,
+     "price": -209
+    },
+    "novig": {
+     "point": 1.5,
+     "price": -203
+    },
+    "prophetx": {
+     "point": 1.5,
+     "price": -230
+    },
+    "williamhill_us": {
+     "point": 1.5,
+     "price": -218
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXMLBSPREAD-26OCT242000TBMIL-MIL2"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "none_10k",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Tampa Bay",
+   "side_label": "NOT Milwaukee wins by over 1.5 runs",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-25T00:00:00Z",
+   "teams": [
+    "Tampa Bay",
+    "Milwaukee"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-24T03:51:21Z",
    "base_depth": 166151,
    "best_price": 0.705,
