@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Oct 24, 2:41 AM ET. This run: 3 new, 0 not confirmed, 0 pending. Open alerts: 58.
+Updated Sat Oct 24, 2:50 AM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 58.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -8,9 +8,9 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Oct 24 2:41AM | NBA | Rockets vs. Hawks | moneyline: Hawks | polymarket | $27k | -113 |  |  | +0.0c |  | pending |
-| Oct 24 2:41AM | NCAAF | California vs SMU: Total Points | total: Over 55.5 points | kalshi | $37k | +104 | ✅ novig |  | +0.0c |  | pending |
-| Oct 24 2:41AM | NCAAF | Dartmouth vs Columbia | moneyline: Dartmouth | kalshi | $25k | -144 | ✅ novig |  | +0.0c |  | pending |
+| Oct 24 2:50AM | NCAAF | California vs SMU: Total Points | total: Over 55.5 points | kalshi | $42k | +104 | ✅ novig |  | +0.0c |  | pending |
+| Oct 24 2:34AM | NBA | Rockets vs. Hawks | moneyline: Hawks | polymarket | $38k | -113 |  |  | +0.0c |  | pending |
+| Oct 24 2:34AM | NCAAF | Mercyhurst vs Robert Morris | moneyline: Robert Morris | kalshi | $29k | -203 | ✅ novig |  | +0.0c |  | pending |
 | Oct 24 1:51AM | NBA | Spurs vs. Mavericks | moneyline: Spurs | polymarket | $28k | -456 |  |  | +2.0c |  | pending |
 | Oct 24 1:51AM | NCAAF | Campbell vs Maine | moneyline: Campbell | kalshi | $30k | -355 | ✅ novig |  | +1.0c | yes | pending |
 | Oct 24 1:33AM | NCAAF | Akron vs Kent St.: Spread | spread: NOT Kent St. wins by over 3.5 points | kalshi | $36k | -117 |  |  | +0.0c | yes | pending |
