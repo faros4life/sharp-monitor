@@ -2,9 +2,35 @@
  "alerts": [
   {
    "beat_close": true,
+   "bet": "Over 243.5 (-104)",
+   "book": "Novig",
+   "clv": "+1 pts",
+   "confirm": "yes",
+   "confirmed_by": [
+    "BetOnline",
+    "Matchbook"
+   ],
+   "edge_pct": -0.7,
+   "final": null,
+   "game": "Washington Wizards @ Chicago Bulls",
+   "grade": "A",
+   "late": false,
+   "minutes_before_start": 850,
+   "point": 243.5,
+   "price": -104,
+   "result": null,
+   "score": 83,
+   "sent_to_phone": true,
+   "sport": "NBA",
+   "start_utc": "2026-10-25T00:10:00Z",
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "beat_close": true,
    "bet": "Cleveland Cavaliers -10.5 (-104)",
    "book": "Polymarket",
-   "clv": "+0.5 pts",
+   "clv": "+1.5 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline",
@@ -27,10 +53,10 @@
    "units_flat": null
   },
   {
-   "beat_close": true,
+   "beat_close": false,
    "bet": "Under 231.5 (-108)",
    "book": "Kalshi",
-   "clv": "+0.5 pts",
+   "clv": "-1.5 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline",
@@ -50,6 +76,31 @@
    "sport": "NBA",
    "start_utc": "2026-10-24T23:40:00Z",
    "top25": null,
+   "units_flat": null
+  },
+  {
+   "beat_close": true,
+   "bet": "Under 60.5 (-104)",
+   "book": "Kalshi",
+   "clv": "+1 pts",
+   "confirm": "yes",
+   "confirmed_by": [
+    "BetOnline"
+   ],
+   "edge_pct": 1.1,
+   "final": null,
+   "game": "San Diego State Aztecs @ Colorado State Rams",
+   "grade": "A",
+   "late": false,
+   "minutes_before_start": 750,
+   "point": 60.5,
+   "price": -104,
+   "result": null,
+   "score": 82,
+   "sent_to_phone": false,
+   "sport": "NCAAF",
+   "start_utc": "2026-10-24T22:30:00Z",
+   "top25": false,
    "units_flat": null
   },
   {
@@ -236,6 +287,32 @@
   },
   {
    "beat_close": true,
+   "bet": "Under 51 (-122)",
+   "book": "ProphetX",
+   "clv": "+1.5 pts",
+   "confirm": "yes",
+   "confirmed_by": [
+    "BetOnline",
+    "Matchbook"
+   ],
+   "edge_pct": -4.4,
+   "final": null,
+   "game": "Oregon Ducks @ Illinois Fighting Illini",
+   "grade": "B",
+   "late": false,
+   "minutes_before_start": 540,
+   "point": 51.0,
+   "price": -122,
+   "result": null,
+   "score": 62,
+   "sent_to_phone": false,
+   "sport": "NCAAF",
+   "start_utc": "2026-10-24T19:00:00Z",
+   "top25": false,
+   "units_flat": null
+  },
+  {
+   "beat_close": true,
    "bet": "Kansas Jayhawks +2.5 (-104)",
    "book": "Kalshi",
    "clv": "+1.5 pts",
@@ -330,6 +407,31 @@
    "price": -104,
    "result": null,
    "score": 82,
+   "sent_to_phone": true,
+   "sport": "NCAAF",
+   "start_utc": "2026-10-24T16:00:00Z",
+   "top25": true,
+   "units_flat": null
+  },
+  {
+   "beat_close": true,
+   "bet": "Rutgers Scarlet Knights +16.5 (-110)",
+   "book": "Hard Rock",
+   "clv": "+2 pts",
+   "confirm": "yes",
+   "confirmed_by": [
+    "Matchbook"
+   ],
+   "edge_pct": 5.0,
+   "final": null,
+   "game": "Rutgers Scarlet Knights @ Northwestern Wildcats",
+   "grade": "A",
+   "late": false,
+   "minutes_before_start": 360,
+   "point": 16.5,
+   "price": -110,
+   "result": null,
+   "score": 91,
    "sent_to_phone": true,
    "sport": "NCAAF",
    "start_utc": "2026-10-24T16:00:00Z",
@@ -6479,6 +6581,124 @@
   }
  ],
  "all_alerts": [
+  {
+   "alert_text": "Over 243.5 (-104) at Novig (also: Hard Rock, ProphetX, Polymarket)",
+   "bet": "Over 243.5 (-104)",
+   "bet_result": null,
+   "book": "Novig",
+   "confirmed_by": [
+    "BetOnline",
+    "Matchbook"
+   ],
+   "edge_pct": -0.7,
+   "final": null,
+   "game": "Washington Wizards @ Chicago Bulls",
+   "grade": "A",
+   "late": false,
+   "minutes_before_start": 850,
+   "price": -104,
+   "pushed_to_phone": true,
+   "repeat": false,
+   "score": 83,
+   "sent_et": "2026-10-24 06:00",
+   "sport": "NBA",
+   "start_utc": "2026-10-25T00:10:00Z",
+   "why": "Pinnacle total moved 242.5 -> 244.5; bet only at 244 or better (confirmed by BetOnline, Matchbook)"
+  },
+  {
+   "alert_text": "Cleveland Cavaliers -11.5 (-104) at Novig (also: Hard Rock, Kalshi, Polymarket)",
+   "bet": "Cleveland Cavaliers -11.5 (-104)",
+   "bet_result": null,
+   "book": "Novig",
+   "confirmed_by": [
+    "BetOnline",
+    "Matchbook"
+   ],
+   "edge_pct": 1.0,
+   "final": null,
+   "game": "Brooklyn Nets @ Cleveland Cavaliers",
+   "grade": "A",
+   "late": false,
+   "minutes_before_start": 820,
+   "price": -104,
+   "pushed_to_phone": false,
+   "repeat": true,
+   "score": 80,
+   "sent_et": "2026-10-24 06:00",
+   "sport": "NBA",
+   "start_utc": "2026-10-24T23:40:00Z",
+   "why": "Pinnacle moved -11 -> -12; bet only at -11.5 or better (confirmed by BetOnline, Matchbook)"
+  },
+  {
+   "alert_text": "Under 60.5 (-104) at Kalshi (also: Hard Rock, Novig)",
+   "bet": "Under 60.5 (-104)",
+   "bet_result": null,
+   "book": "Kalshi",
+   "confirmed_by": [
+    "BetOnline"
+   ],
+   "edge_pct": 1.1,
+   "final": null,
+   "game": "San Diego State Aztecs @ Colorado State Rams",
+   "grade": "A",
+   "late": false,
+   "minutes_before_start": 750,
+   "price": -104,
+   "pushed_to_phone": false,
+   "repeat": false,
+   "score": 82,
+   "sent_et": "2026-10-24 06:00",
+   "sport": "NCAAF",
+   "start_utc": "2026-10-24T22:30:00Z",
+   "why": "Pinnacle total moved 60.5 -> 59.5; bet only at 60 or better (confirmed by BetOnline)"
+  },
+  {
+   "alert_text": "Under 51 (-122) at ProphetX",
+   "bet": "Under 51 (-122)",
+   "bet_result": null,
+   "book": "ProphetX",
+   "confirmed_by": [
+    "BetOnline",
+    "Matchbook"
+   ],
+   "edge_pct": -4.4,
+   "final": null,
+   "game": "Oregon Ducks @ Illinois Fighting Illini",
+   "grade": "B",
+   "late": false,
+   "minutes_before_start": 540,
+   "price": -122,
+   "pushed_to_phone": false,
+   "repeat": false,
+   "score": 62,
+   "sent_et": "2026-10-24 06:00",
+   "sport": "NCAAF",
+   "start_utc": "2026-10-24T19:00:00Z",
+   "why": "Pinnacle total moved 50.5 -> 49.5; bet only at 50 or better (confirmed by BetOnline, Matchbook)"
+  },
+  {
+   "alert_text": "Rutgers Scarlet Knights +16.5 (-110) at Hard Rock (also: ProphetX, Novig, Kalshi)",
+   "bet": "Rutgers Scarlet Knights +16.5 (-110)",
+   "bet_result": null,
+   "book": "Hard Rock",
+   "confirmed_by": [
+    "Matchbook"
+   ],
+   "edge_pct": 5.0,
+   "final": null,
+   "game": "Rutgers Scarlet Knights @ Northwestern Wildcats",
+   "grade": "A",
+   "late": false,
+   "minutes_before_start": 360,
+   "price": -110,
+   "pushed_to_phone": true,
+   "repeat": false,
+   "score": 91,
+   "sent_et": "2026-10-24 06:00",
+   "sport": "NCAAF",
+   "start_utc": "2026-10-24T16:00:00Z",
+   "why": "Pinnacle moved +16.5 -> +14.5; bet only at +15 or better (confirmed by Matchbook)"
+  },
   {
    "alert_text": "Under 231.5 (-108) at Kalshi (also: Hard Rock, Polymarket)",
    "bet": "Under 231.5 (-108)",
