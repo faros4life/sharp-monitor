@@ -1,7 +1,391 @@
 {
  "alerts": [
   {
-   "alerted_utc": "2026-10-24T22:45:51Z",
+   "alerted_utc": "2026-10-24T22:53:20Z",
+   "base_depth": 156369,
+   "best_price": 0.4835,
+   "best_price_american": 107,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.48,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 14,
+   "date": "2026-10-24",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "NOT San Antonio wins by over 14.5 points",
+     "price": 0.49,
+     "this_side": 146610
+    },
+    "polymarket": {
+     "new_other_side": 2154,
+     "new_this_side": 44736,
+     "other_side": 52690,
+     "other_side_all_levels": 103868,
+     "ratio": 2.9,
+     "this_side": 155144,
+     "this_side_all_levels": 196295
+    }
+   },
+   "first_seen_utc": "2026-10-24T22:39:38Z",
+   "game": "Spurs vs. Mavericks",
+   "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6099650\"}",
+   "lead_min": 67,
+   "league": "NBA",
+   "line": 14.5,
+   "market": "spread",
+   "new_money": 44736,
+   "paper_only": false,
+   "price": 0.48,
+   "price_american": 108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.48,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 15.5,
+     "price": -115
+    },
+    "betonlineag": {
+     "point": 15.5,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 15.5,
+     "price": -106
+    },
+    "betrivers": {
+     "point": 14.5,
+     "price": -108
+    },
+    "betus": {
+     "point": 15.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 15.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 14.5,
+     "price": -105
+    },
+    "fanatics": {
+     "point": 15.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 15.5,
+     "price": -118
+    },
+    "kalshi": {
+     "point": 15.5,
+     "price": -108
+    },
+    "lowvig": {
+     "point": 15.5,
+     "price": -106
+    },
+    "mybookieag": {
+     "point": 15.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 15.5,
+     "price": -106
+    },
+    "polymarket": {
+     "point": 14.5,
+     "price": 108
+    },
+    "prophetx": {
+     "point": 15.0,
+     "price": 101
+    },
+    "williamhill_us": {
+     "point": 15.5,
+     "price": -105
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 1,
+    "pm_market_id": "6099650"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [
+    "San Antonio Spurs -14.5 (-113)",
+    "San Antonio Spurs -13 (-129)",
+    "San Antonio Spurs -13 (-115)"
+   ],
+   "side": "Mavericks",
+   "side_label": "Mavericks (+14.5)",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-25T00:00:00Z",
+   "teams": [
+    "Spurs",
+    "Mavericks"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-24T22:53:20Z",
+   "base_depth": 31254,
+   "best_price": 0.6,
+   "best_price_american": -150,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.59,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 14,
+   "date": "2026-10-24",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 4313,
+     "new_this_side": 30152,
+     "other_side": 37708,
+     "other_side_all_levels": 66808,
+     "ratio": 1.4,
+     "this_side": 51138,
+     "this_side_all_levels": 90489
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "TAMC (0)",
+     "price": 0.6,
+     "this_side": 11983
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "Texas A&M Commerce",
+     "price": 0.6183,
+     "this_side": 273
+    }
+   },
+   "first_seen_utc": "2026-10-24T22:39:38Z",
+   "game": "Prairie View A&M vs East Texas A&M",
+   "key": "kalshi|KXNCAAFGAME-26OCT24PVETAM|ml|1",
+   "lead_min": 7,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 30152,
+   "paper_only": false,
+   "price": 0.59,
+   "price_american": -144,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.59,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26OCT24PVETAM-ETAM"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "East Texas A&M",
+   "side_label": "East Texas A&M",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-24T23:00:00Z",
+   "teams": [
+    "Prairie View A&M",
+    "East Texas A&M"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-24T22:53:20Z",
+   "base_depth": 1461537,
+   "best_price": 0.845,
+   "best_price_american": -545,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.85,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 14,
+   "date": "2026-10-24",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 153,
+     "new_this_side": 115578,
+     "other_side": 245144,
+     "other_side_all_levels": 283234,
+     "ratio": 5.5,
+     "this_side": 1342649,
+     "this_side_all_levels": 1602804
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "PHI (0)",
+     "price": 0.845,
+     "this_side": 88432
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "76ers",
+     "price": 0.85,
+     "this_side": 1407114
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Philadelphia 76ers",
+     "price": 0.8462,
+     "this_side": 80757
+    }
+   },
+   "first_seen_utc": "2026-10-24T22:39:38Z",
+   "game": "Milwaukee vs Philadelphia",
+   "key": "kalshi|KXNBAGAME-26OCT24MILPHI|ml|1",
+   "lead_min": 37,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 115578,
+   "paper_only": false,
+   "price": 0.85,
+   "price_american": -567,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.85,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -650
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -625
+    },
+    "betopenly": {
+     "point": null,
+     "price": -555
+    },
+    "betrivers": {
+     "point": null,
+     "price": -590
+    },
+    "betus": {
+     "point": null,
+     "price": -625
+    },
+    "bovada": {
+     "point": null,
+     "price": -650
+    },
+    "draftkings": {
+     "point": null,
+     "price": -675
+    },
+    "fanatics": {
+     "point": null,
+     "price": -650
+    },
+    "fanduel": {
+     "point": null,
+     "price": -650
+    },
+    "kalshi": {
+     "point": null,
+     "price": -567
+    },
+    "limitless": {
+     "point": null,
+     "price": -580
+    },
+    "lowvig": {
+     "point": null,
+     "price": -615
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -649
+    },
+    "novig": {
+     "point": null,
+     "price": -545
+    },
+    "polymarket": {
+     "point": null,
+     "price": -567
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -567
+    },
+    "prophetx": {
+     "point": null,
+     "price": -550
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -700
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBAGAME-26OCT24MILPHI-PHI"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Philadelphia",
+   "side_label": "Philadelphia",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-24T23:30:00Z",
+   "teams": [
+    "Milwaukee",
+    "Philadelphia"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-24T22:39:38Z",
    "base_depth": 202697,
    "best_price": 0.81,
    "best_price_american": -426,
@@ -17,29 +401,29 @@
    ],
    "close_price": 0.8077,
    "clv_cents": 0.0,
-   "confirmed_after_min": 16,
+   "confirmed_after_min": 9,
    "date": "2026-10-25",
    "depth_by_book": {
     "novig": {
      "heavier_side": true,
      "label": "HOU (0)",
      "price": 0.81,
-     "this_side": 372583
+     "this_side": 366699
     },
     "prophetx": {
      "new_other_side": 3565,
      "new_this_side": 144961,
-     "other_side": 80766,
-     "other_side_all_levels": 80766,
-     "ratio": 4.3,
-     "this_side": 347257,
-     "this_side_all_levels": 347257
+     "other_side": 79278,
+     "other_side_all_levels": 79278,
+     "ratio": 4.4,
+     "this_side": 345181,
+     "this_side_all_levels": 345181
     }
    },
    "first_seen_utc": "2026-10-24T22:30:12Z",
    "game": "New York Giants at Houston Texans",
    "key": "prophetx|{\"line\": 0, \"px_event\": 1700008856, \"px_market\": 219, \"side\": \"1\"}",
-   "lead_min": 1094,
+   "lead_min": 1100,
    "league": "NFL",
    "line": null,
    "market": "moneyline",
@@ -146,289 +530,146 @@
    "units_flat": null
   },
   {
-   "alerted_utc": "2026-10-24T22:45:51Z",
-   "base_depth": 432633,
-   "best_price": 0.53,
-   "best_price_american": -113,
+   "alerted_utc": "2026-10-24T22:39:38Z",
+   "base_depth": 40169,
+   "best_price": 0.615,
+   "best_price_american": -160,
    "best_price_book": "novig",
    "bid_improved": false,
    "bid_improved_at_pending": false,
-   "book": "kalshi",
+   "book": "novig",
    "books_live": [
     "kalshi",
     "novig",
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.54,
+   "close_price": 0.615,
    "clv_cents": 0.0,
-   "confirmed_after_min": 16,
-   "date": "2026-10-24",
+   "confirmed_after_min": 9,
+   "date": "2026-10-25",
    "depth_by_book": {
-    "kalshi": {
-     "new_other_side": -44955,
-     "new_this_side": 222500,
-     "other_side": 531720,
-     "other_side_all_levels": 629506,
-     "ratio": 0.9,
-     "this_side": 503104,
-     "this_side_all_levels": 679918
-    },
     "novig": {
+     "new_other_side": -5914,
+     "new_this_side": 25948,
+     "other_side": 61123,
+     "other_side_all_levels": 61193,
+     "ratio": 1.1,
+     "this_side": 67826,
+     "this_side_all_levels": 67867
+    },
+    "prophetx": {
      "heavier_side": true,
-     "label": "CLEM -2.5 (-2.5)",
-     "price": 0.53,
-     "this_side": 55086
+     "label": "Los Angeles Rams",
+     "price": 0.6154,
+     "this_side": 46304
     }
    },
    "first_seen_utc": "2026-10-24T22:30:12Z",
-   "game": "Virginia Tech vs Clemson: Spread",
-   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFSPREAD-26OCT24VTCLEM-CLEM3\"}",
-   "lead_min": 14,
-   "league": "NCAAF",
-   "line": -2.5,
-   "market": "spread",
-   "new_money": 222500,
+   "game": "Los Angeles Rams @ Las Vegas Raiders",
+   "key": "novig|{\"market_id\": \"01a136e2-ee99-71a1-a851-aeb660a4a826\", \"outcome_id\": \"01a136e2-ee99-71a1-a851-aedbe8dd2abe\"}",
+   "lead_min": 1305,
+   "league": "NFL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 25948,
    "paper_only": false,
-   "price": 0.54,
-   "price_american": -117,
-   "price_rule": "ok",
-   "price_when_first_seen": 0.54,
+   "price": 0.615,
+   "price_american": -160,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.615,
    "prices_by_book": {
     "betmgm": {
-     "point": -3.0,
-     "price": -108
+     "point": null,
+     "price": -175
     },
     "betonlineag": {
-     "point": -2.5,
-     "price": -117
+     "point": null,
+     "price": -175
     },
     "betopenly": {
-     "point": -3.0,
-     "price": 104
+     "point": null,
+     "price": -176
     },
     "betrivers": {
-     "point": -2.5,
-     "price": -117
-    },
-    "betus": {
-     "point": -3.0,
-     "price": -105
-    },
-    "bovada": {
-     "point": -2.5,
-     "price": -115
+     "point": null,
+     "price": -180
     },
     "draftkings": {
-     "point": -3.0,
-     "price": -102
+     "point": null,
+     "price": -175
     },
     "fanatics": {
-     "point": -3.0,
-     "price": -105
+     "point": null,
+     "price": -180
     },
     "fanduel": {
-     "point": -2.5,
-     "price": -124
+     "point": null,
+     "price": -174
     },
     "kalshi": {
-     "point": -2.5,
-     "price": -117
+     "point": null,
+     "price": -156
+    },
+    "limitless": {
+     "point": null,
+     "price": -163
     },
     "lowvig": {
-     "point": -2.5,
-     "price": -113
+     "point": null,
+     "price": -175
     },
     "mybookieag": {
-     "point": -3.0,
-     "price": -110
+     "point": null,
+     "price": -179
     },
     "novig": {
-     "point": -2.5,
-     "price": -113
+     "point": null,
+     "price": -160
     },
     "polymarket": {
-     "point": -2.5,
-     "price": -113
+     "point": null,
+     "price": -163
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -158
     },
     "prophetx": {
-     "point": -2.0,
-     "price": -119
+     "point": null,
+     "price": -160
     },
     "williamhill_us": {
-     "point": -3.0,
-     "price": -105
+     "point": null,
+     "price": -176
     }
    },
    "pulled": false,
    "ref": {
-    "kalshi_side": "yes",
-    "market_ticker": "KXNCAAFSPREAD-26OCT24VTCLEM-CLEM3"
+    "market_id": "01a136e2-ee99-71a1-a851-aeb660a4a826",
+    "outcome_id": "01a136e2-ee99-71a1-a851-aedbe8dd2abe"
    },
    "result": null,
    "rule_met": true,
    "second_book": [
-    "novig"
-   ],
-   "second_book_fresh": false,
-   "sharp_agree": [
-    "Clemson Tigers -2.5 (-115)"
-   ],
-   "sharp_oppose": [],
-   "side": "Clemson",
-   "side_label": "Clemson wins by over 2.5 points",
-   "start_source": "prophetx",
-   "start_utc": "2026-10-24T23:00:00Z",
-   "teams": [
-    "Virginia Tech",
-    "Clemson"
-   ],
-   "top25": false,
-   "units_flat": null
-  },
-  {
-   "alerted_utc": "2026-10-24T22:45:51Z",
-   "base_depth": 165512,
-   "best_price": 0.51,
-   "best_price_american": -104,
-   "best_price_book": "novig",
-   "bid_improved": false,
-   "bid_improved_at_pending": false,
-   "book": "kalshi",
-   "books_live": [
-    "kalshi",
-    "novig",
-    "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": 0.0,
-   "confirmed_after_min": 16,
-   "date": "2026-10-24",
-   "depth_by_book": {
-    "kalshi": {
-     "new_other_side": 7969,
-     "new_this_side": 33507,
-     "other_side": 117745,
-     "other_side_all_levels": 196762,
-     "ratio": 1.5,
-     "this_side": 180756,
-     "this_side_all_levels": 260412
-    },
-    "novig": {
-     "heavier_side": true,
-     "label": "Under 55.5 (55.5)",
-     "price": 0.51,
-     "this_side": 37864
-    },
-    "prophetx": {
-     "heavier_side": false,
-     "label": "under 55.5 (55.5)",
-     "price": 0.5098,
-     "this_side": 12138
-    }
-   },
-   "first_seen_utc": "2026-10-24T22:30:12Z",
-   "game": "Colorado vs Oklahoma St.: Total Points",
-   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFTOTAL-26OCT24COLOOKST-56\"}",
-   "lead_min": 14,
-   "league": "NCAAF",
-   "line": 55.5,
-   "market": "total",
-   "new_money": 33507,
-   "paper_only": false,
-   "price": 0.51,
-   "price_american": -104,
-   "price_rule": "ok",
-   "price_when_first_seen": 0.51,
-   "prices_by_book": {
-    "betmgm": {
-     "point": 55.5,
-     "price": -112
-    },
-    "betonlineag": {
-     "point": 55.5,
-     "price": -110
-    },
-    "betrivers": {
-     "point": 54.5,
-     "price": -106
-    },
-    "betus": {
-     "point": 55.5,
-     "price": -110
-    },
-    "bovada": {
-     "point": 55.5,
-     "price": -110
-    },
-    "draftkings": {
-     "point": 55.5,
-     "price": -112
-    },
-    "fanatics": {
-     "point": 55.5,
-     "price": -115
-    },
-    "fanduel": {
-     "point": 54.5,
-     "price": -106
-    },
-    "kalshi": {
-     "point": 55.5,
-     "price": -104
-    },
-    "lowvig": {
-     "point": 55.5,
-     "price": -108
-    },
-    "mybookieag": {
-     "point": 55.5,
-     "price": -110
-    },
-    "novig": {
-     "point": 55.5,
-     "price": -104
-    },
-    "polymarket": {
-     "point": 55.5,
-     "price": -104
-    },
-    "prophetx": {
-     "point": 56.0,
-     "price": -112
-    },
-    "williamhill_us": {
-     "point": 55.5,
-     "price": -117
-    }
-   },
-   "pulled": false,
-   "ref": {
-    "kalshi_side": "no",
-    "market_ticker": "KXNCAAFTOTAL-26OCT24COLOOKST-56"
-   },
-   "result": null,
-   "rule_met": true,
-   "second_book": [
-    "novig"
-   ],
-   "second_book_fresh": false,
+   "second_book_fresh": true,
    "sharp_agree": [],
    "sharp_oppose": [],
-   "side": "UNDER",
-   "side_label": "NOT Over 55.5 points",
+   "side": "Los Angeles Rams",
+   "side_label": "LAR (0)",
    "start_source": "prophetx",
-   "start_utc": "2026-10-24T23:00:00Z",
+   "start_utc": "2026-10-25T20:25:00Z",
    "teams": [
-    "Colorado",
-    "Oklahoma St."
+    "Los Angeles Rams",
+    "Las Vegas Raiders"
    ],
-   "top25": false,
+   "top25": null,
    "units_flat": null
   },
   {
-   "alerted_utc": "2026-10-24T22:45:51Z",
+   "alerted_utc": "2026-10-24T22:39:38Z",
    "base_depth": 329343,
    "best_price": 0.54,
    "best_price_american": -117,
@@ -444,41 +685,41 @@
    ],
    "close_price": 0.54,
    "clv_cents": 0.0,
-   "confirmed_after_min": 16,
+   "confirmed_after_min": 9,
    "date": "2026-10-24",
    "depth_by_book": {
     "kalshi": {
      "new_other_side": -10454,
      "new_this_side": 113423,
-     "other_side": 210099,
-     "other_side_all_levels": 267366,
-     "ratio": 2.0,
-     "this_side": 425554,
-     "this_side_all_levels": 477906
+     "other_side": 178565,
+     "other_side_all_levels": 227600,
+     "ratio": 2.3,
+     "this_side": 405658,
+     "this_side_all_levels": 437103
     },
     "novig": {
      "heavier_side": true,
      "label": "PIT (0)",
      "price": 0.54,
-     "this_side": 39484
+     "this_side": 39317
     },
     "polymarket": {
      "heavier_side": true,
      "label": "Penguins",
      "price": 0.54,
-     "this_side": 199349
+     "this_side": 197310
     },
     "prophetx": {
      "heavier_side": true,
      "label": "Pittsburgh Penguins",
      "price": 0.537,
-     "this_side": 13808
+     "this_side": 12149
     }
    },
    "first_seen_utc": "2026-10-24T22:30:12Z",
    "game": "Nashville vs Pittsburgh",
    "key": "kalshi|KXNHLGAME-26OCT24NSHPIT|ml|1",
-   "lead_min": 14,
+   "lead_min": 20,
    "league": "NHL",
    "line": null,
    "market": "moneyline",
@@ -535,7 +776,7 @@
     },
     "mybookieag": {
      "point": null,
-     "price": -127
+     "price": -126
     },
     "novig": {
      "point": null,
@@ -558,7 +799,8 @@
      "price": -128
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-24T22:53:20Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNHLGAME-26OCT24NSHPIT-PIT"
@@ -1533,8 +1775,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": -1.0,
+   "close_price": 0.37,
+   "clv_cents": -14.0,
    "confirmed_after_min": 15,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -1833,8 +2075,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.66,
-   "clv_cents": 16.0,
+   "close_price": 0.52,
+   "clv_cents": 2.0,
    "confirmed_after_min": 10,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -2275,8 +2517,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.48,
-   "clv_cents": -1.0,
+   "close_price": 0.5,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -2664,8 +2906,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.9,
-   "clv_cents": 9.0,
+   "close_price": 0.93,
+   "clv_cents": 12.0,
    "confirmed_after_min": 10,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -3328,8 +3570,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.39,
-   "clv_cents": -12.0,
+   "close_price": 0.49,
+   "clv_cents": -2.0,
    "confirmed_after_min": 15,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -3598,8 +3840,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.62,
-   "clv_cents": 2.0,
+   "close_price": 0.64,
+   "clv_cents": 4.0,
    "confirmed_after_min": 16,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -3765,8 +4007,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.42,
-   "clv_cents": 2.0,
+   "close_price": 0.43,
+   "clv_cents": 3.0,
    "confirmed_after_min": 10,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -3878,7 +4120,7 @@
     }
    },
    "pulled": true,
-   "pulled_utc": "2026-10-24T22:45:51Z",
+   "pulled_utc": "2026-10-24T22:39:38Z",
    "ref": {
     "outcome_index": 0,
     "pm_market_id": "5035414"
@@ -4538,7 +4780,8 @@
      "price": -225
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-24T22:53:20Z",
    "ref": {
     "market_id": "01a136e2-ea28-7513-9242-36850e23e434",
     "outcome_id": "01a136e2-ea28-7513-9242-369bd82c3574"
@@ -4690,7 +4933,8 @@
      "price": -127
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-24T22:53:20Z",
    "ref": {
     "outcome_index": 1,
     "pm_market_id": "5035409"
@@ -4843,7 +5087,8 @@
      "price": -121
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-24T22:53:20Z",
    "ref": {
     "outcome_index": 1,
     "pm_market_id": "5035404"
@@ -5305,8 +5550,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.79,
-   "clv_cents": 21.0,
+   "close_price": 0.8,
+   "clv_cents": 22.0,
    "confirmed_after_min": 16,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -5381,8 +5626,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.7,
-   "clv_cents": 3.0,
+   "close_price": 0.75,
+   "clv_cents": 8.0,
    "confirmed_after_min": 16,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -5534,8 +5779,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5902,
-   "clv_cents": 0.7,
+   "close_price": 0.5798,
+   "clv_cents": -0.4,
    "confirmed_after_min": 16,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -6577,7 +6822,8 @@
      "price": -230
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-24T22:53:20Z",
    "ref": {
     "outcome_index": 1,
     "pm_market_id": "6084235"
@@ -6851,7 +7097,8 @@
      "price": -225
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-24T22:53:20Z",
    "ref": {
     "outcome_index": 1,
     "pm_market_id": "6084232"
@@ -8917,8 +9164,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.47,
-   "clv_cents": -2.0,
+   "close_price": 0.48,
+   "clv_cents": -1.0,
    "confirmed_after_min": 17,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -9090,7 +9337,6 @@
    },
    "first_seen_utc": "2026-10-24T13:58:11Z",
    "game": "Arkansas-Pine Bluff vs Florida A&M",
-   "graded_by": "espn",
    "key": "kalshi|KXNCAAFGAME-26OCT24ARPBFAMU|ml|1",
    "lead_min": 285,
    "league": "NCAAF",
@@ -9117,7 +9363,7 @@
     "novig"
    ],
    "second_book_fresh": true,
-   "settled_utc": "2026-10-24T22:45:51Z",
+   "settled_utc": "2026-10-24T22:53:20Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Florida A&M",
@@ -12240,10 +12486,11 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26OCT24NICHNWST-NICH"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": "none_10k",
    "second_book_fresh": false,
+   "settled_utc": "2026-10-24T22:53:20Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Nicholls St.",
@@ -12256,7 +12503,7 @@
     "Northwestern St."
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.28
   },
   {
    "alerted_utc": "2026-10-24T08:44:59Z",
@@ -44014,6 +44261,7 @@
    },
    "first_seen_utc": "2026-10-22T17:50:10Z",
    "game": "Bowling Green vs Buffalo",
+   "graded_by": "espn",
    "key": "kalshi|KXNCAAFGAME-26OCT23BGSUBUFF|ml|1",
    "lead_min": 1976,
    "league": "NCAAF",
@@ -44037,7 +44285,7 @@
    "rule_met": false,
    "second_book": "no_match",
    "second_book_fresh": false,
-   "settled_utc": "2026-10-24T22:45:51Z",
+   "settled_utc": "2026-10-24T22:39:38Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Buffalo",
