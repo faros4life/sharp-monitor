@@ -1,6 +1,139 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-24T11:01:04Z",
+   "base_depth": 178578,
+   "best_price": 0.5219,
+   "best_price_american": -109,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 17,
+   "date": "2026-10-24",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 7470,
+     "new_this_side": 34344,
+     "other_side": 122192,
+     "other_side_all_levels": 165700,
+     "ratio": 1.2,
+     "this_side": 141656,
+     "this_side_all_levels": 219292
+    }
+   },
+   "first_seen_utc": "2026-10-24T10:44:16Z",
+   "game": "Rutgers vs Northwestern: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFSPREAD-26OCT24RUTGNW-NW15\"}",
+   "lead_min": 299,
+   "league": "NCAAF",
+   "line": -14.5,
+   "market": "spread",
+   "new_money": 34344,
+   "paper_only": false,
+   "price": 0.52,
+   "price_american": -108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.52,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -15.0,
+     "price": -118
+    },
+    "betonlineag": {
+     "point": -16.0,
+     "price": -109
+    },
+    "betopenly": {
+     "point": -15.5,
+     "price": 101
+    },
+    "betrivers": {
+     "point": -16.5,
+     "price": -110
+    },
+    "betus": {
+     "point": -16.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": -14.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": -15.5,
+     "price": -112
+    },
+    "fanatics": {
+     "point": -15.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": -15.5,
+     "price": -114
+    },
+    "kalshi": {
+     "point": -14.5,
+     "price": -108
+    },
+    "lowvig": {
+     "point": -16.0,
+     "price": -105
+    },
+    "mybookieag": {
+     "point": -16.0,
+     "price": -110
+    },
+    "novig": {
+     "point": -15.5,
+     "price": 102
+    },
+    "polymarket": {
+     "point": -14.5,
+     "price": -104
+    },
+    "prophetx": {
+     "point": -16.0,
+     "price": 104
+    },
+    "williamhill_us": {
+     "point": -15.5,
+     "price": -112
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFSPREAD-26OCT24RUTGNW-NW15"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "no_match",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [
+    "Rutgers Scarlet Knights +16.5 (-110)"
+   ],
+   "side": "Northwestern",
+   "side_label": "Northwestern wins by over 14.5 points",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-24T16:00:00Z",
+   "teams": [
+    "Rutgers",
+    "Northwestern"
+   ],
+   "top25": true,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-24T09:51:49Z",
    "base_depth": 30861,
    "best_price": 0.5664,
@@ -1804,7 +1937,8 @@
      "price": -420
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-24T10:28:48Z",
    "ref": {
     "outcome_index": 1,
     "pm_market_id": "5861664"
