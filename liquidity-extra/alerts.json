@@ -1,6 +1,80 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-24T23:00:20Z",
+   "base_depth": 134312,
+   "best_price": 0.76,
+   "best_price_american": -317,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.76,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-25",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 9360,
+     "new_this_side": 39804,
+     "other_side": 35081,
+     "other_side_all_levels": 47764,
+     "ratio": 4.2,
+     "this_side": 145912,
+     "this_side_all_levels": 177568
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "E. Rybakina (0)",
+     "price": 0.76,
+     "this_side": 12065
+    }
+   },
+   "first_seen_utc": "2026-10-24T22:50:16Z",
+   "game": "Rybakina vs Fernandez",
+   "key": "kalshi|KXWTAMATCH-26OCT25RYBFER|ml|0",
+   "lead_min": 600,
+   "league": "TENNIS",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 39804,
+   "paper_only": true,
+   "price": 0.76,
+   "price_american": -317,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.77,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXWTAMATCH-26OCT25RYBFER-RYB"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Rybakina",
+   "side_label": "Rybakina",
+   "start_source": "novig",
+   "start_utc": "2026-10-25T09:00:00Z",
+   "teams": [
+    "Rybakina",
+    "Fernandez"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-24T21:20:14Z",
    "base_depth": 26355,
    "best_price": 0.67,
@@ -441,7 +515,8 @@
      "price": -120
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-24T23:00:20Z",
    "ref": {
     "outcome_index": 1,
     "pm_market_id": "5969237"
