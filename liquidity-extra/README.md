@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Oct 23, 11:50 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 6.
+Updated Fri Oct 23, 11:51 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 6.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -8,8 +8,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Oct 23 11:50PM | TENNIS | Iatcenko vs Shubladze | moneyline: Iatcenko | kalshi | $75k | -156 |  |  | +0.0c |  | pending |
-| Oct 23 11:40PM | TENNIS | Shibahara vs Parks | moneyline: Shibahara | kalshi | $199k | -233 |  |  | +8.0c |  | pending |
+| Oct 23 11:51PM | TENNIS | Iatcenko vs Shubladze | moneyline: Iatcenko | kalshi | $75k | -223 |  |  | +0.0c |  | pending |
+| Oct 23 11:40PM | TENNIS | Shibahara vs Parks | moneyline: Shibahara | kalshi | $199k | -233 |  |  | +9.0c |  | pending |
 | Oct 23 10:00PM | TENNIS | Starodubtseva vs Sasnovich | moneyline: Sasnovich | kalshi | $32k | -178 |  |  |  |  | W |
 | Oct 23 9:20PM | TENNIS | Ma vs Kasatkina | moneyline: Kasatkina | kalshi | $29k | -426 |  |  | +0.0c |  | pending |
 | Oct 23 8:47PM | TENNIS | Boulter vs Siniakova | moneyline: Siniakova | kalshi | $42k | -156 |  |  | +1.0c |  | pending |
