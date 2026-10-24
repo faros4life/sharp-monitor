@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Oct 24, 1:25 AM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 56.
+Updated Sat Oct 24, 1:33 AM ET. This run: 1 new, 0 not confirmed, 3 pending. Open alerts: 56.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -8,7 +8,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Oct 24 1:25AM | NCAAF | Akron vs Kent St.: Spread | spread: NOT Kent St. wins by over 3.5 points | kalshi | $32k | -117 |  |  | +0.0c |  | pending |
+| Oct 24 1:33AM | NCAAF | Akron vs Kent St.: Spread | spread: NOT Kent St. wins by over 3.5 points | kalshi | $36k | -117 |  |  | +0.0c |  | pending |
 | Oct 24 1:00AM | NCAAF | Rutgers vs Northwestern: Total Points | total: NOT Over 59.5 points | kalshi | $35k | -108 |  |  | +0.0c |  | pending |
 | Oct 24 1:00AM | NCAAF | Bucknell vs Holy Cross | moneyline: Holy Cross | kalshi | $30k | -335 |  |  | +0.0c |  | pending |
 | Oct 24 12:43AM | NCAAF | Virginia Tech @ Clemson | spread: CLEM -2.5 (-2.5) | novig | $26k | -113 |  |  | +0.0c |  | pending |
