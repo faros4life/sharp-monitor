@@ -1,6 +1,584 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-24T08:44:59Z",
+   "base_depth": 254592,
+   "best_price": 0.4723,
+   "best_price_american": 112,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.47,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 18,
+   "date": "2026-10-24",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 13090,
+     "new_this_side": 40465,
+     "other_side": 172221,
+     "other_side_all_levels": 263582,
+     "ratio": 1.2,
+     "this_side": 212411,
+     "this_side_all_levels": 298775
+    }
+   },
+   "first_seen_utc": "2026-10-24T08:26:31Z",
+   "game": "California vs SMU: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFSPREAD-26OCT24CALSMU-SMU21\"}",
+   "lead_min": 435,
+   "league": "NCAAF",
+   "line": -20.5,
+   "market": "spread",
+   "new_money": 40465,
+   "paper_only": false,
+   "price": 0.47,
+   "price_american": 113,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.47,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -18.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": -20.0,
+     "price": -104
+    },
+    "betopenly": {
+     "point": -18.5,
+     "price": 100
+    },
+    "betrivers": {
+     "point": -18.0,
+     "price": -110
+    },
+    "betus": {
+     "point": -19.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": -18.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": -18.5,
+     "price": -112
+    },
+    "fanatics": {
+     "point": -18.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": -18.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": -20.5,
+     "price": 113
+    },
+    "lowvig": {
+     "point": -20.0,
+     "price": 107
+    },
+    "mybookieag": {
+     "point": -19.0,
+     "price": -110
+    },
+    "novig": {
+     "point": -18.5,
+     "price": -102
+    },
+    "polymarket": {
+     "point": -18.5,
+     "price": -104
+    },
+    "prophetx": {
+     "point": -18.0,
+     "price": -114
+    },
+    "williamhill_us": {
+     "point": -18.5,
+     "price": -114
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFSPREAD-26OCT24CALSMU-SMU21"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "no_match",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "SMU",
+   "side_label": "SMU wins by over 20.5 points",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-24T16:00:00Z",
+   "teams": [
+    "California",
+    "SMU"
+   ],
+   "top25": true,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-24T08:44:59Z",
+   "base_depth": 136015,
+   "best_price": 0.515,
+   "best_price_american": -106,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 18,
+   "date": "2026-10-24",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 4768,
+     "new_this_side": 37854,
+     "other_side": 73276,
+     "other_side_all_levels": 132211,
+     "ratio": 1.2,
+     "this_side": 91302,
+     "this_side_all_levels": 171176
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "Under 55.5 (55.5)",
+     "price": 0.515,
+     "this_side": 19047
+    }
+   },
+   "first_seen_utc": "2026-10-24T08:26:31Z",
+   "game": "California vs SMU: Total Points",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFTOTAL-26OCT24CALSMU-56\"}",
+   "lead_min": 435,
+   "league": "NCAAF",
+   "line": 55.5,
+   "market": "total",
+   "new_money": 37854,
+   "paper_only": false,
+   "price": 0.52,
+   "price_american": -108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.52,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 55.5,
+     "price": -112
+    },
+    "betonlineag": {
+     "point": 55.0,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 55.5,
+     "price": -103
+    },
+    "betrivers": {
+     "point": 55.5,
+     "price": -112
+    },
+    "betus": {
+     "point": 55.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 55.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 55.5,
+     "price": -115
+    },
+    "fanatics": {
+     "point": 55.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 55.5,
+     "price": -115
+    },
+    "kalshi": {
+     "point": 55.5,
+     "price": -108
+    },
+    "lowvig": {
+     "point": 55.0,
+     "price": -108
+    },
+    "mybookieag": {
+     "point": 55.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 55.5,
+     "price": -106
+    },
+    "polymarket": {
+     "point": 55.5,
+     "price": -108
+    },
+    "prophetx": {
+     "point": 59.5,
+     "price": -200
+    },
+    "williamhill_us": {
+     "point": 55.5,
+     "price": -115
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAFTOTAL-26OCT24CALSMU-56"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "none_10k",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "NOT Over 55.5 points",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-24T16:00:00Z",
+   "teams": [
+    "California",
+    "SMU"
+   ],
+   "top25": true,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-24T08:44:59Z",
+   "base_depth": 70363,
+   "best_price": 0.75,
+   "best_price_american": -300,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.76,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 18,
+   "date": "2026-10-24",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 8113,
+     "new_this_side": 35037,
+     "other_side": 9131,
+     "other_side_all_levels": 17441,
+     "ratio": 6.7,
+     "this_side": 61409,
+     "this_side_all_levels": 100897
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "FUR (0)",
+     "price": 0.75,
+     "this_side": 10628
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Furman",
+     "price": 0.7849,
+     "this_side": 383
+    }
+   },
+   "first_seen_utc": "2026-10-24T08:26:31Z",
+   "game": "Samford vs Furman",
+   "key": "kalshi|KXNCAAFGAME-26OCT24SAMFUR|ml|1",
+   "lead_min": 555,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 35037,
+   "paper_only": false,
+   "price": 0.76,
+   "price_american": -317,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.76,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26OCT24SAMFUR-FUR"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Furman",
+   "side_label": "Furman",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-24T18:00:00Z",
+   "teams": [
+    "Samford",
+    "Furman"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-24T08:44:59Z",
+   "base_depth": 58709,
+   "best_price": 0.755,
+   "best_price_american": -308,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.75,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 18,
+   "date": "2026-10-24",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 8139,
+     "new_this_side": 38694,
+     "other_side": 16274,
+     "other_side_all_levels": 32143,
+     "ratio": 3.7,
+     "this_side": 60530,
+     "this_side_all_levels": 97537
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "HARV (0)",
+     "price": 0.755,
+     "this_side": 10217
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Harvard",
+     "price": 0.759,
+     "this_side": 331
+    }
+   },
+   "first_seen_utc": "2026-10-24T08:26:31Z",
+   "game": "Princeton vs Harvard",
+   "key": "kalshi|KXNCAAFGAME-26OCT24PRINHARV|ml|1",
+   "lead_min": 615,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 38694,
+   "paper_only": false,
+   "price": 0.75,
+   "price_american": -300,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.75,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26OCT24PRINHARV-HARV"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Harvard",
+   "side_label": "Harvard",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-24T19:00:00Z",
+   "teams": [
+    "Princeton",
+    "Harvard"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-24T08:44:59Z",
+   "base_depth": 69617,
+   "best_price": 0.844,
+   "best_price_american": -541,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.84,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 18,
+   "date": "2026-10-24",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 4664,
+     "new_this_side": 49285,
+     "other_side": 10041,
+     "other_side_all_levels": 16987,
+     "ratio": 6.8,
+     "this_side": 68220,
+     "this_side_all_levels": 119982
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "South Carolina State",
+     "price": 0.8413,
+     "this_side": 320
+    }
+   },
+   "first_seen_utc": "2026-10-24T08:26:31Z",
+   "game": "Norfolk St. vs South Carolina St.",
+   "key": "kalshi|KXNCAAFGAME-26OCT24NORFSCST|ml|1",
+   "lead_min": 525,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 49285,
+   "paper_only": false,
+   "price": 0.84,
+   "price_american": -525,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.84,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26OCT24NORFSCST-SCST"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "none_10k",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "South Carolina St.",
+   "side_label": "South Carolina St.",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-24T17:30:00Z",
+   "teams": [
+    "Norfolk St.",
+    "South Carolina St."
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-24T08:44:59Z",
+   "base_depth": 57776,
+   "best_price": 0.7,
+   "best_price_american": -233,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.71,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 18,
+   "date": "2026-10-24",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 9580,
+     "new_this_side": 38608,
+     "other_side": 16214,
+     "other_side_all_levels": 31927,
+     "ratio": 3.5,
+     "this_side": 56382,
+     "this_side_all_levels": 89737
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "MORG (0)",
+     "price": 0.7,
+     "this_side": 5721
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Morgan State",
+     "price": 0.7222,
+     "this_side": 418
+    }
+   },
+   "first_seen_utc": "2026-10-24T08:26:31Z",
+   "game": "Howard vs Morgan St.",
+   "key": "kalshi|KXNCAAFGAME-26OCT24HOWMORG|ml|1",
+   "lead_min": 615,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 38608,
+   "paper_only": false,
+   "price": 0.71,
+   "price_american": -245,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.71,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26OCT24HOWMORG-MORG"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "none_10k",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Morgan St.",
+   "side_label": "Morgan St.",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-24T19:00:00Z",
+   "teams": [
+    "Howard",
+    "Morgan St."
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-24T07:40:18Z",
    "base_depth": 56010,
    "best_price": 0.7851,
@@ -40,8 +618,8 @@
    "new_money": 26679,
    "paper_only": false,
    "price": 0.78,
-   "price_after_15m": 0.7851,
-   "price_after_15m_book": "polymarket",
+   "price_after_15m": 0.7813,
+   "price_after_15m_book": "prophetx",
    "price_american": -355,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.78,
@@ -1191,8 +1769,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.525,
-   "clv_cents": -0.5,
+   "close_price": 0.53,
+   "clv_cents": 0.0,
    "confirmed_after_min": 18,
    "date": "2026-10-24",
    "depth_by_book": {
