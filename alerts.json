@@ -2,9 +2,35 @@
  "alerts": [
   {
    "beat_close": true,
+   "bet": "Over 54 (-109)",
+   "book": "ProphetX",
+   "clv": "+0.5 pts",
+   "confirm": "yes",
+   "confirmed_by": [
+    "BetOnline",
+    "Matchbook"
+   ],
+   "edge_pct": 0.0,
+   "final": null,
+   "game": "Green Bay Packers @ Detroit Lions",
+   "grade": "A",
+   "late": false,
+   "minutes_before_start": 1315,
+   "point": 54.0,
+   "price": -109,
+   "result": null,
+   "score": 78,
+   "sent_to_phone": true,
+   "sport": "NFL",
+   "start_utc": "2026-10-25T20:25:00Z",
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "beat_close": true,
    "bet": "Under 48 (-105)",
    "book": "Hard Rock",
-   "clv": "+0.5 pts",
+   "clv": "+2 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline",
@@ -621,6 +647,32 @@
   },
   {
    "beat_close": true,
+   "bet": "Over 53 (-123)",
+   "book": "ProphetX",
+   "clv": "+2 pts",
+   "confirm": "yes",
+   "confirmed_by": [
+    "BetOnline",
+    "Matchbook"
+   ],
+   "edge_pct": -2.5,
+   "final": null,
+   "game": "Ole Miss Rebels @ Texas Longhorns",
+   "grade": "B",
+   "late": true,
+   "minutes_before_start": 60,
+   "point": 53.0,
+   "price": -123,
+   "result": null,
+   "score": 67,
+   "sent_to_phone": true,
+   "sport": "NCAAF",
+   "start_utc": "2026-10-24T23:30:00Z",
+   "top25": true,
+   "units_flat": null
+  },
+  {
+   "beat_close": true,
    "bet": "Nashville Predators ML +122",
    "book": "Kalshi",
    "clv": "+5.7%",
@@ -1197,20 +1249,20 @@
     "Smarkets"
    ],
    "edge_pct": 2.6,
-   "final": null,
+   "final": "LA 1, NJ 3",
    "game": "Los Angeles Kings @ New Jersey Devils",
    "grade": "B",
    "late": false,
    "minutes_before_start": 350,
    "point": null,
    "price": -170,
-   "result": null,
+   "result": "W",
    "score": 63,
    "sent_to_phone": true,
    "sport": "NHL",
    "start_utc": "2026-10-24T19:30:00Z",
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.59
   },
   {
    "beat_close": true,
@@ -1249,20 +1301,20 @@
     "Matchbook"
    ],
    "edge_pct": 0.2,
-   "final": null,
+   "final": "LA 1, NJ 3",
    "game": "Los Angeles Kings @ New Jersey Devils",
    "grade": "B",
    "late": false,
    "minutes_before_start": 240,
    "point": 6.0,
    "price": -124,
-   "result": null,
+   "result": "W",
    "score": 60,
    "sent_to_phone": true,
    "sport": "NHL",
    "start_utc": "2026-10-24T19:30:00Z",
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.81
   },
   {
    "beat_close": true,
@@ -7972,6 +8024,78 @@
  ],
  "all_alerts": [
   {
+   "alert_text": "Over 53 (-123) at ProphetX (also: Hard Rock, Novig, Kalshi)",
+   "bet": "Over 53 (-123)",
+   "bet_result": null,
+   "book": "ProphetX",
+   "confirmed_by": [
+    "BetOnline",
+    "Matchbook"
+   ],
+   "edge_pct": -2.5,
+   "final": null,
+   "game": "Ole Miss Rebels @ Texas Longhorns",
+   "grade": "B",
+   "late": true,
+   "minutes_before_start": 60,
+   "price": -123,
+   "pushed_to_phone": true,
+   "repeat": false,
+   "score": 67,
+   "sent_et": "2026-10-24 18:30",
+   "sport": "NCAAF",
+   "start_utc": "2026-10-24T23:30:00Z",
+   "why": "Pinnacle total moved 54 -> 55; bet only at 54.5 or better (confirmed by BetOnline, Matchbook)"
+  },
+  {
+   "alert_text": "Over 54 (-109) at ProphetX (also: Hard Rock)",
+   "bet": "Over 54 (-109)",
+   "bet_result": null,
+   "book": "ProphetX",
+   "confirmed_by": [
+    "BetOnline",
+    "Matchbook"
+   ],
+   "edge_pct": 0.0,
+   "final": null,
+   "game": "Green Bay Packers @ Detroit Lions",
+   "grade": "A",
+   "late": false,
+   "minutes_before_start": 1315,
+   "price": -109,
+   "pushed_to_phone": true,
+   "repeat": false,
+   "score": 78,
+   "sent_et": "2026-10-24 18:30",
+   "sport": "NFL",
+   "start_utc": "2026-10-25T20:25:00Z",
+   "why": "Pinnacle total moved 53.5 -> 54.5; bet only at 54 or better (confirmed by BetOnline, Matchbook)"
+  },
+  {
+   "alert_text": "Under 47.5 (-117) at Kalshi (also: Hard Rock, ProphetX, Novig, Polymarket)",
+   "bet": "Under 47.5 (-117)",
+   "bet_result": null,
+   "book": "Kalshi",
+   "confirmed_by": [
+    "BetOnline",
+    "Matchbook"
+   ],
+   "edge_pct": 2.1,
+   "final": null,
+   "game": "Cincinnati Bengals @ Baltimore Ravens",
+   "grade": "A",
+   "late": false,
+   "minutes_before_start": 1110,
+   "price": -117,
+   "pushed_to_phone": false,
+   "repeat": true,
+   "score": 82,
+   "sent_et": "2026-10-24 18:30",
+   "sport": "NFL",
+   "start_utc": "2026-10-25T17:00:00Z",
+   "why": "Pinnacle total moved 47.5 -> 46; bet only at 46.5 or better (confirmed by BetOnline, Matchbook)"
+  },
+  {
    "alert_text": "Under 58.5 (-110) at Hard Rock",
    "bet": "Under 58.5 (-110)",
    "bet_result": null,
@@ -8780,14 +8904,14 @@
   {
    "alert_text": "Under 6 (-124) at ProphetX",
    "bet": "Under 6 (-124)",
-   "bet_result": null,
+   "bet_result": "W",
    "book": "ProphetX",
    "confirmed_by": [
     "BetOnline",
     "Matchbook"
    ],
    "edge_pct": 0.2,
-   "final": null,
+   "final": "LA 1, NJ 3",
    "game": "Los Angeles Kings @ New Jersey Devils",
    "grade": "B",
    "late": false,
@@ -9422,7 +9546,7 @@
   {
    "alert_text": "New Jersey Devils ML -170 at Hard Rock",
    "bet": "New Jersey Devils ML -170",
-   "bet_result": null,
+   "bet_result": "W",
    "book": "Hard Rock",
    "confirmed_by": [
     "BetOnline",
@@ -9430,7 +9554,7 @@
     "Smarkets"
    ],
    "edge_pct": 2.6,
-   "final": null,
+   "final": "LA 1, NJ 3",
    "game": "Los Angeles Kings @ New Jersey Devils",
    "grade": "B",
    "late": false,
