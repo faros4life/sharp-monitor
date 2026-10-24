@@ -1,6 +1,80 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-24T23:30:16Z",
+   "base_depth": 45269,
+   "best_price": 0.47,
+   "best_price_american": 113,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.46,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-24",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 15006,
+     "new_this_side": 105407,
+     "other_side": 20808,
+     "other_side_all_levels": 53579,
+     "ratio": 6.1,
+     "this_side": 127748,
+     "this_side_all_levels": 147937
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "H. Watson (0)",
+     "price": 0.47,
+     "this_side": 11275
+    }
+   },
+   "first_seen_utc": "2026-10-24T23:20:15Z",
+   "game": "Watson vs Parks",
+   "key": "kalshi|KXWTAMATCH-26OCT24WATPAR|ml|0",
+   "lead_min": 120,
+   "league": "TENNIS",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 105407,
+   "paper_only": true,
+   "price": 0.46,
+   "price_american": 117,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.46,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXWTAMATCH-26OCT24WATPAR-WAT"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Watson",
+   "side_label": "Watson",
+   "start_source": "novig",
+   "start_utc": "2026-10-25T01:30:00Z",
+   "teams": [
+    "Watson",
+    "Parks"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-24T23:00:20Z",
    "base_depth": 134312,
    "best_price": 0.76,
@@ -2503,8 +2577,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.68,
-   "clv_cents": 0.0,
+   "close_price": 0.69,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-24",
    "depth_by_book": {
