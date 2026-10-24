@@ -84,12 +84,16 @@ def read_verdicts(M):
         if typ != "OK" or not data or not data[0]:
             continue
         txt = body_text(data[0][1])
-        i, j = txt.find("["), txt.rfind("]")
-        if i < 0 or j <= i:
-            continue
-        try:
-            arr = json.loads(txt[i:j + 1])
-        except Exception:
+        arr, dec = None, json.JSONDecoder()
+        for m in re.finditer(r"\[", txt):   # tolerate plain text before/after the JSON array
+            try:
+                cand, _ = dec.raw_decode(txt[m.start():])
+            except Exception:
+                continue
+            if isinstance(cand, list) and cand and isinstance(cand[0], dict):
+                arr = cand
+                break
+        if arr is None:
             LOG.append("verdict email with unreadable JSON")
             continue
         for p in arr if isinstance(arr, list) else []:
@@ -522,6 +526,55 @@ def levels(book, r):
 
 
 # ---------------------------------------------------------------- report
+def bet_text(r, ln, am):
+    """'Houston Cougars +7.5 -130' / 'Over 55.5 -127' / 'Spurs ML +110'"""
+    p, mt, side = r["play"], r.get("mtype"), r.get("side")
+    teams = lm.split_teams(p.get("game") or "") or ("", "")
+    who = side.title() if side in ("OVER", "UNDER") else (teams[side] if isinstance(side, int) else "?")
+    ln_s = "ML" if mt == "moneyline" else (f"{ln:+g}" if mt == "spread" else f"{ln:g}")
+    return f"{who} {ln_s} {am:+d}"
+
+
+def short(r):
+    return bet_text(r, r.get("take_line"), r["american"]).replace(" ML ", " ")
+
+
+BOOK_NAME = {"novig": "Novig", "prophetx": "ProphetX", "kalshi": "Kalshi", "polymarket_us": "Polymarket US"}
+
+
+def plain(r):
+    p = r["play"]
+    game = p.get("game") or ""
+    if r["verdict"] == "WOULD PLACE":
+        moved = r.get("mtype") != "moneyline" and r.get("take_line") is not None and abs(r["take_line"] - r["line"]) > 1e-9
+        s = (f"  - {bet_text(r, r.get('take_line'), r['american'])} on {BOOK_NAME.get(r['book'], r['book'])}: "
+             f"risk {money(r['risk'])} to win {money(r['to_win'])}.  ({p.get('sport')} {game})")
+        s += f"\n      Alert was {p.get('bet')}" + (f"; this line is worth {r['equiv']:+d} at the alert number." if moved else ".")
+        if r.get("partial"):
+            s += f" Only {money(r['fillable'])} available at that price, so it would be a partial bet."
+        return s
+    return f"  - {p.get('bet')}  ({p.get('sport')} {game}): {plain_reason(r['reason'])}"
+
+
+def plain_reason(reason):
+    rl = reason.lower()
+    if rl.startswith("price cap"):
+        return "price is worse than -130."
+    if rl.startswith("price"):
+        return "the price is gone (nothing at the alert number or better, after fees)."
+    if rl.startswith("line"):
+        return "the line has moved away on every book."
+    if rl.startswith("late"):
+        return "too close to start (under 60 min)."
+    if rl.startswith("conflict"):
+        return "you already have the OTHER side of this game (first side stays)."
+    if rl.startswith("duplicate"):
+        return "you already have this bet."
+    if rl.startswith("banned"):
+        return "banned market (tennis, UFC, soccer, 1H/1Q, props or parlays)."
+    return reason
+
+
 def money(x):
     return f"${x:,.0f}"
 
@@ -602,19 +655,32 @@ def main():
             results.append({"play": p, "pid": pid(p["play_key"]), "verdict": "SKIP", "reason": f"error: {str(ex)[:100]}"})
     M2.logout()
     nw = sum(1 for r in results if r["verdict"] == "WOULD PLACE")
-    body = [f"AUTO-PLACE DRY RUN | {now.astimezone(lm.ET).strftime('%a %b %d %I:%M %p ET')} | NOTHING WAS PLACED", "",
-            f"Unit {money(UNIT)} | + money risks the unit, - money risks to win the unit | prices are AFTER fees.",
-            "Checks: banned, late (<60 min), duplicate/conflict (Novig positions only until other keys exist), "
-            "-130 cap on the price taken. Routing: every line within 1 point on every book is converted to its "
-            "EQUIVALENT price at the alert line (half point from the live ladders, standard value as fallback); best "
-            "equivalent price wins, ties go to the better line. Balances not checked yet (no trading keys).", ""]
+    when = now.astimezone(lm.ET).strftime('%a %b %d %I:%M %p ET')
+    body = [f"DRY RUN - nothing was bet ({when})", ""]
+    places = [r for r in results if r["verdict"] == "WOULD PLACE"]
+    skips = [r for r in results if r["verdict"] != "WOULD PLACE"]
+    if places:
+        body.append(f"WOULD BET ({len(places)})")
+        body += [plain(r) for r in places]
+        body.append("")
+    if skips:
+        body.append(f"SKIPPED ({len(skips)})")
+        body += [plain(r) for r in skips]
+        body.append("")
+    if pos is None:
+        body += [f"Note: couldn't check your Novig positions this run ({_NVERR['why']}). Live mode would bet nothing.", ""]
+    body += ["", "-" * 60, "DETAILS (for Muse)",
+             f"Unit {money(UNIT)}: + money risks the unit, - money risks to win it. Prices after fees. Routing: every line within "
+             "1 point on every book converted to its equivalent price at the alert line (half point from live ladders); best "
+             "equivalent wins, ties to the better line; -130 cap on the price taken. Novig positions: "
+             + ("checked" if pos is not None else "unavailable") + ".", ""]
     for r in results:
         body.append(fmt(r))
         if r.get("books"):
             body += book_lines(r)
         body.append("")
-    body.append("Novig positions check: " + ("done" if pos is not None else f"UNAVAILABLE ({_NVERR['why']}) - live mode would place nothing"))
-    send(f"DRY RUN | {nw} would place, {len(results) - nw} skipped | {now.astimezone(lm.ET).strftime('%b %d %I:%M %p')}",
+    first = ", ".join(short(r) for r in places[:3]) + ("..." if len(places) > 3 else "")
+    send(f"Bets dry run: {nw} would bet" + (f" ({first})" if places else "") + f", {len(results) - nw} skipped",
          "\n".join(body))
     print(f"Dry-run email sent: {nw} would place, {len(results) - nw} skipped.")   # counts only
 
