@@ -1,13 +1,14 @@
 # Liquidity alerts (paper)
 
-Updated Sat Oct 24, 5:20 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 12.
+Updated Sat Oct 24, 5:30 AM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 12.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 13-5 (+3.86u flat) | rule met: 8-3
+**Record:** 14-5 (+4.46u flat) | rule met: 8-3
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Oct 24 5:30AM | TENNIS | Giron vs Hanfmann | moneyline: Hanfmann | kalshi | $26k | -567 |  |  | +0.0c |  | pending |
 | Oct 24 5:00AM | TENNIS | Tirante vs Mannarino | moneyline: Tirante | kalshi | $31k | -133 | ✅ novig |  | +0.0c |  | pending |
 | Oct 24 4:40AM | TENNIS | Schwaerzler vs Droguet | moneyline: Droguet | kalshi | $26k | -270 |  |  | +0.0c |  | pending |
 | Oct 24 4:40AM | TENNIS | Paul vs Fritz | moneyline: Fritz | kalshi | $38k | -170 | ✅ novig |  | +0.0c |  | pending |
@@ -20,7 +21,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 23 11:40PM | TENNIS | Shibahara vs Parks | moneyline: Shibahara | kalshi | $199k | -233 |  |  | +9.0c |  | L |
 | Oct 23 10:00PM | TENNIS | Starodubtseva vs Sasnovich | moneyline: Sasnovich | kalshi | $32k | -178 |  |  |  |  | W |
 | Oct 23 9:20PM | TENNIS | Ma vs Kasatkina | moneyline: Kasatkina | kalshi | $29k | -426 |  |  | +0.0c |  | pending |
-| Oct 23 8:47PM | TENNIS | Boulter vs Siniakova | moneyline: Siniakova | kalshi | $42k | -156 |  |  | +1.0c |  | pending |
+| Oct 23 8:47PM | TENNIS | Boulter vs Siniakova | moneyline: Siniakova | kalshi | $42k | -156 |  |  | +1.0c |  | W |
 | Oct 23 8:30PM | MLB | Game 2: Tampa Bay vs Milwaukee | moneyline: Game 2: Tampa Bay | kalshi | $51k | +144 |  |  | +6.0c |  | pending |
 | Oct 23 7:57PM | MLB | Tampa Bay Rays @ Milwaukee Brewers | spread: TB +1.5 (-1.5) | novig | $84k | -138 | ✅ kalshi |  | +0.0c |  | W |
 | Oct 23 6:00PM | TENNIS | Fils vs Struff | moneyline: Fils | kalshi | $27k | -456 |  |  | +0.0c |  | pending |

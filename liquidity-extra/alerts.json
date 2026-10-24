@@ -1,6 +1,72 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-24T09:30:16Z",
+   "base_depth": 33722,
+   "best_price": 0.8589,
+   "best_price_american": -609,
+   "best_price_book": "kalshi",
+   "bid_improved": true,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.85,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 14,
+   "date": "2026-10-24",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -10756,
+     "new_this_side": 26291,
+     "other_side": 19429,
+     "other_side_all_levels": 22546,
+     "ratio": 4.9,
+     "this_side": 95704,
+     "this_side_all_levels": 168650
+    }
+   },
+   "first_seen_utc": "2026-10-24T09:16:12Z",
+   "game": "Giron vs Hanfmann",
+   "key": "kalshi|KXATPMATCH-26OCT24GIRHAN|ml|1",
+   "lead_min": 90,
+   "league": "TENNIS",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 26291,
+   "paper_only": true,
+   "price": 0.85,
+   "price_american": -567,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.79,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXATPMATCH-26OCT24GIRHAN-HAN"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "no_match",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Hanfmann",
+   "side_label": "Hanfmann",
+   "start_source": "kalshi",
+   "start_utc": "2026-10-24T11:00:00Z",
+   "teams": [
+    "Giron",
+    "Hanfmann"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-24T09:00:19Z",
    "base_depth": 24217,
    "best_price": 0.57,
@@ -1066,10 +1132,11 @@
     "kalshi_side": "yes",
     "market_ticker": "KXWTAMATCH-26OCT23BOUSIN-SIN"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": "no_match",
    "second_book_fresh": false,
+   "settled_utc": "2026-10-24T09:30:16Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Siniakova",
@@ -1082,7 +1149,7 @@
     "Siniakova"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.6
   },
   {
    "alerted_utc": "2026-10-24T00:30:18Z",
