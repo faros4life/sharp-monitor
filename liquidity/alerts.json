@@ -1,7 +1,7 @@
 {
  "alerts": [
   {
-   "alerted_utc": "2026-10-24T23:35:02Z",
+   "alerted_utc": "2026-10-24T23:30:11Z",
    "base_depth": 184092,
    "best_price": 0.5265,
    "best_price_american": -111,
@@ -17,29 +17,29 @@
    ],
    "close_price": 0.53,
    "clv_cents": 0.0,
-   "confirmed_after_min": 15,
+   "confirmed_after_min": 10,
    "date": "2026-10-24",
    "depth_by_book": {
     "kalshi": {
      "new_other_side": -74101,
      "new_this_side": 82551,
-     "other_side": 161972,
-     "other_side_all_levels": 210725,
-     "ratio": 1.4,
-     "this_side": 232502,
-     "this_side_all_levels": 267067
+     "other_side": 158317,
+     "other_side_all_levels": 207070,
+     "ratio": 1.5,
+     "this_side": 232353,
+     "this_side_all_levels": 266919
     },
     "polymarket": {
      "heavier_side": true,
      "label": "Pelicans (+11.5)",
      "price": 0.52,
-     "this_side": 144256
+     "this_side": 138011
     }
    },
    "first_seen_utc": "2026-10-24T23:20:09Z",
    "game": "New Orleans vs Denver: Spread",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBASPREAD-26OCT24NOPDEN-DEN12\"}",
-   "lead_min": 85,
+   "lead_min": 90,
    "league": "NBA",
    "line": 11.5,
    "market": "spread",
@@ -108,7 +108,7 @@
     },
     "prophetx": {
      "point": 11.0,
-     "price": -102
+     "price": 100
     },
     "williamhill_us": {
      "point": 11.0,
@@ -185,6 +185,8 @@
    "new_money": 42897,
    "paper_only": false,
    "price": 0.52,
+   "price_after_15m": 0.5265,
+   "price_after_15m_book": "prophetx",
    "price_american": -108,
    "price_rule": "ok",
    "price_when_first_seen": 0.52,
@@ -271,6 +273,7 @@
    "side_label": "Pelicans (+11.5)",
    "start_source": "polymarket",
    "start_utc": "2026-10-25T01:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Pelicans",
     "Nuggets"
@@ -324,6 +327,8 @@
    "new_money": 30409,
    "paper_only": false,
    "price": 0.59,
+   "price_after_15m": 0.59,
+   "price_after_15m_book": "novig",
    "price_american": -144,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.59,
@@ -397,7 +402,8 @@
      "price": -154
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-24T23:30:11Z",
    "ref": {
     "market_id": "01a136e2-ec1e-7fe1-be20-89fc67de8d53",
     "outcome_id": "01a136e2-ec1e-7fe1-be20-8a1b600fe013"
@@ -416,6 +422,7 @@
    "side_label": "CIN (0)",
    "start_source": "prophetx",
    "start_utc": "2026-10-25T17:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Cincinnati Bengals",
     "Baltimore Ravens"
@@ -475,6 +482,8 @@
    "new_money": 99544,
    "paper_only": false,
    "price": 0.52,
+   "price_after_15m": 0.515,
+   "price_after_15m_book": "novig",
    "price_american": -108,
    "price_rule": "ok",
    "price_when_first_seen": 0.51,
@@ -545,7 +554,7 @@
     }
    },
    "pulled": true,
-   "pulled_utc": "2026-10-24T23:35:02Z",
+   "pulled_utc": "2026-10-24T23:30:11Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNBASPREAD-26OCT24WASCHI-CHI2"
@@ -565,6 +574,7 @@
    "side_label": "Chicago wins by over 1.5 points",
    "start_source": "polymarket",
    "start_utc": "2026-10-25T00:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Washington",
     "Chicago"
@@ -587,8 +597,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": -1.0,
+   "close_price": 0.49,
+   "clv_cents": -2.0,
    "confirmed_after_min": 8,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -630,6 +640,8 @@
    "new_money": 25730,
    "paper_only": false,
    "price": 0.51,
+   "price_after_15m": 0.5075,
+   "price_after_15m_book": "kalshi",
    "price_american": -104,
    "price_rule": "ok",
    "price_when_first_seen": 0.5,
@@ -700,7 +712,7 @@
     }
    },
    "pulled": true,
-   "pulled_utc": "2026-10-24T23:35:02Z",
+   "pulled_utc": "2026-10-24T23:30:11Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNBASPREAD-26OCT24MILPHI-PHI13"
@@ -719,6 +731,7 @@
    "side_label": "NOT Philadelphia wins by over 12.5 points",
    "start_source": "polymarket",
    "start_utc": "2026-10-24T23:30:00Z",
+   "still_actionable": false,
    "teams": [
     "Milwaukee",
     "Philadelphia"
@@ -741,8 +754,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.79,
-   "clv_cents": 17.0,
+   "close_price": 0.9,
+   "clv_cents": 28.0,
    "confirmed_after_min": 8,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -766,6 +779,8 @@
    "new_money": 235054,
    "paper_only": false,
    "price": 0.62,
+   "price_after_15m": 0.9063,
+   "price_after_15m_book": "kalshi",
    "price_american": -163,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.62,
@@ -827,7 +842,8 @@
      "price": -160
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-24T23:30:11Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNBAGAME-26OCT24MIACHA-CHA"
@@ -844,6 +860,7 @@
    "side_label": "Charlotte",
    "start_source": "kalshi",
    "start_utc": "2026-10-25T01:00:00Z",
+   "still_actionable": false,
    "teams": [
     "Miami",
     "Charlotte"
@@ -866,8 +883,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.55,
-   "clv_cents": -13.0,
+   "close_price": 0.52,
+   "clv_cents": -16.0,
    "confirmed_after_min": 12,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -891,7 +908,7 @@
    "new_money": 52096,
    "paper_only": false,
    "price": 0.68,
-   "price_after_15m": 0.5673,
+   "price_after_15m": 0.5971,
    "price_after_15m_book": "kalshi",
    "price_american": -213,
    "price_rule": "ml_edge_fail",
@@ -1225,7 +1242,7 @@
     }
    },
    "pulled": true,
-   "pulled_utc": "2026-10-24T23:35:02Z",
+   "pulled_utc": "2026-10-24T23:30:11Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFSPREAD-26OCT24MISSTEX-TEX4"
@@ -1265,8 +1282,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": 2.0,
+   "close_price": 0.49,
+   "clv_cents": 1.0,
    "confirmed_after_min": 14,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -1367,7 +1384,8 @@
      "price": -105
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-24T23:41:08Z",
    "ref": {
     "outcome_index": 1,
     "pm_market_id": "6099650"
@@ -1411,8 +1429,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.58,
-   "clv_cents": -1.0,
+   "close_price": 0.59,
+   "clv_cents": 0.0,
    "confirmed_after_min": 14,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -1910,7 +1928,8 @@
      "price": -176
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-24T23:41:08Z",
    "ref": {
     "market_id": "01a136e2-ee99-71a1-a851-aeb660a4a826",
     "outcome_id": "01a136e2-ee99-71a1-a851-aedbe8dd2abe"
@@ -1950,8 +1969,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.38,
-   "clv_cents": -16.0,
+   "close_price": 0.43,
+   "clv_cents": -11.0,
    "confirmed_after_min": 9,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -2259,8 +2278,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": 0.0,
+   "close_price": 0.46,
+   "clv_cents": -4.0,
    "confirmed_after_min": 10,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -2374,7 +2393,7 @@
     }
    },
    "pulled": true,
-   "pulled_utc": "2026-10-24T23:35:02Z",
+   "pulled_utc": "2026-10-24T23:30:11Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNBATOTAL-26OCT24MILPHI-235"
@@ -3945,8 +3964,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.58,
-   "clv_cents": -1.0,
+   "close_price": 0.59,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -4106,8 +4125,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.91,
-   "clv_cents": 13.0,
+   "close_price": 0.94,
+   "clv_cents": 16.0,
    "confirmed_after_min": 10,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -4258,8 +4277,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.82,
-   "clv_cents": 4.0,
+   "close_price": 0.73,
+   "clv_cents": -5.0,
    "confirmed_after_min": 10,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -4984,8 +5003,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.88,
-   "clv_cents": 39.0,
+   "close_price": 0.87,
+   "clv_cents": 38.0,
    "confirmed_after_min": 16,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -5117,8 +5136,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.22,
-   "clv_cents": -38.0,
+   "close_price": 0.11,
+   "clv_cents": -49.0,
    "confirmed_after_min": 16,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -5576,8 +5595,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.38,
-   "clv_cents": -46.0,
+   "close_price": 0.27,
+   "clv_cents": -57.0,
    "confirmed_after_min": 10,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -6512,7 +6531,8 @@
      "price": 129
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-24T23:41:08Z",
    "ref": {
     "market_id": "01a136e2-eabb-78f3-815b-e0b3b309ee06",
     "outcome_id": "01a136e2-eabb-78f3-815b-e0d328a5dc1e"
@@ -6658,7 +6678,8 @@
      "price": -280
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-24T23:41:08Z",
    "ref": {
     "market_id": "01a136e2-e8c0-7413-9f75-8c20b788e42d",
     "outcome_id": "01a136e2-e8c0-7413-9f75-8c3457475ca2"
@@ -6828,8 +6849,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.63,
-   "clv_cents": 5.0,
+   "close_price": 0.87,
+   "clv_cents": 29.0,
    "confirmed_after_min": 16,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -46303,7 +46324,7 @@
    "rule_met": false,
    "second_book": "no_match",
    "second_book_fresh": false,
-   "settled_utc": "2026-10-24T23:35:02Z",
+   "settled_utc": "2026-10-24T23:30:11Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Ohio",
@@ -52469,6 +52490,6 @@
    "units_flat": 0.16
   }
  ],
- "note": "Liquidity paper alerts (Kalshi + Novig + Polymarket public books), newest first. Trigger: >= $25000 (and >= 10% of the side's prior size, capped at $100k) of NEW bids on one side since the last check, measured on total side depth (all price levels; near-price depth within 3c is shown and used for the second-book test), >= 3x any new money on the other side, leaving that side heavier; main lines only (ML 15-85c, spread/total 30-70c), pregame; Kalshi moneylines combined per game. Spoof filter: logged only if >= 75% of the new money is still there on the next check (confirmed_after_min). pulled = the new money later disappeared before the game. rule_met = another book has >= $10000 on the same side and it is the heavier side there. sharp_agree/sharp_oppose = sharp-monitor (Pinnacle move) alerts on the same game & market. price = cost to buy the side when logged (0-1); close_price = last pregame price; clv_cents = close_price - price (positive = the market moved toward this side). result W/L/P/VOID from the exchange's settlement; units_flat = 1u at best_price (cheapest across books at alert). Log-only fields: bid_improved (best bid on the alert side rose between readings), best_price/best_price_book, prices_by_book (Odds API sportsbooks), second_book_fresh (second book added >= $10k on the side in the last two checks), lead_min, price_rule (fails_cap = worse than -130 on spread/total; ml_edge_ok/fail = 2% edge vs cross-book fair mid), price_after_15m/still_actionable. Leagues: NFL, NCAAF, NBA, NHL, plus MLB and NCAAB (added Oct 23, same rules; read after the original leagues with leftover capacity) and TENNIS (ATP/WTA match winner, paper_only = true: data collection only, never pushed, not a betting lane; graded only from Kalshi/Polymarket settlement).",
+ "note": "Liquidity paper alerts (Kalshi + Novig + Polymarket public books; ProphetX read-only key, a trigger book from Oct 24), newest first. Trigger: >= $25000 (and >= 10% of the side's prior size, capped at $100k) of NEW bids on one side since the last check, measured on total side depth (all price levels; near-price depth within 3c is shown and used for the second-book test), >= 3x any new money on the other side, leaving that side heavier; main lines only (ML 15-85c, spread/total 30-70c), pregame; Kalshi moneylines combined per game. Spoof filter: logged only if >= 75% of the new money is still there on the next check (confirmed_after_min). pulled = the new money later disappeared before the game. rule_met = another book has >= $10000 on the same side and it is the heavier side there. sharp_agree/sharp_oppose = sharp-monitor (Pinnacle move) alerts on the same game & market. price = cost to buy the side when logged (0-1); close_price = last pregame price; clv_cents = close_price - price (positive = the market moved toward this side). result W/L/P/VOID from the exchange's settlement; units_flat = 1u at best_price (cheapest across books at alert). Log-only fields: bid_improved (best bid on the alert side rose between readings), best_price/best_price_book, prices_by_book (Odds API sportsbooks), second_book_fresh (second book added >= $10k on the side in the last two checks), lead_min, price_rule (fails_cap = worse than -130 on spread/total; ml_edge_ok/fail = 2% edge vs cross-book fair mid), price_after_15m/still_actionable. Leagues: NFL, NCAAF, NBA, NHL, plus MLB and NCAAB (added Oct 23, same rules; read after the original leagues with leftover capacity) and TENNIS (ATP/WTA match winner, paper_only = true: data collection only, never pushed, not a betting lane; graded only from Kalshi/Polymarket settlement).",
  "v": 5
 }
