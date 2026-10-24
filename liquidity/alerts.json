@@ -1,6 +1,432 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-24T15:49:28Z",
+   "base_depth": 71557,
+   "best_price": 0.4952,
+   "best_price_american": 102,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.49,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 9,
+   "date": "2026-10-24",
+   "depth_by_book": {
+    "polymarket": {
+     "new_other_side": -21256,
+     "new_this_side": 37047,
+     "other_side": 71199,
+     "other_side_all_levels": 81164,
+     "ratio": 1.5,
+     "this_side": 109238,
+     "this_side_all_levels": 118747
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "Houston Rockets",
+     "price": 0.4902,
+     "this_side": 14335
+    }
+   },
+   "first_seen_utc": "2026-10-24T15:40:54Z",
+   "game": "Rockets vs. Hawks",
+   "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"5847755\"}",
+   "lead_min": 521,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 37047,
+   "paper_only": false,
+   "price": 0.49,
+   "price_american": 104,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.49,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -105
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -104
+    },
+    "betopenly": {
+     "point": null,
+     "price": 108
+    },
+    "betrivers": {
+     "point": null,
+     "price": 104
+    },
+    "betus": {
+     "point": null,
+     "price": 100
+    },
+    "bovada": {
+     "point": null,
+     "price": -105
+    },
+    "draftkings": {
+     "point": null,
+     "price": -105
+    },
+    "fanatics": {
+     "point": null,
+     "price": -105
+    },
+    "fanduel": {
+     "point": null,
+     "price": -108
+    },
+    "kalshi": {
+     "point": null,
+     "price": 108
+    },
+    "limitless": {
+     "point": null,
+     "price": 103
+    },
+    "lowvig": {
+     "point": null,
+     "price": -102
+    },
+    "mybookieag": {
+     "point": null,
+     "price": 100
+    },
+    "novig": {
+     "point": null,
+     "price": 104
+    },
+    "polymarket": {
+     "point": null,
+     "price": 104
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": 104
+    },
+    "prophetx": {
+     "point": null,
+     "price": 104
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -105
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 0,
+    "pm_market_id": "5847755"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "none_10k",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Rockets",
+   "side_label": "Rockets",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-25T00:30:00Z",
+   "teams": [
+    "Rockets",
+    "Hawks"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-24T15:49:28Z",
+   "base_depth": 130498,
+   "best_price": 0.73,
+   "best_price_american": -270,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.73,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 9,
+   "date": "2026-10-24",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Indiana",
+     "price": 0.73,
+     "this_side": 4097226
+    },
+    "novig": {
+     "new_other_side": -9178,
+     "new_this_side": 34363,
+     "other_side": 66216,
+     "other_side_all_levels": 66462,
+     "ratio": 2.6,
+     "this_side": 172540,
+     "this_side_all_levels": 172783
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Indiana",
+     "price": 0.7297,
+     "this_side": 38683
+    }
+   },
+   "first_seen_utc": "2026-10-24T15:40:54Z",
+   "game": "Indiana @ Michigan",
+   "key": "novig|{\"market_id\": \"01a14577-57e4-7b23-b5c8-4ad775c0856f\", \"outcome_id\": \"01a14577-57e4-7b23-b5c8-4af436892b48\"}",
+   "lead_min": 11,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 34363,
+   "paper_only": false,
+   "price": 0.73,
+   "price_american": -270,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.73,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -300
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -305
+    },
+    "betopenly": {
+     "point": null,
+     "price": -269
+    },
+    "betrivers": {
+     "point": null,
+     "price": -345
+    },
+    "betus": {
+     "point": null,
+     "price": -299
+    },
+    "bovada": {
+     "point": null,
+     "price": -290
+    },
+    "draftkings": {
+     "point": null,
+     "price": -298
+    },
+    "fanatics": {
+     "point": null,
+     "price": -300
+    },
+    "fanduel": {
+     "point": null,
+     "price": -310
+    },
+    "kalshi": {
+     "point": null,
+     "price": -270
+    },
+    "lowvig": {
+     "point": null,
+     "price": -300
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -300
+    },
+    "novig": {
+     "point": null,
+     "price": -270
+    },
+    "polymarket": {
+     "point": null,
+     "price": -270
+    },
+    "prophetx": {
+     "point": null,
+     "price": -270
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -295
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a14577-57e4-7b23-b5c8-4ad775c0856f",
+    "outcome_id": "01a14577-57e4-7b23-b5c8-4af436892b48"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi",
+    "prophetx"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [
+    "Indiana Hoosiers -7 (-114)"
+   ],
+   "sharp_oppose": [],
+   "side": "Indiana",
+   "side_label": "IND (0)",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-24T16:00:00Z",
+   "teams": [
+    "Indiana",
+    "Michigan"
+   ],
+   "top25": true,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-24T15:49:28Z",
+   "base_depth": 251182,
+   "best_price": 0.5311,
+   "best_price_american": -113,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 9,
+   "date": "2026-10-24",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 20832,
+     "new_this_side": 101015,
+     "other_side": 380110,
+     "other_side_all_levels": 448631,
+     "ratio": 1.0,
+     "this_side": 395246,
+     "this_side_all_levels": 469831
+    }
+   },
+   "first_seen_utc": "2026-10-24T15:40:54Z",
+   "game": "Texas Tech vs Cincinnati: Total Points",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFTOTAL-26OCT24TTUCIN-58\"}",
+   "lead_min": 11,
+   "league": "NCAAF",
+   "line": 57.5,
+   "market": "total",
+   "new_money": 101015,
+   "paper_only": false,
+   "price": 0.52,
+   "price_american": -108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.52,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 57.5,
+     "price": -120
+    },
+    "betonlineag": {
+     "point": 58.0,
+     "price": -115
+    },
+    "betopenly": {
+     "point": 58.5,
+     "price": 106
+    },
+    "betrivers": {
+     "point": 58.0,
+     "price": -109
+    },
+    "betus": {
+     "point": 58.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 58.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 58.5,
+     "price": -105
+    },
+    "fanatics": {
+     "point": 58.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 57.5,
+     "price": -115
+    },
+    "kalshi": {
+     "point": 58.5,
+     "price": 100
+    },
+    "lowvig": {
+     "point": 58.0,
+     "price": -114
+    },
+    "mybookieag": {
+     "point": 57.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 58.5,
+     "price": 104
+    },
+    "polymarket": {
+     "point": 57.5,
+     "price": -108
+    },
+    "prophetx": {
+     "point": 57.5,
+     "price": -112
+    },
+    "williamhill_us": {
+     "point": 58.0,
+     "price": -113
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFTOTAL-26OCT24TTUCIN-58"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "no_match",
+   "second_book_fresh": false,
+   "sharp_agree": [
+    "Over 56.5 (-110)"
+   ],
+   "sharp_oppose": [],
+   "side": "OVER",
+   "side_label": "Over 57.5 points",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-24T16:00:00Z",
+   "teams": [
+    "Texas Tech",
+    "Cincinnati"
+   ],
+   "top25": true,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-24T15:24:04Z",
    "base_depth": 13138,
    "best_price": 0.84,
@@ -2061,8 +2487,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": 2.0,
+   "close_price": 0.54,
+   "clv_cents": 3.0,
    "confirmed_after_min": 17,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -7204,8 +7630,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 1.0,
+   "close_price": 0.53,
+   "clv_cents": 2.0,
    "confirmed_after_min": 20,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -10288,8 +10714,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": 2.0,
+   "close_price": 0.57,
+   "clv_cents": 6.0,
    "confirmed_after_min": 18,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -10769,8 +11195,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.83,
-   "clv_cents": 0.0,
+   "close_price": 0.825,
+   "clv_cents": -0.5,
    "confirmed_after_min": 21,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -16960,8 +17386,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 0.5,
+   "close_price": 0.515,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-10-24",
    "depth_by_book": {
