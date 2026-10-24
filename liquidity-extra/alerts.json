@@ -1,6 +1,80 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-24T12:10:13Z",
+   "base_depth": 133188,
+   "best_price": 0.605,
+   "best_price_american": -153,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.61,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-24",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 7793,
+     "new_this_side": 39900,
+     "other_side": 72381,
+     "other_side_all_levels": 100749,
+     "ratio": 2.0,
+     "this_side": 145080,
+     "this_side_all_levels": 186158
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "F. Cerundolo (0)",
+     "price": 0.605,
+     "this_side": 21468
+    }
+   },
+   "first_seen_utc": "2026-10-24T12:00:19Z",
+   "game": "Cerundolo vs Griekspoor",
+   "key": "kalshi|KXATPMATCH-26OCT24CERGRI|ml|0",
+   "lead_min": 110,
+   "league": "TENNIS",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 39900,
+   "paper_only": true,
+   "price": 0.61,
+   "price_american": -156,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.61,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXATPMATCH-26OCT24CERGRI-CER"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Cerundolo",
+   "side_label": "Cerundolo",
+   "start_source": "novig",
+   "start_utc": "2026-10-24T14:00:00Z",
+   "teams": [
+    "Cerundolo",
+    "Griekspoor"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-24T11:50:14Z",
    "base_depth": 29767,
    "best_price": 0.505,
@@ -58,6 +132,8 @@
    "new_money": 65791,
    "paper_only": false,
    "price": 0.5,
+   "price_after_15m": 0.505,
+   "price_after_15m_book": "novig",
    "price_american": -100,
    "price_rule": "ok",
    "price_when_first_seen": 0.5,
@@ -145,6 +221,7 @@
    "side_label": "Over (6.5)",
    "start_source": "polymarket",
    "start_utc": "2026-10-25T00:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Tampa Bay Rays",
     "Milwaukee Brewers"
@@ -599,8 +676,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.55,
-   "clv_cents": -18.0,
+   "close_price": 0.86,
+   "clv_cents": 13.0,
    "confirmed_after_min": 10,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -675,8 +752,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.62,
-   "clv_cents": -1.0,
+   "close_price": 0.64,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -753,8 +830,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.6,
-   "clv_cents": -11.0,
+   "close_price": 0.57,
+   "clv_cents": -14.0,
    "confirmed_after_min": 10,
    "date": "2026-10-24",
    "depth_by_book": {
