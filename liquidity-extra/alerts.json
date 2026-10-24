@@ -1,6 +1,78 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-24T00:30:18Z",
+   "base_depth": 195267,
+   "best_price": 0.425,
+   "best_price_american": 135,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.41,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-24",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 1039,
+     "new_this_side": 50574,
+     "other_side": 17878,
+     "other_side_all_levels": 248905,
+     "ratio": 0.9,
+     "this_side": 16588,
+     "this_side_all_levels": 253105
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "TB (0)",
+     "price": 0.425,
+     "this_side": 3231
+    }
+   },
+   "first_seen_utc": "2026-10-24T00:20:15Z",
+   "game": "Game 2: Tampa Bay vs Milwaukee",
+   "key": "kalshi|KXMLBGAME-26OCT242000TBMIL|ml|0",
+   "lead_min": 1410,
+   "league": "MLB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 50574,
+   "paper_only": false,
+   "price": 0.41,
+   "price_american": 144,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.4,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXMLBGAME-26OCT242000TBMIL-TB"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "none_10k",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Game 2: Tampa Bay",
+   "side_label": "Game 2: Tampa Bay",
+   "start_source": "novig",
+   "start_utc": "2026-10-25T00:00:00Z",
+   "teams": [
+    "Game 2: Tampa Bay",
+    "Milwaukee"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-23T23:57:17Z",
    "base_depth": 91886,
    "best_price": 0.58,
@@ -395,8 +467,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": 2.0,
+   "close_price": 0.55,
+   "clv_cents": 6.0,
    "confirmed_after_min": 7,
    "date": "2026-10-23",
    "depth_by_book": {
@@ -618,8 +690,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.57,
-   "clv_cents": -1.0,
+   "close_price": 0.55,
+   "clv_cents": -3.0,
    "confirmed_after_min": 8,
    "date": "2026-10-23",
    "depth_by_book": {
@@ -768,8 +840,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.64,
-   "clv_cents": 1.0,
+   "close_price": 0.7,
+   "clv_cents": 7.0,
    "confirmed_after_min": 8,
    "date": "2026-10-23",
    "depth_by_book": {
@@ -1760,8 +1832,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": -1.0,
+   "close_price": 0.47,
+   "clv_cents": -4.0,
    "confirmed_after_min": 3,
    "date": "2026-10-23",
    "depth_by_book": {
