@@ -1,6 +1,211 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-24T17:20:15Z",
+   "base_depth": 63352,
+   "best_price": 0.67,
+   "best_price_american": -203,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.67,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-24",
+   "depth_by_book": {
+    "novig": {
+     "heavier_side": true,
+     "label": "MIL +1.5 (1.5)",
+     "price": 0.67,
+     "this_side": 38972
+    },
+    "polymarket": {
+     "new_other_side": 8351,
+     "new_this_side": 25251,
+     "other_side": 25361,
+     "other_side_all_levels": 39928,
+     "ratio": 2.6,
+     "this_side": 64902,
+     "this_side_all_levels": 88511
+    }
+   },
+   "first_seen_utc": "2026-10-24T17:10:14Z",
+   "game": "Tampa Bay Rays vs. Milwaukee Brewers",
+   "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6106400\"}",
+   "lead_min": 400,
+   "league": "MLB",
+   "line": 1.5,
+   "market": "spread",
+   "new_money": 25251,
+   "paper_only": false,
+   "price": 0.67,
+   "price_american": -203,
+   "price_rule": "fails_cap",
+   "price_when_first_seen": 0.67,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 1.5,
+     "price": -220
+    },
+    "betonlineag": {
+     "point": -1.5,
+     "price": 186
+    },
+    "betopenly": {
+     "point": 1.5,
+     "price": -200
+    },
+    "betrivers": {
+     "point": 1.5,
+     "price": -240
+    },
+    "betus": {
+     "point": -1.5,
+     "price": 188
+    },
+    "bovada": {
+     "point": -1.5,
+     "price": 190
+    },
+    "draftkings": {
+     "point": 1.5,
+     "price": -221
+    },
+    "fanatics": {
+     "point": 1.5,
+     "price": -220
+    },
+    "fanduel": {
+     "point": 1.5,
+     "price": -240
+    },
+    "kalshi": {
+     "point": -1.5,
+     "price": 194
+    },
+    "lowvig": {
+     "point": -1.5,
+     "price": 189
+    },
+    "mybookieag": {
+     "point": -1.5,
+     "price": 180
+    },
+    "novig": {
+     "point": 1.5,
+     "price": -203
+    },
+    "polymarket": {
+     "point": 1.5,
+     "price": -203
+    },
+    "prophetx": {
+     "point": -1.0,
+     "price": 142
+    },
+    "williamhill_us": {
+     "point": 1.5,
+     "price": -225
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 1,
+    "pm_market_id": "6106400"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Milwaukee Brewers",
+   "side_label": "Milwaukee Brewers (+1.5)",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-25T00:00:00Z",
+   "teams": [
+    "Tampa Bay Rays",
+    "Milwaukee Brewers"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-24T17:20:15Z",
+   "base_depth": 108014,
+   "best_price": 0.6952,
+   "best_price_american": -228,
+   "best_price_book": "kalshi",
+   "bid_improved": true,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.68,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-24",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -95590,
+     "new_this_side": 83209,
+     "other_side": 71398,
+     "other_side_all_levels": 106302,
+     "ratio": 2.0,
+     "this_side": 140229,
+     "this_side_all_levels": 319161
+    }
+   },
+   "first_seen_utc": "2026-10-24T17:10:14Z",
+   "game": "Tirante vs Mannarino",
+   "key": "kalshi|KXATPMATCH-26OCT24TIRMAN|ml|1",
+   "lead_min": 100,
+   "league": "TENNIS",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 83209,
+   "paper_only": true,
+   "price": 0.68,
+   "price_american": -213,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.61,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXATPMATCH-26OCT24TIRMAN-MAN"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "no_match",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Mannarino",
+   "side_label": "Mannarino",
+   "start_source": "kalshi",
+   "start_utc": "2026-10-24T19:00:00Z",
+   "teams": [
+    "Tirante",
+    "Mannarino"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-24T16:20:15Z",
    "base_depth": 429005,
    "best_price": 0.505,
@@ -974,8 +1179,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.4,
-   "clv_cents": -17.0,
+   "close_price": 0.33,
+   "clv_cents": -24.0,
    "confirmed_after_min": 10,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -1591,8 +1796,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.68,
-   "clv_cents": 0.0,
+   "close_price": 0.67,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-24",
    "depth_by_book": {
