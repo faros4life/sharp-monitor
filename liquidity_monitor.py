@@ -1526,7 +1526,7 @@ def run():
     state["alerted"] = {k: v for k, v in state["alerted"].items() if v >= cutoff}
     state["v"] = STATE_VERSION
     save(ALERTS_FILE, {"note": (
-        "Liquidity paper alerts (Kalshi + Novig + Polymarket public books), newest first. Trigger: >= $%d (and >= 10%% of the "
+        "Liquidity paper alerts (Kalshi + Novig + Polymarket public books; ProphetX read-only key, a trigger book from Oct 24), newest first. Trigger: >= $%d (and >= 10%% of the "
         "side's prior size, capped at $100k) of NEW bids on one side since the last check, measured on total side depth (all price "
         "levels; near-price depth within %.0fc is shown and used for the second-book test), >= %gx any new money on the "
         "other side, leaving that side heavier; main lines only (ML 15-85c, spread/total 30-70c), pregame; Kalshi moneylines "
