@@ -1,13 +1,13 @@
 {
  "alerts": [
   {
-   "alerted_utc": "2026-10-24T06:34:26Z",
-   "base_depth": 44443,
+   "alerted_utc": "2026-10-24T06:41:59Z",
+   "base_depth": 56487,
    "best_price": 0.5288,
    "best_price_american": -112,
    "best_price_book": "prophetx",
    "bid_improved": false,
-   "bid_improved_at_pending": false,
+   "bid_improved_at_pending": true,
    "book": "polymarket",
    "books_live": [
     "kalshi",
@@ -17,33 +17,33 @@
    ],
    "close_price": 0.53,
    "clv_cents": 0.0,
-   "confirmed_after_min": 17,
+   "confirmed_after_min": 16,
    "date": "2026-10-24",
    "depth_by_book": {
     "polymarket": {
-     "new_other_side": 2267,
-     "new_this_side": 37768,
-     "other_side": 23912,
-     "other_side_all_levels": 46008,
-     "ratio": 2.3,
-     "this_side": 55463,
-     "this_side_all_levels": 87913
+     "new_other_side": -3061,
+     "new_this_side": 27356,
+     "other_side": 23845,
+     "other_side_all_levels": 44679,
+     "ratio": 2.1,
+     "this_side": 50836,
+     "this_side_all_levels": 84497
     },
     "prophetx": {
      "heavier_side": true,
      "label": "Atlanta Hawks",
      "price": 0.5238,
-     "this_side": 5713
+     "this_side": 6234
     }
    },
-   "first_seen_utc": "2026-10-24T06:17:47Z",
+   "first_seen_utc": "2026-10-24T06:26:21Z",
    "game": "Rockets vs. Hawks",
    "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"5847755\"}",
-   "lead_min": 1076,
+   "lead_min": 1068,
    "league": "NBA",
    "line": null,
    "market": "moneyline",
-   "new_money": 37768,
+   "new_money": 27356,
    "paper_only": false,
    "price": 0.53,
    "price_american": -113,
@@ -142,11 +142,11 @@
    "units_flat": null
   },
   {
-   "alerted_utc": "2026-10-24T06:34:26Z",
-   "base_depth": 82538,
-   "best_price": 0.6689,
-   "best_price_american": -202,
-   "best_price_book": "prophetx",
+   "alerted_utc": "2026-10-24T06:41:59Z",
+   "base_depth": 133589,
+   "best_price": 0.495,
+   "best_price_american": 102,
+   "best_price_book": "novig",
    "bid_improved": false,
    "bid_improved_at_pending": false,
    "book": "kalshi",
@@ -156,51 +156,110 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.67,
+   "close_price": 0.49,
    "clv_cents": 0.0,
-   "confirmed_after_min": 17,
+   "confirmed_after_min": 16,
    "date": "2026-10-24",
    "depth_by_book": {
     "kalshi": {
-     "new_other_side": 5868,
-     "new_this_side": 28738,
-     "other_side": 24462,
-     "other_side_all_levels": 46001,
-     "ratio": 2.7,
-     "this_side": 67134,
-     "this_side_all_levels": 117163
+     "new_other_side": -8065,
+     "new_this_side": 36634,
+     "other_side": 94283,
+     "other_side_all_levels": 172489,
+     "ratio": 1.0,
+     "this_side": 96464,
+     "this_side_all_levels": 174806
     },
     "novig": {
      "heavier_side": true,
-     "label": "RMU (0)",
-     "price": 0.67,
-     "this_side": 13618
-    },
-    "prophetx": {
-     "heavier_side": true,
-     "label": "Robert Morris",
-     "price": 0.6644,
-     "this_side": 704
+     "label": "Over 55.5 (55.5)",
+     "price": 0.495,
+     "this_side": 22892
     }
    },
-   "first_seen_utc": "2026-10-24T06:17:47Z",
-   "game": "Mercyhurst vs Robert Morris",
-   "key": "kalshi|KXNCAAFGAME-26OCT24MHURMU|ml|1",
-   "lead_min": 686,
+   "first_seen_utc": "2026-10-24T06:26:21Z",
+   "game": "California vs SMU: Total Points",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFTOTAL-26OCT24CALSMU-56\"}",
+   "lead_min": 558,
    "league": "NCAAF",
-   "line": null,
-   "market": "moneyline",
-   "new_money": 28738,
+   "line": 55.5,
+   "market": "total",
+   "new_money": 36634,
    "paper_only": false,
-   "price": 0.67,
-   "price_american": -203,
-   "price_rule": "ml_edge_fail",
-   "price_when_first_seen": 0.67,
-   "prices_by_book": {},
+   "price": 0.49,
+   "price_american": 104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.49,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 55.5,
+     "price": -105
+    },
+    "betonlineag": {
+     "point": 55.0,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 55.5,
+     "price": 104
+    },
+    "betrivers": {
+     "point": 55.5,
+     "price": -112
+    },
+    "betus": {
+     "point": 55.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 55.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 55.5,
+     "price": -105
+    },
+    "fanatics": {
+     "point": 55.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 55.5,
+     "price": -105
+    },
+    "kalshi": {
+     "point": 55.5,
+     "price": 104
+    },
+    "lowvig": {
+     "point": 55.0,
+     "price": -108
+    },
+    "mybookieag": {
+     "point": 55.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 55.5,
+     "price": 102
+    },
+    "polymarket": {
+     "point": 55.5,
+     "price": 104
+    },
+    "prophetx": {
+     "point": 59.5,
+     "price": -118
+    },
+    "williamhill_us": {
+     "point": 55.5,
+     "price": -105
+    }
+   },
    "pulled": false,
    "ref": {
     "kalshi_side": "yes",
-    "market_ticker": "KXNCAAFGAME-26OCT24MHURMU-RMU"
+    "market_ticker": "KXNCAAFTOTAL-26OCT24CALSMU-56"
    },
    "result": null,
    "rule_met": true,
@@ -210,13 +269,93 @@
    "second_book_fresh": false,
    "sharp_agree": [],
    "sharp_oppose": [],
-   "side": "Robert Morris",
-   "side_label": "Robert Morris",
+   "side": "OVER",
+   "side_label": "Over 55.5 points",
    "start_source": "prophetx",
-   "start_utc": "2026-10-24T18:00:00Z",
+   "start_utc": "2026-10-24T16:00:00Z",
    "teams": [
-    "Mercyhurst",
-    "Robert Morris"
+    "California",
+    "SMU"
+   ],
+   "top25": true,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-24T06:41:59Z",
+   "base_depth": 169865,
+   "best_price": 0.575,
+   "best_price_american": -135,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.59,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 16,
+   "date": "2026-10-24",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -1265,
+     "new_this_side": 25418,
+     "other_side": 46038,
+     "other_side_all_levels": 70728,
+     "ratio": 3.3,
+     "this_side": 151991,
+     "this_side_all_levels": 196882
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "DART (0)",
+     "price": 0.575,
+     "this_side": 26407
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Dartmouth",
+     "price": 0.5798,
+     "this_side": 1387
+    }
+   },
+   "first_seen_utc": "2026-10-24T06:26:21Z",
+   "game": "Dartmouth vs Columbia",
+   "key": "kalshi|KXNCAAFGAME-26OCT24DARTCLMB|ml|0",
+   "lead_min": 648,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 25418,
+   "paper_only": false,
+   "price": 0.59,
+   "price_american": -144,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.59,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26OCT24DARTCLMB-DART"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Dartmouth",
+   "side_label": "Dartmouth",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-24T17:30:00Z",
+   "teams": [
+    "Dartmouth",
+    "Columbia"
    ],
    "top25": false,
    "units_flat": null
@@ -918,7 +1057,8 @@
      "price": -118
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-24T06:41:59Z",
    "ref": {
     "market_id": "01a142e4-26e2-7e33-b666-81933669251f",
     "outcome_id": "01a142e4-26e2-7e33-b666-81a5fc7fef89"
@@ -11071,7 +11211,7 @@
    "rule_met": false,
    "second_book": "no_match",
    "second_book_fresh": false,
-   "settled_utc": "2026-10-24T06:17:47Z",
+   "settled_utc": "2026-10-24T06:10:09Z",
    "sharp_agree": [
     "NC State Wolfpack -7 (-124)"
    ],
@@ -11237,8 +11377,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": 3.0,
+   "close_price": 0.49,
+   "clv_cents": 2.0,
    "confirmed_after_min": 10,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -17175,8 +17315,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.66,
-   "clv_cents": 0.0,
+   "close_price": 0.67,
+   "clv_cents": 1.0,
    "confirmed_after_min": 18,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -19605,7 +19745,7 @@
    "rule_met": false,
    "second_book": "no_match",
    "second_book_fresh": false,
-   "settled_utc": "2026-10-24T06:17:47Z",
+   "settled_utc": "2026-10-24T06:10:09Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -20757,7 +20897,7 @@
    "rule_met": false,
    "second_book": "no_match",
    "second_book_fresh": false,
-   "settled_utc": "2026-10-24T06:17:47Z",
+   "settled_utc": "2026-10-24T06:10:09Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "NC St.",
