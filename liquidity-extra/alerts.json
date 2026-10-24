@@ -1,6 +1,72 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-24T11:30:16Z",
+   "base_depth": 92176,
+   "best_price": 0.705,
+   "best_price_american": -239,
+   "best_price_book": "kalshi",
+   "bid_improved": true,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.69,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-24",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -52448,
+     "new_this_side": 32554,
+     "other_side": 51026,
+     "other_side_all_levels": 100119,
+     "ratio": 2.9,
+     "this_side": 149451,
+     "this_side_all_levels": 196956
+    }
+   },
+   "first_seen_utc": "2026-10-24T11:20:15Z",
+   "game": "Okamura vs Ishii",
+   "key": "kalshi|KXWTAMATCH-26OCT24OKAISH|ml|1",
+   "lead_min": 45,
+   "league": "TENNIS",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 32554,
+   "paper_only": true,
+   "price": 0.69,
+   "price_american": -223,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.64,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXWTAMATCH-26OCT24OKAISH-ISH"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "no_match",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Ishii",
+   "side_label": "Ishii",
+   "start_source": "kalshi",
+   "start_utc": "2026-10-24T12:15:00Z",
+   "teams": [
+    "Okamura",
+    "Ishii"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-24T10:40:17Z",
    "base_depth": 83938,
    "best_price": 0.705,
@@ -52,10 +118,11 @@
     "kalshi_side": "yes",
     "market_ticker": "KXATPMATCH-26OCT24FEACAR-FEA"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": "no_match",
    "second_book_fresh": false,
+   "settled_utc": "2026-10-24T11:30:16Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Fearnley",
@@ -68,7 +135,7 @@
     "Carreno Busta"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.42
   },
   {
    "alerted_utc": "2026-10-24T10:18:26Z",
@@ -160,8 +227,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.84,
-   "clv_cents": 19.0,
+   "close_price": null,
+   "clv_cents": null,
    "confirmed_after_min": 10,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -413,7 +480,8 @@
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.73,
    "prices_by_book": {},
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-24T11:30:16Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXATPMATCH-26OCT24SCHDRO-DRO"
@@ -528,8 +596,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.39,
-   "clv_cents": -32.0,
+   "close_price": 0.57,
+   "clv_cents": -14.0,
    "confirmed_after_min": 10,
    "date": "2026-10-24",
    "depth_by_book": {
