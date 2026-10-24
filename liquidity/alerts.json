@@ -1,6 +1,86 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-24T07:00:17Z",
+   "base_depth": 170324,
+   "best_price": 0.575,
+   "best_price_american": -135,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.59,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-24",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 4112,
+     "new_this_side": 25657,
+     "other_side": 42740,
+     "other_side_all_levels": 66938,
+     "ratio": 3.5,
+     "this_side": 149191,
+     "this_side_all_levels": 194165
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "DART (0)",
+     "price": 0.575,
+     "this_side": 26407
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Dartmouth",
+     "price": 0.5798,
+     "this_side": 1387
+    }
+   },
+   "first_seen_utc": "2026-10-24T06:50:26Z",
+   "game": "Dartmouth vs Columbia",
+   "key": "kalshi|KXNCAAFGAME-26OCT24DARTCLMB|ml|0",
+   "lead_min": 630,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 25657,
+   "paper_only": false,
+   "price": 0.59,
+   "price_american": -144,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.59,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26OCT24DARTCLMB-DART"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Dartmouth",
+   "side_label": "Dartmouth",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-24T17:30:00Z",
+   "teams": [
+    "Dartmouth",
+    "Columbia"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-24T06:50:26Z",
    "base_depth": 133589,
    "best_price": 0.495,
@@ -967,8 +1047,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": 0.0,
+   "close_price": 0.525,
+   "clv_cents": -0.5,
    "confirmed_after_min": 18,
    "date": "2026-10-24",
    "depth_by_book": {
