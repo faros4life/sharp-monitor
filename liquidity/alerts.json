@@ -1,7 +1,7 @@
 {
  "alerts": [
   {
-   "alerted_utc": "2026-10-24T02:10:09Z",
+   "alerted_utc": "2026-10-24T02:18:17Z",
    "base_depth": 286871,
    "best_price": 0.51,
    "best_price_american": -104,
@@ -17,17 +17,17 @@
    ],
    "close_price": 0.51,
    "clv_cents": 0.0,
-   "confirmed_after_min": 8,
+   "confirmed_after_min": 16,
    "date": "2026-10-24",
    "depth_by_book": {
     "kalshi": {
      "new_other_side": 4722,
      "new_this_side": 51825,
-     "other_side": 154598,
-     "other_side_all_levels": 209500,
+     "other_side": 154884,
+     "other_side_all_levels": 209789,
      "ratio": 1.6,
-     "this_side": 243295,
-     "this_side_all_levels": 338946
+     "this_side": 243291,
+     "this_side_all_levels": 338950
     },
     "novig": {
      "heavier_side": false,
@@ -39,13 +39,13 @@
      "heavier_side": true,
      "label": "over 48.5 (48.5)",
      "price": 0.5215,
-     "this_side": 1728
+     "this_side": 1750
     }
    },
    "first_seen_utc": "2026-10-24T02:02:06Z",
    "game": "Pittsburgh vs Miami (FL): Total Points",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFTOTAL-26OCT24PITTMIA-49\"}",
-   "lead_min": 830,
+   "lead_min": 822,
    "league": "NCAAF",
    "line": 48.5,
    "market": "total",
@@ -110,7 +110,7 @@
     },
     "prophetx": {
      "point": 49.0,
-     "price": -102
+     "price": -105
     },
     "williamhill_us": {
      "point": 48.5,
@@ -139,6 +139,120 @@
     "Miami"
    ],
    "top25": true,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-24T02:18:17Z",
+   "base_depth": 91834,
+   "best_price": 0.6267,
+   "best_price_american": -168,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.61,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 16,
+   "date": "2026-10-23",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 54090,
+     "new_this_side": 325518,
+     "other_side": 107604,
+     "other_side_all_levels": 274767,
+     "ratio": 1.6,
+     "this_side": 168178,
+     "this_side_all_levels": 431258
+    }
+   },
+   "first_seen_utc": "2026-10-24T02:02:06Z",
+   "game": "Air Force vs Wyoming",
+   "key": "kalshi|KXNCAAFGAME-26OCT23AFAWYO|ml|1",
+   "lead_min": 102,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 325518,
+   "paper_only": false,
+   "price": 0.61,
+   "price_american": -156,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.63,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -285
+    },
+    "bovada": {
+     "point": null,
+     "price": -260
+    },
+    "draftkings": {
+     "point": null,
+     "price": -475
+    },
+    "fanatics": {
+     "point": null,
+     "price": -450
+    },
+    "fanduel": {
+     "point": null,
+     "price": -500
+    },
+    "kalshi": {
+     "point": null,
+     "price": -426
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -200
+    },
+    "novig": {
+     "point": null,
+     "price": -426
+    },
+    "polymarket": {
+     "point": null,
+     "price": -426
+    },
+    "prophetx": {
+     "point": null,
+     "price": -460
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -480
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26OCT23AFAWYO-WYO"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "no_match",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [
+    "Air Force Falcons -6.5 (-108)",
+    "Air Force Falcons -5.5 (-120)"
+   ],
+   "side": "Wyoming",
+   "side_label": "Wyoming",
+   "start_source": "kalshi",
+   "start_utc": "2026-10-24T04:00:00Z",
+   "teams": [
+    "Air Force",
+    "Wyoming"
+   ],
+   "top25": false,
    "units_flat": null
   },
   {
@@ -187,6 +301,8 @@
    "new_money": 41022,
    "paper_only": false,
    "price": 0.81,
+   "price_after_15m": 0.8228,
+   "price_after_15m_book": "prophetx",
    "price_american": -426,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.81,
@@ -247,6 +363,7 @@
    "side_label": "Cavaliers",
    "start_source": "polymarket",
    "start_utc": "2026-10-24T23:30:00Z",
+   "still_actionable": false,
    "teams": [
     "Nets",
     "Cavaliers"
@@ -2112,8 +2229,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.23,
-   "clv_cents": -46.0,
+   "close_price": 0.39,
+   "clv_cents": -30.0,
    "confirmed_after_min": 19,
    "date": "2026-10-23",
    "depth_by_book": {
@@ -2258,8 +2375,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.49,
-   "clv_cents": -1.0,
+   "close_price": 0.48,
+   "clv_cents": -2.0,
    "confirmed_after_min": 21,
    "date": "2026-10-23",
    "depth_by_book": {
@@ -2410,8 +2527,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.25,
-   "clv_cents": -38.0,
+   "close_price": 0.21,
+   "clv_cents": -42.0,
    "confirmed_after_min": 19,
    "date": "2026-10-23",
    "depth_by_book": {
@@ -2556,8 +2673,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.25,
-   "clv_cents": -25.0,
+   "close_price": 0.31,
+   "clv_cents": -19.0,
    "confirmed_after_min": 19,
    "date": "2026-10-23",
    "depth_by_book": {
@@ -3013,8 +3130,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.4,
-   "clv_cents": -11.0,
+   "close_price": 0.48,
+   "clv_cents": -3.0,
    "confirmed_after_min": 19,
    "date": "2026-10-23",
    "depth_by_book": {
@@ -3471,8 +3588,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": 1.0,
+   "close_price": 0.61,
+   "clv_cents": 9.0,
    "confirmed_after_min": 18,
    "date": "2026-10-23",
    "depth_by_book": {
@@ -4365,7 +4482,8 @@
      "price": -110
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-24T02:18:17Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNBATOTAL-26OCT23MEMGSW-238"
@@ -4869,8 +4987,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.49,
-   "clv_cents": 0.0,
+   "close_price": 0.5,
+   "clv_cents": 1.0,
    "confirmed_after_min": 20,
    "date": "2026-10-23",
    "depth_by_book": {
@@ -5641,8 +5759,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.66,
-   "clv_cents": 16.0,
+   "close_price": 0.54,
+   "clv_cents": 4.0,
    "confirmed_after_min": 19,
    "date": "2026-10-23",
    "depth_by_book": {
@@ -6919,6 +7037,7 @@
    },
    "first_seen_utc": "2026-10-23T19:04:17Z",
    "game": "Duke vs Virginia: Total Points",
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFTOTAL-26OCT23DUKEUVA-48\"}",
    "lead_min": 215,
    "league": "NCAAF",
@@ -7004,10 +7123,11 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFTOTAL-26OCT23DUKEUVA-48"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": "none_10k",
    "second_book_fresh": false,
+   "settled_utc": "2026-10-24T02:18:17Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -7020,7 +7140,7 @@
     "Virginia"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-23T19:04:17Z",
@@ -10283,8 +10403,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.61,
-   "clv_cents": 12.0,
+   "close_price": 0.63,
+   "clv_cents": 14.0,
    "confirmed_after_min": 10,
    "date": "2026-10-23",
    "depth_by_book": {
@@ -10582,8 +10702,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.76,
-   "clv_cents": 25.0,
+   "close_price": 0.7,
+   "clv_cents": 19.0,
    "confirmed_after_min": 16,
    "date": "2026-10-23",
    "depth_by_book": {
@@ -11169,8 +11289,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 1.0,
+   "close_price": 0.58,
+   "clv_cents": 7.0,
    "confirmed_after_min": 16,
    "date": "2026-10-23",
    "depth_by_book": {
@@ -11278,7 +11398,7 @@
     }
    },
    "pulled": true,
-   "pulled_utc": "2026-10-24T02:10:09Z",
+   "pulled_utc": "2026-10-24T02:18:17Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNBASPREAD-26OCT23PORSAC-POR11"
@@ -11838,8 +11958,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": -3.0,
+   "close_price": 0.48,
+   "clv_cents": -5.0,
    "confirmed_after_min": 19,
    "date": "2026-10-23",
    "depth_by_book": {
@@ -12138,8 +12258,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 1.0,
+   "close_price": 0.54,
+   "clv_cents": 3.0,
    "confirmed_after_min": 17,
    "date": "2026-10-23",
    "depth_by_book": {
@@ -12450,8 +12570,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.55,
-   "clv_cents": 2.0,
+   "close_price": 0.7,
+   "clv_cents": 17.0,
    "confirmed_after_min": 19,
    "date": "2026-10-23",
    "depth_by_book": {
@@ -12749,8 +12869,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.93,
-   "clv_cents": 32.0,
+   "close_price": 0.96,
+   "clv_cents": 35.0,
    "confirmed_after_min": 19,
    "date": "2026-10-23",
    "depth_by_book": {
@@ -13068,8 +13188,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.58,
-   "clv_cents": 5.0,
+   "close_price": 0.49,
+   "clv_cents": -4.0,
    "confirmed_after_min": 20,
    "date": "2026-10-23",
    "depth_by_book": {
@@ -13212,8 +13332,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.58,
-   "clv_cents": 7.0,
+   "close_price": 0.65,
+   "clv_cents": 14.0,
    "confirmed_after_min": 20,
    "date": "2026-10-23",
    "depth_by_book": {
@@ -13356,8 +13476,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.48,
-   "clv_cents": -3.0,
+   "close_price": 0.5,
+   "clv_cents": -1.0,
    "confirmed_after_min": 20,
    "date": "2026-10-23",
    "depth_by_book": {
@@ -14653,8 +14773,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": -1.0,
+   "close_price": 0.54,
+   "clv_cents": 2.0,
    "confirmed_after_min": 19,
    "date": "2026-10-23",
    "depth_by_book": {
@@ -15089,8 +15209,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": -1.0,
+   "close_price": 0.38,
+   "clv_cents": -14.0,
    "confirmed_after_min": 18,
    "date": "2026-10-23",
    "depth_by_book": {
@@ -15234,8 +15354,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.43,
-   "clv_cents": -8.0,
+   "close_price": 0.36,
+   "clv_cents": -15.0,
    "confirmed_after_min": 18,
    "date": "2026-10-23",
    "depth_by_book": {
@@ -15612,8 +15732,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.55,
-   "clv_cents": -6.0,
+   "close_price": 0.56,
+   "clv_cents": -5.0,
    "confirmed_after_min": 18,
    "date": "2026-10-23",
    "depth_by_book": {
@@ -15978,6 +16098,7 @@
    },
    "first_seen_utc": "2026-10-23T05:40:38Z",
    "game": "Duke vs Virginia: Spread",
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFSPREAD-26OCT23DUKEUVA-UVA3\"}",
    "lead_min": 1020,
    "league": "NCAAF",
@@ -16062,10 +16183,11 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFSPREAD-26OCT23DUKEUVA-UVA3"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": "no_match",
    "second_book_fresh": false,
+   "settled_utc": "2026-10-24T02:18:17Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Virginia",
@@ -16078,7 +16200,7 @@
     "Virginia"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-23T05:59:47Z",
@@ -16386,8 +16508,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.46,
-   "clv_cents": -6.0,
+   "close_price": 0.38,
+   "clv_cents": -14.0,
    "confirmed_after_min": 17,
    "date": "2026-10-23",
    "depth_by_book": {
@@ -17350,8 +17472,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.39,
-   "clv_cents": -12.0,
+   "close_price": 0.44,
+   "clv_cents": -7.0,
    "confirmed_after_min": 19,
    "date": "2026-10-23",
    "depth_by_book": {
@@ -17490,8 +17612,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.97,
-   "clv_cents": 46.0,
+   "close_price": null,
+   "clv_cents": null,
    "confirmed_after_min": 19,
    "date": "2026-10-23",
    "depth_by_book": {
@@ -17779,8 +17901,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": 2.0,
+   "close_price": 0.54,
+   "clv_cents": 3.0,
    "confirmed_after_min": 19,
    "date": "2026-10-23",
    "depth_by_book": {
@@ -17909,8 +18031,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.91,
-   "clv_cents": 36.0,
+   "close_price": 0.92,
+   "clv_cents": 37.0,
    "confirmed_after_min": 19,
    "date": "2026-10-23",
    "depth_by_book": {
@@ -18091,6 +18213,7 @@
    },
    "first_seen_utc": "2026-10-23T03:50:09Z",
    "game": "Duke vs Virginia: Total Points",
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFTOTAL-26OCT23DUKEUVA-48\"}",
    "lead_min": 1131,
    "league": "NCAAF",
@@ -18175,12 +18298,13 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFTOTAL-26OCT23DUKEUVA-48"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
+   "settled_utc": "2026-10-24T02:18:17Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -18193,7 +18317,7 @@
     "Virginia"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.92
   },
   {
    "alerted_utc": "2026-10-23T04:09:19Z",
@@ -18390,6 +18514,7 @@
    },
    "first_seen_utc": "2026-10-23T03:31:39Z",
    "game": "Duke @ Virginia",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a14d4e-d411-7412-a0d0-a90667787dd9\", \"outcome_id\": \"01a14d4e-d411-7412-a0d0-a92c08d62f0e\"}",
    "lead_min": 1160,
    "league": "NCAAF",
@@ -18474,12 +18599,13 @@
     "market_id": "01a14d4e-d411-7412-a0d0-a90667787dd9",
     "outcome_id": "01a14d4e-d411-7412-a0d0-a92c08d62f0e"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "kalshi"
    ],
    "second_book_fresh": true,
+   "settled_utc": "2026-10-24T02:18:17Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -18492,7 +18618,7 @@
     "Virginia"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.92
   },
   {
    "alerted_utc": "2026-10-23T03:40:10Z",
@@ -19323,8 +19449,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.45,
-   "clv_cents": -1.0,
+   "close_price": 0.31,
+   "clv_cents": -15.0,
    "confirmed_after_min": 10,
    "date": "2026-10-23",
    "depth_by_book": {
@@ -19478,8 +19604,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.61,
-   "clv_cents": 8.0,
+   "close_price": 0.51,
+   "clv_cents": -2.0,
    "confirmed_after_min": 10,
    "date": "2026-10-23",
    "depth_by_book": {
@@ -19726,8 +19852,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.61,
-   "clv_cents": 2.0,
+   "close_price": 0.59,
+   "clv_cents": 0.0,
    "confirmed_after_min": 6,
    "date": "2026-10-23",
    "depth_by_book": {
@@ -19839,7 +19965,8 @@
      "price": -150
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-24T02:18:17Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNBAGAME-26OCT23MEMGSW-GSW"
@@ -19949,8 +20076,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.1,
-   "clv_cents": -36.0,
+   "close_price": 0.09,
+   "clv_cents": -37.0,
    "confirmed_after_min": 5,
    "date": "2026-10-23",
    "depth_by_book": {
@@ -24054,8 +24181,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.47,
-   "clv_cents": -20.0,
+   "close_price": 0.4,
+   "clv_cents": -27.0,
    "confirmed_after_min": 14,
    "date": "2026-10-23",
    "depth_by_book": {
@@ -25104,8 +25231,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": -14.0,
+   "close_price": 0.54,
+   "clv_cents": -13.0,
    "confirmed_after_min": 13,
    "date": "2026-10-23",
    "depth_by_book": {
@@ -32813,6 +32940,7 @@
    },
    "first_seen_utc": "2026-10-22T15:50:11Z",
    "game": "Duke vs Virginia",
+   "graded_by": "espn",
    "key": "kalshi|KXNCAAFGAME-26OCT23DUKEUVA|ml|1",
    "lead_min": 1860,
    "league": "NCAAF",
@@ -32893,10 +33021,11 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26OCT23DUKEUVA-UVA"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": "none_10k",
    "second_book_fresh": false,
+   "settled_utc": "2026-10-24T02:18:17Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Virginia",
@@ -32909,7 +33038,7 @@
     "Virginia"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-22T15:50:11Z",
@@ -34576,8 +34705,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.8,
-   "clv_cents": 7.0,
+   "close_price": 0.72,
+   "clv_cents": -1.0,
    "confirmed_after_min": 9,
    "date": "2026-10-23",
    "depth_by_book": {
