@@ -1,6 +1,157 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-24T16:20:15Z",
+   "base_depth": 429005,
+   "best_price": 0.505,
+   "best_price_american": -102,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-24",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 33287,
+     "new_this_side": 120737,
+     "other_side": 392173,
+     "other_side_all_levels": 443427,
+     "ratio": 1.3,
+     "this_side": 497863,
+     "this_side_all_levels": 549739
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "Under 6.5 (6.5)",
+     "price": 0.505,
+     "this_side": 25269
+    },
+    "polymarket": {
+     "heavier_side": false,
+     "label": "Under (6.5)",
+     "price": 0.51,
+     "this_side": 27146
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "under 6.5 (6.5)",
+     "price": 0.505,
+     "this_side": 10329
+    }
+   },
+   "first_seen_utc": "2026-10-24T16:10:13Z",
+   "game": "Tampa Bay vs Milwaukee: Total Runs",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXMLBTOTAL-26OCT242000TBMIL-7\"}",
+   "lead_min": 460,
+   "league": "MLB",
+   "line": 6.5,
+   "market": "total",
+   "new_money": 120737,
+   "paper_only": false,
+   "price": 0.5,
+   "price_american": -100,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.5,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 6.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 6.5,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 6.5,
+     "price": -101
+    },
+    "betrivers": {
+     "point": 6.5,
+     "price": -120
+    },
+    "betus": {
+     "point": 6.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 6.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 6.5,
+     "price": -110
+    },
+    "fanatics": {
+     "point": 6.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 6.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": 6.5,
+     "price": 100
+    },
+    "lowvig": {
+     "point": 6.5,
+     "price": -107
+    },
+    "mybookieag": {
+     "point": 6.5,
+     "price": -112
+    },
+    "novig": {
+     "point": 6.5,
+     "price": -102
+    },
+    "polymarket": {
+     "point": 6.5,
+     "price": -104
+    },
+    "prophetx": {
+     "point": 6.5,
+     "price": -102
+    },
+    "williamhill_us": {
+     "point": 6.5,
+     "price": -106
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXMLBTOTAL-26OCT242000TBMIL-7"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "prophetx"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "NOT Over 6.5 runs scored",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-25T00:00:00Z",
+   "teams": [
+    "Tampa Bay",
+    "Milwaukee"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-24T16:10:13Z",
    "base_depth": 17918,
    "best_price": 0.795,
@@ -224,8 +375,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.55,
-   "clv_cents": -6.0,
+   "close_price": 0.01,
+   "clv_cents": -60.0,
    "confirmed_after_min": 10,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -814,8 +965,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.61,
-   "clv_cents": 4.0,
+   "close_price": 0.62,
+   "clv_cents": 5.0,
    "confirmed_after_min": 10,
    "date": "2026-10-24",
    "depth_by_book": {

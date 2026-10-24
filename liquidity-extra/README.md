@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Oct 24, 12:10 PM ET. This run: 1 new, 0 not confirmed, 3 pending. Open alerts: 9.
+Updated Sat Oct 24, 12:20 PM ET. This run: 1 new, 1 not confirmed, 1 pending. Open alerts: 10.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -8,17 +8,18 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Oct 24 12:20PM | MLB | Tampa Bay vs Milwaukee: Total Runs | total: NOT Over 6.5 runs scored | kalshi | $121k | -100 | ✅ prophetx |  | +0.0c |  | pending |
 | Oct 24 12:10PM | TENNIS | Medvedev vs Basilashvili | moneyline: Medvedev | kalshi | $47k | -376 |  |  | +0.0c |  | pending |
 | Oct 24 10:10AM | TENNIS | Molcan vs Medjedovic | moneyline: Molcan | kalshi | $70k | -488 |  |  | +0.0c |  | W |
 | Oct 24 8:19AM | TENNIS | Vallejo vs Sonego | moneyline: Sonego | kalshi | $67k | -426 |  |  | -18.0c |  | W |
-| Oct 24 8:10AM | TENNIS | Cerundolo vs Griekspoor | moneyline: Cerundolo | kalshi | $40k | -156 | ✅ novig |  | -6.0c | yes | pending |
+| Oct 24 8:10AM | TENNIS | Cerundolo vs Griekspoor | moneyline: Cerundolo | kalshi | $40k | -156 | ✅ novig |  | -60.0c | yes | pending |
 | Oct 24 7:50AM | MLB | Tampa Bay Rays vs. Milwaukee Brewers | total: Over (6.5) | polymarket | $66k | -100 | ✅ kalshi,novig |  | +0.0c |  | pending |
 | Oct 24 7:30AM | TENNIS | Okamura vs Ishii | moneyline: Ishii | kalshi | $33k | -223 |  |  | +27.0c |  | W |
 | Oct 24 6:40AM | TENNIS | Fearnley vs Carreno Busta | moneyline: Fearnley | kalshi | $68k | -223 |  |  |  | yes | W |
 | Oct 24 6:18AM | TENNIS | Marozsan vs Sorger | moneyline: Marozsan | kalshi | $29k | -525 |  |  | -20.0c | yes | pending |
 | Oct 24 6:10AM | TENNIS | Rybakina vs Shnaider | moneyline: Rybakina | kalshi | $476k | -186 |  |  |  |  | W |
 | Oct 24 5:30AM | TENNIS | Giron vs Hanfmann | moneyline: Hanfmann | kalshi | $26k | -567 |  |  | +4.0c |  | W |
-| Oct 24 5:00AM | TENNIS | Tirante vs Mannarino | moneyline: Tirante | kalshi | $31k | -133 | ✅ novig |  | +4.0c |  | pending |
+| Oct 24 5:00AM | TENNIS | Tirante vs Mannarino | moneyline: Tirante | kalshi | $31k | -133 | ✅ novig |  | +5.0c |  | pending |
 | Oct 24 4:40AM | TENNIS | Schwaerzler vs Droguet | moneyline: Droguet | kalshi | $26k | -270 |  |  | -6.0c | yes | W |
 | Oct 24 4:40AM | TENNIS | Paul vs Fritz | moneyline: Fritz | kalshi | $38k | -170 | ✅ novig |  | +7.0c | yes | W |
 | Oct 24 4:40AM | TENNIS | Basilashvili vs Tsitsipas | moneyline: Tsitsipas | kalshi | $43k | -245 | ✅ novig |  | -25.0c | yes | L |
