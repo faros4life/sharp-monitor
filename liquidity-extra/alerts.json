@@ -1,6 +1,152 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-24T21:20:14Z",
+   "base_depth": 26355,
+   "best_price": 0.67,
+   "best_price_american": -203,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.67,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 9,
+   "date": "2026-10-24",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "NOT Tampa Bay wins by over 1.5 runs",
+     "price": 0.67,
+     "this_side": 841664
+    },
+    "novig": {
+     "new_other_side": 7511,
+     "new_this_side": 31273,
+     "other_side": 25842,
+     "other_side_all_levels": 25843,
+     "ratio": 2.3,
+     "this_side": 59205,
+     "this_side_all_levels": 59217
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Milwaukee Brewers (+1.5)",
+     "price": 0.67,
+     "this_side": 132551
+    }
+   },
+   "first_seen_utc": "2026-10-24T21:11:07Z",
+   "game": "Tampa Bay Rays @ Milwaukee Brewers",
+   "key": "novig|{\"market_id\": \"01a16bf3-7b1b-7b51-a360-f69e491e3b99\", \"outcome_id\": \"01a16bf3-7b1b-7b51-a360-f6a9f6b9e963\"}",
+   "lead_min": 160,
+   "league": "MLB",
+   "line": 1.5,
+   "market": "spread",
+   "new_money": 31273,
+   "paper_only": false,
+   "price": 0.67,
+   "price_american": -203,
+   "price_rule": "fails_cap",
+   "price_when_first_seen": 0.67,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -1.5,
+     "price": 175
+    },
+    "betonlineag": {
+     "point": -1.5,
+     "price": 187
+    },
+    "betopenly": {
+     "point": 1.5,
+     "price": -198
+    },
+    "betrivers": {
+     "point": 1.5,
+     "price": -220
+    },
+    "betus": {
+     "point": -1.5,
+     "price": 188
+    },
+    "bovada": {
+     "point": -1.5,
+     "price": 190
+    },
+    "draftkings": {
+     "point": 1.5,
+     "price": -224
+    },
+    "fanatics": {
+     "point": 1.5,
+     "price": -220
+    },
+    "fanduel": {
+     "point": 1.5,
+     "price": -240
+    },
+    "kalshi": {
+     "point": 1.5,
+     "price": -203
+    },
+    "lowvig": {
+     "point": -1.5,
+     "price": 190
+    },
+    "mybookieag": {
+     "point": -1.5,
+     "price": 191
+    },
+    "novig": {
+     "point": 1.5,
+     "price": -203
+    },
+    "polymarket": {
+     "point": 1.5,
+     "price": -203
+    },
+    "prophetx": {
+     "point": -1.0,
+     "price": 142
+    },
+    "williamhill_us": {
+     "point": 1.5,
+     "price": -225
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a16bf3-7b1b-7b51-a360-f69e491e3b99",
+    "outcome_id": "01a16bf3-7b1b-7b51-a360-f6a9f6b9e963"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi",
+    "polymarket"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Milwaukee Brewers",
+   "side_label": "MIL +1.5 (1.5)",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-25T00:00:00Z",
+   "teams": [
+    "Tampa Bay Rays",
+    "Milwaukee Brewers"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-24T20:48:35Z",
    "base_depth": 82570,
    "best_price": 0.475,
