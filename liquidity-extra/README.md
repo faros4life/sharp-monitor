@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Oct 24, 7:00 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 12.
+Updated Sat Oct 24, 7:05 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 12.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -8,9 +8,9 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Oct 24 7:00PM | TENNIS | Rybakina vs Fernandez | moneyline: Rybakina | kalshi | $40k | -317 | ✅ novig |  | +0.0c |  | pending |
+| Oct 24 7:00PM | TENNIS | Rybakina vs Fernandez | moneyline: Rybakina | kalshi | $40k | -317 | ✅ novig |  | +1.0c |  | pending |
 | Oct 24 5:20PM | MLB | Tampa Bay Rays @ Milwaukee Brewers | spread: MIL +1.5 (1.5) | novig | $31k | -203 | ✅ kalshi,polymarket |  | -0.5c |  | pending |
-| Oct 24 4:48PM | MLB | Tampa Bay Rays @ Milwaukee Brewers | moneyline: TB (0) | novig | $68k | +111 | ✅ kalshi,prophetx |  | +0.0c |  | pending |
+| Oct 24 4:48PM | MLB | Tampa Bay Rays @ Milwaukee Brewers | moneyline: TB (0) | novig | $68k | +111 | ✅ kalshi,prophetx |  | +0.5c |  | pending |
 | Oct 24 4:16PM | MLB | Tampa Bay Rays vs. Milwaukee Brewers | moneyline: Milwaukee Brewers | polymarket | $79k | -113 | ✅ novig |  | +0.0c | yes | pending |
 | Oct 24 1:50PM | MLB | Tampa Bay Rays vs. Milwaukee Brewers | total: Under (6.5) | polymarket | $51k | -104 | ✅ kalshi,novig |  | +0.0c |  | pending |
 | Oct 24 1:20PM | MLB | Tampa Bay Rays vs. Milwaukee Brewers | spread: Milwaukee Brewers (+1.5) | polymarket | $25k | -203 | ✅ novig |  | +0.0c |  | pending |
