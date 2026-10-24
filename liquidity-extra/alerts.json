@@ -1,6 +1,72 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-24T03:40:13Z",
+   "base_depth": 48543,
+   "best_price": 0.7147,
+   "best_price_american": -251,
+   "best_price_book": "kalshi",
+   "bid_improved": true,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.7,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-23",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 47423,
+     "new_this_side": 198509,
+     "other_side": 53845,
+     "other_side_all_levels": 106261,
+     "ratio": 3.7,
+     "this_side": 200914,
+     "this_side_all_levels": 307083
+    }
+   },
+   "first_seen_utc": "2026-10-24T03:30:19Z",
+   "game": "Shibahara vs Parks",
+   "key": "kalshi|KXWTAMATCH-26OCT23SHIPAR|ml|0",
+   "lead_min": 50,
+   "league": "TENNIS",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 198509,
+   "paper_only": true,
+   "price": 0.7,
+   "price_american": -233,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.68,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXWTAMATCH-26OCT23SHIPAR-SHI"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "no_match",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Shibahara",
+   "side_label": "Shibahara",
+   "start_source": "kalshi",
+   "start_utc": "2026-10-24T04:30:00Z",
+   "teams": [
+    "Shibahara",
+    "Parks"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-24T02:00:20Z",
    "base_depth": 156789,
    "best_price": 0.6561,
@@ -15,8 +81,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.87,
-   "clv_cents": 23.0,
+   "close_price": null,
+   "clv_cents": null,
    "confirmed_after_min": 10,
    "date": "2026-10-23",
    "depth_by_book": {
@@ -228,8 +294,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.44,
-   "clv_cents": 3.0,
+   "close_price": 0.45,
+   "clv_cents": 4.0,
    "confirmed_after_min": 10,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -1187,7 +1253,7 @@
     "kalshi_side": "yes",
     "market_ticker": "KXMLBGAME-26OCT232000TBMIL-MIL"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig",
@@ -1195,6 +1261,7 @@
     "prophetx"
    ],
    "second_book_fresh": true,
+   "settled_utc": "2026-10-24T03:40:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Milwaukee",
@@ -1207,7 +1274,7 @@
     "Milwaukee"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.59
   },
   {
    "alerted_utc": "2026-10-23T19:43:20Z",
