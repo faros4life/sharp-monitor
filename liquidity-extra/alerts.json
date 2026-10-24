@@ -1,6 +1,80 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-24T09:00:19Z",
+   "base_depth": 24217,
+   "best_price": 0.57,
+   "best_price_american": -133,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.57,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-24",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 474,
+     "new_this_side": 31392,
+     "other_side": 10085,
+     "other_side_all_levels": 17180,
+     "ratio": 5.5,
+     "this_side": 55600,
+     "this_side_all_levels": 66255
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "T. Tirante (0)",
+     "price": 0.57,
+     "this_side": 14502
+    }
+   },
+   "first_seen_utc": "2026-10-24T08:50:15Z",
+   "game": "Tirante vs Mannarino",
+   "key": "kalshi|KXATPMATCH-26OCT24TIRMAN|ml|0",
+   "lead_min": 420,
+   "league": "TENNIS",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 31392,
+   "paper_only": true,
+   "price": 0.57,
+   "price_american": -133,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.57,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXATPMATCH-26OCT24TIRMAN-TIR"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Tirante",
+   "side_label": "Tirante",
+   "start_source": "novig",
+   "start_utc": "2026-10-24T16:00:00Z",
+   "teams": [
+    "Tirante",
+    "Mannarino"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-24T08:40:16Z",
    "base_depth": 38330,
    "best_price": 0.73,
@@ -46,6 +120,8 @@
    "new_money": 26440,
    "paper_only": true,
    "price": 0.73,
+   "price_after_15m": 0.73,
+   "price_after_15m_book": "novig",
    "price_american": -270,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.73,
@@ -65,6 +141,7 @@
    "side_label": "Droguet",
    "start_source": "novig",
    "start_utc": "2026-10-24T10:40:00Z",
+   "still_actionable": true,
    "teams": [
     "Schwaerzler",
     "Droguet"
@@ -118,6 +195,8 @@
    "new_money": 38062,
    "paper_only": true,
    "price": 0.63,
+   "price_after_15m": 0.62,
+   "price_after_15m_book": "novig",
    "price_american": -170,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.63,
@@ -139,6 +218,7 @@
    "side_label": "Fritz",
    "start_source": "novig",
    "start_utc": "2026-10-24T12:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Paul",
     "Fritz"
@@ -192,6 +272,8 @@
    "new_money": 43406,
    "paper_only": true,
    "price": 0.71,
+   "price_after_15m": 0.7,
+   "price_after_15m_book": "novig",
    "price_american": -245,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.71,
@@ -213,6 +295,7 @@
    "side_label": "Tsitsipas",
    "start_source": "novig",
    "start_utc": "2026-10-24T10:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Basilashvili",
     "Tsitsipas"
