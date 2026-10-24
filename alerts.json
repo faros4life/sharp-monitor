@@ -2,6 +2,31 @@
  "alerts": [
   {
    "beat_close": true,
+   "bet": "Over 219.5 (+100)",
+   "book": "Kalshi",
+   "clv": "+0.5 pts",
+   "confirm": "yes",
+   "confirmed_by": [
+    "Matchbook"
+   ],
+   "edge_pct": -1.0,
+   "final": null,
+   "game": "Golden State Warriors @ Phoenix Suns",
+   "grade": "A",
+   "late": false,
+   "minutes_before_start": 790,
+   "point": 219.5,
+   "price": 100,
+   "result": null,
+   "score": 80,
+   "sent_to_phone": true,
+   "sport": "NBA",
+   "start_utc": "2026-10-25T02:10:00Z",
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "beat_close": true,
    "bet": "Under 228.5 (-102)",
    "book": "Novig",
    "clv": "+0.5 pts",
@@ -54,6 +79,32 @@
   },
   {
    "beat_close": true,
+   "bet": "Chicago Bulls +1.5 (-115)",
+   "book": "Hard Rock",
+   "clv": "+2.5 pts",
+   "confirm": "yes",
+   "confirmed_by": [
+    "BetOnline",
+    "Matchbook"
+   ],
+   "edge_pct": 5.8,
+   "final": null,
+   "game": "Washington Wizards @ Chicago Bulls",
+   "grade": "A",
+   "late": false,
+   "minutes_before_start": 670,
+   "point": 1.5,
+   "price": -115,
+   "result": null,
+   "score": 78,
+   "sent_to_phone": true,
+   "sport": "NBA",
+   "start_utc": "2026-10-25T00:10:00Z",
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "beat_close": true,
    "bet": "Cleveland Cavaliers -10.5 (-104)",
    "book": "Polymarket",
    "clv": "+0.5 pts",
@@ -82,7 +133,7 @@
    "beat_close": true,
    "bet": "Under 231.5 (-108)",
    "book": "Kalshi",
-   "clv": "+2.5 pts",
+   "clv": "+3.5 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline",
@@ -516,10 +567,10 @@
    "units_flat": null
   },
   {
-   "beat_close": false,
+   "beat_close": true,
    "bet": "Over 48.5 (-104)",
    "book": "Novig",
-   "clv": "-0.5 pts",
+   "clv": "+0.5 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline",
@@ -567,10 +618,10 @@
    "units_flat": null
   },
   {
-   "beat_close": true,
+   "beat_close": false,
    "bet": "Under 49 (-113)",
    "book": "ProphetX",
-   "clv": "+1 pts",
+   "clv": "+0 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline",
@@ -6761,6 +6812,53 @@
   }
  ],
  "all_alerts": [
+  {
+   "alert_text": "Over 219.5 (+100) at Kalshi (also: Hard Rock, Novig, Polymarket)",
+   "bet": "Over 219.5 (+100)",
+   "bet_result": null,
+   "book": "Kalshi",
+   "confirmed_by": [
+    "Matchbook"
+   ],
+   "edge_pct": -1.0,
+   "final": null,
+   "game": "Golden State Warriors @ Phoenix Suns",
+   "grade": "A",
+   "late": false,
+   "minutes_before_start": 790,
+   "price": 100,
+   "pushed_to_phone": true,
+   "repeat": false,
+   "score": 80,
+   "sent_et": "2026-10-24 09:00",
+   "sport": "NBA",
+   "start_utc": "2026-10-25T02:10:00Z",
+   "why": "Pinnacle total moved 218.5 -> 220; bet only at 219.5 or better (confirmed by Matchbook)"
+  },
+  {
+   "alert_text": "Chicago Bulls +1.5 (-115) at Hard Rock",
+   "bet": "Chicago Bulls +1.5 (-115)",
+   "bet_result": null,
+   "book": "Hard Rock",
+   "confirmed_by": [
+    "BetOnline",
+    "Matchbook"
+   ],
+   "edge_pct": 5.8,
+   "final": null,
+   "game": "Washington Wizards @ Chicago Bulls",
+   "grade": "A",
+   "late": false,
+   "minutes_before_start": 670,
+   "price": -115,
+   "pushed_to_phone": true,
+   "repeat": false,
+   "score": 78,
+   "sent_et": "2026-10-24 09:00",
+   "sport": "NBA",
+   "start_utc": "2026-10-25T00:10:00Z",
+   "why": "Pinnacle moved +1.5 -> -1; bet only at -0.5 or better (confirmed by BetOnline, Matchbook)"
+  },
   {
    "alert_text": "Over 50 (-128) at ProphetX (also: Hard Rock, Novig, Kalshi, Polymarket)",
    "bet": "Over 50 (-128)",
