@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Oct 24, 7:01 AM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 75.
+Updated Sat Oct 24, 7:10 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 75.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -109,7 +109,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 23 1:00PM | NCAAF | Western Michigan vs Toledo: Spread | spread: NOT Toledo wins by over 2.5 points | kalshi | $57k | +113 | ✅ novig |  | +3.0c |  | pending |
 | Oct 23 12:50PM | NBA | Knicks vs. Celtics | moneyline: Celtics | polymarket | $229k | -127 | ✅ novig,prophetx | ❌ | +2.0c |  | W |
 | Oct 23 12:50PM | NBA | Knicks vs. Celtics | spread: Celtics (-2.5) | polymarket | $157k | -108 | ✅ novig | ❌ | +0.0c |  | W |
-| Oct 23 12:50PM | NCAAF | Oregon @ Illinois | spread: ORE -9.5 (9.5) | novig | $31k | -106 | ✅ prophetx |  | +0.5c | yes | pending |
+| Oct 23 12:50PM | NCAAF | Oregon @ Illinois | spread: ORE -9.5 (9.5) | novig | $31k | -106 | ✅ prophetx |  | +1.0c | yes | pending |
 | Oct 23 12:50PM | NBA | Minnesota vs Orlando: Spread | spread: NOT Orlando wins by over 1.5 points | kalshi | $58k | -108 | ✅ novig,polymarket | ❌ | +18.0c | yes | W |
 | Oct 23 12:50PM | NBA | Houston vs San Antonio: Spread | spread: NOT San Antonio wins by over 4.5 points | kalshi | $28k | +104 |  |  | +28.0c | yes | W |
 | Oct 23 12:50PM | NBA | Dallas vs Indiana: Spread | spread: NOT Indiana wins by over 7.5 points | kalshi | $25k | -108 | ✅ novig | ❌ | +2.0c | yes | W |
