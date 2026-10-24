@@ -1,6 +1,78 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-24T16:10:13Z",
+   "base_depth": 17918,
+   "best_price": 0.795,
+   "best_price_american": -388,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.79,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-25",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 12761,
+     "new_this_side": 47450,
+     "other_side": 16275,
+     "other_side_all_levels": 18561,
+     "ratio": 3.7,
+     "this_side": 60071,
+     "this_side_all_levels": 65139
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "D. Medvedev (0)",
+     "price": 0.795,
+     "this_side": 841
+    }
+   },
+   "first_seen_utc": "2026-10-24T16:00:32Z",
+   "game": "Medvedev vs Basilashvili",
+   "key": "kalshi|KXATPMATCH-26OCT25MEDBAS|ml|0",
+   "lead_min": 1070,
+   "league": "TENNIS",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 47450,
+   "paper_only": true,
+   "price": 0.79,
+   "price_american": -376,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.79,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXATPMATCH-26OCT25MEDBAS-MED"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "none_10k",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Medvedev",
+   "side_label": "Medvedev",
+   "start_source": "novig",
+   "start_utc": "2026-10-25T10:00:00Z",
+   "teams": [
+    "Medvedev",
+    "Basilashvili"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-24T14:10:15Z",
    "base_depth": 236075,
    "best_price": 0.8399,
@@ -152,8 +224,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.61,
-   "clv_cents": 0.0,
+   "close_price": 0.55,
+   "clv_cents": -6.0,
    "confirmed_after_min": 10,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -1358,8 +1430,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.68,
-   "clv_cents": 0.0,
+   "close_price": 0.67,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-24",
    "depth_by_book": {
