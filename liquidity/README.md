@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Oct 24, 1:00 AM ET. This run: 2 new, 0 not confirmed, 0 pending. Open alerts: 55.
+Updated Sat Oct 24, 1:08 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 55.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -46,7 +46,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 23 5:24PM | NCAAF | Louisiana @ Southern Mississippi | moneyline: UL (0) | novig | $29k | -355 |  |  | +0.0c |  | pending |
 | Oct 23 5:24PM | NCAAF | Old Dominion @ Louisiana Tech | moneyline: LT (0) | novig | $31k | -488 |  |  | +0.0c |  | pending |
 | Oct 23 5:24PM | NBA | Minnesota vs Orlando: Spread | spread: Orlando wins by over 1.5 points | kalshi | $146k | -104 | ✅ novig,polymarket | ✅ | -18.0c | yes | L |
-| Oct 23 5:24PM | NCAAF | West Virginia vs TCU: Spread | spread: NOT TCU wins by over 10.5 points | kalshi | $39k | -100 | ✅ novig |  | +0.0c |  | pending |
+| Oct 23 5:24PM | NCAAF | West Virginia vs TCU: Spread | spread: NOT TCU wins by over 10.5 points | kalshi | $39k | -100 | ✅ novig |  | +1.0c |  | pending |
 | Oct 23 5:24PM | NBA | Memphis vs Golden State: Total Points | total: NOT Over 237.5 points | kalshi | $71k | -108 | ✅ polymarket,prophetx | ❌ | -15.0c | yes | W |
 | Oct 23 5:04PM | NBA | Toronto vs Washington: Total Points | total: Over 237.5 points | kalshi | $81k | -100 | ✅ prophetx | ❌ | -26.0c | yes | L |
 | Oct 23 5:04PM | NBA | Toronto vs Washington: Spread | spread: Toronto wins by over 8.5 points | kalshi | $131k | -104 |  | ✅ | +13.0c | yes | W |
