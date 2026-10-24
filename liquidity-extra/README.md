@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Oct 24, 9:02 AM ET. This run: 0 new, 1 not confirmed, 0 pending. Open alerts: 12.
+Updated Sat Oct 24, 9:10 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 12.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -17,7 +17,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 24 6:10AM | TENNIS | Rybakina vs Shnaider | moneyline: Rybakina | kalshi | $476k | -186 |  |  |  |  | W |
 | Oct 24 5:30AM | TENNIS | Giron vs Hanfmann | moneyline: Hanfmann | kalshi | $26k | -567 |  |  | +4.0c |  | W |
 | Oct 24 5:00AM | TENNIS | Tirante vs Mannarino | moneyline: Tirante | kalshi | $31k | -133 | ✅ novig |  | +3.0c |  | pending |
-| Oct 24 4:40AM | TENNIS | Schwaerzler vs Droguet | moneyline: Droguet | kalshi | $26k | -270 |  |  | -30.0c | yes | pending |
+| Oct 24 4:40AM | TENNIS | Schwaerzler vs Droguet | moneyline: Droguet | kalshi | $26k | -270 |  |  | -6.0c | yes | pending |
 | Oct 24 4:40AM | TENNIS | Paul vs Fritz | moneyline: Fritz | kalshi | $38k | -170 | ✅ novig |  | +7.0c | yes | pending |
 | Oct 24 4:40AM | TENNIS | Basilashvili vs Tsitsipas | moneyline: Tsitsipas | kalshi | $43k | -245 | ✅ novig |  | -25.0c | yes | L |
 | Oct 24 3:50AM | TENNIS | Fernandez vs Bouzkova | moneyline: Bouzkova | kalshi | $90k | -156 |  |  | +0.0c |  | L |
