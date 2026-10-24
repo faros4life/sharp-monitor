@@ -1,10 +1,10 @@
 # Liquidity alerts (paper)
 
-Updated Sat Oct 24, 2:00 AM ET. This run: 0 new, 2 not confirmed, 0 pending. Open alerts: 58.
+Updated Sat Oct 24, 2:10 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 55.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 112-101 (-14.31u flat) | rule met: 80-68
+**Record:** 112-104 (-17.31u flat) | rule met: 80-68
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -84,7 +84,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 23 1:27PM | NCAAF | Baylor vs Kansas | moneyline: Kansas | kalshi | $165k | +122 |  |  | +3.0c |  | pending |
 | Oct 23 1:00PM | NBA | Bulls vs. Bucks | spread: Bucks (-1.5) | polymarket | $66k | -100 |  |  | +2.0c |  | L |
 | Oct 23 1:00PM | NCAAF | UMass vs UConn: Total Points | total: Over 52.5 points | kalshi | $29k | -108 |  | ✅ | -30.0c | yes | L |
-| Oct 23 1:00PM | NCAAF | NC St. vs Stanford: Spread | spread: NC St. wins by over 7.5 points | kalshi | $294k | -100 |  | ✅ | -12.0c | yes | pending |
+| Oct 23 1:00PM | NCAAF | NC St. vs Stanford: Spread | spread: NC St. wins by over 7.5 points | kalshi | $294k | -100 |  | ✅ | -12.0c | yes | L |
 | Oct 23 1:00PM | NCAAF | UMass vs UConn: Spread | spread: UConn wins by over 13.5 points | kalshi | $520k | -104 |  | ❌ | +29.0c | yes | W |
 | Oct 23 1:00PM | NCAAF | Western Michigan vs Toledo: Spread | spread: NOT Toledo wins by over 2.5 points | kalshi | $57k | +113 | ✅ novig |  | +3.0c |  | pending |
 | Oct 23 12:50PM | NBA | Knicks vs. Celtics | moneyline: Celtics | polymarket | $229k | -127 | ✅ novig,prophetx | ❌ | +2.0c |  | W |
@@ -146,7 +146,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 23 1:05AM | NCAAF | Air Force vs Wyoming: Total Points | total: NOT Over 45.5 points | kalshi | $44k | -104 |  |  | +7.0c | yes | W |
 | Oct 23 1:05AM | NBA | Detroit vs Miami | moneyline: Detroit | kalshi | $42k | -104 | ✅ novig,polymarket |  |  |  | W |
 | Oct 23 12:46AM | NBA | Chicago vs Milwaukee: Total Points | total: Over 238.5 points | kalshi | $26k | +104 | ✅ polymarket |  | +27.0c | yes | W |
-| Oct 23 12:28AM | NCAAF | NC St. vs Stanford: Total Points | total: NOT Over 55.5 points | kalshi | $141k | -104 |  |  | -19.0c | yes | pending |
+| Oct 23 12:28AM | NCAAF | NC St. vs Stanford: Total Points | total: NOT Over 55.5 points | kalshi | $141k | -104 |  |  | -19.0c | yes | L |
 | Oct 23 12:28AM | NHL | Tampa Bay vs Colorado | moneyline: Colorado | kalshi | $42k | -122 | ✅ novig,polymarket |  | +44.0c | yes | W |
 | Oct 23 12:09AM | NCAAF | Duke vs Virginia: Total Points | total: NOT Over 47.5 points | kalshi | $232k | -104 | ✅ novig |  | +21.0c | yes | W |
 | Oct 23 12:09AM | NBA | Minnesota vs Orlando | moneyline: Orlando | kalshi | $50k | +117 |  |  | -45.0c | yes | L |
@@ -154,7 +154,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 22 11:40PM | NCAAF | Army vs Tulsa: Total Points | total: NOT Over 53.5 points | kalshi | $26k | +104 |  |  | -26.0c | yes | L |
 | Oct 22 11:31PM | NCAAF | UMass vs UConn: Total Points | total: Over 50.5 points | kalshi | $77k | -104 |  |  | -11.0c | yes | W |
 | Oct 22 11:31PM | NBA | Minnesota vs Orlando: Total Points | total: NOT Over 235.5 points | kalshi | $31k | -113 | ✅ polymarket | ✅ | +15.0c | yes | W |
-| Oct 22 11:20PM | NCAAF | NC St. vs Stanford | moneyline: NC St. | kalshi | $144k | -245 |  |  | -1.0c | yes | pending |
+| Oct 22 11:20PM | NCAAF | NC St. vs Stanford | moneyline: NC St. | kalshi | $144k | -245 |  |  | -1.0c | yes | L |
 | Oct 22 11:00PM | NCAAF | UMass vs UConn: Total Points | total: NOT Over 50.5 points | kalshi | $26k | -104 |  |  | +10.0c | yes | L |
 | Oct 22 11:00PM | NCAAF | Air Force vs Wyoming: Spread | spread: NOT Air Force wins by over 5.5 points | kalshi | $49k | +104 |  |  | +19.0c | yes | W |
 | Oct 22 11:00PM | NBA | New Orleans vs Utah | moneyline: New Orleans | kalshi | $301k | +117 | ✅ novig,polymarket |  | -25.0c | yes | L |
