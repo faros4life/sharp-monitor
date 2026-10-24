@@ -1,6 +1,78 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-24T10:18:26Z",
+   "base_depth": 62369,
+   "best_price": 0.835,
+   "best_price_american": -506,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.84,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 8,
+   "date": "2026-10-24",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 8135,
+     "new_this_side": 29439,
+     "other_side": 12535,
+     "other_side_all_levels": 18201,
+     "ratio": 5.0,
+     "this_side": 62190,
+     "this_side_all_levels": 91667
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "F. Marozsan (0)",
+     "price": 0.835,
+     "this_side": 4444
+    }
+   },
+   "first_seen_utc": "2026-10-24T10:10:13Z",
+   "game": "Marozsan vs Sorger",
+   "key": "kalshi|KXATPMATCH-26OCT24MARSOR|ml|0",
+   "lead_min": 92,
+   "league": "TENNIS",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 29439,
+   "paper_only": true,
+   "price": 0.84,
+   "price_american": -525,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.84,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXATPMATCH-26OCT24MARSOR-MAR"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "none_10k",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Marozsan",
+   "side_label": "Marozsan",
+   "start_source": "novig",
+   "start_utc": "2026-10-24T11:50:00Z",
+   "teams": [
+    "Marozsan",
+    "Sorger"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-24T10:10:13Z",
    "base_depth": 304002,
    "best_price": 0.6659,
@@ -15,8 +87,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.65,
-   "clv_cents": 0.0,
+   "close_price": 0.74,
+   "clv_cents": 9.0,
    "confirmed_after_min": 10,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -81,8 +153,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.88,
-   "clv_cents": 3.0,
+   "close_price": 0.75,
+   "clv_cents": -10.0,
    "confirmed_after_min": 14,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -379,8 +451,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.72,
-   "clv_cents": 1.0,
+   "close_price": 0.47,
+   "clv_cents": -24.0,
    "confirmed_after_min": 10,
    "date": "2026-10-24",
    "depth_by_book": {
