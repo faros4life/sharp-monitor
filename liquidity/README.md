@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Oct 24, 9:03 AM ET. This run: 0 new, 0 not confirmed, 5 pending. Open alerts: 82.
+Updated Sat Oct 24, 9:12 AM ET. This run: 0 new, 2 not confirmed, 5 pending. Open alerts: 83.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -8,9 +8,10 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Oct 24 8:30AM | NBA | Pelicans vs. Nuggets | total: Over (237.5) | polymarket | $27k | -108 |  |  | +5.0c | yes | pending |
-| Oct 24 8:30AM | NCAAF | West Virginia @ TCU | moneyline: TCU (0) | novig | $30k | -344 |  |  | +0.0c |  | pending |
-| Oct 24 8:20AM | NBA | Bucks vs. 76ers | moneyline: 76ers | polymarket | $26k | -525 | ✅ prophetx |  | +0.0c |  | pending |
+| Oct 24 8:55AM | NBA | Warriors vs. Suns | total: Over (219.5) | polymarket | $49k | -108 |  |  | +4.0c | yes | pending |
+| Oct 24 8:55AM | NCAAF | LSU vs Auburn: Total Points | total: Over 51.5 points | kalshi | $39k | -104 | ✅ novig | ✅ | +0.0c |  | pending |
+| Oct 24 8:38AM | NCAAF | West Virginia @ TCU | moneyline: TCU (0) | novig | $30k | -335 |  |  | +0.5c |  | pending |
+| Oct 24 8:20AM | NBA | Bucks vs. 76ers | moneyline: 76ers | polymarket | $26k | -525 | ✅ prophetx |  | +1.0c |  | pending |
 | Oct 24 8:20AM | NHL | Ducks vs. Flyers | total: Under (5.5) | polymarket | $37k | +108 | ✅ kalshi,novig |  | +0.0c |  | pending |
 | Oct 24 8:20AM | NHL | Wild vs. Kraken | moneyline: Wild | polymarket | $35k | -150 | ✅ prophetx |  | +0.0c |  | pending |
 | Oct 24 8:20AM | NCAAF | Indiana vs Michigan: Spread | spread: NOT Indiana wins by over 7.5 points | kalshi | $381k | -108 | ✅ novig | ❌ | +0.0c | yes | pending |
@@ -207,4 +208,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 22 6:40PM | NHL | Detroit vs Vancouver | moneyline: Detroit | kalshi | $43k | -150 | ✅ novig,polymarket,prophetx |  | +38.0c | yes | W |
 | Oct 22 6:30PM | NHL | Jets vs. Stars | moneyline: Stars | polymarket | $64k | -178 | ✅ novig,prophetx |  | +1.0c |  | W |
 | Oct 22 6:30PM | NHL | Panthers vs. Penguins | moneyline: Penguins | polymarket | $101k | -104 | ✅ novig |  | +0.0c |  | W |
-| Oct 22 6:30PM | NHL | Winnipeg vs Dallas: Total Goals | total: Over 5.5 goals scored | kalshi | $177k | +104 | ✅ novig,prophetx |  | -13.0c | yes | L |
