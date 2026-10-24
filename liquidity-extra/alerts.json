@@ -1,6 +1,78 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-24T23:53:40Z",
+   "base_depth": 122912,
+   "best_price": 0.645,
+   "best_price_american": -182,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.64,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 3,
+   "date": "2026-10-25",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 2106,
+     "new_this_side": 39703,
+     "other_side": 41390,
+     "other_side_all_levels": 50175,
+     "ratio": 3.5,
+     "this_side": 145598,
+     "this_side_all_levels": 159407
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "T. Fritz (0)",
+     "price": 0.645,
+     "this_side": 7918
+    }
+   },
+   "first_seen_utc": "2026-10-24T23:50:17Z",
+   "game": "Musetti vs Fritz",
+   "key": "kalshi|KXATPMATCH-26OCT25MUSFRI|ml|1",
+   "lead_min": 816,
+   "league": "TENNIS",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 39703,
+   "paper_only": true,
+   "price": 0.64,
+   "price_american": -178,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.64,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXATPMATCH-26OCT25MUSFRI-FRI"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "none_10k",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Fritz",
+   "side_label": "Fritz",
+   "start_source": "novig",
+   "start_utc": "2026-10-25T13:30:00Z",
+   "teams": [
+    "Musetti",
+    "Fritz"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-24T23:31:47Z",
    "base_depth": 45269,
    "best_price": 0.47,
@@ -169,8 +241,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.67,
-   "clv_cents": 0.0,
+   "close_price": 0.665,
+   "clv_cents": -0.5,
    "confirmed_after_min": 9,
    "date": "2026-10-24",
    "depth_by_book": {
