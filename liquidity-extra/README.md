@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Oct 24, 11:30 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 8.
+Updated Sat Oct 24, 11:40 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 8.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,7 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Oct 24 10:10AM | TENNIS | Molcan vs Medjedovic | moneyline: Molcan | kalshi | $70k | -488 |  |  | +0.0c |  | W |
 | Oct 24 8:19AM | TENNIS | Vallejo vs Sonego | moneyline: Sonego | kalshi | $67k | -426 |  |  | -18.0c |  | W |
-| Oct 24 8:10AM | TENNIS | Cerundolo vs Griekspoor | moneyline: Cerundolo | kalshi | $40k | -156 | ✅ novig |  | +2.0c | yes | pending |
+| Oct 24 8:10AM | TENNIS | Cerundolo vs Griekspoor | moneyline: Cerundolo | kalshi | $40k | -156 | ✅ novig |  | +3.0c | yes | pending |
 | Oct 24 7:50AM | MLB | Tampa Bay Rays vs. Milwaukee Brewers | total: Over (6.5) | polymarket | $66k | -100 | ✅ kalshi,novig |  | +0.0c |  | pending |
 | Oct 24 7:30AM | TENNIS | Okamura vs Ishii | moneyline: Ishii | kalshi | $33k | -223 |  |  | +27.0c |  | W |
 | Oct 24 6:40AM | TENNIS | Fearnley vs Carreno Busta | moneyline: Fearnley | kalshi | $68k | -223 |  |  |  | yes | W |
