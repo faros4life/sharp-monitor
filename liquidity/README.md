@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Oct 24, 2:26 AM ET. This run: 0 new, 0 not confirmed, 3 pending. Open alerts: 55.
+Updated Sat Oct 24, 2:34 AM ET. This run: 2 new, 1 not confirmed, 1 pending. Open alerts: 57.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -8,6 +8,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Oct 24 2:34AM | NBA | Rockets vs. Hawks | moneyline: Hawks | polymarket | $38k | -113 |  |  | +0.0c |  | pending |
+| Oct 24 2:34AM | NCAAF | Mercyhurst vs Robert Morris | moneyline: Robert Morris | kalshi | $29k | -203 | ✅ novig |  | +0.0c |  | pending |
 | Oct 24 1:51AM | NBA | Spurs vs. Mavericks | moneyline: Spurs | polymarket | $28k | -456 |  |  | +2.0c |  | pending |
 | Oct 24 1:51AM | NCAAF | Campbell vs Maine | moneyline: Campbell | kalshi | $30k | -355 | ✅ novig |  | +1.0c | yes | pending |
 | Oct 24 1:33AM | NCAAF | Akron vs Kent St.: Spread | spread: NOT Kent St. wins by over 3.5 points | kalshi | $36k | -117 |  |  | +0.0c | yes | pending |
@@ -206,5 +208,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 22 4:50PM | NBA | Denver vs Oklahoma City: Spread | spread: NOT Oklahoma City wins by over 8.5 points | kalshi | $114k | -108 | ✅ polymarket | ❌ | +0.0c | yes | L |
 | Oct 22 4:20PM | NCAAF | UMass vs UConn: Spread | spread: UConn wins by over 14.5 points | kalshi | $35k | +104 |  |  | +32.0c | yes | W |
 | Oct 22 4:10PM | NCAAF | East Carolina vs Memphis: Total Points | total: Over 54.5 points | kalshi | $153k | -108 | ✅ novig | ✅ | +23.0c | yes | W |
-| Oct 22 4:10PM | NHL | Utah vs Seattle | moneyline: Utah | kalshi | $70k | -170 | ✅ novig,polymarket,prophetx |  | -44.0c | yes | L |
-| Oct 22 4:10PM | NHL | San Jose vs Ottawa | moneyline: Ottawa | kalshi | $104k | -122 | ✅ novig,polymarket,prophetx |  | -52.0c | yes | L |
