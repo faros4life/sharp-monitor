@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Oct 24, 7:40 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 13.
+Updated Sat Oct 24, 7:50 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 13.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -34,7 +34,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 24 3:50AM | TENNIS | Fernandez vs Bouzkova | moneyline: Bouzkova | kalshi | $90k | -156 |  |  | +0.0c |  | L |
 | Oct 24 3:00AM | TENNIS | Medvedev vs Bublik | moneyline: Medvedev | kalshi | $26k | -186 | ✅ novig |  | +32.0c | yes | W |
 | Oct 24 1:50AM | MLB | Tampa Bay Rays vs. Milwaukee Brewers | moneyline: Tampa Bay Rays | polymarket | $110k | +113 | ✅ kalshi |  | +1.0c |  | pending |
-| Oct 24 12:10AM | MLB | Tampa Bay vs Milwaukee: Spread | spread: NOT Milwaukee wins by over 1.5 runs | kalshi | $27k | -213 |  |  | +0.0c |  | pending |
+| Oct 24 12:10AM | MLB | Tampa Bay vs Milwaukee: Spread | spread: NOT Milwaukee wins by over 1.5 runs | kalshi | $27k | -213 |  |  | +1.0c |  | pending |
 | Oct 23 11:51PM | TENNIS | Iatcenko vs Shubladze | moneyline: Iatcenko | kalshi | $75k | -223 |  |  | +0.0c |  | W |
 | Oct 23 11:40PM | TENNIS | Shibahara vs Parks | moneyline: Shibahara | kalshi | $199k | -233 |  |  | +9.0c |  | L |
 | Oct 23 10:00PM | TENNIS | Starodubtseva vs Sasnovich | moneyline: Sasnovich | kalshi | $32k | -178 |  |  |  |  | W |
