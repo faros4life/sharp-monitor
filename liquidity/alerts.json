@@ -1,11 +1,11 @@
 {
  "alerts": [
   {
-   "alerted_utc": "2026-10-24T20:48:19Z",
+   "alerted_utc": "2026-10-24T20:56:31Z",
    "base_depth": 125407,
-   "best_price": 0.5051,
-   "best_price_american": -102,
-   "best_price_book": "prophetx",
+   "best_price": 0.5075,
+   "best_price_american": -103,
+   "best_price_book": "kalshi",
    "bid_improved": false,
    "bid_improved_at_pending": false,
    "book": "kalshi",
@@ -17,29 +17,23 @@
    ],
    "close_price": 0.49,
    "clv_cents": 0.0,
-   "confirmed_after_min": 8,
+   "confirmed_after_min": 16,
    "date": "2026-10-24",
    "depth_by_book": {
     "kalshi": {
      "new_other_side": 69831,
      "new_this_side": 228328,
-     "other_side": 163516,
-     "other_side_all_levels": 281083,
-     "ratio": 2.0,
-     "this_side": 333119,
-     "this_side_all_levels": 352514
-    },
-    "prophetx": {
-     "heavier_side": true,
-     "label": "Southern Mississippi +11.5 (+11.5)",
-     "price": 0.5,
-     "this_side": 21528
+     "other_side": 181807,
+     "other_side_all_levels": 251788,
+     "ratio": 1.7,
+     "this_side": 306979,
+     "this_side_all_levels": 310214
     }
    },
    "first_seen_utc": "2026-10-24T20:40:08Z",
    "game": "Louisiana vs Southern Miss: Spread",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFSPREAD-26OCT24ULLUSM-ULL12\"}",
-   "lead_min": 12,
+   "lead_min": 3,
    "league": "NCAAF",
    "line": 11.5,
    "market": "spread",
@@ -52,7 +46,7 @@
    "prices_by_book": {
     "betmgm": {
      "point": 11.5,
-     "price": -108
+     "price": -115
     },
     "betonlineag": {
      "point": 11.5,
@@ -61,10 +55,6 @@
     "betopenly": {
      "point": 11.5,
      "price": 105
-    },
-    "betrivers": {
-     "point": 10.5,
-     "price": -112
     },
     "betus": {
      "point": 12.0,
@@ -75,20 +65,20 @@
      "price": -110
     },
     "draftkings": {
-     "point": 11.5,
-     "price": -112
+     "point": 10.5,
+     "price": -115
     },
     "fanatics": {
      "point": 11.5,
-     "price": -110
+     "price": -120
     },
     "fanduel": {
      "point": 11.5,
-     "price": -108
+     "price": -102
     },
     "kalshi": {
-     "point": 11.5,
-     "price": 104
+     "point": 13.5,
+     "price": -113
     },
     "lowvig": {
      "point": 11.5,
@@ -96,19 +86,19 @@
     },
     "mybookieag": {
      "point": 11.5,
-     "price": -110
+     "price": -111
     },
     "novig": {
-     "point": 12.5,
-     "price": -108
+     "point": 11.5,
+     "price": -115
     },
     "polymarket": {
-     "point": 10.5,
-     "price": 108
+     "point": 8.5,
+     "price": -9900
     },
     "prophetx": {
-     "point": 10.0,
-     "price": 119
+     "point": 10.5,
+     "price": -105
     },
     "williamhill_us": {
      "point": 11.5,
@@ -121,10 +111,8 @@
     "market_ticker": "KXNCAAFSPREAD-26OCT24ULLUSM-ULL12"
    },
    "result": null,
-   "rule_met": true,
-   "second_book": [
-    "prophetx"
-   ],
+   "rule_met": false,
+   "second_book": "no_match",
    "second_book_fresh": false,
    "sharp_agree": [],
    "sharp_oppose": [
@@ -142,7 +130,7 @@
    "units_flat": null
   },
   {
-   "alerted_utc": "2026-10-24T20:48:19Z",
+   "alerted_utc": "2026-10-24T20:56:31Z",
    "base_depth": 886322,
    "best_price": 0.6,
    "best_price_american": -150,
@@ -158,41 +146,41 @@
    ],
    "close_price": 0.6,
    "clv_cents": 0.0,
-   "confirmed_after_min": 8,
+   "confirmed_after_min": 16,
    "date": "2026-10-24",
    "depth_by_book": {
     "kalshi": {
      "new_other_side": -127704,
      "new_this_side": 113880,
-     "other_side": 295496,
-     "other_side_all_levels": 422981,
-     "ratio": 2.8,
-     "this_side": 822582,
-     "this_side_all_levels": 1001471
+     "other_side": 867312,
+     "other_side_all_levels": 995071,
+     "ratio": 1.0,
+     "this_side": 879071,
+     "this_side_all_levels": 1059926
     },
     "novig": {
      "heavier_side": true,
      "label": "MIA (0)",
      "price": 0.6,
-     "this_side": 62379
+     "this_side": 65295
     },
     "polymarket": {
      "heavier_side": true,
      "label": "Heat",
-     "price": 0.6,
-     "this_side": 622399
+     "price": 0.61,
+     "this_side": 629902
     },
     "prophetx": {
      "heavier_side": true,
      "label": "Miami Heat",
-     "price": 0.6,
-     "this_side": 44422
+     "price": 0.6094,
+     "this_side": 51756
     }
    },
    "first_seen_utc": "2026-10-24T20:40:08Z",
    "game": "Miami vs Charlotte",
    "key": "kalshi|KXNBAGAME-26OCT24MIACHA|ml|0",
-   "lead_min": 72,
+   "lead_min": 63,
    "league": "NBA",
    "line": null,
    "market": "moneyline",
@@ -233,7 +221,7 @@
     },
     "fanatics": {
      "point": null,
-     "price": -155
+     "price": -165
     },
     "fanduel": {
      "point": null,
@@ -245,7 +233,7 @@
     },
     "limitless": {
      "point": null,
-     "price": -152
+     "price": -158
     },
     "lowvig": {
      "point": null,
@@ -261,15 +249,15 @@
     },
     "polymarket": {
      "point": null,
-     "price": -150
+     "price": -156
     },
     "polymarket_us": {
      "point": null,
-     "price": -144
+     "price": -150
     },
     "prophetx": {
      "point": null,
-     "price": -150
+     "price": -156
     },
     "williamhill_us": {
      "point": null,
@@ -356,6 +344,8 @@
    "new_money": 82261,
    "paper_only": false,
    "price": 0.4,
+   "price_after_15m": 0.395,
+   "price_after_15m_book": "novig",
    "price_american": 150,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.4,
@@ -444,6 +434,7 @@
    "side_label": "Maple Leafs",
    "start_source": "polymarket",
    "start_utc": "2026-10-24T23:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Maple Leafs",
     "Oilers"
@@ -497,6 +488,8 @@
    "new_money": 27327,
    "paper_only": false,
    "price": 0.5,
+   "price_after_15m": 0.505,
+   "price_after_15m_book": "novig",
    "price_american": -100,
    "price_rule": "ok",
    "price_when_first_seen": 0.5,
@@ -566,7 +559,8 @@
      "price": -110
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-24T20:56:31Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFTOTAL-26OCT24ULLUSM-53"
@@ -581,6 +575,7 @@
    "side_label": "Over 52.5 points",
    "start_source": "prophetx",
    "start_utc": "2026-10-24T21:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Louisiana",
     "Southern Miss"
@@ -640,6 +635,8 @@
    "new_money": 71358,
    "paper_only": false,
    "price": 0.84,
+   "price_after_15m": 0.845,
+   "price_after_15m_book": "novig",
    "price_american": -525,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.84,
@@ -661,6 +658,7 @@
    "side_label": "Cal Poly",
    "start_source": "prophetx",
    "start_utc": "2026-10-24T21:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Utah Tech",
     "Cal Poly"
@@ -683,8 +681,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 0.0,
+   "close_price": 0.53,
+   "clv_cents": 1.0,
    "confirmed_after_min": 16,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -720,8 +718,8 @@
    "new_money": 232276,
    "paper_only": false,
    "price": 0.52,
-   "price_after_15m": 0.5275,
-   "price_after_15m_book": "polymarket",
+   "price_after_15m": 0.5375,
+   "price_after_15m_book": "kalshi",
    "price_american": -108,
    "price_rule": "ok",
    "price_when_first_seen": 0.52,
@@ -2074,8 +2072,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5763,
-   "clv_cents": -0.7,
+   "close_price": 0.5798,
+   "clv_cents": -0.4,
    "confirmed_after_min": 16,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -2721,8 +2719,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.6,
-   "clv_cents": 0.0,
+   "close_price": 0.61,
+   "clv_cents": 1.0,
    "confirmed_after_min": 18,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -3431,8 +3429,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.49,
-   "clv_cents": -1.0,
+   "close_price": 0.54,
+   "clv_cents": 4.0,
    "confirmed_after_min": 19,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -3584,8 +3582,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": 0.0,
+   "close_price": 0.51,
+   "clv_cents": 1.0,
    "confirmed_after_min": 18,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -4495,7 +4493,7 @@
    "rule_met": false,
    "second_book": "no_match",
    "second_book_fresh": false,
-   "settled_utc": "2026-10-24T20:48:19Z",
+   "settled_utc": "2026-10-24T20:56:31Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "SCST (0)",
@@ -5598,8 +5596,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.56,
-   "clv_cents": 1.0,
+   "close_price": 0.46,
+   "clv_cents": -9.0,
    "confirmed_after_min": 17,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -7984,8 +7982,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.55,
-   "clv_cents": 1.0,
+   "close_price": 0.56,
+   "clv_cents": 2.0,
    "confirmed_after_min": 17,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -8724,8 +8722,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.66,
-   "clv_cents": -13.0,
+   "close_price": 0.62,
+   "clv_cents": -17.0,
    "confirmed_after_min": 17,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -9084,8 +9082,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.14,
-   "clv_cents": -62.0,
+   "close_price": 0.01,
+   "clv_cents": -75.0,
    "confirmed_after_min": 18,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -9299,7 +9297,7 @@
    "rule_met": false,
    "second_book": "none_10k",
    "second_book_fresh": false,
-   "settled_utc": "2026-10-24T20:48:19Z",
+   "settled_utc": "2026-10-24T20:56:31Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "South Carolina St.",
@@ -9329,8 +9327,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.61,
-   "clv_cents": -10.0,
+   "close_price": 0.62,
+   "clv_cents": -9.0,
    "confirmed_after_min": 18,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -9601,7 +9599,7 @@
     "novig"
    ],
    "second_book_fresh": false,
-   "settled_utc": "2026-10-24T20:48:19Z",
+   "settled_utc": "2026-10-24T20:56:31Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Dartmouth",
@@ -9919,8 +9917,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.98,
-   "clv_cents": 31.0,
+   "close_price": null,
+   "clv_cents": null,
    "confirmed_after_min": 17,
    "date": "2026-10-24",
    "depth_by_book": {
