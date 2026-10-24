@@ -1,7 +1,87 @@
 {
  "alerts": [
   {
-   "alerted_utc": "2026-10-24T05:33:39Z",
+   "alerted_utc": "2026-10-24T05:42:43Z",
+   "base_depth": 96033,
+   "best_price": 0.785,
+   "best_price_american": -365,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.78,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 17,
+   "date": "2026-10-24",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 3184,
+     "new_this_side": 32939,
+     "other_side": 17120,
+     "other_side_all_levels": 26749,
+     "ratio": 4.3,
+     "this_side": 73718,
+     "this_side_all_levels": 130728
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "CAMP (0)",
+     "price": 0.785,
+     "this_side": 12904
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Campbell",
+     "price": 0.7938,
+     "this_side": 248
+    }
+   },
+   "first_seen_utc": "2026-10-24T05:25:21Z",
+   "game": "Campbell vs Maine",
+   "key": "kalshi|KXNCAAFGAME-26OCT24CAMPME|ml|0",
+   "lead_min": 677,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 32939,
+   "paper_only": false,
+   "price": 0.78,
+   "price_american": -355,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.78,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26OCT24CAMPME-CAMP"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Campbell",
+   "side_label": "Campbell",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-24T17:00:00Z",
+   "teams": [
+    "Campbell",
+    "Maine"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-24T05:25:21Z",
    "base_depth": 294186,
    "best_price": 0.5574,
    "best_price_american": -126,
@@ -21,25 +101,27 @@
    "date": "2026-10-24",
    "depth_by_book": {
     "kalshi": {
-     "new_other_side": 1230,
-     "new_this_side": 35825,
+     "new_other_side": -660,
+     "new_this_side": 31935,
      "other_side": 17115,
-     "other_side_all_levels": 233449,
-     "ratio": 16.0,
-     "this_side": 274239,
-     "this_side_all_levels": 329396
+     "other_side_all_levels": 232612,
+     "ratio": 16.1,
+     "this_side": 276215,
+     "this_side_all_levels": 331372
     }
    },
-   "first_seen_utc": "2026-10-24T05:16:21Z",
+   "first_seen_utc": "2026-10-24T05:08:36Z",
    "game": "Akron vs Kent St.: Spread",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFSPREAD-26OCT24AKRKENT-KENT4\"}",
-   "lead_min": 686,
+   "lead_min": 695,
    "league": "NCAAF",
    "line": 3.5,
    "market": "spread",
-   "new_money": 35825,
+   "new_money": 31935,
    "paper_only": false,
    "price": 0.54,
+   "price_after_15m": 0.5574,
+   "price_after_15m_book": "kalshi",
    "price_american": -117,
    "price_rule": "ok",
    "price_when_first_seen": 0.54,
@@ -97,8 +179,8 @@
      "price": 108
     },
     "prophetx": {
-     "point": 2.5,
-     "price": 110
+     "point": 2.0,
+     "price": 109
     },
     "williamhill_us": {
      "point": 3.0,
@@ -120,6 +202,7 @@
    "side_label": "NOT Kent St. wins by over 3.5 points",
    "start_source": "prophetx",
    "start_utc": "2026-10-24T17:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Akron",
     "Kent St."
@@ -5327,8 +5410,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": 1.0,
+   "close_price": 0.5,
+   "clv_cents": 0.0,
    "confirmed_after_min": 21,
    "date": "2026-10-24",
    "depth_by_book": {
