@@ -1,6 +1,426 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-25T02:17:51Z",
+   "base_depth": 407429,
+   "best_price": 0.52,
+   "best_price_american": -108,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 8,
+   "date": "2026-10-25",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 1526,
+     "new_this_side": 186428,
+     "other_side": 332007,
+     "other_side_all_levels": 408073,
+     "ratio": 1.6,
+     "this_side": 515151,
+     "this_side_all_levels": 581991
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "Under 55.5 (55.5)",
+     "price": 0.52,
+     "this_side": 8262
+    }
+   },
+   "first_seen_utc": "2026-10-25T02:10:10Z",
+   "game": "Green Bay vs Detroit: Total Points",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNFLTOTAL-26OCT25GBDET-56\"}",
+   "lead_min": 1087,
+   "league": "NFL",
+   "line": 55.5,
+   "market": "total",
+   "new_money": 186428,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 55.0,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 55.0,
+     "price": -105
+    },
+    "betopenly": {
+     "point": 55.5,
+     "price": -101
+    },
+    "betrivers": {
+     "point": 54.5,
+     "price": -112
+    },
+    "betus": {
+     "point": 54.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 54.5,
+     "price": -105
+    },
+    "fanatics": {
+     "point": 55.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 54.5,
+     "price": -105
+    },
+    "kalshi": {
+     "point": 55.5,
+     "price": -104
+    },
+    "lowvig": {
+     "point": 55.0,
+     "price": -102
+    },
+    "mybookieag": {
+     "point": 54.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 55.5,
+     "price": -108
+    },
+    "polymarket": {
+     "point": 54.5,
+     "price": 108
+    },
+    "prophetx": {
+     "point": 54.0,
+     "price": 113
+    },
+    "williamhill_us": {
+     "point": 54.5,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNFLTOTAL-26OCT25GBDET-56"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "none_10k",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [
+    "Over 54.5 (-111)",
+    "Over 54 (-109)"
+   ],
+   "side": "UNDER",
+   "side_label": "NOT Over 55.5 points",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-25T20:25:00Z",
+   "teams": [
+    "Green Bay",
+    "Detroit"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-25T02:17:51Z",
+   "base_depth": 2293947,
+   "best_price": 0.455,
+   "best_price_american": 120,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.45,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 8,
+   "date": "2026-10-25",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -6996,
+     "new_this_side": 1062264,
+     "other_side": 1995569,
+     "other_side_all_levels": 2286989,
+     "ratio": 1.6,
+     "this_side": 3126253,
+     "this_side_all_levels": 3359086
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "TEN (0)",
+     "price": 0.455,
+     "this_side": 88393
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "Tennessee Titans",
+     "price": 0.4525,
+     "this_side": 74845
+    }
+   },
+   "first_seen_utc": "2026-10-25T02:10:10Z",
+   "game": "Cleveland vs Tennessee",
+   "key": "kalshi|KXNFLGAME-26OCT25CLETEN|ml|1",
+   "lead_min": 882,
+   "league": "NFL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 1062264,
+   "paper_only": false,
+   "price": 0.45,
+   "price_american": 122,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.45,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": 110
+    },
+    "betonlineag": {
+     "point": null,
+     "price": 115
+    },
+    "betopenly": {
+     "point": null,
+     "price": 120
+    },
+    "betrivers": {
+     "point": null,
+     "price": 105
+    },
+    "betus": {
+     "point": null,
+     "price": 115
+    },
+    "draftkings": {
+     "point": null,
+     "price": 110
+    },
+    "fanatics": {
+     "point": null,
+     "price": 110
+    },
+    "fanduel": {
+     "point": null,
+     "price": 112
+    },
+    "kalshi": {
+     "point": null,
+     "price": 117
+    },
+    "limitless": {
+     "point": null,
+     "price": 112
+    },
+    "lowvig": {
+     "point": null,
+     "price": 115
+    },
+    "mybookieag": {
+     "point": null,
+     "price": 110
+    },
+    "novig": {
+     "point": null,
+     "price": 120
+    },
+    "polymarket": {
+     "point": null,
+     "price": 117
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": 121
+    },
+    "prophetx": {
+     "point": null,
+     "price": 121
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": 112
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNFLGAME-26OCT25CLETEN-TEN"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "none_10k",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Tennessee",
+   "side_label": "Tennessee",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-25T17:00:00Z",
+   "teams": [
+    "Cleveland",
+    "Tennessee"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-25T02:17:51Z",
+   "base_depth": 306770,
+   "best_price": 0.46,
+   "best_price_american": 117,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.45,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 8,
+   "date": "2026-10-25",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 2693,
+     "new_this_side": 160359,
+     "other_side": 55696,
+     "other_side_all_levels": 212682,
+     "ratio": 6.6,
+     "this_side": 367630,
+     "this_side_all_levels": 468681
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "TOR (0)",
+     "price": 0.46,
+     "this_side": 7184
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Raptors",
+     "price": 0.47,
+     "this_side": 14811
+    }
+   },
+   "first_seen_utc": "2026-10-25T02:10:10Z",
+   "game": "Toronto vs Minnesota",
+   "key": "kalshi|KXNBAGAME-26OCT25TORMIN|ml|0",
+   "lead_min": 1242,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 160359,
+   "paper_only": false,
+   "price": 0.45,
+   "price_american": 122,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.45,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": 105
+    },
+    "betonlineag": {
+     "point": null,
+     "price": 101
+    },
+    "betrivers": {
+     "point": null,
+     "price": 115
+    },
+    "betus": {
+     "point": null,
+     "price": 100
+    },
+    "bovada": {
+     "point": null,
+     "price": 105
+    },
+    "draftkings": {
+     "point": null,
+     "price": 110
+    },
+    "kalshi": {
+     "point": null,
+     "price": 122
+    },
+    "limitless": {
+     "point": null,
+     "price": 111
+    },
+    "lowvig": {
+     "point": null,
+     "price": 103
+    },
+    "mybookieag": {
+     "point": null,
+     "price": 106
+    },
+    "novig": {
+     "point": null,
+     "price": 117
+    },
+    "polymarket": {
+     "point": null,
+     "price": 113
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": 113
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": 105
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBAGAME-26OCT25TORMIN-TOR"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "polymarket"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Toronto",
+   "side_label": "Toronto",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-25T23:00:00Z",
+   "teams": [
+    "Toronto",
+    "Minnesota"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-25T02:10:10Z",
    "base_depth": 1858151,
    "best_price": 0.535,
@@ -181,6 +601,8 @@
    "new_money": 1007079,
    "paper_only": false,
    "price": 0.5,
+   "price_after_15m": 0.51,
+   "price_after_15m_book": "novig",
    "price_american": -100,
    "price_rule": "ok",
    "price_when_first_seen": 0.5,
@@ -263,6 +685,7 @@
    "side_label": "Detroit wins by over 3.5 points",
    "start_source": "prophetx",
    "start_utc": "2026-10-25T20:25:00Z",
+   "still_actionable": true,
    "teams": [
     "Green Bay",
     "Detroit"
@@ -322,6 +745,8 @@
    "new_money": 1159016,
    "paper_only": false,
    "price": 0.81,
+   "price_after_15m": 0.8089,
+   "price_after_15m_book": "prophetx",
    "price_american": -426,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.81,
@@ -413,6 +838,7 @@
    "side_label": "Houston",
    "start_source": "prophetx",
    "start_utc": "2026-10-25T17:00:00Z",
+   "still_actionable": false,
    "teams": [
     "New York G",
     "Houston"
@@ -472,6 +898,8 @@
    "new_money": 1283550,
    "paper_only": false,
    "price": 0.63,
+   "price_after_15m": 0.64,
+   "price_after_15m_book": "novig",
    "price_american": -170,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.63,
@@ -563,6 +991,7 @@
    "side_label": "Detroit",
    "start_source": "prophetx",
    "start_utc": "2026-10-25T20:25:00Z",
+   "still_actionable": true,
    "teams": [
     "Green Bay",
     "Detroit"
@@ -812,7 +1241,8 @@
      "price": -335
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-25T02:17:51Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNHLGAME-26OCT24TBUTA-TB"
@@ -850,8 +1280,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.88,
-   "clv_cents": 17.0,
+   "close_price": 0.95,
+   "clv_cents": 24.0,
    "confirmed_after_min": 10,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -976,8 +1406,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.63,
-   "clv_cents": 10.0,
+   "close_price": 0.66,
+   "clv_cents": 13.0,
    "confirmed_after_min": 4,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -1093,8 +1523,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.43,
-   "clv_cents": -9.0,
+   "close_price": 0.52,
+   "clv_cents": 0.0,
    "confirmed_after_min": 16,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -1310,7 +1740,8 @@
      "price": -235
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-25T02:17:51Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26OCT24HOUUTAH-UTAH"
@@ -1353,8 +1784,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.1,
-   "clv_cents": -54.0,
+   "close_price": 0.04,
+   "clv_cents": -60.0,
    "confirmed_after_min": 6,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -2443,8 +2874,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": 0.0,
+   "close_price": 0.49,
+   "clv_cents": -2.0,
    "confirmed_after_min": 15,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -3439,8 +3870,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.46,
-   "clv_cents": 0.0,
+   "close_price": 0.45,
+   "clv_cents": -1.0,
    "confirmed_after_min": 12,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -3598,8 +4029,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.86,
-   "clv_cents": 8.0,
+   "close_price": 0.88,
+   "clv_cents": 10.0,
    "confirmed_after_min": 12,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -3713,8 +4144,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.36,
-   "clv_cents": -45.0,
+   "close_price": 0.34,
+   "clv_cents": -47.0,
    "confirmed_after_min": 12,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -3878,8 +4309,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.66,
-   "clv_cents": 17.0,
+   "close_price": 0.5,
+   "clv_cents": 1.0,
    "confirmed_after_min": 9,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -4131,8 +4562,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.78,
-   "clv_cents": 0.0,
+   "close_price": 0.67,
+   "clv_cents": -11.0,
    "confirmed_after_min": 9,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -5252,10 +5683,11 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26OCT24SDSUCSU-SDSU"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": "no_match",
    "second_book_fresh": false,
+   "settled_utc": "2026-10-25T02:17:51Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "Colorado State Rams +1.5 (-108)"
@@ -5270,7 +5702,7 @@
     "Colorado St."
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-24T23:00:14Z",
@@ -5430,8 +5862,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.76,
-   "clv_cents": 29.0,
+   "close_price": 0.66,
+   "clv_cents": 19.0,
    "confirmed_after_min": 7,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -8629,10 +9061,11 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26OCT24PEAYUNA-PEAY"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": "none_10k",
    "second_book_fresh": false,
+   "settled_utc": "2026-10-25T02:17:51Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Austin Peay",
@@ -8645,7 +9078,7 @@
     "North Alabama"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.28
   },
   {
    "alerted_utc": "2026-10-24T21:20:11Z",
@@ -19970,6 +20403,7 @@
    },
    "first_seen_utc": "2026-10-24T04:25:34Z",
    "game": "Virginia Tech @ Clemson",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a142e4-26e2-7e33-b666-81933669251f\", \"outcome_id\": \"01a142e4-26e2-7e33-b666-81a5fc7fef89\"}",
    "lead_min": 1097,
    "league": "NCAAF",
@@ -20055,10 +20489,11 @@
     "market_id": "01a142e4-26e2-7e33-b666-81933669251f",
     "outcome_id": "01a142e4-26e2-7e33-b666-81a5fc7fef89"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": "no_match",
    "second_book_fresh": false,
+   "settled_utc": "2026-10-25T02:17:51Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Clemson",
@@ -20071,7 +20506,7 @@
     "Clemson"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-24T04:43:06Z",
@@ -32273,6 +32708,7 @@
    },
    "first_seen_utc": "2026-10-23T16:06:05Z",
    "game": "Virginia Tech vs Clemson",
+   "graded_by": "espn",
    "key": "kalshi|KXNCAAFGAME-26OCT23VTCLEM|ml|1",
    "lead_min": 636,
    "league": "NCAAF",
@@ -32292,10 +32728,11 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26OCT23VTCLEM-CLEM"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": "no_match",
    "second_book_fresh": false,
+   "settled_utc": "2026-10-25T02:17:51Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Clemson",
@@ -32308,7 +32745,7 @@
     "Clemson"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-23T16:23:56Z",
