@@ -1,19 +1,19 @@
 # Liquidity alerts (paper)
 
-Updated Sun Oct 25, 12:30 AM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 8.
+Updated Sun Oct 25, 12:40 AM ET. This run: 0 new, 1 not confirmed, 0 pending. Open alerts: 6.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 33-16 (+1.63u flat) | rule met: 14-11
+**Record:** 34-17 (+1.25u flat) | rule met: 14-11
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Oct 25 12:30AM | MLB | Game 3: Milwaukee vs Tampa Bay | moneyline: Tampa Bay | kalshi | $146k | -104 |  |  | +0.0c |  | pending |
 | Oct 24 11:50PM | TENNIS | Lee vs Pridankina | moneyline: Lee | kalshi | $79k | -285 |  |  | -5.0c |  | pending |
-| Oct 24 11:40PM | TENNIS | Ibragimova vs Iatcenko | moneyline: Ibragimova | kalshi | $143k | -150 |  |  | +8.0c |  | pending |
+| Oct 24 11:40PM | TENNIS | Ibragimova vs Iatcenko | moneyline: Ibragimova | kalshi | $143k | -150 |  |  | +8.0c |  | W |
 | Oct 24 11:13PM | TENNIS | Sasnovich vs Rakhimova | moneyline: Sasnovich | kalshi | $188k | -376 |  |  | +5.0c |  | W |
-| Oct 24 11:13PM | TENNIS | Ibragimova vs Iatcenko | moneyline: Iatcenko | kalshi | $55k | -194 |  |  | -33.0c |  | pending |
-| Oct 24 11:00PM | TENNIS | Krueger vs Siniakova | moneyline: Siniakova | kalshi | $29k | -133 | ✅ novig |  | -2.0c |  | pending |
+| Oct 24 11:13PM | TENNIS | Ibragimova vs Iatcenko | moneyline: Iatcenko | kalshi | $55k | -194 |  |  | -33.0c |  | L |
+| Oct 24 11:00PM | TENNIS | Krueger vs Siniakova | moneyline: Siniakova | kalshi | $29k | -133 | ✅ novig |  | +0.0c |  | pending |
 | Oct 24 11:00PM | TENNIS | Watson vs Parks | moneyline: Parks | kalshi | $142k | -335 |  |  |  |  | W |
 | Oct 24 7:53PM | TENNIS | Musetti vs Fritz | moneyline: Fritz | kalshi | $40k | -178 |  |  | +1.0c |  | pending |
 | Oct 24 7:31PM | TENNIS | Watson vs Parks | moneyline: Watson | kalshi | $105k | +117 | ✅ novig |  | -45.0c | yes | L |
