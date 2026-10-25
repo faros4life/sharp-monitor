@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Oct 25, 1:00 AM ET. This run: 0 new, 0 not confirmed, 5 pending. Open alerts: 52.
+Updated Sun Oct 25, 1:10 AM ET. This run: 4 new, 1 not confirmed, 1 pending. Open alerts: 56.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -8,6 +8,10 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Oct 25 1:10AM | NFL | Miami vs New York J: Total Points | total: Over 39.5 points | kalshi | $159k | +104 | ✅ novig |  | +0.0c |  | pending |
+| Oct 25 1:10AM | NBA | Indiana vs Brooklyn: Spread | spread: Indiana wins by over 7.5 points | kalshi | $28k | -100 | ✅ polymarket | ✅ | +0.0c |  | pending |
+| Oct 25 1:10AM | NBA | Los Angeles C vs Oklahoma City: Total Points | total: NOT Over 221.5 points | kalshi | $30k | -100 |  |  | +0.0c |  | pending |
+| Oct 25 1:10AM | NFL | Indianapolis vs Minnesota | moneyline: Minnesota | kalshi | $780k | -285 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Oct 25 12:40AM | NFL | Kansas City vs Seattle: Total Points | total: Over 42.5 points | kalshi | $148k | -104 | ✅ novig |  | +0.0c |  | pending |
 | Oct 25 12:40AM | NFL | Green Bay vs Detroit: Total Points | total: Over 55.5 points | kalshi | $67k | -100 | ✅ novig | ✅ | +0.0c |  | pending |
 | Oct 25 12:30AM | NFL | Miami vs New York J: Spread | spread: New York J wins by over 4.5 points | kalshi | $399k | +104 |  |  | +0.0c |  | pending |
@@ -27,7 +31,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 24 11:10PM | NHL | Tampa Bay vs Utah | moneyline: Utah | kalshi | $55k | -122 |  |  | -2.0c | yes | W |
 | Oct 24 11:10PM | NCAAF | North Dakota St. vs New Mexico | moneyline: New Mexico | kalshi | $106k | -213 |  |  | +21.0c | yes | pending |
 | Oct 24 11:00PM | NFL | Indianapolis Colts at Minnesota Vikings | spread: Minnesota Vikings -6.5 (-6.5) | prophetx | $28k | -103 | ✅ kalshi,novig |  | +1.2c | yes | pending |
-| Oct 24 10:54PM | NFL | Pittsburgh Steelers at New Orleans Saints | moneyline: New Orleans Saints | prophetx | $27k | +148 | ✅ novig |  | +0.3c |  | pending |
+| Oct 24 10:54PM | NFL | Pittsburgh Steelers at New Orleans Saints | moneyline: New Orleans Saints | prophetx | $27k | +148 | ✅ novig |  | +0.0c |  | pending |
 | Oct 24 10:54PM | NFL | San Francisco 49ers at Atlanta Falcons | moneyline: San Francisco 49ers | prophetx | $44k | -136 | ✅ novig |  | +0.3c | yes | pending |
 | Oct 24 10:54PM | NFL | Indianapolis Colts at Minnesota Vikings | moneyline: Minnesota Vikings | prophetx | $99k | -260 | ✅ kalshi,novig |  | +1.1c | yes | pending |
 | Oct 24 10:50PM | NHL | Colorado vs Nashville | moneyline: Colorado | kalshi | $32k | -213 | ✅ novig,polymarket |  | +0.0c |  | pending |
@@ -204,7 +208,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 23 8:09PM | NBA | Minnesota vs Orlando | moneyline: Minnesota | kalshi | $190k | -355 |  | ❌ |  | yes | W |
 | Oct 23 7:50PM | NCAAF | Pittsburgh vs Miami (FL): Spread | spread: NOT Miami (FL) wins by over 20.5 points | kalshi | $127k | -104 |  |  | -26.0c | yes | L |
 | Oct 23 7:50PM | NBA | Detroit vs Miami: Spread | spread: NOT Detroit wins by over 1.5 points | kalshi | $72k | +104 |  |  | -25.0c | yes | L |
-| Oct 23 7:40PM | NBA | Grizzlies vs. Warriors | spread: Grizzlies (+4.5) | polymarket | $149k | -104 |  | ❌ | +2.0c |  | W |
-| Oct 23 7:40PM | NCAAF | Michigan St. vs UCLA | moneyline: UCLA | kalshi | $174k | -567 |  |  | +0.0c | yes | W |
-| Oct 23 7:21PM | NBA | Detroit Pistons @ Miami Heat | moneyline: MIA (0) | novig | $30k | +113 |  |  | -1.0c | yes | L |
-| Oct 23 7:21PM | NHL | Tampa Bay vs Colorado: Spread | spread: NOT Colorado wins by over 1.5 goals | kalshi | $93k | -223 | ✅ novig,polymarket |  | -49.0c | yes | L |
