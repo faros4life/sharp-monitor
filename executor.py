@@ -356,6 +356,9 @@ def american_to_prob(a):
     return 100 / (a + 100) if a > 0 else -a / (-a + 100)
 
 
+WIN_FEE = {"prophetx": 0.02}   # fee on winnings: a ProphetX win nets 98% of the screen payout
+
+
 def stake_for(am):
     risk = UNIT if am > 0 else UNIT * abs(am) / 100
     win = UNIT * am / 100 if am > 0 else UNIT
@@ -444,7 +447,8 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None):
         avail = sum(d for a, d in levels(b, r) if a is not None and thr is not None and a >= thr)
         if avail <= 0:
             continue
-        cands.append({"book": b, "line": bl, "am": am, "eq": lm.american(min(max(c_eq, 0.01), 0.99)), "c_eq": c_eq,
+        shown = r.get("best_price_american_displayed")
+        cands.append({"book": b, "line": bl, "am": am, "shown": int(shown) if shown is not None else am, "eq": lm.american(min(max(c_eq, 0.01), 0.99)), "c_eq": c_eq,
                       "hb": hb, "avail": avail})
     if not cands:
         if not ladders:
@@ -457,11 +461,13 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None):
         return dict(out, verdict="SKIP", reason=f"price cap: best take is {best['book']} {best['am']:+d} at "
                                                 f"{fmt_line(mtype, best['line'])}, worse than {CAP_LINE}")
     capped.sort(key=lambda c: (round(c["c_eq"], 6), -c["hb"]))   # best equivalent price; tie -> better line
-    full = [c for c in capped if c["avail"] >= stake_for(c["am"])[0]]
+    # stake is sized on the price on the book's screen (Peter, Oct 25: same as ntfy and Muse); routing/cap stay after-fee
+    full = [c for c in capped if c["avail"] >= stake_for(c["shown"])[0]]
     pick = (full or capped)[0]
-    risk, win = stake_for(pick["am"])
-    return dict(out, verdict="WOULD PLACE", book=pick["book"], american=pick["am"], take_line=pick["line"],
-                equiv=pick["eq"], hp=hp, hp_src=hp_src, risk=risk, to_win=win,
+    risk, win = stake_for(pick["shown"])
+    nets = round(win * (1 - WIN_FEE.get(pick["book"], 0)), 2)
+    return dict(out, verdict="WOULD PLACE", book=pick["book"], american=pick["am"], shown=pick["shown"], take_line=pick["line"],
+                equiv=pick["eq"], hp=hp, hp_src=hp_src, risk=risk, to_win=win, nets=nets,
                 fillable=round(min(pick["avail"], risk), 2), partial=pick["avail"] < risk,
                 others=[c for c in capped if c is not pick][:5])
 
@@ -547,8 +553,10 @@ def plain(r):
     game = p.get("game") or ""
     if r["verdict"] == "WOULD PLACE":
         moved = r.get("mtype") != "moneyline" and r.get("take_line") is not None and abs(r["take_line"] - r["line"]) > 1e-9
-        s = (f"  - {bet_text(r, r.get('take_line'), r['american'])} on {BOOK_NAME.get(r['book'], r['book'])}: "
-             f"risk {money(r['risk'])} to win {money(r['to_win'])}.  ({p.get('sport')} {game})")
+        s = (f"  - {bet_text(r, r.get('take_line'), r.get('shown', r['american']))} on {BOOK_NAME.get(r['book'], r['book'])}: "
+             f"risk {money(r['risk'])} to win {money(r['to_win'])}"
+             + (f" (nets {money(r['nets'])} after fee)" if r.get("nets") is not None and r["nets"] < r["to_win"] else "")
+             + f".  ({p.get('sport')} {game})")
         s += f"\n      Alert was {p.get('bet')}" + (f"; this line is worth {r['equiv']:+d} at the alert number." if moved else ".")
         if r.get("partial"):
             s += f" Only {money(r['fillable'])} available at that price, so it would be a partial bet."
@@ -589,7 +597,8 @@ def fmt(r):
     moved = r["mtype"] != "moneyline" and r.get("take_line") is not None and abs(r["take_line"] - r["line"]) > 1e-9
     s = (f"WOULD PLACE  {head}\n      {r['book']} {fmt_line(r['mtype'], r.get('take_line'))} at {r['american']:+d} after fees"
          + (f" (= {r['equiv']:+d} at {fmt_line(r['mtype'], r['line'])}; half point {r['hp'] * 100:.1f}c {r['hp_src']})" if moved else "")
-         + f" | risk {money(r['risk'])} to win {money(r['to_win'])}"
+         + f" | screen {r.get('shown', r['american']):+d} | risk {money(r['risk'])} to win {money(r['to_win'])}"
+         + (f" (nets {money(r['nets'])})" if r.get("nets") is not None and r["nets"] < r["to_win"] else "")
          + (f" | only {money(r['fillable'])} fillable at an equivalent price (partial)" if r["partial"] else ""))
     if r.get("others"):
         s += "\n      next best: " + ", ".join(f"{c['book']} {fmt_line(r['mtype'], c['line'])} {c['am']:+d} (= {c['eq']:+d}, "
