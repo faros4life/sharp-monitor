@@ -1,0 +1,23 @@
+name: px-sandbox-check
+
+on:
+  workflow_dispatch:   # manual: confirm the ProphetX SANDBOX keys log in (read-only; practice account)
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Sandbox login + tournament list (no orders)
+        env:
+          PX_BASE: "https://api.sandbox.prophetx.dev/partner"
+          PROPHETX_ACCESS_KEY: ${{ secrets.PX_SANDBOX_ACCESS_KEY }}
+          PROPHETX_SECRET_KEY: ${{ secrets.PX_SANDBOX_SECRET_KEY }}
+        run: python -u px_lookup.py
