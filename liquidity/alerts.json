@@ -1,6 +1,156 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-25T04:10:09Z",
+   "base_depth": 7749613,
+   "best_price": 0.68,
+   "best_price_american": -213,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.68,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 7,
+   "date": "2026-10-26",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 6805,
+     "new_this_side": 197761,
+     "other_side": 3996749,
+     "other_side_all_levels": 4208832,
+     "ratio": 2.0,
+     "this_side": 7818019,
+     "this_side_all_levels": 8179786
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "DAL (0)",
+     "price": 0.68,
+     "this_side": 51167
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Dallas Cowboys",
+     "price": 0.6825,
+     "this_side": 18529
+    }
+   },
+   "first_seen_utc": "2026-10-25T04:03:34Z",
+   "game": "Dallas vs Philadelphia",
+   "key": "kalshi|KXNFLGAME-26OCT26DALPHI|ml|0",
+   "lead_min": 2645,
+   "league": "NFL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 197761,
+   "paper_only": false,
+   "price": 0.68,
+   "price_american": -213,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.68,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -225
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -215
+    },
+    "betopenly": {
+     "point": null,
+     "price": -208
+    },
+    "betrivers": {
+     "point": null,
+     "price": -225
+    },
+    "betus": {
+     "point": null,
+     "price": -215
+    },
+    "draftkings": {
+     "point": null,
+     "price": -218
+    },
+    "fanatics": {
+     "point": null,
+     "price": -225
+    },
+    "fanduel": {
+     "point": null,
+     "price": -230
+    },
+    "kalshi": {
+     "point": null,
+     "price": -213
+    },
+    "limitless": {
+     "point": null,
+     "price": -223
+    },
+    "lowvig": {
+     "point": null,
+     "price": -215
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -226
+    },
+    "novig": {
+     "point": null,
+     "price": -212
+    },
+    "polymarket": {
+     "point": null,
+     "price": -213
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -205
+    },
+    "prophetx": {
+     "point": null,
+     "price": -215
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -218
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNFLGAME-26OCT26DALPHI-DAL"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "prophetx"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Dallas",
+   "side_label": "Dallas",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-27T00:15:00Z",
+   "teams": [
+    "Dallas",
+    "Philadelphia"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-25T03:50:09Z",
    "base_depth": 1977588,
    "best_price": 0.51,
@@ -52,6 +202,8 @@
    "new_money": 137413,
    "paper_only": false,
    "price": 0.51,
+   "price_after_15m": 0.5076,
+   "price_after_15m_book": "prophetx",
    "price_american": -104,
    "price_rule": "ok",
    "price_when_first_seen": 0.51,
@@ -136,6 +288,7 @@
    "side_label": "Minnesota wins by over 6.5 points",
    "start_source": "prophetx",
    "start_utc": "2026-10-25T17:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Indianapolis",
     "Minnesota"
@@ -1607,8 +1760,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5074,
-   "clv_cents": 0.0,
+   "close_price": 0.5025,
+   "clv_cents": -0.5,
    "confirmed_after_min": 6,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -14817,8 +14970,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5935,
-   "clv_cents": 0.7,
+   "close_price": 0.5902,
+   "clv_cents": 0.3,
    "confirmed_after_min": 16,
    "date": "2026-10-25",
    "depth_by_book": {
