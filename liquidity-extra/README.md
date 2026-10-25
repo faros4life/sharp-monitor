@@ -1,10 +1,10 @@
 # Liquidity alerts (paper)
 
-Updated Sun Oct 25, 8:01 AM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 7.
+Updated Sun Oct 25, 8:10 AM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 6.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 38-17 (+2.98u flat) | rule met: 16-11
+**Record:** 39-17 (+3.24u flat) | rule met: 16-11
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -30,7 +30,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 24 1:20PM | MLB | Tampa Bay Rays vs. Milwaukee Brewers | spread: Milwaukee Brewers (+1.5) | polymarket | $25k | -203 | ✅ novig |  | +0.0c |  | W |
 | Oct 24 1:20PM | TENNIS | Tirante vs Mannarino | moneyline: Mannarino | kalshi | $83k | -213 |  |  |  |  | W |
 | Oct 24 12:20PM | MLB | Tampa Bay vs Milwaukee: Total Runs | total: NOT Over 6.5 runs scored | kalshi | $121k | -100 | ✅ prophetx |  | -13.0c | yes | L |
-| Oct 24 12:10PM | TENNIS | Medvedev vs Basilashvili | moneyline: Medvedev | kalshi | $47k | -376 |  |  |  |  | pending |
+| Oct 24 12:10PM | TENNIS | Medvedev vs Basilashvili | moneyline: Medvedev | kalshi | $47k | -376 |  |  |  |  | W |
 | Oct 24 10:10AM | TENNIS | Molcan vs Medjedovic | moneyline: Molcan | kalshi | $70k | -488 |  |  | +0.0c |  | W |
 | Oct 24 8:19AM | TENNIS | Vallejo vs Sonego | moneyline: Sonego | kalshi | $67k | -426 |  |  | -18.0c |  | W |
 | Oct 24 8:10AM | TENNIS | Cerundolo vs Griekspoor | moneyline: Cerundolo | kalshi | $40k | -156 | ✅ novig |  | -60.0c | yes | L |
