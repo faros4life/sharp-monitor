@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Oct 25, 6:30 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 6.
+Updated Sun Oct 25, 6:33 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 6.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -20,7 +20,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 24 11:00PM | TENNIS | Watson vs Parks | moneyline: Parks | kalshi | $142k | -335 |  |  |  |  | W |
 | Oct 24 7:53PM | TENNIS | Musetti vs Fritz | moneyline: Fritz | kalshi | $40k | -178 |  |  | +1.0c |  | pending |
 | Oct 24 7:31PM | TENNIS | Watson vs Parks | moneyline: Watson | kalshi | $105k | +117 | ✅ novig |  | -45.0c | yes | L |
-| Oct 24 7:00PM | TENNIS | Rybakina vs Fernandez | moneyline: Rybakina | kalshi | $40k | -317 | ✅ novig |  | +19.0c |  | pending |
+| Oct 24 7:00PM | TENNIS | Rybakina vs Fernandez | moneyline: Rybakina | kalshi | $40k | -317 | ✅ novig |  | +22.0c |  | pending |
 | Oct 24 5:20PM | MLB | Tampa Bay Rays @ Milwaukee Brewers | spread: MIL +1.5 (1.5) | novig | $31k | -203 | ✅ kalshi,polymarket |  | -0.5c |  | W |
 | Oct 24 4:48PM | MLB | Tampa Bay Rays @ Milwaukee Brewers | moneyline: TB (0) | novig | $68k | +111 | ✅ kalshi,prophetx |  | +1.0c |  | L |
 | Oct 24 4:16PM | MLB | Tampa Bay Rays vs. Milwaukee Brewers | moneyline: Milwaukee Brewers | polymarket | $79k | -113 | ✅ novig |  | +0.0c | yes | W |
@@ -28,7 +28,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 24 1:20PM | MLB | Tampa Bay Rays vs. Milwaukee Brewers | spread: Milwaukee Brewers (+1.5) | polymarket | $25k | -203 | ✅ novig |  | +0.0c |  | W |
 | Oct 24 1:20PM | TENNIS | Tirante vs Mannarino | moneyline: Mannarino | kalshi | $83k | -213 |  |  |  |  | W |
 | Oct 24 12:20PM | MLB | Tampa Bay vs Milwaukee: Total Runs | total: NOT Over 6.5 runs scored | kalshi | $121k | -100 | ✅ prophetx |  | -13.0c | yes | L |
-| Oct 24 12:10PM | TENNIS | Medvedev vs Basilashvili | moneyline: Medvedev | kalshi | $47k | -376 |  |  | -2.0c |  | pending |
+| Oct 24 12:10PM | TENNIS | Medvedev vs Basilashvili | moneyline: Medvedev | kalshi | $47k | -376 |  |  | -3.0c |  | pending |
 | Oct 24 10:10AM | TENNIS | Molcan vs Medjedovic | moneyline: Molcan | kalshi | $70k | -488 |  |  | +0.0c |  | W |
 | Oct 24 8:19AM | TENNIS | Vallejo vs Sonego | moneyline: Sonego | kalshi | $67k | -426 |  |  | -18.0c |  | W |
 | Oct 24 8:10AM | TENNIS | Cerundolo vs Griekspoor | moneyline: Cerundolo | kalshi | $40k | -156 | ✅ novig |  | -60.0c | yes | L |
