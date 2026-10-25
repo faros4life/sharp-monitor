@@ -1,6 +1,283 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-25T03:40:09Z",
+   "base_depth": 141049,
+   "best_price": 0.59,
+   "best_price_american": -144,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "prophetx",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.5868,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-25",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Seattle",
+     "price": 0.59,
+     "this_side": 11017150
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "SEA (0)",
+     "price": 0.59,
+     "this_side": 231873
+    },
+    "prophetx": {
+     "new_other_side": 3469,
+     "new_this_side": 29545,
+     "other_side": 165545,
+     "other_side_all_levels": 165744,
+     "ratio": 1.2,
+     "this_side": 197517,
+     "this_side_all_levels": 197841
+    }
+   },
+   "first_seen_utc": "2026-10-25T03:30:13Z",
+   "game": "Kansas City Chiefs at Seattle Seahawks",
+   "key": "prophetx|{\"line\": 0, \"px_event\": 1700008891, \"px_market\": 219, \"side\": \"1\"}",
+   "lead_min": 1240,
+   "league": "NFL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 29545,
+   "paper_only": false,
+   "price": 0.5868,
+   "price_american": -142,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.5868,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -150
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -150
+    },
+    "betopenly": {
+     "point": null,
+     "price": -142
+    },
+    "betrivers": {
+     "point": null,
+     "price": -143
+    },
+    "betus": {
+     "point": null,
+     "price": -150
+    },
+    "draftkings": {
+     "point": null,
+     "price": -142
+    },
+    "fanatics": {
+     "point": null,
+     "price": -155
+    },
+    "fanduel": {
+     "point": null,
+     "price": -154
+    },
+    "kalshi": {
+     "point": null,
+     "price": -144
+    },
+    "limitless": {
+     "point": null,
+     "price": -144
+    },
+    "lowvig": {
+     "point": null,
+     "price": -150
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -152
+    },
+    "novig": {
+     "point": null,
+     "price": -144
+    },
+    "polymarket": {
+     "point": null,
+     "price": -144
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -142
+    },
+    "prophetx": {
+     "point": null,
+     "price": -142
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -150
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "line": 0,
+    "px_event": 1700008891,
+    "px_market": 219,
+    "side": "1"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi",
+    "novig"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Seattle Seahawks",
+   "side_label": "Seattle Seahawks",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-26T00:20:00Z",
+   "teams": [
+    "Kansas City Chiefs",
+    "Seattle Seahawks"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-25T03:40:09Z",
+   "base_depth": 185588,
+   "best_price": 0.435,
+   "best_price_american": 130,
+   "best_price_book": "novig",
+   "bid_improved": true,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.43,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-25",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 597,
+     "new_this_side": 124513,
+     "other_side": 126233,
+     "other_side_all_levels": 244244,
+     "ratio": 1.3,
+     "this_side": 162695,
+     "this_side_all_levels": 288360
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "DET (0)",
+     "price": 0.435,
+     "this_side": 2628
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Pistons",
+     "price": 0.44,
+     "this_side": 30510
+    }
+   },
+   "first_seen_utc": "2026-10-25T03:30:13Z",
+   "game": "Detroit vs Philadelphia",
+   "key": "kalshi|KXNBAGAME-26OCT25DETPHI|ml|0",
+   "lead_min": 1190,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 124513,
+   "paper_only": false,
+   "price": 0.43,
+   "price_american": 133,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.43,
+   "prices_by_book": {
+    "betrivers": {
+     "point": null,
+     "price": 116
+    },
+    "draftkings": {
+     "point": null,
+     "price": 110
+    },
+    "fanatics": {
+     "point": null,
+     "price": 120
+    },
+    "fanduel": {
+     "point": null,
+     "price": 122
+    },
+    "kalshi": {
+     "point": null,
+     "price": 133
+    },
+    "limitless": {
+     "point": null,
+     "price": 126
+    },
+    "mybookieag": {
+     "point": null,
+     "price": 119
+    },
+    "novig": {
+     "point": null,
+     "price": 130
+    },
+    "polymarket": {
+     "point": null,
+     "price": 127
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": 133
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": 118
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBAGAME-26OCT25DETPHI-DET"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "polymarket"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Detroit",
+   "side_label": "Detroit",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-25T23:30:00Z",
+   "teams": [
+    "Detroit",
+    "Philadelphia"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-25T03:30:13Z",
    "base_depth": 2704336,
    "best_price": 0.6,
@@ -927,8 +1204,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.6,
-   "clv_cents": 5.0,
+   "close_price": 0.54,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -1046,8 +1323,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.71,
-   "clv_cents": 3.0,
+   "close_price": 0.81,
+   "clv_cents": 13.0,
    "confirmed_after_min": 10,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -1122,7 +1399,8 @@
      "price": -295
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-25T03:40:09Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26OCT24NDSUUNM-UNM"
@@ -1461,8 +1739,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5763,
-   "clv_cents": 0.0,
+   "close_price": 0.5798,
+   "clv_cents": 0.3,
    "confirmed_after_min": 4,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -2037,7 +2315,8 @@
      "price": -152
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-25T03:40:09Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNFLGAME-26OCT25TBCAR-CAR"
@@ -2077,8 +2356,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.54,
-   "clv_cents": -28.0,
+   "close_price": 0.27,
+   "clv_cents": -55.0,
    "confirmed_after_min": 10,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -3214,8 +3493,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.63,
-   "clv_cents": 0.0,
+   "close_price": 0.64,
+   "clv_cents": 1.0,
    "confirmed_after_min": 7,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -3514,8 +3793,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.41,
-   "clv_cents": -33.0,
+   "close_price": 0.47,
+   "clv_cents": -27.0,
    "confirmed_after_min": 10,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -3956,10 +4235,11 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFTOTAL-26OCT24MISSTEX-61"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": "no_match",
    "second_book_fresh": false,
+   "settled_utc": "2026-10-25T03:40:09Z",
    "sharp_agree": [
     "Over 53 (-123)"
    ],
@@ -3974,7 +4254,7 @@
     "Texas"
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": 0.86
   },
   {
    "alerted_utc": "2026-10-25T01:15:46Z",
@@ -3991,8 +4271,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.55,
-   "clv_cents": -14.0,
+   "close_price": 0.5,
+   "clv_cents": -19.0,
    "confirmed_after_min": 6,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -5083,8 +5363,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.7,
-   "clv_cents": 21.0,
+   "close_price": 0.77,
+   "clv_cents": 28.0,
    "confirmed_after_min": 5,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -6227,8 +6507,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.69,
-   "clv_cents": 23.0,
+   "close_price": 0.89,
+   "clv_cents": 43.0,
    "confirmed_after_min": 12,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -6502,8 +6782,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.45,
-   "clv_cents": -36.0,
+   "close_price": 0.74,
+   "clv_cents": -7.0,
    "confirmed_after_min": 12,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -6921,8 +7201,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.73,
-   "clv_cents": -5.0,
+   "close_price": 0.89,
+   "clv_cents": 11.0,
    "confirmed_after_min": 9,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -8328,12 +8608,13 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFSPREAD-26OCT24MISSTEX-TEX4"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
+   "settled_utc": "2026-10-25T03:40:09Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Texas",
@@ -8346,7 +8627,7 @@
     "Texas"
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": 1.13
   },
   {
    "alerted_utc": "2026-10-24T22:53:20Z",
@@ -8763,8 +9044,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.8058,
-   "clv_cents": -0.2,
+   "close_price": 0.8077,
+   "clv_cents": 0.0,
    "confirmed_after_min": 9,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -10317,8 +10598,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.635,
-   "clv_cents": -0.3,
+   "close_price": 0.6377,
+   "clv_cents": 0.0,
    "confirmed_after_min": 15,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -14230,6 +14511,7 @@
    },
    "first_seen_utc": "2026-10-24T19:42:21Z",
    "game": "Ole Miss at Texas",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 0, \"px_event\": 1700060900, \"px_market\": 219, \"side\": \"1\"}",
    "lead_min": 212,
    "league": "NCAAF",
@@ -14313,12 +14595,13 @@
     "px_market": 219,
     "side": "1"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": true,
+   "settled_utc": "2026-10-25T03:40:09Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Texas",
@@ -14331,7 +14614,7 @@
     "Texas"
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": 0.72
   },
   {
    "alerted_utc": "2026-10-24T19:58:24Z",
@@ -18008,6 +18291,7 @@
    },
    "first_seen_utc": "2026-10-24T13:12:42Z",
    "game": "Ole Miss @ Texas",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a14713-cac0-7411-8127-92de202ccd8f\", \"outcome_id\": \"01a14713-cac0-7411-8127-92fa9260e0c6\"}",
    "lead_min": 599,
    "league": "NCAAF",
@@ -18089,10 +18373,11 @@
     "market_id": "01a14713-cac0-7411-8127-92de202ccd8f",
     "outcome_id": "01a14713-cac0-7411-8127-92fa9260e0c6"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": "no_match",
    "second_book_fresh": false,
+   "settled_utc": "2026-10-25T03:40:09Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Ole Miss",
@@ -18105,7 +18390,7 @@
     "Texas"
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-24T13:30:59Z",
@@ -27291,10 +27576,11 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26OCT23UTSATULN-TULN"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": "no_match",
    "second_book_fresh": false,
+   "settled_utc": "2026-10-25T03:40:09Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Tulane",
@@ -27307,7 +27593,7 @@
     "Tulane"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-23T21:24:56Z",
