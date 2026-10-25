@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Oct 25, 10:12 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 7.
+Updated Sun Oct 25, 10:20 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 7.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -9,7 +9,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Oct 25 10:10AM | TENNIS | Struff vs Griekspoor | moneyline: Griekspoor | kalshi | $66k | -122 |  |  | +0.0c |  | pending |
-| Oct 25 10:10AM | TENNIS | Musetti vs Fritz | moneyline: Musetti | kalshi | $115k | -178 |  |  | -2.0c |  | pending |
+| Oct 25 10:10AM | TENNIS | Musetti vs Fritz | moneyline: Musetti | kalshi | $115k | -178 |  |  | +0.0c |  | pending |
 | Oct 25 7:10AM | TENNIS | Khachanov vs Alcaraz | moneyline: Alcaraz | kalshi | $25k | -488 |  |  | -1.0c |  | pending |
 | Oct 25 7:00AM | TENNIS | Merida vs Medvedev | moneyline: Medvedev | kalshi | $29k | -488 |  |  | -1.0c |  | pending |
 | Oct 25 5:00AM | TENNIS | Neumayer vs Droguet | moneyline: Droguet | kalshi | $28k | -257 |  |  | +0.0c | yes | L |
@@ -22,7 +22,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 24 11:13PM | TENNIS | Ibragimova vs Iatcenko | moneyline: Iatcenko | kalshi | $55k | -194 |  |  | -33.0c |  | L |
 | Oct 24 11:00PM | TENNIS | Krueger vs Siniakova | moneyline: Siniakova | kalshi | $29k | -133 | ✅ novig |  |  | yes | W |
 | Oct 24 11:00PM | TENNIS | Watson vs Parks | moneyline: Parks | kalshi | $142k | -335 |  |  |  |  | W |
-| Oct 24 7:53PM | TENNIS | Musetti vs Fritz | moneyline: Fritz | kalshi | $40k | -178 |  |  | -24.0c | yes | pending |
+| Oct 24 7:53PM | TENNIS | Musetti vs Fritz | moneyline: Fritz | kalshi | $40k | -178 |  |  | -27.0c | yes | pending |
 | Oct 24 7:31PM | TENNIS | Watson vs Parks | moneyline: Watson | kalshi | $105k | +117 | ✅ novig |  | -45.0c | yes | L |
 | Oct 24 7:00PM | TENNIS | Rybakina vs Fernandez | moneyline: Rybakina | kalshi | $40k | -317 | ✅ novig |  |  |  | W |
 | Oct 24 5:20PM | MLB | Tampa Bay Rays @ Milwaukee Brewers | spread: MIL +1.5 (1.5) | novig | $31k | -203 | ✅ kalshi,polymarket |  | -0.5c |  | W |
