@@ -1,6 +1,161 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-25T05:20:10Z",
+   "base_depth": 261878,
+   "best_price": 0.735,
+   "best_price_american": -277,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.73,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 7,
+   "date": "2026-10-25",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 5534,
+     "new_this_side": 30944,
+     "other_side": 195375,
+     "other_side_all_levels": 266531,
+     "ratio": 0.7,
+     "this_side": 138162,
+     "this_side_all_levels": 301455
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "NYK (0)",
+     "price": 0.735,
+     "this_side": 20478
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "New York Knicks",
+     "price": 0.7333,
+     "this_side": 9369
+    }
+   },
+   "first_seen_utc": "2026-10-25T05:13:19Z",
+   "game": "Orlando vs New York",
+   "key": "kalshi|KXNBAGAME-26OCT25ORLNYK|ml|1",
+   "lead_min": 1060,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 30944,
+   "paper_only": false,
+   "price": 0.73,
+   "price_american": -270,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.74,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -300
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -300
+    },
+    "betopenly": {
+     "point": null,
+     "price": -262
+    },
+    "betrivers": {
+     "point": null,
+     "price": -360
+    },
+    "betus": {
+     "point": null,
+     "price": -300
+    },
+    "bovada": {
+     "point": null,
+     "price": -300
+    },
+    "draftkings": {
+     "point": null,
+     "price": -310
+    },
+    "fanatics": {
+     "point": null,
+     "price": -300
+    },
+    "fanduel": {
+     "point": null,
+     "price": -270
+    },
+    "kalshi": {
+     "point": null,
+     "price": -270
+    },
+    "limitless": {
+     "point": null,
+     "price": -275
+    },
+    "lowvig": {
+     "point": null,
+     "price": -297
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -300
+    },
+    "novig": {
+     "point": null,
+     "price": -277
+    },
+    "polymarket": {
+     "point": null,
+     "price": -270
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -285
+    },
+    "prophetx": {
+     "point": null,
+     "price": -275
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -305
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBAGAME-26OCT25ORLNYK-NYK"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [
+    "Orlando Magic +8 (-114)"
+   ],
+   "side": "New York",
+   "side_label": "New York",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-25T23:00:00Z",
+   "teams": [
+    "Orlando",
+    "New York"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-25T05:13:19Z",
    "base_depth": 371023,
    "best_price": 0.495,
@@ -405,7 +560,8 @@
      "price": -295
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-25T05:20:10Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNFLGAME-26OCT25INDMIN-MIN"
@@ -16273,8 +16429,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5935,
-   "clv_cents": 0.7,
+   "close_price": 0.5902,
+   "clv_cents": 0.3,
    "confirmed_after_min": 16,
    "date": "2026-10-25",
    "depth_by_book": {
