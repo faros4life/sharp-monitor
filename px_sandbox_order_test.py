@@ -85,14 +85,17 @@ def main():
              "order_strategy": "fillOrKill"}
     st, resp = call("/v4/mm/submit_order", order)
     print(f"3) submit_order {json.dumps(order)}\n   -> {st}: {json.dumps(resp)[:1200] if isinstance(resp, dict) else resp}")
-    oid = (((resp or {}).get("data") or {}).get("order") or {}).get("id") if isinstance(resp, dict) else None
+    o = (((resp or {}).get("data") or {}).get("order") or {}) if isinstance(resp, dict) else {}
+    oid = o.get("order_id") or o.get("id")
 
     time.sleep(4)
     print("4) Order lookup (finding which route reports fills):")
-    for path in (f"/v4/mm/get_order?order_id={oid}", f"/v4/mm/get_orders?order_ids={oid}", "/v4/mm/get_orders",
-                 "/v4/mm/get_open_orders", "/v4/mm/get_wagers", "/v4/mm/get_matched_wagers"):
+    for path in (f"/v4/mm/get_order/{oid}", f"/v4/mm/get_order_id?order_id={oid}", f"/v4/mm/get_order?order_id={oid}",
+                 f"/v4/mm/get_order_matched_detail?order_id={oid}", f"/v4/mm/get_order_matched_detail/{oid}",
+                 "/v4/mm/get_order_history", "/v4/mm/get_order_history?limit=5", "/v4/mm/get_trades", "/v4/mm/get_trades?limit=5",
+                 "/v4/mm/get_transactions?limit=5"):
         st, r = call(path)
-        print(f"   GET {path.split('?')[0]} -> {st}: {json.dumps(r)[:600] if isinstance(r, dict) else str(r)[:200]}")
+        print(f"   GET {path} -> {st}: {json.dumps(r)[:700] if isinstance(r, dict) else str(r)[:160]}")
     b1 = balance()
     print(f"5) Practice balance after: {b1} (before {b0})")
     if oid:
