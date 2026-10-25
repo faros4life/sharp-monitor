@@ -1,7 +1,7 @@
 {
  "alerts": [
   {
-   "alerted_utc": "2026-10-25T18:26:23Z",
+   "alerted_utc": "2026-10-25T18:31:01Z",
    "base_depth": 141671,
    "best_price": 0.51,
    "best_price_american": -104,
@@ -17,41 +17,41 @@
    ],
    "close_price": 0.52,
    "clv_cents": 0.0,
-   "confirmed_after_min": 6,
+   "confirmed_after_min": 11,
    "date": "2026-10-25",
    "depth_by_book": {
     "kalshi": {
      "new_other_side": 6594,
      "new_this_side": 36893,
-     "other_side": 130419,
-     "other_side_all_levels": 168756,
+     "other_side": 130418,
+     "other_side_all_levels": 168755,
      "ratio": 1.0,
-     "this_side": 135379,
-     "this_side_all_levels": 183296
+     "this_side": 135540,
+     "this_side_all_levels": 183458
     },
     "novig": {
      "heavier_side": true,
      "label": "IND -6.5 (6.5)",
      "price": 0.51,
-     "this_side": 26468
+     "this_side": 35468
     },
     "polymarket": {
      "heavier_side": false,
      "label": "Pacers (-6.5)",
      "price": 0.51,
-     "this_side": 82788
+     "this_side": 82740
     },
     "prophetx": {
      "heavier_side": true,
      "label": "Indiana Pacers -6.5 (-6.5)",
      "price": 0.5122,
-     "this_side": 7718
+     "this_side": 16718
     }
    },
    "first_seen_utc": "2026-10-25T18:20:10Z",
    "game": "Indiana vs Brooklyn: Spread",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNBASPREAD-26OCT25INDBKN-IND7\"}",
-   "lead_min": 214,
+   "lead_min": 209,
    "league": "NBA",
    "line": -6.5,
    "market": "spread",
@@ -72,7 +72,7 @@
     },
     "betopenly": {
      "point": -6.5,
-     "price": -104
+     "price": -103
     },
     "betrivers": {
      "point": -7.5,
@@ -135,9 +135,10 @@
    "result": null,
    "rule_met": true,
    "second_book": [
-    "novig"
+    "novig",
+    "prophetx"
    ],
-   "second_book_fresh": false,
+   "second_book_fresh": true,
    "sharp_agree": [
     "Indiana Pacers -7.5 (+100)"
    ],
@@ -151,6 +152,129 @@
    "teams": [
     "Indiana",
     "Brooklyn"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-25T18:31:01Z",
+   "base_depth": 403796,
+   "best_price": 0.6952,
+   "best_price_american": -228,
+   "best_price_book": "kalshi",
+   "bid_improved": true,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.68,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 11,
+   "date": "2026-10-25",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -212749,
+     "new_this_side": 388346,
+     "other_side": 128579,
+     "other_side_all_levels": 421598,
+     "ratio": 3.0,
+     "this_side": 381583,
+     "this_side_all_levels": 877188
+    }
+   },
+   "first_seen_utc": "2026-10-25T18:20:10Z",
+   "game": "Cleveland vs Tennessee",
+   "key": "kalshi|KXNFLGAME-26OCT25CLETEN|ml|0",
+   "lead_min": 89,
+   "league": "NFL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 388346,
+   "paper_only": false,
+   "price": 0.68,
+   "price_american": -213,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.54,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -300
+    },
+    "betrivers": {
+     "point": null,
+     "price": -278
+    },
+    "bovada": {
+     "point": null,
+     "price": -275
+    },
+    "draftkings": {
+     "point": null,
+     "price": -275
+    },
+    "fanatics": {
+     "point": null,
+     "price": -245
+    },
+    "fanduel": {
+     "point": null,
+     "price": -280
+    },
+    "kalshi": {
+     "point": null,
+     "price": -223
+    },
+    "limitless": {
+     "point": null,
+     "price": -233
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -250
+    },
+    "novig": {
+     "point": null,
+     "price": -223
+    },
+    "polymarket": {
+     "point": null,
+     "price": -223
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -220
+    },
+    "prophetx": {
+     "point": null,
+     "price": -225
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -280
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNFLGAME-26OCT25CLETEN-CLE"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "no_match",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Cleveland",
+   "side_label": "Cleveland",
+   "start_source": "kalshi",
+   "start_utc": "2026-10-25T20:00:00Z",
+   "teams": [
+    "Cleveland",
+    "Tennessee"
    ],
    "top25": null,
    "units_flat": null
@@ -3219,8 +3343,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.58,
-   "clv_cents": 9.0,
+   "close_price": 0.64,
+   "clv_cents": 15.0,
    "confirmed_after_min": 8,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -3656,8 +3780,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.47,
-   "clv_cents": -5.0,
+   "close_price": 0.46,
+   "clv_cents": -6.0,
    "confirmed_after_min": 10,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -10074,8 +10198,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.56,
-   "clv_cents": 5.0,
+   "close_price": 0.55,
+   "clv_cents": 4.0,
    "confirmed_after_min": 5,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -10368,8 +10492,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.27,
-   "clv_cents": -23.0,
+   "close_price": 0.2,
+   "clv_cents": -30.0,
    "confirmed_after_min": 5,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -11575,8 +11699,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.64,
-   "clv_cents": 0.0,
+   "close_price": 0.65,
+   "clv_cents": 1.0,
    "confirmed_after_min": 5,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -17828,8 +17952,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.38,
-   "clv_cents": -7.0,
+   "close_price": 0.33,
+   "clv_cents": -12.0,
    "confirmed_after_min": 12,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -18395,8 +18519,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.58,
-   "clv_cents": -23.0,
+   "close_price": 0.63,
+   "clv_cents": -18.0,
    "confirmed_after_min": 7,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -19726,8 +19850,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.54,
-   "clv_cents": 5.0,
+   "close_price": 0.55,
+   "clv_cents": 6.0,
    "confirmed_after_min": 10,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -19863,8 +19987,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.41,
-   "clv_cents": -1.0,
+   "close_price": 0.42,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -26127,8 +26251,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.645,
-   "clv_cents": 1.0,
+   "close_price": 0.65,
+   "clv_cents": 1.5,
    "confirmed_after_min": 10,
    "date": "2026-10-25",
    "depth_by_book": {
