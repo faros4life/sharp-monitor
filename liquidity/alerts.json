@@ -1,6 +1,272 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-25T13:50:10Z",
+   "base_depth": 68730,
+   "best_price": 0.5399,
+   "best_price_american": -117,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.54,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-25",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 6045,
+     "new_this_side": 43145,
+     "other_side": 32242,
+     "other_side_all_levels": 75424,
+     "ratio": 1.7,
+     "this_side": 55282,
+     "this_side_all_levels": 112985
+    }
+   },
+   "first_seen_utc": "2026-10-25T13:40:08Z",
+   "game": "Orlando vs New York: Total Points",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNBATOTAL-26OCT25ORLNYK-224\"}",
+   "lead_min": 550,
+   "league": "NBA",
+   "line": 223.5,
+   "market": "total",
+   "new_money": 43145,
+   "paper_only": false,
+   "price": 0.54,
+   "price_american": -117,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.54,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 223.5,
+     "price": -115
+    },
+    "betonlineag": {
+     "point": 224.0,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 224.5,
+     "price": 104
+    },
+    "betrivers": {
+     "point": 224.5,
+     "price": -115
+    },
+    "betus": {
+     "point": 224.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 224.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 224.5,
+     "price": -105
+    },
+    "fanatics": {
+     "point": 224.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 224.5,
+     "price": -105
+    },
+    "kalshi": {
+     "point": 223.5,
+     "price": -117
+    },
+    "lowvig": {
+     "point": 224.0,
+     "price": -107
+    },
+    "mybookieag": {
+     "point": 224.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 224.5,
+     "price": -104
+    },
+    "polymarket": {
+     "point": 224.5,
+     "price": -108
+    },
+    "prophetx": {
+     "point": 224.0,
+     "price": -114
+    },
+    "williamhill_us": {
+     "point": 224.5,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBATOTAL-26OCT25ORLNYK-224"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "no_match",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "OVER",
+   "side_label": "Over 223.5 points",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-25T23:00:00Z",
+   "teams": [
+    "Orlando",
+    "New York"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-25T13:50:10Z",
+   "base_depth": 68195,
+   "best_price": 0.495,
+   "best_price_american": 102,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-25",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -1438,
+     "new_this_side": 45554,
+     "other_side": 45785,
+     "other_side_all_levels": 102396,
+     "ratio": 2.3,
+     "this_side": 104684,
+     "this_side_all_levels": 156746
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "Under 230.5 (230.5)",
+     "price": 0.495,
+     "this_side": 6717
+    }
+   },
+   "first_seen_utc": "2026-10-25T13:40:08Z",
+   "game": "Indiana vs Brooklyn: Total Points",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBATOTAL-26OCT25INDBKN-231\"}",
+   "lead_min": 490,
+   "league": "NBA",
+   "line": 230.5,
+   "market": "total",
+   "new_money": 45554,
+   "paper_only": false,
+   "price": 0.5,
+   "price_american": -100,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.5,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 231.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 231.0,
+     "price": -110
+    },
+    "betrivers": {
+     "point": 232.5,
+     "price": -114
+    },
+    "betus": {
+     "point": 232.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 231.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 231.5,
+     "price": -112
+    },
+    "fanatics": {
+     "point": 231.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 231.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": 230.5,
+     "price": 100
+    },
+    "lowvig": {
+     "point": 231.0,
+     "price": -107
+    },
+    "mybookieag": {
+     "point": 231.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 230.5,
+     "price": 102
+    },
+    "polymarket": {
+     "point": 231.5,
+     "price": -108
+    },
+    "prophetx": {
+     "point": 230.0,
+     "price": 101
+    },
+    "williamhill_us": {
+     "point": 231.5,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNBATOTAL-26OCT25INDBKN-231"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "none_10k",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [
+    "Over 231.5 (-115)"
+   ],
+   "side": "UNDER",
+   "side_label": "NOT Over 230.5 points",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-25T22:00:00Z",
+   "teams": [
+    "Indiana",
+    "Brooklyn"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-25T13:30:13Z",
    "base_depth": 67155,
    "best_price": 0.53,
@@ -52,6 +318,8 @@
    "new_money": 33911,
    "paper_only": false,
    "price": 0.53,
+   "price_after_15m": 0.53,
+   "price_after_15m_book": "novig",
    "price_american": -113,
    "price_rule": "ok",
    "price_when_first_seen": 0.53,
@@ -138,6 +406,7 @@
    "side_label": "Under (5.5)",
    "start_source": "polymarket",
    "start_utc": "2026-10-25T22:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Islanders",
     "Stars"
@@ -197,6 +466,8 @@
    "new_money": 171873,
    "paper_only": false,
    "price": 0.51,
+   "price_after_15m": 0.5242,
+   "price_after_15m_book": "prophetx",
    "price_american": -104,
    "price_rule": "ok",
    "price_when_first_seen": 0.51,
@@ -283,6 +554,7 @@
    "side_label": "Over 49.5 points",
    "start_source": "prophetx",
    "start_utc": "2026-10-25T17:00:00Z",
+   "still_actionable": false,
    "teams": [
     "San Francisco",
     "Atlanta"
@@ -342,6 +614,8 @@
    "new_money": 28730,
    "paper_only": false,
    "price": 0.51,
+   "price_after_15m": 0.51,
+   "price_after_15m_book": "novig",
    "price_american": -104,
    "price_rule": "ok",
    "price_when_first_seen": 0.51,
@@ -428,6 +702,7 @@
    "side_label": "Over 237.5 points",
    "start_source": "prophetx",
    "start_utc": "2026-10-25T21:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Los Angeles L",
     "Utah"
@@ -475,6 +750,8 @@
    "new_money": 298124,
    "paper_only": false,
    "price": 0.52,
+   "price_after_15m": 0.5375,
+   "price_after_15m_book": "kalshi",
    "price_american": -108,
    "price_rule": "ok",
    "price_when_first_seen": 0.53,
@@ -559,6 +836,7 @@
    "side_label": "NOT New York J wins by over 4.5 points",
    "start_source": "prophetx",
    "start_utc": "2026-10-25T17:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Miami",
     "New York J"
@@ -612,6 +890,8 @@
    "new_money": 64296,
    "paper_only": false,
    "price": 0.51,
+   "price_after_15m": 0.515,
+   "price_after_15m_book": "novig",
    "price_american": -104,
    "price_rule": "ok",
    "price_when_first_seen": 0.51,
@@ -694,6 +974,7 @@
    "side_label": "NOT Over 234.5 points",
    "start_source": "prophetx",
    "start_utc": "2026-10-26T01:00:00Z",
+   "still_actionable": false,
    "teams": [
     "Memphis",
     "Sacramento"
@@ -753,6 +1034,8 @@
    "new_money": 110187,
    "paper_only": false,
    "price": 0.5,
+   "price_after_15m": 0.495,
+   "price_after_15m_book": "novig",
    "price_american": -100,
    "price_rule": "ok",
    "price_when_first_seen": 0.5,
@@ -837,6 +1120,7 @@
    "side_label": "NOT Los Angeles L wins by over 6.5 points",
    "start_source": "prophetx",
    "start_utc": "2026-10-25T21:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Los Angeles L",
     "Utah"
@@ -3193,8 +3477,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.48,
-   "clv_cents": 0.0,
+   "close_price": 0.485,
+   "clv_cents": 0.5,
    "confirmed_after_min": 10,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -3628,8 +3912,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 5.0,
+   "close_price": 0.51,
+   "clv_cents": 4.0,
    "confirmed_after_min": 10,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -3794,8 +4078,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": 1.0,
+   "close_price": 0.5,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -5095,8 +5379,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.55,
-   "clv_cents": 5.0,
+   "close_price": 0.54,
+   "clv_cents": 4.0,
    "confirmed_after_min": 5,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -5250,8 +5534,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.57,
-   "clv_cents": 5.0,
+   "close_price": 0.58,
+   "clv_cents": 6.0,
    "confirmed_after_min": 5,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -5550,8 +5834,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 0.5,
+   "close_price": 0.515,
+   "clv_cents": 0.0,
    "confirmed_after_min": 5,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -6464,8 +6748,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.6575,
-   "clv_cents": -0.2,
+   "close_price": 0.6552,
+   "clv_cents": -0.5,
    "confirmed_after_min": 6,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -6781,8 +7065,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.46,
-   "clv_cents": -2.0,
+   "close_price": 0.58,
+   "clv_cents": 10.0,
    "confirmed_after_min": 10,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -7536,8 +7820,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5495,
-   "clv_cents": 0.0,
+   "close_price": 0.5455,
+   "clv_cents": -0.4,
    "confirmed_after_min": 14,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -8864,8 +9148,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.38,
-   "clv_cents": -3.0,
+   "close_price": 0.35,
+   "clv_cents": -6.0,
    "confirmed_after_min": 10,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -9891,8 +10175,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.63,
-   "clv_cents": 2.0,
+   "close_price": 0.66,
+   "clv_cents": 5.0,
    "confirmed_after_min": 5,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -11058,8 +11342,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5305,
-   "clv_cents": 2.3,
+   "close_price": 0.5261,
+   "clv_cents": 1.9,
    "confirmed_after_min": 6,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -11671,8 +11955,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.68,
-   "clv_cents": 0.0,
+   "close_price": 0.69,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -18694,8 +18978,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.8039,
-   "clv_cents": -0.4,
+   "close_price": 0.8077,
+   "clv_cents": 0.0,
    "confirmed_after_min": 9,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -20248,8 +20532,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.6324,
-   "clv_cents": -0.5,
+   "close_price": 0.635,
+   "clv_cents": -0.3,
    "confirmed_after_min": 15,
    "date": "2026-10-25",
    "depth_by_book": {
