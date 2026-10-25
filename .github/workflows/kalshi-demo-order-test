@@ -1,0 +1,24 @@
+name: kalshi-demo-order-test
+
+on:
+  workflow_dispatch:   # manual: ONE 1-contract practice order on the Kalshi DEMO exchange (refuses to run anywhere else)
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Kalshi demo order test (practice money)
+        env:
+          KALSHI_DEMO_API: "https://external-api.demo.kalshi.co/trade-api/v2"
+          KALSHI_DEMO_KEY_ID: ${{ secrets.KALSHI_DEMO_KEY_ID }}
+          KALSHI_DEMO_PRIVATE_KEY: ${{ secrets.KALSHI_DEMO_PRIVATE_KEY }}
+        run: python -u kalshi_demo_order_test.py
