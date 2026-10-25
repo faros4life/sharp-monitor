@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Oct 25, 11:30 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 7.
+Updated Sun Oct 25, 11:40 AM ET. This run: 0 new, 1 not confirmed, 0 pending. Open alerts: 7.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -8,8 +8,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Oct 25 11:12AM | TENNIS | Mannarino vs Molcan | moneyline: Mannarino | kalshi | $159k | -257 |  |  | -1.0c |  | pending |
-| Oct 25 10:30AM | TENNIS | Mannarino vs Molcan | moneyline: Molcan | kalshi | $26k | -400 |  |  | -50.0c | yes | pending |
+| Oct 25 11:12AM | TENNIS | Mannarino vs Molcan | moneyline: Mannarino | kalshi | $159k | -257 |  |  | +3.0c |  | pending |
+| Oct 25 10:30AM | TENNIS | Mannarino vs Molcan | moneyline: Molcan | kalshi | $26k | -400 |  |  | -55.0c | yes | pending |
 | Oct 25 10:10AM | TENNIS | Struff vs Griekspoor | moneyline: Griekspoor | kalshi | $66k | -122 |  |  | +0.0c |  | pending |
 | Oct 25 10:10AM | TENNIS | Musetti vs Fritz | moneyline: Musetti | kalshi | $115k | -178 |  |  | +33.0c |  | W |
 | Oct 25 7:10AM | TENNIS | Khachanov vs Alcaraz | moneyline: Alcaraz | kalshi | $25k | -488 |  |  | -1.0c |  | pending |
