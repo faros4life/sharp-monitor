@@ -1,6 +1,145 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-25T23:40:09Z",
+   "base_depth": 1814360,
+   "best_price": 0.5,
+   "best_price_american": -100,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-10-26",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 974,
+     "new_this_side": 187688,
+     "other_side": 1820667,
+     "other_side_all_levels": 1896218,
+     "ratio": 1.0,
+     "this_side": 1848544,
+     "this_side_all_levels": 2002080
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "PHI +4.5 (4.5)",
+     "price": 0.5,
+     "this_side": 82206
+    }
+   },
+   "first_seen_utc": "2026-10-25T23:35:32Z",
+   "game": "Dallas vs Philadelphia: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNFLSPREAD-26OCT26DALPHI-DAL5\"}",
+   "lead_min": 1475,
+   "league": "NFL",
+   "line": 4.5,
+   "market": "spread",
+   "new_money": 187688,
+   "paper_only": false,
+   "price": 0.5,
+   "price_american": -100,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.5,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 4.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 4.5,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 4.5,
+     "price": -101
+    },
+    "betrivers": {
+     "point": 4.5,
+     "price": -109
+    },
+    "betus": {
+     "point": 4.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 4.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 4.5,
+     "price": -112
+    },
+    "fanatics": {
+     "point": 4.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 4.5,
+     "price": -105
+    },
+    "kalshi": {
+     "point": 4.5,
+     "price": 100
+    },
+    "lowvig": {
+     "point": 4.5,
+     "price": -104
+    },
+    "mybookieag": {
+     "point": 4.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 4.5,
+     "price": 100
+    },
+    "polymarket": {
+     "point": 4.5,
+     "price": 100
+    },
+    "prophetx": {
+     "point": 4.0,
+     "price": 106
+    },
+    "williamhill_us": {
+     "point": 4.5,
+     "price": -109
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNFLSPREAD-26OCT26DALPHI-DAL5"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Philadelphia",
+   "side_label": "NOT Dallas wins by over 4.5 points",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-27T00:15:00Z",
+   "teams": [
+    "Dallas",
+    "Philadelphia"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-25T23:30:12Z",
    "base_depth": 724776,
    "best_price": 0.4904,
@@ -376,8 +515,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.48,
-   "clv_cents": -1.0,
+   "close_price": 0.49,
+   "clv_cents": 0.0,
    "confirmed_after_min": 8,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -529,8 +668,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.72,
-   "clv_cents": 12.0,
+   "close_price": 0.79,
+   "clv_cents": 19.0,
    "confirmed_after_min": 12,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -1125,8 +1264,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.7,
-   "clv_cents": 18.0,
+   "close_price": 0.82,
+   "clv_cents": 30.0,
    "confirmed_after_min": 6,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -1349,8 +1488,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": 2.0,
+   "close_price": 0.41,
+   "clv_cents": -10.0,
    "confirmed_after_min": 14,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -2500,8 +2639,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.36,
-   "clv_cents": -15.0,
+   "close_price": 0.22,
+   "clv_cents": -29.0,
    "confirmed_after_min": 5,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -3076,8 +3215,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.82,
-   "clv_cents": 19.0,
+   "close_price": 0.56,
+   "clv_cents": -7.0,
    "confirmed_after_min": 16,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -3374,8 +3513,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.65,
-   "clv_cents": 13.0,
+   "close_price": 0.79,
+   "clv_cents": 27.0,
    "confirmed_after_min": 11,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -3874,8 +4013,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.48,
-   "clv_cents": -5.0,
+   "close_price": 0.49,
+   "clv_cents": -4.0,
    "confirmed_after_min": 12,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -4794,6 +4933,7 @@
    },
    "first_seen_utc": "2026-10-25T17:03:40Z",
    "game": "Los Angeles Rams at Las Vegas Raiders",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 0, \"px_event\": 1700008825, \"px_market\": 219, \"side\": \"0\"}",
    "lead_min": 195,
    "league": "NFL",
@@ -4889,13 +5029,14 @@
     "px_market": 219,
     "side": "0"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "kalshi",
     "novig"
    ],
    "second_book_fresh": true,
+   "settled_utc": "2026-10-25T23:40:09Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Los Angeles Rams",
@@ -4908,7 +5049,7 @@
     "Las Vegas Raiders"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.61
   },
   {
    "alerted_utc": "2026-10-25T17:10:09Z",
@@ -5069,8 +5210,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.48,
-   "clv_cents": -2.0,
+   "close_price": 0.39,
+   "clv_cents": -11.0,
    "confirmed_after_min": 6,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -5356,8 +5497,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.4,
-   "clv_cents": -11.0,
+   "close_price": 0.26,
+   "clv_cents": -25.0,
    "confirmed_after_min": 6,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -6882,8 +7023,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": 0.0,
+   "close_price": 0.52,
+   "clv_cents": -1.0,
    "confirmed_after_min": 8,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -7324,8 +7465,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.72,
-   "clv_cents": 2.0,
+   "close_price": 0.73,
+   "clv_cents": 3.0,
    "confirmed_after_min": 10,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -8073,8 +8214,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.41,
-   "clv_cents": -12.0,
+   "close_price": 0.38,
+   "clv_cents": -15.0,
    "confirmed_after_min": 10,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -8661,8 +8802,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.29,
-   "clv_cents": -25.0,
+   "close_price": 0.26,
+   "clv_cents": -28.0,
    "confirmed_after_min": 10,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -9947,8 +10088,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.54,
-   "clv_cents": 2.0,
+   "close_price": 0.55,
+   "clv_cents": 3.0,
    "confirmed_after_min": 14,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -11288,8 +11429,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": -9.0,
+   "close_price": 0.92,
+   "clv_cents": 31.0,
    "confirmed_after_min": 6,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -11708,8 +11849,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.38,
-   "clv_cents": -12.0,
+   "close_price": 0.42,
+   "clv_cents": -8.0,
    "confirmed_after_min": 6,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -12180,6 +12321,7 @@
    },
    "first_seen_utc": "2026-10-25T12:20:10Z",
    "game": "Los Angeles Rams @ Las Vegas Raiders",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a136e2-ee9a-77d1-8804-47255cdbe10f\", \"outcome_id\": \"01a136e2-ee9a-77d1-8804-474d2ca17190\"}",
    "lead_min": 475,
    "league": "NFL",
@@ -12264,10 +12406,11 @@
     "market_id": "01a136e2-ee9a-77d1-8804-47255cdbe10f",
     "outcome_id": "01a136e2-ee9a-77d1-8804-474d2ca17190"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": "none_10k",
    "second_book_fresh": false,
+   "settled_utc": "2026-10-25T23:40:09Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Los Angeles Rams",
@@ -12280,7 +12423,7 @@
     "Las Vegas Raiders"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.08
   },
   {
    "alerted_utc": "2026-10-25T12:30:11Z",
@@ -14067,8 +14210,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.54,
-   "clv_cents": 4.0,
+   "close_price": 0.65,
+   "clv_cents": 15.0,
    "confirmed_after_min": 5,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -18136,13 +18279,14 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNFLGAME-26OCT25LARLV-LAR"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig",
     "prophetx"
    ],
    "second_book_fresh": false,
+   "settled_utc": "2026-10-25T23:40:09Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Los Angeles R",
@@ -18155,7 +18299,7 @@
     "Las Vegas"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.63
   },
   {
    "alerted_utc": "2026-10-25T04:20:10Z",
@@ -19168,12 +19312,13 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBAGAME-26OCT25LALUTA-LAL"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
+   "settled_utc": "2026-10-25T23:40:09Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Los Angeles L",
@@ -19186,7 +19331,7 @@
     "Utah"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.46
   },
   {
    "alerted_utc": "2026-10-25T03:25:21Z",
@@ -19517,8 +19662,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.84,
-   "clv_cents": 12.0,
+   "close_price": 0.91,
+   "clv_cents": 19.0,
    "confirmed_after_min": 5,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -21576,8 +21721,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.29,
-   "clv_cents": -16.0,
+   "close_price": 0.22,
+   "clv_cents": -23.0,
    "confirmed_after_min": 12,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -21819,12 +21964,13 @@
     "kalshi_side": "no",
     "market_ticker": "KXNFLSPREAD-26OCT25LARLV-LAR4"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
+   "settled_utc": "2026-10-25T23:40:09Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Las Vegas",
@@ -21837,7 +21983,7 @@
     "Las Vegas"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-25T02:00:15Z",
@@ -27911,6 +28057,7 @@
    },
    "first_seen_utc": "2026-10-24T22:30:12Z",
    "game": "Los Angeles Rams @ Las Vegas Raiders",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a136e2-ee99-71a1-a851-aeb660a4a826\", \"outcome_id\": \"01a136e2-ee99-71a1-a851-aedbe8dd2abe\"}",
    "lead_min": 1305,
    "league": "NFL",
@@ -27996,12 +28143,13 @@
     "market_id": "01a136e2-ee99-71a1-a851-aeb660a4a826",
     "outcome_id": "01a136e2-ee99-71a1-a851-aedbe8dd2abe"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "prophetx"
    ],
    "second_book_fresh": true,
+   "settled_utc": "2026-10-25T23:40:09Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Los Angeles Rams",
@@ -28014,7 +28162,7 @@
     "Las Vegas Raiders"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.63
   },
   {
    "alerted_utc": "2026-10-24T22:39:38Z",
