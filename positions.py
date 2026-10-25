@@ -150,61 +150,51 @@ def pmus_positions():
 
 # ---------------------------------------------------------------- ProphetX (login + GET)
 def px_positions():
-    if not lm.PX_ACCESS or not lm.PX_SECRET:
+    """ProphetX trades carry only strike_id (no event/selection name), so each open trade's strike_id is looked up in
+    the selections of current games' markets (games from 8 h ago to 3 days ahead)."""
+    import book_check as bc
+    if not bc.PX_ACCESS or not bc.PX_SECRET:
         WHY["prophetx"] = "no key"
         return None
     try:
-        if not lm._PXT.get("token"):
-            d = lm.px_call("/auth/login", {"access_key": lm.PX_ACCESS, "secret_key": lm.PX_SECRET})
-            lm._PXT["token"] = (d.get("data") or {}).get("access_token")
-        trades = ((lm.px_call("/v4/mm/get_trades").get("data") or {}).get("trades")) or []
+        if not bc.px_login():
+            WHY["prophetx"] = "login failed"
+            return None
+        trades = ((bc.px_call("/v4/mm/get_trades").get("data") or {}).get("trades")) or []
         DONE = ("profit", "loss", "win", "won", "lose", "lost", "push", "void", "refund", "cancel")
         open_ = [t for t in trades if not any(w in str(t.get("winning_status") or "").lower() for w in DONE)
                  and not any(w in str(t.get("status") or "").lower() for w in ("settled", "cancel", "void"))]
-        STATS["prophetx"] = {"trades": len(trades), "open": len(open_),
-                             "status": sorted({str(t.get("status")) for t in trades}),
-                             "winning_status": sorted({str(t.get("winning_status")) for t in trades}),
-                             "fields": sorted({k for t in trades[:5] for k in t.keys()})}
-        out, unknown = [], set()
-        ev_cache = {}
-        ev_names = {}
-        if open_:
-            import book_check as bc
-            for lg in lm.PX_TOURNAMENTS:
-                for e in bc.px_events(lg):
-                    ev_names[str(e.get("event_id"))] = (e.get("name") or "", (e.get("scheduled") or "")[:10])
-        for t in open_:
-            eid = t.get("sport_event_id") or t.get("event_id")
-            lid = t.get("line_id") or t.get("selection_line_id")
-            name = t.get("selection_name") or t.get("name") or t.get("outcome_name")
-            if not eid or not (lid or name):
-                unknown.update(k for k in t.keys())
-                continue
-            if eid not in ev_cache:
-                mks = (lm.px_call(f"/v4/mm/get_markets?event_id={eid}").get("data") or {})
-                ev_cache[eid] = mks if isinstance(mks, list) else (mks.get("markets") or mks.get(str(eid)) or [])
-            nm_, dt_ = ev_names.get(str(eid), ("", None))
-            title, mtype = t.get("sport_event_name") or t.get("event_name") or nm_, None
-            for mk in ev_cache[eid]:
-                levels = list(mk.get("selections") or [])
-                for ml in mk.get("market_lines") or []:
-                    levels += ml.get("selections") or []
-                for lv in levels:
-                    for x in (lv if isinstance(lv, list) else [lv]):
-                        if (lid and str(x.get("line_id")) == str(lid)) or (name and not lid and x.get("name") == name):
-                            name = name or x.get("name")
-                            ty = (mk.get("type") or "").lower()
-                            mtype = "moneyline" if "money" in ty else "spread" if "spread" in ty or "handicap" in ty else \
-                                "total" if "total" in ty else None
-            if mtype and name:
-                out.append({"book": "prophetx", "game": title, "date": dt_, "mtype": mtype, "label": name, "flip": False,
-                            "event_id": eid})
-            elif not mtype:
-                unknown.add("no market match")
-        if unknown and not out and open_:
-            WHY["prophetx"] = "trade fields not recognized: " + ", ".join(sorted(unknown))[:200]
-            return None
-        return out
+        want = {str(t.get("strike_id")) for t in open_ if t.get("strike_id")}
+        found, now = {}, datetime.now().astimezone()
+        for lg in bc.PX_TOURNAMENTS:
+            if not want - set(found):
+                break
+            for e in bc.px_events(lg):
+                if not want - set(found):
+                    break
+                try:
+                    st = datetime.fromisoformat((e.get("scheduled") or "").replace("Z", "+00:00"))
+                except Exception:
+                    continue
+                if not (now - timedelta(hours=8) <= st <= now + timedelta(days=3)):
+                    continue
+                for mk in bc.px_markets(e["event_id"]):
+                    ty = (mk.get("type") or "").lower()
+                    mtype = "moneyline" if "money" in ty else "spread" if ("spread" in ty or "handicap" in ty) else \
+                        "total" if "total" in ty else None
+                    if not mtype:
+                        continue
+                    for lv, _ln in bc.px_lines(mk):
+                        for x in (lv if isinstance(lv, list) else [lv]):
+                            sid = str(x.get("strike_id"))
+                            if sid in want and sid not in found:
+                                found[sid] = {"book": "prophetx", "game": e.get("name") or "", "date": (e.get("scheduled") or "")[:10],
+                                              "mtype": mtype, "label": x.get("name") or "", "flip": False}
+        STATS["prophetx"] = {"trades": len(trades), "open_fills": len(open_), "open_strikes": len(want),
+                             "matched_strikes": len(found)}
+        if want - set(found):
+            WHY["prophetx_partial"] = f"{len(want - set(found))} of {len(want)} open bets not matched to a game"
+        return list(found.values())
     except Exception as ex:
         WHY["prophetx"] = str(ex)[:100]
         return None
@@ -259,5 +249,6 @@ def conflict(al, mtype, side, teams, held_by_book):
 
 def status_line(held_by_book):
     names = {"kalshi": "Kalshi", "prophetx": "ProphetX", "polymarket_us": "Polymarket US"}
-    return ", ".join(f"{names[b]} " + ("checked" if v is not None else f"unavailable ({WHY.get(b, '?')})")
+    return ", ".join(f"{names[b]} " + (("checked" + (f" ({WHY[b + '_partial']})" if WHY.get(b + "_partial") else ""))
+                                        if v is not None else f"unavailable ({WHY.get(b, '?')})")
                      for b, v in held_by_book.items())
