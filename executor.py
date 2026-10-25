@@ -23,6 +23,7 @@ from email.mime.text import MIMEText
 
 import book_check as bc
 import liquidity_monitor as lm
+import positions
 
 UNIT = float(os.environ.get("EXEC_UNIT", "") or "200")          # + money: risk UNIT; - money: risk to win UNIT
 MIN_LEAD_MIN = float(os.environ.get("EXEC_MIN_LEAD_MIN", "") or "60")
@@ -297,10 +298,20 @@ def novig_positions():
         if not nv.ready():
             _NVERR["why"] = "key not ready"
             return None
-        d = nv.get("/v3/portfolio/positions", {"keyId": nv._S["id"]})
         out = []
-        for v in (d.values() if isinstance(d, dict) else [d]):
-            out += v if isinstance(v, list) else (v.get("items") or [] if isinstance(v, dict) else [])
+        # main wallet + the auto-place subaccount (the executor will bet from the subaccount)
+        for kid in dict.fromkeys([nv._S["id"], (os.environ.get("NOVIG_TRADE_KEY_ID") or "").strip()]):
+            if not kid:
+                continue
+            try:
+                d = nv.get("/v3/portfolio/positions", {"keyId": kid})
+            except Exception as ex:
+                if kid == nv._S["id"]:
+                    raise
+                _NVERR["sub"] = str(ex)[:80]   # subaccount not readable with the read key: main wallet still checked
+                continue
+            for v in (d.values() if isinstance(d, dict) else [d]):
+                out += v if isinstance(v, list) else (v.get("items") or [] if isinstance(v, dict) else [])
         return [p for p in out if int(p.get("qty") or 0) > 0]
     except Exception as ex:
         _NVERR["why"] = str(ex)[:120]
@@ -365,7 +376,7 @@ def stake_for(am):
     return round(risk, 2), round(win, 2)
 
 
-def evaluate(p, now, evs_by, mks_by_event, pos, taken=None):
+def evaluate(p, now, evs_by, mks_by_event, pos, taken=None, held=None):
     al = {"sport": (p.get("sport") or "").upper(), "game": p.get("game") or "", "bet": p.get("bet") or "",
           "start_utc": p.get("start_utc") or ""}
     dk = derive_key(p)
@@ -423,6 +434,12 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None):
         return dict(out, verdict="SKIP", reason="CONFLICT: opposite side already held on Novig (first side stays)")
     if c == "duplicate":
         return dict(out, verdict="SKIP", reason="duplicate: already holding this side on Novig")
+    c2 = positions.conflict(dict(al), mtype, side, teams, held or {})
+    if c2:
+        bn = BOOK_NAME.get(c2[1], c2[1])
+        if c2[0] == "conflict":
+            return dict(out, verdict="SKIP", reason=f"CONFLICT: opposite side already held on {bn} (first side stays)")
+        return dict(out, verdict="SKIP", reason=f"duplicate: already holding this side on {bn}")
 
     # --- every nearby line on every book, converted to its EQUIVALENT price at the alert line (Peter, Oct 23)
     ladders = {}   # (book, line) -> result
@@ -649,6 +666,7 @@ def main():
     for mk in mks:
         mks_by_event.setdefault(mk.get("eventId"), []).append(mk)
     pos = novig_positions()
+    held = positions.all_positions()   # Kalshi / ProphetX / Polymarket US open positions (read-only)
     results, taken_now = [], set()
     M2 = imap_open()
 
@@ -656,7 +674,7 @@ def main():
         return k in taken_now or bool(gsearch(M2, wp(k)))
     for p in new:
         try:
-            r = evaluate(p, now, evs_by, mks_by_event, pos, taken)
+            r = evaluate(p, now, evs_by, mks_by_event, pos, taken, held)
             results.append(r)
             if r["verdict"] != "SKIP" and derive_key(p):
                 taken_now.add(derive_key(p))
@@ -678,11 +696,14 @@ def main():
         body.append("")
     if pos is None:
         body += [f"Note: couldn't check your Novig positions this run ({_NVERR['why']}). Live mode would bet nothing.", ""]
+    if any(v is None for v in held.values()):
+        body += ["Note: positions not checked on " + ", ".join(BOOK_NAME[b] for b, v in held.items() if v is None)
+                 + " this run. Live mode would bet nothing until every book can be checked.", ""]
     body += ["", "-" * 60, "DETAILS (for Muse)",
              f"Unit {money(UNIT)}: + money risks the unit, - money risks to win it. Prices after fees. Routing: every line within "
              "1 point on every book converted to its equivalent price at the alert line (half point from live ladders); best "
              "equivalent wins, ties to the better line; -130 cap on the price taken. Novig positions: "
-             + ("checked" if pos is not None else "unavailable") + ".", ""]
+             + ("checked" if pos is not None else "unavailable") + "; " + positions.status_line(held) + ".", ""]
     for r in results:
         body.append(fmt(r))
         if r.get("books"):
