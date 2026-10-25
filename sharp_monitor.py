@@ -29,7 +29,7 @@ STATE_FILE = os.environ.get("STATE_FILE", "state.json")
 SHARP = os.environ.get("SHARP_BOOK", "") or "pinnacle"
 # Books you can actually bet. Sharp book + these must stay <= 10 to cost 1 credit per market.
 RETAIL = [b.strip() for b in (os.environ.get("RETAIL_BOOKS", "") or
-    "hardrockbet_fl,prophetx,novig,kalshi,polymarket,betmgm,fanduel,draftkings"
+    "hardrockbet_fl,prophetx,novig,kalshi,polymarket_us,betmgm,fanduel,draftkings"   # Polymarket US only (Oct 25), not global polymarket.com
 ).split(",") if b.strip()]
 # Second sharp-leaning book that must agree with the sharp move ("none" to turn off).
 # CONFIRM_BOOK may list several, comma separated: a sharp move is confirmed when at least as many of them
@@ -188,7 +188,7 @@ def sharp_values(lines, book=None):
 
 
 NAMES = {"hardrockbet_fl": "Hard Rock FL", "hardrockbet": "Hard Rock", "prophetx": "ProphetX",
-         "novig": "Novig", "kalshi": "Kalshi", "polymarket": "Polymarket", "betmgm": "BetMGM", "fanduel": "FanDuel", "draftkings": "DraftKings",
+         "novig": "Novig", "kalshi": "Kalshi", "polymarket": "Polymarket (global)", "polymarket_us": "Polymarket US", "betmgm": "BetMGM", "fanduel": "FanDuel", "draftkings": "DraftKings",
          "pinnacle": "Pinnacle", "betonlineag": "BetOnline", "lowvig": "LowVig", "matchbook": "Matchbook", "betfair_ex_eu": "Betfair", "smarkets": "Smarkets"}
 
 
@@ -702,7 +702,7 @@ def units(e, r):
 # win chance at the play's own number (half points between Pinnacle's number and the play's number are priced in).
 CLOSE_WINDOW = float(os.environ.get("CLOSE_WINDOW_MIN", "") or "15")
 LABEL_KEY = {v["label"]: k for k, v in SPORTS.items()}
-EXEC_BOOKS = ("novig", "kalshi", "prophetx", "polymarket")   # books the executor can place (Polymarket US via the feed's polymarket)
+EXEC_BOOKS = ("novig", "kalshi", "prophetx", "polymarket_us")   # books the executor can place
 
 
 def close_prob(e, pin):
