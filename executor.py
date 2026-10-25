@@ -18,6 +18,7 @@ import os
 import re
 import smtplib
 import time
+import urllib.request
 from datetime import datetime, timedelta, timezone
 from email.mime.text import MIMEText
 
@@ -121,6 +122,26 @@ def derive_key(p):
         return f"{(p.get('sport') or '').upper()}|{p.get('game')}|{'side' if mt in ('spread', 'moneyline') else mt}|{side}"
     except Exception:
         return None
+
+
+def held_tok(key):
+    """Token on HELD entries (positions unreadable): the play is NOT marked handled, so the next run retries it;
+    this token only stops the phone alert from repeating every 10 minutes."""
+    return "xheld" + hashlib.sha1(key.encode()).hexdigest()[:12]
+
+
+def push(title, body):
+    """Phone alert through the same ntfy topic as the sharp alerts (no amounts)."""
+    topic = os.environ.get("NTFY_TOPIC", "")
+    if not topic:
+        return
+    try:
+        req = urllib.request.Request(f"https://ntfy.sh/{topic}", data=body.encode(), method="POST",
+                                     headers={"Title": title.encode("ascii", "ignore").decode(), "Priority": "high",
+                                              "Tags": "warning"})
+        urllib.request.urlopen(req, timeout=15).read()
+    except Exception as ex:
+        print(f"push failed: {str(ex)[:60]}")
 
 
 def wp(key):
@@ -607,7 +628,9 @@ def money(x):
 def fmt(r):
     p = r["play"]
     dk = derive_key(p)
-    tag = r["pid"] + (f" {wp(dk)}" if (r["verdict"] != "SKIP" and dk) else "")
+    if r["verdict"] == "HELD":   # no xpid token: the play stays new and is retried next run
+        return f"HELD  [{held_tok(dk or p['play_key'])}] {p.get('sport')} {p.get('game')} | {p.get('bet')}\n      reason: {r['reason']}"
+    tag = r["pid"] + (f" {wp(dk)}" if (r["verdict"] == "WOULD PLACE" and dk) else "")
     head = f"[{tag}] {p.get('sport')} {p.get('game')} | {p.get('bet')}"
     if r["verdict"] == "SKIP":
         return f"SKIP  {head}\n      reason: {r['reason']}"
@@ -667,6 +690,15 @@ def main():
         mks_by_event.setdefault(mk.get("eventId"), []).append(mk)
     pos = novig_positions()
     held = positions.all_positions()   # Kalshi / ProphetX / Polymarket US open positions (read-only)
+    if pos is None or any(v is None for v in held.values()):   # one immediate retry before holding anything
+        time.sleep(5)
+        if pos is None:
+            pos = novig_positions()
+        retry = {"kalshi": positions.kalshi_positions, "prophetx": positions.px_positions,
+                 "polymarket_us": positions.pmus_positions}
+        for b in [b for b, v in held.items() if v is None]:
+            held[b] = retry[b]()
+    blind = (["Novig"] if pos is None else []) + [BOOK_NAME[b] for b, v in held.items() if v is None]
     results, taken_now = [], set()
     M2 = imap_open()
 
@@ -675,8 +707,17 @@ def main():
     for p in new:
         try:
             r = evaluate(p, now, evs_by, mks_by_event, pos, taken, held)
+            if r["verdict"] == "WOULD PLACE" and blind:
+                # can't see what's already held on every book: hold, retry next run, alert the phone once
+                r = dict(r, verdict="HELD", reason="positions unreadable on " + ", ".join(blind))
+                dk = derive_key(p) or p["play_key"]
+                if not gsearch(M2, held_tok(dk)):
+                    push("Bet held: " + (p.get("bet") or "")[:60],
+                         f"{p.get('sport')} {p.get('game')}\nCouldn't check your open bets on {', '.join(blind)}. "
+                         "Retrying every 10 min while the price is there. If you know you don't hold the other side, "
+                         "you can place it by hand.")
             results.append(r)
-            if r["verdict"] != "SKIP" and derive_key(p):
+            if r["verdict"] == "WOULD PLACE" and derive_key(p):
                 taken_now.add(derive_key(p))
         except Exception as ex:
             results.append({"play": p, "pid": pid(p["play_key"]), "verdict": "SKIP", "reason": f"error: {str(ex)[:100]}"})
@@ -685,7 +726,13 @@ def main():
     when = now.astimezone(lm.ET).strftime('%a %b %d %I:%M %p ET')
     body = [f"DRY RUN - nothing was bet ({when})", ""]
     places = [r for r in results if r["verdict"] == "WOULD PLACE"]
-    skips = [r for r in results if r["verdict"] != "WOULD PLACE"]
+    helds = [r for r in results if r["verdict"] == "HELD"]
+    skips = [r for r in results if r["verdict"] not in ("WOULD PLACE", "HELD")]
+    if helds:
+        body.append(f"HELD - retrying next run ({len(helds)})")
+        body += [f"  - {r['play'].get('bet')}  ({r['play'].get('sport')} {r['play'].get('game')}): couldn't check your open "
+                 f"bets on {', '.join(blind)}; it will try again in 10 minutes." for r in helds]
+        body.append("")
     if places:
         body.append(f"WOULD BET ({len(places)})")
         body += [plain(r) for r in places]
@@ -695,10 +742,10 @@ def main():
         body += [plain(r) for r in skips]
         body.append("")
     if pos is None:
-        body += [f"Note: couldn't check your Novig positions this run ({_NVERR['why']}). Live mode would bet nothing.", ""]
+        body += [f"Note: couldn't check your Novig positions this run ({_NVERR['why']}). Bets are held and retried next run.", ""]
     if any(v is None for v in held.values()):
         body += ["Note: positions not checked on " + ", ".join(BOOK_NAME[b] for b, v in held.items() if v is None)
-                 + " this run. Live mode would bet nothing until every book can be checked.", ""]
+                 + " this run (after one retry). Bets are held and retried next run.", ""]
     body += ["", "-" * 60, "DETAILS (for Muse)",
              f"Unit {money(UNIT)}: + money risks the unit, - money risks to win it. Prices after fees. Routing: every line within "
              "1 point on every book converted to its equivalent price at the alert line (half point from live ladders); best "
@@ -710,9 +757,10 @@ def main():
             body += book_lines(r)
         body.append("")
     first = ", ".join(short(r) for r in places[:3]) + ("..." if len(places) > 3 else "")
-    send(f"Bets dry run: {nw} would bet" + (f" ({first})" if places else "") + f", {len(results) - nw} skipped",
+    send(f"Bets dry run: {nw} would bet" + (f" ({first})" if places else "") + (f", {len(helds)} held" if helds else "")
+         + f", {len(skips)} skipped",
          "\n".join(body))
-    print(f"Dry-run email sent: {nw} would place, {len(results) - nw} skipped.")   # counts only
+    print(f"Dry-run email sent: {nw} would place, {len(helds)} held, {len(skips)} skipped.")   # counts only
 
 
 if __name__ == "__main__":
