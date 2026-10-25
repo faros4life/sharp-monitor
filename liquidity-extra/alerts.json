@@ -1,6 +1,137 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-25T04:30:17Z",
+   "base_depth": 189445,
+   "best_price": 0.5275,
+   "best_price_american": -112,
+   "best_price_book": "polymarket",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-26",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 22165,
+     "new_this_side": 146084,
+     "other_side": 153650,
+     "other_side_all_levels": 348237,
+     "ratio": 1.4,
+     "this_side": 217949,
+     "this_side_all_levels": 386690
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Tampa Bay Rays",
+     "price": 0.52,
+     "this_side": 4828
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "Tampa Bay Rays",
+     "price": 0.5283,
+     "this_side": 1023
+    }
+   },
+   "first_seen_utc": "2026-10-25T04:20:14Z",
+   "game": "Game 3: Milwaukee vs Tampa Bay",
+   "key": "kalshi|KXMLBGAME-26OCT262000MILTB|ml|1",
+   "lead_min": 2610,
+   "league": "MLB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 146084,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -120
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -115
+    },
+    "betrivers": {
+     "point": null,
+     "price": -120
+    },
+    "bovada": {
+     "point": null,
+     "price": -121
+    },
+    "draftkings": {
+     "point": null,
+     "price": -122
+    },
+    "fanatics": {
+     "point": null,
+     "price": -120
+    },
+    "fanduel": {
+     "point": null,
+     "price": -120
+    },
+    "kalshi": {
+     "point": null,
+     "price": -108
+    },
+    "lowvig": {
+     "point": null,
+     "price": -115
+    },
+    "polymarket": {
+     "point": null,
+     "price": -108
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -104
+    },
+    "prophetx": {
+     "point": null,
+     "price": -112
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -121
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXMLBGAME-26OCT262000MILTB-TB"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "none_10k",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Tampa Bay",
+   "side_label": "Tampa Bay",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-27T00:00:00Z",
+   "teams": [
+    "Game 3: Milwaukee",
+    "Tampa Bay"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-25T03:50:13Z",
    "base_depth": 97826,
    "best_price": 0.7535,
@@ -183,10 +314,11 @@
     "kalshi_side": "yes",
     "market_ticker": "KXWTAMATCH-26OCT24SASRAK-SAS"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": "no_match",
    "second_book_fresh": false,
+   "settled_utc": "2026-10-25T04:30:17Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Sasnovich",
@@ -199,7 +331,7 @@
     "Rakhimova"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.25
   },
   {
    "alerted_utc": "2026-10-25T03:13:39Z",
@@ -285,8 +417,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.56,
-   "clv_cents": -1.0,
+   "close_price": 0.55,
+   "clv_cents": -2.0,
    "confirmed_after_min": 10,
    "date": "2026-10-25",
    "depth_by_book": {
