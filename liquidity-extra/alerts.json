@@ -1,6 +1,72 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-25T14:30:17Z",
+   "base_depth": 164817,
+   "best_price": 0.8112,
+   "best_price_american": -430,
+   "best_price_book": "kalshi",
+   "bid_improved": true,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.8,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-25",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 3072,
+     "new_this_side": 26330,
+     "other_side": 35018,
+     "other_side_all_levels": 49852,
+     "ratio": 3.0,
+     "this_side": 103355,
+     "this_side_all_levels": 262115
+    }
+   },
+   "first_seen_utc": "2026-10-25T14:20:14Z",
+   "game": "Mannarino vs Molcan",
+   "key": "kalshi|KXATPMATCH-26OCT25MANMOL|ml|1",
+   "lead_min": 120,
+   "league": "TENNIS",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 26330,
+   "paper_only": true,
+   "price": 0.8,
+   "price_american": -400,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.63,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXATPMATCH-26OCT25MANMOL-MOL"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "no_match",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Molcan",
+   "side_label": "Molcan",
+   "start_source": "kalshi",
+   "start_utc": "2026-10-25T16:30:00Z",
+   "teams": [
+    "Mannarino",
+    "Molcan"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-25T14:10:15Z",
    "base_depth": 193036,
    "best_price": 0.5673,
@@ -81,8 +147,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.64,
-   "clv_cents": 0.0,
+   "close_price": 0.87,
+   "clv_cents": 23.0,
    "confirmed_after_min": 10,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -106,6 +172,8 @@
    "new_money": 114716,
    "paper_only": true,
    "price": 0.64,
+   "price_after_15m": 0.8779,
+   "price_after_15m_book": "kalshi",
    "price_american": -178,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.58,
@@ -125,6 +193,7 @@
    "side_label": "Musetti",
    "start_source": "kalshi",
    "start_utc": "2026-10-25T16:30:00Z",
+   "still_actionable": false,
    "teams": [
     "Musetti",
     "Fritz"
@@ -1122,8 +1191,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.37,
-   "clv_cents": -27.0,
+   "close_price": 0.14,
+   "clv_cents": -50.0,
    "confirmed_after_min": 3,
    "date": "2026-10-25",
    "depth_by_book": {
