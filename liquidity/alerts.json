@@ -1,6 +1,137 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-25T23:30:12Z",
+   "base_depth": 724776,
+   "best_price": 0.4904,
+   "best_price_american": 104,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.48,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-26",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 15303,
+     "new_this_side": 108673,
+     "other_side": 540960,
+     "other_side_all_levels": 678836,
+     "ratio": 1.4,
+     "this_side": 777988,
+     "this_side_all_levels": 833130
+    }
+   },
+   "first_seen_utc": "2026-10-25T23:20:09Z",
+   "game": "Dallas vs Philadelphia: Total Points",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNFLTOTAL-26OCT26DALPHI-44\"}",
+   "lead_min": 1485,
+   "league": "NFL",
+   "line": 43.5,
+   "market": "total",
+   "new_money": 108673,
+   "paper_only": false,
+   "price": 0.48,
+   "price_american": 108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.48,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 44.0,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 44.0,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 44.0,
+     "price": -101
+    },
+    "betrivers": {
+     "point": 44.0,
+     "price": -113
+    },
+    "betus": {
+     "point": 44.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 44.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 43.5,
+     "price": -102
+    },
+    "fanatics": {
+     "point": 44.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 44.5,
+     "price": -120
+    },
+    "kalshi": {
+     "point": 44.5,
+     "price": -113
+    },
+    "lowvig": {
+     "point": 44.0,
+     "price": -107
+    },
+    "mybookieag": {
+     "point": 44.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 44.5,
+     "price": -111
+    },
+    "polymarket": {
+     "point": 44.5,
+     "price": -109
+    },
+    "prophetx": {
+     "point": 44.0,
+     "price": -104
+    },
+    "williamhill_us": {
+     "point": 44.0,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNFLTOTAL-26OCT26DALPHI-44"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "no_match",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "NOT Over 43.5 points",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-27T00:15:00Z",
+   "teams": [
+    "Dallas",
+    "Philadelphia"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-25T23:20:09Z",
    "base_depth": 140285,
    "best_price": 0.5971,
@@ -395,8 +526,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.67,
-   "clv_cents": 7.0,
+   "close_price": 0.73,
+   "clv_cents": 13.0,
    "confirmed_after_min": 12,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -1215,8 +1346,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.49,
-   "clv_cents": -2.0,
+   "close_price": 0.59,
+   "clv_cents": 8.0,
    "confirmed_after_min": 14,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -2244,6 +2375,7 @@
    },
    "first_seen_utc": "2026-10-25T19:35:19Z",
    "game": "Denver Broncos @ Arizona Cardinals",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a136e2-ee0a-7273-991d-31407a1bc2f0\", \"outcome_id\": \"01a136e2-ee0a-7273-991d-316800f89e01\"}",
    "lead_min": 25,
    "league": "NFL",
@@ -2329,12 +2461,13 @@
     "market_id": "01a136e2-ee0a-7273-991d-31407a1bc2f0",
     "outcome_id": "01a136e2-ee0a-7273-991d-316800f89e01"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "kalshi"
    ],
    "second_book_fresh": false,
+   "settled_utc": "2026-10-25T23:30:12Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Denver Broncos",
@@ -2347,7 +2480,7 @@
     "Arizona Cardinals"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.0
   },
   {
    "alerted_utc": "2026-10-25T19:40:09Z",
@@ -2364,8 +2497,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.37,
-   "clv_cents": -14.0,
+   "close_price": 0.24,
+   "clv_cents": -27.0,
    "confirmed_after_min": 5,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -2698,6 +2831,7 @@
    },
    "first_seen_utc": "2026-10-25T19:05:48Z",
    "game": "Denver Broncos @ Arizona Cardinals",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a136e2-ee0a-7273-991d-31407a1bc2f0\", \"outcome_id\": \"01a136e2-ee0a-7273-991d-3158f912b8b9\"}",
    "lead_min": 55,
    "league": "NFL",
@@ -2783,12 +2917,13 @@
     "market_id": "01a136e2-ee0a-7273-991d-31407a1bc2f0",
     "outcome_id": "01a136e2-ee0a-7273-991d-3158f912b8b9"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "kalshi"
    ],
    "second_book_fresh": false,
+   "settled_utc": "2026-10-25T23:30:12Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Arizona Cardinals",
@@ -2801,7 +2936,7 @@
     "Arizona Cardinals"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-25T19:10:10Z",
@@ -2938,8 +3073,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.63,
-   "clv_cents": 0.0,
+   "close_price": 0.82,
+   "clv_cents": 19.0,
    "confirmed_after_min": 16,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -3114,6 +3249,7 @@
    },
    "first_seen_utc": "2026-10-25T18:40:09Z",
    "game": "Denver vs Arizona: Spread",
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNFLSPREAD-26OCT25DENARI-DEN5\"}",
    "lead_min": 75,
    "league": "NFL",
@@ -3199,12 +3335,13 @@
     "kalshi_side": "no",
     "market_ticker": "KXNFLSPREAD-26OCT25DENARI-DEN5"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": true,
+   "settled_utc": "2026-10-25T23:30:12Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Arizona",
@@ -3217,7 +3354,7 @@
     "Arizona"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-25T18:31:01Z",
@@ -3234,8 +3371,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.64,
-   "clv_cents": 12.0,
+   "close_price": 0.77,
+   "clv_cents": 25.0,
    "confirmed_after_min": 11,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -3842,7 +3979,8 @@
      "price": -110
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-25T23:30:12Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNBASPREAD-26OCT25DETPHI-DET2"
@@ -4892,12 +5030,13 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNFLTOTAL-26OCT25LARLV-49"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
+   "settled_utc": "2026-10-25T23:30:12Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -4910,7 +5049,7 @@
     "Las Vegas"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.94
   },
   {
    "alerted_utc": "2026-10-25T17:10:09Z",
@@ -5214,8 +5353,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.4,
-   "clv_cents": -11.0,
+   "close_price": 0.27,
+   "clv_cents": -24.0,
    "confirmed_after_min": 6,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -6378,8 +6517,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.74,
-   "clv_cents": -2.0,
+   "close_price": 0.73,
+   "clv_cents": -3.0,
    "confirmed_after_min": 7,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -6740,8 +6879,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": -1.0,
+   "close_price": 0.53,
+   "clv_cents": 0.0,
    "confirmed_after_min": 8,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -7182,8 +7321,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.71,
-   "clv_cents": 1.0,
+   "close_price": 0.72,
+   "clv_cents": 2.0,
    "confirmed_after_min": 10,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -7931,8 +8070,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.56,
-   "clv_cents": 3.0,
+   "close_price": 0.44,
+   "clv_cents": -9.0,
    "confirmed_after_min": 10,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -8519,8 +8658,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.29,
-   "clv_cents": -25.0,
+   "close_price": 0.25,
+   "clv_cents": -29.0,
    "confirmed_after_min": 10,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -9516,8 +9655,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.79,
-   "clv_cents": 29.0,
+   "close_price": 0.72,
+   "clv_cents": 22.0,
    "confirmed_after_min": 6,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -9907,7 +10046,8 @@
      "price": -110
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-25T23:30:12Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNBATOTAL-26OCT25DETPHI-228"
@@ -10405,8 +10545,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.57,
-   "clv_cents": 3.0,
+   "close_price": 0.58,
+   "clv_cents": 4.0,
    "confirmed_after_min": 10,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -10507,7 +10647,8 @@
      "price": -115
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-25T23:30:12Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNBASPREAD-26OCT25DETPHI-PHI2"
@@ -11024,6 +11165,7 @@
    },
    "first_seen_utc": "2026-10-25T12:44:27Z",
    "game": "Denver vs Arizona: Spread",
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNFLSPREAD-26OCT25DENARI-DEN5\"}",
    "lead_min": 435,
    "league": "NFL",
@@ -11109,10 +11251,11 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNFLSPREAD-26OCT25DENARI-DEN5"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": "none_10k",
    "second_book_fresh": false,
+   "settled_utc": "2026-10-25T23:30:12Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Denver",
@@ -11125,7 +11268,7 @@
     "Arizona"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.98
   },
   {
    "alerted_utc": "2026-10-25T12:50:08Z",
@@ -11142,8 +11285,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.69,
-   "clv_cents": 8.0,
+   "close_price": 0.47,
+   "clv_cents": -14.0,
    "confirmed_after_min": 6,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -11562,8 +11705,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.32,
-   "clv_cents": -18.0,
+   "close_price": 0.33,
+   "clv_cents": -17.0,
    "confirmed_after_min": 6,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -13483,8 +13626,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.56,
-   "clv_cents": 5.0,
+   "close_price": 0.55,
+   "clv_cents": 4.0,
    "confirmed_after_min": 5,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -13921,8 +14064,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.57,
-   "clv_cents": 7.0,
+   "close_price": 0.48,
+   "clv_cents": -2.0,
    "confirmed_after_min": 5,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -15579,13 +15722,14 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNFLGAME-26OCT25DENARI-DEN"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig",
     "prophetx"
    ],
    "second_book_fresh": false,
+   "settled_utc": "2026-10-25T23:30:12Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Denver",
@@ -15598,7 +15742,7 @@
     "Arizona"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.47
   },
   {
    "alerted_utc": "2026-10-25T07:40:10Z",
@@ -16688,8 +16832,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.85,
-   "clv_cents": 12.0,
+   "close_price": 0.86,
+   "clv_cents": 13.0,
    "confirmed_after_min": 7,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -16992,8 +17136,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.44,
-   "clv_cents": -6.0,
+   "close_price": 0.69,
+   "clv_cents": 19.0,
    "confirmed_after_min": 13,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -18121,7 +18265,8 @@
      "price": -103
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-25T23:30:12Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNFLSPREAD-26OCT25KCSEA-SEA3"
@@ -18896,8 +19041,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.62,
-   "clv_cents": -7.0,
+   "close_price": 0.75,
+   "clv_cents": 6.0,
    "confirmed_after_min": 5,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -19082,6 +19227,7 @@
    },
    "first_seen_utc": "2026-10-25T03:20:10Z",
    "game": "Denver Broncos at Arizona Cardinals",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 0, \"px_event\": 1700008849, \"px_market\": 219, \"side\": \"0\"}",
    "lead_min": 1000,
    "league": "NFL",
@@ -19173,13 +19319,14 @@
     "px_market": 219,
     "side": "0"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "kalshi",
     "novig"
    ],
    "second_book_fresh": true,
+   "settled_utc": "2026-10-25T23:30:12Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Denver Broncos",
@@ -19192,7 +19339,7 @@
     "Arizona Cardinals"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.47
   },
   {
    "alerted_utc": "2026-10-25T03:25:21Z",
@@ -19238,6 +19385,7 @@
    },
    "first_seen_utc": "2026-10-25T03:20:10Z",
    "game": "Denver Broncos @ Arizona Cardinals",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a136e2-ee0a-7273-991d-30893aa5795a\", \"outcome_id\": \"01a136e2-ee0a-7273-991d-30a8024c7380\"}",
    "lead_min": 1000,
    "league": "NFL",
@@ -19327,13 +19475,14 @@
     "market_id": "01a136e2-ee0a-7273-991d-30893aa5795a",
     "outcome_id": "01a136e2-ee0a-7273-991d-30a8024c7380"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "kalshi",
     "prophetx"
    ],
    "second_book_fresh": true,
+   "settled_utc": "2026-10-25T23:30:12Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Denver Broncos",
@@ -19346,7 +19495,7 @@
     "Arizona Cardinals"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.47
   },
   {
    "alerted_utc": "2026-10-25T03:25:21Z",
@@ -19363,8 +19512,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.83,
-   "clv_cents": 11.0,
+   "close_price": 0.9,
+   "clv_cents": 18.0,
    "confirmed_after_min": 5,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -21420,8 +21569,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.34,
-   "clv_cents": -11.0,
+   "close_price": 0.28,
+   "clv_cents": -17.0,
    "confirmed_after_min": 12,
    "date": "2026-10-25",
    "depth_by_book": {
