@@ -1,6 +1,139 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-25T04:20:10Z",
+   "base_depth": 2768514,
+   "best_price": 0.545,
+   "best_price_american": -120,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.54,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-25",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 87754,
+     "new_this_side": 1042465,
+     "other_side": 2608492,
+     "other_side_all_levels": 2719676,
+     "ratio": 1.4,
+     "this_side": 3724384,
+     "this_side_all_levels": 3813102
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "SEA -2.5 (-2.5)",
+     "price": 0.545,
+     "this_side": 42281
+    }
+   },
+   "first_seen_utc": "2026-10-25T04:10:09Z",
+   "game": "Kansas City vs Seattle: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNFLSPREAD-26OCT25KCSEA-SEA3\"}",
+   "lead_min": 1200,
+   "league": "NFL",
+   "line": -2.5,
+   "market": "spread",
+   "new_money": 1042465,
+   "paper_only": false,
+   "price": 0.54,
+   "price_american": -117,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.54,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -3.0,
+     "price": -102
+    },
+    "betonlineag": {
+     "point": -3.0,
+     "price": -103
+    },
+    "betopenly": {
+     "point": -3.0,
+     "price": 107
+    },
+    "betrivers": {
+     "point": -2.5,
+     "price": -118
+    },
+    "betus": {
+     "point": -3.0,
+     "price": -105
+    },
+    "draftkings": {
+     "point": -3.0,
+     "price": -105
+    },
+    "fanatics": {
+     "point": -3.0,
+     "price": -105
+    },
+    "fanduel": {
+     "point": -3.0,
+     "price": -105
+    },
+    "kalshi": {
+     "point": -2.5,
+     "price": -117
+    },
+    "lowvig": {
+     "point": -3.0,
+     "price": 102
+    },
+    "mybookieag": {
+     "point": -3.0,
+     "price": -105
+    },
+    "novig": {
+     "point": -2.5,
+     "price": -120
+    },
+    "polymarket": {
+     "point": -2.5,
+     "price": -117
+    },
+    "prophetx": {
+     "point": -3.0,
+     "price": 101
+    },
+    "williamhill_us": {
+     "point": -3.0,
+     "price": -103
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNFLSPREAD-26OCT25KCSEA-SEA3"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "none_10k",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Seattle",
+   "side_label": "Seattle wins by over 2.5 points",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-26T00:20:00Z",
+   "teams": [
+    "Kansas City",
+    "Seattle"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-25T04:10:09Z",
    "base_depth": 7749613,
    "best_price": 0.68,
@@ -1485,7 +1618,8 @@
      "price": 144
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-25T04:20:10Z",
    "ref": {
     "market_id": "01a136e2-e79c-70a2-8a3f-bd6abd3a27ee",
     "outcome_id": "01a136e2-e79c-70a2-8a3f-bd712d50f70e"
@@ -1760,8 +1894,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5025,
-   "clv_cents": -0.5,
+   "close_price": 0.505,
+   "clv_cents": -0.2,
    "confirmed_after_min": 6,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -2921,7 +3055,8 @@
      "price": -150
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-25T04:20:10Z",
    "ref": {
     "market_id": "01a136e2-efc7-77b0-a14c-5a9d86ede14c",
     "outcome_id": "01a136e2-efc7-77b0-a14c-5aa21370d1b0"
@@ -6679,7 +6814,8 @@
      "price": -148
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-25T04:20:10Z",
    "ref": {
     "market_id": "01a136e2-eb62-7a90-9d60-53526d519f49",
     "outcome_id": "01a136e2-eb62-7a90-9d60-5370a72c497c"
@@ -7988,8 +8124,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.585,
-   "clv_cents": -0.5,
+   "close_price": 0.59,
+   "clv_cents": 0.0,
    "confirmed_after_min": 8,
    "date": "2026-10-25",
    "depth_by_book": {
