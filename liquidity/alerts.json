@@ -1,6 +1,299 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-25T13:10:08Z",
+   "base_depth": 73268,
+   "best_price": 0.55,
+   "best_price_american": -122,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.55,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-25",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Pittsburgh wins by over 2.5 points",
+     "price": 0.55,
+     "this_side": 1276813
+    },
+    "novig": {
+     "new_other_side": -45402,
+     "new_this_side": 63074,
+     "other_side": 44914,
+     "other_side_all_levels": 45274,
+     "ratio": 3.1,
+     "this_side": 140829,
+     "this_side_all_levels": 140874
+    }
+   },
+   "first_seen_utc": "2026-10-25T13:00:15Z",
+   "game": "Pittsburgh Steelers @ New Orleans Saints",
+   "key": "novig|{\"market_id\": \"01a136e2-e79d-7533-a2bd-8db1e86b08a7\", \"outcome_id\": \"01a136e2-e79d-7533-a2bd-8dd407a9f1ff\"}",
+   "lead_min": 20,
+   "league": "NFL",
+   "line": -2.5,
+   "market": "spread",
+   "new_money": 63074,
+   "paper_only": false,
+   "price": 0.55,
+   "price_american": -122,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.55,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -3.0,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": -3.0,
+     "price": -110
+    },
+    "betopenly": {
+     "point": -3.0,
+     "price": 103
+    },
+    "betrivers": {
+     "point": -3.0,
+     "price": -112
+    },
+    "betus": {
+     "point": -3.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": -3.0,
+     "price": -105
+    },
+    "draftkings": {
+     "point": -3.0,
+     "price": -115
+    },
+    "fanatics": {
+     "point": -3.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": -3.0,
+     "price": -110
+    },
+    "kalshi": {
+     "point": -2.5,
+     "price": -122
+    },
+    "lowvig": {
+     "point": -3.0,
+     "price": -102
+    },
+    "mybookieag": {
+     "point": -3.0,
+     "price": 100
+    },
+    "novig": {
+     "point": -2.5,
+     "price": -122
+    },
+    "polymarket": {
+     "point": -2.5,
+     "price": -122
+    },
+    "prophetx": {
+     "point": -3.0,
+     "price": 100
+    },
+    "williamhill_us": {
+     "point": -3.0,
+     "price": -108
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a136e2-e79d-7533-a2bd-8db1e86b08a7",
+    "outcome_id": "01a136e2-e79d-7533-a2bd-8dd407a9f1ff"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Pittsburgh Steelers",
+   "side_label": "PIT -2.5 (2.5)",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-25T13:30:00Z",
+   "teams": [
+    "Pittsburgh Steelers",
+    "New Orleans Saints"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-25T13:10:08Z",
+   "base_depth": 11889583,
+   "best_price": 0.585,
+   "best_price_american": -141,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.59,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-25",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 4021,
+     "new_this_side": 175994,
+     "other_side": 3956711,
+     "other_side_all_levels": 4293398,
+     "ratio": 2.9,
+     "this_side": 11610849,
+     "this_side_all_levels": 12061989
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "SEA (0)",
+     "price": 0.585,
+     "this_side": 350273
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Seattle Seahawks",
+     "price": 0.5868,
+     "this_side": 256586
+    }
+   },
+   "first_seen_utc": "2026-10-25T13:00:15Z",
+   "game": "Kansas City vs Seattle",
+   "key": "kalshi|KXNFLGAME-26OCT25KCSEA|ml|1",
+   "lead_min": 670,
+   "league": "NFL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 175994,
+   "paper_only": false,
+   "price": 0.59,
+   "price_american": -144,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.59,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -155
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -151
+    },
+    "betopenly": {
+     "point": null,
+     "price": -142
+    },
+    "betrivers": {
+     "point": null,
+     "price": -143
+    },
+    "betus": {
+     "point": null,
+     "price": -150
+    },
+    "bovada": {
+     "point": null,
+     "price": -150
+    },
+    "draftkings": {
+     "point": null,
+     "price": -148
+    },
+    "fanatics": {
+     "point": null,
+     "price": -150
+    },
+    "fanduel": {
+     "point": null,
+     "price": -154
+    },
+    "kalshi": {
+     "point": null,
+     "price": -144
+    },
+    "limitless": {
+     "point": null,
+     "price": -144
+    },
+    "lowvig": {
+     "point": null,
+     "price": -151
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -152
+    },
+    "novig": {
+     "point": null,
+     "price": -141
+    },
+    "polymarket": {
+     "point": null,
+     "price": -144
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -142
+    },
+    "prophetx": {
+     "point": null,
+     "price": -142
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -150
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNFLGAME-26OCT25KCSEA-SEA"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "prophetx"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Seattle",
+   "side_label": "Seattle",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-26T00:20:00Z",
+   "teams": [
+    "Kansas City",
+    "Seattle"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-25T13:00:15Z",
    "base_depth": 141296,
    "best_price": 0.5984,
@@ -347,6 +640,8 @@
    "new_money": 82732,
    "paper_only": false,
    "price": 0.61,
+   "price_after_15m": 0.605,
+   "price_after_15m_book": "novig",
    "price_american": -156,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.61,
@@ -440,6 +735,7 @@
    "side_label": "Grizzlies",
    "start_source": "polymarket",
    "start_utc": "2026-10-26T01:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Grizzlies",
     "Kings"
@@ -505,6 +801,8 @@
    "new_money": 36652,
    "paper_only": false,
    "price": 0.5,
+   "price_after_15m": 0.505,
+   "price_after_15m_book": "novig",
    "price_american": -100,
    "price_rule": "ok",
    "price_when_first_seen": 0.5,
@@ -592,6 +890,7 @@
    "side_label": "Over 6.5 goals scored",
    "start_source": "polymarket",
    "start_utc": "2026-10-26T02:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Minnesota",
     "Vancouver"
@@ -645,6 +944,8 @@
    "new_money": 49753,
    "paper_only": false,
    "price": 0.46,
+   "price_after_15m": 0.4616,
+   "price_after_15m_book": "prophetx",
    "price_american": 117,
    "price_rule": "ok",
    "price_when_first_seen": 0.46,
@@ -729,6 +1030,7 @@
    "side_label": "Over 6.5 goals scored",
    "start_source": "prophetx",
    "start_utc": "2026-10-25T19:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Florida",
     "Chicago"
@@ -782,6 +1084,8 @@
    "new_money": 404907,
    "paper_only": false,
    "price": 0.5,
+   "price_after_15m": 0.505,
+   "price_after_15m_book": "novig",
    "price_american": -100,
    "price_rule": "ok",
    "price_when_first_seen": 0.5,
@@ -866,6 +1170,7 @@
    "side_label": "Denver wins by over 4.5 points",
    "start_source": "prophetx",
    "start_utc": "2026-10-25T20:05:00Z",
+   "still_actionable": true,
    "teams": [
     "Denver",
     "Arizona"
@@ -919,6 +1224,8 @@
    "new_money": 26321,
    "paper_only": false,
    "price": 0.61,
+   "price_after_15m": 0.61,
+   "price_after_15m_book": "novig",
    "price_american": -156,
    "price_rule": "fails_cap",
    "price_when_first_seen": 0.61,
@@ -1001,6 +1308,7 @@
    "side_label": "NOT Dallas wins by over 1.5 goals",
    "start_source": "prophetx",
    "start_utc": "2026-10-25T22:00:00Z",
+   "still_actionable": false,
    "teams": [
     "New York I",
     "Dallas"
@@ -1054,6 +1362,8 @@
    "new_money": 137382,
    "paper_only": false,
    "price": 0.59,
+   "price_after_15m": 0.6,
+   "price_after_15m_book": "novig",
    "price_american": -144,
    "price_rule": "fails_cap",
    "price_when_first_seen": 0.59,
@@ -1136,6 +1446,7 @@
    "side_label": "NOT Florida wins by over 1.5 goals",
    "start_source": "prophetx",
    "start_utc": "2026-10-25T19:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Florida",
     "Chicago"
@@ -1189,6 +1500,8 @@
    "new_money": 56169,
    "paper_only": false,
    "price": 0.49,
+   "price_after_15m": 0.4928,
+   "price_after_15m_book": "prophetx",
    "price_american": 104,
    "price_rule": "ok",
    "price_when_first_seen": 0.49,
@@ -1274,6 +1587,7 @@
    "side_label": "NOT Over 227.5 points",
    "start_source": "polymarket",
    "start_utc": "2026-10-25T23:30:00Z",
+   "still_actionable": true,
    "teams": [
     "Detroit",
     "Philadelphia"
@@ -1333,6 +1647,8 @@
    "new_money": 28401,
    "paper_only": false,
    "price": 0.5,
+   "price_after_15m": 0.505,
+   "price_after_15m_book": "novig",
    "price_american": -100,
    "price_rule": "ok",
    "price_when_first_seen": 0.5,
@@ -1415,6 +1731,7 @@
    "side_label": "NOT New York wins by over 7.5 points",
    "start_source": "prophetx",
    "start_utc": "2026-10-25T23:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Orlando",
     "New York"
@@ -3637,8 +3954,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": 3.0,
+   "close_price": 0.55,
+   "clv_cents": 5.0,
    "confirmed_after_min": 5,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -3937,8 +4254,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": 3.0,
+   "close_price": 0.55,
+   "clv_cents": 5.0,
    "confirmed_after_min": 5,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -9599,8 +9916,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5283,
-   "clv_cents": 2.1,
+   "close_price": 0.5261,
+   "clv_cents": 1.9,
    "confirmed_after_min": 6,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -9747,8 +10064,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.4098,
-   "clv_cents": 0.7,
+   "close_price": 0.4065,
+   "clv_cents": 0.3,
    "confirmed_after_min": 4,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -13125,8 +13442,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": 0.0,
+   "close_price": 0.54,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -17234,8 +17551,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.8077,
-   "clv_cents": 0.0,
+   "close_price": 0.8039,
+   "clv_cents": -0.4,
    "confirmed_after_min": 9,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -23497,8 +23814,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.81,
-   "clv_cents": 0.0,
+   "close_price": 0.805,
+   "clv_cents": -0.5,
    "confirmed_after_min": 18,
    "date": "2026-10-25",
    "depth_by_book": {
