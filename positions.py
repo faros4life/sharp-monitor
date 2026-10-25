@@ -22,6 +22,7 @@ from datetime import datetime, timedelta
 
 import liquidity_monitor as lm
 
+STATS = {}        # book -> counts / field names for the manual check (no amounts)
 WHY = {}          # book -> reason it was unavailable (shown in the private email, never in the Actions log)
 MONTHS = {m: i for i, m in enumerate(("JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"), 1)}
 
@@ -157,7 +158,13 @@ def px_positions():
             d = lm.px_call("/auth/login", {"access_key": lm.PX_ACCESS, "secret_key": lm.PX_SECRET})
             lm._PXT["token"] = (d.get("data") or {}).get("access_token")
         trades = ((lm.px_call("/v4/mm/get_trades").get("data") or {}).get("trades")) or []
-        open_ = [t for t in trades if not t.get("winning_status") and "settled" not in str(t.get("status") or "").lower()]
+        DONE = ("profit", "loss", "win", "won", "lose", "lost", "push", "void", "refund", "cancel")
+        open_ = [t for t in trades if not any(w in str(t.get("winning_status") or "").lower() for w in DONE)
+                 and not any(w in str(t.get("status") or "").lower() for w in ("settled", "cancel", "void"))]
+        STATS["prophetx"] = {"trades": len(trades), "open": len(open_),
+                             "status": sorted({str(t.get("status")) for t in trades}),
+                             "winning_status": sorted({str(t.get("winning_status")) for t in trades}),
+                             "fields": sorted({k for t in trades[:5] for k in t.keys()})}
         out, unknown = [], set()
         ev_cache = {}
         ev_names = {}
