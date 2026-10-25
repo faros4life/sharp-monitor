@@ -1,0 +1,38 @@
+name: positions-check
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: positions-check
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Read open positions on every book (counts only)
+        env:
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          NOVIG_READ_KEY_ID: ${{ secrets.NOVIG_READ_KEY_ID }}       # read-only: positions for duplicate/conflict checks
+          NOVIG_READ_KEY_PEM: ${{ secrets.NOVIG_READ_KEY_PEM }}
+          PROPHETX_ACCESS_KEY: ${{ secrets.PROPHETX_ACCESS_KEY }}   # used only to read ProphetX prices
+          PROPHETX_SECRET_KEY: ${{ secrets.PROPHETX_SECRET_KEY }}
+          NOVIG_TRADE_KEY_ID: ${{ secrets.NOVIG_TRADE_KEY_ID }}     # ID only: reads the auto-place subaccount's positions
+          KALSHI_KEY_ID: ${{ secrets.KALSHI_KEY_ID }}               # positions only (GET); no order code in the dry run
+          KALSHI_PRIVATE_KEY: ${{ secrets.KALSHI_PRIVATE_KEY }}
+          PMUS_KEY_ID: ${{ secrets.PMUS_KEY_ID }}                   # positions only (GET)
+          PMUS_SECRET_KEY: ${{ secrets.PMUS_SECRET_KEY }}
+          EXEC_UNIT: "200"
+        run: python -u positions_check.py
