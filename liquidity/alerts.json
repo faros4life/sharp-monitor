@@ -1,6 +1,145 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-25T14:57:07Z",
+   "base_depth": 1099004,
+   "best_price": 0.52,
+   "best_price_american": -108,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 7,
+   "date": "2026-10-25",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 19232,
+     "new_this_side": 147969,
+     "other_side": 778192,
+     "other_side_all_levels": 975261,
+     "ratio": 1.5,
+     "this_side": 1187894,
+     "this_side_all_levels": 1252631
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "Over 44.5 (44.5)",
+     "price": 0.52,
+     "this_side": 85704
+    }
+   },
+   "first_seen_utc": "2026-10-25T14:50:09Z",
+   "game": "Tampa Bay vs Carolina: Total Points",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNFLTOTAL-26OCT25TBCAR-45\"}",
+   "lead_min": 123,
+   "league": "NFL",
+   "line": 44.5,
+   "market": "total",
+   "new_money": 147969,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 44.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 44.5,
+     "price": -115
+    },
+    "betopenly": {
+     "point": 45.0,
+     "price": 100
+    },
+    "betrivers": {
+     "point": 44.5,
+     "price": -110
+    },
+    "betus": {
+     "point": 45.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 44.5,
+     "price": -115
+    },
+    "draftkings": {
+     "point": 44.5,
+     "price": -110
+    },
+    "fanatics": {
+     "point": 45.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 44.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": 44.5,
+     "price": -104
+    },
+    "lowvig": {
+     "point": 44.5,
+     "price": -113
+    },
+    "mybookieag": {
+     "point": 44.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 44.5,
+     "price": -108
+    },
+    "polymarket": {
+     "point": 44.5,
+     "price": -113
+    },
+    "prophetx": {
+     "point": 44.5,
+     "price": -110
+    },
+    "williamhill_us": {
+     "point": 44.5,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNFLTOTAL-26OCT25TBCAR-45"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "OVER",
+   "side_label": "Over 44.5 points",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-25T17:00:00Z",
+   "teams": [
+    "Tampa Bay",
+    "Carolina"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-25T14:50:09Z",
    "base_depth": 2011469,
    "best_price": 0.515,
@@ -1900,8 +2039,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": 0.0,
+   "close_price": 0.52,
+   "clv_cents": 1.0,
    "confirmed_after_min": 6,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -3353,8 +3492,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.54,
-   "clv_cents": 0.0,
+   "close_price": 0.55,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -7306,8 +7445,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 0.5,
+   "close_price": 0.515,
+   "clv_cents": 0.0,
    "confirmed_after_min": 5,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -8538,8 +8677,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.4,
-   "clv_cents": -8.0,
+   "close_price": 0.39,
+   "clv_cents": -9.0,
    "confirmed_after_min": 10,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -10621,8 +10760,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.44,
-   "clv_cents": 3.0,
+   "close_price": 0.37,
+   "clv_cents": -4.0,
    "confirmed_after_min": 10,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -11648,8 +11787,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.57,
-   "clv_cents": -4.0,
+   "close_price": 0.65,
+   "clv_cents": 4.0,
    "confirmed_after_min": 5,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -22005,8 +22144,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.6377,
-   "clv_cents": 0.0,
+   "close_price": 0.6403,
+   "clv_cents": 0.3,
    "confirmed_after_min": 15,
    "date": "2026-10-25",
    "depth_by_book": {
