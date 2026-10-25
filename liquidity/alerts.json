@@ -1,6 +1,151 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-25T12:10:09Z",
+   "base_depth": 43765,
+   "best_price": 0.515,
+   "best_price_american": -106,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 6,
+   "date": "2026-10-25",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": false,
+     "label": "NOT Indiana wins by over 7.5 points",
+     "price": 0.51,
+     "this_side": 60954
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "BKN +7.5 (7.5)",
+     "price": 0.515,
+     "this_side": 13250
+    },
+    "polymarket": {
+     "new_other_side": 8381,
+     "new_this_side": 106811,
+     "other_side": 37331,
+     "other_side_all_levels": 59311,
+     "ratio": 3.5,
+     "this_side": 130847,
+     "this_side_all_levels": 157304
+    }
+   },
+   "first_seen_utc": "2026-10-25T12:04:28Z",
+   "game": "Pacers vs. Nets",
+   "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6149390\"}",
+   "lead_min": 590,
+   "league": "NBA",
+   "line": 7.5,
+   "market": "spread",
+   "new_money": 106811,
+   "paper_only": false,
+   "price": 0.52,
+   "price_american": -108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.52,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 7.5,
+     "price": -118
+    },
+    "betonlineag": {
+     "point": 7.0,
+     "price": -110
+    },
+    "betrivers": {
+     "point": 7.5,
+     "price": -110
+    },
+    "betus": {
+     "point": 7.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 7.5,
+     "price": -115
+    },
+    "draftkings": {
+     "point": 7.5,
+     "price": -115
+    },
+    "fanatics": {
+     "point": 7.5,
+     "price": -115
+    },
+    "fanduel": {
+     "point": 7.5,
+     "price": -114
+    },
+    "kalshi": {
+     "point": 7.5,
+     "price": -104
+    },
+    "lowvig": {
+     "point": 7.0,
+     "price": -106
+    },
+    "mybookieag": {
+     "point": 7.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 7.5,
+     "price": -106
+    },
+    "polymarket": {
+     "point": 7.5,
+     "price": -108
+    },
+    "prophetx": {
+     "point": 7.0,
+     "price": -101
+    },
+    "williamhill_us": {
+     "point": 7.0,
+     "price": -105
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 1,
+    "pm_market_id": "6149390"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [
+    "Brooklyn Nets +7.5 (-108)"
+   ],
+   "sharp_oppose": [
+    "Indiana Pacers -7.5 (+100)"
+   ],
+   "side": "Nets",
+   "side_label": "Nets (+7.5)",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-25T22:00:00Z",
+   "teams": [
+    "Pacers",
+    "Nets"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-25T12:04:28Z",
    "base_depth": 162061,
    "best_price": 0.62,
@@ -195,6 +340,8 @@
    "new_money": 67803,
    "paper_only": false,
    "price": 0.41,
+   "price_after_15m": 0.405,
+   "price_after_15m_book": "novig",
    "price_american": 144,
    "price_rule": "ok",
    "price_when_first_seen": 0.41,
@@ -275,6 +422,7 @@
    "side_label": "Panthers (-1.5)",
    "start_source": "polymarket",
    "start_utc": "2026-10-25T19:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Panthers",
     "Blackhawks"
@@ -328,6 +476,8 @@
    "new_money": 137532,
    "paper_only": false,
    "price": 0.41,
+   "price_after_15m": 0.405,
+   "price_after_15m_book": "novig",
    "price_american": 144,
    "price_rule": "ok",
    "price_when_first_seen": 0.41,
@@ -408,6 +558,7 @@
    "side_label": "Florida wins by over 1.5 goals",
    "start_source": "prophetx",
    "start_utc": "2026-10-25T19:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Florida",
     "Chicago"
@@ -461,6 +612,8 @@
    "new_money": 77714,
    "paper_only": false,
    "price": 0.51,
+   "price_after_15m": 0.5375,
+   "price_after_15m_book": "kalshi",
    "price_american": -104,
    "price_rule": "ok",
    "price_when_first_seen": 0.5,
@@ -549,6 +702,7 @@
    "side_label": "NOT Memphis wins by over 4.5 points",
    "start_source": "prophetx",
    "start_utc": "2026-10-26T01:00:00Z",
+   "still_actionable": false,
    "teams": [
     "Memphis",
     "Sacramento"
@@ -2982,8 +3136,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.62,
-   "clv_cents": -2.0,
+   "close_price": 0.61,
+   "clv_cents": -3.0,
    "confirmed_after_min": 12,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -6965,8 +7119,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5215,
-   "clv_cents": 1.4,
+   "close_price": 0.5192,
+   "clv_cents": 1.2,
    "confirmed_after_min": 6,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -14600,8 +14754,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.8058,
-   "clv_cents": -0.2,
+   "close_price": 0.8077,
+   "clv_cents": 0.0,
    "confirmed_after_min": 9,
    "date": "2026-10-25",
    "depth_by_book": {
