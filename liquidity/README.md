@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Oct 25, 4:00 AM ET. This run: 0 new, 1 not confirmed, 1 pending. Open alerts: 57.
+Updated Sun Oct 25, 4:10 AM ET. This run: 0 new, 1 not confirmed, 1 pending. Open alerts: 57.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -38,13 +38,13 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 24 11:10PM | NHL | Tampa Bay vs Utah | moneyline: Utah | kalshi | $55k | -122 |  |  | -2.0c | yes | W |
 | Oct 24 11:10PM | NCAAF | North Dakota St. vs New Mexico | moneyline: New Mexico | kalshi | $106k | -213 |  |  | +21.0c | yes | W |
 | Oct 24 11:00PM | NFL | Indianapolis Colts at Minnesota Vikings | spread: Minnesota Vikings -6.5 (-6.5) | prophetx | $28k | -103 | ✅ kalshi,novig |  | +1.9c | yes | pending |
-| Oct 24 10:54PM | NFL | Pittsburgh Steelers at New Orleans Saints | moneyline: New Orleans Saints | prophetx | $27k | +148 | ✅ novig |  | +0.0c |  | pending |
+| Oct 24 10:54PM | NFL | Pittsburgh Steelers at New Orleans Saints | moneyline: New Orleans Saints | prophetx | $27k | +148 | ✅ novig |  | +0.7c |  | pending |
 | Oct 24 10:54PM | NFL | San Francisco 49ers at Atlanta Falcons | moneyline: San Francisco 49ers | prophetx | $44k | -136 | ✅ novig |  | +0.0c | yes | pending |
-| Oct 24 10:54PM | NFL | Indianapolis Colts at Minnesota Vikings | moneyline: Minnesota Vikings | prophetx | $99k | -260 | ✅ kalshi,novig |  | +1.1c | yes | pending |
+| Oct 24 10:54PM | NFL | Indianapolis Colts at Minnesota Vikings | moneyline: Minnesota Vikings | prophetx | $99k | -260 | ✅ kalshi,novig |  | +1.5c | yes | pending |
 | Oct 24 10:50PM | NHL | Colorado vs Nashville | moneyline: Colorado | kalshi | $32k | -213 | ✅ novig,polymarket |  | +0.0c |  | pending |
 | Oct 24 10:50PM | NFL | Tampa Bay vs Carolina | moneyline: Carolina | kalshi | $123k | -150 | ✅ novig |  | +0.0c | yes | pending |
 | Oct 24 10:50PM | NBA | New Orleans vs Denver | moneyline: New Orleans | kalshi | $132k | -456 |  |  | -72.0c | yes | L |
-| Oct 24 10:40PM | NFL | Kansas City Chiefs @ Seattle Seahawks | moneyline: SEA (0) | novig | $31k | -144 | ✅ kalshi,prophetx |  | +0.0c | yes | pending |
+| Oct 24 10:40PM | NFL | Kansas City Chiefs @ Seattle Seahawks | moneyline: SEA (0) | novig | $31k | -144 | ✅ kalshi,prophetx |  | -0.5c | yes | pending |
 | Oct 24 10:22PM | NFL | Green Bay vs Detroit: Total Points | total: NOT Over 55.5 points | kalshi | $186k | -104 |  | ❌ | +0.0c | yes | pending |
 | Oct 24 10:22PM | NFL | Cleveland vs Tennessee | moneyline: Tennessee | kalshi | $1,062k | +122 |  |  | +0.0c |  | pending |
 | Oct 24 10:22PM | NBA | Toronto vs Minnesota | moneyline: Toronto | kalshi | $160k | +122 |  |  | +5.0c | yes | pending |
