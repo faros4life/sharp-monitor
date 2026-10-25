@@ -21,4 +21,6 @@ jobs:
           NOVIG_HOST: "https://api.paper.novig.com"
           NOVIG_PAPER_TRADE_KEY_ID: ${{ secrets.NOVIG_PAPER_TRADE_KEY_ID }}
           NOVIG_PAPER_TRADE_KEY_PEM: ${{ secrets.NOVIG_PAPER_TRADE_KEY_PEM }}
-        run: python -u novig_paper_order_test.py
+        run: |
+          python -u novig_paper_order_test.py 2>&1 | tee out.txt
+          { echo '```'; cat out.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
