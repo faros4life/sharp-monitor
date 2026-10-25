@@ -123,13 +123,15 @@ def http_get(path, params):
         return body, (int(float(rem)) if rem is not None else None)
 
 
-def notify(title, body):
+def notify(title, body, red=False, yellow=False):
+    """red = late alert; yellow = an earlier alert already came in on this game (the first alert is the play)."""
     if not NTFY_TOPIC:
         print(f"[dry-run alert] {title}\n{body}\n")
         return
     req = urllib.request.Request(
         f"https://ntfy.sh/{NTFY_TOPIC}", data=body.encode(), method="POST",
-        headers={"Title": title.encode("ascii", "ignore").decode(), "Priority": "high", "Tags": "moneybag"})
+        headers={"Title": title.encode("ascii", "ignore").decode(), "Priority": "high",
+                 "Tags": ",".join(t for t, on in (("red_circle", red), ("yellow_circle", yellow), ("moneybag", True)) if on)})
     urllib.request.urlopen(req, timeout=15).read()
 
 
@@ -207,6 +209,49 @@ def edge_ok(price, fair):
 def edge_price(fair):
     """Worst American price that still clears MIN_EDGE against `fair`."""
     return prob_to_am(fair / (1 + MIN_EDGE))
+
+
+# Fees on winnings by book (ProphetX keeps 2% of a win). Every comparison, edge, cap, floor and grade uses the
+# after-fee price; the alert text still shows the price on the book's screen. Kalshi/Novig/Hard Rock: no win fee.
+WIN_FEE = {"prophetx": float(os.environ.get("PX_FEE", "") or "0.02")}
+
+
+def net(price, book):
+    """American price after the book's fee on winnings: ProphetX -114 -> about -116, +150 -> +147."""
+    fee = WIN_FEE.get(book, 0)
+    if not fee or price is None:
+        return price
+    w = (100 / abs(price) if price < 0 else price / 100) * (1 - fee)
+    return -100 / w if w < 1 else w * 100
+
+
+def gross(price, book):
+    """Inverse of net(): the price the book must show to equal `price` after its fee."""
+    fee = WIN_FEE.get(book, 0)
+    if not fee or price is None:
+        return price
+    w = (100 / abs(price) if price < 0 else price / 100) / (1 - fee)
+    return -100 / w if w < 1 else w * 100
+
+
+def fee_note(price, book):
+    return f" [{fmt_price(net(price, book))} after {nm(book)} fee]" if WIN_FEE.get(book) else ""
+
+
+def floor_note(fl, book):
+    return f" ({nm(book)}: {fmt_price(gross(fl, book))} or better on screen)" if WIN_FEE.get(book) else ""
+
+
+UNIT = float(os.environ.get("EXEC_UNIT", "") or "200")   # + money: risk UNIT; - money: risk to win UNIT (resets ~Nov 1)
+
+
+def bet_size(price, book):
+    """'Bet: risk $220 to win $200' at the price on the book's screen; ProphetX adds what the win nets after its fee."""
+    p = float(price)
+    risk, win = (UNIT, UNIT * p / 100) if p > 0 else (UNIT * abs(p) / 100, UNIT)
+    s = f"Bet: risk ${risk:,.0f} to win ${win:,.0f}"
+    fee = WIN_FEE.get(book, 0)
+    return s + (f" (nets ${win * (1 - fee):,.0f} after {nm(book)} fee)" if fee else "")
 
 
 def too_juiced(price):
@@ -371,7 +416,7 @@ def detect(event, cfg, lines, base):
         note = {"yes": f" (confirmed by {', '.join(nm(b) for b in cnames)})", "na": f" ({nm(SHARP)} only)", "off": ""}[conf]
         alerts.append(dict(id=f"{event['id']}|{new_key}", ev=event["id"], game=game, start=start,
                            commence=event["commence_time"], kind=kind, side=side, pt=pt, price=price,
-                           book=book, conf=conf, text=text, why=why + note,
+                           book=book, net=round(net(price, book), 1), conf=conf, text=text, why=why + note,
                            mag=round(mag, 2), nb=nb, edge=edge, nconf=nc, cby=[nm(b) for b in cnames] if conf == "yes" else [],
                            evp=round(100 * (evp if evp is not None else edge), 1) if (evp is not None or edge is not None) else None))
 
@@ -387,13 +432,13 @@ def detect(event, cfg, lines, base):
                   for t, (pt, pr) in d.get("spreads", {}).items() if t == team]
         if not offers:
             continue
-        pt, pr, b = max(offers, key=lambda x: (x[0], x[1]))
-        if pt > new and not too_juiced(pr):
+        pt, pr, b = max(offers, key=lambda x: (x[0], net(x[1], x[2])))
+        if pt > new and not too_juiced(net(pr, b)):
             opp = [p2 for t2, (_, p2) in sb["spreads"].items() if t2 != team]
             p0 = (am_to_prob(sb["spreads"][team][1]) / (am_to_prob(sb["spreads"][team][1]) + am_to_prob(opp[0]))) if opp else 0.5
-            evp = ev_pct(min(max(p0 + half_point_value(cfg["label"], "spr", new, pt, new), .01), .99), pr)
+            evp = ev_pct(min(max(p0 + half_point_value(cfg["label"], "spr", new, pt, new), .01), .99), net(pr, b))
             add("spr", team, pt, pr, b, f"spr|{team}|{new}",
-                f"{team} {fmt_pt(pt)} ({fmt_price(pr)}) at {nm(b)}" + also([x[2] for x in offers if x[0] > new], b),
+                f"{team} {fmt_pt(pt)} ({fmt_price(pr)}) at {nm(b)}{fee_note(pr, b)}" + also([x[2] for x in offers if x[0] > new], b),
                 f"{nm(SHARP)} moved {fmt_pt(old)} -> {fmt_pt(new)}; bet only at {fmt_pt(new + 0.5)} or better",
                 agree(f"spreads|{team}", old, new),
                 mag=move / (cfg.get("spread") or 1), nb=len([x for x in offers if x[0] > new]), evp=evp)
@@ -408,18 +453,18 @@ def detect(event, cfg, lines, base):
                       for b, d in retail.items() if side in d.get("totals", {})]
             if offers:
                 if side == "Over":
-                    pt, pr, b = min(offers, key=lambda x: (x[0], -x[1]))
+                    pt, pr, b = min(offers, key=lambda x: (x[0], -net(x[1], x[2])))
                     ok, thr = pt < new, new - 0.5
                 else:
-                    pt, pr, b = max(offers, key=lambda x: (x[0], x[1]))
+                    pt, pr, b = max(offers, key=lambda x: (x[0], net(x[1], x[2])))
                     ok, thr = pt > new, new + 0.5
-                if ok and not too_juiced(pr):
+                if ok and not too_juiced(net(pr, b)):
                     tt = sb["totals"]
                     p0 = (am_to_prob(tt[side][1]) / (am_to_prob(tt["Over"][1]) + am_to_prob(tt["Under"][1]))
                           if "Under" in tt and side in tt else 0.5)
-                    evp = ev_pct(min(max(p0 + half_point_value(cfg["label"], "tot", pt, new, new), .01), .99), pr)
+                    evp = ev_pct(min(max(p0 + half_point_value(cfg["label"], "tot", pt, new, new), .01), .99), net(pr, b))
                     add("tot", side, pt, pr, b, f"tot|{side}|{new}",
-                        f"{side} {pt:g} ({fmt_price(pr)}) at {nm(b)}"
+                        f"{side} {pt:g} ({fmt_price(pr)}) at {nm(b)}{fee_note(pr, b)}"
                         + also([x[2] for x in offers if (x[0] < new if side == "Over" else x[0] > new)], b),
                         f"{nm(SHARP)} total moved {old:g} -> {new:g}; bet only at {thr:g} or better",
                         agree("totals|Over", old, new),
@@ -439,16 +484,17 @@ def detect(event, cfg, lines, base):
                       for t, (p2, pr) in d.get("spreads", {}).items() if t == team and p2 == pt]
             if not offers:
                 continue
-            pr, b = max(offers, key=lambda x: 1 / am_to_prob(x[0]))
-            if edge_ok(pr, new):
+            pr, b = max(offers, key=lambda x: 1 / am_to_prob(net(x[0], x[1])))
+            if edge_ok(net(pr, b), new):
                 add("rl", team, pt, pr, b, f"rl|{team}|{pt:g}|{round(new, 2)}",
-                    f"{team} {fmt_pt(pt)} {cfg.get('rl_name', 'RL')} {fmt_price(pr)} at {nm(b)}"
-                    + also([x[1] for x in offers if edge_ok(x[0], new)], b),
+                    f"{team} {fmt_pt(pt)} {cfg.get('rl_name', 'RL')} {fmt_price(pr)} at {nm(b)}{fee_note(pr, b)}"
+                    + also([x[1] for x in offers if edge_ok(net(x[0], x[1]), new)], b),
                     (f"{nm(SHARP)} {fmt_pt(pt)} fair moved {fmt_price(prob_to_am(old))} -> "
-                     f"{fmt_price(prob_to_am(new))}; bet only at {fmt_price(edge_price(new))} or better"),
+                     f"{fmt_price(prob_to_am(new))}; bet only at {fmt_price(edge_price(new))} or better"
+                     + floor_note(edge_price(new), b)),
                     agree(k, old, new),
-                    mag=(new - old) / cfg["rl"], nb=len([x for x in offers if edge_ok(x[0], new)]),
-                    edge=new / am_to_prob(pr) - 1)
+                    mag=(new - old) / cfg["rl"], nb=len([x for x in offers if edge_ok(net(x[0], x[1]), new)]),
+                    edge=new / am_to_prob(net(pr, b)) - 1)
 
     # Moneyline (MLB/NHL): sharp side = team whose no-vig win prob rose.
     if "ml" in cfg and len(sb.get("h2h", {})) == 2:
@@ -460,15 +506,16 @@ def detect(event, cfg, lines, base):
             offers = [(d["h2h"][team], b) for b, d in retail.items() if team in d.get("h2h", {})]
             if not offers:
                 continue
-            pr, b = max(offers, key=lambda x: 1 / am_to_prob(x[0]))
-            if edge_ok(pr, new):  # retail price beats the sharp fair price by MIN_EDGE
+            pr, b = max(offers, key=lambda x: 1 / am_to_prob(net(x[0], x[1])))
+            if edge_ok(net(pr, b), new):  # retail price (after any win fee) beats the sharp fair price by MIN_EDGE
                 add("ml", team, None, pr, b, f"ml|{team}|{round(new, 2)}",
-                    f"{team} ML {fmt_price(pr)} at {nm(b)}" + also([x[1] for x in offers if edge_ok(x[0], new)], b),
+                    f"{team} ML {fmt_price(pr)} at {nm(b)}{fee_note(pr, b)}"
+                    + also([x[1] for x in offers if edge_ok(net(x[0], x[1]), new)], b),
                     (f"{nm(SHARP)} fair moved {fmt_price(prob_to_am(old))} -> {fmt_price(prob_to_am(new))}; "
-                     f"bet only at {fmt_price(edge_price(new))} or better"),
+                     f"bet only at {fmt_price(edge_price(new))} or better" + floor_note(edge_price(new), b)),
                     agree(f"h2h|{team}", old, new),
-                    mag=(new - old) / cfg["ml"], nb=len([x for x in offers if edge_ok(x[0], new)]),
-                    edge=new / am_to_prob(pr) - 1)
+                    mag=(new - old) / cfg["ml"], nb=len([x for x in offers if edge_ok(net(x[0], x[1]), new)]),
+                    edge=new / am_to_prob(net(pr, b)) - 1)
     return alerts
 
 
@@ -497,7 +544,7 @@ def grade(e):
     if e["kind"] == "tot":
         v = (c - e["pt"]) if e["side"] == "Over" else (e["pt"] - c)
         return v, f"{v:+g} pts"
-    v = (c / am_to_prob(e["price"]) - 1) * 100   # % edge of your price vs closing fair odds
+    v = (c / am_to_prob(net(e["price"], e.get("book"))) - 1) * 100   # % edge of your after-fee price vs closing fair odds
     return v, f"{v:+.1f}%"
 
 
@@ -534,7 +581,7 @@ def confidence(a, st, n, lead_min):
     if a.get("edge") is not None:
         s += min(max(a["edge"], 0) / 0.06, 1.0) * 15
     else:
-        p = float(a["price"])
+        p = float(net(a["price"], a.get("book")))
         s += 15 if p >= -110 else 10 if p >= -120 else 5 if p >= -130 else 0
     rate, cnt = sport_rate(st, n, a.get("sport") or a.get("label") or "")
     s += (rate if cnt >= 10 else 0.5) * 15
@@ -640,13 +687,98 @@ def settle(e, g):
 
 
 def units(e, r):
-    """Flat 1 unit risked at the alert price."""
+    """Flat 1 unit risked at the alert price, after the book's fee on winnings (ProphetX win at -110 = +0.89u)."""
     if r == "L":
         return -1.0
     if r == "P":
         return 0.0
-    p = float(e["price"])
+    p = float(net(e["price"], e.get("book")))
     return 100 / abs(p) if p < 0 else p / 100
+
+
+# ---------------------------------------------------------------- true closing line (Oct 25)
+# One Pinnacle-only read per game in the last CLOSE_WINDOW minutes before start (runs at any hour, cheap: 1 credit per
+# market per game). Closing value = expected profit per 1u of the play's AFTER-FEE price at Pinnacle's no-vig closing
+# win chance at the play's own number (half points between Pinnacle's number and the play's number are priced in).
+CLOSE_WINDOW = float(os.environ.get("CLOSE_WINDOW_MIN", "") or "15")
+LABEL_KEY = {v["label"]: k for k, v in SPORTS.items()}
+EXEC_BOOKS = ("novig", "kalshi", "prophetx", "polymarket")   # books the executor can place (Polymarket US via the feed's polymarket)
+
+
+def close_prob(e, pin):
+    """Pinnacle no-vig closing win chance for the play at its own number, or None."""
+    k, side, pt, lab = e["kind"], e["side"], e.get("pt"), e.get("sport", "")
+    if k == "ml":
+        h = pin.get("h2h", {})
+        if len(h) != 2 or side not in h:
+            return None
+        pr = {t: am_to_prob(p) for t, p in h.items()}
+        return pr[side] / sum(pr.values())
+    if k in ("spr", "rl"):
+        sp = pin.get("spreads", {})
+        if len(sp) != 2 or side not in sp:
+            return None
+        (ppt, ppr), (_, opr) = sp[side], [v for t, v in sp.items() if t != side][0]
+        p = am_to_prob(ppr) / (am_to_prob(ppr) + am_to_prob(opr))
+        if abs(ppt - pt) > 1e-9:
+            if k == "rl":
+                return None   # run/puck line at a different point: not comparable
+            v = half_point_value(lab, "spr", ppt, pt, ppt)
+            p += v if pt > ppt else -v
+        return min(max(p, .01), .99)
+    if k == "tot":
+        tt = pin.get("totals", {})
+        if "Over" not in tt or "Under" not in tt:
+            return None
+        ppt = tt["Over"][0]
+        p = am_to_prob(tt[side][1]) / (am_to_prob(tt["Over"][1]) + am_to_prob(tt["Under"][1]))
+        if abs(ppt - pt) > 1e-9:
+            v = half_point_value(lab, "tot", ppt, pt, ppt)
+            better = (pt < ppt) if side == "Over" else (pt > ppt)
+            p += v if better else -v
+        return min(max(p, .01), .99)
+    return None
+
+
+def closing_reads(st, n):
+    """Take the final Pinnacle read for every logged play whose game starts within CLOSE_WINDOW minutes."""
+    due = {}
+    for e in st["log"]:
+        if e.get("cl") or e.get("sport") not in LABEL_KEY:
+            continue
+        mins = (parse_iso(e["start"]) - n).total_seconds() / 60
+        if 0 < mins <= CLOSE_WINDOW:
+            due.setdefault((LABEL_KEY[e["sport"]], e["ev"]), []).append(e)
+    for (key, ev), es in due.items():
+        if st.get("remaining") is not None and st["remaining"] <= RESERVE:
+            print("Closing reads skipped: credit reserve reached.")
+            return
+        mk = sorted({"h2h" if e["kind"] == "ml" else "totals" if e["kind"] == "tot" else "spreads" for e in es})
+        try:
+            body, rem = http_get(f"/sports/{key}/events/{ev}/odds",
+                                 {"bookmakers": SHARP, "markets": ",".join(mk), "oddsFormat": "american"})
+        except Exception as ex:
+            print(f"Closing read failed {key} {ev}: {str(ex)[:120]}")
+            continue
+        if rem is not None:
+            st["remaining"] = rem
+        pin = book_lines(body).get(SHARP, {})
+        for e in es:
+            p = close_prob(e, pin)
+            if p is None:
+                continue
+            ev_close = ev_pct(p, net(e["price"], e.get("book")))
+            e["cl"] = {"p": round(p, 4), "ev": round(100 * ev_close, 1),
+                       "mins_before": round((parse_iso(e["start"]) - n).total_seconds() / 60)}
+            print(f"Closing read: {describe(e)} {e['game']}: close fair {p:.3f}, value {100 * ev_close:+.1f}%")
+
+
+def executable(e, sent_text=None):
+    """Could the executor have bet this? (alert book or an 'also' book is one it places on)"""
+    if e.get("book") in EXEC_BOOKS:
+        return True
+    t = sent_text or ""
+    return any(f"also:" in t and nm(b) in t.split("also:", 1)[1] for b in EXEC_BOOKS)
 
 
 def settle_pending(st, n):
@@ -785,6 +917,11 @@ def recap(st, n):
             rec_line(lab, [x for x in ev_items if sel(x[0]["evp"])])
             for lab, sel in (("<0%", lambda v: v < 0), ("0-3%", lambda v: 0 <= v < 3), ("3%+", lambda v: v >= 3))
             if any(sel(x[0]["evp"]) for x in ev_items))
+    cl_items = [x[0] for x in month if x[0].get("cl")]
+    if cl_items:
+        beat = sum(1 for e in cl_items if e["cl"]["ev"] > 0)
+        avg = sum(e["cl"]["ev"] for e in cl_items) / len(cl_items)
+        footer += f"\nTrue closing value (30d): beat close {beat}/{len(cl_items)}, avg {avg:+.1f}% per play"
     notify_chunks("Sharp recap", header, lines, footer)
 
 
@@ -844,13 +981,22 @@ def write_alerts_file(st, n):
         g = grade(e)
         out.append({
             "start_utc": e["start"], "game": e["game"], "sport": e["sport"], "bet": describe(e),
-            "book": nm(e["book"]), "price": e["price"], "point": e.get("pt"),
+            "book": nm(e["book"]), "price": e["price"], "price_after_fee": round(net(e["price"], e["book"])),
+            "point": e.get("pt"),
             "grade": e.get("grade"), "score": e.get("score"), "edge_pct": e.get("evp"), "late": bool(e.get("late")),
             "minutes_before_start": e.get("lead"), "confirm": e.get("conf"), "confirmed_by": e.get("cby", []),
             "sent_to_phone": not e.get("muted", False),
             "top25": e.get("t25"), "result": res["r"] if res else None, "final": res["score"] if res else None,
             "beat_close": (g[0] > 0) if g else None, "clv": g[1] if g else None,
             "units_flat": round(units(e, res["r"]), 2) if res else None})
+    first_text = {}
+    for x in sorted(st.get("sent", []), key=lambda x: x["t"]):
+        first_text.setdefault((x["ev"], x["kind"], x["side"]), x.get("text"))
+    for row, e in zip(out, sorted(st["log"], key=lambda x: x["start"], reverse=True)):
+        cl = e.get("cl") or {}
+        row.update({"close_fair_prob": cl.get("p"), "close_value_pct": cl.get("ev"),
+                    "beat_true_close": (cl["ev"] > 0) if cl else None, "close_read_mins_before": cl.get("mins_before"),
+                    "executable_book": executable(e, first_text.get((e["ev"], e["kind"], e["side"])))})
     bets = {(e["ev"], e["kind"], e["side"]): e for e in st["log"]}
     every = []
     for e in sorted(st.get("sent", []), key=lambda x: x["t"], reverse=True):
@@ -859,6 +1005,7 @@ def write_alerts_file(st, n):
         every.append({
             "sent_et": datetime.fromtimestamp(e["t"], ET).strftime("%Y-%m-%d %H:%M"), "start_utc": e["start"],
             "game": e["game"], "sport": e["sport"], "bet": describe(e), "book": nm(e["book"]), "price": e["price"],
+            "price_after_fee": round(net(e["price"], e["book"])),
             "alert_text": e.get("text"), "why": e.get("why"), "grade": e.get("grade"), "score": e.get("score"),
             "edge_pct": e.get("evp"), "confirmed_by": e.get("cby", []), "late": bool(e.get("late")),
             "minutes_before_start": e.get("lead"), "repeat": e["repeat"], "pushed_to_phone": e["pushed"],
@@ -867,7 +1014,12 @@ def write_alerts_file(st, n):
         with open(path, "w") as f:
             json.dump({"note": ("alerts = one entry per bet (game/market/side), used for the record; result W/L/P or null. "
                                 "all_alerts = every alert sent, newest first, repeats marked repeat=true (logged from Oct 21). "
-                                "units_flat = 1u risked at the first alert's price. pushed_to_phone/sent_to_phone = not muted "
+                                "units_flat = 1u risked at the first alert's price, after the book's fee on winnings (ProphetX 2%; price_after_fee). "
+                                "Edge, the -130 cap, best-book choice and CLV all use price_after_fee. "
+                                "close_value_pct = TRUE closing value (from Oct 25): expected profit per 1u of price_after_fee at Pinnacle's "
+                                "no-vig win chance from one final read just before start, at the play's own number; beat_true_close = "
+                                "close_value_pct > 0. The older beat_close/clv fields beat the close almost by construction (ignore). "
+                                "executable_book = the alert book or an 'also' book is Novig/Kalshi/ProphetX/Polymarket. pushed_to_phone/sent_to_phone = not muted "
                                 "(delivery to the phone is not confirmed)."),
                        "alerts": out, "all_alerts": every}, f, indent=1, sort_keys=True)
     except Exception as ex:
@@ -929,11 +1081,13 @@ def run():
     st.setdefault("log", [])
     n = now_utc()
     hour_et = n.astimezone(ET).hour
+    before_cl = sum(1 for e in st["log"] if e.get("cl"))
+    closing_reads(st, n)   # true closing line: final Pinnacle read just before each start (any hour)
     if not (ACTIVE_START_ET <= hour_et < ACTIVE_END_ET):
         # no odds polling overnight, but keep grading finished games (ESPN is free) so late games don't wait till morning
         before = sum(1 for e in st["log"] if e.get("res"))
         settle_pending(st, n)
-        if sum(1 for e in st["log"] if e.get("res")) != before:
+        if sum(1 for e in st["log"] if e.get("res")) != before or sum(1 for e in st["log"] if e.get("cl")) != before_cl:
             save_state(st)
             write_alerts_file(st, n)
         print("Outside active hours; graded finished games only.")
@@ -1007,6 +1161,16 @@ def run():
                     # repeat = the line kept moving on a bet already alerted (same game/market/side)
                     repeat = any(x["ev"] == a["ev"] and x["kind"] == a["kind"] and x["side"] == a["side"]
                                  for x in st["log"])
+                    # earlier alert on this game: the first alert is the play (opposite side = do not bet)
+                    mkt = lambda k: "spr" if k in ("spr", "rl") else k
+                    prior = sorted((x for x in st["log"] if x["ev"] == a["ev"] and not (x["kind"] == a["kind"] and x["side"] == a["side"])),
+                                   key=lambda x: x.get("t", 0))
+                    opp = [x for x in prior if mkt(x["kind"]) == mkt(a["kind"])]
+                    prior_note = ""
+                    if opp:
+                        prior_note = f"\nOPPOSITE of earlier alert {describe(opp[0])} - first alert is the play, don't bet this"
+                    elif prior:
+                        prior_note = f"\nEarlier alert on this game: {describe(prior[0])} - first alert is the play"
                     if is_t25 is False and NCAAF_TOP25 == "filter":
                         print(f"Skipped (non-Top 25): {a['text']} | {a['game']}")
                     elif late and LATE_MODE == "mute":
@@ -1015,9 +1179,10 @@ def run():
                         print(f"Not sent (repeat): {a['text']} | {a['game']}")
                     else:
                         notify(f"Sharp alert {cfg['label']}" + (" LATE" if late else ""),
-                               f"{a['text']}\n{a['game']}{tag}, {a['start']}\n{a['why']}\n"
+                               f"{a['text']}\n{bet_size(a['price'], a['book'])}{prior_note}\n{a['game']}{tag}, {a['start']}\n{a['why']}\n"
                                f"Grade {grade} ({score}/100)" + (f" | Edge {a['evp']:+.1f}%" if a.get("evp") is not None else "") + " | "
-                               + (f"LATE: starts in {lead_text(lead)}" if late else f"starts in {lead_text(lead)}"))
+                               + (f"LATE: starts in {lead_text(lead)}" if late else f"starts in {lead_text(lead)}"),
+                               red=late, yellow=(not late) and bool(prior or (repeat and REPEAT_MODE != "mute")))   # late = red only
                     st["alerted"][a["id"]] = time.time()
                     e = {k: a[k] for k in ("id", "ev", "game", "kind", "side", "pt", "price", "book", "conf", "nconf", "cby", "evp")}
                     e.update(sport=cfg["label"], start=a["commence"], t=time.time(), lead=round(lead), late=late,
