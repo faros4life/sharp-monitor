@@ -1,6 +1,155 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-25T12:00:14Z",
+   "base_depth": 162061,
+   "best_price": 0.625,
+   "best_price_american": -167,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.62,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-25",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -42547,
+     "new_this_side": 38333,
+     "other_side": 120388,
+     "other_side_all_levels": 163276,
+     "ratio": 1.6,
+     "this_side": 186765,
+     "this_side_all_levels": 200424
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "FLA (0)",
+     "price": 0.625,
+     "this_side": 28560
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Florida Panthers",
+     "price": 0.6212,
+     "this_side": 3808
+    }
+   },
+   "first_seen_utc": "2026-10-25T11:50:10Z",
+   "game": "Florida vs Chicago",
+   "key": "kalshi|KXNHLGAME-26OCT25FLACHI|ml|0",
+   "lead_min": 420,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 38333,
+   "paper_only": false,
+   "price": 0.62,
+   "price_american": -163,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.62,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -185
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -178
+    },
+    "betopenly": {
+     "point": null,
+     "price": -168
+    },
+    "betrivers": {
+     "point": null,
+     "price": -200
+    },
+    "betus": {
+     "point": null,
+     "price": -180
+    },
+    "bovada": {
+     "point": null,
+     "price": -185
+    },
+    "draftkings": {
+     "point": null,
+     "price": -180
+    },
+    "fanatics": {
+     "point": null,
+     "price": -180
+    },
+    "fanduel": {
+     "point": null,
+     "price": -184
+    },
+    "kalshi": {
+     "point": null,
+     "price": -163
+    },
+    "lowvig": {
+     "point": null,
+     "price": -178
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -182
+    },
+    "novig": {
+     "point": null,
+     "price": -163
+    },
+    "polymarket": {
+     "point": null,
+     "price": -163
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -170
+    },
+    "prophetx": {
+     "point": null,
+     "price": -164
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -182
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNHLGAME-26OCT25FLACHI-FLA"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Florida",
+   "side_label": "Florida",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-25T19:00:00Z",
+   "teams": [
+    "Florida",
+    "Chicago"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-25T11:50:10Z",
    "base_depth": 14546,
    "best_price": 0.41,
@@ -422,8 +571,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": 0.0,
+   "close_price": 0.52,
+   "clv_cents": 1.0,
    "confirmed_after_min": 5,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -453,6 +602,8 @@
    "new_money": 29230,
    "paper_only": false,
    "price": 0.51,
+   "price_after_15m": 0.52,
+   "price_after_15m_book": "novig",
    "price_american": -104,
    "price_rule": "ok",
    "price_when_first_seen": 0.5,
@@ -541,6 +692,7 @@
    "side_label": "Kings (+4.5)",
    "start_source": "polymarket",
    "start_utc": "2026-10-26T01:00:00Z",
+   "still_actionable": false,
    "teams": [
     "Grizzlies",
     "Kings"
@@ -600,6 +752,8 @@
    "new_money": 104820,
    "paper_only": false,
    "price": 0.53,
+   "price_after_15m": 0.525,
+   "price_after_15m_book": "novig",
    "price_american": -113,
    "price_rule": "ok",
    "price_when_first_seen": 0.53,
@@ -687,6 +841,7 @@
    "side_label": "Raptors (+1.5)",
    "start_source": "polymarket",
    "start_utc": "2026-10-25T23:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Raptors",
     "Timberwolves"
@@ -740,6 +895,8 @@
    "new_money": 43095,
    "paper_only": false,
    "price": 0.5,
+   "price_after_15m": 0.495,
+   "price_after_15m_book": "novig",
    "price_american": -100,
    "price_rule": "ok",
    "price_when_first_seen": 0.5,
@@ -826,6 +983,7 @@
    "side_label": "NOT Over 42.5 points",
    "start_source": "prophetx",
    "start_utc": "2026-10-25T17:00:00Z",
+   "still_actionable": true,
    "teams": [
     "New York G",
     "Houston"
@@ -891,6 +1049,8 @@
    "new_money": 70827,
    "paper_only": false,
    "price": 0.5,
+   "price_after_15m": 0.505,
+   "price_after_15m_book": "novig",
    "price_american": -100,
    "price_rule": "ok",
    "price_when_first_seen": 0.5,
@@ -977,6 +1137,7 @@
    "side_label": "NOT Over 231.5 points",
    "start_source": "polymarket",
    "start_utc": "2026-10-25T23:00:00Z",
+   "still_actionable": false,
    "teams": [
     "Toronto",
     "Minnesota"
@@ -1030,6 +1191,8 @@
    "new_money": 25916,
    "paper_only": false,
    "price": 0.52,
+   "price_after_15m": 0.5275,
+   "price_after_15m_book": "polymarket",
    "price_american": -108,
    "price_rule": "ok",
    "price_when_first_seen": 0.52,
@@ -1118,6 +1281,7 @@
    "side_label": "NOT Philadelphia wins by over 2.5 points",
    "start_source": "polymarket",
    "start_utc": "2026-10-25T23:30:00Z",
+   "still_actionable": true,
    "teams": [
     "Detroit",
     "Philadelphia"
@@ -1183,6 +1347,8 @@
    "new_money": 40499,
    "paper_only": false,
    "price": 0.5,
+   "price_after_15m": 0.505,
+   "price_after_15m_book": "novig",
    "price_american": -100,
    "price_rule": "ok",
    "price_when_first_seen": 0.5,
@@ -1269,6 +1435,7 @@
    "side_label": "Under (231.5)",
    "start_source": "polymarket",
    "start_utc": "2026-10-25T23:00:00Z",
+   "still_actionable": false,
    "teams": [
     "Raptors",
     "Timberwolves"
@@ -1291,8 +1458,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.515,
-   "clv_cents": 0.0,
+   "close_price": 0.52,
+   "clv_cents": 0.5,
    "confirmed_after_min": 5,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -1328,6 +1495,8 @@
    "new_money": 25309,
    "paper_only": false,
    "price": 0.515,
+   "price_after_15m": 0.5196,
+   "price_after_15m_book": "prophetx",
    "price_american": -106,
    "price_rule": "ok",
    "price_when_first_seen": 0.515,
@@ -1414,6 +1583,7 @@
    "side_label": "NYG +10.5 (-10.5)",
    "start_source": "prophetx",
    "start_utc": "2026-10-25T17:00:00Z",
+   "still_actionable": false,
    "teams": [
     "New York Giants",
     "Houston Texans"
@@ -6795,8 +6965,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5238,
-   "clv_cents": 1.6,
+   "close_price": 0.5192,
+   "clv_cents": 1.2,
    "confirmed_after_min": 6,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -6943,8 +7113,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.4098,
-   "clv_cents": 0.7,
+   "close_price": 0.4065,
+   "clv_cents": 0.3,
    "confirmed_after_min": 4,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -7252,8 +7422,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.7368,
-   "clv_cents": 1.5,
+   "close_price": 0.7333,
+   "clv_cents": 1.1,
    "confirmed_after_min": 4,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -14579,8 +14749,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.61,
-   "clv_cents": -0.5,
+   "close_price": 0.615,
+   "clv_cents": 0.0,
    "confirmed_after_min": 9,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -20693,8 +20863,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.805,
-   "clv_cents": -0.5,
+   "close_price": 0.81,
+   "clv_cents": 0.0,
    "confirmed_after_min": 18,
    "date": "2026-10-25",
    "depth_by_book": {
