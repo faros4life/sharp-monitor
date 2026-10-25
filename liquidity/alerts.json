@@ -1,6 +1,150 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-25T03:00:15Z",
+   "base_depth": 47435,
+   "best_price": 0.505,
+   "best_price_american": -102,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "prophetx",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.5074,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 6,
+   "date": "2026-10-25",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Minnesota wins by over 6.5 points",
+     "price": 0.5,
+     "this_side": 2042308
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "MIN -6.5 (-6.5)",
+     "price": 0.505,
+     "this_side": 89949
+    },
+    "prophetx": {
+     "new_other_side": 612,
+     "new_this_side": 28095,
+     "other_side": 62109,
+     "other_side_all_levels": 62109,
+     "ratio": 1.2,
+     "this_side": 75077,
+     "this_side_all_levels": 76036
+    }
+   },
+   "first_seen_utc": "2026-10-25T02:54:29Z",
+   "game": "Indianapolis Colts at Minnesota Vikings",
+   "key": "prophetx|{\"line\": 6.5, \"px_event\": 1700008813, \"px_market\": 223, \"side\": \"1\"}",
+   "lead_min": 840,
+   "league": "NFL",
+   "line": -6.5,
+   "market": "spread",
+   "new_money": 28095,
+   "paper_only": false,
+   "price": 0.5074,
+   "price_american": -103,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.5074,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -6.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": -6.5,
+     "price": -113
+    },
+    "betopenly": {
+     "point": -6.5,
+     "price": -104
+    },
+    "betrivers": {
+     "point": -6.5,
+     "price": -108
+    },
+    "betus": {
+     "point": -6.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": -6.5,
+     "price": -110
+    },
+    "fanatics": {
+     "point": -6.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": -6.5,
+     "price": -108
+    },
+    "kalshi": {
+     "point": -6.5,
+     "price": 100
+    },
+    "lowvig": {
+     "point": -6.5,
+     "price": -108
+    },
+    "mybookieag": {
+     "point": -6.5,
+     "price": -110
+    },
+    "novig": {
+     "point": -6.5,
+     "price": -102
+    },
+    "polymarket": {
+     "point": -6.5,
+     "price": -104
+    },
+    "prophetx": {
+     "point": -6.5,
+     "price": -103
+    },
+    "williamhill_us": {
+     "point": -6.5,
+     "price": -108
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "line": 6.5,
+    "px_event": 1700008813,
+    "px_market": 223,
+    "side": "1"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi",
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Minnesota Vikings",
+   "side_label": "Minnesota Vikings -6.5 (-6.5)",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-25T17:00:00Z",
+   "teams": [
+    "Indianapolis Colts",
+    "Minnesota Vikings"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-25T02:54:29Z",
    "base_depth": 24061,
    "best_price": 0.4,
@@ -15,8 +159,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.4032,
-   "clv_cents": 0.0,
+   "close_price": 0.4,
+   "clv_cents": -0.3,
    "confirmed_after_min": 4,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -770,8 +914,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.91,
-   "clv_cents": 9.0,
+   "close_price": 0.86,
+   "clv_cents": 4.0,
    "confirmed_after_min": 10,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -930,6 +1074,8 @@
    "new_money": 31323,
    "paper_only": false,
    "price": 0.59,
+   "price_after_15m": 0.59,
+   "price_after_15m_book": "novig",
    "price_american": -144,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.59,
@@ -1021,6 +1167,7 @@
    "side_label": "SEA (0)",
    "start_source": "prophetx",
    "start_utc": "2026-10-26T00:20:00Z",
+   "still_actionable": true,
    "teams": [
     "Kansas City Chiefs",
     "Seattle Seahawks"
@@ -2200,8 +2347,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.45,
-   "clv_cents": -29.0,
+   "close_price": 0.46,
+   "clv_cents": -28.0,
    "confirmed_after_min": 10,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -2319,8 +2466,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.99,
-   "clv_cents": 28.0,
+   "close_price": 0.98,
+   "clv_cents": 27.0,
    "confirmed_after_min": 10,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -2675,8 +2822,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.59,
-   "clv_cents": -10.0,
+   "close_price": 0.58,
+   "clv_cents": -11.0,
    "confirmed_after_min": 6,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -5184,8 +5331,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.1,
-   "clv_cents": -71.0,
+   "close_price": 0.15,
+   "clv_cents": -66.0,
    "confirmed_after_min": 12,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -5602,8 +5749,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.74,
-   "clv_cents": -4.0,
+   "close_price": 0.68,
+   "clv_cents": -10.0,
    "confirmed_after_min": 9,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -10392,6 +10539,7 @@
    },
    "first_seen_utc": "2026-10-24T20:56:31Z",
    "game": "Wizards vs. Bulls",
+   "graded_by": "espn",
    "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6094438\"}",
    "lead_min": 169,
    "league": "NBA",
@@ -10477,10 +10625,11 @@
     "outcome_index": 1,
     "pm_market_id": "6094438"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": "none_10k",
    "second_book_fresh": false,
+   "settled_utc": "2026-10-25T03:00:15Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "Chicago Bulls +1.5 (-115)"
@@ -10495,7 +10644,7 @@
     "Bulls"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.96
   },
   {
    "alerted_utc": "2026-10-24T21:11:07Z",
@@ -14582,6 +14731,7 @@
    },
    "first_seen_utc": "2026-10-24T18:11:00Z",
    "game": "Wizards vs. Bulls",
+   "graded_by": "espn",
    "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"5847758\"}",
    "lead_min": 331,
    "league": "NBA",
@@ -14674,12 +14824,13 @@
     "outcome_index": 0,
     "pm_market_id": "5847758"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
+   "settled_utc": "2026-10-25T03:00:15Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "Chicago Bulls +1.5 (-115)"
@@ -14694,7 +14845,7 @@
     "Bulls"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.11
   },
   {
    "alerted_utc": "2026-10-24T17:52:13Z",
