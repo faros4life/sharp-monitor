@@ -1,16 +1,16 @@
 # Liquidity alerts (paper)
 
-Updated Sat Oct 24, 11:50 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 9.
+Updated Sat Oct 24, 11:52 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 8.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 32-15 (+2.38u flat) | rule met: 14-11
+**Record:** 32-16 (+1.38u flat) | rule met: 14-11
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Oct 24 11:50PM | TENNIS | Lee vs Pridankina | moneyline: Lee | kalshi | $79k | -285 |  |  | +0.0c |  | pending |
+| Oct 24 11:50PM | TENNIS | Lee vs Pridankina | moneyline: Lee | kalshi | $79k | -285 |  |  | -5.0c |  | pending |
 | Oct 24 11:40PM | TENNIS | Ibragimova vs Iatcenko | moneyline: Ibragimova | kalshi | $143k | -150 |  |  | +8.0c |  | pending |
-| Oct 24 11:13PM | TENNIS | Sasnovich vs Rakhimova | moneyline: Sasnovich | kalshi | $188k | -376 |  |  | +6.0c |  | pending |
+| Oct 24 11:13PM | TENNIS | Sasnovich vs Rakhimova | moneyline: Sasnovich | kalshi | $188k | -376 |  |  | +5.0c |  | pending |
 | Oct 24 11:13PM | TENNIS | Ibragimova vs Iatcenko | moneyline: Iatcenko | kalshi | $55k | -194 |  |  | -33.0c |  | pending |
 | Oct 24 11:00PM | TENNIS | Krueger vs Siniakova | moneyline: Siniakova | kalshi | $29k | -133 | ✅ novig |  | +0.0c |  | pending |
 | Oct 24 11:00PM | TENNIS | Watson vs Parks | moneyline: Parks | kalshi | $142k | -335 |  |  |  |  | W |
@@ -47,7 +47,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 23 10:00PM | TENNIS | Starodubtseva vs Sasnovich | moneyline: Sasnovich | kalshi | $32k | -178 |  |  |  |  | W |
 | Oct 23 9:20PM | TENNIS | Ma vs Kasatkina | moneyline: Kasatkina | kalshi | $29k | -426 |  |  | +0.0c |  | W |
 | Oct 23 8:47PM | TENNIS | Boulter vs Siniakova | moneyline: Siniakova | kalshi | $42k | -156 |  |  | +1.0c |  | W |
-| Oct 23 8:30PM | MLB | Game 2: Tampa Bay vs Milwaukee | moneyline: Game 2: Tampa Bay | kalshi | $51k | +144 |  |  | -4.0c |  | pending |
+| Oct 23 8:30PM | MLB | Game 2: Tampa Bay vs Milwaukee | moneyline: Game 2: Tampa Bay | kalshi | $51k | +144 |  |  | -4.0c |  | L |
 | Oct 23 7:57PM | MLB | Tampa Bay Rays @ Milwaukee Brewers | spread: TB +1.5 (-1.5) | novig | $84k | -138 | ✅ kalshi |  | +0.0c |  | W |
 | Oct 23 6:00PM | TENNIS | Fils vs Struff | moneyline: Fils | kalshi | $27k | -456 |  |  | -81.0c | yes | L |
 | Oct 23 5:54PM | MLB | Tampa Bay Rays vs. Milwaukee Brewers | moneyline: Milwaukee Brewers | polymarket | $75k | -178 | ✅ kalshi,prophetx |  | +0.0c | yes | W |
