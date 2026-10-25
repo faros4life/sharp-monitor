@@ -1,6 +1,146 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-25T03:00:19Z",
+   "base_depth": 123238,
+   "best_price": 0.575,
+   "best_price_american": -135,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.57,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-25",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 3067,
+     "new_this_side": 28830,
+     "other_side": 62813,
+     "other_side_all_levels": 77310,
+     "ratio": 2.1,
+     "this_side": 132877,
+     "this_side_all_levels": 151746
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "K. Siniakova (0)",
+     "price": 0.575,
+     "this_side": 20367
+    }
+   },
+   "first_seen_utc": "2026-10-25T02:50:14Z",
+   "game": "Krueger vs Siniakova",
+   "key": "kalshi|KXWTAMATCH-26OCT25KRUSIN|ml|1",
+   "lead_min": 90,
+   "league": "TENNIS",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 28830,
+   "paper_only": true,
+   "price": 0.57,
+   "price_american": -133,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.57,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXWTAMATCH-26OCT25KRUSIN-SIN"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Siniakova",
+   "side_label": "Siniakova",
+   "start_source": "novig",
+   "start_utc": "2026-10-25T04:30:00Z",
+   "teams": [
+    "Krueger",
+    "Siniakova"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-25T03:00:19Z",
+   "base_depth": 243417,
+   "best_price": 0.7824,
+   "best_price_american": -360,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.77,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-24",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -60565,
+     "new_this_side": 141531,
+     "other_side": 37642,
+     "other_side_all_levels": 98144,
+     "ratio": 4.7,
+     "this_side": 176113,
+     "this_side_all_levels": 373466
+    }
+   },
+   "first_seen_utc": "2026-10-25T02:50:14Z",
+   "game": "Watson vs Parks",
+   "key": "kalshi|KXWTAMATCH-26OCT24WATPAR|ml|1",
+   "lead_min": 60,
+   "league": "TENNIS",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 141531,
+   "paper_only": true,
+   "price": 0.77,
+   "price_american": -335,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.8,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXWTAMATCH-26OCT24WATPAR-PAR"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "no_match",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Parks",
+   "side_label": "Parks",
+   "start_source": "kalshi",
+   "start_utc": "2026-10-25T04:00:00Z",
+   "teams": [
+    "Watson",
+    "Parks"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-24T23:53:40Z",
    "base_depth": 122912,
    "best_price": 0.645,
@@ -90,8 +230,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.21,
-   "clv_cents": -25.0,
+   "close_price": 0.24,
+   "clv_cents": -22.0,
    "confirmed_after_min": 12,
    "date": "2026-10-24",
    "depth_by_book": {
