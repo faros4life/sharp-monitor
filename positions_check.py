@@ -17,3 +17,4 @@ for b, v in held.items():
         matched = sum(1 for h in v if h.get("game"))
         print(f"{ex.BOOK_NAME[b]}: checked, {len(v)} open side(s) {kinds or ''}, {matched} with a readable game name")
 print(positions.status_line(held))
+print("ProphetX trade check (no amounts):", positions.STATS.get("prophetx"))
