@@ -1,0 +1,22 @@
+name: px-fee-check
+
+on:
+  workflow_dispatch:   # manual: which fee model ProphetX charges on the LIVE account (read-only; ratios only)
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Live fee ratios (no orders, no amounts)
+        env:
+          PROPHETX_ACCESS_KEY: ${{ secrets.PROPHETX_ACCESS_KEY }}
+          PROPHETX_SECRET_KEY: ${{ secrets.PROPHETX_SECRET_KEY }}
+        run: python -u px_fee_check.py
