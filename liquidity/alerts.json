@@ -1,6 +1,466 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-25T03:25:21Z",
+   "base_depth": 120814,
+   "best_price": 0.68,
+   "best_price_american": -213,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "prophetx",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.6774,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-10-25",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Denver",
+     "price": 0.68,
+     "this_side": 5497654
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "DEN (0)",
+     "price": 0.68,
+     "this_side": 210598
+    },
+    "prophetx": {
+     "new_other_side": -1099,
+     "new_this_side": 32815,
+     "other_side": 66460,
+     "other_side_all_levels": 66486,
+     "ratio": 2.3,
+     "this_side": 153581,
+     "this_side_all_levels": 154017
+    }
+   },
+   "first_seen_utc": "2026-10-25T03:20:10Z",
+   "game": "Denver Broncos at Arizona Cardinals",
+   "key": "prophetx|{\"line\": 0, \"px_event\": 1700008849, \"px_market\": 219, \"side\": \"0\"}",
+   "lead_min": 1000,
+   "league": "NFL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 32815,
+   "paper_only": false,
+   "price": 0.6774,
+   "price_american": -210,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.6774,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -225
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -220
+    },
+    "betopenly": {
+     "point": null,
+     "price": -212
+    },
+    "betrivers": {
+     "point": null,
+     "price": -250
+    },
+    "betus": {
+     "point": null,
+     "price": -220
+    },
+    "draftkings": {
+     "point": null,
+     "price": -225
+    },
+    "fanatics": {
+     "point": null,
+     "price": -235
+    },
+    "fanduel": {
+     "point": null,
+     "price": -225
+    },
+    "kalshi": {
+     "point": null,
+     "price": -213
+    },
+    "limitless": {
+     "point": null,
+     "price": -213
+    },
+    "lowvig": {
+     "point": null,
+     "price": -220
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -226
+    },
+    "novig": {
+     "point": null,
+     "price": -212
+    },
+    "polymarket": {
+     "point": null,
+     "price": -213
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -208
+    },
+    "prophetx": {
+     "point": null,
+     "price": -210
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -225
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "line": 0,
+    "px_event": 1700008849,
+    "px_market": 219,
+    "side": "0"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi",
+    "novig"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Denver Broncos",
+   "side_label": "Denver Broncos",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-25T20:05:00Z",
+   "teams": [
+    "Denver Broncos",
+    "Arizona Cardinals"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-25T03:25:21Z",
+   "base_depth": 179457,
+   "best_price": 0.68,
+   "best_price_american": -213,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.68,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-10-25",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Denver",
+     "price": 0.68,
+     "this_side": 5497654
+    },
+    "novig": {
+     "new_other_side": -3287,
+     "new_this_side": 31838,
+     "other_side": 73293,
+     "other_side_all_levels": 73320,
+     "ratio": 2.9,
+     "this_side": 210598,
+     "this_side_all_levels": 210852
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Denver Broncos",
+     "price": 0.6774,
+     "this_side": 153581
+    }
+   },
+   "first_seen_utc": "2026-10-25T03:20:10Z",
+   "game": "Denver Broncos @ Arizona Cardinals",
+   "key": "novig|{\"market_id\": \"01a136e2-ee0a-7273-991d-30893aa5795a\", \"outcome_id\": \"01a136e2-ee0a-7273-991d-30a8024c7380\"}",
+   "lead_min": 1000,
+   "league": "NFL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 31838,
+   "paper_only": false,
+   "price": 0.68,
+   "price_american": -213,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.68,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -225
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -220
+    },
+    "betopenly": {
+     "point": null,
+     "price": -212
+    },
+    "betrivers": {
+     "point": null,
+     "price": -250
+    },
+    "betus": {
+     "point": null,
+     "price": -220
+    },
+    "draftkings": {
+     "point": null,
+     "price": -225
+    },
+    "fanatics": {
+     "point": null,
+     "price": -235
+    },
+    "fanduel": {
+     "point": null,
+     "price": -225
+    },
+    "kalshi": {
+     "point": null,
+     "price": -213
+    },
+    "limitless": {
+     "point": null,
+     "price": -213
+    },
+    "lowvig": {
+     "point": null,
+     "price": -220
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -226
+    },
+    "novig": {
+     "point": null,
+     "price": -212
+    },
+    "polymarket": {
+     "point": null,
+     "price": -213
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -208
+    },
+    "prophetx": {
+     "point": null,
+     "price": -210
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -225
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a136e2-ee0a-7273-991d-30893aa5795a",
+    "outcome_id": "01a136e2-ee0a-7273-991d-30a8024c7380"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi",
+    "prophetx"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Denver Broncos",
+   "side_label": "DEN (0)",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-25T20:05:00Z",
+   "teams": [
+    "Denver Broncos",
+    "Arizona Cardinals"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-25T03:25:21Z",
+   "base_depth": 218536,
+   "best_price": 0.71,
+   "best_price_american": -245,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.72,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-10-25",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -7624,
+     "new_this_side": 29052,
+     "other_side": 48024,
+     "other_side_all_levels": 98723,
+     "ratio": 4.2,
+     "this_side": 200854,
+     "this_side_all_levels": 303808
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "IND (0)",
+     "price": 0.71,
+     "this_side": 19964
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Pacers",
+     "price": 0.71,
+     "this_side": 33619
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Indiana Pacers",
+     "price": 0.7101,
+     "this_side": 9357
+    }
+   },
+   "first_seen_utc": "2026-10-25T03:20:10Z",
+   "game": "Indiana vs Brooklyn",
+   "key": "kalshi|KXNBAGAME-26OCT25INDBKN|ml|0",
+   "lead_min": 1115,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 29052,
+   "paper_only": false,
+   "price": 0.72,
+   "price_american": -257,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.72,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -285
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -300
+    },
+    "betrivers": {
+     "point": null,
+     "price": -295
+    },
+    "betus": {
+     "point": null,
+     "price": -300
+    },
+    "bovada": {
+     "point": null,
+     "price": -270
+    },
+    "draftkings": {
+     "point": null,
+     "price": -278
+    },
+    "fanatics": {
+     "point": null,
+     "price": -280
+    },
+    "fanduel": {
+     "point": null,
+     "price": -260
+    },
+    "kalshi": {
+     "point": null,
+     "price": -257
+    },
+    "limitless": {
+     "point": null,
+     "price": -248
+    },
+    "lowvig": {
+     "point": null,
+     "price": -297
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -280
+    },
+    "novig": {
+     "point": null,
+     "price": -251
+    },
+    "polymarket": {
+     "point": null,
+     "price": -245
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -257
+    },
+    "prophetx": {
+     "point": null,
+     "price": -245
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -278
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBAGAME-26OCT25INDBKN-IND"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "polymarket"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [
+    "Indiana Pacers -7.5 (+100)"
+   ],
+   "sharp_oppose": [],
+   "side": "Indiana",
+   "side_label": "Indiana",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-25T22:00:00Z",
+   "teams": [
+    "Indiana",
+    "Brooklyn"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-25T03:10:09Z",
    "base_depth": 149201,
    "best_price": 0.4049,
@@ -52,6 +512,8 @@
    "new_money": 38860,
    "paper_only": false,
    "price": 0.405,
+   "price_after_15m": 0.4049,
+   "price_after_15m_book": "prophetx",
    "price_american": 147,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.405,
@@ -142,6 +604,7 @@
    "side_label": "NO (0)",
    "start_source": "prophetx",
    "start_utc": "2026-10-25T13:30:00Z",
+   "still_actionable": true,
    "teams": [
     "Pittsburgh Steelers",
     "New Orleans Saints"
@@ -164,8 +627,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.55,
-   "clv_cents": 0.0,
+   "close_price": 0.56,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -189,6 +652,8 @@
    "new_money": 54552,
    "paper_only": false,
    "price": 0.55,
+   "price_after_15m": 0.5772,
+   "price_after_15m_book": "kalshi",
    "price_american": -122,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.55,
@@ -258,6 +723,7 @@
    "side_label": "Utah",
    "start_source": "kalshi",
    "start_utc": "2026-10-25T04:00:00Z",
+   "still_actionable": false,
    "teams": [
     "Tampa Bay",
     "Utah"
@@ -280,8 +746,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.65,
-   "clv_cents": -3.0,
+   "close_price": 0.71,
+   "clv_cents": 3.0,
    "confirmed_after_min": 10,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -305,6 +771,8 @@
    "new_money": 105860,
    "paper_only": false,
    "price": 0.68,
+   "price_after_15m": 0.7244,
+   "price_after_15m_book": "kalshi",
    "price_american": -213,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.7,
@@ -369,6 +837,7 @@
    "side_label": "New Mexico",
    "start_source": "kalshi",
    "start_utc": "2026-10-25T05:00:00Z",
+   "still_actionable": false,
    "teams": [
     "North Dakota St.",
     "New Mexico"
@@ -1308,8 +1777,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.83,
-   "clv_cents": 1.0,
+   "close_price": 0.86,
+   "clv_cents": 4.0,
    "confirmed_after_min": 10,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -2744,8 +3213,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.46,
-   "clv_cents": -28.0,
+   "close_price": 0.45,
+   "clv_cents": -29.0,
    "confirmed_after_min": 10,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -3221,8 +3690,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": -17.0,
+   "close_price": 0.5,
+   "clv_cents": -19.0,
    "confirmed_after_min": 6,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -4313,8 +4782,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.7,
-   "clv_cents": 21.0,
+   "close_price": 0.73,
+   "clv_cents": 24.0,
    "confirmed_after_min": 5,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -5152,10 +5621,11 @@
     "outcome_index": 0,
     "pm_market_id": "6094404"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": "none_10k",
    "second_book_fresh": false,
+   "settled_utc": "2026-10-25T03:25:21Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Hawks",
@@ -5167,7 +5637,7 @@
     "Hawks"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-25T00:02:01Z",
@@ -5456,8 +5926,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.48,
-   "clv_cents": 2.0,
+   "close_price": 0.66,
+   "clv_cents": 20.0,
    "confirmed_after_min": 12,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -5731,8 +6201,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.18,
-   "clv_cents": -63.0,
+   "close_price": 0.15,
+   "clv_cents": -66.0,
    "confirmed_after_min": 12,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -7992,8 +8462,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.8077,
-   "clv_cents": 0.0,
+   "close_price": 0.8058,
+   "clv_cents": -0.2,
    "confirmed_after_min": 9,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -11170,12 +11640,13 @@
     "outcome_index": 1,
     "pm_market_id": "6094404"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
+   "settled_utc": "2026-10-25T03:25:21Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Rockets",
@@ -11188,7 +11659,7 @@
     "Hawks"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.89
   },
   {
    "alerted_utc": "2026-10-24T21:11:07Z",
