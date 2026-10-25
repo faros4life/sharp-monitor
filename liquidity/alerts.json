@@ -1,7 +1,7 @@
 {
  "alerts": [
   {
-   "alerted_utc": "2026-10-25T12:40:09Z",
+   "alerted_utc": "2026-10-25T12:44:27Z",
    "base_depth": 115712,
    "best_price": 0.595,
    "best_price_american": -147,
@@ -17,35 +17,35 @@
    ],
    "close_price": 0.595,
    "clv_cents": 0.0,
-   "confirmed_after_min": 10,
+   "confirmed_after_min": 14,
    "date": "2026-10-25",
    "depth_by_book": {
     "kalshi": {
      "heavier_side": true,
      "label": "Carolina",
      "price": 0.6,
-     "this_side": 4353337
+     "this_side": 4354149
     },
     "novig": {
      "new_other_side": -13220,
      "new_this_side": 25727,
-     "other_side": 81633,
+     "other_side": 81634,
      "other_side_all_levels": 81842,
      "ratio": 1.7,
-     "this_side": 138547,
-     "this_side_all_levels": 138866
+     "this_side": 138595,
+     "this_side_all_levels": 138912
     },
     "prophetx": {
      "heavier_side": true,
      "label": "Carolina Panthers",
      "price": 0.5968,
-     "this_side": 27084
+     "this_side": 27414
     }
    },
    "first_seen_utc": "2026-10-25T12:30:11Z",
    "game": "Tampa Bay Buccaneers @ Carolina Panthers",
    "key": "novig|{\"market_id\": \"01a136e2-eabb-78f3-815b-e0b3b309ee06\", \"outcome_id\": \"01a136e2-eabb-78f3-815b-e0cb775ff1b5\"}",
-   "lead_min": 260,
+   "lead_min": 256,
    "league": "NFL",
    "line": null,
    "market": "moneyline",
@@ -155,7 +155,7 @@
    "units_flat": null
   },
   {
-   "alerted_utc": "2026-10-25T12:40:09Z",
+   "alerted_utc": "2026-10-25T12:44:27Z",
    "base_depth": 54789,
    "best_price": 0.46,
    "best_price_american": 117,
@@ -171,29 +171,29 @@
    ],
    "close_price": 0.46,
    "clv_cents": 0.0,
-   "confirmed_after_min": 10,
+   "confirmed_after_min": 14,
    "date": "2026-10-25",
    "depth_by_book": {
     "kalshi": {
      "heavier_side": true,
      "label": "NOT Pittsburgh wins by over 2.5 points",
      "price": 0.46,
-     "this_side": 1258468
+     "this_side": 1244025
     },
     "novig": {
      "new_other_side": -27389,
      "new_this_side": 36713,
-     "other_side": 81751,
-     "other_side_all_levels": 81796,
-     "ratio": 1.0,
-     "this_side": 83528,
-     "this_side_all_levels": 83658
+     "other_side": 80206,
+     "other_side_all_levels": 80376,
+     "ratio": 1.1,
+     "this_side": 87236,
+     "this_side_all_levels": 87261
     }
    },
    "first_seen_utc": "2026-10-25T12:30:11Z",
    "game": "Pittsburgh Steelers @ New Orleans Saints",
    "key": "novig|{\"market_id\": \"01a136e2-e79d-7533-a2bd-8db1e86b08a7\", \"outcome_id\": \"01a136e2-e79d-7533-a2bd-8dc4603ef7ed\"}",
-   "lead_min": 50,
+   "lead_min": 46,
    "league": "NFL",
    "line": 2.5,
    "market": "spread",
@@ -214,7 +214,7 @@
     },
     "betopenly": {
      "point": 3.0,
-     "price": 100
+     "price": -104
     },
     "betrivers": {
      "point": 3.0,
@@ -238,7 +238,7 @@
     },
     "fanduel": {
      "point": 3.0,
-     "price": -112
+     "price": -115
     },
     "kalshi": {
      "point": 2.5,
@@ -262,7 +262,7 @@
     },
     "prophetx": {
      "point": 2.0,
-     "price": 122
+     "price": 128
     },
     "williamhill_us": {
      "point": 3.0,
@@ -624,7 +624,7 @@
    "new_money": 31739,
    "paper_only": false,
    "price": 0.51,
-   "price_after_15m": 0.51,
+   "price_after_15m": 0.505,
    "price_after_15m_book": "novig",
    "price_american": -104,
    "price_rule": "ok",
@@ -714,7 +714,7 @@
    "side_label": "Magic (+7.5)",
    "start_source": "polymarket",
    "start_utc": "2026-10-25T23:00:00Z",
-   "still_actionable": false,
+   "still_actionable": true,
    "teams": [
     "Magic",
     "Knicks"
@@ -737,8 +737,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.47,
-   "clv_cents": 0.0,
+   "close_price": 0.5,
+   "clv_cents": 3.0,
    "confirmed_after_min": 10,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -780,8 +780,8 @@
    "new_money": 37712,
    "paper_only": false,
    "price": 0.47,
-   "price_after_15m": 0.47,
-   "price_after_15m_book": "novig",
+   "price_after_15m": 0.4874,
+   "price_after_15m_book": "kalshi",
    "price_american": 113,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.47,
@@ -880,7 +880,7 @@
    "side_label": "Pistons",
    "start_source": "polymarket",
    "start_utc": "2026-10-25T23:30:00Z",
-   "still_actionable": true,
+   "still_actionable": false,
    "teams": [
     "Pistons",
     "76ers"
@@ -2499,8 +2499,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 2.0,
+   "close_price": 0.53,
+   "clv_cents": 3.0,
    "confirmed_after_min": 5,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -7456,8 +7456,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.68,
-   "clv_cents": 0.0,
+   "close_price": 0.675,
+   "clv_cents": -0.5,
    "confirmed_after_min": 5,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -8308,8 +8308,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.4098,
-   "clv_cents": 0.7,
+   "close_price": 0.4132,
+   "clv_cents": 1.0,
    "confirmed_after_min": 4,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -17349,8 +17349,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.635,
-   "clv_cents": -0.3,
+   "close_price": 0.6377,
+   "clv_cents": 0.0,
    "confirmed_after_min": 15,
    "date": "2026-10-25",
    "depth_by_book": {
