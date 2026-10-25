@@ -1,7 +1,7 @@
 {
  "alerts": [
   {
-   "alerted_utc": "2026-10-25T05:10:10Z",
+   "alerted_utc": "2026-10-25T05:13:19Z",
    "base_depth": 371023,
    "best_price": 0.495,
    "best_price_american": 102,
@@ -17,35 +17,35 @@
    ],
    "close_price": 0.49,
    "clv_cents": 0.0,
-   "confirmed_after_min": 10,
+   "confirmed_after_min": 13,
    "date": "2026-10-25",
    "depth_by_book": {
     "kalshi": {
      "new_other_side": -95281,
      "new_this_side": 158745,
-     "other_side": 338048,
-     "other_side_all_levels": 430137,
-     "ratio": 1.4,
-     "this_side": 488967,
-     "this_side_all_levels": 540308
+     "other_side": 331334,
+     "other_side_all_levels": 423424,
+     "ratio": 1.5,
+     "this_side": 484899,
+     "this_side_all_levels": 536237
     },
     "novig": {
      "heavier_side": true,
      "label": "Over 39.5 (39.5)",
      "price": 0.495,
-     "this_side": 27106
+     "this_side": 27902
     },
     "prophetx": {
      "heavier_side": false,
      "label": "over 39.5 (39.5)",
      "price": 0.5,
-     "this_side": 14823
+     "this_side": 14725
     }
    },
    "first_seen_utc": "2026-10-25T05:00:17Z",
    "game": "Miami vs New York J: Total Points",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNFLTOTAL-26OCT25MIANYJ-40\"}",
-   "lead_min": 710,
+   "lead_min": 707,
    "league": "NFL",
    "line": 39.5,
    "market": "total",
@@ -142,152 +142,7 @@
    "units_flat": null
   },
   {
-   "alerted_utc": "2026-10-25T05:10:10Z",
-   "base_depth": 21755,
-   "best_price": 0.485,
-   "best_price_american": 106,
-   "best_price_book": "novig",
-   "bid_improved": false,
-   "bid_improved_at_pending": false,
-   "book": "kalshi",
-   "books_live": [
-    "kalshi",
-    "novig",
-    "polymarket",
-    "prophetx"
-   ],
-   "close_price": 0.5,
-   "clv_cents": 0.0,
-   "confirmed_after_min": 10,
-   "date": "2026-10-25",
-   "depth_by_book": {
-    "kalshi": {
-     "new_other_side": 505,
-     "new_this_side": 28232,
-     "other_side": 12407,
-     "other_side_all_levels": 17161,
-     "ratio": 3.8,
-     "this_side": 46698,
-     "this_side_all_levels": 50468
-    },
-    "novig": {
-     "heavier_side": true,
-     "label": "IND -7.5 (7.5)",
-     "price": 0.485,
-     "this_side": 5217
-    },
-    "polymarket": {
-     "heavier_side": true,
-     "label": "Pacers (-7.5)",
-     "price": 0.49,
-     "this_side": 11249
-    }
-   },
-   "first_seen_utc": "2026-10-25T05:00:17Z",
-   "game": "Indiana vs Brooklyn: Spread",
-   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNBASPREAD-26OCT25INDBKN-IND8\"}",
-   "lead_min": 1010,
-   "league": "NBA",
-   "line": -7.5,
-   "market": "spread",
-   "new_money": 28232,
-   "paper_only": false,
-   "price": 0.5,
-   "price_american": -100,
-   "price_rule": "ok",
-   "price_when_first_seen": 0.5,
-   "prices_by_book": {
-    "betmgm": {
-     "point": -7.5,
-     "price": -105
-    },
-    "betonlineag": {
-     "point": -7.0,
-     "price": -110
-    },
-    "betrivers": {
-     "point": -7.5,
-     "price": -110
-    },
-    "betus": {
-     "point": -7.0,
-     "price": -110
-    },
-    "bovada": {
-     "point": -7.5,
-     "price": -105
-    },
-    "draftkings": {
-     "point": -6.5,
-     "price": -115
-    },
-    "fanatics": {
-     "point": -7.5,
-     "price": -105
-    },
-    "fanduel": {
-     "point": -7.5,
-     "price": -106
-    },
-    "kalshi": {
-     "point": -7.5,
-     "price": 100
-    },
-    "lowvig": {
-     "point": -7.0,
-     "price": -106
-    },
-    "mybookieag": {
-     "point": -7.5,
-     "price": -110
-    },
-    "novig": {
-     "point": -7.5,
-     "price": 106
-    },
-    "polymarket": {
-     "point": -7.5,
-     "price": 104
-    },
-    "prophetx": {
-     "point": -7.0,
-     "price": -108
-    },
-    "williamhill_us": {
-     "point": -7.5,
-     "price": -105
-    }
-   },
-   "pulled": false,
-   "ref": {
-    "kalshi_side": "yes",
-    "market_ticker": "KXNBASPREAD-26OCT25INDBKN-IND8"
-   },
-   "result": null,
-   "rule_met": true,
-   "second_book": [
-    "polymarket"
-   ],
-   "second_book_fresh": false,
-   "sharp_agree": [
-    "Indiana Pacers -7.5 (+100)"
-   ],
-   "sharp_oppose": [
-    "Brooklyn Nets +7.5 (-108)"
-   ],
-   "side": "Indiana",
-   "side_label": "Indiana wins by over 7.5 points",
-   "start_source": "polymarket",
-   "start_utc": "2026-10-25T22:00:00Z",
-   "teams": [
-    "Indiana",
-    "Brooklyn"
-   ],
-   "top25": null,
-   "units_flat": null
-  },
-  {
-   "alerted_utc": "2026-10-25T05:10:10Z",
+   "alerted_utc": "2026-10-25T05:13:19Z",
    "base_depth": 26432,
    "best_price": 0.505,
    "best_price_american": -102,
@@ -303,23 +158,23 @@
    ],
    "close_price": 0.5,
    "clv_cents": 0.0,
-   "confirmed_after_min": 10,
+   "confirmed_after_min": 13,
    "date": "2026-10-25",
    "depth_by_book": {
     "kalshi": {
      "new_other_side": 154,
      "new_this_side": 29758,
-     "other_side": 31036,
-     "other_side_all_levels": 34072,
+     "other_side": 29657,
+     "other_side_all_levels": 32679,
      "ratio": 1.6,
-     "this_side": 50117,
-     "this_side_all_levels": 52882
+     "this_side": 47248,
+     "this_side_all_levels": 50013
     },
     "novig": {
      "heavier_side": true,
      "label": "Under 221.5 (221.5)",
      "price": 0.505,
-     "this_side": 4279
+     "this_side": 4236
     },
     "prophetx": {
      "heavier_side": true,
@@ -331,7 +186,7 @@
    "first_seen_utc": "2026-10-25T05:00:17Z",
    "game": "Los Angeles C vs Oklahoma City: Total Points",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBATOTAL-26OCT25LACOKC-222\"}",
-   "lead_min": 1070,
+   "lead_min": 1067,
    "league": "NBA",
    "line": 221.5,
    "market": "total",
@@ -395,8 +250,8 @@
      "price": -104
     },
     "prophetx": {
-     "point": 221.0,
-     "price": 101
+     "point": 220.0,
+     "price": 110
     },
     "williamhill_us": {
      "point": 221.5,
@@ -426,7 +281,7 @@
    "units_flat": null
   },
   {
-   "alerted_utc": "2026-10-25T05:10:10Z",
+   "alerted_utc": "2026-10-25T05:13:19Z",
    "base_depth": 6027929,
    "best_price": 0.73,
    "best_price_american": -270,
@@ -442,35 +297,35 @@
    ],
    "close_price": 0.74,
    "clv_cents": 0.0,
-   "confirmed_after_min": 10,
+   "confirmed_after_min": 13,
    "date": "2026-10-25",
    "depth_by_book": {
     "kalshi": {
      "new_other_side": -242385,
      "new_this_side": 779888,
-     "other_side": 988567,
-     "other_side_all_levels": 1175119,
+     "other_side": 989391,
+     "other_side_all_levels": 1175913,
      "ratio": 6.5,
-     "this_side": 6393033,
-     "this_side_all_levels": 6835534
+     "this_side": 6392996,
+     "this_side_all_levels": 6835759
     },
     "novig": {
      "heavier_side": true,
      "label": "MIN (0)",
      "price": 0.73,
-     "this_side": 392548
+     "this_side": 385335
     },
     "prophetx": {
      "heavier_side": true,
      "label": "Minnesota Vikings",
      "price": 0.7333,
-     "this_side": 306887
+     "this_side": 288615
     }
    },
    "first_seen_utc": "2026-10-25T05:00:17Z",
    "game": "Indianapolis vs Minnesota",
    "key": "kalshi|KXNFLGAME-26OCT25INDMIN|ml|1",
-   "lead_min": 710,
+   "lead_min": 707,
    "league": "NFL",
    "line": null,
    "market": "moneyline",
@@ -4252,8 +4107,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.59,
-   "clv_cents": 0.0,
+   "close_price": 0.585,
+   "clv_cents": -0.5,
    "confirmed_after_min": 10,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -16418,8 +16273,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5968,
-   "clv_cents": 1.0,
+   "close_price": 0.5935,
+   "clv_cents": 0.7,
    "confirmed_after_min": 16,
    "date": "2026-10-25",
    "depth_by_book": {
