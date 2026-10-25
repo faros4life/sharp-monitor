@@ -1,6 +1,741 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-24T23:57:22Z",
+   "base_depth": 57868,
+   "best_price": 0.58,
+   "best_price_american": -138,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.58,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 7,
+   "date": "2026-10-25",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": false,
+     "label": "San Francisco",
+     "price": 0.58,
+     "this_side": 2129363
+    },
+    "novig": {
+     "new_other_side": 71,
+     "new_this_side": 40991,
+     "other_side": 38436,
+     "other_side_all_levels": 57389,
+     "ratio": 3.3,
+     "this_side": 127432,
+     "this_side_all_levels": 127607
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "San Francisco 49ers",
+     "price": 0.5763,
+     "this_side": 65163
+    }
+   },
+   "first_seen_utc": "2026-10-24T23:50:10Z",
+   "game": "San Francisco 49ers @ Atlanta Falcons",
+   "key": "novig|{\"market_id\": \"01a136e2-eb62-7a90-9d60-53526d519f49\", \"outcome_id\": \"01a136e2-eb62-7a90-9d60-5370a72c497c\"}",
+   "lead_min": 1023,
+   "league": "NFL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 40991,
+   "paper_only": false,
+   "price": 0.58,
+   "price_american": -138,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.58,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -150
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -147
+    },
+    "betopenly": {
+     "point": null,
+     "price": -136
+    },
+    "betrivers": {
+     "point": null,
+     "price": -150
+    },
+    "betus": {
+     "point": null,
+     "price": -145
+    },
+    "draftkings": {
+     "point": null,
+     "price": -148
+    },
+    "fanatics": {
+     "point": null,
+     "price": -150
+    },
+    "fanduel": {
+     "point": null,
+     "price": -146
+    },
+    "kalshi": {
+     "point": null,
+     "price": -138
+    },
+    "limitless": {
+     "point": null,
+     "price": -138
+    },
+    "lowvig": {
+     "point": null,
+     "price": -147
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -146
+    },
+    "novig": {
+     "point": null,
+     "price": -138
+    },
+    "polymarket": {
+     "point": null,
+     "price": -138
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -137
+    },
+    "prophetx": {
+     "point": null,
+     "price": -136
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -148
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a136e2-eb62-7a90-9d60-53526d519f49",
+    "outcome_id": "01a136e2-eb62-7a90-9d60-5370a72c497c"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "prophetx"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "San Francisco 49ers",
+   "side_label": "SF (0)",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-25T17:00:00Z",
+   "teams": [
+    "San Francisco 49ers",
+    "Atlanta Falcons"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-24T23:57:22Z",
+   "base_depth": 170254,
+   "best_price": 0.495,
+   "best_price_american": 102,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 7,
+   "date": "2026-10-24",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -16000,
+     "new_this_side": 50572,
+     "other_side": 93958,
+     "other_side_all_levels": 136083,
+     "ratio": 1.7,
+     "this_side": 157412,
+     "this_side_all_levels": 208336
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "DAL +14.5 (14.5)",
+     "price": 0.495,
+     "this_side": 32301
+    },
+    "polymarket": {
+     "heavier_side": false,
+     "label": "Mavericks (+14.5)",
+     "price": 0.5,
+     "this_side": 5200
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Dallas Mavericks +14.5 (+14.5)",
+     "price": 0.4975,
+     "this_side": 26952
+    }
+   },
+   "first_seen_utc": "2026-10-24T23:50:10Z",
+   "game": "San Antonio vs Dallas: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBASPREAD-26OCT24SASDAL-SAS15\"}",
+   "lead_min": 3,
+   "league": "NBA",
+   "line": 14.5,
+   "market": "spread",
+   "new_money": 50572,
+   "paper_only": false,
+   "price": 0.5,
+   "price_american": -100,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.5,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 14.5,
+     "price": -105
+    },
+    "betonlineag": {
+     "point": 15.0,
+     "price": -115
+    },
+    "betopenly": {
+     "point": 14.5,
+     "price": 104
+    },
+    "betrivers": {
+     "point": 14.5,
+     "price": -109
+    },
+    "betus": {
+     "point": 15.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 14.5,
+     "price": 100
+    },
+    "draftkings": {
+     "point": 14.5,
+     "price": -105
+    },
+    "fanatics": {
+     "point": 14.5,
+     "price": -105
+    },
+    "fanduel": {
+     "point": 15.5,
+     "price": -118
+    },
+    "kalshi": {
+     "point": 14.5,
+     "price": 100
+    },
+    "lowvig": {
+     "point": 15.0,
+     "price": -111
+    },
+    "mybookieag": {
+     "point": 15.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 14.5,
+     "price": 104
+    },
+    "polymarket": {
+     "point": -2.5,
+     "price": -3233
+    },
+    "prophetx": {
+     "point": 15.0,
+     "price": -106
+    },
+    "williamhill_us": {
+     "point": 15.0,
+     "price": -105
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNBASPREAD-26OCT24SASDAL-SAS15"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "prophetx"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [
+    "San Antonio Spurs -14.5 (-113)",
+    "San Antonio Spurs -13 (-129)",
+    "San Antonio Spurs -13 (-115)"
+   ],
+   "side": "Dallas",
+   "side_label": "NOT San Antonio wins by over 14.5 points",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-25T00:00:00Z",
+   "teams": [
+    "San Antonio",
+    "Dallas"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-24T23:57:22Z",
+   "base_depth": 37248,
+   "best_price": 0.8494,
+   "best_price_american": -564,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.84,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 7,
+   "date": "2026-10-24",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 23494,
+     "new_this_side": 161286,
+     "other_side": 25440,
+     "other_side_all_levels": 30434,
+     "ratio": 5.4,
+     "this_side": 136723,
+     "this_side_all_levels": 205246
+    }
+   },
+   "first_seen_utc": "2026-10-24T23:50:10Z",
+   "game": "New York R vs Ottawa",
+   "key": "kalshi|KXNHLGAME-26OCT24NYROTT|ml|1",
+   "lead_min": 123,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 161286,
+   "paper_only": false,
+   "price": 0.84,
+   "price_american": -525,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.84,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -750
+    },
+    "bovada": {
+     "point": null,
+     "price": -650
+    },
+    "draftkings": {
+     "point": null,
+     "price": -660
+    },
+    "fanatics": {
+     "point": null,
+     "price": -600
+    },
+    "fanduel": {
+     "point": null,
+     "price": -670
+    },
+    "kalshi": {
+     "point": null,
+     "price": -525
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -556
+    },
+    "novig": {
+     "point": null,
+     "price": -525
+    },
+    "polymarket": {
+     "point": null,
+     "price": -525
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -525
+    },
+    "prophetx": {
+     "point": null,
+     "price": -530
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -675
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNHLGAME-26OCT24NYROTT-OTT"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "no_match",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Ottawa",
+   "side_label": "Ottawa",
+   "start_source": "kalshi",
+   "start_utc": "2026-10-25T02:00:00Z",
+   "teams": [
+    "New York R",
+    "Ottawa"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-24T23:57:22Z",
+   "base_depth": 421059,
+   "best_price": 0.45,
+   "best_price_american": 122,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.46,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 7,
+   "date": "2026-10-24",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -47875,
+     "new_this_side": 82044,
+     "other_side": 261502,
+     "other_side_all_levels": 326924,
+     "ratio": 1.6,
+     "this_side": 421812,
+     "this_side_all_levels": 505015
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "CGY (0)",
+     "price": 0.45,
+     "this_side": 23184
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Flames",
+     "price": 0.45,
+     "this_side": 234299
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "Calgary Flames",
+     "price": 0.4505,
+     "this_side": 10618
+    }
+   },
+   "first_seen_utc": "2026-10-24T23:50:10Z",
+   "game": "Detroit vs Calgary",
+   "key": "kalshi|KXNHLGAME-26OCT24DETCGY|ml|1",
+   "lead_min": 123,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 82044,
+   "paper_only": false,
+   "price": 0.46,
+   "price_american": 117,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.46,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": 110
+    },
+    "betonlineag": {
+     "point": null,
+     "price": 110
+    },
+    "betopenly": {
+     "point": null,
+     "price": 115
+    },
+    "betrivers": {
+     "point": null,
+     "price": 110
+    },
+    "betus": {
+     "point": null,
+     "price": 105
+    },
+    "bovada": {
+     "point": null,
+     "price": 112
+    },
+    "draftkings": {
+     "point": null,
+     "price": 110
+    },
+    "fanatics": {
+     "point": null,
+     "price": 110
+    },
+    "fanduel": {
+     "point": null,
+     "price": 110
+    },
+    "kalshi": {
+     "point": null,
+     "price": 117
+    },
+    "lowvig": {
+     "point": null,
+     "price": 110
+    },
+    "mybookieag": {
+     "point": null,
+     "price": 105
+    },
+    "novig": {
+     "point": null,
+     "price": 122
+    },
+    "polymarket": {
+     "point": null,
+     "price": 122
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": 117
+    },
+    "prophetx": {
+     "point": null,
+     "price": 122
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": 109
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNHLGAME-26OCT24DETCGY-CGY"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "polymarket"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Calgary",
+   "side_label": "Calgary",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-25T02:00:00Z",
+   "teams": [
+    "Detroit",
+    "Calgary"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-24T23:57:22Z",
+   "base_depth": 874526,
+   "best_price": 0.805,
+   "best_price_american": -413,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.81,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 7,
+   "date": "2026-10-24",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 73623,
+     "new_this_side": 319454,
+     "other_side": 324701,
+     "other_side_all_levels": 365498,
+     "ratio": 2.9,
+     "this_side": 949649,
+     "this_side_all_levels": 1197642
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "DEN (0)",
+     "price": 0.805,
+     "this_side": 86508
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Nuggets",
+     "price": 0.81,
+     "this_side": 331961
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Denver Nuggets",
+     "price": 0.8039,
+     "this_side": 79497
+    }
+   },
+   "first_seen_utc": "2026-10-24T23:50:10Z",
+   "game": "New Orleans vs Denver",
+   "key": "kalshi|KXNBAGAME-26OCT24NOPDEN|ml|1",
+   "lead_min": 63,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 319454,
+   "paper_only": false,
+   "price": 0.81,
+   "price_american": -426,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.81,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -500
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -490
+    },
+    "betopenly": {
+     "point": null,
+     "price": -425
+    },
+    "betrivers": {
+     "point": null,
+     "price": -480
+    },
+    "betus": {
+     "point": null,
+     "price": -490
+    },
+    "bovada": {
+     "point": null,
+     "price": -460
+    },
+    "draftkings": {
+     "point": null,
+     "price": -485
+    },
+    "fanatics": {
+     "point": null,
+     "price": -475
+    },
+    "fanduel": {
+     "point": null,
+     "price": -500
+    },
+    "kalshi": {
+     "point": null,
+     "price": -426
+    },
+    "limitless": {
+     "point": null,
+     "price": -435
+    },
+    "lowvig": {
+     "point": null,
+     "price": -483
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -500
+    },
+    "novig": {
+     "point": null,
+     "price": -413
+    },
+    "polymarket": {
+     "point": null,
+     "price": -426
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -426
+    },
+    "prophetx": {
+     "point": null,
+     "price": -410
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -550
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBAGAME-26OCT24NOPDEN-DEN"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Denver",
+   "side_label": "Denver",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-25T01:00:00Z",
+   "teams": [
+    "New Orleans",
+    "Denver"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-24T23:50:10Z",
    "base_depth": 124142,
    "best_price": 0.4928,
@@ -148,8 +883,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.83,
-   "clv_cents": 0.0,
+   "close_price": 0.79,
+   "clv_cents": -4.0,
    "confirmed_after_min": 9,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -222,7 +957,8 @@
      "price": -675
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-24T23:57:22Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26OCT24BSUWSU-BSU"
@@ -853,8 +1589,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 0.0,
+   "close_price": 0.51,
+   "clv_cents": -1.0,
    "confirmed_after_min": 8,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -1005,8 +1741,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.47,
-   "clv_cents": -4.0,
+   "close_price": 0.44,
+   "clv_cents": -7.0,
    "confirmed_after_min": 8,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -1162,8 +1898,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.93,
-   "clv_cents": 31.0,
+   "close_price": 0.96,
+   "clv_cents": 34.0,
    "confirmed_after_min": 8,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -1291,8 +2027,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.46,
-   "clv_cents": -22.0,
+   "close_price": 0.42,
+   "clv_cents": -26.0,
    "confirmed_after_min": 12,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -1551,8 +2287,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": 6.0,
+   "close_price": 0.6,
+   "clv_cents": 13.0,
    "confirmed_after_min": 7,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -1837,8 +2573,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.57,
-   "clv_cents": -2.0,
+   "close_price": 0.46,
+   "clv_cents": -13.0,
    "confirmed_after_min": 14,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -1921,8 +2657,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.85,
-   "clv_cents": 0.0,
+   "close_price": 0.87,
+   "clv_cents": 2.0,
    "confirmed_after_min": 14,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -2686,8 +3422,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.43,
-   "clv_cents": -7.0,
+   "close_price": 0.42,
+   "clv_cents": -8.0,
    "confirmed_after_min": 10,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -3777,8 +4513,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.29,
-   "clv_cents": -21.0,
+   "close_price": 0.26,
+   "clv_cents": -24.0,
    "confirmed_after_min": 10,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -4533,8 +5269,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.93,
-   "clv_cents": 15.0,
+   "close_price": 0.94,
+   "clv_cents": 16.0,
    "confirmed_after_min": 10,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -4609,8 +5345,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.96,
-   "clv_cents": 15.0,
+   "close_price": 0.98,
+   "clv_cents": 17.0,
    "confirmed_after_min": 10,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -4685,8 +5421,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.73,
-   "clv_cents": -5.0,
+   "close_price": 0.68,
+   "clv_cents": -10.0,
    "confirmed_after_min": 10,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -5234,7 +5970,8 @@
      "price": -115
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-24T23:57:22Z",
    "ref": {
     "outcome_index": 1,
     "pm_market_id": "6094404"
@@ -5274,8 +6011,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.72,
-   "clv_cents": 21.0,
+   "close_price": 0.75,
+   "clv_cents": 24.0,
    "confirmed_after_min": 15,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -5544,8 +6281,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.08,
-   "clv_cents": -52.0,
+   "close_price": 0.05,
+   "clv_cents": -55.0,
    "confirmed_after_min": 16,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -6003,8 +6740,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.1,
-   "clv_cents": -74.0,
+   "close_price": 0.04,
+   "clv_cents": -80.0,
    "confirmed_after_min": 10,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -7257,8 +7994,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.93,
-   "clv_cents": 35.0,
+   "close_price": 0.91,
+   "clv_cents": 33.0,
    "confirmed_after_min": 16,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -9141,8 +9878,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.47,
-   "clv_cents": -1.0,
+   "close_price": 0.48,
+   "clv_cents": 0.0,
    "confirmed_after_min": 18,
    "date": "2026-10-24",
    "depth_by_book": {
