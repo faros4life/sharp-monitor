@@ -1,6 +1,302 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-25T11:35:25Z",
+   "base_depth": 28217,
+   "best_price": 0.5,
+   "best_price_american": -100,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-10-25",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "NOT Over 231.5 points",
+     "price": 0.5,
+     "this_side": 126231
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "Under 231.5 (231.5)",
+     "price": 0.5,
+     "this_side": 5241
+    },
+    "polymarket": {
+     "new_other_side": -1114,
+     "new_this_side": 40499,
+     "other_side": 9387,
+     "other_side_all_levels": 28731,
+     "ratio": 5.8,
+     "this_side": 54133,
+     "this_side_all_levels": 68235
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "under 231.5 (231.5)",
+     "price": 0.5,
+     "this_side": 626
+    }
+   },
+   "first_seen_utc": "2026-10-25T11:30:13Z",
+   "game": "Raptors vs. Timberwolves",
+   "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6149558\"}",
+   "lead_min": 685,
+   "league": "NBA",
+   "line": 231.5,
+   "market": "total",
+   "new_money": 40499,
+   "paper_only": false,
+   "price": 0.5,
+   "price_american": -100,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.5,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 232.5,
+     "price": -115
+    },
+    "betonlineag": {
+     "point": 231.5,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 231.5,
+     "price": 101
+    },
+    "betrivers": {
+     "point": 232.5,
+     "price": -107
+    },
+    "betus": {
+     "point": 231.5,
+     "price": -115
+    },
+    "bovada": {
+     "point": 231.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 231.5,
+     "price": -105
+    },
+    "fanatics": {
+     "point": 232.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 232.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": 231.5,
+     "price": 100
+    },
+    "lowvig": {
+     "point": 231.5,
+     "price": -107
+    },
+    "mybookieag": {
+     "point": 232.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 231.5,
+     "price": 100
+    },
+    "polymarket": {
+     "point": 231.5,
+     "price": 100
+    },
+    "prophetx": {
+     "point": 231.0,
+     "price": -102
+    },
+    "williamhill_us": {
+     "point": 231.5,
+     "price": -105
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 1,
+    "pm_market_id": "6149558"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "Under (231.5)",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-25T23:00:00Z",
+   "teams": [
+    "Raptors",
+    "Timberwolves"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-25T11:35:25Z",
+   "base_depth": 97210,
+   "best_price": 0.515,
+   "best_price_american": -106,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.515,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-10-25",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": false,
+     "label": "NOT Houston wins by over 10.5 points",
+     "price": 0.52,
+     "this_side": 2161524
+    },
+    "novig": {
+     "new_other_side": 46,
+     "new_this_side": 25309,
+     "other_side": 79615,
+     "other_side_all_levels": 79904,
+     "ratio": 1.4,
+     "this_side": 111262,
+     "this_side_all_levels": 121521
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "New York Giants +10.5 (+10.5)",
+     "price": 0.5122,
+     "this_side": 32493
+    }
+   },
+   "first_seen_utc": "2026-10-25T11:30:13Z",
+   "game": "New York Giants @ Houston Texans",
+   "key": "novig|{\"market_id\": \"01a136e2-ed3c-73a2-84da-939e95618152\", \"outcome_id\": \"01a136e2-ed3c-73a2-84da-93be968d535c\"}",
+   "lead_min": 325,
+   "league": "NFL",
+   "line": 10.5,
+   "market": "spread",
+   "new_money": 25309,
+   "paper_only": false,
+   "price": 0.515,
+   "price_american": -106,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.515,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 10.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 10.5,
+     "price": -113
+    },
+    "betopenly": {
+     "point": 10.5,
+     "price": -104
+    },
+    "betrivers": {
+     "point": 10.0,
+     "price": -107
+    },
+    "betus": {
+     "point": 10.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 10.5,
+     "price": -115
+    },
+    "draftkings": {
+     "point": 10.5,
+     "price": -112
+    },
+    "fanatics": {
+     "point": 10.5,
+     "price": -115
+    },
+    "fanduel": {
+     "point": 10.5,
+     "price": -118
+    },
+    "kalshi": {
+     "point": 10.5,
+     "price": -108
+    },
+    "lowvig": {
+     "point": 10.5,
+     "price": -108
+    },
+    "mybookieag": {
+     "point": 10.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 10.5,
+     "price": -106
+    },
+    "polymarket": {
+     "point": 10.5,
+     "price": -108
+    },
+    "prophetx": {
+     "point": 10.0,
+     "price": 105
+    },
+    "williamhill_us": {
+     "point": 10.5,
+     "price": -114
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a136e2-ed3c-73a2-84da-939e95618152",
+    "outcome_id": "01a136e2-ed3c-73a2-84da-93be968d535c"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "prophetx"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "New York Giants",
+   "side_label": "NYG +10.5 (-10.5)",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-25T17:00:00Z",
+   "teams": [
+    "New York Giants",
+    "Houston Texans"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-25T11:05:26Z",
    "base_depth": 19589,
    "best_price": 0.635,
@@ -5374,8 +5670,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5238,
-   "clv_cents": 1.6,
+   "close_price": 0.5215,
+   "clv_cents": 1.4,
    "confirmed_after_min": 6,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -13009,8 +13305,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.8077,
-   "clv_cents": 0.0,
+   "close_price": 0.8058,
+   "clv_cents": -0.2,
    "confirmed_after_min": 9,
    "date": "2026-10-25",
    "depth_by_book": {
