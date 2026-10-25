@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Oct 25, 3:53 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 57.
+Updated Sun Oct 25, 4:00 AM ET. This run: 0 new, 1 not confirmed, 1 pending. Open alerts: 57.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -9,11 +9,11 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Oct 25 3:40AM | NFL | Pittsburgh vs New Orleans: Total Points | total: NOT Over 42.5 points | kalshi | $37k | +108 |  | ✅ | +0.0c |  | pending |
-| Oct 25 3:30AM | NFL | Cleveland Browns @ Tennessee Titans | moneyline: CLE (0) | novig | $35k | -122 | ✅ prophetx |  | +0.0c |  | pending |
+| Oct 25 3:30AM | NFL | Cleveland Browns @ Tennessee Titans | moneyline: CLE (0) | novig | $35k | -122 | ✅ prophetx |  | +0.0c | yes | pending |
 | Oct 25 2:31AM | NBA | Memphis vs Sacramento | moneyline: Memphis | kalshi | $78k | -178 | ✅ novig | ✅ | +0.0c |  | pending |
 | Oct 25 2:00AM | NFL | Cincinnati vs Baltimore: Spread | spread: NOT Cincinnati wins by over 2.5 points | kalshi | $200k | +113 | ✅ novig | ❌ | +0.0c |  | pending |
 | Oct 25 2:00AM | NFL | Miami vs New York J | moneyline: New York J | kalshi | $203k | -203 | ✅ novig,prophetx |  | +0.0c | yes | pending |
-| Oct 25 1:54AM | NFL | Cleveland Browns at Tennessee Titans | moneyline: Cleveland Browns | prophetx | $39k | -122 | ✅ novig |  | -0.2c |  | pending |
+| Oct 25 1:54AM | NFL | Cleveland Browns at Tennessee Titans | moneyline: Cleveland Browns | prophetx | $39k | -122 | ✅ novig |  | -0.2c | yes | pending |
 | Oct 25 1:40AM | NFL | New York G vs Houston: Spread | spread: Houston wins by over 10.5 points | kalshi | $1,014k | +104 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Oct 25 1:20AM | NBA | Orlando vs New York | moneyline: New York | kalshi | $31k | -270 | ✅ novig | ❌ | -1.0c |  | pending |
 | Oct 25 1:13AM | NFL | Miami vs New York J: Total Points | total: Over 39.5 points | kalshi | $159k | +104 | ✅ novig |  | +0.0c |  | pending |
