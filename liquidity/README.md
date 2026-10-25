@@ -1,13 +1,14 @@
 # Liquidity alerts (paper)
 
-Updated Sun Oct 25, 4:04 PM ET. This run: 0 new, 2 not confirmed, 1 pending. Open alerts: 118.
+Updated Sun Oct 25, 4:10 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 106.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 237-195 (-26.37u flat) | rule met: 138-111
+**Record:** 244-201 (-25.88u flat) | rule met: 141-115
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Oct 25 4:10PM | NFL | Kansas City Chiefs @ Seattle Seahawks | spread: KC +2.5 (-2.5) | novig | $40k | +115 |  |  | +0.0c |  | pending |
 | Oct 25 3:50PM | NFL | New York G vs Houston | moneyline: New York G | kalshi | $426k | -400 |  |  | +0.0c |  | pending |
 | Oct 25 3:40PM | NBA | Pacers vs. Nets | spread: Nets (+6.5) | polymarket | $56k | -104 | ✅ kalshi | ✅ | +0.0c |  | pending |
 | Oct 25 3:40PM | NBA | Lakers vs. Jazz | spread: Lakers (-6.5) | polymarket | $354k | -100 |  |  | +0.0c |  | pending |
@@ -17,9 +18,9 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 25 3:10PM | NFL | Denver Broncos @ Arizona Cardinals | spread: ARI +4.5 (4.5) | novig | $182k | -104 | ✅ kalshi |  | -1.0c | yes | pending |
 | Oct 25 3:10PM | NFL | Cincinnati vs Baltimore: Total Points | total: Over 38.5 points | kalshi | $39k | +104 |  | ❌ | +24.0c | yes | W |
 | Oct 25 3:05PM | NHL | New York I vs Dallas | moneyline: Dallas | kalshi | $39k | -170 | ✅ novig |  | +0.0c |  | pending |
-| Oct 25 2:50PM | NFL | Denver vs Arizona: Spread | spread: NOT Denver wins by over 4.5 points | kalshi | $555k | -104 | ✅ novig |  | -1.0c | yes | pending |
+| Oct 25 2:50PM | NFL | Denver vs Arizona: Spread | spread: NOT Denver wins by over 4.5 points | kalshi | $555k | -104 | ✅ novig |  | -8.0c | yes | pending |
 | Oct 25 2:31PM | NBA | Indiana vs Brooklyn: Spread | spread: Indiana wins by over 6.5 points | kalshi | $37k | -108 | ✅ novig,prophetx | ✅ | -2.0c | yes | pending |
-| Oct 25 2:31PM | NFL | Cleveland vs Tennessee | moneyline: Cleveland | kalshi | $388k | -213 |  |  | +20.0c | yes | pending |
+| Oct 25 2:31PM | NFL | Cleveland vs Tennessee | moneyline: Cleveland | kalshi | $388k | -213 |  |  | +20.0c | yes | W |
 | Oct 25 2:20PM | NFL | Miami vs New York J | moneyline: Miami | kalshi | $264k | -488 |  |  | +2.0c | yes | W |
 | Oct 25 2:20PM | NBA | Washington vs Charlotte | moneyline: Charlotte | kalshi | $38k | -113 | ✅ polymarket |  | +4.0c | yes | pending |
 | Oct 25 2:01PM | NBA | Detroit vs Philadelphia: Spread | spread: NOT Detroit wins by over 1.5 points | kalshi | $36k | -113 | ✅ novig | ❌ | -1.0c |  | pending |
@@ -28,7 +29,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 25 1:40PM | NBA | Memphis vs Sacramento | moneyline: Sacramento | kalshi | $347k | +150 | ✅ novig | ❌ | +0.0c |  | pending |
 | Oct 25 1:33PM | NFL | Tampa Bay vs Carolina | moneyline: Tampa Bay | kalshi | $248k | -270 |  | ❌ |  |  | W |
 | Oct 25 1:20PM | NFL | Cincinnati vs Baltimore | moneyline: Baltimore | kalshi | $157k | -144 |  | ❌ | -58.0c | yes | L |
-| Oct 25 1:10PM | NFL | Los Angeles Rams at Las Vegas Raiders | moneyline: Los Angeles Rams | prophetx | $35k | -162 | ✅ kalshi,novig |  | -0.3c |  | pending |
+| Oct 25 1:10PM | NFL | Los Angeles Rams at Las Vegas Raiders | moneyline: Los Angeles Rams | prophetx | $35k | -162 | ✅ kalshi,novig |  | -0.3c | yes | pending |
 | Oct 25 1:10PM | NFL | Los Angeles R vs Las Vegas: Total Points | total: Over 48.5 points | kalshi | $586k | -104 | ✅ novig |  | +2.0c | yes | pending |
 | Oct 25 1:10PM | NBA | Los Angeles C vs Oklahoma City: Spread | spread: Oklahoma City wins by over 16.5 points | kalshi | $27k | -100 | ✅ novig | ✅ | +1.0c |  | pending |
 | Oct 25 1:10PM | NBA | Memphis vs Sacramento: Spread | spread: NOT Memphis wins by over 3.5 points | kalshi | $41k | -104 |  | ❌ | +1.0c |  | pending |
@@ -38,29 +39,29 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 25 1:10PM | NBA | Atlanta vs Houston | moneyline: Houston | kalshi | $36k | -203 | ✅ polymarket |  | -1.0c |  | pending |
 | Oct 25 12:50PM | NHL | Avalanche vs. Predators | total: Under (6.5) | polymarket | $34k | -100 | ✅ kalshi,novig |  | +0.0c |  | pending |
 | Oct 25 12:40PM | NHL | Panthers vs. Blackhawks | moneyline: Blackhawks | polymarket | $31k | +163 |  |  | +0.0c |  | pending |
-| Oct 25 12:40PM | NFL | San Francisco 49ers @ Atlanta Falcons | spread: SF -2.5 (2.5) | novig | $120k | -111 | ✅ kalshi |  | -0.5c |  | pending |
-| Oct 25 12:40PM | NFL | San Francisco 49ers @ Atlanta Falcons | total: Under 49.5 (49.5) | novig | $33k | +102 | ✅ kalshi | ❌ | +0.0c |  | pending |
+| Oct 25 12:40PM | NFL | San Francisco 49ers @ Atlanta Falcons | spread: SF -2.5 (2.5) | novig | $120k | -111 | ✅ kalshi |  | -0.5c |  | L |
+| Oct 25 12:40PM | NFL | San Francisco 49ers @ Atlanta Falcons | total: Under 49.5 (49.5) | novig | $33k | +102 | ✅ kalshi | ❌ | +0.0c |  | W |
 | Oct 25 12:40PM | NFL | Tampa Bay Buccaneers @ Carolina Panthers | spread: TB +2.5 (-2.5) | novig | $100k | +115 |  | ❌ | +0.0c |  | W |
 | Oct 25 12:40PM | NBA | Dallas vs Miami | moneyline: Miami | kalshi | $56k | -317 | ✅ polymarket |  | +0.0c |  | pending |
 | Oct 25 11:50AM | NBA | Raptors vs. Timberwolves | spread: Raptors (-1.5) | polymarket | $28k | +108 |  |  | +0.0c | yes | pending |
-| Oct 25 11:10AM | NFL | Cleveland vs Tennessee: Spread | spread: Cleveland wins by over 2.5 points | kalshi | $438k | +104 |  |  | +31.0c | yes | pending |
+| Oct 25 11:10AM | NFL | Cleveland vs Tennessee: Spread | spread: Cleveland wins by over 2.5 points | kalshi | $438k | +104 |  |  | +31.0c | yes | W |
 | Oct 25 11:10AM | NHL | Montreal vs Winnipeg | moneyline: Montreal | kalshi | $32k | -113 | ✅ novig |  | +0.0c | yes | pending |
 | Oct 25 11:02AM | NFL | Tampa Bay vs Carolina: Total Points | total: Over 44.5 points | kalshi | $148k | -104 | ✅ novig |  | +31.0c | yes | W |
-| Oct 25 10:50AM | NFL | San Francisco vs Atlanta: Spread | spread: San Francisco wins by over 2.5 points | kalshi | $659k | -108 | ✅ novig |  | -26.0c | yes | pending |
+| Oct 25 10:50AM | NFL | San Francisco vs Atlanta: Spread | spread: San Francisco wins by over 2.5 points | kalshi | $659k | -108 | ✅ novig |  | -26.0c | yes | L |
 | Oct 25 10:50AM | NHL | Montreal vs Winnipeg: Spread | spread: NOT Montreal wins by over 1.5 goals | kalshi | $43k | -233 | ✅ novig |  | +0.0c | yes | pending |
 | Oct 25 10:30AM | NBA | Lakers vs. Jazz | spread: Jazz (+6.5) | polymarket | $46k | -104 | ✅ novig,prophetx |  | +0.0c | yes | pending |
 | Oct 25 10:25AM | NBA | Lakers vs. Jazz | moneyline: Lakers | polymarket | $65k | -223 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Oct 25 10:20AM | NBA | Magic vs. Knicks | moneyline: Knicks | polymarket | $38k | -257 | ✅ novig,prophetx | ❌ | +0.0c |  | pending |
 | Oct 25 10:20AM | NBA | Lakers vs. Jazz | total: Over (237.5) | polymarket | $51k | -108 | ✅ novig | ✅ | +1.0c |  | pending |
 | Oct 25 10:20AM | NHL | Montreal vs Winnipeg: Total Goals | total: Over 5.5 goals scored | kalshi | $28k | -113 | ✅ novig |  | +1.0c | yes | pending |
-| Oct 25 10:20AM | NFL | Denver vs Arizona: Total Points | total: Over 43.5 points | kalshi | $142k | -100 | ✅ novig |  | +3.0c |  | pending |
+| Oct 25 10:20AM | NFL | Denver vs Arizona: Total Points | total: Over 43.5 points | kalshi | $142k | -100 | ✅ novig |  | +8.0c | yes | pending |
 | Oct 25 10:20AM | NFL | Dallas vs Philadelphia: Spread | spread: Dallas wins by over 4.5 points | kalshi | $113k | -104 | ✅ novig,prophetx |  | +0.0c | yes | pending |
 | Oct 25 10:10AM | NFL | Tampa Bay Buccaneers @ Carolina Panthers | spread: CAR -2.5 (-2.5) | novig | $40k | -117 |  | ✅ | +0.0c | yes | L |
 | Oct 25 9:50AM | NBA | Orlando vs New York: Total Points | total: Over 223.5 points | kalshi | $43k | -117 |  |  | +0.0c |  | pending |
 | Oct 25 9:50AM | NBA | Indiana vs Brooklyn: Total Points | total: NOT Over 230.5 points | kalshi | $46k | -100 |  | ❌ | +0.0c |  | pending |
 | Oct 25 9:30AM | NHL | Islanders vs. Stars | total: Under (5.5) | polymarket | $34k | -113 | ✅ novig |  | +2.0c |  | pending |
-| Oct 25 9:30AM | NFL | San Francisco vs Atlanta: Total Points | total: Over 49.5 points | kalshi | $172k | -104 |  | ✅ | +5.0c | yes | pending |
-| Oct 25 9:30AM | NBA | Los Angeles L vs Utah: Total Points | total: Over 237.5 points | kalshi | $29k | -104 |  | ✅ | +1.0c |  | pending |
+| Oct 25 9:30AM | NFL | San Francisco vs Atlanta: Total Points | total: Over 49.5 points | kalshi | $172k | -104 |  | ✅ | +5.0c | yes | L |
+| Oct 25 9:30AM | NBA | Los Angeles L vs Utah: Total Points | total: Over 237.5 points | kalshi | $29k | -104 |  | ✅ | +2.0c |  | pending |
 | Oct 25 9:30AM | NFL | Miami vs New York J: Spread | spread: NOT New York J wins by over 4.5 points | kalshi | $298k | -108 |  |  | +24.0c | yes | W |
 | Oct 25 9:30AM | NBA | Memphis vs Sacramento: Total Points | total: NOT Over 234.5 points | kalshi | $64k | -104 |  | ✅ | -1.0c |  | pending |
 | Oct 25 9:30AM | NBA | Los Angeles L vs Utah: Spread | spread: NOT Los Angeles L wins by over 6.5 points | kalshi | $110k | -100 |  |  | +1.0c |  | pending |
@@ -73,7 +74,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 25 8:50AM | NBA | Grizzlies vs. Kings | moneyline: Grizzlies | polymarket | $83k | -156 | ✅ novig,prophetx | ✅ | -1.0c |  | pending |
 | Oct 25 8:50AM | NHL | Minnesota vs Vancouver: Total Goals | total: Over 6.5 goals scored | kalshi | $37k | -100 | ✅ novig,polymarket |  | +1.0c |  | pending |
 | Oct 25 8:50AM | NHL | Florida vs Chicago: Total Goals | total: Over 6.5 goals scored | kalshi | $50k | +117 |  |  | +25.0c | yes | pending |
-| Oct 25 8:50AM | NFL | Denver vs Arizona: Spread | spread: Denver wins by over 4.5 points | kalshi | $405k | -100 |  |  | +1.0c |  | pending |
+| Oct 25 8:50AM | NFL | Denver vs Arizona: Spread | spread: Denver wins by over 4.5 points | kalshi | $405k | -100 |  |  | +8.0c | yes | pending |
 | Oct 25 8:50AM | NHL | New York I vs Dallas: Spread | spread: NOT Dallas wins by over 1.5 goals | kalshi | $26k | -156 | ✅ novig |  | +1.0c | yes | pending |
 | Oct 25 8:50AM | NHL | Florida vs Chicago: Spread | spread: NOT Florida wins by over 1.5 goals | kalshi | $137k | -144 | ✅ novig |  | -14.0c | yes | pending |
 | Oct 25 8:50AM | NBA | Detroit vs Philadelphia: Total Points | total: NOT Over 227.5 points | kalshi | $56k | +104 |  |  | -1.0c | yes | pending |
@@ -101,15 +102,15 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 25 7:05AM | NHL | New York I vs Dallas: Total Goals | total: NOT Over 5.5 goals scored | kalshi | $52k | -108 | ✅ novig |  | +3.0c |  | pending |
 | Oct 25 7:05AM | NHL | Colorado vs Nashville: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $73k | +104 | ✅ polymarket |  | +1.0c |  | pending |
 | Oct 25 7:05AM | NHL | Minnesota vs Vancouver | moneyline: Minnesota | kalshi | $83k | -178 | ✅ novig,polymarket |  | +1.0c |  | pending |
-| Oct 25 7:05AM | NHL | Florida vs Chicago | moneyline: Chicago | kalshi | $51k | +163 |  |  | -16.0c | yes | pending |
+| Oct 25 7:05AM | NHL | Florida vs Chicago | moneyline: Chicago | kalshi | $51k | +163 |  |  | -17.0c | yes | pending |
 | Oct 25 5:40AM | NFL | Miami Dolphins at New York Jets | moneyline: New York Jets | prophetx | $31k | -194 | ✅ kalshi,novig |  | -1.7c | yes | L |
-| Oct 25 4:24AM | NFL | Denver vs Arizona | moneyline: Denver | kalshi | $249k | -203 | ✅ novig,prophetx |  | +0.0c | yes | pending |
+| Oct 25 4:24AM | NFL | Denver vs Arizona | moneyline: Denver | kalshi | $249k | -203 | ✅ novig,prophetx |  | +6.0c | yes | pending |
 | Oct 25 3:40AM | NFL | Pittsburgh vs New Orleans: Total Points | total: NOT Over 42.5 points | kalshi | $37k | +108 |  | ✅ | +31.0c | yes | W |
-| Oct 25 3:30AM | NFL | Cleveland Browns @ Tennessee Titans | moneyline: CLE (0) | novig | $35k | -122 | ✅ prophetx |  | +0.5c | yes | pending |
+| Oct 25 3:30AM | NFL | Cleveland Browns @ Tennessee Titans | moneyline: CLE (0) | novig | $35k | -122 | ✅ prophetx |  | +0.5c | yes | W |
 | Oct 25 2:31AM | NBA | Memphis vs Sacramento | moneyline: Memphis | kalshi | $78k | -178 | ✅ novig | ✅ | -4.0c |  | pending |
 | Oct 25 2:00AM | NFL | Cincinnati vs Baltimore: Spread | spread: NOT Cincinnati wins by over 2.5 points | kalshi | $200k | +113 | ✅ novig | ❌ | -20.0c | yes | L |
 | Oct 25 2:00AM | NFL | Miami vs New York J | moneyline: New York J | kalshi | $203k | -203 | ✅ novig,prophetx |  | -51.0c | yes | L |
-| Oct 25 1:54AM | NFL | Cleveland Browns at Tennessee Titans | moneyline: Cleveland Browns | prophetx | $39k | -122 | ✅ novig |  | +0.2c | yes | pending |
+| Oct 25 1:54AM | NFL | Cleveland Browns at Tennessee Titans | moneyline: Cleveland Browns | prophetx | $39k | -122 | ✅ novig |  | +0.2c | yes | W |
 | Oct 25 1:40AM | NFL | New York G vs Houston: Spread | spread: Houston wins by over 10.5 points | kalshi | $1,014k | +104 | ✅ novig,prophetx |  | -28.0c | yes | pending |
 | Oct 25 1:20AM | NBA | Orlando vs New York | moneyline: New York | kalshi | $31k | -270 | ✅ novig | ❌ | -1.0c |  | pending |
 | Oct 25 1:13AM | NFL | Miami vs New York J: Total Points | total: Over 39.5 points | kalshi | $159k | +104 | ✅ novig |  | +49.0c | yes | W |
@@ -135,14 +136,14 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 24 11:10PM | NCAAF | North Dakota St. vs New Mexico | moneyline: New Mexico | kalshi | $106k | -213 |  |  | +21.0c | yes | W |
 | Oct 24 11:00PM | NFL | Indianapolis Colts at Minnesota Vikings | spread: Minnesota Vikings -6.5 (-6.5) | prophetx | $28k | -103 | ✅ kalshi,novig |  | +3.8c | yes | L |
 | Oct 24 10:54PM | NFL | Pittsburgh Steelers at New Orleans Saints | moneyline: New Orleans Saints | prophetx | $27k | +148 | ✅ novig |  | +0.3c |  | L |
-| Oct 24 10:54PM | NFL | San Francisco 49ers at Atlanta Falcons | moneyline: San Francisco 49ers | prophetx | $44k | -136 | ✅ novig |  | +0.0c | yes | pending |
+| Oct 24 10:54PM | NFL | San Francisco 49ers at Atlanta Falcons | moneyline: San Francisco 49ers | prophetx | $44k | -136 | ✅ novig |  | +0.0c | yes | L |
 | Oct 24 10:54PM | NFL | Indianapolis Colts at Minnesota Vikings | moneyline: Minnesota Vikings | prophetx | $99k | -260 | ✅ kalshi,novig |  | +2.8c | yes | W |
 | Oct 24 10:50PM | NHL | Colorado vs Nashville | moneyline: Colorado | kalshi | $32k | -213 | ✅ novig,polymarket |  | +1.0c |  | pending |
 | Oct 24 10:50PM | NFL | Tampa Bay vs Carolina | moneyline: Carolina | kalshi | $123k | -150 | ✅ novig |  | -59.0c | yes | L |
 | Oct 24 10:50PM | NBA | New Orleans vs Denver | moneyline: New Orleans | kalshi | $132k | -456 |  |  | -72.0c | yes | L |
 | Oct 24 10:40PM | NFL | Kansas City Chiefs @ Seattle Seahawks | moneyline: SEA (0) | novig | $31k | -144 | ✅ kalshi,prophetx |  | +0.0c | yes | pending |
 | Oct 24 10:22PM | NFL | Green Bay vs Detroit: Total Points | total: NOT Over 55.5 points | kalshi | $186k | -104 |  | ❌ | +1.0c | yes | pending |
-| Oct 24 10:22PM | NFL | Cleveland vs Tennessee | moneyline: Tennessee | kalshi | $1,062k | +122 |  |  | -32.0c | yes | pending |
+| Oct 24 10:22PM | NFL | Cleveland vs Tennessee | moneyline: Tennessee | kalshi | $1,062k | +122 |  |  | -32.0c | yes | L |
 | Oct 24 10:22PM | NBA | Toronto vs Minnesota | moneyline: Toronto | kalshi | $160k | +122 |  |  | +5.0c | yes | pending |
 | Oct 24 10:10PM | NFL | Los Angeles R vs Las Vegas: Spread | spread: NOT Los Angeles R wins by over 3.5 points | kalshi | $294k | -117 | ✅ novig |  | -1.0c | yes | pending |
 | Oct 24 10:00PM | NFL | Green Bay vs Detroit: Spread | spread: Detroit wins by over 3.5 points | kalshi | $1,007k | -100 | ✅ novig |  | +2.0c |  | pending |
@@ -156,8 +157,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 24 9:15PM | NCAAF | Houston vs Utah | moneyline: Utah | kalshi | $1,759k | -223 | ✅ novig,prophetx | ❌ | -15.0c | yes | W |
 | Oct 24 9:15PM | NBA | Washington vs Chicago | moneyline: Chicago | kalshi | $72k | -178 |  | ✅ | -63.0c | yes | L |
 | Oct 24 9:10PM | NHL | Toronto vs Edmonton: Total Goals | total: Over 6.5 goals scored | kalshi | $32k | -138 |  |  | -7.0c | yes | W |
-| Oct 24 9:10PM | NFL | San Francisco vs Atlanta: Spread | spread: NOT San Francisco wins by over 2.5 points | kalshi | $548k | +104 |  |  | +26.0c | yes | pending |
-| Oct 24 9:10PM | NFL | San Francisco vs Atlanta | moneyline: Atlanta | kalshi | $1,455k | +138 |  |  | +33.0c | yes | pending |
+| Oct 24 9:10PM | NFL | San Francisco vs Atlanta: Spread | spread: NOT San Francisco wins by over 2.5 points | kalshi | $548k | +104 |  |  | +26.0c | yes | W |
+| Oct 24 9:10PM | NFL | San Francisco vs Atlanta | moneyline: Atlanta | kalshi | $1,455k | +138 |  |  | +33.0c | yes | W |
 | Oct 24 9:00PM | NFL | Tampa Bay vs Carolina: Spread | spread: Carolina wins by over 2.5 points | kalshi | $862k | -113 |  |  | -22.0c | yes | L |
 | Oct 24 9:00PM | NFL | Cincinnati vs Baltimore | moneyline: Cincinnati | kalshi | $102k | -144 | ✅ novig,prophetx | ✅ |  | yes | W |
 | Oct 24 8:50PM | NHL | Buffalo vs Washington | moneyline: Washington | kalshi | $104k | -285 |  |  |  | yes | W |
@@ -167,7 +168,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 24 8:20PM | NHL | Tampa Bay vs Utah: Spread | spread: NOT Utah wins by over 1.5 goals | kalshi | $41k | -186 | ✅ novig,polymarket |  | +13.0c | yes | W |
 | Oct 24 8:10PM | NBA | Pelicans vs. Nuggets | spread: Nuggets (-11.5) | polymarket | $365k | +104 |  |  | +0.0c |  | L |
 | Oct 24 8:10PM | NBA | Rockets vs. Hawks | spread: Hawks (-1.5) | polymarket | $251k | +108 |  |  | +1.0c | yes | L |
-| Oct 24 8:02PM | NFL | San Francisco 49ers @ Atlanta Falcons | moneyline: SF (0) | novig | $41k | -138 | ✅ prophetx |  | -0.5c | yes | pending |
+| Oct 24 8:02PM | NFL | San Francisco 49ers @ Atlanta Falcons | moneyline: SF (0) | novig | $41k | -138 | ✅ prophetx |  | -0.5c | yes | L |
 | Oct 24 8:02PM | NHL | New York R vs Ottawa | moneyline: Ottawa | kalshi | $161k | -525 |  |  | +10.0c | yes | W |
 | Oct 24 8:02PM | NHL | Detroit vs Calgary | moneyline: Calgary | kalshi | $82k | +117 | ✅ polymarket |  | +51.0c | yes | W |
 | Oct 24 8:02PM | NCAAF | Utah St. vs Texas St. | moneyline: Texas St. | kalshi | $119k | -355 |  |  | +10.0c | yes | W |
@@ -197,14 +198,13 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 24 6:20PM | NHL | Vegas vs Columbus | moneyline: Columbus | kalshi | $35k | +117 | ✅ prophetx |  | +24.0c | yes | W |
 | Oct 24 6:10PM | NBA | Milwaukee Bucks at Philadelphia 76ers | moneyline: Philadelphia 76ers | prophetx | $33k | -560 | ✅ kalshi,novig,polymarket |  | -0.7c |  | W |
 | Oct 24 6:10PM | NCAAF | San Diego St. vs Colorado St.: Total Points | total: NOT Over 57.5 points | kalshi | $25k | -104 | ✅ novig | ✅ | -31.0c | yes | L |
-| Oct 24 5:55PM | NFL | Green Bay Packers at Detroit Lions | moneyline: Detroit Lions | prophetx | $32k | -176 | ✅ novig |  | +2.0c | yes | pending |
+| Oct 24 5:55PM | NFL | Green Bay Packers at Detroit Lions | moneyline: Detroit Lions | prophetx | $32k | -176 | ✅ novig |  | +1.7c | yes | pending |
 | Oct 24 5:40PM | NCAAF | Boise St. vs Washington St.: Spread | spread: Boise St. wins by over 14.5 points | kalshi | $145k | -100 | ✅ prophetx |  | -2.0c | yes | W |
 | Oct 24 5:30PM | NBA | Pelicans vs. Nuggets | moneyline: Nuggets | polymarket | $85k | -426 | ✅ novig,prophetx |  | -1.0c |  | W |
-| Oct 24 5:30PM | NFL | Green Bay Packers @ Detroit Lions | moneyline: DET (0) | novig | $36k | -174 | ✅ prophetx |  | +1.5c | yes | pending |
+| Oct 24 5:30PM | NFL | Green Bay Packers @ Detroit Lions | moneyline: DET (0) | novig | $36k | -174 | ✅ prophetx |  | +2.0c | yes | pending |
 | Oct 24 5:30PM | NBA | Miami vs Charlotte: Spread | spread: Miami wins by over 4.5 points | kalshi | $72k | +104 | ✅ novig,polymarket | ✅ | -29.0c | yes | L |
 | Oct 24 5:30PM | NHL | Carolina vs St. Louis | moneyline: Carolina | kalshi | $68k | -144 | ✅ novig,polymarket,prophetx |  |  | yes | W |
 | Oct 24 5:30PM | NCAAF | Northern Colorado vs UC Davis | moneyline: UC Davis | kalshi | $70k | -355 |  |  |  | yes | W |
 | Oct 24 5:30PM | NCAAF | Portland St. vs Idaho St. | moneyline: Idaho St. | kalshi | $77k | -426 |  |  | +18.0c | yes | W |
 | Oct 24 5:30PM | NCAAF | Austin Peay vs North Alabama | moneyline: Austin Peay | kalshi | $65k | -355 |  |  | -4.0c | yes | W |
 | Oct 24 5:20PM | NBA | Heat vs. Hornets | spread: Heat (-4.5) | polymarket | $266k | +104 | ✅ kalshi,novig | ✅ | +2.0c |  | L |
-| Oct 24 5:20PM | NCAAF | Weber St. vs Montana St. | moneyline: Montana St. | kalshi | $46k | -223 |  |  | +18.0c | yes | W |

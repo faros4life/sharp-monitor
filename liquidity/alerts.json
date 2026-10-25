@@ -1,6 +1,143 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-25T20:10:10Z",
+   "base_depth": 131018,
+   "best_price": 0.465,
+   "best_price_american": 115,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.465,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 6,
+   "date": "2026-10-25",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": false,
+     "label": "NOT Seattle wins by over 2.5 points",
+     "price": 0.47,
+     "this_side": 3003351
+    },
+    "novig": {
+     "new_other_side": 3810,
+     "new_this_side": 39892,
+     "other_side": 102144,
+     "other_side_all_levels": 132509,
+     "ratio": 1.7,
+     "this_side": 169330,
+     "this_side_all_levels": 169354
+    }
+   },
+   "first_seen_utc": "2026-10-25T20:04:03Z",
+   "game": "Kansas City Chiefs @ Seattle Seahawks",
+   "key": "novig|{\"market_id\": \"01a136e2-efc7-77b0-a14c-5aca077eda7c\", \"outcome_id\": \"01a136e2-efc7-77b0-a14c-5aed8220b157\"}",
+   "lead_min": 250,
+   "league": "NFL",
+   "line": 2.5,
+   "market": "spread",
+   "new_money": 39892,
+   "paper_only": false,
+   "price": 0.465,
+   "price_american": 115,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.465,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 3.0,
+     "price": -118
+    },
+    "betonlineag": {
+     "point": 3.0,
+     "price": -119
+    },
+    "betopenly": {
+     "point": 3.0,
+     "price": -107
+    },
+    "betrivers": {
+     "point": 2.5,
+     "price": -104
+    },
+    "betus": {
+     "point": 3.0,
+     "price": -115
+    },
+    "bovada": {
+     "point": 3.0,
+     "price": -115
+    },
+    "draftkings": {
+     "point": 3.0,
+     "price": -120
+    },
+    "fanatics": {
+     "point": 3.0,
+     "price": -115
+    },
+    "fanduel": {
+     "point": 3.0,
+     "price": -120
+    },
+    "kalshi": {
+     "point": 2.5,
+     "price": 113
+    },
+    "lowvig": {
+     "point": 3.0,
+     "price": -108
+    },
+    "mybookieag": {
+     "point": 3.0,
+     "price": -120
+    },
+    "novig": {
+     "point": 2.5,
+     "price": 115
+    },
+    "polymarket": {
+     "point": 2.5,
+     "price": 113
+    },
+    "prophetx": {
+     "point": 1.5,
+     "price": 126
+    },
+    "williamhill_us": {
+     "point": 3.0,
+     "price": -117
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a136e2-efc7-77b0-a14c-5aca077eda7c",
+    "outcome_id": "01a136e2-efc7-77b0-a14c-5aed8220b157"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "none_10k",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Kansas City Chiefs",
+   "side_label": "KC +2.5 (-2.5)",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-26T00:20:00Z",
+   "teams": [
+    "Kansas City Chiefs",
+    "Seattle Seahawks"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-25T19:50:09Z",
    "base_depth": 321828,
    "best_price": 0.8112,
@@ -1304,8 +1441,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": -1.0,
+   "close_price": 0.43,
+   "clv_cents": -8.0,
    "confirmed_after_min": 10,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -1701,10 +1838,11 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNFLGAME-26OCT25CLETEN-CLE"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": "no_match",
    "second_book_fresh": false,
+   "settled_utc": "2026-10-25T20:10:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Cleveland",
@@ -1717,7 +1855,7 @@
     "Tennessee"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.44
   },
   {
    "alerted_utc": "2026-10-25T18:20:10Z",
@@ -2951,7 +3089,8 @@
      "price": -176
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-25T20:10:10Z",
    "ref": {
     "line": 0,
     "px_event": 1700008825,
@@ -4182,6 +4321,7 @@
    },
    "first_seen_utc": "2026-10-25T16:32:58Z",
    "game": "San Francisco 49ers @ Atlanta Falcons",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a136e2-eb62-7a90-9d60-5472fa9c51cf\", \"outcome_id\": \"01a136e2-eb62-7a90-9d60-5493b96cdbf5\"}",
    "lead_min": 20,
    "league": "NFL",
@@ -4264,12 +4404,13 @@
     "market_id": "01a136e2-eb62-7a90-9d60-5472fa9c51cf",
     "outcome_id": "01a136e2-eb62-7a90-9d60-5493b96cdbf5"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "kalshi"
    ],
    "second_book_fresh": true,
+   "settled_utc": "2026-10-25T20:10:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "San Francisco 49ers",
@@ -4281,7 +4422,7 @@
     "Atlanta Falcons"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-25T16:40:09Z",
@@ -4321,6 +4462,7 @@
    },
    "first_seen_utc": "2026-10-25T16:32:58Z",
    "game": "San Francisco 49ers @ Atlanta Falcons",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a136e2-eb62-7a90-9d60-52c7a6b182e1\", \"outcome_id\": \"01a136e2-eb62-7a90-9d60-52e0f1cf31a5\"}",
    "lead_min": 20,
    "league": "NFL",
@@ -4403,12 +4545,13 @@
     "market_id": "01a136e2-eb62-7a90-9d60-52c7a6b182e1",
     "outcome_id": "01a136e2-eb62-7a90-9d60-52e0f1cf31a5"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "kalshi"
    ],
    "second_book_fresh": true,
+   "settled_utc": "2026-10-25T20:10:10Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "Over 48.5 (-123)"
@@ -4422,7 +4565,7 @@
     "Atlanta Falcons"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.02
   },
   {
    "alerted_utc": "2026-10-25T16:40:09Z",
@@ -4821,6 +4964,7 @@
    },
    "first_seen_utc": "2026-10-25T15:02:37Z",
    "game": "Cleveland vs Tennessee: Spread",
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNFLSPREAD-26OCT25CLETEN-CLE3\"}",
    "lead_min": 110,
    "league": "NFL",
@@ -4906,10 +5050,11 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNFLSPREAD-26OCT25CLETEN-CLE3"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": "none_10k",
    "second_book_fresh": false,
+   "settled_utc": "2026-10-25T20:10:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Cleveland",
@@ -4922,7 +5067,7 @@
     "Tennessee"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.04
   },
   {
    "alerted_utc": "2026-10-25T15:10:08Z",
@@ -5259,6 +5404,7 @@
    },
    "first_seen_utc": "2026-10-25T14:40:11Z",
    "game": "San Francisco vs Atlanta: Spread",
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNFLSPREAD-26OCT25SFATL-SF3\"}",
    "lead_min": 130,
    "league": "NFL",
@@ -5344,12 +5490,13 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNFLSPREAD-26OCT25SFATL-SF3"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
+   "settled_utc": "2026-10-25T20:10:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "San Francisco",
@@ -5362,7 +5509,7 @@
     "Atlanta"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-25T14:50:09Z",
@@ -6271,8 +6418,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": 3.0,
+   "close_price": 0.58,
+   "clv_cents": 8.0,
    "confirmed_after_min": 10,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -6379,7 +6526,8 @@
      "price": -110
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-25T20:10:10Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNFLTOTAL-26OCT25DENARI-44"
@@ -7163,6 +7311,7 @@
    },
    "first_seen_utc": "2026-10-25T13:24:00Z",
    "game": "San Francisco vs Atlanta: Total Points",
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNFLTOTAL-26OCT25SFATL-50\"}",
    "lead_min": 210,
    "league": "NFL",
@@ -7248,10 +7397,11 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNFLTOTAL-26OCT25SFATL-50"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": "none_10k",
    "second_book_fresh": false,
+   "settled_utc": "2026-10-25T20:10:10Z",
    "sharp_agree": [
     "Over 48.5 (-123)"
    ],
@@ -7266,7 +7416,7 @@
     "Atlanta"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-25T13:30:13Z",
@@ -7283,8 +7433,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 1.0,
+   "close_price": 0.53,
+   "clv_cents": 2.0,
    "confirmed_after_min": 6,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -9189,8 +9339,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": 1.0,
+   "close_price": 0.58,
+   "clv_cents": 8.0,
    "confirmed_after_min": 6,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -9291,7 +9441,8 @@
      "price": -108
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-25T20:10:10Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNFLSPREAD-26OCT25DENARI-DEN5"
@@ -13324,8 +13475,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.22,
-   "clv_cents": -16.0,
+   "close_price": 0.21,
+   "clv_cents": -17.0,
    "confirmed_after_min": 5,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -13633,8 +13784,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.67,
-   "clv_cents": 0.0,
+   "close_price": 0.73,
+   "clv_cents": 6.0,
    "confirmed_after_min": 14,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -13958,6 +14109,7 @@
    },
    "first_seen_utc": "2026-10-25T07:20:09Z",
    "game": "Cleveland Browns @ Tennessee Titans",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a136e2-e982-7ba0-a860-686da414f8c1\", \"outcome_id\": \"01a136e2-e982-7ba0-a860-6884537daf2a\"}",
    "lead_min": 570,
    "league": "NFL",
@@ -14051,12 +14203,13 @@
     "market_id": "01a136e2-e982-7ba0-a860-686da414f8c1",
     "outcome_id": "01a136e2-e982-7ba0-a860-6884537daf2a"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "prophetx"
    ],
    "second_book_fresh": true,
+   "settled_utc": "2026-10-25T20:10:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Cleveland Browns",
@@ -14069,7 +14222,7 @@
     "Tennessee Titans"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.82
   },
   {
    "alerted_utc": "2026-10-25T06:31:41Z",
@@ -14579,6 +14732,7 @@
    },
    "first_seen_utc": "2026-10-25T05:40:09Z",
    "game": "Cleveland Browns at Tennessee Titans",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 0, \"px_event\": 1700008872, \"px_market\": 219, \"side\": \"0\"}",
    "lead_min": 666,
    "league": "NFL",
@@ -14674,12 +14828,13 @@
     "px_market": 219,
     "side": "0"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
+   "settled_utc": "2026-10-25T20:10:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Cleveland Browns",
@@ -14692,7 +14847,7 @@
     "Tennessee Titans"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.82
   },
   {
    "alerted_utc": "2026-10-25T05:40:09Z",
@@ -18418,6 +18573,7 @@
    },
    "first_seen_utc": "2026-10-25T02:50:09Z",
    "game": "San Francisco 49ers at Atlanta Falcons",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 0, \"px_event\": 1700008858, \"px_market\": 219, \"side\": \"0\"}",
    "lead_min": 846,
    "league": "NFL",
@@ -18509,12 +18665,13 @@
     "px_market": 219,
     "side": "0"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": true,
+   "settled_utc": "2026-10-25T20:10:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "San Francisco 49ers",
@@ -18527,7 +18684,7 @@
     "Atlanta Falcons"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-25T02:54:29Z",
@@ -19551,10 +19708,11 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNFLGAME-26OCT25CLETEN-TEN"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": "none_10k",
    "second_book_fresh": false,
+   "settled_utc": "2026-10-25T20:10:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Tennessee",
@@ -19567,7 +19725,7 @@
     "Tennessee"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-25T02:22:34Z",
@@ -21354,6 +21512,7 @@
    },
    "first_seen_utc": "2026-10-25T01:00:15Z",
    "game": "San Francisco vs Atlanta: Spread",
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNFLSPREAD-26OCT25SFATL-SF3\"}",
    "lead_min": 950,
    "league": "NFL",
@@ -21435,10 +21594,11 @@
     "kalshi_side": "no",
     "market_ticker": "KXNFLSPREAD-26OCT25SFATL-SF3"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": "none_10k",
    "second_book_fresh": false,
+   "settled_utc": "2026-10-25T20:10:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Atlanta",
@@ -21451,7 +21611,7 @@
     "Atlanta"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.02
   },
   {
    "alerted_utc": "2026-10-25T01:10:10Z",
@@ -21497,6 +21657,7 @@
    },
    "first_seen_utc": "2026-10-25T01:00:15Z",
    "game": "San Francisco vs Atlanta",
+   "graded_by": "espn",
    "key": "kalshi|KXNFLGAME-26OCT25SFATL|ml|1",
    "lead_min": 950,
    "league": "NFL",
@@ -21586,10 +21747,11 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNFLGAME-26OCT25SFATL-ATL"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": "none_10k",
    "second_book_fresh": false,
+   "settled_utc": "2026-10-25T20:10:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Atlanta",
@@ -21602,7 +21764,7 @@
     "Atlanta"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.33
   },
   {
    "alerted_utc": "2026-10-25T01:00:15Z",
@@ -22943,6 +23105,7 @@
    },
    "first_seen_utc": "2026-10-24T23:50:10Z",
    "game": "San Francisco 49ers @ Atlanta Falcons",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a136e2-eb62-7a90-9d60-53526d519f49\", \"outcome_id\": \"01a136e2-eb62-7a90-9d60-5370a72c497c\"}",
    "lead_min": 1018,
    "league": "NFL",
@@ -23032,12 +23195,13 @@
     "market_id": "01a136e2-eb62-7a90-9d60-53526d519f49",
     "outcome_id": "01a136e2-eb62-7a90-9d60-5370a72c497c"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "prophetx"
    ],
    "second_book_fresh": false,
+   "settled_utc": "2026-10-25T20:10:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "San Francisco 49ers",
@@ -23050,7 +23214,7 @@
     "Atlanta Falcons"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-25T00:02:01Z",
@@ -27287,8 +27451,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.6575,
-   "clv_cents": 2.0,
+   "close_price": 0.6552,
+   "clv_cents": 1.7,
    "confirmed_after_min": 15,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -27736,8 +27900,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.65,
-   "clv_cents": 1.5,
+   "close_price": 0.655,
+   "clv_cents": 2.0,
    "confirmed_after_min": 10,
    "date": "2026-10-25",
    "depth_by_book": {
