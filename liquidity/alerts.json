@@ -1,6 +1,160 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-25T08:20:10Z",
+   "base_depth": 4478496,
+   "best_price": 0.68,
+   "best_price_american": -213,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.67,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-25",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 42855,
+     "new_this_side": 248834,
+     "other_side": 2240867,
+     "other_side_all_levels": 2408831,
+     "ratio": 2.0,
+     "this_side": 4390516,
+     "this_side_all_levels": 4727533
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "DEN (0)",
+     "price": 0.68,
+     "this_side": 260932
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Denver Broncos",
+     "price": 0.6774,
+     "this_side": 145758
+    }
+   },
+   "first_seen_utc": "2026-10-25T08:10:10Z",
+   "game": "Denver vs Arizona",
+   "key": "kalshi|KXNFLGAME-26OCT25DENARI|ml|0",
+   "lead_min": 705,
+   "league": "NFL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 248834,
+   "paper_only": false,
+   "price": 0.67,
+   "price_american": -203,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.67,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -225
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -220
+    },
+    "betopenly": {
+     "point": null,
+     "price": -202
+    },
+    "betrivers": {
+     "point": null,
+     "price": -265
+    },
+    "betus": {
+     "point": null,
+     "price": -220
+    },
+    "bovada": {
+     "point": null,
+     "price": -225
+    },
+    "draftkings": {
+     "point": null,
+     "price": -225
+    },
+    "fanatics": {
+     "point": null,
+     "price": -220
+    },
+    "fanduel": {
+     "point": null,
+     "price": -225
+    },
+    "kalshi": {
+     "point": null,
+     "price": -203
+    },
+    "limitless": {
+     "point": null,
+     "price": -223
+    },
+    "lowvig": {
+     "point": null,
+     "price": -220
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -224
+    },
+    "novig": {
+     "point": null,
+     "price": -212
+    },
+    "polymarket": {
+     "point": null,
+     "price": -213
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -208
+    },
+    "prophetx": {
+     "point": null,
+     "price": -210
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -225
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNFLGAME-26OCT25DENARI-DEN"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "prophetx"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Denver",
+   "side_label": "Denver",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-25T20:05:00Z",
+   "teams": [
+    "Denver",
+    "Arizona"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-25T07:40:10Z",
    "base_depth": 321480,
    "best_price": 0.4858,
@@ -4291,8 +4445,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5261,
-   "clv_cents": 1.9,
+   "close_price": 0.5238,
+   "clv_cents": 1.6,
    "confirmed_after_min": 6,
    "date": "2026-10-25",
    "depth_by_book": {
