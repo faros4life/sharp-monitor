@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Oct 25, 7:05 AM ET. This run: 5 new, 0 not confirmed, 1 pending. Open alerts: 64.
+Updated Sun Oct 25, 7:10 AM ET. This run: 0 new, 1 not confirmed, 0 pending. Open alerts: 64.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -133,7 +133,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 24 4:14PM | NHL | Rangers vs. Senators | moneyline: Senators | polymarket | $55k | -117 | ✅ novig,prophetx |  | +0.0c | yes | W |
 | Oct 24 4:14PM | NHL | Predators vs. Penguins | moneyline: Penguins | polymarket | $56k | -113 |  | ❌ | +1.0c | yes | W |
 | Oct 24 4:14PM | NFL | Tampa Bay Buccaneers @ Carolina Panthers | moneyline: TB (0) | novig | $26k | +141 | ✅ prophetx |  | +0.0c | yes | pending |
-| Oct 24 4:14PM | NFL | Indianapolis Colts @ Minnesota Vikings | moneyline: MIN (0) | novig | $100k | -264 | ✅ prophetx |  | +1.0c | yes | pending |
+| Oct 24 4:14PM | NFL | Indianapolis Colts @ Minnesota Vikings | moneyline: MIN (0) | novig | $100k | -264 | ✅ prophetx |  | +1.5c | yes | pending |
 | Oct 24 4:14PM | NFL | Pittsburgh Steelers @ New Orleans Saints | spread: NO +3.5 (3.5) | novig | $28k | -122 |  |  | +0.0c | yes | pending |
 | Oct 24 4:14PM | NCAAF | Southern Utah vs Idaho | moneyline: Idaho | kalshi | $45k | -138 |  |  | +35.0c | yes | W |
 | Oct 24 4:14PM | NCAAF | San Jose St. vs Nevada | moneyline: Nevada | kalshi | $141k | -203 | ✅ novig,prophetx | ❌ |  | yes | W |
