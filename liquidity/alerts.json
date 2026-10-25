@@ -1,6 +1,381 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-25T03:10:09Z",
+   "base_depth": 149201,
+   "best_price": 0.4049,
+   "best_price_american": 147,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.405,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-25",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": false,
+     "label": "New Orleans",
+     "price": 0.4,
+     "this_side": 2219239
+    },
+    "novig": {
+     "new_other_side": -11971,
+     "new_this_side": 38860,
+     "other_side": 78356,
+     "other_side_all_levels": 78512,
+     "ratio": 2.6,
+     "this_side": 204470,
+     "this_side_all_levels": 207998
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "New Orleans Saints",
+     "price": 0.4,
+     "this_side": 54276
+    }
+   },
+   "first_seen_utc": "2026-10-25T03:00:15Z",
+   "game": "Pittsburgh Steelers @ New Orleans Saints",
+   "key": "novig|{\"market_id\": \"01a136e2-e79c-70a2-8a3f-bd6abd3a27ee\", \"outcome_id\": \"01a136e2-e79c-70a2-8a3f-bd712d50f70e\"}",
+   "lead_min": 620,
+   "league": "NFL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 38860,
+   "paper_only": false,
+   "price": 0.405,
+   "price_american": 147,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.405,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": 138
+    },
+    "betonlineag": {
+     "point": null,
+     "price": 145
+    },
+    "betopenly": {
+     "point": null,
+     "price": 122
+    },
+    "betrivers": {
+     "point": null,
+     "price": 140
+    },
+    "betus": {
+     "point": null,
+     "price": 142
+    },
+    "draftkings": {
+     "point": null,
+     "price": 136
+    },
+    "fanatics": {
+     "point": null,
+     "price": 140
+    },
+    "fanduel": {
+     "point": null,
+     "price": 140
+    },
+    "kalshi": {
+     "point": null,
+     "price": 150
+    },
+    "limitless": {
+     "point": null,
+     "price": 143
+    },
+    "lowvig": {
+     "point": null,
+     "price": 145
+    },
+    "mybookieag": {
+     "point": null,
+     "price": 139
+    },
+    "novig": {
+     "point": null,
+     "price": 147
+    },
+    "polymarket": {
+     "point": null,
+     "price": 150
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": 153
+    },
+    "prophetx": {
+     "point": null,
+     "price": 150
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": 144
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a136e2-e79c-70a2-8a3f-bd6abd3a27ee",
+    "outcome_id": "01a136e2-e79c-70a2-8a3f-bd712d50f70e"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "prophetx"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "New Orleans Saints",
+   "side_label": "NO (0)",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-25T13:30:00Z",
+   "teams": [
+    "Pittsburgh Steelers",
+    "New Orleans Saints"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-25T03:10:09Z",
+   "base_depth": 120865,
+   "best_price": 0.5673,
+   "best_price_american": -131,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.55,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-24",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 2839,
+     "new_this_side": 54552,
+     "other_side": 83148,
+     "other_side_all_levels": 102498,
+     "ratio": 1.7,
+     "this_side": 143789,
+     "this_side_all_levels": 171095
+    }
+   },
+   "first_seen_utc": "2026-10-25T03:00:15Z",
+   "game": "Tampa Bay vs Utah",
+   "key": "kalshi|KXNHLGAME-26OCT24TBUTA|ml|1",
+   "lead_min": 50,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 54552,
+   "paper_only": false,
+   "price": 0.55,
+   "price_american": -122,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.55,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -140
+    },
+    "bovada": {
+     "point": null,
+     "price": -150
+    },
+    "draftkings": {
+     "point": null,
+     "price": -140
+    },
+    "fanatics": {
+     "point": null,
+     "price": -130
+    },
+    "fanduel": {
+     "point": null,
+     "price": -136
+    },
+    "kalshi": {
+     "point": null,
+     "price": -122
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -143
+    },
+    "novig": {
+     "point": null,
+     "price": -127
+    },
+    "polymarket": {
+     "point": null,
+     "price": -122
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -122
+    },
+    "prophetx": {
+     "point": null,
+     "price": -124
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -150
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNHLGAME-26OCT24TBUTA-UTA"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "no_match",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Utah",
+   "side_label": "Utah",
+   "start_source": "kalshi",
+   "start_utc": "2026-10-25T04:00:00Z",
+   "teams": [
+    "Tampa Bay",
+    "Utah"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-25T03:10:09Z",
+   "base_depth": 359859,
+   "best_price": 0.6952,
+   "best_price_american": -228,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.68,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-24",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 5431,
+     "new_this_side": 105860,
+     "other_side": 64905,
+     "other_side_all_levels": 201598,
+     "ratio": 3.4,
+     "this_side": 223511,
+     "this_side_all_levels": 501263
+    }
+   },
+   "first_seen_utc": "2026-10-25T03:00:15Z",
+   "game": "North Dakota St. vs New Mexico",
+   "key": "kalshi|KXNCAAFGAME-26OCT24NDSUUNM|ml|1",
+   "lead_min": 110,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 105860,
+   "paper_only": false,
+   "price": 0.68,
+   "price_american": -213,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.7,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -275
+    },
+    "bovada": {
+     "point": null,
+     "price": -285
+    },
+    "draftkings": {
+     "point": null,
+     "price": -311
+    },
+    "fanatics": {
+     "point": null,
+     "price": -300
+    },
+    "fanduel": {
+     "point": null,
+     "price": -295
+    },
+    "kalshi": {
+     "point": null,
+     "price": -233
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -286
+    },
+    "novig": {
+     "point": null,
+     "price": -239
+    },
+    "polymarket": {
+     "point": null,
+     "price": -245
+    },
+    "prophetx": {
+     "point": null,
+     "price": -240
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -295
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26OCT24NDSUUNM-UNM"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "no_match",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "New Mexico",
+   "side_label": "New Mexico",
+   "start_source": "kalshi",
+   "start_utc": "2026-10-25T05:00:00Z",
+   "teams": [
+    "North Dakota St.",
+    "New Mexico"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-25T03:00:15Z",
    "base_depth": 47435,
    "best_price": 0.505,
@@ -196,6 +571,8 @@
    "new_money": 26687,
    "paper_only": false,
    "price": 0.4032,
+   "price_after_15m": 0.4049,
+   "price_after_15m_book": "prophetx",
    "price_american": 148,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.4032,
@@ -288,6 +665,7 @@
    "side_label": "New Orleans Saints",
    "start_source": "prophetx",
    "start_utc": "2026-10-25T13:30:00Z",
+   "still_actionable": false,
    "teams": [
     "Pittsburgh Steelers",
     "New Orleans Saints"
@@ -347,6 +725,8 @@
    "new_money": 43981,
    "paper_only": false,
    "price": 0.5763,
+   "price_after_15m": 0.58,
+   "price_after_15m_book": "novig",
    "price_american": -136,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.5763,
@@ -439,6 +819,7 @@
    "side_label": "San Francisco 49ers",
    "start_source": "prophetx",
    "start_utc": "2026-10-25T17:00:00Z",
+   "still_actionable": true,
    "teams": [
     "San Francisco 49ers",
     "Atlanta Falcons"
@@ -498,6 +879,8 @@
    "new_money": 98821,
    "paper_only": false,
    "price": 0.7222,
+   "price_after_15m": 0.725,
+   "price_after_15m_book": "novig",
    "price_american": -260,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.7222,
@@ -591,6 +974,7 @@
    "side_label": "Minnesota Vikings",
    "start_source": "prophetx",
    "start_utc": "2026-10-25T17:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Indianapolis Colts",
     "Minnesota Vikings"
@@ -656,6 +1040,8 @@
    "new_money": 31690,
    "paper_only": false,
    "price": 0.68,
+   "price_after_15m": 0.6766,
+   "price_after_15m_book": "polymarket",
    "price_american": -213,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.68,
@@ -743,6 +1129,7 @@
    "side_label": "Colorado",
    "start_source": "polymarket",
    "start_utc": "2026-10-26T00:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Colorado",
     "Nashville"
@@ -802,6 +1189,8 @@
    "new_money": 122531,
    "paper_only": false,
    "price": 0.6,
+   "price_after_15m": 0.59,
+   "price_after_15m_book": "novig",
    "price_american": -150,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.6,
@@ -892,6 +1281,7 @@
    "side_label": "Carolina",
    "start_source": "prophetx",
    "start_utc": "2026-10-25T17:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Tampa Bay",
     "Carolina"
@@ -914,8 +1304,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.86,
-   "clv_cents": 4.0,
+   "close_price": 0.78,
+   "clv_cents": -4.0,
    "confirmed_after_min": 10,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -939,6 +1329,8 @@
    "new_money": 131830,
    "paper_only": false,
    "price": 0.82,
+   "price_after_15m": 0.792,
+   "price_after_15m_book": "kalshi",
    "price_american": -456,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.84,
@@ -1015,6 +1407,7 @@
    "side_label": "New Orleans",
    "start_source": "kalshi",
    "start_utc": "2026-10-25T04:00:00Z",
+   "still_actionable": true,
    "teams": [
     "New Orleans",
     "Denver"
@@ -2559,10 +2952,11 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBAGAME-26OCT24HOUATL-HOU"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": "no_match",
    "second_book_fresh": false,
+   "settled_utc": "2026-10-25T03:10:09Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Houston",
@@ -2575,7 +2969,7 @@
     "Atlanta"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.38
   },
   {
    "alerted_utc": "2026-10-25T01:20:09Z",
@@ -2674,10 +3068,11 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFSPREAD-26OCT24ISUARIZ-ARIZ28"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": "no_match",
    "second_book_fresh": false,
+   "settled_utc": "2026-10-25T03:10:09Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "Arizona Wildcats -10.5 (-113)"
@@ -2692,7 +3087,7 @@
     "Arizona"
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-25T01:15:46Z",
@@ -2822,8 +3217,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.58,
-   "clv_cents": -11.0,
+   "close_price": 0.72,
+   "clv_cents": 3.0,
    "confirmed_after_min": 6,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -3914,8 +4309,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.64,
-   "clv_cents": 15.0,
+   "close_price": 0.48,
+   "clv_cents": -1.0,
    "confirmed_after_min": 5,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -5057,8 +5452,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.63,
-   "clv_cents": 17.0,
+   "close_price": 0.52,
+   "clv_cents": 6.0,
    "confirmed_after_min": 12,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -5298,10 +5693,11 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26OCT24USUTXST-TXST"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": "no_match",
    "second_book_fresh": false,
+   "settled_utc": "2026-10-25T03:10:09Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Texas St.",
@@ -5314,7 +5710,7 @@
     "Texas St."
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.26
   },
   {
    "alerted_utc": "2026-10-25T00:02:01Z",
@@ -5331,8 +5727,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.15,
-   "clv_cents": -66.0,
+   "close_price": 0.23,
+   "clv_cents": -58.0,
    "confirmed_after_min": 12,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -5749,8 +6145,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.68,
-   "clv_cents": -10.0,
+   "close_price": 0.78,
+   "clv_cents": 0.0,
    "confirmed_after_min": 9,
    "date": "2026-10-24",
    "depth_by_book": {
@@ -7591,8 +7987,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.8058,
-   "clv_cents": -0.2,
+   "close_price": 0.8077,
+   "clv_cents": 0.0,
    "confirmed_after_min": 9,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -52086,6 +52482,7 @@
    },
    "first_seen_utc": "2026-10-22T17:40:11Z",
    "game": "Syracuse vs North Carolina",
+   "graded_by": "espn",
    "key": "kalshi|KXNCAAFGAME-26OCT23SYRUNC|ml|1",
    "lead_min": 1990,
    "league": "NCAAF",
@@ -52105,10 +52502,11 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26OCT23SYRUNC-UNC"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": "no_match",
    "second_book_fresh": false,
+   "settled_utc": "2026-10-25T03:10:09Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "North Carolina",
@@ -52121,7 +52519,7 @@
     "North Carolina"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-22T17:50:10Z",
@@ -52174,10 +52572,11 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26OCT23ISUARIZ-ARIZ"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": "no_match",
    "second_book_fresh": false,
+   "settled_utc": "2026-10-25T03:10:09Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Arizona",
@@ -52190,7 +52589,7 @@
     "Arizona"
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": 0.31
   },
   {
    "alerted_utc": "2026-10-22T17:50:10Z",
