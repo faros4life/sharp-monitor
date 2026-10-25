@@ -1,6 +1,439 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-25T04:30:12Z",
+   "base_depth": 1134842,
+   "best_price": 0.49,
+   "best_price_american": 104,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.49,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-25",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -148837,
+     "new_this_side": 398738,
+     "other_side": 1295198,
+     "other_side_all_levels": 1453955,
+     "ratio": 1.1,
+     "this_side": 1456149,
+     "this_side_all_levels": 1533458
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "NYJ -4.5 (-4.5)",
+     "price": 0.49,
+     "this_side": 49578
+    }
+   },
+   "first_seen_utc": "2026-10-25T04:20:10Z",
+   "game": "Miami vs New York J: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNFLSPREAD-26OCT25MIANYJ-NYJ5\"}",
+   "lead_min": 750,
+   "league": "NFL",
+   "line": -4.5,
+   "market": "spread",
+   "new_money": 398738,
+   "paper_only": false,
+   "price": 0.49,
+   "price_american": 104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.49,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -4.5,
+     "price": -105
+    },
+    "betonlineag": {
+     "point": -4.0,
+     "price": -112
+    },
+    "betopenly": {
+     "point": -4.5,
+     "price": 103
+    },
+    "betrivers": {
+     "point": -4.5,
+     "price": -112
+    },
+    "betus": {
+     "point": -4.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": -4.5,
+     "price": -110
+    },
+    "fanatics": {
+     "point": -4.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": -4.5,
+     "price": -118
+    },
+    "kalshi": {
+     "point": -4.5,
+     "price": 104
+    },
+    "lowvig": {
+     "point": -4.0,
+     "price": -110
+    },
+    "mybookieag": {
+     "point": -4.0,
+     "price": -110
+    },
+    "novig": {
+     "point": -4.5,
+     "price": 104
+    },
+    "polymarket": {
+     "point": -4.5,
+     "price": 100
+    },
+    "prophetx": {
+     "point": -6.0,
+     "price": 125
+    },
+    "williamhill_us": {
+     "point": -4.5,
+     "price": -113
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNFLSPREAD-26OCT25MIANYJ-NYJ5"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "none_10k",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "New York J",
+   "side_label": "New York J wins by over 4.5 points",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-25T17:00:00Z",
+   "teams": [
+    "Miami",
+    "New York J"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-25T04:30:12Z",
+   "base_depth": 2319282,
+   "best_price": 0.405,
+   "best_price_american": 147,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.41,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-25",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 7282,
+     "new_this_side": 125364,
+     "other_side": 2066524,
+     "other_side_all_levels": 2385320,
+     "ratio": 1.1,
+     "this_side": 2194797,
+     "this_side_all_levels": 2424382
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "NO (0)",
+     "price": 0.405,
+     "this_side": 141946
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "New Orleans Saints",
+     "price": 0.4032,
+     "this_side": 45209
+    }
+   },
+   "first_seen_utc": "2026-10-25T04:20:10Z",
+   "game": "Pittsburgh vs New Orleans",
+   "key": "kalshi|KXNFLGAME-26OCT25PITNO|ml|1",
+   "lead_min": 540,
+   "league": "NFL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 125364,
+   "paper_only": false,
+   "price": 0.41,
+   "price_american": 144,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.41,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": 138
+    },
+    "betonlineag": {
+     "point": null,
+     "price": 145
+    },
+    "betopenly": {
+     "point": null,
+     "price": 122
+    },
+    "betrivers": {
+     "point": null,
+     "price": 140
+    },
+    "betus": {
+     "point": null,
+     "price": 142
+    },
+    "draftkings": {
+     "point": null,
+     "price": 136
+    },
+    "fanatics": {
+     "point": null,
+     "price": 135
+    },
+    "fanduel": {
+     "point": null,
+     "price": 138
+    },
+    "kalshi": {
+     "point": null,
+     "price": 144
+    },
+    "limitless": {
+     "point": null,
+     "price": 143
+    },
+    "lowvig": {
+     "point": null,
+     "price": 145
+    },
+    "mybookieag": {
+     "point": null,
+     "price": 138
+    },
+    "novig": {
+     "point": null,
+     "price": 147
+    },
+    "polymarket": {
+     "point": null,
+     "price": 150
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": 150
+    },
+    "prophetx": {
+     "point": null,
+     "price": 148
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": 138
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNFLGAME-26OCT25PITNO-NO"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "prophetx"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "New Orleans",
+   "side_label": "New Orleans",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-25T13:30:00Z",
+   "teams": [
+    "Pittsburgh",
+    "New Orleans"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-25T04:30:12Z",
+   "base_depth": 1287114,
+   "best_price": 0.615,
+   "best_price_american": -160,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.61,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-25",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -37682,
+     "new_this_side": 2005636,
+     "other_side": 2015025,
+     "other_side_all_levels": 2180905,
+     "ratio": 1.5,
+     "this_side": 2958795,
+     "this_side_all_levels": 3284015
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "LAR (0)",
+     "price": 0.615,
+     "this_side": 37051
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Los Angeles Rams",
+     "price": 0.6154,
+     "this_side": 20222
+    }
+   },
+   "first_seen_utc": "2026-10-25T04:20:10Z",
+   "game": "Los Angeles R vs Las Vegas",
+   "key": "kalshi|KXNFLGAME-26OCT25LARLV|ml|0",
+   "lead_min": 955,
+   "league": "NFL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 2005636,
+   "paper_only": false,
+   "price": 0.61,
+   "price_american": -156,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.61,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -175
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -175
+    },
+    "betopenly": {
+     "point": null,
+     "price": -176
+    },
+    "betrivers": {
+     "point": null,
+     "price": -180
+    },
+    "betus": {
+     "point": null,
+     "price": -175
+    },
+    "draftkings": {
+     "point": null,
+     "price": -175
+    },
+    "fanatics": {
+     "point": null,
+     "price": -175
+    },
+    "fanduel": {
+     "point": null,
+     "price": -174
+    },
+    "kalshi": {
+     "point": null,
+     "price": -156
+    },
+    "limitless": {
+     "point": null,
+     "price": -171
+    },
+    "lowvig": {
+     "point": null,
+     "price": -175
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -179
+    },
+    "novig": {
+     "point": null,
+     "price": -160
+    },
+    "polymarket": {
+     "point": null,
+     "price": -163
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -158
+    },
+    "prophetx": {
+     "point": null,
+     "price": -160
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -176
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNFLGAME-26OCT25LARLV-LAR"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "prophetx"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Los Angeles R",
+   "side_label": "Los Angeles R",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-25T20:25:00Z",
+   "teams": [
+    "Los Angeles R",
+    "Las Vegas"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-25T04:20:10Z",
    "base_depth": 2768514,
    "best_price": 0.545,
@@ -185,6 +618,8 @@
    "new_money": 197761,
    "paper_only": false,
    "price": 0.68,
+   "price_after_15m": 0.68,
+   "price_after_15m_book": "novig",
    "price_american": -213,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.68,
@@ -276,6 +711,7 @@
    "side_label": "Dallas",
    "start_source": "prophetx",
    "start_utc": "2026-10-27T00:15:00Z",
+   "still_actionable": true,
    "teams": [
     "Dallas",
     "Philadelphia"
@@ -2196,8 +2632,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5763,
-   "clv_cents": 0.0,
+   "close_price": 0.5833,
+   "clv_cents": 0.7,
    "confirmed_after_min": 4,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -9517,8 +9953,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.8077,
-   "clv_cents": 0.0,
+   "close_price": 0.8095,
+   "clv_cents": 0.2,
    "confirmed_after_min": 9,
    "date": "2026-10-25",
    "depth_by_book": {
