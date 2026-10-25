@@ -76,12 +76,23 @@ def show(d, n=700):
     return json.dumps(d)[:n] if isinstance(d, (dict, list)) else str(d)[:n]
 
 
+def balance():
+    """The trading key is scoped to its subaccount: try the routes it may be allowed to read."""
+    out = []
+    for path in ("/v3/portfolio/balance", "/v3/account/balance", "/v3/portfolio/summary", "/v3/portfolio/positions"):
+        st, d = call("GET", path)
+        out.append(f"{path} -> {st}: {show(d, 250)}")
+        if st == 200:
+            break
+    return out, st
+
+
 def main():
     print(f"0) Paper host: {HOST}")
-    st, bal = call("GET", "/v3/account/balance")
-    print(f"1) Balance (signed read) -> {st}: {show(bal, 400)}")
-    if st != 200:
-        sys.exit("   STOP: signed read failed - check the two secrets.")
+    lines, st = balance()
+    print("1) Signed reads (a 403 SCOPE error still proves the signature is valid):\n   " + "\n   ".join(lines))
+    if st in (401, "?"):
+        sys.exit("   STOP: signature not accepted - check the two secrets.")
 
     pick = None
     for lg in ("NFL", "NBA", "NCAAF", "NHL"):
@@ -134,8 +145,7 @@ def main():
         print(f"   order {oid} -> {st}: {show(r, 300)}  (404 = not resting, expected for FOK)")
     st, p = call("GET", "/v3/portfolio/positions")
     print(f"   positions -> {st}: {show(p)}")
-    st, bal2 = call("GET", "/v3/account/balance")
-    print(f"5) Balance after -> {st}: {show(bal2, 400)}")
+    print("5) After:\n   " + "\n   ".join(balance()[0]))
     print("Done. Paper exchange only; no real money. Fill-or-kill: nothing left resting.")
 
 
