@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Oct 24, 11:30 PM ET. This run: 0 new, 1 not confirmed, 1 pending. Open alerts: 13.
+Updated Sat Oct 24, 11:40 PM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 14.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -8,9 +8,10 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Oct 24 11:13PM | TENNIS | Sasnovich vs Rakhimova | moneyline: Sasnovich | kalshi | $188k | -376 |  |  | -3.0c |  | pending |
-| Oct 24 11:13PM | TENNIS | Ibragimova vs Iatcenko | moneyline: Iatcenko | kalshi | $55k | -194 |  |  | -25.0c |  | pending |
-| Oct 24 11:00PM | TENNIS | Krueger vs Siniakova | moneyline: Siniakova | kalshi | $29k | -133 | ✅ novig |  | +0.0c |  | pending |
+| Oct 24 11:40PM | TENNIS | Ibragimova vs Iatcenko | moneyline: Ibragimova | kalshi | $143k | -150 |  |  | +0.0c |  | pending |
+| Oct 24 11:13PM | TENNIS | Sasnovich vs Rakhimova | moneyline: Sasnovich | kalshi | $188k | -376 |  |  | -5.0c |  | pending |
+| Oct 24 11:13PM | TENNIS | Ibragimova vs Iatcenko | moneyline: Iatcenko | kalshi | $55k | -194 |  |  | -26.0c |  | pending |
+| Oct 24 11:00PM | TENNIS | Krueger vs Siniakova | moneyline: Siniakova | kalshi | $29k | -133 | ✅ novig |  | -1.0c |  | pending |
 | Oct 24 11:00PM | TENNIS | Watson vs Parks | moneyline: Parks | kalshi | $142k | -335 |  |  |  |  | W |
 | Oct 24 7:53PM | TENNIS | Musetti vs Fritz | moneyline: Fritz | kalshi | $40k | -178 |  |  | +1.0c |  | pending |
 | Oct 24 7:31PM | TENNIS | Watson vs Parks | moneyline: Watson | kalshi | $105k | +117 | ✅ novig |  | -45.0c | yes | L |
