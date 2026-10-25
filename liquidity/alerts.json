@@ -1,6 +1,159 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-25T07:30:11Z",
+   "base_depth": 178373,
+   "best_price": 0.55,
+   "best_price_american": -122,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.55,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-25",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": false,
+     "label": "Cleveland",
+     "price": 0.55,
+     "this_side": 1878355
+    },
+    "novig": {
+     "new_other_side": -17314,
+     "new_this_side": 34828,
+     "other_side": 163851,
+     "other_side_all_levels": 163958,
+     "ratio": 1.3,
+     "this_side": 220322,
+     "this_side_all_levels": 223601
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Cleveland Browns",
+     "price": 0.5475,
+     "this_side": 141655
+    }
+   },
+   "first_seen_utc": "2026-10-25T07:20:09Z",
+   "game": "Cleveland Browns @ Tennessee Titans",
+   "key": "novig|{\"market_id\": \"01a136e2-e982-7ba0-a860-686da414f8c1\", \"outcome_id\": \"01a136e2-e982-7ba0-a860-6884537daf2a\"}",
+   "lead_min": 570,
+   "league": "NFL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 34828,
+   "paper_only": false,
+   "price": 0.55,
+   "price_american": -122,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.55,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -130
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -135
+    },
+    "betopenly": {
+     "point": null,
+     "price": -126
+    },
+    "betrivers": {
+     "point": null,
+     "price": -125
+    },
+    "betus": {
+     "point": null,
+     "price": -135
+    },
+    "bovada": {
+     "point": null,
+     "price": -130
+    },
+    "draftkings": {
+     "point": null,
+     "price": -130
+    },
+    "fanatics": {
+     "point": null,
+     "price": -130
+    },
+    "fanduel": {
+     "point": null,
+     "price": -132
+    },
+    "kalshi": {
+     "point": null,
+     "price": -127
+    },
+    "limitless": {
+     "point": null,
+     "price": -128
+    },
+    "lowvig": {
+     "point": null,
+     "price": -135
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -130
+    },
+    "novig": {
+     "point": null,
+     "price": -122
+    },
+    "polymarket": {
+     "point": null,
+     "price": -122
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -122
+    },
+    "prophetx": {
+     "point": null,
+     "price": -121
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -132
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a136e2-e982-7ba0-a860-686da414f8c1",
+    "outcome_id": "01a136e2-e982-7ba0-a860-6884537daf2a"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "prophetx"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Cleveland Browns",
+   "side_label": "CLE (0)",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-25T17:00:00Z",
+   "teams": [
+    "Cleveland Browns",
+    "Tennessee Titans"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-25T06:31:41Z",
    "base_depth": 242299,
    "best_price": 0.6449,
@@ -4145,8 +4298,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.4065,
-   "clv_cents": 0.3,
+   "close_price": 0.4098,
+   "clv_cents": 0.7,
    "confirmed_after_min": 4,
    "date": "2026-10-25",
    "depth_by_book": {
