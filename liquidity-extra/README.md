@@ -1,18 +1,18 @@
 # Liquidity alerts (paper)
 
-Updated Mon Oct 26, 6:00 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 10.
+Updated Mon Oct 26, 6:07 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 9.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 36-22 (-3.99u flat) | rule met: 13-11
+**Record:** 37-22 (-3.79u flat) | rule met: 13-11
 
-**Fade (paper, betting against the print):** 1-3 (-2.14u flat, after fees)
+**Fade (paper, betting against the print):** 1-4 (-3.14u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Oct 26 5:50AM | TENNIS | Dart vs Prozorova | moneyline: Dart | kalshi | $47k | -213 |  |  | +3.0c |  | pending |
+| Oct 26 5:50AM | TENNIS | Dart vs Prozorova | moneyline: Dart | kalshi | $47k | -213 |  |  | -6.0c |  | pending |
 | Oct 26 5:40AM | TENNIS | Fery vs Fearnley | moneyline: Fearnley | kalshi | $55k | -113 | ✅ novig |  | +2.0c |  | pending |
-| Oct 26 4:40AM | TENNIS | Badosa vs Lee | moneyline: Badosa | kalshi | $162k | -456 |  |  | +13.0c |  | pending |
+| Oct 26 4:40AM | TENNIS | Badosa vs Lee | moneyline: Badosa | kalshi | $162k | -456 |  |  | +13.0c |  | W |
 | Oct 26 3:30AM | TENNIS | Shi vs Ibragimova | moneyline: Shi | kalshi | $1,035k | -525 |  |  | +10.0c |  | W |
 | Oct 26 3:10AM | TENNIS | Shi vs Ibragimova | moneyline: Ibragimova | kalshi | $709k | +104 |  |  | -42.0c | yes | L |
 | Oct 26 12:02AM | TENNIS | Machac vs de Minaur | moneyline: de Minaur | kalshi | $34k | -257 |  |  | -2.0c |  | pending |
