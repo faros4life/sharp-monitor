@@ -1,0 +1,27 @@
+name: px-live-order-test
+
+on:
+  workflow_dispatch:   # manual: ONE real ~$1 fill-or-kill order on ProphetX with the TRADING key
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: ProphetX $1 order test (REAL money)
+        env:
+          CONFIRM_REAL_ORDER: "ONE_DOLLAR"
+          PROPHETX_TRADE_ACCESS_KEY: ${{ secrets.PROPHETX_TRADE_ACCESS_KEY }}
+          PROPHETX_TRADE_SECRET_KEY: ${{ secrets.PROPHETX_TRADE_SECRET_KEY }}
+          PROPHETX_ACCESS_KEY: ${{ secrets.PROPHETX_ACCESS_KEY }}     # read key: finds the market
+          PROPHETX_SECRET_KEY: ${{ secrets.PROPHETX_SECRET_KEY }}
+        run: |
+          python -u px_live_order_test.py 2>&1 | tee out.txt
+          { echo '```'; cat out.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
