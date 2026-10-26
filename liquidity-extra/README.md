@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Mon Oct 26, 8:50 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 12.
+Updated Mon Oct 26, 9:00 AM ET. This run: 0 new, 1 not confirmed, 0 pending. Open alerts: 12.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -14,7 +14,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 26 7:31AM | TENNIS | Bertola vs Shapovalov | moneyline: Shapovalov | kalshi | $29k | -285 |  |  | +0.0c |  | pending |
 | Oct 26 6:50AM | TENNIS | Dart vs Prozorova | moneyline: Prozorova | kalshi | $649k | -213 |  |  | -63.0c | yes | L |
 | Oct 26 6:30AM | TENNIS | Altmaier vs Cerundolo | moneyline: Cerundolo | kalshi | $31k | -127 | ✅ novig |  | +0.0c |  | pending |
-| Oct 26 6:10AM | TENNIS | Brunold vs Borges | moneyline: Borges | kalshi | $28k | -203 | ✅ novig |  | -17.0c | yes | pending |
+| Oct 26 6:10AM | TENNIS | Brunold vs Borges | moneyline: Borges | kalshi | $28k | -203 | ✅ novig |  | +5.0c | yes | pending |
 | Oct 26 5:50AM | TENNIS | Dart vs Prozorova | moneyline: Dart | kalshi | $47k | -213 |  |  | +28.0c |  | W |
 | Oct 26 5:40AM | TENNIS | Fery vs Fearnley | moneyline: Fearnley | kalshi | $55k | -113 | ✅ novig |  | +2.0c |  | pending |
 | Oct 26 4:40AM | TENNIS | Badosa vs Lee | moneyline: Badosa | kalshi | $162k | -456 |  |  | +13.0c |  | W |
