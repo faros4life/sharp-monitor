@@ -215,32 +215,58 @@ def edge_price(fair):
 # Fees on winnings by book (ProphetX keeps 2% of a win). Every comparison, edge, cap, floor and grade uses the
 # after-fee price; the alert text still shows the price on the book's screen. Kalshi/Novig/Hard Rock: no win fee.
 WIN_FEE = {"prophetx": float(os.environ.get("PX_FEE", "") or "0.02")}
+# Taker fees charged on the buy, per $1 contract = coef x P x (1 - P) (Oct 25: Kalshi + Polymarket US added)
+TAKER_FEE = {"kalshi": float(os.environ.get("KALSHI_FEE", "") or "0.07"),
+             "polymarket_us": float(os.environ.get("PMUS_FEE", "") or "0.0695")}
+
+
+def _p2am(p):
+    p = min(max(p, 1e-6), 1 - 1e-6)
+    return (100 * (1 - p) / p) if p < 0.5 else (-100 * p / (1 - p))
 
 
 def net(price, book):
-    """American price after the book's fee on winnings: ProphetX -114 -> about -116, +150 -> +147."""
-    fee = WIN_FEE.get(book, 0)
-    if not fee or price is None:
+    """American price after the book's fee: ProphetX 2% of winnings (-114 -> about -116, +150 -> +147);
+    Kalshi / Polymarket US taker fee added to the contract cost (Kalshi -110 -> about -113)."""
+    if price is None:
         return price
-    w = (100 / abs(price) if price < 0 else price / 100) * (1 - fee)
-    return -100 / w if w < 1 else w * 100
+    fee = WIN_FEE.get(book, 0)
+    if fee:
+        w = (100 / abs(price) if price < 0 else price / 100) * (1 - fee)
+        return -100 / w if w < 1 else w * 100
+    k = TAKER_FEE.get(book, 0)
+    if k:
+        c = am_to_prob(price)
+        return _p2am(c + k * c * (1 - c))
+    return price
 
 
 def gross(price, book):
     """Inverse of net(): the price the book must show to equal `price` after its fee."""
-    fee = WIN_FEE.get(book, 0)
-    if not fee or price is None:
+    if price is None:
         return price
-    w = (100 / abs(price) if price < 0 else price / 100) / (1 - fee)
-    return -100 / w if w < 1 else w * 100
+    fee = WIN_FEE.get(book, 0)
+    if fee:
+        w = (100 / abs(price) if price < 0 else price / 100) / (1 - fee)
+        return -100 / w if w < 1 else w * 100
+    k = TAKER_FEE.get(book, 0)
+    if k:
+        e = am_to_prob(price)   # solve c + k c (1 - c) = e for the screen cost c
+        c = ((1 + k) - math.sqrt((1 + k) ** 2 - 4 * k * e)) / (2 * k)
+        return _p2am(c)
+    return price
+
+
+def has_fee(book):
+    return bool(WIN_FEE.get(book) or TAKER_FEE.get(book))
 
 
 def fee_note(price, book):
-    return f" [{fmt_price(net(price, book))} after {nm(book)} fee]" if WIN_FEE.get(book) else ""
+    return f" [{fmt_price(net(price, book))} after {nm(book)} fee]" if has_fee(book) else ""
 
 
 def floor_note(fl, book):
-    return f" ({nm(book)}: {fmt_price(gross(fl, book))} or better on screen)" if WIN_FEE.get(book) else ""
+    return f" ({nm(book)}: {fmt_price(gross(fl, book))} or better on screen)" if has_fee(book) else ""
 
 
 UNIT = float(os.environ.get("EXEC_UNIT", "") or "200")   # + money: risk UNIT; - money: risk to win UNIT (resets ~Nov 1)
@@ -701,7 +727,8 @@ def units(e, r):
 # One Pinnacle-only read per game in the last CLOSE_WINDOW minutes before start (runs at any hour, cheap: 1 credit per
 # market per game). Closing value = expected profit per 1u of the play's AFTER-FEE price at Pinnacle's no-vig closing
 # win chance at the play's own number (half points between Pinnacle's number and the play's number are priced in).
-CLOSE_WINDOW = float(os.environ.get("CLOSE_WINDOW_MIN", "") or "15")
+CLOSE_WINDOW = float(os.environ.get("CLOSE_WINDOW_MIN", "") or "30")      # read when the listed start is 20-30 min away:
+CLOSE_MIN_LEAD = float(os.environ.get("CLOSE_MIN_LEAD_MIN", "") or "20")  # feed start times can run 5-10 min late (Oct 25)
 LABEL_KEY = {v["label"]: k for k, v in SPORTS.items()}
 EXEC_BOOKS = ("novig", "kalshi", "prophetx", "polymarket_us")   # books the executor can place
 
@@ -748,7 +775,7 @@ def closing_reads(st, n):
         if e.get("cl") or e.get("sport") not in LABEL_KEY:
             continue
         mins = (parse_iso(e["start"]) - n).total_seconds() / 60
-        if 0 < mins <= CLOSE_WINDOW:
+        if CLOSE_MIN_LEAD <= mins <= CLOSE_WINDOW or (0 < mins < CLOSE_MIN_LEAD and not e.get("cl")):
             due.setdefault((LABEL_KEY[e["sport"]], e["ev"]), []).append(e)
     for (key, ev), es in due.items():
         if st.get("remaining") is not None and st["remaining"] <= RESERVE:
@@ -982,7 +1009,9 @@ def write_alerts_file(st, n):
         g = grade(e)
         out.append({
             "start_utc": e["start"], "game": e["game"], "sport": e["sport"], "bet": describe(e),
-            "book": nm(e["book"]), "price": e["price"], "price_after_fee": round(net(e["price"], e["book"])),
+            "book": nm(e["book"]), "book_key": e["book"], "kind": e["kind"],
+            "alert_utc": datetime.fromtimestamp(e["t"], timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ") if e.get("t") else None,
+            "price": e["price"], "price_after_fee": round(net(e["price"], e["book"])),
             "point": e.get("pt"),
             "grade": e.get("grade"), "score": e.get("score"), "edge_pct": e.get("evp"), "late": bool(e.get("late")),
             "minutes_before_start": e.get("lead"), "confirm": e.get("conf"), "confirmed_by": e.get("cby", []),
@@ -1211,6 +1240,8 @@ def run():
     save_state(st)
     write_summary(st, n)
     write_alerts_file(st, n)
+    if sent:   # Oct 25: wake the executor right away instead of waiting for its 5-minute timer
+        open("wake_executor", "w").write(str(sent))
     print(f"Done. Alerts sent: {sent}. Credits left: {st.get('remaining')}")
 
 
