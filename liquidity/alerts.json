@@ -1,6 +1,153 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-26T16:18:14Z",
+   "base_depth": 135816,
+   "best_price": 0.505,
+   "best_price_american": -102,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 8,
+   "date": "2026-10-26",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 7234,
+     "new_this_side": 51312,
+     "other_side": 89628,
+     "other_side_all_levels": 134964,
+     "ratio": 1.6,
+     "this_side": 141541,
+     "this_side_all_levels": 182983
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "MEM +1.5 (-1.5)",
+     "price": 0.505,
+     "this_side": 16079
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Grizzlies (+1.5)",
+     "price": 0.51,
+     "this_side": 62813
+    }
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-10-26T16:10:10Z",
+   "game": "Memphis vs Utah: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBASPREAD-26OCT26MEMUTA-UTA2\"}",
+   "lead_min": 522,
+   "league": "NBA",
+   "line": 1.5,
+   "market": "spread",
+   "new_money": 51312,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 1.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 1.5,
+     "price": -110
+    },
+    "betrivers": {
+     "point": -0.5,
+     "price": -110
+    },
+    "betus": {
+     "point": 1.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 1.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": -1.5,
+     "price": -102
+    },
+    "fanatics": {
+     "point": 1.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 1.5,
+     "price": -114
+    },
+    "kalshi": {
+     "point": 1.5,
+     "price": -104
+    },
+    "lowvig": {
+     "point": 1.5,
+     "price": -106
+    },
+    "mybookieag": {
+     "point": 1.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 1.5,
+     "price": -102
+    },
+    "polymarket": {
+     "point": 1.5,
+     "price": -104
+    },
+    "prophetx": {
+     "point": 2.0,
+     "price": -110
+    },
+    "williamhill_us": {
+     "point": 1.5,
+     "price": -115
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNBASPREAD-26OCT26MEMUTA-UTA2"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "polymarket"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [
+    "Memphis Grizzlies +1.5 (-115)"
+   ],
+   "sharp_oppose": [
+    "Utah Jazz +1 (-116)"
+   ],
+   "side": "Memphis",
+   "side_label": "NOT Utah wins by over 1.5 points",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-27T01:00:00Z",
+   "teams": [
+    "Memphis",
+    "Utah"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-26T16:10:10Z",
    "base_depth": 139969,
    "best_price": 0.515,
@@ -206,6 +353,8 @@
    "new_money": 40821,
    "paper_only": false,
    "price": 0.44,
+   "price_after_15m": 0.435,
+   "price_after_15m_book": "novig",
    "price_american": 127,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.44,
@@ -297,6 +446,7 @@
    "side_label": "Flames",
    "start_source": "polymarket",
    "start_utc": "2026-10-27T00:30:00Z",
+   "still_actionable": true,
    "teams": [
     "Maple Leafs",
     "Flames"
@@ -357,6 +507,8 @@
    "new_money": 96751,
    "paper_only": false,
    "price": 0.52,
+   "price_after_15m": 0.515,
+   "price_after_15m_book": "novig",
    "price_american": -108,
    "price_rule": "ok",
    "price_when_first_seen": 0.52,
@@ -444,6 +596,7 @@
    "side_label": "Rockets (-4.5)",
    "start_source": "polymarket",
    "start_utc": "2026-10-27T00:30:00Z",
+   "still_actionable": true,
    "teams": [
     "Hawks",
     "Rockets"
@@ -466,8 +619,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.54,
-   "clv_cents": 0.0,
+   "close_price": 0.55,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -1251,8 +1404,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.49,
-   "clv_cents": 0.0,
+   "close_price": 0.5,
+   "clv_cents": 1.0,
    "confirmed_after_min": 5,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -1408,8 +1561,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.47,
-   "clv_cents": -2.0,
+   "close_price": 0.46,
+   "clv_cents": -3.0,
    "confirmed_after_min": 5,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -2471,8 +2624,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.56,
-   "clv_cents": 5.0,
+   "close_price": 0.55,
+   "clv_cents": 4.0,
    "confirmed_after_min": 8,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -4556,8 +4709,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.55,
-   "clv_cents": 1.0,
+   "close_price": 0.54,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -4998,8 +5151,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.78,
-   "clv_cents": 0.0,
+   "close_price": 0.79,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -9154,8 +9307,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.87,
-   "clv_cents": 2.0,
+   "close_price": 0.86,
+   "clv_cents": 1.0,
    "confirmed_after_min": 6,
    "date": "2026-10-26",
    "depth_by_book": {
