@@ -1,6 +1,156 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-26T10:40:10Z",
+   "base_depth": 75608,
+   "best_price": 0.5,
+   "best_price_american": -100,
+   "best_price_book": "novig",
+   "bid_improved": true,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-26",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 2034,
+     "new_this_side": 60617,
+     "other_side": 42125,
+     "other_side_all_levels": 88644,
+     "ratio": 2.1,
+     "this_side": 86892,
+     "this_side_all_levels": 144226
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "Over 237.5 (237.5)",
+     "price": 0.5,
+     "this_side": 4693
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Over (237.5)",
+     "price": 0.5,
+     "this_side": 37336
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "over 237.5 (237.5)",
+     "price": 0.5,
+     "this_side": 8948
+    }
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-10-26T10:30:12Z",
+   "game": "Dallas vs Miami: Total Points",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNBATOTAL-26OCT26DALMIA-238\"}",
+   "lead_min": 770,
+   "league": "NBA",
+   "line": 237.5,
+   "market": "total",
+   "new_money": 60617,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.5,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 236.5,
+     "price": -115
+    },
+    "betonlineag": {
+     "point": 237.5,
+     "price": -110
+    },
+    "betrivers": {
+     "point": 236.5,
+     "price": -112
+    },
+    "betus": {
+     "point": 237.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 237.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 237.5,
+     "price": -110
+    },
+    "fanatics": {
+     "point": 237.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 236.5,
+     "price": -112
+    },
+    "kalshi": {
+     "point": 237.5,
+     "price": -104
+    },
+    "lowvig": {
+     "point": 237.5,
+     "price": -107
+    },
+    "mybookieag": {
+     "point": 237.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 237.5,
+     "price": 100
+    },
+    "polymarket": {
+     "point": 237.5,
+     "price": 100
+    },
+    "prophetx": {
+     "point": 237.0,
+     "price": -105
+    },
+    "williamhill_us": {
+     "point": 237.5,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBATOTAL-26OCT26DALMIA-238"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "polymarket"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [
+    "Over 235.5 (-113)"
+   ],
+   "sharp_oppose": [],
+   "side": "OVER",
+   "side_label": "Over 237.5 points",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-26T23:30:00Z",
+   "teams": [
+    "Dallas",
+    "Miami"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-26T08:00:14Z",
    "base_depth": 433005,
    "best_price": 0.6765,
