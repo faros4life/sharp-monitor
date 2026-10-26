@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Mon Oct 26, 9:20 AM ET. This run: 6 new, 0 not confirmed, 0 pending. Open alerts: 47.
+Updated Mon Oct 26, 9:30 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 47.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -9,7 +9,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Oct 26 9:20AM | NBA | Pacers vs. Bucks | total: Under (240.5) | polymarket | $42k | -108 | ✅ kalshi,novig |  | +0.0c |  | pending |
-| Oct 26 9:20AM | NBA | Timberwolves vs. Cavaliers | moneyline: Cavaliers | polymarket | $42k | -170 | ✅ kalshi,novig,prophetx | ✅ | +0.0c |  | pending |
+| Oct 26 9:20AM | NBA | Timberwolves vs. Cavaliers | moneyline: Cavaliers | polymarket | $42k | -170 | ✅ kalshi,novig,prophetx | ✅ | -1.0c |  | pending |
 | Oct 26 9:20AM | NBA | Bulls vs. Celtics | total: Over (232.5) | polymarket | $53k | -100 | ✅ prophetx |  | +0.0c |  | pending |
 | Oct 26 9:20AM | NBA | Washington vs Charlotte: Total Points | total: NOT Over 228.5 points | kalshi | $31k | -100 | ✅ prophetx | ✅ | +0.0c |  | pending |
 | Oct 26 9:20AM | NBA | Indiana vs Milwaukee: Total Points | total: NOT Over 240.5 points | kalshi | $113k | -104 | ✅ novig,polymarket |  | +0.0c |  | pending |
