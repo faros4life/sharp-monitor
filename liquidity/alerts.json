@@ -1,6 +1,140 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-26T04:57:30Z",
+   "base_depth": 20821,
+   "best_price": 0.8589,
+   "best_price_american": -609,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.85,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 7,
+   "date": "2026-10-27",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 16066,
+     "new_this_side": 312046,
+     "other_side": 746,
+     "other_side_all_levels": 24007,
+     "ratio": 7.1,
+     "this_side": 5274,
+     "this_side_all_levels": 332865
+    }
+   },
+   "fade_price": 0.16,
+   "first_seen_utc": "2026-10-26T04:50:09Z",
+   "game": "Sacramento vs San Antonio",
+   "key": "kalshi|KXNBAGAME-26OCT27SACSAS|ml|1",
+   "lead_min": 2762,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 312046,
+   "paper_only": false,
+   "price": 0.85,
+   "price_american": -567,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.85,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBAGAME-26OCT27SACSAS-SAS"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "no_match",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "San Antonio",
+   "side_label": "San Antonio",
+   "start_source": "kalshi",
+   "start_utc": "2026-10-28T03:00:00Z",
+   "teams": [
+    "Sacramento",
+    "San Antonio"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-26T04:57:30Z",
+   "base_depth": 16945,
+   "best_price": 0.8303,
+   "best_price_american": -489,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.82,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 7,
+   "date": "2026-10-27",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 15896,
+     "new_this_side": 321882,
+     "other_side": 979,
+     "other_side_all_levels": 24649,
+     "ratio": 3.5,
+     "this_side": 3400,
+     "this_side_all_levels": 338760
+    }
+   },
+   "fade_price": 0.19,
+   "first_seen_utc": "2026-10-26T04:50:09Z",
+   "game": "Brooklyn vs Boston",
+   "key": "kalshi|KXNBAGAME-26OCT27BKNBOS|ml|1",
+   "lead_min": 2732,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 321882,
+   "paper_only": false,
+   "price": 0.82,
+   "price_american": -456,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.82,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBAGAME-26OCT27BKNBOS-BOS"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "no_match",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Boston",
+   "side_label": "Boston",
+   "start_source": "kalshi",
+   "start_utc": "2026-10-28T02:30:00Z",
+   "teams": [
+    "Brooklyn",
+    "Boston"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-26T04:10:12Z",
    "base_depth": 39782,
    "best_price": 0.535,
@@ -493,8 +627,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.76,
-   "clv_cents": 0.0,
+   "close_price": 0.75,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -2007,8 +2141,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.58,
-   "clv_cents": 0.0,
+   "close_price": 0.57,
+   "clv_cents": -1.0,
    "confirmed_after_min": 9,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -8418,8 +8552,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.76,
-   "clv_cents": 0.0,
+   "close_price": 0.75,
+   "clv_cents": -1.0,
    "confirmed_after_min": 7,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -16737,13 +16871,14 @@
     "outcome_index": 0,
     "pm_market_id": "5080600"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "kalshi",
     "novig"
    ],
    "second_book_fresh": true,
+   "settled_utc": "2026-10-26T04:57:30Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Wild",
@@ -16756,7 +16891,7 @@
     "Canucks"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.57
   },
   {
    "alerted_utc": "2026-10-25T11:05:26Z",
