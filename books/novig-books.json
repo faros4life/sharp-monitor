@@ -12,7 +12,7 @@
    },
    "bet": "Over 235.5 (-113)",
    "book": "novig",
-   "checked_utc": "2026-10-26T08:23:33Z",
+   "checked_utc": "2026-10-26T08:30:13Z",
    "first": {
     "checked_utc": "2026-10-26T02:20:09Z",
     "status": "game_not_on_novig"
@@ -140,7 +140,7 @@
      {
       "american": -142,
       "american_displayed": -133,
-      "dollars": 10375,
+      "dollars": 10232,
       "price": 0.57,
       "price_after_fee": 0.5872
      },
@@ -207,7 +207,7 @@
    "latest": {
     "status": "game_not_on_novig"
    },
-   "lead_min_now": 906,
+   "lead_min_now": 900,
    "polymarket_first": {
     "alert_line": 235.5,
     "alert_price": -113,
@@ -313,14 +313,14 @@
      {
       "american": -127,
       "american_displayed": -127,
-      "dollars": 2896,
+      "dollars": 2865,
       "price": 0.56,
       "price_after_fee": 0.56
      },
      {
       "american": -133,
       "american_displayed": -133,
-      "dollars": 3761,
+      "dollars": 3731,
       "price": 0.57,
       "price_after_fee": 0.57
      },
@@ -490,13 +490,13 @@
    "best_now": {
     "american": -108,
     "book": "polymarket",
-    "dollars_at_alert_price_or_better_all_books": 3913,
+    "dollars_at_alert_price_or_better_all_books": 3873,
     "exact_line": true,
     "line": -13.5
    },
    "bet": "Boston Celtics -13.5 (-115)",
    "book": "novig",
-   "checked_utc": "2026-10-26T08:23:33Z",
+   "checked_utc": "2026-10-26T08:30:13Z",
    "first": {
     "checked_utc": "2026-10-26T00:40:48Z",
     "status": "game_not_on_novig"
@@ -617,7 +617,7 @@
      {
       "american": -126,
       "american_displayed": -117,
-      "dollars": 15156,
+      "dollars": 14886,
       "price": 0.54,
       "price_after_fee": 0.5574
      },
@@ -691,7 +691,7 @@
    "latest": {
     "status": "game_not_on_novig"
    },
-   "lead_min_now": 906,
+   "lead_min_now": 900,
    "polymarket_first": {
     "alert_line": -13.5,
     "alert_price": -115,
@@ -790,14 +790,14 @@
      {
       "american": -108,
       "american_displayed": -108,
-      "dollars": 998,
+      "dollars": 988,
       "price": 0.52,
       "price_after_fee": 0.52
      },
      {
       "american": -113,
       "american_displayed": -113,
-      "dollars": 2744,
+      "dollars": 2714,
       "price": 0.53,
       "price_after_fee": 0.53
      },
@@ -858,8 +858,8 @@
       "price_after_fee": 0.62
      }
     ],
-    "dollars_at_alert_price_or_better": 3742,
-    "dollars_at_best": 998,
+    "dollars_at_alert_price_or_better": 3702,
+    "dollars_at_best": 988,
     "exact_line": true,
     "fee_type": "zero_fees",
     "line": -13.5,
@@ -30796,5 +30796,5 @@
   }
  ],
  "note": "Exchange book check (FLAG ONLY) for sharp-monitor phone alerts with 2h+ lead. latest/first = Novig (public order books, no key); prophetx_latest/prophetx_first = ProphetX (read-only key; prices are AFTER its 2%% fee on winnings, displayed price kept as best_price_american_displayed): best_price_american, dollars_at_best and dollars_at_alert_price_or_better = amount you could bet at the alert price or better, buy_levels = the ladder. kalshi_latest/_first and polymarket_latest/_first: same fields (public books, no key), prices AFTER taker fees (Kalshi 0.07, Polymarket global 0.03 x P x (1-P) per contract unless gamma marks the market zero-fee; displayed price kept as best_price_american_displayed). Novig pregame: no fee. hardrock_latest/_first: Hard Rock sportsbook price and line via The Odds API (no order book; refreshed every 30 min). best_now = best gettable price across the books, plus total dollars at the alert price or better on books with the exact line. Novig fields: best_price = cheapest cost to BUY the alert side now (0-1, with American); dollars_at_alert_price_or_better = dollars you could buy at the alert's price or better on the same line; exact_line=false means Novig had no market at the alert's line and the nearest line is shown. resting_bids_on_this_side_dollars = others bidding the same side. 'first' = first check after the alert, 'latest' = this run. Novig orders are bids (verified Oct 21).",
- "updated_utc": "2026-10-26T08:23:33Z"
+ "updated_utc": "2026-10-26T08:30:13Z"
 }
