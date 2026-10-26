@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Mon Oct 26, 4:40 AM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 8.
+Updated Mon Oct 26, 4:50 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 8.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,7 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Oct 26 4:40AM | TENNIS | Badosa vs Lee | moneyline: Badosa | kalshi | $162k | -456 |  |  | +0.0c |  | pending |
+| Oct 26 4:40AM | TENNIS | Badosa vs Lee | moneyline: Badosa | kalshi | $162k | -456 |  |  | +3.0c |  | pending |
 | Oct 26 3:30AM | TENNIS | Shi vs Ibragimova | moneyline: Shi | kalshi | $1,035k | -525 |  |  | +10.0c |  | W |
 | Oct 26 3:10AM | TENNIS | Shi vs Ibragimova | moneyline: Ibragimova | kalshi | $709k | +104 |  |  | -42.0c | yes | L |
 | Oct 26 12:02AM | TENNIS | Machac vs de Minaur | moneyline: de Minaur | kalshi | $34k | -257 |  |  | -1.0c |  | pending |
