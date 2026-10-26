@@ -9,6 +9,7 @@ concurrency: sharp-monitor
 
 permissions:
   contents: write
+  actions: write     # lets this run start the executor right after a new alert
 
 jobs:
   run:
@@ -53,4 +54,12 @@ jobs:
             git commit -m "Update alerts.json"
             git pull --rebase -q || true
             git push || true
+          fi
+      - name: Wake the executor (new alert sent)
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ -f wake_executor ]; then
+            gh workflow run executor-dry-run.yml --ref main || echo "executor wake failed (its timer will pick it up)"
           fi
