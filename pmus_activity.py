@@ -25,6 +25,7 @@ from zoneinfo import ZoneInfo
 API = "https://api.polymarket.us"
 ET = ZoneInfo("America/New_York")
 DAYS = int(os.environ.get("DAYS", "") or "30")
+TOPKEYS = []
 
 
 def signed_get(path, params=None):
@@ -100,6 +101,16 @@ def when(a):
 
 
 def row(a):
+    pr = a.get("positionResolution")
+    if isinstance(pr, dict):   # settlement: payout = cashValue before, profit = realized after minus fees (Oct 26 format)
+        b, af = pr.get("beforePosition") or {}, pr.get("afterPosition") or {}
+        md = b.get("marketMetadata") or {}
+        fee, real = num(b.get("fees")), num(af.get("realized"))
+        t = when(pr)
+        return {"time_et": t.astimezone(ET).strftime("%Y-%m-%d %H:%M") if t else "", "type": "SETTLEMENT",
+                "market": f"{md.get('title') or pr.get('marketSlug')} [{pr.get('marketSlug')}]", "outcome": str(md.get("outcome") or ""),
+                "price": num(b.get("avgPx")), "qty": num(b.get("netPositionDecimal")), "amount": num(b.get("cashValue")),
+                "fee": fee, "pnl": round(real - (fee or 0), 2) if real is not None else None, "cost": num(b.get("cost"))}
     t = when(a)
     md = a.get("marketMetadata") if isinstance(a.get("marketMetadata"), dict) else {}
     return {"time_et": t.astimezone(ET).strftime("%Y-%m-%d %H:%M") if t else "",
@@ -109,7 +120,7 @@ def row(a):
             "price": num(find(a, "price", "avgPx", "px", "executionPrice")),
             "qty": num(find(a, "quantity", "qty", "size", "filledQuantity", "cumQuantity")),
             "amount": num(find(a, "amount", "cost", "notional", "cashAmount", "value", "payout", "realizedPnl")),
-            "fee": num(find(a, "fee", "fees", "commission"))}
+            "fee": num(find(a, "fee", "fees", "commission")), "pnl": None, "cost": None}
 
 
 def main():
@@ -123,6 +134,8 @@ def main():
         except urllib.error.HTTPError as e:
             sys.exit(f"activities read failed: HTTP {e.code}")
         pages += 1
+        if pages == 1:
+            TOPKEYS.extend(list(d.keys()) if isinstance(d, dict) else ["(list)"])
         got = items_of(d)
         acts += got
         nc = next_cursor(d)
@@ -140,13 +153,16 @@ def main():
     L = [f"POLYMARKET US ACTIVITY | last {DAYS} days (to {datetime.now(ET).strftime('%b %d %I:%M %p ET')})", "",
          f"Activities: {len(rows)} (pages read: {pages})", "", "BY TYPE (count | sum of amount | sum of fee)"]
     L += [f"  {k}: {v[0]} | {v[1]:,.2f} | {v[2]:,.2f}" for k, v in sorted(by.items())]
+    st = [r for r in rows if r["type"] == "SETTLEMENT" and r["pnl"] is not None]
+    L += ["", f"SETTLED: {len(st)} | payout {sum(r['amount'] or 0 for r in st):,.2f} | cost {sum(r['cost'] or 0 for r in st):,.2f} | "
+              f"fees {sum(r['fee'] or 0 for r in st):,.2f} | P&L after fees {sum(r['pnl'] for r in st):,.2f}"]
     L += ["", "ACTIVITIES (newest first)"]
     L += [f"  {r['time_et']} | {r['type']} | {r['market'][:60]} | {r['outcome'][:30]} | px {r['price']} | qty {r['qty']} | "
-          f"amt {r['amount']} | fee {r['fee']}" for r in rows]
+          f"amt {r['amount']} | fee {r['fee']}" + (f" | P&L {r['pnl']:+.2f}" if r.get("pnl") is not None else "") for r in rows]
     L += ["", "CSV", "time_et,type,market,outcome,price,qty,amount,fee"]
     L += [",".join(json.dumps(r[k]) if isinstance(r[k], str) else ("" if r[k] is None else str(r[k]))
                    for k in ("time_et", "type", "market", "outcome", "price", "qty", "amount", "fee")) for r in rows]
-    L += ["", "RAW (first 5 activities, for field names)", json.dumps(acts[:5], indent=1)[:6000],
+    L += ["", f"Response keys (page 1): {TOPKEYS}", "RAW (first 2 activities, for field names)", json.dumps(acts[:2], indent=1)[:4000],
           "", "Source: Polymarket US API, signed GET /v1/portfolio/activities (read-only)."]
     user = os.environ.get("GMAIL_ADDRESS", "").strip()
     pw = os.environ.get("GMAIL_APP_PASSWORD", "").replace(" ", "").strip()
