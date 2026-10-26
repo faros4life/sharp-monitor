@@ -1,6 +1,142 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-26T14:20:12Z",
+   "base_depth": 95286,
+   "best_price": 0.5311,
+   "best_price_american": -113,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.53,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-26",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 23148,
+     "new_this_side": 70232,
+     "other_side": 96587,
+     "other_side_all_levels": 139175,
+     "ratio": 1.2,
+     "this_side": 111831,
+     "this_side_all_levels": 161877
+    },
+    "polymarket": {
+     "heavier_side": false,
+     "label": "Over (235.5)",
+     "price": 0.53,
+     "this_side": 21718
+    }
+   },
+   "fade_price": 0.48,
+   "first_seen_utc": "2026-10-26T14:10:13Z",
+   "game": "Golden State vs Denver: Total Points",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNBATOTAL-26OCT26GSWDEN-236\"}",
+   "lead_min": 700,
+   "league": "NBA",
+   "line": 235.5,
+   "market": "total",
+   "new_money": 70232,
+   "paper_only": false,
+   "price": 0.53,
+   "price_american": -113,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.53,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 236.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 236.5,
+     "price": -108
+    },
+    "betrivers": {
+     "point": 235.5,
+     "price": -112
+    },
+    "betus": {
+     "point": 236.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 236.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 236.5,
+     "price": -108
+    },
+    "fanatics": {
+     "point": 236.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 236.5,
+     "price": -115
+    },
+    "kalshi": {
+     "point": 237.5,
+     "price": 108
+    },
+    "lowvig": {
+     "point": 236.5,
+     "price": -105
+    },
+    "mybookieag": {
+     "point": 236.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 236.5,
+     "price": 100
+    },
+    "polymarket": {
+     "point": 235.5,
+     "price": -113
+    },
+    "prophetx": {
+     "point": 236.0,
+     "price": -104
+    },
+    "williamhill_us": {
+     "point": 236.5,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBATOTAL-26OCT26GSWDEN-236"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "none_10k",
+   "second_book_fresh": false,
+   "sharp_agree": [
+    "Over 235.5 (-110)"
+   ],
+   "sharp_oppose": [],
+   "side": "OVER",
+   "side_label": "Over 235.5 points",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-27T02:00:00Z",
+   "teams": [
+    "Golden State",
+    "Denver"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-26T13:20:11Z",
    "base_depth": 35955,
    "best_price": 0.515,
@@ -15,8 +151,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.55,
-   "clv_cents": 3.0,
+   "close_price": 0.56,
+   "clv_cents": 4.0,
    "confirmed_after_min": 8,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -165,8 +301,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.61,
-   "clv_cents": -2.0,
+   "close_price": 0.62,
+   "clv_cents": -1.0,
    "confirmed_after_min": 8,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -332,8 +468,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": 0.0,
+   "close_price": 0.51,
+   "clv_cents": 1.0,
    "confirmed_after_min": 8,
    "date": "2026-10-26",
    "depth_by_book": {
