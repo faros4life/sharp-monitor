@@ -1,6 +1,293 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-26T12:50:10Z",
+   "base_depth": 137433,
+   "best_price": 0.51,
+   "best_price_american": -104,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-26",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "NOT Dallas wins by over 4.5 points",
+     "price": 0.51,
+     "this_side": 4016041
+    },
+    "novig": {
+     "new_other_side": 6385,
+     "new_this_side": 33096,
+     "other_side": 98915,
+     "other_side_all_levels": 102197,
+     "ratio": 1.7,
+     "this_side": 167525,
+     "this_side_all_levels": 174375
+    }
+   },
+   "fade_price": 0.495,
+   "first_seen_utc": "2026-10-26T12:40:12Z",
+   "game": "Dallas Cowboys @ Philadelphia Eagles",
+   "key": "novig|{\"market_id\": \"01a136e2-f057-7d23-8a3e-6eeec299ceee\", \"outcome_id\": \"01a136e2-f057-7d23-8a3e-6efb2faa60af\"}",
+   "lead_min": 685,
+   "league": "NFL",
+   "line": 4.5,
+   "market": "spread",
+   "new_money": 33096,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 4.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 4.5,
+     "price": -113
+    },
+    "betopenly": {
+     "point": 4.5,
+     "price": -104
+    },
+    "betrivers": {
+     "point": 4.5,
+     "price": -109
+    },
+    "betus": {
+     "point": 4.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 4.5,
+     "price": -115
+    },
+    "draftkings": {
+     "point": 4.5,
+     "price": -112
+    },
+    "fanatics": {
+     "point": 4.5,
+     "price": -115
+    },
+    "fanduel": {
+     "point": 4.5,
+     "price": -108
+    },
+    "kalshi": {
+     "point": 4.5,
+     "price": -104
+    },
+    "lowvig": {
+     "point": 4.5,
+     "price": -108
+    },
+    "mybookieag": {
+     "point": 4.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 4.5,
+     "price": -104
+    },
+    "polymarket": {
+     "point": 4.5,
+     "price": -108
+    },
+    "prophetx": {
+     "point": 4.5,
+     "price": -106
+    },
+    "williamhill_us": {
+     "point": 4.5,
+     "price": -109
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a136e2-f057-7d23-8a3e-6eeec299ceee",
+    "outcome_id": "01a136e2-f057-7d23-8a3e-6efb2faa60af"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Philadelphia Eagles",
+   "side_label": "PHI +4.5 (4.5)",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-27T00:15:00Z",
+   "teams": [
+    "Dallas Cowboys",
+    "Philadelphia Eagles"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-26T12:50:10Z",
+   "base_depth": 110452,
+   "best_price": 0.52,
+   "best_price_american": -108,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.53,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-26",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 13221,
+     "new_this_side": 50362,
+     "other_side": 63252,
+     "other_side_all_levels": 111474,
+     "ratio": 2.1,
+     "this_side": 133867,
+     "this_side_all_levels": 173405
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "ATL +5.5 (-5.5)",
+     "price": 0.52,
+     "this_side": 16568
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Hawks (+5.5)",
+     "price": 0.53,
+     "this_side": 36500
+    }
+   },
+   "fade_price": 0.49,
+   "first_seen_utc": "2026-10-26T12:40:12Z",
+   "game": "Atlanta vs Houston: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBASPREAD-26OCT26ATLHOU-HOU6\"}",
+   "lead_min": 700,
+   "league": "NBA",
+   "line": 5.5,
+   "market": "spread",
+   "new_money": 50362,
+   "paper_only": false,
+   "price": 0.53,
+   "price_american": -113,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.53,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 5.5,
+     "price": -115
+    },
+    "betonlineag": {
+     "point": 5.0,
+     "price": -107
+    },
+    "betopenly": {
+     "point": 5.0,
+     "price": 100
+    },
+    "betrivers": {
+     "point": 5.5,
+     "price": -109
+    },
+    "betus": {
+     "point": 5.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 5.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 5.5,
+     "price": -115
+    },
+    "fanatics": {
+     "point": 5.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 5.5,
+     "price": -112
+    },
+    "kalshi": {
+     "point": 5.5,
+     "price": -113
+    },
+    "lowvig": {
+     "point": 5.0,
+     "price": -103
+    },
+    "mybookieag": {
+     "point": 5.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 5.5,
+     "price": -108
+    },
+    "polymarket": {
+     "point": 5.5,
+     "price": -113
+    },
+    "prophetx": {
+     "point": 5.0,
+     "price": 100
+    },
+    "williamhill_us": {
+     "point": 5.0,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNBASPREAD-26OCT26ATLHOU-HOU6"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "polymarket"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Atlanta",
+   "side_label": "NOT Houston wins by over 5.5 points",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-27T00:30:00Z",
+   "teams": [
+    "Atlanta",
+    "Houston"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-26T12:40:12Z",
    "base_depth": 119833,
    "best_price": 0.5,
@@ -323,8 +610,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 0.0,
+   "close_price": 0.54,
+   "clv_cents": 2.0,
    "confirmed_after_min": 14,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -432,7 +719,8 @@
      "price": -110
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-26T12:50:10Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNBASPREAD-26OCT26MINCLE-CLE4"
@@ -472,8 +760,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.54,
-   "clv_cents": 3.0,
+   "close_price": 0.53,
+   "clv_cents": 2.0,
    "confirmed_after_min": 10,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -4657,8 +4945,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.61,
-   "clv_cents": 3.0,
+   "close_price": 0.62,
+   "clv_cents": 4.0,
    "confirmed_after_min": 9,
    "date": "2026-10-26",
    "depth_by_book": {
