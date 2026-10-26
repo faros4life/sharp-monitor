@@ -432,7 +432,8 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None, held=None):
     al = {"sport": (p.get("sport") or "").upper(), "game": p.get("game") or "", "bet": p.get("bet") or "",
           "start_utc": p.get("start_utc") or ""}
     dk = derive_key(p)
-    out = {"play": p, "pid": pid(p["play_key"]) + (f" {pid(dk)}" if dk and dk != p["play_key"] else "")}
+    out = {"play": p, "pid": pid(p["play_key"]) + (f" {pid(dk)}" if dk and dk != p["play_key"]
+                                                   and p.get("source") != "rules" else "")}   # rules keep their own namespace
     text = f" {al['bet']} {p.get('market') or ''} ".lower()
     if al["sport"] in BANNED_SPORTS or any(w in text for w in BANNED_WORDS):
         return dict(out, verdict="SKIP", reason="banned market/sport")
