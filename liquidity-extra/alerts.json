@@ -1,6 +1,79 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-26T22:00:21Z",
+   "base_depth": 85070,
+   "best_price": 0.69,
+   "best_price_american": -223,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.69,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 4,
+   "date": "2026-10-26",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 6989,
+     "new_this_side": 38985,
+     "other_side": 38066,
+     "other_side_all_levels": 54957,
+     "ratio": 2.2,
+     "this_side": 84115,
+     "this_side_all_levels": 115938
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "S. Cirstea (0)",
+     "price": 0.69,
+     "this_side": 3693
+    }
+   },
+   "fade_price": 0.31,
+   "first_seen_utc": "2026-10-26T21:56:14Z",
+   "game": "Joint vs Cirstea",
+   "key": "kalshi|KXWTAMATCH-26OCT26JOICIR|ml|1",
+   "lead_min": 210,
+   "league": "TENNIS",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 38985,
+   "paper_only": true,
+   "price": 0.69,
+   "price_american": -223,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.69,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXWTAMATCH-26OCT26JOICIR-CIR"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "none_10k",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Cirstea",
+   "side_label": "Cirstea",
+   "start_source": "novig",
+   "start_utc": "2026-10-27T01:30:00Z",
+   "teams": [
+    "Joint",
+    "Cirstea"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-26T18:46:11Z",
    "base_depth": 105898,
    "best_price": 0.52,
@@ -15,8 +88,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 0.0,
+   "close_price": 0.525,
+   "clv_cents": 0.5,
    "confirmed_after_min": 6,
    "date": "2026-10-26",
    "depth_by_book": {
