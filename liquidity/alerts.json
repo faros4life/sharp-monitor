@@ -1,6 +1,159 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-26T15:50:10Z",
+   "base_depth": 80965,
+   "best_price": 0.535,
+   "best_price_american": -115,
+   "best_price_book": "novig",
+   "bid_improved": true,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.54,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-26",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -19065,
+     "new_this_side": 38787,
+     "other_side": 56143,
+     "other_side_all_levels": 78859,
+     "ratio": 2.0,
+     "this_side": 114843,
+     "this_side_all_levels": 123291
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "Over 6.5 (6.5)",
+     "price": 0.535,
+     "this_side": 28018
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Over (6.5)",
+     "price": 0.54,
+     "this_side": 35033
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "over 6.5 (6.5)",
+     "price": 0.537,
+     "this_side": 9362
+    }
+   },
+   "fade_price": 0.47,
+   "first_seen_utc": "2026-10-26T15:40:11Z",
+   "game": "Detroit vs Edmonton: Total Goals",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNHLTOTAL-26OCT26DETEDM-7\"}",
+   "lead_min": 580,
+   "league": "NHL",
+   "line": 6.5,
+   "market": "total",
+   "new_money": 38787,
+   "paper_only": false,
+   "price": 0.54,
+   "price_american": -117,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.53,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 6.5,
+     "price": -120
+    },
+    "betonlineag": {
+     "point": 6.5,
+     "price": -121
+    },
+    "betopenly": {
+     "point": 6.5,
+     "price": -110
+    },
+    "betrivers": {
+     "point": 6.5,
+     "price": -121
+    },
+    "betus": {
+     "point": 6.5,
+     "price": -120
+    },
+    "bovada": {
+     "point": 6.5,
+     "price": -122
+    },
+    "draftkings": {
+     "point": 6.5,
+     "price": -118
+    },
+    "fanatics": {
+     "point": 6.5,
+     "price": -120
+    },
+    "fanduel": {
+     "point": 6.5,
+     "price": -122
+    },
+    "kalshi": {
+     "point": 6.5,
+     "price": -117
+    },
+    "lowvig": {
+     "point": 6.5,
+     "price": -121
+    },
+    "mybookieag": {
+     "point": 6.5,
+     "price": -119
+    },
+    "novig": {
+     "point": 6.5,
+     "price": -115
+    },
+    "polymarket": {
+     "point": 6.5,
+     "price": -117
+    },
+    "prophetx": {
+     "point": 6.5,
+     "price": -116
+    },
+    "williamhill_us": {
+     "point": 6.5,
+     "price": -122
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNHLTOTAL-26OCT26DETEDM-7"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "polymarket"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "OVER",
+   "side_label": "Over 6.5 goals scored",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-27T01:30:00Z",
+   "teams": [
+    "Detroit",
+    "Edmonton"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-26T15:40:11Z",
    "base_depth": 73905,
    "best_price": 0.51,
@@ -795,8 +948,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.48,
-   "clv_cents": -1.0,
+   "close_price": 0.47,
+   "clv_cents": -2.0,
    "confirmed_after_min": 5,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -2456,8 +2609,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.515,
-   "clv_cents": 0.5,
+   "close_price": 0.52,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -3360,8 +3513,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": 1.0,
+   "close_price": 0.51,
+   "clv_cents": 2.0,
    "confirmed_after_min": 10,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -4974,8 +5127,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.57,
-   "clv_cents": 6.0,
+   "close_price": 0.58,
+   "clv_cents": 7.0,
    "confirmed_after_min": 10,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -5561,8 +5714,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.6667,
-   "clv_cents": -1.6,
+   "close_price": 0.6721,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -12907,8 +13060,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.72,
-   "clv_cents": 5.0,
+   "close_price": 0.71,
+   "clv_cents": 4.0,
    "confirmed_after_min": 6,
    "date": "2026-10-26",
    "depth_by_book": {
