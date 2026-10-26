@@ -1,6 +1,73 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-26T07:30:19Z",
+   "base_depth": 669348,
+   "best_price": 0.8494,
+   "best_price_american": -564,
+   "best_price_book": "kalshi",
+   "bid_improved": true,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.84,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-26",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -575438,
+     "new_this_side": 1035109,
+     "other_side": 100114,
+     "other_side_all_levels": 210921,
+     "ratio": 4.1,
+     "this_side": 411462,
+     "this_side_all_levels": 2584326
+    }
+   },
+   "fade_price": 0.17,
+   "first_seen_utc": "2026-10-26T07:20:16Z",
+   "game": "Shi vs Ibragimova",
+   "key": "kalshi|KXWTAMATCH-26OCT26SHIIBR|ml|0",
+   "lead_min": 50,
+   "league": "TENNIS",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 1035109,
+   "paper_only": true,
+   "price": 0.84,
+   "price_american": -525,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.71,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXWTAMATCH-26OCT26SHIIBR-SHI"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "no_match",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Shi",
+   "side_label": "Shi",
+   "start_source": "kalshi",
+   "start_utc": "2026-10-26T08:20:00Z",
+   "teams": [
+    "Shi",
+    "Ibragimova"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-26T07:10:16Z",
    "base_depth": 358080,
    "best_price": 0.5075,
@@ -15,8 +82,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.3,
-   "clv_cents": -19.0,
+   "close_price": 0.17,
+   "clv_cents": -32.0,
    "confirmed_after_min": 10,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -41,6 +108,8 @@
    "new_money": 708782,
    "paper_only": true,
    "price": 0.49,
+   "price_after_15m": 0.1799,
+   "price_after_15m_book": "kalshi",
    "price_american": 104,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.43,
@@ -61,6 +130,7 @@
    "side_label": "Ibragimova",
    "start_source": "kalshi",
    "start_utc": "2026-10-26T08:20:00Z",
+   "still_actionable": true,
    "teams": [
     "Shi",
     "Ibragimova"
