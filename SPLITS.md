@@ -1,4 +1,4 @@
-# Paper splits (updated 2026-10-26T14:10:15Z)
+# Paper splits (updated 2026-10-26T15:15:18Z)
 
 Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kill bar: 30+ resulted at -0.10u/play or worse closes a split.
 
@@ -19,7 +19,7 @@ Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kil
 
 **ProphetX tripwire:** 0/30 resulted, -u/play - counting.
 
-**Price gaps (measurement only):** {"gaps": 1, "per_day": 1.0, "edge_pct_median": 0.51, "edge_pct_p90": 0.51, "size_est_median_upper_bound": 4444, "seen_once_share": 1.0, "lifetime_min_median": 0, "lived_10min_plus": 0, "with_200_both_legs_upper_bound": 1, "scan_sec_median": 0}
+**Price gaps (measurement only):** {"gaps": 2, "per_day": 2.0, "edge_pct_median": 0.965, "edge_pct_p90": 1.42, "size_est_median_upper_bound": 8233.5, "seen_once_share": 1.0, "lifetime_min_median": 0.0, "lived_10min_plus": 0, "with_200_both_legs_upper_bound": 2, "scan_sec_median": 265}
 
 ## Definitions
 
