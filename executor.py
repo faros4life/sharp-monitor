@@ -24,9 +24,12 @@ from email.mime.text import MIMEText
 
 import book_check as bc
 import liquidity_monitor as lm
+import agree_rules
 import positions
 
 UNIT = float(os.environ.get("EXEC_UNIT", "") or "200")          # + money: risk UNIT; - money: risk to win UNIT
+SOURCE = (os.environ.get("EXEC_SOURCE", "") or "both").lower()  # muse | rules | both (dry run: both, side by side)
+RULES_LOOKBACK_H = 6                                             # coded rules look at alerts first sent in the last 6 h
 MIN_LEAD_MIN = float(os.environ.get("EXEC_MIN_LEAD_MIN", "") or "60")
 CAP_LINE = -130                                                  # spreads/totals: never worse than -130
 PMUS = "https://gateway.polymarket.us"
@@ -111,6 +114,32 @@ def read_verdicts(M):
     return out
 
 
+def rule_plays(now):
+    """New alerts from alerts.json (the checkout is the latest feed) with the coded AGREE decision attached."""
+    try:
+        with open("alerts.json") as f:
+            feed = json.load(f).get("alerts") or []
+    except Exception as ex:
+        LOG.append(f"alerts.json unreadable: {str(ex)[:60]}")
+        return []
+    out = []
+    for a in feed:
+        try:
+            t = datetime.fromisoformat((a.get("alert_utc") or "").replace("Z", "+00:00"))
+            st = datetime.fromisoformat(a["start_utc"].replace("Z", "+00:00"))
+        except Exception:
+            continue
+        if t < now - timedelta(hours=RULES_LOOKBACK_H) or st <= now or not a.get("sent_to_phone"):
+            continue   # gate 1 (not sent = log only, no verdict) is applied here, so muted alerts add no email noise
+        p = {"sport": a.get("sport"), "game": a.get("game"), "bet": a.get("bet"), "start_utc": a.get("start_utc"),
+             "late": a.get("late"), "source": "rules", "alert_utc": a.get("alert_utc"), "rules": agree_rules.decide(a)}
+        k = derive_key(p)
+        if not k:
+            continue
+        out.append(dict(p, play_key="rule|" + k))
+    return out
+
+
 def derive_key(p):
     """No play_key (e.g. a raw alerts.json entry): sport|game|market|side, so repeat alerts on one play count once."""
     try:
@@ -163,6 +192,8 @@ def opposite_key(p):
 
 def already_handled(M, p):
     """Handled before under its own key OR under the play's game+side key (so a re-sent play never runs twice)."""
+    if p.get("source") == "rules":   # separate namespace, so Muse's verdict on the same play is still evaluated
+        return bool(gsearch(M, pid(p["play_key"])))
     keys = {p["play_key"], derive_key(p) or p["play_key"]}
     return any(gsearch(M, pid(k)) for k in keys)
 
@@ -586,7 +617,25 @@ def short(r):
 BOOK_NAME = {"novig": "Novig", "prophetx": "ProphetX", "kalshi": "Kalshi", "polymarket_us": "Polymarket US"}
 
 
+def src_tag(p):
+    return "[coded rules] " if p.get("source") == "rules" else ("[Muse] " if SOURCE == "both" else "")
+
+
+def lag_text(p, now=None):
+    try:
+        t = datetime.fromisoformat(p["alert_utc"].replace("Z", "+00:00"))
+        return f"{((now or datetime.now(timezone.utc)) - t).total_seconds() / 60:.0f} min after the alert"
+    except Exception:
+        return ""
+
+
 def plain(r):
+    p = r["play"]
+    txt = _plain(r)
+    return "  - " + src_tag(p) + (txt[4:] if txt.startswith("  - ") else txt)
+
+
+def _plain(r):
     p = r["play"]
     game = p.get("game") or ""
     if r["verdict"] == "WOULD PLACE":
@@ -630,8 +679,10 @@ def fmt(r):
     dk = derive_key(p)
     if r["verdict"] == "HELD":   # no xpid token: the play stays new and is retried next run
         return f"HELD  [{held_tok(dk or p['play_key'])}] {p.get('sport')} {p.get('game')} | {p.get('bet')}\n      reason: {r['reason']}"
-    tag = r["pid"] + (f" {wp(dk)}" if (r["verdict"] == "WOULD PLACE" and dk) else "")
-    head = f"[{tag}] {p.get('sport')} {p.get('game')} | {p.get('bet')}"
+    tag = r["pid"] + (f" {wp(dk)}" if (r["verdict"] == "WOULD PLACE" and dk and p.get("source") != "rules") else "")
+    head = f"{src_tag(p)}[{tag}] {p.get('sport')} {p.get('game')} | {p.get('bet')}"
+    if p.get("source") == "rules":
+        head += f"\n      decided {lag_text(p)}; flags (never veto): {'; '.join(p['rules'].get('flags') or []) or '-'}"
     if r["verdict"] == "SKIP":
         return f"SKIP  {head}\n      reason: {r['reason']}"
     moved = r["mtype"] != "moneyline" and r.get("take_line") is not None and abs(r["take_line"] - r["line"]) > 1e-9
@@ -672,10 +723,11 @@ def send(subject, body):
 def main():
     now = datetime.now(timezone.utc)
     M = imap_open()
-    plays = read_verdicts(M)
-    new = [p for p in plays if not already_handled(M, p)]
+    plays = read_verdicts(M) if SOURCE in ("muse", "both") else []
+    rplays = rule_plays(now) if SOURCE in ("rules", "both") else []
+    new = [p for p in plays + rplays if not already_handled(M, p)]
     M.logout()
-    print(f"Verdict plays seen (2 days): {len(plays)}; new: {len(new)}")
+    print(f"Verdict plays seen (2 days): {len(plays)}; coded-rule alerts: {len(rplays)}; new: {len(new)}")
     if not new:
         return
     lo = int(now.timestamp() * 1000)
@@ -706,7 +758,12 @@ def main():
         return k in taken_now or bool(gsearch(M2, wp(k)))
     for p in new:
         try:
-            r = evaluate(p, now, evs_by, mks_by_event, pos, taken, held)
+            if p.get("source") == "rules" and p["rules"]["verdict"] != "AGREE":
+                d = p["rules"]
+                results.append({"play": p, "pid": pid(p["play_key"]), "verdict": "SKIP",
+                                "reason": f"rules gate {d['gate']}: {d['reason']}"})
+                continue
+            r = evaluate(p, now, evs_by, mks_by_event, pos, None if p.get("source") == "rules" else taken, held)
             if r["verdict"] == "WOULD PLACE" and blind:
                 # can't see what's already held on every book: hold, retry next run, alert the phone once
                 r = dict(r, verdict="HELD", reason="positions unreadable on " + ", ".join(blind))
@@ -717,7 +774,7 @@ def main():
                          "Retrying every 10 min while the price is there. If you know you don't hold the other side, "
                          "you can place it by hand.")
             results.append(r)
-            if r["verdict"] == "WOULD PLACE" and derive_key(p):
+            if r["verdict"] == "WOULD PLACE" and derive_key(p) and p.get("source") != "rules":
                 taken_now.add(derive_key(p))
         except Exception as ex:
             results.append({"play": p, "pid": pid(p["play_key"]), "verdict": "SKIP", "reason": f"error: {str(ex)[:100]}"})
