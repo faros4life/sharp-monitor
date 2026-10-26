@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Mon Oct 26, 1:10 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 7.
+Updated Mon Oct 26, 1:17 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 7.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,7 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Oct 26 12:02AM | TENNIS | Machac vs de Minaur | moneyline: de Minaur | kalshi | $34k | -257 |  |  | +0.0c |  | pending |
+| Oct 26 12:02AM | TENNIS | Machac vs de Minaur | moneyline: de Minaur | kalshi | $34k | -257 |  |  | -1.0c |  | pending |
 | Oct 25 11:40PM | TENNIS | Timofeeva vs Kostovic | moneyline: Timofeeva | kalshi | $120k | -355 |  |  | +2.0c | yes | W |
 | Oct 25 11:30PM | TENNIS | Udvardy vs Kraus | moneyline: Kraus | kalshi | $113k | -335 |  |  | +7.0c |  | W |
 | Oct 25 10:08PM | TENNIS | Wang vs Parks | moneyline: Parks | kalshi | $351k | -317 |  |  | -1.0c |  | W |
