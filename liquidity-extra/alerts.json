@@ -1,6 +1,81 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-26T10:30:19Z",
+   "base_depth": 90675,
+   "best_price": 0.555,
+   "best_price_american": -125,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.56,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-26",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 9014,
+     "new_this_side": 30684,
+     "other_side": 56107,
+     "other_side_all_levels": 84880,
+     "ratio": 1.7,
+     "this_side": 95276,
+     "this_side_all_levels": 120148
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "J. Cerundolo (0)",
+     "price": 0.555,
+     "this_side": 12016
+    }
+   },
+   "fade_price": 0.46,
+   "first_seen_utc": "2026-10-26T10:20:15Z",
+   "game": "Altmaier vs Cerundolo",
+   "key": "kalshi|KXATPMATCH-26OCT26ALTCER|ml|1",
+   "lead_min": 190,
+   "league": "TENNIS",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 30684,
+   "paper_only": true,
+   "price": 0.56,
+   "price_american": -127,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.56,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXATPMATCH-26OCT26ALTCER-CER"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Cerundolo",
+   "side_label": "Cerundolo",
+   "start_source": "novig",
+   "start_utc": "2026-10-26T13:40:00Z",
+   "teams": [
+    "Altmaier",
+    "Cerundolo"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-26T10:10:17Z",
    "base_depth": 155138,
    "best_price": 0.675,
@@ -47,6 +122,8 @@
    "new_money": 28315,
    "paper_only": true,
    "price": 0.67,
+   "price_after_15m": 0.68,
+   "price_after_15m_book": "novig",
    "price_american": -203,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.67,
@@ -68,6 +145,7 @@
    "side_label": "Borges",
    "start_source": "novig",
    "start_utc": "2026-10-26T12:30:00Z",
+   "still_actionable": false,
    "teams": [
     "Brunold",
     "Borges"
@@ -90,8 +168,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": -15.0,
+   "close_price": 0.5,
+   "clv_cents": -18.0,
    "confirmed_after_min": 10,
    "date": "2026-10-26",
    "depth_by_book": {
