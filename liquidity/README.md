@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Mon Oct 26, 11:00 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 49.
+Updated Mon Oct 26, 11:10 AM ET. This run: 0 new, 0 not confirmed, 3 pending. Open alerts: 49.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -19,8 +19,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 26 9:12AM | NBA | Washington vs Charlotte: Spread | spread: Charlotte wins by over 2.5 points | kalshi | $93k | -100 | ✅ novig,polymarket |  | +0.0c |  | pending |
 | Oct 26 9:00AM | NBA | Timberwolves vs. Cavaliers | spread: Cavaliers (-4.5) | polymarket | $68k | -100 | ✅ kalshi |  | +0.0c |  | pending |
 | Oct 26 8:50AM | NFL | Dallas Cowboys @ Philadelphia Eagles | spread: PHI +4.5 (4.5) | novig | $33k | -104 | ✅ kalshi |  | +0.5c |  | pending |
-| Oct 26 8:50AM | NBA | Atlanta vs Houston: Spread | spread: NOT Houston wins by over 5.5 points | kalshi | $50k | -113 | ✅ novig,polymarket |  | +1.0c |  | pending |
-| Oct 26 8:40AM | NBA | Dallas vs Miami: Total Points | total: Over 239.5 points | kalshi | $57k | -100 | ✅ polymarket,prophetx | ✅ | +2.0c |  | pending |
+| Oct 26 8:50AM | NBA | Atlanta vs Houston: Spread | spread: NOT Houston wins by over 5.5 points | kalshi | $50k | -113 | ✅ novig,polymarket |  | +0.0c |  | pending |
+| Oct 26 8:40AM | NBA | Dallas vs Miami: Total Points | total: Over 239.5 points | kalshi | $57k | -100 | ✅ polymarket,prophetx | ✅ | +2.0c | yes | pending |
 | Oct 26 8:20AM | NHL | Detroit vs Edmonton | moneyline: Edmonton | kalshi | $67k | -163 | ✅ novig,polymarket,prophetx |  | +0.0c |  | pending |
 | Oct 26 8:14AM | NBA | Minnesota vs Cleveland: Spread | spread: Cleveland wins by over 3.5 points | kalshi | $36k | -108 | ✅ polymarket |  | +2.0c | yes | pending |
 | Oct 26 8:00AM | NBA | Timberwolves vs. Cavaliers | spread: Cavaliers (-3.5) | polymarket | $28k | -104 | ✅ kalshi |  | +3.0c |  | pending |
@@ -39,7 +39,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 26 4:00AM | NCAAF | Sam Houston vs Missouri St. | moneyline: Missouri St. | kalshi | $62k | -203 |  |  | +0.0c |  | pending |
 | Oct 26 1:00AM | NBA | Sacramento vs San Antonio | moneyline: San Antonio | kalshi | $312k | -567 |  |  | +2.0c |  | pending |
 | Oct 26 1:00AM | NBA | Brooklyn vs Boston | moneyline: Boston | kalshi | $322k | -456 |  |  | -1.0c |  | pending |
-| Oct 26 12:10AM | NBA | Wizards vs. Hornets | moneyline: Hornets | polymarket | $32k | -117 | ✅ kalshi,novig |  | +1.0c |  | pending |
+| Oct 26 12:10AM | NBA | Wizards vs. Hornets | moneyline: Hornets | polymarket | $32k | -117 | ✅ kalshi,novig |  | +3.0c |  | pending |
 | Oct 25 11:30PM | NFL | Dallas Cowboys at Philadelphia Eagles | moneyline: Dallas Cowboys | prophetx | $81k | -215 | ✅ kalshi,novig |  | -1.6c | yes | pending |
 | Oct 25 11:20PM | NFL | Dallas Cowboys @ Philadelphia Eagles | moneyline: DAL (0) | novig | $33k | -208 | ✅ kalshi,prophetx |  | -1.0c |  | pending |
 | Oct 25 10:50PM | NBA | Phoenix vs Oklahoma City | moneyline: Oklahoma City | kalshi | $51k | -317 |  |  | +3.0c |  | pending |
