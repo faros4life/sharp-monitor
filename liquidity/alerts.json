@@ -1,6 +1,291 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-26T17:30:14Z",
+   "base_depth": 96495,
+   "best_price": 0.655,
+   "best_price_american": -190,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.66,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-26",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "NOT Toronto wins by over 1.5 goals",
+     "price": 0.66,
+     "this_side": 275944
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "CGY +1.5 (1.5)",
+     "price": 0.655,
+     "this_side": 37154
+    },
+    "polymarket": {
+     "new_other_side": 2664,
+     "new_this_side": 58533,
+     "other_side": 31026,
+     "other_side_all_levels": 40287,
+     "ratio": 4.3,
+     "this_side": 132485,
+     "this_side_all_levels": 156410
+    }
+   },
+   "fade_price": 0.35,
+   "first_seen_utc": "2026-10-26T17:20:11Z",
+   "game": "Maple Leafs vs. Flames",
+   "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6208318\"}",
+   "lead_min": 420,
+   "league": "NHL",
+   "line": 1.5,
+   "market": "spread",
+   "new_money": 58533,
+   "paper_only": false,
+   "price": 0.66,
+   "price_american": -194,
+   "price_rule": "fails_cap",
+   "price_when_first_seen": 0.66,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 1.5,
+     "price": -210
+    },
+    "betonlineag": {
+     "point": 1.5,
+     "price": -203
+    },
+    "betopenly": {
+     "point": 1.5,
+     "price": -186
+    },
+    "betrivers": {
+     "point": 1.5,
+     "price": -200
+    },
+    "betus": {
+     "point": 1.5,
+     "price": -200
+    },
+    "bovada": {
+     "point": 1.5,
+     "price": -198
+    },
+    "draftkings": {
+     "point": 1.5,
+     "price": -198
+    },
+    "fanatics": {
+     "point": 1.5,
+     "price": -205
+    },
+    "fanduel": {
+     "point": 1.5,
+     "price": -188
+    },
+    "kalshi": {
+     "point": 1.5,
+     "price": -194
+    },
+    "lowvig": {
+     "point": 1.5,
+     "price": -203
+    },
+    "mybookieag": {
+     "point": 1.5,
+     "price": -210
+    },
+    "novig": {
+     "point": 1.5,
+     "price": -190
+    },
+    "polymarket": {
+     "point": 1.5,
+     "price": -194
+    },
+    "prophetx": {
+     "point": 1.5,
+     "price": -190
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 1,
+    "pm_market_id": "6208318"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi",
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Flames",
+   "side_label": "Flames (+1.5)",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-27T00:30:00Z",
+   "teams": [
+    "Maple Leafs",
+    "Flames"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-26T17:30:14Z",
+   "base_depth": 104657,
+   "best_price": 0.5265,
+   "best_price_american": -111,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.53,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-26",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 7546,
+     "new_this_side": 43749,
+     "other_side": 46131,
+     "other_side_all_levels": 113680,
+     "ratio": 1.6,
+     "this_side": 74015,
+     "this_side_all_levels": 150844
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Under (232.5)",
+     "price": 0.52,
+     "this_side": 32563
+    }
+   },
+   "fade_price": 0.49,
+   "first_seen_utc": "2026-10-26T17:20:11Z",
+   "game": "Minnesota vs Cleveland: Total Points",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBATOTAL-26OCT26MINCLE-233\"}",
+   "lead_min": 330,
+   "league": "NBA",
+   "line": 232.5,
+   "market": "total",
+   "new_money": 43749,
+   "paper_only": false,
+   "price": 0.53,
+   "price_american": -113,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.53,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 231.5,
+     "price": -105
+    },
+    "betonlineag": {
+     "point": 232.0,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 232.5,
+     "price": 100
+    },
+    "betrivers": {
+     "point": 231.5,
+     "price": -109
+    },
+    "betus": {
+     "point": 232.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 232.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 232.5,
+     "price": -115
+    },
+    "fanatics": {
+     "point": 232.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 231.5,
+     "price": -104
+    },
+    "kalshi": {
+     "point": 232.5,
+     "price": -113
+    },
+    "lowvig": {
+     "point": 232.0,
+     "price": -107
+    },
+    "mybookieag": {
+     "point": 232.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 231.5,
+     "price": 100
+    },
+    "polymarket": {
+     "point": 232.5,
+     "price": -108
+    },
+    "prophetx": {
+     "point": 232.0,
+     "price": -104
+    },
+    "williamhill_us": {
+     "point": 232.0,
+     "price": -105
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNBATOTAL-26OCT26MINCLE-233"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "polymarket"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [
+    "Under 232.5 (-110)"
+   ],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "NOT Over 232.5 points",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-26T23:00:00Z",
+   "teams": [
+    "Minnesota",
+    "Cleveland"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-26T17:20:11Z",
    "base_depth": 162886,
    "best_price": 0.5288,
@@ -158,8 +443,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": 0.0,
+   "close_price": 0.49,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -356,6 +641,8 @@
    "new_money": 25952,
    "paper_only": false,
    "price": 0.64,
+   "price_after_15m": 0.6397,
+   "price_after_15m_book": "prophetx",
    "price_american": -178,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.65,
@@ -454,6 +741,7 @@
    "side_label": "CLE (0)",
    "start_source": "polymarket",
    "start_utc": "2026-10-26T23:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Minnesota Timberwolves",
     "Cleveland Cavaliers"
@@ -1059,8 +1347,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": 0.0,
+   "close_price": 0.52,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -1825,8 +2113,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.47,
-   "clv_cents": 0.0,
+   "close_price": 0.48,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -2304,8 +2592,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.54,
-   "clv_cents": 5.0,
+   "close_price": 0.53,
+   "clv_cents": 4.0,
    "confirmed_after_min": 5,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -3974,8 +4262,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.54,
-   "clv_cents": 4.0,
+   "close_price": 0.53,
+   "clv_cents": 3.0,
    "confirmed_after_min": 10,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -5466,8 +5754,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.6,
-   "clv_cents": 0.0,
+   "close_price": 0.59,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-26",
    "depth_by_book": {
