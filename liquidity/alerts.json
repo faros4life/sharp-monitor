@@ -1,6 +1,153 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-26T13:08:46Z",
+   "base_depth": 140444,
+   "best_price": 0.49,
+   "best_price_american": 104,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 8,
+   "date": "2026-10-26",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 548,
+     "new_this_side": 92956,
+     "other_side": 49681,
+     "other_side_all_levels": 103468,
+     "ratio": 3.7,
+     "this_side": 185822,
+     "this_side_all_levels": 239779
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "CHA -2.5 (-2.5)",
+     "price": 0.49,
+     "this_side": 10530
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Hornets (-2.5)",
+     "price": 0.49,
+     "this_side": 41640
+    }
+   },
+   "fade_price": 0.51,
+   "first_seen_utc": "2026-10-26T13:00:17Z",
+   "game": "Washington vs Charlotte: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNBASPREAD-26OCT26WASCHA-CHA3\"}",
+   "lead_min": 591,
+   "league": "NBA",
+   "line": -2.5,
+   "market": "spread",
+   "new_money": 92956,
+   "paper_only": false,
+   "price": 0.5,
+   "price_american": -100,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.5,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -1.5,
+     "price": -115
+    },
+    "betonlineag": {
+     "point": -2.0,
+     "price": -108
+    },
+    "betopenly": {
+     "point": -1.5,
+     "price": -107
+    },
+    "betrivers": {
+     "point": -1.5,
+     "price": -112
+    },
+    "betus": {
+     "point": -2.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": -2.0,
+     "price": -115
+    },
+    "draftkings": {
+     "point": -2.5,
+     "price": -102
+    },
+    "fanatics": {
+     "point": -2.5,
+     "price": -105
+    },
+    "fanduel": {
+     "point": -1.5,
+     "price": -112
+    },
+    "kalshi": {
+     "point": -2.5,
+     "price": 100
+    },
+    "lowvig": {
+     "point": -2.0,
+     "price": -104
+    },
+    "mybookieag": {
+     "point": -2.0,
+     "price": -110
+    },
+    "novig": {
+     "point": -2.5,
+     "price": 104
+    },
+    "polymarket": {
+     "point": -2.5,
+     "price": 104
+    },
+    "prophetx": {
+     "point": -2.0,
+     "price": -105
+    },
+    "williamhill_us": {
+     "point": -2.0,
+     "price": -105
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBASPREAD-26OCT26WASCHA-CHA3"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "polymarket"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Charlotte",
+   "side_label": "Charlotte wins by over 2.5 points",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-26T23:00:00Z",
+   "teams": [
+    "Washington",
+    "Charlotte"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-26T13:00:17Z",
    "base_depth": 46995,
    "best_price": 0.495,
@@ -161,8 +308,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": 0.0,
+   "close_price": 0.515,
+   "clv_cents": 0.5,
    "confirmed_after_min": 10,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -193,6 +340,8 @@
    "new_money": 33096,
    "paper_only": false,
    "price": 0.51,
+   "price_after_15m": 0.515,
+   "price_after_15m_book": "novig",
    "price_american": -104,
    "price_rule": "ok",
    "price_when_first_seen": 0.51,
@@ -279,6 +428,7 @@
    "side_label": "PHI +4.5 (4.5)",
    "start_source": "prophetx",
    "start_utc": "2026-10-27T00:15:00Z",
+   "still_actionable": false,
    "teams": [
     "Dallas Cowboys",
     "Philadelphia Eagles"
@@ -339,6 +489,8 @@
    "new_money": 50362,
    "paper_only": false,
    "price": 0.53,
+   "price_after_15m": 0.52,
+   "price_after_15m_book": "novig",
    "price_american": -113,
    "price_rule": "ok",
    "price_when_first_seen": 0.53,
@@ -426,6 +578,7 @@
    "side_label": "NOT Houston wins by over 5.5 points",
    "start_source": "polymarket",
    "start_utc": "2026-10-27T00:30:00Z",
+   "still_actionable": true,
    "teams": [
     "Atlanta",
     "Houston"
@@ -1207,8 +1360,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": 0.0,
+   "close_price": 0.52,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -3029,8 +3182,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.8,
-   "clv_cents": -2.0,
+   "close_price": 0.81,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -5094,8 +5247,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.62,
-   "clv_cents": 4.0,
+   "close_price": 0.63,
+   "clv_cents": 5.0,
    "confirmed_after_min": 9,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -10689,8 +10842,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.66,
-   "clv_cents": -1.0,
+   "close_price": 0.67,
+   "clv_cents": 0.0,
    "confirmed_after_min": 6,
    "date": "2026-10-26",
    "depth_by_book": {
