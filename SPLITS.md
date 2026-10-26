@@ -1,4 +1,4 @@
-# Paper splits (updated 2026-10-26T12:30:17Z)
+# Paper splits (updated 2026-10-26T12:40:16Z)
 
 Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kill bar: 30+ resulted at -0.10u/play or worse closes a split.
 
@@ -7,6 +7,7 @@ Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kil
 | Phase-1 live filter (paper view) | a-priori | 2026-10-26 | 0-0-0 | +0.00 |  |  | OPEN |
 | Phase-1 control group | control | 2026-10-26 | 0-0-0 | +0.00 |  |  | OPEN |
 | Hard Rock-priced, routed | a-priori | 2026-10-26 | 0-0-0 | +0.00 |  |  | OPEN |
+| Fade Hard Rock-priced | scan | 2026-10-26 | 0-0-0 | +0.00 |  |  | OPEN |
 | PM-global-priced, routed | a-priori | 2026-10-26 | 0-0-0 | +0.00 |  |  | OPEN |
 | Unders only | scan | 2026-10-26 | 0-0-0 | +0.00 |  |  | OPEN |
 | Combined filter | scan | 2026-10-26 | 0-0-0 | +0.00 |  |  | OPEN |
@@ -25,6 +26,7 @@ Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kil
 - **Phase-1 live filter (paper view)** (a-priori; promote >= 20 resulted AND positive; kill >= 30 resulted at <= -0.1u/play -> CLOSED): Sent alerts priced on ProphetX at alert time, Grade A/B, NCAAF/NBA spreads or unders, NFL unders only, not sent 12-24h before start, not late. Muse AGREE is applied in the executor ledger, not here.
 - **Phase-1 control group** (control; promote none (comparison only); kill none): Sent ProphetX-priced Grade A/B alerts that phase 1 EXCLUDES (overs, moneylines, NHL, NFL, MLB, or 12-24h before start). Shows whether the cuts help forward. No promotion bar; kill bar not applied.
 - **Hard Rock-priced, routed** (a-priori; promote >= 20 resulted AND positive; kill >= 30 resulted at <= -0.1u/play -> CLOSED): Sent alerts priced on Hard Rock, graded at the alert price (the executor routes them to the best exchange).
+- **Fade Hard Rock-priced** (scan; promote >= 30 forward resulted AND >= +0.10u/play; kill >= 30 resulted at <= -0.1u/play -> CLOSED): Same alerts as 'Hard Rock-priced, routed' (sent, priced on Hard Rock), graded on the OTHER side at the real opposite-side price logged when the alert fired (fade_units, 1u after fees). Plays without a logged fade price do not count. Read next to HR-routed: both directions of every Hard Rock-priced alert.
 - **PM-global-priced, routed** (a-priori; promote >= 20 resulted AND positive; kill >= 30 resulted at <= -0.1u/play -> CLOSED): Sent alerts priced on global Polymarket, graded at the alert price (routed to the best exchange). Closing population: global PM left RETAIL_BOOKS on Oct 25.
 - **Unders only** (scan; promote >= 30 forward resulted AND >= +0.10u/play; kill >= 30 resulted at <= -0.1u/play -> CLOSED): Sent alerts on unders (any book, any sport).
 - **Combined filter** (scan; promote >= 30 forward resulted AND >= +0.10u/play; kill >= 30 resulted at <= -0.1u/play -> CLOSED): Sent alerts NOT priced on Hard Rock, NOT sent 12-24h before start, NOT overs.

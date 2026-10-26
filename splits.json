@@ -62,6 +62,26 @@
    "true_close_n": 0
   },
   {
+   "id": "hr_fade",
+   "name": "Fade Hard Rock-priced",
+   "type": "scan",
+   "definition": "Same alerts as 'Hard Rock-priced, routed' (sent, priced on Hard Rock), graded on the OTHER side at the real opposite-side price logged when the alert fired (fade_units, 1u after fees). Plays without a logged fade price do not count. Read next to HR-routed: both directions of every Hard Rock-priced alert.",
+   "start_utc": "2026-10-26T04:00:00Z",
+   "promotion_bar": ">= 30 forward resulted AND >= +0.10u/play",
+   "kill_bar": ">= 30 resulted at <= -0.1u/play -> CLOSED",
+   "status": "OPEN",
+   "closed_utc": null,
+   "plays": 4,
+   "resulted": 0,
+   "W": 0,
+   "L": 0,
+   "P": 0,
+   "units": 0,
+   "u_per_play": null,
+   "true_close_value_pct": null,
+   "true_close_n": 0
+  },
+  {
    "id": "pmg_routed",
    "name": "PM-global-priced, routed",
    "type": "a-priori",
@@ -240,5 +260,5 @@
   "with_200_both_legs_upper_bound": 1,
   "scan_sec_median": 0
  },
- "updated_utc": "2026-10-26T12:30:17Z"
+ "updated_utc": "2026-10-26T12:40:16Z"
 }
