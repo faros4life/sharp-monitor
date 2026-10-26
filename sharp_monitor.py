@@ -65,6 +65,10 @@ LATE_MODE = (os.environ.get("LATE_MODE", "") or "tag").lower()
 # "send" = push them too.
 REPEAT_MODE = (os.environ.get("REPEAT_MODE", "") or "mute").lower()
 RANKINGS_URL = "https://site.api.espn.com/apis/site/v2/sports/football/college-football/rankings"
+# Oct 25: college basketball uses the same Top 25 rule (AP poll), filtered with the same NCAAF_TOP25 setting
+RANKINGS = {"americanfootball_ncaaf": ("top25", RANKINGS_URL),
+            "basketball_ncaab": ("top25_ncaab",
+                                 "https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/rankings")}
 
 SPORTS = {
     "americanfootball_nfl":   dict(label="NFL",   markets=["spreads", "totals"], spread=1.0, total=1.0, keys=[3, 7]),
@@ -312,15 +316,16 @@ def _norm(x):
     return " ".join(x.lower().replace(".", "").replace("&", " and ").split())
 
 
-def load_top25(st, n):
+def load_top25(st, n, sport_key="americanfootball_ncaaf"):
     """{rank: [name variants]} from ESPN's AP poll, cached once per ET day. None if unavailable."""
+    ck, url = RANKINGS[sport_key]
     today = n.astimezone(ET).date().isoformat()
-    cache = st.get("top25")
+    cache = st.get(ck)
     if cache and cache.get("day") == today:
         return cache.get("teams")
     teams = None
     try:
-        req = urllib.request.Request(RANKINGS_URL, headers={"User-Agent": "Mozilla/5.0"})
+        req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
         with urllib.request.urlopen(req, timeout=20) as r:
             data = json.loads(r.read().decode())
         polls = data.get("rankings", [])
@@ -336,9 +341,9 @@ def load_top25(st, n):
                               "mascot": _norm(t.get("name", "")), "label": t.get("location") or t.get("nickname", "")})
             teams = teams or None
     except Exception as ex:
-        print(f"Top 25 fetch failed: {ex}")
+        print(f"Top 25 fetch failed ({sport_key}): {ex}")
     if teams is not None or not cache:
-        st["top25"] = {"day": today if teams is not None else "", "teams": teams}
+        st[ck] = {"day": today if teams is not None else "", "teams": teams}
     return teams if teams is not None else (cache or {}).get("teams")
 
 
@@ -1143,7 +1148,7 @@ def run():
 
     books = ",".join(BOOKS)
     sent = 0
-    top25 = load_top25(st, n) if (NCAAF_TOP25 != "off" and "americanfootball_ncaaf" in active) else None
+    top25s = {k: load_top25(st, n, k) for k in RANKINGS if NCAAF_TOP25 != "off" and k in active}
     for key in active:
         if st.get("remaining") is not None and st["remaining"] <= RESERVE:
             print("Credit reserve reached; stopping.")
@@ -1179,8 +1184,7 @@ def run():
                 for _, v in h["obs"]:
                     for k, x in v.items():
                         base.setdefault(k, x)
-                is_t25, tag = (top25_tag(ev, top25) if key == "americanfootball_ncaaf" and NCAAF_TOP25 != "off"
-                               else (None, ""))
+                is_t25, tag = (top25_tag(ev, top25s.get(key)) if key in top25s else (None, ""))
                 for a in detect(ev, cfg, lines, base):
                     if a["id"] in st["alerted"]:
                         continue
