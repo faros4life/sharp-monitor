@@ -1,6 +1,144 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-26T23:40:10Z",
+   "base_depth": 1030322,
+   "best_price": 0.51,
+   "best_price_american": -104,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 4,
+   "date": "2026-10-27",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 210,
+     "new_this_side": 174697,
+     "other_side": 347490,
+     "other_side_all_levels": 611875,
+     "ratio": 2.9,
+     "this_side": 1013471,
+     "this_side_all_levels": 1205048
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "WKU (0)",
+     "price": 0.51,
+     "this_side": 20069
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "Western Kentucky",
+     "price": 0.5098,
+     "this_side": 3279
+    }
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-10-26T23:35:52Z",
+   "game": "Delaware vs Western Kentucky",
+   "key": "kalshi|KXNCAAFGAME-26OCT27DELWKU|ml|1",
+   "lead_min": 1400,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 174697,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -112
+    },
+    "betopenly": {
+     "point": null,
+     "price": -103
+    },
+    "betrivers": {
+     "point": null,
+     "price": -114
+    },
+    "bovada": {
+     "point": null,
+     "price": -110
+    },
+    "draftkings": {
+     "point": null,
+     "price": -112
+    },
+    "fanatics": {
+     "point": null,
+     "price": -110
+    },
+    "fanduel": {
+     "point": null,
+     "price": -110
+    },
+    "kalshi": {
+     "point": null,
+     "price": -104
+    },
+    "lowvig": {
+     "point": null,
+     "price": -112
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -113
+    },
+    "novig": {
+     "point": null,
+     "price": -104
+    },
+    "prophetx": {
+     "point": null,
+     "price": -104
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -115
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26OCT27DELWKU-WKU"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Western Kentucky",
+   "side_label": "Western Kentucky",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-27T23:00:00Z",
+   "teams": [
+    "Delaware",
+    "Western Kentucky"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-26T23:35:52Z",
    "base_depth": 147938,
    "best_price": 0.39,
@@ -171,8 +309,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.6,
-   "clv_cents": 0.0,
+   "close_price": 0.62,
+   "clv_cents": 2.0,
    "confirmed_after_min": 6,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -1079,8 +1217,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.68,
-   "clv_cents": 18.0,
+   "close_price": 0.71,
+   "clv_cents": 21.0,
    "confirmed_after_min": 13,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -5564,8 +5702,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.26,
-   "clv_cents": -22.0,
+   "close_price": 0.25,
+   "clv_cents": -23.0,
    "confirmed_after_min": 14,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -6001,8 +6139,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": -1.0,
+   "close_price": 0.5,
+   "clv_cents": -3.0,
    "confirmed_after_min": 10,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -6409,7 +6547,8 @@
      "price": -110
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-26T23:40:10Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNBASPREAD-26OCT26CHIBOS-BOS15"
@@ -6900,8 +7039,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.37,
-   "clv_cents": -19.0,
+   "close_price": 0.21,
+   "clv_cents": -35.0,
    "confirmed_after_min": 10,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -8451,8 +8590,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.29,
-   "clv_cents": -20.0,
+   "close_price": 0.27,
+   "clv_cents": -22.0,
    "confirmed_after_min": 5,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -9824,8 +9963,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.64,
-   "clv_cents": 19.0,
+   "close_price": 0.79,
+   "clv_cents": 34.0,
    "confirmed_after_min": 8,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -9974,8 +10113,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.46,
-   "clv_cents": -4.0,
+   "close_price": 0.47,
+   "clv_cents": -3.0,
    "confirmed_after_min": 12,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -10881,8 +11020,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.33,
-   "clv_cents": -19.0,
+   "close_price": 0.3,
+   "clv_cents": -22.0,
    "confirmed_after_min": 14,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -11330,8 +11469,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": -1.0,
+   "close_price": 0.49,
+   "clv_cents": -2.0,
    "confirmed_after_min": 10,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -13384,8 +13523,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.6644,
-   "clv_cents": -1.8,
+   "close_price": 0.6667,
+   "clv_cents": -1.6,
    "confirmed_after_min": 10,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -15219,8 +15358,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.41,
-   "clv_cents": -17.0,
+   "close_price": 0.39,
+   "clv_cents": -19.0,
    "confirmed_after_min": 9,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -18887,8 +19026,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": 0.0,
+   "close_price": 0.55,
+   "clv_cents": 2.0,
    "confirmed_after_min": 10,
    "date": "2026-10-26",
    "depth_by_book": {
