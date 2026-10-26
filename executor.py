@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """
-Auto-placement executor - DRY RUN (Oct 23, 2026 spec). THIS FILE CONTAINS NO ORDER CODE: it cannot place, change
-or cancel anything on any exchange. It reads Muse's AUTO-PLACE VERDICTS emails, runs every skip check, prices all 4
+Auto-placement executor (Oct 23 spec; LIVE phase 1 added Oct 26). Real orders happen ONLY through px_live.place()
+(ProphetX, fill-or-kill, phase-1 plays with Muse AGREE, $50 unit) and ONLY when the repo variable EXEC_LIVE is "on";
+px_live refuses on STOP, the $100 per-order guard and the $1,500 daily stop. Everything else stays a dry run. It reads Muse's AUTO-PLACE VERDICTS emails, runs every skip check, prices all 4
 books after fees, sizes the stake, and emails what it WOULD have placed.
 
 Verdict email (from Muse, to the Bets address): subject contains "AUTO-PLACE VERDICTS"; body holds a JSON array of
@@ -27,6 +28,7 @@ import book_check as bc
 import liquidity_monitor as lm
 import agree_rules
 import positions
+import px_live
 
 UNIT = float(os.environ.get("EXEC_UNIT", "") or "200")          # + money: risk UNIT; - money: risk to win UNIT
 SOURCE = (os.environ.get("EXEC_SOURCE", "") or "both").lower()  # muse | rules | both (dry run: both, side by side)
@@ -559,7 +561,7 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None, held=None):
             continue
         shown = r.get("best_price_american_displayed")
         cands.append({"book": b, "line": bl, "am": am, "shown": int(shown) if shown is not None else am, "eq": lm.american(min(max(c_eq, 0.01), 0.99)), "c_eq": c_eq,
-                      "hb": hb, "avail": avail})
+                      "hb": hb, "avail": avail, "thr": thr, "buy": r.get("buy_levels") or []})
     if not cands:
         if not ladders:
             return dict(out, verdict="SKIP", reason="no book lists this market near the alert line")
@@ -578,7 +580,8 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None, held=None):
     nets = round(win * (1 - WIN_FEE.get(pick["book"], 0)), 2)
     pxc = next((c for c in capped if c["book"] == "prophetx"), None)   # phase-1 live is ProphetX only
     return dict(out, verdict="WOULD PLACE", book=pick["book"], american=pick["am"], shown=pick["shown"], take_line=pick["line"],
-                px=({"am": pxc["am"], "shown": pxc["shown"], "line": pxc["line"], "avail": pxc["avail"]} if pxc else None),
+                px=({"am": pxc["am"], "shown": pxc["shown"], "line": pxc["line"], "avail": pxc["avail"], "thr": pxc["thr"],
+                     "buy": pxc["buy"]} if pxc else None),
                 equiv=pick["eq"], hp=hp, hp_src=hp_src, risk=risk, to_win=win, nets=nets,
                 fillable=round(min(pick["avail"], risk), 2), partial=pick["avail"] < risk,
                 others=[c for c in capped if c is not pick][:5])
@@ -713,6 +716,15 @@ def plain_reason(reason):
     return reason
 
 
+def order_note(o):
+    if not o or o.get("status") == "dry":
+        return ""
+    if o["status"] == "placed":
+        return (f"  [PLACED: ${o.get('filled_stake') or 0:,.2f} filled" + (f" at {o['avg_price']:+d}" if o.get("avg_price") else "")
+                + f", asked ${o.get('asked_stake') or 0:,.2f}, order {o.get('order_id')}]")
+    return f"  [{o['status'].upper()}: {o.get('reason')}]"
+
+
 def money(x):
     return f"${x:,.0f}"
 
@@ -754,6 +766,43 @@ def book_lines(r):
     return out
 
 
+def px_limit(pxd, stake):
+    """(strike_id, limit price, stake) for a ProphetX fill-or-kill: walk the ladder best price first, only levels at
+    or better than the alert-equivalent threshold, until the stake is covered. Stake shrinks to what's there."""
+    thr = pxd.get("thr")
+    lv = sorted((x for x in pxd.get("buy") or [] if x.get("american_after_fee") is not None and thr is not None
+                 and x["american_after_fee"] >= thr and x.get("strike_id")), key=lambda x: -x["american"])
+    got, limit = 0.0, None
+    for x in lv:
+        got += x.get("dollars") or 0
+        limit = x["american"]
+        if got >= stake:
+            break
+    if not lv:
+        return None, None, 0.0
+    return lv[0]["strike_id"], limit, round(min(stake, got), 2)
+
+
+def live_order(r):
+    """Phase-1 live order on ProphetX (only when EXEC_LIVE is on). Returns the order record for the email/ledger."""
+    lv, p = r["live"], r["play"]
+    if not px_live.LIVE:
+        return {"status": "dry", "reason": "live is off"}
+    strike, limit, stake = px_limit(lv["px"], lv["risk"])
+    if not strike or stake < 5:
+        return {"status": "refused", "reason": f"ProphetX ladder can't cover $5+ at the alert number (have ${stake:.2f})"}
+    label = f"{p.get('sport')} {p.get('game')} | {bet_text(r, lv['line'], limit)}"
+    res = px_live.place(strike, limit, stake, label)
+    if res["status"] == "placed":
+        push("PLACED: " + bet_text(r, lv["line"], limit)[:60],
+             f"{label}\nProphetX fill-or-kill: ${res.get('filled_stake') or 0:,.2f} filled"
+             + (f" at {res['avg_price']:+d}" if res.get("avg_price") else "") + f" (asked ${stake:,.2f}, limit {limit:+d})."
+             + ("" if res.get("fills_read") else " Fill read failed: check My Trades."))
+    elif res["status"] == "error":
+        push("LIVE ORDER ERROR: " + (p.get("bet") or "")[:50], f"{label}\n{res['reason']}\nCheck ProphetX My Trades before retrying.")
+    return dict(res, asked_stake=stake, limit=limit)
+
+
 def ledger_row(r, run_start):
     p, e = r["play"], r.get("entry") or {}
     at = iso_t(e.get("alert_utc") or p.get("alert_utc"))
@@ -768,7 +817,9 @@ def ledger_row(r, run_start):
             "alert_book": e.get("book_key"), "alert_price_after_fee": e.get("price_after_fee"), "alert_line": e.get("point"),
             "fill_book": r.get("book"), "fill_price_after_fee": r.get("american"), "fill_screen": r.get("shown"),
             "fill_line": r.get("take_line"), "live": bool(lv.get("go")), "live_nfl": bool(lv.get("nfl")), "live_why_not": lv.get("why"),
-            "live_px_price_after_fee": lv.get("am"), "live_px_line": lv.get("line")}
+            "live_px_price_after_fee": lv.get("am"), "live_px_line": lv.get("line"),
+            "live_order": {k: (lv.get("order") or {}).get(k) for k in ("status", "reason", "order_id", "asked_stake", "limit",
+                                                                       "filled_stake", "avg_price")} if lv.get("order") else None}
 
 
 def send(subject, body):
@@ -843,11 +894,11 @@ def main():
             r = evaluate(p, now, evs_by, mks_by_event, pos, None if p.get("source") == "rules" else taken, held)
             r["entry"] = ent
             if p.get("source") != "rules" and ent:   # phase-1 live tag (Muse plays only: needs Muse AGREE)
-                ok, why = agree_rules.phase1(ent, True, tag_nfl=True)   # NFL tagged in the dry run only (Peter, Oct 26)
+                ok, why = agree_rules.phase1(ent, True)   # NCAAF/NBA spreads + unders, NFL unders only (Peter, Oct 26)
                 if ok and r["verdict"] == "WOULD PLACE" and r.get("px"):
                     lr, lw = live_stake(r["px"]["shown"])
                     r["live"] = {"go": True, "risk": lr, "to_win": lw, "am": r["px"]["am"], "shown": r["px"]["shown"],
-                                 "line": r["px"]["line"], "partial": r["px"]["avail"] < lr,
+                                 "line": r["px"]["line"], "partial": r["px"]["avail"] < lr, "px": r["px"],
                                  "nfl": (ent.get("sport") or "").upper() == "NFL"}
                 elif ok:
                     r["live"] = {"go": False, "why": ["ProphetX has nothing at the alert number or better"
@@ -863,6 +914,8 @@ def main():
                          f"{p.get('sport')} {p.get('game')}\nCouldn't check your open bets on {', '.join(blind)}. "
                          "Retrying every 10 min while the price is there. If you know you don't hold the other side, "
                          "you can place it by hand.")
+            if r["verdict"] == "WOULD PLACE" and (r.get("live") or {}).get("go"):
+                r["live"]["order"] = live_order(r)
             results.append(r)
             if r["verdict"] == "WOULD PLACE" and derive_key(p) and p.get("source") != "rules":
                 taken_now.add(derive_key(p))
@@ -872,7 +925,8 @@ def main():
     M2.logout()
     nw = sum(1 for r in results if r["verdict"] == "WOULD PLACE")
     when = now.astimezone(lm.ET).strftime('%a %b %d %I:%M %p ET')
-    body = [f"DRY RUN - nothing was bet ({when})", ""]
+    body = [(f"LIVE ON for phase 1 (ProphetX, ${LIVE_UNIT:.0f}); everything else is a dry run ({when})" if px_live.LIVE
+             else f"DRY RUN - nothing was bet ({when})"), ""]
     places = [r for r in results if r["verdict"] == "WOULD PLACE"]
     helds = [r for r in results if r["verdict"] == "HELD"]
     skips = [r for r in results if r["verdict"] not in ("WOULD PLACE", "HELD")]
@@ -885,6 +939,7 @@ def main():
     body.append(f"WOULD GO LIVE - phase 1, ${LIVE_UNIT:.0f} on ProphetX ({len(golive)})")
     body += [f"  - {bet_text(r, r['live']['line'], r['live']['shown'])} on ProphetX: risk {money(r['live']['risk'])} to win "
              f"{money(r['live']['to_win'])}  ({r['play'].get('sport')} {r['play'].get('game')})"
+             + order_note(r['live'].get('order'))
              + ("  [partial: not all of it at this price]" if r["live"]["partial"] else "")
              + ("  [NFL: tagged for the dry run; in/out decided at the pre-live review]" if r["live"].get("nfl") else "")
              for r in golive] or ["  - none this run"]
@@ -921,7 +976,8 @@ def main():
     body += ["LEDGER (machine-readable, one row per play; latency = decision time minus first alert time)",
              json.dumps([ledger_row(r, now) for r in results], separators=(",", ":"))]
     first = ", ".join(short(r) for r in places[:3]) + ("..." if len(places) > 3 else "")
-    send(f"Bets dry run: {len(golive)} would go live, {nw} would bet" + (f" ({first})" if places else "") + (f", {len(helds)} held" if helds else "")
+    nplaced = sum(1 for r in golive if (r["live"].get("order") or {}).get("status") == "placed")
+    send((f"Bets LIVE: {nplaced} placed, " if px_live.LIVE else "Bets dry run: ") + f"{len(golive)} would go live, {nw} would bet" + (f" ({first})" if places else "") + (f", {len(helds)} held" if helds else "")
          + f", {len(skips)} skipped",
          "\n".join(body))
     print(f"Dry-run email sent: {len(golive)} would go live, {nw} would place, {len(helds)} held, {len(skips)} skipped.")   # counts only

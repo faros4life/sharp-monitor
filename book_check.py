@@ -233,7 +233,7 @@ def px_check(al, mtype, side, line, price, teams):
     else:
         mk, levels, pline = min(cands, key=lambda c: abs((c[2] if c[2] is not None else 1e9) - line))
     lv = sorted(({"american": int(x["price"]), "american_after_fee": after_fee(int(x["price"]), PX_FEE),
-                  "dollars": round(float(x.get("value") or 0)),
+                  "dollars": round(float(x.get("value") or 0)), "strike_id": x.get("strike_id"),
                   "to_win": round(float(x.get("quantity") or 0))} for x in levels if x.get("price") is not None),
                 key=lambda x: -x["american"])   # best price first (higher American = better for the bettor)
     best = lv[0] if lv else None
