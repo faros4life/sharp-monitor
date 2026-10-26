@@ -1,6 +1,439 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-26T19:00:17Z",
+   "base_depth": 141994,
+   "best_price": 0.51,
+   "best_price_american": -104,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-26",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 2629,
+     "new_this_side": 31804,
+     "other_side": 104854,
+     "other_side_all_levels": 142589,
+     "ratio": 1.2,
+     "this_side": 124584,
+     "this_side_all_levels": 187892
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "Under 241.5 (241.5)",
+     "price": 0.51,
+     "this_side": 19195
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Under (241.5)",
+     "price": 0.51,
+     "this_side": 32365
+    }
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-10-26T18:50:33Z",
+   "game": "Dallas vs Miami: Total Points",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBATOTAL-26OCT26DALMIA-242\"}",
+   "lead_min": 270,
+   "league": "NBA",
+   "line": 241.5,
+   "market": "total",
+   "new_money": 31804,
+   "paper_only": false,
+   "price": 0.52,
+   "price_american": -108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 240.5,
+     "price": -105
+    },
+    "betonlineag": {
+     "point": 241.0,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 241.0,
+     "price": 100
+    },
+    "betrivers": {
+     "point": 240.5,
+     "price": -108
+    },
+    "betus": {
+     "point": 241.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 241.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 240.5,
+     "price": -105
+    },
+    "fanatics": {
+     "point": 241.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 241.5,
+     "price": -112
+    },
+    "kalshi": {
+     "point": 241.5,
+     "price": -108
+    },
+    "lowvig": {
+     "point": 241.0,
+     "price": -107
+    },
+    "mybookieag": {
+     "point": 241.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 241.5,
+     "price": -104
+    },
+    "polymarket": {
+     "point": 241.5,
+     "price": -104
+    },
+    "prophetx": {
+     "point": 241.0,
+     "price": -101
+    },
+    "williamhill_us": {
+     "point": 241.0,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNBATOTAL-26OCT26DALMIA-242"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "polymarket"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [],
+   "sharp_oppose": [
+    "Over 240.5 (-106)",
+    "Over 239 (-109)",
+    "Over 235.5 (-113)"
+   ],
+   "side": "UNDER",
+   "side_label": "NOT Over 241.5 points",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-26T23:30:00Z",
+   "teams": [
+    "Dallas",
+    "Miami"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-26T19:00:17Z",
+   "base_depth": 214715,
+   "best_price": 0.49,
+   "best_price_american": 104,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-26",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -5786,
+     "new_this_side": 26573,
+     "other_side": 128484,
+     "other_side_all_levels": 182186,
+     "ratio": 1.4,
+     "this_side": 182823,
+     "this_side_all_levels": 248242
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "DAL +7.5 (-7.5)",
+     "price": 0.49,
+     "this_side": 20836
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Mavericks (+7.5)",
+     "price": 0.5,
+     "this_side": 60987
+    }
+   },
+   "fade_price": 0.52,
+   "first_seen_utc": "2026-10-26T18:50:33Z",
+   "game": "Dallas vs Miami: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBASPREAD-26OCT26DALMIA-MIA8\"}",
+   "lead_min": 270,
+   "league": "NBA",
+   "line": 7.5,
+   "market": "spread",
+   "new_money": 26573,
+   "paper_only": false,
+   "price": 0.5,
+   "price_american": -100,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.5,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 7.5,
+     "price": -105
+    },
+    "betonlineag": {
+     "point": 7.5,
+     "price": -105
+    },
+    "betopenly": {
+     "point": 7.5,
+     "price": 104
+    },
+    "betrivers": {
+     "point": 7.5,
+     "price": -107
+    },
+    "betus": {
+     "point": 8.0,
+     "price": -115
+    },
+    "bovada": {
+     "point": 8.0,
+     "price": -115
+    },
+    "draftkings": {
+     "point": 7.5,
+     "price": -105
+    },
+    "fanatics": {
+     "point": 7.5,
+     "price": -105
+    },
+    "fanduel": {
+     "point": 7.5,
+     "price": 100
+    },
+    "kalshi": {
+     "point": 7.5,
+     "price": 100
+    },
+    "lowvig": {
+     "point": 7.5,
+     "price": -101
+    },
+    "mybookieag": {
+     "point": 8.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 7.5,
+     "price": 104
+    },
+    "polymarket": {
+     "point": 7.5,
+     "price": 100
+    },
+    "prophetx": {
+     "point": 8.0,
+     "price": -105
+    },
+    "williamhill_us": {
+     "point": 8.0,
+     "price": -115
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNBASPREAD-26OCT26DALMIA-MIA8"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "polymarket"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [
+    "Dallas Mavericks +8.5 (-113)"
+   ],
+   "sharp_oppose": [],
+   "side": "Dallas",
+   "side_label": "NOT Miami wins by over 7.5 points",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-26T23:30:00Z",
+   "teams": [
+    "Dallas",
+    "Miami"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-26T19:00:17Z",
+   "base_depth": 32194,
+   "best_price": 0.63,
+   "best_price_american": -170,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.63,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-27",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -307,
+     "new_this_side": 34963,
+     "other_side": 33661,
+     "other_side_all_levels": 37630,
+     "ratio": 1.8,
+     "this_side": 61755,
+     "this_side_all_levels": 67150
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "CAR (0)",
+     "price": 0.63,
+     "this_side": 5333
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Hurricanes",
+     "price": 0.64,
+     "this_side": 19864
+    }
+   },
+   "fade_price": 0.38,
+   "first_seen_utc": "2026-10-26T18:50:33Z",
+   "game": "Boston vs Carolina",
+   "key": "kalshi|KXNHLGAME-26OCT27BOSCAR|ml|1",
+   "lead_min": 1740,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 34963,
+   "paper_only": false,
+   "price": 0.63,
+   "price_american": -170,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.63,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -185
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -183
+    },
+    "betrivers": {
+     "point": null,
+     "price": -180
+    },
+    "betus": {
+     "point": null,
+     "price": -185
+    },
+    "draftkings": {
+     "point": null,
+     "price": -185
+    },
+    "fanatics": {
+     "point": null,
+     "price": -190
+    },
+    "fanduel": {
+     "point": null,
+     "price": -188
+    },
+    "kalshi": {
+     "point": null,
+     "price": -170
+    },
+    "lowvig": {
+     "point": null,
+     "price": -183
+    },
+    "novig": {
+     "point": null,
+     "price": -170
+    },
+    "polymarket": {
+     "point": null,
+     "price": -178
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -170
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -190
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNHLGAME-26OCT27BOSCAR-CAR"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "polymarket"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Carolina",
+   "side_label": "Carolina",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-28T00:00:00Z",
+   "teams": [
+    "Boston",
+    "Carolina"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-26T18:50:33Z",
    "base_depth": 269517,
    "best_price": 0.5,
@@ -205,6 +638,8 @@
    "new_money": 34304,
    "paper_only": false,
    "price": 0.61,
+   "price_after_15m": 0.61,
+   "price_after_15m_book": "novig",
    "price_american": -156,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.62,
@@ -301,6 +736,7 @@
    "side_label": "Pacers",
    "start_source": "polymarket",
    "start_utc": "2026-10-27T00:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Pacers",
     "Bucks"
@@ -1260,7 +1696,8 @@
      "price": -105
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-26T19:00:17Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNBATOTAL-26OCT26MEMUTA-239"
@@ -1300,8 +1737,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": 0.0,
+   "close_price": 0.51,
+   "clv_cents": 1.0,
    "confirmed_after_min": 6,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -1453,8 +1890,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.48,
-   "clv_cents": 0.0,
+   "close_price": 0.49,
+   "clv_cents": 1.0,
    "confirmed_after_min": 14,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -3551,8 +3988,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.55,
-   "clv_cents": 1.0,
+   "close_price": 0.56,
+   "clv_cents": 2.0,
    "confirmed_after_min": 10,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -4494,8 +4931,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.46,
-   "clv_cents": -3.0,
+   "close_price": 0.45,
+   "clv_cents": -4.0,
    "confirmed_after_min": 5,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -11098,8 +11535,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.64,
-   "clv_cents": 6.0,
+   "close_price": 0.63,
+   "clv_cents": 5.0,
    "confirmed_after_min": 9,
    "date": "2026-10-26",
    "depth_by_book": {
