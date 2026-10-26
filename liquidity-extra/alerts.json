@@ -1,6 +1,79 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-26T16:00:23Z",
+   "base_depth": 75778,
+   "best_price": 0.49,
+   "best_price_american": 104,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.49,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-26",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -12224,
+     "new_this_side": 47648,
+     "other_side": 62980,
+     "other_side_all_levels": 83405,
+     "ratio": 1.1,
+     "this_side": 68890,
+     "this_side_all_levels": 127394
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "A. Fery (0)",
+     "price": 0.49,
+     "this_side": 4280
+    }
+   },
+   "fade_price": 0.52,
+   "first_seen_utc": "2026-10-26T15:50:18Z",
+   "game": "Fery vs Fearnley",
+   "key": "kalshi|KXATPMATCH-26OCT26FERFEA|ml|0",
+   "lead_min": 30,
+   "league": "TENNIS",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 47648,
+   "paper_only": true,
+   "price": 0.49,
+   "price_american": 104,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.48,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXATPMATCH-26OCT26FERFEA-FER"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "none_10k",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Fery",
+   "side_label": "Fery",
+   "start_source": "novig",
+   "start_utc": "2026-10-26T16:30:00Z",
+   "teams": [
+    "Fery",
+    "Fearnley"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-26T15:20:20Z",
    "base_depth": 73670,
    "best_price": 0.485,
@@ -175,8 +248,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.39,
-   "clv_cents": -28.0,
+   "close_price": 0.66,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -551,8 +624,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.62,
-   "clv_cents": 6.0,
+   "close_price": 0.53,
+   "clv_cents": -3.0,
    "confirmed_after_min": 10,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -1080,8 +1153,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.61,
-   "clv_cents": -11.0,
+   "close_price": 0.35,
+   "clv_cents": -37.0,
    "confirmed_after_min": 12,
    "date": "2026-10-26",
    "depth_by_book": {
