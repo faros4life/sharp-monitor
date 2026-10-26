@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Mon Oct 26, 1:40 PM ET. This run: 2 new, 0 not confirmed, 2 pending. Open alerts: 70.
+Updated Mon Oct 26, 1:44 PM ET. This run: 2 new, 0 not confirmed, 3 pending. Open alerts: 70.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -8,8 +8,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Oct 26 1:40PM | NBA | Minnesota vs Cleveland: Spread | spread: Cleveland wins by over 5.5 points | kalshi | $51k | +108 | ✅ novig,polymarket | ✅ | +0.0c |  | pending |
-| Oct 26 1:40PM | NHL | Columbus vs Philadelphia | moneyline: Columbus | kalshi | $49k | -113 | ✅ polymarket |  | +0.0c |  | pending |
+| Oct 26 1:44PM | NBA | Minnesota vs Cleveland: Spread | spread: Cleveland wins by over 5.5 points | kalshi | $51k | +108 | ✅ novig,polymarket | ✅ | +0.0c |  | pending |
+| Oct 26 1:44PM | NHL | Columbus vs Philadelphia | moneyline: Columbus | kalshi | $49k | -113 | ✅ polymarket |  | +0.0c |  | pending |
 | Oct 26 1:30PM | NHL | Maple Leafs vs. Flames | spread: Flames (+1.5) | polymarket | $59k | -194 | ✅ kalshi,novig |  | +0.0c |  | pending |
 | Oct 26 1:30PM | NBA | Minnesota vs Cleveland: Total Points | total: NOT Over 232.5 points | kalshi | $44k | -113 | ✅ polymarket | ✅ | +0.0c |  | pending |
 | Oct 26 1:20PM | NBA | Golden State vs Denver: Spread | spread: Denver wins by over 6.5 points | kalshi | $34k | -113 | ✅ novig,polymarket |  | +0.0c |  | pending |
