@@ -12,6 +12,7 @@ Standard library only. Configure with environment variables (see README).
 import json
 import math
 import os
+import re
 import sys
 import time
 import unicodedata
@@ -1318,8 +1319,13 @@ def run():
                         print(f"Not sent (repeat): {a['text']} | {a['game']}")
                     else:
                         p1_ok, p1_why = phase1_label(a, cfg["label"], grade, lead, late, bool(opp))
-                        label = ("PHASE 1 - candidate, wait for Muse's OK" if p1_ok
-                                 else "PAPER - don't bet (" + "; ".join(p1_why[:2]) + ")")
+                        if p1_ok:   # Oct 26 (Peter): say exactly where to play it
+                            _fl = re.search(r"bet only at ([^ ]+(?: [^ ]+)?) or better", a.get("why") or "")
+                            label = (f"PHASE 1 - PLAY AT {nm(a['book']).upper()}: {a['text'].split(' at ')[0]}"
+                                     + (f", only at {_fl.group(1)} or better" if _fl else "")
+                                     + f" | {bet_size(a['price'], a['book'])} | wait for Muse's OK")
+                        else:
+                            label = "PAPER - don't bet (" + "; ".join(p1_why[:2]) + ")"
                         notify(("PHASE 1 " if p1_ok else "PAPER ") + f"Sharp alert {cfg['label']}" + (" LATE" if late else ""),
                                f"{label}\n{a['text']}\n{bet_size(a['price'], a['book'])}{prior_note}\n{a['game']}{tag}, {a['start']}\n{a['why']}\n"
                                f"Grade {grade} ({score}/100)" + (f" | Edge {a['evp']:+.1f}%" if a.get("evp") is not None else "") + " | "
