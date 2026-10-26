@@ -1,0 +1,33 @@
+name: pmus-activity
+
+on:
+  schedule:
+    - cron: "41 12 * * 1"   # Mondays ~8:41 AM ET, right after the Novig weekly
+  workflow_dispatch:
+    inputs:
+      days:
+        description: "How many days back"
+        default: "30"
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Email Polymarket US activity (read-only; counts only in this log)
+        env:
+          PMUS_KEY_ID: ${{ secrets.PMUS_KEY_ID }}
+          PMUS_SECRET_KEY: ${{ secrets.PMUS_SECRET_KEY }}
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          DAYS: ${{ github.event.inputs.days || '30' }}
+        run: python -u pmus_activity.py
