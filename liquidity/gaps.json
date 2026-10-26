@@ -1,4 +1,29 @@
 {
  "note": "PAPER ONLY (Oct 25): opposite sides of the same game/market/line on two different exchanges whose combined cost after fees is under $1 (Kalshi/Novig/ProphetX; Polymarket here is the global book, excluded). edge_pct = locked profit per $ staked if both legs fill at these prices; size_est = smaller of the two legs' near-price depth (rough). One entry per game/market/line/books per hour. Measurement only: never alerted, never bet.",
- "gaps": []
+ "gaps": [
+  {
+   "seen_utc": "2026-10-26T06:50:10Z",
+   "league": "NBA",
+   "game": "Minnesota Timberwolves @ Cleveland Cavaliers",
+   "market": "moneyline",
+   "line": null,
+   "edge_pct": 0.51,
+   "total_cost": 0.9949,
+   "size_est": 4444,
+   "legs": [
+    {
+     "book": "novig",
+     "side": "CLE (0)",
+     "price": 0.59,
+     "cost_after_fee": 0.59
+    },
+    {
+     "book": "prophetx",
+     "side": "Minnesota Timberwolves",
+     "price": 0.4,
+     "cost_after_fee": 0.4049
+    }
+   ]
+  }
+ ]
 }
