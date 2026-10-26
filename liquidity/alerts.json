@@ -1,6 +1,152 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-26T12:00:18Z",
+   "base_depth": 47900,
+   "best_price": 0.51,
+   "best_price_american": -104,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-26",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Cleveland wins by over 3.5 points",
+     "price": 0.52,
+     "this_side": 151898
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "CLE -3.5 (-3.5)",
+     "price": 0.51,
+     "this_side": 9091
+    },
+    "polymarket": {
+     "new_other_side": 7434,
+     "new_this_side": 28005,
+     "other_side": 25417,
+     "other_side_all_levels": 57032,
+     "ratio": 2.2,
+     "this_side": 56471,
+     "this_side_all_levels": 72308
+    }
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-10-26T11:50:11Z",
+   "game": "Timberwolves vs. Cavaliers",
+   "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"6235285\"}",
+   "lead_min": 660,
+   "league": "NBA",
+   "line": -3.5,
+   "market": "spread",
+   "new_money": 28005,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -3.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": -3.5,
+     "price": -110
+    },
+    "betopenly": {
+     "point": -3.5,
+     "price": -103
+    },
+    "betrivers": {
+     "point": -3.5,
+     "price": -112
+    },
+    "betus": {
+     "point": -3.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": -3.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": -3.5,
+     "price": -112
+    },
+    "fanatics": {
+     "point": -3.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": -3.5,
+     "price": -114
+    },
+    "kalshi": {
+     "point": -3.5,
+     "price": -108
+    },
+    "lowvig": {
+     "point": -3.5,
+     "price": -106
+    },
+    "mybookieag": {
+     "point": -3.5,
+     "price": -110
+    },
+    "novig": {
+     "point": -3.5,
+     "price": -104
+    },
+    "polymarket": {
+     "point": -3.5,
+     "price": -104
+    },
+    "prophetx": {
+     "point": -3.0,
+     "price": -114
+    },
+    "williamhill_us": {
+     "point": -3.5,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 0,
+    "pm_market_id": "6235285"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Cavaliers",
+   "side_label": "Cavaliers (-3.5)",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-26T23:00:00Z",
+   "teams": [
+    "Timberwolves",
+    "Cavaliers"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-26T11:40:15Z",
    "base_depth": 33722,
    "best_price": 0.4975,
@@ -53,6 +199,8 @@
    "new_money": 32982,
    "paper_only": false,
    "price": 0.49,
+   "price_after_15m": 0.505,
+   "price_after_15m_book": "novig",
    "price_american": 104,
    "price_rule": "ok",
    "price_when_first_seen": 0.51,
@@ -139,6 +287,7 @@
    "side_label": "Pacers (-4.5)",
    "start_source": "polymarket",
    "start_utc": "2026-10-27T00:00:00Z",
+   "still_actionable": false,
    "teams": [
     "Pacers",
     "Bucks"
@@ -199,6 +348,8 @@
    "new_money": 64034,
    "paper_only": false,
    "price": 0.51,
+   "price_after_15m": 0.505,
+   "price_after_15m_book": "novig",
    "price_american": -104,
    "price_rule": "ok",
    "price_when_first_seen": 0.51,
@@ -285,6 +436,7 @@
    "side_label": "Indiana wins by over 4.5 points",
    "start_source": "polymarket",
    "start_utc": "2026-10-27T00:00:00Z",
+   "still_actionable": false,
    "teams": [
     "Indiana",
     "Milwaukee"
@@ -339,6 +491,8 @@
    "new_money": 27087,
    "paper_only": false,
    "price": 0.67,
+   "price_after_15m": 0.68,
+   "price_after_15m_book": "novig",
    "price_american": -203,
    "price_rule": "fails_cap",
    "price_when_first_seen": 0.67,
@@ -421,6 +575,7 @@
    "side_label": "NOT New York R wins by over 1.5 goals",
    "start_source": "prophetx",
    "start_utc": "2026-10-26T23:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Los Angeles",
     "New York R"
@@ -481,6 +636,8 @@
    "new_money": 48054,
    "paper_only": false,
    "price": 0.6,
+   "price_after_15m": 0.6,
+   "price_after_15m_book": "novig",
    "price_american": -150,
    "price_rule": "fails_cap",
    "price_when_first_seen": 0.6,
@@ -564,6 +721,7 @@
    "side_label": "NOT Edmonton wins by over 1.5 goals",
    "start_source": "polymarket",
    "start_utc": "2026-10-27T01:30:00Z",
+   "still_actionable": true,
    "teams": [
     "Detroit",
     "Edmonton"
@@ -1189,8 +1347,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.54,
-   "clv_cents": 2.0,
+   "close_price": 0.56,
+   "clv_cents": 4.0,
    "confirmed_after_min": 10,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -1472,8 +1630,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.54,
-   "clv_cents": 1.0,
+   "close_price": 0.55,
+   "clv_cents": 2.0,
    "confirmed_after_min": 10,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -1616,8 +1774,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": 2.0,
+   "close_price": 0.54,
+   "clv_cents": 3.0,
    "confirmed_after_min": 10,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -1727,7 +1885,8 @@
      "price": -110
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-26T12:00:18Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNBATOTAL-26OCT26DALMIA-238"
@@ -4037,8 +4196,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.6,
-   "clv_cents": 2.0,
+   "close_price": 0.61,
+   "clv_cents": 3.0,
    "confirmed_after_min": 9,
    "date": "2026-10-26",
    "depth_by_book": {
