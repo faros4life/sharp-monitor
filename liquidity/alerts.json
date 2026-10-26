@@ -1,6 +1,138 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-26T21:20:11Z",
+   "base_depth": 81601,
+   "best_price": 0.485,
+   "best_price_american": 106,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.485,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-10-26",
+   "depth_by_book": {
+    "novig": {
+     "new_other_side": 5509,
+     "new_this_side": 45776,
+     "other_side": 61597,
+     "other_side_all_levels": 86402,
+     "ratio": 2.0,
+     "this_side": 126141,
+     "this_side_all_levels": 126719
+    }
+   },
+   "fade_price": 0.52,
+   "first_seen_utc": "2026-10-26T21:14:57Z",
+   "game": "Dallas Cowboys @ Philadelphia Eagles",
+   "key": "novig|{\"market_id\": \"01a136e2-f057-7d23-8a3e-7099ea7aef21\", \"outcome_id\": \"01a136e2-f057-7d23-8a3e-70b928eec698\"}",
+   "lead_min": 175,
+   "league": "NFL",
+   "line": 43.5,
+   "market": "total",
+   "new_money": 45776,
+   "paper_only": false,
+   "price": 0.485,
+   "price_american": 106,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.485,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 44.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 44.0,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 44.5,
+     "price": -101
+    },
+    "betrivers": {
+     "point": 44.0,
+     "price": -110
+    },
+    "betus": {
+     "point": 44.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 44.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 43.5,
+     "price": -105
+    },
+    "fanatics": {
+     "point": 44.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 43.5,
+     "price": -102
+    },
+    "kalshi": {
+     "point": 44.5,
+     "price": -108
+    },
+    "lowvig": {
+     "point": 44.0,
+     "price": -107
+    },
+    "mybookieag": {
+     "point": 44.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 43.5,
+     "price": 106
+    },
+    "polymarket": {
+     "point": 44.5,
+     "price": -110
+    },
+    "prophetx": {
+     "point": 43.0,
+     "price": 115
+    },
+    "williamhill_us": {
+     "point": 44.0,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a136e2-f057-7d23-8a3e-7099ea7aef21",
+    "outcome_id": "01a136e2-f057-7d23-8a3e-70b928eec698"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "no_match",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "Under 43.5 (43.5)",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-27T00:15:00Z",
+   "teams": [
+    "Dallas Cowboys",
+    "Philadelphia Eagles"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-26T21:14:57Z",
    "base_depth": 74740,
    "best_price": 0.5,
@@ -15,8 +147,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": 0.0,
+   "close_price": 0.51,
+   "clv_cents": 1.0,
    "confirmed_after_min": 15,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -192,6 +324,8 @@
    "new_money": 106008,
    "paper_only": false,
    "price": 0.52,
+   "price_after_15m": 0.5375,
+   "price_after_15m_book": "kalshi",
    "price_american": -108,
    "price_rule": "ok",
    "price_when_first_seen": 0.52,
@@ -272,6 +406,7 @@
    "side_label": "Over 56.5 points",
    "start_source": "prophetx",
    "start_utc": "2026-10-27T23:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Delaware",
     "Western Kentucky"
@@ -6457,8 +6592,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": 0.0,
+   "close_price": 0.52,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -7067,8 +7202,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": 3.0,
+   "close_price": 0.52,
+   "clv_cents": 2.0,
    "confirmed_after_min": 8,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -9744,8 +9879,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.45,
-   "clv_cents": 2.0,
+   "close_price": 0.46,
+   "clv_cents": 3.0,
    "confirmed_after_min": 10,
    "date": "2026-10-26",
    "depth_by_book": {
