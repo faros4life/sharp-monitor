@@ -1,6 +1,237 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-26T23:00:22Z",
+   "base_depth": 54980,
+   "best_price": 0.485,
+   "best_price_american": 106,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "prophetx",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.4878,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-26",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": false,
+     "label": "Game 3: Milwaukee",
+     "price": 0.48,
+     "this_side": 3517781
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "MIL (0)",
+     "price": 0.485,
+     "this_side": 186607
+    },
+    "polymarket": {
+     "heavier_side": false,
+     "label": "Milwaukee Brewers",
+     "price": 0.49,
+     "this_side": 537243
+    },
+    "prophetx": {
+     "new_other_side": -10032,
+     "new_this_side": 48804,
+     "other_side": 70299,
+     "other_side_all_levels": 71624,
+     "ratio": 1.5,
+     "this_side": 103513,
+     "this_side_all_levels": 103520
+    }
+   },
+   "fade_price": 0.5169,
+   "first_seen_utc": "2026-10-26T22:50:15Z",
+   "game": "Milwaukee Brewers at Tampa Bay Rays",
+   "key": "prophetx|{\"line\": 0, \"px_event\": 10079798, \"px_market\": 251, \"side\": \"0\"}",
+   "lead_min": 60,
+   "league": "MLB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 48804,
+   "paper_only": false,
+   "price": 0.4878,
+   "price_american": 105,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.4902,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -102
+    },
+    "betonlineag": {
+     "point": null,
+     "price": 101
+    },
+    "betopenly": {
+     "point": null,
+     "price": 105
+    },
+    "betrivers": {
+     "point": null,
+     "price": -106
+    },
+    "betus": {
+     "point": null,
+     "price": 100
+    },
+    "bovada": {
+     "point": null,
+     "price": 100
+    },
+    "draftkings": {
+     "point": null,
+     "price": 100
+    },
+    "fanatics": {
+     "point": null,
+     "price": -105
+    },
+    "fanduel": {
+     "point": null,
+     "price": 100
+    },
+    "kalshi": {
+     "point": null,
+     "price": 104
+    },
+    "lowvig": {
+     "point": null,
+     "price": 101
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -101
+    },
+    "novig": {
+     "point": null,
+     "price": 106
+    },
+    "polymarket": {
+     "point": null,
+     "price": 104
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": 108
+    },
+    "prophetx": {
+     "point": null,
+     "price": 105
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -102
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "line": 0,
+    "px_event": 10079798,
+    "px_market": 251,
+    "side": "0"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Milwaukee Brewers",
+   "side_label": "Milwaukee Brewers",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-27T00:00:00Z",
+   "teams": [
+    "Milwaukee Brewers",
+    "Tampa Bay Rays"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-26T23:00:22Z",
+   "base_depth": 92010,
+   "best_price": 0.825,
+   "best_price_american": -471,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.83,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-27",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 569,
+     "new_this_side": 47804,
+     "other_side": 20197,
+     "other_side_all_levels": 22962,
+     "ratio": 5.7,
+     "this_side": 115182,
+     "this_side_all_levels": 139715
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "B. Shelton (0)",
+     "price": 0.825,
+     "this_side": 3444
+    }
+   },
+   "fade_price": 0.18,
+   "first_seen_utc": "2026-10-26T22:50:15Z",
+   "game": "Shelton vs Kovacevic",
+   "key": "kalshi|KXATPMATCH-26OCT27SHEKOV|ml|0",
+   "lead_min": 1080,
+   "league": "TENNIS",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 47804,
+   "paper_only": true,
+   "price": 0.83,
+   "price_american": -488,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.83,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXATPMATCH-26OCT27SHEKOV-SHE"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "none_10k",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Shelton",
+   "side_label": "Shelton",
+   "start_source": "novig",
+   "start_utc": "2026-10-27T17:00:00Z",
+   "teams": [
+    "Shelton",
+    "Kovacevic"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-26T22:00:21Z",
    "base_depth": 85070,
    "best_price": 0.69,
@@ -3228,8 +3459,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": 2.0,
+   "close_price": 0.52,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-26",
    "depth_by_book": {
