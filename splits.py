@@ -57,6 +57,12 @@ NTFY = [
     ("hr_routed", "Hard Rock-priced, routed", "a-priori",
      "Sent alerts priced on Hard Rock, graded at the alert price (the executor routes them to the best exchange).",
      lambda a: SENT(a) and a.get("book_key") in ("hardrockbet", "hardrockbet_fl"), "units_flat"),
+    ("hr_fade", "Fade Hard Rock-priced", "scan",
+     "Same alerts as 'Hard Rock-priced, routed' (sent, priced on Hard Rock), graded on the OTHER side at the real "
+     "opposite-side price logged when the alert fired (fade_units, 1u after fees). Plays without a logged fade price do "
+     "not count. Read next to HR-routed: both directions of every Hard Rock-priced alert.",
+     lambda a: SENT(a) and a.get("book_key") in ("hardrockbet", "hardrockbet_fl") and a.get("fade_price_after_fee") is not None,
+     "fade_units"),
     ("pmg_routed", "PM-global-priced, routed", "a-priori",
      "Sent alerts priced on global Polymarket, graded at the alert price (routed to the best exchange). Closing "
      "population: global PM left RETAIL_BOOKS on Oct 25.",
