@@ -1,20 +1,22 @@
 # Liquidity alerts (paper)
 
-Updated Mon Oct 26, 12:20 AM ET. This run: 0 new, 1 not confirmed, 0 pending. Open alerts: 9.
+Updated Mon Oct 26, 12:30 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 8.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 33-21 (-3.71u flat) | rule met: 13-11
+**Record:** 34-21 (-3.43u flat) | rule met: 13-11
+
+**Fade (paper, betting against the print):** 0-1 (-1.00u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Oct 26 12:02AM | TENNIS | Machac vs de Minaur | moneyline: de Minaur | kalshi | $34k | -257 |  |  | +0.0c |  | pending |
 | Oct 25 11:40PM | TENNIS | Timofeeva vs Kostovic | moneyline: Timofeeva | kalshi | $120k | -355 |  |  | +2.0c | yes | pending |
-| Oct 25 11:30PM | TENNIS | Udvardy vs Kraus | moneyline: Kraus | kalshi | $113k | -335 |  |  | +7.0c |  | pending |
+| Oct 25 11:30PM | TENNIS | Udvardy vs Kraus | moneyline: Kraus | kalshi | $113k | -335 |  |  | +7.0c |  | W |
 | Oct 25 10:08PM | TENNIS | Wang vs Parks | moneyline: Parks | kalshi | $351k | -317 |  |  | -1.0c |  | W |
 | Oct 25 9:30PM | TENNIS | Sasnovich vs Bartunkova | moneyline: Bartunkova | kalshi | $28k | -186 |  |  | +1.0c | yes | pending |
 | Oct 25 9:10PM | TENNIS | Wang vs Parks | moneyline: Wang | kalshi | $35k | -170 |  |  | -37.0c | yes | L |
-| Oct 25 7:10PM | MLB | Milwaukee vs Tampa Bay: Total Runs | total: NOT Over 7.5 runs scored | kalshi | $65k | -127 | ✅ novig,polymarket |  | +1.0c | yes | pending |
+| Oct 25 7:10PM | MLB | Milwaukee vs Tampa Bay: Total Runs | total: NOT Over 7.5 runs scored | kalshi | $65k | -127 | ✅ novig,polymarket |  | +0.0c | yes | pending |
 | Oct 25 11:12AM | TENNIS | Mannarino vs Molcan | moneyline: Mannarino | kalshi | $159k | -257 |  |  | +26.0c |  | W |
 | Oct 25 10:30AM | TENNIS | Mannarino vs Molcan | moneyline: Molcan | kalshi | $26k | -400 |  |  | -77.0c | yes | L |
 | Oct 25 10:10AM | TENNIS | Struff vs Griekspoor | moneyline: Griekspoor | kalshi | $66k | -122 |  |  | +0.0c |  | W |
