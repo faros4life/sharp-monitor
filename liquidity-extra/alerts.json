@@ -1,6 +1,73 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-26T10:50:16Z",
+   "base_depth": 343764,
+   "best_price": 0.6952,
+   "best_price_american": -228,
+   "best_price_book": "kalshi",
+   "bid_improved": true,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.68,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-26",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -139827,
+     "new_this_side": 649233,
+     "other_side": 30404,
+     "other_side_all_levels": 218592,
+     "ratio": 3.8,
+     "this_side": 114282,
+     "this_side_all_levels": 1398081
+    }
+   },
+   "fade_price": 0.32,
+   "first_seen_utc": "2026-10-26T10:40:22Z",
+   "game": "Dart vs Prozorova",
+   "key": "kalshi|KXWTAMATCH-26OCT26DARPRO|ml|1",
+   "lead_min": 70,
+   "league": "TENNIS",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 649233,
+   "paper_only": true,
+   "price": 0.68,
+   "price_american": -213,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.61,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXWTAMATCH-26OCT26DARPRO-PRO"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "no_match",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Prozorova",
+   "side_label": "Prozorova",
+   "start_source": "kalshi",
+   "start_utc": "2026-10-26T12:00:00Z",
+   "teams": [
+    "Dart",
+    "Prozorova"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-26T10:30:19Z",
    "base_depth": 90675,
    "best_price": 0.555,
@@ -15,8 +82,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.56,
-   "clv_cents": 0.0,
+   "close_price": 0.55,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -47,6 +114,8 @@
    "new_money": 30684,
    "paper_only": true,
    "price": 0.56,
+   "price_after_15m": 0.555,
+   "price_after_15m_book": "novig",
    "price_american": -127,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.56,
@@ -68,6 +137,7 @@
    "side_label": "Cerundolo",
    "start_source": "novig",
    "start_utc": "2026-10-26T13:40:00Z",
+   "still_actionable": true,
    "teams": [
     "Altmaier",
     "Cerundolo"
@@ -168,8 +238,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.4,
-   "clv_cents": -28.0,
+   "close_price": 0.32,
+   "clv_cents": -36.0,
    "confirmed_after_min": 10,
    "date": "2026-10-26",
    "depth_by_book": {
