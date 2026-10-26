@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Mon Oct 26, 6:00 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 21.
+Updated Mon Oct 26, 6:10 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 21.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -33,7 +33,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 25 5:40PM | NBA | Magic vs. Knicks | spread: Knicks (-6.5) | polymarket | $696k | -108 | ✅ novig | ❌ | +0.0c |  | L |
 | Oct 25 5:30PM | NBA | Pacers vs. Nets | total: Under (231.5) | polymarket | $72k | +104 |  | ✅ | +0.0c |  | L |
 | Oct 25 5:30PM | NBA | Indiana vs Brooklyn: Spread | spread: Indiana wins by over 5.5 points | kalshi | $101k | -108 | ✅ novig,polymarket | ✅ | +30.0c | yes | W |
-| Oct 25 5:30PM | NBA | Chicago vs Boston | moneyline: Boston | kalshi | $64k | -567 |  |  | +2.0c |  | pending |
+| Oct 25 5:30PM | NBA | Chicago vs Boston | moneyline: Boston | kalshi | $64k | -567 |  |  | +1.0c |  | pending |
 | Oct 25 5:24PM | NBA | Toronto vs Minnesota: Total Points | total: Over 229.5 points | kalshi | $43k | -104 | ✅ novig,polymarket,prophetx | ❌ | -29.0c | yes | L |
 | Oct 25 5:00PM | NBA | Grizzlies vs. Kings | spread: Kings (+3.5) | polymarket | $32k | -104 |  | ❌ | -2.0c | yes | L |
 | Oct 25 5:00PM | NHL | Islanders vs. Stars | spread: Islanders (+1.5) | polymarket | $48k | -170 | ✅ novig |  | +0.0c | yes | L |
