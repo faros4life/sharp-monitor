@@ -1,6 +1,163 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-26T15:20:20Z",
+   "base_depth": 73670,
+   "best_price": 0.485,
+   "best_price_american": 106,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.485,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-26",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": false,
+     "label": "Game 3: Milwaukee",
+     "price": 0.48,
+     "this_side": 3681015
+    },
+    "novig": {
+     "new_other_side": 6260,
+     "new_this_side": 26587,
+     "other_side": 83578,
+     "other_side_all_levels": 83707,
+     "ratio": 1.2,
+     "this_side": 97316,
+     "this_side_all_levels": 100826
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Milwaukee Brewers",
+     "price": 0.49,
+     "this_side": 386094
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Milwaukee Brewers",
+     "price": 0.4854,
+     "this_side": 42925
+    }
+   },
+   "fade_price": 0.52,
+   "first_seen_utc": "2026-10-26T15:10:16Z",
+   "game": "Milwaukee Brewers @ Tampa Bay Rays",
+   "key": "novig|{\"market_id\": \"01a1715f-76ae-7c53-ad97-3bac6b441c78\", \"outcome_id\": \"01a1715f-76ae-7c53-ad97-3bc561e95c0e\"}",
+   "lead_min": 520,
+   "league": "MLB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 26587,
+   "paper_only": false,
+   "price": 0.485,
+   "price_american": 106,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.485,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -102
+    },
+    "betonlineag": {
+     "point": null,
+     "price": 103
+    },
+    "betopenly": {
+     "point": null,
+     "price": 105
+    },
+    "betrivers": {
+     "point": null,
+     "price": 105
+    },
+    "betus": {
+     "point": null,
+     "price": 104
+    },
+    "bovada": {
+     "point": null,
+     "price": 100
+    },
+    "draftkings": {
+     "point": null,
+     "price": -102
+    },
+    "fanatics": {
+     "point": null,
+     "price": -105
+    },
+    "fanduel": {
+     "point": null,
+     "price": 102
+    },
+    "kalshi": {
+     "point": null,
+     "price": 108
+    },
+    "lowvig": {
+     "point": null,
+     "price": 103
+    },
+    "mybookieag": {
+     "point": null,
+     "price": 101
+    },
+    "novig": {
+     "point": null,
+     "price": 106
+    },
+    "polymarket": {
+     "point": null,
+     "price": 104
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": 108
+    },
+    "prophetx": {
+     "point": null,
+     "price": 106
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": 103
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a1715f-76ae-7c53-ad97-3bac6b441c78",
+    "outcome_id": "01a1715f-76ae-7c53-ad97-3bc561e95c0e"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "polymarket",
+    "prophetx"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Milwaukee Brewers",
+   "side_label": "MIL (0)",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-27T00:00:00Z",
+   "teams": [
+    "Milwaukee Brewers",
+    "Tampa Bay Rays"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-26T15:00:21Z",
    "base_depth": 324308,
    "best_price": 0.6855,
@@ -15,8 +172,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.76,
-   "clv_cents": 9.0,
+   "close_price": 0.9,
+   "clv_cents": 23.0,
    "confirmed_after_min": 10,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -41,6 +198,8 @@
    "new_money": 440719,
    "paper_only": true,
    "price": 0.67,
+   "price_after_15m": 0.9063,
+   "price_after_15m_book": "kalshi",
    "price_american": -203,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.58,
@@ -60,6 +219,7 @@
    "side_label": "Machac",
    "start_source": "kalshi",
    "start_utc": "2026-10-26T16:40:00Z",
+   "still_actionable": false,
    "teams": [
     "Machac",
     "de Minaur"
@@ -388,8 +548,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.72,
-   "clv_cents": 16.0,
+   "close_price": 0.74,
+   "clv_cents": 18.0,
    "confirmed_after_min": 10,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -917,8 +1077,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.25,
-   "clv_cents": -47.0,
+   "close_price": 0.11,
+   "clv_cents": -61.0,
    "confirmed_after_min": 12,
    "date": "2026-10-26",
    "depth_by_book": {
