@@ -113,7 +113,7 @@ def first_side(a, feed):
     return min(opp, key=lambda z: z[0])[1] if opp else None
 
 
-PHASE1 = ("ProphetX-priced at alert time, Grade A/B, Muse AGREE, NCAAF + NBA only, spreads + unders only, "
+PHASE1 = ("ProphetX-priced at alert time, Grade A/B, Muse AGREE, NCAAF + NBA spreads + unders, NFL unders only, "
           "not sent 12-24h before start, $50 unit, ProphetX only")
 
 
@@ -126,9 +126,13 @@ def phase1(a, muse_agree, tag_nfl=False):
         why.append(f"priced on {a.get('book') or '?'}, not ProphetX")
     if a.get("grade") not in ("A", "B"):
         why.append(f"grade {a.get('grade') or 'none'}")
-    if (a.get("sport") or "").upper() not in (("NCAAF", "NBA", "NFL") if tag_nfl else ("NCAAF", "NBA")):
-        why.append(f"{a.get('sport')} (NCAAF + NBA only)")
-    if not (a.get("kind") == "spr" or (a.get("kind") == "tot" and side_of(a) == "UNDER")):
+    sp = (a.get("sport") or "").upper()
+    under = a.get("kind") == "tot" and side_of(a) == "UNDER"
+    if sp not in ("NCAAF", "NBA", "NFL"):
+        why.append(f"{a.get('sport')} (NCAAF, NBA, NFL only)")
+    elif sp == "NFL" and not under:
+        why.append("NFL: unders only (Peter, Oct 26)")
+    if sp != "NFL" and not (a.get("kind") == "spr" or under):
         why.append("overs and moneylines stay paper")
     ld = lead_min(a)
     if ld is not None and 720 <= ld < 1440:

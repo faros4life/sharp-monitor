@@ -37,14 +37,16 @@ def in_1224(a):
 
 
 def phase1_core(a):   # Muse AGREE is not in alerts.json; the executor's LEDGER carries it
-    return (a.get("book_key") == "prophetx" and a.get("grade") in ("A", "B") and a.get("sport") in ("NCAAF", "NBA")
-            and (a.get("kind") == "spr" or is_under(a)) and not in_1224(a) and not a.get("late"))
+    sport_ok = (a.get("sport") in ("NCAAF", "NBA") and (a.get("kind") == "spr" or is_under(a))) or \
+        (a.get("sport") == "NFL" and is_under(a))   # NFL: unders only (Peter, Oct 26)
+    return (a.get("book_key") == "prophetx" and a.get("grade") in ("A", "B") and sport_ok
+            and not in_1224(a) and not a.get("late"))
 
 
 SENT = lambda a: bool(a.get("sent_to_phone"))
 NTFY = [
     ("phase1", "Phase-1 live filter (paper view)", "a-priori",
-     "Sent alerts priced on ProphetX at alert time, Grade A/B, NCAAF or NBA, spreads or unders, not sent 12-24h before "
+     "Sent alerts priced on ProphetX at alert time, Grade A/B, NCAAF/NBA spreads or unders, NFL unders only, not sent 12-24h before "
      "start, not late. Muse AGREE is applied in the executor ledger, not here.",
      lambda a: SENT(a) and phase1_core(a), "units_flat"),
     ("phase1_control", "Phase-1 control group", "control",
