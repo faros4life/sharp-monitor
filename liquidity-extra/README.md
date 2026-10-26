@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Mon Oct 26, 10:10 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 11.
+Updated Mon Oct 26, 10:30 AM ET. This run: 0 new, 1 not confirmed, 0 pending. Open alerts: 11.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -13,14 +13,14 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 26 8:10AM | MLB | Milwaukee Brewers vs. Tampa Bay Rays | moneyline: Milwaukee Brewers | polymarket | $213k | +104 |  |  | +0.0c |  | pending |
 | Oct 26 7:31AM | TENNIS | Bertola vs Shapovalov | moneyline: Shapovalov | kalshi | $29k | -285 |  |  | +0.0c |  | pending |
 | Oct 26 6:50AM | TENNIS | Dart vs Prozorova | moneyline: Prozorova | kalshi | $649k | -213 |  |  | -63.0c | yes | L |
-| Oct 26 6:30AM | TENNIS | Altmaier vs Cerundolo | moneyline: Cerundolo | kalshi | $31k | -127 | ✅ novig |  | +3.0c | yes | pending |
+| Oct 26 6:30AM | TENNIS | Altmaier vs Cerundolo | moneyline: Cerundolo | kalshi | $31k | -127 | ✅ novig |  | +2.0c | yes | pending |
 | Oct 26 6:10AM | TENNIS | Brunold vs Borges | moneyline: Borges | kalshi | $28k | -203 | ✅ novig |  | +30.0c | yes | W |
 | Oct 26 5:50AM | TENNIS | Dart vs Prozorova | moneyline: Dart | kalshi | $47k | -213 |  |  | +28.0c |  | W |
 | Oct 26 5:40AM | TENNIS | Fery vs Fearnley | moneyline: Fearnley | kalshi | $55k | -113 | ✅ novig |  | +1.0c | yes | pending |
 | Oct 26 4:40AM | TENNIS | Badosa vs Lee | moneyline: Badosa | kalshi | $162k | -456 |  |  | +13.0c |  | W |
 | Oct 26 3:30AM | TENNIS | Shi vs Ibragimova | moneyline: Shi | kalshi | $1,035k | -525 |  |  | +10.0c |  | W |
 | Oct 26 3:10AM | TENNIS | Shi vs Ibragimova | moneyline: Ibragimova | kalshi | $709k | +104 |  |  | -42.0c | yes | L |
-| Oct 26 12:02AM | TENNIS | Machac vs de Minaur | moneyline: de Minaur | kalshi | $34k | -257 |  |  | -2.0c |  | pending |
+| Oct 26 12:02AM | TENNIS | Machac vs de Minaur | moneyline: de Minaur | kalshi | $34k | -257 |  |  | -7.0c |  | pending |
 | Oct 25 11:40PM | TENNIS | Timofeeva vs Kostovic | moneyline: Timofeeva | kalshi | $120k | -355 |  |  | +2.0c | yes | W |
 | Oct 25 11:30PM | TENNIS | Udvardy vs Kraus | moneyline: Kraus | kalshi | $113k | -335 |  |  | +7.0c |  | W |
 | Oct 25 10:08PM | TENNIS | Wang vs Parks | moneyline: Parks | kalshi | $351k | -317 |  |  | -1.0c |  | W |
@@ -35,7 +35,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 25 7:00AM | TENNIS | Merida vs Medvedev | moneyline: Medvedev | kalshi | $29k | -488 |  |  | -1.0c |  | pending |
 | Oct 25 5:00AM | TENNIS | Neumayer vs Droguet | moneyline: Droguet | kalshi | $28k | -257 |  |  | +0.0c | yes | L |
 | Oct 25 4:50AM | TENNIS | Valentova vs Zhang | moneyline: Valentova | kalshi | $27k | -270 |  |  | +0.0c |  | W |
-| Oct 25 1:10AM | MLB | Milwaukee vs Tampa Bay: Spread | spread: NOT Milwaukee wins by over 1.5 runs | kalshi | $58k | -203 | ✅ polymarket |  | +0.0c |  | pending |
+| Oct 25 1:10AM | MLB | Milwaukee vs Tampa Bay: Spread | spread: NOT Milwaukee wins by over 1.5 runs | kalshi | $58k | -203 | ✅ polymarket |  | -1.0c |  | pending |
 | Oct 25 12:30AM | MLB | Game 3: Milwaukee vs Tampa Bay | moneyline: Tampa Bay | kalshi | $146k | -104 |  |  | +2.0c |  | pending |
 | Oct 24 11:50PM | TENNIS | Lee vs Pridankina | moneyline: Lee | kalshi | $79k | -285 |  |  | -5.0c |  | W |
 | Oct 24 11:40PM | TENNIS | Ibragimova vs Iatcenko | moneyline: Ibragimova | kalshi | $143k | -150 |  |  | +8.0c |  | W |
