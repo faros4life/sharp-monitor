@@ -1,6 +1,129 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-26T02:18:57Z",
+   "base_depth": 108601,
+   "best_price": 0.6072,
+   "best_price_american": -155,
+   "best_price_book": "polymarket",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.6,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 9,
+   "date": "2026-10-26",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -24124,
+     "new_this_side": 34633,
+     "other_side": 14246,
+     "other_side_all_levels": 113289,
+     "ratio": 1.9,
+     "this_side": 27254,
+     "this_side_all_levels": 145514
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "IND (0)",
+     "price": 0.61,
+     "this_side": 4633
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Pacers",
+     "price": 0.6,
+     "this_side": 3023
+    }
+   },
+   "first_seen_utc": "2026-10-26T02:10:09Z",
+   "game": "Indiana vs Milwaukee",
+   "key": "kalshi|KXNBAGAME-26OCT26INDMIL|ml|0",
+   "lead_min": 1301,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 34633,
+   "paper_only": false,
+   "price": 0.6,
+   "price_american": -150,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.6,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -175
+    },
+    "betrivers": {
+     "point": null,
+     "price": -190
+    },
+    "draftkings": {
+     "point": null,
+     "price": -170
+    },
+    "fanatics": {
+     "point": null,
+     "price": -175
+    },
+    "fanduel": {
+     "point": null,
+     "price": -178
+    },
+    "kalshi": {
+     "point": null,
+     "price": -150
+    },
+    "limitless": {
+     "point": null,
+     "price": -152
+    },
+    "novig": {
+     "point": null,
+     "price": -156
+    },
+    "polymarket": {
+     "point": null,
+     "price": -150
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -150
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -178
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBAGAME-26OCT26INDMIL-IND"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "none_10k",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Indiana",
+   "side_label": "Indiana",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-27T00:00:00Z",
+   "teams": [
+    "Indiana",
+    "Milwaukee"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-26T02:00:16Z",
    "base_depth": 90273,
    "best_price": 0.41,
@@ -52,6 +175,8 @@
    "new_money": 26243,
    "paper_only": false,
    "price": 0.4,
+   "price_after_15m": 0.4,
+   "price_after_15m_book": "novig",
    "price_american": 150,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.4,
@@ -113,6 +238,7 @@
    "side_label": "Milwaukee",
    "start_source": "polymarket",
    "start_utc": "2026-10-27T00:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Indiana",
     "Milwaukee"
@@ -523,10 +649,11 @@
     "kalshi_side": "no",
     "market_ticker": "KXNBATOTAL-26OCT25DETPHI-212"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": "no_match",
    "second_book_fresh": false,
+   "settled_utc": "2026-10-26T02:18:57Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -539,7 +666,7 @@
     "Philadelphia"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.83
   },
   {
    "alerted_utc": "2026-10-26T00:30:11Z",
@@ -1275,8 +1402,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.58,
-   "clv_cents": 0.0,
+   "close_price": 0.57,
+   "clv_cents": -1.0,
    "confirmed_after_min": 9,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -3802,8 +3929,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": 1.0,
+   "close_price": 0.61,
+   "clv_cents": 11.0,
    "confirmed_after_min": 15,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -5134,12 +5261,13 @@
     "kalshi_side": "no",
     "market_ticker": "KXNBASPREAD-26OCT25DETPHI-DET2"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
+   "settled_utc": "2026-10-26T02:18:57Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "Detroit Pistons +1.5 (-113)",
@@ -5156,7 +5284,7 @@
     "Philadelphia"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-25T17:40:09Z",
@@ -6774,8 +6902,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.73,
-   "clv_cents": 6.0,
+   "close_price": 0.72,
+   "clv_cents": 5.0,
    "confirmed_after_min": 6,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -7673,8 +7801,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.74,
-   "clv_cents": -2.0,
+   "close_price": 0.75,
+   "clv_cents": -1.0,
    "confirmed_after_min": 7,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -10688,8 +10816,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.33,
-   "clv_cents": -18.0,
+   "close_price": 0.35,
+   "clv_cents": -16.0,
    "confirmed_after_min": 6,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -11225,12 +11353,13 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBATOTAL-26OCT25DETPHI-228"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "polymarket"
    ],
    "second_book_fresh": true,
+   "settled_utc": "2026-10-26T02:18:57Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -11243,7 +11372,7 @@
     "Philadelphia"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-25T13:10:08Z",
@@ -11401,8 +11530,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.88,
-   "clv_cents": 29.0,
+   "close_price": 0.89,
+   "clv_cents": 30.0,
    "confirmed_after_min": 10,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -11826,12 +11955,13 @@
     "kalshi_side": "no",
     "market_ticker": "KXNBASPREAD-26OCT25DETPHI-PHI2"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "polymarket"
    ],
    "second_book_fresh": false,
+   "settled_utc": "2026-10-26T02:18:57Z",
    "sharp_agree": [
     "Detroit Pistons +2.5 (+100)"
    ],
@@ -11846,7 +11976,7 @@
     "Philadelphia"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.86
   },
   {
    "alerted_utc": "2026-10-25T12:50:08Z",
@@ -12018,8 +12148,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": 0.0,
+   "close_price": 0.41,
+   "clv_cents": -9.0,
    "confirmed_after_min": 6,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -12847,10 +12977,11 @@
     "kalshi_side": "no",
     "market_ticker": "KXNBATOTAL-26OCT25DETPHI-228"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": "none_10k",
    "second_book_fresh": false,
+   "settled_utc": "2026-10-26T02:18:57Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -12863,7 +12994,7 @@
     "Philadelphia"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.03
   },
   {
    "alerted_utc": "2026-10-25T12:50:08Z",
@@ -13472,8 +13603,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.54,
-   "clv_cents": -5.0,
+   "close_price": 0.59,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -14663,8 +14794,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.36,
-   "clv_cents": -15.0,
+   "close_price": 0.39,
+   "clv_cents": -12.0,
    "confirmed_after_min": 10,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -15511,12 +15642,13 @@
     "kalshi_side": "no",
     "market_ticker": "KXNBASPREAD-26OCT25DETPHI-PHI3"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "polymarket"
    ],
    "second_book_fresh": false,
+   "settled_utc": "2026-10-26T02:18:57Z",
    "sharp_agree": [
     "Detroit Pistons +2.5 (+100)"
    ],
@@ -15531,7 +15663,7 @@
     "Philadelphia"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.86
   },
   {
    "alerted_utc": "2026-10-25T11:35:25Z",
@@ -19500,8 +19632,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.67,
-   "clv_cents": -1.0,
+   "close_price": 0.68,
+   "clv_cents": 0.0,
    "confirmed_after_min": 7,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -20050,12 +20182,13 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBAGAME-26OCT25DETPHI-DET"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "polymarket"
    ],
    "second_book_fresh": true,
+   "settled_utc": "2026-10-26T02:18:57Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Detroit",
@@ -20068,7 +20201,7 @@
     "Philadelphia"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.3
   },
   {
    "alerted_utc": "2026-10-25T03:30:13Z",
@@ -21884,8 +22017,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.04,
-   "clv_cents": -64.0,
+   "close_price": 0.02,
+   "clv_cents": -66.0,
    "confirmed_after_min": 10,
    "date": "2026-10-25",
    "depth_by_book": {
