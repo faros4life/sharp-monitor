@@ -128,15 +128,16 @@ def http_get(path, params):
         return body, (int(float(rem)) if rem is not None else None)
 
 
-def notify(title, body, red=False, yellow=False):
-    """red = late alert; yellow = an earlier alert already came in on this game (the first alert is the play)."""
+def notify(title, body, red=False, yellow=False, extra_tags=()):
+    """red = late alert; yellow = an earlier alert already came in on this game (the first alert is the play).
+    extra_tags: ntfy emoji tags (Oct 26: white_check_mark = phase-1 candidate, page_facing_up = paper only)."""
     if not NTFY_TOPIC:
         print(f"[dry-run alert] {title}\n{body}\n")
         return
     req = urllib.request.Request(
         f"https://ntfy.sh/{NTFY_TOPIC}", data=body.encode(), method="POST",
         headers={"Title": title.encode("ascii", "ignore").decode(), "Priority": "high",
-                 "Tags": ",".join(t for t, on in (("red_circle", red), ("yellow_circle", yellow), ("moneybag", True)) if on)})
+                 "Tags": ",".join(list(extra_tags) + [t for t, on in (("red_circle", red), ("yellow_circle", yellow), ("moneybag", True)) if on])})
     urllib.request.urlopen(req, timeout=15).read()
 
 
@@ -568,6 +569,22 @@ def detect(event, cfg, lines, base):
                     mag=(new - old) / cfg["ml"], nb=len([x for x in offers if edge_ok(net(x[0], x[1]), new)]),
                     edge=new / am_to_prob(net(pr, b)) - 1)
     return alerts
+
+
+def phase1_label(a, sport, grade, lead, late, opposite_earlier):
+    """Oct 26 (Peter): label each phone alert PHASE 1 (candidate for the live filter; Muse's AGREE still decides) or
+    PAPER. Same rule as agree_rules.phase1 plus first-side-stays. Labeling only: every alert is still sent and recorded."""
+    try:
+        import agree_rules
+        ok, why = agree_rules.phase1({"book_key": a.get("book"), "book": nm(a.get("book")), "grade": grade, "sport": sport,
+                                      "kind": a.get("kind"), "bet": a.get("text") or "", "minutes_before_start": lead,
+                                      "late": late}, True)
+        why = [w for w in why if w != "no Muse AGREE"]
+        if opposite_earlier:
+            ok, why = False, ["opposite side of an earlier alert"] + why
+        return (ok and not why), why
+    except Exception as ex:
+        return False, [f"label error {str(ex)[:40]}"]
 
 
 # ---------------------------------------------------------------- closing-line tracking
@@ -1300,11 +1317,15 @@ def run():
                     elif repeat and REPEAT_MODE == "mute":
                         print(f"Not sent (repeat): {a['text']} | {a['game']}")
                     else:
-                        notify(f"Sharp alert {cfg['label']}" + (" LATE" if late else ""),
-                               f"{a['text']}\n{bet_size(a['price'], a['book'])}{prior_note}\n{a['game']}{tag}, {a['start']}\n{a['why']}\n"
+                        p1_ok, p1_why = phase1_label(a, cfg["label"], grade, lead, late, bool(opp))
+                        label = ("PHASE 1 - candidate, wait for Muse's OK" if p1_ok
+                                 else "PAPER - don't bet (" + "; ".join(p1_why[:2]) + ")")
+                        notify(("PHASE 1 " if p1_ok else "PAPER ") + f"Sharp alert {cfg['label']}" + (" LATE" if late else ""),
+                               f"{label}\n{a['text']}\n{bet_size(a['price'], a['book'])}{prior_note}\n{a['game']}{tag}, {a['start']}\n{a['why']}\n"
                                f"Grade {grade} ({score}/100)" + (f" | Edge {a['evp']:+.1f}%" if a.get("evp") is not None else "") + " | "
                                + (f"LATE: starts in {lead_text(lead)}" if late else f"starts in {lead_text(lead)}"),
-                               red=late, yellow=(not late) and bool(prior or (repeat and REPEAT_MODE != "mute")))   # late = red only
+                               red=late, yellow=(not late) and bool(prior or (repeat and REPEAT_MODE != "mute")),   # late = red only
+                               extra_tags=("white_check_mark",) if p1_ok else ("page_facing_up",))
                     st["alerted"][a["id"]] = time.time()
                     e = {k: a[k] for k in ("id", "ev", "game", "kind", "side", "pt", "price", "book", "conf", "nconf", "cby", "evp", "fade")}
                     e.update(sport=cfg["label"], start=a["commence"], t=time.time(), lead=round(lead), late=late,
