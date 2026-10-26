@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Mon Oct 26, 3:50 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 20.
+Updated Mon Oct 26, 4:00 AM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 21.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -8,6 +8,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Oct 26 4:00AM | NCAAF | Sam Houston vs Missouri St. | moneyline: Missouri St. | kalshi | $62k | -203 |  |  | +0.0c |  | pending |
 | Oct 26 1:00AM | NBA | Sacramento vs San Antonio | moneyline: San Antonio | kalshi | $312k | -567 |  |  | +2.0c |  | pending |
 | Oct 26 1:00AM | NBA | Brooklyn vs Boston | moneyline: Boston | kalshi | $322k | -456 |  |  | +0.0c |  | pending |
 | Oct 26 12:10AM | NBA | Wizards vs. Hornets | moneyline: Hornets | polymarket | $32k | -117 | ✅ kalshi,novig |  | +0.0c |  | pending |
@@ -15,7 +16,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 25 11:20PM | NFL | Dallas Cowboys @ Philadelphia Eagles | moneyline: DAL (0) | novig | $33k | -208 | ✅ kalshi,prophetx |  | +0.5c |  | pending |
 | Oct 25 10:50PM | NBA | Phoenix vs Oklahoma City | moneyline: Oklahoma City | kalshi | $51k | -317 |  |  | +3.0c |  | pending |
 | Oct 25 10:21PM | NBA | Indiana vs Milwaukee | moneyline: Indiana | kalshi | $35k | -150 |  |  | +1.0c |  | pending |
-| Oct 25 10:00PM | NBA | Indiana vs Milwaukee | moneyline: Milwaukee | kalshi | $26k | +150 |  |  | -1.0c | yes | pending |
+| Oct 25 10:00PM | NBA | Indiana vs Milwaukee | moneyline: Milwaukee | kalshi | $26k | +150 |  |  | +0.0c | yes | pending |
 | Oct 25 9:50PM | NHL | Toronto vs Calgary: Spread | spread: Toronto wins by over 1.5 goals | kalshi | $27k | +178 |  |  | +2.0c |  | pending |
 | Oct 25 9:00PM | NHL | Minnesota Wild @ Vancouver Canucks | moneyline: MIN (0) | novig | $31k | -186 | ✅ kalshi,polymarket,prophetx |  | +0.5c |  | W |
 | Oct 25 9:00PM | NBA | Detroit vs Philadelphia: Total Points | total: NOT Over 211.5 points | kalshi | $30k | -113 |  |  | +19.0c | yes | W |
@@ -63,7 +64,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 25 1:10PM | NBA | Memphis vs Sacramento: Spread | spread: NOT Memphis wins by over 3.5 points | kalshi | $41k | -104 |  | ❌ | -25.0c | yes | L |
 | Oct 25 1:10PM | NBA | Indiana vs Brooklyn: Spread | spread: NOT Indiana wins by over 7.5 points | kalshi | $67k | -104 | ✅ novig,polymarket | ✅ | -25.0c | yes | L |
 | Oct 25 1:10PM | NHL | Toronto vs Calgary | moneyline: Toronto | kalshi | $39k | -133 | ✅ polymarket |  | +2.0c | yes | pending |
-| Oct 25 1:10PM | NBA | Golden State vs Denver | moneyline: Denver | kalshi | $28k | -203 | ✅ polymarket |  | +5.0c | yes | pending |
+| Oct 25 1:10PM | NBA | Golden State vs Denver | moneyline: Denver | kalshi | $28k | -203 | ✅ polymarket |  | +6.0c | yes | pending |
 | Oct 25 1:10PM | NBA | Atlanta vs Houston | moneyline: Houston | kalshi | $36k | -203 | ✅ polymarket |  | -1.0c |  | pending |
 | Oct 25 12:50PM | NHL | Avalanche vs. Predators | total: Under (6.5) | polymarket | $34k | -100 | ✅ kalshi,novig |  | +1.0c |  | L |
 | Oct 25 12:40PM | NHL | Panthers vs. Blackhawks | moneyline: Blackhawks | polymarket | $31k | +163 |  |  | +0.0c |  | L |
@@ -207,4 +208,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 24 7:30PM | NBA | New Orleans vs Denver: Spread | spread: NOT Denver wins by over 11.5 points | kalshi | $83k | -113 | ✅ polymarket |  | +12.0c | yes | W |
 | Oct 24 7:20PM | NBA | Pelicans vs. Nuggets | spread: Pelicans (+11.5) | polymarket | $43k | -108 | ✅ kalshi |  | +1.0c |  | W |
 | Oct 24 7:20PM | NFL | Cincinnati Bengals @ Baltimore Ravens | moneyline: CIN (0) | novig | $30k | -144 | ✅ prophetx | ✅ | +1.5c | yes | W |
-| Oct 24 7:20PM | NBA | Washington vs Chicago: Spread | spread: Chicago wins by over 1.5 points | kalshi | $100k | -108 | ✅ novig,polymarket | ✅ | -1.0c | yes | L |
