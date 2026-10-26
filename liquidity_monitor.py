@@ -1017,8 +1017,13 @@ def settle(alerts, n):
                 a["graded_by"] = "espn"
         if r:
             a["result"] = r
+            if a.get("close_price") is None:   # never got a real pregame close read: graded, but kept out of the record
+                a["artifact"] = "no_pregame_close"
             p = a.get("best_price") or a.get("price")   # graded at the best price available across books at alert time
             a["units_flat"] = round((1 - p) / p, 2) if (r == "W" and p) else (-1.0 if r == "L" else 0.0)
+            fp = eff_cost(a["book"], a.get("fade_price")) if a.get("fade_price") else None
+            if fp and 0 < fp < 1 and r in ("W", "L", "P"):   # paper: betting AGAINST the print, after the book's fee
+                a["fade_units"] = -1.0 if r == "W" else (round((1 - fp) / fp, 2) if r == "L" else 0.0)
             a["settled_utc"] = n.strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
@@ -1213,6 +1218,71 @@ def fill_starts(rows):
                 x["start"], x["start_source"] = st, book
 
 
+GAP_BOOKS = ("kalshi", "novig", "prophetx")   # executable exchanges this monitor reads (Polymarket here is the global book)
+GAP_MIN = float(os.environ.get("LIQ_GAP_MIN", "") or "0.005")   # log when both sides cost < $1 - 0.5c after fees
+
+
+def find_gaps(rows, n):
+    """PAPER: same game/market/line, opposite sides on two different exchanges, total cost after fees under $1
+    (buying both locks a profit if both fill). Logged to gaps.json for measurement only - never alerted or bet."""
+    groups = {}
+    for r in rows:
+        if r.get("book") in GAP_BOOKS and r.get("teams") and r.get("side") is not None and r.get("price") \
+                and 0 < r["price"] < 1:
+            groups.setdefault((r["league"], r["date"], r["market"]), []).append(r)
+    out = []
+    for (lg, d, mkt), rs in groups.items():
+        for i, a in enumerate(rs):
+            for b in rs[i + 1:]:
+                if a["book"] == b["book"]:
+                    continue
+                how = same_game(a, b)
+                if not how:
+                    continue
+                if mkt == "total":
+                    opp = a["side"] != b["side"] and a.get("line") is not None and a.get("line") == b.get("line")
+                elif mkt == "spread":
+                    opp = (not same_side(a, b, how, check_line=False) and a.get("line") is not None
+                           and b.get("line") is not None and abs(a["line"] + b["line"]) < 1e-9)
+                else:
+                    opp = not same_side(a, b, how, check_line=False)
+                if not opp:
+                    continue
+                ca, cb = eff_cost(a["book"], a["price"]), eff_cost(b["book"], b["price"])
+                tot = ca + cb
+                if tot < 1 - GAP_MIN:
+                    out.append({"seen_utc": n.strftime("%Y-%m-%dT%H:%M:%SZ"), "league": lg, "game": a.get("game"),
+                                "market": mkt, "line": a.get("line"), "edge_pct": round(100 * (1 - tot) / tot, 2),
+                                "total_cost": round(tot, 4),
+                                "size_est": round(min(a.get("other_depth") or 0, b.get("other_depth") or 0)),
+                                "legs": [{"book": x["book"], "side": x.get("side_label"), "price": x["price"],
+                                          "cost_after_fee": c} for x, c in ((a, ca), (b, cb))]})
+    return out
+
+
+def save_gaps(new, n):
+    path = os.path.join(OUT_DIR, "gaps.json")
+    try:
+        with open(path) as f:
+            old = json.load(f).get("gaps") or []
+    except Exception:
+        old = []
+    cut = (n - timedelta(days=14)).strftime("%Y-%m-%dT%H:%M:%SZ")
+    hour = (n - timedelta(minutes=60)).strftime("%Y-%m-%dT%H:%M:%SZ")
+    keyf = lambda g: (g["game"], g["market"], g["line"], tuple(sorted(x["book"] for x in g["legs"])))
+    recent = {keyf(g) for g in old if g["seen_utc"] >= hour}
+    added = [g for g in new if keyf(g) not in recent]
+    keep = [g for g in old if g["seen_utc"] >= cut] + added
+    os.makedirs(OUT_DIR, exist_ok=True)
+    with open(path, "w") as f:
+        json.dump({"note": "PAPER ONLY (Oct 25): opposite sides of the same game/market/line on two different exchanges whose "
+                           "combined cost after fees is under $1 (Kalshi/Novig/ProphetX; Polymarket here is the global book, "
+                           "excluded). edge_pct = locked profit per $ staked if both legs fill at these prices; size_est = "
+                           "smaller of the two legs' near-price depth (rough). One entry per game/market/line/books per hour. "
+                           "Measurement only: never alerted, never bet.", "gaps": keep}, f, indent=1)
+    return len(added)
+
+
 def sharp_alerts(n):
     """Recent Pinnacle-move alerts from the sharp-monitor (alerts.json in this repo), as comparable rows."""
     try:
@@ -1317,13 +1387,20 @@ def write_page(alerts, n, stats):
              "New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. "
              "**Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. "
              "**CLV** = cents the exchange price moved toward this side before the game.", ""]
-    graded = [a for a in alerts if a.get("result") in ("W", "L", "P")]
+    for a in alerts:   # Oct 25 regrade: resulted plays that never had a real pregame close read (in-game reads)
+        if a.get("result") in ("W", "L", "P") and a.get("close_price") is None:
+            a["artifact"] = "no_pregame_close"
+    graded = [a for a in alerts if a.get("result") in ("W", "L", "P") and not a.get("artifact")]
     if graded:
         w = sum(1 for a in graded if a["result"] == "W"); l = sum(1 for a in graded if a["result"] == "L")
         u = sum(a.get("units_flat") or 0 for a in graded)
         rm = [a for a in graded if a.get("rule_met")]
         lines += [f"**Record:** {w}-{l} ({u:+.2f}u flat)" + (f" | rule met: {sum(1 for a in rm if a['result']=='W')}-"
                   f"{sum(1 for a in rm if a['result']=='L')}" if rm else ""), ""]
+    fd = [a for a in graded if a.get("fade_units") is not None]
+    if fd:
+        lines += [f"**Fade (paper, betting against the print):** {sum(1 for a in fd if a['fade_units'] > 0)}-"
+                  f"{sum(1 for a in fd if a['fade_units'] < 0)} ({sum(a['fade_units'] for a in fd):+.2f}u flat, after fees)", ""]
     lines += ["| Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |",
               "|---|---|---|---|---|---|---|---|---|---|---|---|"]
     for a in alerts[:200]:
@@ -1365,6 +1442,9 @@ def run():
     for k in ("alerted", "seen", "pending"):
         state.setdefault(k, {})
     settle(alerts, n)
+    for a in alerts:   # Oct 25 regrade: resulted plays that never had a real pregame close read are kept out of records
+        if a.get("result") in ("W", "L", "P") and a.get("close_price") is None:
+            a["artifact"] = "no_pregame_close"
 
     rows = []
     if "kalshi" in BOOKS:
@@ -1384,14 +1464,22 @@ def run():
     print(f"Rows: {len(rows)} sides; {len(by_key)} pregame main-line sides")
 
     pre_rows = list(pre.values())
+    try:
+        print(f"Price gaps (paper): {save_gaps(find_gaps(pre_rows, n), n)} new")   # count only
+    except Exception as ex:
+        print(f"gap scan failed: {str(ex)[:80]}")
 
     # --- open alerts: closing price (last pregame price), pulled money, 15-minute actionability
     for a in alerts:
         r = pre.get(a.get("key"))
         if a.get("result") is not None or not r:
             continue
-        a["close_price"] = r["price"]
-        a["clv_cents"] = round(100 * (r["price"] - a["price"]), 1) if (r["price"] is not None and a.get("price")) else None
+        if r["price"] is not None:   # Oct 25: a side with NO offers left = game already live (wrong/late start time):
+            # keep the last real pregame close instead of overwriting it with nothing
+            a["close_price"] = r["price"]
+            a["clv_cents"] = round(100 * (r["price"] - a["price"]), 1) if a.get("price") else None
+        elif a.get("close_price") is not None:
+            a["close_frozen"] = True
         base, new = a.get("base_depth"), a.get("new_money")
         tot = r.get("total_depth", r["depth"])
         if base is not None and new and not a.get("pulled") and tot < base + PULLED_KEEP * new:
@@ -1480,6 +1568,8 @@ def run():
             "books_live": BOOKS, "ref": r["ref"], "pulled": False, "close_price": r["price"], "clv_cents": 0.0,
             "bid_improved_at_pending": pd.get("bid_improved"), "bid_improved": improved(r.get("best_bid"), pd.get("bb")),
             "best_price": bp, "best_price_book": bpb, "best_price_american": american(bp),
+            # Oct 25 paper column: the OTHER side's cost on the same book at alert time (= 1 - best bid on this side)
+            "fade_price": round(1 - r["best_bid"], 4) if r.get("best_bid") else None,
             "prices_by_book": odds_prices(r),
             "second_book_fresh": any(v.get("fresh") for v in second.values()),
             "lead_min": round((r["start"] - now_s) / 60) if r.get("start") else None,
@@ -1535,7 +1625,10 @@ def run():
         "the same side and it is the heavier side there. sharp_agree/sharp_oppose = sharp-monitor (Pinnacle move) alerts on the "
         "same game & market. price = cost to buy the side when logged (0-1); close_price = last pregame price; clv_cents = "
         "close_price - price (positive = the market moved toward this side). result W/L/P/VOID from the exchange's settlement; "
-        "units_flat = 1u at best_price (cheapest across books at alert). Log-only fields: bid_improved (best bid on the alert side "
+        "units_flat = 1u at best_price (cheapest across books at alert). "
+        "artifact = 'no_pregame_close': the play never got a real pregame close read (reads continued after a wrong/late "
+        "start time); EXCLUDE these from every record (Oct 25 regrade; from then on, a read with no offers keeps the last "
+        "real close and sets close_frozen). Log-only fields: bid_improved (best bid on the alert side "
         "rose between readings), best_price/best_price_book, prices_by_book (Odds API sportsbooks), second_book_fresh (second book "
         "added >= $10k on the side in the last two checks), lead_min, price_rule (fails_cap = worse than -130 on spread/total; "
         "ml_edge_ok/fail = 2%% edge vs cross-book fair mid), price_after_15m/still_actionable. Leagues: NFL, NCAAF, NBA, NHL, "
