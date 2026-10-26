@@ -1,6 +1,148 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-26T17:04:25Z",
+   "base_depth": 102751,
+   "best_price": 0.47,
+   "best_price_american": 113,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.47,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 4,
+   "date": "2026-10-26",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 576,
+     "new_this_side": 44982,
+     "other_side": 59226,
+     "other_side_all_levels": 70823,
+     "ratio": 2.1,
+     "this_side": 124133,
+     "this_side_all_levels": 148681
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "Under 5.5 (5.5)",
+     "price": 0.47,
+     "this_side": 21007
+    }
+   },
+   "fade_price": 0.54,
+   "first_seen_utc": "2026-10-26T17:00:17Z",
+   "game": "Los Angeles vs New York R: Total Goals",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLTOTAL-26OCT26LANYR-6\"}",
+   "lead_min": 356,
+   "league": "NHL",
+   "line": 5.5,
+   "market": "total",
+   "new_money": 44982,
+   "paper_only": false,
+   "price": 0.47,
+   "price_american": 113,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.47,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 6.0,
+     "price": -118
+    },
+    "betonlineag": {
+     "point": 5.5,
+     "price": 107
+    },
+    "betopenly": {
+     "point": 5.5,
+     "price": 118
+    },
+    "betrivers": {
+     "point": 5.5,
+     "price": 104
+    },
+    "betus": {
+     "point": 6.0,
+     "price": -120
+    },
+    "bovada": {
+     "point": 6.0,
+     "price": -122
+    },
+    "draftkings": {
+     "point": 5.5,
+     "price": 110
+    },
+    "fanatics": {
+     "point": 5.5,
+     "price": 105
+    },
+    "fanduel": {
+     "point": 5.5,
+     "price": 106
+    },
+    "kalshi": {
+     "point": 5.5,
+     "price": 113
+    },
+    "lowvig": {
+     "point": 5.5,
+     "price": 107
+    },
+    "mybookieag": {
+     "point": 6.0,
+     "price": -120
+    },
+    "novig": {
+     "point": 5.5,
+     "price": 113
+    },
+    "polymarket": {
+     "point": 5.5,
+     "price": 113
+    },
+    "prophetx": {
+     "point": 5.5,
+     "price": 112
+    },
+    "williamhill_us": {
+     "point": 6.0,
+     "price": -121
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNHLTOTAL-26OCT26LANYR-6"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [
+    "Under 6 (-112)"
+   ],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "NOT Over 5.5 goals scored",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-26T23:00:00Z",
+   "teams": [
+    "Los Angeles",
+    "New York R"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-26T17:00:17Z",
    "base_depth": 150625,
    "best_price": 0.5311,
@@ -447,8 +589,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": 0.0,
+   "close_price": 0.52,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -1063,8 +1205,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": -1.0,
+   "close_price": 0.52,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -1692,8 +1834,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": 4.0,
+   "close_price": 0.55,
+   "clv_cents": 6.0,
    "confirmed_after_min": 5,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -2613,8 +2755,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 2.0,
+   "close_price": 0.53,
+   "clv_cents": 3.0,
    "confirmed_after_min": 8,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -3805,8 +3947,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.54,
-   "clv_cents": 4.0,
+   "close_price": 0.55,
+   "clv_cents": 5.0,
    "confirmed_after_min": 10,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -4117,8 +4259,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.54,
-   "clv_cents": 2.0,
+   "close_price": 0.55,
+   "clv_cents": 3.0,
    "confirmed_after_min": 14,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -4267,8 +4409,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.55,
-   "clv_cents": 4.0,
+   "close_price": 0.56,
+   "clv_cents": 5.0,
    "confirmed_after_min": 10,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -6031,8 +6173,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.58,
-   "clv_cents": 7.0,
+   "close_price": 0.59,
+   "clv_cents": 8.0,
    "confirmed_after_min": 10,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -14864,8 +15006,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.73,
-   "clv_cents": -3.0,
+   "close_price": 0.72,
+   "clv_cents": -4.0,
    "confirmed_after_min": 7,
    "date": "2026-10-26",
    "depth_by_book": {
