@@ -151,7 +151,7 @@ def pmus_positions():
 # ---------------------------------------------------------------- ProphetX (login + GET)
 def px_positions():
     """ProphetX trades carry only strike_id (no event/selection name), so each open trade's strike_id is looked up in
-    the selections of current games' markets (games from 8 h ago to 3 days ahead)."""
+    the selections of current games' markets (games from 12 h ago to 8 days ahead)."""
     import book_check as bc
     if not bc.PX_ACCESS or not bc.PX_SECRET:
         WHY["prophetx"] = "no key"
@@ -176,7 +176,7 @@ def px_positions():
                     st = datetime.fromisoformat((e.get("scheduled") or "").replace("Z", "+00:00"))
                 except Exception:
                     continue
-                if not (now - timedelta(hours=8) <= st <= now + timedelta(days=3)):
+                if not (now - timedelta(hours=12) <= st <= now + timedelta(days=8)):   # Oct 25: wider (was -8h/+3d)
                     continue
                 for mk in bc.px_markets(e["event_id"]):
                     ty = (mk.get("type") or "").lower()
@@ -192,8 +192,8 @@ def px_positions():
                                               "mtype": mtype, "label": x.get("name") or "", "flip": False}
         STATS["prophetx"] = {"trades": len(trades), "open_fills": len(open_), "open_strikes": len(want),
                              "matched_strikes": len(found)}
-        if want - set(found):
-            WHY["prophetx_partial"] = f"{len(want - set(found))} of {len(want)} open bets not matched to a game"
+        if want - set(found):   # usually games already underway (their markets close) - those can't conflict with a pregame bet
+            WHY["prophetx_partial"] = f"{len(want - set(found))} of {len(want)} open bets not matched to a game (likely started)"
         return list(found.values())
     except Exception as ex:
         WHY["prophetx"] = str(ex)[:100]
