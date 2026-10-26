@@ -38,4 +38,9 @@ jobs:
           PMUS_SECRET_KEY: ${{ secrets.PMUS_SECRET_KEY }}
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}                     # phone alert when a bet is held (positions unreadable)
           EXEC_UNIT: "200"
+          # LIVE phase 1 (Oct 26): real ProphetX orders only when the repo VARIABLE EXEC_LIVE is "on"
+          EXEC_LIVE: ${{ vars.EXEC_LIVE }}
+          PX_QTY_MEANS: ${{ vars.PX_QTY_MEANS }}                   # "stake" (default) or "to_win" - set from the $1 test
+          PROPHETX_TRADE_ACCESS_KEY: ${{ secrets.PROPHETX_TRADE_ACCESS_KEY }}
+          PROPHETX_TRADE_SECRET_KEY: ${{ secrets.PROPHETX_TRADE_SECRET_KEY }}
         run: python -u executor.py
