@@ -1,6 +1,492 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-26T22:20:10Z",
+   "base_depth": 149260,
+   "best_price": 0.505,
+   "best_price_american": -102,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-26",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Utah",
+     "price": 0.51,
+     "this_side": 726525
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "UTA (0)",
+     "price": 0.505,
+     "this_side": 37893
+    },
+    "polymarket": {
+     "new_other_side": 7698,
+     "new_this_side": 77923,
+     "other_side": 111594,
+     "other_side_all_levels": 170011,
+     "ratio": 1.4,
+     "this_side": 156451,
+     "this_side_all_levels": 225222
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "Utah Jazz",
+     "price": 0.5025,
+     "this_side": 41673
+    }
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-10-26T22:10:10Z",
+   "game": "Grizzlies vs. Jazz",
+   "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"5962889\"}",
+   "lead_min": 160,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 77923,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -105
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -107
+    },
+    "betopenly": {
+     "point": null,
+     "price": 100
+    },
+    "betrivers": {
+     "point": null,
+     "price": -108
+    },
+    "betus": {
+     "point": null,
+     "price": -110
+    },
+    "bovada": {
+     "point": null,
+     "price": -110
+    },
+    "draftkings": {
+     "point": null,
+     "price": -110
+    },
+    "fanatics": {
+     "point": null,
+     "price": -105
+    },
+    "fanduel": {
+     "point": null,
+     "price": -104
+    },
+    "kalshi": {
+     "point": null,
+     "price": -104
+    },
+    "limitless": {
+     "point": null,
+     "price": -105
+    },
+    "lowvig": {
+     "point": null,
+     "price": -105
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -106
+    },
+    "novig": {
+     "point": null,
+     "price": -102
+    },
+    "polymarket": {
+     "point": null,
+     "price": -104
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": 100
+    },
+    "prophetx": {
+     "point": null,
+     "price": -101
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -105
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 1,
+    "pm_market_id": "5962889"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi",
+    "novig"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [
+    "Utah Jazz +1 (-116)"
+   ],
+   "sharp_oppose": [
+    "Memphis Grizzlies +1.5 (-115)"
+   ],
+   "side": "Jazz",
+   "side_label": "Jazz",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-27T01:00:00Z",
+   "teams": [
+    "Grizzlies",
+    "Jazz"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-26T22:20:10Z",
+   "base_depth": 228828,
+   "best_price": 0.51,
+   "best_price_american": -104,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-26",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -23723,
+     "new_this_side": 59280,
+     "other_side": 189472,
+     "other_side_all_levels": 302899,
+     "ratio": 1.1,
+     "this_side": 215066,
+     "this_side_all_levels": 306017
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "MIA -7.5 (-7.5)",
+     "price": 0.51,
+     "this_side": 40513
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Heat (-7.5)",
+     "price": 0.51,
+     "this_side": 116265
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Miami Heat -7.5 (-7.5)",
+     "price": 0.5074,
+     "this_side": 41003
+    }
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-10-26T22:10:10Z",
+   "game": "Dallas vs Miami: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNBASPREAD-26OCT26DALMIA-MIA8\"}",
+   "lead_min": 70,
+   "league": "NBA",
+   "line": -7.5,
+   "market": "spread",
+   "new_money": 59280,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -7.5,
+     "price": -115
+    },
+    "betonlineag": {
+     "point": -7.5,
+     "price": -110
+    },
+    "betopenly": {
+     "point": -7.5,
+     "price": -104
+    },
+    "betrivers": {
+     "point": -7.5,
+     "price": -115
+    },
+    "betus": {
+     "point": -7.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": -7.5,
+     "price": -115
+    },
+    "draftkings": {
+     "point": -7.5,
+     "price": -110
+    },
+    "fanatics": {
+     "point": -7.5,
+     "price": -115
+    },
+    "fanduel": {
+     "point": -7.5,
+     "price": -122
+    },
+    "kalshi": {
+     "point": -7.5,
+     "price": -104
+    },
+    "lowvig": {
+     "point": -7.5,
+     "price": -106
+    },
+    "mybookieag": {
+     "point": -7.5,
+     "price": -110
+    },
+    "novig": {
+     "point": -7.5,
+     "price": -104
+    },
+    "polymarket": {
+     "point": -7.5,
+     "price": -104
+    },
+    "prophetx": {
+     "point": -7.5,
+     "price": -103
+    },
+    "williamhill_us": {
+     "point": -7.5,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBASPREAD-26OCT26DALMIA-MIA8"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [],
+   "sharp_oppose": [
+    "Dallas Mavericks +8.5 (-113)"
+   ],
+   "side": "Miami",
+   "side_label": "Miami wins by over 7.5 points",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-26T23:30:00Z",
+   "teams": [
+    "Dallas",
+    "Miami"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-26T22:20:10Z",
+   "base_depth": 560252,
+   "best_price": 0.505,
+   "best_price_american": -102,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-26",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 6150,
+     "new_this_side": 377577,
+     "other_side": 476019,
+     "other_side_all_levels": 694428,
+     "ratio": 1.5,
+     "this_side": 726525,
+     "this_side_all_levels": 960447
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "UTA (0)",
+     "price": 0.505,
+     "this_side": 37893
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Jazz",
+     "price": 0.51,
+     "this_side": 156451
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "Utah Jazz",
+     "price": 0.5025,
+     "this_side": 41673
+    }
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-10-26T22:10:10Z",
+   "game": "Memphis vs Utah",
+   "key": "kalshi|KXNBAGAME-26OCT26MEMUTA|ml|1",
+   "lead_min": 160,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 377577,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -105
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -107
+    },
+    "betopenly": {
+     "point": null,
+     "price": 100
+    },
+    "betrivers": {
+     "point": null,
+     "price": -108
+    },
+    "betus": {
+     "point": null,
+     "price": -110
+    },
+    "bovada": {
+     "point": null,
+     "price": -110
+    },
+    "draftkings": {
+     "point": null,
+     "price": -110
+    },
+    "fanatics": {
+     "point": null,
+     "price": -105
+    },
+    "fanduel": {
+     "point": null,
+     "price": -104
+    },
+    "kalshi": {
+     "point": null,
+     "price": -104
+    },
+    "limitless": {
+     "point": null,
+     "price": -105
+    },
+    "lowvig": {
+     "point": null,
+     "price": -105
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -106
+    },
+    "novig": {
+     "point": null,
+     "price": -102
+    },
+    "polymarket": {
+     "point": null,
+     "price": -104
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": 100
+    },
+    "prophetx": {
+     "point": null,
+     "price": -101
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -105
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBAGAME-26OCT26MEMUTA-UTA"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "polymarket"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [
+    "Utah Jazz +1 (-116)"
+   ],
+   "sharp_oppose": [
+    "Memphis Grizzlies +1.5 (-115)"
+   ],
+   "side": "Utah",
+   "side_label": "Utah",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-27T01:00:00Z",
+   "teams": [
+    "Memphis",
+    "Utah"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-26T22:10:10Z",
    "base_depth": 39931,
    "best_price": 0.615,
@@ -15,8 +501,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.615,
-   "clv_cents": 0.0,
+   "close_price": 0.61,
+   "clv_cents": -0.5,
    "confirmed_after_min": 8,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -3839,8 +4325,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.42,
-   "clv_cents": -6.0,
+   "close_price": 0.43,
+   "clv_cents": -5.0,
    "confirmed_after_min": 14,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -5175,8 +5661,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.56,
-   "clv_cents": 0.0,
+   "close_price": 0.55,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -7796,8 +8282,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": 3.0,
+   "close_price": 0.54,
+   "clv_cents": 4.0,
    "confirmed_after_min": 8,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -8246,8 +8732,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 2.0,
+   "close_price": 0.53,
+   "clv_cents": 3.0,
    "confirmed_after_min": 12,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -8840,8 +9326,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": 3.0,
+   "close_price": 0.52,
+   "clv_cents": 2.0,
    "confirmed_after_min": 10,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -11493,8 +11979,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.59,
-   "clv_cents": 5.0,
+   "close_price": 0.6,
+   "clv_cents": 6.0,
    "confirmed_after_min": 10,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -17156,8 +17642,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.58,
-   "clv_cents": 5.0,
+   "close_price": 0.59,
+   "clv_cents": 6.0,
    "confirmed_after_min": 10,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -18884,8 +19370,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.56,
-   "clv_cents": -1.0,
+   "close_price": 0.55,
+   "clv_cents": -2.0,
    "confirmed_after_min": 6,
    "date": "2026-10-26",
    "depth_by_book": {
