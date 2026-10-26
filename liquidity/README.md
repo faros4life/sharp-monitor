@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Mon Oct 26, 6:50 AM ET. This run: 4 new, 0 not confirmed, 3 pending. Open alerts: 26.
+Updated Mon Oct 26, 7:00 AM ET. This run: 3 new, 0 not confirmed, 0 pending. Open alerts: 29.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -8,8 +8,11 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Oct 26 7:00AM | NHL | Los Angeles vs New York R: Total Goals | total: Over 5.5 goals scored | kalshi | $67k | -117 | ✅ novig |  | +0.0c |  | pending |
+| Oct 26 7:00AM | NHL | Toronto vs Calgary: Spread | spread: NOT Toronto wins by over 1.5 goals | kalshi | $43k | -178 | ✅ novig,polymarket |  | +0.0c |  | pending |
+| Oct 26 7:00AM | NHL | Toronto vs Calgary | moneyline: Calgary | kalshi | $36k | +133 |  |  | +0.0c |  | pending |
 | Oct 26 6:50AM | NBA | Suns vs. Thunder | moneyline: Thunder | polymarket | $32k | -355 | ✅ kalshi,novig,prophetx |  | +0.0c |  | pending |
-| Oct 26 6:50AM | NBA | Warriors vs. Nuggets | total: Over (233.5) | polymarket | $26k | -108 | ✅ kalshi |  | +0.0c |  | pending |
+| Oct 26 6:50AM | NBA | Warriors vs. Nuggets | total: Over (233.5) | polymarket | $26k | -108 | ✅ kalshi |  | +1.0c |  | pending |
 | Oct 26 6:50AM | NBA | Phoenix vs Oklahoma City: Total Points | total: Over 218.5 points | kalshi | $68k | -108 | ✅ polymarket |  | +0.0c |  | pending |
 | Oct 26 6:50AM | NBA | Golden State vs Denver: Total Points | total: Over 233.5 points | kalshi | $35k | -113 | ✅ polymarket |  | +0.0c |  | pending |
 | Oct 26 6:40AM | NBA | Dallas vs Miami: Total Points | total: Over 237.5 points | kalshi | $61k | -104 | ✅ polymarket | ✅ | +1.0c |  | pending |
@@ -56,7 +59,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 25 2:31PM | NBA | Indiana vs Brooklyn: Spread | spread: Indiana wins by over 6.5 points | kalshi | $37k | -108 | ✅ novig,prophetx | ✅ | +27.0c | yes | W |
 | Oct 25 2:31PM | NFL | Cleveland vs Tennessee | moneyline: Cleveland | kalshi | $388k | -213 |  |  | +20.0c | yes | W |
 | Oct 25 2:20PM | NFL | Miami vs New York J | moneyline: Miami | kalshi | $264k | -488 |  |  | +2.0c | yes | W |
-| Oct 25 2:20PM | NBA | Washington vs Charlotte | moneyline: Charlotte | kalshi | $38k | -113 | ✅ polymarket |  | +1.0c | yes | pending |
+| Oct 25 2:20PM | NBA | Washington vs Charlotte | moneyline: Charlotte | kalshi | $38k | -113 | ✅ polymarket |  | +2.0c | yes | pending |
 | Oct 25 2:01PM | NBA | Detroit vs Philadelphia: Spread | spread: NOT Detroit wins by over 1.5 points | kalshi | $36k | -113 | ✅ novig | ❌ | -13.0c | yes | L |
 | Oct 25 1:40PM | NBA | Grizzlies vs. Kings | moneyline: Kings | polymarket | $43k | +144 | ✅ novig | ❌ | -3.0c | yes | L |
 | Oct 25 1:40PM | NBA | Pacers vs. Nets | moneyline: Nets | polymarket | $64k | +212 |  | ✅ | +3.0c | yes | L |
@@ -205,6 +208,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 24 8:02PM | NFL | San Francisco 49ers @ Atlanta Falcons | moneyline: SF (0) | novig | $41k | -138 | ✅ prophetx |  | -0.5c | yes | L |
 | Oct 24 8:02PM | NHL | New York R vs Ottawa | moneyline: Ottawa | kalshi | $161k | -525 |  |  | +10.0c | yes | W |
 | Oct 24 8:02PM | NHL | Detroit vs Calgary | moneyline: Calgary | kalshi | $82k | +117 | ✅ polymarket |  | +51.0c | yes | W |
-| Oct 24 8:02PM | NCAAF | Utah St. vs Texas St. | moneyline: Texas St. | kalshi | $119k | -355 |  |  | +10.0c | yes | W |
-| Oct 24 8:02PM | NBA | New Orleans vs Denver | moneyline: Denver | kalshi | $319k | -426 | ✅ novig,polymarket,prophetx |  | +10.0c | yes | W |
-| Oct 24 7:50PM | NBA | Houston vs Atlanta: Total Points | total: NOT Over 226.5 points | kalshi | $116k | +104 |  | ✅ | -19.0c | yes | L |
