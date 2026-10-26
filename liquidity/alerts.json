@@ -1,6 +1,278 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-26T01:00:15Z",
+   "base_depth": 45413,
+   "best_price": 0.65,
+   "best_price_american": -186,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.65,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 7,
+   "date": "2026-10-25",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Minnesota",
+     "price": 0.65,
+     "this_side": 679416
+    },
+    "novig": {
+     "new_other_side": -4794,
+     "new_this_side": 31469,
+     "other_side": 21916,
+     "other_side_all_levels": 22037,
+     "ratio": 3.7,
+     "this_side": 80694,
+     "this_side_all_levels": 80880
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Wild",
+     "price": 0.65,
+     "this_side": 429514
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Minnesota Wild",
+     "price": 0.6528,
+     "this_side": 23824
+    }
+   },
+   "first_seen_utc": "2026-10-26T00:52:51Z",
+   "game": "Minnesota Wild @ Vancouver Canucks",
+   "key": "novig|{\"market_id\": \"01a170d6-c178-7413-991e-13b5e12db103\", \"outcome_id\": \"01a170d6-c178-7413-991e-13d7f9e4cd71\"}",
+   "lead_min": 60,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 31469,
+   "paper_only": false,
+   "price": 0.65,
+   "price_american": -186,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.65,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -200
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -191
+    },
+    "betopenly": {
+     "point": null,
+     "price": -185
+    },
+    "betrivers": {
+     "point": null,
+     "price": -205
+    },
+    "betus": {
+     "point": null,
+     "price": -200
+    },
+    "bovada": {
+     "point": null,
+     "price": -200
+    },
+    "draftkings": {
+     "point": null,
+     "price": -205
+    },
+    "fanatics": {
+     "point": null,
+     "price": -200
+    },
+    "fanduel": {
+     "point": null,
+     "price": -196
+    },
+    "kalshi": {
+     "point": null,
+     "price": -186
+    },
+    "lowvig": {
+     "point": null,
+     "price": -191
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -196
+    },
+    "novig": {
+     "point": null,
+     "price": -186
+    },
+    "polymarket": {
+     "point": null,
+     "price": -186
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -186
+    },
+    "prophetx": {
+     "point": null,
+     "price": -188
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -205
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a170d6-c178-7413-991e-13b5e12db103",
+    "outcome_id": "01a170d6-c178-7413-991e-13d7f9e4cd71"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi",
+    "polymarket",
+    "prophetx"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Minnesota Wild",
+   "side_label": "MIN (0)",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-26T02:00:00Z",
+   "teams": [
+    "Minnesota Wild",
+    "Vancouver Canucks"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-26T01:00:15Z",
+   "base_depth": 49792,
+   "best_price": 0.5474,
+   "best_price_american": -121,
+   "best_price_book": "kalshi",
+   "bid_improved": true,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.53,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 7,
+   "date": "2026-10-25",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -32524,
+     "new_this_side": 29545,
+     "other_side": 24985,
+     "other_side_all_levels": 63636,
+     "ratio": 1.7,
+     "this_side": 43376,
+     "this_side_all_levels": 85151
+    }
+   },
+   "first_seen_utc": "2026-10-26T00:52:51Z",
+   "game": "Detroit vs Philadelphia: Total Points",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBATOTAL-26OCT25DETPHI-212\"}",
+   "lead_min": 90,
+   "league": "NBA",
+   "line": 211.5,
+   "market": "total",
+   "new_money": 29545,
+   "paper_only": false,
+   "price": 0.53,
+   "price_american": -113,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.52,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 210.5,
+     "price": -110
+    },
+    "betrivers": {
+     "point": 210.5,
+     "price": -114
+    },
+    "bovada": {
+     "point": 210.5,
+     "price": -115
+    },
+    "draftkings": {
+     "point": 210.5,
+     "price": -110
+    },
+    "fanatics": {
+     "point": 211.5,
+     "price": -115
+    },
+    "fanduel": {
+     "point": 210.5,
+     "price": -108
+    },
+    "kalshi": {
+     "point": 211.5,
+     "price": -117
+    },
+    "mybookieag": {
+     "point": 211.5,
+     "price": -118
+    },
+    "novig": {
+     "point": 251.5,
+     "price": -100000
+    },
+    "polymarket": {
+     "point": 211.5,
+     "price": -117
+    },
+    "prophetx": {
+     "point": 211.5,
+     "price": -115
+    },
+    "williamhill_us": {
+     "point": 210.5,
+     "price": -115
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNBATOTAL-26OCT25DETPHI-212"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "no_match",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "NOT Over 211.5 points",
+   "start_source": "kalshi",
+   "start_utc": "2026-10-26T02:30:00Z",
+   "teams": [
+    "Detroit",
+    "Philadelphia"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-26T00:30:11Z",
    "base_depth": 148953,
    "best_price": 0.515,
@@ -15,8 +287,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 0.0,
+   "close_price": 0.53,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -117,7 +389,8 @@
      "price": -115
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-26T01:00:15Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNBASPREAD-26OCT25MEMSAC-MEM4"
@@ -733,8 +1006,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.54,
-   "clv_cents": -4.0,
+   "close_price": 0.53,
+   "clv_cents": -5.0,
    "confirmed_after_min": 9,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -964,8 +1237,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.12,
-   "clv_cents": -37.0,
+   "close_price": 0.1,
+   "clv_cents": -39.0,
    "confirmed_after_min": 8,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -1117,8 +1390,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.99,
-   "clv_cents": 39.0,
+   "close_price": null,
+   "clv_cents": null,
    "confirmed_after_min": 12,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -4906,10 +5179,11 @@
     "outcome_index": 1,
     "pm_market_id": "5911658"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": "none_10k",
    "second_book_fresh": false,
+   "settled_utc": "2026-10-26T01:00:15Z",
    "sharp_agree": [
     "Brooklyn Nets +7.5 (-108)"
    ],
@@ -4926,7 +5200,7 @@
     "Nets"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-25T17:40:09Z",
@@ -5059,7 +5333,8 @@
      "price": 130
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-26T01:00:15Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNBAGAME-26OCT25MEMSAC-SAC"
@@ -7482,8 +7757,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.89,
-   "clv_cents": 36.0,
+   "close_price": 0.91,
+   "clv_cents": 38.0,
    "confirmed_after_min": 8,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -10224,7 +10499,8 @@
      "price": -110
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-26T01:00:15Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNBATOTAL-26OCT25MEMSAC-235"
@@ -10838,8 +11114,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.61,
-   "clv_cents": 2.0,
+   "close_price": 0.71,
+   "clv_cents": 12.0,
    "confirmed_after_min": 10,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -12316,8 +12592,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.6,
-   "clv_cents": 10.0,
+   "close_price": 0.36,
+   "clv_cents": -14.0,
    "confirmed_after_min": 6,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -14095,8 +14371,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.54,
-   "clv_cents": 3.0,
+   "close_price": 0.53,
+   "clv_cents": 2.0,
    "confirmed_after_min": 10,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -17448,8 +17724,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.79,
-   "clv_cents": 6.0,
+   "close_price": 0.94,
+   "clv_cents": 21.0,
    "confirmed_after_min": 7,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -18050,8 +18326,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.22,
-   "clv_cents": -29.0,
+   "close_price": 0.24,
+   "clv_cents": -27.0,
    "confirmed_after_min": 11,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -18788,8 +19064,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.56,
-   "clv_cents": 2.0,
+   "close_price": 0.68,
+   "clv_cents": 14.0,
    "confirmed_after_min": 10,
    "date": "2026-10-25",
    "depth_by_book": {
@@ -18925,8 +19201,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.67,
-   "clv_cents": -1.0,
+   "close_price": 0.68,
+   "clv_cents": 0.0,
    "confirmed_after_min": 7,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -22195,8 +22471,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.02,
-   "clv_cents": -43.0,
+   "close_price": 0.01,
+   "clv_cents": -44.0,
    "confirmed_after_min": 12,
    "date": "2026-10-25",
    "depth_by_book": {
