@@ -115,7 +115,7 @@ def today_result(tr):
         if ws in ("profit", "win", "won"):
             tot += abs(p) * 0.98
         elif ws in ("loss", "lose", "lost"):
-            tot -= abs(p) if p else stake_of(t)
+            tot -= stake_of(t)   # 'profit' is the potential win (the $1 test showed 0.81 on an open $1 at -123), so a loss = the stake
     return round(tot, 2)
 
 
