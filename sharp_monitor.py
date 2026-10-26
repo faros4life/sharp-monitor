@@ -441,6 +441,24 @@ def detect(event, cfg, lines, base):
             return "na"
         return "yes" if len(yes) >= len(no) and yes else "no"
 
+    def fade_offer(kind, side, pt):
+        """Oct 26 (fade-12-24h paper split): best retail price on the OTHER side at the mirrored number, at alert time."""
+        offers = []
+        for b, d in retail.items():
+            if kind in ("spr", "rl"):
+                offers += [(p2, pr, b) for t, (p2, pr) in d.get("spreads", {}).items()
+                           if t != side and pt is not None and abs(p2 + pt) < 1e-9]
+            elif kind == "tot":
+                o = "Under" if side == "Over" else "Over"
+                if o in d.get("totals", {}) and abs(d["totals"][o][0] - pt) < 1e-9:
+                    offers.append((d["totals"][o][0], d["totals"][o][1], b))
+            elif kind == "ml":
+                offers += [(None, pr, b) for t, pr in d.get("h2h", {}).items() if t != side]
+        if not offers:
+            return None
+        p2, pr, b = max(offers, key=lambda x: 1 / am_to_prob(net(x[1], x[2])))
+        return {"pt": p2, "price": pr, "book": b}
+
     def add(kind, side, pt, price, book, new_key, text, why, conf, mag=1.0, nb=1, edge=None, evp=None):
         nc = len(cnames) if conf == "yes" else 0
         if conf == "no":
@@ -450,6 +468,7 @@ def detect(event, cfg, lines, base):
                            commence=event["commence_time"], kind=kind, side=side, pt=pt, price=price,
                            book=book, net=round(net(price, book), 1), conf=conf, text=text, why=why + note,
                            mag=round(mag, 2), nb=nb, edge=edge, nconf=nc, cby=[nm(b) for b in cnames] if conf == "yes" else [],
+                           fade=fade_offer(kind, side, pt),
                            evp=round(100 * (evp if evp is not None else edge), 1) if (evp is not None or edge is not None) else None))
 
     # Spreads: sharp side = team whose number got worse (money pushed it).
@@ -878,8 +897,55 @@ def notify_chunks(title, header, lines, footer):
         notify(title + (f" ({i}/{len(parts)})" if len(parts) > 1 else ""), body)
 
 
+UNITS_LABEL = "1u flat at the alert price, after fees"
+OLD_CLV = "alert number vs Pinnacle's closing number; it beats it almost by construction, so it is not an edge measure"
+
+
+def window(items):
+    """Actual date window of the plays (ET start dates), e.g. 'Oct 5-25' - replaces '30 days' (Muse, Oct 26)."""
+    ds = sorted(parse_iso(e["start"]).astimezone(ET).date() for e, _ in items)
+    if not ds:
+        return "no plays"
+    a, b = ds[0], ds[-1]
+    if a == b:
+        return a.strftime("%b %-d")
+    return f"{a.strftime('%b %-d')}-{b.strftime('%-d') if a.month == b.month else b.strftime('%b %-d')}"
+
+
+MARKETS = (("overs", lambda e: e["kind"] == "tot" and e["side"] == "Over"),
+           ("unders", lambda e: e["kind"] == "tot" and e["side"] == "Under"),
+           ("spreads", lambda e: e["kind"] in ("spr", "rl")),
+           ("ML", lambda e: e["kind"] == "ml"))
+
+
+def market_breakdown(items):
+    """Peter's layout (Oct 26): per sport overs, unders, spreads (ML last if present), then the all-markets line, best
+    to worst. Same units basis as the record."""
+    def cell(xs):
+        w_, l_, p_, u_ = record(xs)
+        return f"{w_}-{l_}" + (f"-{p_}" if p_ else "") + f" {u_:+.2f}u"
+    out = []
+    for sp in sorted({e["sport"] for e, _ in items}):
+        xs = [x for x in items if x[0]["sport"] == sp]
+        parts = []
+        for lab, f in MARKETS:
+            m = [x for x in xs if f(x[0])]
+            if m:
+                parts.append(f"{lab} {cell(m)}")
+            elif lab != "ML":
+                parts.append(f"{lab} none")
+        w_, l_, p_, u_ = record(xs)
+        out.append(f"{sp} ({w_}-{l_}" + (f"-{p_}" if p_ else "") + f", {u_:+.2f}u) - " + " | ".join(parts))
+    tot = [(lab, record([x for x in items if f(x[0])])[3]) for lab, f in MARKETS if any(f(x[0]) for x in items)]
+    if tot:
+        out.append("All markets: " + " | ".join(f"{lab} {v:+.2f}u" for lab, v in sorted(tot, key=lambda t: -t[1])))
+    return out
+
+
 def recap(st, n):
-    """Once per ET day: push a recap (W/L, final score, CLV) of every newly settled alert, none dropped."""
+    """Once per ET day: push a recap (W/L, final score, CLV) of every newly settled alert, none dropped.
+    Oct 26 (Muse): every block names its universe and window, prints n, one units basis (UNITS_LABEL); the true-close
+    block prints n, average AND median, and the as-of time."""
     today = n.astimezone(ET).date().isoformat()
     replay = REPLAY_H > 0 and st.get("replay_done") != f"{today}:{REPLAY_H:g}"
     if st.get("recap_day") == today and not replay:
@@ -901,60 +967,71 @@ def recap(st, n):
     w, l, p, u = record(new)
     clv = [(e, g) for e, g in new if g]
     beat = sum(1 for _, g in clv if g[0] > 0)
-    header = (f"{'Replay: ' if replay else ''}Results {w}-{l}" + (f"-{p}" if p else "") + f" ({u:+.2f}u flat)"
-              + (f" | {beat} of {len(clv)} beat {nm(SHARP)}'s close" if clv else ""))
+    settled = [x for x in new if x[0].get("res")]
+    header = "\n".join([f"{'Replay: ' if replay else ''}Record ({window(settled)}, sent only, {UNITS_LABEL}): {w}-{l}"
+                        + (f"-{p}" if p else "") + f", {u:+.2f}u" + (f" | line check {beat}/{len(clv)}" if clv else "")]
+                       + market_breakdown(settled) + [""])
     lines = [line_for(e, g) for e, g in sorted(new, key=lambda x: x[0]["start"])]
-    allm = [x for x in graded(st, n, 30) if not x[0].get("muted")]
+    # ONE universe for every block below: SENT alerts (not muted), settled, whole feed (no "30 days": the window is printed)
+    allm = [x for x in graded(st, n) if not x[0].get("muted") and x[0].get("res")]
     month = [x for x in allm if x[0]["sport"] != "NBA"]   # NBA is its own bucket, not part of the system record
-    mw, ml, mp, mu = record(month)
-    mclv = [x for x in month if x[1]]
-    footer = (f"Last 30 days (ex-NBA): {mw}-{ml}" + (f"-{mp}" if mp else "") + f" ({mu:+.2f}u), "
-              f"{sum(1 for _, g in mclv if g[0] > 0)}/{len(mclv)} beat the close")
     nba = [x for x in allm if x[0]["sport"] == "NBA"]
+
+    def rec_line(label, items):
+        w_, l_, p_, u_ = record(items)
+        return f"{label} {w_}-{l_}" + (f"-{p_}" if p_ else "") + f" ({u_:+.2f}u, n={len(items)})"
+
+    def chk(items):
+        c_ = [x for x in items if x[1]]
+        return f"line check {sum(1 for _, g in c_ if g[0] > 0)}/{len(c_)}" if c_ else "line check n/a"
+    footer = (f"Units: {UNITS_LABEL}. Every block below = SENT alerts, settled, {window(allm)} (whole feed).\n"
+              f"Ex-NBA (system record): {rec_line('', month).strip()}, {chk(month)}")
     if nba:
-        bw, bl, bp, bu = record(nba)
-        bclv = [x for x in nba if x[1]]
-        footer += (f"\nNBA (30d): {bw}-{bl}" + (f"-{bp}" if bp else "") + f" ({bu:+.2f}u), "
-                   f"{sum(1 for _, g in bclv if g[0] > 0)}/{len(bclv)} beat the close")
-    cfb = [x for x in graded(st, n, 30) if "t25" in x[0] and x[1]]
+        footer += f"\nNBA (own bucket): {rec_line('', nba).strip()}, {chk(nba)}"
+    cfb = [x for x in graded(st, n) if "t25" in x[0] and x[1]]
     if cfb:
         def split(flag):
             g = [v for e, (v, _) in cfb if e["t25"] is flag]
             return f"{sum(1 for v in g if v > 0)}/{len(g)}"
-        footer += f"\nCollege 30d beat close: Top 25 {split(True)}, non-Top 25 {split(False)} (not sent)"
-    def rec_line(label, items):
-        w_, l_, p_, u_ = record(items)
-        c_ = [x for x in items if x[1]]
-        bc = f", {round(100 * sum(1 for x in c_ if x[1][0] > 0) / len(c_))}% beat close" if c_ else ""
-        return f"{label} {w_}-{l_}" + (f"-{p_}" if p_ else "") + f" ({u_:+.2f}u{bc})"
-    tagged = [x for x in month if x[0].get("res") and x[0].get("grade")]   # ex-NBA, ties to the headline record
+        footer += (f"\nCollege line check ({window(cfb)}; sent AND not-sent): Top 25 {split(True)}, "
+                   f"non-Top 25 {split(False)} (not sent)")
+    # grade / timing / confirm / edge: same universe (sent, settled, ex-NBA), restricted to plays that carry the field;
+    # the subset size is printed so anyone can reproduce it from alerts.json
+    tagged = [x for x in month if x[0].get("grade")]
     if tagged:
-        footer += "\nBy grade (30d): " + ", ".join(rec_line(gr, [x for x in tagged if x[0]["grade"] == gr])
-                                                    for gr in "ABCD" if any(x[0]["grade"] == gr for x in tagged))
-        footer += ("\nTiming (30d): " + rec_line("Early", [x for x in tagged if not x[0].get("late")]) + " | "
-                   + rec_line("Late" + (" (not sent)" if LATE_MODE == "mute" else ""),
-                              [x for x in tagged if x[0].get("late")]))
-    nba_t = [x for x in nba if x[0].get("res") and x[0].get("grade")]
+        footer += (f"\nBy grade (ex-NBA, graded plays {len(tagged)} of {len(month)}, {window(tagged)}): "
+                   + ", ".join(rec_line(gr, [x for x in tagged if x[0]["grade"] == gr])
+                               for gr in "ABCD" if any(x[0]["grade"] == gr for x in tagged)))
+    timed = [x for x in month if "late" in x[0]]
+    if timed:
+        footer += (f"\nTiming (ex-NBA, n={len(timed)}): " + rec_line("Early", [x for x in timed if not x[0].get("late")])
+                   + " | " + rec_line("Late" + (" (not sent)" if LATE_MODE == "mute" else ""),
+                                      [x for x in timed if x[0].get("late")]))
+    nba_t = [x for x in nba if x[0].get("grade")]
     if len(nba_t) >= 10:
-        footer += "\nNBA by grade (30d): " + ", ".join(rec_line(gr, [x for x in nba_t if x[0]["grade"] == gr])
-                                                        for gr in "ABCD" if any(x[0]["grade"] == gr for x in nba_t))
-    nc_items = [x for x in month if x[0].get("res") and "nconf" in x[0]]
+        footer += (f"\nNBA by grade (graded plays {len(nba_t)} of {len(nba)}): "
+                   + ", ".join(rec_line(gr, [x for x in nba_t if x[0]["grade"] == gr])
+                               for gr in "ABCD" if any(x[0]["grade"] == gr for x in nba_t)))
+    nc_items = [x for x in month if "nconf" in x[0]]
     if nc_items:
-        footer += "\nBy confirm books (30d): " + ", ".join(
+        footer += (f"\nBy confirm books (ex-NBA, plays with a confirm count {len(nc_items)} of {len(month)}): " + ", ".join(
             rec_line(f"{lab}", [x for x in nc_items if sel(x[0]["nconf"])])
             for lab, sel in (("0-1", lambda k: k <= 1), ("2", lambda k: k == 2), ("3+", lambda k: k >= 3))
-            if any(sel(x[0]["nconf"]) for x in nc_items))
-    ev_items = [x for x in month if x[0].get("res") and x[0].get("evp") is not None]
+            if any(sel(x[0]["nconf"]) for x in nc_items)))
+    ev_items = [x for x in month if x[0].get("evp") is not None]
     if ev_items:
-        footer += "\nBy edge (30d): " + ", ".join(
+        footer += (f"\nBy edge (ex-NBA, plays with an edge {len(ev_items)} of {len(month)}): " + ", ".join(
             rec_line(lab, [x for x in ev_items if sel(x[0]["evp"])])
             for lab, sel in (("<0%", lambda v: v < 0), ("0-3%", lambda v: 0 <= v < 3), ("3%+", lambda v: v >= 3))
-            if any(sel(x[0]["evp"]) for x in ev_items))
-    cl_items = [x[0] for x in month if x[0].get("cl")]
+            if any(sel(x[0]["evp"]) for x in ev_items)))
+    cl_items = sorted((x[0] for x in allm if x[0].get("cl")), key=lambda e: e["cl"]["ev"])
     if cl_items:
-        beat = sum(1 for e in cl_items if e["cl"]["ev"] > 0)
-        avg = sum(e["cl"]["ev"] for e in cl_items) / len(cl_items)
-        footer += f"\nTrue closing value (30d): beat close {beat}/{len(cl_items)}, avg {avg:+.1f}% per play"
+        vals = [e["cl"]["ev"] for e in cl_items]
+        beat = sum(1 for v in vals if v > 0)
+        mid = vals[len(vals) // 2] if len(vals) % 2 else (vals[len(vals) // 2 - 1] + vals[len(vals) // 2]) / 2
+        footer += (f"\nTrue closing value (sent, all sports, n={len(vals)}, as of {n.astimezone(ET).strftime('%b %-d %-I:%M %p ET')}): "
+                   f"beat close {beat}/{len(vals)}, avg {sum(vals) / len(vals):+.1f}%, median {mid:+.1f}% per play")
+    footer += f"\n(Line check = {OLD_CLV}.)"
     notify_chunks("Sharp recap", header, lines, footer)
 
 
@@ -978,8 +1055,9 @@ def weekly_recap(st, n):
     clv = [x for x in wk if x[1]]
     beat = sum(1 for _, g in clv if g[0] > 0)
     pend = sum(1 for e, _ in wk if not e.get("res"))
-    lines = [f"Week {start.strftime('%b %-d')} - {(end - timedelta(days=1)).strftime('%b %-d')} (ex-NBA): {rl(wk)} flat"
-             + (f" | {beat} of {len(clv)} beat {nm(SHARP)}'s close" if clv else "")
+    lines = [f"Week {start.strftime('%b %-d')} - {(end - timedelta(days=1)).strftime('%b %-d')}, SENT alerts, ex-NBA "
+             f"(n={len(wk)}): {rl(wk)} ({UNITS_LABEL})"
+             + (f" | line check {beat}/{len(clv)}" if clv else "")
              + (f" | {pend} ungraded" if pend else "")]
     lines.append("By day:")
     for i in range(7):
@@ -1024,6 +1102,15 @@ def write_alerts_file(st, n):
             "top25": e.get("t25"), "result": res["r"] if res else None, "final": res["score"] if res else None,
             "beat_close": (g[0] > 0) if g else None, "clv": g[1] if g else None,
             "units_flat": round(units(e, res["r"]), 2) if res else None})
+    for row, e in zip(out, sorted(st["log"], key=lambda x: x["start"], reverse=True)):   # Oct 26: fade side (paper split)
+        f = e.get("fade")
+        res = e.get("res")
+        row.update({"fade_book": f["book"] if f else None, "fade_point": f["pt"] if f else None,
+                    "fade_price": f["price"] if f else None,
+                    "fade_price_after_fee": round(net(f["price"], f["book"])) if f else None,
+                    "fade_units": (round(units({"price": f["price"], "book": f["book"]},
+                                               {"W": "L", "L": "W", "P": "P"}[res["r"]]), 2)
+                                   if (f and res and res["r"] in ("W", "L", "P")) else None)})
     first_text = {}
     for x in sorted(st.get("sent", []), key=lambda x: x["t"]):
         first_text.setdefault((x["ev"], x["kind"], x["side"]), x.get("text"))
@@ -1051,6 +1138,7 @@ def write_alerts_file(st, n):
                                 "all_alerts = every alert sent, newest first, repeats marked repeat=true (logged from Oct 21). "
                                 "units_flat = 1u risked at the first alert's price, after the book's fee on winnings (ProphetX 2%; price_after_fee). "
                                 "Edge, the -130 cap, best-book choice and CLV all use price_after_fee. "
+                                "fade_* (from Oct 26) = best retail price on the OTHER side at the mirrored number when the alert fired; fade_units = 1u on that side, after fees. "
                                 "close_value_pct = TRUE closing value (from Oct 25): expected profit per 1u of price_after_fee at Pinnacle's "
                                 "no-vig win chance from one final read just before start, at the play's own number; beat_true_close = "
                                 "close_value_pct > 0. The older beat_close/clv fields beat the close almost by construction (ignore). "
@@ -1218,7 +1306,7 @@ def run():
                                + (f"LATE: starts in {lead_text(lead)}" if late else f"starts in {lead_text(lead)}"),
                                red=late, yellow=(not late) and bool(prior or (repeat and REPEAT_MODE != "mute")))   # late = red only
                     st["alerted"][a["id"]] = time.time()
-                    e = {k: a[k] for k in ("id", "ev", "game", "kind", "side", "pt", "price", "book", "conf", "nconf", "cby", "evp")}
+                    e = {k: a[k] for k in ("id", "ev", "game", "kind", "side", "pt", "price", "book", "conf", "nconf", "cby", "evp", "fade")}
                     e.update(sport=cfg["label"], start=a["commence"], t=time.time(), lead=round(lead), late=late,
                              score=score, grade=grade)
                     if is_t25 is not None:

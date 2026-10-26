@@ -1261,26 +1261,59 @@ def find_gaps(rows, n):
 
 
 def save_gaps(new, n):
+    """Oct 26 (Muse): one entry per game/market/line/books while the gap stays open. Each later scan that still sees it
+    updates last_seen_utc / scans_seen, so lifetime_min = how long it lived (resolution = the scan interval).
+    scan_sec = seconds from this run's start to the save: both legs were read inside that window (not the same instant),
+    so it bounds how far apart the two legs' snapshots can be. size_est stays an upper bound."""
     path = os.path.join(OUT_DIR, "gaps.json")
     try:
         with open(path) as f:
             old = json.load(f).get("gaps") or []
     except Exception:
         old = []
+    ts = n.strftime("%Y-%m-%dT%H:%M:%SZ")
     cut = (n - timedelta(days=14)).strftime("%Y-%m-%dT%H:%M:%SZ")
-    hour = (n - timedelta(minutes=60)).strftime("%Y-%m-%dT%H:%M:%SZ")
+    gap_open = (n - timedelta(minutes=30)).strftime("%Y-%m-%dT%H:%M:%SZ")   # seen within 30 min = the same gap still open
     keyf = lambda g: (g["game"], g["market"], g["line"], tuple(sorted(x["book"] for x in g["legs"])))
-    recent = {keyf(g) for g in old if g["seen_utc"] >= hour}
-    added = [g for g in new if keyf(g) not in recent]
-    keep = [g for g in old if g["seen_utc"] >= cut] + added
+    live = {}
+    for g in old:
+        g.setdefault("first_seen_utc", g.get("seen_utc"))
+        g.setdefault("last_seen_utc", g.get("seen_utc"))
+        g.setdefault("scans_seen", 1)
+        if g["last_seen_utc"] >= gap_open:
+            live[keyf(g)] = g
+    scan_sec = round(time.time() - RUN_T0)
+    added = 0
+    for g in new:
+        k = keyf(g)
+        if k in live:
+            o = live[k]
+            o["last_seen_utc"], o["scans_seen"] = ts, o["scans_seen"] + 1
+            o["max_edge_pct"] = max(o.get("max_edge_pct", o["edge_pct"]), g["edge_pct"])
+            o["last_edge_pct"], o["last_size_est"] = g["edge_pct"], g["size_est"]
+        else:
+            g.update(first_seen_utc=ts, last_seen_utc=ts, scans_seen=1, max_edge_pct=g["edge_pct"], scan_sec=scan_sec)
+            old.append(g)
+            live[k] = g
+            added += 1
+    for g in old:
+        try:
+            g["lifetime_min"] = round((datetime.fromisoformat(g["last_seen_utc"].replace("Z", "+00:00"))
+                                       - datetime.fromisoformat(g["first_seen_utc"].replace("Z", "+00:00"))).total_seconds() / 60)
+        except Exception:
+            pass
+    keep = [g for g in old if g["last_seen_utc"] >= cut]
     os.makedirs(OUT_DIR, exist_ok=True)
     with open(path, "w") as f:
-        json.dump({"note": "PAPER ONLY (Oct 25): opposite sides of the same game/market/line on two different exchanges whose "
-                           "combined cost after fees is under $1 (Kalshi/Novig/ProphetX; Polymarket here is the global book, "
-                           "excluded). edge_pct = locked profit per $ staked if both legs fill at these prices; size_est = "
-                           "smaller of the two legs' near-price depth (rough). One entry per game/market/line/books per hour. "
-                           "Measurement only: never alerted, never bet.", "gaps": keep}, f, indent=1)
-    return len(added)
+        json.dump({"note": "PAPER ONLY (Oct 25; persistence added Oct 26): opposite sides of the same game/market/line on two "
+                           "different exchanges whose combined cost after fees is under $1 (Kalshi/Novig/ProphetX; Polymarket "
+                           "here is the global book, excluded). edge_pct = locked profit per $ staked at first sight; "
+                           "max/last_edge_pct while open. size_est = smaller leg's near-price depth (UPPER BOUND). "
+                           "first/last_seen_utc, scans_seen, lifetime_min = how long the gap stayed open (scan-interval "
+                           "resolution; a 1-scan gap may be a feed artifact). scan_sec = seconds from run start to this save, "
+                           "the most the two legs' reads can be apart. Measurement only: never alerted, never bet.", "gaps": keep},
+                  f, indent=1)
+    return added
 
 
 def sharp_alerts(n):

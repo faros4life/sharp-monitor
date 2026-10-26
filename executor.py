@@ -11,6 +11,7 @@ e.g. "Oklahoma City Thunder -8.5 (-108)"), start_utc. Optional: late (bool).
 Public repo: the Actions log prints counts only. Everything else goes by email.
 """
 import email
+import email.utils
 import hashlib
 import imaplib
 import json
@@ -89,6 +90,11 @@ def read_verdicts(M):
         if typ != "OK" or not data or not data[0]:
             continue
         txt = body_text(data[0][1])
+        try:
+            vt = email.utils.parsedate_to_datetime(email.message_from_bytes(data[0][1]).get("Date")).astimezone(timezone.utc)
+            vts = vt.strftime("%Y-%m-%dT%H:%M:%SZ")
+        except Exception:
+            vts = None
         arr, dec = None, json.JSONDecoder()
         for m in re.finditer(r"\[", txt):   # tolerate plain text before/after the JSON array
             try:
@@ -104,7 +110,7 @@ def read_verdicts(M):
         for p in arr if isinstance(arr, list) else []:
             if isinstance(p, dict) and not str(p.get("play_key") or "").upper().startswith("TEST") \
                     and (p.get("play_key") or derive_key(p)):
-                plays.append(dict(p, play_key=p.get("play_key") or derive_key(p)))
+                plays.append(dict(p, play_key=p.get("play_key") or derive_key(p), verdict_utc=vts))
     seen, out = set(), []
     for p in plays:   # one play per game+side, whatever key it arrived with (spread and ML on a team = one play)
         keys = {p["play_key"], derive_key(p) or p["play_key"]}
@@ -151,6 +157,40 @@ def derive_key(p):
         return f"{(p.get('sport') or '').upper()}|{p.get('game')}|{'side' if mt in ('spread', 'moneyline') else mt}|{side}"
     except Exception:
         return None
+
+
+def load_feed():
+    try:
+        with open("alerts.json") as f:
+            return json.load(f).get("alerts") or []
+    except Exception:
+        return []
+
+
+def feed_entry(p, feed):
+    """The alerts.json entry (first alert per game/market/side) for a play, matched on sport|game|market|side."""
+    k = derive_key(p)
+    if not k:
+        return None
+    for a in feed:
+        if a.get("game") == p.get("game") and derive_key(a) == k:
+            return a
+    return None
+
+
+def iso_t(x):
+    try:
+        return datetime.fromisoformat((x or "").replace("Z", "+00:00"))
+    except Exception:
+        return None
+
+
+LIVE_UNIT = 50.0   # phase-1 live unit (Peter + Muse, Oct 25); the dry run tags what WOULD GO LIVE at this size
+
+
+def live_stake(am):
+    risk = LIVE_UNIT if am > 0 else LIVE_UNIT * abs(am) / 100
+    return round(risk, 2), round(LIVE_UNIT * am / 100 if am > 0 else LIVE_UNIT, 2)
 
 
 def held_tok(key):
@@ -536,7 +576,9 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None, held=None):
     pick = (full or capped)[0]
     risk, win = stake_for(pick["shown"])
     nets = round(win * (1 - WIN_FEE.get(pick["book"], 0)), 2)
+    pxc = next((c for c in capped if c["book"] == "prophetx"), None)   # phase-1 live is ProphetX only
     return dict(out, verdict="WOULD PLACE", book=pick["book"], american=pick["am"], shown=pick["shown"], take_line=pick["line"],
+                px=({"am": pxc["am"], "shown": pxc["shown"], "line": pxc["line"], "avail": pxc["avail"]} if pxc else None),
                 equiv=pick["eq"], hp=hp, hp_src=hp_src, risk=risk, to_win=win, nets=nets,
                 fillable=round(min(pick["avail"], risk), 2), partial=pick["avail"] < risk,
                 others=[c for c in capped if c is not pick][:5])
@@ -712,6 +754,23 @@ def book_lines(r):
     return out
 
 
+def ledger_row(r, run_start):
+    p, e = r["play"], r.get("entry") or {}
+    at = iso_t(e.get("alert_utc") or p.get("alert_utc"))
+    dec = r.get("decided_utc") or run_start
+    vt = iso_t(p.get("verdict_utc"))
+    lv = r.get("live") or {}
+    return {"key": derive_key(p) or p.get("play_key"), "source": p.get("source") or "muse", "verdict": r["verdict"],
+            "reason": r.get("reason"), "alert_utc": e.get("alert_utc") or p.get("alert_utc"), "verdict_utc": p.get("verdict_utc"),
+            "run_start_utc": run_start.strftime("%Y-%m-%dT%H:%M:%SZ"), "decided_utc": dec.strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "latency_s": round((dec - at).total_seconds()) if at else None,
+            "muse_delay_s": round((vt - at).total_seconds()) if (vt and at) else None,
+            "alert_book": e.get("book_key"), "alert_price_after_fee": e.get("price_after_fee"), "alert_line": e.get("point"),
+            "fill_book": r.get("book"), "fill_price_after_fee": r.get("american"), "fill_screen": r.get("shown"),
+            "fill_line": r.get("take_line"), "live": bool(lv.get("go")), "live_nfl": bool(lv.get("nfl")), "live_why_not": lv.get("why"),
+            "live_px_price_after_fee": lv.get("am"), "live_px_line": lv.get("line")}
+
+
 def send(subject, body):
     user, pw, to = gmail()
     msg = MIMEText(body, "plain", "utf-8")
@@ -728,7 +787,15 @@ def main():
     rplays = rule_plays(now) if SOURCE in ("rules", "both") else []
     new = [p for p in plays + rplays if not already_handled(M, p)]
     M.logout()
+    feed = load_feed()
+    # wake time: this run's start vs the newest SENT alert (Oct 26; counts/seconds only in the public log)
+    sent_ts = [iso_t(a.get("alert_utc")) for a in feed if a.get("sent_to_phone") and iso_t(a.get("alert_utc"))]
+    newest = max(sent_ts) if sent_ts else None
+    wake_s = (now - newest).total_seconds() if newest and now - newest < timedelta(minutes=30) else None
+    trig = os.environ.get("GITHUB_EVENT_NAME", "local")
     print(f"Verdict plays seen (2 days): {len(plays)}; coded-rule alerts: {len(rplays)}; new: {len(new)}")
+    if wake_s is not None:
+        print(f"Wake: run started {wake_s:.0f}s after the newest sent alert (trigger: {trig})")
     if not new:
         return
     lo = int(now.timestamp() * 1000)
@@ -759,12 +826,34 @@ def main():
         return k in taken_now or bool(gsearch(M2, wp(k)))
     for p in new:
         try:
+            ent = feed_entry(p, feed) or {}
+            if ent:
+                fs = agree_rules.first_side(ent, feed)
+                if fs:   # coded fix 2 (Oct 26): first side stays against ANY earlier sent alert
+                    ft = iso_t(fs.get("alert_utc"))
+                    results.append({"play": p, "pid": pid(p["play_key"]), "verdict": "SKIP", "entry": ent,
+                                    "reason": f"CONFLICT: opposite side of an earlier sent alert ({fs.get('bet')}, "
+                                              f"{ft.astimezone(lm.ET).strftime('%a %I:%M %p ET') if ft else '?'}) - first side stays"})
+                    continue
             if p.get("source") == "rules" and p["rules"]["verdict"] != "AGREE":
                 d = p["rules"]
                 results.append({"play": p, "pid": pid(p["play_key"]), "verdict": "SKIP",
                                 "reason": f"rules gate {d['gate']}: {d['reason']}"})
                 continue
             r = evaluate(p, now, evs_by, mks_by_event, pos, None if p.get("source") == "rules" else taken, held)
+            r["entry"] = ent
+            if p.get("source") != "rules" and ent:   # phase-1 live tag (Muse plays only: needs Muse AGREE)
+                ok, why = agree_rules.phase1(ent, True, tag_nfl=True)   # NFL tagged in the dry run only (Peter, Oct 26)
+                if ok and r["verdict"] == "WOULD PLACE" and r.get("px"):
+                    lr, lw = live_stake(r["px"]["shown"])
+                    r["live"] = {"go": True, "risk": lr, "to_win": lw, "am": r["px"]["am"], "shown": r["px"]["shown"],
+                                 "line": r["px"]["line"], "partial": r["px"]["avail"] < lr,
+                                 "nfl": (ent.get("sport") or "").upper() == "NFL"}
+                elif ok:
+                    r["live"] = {"go": False, "why": ["ProphetX has nothing at the alert number or better"
+                                                      if r["verdict"] == "WOULD PLACE" else (r.get("reason") or "skipped")]}
+                else:
+                    r["live"] = {"go": False, "why": why}
             if r["verdict"] == "WOULD PLACE" and blind:
                 # can't see what's already held on every book: hold, retry next run, alert the phone once
                 r = dict(r, verdict="HELD", reason="positions unreadable on " + ", ".join(blind))
@@ -779,6 +868,7 @@ def main():
                 taken_now.add(derive_key(p))
         except Exception as ex:
             results.append({"play": p, "pid": pid(p["play_key"]), "verdict": "SKIP", "reason": f"error: {str(ex)[:100]}"})
+        results[-1]["decided_utc"] = datetime.now(timezone.utc)
     M2.logout()
     nw = sum(1 for r in results if r["verdict"] == "WOULD PLACE")
     when = now.astimezone(lm.ET).strftime('%a %b %d %I:%M %p ET')
@@ -791,6 +881,18 @@ def main():
         body += [f"  - {r['play'].get('bet')}  ({r['play'].get('sport')} {r['play'].get('game')}): couldn't check your open "
                  f"bets on {', '.join(blind)}; it will try again in 10 minutes." for r in helds]
         body.append("")
+    golive = [r for r in results if (r.get("live") or {}).get("go")]
+    body.append(f"WOULD GO LIVE - phase 1, ${LIVE_UNIT:.0f} on ProphetX ({len(golive)})")
+    body += [f"  - {bet_text(r, r['live']['line'], r['live']['shown'])} on ProphetX: risk {money(r['live']['risk'])} to win "
+             f"{money(r['live']['to_win'])}  ({r['play'].get('sport')} {r['play'].get('game')})"
+             + ("  [partial: not all of it at this price]" if r["live"]["partial"] else "")
+             + ("  [NFL: tagged for the dry run; in/out decided at the pre-live review]" if r["live"].get("nfl") else "")
+             for r in golive] or ["  - none this run"]
+    near = [r for r in results if r.get("live") and not r["live"]["go"] and len(r["live"].get("why") or []) == 1]
+    if near:
+        body.append("  (missed phase 1 on one condition: "
+                    + "; ".join(f"{r['play'].get('bet')} - {r['live']['why'][0]}" for r in near) + ")")
+    body.append("")
     if places:
         body.append(f"WOULD BET ({len(places)})")
         body += [plain(r) for r in places]
@@ -814,11 +916,15 @@ def main():
         if r.get("books"):
             body += book_lines(r)
         body.append("")
+    body += [f"Wake: this run started {wake_s:.0f}s after the newest sent alert (trigger: {trig})." if wake_s is not None
+             else f"Wake: no sent alert in the last 30 min (trigger: {trig}).", ""]
+    body += ["LEDGER (machine-readable, one row per play; latency = decision time minus first alert time)",
+             json.dumps([ledger_row(r, now) for r in results], separators=(",", ":"))]
     first = ", ".join(short(r) for r in places[:3]) + ("..." if len(places) > 3 else "")
-    send(f"Bets dry run: {nw} would bet" + (f" ({first})" if places else "") + (f", {len(helds)} held" if helds else "")
+    send(f"Bets dry run: {len(golive)} would go live, {nw} would bet" + (f" ({first})" if places else "") + (f", {len(helds)} held" if helds else "")
          + f", {len(skips)} skipped",
          "\n".join(body))
-    print(f"Dry-run email sent: {nw} would place, {len(helds)} held, {len(skips)} skipped.")   # counts only
+    print(f"Dry-run email sent: {len(golive)} would go live, {nw} would place, {len(helds)} held, {len(skips)} skipped.")   # counts only
 
 
 if __name__ == "__main__":
