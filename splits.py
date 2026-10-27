@@ -148,6 +148,25 @@ def tier2_core(a):
 TIER = {"tier2_core": {"start": TIER2_START, "open": (30, 0.70, 0.30), "dies": (20, 0.55)}}   # Peter's target bars
 
 
+def liq_total_side(a):
+    """Over/under for a liquidity total print, from side_label ("Over 6.5 ...", "NOT Over 237.5 points" = under)."""
+    import re
+    lab = a.get("side_label") or ""
+    o = "over" if re.search(r"\bover\b", lab, re.I) else "under" if re.search(r"\bunder\b", lab, re.I) else None
+    if o and lab.upper().startswith("NOT "):
+        o = "under" if o == "over" else "over"
+    return o
+
+
+def lead_liq(a):
+    t, st = _t(a.get("alerted_utc") or a.get("first_seen_utc")), _t(a.get("start_utc"))
+    return (st - t).total_seconds() / 60 if t and st else None
+
+
+def liq_nba_tot(a):
+    return a.get("league") == "NBA" and a.get("market") == "total"
+
+
 BREAKDOWN = {"muted_midday"}   # splits reported with by-book and by-market cuts every run
 
 
@@ -188,8 +207,32 @@ LIQ = [
      "LIQ-MAIN prints alerted 5:00-7:59 PM ET (alerted_utc, fallback first_seen_utc; DST-aware), artifacts excluded. "
      "Negative watch: historical read (Muse) -20.99u, -0.17/play, n=125; if it holds forward it becomes a skip window.",
      lambda a: et_hour(a, *LIQ_T) in range(17, 20), "units_flat"),
+    ("liq_nba_totals", "NBA liquidity totals (lane)", "scan",
+     "LIQ-MAIN, league NBA, market total, artifacts excluded, alerted from Wed Oct 28 12:00 AM ET. Registered Oct 27 "
+     "(Peter + Muse, VALUE LAB #4): the only liquidity cell beyond luck. Peter's decision bar: 25 forward resulted at "
+     ">= +0.10u/play AND CLV+ >= 55% -> eligible for live (unders first, best after-fee price across ProphetX/Kalshi/PM US).",
+     liq_nba_tot, "units_flat"),
+    ("liq_nba_totals_under", "NBA liquidity totals - unders", "scan",
+     "liq_nba_totals, under side only (side_label). The side Peter would take live first.",
+     lambda a: liq_nba_tot(a) and liq_total_side(a) == "under", "units_flat"),
+    ("liq_nba_totals_quiet", "NBA liquidity totals - no sharp tag", "scan",
+     "liq_nba_totals with sharp_agree AND sharp_oppose both empty (history: 21-6, +0.52/play, CLV+ 78%). Lens on the lane.",
+     lambda a: liq_nba_tot(a) and not a.get("sharp_agree") and not a.get("sharp_oppose"), "units_flat"),
+    ("liq_nba_totals_4to12", "NBA liquidity totals - lead 4-12h", "scan",
+     "liq_nba_totals with lead (start_utc minus alerted_utc) 4h to under 12h (history: 22-10, +0.35/play). Lens on the lane.",
+     lambda a: liq_nba_tot(a) and lead_liq(a) is not None and 240 <= lead_liq(a) < 720, "units_flat"),
+    ("liq_nba_totals_small", "NBA liquidity totals - $25-50k prints", "scan",
+     "liq_nba_totals with new_money under $50,000 (history: +0.28/play). Lens on the lane.",
+     lambda a: liq_nba_tot(a) and (a.get("new_money") or 0) < 50000, "units_flat"),
+    ("liq_nba_totals_evac", "NBA liquidity totals - evacuation", "scan",
+     "liq_nba_totals where the trigger book's new_other_side < 0 (money left the other side). Registered by Muse Oct 27.",
+     lambda a: liq_nba_tot(a) and ((a.get("depth_by_book") or {}).get(a.get("book")) or {}).get("new_other_side", 0) < 0,
+     "units_flat"),
+    ("liq_nba_price_band", "NBA liquidity, price -129..-105", "scan",
+     "LIQ-MAIN NBA, any market, price_american -129 to -105 (history: 50-29, +0.20/play). Registered Oct 27.",
+     lambda a: a.get("league") == "NBA" and -129 <= (a.get("price_american") or 0) <= -105, "units_flat"),
 ]
-LIQ_START = {"liq_overnight": FWD, "liq_evening": FWD}   # time splits start at the Oct 26 registry start
+LIQ_START = {"liq_overnight": FWD, "liq_evening": FWD, **{k: "2026-10-28T04:00:00Z" for k in ("liq_nba_totals", "liq_nba_totals_under", "liq_nba_totals_quiet", "liq_nba_totals_4to12", "liq_nba_totals_small", "liq_nba_totals_evac", "liq_nba_price_band")}}   # time splits start at the Oct 26 registry start
 
 
 def load(path, key):
