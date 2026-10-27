@@ -1,4 +1,4 @@
-# Paper splits (updated 2026-10-27T03:10:11Z)
+# Paper splits (updated 2026-10-27T03:20:14Z)
 
 Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kill bar: 30+ resulted at -0.10u/play or worse closes a split.
 
@@ -6,10 +6,10 @@ Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kil
 |---|---|---|---|---|---|---|---|
 | Phase-1 live filter (paper view) | a-priori | 2026-10-26 | 2-1-0 | +0.70 | +0.233 | -2.67 | OPEN |
 | Phase-1 control group | control | 2026-10-26 | 1-1-0 | -0.21 | -0.105 | -1.60 | OPEN |
-| Hard Rock-priced, routed | a-priori | 2026-10-26 | 1-1-0 | -0.09 | -0.045 | -4.15 | OPEN |
-| Fade Hard Rock-priced | scan | 2026-10-26 | 1-1-0 | -0.03 | -0.015 | -4.15 | OPEN |
+| Hard Rock-priced, routed | a-priori | 2026-10-26 | 1-2-0 | -1.09 | -0.363 | -3.17 | OPEN |
+| Fade Hard Rock-priced | scan | 2026-10-26 | 1-2-0 | +0.88 | +0.293 | -3.17 | OPEN |
 | PM-global-priced, routed | a-priori | 2026-10-26 | 0-0-0 | +0.00 |  |  | OPEN |
-| Unders only | scan | 2026-10-26 | 2-2-0 | -0.24 | -0.060 | -4.05 | OPEN |
+| Unders only | scan | 2026-10-26 | 2-3-0 | -1.24 | -0.248 | -3.48 | OPEN |
 | Combined filter | scan | 2026-10-26 | 3-2-0 | +0.52 | +0.104 | -2.96 | OPEN |
 | Priced -125 or worse | scan | 2026-10-26 | 1-0-0 | +0.79 | +0.790 | -1.40 | OPEN |
 | College basketball | scan | 2026-10-26 | 0-0-0 | +0.00 |  |  | OPEN |
