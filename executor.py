@@ -13,6 +13,7 @@ Public repo: the Actions log prints counts only. Everything else goes by email.
 """
 import email
 import email.utils
+import email.header
 import hashlib
 import imaplib
 import json
@@ -910,18 +911,28 @@ def px_limit(pxd, stake):
 
 
 def bot_orders(M, days=4):
-    """{order_id: book} the bot PLACED in the last few days, read from its own 'Bets LIVE' emails' LEDGER rows.
-    Gmail is the registry (nothing financial in the public repo). None if unreadable -> live refuses (fail closed)."""
+    """{order_id: book} the bot PLACED in the last few days, read from its own 'Bets LIVE:' emails' LEDGER rows.
+    Gmail is the registry (nothing financial in the public repo). None if unreadable -> live refuses (fail closed).
+    Oct 27 fix (found by the brake check): match the SUBJECT PREFIX exactly ('Bets LIVE:'), via IMAP SUBJECT + SINCE and
+    a header re-check, so dry-run emails (whose body says 'WOULD GO LIVE') are never read as live ones."""
     try:
+        since = (datetime.now(timezone.utc) - timedelta(days=days)).strftime("%d-%b-%Y")
+        typ, data = M.uid("SEARCH", None, "SUBJECT", '"Bets LIVE:"', "SINCE", since)
+        if typ != "OK":
+            return None
         ids = {}
-        for uid in gsearch_strict(M, f'subject:"Bets LIVE" newer_than:{days}d'):
-            typ, data = M.uid("FETCH", uid, "(RFC822)")
-            if typ != "OK" or not data or not data[0]:
+        for uid in (data[0].split() if data and data[0] else []):
+            typ, d = M.uid("FETCH", uid, "(RFC822)")
+            if typ != "OK" or not d or not d[0]:
                 return None
-            txt = body_text(data[0][1])
+            raw = d[0][1]
+            subj = str(email.header.make_header(email.header.decode_header(email.message_from_bytes(raw).get("Subject") or "")))
+            if not subj.startswith("Bets LIVE:"):
+                continue   # IMAP SUBJECT is a substring match; only the executor's own live run emails count
+            txt = body_text(raw)
             i = txt.rfind("LEDGER (machine-readable")
             if i < 0:
-                return None
+                return None   # a live email without its ledger: can't trust the registry
             rows, _ = json.JSONDecoder().raw_decode(txt[txt.index("[", i):])
             for row in rows:
                 lo = row.get("live_order") or {}
