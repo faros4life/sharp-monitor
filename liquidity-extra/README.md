@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Tue Oct 27, 3:40 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 11.
+Updated Tue Oct 27, 3:50 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 10.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 51-36 (-8.40u flat) | rule met: 17-18
+**Record:** 52-36 (-8.19u flat) | rule met: 17-18
 
-**Fade (paper, betting against the print):** 11-17 (-0.47u flat, after fees)
+**Fade (paper, betting against the print):** 11-18 (-1.47u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -25,7 +25,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 26 10:10PM | TENNIS | Joint vs Cirstea | moneyline: Joint | kalshi | $791k | -178 |  |  | -16.0c |  | W |
 | Oct 26 9:01PM | MLB | Game 3: Milwaukee vs Tampa Bay | moneyline: Game 3: Milwaukee | kalshi | $136k | -285 |  |  | +7.0c |  | W |
 | Oct 26 7:00PM | MLB | Milwaukee Brewers at Tampa Bay Rays | moneyline: Milwaukee Brewers | prophetx | $49k | +105 | ✅ novig |  | -0.5c | yes | W |
-| Oct 26 7:00PM | TENNIS | Shelton vs Kovacevic | moneyline: Shelton | kalshi | $48k | -488 |  |  | +0.0c |  | pending |
+| Oct 26 7:00PM | TENNIS | Shelton vs Kovacevic | moneyline: Shelton | kalshi | $48k | -488 |  |  | +0.0c |  | W |
 | Oct 26 6:00PM | TENNIS | Joint vs Cirstea | moneyline: Cirstea | kalshi | $39k | -223 |  |  | -68.0c | yes | L |
 | Oct 26 2:46PM | MLB | Milwaukee Brewers @ Tampa Bay Rays | moneyline: TB (0) | novig | $50k | -108 | ✅ kalshi,polymarket |  | +0.0c |  | L |
 | Oct 26 2:46PM | MLB | Milwaukee vs Tampa Bay: Total Runs | total: Over 7.5 runs scored | kalshi | $231k | +122 |  |  | -16.0c | yes | W |
