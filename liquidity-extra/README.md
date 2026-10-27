@@ -1,16 +1,16 @@
 # Liquidity alerts (paper)
 
-Updated Tue Oct 27, 1:50 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 8.
+Updated Tue Oct 27, 1:59 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 7.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 48-33 (-6.41u flat) | rule met: 16-18
+**Record:** 48-34 (-7.41u flat) | rule met: 16-18
 
-**Fade (paper, betting against the print):** 9-15 (-2.83u flat, after fees)
+**Fade (paper, betting against the print):** 10-15 (-1.43u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Oct 26 11:30PM | TENNIS | Putintseva vs Sakkari | moneyline: Sakkari | kalshi | $35k | -156 |  |  | -8.0c |  | pending |
+| Oct 26 11:30PM | TENNIS | Putintseva vs Sakkari | moneyline: Sakkari | kalshi | $35k | -156 |  |  | -8.0c |  | L |
 | Oct 26 11:10PM | TENNIS | Zakharova vs Linette | moneyline: Linette | kalshi | $27k | -122 |  |  | +5.0c |  | W |
 | Oct 26 10:20PM | MLB | Game 4: Milwaukee vs Tampa Bay | moneyline: Game 4: Milwaukee | kalshi | $80k | -133 |  |  | +1.0c |  | pending |
 | Oct 26 10:10PM | TENNIS | Joint vs Cirstea | moneyline: Joint | kalshi | $791k | -178 |  |  | -16.0c |  | W |
