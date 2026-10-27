@@ -1,6 +1,149 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-27T15:10:11Z",
+   "base_depth": 141824,
+   "best_price": 0.59,
+   "best_price_american": -144,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.59,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-27",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -17169,
+     "new_this_side": 28765,
+     "other_side": 88325,
+     "other_side_all_levels": 102994,
+     "ratio": 2.0,
+     "this_side": 173470,
+     "this_side_all_levels": 177323
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "BOS +1.5 (-1.5)",
+     "price": 0.59,
+     "this_side": 31187
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Bruins (+1.5)",
+     "price": 0.59,
+     "this_side": 34873
+    }
+   },
+   "fade_price": 0.42,
+   "first_seen_utc": "2026-10-27T15:00:17Z",
+   "game": "Boston vs Carolina: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLSPREAD-26OCT27BOSCAR-CAR2\"}",
+   "lead_min": 530,
+   "league": "NHL",
+   "line": 1.5,
+   "market": "spread",
+   "new_money": 28765,
+   "paper_only": false,
+   "price": 0.59,
+   "price_american": -144,
+   "price_rule": "fails_cap",
+   "price_when_first_seen": 0.59,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 1.5,
+     "price": -155
+    },
+    "betonlineag": {
+     "point": 1.5,
+     "price": -150
+    },
+    "betopenly": {
+     "point": 1.5,
+     "price": -146
+    },
+    "betrivers": {
+     "point": 1.5,
+     "price": -155
+    },
+    "betus": {
+     "point": 1.5,
+     "price": -155
+    },
+    "bovada": {
+     "point": 1.5,
+     "price": -160
+    },
+    "draftkings": {
+     "point": 1.5,
+     "price": -155
+    },
+    "fanatics": {
+     "point": 1.5,
+     "price": -160
+    },
+    "fanduel": {
+     "point": 1.5,
+     "price": -154
+    },
+    "kalshi": {
+     "point": 1.5,
+     "price": -144
+    },
+    "lowvig": {
+     "point": 1.5,
+     "price": -150
+    },
+    "mybookieag": {
+     "point": 1.5,
+     "price": -155
+    },
+    "novig": {
+     "point": 1.5,
+     "price": -144
+    },
+    "polymarket": {
+     "point": -3.5,
+     "price": -488
+    },
+    "prophetx": {
+     "point": 1.5,
+     "price": -142
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNHLSPREAD-26OCT27BOSCAR-CAR2"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "polymarket"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Boston",
+   "side_label": "NOT Carolina wins by over 1.5 goals",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-28T00:00:00Z",
+   "teams": [
+    "Boston",
+    "Carolina"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-27T14:40:12Z",
    "base_depth": 127900,
    "best_price": 0.5242,
@@ -738,8 +881,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": 0.0,
+   "close_price": 0.49,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -1600,7 +1743,8 @@
      "price": -235
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-27T15:10:11Z",
    "ref": {
     "outcome_index": 1,
     "pm_market_id": "6252907"
@@ -4182,8 +4326,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.54,
-   "clv_cents": 0.0,
+   "close_price": 0.55,
+   "clv_cents": 1.0,
    "confirmed_after_min": 8,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -5835,8 +5979,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": 2.0,
+   "close_price": 0.5,
+   "clv_cents": 1.0,
    "confirmed_after_min": 12,
    "date": "2026-10-27",
    "depth_by_book": {
