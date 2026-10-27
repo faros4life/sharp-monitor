@@ -1,6 +1,81 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-27T21:00:21Z",
+   "base_depth": 87089,
+   "best_price": 0.635,
+   "best_price_american": -174,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.63,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-28",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -4,
+     "new_this_side": 29620,
+     "other_side": 40668,
+     "other_side_all_levels": 48105,
+     "ratio": 2.7,
+     "this_side": 109242,
+     "this_side_all_levels": 116819
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "H. Hurkacz (0)",
+     "price": 0.635,
+     "this_side": 11227
+    }
+   },
+   "fade_price": 0.38,
+   "first_seen_utc": "2026-10-27T20:50:16Z",
+   "game": "Hurkacz vs Rune",
+   "key": "kalshi|KXATPMATCH-26OCT28HURRUN|ml|0",
+   "lead_min": 1270,
+   "league": "TENNIS",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 29620,
+   "paper_only": true,
+   "price": 0.63,
+   "price_american": -170,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.63,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXATPMATCH-26OCT28HURRUN-HUR"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Hurkacz",
+   "side_label": "Hurkacz",
+   "start_source": "novig",
+   "start_utc": "2026-10-28T18:10:00Z",
+   "teams": [
+    "Hurkacz",
+    "Rune"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-27T20:50:16Z",
    "base_depth": 67617,
    "best_price": 0.555,
@@ -51,7 +126,8 @@
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.55,
    "prices_by_book": {},
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-27T21:00:21Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXWTAMATCH-26OCT27BUCJOI-JOI"
