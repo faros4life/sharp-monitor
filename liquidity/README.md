@@ -1,16 +1,17 @@
 # Liquidity alerts (paper)
 
-Updated Tue Oct 27, 12:30 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 32.
+Updated Tue Oct 27, 12:40 AM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 27.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 321-297 (-45.38u flat) | rule met: 202-187
+**Record:** 324-300 (-45.64u flat) | rule met: 204-190
 
-**Fade (paper, betting against the print):** 32-48 (-15.15u flat, after fees)
+**Fade (paper, betting against the print):** 34-51 (-16.32u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Oct 27 12:20AM | NBA | Detroit vs New York: Total Points | total: NOT Over 218.5 points | kalshi | $31k | -100 |  | ❌ | +0.0c |  | pending |
+| Oct 27 12:40AM | NCAAF | Kennesaw St. vs Middle Tennessee: Spread | spread: Middle Tennessee wins by over 2.5 points | kalshi | $26k | -108 | ✅ novig |  | +0.0c |  | pending |
+| Oct 27 12:20AM | NBA | Detroit vs New York: Total Points | total: NOT Over 218.5 points | kalshi | $31k | -100 |  | ❌ | +1.0c |  | pending |
 | Oct 27 12:20AM | NHL | Montreal vs St. Louis | moneyline: St. Louis | kalshi | $69k | -113 | ✅ novig,polymarket |  | +0.0c |  | pending |
 | Oct 27 12:20AM | NCAAF | Jacksonville St. vs New Mexico St. | moneyline: Jacksonville St. | kalshi | $89k | -138 |  |  | +0.0c |  | pending |
 | Oct 27 12:12AM | NHL | Ottawa vs Vegas: Total Goals | total: Over 6.5 goals scored | kalshi | $38k | +104 |  |  | +0.0c |  | pending |
@@ -25,7 +26,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 26 8:53PM | NBA | Memphis vs Utah | moneyline: Memphis | kalshi | $696k | -117 | ✅ novig,prophetx | ✅ | +8.0c | yes | W |
 | Oct 26 8:40PM | NBA | Warriors vs. Nuggets | spread: Nuggets (-7.5) | polymarket | $291k | -100 | ✅ kalshi,novig |  | -3.0c | yes | pending |
 | Oct 26 8:20PM | NBA | Grizzlies vs. Jazz | spread: Grizzlies (-1.5) | polymarket | $311k | -100 | ✅ kalshi | ✅ | +0.0c |  | W |
-| Oct 26 8:10PM | NBA | Detroit vs New York | moneyline: New York | kalshi | $36k | -156 |  |  | +0.0c |  | pending |
+| Oct 26 8:10PM | NBA | Detroit vs New York | moneyline: New York | kalshi | $36k | -156 |  |  | -1.0c |  | pending |
 | Oct 26 8:05PM | NHL | Maple Leafs vs. Flames | moneyline: Maple Leafs | polymarket | $63k | -122 | ✅ kalshi,novig,prophetx |  | +0.0c |  | L |
 | Oct 26 7:40PM | NCAAF | Delaware vs Western Kentucky | moneyline: Western Kentucky | kalshi | $175k | -104 | ✅ novig |  | -2.0c | yes | pending |
 | Oct 26 7:35PM | NHL | Red Wings vs. Oilers | moneyline: Red Wings | polymarket | $28k | +156 | ✅ kalshi |  | +0.0c | yes | W |
@@ -40,7 +41,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 26 6:20PM | NBA | Dallas vs Miami: Spread | spread: Miami wins by over 7.5 points | kalshi | $59k | -104 | ✅ novig,polymarket,prophetx | ❌ | -19.0c | yes | L |
 | Oct 26 6:20PM | NBA | Memphis vs Utah | moneyline: Utah | kalshi | $378k | -104 | ✅ novig,polymarket | ✅ | -50.0c | yes | L |
 | Oct 26 6:10PM | NBA | Indiana Pacers @ Milwaukee Bucks | moneyline: IND (0) | novig | $25k | -160 | ✅ kalshi,prophetx |  | -3.5c |  | L |
-| Oct 26 6:10PM | NBA | Golden State vs Denver: Spread | spread: Denver wins by over 7.5 points | kalshi | $37k | +104 | ✅ novig,polymarket |  | -26.0c | yes | pending |
+| Oct 26 6:10PM | NBA | Golden State vs Denver: Spread | spread: Denver wins by over 7.5 points | kalshi | $37k | +104 | ✅ novig,polymarket |  | -26.0c | yes | L |
 | Oct 26 6:10PM | NHL | Buffalo vs San Jose | moneyline: Buffalo | kalshi | $39k | -127 |  |  | +0.0c |  | pending |
 | Oct 26 5:20PM | NFL | Dallas Cowboys @ Philadelphia Eagles | total: Under 43.5 (43.5) | novig | $46k | +106 |  |  | +0.0c | yes | L |
 | Oct 26 5:14PM | NBA | Timberwolves vs. Cavaliers | spread: Timberwolves (+4.5) | polymarket | $60k | -100 | ✅ kalshi | ✅ | +4.0c |  | W |
@@ -69,7 +70,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 26 1:44PM | NHL | Columbus vs Philadelphia | moneyline: Columbus | kalshi | $49k | -113 | ✅ polymarket |  | +1.0c |  | pending |
 | Oct 26 1:30PM | NHL | Maple Leafs vs. Flames | spread: Flames (+1.5) | polymarket | $59k | -194 | ✅ kalshi,novig |  | +0.0c |  | W |
 | Oct 26 1:30PM | NBA | Minnesota vs Cleveland: Total Points | total: NOT Over 232.5 points | kalshi | $44k | -113 | ✅ polymarket | ✅ | +25.0c | yes | L |
-| Oct 26 1:20PM | NBA | Golden State vs Denver: Spread | spread: Denver wins by over 6.5 points | kalshi | $34k | -113 | ✅ novig,polymarket |  | -26.0c | yes | pending |
+| Oct 26 1:20PM | NBA | Golden State vs Denver: Spread | spread: Denver wins by over 6.5 points | kalshi | $34k | -113 | ✅ novig,polymarket |  | -26.0c | yes | L |
 | Oct 26 1:20PM | NBA | Chicago vs Boston: Spread | spread: Boston wins by over 14.5 points | kalshi | $29k | -100 | ✅ polymarket | ✅ | +14.0c | yes | W |
 | Oct 26 1:10PM | NBA | Minnesota Timberwolves @ Cleveland Cavaliers | moneyline: CLE (0) | novig | $26k | -178 | ✅ kalshi,polymarket,prophetx | ✅ | -5.0c |  | W |
 | Oct 26 1:04PM | NHL | Los Angeles vs New York R: Total Goals | total: NOT Over 5.5 goals scored | kalshi | $45k | +113 | ✅ novig | ✅ | -19.0c | yes | L |
@@ -86,8 +87,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 26 11:20AM | NBA | Pacers vs. Bucks | moneyline: Bucks | polymarket | $41k | +156 |  |  | +3.0c |  | W |
 | Oct 26 11:20AM | NBA | Minnesota vs Cleveland: Spread | spread: Cleveland wins by over 4.5 points | kalshi | $45k | +104 | ✅ polymarket | ✅ | -2.0c | yes | L |
 | Oct 26 11:20AM | NHL | Detroit vs Edmonton: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $57k | +104 |  |  | +22.0c | yes | L |
-| Oct 26 10:40AM | NBA | Golden State vs Denver: Spread | spread: NOT Denver wins by over 7.5 points | kalshi | $28k | -104 | ✅ novig,polymarket |  | +30.0c | yes | pending |
-| Oct 26 10:20AM | NBA | Golden State vs Denver: Total Points | total: Over 235.5 points | kalshi | $70k | -113 |  | ✅ | +28.0c | yes | pending |
+| Oct 26 10:40AM | NBA | Golden State vs Denver: Spread | spread: NOT Denver wins by over 7.5 points | kalshi | $28k | -104 | ✅ novig,polymarket |  | +30.0c | yes | W |
+| Oct 26 10:20AM | NBA | Golden State vs Denver: Total Points | total: Over 235.5 points | kalshi | $70k | -113 |  | ✅ | +28.0c | yes | W |
 | Oct 26 9:20AM | NBA | Pacers vs. Bucks | total: Under (240.5) | polymarket | $42k | -108 | ✅ kalshi,novig |  | +2.0c | yes | W |
 | Oct 26 9:20AM | NBA | Timberwolves vs. Cavaliers | moneyline: Cavaliers | polymarket | $42k | -170 | ✅ kalshi,novig,prophetx | ✅ | -4.0c | yes | W |
 | Oct 26 9:20AM | NBA | Bulls vs. Celtics | total: Over (232.5) | polymarket | $53k | -100 | ✅ prophetx |  | +3.0c |  | W |
@@ -112,7 +113,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 26 6:50AM | NBA | Suns vs. Thunder | moneyline: Thunder | polymarket | $32k | -355 | ✅ kalshi,novig,prophetx |  | -3.0c |  | W |
 | Oct 26 6:50AM | NBA | Warriors vs. Nuggets | total: Over (233.5) | polymarket | $26k | -108 | ✅ kalshi |  | +5.0c | yes | pending |
 | Oct 26 6:50AM | NBA | Phoenix vs Oklahoma City: Total Points | total: Over 218.5 points | kalshi | $68k | -108 | ✅ polymarket |  | +41.0c | yes | W |
-| Oct 26 6:50AM | NBA | Golden State vs Denver: Total Points | total: Over 233.5 points | kalshi | $35k | -113 | ✅ polymarket |  | +24.0c | yes | pending |
+| Oct 26 6:50AM | NBA | Golden State vs Denver: Total Points | total: Over 233.5 points | kalshi | $35k | -113 | ✅ polymarket |  | +24.0c | yes | W |
 | Oct 26 6:40AM | NBA | Dallas vs Miami: Total Points | total: Over 237.5 points | kalshi | $61k | -104 | ✅ polymarket | ✅ | -24.0c | yes | L |
 | Oct 26 4:00AM | NCAAF | Sam Houston vs Missouri St. | moneyline: Missouri St. | kalshi | $62k | -203 |  |  | +0.0c |  | pending |
 | Oct 26 1:00AM | NBA | Sacramento vs San Antonio | moneyline: San Antonio | kalshi | $312k | -567 |  |  | +8.0c |  | pending |
@@ -170,7 +171,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 25 1:10PM | NBA | Memphis vs Sacramento: Spread | spread: NOT Memphis wins by over 3.5 points | kalshi | $41k | -104 |  | ❌ | -25.0c | yes | L |
 | Oct 25 1:10PM | NBA | Indiana vs Brooklyn: Spread | spread: NOT Indiana wins by over 7.5 points | kalshi | $67k | -104 | ✅ novig,polymarket | ✅ | -25.0c | yes | L |
 | Oct 25 1:10PM | NHL | Toronto vs Calgary | moneyline: Toronto | kalshi | $39k | -133 | ✅ polymarket |  | -44.0c | yes | L |
-| Oct 25 1:10PM | NBA | Golden State vs Denver | moneyline: Denver | kalshi | $28k | -203 | ✅ polymarket |  | -27.0c | yes | pending |
+| Oct 25 1:10PM | NBA | Golden State vs Denver | moneyline: Denver | kalshi | $28k | -203 | ✅ polymarket |  | -27.0c | yes | L |
 | Oct 25 1:10PM | NBA | Atlanta vs Houston | moneyline: Houston | kalshi | $36k | -203 | ✅ polymarket |  | +32.0c |  | W |
 | Oct 25 12:50PM | NHL | Avalanche vs. Predators | total: Under (6.5) | polymarket | $34k | -100 | ✅ kalshi,novig |  | +1.0c |  | L |
 | Oct 25 12:40PM | NHL | Panthers vs. Blackhawks | moneyline: Blackhawks | polymarket | $31k | +163 |  |  | +0.0c |  | L |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 25 8:50AM | NBA | Grizzlies vs. Kings | moneyline: Grizzlies | polymarket | $83k | -156 | ✅ novig,prophetx | ✅ | +2.0c |  | W |
 | Oct 25 8:50AM | NHL | Minnesota vs Vancouver: Total Goals | total: Over 6.5 goals scored | kalshi | $37k | -100 | ✅ novig,polymarket |  | -25.0c | yes | L |
 | Oct 25 8:50AM | NHL | Florida vs Chicago: Total Goals | total: Over 6.5 goals scored | kalshi | $50k | +117 |  |  | -18.0c | yes | L |
-| Oct 25 8:50AM | NFL | Denver vs Arizona: Spread | spread: Denver wins by over 4.5 points | kalshi | $405k | -100 |  |  | +19.0c | yes | W |

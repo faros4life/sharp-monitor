@@ -1,6 +1,142 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-27T04:40:10Z",
+   "base_depth": 142265,
+   "best_price": 0.52,
+   "best_price_american": -108,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-28",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -59,
+     "new_this_side": 25832,
+     "other_side": 86675,
+     "other_side_all_levels": 134885,
+     "ratio": 1.3,
+     "this_side": 113924,
+     "this_side_all_levels": 168259
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "MTSU -2.5 (-2.5)",
+     "price": 0.52,
+     "this_side": 10864
+    }
+   },
+   "fade_price": 0.49,
+   "first_seen_utc": "2026-10-27T04:30:12Z",
+   "game": "Kennesaw St. vs Middle Tennessee: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFSPREAD-26OCT28KENNMTU-MTU3\"}",
+   "lead_min": 2540,
+   "league": "NCAAF",
+   "line": -2.5,
+   "market": "spread",
+   "new_money": 25832,
+   "paper_only": false,
+   "price": 0.52,
+   "price_american": -108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.52,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -2.5,
+     "price": -115
+    },
+    "betonlineag": {
+     "point": -2.5,
+     "price": -115
+    },
+    "betrivers": {
+     "point": -2.5,
+     "price": -117
+    },
+    "betus": {
+     "point": -2.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": -2.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": -2.5,
+     "price": -120
+    },
+    "fanatics": {
+     "point": -2.5,
+     "price": -120
+    },
+    "fanduel": {
+     "point": -2.5,
+     "price": -115
+    },
+    "kalshi": {
+     "point": -2.5,
+     "price": -108
+    },
+    "lowvig": {
+     "point": -2.5,
+     "price": -111
+    },
+    "mybookieag": {
+     "point": -2.5,
+     "price": -110
+    },
+    "novig": {
+     "point": -2.5,
+     "price": -108
+    },
+    "polymarket": {
+     "point": -2.5,
+     "price": -108
+    },
+    "prophetx": {
+     "point": 1.0,
+     "price": -130
+    },
+    "williamhill_us": {
+     "point": -2.5,
+     "price": -120
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFSPREAD-26OCT28KENNMTU-MTU3"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Middle Tennessee",
+   "side_label": "Middle Tennessee wins by over 2.5 points",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-28T23:00:00Z",
+   "teams": [
+    "Kennesaw St.",
+    "Middle Tennessee"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-27T04:20:10Z",
    "base_depth": 52466,
    "best_price": 0.5,
@@ -15,8 +151,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": 0.0,
+   "close_price": 0.51,
+   "clv_cents": 1.0,
    "confirmed_after_min": 8,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -47,6 +183,8 @@
    "new_money": 31093,
    "paper_only": false,
    "price": 0.5,
+   "price_after_15m": 0.505,
+   "price_after_15m_book": "novig",
    "price_american": -100,
    "price_rule": "ok",
    "price_when_first_seen": 0.5,
@@ -129,6 +267,7 @@
    "side_label": "NOT Over 218.5 points",
    "start_source": "novig",
    "start_utc": "2026-10-28T00:05:00Z",
+   "still_actionable": false,
    "teams": [
     "Detroit",
     "New York"
@@ -195,6 +334,8 @@
    "new_money": 68652,
    "paper_only": false,
    "price": 0.53,
+   "price_after_15m": 0.54,
+   "price_after_15m_book": "novig",
    "price_american": -113,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.53,
@@ -286,6 +427,7 @@
    "side_label": "St. Louis",
    "start_source": "polymarket",
    "start_utc": "2026-10-28T00:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Montreal",
     "St. Louis"
@@ -340,6 +482,8 @@
    "new_money": 89088,
    "paper_only": false,
    "price": 0.58,
+   "price_after_15m": 0.5971,
+   "price_after_15m_book": "kalshi",
    "price_american": -138,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.58,
@@ -416,6 +560,7 @@
    "side_label": "Jacksonville St.",
    "start_source": "prophetx",
    "start_utc": "2026-10-29T00:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Jacksonville St.",
     "New Mexico St."
@@ -2237,8 +2382,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.61,
-   "clv_cents": 0.0,
+   "close_price": 0.6,
+   "clv_cents": -1.0,
    "confirmed_after_min": 4,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -4552,6 +4697,7 @@
     }
    },
    "fade_price": 0.52,
+   "fade_units": 0.86,
    "first_seen_utc": "2026-10-26T22:02:00Z",
    "game": "Golden State vs Denver: Spread",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNBASPREAD-26OCT26GSWDEN-DEN8\"}",
@@ -4639,13 +4785,14 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBASPREAD-26OCT26GSWDEN-DEN8"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig",
     "polymarket"
    ],
    "second_book_fresh": false,
+   "settled_utc": "2026-10-27T04:40:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Denver",
@@ -4658,7 +4805,7 @@
     "Denver"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-26T22:10:10Z",
@@ -8859,6 +9006,7 @@
     }
    },
    "fade_price": 0.49,
+   "fade_units": 0.97,
    "first_seen_utc": "2026-10-26T17:10:11Z",
    "game": "Golden State vs Denver: Spread",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNBASPREAD-26OCT26GSWDEN-DEN7\"}",
@@ -8942,13 +9090,14 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBASPREAD-26OCT26GSWDEN-DEN7"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig",
     "polymarket"
    ],
    "second_book_fresh": false,
+   "settled_utc": "2026-10-27T04:40:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Denver",
@@ -8961,7 +9110,7 @@
     "Denver"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-26T17:20:11Z",
@@ -11517,6 +11666,7 @@
     }
    },
    "fade_price": 0.5,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-26T14:30:18Z",
    "game": "Golden State vs Denver: Spread",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBASPREAD-26OCT26GSWDEN-DEN8\"}",
@@ -11600,13 +11750,14 @@
     "kalshi_side": "no",
     "market_ticker": "KXNBASPREAD-26OCT26GSWDEN-DEN8"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig",
     "polymarket"
    ],
    "second_book_fresh": false,
+   "settled_utc": "2026-10-27T04:40:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Golden State",
@@ -11619,7 +11770,7 @@
     "Denver"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.96
   },
   {
    "alerted_utc": "2026-10-26T14:20:12Z",
@@ -11658,6 +11809,7 @@
     }
    },
    "fade_price": 0.48,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-26T14:10:13Z",
    "game": "Golden State vs Denver: Total Points",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNBATOTAL-26OCT26GSWDEN-236\"}",
@@ -11741,10 +11893,11 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBATOTAL-26OCT26GSWDEN-236"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": "none_10k",
    "second_book_fresh": false,
+   "settled_utc": "2026-10-27T04:40:10Z",
    "sharp_agree": [
     "Over 235.5 (-110)"
    ],
@@ -11759,7 +11912,7 @@
     "Denver"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.88
   },
   {
    "alerted_utc": "2026-10-26T13:20:11Z",
@@ -15455,6 +15608,7 @@
     }
    },
    "fade_price": 0.48,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-26T10:40:10Z",
    "game": "Golden State vs Denver: Total Points",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNBATOTAL-26OCT26GSWDEN-234\"}",
@@ -15542,12 +15696,13 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBATOTAL-26OCT26GSWDEN-234"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "polymarket"
    ],
    "second_book_fresh": true,
+   "settled_utc": "2026-10-27T04:40:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -15560,7 +15715,7 @@
     "Denver"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.9
   },
   {
    "alerted_utc": "2026-10-26T10:40:10Z",
@@ -23588,12 +23743,13 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBAGAME-26OCT26GSWDEN-DEN"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "polymarket"
    ],
    "second_book_fresh": false,
+   "settled_utc": "2026-10-27T04:40:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Denver",
@@ -23606,7 +23762,7 @@
     "Denver"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-25T17:10:09Z",
