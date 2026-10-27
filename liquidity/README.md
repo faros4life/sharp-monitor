@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Oct 27, 5:50 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 90.
+Updated Tue Oct 27, 5:54 PM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 91.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Oct 27 5:54PM | NHL | New Jersey vs Dallas: Total Goals | total: Over 5.5 goals scored | kalshi | $111k | -100 | ✅ novig |  | +0.0c |  | pending |
 | Oct 27 5:40PM | NBA | Trail Blazers vs. Lakers | total: Under (233.5) | polymarket | $26k | -104 | ✅ novig | ✅ | +0.0c |  | pending |
 | Oct 27 5:30PM | NHL | Los Angeles vs Chicago | moneyline: Los Angeles | kalshi | $115k | -100 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Oct 27 5:20PM | NBA | Brooklyn vs Boston: Total Points | total: Over 222.5 points | kalshi | $45k | -104 |  | ✅ | +0.0c | yes | pending |
@@ -27,8 +28,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 27 1:44PM | NBA | Nets vs. Celtics | total: Under (222.5) | polymarket | $52k | -104 | ✅ kalshi,novig | ❌ | -1.0c |  | pending |
 | Oct 27 1:44PM | NBA | Brooklyn vs Boston: Spread | spread: NOT Boston wins by over 12.5 points | kalshi | $43k | -100 | ✅ prophetx |  | +0.0c |  | pending |
 | Oct 27 1:33PM | NHL | Sabres vs. Sharks | total: Over (6.5) | polymarket | $49k | -122 | ✅ kalshi,novig |  | +0.0c |  | pending |
-| Oct 27 1:20PM | NBA | Brooklyn Nets at Boston Celtics | moneyline: Boston Celtics | prophetx | $42k | -560 | ✅ kalshi |  | +0.0c |  | pending |
-| Oct 27 1:20PM | NHL | Minnesota vs Utah: Spread | spread: NOT Utah wins by over 1.5 goals | kalshi | $52k | -223 | ✅ novig,polymarket |  | +1.0c |  | pending |
+| Oct 27 1:20PM | NBA | Brooklyn Nets at Boston Celtics | moneyline: Boston Celtics | prophetx | $42k | -560 | ✅ kalshi |  | -0.2c |  | pending |
+| Oct 27 1:20PM | NHL | Minnesota vs Utah: Spread | spread: NOT Utah wins by over 1.5 goals | kalshi | $52k | -223 | ✅ novig,polymarket |  | +0.0c |  | pending |
 | Oct 27 1:11PM | NHL | Devils vs. Stars | moneyline: Devils | polymarket | $49k | +104 | ✅ kalshi,novig |  | +0.0c |  | pending |
 | Oct 27 12:40PM | NHL | Sabres vs. Sharks | spread: Sharks (+1.5) | polymarket | $38k | -186 | ✅ kalshi |  | -1.0c | yes | pending |
 | Oct 27 12:40PM | NHL | Canucks vs. Ducks | moneyline: Ducks | polymarket | $45k | -203 | ✅ kalshi,novig,prophetx |  | +0.0c |  | pending |
@@ -41,7 +42,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 27 11:30AM | NHL | New York I vs Nashville: Spread | spread: NOT Nashville wins by over 1.5 goals | kalshi | $44k | -233 | ✅ novig |  | +0.0c |  | pending |
 | Oct 27 11:23AM | NBA | Trail Blazers vs. Lakers | spread: Trail Blazers (+1.5) | polymarket | $49k | +104 |  | ✅ | +0.0c |  | pending |
 | Oct 27 11:10AM | NHL | Boston vs Carolina: Spread | spread: NOT Carolina wins by over 1.5 goals | kalshi | $29k | -144 | ✅ novig,polymarket |  | +0.0c |  | pending |
-| Oct 27 10:40AM | NBA | Detroit vs New York: Total Points | total: Over 218.5 points | kalshi | $27k | -104 |  | ✅ | +2.0c | yes | pending |
+| Oct 27 10:40AM | NBA | Detroit vs New York: Total Points | total: Over 218.5 points | kalshi | $27k | -104 |  | ✅ | +3.0c | yes | pending |
 | Oct 27 10:31AM | NBA | Brooklyn vs Boston: Spread | spread: Boston wins by over 11.5 points | kalshi | $32k | -100 | ✅ novig,polymarket,prophetx |  | +5.0c | yes | pending |
 | Oct 27 10:20AM | NHL | Ottawa vs Vegas: Spread | spread: NOT Vegas wins by over 1.5 goals | kalshi | $29k | -178 | ✅ polymarket |  | -1.0c |  | pending |
 | Oct 27 10:20AM | NHL | Columbus vs Philadelphia: Spread | spread: NOT Columbus wins by over 1.5 goals | kalshi | $32k | -223 | ✅ polymarket |  | +1.0c |  | pending |
@@ -78,7 +79,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 27 2:42AM | NBA | Portland vs Los Angeles L | moneyline: Los Angeles L | kalshi | $82k | -138 | ✅ novig |  | -4.0c | yes | pending |
 | Oct 27 12:45AM | NCAAF | Kennesaw St. vs Middle Tennessee | moneyline: Middle Tennessee | kalshi | $245k | -122 |  |  | +0.0c |  | pending |
 | Oct 27 12:40AM | NCAAF | Kennesaw St. vs Middle Tennessee: Spread | spread: Middle Tennessee wins by over 2.5 points | kalshi | $26k | -108 | ✅ novig |  | +0.0c | yes | pending |
-| Oct 27 12:20AM | NBA | Detroit vs New York: Total Points | total: NOT Over 218.5 points | kalshi | $31k | -100 |  | ❌ | -2.0c |  | pending |
+| Oct 27 12:20AM | NBA | Detroit vs New York: Total Points | total: NOT Over 218.5 points | kalshi | $31k | -100 |  | ❌ | -3.0c |  | pending |
 | Oct 27 12:20AM | NHL | Montreal vs St. Louis | moneyline: St. Louis | kalshi | $69k | -113 | ✅ novig,polymarket |  | -4.0c |  | pending |
 | Oct 27 12:20AM | NCAAF | Jacksonville St. vs New Mexico St. | moneyline: Jacksonville St. | kalshi | $89k | -138 |  |  | +1.0c | yes | pending |
 | Oct 27 12:12AM | NHL | Ottawa vs Vegas: Total Goals | total: Over 6.5 goals scored | kalshi | $38k | +104 |  |  | +1.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 25 5:30PM | NBA | Indiana vs Brooklyn: Spread | spread: Indiana wins by over 5.5 points | kalshi | $101k | -108 | ✅ novig,polymarket | ✅ | +30.0c | yes | W |
 | Oct 25 5:30PM | NBA | Chicago vs Boston | moneyline: Boston | kalshi | $64k | -567 |  |  | +11.0c | yes | W |
 | Oct 25 5:24PM | NBA | Toronto vs Minnesota: Total Points | total: Over 229.5 points | kalshi | $43k | -104 | ✅ novig,polymarket,prophetx | ❌ | -29.0c | yes | L |
-| Oct 25 5:00PM | NBA | Grizzlies vs. Kings | spread: Kings (+3.5) | polymarket | $32k | -104 |  | ❌ | -2.0c | yes | L |
