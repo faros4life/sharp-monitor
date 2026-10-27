@@ -1,0 +1,28 @@
+name: telegram-mirror-test
+
+on:
+  workflow_dispatch:   # manual: sends 2 test messages through the REAL ntfy->Telegram mirror code (no ntfy push)
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Send test messages through the mirror
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          python -u - <<'PY'
+          import sharp_monitor as s, liquidity_monitor as l
+          s.tg_mirror(s._tg_prefix(["white_check_mark", "moneybag"]) + " TEST Sharp alert (mirror check)\nThis is how sharp alerts will look in Telegram. Not a bet.")
+          l.tg_mirror("\U0001F4A7 TEST Liquidity alert (mirror check)\nThis is how liquidity alerts will look in Telegram. Not a bet.")
+          print("sent 2 test messages (check Telegram)")
+          PY
