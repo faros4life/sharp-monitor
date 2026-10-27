@@ -1,0 +1,60 @@
+name: ev-sightings
+
+# PAPER STUDY, MEASUREMENT ONLY (Oct 27, 2026): logs EV sightings on the four exchanges and grades them.
+# Never places orders, never sends notifications, never writes main: data lives on the ev-study branch.
+on:
+  schedule:
+    - cron: "7-59/10 * * * *"   # every 10 min, offset from the liquidity monitor / book check
+  workflow_dispatch:
+
+concurrency:
+  group: ev-sightings
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Load study data from the ev-study branch
+        run: |
+          mkdir -p ev-study
+          if git fetch -q origin ev-study 2>/dev/null; then
+            git show origin/ev-study:ev_sightings.json > ev-study/ev_sightings.json 2>/dev/null || rm -f ev-study/ev_sightings.json
+          fi
+      - name: Log sightings (read-only)
+        env:
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}               # free /events + Pinnacle read; floor keeps sharp-monitor credits
+          PROPHETX_ACCESS_KEY: ${{ secrets.PROPHETX_ACCESS_KEY }}  # read-only: login + markets, never orders
+          PROPHETX_SECRET_KEY: ${{ secrets.PROPHETX_SECRET_KEY }}
+          EV_BOOKS: ${{ vars.EV_BOOKS }}   # optional off switch, e.g. kalshi,novig,polymarket_us (drops ProphetX)
+        run: python -u ev_sightings.py
+      - name: Save to the ev-study branch (never main)
+        if: always()
+        run: |
+          [ -f ev-study/ev_sightings.json ] || exit 0
+          rm -rf "$RUNNER_TEMP/out" && mkdir -p "$RUNNER_TEMP/out" && cp ev-study/* "$RUNNER_TEMP/out/"
+          git config user.name "ev-sightings"
+          git config user.email "ev-sightings@users.noreply.github.com"
+          for i in 1 2 3; do
+            if git fetch -q origin ev-study 2>/dev/null; then
+              git checkout -q -f -B ev-study origin/ev-study
+            else
+              git checkout -q -f --orphan ev-study
+              git rm -rq --cached . >/dev/null 2>&1 || true
+            fi
+            find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
+            cp "$RUNNER_TEMP/out/"* .
+            git add -A
+            git diff --cached --quiet && break
+            git commit -q -m "EV sightings update"
+            git push -q origin ev-study && break
+            sleep 5
+          done
