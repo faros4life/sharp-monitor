@@ -223,6 +223,21 @@ def push(title, body):
         print(f"push failed: {str(ex)[:60]}")
 
 
+def tg(text):
+    """Fill/error message to Peter's Telegram (Oct 27; Xfinity has no email-to-text). Secrets TELEGRAM_BOT_TOKEN /
+    TELEGRAM_CHAT_ID; missing or failing = silently skipped (ntfy still fires). Nothing printed to the public log."""
+    tok, chat = (os.environ.get("TELEGRAM_BOT_TOKEN") or "").strip(), (os.environ.get("TELEGRAM_CHAT_ID") or "").strip()
+    if not tok or not chat:
+        return
+    try:
+        req = urllib.request.Request(f"https://api.telegram.org/bot{tok}/sendMessage",
+                                     data=json.dumps({"chat_id": chat, "text": text[:3500]}).encode(), method="POST",
+                                     headers={"Content-Type": "application/json"})
+        urllib.request.urlopen(req, timeout=15).read()
+    except Exception:
+        print("telegram send failed")
+
+
 def wp(key):
     """Token written ONLY on WOULD PLACE / PLACED entries, so the opposite side can find a side already taken."""
     return "xwp" + hashlib.sha1(key.encode()).hexdigest()[:12]
@@ -900,11 +915,21 @@ def live_order(r):
     label = f"{p.get('sport')} {p.get('game')} | {bet_text(r, lv['line'], limit)}"
     res = px_live.place(strike, limit, stake, label)
     if res["status"] == "placed":
+        fs, ap = res.get("filled_stake") or 0, res.get("avg_price")
+        if fs and ap:
+            win = (fs * 100 / abs(ap) if ap < 0 else fs * ap / 100) * 0.98
+            tg(f"FILLED ProphetX: {bet_text(r, lv['line'], ap)}\n${fs:,.2f} at {ap:+d} -> wins ${win:,.2f} after the 2% fee"
+               f"{'' if fs >= stake - 0.01 else f' (partial: asked ${stake:,.2f})'}\n{p.get('sport')} {p.get('game')}\n"
+               "Send STOP on ntfy to pause.")
+        else:
+            tg(f"NO FILL ProphetX: {bet_text(r, lv['line'], limit)}\nFill-or-kill got nothing at {limit:+d} or better"
+               + ("" if res.get("fills_read") else " (fill read failed: check My Trades)") + ".")
         push("PLACED: " + bet_text(r, lv["line"], limit)[:60],
              f"{label}\nProphetX fill-or-kill: ${res.get('filled_stake') or 0:,.2f} filled"
              + (f" at {res['avg_price']:+d}" if res.get("avg_price") else "") + f" (asked ${stake:,.2f}, limit {limit:+d})."
              + ("" if res.get("fills_read") else " Fill read failed: check My Trades."))
     elif res["status"] == "error":
+        tg(f"LIVE ORDER ERROR ProphetX: {(p.get('bet') or '')[:60]}\n{res['reason'][:200]}\nCheck My Trades before retrying.")
         push("LIVE ORDER ERROR: " + (p.get("bet") or "")[:50], f"{label}\n{res['reason']}\nCheck ProphetX My Trades before retrying.")
     return dict(res, asked_stake=stake, limit=limit)
 
