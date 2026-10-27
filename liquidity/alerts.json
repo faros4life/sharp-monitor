@@ -1,6 +1,160 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-27T06:39:46Z",
+   "base_depth": 505561,
+   "best_price": 0.58,
+   "best_price_american": -138,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.58,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-27",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 18538,
+     "new_this_side": 82002,
+     "other_side": 361152,
+     "other_side_all_levels": 545719,
+     "ratio": 1.2,
+     "this_side": 421508,
+     "this_side_all_levels": 650273
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "LAL (0)",
+     "price": 0.58,
+     "this_side": 21544
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Los Angeles Lakers",
+     "price": 0.5763,
+     "this_side": 8068
+    }
+   },
+   "fade_price": 0.42,
+   "first_seen_utc": "2026-10-27T06:30:13Z",
+   "game": "Portland vs Los Angeles L",
+   "key": "kalshi|KXNBAGAME-26OCT27PORLAL|ml|1",
+   "lead_min": 1220,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 82002,
+   "paper_only": false,
+   "price": 0.58,
+   "price_american": -138,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.58,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -145
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -145
+    },
+    "betopenly": {
+     "point": null,
+     "price": -131
+    },
+    "betrivers": {
+     "point": null,
+     "price": -143
+    },
+    "betus": {
+     "point": null,
+     "price": -145
+    },
+    "bovada": {
+     "point": null,
+     "price": -145
+    },
+    "draftkings": {
+     "point": null,
+     "price": -135
+    },
+    "fanatics": {
+     "point": null,
+     "price": -145
+    },
+    "fanduel": {
+     "point": null,
+     "price": -142
+    },
+    "kalshi": {
+     "point": null,
+     "price": -138
+    },
+    "limitless": {
+     "point": null,
+     "price": -140
+    },
+    "lowvig": {
+     "point": null,
+     "price": -144
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -152
+    },
+    "novig": {
+     "point": null,
+     "price": -138
+    },
+    "polymarket": {
+     "point": null,
+     "price": -138
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -144
+    },
+    "prophetx": {
+     "point": null,
+     "price": -136
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -145
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBAGAME-26OCT27PORLAL-LAL"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Los Angeles L",
+   "side_label": "Los Angeles L",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-28T03:00:00Z",
+   "teams": [
+    "Portland",
+    "Los Angeles L"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-27T04:45:19Z",
    "base_depth": 404794,
    "best_price": 0.555,
@@ -257,7 +411,8 @@
      "price": -120
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-27T06:39:46Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFSPREAD-26OCT28KENNMTU-MTU3"
@@ -1288,7 +1443,8 @@
      "price": 102
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-27T06:39:46Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNHLGAME-26OCT27LACHI-CHI"
