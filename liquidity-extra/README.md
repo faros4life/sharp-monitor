@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Oct 27, 8:20 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 8.
+Updated Tue Oct 27, 8:25 AM ET. This run: 1 new, 0 not confirmed, 2 pending. Open alerts: 9.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Oct 27 8:25AM | MLB | Milwaukee Brewers vs. Tampa Bay Rays | moneyline: Tampa Bay Rays | polymarket | $27k | +127 |  |  | +0.0c |  | pending |
 | Oct 27 3:50AM | TENNIS | Mannarino vs Buse | moneyline: Mannarino | kalshi | $27k | -170 | ✅ novig |  | -2.0c | yes | pending |
 | Oct 27 3:30AM | TENNIS | Eala vs Gibson | moneyline: Eala | kalshi | $26k | -285 |  |  | +0.0c |  | pending |
 | Oct 26 11:30PM | TENNIS | Putintseva vs Sakkari | moneyline: Sakkari | kalshi | $35k | -156 |  |  | -8.0c |  | L |
