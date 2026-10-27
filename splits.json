@@ -286,7 +286,7 @@
    "kill_bar": ">= 30 resulted at <= -0.1u/play -> CLOSED",
    "status": "OPEN",
    "closed_utc": null,
-   "plays": 0,
+   "plays": 1,
    "resulted": 0,
    "W": 0,
    "L": 0,
@@ -296,7 +296,7 @@
    "true_close_value_pct": null,
    "true_close_n": 0,
    "all_history": {
-    "plays": 32,
+    "plays": 33,
     "resulted": 32,
     "W": 24,
     "L": 8,
@@ -307,7 +307,19 @@
     "true_close_n": 0
    },
    "by_book": {
-    "forward": {},
+    "forward": {
+     "hardrockbet": {
+      "plays": 1,
+      "resulted": 0,
+      "W": 0,
+      "L": 0,
+      "P": 0,
+      "units": 0,
+      "u_per_play": null,
+      "true_close_value_pct": null,
+      "true_close_n": 0
+     }
+    },
     "all_history": {
      "prophetx": {
       "plays": 17,
@@ -354,7 +366,7 @@
       "true_close_n": 0
      },
      "hardrockbet": {
-      "plays": 3,
+      "plays": 4,
       "resulted": 3,
       "W": 0,
       "L": 3,
@@ -367,10 +379,22 @@
     }
    },
    "by_market": {
-    "forward": {},
+    "forward": {
+     "spread": {
+      "plays": 1,
+      "resulted": 0,
+      "W": 0,
+      "L": 0,
+      "P": 0,
+      "units": 0,
+      "u_per_play": null,
+      "true_close_value_pct": null,
+      "true_close_n": 0
+     }
+    },
     "all_history": {
      "spread": {
-      "plays": 21,
+      "plays": 22,
       "resulted": 21,
       "W": 16,
       "L": 5,
@@ -559,5 +583,5 @@
   "liq_evening": 0
  },
  "resulted_rule": "resulted = result W, L or P with a unit value (pushes count as 0u); liquidity artifacts excluded; pending and ungraded plays do not count",
- "updated_utc": "2026-10-27T14:35:11Z"
+ "updated_utc": "2026-10-27T15:00:21Z"
 }
