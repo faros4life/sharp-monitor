@@ -1,0 +1,24 @@
+name: kalshi-live-order-test
+
+on:
+  workflow_dispatch:   # manual: ONE real ~$1 fill-or-kill order on Kalshi with the TRADING key
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Kalshi $1 order test (REAL money)
+        env:
+          CONFIRM_REAL_ORDER: "ONE_DOLLAR"
+          KALSHI_TRADE_KEY_ID: ${{ secrets.KALSHI_TRADE_KEY_ID }}
+          KALSHI_TRADE_PRIVATE_KEY: ${{ secrets.KALSHI_TRADE_PRIVATE_KEY }}
+        run: python -u kalshi_live_order_test.py
