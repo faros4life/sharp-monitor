@@ -1,6 +1,149 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-27T21:15:31Z",
+   "base_depth": 100527,
+   "best_price": 0.7,
+   "best_price_american": -233,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.7,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-10-27",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "NOT Columbus wins by over 1.5 goals",
+     "price": 0.7,
+     "this_side": 324862
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "PHI +1.5 (1.5)",
+     "price": 0.7,
+     "this_side": 35046
+    },
+    "polymarket": {
+     "new_other_side": 8614,
+     "new_this_side": 26023,
+     "other_side": 29074,
+     "other_side_all_levels": 51569,
+     "ratio": 3.5,
+     "this_side": 100894,
+     "this_side_all_levels": 126563
+    }
+   },
+   "fade_price": 0.31,
+   "first_seen_utc": "2026-10-27T21:10:10Z",
+   "game": "Blue Jackets vs. Flyers",
+   "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6252909\"}",
+   "lead_min": 104,
+   "league": "NHL",
+   "line": 1.5,
+   "market": "spread",
+   "new_money": 26023,
+   "paper_only": false,
+   "price": 0.7,
+   "price_american": -233,
+   "price_rule": "fails_cap",
+   "price_when_first_seen": 0.7,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 1.5,
+     "price": -250
+    },
+    "betonlineag": {
+     "point": 1.5,
+     "price": -255
+    },
+    "betopenly": {
+     "point": 1.5,
+     "price": -240
+    },
+    "betrivers": {
+     "point": 1.5,
+     "price": -275
+    },
+    "betus": {
+     "point": 1.5,
+     "price": -255
+    },
+    "bovada": {
+     "point": 1.5,
+     "price": -250
+    },
+    "draftkings": {
+     "point": 1.5,
+     "price": -258
+    },
+    "fanatics": {
+     "point": 1.5,
+     "price": -270
+    },
+    "fanduel": {
+     "point": 1.5,
+     "price": -265
+    },
+    "kalshi": {
+     "point": 1.5,
+     "price": -233
+    },
+    "lowvig": {
+     "point": 1.5,
+     "price": -255
+    },
+    "mybookieag": {
+     "point": 1.5,
+     "price": -250
+    },
+    "novig": {
+     "point": 1.5,
+     "price": -233
+    },
+    "polymarket": {
+     "point": 1.5,
+     "price": -233
+    },
+    "prophetx": {
+     "point": 1.5,
+     "price": -235
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 1,
+    "pm_market_id": "6252909"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi",
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Flyers",
+   "side_label": "Flyers (+1.5)",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-27T23:00:00Z",
+   "teams": [
+    "Blue Jackets",
+    "Flyers"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-27T21:10:10Z",
    "base_depth": 67876,
    "best_price": 0.635,
@@ -4851,8 +4994,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": 3.0,
+   "close_price": 0.52,
+   "clv_cents": 4.0,
    "confirmed_after_min": 10,
    "date": "2026-10-27",
    "depth_by_book": {
