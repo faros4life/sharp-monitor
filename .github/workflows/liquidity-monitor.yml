@@ -27,6 +27,8 @@ jobs:
           LIQ_SECOND_MIN: ${{ vars.LIQ_SECOND_MIN }}
           LIQ_LEAGUES: "NFL,NCAAF,NBA,NHL"   # MLB, NCAAB, tennis run separately (liquidity-extra)
           LIQ_NTFY_TOPIC: ${{ vars.LIQ_NTFY_TOPIC }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}   # Oct 27: every ntfy push mirrored to Telegram
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}   # read-only sportsbook prices at alert time (Hard Rock etc.)
           PROPHETX_ACCESS_KEY: ${{ secrets.PROPHETX_ACCESS_KEY }}   # read-only: login + markets, never orders
           PROPHETX_SECRET_KEY: ${{ secrets.PROPHETX_SECRET_KEY }}
