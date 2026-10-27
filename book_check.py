@@ -585,12 +585,12 @@ def run():
     for al in sharp.get("all_alerts") or []:
         if not al.get("pushed_to_phone") or al.get("repeat"):
             continue
-        if (al.get("minutes_before_start") or 0) < MIN_LEAD_MIN:
-            continue
         try:
             st = datetime.fromisoformat(al["start_utc"].replace("Z", "+00:00"))
             sent = datetime.strptime(al["sent_et"], "%Y-%m-%d %H:%M").replace(tzinfo=lm.ET)
         except Exception:
+            continue
+        if (st - sent).total_seconds() / 60 < MIN_LEAD_MIN:   # lead = start - alert time (Oct 27: one lead definition)
             continue
         if st <= n or sent < n - timedelta(hours=LOOKBACK_H):
             continue

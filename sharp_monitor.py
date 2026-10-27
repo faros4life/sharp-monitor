@@ -572,15 +572,38 @@ def detect(event, cfg, lines, base):
     return alerts
 
 
+def _alert_iso(commence, lead):
+    """The alert time implied by this run's lead (lead = start - now), so phase1 computes lead from alert_utc/start_utc."""
+    from datetime import timedelta
+    try:
+        return (parse_iso(commence) - timedelta(minutes=lead)).isoformat()
+    except Exception:
+        return None
+
+
 def phase1_label(a, sport, grade, lead, late, opposite_earlier):
     """Oct 26 (Peter): label each phone alert PHASE 1 (candidate for the live filter; Muse's AGREE still decides) or
     PAPER. Same rule as agree_rules.phase1 plus first-side-stays. Labeling only: every alert is still sent and recorded."""
     try:
         import agree_rules
         ok, why = agree_rules.phase1({"book_key": a.get("book"), "book": nm(a.get("book")), "grade": grade, "sport": sport,
-                                      "kind": a.get("kind"), "bet": a.get("text") or "", "minutes_before_start": lead,
+                                      "kind": a.get("kind"), "bet": a.get("text") or "",
+                                      "start_utc": a.get("commence"), "alert_utc": _alert_iso(a.get("commence"), lead),
                                       "late": late}, True)
         why = [w for w in why if w != "no Muse AGREE"]
+        if agree_rules.hr_priced({"book_key": a.get("book")}) is not False:   # Oct 27: HR-priced (or unknown) never LIVE
+            ok = False
+            if not any(w.startswith("Hard Rock") for w in why):
+                why = ["Hard Rock-priced: never live" if a.get("book") else "pricing book unknown"] + why
+        try:
+            paf = round(net(a["price"], a.get("book")))
+        except Exception:
+            paf = None
+        db = agree_rules.deadband({"book_key": a.get("book"), "price_after_fee": paf, "sent_to_phone": True})
+        if db is not False:   # Oct 27 retail deadband (or unknown price on a non-ProphetX book): never LIVE
+            ok = False
+            if not any(w.startswith("retail deadband") for w in why):
+                why = [f"retail deadband ({paf} after fee, not ProphetX)" if db else "after-fee price unknown"] + why
         if opposite_earlier:
             ok, why = False, ["opposite side of an earlier alert"] + why
         return (ok and not why), why

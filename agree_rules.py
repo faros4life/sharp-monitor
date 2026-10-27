@@ -11,6 +11,9 @@ and live books - they need data an alert entry doesn't carry.
 
 Oct 26: global-Polymarket-priced alerts are ROUTED like Hard Rock (gate 6 no longer DISAGREEs them; paper split only).
 phase1() = the phase-1 LIVE filter; first_side() = first side stays against ANY earlier sent alert.
+Oct 27 (Peter): HARD ROCK-PRICED = NEVER LIVE. hr_priced() tests the alert's own PRICING book (book_key), not where it
+would be routed: an HR-priced alert routed to ProphetX is still excluded. Checked in phase1(), in the phone LIVE/PAPER
+label (sharp_monitor) and again at placement (executor, fail closed). Data collection, routing and the HR splits unchanged.
 
 FLAGS NEVER VETO and never change the stake (monitor grade incl. C, edge_pct, Muse grade, confirm count, Hard Rock as
 the price source, liquidity stars). Pending decisions stay flags until Peter's Oct 30 review.
@@ -31,7 +34,7 @@ def flags(a):
         f.append(f"edge {a['edge_pct']:+.1f}%")
     f.append(f"confirms {len(a.get('confirmed_by') or [])}")
     if (a.get("book_key") or "") in HARD_ROCK:
-        f.append("Hard Rock-priced (routed to the best exchange; Oct 30 review)")
+        f.append("Hard Rock-priced (data only: never live, Oct 27)")
     if (a.get("book_key") or "") in PM_GLOBAL:
         f.append("global-Polymarket-priced (routed to the best exchange; paper split, never live in phase 1)")
     return f
@@ -79,9 +82,8 @@ def _t(x):
 
 
 def lead_min(a):
-    """Minutes from the alert to the listed start (alerts.json minutes_before_start, else alert_utc -> start_utc)."""
-    if a.get("minutes_before_start") is not None:
-        return float(a["minutes_before_start"])
+    """Minutes from the alert to the listed start: start_utc minus alert_utc (Oct 27, Peter: the ONE lead definition in
+    every component; minutes_before_start is never used). 12-24h band = 720.0 <= lead < 1440.0."""
     t, s = _t(a.get("alert_utc")), _t(a.get("start_utc"))
     return (s - t).total_seconds() / 60 if t and s else None
 
@@ -113,8 +115,33 @@ def first_side(a, feed):
     return min(opp, key=lambda z: z[0])[1] if opp else None
 
 
-PHASE1 = ("ProphetX-priced at alert time, Grade A/B, Muse AGREE, NCAAF + NBA spreads + unders, NFL unders only, "
+PHASE1 = ("ProphetX-priced at alert time (Hard Rock-priced never), Grade A/B, Muse AGREE, NCAAF + NBA spreads + unders, NFL unders only, "
           "not sent 12-24h before start, $50 unit, ProphetX only")
+
+
+def hr_priced(a):
+    """True when the alert's PRICING book is Hard Rock (Peter, Oct 27: never live on any lane). None/blank book -> None
+    (unknown); callers that place money treat unknown as excluded (fail closed)."""
+    b = (a.get("book_key") or "").strip().lower()
+    if not b:
+        return None
+    return b in HARD_ROCK
+
+
+DEADBAND = (-119, -110)   # Oct 27 retail deadband (Muse proposal, Claude verified): after-fee price, inclusive
+
+
+def deadband(a):
+    """True when a SENT alert's pricing book is known, is NOT ProphetX, and its after-fee price is -119..-110 inclusive:
+    never live, never placed (logged as paper/data). ProphetX exempt; MUTED alerts not affected. Unknown price -> None
+    (callers that place money treat unknown as excluded)."""
+    b = (a.get("book_key") or "").strip().lower()
+    if not b or b == "prophetx" or not a.get("sent_to_phone", True):
+        return False
+    p = a.get("price_after_fee")
+    if p is None:
+        return None
+    return DEADBAND[0] <= int(round(float(p))) <= DEADBAND[1]
 
 
 def phase1(a, muse_agree, tag_nfl=False):
@@ -122,8 +149,12 @@ def phase1(a, muse_agree, tag_nfl=False):
     tag_nfl=True (Peter's amendment, Oct 26): the DRY RUN also tags NFL plays; NFL in/out is decided at the pre-live
     review. The paper splits keep the NCAAF + NBA definition."""
     why = []
-    if (a.get("book_key") or "") != "prophetx":
+    if hr_priced(a):
+        why.append("Hard Rock-priced: never live (Peter, Oct 27)")
+    elif (a.get("book_key") or "") != "prophetx":
         why.append(f"priced on {a.get('book') or '?'}, not ProphetX")
+    if deadband(a):
+        why.append(f"retail deadband: non-ProphetX at {a.get('price_after_fee')} after fee (-119 to -110 never live, Oct 27)")
     if a.get("grade") not in ("A", "B"):
         why.append(f"grade {a.get('grade') or 'none'}")
     sp = (a.get("sport") or "").upper()

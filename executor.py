@@ -786,6 +786,13 @@ def px_limit(pxd, stake):
 def live_order(r):
     """Phase-1 live order on ProphetX (only when EXEC_LIVE is on). Returns the order record for the email/ledger."""
     lv, p = r["live"], r["play"]
+    hr = agree_rules.hr_priced(r.get("entry") or {})   # Oct 27: re-check the PRICING book at placement; unknown = refuse
+    if hr is not False:
+        return {"status": "refused", "reason": "Hard Rock-priced alert: never live" if hr else "pricing book unknown (fail closed)"}
+    db = agree_rules.deadband(dict(r.get("entry") or {}, sent_to_phone=True))   # Oct 27 retail deadband re-check
+    if db is not False:
+        return {"status": "refused", "reason": "retail deadband: non-ProphetX at -119 to -110 after fee" if db
+                else "after-fee price unknown (fail closed)"}
     if not px_live.LIVE:
         return {"status": "dry", "reason": "live is off"}
     strike, limit, stake = px_limit(lv["px"], lv["risk"])
