@@ -1,6 +1,304 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-27T14:00:16Z",
+   "base_depth": 95608,
+   "best_price": 0.495,
+   "best_price_american": 102,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-27",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -6832,
+     "new_this_side": 72337,
+     "other_side": 48193,
+     "other_side_all_levels": 125386,
+     "ratio": 2.4,
+     "this_side": 114146,
+     "this_side_all_levels": 169750
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "Under 233.5 (233.5)",
+     "price": 0.495,
+     "this_side": 11342
+    }
+   },
+   "fade_price": 0.52,
+   "first_seen_utc": "2026-10-27T13:50:11Z",
+   "game": "Portland vs Los Angeles L: Total Points",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBATOTAL-26OCT27PORLAL-234\"}",
+   "lead_min": 780,
+   "league": "NBA",
+   "line": 233.5,
+   "market": "total",
+   "new_money": 72337,
+   "paper_only": false,
+   "price": 0.5,
+   "price_american": -100,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.5,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 234.5,
+     "price": -115
+    },
+    "betonlineag": {
+     "point": 234.0,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 234.0,
+     "price": -106
+    },
+    "betrivers": {
+     "point": 233.5,
+     "price": -113
+    },
+    "betus": {
+     "point": 234.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 233.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 233.5,
+     "price": -112
+    },
+    "fanatics": {
+     "point": 233.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 234.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": 233.5,
+     "price": 100
+    },
+    "lowvig": {
+     "point": 234.0,
+     "price": -107
+    },
+    "mybookieag": {
+     "point": 234.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 233.5,
+     "price": 102
+    },
+    "polymarket": {
+     "point": 233.5,
+     "price": 100
+    },
+    "prophetx": {
+     "point": 234.0,
+     "price": -104
+    },
+    "williamhill_us": {
+     "point": 233.5,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNBATOTAL-26OCT27PORLAL-234"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "none_10k",
+   "second_book_fresh": false,
+   "sharp_agree": [
+    "Under 235.5 (+100)",
+    "Under 235.5 (+100)",
+    "Under 236.5 (-110)"
+   ],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "NOT Over 233.5 points",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-28T03:00:00Z",
+   "teams": [
+    "Portland",
+    "Los Angeles L"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-27T14:00:16Z",
+   "base_depth": 197438,
+   "best_price": 0.475,
+   "best_price_american": 111,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.48,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-27",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 4892,
+     "new_this_side": 34837,
+     "other_side": 194171,
+     "other_side_all_levels": 207130,
+     "ratio": 1.2,
+     "this_side": 225693,
+     "this_side_all_levels": 232698
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "MTL (0)",
+     "price": 0.475,
+     "this_side": 21999
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Canadiens",
+     "price": 0.47,
+     "this_side": 77951
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Montreal Canadiens",
+     "price": 0.4739,
+     "this_side": 8771
+    }
+   },
+   "fade_price": 0.53,
+   "first_seen_utc": "2026-10-27T13:50:11Z",
+   "game": "Montreal vs St. Louis",
+   "key": "kalshi|KXNHLGAME-26OCT27MTLSTL|ml|0",
+   "lead_min": 600,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 34837,
+   "paper_only": false,
+   "price": 0.48,
+   "price_american": 108,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.48,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": 100
+    },
+    "betonlineag": {
+     "point": null,
+     "price": 105
+    },
+    "betopenly": {
+     "point": null,
+     "price": 110
+    },
+    "betrivers": {
+     "point": null,
+     "price": 107
+    },
+    "betus": {
+     "point": null,
+     "price": 100
+    },
+    "bovada": {
+     "point": null,
+     "price": 102
+    },
+    "draftkings": {
+     "point": null,
+     "price": 102
+    },
+    "fanatics": {
+     "point": null,
+     "price": 100
+    },
+    "fanduel": {
+     "point": null,
+     "price": 100
+    },
+    "kalshi": {
+     "point": null,
+     "price": 108
+    },
+    "lowvig": {
+     "point": null,
+     "price": 105
+    },
+    "mybookieag": {
+     "point": null,
+     "price": 100
+    },
+    "novig": {
+     "point": null,
+     "price": 111
+    },
+    "polymarket": {
+     "point": null,
+     "price": 113
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": 108
+    },
+    "prophetx": {
+     "point": null,
+     "price": 111
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -103
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNHLGAME-26OCT27MTLSTL-MTL"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "polymarket"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Montreal",
+   "side_label": "Montreal",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-28T00:00:00Z",
+   "teams": [
+    "Montreal",
+    "St. Louis"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-27T13:40:11Z",
    "base_depth": 42253,
    "best_price": 0.5,
@@ -47,6 +345,8 @@
    "new_money": 100223,
    "paper_only": false,
    "price": 0.5,
+   "price_after_15m": 0.505,
+   "price_after_15m_book": "novig",
    "price_american": -100,
    "price_rule": "ok",
    "price_when_first_seen": 0.5,
@@ -137,6 +437,7 @@
    "side_label": "Trail Blazers (+2.5)",
    "start_source": "polymarket",
    "start_utc": "2026-10-28T03:00:00Z",
+   "still_actionable": false,
    "teams": [
     "Trail Blazers",
     "Lakers"
@@ -203,6 +504,8 @@
    "new_money": 27276,
    "paper_only": false,
    "price": 0.48,
+   "price_after_15m": 0.47,
+   "price_after_15m_book": "novig",
    "price_american": 108,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.48,
@@ -294,6 +597,7 @@
    "side_label": "Wild",
    "start_source": "polymarket",
    "start_utc": "2026-10-28T01:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Wild",
     "Utah"
@@ -354,6 +658,8 @@
    "new_money": 48250,
    "paper_only": false,
    "price": 0.5,
+   "price_after_15m": 0.505,
+   "price_after_15m_book": "novig",
    "price_american": -100,
    "price_rule": "ok",
    "price_when_first_seen": 0.5,
@@ -443,6 +749,7 @@
    "side_label": "San Antonio wins by over 18.5 points",
    "start_source": "prophetx",
    "start_utc": "2026-10-28T00:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Sacramento",
     "San Antonio"
@@ -1481,8 +1788,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.515,
-   "clv_cents": 0.0,
+   "close_price": 0.525,
+   "clv_cents": 1.0,
    "confirmed_after_min": 7,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -5538,8 +5845,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.47,
-   "clv_cents": -3.0,
+   "close_price": 0.48,
+   "clv_cents": -2.0,
    "confirmed_after_min": 10,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -6604,8 +6911,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.62,
-   "clv_cents": 1.0,
+   "close_price": 0.61,
+   "clv_cents": 0.0,
    "confirmed_after_min": 4,
    "date": "2026-10-27",
    "depth_by_book": {
