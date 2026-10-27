@@ -1,6 +1,73 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-27T03:10:15Z",
+   "base_depth": 68967,
+   "best_price": 0.5673,
+   "best_price_american": -131,
+   "best_price_book": "kalshi",
+   "bid_improved": true,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.55,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-26",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -4558,
+     "new_this_side": 27031,
+     "other_side": 38166,
+     "other_side_all_levels": 132866,
+     "ratio": 1.1,
+     "this_side": 43801,
+     "this_side_all_levels": 150183
+    }
+   },
+   "fade_price": 0.47,
+   "first_seen_utc": "2026-10-27T03:00:22Z",
+   "game": "Zakharova vs Linette",
+   "key": "kalshi|KXWTAMATCH-26OCT26ZAKLIN|ml|1",
+   "lead_min": 170,
+   "league": "TENNIS",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 27031,
+   "paper_only": true,
+   "price": 0.55,
+   "price_american": -122,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXWTAMATCH-26OCT26ZAKLIN-LIN"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "no_match",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Linette",
+   "side_label": "Linette",
+   "start_source": "kalshi",
+   "start_utc": "2026-10-27T06:00:00Z",
+   "teams": [
+    "Zakharova",
+    "Linette"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-27T02:20:15Z",
    "base_depth": 248614,
    "best_price": 0.5872,
@@ -97,6 +164,7 @@
     "polymarket",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.48,
    "clv_cents": -16.0,
    "confirmed_after_min": 10,
@@ -529,8 +597,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": -16.0,
+   "close_price": 0.01,
+   "clv_cents": -68.0,
    "confirmed_after_min": 4,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -567,7 +635,8 @@
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.69,
    "prices_by_book": {},
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-27T03:10:15Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXWTAMATCH-26OCT26JOICIR-CIR"
