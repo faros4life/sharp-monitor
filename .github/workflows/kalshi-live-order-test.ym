@@ -19,6 +19,6 @@ jobs:
       - name: Kalshi $1 order test (REAL money)
         env:
           CONFIRM_REAL_ORDER: "ONE_DOLLAR"
-          KALSHI_TRADE_KEY_ID: ${{ secrets.KALSHI_TRADE_KEY_ID }}
-          KALSHI_TRADE_PRIVATE_KEY: ${{ secrets.KALSHI_TRADE_PRIVATE_KEY }}
+          KALSHI_TRADE_KEY_ID: ${{ secrets.KALSHI_KEY_ID }}         # the "auto-place" Read/Trade key (Oct 23)
+          KALSHI_TRADE_PRIVATE_KEY: ${{ secrets.KALSHI_PRIVATE_KEY }}
         run: python -u kalshi_live_order_test.py
