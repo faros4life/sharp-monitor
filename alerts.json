@@ -1,6 +1,45 @@
 {
  "alerts": [
   {
+   "alert_utc": "2026-10-27T02:30:12Z",
+   "beat_close": true,
+   "beat_true_close": null,
+   "bet": "Over 218.5 (+100)",
+   "book": "Novig",
+   "book_key": "novig",
+   "close_fair_prob": null,
+   "close_read_mins_before": null,
+   "close_value_pct": null,
+   "clv": "+0.5 pts",
+   "confirm": "yes",
+   "confirmed_by": [
+    "Matchbook"
+   ],
+   "edge_pct": -1.6,
+   "executable_book": true,
+   "fade_book": "novig",
+   "fade_point": 218.5,
+   "fade_price": -104,
+   "fade_price_after_fee": -104,
+   "fade_units": null,
+   "final": null,
+   "game": "Detroit Pistons @ New York Knicks",
+   "grade": "A",
+   "kind": "tot",
+   "late": false,
+   "minutes_before_start": 1300,
+   "point": 218.5,
+   "price": 100,
+   "price_after_fee": 100,
+   "result": null,
+   "score": 75,
+   "sent_to_phone": true,
+   "sport": "NBA",
+   "start_utc": "2026-10-28T00:10:00Z",
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alert_utc": "2026-10-26T12:10:13Z",
    "beat_close": true,
    "beat_true_close": false,
@@ -341,7 +380,7 @@
    "fade_price": null,
    "fade_price_after_fee": null,
    "fade_units": null,
-   "final": null,
+   "final": "CHI 99, BOS 134",
    "game": "Chicago Bulls @ Boston Celtics",
    "grade": "B",
    "kind": "spr",
@@ -350,13 +389,13 @@
    "point": -13.5,
    "price": -115,
    "price_after_fee": -115,
-   "result": null,
+   "result": "W",
    "score": 65,
    "sent_to_phone": true,
    "sport": "NBA",
    "start_utc": "2026-10-26T23:30:00Z",
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.87
   },
   {
    "alert_utc": "2026-10-26T02:10:11Z",
@@ -381,7 +420,7 @@
    "fade_price": null,
    "fade_price_after_fee": null,
    "fade_units": null,
-   "final": null,
+   "final": "DAL 113, MIA 109",
    "game": "Dallas Mavericks @ Miami Heat",
    "grade": "A",
    "kind": "tot",
@@ -390,13 +429,13 @@
    "point": 235.5,
    "price": -113,
    "price_after_fee": -113,
-   "result": null,
+   "result": "L",
    "score": 75,
    "sent_to_phone": true,
    "sport": "NBA",
    "start_utc": "2026-10-26T23:30:00Z",
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alert_utc": "2026-10-26T11:10:11Z",
@@ -14452,6 +14491,30 @@
  ],
  "all_alerts": [
   {
+   "alert_text": "Over 218.5 (+100) at Novig (also: Kalshi)",
+   "bet": "Over 218.5 (+100)",
+   "bet_result": null,
+   "book": "Novig",
+   "confirmed_by": [
+    "Matchbook"
+   ],
+   "edge_pct": -1.6,
+   "final": null,
+   "game": "Detroit Pistons @ New York Knicks",
+   "grade": "A",
+   "late": false,
+   "minutes_before_start": 1300,
+   "price": 100,
+   "price_after_fee": 100,
+   "pushed_to_phone": true,
+   "repeat": false,
+   "score": 75,
+   "sent_et": "2026-10-26 22:30",
+   "sport": "NBA",
+   "start_utc": "2026-10-28T00:10:00Z",
+   "why": "Pinnacle total moved 217.5 -> 219; bet only at 218.5 or better (confirmed by Matchbook)"
+  },
+  {
    "alert_text": "Under 226.5 (-110) at Hard Rock (also: Kalshi)",
    "bet": "Under 226.5 (-110)",
    "bet_result": "W",
@@ -14578,13 +14641,13 @@
   {
    "alert_text": "Over 240.5 (-106) at Novig (also: Hard Rock, ProphetX)",
    "bet": "Over 240.5 (-106)",
-   "bet_result": null,
+   "bet_result": "L",
    "book": "Novig",
    "confirmed_by": [
     "BetOnline"
    ],
    "edge_pct": -0.3,
-   "final": null,
+   "final": "DAL 113, MIA 109",
    "game": "Dallas Mavericks @ Miami Heat",
    "grade": "A",
    "late": false,
@@ -14752,14 +14815,14 @@
   {
    "alert_text": "Over 239 (-109) at ProphetX [-111 after ProphetX fee] (also: Hard Rock, Novig, Kalshi)",
    "bet": "Over 239 (-109)",
-   "bet_result": null,
+   "bet_result": "L",
    "book": "ProphetX",
    "confirmed_by": [
     "BetOnline",
     "Matchbook"
    ],
    "edge_pct": -1.7,
-   "final": null,
+   "final": "DAL 113, MIA 109",
    "game": "Dallas Mavericks @ Miami Heat",
    "grade": "A",
    "late": false,
@@ -14926,14 +14989,14 @@
   {
    "alert_text": "Over 235.5 (-113) at Polymarket (global) (also: Hard Rock, ProphetX)",
    "bet": "Over 235.5 (-113)",
-   "bet_result": null,
+   "bet_result": "L",
    "book": "Polymarket (global)",
    "confirmed_by": [
     "BetOnline",
     "Matchbook"
    ],
    "edge_pct": -2.4,
-   "final": null,
+   "final": "DAL 113, MIA 109",
    "game": "Dallas Mavericks @ Miami Heat",
    "grade": "A",
    "late": false,
@@ -14951,14 +15014,14 @@
   {
    "alert_text": "Boston Celtics -13.5 (-115) at Hard Rock",
    "bet": "Boston Celtics -13.5 (-115)",
-   "bet_result": null,
+   "bet_result": "W",
    "book": "Hard Rock",
    "confirmed_by": [
     "BetOnline",
     "Matchbook"
    ],
    "edge_pct": -2.7,
-   "final": null,
+   "final": "CHI 99, BOS 134",
    "game": "Chicago Bulls @ Boston Celtics",
    "grade": "B",
    "late": false,
