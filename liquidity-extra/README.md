@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Mon Oct 26, 8:40 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 17.
+Updated Mon Oct 26, 8:50 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 17.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -14,7 +14,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 26 7:00PM | TENNIS | Shelton vs Kovacevic | moneyline: Shelton | kalshi | $48k | -488 |  |  | +0.0c |  | pending |
 | Oct 26 6:00PM | TENNIS | Joint vs Cirstea | moneyline: Cirstea | kalshi | $39k | -223 |  |  | +0.0c |  | pending |
 | Oct 26 2:46PM | MLB | Milwaukee Brewers @ Tampa Bay Rays | moneyline: TB (0) | novig | $50k | -108 | ✅ kalshi,polymarket |  | +0.0c |  | pending |
-| Oct 26 2:46PM | MLB | Milwaukee vs Tampa Bay: Total Runs | total: Over 7.5 runs scored | kalshi | $231k | +122 |  |  | -12.0c | yes | pending |
+| Oct 26 2:46PM | MLB | Milwaukee vs Tampa Bay: Total Runs | total: Over 7.5 runs scored | kalshi | $231k | +122 |  |  | -16.0c | yes | pending |
 | Oct 26 2:40PM | MLB | Milwaukee Brewers vs. Tampa Bay Rays | moneyline: Tampa Bay Rays | polymarket | $708k | -108 | ✅ kalshi,novig |  | +0.0c |  | pending |
 | Oct 26 1:10PM | MLB | Milwaukee Brewers vs. Tampa Bay Rays | total: Under (7.5) | polymarket | $49k | -122 | ✅ kalshi,novig |  | +1.0c |  | pending |
 | Oct 26 12:30PM | TENNIS | Mpetshi Perricard vs Fils | moneyline: Fils | kalshi | $50k | -456 |  |  | -4.0c |  | pending |
@@ -37,7 +37,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 25 10:08PM | TENNIS | Wang vs Parks | moneyline: Parks | kalshi | $351k | -317 |  |  | -1.0c |  | W |
 | Oct 25 9:30PM | TENNIS | Sasnovich vs Bartunkova | moneyline: Bartunkova | kalshi | $28k | -186 |  |  | +1.0c | yes | pending |
 | Oct 25 9:10PM | TENNIS | Wang vs Parks | moneyline: Wang | kalshi | $35k | -170 |  |  | -37.0c | yes | L |
-| Oct 25 7:10PM | MLB | Milwaukee vs Tampa Bay: Total Runs | total: NOT Over 7.5 runs scored | kalshi | $65k | -127 | ✅ novig,polymarket |  | +12.0c | yes | pending |
+| Oct 25 7:10PM | MLB | Milwaukee vs Tampa Bay: Total Runs | total: NOT Over 7.5 runs scored | kalshi | $65k | -127 | ✅ novig,polymarket |  | +18.0c | yes | pending |
 | Oct 25 11:12AM | TENNIS | Mannarino vs Molcan | moneyline: Mannarino | kalshi | $159k | -257 |  |  | +26.0c |  | W |
 | Oct 25 10:30AM | TENNIS | Mannarino vs Molcan | moneyline: Molcan | kalshi | $26k | -400 |  |  | -77.0c | yes | L |
 | Oct 25 10:10AM | TENNIS | Struff vs Griekspoor | moneyline: Griekspoor | kalshi | $66k | -122 |  |  | +0.0c |  | W |
@@ -46,8 +46,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 25 7:00AM | TENNIS | Merida vs Medvedev | moneyline: Medvedev | kalshi | $29k | -488 |  |  | -1.0c |  | pending |
 | Oct 25 5:00AM | TENNIS | Neumayer vs Droguet | moneyline: Droguet | kalshi | $28k | -257 |  |  | +0.0c | yes | L |
 | Oct 25 4:50AM | TENNIS | Valentova vs Zhang | moneyline: Valentova | kalshi | $27k | -270 |  |  | +0.0c |  | W |
-| Oct 25 1:10AM | MLB | Milwaukee vs Tampa Bay: Spread | spread: NOT Milwaukee wins by over 1.5 runs | kalshi | $58k | -203 | ✅ polymarket |  | +1.0c | yes | pending |
-| Oct 25 12:30AM | MLB | Game 3: Milwaukee vs Tampa Bay | moneyline: Tampa Bay | kalshi | $146k | -104 |  |  | +4.0c |  | pending |
+| Oct 25 1:10AM | MLB | Milwaukee vs Tampa Bay: Spread | spread: NOT Milwaukee wins by over 1.5 runs | kalshi | $58k | -203 | ✅ polymarket |  | +0.0c | yes | pending |
+| Oct 25 12:30AM | MLB | Game 3: Milwaukee vs Tampa Bay | moneyline: Tampa Bay | kalshi | $146k | -104 |  |  | +0.0c |  | pending |
 | Oct 24 11:50PM | TENNIS | Lee vs Pridankina | moneyline: Lee | kalshi | $79k | -285 |  |  | -5.0c |  | W |
 | Oct 24 11:40PM | TENNIS | Ibragimova vs Iatcenko | moneyline: Ibragimova | kalshi | $143k | -150 |  |  | +8.0c |  | W |
 | Oct 24 11:13PM | TENNIS | Sasnovich vs Rakhimova | moneyline: Sasnovich | kalshi | $188k | -376 |  |  | +5.0c |  | W |
