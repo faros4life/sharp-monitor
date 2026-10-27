@@ -116,6 +116,12 @@ NTFY = [
      "Sent alerts 12-24h before start, graded on the OTHER side at the real opposite-side price logged when the alert "
      "fired (fade_units). Plays without a logged opposite price do not count.",
      lambda a: SENT(a) and in_1224(a) and a.get("fade_units") is not None, "fade_units"),
+    ("tier2_core", "Tier 2 core (paper)", "tier",
+     "Paper record only, no money and no size. SENT alerts passing the phase-1 filter (ProphetX-priced, NCAAF/NBA spreads "
+     "+ unders, NFL unders, not 12-24h, not late), after-fee price -130 or better, monitor grade B, and market = NCAAF/NBA "
+     "spread or NBA under. Feed-side core of Muse's Tier 2 (Muse adds Muse grade 80+, depth at the alert number and a "
+     "second-signal overlap). Forward from Oct 27.",
+     lambda a: tier2_core(a), "units_flat"),
     ("ntfy_evening", "Evening sends, ex-Hard Rock", "scan",
      "SENT alerts whose pricing book is not Hard Rock, sent 8:00 PM-11:59 PM ET (alert_utc, DST-aware). Watch split, "
      "not a cut: overlaps the 12-24h lead band heavily. Historical read (Muse, ex-HR): -0.22/play, n=20.",
@@ -127,6 +133,21 @@ NTFY = [
      "concentrated (ProphetX-priced 16-1, +12.67u; +10.90u from the week of Oct 12); graded era +1.70u on 13.",
      lambda a: not SENT(a) and et_hour(a, "alert_utc") in range(11, 14), "units_flat"),
 ]
+TIER2_START = "2026-10-27T04:00:00Z"   # Tue Oct 27, 12:00 AM ET: tier2_core registered
+
+
+def tier2_core(a):
+    """Feed-side core of Tier 2 (Peter + Muse, Oct 27): phase-1 paper filter (SENT, ProphetX-priced, not 12-24h, not
+    late, NCAAF/NBA spreads + unders, NFL unders) + after-fee price no worse than -130 + monitor grade B + market NCAAF/NBA
+    spread or NBA under. Muse's full Tier 2 adds Muse grade 80+, depth at the alert number and a second signal."""
+    paf = a.get("price_after_fee")
+    mk = (a.get("sport") in ("NCAAF", "NBA") and a.get("kind") == "spr") or (a.get("sport") == "NBA" and is_under(a))
+    return SENT(a) and phase1_core(a) and a.get("grade") == "B" and mk and paf is not None and paf >= -130
+
+
+TIER = {"tier2_core": {"start": TIER2_START, "open": (30, 0.70, 0.30), "dies": (20, 0.55)}}   # Peter's target bars
+
+
 BREAKDOWN = {"muted_midday"}   # splits reported with by-book and by-market cuts every run
 
 
@@ -190,6 +211,18 @@ def stats(rows, ufield):
 
 
 def judge(sid, kind, s, prev):
+    if kind == "tier":   # Peter's target bars (Oct 27): sizing talk opens only on proof, label dies below it (sticky)
+        if prev.get("status") == "CLOSED":
+            return "CLOSED", prev.get("closed_utc")
+        b = TIER[sid]
+        wl = s["W"] + s["L"]
+        wr = s["W"] / wl if wl else None
+        if wl >= b["dies"][0] and wr is not None and wr <= b["dies"][1]:
+            return "CLOSED", datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+        n, w, u = b["open"]
+        if s["resulted"] >= n and wr is not None and wr >= w and (s["u_per_play"] or 0) >= u:
+            return "SIZING DISCUSSION ELIGIBLE at next review", None
+        return "OPEN (record only, no size)", None
     if sid in FORCED_CLOSED:
         return "CLOSED", FORCED_CLOSED[sid][0]
     if prev.get("status") == "CLOSED":
@@ -206,7 +239,9 @@ def judge(sid, kind, s, prev):
 
 def bars(kind):
     return {"scan": ">= 30 forward resulted AND >= +0.10u/play", "a-priori": ">= 20 resulted AND positive",
-            "control": "none (comparison only)"}[kind]
+            "control": "none (comparison only)",
+            "tier": "sizing discussion opens only at >= 30 forward resulted AND >= 70% wins AND >= +0.30u/play, at a "
+                    "scheduled review; below that, record only"}[kind]
 
 
 def gaps_report(gaps):
@@ -238,7 +273,7 @@ def main():
     untimed = {}
     for stream, src, specs in (("SENT/MUTED", alerts, NTFY), ("LIQ-MAIN", liq, LIQ)):
         for sid, name, kind, defn, f, uf in specs:
-            start = FWD if stream != "LIQ-MAIN" else LIQ_START.get(sid, LIQ_CLEAN)
+            start = (TIER[sid]["start"] if sid in TIER else FWD) if stream != "LIQ-MAIN" else LIQ_START.get(sid, LIQ_CLEAN)
             tf = TIMED.get(sid)
             pool = src
             if tf:   # time splits: entries with no usable time stay in the stream's record, out of this split - counted
@@ -254,11 +289,12 @@ def main():
             st, cl = judge(sid, kind, s, prev.get(sid, {}))
             row = dict(id=sid, name=name, type=kind, stream=(stream if stream == "LIQ-MAIN" else ("SENT+MUTED" if sid == "ncaab" else "SENT")), definition=defn,
                        start_utc=start, promotion_bar=bars(kind),
-                       kill_bar=("none" if kind == "control" else f">= {KILL_N} resulted at <= {KILL_UPP}u/play -> CLOSED"),
+                       kill_bar=("none" if kind == "control" else "label dies at <= 55% wins on 20+ forward W/L (sticky)"
+                                 if kind == "tier" else f">= {KILL_N} resulted at <= {KILL_UPP}u/play -> CLOSED"),
                        status=st, closed_utc=cl, **s)
             if sid in FORCED_CLOSED:
                 row["closed_note"] = FORCED_CLOSED[sid][1]
-            if tf:   # all-history reference (ALL PLAYS in the feed, not forward) for the time splits
+            if tf or kind == "tier":   # all-history reference (ALL PLAYS in the feed, not forward)
                 row["all_history"] = stats([a for a in pool if f(a)], uf)
             if sid in BREAKDOWN:
                 allr = [a for a in pool if f(a)]
@@ -300,7 +336,7 @@ def main():
                   f"{' (by decision, ' + s['closed_utc'][:10] + ')' if s['id'] in FORCED_CLOSED else ''} |")
     hist = [s for s in out if s.get("all_history")]
     if hist:
-        md += ["", "**Time splits, all-history reference (every resulted play in the feed, not forward; read only):** "
+        md += ["", "**All-history reference (every resulted play in the feed, not forward; read only):** "
                + "; ".join(f"{s['name']} {s['all_history']['W']}-{s['all_history']['L']}-{s['all_history']['P']}, "
                            f"{s['all_history']['units']:+.2f}u ({'-' if s['all_history']['u_per_play'] is None else format(s['all_history']['u_per_play'], '+.3f')}/play)"
                            for s in hist)]
