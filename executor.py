@@ -76,6 +76,14 @@ def gsearch(M, query):
     return (data[0].split() if typ == "OK" and data and data[0] else [])
 
 
+def gsearch_strict(M, query):
+    """gsearch that RAISES on a failed search (for safety checks that must fail closed)."""
+    typ, data = M.uid("SEARCH", "X-GM-RAW", '"' + query.replace('"', '') + '"')
+    if typ != "OK":
+        raise RuntimeError("Gmail search failed")
+    return data[0].split() if data and data[0] else []
+
+
 def body_text(raw):
     msg = email.message_from_bytes(raw)
     parts = msg.walk() if msg.is_multipart() else [msg]
@@ -783,6 +791,60 @@ def px_limit(pxd, stake):
     return lv[0]["strike_id"], limit, round(min(stake, got), 2)
 
 
+def bot_orders(M, days=4):
+    """{order_id: book} the bot PLACED in the last few days, read from its own 'Bets LIVE' emails' LEDGER rows.
+    Gmail is the registry (nothing financial in the public repo). None if unreadable -> live refuses (fail closed)."""
+    try:
+        ids = {}
+        for uid in gsearch_strict(M, f'subject:"Bets LIVE" newer_than:{days}d'):
+            typ, data = M.uid("FETCH", uid, "(RFC822)")
+            if typ != "OK" or not data or not data[0]:
+                return None
+            txt = body_text(data[0][1])
+            i = txt.rfind("LEDGER (machine-readable")
+            if i < 0:
+                return None
+            rows, _ = json.JSONDecoder().raw_decode(txt[txt.index("[", i):])
+            for row in rows:
+                lo = row.get("live_order") or {}
+                if lo.get("status") == "placed" and lo.get("order_id"):
+                    ids[str(lo["order_id"])] = lo.get("book") or "prophetx"
+        return ids
+    except Exception:
+        return None
+
+
+def _h(x):
+    return hashlib.sha1(str(x).encode()).hexdigest()[:12]
+
+
+GUARD = {"ok": None, "why": ""}
+
+
+def live_guards():
+    """Once per run, before any live order (Oct 27): load the bot-order registry so the $1,500 daily stop counts only
+    the bot's own orders, not Peter's manual bets. Unreadable registry = refuse (fail closed). No loss-streak pause
+    (Peter, Oct 27: no 3-loss rule)."""
+    if GUARD["ok"] is not None:
+        return GUARD["ok"], GUARD["why"]
+    ok, why = False, ""
+    try:
+        M = imap_open()
+        try:
+            ids = bot_orders(M)
+        finally:
+            M.logout()
+        px_live.set_bot_orders(None if ids is None else list(ids))
+        if ids is None:
+            why = "couldn't read the bot's order registry in Gmail (fail closed)"
+        else:
+            ok = True
+    except Exception as ex:
+        why = f"live guard check failed ({str(ex)[:60]}) - fail closed"
+    GUARD.update(ok=ok, why=why)
+    return ok, why
+
+
 def live_order(r):
     """Phase-1 live order on ProphetX (only when EXEC_LIVE is on). Returns the order record for the email/ledger."""
     lv, p = r["live"], r["play"]
@@ -795,6 +857,9 @@ def live_order(r):
                 else "after-fee price unknown (fail closed)"}
     if not px_live.LIVE:
         return {"status": "dry", "reason": "live is off"}
+    g_ok, g_why = live_guards()
+    if not g_ok:
+        return {"status": "refused", "reason": g_why}
     strike, limit, stake = px_limit(lv["px"], lv["risk"])
     if not strike or stake < 5:
         return {"status": "refused", "reason": f"ProphetX ladder can't cover $5+ at the alert number (have ${stake:.2f})"}
@@ -825,8 +890,9 @@ def ledger_row(r, run_start):
             "fill_book": r.get("book"), "fill_price_after_fee": r.get("american"), "fill_screen": r.get("shown"),
             "fill_line": r.get("take_line"), "live": bool(lv.get("go")), "live_nfl": bool(lv.get("nfl")), "live_why_not": lv.get("why"),
             "live_px_price_after_fee": lv.get("am"), "live_px_line": lv.get("line"),
-            "live_order": {k: (lv.get("order") or {}).get(k) for k in ("status", "reason", "order_id", "asked_stake", "limit",
-                                                                       "filled_stake", "avg_price")} if lv.get("order") else None}
+            "live_order": dict({k: (lv.get("order") or {}).get(k) for k in ("status", "reason", "order_id", "asked_stake", "limit",
+                                                                            "filled_stake", "avg_price")},
+                               book=(lv.get("order") or {}).get("book") or "prophetx") if lv.get("order") else None}
 
 
 def send(subject, body):
@@ -980,6 +1046,9 @@ def main():
         body.append("")
     body += [f"Wake: this run started {wake_s:.0f}s after the newest sent alert (trigger: {trig})." if wake_s is not None
              else f"Wake: no sent alert in the last 30 min (trigger: {trig}).", ""]
+    if GUARD["ok"] is not None:
+        body += [f"Live guards: {'OK' if GUARD['ok'] else 'REFUSED'}" + (f" - {GUARD['why']}" if GUARD["why"] else "")
+                 + " (the daily stop counts only the bot's own orders).", ""]
     body += ["LEDGER (machine-readable, one row per play; latency = decision time minus first alert time)",
              json.dumps([ledger_row(r, now) for r in results], separators=(",", ":"))]
     first = ", ".join(short(r) for r in places[:3]) + ("..." if len(places) > 3 else "")

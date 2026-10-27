@@ -8,6 +8,9 @@ Every order goes through place(), which refuses unless ALL of these hold (fail c
   3. stake <= MAX_ORDER ($100 hard guard against a bad price/unit)
   4. today's ProphetX result for orders placed today is above -DAILY_STOP ($1,500); unreadable = refuse
   5. fillOrKill at a limit price: it fills now at that price or better, or nothing happens; nothing rests
+Oct 27: the daily stop counts ONLY the bot's own orders (registry = order ids in the executor's
+'Bets LIVE' email ledgers, set by the executor via set_bot_orders); Peter's manual ProphetX bets are ignored. Registry
+unreadable = refuse (fail closed).
 After the order: reads the fills back (get_trades for the order id) and reports what actually filled. If a fill comes
 back bigger than MAX_ORDER, live is paused (ntfy STOP posted) until Peter sends GO.
 Keys: PROPHETX_TRADE_ACCESS_KEY / PROPHETX_TRADE_SECRET_KEY (GitHub Secrets only). Public log: no amounts.
@@ -32,6 +35,21 @@ DAILY_STOP = float(os.environ.get("EXEC_DAILY_STOP", "") or "1500")
 QTY_MEANS = (os.environ.get("PX_QTY_MEANS") or "stake").strip().lower()
 TOPIC = os.environ.get("NTFY_TOPIC", "")
 _T = {"token": None}
+BOT = {"ids": None}   # order ids the bot placed (from the executor's Gmail ledger); None = unknown -> refuse
+
+
+def set_bot_orders(ids):
+    BOT["ids"] = None if ids is None else {str(i) for i in ids}
+
+
+def add_bot_order(oid):
+    if BOT["ids"] is not None and oid:
+        BOT["ids"].add(str(oid))
+
+
+def _mine(tr):
+    ids = BOT["ids"] or set()
+    return [t for t in tr if str(t.get("order_id")) in ids]
 
 
 def _call(path, body=None):
@@ -100,10 +118,13 @@ def push(title, body, tags="moneybag"):
 
 
 def today_result(tr):
-    """Result of ProphetX trades MATCHED today (ET): settled profit/loss after the 2% fee; open = 0. None if unreadable."""
+    """Result of the BOT's ProphetX trades matched today (ET): settled profit/loss after the 2% fee; open = 0.
+    None if the bot-order registry is unknown (fail closed)."""
+    if BOT["ids"] is None:
+        return None
     today = datetime.now(ET).date()
     tot = 0.0
-    for t in tr:
+    for t in _mine(tr):
         try:
             when = datetime.fromisoformat(str(t.get("matched_at")).replace("Z", "+00:00")).astimezone(ET).date()
         except Exception:
@@ -152,7 +173,7 @@ def preflight():
     except Exception as ex:
         return False, f"couldn't read today's ProphetX result ({str(ex)[:60]})"
     if res is None:
-        return False, "today's result unreadable"
+        return False, "today's result unreadable (bot-order registry unknown)"
     if res <= -DAILY_STOP:
         return False, f"daily stop hit (today {res:+,.2f} <= -{DAILY_STOP:,.0f})"
     return True, f"ok (today {res:+,.2f})"
@@ -192,6 +213,7 @@ def place(strike_id, limit_price, stake, label=""):
             avg = round(sum(int(t.get("price") or 0) * stake_of(t) for t in mine) / max(filled, 1e-9))
     except Exception:
         mine = None
+    add_bot_order(oid)
     out = {"status": "placed", "order_id": oid, "external_id": ext, "order": order, "filled_stake": filled,
            "avg_price": avg, "fills_read": mine is not None, "response": json.dumps(resp)[:400]}
     if filled > MAX_ORDER + 0.5:   # fill bigger than allowed: pause everything
