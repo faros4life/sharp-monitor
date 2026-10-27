@@ -107,6 +107,8 @@ def read_verdicts(M):
         if typ != "OK" or not data or not data[0]:
             continue
         txt = body_text(data[0][1])
+        if txt.lstrip().upper().startswith("TEST"):
+            continue   # TEST in the body's first word also counts: a test email never feeds live
         try:
             vt = email.utils.parsedate_to_datetime(email.message_from_bytes(data[0][1]).get("Date")).astimezone(timezone.utc)
             vts = vt.strftime("%Y-%m-%dT%H:%M:%SZ")
