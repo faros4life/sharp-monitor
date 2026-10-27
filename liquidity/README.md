@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Oct 27, 11:40 AM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 65.
+Updated Tue Oct 27, 11:50 AM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 66.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Oct 27 11:50AM | NHL | Florida vs Winnipeg | moneyline: Florida | kalshi | $62k | -117 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Oct 27 11:40AM | NHL | Canadiens vs. Blues | moneyline: Canadiens | polymarket | $26k | -100 | ✅ kalshi,prophetx |  | +0.0c |  | pending |
 | Oct 27 11:30AM | NBA | Nets vs. Celtics | moneyline: Celtics | polymarket | $30k | -488 | ✅ kalshi,novig,prophetx |  | +0.0c |  | pending |
 | Oct 27 11:30AM | NHL | Islanders vs. Predators | moneyline: Islanders | polymarket | $40k | +104 |  |  | +0.0c |  | pending |
@@ -70,7 +71,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 26 8:20PM | NBA | Grizzlies vs. Jazz | spread: Grizzlies (-1.5) | polymarket | $311k | -100 | ✅ kalshi | ✅ | +0.0c |  | W |
 | Oct 26 8:10PM | NBA | Detroit vs New York | moneyline: New York | kalshi | $36k | -156 |  |  | +0.0c |  | pending |
 | Oct 26 8:05PM | NHL | Maple Leafs vs. Flames | moneyline: Maple Leafs | polymarket | $63k | -122 | ✅ kalshi,novig,prophetx |  | +0.0c |  | L |
-| Oct 26 7:40PM | NCAAF | Delaware vs Western Kentucky | moneyline: Western Kentucky | kalshi | $175k | -104 | ✅ novig |  | +0.0c | yes | pending |
+| Oct 26 7:40PM | NCAAF | Delaware vs Western Kentucky | moneyline: Western Kentucky | kalshi | $175k | -104 | ✅ novig |  | +1.0c | yes | pending |
 | Oct 26 7:35PM | NHL | Red Wings vs. Oilers | moneyline: Red Wings | polymarket | $28k | +156 | ✅ kalshi |  | +0.0c | yes | W |
 | Oct 26 7:35PM | NBA | Minnesota vs Cleveland | moneyline: Minnesota | kalshi | $57k | -150 |  | ✅ | -26.0c | yes | L |
 | Oct 26 6:50PM | NBA | Pacers vs. Bucks | spread: Bucks (+4.5) | polymarket | $316k | -108 |  |  | +2.0c |  | W |
@@ -100,7 +101,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 26 3:00PM | NHL | Boston vs Carolina | moneyline: Carolina | kalshi | $35k | -170 | ✅ polymarket |  | +0.0c |  | pending |
 | Oct 26 2:50PM | NBA | Atlanta vs Houston: Spread | spread: NOT Houston wins by over 4.5 points | kalshi | $87k | -100 | ✅ polymarket |  | -18.0c | yes | L |
 | Oct 26 2:40PM | NBA | Pacers vs. Bucks | moneyline: Pacers | polymarket | $34k | -156 | ✅ kalshi,novig,prophetx |  | -2.0c |  | L |
-| Oct 26 2:30PM | NCAAF | Sam Houston vs Missouri St.: Spread | spread: Missouri St. wins by over 5.5 points | kalshi | $39k | -100 |  |  | +0.0c |  | pending |
+| Oct 26 2:30PM | NCAAF | Sam Houston vs Missouri St.: Spread | spread: Missouri St. wins by over 5.5 points | kalshi | $39k | -100 |  |  | +1.0c |  | pending |
 | Oct 26 2:24PM | NHL | Detroit vs Edmonton | moneyline: Detroit | kalshi | $295k | +156 | ✅ polymarket |  | +5.0c | yes | W |
 | Oct 26 2:10PM | NBA | Hawks vs. Rockets | spread: Hawks (+4.5) | polymarket | $69k | -100 | ✅ kalshi |  | +0.0c |  | L |
 | Oct 26 2:10PM | NHL | Vancouver vs Anaheim | moneyline: Anaheim | kalshi | $32k | -194 |  |  | +0.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 25 1:20PM | NFL | Cincinnati vs Baltimore | moneyline: Baltimore | kalshi | $157k | -144 |  | ❌ | -58.0c | yes | L |
 | Oct 25 1:10PM | NFL | Los Angeles Rams at Las Vegas Raiders | moneyline: Los Angeles Rams | prophetx | $35k | -162 | ✅ kalshi,novig |  | +0.3c | yes | W |
 | Oct 25 1:10PM | NFL | Los Angeles R vs Las Vegas: Total Points | total: Over 48.5 points | kalshi | $586k | -104 | ✅ novig |  | -12.0c | yes | W |
-| Oct 25 1:10PM | NBA | Los Angeles C vs Oklahoma City: Spread | spread: Oklahoma City wins by over 16.5 points | kalshi | $27k | -100 | ✅ novig | ✅ | -20.0c | yes | L |
