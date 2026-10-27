@@ -1,7 +1,7 @@
 {
  "alerts": [
   {
-   "alerted_utc": "2026-10-27T17:49:47Z",
+   "alerted_utc": "2026-10-27T17:54:20Z",
    "base_depth": 146019,
    "best_price": 0.605,
    "best_price_american": -153,
@@ -17,36 +17,36 @@
    ],
    "close_price": 0.6,
    "clv_cents": 0.0,
-   "confirmed_after_min": 6,
+   "confirmed_after_min": 10,
    "date": "2026-10-27",
    "depth_by_book": {
     "novig": {
      "heavier_side": true,
      "label": "NYK (0)",
      "price": 0.605,
-     "this_side": 58059
+     "this_side": 58091
     },
     "polymarket": {
      "new_other_side": 835,
      "new_this_side": 41771,
-     "other_side": 136451,
-     "other_side_all_levels": 171784,
-     "ratio": 1.1,
-     "this_side": 152805,
-     "this_side_all_levels": 189335
+     "other_side": 127217,
+     "other_side_all_levels": 162697,
+     "ratio": 1.2,
+     "this_side": 152776,
+     "this_side_all_levels": 191698
     },
     "prophetx": {
      "heavier_side": true,
      "label": "New York Knicks",
      "price": 0.6032,
-     "this_side": 40318
+     "this_side": 37194
     }
    },
    "fade_price": 0.41,
    "first_seen_utc": "2026-10-27T17:44:01Z",
    "game": "Pistons vs. Knicks",
    "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6000457\"}",
-   "lead_min": 370,
+   "lead_min": 366,
    "league": "NBA",
    "line": null,
    "market": "moneyline",
@@ -63,7 +63,7 @@
     },
     "betonlineag": {
      "point": null,
-     "price": -168
+     "price": -165
     },
     "betopenly": {
      "point": null,
@@ -103,7 +103,7 @@
     },
     "lowvig": {
      "point": null,
-     "price": -168
+     "price": -165
     },
     "mybookieag": {
      "point": null,
@@ -111,7 +111,7 @@
     },
     "novig": {
      "point": null,
-     "price": -150
+     "price": -153
     },
     "polymarket": {
      "point": null,
@@ -127,7 +127,7 @@
     },
     "williamhill_us": {
      "point": null,
-     "price": -170
+     "price": -165
     }
    },
    "pulled": false,
@@ -156,7 +156,7 @@
    "units_flat": null
   },
   {
-   "alerted_utc": "2026-10-27T17:49:47Z",
+   "alerted_utc": "2026-10-27T17:54:20Z",
    "base_depth": 97535,
    "best_price": 0.505,
    "best_price_american": -102,
@@ -172,42 +172,42 @@
    ],
    "close_price": 0.51,
    "clv_cents": 0.0,
-   "confirmed_after_min": 6,
+   "confirmed_after_min": 10,
    "date": "2026-10-27",
    "depth_by_book": {
     "kalshi": {
      "heavier_side": false,
      "label": "Boston wins by over 12.5 points",
      "price": 0.51,
-     "this_side": 124625
+     "this_side": 141752
     },
     "novig": {
      "heavier_side": true,
      "label": "BOS -12.5 (-12.5)",
      "price": 0.505,
-     "this_side": 30998
+     "this_side": 34955
     },
     "polymarket": {
      "new_other_side": 626,
      "new_this_side": 31071,
-     "other_side": 88852,
-     "other_side_all_levels": 131065,
+     "other_side": 90212,
+     "other_side_all_levels": 132425,
      "ratio": 1.1,
-     "this_side": 96894,
-     "this_side_all_levels": 140781
+     "this_side": 98197,
+     "this_side_all_levels": 145830
     },
     "prophetx": {
-     "heavier_side": false,
+     "heavier_side": true,
      "label": "Boston Celtics -12.5 (-12.5)",
      "price": 0.5098,
-     "this_side": 25059
+     "this_side": 16958
     }
    },
    "fade_price": 0.5,
    "first_seen_utc": "2026-10-27T17:44:01Z",
    "game": "Nets vs. Celtics",
    "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"6265618\"}",
-   "lead_min": 340,
+   "lead_min": 336,
    "league": "NBA",
    "line": -12.5,
    "market": "spread",
@@ -228,7 +228,7 @@
     },
     "betopenly": {
      "point": -12.5,
-     "price": -103
+     "price": 102
     },
     "betrivers": {
      "point": -12.5,
@@ -291,7 +291,8 @@
    "result": null,
    "rule_met": true,
    "second_book": [
-    "novig"
+    "novig",
+    "prophetx"
    ],
    "second_book_fresh": false,
    "sharp_agree": [],
@@ -12951,8 +12952,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.57,
-   "clv_cents": 1.0,
+   "close_price": 0.58,
+   "clv_cents": 2.0,
    "confirmed_after_min": 8,
    "date": "2026-10-27",
    "depth_by_book": {

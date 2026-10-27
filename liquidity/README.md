@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Oct 27, 1:49 PM ET. This run: 2 new, 0 not confirmed, 2 pending. Open alerts: 78.
+Updated Tue Oct 27, 1:54 PM ET. This run: 2 new, 0 not confirmed, 2 pending. Open alerts: 78.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,8 +10,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Oct 27 1:49PM | NBA | Pistons vs. Knicks | moneyline: Knicks | polymarket | $42k | -150 | ✅ novig,prophetx |  | +0.0c |  | pending |
-| Oct 27 1:49PM | NBA | Nets vs. Celtics | spread: Celtics (-12.5) | polymarket | $31k | -104 | ✅ novig |  | +0.0c |  | pending |
+| Oct 27 1:54PM | NBA | Pistons vs. Knicks | moneyline: Knicks | polymarket | $42k | -150 | ✅ novig,prophetx |  | +0.0c |  | pending |
+| Oct 27 1:54PM | NBA | Nets vs. Celtics | spread: Celtics (-12.5) | polymarket | $31k | -104 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Oct 27 1:44PM | NBA | Nets vs. Celtics | total: Under (222.5) | polymarket | $52k | -104 | ✅ kalshi,novig | ❌ | +0.0c |  | pending |
 | Oct 27 1:44PM | NBA | Brooklyn vs Boston: Spread | spread: NOT Boston wins by over 12.5 points | kalshi | $43k | -100 | ✅ prophetx |  | +0.0c |  | pending |
 | Oct 27 1:33PM | NHL | Sabres vs. Sharks | total: Over (6.5) | polymarket | $49k | -122 | ✅ kalshi,novig |  | +0.0c |  | pending |
@@ -97,7 +97,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 26 6:20PM | NBA | Memphis vs Utah | moneyline: Utah | kalshi | $378k | -104 | ✅ novig,polymarket | ✅ | -50.0c | yes | L |
 | Oct 26 6:10PM | NBA | Indiana Pacers @ Milwaukee Bucks | moneyline: IND (0) | novig | $25k | -160 | ✅ kalshi,prophetx |  | -3.5c |  | L |
 | Oct 26 6:10PM | NBA | Golden State vs Denver: Spread | spread: Denver wins by over 7.5 points | kalshi | $37k | +104 | ✅ novig,polymarket |  | -26.0c | yes | L |
-| Oct 26 6:10PM | NHL | Buffalo vs San Jose | moneyline: Buffalo | kalshi | $39k | -127 |  |  | +1.0c |  | pending |
+| Oct 26 6:10PM | NHL | Buffalo vs San Jose | moneyline: Buffalo | kalshi | $39k | -127 |  |  | +2.0c |  | pending |
 | Oct 26 5:20PM | NFL | Dallas Cowboys @ Philadelphia Eagles | total: Under 43.5 (43.5) | novig | $46k | +106 |  |  | +0.0c | yes | L |
 | Oct 26 5:14PM | NBA | Timberwolves vs. Cavaliers | spread: Timberwolves (+4.5) | polymarket | $60k | -100 | ✅ kalshi | ✅ | +4.0c |  | W |
 | Oct 26 5:00PM | NCAAF | Delaware vs Western Kentucky: Total Points | total: Over 56.5 points | kalshi | $106k | -108 |  |  | -1.0c |  | pending |
