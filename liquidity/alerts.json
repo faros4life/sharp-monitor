@@ -1,6 +1,159 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-27T10:38:23Z",
+   "base_depth": 28560,
+   "best_price": 0.5,
+   "best_price_american": -100,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 8,
+   "date": "2026-10-27",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 5339,
+     "new_this_side": 66430,
+     "other_side": 26839,
+     "other_side_all_levels": 29140,
+     "ratio": 3.7,
+     "this_side": 97974,
+     "this_side_all_levels": 100710
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "Under 5.5 (5.5)",
+     "price": 0.5,
+     "this_side": 11194
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Under (5.5)",
+     "price": 0.5,
+     "this_side": 27481
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "under 5.5 (5.5)",
+     "price": 0.505,
+     "this_side": 1802
+    }
+   },
+   "fade_price": 0.51,
+   "first_seen_utc": "2026-10-27T10:30:14Z",
+   "game": "Columbus vs Philadelphia: Total Goals",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLTOTAL-26OCT27CBJPHI-6\"}",
+   "lead_min": 742,
+   "league": "NHL",
+   "line": 5.5,
+   "market": "total",
+   "new_money": 66430,
+   "paper_only": false,
+   "price": 0.5,
+   "price_american": -100,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.5,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 5.5,
+     "price": -105
+    },
+    "betonlineag": {
+     "point": 5.5,
+     "price": -106
+    },
+    "betopenly": {
+     "point": 5.5,
+     "price": 104
+    },
+    "betrivers": {
+     "point": 5.5,
+     "price": -108
+    },
+    "betus": {
+     "point": 5.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 5.5,
+     "price": -105
+    },
+    "draftkings": {
+     "point": 5.5,
+     "price": -105
+    },
+    "fanatics": {
+     "point": 5.5,
+     "price": -105
+    },
+    "fanduel": {
+     "point": 5.5,
+     "price": -106
+    },
+    "kalshi": {
+     "point": 5.5,
+     "price": 100
+    },
+    "lowvig": {
+     "point": 5.5,
+     "price": -106
+    },
+    "mybookieag": {
+     "point": 5.5,
+     "price": -107
+    },
+    "novig": {
+     "point": 5.5,
+     "price": 100
+    },
+    "polymarket": {
+     "point": 5.5,
+     "price": 100
+    },
+    "prophetx": {
+     "point": 6.0,
+     "price": -129
+    },
+    "williamhill_us": {
+     "point": 5.5,
+     "price": -106
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNHLTOTAL-26OCT27CBJPHI-6"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "polymarket"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "NOT Over 5.5 goals scored",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-27T23:00:00Z",
+   "teams": [
+    "Columbus",
+    "Philadelphia"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-27T07:10:09Z",
    "base_depth": 103141,
    "best_price": 0.47,
@@ -174,8 +327,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.59,
-   "clv_cents": 1.0,
+   "close_price": 0.58,
+   "clv_cents": 0.0,
    "confirmed_after_min": 12,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -1492,8 +1645,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.48,
-   "clv_cents": -1.0,
+   "close_price": 0.49,
+   "clv_cents": 0.0,
    "confirmed_after_min": 12,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -8288,8 +8441,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.59,
-   "clv_cents": 0.0,
+   "close_price": 0.6,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-27",
    "depth_by_book": {
