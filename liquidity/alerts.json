@@ -1,6 +1,426 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-27T14:20:11Z",
+   "base_depth": 83828,
+   "best_price": 0.635,
+   "best_price_american": -174,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.64,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-27",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 3983,
+     "new_this_side": 29252,
+     "other_side": 72429,
+     "other_side_all_levels": 78012,
+     "ratio": 1.5,
+     "this_side": 111013,
+     "this_side_all_levels": 129974
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "OTT +1.5 (-1.5)",
+     "price": 0.635,
+     "this_side": 19302
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Senators (+1.5)",
+     "price": 0.64,
+     "this_side": 28426
+    }
+   },
+   "fade_price": 0.38,
+   "first_seen_utc": "2026-10-27T14:10:11Z",
+   "game": "Ottawa vs Vegas: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLSPREAD-26OCT27OTTVGK-VGK2\"}",
+   "lead_min": 700,
+   "league": "NHL",
+   "line": 1.5,
+   "market": "spread",
+   "new_money": 29252,
+   "paper_only": false,
+   "price": 0.64,
+   "price_american": -178,
+   "price_rule": "fails_cap",
+   "price_when_first_seen": 0.64,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 1.5,
+     "price": -175
+    },
+    "betonlineag": {
+     "point": 1.5,
+     "price": -183
+    },
+    "betopenly": {
+     "point": 1.5,
+     "price": -168
+    },
+    "betrivers": {
+     "point": 1.5,
+     "price": -190
+    },
+    "betus": {
+     "point": 1.5,
+     "price": -185
+    },
+    "bovada": {
+     "point": 1.5,
+     "price": -190
+    },
+    "draftkings": {
+     "point": 1.5,
+     "price": -192
+    },
+    "fanatics": {
+     "point": 1.5,
+     "price": -185
+    },
+    "fanduel": {
+     "point": 1.5,
+     "price": -178
+    },
+    "kalshi": {
+     "point": 1.5,
+     "price": -178
+    },
+    "lowvig": {
+     "point": 1.5,
+     "price": -183
+    },
+    "mybookieag": {
+     "point": 1.5,
+     "price": -186
+    },
+    "novig": {
+     "point": 1.5,
+     "price": -174
+    },
+    "polymarket": {
+     "point": -3.5,
+     "price": -245
+    },
+    "prophetx": {
+     "point": 1.5,
+     "price": -170
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNHLSPREAD-26OCT27OTTVGK-VGK2"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "polymarket"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Ottawa",
+   "side_label": "NOT Vegas wins by over 1.5 goals",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-28T02:00:00Z",
+   "teams": [
+    "Ottawa",
+    "Vegas"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-27T14:20:11Z",
+   "base_depth": 131902,
+   "best_price": 0.69,
+   "best_price_american": -223,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.69,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-27",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -10547,
+     "new_this_side": 32373,
+     "other_side": 75472,
+     "other_side_all_levels": 81292,
+     "ratio": 1.8,
+     "this_side": 135320,
+     "this_side_all_levels": 163498
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "PHI +1.5 (1.5)",
+     "price": 0.69,
+     "this_side": 24796
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Flyers (+1.5)",
+     "price": 0.7,
+     "this_side": 44434
+    }
+   },
+   "fade_price": 0.32,
+   "first_seen_utc": "2026-10-27T14:10:11Z",
+   "game": "Columbus vs Philadelphia: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLSPREAD-26OCT27CBJPHI-CBJ2\"}",
+   "lead_min": 520,
+   "league": "NHL",
+   "line": 1.5,
+   "market": "spread",
+   "new_money": 32373,
+   "paper_only": false,
+   "price": 0.69,
+   "price_american": -223,
+   "price_rule": "fails_cap",
+   "price_when_first_seen": 0.69,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 1.5,
+     "price": -235
+    },
+    "betonlineag": {
+     "point": 1.5,
+     "price": -240
+    },
+    "betopenly": {
+     "point": 1.5,
+     "price": -215
+    },
+    "betrivers": {
+     "point": 1.5,
+     "price": -278
+    },
+    "betus": {
+     "point": 1.5,
+     "price": -245
+    },
+    "bovada": {
+     "point": 1.5,
+     "price": -250
+    },
+    "draftkings": {
+     "point": 1.5,
+     "price": -245
+    },
+    "fanatics": {
+     "point": 1.5,
+     "price": -240
+    },
+    "fanduel": {
+     "point": 1.5,
+     "price": -240
+    },
+    "kalshi": {
+     "point": 1.5,
+     "price": -223
+    },
+    "lowvig": {
+     "point": 1.5,
+     "price": -240
+    },
+    "mybookieag": {
+     "point": 1.5,
+     "price": -250
+    },
+    "novig": {
+     "point": 1.5,
+     "price": -223
+    },
+    "polymarket": {
+     "point": 1.5,
+     "price": -233
+    },
+    "prophetx": {
+     "point": 1.5,
+     "price": -230
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNHLSPREAD-26OCT27CBJPHI-CBJ2"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "polymarket"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Philadelphia",
+   "side_label": "NOT Columbus wins by over 1.5 goals",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-27T23:00:00Z",
+   "teams": [
+    "Columbus",
+    "Philadelphia"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-27T14:20:11Z",
+   "base_depth": 120932,
+   "best_price": 0.6568,
+   "best_price_american": -191,
+   "best_price_book": "polymarket",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.66,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-27",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -1435,
+     "new_this_side": 33701,
+     "other_side": 53797,
+     "other_side_all_levels": 58518,
+     "ratio": 2.1,
+     "this_side": 114996,
+     "this_side_all_levels": 149344
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Sharks (+1.5)",
+     "price": 0.65,
+     "this_side": 35193
+    }
+   },
+   "fade_price": 0.35,
+   "first_seen_utc": "2026-10-27T14:10:11Z",
+   "game": "Buffalo vs San Jose: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLSPREAD-26OCT27BUFSJ-BUF2\"}",
+   "lead_min": 730,
+   "league": "NHL",
+   "line": 1.5,
+   "market": "spread",
+   "new_money": 33701,
+   "paper_only": false,
+   "price": 0.66,
+   "price_american": -194,
+   "price_rule": "fails_cap",
+   "price_when_first_seen": 0.66,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 1.5,
+     "price": -190
+    },
+    "betonlineag": {
+     "point": 1.5,
+     "price": -200
+    },
+    "betopenly": {
+     "point": 1.5,
+     "price": -180
+    },
+    "betrivers": {
+     "point": 1.5,
+     "price": -205
+    },
+    "betus": {
+     "point": 1.5,
+     "price": -200
+    },
+    "bovada": {
+     "point": 1.5,
+     "price": -200
+    },
+    "draftkings": {
+     "point": 1.5,
+     "price": -205
+    },
+    "fanatics": {
+     "point": 1.5,
+     "price": -200
+    },
+    "fanduel": {
+     "point": 1.5,
+     "price": -196
+    },
+    "kalshi": {
+     "point": 1.5,
+     "price": -194
+    },
+    "lowvig": {
+     "point": 1.5,
+     "price": -200
+    },
+    "mybookieag": {
+     "point": 1.5,
+     "price": -208
+    },
+    "novig": {
+     "point": 1.5,
+     "price": -190
+    },
+    "polymarket": {
+     "point": -3.5,
+     "price": -144
+    },
+    "prophetx": {
+     "point": 1.5,
+     "price": -192
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNHLSPREAD-26OCT27BUFSJ-BUF2"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "polymarket"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "San Jose",
+   "side_label": "NOT Buffalo wins by over 1.5 goals",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-28T02:30:00Z",
+   "teams": [
+    "Buffalo",
+    "San Jose"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-27T14:00:16Z",
    "base_depth": 95608,
    "best_price": 0.495,
@@ -47,6 +467,8 @@
    "new_money": 72337,
    "paper_only": false,
    "price": 0.5,
+   "price_after_15m": 0.5,
+   "price_after_15m_book": "novig",
    "price_american": -100,
    "price_rule": "ok",
    "price_when_first_seen": 0.5,
@@ -135,6 +557,7 @@
    "side_label": "NOT Over 233.5 points",
    "start_source": "prophetx",
    "start_utc": "2026-10-28T03:00:00Z",
+   "still_actionable": false,
    "teams": [
     "Portland",
     "Los Angeles L"
@@ -201,6 +624,8 @@
    "new_money": 34837,
    "paper_only": false,
    "price": 0.48,
+   "price_after_15m": 0.475,
+   "price_after_15m_book": "novig",
    "price_american": 108,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.48,
@@ -291,6 +716,7 @@
    "side_label": "Montreal",
    "start_source": "polymarket",
    "start_utc": "2026-10-28T00:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Montreal",
     "St. Louis"
@@ -620,8 +1046,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": 1.0,
+   "close_price": 0.5,
+   "clv_cents": 0.0,
    "confirmed_after_min": 6,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -11774,8 +12200,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.49,
-   "clv_cents": -1.0,
+   "close_price": 0.5,
+   "clv_cents": 0.0,
    "confirmed_after_min": 6,
    "date": "2026-10-27",
    "depth_by_book": {
