@@ -50,7 +50,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+2 pts",
+   "clv": "+3 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline",
@@ -90,7 +90,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+0 pts",
+   "clv": "-1 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline"
@@ -515,13 +515,13 @@
   {
    "alert_utc": "2026-10-27T16:10:15Z",
    "beat_close": true,
-   "beat_true_close": null,
+   "beat_true_close": false,
    "bet": "Over 221 (-123)",
    "book": "ProphetX",
    "book_key": "prophetx",
-   "close_fair_prob": null,
-   "close_read_mins_before": null,
-   "close_value_pct": null,
+   "close_fair_prob": 0.544,
+   "close_read_mins_before": 30,
+   "close_value_pct": -2.3,
    "clv": "+2 pts",
    "confirm": "yes",
    "confirmed_by": [
@@ -555,13 +555,13 @@
   {
    "alert_utc": "2026-10-27T18:10:14Z",
    "beat_close": false,
-   "beat_true_close": null,
+   "beat_true_close": false,
    "bet": "Under 222.5 (-104)",
    "book": "Novig",
    "book_key": "novig",
-   "close_fair_prob": null,
-   "close_read_mins_before": null,
-   "close_value_pct": null,
+   "close_fair_prob": 0.489,
+   "close_read_mins_before": 30,
+   "close_value_pct": -4.1,
    "clv": "-0.5 pts",
    "confirm": "yes",
    "confirmed_by": [
@@ -594,13 +594,13 @@
   {
    "alert_utc": "2026-10-27T19:00:18Z",
    "beat_close": true,
-   "beat_true_close": null,
+   "beat_true_close": false,
    "bet": "Boston Celtics -12 (-107)",
    "book": "ProphetX",
    "book_key": "prophetx",
-   "close_fair_prob": null,
-   "close_read_mins_before": null,
-   "close_value_pct": null,
+   "close_fair_prob": 0.522,
+   "close_read_mins_before": 30,
+   "close_value_pct": 0.0,
    "clv": "+0.5 pts",
    "confirm": "yes",
    "confirmed_by": [
@@ -15199,6 +15199,31 @@
   }
  ],
  "all_alerts": [
+  {
+   "alert_text": "Portland Trail Blazers +1.5 (+100) at Novig (also: Hard Rock, Kalshi)",
+   "bet": "Portland Trail Blazers +1.5 (+100)",
+   "bet_result": null,
+   "book": "Novig",
+   "confirmed_by": [
+    "BetOnline",
+    "Matchbook"
+   ],
+   "edge_pct": 1.6,
+   "final": null,
+   "game": "Portland Trail Blazers @ Los Angeles Lakers",
+   "grade": "A",
+   "late": false,
+   "minutes_before_start": 240,
+   "price": 100,
+   "price_after_fee": 100,
+   "pushed_to_phone": false,
+   "repeat": true,
+   "score": 80,
+   "sent_et": "2026-10-27 19:10",
+   "sport": "NBA",
+   "start_utc": "2026-10-28T03:10:00Z",
+   "why": "Pinnacle moved +2 -> +1; bet only at +1.5 or better (confirmed by BetOnline, Matchbook)"
+  },
   {
    "alert_text": "Western Kentucky Hilltoppers -2 (-111) at ProphetX [-113 after ProphetX fee]",
    "bet": "Western Kentucky Hilltoppers -2 (-111)",
