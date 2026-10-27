@@ -29,6 +29,8 @@ jobs:
         env:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}   # Oct 27: every ntfy push mirrored to Telegram
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           SPORTS: ${{ vars.SPORTS }}
           RETAIL_BOOKS: ${{ vars.RETAIL_BOOKS }}
           SHARP_BOOK: ${{ vars.SHARP_BOOK }}
