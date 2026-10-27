@@ -29,6 +29,8 @@ jobs:
           EMAIL_TO: ${{ secrets.EMAIL_TO }}
           NOVIG_READ_KEY_ID: ${{ secrets.NOVIG_READ_KEY_ID }}       # read-only: positions for duplicate/conflict checks
           NOVIG_READ_KEY_PEM: ${{ secrets.NOVIG_READ_KEY_PEM }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}       # fill texts to Peter's Telegram (live orders only)
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           NOVIG_SNAPSHOT_TOKEN: ${{ secrets.NOVIG_SNAPSHOT_TOKEN }}   # read-only token for the home runner's Novig positions snapshot (private repo)
           PROPHETX_ACCESS_KEY: ${{ secrets.PROPHETX_ACCESS_KEY }}   # used only to read ProphetX prices
           PROPHETX_SECRET_KEY: ${{ secrets.PROPHETX_SECRET_KEY }}
