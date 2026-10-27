@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Oct 27, 4:40 PM ET. This run: 1 new, 1 not confirmed, 0 pending. Open alerts: 84.
+Updated Tue Oct 27, 4:50 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 84.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -21,7 +21,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 27 1:44PM | NBA | Nets vs. Celtics | total: Under (222.5) | polymarket | $52k | -104 | ✅ kalshi,novig | ❌ | -1.0c |  | pending |
 | Oct 27 1:44PM | NBA | Brooklyn vs Boston: Spread | spread: NOT Boston wins by over 12.5 points | kalshi | $43k | -100 | ✅ prophetx |  | +0.0c |  | pending |
 | Oct 27 1:33PM | NHL | Sabres vs. Sharks | total: Over (6.5) | polymarket | $49k | -122 | ✅ kalshi,novig |  | +0.0c |  | pending |
-| Oct 27 1:20PM | NBA | Brooklyn Nets at Boston Celtics | moneyline: Boston Celtics | prophetx | $42k | -560 | ✅ kalshi |  | -0.2c |  | pending |
+| Oct 27 1:20PM | NBA | Brooklyn Nets at Boston Celtics | moneyline: Boston Celtics | prophetx | $42k | -560 | ✅ kalshi |  | -0.5c |  | pending |
 | Oct 27 1:20PM | NHL | Minnesota vs Utah: Spread | spread: NOT Utah wins by over 1.5 goals | kalshi | $52k | -223 | ✅ novig,polymarket |  | +0.0c |  | pending |
 | Oct 27 1:11PM | NHL | Devils vs. Stars | moneyline: Devils | polymarket | $49k | +104 | ✅ kalshi,novig |  | +0.0c |  | pending |
 | Oct 27 12:40PM | NHL | Sabres vs. Sharks | spread: Sharks (+1.5) | polymarket | $38k | -186 | ✅ kalshi |  | -1.0c | yes | pending |
@@ -43,7 +43,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 27 10:00AM | NBA | Portland vs Los Angeles L: Total Points | total: NOT Over 233.5 points | kalshi | $72k | -100 |  | ✅ | +0.0c |  | pending |
 | Oct 27 10:00AM | NHL | Montreal vs St. Louis | moneyline: Montreal | kalshi | $35k | +108 | ✅ polymarket |  | +3.0c |  | pending |
 | Oct 27 9:40AM | NBA | Trail Blazers vs. Lakers | spread: Trail Blazers (+2.5) | polymarket | $100k | -100 | ✅ novig | ✅ | +3.0c |  | pending |
-| Oct 27 9:40AM | NHL | Wild vs. Utah | moneyline: Wild | polymarket | $27k | +108 | ✅ kalshi,prophetx |  | +0.0c |  | pending |
+| Oct 27 9:40AM | NHL | Wild vs. Utah | moneyline: Wild | polymarket | $27k | +108 | ✅ kalshi,prophetx |  | +1.0c |  | pending |
 | Oct 27 9:40AM | NBA | Sacramento vs San Antonio: Spread | spread: San Antonio wins by over 18.5 points | kalshi | $48k | -100 | ✅ novig,prophetx | ✅ | +1.0c |  | pending |
 | Oct 27 9:33AM | NHL | Islanders vs. Predators | spread: Islanders (+1.5) | polymarket | $28k | -233 | ✅ novig |  | +1.0c | yes | pending |
 | Oct 27 9:33AM | NCAAF | Kennesaw St. vs Middle Tennessee: Total Points | total: Over 50.5 points | kalshi | $159k | -104 |  |  | +0.0c |  | pending |
@@ -60,7 +60,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 27 8:30AM | NHL | New York I vs Nashville | moneyline: New York I | kalshi | $26k | +108 |  |  | +1.0c |  | pending |
 | Oct 27 8:20AM | NHL | Vancouver vs Anaheim: Spread | spread: NOT Anaheim wins by over 1.5 goals | kalshi | $26k | -133 | ✅ novig,polymarket |  | -1.0c |  | pending |
 | Oct 27 8:20AM | NCAAF | Kennesaw St. vs Middle Tennessee: Total Points | total: NOT Over 50.5 points | kalshi | $70k | -100 |  |  | +0.0c |  | pending |
-| Oct 27 8:20AM | NCAAF | Delaware vs Western Kentucky: Spread | spread: NOT Delaware wins by over 2.5 points | kalshi | $51k | -117 |  | ❌ | +2.0c |  | pending |
+| Oct 27 8:20AM | NCAAF | Delaware vs Western Kentucky: Spread | spread: NOT Delaware wins by over 2.5 points | kalshi | $51k | -117 |  | ❌ | +4.0c |  | pending |
 | Oct 27 8:10AM | NBA | Pistons vs. Knicks | moneyline: Pistons | polymarket | $95k | +150 |  |  | +0.0c |  | pending |
 | Oct 27 7:30AM | NHL | Florida vs Winnipeg | moneyline: Winnipeg | kalshi | $44k | +113 |  |  | -1.0c |  | pending |
 | Oct 27 6:50AM | NHL | Kings vs. Blackhawks | moneyline: Blackhawks | polymarket | $29k | +104 |  |  | +1.0c |  | pending |
