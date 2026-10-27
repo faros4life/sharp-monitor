@@ -209,7 +209,7 @@ LIQ = [
      lambda a: et_hour(a, *LIQ_T) in range(17, 20), "units_flat"),
     ("liq_nba_totals", "NBA liquidity totals (lane)", "scan",
      "LIQ-MAIN, league NBA, market total, artifacts excluded, alerted from Wed Oct 28 12:00 AM ET. Registered Oct 27 "
-     "(Peter + Muse, VALUE LAB #4): the only liquidity cell beyond luck. Peter's decision bar: 25 forward resulted at "
+     "(Peter + Muse, VALUE LAB #4): the only liquidity cell beyond luck. Decision bar: 30 forward resulted at "
      ">= +0.10u/play AND CLV+ >= 55% -> eligible for live (unders first, best after-fee price across ProphetX/Kalshi/PM US).",
      liq_nba_tot, "units_flat"),
     ("liq_nba_totals_under", "NBA liquidity totals - unders", "scan",
