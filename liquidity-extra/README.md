@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Oct 27, 11:00 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 13.
+Updated Tue Oct 27, 11:10 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 13.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,7 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Oct 27 10:50AM | TENNIS | Mannarino vs Buse | moneyline: Buse | kalshi | $77k | -335 |  |  | -22.0c |  | pending |
+| Oct 27 10:50AM | TENNIS | Mannarino vs Buse | moneyline: Buse | kalshi | $77k | -335 |  |  | -23.0c |  | pending |
 | Oct 27 9:00AM | MLB | Game 4: Milwaukee vs Tampa Bay | moneyline: Tampa Bay | kalshi | $789k | +122 | ✅ polymarket,prophetx |  | +2.0c |  | pending |
 | Oct 27 8:30AM | MLB | Milwaukee Brewers vs. Tampa Bay Rays | spread: Tampa Bay Rays (+1.5) | polymarket | $59k | -144 | ✅ kalshi,novig |  | +2.0c |  | pending |
 | Oct 27 8:30AM | MLB | Milwaukee vs Tampa Bay: Spread | spread: NOT Milwaukee wins by over 1.5 runs | kalshi | $72k | -144 | ✅ novig,polymarket |  | +2.0c |  | pending |
