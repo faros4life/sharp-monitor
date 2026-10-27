@@ -1,4 +1,4 @@
-# Paper splits (updated 2026-10-27T19:25:13Z)
+# Paper splits (updated 2026-10-27T19:35:12Z)
 
 Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kill bar: 30+ resulted at -0.10u/play or worse closes a split.
 
@@ -22,6 +22,13 @@ Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kil
 | Liquidity spreads | scan | 2026-10-22 | 96-116-0 | -30.69 | -0.145 |  | CLOSED (by decision, 2026-10-27) |
 | Liquidity overnight (12-5 AM ET) | scan | 2026-10-26 | 1-0-0 | +0.87 | +0.870 |  | OPEN |
 | Liquidity evening (5-8 PM ET) | scan | 2026-10-26 | 7-8-0 | +0.97 | +0.065 |  | OPEN |
+| NBA liquidity totals (lane) | scan | 2026-10-28 | 0-0-0 | +0.00 |  |  | OPEN |
+| NBA liquidity totals - unders | scan | 2026-10-28 | 0-0-0 | +0.00 |  |  | OPEN |
+| NBA liquidity totals - no sharp tag | scan | 2026-10-28 | 0-0-0 | +0.00 |  |  | OPEN |
+| NBA liquidity totals - lead 4-12h | scan | 2026-10-28 | 0-0-0 | +0.00 |  |  | OPEN |
+| NBA liquidity totals - $25-50k prints | scan | 2026-10-28 | 0-0-0 | +0.00 |  |  | OPEN |
+| NBA liquidity totals - evacuation | scan | 2026-10-28 | 0-0-0 | +0.00 |  |  | OPEN |
+| NBA liquidity, price -129..-105 | scan | 2026-10-28 | 0-0-0 | +0.00 |  |  | OPEN |
 
 **All-history reference (every resulted play in the feed, not forward; read only):** Tier 2 core (paper) 7-3-0, +2.87u (+0.287/play); Evening sends, ex-Hard Rock 8-11-1, -4.32u (-0.216/play); Muted midday (11 AM-2 PM ET) 24-8-0, +12.60u (+0.394/play); Liquidity overnight (12-5 AM ET) 36-21-0, +5.48u (+0.096/play); Liquidity evening (5-8 PM ET) 55-65-0, -23.38u (-0.195/play)
 
@@ -68,3 +75,10 @@ Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kil
 - **Liquidity spreads** (scan; promote >= 30 forward resulted AND >= +0.10u/play; kill >= 30 resulted at <= -0.1u/play -> CLOSED): Liquidity main feed, market = spread, artifacts excluded, alerted from Oct 22 10:30 AM ET. CLOSED as a promotion candidate (status only: spread prints still appear in the feed and log and grade exactly as before).
 - **Liquidity overnight (12-5 AM ET)** (scan; promote >= 30 forward resulted AND >= +0.10u/play; kill >= 30 resulted at <= -0.1u/play -> CLOSED): LIQ-MAIN prints alerted 12:00-4:59 AM ET (alerted_utc, fallback first_seen_utc; DST-aware), artifacts excluded. Historical read (Muse): +9.11u, +0.14/play, n=65 - the only positive liquidity time block.
 - **Liquidity evening (5-8 PM ET)** (scan; promote >= 30 forward resulted AND >= +0.10u/play; kill >= 30 resulted at <= -0.1u/play -> CLOSED): LIQ-MAIN prints alerted 5:00-7:59 PM ET (alerted_utc, fallback first_seen_utc; DST-aware), artifacts excluded. Negative watch: historical read (Muse) -20.99u, -0.17/play, n=125; if it holds forward it becomes a skip window.
+- **NBA liquidity totals (lane)** (scan; promote >= 30 forward resulted AND >= +0.10u/play; kill >= 30 resulted at <= -0.1u/play -> CLOSED): LIQ-MAIN, league NBA, market total, artifacts excluded, alerted from Wed Oct 28 12:00 AM ET. Registered Oct 27 (Peter + Muse, VALUE LAB #4): the only liquidity cell beyond luck. Decision bar: 30 forward resulted at >= +0.10u/play AND CLV+ >= 55% -> eligible for live (unders first, best after-fee price across ProphetX/Kalshi/PM US).
+- **NBA liquidity totals - unders** (scan; promote >= 30 forward resulted AND >= +0.10u/play; kill >= 30 resulted at <= -0.1u/play -> CLOSED): liq_nba_totals, under side only (side_label). The side Peter would take live first.
+- **NBA liquidity totals - no sharp tag** (scan; promote >= 30 forward resulted AND >= +0.10u/play; kill >= 30 resulted at <= -0.1u/play -> CLOSED): liq_nba_totals with sharp_agree AND sharp_oppose both empty (history: 21-6, +0.52/play, CLV+ 78%). Lens on the lane.
+- **NBA liquidity totals - lead 4-12h** (scan; promote >= 30 forward resulted AND >= +0.10u/play; kill >= 30 resulted at <= -0.1u/play -> CLOSED): liq_nba_totals with lead (start_utc minus alerted_utc) 4h to under 12h (history: 22-10, +0.35/play). Lens on the lane.
+- **NBA liquidity totals - $25-50k prints** (scan; promote >= 30 forward resulted AND >= +0.10u/play; kill >= 30 resulted at <= -0.1u/play -> CLOSED): liq_nba_totals with new_money under $50,000 (history: +0.28/play). Lens on the lane.
+- **NBA liquidity totals - evacuation** (scan; promote >= 30 forward resulted AND >= +0.10u/play; kill >= 30 resulted at <= -0.1u/play -> CLOSED): liq_nba_totals where the trigger book's new_other_side < 0 (money left the other side). Registered by Muse Oct 27.
+- **NBA liquidity, price -129..-105** (scan; promote >= 30 forward resulted AND >= +0.10u/play; kill >= 30 resulted at <= -0.1u/play -> CLOSED): LIQ-MAIN NBA, any market, price_american -129 to -105 (history: 50-29, +0.20/play). Registered Oct 27.
