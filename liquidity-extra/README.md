@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Oct 27, 7:30 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 17.
+Updated Tue Oct 27, 7:32 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 18.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Oct 27 7:32PM | MLB | Milwaukee Brewers at Tampa Bay Rays | moneyline: Tampa Bay Rays | prophetx | $29k | +108 |  |  | +0.0c |  | pending |
 | Oct 27 7:20PM | TENNIS | Dart vs Tjen | moneyline: Tjen | kalshi | $26k | -194 |  |  | +0.0c |  | pending |
 | Oct 27 6:17PM | TENNIS | Rakhimova vs Alexandrova | moneyline: Alexandrova | kalshi | $54k | -285 |  |  | +0.0c |  | pending |
 | Oct 27 6:10PM | MLB | Milwaukee vs Tampa Bay: Total Runs | total: Over 7.5 runs scored | kalshi | $468k | +117 | ✅ novig |  | +1.0c |  | pending |
