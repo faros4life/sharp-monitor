@@ -1,6 +1,156 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-27T21:40:10Z",
+   "base_depth": 80601,
+   "best_price": 0.505,
+   "best_price_american": -102,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-27",
+   "depth_by_book": {
+    "novig": {
+     "heavier_side": true,
+     "label": "Under 233.5 (233.5)",
+     "price": 0.505,
+     "this_side": 32226
+    },
+    "polymarket": {
+     "new_other_side": -5764,
+     "new_this_side": 26487,
+     "other_side": 33846,
+     "other_side_all_levels": 52352,
+     "ratio": 2.5,
+     "this_side": 82983,
+     "this_side_all_levels": 108538
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "under 233.5 (233.5)",
+     "price": 0.5025,
+     "this_side": 16361
+    }
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-10-27T21:30:14Z",
+   "game": "Trail Blazers vs. Lakers",
+   "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6265815\"}",
+   "lead_min": 320,
+   "league": "NBA",
+   "line": 233.5,
+   "market": "total",
+   "new_money": 26487,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 233.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 233.5,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 233.5,
+     "price": 100
+    },
+    "betrivers": {
+     "point": 233.5,
+     "price": -114
+    },
+    "betus": {
+     "point": 233.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 233.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 233.5,
+     "price": -112
+    },
+    "fanatics": {
+     "point": 233.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 233.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": 233.5,
+     "price": 100
+    },
+    "lowvig": {
+     "point": 233.5,
+     "price": -107
+    },
+    "mybookieag": {
+     "point": 234.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 233.5,
+     "price": -102
+    },
+    "polymarket": {
+     "point": 233.5,
+     "price": -104
+    },
+    "prophetx": {
+     "point": 233.0,
+     "price": 109
+    },
+    "williamhill_us": {
+     "point": 233.5,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 1,
+    "pm_market_id": "6265815"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [
+    "Under 235.5 (+100)",
+    "Under 235.5 (+100)",
+    "Under 236.5 (-110)"
+   ],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "Under (233.5)",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-28T03:00:00Z",
+   "teams": [
+    "Trail Blazers",
+    "Lakers"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-27T21:30:14Z",
    "base_depth": 420032,
    "best_price": 0.505,
@@ -210,6 +360,8 @@
    "new_money": 44646,
    "paper_only": false,
    "price": 0.51,
+   "price_after_15m": 0.51,
+   "price_after_15m_book": "novig",
    "price_american": -104,
    "price_rule": "ok",
    "price_when_first_seen": 0.51,
@@ -298,6 +450,7 @@
    "side_label": "Over 222.5 points",
    "start_source": "polymarket",
    "start_utc": "2026-10-27T23:30:00Z",
+   "still_actionable": true,
    "teams": [
     "Brooklyn",
     "Boston"
@@ -358,6 +511,8 @@
    "new_money": 30180,
    "paper_only": false,
    "price": 0.66,
+   "price_after_15m": 0.6568,
+   "price_after_15m_book": "polymarket",
    "price_american": -194,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.66,
@@ -432,6 +587,7 @@
    "side_label": "Edmonton",
    "start_source": "polymarket",
    "start_utc": "2026-10-29T00:30:00Z",
+   "still_actionable": true,
    "teams": [
     "Calgary",
     "Edmonton"
@@ -492,6 +648,8 @@
    "new_money": 26023,
    "paper_only": false,
    "price": 0.7,
+   "price_after_15m": 0.7,
+   "price_after_15m_book": "novig",
    "price_american": -233,
    "price_rule": "fails_cap",
    "price_when_first_seen": 0.7,
@@ -575,6 +733,7 @@
    "side_label": "Flyers (+1.5)",
    "start_source": "polymarket",
    "start_utc": "2026-10-27T23:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Blue Jackets",
     "Flyers"
@@ -2467,8 +2626,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.8438,
-   "clv_cents": -0.5,
+   "close_price": 0.8462,
+   "clv_cents": -0.2,
    "confirmed_after_min": 8,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -4862,8 +5021,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.64,
-   "clv_cents": 0.0,
+   "close_price": 0.63,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -5742,8 +5901,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.48,
-   "clv_cents": 0.0,
+   "close_price": 0.49,
+   "clv_cents": 1.0,
    "confirmed_after_min": 6,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -10687,8 +10846,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": -1.0,
+   "close_price": 0.52,
+   "clv_cents": -2.0,
    "confirmed_after_min": 12,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -10986,8 +11145,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.47,
-   "clv_cents": -3.0,
+   "close_price": 0.46,
+   "clv_cents": -4.0,
    "confirmed_after_min": 10,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -12425,8 +12584,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.54,
-   "clv_cents": 3.0,
+   "close_price": 0.55,
+   "clv_cents": 4.0,
    "confirmed_after_min": 4,
    "date": "2026-10-27",
    "depth_by_book": {
