@@ -1,6 +1,148 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-27T21:10:10Z",
+   "base_depth": 67876,
+   "best_price": 0.635,
+   "best_price_american": -174,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.64,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-27",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "NOT Vegas wins by over 1.5 goals",
+     "price": 0.64,
+     "this_side": 167940
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "OTT +1.5 (-1.5)",
+     "price": 0.635,
+     "this_side": 23082
+    },
+    "polymarket": {
+     "new_other_side": 12419,
+     "new_this_side": 41316,
+     "other_side": 51837,
+     "other_side_all_levels": 70675,
+     "ratio": 1.5,
+     "this_side": 77636,
+     "this_side_all_levels": 109573
+    }
+   },
+   "fade_price": 0.38,
+   "first_seen_utc": "2026-10-27T21:00:16Z",
+   "game": "Senators vs. Golden Knights",
+   "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6252901\"}",
+   "lead_min": 290,
+   "league": "NHL",
+   "line": 1.5,
+   "market": "spread",
+   "new_money": 41316,
+   "paper_only": false,
+   "price": 0.64,
+   "price_american": -178,
+   "price_rule": "fails_cap",
+   "price_when_first_seen": 0.64,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 1.5,
+     "price": -185
+    },
+    "betonlineag": {
+     "point": 1.5,
+     "price": -183
+    },
+    "betopenly": {
+     "point": 1.5,
+     "price": -172
+    },
+    "betrivers": {
+     "point": 1.5,
+     "price": -195
+    },
+    "betus": {
+     "point": 1.5,
+     "price": -180
+    },
+    "bovada": {
+     "point": 1.5,
+     "price": -183
+    },
+    "draftkings": {
+     "point": 1.5,
+     "price": -192
+    },
+    "fanatics": {
+     "point": 1.5,
+     "price": -190
+    },
+    "fanduel": {
+     "point": 1.5,
+     "price": -178
+    },
+    "kalshi": {
+     "point": 1.5,
+     "price": -178
+    },
+    "lowvig": {
+     "point": 1.5,
+     "price": -183
+    },
+    "mybookieag": {
+     "point": 1.5,
+     "price": -181
+    },
+    "novig": {
+     "point": 1.5,
+     "price": -174
+    },
+    "polymarket": {
+     "point": -3.5,
+     "price": -144
+    },
+    "prophetx": {
+     "point": 1.5,
+     "price": -172
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 1,
+    "pm_market_id": "6252901"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Senators",
+   "side_label": "Senators (+1.5)",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-28T02:00:00Z",
+   "teams": [
+    "Senators",
+    "Golden Knights"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-27T20:40:10Z",
    "base_depth": 85212,
    "best_price": 0.51,
@@ -805,8 +947,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": -1.0,
+   "close_price": 0.5,
+   "clv_cents": -2.0,
    "confirmed_after_min": 6,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -957,8 +1099,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.61,
-   "clv_cents": 1.0,
+   "close_price": 0.62,
+   "clv_cents": 2.0,
    "confirmed_after_min": 10,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -7552,8 +7694,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.4,
-   "clv_cents": 0.0,
+   "close_price": 0.39,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-27",
    "depth_by_book": {
