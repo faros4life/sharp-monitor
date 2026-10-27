@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Oct 27, 3:20 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 10.
+Updated Tue Oct 27, 3:30 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 11.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Oct 27 3:30PM | TENNIS | Mensik vs Mannarino | moneyline: Mensik | kalshi | $44k | -426 |  |  | +0.0c |  | pending |
 | Oct 27 1:37PM | MLB | Milwaukee Brewers vs. Tampa Bay Rays | total: Under (7.5) | polymarket | $39k | -127 | ✅ kalshi,novig |  | +0.0c |  | pending |
 | Oct 27 10:50AM | TENNIS | Mannarino vs Buse | moneyline: Buse | kalshi | $77k | -335 |  |  | -24.0c |  | L |
 | Oct 27 9:00AM | MLB | Game 4: Milwaukee vs Tampa Bay | moneyline: Tampa Bay | kalshi | $789k | +122 | ✅ polymarket,prophetx |  | +2.0c |  | pending |
