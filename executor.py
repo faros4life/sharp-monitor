@@ -414,9 +414,43 @@ def novig_positions():
                 continue
             for v in (d.values() if isinstance(d, dict) else [d]):
                 out += v if isinstance(v, list) else (v.get("items") or [] if isinstance(v, dict) else [])
+        _NVERR["src"] = "cloud read"
         return [p for p in out if int(p.get("qty") or 0) > 0]
     except Exception as ex:
         _NVERR["why"] = str(ex)[:120]
+        snap = novig_snapshot()   # Oct 27: cloud read failed (often HTTP 451) -> the home runner's snapshot, if fresh
+        if snap is not None:
+            return snap
+        return None
+
+
+SNAP_URL = "https://api.github.com/repos/faros4life/novig-runner/contents/snapshot/novig_positions.json?ref=main"
+SNAP_MAX_MIN = 15
+
+
+def novig_snapshot():
+    """Novig positions written every 5 min by Peter's home runner (private repo novig-runner), read with a token scoped
+    read-only to that repo (secret NOVIG_SNAPSHOT_TOKEN). Older than 15 min, failed, or unreadable -> None (held)."""
+    tok = (os.environ.get("NOVIG_SNAPSHOT_TOKEN") or "").strip()
+    if not tok:
+        _NVERR["why"] += " | no snapshot token"
+        return None
+    try:
+        req = urllib.request.Request(SNAP_URL, headers={"Authorization": f"Bearer {tok}", "Accept": "application/vnd.github.raw+json",
+                                                        "X-GitHub-Api-Version": "2022-11-28", "User-Agent": "sharp-monitor"})
+        with urllib.request.urlopen(req, timeout=15) as r:
+            snap = json.loads(r.read().decode())
+        age = (datetime.now(timezone.utc) - datetime.fromisoformat(snap["snapshot_utc"].replace("Z", "+00:00"))).total_seconds() / 60
+        if not snap.get("ok"):
+            _NVERR["why"] += f" | home snapshot failed ({str(snap.get('error'))[:60]})"
+            return None
+        if age > SNAP_MAX_MIN:
+            _NVERR["why"] += f" | home snapshot {age:.0f} min old (max {SNAP_MAX_MIN})"
+            return None
+        _NVERR["src"] = f"home snapshot, {age:.0f} min old (cloud read failed)"
+        return [p for p in snap.get("positions") or [] if int(p.get("qty") or 0) > 0]
+    except Exception as ex:
+        _NVERR["why"] += f" | home snapshot unreadable ({str(ex)[:60]})"
         return None
 
 
@@ -1038,7 +1072,7 @@ def main():
              f"Unit {money(UNIT)}: + money risks the unit, - money risks to win it. Prices after fees. Routing: every line within "
              "1 point on every book converted to its equivalent price at the alert line (half point from live ladders); best "
              "equivalent wins, ties to the better line; -130 cap on the price taken. Novig positions: "
-             + ("checked" if pos is not None else "unavailable") + "; " + positions.status_line(held) + ".", ""]
+             + (f"checked ({_NVERR.get('src', 'cloud read')})" if pos is not None else "unavailable") + "; " + positions.status_line(held) + ".", ""]
     for r in results:
         body.append(fmt(r))
         if r.get("books"):
