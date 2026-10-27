@@ -1,6 +1,79 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-27T22:17:48Z",
+   "base_depth": 83120,
+   "best_price": 0.74,
+   "best_price_american": -285,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.74,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 8,
+   "date": "2026-10-27",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 9619,
+     "new_this_side": 53939,
+     "other_side": 34557,
+     "other_side_all_levels": 44722,
+     "ratio": 1.7,
+     "this_side": 59600,
+     "this_side_all_levels": 137017
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "E. Alexandrova (0)",
+     "price": 0.74,
+     "this_side": 6010
+    }
+   },
+   "fade_price": 0.26,
+   "first_seen_utc": "2026-10-27T22:10:16Z",
+   "game": "Rakhimova vs Alexandrova",
+   "key": "kalshi|KXWTAMATCH-26OCT27RAKALE|ml|1",
+   "lead_min": 192,
+   "league": "TENNIS",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 53939,
+   "paper_only": true,
+   "price": 0.74,
+   "price_american": -285,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.74,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXWTAMATCH-26OCT27RAKALE-ALE"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "none_10k",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Alexandrova",
+   "side_label": "Alexandrova",
+   "start_source": "novig",
+   "start_utc": "2026-10-28T01:30:00Z",
+   "teams": [
+    "Rakhimova",
+    "Alexandrova"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-27T22:10:16Z",
    "base_depth": 712962,
    "best_price": 0.46,
@@ -1763,8 +1836,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.54,
-   "clv_cents": -3.0,
+   "close_price": 0.53,
+   "clv_cents": -4.0,
    "confirmed_after_min": 2,
    "date": "2026-10-27",
    "depth_by_book": {
