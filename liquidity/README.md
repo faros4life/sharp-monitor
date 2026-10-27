@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Oct 27, 3:10 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 81.
+Updated Tue Oct 27, 3:19 PM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 82.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Oct 27 3:19PM | NHL | Montreal vs St. Louis: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $38k | -113 | ✅ novig,polymarket | ❌ | +0.0c |  | pending |
 | Oct 27 2:20PM | NHL | Ottawa vs Vegas: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $55k | -104 | ✅ novig,polymarket |  | +0.0c |  | pending |
 | Oct 27 2:10PM | NHL | Senators vs. Golden Knights | moneyline: Golden Knights | polymarket | $46k | -150 | ✅ kalshi,novig |  | +0.0c |  | pending |
 | Oct 27 2:00PM | NBA | Brooklyn vs Boston: Total Points | total: NOT Over 222.5 points | kalshi | $37k | -108 | ✅ novig,polymarket | ❌ | -1.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 25 3:40PM | NFL | Denver Broncos @ Arizona Cardinals | spread: DEN -4.5 (4.5) | novig | $162k | -100 | ✅ kalshi |  | +0.5c | yes | W |
 | Oct 25 3:40PM | NBA | Indiana vs Brooklyn: Spread | spread: NOT Indiana wins by over 6.5 points | kalshi | $52k | -104 | ✅ polymarket | ✅ | -29.0c | yes | L |
 | Oct 25 3:35PM | NHL | Minnesota vs Vancouver: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $47k | -100 |  |  | +28.0c | yes | W |
-| Oct 25 3:10PM | NFL | Denver Broncos @ Arizona Cardinals | spread: ARI +4.5 (4.5) | novig | $182k | -104 | ✅ kalshi |  | -1.0c | yes | L |

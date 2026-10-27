@@ -1,6 +1,161 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-27T19:19:50Z",
+   "base_depth": 123786,
+   "best_price": 0.53,
+   "best_price_american": -113,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.53,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-27",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 969,
+     "new_this_side": 38158,
+     "other_side": 103966,
+     "other_side_all_levels": 129713,
+     "ratio": 1.4,
+     "this_side": 147000,
+     "this_side_all_levels": 170474
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "Under 6.5 (6.5)",
+     "price": 0.53,
+     "this_side": 30285
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Under (6.5)",
+     "price": 0.53,
+     "this_side": 49983
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "under 6.5 (6.5)",
+     "price": 0.5349,
+     "this_side": 9349
+    }
+   },
+   "fade_price": 0.48,
+   "first_seen_utc": "2026-10-27T19:10:11Z",
+   "game": "Montreal vs St. Louis: Total Goals",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLTOTAL-26OCT27MTLSTL-7\"}",
+   "lead_min": 280,
+   "league": "NHL",
+   "line": 6.5,
+   "market": "total",
+   "new_money": 38158,
+   "paper_only": false,
+   "price": 0.53,
+   "price_american": -113,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.53,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 6.5,
+     "price": -120
+    },
+    "betonlineag": {
+     "point": 6.0,
+     "price": 109
+    },
+    "betopenly": {
+     "point": 6.5,
+     "price": -112
+    },
+    "betrivers": {
+     "point": 6.5,
+     "price": -129
+    },
+    "betus": {
+     "point": 6.0,
+     "price": 105
+    },
+    "bovada": {
+     "point": 6.5,
+     "price": -122
+    },
+    "draftkings": {
+     "point": 6.5,
+     "price": -125
+    },
+    "fanatics": {
+     "point": 6.5,
+     "price": -125
+    },
+    "fanduel": {
+     "point": 6.5,
+     "price": -130
+    },
+    "kalshi": {
+     "point": 6.5,
+     "price": -113
+    },
+    "lowvig": {
+     "point": 6.0,
+     "price": 109
+    },
+    "mybookieag": {
+     "point": 6.5,
+     "price": -124
+    },
+    "novig": {
+     "point": 6.5,
+     "price": -113
+    },
+    "polymarket": {
+     "point": 6.5,
+     "price": -113
+    },
+    "prophetx": {
+     "point": 6.0,
+     "price": 113
+    },
+    "williamhill_us": {
+     "point": 6.0,
+     "price": 102
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNHLTOTAL-26OCT27MTLSTL-7"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "polymarket"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [
+    "Over 6 (-118)"
+   ],
+   "side": "UNDER",
+   "side_label": "NOT Over 6.5 goals scored",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-28T00:00:00Z",
+   "teams": [
+    "Montreal",
+    "St. Louis"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-27T18:20:12Z",
    "base_depth": 152425,
    "best_price": 0.505,
