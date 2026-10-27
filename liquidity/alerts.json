@@ -1,6 +1,144 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-27T03:20:10Z",
+   "base_depth": 831171,
+   "best_price": 0.51,
+   "best_price_american": -104,
+   "best_price_book": "novig",
+   "bid_improved": true,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-27",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -547290,
+     "new_this_side": 800793,
+     "other_side": 456486,
+     "other_side_all_levels": 658238,
+     "ratio": 2.8,
+     "this_side": 1297979,
+     "this_side_all_levels": 1632473
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "DEL (0)",
+     "price": 0.51,
+     "this_side": 32154
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Delaware",
+     "price": 0.5122,
+     "this_side": 6329
+    }
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-10-27T03:10:11Z",
+   "game": "Delaware vs Western Kentucky",
+   "key": "kalshi|KXNCAAFGAME-26OCT27DELWKU|ml|0",
+   "lead_min": 1180,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 800793,
+   "paper_only": false,
+   "price": 0.5,
+   "price_american": -100,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.49,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -115
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -122
+    },
+    "betopenly": {
+     "point": null,
+     "price": -110
+    },
+    "betrivers": {
+     "point": null,
+     "price": -113
+    },
+    "bovada": {
+     "point": null,
+     "price": -115
+    },
+    "draftkings": {
+     "point": null,
+     "price": -118
+    },
+    "fanatics": {
+     "point": null,
+     "price": -120
+    },
+    "fanduel": {
+     "point": null,
+     "price": -110
+    },
+    "kalshi": {
+     "point": null,
+     "price": -104
+    },
+    "lowvig": {
+     "point": null,
+     "price": -122
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -120
+    },
+    "novig": {
+     "point": null,
+     "price": -104
+    },
+    "prophetx": {
+     "point": null,
+     "price": -105
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -118
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26OCT27DELWKU-DEL"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Delaware",
+   "side_label": "Delaware",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-27T23:00:00Z",
+   "teams": [
+    "Delaware",
+    "Western Kentucky"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-27T03:10:11Z",
    "base_depth": 21927,
    "best_price": 0.5,
@@ -179,6 +317,8 @@
    "new_money": 68851,
    "paper_only": false,
    "price": 0.5,
+   "price_after_15m": 0.505,
+   "price_after_15m_book": "novig",
    "price_american": -100,
    "price_rule": "ok",
    "price_when_first_seen": 0.5,
@@ -259,6 +399,7 @@
    "side_label": "Over 57.5 points",
    "start_source": "prophetx",
    "start_utc": "2026-10-27T23:00:00Z",
+   "still_actionable": false,
    "teams": [
     "Delaware",
     "Western Kentucky"
@@ -588,8 +729,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.82,
-   "clv_cents": 28.0,
+   "close_price": 0.62,
+   "clv_cents": 8.0,
    "confirmed_after_min": 13,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -1289,8 +1430,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": 0.0,
+   "close_price": 0.5,
+   "clv_cents": -1.0,
    "confirmed_after_min": 4,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -3002,8 +3143,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.18,
-   "clv_cents": -33.0,
+   "close_price": 0.38,
+   "clv_cents": -13.0,
    "confirmed_after_min": 10,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -3338,8 +3479,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.28,
-   "clv_cents": -21.0,
+   "close_price": 0.3,
+   "clv_cents": -19.0,
    "confirmed_after_min": 8,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -3638,8 +3779,10 @@
     }
    },
    "fade_price": 0.52,
+   "fade_units": 0.92,
    "first_seen_utc": "2026-10-26T21:14:57Z",
    "game": "Dallas Cowboys @ Philadelphia Eagles",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a136e2-f057-7d23-8a3e-7099ea7aef21\", \"outcome_id\": \"01a136e2-f057-7d23-8a3e-70b928eec698\"}",
    "lead_min": 175,
    "league": "NFL",
@@ -3725,10 +3868,11 @@
     "market_id": "01a136e2-f057-7d23-8a3e-7099ea7aef21",
     "outcome_id": "01a136e2-f057-7d23-8a3e-70b928eec698"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": "no_match",
    "second_book_fresh": false,
+   "settled_utc": "2026-10-27T03:20:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -3741,7 +3885,7 @@
     "Philadelphia Eagles"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-26T21:14:57Z",
@@ -4184,8 +4328,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.83,
-   "clv_cents": 34.0,
+   "close_price": 0.56,
+   "clv_cents": 7.0,
    "confirmed_after_min": 5,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -4846,8 +4990,10 @@
     }
    },
    "fade_price": 0.515,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-26T19:22:45Z",
    "game": "Dallas Cowboys @ Philadelphia Eagles",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a136e2-f057-7d23-8a3e-6eeec299ceee\", \"outcome_id\": \"01a136e2-f057-7d23-8a3e-6f01aeda3b55\"}",
    "lead_min": 285,
    "league": "NFL",
@@ -4933,10 +5079,11 @@
     "market_id": "01a136e2-f057-7d23-8a3e-6eeec299ceee",
     "outcome_id": "01a136e2-f057-7d23-8a3e-6f01aeda3b55"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": "none_10k",
    "second_book_fresh": false,
+   "settled_utc": "2026-10-27T03:20:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Dallas Cowboys",
@@ -4949,7 +5096,7 @@
     "Philadelphia Eagles"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.04
   },
   {
    "alerted_utc": "2026-10-26T19:22:45Z",
@@ -5000,6 +5147,7 @@
     }
    },
    "fade_price": 0.36,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-26T19:10:11Z",
    "game": "Hawks vs. Rockets",
    "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"5951692\"}",
@@ -5094,7 +5242,7 @@
     "outcome_index": 1,
     "pm_market_id": "5951692"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "kalshi",
@@ -5102,6 +5250,7 @@
     "prophetx"
    ],
    "second_book_fresh": true,
+   "settled_utc": "2026-10-27T03:20:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Rockets",
@@ -5114,7 +5263,7 @@
     "Rockets"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.55
   },
   {
    "alerted_utc": "2026-10-26T19:00:17Z",
@@ -6029,8 +6178,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.43,
-   "clv_cents": 4.0,
+   "close_price": 0.44,
+   "clv_cents": 5.0,
    "confirmed_after_min": 14,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -6217,6 +6366,7 @@
     }
    },
    "fade_price": 0.51,
+   "fade_units": 0.93,
    "first_seen_utc": "2026-10-26T18:00:16Z",
    "game": "Hawks vs. Rockets",
    "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6213314\"}",
@@ -6303,12 +6453,13 @@
     "outcome_index": 1,
     "pm_market_id": "6213314"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "kalshi"
    ],
    "second_book_fresh": true,
+   "settled_utc": "2026-10-27T03:20:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Hawks",
@@ -6321,7 +6472,7 @@
     "Rockets"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-26T18:10:11Z",
@@ -7622,8 +7773,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.32,
-   "clv_cents": -21.0,
+   "close_price": 0.35,
+   "clv_cents": -18.0,
    "confirmed_after_min": 10,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -8541,8 +8692,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.72,
-   "clv_cents": 21.0,
+   "close_price": 0.69,
+   "clv_cents": 18.0,
    "confirmed_after_min": 13,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -9033,6 +9184,7 @@
     }
    },
    "fade_price": 0.49,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-26T15:50:10Z",
    "game": "Hawks vs. Rockets",
    "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"6213314\"}",
@@ -9120,13 +9272,14 @@
     "outcome_index": 0,
     "pm_market_id": "6213314"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "kalshi",
     "novig"
    ],
    "second_book_fresh": true,
+   "settled_utc": "2026-10-27T03:20:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Rockets",
@@ -9139,7 +9292,7 @@
     "Rockets"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.94
   },
   {
    "alerted_utc": "2026-10-26T15:50:10Z",
@@ -9499,6 +9652,7 @@
     }
    },
    "fade_price": 0.54,
+   "fade_units": 0.79,
    "first_seen_utc": "2026-10-26T15:30:14Z",
    "game": "Toronto vs Calgary: Total Goals",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLTOTAL-26OCT26TORCGY-7\"}",
@@ -9586,13 +9740,14 @@
     "kalshi_side": "no",
     "market_ticker": "KXNHLTOTAL-26OCT26TORCGY-7"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig",
     "polymarket"
    ],
    "second_book_fresh": false,
+   "settled_utc": "2026-10-27T03:20:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -9605,7 +9760,7 @@
     "Calgary"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-26T15:20:10Z",
@@ -10261,8 +10416,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.73,
-   "clv_cents": 22.0,
+   "close_price": 0.71,
+   "clv_cents": 20.0,
    "confirmed_after_min": 10,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -10414,8 +10569,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.59,
-   "clv_cents": 6.0,
+   "close_price": 0.57,
+   "clv_cents": 4.0,
    "confirmed_after_min": 10,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -11817,8 +11972,10 @@
     }
    },
    "fade_price": 0.495,
+   "fade_units": 1.02,
    "first_seen_utc": "2026-10-26T12:40:12Z",
    "game": "Dallas Cowboys @ Philadelphia Eagles",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a136e2-f057-7d23-8a3e-6eeec299ceee\", \"outcome_id\": \"01a136e2-f057-7d23-8a3e-6efb2faa60af\"}",
    "lead_min": 685,
    "league": "NFL",
@@ -11904,12 +12061,13 @@
     "market_id": "01a136e2-f057-7d23-8a3e-6eeec299ceee",
     "outcome_id": "01a136e2-f057-7d23-8a3e-6efb2faa60af"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "kalshi"
    ],
    "second_book_fresh": true,
+   "settled_utc": "2026-10-27T03:20:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Philadelphia Eagles",
@@ -11922,7 +12080,7 @@
     "Philadelphia Eagles"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-26T12:50:10Z",
@@ -12249,8 +12407,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.58,
-   "clv_cents": -4.0,
+   "close_price": 0.57,
+   "clv_cents": -5.0,
    "confirmed_after_min": 6,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -13478,6 +13636,7 @@
     }
    },
    "fade_price": 0.37,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-26T10:50:10Z",
    "game": "Toronto vs Calgary: Spread",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLSPREAD-26OCT26TORCGY-TOR2\"}",
@@ -13561,13 +13720,14 @@
     "kalshi_side": "no",
     "market_ticker": "KXNHLSPREAD-26OCT26TORCGY-TOR2"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig",
     "polymarket"
    ],
    "second_book_fresh": true,
+   "settled_utc": "2026-10-27T03:20:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Calgary",
@@ -13580,7 +13740,7 @@
     "Calgary"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.56
   },
   {
    "alerted_utc": "2026-10-26T11:00:16Z",
@@ -13631,6 +13791,7 @@
     }
    },
    "fade_price": 0.58,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-26T10:50:10Z",
    "game": "Toronto vs Calgary",
    "key": "kalshi|KXNHLGAME-26OCT26TORCGY|ml|1",
@@ -13718,10 +13879,11 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNHLGAME-26OCT26TORCGY-CGY"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": "none_10k",
    "second_book_fresh": false,
+   "settled_utc": "2026-10-27T03:20:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Calgary",
@@ -13734,7 +13896,7 @@
     "Calgary"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.35
   },
   {
    "alerted_utc": "2026-10-26T10:50:10Z",
@@ -14963,8 +15125,10 @@
     }
    },
    "fade_price": 0.3279,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-26T03:20:10Z",
    "game": "Dallas Cowboys at Philadelphia Eagles",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 0, \"px_event\": 1700008890, \"px_market\": 219, \"side\": \"0\"}",
    "lead_min": 1245,
    "league": "NFL",
@@ -15060,13 +15224,14 @@
     "px_market": 219,
     "side": "0"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "kalshi",
     "novig"
    ],
    "second_book_fresh": true,
+   "settled_utc": "2026-10-27T03:20:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Dallas Cowboys",
@@ -15079,7 +15244,7 @@
     "Philadelphia Eagles"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.47
   },
   {
    "alerted_utc": "2026-10-26T03:20:10Z",
@@ -15124,8 +15289,10 @@
     }
    },
    "fade_price": 0.33,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-26T03:10:10Z",
    "game": "Dallas Cowboys @ Philadelphia Eagles",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a136e2-f056-7801-ad4f-55209c0c40cd\", \"outcome_id\": \"01a136e2-f056-7801-ad4f-554768e69446\"}",
    "lead_min": 1255,
    "league": "NFL",
@@ -15219,13 +15386,14 @@
     "market_id": "01a136e2-f056-7801-ad4f-55209c0c40cd",
     "outcome_id": "01a136e2-f056-7801-ad4f-554768e69446"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "kalshi",
     "prophetx"
    ],
    "second_book_fresh": true,
+   "settled_utc": "2026-10-27T03:20:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Dallas Cowboys",
@@ -15238,7 +15406,7 @@
     "Philadelphia Eagles"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.48
   },
   {
    "alerted_utc": "2026-10-26T02:50:10Z",
@@ -15740,10 +15908,11 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNHLSPREAD-26OCT26TORCGY-TOR2"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": "none_10k",
    "second_book_fresh": false,
+   "settled_utc": "2026-10-27T03:20:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Toronto",
@@ -15756,7 +15925,7 @@
     "Calgary"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-26T01:00:15Z",
@@ -16524,6 +16693,7 @@
    },
    "first_seen_utc": "2026-10-25T23:35:32Z",
    "game": "Dallas vs Philadelphia: Spread",
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNFLSPREAD-26OCT26DALPHI-DAL5\"}",
    "lead_min": 1475,
    "league": "NFL",
@@ -16609,12 +16779,13 @@
     "kalshi_side": "no",
     "market_ticker": "KXNFLSPREAD-26OCT26DALPHI-DAL5"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
+   "settled_utc": "2026-10-27T03:20:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Philadelphia",
@@ -16627,7 +16798,7 @@
     "Philadelphia"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-25T23:30:12Z",
@@ -22261,12 +22432,13 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNHLGAME-26OCT26TORCGY-TOR"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "polymarket"
    ],
    "second_book_fresh": false,
+   "settled_utc": "2026-10-27T03:20:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Toronto",
@@ -22279,7 +22451,7 @@
     "Calgary"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-25T17:10:09Z",
@@ -22296,8 +22468,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.57,
-   "clv_cents": -10.0,
+   "close_price": 0.58,
+   "clv_cents": -9.0,
    "confirmed_after_min": 6,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -25085,6 +25257,7 @@
    },
    "first_seen_utc": "2026-10-25T14:10:10Z",
    "game": "Dallas vs Philadelphia: Spread",
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNFLSPREAD-26OCT26DALPHI-DAL5\"}",
    "lead_min": 2035,
    "league": "NFL",
@@ -25170,13 +25343,14 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNFLSPREAD-26OCT26DALPHI-DAL5"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig",
     "prophetx"
    ],
    "second_book_fresh": true,
+   "settled_utc": "2026-10-27T03:20:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Dallas",
@@ -25189,7 +25363,7 @@
     "Philadelphia"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.98
   },
   {
    "alerted_utc": "2026-10-25T14:10:10Z",
@@ -35171,13 +35345,14 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNFLGAME-26OCT26DALPHI-DAL"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig",
     "prophetx"
    ],
    "second_book_fresh": false,
+   "settled_utc": "2026-10-27T03:20:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Dallas",
@@ -35190,7 +35365,7 @@
     "Philadelphia"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.47
   },
   {
    "alerted_utc": "2026-10-25T03:50:09Z",
