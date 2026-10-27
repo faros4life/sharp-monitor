@@ -33,7 +33,7 @@
    "kill_bar": "none",
    "status": "OPEN",
    "closed_utc": null,
-   "plays": 4,
+   "plays": 5,
    "resulted": 2,
    "W": 1,
    "L": 1,
@@ -210,6 +210,38 @@
    "u_per_play": -1.0,
    "true_close_value_pct": 2.53,
    "true_close_n": 3
+  },
+  {
+   "id": "tier2_core",
+   "name": "Tier 2 core (paper)",
+   "type": "tier",
+   "stream": "SENT",
+   "definition": "Paper record only, no money and no size. SENT alerts passing the phase-1 filter (ProphetX-priced, NCAAF/NBA spreads + unders, NFL unders, not 12-24h, not late), after-fee price -130 or better, monitor grade B, and market = NCAAF/NBA spread or NBA under. Feed-side core of Muse's Tier 2 (Muse adds Muse grade 80+, depth at the alert number and a second-signal overlap). Forward from Oct 27.",
+   "start_utc": "2026-10-27T04:00:00Z",
+   "promotion_bar": "sizing discussion opens only at >= 30 forward resulted AND >= 70% wins AND >= +0.30u/play, at a scheduled review; below that, record only",
+   "kill_bar": "label dies at <= 55% wins on 20+ forward W/L (sticky)",
+   "status": "OPEN (record only, no size)",
+   "closed_utc": null,
+   "plays": 0,
+   "resulted": 0,
+   "W": 0,
+   "L": 0,
+   "P": 0,
+   "units": 0,
+   "u_per_play": null,
+   "true_close_value_pct": null,
+   "true_close_n": 0,
+   "all_history": {
+    "plays": 10,
+    "resulted": 10,
+    "W": 7,
+    "L": 3,
+    "P": 0,
+    "units": 2.87,
+    "u_per_play": 0.287,
+    "true_close_value_pct": -2.67,
+    "true_close_n": 3
+   }
   },
   {
    "id": "ntfy_evening",
@@ -527,5 +559,5 @@
   "liq_evening": 0
  },
  "resulted_rule": "resulted = result W, L or P with a unit value (pushes count as 0u); liquidity artifacts excluded; pending and ungraded plays do not count",
- "updated_utc": "2026-10-27T12:55:11Z"
+ "updated_utc": "2026-10-27T13:20:16Z"
 }

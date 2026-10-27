@@ -1,4 +1,4 @@
-# Paper splits (updated 2026-10-27T12:55:11Z)
+# Paper splits (updated 2026-10-27T13:20:16Z)
 
 Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kill bar: 30+ resulted at -0.10u/play or worse closes a split.
 
@@ -14,6 +14,7 @@ Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kil
 | Priced -125 or worse | scan | 2026-10-26 | 1-0-0 | +0.79 | +0.790 | -1.40 | OPEN |
 | College basketball | scan | 2026-10-26 | 0-0-0 | +0.00 |  |  | OPEN |
 | Fade alerts sent 12-24h out | scan | 2026-10-26 | 3-0-0 | -3.00 | -1.000 | +2.53 | OPEN |
+| Tier 2 core (paper) | tier | 2026-10-27 | 0-0-0 | +0.00 |  |  | OPEN (record only, no size) |
 | Evening sends, ex-Hard Rock | scan | 2026-10-26 | 0-0-0 | +0.00 |  |  | OPEN |
 | Muted midday (11 AM-2 PM ET) | scan | 2026-10-26 | 0-0-0 | +0.00 |  |  | OPEN |
 | Liquidity totals, no sharp agree | scan | 2026-10-22 | 57-44-0 | +9.79 | +0.097 |  | OPEN |
@@ -22,7 +23,7 @@ Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kil
 | Liquidity overnight (12-5 AM ET) | scan | 2026-10-26 | 1-0-0 | +0.87 | +0.870 |  | OPEN |
 | Liquidity evening (5-8 PM ET) | scan | 2026-10-26 | 7-8-0 | +0.97 | +0.065 |  | OPEN |
 
-**Time splits, all-history reference (every resulted play in the feed, not forward; read only):** Evening sends, ex-Hard Rock 8-11-1, -4.32u (-0.216/play); Muted midday (11 AM-2 PM ET) 24-8-0, +12.60u (+0.394/play); Liquidity overnight (12-5 AM ET) 36-21-0, +5.48u (+0.096/play); Liquidity evening (5-8 PM ET) 55-65-0, -23.38u (-0.195/play)
+**All-history reference (every resulted play in the feed, not forward; read only):** Tier 2 core (paper) 7-3-0, +2.87u (+0.287/play); Evening sends, ex-Hard Rock 8-11-1, -4.32u (-0.216/play); Muted midday (11 AM-2 PM ET) 24-8-0, +12.60u (+0.394/play); Liquidity overnight (12-5 AM ET) 36-21-0, +5.48u (+0.096/play); Liquidity evening (5-8 PM ET) 55-65-0, -23.38u (-0.195/play)
 
 **Muted midday (11 AM-2 PM ET): breakdowns** (resulted plays only)
 
@@ -59,6 +60,7 @@ Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kil
 - **Priced -125 or worse** (scan; promote >= 30 forward resulted AND >= +0.10u/play; kill >= 30 resulted at <= -0.1u/play -> CLOSED): Sent alerts with price after fee at -125 or worse.
 - **College basketball** (scan; promote >= 30 forward resulted AND >= +0.10u/play; kill >= 30 resulted at <= -0.1u/play -> CLOSED): Every NCAAB alert, sent or log-only (the AP Top 25 rule mutes the rest). November Pinnacle numbers are softer (preseason ratings): early reads carry a signal-quality discount.
 - **Fade alerts sent 12-24h out** (scan; promote >= 30 forward resulted AND >= +0.10u/play; kill >= 30 resulted at <= -0.1u/play -> CLOSED): Sent alerts 12-24h before start, graded on the OTHER side at the real opposite-side price logged when the alert fired (fade_units). Plays without a logged opposite price do not count.
+- **Tier 2 core (paper)** (tier; promote sizing discussion opens only at >= 30 forward resulted AND >= 70% wins AND >= +0.30u/play, at a scheduled review; below that, record only; kill label dies at <= 55% wins on 20+ forward W/L (sticky)): Paper record only, no money and no size. SENT alerts passing the phase-1 filter (ProphetX-priced, NCAAF/NBA spreads + unders, NFL unders, not 12-24h, not late), after-fee price -130 or better, monitor grade B, and market = NCAAF/NBA spread or NBA under. Feed-side core of Muse's Tier 2 (Muse adds Muse grade 80+, depth at the alert number and a second-signal overlap). Forward from Oct 27.
 - **Evening sends, ex-Hard Rock** (scan; promote >= 30 forward resulted AND >= +0.10u/play; kill >= 30 resulted at <= -0.1u/play -> CLOSED): SENT alerts whose pricing book is not Hard Rock, sent 8:00 PM-11:59 PM ET (alert_utc, DST-aware). Watch split, not a cut: overlaps the 12-24h lead band heavily. Historical read (Muse, ex-HR): -0.22/play, n=20.
 - **Muted midday (11 AM-2 PM ET)** (scan; promote >= 30 forward resulted AND >= +0.10u/play; kill >= 30 resulted at <= -0.1u/play -> CLOSED): MUTED alerts only (sent_to_phone false), alerted 11:00 AM-1:59 PM ET (alert_utc, DST-aware), all books, all markets. Forward watch, NOT an unmute: if it holds >= +0.10/play at 30 forward resulted, unmuting midday non-Top 25 alerts becomes a review question for Peter. Historical read (Muse, ALL PLAYS): 24-8, +12.60u, +0.39/play, n=32, concentrated (ProphetX-priced 16-1, +12.67u; +10.90u from the week of Oct 12); graded era +1.70u on 13.
 - **Liquidity totals, no sharp agree** (scan; promote >= 30 forward resulted AND >= +0.10u/play; kill >= 30 resulted at <= -0.1u/play -> CLOSED): Liquidity main feed, market = total, sharp_agree empty, artifacts excluded, alerted from Oct 22 10:30 AM ET.
