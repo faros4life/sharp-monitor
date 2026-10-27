@@ -1,6 +1,132 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-27T03:10:11Z",
+   "base_depth": 21927,
+   "best_price": 0.5,
+   "best_price_american": -100,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-27",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 8204,
+     "new_this_side": 29572,
+     "other_side": 19441,
+     "other_side_all_levels": 22273,
+     "ratio": 2.9,
+     "this_side": 57109,
+     "this_side_all_levels": 60319
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "DET +3.5 (-3.5)",
+     "price": 0.5,
+     "this_side": 4002
+    }
+   },
+   "fade_price": 0.52,
+   "first_seen_utc": "2026-10-27T03:00:17Z",
+   "game": "Detroit vs New York: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBASPREAD-26OCT27DETNYK-NYK4\"}",
+   "lead_min": 1255,
+   "league": "NBA",
+   "line": 3.5,
+   "market": "spread",
+   "new_money": 29572,
+   "paper_only": false,
+   "price": 0.5,
+   "price_american": -100,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.5,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 3.5,
+     "price": -102
+    },
+    "betonlineag": {
+     "point": 3.5,
+     "price": -105
+    },
+    "betrivers": {
+     "point": 4.5,
+     "price": -113
+    },
+    "betus": {
+     "point": 3.5,
+     "price": -105
+    },
+    "draftkings": {
+     "point": 3.5,
+     "price": -110
+    },
+    "fanatics": {
+     "point": 3.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 4.5,
+     "price": -114
+    },
+    "kalshi": {
+     "point": 3.5,
+     "price": -104
+    },
+    "lowvig": {
+     "point": 3.5,
+     "price": -101
+    },
+    "mybookieag": {
+     "point": 3.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 3.5,
+     "price": -102
+    },
+    "polymarket": {
+     "point": -22.5,
+     "price": -3233
+    },
+    "williamhill_us": {
+     "point": 3.5,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNBASPREAD-26OCT27DETNYK-NYK4"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "none_10k",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Detroit",
+   "side_label": "NOT New York wins by over 3.5 points",
+   "start_source": "novig",
+   "start_utc": "2026-10-28T00:05:00Z",
+   "teams": [
+    "Detroit",
+    "New York"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-27T03:00:17Z",
    "base_depth": 239328,
    "best_price": 0.5026,
@@ -462,8 +588,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.92,
-   "clv_cents": 38.0,
+   "close_price": 0.82,
+   "clv_cents": 28.0,
    "confirmed_after_min": 13,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -2876,8 +3002,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.08,
-   "clv_cents": -43.0,
+   "close_price": 0.18,
+   "clv_cents": -33.0,
    "confirmed_after_min": 10,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -3212,8 +3338,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.37,
-   "clv_cents": -12.0,
+   "close_price": 0.28,
+   "clv_cents": -21.0,
    "confirmed_after_min": 8,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -4058,8 +4184,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.78,
-   "clv_cents": 29.0,
+   "close_price": 0.83,
+   "clv_cents": 34.0,
    "confirmed_after_min": 5,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -5481,6 +5607,7 @@
     }
    },
    "fade_price": 0.51,
+   "fade_units": 0.9,
    "first_seen_utc": "2026-10-26T18:40:11Z",
    "game": "Atlanta vs Houston: Spread",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBASPREAD-26OCT26ATLHOU-HOU5\"}",
@@ -5568,12 +5695,13 @@
     "kalshi_side": "no",
     "market_ticker": "KXNBASPREAD-26OCT26ATLHOU-HOU5"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "polymarket"
    ],
    "second_book_fresh": false,
+   "settled_utc": "2026-10-27T03:10:11Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Atlanta",
@@ -5586,7 +5714,7 @@
     "Houston"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-26T18:40:11Z",
@@ -5901,8 +6029,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.42,
-   "clv_cents": 3.0,
+   "close_price": 0.43,
+   "clv_cents": 4.0,
    "confirmed_after_min": 14,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -7494,8 +7622,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.43,
-   "clv_cents": -10.0,
+   "close_price": 0.32,
+   "clv_cents": -21.0,
    "confirmed_after_min": 10,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -8592,6 +8720,7 @@
     }
    },
    "fade_price": 0.5,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-26T16:00:17Z",
    "game": "Atlanta vs Houston: Spread",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNBASPREAD-26OCT26ATLHOU-HOU5\"}",
@@ -8679,13 +8808,14 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBASPREAD-26OCT26ATLHOU-HOU5"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig",
     "polymarket"
    ],
    "second_book_fresh": false,
+   "settled_utc": "2026-10-27T03:10:11Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Houston",
@@ -8698,7 +8828,7 @@
     "Houston"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.94
   },
   {
    "alerted_utc": "2026-10-26T16:00:17Z",
@@ -9335,8 +9465,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.4,
-   "clv_cents": -7.0,
+   "close_price": 0.62,
+   "clv_cents": 15.0,
    "confirmed_after_min": 10,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -10131,8 +10261,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.65,
-   "clv_cents": 14.0,
+   "close_price": 0.73,
+   "clv_cents": 22.0,
    "confirmed_after_min": 10,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -10284,8 +10414,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.68,
-   "clv_cents": 15.0,
+   "close_price": 0.59,
+   "clv_cents": 6.0,
    "confirmed_after_min": 10,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -11837,6 +11967,7 @@
     }
    },
    "fade_price": 0.49,
+   "fade_units": 0.97,
    "first_seen_utc": "2026-10-26T12:40:12Z",
    "game": "Atlanta vs Houston: Spread",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBASPREAD-26OCT26ATLHOU-HOU6\"}",
@@ -11924,13 +12055,14 @@
     "kalshi_side": "no",
     "market_ticker": "KXNBASPREAD-26OCT26ATLHOU-HOU6"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig",
     "polymarket"
    ],
    "second_book_fresh": true,
+   "settled_utc": "2026-10-27T03:10:11Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Atlanta",
@@ -11943,7 +12075,7 @@
     "Houston"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-26T12:40:12Z",
@@ -12117,8 +12249,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.59,
-   "clv_cents": -3.0,
+   "close_price": 0.58,
+   "clv_cents": -4.0,
    "confirmed_after_min": 6,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -13025,8 +13157,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.71,
-   "clv_cents": 11.0,
+   "close_price": 0.75,
+   "clv_cents": 15.0,
    "confirmed_after_min": 10,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -13465,8 +13597,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.79,
-   "clv_cents": 36.0,
+   "close_price": 0.88,
+   "clv_cents": 45.0,
    "confirmed_after_min": 10,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -14068,8 +14200,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.73,
-   "clv_cents": 20.0,
+   "close_price": 0.65,
+   "clv_cents": 12.0,
    "confirmed_after_min": 10,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -22049,8 +22181,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.21,
-   "clv_cents": -36.0,
+   "close_price": 0.13,
+   "clv_cents": -44.0,
    "confirmed_after_min": 6,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -22164,8 +22296,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.66,
-   "clv_cents": -1.0,
+   "close_price": 0.57,
+   "clv_cents": -10.0,
    "confirmed_after_min": 6,
    "date": "2026-10-26",
    "depth_by_book": {
@@ -34920,6 +35052,7 @@
     "polymarket",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.96,
    "clv_cents": 28.0,
    "confirmed_after_min": 7,
