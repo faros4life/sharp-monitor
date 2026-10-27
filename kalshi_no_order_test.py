@@ -143,11 +143,11 @@ def main():
     st, resp = call("POST", "/portfolio/orders", body=order)
     route = "older route (action buy, side no)"
     print(f"3) Order [{route}] {json.dumps(order)}\n   -> {st}: {json.dumps(resp)[:700] if isinstance(resp, dict) else resp}")
-    if st in (404, 405):
+    if st in (404, 405, 410):   # 410 = 'deprecated_v1_order_endpoint' (Oct 27): the older route is retired
         order = {"ticker": mk["ticker"], "side": "ask", "count": "1", "price": f"{1 - no_cost:.2f}",
                  "time_in_force": "fill_or_kill", "self_trade_prevention_type": "taker_at_cross", "client_order_id": str(uuid.uuid4())}
         st, resp = call("POST", "/portfolio/events/orders", body=order)
-        route = "V2 route (YES ask)"
+        route = "V2 route (side ask = sell YES = buy NO at 1 - price)"
         print(f"   Order [{route}] {json.dumps(order)}\n   -> {st}: {json.dumps(resp)[:700] if isinstance(resp, dict) else resp}")
     if st not in (200, 201):
         sys.exit("   Order not accepted (nothing placed). Paste this log to Claude.")
