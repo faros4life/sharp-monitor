@@ -89,8 +89,8 @@ def main():
     price, avail = int(best["price"]), float(best.get("value") or 0)
     print(f"2) {e.get('name')} | taking '{best.get('name')}' best {price:+d} with ${avail:,.2f} at that price")
 
-    print("A) Strategy names at a NON-crossing price (cannot fill):")
-    for strat in ("immediateOrCancel", "ImmediateOrCancel", "ioc", "IOC", "immediate_or_cancel", "fillAndKill", "limit", "bogusStrategyXYZ"):
+    print("A) Strategy names at a NON-crossing price (cannot fill). fillOrKill first = CONTROL: if it is accepted, the price is valid and any 400 below is the strategy name:")
+    for strat in ("fillOrKill", "immediateOrCancel", "ImmediateOrCancel", "ioc", "IOC", "immediate_or_cancel", "fillAndKill", "limit", "bogusStrategyXYZ"):
         ext = str(uuid.uuid4())
         order = {"external_id": ext, "strike_id": best["strike_id"], "price": nofill(price), "quantity": 1.0, "order_strategy": strat}
         st, resp = call("/v4/mm/submit_order", order)
