@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Oct 27, 12:40 PM ET. This run: 2 new, 0 not confirmed, 0 pending. Open alerts: 70.
+Updated Tue Oct 27, 12:50 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 70.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -65,8 +65,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 27 12:12AM | NHL | New Jersey vs Dallas: Spread | spread: NOT Dallas wins by over 1.5 goals | kalshi | $57k | -233 | ✅ polymarket |  | +0.0c |  | pending |
 | Oct 27 12:12AM | NHL | Minnesota vs Utah | moneyline: Utah | kalshi | $104k | -117 | ✅ polymarket |  | -1.0c |  | pending |
 | Oct 27 12:12AM | NHL | Los Angeles vs Chicago | moneyline: Chicago | kalshi | $37k | +104 |  |  | +0.0c | yes | pending |
-| Oct 26 11:20PM | NCAAF | Delaware vs Western Kentucky | moneyline: Delaware | kalshi | $801k | -100 | ✅ novig |  | -1.0c | yes | pending |
-| Oct 26 11:10PM | NBA | Detroit vs New York: Spread | spread: NOT New York wins by over 3.5 points | kalshi | $30k | -100 |  |  | -3.0c |  | pending |
+| Oct 26 11:20PM | NCAAF | Delaware vs Western Kentucky | moneyline: Delaware | kalshi | $801k | -100 | ✅ novig |  | -2.0c | yes | pending |
+| Oct 26 11:10PM | NBA | Detroit vs New York: Spread | spread: NOT New York wins by over 3.5 points | kalshi | $30k | -100 |  |  | -2.0c |  | pending |
 | Oct 26 11:00PM | NCAAF | Delaware vs Western Kentucky: Total Points | total: Over 57.5 points | kalshi | $69k | -100 |  |  | -1.0c | yes | pending |
 | Oct 26 9:30PM | NBA | Golden State Warriors @ Denver Nuggets | moneyline: DEN (0) | novig | $31k | -245 | ✅ kalshi,polymarket,prophetx |  | +0.0c |  | L |
 | Oct 26 9:20PM | NHL | Red Wings vs. Oilers | spread: Oilers (-1.5) | polymarket | $43k | +138 | ✅ novig |  | +0.0c |  | L |
