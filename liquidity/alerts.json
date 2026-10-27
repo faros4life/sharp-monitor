@@ -1,6 +1,146 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-27T04:45:19Z",
+   "base_depth": 404794,
+   "best_price": 0.555,
+   "best_price_american": -125,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.55,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-10-28",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 2893,
+     "new_this_side": 244585,
+     "other_side": 226008,
+     "other_side_all_levels": 353579,
+     "ratio": 1.9,
+     "this_side": 420341,
+     "this_side_all_levels": 649463
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "MTSU (0)",
+     "price": 0.555,
+     "this_side": 11813
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Middle Tennessee",
+     "price": 0.5516,
+     "this_side": 3922
+    }
+   },
+   "fade_price": 0.46,
+   "first_seen_utc": "2026-10-27T04:40:10Z",
+   "game": "Kennesaw St. vs Middle Tennessee",
+   "key": "kalshi|KXNCAAFGAME-26OCT28KENNMTU|ml|1",
+   "lead_min": 2535,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 244585,
+   "paper_only": false,
+   "price": 0.55,
+   "price_american": -122,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.55,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -145
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -140
+    },
+    "betrivers": {
+     "point": null,
+     "price": -141
+    },
+    "betus": {
+     "point": null,
+     "price": -140
+    },
+    "bovada": {
+     "point": null,
+     "price": -135
+    },
+    "draftkings": {
+     "point": null,
+     "price": -142
+    },
+    "fanatics": {
+     "point": null,
+     "price": -145
+    },
+    "fanduel": {
+     "point": null,
+     "price": -144
+    },
+    "kalshi": {
+     "point": null,
+     "price": -122
+    },
+    "lowvig": {
+     "point": null,
+     "price": -140
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -140
+    },
+    "novig": {
+     "point": null,
+     "price": -125
+    },
+    "polymarket": {
+     "point": null,
+     "price": -122
+    },
+    "prophetx": {
+     "point": null,
+     "price": -123
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -143
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26OCT28KENNMTU-MTU"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "none_10k",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Middle Tennessee",
+   "side_label": "Middle Tennessee",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-28T23:00:00Z",
+   "teams": [
+    "Kennesaw St.",
+    "Middle Tennessee"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-27T04:40:10Z",
    "base_depth": 142265,
    "best_price": 0.52,
@@ -15322,6 +15462,7 @@
     }
    },
    "fade_price": 0.49,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-26T10:40:10Z",
    "game": "Warriors vs. Nuggets",
    "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"6213359\"}",
@@ -15409,12 +15550,13 @@
     "outcome_index": 0,
     "pm_market_id": "6213359"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "kalshi"
    ],
    "second_book_fresh": true,
+   "settled_utc": "2026-10-27T04:45:19Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -15427,7 +15569,7 @@
     "Nuggets"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.9
   },
   {
    "alerted_utc": "2026-10-26T10:50:10Z",
