@@ -1,4 +1,4 @@
-# Paper splits (updated 2026-10-27T02:20:10Z)
+# Paper splits (updated 2026-10-27T02:34:31Z)
 
 Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kill bar: 30+ resulted at -0.10u/play or worse closes a split.
 
@@ -15,7 +15,7 @@ Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kil
 | College basketball | scan | 2026-10-26 | 0-0-0 | +0.00 |  |  | OPEN |
 | Fade alerts sent 12-24h out | scan | 2026-10-26 | 1-0-0 | -1.00 | -1.000 | +0.50 | OPEN |
 | Liquidity totals, no sharp agree | scan | 2026-10-22 | 51-38-0 | +10.34 | +0.116 |  | ELIGIBLE at next review |
-| Liquidity vs sharp (oppose) | scan | 2026-10-22 | 39-38-0 | -2.82 | -0.037 |  | OPEN |
+| Liquidity vs sharp (oppose) | scan | 2026-10-22 | 39-39-0 | -3.82 | -0.049 |  | OPEN |
 
 **ProphetX tripwire:** 4/30 resulted, -0.082u/play - counting.
 
