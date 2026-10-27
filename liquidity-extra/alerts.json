@@ -1,6 +1,81 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-27T07:50:15Z",
+   "base_depth": 120246,
+   "best_price": 0.63,
+   "best_price_american": -170,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.63,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-27",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 3080,
+     "new_this_side": 27211,
+     "other_side": 43985,
+     "other_side_all_levels": 69256,
+     "ratio": 2.6,
+     "this_side": 115021,
+     "this_side_all_levels": 145681
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "A. Mannarino (0)",
+     "price": 0.63,
+     "this_side": 10532
+    }
+   },
+   "fade_price": 0.37,
+   "first_seen_utc": "2026-10-27T07:40:15Z",
+   "game": "Mannarino vs Buse",
+   "key": "kalshi|KXATPMATCH-26OCT27MANBUS|ml|0",
+   "lead_min": 370,
+   "league": "TENNIS",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 27211,
+   "paper_only": true,
+   "price": 0.63,
+   "price_american": -170,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.63,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXATPMATCH-26OCT27MANBUS-MAN"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Mannarino",
+   "side_label": "Mannarino",
+   "start_source": "novig",
+   "start_utc": "2026-10-27T14:00:00Z",
+   "teams": [
+    "Mannarino",
+    "Buse"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-27T07:30:18Z",
    "base_depth": 59255,
    "best_price": 0.735,
@@ -47,6 +122,8 @@
    "new_money": 25841,
    "paper_only": true,
    "price": 0.74,
+   "price_after_15m": 0.735,
+   "price_after_15m_book": "novig",
    "price_american": -285,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.74,
@@ -66,6 +143,7 @@
    "side_label": "Eala",
    "start_source": "novig",
    "start_utc": "2026-10-28T01:30:00Z",
+   "still_actionable": true,
    "teams": [
     "Eala",
     "Gibson"
