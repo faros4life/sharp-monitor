@@ -1,6 +1,142 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-27T13:10:13Z",
+   "base_depth": 119269,
+   "best_price": 0.5275,
+   "best_price_american": -112,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-27",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -1773,
+     "new_this_side": 36706,
+     "other_side": 16968,
+     "other_side_all_levels": 103647,
+     "ratio": 5.2,
+     "this_side": 88807,
+     "this_side_all_levels": 158059
+    }
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-10-27T13:00:17Z",
+   "game": "Portland vs Los Angeles L: Total Points",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBATOTAL-26OCT27PORLAL-236\"}",
+   "lead_min": 830,
+   "league": "NBA",
+   "line": 235.5,
+   "market": "total",
+   "new_money": 36706,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 234.5,
+     "price": -115
+    },
+    "betonlineag": {
+     "point": 234.0,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 234.0,
+     "price": -102
+    },
+    "betrivers": {
+     "point": 233.5,
+     "price": -112
+    },
+    "betus": {
+     "point": 234.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 233.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 233.5,
+     "price": -108
+    },
+    "fanatics": {
+     "point": 234.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 234.5,
+     "price": -106
+    },
+    "kalshi": {
+     "point": 235.5,
+     "price": -104
+    },
+    "lowvig": {
+     "point": 234.0,
+     "price": -107
+    },
+    "mybookieag": {
+     "point": 234.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 234.5,
+     "price": -106
+    },
+    "polymarket": {
+     "point": 233.5,
+     "price": 104
+    },
+    "prophetx": {
+     "point": 234.0,
+     "price": 101
+    },
+    "williamhill_us": {
+     "point": 233.5,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNBATOTAL-26OCT27PORLAL-236"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "no_match",
+   "second_book_fresh": false,
+   "sharp_agree": [
+    "Under 235.5 (+100)",
+    "Under 235.5 (+100)",
+    "Under 236.5 (-110)"
+   ],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "NOT Over 235.5 points",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-28T03:00:00Z",
+   "teams": [
+    "Portland",
+    "Los Angeles L"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-27T12:50:11Z",
    "base_depth": 47668,
    "best_price": 0.685,
@@ -47,6 +183,8 @@
    "new_money": 25917,
    "paper_only": false,
    "price": 0.69,
+   "price_after_15m": 0.685,
+   "price_after_15m_book": "novig",
    "price_american": -223,
    "price_rule": "fails_cap",
    "price_when_first_seen": 0.69,
@@ -129,6 +267,7 @@
    "side_label": "Jets (+1.5)",
    "start_source": "polymarket",
    "start_utc": "2026-10-28T00:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Panthers",
     "Jets"
@@ -189,6 +328,8 @@
    "new_money": 25430,
    "paper_only": false,
    "price": 0.685,
+   "price_after_15m": 0.685,
+   "price_after_15m_book": "novig",
    "price_american": -217,
    "price_rule": "fails_cap",
    "price_when_first_seen": 0.685,
@@ -272,6 +413,7 @@
    "side_label": "WPG +1.5 (1.5)",
    "start_source": "prophetx",
    "start_utc": "2026-10-28T00:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Florida Panthers",
     "Winnipeg Jets"
@@ -320,6 +462,8 @@
    "new_money": 35881,
    "paper_only": false,
    "price": 0.515,
+   "price_after_15m": 0.515,
+   "price_after_15m_book": "novig",
    "price_american": -106,
    "price_rule": "ok",
    "price_when_first_seen": 0.515,
@@ -339,6 +483,7 @@
    "side_label": "MOST -4.5 (-4.5)",
    "start_source": "prophetx",
    "start_utc": "2026-10-28T00:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Sam Houston State",
     "Missouri State"
@@ -393,6 +538,8 @@
    "new_money": 111376,
    "paper_only": false,
    "price": 0.69,
+   "price_after_15m": 0.685,
+   "price_after_15m_book": "novig",
    "price_american": -223,
    "price_rule": "fails_cap",
    "price_when_first_seen": 0.69,
@@ -475,6 +622,7 @@
    "side_label": "NOT Florida wins by over 1.5 goals",
    "start_source": "prophetx",
    "start_utc": "2026-10-28T00:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Florida",
     "Winnipeg"
