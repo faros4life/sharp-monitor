@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Oct 27, 4:36 PM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 83.
+Updated Tue Oct 27, 4:40 PM ET. This run: 1 new, 1 not confirmed, 0 pending. Open alerts: 84.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Oct 27 4:40PM | NHL | Blue Jackets vs. Flyers | total: Over (5.5) | polymarket | $30k | -104 | ✅ kalshi,novig |  | +0.0c |  | pending |
 | Oct 27 3:30PM | NHL | Devils vs. Stars | moneyline: Stars | polymarket | $86k | -108 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Oct 27 3:24PM | NHL | Montreal vs St. Louis: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $38k | -113 | ✅ novig,polymarket | ❌ | +0.0c |  | pending |
 | Oct 27 2:20PM | NHL | Ottawa vs Vegas: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $55k | -104 | ✅ novig,polymarket |  | +0.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 25 3:40PM | NBA | Pacers vs. Nets | spread: Nets (+6.5) | polymarket | $56k | -104 | ✅ kalshi | ✅ | +2.0c | yes | L |
 | Oct 25 3:40PM | NBA | Lakers vs. Jazz | spread: Lakers (-6.5) | polymarket | $354k | -100 |  |  | +0.0c |  | W |
 | Oct 25 3:40PM | NFL | Denver Broncos @ Arizona Cardinals | spread: DEN -4.5 (4.5) | novig | $162k | -100 | ✅ kalshi |  | +0.5c | yes | W |
-| Oct 25 3:40PM | NBA | Indiana vs Brooklyn: Spread | spread: NOT Indiana wins by over 6.5 points | kalshi | $52k | -104 | ✅ polymarket | ✅ | -29.0c | yes | L |
