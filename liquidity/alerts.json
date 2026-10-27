@@ -1,6 +1,305 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-27T12:30:18Z",
+   "base_depth": 36544,
+   "best_price": 0.535,
+   "best_price_american": -115,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.54,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-27",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -2889,
+     "new_this_side": 45905,
+     "other_side": 29337,
+     "other_side_all_levels": 35385,
+     "ratio": 2.7,
+     "this_side": 77920,
+     "this_side_all_levels": 90895
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "Under 6.5 (6.5)",
+     "price": 0.535,
+     "this_side": 24360
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Under (6.5)",
+     "price": 0.54,
+     "this_side": 21802
+    }
+   },
+   "fade_price": 0.47,
+   "first_seen_utc": "2026-10-27T12:20:10Z",
+   "game": "Boston vs Carolina: Total Goals",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLTOTAL-26OCT27BOSCAR-7\"}",
+   "lead_min": 690,
+   "league": "NHL",
+   "line": 6.5,
+   "market": "total",
+   "new_money": 45905,
+   "paper_only": false,
+   "price": 0.54,
+   "price_american": -117,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.54,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 6.0,
+     "price": -102
+    },
+    "betonlineag": {
+     "point": 6.0,
+     "price": 109
+    },
+    "betopenly": {
+     "point": 6.0,
+     "price": 107
+    },
+    "betrivers": {
+     "point": 6.5,
+     "price": -129
+    },
+    "betus": {
+     "point": 6.0,
+     "price": 105
+    },
+    "bovada": {
+     "point": 6.0,
+     "price": 102
+    },
+    "draftkings": {
+     "point": 6.5,
+     "price": -125
+    },
+    "fanatics": {
+     "point": 6.5,
+     "price": -125
+    },
+    "fanduel": {
+     "point": 6.5,
+     "price": -124
+    },
+    "kalshi": {
+     "point": 6.5,
+     "price": -117
+    },
+    "lowvig": {
+     "point": 6.0,
+     "price": 109
+    },
+    "mybookieag": {
+     "point": 6.0,
+     "price": 101
+    },
+    "novig": {
+     "point": 6.5,
+     "price": -115
+    },
+    "polymarket": {
+     "point": 6.5,
+     "price": -117
+    },
+    "prophetx": {
+     "point": 6.0,
+     "price": 107
+    },
+    "williamhill_us": {
+     "point": 6.0,
+     "price": -104
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNHLTOTAL-26OCT27BOSCAR-7"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "polymarket"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [
+    "Under 6.5 (-115)"
+   ],
+   "sharp_oppose": [
+    "Over 6 (-116)"
+   ],
+   "side": "UNDER",
+   "side_label": "NOT Over 6.5 goals scored",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-28T00:00:00Z",
+   "teams": [
+    "Boston",
+    "Carolina"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-27T12:30:18Z",
+   "base_depth": 139025,
+   "best_price": 0.475,
+   "best_price_american": 111,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.48,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-27",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 2088,
+     "new_this_side": 25776,
+     "other_side": 156617,
+     "other_side_all_levels": 161286,
+     "ratio": 1.2,
+     "this_side": 194280,
+     "this_side_all_levels": 199963
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "NYI (0)",
+     "price": 0.475,
+     "this_side": 14742
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "New York Islanders",
+     "price": 0.4739,
+     "this_side": 7493
+    }
+   },
+   "fade_price": 0.52,
+   "first_seen_utc": "2026-10-27T12:20:10Z",
+   "game": "New York I vs Nashville",
+   "key": "kalshi|KXNHLGAME-26OCT27NYINSH|ml|0",
+   "lead_min": 690,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 25776,
+   "paper_only": false,
+   "price": 0.48,
+   "price_american": 108,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.48,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": 100
+    },
+    "betonlineag": {
+     "point": null,
+     "price": 106
+    },
+    "betopenly": {
+     "point": null,
+     "price": 110
+    },
+    "betrivers": {
+     "point": null,
+     "price": 105
+    },
+    "betus": {
+     "point": null,
+     "price": 100
+    },
+    "bovada": {
+     "point": null,
+     "price": 102
+    },
+    "draftkings": {
+     "point": null,
+     "price": 102
+    },
+    "fanatics": {
+     "point": null,
+     "price": 100
+    },
+    "fanduel": {
+     "point": null,
+     "price": 100
+    },
+    "kalshi": {
+     "point": null,
+     "price": 104
+    },
+    "lowvig": {
+     "point": null,
+     "price": 106
+    },
+    "mybookieag": {
+     "point": null,
+     "price": 100
+    },
+    "novig": {
+     "point": null,
+     "price": 111
+    },
+    "polymarket": {
+     "point": null,
+     "price": 108
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": 108
+    },
+    "prophetx": {
+     "point": null,
+     "price": 111
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": 101
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNHLGAME-26OCT27NYINSH-NYI"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "none_10k",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "New York I",
+   "side_label": "New York I",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-28T00:00:00Z",
+   "teams": [
+    "New York I",
+    "Nashville"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-27T12:20:10Z",
    "base_depth": 47525,
    "best_price": 0.5574,
@@ -460,6 +759,8 @@
    "new_money": 95291,
    "paper_only": false,
    "price": 0.4,
+   "price_after_15m": 0.395,
+   "price_after_15m_book": "novig",
    "price_american": 150,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.4,
@@ -552,6 +853,7 @@
    "side_label": "Pistons",
    "start_source": "polymarket",
    "start_utc": "2026-10-28T00:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Pistons",
     "Knicks"
