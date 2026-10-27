@@ -1,6 +1,225 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-27T22:10:16Z",
+   "base_depth": 712962,
+   "best_price": 0.46,
+   "best_price_american": 117,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.46,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-27",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 155223,
+     "new_this_side": 468353,
+     "other_side": 966989,
+     "other_side_all_levels": 1056079,
+     "ratio": 1.1,
+     "this_side": 1075177,
+     "this_side_all_levels": 1152368
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "Over 7.5 (7.5)",
+     "price": 0.46,
+     "this_side": 76465
+    },
+    "polymarket": {
+     "heavier_side": false,
+     "label": "Over (7.5)",
+     "price": 0.46,
+     "this_side": 144233
+    }
+   },
+   "fade_price": 0.55,
+   "first_seen_utc": "2026-10-27T22:00:21Z",
+   "game": "Milwaukee vs Tampa Bay: Total Runs",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXMLBTOTAL-26OCT272000MILTB-8\"}",
+   "lead_min": 110,
+   "league": "MLB",
+   "line": 7.5,
+   "market": "total",
+   "new_money": 468353,
+   "paper_only": false,
+   "price": 0.46,
+   "price_american": 117,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.46,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 7.0,
+     "price": -118
+    },
+    "betonlineag": {
+     "point": 7.0,
+     "price": -122
+    },
+    "betopenly": {
+     "point": 7.0,
+     "price": -114
+    },
+    "betrivers": {
+     "point": 7.0,
+     "price": -115
+    },
+    "betus": {
+     "point": 7.0,
+     "price": -120
+    },
+    "bovada": {
+     "point": 7.0,
+     "price": -125
+    },
+    "draftkings": {
+     "point": 7.0,
+     "price": -121
+    },
+    "fanatics": {
+     "point": 7.0,
+     "price": -120
+    },
+    "fanduel": {
+     "point": 7.5,
+     "price": 106
+    },
+    "kalshi": {
+     "point": 7.5,
+     "price": 117
+    },
+    "lowvig": {
+     "point": 7.0,
+     "price": -120
+    },
+    "mybookieag": {
+     "point": 7.0,
+     "price": -119
+    },
+    "novig": {
+     "point": 7.5,
+     "price": 117
+    },
+    "polymarket": {
+     "point": 7.5,
+     "price": 117
+    },
+    "prophetx": {
+     "point": 7.0,
+     "price": -114
+    },
+    "williamhill_us": {
+     "point": 7.0,
+     "price": -125
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXMLBTOTAL-26OCT272000MILTB-8"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "OVER",
+   "side_label": "Over 7.5 runs scored",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-28T00:00:00Z",
+   "teams": [
+    "Milwaukee",
+    "Tampa Bay"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-27T22:10:16Z",
+   "base_depth": 76652,
+   "best_price": 0.765,
+   "best_price_american": -326,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.77,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-27",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 4433,
+     "new_this_side": 27064,
+     "other_side": 33884,
+     "other_side_all_levels": 41300,
+     "ratio": 1.9,
+     "this_side": 65465,
+     "this_side_all_levels": 153551
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "D. Shnaider (0)",
+     "price": 0.765,
+     "this_side": 8715
+    }
+   },
+   "fade_price": 0.24,
+   "first_seen_utc": "2026-10-27T22:00:21Z",
+   "game": "Sasnovich vs Shnaider",
+   "key": "kalshi|KXWTAMATCH-26OCT27SASSHN|ml|1",
+   "lead_min": 340,
+   "league": "TENNIS",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 27064,
+   "paper_only": true,
+   "price": 0.77,
+   "price_american": -335,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.77,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXWTAMATCH-26OCT27SASSHN-SHN"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "none_10k",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Shnaider",
+   "side_label": "Shnaider",
+   "start_source": "novig",
+   "start_utc": "2026-10-28T03:50:00Z",
+   "teams": [
+    "Sasnovich",
+    "Shnaider"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-27T21:40:15Z",
    "base_depth": 188124,
    "best_price": 0.475,

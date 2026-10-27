@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Oct 27, 6:00 PM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 13.
+Updated Tue Oct 27, 6:10 PM ET. This run: 2 new, 0 not confirmed, 1 pending. Open alerts: 15.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Oct 27 6:10PM | MLB | Milwaukee vs Tampa Bay: Total Runs | total: Over 7.5 runs scored | kalshi | $468k | +117 | ✅ novig |  | +0.0c |  | pending |
+| Oct 27 6:10PM | TENNIS | Sasnovich vs Shnaider | moneyline: Shnaider | kalshi | $27k | -335 |  |  | +0.0c |  | pending |
 | Oct 27 5:40PM | MLB | Milwaukee Brewers @ Tampa Bay Rays | moneyline: TB (0) | novig | $123k | +111 |  |  | +0.0c |  | pending |
 | Oct 27 5:00PM | TENNIS | Hurkacz vs Rune | moneyline: Hurkacz | kalshi | $30k | -170 | ✅ novig |  | +0.0c |  | pending |
 | Oct 27 4:50PM | TENNIS | Bucsa vs Joint | moneyline: Joint | kalshi | $29k | -122 |  |  | +1.0c | yes | pending |
