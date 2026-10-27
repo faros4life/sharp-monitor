@@ -1,6 +1,609 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-27T10:50:11Z",
+   "base_depth": 21906,
+   "best_price": 0.485,
+   "best_price_american": 106,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.49,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 8,
+   "date": "2026-10-27",
+   "depth_by_book": {
+    "novig": {
+     "heavier_side": false,
+     "label": "CHI (0)",
+     "price": 0.485,
+     "this_side": 14182
+    },
+    "polymarket": {
+     "new_other_side": -5146,
+     "new_this_side": 28996,
+     "other_side": 16976,
+     "other_side_all_levels": 27436,
+     "ratio": 2.4,
+     "this_side": 40424,
+     "this_side_all_levels": 51105
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Chicago Blackhawks",
+     "price": 0.4854,
+     "this_side": 2861
+    }
+   },
+   "fade_price": 0.52,
+   "first_seen_utc": "2026-10-27T10:42:06Z",
+   "game": "Kings vs. Blackhawks",
+   "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"5156493\"}",
+   "lead_min": 790,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 28996,
+   "paper_only": false,
+   "price": 0.49,
+   "price_american": 104,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.49,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": 100
+    },
+    "betonlineag": {
+     "point": null,
+     "price": 104
+    },
+    "betopenly": {
+     "point": null,
+     "price": 110
+    },
+    "betrivers": {
+     "point": null,
+     "price": 104
+    },
+    "betus": {
+     "point": null,
+     "price": 100
+    },
+    "bovada": {
+     "point": null,
+     "price": 100
+    },
+    "draftkings": {
+     "point": null,
+     "price": 102
+    },
+    "fanatics": {
+     "point": null,
+     "price": 100
+    },
+    "fanduel": {
+     "point": null,
+     "price": 100
+    },
+    "kalshi": {
+     "point": null,
+     "price": 104
+    },
+    "lowvig": {
+     "point": null,
+     "price": 104
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -102
+    },
+    "novig": {
+     "point": null,
+     "price": 106
+    },
+    "polymarket": {
+     "point": null,
+     "price": 104
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": 104
+    },
+    "prophetx": {
+     "point": null,
+     "price": 106
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": 102
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 1,
+    "pm_market_id": "5156493"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "none_10k",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Blackhawks",
+   "side_label": "Blackhawks",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-28T00:00:00Z",
+   "teams": [
+    "Kings",
+    "Blackhawks"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-27T10:50:11Z",
+   "base_depth": 33988,
+   "best_price": 0.545,
+   "best_price_american": -120,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.54,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 8,
+   "date": "2026-10-27",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -383,
+     "new_this_side": 79713,
+     "other_side": 24769,
+     "other_side_all_levels": 28165,
+     "ratio": 4.2,
+     "this_side": 104761,
+     "this_side_all_levels": 110295
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "Over 6.5 (6.5)",
+     "price": 0.545,
+     "this_side": 17541
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Over (6.5)",
+     "price": 0.54,
+     "this_side": 29926
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "over 6.5 (6.5)",
+     "price": 0.5434,
+     "this_side": 1885
+    }
+   },
+   "fade_price": 0.47,
+   "first_seen_utc": "2026-10-27T10:42:06Z",
+   "game": "Buffalo vs San Jose: Total Goals",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNHLTOTAL-26OCT27BUFSJ-7\"}",
+   "lead_min": 940,
+   "league": "NHL",
+   "line": 6.5,
+   "market": "total",
+   "new_money": 79713,
+   "paper_only": false,
+   "price": 0.54,
+   "price_american": -117,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.54,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 6.5,
+     "price": -120
+    },
+    "betonlineag": {
+     "point": 6.5,
+     "price": -121
+    },
+    "betopenly": {
+     "point": 6.5,
+     "price": -110
+    },
+    "betrivers": {
+     "point": 6.5,
+     "price": -117
+    },
+    "betus": {
+     "point": 6.5,
+     "price": -120
+    },
+    "bovada": {
+     "point": 6.5,
+     "price": -122
+    },
+    "draftkings": {
+     "point": 6.5,
+     "price": -122
+    },
+    "fanatics": {
+     "point": 6.5,
+     "price": -120
+    },
+    "fanduel": {
+     "point": 6.5,
+     "price": -122
+    },
+    "kalshi": {
+     "point": 6.5,
+     "price": -117
+    },
+    "lowvig": {
+     "point": 6.5,
+     "price": -121
+    },
+    "mybookieag": {
+     "point": 6.5,
+     "price": -124
+    },
+    "novig": {
+     "point": 6.5,
+     "price": -120
+    },
+    "polymarket": {
+     "point": 6.5,
+     "price": -117
+    },
+    "prophetx": {
+     "point": 6.5,
+     "price": -119
+    },
+    "williamhill_us": {
+     "point": 6.5,
+     "price": -122
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNHLTOTAL-26OCT27BUFSJ-7"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "polymarket"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "OVER",
+   "side_label": "Over 6.5 goals scored",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-28T02:30:00Z",
+   "teams": [
+    "Buffalo",
+    "San Jose"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-27T10:50:11Z",
+   "base_depth": 35405,
+   "best_price": 0.49,
+   "best_price_american": 104,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 8,
+   "date": "2026-10-27",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 9339,
+     "new_this_side": 73079,
+     "other_side": 35421,
+     "other_side_all_levels": 38177,
+     "ratio": 2.9,
+     "this_side": 101649,
+     "this_side_all_levels": 113611
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "Under 5.5 (5.5)",
+     "price": 0.49,
+     "this_side": 10580
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Under (5.5)",
+     "price": 0.5,
+     "this_side": 29016
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "under 5.5 (5.5)",
+     "price": 0.4975,
+     "this_side": 1818
+    }
+   },
+   "fade_price": 0.51,
+   "first_seen_utc": "2026-10-27T10:42:06Z",
+   "game": "New Jersey vs Dallas: Total Goals",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLTOTAL-26OCT27NJDAL-6\"}",
+   "lead_min": 790,
+   "league": "NHL",
+   "line": 5.5,
+   "market": "total",
+   "new_money": 73079,
+   "paper_only": false,
+   "price": 0.5,
+   "price_american": -100,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.5,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 5.5,
+     "price": -102
+    },
+    "betonlineag": {
+     "point": 5.5,
+     "price": -101
+    },
+    "betopenly": {
+     "point": 5.5,
+     "price": 107
+    },
+    "betrivers": {
+     "point": 5.5,
+     "price": -103
+    },
+    "betus": {
+     "point": 5.5,
+     "price": -105
+    },
+    "bovada": {
+     "point": 5.5,
+     "price": -103
+    },
+    "draftkings": {
+     "point": 5.5,
+     "price": -102
+    },
+    "fanatics": {
+     "point": 5.5,
+     "price": -105
+    },
+    "fanduel": {
+     "point": 5.5,
+     "price": -104
+    },
+    "kalshi": {
+     "point": 5.5,
+     "price": 100
+    },
+    "lowvig": {
+     "point": 5.5,
+     "price": -101
+    },
+    "mybookieag": {
+     "point": 5.5,
+     "price": -104
+    },
+    "novig": {
+     "point": 5.5,
+     "price": 104
+    },
+    "polymarket": {
+     "point": 5.5,
+     "price": 100
+    },
+    "prophetx": {
+     "point": 6.0,
+     "price": -124
+    },
+    "williamhill_us": {
+     "point": 5.5,
+     "price": 102
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNHLTOTAL-26OCT27NJDAL-6"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "polymarket"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "NOT Over 5.5 goals scored",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-28T00:00:00Z",
+   "teams": [
+    "New Jersey",
+    "Dallas"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-27T10:50:11Z",
+   "base_depth": 157330,
+   "best_price": 0.465,
+   "best_price_american": 115,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.47,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 8,
+   "date": "2026-10-27",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 1700,
+     "new_this_side": 50382,
+     "other_side": 178248,
+     "other_side_all_levels": 183894,
+     "ratio": 1.0,
+     "this_side": 182260,
+     "this_side_all_levels": 196792
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "MIN (0)",
+     "price": 0.465,
+     "this_side": 14649
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Wild",
+     "price": 0.47,
+     "this_side": 32860
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Minnesota Wild",
+     "price": 0.4651,
+     "this_side": 10073
+    }
+   },
+   "fade_price": 0.54,
+   "first_seen_utc": "2026-10-27T10:42:06Z",
+   "game": "Minnesota vs Utah",
+   "key": "kalshi|KXNHLGAME-26OCT27MINUTA|ml|0",
+   "lead_min": 850,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 50382,
+   "paper_only": false,
+   "price": 0.47,
+   "price_american": 113,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.47,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": 105
+    },
+    "betonlineag": {
+     "point": null,
+     "price": 110
+    },
+    "betopenly": {
+     "point": null,
+     "price": 118
+    },
+    "betrivers": {
+     "point": null,
+     "price": 108
+    },
+    "betus": {
+     "point": null,
+     "price": 105
+    },
+    "bovada": {
+     "point": null,
+     "price": 107
+    },
+    "draftkings": {
+     "point": null,
+     "price": 110
+    },
+    "fanatics": {
+     "point": null,
+     "price": 110
+    },
+    "fanduel": {
+     "point": null,
+     "price": 108
+    },
+    "kalshi": {
+     "point": null,
+     "price": 113
+    },
+    "lowvig": {
+     "point": null,
+     "price": 110
+    },
+    "novig": {
+     "point": null,
+     "price": 115
+    },
+    "polymarket": {
+     "point": null,
+     "price": 113
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": 113
+    },
+    "prophetx": {
+     "point": null,
+     "price": 115
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNHLGAME-26OCT27MINUTA-MIN"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "polymarket",
+    "prophetx"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Minnesota",
+   "side_label": "Minnesota",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-28T01:00:00Z",
+   "teams": [
+    "Minnesota",
+    "Utah"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-27T10:42:06Z",
    "base_depth": 28560,
    "best_price": 0.5,
