@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Oct 27, 8:10 AM ET. This run: 1 new, 0 not confirmed, 3 pending. Open alerts: 33.
+Updated Tue Oct 27, 8:20 AM ET. This run: 3 new, 0 not confirmed, 3 pending. Open alerts: 36.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,9 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Oct 27 8:20AM | NHL | Vancouver vs Anaheim: Spread | spread: NOT Anaheim wins by over 1.5 goals | kalshi | $26k | -133 | ✅ novig,polymarket |  | +0.0c |  | pending |
+| Oct 27 8:20AM | NCAAF | Kennesaw St. vs Middle Tennessee: Total Points | total: NOT Over 50.5 points | kalshi | $70k | -100 |  |  | +0.0c |  | pending |
+| Oct 27 8:20AM | NCAAF | Delaware vs Western Kentucky: Spread | spread: NOT Delaware wins by over 2.5 points | kalshi | $51k | -117 |  | ❌ | +0.0c |  | pending |
 | Oct 27 8:10AM | NBA | Pistons vs. Knicks | moneyline: Pistons | polymarket | $95k | +150 |  |  | +0.0c |  | pending |
 | Oct 27 7:30AM | NHL | Florida vs Winnipeg | moneyline: Winnipeg | kalshi | $44k | +113 |  |  | +0.0c |  | pending |
 | Oct 27 6:50AM | NHL | Kings vs. Blackhawks | moneyline: Blackhawks | polymarket | $29k | +104 |  |  | +0.0c |  | pending |
@@ -207,6 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 25 9:50AM | NBA | Indiana vs Brooklyn: Total Points | total: NOT Over 230.5 points | kalshi | $46k | -100 |  | ❌ | -26.0c | yes | L |
 | Oct 25 9:30AM | NHL | Islanders vs. Stars | total: Under (5.5) | polymarket | $34k | -113 | ✅ novig |  | +2.0c |  | L |
 | Oct 25 9:30AM | NFL | San Francisco vs Atlanta: Total Points | total: Over 49.5 points | kalshi | $172k | -104 |  | ✅ | +5.0c | yes | L |
-| Oct 25 9:30AM | NBA | Los Angeles L vs Utah: Total Points | total: Over 237.5 points | kalshi | $29k | -104 |  | ✅ | +23.0c | yes | W |
-| Oct 25 9:30AM | NFL | Miami vs New York J: Spread | spread: NOT New York J wins by over 4.5 points | kalshi | $298k | -108 |  |  | +24.0c | yes | W |
-| Oct 25 9:30AM | NBA | Memphis vs Sacramento: Total Points | total: NOT Over 234.5 points | kalshi | $64k | -104 |  | ✅ | -33.0c | yes | L |

@@ -1,6 +1,413 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-27T12:20:10Z",
+   "base_depth": 47525,
+   "best_price": 0.5574,
+   "best_price_american": -126,
+   "best_price_book": "polymarket",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.57,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-27",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 1701,
+     "new_this_side": 26094,
+     "other_side": 23538,
+     "other_side_all_levels": 26223,
+     "ratio": 3.7,
+     "this_side": 86056,
+     "this_side_all_levels": 92851
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "VAN +1.5 (-1.5)",
+     "price": 0.56,
+     "this_side": 22141
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Canucks (+1.5)",
+     "price": 0.55,
+     "this_side": 32011
+    }
+   },
+   "fade_price": 0.44,
+   "first_seen_utc": "2026-10-27T12:10:11Z",
+   "game": "Vancouver vs Anaheim: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLSPREAD-26OCT27VANANA-ANA2\"}",
+   "lead_min": 820,
+   "league": "NHL",
+   "line": 1.5,
+   "market": "spread",
+   "new_money": 26094,
+   "paper_only": false,
+   "price": 0.57,
+   "price_american": -133,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.57,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 1.5,
+     "price": -135
+    },
+    "betonlineag": {
+     "point": 1.5,
+     "price": -134
+    },
+    "betopenly": {
+     "point": 1.5,
+     "price": -122
+    },
+    "betrivers": {
+     "point": 1.5,
+     "price": -141
+    },
+    "betus": {
+     "point": 1.5,
+     "price": -135
+    },
+    "bovada": {
+     "point": 1.5,
+     "price": -140
+    },
+    "draftkings": {
+     "point": 1.5,
+     "price": -135
+    },
+    "fanatics": {
+     "point": 1.5,
+     "price": -135
+    },
+    "fanduel": {
+     "point": 1.5,
+     "price": -130
+    },
+    "kalshi": {
+     "point": 1.5,
+     "price": -133
+    },
+    "lowvig": {
+     "point": 1.5,
+     "price": -134
+    },
+    "mybookieag": {
+     "point": 1.5,
+     "price": -139
+    },
+    "novig": {
+     "point": 1.5,
+     "price": -127
+    },
+    "polymarket": {
+     "point": -3.5,
+     "price": -525
+    },
+    "prophetx": {
+     "point": 1.5,
+     "price": -127
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNHLSPREAD-26OCT27VANANA-ANA2"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "polymarket"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Vancouver",
+   "side_label": "NOT Anaheim wins by over 1.5 goals",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-28T02:00:00Z",
+   "teams": [
+    "Vancouver",
+    "Anaheim"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-27T12:20:10Z",
+   "base_depth": 92943,
+   "best_price": 0.495,
+   "best_price_american": 102,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-28",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 17923,
+     "new_this_side": 70154,
+     "other_side": 69795,
+     "other_side_all_levels": 116225,
+     "ratio": 1.6,
+     "this_side": 108288,
+     "this_side_all_levels": 163101
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "Under 50.5 (50.5)",
+     "price": 0.495,
+     "this_side": 5117
+    }
+   },
+   "fade_price": 0.51,
+   "first_seen_utc": "2026-10-27T12:10:11Z",
+   "game": "Kennesaw St. vs Middle Tennessee: Total Points",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFTOTAL-26OCT28KENNMTU-51\"}",
+   "lead_min": 2080,
+   "league": "NCAAF",
+   "line": 50.5,
+   "market": "total",
+   "new_money": 70154,
+   "paper_only": false,
+   "price": 0.5,
+   "price_american": -100,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.5,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 51.5,
+     "price": -118
+    },
+    "betonlineag": {
+     "point": 51.0,
+     "price": -115
+    },
+    "betrivers": {
+     "point": 51.5,
+     "price": -117
+    },
+    "betus": {
+     "point": 51.0,
+     "price": -115
+    },
+    "bovada": {
+     "point": 51.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 51.5,
+     "price": -118
+    },
+    "fanatics": {
+     "point": 51.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 51.5,
+     "price": -114
+    },
+    "kalshi": {
+     "point": 50.5,
+     "price": 100
+    },
+    "lowvig": {
+     "point": 51.0,
+     "price": -114
+    },
+    "mybookieag": {
+     "point": 51.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 50.5,
+     "price": 102
+    },
+    "polymarket": {
+     "point": 51.5,
+     "price": -113
+    },
+    "prophetx": {
+     "point": 49.0,
+     "price": 124
+    },
+    "williamhill_us": {
+     "point": 51.0,
+     "price": -115
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAFTOTAL-26OCT28KENNMTU-51"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "none_10k",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "NOT Over 50.5 points",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-28T23:00:00Z",
+   "teams": [
+    "Kennesaw St.",
+    "Middle Tennessee"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-27T12:20:10Z",
+   "base_depth": 234838,
+   "best_price": 0.5574,
+   "best_price_american": -126,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.54,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-27",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -2801,
+     "new_this_side": 51482,
+     "other_side": 147641,
+     "other_side_all_levels": 277657,
+     "ratio": 1.1,
+     "this_side": 164794,
+     "this_side_all_levels": 286348
+    }
+   },
+   "fade_price": 0.47,
+   "first_seen_utc": "2026-10-27T12:10:11Z",
+   "game": "Delaware vs Western Kentucky: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFSPREAD-26OCT27DELWKU-DEL3\"}",
+   "lead_min": 640,
+   "league": "NCAAF",
+   "line": 2.5,
+   "market": "spread",
+   "new_money": 51482,
+   "paper_only": false,
+   "price": 0.54,
+   "price_american": -117,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.54,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 1.0,
+     "price": -108
+    },
+    "betonlineag": {
+     "point": 1.5,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 1.0,
+     "price": 101
+    },
+    "betrivers": {
+     "point": 0.5,
+     "price": -110
+    },
+    "betus": {
+     "point": 1.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 1.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 1.5,
+     "price": -112
+    },
+    "fanatics": {
+     "point": 1.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": -1.5,
+     "price": 100
+    },
+    "kalshi": {
+     "point": -1.5,
+     "price": 113
+    },
+    "lowvig": {
+     "point": 1.5,
+     "price": -106
+    },
+    "mybookieag": {
+     "point": 1.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 1.5,
+     "price": -111
+    },
+    "prophetx": {
+     "point": 1.0,
+     "price": -105
+    },
+    "williamhill_us": {
+     "point": 1.5,
+     "price": -113
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAFSPREAD-26OCT27DELWKU-DEL3"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "no_match",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [
+    "Delaware Blue Hens -1 (+101)"
+   ],
+   "side": "Western Kentucky",
+   "side_label": "NOT Delaware wins by over 2.5 points",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-27T23:00:00Z",
+   "teams": [
+    "Delaware",
+    "Western Kentucky"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-27T12:10:11Z",
    "base_depth": 32769,
    "best_price": 0.395,
