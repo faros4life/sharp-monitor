@@ -1,6 +1,429 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-27T04:20:10Z",
+   "base_depth": 52466,
+   "best_price": 0.5,
+   "best_price_american": -100,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 8,
+   "date": "2026-10-27",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 2737,
+     "new_this_side": 31093,
+     "other_side": 23759,
+     "other_side_all_levels": 64328,
+     "ratio": 2.0,
+     "this_side": 46651,
+     "this_side_all_levels": 83561
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "Under 218.5 (218.5)",
+     "price": 0.5,
+     "this_side": 3169
+    }
+   },
+   "fade_price": 0.51,
+   "first_seen_utc": "2026-10-27T04:12:10Z",
+   "game": "Detroit vs New York: Total Points",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBATOTAL-26OCT27DETNYK-219\"}",
+   "lead_min": 1185,
+   "league": "NBA",
+   "line": 218.5,
+   "market": "total",
+   "new_money": 31093,
+   "paper_only": false,
+   "price": 0.5,
+   "price_american": -100,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.5,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 218.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 218.0,
+     "price": -105
+    },
+    "betopenly": {
+     "point": 219.0,
+     "price": -106
+    },
+    "betrivers": {
+     "point": 218.5,
+     "price": -107
+    },
+    "betus": {
+     "point": 218.0,
+     "price": -105
+    },
+    "bovada": {
+     "point": 218.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 218.5,
+     "price": -105
+    },
+    "fanatics": {
+     "point": 218.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 218.5,
+     "price": -115
+    },
+    "kalshi": {
+     "point": 218.5,
+     "price": 100
+    },
+    "lowvig": {
+     "point": 218.0,
+     "price": -102
+    },
+    "mybookieag": {
+     "point": 218.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 215.5,
+     "price": -3126
+    },
+    "polymarket": {
+     "point": 218.5,
+     "price": 100
+    },
+    "williamhill_us": {
+     "point": 218.5,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNBATOTAL-26OCT27DETNYK-219"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "none_10k",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [
+    "Over 218.5 (+100)"
+   ],
+   "side": "UNDER",
+   "side_label": "NOT Over 218.5 points",
+   "start_source": "novig",
+   "start_utc": "2026-10-28T00:05:00Z",
+   "teams": [
+    "Detroit",
+    "New York"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-27T04:20:10Z",
+   "base_depth": 69653,
+   "best_price": 0.5442,
+   "best_price_american": -119,
+   "best_price_book": "prophetx",
+   "bid_improved": true,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.53,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 8,
+   "date": "2026-10-27",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 1442,
+     "new_this_side": 68652,
+     "other_side": 79718,
+     "other_side_all_levels": 88451,
+     "ratio": 1.8,
+     "this_side": 140898,
+     "this_side_all_levels": 145400
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "STL (0)",
+     "price": 0.545,
+     "this_side": 12736
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Blues",
+     "price": 0.54,
+     "this_side": 35695
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "St. Louis Blues",
+     "price": 0.5392,
+     "this_side": 3431
+    }
+   },
+   "fade_price": 0.47,
+   "first_seen_utc": "2026-10-27T04:12:10Z",
+   "game": "Montreal vs St. Louis",
+   "key": "kalshi|KXNHLGAME-26OCT27MTLSTL|ml|1",
+   "lead_min": 1180,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 68652,
+   "paper_only": false,
+   "price": 0.53,
+   "price_american": -113,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.53,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -120
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -116
+    },
+    "betopenly": {
+     "point": null,
+     "price": -109
+    },
+    "betrivers": {
+     "point": null,
+     "price": -113
+    },
+    "betus": {
+     "point": null,
+     "price": -115
+    },
+    "bovada": {
+     "point": null,
+     "price": -128
+    },
+    "draftkings": {
+     "point": null,
+     "price": -122
+    },
+    "fanatics": {
+     "point": null,
+     "price": -120
+    },
+    "fanduel": {
+     "point": null,
+     "price": -118
+    },
+    "kalshi": {
+     "point": null,
+     "price": -117
+    },
+    "lowvig": {
+     "point": null,
+     "price": -116
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -121
+    },
+    "novig": {
+     "point": null,
+     "price": -120
+    },
+    "polymarket": {
+     "point": null,
+     "price": -117
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -113
+    },
+    "prophetx": {
+     "point": null,
+     "price": -117
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -115
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNHLGAME-26OCT27MTLSTL-STL"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "polymarket"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "St. Louis",
+   "side_label": "St. Louis",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-28T00:00:00Z",
+   "teams": [
+    "Montreal",
+    "St. Louis"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-27T04:20:10Z",
+   "base_depth": 548102,
+   "best_price": 0.5971,
+   "best_price_american": -148,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.58,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 8,
+   "date": "2026-10-28",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -17,
+     "new_this_side": 89088,
+     "other_side": 202206,
+     "other_side_all_levels": 365326,
+     "ratio": 2.0,
+     "this_side": 401053,
+     "this_side_all_levels": 637185
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Jacksonville State",
+     "price": 0.6063,
+     "this_side": 8087
+    }
+   },
+   "fade_price": 0.41,
+   "first_seen_utc": "2026-10-27T04:12:10Z",
+   "game": "Jacksonville St. vs New Mexico St.",
+   "key": "kalshi|KXNCAAFGAME-26OCT28JVSTNMSU|ml|0",
+   "lead_min": 2620,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 89088,
+   "paper_only": false,
+   "price": 0.58,
+   "price_american": -138,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.58,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -160
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -157
+    },
+    "betrivers": {
+     "point": null,
+     "price": -177
+    },
+    "betus": {
+     "point": null,
+     "price": -155
+    },
+    "bovada": {
+     "point": null,
+     "price": -160
+    },
+    "draftkings": {
+     "point": null,
+     "price": -162
+    },
+    "fanatics": {
+     "point": null,
+     "price": -160
+    },
+    "fanduel": {
+     "point": null,
+     "price": -156
+    },
+    "lowvig": {
+     "point": null,
+     "price": -157
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -179
+    },
+    "novig": {
+     "point": null,
+     "price": -150
+    },
+    "polymarket": {
+     "point": null,
+     "price": -150
+    },
+    "prophetx": {
+     "point": null,
+     "price": -154
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -157
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26OCT28JVSTNMSU-JVST"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "none_10k",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Jacksonville St.",
+   "side_label": "Jacksonville St.",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-29T00:00:00Z",
+   "teams": [
+    "Jacksonville St.",
+    "New Mexico St."
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-27T04:12:10Z",
    "base_depth": 31704,
    "best_price": 0.495,
@@ -451,8 +874,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.49,
-   "clv_cents": 0.0,
+   "close_price": 0.48,
+   "clv_cents": -1.0,
    "confirmed_after_min": 12,
    "date": "2026-10-27",
    "depth_by_book": {
