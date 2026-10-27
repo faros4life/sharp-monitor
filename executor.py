@@ -8,6 +8,9 @@ books after fees, sizes the stake, and emails what it WOULD have placed.
 Verdict email (from Muse, to the Bets address): subject contains "AUTO-PLACE VERDICTS"; body holds a JSON array of
 plays. Each play needs: play_key, sport, game ("Away @ Home", as in alerts.json), bet (alert text as in alerts.json,
 e.g. "Oklahoma City Thunder -8.5 (-108)"), start_utc. Optional: late (bool).
+Array plays are AGREE. A play with a "verdict" field other than AGREE is never placed. Deliberate kills go on their own
+plain-text line, one per play: DISAGREE: {"sport": "NBA", "game": "Away @ Home", "bet": "<alert text>"} -> clears the
+watchdog only. An email may carry an empty array [] plus DISAGREE lines.
 
 Public repo: the Actions log prints counts only. Everything else goes by email.
 """
@@ -94,6 +97,9 @@ def body_text(raw):
     return ""
 
 
+MUSE_DISAGREE = set()   # keys Muse killed on purpose: clear the watchdog, never placed
+
+
 def read_verdicts(M):
     plays = []
     for uid in gsearch(M, "subject:AUTO-PLACE VERDICTS -subject:TEST newer_than:2d"):   # Muse's verdicts only, never tests
@@ -107,6 +113,15 @@ def read_verdicts(M):
         except Exception:
             vts = None
         arr, dec = None, json.JSONDecoder()
+        for line in txt.splitlines():   # Muse's deliberate kills: DISAGREE: {"sport":..,"game":..,"bet":..} (watchdog only)
+            m = re.match(r"\s*DISAGREE:\s*(\{.*\})\s*$", line)
+            if m:
+                try:
+                    d = json.loads(m.group(1))
+                    MUSE_DISAGREE.update(k for k in (d.get("play_key"), derive_key(d)) if k)
+                except Exception:
+                    LOG.append("unreadable DISAGREE line")
+        empty = False
         for m in re.finditer(r"\[", txt):   # tolerate plain text before/after the JSON array
             try:
                 cand, _ = dec.raw_decode(txt[m.start():])
@@ -115,12 +130,19 @@ def read_verdicts(M):
             if isinstance(cand, list) and cand and isinstance(cand[0], dict):
                 arr = cand
                 break
+            if cand == []:
+                empty = True
         if arr is None:
-            LOG.append("verdict email with unreadable JSON")
+            if not empty:
+                LOG.append("verdict email with unreadable JSON")
             continue
         for p in arr if isinstance(arr, list) else []:
-            if isinstance(p, dict) and not str(p.get("play_key") or "").upper().startswith("TEST") \
-                    and (p.get("play_key") or derive_key(p)):
+            if not isinstance(p, dict) or str(p.get("play_key") or "").upper().startswith("TEST"):
+                continue
+            if p.get("verdict") is not None and str(p.get("verdict")).strip().upper() != "AGREE":
+                MUSE_DISAGREE.update(k for k in (p.get("play_key"), derive_key(p)) if k)   # never a bet
+                continue
+            if p.get("play_key") or derive_key(p):
                 plays.append(dict(p, play_key=p.get("play_key") or derive_key(p), verdict_utc=vts))
     seen, out = set(), []
     for p in plays:   # one play per game+side, whatever key it arrived with (spread and ML on a team = one play)
@@ -229,7 +251,7 @@ def muse_watchdog(now, muse_plays, rplays, feed):
     et = now.astimezone(lm.ET)
     if 2 <= et.hour < 5:
         return 0
-    have = set()
+    have = set(MUSE_DISAGREE)   # a deliberate DISAGREE is a verdict, not a missing one
     for p in muse_plays:
         have |= {p.get("play_key"), derive_key(p)}
     late = []
