@@ -1,0 +1,27 @@
+name: pmus-short-order-test
+
+on:
+  workflow_dispatch:   # manual: ONE real 1-contract fill-or-kill SHORT order on Polymarket US
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Polymarket US $1 SHORT order test (REAL money)
+        env:
+          CONFIRM_REAL_ORDER: "ONE_DOLLAR"
+          PMUS_KEY_ID: ${{ secrets.PMUS_KEY_ID }}
+          PMUS_SECRET_KEY: ${{ secrets.PMUS_SECRET_KEY }}
+        run: |
+          set -o pipefail
+          python -u pmus_short_order_test.py 2>&1 | tee out.txt
+          { echo '```'; cat out.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
