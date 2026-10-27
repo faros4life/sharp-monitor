@@ -1,6 +1,488 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-27T12:50:11Z",
+   "base_depth": 47668,
+   "best_price": 0.685,
+   "best_price_american": -217,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.69,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 7,
+   "date": "2026-10-27",
+   "depth_by_book": {
+    "novig": {
+     "heavier_side": true,
+     "label": "WPG +1.5 (1.5)",
+     "price": 0.685,
+     "this_side": 37640
+    },
+    "polymarket": {
+     "new_other_side": 837,
+     "new_this_side": 25917,
+     "other_side": 17530,
+     "other_side_all_levels": 22724,
+     "ratio": 3.6,
+     "this_side": 62799,
+     "this_side_all_levels": 73638
+    }
+   },
+   "fade_price": 0.32,
+   "first_seen_utc": "2026-10-27T12:42:57Z",
+   "game": "Panthers vs. Jets",
+   "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6252908\"}",
+   "lead_min": 670,
+   "league": "NHL",
+   "line": 1.5,
+   "market": "spread",
+   "new_money": 25917,
+   "paper_only": false,
+   "price": 0.69,
+   "price_american": -223,
+   "price_rule": "fails_cap",
+   "price_when_first_seen": 0.69,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 1.5,
+     "price": -220
+    },
+    "betonlineag": {
+     "point": 1.5,
+     "price": -225
+    },
+    "betopenly": {
+     "point": 1.5,
+     "price": -210
+    },
+    "betrivers": {
+     "point": 1.5,
+     "price": -235
+    },
+    "betus": {
+     "point": 1.5,
+     "price": -225
+    },
+    "bovada": {
+     "point": 1.5,
+     "price": -235
+    },
+    "draftkings": {
+     "point": 1.5,
+     "price": -230
+    },
+    "fanatics": {
+     "point": 1.5,
+     "price": -235
+    },
+    "fanduel": {
+     "point": 1.5,
+     "price": -225
+    },
+    "kalshi": {
+     "point": 1.5,
+     "price": -223
+    },
+    "lowvig": {
+     "point": 1.5,
+     "price": -225
+    },
+    "mybookieag": {
+     "point": 1.5,
+     "price": -230
+    },
+    "novig": {
+     "point": 1.5,
+     "price": -217
+    },
+    "polymarket": {
+     "point": -3.5,
+     "price": -213
+    },
+    "prophetx": {
+     "point": 1.5,
+     "price": -220
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 1,
+    "pm_market_id": "6252908"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Jets",
+   "side_label": "Jets (+1.5)",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-28T00:00:00Z",
+   "teams": [
+    "Panthers",
+    "Jets"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-27T12:50:11Z",
+   "base_depth": 12391,
+   "best_price": 0.685,
+   "best_price_american": -217,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.685,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 7,
+   "date": "2026-10-27",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "NOT Florida wins by over 1.5 goals",
+     "price": 0.69,
+     "this_side": 174070
+    },
+    "novig": {
+     "new_other_side": 4701,
+     "new_this_side": 25430,
+     "other_side": 18372,
+     "other_side_all_levels": 18442,
+     "ratio": 2.0,
+     "this_side": 37640,
+     "this_side_all_levels": 37772
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Jets (+1.5)",
+     "price": 0.69,
+     "this_side": 62799
+    }
+   },
+   "fade_price": 0.325,
+   "first_seen_utc": "2026-10-27T12:42:57Z",
+   "game": "Florida Panthers @ Winnipeg Jets",
+   "key": "novig|{\"market_id\": \"01a178fe-06e3-7761-b4d9-1ee40c54bb1a\", \"outcome_id\": \"01a178fe-06e3-7761-b4d9-1ef4f9bec1f8\"}",
+   "lead_min": 670,
+   "league": "NHL",
+   "line": 1.5,
+   "market": "spread",
+   "new_money": 25430,
+   "paper_only": false,
+   "price": 0.685,
+   "price_american": -217,
+   "price_rule": "fails_cap",
+   "price_when_first_seen": 0.685,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 1.5,
+     "price": -220
+    },
+    "betonlineag": {
+     "point": 1.5,
+     "price": -225
+    },
+    "betopenly": {
+     "point": 1.5,
+     "price": -210
+    },
+    "betrivers": {
+     "point": 1.5,
+     "price": -235
+    },
+    "betus": {
+     "point": 1.5,
+     "price": -225
+    },
+    "bovada": {
+     "point": 1.5,
+     "price": -235
+    },
+    "draftkings": {
+     "point": 1.5,
+     "price": -230
+    },
+    "fanatics": {
+     "point": 1.5,
+     "price": -235
+    },
+    "fanduel": {
+     "point": 1.5,
+     "price": -225
+    },
+    "kalshi": {
+     "point": 1.5,
+     "price": -223
+    },
+    "lowvig": {
+     "point": 1.5,
+     "price": -225
+    },
+    "mybookieag": {
+     "point": 1.5,
+     "price": -230
+    },
+    "novig": {
+     "point": 1.5,
+     "price": -217
+    },
+    "polymarket": {
+     "point": -3.5,
+     "price": -213
+    },
+    "prophetx": {
+     "point": 1.5,
+     "price": -220
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a178fe-06e3-7761-b4d9-1ee40c54bb1a",
+    "outcome_id": "01a178fe-06e3-7761-b4d9-1ef4f9bec1f8"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi",
+    "polymarket"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Winnipeg Jets",
+   "side_label": "WPG +1.5 (1.5)",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-28T00:00:00Z",
+   "teams": [
+    "Florida Panthers",
+    "Winnipeg Jets"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-27T12:50:11Z",
+   "base_depth": 15983,
+   "best_price": 0.515,
+   "best_price_american": -106,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.515,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 7,
+   "date": "2026-10-27",
+   "depth_by_book": {
+    "novig": {
+     "new_other_side": 4710,
+     "new_this_side": 35881,
+     "other_side": 30509,
+     "other_side_all_levels": 30749,
+     "ratio": 1.5,
+     "this_side": 47148,
+     "this_side_all_levels": 50161
+    }
+   },
+   "fade_price": 0.49,
+   "first_seen_utc": "2026-10-27T12:42:57Z",
+   "game": "Sam Houston State @ Missouri State",
+   "key": "novig|{\"market_id\": \"01a1649f-eea2-7c10-9cbe-dbf85523f858\", \"outcome_id\": \"01a1649f-eea2-7c10-9cbe-dc06ed22ef3f\"}",
+   "lead_min": 670,
+   "league": "NCAAF",
+   "line": -4.5,
+   "market": "spread",
+   "new_money": 35881,
+   "paper_only": false,
+   "price": 0.515,
+   "price_american": -106,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.515,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "market_id": "01a1649f-eea2-7c10-9cbe-dbf85523f858",
+    "outcome_id": "01a1649f-eea2-7c10-9cbe-dc06ed22ef3f"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "no_match",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "MOST -4.5 (-4.5)",
+   "side_label": "MOST -4.5 (-4.5)",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-28T00:00:00Z",
+   "teams": [
+    "Sam Houston State",
+    "Missouri State"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-27T12:50:11Z",
+   "base_depth": 81529,
+   "best_price": 0.685,
+   "best_price_american": -217,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.69,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 7,
+   "date": "2026-10-27",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -1764,
+     "new_this_side": 111376,
+     "other_side": 59339,
+     "other_side_all_levels": 60423,
+     "ratio": 2.9,
+     "this_side": 174070,
+     "this_side_all_levels": 191835
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "WPG +1.5 (1.5)",
+     "price": 0.685,
+     "this_side": 37640
+    }
+   },
+   "fade_price": 0.32,
+   "first_seen_utc": "2026-10-27T12:42:57Z",
+   "game": "Florida vs Winnipeg: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLSPREAD-26OCT27FLAWPG-FLA2\"}",
+   "lead_min": 670,
+   "league": "NHL",
+   "line": 1.5,
+   "market": "spread",
+   "new_money": 111376,
+   "paper_only": false,
+   "price": 0.69,
+   "price_american": -223,
+   "price_rule": "fails_cap",
+   "price_when_first_seen": 0.69,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 1.5,
+     "price": -220
+    },
+    "betonlineag": {
+     "point": 1.5,
+     "price": -225
+    },
+    "betopenly": {
+     "point": 1.5,
+     "price": -210
+    },
+    "betrivers": {
+     "point": 1.5,
+     "price": -235
+    },
+    "betus": {
+     "point": 1.5,
+     "price": -225
+    },
+    "bovada": {
+     "point": 1.5,
+     "price": -235
+    },
+    "draftkings": {
+     "point": 1.5,
+     "price": -230
+    },
+    "fanatics": {
+     "point": 1.5,
+     "price": -235
+    },
+    "fanduel": {
+     "point": 1.5,
+     "price": -225
+    },
+    "kalshi": {
+     "point": 1.5,
+     "price": -223
+    },
+    "lowvig": {
+     "point": 1.5,
+     "price": -225
+    },
+    "mybookieag": {
+     "point": 1.5,
+     "price": -230
+    },
+    "novig": {
+     "point": 1.5,
+     "price": -217
+    },
+    "polymarket": {
+     "point": -3.5,
+     "price": -213
+    },
+    "prophetx": {
+     "point": 1.5,
+     "price": -220
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNHLSPREAD-26OCT27FLAWPG-FLA2"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Winnipeg",
+   "side_label": "NOT Florida wins by over 1.5 goals",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-28T00:00:00Z",
+   "teams": [
+    "Florida",
+    "Winnipeg"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-27T12:42:57Z",
    "base_depth": 64717,
    "best_price": 0.7,
@@ -325,6 +807,8 @@
    "new_money": 45905,
    "paper_only": false,
    "price": 0.54,
+   "price_after_15m": 0.535,
+   "price_after_15m_book": "novig",
    "price_american": -117,
    "price_rule": "ok",
    "price_when_first_seen": 0.54,
@@ -416,6 +900,7 @@
    "side_label": "NOT Over 6.5 goals scored",
    "start_source": "polymarket",
    "start_utc": "2026-10-28T00:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Boston",
     "Carolina"
@@ -476,6 +961,8 @@
    "new_money": 25776,
    "paper_only": false,
    "price": 0.48,
+   "price_after_15m": 0.475,
+   "price_after_15m_book": "novig",
    "price_american": 108,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.48,
@@ -564,6 +1051,7 @@
    "side_label": "New York I",
    "start_source": "prophetx",
    "start_utc": "2026-10-28T00:00:00Z",
+   "still_actionable": true,
    "teams": [
     "New York I",
     "Nashville"
@@ -3708,8 +4196,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": 1.0,
+   "close_price": 0.5,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-10-27",
    "depth_by_book": {
