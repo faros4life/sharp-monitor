@@ -1027,6 +1027,22 @@ def settle(alerts, n):
             a["settled_utc"] = n.strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
+def tg_mirror(text):
+    """Oct 27 (Peter): every ntfy push is mirrored to Telegram (@sharp_fills_bot) so all alerts land in one place.
+    Secrets TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID; missing or failing = silently skipped. ntfy is unchanged and always
+    fires first. Nothing is printed to the public log."""
+    tok, chat = (os.environ.get("TELEGRAM_BOT_TOKEN") or "").strip(), (os.environ.get("TELEGRAM_CHAT_ID") or "").strip()
+    if not tok or not chat:
+        return
+    try:
+        req = urllib.request.Request(f"https://api.telegram.org/bot{tok}/sendMessage",
+                                     data=json.dumps({"chat_id": chat, "text": text[:3500]}).encode(), method="POST",
+                                     headers={"Content-Type": "application/json"})
+        urllib.request.urlopen(req, timeout=15).read()
+    except Exception:
+        print("telegram mirror failed")
+
+
 def notify(title, body):
     if not NTFY_TOPIC:
         return
@@ -1036,6 +1052,7 @@ def notify(title, body):
         urllib.request.urlopen(req, timeout=15).read()
     except Exception as ex:
         print(f"ntfy failed: {ex}")
+    tg_mirror(f"\U0001F4A7 {title}\n{body}")
 
 
 # ---------------------------------------------------------------- main

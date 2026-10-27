@@ -129,6 +129,30 @@ def http_get(path, params):
         return body, (int(float(rem)) if rem is not None else None)
 
 
+def tg_mirror(text):
+    """Oct 27 (Peter): every ntfy push is mirrored to Telegram (@sharp_fills_bot) so all alerts land in one place.
+    Secrets TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID; missing or failing = silently skipped. ntfy is unchanged and always
+    fires first. Nothing is printed to the public log."""
+    tok, chat = (os.environ.get("TELEGRAM_BOT_TOKEN") or "").strip(), (os.environ.get("TELEGRAM_CHAT_ID") or "").strip()
+    if not tok or not chat:
+        return
+    try:
+        req = urllib.request.Request(f"https://api.telegram.org/bot{tok}/sendMessage",
+                                     data=json.dumps({"chat_id": chat, "text": text[:3500]}).encode(), method="POST",
+                                     headers={"Content-Type": "application/json"})
+        urllib.request.urlopen(req, timeout=15).read()
+    except Exception:
+        print("telegram mirror failed")
+
+
+_TG_EMOJI = {"moneybag": "\U0001F4B0", "red_circle": "\U0001F534", "yellow_circle": "\U0001F7E1", "white_check_mark": "\u2705",
+             "page_facing_up": "\U0001F4C4", "droplet": "\U0001F4A7", "warning": "\u26A0\uFE0F"}
+
+
+def _tg_prefix(tags):
+    return "".join(_TG_EMOJI.get(t, "") for t in tags)
+
+
 def notify(title, body, red=False, yellow=False, extra_tags=()):
     """red = late alert; yellow = an earlier alert already came in on this game (the first alert is the play).
     extra_tags: ntfy emoji tags (Oct 26: white_check_mark = phase-1 candidate, page_facing_up = paper only)."""
@@ -140,6 +164,8 @@ def notify(title, body, red=False, yellow=False, extra_tags=()):
         headers={"Title": title.encode("ascii", "ignore").decode(), "Priority": "high",
                  "Tags": ",".join(list(extra_tags) + [t for t, on in (("red_circle", red), ("yellow_circle", yellow), ("moneybag", True)) if on])})
     urllib.request.urlopen(req, timeout=15).read()
+    tags = list(extra_tags) + [t for t, on in (("red_circle", red), ("yellow_circle", yellow), ("moneybag", True)) if on]
+    tg_mirror(f"{_tg_prefix(tags)} {title}\n{body}".strip())
 
 
 def load_state():

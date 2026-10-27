@@ -106,6 +106,22 @@ def stop_state():
     return last
 
 
+def tg_mirror(text):
+    """Oct 27 (Peter): every ntfy push is mirrored to Telegram (@sharp_fills_bot) so all alerts land in one place.
+    Secrets TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID; missing or failing = silently skipped. ntfy is unchanged and always
+    fires first. Nothing is printed to the public log."""
+    tok, chat = (os.environ.get("TELEGRAM_BOT_TOKEN") or "").strip(), (os.environ.get("TELEGRAM_CHAT_ID") or "").strip()
+    if not tok or not chat:
+        return
+    try:
+        req = urllib.request.Request(f"https://api.telegram.org/bot{tok}/sendMessage",
+                                     data=json.dumps({"chat_id": chat, "text": text[:3500]}).encode(), method="POST",
+                                     headers={"Content-Type": "application/json"})
+        urllib.request.urlopen(req, timeout=15).read()
+    except Exception:
+        print("telegram mirror failed")
+
+
 def push(title, body, tags="moneybag"):
     if not TOPIC:
         return
@@ -115,6 +131,8 @@ def push(title, body, tags="moneybag"):
         urllib.request.urlopen(req, timeout=15).read()
     except Exception:
         pass
+    if body.strip().upper() not in ("STOP", "GO"):   # the switch word itself stays on ntfy only
+        tg_mirror(f"{title}\n{body}")
 
 
 def today_result(tr):

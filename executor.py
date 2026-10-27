@@ -287,7 +287,7 @@ def muse_watchdog(now, muse_plays, rplays, feed):
     for p, ent, tok, mins in late:
         msg = (f"{p.get('sport')} {p.get('game')} | {p.get('bet')}\nQualifies for LIVE, but no Muse verdict after {mins} min. "
                "Live won't bet it without Muse AGREE. Ping Muse.")
-        push("No Muse verdict: " + (p.get("bet") or "")[:50], msg)
+        push("No Muse verdict: " + (p.get("bet") or "")[:50], msg, mirror=False)
         tg("NO MUSE VERDICT\n" + msg)
         try:
             send(f"Bets watchdog: no Muse verdict ({(p.get('bet') or '')[:40]})", msg + f"\n\n{tok}")
@@ -303,7 +303,7 @@ def held_tok(key):
     return "xheld" + hashlib.sha1(key.encode()).hexdigest()[:12]
 
 
-def push(title, body):
+def push(title, body, mirror=True):
     """Phone alert through the same ntfy topic as the sharp alerts (no amounts)."""
     topic = os.environ.get("NTFY_TOPIC", "")
     if not topic:
@@ -315,6 +315,8 @@ def push(title, body):
         urllib.request.urlopen(req, timeout=15).read()
     except Exception as ex:
         print(f"push failed: {str(ex)[:60]}")
+    if mirror:   # Oct 27 (Peter): every ntfy push also lands in Telegram; mirror=False where a tg() line already says it
+        tg(f"{title}\n{body}")
 
 
 def tg(text):
@@ -1031,10 +1033,10 @@ def live_order(r):
         push("PLACED: " + bet_text(r, lv["line"], limit)[:60],
              f"{label}\nProphetX fill-or-kill: ${res.get('filled_stake') or 0:,.2f} filled"
              + (f" at {res['avg_price']:+d}" if res.get("avg_price") else "") + f" (asked ${stake:,.2f}, limit {limit:+d})."
-             + ("" if res.get("fills_read") else " Fill read failed: check My Trades."))
+             + ("" if res.get("fills_read") else " Fill read failed: check My Trades."), mirror=False)
     elif res["status"] == "error":
         tg(f"LIVE ORDER ERROR ProphetX: {(p.get('bet') or '')[:60]}\n{res['reason'][:200]}\nCheck My Trades before retrying.")
-        push("LIVE ORDER ERROR: " + (p.get("bet") or "")[:50], f"{label}\n{res['reason']}\nCheck ProphetX My Trades before retrying.")
+        push("LIVE ORDER ERROR: " + (p.get("bet") or "")[:50], f"{label}\n{res['reason']}\nCheck ProphetX My Trades before retrying.", mirror=False)
     return dict(res, asked_stake=stake, limit=limit)
 
 
