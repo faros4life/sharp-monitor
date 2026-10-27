@@ -1,10 +1,10 @@
 # Liquidity alerts (paper)
 
-Updated Tue Oct 27, 4:10 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 9.
+Updated Tue Oct 27, 4:18 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 8.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 48-34 (-7.41u flat) | rule met: 16-18
+**Record:** 48-35 (-8.41u flat) | rule met: 16-18
 
 **Fade (paper, betting against the print):** 10-15 (-1.43u flat, after fees)
 
@@ -24,7 +24,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 26 2:46PM | MLB | Milwaukee vs Tampa Bay: Total Runs | total: Over 7.5 runs scored | kalshi | $231k | +122 |  |  | -16.0c | yes | W |
 | Oct 26 2:40PM | MLB | Milwaukee Brewers vs. Tampa Bay Rays | moneyline: Tampa Bay Rays | polymarket | $708k | -108 | ✅ kalshi,novig |  | +0.0c |  | L |
 | Oct 26 1:10PM | MLB | Milwaukee Brewers vs. Tampa Bay Rays | total: Under (7.5) | polymarket | $49k | -122 | ✅ kalshi,novig |  | +1.0c |  | L |
-| Oct 26 12:30PM | TENNIS | Mpetshi Perricard vs Fils | moneyline: Fils | kalshi | $50k | -456 |  |  | -5.0c |  | pending |
+| Oct 26 12:30PM | TENNIS | Mpetshi Perricard vs Fils | moneyline: Fils | kalshi | $50k | -456 |  |  | -6.0c |  | pending |
 | Oct 26 12:00PM | TENNIS | Fery vs Fearnley | moneyline: Fery | kalshi | $48k | +104 |  |  | +21.0c | yes | W |
 | Oct 26 11:20AM | MLB | Milwaukee Brewers @ Tampa Bay Rays | moneyline: MIL (0) | novig | $27k | +106 | ✅ polymarket,prophetx |  | +0.0c |  | W |
 | Oct 26 11:00AM | TENNIS | Machac vs de Minaur | moneyline: Machac | kalshi | $441k | -203 |  |  | -66.0c | yes | L |
@@ -42,7 +42,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 25 11:40PM | TENNIS | Timofeeva vs Kostovic | moneyline: Timofeeva | kalshi | $120k | -355 |  |  | +2.0c | yes | W |
 | Oct 25 11:30PM | TENNIS | Udvardy vs Kraus | moneyline: Kraus | kalshi | $113k | -335 |  |  | +7.0c |  | W |
 | Oct 25 10:08PM | TENNIS | Wang vs Parks | moneyline: Parks | kalshi | $351k | -317 |  |  | -1.0c |  | W |
-| Oct 25 9:30PM | TENNIS | Sasnovich vs Bartunkova | moneyline: Bartunkova | kalshi | $28k | -186 |  |  | +1.0c | yes | pending |
+| Oct 25 9:30PM | TENNIS | Sasnovich vs Bartunkova | moneyline: Bartunkova | kalshi | $28k | -186 |  |  | +1.0c | yes | L |
 | Oct 25 9:10PM | TENNIS | Wang vs Parks | moneyline: Wang | kalshi | $35k | -170 |  |  | -37.0c | yes | L |
 | Oct 25 7:10PM | MLB | Milwaukee vs Tampa Bay: Total Runs | total: NOT Over 7.5 runs scored | kalshi | $65k | -127 | ✅ novig,polymarket |  | +16.0c | yes | L |
 | Oct 25 11:12AM | TENNIS | Mannarino vs Molcan | moneyline: Mannarino | kalshi | $159k | -257 |  |  | +26.0c |  | W |
