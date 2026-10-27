@@ -4,7 +4,7 @@ Kalshi $1 REAL-MONEY **NO-side** order test (Oct 27, 2026): proves buying NO (an
 with the TRADING key (GitHub Secrets KALSHI_TRADE_KEY_ID / KALSHI_TRADE_PRIVATE_KEY only).
 
 1. Signed read of the balance: prints only whether it worked (never the amount; the repo is public).
-2. Pick one open TOTAL market (NBA/NFL/college football/NHL) whose NO side (= the under) costs 35-65c, 2+ contracts
+2. Pick one open TOTAL market (NBA/NFL/college football/NHL) whose NO side costs 20-80c (totals first = an under; else a game market = the other team), 2+ contracts
    offered, not already held.
 3. ONE fill-or-kill order: buy 1 NO contract at the best NO offer (= 1 - best YES bid). Older order route first
    (action buy / side no / no_price); only if that route is gone (404/405), the V2 route as a YES ask. Cost about 50c + fee.
@@ -90,7 +90,8 @@ def held_tickers():
 
 
 def candidates():
-    for series in ("KXNBATOTAL", "KXNFLTOTAL", "KXNCAAFTOTAL", "KXNHLTOTAL"):
+    # unders first (totals), then game-winner markets (NO on one team = the other side); any open game today or later
+    for series in ("KXNBATOTAL", "KXNHLTOTAL", "KXNCAAFTOTAL", "KXNFLTOTAL", "KXNBAGAME", "KXNHLGAME", "KXNCAAFGAME", "KXNFLGAME"):
         st, d = call("GET", "/markets", {"status": "open", "limit": 200, "series_ticker": series}, signed=False)
         if st != 200 or not isinstance(d, dict):
             print(f"   markets {series} -> {st}")
@@ -109,9 +110,17 @@ def main():
     if held is None:
         sys.exit("   STOP: couldn't read positions (fail closed).")
     pick = None
+    looked = 0
     for mk in candidates():
         if mk["ticker"] in held:
             continue
+        yb = mk.get("yes_bid_dollars")
+        yb = float(yb) if yb not in (None, "") else (mk["yes_bid"] / 100 if isinstance(mk.get("yes_bid"), (int, float)) else None)
+        if yb is not None and not (0.20 <= 1 - yb <= 0.80):   # listing already shows the NO cost is out of range: skip the book call
+            continue
+        looked += 1
+        if looked > 60:
+            break
         st, book = call("GET", f"/markets/{mk['ticker']}/orderbook", signed=False)
         if st != 200 or not isinstance(book, dict):
             continue
@@ -120,14 +129,14 @@ def main():
             continue
         best_yes, qty = max(yes_bids, key=lambda x: x[0])
         no_cost = round(1 - best_yes, 4)          # buying NO takes the best YES bid
-        if 0.35 <= no_cost <= 0.65 and qty >= 2:
+        if 0.20 <= no_cost <= 0.80 and qty >= 2:
             pick = (mk, no_cost, qty)
             break
     if not pick:
-        sys.exit("No total market with a NO (under) offer between 35c and 65c right now. Try again later.")
+        sys.exit("No total or game market with a NO offer between 20c and 80c right now. Try again later.")
     mk, no_cost, qty = pick
     exp_fee = 0.07 * no_cost * (1 - no_cost)
-    print(f"2) Market: {mk['ticker']} | {mk.get('title')} | YES = {mk.get('yes_sub_title') or ''} -> buying NO (the under)")
+    print(f"2) Market: {mk['ticker']} | {mk.get('title')} | YES = {mk.get('yes_sub_title') or ''} -> buying NO")
     print(f"   Quoted NO cost {no_cost:.2f} ({qty:g} on the best YES bid); expected taker fee 0.07*P*(1-P) = {exp_fee:.4f}")
     order = {"ticker": mk["ticker"], "action": "buy", "side": "no", "type": "limit", "count": 1,
              "no_price": int(round(no_cost * 100)), "time_in_force": "fill_or_kill", "client_order_id": str(uuid.uuid4())}
