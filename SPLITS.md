@@ -1,23 +1,23 @@
-# Paper splits (updated 2026-10-27T03:05:12Z)
+# Paper splits (updated 2026-10-27T03:10:11Z)
 
 Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kill bar: 30+ resulted at -0.10u/play or worse closes a split.
 
 | Split | Type | Start | W-L-P | Units | u/play | True close % | Status |
 |---|---|---|---|---|---|---|---|
-| Phase-1 live filter (paper view) | a-priori | 2026-10-26 | 1-1-0 | -0.12 | -0.060 | -2.65 | OPEN |
+| Phase-1 live filter (paper view) | a-priori | 2026-10-26 | 2-1-0 | +0.70 | +0.233 | -2.67 | OPEN |
 | Phase-1 control group | control | 2026-10-26 | 1-1-0 | -0.21 | -0.105 | -1.60 | OPEN |
-| Hard Rock-priced, routed | a-priori | 2026-10-26 | 0-1-0 | -1.00 | -1.000 | -12.20 | OPEN |
-| Fade Hard Rock-priced | scan | 2026-10-26 | 0-1-0 | +0.97 | +0.970 | -12.20 | OPEN |
+| Hard Rock-priced, routed | a-priori | 2026-10-26 | 1-1-0 | -0.09 | -0.045 | -4.15 | OPEN |
+| Fade Hard Rock-priced | scan | 2026-10-26 | 1-1-0 | -0.03 | -0.015 | -4.15 | OPEN |
 | PM-global-priced, routed | a-priori | 2026-10-26 | 0-0-0 | +0.00 |  |  | OPEN |
-| Unders only | scan | 2026-10-26 | 1-2-0 | -1.06 | -0.353 | -4.50 | OPEN |
-| Combined filter | scan | 2026-10-26 | 2-2-0 | -0.30 | -0.075 | -3.02 | OPEN |
+| Unders only | scan | 2026-10-26 | 2-2-0 | -0.24 | -0.060 | -4.05 | OPEN |
+| Combined filter | scan | 2026-10-26 | 3-2-0 | +0.52 | +0.104 | -2.96 | OPEN |
 | Priced -125 or worse | scan | 2026-10-26 | 1-0-0 | +0.79 | +0.790 | -1.40 | OPEN |
 | College basketball | scan | 2026-10-26 | 0-0-0 | +0.00 |  |  | OPEN |
 | Fade alerts sent 12-24h out | scan | 2026-10-26 | 1-0-0 | -1.00 | -1.000 | +0.50 | OPEN |
 | Liquidity totals, no sharp agree | scan | 2026-10-22 | 54-41-0 | +10.12 | +0.107 |  | ELIGIBLE at next review |
 | Liquidity vs sharp (oppose) | scan | 2026-10-22 | 39-40-0 | -4.82 | -0.061 |  | OPEN |
 
-**ProphetX tripwire:** 4/30 resulted, -0.082u/play - counting.
+**ProphetX tripwire:** 5/30 resulted, +0.098u/play - counting.
 
 **Price gaps (measurement only):** {"gaps": 8, "per_day": 8.0, "edge_pct_median": 0.7, "edge_pct_p90": 4.54, "size_est_median_upper_bound": 12356.0, "seen_once_share": 1.0, "lifetime_min_median": 0.0, "lived_10min_plus": 0, "with_200_both_legs_upper_bound": 8, "scan_sec_median": 320}
 
