@@ -1,6 +1,456 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-27T13:40:11Z",
+   "base_depth": 42253,
+   "best_price": 0.5,
+   "best_price_american": -100,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 6,
+   "date": "2026-10-27",
+   "depth_by_book": {
+    "novig": {
+     "heavier_side": true,
+     "label": "POR +2.5 (-2.5)",
+     "price": 0.5,
+     "this_side": 11879
+    },
+    "polymarket": {
+     "new_other_side": 14305,
+     "new_this_side": 100223,
+     "other_side": 16038,
+     "other_side_all_levels": 38336,
+     "ratio": 8.2,
+     "this_side": 131533,
+     "this_side_all_levels": 140349
+    }
+   },
+   "fade_price": 0.51,
+   "first_seen_utc": "2026-10-27T13:33:50Z",
+   "game": "Trail Blazers vs. Lakers",
+   "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6265845\"}",
+   "lead_min": 800,
+   "league": "NBA",
+   "line": 2.5,
+   "market": "spread",
+   "new_money": 100223,
+   "paper_only": false,
+   "price": 0.5,
+   "price_american": -100,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.5,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 2.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 2.5,
+     "price": -113
+    },
+    "betopenly": {
+     "point": 2.5,
+     "price": 101
+    },
+    "betrivers": {
+     "point": 1.5,
+     "price": -109
+    },
+    "betus": {
+     "point": 2.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 2.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 2.5,
+     "price": -112
+    },
+    "fanatics": {
+     "point": 2.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 2.5,
+     "price": -114
+    },
+    "kalshi": {
+     "point": 2.5,
+     "price": 104
+    },
+    "lowvig": {
+     "point": 2.5,
+     "price": -109
+    },
+    "mybookieag": {
+     "point": 2.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 2.5,
+     "price": -102
+    },
+    "polymarket": {
+     "point": 2.5,
+     "price": 100
+    },
+    "prophetx": {
+     "point": 2.5,
+     "price": 101
+    },
+    "williamhill_us": {
+     "point": 2.5,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 1,
+    "pm_market_id": "6265845"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [
+    "Portland Trail Blazers +4 (-119)"
+   ],
+   "sharp_oppose": [
+    "Los Angeles Lakers -2 (-120)"
+   ],
+   "side": "Trail Blazers",
+   "side_label": "Trail Blazers (+2.5)",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-28T03:00:00Z",
+   "teams": [
+    "Trail Blazers",
+    "Lakers"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-27T13:40:11Z",
+   "base_depth": 96428,
+   "best_price": 0.4745,
+   "best_price_american": 111,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.48,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 6,
+   "date": "2026-10-27",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Minnesota",
+     "price": 0.47,
+     "this_side": 321457
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "MIN (0)",
+     "price": 0.475,
+     "this_side": 22922
+    },
+    "polymarket": {
+     "new_other_side": -811,
+     "new_this_side": 27276,
+     "other_side": 52472,
+     "other_side_all_levels": 73264,
+     "ratio": 2.1,
+     "this_side": 110069,
+     "this_side_all_levels": 124216
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Minnesota Wild",
+     "price": 0.4695,
+     "this_side": 18044
+    }
+   },
+   "fade_price": 0.53,
+   "first_seen_utc": "2026-10-27T13:33:50Z",
+   "game": "Wild vs. Utah",
+   "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"5156498\"}",
+   "lead_min": 680,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 27276,
+   "paper_only": false,
+   "price": 0.48,
+   "price_american": 108,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.48,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": 105
+    },
+    "betonlineag": {
+     "point": null,
+     "price": 109
+    },
+    "betopenly": {
+     "point": null,
+     "price": 114
+    },
+    "betrivers": {
+     "point": null,
+     "price": 110
+    },
+    "betus": {
+     "point": null,
+     "price": 105
+    },
+    "bovada": {
+     "point": null,
+     "price": 107
+    },
+    "draftkings": {
+     "point": null,
+     "price": 105
+    },
+    "fanatics": {
+     "point": null,
+     "price": 110
+    },
+    "fanduel": {
+     "point": null,
+     "price": 110
+    },
+    "kalshi": {
+     "point": null,
+     "price": 113
+    },
+    "lowvig": {
+     "point": null,
+     "price": 109
+    },
+    "mybookieag": {
+     "point": null,
+     "price": 105
+    },
+    "novig": {
+     "point": null,
+     "price": 111
+    },
+    "polymarket": {
+     "point": null,
+     "price": 108
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": 108
+    },
+    "prophetx": {
+     "point": null,
+     "price": 113
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": 110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 0,
+    "pm_market_id": "5156498"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi",
+    "prophetx"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Wild",
+   "side_label": "Wild",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-28T01:00:00Z",
+   "teams": [
+    "Wild",
+    "Utah"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-27T13:40:11Z",
+   "base_depth": 90131,
+   "best_price": 0.505,
+   "best_price_american": -102,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 6,
+   "date": "2026-10-27",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 14795,
+     "new_this_side": 48250,
+     "other_side": 43244,
+     "other_side_all_levels": 107018,
+     "ratio": 2.3,
+     "this_side": 98499,
+     "this_side_all_levels": 138285
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "SAS -18.5 (-18.5)",
+     "price": 0.505,
+     "this_side": 21119
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "San Antonio Spurs -18.5 (-18.5)",
+     "price": 0.505,
+     "this_side": 12816
+    }
+   },
+   "fade_price": 0.51,
+   "first_seen_utc": "2026-10-27T13:33:50Z",
+   "game": "Sacramento vs San Antonio: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNBASPREAD-26OCT27SACSAS-SAS19\"}",
+   "lead_min": 620,
+   "league": "NBA",
+   "line": -18.5,
+   "market": "spread",
+   "new_money": 48250,
+   "paper_only": false,
+   "price": 0.5,
+   "price_american": -100,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.5,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -18.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": -18.0,
+     "price": -115
+    },
+    "betopenly": {
+     "point": -18.5,
+     "price": 100
+    },
+    "betrivers": {
+     "point": -18.5,
+     "price": -110
+    },
+    "betus": {
+     "point": -18.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": -18.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": -17.5,
+     "price": -118
+    },
+    "fanatics": {
+     "point": -18.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": -18.5,
+     "price": -105
+    },
+    "kalshi": {
+     "point": -18.5,
+     "price": 100
+    },
+    "lowvig": {
+     "point": -18.0,
+     "price": -111
+    },
+    "mybookieag": {
+     "point": -18.0,
+     "price": -110
+    },
+    "novig": {
+     "point": -18.5,
+     "price": -102
+    },
+    "polymarket": {
+     "point": -18.5,
+     "price": -104
+    },
+    "prophetx": {
+     "point": -18.5,
+     "price": -102
+    },
+    "williamhill_us": {
+     "point": -18.5,
+     "price": -105
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBASPREAD-26OCT27SACSAS-SAS19"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "prophetx"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [
+    "San Antonio Spurs -17.5 (-115)"
+   ],
+   "sharp_oppose": [],
+   "side": "San Antonio",
+   "side_label": "San Antonio wins by over 18.5 points",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-28T00:00:00Z",
+   "teams": [
+    "Sacramento",
+    "San Antonio"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-27T13:33:50Z",
    "base_depth": 43342,
    "best_price": 0.695,
@@ -594,8 +1044,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.55,
-   "clv_cents": 4.0,
+   "close_price": 0.54,
+   "clv_cents": 3.0,
    "confirmed_after_min": 10,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -2996,8 +3446,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.48,
-   "clv_cents": 1.0,
+   "close_price": 0.47,
+   "clv_cents": 0.0,
    "confirmed_after_min": 8,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -6142,8 +6592,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.61,
-   "clv_cents": 0.0,
+   "close_price": 0.62,
+   "clv_cents": 1.0,
    "confirmed_after_min": 4,
    "date": "2026-10-27",
    "depth_by_book": {
