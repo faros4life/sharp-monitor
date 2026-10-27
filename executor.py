@@ -614,6 +614,18 @@ def american_to_prob(a):
     return 100 / (a + 100) if a > 0 else -a / (-a + 100)
 
 
+PX_TOL_CENTS = 2   # Peter, Oct 27: ProphetX (the live book) may fill up to 2 cents worse than the alert's after-fee price
+
+
+def cents_worse(am, c):
+    """An American price c cents worse for the bettor (-109 -> -111; +105 -> +103; +101 -> -101)."""
+    am = int(am)
+    if am < 0:
+        return am - c
+    w = am - c
+    return w if w >= 100 else -(100 + (100 - w))
+
+
 WIN_FEE = {"prophetx": 0.02}   # fee on winnings: a ProphetX win nets 98% of the screen payout
 
 
@@ -700,15 +712,26 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None, held=None):
                     (mtype == "moneyline" or (bl is not None and abs(bl - ln) < 1e-9)):
                 ladders[(b, bl)] = r
     hp, hp_src = half_point(ladders, mtype, side, al["sport"])
-    alert_cost = american_to_prob(price)
+    # Oct 27 (Peter): the bar is the alert's AFTER-FEE price (what the alert really cost), compared with each book's
+    # after-fee price - before this, the alert's screen price was compared with after-fee prices, so a ProphetX alert
+    # could never be matched on ProphetX itself (its 2% fee always made it ~2c worse than its own screen).
+    ent0 = feed_entry(p, load_feed()) or {}
+    alert_af = ent0.get("price_after_fee") if ent0.get("price_after_fee") is not None else p.get("price_after_fee")
+    try:
+        alert_af = int(alert_af) if alert_af is not None else price
+    except Exception:
+        alert_af = price
+    alert_cost = american_to_prob(alert_af)
+    px_tol = american_to_prob(cents_worse(alert_af, PX_TOL_CENTS)) - alert_cost   # Peter, Oct 27: ProphetX may be 2c worse
     cands = []
     for (b, bl), r in ladders.items():
         hb = 0.0 if mtype == "moneyline" else better_halfpoints(mtype, side, line, bl)
         am = r["best_price_american"]
         c_eq = american_to_prob(am) - hb * hp
-        if c_eq > alert_cost + 1e-9:
+        tol = px_tol if b == "prophetx" else 0.0
+        if c_eq > alert_cost + tol + 1e-9:
             continue
-        thr = lm.american(min(max(alert_cost + hb * hp, 0.01), 0.99))   # worst acceptable real price at this line
+        thr = lm.american(min(max(alert_cost + tol + hb * hp, 0.01), 0.99))   # worst acceptable real price at this line
         avail = sum(d for a, d in levels(b, r) if a is not None and thr is not None and a >= thr)
         if avail <= 0:
             continue
@@ -718,7 +741,8 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None, held=None):
     if not cands:
         if not ladders:
             return dict(out, verdict="SKIP", reason="no book lists this market near the alert line")
-        return dict(out, verdict="SKIP", reason=f"price: nothing at or better than {price:+d} at {fmt_line(mtype, line)} "
+        return dict(out, verdict="SKIP", reason=f"price: nothing at or better than {alert_af:+d} after fees (ProphetX: "
+                                                f"{cents_worse(alert_af, PX_TOL_CENTS):+d}) at {fmt_line(mtype, line)} "
                                                 f"(equivalent, after fees; half point = {hp * 100:.1f}c {hp_src})")
     capped = [c for c in cands if not (mtype in ("spread", "total") and c["am"] < CAP_LINE)]
     if not capped:
