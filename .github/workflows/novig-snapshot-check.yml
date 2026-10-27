@@ -1,0 +1,30 @@
+name: novig-snapshot-check
+
+on:
+  workflow_dispatch:   # manual: can the executor read the home PC's Novig positions snapshot? Prints counts only.
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Read the snapshot exactly as the executor does
+        env:
+          NOVIG_SNAPSHOT_TOKEN: ${{ secrets.NOVIG_SNAPSHOT_TOKEN }}
+        run: |
+          python -u - <<'PY'
+          import executor as e
+          pos = e.novig_snapshot()
+          if pos is None:
+              print("SNAPSHOT: FAILED ->", (e._NVERR.get("why") or "").strip(" |")[:200])
+              raise SystemExit(1)
+          print(f"SNAPSHOT: OK - {len(pos)} open Novig position(s); source: {e._NVERR.get('src')}")
+          PY
