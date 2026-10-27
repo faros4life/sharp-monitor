@@ -248,7 +248,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+1 pts",
+   "clv": "+1.5 pts",
    "confirm": "yes",
    "confirmed_by": [
     "Matchbook"
@@ -279,7 +279,7 @@
   },
   {
    "alert_utc": "2026-10-27T15:40:14Z",
-   "beat_close": true,
+   "beat_close": false,
    "beat_true_close": null,
    "bet": "Over 6 (-118)",
    "book": "ProphetX",
@@ -287,7 +287,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+0.5 pts",
+   "clv": "+0 pts",
    "confirm": "yes",
    "confirmed_by": [
     "Matchbook"
@@ -310,6 +310,45 @@
    "price_after_fee": -120,
    "result": null,
    "score": 59,
+   "sent_to_phone": true,
+   "sport": "NHL",
+   "start_utc": "2026-10-28T00:10:00Z",
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alert_utc": "2026-10-27T22:10:12Z",
+   "beat_close": true,
+   "beat_true_close": null,
+   "bet": "Under 6.5 (-111)",
+   "book": "Novig",
+   "book_key": "novig",
+   "close_fair_prob": null,
+   "close_read_mins_before": null,
+   "close_value_pct": null,
+   "clv": "+0.5 pts",
+   "confirm": "yes",
+   "confirmed_by": [
+    "BetOnline"
+   ],
+   "edge_pct": 5.4,
+   "executable_book": true,
+   "fade_book": "novig",
+   "fade_point": 6.5,
+   "fade_price": 108,
+   "fade_price_after_fee": 108,
+   "fade_units": null,
+   "final": null,
+   "game": "Montr\u00e9al Canadiens @ St Louis Blues",
+   "grade": "B",
+   "kind": "tot",
+   "late": false,
+   "minutes_before_start": 120,
+   "point": 6.5,
+   "price": -111,
+   "price_after_fee": -111,
+   "result": null,
+   "score": 72,
    "sent_to_phone": true,
    "sport": "NHL",
    "start_utc": "2026-10-28T00:10:00Z",
@@ -15081,6 +15120,30 @@
   }
  ],
  "all_alerts": [
+  {
+   "alert_text": "Under 6.5 (-111) at Novig (also: Hard Rock, Kalshi)",
+   "bet": "Under 6.5 (-111)",
+   "bet_result": null,
+   "book": "Novig",
+   "confirmed_by": [
+    "BetOnline"
+   ],
+   "edge_pct": 5.4,
+   "final": null,
+   "game": "Montr\u00e9al Canadiens @ St Louis Blues",
+   "grade": "B",
+   "late": false,
+   "minutes_before_start": 120,
+   "price": -111,
+   "price_after_fee": -111,
+   "pushed_to_phone": true,
+   "repeat": false,
+   "score": 72,
+   "sent_et": "2026-10-27 18:10",
+   "sport": "NHL",
+   "start_utc": "2026-10-28T00:10:00Z",
+   "why": "Pinnacle total moved 6.5 -> 6; bet only at 6.5 or better (confirmed by BetOnline)"
+  },
   {
    "alert_text": "Under 56.5 (-110) at Hard Rock",
    "bet": "Under 56.5 (-110)",
