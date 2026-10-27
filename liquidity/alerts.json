@@ -1,6 +1,163 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-27T17:11:55Z",
+   "base_depth": 98097,
+   "best_price": 0.495,
+   "best_price_american": 102,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.49,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 12,
+   "date": "2026-10-27",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "New Jersey",
+     "price": 0.5,
+     "this_side": 363531
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "NJD (0)",
+     "price": 0.495,
+     "this_side": 29998
+    },
+    "polymarket": {
+     "new_other_side": -19806,
+     "new_this_side": 48730,
+     "other_side": 63030,
+     "other_side_all_levels": 102196,
+     "ratio": 2.0,
+     "this_side": 128745,
+     "this_side_all_levels": 167137
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "New Jersey Devils",
+     "price": 0.4926,
+     "this_side": 9797
+    }
+   },
+   "fade_price": 0.52,
+   "first_seen_utc": "2026-10-27T17:00:17Z",
+   "game": "Devils vs. Stars",
+   "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"5156483\"}",
+   "lead_min": 408,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 48730,
+   "paper_only": false,
+   "price": 0.49,
+   "price_american": 104,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.49,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -105
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -104
+    },
+    "betopenly": {
+     "point": null,
+     "price": 104
+    },
+    "betrivers": {
+     "point": null,
+     "price": 102
+    },
+    "betus": {
+     "point": null,
+     "price": -105
+    },
+    "bovada": {
+     "point": null,
+     "price": -108
+    },
+    "draftkings": {
+     "point": null,
+     "price": -105
+    },
+    "fanatics": {
+     "point": null,
+     "price": -105
+    },
+    "fanduel": {
+     "point": null,
+     "price": -105
+    },
+    "kalshi": {
+     "point": null,
+     "price": 100
+    },
+    "lowvig": {
+     "point": null,
+     "price": -104
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -109
+    },
+    "novig": {
+     "point": null,
+     "price": 102
+    },
+    "polymarket": {
+     "point": null,
+     "price": 104
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": 100
+    },
+    "prophetx": {
+     "point": null,
+     "price": 103
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -102
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 0,
+    "pm_market_id": "5156483"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi",
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Devils",
+   "side_label": "Devils",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-28T00:00:00Z",
+   "teams": [
+    "Devils",
+    "Stars"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-27T16:40:11Z",
    "base_depth": 41224,
    "best_price": 0.6568,
@@ -558,7 +715,7 @@
     }
    },
    "pulled": true,
-   "pulled_utc": "2026-10-27T17:07:18Z",
+   "pulled_utc": "2026-10-27T17:00:17Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNBASPREAD-26OCT27BKNBOS-BOS12"
@@ -1792,8 +1949,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": 3.0,
+   "close_price": 0.54,
+   "clv_cents": 4.0,
    "confirmed_after_min": 12,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -4013,8 +4170,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.685,
-   "clv_cents": 0.0,
+   "close_price": 0.68,
+   "clv_cents": -0.5,
    "confirmed_after_min": 7,
    "date": "2026-10-27",
    "depth_by_book": {
