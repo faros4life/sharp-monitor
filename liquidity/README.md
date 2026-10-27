@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Oct 27, 2:26 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 81.
+Updated Tue Oct 27, 2:31 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 81.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -14,7 +14,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 27 2:10PM | NHL | Senators vs. Golden Knights | moneyline: Golden Knights | polymarket | $46k | -150 | ✅ kalshi,novig |  | +0.0c |  | pending |
 | Oct 27 2:00PM | NBA | Brooklyn vs Boston: Total Points | total: NOT Over 222.5 points | kalshi | $37k | -108 | ✅ novig,polymarket | ❌ | -1.0c |  | pending |
 | Oct 27 1:54PM | NBA | Pistons vs. Knicks | moneyline: Knicks | polymarket | $42k | -150 | ✅ novig,prophetx |  | +0.0c |  | pending |
-| Oct 27 1:54PM | NBA | Nets vs. Celtics | spread: Celtics (-12.5) | polymarket | $31k | -104 | ✅ novig,prophetx |  | -1.0c |  | pending |
+| Oct 27 1:54PM | NBA | Nets vs. Celtics | spread: Celtics (-12.5) | polymarket | $31k | -104 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Oct 27 1:44PM | NBA | Nets vs. Celtics | total: Under (222.5) | polymarket | $52k | -104 | ✅ kalshi,novig | ❌ | +0.0c |  | pending |
 | Oct 27 1:44PM | NBA | Brooklyn vs Boston: Spread | spread: NOT Boston wins by over 12.5 points | kalshi | $43k | -100 | ✅ prophetx |  | +0.0c |  | pending |
 | Oct 27 1:33PM | NHL | Sabres vs. Sharks | total: Over (6.5) | polymarket | $49k | -122 | ✅ kalshi,novig |  | +0.0c |  | pending |
@@ -24,7 +24,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 27 12:40PM | NHL | Sabres vs. Sharks | spread: Sharks (+1.5) | polymarket | $38k | -186 | ✅ kalshi |  | -1.0c |  | pending |
 | Oct 27 12:40PM | NHL | Canucks vs. Ducks | moneyline: Ducks | polymarket | $45k | -203 | ✅ kalshi,novig,prophetx |  | +0.0c |  | pending |
 | Oct 27 12:20PM | NBA | Portland vs Los Angeles L: Total Points | total: Over 233.5 points | kalshi | $29k | -108 |  | ❌ | -1.0c |  | pending |
-| Oct 27 12:20PM | NBA | Brooklyn vs Boston: Spread | spread: NOT Boston wins by over 11.5 points | kalshi | $113k | +104 |  |  | -3.0c | yes | pending |
+| Oct 27 12:20PM | NBA | Brooklyn vs Boston: Spread | spread: NOT Boston wins by over 11.5 points | kalshi | $113k | +104 |  |  | -2.0c | yes | pending |
 | Oct 27 11:50AM | NHL | Florida vs Winnipeg | moneyline: Florida | kalshi | $62k | -117 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Oct 27 11:40AM | NHL | Canadiens vs. Blues | moneyline: Canadiens | polymarket | $26k | -100 | ✅ kalshi,prophetx |  | +0.0c |  | pending |
 | Oct 27 11:30AM | NBA | Nets vs. Celtics | moneyline: Celtics | polymarket | $30k | -488 | ✅ kalshi,novig,prophetx |  | +3.0c | yes | pending |
