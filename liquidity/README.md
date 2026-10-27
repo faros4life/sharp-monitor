@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Oct 27, 8:39 AM ET. This run: 2 new, 0 not confirmed, 1 pending. Open alerts: 40.
+Updated Tue Oct 27, 8:42 AM ET. This run: 2 new, 0 not confirmed, 4 pending. Open alerts: 40.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,8 +10,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Oct 27 8:39AM | NHL | Montreal vs St. Louis: Spread | spread: NOT St. Louis wins by over 1.5 goals | kalshi | $28k | -233 | ✅ novig |  | +0.0c |  | pending |
-| Oct 27 8:39AM | NHL | Los Angeles vs Chicago: Spread | spread: NOT Los Angeles wins by over 1.5 goals | kalshi | $32k | -233 | ✅ novig |  | +0.0c |  | pending |
+| Oct 27 8:42AM | NHL | Montreal vs St. Louis: Spread | spread: NOT St. Louis wins by over 1.5 goals | kalshi | $28k | -233 | ✅ novig |  | +0.0c |  | pending |
+| Oct 27 8:42AM | NHL | Los Angeles vs Chicago: Spread | spread: NOT Los Angeles wins by over 1.5 goals | kalshi | $32k | -233 | ✅ novig |  | +0.0c |  | pending |
 | Oct 27 8:30AM | NHL | Boston vs Carolina: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $46k | -117 | ✅ novig,polymarket | ✅ | +0.0c |  | pending |
 | Oct 27 8:30AM | NHL | New York I vs Nashville | moneyline: New York I | kalshi | $26k | +108 |  |  | +0.0c |  | pending |
 | Oct 27 8:20AM | NHL | Vancouver vs Anaheim: Spread | spread: NOT Anaheim wins by over 1.5 goals | kalshi | $26k | -133 | ✅ novig,polymarket |  | +0.0c |  | pending |
@@ -33,7 +33,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 27 12:20AM | NCAAF | Jacksonville St. vs New Mexico St. | moneyline: Jacksonville St. | kalshi | $89k | -138 |  |  | +0.0c | yes | pending |
 | Oct 27 12:12AM | NHL | Ottawa vs Vegas: Total Goals | total: Over 6.5 goals scored | kalshi | $38k | +104 |  |  | +1.0c |  | pending |
 | Oct 27 12:12AM | NHL | New Jersey vs Dallas: Spread | spread: NOT Dallas wins by over 1.5 goals | kalshi | $57k | -233 | ✅ polymarket |  | +0.0c |  | pending |
-| Oct 27 12:12AM | NHL | Minnesota vs Utah | moneyline: Utah | kalshi | $104k | -117 | ✅ polymarket |  | +0.0c |  | pending |
+| Oct 27 12:12AM | NHL | Minnesota vs Utah | moneyline: Utah | kalshi | $104k | -117 | ✅ polymarket |  | -1.0c |  | pending |
 | Oct 27 12:12AM | NHL | Los Angeles vs Chicago | moneyline: Chicago | kalshi | $37k | +104 |  |  | +0.0c | yes | pending |
 | Oct 26 11:20PM | NCAAF | Delaware vs Western Kentucky | moneyline: Delaware | kalshi | $801k | -100 | ✅ novig |  | +1.0c | yes | pending |
 | Oct 26 11:10PM | NBA | Detroit vs New York: Spread | spread: NOT New York wins by over 3.5 points | kalshi | $30k | -100 |  |  | -1.0c |  | pending |
