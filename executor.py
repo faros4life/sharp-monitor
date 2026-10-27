@@ -203,6 +203,75 @@ def live_stake(am):
     return round(risk, 2), round(LIVE_UNIT * am / 100 if am > 0 else LIVE_UNIT, 2)
 
 
+WATCH_MIN = 10   # Oct 27 (Muse): a phase-1-qualifying alert with no Muse verdict 10 min after the executor saw it -> push
+
+
+def _first_email_time(M, token):
+    """Internal date (UTC) of the earliest email carrying this token, or None."""
+    uids = gsearch_strict(M, token)
+    best = None
+    for uid in uids[:5]:
+        typ, data = M.uid("FETCH", uid, "(INTERNALDATE)")
+        if typ == "OK" and data and data[0]:
+            m = re.search(rb'INTERNALDATE "([^"]+)"', data[0] if isinstance(data[0], bytes) else data[0][0])
+            if m:
+                t = datetime.fromtimestamp(time.mktime(imaplib.Internaldate2tuple(b'INTERNALDATE "' + m.group(1) + b'"')), timezone.utc)
+                best = t if best is None or t < best else best
+    return best
+
+
+def muse_watchdog(now, muse_plays, rplays, feed):
+    """Every run: phase-1-qualifying SENT alerts (coded view, ignoring Muse AGREE) whose executor decision is 10+ min old
+    with NO Muse verdict on the same game+market+side -> one phone push per play ('No Muse verdict'), recorded by a
+    token in a short email so it never repeats. 2:00-5:00 AM ET is Muse's pause: those alerts get their 10 min from
+    5:00 AM, and no push is sent inside the pause. Counts only in the public log."""
+    et = now.astimezone(lm.ET)
+    if 2 <= et.hour < 5:
+        return 0
+    have = set()
+    for p in muse_plays:
+        have |= {p.get("play_key"), derive_key(p)}
+    late = []
+    try:
+        M = imap_open()
+        try:
+            for p in rplays:
+                k = derive_key(p)
+                if not k or k in have:
+                    continue
+                ent = feed_entry(p, feed)
+                if not ent or not agree_rules.phase1(ent, True)[0]:
+                    continue
+                tok = "xwdog" + hashlib.sha1(k.encode()).hexdigest()[:12]
+                if gsearch_strict(M, tok):
+                    continue   # already pushed once
+                seen = _first_email_time(M, pid(p["play_key"]))   # the executor's decision email for this play
+                if seen is None:
+                    continue   # not decided yet (this run decides it); the clock starts then
+                start = seen
+                st_et = seen.astimezone(lm.ET)
+                if 2 <= st_et.hour < 5:   # decided inside the pause: the clock starts at 5:00 AM ET
+                    start = st_et.replace(hour=5, minute=0, second=0, microsecond=0).astimezone(timezone.utc)
+                if now - start >= timedelta(minutes=WATCH_MIN):
+                    late.append((p, ent, tok, round((now - start).total_seconds() / 60)))
+        finally:
+            M.logout()
+    except Exception as ex:
+        print(f"watchdog check failed: {str(ex)[:60]}")
+        return 0
+    for p, ent, tok, mins in late:
+        msg = (f"{p.get('sport')} {p.get('game')} | {p.get('bet')}\nQualifies for LIVE, but no Muse verdict after {mins} min. "
+               "Live won't bet it without Muse AGREE. Ping Muse.")
+        push("No Muse verdict: " + (p.get("bet") or "")[:50], msg)
+        tg("NO MUSE VERDICT\n" + msg)
+        try:
+            send(f"Bets watchdog: no Muse verdict ({(p.get('bet') or '')[:40]})", msg + f"\n\n{tok}")
+        except Exception:
+            pass
+    print(f"Watchdog: {len(late)} qualifying play(s) with no Muse verdict after {WATCH_MIN} min")   # counts only
+    return len(late)
+
+
 def held_tok(key):
     """Token on HELD entries (positions unreadable): the play is NOT marked handled, so the next run retries it;
     this token only stops the phone alert from repeating every 10 minutes."""
@@ -949,6 +1018,12 @@ def ledger_row(r, run_start):
             "fill_book": r.get("book"), "fill_price_after_fee": r.get("american"), "fill_screen": r.get("shown"),
             "fill_line": r.get("take_line"), "live": bool(lv.get("go")), "live_nfl": bool(lv.get("nfl")), "live_why_not": lv.get("why"),
             "live_px_price_after_fee": lv.get("am"), "live_px_line": lv.get("line"),
+            # Oct 27 gettable-price counter (Muse): phase-1 qualifying (coded view, ignoring Muse AGREE), ProphetX at the
+            # alert price or better at check (equivalent price, same rule as live), best ProphetX price seen at the alert line
+            "p1_qualifies": (agree_rules.phase1(e, True)[0] if e else None),
+            "px_gettable": ((r.get("px") is not None) if r.get("books") else None),
+            "px_best_after_fee": ((r.get("books") or {}).get("prophetx") or {}).get("best_price_american"),
+            "px_best_line": ((r.get("books") or {}).get("prophetx") or {}).get("line"),
             "live_order": dict({k: (lv.get("order") or {}).get(k) for k in ("status", "reason", "order_id", "asked_stake", "limit",
                                                                             "filled_stake", "avg_price")},
                                book=(lv.get("order") or {}).get("book") or "prophetx") if lv.get("order") else None}
@@ -976,6 +1051,8 @@ def main():
     newest = max(sent_ts) if sent_ts else None
     wake_s = (now - newest).total_seconds() if newest and now - newest < timedelta(minutes=30) else None
     trig = os.environ.get("GITHUB_EVENT_NAME", "local")
+    if SOURCE in ("both",):
+        muse_watchdog(now, plays, rplays, feed)
     print(f"Verdict plays seen (2 days): {len(plays)}; coded-rule alerts: {len(rplays)}; new: {len(new)}")
     if wake_s is not None:
         print(f"Wake: run started {wake_s:.0f}s after the newest sent alert (trigger: {trig})")
@@ -1105,6 +1182,11 @@ def main():
         body.append("")
     body += [f"Wake: this run started {wake_s:.0f}s after the newest sent alert (trigger: {trig})." if wake_s is not None
              else f"Wake: no sent alert in the last 30 min (trigger: {trig}).", ""]
+    q = [r for r in results if r.get("entry") and agree_rules.phase1(r["entry"], True)[0]]
+    if q:
+        g = [r for r in q if r.get("px") is not None]
+        body += [f"Gettable check (phase-1 qualifying this run, coded view): {len(q)} qualifying; ProphetX at the alert price "
+                 f"or better at check: {len(g)}; not gettable: {sum(1 for r in q if r.get('books') and r.get('px') is None)}.", ""]
     if GUARD["ok"] is not None:
         body += [f"Live guards: {'OK' if GUARD['ok'] else 'REFUSED'}" + (f" - {GUARD['why']}" if GUARD["why"] else "")
                  + " (the daily stop counts only the bot's own orders).", ""]
