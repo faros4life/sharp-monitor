@@ -1,10 +1,10 @@
 {
  "alerts": [
   {
-   "alerted_utc": "2026-10-27T15:20:11Z",
+   "alerted_utc": "2026-10-27T15:23:21Z",
    "base_depth": 34763,
-   "best_price": 0.48,
-   "best_price_american": 108,
+   "best_price": 0.485,
+   "best_price_american": 106,
    "best_price_book": "novig",
    "bid_improved": false,
    "bid_improved_at_pending": false,
@@ -17,14 +17,14 @@
    ],
    "close_price": 0.49,
    "clv_cents": 0.0,
-   "confirmed_after_min": 10,
+   "confirmed_after_min": 13,
    "date": "2026-10-27",
    "depth_by_book": {
     "novig": {
      "heavier_side": false,
      "label": "POR +1.5 (-1.5)",
-     "price": 0.48,
-     "this_side": 22852
+     "price": 0.485,
+     "this_side": 22878
     },
     "polymarket": {
      "new_other_side": 9684,
@@ -32,15 +32,15 @@
      "other_side": 39082,
      "other_side_all_levels": 46676,
      "ratio": 2.2,
-     "this_side": 85591,
-     "this_side_all_levels": 93837
+     "this_side": 85827,
+     "this_side_all_levels": 94073
     }
    },
    "fade_price": 0.53,
    "first_seen_utc": "2026-10-27T15:10:11Z",
    "game": "Trail Blazers vs. Lakers",
    "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6265838\"}",
-   "lead_min": 700,
+   "lead_min": 697,
    "league": "NBA",
    "line": 1.5,
    "market": "spread",
@@ -139,159 +139,6 @@
    "teams": [
     "Trail Blazers",
     "Lakers"
-   ],
-   "top25": null,
-   "units_flat": null
-  },
-  {
-   "alerted_utc": "2026-10-27T15:20:11Z",
-   "base_depth": 98277,
-   "best_price": 0.525,
-   "best_price_american": -111,
-   "best_price_book": "novig",
-   "bid_improved": false,
-   "bid_improved_at_pending": false,
-   "book": "kalshi",
-   "books_live": [
-    "kalshi",
-    "novig",
-    "polymarket",
-    "prophetx"
-   ],
-   "close_price": 0.52,
-   "clv_cents": 0.0,
-   "confirmed_after_min": 10,
-   "date": "2026-10-27",
-   "depth_by_book": {
-    "kalshi": {
-     "new_other_side": -12644,
-     "new_this_side": 29121,
-     "other_side": 59682,
-     "other_side_all_levels": 78242,
-     "ratio": 2.1,
-     "this_side": 125919,
-     "this_side_all_levels": 129559
-    },
-    "novig": {
-     "heavier_side": true,
-     "label": "Under 6.5 (6.5)",
-     "price": 0.525,
-     "this_side": 30441
-    },
-    "polymarket": {
-     "heavier_side": true,
-     "label": "Under (6.5)",
-     "price": 0.52,
-     "this_side": 36120
-    },
-    "prophetx": {
-     "heavier_side": true,
-     "label": "under 6.5 (6.5)",
-     "price": 0.5327,
-     "this_side": 6366
-    }
-   },
-   "fade_price": 0.49,
-   "first_seen_utc": "2026-10-27T15:10:11Z",
-   "game": "Minnesota vs Utah: Total Goals",
-   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLTOTAL-26OCT27MINUTA-7\"}",
-   "lead_min": 580,
-   "league": "NHL",
-   "line": 6.5,
-   "market": "total",
-   "new_money": 29121,
-   "paper_only": false,
-   "price": 0.52,
-   "price_american": -108,
-   "price_rule": "ok",
-   "price_when_first_seen": 0.52,
-   "prices_by_book": {
-    "betmgm": {
-     "point": 6.5,
-     "price": -120
-    },
-    "betonlineag": {
-     "point": 6.5,
-     "price": -123
-    },
-    "betopenly": {
-     "point": 6.5,
-     "price": -107
-    },
-    "betrivers": {
-     "point": 6.5,
-     "price": -127
-    },
-    "betus": {
-     "point": 6.5,
-     "price": -120
-    },
-    "bovada": {
-     "point": 6.5,
-     "price": -120
-    },
-    "draftkings": {
-     "point": 6.5,
-     "price": -118
-    },
-    "fanatics": {
-     "point": 6.5,
-     "price": -125
-    },
-    "fanduel": {
-     "point": 6.5,
-     "price": -128
-    },
-    "kalshi": {
-     "point": 6.5,
-     "price": -108
-    },
-    "lowvig": {
-     "point": 6.5,
-     "price": -123
-    },
-    "mybookieag": {
-     "point": 6.5,
-     "price": -122
-    },
-    "novig": {
-     "point": 6.5,
-     "price": -111
-    },
-    "polymarket": {
-     "point": 6.5,
-     "price": -108
-    },
-    "prophetx": {
-     "point": 6.0,
-     "price": 113
-    },
-    "williamhill_us": {
-     "point": 6.5,
-     "price": -118
-    }
-   },
-   "pulled": false,
-   "ref": {
-    "kalshi_side": "no",
-    "market_ticker": "KXNHLTOTAL-26OCT27MINUTA-7"
-   },
-   "result": null,
-   "rule_met": true,
-   "second_book": [
-    "novig",
-    "polymarket"
-   ],
-   "second_book_fresh": false,
-   "sharp_agree": [],
-   "sharp_oppose": [],
-   "side": "UNDER",
-   "side_label": "NOT Over 6.5 goals scored",
-   "start_source": "polymarket",
-   "start_utc": "2026-10-28T01:00:00Z",
-   "teams": [
-    "Minnesota",
-    "Utah"
    ],
    "top25": null,
    "units_flat": null
@@ -552,7 +399,7 @@
     }
    },
    "pulled": true,
-   "pulled_utc": "2026-10-27T15:20:11Z",
+   "pulled_utc": "2026-10-27T15:23:21Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNBATOTAL-26OCT27DETNYK-219"
@@ -3599,8 +3446,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.48,
-   "clv_cents": 0.0,
+   "close_price": 0.49,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -8081,8 +7928,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.61,
-   "clv_cents": 0.0,
+   "close_price": 0.62,
+   "clv_cents": 1.0,
    "confirmed_after_min": 4,
    "date": "2026-10-27",
    "depth_by_book": {
