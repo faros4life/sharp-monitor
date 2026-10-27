@@ -1,6 +1,300 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-27T12:30:18Z",
+   "base_depth": 65410,
+   "best_price": 0.585,
+   "best_price_american": -141,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.59,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 4,
+   "date": "2026-10-27",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "NOT Milwaukee wins by over 1.5 runs",
+     "price": 0.59,
+     "this_side": 397034
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "TB +1.5 (1.5)",
+     "price": 0.585,
+     "this_side": 42023
+    },
+    "polymarket": {
+     "new_other_side": 10630,
+     "new_this_side": 59370,
+     "other_side": 44820,
+     "other_side_all_levels": 60180,
+     "ratio": 2.5,
+     "this_side": 110951,
+     "this_side_all_levels": 124158
+    }
+   },
+   "fade_price": 0.42,
+   "first_seen_utc": "2026-10-27T12:25:54Z",
+   "game": "Milwaukee Brewers vs. Tampa Bay Rays",
+   "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6288236\"}",
+   "lead_min": 690,
+   "league": "MLB",
+   "line": 1.5,
+   "market": "spread",
+   "new_money": 59370,
+   "paper_only": false,
+   "price": 0.59,
+   "price_american": -144,
+   "price_rule": "fails_cap",
+   "price_when_first_seen": 0.59,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 1.5,
+     "price": -160
+    },
+    "betonlineag": {
+     "point": 1.5,
+     "price": -155
+    },
+    "betopenly": {
+     "point": 1.5,
+     "price": -148
+    },
+    "betrivers": {
+     "point": 1.5,
+     "price": -148
+    },
+    "betus": {
+     "point": 1.5,
+     "price": -155
+    },
+    "bovada": {
+     "point": 1.5,
+     "price": -150
+    },
+    "draftkings": {
+     "point": 1.5,
+     "price": -161
+    },
+    "fanatics": {
+     "point": 1.5,
+     "price": -160
+    },
+    "fanduel": {
+     "point": 1.5,
+     "price": -162
+    },
+    "kalshi": {
+     "point": 1.5,
+     "price": -144
+    },
+    "lowvig": {
+     "point": 1.5,
+     "price": -154
+    },
+    "mybookieag": {
+     "point": 1.5,
+     "price": -153
+    },
+    "novig": {
+     "point": 1.5,
+     "price": -141
+    },
+    "polymarket": {
+     "point": 1.5,
+     "price": -144
+    },
+    "prophetx": {
+     "point": 1.0,
+     "price": -105
+    },
+    "williamhill_us": {
+     "point": 1.5,
+     "price": -157
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 1,
+    "pm_market_id": "6288236"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi",
+    "novig"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Tampa Bay Rays",
+   "side_label": "Tampa Bay Rays (+1.5)",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-28T00:00:00Z",
+   "teams": [
+    "Milwaukee Brewers",
+    "Tampa Bay Rays"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-27T12:30:18Z",
+   "base_depth": 308077,
+   "best_price": 0.585,
+   "best_price_american": -141,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.59,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 4,
+   "date": "2026-10-27",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 15968,
+     "new_this_side": 71952,
+     "other_side": 216151,
+     "other_side_all_levels": 248912,
+     "ratio": 1.8,
+     "this_side": 397034,
+     "this_side_all_levels": 463472
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "TB +1.5 (1.5)",
+     "price": 0.585,
+     "this_side": 42023
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Tampa Bay Rays (+1.5)",
+     "price": 0.59,
+     "this_side": 110951
+    }
+   },
+   "fade_price": 0.42,
+   "first_seen_utc": "2026-10-27T12:25:54Z",
+   "game": "Milwaukee vs Tampa Bay: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXMLBSPREAD-26OCT272000MILTB-MIL2\"}",
+   "lead_min": 690,
+   "league": "MLB",
+   "line": 1.5,
+   "market": "spread",
+   "new_money": 71952,
+   "paper_only": false,
+   "price": 0.59,
+   "price_american": -144,
+   "price_rule": "fails_cap",
+   "price_when_first_seen": 0.59,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 1.5,
+     "price": -160
+    },
+    "betonlineag": {
+     "point": 1.5,
+     "price": -155
+    },
+    "betopenly": {
+     "point": 1.5,
+     "price": -148
+    },
+    "betrivers": {
+     "point": 1.5,
+     "price": -148
+    },
+    "betus": {
+     "point": 1.5,
+     "price": -155
+    },
+    "bovada": {
+     "point": 1.5,
+     "price": -150
+    },
+    "draftkings": {
+     "point": 1.5,
+     "price": -161
+    },
+    "fanatics": {
+     "point": 1.5,
+     "price": -160
+    },
+    "fanduel": {
+     "point": 1.5,
+     "price": -162
+    },
+    "kalshi": {
+     "point": 1.5,
+     "price": -144
+    },
+    "lowvig": {
+     "point": 1.5,
+     "price": -154
+    },
+    "mybookieag": {
+     "point": 1.5,
+     "price": -153
+    },
+    "novig": {
+     "point": 1.5,
+     "price": -141
+    },
+    "polymarket": {
+     "point": 1.5,
+     "price": -144
+    },
+    "prophetx": {
+     "point": 1.0,
+     "price": -105
+    },
+    "williamhill_us": {
+     "point": 1.5,
+     "price": -157
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXMLBSPREAD-26OCT272000MILTB-MIL2"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "polymarket"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Tampa Bay",
+   "side_label": "NOT Milwaukee wins by over 1.5 runs",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-28T00:00:00Z",
+   "teams": [
+    "Milwaukee",
+    "Tampa Bay"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-27T12:25:54Z",
    "base_depth": 106035,
    "best_price": 0.435,
@@ -468,8 +762,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.58,
-   "clv_cents": 1.0,
+   "close_price": 0.57,
+   "clv_cents": 0.0,
    "confirmed_after_min": 2,
    "date": "2026-10-27",
    "depth_by_book": {

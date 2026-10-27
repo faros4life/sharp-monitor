@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Oct 27, 8:25 AM ET. This run: 1 new, 0 not confirmed, 2 pending. Open alerts: 9.
+Updated Tue Oct 27, 8:30 AM ET. This run: 2 new, 0 not confirmed, 0 pending. Open alerts: 11.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,12 +10,14 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Oct 27 8:30AM | MLB | Milwaukee Brewers vs. Tampa Bay Rays | spread: Tampa Bay Rays (+1.5) | polymarket | $59k | -144 | ✅ kalshi,novig |  | +0.0c |  | pending |
+| Oct 27 8:30AM | MLB | Milwaukee vs Tampa Bay: Spread | spread: NOT Milwaukee wins by over 1.5 runs | kalshi | $72k | -144 | ✅ novig,polymarket |  | +0.0c |  | pending |
 | Oct 27 8:25AM | MLB | Milwaukee Brewers vs. Tampa Bay Rays | moneyline: Tampa Bay Rays | polymarket | $27k | +127 |  |  | +0.0c |  | pending |
 | Oct 27 3:50AM | TENNIS | Mannarino vs Buse | moneyline: Mannarino | kalshi | $27k | -170 | ✅ novig |  | -2.0c | yes | pending |
 | Oct 27 3:30AM | TENNIS | Eala vs Gibson | moneyline: Eala | kalshi | $26k | -285 |  |  | +0.0c |  | pending |
 | Oct 26 11:30PM | TENNIS | Putintseva vs Sakkari | moneyline: Sakkari | kalshi | $35k | -156 |  |  | -8.0c |  | L |
 | Oct 26 11:10PM | TENNIS | Zakharova vs Linette | moneyline: Linette | kalshi | $27k | -122 |  |  | +5.0c |  | W |
-| Oct 26 10:20PM | MLB | Game 4: Milwaukee vs Tampa Bay | moneyline: Game 4: Milwaukee | kalshi | $80k | -133 |  |  | +1.0c |  | pending |
+| Oct 26 10:20PM | MLB | Game 4: Milwaukee vs Tampa Bay | moneyline: Game 4: Milwaukee | kalshi | $80k | -133 |  |  | +0.0c |  | pending |
 | Oct 26 10:10PM | TENNIS | Joint vs Cirstea | moneyline: Joint | kalshi | $791k | -178 |  |  | -16.0c |  | W |
 | Oct 26 9:01PM | MLB | Game 3: Milwaukee vs Tampa Bay | moneyline: Game 3: Milwaukee | kalshi | $136k | -285 |  |  | +7.0c |  | W |
 | Oct 26 7:00PM | MLB | Milwaukee Brewers at Tampa Bay Rays | moneyline: Milwaukee Brewers | prophetx | $49k | +105 | ✅ novig |  | -0.5c | yes | W |
