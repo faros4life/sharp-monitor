@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Oct 27, 6:35 PM ET. This run: 1 new, 0 not confirmed, 3 pending. Open alerts: 93.
+Updated Tue Oct 27, 6:40 PM ET. This run: 2 new, 0 not confirmed, 2 pending. Open alerts: 95.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Oct 27 6:40PM | NHL | Senators vs. Golden Knights | total: Under (6.5) | polymarket | $37k | -108 | ✅ kalshi,novig |  | +0.0c |  | pending |
+| Oct 27 6:40PM | NHL | Kings vs. Blackhawks | moneyline: Kings | polymarket | $101k | -104 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Oct 27 6:35PM | NHL | Florida vs Winnipeg: Total Goals | total: Over 6.5 goals scored | kalshi | $31k | +113 | ✅ novig |  | +0.0c |  | pending |
 | Oct 27 6:00PM | NHL | Vancouver vs Anaheim: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $47k | +113 | ✅ prophetx |  | +0.0c |  | pending |
 | Oct 27 5:54PM | NHL | New Jersey vs Dallas: Total Goals | total: Over 5.5 goals scored | kalshi | $111k | -100 | ✅ novig |  | +0.0c |  | pending |
@@ -46,14 +48,14 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 27 11:10AM | NHL | Boston vs Carolina: Spread | spread: NOT Carolina wins by over 1.5 goals | kalshi | $29k | -144 | ✅ novig,polymarket |  | +0.0c |  | pending |
 | Oct 27 10:40AM | NBA | Detroit vs New York: Total Points | total: Over 218.5 points | kalshi | $27k | -104 |  | ✅ | +3.0c | yes | pending |
 | Oct 27 10:31AM | NBA | Brooklyn vs Boston: Spread | spread: Boston wins by over 11.5 points | kalshi | $32k | -100 | ✅ novig,polymarket,prophetx |  | +5.0c | yes | pending |
-| Oct 27 10:20AM | NHL | Ottawa vs Vegas: Spread | spread: NOT Vegas wins by over 1.5 goals | kalshi | $29k | -178 | ✅ polymarket |  | -1.0c |  | pending |
+| Oct 27 10:20AM | NHL | Ottawa vs Vegas: Spread | spread: NOT Vegas wins by over 1.5 goals | kalshi | $29k | -178 | ✅ polymarket |  | +0.0c |  | pending |
 | Oct 27 10:20AM | NHL | Columbus vs Philadelphia: Spread | spread: NOT Columbus wins by over 1.5 goals | kalshi | $32k | -223 | ✅ polymarket |  | +1.0c |  | pending |
 | Oct 27 10:20AM | NHL | Buffalo vs San Jose: Spread | spread: NOT Buffalo wins by over 1.5 goals | kalshi | $34k | -194 | ✅ polymarket |  | -2.0c |  | pending |
 | Oct 27 10:00AM | NBA | Portland vs Los Angeles L: Total Points | total: NOT Over 233.5 points | kalshi | $72k | -100 |  | ✅ | +0.0c |  | pending |
 | Oct 27 10:00AM | NHL | Montreal vs St. Louis | moneyline: Montreal | kalshi | $35k | +108 | ✅ polymarket |  | +4.0c |  | pending |
 | Oct 27 9:40AM | NBA | Trail Blazers vs. Lakers | spread: Trail Blazers (+2.5) | polymarket | $100k | -100 | ✅ novig | ✅ | +4.0c |  | pending |
 | Oct 27 9:40AM | NHL | Wild vs. Utah | moneyline: Wild | polymarket | $27k | +108 | ✅ kalshi,prophetx |  | +1.0c |  | pending |
-| Oct 27 9:40AM | NBA | Sacramento vs San Antonio: Spread | spread: San Antonio wins by over 18.5 points | kalshi | $48k | -100 | ✅ novig,prophetx | ✅ | +1.0c |  | pending |
+| Oct 27 9:40AM | NBA | Sacramento vs San Antonio: Spread | spread: San Antonio wins by over 18.5 points | kalshi | $48k | -100 | ✅ novig,prophetx | ✅ | +2.0c |  | pending |
 | Oct 27 9:33AM | NHL | Islanders vs. Predators | spread: Islanders (+1.5) | polymarket | $28k | -233 | ✅ novig |  | +1.0c | yes | pending |
 | Oct 27 9:33AM | NCAAF | Kennesaw St. vs Middle Tennessee: Total Points | total: Over 50.5 points | kalshi | $159k | -104 |  |  | +0.0c |  | pending |
 | Oct 27 9:33AM | NHL | New York I vs Nashville | moneyline: Nashville | kalshi | $41k | -108 | ✅ novig |  | +0.0c |  | pending |
@@ -65,7 +67,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 27 8:50AM | NHL | Florida vs Winnipeg: Spread | spread: NOT Florida wins by over 1.5 goals | kalshi | $111k | -223 | ✅ novig |  | +0.0c |  | pending |
 | Oct 27 8:42AM | NHL | Montreal vs St. Louis: Spread | spread: NOT St. Louis wins by over 1.5 goals | kalshi | $28k | -233 | ✅ novig |  | +3.0c |  | pending |
 | Oct 27 8:42AM | NHL | Los Angeles vs Chicago: Spread | spread: NOT Los Angeles wins by over 1.5 goals | kalshi | $32k | -233 | ✅ novig |  | +1.0c |  | pending |
-| Oct 27 8:30AM | NHL | Boston vs Carolina: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $46k | -117 | ✅ novig,polymarket | ✅ | -1.0c |  | pending |
+| Oct 27 8:30AM | NHL | Boston vs Carolina: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $46k | -117 | ✅ novig,polymarket | ✅ | +0.0c |  | pending |
 | Oct 27 8:30AM | NHL | New York I vs Nashville | moneyline: New York I | kalshi | $26k | +108 |  |  | +1.0c |  | pending |
 | Oct 27 8:20AM | NHL | Vancouver vs Anaheim: Spread | spread: NOT Anaheim wins by over 1.5 goals | kalshi | $26k | -133 | ✅ novig,polymarket |  | -2.0c |  | pending |
 | Oct 27 8:20AM | NCAAF | Kennesaw St. vs Middle Tennessee: Total Points | total: NOT Over 50.5 points | kalshi | $70k | -100 |  |  | +0.0c |  | pending |
@@ -208,5 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 25 6:21PM | NBA | Toronto vs Minnesota | moneyline: Minnesota | kalshi | $562k | -150 | ✅ novig,prophetx | ❌ |  | yes | W |
 | Oct 25 6:10PM | NHL | Canadiens vs. Jets | moneyline: Canadiens | polymarket | $70k | -113 | ✅ novig |  | +0.0c |  | W |
 | Oct 25 5:40PM | NBA | Magic vs. Knicks | spread: Knicks (-6.5) | polymarket | $696k | -108 | ✅ novig | ❌ | +0.0c |  | L |
-| Oct 25 5:30PM | NBA | Pacers vs. Nets | total: Under (231.5) | polymarket | $72k | +104 |  | ✅ | +0.0c |  | L |
-| Oct 25 5:30PM | NBA | Indiana vs Brooklyn: Spread | spread: Indiana wins by over 5.5 points | kalshi | $101k | -108 | ✅ novig,polymarket | ✅ | +30.0c | yes | W |
