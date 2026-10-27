@@ -1,6 +1,300 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-27T16:40:11Z",
+   "base_depth": 41224,
+   "best_price": 0.6568,
+   "best_price_american": -191,
+   "best_price_book": "polymarket",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.65,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-27",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "NOT Buffalo wins by over 1.5 goals",
+     "price": 0.65,
+     "this_side": 148579
+    },
+    "polymarket": {
+     "new_other_side": 12524,
+     "new_this_side": 38316,
+     "other_side": 31724,
+     "other_side_all_levels": 47514,
+     "ratio": 1.4,
+     "this_side": 45965,
+     "this_side_all_levels": 79907
+    }
+   },
+   "fade_price": 0.36,
+   "first_seen_utc": "2026-10-27T16:30:13Z",
+   "game": "Sabres vs. Sharks",
+   "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6255011\"}",
+   "lead_min": 590,
+   "league": "NHL",
+   "line": 1.5,
+   "market": "spread",
+   "new_money": 38316,
+   "paper_only": false,
+   "price": 0.65,
+   "price_american": -186,
+   "price_rule": "fails_cap",
+   "price_when_first_seen": 0.65,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 1.5,
+     "price": -190
+    },
+    "betonlineag": {
+     "point": 1.5,
+     "price": -190
+    },
+    "betopenly": {
+     "point": 1.5,
+     "price": -187
+    },
+    "betrivers": {
+     "point": 1.5,
+     "price": -205
+    },
+    "betus": {
+     "point": 1.5,
+     "price": -190
+    },
+    "bovada": {
+     "point": 1.5,
+     "price": -195
+    },
+    "draftkings": {
+     "point": 1.5,
+     "price": -198
+    },
+    "fanatics": {
+     "point": 1.5,
+     "price": -200
+    },
+    "fanduel": {
+     "point": 1.5,
+     "price": -188
+    },
+    "kalshi": {
+     "point": 1.5,
+     "price": -186
+    },
+    "lowvig": {
+     "point": 1.5,
+     "price": -190
+    },
+    "mybookieag": {
+     "point": 1.5,
+     "price": -200
+    },
+    "novig": {
+     "point": 1.5,
+     "price": -182
+    },
+    "polymarket": {
+     "point": -3.5,
+     "price": 122
+    },
+    "prophetx": {
+     "point": 1.5,
+     "price": -184
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 1,
+    "pm_market_id": "6255011"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Sharks",
+   "side_label": "Sharks (+1.5)",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-28T02:30:00Z",
+   "teams": [
+    "Sabres",
+    "Sharks"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-27T16:40:11Z",
+   "base_depth": 73924,
+   "best_price": 0.665,
+   "best_price_american": -199,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.67,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-27",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Anaheim",
+     "price": 0.66,
+     "this_side": 335479
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "ANA (0)",
+     "price": 0.665,
+     "this_side": 37223
+    },
+    "polymarket": {
+     "new_other_side": 12569,
+     "new_this_side": 45075,
+     "other_side": 59535,
+     "other_side_all_levels": 80930,
+     "ratio": 1.3,
+     "this_side": 79055,
+     "this_side_all_levels": 119258
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Anaheim Ducks",
+     "price": 0.6721,
+     "this_side": 11658
+    }
+   },
+   "fade_price": 0.34,
+   "first_seen_utc": "2026-10-27T16:30:13Z",
+   "game": "Canucks vs. Ducks",
+   "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"5156508\"}",
+   "lead_min": 560,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 45075,
+   "paper_only": false,
+   "price": 0.67,
+   "price_american": -203,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.67,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -210
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -206
+    },
+    "betopenly": {
+     "point": null,
+     "price": -195
+    },
+    "betrivers": {
+     "point": null,
+     "price": -215
+    },
+    "betus": {
+     "point": null,
+     "price": -205
+    },
+    "bovada": {
+     "point": null,
+     "price": -215
+    },
+    "draftkings": {
+     "point": null,
+     "price": -218
+    },
+    "fanatics": {
+     "point": null,
+     "price": -215
+    },
+    "fanduel": {
+     "point": null,
+     "price": -210
+    },
+    "kalshi": {
+     "point": null,
+     "price": -203
+    },
+    "lowvig": {
+     "point": null,
+     "price": -206
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -208
+    },
+    "novig": {
+     "point": null,
+     "price": -199
+    },
+    "polymarket": {
+     "point": null,
+     "price": -203
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -203
+    },
+    "prophetx": {
+     "point": null,
+     "price": -205
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -209
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 1,
+    "pm_market_id": "5156508"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Ducks",
+   "side_label": "Ducks",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-28T02:00:00Z",
+   "teams": [
+    "Canucks",
+    "Ducks"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-27T16:20:10Z",
    "base_depth": 129850,
    "best_price": 0.5172,
@@ -41,6 +335,8 @@
    "new_money": 28552,
    "paper_only": false,
    "price": 0.52,
+   "price_after_15m": 0.515,
+   "price_after_15m_book": "novig",
    "price_american": -108,
    "price_rule": "ok",
    "price_when_first_seen": 0.52,
@@ -129,6 +425,7 @@
    "side_label": "Over 233.5 points",
    "start_source": "prophetx",
    "start_utc": "2026-10-28T03:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Portland",
     "Los Angeles L"
@@ -183,6 +480,8 @@
    "new_money": 112904,
    "paper_only": false,
    "price": 0.49,
+   "price_after_15m": 0.485,
+   "price_after_15m_book": "novig",
    "price_american": 104,
    "price_rule": "ok",
    "price_when_first_seen": 0.49,
@@ -267,6 +566,7 @@
    "side_label": "NOT Boston wins by over 11.5 points",
    "start_source": "polymarket",
    "start_utc": "2026-10-27T23:30:00Z",
+   "still_actionable": true,
    "teams": [
     "Brooklyn",
     "Boston"
@@ -1485,8 +1785,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 2.0,
+   "close_price": 0.53,
+   "clv_cents": 3.0,
    "confirmed_after_min": 12,
    "date": "2026-10-27",
    "depth_by_book": {
