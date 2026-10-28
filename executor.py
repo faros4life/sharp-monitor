@@ -1323,7 +1323,7 @@ def novig_reports():
     try:
         for x in recs[-30:]:
             st = str(x.get("status") or "?").upper()
-            if st in ("PENDING", "SENT", "UNKNOWN"):
+            if st in ("PENDING", "SENT", "UNKNOWN") and not int(x.get("filled_qty") or 0):
                 continue   # not final yet: report when it settles (the home PC re-reads every 5 min)
             if st == "FILLED" and not int(x.get("filled_qty") or 0):
                 continue   # status says filled but the amount isn't confirmed yet (old-format record): never say "no fill"
