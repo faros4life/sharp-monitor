@@ -1,6 +1,130 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-28T03:30:13Z",
+   "base_depth": 39778,
+   "best_price": 0.605,
+   "best_price_american": -153,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.61,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 9,
+   "date": "2026-10-28",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 3020,
+     "new_this_side": 46307,
+     "other_side": 17100,
+     "other_side_all_levels": 21607,
+     "ratio": 4.0,
+     "this_side": 68768,
+     "this_side_all_levels": 87065
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "NJD +1.5 (-1.5)",
+     "price": 0.605,
+     "this_side": 6728
+    },
+    "polymarket": {
+     "heavier_side": false,
+     "label": "Devils (+1.5)",
+     "price": 0.61,
+     "this_side": 8624
+    }
+   },
+   "fade_price": 0.4,
+   "first_seen_utc": "2026-10-28T03:21:19Z",
+   "game": "New Jersey vs Colorado: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLSPREAD-26OCT28NJCOL-COL2\"}",
+   "lead_min": 1290,
+   "league": "NHL",
+   "line": 1.5,
+   "market": "spread",
+   "new_money": 46307,
+   "paper_only": false,
+   "price": 0.61,
+   "price_american": -156,
+   "price_rule": "fails_cap",
+   "price_when_first_seen": 0.61,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 1.5,
+     "price": -160
+    },
+    "betrivers": {
+     "point": 1.5,
+     "price": -167
+    },
+    "bovada": {
+     "point": 1.5,
+     "price": -172
+    },
+    "draftkings": {
+     "point": 1.5,
+     "price": -170
+    },
+    "fanatics": {
+     "point": 1.5,
+     "price": -160
+    },
+    "fanduel": {
+     "point": 1.5,
+     "price": -150
+    },
+    "kalshi": {
+     "point": 1.5,
+     "price": -156
+    },
+    "mybookieag": {
+     "point": 1.5,
+     "price": -165
+    },
+    "novig": {
+     "point": 1.5,
+     "price": -153
+    },
+    "polymarket": {
+     "point": -3.5,
+     "price": -223
+    },
+    "prophetx": {
+     "point": 1.5,
+     "price": -152
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNHLSPREAD-26OCT28NJCOL-COL2"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "none_10k",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "New Jersey",
+   "side_label": "NOT Colorado wins by over 1.5 goals",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-29T01:00:00Z",
+   "teams": [
+    "New Jersey",
+    "Colorado"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-28T03:21:19Z",
    "base_depth": 402122,
    "best_price": 0.475,
@@ -1525,8 +1649,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.72,
-   "clv_cents": 27.0,
+   "close_price": 0.79,
+   "clv_cents": 34.0,
    "confirmed_after_min": 10,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -1814,8 +1938,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.71,
-   "clv_cents": 1.0,
+   "close_price": 0.7,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -3976,8 +4100,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.45,
-   "clv_cents": -2.0,
+   "close_price": 0.56,
+   "clv_cents": 9.0,
    "confirmed_after_min": 5,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -7706,8 +7830,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.62,
-   "clv_cents": 10.0,
+   "close_price": 0.7,
+   "clv_cents": 18.0,
    "confirmed_after_min": 6,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -9366,8 +9490,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.73,
-   "clv_cents": 9.0,
+   "close_price": 0.76,
+   "clv_cents": 12.0,
    "confirmed_after_min": 10,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -9660,8 +9784,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.68,
-   "clv_cents": 2.0,
+   "close_price": 0.69,
+   "clv_cents": 3.0,
    "confirmed_after_min": 10,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -9800,8 +9924,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.39,
-   "clv_cents": -11.0,
+   "close_price": 0.31,
+   "clv_cents": -19.0,
    "confirmed_after_min": 10,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -11007,8 +11131,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.39,
-   "clv_cents": -6.0,
+   "close_price": 0.37,
+   "clv_cents": -8.0,
    "confirmed_after_min": 14,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -11170,8 +11294,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.45,
-   "clv_cents": -6.0,
+   "close_price": 0.37,
+   "clv_cents": -14.0,
    "confirmed_after_min": 10,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -11616,8 +11740,10 @@
     }
    },
    "fade_price": 0.49,
+   "fade_units": 1.04,
    "first_seen_utc": "2026-10-27T12:42:57Z",
    "game": "Sam Houston State @ Missouri State",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1649f-eea2-7c10-9cbe-dbf85523f858\", \"outcome_id\": \"01a1649f-eea2-7c10-9cbe-dc06ed22ef3f\"}",
    "lead_min": 670,
    "league": "NCAAF",
@@ -11637,10 +11763,11 @@
     "market_id": "01a1649f-eea2-7c10-9cbe-dbf85523f858",
     "outcome_id": "01a1649f-eea2-7c10-9cbe-dc06ed22ef3f"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": "no_match",
    "second_book_fresh": false,
+   "settled_utc": "2026-10-28T03:30:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "MOST -4.5 (-4.5)",
@@ -11653,7 +11780,7 @@
     "Missouri State"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-27T12:50:11Z",
@@ -12408,8 +12535,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.49,
-   "clv_cents": -8.0,
+   "close_price": 0.45,
+   "clv_cents": -12.0,
    "confirmed_after_min": 10,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -13293,8 +13420,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.3,
-   "clv_cents": -24.0,
+   "close_price": 0.22,
+   "clv_cents": -32.0,
    "confirmed_after_min": 8,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -13609,8 +13736,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.92,
-   "clv_cents": 45.0,
+   "close_price": 0.95,
+   "clv_cents": 48.0,
    "confirmed_after_min": 8,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -14084,8 +14211,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.62,
-   "clv_cents": 4.0,
+   "close_price": 0.64,
+   "clv_cents": 6.0,
    "confirmed_after_min": 12,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -15266,8 +15393,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.09,
-   "clv_cents": -45.0,
+   "close_price": 0.06,
+   "clv_cents": -48.0,
    "confirmed_after_min": 12,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -21672,6 +21799,7 @@
     }
    },
    "fade_price": 0.51,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-26T18:24:25Z",
    "game": "Sam Houston vs Missouri St.: Spread",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFSPREAD-26OCT27SHSUMOSU-MOSU6\"}",
@@ -21755,10 +21883,11 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFSPREAD-26OCT27SHSUMOSU-MOSU6"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": "no_match",
    "second_book_fresh": false,
+   "settled_utc": "2026-10-28T03:30:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Missouri St.",
@@ -21771,7 +21900,7 @@
     "Missouri St."
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.93
   },
   {
    "alerted_utc": "2026-10-26T18:24:25Z",
@@ -22101,8 +22230,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.77,
-   "clv_cents": 11.0,
+   "close_price": 0.82,
+   "clv_cents": 16.0,
    "confirmed_after_min": 10,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -22231,8 +22360,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.58,
-   "clv_cents": -1.0,
+   "close_price": 0.56,
+   "clv_cents": -3.0,
    "confirmed_after_min": 10,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -30331,6 +30460,7 @@
     }
    },
    "fade_price": 0.33,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-26T07:50:12Z",
    "game": "Sam Houston vs Missouri St.",
    "key": "kalshi|KXNCAAFGAME-26OCT27SHSUMOSU|ml|1",
@@ -30410,10 +30540,11 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26OCT27SHSUMOSU-MOSU"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": "none_10k",
    "second_book_fresh": false,
+   "settled_utc": "2026-10-28T03:30:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Missouri St.",
@@ -30426,7 +30557,7 @@
     "Missouri St."
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.48
   },
   {
    "alerted_utc": "2026-10-26T05:00:34Z",
