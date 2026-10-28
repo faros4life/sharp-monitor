@@ -1,6 +1,426 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-28T13:10:11Z",
+   "base_depth": 121545,
+   "best_price": 0.475,
+   "best_price_american": 111,
+   "best_price_book": "novig",
+   "bid_improved": true,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.48,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-28",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -14693,
+     "new_this_side": 39973,
+     "other_side": 73319,
+     "other_side_all_levels": 90589,
+     "ratio": 1.9,
+     "this_side": 136840,
+     "this_side_all_levels": 153706
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "Under 6.5 (6.5)",
+     "price": 0.475,
+     "this_side": 15508
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Under (6.5)",
+     "price": 0.47,
+     "this_side": 34268
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "under 6.5 (6.5)",
+     "price": 0.4762,
+     "this_side": 6195
+    }
+   },
+   "fade_price": 0.53,
+   "first_seen_utc": "2026-10-28T13:00:16Z",
+   "game": "Toronto vs Seattle: Total Goals",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLTOTAL-26OCT28TORSEA-7\"}",
+   "lead_min": 770,
+   "league": "NHL",
+   "line": 6.5,
+   "market": "total",
+   "new_money": 39973,
+   "paper_only": false,
+   "price": 0.48,
+   "price_american": 108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.48,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 6.5,
+     "price": 100
+    },
+    "betonlineag": {
+     "point": 6.5,
+     "price": 104
+    },
+    "betopenly": {
+     "point": 6.5,
+     "price": 110
+    },
+    "betrivers": {
+     "point": 6.5,
+     "price": -104
+    },
+    "betus": {
+     "point": 6.5,
+     "price": 100
+    },
+    "bovada": {
+     "point": 6.5,
+     "price": 100
+    },
+    "draftkings": {
+     "point": 6.5,
+     "price": 100
+    },
+    "fanatics": {
+     "point": 6.5,
+     "price": 100
+    },
+    "fanduel": {
+     "point": 6.5,
+     "price": -102
+    },
+    "kalshi": {
+     "point": 6.5,
+     "price": 108
+    },
+    "lowvig": {
+     "point": 6.5,
+     "price": 104
+    },
+    "mybookieag": {
+     "point": 6.5,
+     "price": -101
+    },
+    "novig": {
+     "point": 6.5,
+     "price": 111
+    },
+    "polymarket": {
+     "point": 6.5,
+     "price": 113
+    },
+    "prophetx": {
+     "point": 6.5,
+     "price": 110
+    },
+    "williamhill_us": {
+     "point": 6.5,
+     "price": 100
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNHLTOTAL-26OCT28TORSEA-7"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "polymarket"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "NOT Over 6.5 goals scored",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-29T02:00:00Z",
+   "teams": [
+    "Toronto",
+    "Seattle"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-28T13:10:11Z",
+   "base_depth": 925949,
+   "best_price": 0.515,
+   "best_price_american": -106,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-29",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -3019,
+     "new_this_side": 142297,
+     "other_side": 777109,
+     "other_side_all_levels": 853753,
+     "ratio": 1.4,
+     "this_side": 1064546,
+     "this_side_all_levels": 1132351
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "Under 47.5 (47.5)",
+     "price": 0.515,
+     "this_side": 37097
+    }
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-10-28T13:00:16Z",
+   "game": "Carolina vs Green Bay: Total Points",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNFLTOTAL-26OCT29CARGB-48\"}",
+   "lead_min": 2105,
+   "league": "NFL",
+   "line": 47.5,
+   "market": "total",
+   "new_money": 142297,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 47.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 47.0,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 47.5,
+     "price": -101
+    },
+    "betrivers": {
+     "point": 48.0,
+     "price": -113
+    },
+    "betus": {
+     "point": 47.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 47.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 47.5,
+     "price": -108
+    },
+    "fanatics": {
+     "point": 47.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 47.5,
+     "price": -112
+    },
+    "kalshi": {
+     "point": 47.5,
+     "price": -104
+    },
+    "lowvig": {
+     "point": 47.0,
+     "price": -107
+    },
+    "mybookieag": {
+     "point": 47.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 47.5,
+     "price": -106
+    },
+    "polymarket": {
+     "point": 46.5,
+     "price": 113
+    },
+    "prophetx": {
+     "point": 47.5,
+     "price": -106
+    },
+    "williamhill_us": {
+     "point": 47.5,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNFLTOTAL-26OCT29CARGB-48"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "NOT Over 47.5 points",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-30T00:15:00Z",
+   "teams": [
+    "Carolina",
+    "Green Bay"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-28T13:10:11Z",
+   "base_depth": 201988,
+   "best_price": 0.542,
+   "best_price_american": -118,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.53,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-29",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 22673,
+     "new_this_side": 76540,
+     "other_side": 88491,
+     "other_side_all_levels": 150122,
+     "ratio": 2.2,
+     "this_side": 196050,
+     "this_side_all_levels": 279153
+    }
+   },
+   "fade_price": 0.48,
+   "first_seen_utc": "2026-10-28T13:00:16Z",
+   "game": "Florida Atlantic vs North Texas: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFSPREAD-26OCT29FAUUNT-UNT15\"}",
+   "lead_min": 2060,
+   "league": "NCAAF",
+   "line": 14.5,
+   "market": "spread",
+   "new_money": 76540,
+   "paper_only": false,
+   "price": 0.53,
+   "price_american": -113,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.53,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 13.5,
+     "price": -105
+    },
+    "betonlineag": {
+     "point": 13.5,
+     "price": -103
+    },
+    "betrivers": {
+     "point": 13.5,
+     "price": -108
+    },
+    "betus": {
+     "point": 13.5,
+     "price": -105
+    },
+    "bovada": {
+     "point": 14.0,
+     "price": -115
+    },
+    "draftkings": {
+     "point": 13.5,
+     "price": -108
+    },
+    "fanatics": {
+     "point": 13.5,
+     "price": -105
+    },
+    "fanduel": {
+     "point": 13.5,
+     "price": -105
+    },
+    "kalshi": {
+     "point": 14.5,
+     "price": -113
+    },
+    "lowvig": {
+     "point": 13.5,
+     "price": 101
+    },
+    "mybookieag": {
+     "point": 13.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 13.5,
+     "price": 108
+    },
+    "polymarket": {
+     "point": -16.5,
+     "price": -9900
+    },
+    "prophetx": {
+     "point": 13.5,
+     "price": 110
+    },
+    "williamhill_us": {
+     "point": 13.5,
+     "price": -106
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAFSPREAD-26OCT29FAUUNT-UNT15"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "no_match",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Florida Atlantic",
+   "side_label": "NOT North Texas wins by over 14.5 points",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-29T23:30:00Z",
+   "teams": [
+    "Florida Atlantic",
+    "North Texas"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-28T12:23:27Z",
    "base_depth": 105127,
    "best_price": 0.695,
@@ -327,8 +747,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.54,
-   "clv_cents": 4.0,
+   "close_price": 0.55,
+   "clv_cents": 5.0,
    "confirmed_after_min": 10,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -1094,8 +1514,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.54,
-   "clv_cents": 0.0,
+   "close_price": 0.55,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -3516,8 +3936,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": 1.0,
+   "close_price": 0.5,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -3929,8 +4349,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 0.0,
+   "close_price": 0.55,
+   "clv_cents": 3.0,
    "confirmed_after_min": 11,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -4349,7 +4769,8 @@
      "price": -160
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-28T13:10:11Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNBAGAME-26OCT28MIAATL-ATL"
