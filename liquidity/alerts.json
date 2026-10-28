@@ -1,6 +1,274 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-28T14:50:12Z",
+   "base_depth": 305825,
+   "best_price": 0.4874,
+   "best_price_american": 105,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.47,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-28",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 78734,
+     "new_this_side": 464744,
+     "other_side": 500186,
+     "other_side_all_levels": 583605,
+     "ratio": 1.3,
+     "this_side": 673937,
+     "this_side_all_levels": 773129
+    }
+   },
+   "fade_price": 0.54,
+   "first_seen_utc": "2026-10-28T14:40:14Z",
+   "game": "Jacksonville St. vs New Mexico St.: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFSPREAD-26OCT28JVSTNMSU-JVST4\"}",
+   "lead_min": 550,
+   "league": "NCAAF",
+   "line": -3.5,
+   "market": "spread",
+   "new_money": 464744,
+   "paper_only": false,
+   "price": 0.47,
+   "price_american": 113,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.47,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -3.0,
+     "price": -115
+    },
+    "betonlineag": {
+     "point": -3.0,
+     "price": -115
+    },
+    "betrivers": {
+     "point": -3.0,
+     "price": -115
+    },
+    "betus": {
+     "point": -3.0,
+     "price": -115
+    },
+    "bovada": {
+     "point": -3.0,
+     "price": -115
+    },
+    "draftkings": {
+     "point": -3.0,
+     "price": -115
+    },
+    "fanatics": {
+     "point": -3.0,
+     "price": -115
+    },
+    "fanduel": {
+     "point": -3.5,
+     "price": 102
+    },
+    "lowvig": {
+     "point": -3.0,
+     "price": -111
+    },
+    "mybookieag": {
+     "point": -3.0,
+     "price": -110
+    },
+    "novig": {
+     "point": -3.5,
+     "price": 115
+    },
+    "polymarket": {
+     "point": -3.5,
+     "price": 117
+    },
+    "prophetx": {
+     "point": -3.5,
+     "price": 117
+    },
+    "williamhill_us": {
+     "point": -3.0,
+     "price": -118
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFSPREAD-26OCT28JVSTNMSU-JVST4"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "no_match",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Jacksonville St.",
+   "side_label": "Jacksonville St. wins by over 3.5 points",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-29T00:00:00Z",
+   "teams": [
+    "Jacksonville St.",
+    "New Mexico St."
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-28T14:50:12Z",
+   "base_depth": 109135,
+   "best_price": 0.4881,
+   "best_price_american": 105,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.49,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-28",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -46576,
+     "new_this_side": 46979,
+     "other_side": 66402,
+     "other_side_all_levels": 114386,
+     "ratio": 1.6,
+     "this_side": 104988,
+     "this_side_all_levels": 156043
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "HOU -8.5 (8.5)",
+     "price": 0.49,
+     "this_side": 19104
+    },
+    "polymarket": {
+     "heavier_side": false,
+     "label": "Rockets (-8.5)",
+     "price": 0.49,
+     "this_side": 43716
+    }
+   },
+   "fade_price": 0.52,
+   "first_seen_utc": "2026-10-28T14:40:14Z",
+   "game": "Houston vs Milwaukee: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNBASPREAD-26OCT28HOUMIL-HOU9\"}",
+   "lead_min": 550,
+   "league": "NBA",
+   "line": -8.5,
+   "market": "spread",
+   "new_money": 46979,
+   "paper_only": false,
+   "price": 0.49,
+   "price_american": 104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.49,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -8.5,
+     "price": -105
+    },
+    "betonlineag": {
+     "point": -8.0,
+     "price": -115
+    },
+    "betopenly": {
+     "point": -8.0,
+     "price": 100
+    },
+    "betrivers": {
+     "point": -7.5,
+     "price": -118
+    },
+    "betus": {
+     "point": -8.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": -8.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": -8.5,
+     "price": -105
+    },
+    "fanatics": {
+     "point": -8.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": -8.5,
+     "price": -102
+    },
+    "kalshi": {
+     "point": -8.5,
+     "price": 104
+    },
+    "lowvig": {
+     "point": -8.0,
+     "price": -111
+    },
+    "mybookieag": {
+     "point": -8.0,
+     "price": -110
+    },
+    "novig": {
+     "point": -8.5,
+     "price": 104
+    },
+    "polymarket": {
+     "point": -8.5,
+     "price": 104
+    },
+    "prophetx": {
+     "point": -8.5,
+     "price": 107
+    },
+    "williamhill_us": {
+     "point": -8.0,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBASPREAD-26OCT28HOUMIL-HOU9"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "none_10k",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Houston",
+   "side_label": "Houston wins by over 8.5 points",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-29T00:00:00Z",
+   "teams": [
+    "Houston",
+    "Milwaukee"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-28T14:10:10Z",
    "base_depth": 31326,
    "best_price": 0.4858,
@@ -15,8 +283,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.48,
-   "clv_cents": 0.0,
+   "close_price": 0.47,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -317,8 +585,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": 0.0,
+   "close_price": 0.54,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -1200,8 +1468,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.49,
-   "clv_cents": 0.0,
+   "close_price": 0.48,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -1987,8 +2255,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.725,
-   "clv_cents": 0.5,
+   "close_price": 0.72,
+   "clv_cents": 0.0,
    "confirmed_after_min": 5,
    "date": "2026-10-28",
    "depth_by_book": {
