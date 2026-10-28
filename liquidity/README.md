@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Wed Oct 28, 1:30 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 40.
+Updated Wed Oct 28, 1:35 AM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 41.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Oct 28 1:35AM | NBA | Charlotte vs Detroit | moneyline: Detroit | kalshi | $37k | -223 | ✅ novig,polymarket |  | +0.0c |  | pending |
 | Oct 28 1:00AM | NBA | Wizards vs. Cavaliers | moneyline: Cavaliers | polymarket | $92k | -376 | ✅ kalshi,novig,prophetx |  | +0.0c |  | pending |
 | Oct 28 1:00AM | NBA | Rockets vs. Bucks | moneyline: Rockets | polymarket | $83k | -300 | ✅ kalshi,novig,prophetx |  | +0.0c |  | pending |
 | Oct 28 1:00AM | NBA | Oklahoma City vs Dallas | moneyline: Oklahoma City | kalshi | $189k | -213 | ✅ novig,polymarket,prophetx |  | +0.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 26 8:20AM | NHL | Detroit vs Edmonton | moneyline: Edmonton | kalshi | $67k | -163 | ✅ novig,polymarket,prophetx |  | -5.0c | yes | L |
 | Oct 26 8:14AM | NBA | Minnesota vs Cleveland: Spread | spread: Cleveland wins by over 3.5 points | kalshi | $36k | -108 | ✅ polymarket |  | -14.0c | yes | L |
 | Oct 26 8:00AM | NBA | Timberwolves vs. Cavaliers | spread: Cavaliers (-3.5) | polymarket | $28k | -104 | ✅ kalshi |  | +0.0c | yes | L |
-| Oct 26 7:40AM | NBA | Pacers vs. Bucks | spread: Pacers (-4.5) | polymarket | $33k | +104 | ✅ kalshi |  | -2.0c |  | L |
