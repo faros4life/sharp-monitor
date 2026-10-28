@@ -1,0 +1,2472 @@
+{
+ "note": "Liquidity alert times, one row per alert record (key + first_seen_utc); kept current every run since Oct 28 (was a one-off Oct 27 backfill from git history). alerted_utc_seen = every alert time the feed showed for that record. Join to a poller log by key (plus first_seen_utc where a key re-alerted).",
+ "rows": [
+  {
+   "alerted_utc": "2026-10-23T15:40:14Z",
+   "alerted_utc_seen": [
+    "2026-10-23T15:40:14Z"
+   ],
+   "artifact": true,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-23T15:30:18Z",
+   "game": "Fils vs Michelsen",
+   "in_current_feed": true,
+   "key": "kalshi|KXATPMATCH-26OCT23FILMIC|ml|0",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "W",
+   "side": "Fils",
+   "units_flat": 0.54
+  },
+  {
+   "alerted_utc": "2026-10-23T16:40:14Z",
+   "alerted_utc_seen": [
+    "2026-10-23T16:40:14Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-23T16:36:46Z",
+   "game": "Tampa Bay vs Milwaukee: Total Runs",
+   "in_current_feed": true,
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXMLBTOTAL-26OCT232000TBMIL-7\"}",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "MLB",
+   "market": "total",
+   "result": "L",
+   "side": "Over 6.5 runs scored",
+   "units_flat": -1.0
+  },
+  {
+   "alerted_utc": "2026-10-23T16:40:14Z",
+   "alerted_utc_seen": [
+    "2026-10-23T16:40:14Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-23T16:36:46Z",
+   "game": "Tampa Bay Rays @ Milwaukee Brewers",
+   "in_current_feed": true,
+   "key": "novig|{\"market_id\": \"01a1577c-d666-7e81-852e-68bed1446801\", \"outcome_id\": \"01a1577c-d666-7e81-852e-68d273380247\"}",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "MLB",
+   "market": "moneyline",
+   "result": "L",
+   "side": "TB (0)",
+   "units_flat": -1.0
+  },
+  {
+   "alerted_utc": "2026-10-23T16:40:14Z",
+   "alerted_utc_seen": [
+    "2026-10-23T16:40:14Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-23T16:36:46Z",
+   "game": "Tampa Bay Rays vs. Milwaukee Brewers",
+   "in_current_feed": true,
+   "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"5969348\"}",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "MLB",
+   "market": "total",
+   "result": "W",
+   "side": "Under (6.5)",
+   "units_flat": 1.0
+  },
+  {
+   "alerted_utc": "2026-10-23T16:50:15Z",
+   "alerted_utc_seen": [
+    "2026-10-23T16:50:15Z"
+   ],
+   "artifact": true,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-23T16:40:14Z",
+   "game": "Bublik vs Khachanov",
+   "in_current_feed": true,
+   "key": "kalshi|KXATPMATCH-26OCT23BUBKHA|ml|0",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "W",
+   "side": "Bublik",
+   "units_flat": 0.86
+  },
+  {
+   "alerted_utc": "2026-10-23T17:15:22Z",
+   "alerted_utc_seen": [
+    "2026-10-23T17:15:22Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-23T17:10:15Z",
+   "game": "Cobolli vs Nakashima",
+   "in_current_feed": true,
+   "key": "kalshi|KXATPMATCH-26OCT23COBNAK|ml|1",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "L",
+   "side": "Nakashima",
+   "units_flat": -1.0
+  },
+  {
+   "alerted_utc": "2026-10-23T17:30:19Z",
+   "alerted_utc_seen": [
+    "2026-10-23T17:30:19Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-23T17:20:15Z",
+   "game": "Tampa Bay Rays vs. Milwaukee Brewers",
+   "in_current_feed": true,
+   "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"5969348\"}",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "MLB",
+   "market": "total",
+   "result": "L",
+   "side": "Over (6.5)",
+   "units_flat": -1.0
+  },
+  {
+   "alerted_utc": "2026-10-23T17:40:14Z",
+   "alerted_utc_seen": [
+    "2026-10-23T17:40:14Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-23T17:30:19Z",
+   "game": "Tampa Bay Rays vs. Milwaukee Brewers",
+   "in_current_feed": true,
+   "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"5969233\"}",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "MLB",
+   "market": "spread",
+   "result": "W",
+   "side": "Tampa Bay Rays (+1.5)",
+   "units_flat": 0.72
+  },
+  {
+   "alerted_utc": "2026-10-23T19:43:20Z",
+   "alerted_utc_seen": [
+    "2026-10-23T19:43:20Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-23T19:40:15Z",
+   "game": "Struff vs Bergs",
+   "in_current_feed": true,
+   "key": "kalshi|KXATPMATCH-26OCT23STRBER|ml|0",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "W",
+   "side": "Struff",
+   "units_flat": 0.65
+  },
+  {
+   "alerted_utc": "2026-10-23T20:08:50Z",
+   "alerted_utc_seen": [
+    "2026-10-23T20:08:50Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-23T20:00:21Z",
+   "game": "Game 1: Tampa Bay vs Milwaukee",
+   "in_current_feed": true,
+   "key": "kalshi|KXMLBGAME-26OCT232000TBMIL|ml|1",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "MLB",
+   "market": "moneyline",
+   "result": "W",
+   "side": "Milwaukee",
+   "units_flat": 0.59
+  },
+  {
+   "alerted_utc": "2026-10-23T20:08:50Z",
+   "alerted_utc_seen": [
+    "2026-10-23T20:08:50Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-23T20:00:21Z",
+   "game": "Tampa Bay vs Milwaukee: Spread",
+   "in_current_feed": true,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXMLBSPREAD-26OCT232000TBMIL-MIL2\"}",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "MLB",
+   "market": "spread",
+   "result": "W",
+   "side": "NOT Milwaukee wins by over 1.5 runs",
+   "units_flat": 0.74
+  },
+  {
+   "alerted_utc": "2026-10-23T20:46:01Z",
+   "alerted_utc_seen": [
+    "2026-10-23T20:46:01Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-23T20:40:13Z",
+   "game": "Van Assche vs Musetti",
+   "in_current_feed": true,
+   "key": "kalshi|KXATPMATCH-26OCT23VANMUS|ml|1",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "W",
+   "side": "Musetti",
+   "units_flat": 0.46
+  },
+  {
+   "alerted_utc": "2026-10-23T21:17:36Z",
+   "alerted_utc_seen": [
+    "2026-10-23T21:17:36Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-23T21:10:15Z",
+   "game": "Tampa Bay vs Milwaukee: Total Runs",
+   "in_current_feed": true,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXMLBTOTAL-26OCT232000TBMIL-7\"}",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "MLB",
+   "market": "total",
+   "result": "W",
+   "side": "NOT Over 6.5 runs scored",
+   "units_flat": 1.05
+  },
+  {
+   "alerted_utc": "2026-10-23T21:54:47Z",
+   "alerted_utc_seen": [
+    "2026-10-23T21:54:47Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-23T21:50:14Z",
+   "game": "Tampa Bay Rays vs. Milwaukee Brewers",
+   "in_current_feed": true,
+   "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"5969232\"}",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "MLB",
+   "market": "moneyline",
+   "result": "W",
+   "side": "Milwaukee Brewers",
+   "units_flat": 0.59
+  },
+  {
+   "alerted_utc": "2026-10-23T22:00:21Z",
+   "alerted_utc_seen": [
+    "2026-10-23T22:00:21Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-23T21:54:47Z",
+   "game": "Fils vs Struff",
+   "in_current_feed": true,
+   "key": "kalshi|KXATPMATCH-26OCT24FILSTR|ml|0",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "L",
+   "side": "Fils",
+   "units_flat": -1.0
+  },
+  {
+   "alerted_utc": "2026-10-23T23:57:17Z",
+   "alerted_utc_seen": [
+    "2026-10-23T23:57:17Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-23T23:50:15Z",
+   "game": "Tampa Bay Rays @ Milwaukee Brewers",
+   "in_current_feed": true,
+   "key": "novig|{\"market_id\": \"01a1577c-d666-7e81-852e-6c4d5457124b\", \"outcome_id\": \"01a1577c-d666-7e81-852e-6c68d5ba3df1\"}",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "MLB",
+   "market": "spread",
+   "result": "W",
+   "side": "TB +1.5 (-1.5)",
+   "units_flat": 0.72
+  },
+  {
+   "alerted_utc": "2026-10-24T00:30:18Z",
+   "alerted_utc_seen": [
+    "2026-10-24T00:30:18Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-24T00:20:15Z",
+   "game": "Game 2: Tampa Bay vs Milwaukee",
+   "in_current_feed": true,
+   "key": "kalshi|KXMLBGAME-26OCT242000TBMIL|ml|0",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "MLB",
+   "market": "moneyline",
+   "result": "L",
+   "side": "Game 2: Tampa Bay",
+   "units_flat": -1.0
+  },
+  {
+   "alerted_utc": "2026-10-24T00:47:09Z",
+   "alerted_utc_seen": [
+    "2026-10-24T00:47:09Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-24T00:40:16Z",
+   "game": "Boulter vs Siniakova",
+   "in_current_feed": true,
+   "key": "kalshi|KXWTAMATCH-26OCT23BOUSIN|ml|1",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "W",
+   "side": "Siniakova",
+   "units_flat": 0.6
+  },
+  {
+   "alerted_utc": "2026-10-24T01:20:14Z",
+   "alerted_utc_seen": [
+    "2026-10-24T01:20:14Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-24T01:10:16Z",
+   "game": "Ma vs Kasatkina",
+   "in_current_feed": true,
+   "key": "kalshi|KXWTAMATCH-26OCT23YEXKAS|ml|1",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "W",
+   "side": "Kasatkina",
+   "units_flat": 0.23
+  },
+  {
+   "alerted_utc": "2026-10-24T02:00:20Z",
+   "alerted_utc_seen": [
+    "2026-10-24T02:00:20Z"
+   ],
+   "artifact": true,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-24T01:50:16Z",
+   "game": "Starodubtseva vs Sasnovich",
+   "in_current_feed": true,
+   "key": "kalshi|KXWTAMATCH-26OCT23STASAS|ml|1",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "W",
+   "side": "Sasnovich",
+   "units_flat": 0.52
+  },
+  {
+   "alerted_utc": "2026-10-24T03:40:13Z",
+   "alerted_utc_seen": [
+    "2026-10-24T03:40:13Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-24T03:30:19Z",
+   "game": "Shibahara vs Parks",
+   "in_current_feed": true,
+   "key": "kalshi|KXWTAMATCH-26OCT23SHIPAR|ml|0",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "L",
+   "side": "Shibahara",
+   "units_flat": -1.0
+  },
+  {
+   "alerted_utc": "2026-10-24T03:51:21Z",
+   "alerted_utc_seen": [
+    "2026-10-24T03:51:21Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-24T03:40:13Z",
+   "game": "Iatcenko vs Shubladze",
+   "in_current_feed": true,
+   "key": "kalshi|KXWTAMATCH-26OCT23IATSHU|ml|0",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "W",
+   "side": "Iatcenko",
+   "units_flat": 0.42
+  },
+  {
+   "alerted_utc": "2026-10-24T04:10:14Z",
+   "alerted_utc_seen": [
+    "2026-10-24T04:10:14Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-24T04:00:20Z",
+   "game": "Tampa Bay vs Milwaukee: Spread",
+   "in_current_feed": true,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXMLBSPREAD-26OCT242000TBMIL-MIL2\"}",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "MLB",
+   "market": "spread",
+   "result": "W",
+   "side": "NOT Milwaukee wins by over 1.5 runs",
+   "units_flat": 0.49
+  },
+  {
+   "alerted_utc": "2026-10-24T05:50:13Z",
+   "alerted_utc_seen": [
+    "2026-10-24T05:50:13Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-24T05:40:12Z",
+   "game": "Tampa Bay Rays vs. Milwaukee Brewers",
+   "in_current_feed": true,
+   "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"5969237\"}",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "MLB",
+   "market": "moneyline",
+   "result": "L",
+   "side": "Tampa Bay Rays",
+   "units_flat": -1.0
+  },
+  {
+   "alerted_utc": "2026-10-24T07:00:18Z",
+   "alerted_utc_seen": [
+    "2026-10-24T07:00:18Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-24T06:50:13Z",
+   "game": "Medvedev vs Bublik",
+   "in_current_feed": true,
+   "key": "kalshi|KXATPMATCH-26OCT24MEDBUB|ml|0",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "W",
+   "side": "Medvedev",
+   "units_flat": 0.54
+  },
+  {
+   "alerted_utc": "2026-10-24T07:50:13Z",
+   "alerted_utc_seen": [
+    "2026-10-24T07:50:13Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-24T07:45:25Z",
+   "game": "Fernandez vs Bouzkova",
+   "in_current_feed": true,
+   "key": "kalshi|KXWTAMATCH-26OCT24FERBOU|ml|1",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "L",
+   "side": "Bouzkova",
+   "units_flat": -1.0
+  },
+  {
+   "alerted_utc": "2026-10-24T08:40:16Z",
+   "alerted_utc_seen": [
+    "2026-10-24T08:40:16Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-24T08:30:18Z",
+   "game": "Basilashvili vs Tsitsipas",
+   "in_current_feed": true,
+   "key": "kalshi|KXATPMATCH-26OCT24BASTSI|ml|1",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "L",
+   "side": "Tsitsipas",
+   "units_flat": -1.0
+  },
+  {
+   "alerted_utc": "2026-10-24T08:40:16Z",
+   "alerted_utc_seen": [
+    "2026-10-24T08:40:16Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-24T08:30:18Z",
+   "game": "Paul vs Fritz",
+   "in_current_feed": true,
+   "key": "kalshi|KXATPMATCH-26OCT24PAUFRI|ml|1",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "W",
+   "side": "Fritz",
+   "units_flat": 0.61
+  },
+  {
+   "alerted_utc": "2026-10-24T08:40:16Z",
+   "alerted_utc_seen": [
+    "2026-10-24T08:40:16Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-24T08:30:18Z",
+   "game": "Schwaerzler vs Droguet",
+   "in_current_feed": true,
+   "key": "kalshi|KXATPMATCH-26OCT24SCHDRO|ml|1",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "W",
+   "side": "Droguet",
+   "units_flat": 0.37
+  },
+  {
+   "alerted_utc": "2026-10-24T09:00:19Z",
+   "alerted_utc_seen": [
+    "2026-10-24T09:00:19Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-24T08:50:15Z",
+   "game": "Tirante vs Mannarino",
+   "in_current_feed": true,
+   "key": "kalshi|KXATPMATCH-26OCT24TIRMAN|ml|0",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "L",
+   "side": "Tirante",
+   "units_flat": -1.0
+  },
+  {
+   "alerted_utc": "2026-10-24T09:30:16Z",
+   "alerted_utc_seen": [
+    "2026-10-24T09:30:16Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-24T09:16:12Z",
+   "game": "Giron vs Hanfmann",
+   "in_current_feed": true,
+   "key": "kalshi|KXATPMATCH-26OCT24GIRHAN|ml|1",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "W",
+   "side": "Hanfmann",
+   "units_flat": 0.16
+  },
+  {
+   "alerted_utc": "2026-10-24T10:10:13Z",
+   "alerted_utc_seen": [
+    "2026-10-24T10:10:13Z"
+   ],
+   "artifact": true,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-24T10:00:18Z",
+   "game": "Rybakina vs Shnaider",
+   "in_current_feed": true,
+   "key": "kalshi|KXWTAMATCH-26OCT24RYBSHN|ml|0",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "W",
+   "side": "Rybakina",
+   "units_flat": 0.5
+  },
+  {
+   "alerted_utc": "2026-10-24T10:18:26Z",
+   "alerted_utc_seen": [
+    "2026-10-24T10:18:26Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-24T10:10:13Z",
+   "game": "Marozsan vs Sorger",
+   "in_current_feed": true,
+   "key": "kalshi|KXATPMATCH-26OCT24MARSOR|ml|0",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "W",
+   "side": "Marozsan",
+   "units_flat": 0.2
+  },
+  {
+   "alerted_utc": "2026-10-24T10:40:17Z",
+   "alerted_utc_seen": [
+    "2026-10-24T10:40:17Z"
+   ],
+   "artifact": true,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-24T10:30:19Z",
+   "game": "Fearnley vs Carreno Busta",
+   "in_current_feed": true,
+   "key": "kalshi|KXATPMATCH-26OCT24FEACAR|ml|0",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "W",
+   "side": "Fearnley",
+   "units_flat": 0.42
+  },
+  {
+   "alerted_utc": "2026-10-24T11:30:16Z",
+   "alerted_utc_seen": [
+    "2026-10-24T11:30:16Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-24T11:20:15Z",
+   "game": "Okamura vs Ishii",
+   "in_current_feed": true,
+   "key": "kalshi|KXWTAMATCH-26OCT24OKAISH|ml|1",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "W",
+   "side": "Ishii",
+   "units_flat": 0.42
+  },
+  {
+   "alerted_utc": "2026-10-24T11:50:14Z",
+   "alerted_utc_seen": [
+    "2026-10-24T11:50:14Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-24T11:40:13Z",
+   "game": "Tampa Bay Rays vs. Milwaukee Brewers",
+   "in_current_feed": true,
+   "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"6106401\"}",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "MLB",
+   "market": "total",
+   "result": "W",
+   "side": "Over (6.5)",
+   "units_flat": 0.98
+  },
+  {
+   "alerted_utc": "2026-10-24T12:10:13Z",
+   "alerted_utc_seen": [
+    "2026-10-24T12:10:13Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-24T12:00:19Z",
+   "game": "Cerundolo vs Griekspoor",
+   "in_current_feed": true,
+   "key": "kalshi|KXATPMATCH-26OCT24CERGRI|ml|0",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "L",
+   "side": "Cerundolo",
+   "units_flat": -1.0
+  },
+  {
+   "alerted_utc": "2026-10-24T12:19:09Z",
+   "alerted_utc_seen": [
+    "2026-10-24T12:19:09Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-24T12:00:19Z",
+   "game": "Vallejo vs Sonego",
+   "in_current_feed": true,
+   "key": "kalshi|KXATPMATCH-26OCT24VALSON|ml|1",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "W",
+   "side": "Sonego",
+   "units_flat": 0.22
+  },
+  {
+   "alerted_utc": "2026-10-24T14:10:15Z",
+   "alerted_utc_seen": [
+    "2026-10-24T14:10:15Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-24T14:02:24Z",
+   "game": "Molcan vs Medjedovic",
+   "in_current_feed": true,
+   "key": "kalshi|KXATPMATCH-26OCT24MOLMED|ml|0",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "W",
+   "side": "Molcan",
+   "units_flat": 0.19
+  },
+  {
+   "alerted_utc": "2026-10-24T16:10:13Z",
+   "alerted_utc_seen": [
+    "2026-10-24T16:10:13Z"
+   ],
+   "artifact": true,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-24T16:00:32Z",
+   "game": "Medvedev vs Basilashvili",
+   "in_current_feed": true,
+   "key": "kalshi|KXATPMATCH-26OCT25MEDBAS|ml|0",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "W",
+   "side": "Medvedev",
+   "units_flat": 0.26
+  },
+  {
+   "alerted_utc": "2026-10-24T16:20:15Z",
+   "alerted_utc_seen": [
+    "2026-10-24T16:20:15Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-24T16:10:13Z",
+   "game": "Tampa Bay vs Milwaukee: Total Runs",
+   "in_current_feed": true,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXMLBTOTAL-26OCT242000TBMIL-7\"}",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "MLB",
+   "market": "total",
+   "result": "L",
+   "side": "NOT Over 6.5 runs scored",
+   "units_flat": -1.0
+  },
+  {
+   "alerted_utc": "2026-10-24T17:20:15Z",
+   "alerted_utc_seen": [
+    "2026-10-24T17:20:15Z"
+   ],
+   "artifact": true,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-24T17:10:14Z",
+   "game": "Tirante vs Mannarino",
+   "in_current_feed": true,
+   "key": "kalshi|KXATPMATCH-26OCT24TIRMAN|ml|1",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "W",
+   "side": "Mannarino",
+   "units_flat": 0.44
+  },
+  {
+   "alerted_utc": "2026-10-24T17:20:15Z",
+   "alerted_utc_seen": [
+    "2026-10-24T17:20:15Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-24T17:10:14Z",
+   "game": "Tampa Bay Rays vs. Milwaukee Brewers",
+   "in_current_feed": true,
+   "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6106400\"}",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "MLB",
+   "market": "spread",
+   "result": "W",
+   "side": "Milwaukee Brewers (+1.5)",
+   "units_flat": 0.49
+  },
+  {
+   "alerted_utc": "2026-10-24T17:50:14Z",
+   "alerted_utc_seen": [
+    "2026-10-24T17:50:14Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-24T17:43:19Z",
+   "game": "Tampa Bay Rays vs. Milwaukee Brewers",
+   "in_current_feed": true,
+   "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6106401\"}",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "MLB",
+   "market": "total",
+   "result": "L",
+   "side": "Under (6.5)",
+   "units_flat": -1.0
+  },
+  {
+   "alerted_utc": "2026-10-24T20:16:49Z",
+   "alerted_utc_seen": [
+    "2026-10-24T20:16:49Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-24T20:10:14Z",
+   "game": "Tampa Bay Rays vs. Milwaukee Brewers",
+   "in_current_feed": true,
+   "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"5969237\"}",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "MLB",
+   "market": "moneyline",
+   "result": "W",
+   "side": "Milwaukee Brewers",
+   "units_flat": 0.89
+  },
+  {
+   "alerted_utc": "2026-10-24T20:48:35Z",
+   "alerted_utc_seen": [
+    "2026-10-24T20:48:35Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-24T20:40:15Z",
+   "game": "Tampa Bay Rays @ Milwaukee Brewers",
+   "in_current_feed": true,
+   "key": "novig|{\"market_id\": \"01a16b41-969c-7350-a0e2-04acfabd7050\", \"outcome_id\": \"01a16b41-969c-7350-a0e2-04c8a8da06d3\"}",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "MLB",
+   "market": "moneyline",
+   "result": "L",
+   "side": "TB (0)",
+   "units_flat": -1.0
+  },
+  {
+   "alerted_utc": "2026-10-24T21:20:14Z",
+   "alerted_utc_seen": [
+    "2026-10-24T21:20:14Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-24T21:11:07Z",
+   "game": "Tampa Bay Rays @ Milwaukee Brewers",
+   "in_current_feed": true,
+   "key": "novig|{\"market_id\": \"01a16bf3-7b1b-7b51-a360-f69e491e3b99\", \"outcome_id\": \"01a16bf3-7b1b-7b51-a360-f6a9f6b9e963\"}",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "MLB",
+   "market": "spread",
+   "result": "W",
+   "side": "MIL +1.5 (1.5)",
+   "units_flat": 0.49
+  },
+  {
+   "alerted_utc": "2026-10-24T23:00:20Z",
+   "alerted_utc_seen": [
+    "2026-10-24T23:00:20Z"
+   ],
+   "artifact": true,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-24T22:50:16Z",
+   "game": "Rybakina vs Fernandez",
+   "in_current_feed": true,
+   "key": "kalshi|KXWTAMATCH-26OCT25RYBFER|ml|0",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "W",
+   "side": "Rybakina",
+   "units_flat": 0.32
+  },
+  {
+   "alerted_utc": "2026-10-24T23:31:47Z",
+   "alerted_utc_seen": [
+    "2026-10-24T23:31:47Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-24T23:20:15Z",
+   "game": "Watson vs Parks",
+   "in_current_feed": true,
+   "key": "kalshi|KXWTAMATCH-26OCT24WATPAR|ml|0",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "L",
+   "side": "Watson",
+   "units_flat": -1.0
+  },
+  {
+   "alerted_utc": "2026-10-24T23:53:40Z",
+   "alerted_utc_seen": [
+    "2026-10-24T23:53:40Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-24T23:50:17Z",
+   "game": "Musetti vs Fritz",
+   "in_current_feed": true,
+   "key": "kalshi|KXATPMATCH-26OCT25MUSFRI|ml|1",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "L",
+   "side": "Fritz",
+   "units_flat": -1.0
+  },
+  {
+   "alerted_utc": "2026-10-25T03:00:19Z",
+   "alerted_utc_seen": [
+    "2026-10-25T03:00:19Z"
+   ],
+   "artifact": true,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-25T02:50:14Z",
+   "game": "Watson vs Parks",
+   "in_current_feed": true,
+   "key": "kalshi|KXWTAMATCH-26OCT24WATPAR|ml|1",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "W",
+   "side": "Parks",
+   "units_flat": 0.28
+  },
+  {
+   "alerted_utc": "2026-10-25T03:00:19Z",
+   "alerted_utc_seen": [
+    "2026-10-25T03:00:19Z"
+   ],
+   "artifact": true,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-25T02:50:14Z",
+   "game": "Krueger vs Siniakova",
+   "in_current_feed": true,
+   "key": "kalshi|KXWTAMATCH-26OCT25KRUSIN|ml|1",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "W",
+   "side": "Siniakova",
+   "units_flat": 0.74
+  },
+  {
+   "alerted_utc": "2026-10-25T03:13:39Z",
+   "alerted_utc_seen": [
+    "2026-10-25T03:13:39Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-25T03:10:14Z",
+   "game": "Ibragimova vs Iatcenko",
+   "in_current_feed": true,
+   "key": "kalshi|KXWTAMATCH-26OCT24IBRIAT|ml|1",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "L",
+   "side": "Iatcenko",
+   "units_flat": -1.0
+  },
+  {
+   "alerted_utc": "2026-10-25T03:13:39Z",
+   "alerted_utc_seen": [
+    "2026-10-25T03:13:39Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-25T03:10:14Z",
+   "game": "Sasnovich vs Rakhimova",
+   "in_current_feed": true,
+   "key": "kalshi|KXWTAMATCH-26OCT24SASRAK|ml|0",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "W",
+   "side": "Sasnovich",
+   "units_flat": 0.25
+  },
+  {
+   "alerted_utc": "2026-10-25T03:40:15Z",
+   "alerted_utc_seen": [
+    "2026-10-25T03:40:15Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-25T03:30:17Z",
+   "game": "Ibragimova vs Iatcenko",
+   "in_current_feed": true,
+   "key": "kalshi|KXWTAMATCH-26OCT24IBRIAT|ml|0",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "W",
+   "side": "Ibragimova",
+   "units_flat": 0.62
+  },
+  {
+   "alerted_utc": "2026-10-25T03:50:13Z",
+   "alerted_utc_seen": [
+    "2026-10-25T03:50:13Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-25T03:40:15Z",
+   "game": "Lee vs Pridankina",
+   "in_current_feed": true,
+   "key": "kalshi|KXWTAMATCH-26OCT24LEEPRI|ml|0",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "W",
+   "side": "Lee",
+   "units_flat": 0.33
+  },
+  {
+   "alerted_utc": "2026-10-25T04:30:17Z",
+   "alerted_utc_seen": [
+    "2026-10-25T04:30:17Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-25T04:20:14Z",
+   "game": "Game 3: Milwaukee vs Tampa Bay",
+   "in_current_feed": true,
+   "key": "kalshi|KXMLBGAME-26OCT262000MILTB|ml|1",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "MLB",
+   "market": "moneyline",
+   "result": "L",
+   "side": "Tampa Bay",
+   "units_flat": -1.0
+  },
+  {
+   "alerted_utc": "2026-10-25T05:10:14Z",
+   "alerted_utc_seen": [
+    "2026-10-25T05:10:14Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-25T04:58:49Z",
+   "game": "Milwaukee vs Tampa Bay: Spread",
+   "in_current_feed": true,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXMLBSPREAD-26OCT262000MILTB-MIL2\"}",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "MLB",
+   "market": "spread",
+   "result": "L",
+   "side": "NOT Milwaukee wins by over 1.5 runs",
+   "units_flat": -1.0
+  },
+  {
+   "alerted_utc": "2026-10-25T08:50:14Z",
+   "alerted_utc_seen": [
+    "2026-10-25T08:50:14Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-25T08:40:13Z",
+   "game": "Valentova vs Zhang",
+   "in_current_feed": true,
+   "key": "kalshi|KXWTAMATCH-26OCT25VALZHA|ml|0",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "W",
+   "side": "Valentova",
+   "units_flat": 0.34
+  },
+  {
+   "alerted_utc": "2026-10-25T09:00:21Z",
+   "alerted_utc_seen": [
+    "2026-10-25T09:00:21Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-25T08:50:14Z",
+   "game": "Neumayer vs Droguet",
+   "in_current_feed": true,
+   "key": "kalshi|KXATPMATCH-26OCT25NEUDRO|ml|1",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "L",
+   "side": "Droguet",
+   "units_flat": -1.0
+  },
+  {
+   "alerted_utc": "2026-10-25T11:00:19Z",
+   "alerted_utc_seen": [
+    "2026-10-25T11:00:19Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-25T10:50:15Z",
+   "game": "Merida vs Medvedev",
+   "in_current_feed": true,
+   "key": "kalshi|KXATPMATCH-26OCT25MERMED|ml|1",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "W",
+   "side": "Medvedev",
+   "units_flat": 0.19
+  },
+  {
+   "alerted_utc": "2026-10-25T11:10:14Z",
+   "alerted_utc_seen": [
+    "2026-10-25T11:10:14Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-25T11:02:51Z",
+   "game": "Khachanov vs Alcaraz",
+   "in_current_feed": true,
+   "key": "kalshi|KXATPMATCH-26OCT25KHAALC|ml|1",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "W",
+   "side": "Alcaraz",
+   "units_flat": 0.19
+  },
+  {
+   "alerted_utc": "2026-10-25T14:10:15Z",
+   "alerted_utc_seen": [
+    "2026-10-25T14:10:15Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-25T14:00:20Z",
+   "game": "Musetti vs Fritz",
+   "in_current_feed": true,
+   "key": "kalshi|KXATPMATCH-26OCT25MUSFRI|ml|0",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "W",
+   "side": "Musetti",
+   "units_flat": 0.52
+  },
+  {
+   "alerted_utc": "2026-10-25T14:10:15Z",
+   "alerted_utc_seen": [
+    "2026-10-25T14:10:15Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-25T14:00:20Z",
+   "game": "Struff vs Griekspoor",
+   "in_current_feed": true,
+   "key": "kalshi|KXATPMATCH-26OCT25STRGRI|ml|1",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "W",
+   "side": "Griekspoor",
+   "units_flat": 0.76
+  },
+  {
+   "alerted_utc": "2026-10-25T14:30:17Z",
+   "alerted_utc_seen": [
+    "2026-10-25T14:30:17Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-25T14:20:14Z",
+   "game": "Mannarino vs Molcan",
+   "in_current_feed": true,
+   "key": "kalshi|KXATPMATCH-26OCT25MANMOL|ml|1",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "L",
+   "side": "Molcan",
+   "units_flat": -1.0
+  },
+  {
+   "alerted_utc": "2026-10-25T15:12:43Z",
+   "alerted_utc_seen": [
+    "2026-10-25T15:12:43Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-25T15:10:15Z",
+   "game": "Mannarino vs Molcan",
+   "in_current_feed": true,
+   "key": "kalshi|KXATPMATCH-26OCT25MANMOL|ml|0",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "W",
+   "side": "Mannarino",
+   "units_flat": 0.36
+  },
+  {
+   "alerted_utc": "2026-10-25T23:10:14Z",
+   "alerted_utc_seen": [
+    "2026-10-25T23:10:14Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-25T23:04:02Z",
+   "game": "Milwaukee vs Tampa Bay: Total Runs",
+   "in_current_feed": true,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXMLBTOTAL-26OCT262000MILTB-8\"}",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "MLB",
+   "market": "total",
+   "result": "L",
+   "side": "NOT Over 7.5 runs scored",
+   "units_flat": -1.0
+  },
+  {
+   "alerted_utc": "2026-10-26T01:10:14Z",
+   "alerted_utc_seen": [
+    "2026-10-26T01:10:14Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-26T01:00:21Z",
+   "game": "Wang vs Parks",
+   "in_current_feed": true,
+   "key": "kalshi|KXWTAMATCH-26OCT25WANPAR|ml|0",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "L",
+   "side": "Wang",
+   "units_flat": -1.0
+  },
+  {
+   "alerted_utc": "2026-10-26T01:30:18Z",
+   "alerted_utc_seen": [
+    "2026-10-26T01:30:18Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-26T01:24:49Z",
+   "game": "Sasnovich vs Bartunkova",
+   "in_current_feed": true,
+   "key": "kalshi|KXWTAMATCH-26OCT25SASBAR|ml|1",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "L",
+   "side": "Bartunkova",
+   "units_flat": -1.0
+  },
+  {
+   "alerted_utc": "2026-10-26T02:08:23Z",
+   "alerted_utc_seen": [
+    "2026-10-26T02:08:23Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-26T02:00:22Z",
+   "game": "Wang vs Parks",
+   "in_current_feed": true,
+   "key": "kalshi|KXWTAMATCH-26OCT25WANPAR|ml|1",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "W",
+   "side": "Parks",
+   "units_flat": 0.29
+  },
+  {
+   "alerted_utc": "2026-10-26T03:30:18Z",
+   "alerted_utc_seen": [
+    "2026-10-26T03:30:18Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-26T03:22:17Z",
+   "game": "Udvardy vs Kraus",
+   "in_current_feed": true,
+   "key": "kalshi|KXWTAMATCH-26OCT25UDVKRA|ml|1",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "W",
+   "side": "Kraus",
+   "units_flat": 0.28
+  },
+  {
+   "alerted_utc": "2026-10-26T03:40:13Z",
+   "alerted_utc_seen": [
+    "2026-10-26T03:40:13Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-26T03:30:18Z",
+   "game": "Timofeeva vs Kostovic",
+   "in_current_feed": true,
+   "key": "kalshi|KXWTAMATCH-26OCT25TIMKOS|ml|0",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "W",
+   "side": "Timofeeva",
+   "units_flat": 0.26
+  },
+  {
+   "alerted_utc": "2026-10-26T04:02:00Z",
+   "alerted_utc_seen": [
+    "2026-10-26T04:02:00Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-26T03:50:16Z",
+   "game": "Machac vs de Minaur",
+   "in_current_feed": true,
+   "key": "kalshi|KXATPMATCH-26OCT26MACDE|ml|1",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "W",
+   "side": "de Minaur",
+   "units_flat": 0.41
+  },
+  {
+   "alerted_utc": "2026-10-26T07:10:16Z",
+   "alerted_utc_seen": [
+    "2026-10-26T07:10:16Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-26T07:00:21Z",
+   "game": "Shi vs Ibragimova",
+   "in_current_feed": true,
+   "key": "kalshi|KXWTAMATCH-26OCT26SHIIBR|ml|1",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "L",
+   "side": "Ibragimova",
+   "units_flat": -1.0
+  },
+  {
+   "alerted_utc": "2026-10-26T07:30:19Z",
+   "alerted_utc_seen": [
+    "2026-10-26T07:30:19Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-26T07:20:16Z",
+   "game": "Shi vs Ibragimova",
+   "in_current_feed": true,
+   "key": "kalshi|KXWTAMATCH-26OCT26SHIIBR|ml|0",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "W",
+   "side": "Shi",
+   "units_flat": 0.18
+  },
+  {
+   "alerted_utc": "2026-10-26T08:40:14Z",
+   "alerted_utc_seen": [
+    "2026-10-26T08:40:14Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-26T08:30:20Z",
+   "game": "Badosa vs Lee",
+   "in_current_feed": true,
+   "key": "kalshi|KXWTAMATCH-26OCT26BADLEE|ml|0",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "W",
+   "side": "Badosa",
+   "units_flat": 0.2
+  },
+  {
+   "alerted_utc": "2026-10-26T09:40:16Z",
+   "alerted_utc_seen": [
+    "2026-10-26T09:40:16Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-26T09:30:21Z",
+   "game": "Fery vs Fearnley",
+   "in_current_feed": true,
+   "key": "kalshi|KXATPMATCH-26OCT26FERFEA|ml|1",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "L",
+   "side": "Fearnley",
+   "units_flat": -1.0
+  },
+  {
+   "alerted_utc": "2026-10-26T09:50:15Z",
+   "alerted_utc_seen": [
+    "2026-10-26T09:50:15Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-26T09:40:16Z",
+   "game": "Dart vs Prozorova",
+   "in_current_feed": true,
+   "key": "kalshi|KXWTAMATCH-26OCT26DARPRO|ml|0",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "W",
+   "side": "Dart",
+   "units_flat": 0.44
+  },
+  {
+   "alerted_utc": "2026-10-26T10:10:17Z",
+   "alerted_utc_seen": [
+    "2026-10-26T10:10:17Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-26T10:07:44Z",
+   "game": "Brunold vs Borges",
+   "in_current_feed": true,
+   "key": "kalshi|KXATPMATCH-26OCT26BRUBOR|ml|1",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "W",
+   "side": "Borges",
+   "units_flat": 0.48
+  },
+  {
+   "alerted_utc": "2026-10-26T10:30:19Z",
+   "alerted_utc_seen": [
+    "2026-10-26T10:30:19Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-26T10:20:15Z",
+   "game": "Altmaier vs Cerundolo",
+   "in_current_feed": true,
+   "key": "kalshi|KXATPMATCH-26OCT26ALTCER|ml|1",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "L",
+   "side": "Cerundolo",
+   "units_flat": -1.0
+  },
+  {
+   "alerted_utc": "2026-10-26T10:50:16Z",
+   "alerted_utc_seen": [
+    "2026-10-26T10:50:16Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-26T10:40:22Z",
+   "game": "Dart vs Prozorova",
+   "in_current_feed": true,
+   "key": "kalshi|KXWTAMATCH-26OCT26DARPRO|ml|1",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "L",
+   "side": "Prozorova",
+   "units_flat": -1.0
+  },
+  {
+   "alerted_utc": "2026-10-26T11:31:28Z",
+   "alerted_utc_seen": [
+    "2026-10-26T11:31:28Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-26T11:20:16Z",
+   "game": "Bertola vs Shapovalov",
+   "in_current_feed": true,
+   "key": "kalshi|KXATPMATCH-26OCT27BERSHA|ml|1",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "W",
+   "side": "Shapovalov",
+   "units_flat": 0.35
+  },
+  {
+   "alerted_utc": "2026-10-26T12:10:17Z",
+   "alerted_utc_seen": [
+    "2026-10-26T12:10:17Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-26T12:00:25Z",
+   "game": "Milwaukee Brewers vs. Tampa Bay Rays",
+   "in_current_feed": true,
+   "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"5969240\"}",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "MLB",
+   "market": "moneyline",
+   "result": "W",
+   "side": "Milwaukee Brewers",
+   "units_flat": 1.08
+  },
+  {
+   "alerted_utc": "2026-10-26T15:00:21Z",
+   "alerted_utc_seen": [
+    "2026-10-26T15:00:21Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-26T14:50:18Z",
+   "game": "Machac vs de Minaur",
+   "in_current_feed": true,
+   "key": "kalshi|KXATPMATCH-26OCT26MACDE|ml|0",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "L",
+   "side": "Machac",
+   "units_flat": -1.0
+  },
+  {
+   "alerted_utc": "2026-10-26T15:20:20Z",
+   "alerted_utc_seen": [
+    "2026-10-26T15:20:20Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-26T15:10:16Z",
+   "game": "Milwaukee Brewers @ Tampa Bay Rays",
+   "in_current_feed": true,
+   "key": "novig|{\"market_id\": \"01a1715f-76ae-7c53-ad97-3bac6b441c78\", \"outcome_id\": \"01a1715f-76ae-7c53-ad97-3bc561e95c0e\"}",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "MLB",
+   "market": "moneyline",
+   "result": "W",
+   "side": "MIL (0)",
+   "units_flat": 1.06
+  },
+  {
+   "alerted_utc": "2026-10-26T16:00:23Z",
+   "alerted_utc_seen": [
+    "2026-10-26T16:00:23Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-26T15:50:18Z",
+   "game": "Fery vs Fearnley",
+   "in_current_feed": true,
+   "key": "kalshi|KXATPMATCH-26OCT26FERFEA|ml|0",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "W",
+   "side": "Fery",
+   "units_flat": 1.04
+  },
+  {
+   "alerted_utc": "2026-10-26T16:30:19Z",
+   "alerted_utc_seen": [
+    "2026-10-26T16:30:19Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-26T16:20:16Z",
+   "game": "Mpetshi Perricard vs Fils",
+   "in_current_feed": true,
+   "key": "kalshi|KXATPMATCH-26OCT27MPEFIL|ml|1",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "W",
+   "side": "Fils",
+   "units_flat": 0.23
+  },
+  {
+   "alerted_utc": "2026-10-26T17:10:16Z",
+   "alerted_utc_seen": [
+    "2026-10-26T17:10:16Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-26T17:00:24Z",
+   "game": "Milwaukee Brewers vs. Tampa Bay Rays",
+   "in_current_feed": true,
+   "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6173205\"}",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "MLB",
+   "market": "total",
+   "result": "L",
+   "side": "Under (7.5)",
+   "units_flat": -1.0
+  },
+  {
+   "alerted_utc": "2026-10-26T18:40:15Z",
+   "alerted_utc_seen": [
+    "2026-10-26T18:40:15Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-26T18:30:20Z",
+   "game": "Milwaukee Brewers vs. Tampa Bay Rays",
+   "in_current_feed": true,
+   "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"5969240\"}",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "MLB",
+   "market": "moneyline",
+   "result": "L",
+   "side": "Tampa Bay Rays",
+   "units_flat": -1.0
+  },
+  {
+   "alerted_utc": "2026-10-26T18:46:11Z",
+   "alerted_utc_seen": [
+    "2026-10-26T18:46:11Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-26T18:40:15Z",
+   "game": "Milwaukee vs Tampa Bay: Total Runs",
+   "in_current_feed": true,
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXMLBTOTAL-26OCT262000MILTB-8\"}",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "MLB",
+   "market": "total",
+   "result": "W",
+   "side": "Over 7.5 runs scored",
+   "units_flat": 1.2
+  },
+  {
+   "alerted_utc": "2026-10-26T18:46:11Z",
+   "alerted_utc_seen": [
+    "2026-10-26T18:46:11Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-26T18:40:15Z",
+   "game": "Milwaukee Brewers @ Tampa Bay Rays",
+   "in_current_feed": true,
+   "key": "novig|{\"market_id\": \"01a1715f-76ae-7c53-ad97-3bac6b441c78\", \"outcome_id\": \"01a1715f-76ae-7c53-ad97-3bb297338acf\"}",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "MLB",
+   "market": "moneyline",
+   "result": "L",
+   "side": "TB (0)",
+   "units_flat": -1.0
+  },
+  {
+   "alerted_utc": "2026-10-26T22:00:21Z",
+   "alerted_utc_seen": [
+    "2026-10-26T22:00:21Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-26T21:56:14Z",
+   "game": "Joint vs Cirstea",
+   "in_current_feed": true,
+   "key": "kalshi|KXWTAMATCH-26OCT26JOICIR|ml|1",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "L",
+   "side": "Cirstea",
+   "units_flat": -1.0
+  },
+  {
+   "alerted_utc": "2026-10-26T23:00:22Z",
+   "alerted_utc_seen": [
+    "2026-10-26T23:00:22Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-26T22:50:15Z",
+   "game": "Shelton vs Kovacevic",
+   "in_current_feed": true,
+   "key": "kalshi|KXATPMATCH-26OCT27SHEKOV|ml|0",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "W",
+   "side": "Shelton",
+   "units_flat": 0.21
+  },
+  {
+   "alerted_utc": "2026-10-26T23:00:22Z",
+   "alerted_utc_seen": [
+    "2026-10-26T23:00:22Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-26T22:50:15Z",
+   "game": "Milwaukee Brewers at Tampa Bay Rays",
+   "in_current_feed": true,
+   "key": "prophetx|{\"line\": 0, \"px_event\": 10079798, \"px_market\": 251, \"side\": \"0\"}",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "MLB",
+   "market": "moneyline",
+   "result": "W",
+   "side": "Milwaukee Brewers",
+   "units_flat": 1.06
+  },
+  {
+   "alerted_utc": "2026-10-27T01:01:11Z",
+   "alerted_utc_seen": [
+    "2026-10-27T01:01:11Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-27T00:50:15Z",
+   "game": "Game 3: Milwaukee vs Tampa Bay",
+   "in_current_feed": true,
+   "key": "kalshi|KXMLBGAME-26OCT262000MILTB|ml|0",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "MLB",
+   "market": "moneyline",
+   "result": "W",
+   "side": "Game 3: Milwaukee",
+   "units_flat": 0.33
+  },
+  {
+   "alerted_utc": "2026-10-27T02:10:17Z",
+   "alerted_utc_seen": [
+    "2026-10-27T02:10:17Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-27T02:00:22Z",
+   "game": "Joint vs Cirstea",
+   "in_current_feed": true,
+   "key": "kalshi|KXWTAMATCH-26OCT26JOICIR|ml|0",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "W",
+   "side": "Joint",
+   "units_flat": 0.52
+  },
+  {
+   "alerted_utc": "2026-10-27T02:20:15Z",
+   "alerted_utc_seen": [
+    "2026-10-27T02:20:15Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-27T02:17:50Z",
+   "game": "Game 4: Milwaukee vs Tampa Bay",
+   "in_current_feed": true,
+   "key": "kalshi|KXMLBGAME-26OCT272000MILTB|ml|0",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "MLB",
+   "market": "moneyline",
+   "result": "L",
+   "side": "Game 4: Milwaukee",
+   "units_flat": -1.0
+  },
+  {
+   "alerted_utc": "2026-10-27T03:10:15Z",
+   "alerted_utc_seen": [
+    "2026-10-27T03:10:15Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-27T03:00:22Z",
+   "game": "Zakharova vs Linette",
+   "in_current_feed": true,
+   "key": "kalshi|KXWTAMATCH-26OCT26ZAKLIN|ml|1",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "W",
+   "side": "Linette",
+   "units_flat": 0.76
+  },
+  {
+   "alerted_utc": "2026-10-27T03:30:20Z",
+   "alerted_utc_seen": [
+    "2026-10-27T03:30:20Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-27T03:20:16Z",
+   "game": "Putintseva vs Sakkari",
+   "in_current_feed": true,
+   "key": "kalshi|KXWTAMATCH-26OCT26PUTSAK|ml|1",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "L",
+   "side": "Sakkari",
+   "units_flat": -1.0
+  },
+  {
+   "alerted_utc": "2026-10-27T07:30:18Z",
+   "alerted_utc_seen": [
+    "2026-10-27T07:30:18Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-27T07:20:15Z",
+   "game": "Eala vs Gibson",
+   "in_current_feed": true,
+   "key": "kalshi|KXWTAMATCH-26OCT27EALGIB|ml|0",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "W",
+   "side": "Eala",
+   "units_flat": 0.36
+  },
+  {
+   "alerted_utc": "2026-10-27T07:50:15Z",
+   "alerted_utc_seen": [
+    "2026-10-27T07:50:15Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-27T07:40:15Z",
+   "game": "Mannarino vs Buse",
+   "in_current_feed": true,
+   "key": "kalshi|KXATPMATCH-26OCT27MANBUS|ml|0",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "W",
+   "side": "Mannarino",
+   "units_flat": 0.59
+  },
+  {
+   "alerted_utc": "2026-10-27T12:25:54Z",
+   "alerted_utc_seen": [
+    "2026-10-27T12:25:54Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-27T12:20:16Z",
+   "game": "Milwaukee Brewers vs. Tampa Bay Rays",
+   "in_current_feed": true,
+   "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6010997\"}",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "MLB",
+   "market": "moneyline",
+   "result": "W",
+   "side": "Tampa Bay Rays",
+   "units_flat": 1.3
+  },
+  {
+   "alerted_utc": "2026-10-27T12:30:18Z",
+   "alerted_utc_seen": [
+    "2026-10-27T12:30:18Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-27T12:25:54Z",
+   "game": "Milwaukee vs Tampa Bay: Spread",
+   "in_current_feed": true,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXMLBSPREAD-26OCT272000MILTB-MIL2\"}",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "MLB",
+   "market": "spread",
+   "result": "W",
+   "side": "NOT Milwaukee wins by over 1.5 runs",
+   "units_flat": 0.71
+  },
+  {
+   "alerted_utc": "2026-10-27T12:30:18Z",
+   "alerted_utc_seen": [
+    "2026-10-27T12:30:18Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-27T12:25:54Z",
+   "game": "Milwaukee Brewers vs. Tampa Bay Rays",
+   "in_current_feed": true,
+   "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6288236\"}",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "MLB",
+   "market": "spread",
+   "result": "W",
+   "side": "Tampa Bay Rays (+1.5)",
+   "units_flat": 0.71
+  },
+  {
+   "alerted_utc": "2026-10-27T13:00:24Z",
+   "alerted_utc_seen": [
+    "2026-10-27T13:00:24Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-27T12:50:15Z",
+   "game": "Game 4: Milwaukee vs Tampa Bay",
+   "in_current_feed": true,
+   "key": "kalshi|KXMLBGAME-26OCT272000MILTB|ml|1",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "MLB",
+   "market": "moneyline",
+   "result": "W",
+   "side": "Tampa Bay",
+   "units_flat": 1.25
+  },
+  {
+   "alerted_utc": "2026-10-27T14:50:15Z",
+   "alerted_utc_seen": [
+    "2026-10-27T14:50:15Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-27T14:40:15Z",
+   "game": "Mannarino vs Buse",
+   "in_current_feed": true,
+   "key": "kalshi|KXATPMATCH-26OCT27MANBUS|ml|1",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "L",
+   "side": "Buse",
+   "units_flat": -1.0
+  },
+  {
+   "alerted_utc": "2026-10-27T17:37:59Z",
+   "alerted_utc_seen": [
+    "2026-10-27T17:37:59Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-27T17:20:16Z",
+   "game": "Milwaukee Brewers vs. Tampa Bay Rays",
+   "in_current_feed": true,
+   "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6288237\"}",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "MLB",
+   "market": "total",
+   "result": "W",
+   "side": "Under (7.5)",
+   "units_flat": 0.8
+  },
+  {
+   "alerted_utc": "2026-10-27T19:30:20Z",
+   "alerted_utc_seen": [
+    "2026-10-27T19:30:20Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-27T19:20:16Z",
+   "game": "Mensik vs Mannarino",
+   "in_current_feed": true,
+   "key": "kalshi|KXATPMATCH-26OCT28MENMAN|ml|0",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "L",
+   "side": "Mensik",
+   "units_flat": -1.0
+  },
+  {
+   "alerted_utc": "2026-10-27T20:50:16Z",
+   "alerted_utc_seen": [
+    "2026-10-27T20:50:16Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-27T20:40:15Z",
+   "game": "Bucsa vs Joint",
+   "in_current_feed": true,
+   "key": "kalshi|KXWTAMATCH-26OCT27BUCJOI|ml|1",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "W",
+   "side": "Joint",
+   "units_flat": 0.8
+  },
+  {
+   "alerted_utc": "2026-10-27T21:00:21Z",
+   "alerted_utc_seen": [
+    "2026-10-27T21:00:21Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-27T20:50:16Z",
+   "game": "Hurkacz vs Rune",
+   "in_current_feed": true,
+   "key": "kalshi|KXATPMATCH-26OCT28HURRUN|ml|0",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "L",
+   "side": "Hurkacz",
+   "units_flat": -1.0
+  },
+  {
+   "alerted_utc": "2026-10-27T21:40:15Z",
+   "alerted_utc_seen": [
+    "2026-10-27T21:40:15Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-27T21:37:41Z",
+   "game": "Milwaukee Brewers @ Tampa Bay Rays",
+   "in_current_feed": true,
+   "key": "novig|{\"market_id\": \"01a17ab4-d6cd-7442-8d93-a1dadea0d46b\", \"outcome_id\": \"01a17ab4-d6cd-7442-8d93-a1eef7ce0dc9\"}",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "MLB",
+   "market": "moneyline",
+   "result": "W",
+   "side": "TB (0)",
+   "units_flat": 1.11
+  },
+  {
+   "alerted_utc": "2026-10-27T22:10:16Z",
+   "alerted_utc_seen": [
+    "2026-10-27T22:10:16Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-27T22:00:21Z",
+   "game": "Sasnovich vs Shnaider",
+   "in_current_feed": true,
+   "key": "kalshi|KXWTAMATCH-26OCT27SASSHN|ml|1",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "W",
+   "side": "Shnaider",
+   "units_flat": 0.31
+  },
+  {
+   "alerted_utc": "2026-10-27T22:10:16Z",
+   "alerted_utc_seen": [
+    "2026-10-27T22:10:16Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-27T22:00:21Z",
+   "game": "Milwaukee vs Tampa Bay: Total Runs",
+   "in_current_feed": true,
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXMLBTOTAL-26OCT272000MILTB-8\"}",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "MLB",
+   "market": "total",
+   "result": "L",
+   "side": "Over 7.5 runs scored",
+   "units_flat": -1.0
+  },
+  {
+   "alerted_utc": "2026-10-27T22:17:48Z",
+   "alerted_utc_seen": [
+    "2026-10-27T22:17:48Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-27T22:10:16Z",
+   "game": "Rakhimova vs Alexandrova",
+   "in_current_feed": true,
+   "key": "kalshi|KXWTAMATCH-26OCT27RAKALE|ml|1",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "L",
+   "side": "Alexandrova",
+   "units_flat": -1.0
+  },
+  {
+   "alerted_utc": "2026-10-27T23:20:15Z",
+   "alerted_utc_seen": [
+    "2026-10-27T23:20:15Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-27T23:10:17Z",
+   "game": "Dart vs Tjen",
+   "in_current_feed": true,
+   "key": "kalshi|KXWTAMATCH-26OCT28DARTJE|ml|1",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "L",
+   "side": "Tjen",
+   "units_flat": -1.0
+  },
+  {
+   "alerted_utc": "2026-10-27T23:32:44Z",
+   "alerted_utc_seen": [
+    "2026-10-27T23:32:44Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-27T23:30:18Z",
+   "game": "Milwaukee Brewers at Tampa Bay Rays",
+   "in_current_feed": true,
+   "key": "prophetx|{\"line\": 0, \"px_event\": 10079799, \"px_market\": 251, \"side\": \"1\"}",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "MLB",
+   "market": "moneyline",
+   "result": "W",
+   "side": "Tampa Bay Rays",
+   "units_flat": 1.08
+  },
+  {
+   "alerted_utc": "2026-10-28T02:40:15Z",
+   "alerted_utc_seen": [
+    "2026-10-28T02:40:15Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-28T02:30:17Z",
+   "game": "Bucsa vs Joint",
+   "in_current_feed": true,
+   "key": "kalshi|KXWTAMATCH-26OCT27BUCJOI|ml|0",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "L",
+   "side": "Bucsa",
+   "units_flat": -1.0
+  },
+  {
+   "alerted_utc": "2026-10-28T02:49:25Z",
+   "alerted_utc_seen": [
+    "2026-10-28T02:49:25Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-28T02:40:15Z",
+   "game": "Rakhimova vs Alexandrova",
+   "in_current_feed": true,
+   "key": "kalshi|KXWTAMATCH-26OCT27RAKALE|ml|0",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "W",
+   "side": "Rakhimova",
+   "units_flat": 0.5
+  },
+  {
+   "alerted_utc": "2026-10-28T06:00:23Z",
+   "alerted_utc_seen": [
+    "2026-10-28T06:00:23Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-28T05:53:06Z",
+   "game": "Milwaukee vs Tampa Bay: Spread",
+   "in_current_feed": true,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXMLBSPREAD-26OCT282000MILTB-MIL2\"}",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "MLB",
+   "market": "spread",
+   "result": null,
+   "side": "NOT Milwaukee wins by over 1.5 runs",
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-28T07:00:22Z",
+   "alerted_utc_seen": [
+    "2026-10-28T07:00:22Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-28T06:50:16Z",
+   "game": "Milwaukee Brewers vs. Tampa Bay Rays",
+   "in_current_feed": true,
+   "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"6041525\"}",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "MLB",
+   "market": "moneyline",
+   "result": null,
+   "side": "Milwaukee Brewers",
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-28T09:30:18Z",
+   "alerted_utc_seen": [
+    "2026-10-28T09:30:18Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-28T09:21:47Z",
+   "game": "Tien vs de Minaur",
+   "in_current_feed": true,
+   "key": "kalshi|KXATPMATCH-26OCT28TIEDE|ml|1",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "W",
+   "side": "de Minaur",
+   "units_flat": 0.96
+  },
+  {
+   "alerted_utc": "2026-10-28T10:30:19Z",
+   "alerted_utc_seen": [
+    "2026-10-28T10:30:19Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-28T10:20:16Z",
+   "game": "Vacherot vs Jodar",
+   "in_current_feed": true,
+   "key": "kalshi|KXATPMATCH-26OCT29VACJOD|ml|1",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": null,
+   "side": "Jodar",
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-28T11:30:18Z",
+   "alerted_utc_seen": [
+    "2026-10-28T11:30:18Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-28T11:20:16Z",
+   "game": "Altmaier vs Lehecka",
+   "in_current_feed": true,
+   "key": "kalshi|KXATPMATCH-26OCT28ALTLEH|ml|1",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": null,
+   "side": "Lehecka",
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-28T12:30:21Z",
+   "alerted_utc_seen": [
+    "2026-10-28T12:30:21Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-28T12:20:15Z",
+   "game": "Paul vs Darderi",
+   "in_current_feed": true,
+   "key": "kalshi|KXATPMATCH-26OCT29PAUDAR|ml|0",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": null,
+   "side": "Paul",
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-28T13:20:15Z",
+   "alerted_utc_seen": [
+    "2026-10-28T13:20:15Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-28T13:10:17Z",
+   "game": "Milwaukee Brewers vs. Tampa Bay Rays",
+   "in_current_feed": true,
+   "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6332891\"}",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "MLB",
+   "market": "spread",
+   "result": null,
+   "side": "Tampa Bay Rays (+1.5)",
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-28T13:30:19Z",
+   "alerted_utc_seen": [
+    "2026-10-28T13:30:19Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-28T13:27:16Z",
+   "game": "Borges vs Ruud",
+   "in_current_feed": true,
+   "key": "kalshi|KXATPMATCH-26OCT28BORRUU|ml|1",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": "L",
+   "side": "Ruud",
+   "units_flat": -1.0
+  },
+  {
+   "alerted_utc": "2026-10-28T13:40:15Z",
+   "alerted_utc_seen": [
+    "2026-10-28T13:40:15Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-28T13:30:19Z",
+   "game": "Milwaukee vs Tampa Bay: Total Runs",
+   "in_current_feed": true,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXMLBTOTAL-26OCT282000MILTB-7\"}",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "MLB",
+   "market": "total",
+   "result": null,
+   "side": "NOT Over 6.5 runs scored",
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-28T13:40:15Z",
+   "alerted_utc_seen": [
+    "2026-10-28T13:40:15Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-28T13:30:19Z",
+   "game": "Milwaukee Brewers @ Tampa Bay Rays",
+   "in_current_feed": true,
+   "key": "novig|{\"market_id\": \"01a180d2-c54b-7012-b33b-5647422a764a\", \"outcome_id\": \"01a180d2-c54b-7012-b33b-566152668b6e\"}",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "MLB",
+   "market": "moneyline",
+   "result": null,
+   "side": "MIL (0)",
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-28T17:10:17Z",
+   "alerted_utc_seen": [
+    "2026-10-28T17:10:17Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-28T17:00:25Z",
+   "game": "Game 5: Milwaukee vs Tampa Bay",
+   "in_current_feed": true,
+   "key": "kalshi|KXMLBGAME-26OCT282000MILTB|ml|0",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "MLB",
+   "market": "moneyline",
+   "result": null,
+   "side": "Game 5: Milwaukee",
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-28T17:50:18Z",
+   "alerted_utc_seen": [
+    "2026-10-28T17:50:18Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-28T17:40:15Z",
+   "game": "Norrie vs Medvedev",
+   "in_current_feed": true,
+   "key": "kalshi|KXATPMATCH-26OCT29NORMED|ml|1",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": null,
+   "side": "Medvedev",
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-28T17:50:18Z",
+   "alerted_utc_seen": [
+    "2026-10-28T17:50:18Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-28T17:40:15Z",
+   "game": "Zverev vs Griekspoor",
+   "in_current_feed": true,
+   "key": "kalshi|KXATPMATCH-26OCT29ZVEGRI|ml|0",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": null,
+   "side": "Zverev",
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-28T19:40:14Z",
+   "alerted_utc_seen": [
+    "2026-10-28T19:40:14Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-28T19:33:52Z",
+   "game": "Milwaukee Brewers @ Tampa Bay Rays",
+   "in_current_feed": true,
+   "key": "novig|{\"market_id\": \"01a180d2-c54b-7012-b33b-5647422a764a\", \"outcome_id\": \"01a180d2-c54b-7012-b33b-565af19d2e5a\"}",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "MLB",
+   "market": "moneyline",
+   "result": null,
+   "side": "TB (0)",
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-28T20:00:21Z",
+   "alerted_utc_seen": [
+    "2026-10-28T20:00:21Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-28T19:50:16Z",
+   "game": "Milwaukee Brewers vs. Tampa Bay Rays",
+   "in_current_feed": true,
+   "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6332892\"}",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "MLB",
+   "market": "total",
+   "result": null,
+   "side": "Under (6.5)",
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-28T20:18:27Z",
+   "alerted_utc_seen": [
+    "2026-10-28T20:18:27Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-28T20:10:16Z",
+   "game": "Djokovic vs Struff",
+   "in_current_feed": true,
+   "key": "kalshi|KXATPMATCH-26OCT29DJOSTR|ml|0",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": null,
+   "side": "Djokovic",
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-28T20:18:27Z",
+   "alerted_utc_seen": [
+    "2026-10-28T20:18:27Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-28T20:10:16Z",
+   "game": "Fery vs Musetti",
+   "in_current_feed": true,
+   "key": "kalshi|KXATPMATCH-26OCT29FERMUS|ml|1",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "TENNIS",
+   "market": "moneyline",
+   "result": null,
+   "side": "Musetti",
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-28T20:18:27Z",
+   "alerted_utc_seen": [
+    "2026-10-28T20:18:27Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-28T20:10:16Z",
+   "game": "Game 5: Milwaukee vs Tampa Bay",
+   "in_current_feed": true,
+   "key": "kalshi|KXMLBGAME-26OCT282000MILTB|ml|1",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "MLB",
+   "market": "moneyline",
+   "result": null,
+   "side": "Tampa Bay",
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-28T20:18:27Z",
+   "alerted_utc_seen": [
+    "2026-10-28T20:18:27Z"
+   ],
+   "artifact": false,
+   "feed": "LIQ-EXTRA",
+   "first_seen_utc": "2026-10-28T20:10:16Z",
+   "game": "Milwaukee Brewers vs. Tampa Bay Rays",
+   "in_current_feed": true,
+   "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6041525\"}",
+   "last_in_feed_utc": "2026-10-28T22:40:15Z",
+   "league": "MLB",
+   "market": "moneyline",
+   "result": null,
+   "side": "Tampa Bay Rays",
+   "units_flat": null
+  }
+ ],
+ "updated_utc": "2026-10-28T22:40:15Z"
+}
