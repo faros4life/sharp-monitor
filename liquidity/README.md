@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Wed Oct 28, 2:50 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 34.
+Updated Wed Oct 28, 3:00 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 34.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -36,7 +36,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 27 9:50PM | NBA | Trail Blazers vs. Lakers | moneyline: Lakers | polymarket | $416k | -122 | ✅ novig,prophetx | ✅ | -2.0c | yes | L |
 | Oct 27 9:50PM | NHL | Montreal vs St. Louis: Total Goals | total: NOT Over 3.5 goals scored | kalshi | $34k | -150 |  | ✅ | +11.0c | yes | W |
 | Oct 27 9:30PM | NHL | Buffalo vs San Jose: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $187k | +122 |  |  | +22.0c | yes | W |
-| Oct 27 9:20PM | NBA | San Antonio vs Utah | moneyline: San Antonio | kalshi | $155k | -525 |  |  | +1.0c |  | pending |
+| Oct 27 9:20PM | NBA | San Antonio vs Utah | moneyline: San Antonio | kalshi | $155k | -525 |  |  | +0.0c |  | pending |
 | Oct 27 9:10PM | NBA | New York vs Chicago | moneyline: New York | kalshi | $39k | -233 |  |  | +1.0c |  | pending |
 | Oct 27 9:10PM | NBA | Houston vs Milwaukee | moneyline: Houston | kalshi | $43k | -285 |  |  | +1.0c | yes | pending |
 | Oct 27 8:50PM | NBA | Detroit vs New York | moneyline: Detroit | kalshi | $69k | -156 |  |  | -60.0c | yes | L |
