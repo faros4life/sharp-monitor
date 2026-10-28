@@ -59,6 +59,8 @@
    "new_money": 159109,
    "paper_only": false,
    "price": 0.61,
+   "price_after_15m": 0.625,
+   "price_after_15m_book": "novig",
    "price_american": -156,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.59,
@@ -135,6 +137,7 @@
    "side_label": "Philadelphia",
    "start_source": "polymarket",
    "start_utc": "2026-10-28T23:00:00Z",
+   "still_actionable": false,
    "teams": [
     "Philadelphia",
     "Indiana"
@@ -323,8 +326,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.56,
-   "clv_cents": -4.0,
+   "close_price": 0.61,
+   "clv_cents": 1.0,
    "confirmed_after_min": 6,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -2731,8 +2734,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": 4.0,
+   "close_price": 0.55,
+   "clv_cents": 8.0,
    "confirmed_after_min": 15,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -2875,8 +2878,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.54,
-   "clv_cents": 7.0,
+   "close_price": 0.65,
+   "clv_cents": 18.0,
    "confirmed_after_min": 5,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -3187,8 +3190,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 1.0,
+   "close_price": 0.51,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -3341,8 +3344,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.18,
-   "clv_cents": -32.0,
+   "close_price": 0.1,
+   "clv_cents": -40.0,
    "confirmed_after_min": 10,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -4562,8 +4565,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.63,
-   "clv_cents": 12.0,
+   "close_price": 0.72,
+   "clv_cents": 21.0,
    "confirmed_after_min": 10,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -5778,7 +5781,8 @@
      "price": -122
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-28T02:29:14Z",
    "ref": {
     "outcome_index": 0,
     "pm_market_id": "5156516"
@@ -5972,8 +5976,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.74,
-   "clv_cents": 5.0,
+   "close_price": 0.77,
+   "clv_cents": 8.0,
    "confirmed_after_min": 8,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -6580,8 +6584,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.49,
-   "clv_cents": -3.0,
+   "close_price": 0.5,
+   "clv_cents": -2.0,
    "confirmed_after_min": 6,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -6861,6 +6865,7 @@
     "polymarket",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.99,
    "clv_cents": 45.0,
    "confirmed_after_min": 10,
@@ -7775,8 +7780,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.67,
-   "clv_cents": 8.0,
+   "close_price": 0.53,
+   "clv_cents": -6.0,
    "confirmed_after_min": 10,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -8218,8 +8223,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.65,
-   "clv_cents": 1.0,
+   "close_price": 0.66,
+   "clv_cents": 2.0,
    "confirmed_after_min": 10,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -8796,8 +8801,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.95,
-   "clv_cents": 47.0,
+   "close_price": 0.98,
+   "clv_cents": 50.0,
    "confirmed_after_min": 10,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -9291,6 +9296,7 @@
     }
    },
    "fade_price": 0.51,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-27T13:33:50Z",
    "game": "Sacramento vs San Antonio: Spread",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNBASPREAD-26OCT27SACSAS-SAS19\"}",
@@ -9378,13 +9384,14 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBASPREAD-26OCT27SACSAS-SAS19"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig",
     "prophetx"
    ],
    "second_book_fresh": false,
+   "settled_utc": "2026-10-28T02:29:14Z",
    "sharp_agree": [
     "San Antonio Spurs -17.5 (-115)"
    ],
@@ -9399,7 +9406,7 @@
     "San Antonio"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.98
   },
   {
    "alerted_utc": "2026-10-27T13:33:50Z",
@@ -9693,8 +9700,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.57,
-   "clv_cents": 5.0,
+   "close_price": 0.5,
+   "clv_cents": -2.0,
    "confirmed_after_min": 14,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -10009,8 +10016,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.57,
-   "clv_cents": 6.0,
+   "close_price": 0.56,
+   "clv_cents": 5.0,
    "confirmed_after_min": 10,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -11079,8 +11086,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.45,
-   "clv_cents": -3.0,
+   "close_price": 0.51,
+   "clv_cents": 3.0,
    "confirmed_after_min": 10,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -12422,8 +12429,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 5.0,
+   "close_price": 0.49,
+   "clv_cents": 2.0,
    "confirmed_after_min": 8,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -13476,8 +13483,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.06,
-   "clv_cents": -47.0,
+   "close_price": 0.03,
+   "clv_cents": -50.0,
    "confirmed_after_min": 8,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -13771,8 +13778,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.38,
-   "clv_cents": -11.0,
+   "close_price": 0.3,
+   "clv_cents": -19.0,
    "confirmed_after_min": 12,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -14071,8 +14078,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.48,
-   "clv_cents": -6.0,
+   "close_price": 0.52,
+   "clv_cents": -2.0,
    "confirmed_after_min": 12,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -14219,8 +14226,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.83,
-   "clv_cents": 34.0,
+   "close_price": 0.91,
+   "clv_cents": 42.0,
    "confirmed_after_min": 12,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -19996,8 +20003,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.57,
-   "clv_cents": -6.0,
+   "close_price": 0.89,
+   "clv_cents": 26.0,
    "confirmed_after_min": 10,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -20453,8 +20460,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.62,
-   "clv_cents": 12.0,
+   "close_price": 0.74,
+   "clv_cents": 24.0,
    "confirmed_after_min": 6,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -21028,8 +21035,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.61,
-   "clv_cents": 2.0,
+   "close_price": 0.6,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -29106,8 +29113,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.82,
-   "clv_cents": 15.0,
+   "close_price": 0.87,
+   "clv_cents": 20.0,
    "confirmed_after_min": 10,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -29257,6 +29264,7 @@
     }
    },
    "fade_price": 0.16,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-26T04:50:09Z",
    "game": "Sacramento vs San Antonio",
    "key": "kalshi|KXNBAGAME-26OCT27SACSAS|ml|1",
@@ -29278,10 +29286,11 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBAGAME-26OCT27SACSAS-SAS"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": "no_match",
    "second_book_fresh": false,
+   "settled_utc": "2026-10-28T02:29:14Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "San Antonio",
@@ -29294,7 +29303,7 @@
     "San Antonio"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.16
   },
   {
    "alerted_utc": "2026-10-26T05:00:34Z",
