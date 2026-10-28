@@ -1,6 +1,152 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-28T18:10:11Z",
+   "base_depth": 198376,
+   "best_price": 0.49,
+   "best_price_american": 104,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-10-28",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 2058,
+     "new_this_side": 28107,
+     "other_side": 127808,
+     "other_side_all_levels": 187942,
+     "ratio": 1.4,
+     "this_side": 181337,
+     "this_side_all_levels": 225351
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "ORL +4.5 (-4.5)",
+     "price": 0.49,
+     "this_side": 30591
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Magic (+4.5)",
+     "price": 0.49,
+     "this_side": 83412
+    }
+   },
+   "fade_price": 0.52,
+   "first_seen_utc": "2026-10-28T18:05:30Z",
+   "game": "Orlando vs Toronto: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBASPREAD-26OCT28ORLTOR-TOR5\"}",
+   "lead_min": 320,
+   "league": "NBA",
+   "line": 4.5,
+   "market": "spread",
+   "new_money": 28107,
+   "paper_only": false,
+   "price": 0.5,
+   "price_american": -100,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.5,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 4.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 4.5,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 4.5,
+     "price": 102
+    },
+    "betrivers": {
+     "point": 5.5,
+     "price": -115
+    },
+    "betus": {
+     "point": 4.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 4.5,
+     "price": -105
+    },
+    "draftkings": {
+     "point": 4.5,
+     "price": -110
+    },
+    "fanatics": {
+     "point": 4.5,
+     "price": -105
+    },
+    "fanduel": {
+     "point": 4.5,
+     "price": -105
+    },
+    "kalshi": {
+     "point": 4.5,
+     "price": 100
+    },
+    "lowvig": {
+     "point": 4.5,
+     "price": -106
+    },
+    "mybookieag": {
+     "point": 4.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 4.5,
+     "price": 104
+    },
+    "polymarket": {
+     "point": 4.5,
+     "price": 100
+    },
+    "prophetx": {
+     "point": 4.5,
+     "price": 104
+    },
+    "williamhill_us": {
+     "point": 4.5,
+     "price": -105
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNBASPREAD-26OCT28ORLTOR-TOR5"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "polymarket"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Orlando",
+   "side_label": "NOT Toronto wins by over 4.5 points",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-28T23:30:00Z",
+   "teams": [
+    "Orlando",
+    "Toronto"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-28T18:05:30Z",
    "base_depth": 129531,
    "best_price": 0.705,
@@ -2217,8 +2363,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": -1.0,
+   "close_price": 0.5,
+   "clv_cents": -2.0,
    "confirmed_after_min": 10,
    "date": "2026-10-29",
    "depth_by_book": {
