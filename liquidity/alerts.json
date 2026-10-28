@@ -1,6 +1,454 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-28T20:00:17Z",
+   "base_depth": 97800,
+   "best_price": 0.445,
+   "best_price_american": 125,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.45,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-28",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Seattle",
+     "price": 0.44,
+     "this_side": 625584
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "SEA (0)",
+     "price": 0.445,
+     "this_side": 33335
+    },
+    "polymarket": {
+     "new_other_side": 25028,
+     "new_this_side": 79562,
+     "other_side": 98832,
+     "other_side_all_levels": 122681,
+     "ratio": 1.7,
+     "this_side": 168661,
+     "this_side_all_levels": 174265
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Seattle Kraken",
+     "price": 0.4484,
+     "this_side": 15680
+    }
+   },
+   "fade_price": 0.56,
+   "first_seen_utc": "2026-10-28T19:50:13Z",
+   "game": "Maple Leafs vs. Kraken",
+   "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"5179051\"}",
+   "lead_min": 360,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 79562,
+   "paper_only": false,
+   "price": 0.45,
+   "price_american": 122,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.45,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": 115
+    },
+    "betonlineag": {
+     "point": null,
+     "price": 119
+    },
+    "betopenly": {
+     "point": null,
+     "price": 125
+    },
+    "betrivers": {
+     "point": null,
+     "price": 120
+    },
+    "betus": {
+     "point": null,
+     "price": 115
+    },
+    "bovada": {
+     "point": null,
+     "price": 115
+    },
+    "draftkings": {
+     "point": null,
+     "price": 114
+    },
+    "fanatics": {
+     "point": null,
+     "price": 115
+    },
+    "fanduel": {
+     "point": null,
+     "price": 116
+    },
+    "kalshi": {
+     "point": null,
+     "price": 127
+    },
+    "lowvig": {
+     "point": null,
+     "price": 119
+    },
+    "mybookieag": {
+     "point": null,
+     "price": 116
+    },
+    "novig": {
+     "point": null,
+     "price": 125
+    },
+    "polymarket": {
+     "point": null,
+     "price": 122
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": 127
+    },
+    "prophetx": {
+     "point": null,
+     "price": 123
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": 117
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 1,
+    "pm_market_id": "5179051"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Kraken",
+   "side_label": "Kraken",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-29T02:00:00Z",
+   "teams": [
+    "Maple Leafs",
+    "Kraken"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-28T20:00:17Z",
+   "base_depth": 51428,
+   "best_price": 0.625,
+   "best_price_american": -167,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.62,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-29",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 8110,
+     "new_this_side": 26538,
+     "other_side": 33752,
+     "other_side_all_levels": 47781,
+     "ratio": 1.9,
+     "this_side": 65010,
+     "this_side_all_levels": 96546
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "DET (0)",
+     "price": 0.625,
+     "this_side": 4648
+    },
+    "polymarket": {
+     "heavier_side": false,
+     "label": "Red Wings",
+     "price": 0.63,
+     "this_side": 13717
+    }
+   },
+   "fade_price": 0.39,
+   "first_seen_utc": "2026-10-28T19:50:13Z",
+   "game": "Chicago vs Detroit",
+   "key": "kalshi|KXNHLGAME-26OCT29CHIDET|ml|1",
+   "lead_min": 1650,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 26538,
+   "paper_only": false,
+   "price": 0.62,
+   "price_american": -163,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.62,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -180
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -176
+    },
+    "betrivers": {
+     "point": null,
+     "price": -175
+    },
+    "betus": {
+     "point": null,
+     "price": -175
+    },
+    "draftkings": {
+     "point": null,
+     "price": -180
+    },
+    "fanatics": {
+     "point": null,
+     "price": -175
+    },
+    "fanduel": {
+     "point": null,
+     "price": -166
+    },
+    "kalshi": {
+     "point": null,
+     "price": -163
+    },
+    "lowvig": {
+     "point": null,
+     "price": -176
+    },
+    "novig": {
+     "point": null,
+     "price": -170
+    },
+    "polymarket": {
+     "point": null,
+     "price": -170
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -178
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -179
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNHLGAME-26OCT29CHIDET-DET"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "none_10k",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Detroit",
+   "side_label": "Detroit",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-29T23:30:00Z",
+   "teams": [
+    "Chicago",
+    "Detroit"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-28T20:00:17Z",
+   "base_depth": 531620,
+   "best_price": 0.445,
+   "best_price_american": 125,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.44,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-28",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 14760,
+     "new_this_side": 119444,
+     "other_side": 391731,
+     "other_side_all_levels": 455182,
+     "ratio": 1.6,
+     "this_side": 625584,
+     "this_side_all_levels": 650511
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "SEA (0)",
+     "price": 0.445,
+     "this_side": 33335
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Kraken",
+     "price": 0.45,
+     "this_side": 168661
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Seattle Kraken",
+     "price": 0.4484,
+     "this_side": 15680
+    }
+   },
+   "fade_price": 0.56,
+   "first_seen_utc": "2026-10-28T19:50:13Z",
+   "game": "Toronto vs Seattle",
+   "key": "kalshi|KXNHLGAME-26OCT28TORSEA|ml|1",
+   "lead_min": 360,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 119444,
+   "paper_only": false,
+   "price": 0.44,
+   "price_american": 127,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.44,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": 115
+    },
+    "betonlineag": {
+     "point": null,
+     "price": 119
+    },
+    "betopenly": {
+     "point": null,
+     "price": 125
+    },
+    "betrivers": {
+     "point": null,
+     "price": 120
+    },
+    "betus": {
+     "point": null,
+     "price": 115
+    },
+    "bovada": {
+     "point": null,
+     "price": 115
+    },
+    "draftkings": {
+     "point": null,
+     "price": 114
+    },
+    "fanatics": {
+     "point": null,
+     "price": 115
+    },
+    "fanduel": {
+     "point": null,
+     "price": 116
+    },
+    "kalshi": {
+     "point": null,
+     "price": 127
+    },
+    "lowvig": {
+     "point": null,
+     "price": 119
+    },
+    "mybookieag": {
+     "point": null,
+     "price": 116
+    },
+    "novig": {
+     "point": null,
+     "price": 125
+    },
+    "polymarket": {
+     "point": null,
+     "price": 122
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": 127
+    },
+    "prophetx": {
+     "point": null,
+     "price": 123
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": 117
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNHLGAME-26OCT28TORSEA-SEA"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Seattle",
+   "side_label": "Seattle",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-29T02:00:00Z",
+   "teams": [
+    "Toronto",
+    "Seattle"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-28T19:10:12Z",
    "base_depth": 837176,
    "best_price": 0.48,
@@ -295,8 +743,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5536,
-   "clv_cents": 0.0,
+   "close_price": 0.5556,
+   "clv_cents": 0.2,
    "confirmed_after_min": 10,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -780,8 +1228,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.38,
-   "clv_cents": 0.0,
+   "close_price": 0.39,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -2017,8 +2465,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": -1.0,
+   "close_price": 0.52,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -3753,8 +4201,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.54,
-   "clv_cents": 1.0,
+   "close_price": 0.55,
+   "clv_cents": 2.0,
    "confirmed_after_min": 10,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -6392,8 +6840,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.49,
-   "clv_cents": 0.0,
+   "close_price": 0.5,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -6489,7 +6937,8 @@
      "price": -110
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-28T20:00:17Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNBATOTAL-26OCT28LALLAC-228"
@@ -7180,8 +7629,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.725,
-   "clv_cents": 0.5,
+   "close_price": 0.73,
+   "clv_cents": 1.0,
    "confirmed_after_min": 5,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -7637,8 +8086,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": -2.0,
+   "close_price": 0.51,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -9439,8 +9888,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.61,
-   "clv_cents": 9.0,
+   "close_price": 0.6,
+   "clv_cents": 8.0,
    "confirmed_after_min": 10,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -11595,8 +12044,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.63,
-   "clv_cents": -1.0,
+   "close_price": 0.52,
+   "clv_cents": -12.0,
    "confirmed_after_min": 10,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -11684,7 +12133,8 @@
      "price": -195
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-28T20:00:17Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNBAGAME-26OCT28LALLAC-LAL"
@@ -11722,8 +12172,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": 1.0,
+   "close_price": 0.5,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -26897,8 +27347,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.59,
-   "clv_cents": 1.0,
+   "close_price": 0.6,
+   "clv_cents": 2.0,
    "confirmed_after_min": 8,
    "date": "2026-10-28",
    "depth_by_book": {
