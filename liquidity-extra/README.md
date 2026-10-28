@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Wed Oct 28, 2:40 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 14.
+Updated Wed Oct 28, 2:46 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 13.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 65-42 (-4.72u flat) | rule met: 21-19
+**Record:** 65-43 (-5.72u flat) | rule met: 21-19
 
-**Fade (paper, betting against the print):** 17-30 (-2.52u flat, after fees)
+**Fade (paper, betting against the print):** 18-30 (+0.99u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -22,7 +22,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 28 6:30AM | TENNIS | Vacherot vs Jodar | moneyline: Jodar | kalshi | $55k | -285 |  |  | -1.0c |  | pending |
 | Oct 28 5:30AM | TENNIS | Tien vs de Minaur | moneyline: de Minaur | kalshi | $33k | -104 |  |  | +1.0c | yes | pending |
 | Oct 28 3:00AM | MLB | Milwaukee Brewers vs. Tampa Bay Rays | moneyline: Milwaukee Brewers | polymarket | $36k | -144 | ✅ kalshi,novig |  | +0.0c |  | pending |
-| Oct 28 2:00AM | MLB | Milwaukee vs Tampa Bay: Spread | spread: NOT Milwaukee wins by over 1.5 runs | kalshi | $32k | -144 |  |  | -2.0c |  | pending |
+| Oct 28 2:00AM | MLB | Milwaukee vs Tampa Bay: Spread | spread: NOT Milwaukee wins by over 1.5 runs | kalshi | $32k | -144 |  |  | -3.0c |  | pending |
 | Oct 27 10:49PM | TENNIS | Rakhimova vs Alexandrova | moneyline: Rakhimova | kalshi | $244k | -186 |  |  | -27.0c | yes | W |
 | Oct 27 10:40PM | TENNIS | Bucsa vs Joint | moneyline: Bucsa | kalshi | $47k | +113 |  |  | +1.0c | yes | L |
 | Oct 27 7:32PM | MLB | Milwaukee Brewers at Tampa Bay Rays | moneyline: Tampa Bay Rays | prophetx | $29k | +108 |  |  | +0.0c |  | W |
@@ -33,7 +33,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 27 5:40PM | MLB | Milwaukee Brewers @ Tampa Bay Rays | moneyline: TB (0) | novig | $123k | +111 |  |  | +0.5c | yes | W |
 | Oct 27 5:00PM | TENNIS | Hurkacz vs Rune | moneyline: Hurkacz | kalshi | $30k | -170 | ✅ novig |  | +0.0c |  | pending |
 | Oct 27 4:50PM | TENNIS | Bucsa vs Joint | moneyline: Joint | kalshi | $29k | -122 |  |  | -2.0c | yes | W |
-| Oct 27 3:30PM | TENNIS | Mensik vs Mannarino | moneyline: Mensik | kalshi | $44k | -426 |  |  | -32.0c |  | pending |
+| Oct 27 3:30PM | TENNIS | Mensik vs Mannarino | moneyline: Mensik | kalshi | $44k | -426 |  |  | -32.0c |  | L |
 | Oct 27 1:37PM | MLB | Milwaukee Brewers vs. Tampa Bay Rays | total: Under (7.5) | polymarket | $39k | -127 | ✅ kalshi,novig |  | -2.0c |  | W |
 | Oct 27 10:50AM | TENNIS | Mannarino vs Buse | moneyline: Buse | kalshi | $77k | -335 |  |  | -24.0c |  | L |
 | Oct 27 9:00AM | MLB | Game 4: Milwaukee vs Tampa Bay | moneyline: Tampa Bay | kalshi | $789k | +122 | ✅ polymarket,prophetx |  | +8.0c | yes | W |
