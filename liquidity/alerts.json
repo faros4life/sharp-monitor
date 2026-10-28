@@ -1,6 +1,305 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-28T18:05:30Z",
+   "base_depth": 129531,
+   "best_price": 0.705,
+   "best_price_american": -239,
+   "best_price_book": "novig",
+   "bid_improved": true,
+   "bid_improved_at_pending": false,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.71,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-10-28",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Philadelphia",
+     "price": 0.71,
+     "this_side": 675224
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "PHI (0)",
+     "price": 0.705,
+     "this_side": 72016
+    },
+    "polymarket": {
+     "new_other_side": 21512,
+     "new_this_side": 85811,
+     "other_side": 58632,
+     "other_side_all_levels": 78656,
+     "ratio": 4.0,
+     "this_side": 234665,
+     "this_side_all_levels": 276100
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Philadelphia 76ers",
+     "price": 0.7015,
+     "this_side": 62220
+    }
+   },
+   "fade_price": 0.3,
+   "first_seen_utc": "2026-10-28T18:00:16Z",
+   "game": "76ers vs. Pacers",
+   "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"6032755\"}",
+   "lead_min": 294,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 85811,
+   "paper_only": false,
+   "price": 0.71,
+   "price_american": -245,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.7,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -275
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -265
+    },
+    "betopenly": {
+     "point": null,
+     "price": -240
+    },
+    "betrivers": {
+     "point": null,
+     "price": -275
+    },
+    "betus": {
+     "point": null,
+     "price": -260
+    },
+    "bovada": {
+     "point": null,
+     "price": -260
+    },
+    "draftkings": {
+     "point": null,
+     "price": -278
+    },
+    "fanatics": {
+     "point": null,
+     "price": -275
+    },
+    "fanduel": {
+     "point": null,
+     "price": -255
+    },
+    "kalshi": {
+     "point": null,
+     "price": -245
+    },
+    "limitless": {
+     "point": null,
+     "price": -248
+    },
+    "lowvig": {
+     "point": null,
+     "price": -263
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -270
+    },
+    "novig": {
+     "point": null,
+     "price": -239
+    },
+    "polymarket": {
+     "point": null,
+     "price": -245
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -245
+    },
+    "prophetx": {
+     "point": null,
+     "price": -235
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -278
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 0,
+    "pm_market_id": "6032755"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [
+    "Philadelphia 76ers -6.5 (-113)",
+    "Philadelphia 76ers -4 (-119)"
+   ],
+   "sharp_oppose": [],
+   "side": "76ers",
+   "side_label": "76ers",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-28T23:00:00Z",
+   "teams": [
+    "76ers",
+    "Pacers"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-28T18:05:30Z",
+   "base_depth": 176941,
+   "best_price": 0.5275,
+   "best_price_american": -112,
+   "best_price_book": "polymarket",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-10-28",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -778,
+     "new_this_side": 41895,
+     "other_side": 122917,
+     "other_side_all_levels": 176221,
+     "ratio": 1.4,
+     "this_side": 174039,
+     "this_side_all_levels": 222285
+    }
+   },
+   "fade_price": 0.49,
+   "first_seen_utc": "2026-10-28T18:00:16Z",
+   "game": "Miami vs Atlanta: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBASPREAD-26OCT28MIAATL-ATL3\"}",
+   "lead_min": 294,
+   "league": "NBA",
+   "line": 2.5,
+   "market": "spread",
+   "new_money": 41895,
+   "paper_only": false,
+   "price": 0.52,
+   "price_american": -108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.52,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 1.5,
+     "price": -105
+    },
+    "betonlineag": {
+     "point": 2.0,
+     "price": -115
+    },
+    "betopenly": {
+     "point": 1.5,
+     "price": 104
+    },
+    "betrivers": {
+     "point": 2.5,
+     "price": -112
+    },
+    "betus": {
+     "point": 2.0,
+     "price": -115
+    },
+    "bovada": {
+     "point": 2.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 1.5,
+     "price": -102
+    },
+    "fanatics": {
+     "point": 2.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 2.5,
+     "price": -120
+    },
+    "kalshi": {
+     "point": 2.5,
+     "price": -108
+    },
+    "lowvig": {
+     "point": 2.0,
+     "price": -111
+    },
+    "mybookieag": {
+     "point": 2.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 2.5,
+     "price": -108
+    },
+    "polymarket": {
+     "point": 2.5,
+     "price": -108
+    },
+    "prophetx": {
+     "point": 1.5,
+     "price": 109
+    },
+    "williamhill_us": {
+     "point": 2.0,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNBASPREAD-26OCT28MIAATL-ATL3"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "no_match",
+   "second_book_fresh": false,
+   "sharp_agree": [
+    "Miami Heat +2.5 (-111)"
+   ],
+   "sharp_oppose": [],
+   "side": "Miami",
+   "side_label": "NOT Atlanta wins by over 2.5 points",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-28T23:00:00Z",
+   "teams": [
+    "Miami",
+    "Atlanta"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-28T18:00:16Z",
    "base_depth": 61196,
    "best_price": 0.7655,
@@ -324,8 +623,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": 1.0,
+   "close_price": 0.52,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -362,6 +661,8 @@
    "new_money": 65357,
    "paper_only": false,
    "price": 0.52,
+   "price_after_15m": 0.5172,
+   "price_after_15m_book": "prophetx",
    "price_american": -108,
    "price_rule": "ok",
    "price_when_first_seen": 0.52,
@@ -452,6 +753,7 @@
    "side_label": "NOT Over 226.5 points",
    "start_source": "polymarket",
    "start_utc": "2026-10-29T00:00:00Z",
+   "still_actionable": false,
    "teams": [
     "Houston",
     "Milwaukee"
@@ -1426,8 +1728,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.7647,
-   "clv_cents": 1.5,
+   "close_price": 0.7619,
+   "clv_cents": 1.2,
    "confirmed_after_min": 15,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -7740,8 +8042,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.59,
-   "clv_cents": 7.0,
+   "close_price": 0.6,
+   "clv_cents": 8.0,
    "confirmed_after_min": 10,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -9466,8 +9768,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.55,
-   "clv_cents": -1.0,
+   "close_price": 0.54,
+   "clv_cents": -2.0,
    "confirmed_after_min": 6,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -10585,8 +10887,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.49,
-   "clv_cents": -2.0,
+   "close_price": 0.48,
+   "clv_cents": -3.0,
    "confirmed_after_min": 11,
    "date": "2026-10-28",
    "depth_by_book": {
