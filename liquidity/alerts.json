@@ -1,7 +1,165 @@
 {
  "alerts": [
   {
-   "alerted_utc": "2026-10-28T22:45:11Z",
+   "alerted_utc": "2026-10-28T22:51:38Z",
+   "base_depth": 59720,
+   "best_price": 0.51,
+   "best_price_american": -104,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 13,
+   "date": "2026-10-28",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Los Angeles C",
+     "price": 0.5,
+     "this_side": 569582
+    },
+    "novig": {
+     "new_other_side": -260,
+     "new_this_side": 26307,
+     "other_side": 45336,
+     "other_side_all_levels": 45362,
+     "ratio": 1.6,
+     "this_side": 73436,
+     "this_side_all_levels": 80328
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Los Angeles Clippers",
+     "price": 0.5098,
+     "this_side": 47307
+    }
+   },
+   "fade_price": 0.495,
+   "first_seen_utc": "2026-10-28T22:38:46Z",
+   "game": "Los Angeles Lakers @ Los Angeles Clippers",
+   "key": "novig|{\"market_id\": \"01a17fa5-0ec5-7d61-bc79-f8fd11f9a7f7\", \"outcome_id\": \"01a17fa5-0ec5-7d61-bc79-f90d3c6c8cc8\"}",
+   "lead_min": 218,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 26307,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -115
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -115
+    },
+    "betopenly": {
+     "point": null,
+     "price": 100
+    },
+    "betrivers": {
+     "point": null,
+     "price": -118
+    },
+    "betus": {
+     "point": null,
+     "price": -115
+    },
+    "bovada": {
+     "point": null,
+     "price": -110
+    },
+    "draftkings": {
+     "point": null,
+     "price": -112
+    },
+    "fanatics": {
+     "point": null,
+     "price": -110
+    },
+    "fanduel": {
+     "point": null,
+     "price": -110
+    },
+    "kalshi": {
+     "point": null,
+     "price": 100
+    },
+    "limitless": {
+     "point": null,
+     "price": -105
+    },
+    "lowvig": {
+     "point": null,
+     "price": -113
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -111
+    },
+    "novig": {
+     "point": null,
+     "price": -104
+    },
+    "polymarket": {
+     "point": null,
+     "price": -104
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": 100
+    },
+    "prophetx": {
+     "point": null,
+     "price": -104
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a17fa5-0ec5-7d61-bc79-f8fd11f9a7f7",
+    "outcome_id": "01a17fa5-0ec5-7d61-bc79-f90d3c6c8cc8"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi",
+    "prophetx"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [
+    "Los Angeles Clippers +1.5 (-117)"
+   ],
+   "sharp_oppose": [],
+   "side": "Los Angeles Clippers",
+   "side_label": "LAC (0)",
+   "start_source": "odds",
+   "start_utc": "2026-10-29T02:30:00Z",
+   "teams": [
+    "Los Angeles Lakers",
+    "Los Angeles Clippers"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-28T22:38:46Z",
    "base_depth": 118743,
    "best_price": 0.49,
    "best_price_american": 104,
@@ -17,36 +175,36 @@
    ],
    "close_price": 0.5,
    "clv_cents": 0.0,
-   "confirmed_after_min": 15,
+   "confirmed_after_min": 9,
    "date": "2026-10-28",
    "depth_by_book": {
     "kalshi": {
      "heavier_side": true,
      "label": "Houston wins by over 8.5 points",
-     "price": 0.5,
-     "this_side": 303532
+     "price": 0.49,
+     "this_side": 312139
     },
     "novig": {
      "heavier_side": false,
      "label": "HOU -8.5 (8.5)",
      "price": 0.49,
-     "this_side": 31467
+     "this_side": 31563
     },
     "polymarket": {
      "new_other_side": 37206,
      "new_this_side": 286925,
-     "other_side": 119109,
-     "other_side_all_levels": 172322,
+     "other_side": 119077,
+     "other_side_all_levels": 174370,
      "ratio": 3.1,
-     "this_side": 368760,
-     "this_side_all_levels": 427325
+     "this_side": 370254,
+     "this_side_all_levels": 430817
     }
    },
    "fade_price": 0.51,
    "first_seen_utc": "2026-10-28T22:30:12Z",
    "game": "Rockets vs. Bucks",
    "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"6322350\"}",
-   "lead_min": 75,
+   "lead_min": 81,
    "league": "NBA",
    "line": -8.5,
    "market": "spread",
@@ -107,7 +265,7 @@
     },
     "novig": {
      "point": -8.5,
-     "price": 102
+     "price": 104
     },
     "polymarket": {
      "point": -8.5,
@@ -148,7 +306,7 @@
    "units_flat": null
   },
   {
-   "alerted_utc": "2026-10-28T22:45:11Z",
+   "alerted_utc": "2026-10-28T22:38:46Z",
    "base_depth": 85464,
    "best_price": 0.54,
    "best_price_american": -117,
@@ -164,17 +322,17 @@
    ],
    "close_price": 0.55,
    "clv_cents": 0.0,
-   "confirmed_after_min": 15,
+   "confirmed_after_min": 9,
    "date": "2026-10-29",
    "depth_by_book": {
     "kalshi": {
      "new_other_side": 2283,
      "new_this_side": 29362,
-     "other_side": 44424,
-     "other_side_all_levels": 61426,
+     "other_side": 44388,
+     "other_side_all_levels": 61389,
      "ratio": 1.5,
-     "this_side": 65998,
-     "this_side_all_levels": 114805
+     "this_side": 65539,
+     "this_side_all_levels": 114346
     },
     "novig": {
      "heavier_side": true,
@@ -187,7 +345,7 @@
    "first_seen_utc": "2026-10-28T22:30:12Z",
    "game": "Utah vs Pittsburgh",
    "key": "kalshi|KXNHLGAME-26OCT29UTAPIT|ml|0",
-   "lead_min": 1455,
+   "lead_min": 1461,
    "league": "NHL",
    "line": null,
    "market": "moneyline",
@@ -331,6 +489,8 @@
    "new_money": 51427,
    "paper_only": false,
    "price": 0.5,
+   "price_after_15m": 0.495,
+   "price_after_15m_book": "novig",
    "price_american": -100,
    "price_rule": "ok",
    "price_when_first_seen": 0.5,
@@ -421,6 +581,7 @@
    "side_label": "Under (224.5)",
    "start_source": "polymarket",
    "start_utc": "2026-10-28T23:30:00Z",
+   "still_actionable": true,
    "teams": [
     "Magic",
     "Raptors"
@@ -487,6 +648,8 @@
    "new_money": 56641,
    "paper_only": false,
    "price": 0.63,
+   "price_after_15m": 0.635,
+   "price_after_15m_book": "novig",
    "price_american": -170,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.63,
@@ -582,6 +745,7 @@
    "side_label": "Oilers",
    "start_source": "polymarket",
    "start_utc": "2026-10-29T00:30:00Z",
+   "still_actionable": false,
    "teams": [
     "Flames",
     "Oilers"
@@ -648,6 +812,8 @@
    "new_money": 510033,
    "paper_only": false,
    "price": 0.4,
+   "price_after_15m": 0.4,
+   "price_after_15m_book": "novig",
    "price_american": 150,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.4,
@@ -741,6 +907,7 @@
    "side_label": "Warriors",
    "start_source": "polymarket",
    "start_utc": "2026-10-29T00:00:00Z",
+   "still_actionable": false,
    "teams": [
     "Warriors",
     "Timberwolves"
@@ -795,6 +962,8 @@
    "new_money": 60952,
    "paper_only": false,
    "price": 0.49,
+   "price_after_15m": 0.49,
+   "price_after_15m_book": "novig",
    "price_american": 104,
    "price_rule": "ok",
    "price_when_first_seen": 0.49,
@@ -884,6 +1053,7 @@
    "side_label": "Over 232.5 points",
    "start_source": "prophetx",
    "start_utc": "2026-10-29T00:00:00Z",
+   "still_actionable": true,
    "teams": [
     "New York",
     "Chicago"
@@ -906,8 +1076,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.49,
-   "clv_cents": 0.0,
+   "close_price": 0.5,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -944,7 +1114,7 @@
    "new_money": 259418,
    "paper_only": false,
    "price": 0.49,
-   "price_after_15m": 0.49,
+   "price_after_15m": 0.485,
    "price_after_15m_book": "novig",
    "price_american": 104,
    "price_rule": "ok",
@@ -1034,7 +1204,7 @@
    "side_label": "Magic (+4.5)",
    "start_source": "polymarket",
    "start_utc": "2026-10-28T23:30:00Z",
-   "still_actionable": false,
+   "still_actionable": true,
    "teams": [
     "Magic",
     "Raptors"
@@ -1247,7 +1417,7 @@
    "new_money": 249289,
    "paper_only": false,
    "price": 0.38,
-   "price_after_15m": 0.37,
+   "price_after_15m": 0.375,
    "price_after_15m_book": "novig",
    "price_american": 163,
    "price_rule": "ml_edge_fail",
@@ -1474,7 +1644,8 @@
      "price": -115
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-28T22:38:46Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNBASPREAD-26OCT28OKCDAL-OKC6"
@@ -2601,8 +2772,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 4.0,
+   "close_price": 0.51,
+   "clv_cents": 3.0,
    "confirmed_after_min": 10,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -2748,8 +2919,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 3.0,
+   "close_price": 0.51,
+   "clv_cents": 2.0,
    "confirmed_after_min": 8,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -3487,8 +3658,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": 1.0,
+   "close_price": 0.52,
+   "clv_cents": 2.0,
    "confirmed_after_min": 10,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -4544,8 +4715,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5726,
-   "clv_cents": 1.9,
+   "close_price": 0.5595,
+   "clv_cents": 0.6,
    "confirmed_after_min": 10,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -4715,8 +4886,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.58,
-   "clv_cents": 1.0,
+   "close_price": 0.57,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -5825,8 +5996,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.49,
-   "clv_cents": -3.0,
+   "close_price": 0.5,
+   "clv_cents": -2.0,
    "confirmed_after_min": 5,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -7728,8 +7899,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.56,
-   "clv_cents": 0.0,
+   "close_price": 0.55,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -8167,8 +8338,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.36,
-   "clv_cents": 1.0,
+   "close_price": 0.35,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -9799,8 +9970,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.56,
-   "clv_cents": 3.0,
+   "close_price": 0.57,
+   "clv_cents": 4.0,
    "confirmed_after_min": 10,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -10078,8 +10249,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.57,
-   "clv_cents": 0.0,
+   "close_price": 0.58,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -16057,8 +16228,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": 0.0,
+   "close_price": 0.49,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-28",
    "depth_by_book": {
