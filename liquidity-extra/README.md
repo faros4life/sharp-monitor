@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Wed Oct 28, 9:27 AM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 11.
+Updated Wed Oct 28, 9:30 AM ET. This run: 1 new, 1 not confirmed, 3 pending. Open alerts: 12.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Oct 28 9:30AM | TENNIS | Borges vs Ruud | moneyline: Ruud | kalshi | $50k | -426 |  |  | +0.0c |  | pending |
 | Oct 28 9:20AM | MLB | Milwaukee Brewers vs. Tampa Bay Rays | spread: Tampa Bay Rays (+1.5) | polymarket | $47k | -127 | ✅ kalshi,novig |  | +0.0c |  | pending |
 | Oct 28 8:30AM | TENNIS | Paul vs Darderi | moneyline: Paul | kalshi | $44k | -400 |  |  | +0.0c |  | pending |
 | Oct 28 7:30AM | TENNIS | Altmaier vs Lehecka | moneyline: Lehecka | kalshi | $62k | -567 |  |  | +0.0c |  | pending |
