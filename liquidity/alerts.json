@@ -1,6 +1,576 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-28T04:06:30Z",
+   "base_depth": 60139,
+   "best_price": 0.49,
+   "best_price_american": 104,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.49,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 6,
+   "date": "2026-10-28",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -1573,
+     "new_this_side": 30509,
+     "other_side": 27279,
+     "other_side_all_levels": 44562,
+     "ratio": 2.8,
+     "this_side": 76529,
+     "this_side_all_levels": 90648
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "Under 6.5 (6.5)",
+     "price": 0.49,
+     "this_side": 4702
+    },
+    "polymarket": {
+     "heavier_side": false,
+     "label": "Under (6.5)",
+     "price": 0.49,
+     "this_side": 6472
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "under 6.5 (6.5)",
+     "price": 0.4902,
+     "this_side": 902
+    }
+   },
+   "fade_price": 0.52,
+   "first_seen_utc": "2026-10-28T04:00:14Z",
+   "game": "Calgary vs Edmonton: Total Goals",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLTOTAL-26OCT28CGYEDM-7\"}",
+   "lead_min": 1223,
+   "league": "NHL",
+   "line": 6.5,
+   "market": "total",
+   "new_money": 30509,
+   "paper_only": false,
+   "price": 0.49,
+   "price_american": 104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.49,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 6.5,
+     "price": -105
+    },
+    "betonlineag": {
+     "point": 6.5,
+     "price": -106
+    },
+    "betopenly": {
+     "point": 6.5,
+     "price": 104
+    },
+    "betrivers": {
+     "point": 6.5,
+     "price": -107
+    },
+    "betus": {
+     "point": 6.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 6.5,
+     "price": -105
+    },
+    "draftkings": {
+     "point": 6.5,
+     "price": -108
+    },
+    "fanatics": {
+     "point": 6.5,
+     "price": -105
+    },
+    "fanduel": {
+     "point": 6.5,
+     "price": -105
+    },
+    "kalshi": {
+     "point": 6.5,
+     "price": 104
+    },
+    "lowvig": {
+     "point": 6.5,
+     "price": -106
+    },
+    "mybookieag": {
+     "point": 6.5,
+     "price": -108
+    },
+    "novig": {
+     "point": 6.5,
+     "price": 104
+    },
+    "polymarket": {
+     "point": 6.5,
+     "price": 104
+    },
+    "prophetx": {
+     "point": 6.5,
+     "price": 104
+    },
+    "williamhill_us": {
+     "point": 6.5,
+     "price": -112
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNHLTOTAL-26OCT28CGYEDM-7"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "none_10k",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "NOT Over 6.5 goals scored",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-29T00:30:00Z",
+   "teams": [
+    "Calgary",
+    "Edmonton"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-28T04:06:30Z",
+   "base_depth": 41136,
+   "best_price": 0.555,
+   "best_price_american": -125,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.56,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 6,
+   "date": "2026-10-28",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 9461,
+     "new_this_side": 29605,
+     "other_side": 28527,
+     "other_side_all_levels": 41602,
+     "ratio": 1.6,
+     "this_side": 45522,
+     "this_side_all_levels": 70941
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "PHI +1.5 (-1.5)",
+     "price": 0.555,
+     "this_side": 8533
+    },
+    "polymarket": {
+     "heavier_side": false,
+     "label": "Flyers (+1.5)",
+     "price": 0.55,
+     "this_side": 5193
+    }
+   },
+   "fade_price": 0.45,
+   "first_seen_utc": "2026-10-28T04:00:14Z",
+   "game": "Philadelphia vs Washington: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLSPREAD-26OCT28PHIWSH-WSH2\"}",
+   "lead_min": 1163,
+   "league": "NHL",
+   "line": 1.5,
+   "market": "spread",
+   "new_money": 29605,
+   "paper_only": false,
+   "price": 0.56,
+   "price_american": -127,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.56,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 1.5,
+     "price": -130
+    },
+    "betonlineag": {
+     "point": 1.5,
+     "price": -135
+    },
+    "betopenly": {
+     "point": 1.5,
+     "price": -122
+    },
+    "betrivers": {
+     "point": 1.5,
+     "price": -143
+    },
+    "betus": {
+     "point": 1.5,
+     "price": -135
+    },
+    "bovada": {
+     "point": 1.5,
+     "price": -135
+    },
+    "draftkings": {
+     "point": 1.5,
+     "price": -130
+    },
+    "fanatics": {
+     "point": 1.5,
+     "price": -135
+    },
+    "fanduel": {
+     "point": 1.5,
+     "price": -134
+    },
+    "kalshi": {
+     "point": 1.5,
+     "price": -127
+    },
+    "lowvig": {
+     "point": 1.5,
+     "price": -135
+    },
+    "mybookieag": {
+     "point": 1.5,
+     "price": -131
+    },
+    "novig": {
+     "point": 4.5,
+     "price": -100000
+    },
+    "polymarket": {
+     "point": -3.5,
+     "price": -488
+    },
+    "prophetx": {
+     "point": 1.5,
+     "price": -123
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNHLSPREAD-26OCT28PHIWSH-WSH2"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "none_10k",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Philadelphia",
+   "side_label": "NOT Washington wins by over 1.5 goals",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-28T23:30:00Z",
+   "teams": [
+    "Philadelphia",
+    "Washington"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-28T04:06:30Z",
+   "base_depth": 45461,
+   "best_price": 0.565,
+   "best_price_american": -130,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.56,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 6,
+   "date": "2026-10-28",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -2466,
+     "new_this_side": 35872,
+     "other_side": 17120,
+     "other_side_all_levels": 30578,
+     "ratio": 3.5,
+     "this_side": 59587,
+     "this_side_all_levels": 81339
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "CGY +1.5 (-1.5)",
+     "price": 0.565,
+     "this_side": 8340
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Flames (+1.5)",
+     "price": 0.57,
+     "this_side": 6973
+    }
+   },
+   "fade_price": 0.45,
+   "first_seen_utc": "2026-10-28T04:00:14Z",
+   "game": "Calgary vs Edmonton: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLSPREAD-26OCT28CGYEDM-EDM2\"}",
+   "lead_min": 1223,
+   "league": "NHL",
+   "line": 1.5,
+   "market": "spread",
+   "new_money": 35872,
+   "paper_only": false,
+   "price": 0.56,
+   "price_american": -127,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.56,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 1.5,
+     "price": -130
+    },
+    "betonlineag": {
+     "point": 1.5,
+     "price": -135
+    },
+    "betopenly": {
+     "point": 1.5,
+     "price": -122
+    },
+    "betrivers": {
+     "point": 1.5,
+     "price": -150
+    },
+    "betus": {
+     "point": 1.5,
+     "price": -135
+    },
+    "bovada": {
+     "point": 1.5,
+     "price": -138
+    },
+    "draftkings": {
+     "point": 1.5,
+     "price": -135
+    },
+    "fanatics": {
+     "point": 1.5,
+     "price": -135
+    },
+    "fanduel": {
+     "point": 1.5,
+     "price": -134
+    },
+    "kalshi": {
+     "point": 1.5,
+     "price": -127
+    },
+    "lowvig": {
+     "point": 1.5,
+     "price": -135
+    },
+    "mybookieag": {
+     "point": 1.5,
+     "price": -135
+    },
+    "novig": {
+     "point": 1.5,
+     "price": -130
+    },
+    "polymarket": {
+     "point": -3.5,
+     "price": -317
+    },
+    "prophetx": {
+     "point": 1.5,
+     "price": -130
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNHLSPREAD-26OCT28CGYEDM-EDM2"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "none_10k",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Calgary",
+   "side_label": "NOT Edmonton wins by over 1.5 goals",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-29T00:30:00Z",
+   "teams": [
+    "Calgary",
+    "Edmonton"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-28T04:06:30Z",
+   "base_depth": 539813,
+   "best_price": 0.4555,
+   "best_price_american": 120,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.46,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 6,
+   "date": "2026-10-28",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -415376,
+     "new_this_side": 179068,
+     "other_side": 184032,
+     "other_side_all_levels": 374582,
+     "ratio": 2.9,
+     "this_side": 530884,
+     "this_side_all_levels": 729786
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "KENN (0)",
+     "price": 0.46,
+     "this_side": 18839
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Kennesaw State",
+     "price": 0.4505,
+     "this_side": 8157
+    }
+   },
+   "fade_price": 0.55,
+   "first_seen_utc": "2026-10-28T04:00:14Z",
+   "game": "Kennesaw St. vs Middle Tennessee",
+   "key": "kalshi|KXNCAAFGAME-26OCT28KENNMTU|ml|0",
+   "lead_min": 1133,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 179068,
+   "paper_only": false,
+   "price": 0.46,
+   "price_american": 117,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.45,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": 120
+    },
+    "betonlineag": {
+     "point": null,
+     "price": 120
+    },
+    "betrivers": {
+     "point": null,
+     "price": 118
+    },
+    "betus": {
+     "point": null,
+     "price": 120
+    },
+    "bovada": {
+     "point": null,
+     "price": 120
+    },
+    "draftkings": {
+     "point": null,
+     "price": 120
+    },
+    "fanatics": {
+     "point": null,
+     "price": 120
+    },
+    "fanduel": {
+     "point": null,
+     "price": 120
+    },
+    "kalshi": {
+     "point": null,
+     "price": 117
+    },
+    "lowvig": {
+     "point": null,
+     "price": 120
+    },
+    "mybookieag": {
+     "point": null,
+     "price": 114
+    },
+    "novig": {
+     "point": null,
+     "price": 117
+    },
+    "polymarket": {
+     "point": null,
+     "price": 122
+    },
+    "prophetx": {
+     "point": null,
+     "price": 122
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": 122
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26OCT28KENNMTU-KENN"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "none_10k",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Kennesaw St.",
+   "side_label": "Kennesaw St.",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-28T23:00:00Z",
+   "teams": [
+    "Kennesaw St.",
+    "Middle Tennessee"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-28T03:50:10Z",
    "base_depth": 204637,
    "best_price": 0.64,
@@ -53,6 +623,8 @@
    "new_money": 42952,
    "paper_only": false,
    "price": 0.64,
+   "price_after_15m": 0.64,
+   "price_after_15m_book": "novig",
    "price_american": -178,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.64,
@@ -117,6 +689,7 @@
    "side_label": "Los Angeles L",
    "start_source": "prophetx",
    "start_utc": "2026-10-29T02:30:00Z",
+   "still_actionable": true,
    "teams": [
     "Los Angeles L",
     "Los Angeles C"
@@ -700,8 +1273,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": 0.0,
+   "close_price": 0.52,
+   "clv_cents": 1.0,
    "confirmed_after_min": 11,
    "date": "2026-10-28",
    "depth_by_book": {
