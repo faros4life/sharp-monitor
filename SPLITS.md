@@ -1,11 +1,11 @@
-# Paper splits (updated 2026-10-28T04:10:12Z)
+# Paper splits (updated 2026-10-28T04:30:15Z)
 
 Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kill bar: 30+ resulted at -0.10u/play or worse closes a split.
 
 | Split | Type | Start | W-L-P | Units | u/play | True close % | Status |
 |---|---|---|---|---|---|---|---|
 | Phase-1 live filter (paper view) | a-priori | 2026-10-26 | 2-3-0 | -1.30 | -0.260 | -3.16 | OPEN |
-| Phase-1 control group | control | 2026-10-26 | 2-2-0 | -0.41 | -0.102 | -0.97 | OPEN |
+| Phase-1 control group | control | 2026-10-26 | 2-2-1 | -0.41 | -0.082 | -0.96 | OPEN |
 | Hard Rock-priced, routed | a-priori | 2026-10-26 | 5-2-0 | +2.47 | +0.353 | -0.14 | OPEN |
 | Fade Hard Rock-priced | scan | 2026-10-26 | 5-2-0 | -3.12 | -0.446 | -0.14 | OPEN |
 | PM-global-priced, routed | a-priori | 2026-10-26 | 0-0-0 | +0.00 |  |  | OPEN |
@@ -47,7 +47,7 @@ Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kil
 
 **Closed by decision:** Liquidity spreads: Closed by Peter, Oct 27, on Muse's complete-log read: 191 resulted, -32.15u (-0.17/play), negative in every time block and every lead window.
 
-**ProphetX tripwire:** 11/30 resulted, -0.337u/play - counting.
+**ProphetX tripwire:** 12/30 resulted, -0.309u/play - counting.
 
 **Price gaps (measurement only):** {"gaps": 14, "per_day": 4.7, "edge_pct_median": 0.74, "edge_pct_p90": 2.73, "size_est_median_upper_bound": 5733.0, "seen_once_share": 1.0, "lifetime_min_median": 0.0, "lived_10min_plus": 0, "with_200_both_legs_upper_bound": 14, "scan_sec_median": 286}
 

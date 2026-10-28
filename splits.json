@@ -34,14 +34,14 @@
    "status": "OPEN",
    "closed_utc": null,
    "plays": 7,
-   "resulted": 4,
+   "resulted": 5,
    "W": 2,
    "L": 2,
-   "P": 0,
+   "P": 1,
    "units": -0.41,
-   "u_per_play": -0.102,
-   "true_close_value_pct": -0.97,
-   "true_close_n": 4
+   "u_per_play": -0.082,
+   "true_close_value_pct": -0.96,
+   "true_close_n": 5
   },
   {
    "id": "hr_routed",
@@ -718,8 +718,8 @@
  ],
  "prophetx_tripwire": {
   "rule": "next 30 forward ProphetX-priced plays at or below 0.00u/play = PAUSE LIVE and review early",
-  "resulted": 11,
-  "u_per_play": -0.337,
+  "resulted": 12,
+  "u_per_play": -0.309,
   "status": "counting"
  },
  "gaps": {
@@ -741,5 +741,5 @@
   "liq_evening": 0
  },
  "resulted_rule": "resulted = result W, L or P with a unit value (pushes count as 0u); liquidity artifacts excluded; pending and ungraded plays do not count",
- "updated_utc": "2026-10-28T04:10:12Z"
+ "updated_utc": "2026-10-28T04:30:15Z"
 }
