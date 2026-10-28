@@ -1,6 +1,138 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-28T07:50:10Z",
+   "base_depth": 265289,
+   "best_price": 0.53,
+   "best_price_american": -113,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.53,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-28",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 8715,
+     "new_this_side": 28065,
+     "other_side": 198563,
+     "other_side_all_levels": 267903,
+     "ratio": 1.2,
+     "this_side": 239692,
+     "this_side_all_levels": 296088
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "NMSU +3.5 (3.5)",
+     "price": 0.53,
+     "this_side": 30400
+    }
+   },
+   "fade_price": 0.48,
+   "first_seen_utc": "2026-10-28T07:40:10Z",
+   "game": "Jacksonville St. vs New Mexico St.: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFSPREAD-26OCT28JVSTNMSU-JVST4\"}",
+   "lead_min": 970,
+   "league": "NCAAF",
+   "line": 3.5,
+   "market": "spread",
+   "new_money": 28065,
+   "paper_only": false,
+   "price": 0.53,
+   "price_american": -113,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.53,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 3.5,
+     "price": -118
+    },
+    "betonlineag": {
+     "point": 3.5,
+     "price": -120
+    },
+    "betrivers": {
+     "point": 3.5,
+     "price": -115
+    },
+    "betus": {
+     "point": 3.0,
+     "price": 100
+    },
+    "bovada": {
+     "point": 3.0,
+     "price": -105
+    },
+    "draftkings": {
+     "point": 3.0,
+     "price": -102
+    },
+    "fanatics": {
+     "point": 3.5,
+     "price": -120
+    },
+    "fanduel": {
+     "point": 3.5,
+     "price": -115
+    },
+    "lowvig": {
+     "point": 3.5,
+     "price": -116
+    },
+    "mybookieag": {
+     "point": 3.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 3.5,
+     "price": -113
+    },
+    "polymarket": {
+     "point": -20.5,
+     "price": -3233
+    },
+    "prophetx": {
+     "point": 4.0,
+     "price": -121
+    },
+    "williamhill_us": {
+     "point": 3.0,
+     "price": -102
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAFSPREAD-26OCT28JVSTNMSU-JVST4"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "New Mexico St.",
+   "side_label": "NOT Jacksonville St. wins by over 3.5 points",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-29T00:00:00Z",
+   "teams": [
+    "Jacksonville St.",
+    "New Mexico St."
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-28T06:20:23Z",
    "base_depth": 121544,
    "best_price": 0.5917,
