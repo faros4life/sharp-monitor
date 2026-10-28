@@ -1,6 +1,149 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-28T12:18:47Z",
+   "base_depth": 105127,
+   "best_price": 0.695,
+   "best_price_american": -228,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.69,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 9,
+   "date": "2026-10-28",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 7539,
+     "new_this_side": 29132,
+     "other_side": 60985,
+     "other_side_all_levels": 69571,
+     "ratio": 1.8,
+     "this_side": 110273,
+     "this_side_all_levels": 135852
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "SEA +1.5 (1.5)",
+     "price": 0.695,
+     "this_side": 21183
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Kraken (+1.5)",
+     "price": 0.69,
+     "this_side": 31585
+    }
+   },
+   "fade_price": 0.32,
+   "first_seen_utc": "2026-10-28T12:10:11Z",
+   "game": "Toronto vs Seattle: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLSPREAD-26OCT28TORSEA-TOR2\"}",
+   "lead_min": 821,
+   "league": "NHL",
+   "line": 1.5,
+   "market": "spread",
+   "new_money": 29132,
+   "paper_only": false,
+   "price": 0.69,
+   "price_american": -223,
+   "price_rule": "fails_cap",
+   "price_when_first_seen": 0.7,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 1.5,
+     "price": -235
+    },
+    "betonlineag": {
+     "point": 1.5,
+     "price": -248
+    },
+    "betopenly": {
+     "point": 1.5,
+     "price": -222
+    },
+    "betrivers": {
+     "point": 1.5,
+     "price": -265
+    },
+    "betus": {
+     "point": 1.5,
+     "price": -250
+    },
+    "bovada": {
+     "point": 1.5,
+     "price": -245
+    },
+    "draftkings": {
+     "point": 1.5,
+     "price": -250
+    },
+    "fanatics": {
+     "point": 1.5,
+     "price": -255
+    },
+    "fanduel": {
+     "point": 1.5,
+     "price": -260
+    },
+    "kalshi": {
+     "point": 1.5,
+     "price": -223
+    },
+    "lowvig": {
+     "point": 1.5,
+     "price": -248
+    },
+    "mybookieag": {
+     "point": 1.5,
+     "price": -240
+    },
+    "novig": {
+     "point": 1.5,
+     "price": -228
+    },
+    "polymarket": {
+     "point": -3.5,
+     "price": -138
+    },
+    "prophetx": {
+     "point": 1.5,
+     "price": -230
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNHLSPREAD-26OCT28TORSEA-TOR2"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "polymarket"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Seattle",
+   "side_label": "NOT Toronto wins by over 1.5 goals",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-29T02:00:00Z",
+   "teams": [
+    "Toronto",
+    "Seattle"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-28T12:10:11Z",
    "base_depth": 160108,
    "best_price": 0.695,
@@ -177,8 +320,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": 0.0,
+   "close_price": 0.51,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -1528,8 +1671,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.54,
-   "clv_cents": 4.0,
+   "close_price": 0.55,
+   "clv_cents": 5.0,
    "confirmed_after_min": 10,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -2485,8 +2628,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.68,
-   "clv_cents": 0.0,
+   "close_price": 0.67,
+   "clv_cents": -1.0,
    "confirmed_after_min": 5,
    "date": "2026-10-28",
    "depth_by_book": {
