@@ -35,7 +35,8 @@ DAILY_STOP = float(os.environ.get("EXEC_DAILY_STOP", "") or "1500")
 QTY_MEANS = (os.environ.get("PX_QTY_MEANS") or "stake").strip().lower()
 TOPIC = os.environ.get("NTFY_TOPIC", "")
 _T = {"token": None}
-BOT = {"ids": None}   # order ids the bot placed (from the executor's Gmail ledger); None = unknown -> refuse
+BOT = {"ids": None}
+LAST = {"res": None}   # today's bot ProphetX result from the last passing preflight (book_live adds other books)   # order ids the bot placed (from the executor's Gmail ledger); None = unknown -> refuse
 
 
 def set_bot_orders(ids):
@@ -194,6 +195,7 @@ def preflight():
         return False, "today's result unreadable (bot-order registry unknown)"
     if res <= -DAILY_STOP:
         return False, f"daily stop hit (today {res:+,.2f} <= -{DAILY_STOP:,.0f})"
+    LAST["res"] = res
     return True, f"ok (today {res:+,.2f})"
 
 

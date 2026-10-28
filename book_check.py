@@ -355,7 +355,9 @@ def kalshi_check(al, mtype, side, line, price, teams):
             for p, q in lm.k_levels(_KC["books"][t], take):
                 c = 1 - p
                 levels.append((c, c * q))
-        return ladder_result(levels, price, line, kline, {"markets": [o[0]["ticker"] for o in picks]}, TAKER_COEF["kalshi"])
+        return ladder_result(levels, price, line, kline, {"markets": [o[0]["ticker"] for o in picks],
+                                                          "kalshi_buy": [{"ticker": o[0]["ticker"], "buy": o[1]} for o in picks]},
+                             TAKER_COEF["kalshi"])
     return {"status": "game_not_on_kalshi"}
 
 
@@ -561,7 +563,7 @@ def check_alert(al, evs_by, mks_by_event):
     best = ask_levels[0] if ask_levels else None
     return {
         "status": "ok",
-        "market_id": mk["marketId"], "novig_label": outs[i].get("name"), "novig_line": nline,
+        "market_id": mk["marketId"], "outcome_id": mine, "novig_label": outs[i].get("name"), "novig_line": nline,
         "alert_line": line, "exact_line": (line is None) or (nline is not None and abs(nline - line) < 1e-9),
         "alert_price": price, "alert_price_prob": round(alert_prob, 4) if alert_prob else None,
         "best_price": best["price"] if best else None, "best_price_american": best["american"] if best else None,

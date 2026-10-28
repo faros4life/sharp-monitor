@@ -20,6 +20,7 @@ import email.header
 import hashlib
 import imaplib
 import json
+import math
 import os
 import re
 import smtplib
@@ -33,6 +34,7 @@ import liquidity_monitor as lm
 import agree_rules
 import positions
 import px_live
+import book_live
 
 UNIT = float(os.environ.get("EXEC_UNIT", "") or "200")          # + money: risk UNIT; - money: risk to win UNIT
 SOURCE = (os.environ.get("EXEC_SOURCE", "") or "both").lower()  # muse | rules | both (dry run: both, side by side)
@@ -614,6 +616,8 @@ def american_to_prob(a):
     return 100 / (a + 100) if a > 0 else -a / (-a + 100)
 
 
+LIVE_BOOKS = tuple(b.strip() for b in (os.environ.get("EXEC_LIVE_BOOKS") or "prophetx,kalshi,polymarket_us,novig").split(",")
+                   if b.strip())   # Oct 28 (Peter): books the bot may fill phase-1 plays on; repo VARIABLE EXEC_LIVE_BOOKS
 PX_TOL_CENTS = 2   # Peter, Oct 27: ProphetX (the live book) may fill up to 2 cents worse than the alert's after-fee price
 
 
@@ -737,7 +741,8 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None, held=None):
             continue
         shown = r.get("best_price_american_displayed")
         cands.append({"book": b, "line": bl, "am": am, "shown": int(shown) if shown is not None else am, "eq": lm.american(min(max(c_eq, 0.01), 0.99)), "c_eq": c_eq,
-                      "hb": hb, "avail": avail, "thr": thr, "buy": r.get("buy_levels") or []})
+                      "hb": hb, "avail": avail, "thr": thr, "buy": r.get("buy_levels") or [],
+                      "ids": {k: r.get(k) for k in ("kalshi_buy", "market_slug", "long_side", "outcome_id") if r.get(k) is not None}})
     if not cands:
         if not ladders:
             return dict(out, verdict="SKIP", reason="no book lists this market near the alert line")
@@ -755,10 +760,16 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None, held=None):
     pick = (full or capped)[0]
     risk, win = stake_for(pick["shown"])
     nets = round(win * (1 - WIN_FEE.get(pick["book"], 0)), 2)
-    pxc = next((c for c in capped if c["book"] == "prophetx"), None)   # phase-1 live is ProphetX only
+    pxc = next((c for c in capped if c["book"] == "prophetx"), None)
+    # Oct 28 (Peter): phase-1 live fills on the best after-fee price among the LIVE books (ProphetX keeps its 2c)
+    lcs = [c for c in capped if c["book"] in LIVE_BOOKS]
+    lfull = [c for c in lcs if c["avail"] >= live_stake(c["shown"])[0]]
+    lc = (lfull or lcs)[0] if lcs else None
     return dict(out, verdict="WOULD PLACE", book=pick["book"], american=pick["am"], shown=pick["shown"], take_line=pick["line"],
                 px=({"am": pxc["am"], "shown": pxc["shown"], "line": pxc["line"], "avail": pxc["avail"], "thr": pxc["thr"],
                      "buy": pxc["buy"]} if pxc else None),
+                lc=({"book": lc["book"], "am": lc["am"], "shown": lc["shown"], "line": lc["line"], "avail": lc["avail"],
+                     "thr": lc["thr"], "buy": lc["buy"], "ids": lc["ids"]} if lc else None),
                 equiv=pick["eq"], hp=hp, hp_src=hp_src, risk=risk, to_win=win, nets=nets,
                 fillable=round(min(pick["avail"], risk), 2), partial=pick["avail"] < risk,
                 others=[c for c in capped if c is not pick][:5])
@@ -911,7 +922,8 @@ def fmt(r):
     dk = derive_key(p)
     if r["verdict"] == "HELD":   # no xpid token: the play stays new and is retried next run
         return f"HELD  [{held_tok(dk or p['play_key'])}] {p.get('sport')} {p.get('game')} | {p.get('bet')}\n      reason: {r['reason']}"
-    tag = r["pid"] + (f" {wp(dk)}" if (r["verdict"] == "WOULD PLACE" and dk and p.get("source") != "rules") else "")
+    rested = ((r.get("live") or {}).get("rest") or {}).get("status") == "placed"   # Oct 28: a resting bid takes the side too
+    tag = r["pid"] + (f" {wp(dk)}" if ((r["verdict"] == "WOULD PLACE" or rested) and dk and p.get("source") != "rules") else "")
     head = f"{src_tag(p)}[{tag}] {p.get('sport')} {p.get('game')} | {p.get('bet')}"
     if p.get("source") == "rules":
         head += f"\n      decided {lag_text(p)}; flags (never veto): {'; '.join(p['rules'].get('flags') or []) or '-'}"
@@ -965,6 +977,7 @@ def bot_orders(M, days=4):
     Gmail is the registry (nothing financial in the public repo). None if unreadable -> live refuses (fail closed).
     Oct 27 fix (found by the brake check): match the SUBJECT PREFIX exactly ('Bets LIVE:'), via IMAP SUBJECT + SINCE and
     a header re-check, so dry-run emails (whose body says 'WOULD GO LIVE') are never read as live ones."""
+    NONPX["today"] = 0.0
     try:
         since = (datetime.now(timezone.utc) - timedelta(days=days)).strftime("%d-%b-%Y")
         typ, data = M.uid("SEARCH", None, "SUBJECT", '"Bets LIVE:"', "SINCE", since)
@@ -985,9 +998,18 @@ def bot_orders(M, days=4):
                 return None   # a live email without its ledger: can't trust the registry
             rows, _ = json.JSONDecoder().raw_decode(txt[txt.index("[", i):])
             for row in rows:
-                lo = row.get("live_order") or {}
-                if lo.get("status") == "placed" and lo.get("order_id"):
+                for is_rest, lo in ((False, row.get("live_order") or {}), (True, row.get("live_rest") or {})):
+                    if lo.get("status") != "placed" or not lo.get("order_id"):
+                        continue
                     ids[str(lo["order_id"])] = lo.get("book") or "prophetx"
+                    try:   # Oct 28: Kalshi / PM US / Novig dollars risked TODAY (ET) count as lost in the daily stop
+                        d_et = datetime.fromisoformat(str(row.get("decided_utc")).replace("Z", "+00:00")).astimezone(lm.ET).date()
+                    except Exception:
+                        d_et = None
+                    if (lo.get("book") or "prophetx") != "prophetx" and d_et in (None, datetime.now(lm.ET).date()):
+                        fs = lo.get("filled_stake")   # fill-or-kill: what filled (unknown = all asked); resting: all asked
+                        NONPX["today"] += (max(float(fs or 0), float(lo.get("asked_stake") or 0)) if (is_rest or fs is None)
+                                           else float(fs))
         return ids
     except Exception:
         return None
@@ -998,6 +1020,7 @@ def _h(x):
 
 
 GUARD = {"ok": None, "why": ""}
+NONPX = {"today": 0.0}   # Oct 28: bot dollars risked today on books other than ProphetX (from the ledger registry)
 
 
 def live_guards():
@@ -1014,6 +1037,7 @@ def live_guards():
         finally:
             M.logout()
         px_live.set_bot_orders(None if ids is None else list(ids))
+        book_live.set_exposure(NONPX["today"])
         if ids is None:
             why = "couldn't read the bot's order registry in Gmail (fail closed)"
         else:
@@ -1025,7 +1049,8 @@ def live_guards():
 
 
 def live_order(r):
-    """Phase-1 live order on ProphetX (only when EXEC_LIVE is on). Returns the order record for the email/ledger."""
+    """Phase-1 live order (only when EXEC_LIVE is on): ProphetX here, Kalshi / Polymarket US via live_order_other (Oct 28).
+    Returns the order record for the email/ledger."""
     lv, p = r["live"], r["play"]
     hr = agree_rules.hr_priced(r.get("entry") or {})   # Oct 27: re-check the PRICING book at placement; unknown = refuse
     if hr is not False:
@@ -1039,6 +1064,8 @@ def live_order(r):
     g_ok, g_why = live_guards()
     if not g_ok:
         return {"status": "refused", "reason": g_why}
+    if lv.get("book", "prophetx") != "prophetx":
+        return live_order_other(r)
     strike, limit, stake = px_limit(lv["px"], lv["risk"])
     if not strike or stake < 5:
         return {"status": "refused", "reason": f"ProphetX ladder can't cover $5+ at the alert number (have ${stake:.2f})"}
@@ -1061,7 +1088,181 @@ def live_order(r):
     elif res["status"] == "error":
         tg(f"LIVE ORDER ERROR ProphetX: {(p.get('bet') or '')[:60]}\n{res['reason'][:200]}\nCheck My Trades before retrying.")
         push("LIVE ORDER ERROR: " + (p.get("bet") or "")[:50], f"{label}\n{res['reason']}\nCheck ProphetX My Trades before retrying.", mirror=False)
-    return dict(res, asked_stake=stake, limit=limit)
+    return dict(res, asked_stake=stake, limit=limit, book="prophetx")
+
+
+def live_order_other(r):
+    """Oct 28 (Peter): phase-1 live fill on Kalshi or Polymarket US when that book has the best after-fee price.
+    Same unit, cap, STOP and daily stop (book_live counts these dollars as lost until settled)."""
+    lv, p = r["live"], r["play"]
+    book, ids = lv["book"], lv.get("ids") or {}
+    name = BOOK_NAME.get(book, book)
+    limit_cost, count = book_live.plan(lv["px"].get("buy"), lv["px"].get("thr"), lv["risk"])
+    stake = round(count * limit_cost, 2) if limit_cost else 0.0
+    if not limit_cost or stake < 5:
+        return {"status": "refused", "book": book, "reason": f"{name} ladder can't cover $5+ at the alert number (have ${stake:.2f})"}
+    limit_am = lm.american(limit_cost)
+    label = f"{p.get('sport')} {p.get('game')} | {bet_text(r, lv['line'], limit_am)}"
+    if book == "kalshi":
+        kb = ids.get("kalshi_buy") or []
+        if len(kb) != 1:
+            return {"status": "refused", "book": book, "reason": "Kalshi market ambiguous (not exactly one market) - fail closed"}
+        res = book_live.kalshi_place(kb[0]["ticker"], kb[0]["buy"], limit_cost, count, label)
+    elif book == "polymarket_us":
+        if not ids.get("market_slug") or ids.get("long_side") is None:
+            return {"status": "refused", "book": book, "reason": "Polymarket US market unknown - fail closed"}
+        res = book_live.pmus_place(ids["market_slug"], bool(ids["long_side"]), limit_cost, count, label)
+    elif book == "novig":   # Novig contracts pay 1c: plan() counted $1 contracts, so x100
+        if not ids.get("outcome_id"):
+            return {"status": "refused", "book": book, "reason": "Novig outcome unknown - fail closed"}
+        res = book_live.novig_place(ids["outcome_id"], limit_cost, count * 100, label, None, derive_key(p) or "")
+    else:
+        return {"status": "refused", "book": book, "reason": f"no live order code for {name}"}
+    res = dict(res, book=book)
+    if res["status"] == "placed" and res.get("sent_to_runner"):
+        tg(f"SENT TO NOVIG (home PC): {bet_text(r, lv['line'], limit_am)}\nfill-or-kill, ${stake:,.2f} at {limit_am:+d} or better. "
+           f"The fill result follows in the next run.\n{p.get('sport')} {p.get('game')}")
+        return dict(res, asked_stake=stake, limit=limit_am)
+    if res["status"] == "placed":
+        fs, ac = res.get("filled_stake") or 0, res.get("avg_cost")
+        ap = lm.american(ac) if ac else None
+        res["avg_price"] = ap
+        if fs and ac:
+            win = res.get("contracts", 0) * (1 - ac)
+            tg(f"FILLED {name}: {bet_text(r, lv['line'], ap)}\n${fs:,.2f} at {ap:+d} (before the {name} fee) -> wins about "
+               f"${win:,.2f}{'' if fs >= stake - 0.5 else f' (partial: asked ${stake:,.2f})'}\n{p.get('sport')} {p.get('game')}\n"
+               "Send STOP on ntfy to pause.")
+        else:
+            tg(f"NO FILL {name}: {bet_text(r, lv['line'], limit_am)}\nFill-or-kill got nothing at {limit_am:+d} or better"
+               + ("" if res.get("fills_read") else f" (fill read failed: check {name})") + ".")
+        push("PLACED: " + bet_text(r, lv["line"], limit_am)[:60],
+             f"{label}\n{name} fill-or-kill: ${fs:,.2f} filled" + (f" at {ap:+d}" if ap else "")
+             + f" (asked ${stake:,.2f}, limit {limit_am:+d})." + ("" if res.get("fills_read") else f" Fill read failed: check {name}."),
+             mirror=False)
+    elif res["status"] == "error":
+        tg(f"LIVE ORDER ERROR {name}: {(p.get('bet') or '')[:60]}\n{res['reason'][:200]}\nCheck {name} before retrying.")
+        push("LIVE ORDER ERROR: " + (p.get("bet") or "")[:50], f"{label}\n{res['reason']}\nCheck {name} before retrying.", mirror=False)
+    if res.get("status") == "placed" and not res.get("fills_read"):
+        res["filled_stake"] = None   # unknown fill: the daily stop counts everything asked
+    return dict(res, asked_stake=stake, limit=limit_am)
+
+
+REST_BOOKS = tuple(b.strip() for b in (os.environ.get("EXEC_REST_BOOKS") or "novig,kalshi").split(",") if b.strip())
+REST_BEFORE_MIN = 30   # resting bids expire this long before the listed start
+
+
+def rest_wanted(r):
+    """A phase-1 play (Muse AGREE) where nothing filled at the alert number: no live book had it (price skip), or the
+    fill-or-kill came back empty. Never for conflicts, duplicates, caps, holds or refusals."""
+    lv = r.get("live")
+    if not lv or not px_live.LIVE or not REST_BOOKS:
+        return False
+    if lv.get("go"):
+        o = lv.get("order") or {}
+        return (o.get("status") == "placed" and o.get("fills_read") is True and not o.get("sent_to_runner")
+                and not (o.get("filled_stake") or 0))
+    if r.get("books") is None:
+        return False
+    if r.get("verdict") == "WOULD PLACE":
+        return lv.get("why") == ["no live book has the alert number or better"]
+    return r.get("verdict") == "SKIP" and str(r.get("reason") or "").startswith("price:") and lv.get("why") == [r.get("reason")]
+
+
+def rest_bid(r):
+    """Rest ONE bid at the alert's after-fee number (no 2c extra) on the first REST_BOOKS book that lists the exact
+    alert line: Kalshi (good-till-cancelled with an expiry) or Novig (GTT on the home PC). Same unit, cap, STOP and
+    daily stop as live fills; the whole amount counts as risked until it expires or settles."""
+    p, e, books = r["play"], r.get("entry") or {}, r.get("books") or {}
+    try:
+        st = datetime.fromisoformat(str(p.get("start_utc")).replace("Z", "+00:00"))
+    except Exception:
+        return {"status": "refused", "reason": "no start time"}
+    expire = st - timedelta(minutes=REST_BEFORE_MIN)
+    secs = (expire - datetime.now(timezone.utc)).total_seconds()
+    if secs < 600:
+        return {"status": "refused", "reason": "under 40 min to the start: no resting bid"}
+    af = e.get("price_after_fee")
+    if af is None:
+        return {"status": "refused", "reason": "alert after-fee price unknown (fail closed)"}
+    p_star = american_to_prob(int(af))
+    risk, _ = live_stake(int(af))
+    g_ok, g_why = live_guards()
+    if not g_ok:
+        return {"status": "refused", "reason": g_why}
+    why_not = []
+    for b in REST_BOOKS:
+        x = books.get(b) or {}
+        if x.get("status") != "ok" or not x.get("exact_line"):
+            why_not.append(f"{BOOK_NAME.get(b, b)}: no exact-line market")
+            continue
+        if b == "kalshi":
+            kb = x.get("kalshi_buy") or []
+            c = book_live.kalshi_cost_for(p_star, bc.TAKER_COEF["kalshi"])
+            if len(kb) != 1 or not c:
+                why_not.append("Kalshi: market ambiguous")
+                continue
+            n = int(risk // c)
+            if n * c < 5:
+                why_not.append("Kalshi: under $5")
+                continue
+            res = book_live.kalshi_place(kb[0]["ticker"], kb[0]["buy"], c, n, f"{p.get('sport')} {p.get('game')} | {p.get('bet')}",
+                                         int(expire.timestamp()))
+        elif b == "novig":
+            if not x.get("outcome_id"):
+                why_not.append("Novig: outcome unknown")
+                continue
+            c = math.floor(p_star * 1000 + 1e-9) / 1000
+            q = int(risk // c * 100)
+            res = book_live.novig_place(x["outcome_id"], c, q, f"{p.get('sport')} {p.get('game')} | {p.get('bet')}",
+                                        int(secs * 1000), derive_key(p) or "")
+        else:
+            continue
+        res = dict(res, book=b, limit=lm.american(c), asked_stake=round(risk, 2), expires_utc=expire.strftime("%Y-%m-%dT%H:%M:%SZ"))
+        name = BOOK_NAME.get(b, b)
+        when = expire.astimezone(lm.ET).strftime("%I:%M %p ET")
+        if res["status"] == "placed":
+            got = res.get("filled_stake") or 0
+            tg(f"RESTING BID {name}: {p.get('bet')} at {lm.american(c):+d} (= the alert's {int(af):+d} after fees), "
+               f"${risk:,.2f}" + (f"; ${got:,.2f} filled right away" if got else "") + f". Cancels itself at {when}.\n"
+               f"{p.get('sport')} {p.get('game')}\nSTOP on ntfy does NOT cancel it: cancel in the {name} app if needed.")
+        elif res["status"] == "error":
+            tg(f"RESTING BID ERROR {name}: {(p.get('bet') or '')[:60]}\n{res['reason'][:200]}\nCheck {name} before retrying.")
+        return res
+    return {"status": "refused", "reason": "; ".join(why_not) or "no resting book"}
+
+
+def novig_reports():
+    """Oct 28: the home runner writes each Novig order's result to snapshot/novig_orders.json; report each new or
+    changed result to Telegram once (token email = the record, the same pattern as the watchdog). Counts only in the log."""
+    recs = book_live.novig_results() if (os.environ.get("NOVIG_SNAPSHOT_TOKEN") or "").strip() else []
+    if not recs:
+        return 0
+    n = 0
+    M = imap_open()
+    try:
+        for x in recs[-30:]:
+            tok = "xnvr" + hashlib.sha1(f"{x.get('client_id')}|{x.get('status')}|{x.get('filled_qty')}".encode()).hexdigest()[:12]
+            if gsearch_strict(M, tok):
+                continue
+            c, q, fq = lm.num(x.get("price")) or 0, int(x.get("qty") or 0), int(x.get("filled_qty") or 0)
+            am = lm.american(c) if c else None
+            st = str(x.get("status") or "?").upper()
+            msg = (f"NOVIG {st}: {x.get('label') or ''}\n{fq:,} of {q:,} contracts filled at {am:+d} or better "
+                   f"(${fq * c / 100:,.2f} of ${q * c / 100:,.2f})" if am else f"NOVIG {st}: {x.get('label') or ''}")
+            if x.get("tif") == "GTT" and st in ("OPEN", "RESTING", "PARTIAL"):
+                msg += "\nResting until 30 min before the start (cancel in the Novig app if needed)."
+            if x.get("error"):
+                msg += f"\n{str(x['error'])[:160]}"
+            tg(msg)
+            try:
+                send(f"Bets Novig order: {st}", msg + f"\n\n{tok}")
+            except Exception:
+                pass
+            n += 1
+    finally:
+        M.logout()
+    print(f"Novig order reports sent: {n}")
+    return n
 
 
 def ledger_row(r, run_start):
@@ -1078,7 +1279,7 @@ def ledger_row(r, run_start):
             "alert_book": e.get("book_key"), "alert_price_after_fee": e.get("price_after_fee"), "alert_line": e.get("point"),
             "fill_book": r.get("book"), "fill_price_after_fee": r.get("american"), "fill_screen": r.get("shown"),
             "fill_line": r.get("take_line"), "live": bool(lv.get("go")), "live_nfl": bool(lv.get("nfl")), "live_why_not": lv.get("why"),
-            "live_px_price_after_fee": lv.get("am"), "live_px_line": lv.get("line"),
+            "live_px_price_after_fee": lv.get("am"), "live_px_line": lv.get("line"), "live_book": lv.get("book"),
             # Oct 27 gettable-price counter (Muse): phase-1 qualifying (coded view, ignoring Muse AGREE), ProphetX at the
             # alert price or better at check (equivalent price, same rule as live), best ProphetX price seen at the alert line
             "p1_qualifies": (agree_rules.phase1(e, True)[0] if e else None),
@@ -1087,7 +1288,10 @@ def ledger_row(r, run_start):
             "px_best_line": ((r.get("books") or {}).get("prophetx") or {}).get("line"),
             "live_order": dict({k: (lv.get("order") or {}).get(k) for k in ("status", "reason", "order_id", "asked_stake", "limit",
                                                                             "filled_stake", "avg_price")},
-                               book=(lv.get("order") or {}).get("book") or "prophetx") if lv.get("order") else None}
+                               book=(lv.get("order") or {}).get("book") or "prophetx") if lv.get("order") else None,
+            "live_rest": ({k: (lv.get("rest") or {}).get(k) for k in ("status", "reason", "book", "order_id", "asked_stake",
+                                                                       "limit", "filled_stake", "expires_utc")}
+                          if lv.get("rest") else None)}
 
 
 def send(subject, body):
@@ -1114,6 +1318,10 @@ def main():
     trig = os.environ.get("GITHUB_EVENT_NAME", "local")
     if SOURCE in ("both",):
         muse_watchdog(now, plays, rplays, feed)
+    try:
+        novig_reports()
+    except Exception as ex:
+        print(f"novig report check failed: {str(ex)[:60]}")
     print(f"Verdict plays seen (2 days): {len(plays)}; coded-rule alerts: {len(rplays)}; new: {len(new)}")
     if wake_s is not None:
         print(f"Wake: run started {wake_s:.0f}s after the newest sent alert (trigger: {trig})")
@@ -1165,13 +1373,14 @@ def main():
             r["entry"] = ent
             if p.get("source") != "rules" and ent:   # phase-1 live tag (Muse plays only: needs Muse AGREE)
                 ok, why = agree_rules.phase1(ent, True)   # NCAAF/NBA spreads + unders, NFL unders only (Peter, Oct 26)
-                if ok and r["verdict"] == "WOULD PLACE" and r.get("px"):
-                    lr, lw = live_stake(r["px"]["shown"])
-                    r["live"] = {"go": True, "risk": lr, "to_win": lw, "am": r["px"]["am"], "shown": r["px"]["shown"],
-                                 "line": r["px"]["line"], "partial": r["px"]["avail"] < lr, "px": r["px"],
+                if ok and r["verdict"] == "WOULD PLACE" and r.get("lc"):
+                    lc = r["lc"]
+                    lr, lw = live_stake(lc["shown"])
+                    r["live"] = {"go": True, "book": lc["book"], "risk": lr, "to_win": lw, "am": lc["am"], "shown": lc["shown"],
+                                 "line": lc["line"], "partial": lc["avail"] < lr, "px": lc, "ids": lc.get("ids") or {},
                                  "nfl": (ent.get("sport") or "").upper() == "NFL"}
                 elif ok:
-                    r["live"] = {"go": False, "why": ["ProphetX has nothing at the alert number or better"
+                    r["live"] = {"go": False, "why": ["no live book has the alert number or better"
                                                       if r["verdict"] == "WOULD PLACE" else (r.get("reason") or "skipped")]}
                 else:
                     r["live"] = {"go": False, "why": why}
@@ -1186,8 +1395,11 @@ def main():
                          "you can place it by hand.")
             if r["verdict"] == "WOULD PLACE" and (r.get("live") or {}).get("go"):
                 r["live"]["order"] = live_order(r)
+            if rest_wanted(r):   # Oct 28 (Peter): nothing filled at the number -> rest a bid until 30 min before the start
+                r["live"]["rest"] = rest_bid(r)
             results.append(r)
-            if r["verdict"] == "WOULD PLACE" and derive_key(p) and p.get("source") != "rules":
+            if (r["verdict"] == "WOULD PLACE" or ((r.get("live") or {}).get("rest") or {}).get("status") == "placed") \
+                    and derive_key(p) and p.get("source") != "rules":
                 taken_now.add(derive_key(p))
         except Exception as ex:
             results.append({"play": p, "pid": pid(p["play_key"]), "verdict": "SKIP", "reason": f"error: {str(ex)[:100]}"})
@@ -1195,7 +1407,7 @@ def main():
     M2.logout()
     nw = sum(1 for r in results if r["verdict"] == "WOULD PLACE")
     when = now.astimezone(lm.ET).strftime('%a %b %d %I:%M %p ET')
-    body = [(f"LIVE ON for phase 1 (ProphetX, ${LIVE_UNIT:.0f}); everything else is a dry run ({when})" if px_live.LIVE
+    body = [(f"LIVE ON for phase 1 (${LIVE_UNIT:.0f} to win, best price on {', '.join(BOOK_NAME.get(b, b) for b in LIVE_BOOKS)}); everything else is a dry run ({when})" if px_live.LIVE
              else f"DRY RUN - nothing was bet ({when})"), ""]
     places = [r for r in results if r["verdict"] == "WOULD PLACE"]
     helds = [r for r in results if r["verdict"] == "HELD"]
@@ -1206,8 +1418,8 @@ def main():
                  f"bets on {', '.join(blind)}; it will try again in 10 minutes." for r in helds]
         body.append("")
     golive = [r for r in results if (r.get("live") or {}).get("go")]
-    body.append(f"WOULD GO LIVE - phase 1, ${LIVE_UNIT:.0f} on ProphetX ({len(golive)})")
-    body += [f"  - {bet_text(r, r['live']['line'], r['live']['shown'])} on ProphetX: risk {money(r['live']['risk'])} to win "
+    body.append(f"WOULD GO LIVE - phase 1, ${LIVE_UNIT:.0f} to win, best live book ({len(golive)})")
+    body += [f"  - {bet_text(r, r['live']['line'], r['live']['shown'])} on {BOOK_NAME.get(r['live'].get('book', 'prophetx'), 'ProphetX')}: risk {money(r['live']['risk'])} to win "
              f"{money(r['live']['to_win'])}  ({r['play'].get('sport')} {r['play'].get('game')})"
              + order_note(r['live'].get('order'))
              + ("  [partial: not all of it at this price]" if r["live"]["partial"] else "")
