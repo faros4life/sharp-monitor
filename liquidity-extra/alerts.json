@@ -1,6 +1,79 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-28T10:30:19Z",
+   "base_depth": 29778,
+   "best_price": 0.735,
+   "best_price_american": -277,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.74,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-29",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 17197,
+     "new_this_side": 54800,
+     "other_side": 30975,
+     "other_side_all_levels": 33570,
+     "ratio": 2.8,
+     "this_side": 87258,
+     "this_side_all_levels": 95657
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "R. Jodar (0)",
+     "price": 0.735,
+     "this_side": 5628
+    }
+   },
+   "fade_price": 0.28,
+   "first_seen_utc": "2026-10-28T10:20:16Z",
+   "game": "Vacherot vs Jodar",
+   "key": "kalshi|KXATPMATCH-26OCT29VACJOD|ml|1",
+   "lead_min": 1410,
+   "league": "TENNIS",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 54800,
+   "paper_only": true,
+   "price": 0.74,
+   "price_american": -285,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.74,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXATPMATCH-26OCT29VACJOD-JOD"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "none_10k",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Jodar",
+   "side_label": "Jodar",
+   "start_source": "novig",
+   "start_utc": "2026-10-29T10:00:00Z",
+   "teams": [
+    "Vacherot",
+    "Jodar"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-28T09:30:18Z",
    "base_depth": 91461,
    "best_price": 0.51,
@@ -1406,8 +1479,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.81,
-   "clv_cents": 0.0,
+   "close_price": 0.82,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-28",
    "depth_by_book": {
