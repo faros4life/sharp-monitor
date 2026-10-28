@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Wed Oct 28, 6:14 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 37.
+Updated Wed Oct 28, 6:20 AM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 37.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -25,7 +25,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 28 12:06AM | NHL | Philadelphia vs Washington: Spread | spread: NOT Washington wins by over 1.5 goals | kalshi | $30k | -127 |  |  | -1.0c |  | pending |
 | Oct 28 12:06AM | NHL | Calgary vs Edmonton: Spread | spread: NOT Edmonton wins by over 1.5 goals | kalshi | $36k | -127 |  |  | +0.0c | yes | pending |
 | Oct 28 12:06AM | NCAAF | Kennesaw St. vs Middle Tennessee | moneyline: Kennesaw St. | kalshi | $179k | +117 |  |  | +0.0c |  | pending |
-| Oct 27 11:50PM | NBA | Los Angeles L vs Los Angeles C | moneyline: Los Angeles L | kalshi | $43k | -178 |  |  | +0.0c |  | pending |
+| Oct 27 11:50PM | NBA | Los Angeles L vs Los Angeles C | moneyline: Los Angeles L | kalshi | $43k | -178 |  |  | -1.0c |  | pending |
 | Oct 27 11:40PM | NBA | Washington vs Cleveland: Spread | spread: NOT Cleveland wins by over 9.5 points | kalshi | $31k | -100 |  |  | +1.0c |  | pending |
 | Oct 27 11:30PM | NHL | New Jersey vs Colorado: Spread | spread: NOT Colorado wins by over 1.5 goals | kalshi | $46k | -156 |  |  | +0.0c |  | pending |
 | Oct 27 11:21PM | NCAAF | Kennesaw St. vs Middle Tennessee: Spread | spread: NOT Middle Tennessee wins by over 2.5 points | kalshi | $140k | +104 | ✅ novig |  | +1.0c |  | pending |
