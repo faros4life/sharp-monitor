@@ -1,0 +1,30 @@
+name: novig-dispatch-check
+
+on:
+  workflow_dispatch:   # manual: proves the cloud -> home PC Novig path with an order the runner MUST refuse (price 0.990)
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Send a deliberately invalid order to the home runner (no money can move)
+        env:
+          NOVIG_SNAPSHOT_TOKEN: ${{ secrets.NOVIG_SNAPSHOT_TOKEN }}
+        run: |
+          python -u - <<'PY'
+          import uuid, book_live as b
+          inputs = {"outcome_id": "00000000-0000-0000-0000-000000000000", "price": "0.990", "qty": "1", "tif": "FOK",
+                    "ttl_ms": "0", "client_id": str(uuid.uuid4()), "label": "TEST dispatch check (must be refused)", "play_key": "TEST"}
+          st, _ = b._gh("POST", f"https://api.github.com/repos/{b.NV_REPO}/actions/workflows/{b.NV_WORKFLOW}/dispatches",
+                        {"ref": "main", "inputs": inputs})
+          print(f"DISPATCH: HTTP {st} ({'OK - the home PC should now run novig-live-order and REFUSE it' if st == 204 else 'FAILED'})")
+          PY
