@@ -1,7 +1,7 @@
 {
  "alerts": [
   {
-   "alerted_utc": "2026-10-28T17:19:48Z",
+   "alerted_utc": "2026-10-28T17:25:09Z",
    "base_depth": 32184,
    "best_price": 0.7538,
    "best_price_american": -306,
@@ -17,26 +17,26 @@
    ],
    "close_price": 0.75,
    "clv_cents": 0.0,
-   "confirmed_after_min": 10,
+   "confirmed_after_min": 15,
    "date": "2026-10-28",
    "depth_by_book": {
     "kalshi": {
      "heavier_side": true,
      "label": "Houston",
      "price": 0.76,
-     "this_side": 850102
+     "this_side": 851465
     },
     "novig": {
      "heavier_side": true,
      "label": "HOU (0)",
      "price": 0.755,
-     "this_side": 69883
+     "this_side": 70419
     },
     "polymarket": {
      "heavier_side": true,
      "label": "Rockets",
      "price": 0.76,
-     "this_side": 222200
+     "this_side": 222705
     },
     "prophetx": {
      "new_other_side": 8193,
@@ -52,7 +52,7 @@
    "first_seen_utc": "2026-10-28T17:10:09Z",
    "game": "Houston Rockets at Milwaukee Bucks",
    "key": "prophetx|{\"line\": 0, \"px_event\": 1704703597, \"px_market\": 219, \"side\": \"0\"}",
-   "lead_min": 400,
+   "lead_min": 395,
    "league": "NBA",
    "line": null,
    "market": "moneyline",
@@ -223,6 +223,8 @@
    "new_money": 102119,
    "paper_only": false,
    "price": 0.69,
+   "price_after_15m": 0.69,
+   "price_after_15m_book": "novig",
    "price_american": -223,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.69,
@@ -315,6 +317,7 @@
    "side_label": "Capitals",
    "start_source": "polymarket",
    "start_utc": "2026-10-28T23:30:00Z",
+   "still_actionable": true,
    "teams": [
     "Flyers",
     "Capitals"
@@ -456,7 +459,8 @@
      "price": -137
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-28T17:25:09Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNHLGAME-26OCT28TORSEA-TOR"
@@ -596,7 +600,8 @@
      "price": -106
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-28T17:25:09Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFSPREAD-26OCT29TROYJMU-JMU21"
@@ -1090,8 +1095,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 0.0,
+   "close_price": 0.51,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -6431,7 +6436,7 @@
     }
    },
    "pulled": true,
-   "pulled_utc": "2026-10-28T17:19:48Z",
+   "pulled_utc": "2026-10-28T17:25:09Z",
    "ref": {
     "outcome_index": 0,
     "pm_market_id": "6241258"
@@ -9166,8 +9171,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.49,
-   "clv_cents": -2.0,
+   "close_price": 0.48,
+   "clv_cents": -3.0,
    "confirmed_after_min": 11,
    "date": "2026-10-28",
    "depth_by_book": {
