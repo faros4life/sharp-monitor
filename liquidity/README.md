@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Wed Oct 28, 2:10 AM ET. This run: 2 new, 0 not confirmed, 2 pending. Open alerts: 32.
+Updated Wed Oct 28, 2:16 AM ET. This run: 2 new, 0 not confirmed, 0 pending. Open alerts: 34.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Oct 28 2:16AM | NBA | Warriors vs. Timberwolves | moneyline: Timberwolves | polymarket | $26k | -150 | ✅ kalshi,novig,prophetx |  | +0.0c |  | pending |
+| Oct 28 2:16AM | NBA | Orlando vs Toronto: Total Points | total: NOT Over 223.5 points | kalshi | $33k | -100 |  |  | +0.0c |  | pending |
 | Oct 28 2:10AM | NBA | Houston Rockets @ Milwaukee Bucks | moneyline: HOU (0) | novig | $25k | -300 | ✅ kalshi,polymarket,prophetx |  | +0.0c |  | pending |
 | Oct 28 2:10AM | NBA | Golden State vs Minnesota | moneyline: Minnesota | kalshi | $146k | -150 | ✅ novig,polymarket,prophetx |  | +0.0c |  | pending |
 | Oct 28 1:35AM | NBA | Charlotte vs Detroit | moneyline: Detroit | kalshi | $37k | -223 | ✅ novig,polymarket |  | +0.0c |  | pending |
@@ -208,5 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 26 9:00AM | NBA | Timberwolves vs. Cavaliers | spread: Cavaliers (-4.5) | polymarket | $68k | -100 | ✅ kalshi |  | -3.0c | yes | L |
 | Oct 26 8:50AM | NFL | Dallas Cowboys @ Philadelphia Eagles | spread: PHI +4.5 (4.5) | novig | $33k | -104 | ✅ kalshi |  | +1.5c | yes | L |
 | Oct 26 8:50AM | NBA | Atlanta vs Houston: Spread | spread: NOT Houston wins by over 5.5 points | kalshi | $50k | -113 | ✅ novig,polymarket |  | -13.0c | yes | L |
-| Oct 26 8:40AM | NBA | Dallas vs Miami: Total Points | total: Over 239.5 points | kalshi | $57k | -100 | ✅ polymarket,prophetx | ✅ | -23.0c | yes | L |
-| Oct 26 8:20AM | NHL | Detroit vs Edmonton | moneyline: Edmonton | kalshi | $67k | -163 | ✅ novig,polymarket,prophetx |  | -5.0c | yes | L |
