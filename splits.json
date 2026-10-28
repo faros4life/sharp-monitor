@@ -34,14 +34,14 @@
    "status": "OPEN",
    "closed_utc": null,
    "plays": 7,
-   "resulted": 5,
-   "W": 2,
-   "L": 2,
+   "resulted": 7,
+   "W": 3,
+   "L": 3,
    "P": 1,
-   "units": -0.41,
-   "u_per_play": -0.082,
-   "true_close_value_pct": -0.96,
-   "true_close_n": 5
+   "units": -0.59,
+   "u_per_play": -0.084,
+   "true_close_value_pct": -1.69,
+   "true_close_n": 7
   },
   {
    "id": "hr_routed",
@@ -55,14 +55,14 @@
    "status": "OPEN",
    "closed_utc": null,
    "plays": 10,
-   "resulted": 7,
+   "resulted": 8,
    "W": 5,
-   "L": 2,
+   "L": 3,
    "P": 0,
-   "units": 2.47,
-   "u_per_play": 0.353,
-   "true_close_value_pct": -0.14,
-   "true_close_n": 7
+   "units": 1.47,
+   "u_per_play": 0.184,
+   "true_close_value_pct": 1.12,
+   "true_close_n": 8
   },
   {
    "id": "hr_fade",
@@ -76,14 +76,14 @@
    "status": "OPEN",
    "closed_utc": null,
    "plays": 10,
-   "resulted": 7,
+   "resulted": 8,
    "W": 5,
-   "L": 2,
+   "L": 3,
    "P": 0,
-   "units": -3.12,
-   "u_per_play": -0.446,
-   "true_close_value_pct": -0.14,
-   "true_close_n": 7
+   "units": -2.21,
+   "u_per_play": -0.276,
+   "true_close_value_pct": 1.12,
+   "true_close_n": 8
   },
   {
    "id": "pmg_routed",
@@ -118,14 +118,14 @@
    "status": "OPEN",
    "closed_utc": null,
    "plays": 10,
-   "resulted": 9,
+   "resulted": 10,
    "W": 5,
-   "L": 4,
+   "L": 5,
    "P": 0,
-   "units": 0.44,
-   "u_per_play": 0.049,
-   "true_close_value_pct": -1.73,
-   "true_close_n": 9
+   "units": -0.56,
+   "u_per_play": -0.056,
+   "true_close_value_pct": -0.56,
+   "true_close_n": 10
   },
   {
    "id": "combined",
@@ -201,15 +201,15 @@
    "kill_bar": ">= 30 resulted at <= -0.1u/play -> CLOSED",
    "status": "OPEN",
    "closed_utc": null,
-   "plays": 6,
-   "resulted": 6,
-   "W": 4,
-   "L": 2,
+   "plays": 9,
+   "resulted": 9,
+   "W": 5,
+   "L": 4,
    "P": 0,
-   "units": -1.95,
-   "u_per_play": -0.325,
-   "true_close_value_pct": 4.28,
-   "true_close_n": 6
+   "units": -0.92,
+   "u_per_play": -0.102,
+   "true_close_value_pct": 3.19,
+   "true_close_n": 9
   },
   {
    "id": "tier2_core",
@@ -718,8 +718,8 @@
  ],
  "prophetx_tripwire": {
   "rule": "next 30 forward ProphetX-priced plays at or below 0.00u/play = PAUSE LIVE and review early",
-  "resulted": 12,
-  "u_per_play": -0.309,
+  "resulted": 14,
+  "u_per_play": -0.278,
   "status": "counting"
  },
  "gaps": {
@@ -741,5 +741,5 @@
   "liq_evening": 0
  },
  "resulted_rule": "resulted = result W, L or P with a unit value (pushes count as 0u); liquidity artifacts excluded; pending and ungraded plays do not count",
- "updated_utc": "2026-10-28T06:05:10Z"
+ "updated_utc": "2026-10-28T06:10:13Z"
 }
