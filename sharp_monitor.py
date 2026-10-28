@@ -158,6 +158,21 @@ def _tg_prefix(tags):
     return "".join(_TG_EMOJI.get(t, "") for t in tags)
 
 
+def listed_start(label, commence):
+    """Oct 28 (Muse fix list #1): the odds feed gives NBA/NHL starts as the estimated tip/puck drop, 10 min after the
+    listed time (7:40 for a 7:30 game). Use the listed time - what the books and exchanges show - for leads, 'late'
+    and resting-bid expiry. Only :10/:40 starts in NBA/NHL are moved; everything else is kept as given."""
+    if label not in ("NBA", "NHL") or not commence:
+        return commence
+    try:
+        t = parse_iso(commence)
+    except Exception:
+        return commence
+    if t.minute in (10, 40) and t.second == 0:
+        return (t - timedelta(minutes=10)).strftime("%Y-%m-%dT%H:%M:%SZ")
+    return commence
+
+
 def notify(title, body, red=False, yellow=False, extra_tags=(), headline=None):
     """red = late alert; yellow = an earlier alert already came in on this game (the first alert is the play).
     extra_tags: ntfy emoji tags (Oct 26: white_check_mark = phase-1 candidate, page_facing_up = paper only)."""
@@ -1333,6 +1348,7 @@ def run():
             st["remaining"] = rem
         st["last_poll"][key] = time.time()
         for ev in events:
+            ev["commence_time"] = listed_start(cfg["label"], ev["commence_time"])
             lines = book_lines(ev)
             vals = sharp_values(lines)
             if not vals:

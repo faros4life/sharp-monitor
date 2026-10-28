@@ -172,6 +172,41 @@ def load(path, default):
         return default
 
 
+def update_alert_times(alerts, n):
+    """Oct 28 (fix list #4): keep liquidity/alert_times.json current every run instead of a one-off backfill:
+    one row per alert key (key + first_seen_utc), every alert time seen, latest result/units. Rows that left the feed
+    stay (in_current_feed false). Key-less rows from the Oct 21 format are dropped."""
+    path = os.path.join(OUT_DIR, "alert_times.json")
+    try:
+        doc = json.load(open(path))
+    except Exception:
+        doc = {"rows": []}
+    feed = "LIQ-EXTRA" if "extra" in OUT_DIR else "LIQ-MAIN"
+    rows = {(r.get("key"), r.get("first_seen_utc")): r for r in doc.get("rows") or [] if r.get("key")}
+    now = n.strftime("%Y-%m-%dT%H:%M:%SZ")
+    cur = set()
+    for a in alerts:
+        if not a.get("key"):
+            continue
+        k = (a["key"], a.get("first_seen_utc"))
+        cur.add(k)
+        r = rows.setdefault(k, {"feed": feed, "key": a["key"], "first_seen_utc": a.get("first_seen_utc"), "alerted_utc_seen": []})
+        if a.get("alerted_utc") and a["alerted_utc"] not in r["alerted_utc_seen"]:
+            r["alerted_utc_seen"].append(a["alerted_utc"])
+        r.update(alerted_utc=a.get("alerted_utc"), league=a.get("league"), market=a.get("market"), game=a.get("game"),
+                 side=a.get("side_label"), result=a.get("result"), units_flat=a.get("units_flat"),
+                 artifact=bool(a.get("artifact")), in_current_feed=True, last_in_feed_utc=now)
+    for k, r in rows.items():
+        if k not in cur:
+            r["in_current_feed"] = False
+    doc["rows"] = sorted(rows.values(), key=lambda r: (r.get("alerted_utc") or "", r.get("key") or ""))
+    doc["note"] = ("Liquidity alert times, one row per alert record (key + first_seen_utc); kept current every run since "
+                   "Oct 28 (was a one-off Oct 27 backfill from git history). alerted_utc_seen = every alert time the feed "
+                   "showed for that record. Join to a poller log by key (plus first_seen_utc where a key re-alerted).")
+    doc["updated_utc"] = now
+    save(path, doc)
+
+
 def save(path, obj):
     os.makedirs(os.path.dirname(path), exist_ok=True)
     with open(path, "w") as f:
@@ -1221,15 +1256,44 @@ def odds_prices(r):
     return out
 
 
-START_PRIORITY = {"polymarket": 0, "prophetx": 1, "novig": 2, "kalshi": 9}   # Kalshi's time field is not the tip-off
+START_PRIORITY = {"odds": -1, "polymarket": 0, "prophetx": 1, "novig": 2, "kalshi": 9}   # Kalshi's time field is not the tip-off
 
 
-def fill_starts(rows):
+def odds_start_rows(leagues):
+    """Oct 28 (forensic): the scheduled start of every game from The Odds API /events (a FREE endpoint: no credits),
+    used as the first start source. Kalshi-only games carried Kalshi's time field (not the tip-off, often hours late),
+    so the 'pregame' close kept reading the game live (closes of 1c/99c). NBA/NHL :10/:40 tips are moved back 10 min
+    to the listed time, the same rule as the sharp monitor."""
+    out = []
+    if not ODDS_KEY:
+        return out
+    for lg in sorted(set(leagues)):
+        sport = ODDS_SPORT.get(lg)
+        if not sport:
+            continue
+        try:
+            evs = get(f"https://api.the-odds-api.com/v4/sports/{sport}/events", {"apiKey": ODDS_KEY}) or []
+        except Exception as ex:
+            print(f"Odds API events failed ({lg}): {str(ex)[:60]}")
+            continue
+        for ev in evs:
+            try:
+                t = datetime.fromisoformat(ev["commence_time"].replace("Z", "+00:00"))
+            except Exception:
+                continue
+            if lg in ("NBA", "NHL") and t.minute in (10, 40) and t.second == 0:
+                t -= timedelta(minutes=10)
+            out.append({"league": lg, "date": t.astimezone(ET).date().isoformat(), "book": "odds", "start": t.timestamp(),
+                        "teams": [ev.get("away_team", ""), ev.get("home_team", "")], "_odds": True})
+    return out
+
+
+def fill_starts(rows, extra=()):
     """One start time per game across all books: take it from the most reliable book that lists the game
     (Polymarket gameStartTime, then ProphetX scheduled, then Novig, Kalshi only if nothing else). Lead-time buckets
     are computed from this, so every book's entry for a game carries the same start."""
     groups = {}
-    for r in rows:
+    for r in list(rows) + list(extra):
         groups.setdefault((r.get("league"), r.get("date")), []).append(r)
     for grp in groups.values():
         clusters = []   # [[rows of one game]]
@@ -1245,8 +1309,10 @@ def fill_starts(rows):
             if not src:
                 continue
             st, book = src[0]["start"], src[0]["book"]
+            earliest = min(x["start"] for x in src)   # Oct 28: the EARLIEST start any book lists closes the pregame window
             for x in c:
                 x["start"], x["start_source"] = st, book
+                x["start_min"] = earliest
 
 
 GAP_BOOKS = ("kalshi", "novig", "prophetx")   # executable exchanges this monitor reads (Polymarket here is the global book)
@@ -1509,6 +1575,17 @@ def run():
     for a in alerts:   # Oct 25 regrade: resulted plays that never had a real pregame close read are kept out of records
         if a.get("result") in ("W", "L", "P") and a.get("close_price") is None:
             a["artifact"] = "no_pregame_close"
+    for a in alerts:   # Oct 28 (fix list #3): second_book is always a list; the old string values move to second_book_status
+        sb = a.get("second_book")
+        if isinstance(sb, str):
+            a["second_book_status"], a["second_book"] = sb, []
+        elif isinstance(sb, list) and "second_book_status" not in a:
+            a["second_book_status"] = "ok" if sb else "no_match"
+    for a in alerts:   # Oct 28 (forensic): a close at an in-game extreme (<= 3c / >= 97c) was read live, not pregame:
+        # flag it so CLV cuts can exclude it (W/L and units are graded from settlement and stay valid)
+        cp = a.get("close_price")
+        if cp is not None and (cp <= 0.03 or cp >= 0.97) and not (a.get("price") and (a["price"] <= 0.05 or a["price"] >= 0.95)):
+            a["close_suspect"] = "in_game_extreme"
 
     rows = []
     if "kalshi" in BOOKS:
@@ -1520,10 +1597,11 @@ def run():
     if "prophetx" in BOOKS:
         rows += px_rows(days, n)
     rows = merge_kalshi_ml(rows)
-    fill_starts(rows)
+    fill_starts(rows, odds_start_rows({r.get("league") for r in rows if r.get("league")}))
     all_by_key = {row_key(r): r for r in rows}                  # every side (for closing price / pulled checks)
     pre = {k: r for k, r in all_by_key.items()
-           if (r["start"] > now_s if r.get("start") else r.get("league") not in PAPER_ONLY)}   # pregame only (tennis: start must be known)
+           if (min(r["start"], r.get("start_min") or r["start"]) > now_s if r.get("start")
+               else r.get("league") not in PAPER_ONLY)}   # pregame only (tennis: start must be known; Oct 28: earliest start)
     by_key = {row_key(r): r for r in main_line_only([r for r in pre.values() if in_band(r)])}   # main lines (for new triggers)
     print(f"Rows: {len(rows)} sides; {len(by_key)} pregame main-line sides")
 
@@ -1538,8 +1616,12 @@ def run():
         r = pre.get(a.get("key"))
         if a.get("result") is not None or not r:
             continue
-        if r["price"] is not None:   # Oct 25: a side with NO offers left = game already live (wrong/late start time):
-            # keep the last real pregame close instead of overwriting it with nothing
+        a_start = a.get("start_utc")
+        started = bool(a_start) and datetime.fromisoformat(a_start.replace("Z", "+00:00")).timestamp() <= now_s
+        if r["price"] is not None and 0.03 < r["price"] < 0.97 and not started and not a.get("close_frozen"):
+            # Oct 25: a side with NO offers left = game already live (wrong/late start time): keep the last real close.
+            # Oct 28 (forensic): never take a close at/after the alert's own start or at an in-game extreme (3c/97c):
+            # closes of 0.01/0.99 showed games read live when one book listed a late start.
             a["close_price"] = r["price"]
             a["clv_cents"] = round(100 * (r["price"] - a["price"]), 1) if a.get("price") else None
         elif a.get("close_price") is not None:
@@ -1626,7 +1708,8 @@ def run():
                                                  "new_this_side": pd["new"], "new_other_side": pd["new_other"]}},
                                   **{b: {"this_side": v["depth"], "label": v["label"], "price": v["price"], "heavier_side": v["heavier"]}
                                      for b, v in others.items()}),
-            "second_book": sorted(second) if second else ("none_10k" if others else "no_match"),
+            "second_book": sorted(second) if second else [],   # Oct 28: always a list (fix list #3)
+            "second_book_status": "ok" if second else ("none_10k" if others else "no_match"),
             "rule_met": bool(second), "sharp_agree": agree, "sharp_oppose": oppose,
             "top25": is_top25(r) if r["league"] == "NCAAF" else None,
             "books_live": BOOKS, "ref": r["ref"], "pulled": False, "close_price": r["price"], "clv_cents": 0.0,
@@ -1682,6 +1765,10 @@ def run():
     alerts = [a for a in alerts if a["alerted_utc"] >= cutoff]
     state["alerted"] = {k: v for k, v in state["alerted"].items() if v >= cutoff}
     state["v"] = STATE_VERSION
+    try:
+        update_alert_times(alerts, n)
+    except Exception as ex:
+        print(f"alert_times update failed: {str(ex)[:80]}")
     save(ALERTS_FILE, {"note": (
         "Liquidity paper alerts (Kalshi + Novig + Polymarket public books; ProphetX read-only key, a trigger book from Oct 24), newest first. Trigger: >= $%d (and >= 10%% of the "
         "side's prior size, capped at $100k) of NEW bids on one side since the last check, measured on total side depth (all price "
