@@ -1,6 +1,158 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-28T02:50:16Z",
+   "base_depth": 73897,
+   "best_price": 0.51,
+   "best_price_american": -104,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-28",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 2616,
+     "new_this_side": 25193,
+     "other_side": 18943,
+     "other_side_all_levels": 71943,
+     "ratio": 2.1,
+     "this_side": 38904,
+     "this_side_all_levels": 94205
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "MIL +8.5 (8.5)",
+     "price": 0.51,
+     "this_side": 5038
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Bucks (+8.5)",
+     "price": 0.51,
+     "this_side": 18724
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Milwaukee Bucks +8.5 (+8.5)",
+     "price": 0.505,
+     "this_side": 2843
+    }
+   },
+   "fade_price": 0.51,
+   "first_seen_utc": "2026-10-28T02:40:10Z",
+   "game": "Houston vs Milwaukee: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBASPREAD-26OCT28HOUMIL-HOU9\"}",
+   "lead_min": 1270,
+   "league": "NBA",
+   "line": 8.5,
+   "market": "spread",
+   "new_money": 25193,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 8.5,
+     "price": -115
+    },
+    "betonlineag": {
+     "point": 8.0,
+     "price": -105
+    },
+    "betopenly": {
+     "point": 8.5,
+     "price": -102
+    },
+    "betrivers": {
+     "point": 8.5,
+     "price": -114
+    },
+    "betus": {
+     "point": 8.0,
+     "price": -105
+    },
+    "bovada": {
+     "point": 8.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 8.5,
+     "price": -110
+    },
+    "fanatics": {
+     "point": 8.5,
+     "price": -115
+    },
+    "fanduel": {
+     "point": 8.5,
+     "price": -120
+    },
+    "kalshi": {
+     "point": 8.5,
+     "price": -104
+    },
+    "lowvig": {
+     "point": 8.0,
+     "price": -101
+    },
+    "mybookieag": {
+     "point": 9.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 8.5,
+     "price": -104
+    },
+    "polymarket": {
+     "point": -18.5,
+     "price": -1567
+    },
+    "prophetx": {
+     "point": 7.0,
+     "price": 121
+    },
+    "williamhill_us": {
+     "point": 8.5,
+     "price": -115
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNBASPREAD-26OCT28HOUMIL-HOU9"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "polymarket"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Milwaukee",
+   "side_label": "NOT Houston wins by over 8.5 points",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-29T00:00:00Z",
+   "teams": [
+    "Houston",
+    "Milwaukee"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-28T02:40:10Z",
    "base_depth": 127013,
    "best_price": 0.53,
@@ -15,8 +167,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": 0.0,
+   "close_price": 0.525,
+   "clv_cents": -0.5,
    "confirmed_after_min": 7,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -667,6 +819,7 @@
     }
    },
    "fade_price": 0.41,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-28T01:43:59Z",
    "game": "Montreal vs St. Louis: Total Goals",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLTOTAL-26OCT27MTLSTL-4\"}",
@@ -734,10 +887,11 @@
     "kalshi_side": "no",
     "market_ticker": "KXNHLTOTAL-26OCT27MTLSTL-4"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": "no_match",
    "second_book_fresh": false,
+   "settled_utc": "2026-10-28T02:50:16Z",
    "sharp_agree": [
     "Under 6.5 (-111)"
    ],
@@ -754,7 +908,7 @@
     "St. Louis"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.62
   },
   {
    "alerted_utc": "2026-10-28T01:30:12Z",
@@ -771,8 +925,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.45,
-   "clv_cents": 0.0,
+   "close_price": 0.43,
+   "clv_cents": -2.0,
    "confirmed_after_min": 10,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -1861,8 +2015,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 0.0,
+   "close_price": 0.51,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -2032,6 +2186,7 @@
     }
    },
    "fade_price": 0.49,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-27T23:14:03Z",
    "game": "Kings vs. Spurs",
    "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"6265762\"}",
@@ -2118,12 +2273,13 @@
     "outcome_index": 0,
     "pm_market_id": "6265762"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
+   "settled_utc": "2026-10-28T02:50:16Z",
    "sharp_agree": [
     "San Antonio Spurs -17.5 (-115)"
    ],
@@ -2138,7 +2294,7 @@
     "Spurs"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.92
   },
   {
    "alerted_utc": "2026-10-27T23:20:11Z",
@@ -3086,6 +3242,7 @@
     }
    },
    "fade_price": 0.54,
+   "fade_units": 0.79,
    "first_seen_utc": "2026-10-27T22:20:10Z",
    "game": "Florida vs Winnipeg: Total Goals",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNHLTOTAL-26OCT27FLAWPG-7\"}",
@@ -3173,12 +3330,13 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNHLTOTAL-26OCT27FLAWPG-7"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
+   "settled_utc": "2026-10-28T02:50:16Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -3191,7 +3349,7 @@
     "Winnipeg"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-27T22:00:15Z",
@@ -3208,8 +3366,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.6,
-   "clv_cents": 13.0,
+   "close_price": 0.63,
+   "clv_cents": 16.0,
    "confirmed_after_min": 5,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -3522,8 +3680,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": 0.0,
+   "close_price": 0.49,
+   "clv_cents": -2.0,
    "confirmed_after_min": 10,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -4776,6 +4934,7 @@
     }
    },
    "fade_price": 0.48,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-27T19:10:11Z",
    "game": "Montreal vs St. Louis: Total Goals",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLTOTAL-26OCT27MTLSTL-7\"}",
@@ -4863,13 +5022,14 @@
     "kalshi_side": "no",
     "market_ticker": "KXNHLTOTAL-26OCT27MTLSTL-7"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig",
     "polymarket"
    ],
    "second_book_fresh": false,
+   "settled_utc": "2026-10-28T02:50:16Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "Over 6 (-118)"
@@ -4884,7 +5044,7 @@
     "St. Louis"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.89
   },
   {
    "alerted_utc": "2026-10-27T18:20:12Z",
@@ -4901,8 +5061,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.77,
-   "clv_cents": 26.0,
+   "close_price": 0.81,
+   "clv_cents": 30.0,
    "confirmed_after_min": 10,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -6929,8 +7089,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": -2.0,
+   "close_price": 0.52,
+   "clv_cents": 0.0,
    "confirmed_after_min": 6,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -7241,6 +7401,7 @@
     }
    },
    "fade_price": 0.47,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-27T15:40:11Z",
    "game": "Florida vs Winnipeg",
    "key": "kalshi|KXNHLGAME-26OCT27FLAWPG|ml|0",
@@ -7328,13 +7489,14 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNHLGAME-26OCT27FLAWPG-FLA"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig",
     "prophetx"
    ],
    "second_book_fresh": false,
+   "settled_utc": "2026-10-28T02:50:16Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Florida",
@@ -7347,7 +7509,7 @@
     "Winnipeg"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.83
   },
   {
    "alerted_utc": "2026-10-27T15:40:11Z",
@@ -7984,8 +8146,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.49,
-   "clv_cents": 0.0,
+   "close_price": 0.5,
+   "clv_cents": 1.0,
    "confirmed_after_min": 13,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -8158,6 +8320,7 @@
     }
    },
    "fade_price": 0.42,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-27T15:00:17Z",
    "game": "Boston vs Carolina: Spread",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLSPREAD-26OCT27BOSCAR-CAR2\"}",
@@ -8241,13 +8404,14 @@
     "kalshi_side": "no",
     "market_ticker": "KXNHLSPREAD-26OCT27BOSCAR-CAR2"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig",
     "polymarket"
    ],
    "second_book_fresh": true,
+   "settled_utc": "2026-10-28T02:50:16Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Boston",
@@ -8260,7 +8424,7 @@
     "Carolina"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.69
   },
   {
    "alerted_utc": "2026-10-27T14:40:12Z",
@@ -8869,8 +9033,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.64,
-   "clv_cents": -2.0,
+   "close_price": 0.63,
+   "clv_cents": -3.0,
    "confirmed_after_min": 10,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -9009,8 +9173,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": 1.0,
+   "close_price": 0.5,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -9189,6 +9353,7 @@
     }
    },
    "fade_price": 0.53,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-27T13:50:11Z",
    "game": "Montreal vs St. Louis",
    "key": "kalshi|KXNHLGAME-26OCT27MTLSTL|ml|0",
@@ -9280,12 +9445,13 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNHLGAME-26OCT27MTLSTL-MTL"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "polymarket"
    ],
    "second_book_fresh": true,
+   "settled_utc": "2026-10-28T02:50:16Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Montreal",
@@ -9298,7 +9464,7 @@
     "St. Louis"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.11
   },
   {
    "alerted_utc": "2026-10-27T13:40:11Z",
@@ -10054,8 +10220,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.35,
-   "clv_cents": -17.0,
+   "close_price": 0.01,
+   "clv_cents": -51.0,
    "confirmed_after_min": 14,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -10370,8 +10536,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.56,
-   "clv_cents": 5.0,
+   "close_price": 0.55,
+   "clv_cents": 4.0,
    "confirmed_after_min": 10,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -10887,6 +11053,7 @@
     }
    },
    "fade_price": 0.32,
+   "fade_units": 1.98,
    "first_seen_utc": "2026-10-27T12:42:57Z",
    "game": "Florida vs Winnipeg: Spread",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLSPREAD-26OCT27FLAWPG-FLA2\"}",
@@ -10970,12 +11137,13 @@
     "kalshi_side": "no",
     "market_ticker": "KXNHLSPREAD-26OCT27FLAWPG-FLA2"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": true,
+   "settled_utc": "2026-10-28T02:50:16Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Winnipeg",
@@ -10988,7 +11156,7 @@
     "Winnipeg"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-27T12:42:57Z",
@@ -11027,6 +11195,7 @@
     }
    },
    "fade_price": 0.31,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-27T12:30:18Z",
    "game": "Montreal vs St. Louis: Spread",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLSPREAD-26OCT27MTLSTL-STL2\"}",
@@ -11110,12 +11279,13 @@
     "kalshi_side": "no",
     "market_ticker": "KXNHLSPREAD-26OCT27MTLSTL-STL2"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
+   "settled_utc": "2026-10-28T02:50:16Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Montreal",
@@ -11128,7 +11298,7 @@
     "St. Louis"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.43
   },
   {
    "alerted_utc": "2026-10-27T12:42:57Z",
@@ -11315,6 +11485,7 @@
     }
    },
    "fade_price": 0.47,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-27T12:20:10Z",
    "game": "Boston vs Carolina: Total Goals",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLTOTAL-26OCT27BOSCAR-7\"}",
@@ -11402,13 +11573,14 @@
     "kalshi_side": "no",
     "market_ticker": "KXNHLTOTAL-26OCT27BOSCAR-7"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig",
     "polymarket"
    ],
    "second_book_fresh": false,
+   "settled_utc": "2026-10-28T02:50:16Z",
    "sharp_agree": [
     "Under 6.5 (-115)"
    ],
@@ -11425,7 +11597,7 @@
     "Carolina"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.87
   },
   {
    "alerted_utc": "2026-10-27T12:30:18Z",
@@ -11442,6 +11614,7 @@
     "polymarket",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.71,
    "clv_cents": 23.0,
    "confirmed_after_min": 10,
@@ -11594,8 +11767,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.44,
-   "clv_cents": -13.0,
+   "close_price": 0.45,
+   "clv_cents": -12.0,
    "confirmed_after_min": 10,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -12197,6 +12370,7 @@
     }
    },
    "fade_price": 0.54,
+   "fade_units": 0.79,
    "first_seen_utc": "2026-10-27T11:21:17Z",
    "game": "Florida vs Winnipeg",
    "key": "kalshi|KXNHLGAME-26OCT27FLAWPG|ml|1",
@@ -12288,10 +12462,11 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNHLGAME-26OCT27FLAWPG-WPG"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": "none_10k",
    "second_book_fresh": false,
+   "settled_utc": "2026-10-28T02:50:16Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Winnipeg",
@@ -12304,7 +12479,7 @@
     "Winnipeg"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-27T10:50:11Z",
@@ -12472,8 +12647,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.57,
-   "clv_cents": 3.0,
+   "close_price": 0.6,
+   "clv_cents": 6.0,
    "confirmed_after_min": 8,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -12787,8 +12962,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.55,
-   "clv_cents": 8.0,
+   "close_price": 0.73,
+   "clv_cents": 26.0,
    "confirmed_after_min": 8,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -13877,6 +14052,7 @@
     }
    },
    "fade_price": 0.47,
+   "fade_units": 1.05,
    "first_seen_utc": "2026-10-27T04:12:10Z",
    "game": "Montreal vs St. Louis",
    "key": "kalshi|KXNHLGAME-26OCT27MTLSTL|ml|1",
@@ -13968,13 +14144,14 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNHLGAME-26OCT27MTLSTL-STL"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig",
     "polymarket"
    ],
    "second_book_fresh": true,
+   "settled_utc": "2026-10-28T02:50:16Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "St. Louis",
@@ -13987,7 +14164,7 @@
     "St. Louis"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-27T04:20:10Z",
@@ -14138,8 +14315,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.24,
-   "clv_cents": -25.0,
+   "close_price": 0.21,
+   "clv_cents": -28.0,
    "confirmed_after_min": 12,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -14440,8 +14617,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.46,
-   "clv_cents": -8.0,
+   "close_price": 0.28,
+   "clv_cents": -26.0,
    "confirmed_after_min": 12,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -20395,6 +20572,7 @@
     }
    },
    "fade_price": 0.38,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-26T18:50:33Z",
    "game": "Boston vs Carolina",
    "key": "kalshi|KXNHLGAME-26OCT27BOSCAR|ml|1",
@@ -20470,12 +20648,13 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNHLGAME-26OCT27BOSCAR-CAR"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "polymarket"
    ],
    "second_book_fresh": false,
+   "settled_utc": "2026-10-28T02:50:16Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Carolina",
@@ -20488,7 +20667,7 @@
     "Carolina"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.59
   },
   {
    "alerted_utc": "2026-10-26T18:50:33Z",
@@ -21269,8 +21448,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.79,
-   "clv_cents": 13.0,
+   "close_price": 0.78,
+   "clv_cents": 12.0,
    "confirmed_after_min": 10,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -29477,8 +29656,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.89,
-   "clv_cents": 22.0,
+   "close_price": 0.97,
+   "clv_cents": 30.0,
    "confirmed_after_min": 10,
    "date": "2026-10-27",
    "depth_by_book": {
