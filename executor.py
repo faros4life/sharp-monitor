@@ -1325,6 +1325,8 @@ def novig_reports():
             st = str(x.get("status") or "?").upper()
             if st in ("PENDING", "SENT", "UNKNOWN"):
                 continue   # not final yet: report when it settles (the home PC re-reads every 5 min)
+            if st == "FILLED" and not int(x.get("filled_qty") or 0):
+                continue   # status says filled but the amount isn't confirmed yet (old-format record): never say "no fill"
             c, q, fq = lm.num(x.get("price")) or 0, int(x.get("qty") or 0), int(x.get("filled_qty") or 0)
             cost = x.get("filled_cost")
             tok = "xnvr" + hashlib.sha1(f"{x.get('client_id')}|{st}|{fq}|{cost}".encode()).hexdigest()[:12]
