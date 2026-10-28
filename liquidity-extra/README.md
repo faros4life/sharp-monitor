@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Wed Oct 28, 5:10 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 18.
+Updated Wed Oct 28, 5:20 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 18.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -14,7 +14,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 28 4:18PM | MLB | Game 5: Milwaukee vs Tampa Bay | moneyline: Tampa Bay | kalshi | $175k | +127 | ✅ novig,polymarket,prophetx |  | +0.0c |  | pending |
 | Oct 28 4:18PM | TENNIS | Fery vs Musetti | moneyline: Musetti | kalshi | $71k | -285 |  |  | -1.0c |  | pending |
 | Oct 28 4:18PM | TENNIS | Djokovic vs Struff | moneyline: Djokovic | kalshi | $63k | -335 |  |  | +0.0c |  | pending |
-| Oct 28 4:00PM | MLB | Milwaukee Brewers vs. Tampa Bay Rays | total: Under (6.5) | polymarket | $27k | -104 | ✅ kalshi,novig,prophetx |  | +0.0c |  | pending |
+| Oct 28 4:00PM | MLB | Milwaukee Brewers vs. Tampa Bay Rays | total: Under (6.5) | polymarket | $27k | -104 | ✅ kalshi,novig,prophetx |  | +1.0c |  | pending |
 | Oct 28 3:40PM | MLB | Milwaukee Brewers @ Tampa Bay Rays | moneyline: TB (0) | novig | $201k | +133 | ✅ prophetx |  | +1.0c |  | pending |
 | Oct 28 1:50PM | TENNIS | Zverev vs Griekspoor | moneyline: Zverev | kalshi | $49k | -400 |  |  | -1.0c |  | pending |
 | Oct 28 1:50PM | TENNIS | Norrie vs Medvedev | moneyline: Medvedev | kalshi | $75k | -456 |  |  | +0.0c |  | pending |
@@ -22,7 +22,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 28 9:40AM | MLB | Milwaukee Brewers @ Tampa Bay Rays | moneyline: MIL (0) | novig | $25k | -144 | ✅ polymarket |  | -2.5c | yes | pending |
 | Oct 28 9:40AM | MLB | Milwaukee vs Tampa Bay: Total Runs | total: NOT Over 6.5 runs scored | kalshi | $108k | +108 |  |  | +4.0c |  | pending |
 | Oct 28 9:30AM | TENNIS | Borges vs Ruud | moneyline: Ruud | kalshi | $50k | -426 |  |  | +5.0c |  | L |
-| Oct 28 9:20AM | MLB | Milwaukee Brewers vs. Tampa Bay Rays | spread: Tampa Bay Rays (+1.5) | polymarket | $47k | -127 | ✅ kalshi,novig |  | +2.0c |  | pending |
+| Oct 28 9:20AM | MLB | Milwaukee Brewers vs. Tampa Bay Rays | spread: Tampa Bay Rays (+1.5) | polymarket | $47k | -127 | ✅ kalshi,novig |  | +3.0c |  | pending |
 | Oct 28 8:30AM | TENNIS | Paul vs Darderi | moneyline: Paul | kalshi | $44k | -400 |  |  | -1.0c |  | pending |
 | Oct 28 7:30AM | TENNIS | Altmaier vs Lehecka | moneyline: Lehecka | kalshi | $62k | -567 |  |  | +0.0c |  | pending |
 | Oct 28 6:30AM | TENNIS | Vacherot vs Jodar | moneyline: Jodar | kalshi | $55k | -285 |  |  | -2.0c |  | pending |
