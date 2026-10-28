@@ -1,11 +1,11 @@
 # EV sightings study (paper, measurement only)
 
-Started 2026-10-27T16:06:50Z. Updated 2026-10-28T01:53:14Z. Sightings are a record, never bets. CLV = close fair - sighting after-fee cost, in cents (+ = beat the close). Gate: >= 50 graded, positive average CLV and positive flat record; reviewed only at a scheduled review. A/B gate on consensus CLV; move-watch (A1) gate on Pinnacle CLV. Held = Pinnacle close minus Pinnacle's pre-move fair at the old number (+ = the move held).
+Started 2026-10-27T16:06:50Z. Updated 2026-10-28T01:58:15Z. Sightings are a record, never bets. CLV = close fair - sighting after-fee cost, in cents (+ = beat the close). Gate: >= 50 graded, positive average CLV and positive flat record; reviewed only at a scheduled review. A/B gate on consensus CLV; move-watch (A1) gate on Pinnacle CLV. Held = Pinnacle close minus Pinnacle's pre-move fair at the old number (+ = the move held).
 
 | Bucket | Sightings | Closed | CLV vs consensus | Beat % | Pin-closed | CLV vs Pinnacle | Graded | Record | Units | ROI | Held | Lag (med) | Gate |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| A cross-book (>= 2c) | 571 | 261 | -0.23c | 22.6% | 261 | -0.35c | 0 | 0-0-0 | +0.00u |  |  |  | criteria not met (0/50 graded, CLV not positive, record not positive) |
-| A qualifying (>= 3c) | 217 | 62 | 1.23c | 12.9% | 62 | 1.77c | 0 | 0-0-0 | +0.00u |  |  |  | criteria not met (0/50 graded, record not positive) |
+| A cross-book (>= 2c) | 576 | 261 | -0.23c | 22.6% | 261 | -0.35c | 0 | 0-0-0 | +0.00u |  |  |  | criteria not met (0/50 graded, CLV not positive, record not positive) |
+| A qualifying (>= 3c) | 222 | 62 | 1.23c | 12.9% | 62 | 1.77c | 0 | 0-0-0 | +0.00u |  |  |  | criteria not met (0/50 graded, record not positive) |
 | B Pinnacle (>= 3% EV) | 1 | 1 | -2.12c | 0.0% | 1 | -0.5c | 0 | 0-0-0 | +0.00u |  |  |  | criteria not met (0/50 graded, CLV not positive, record not positive) |
 | B ref age <60s | 0 | 0 |  |  | 0 |  | 0 | 0-0-0 | +0.00u |  |  |  |  |
 | B ref age 1-5m | 1 | 1 | -2.12c | 0.0% | 1 | -0.5c | 0 | 0-0-0 | +0.00u |  |  |  |  |
@@ -20,10 +20,11 @@ A and B on the same side/line: 1.
 
 ## Odds API credits (100K/month plan)
 
-Study: 943/day, projected 28295/30 days. All monitors on the key: 3325/day, projected 99752/30 days. Remaining 70353; guard holds 16000 for the sharp monitor; polls skipped by the guard: 0.
+Study: 943/day, projected 28281/30 days. All monitors on the key: 3331/day, projected 99935/30 days. Remaining 70344; guard holds 16000 for the sharp monitor; polls skipped by the guard: 0.
 
 ## Last runs
 
+- 2026-10-28T01:53:24Z: 15 games (14 in 24h), quotes {'prophetx': 1230, 'novig': 713, 'kalshi': 1238, 'polymarket_us': 1896}, 364 unmatched, 2455 side/lines, polls [none_due; NBA:fast], moves 0, new A 5 B 0, credits used 2 left 70344, 290s
 - 2026-10-28T01:50:10Z: 15 games (14 in 24h), quotes {'prophetx': 1234, 'novig': 709, 'kalshi': 1246, 'polymarket_us': 1896}, 376 unmatched, 2450 side/lines, polls [none_due; NBA:fast], moves 0, new A 3 B 0, credits used 2 left 70353, 184s
 - 2026-10-28T01:44:01Z: 15 games (14 in 24h), quotes {'prophetx': 1210, 'novig': 710, 'kalshi': 1256, 'polymarket_us': 1396}, 386 unmatched, 2202 side/lines, polls [none_due; NBA:fast], moves 0, new A 2 B 0, credits used 2 left 70359, 253s
 - 2026-10-28T01:40:10Z: 15 games (14 in 24h), quotes {'prophetx': 1154, 'novig': 715, 'kalshi': 1258, 'polymarket_us': 1894}, 388 unmatched, 2452 side/lines, polls [NCAAF:slow; NBA:fast], moves 1, new A 2 B 0, credits used 4 left 70368, 220s
@@ -33,4 +34,3 @@ Study: 943/day, projected 28295/30 days. All monitors on the key: 3325/day, proj
 - 2026-10-28T01:03:31Z: 15 games (12 in 24h), quotes {'prophetx': 1114, 'novig': 704, 'kalshi': 1264, 'polymarket_us': 1396}, 452 unmatched, 1873 side/lines, polls [none_due; NBA:fast], moves 0, new A 9 B 0, credits used 2 left 70418, 289s
 - 2026-10-28T01:00:15Z: 15 games (12 in 24h), quotes {'prophetx': 1114, 'novig': 714, 'kalshi': 1270, 'polymarket_us': 1766}, 460 unmatched, 2090 side/lines, polls [none_due; NBA:fast], moves 0, new A 27 B 0, credits used 2 left 70420, 185s
 - 2026-10-28T00:53:30Z: 15 games (12 in 24h), quotes {'prophetx': 244, 'novig': 712, 'kalshi': 1286, 'polymarket_us': 1396}, 476 unmatched, 1876 side/lines, polls [NCAAF:slow; NBA:fast], moves 0, new A 6 B 0, credits used 4 left 70429, 289s
-- 2026-10-28T00:48:19Z: 15 games (12 in 24h), quotes {'prophetx': 228, 'novig': 706, 'kalshi': 1286, 'polymarket_us': 1638}, 476 unmatched, 2015 side/lines, polls [NBA:fast; NBA:fast], moves 0, new A 16 B 0, credits used 4 left 70435, 301s
