@@ -1089,8 +1089,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.64,
-   "clv_cents": 0.0,
+   "close_price": 0.66,
+   "clv_cents": 2.0,
    "confirmed_after_min": 10,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -3045,6 +3045,7 @@
     }
    },
    "fade_price": 0.56,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-28T01:20:10Z",
    "game": "Buffalo vs San Jose: Total Goals",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLTOTAL-26OCT27BUFSJ-7\"}",
@@ -3132,10 +3133,11 @@
     "kalshi_side": "no",
     "market_ticker": "KXNHLTOTAL-26OCT27BUFSJ-7"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": "none_10k",
    "second_book_fresh": false,
+   "settled_utc": "2026-10-28T05:30:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -3148,7 +3150,7 @@
     "San Jose"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.25
   },
   {
    "alerted_utc": "2026-10-28T01:20:10Z",
@@ -3705,8 +3707,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.66,
-   "clv_cents": 2.0,
+   "close_price": 0.65,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -8314,8 +8316,10 @@
     }
    },
    "fade_price": 0.46,
+   "fade_units": 1.14,
    "first_seen_utc": "2026-10-27T17:20:10Z",
    "game": "Sabres vs. Sharks",
+   "graded_by": "espn",
    "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"5156516\"}",
    "lead_min": 536,
    "league": "NHL",
@@ -8400,13 +8404,14 @@
     "outcome_index": 0,
     "pm_market_id": "5156516"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "kalshi",
     "novig"
    ],
    "second_book_fresh": true,
+   "settled_utc": "2026-10-28T05:30:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -8419,7 +8424,7 @@
     "Sharks"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-27T17:20:10Z",
@@ -8926,8 +8931,10 @@
     }
    },
    "fade_price": 0.36,
+   "fade_units": 1.73,
    "first_seen_utc": "2026-10-27T16:30:13Z",
    "game": "Sabres vs. Sharks",
+   "graded_by": "espn",
    "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6255011\"}",
    "lead_min": 590,
    "league": "NHL",
@@ -9009,12 +9016,13 @@
     "outcome_index": 1,
     "pm_market_id": "6255011"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "kalshi"
    ],
    "second_book_fresh": false,
+   "settled_utc": "2026-10-28T05:30:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Sharks",
@@ -9027,7 +9035,7 @@
     "Sharks"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-27T16:40:11Z",
@@ -11186,6 +11194,7 @@
     }
    },
    "fade_price": 0.35,
+   "fade_units": 1.73,
    "first_seen_utc": "2026-10-27T14:10:11Z",
    "game": "Buffalo vs San Jose: Spread",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLSPREAD-26OCT27BUFSJ-BUF2\"}",
@@ -11269,12 +11278,13 @@
     "kalshi_side": "no",
     "market_ticker": "KXNHLSPREAD-26OCT27BUFSJ-BUF2"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "polymarket"
    ],
    "second_book_fresh": false,
+   "settled_utc": "2026-10-28T05:30:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "San Jose",
@@ -11287,7 +11297,7 @@
     "San Jose"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-27T14:00:16Z",
@@ -14839,6 +14849,7 @@
     }
    },
    "fade_price": 0.47,
+   "fade_units": 1.05,
    "first_seen_utc": "2026-10-27T10:42:06Z",
    "game": "Buffalo vs San Jose: Total Goals",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNHLTOTAL-26OCT27BUFSJ-7\"}",
@@ -14926,13 +14937,14 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNHLTOTAL-26OCT27BUFSJ-7"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig",
     "polymarket"
    ],
    "second_book_fresh": true,
+   "settled_utc": "2026-10-28T05:30:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -14945,7 +14957,7 @@
     "San Jose"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-27T10:50:11Z",
@@ -20771,6 +20783,7 @@
     }
    },
    "fade_price": 0.45,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-26T22:02:00Z",
    "game": "Buffalo vs San Jose",
    "key": "kalshi|KXNHLGAME-26OCT27BUFSJ|ml|0",
@@ -20849,10 +20862,11 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNHLGAME-26OCT27BUFSJ-BUF"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": "none_10k",
    "second_book_fresh": false,
+   "settled_utc": "2026-10-28T05:30:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Buffalo",
@@ -20865,7 +20879,7 @@
     "San Jose"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.79
   },
   {
    "alerted_utc": "2026-10-26T21:20:11Z",
