@@ -177,6 +177,8 @@
    "new_money": 31356,
    "paper_only": false,
    "price": 0.5,
+   "price_after_15m": 0.49,
+   "price_after_15m_book": "novig",
    "price_american": -100,
    "price_rule": "ok",
    "price_when_first_seen": 0.5,
@@ -261,6 +263,7 @@
    "side_label": "NOT Cleveland wins by over 9.5 points",
    "start_source": "polymarket",
    "start_utc": "2026-10-28T23:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Washington",
     "Cleveland"
@@ -410,8 +413,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.49,
-   "clv_cents": 0.0,
+   "close_price": 0.5,
+   "clv_cents": 1.0,
    "confirmed_after_min": 11,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -1456,7 +1459,8 @@
      "price": -235
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-28T04:00:14Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNHLGAME-26OCT28PHIWSH-WSH"
@@ -2219,8 +2223,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.7,
-   "clv_cents": 0.0,
+   "close_price": 0.71,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -7529,8 +7533,10 @@
     }
    },
    "fade_price": 0.32,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-27T17:11:55Z",
    "game": "Minnesota vs Utah: Spread",
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLSPREAD-26OCT27MINUTA-UTA2\"}",
    "lead_min": 460,
    "league": "NHL",
@@ -7612,13 +7618,14 @@
     "kalshi_side": "no",
     "market_ticker": "KXNHLSPREAD-26OCT27MINUTA-UTA2"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig",
     "polymarket"
    ],
    "second_book_fresh": true,
+   "settled_utc": "2026-10-28T04:00:14Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Minnesota",
@@ -7631,7 +7638,7 @@
     "Utah"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.46
   },
   {
    "alerted_utc": "2026-10-27T17:11:55Z",
@@ -10695,8 +10702,10 @@
     }
    },
    "fade_price": 0.53,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-27T13:33:50Z",
    "game": "Wild vs. Utah",
+   "graded_by": "espn",
    "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"5156498\"}",
    "lead_min": 680,
    "league": "NHL",
@@ -10785,13 +10794,14 @@
     "outcome_index": 0,
     "pm_market_id": "5156498"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "kalshi",
     "prophetx"
    ],
    "second_book_fresh": true,
+   "settled_utc": "2026-10-28T04:00:14Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Wild",
@@ -10804,7 +10814,7 @@
     "Utah"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.11
   },
   {
    "alerted_utc": "2026-10-27T13:40:11Z",
@@ -14052,8 +14062,10 @@
     }
    },
    "fade_price": 0.54,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-27T10:42:06Z",
    "game": "Minnesota vs Utah",
+   "graded_by": "espn",
    "key": "kalshi|KXNHLGAME-26OCT27MINUTA|ml|0",
    "lead_min": 850,
    "league": "NHL",
@@ -14135,13 +14147,14 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNHLGAME-26OCT27MINUTA-MIN"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "polymarket",
     "prophetx"
    ],
    "second_book_fresh": true,
+   "settled_utc": "2026-10-28T04:00:14Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Minnesota",
@@ -14154,7 +14167,7 @@
     "Utah"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.15
   },
   {
    "alerted_utc": "2026-10-27T10:42:06Z",
@@ -14651,8 +14664,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.56,
-   "clv_cents": 1.0,
+   "close_price": 0.55,
+   "clv_cents": 0.0,
    "confirmed_after_min": 5,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -14756,7 +14769,8 @@
      "price": -143
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-28T04:00:14Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26OCT28KENNMTU-MTU"
@@ -14794,8 +14808,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 0.0,
+   "close_price": 0.51,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -15709,8 +15723,10 @@
     }
    },
    "fade_price": 0.47,
+   "fade_units": 1.05,
    "first_seen_utc": "2026-10-27T04:00:14Z",
    "game": "Minnesota vs Utah",
+   "graded_by": "espn",
    "key": "kalshi|KXNHLGAME-26OCT27MINUTA|ml|1",
    "lead_min": 1248,
    "league": "NHL",
@@ -15788,12 +15804,13 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNHLGAME-26OCT27MINUTA-UTA"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "polymarket"
    ],
    "second_book_fresh": false,
+   "settled_utc": "2026-10-28T04:00:14Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Utah",
@@ -15806,7 +15823,7 @@
     "Utah"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-27T04:12:10Z",
