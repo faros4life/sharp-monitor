@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Oct 27, 10:49 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 20.
+Updated Tue Oct 27, 10:50 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 20.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,11 +10,11 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Oct 27 10:49PM | TENNIS | Rakhimova vs Alexandrova | moneyline: Rakhimova | kalshi | $244k | -186 |  |  | +0.0c |  | pending |
+| Oct 27 10:49PM | TENNIS | Rakhimova vs Alexandrova | moneyline: Rakhimova | kalshi | $244k | -186 |  |  | -5.0c |  | pending |
 | Oct 27 10:40PM | TENNIS | Bucsa vs Joint | moneyline: Bucsa | kalshi | $47k | +113 |  |  | +1.0c |  | pending |
 | Oct 27 7:32PM | MLB | Milwaukee Brewers at Tampa Bay Rays | moneyline: Tampa Bay Rays | prophetx | $29k | +108 |  |  | +0.0c |  | pending |
 | Oct 27 7:20PM | TENNIS | Dart vs Tjen | moneyline: Tjen | kalshi | $26k | -194 |  |  | +0.0c |  | pending |
-| Oct 27 6:17PM | TENNIS | Rakhimova vs Alexandrova | moneyline: Alexandrova | kalshi | $54k | -285 |  |  | -38.0c |  | pending |
+| Oct 27 6:17PM | TENNIS | Rakhimova vs Alexandrova | moneyline: Alexandrova | kalshi | $54k | -285 |  |  | -34.0c |  | pending |
 | Oct 27 6:10PM | MLB | Milwaukee vs Tampa Bay: Total Runs | total: Over 7.5 runs scored | kalshi | $468k | +117 | ✅ novig |  | -25.0c | yes | pending |
 | Oct 27 6:10PM | TENNIS | Sasnovich vs Shnaider | moneyline: Shnaider | kalshi | $27k | -335 |  |  | -1.0c |  | pending |
 | Oct 27 5:40PM | MLB | Milwaukee Brewers @ Tampa Bay Rays | moneyline: TB (0) | novig | $123k | +111 |  |  | +0.5c | yes | pending |
