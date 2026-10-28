@@ -1,6 +1,142 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-28T16:20:13Z",
+   "base_depth": 234134,
+   "best_price": 0.515,
+   "best_price_american": -106,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-29",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -5465,
+     "new_this_side": 64320,
+     "other_side": 208691,
+     "other_side_all_levels": 267061,
+     "ratio": 1.1,
+     "this_side": 227268,
+     "this_side_all_levels": 297452
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "JMU -20.5 (-20.5)",
+     "price": 0.515,
+     "this_side": 15362
+    }
+   },
+   "fade_price": 0.49,
+   "first_seen_utc": "2026-10-28T16:10:12Z",
+   "game": "Troy vs James Madison: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFSPREAD-26OCT29TROYJMU-JMU21\"}",
+   "lead_min": 1870,
+   "league": "NCAAF",
+   "line": -20.5,
+   "market": "spread",
+   "new_money": 64320,
+   "paper_only": false,
+   "price": 0.52,
+   "price_american": -108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.52,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -20.5,
+     "price": -115
+    },
+    "betonlineag": {
+     "point": -21.0,
+     "price": -110
+    },
+    "betrivers": {
+     "point": -21.0,
+     "price": -114
+    },
+    "betus": {
+     "point": -21.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": -21.0,
+     "price": -105
+    },
+    "draftkings": {
+     "point": -21.0,
+     "price": -108
+    },
+    "fanatics": {
+     "point": -20.5,
+     "price": -115
+    },
+    "fanduel": {
+     "point": -20.5,
+     "price": -115
+    },
+    "kalshi": {
+     "point": -20.5,
+     "price": -108
+    },
+    "lowvig": {
+     "point": -21.0,
+     "price": -106
+    },
+    "mybookieag": {
+     "point": -21.0,
+     "price": -110
+    },
+    "novig": {
+     "point": -20.5,
+     "price": -106
+    },
+    "polymarket": {
+     "point": 13.5,
+     "price": -9900
+    },
+    "prophetx": {
+     "point": -20.5,
+     "price": -110
+    },
+    "williamhill_us": {
+     "point": -21.0,
+     "price": -106
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFSPREAD-26OCT29TROYJMU-JMU21"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "James Madison",
+   "side_label": "James Madison wins by over 20.5 points",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-29T23:30:00Z",
+   "teams": [
+    "Troy",
+    "James Madison"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-28T16:10:12Z",
    "base_depth": 71007,
    "best_price": 0.5375,
@@ -41,6 +177,8 @@
    "new_money": 25254,
    "paper_only": false,
    "price": 0.53,
+   "price_after_15m": 0.5375,
+   "price_after_15m_book": "polymarket",
    "price_american": -113,
    "price_rule": "ok",
    "price_when_first_seen": 0.53,
@@ -125,6 +263,7 @@
    "side_label": "Mavericks (+6.5)",
    "start_source": "polymarket",
    "start_utc": "2026-10-29T01:30:00Z",
+   "still_actionable": true,
    "teams": [
     "Thunder",
     "Mavericks"
@@ -191,6 +330,8 @@
    "new_money": 64933,
    "paper_only": false,
    "price": 0.35,
+   "price_after_15m": 0.34,
+   "price_after_15m_book": "novig",
    "price_american": 186,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.35,
@@ -283,6 +424,7 @@
    "side_label": "Mavericks",
    "start_source": "polymarket",
    "start_utc": "2026-10-29T01:30:00Z",
+   "still_actionable": true,
    "teams": [
     "Thunder",
     "Mavericks"
@@ -349,6 +491,8 @@
    "new_money": 33198,
    "paper_only": false,
    "price": 0.5,
+   "price_after_15m": 0.5,
+   "price_after_15m_book": "novig",
    "price_american": -100,
    "price_rule": "ok",
    "price_when_first_seen": 0.5,
@@ -438,6 +582,7 @@
    "side_label": "NOT Detroit wins by over 7.5 points",
    "start_source": "polymarket",
    "start_utc": "2026-10-28T23:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Charlotte",
     "Detroit"
@@ -2352,8 +2497,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.55,
-   "clv_cents": 0.0,
+   "close_price": 0.56,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -2645,8 +2790,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.48,
-   "clv_cents": -1.0,
+   "close_price": 0.49,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -5399,8 +5544,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.55,
-   "clv_cents": 0.0,
+   "close_price": 0.56,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -8534,8 +8679,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.49,
-   "clv_cents": -2.0,
+   "close_price": 0.48,
+   "clv_cents": -3.0,
    "confirmed_after_min": 11,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -11325,8 +11470,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.78,
-   "clv_cents": -1.0,
+   "close_price": 0.77,
+   "clv_cents": -2.0,
    "confirmed_after_min": 6,
    "date": "2026-10-28",
    "depth_by_book": {
