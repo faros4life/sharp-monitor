@@ -222,7 +222,8 @@ def iso_t(x):
         return None
 
 
-LIVE_UNIT = 50.0   # phase-1 live unit (Peter + Muse, Oct 25); the dry run tags what WOULD GO LIVE at this size
+LIVE_UNIT = 200.0   # phase-1 live unit, to win (Oct 28, Peter: $50 -> $200; same basis: to-win on minus, risk on plus)
+MIN_ORDER = 50.0    # Oct 28: smallest order / routing remainder worth placing (was $5)
 
 
 def live_stake(am):
@@ -769,6 +770,8 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None, held=None):
         if c_eq > alert_cost + tol + 1e-9:
             continue
         thr = lm.american(min(max(alert_cost + tol + hb * hp, 0.01), 0.99))   # worst acceptable real price at this line
+        if mtype in ("spread", "total") and thr is not None:
+            thr = max(thr, CAP_LINE)   # Oct 28: never fill below the -130 after-fee cap, whatever the line conversion says
         avail = sum(d for a, d in levels(b, r) if a is not None and thr is not None and a >= thr)
         if avail <= 0:
             continue
@@ -803,6 +806,8 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None, held=None):
                      "buy": pxc["buy"]} if pxc else None),
                 lc=({"book": lc["book"], "am": lc["am"], "shown": lc["shown"], "line": lc["line"], "avail": lc["avail"],
                      "thr": lc["thr"], "buy": lc["buy"], "ids": lc["ids"]} if lc else None),
+                lcs=[{"book": c["book"], "am": c["am"], "shown": c["shown"], "line": c["line"], "avail": c["avail"],
+                      "thr": c["thr"], "buy": c["buy"], "ids": c["ids"]} for c in lcs],
                 equiv=pick["eq"], hp=hp, hp_src=hp_src, risk=risk, to_win=win, nets=nets,
                 fillable=round(min(pick["avail"], risk), 2), partial=pick["avail"] < risk,
                 others=[c for c in capped if c is not pick][:5])
@@ -1031,7 +1036,8 @@ def bot_orders(M, days=4):
                 return None   # a live email without its ledger: can't trust the registry
             rows, _ = json.JSONDecoder().raw_decode(txt[txt.index("[", i):])
             for row in rows:
-                for is_rest, lo in ((False, row.get("live_order") or {}), (True, row.get("live_rest") or {})):
+                for is_rest, lo in ([(False, row.get("live_order") or {}), (True, row.get("live_rest") or {})]
+                                    + [(False, x or {}) for x in (row.get("live_more") or [])]):
                     if lo.get("status") != "placed" or not lo.get("order_id"):
                         continue
                     ids[str(lo["order_id"])] = lo.get("book") or "prophetx"
@@ -1100,8 +1106,8 @@ def live_order(r):
     if lv.get("book", "prophetx") != "prophetx":
         return live_order_other(r)
     strike, limit, stake = px_limit(lv["px"], lv["risk"])
-    if not strike or stake < 5:
-        return {"status": "refused", "reason": f"ProphetX ladder can't cover $5+ at the alert number (have ${stake:.2f})"}
+    if not strike or stake < MIN_ORDER - 0.01:
+        return {"status": "refused", "reason": f"ProphetX ladder can't cover ${MIN_ORDER:.0f}+ at the alert number (have ${stake:.2f})"}
     label = f"{p.get('sport')} {p.get('game')} | {bet_text(r, lv['line'], limit)}"
     res = px_live.place(strike, limit, stake, label)
     if res["status"] == "placed":
@@ -1124,6 +1130,46 @@ def live_order(r):
     return dict(res, asked_stake=stake, limit=limit, book="prophetx")
 
 
+def _got(o):
+    """Dollars an order took: filled if read, everything asked if unknown (Novig via the home PC, unread fills)."""
+    if not o or o.get("status") != "placed":
+        return 0.0
+    if o.get("sent_to_runner") or o.get("filled_stake") is None:
+        return float(o.get("asked_stake") or 0)
+    return float(o.get("filled_stake") or 0)
+
+
+def live_remainder(r):
+    """Oct 28 (Peter): the unit is $200 total per play across venues. After the best book's fill, take what's left on
+    the next live books at the alert number or better (each its own threshold), skipping remainders under MIN_ORDER.
+    Stops at the first refusal or error (fail closed)."""
+    lv, more = r["live"], []
+    first = lv.get("order") or {}
+    if first.get("status") != "placed":
+        return more
+    target = lv["risk"]
+    used = {lv["book"]}
+    got = _got(first)
+    for c in (r.get("lcs") or []):
+        rem = round(target - got - sum(_got(o) for o in more), 2)
+        if rem < MIN_ORDER - 0.01:
+            break
+        if c["book"] in used:
+            continue
+        used.add(c["book"])
+        save = dict(lv)
+        lv.update(book=c["book"], px=c, ids=c.get("ids") or {}, risk=rem, line=c["line"], am=c["am"], shown=c["shown"])
+        try:
+            o = live_order(r)
+        finally:
+            lv.update({k: save[k] for k in ("book", "px", "ids", "risk", "line", "am", "shown")})
+        o = dict(o, book=o.get("book") or c["book"])
+        more.append(o)
+        if o.get("status") != "placed":
+            break
+    return more
+
+
 def live_order_other(r):
     """Oct 28 (Peter): phase-1 live fill on Kalshi or Polymarket US when that book has the best after-fee price.
     Same unit, cap, STOP and daily stop (book_live counts these dollars as lost until settled)."""
@@ -1132,8 +1178,8 @@ def live_order_other(r):
     name = BOOK_NAME.get(book, book)
     limit_cost, count = book_live.plan(lv["px"].get("buy"), lv["px"].get("thr"), lv["risk"])
     stake = round(count * limit_cost, 2) if limit_cost else 0.0
-    if not limit_cost or stake < 5:
-        return {"status": "refused", "book": book, "reason": f"{name} ladder can't cover $5+ at the alert number (have ${stake:.2f})"}
+    if not limit_cost or stake < MIN_ORDER - 0.01:
+        return {"status": "refused", "book": book, "reason": f"{name} ladder can't cover ${MIN_ORDER:.0f}+ at the alert number (have ${stake:.2f})"}
     limit_am = lm.american(limit_cost)
     label = f"{p.get('sport')} {p.get('game')} | {bet_text(r, lv['line'], limit_am)}"
     if book == "kalshi":
@@ -1192,6 +1238,8 @@ def rest_wanted(r):
         return False
     if lv.get("go"):
         o = lv.get("order") or {}
+        if any(_got(x) > 0 or x.get("status") == "error" for x in (lv.get("more") or [])):
+            return False
         return (o.get("status") == "placed" and o.get("fills_read") is True and not o.get("sent_to_runner")
                 and not (o.get("filled_stake") or 0))
     if r.get("books") is None:
@@ -1235,8 +1283,8 @@ def rest_bid(r):
                 why_not.append("Kalshi: market ambiguous")
                 continue
             n = int(risk // c)
-            if n * c < 5:
-                why_not.append("Kalshi: under $5")
+            if n * c < MIN_ORDER - 0.01:
+                why_not.append(f"Kalshi: under ${MIN_ORDER:.0f}")
                 continue
             res = book_live.kalshi_place(kb[0]["ticker"], kb[0]["buy"], c, n, f"{p.get('sport')} {p.get('game')} | {p.get('bet')}",
                                          int(expire.timestamp()))
@@ -1274,21 +1322,39 @@ def novig_reports():
     M = imap_open()
     try:
         for x in recs[-30:]:
-            tok = "xnvr" + hashlib.sha1(f"{x.get('client_id')}|{x.get('status')}|{x.get('filled_qty')}".encode()).hexdigest()[:12]
+            st = str(x.get("status") or "?").upper()
+            if st in ("PENDING", "SENT", "UNKNOWN"):
+                continue   # not final yet: report when it settles (the home PC re-reads every 5 min)
+            c, q, fq = lm.num(x.get("price")) or 0, int(x.get("qty") or 0), int(x.get("filled_qty") or 0)
+            cost = x.get("filled_cost")
+            tok = "xnvr" + hashlib.sha1(f"{x.get('client_id')}|{st}|{fq}|{cost}".encode()).hexdigest()[:12]
             if gsearch_strict(M, tok):
                 continue
-            c, q, fq = lm.num(x.get("price")) or 0, int(x.get("qty") or 0), int(x.get("filled_qty") or 0)
-            am = lm.american(c) if c else None
-            st = str(x.get("status") or "?").upper()
-            msg = (f"NOVIG {st}: {x.get('label') or ''}\n{fq:,} of {q:,} contracts filled at {am:+d} or better "
-                   f"(${fq * c / 100:,.2f} of ${q * c / 100:,.2f})" if am else f"NOVIG {st}: {x.get('label') or ''}")
-            if x.get("tif") == "GTT" and st in ("OPEN", "RESTING", "PARTIAL"):
+            ap = lm.num(x.get("avg_price"))
+            if st in ("REFUSED", "REJECTED"):
+                head = f"NOVIG {st}"
+            elif q and fq >= q:
+                head = "NOVIG FILLED"
+            elif fq > 0:
+                head = "NOVIG PARTIAL FILL"
+            elif st == "OPEN":
+                head = "NOVIG RESTING (nothing filled yet)"
+            else:
+                head = "NOVIG NO FILL"
+            msg = f"{head}: {x.get('label') or ''}"
+            if fq > 0:
+                pay = fq / 100
+                msg += (f"\n{fq:,} of {q:,} contracts: ${(cost if cost is not None else fq * c / 100):,.2f} to pay ${pay:,.2f}"
+                        + (f" (avg {lm.american(ap):+d})" if ap else ""))
+            elif st not in ("REFUSED", "REJECTED"):
+                msg += f"\nlimit {lm.american(c):+d}, ${q * c / 100:,.2f} asked; nothing traded"
+            if x.get("tif") == "GTT" and st == "OPEN":
                 msg += "\nResting until 30 min before the start (cancel in the Novig app if needed)."
             if x.get("error"):
                 msg += f"\n{str(x['error'])[:160]}"
             tg(msg)
             try:
-                send(f"Bets Novig order: {st}", msg + f"\n\n{tok}")
+                send(f"Bets Novig order: {head.replace('NOVIG ', '')}", msg + f"\n\n{tok}")
             except Exception:
                 pass
             n += 1
@@ -1324,7 +1390,9 @@ def ledger_row(r, run_start):
                                book=(lv.get("order") or {}).get("book") or "prophetx") if lv.get("order") else None,
             "live_rest": ({k: (lv.get("rest") or {}).get(k) for k in ("status", "reason", "book", "order_id", "asked_stake",
                                                                        "limit", "filled_stake", "expires_utc")}
-                          if lv.get("rest") else None)}
+                          if lv.get("rest") else None),
+            "live_more": [{k: o.get(k) for k in ("status", "reason", "book", "order_id", "asked_stake", "limit", "filled_stake",
+                                                  "avg_price")} for o in (lv.get("more") or [])]}
 
 
 def send(subject, body):
@@ -1428,6 +1496,7 @@ def main():
                          "you can place it by hand.")
             if r["verdict"] == "WOULD PLACE" and (r.get("live") or {}).get("go"):
                 r["live"]["order"] = live_order(r)
+                r["live"]["more"] = live_remainder(r)   # Oct 28: $200 total per play across venues
             if rest_wanted(r):   # Oct 28 (Peter): nothing filled at the number -> rest a bid until 30 min before the start
                 r["live"]["rest"] = rest_bid(r)
             results.append(r)
@@ -1455,6 +1524,7 @@ def main():
     body += [f"  - {bet_text(r, r['live']['line'], r['live']['shown'])} on {BOOK_NAME.get(r['live'].get('book', 'prophetx'), 'ProphetX')}: risk {money(r['live']['risk'])} to win "
              f"{money(r['live']['to_win'])}  ({r['play'].get('sport')} {r['play'].get('game')})"
              + order_note(r['live'].get('order'))
+             + "".join(f" + {BOOK_NAME.get(o.get('book'), o.get('book'))}" + order_note(o) for o in (r['live'].get('more') or []))
              + ("  [partial: not all of it at this price]" if r["live"]["partial"] else "")
              + ("  [NFL: tagged for the dry run; in/out decided at the pre-live review]" if r["live"].get("nfl") else "")
              for r in golive] or ["  - none this run"]

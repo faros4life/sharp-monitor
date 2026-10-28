@@ -1027,7 +1027,7 @@ def settle(alerts, n):
             a["settled_utc"] = n.strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
-def tg_mirror(text):
+def tg_mirror(text, html=False):
     """Oct 27 (Peter): every ntfy push is mirrored to Telegram (@sharp_fills_bot) so all alerts land in one place.
     Secrets TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID; missing or failing = silently skipped. ntfy is unchanged and always
     fires first. Nothing is printed to the public log."""
@@ -1036,23 +1036,37 @@ def tg_mirror(text):
         return
     try:
         req = urllib.request.Request(f"https://api.telegram.org/bot{tok}/sendMessage",
-                                     data=json.dumps({"chat_id": chat, "text": text[:3500]}).encode(), method="POST",
+                                     data=json.dumps(dict({"chat_id": chat, "text": text[:3500]},
+                                                          **({"parse_mode": "HTML"} if html else {}))).encode(), method="POST",
                                      headers={"Content-Type": "application/json"})
         urllib.request.urlopen(req, timeout=15).read()
     except Exception:
         print("telegram mirror failed")
 
 
-def notify(title, body):
+def _esc(t):
+    return str(t).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+
+
+LIQ_BOOK_NAME = {"kalshi": "Kalshi", "polymarket": "Polymarket", "novig": "Novig", "prophetx": "ProphetX"}
+
+
+def notify(title, body, headline=None):
     if not NTFY_TOPIC:
         return
     try:
-        req = urllib.request.Request(f"https://ntfy.sh/{NTFY_TOPIC}", data=body.encode(), method="POST",
-                                     headers={"Title": title.encode("ascii", "ignore").decode(), "Tags": "droplet"})
+        hdr = {"Title": title.encode("ascii", "ignore").decode(), "Tags": "droplet"}
+        if headline:
+            hdr["Markdown"] = "yes"
+        req = urllib.request.Request(f"https://ntfy.sh/{NTFY_TOPIC}", data=((f"**{headline}**\n" if headline else "") + body).encode(),
+                                     method="POST", headers=hdr)
         urllib.request.urlopen(req, timeout=15).read()
     except Exception as ex:
         print(f"ntfy failed: {ex}")
-    tg_mirror(f"\U0001F4A7 {title}\n{body}")
+    if headline:
+        tg_mirror(f"<b>{_esc(headline)}</b>\n\U0001F4A7 {_esc(title)}\n{_esc(body)}", html=True)
+    else:
+        tg_mirror(f"\U0001F4A7 {title}\n{body}")
 
 
 # ---------------------------------------------------------------- main
@@ -1639,7 +1653,10 @@ def run():
                    f"+${pd['new']:,.0f} new bids, still there after {round(age)}m; now ${r['tot']:,.0f} vs ${r['otot']:,.0f}\n"
                    + (f"Price {r['price']:.2f} ({a['price_american']:+d})\n" if a['price_american'] else "")
                    + "2nd book: " + (", ".join(f"{b} ${v['depth']:,}" for b, v in others.items()) or "no match")
-                   + (f"\nSharp alert agrees: {', '.join(agree)}" if agree else ""))
+                   + (f"\nSharp alert agrees: {', '.join(agree)}" if agree else ""),
+                   headline=f"{a['game']} \u2014 {a['side_label']}"
+                            + (f" ({a['price_american']:+d})" if a.get('price_american') else "")
+                            + f" @ {LIQ_BOOK_NAME.get(r['book'], r['book'])}")
 
     # --- new signals -> pending (confirmed or dropped on the next check)
     for key, r in by_key.items():

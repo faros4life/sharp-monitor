@@ -6,7 +6,7 @@ phase-1 Novig order here through workflow_dispatch. This script:
   place  : re-checks the inputs, places ONE order with the trading key, reads it back, records the result
   refresh: (every 5 min) re-reads the bot's still-open Novig orders and records any fill/close changes
 Results go to snapshot/novig_orders.json in THIS private repo; the executor reads that file and texts Peter.
-Hard limits here too (fail closed): price 2c-98c, cost <= $100, tif FOK or GTT, GTT ttl <= 24 h.
+Hard limits here too (fail closed): price 2c-98c, cost <= $275, tif FOK or GTT, GTT ttl <= 24 h.
 Log: counts and statuses only; never balances.
 """
 import base64
@@ -22,7 +22,7 @@ from datetime import datetime, timezone
 
 HOST = "https://api.novig.com"
 PATH = "snapshot/novig_orders.json"
-MAX_COST = 100.0
+MAX_COST = 275.0   # Oct 28: $200 to-win unit (risk up to $260 at -130)
 KEY_ID = (os.environ.get("NOVIG_TRADE_KEY_ID") or "").strip()
 PEM = (os.environ.get("NOVIG_TRADE_KEY_PEM") or "").strip()
 UNRESERVED = set("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~")
@@ -98,15 +98,50 @@ def save(doc, sha, api, note):
 
 
 def order_state(oid):
-    """(status, filled_qty) for one order, or (None, None)."""
+    """(status, filled_qty) from the Order object: status PENDING|OPEN|FILLED|CANCELED|REJECTED; filled = qty - remaining
+    (Novig: "a partly filled order stays OPEN - track remaining, not the status"). (None, None) if unreadable."""
     st, d = call("GET", f"/v3/orders/{oid}")
     if st != 200 or not isinstance(d, dict):
         return None, None
     o = d.get("order") or d
-    filled = o.get("filledQty", o.get("filled_qty", o.get("executedQty")))
-    if filled is None and o.get("qty") is not None and o.get("remainingQty") is not None:
-        filled = int(o["qty"]) - int(o["remainingQty"])
-    return (o.get("status") or o.get("state")), (int(float(filled)) if filled is not None else None)
+    try:
+        filled = int(o["qty"]) - int(o["remaining"])
+    except (KeyError, TypeError, ValueError):
+        filled = None
+    return (str(o.get("status") or "").upper() or None), filled
+
+
+def fills_for(oid):
+    """(contracts, dollars) actually traded on this order, from GET /v3/portfolio/fills (cost = qty x price x 1c) -
+    the same numbers the Novig app shows. (None, None) if unreadable."""
+    st, d = call("GET", "/v3/portfolio/fills", {"limit": 100})
+    if st != 200:
+        return None, None
+    items = d if isinstance(d, list) else (d.get("items") or d.get("fills") or d.get("data") or [])
+    q, cost = 0, 0.0
+    for f in items:
+        if str(f.get("orderId")) == str(oid):
+            q += int(f.get("qty") or 0)
+            cost += float(f.get("cost") or 0)
+    return q, round(cost, 2)
+
+
+def settle(rec, wait_s=20):
+    """Read the order until it leaves PENDING (up to wait_s), then confirm the fill from the fills list."""
+    t0 = time.time()
+    status, filled = order_state(rec["order_id"])
+    while status in (None, "PENDING") and time.time() - t0 < wait_s:
+        time.sleep(4)
+        status, filled = order_state(rec["order_id"])
+    fq, fcost = fills_for(rec["order_id"])
+    if fq is not None and (filled is None or fq >= filled):
+        filled = fq
+    rec["status"] = (status or "UNKNOWN").upper()
+    rec["filled_qty"] = filled if filled is not None else rec.get("filled_qty", 0)
+    if fcost is not None:
+        rec["filled_cost"] = fcost
+        rec["avg_price"] = round(fcost * 100 / fq, 4) if fq else None   # traded price = 100 x cost / qty
+    return rec
 
 
 def place():
@@ -134,15 +169,15 @@ def place():
             rec.update(status="rejected", error=f"HTTP {st}: {str(resp)[:200]}")
         else:
             rec["order_id"] = resp.get("orderId") if isinstance(resp, dict) else None
-            time.sleep(4)
-            s2, f2 = order_state(rec["order_id"]) if rec["order_id"] else (None, None)
-            rec["status"] = str(s2 or ("sent" if tif == "GTT" else "unknown")).lower()
-            rec["filled_qty"] = f2 if f2 is not None else 0
+            rec["status"] = "PENDING"
+            if rec["order_id"]:
+                time.sleep(2)
+                settle(rec)
     doc, sha, api = load()
     doc.setdefault("orders", []).append(rec)
     save(doc, sha, api, f"Novig order {rec['status']}")
     print(f"Novig order: status {rec['status']}; tif {tif}; filled {'yes' if rec['filled_qty'] else 'no'}")
-    if rec["status"] in ("refused", "rejected"):
+    if rec["status"] in ("refused", "rejected", "REJECTED"):
         print(f"   reason: {rec['error']}")
 
 
@@ -153,14 +188,12 @@ def refresh():
     doc, sha, api = load()
     changed = 0
     for rec in doc.get("orders", [])[-50:]:
-        if not rec.get("order_id") or rec.get("status") in ("filled", "cancelled", "canceled", "expired", "rejected", "refused", "closed"):
+        final = str(rec.get("status")).upper() in ("FILLED", "CANCELED", "REJECTED", "REFUSED")
+        if not rec.get("order_id") or (final and rec.get("filled_cost") is not None):
             continue
-        s2, f2 = order_state(rec["order_id"])
-        if s2 is None:
-            continue
-        s2 = str(s2).lower()
-        if s2 != rec.get("status") or (f2 is not None and f2 != rec.get("filled_qty")):
-            rec["status"], rec["filled_qty"] = s2, (f2 if f2 is not None else rec.get("filled_qty"))
+        before = (rec.get("status"), rec.get("filled_qty"), rec.get("filled_cost"))
+        settle(rec, wait_s=0)
+        if (rec.get("status"), rec.get("filled_qty"), rec.get("filled_cost")) != before:
             rec["updated_utc"] = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
             changed += 1
     if changed:

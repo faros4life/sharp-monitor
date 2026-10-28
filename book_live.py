@@ -150,6 +150,11 @@ def kalshi_place(ticker, buy, limit_cost, count, label="", expire_ts=None):
     filled, cost_sum, n, read = 0.0, 0.0, 0.0, True
     try:
         _, r = _k_call("GET", "/portfolio/fills", {"order_id": oid}) if oid else (0, {})
+        for _ in range(2):   # Oct 28: fills can lag the match - read twice more before calling it "no fill"
+            if (r.get("fills") or []) or not oid or expire_ts:
+                break
+            time.sleep(5)
+            _, r = _k_call("GET", "/portfolio/fills", {"order_id": oid})
         for f in (r.get("fills") or []):
             c = _num(f.get("count_fp")) or _num(f.get("count")) or 0
             yp = _num(f.get("yes_price_dollars"))

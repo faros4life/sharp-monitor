@@ -5,7 +5,7 @@ ProphetX LIVE order placement for the executor (Oct 26, 2026). The ONLY file wit
 Every order goes through place(), which refuses unless ALL of these hold (fail closed):
   1. EXEC_LIVE == "on" (GitHub repo variable; the permanent off switch)
   2. no "STOP" on Peter's ntfy topic newer than the last "GO" (quick pause from the phone; ntfy keeps ~12 h)
-  3. stake <= MAX_ORDER ($100 hard guard against a bad price/unit)
+  3. stake <= MAX_ORDER ($275 hard guard against a bad price/unit; Oct 28, $200 unit)
   4. today's ProphetX result for orders placed today is above -DAILY_STOP ($1,500); unreadable = refuse
   5. fillOrKill at a limit price: it fills now at that price or better, or nothing happens; nothing rests
 Oct 27: the daily stop counts ONLY the bot's own orders (registry = order ids in the executor's
@@ -30,7 +30,7 @@ BASE = os.environ.get("PX_BASE", "") or "https://cash.api.prophetx.co/partner"
 ACCESS = (os.environ.get("PROPHETX_TRADE_ACCESS_KEY") or "").strip()
 SECRET = (os.environ.get("PROPHETX_TRADE_SECRET_KEY") or "").strip()
 LIVE = (os.environ.get("EXEC_LIVE") or "off").strip().lower() == "on"
-MAX_ORDER = float(os.environ.get("EXEC_MAX_ORDER", "") or "100")
+MAX_ORDER = float(os.environ.get("EXEC_MAX_ORDER", "") or "275")   # Oct 28: $200 to win at the -130 cap risks $260
 DAILY_STOP = float(os.environ.get("EXEC_DAILY_STOP", "") or "1500")
 QTY_MEANS = (os.environ.get("PX_QTY_MEANS") or "stake").strip().lower()
 TOPIC = os.environ.get("NTFY_TOPIC", "")
@@ -228,6 +228,11 @@ def place(strike_id, limit_price, stake, label=""):
     filled, avg = 0.0, None
     try:
         mine = [t for t in trades() if str(t.get("order_id")) == str(oid)] if oid else []
+        for _ in range(2):   # Oct 28: get_trades can lag the match - read twice more before calling it "no fill"
+            if mine or not oid:
+                break
+            time.sleep(5)
+            mine = [t for t in trades() if str(t.get("order_id")) == str(oid)]
         filled = round(sum(stake_of(t) for t in mine), 2)
         if mine:
             avg = round(sum(int(t.get("price") or 0) * stake_of(t) for t in mine) / max(filled, 1e-9))

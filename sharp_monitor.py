@@ -129,7 +129,7 @@ def http_get(path, params):
         return body, (int(float(rem)) if rem is not None else None)
 
 
-def tg_mirror(text):
+def tg_mirror(text, html=False):
     """Oct 27 (Peter): every ntfy push is mirrored to Telegram (@sharp_fills_bot) so all alerts land in one place.
     Secrets TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID; missing or failing = silently skipped. ntfy is unchanged and always
     fires first. Nothing is printed to the public log."""
@@ -138,11 +138,16 @@ def tg_mirror(text):
         return
     try:
         req = urllib.request.Request(f"https://api.telegram.org/bot{tok}/sendMessage",
-                                     data=json.dumps({"chat_id": chat, "text": text[:3500]}).encode(), method="POST",
+                                     data=json.dumps(dict({"chat_id": chat, "text": text[:3500]},
+                                                          **({"parse_mode": "HTML"} if html else {}))).encode(), method="POST",
                                      headers={"Content-Type": "application/json"})
         urllib.request.urlopen(req, timeout=15).read()
     except Exception:
         print("telegram mirror failed")
+
+
+def _esc(t):
+    return str(t).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 
 
 _TG_EMOJI = {"moneybag": "\U0001F4B0", "red_circle": "\U0001F534", "yellow_circle": "\U0001F7E1", "white_check_mark": "\u2705",
@@ -153,19 +158,25 @@ def _tg_prefix(tags):
     return "".join(_TG_EMOJI.get(t, "") for t in tags)
 
 
-def notify(title, body, red=False, yellow=False, extra_tags=()):
+def notify(title, body, red=False, yellow=False, extra_tags=(), headline=None):
     """red = late alert; yellow = an earlier alert already came in on this game (the first alert is the play).
     extra_tags: ntfy emoji tags (Oct 26: white_check_mark = phase-1 candidate, page_facing_up = paper only)."""
     if not NTFY_TOPIC:
         print(f"[dry-run alert] {title}\n{body}\n")
         return
-    req = urllib.request.Request(
-        f"https://ntfy.sh/{NTFY_TOPIC}", data=body.encode(), method="POST",
-        headers={"Title": title.encode("ascii", "ignore").decode(), "Priority": "high",
-                 "Tags": ",".join(list(extra_tags) + [t for t, on in (("red_circle", red), ("yellow_circle", yellow), ("moneybag", True)) if on])})
+    # Oct 28 (Peter): bold first line on every alert: <game> - <bet with line and price> @ <book> (ntfy Markdown on)
+    hdr = {"Title": title.encode("ascii", "ignore").decode(), "Priority": "high",
+           "Tags": ",".join(list(extra_tags) + [t for t, on in (("red_circle", red), ("yellow_circle", yellow), ("moneybag", True)) if on])}
+    if headline:
+        hdr["Markdown"] = "yes"
+    req = urllib.request.Request(f"https://ntfy.sh/{NTFY_TOPIC}", data=((f"**{headline}**\n" if headline else "") + body).encode(),
+                                 method="POST", headers=hdr)
     urllib.request.urlopen(req, timeout=15).read()
     tags = list(extra_tags) + [t for t, on in (("red_circle", red), ("yellow_circle", yellow), ("moneybag", True)) if on]
-    tg_mirror(f"{_tg_prefix(tags)} {title}\n{body}".strip())
+    if headline:
+        tg_mirror(f"<b>{_esc(headline)}</b>\n{_esc((_tg_prefix(tags) + ' ' + title).strip())}\n{_esc(body)}", html=True)
+    else:
+        tg_mirror(f"{_tg_prefix(tags)} {title}\n{body}".strip())
 
 
 def load_state():
@@ -1372,7 +1383,7 @@ def run():
                             _fl = re.search(r"bet only at ([^ ]+(?: [^ ]+)?) or better", a.get("why") or "")
                             label = (f"LIVE - PLAY AT {nm(a['book']).upper()}: {a['text'].split(' at ')[0]}"
                                      + (f", only at {_fl.group(1)} or better" if _fl else "")
-                                     + f" | {bet_size(a['price'], a['book'])} | wait for Muse's OK")
+                                     + f" | {bet_size(a['price'], a['book'])}")
                         else:
                             label = "PAPER - don't bet (" + "; ".join(p1_why[:2]) + ")"
                         notify(("LIVE " if p1_ok else "PAPER ") + f"Sharp alert {cfg['label']}" + (" LATE" if late else ""),
@@ -1380,7 +1391,8 @@ def run():
                                f"Grade {grade} ({score}/100)" + (f" | Edge {a['evp']:+.1f}%" if a.get("evp") is not None else "") + " | "
                                + (f"LATE: starts in {lead_text(lead)}" if late else f"starts in {lead_text(lead)}"),
                                red=late, yellow=(not late) and bool(prior or (repeat and REPEAT_MODE != "mute")),   # late = red only
-                               extra_tags=("white_check_mark",) if p1_ok else ("page_facing_up",))
+                               extra_tags=("white_check_mark",) if p1_ok else ("page_facing_up",),
+                               headline=f"{a['game']} \u2014 {a['text'].split(' at ')[0]} @ {nm(a['book'])}")
                     st["alerted"][a["id"]] = time.time()
                     e = {k: a[k] for k in ("id", "ev", "game", "kind", "side", "pt", "price", "book", "conf", "nconf", "cby", "evp", "fade")}
                     e.update(sport=cfg["label"], start=a["commence"], t=time.time(), lead=round(lead), late=late,
