@@ -541,19 +541,52 @@ SNAP_URL = "https://api.github.com/repos/faros4life/novig-runner/contents/snapsh
 SNAP_MAX_MIN = 15
 
 
+def _snap_read(tok):
+    req = urllib.request.Request(SNAP_URL, headers={"Authorization": f"Bearer {tok}", "Accept": "application/vnd.github.raw+json",
+                                                    "X-GitHub-Api-Version": "2022-11-28", "User-Agent": "sharp-monitor"})
+    with urllib.request.urlopen(req, timeout=15) as r:
+        snap = json.loads(r.read().decode())
+    age = (datetime.now(timezone.utc) - datetime.fromisoformat(snap["snapshot_utc"].replace("Z", "+00:00"))).total_seconds() / 60
+    return snap, age
+
+
+def _snap_refresh(tok):
+    """Oct 28: GitHub runs the home PC's 5-minute schedule late (gaps of an hour seen), so when the snapshot is stale the
+    executor asks the home PC for a fresh one now (workflow_dispatch; the token has Actions write on novig-runner)."""
+    for wf in ("novig-positions_1.yml", "novig-positions.yml"):
+        try:
+            req = urllib.request.Request(f"https://api.github.com/repos/faros4life/novig-runner/actions/workflows/{wf}/dispatches",
+                                         data=json.dumps({"ref": "main"}).encode(), method="POST", headers={
+                                             "Authorization": f"Bearer {tok}", "Accept": "application/vnd.github+json",
+                                             "X-GitHub-Api-Version": "2022-11-28", "User-Agent": "sharp-monitor",
+                                             "Content-Type": "application/json"})
+            urllib.request.urlopen(req, timeout=15).read()
+            return True
+        except Exception:
+            continue
+    return False
+
+
 def novig_snapshot():
-    """Novig positions written every 5 min by Peter's home runner (private repo novig-runner), read with a token scoped
-    read-only to that repo (secret NOVIG_SNAPSHOT_TOKEN). Older than 15 min, failed, or unreadable -> None (held)."""
+    """Novig positions written by Peter's home runner (private repo novig-runner), read with a token scoped to that repo
+    (secret NOVIG_SNAPSHOT_TOKEN). Stale (>15 min) -> ask the home PC for a fresh one and wait up to ~90 s.
+    Still stale, failed, or unreadable -> None (held)."""
     tok = (os.environ.get("NOVIG_SNAPSHOT_TOKEN") or "").strip()
     if not tok:
         _NVERR["why"] += " | no snapshot token"
         return None
     try:
-        req = urllib.request.Request(SNAP_URL, headers={"Authorization": f"Bearer {tok}", "Accept": "application/vnd.github.raw+json",
-                                                        "X-GitHub-Api-Version": "2022-11-28", "User-Agent": "sharp-monitor"})
-        with urllib.request.urlopen(req, timeout=15) as r:
-            snap = json.loads(r.read().decode())
-        age = (datetime.now(timezone.utc) - datetime.fromisoformat(snap["snapshot_utc"].replace("Z", "+00:00"))).total_seconds() / 60
+        snap, age = _snap_read(tok)
+        if (age > SNAP_MAX_MIN or not snap.get("ok")) and _snap_refresh(tok):
+            for _ in range(9):
+                time.sleep(10)
+                try:
+                    s2, a2 = _snap_read(tok)
+                except Exception:
+                    continue
+                if a2 < age:
+                    snap, age = s2, a2
+                    break
         if not snap.get("ok"):
             _NVERR["why"] += f" | home snapshot failed ({str(snap.get('error'))[:60]})"
             return None
