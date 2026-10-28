@@ -1,6 +1,330 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-28T06:10:10Z",
+   "base_depth": 24857,
+   "best_price": 0.75,
+   "best_price_american": -300,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.75,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-28",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Houston",
+     "price": 0.75,
+     "this_side": 610278
+    },
+    "novig": {
+     "new_other_side": 507,
+     "new_this_side": 25135,
+     "other_side": 7354,
+     "other_side_all_levels": 7848,
+     "ratio": 7.0,
+     "this_side": 51484,
+     "this_side_all_levels": 51947
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Rockets",
+     "price": 0.75,
+     "this_side": 117207
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Houston Rockets",
+     "price": 0.7468,
+     "this_side": 28693
+    }
+   },
+   "fade_price": 0.26,
+   "first_seen_utc": "2026-10-28T06:00:15Z",
+   "game": "Houston Rockets @ Milwaukee Bucks",
+   "key": "novig|{\"market_id\": \"01a17f89-3aab-7331-9fb1-bd0e9f8d63c1\", \"outcome_id\": \"01a17f89-3aab-7331-9fb1-bd2857bd810d\"}",
+   "lead_min": 1070,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 25135,
+   "paper_only": false,
+   "price": 0.75,
+   "price_american": -300,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.745,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -325
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -340
+    },
+    "betopenly": {
+     "point": null,
+     "price": -307
+    },
+    "betrivers": {
+     "point": null,
+     "price": -305
+    },
+    "betus": {
+     "point": null,
+     "price": -330
+    },
+    "bovada": {
+     "point": null,
+     "price": -350
+    },
+    "draftkings": {
+     "point": null,
+     "price": -310
+    },
+    "fanatics": {
+     "point": null,
+     "price": -340
+    },
+    "fanduel": {
+     "point": null,
+     "price": -295
+    },
+    "kalshi": {
+     "point": null,
+     "price": -300
+    },
+    "limitless": {
+     "point": null,
+     "price": -305
+    },
+    "lowvig": {
+     "point": null,
+     "price": -336
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -350
+    },
+    "novig": {
+     "point": null,
+     "price": -300
+    },
+    "polymarket": {
+     "point": null,
+     "price": -300
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -300
+    },
+    "prophetx": {
+     "point": null,
+     "price": -295
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -335
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a17f89-3aab-7331-9fb1-bd0e9f8d63c1",
+    "outcome_id": "01a17f89-3aab-7331-9fb1-bd2857bd810d"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi",
+    "polymarket",
+    "prophetx"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Houston Rockets",
+   "side_label": "HOU (0)",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-29T00:00:00Z",
+   "teams": [
+    "Houston Rockets",
+    "Milwaukee Bucks"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-28T06:10:10Z",
+   "base_depth": 804930,
+   "best_price": 0.5917,
+   "best_price_american": -145,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.6,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-28",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -1266,
+     "new_this_side": 145746,
+     "other_side": 340855,
+     "other_side_all_levels": 442454,
+     "ratio": 2.5,
+     "this_side": 847393,
+     "this_side_all_levels": 1017920
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "MIN (0)",
+     "price": 0.595,
+     "this_side": 34271
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Timberwolves",
+     "price": 0.6,
+     "this_side": 119970
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Minnesota Timberwolves",
+     "price": 0.5868,
+     "this_side": 31130
+    }
+   },
+   "fade_price": 0.41,
+   "first_seen_utc": "2026-10-28T06:00:15Z",
+   "game": "Golden State vs Minnesota",
+   "key": "kalshi|KXNBAGAME-26OCT28GSWMIN|ml|1",
+   "lead_min": 1070,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 145746,
+   "paper_only": false,
+   "price": 0.6,
+   "price_american": -150,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.6,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -155
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -150
+    },
+    "betopenly": {
+     "point": null,
+     "price": -145
+    },
+    "betrivers": {
+     "point": null,
+     "price": -162
+    },
+    "betus": {
+     "point": null,
+     "price": -155
+    },
+    "bovada": {
+     "point": null,
+     "price": -160
+    },
+    "draftkings": {
+     "point": null,
+     "price": -155
+    },
+    "fanatics": {
+     "point": null,
+     "price": -160
+    },
+    "fanduel": {
+     "point": null,
+     "price": -152
+    },
+    "kalshi": {
+     "point": null,
+     "price": -150
+    },
+    "limitless": {
+     "point": null,
+     "price": -152
+    },
+    "lowvig": {
+     "point": null,
+     "price": -149
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -150
+    },
+    "novig": {
+     "point": null,
+     "price": -147
+    },
+    "polymarket": {
+     "point": null,
+     "price": -150
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -144
+    },
+    "prophetx": {
+     "point": null,
+     "price": -142
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -155
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBAGAME-26OCT28GSWMIN-MIN"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Minnesota",
+   "side_label": "Minnesota",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-29T00:00:00Z",
+   "teams": [
+    "Golden State",
+    "Minnesota"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-28T05:35:52Z",
    "base_depth": 285041,
    "best_price": 0.695,
@@ -803,8 +1127,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.56,
-   "clv_cents": 0.0,
+   "close_price": 0.55,
+   "clv_cents": -1.0,
    "confirmed_after_min": 6,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -1233,8 +1557,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.66,
-   "clv_cents": 2.0,
+   "close_price": 0.64,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-10-28",
    "depth_by_book": {
