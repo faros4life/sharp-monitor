@@ -1,15 +1,16 @@
 # Liquidity alerts (paper)
 
-Updated Wed Oct 28, 5:21 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 9.
+Updated Wed Oct 28, 5:30 AM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 9.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 61-40 (-3.93u flat) | rule met: 21-19
+**Record:** 62-40 (-3.62u flat) | rule met: 21-19
 
-**Fade (paper, betting against the print):** 15-27 (-4.98u flat, after fees)
+**Fade (paper, betting against the print):** 15-28 (-5.98u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Oct 28 5:30AM | TENNIS | Tien vs de Minaur | moneyline: de Minaur | kalshi | $33k | -104 |  |  | +0.0c |  | pending |
 | Oct 28 3:00AM | MLB | Milwaukee Brewers vs. Tampa Bay Rays | moneyline: Milwaukee Brewers | polymarket | $36k | -144 | ✅ kalshi,novig |  | +0.0c |  | pending |
 | Oct 28 2:00AM | MLB | Milwaukee vs Tampa Bay: Spread | spread: NOT Milwaukee wins by over 1.5 runs | kalshi | $32k | -144 |  |  | -2.0c |  | pending |
 | Oct 27 10:49PM | TENNIS | Rakhimova vs Alexandrova | moneyline: Rakhimova | kalshi | $244k | -186 |  |  | -27.0c | yes | W |
@@ -18,7 +19,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 27 7:20PM | TENNIS | Dart vs Tjen | moneyline: Tjen | kalshi | $26k | -194 |  |  | +2.0c |  | pending |
 | Oct 27 6:17PM | TENNIS | Rakhimova vs Alexandrova | moneyline: Alexandrova | kalshi | $54k | -285 |  |  | -11.0c |  | L |
 | Oct 27 6:10PM | MLB | Milwaukee vs Tampa Bay: Total Runs | total: Over 7.5 runs scored | kalshi | $468k | +117 | ✅ novig |  | -25.0c | yes | L |
-| Oct 27 6:10PM | TENNIS | Sasnovich vs Shnaider | moneyline: Shnaider | kalshi | $27k | -335 |  |  | -1.0c |  | pending |
+| Oct 27 6:10PM | TENNIS | Sasnovich vs Shnaider | moneyline: Shnaider | kalshi | $27k | -335 |  |  | -1.0c |  | W |
 | Oct 27 5:40PM | MLB | Milwaukee Brewers @ Tampa Bay Rays | moneyline: TB (0) | novig | $123k | +111 |  |  | +0.5c | yes | W |
 | Oct 27 5:00PM | TENNIS | Hurkacz vs Rune | moneyline: Hurkacz | kalshi | $30k | -170 | ✅ novig |  | +2.0c |  | pending |
 | Oct 27 4:50PM | TENNIS | Bucsa vs Joint | moneyline: Joint | kalshi | $29k | -122 |  |  | -2.0c | yes | W |
