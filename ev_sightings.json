@@ -75126,7 +75126,7 @@
    "sighting_cost": null,
    "sighting_cost_af": null,
    "sighting_american_af": null,
-   "result": null,
+   "result": "W",
    "units_flat": null,
    "close_final": true,
    "pin_after_fair_old_line": 0.51965,
@@ -75137,7 +75137,8 @@
    "pin_close_line": 1.5,
    "pin_close_same_line": false,
    "clv_pinnacle_c": null,
-   "move_held_c": 0.11
+   "move_held_c": 0.11,
+   "graded_utc": "2026-10-28T06:19:30Z"
   },
   {
    "key": "M|82afe4e028b0fbbd9f6cf92697bec6fc|total|233.5|OVER|1793157208",
@@ -75202,8 +75203,8 @@
    "sighting_cost": 0.55,
    "sighting_cost_af": 0.56733,
    "sighting_american_af": -131,
-   "result": null,
-   "units_flat": null,
+   "result": "W",
+   "units_flat": 0.7626,
    "close_final": true,
    "pin_after_fair_old_line": 0.52996,
    "close_read_utc": "2026-10-28T03:10:26Z",
@@ -75225,7 +75226,8 @@
    "pin_close_line": 234.5,
    "pin_close_same_line": false,
    "clv_pinnacle_c": -3.74,
-   "move_held_c": 1.85
+   "move_held_c": 1.85,
+   "graded_utc": "2026-10-28T06:19:30Z"
   },
   {
    "key": "M|c6d62b9457cbd8517860e222f1d4f953|total|227|OVER|1793157208",
@@ -77443,6 +77445,10 @@
   {
    "utc": "2026-10-28T06:10:11Z",
    "summary": "outside read hours: closes/grades only"
+  },
+  {
+   "utc": "2026-10-28T06:19:30Z",
+   "summary": "outside read hours: closes/grades only"
   }
  ],
  "note": "EV SIGHTINGS - PAPER STUDY, MEASUREMENT ONLY. Never bets, never pushed. Triggers: A = best after-fee cost >= 2c under the median after-fee cost of the other books at the same line, >= $250 at the best price (qualifying >= 3c); B = best gettable (>= $250) after-fee cost beats Pinnacle no-vig fair at the same line by >= 3% EV; M (Amendment A1, Oct 27) = Pinnacle move-watch: Pinnacle line moves >= 0.5 pts between consecutive polls (primary) or price moves >= 5 cents on an unchanged line (cents scale: -110=110, +100=100, +105=95); the four exchanges are read the same cycle at the OLD number for the side the market moved toward. gettable = a book's after-fee cost <= Pinnacle's pre-move price on that side (threshold_cost, with vig) AND >= $250 resting at that price or better. Every move is logged; not-gettable moves are the control group (graded at the best available price at the old number when any book lists it). detection_lag_s = detection time - Pinnacle's market last_update. move_held_c = Pinnacle close fair at the old number - pre-move fair. One record per A/B trigger/game/market/line/side (first sighting; last_seen/scans_seen while it persists); one record per move. Costs are 0-1 per $1 payout after fees (Kalshi 0.07 and Polymarket US 0.0695 x P x (1-P) taker; ProphetX 2% of winnings; Novig none). depth_usd = $ bettable at that book's best price. ref_age_s = exchange read time - Pinnacle market last_update. Close = last pregame read; close_consensus_fair = median of books' no-vig mids; pin_close_fair = sharp_monitor.close_prob at the sighting's number from the last pregame Pinnacle poll (pin_close_same_line false = half points priced in). clv_*_c = (close fair - sighting_cost_af) x 100. result/units_flat = ESPN final, flat 1u at sighting_cost_af. crossed = that book's two sides cost < 97c total (stale/crossed quote). Pinnacle polls: every 300s per sport while a game starts within 6h, every 1200s otherwise; skipped when the credits left would fall below the sharp monitor's projected need for the rest of the month.",
@@ -77482,7 +77488,7 @@
    },
    "a1_started_utc": "2026-10-27T19:49:51Z"
   },
-  "generated_utc": "2026-10-28T06:10:12Z",
+  "generated_utc": "2026-10-28T06:19:30Z",
   "rows": [
    {
     "name": "A cross-book (>= 2c)",
@@ -77646,10 +77652,10 @@
     "n_pin_closed": 15,
     "clv_pinnacle_avg_c": -1.57,
     "beat_pinnacle_pct": 6.7,
-    "graded": 14,
-    "record": "8-6-0",
-    "units": 1.43,
-    "roi_pct": 10.2,
+    "graded": 15,
+    "record": "9-6-0",
+    "units": 2.19,
+    "roi_pct": 14.6,
     "move_held_avg_c": 0.87,
     "detection_lag_median_s": 23,
     "gate": ""
@@ -77663,10 +77669,10 @@
     "n_pin_closed": 26,
     "clv_pinnacle_avg_c": -1.03,
     "beat_pinnacle_pct": 19.2,
-    "graded": 25,
-    "record": "14-11-0",
-    "units": 2.28,
-    "roi_pct": 9.1,
+    "graded": 26,
+    "record": "15-11-0",
+    "units": 3.04,
+    "roi_pct": 11.7,
     "move_held_avg_c": 0.78,
     "detection_lag_median_s": 23,
     "gate": ""
@@ -77674,12 +77680,12 @@
   ],
   "overlap_A_and_B": 2,
   "credits": {
-   "days_observed": 0.43,
+   "days_observed": 0.44,
    "study_credits_used": 276,
-   "study_per_day": 641,
-   "study_projected_30d": 19221,
-   "all_monitors_per_day": 2317,
-   "all_monitors_projected_30d": 69501,
+   "study_per_day": 631,
+   "study_projected_30d": 18936,
+   "all_monitors_per_day": 2282,
+   "all_monitors_projected_30d": 68472,
    "remaining_now": 70187,
    "guard_need_now": 13400,
    "guarded_polls": 0,
@@ -78778,6 +78784,12 @@
    ],
    [
     "2026-10-28T06:10:11Z",
+    null,
+    0,
+    0
+   ],
+   [
+    "2026-10-28T06:19:30Z",
     null,
     0,
     0

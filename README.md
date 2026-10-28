@@ -1,6 +1,6 @@
 # EV sightings study (paper, measurement only)
 
-Started 2026-10-27T16:06:50Z. Updated 2026-10-28T06:10:12Z. Sightings are a record, never bets. CLV = close fair - sighting after-fee cost, in cents (+ = beat the close). Gate: >= 50 graded, positive average CLV and positive flat record; reviewed only at a scheduled review. A/B gate on consensus CLV; move-watch (A1) gate on Pinnacle CLV. Held = Pinnacle close minus Pinnacle's pre-move fair at the old number (+ = the move held).
+Started 2026-10-27T16:06:50Z. Updated 2026-10-28T06:19:30Z. Sightings are a record, never bets. CLV = close fair - sighting after-fee cost, in cents (+ = beat the close). Gate: >= 50 graded, positive average CLV and positive flat record; reviewed only at a scheduled review. A/B gate on consensus CLV; move-watch (A1) gate on Pinnacle CLV. Held = Pinnacle close minus Pinnacle's pre-move fair at the old number (+ = the move held).
 
 | Bucket | Sightings | Closed | CLV vs consensus | Beat % | Pin-closed | CLV vs Pinnacle | Graded | Record | Units | ROI | Held | Lag (med) | Gate |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
@@ -13,17 +13,18 @@ Started 2026-10-27T16:06:50Z. Updated 2026-10-28T06:10:12Z. Sightings are a reco
 | M move-watch: gettable (sightings) | 11 | 11 | -0.24c | 45.5% | 11 | -0.31c | 11 | 6-5-0 | +0.85u | 7.7% | 0.6c | 26s | criteria not met (11/50 graded, CLV not positive) |
 | M gettable, line moves | 4 | 4 | -0.38c | 50.0% | 4 | -0.69c | 4 | 2-2-0 | -0.17u | -4.3% | 0.29c | 31s |  |
 | M gettable, price moves | 7 | 7 | -0.16c | 42.9% | 7 | -0.09c | 7 | 4-3-0 | +1.02u | 14.6% | 0.79c | 26s |  |
-| M control: not gettable | 27 | 13 | -1.12c | 15.4% | 15 | -1.57c | 14 | 8-6-0 | +1.43u | 10.2% | 0.87c | 23s |  |
-| M all moves | 38 | 24 | -0.72c | 29.2% | 26 | -1.03c | 25 | 14-11-0 | +2.28u | 9.1% | 0.78c | 23s |  |
+| M control: not gettable | 27 | 13 | -1.12c | 15.4% | 15 | -1.57c | 15 | 9-6-0 | +2.19u | 14.6% | 0.87c | 23s |  |
+| M all moves | 38 | 24 | -0.72c | 29.2% | 26 | -1.03c | 26 | 15-11-0 | +3.04u | 11.7% | 0.78c | 23s |  |
 
 A and B on the same side/line: 2.
 
 ## Odds API credits (100K/month plan)
 
-Study: 641/day, projected 19221/30 days. All monitors on the key: 2317/day, projected 69501/30 days. Remaining 70187; guard holds 13400 for the sharp monitor; polls skipped by the guard: 0.
+Study: 631/day, projected 18936/30 days. All monitors on the key: 2282/day, projected 68472/30 days. Remaining 70187; guard holds 13400 for the sharp monitor; polls skipped by the guard: 0.
 
 ## Last runs
 
+- 2026-10-28T06:19:30Z: outside read hours: closes/grades only
 - 2026-10-28T06:10:11Z: outside read hours: closes/grades only
 - 2026-10-28T06:00:16Z: outside read hours: closes/grades only
 - 2026-10-28T05:52:23Z: outside read hours: closes/grades only
@@ -33,4 +34,3 @@ Study: 641/day, projected 19221/30 days. All monitors on the key: 2317/day, proj
 - 2026-10-28T05:30:14Z: outside read hours: closes/grades only
 - 2026-10-28T05:20:13Z: outside read hours: closes/grades only
 - 2026-10-28T05:14:25Z: outside read hours: closes/grades only
-- 2026-10-28T05:10:11Z: outside read hours: closes/grades only
