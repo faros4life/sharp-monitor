@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Wed Oct 28, 7:10 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 10.
+Updated Wed Oct 28, 7:20 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 9.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 62-40 (-3.62u flat) | rule met: 21-19
+**Record:** 62-41 (-4.62u flat) | rule met: 21-19
 
-**Fade (paper, betting against the print):** 15-28 (-5.98u flat, after fees)
+**Fade (paper, betting against the print):** 16-28 (-4.25u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -17,7 +17,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 27 10:49PM | TENNIS | Rakhimova vs Alexandrova | moneyline: Rakhimova | kalshi | $244k | -186 |  |  | -27.0c | yes | W |
 | Oct 27 10:40PM | TENNIS | Bucsa vs Joint | moneyline: Bucsa | kalshi | $47k | +113 |  |  | +1.0c | yes | L |
 | Oct 27 7:32PM | MLB | Milwaukee Brewers at Tampa Bay Rays | moneyline: Tampa Bay Rays | prophetx | $29k | +108 |  |  | +0.0c |  | W |
-| Oct 27 7:20PM | TENNIS | Dart vs Tjen | moneyline: Tjen | kalshi | $26k | -194 |  |  | +2.0c |  | pending |
+| Oct 27 7:20PM | TENNIS | Dart vs Tjen | moneyline: Tjen | kalshi | $26k | -194 |  |  | +2.0c |  | L |
 | Oct 27 6:17PM | TENNIS | Rakhimova vs Alexandrova | moneyline: Alexandrova | kalshi | $54k | -285 |  |  | -11.0c |  | L |
 | Oct 27 6:10PM | MLB | Milwaukee vs Tampa Bay: Total Runs | total: Over 7.5 runs scored | kalshi | $468k | +117 | ✅ novig |  | -25.0c | yes | L |
 | Oct 27 6:10PM | TENNIS | Sasnovich vs Shnaider | moneyline: Shnaider | kalshi | $27k | -335 |  |  | -1.0c |  | W |
