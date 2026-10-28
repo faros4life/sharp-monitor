@@ -1,6 +1,439 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-28T13:20:11Z",
+   "base_depth": 59092,
+   "best_price": 0.625,
+   "best_price_american": -167,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.63,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-28",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "NOT Colorado wins by over 1.5 goals",
+     "price": 0.63,
+     "this_side": 246176
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "NJD +1.5 (-1.5)",
+     "price": 0.625,
+     "this_side": 35748
+    },
+    "polymarket": {
+     "new_other_side": 14650,
+     "new_this_side": 77801,
+     "other_side": 21536,
+     "other_side_all_levels": 31042,
+     "ratio": 4.0,
+     "this_side": 86622,
+     "this_side_all_levels": 119464
+    }
+   },
+   "fade_price": 0.38,
+   "first_seen_utc": "2026-10-28T13:10:11Z",
+   "game": "Devils vs. Avalanche",
+   "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6301170\"}",
+   "lead_min": 700,
+   "league": "NHL",
+   "line": 1.5,
+   "market": "spread",
+   "new_money": 77801,
+   "paper_only": false,
+   "price": 0.63,
+   "price_american": -170,
+   "price_rule": "fails_cap",
+   "price_when_first_seen": 0.63,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 1.5,
+     "price": -170
+    },
+    "betonlineag": {
+     "point": 1.5,
+     "price": -171
+    },
+    "betopenly": {
+     "point": 1.5,
+     "price": -155
+    },
+    "betrivers": {
+     "point": 1.5,
+     "price": -182
+    },
+    "betus": {
+     "point": 1.5,
+     "price": -170
+    },
+    "bovada": {
+     "point": 1.5,
+     "price": -177
+    },
+    "draftkings": {
+     "point": 1.5,
+     "price": -170
+    },
+    "fanatics": {
+     "point": 1.5,
+     "price": -180
+    },
+    "fanduel": {
+     "point": 1.5,
+     "price": -176
+    },
+    "kalshi": {
+     "point": 1.5,
+     "price": -170
+    },
+    "lowvig": {
+     "point": 1.5,
+     "price": -171
+    },
+    "mybookieag": {
+     "point": 1.5,
+     "price": -171
+    },
+    "novig": {
+     "point": 1.5,
+     "price": -167
+    },
+    "polymarket": {
+     "point": 1.5,
+     "price": -170
+    },
+    "prophetx": {
+     "point": 1.5,
+     "price": -162
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 1,
+    "pm_market_id": "6301170"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi",
+    "novig"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Devils",
+   "side_label": "Devils (+1.5)",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-29T01:00:00Z",
+   "teams": [
+    "Devils",
+    "Avalanche"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-28T13:20:11Z",
+   "base_depth": 25951,
+   "best_price": 0.695,
+   "best_price_american": -228,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.69,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-28",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "NOT Toronto wins by over 1.5 goals",
+     "price": 0.7,
+     "this_side": 111293
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "SEA +1.5 (1.5)",
+     "price": 0.695,
+     "this_side": 21486
+    },
+    "polymarket": {
+     "new_other_side": 9743,
+     "new_this_side": 31310,
+     "other_side": 17755,
+     "other_side_all_levels": 23942,
+     "ratio": 2.7,
+     "this_side": 47343,
+     "this_side_all_levels": 57624
+    }
+   },
+   "fade_price": 0.32,
+   "first_seen_utc": "2026-10-28T13:10:11Z",
+   "game": "Maple Leafs vs. Kraken",
+   "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6301160\"}",
+   "lead_min": 760,
+   "league": "NHL",
+   "line": 1.5,
+   "market": "spread",
+   "new_money": 31310,
+   "paper_only": false,
+   "price": 0.69,
+   "price_american": -223,
+   "price_rule": "fails_cap",
+   "price_when_first_seen": 0.69,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 1.5,
+     "price": -235
+    },
+    "betonlineag": {
+     "point": 1.5,
+     "price": -248
+    },
+    "betopenly": {
+     "point": 1.5,
+     "price": -212
+    },
+    "betrivers": {
+     "point": 1.5,
+     "price": -265
+    },
+    "betus": {
+     "point": 1.5,
+     "price": -250
+    },
+    "bovada": {
+     "point": 1.5,
+     "price": -245
+    },
+    "draftkings": {
+     "point": 1.5,
+     "price": -250
+    },
+    "fanatics": {
+     "point": 1.5,
+     "price": -255
+    },
+    "fanduel": {
+     "point": 1.5,
+     "price": -260
+    },
+    "kalshi": {
+     "point": 1.5,
+     "price": -233
+    },
+    "lowvig": {
+     "point": 1.5,
+     "price": -248
+    },
+    "mybookieag": {
+     "point": 1.5,
+     "price": -240
+    },
+    "novig": {
+     "point": 1.5,
+     "price": -228
+    },
+    "polymarket": {
+     "point": 1.5,
+     "price": -223
+    },
+    "prophetx": {
+     "point": 1.5,
+     "price": -235
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 1,
+    "pm_market_id": "6301160"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi",
+    "novig"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Kraken",
+   "side_label": "Kraken (+1.5)",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-29T02:00:00Z",
+   "teams": [
+    "Maple Leafs",
+    "Kraken"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-28T13:20:11Z",
+   "base_depth": 80911,
+   "best_price": 0.51,
+   "best_price_american": -104,
+   "best_price_book": "novig",
+   "bid_improved": true,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-28",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 6725,
+     "new_this_side": 36505,
+     "other_side": 50290,
+     "other_side_all_levels": 101897,
+     "ratio": 1.4,
+     "this_side": 70295,
+     "this_side_all_levels": 119678
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "CLE -9.5 (-9.5)",
+     "price": 0.51,
+     "this_side": 14765
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Cavaliers (-9.5)",
+     "price": 0.51,
+     "this_side": 44622
+    }
+   },
+   "fade_price": 0.49,
+   "first_seen_utc": "2026-10-28T13:10:11Z",
+   "game": "Washington vs Cleveland: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNBASPREAD-26OCT28WASCLE-CLE10\"}",
+   "lead_min": 580,
+   "league": "NBA",
+   "line": -9.5,
+   "market": "spread",
+   "new_money": 36505,
+   "paper_only": false,
+   "price": 0.52,
+   "price_american": -108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.52,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -9.5,
+     "price": -115
+    },
+    "betonlineag": {
+     "point": -9.5,
+     "price": -110
+    },
+    "betopenly": {
+     "point": -9.5,
+     "price": -104
+    },
+    "betrivers": {
+     "point": -9.5,
+     "price": -114
+    },
+    "betus": {
+     "point": -9.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": -9.5,
+     "price": -115
+    },
+    "draftkings": {
+     "point": -10.5,
+     "price": -112
+    },
+    "fanatics": {
+     "point": -9.5,
+     "price": -115
+    },
+    "fanduel": {
+     "point": -9.5,
+     "price": -112
+    },
+    "kalshi": {
+     "point": -9.5,
+     "price": -108
+    },
+    "lowvig": {
+     "point": -9.5,
+     "price": -106
+    },
+    "mybookieag": {
+     "point": -9.5,
+     "price": -110
+    },
+    "novig": {
+     "point": -9.5,
+     "price": -104
+    },
+    "polymarket": {
+     "point": -9.5,
+     "price": -104
+    },
+    "prophetx": {
+     "point": -9.5,
+     "price": -105
+    },
+    "williamhill_us": {
+     "point": -9.5,
+     "price": -115
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBASPREAD-26OCT28WASCLE-CLE10"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "polymarket"
+   ],
+   "second_book_fresh": true,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Cleveland",
+   "side_label": "Cleveland wins by over 9.5 points",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-28T23:00:00Z",
+   "teams": [
+    "Washington",
+    "Cleveland"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-28T13:10:11Z",
    "base_depth": 121545,
    "best_price": 0.475,
@@ -747,8 +1180,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.55,
-   "clv_cents": 5.0,
+   "close_price": 0.56,
+   "clv_cents": 6.0,
    "confirmed_after_min": 10,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -2106,8 +2539,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.55,
-   "clv_cents": 5.0,
+   "close_price": 0.54,
+   "clv_cents": 4.0,
    "confirmed_after_min": 10,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -2425,8 +2858,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.6,
-   "clv_cents": 0.0,
+   "close_price": 0.61,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -2548,7 +2981,8 @@
      "price": -155
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-28T13:20:11Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNBAGAME-26OCT28GSWMIN-MIN"
@@ -2590,8 +3024,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.7,
-   "clv_cents": 1.0,
+   "close_price": 0.73,
+   "clv_cents": 4.0,
    "confirmed_after_min": 6,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -3936,8 +4370,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": 0.0,
+   "close_price": 0.49,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -4646,8 +5080,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.58,
-   "clv_cents": 0.0,
+   "close_price": 0.57,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -5894,8 +6328,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.84,
-   "clv_cents": 0.0,
+   "close_price": 0.85,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -6434,8 +6868,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.65,
-   "clv_cents": 1.0,
+   "close_price": 0.64,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -7288,8 +7722,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.79,
-   "clv_cents": 0.0,
+   "close_price": 0.78,
+   "clv_cents": -1.0,
    "confirmed_after_min": 6,
    "date": "2026-10-28",
    "depth_by_book": {
