@@ -1,6 +1,130 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-28T03:50:10Z",
+   "base_depth": 204637,
+   "best_price": 0.64,
+   "best_price_american": -178,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.64,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-28",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -823,
+     "new_this_side": 42952,
+     "other_side": 39151,
+     "other_side_all_levels": 138085,
+     "ratio": 1.7,
+     "this_side": 67763,
+     "this_side_all_levels": 255210
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "LAL (0)",
+     "price": 0.64,
+     "this_side": 8556
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Los Angeles Lakers",
+     "price": 0.6377,
+     "this_side": 3676
+    }
+   },
+   "fade_price": 0.37,
+   "first_seen_utc": "2026-10-28T03:40:09Z",
+   "game": "Los Angeles L vs Los Angeles C",
+   "key": "kalshi|KXNBAGAME-26OCT28LALLAC|ml|0",
+   "lead_min": 1360,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 42952,
+   "paper_only": false,
+   "price": 0.64,
+   "price_american": -178,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.64,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -200
+    },
+    "betrivers": {
+     "point": null,
+     "price": -205
+    },
+    "draftkings": {
+     "point": null,
+     "price": -205
+    },
+    "fanduel": {
+     "point": null,
+     "price": -196
+    },
+    "kalshi": {
+     "point": null,
+     "price": -178
+    },
+    "limitless": {
+     "point": null,
+     "price": -180
+    },
+    "novig": {
+     "point": null,
+     "price": -178
+    },
+    "polymarket": {
+     "point": null,
+     "price": -178
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -186
+    },
+    "prophetx": {
+     "point": null,
+     "price": -176
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -195
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBAGAME-26OCT28LALLAC-LAL"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "none_10k",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Los Angeles L",
+   "side_label": "Los Angeles L",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-29T02:30:00Z",
+   "teams": [
+    "Los Angeles L",
+    "Los Angeles C"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-28T03:40:09Z",
    "base_depth": 84059,
    "best_price": 0.49,
@@ -197,6 +321,8 @@
    "new_money": 46307,
    "paper_only": false,
    "price": 0.61,
+   "price_after_15m": 0.605,
+   "price_after_15m_book": "novig",
    "price_american": -156,
    "price_rule": "fails_cap",
    "price_when_first_seen": 0.61,
@@ -261,6 +387,7 @@
    "side_label": "NOT Colorado wins by over 1.5 goals",
    "start_source": "polymarket",
    "start_utc": "2026-10-29T01:00:00Z",
+   "still_actionable": true,
    "teams": [
     "New Jersey",
     "Colorado"
@@ -531,7 +658,8 @@
      "price": -110
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-28T03:50:10Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNBASPREAD-26OCT28MIAATL-ATL4"
@@ -1802,8 +1930,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.79,
-   "clv_cents": 34.0,
+   "close_price": 0.67,
+   "clv_cents": 22.0,
    "confirmed_after_min": 10,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -2091,8 +2219,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.71,
-   "clv_cents": 1.0,
+   "close_price": 0.7,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -7983,8 +8111,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.77,
-   "clv_cents": 25.0,
+   "close_price": 0.72,
+   "clv_cents": 20.0,
    "confirmed_after_min": 6,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -9643,8 +9771,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.55,
-   "clv_cents": -9.0,
+   "close_price": 0.56,
+   "clv_cents": -8.0,
    "confirmed_after_min": 10,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -9937,8 +10065,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.69,
-   "clv_cents": 3.0,
+   "close_price": 0.53,
+   "clv_cents": -13.0,
    "confirmed_after_min": 10,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -10077,8 +10205,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.24,
-   "clv_cents": -26.0,
+   "close_price": 0.29,
+   "clv_cents": -21.0,
    "confirmed_after_min": 10,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -11284,8 +11412,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.36,
-   "clv_cents": -9.0,
+   "close_price": 0.37,
+   "clv_cents": -8.0,
    "confirmed_after_min": 14,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -11447,8 +11575,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.28,
-   "clv_cents": -23.0,
+   "close_price": 0.35,
+   "clv_cents": -16.0,
    "confirmed_after_min": 10,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -13573,8 +13701,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.22,
-   "clv_cents": -32.0,
+   "close_price": 0.35,
+   "clv_cents": -19.0,
    "confirmed_after_min": 8,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -14365,8 +14493,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.65,
-   "clv_cents": 7.0,
+   "close_price": 0.64,
+   "clv_cents": 6.0,
    "confirmed_after_min": 12,
    "date": "2026-10-27",
    "depth_by_book": {
@@ -19508,8 +19636,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.58,
-   "clv_cents": 2.0,
+   "close_price": 0.74,
+   "clv_cents": 18.0,
    "confirmed_after_min": 8,
    "date": "2026-10-27",
    "depth_by_book": {
