@@ -1196,7 +1196,10 @@ def write_alerts_file(st, n):
         cl = e.get("cl") or {}
         row.update({"close_fair_prob": cl.get("p"), "close_value_pct": cl.get("ev"),
                     "beat_true_close": (cl["ev"] > 0) if cl else None, "close_read_mins_before": cl.get("mins_before"),
-                    "executable_book": executable(e, first_text.get((e["ev"], e["kind"], e["side"])))})
+                    "executable_book": executable(e, first_text.get((e["ev"], e["kind"], e["side"]))),
+                    # Oct 28 (Muse fix list): global Polymarket is not bettable from the US; tag it so every split can
+                    # exclude it. The feed stopped pricing on it Oct 25 (last such alert Oct 26 02:10Z).
+                    "pricing_bettable": e.get("book") != "polymarket"})
     bets = {(e["ev"], e["kind"], e["side"]): e for e in st["log"]}
     every = []
     for e in sorted(st.get("sent", []), key=lambda x: x["t"], reverse=True):
