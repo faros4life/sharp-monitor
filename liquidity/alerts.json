@@ -1,6 +1,144 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-28T08:40:11Z",
+   "base_depth": 76532,
+   "best_price": 0.5311,
+   "best_price_american": -113,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.54,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-28",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -14395,
+     "new_this_side": 30126,
+     "other_side": 50597,
+     "other_side_all_levels": 92860,
+     "ratio": 1.2,
+     "this_side": 62043,
+     "this_side_all_levels": 104607
+    },
+    "polymarket": {
+     "heavier_side": false,
+     "label": "Over (239.5)",
+     "price": 0.53,
+     "this_side": 11079
+    }
+   },
+   "fade_price": 0.47,
+   "first_seen_utc": "2026-10-28T08:30:14Z",
+   "game": "Denver vs New Orleans: Total Points",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNBATOTAL-26OCT28DENNOP-240\"}",
+   "lead_min": 920,
+   "league": "NBA",
+   "line": 239.5,
+   "market": "total",
+   "new_money": 30126,
+   "paper_only": false,
+   "price": 0.54,
+   "price_american": -117,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.54,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 240.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 241.0,
+     "price": -105
+    },
+    "betopenly": {
+     "point": 240.0,
+     "price": 100
+    },
+    "betrivers": {
+     "point": 241.5,
+     "price": -107
+    },
+    "betus": {
+     "point": 241.0,
+     "price": -105
+    },
+    "bovada": {
+     "point": 240.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 240.5,
+     "price": -108
+    },
+    "fanatics": {
+     "point": 240.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 240.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": 241.5,
+     "price": 113
+    },
+    "lowvig": {
+     "point": 241.0,
+     "price": -102
+    },
+    "mybookieag": {
+     "point": 240.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 240.5,
+     "price": -102
+    },
+    "polymarket": {
+     "point": 239.5,
+     "price": -113
+    },
+    "prophetx": {
+     "point": 242.0,
+     "price": 117
+    },
+    "williamhill_us": {
+     "point": 240.0,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBATOTAL-26OCT28DENNOP-240"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "none_10k",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "OVER",
+   "side_label": "Over 239.5 points",
+   "start_source": "polymarket",
+   "start_utc": "2026-10-29T00:00:00Z",
+   "teams": [
+    "Denver",
+    "New Orleans"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-28T08:10:10Z",
    "base_depth": 29603,
    "best_price": 0.515,
@@ -1422,8 +1560,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.68,
-   "clv_cents": 0.0,
+   "close_price": 0.67,
+   "clv_cents": -1.0,
    "confirmed_after_min": 5,
    "date": "2026-10-28",
    "depth_by_book": {
