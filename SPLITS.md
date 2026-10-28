@@ -1,4 +1,4 @@
-# Paper splits (updated 2026-10-28T04:05:10Z)
+# Paper splits (updated 2026-10-28T04:10:12Z)
 
 Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kill bar: 30+ resulted at -0.10u/play or worse closes a split.
 
@@ -11,7 +11,7 @@ Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kil
 | PM-global-priced, routed | a-priori | 2026-10-26 | 0-0-0 | +0.00 |  |  | OPEN |
 | Unders only | scan | 2026-10-26 | 5-4-0 | +0.44 | +0.049 | -1.73 | OPEN |
 | Combined filter | scan | 2026-10-26 | 6-5-0 | +0.23 | +0.021 | -2.01 | OPEN |
-| Priced -125 or worse | scan | 2026-10-26 | 2-0-0 | +1.59 | +0.795 | -1.85 | OPEN |
+| Priced -125 or worse | scan | 2026-10-26 | 2-1-0 | +0.59 | +0.197 | -1.40 | OPEN |
 | College basketball | scan | 2026-10-26 | 0-0-0 | +0.00 |  |  | OPEN |
 | Fade alerts sent 12-24h out | scan | 2026-10-26 | 4-2-0 | -1.95 | -0.325 | +4.28 | OPEN |
 | Tier 2 core (paper) | tier | 2026-10-27 | 0-1-0 | -1.00 | -1.000 | +0.00 | OPEN (record only, no size) |
@@ -47,7 +47,7 @@ Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kil
 
 **Closed by decision:** Liquidity spreads: Closed by Peter, Oct 27, on Muse's complete-log read: 191 resulted, -32.15u (-0.17/play), negative in every time block and every lead window.
 
-**ProphetX tripwire:** 10/30 resulted, -0.271u/play - counting.
+**ProphetX tripwire:** 11/30 resulted, -0.337u/play - counting.
 
 **Price gaps (measurement only):** {"gaps": 14, "per_day": 4.7, "edge_pct_median": 0.74, "edge_pct_p90": 2.73, "size_est_median_upper_bound": 5733.0, "seen_once_share": 1.0, "lifetime_min_median": 0.0, "lived_10min_plus": 0, "with_200_both_legs_upper_bound": 14, "scan_sec_median": 286}
 

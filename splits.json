@@ -160,14 +160,14 @@
    "status": "OPEN",
    "closed_utc": null,
    "plays": 3,
-   "resulted": 2,
+   "resulted": 3,
    "W": 2,
-   "L": 0,
+   "L": 1,
    "P": 0,
-   "units": 1.59,
-   "u_per_play": 0.795,
-   "true_close_value_pct": -1.85,
-   "true_close_n": 2
+   "units": 0.59,
+   "u_per_play": 0.197,
+   "true_close_value_pct": -1.4,
+   "true_close_n": 3
   },
   {
    "id": "ncaab",
@@ -451,7 +451,7 @@
    "kill_bar": ">= 30 resulted at <= -0.1u/play -> CLOSED",
    "status": "OPEN",
    "closed_utc": null,
-   "plays": 123,
+   "plays": 124,
    "resulted": 113,
    "W": 62,
    "L": 51,
@@ -493,7 +493,7 @@
    "kill_bar": ">= 30 resulted at <= -0.1u/play -> CLOSED",
    "status": "CLOSED",
    "closed_utc": "2026-10-27T10:00:00Z",
-   "plays": 250,
+   "plays": 252,
    "resulted": 235,
    "W": 111,
    "L": 124,
@@ -515,7 +515,7 @@
    "kill_bar": ">= 30 resulted at <= -0.1u/play -> CLOSED",
    "status": "OPEN",
    "closed_utc": null,
-   "plays": 15,
+   "plays": 19,
    "resulted": 10,
    "W": 8,
    "L": 2,
@@ -525,7 +525,7 @@
    "true_close_value_pct": null,
    "true_close_n": 0,
    "all_history": {
-    "plays": 71,
+    "plays": 75,
     "resulted": 66,
     "W": 43,
     "L": 23,
@@ -718,8 +718,8 @@
  ],
  "prophetx_tripwire": {
   "rule": "next 30 forward ProphetX-priced plays at or below 0.00u/play = PAUSE LIVE and review early",
-  "resulted": 10,
-  "u_per_play": -0.271,
+  "resulted": 11,
+  "u_per_play": -0.337,
   "status": "counting"
  },
  "gaps": {
@@ -741,5 +741,5 @@
   "liq_evening": 0
  },
  "resulted_rule": "resulted = result W, L or P with a unit value (pushes count as 0u); liquidity artifacts excluded; pending and ungraded plays do not count",
- "updated_utc": "2026-10-28T04:05:10Z"
+ "updated_utc": "2026-10-28T04:10:12Z"
 }
