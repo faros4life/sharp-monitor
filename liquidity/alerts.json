@@ -1,6 +1,144 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-28T11:50:11Z",
+   "base_depth": 71972,
+   "best_price": 0.515,
+   "best_price_american": -106,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.53,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 9,
+   "date": "2026-10-28",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -1667,
+     "new_this_side": 77081,
+     "other_side": 18660,
+     "other_side_all_levels": 65865,
+     "ratio": 4.1,
+     "this_side": 76410,
+     "this_side_all_levels": 148621
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "Under 234.5 (234.5)",
+     "price": 0.515,
+     "this_side": 7444
+    }
+   },
+   "fade_price": 0.48,
+   "first_seen_utc": "2026-10-28T11:41:35Z",
+   "game": "New York vs Chicago: Total Points",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBATOTAL-26OCT28NYKCHI-235\"}",
+   "lead_min": 730,
+   "league": "NBA",
+   "line": 234.5,
+   "market": "total",
+   "new_money": 77081,
+   "paper_only": false,
+   "price": 0.53,
+   "price_american": -113,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.53,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 234.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 234.5,
+     "price": -108
+    },
+    "betopenly": {
+     "point": 234.5,
+     "price": 100
+    },
+    "betrivers": {
+     "point": 234.5,
+     "price": -113
+    },
+    "betus": {
+     "point": 234.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 234.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 234.5,
+     "price": -110
+    },
+    "fanatics": {
+     "point": 234.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 234.5,
+     "price": -105
+    },
+    "kalshi": {
+     "point": 234.5,
+     "price": -113
+    },
+    "lowvig": {
+     "point": 234.5,
+     "price": -105
+    },
+    "mybookieag": {
+     "point": 234.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 234.5,
+     "price": -106
+    },
+    "polymarket": {
+     "point": 233.5,
+     "price": 104
+    },
+    "prophetx": {
+     "point": 234.5,
+     "price": -109
+    },
+    "williamhill_us": {
+     "point": 234.5,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNBATOTAL-26OCT28NYKCHI-235"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": "none_10k",
+   "second_book_fresh": false,
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "NOT Over 234.5 points",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-29T00:00:00Z",
+   "teams": [
+    "New York",
+    "Chicago"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-28T10:30:12Z",
    "base_depth": 49214,
    "best_price": 0.49,
@@ -915,8 +1053,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": 1.0,
+   "close_price": 0.52,
+   "clv_cents": 2.0,
    "confirmed_after_min": 10,
    "date": "2026-10-28",
    "depth_by_book": {
