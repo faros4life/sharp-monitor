@@ -53,6 +53,8 @@
    "new_money": 32259,
    "paper_only": false,
    "price": 0.45,
+   "price_after_15m": 0.45,
+   "price_after_15m_book": "novig",
    "price_american": 122,
    "price_rule": "ok",
    "price_when_first_seen": 0.45,
@@ -138,6 +140,7 @@
    "side_label": "NOT Over 6.5 goals scored",
    "start_source": "odds",
    "start_utc": "2026-10-29T23:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Utah",
     "Pittsburgh"
@@ -192,6 +195,8 @@
    "new_money": 58028,
    "paper_only": false,
    "price": 0.61,
+   "price_after_15m": 0.6,
+   "price_after_15m_book": "novig",
    "price_american": -156,
    "price_rule": "fails_cap",
    "price_when_first_seen": 0.61,
@@ -269,6 +274,7 @@
    "side_label": "NOT Minnesota wins by over 1.5 goals",
    "start_source": "odds",
    "start_utc": "2026-10-30T00:00:00Z",
+   "still_actionable": true,
    "teams": [
     "New York I",
     "Minnesota"
@@ -291,8 +297,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.73,
-   "clv_cents": 0.0,
+   "close_price": 0.72,
+   "clv_cents": -1.0,
    "confirmed_after_min": 3,
    "date": "2026-10-29",
    "depth_by_book": {
@@ -1023,8 +1029,10 @@
     }
    },
    "fade_price": 0.635,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-29T00:44:29Z",
    "game": "Oklahoma City Thunder @ Dallas Mavericks",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a17fdb-6cbe-7440-a928-46ceaf599ea2\", \"outcome_id\": \"01a17fdb-6cbe-7440-a928-46dec3093e39\"}",
    "lead_min": 40,
    "league": "NBA",
@@ -1117,13 +1125,14 @@
     "market_id": "01a17fdb-6cbe-7440-a928-46ceaf599ea2",
     "outcome_id": "01a17fdb-6cbe-7440-a928-46dec3093e39"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "polymarket"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-29T04:30:13Z",
    "sharp_agree": [
     "Dallas Mavericks +5.5 (-109)",
     "Dallas Mavericks +5.5 (-103)"
@@ -1139,7 +1148,7 @@
     "Dallas Mavericks"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.7
   },
   {
    "alerted_utc": "2026-10-29T00:44:29Z",
@@ -1339,6 +1348,7 @@
     }
    },
    "fade_price": 0.49,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-29T00:20:11Z",
    "game": "Thunder vs. Mavericks",
    "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6322523\"}",
@@ -1425,7 +1435,7 @@
     "outcome_index": 1,
     "pm_market_id": "6322523"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "kalshi",
@@ -1433,6 +1443,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-29T04:30:13Z",
    "sharp_agree": [
     "Dallas Mavericks +5.5 (-109)",
     "Dallas Mavericks +5.5 (-103)"
@@ -1448,7 +1459,7 @@
     "Mavericks"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.94
   },
   {
    "alerted_utc": "2026-10-29T00:30:12Z",
@@ -1499,8 +1510,10 @@
     }
    },
    "fade_price": 0.37,
+   "fade_units": 1.7,
    "first_seen_utc": "2026-10-29T00:20:11Z",
    "game": "Oklahoma City Thunder @ Dallas Mavericks",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a17fdb-6cbe-7440-a928-46ceaf599ea2\", \"outcome_id\": \"01a17fdb-6cbe-7440-a928-46e1a2334009\"}",
    "lead_min": 60,
    "league": "NBA",
@@ -1593,7 +1606,7 @@
     "market_id": "01a17fdb-6cbe-7440-a928-46ceaf599ea2",
     "outcome_id": "01a17fdb-6cbe-7440-a928-46e1a2334009"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "kalshi",
@@ -1601,6 +1614,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-29T04:30:13Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "Dallas Mavericks +5.5 (-109)",
@@ -1616,7 +1630,7 @@
     "Dallas Mavericks"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-29T00:20:11Z",
@@ -2866,6 +2880,7 @@
     }
    },
    "fade_price": 0.36,
+   "fade_units": 1.73,
    "first_seen_utc": "2026-10-28T23:10:09Z",
    "game": "Thunder vs. Mavericks",
    "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"6037142\"}",
@@ -2961,7 +2976,7 @@
     "outcome_index": 0,
     "pm_market_id": "6037142"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "kalshi",
@@ -2970,6 +2985,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-29T04:30:13Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "Dallas Mavericks +5.5 (-103)"
@@ -2984,7 +3000,7 @@
     "Mavericks"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-28T22:51:38Z",
@@ -11328,6 +11344,7 @@
     }
    },
    "fade_price": 0.48,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-28T16:00:22Z",
    "game": "Thunder vs. Mavericks",
    "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6322492\"}",
@@ -11415,11 +11432,12 @@
     "outcome_index": 1,
     "pm_market_id": "6322492"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settled_utc": "2026-10-29T04:30:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Mavericks",
@@ -11432,7 +11450,7 @@
     "Mavericks"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.86
   },
   {
    "alerted_utc": "2026-10-28T16:10:12Z",
@@ -11483,6 +11501,7 @@
     }
    },
    "fade_price": 0.66,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-28T16:00:22Z",
    "game": "Thunder vs. Mavericks",
    "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6037142\"}",
@@ -11577,11 +11596,12 @@
     "outcome_index": 1,
     "pm_market_id": "6037142"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-10-29T04:30:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Mavericks",
@@ -11594,7 +11614,7 @@
     "Mavericks"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.94
   },
   {
    "alerted_utc": "2026-10-28T16:10:12Z",
