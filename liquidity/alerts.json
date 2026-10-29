@@ -1,6 +1,125 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-29T17:20:10Z",
+   "base_depth": 236671,
+   "best_price": 0.726,
+   "best_price_american": -265,
+   "best_price_book": "polymarket",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.72,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-30",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -773,
+     "new_this_side": 37548,
+     "other_side": 5332,
+     "other_side_all_levels": 90582,
+     "ratio": 12.4,
+     "this_side": 66174,
+     "this_side_all_levels": 308166
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "DET (0)",
+     "price": 0.73,
+     "this_side": 5935
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Pistons",
+     "price": 0.72,
+     "this_side": 7020
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Detroit Pistons",
+     "price": 0.7531,
+     "this_side": 98
+    }
+   },
+   "fade_price": 0.28,
+   "first_seen_utc": "2026-10-29T17:10:12Z",
+   "game": "Detroit vs Brooklyn",
+   "key": "kalshi|KXNBAGAME-26OCT30DETBKN|ml|0",
+   "lead_min": 1810,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 37548,
+   "paper_only": false,
+   "price": 0.72,
+   "price_american": -257,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.72,
+   "prices_by_book": {
+    "draftkings": {
+     "point": null,
+     "price": -355
+    },
+    "fanatics": {
+     "point": null,
+     "price": -350
+    },
+    "kalshi": {
+     "point": null,
+     "price": -270
+    },
+    "limitless": {
+     "point": null,
+     "price": -261
+    },
+    "novig": {
+     "point": null,
+     "price": -270
+    },
+    "polymarket": {
+     "point": null,
+     "price": -257
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -257
+    },
+    "prophetx": {
+     "point": null,
+     "price": -305
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBAGAME-26OCT30DETBKN-DET"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Detroit",
+   "side_label": "Detroit",
+   "start_source": "odds",
+   "start_utc": "2026-10-30T23:30:00Z",
+   "teams": [
+    "Detroit",
+    "Brooklyn"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-29T17:10:12Z",
    "base_depth": 153722,
    "best_price": 0.665,
@@ -167,8 +286,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": 0.0,
+   "close_price": 0.5,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-29",
    "depth_by_book": {
@@ -364,6 +483,8 @@
    "new_money": 25528,
    "paper_only": false,
    "price": 0.69,
+   "price_after_15m": 0.685,
+   "price_after_15m_book": "novig",
    "price_american": -223,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.69,
@@ -460,6 +581,7 @@
    "side_label": "Pelicans",
    "start_source": "polymarket",
    "start_utc": "2026-10-30T00:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Kings",
     "Pelicans"
@@ -482,8 +604,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": 0.0,
+   "close_price": 0.54,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-29",
    "depth_by_book": {
@@ -526,6 +648,8 @@
    "new_money": 26226,
    "paper_only": false,
    "price": 0.53,
+   "price_after_15m": 0.535,
+   "price_after_15m_book": "novig",
    "price_american": -113,
    "price_rule": "ok",
    "price_when_first_seen": 0.53,
@@ -614,6 +738,7 @@
    "side_label": "Over 5.5 goals scored",
    "start_source": "odds",
    "start_utc": "2026-10-29T23:30:00Z",
+   "still_actionable": true,
    "teams": [
     "Chicago",
     "Detroit"
@@ -668,6 +793,8 @@
    "new_money": 154029,
    "paper_only": false,
    "price": 0.51,
+   "price_after_15m": 0.505,
+   "price_after_15m_book": "novig",
    "price_american": -104,
    "price_rule": "ok",
    "price_when_first_seen": 0.51,
@@ -753,6 +880,7 @@
    "side_label": "Green Bay wins by over 3.5 points",
    "start_source": "odds",
    "start_utc": "2026-10-30T00:15:00Z",
+   "still_actionable": true,
    "teams": [
     "Carolina",
     "Green Bay"
@@ -1703,8 +1831,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.68,
-   "clv_cents": 1.0,
+   "close_price": 0.67,
+   "clv_cents": 0.0,
    "confirmed_after_min": 6,
    "date": "2026-10-30",
    "depth_by_book": {
@@ -4561,8 +4689,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 0.0,
+   "close_price": 0.51,
+   "clv_cents": -1.0,
    "confirmed_after_min": 13,
    "date": "2026-10-29",
    "depth_by_book": {
@@ -5167,8 +5295,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": 0.0,
+   "close_price": 0.52,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-29",
    "depth_by_book": {
