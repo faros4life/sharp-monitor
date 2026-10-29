@@ -1,6 +1,143 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-29T20:05:32Z",
+   "base_depth": 181192,
+   "best_price": 0.56,
+   "best_price_american": -127,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.55,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-10-29",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 3349,
+     "new_this_side": 48179,
+     "other_side": 111023,
+     "other_side_all_levels": 173418,
+     "ratio": 1.5,
+     "this_side": 164521,
+     "this_side_all_levels": 228557
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "WPG +1.5 (-1.5)",
+     "price": 0.56,
+     "this_side": 23169
+    }
+   },
+   "fade_price": 0.46,
+   "first_seen_utc": "2026-10-29T20:00:18Z",
+   "game": "Winnipeg vs Tampa Bay: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLSPREAD-26OCT29WPGTB-TB2\"}",
+   "lead_min": 174,
+   "league": "NHL",
+   "line": 1.5,
+   "market": "spread",
+   "new_money": 48179,
+   "paper_only": false,
+   "price": 0.55,
+   "price_american": -122,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.55,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 1.5,
+     "price": -145
+    },
+    "betonlineag": {
+     "point": 1.5,
+     "price": -143
+    },
+    "betopenly": {
+     "point": 1.5,
+     "price": -128
+    },
+    "betrivers": {
+     "point": 1.5,
+     "price": -134
+    },
+    "betus": {
+     "point": 1.5,
+     "price": -140
+    },
+    "bovada": {
+     "point": 1.5,
+     "price": -135
+    },
+    "draftkings": {
+     "point": 1.5,
+     "price": -142
+    },
+    "fanatics": {
+     "point": 1.5,
+     "price": -140
+    },
+    "fanduel": {
+     "point": 1.5,
+     "price": -138
+    },
+    "kalshi": {
+     "point": 1.5,
+     "price": -122
+    },
+    "lowvig": {
+     "point": 1.5,
+     "price": -143
+    },
+    "mybookieag": {
+     "point": 1.5,
+     "price": -145
+    },
+    "novig": {
+     "point": 1.5,
+     "price": -127
+    },
+    "polymarket": {
+     "point": 1.5,
+     "price": -127
+    },
+    "prophetx": {
+     "point": 1.5,
+     "price": -127
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNHLSPREAD-26OCT29WPGTB-TB2"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Winnipeg",
+   "side_label": "NOT Tampa Bay wins by over 1.5 goals",
+   "start_source": "odds",
+   "start_utc": "2026-10-29T23:00:00Z",
+   "teams": [
+    "Winnipeg",
+    "Tampa Bay"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-29T20:00:18Z",
    "base_depth": 175734,
    "best_price": 0.6267,
@@ -151,8 +288,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": -0.5,
+   "close_price": 0.505,
+   "clv_cents": 0.0,
    "confirmed_after_min": 9,
    "date": "2026-10-29",
    "depth_by_book": {
@@ -4124,8 +4261,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.7,
-   "clv_cents": 2.0,
+   "close_price": 0.71,
+   "clv_cents": 3.0,
    "confirmed_after_min": 6,
    "date": "2026-10-30",
    "depth_by_book": {
@@ -9190,8 +9327,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.63,
-   "clv_cents": 0.0,
+   "close_price": 0.62,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-29",
    "depth_by_book": {
