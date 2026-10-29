@@ -1,6 +1,147 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-29T22:40:11Z",
+   "base_depth": 131249,
+   "best_price": 0.445,
+   "best_price_american": 125,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.45,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-29",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -16261,
+     "new_this_side": 34987,
+     "other_side": 85896,
+     "other_side_all_levels": 117808,
+     "ratio": 1.7,
+     "this_side": 143161,
+     "this_side_all_levels": 168649
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "Under 5.5 (5.5)",
+     "price": 0.445,
+     "this_side": 23645
+    }
+   },
+   "fade_price": 0.56,
+   "first_seen_utc": "2026-10-29T22:30:13Z",
+   "game": "Winnipeg vs Tampa Bay: Total Goals",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLTOTAL-26OCT29WPGTB-6\"}",
+   "lead_min": 20,
+   "league": "NHL",
+   "line": 5.5,
+   "market": "total",
+   "new_money": 34987,
+   "paper_only": false,
+   "price": 0.45,
+   "price_american": 122,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.45,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 6.0,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 6.0,
+     "price": -108
+    },
+    "betopenly": {
+     "point": 5.5,
+     "price": 128
+    },
+    "betrivers": {
+     "point": 5.5,
+     "price": 112
+    },
+    "betus": {
+     "point": 6.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 6.0,
+     "price": -112
+    },
+    "draftkings": {
+     "point": 5.5,
+     "price": 114
+    },
+    "fanatics": {
+     "point": 5.5,
+     "price": 115
+    },
+    "fanduel": {
+     "point": 5.5,
+     "price": 114
+    },
+    "kalshi": {
+     "point": 5.5,
+     "price": 122
+    },
+    "lowvig": {
+     "point": 6.0,
+     "price": -108
+    },
+    "mybookieag": {
+     "point": 6.0,
+     "price": -114
+    },
+    "novig": {
+     "point": 5.5,
+     "price": 125
+    },
+    "polymarket": {
+     "point": 5.5,
+     "price": 127
+    },
+    "prophetx": {
+     "point": 6.0,
+     "price": -108
+    },
+    "williamhill_us": {
+     "point": 6.0,
+     "price": -113
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNHLTOTAL-26OCT29WPGTB-6"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "NOT Over 5.5 goals scored",
+   "start_source": "odds",
+   "start_utc": "2026-10-29T23:00:00Z",
+   "teams": [
+    "Winnipeg",
+    "Tampa Bay"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-29T21:40:11Z",
    "base_depth": 254672,
    "best_price": 0.5,
@@ -166,8 +307,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.56,
-   "clv_cents": 0.0,
+   "close_price": 0.55,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-29",
    "depth_by_book": {
@@ -285,7 +426,8 @@
      "price": -134
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-29T22:40:11Z",
    "ref": {
     "outcome_index": 0,
     "pm_market_id": "5406597"
@@ -1221,8 +1363,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.66,
-   "clv_cents": 0.0,
+   "close_price": 0.67,
+   "clv_cents": 1.0,
    "confirmed_after_min": 11,
    "date": "2026-10-29",
    "depth_by_book": {
@@ -2856,8 +2998,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.45,
-   "clv_cents": 0.0,
+   "close_price": 0.46,
+   "clv_cents": 1.0,
    "confirmed_after_min": 12,
    "date": "2026-10-29",
    "depth_by_book": {
@@ -3447,8 +3589,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.69,
-   "clv_cents": 0.0,
+   "close_price": 0.68,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-29",
    "depth_by_book": {
@@ -4838,8 +4980,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.71,
-   "clv_cents": 4.0,
+   "close_price": 0.72,
+   "clv_cents": 5.0,
    "confirmed_after_min": 6,
    "date": "2026-10-30",
    "depth_by_book": {
@@ -7702,8 +7844,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": -1.0,
+   "close_price": 0.52,
+   "clv_cents": 0.0,
    "confirmed_after_min": 13,
    "date": "2026-10-29",
    "depth_by_book": {
@@ -8457,8 +8599,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.54,
-   "clv_cents": 2.0,
+   "close_price": 0.55,
+   "clv_cents": 3.0,
    "confirmed_after_min": 10,
    "date": "2026-10-29",
    "depth_by_book": {
@@ -9955,8 +10097,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": 1.0,
+   "close_price": 0.5,
+   "clv_cents": 0.0,
    "confirmed_after_min": 6,
    "date": "2026-10-29",
    "depth_by_book": {
@@ -17309,8 +17451,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.56,
-   "clv_cents": 1.0,
+   "close_price": 0.55,
+   "clv_cents": 0.0,
    "confirmed_after_min": 9,
    "date": "2026-10-29",
    "depth_by_book": {
@@ -21191,8 +21333,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.59,
-   "clv_cents": -3.0,
+   "close_price": 0.6,
+   "clv_cents": -2.0,
    "confirmed_after_min": 10,
    "date": "2026-10-29",
    "depth_by_book": {
