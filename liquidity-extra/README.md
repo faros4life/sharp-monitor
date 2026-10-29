@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Oct 29, 5:30 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 9.
+Updated Thu Oct 29, 5:39 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 9.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -11,7 +11,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Oct 29 5:20AM | TENNIS | Shelton vs Kym | moneyline: Shelton | kalshi | $42k | -317 |  |  | +0.0c |  | pending |
-| Oct 29 5:10AM | TENNIS | Fritz vs Shapovalov | moneyline: Fritz | kalshi | $48k | -223 |  |  | +0.0c |  | pending |
+| Oct 29 5:10AM | TENNIS | Fritz vs Shapovalov | moneyline: Fritz | kalshi | $48k | -223 |  |  | -1.0c |  | pending |
 | Oct 28 6:50PM | MLB | Milwaukee Brewers @ Tampa Bay Rays | spread: TB +1.5 (1.5) | novig | $51k | -138 | ✅ kalshi,polymarket |  | +0.0c |  | L |
 | Oct 28 4:18PM | MLB | Milwaukee Brewers vs. Tampa Bay Rays | moneyline: Tampa Bay Rays | polymarket | $268k | +127 | ✅ kalshi,novig,prophetx |  | +0.0c |  | L |
 | Oct 28 4:18PM | MLB | Game 5: Milwaukee vs Tampa Bay | moneyline: Tampa Bay | kalshi | $175k | +127 | ✅ novig,polymarket,prophetx |  | +0.0c | yes | L |
