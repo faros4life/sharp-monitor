@@ -1,6 +1,6 @@
 # EV sightings study (paper, measurement only)
 
-Started 2026-10-27T16:06:50Z. Updated 2026-10-29T14:36:53Z. Sightings are a record, never bets. CLV = close fair - sighting after-fee cost, in cents (+ = beat the close). Gate: >= 50 graded, positive average CLV and positive flat record; reviewed only at a scheduled review. A/B gate on consensus CLV; move-watch (A1) gate on Pinnacle CLV. Held = Pinnacle close minus Pinnacle's pre-move fair at the old number (+ = the move held). Rows exclude suspect sightings (best price 10c+ under the other books, or a crossed quote: usually a misread line); Pinnacle CLV only within 3 points of Pinnacle's number.
+Started 2026-10-27T16:06:50Z. Updated 2026-10-29T14:39:50Z. Sightings are a record, never bets. CLV = close fair - sighting after-fee cost, in cents (+ = beat the close). Gate: >= 50 graded, positive average CLV and positive flat record; reviewed only at a scheduled review. A/B gate on consensus CLV; move-watch (A1) gate on Pinnacle CLV. Held = Pinnacle close minus Pinnacle's pre-move fair at the old number (+ = the move held). Rows exclude suspect sightings (best price 10c+ under the other books, or a crossed quote: usually a misread line); Pinnacle CLV only within 3 points of Pinnacle's number.
 
 | Bucket | Sightings | Closed | CLV vs consensus | Beat % | Pin-closed | CLV vs Pinnacle | Graded | Record | Units | ROI | Held | Lag (med) | Gate |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
@@ -34,10 +34,11 @@ A and B on the same side/line: 19.
 
 ## Odds API credits (100K/month plan)
 
-Study: 449/day, projected 13477/30 days. All monitors on the key: 1964/day, projected 58929/30 days. Remaining 67687; guard holds 10800 for the sharp monitor; polls skipped by the guard: 0.
+Study: 449/day, projected 13462/30 days. All monitors on the key: 1962/day, projected 58861/30 days. Remaining 67687; guard holds 10800 for the sharp monitor; polls skipped by the guard: 0.
 
 ## Last runs
 
+- 2026-10-29T14:37:08Z: 9 games (6 in 24h), quotes {'prophetx': 660, 'novig': 631, 'kalshi': 702, 'polymarket_us': 948}, 98 unmatched, 1545 side/lines, polls [none_due], moves 0, new A 0 B 0, maker posted 0 filled 0, credits used 0 left 67687, 162s
 - 2026-10-29T14:34:12Z: 9 games (6 in 24h), quotes {'prophetx': 660, 'novig': 631, 'kalshi': 702, 'polymarket_us': 948}, 99 unmatched, 1545 side/lines, polls [none_due], moves 0, new A 4 B 0, maker posted 0 filled 0, credits used 0 left 67687, 161s
 - 2026-10-29T14:30:17Z: 9 games (6 in 24h), quotes {'prophetx': 668, 'novig': 633, 'kalshi': 702, 'polymarket_us': 948}, 98 unmatched, 1551 side/lines, polls [NFL:slow,NCAAF:slow,NBA:slow], moves 3, new A 11 B 0, maker posted 0 filled 0, credits used 6 left 67691, 161s
 - 2026-10-29T14:20:15Z: 9 games (6 in 24h), quotes {'prophetx': 668, 'novig': 639, 'kalshi': 700, 'polymarket_us': 948}, 91 unmatched, 1551 side/lines, polls [none_due], moves 0, new A 9 B 0, maker posted 0 filled 0, credits used 0 left 67717, 164s
@@ -47,4 +48,3 @@ Study: 449/day, projected 13477/30 days. All monitors on the key: 1964/day, proj
 - 2026-10-29T13:45:24Z: 9 games (6 in 24h), quotes {'prophetx': 656, 'novig': 575, 'kalshi': 628, 'polymarket_us': 948}, 95 unmatched, 1545 side/lines, polls [none_due], moves 0, new A 6 B 0, maker posted 0 filled 0, credits used 0 left 67767, 146s
 - 2026-10-29T13:40:26Z: 9 games (6 in 24h), quotes {'prophetx': 656, 'novig': 575, 'kalshi': 628, 'polymarket_us': 948}, 97 unmatched, 1545 side/lines, polls [none_due], moves 0, new A 0 B 0, maker posted 0 filled 0, credits used 0 left 67778, 145s
 - 2026-10-29T13:37:46Z: 9 games (6 in 24h), quotes {'prophetx': 656, 'novig': 575, 'kalshi': 628, 'polymarket_us': 948}, 97 unmatched, 1545 side/lines, polls [none_due], moves 0, new A 2 B 0, maker posted 0 filled 0, credits used 0 left 67787, 145s
-- 2026-10-29T13:30:18Z: 9 games (6 in 24h), quotes {'prophetx': 654, 'novig': 575, 'kalshi': 628, 'polymarket_us': 948}, 95 unmatched, 1542 side/lines, polls [NFL:slow,NCAAF:slow,NBA:slow], moves 2, new A 2 B 0, maker posted 0 filled 0, credits used 6 left 67789, 146s
