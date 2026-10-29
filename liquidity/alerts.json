@@ -1,6 +1,434 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-29T14:10:12Z",
+   "base_depth": 335949,
+   "best_price": 0.5375,
+   "best_price_american": -116,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-29",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 18353,
+     "new_this_side": 168667,
+     "other_side": 207819,
+     "other_side_all_levels": 283005,
+     "ratio": 1.8,
+     "this_side": 376389,
+     "this_side_all_levels": 496778
+    }
+   },
+   "fade_price": 0.49,
+   "first_seen_utc": "2026-10-29T14:00:18Z",
+   "game": "Florida Atlantic vs North Texas: Total Points",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFTOTAL-26OCT29FAUUNT-77\"}",
+   "lead_min": 560,
+   "league": "NCAAF",
+   "line": 76.5,
+   "market": "total",
+   "new_money": 168667,
+   "paper_only": false,
+   "price": 0.52,
+   "price_american": -108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.52,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 77.5,
+     "price": -108
+    },
+    "betonlineag": {
+     "point": 77.0,
+     "price": -116
+    },
+    "betrivers": {
+     "point": 76.5,
+     "price": -117
+    },
+    "betus": {
+     "point": 77.0,
+     "price": -115
+    },
+    "bovada": {
+     "point": 78.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 77.5,
+     "price": -108
+    },
+    "fanatics": {
+     "point": 77.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 76.5,
+     "price": -115
+    },
+    "kalshi": {
+     "point": 76.5,
+     "price": -108
+    },
+    "lowvig": {
+     "point": 77.0,
+     "price": -115
+    },
+    "mybookieag": {
+     "point": 77.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 77.5,
+     "price": -102
+    },
+    "polymarket": {
+     "point": 43.5,
+     "price": -9900
+    },
+    "prophetx": {
+     "point": 76.5,
+     "price": -114
+    },
+    "williamhill_us": {
+     "point": 77.5,
+     "price": -105
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFTOTAL-26OCT29FAUUNT-77"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [
+    "Over 76.5 (-110)"
+   ],
+   "sharp_oppose": [],
+   "side": "OVER",
+   "side_label": "Over 76.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-10-29T23:30:00Z",
+   "teams": [
+    "Florida Atlantic",
+    "North Texas"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-29T14:10:12Z",
+   "base_depth": 188630,
+   "best_price": 0.525,
+   "best_price_american": -111,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.53,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-30",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 6315,
+     "new_this_side": 25623,
+     "other_side": 99310,
+     "other_side_all_levels": 170497,
+     "ratio": 1.2,
+     "this_side": 120794,
+     "this_side_all_levels": 209381
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "UCF +1.5 (1.5)",
+     "price": 0.525,
+     "this_side": 7978
+    }
+   },
+   "fade_price": 0.48,
+   "first_seen_utc": "2026-10-29T14:00:18Z",
+   "game": "Baylor vs UCF: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFSPREAD-26OCT30BAYUCF-BAY2\"}",
+   "lead_min": 2000,
+   "league": "NCAAF",
+   "line": 1.5,
+   "market": "spread",
+   "new_money": 25623,
+   "paper_only": false,
+   "price": 0.53,
+   "price_american": -113,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.53,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -1.0,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": -1.0,
+     "price": -107
+    },
+    "betopenly": {
+     "point": 1.0,
+     "price": -103
+    },
+    "betrivers": {
+     "point": -1.0,
+     "price": -112
+    },
+    "betus": {
+     "point": -1.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": -1.0,
+     "price": -105
+    },
+    "draftkings": {
+     "point": -1.5,
+     "price": -102
+    },
+    "fanatics": {
+     "point": -1.0,
+     "price": -105
+    },
+    "fanduel": {
+     "point": 1.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": 1.5,
+     "price": -113
+    },
+    "lowvig": {
+     "point": -1.0,
+     "price": -103
+    },
+    "mybookieag": {
+     "point": -1.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 1.5,
+     "price": -111
+    },
+    "polymarket": {
+     "point": 0.5,
+     "price": -104
+    },
+    "prophetx": {
+     "point": 1.5,
+     "price": -112
+    },
+    "williamhill_us": {
+     "point": -1.0,
+     "price": -106
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAFSPREAD-26OCT30BAYUCF-BAY2"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UCF",
+   "side_label": "NOT Baylor wins by over 1.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-10-30T23:30:00Z",
+   "teams": [
+    "Baylor",
+    "UCF"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-29T14:10:12Z",
+   "base_depth": 240638,
+   "best_price": 0.605,
+   "best_price_american": -153,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.6,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-29",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -1009,
+     "new_this_side": 27013,
+     "other_side": 157095,
+     "other_side_all_levels": 201969,
+     "ratio": 1.5,
+     "this_side": 236952,
+     "this_side_all_levels": 269925
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "DAL (0)",
+     "price": 0.605,
+     "this_side": 33050
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Stars",
+     "price": 0.61,
+     "this_side": 84637
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Dallas Stars",
+     "price": 0.6094,
+     "this_side": 8792
+    }
+   },
+   "fade_price": 0.4,
+   "first_seen_utc": "2026-10-29T14:00:18Z",
+   "game": "Montreal vs Dallas",
+   "key": "kalshi|KXNHLGAME-26OCT29MTLDAL|ml|1",
+   "lead_min": 590,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 27013,
+   "paper_only": false,
+   "price": 0.6,
+   "price_american": -150,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.6,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -170
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -160
+    },
+    "betopenly": {
+     "point": null,
+     "price": -151
+    },
+    "betrivers": {
+     "point": null,
+     "price": -175
+    },
+    "betus": {
+     "point": null,
+     "price": -160
+    },
+    "bovada": {
+     "point": null,
+     "price": -165
+    },
+    "draftkings": {
+     "point": null,
+     "price": -162
+    },
+    "fanatics": {
+     "point": null,
+     "price": -170
+    },
+    "fanduel": {
+     "point": null,
+     "price": -172
+    },
+    "kalshi": {
+     "point": null,
+     "price": -150
+    },
+    "lowvig": {
+     "point": null,
+     "price": -160
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -164
+    },
+    "novig": {
+     "point": null,
+     "price": -153
+    },
+    "polymarket": {
+     "point": null,
+     "price": -156
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -150
+    },
+    "prophetx": {
+     "point": null,
+     "price": -156
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -164
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNHLGAME-26OCT29MTLDAL-DAL"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "polymarket"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Dallas",
+   "side_label": "Dallas",
+   "start_source": "odds",
+   "start_utc": "2026-10-30T00:00:00Z",
+   "teams": [
+    "Montreal",
+    "Dallas"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-29T13:44:03Z",
    "base_depth": 108379,
    "best_price": 0.49,
@@ -157,8 +585,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 2.0,
+   "close_price": 0.54,
+   "clv_cents": 4.0,
    "confirmed_after_min": 10,
    "date": "2026-10-29",
    "depth_by_book": {
@@ -313,8 +741,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 1.0,
+   "close_price": 0.53,
+   "clv_cents": 2.0,
    "confirmed_after_min": 10,
    "date": "2026-10-29",
    "depth_by_book": {
@@ -428,7 +856,8 @@
      "price": -110
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-29T14:10:12Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNBATOTAL-26OCT29MEMPOR-234"
@@ -721,7 +1150,8 @@
      "price": -250
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-29T14:10:12Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNHLSPREAD-26OCT29WSHNSH-NSH2"
@@ -3656,7 +4086,8 @@
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.7,
    "prices_by_book": {},
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-29T14:10:12Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26OCT30UTAHCIN-UTAH"
@@ -18982,8 +19413,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": -1.0,
+   "close_price": 0.49,
+   "clv_cents": -3.0,
    "confirmed_after_min": 10,
    "date": "2026-10-29",
    "depth_by_book": {
