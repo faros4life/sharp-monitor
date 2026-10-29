@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Thu Oct 29, 3:20 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 3.
+Updated Thu Oct 29, 3:27 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 2.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 76-53 (-9.05u flat) | rule met: 26-25
+**Record:** 77-53 (-8.82u flat) | rule met: 26-25
 
-**Fade (paper, betting against the print):** 28-41 (+3.11u flat, after fees)
+**Fade (paper, betting against the print):** 28-42 (+2.11u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -21,7 +21,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 28 4:18PM | TENNIS | Djokovic vs Struff | moneyline: Djokovic | kalshi | $63k | -335 |  |  | -1.0c | yes | pending |
 | Oct 28 4:00PM | MLB | Milwaukee Brewers vs. Tampa Bay Rays | total: Under (6.5) | polymarket | $27k | -104 | ✅ kalshi,novig,prophetx |  | +2.0c |  | W |
 | Oct 28 3:40PM | MLB | Milwaukee Brewers @ Tampa Bay Rays | moneyline: TB (0) | novig | $201k | +133 | ✅ prophetx |  | +0.5c |  | L |
-| Oct 28 1:50PM | TENNIS | Zverev vs Griekspoor | moneyline: Zverev | kalshi | $49k | -400 |  |  | -3.0c |  | pending |
+| Oct 28 1:50PM | TENNIS | Zverev vs Griekspoor | moneyline: Zverev | kalshi | $49k | -400 |  |  | -3.0c |  | W |
 | Oct 28 1:50PM | TENNIS | Norrie vs Medvedev | moneyline: Medvedev | kalshi | $75k | -456 |  |  | -1.0c |  | W |
 | Oct 28 1:10PM | MLB | Game 5: Milwaukee vs Tampa Bay | moneyline: Game 5: Milwaukee | kalshi | $110k | -150 | ✅ novig,polymarket,prophetx |  | -3.0c | yes | W |
 | Oct 28 9:40AM | MLB | Milwaukee Brewers @ Tampa Bay Rays | moneyline: MIL (0) | novig | $25k | -144 | ✅ polymarket |  | -2.0c | yes | W |
