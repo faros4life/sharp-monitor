@@ -22,7 +22,7 @@ import px_live
 ET = lm.ET
 TOT = {}   # book -> cash + money in open bets (this run); compared with the week's first email (private, Gmail only)
 NAMES = {"px": "ProphetX", "kalshi": "Kalshi", "pmus": "Polymarket US", "novig_main": "Novig main",
-         "novig_auto": "Novig auto-place"}
+         "novig_auto": "Novig auto-place", "hardrock": "Hard Rock (manual)"}
 
 
 def money(x):
@@ -173,6 +173,34 @@ def baseline(now):
     return None, {}
 
 
+def hardrock_manual():
+    """Newest 'Bets Hard Rock:' email (Peter's figure from his app, logged privately in Gmail). Returns (when, total, line)."""
+    import email
+    import re
+    from email.utils import parsedate_to_datetime
+    M = ex.imap_open()
+    try:
+        typ, data = M.search(None, '(SUBJECT "Bets Hard Rock:")')
+        ids = data[0].split() if data and data[0] else []
+        for num in reversed(ids[-20:]):
+            typ, msg = M.fetch(num, "(RFC822)")
+            m = email.message_from_bytes(msg[0][1])
+            subj = str(m.get("Subject") or "")
+            if not subj.startswith("Bets Hard Rock:"):
+                continue
+            v = {k: float(x.replace(",", "")) for k, x in re.findall(r"(cash|open|total)=\$?([\d,]+(?:\.\d+)?)", subj)}
+            if "total" not in v and "cash" in v:
+                v["total"] = v["cash"] + v.get("open", 0.0)
+            if "total" in v:
+                return parsedate_to_datetime(m.get("Date")), v
+    finally:
+        try:
+            M.logout()
+        except Exception:
+            pass
+    return None, {}
+
+
 def week_compare(now):
     if not TOT:
         return []
@@ -183,7 +211,7 @@ def week_compare(now):
         when, base = None, {}
         out.append(f"(baseline unreadable: {str(e)[:60]})")
     label = when.astimezone(ET).strftime("%a %I:%M %p") if when else "this run (first of the week)"
-    tn = tb = 0.0
+    tn = tb = tc = 0.0   # tc = today's total over the books the baseline also has (like-for-like change)
     for k, nm in NAMES.items():
         if k not in TOT:
             out.append(f"{nm}: n/a")
@@ -192,13 +220,14 @@ def week_compare(now):
         tn += v
         if k in base:
             tb += base[k]
+            tc += v
             out.append(f"{nm}: {money(v)} | vs {label}: {'+' if v >= base[k] else '-'}"
                        f"{money(abs(v - base[k]))}")
         else:
             out.append(f"{nm}: {money(v)}")
-    out.append(f"ALL (ex Hard Rock): {money(tn)}" + (f" | vs {label}: {'+' if tn >= tb else '-'}{money(abs(tn - tb))}"
+    out.append(f"ALL{'' if 'hardrock' in TOT else ' (ex Hard Rock)'}: {money(tn)}" + (f" | vs {label} (same books): {'+' if tc >= tb else '-'}{money(abs(tc - tb))}"
                                                     if base else ""))
-    out.append("Change includes deposits/withdrawals; Hard Rock has no read path (not in totals).")
+    out.append("Change includes deposits/withdrawals. Hard Rock = Peter's latest manual figure (its change moves only when he sends a new one).")
     out.append("TOTALS " + now.strftime("%Y-%m-%dT%H:%M:%SZ") + " " +
                " ".join(f"{k}={TOT[k]:.2f}" for k in NAMES if k in TOT))
     return out
@@ -217,8 +246,18 @@ def main():
     except Exception as e:
         lines.append(f"Novig: unavailable ({str(e)[:80]})")
     kay = _num(os.environ.get("KAY_HARDROCK"))
-    lines.append("Hard Rock: unavailable (no read path; never guessed)"
-                 + (f" | Kay's bucket (Hard Rock only): {money(kay)}, manual figure from Peter" if kay is not None else ""))
+    try:
+        hw, hv = hardrock_manual()
+    except Exception:
+        hw, hv = None, {}
+    if hv:
+        TOT["hardrock"] = hv["total"]
+        lines.append(f"Hard Rock (manual, from Peter's app {hw.astimezone(ET).strftime('%a %b %d %I:%M %p')}): "
+                     f"cash {money(hv.get('cash'))} | open bets {money(hv.get('open'))} | total {money(hv['total'])}"
+                     + (f" | Kay's bucket inside: {money(kay)}" if kay is not None else ""))
+    else:
+        lines.append("Hard Rock: unavailable (no read path; never guessed)"
+                     + (f" | Kay's bucket (Hard Rock only): {money(kay)}, manual figure from Peter" if kay is not None else ""))
     lines += week_compare(now)
     lines += ["", "Read-only. Exposure = money in open bets (cost); Kalshi = market exposure; ProphetX = open stake.",
               "Sent hourly and right after any live bot order."]
