@@ -1,7 +1,7 @@
 {
  "alerts": [
   {
-   "alerted_utc": "2026-10-28T23:54:45Z",
+   "alerted_utc": "2026-10-28T23:50:11Z",
    "base_depth": 138517,
    "best_price": 0.49,
    "best_price_american": 104,
@@ -17,36 +17,36 @@
    ],
    "close_price": 0.49,
    "clv_cents": 0.0,
-   "confirmed_after_min": 15,
+   "confirmed_after_min": 10,
    "date": "2026-10-28",
    "depth_by_book": {
     "kalshi": {
      "heavier_side": true,
      "label": "Denver wins by over 4.5 points",
      "price": 0.49,
-     "this_side": 253181
+     "this_side": 259812
     },
     "novig": {
      "heavier_side": true,
      "label": "DEN -4.5 (4.5)",
      "price": 0.49,
-     "this_side": 61643
+     "this_side": 61751
     },
     "polymarket": {
      "new_other_side": 8109,
      "new_this_side": 31204,
-     "other_side": 104526,
-     "other_side_all_levels": 151787,
+     "other_side": 105179,
+     "other_side_all_levels": 147747,
      "ratio": 1.3,
-     "this_side": 133583,
-     "this_side_all_levels": 176727
+     "this_side": 132926,
+     "this_side_all_levels": 171920
     }
    },
    "fade_price": 0.52,
    "first_seen_utc": "2026-10-28T23:40:10Z",
    "game": "Nuggets vs. Pelicans",
    "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"6322434\"}",
-   "lead_min": 5,
+   "lead_min": 10,
    "league": "NBA",
    "line": -4.5,
    "market": "spread",
@@ -59,7 +59,7 @@
    "prices_by_book": {
     "betmgm": {
      "point": -4.5,
-     "price": -105
+     "price": -110
     },
     "betonlineag": {
      "point": -4.0,
@@ -83,7 +83,7 @@
     },
     "draftkings": {
      "point": -4.5,
-     "price": -105
+     "price": -110
     },
     "fanatics": {
      "point": -4.5,
@@ -91,7 +91,7 @@
     },
     "fanduel": {
      "point": -4.5,
-     "price": -106
+     "price": -110
     },
     "kalshi": {
      "point": -4.5,
@@ -107,19 +107,19 @@
     },
     "novig": {
      "point": -4.5,
-     "price": 106
+     "price": 104
     },
     "polymarket": {
      "point": -4.5,
-     "price": 108
+     "price": 104
     },
     "prophetx": {
      "point": -4.5,
-     "price": 104
+     "price": 105
     },
     "williamhill_us": {
      "point": -4.5,
-     "price": -105
+     "price": -110
     }
    },
    "pulled": false,
@@ -149,6 +149,151 @@
    "units_flat": null
   },
   {
+   "alerted_utc": "2026-10-28T23:50:11Z",
+   "base_depth": 34949,
+   "best_price": 0.52,
+   "best_price_american": -108,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-28",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": false,
+     "label": "NOT Denver wins by over 4.5 points",
+     "price": 0.52,
+     "this_side": 173898
+    },
+    "novig": {
+     "new_other_side": 10865,
+     "new_this_side": 45541,
+     "other_side": 61751,
+     "other_side_all_levels": 61866,
+     "ratio": 1.0,
+     "this_side": 59568,
+     "this_side_all_levels": 71863
+    },
+    "polymarket": {
+     "heavier_side": false,
+     "label": "Pelicans (+4.5)",
+     "price": 0.52,
+     "this_side": 105179
+    }
+   },
+   "fade_price": 0.49,
+   "first_seen_utc": "2026-10-28T23:40:10Z",
+   "game": "Denver Nuggets @ New Orleans Pelicans",
+   "key": "novig|{\"market_id\": \"01a17ec6-d705-7743-83ea-eb6182d87247\", \"outcome_id\": \"01a17ec6-d705-7743-83ea-eb7188e528eb\"}",
+   "lead_min": 10,
+   "league": "NBA",
+   "line": 4.5,
+   "market": "spread",
+   "new_money": 45541,
+   "paper_only": false,
+   "price": 0.52,
+   "price_american": -108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.52,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 4.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 4.0,
+     "price": -107
+    },
+    "betopenly": {
+     "point": 4.5,
+     "price": -104
+    },
+    "betrivers": {
+     "point": 4.5,
+     "price": -109
+    },
+    "betus": {
+     "point": 4.0,
+     "price": -105
+    },
+    "bovada": {
+     "point": 4.0,
+     "price": -105
+    },
+    "draftkings": {
+     "point": 4.5,
+     "price": -110
+    },
+    "fanatics": {
+     "point": 4.5,
+     "price": -115
+    },
+    "fanduel": {
+     "point": 4.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": 4.5,
+     "price": -108
+    },
+    "lowvig": {
+     "point": 4.0,
+     "price": -103
+    },
+    "mybookieag": {
+     "point": 4.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 4.5,
+     "price": -108
+    },
+    "polymarket": {
+     "point": 4.5,
+     "price": -108
+    },
+    "prophetx": {
+     "point": 4.5,
+     "price": -107
+    },
+    "williamhill_us": {
+     "point": 4.5,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a17ec6-d705-7743-83ea-eb6182d87247",
+    "outcome_id": "01a17ec6-d705-7743-83ea-eb7188e528eb"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "New Orleans Pelicans",
+   "side_label": "NOP +4.5 (4.5)",
+   "start_source": "odds",
+   "start_utc": "2026-10-29T00:00:00Z",
+   "teams": [
+    "Denver Nuggets",
+    "New Orleans Pelicans"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-28T23:40:10Z",
    "base_depth": 110532,
    "best_price": 0.505,
@@ -163,8 +308,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": -1.0,
+   "close_price": 0.51,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -271,7 +416,7 @@
     }
    },
    "pulled": true,
-   "pulled_utc": "2026-10-28T23:54:45Z",
+   "pulled_utc": "2026-10-28T23:50:11Z",
    "ref": {
     "outcome_index": 1,
     "pm_market_id": "6322312"
@@ -1380,8 +1525,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.42,
-   "clv_cents": 2.0,
+   "close_price": 0.41,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -2147,8 +2292,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.49,
-   "clv_cents": -2.0,
+   "close_price": 0.48,
+   "clv_cents": -3.0,
    "confirmed_after_min": 12,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -7514,8 +7659,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": 0.0,
+   "close_price": 0.5,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -8189,8 +8334,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.7531,
-   "clv_cents": 0.3,
+   "close_price": 0.7561,
+   "clv_cents": 0.6,
    "confirmed_after_min": 15,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -10431,8 +10576,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.39,
-   "clv_cents": 2.0,
+   "close_price": 0.4,
+   "clv_cents": 3.0,
    "confirmed_after_min": 10,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -12112,8 +12257,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.62,
-   "clv_cents": -3.0,
+   "close_price": 0.61,
+   "clv_cents": -4.0,
    "confirmed_after_min": 5,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -12891,8 +13036,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.47,
-   "clv_cents": -1.0,
+   "close_price": 0.48,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -14843,8 +14988,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.59,
-   "clv_cents": -1.0,
+   "close_price": 0.6,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-10-28",
    "depth_by_book": {
