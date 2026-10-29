@@ -98,12 +98,25 @@ def novig():
     out = [f"Novig main: balance {money(_num(b.get('main')))} (home snapshot {age:.0f} min old)"]
     for s in b.get("subaccounts") or []:
         out.append(f"Novig {s.get('label') or 'sub-account'}: balance {money(_num(s.get('balance')))}")
-    expo = 0.0
+    expo, unread, names = 0.0, 0, set()
     for p in snap.get("positions") or []:
-        q, a = _num(p.get("qty")), _num(p.get("avgPrice")) or _num(p.get("avg")) or _num(p.get("averagePrice"))
+        names |= set(p.keys())
+        c = next((_num(p.get(k)) for k in ("cost", "costBasis", "totalCost", "cost_basis", "openCost", "notional")
+                  if _num(p.get(k))), None)
+        if c:
+            expo += c
+            continue
+        q = _num(p.get("qty")) or _num(p.get("quantity"))
+        a = next((_num(p.get(k)) for k in ("avgPrice", "avg", "averagePrice", "avg_price", "avgCost", "averageCost",
+                                          "entryPrice", "price") if _num(p.get(k))), None)
         if q and a:
-            expo += q * a / 100
-    out.append(f"Novig open exposure (all wallets): {money(round(expo, 2))} ({len(snap.get('positions') or [])} position(s))")
+            expo += q * (a / 100 if a > 1 else a) / 100   # 1 contract = 1c payout; price as 0.xxx (or cents)
+        else:
+            unread += 1
+    if unread:   # public log: field NAMES only (no values) so the cost field can be wired
+        print(f"Novig exposure: {unread} position(s) without a cost field; fields seen: {sorted(names)}")
+    out.append(f"Novig open exposure (all wallets): {money(round(expo, 2))} ({len(snap.get('positions') or [])} position(s)"
+               + (f"; {unread} without a cost, not counted" if unread else "") + ")")
     return out
 
 
