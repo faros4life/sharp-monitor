@@ -1,17 +1,17 @@
 # Liquidity alerts (paper)
 
-Updated Thu Oct 29, 12:20 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 7.
+Updated Thu Oct 29, 12:30 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 6.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 73-52 (-9.19u flat) | rule met: 25-25
+**Record:** 74-52 (-8.67u flat) | rule met: 26-25
 
-**Fade (paper, betting against the print):** 27-38 (+3.59u flat, after fees)
+**Fade (paper, betting against the print):** 27-39 (+2.59u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Oct 29 9:00AM | TENNIS | Norrie vs Medvedev | moneyline: Norrie | kalshi | $200k | +122 |  |  | -20.0c |  | L |
-| Oct 29 8:05AM | TENNIS | Michelsen vs Fils | moneyline: Fils | kalshi | $29k | -203 | ✅ novig |  | -1.0c |  | pending |
+| Oct 29 8:05AM | TENNIS | Michelsen vs Fils | moneyline: Fils | kalshi | $29k | -203 | ✅ novig |  | -1.0c |  | W |
 | Oct 29 5:20AM | TENNIS | Shelton vs Kym | moneyline: Shelton | kalshi | $42k | -317 |  |  | +0.0c |  | pending |
 | Oct 29 5:10AM | TENNIS | Fritz vs Shapovalov | moneyline: Fritz | kalshi | $48k | -223 |  |  | -3.0c |  | pending |
 | Oct 28 6:50PM | MLB | Milwaukee Brewers @ Tampa Bay Rays | spread: TB +1.5 (1.5) | novig | $51k | -138 | ✅ kalshi,polymarket |  | +0.0c |  | L |
