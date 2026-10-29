@@ -1,6 +1,150 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-29T03:23:15Z",
+   "base_depth": 375420,
+   "best_price": 0.73,
+   "best_price_american": -270,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.73,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 3,
+   "date": "2026-10-29",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -4696,
+     "new_this_side": 57732,
+     "other_side": 141568,
+     "other_side_all_levels": 229043,
+     "ratio": 1.5,
+     "this_side": 207857,
+     "this_side_all_levels": 430575
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "POR (0)",
+     "price": 0.73,
+     "this_side": 17546
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Trail Blazers",
+     "price": 0.73,
+     "this_side": 32009
+    }
+   },
+   "fade_price": 0.28,
+   "first_seen_utc": "2026-10-29T03:20:10Z",
+   "game": "Memphis vs Portland",
+   "key": "kalshi|KXNBAGAME-26OCT29MEMPOR|ml|1",
+   "lead_min": 1357,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 57732,
+   "paper_only": false,
+   "price": 0.73,
+   "price_american": -270,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.73,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -285
+    },
+    "betopenly": {
+     "point": null,
+     "price": -258
+    },
+    "betrivers": {
+     "point": null,
+     "price": -295
+    },
+    "betus": {
+     "point": null,
+     "price": -305
+    },
+    "bovada": {
+     "point": null,
+     "price": -300
+    },
+    "draftkings": {
+     "point": null,
+     "price": -265
+    },
+    "fanatics": {
+     "point": null,
+     "price": -285
+    },
+    "fanduel": {
+     "point": null,
+     "price": -270
+    },
+    "kalshi": {
+     "point": null,
+     "price": -270
+    },
+    "limitless": {
+     "point": null,
+     "price": -275
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -280
+    },
+    "novig": {
+     "point": null,
+     "price": -270
+    },
+    "polymarket": {
+     "point": null,
+     "price": -270
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -285
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -285
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBAGAME-26OCT29MEMPOR-POR"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "polymarket"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Portland",
+   "side_label": "Portland",
+   "start_source": "odds",
+   "start_utc": "2026-10-30T02:00:00Z",
+   "teams": [
+    "Memphis",
+    "Portland"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-29T02:40:10Z",
    "base_depth": 96860,
    "best_price": 0.637,
