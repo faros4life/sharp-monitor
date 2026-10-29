@@ -1,6 +1,149 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-29T14:20:11Z",
+   "base_depth": 104961,
+   "best_price": 0.53,
+   "best_price_american": -113,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.53,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-29",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -5993,
+     "new_this_side": 39359,
+     "other_side": 108648,
+     "other_side_all_levels": 113501,
+     "ratio": 1.2,
+     "this_side": 125549,
+     "this_side_all_levels": 138272
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "CBJ +1.5 (-1.5)",
+     "price": 0.53,
+     "this_side": 22079
+    },
+    "polymarket": {
+     "heavier_side": false,
+     "label": "Blue Jackets (+1.5)",
+     "price": 0.53,
+     "this_side": 42597
+    }
+   },
+   "fade_price": 0.48,
+   "first_seen_utc": "2026-10-29T14:10:12Z",
+   "game": "Columbus vs Carolina: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLSPREAD-26OCT29CBJCAR-CAR2\"}",
+   "lead_min": 520,
+   "league": "NHL",
+   "line": 1.5,
+   "market": "spread",
+   "new_money": 39359,
+   "paper_only": false,
+   "price": 0.53,
+   "price_american": -113,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.53,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 1.5,
+     "price": -118
+    },
+    "betonlineag": {
+     "point": 1.5,
+     "price": -122
+    },
+    "betopenly": {
+     "point": 1.5,
+     "price": -110
+    },
+    "betrivers": {
+     "point": 1.5,
+     "price": -121
+    },
+    "betus": {
+     "point": 1.5,
+     "price": -120
+    },
+    "bovada": {
+     "point": 1.5,
+     "price": -120
+    },
+    "draftkings": {
+     "point": 1.5,
+     "price": -122
+    },
+    "fanatics": {
+     "point": 1.5,
+     "price": -120
+    },
+    "fanduel": {
+     "point": 1.5,
+     "price": -118
+    },
+    "kalshi": {
+     "point": 1.5,
+     "price": -113
+    },
+    "lowvig": {
+     "point": 1.5,
+     "price": -122
+    },
+    "mybookieag": {
+     "point": 1.5,
+     "price": -125
+    },
+    "novig": {
+     "point": 1.5,
+     "price": -113
+    },
+    "polymarket": {
+     "point": 1.5,
+     "price": -113
+    },
+    "prophetx": {
+     "point": 1.5,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNHLSPREAD-26OCT29CBJCAR-CAR2"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Columbus",
+   "side_label": "NOT Carolina wins by over 1.5 goals",
+   "start_source": "odds",
+   "start_utc": "2026-10-29T23:00:00Z",
+   "teams": [
+    "Columbus",
+    "Carolina"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-29T14:10:12Z",
    "base_depth": 335949,
    "best_price": 0.5375,
@@ -700,7 +843,8 @@
      "price": -110
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-29T14:20:11Z",
    "ref": {
     "outcome_index": 1,
     "pm_market_id": "6353856"
@@ -1500,8 +1644,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": 1.0,
+   "close_price": 0.52,
+   "clv_cents": 2.0,
    "confirmed_after_min": 6,
    "date": "2026-10-29",
    "depth_by_book": {
@@ -3093,8 +3237,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.57,
-   "clv_cents": 0.0,
+   "close_price": 0.58,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-29",
    "depth_by_book": {
@@ -3606,8 +3750,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.77,
-   "clv_cents": 0.0,
+   "close_price": 0.78,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-30",
    "depth_by_book": {
@@ -8222,8 +8366,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.49,
-   "clv_cents": 0.0,
+   "close_price": 0.48,
+   "clv_cents": -1.0,
    "confirmed_after_min": 8,
    "date": "2026-10-29",
    "depth_by_book": {
