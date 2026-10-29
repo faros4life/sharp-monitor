@@ -1,6 +1,74 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-29T05:05:37Z",
+   "base_depth": 790568,
+   "best_price": 0.8303,
+   "best_price_american": -489,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.82,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-10-30",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 158997,
+     "new_this_side": 521684,
+     "other_side": 226480,
+     "other_side_all_levels": 262612,
+     "ratio": 3.6,
+     "this_side": 818028,
+     "this_side_all_levels": 1308781
+    }
+   },
+   "fade_price": 0.19,
+   "first_seen_utc": "2026-10-29T05:00:16Z",
+   "game": "Auburn vs Ole Miss",
+   "key": "kalshi|KXNCAAFGAME-26OCT30AUBMISS|ml|1",
+   "lead_min": 2754,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 521684,
+   "paper_only": false,
+   "price": 0.82,
+   "price_american": -456,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.82,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26OCT30AUBMISS-MISS"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Ole Miss",
+   "side_label": "Ole Miss",
+   "start_source": "kalshi",
+   "start_utc": "2026-10-31T03:00:00Z",
+   "teams": [
+    "Auburn",
+    "Ole Miss"
+   ],
+   "top25": true,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-29T05:00:16Z",
    "base_depth": 9738961,
    "best_price": 0.65,
@@ -903,6 +971,7 @@
     }
    },
    "fade_price": 0.5,
+   "fade_units": 0.93,
    "first_seen_utc": "2026-10-29T01:20:10Z",
    "game": "Los Angeles L vs Los Angeles C",
    "key": "kalshi|KXNBAGAME-26OCT28LALLAC|ml|1",
@@ -998,7 +1067,7 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBAGAME-26OCT28LALLAC-LAC"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig",
@@ -1006,6 +1075,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-29T05:05:37Z",
    "sharp_agree": [
     "Los Angeles Clippers +1.5 (-117)"
    ],
@@ -1020,7 +1090,7 @@
     "Los Angeles C"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-29T01:00:16Z",
@@ -5055,6 +5125,7 @@
     }
    },
    "fade_price": 0.5,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-28T21:50:11Z",
    "game": "Los Angeles L vs Los Angeles C: Total Points",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBATOTAL-26OCT28LALLAC-226\"}",
@@ -5142,13 +5213,14 @@
     "kalshi_side": "no",
     "market_ticker": "KXNBATOTAL-26OCT28LALLAC-226"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-29T05:05:37Z",
    "sharp_agree": [
     "Under 225.5 (-102)",
     "Under 224.5 (-108)"
@@ -5164,7 +5236,7 @@
     "Los Angeles C"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.94
   },
   {
    "alerted_utc": "2026-10-28T21:50:11Z",
@@ -14209,6 +14281,7 @@
     }
    },
    "fade_price": 0.52,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-28T13:30:13Z",
    "game": "Los Angeles L vs Los Angeles C: Total Points",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBATOTAL-26OCT28LALLAC-228\"}",
@@ -14296,11 +14369,12 @@
     "kalshi_side": "no",
     "market_ticker": "KXNBATOTAL-26OCT28LALLAC-228"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settled_utc": "2026-10-29T05:05:37Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -14313,7 +14387,7 @@
     "Los Angeles C"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.02
   },
   {
    "alerted_utc": "2026-10-28T13:30:13Z",
@@ -19541,6 +19615,7 @@
     }
    },
    "fade_price": 0.37,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-28T03:40:09Z",
    "game": "Los Angeles L vs Los Angeles C",
    "key": "kalshi|KXNBAGAME-26OCT28LALLAC|ml|0",
@@ -19608,11 +19683,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBAGAME-26OCT28LALLAC-LAL"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-10-29T05:05:37Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Los Angeles L",
@@ -19625,7 +19701,7 @@
     "Los Angeles C"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.56
   },
   {
    "alerted_utc": "2026-10-28T03:40:09Z",
