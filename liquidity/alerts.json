@@ -1,6 +1,308 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-29T12:20:12Z",
+   "base_depth": 70359,
+   "best_price": 0.6,
+   "best_price_american": -150,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.61,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-29",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Dallas",
+     "price": 0.6,
+     "this_side": 203728
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "DAL (0)",
+     "price": 0.6,
+     "this_side": 26743
+    },
+    "polymarket": {
+     "new_other_side": 9303,
+     "new_this_side": 30500,
+     "other_side": 47785,
+     "other_side_all_levels": 55800,
+     "ratio": 1.9,
+     "this_side": 89694,
+     "this_side_all_levels": 100793
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Dallas Stars",
+     "price": 0.6094,
+     "this_side": 8623
+    }
+   },
+   "fade_price": 0.4,
+   "first_seen_utc": "2026-10-29T12:10:11Z",
+   "game": "Canadiens vs. Stars",
+   "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"5406673\"}",
+   "lead_min": 700,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 30500,
+   "paper_only": false,
+   "price": 0.61,
+   "price_american": -156,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.61,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -160
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -160
+    },
+    "betopenly": {
+     "point": null,
+     "price": -156
+    },
+    "betrivers": {
+     "point": null,
+     "price": -167
+    },
+    "betus": {
+     "point": null,
+     "price": -160
+    },
+    "bovada": {
+     "point": null,
+     "price": -163
+    },
+    "draftkings": {
+     "point": null,
+     "price": -162
+    },
+    "fanatics": {
+     "point": null,
+     "price": -165
+    },
+    "fanduel": {
+     "point": null,
+     "price": -166
+    },
+    "kalshi": {
+     "point": null,
+     "price": -150
+    },
+    "lowvig": {
+     "point": null,
+     "price": -160
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -160
+    },
+    "novig": {
+     "point": null,
+     "price": -150
+    },
+    "polymarket": {
+     "point": null,
+     "price": -156
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -150
+    },
+    "prophetx": {
+     "point": null,
+     "price": -156
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -164
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 1,
+    "pm_market_id": "5406673"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi",
+    "novig"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Stars",
+   "side_label": "Stars",
+   "start_source": "odds",
+   "start_utc": "2026-10-30T00:00:00Z",
+   "teams": [
+    "Canadiens",
+    "Stars"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-29T12:20:12Z",
+   "base_depth": 98756,
+   "best_price": 0.635,
+   "best_price_american": -174,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.63,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-29",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 18907,
+     "new_this_side": 58088,
+     "other_side": 49717,
+     "other_side_all_levels": 60764,
+     "ratio": 2.7,
+     "this_side": 136268,
+     "this_side_all_levels": 157647
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "MTL +1.5 (-1.5)",
+     "price": 0.635,
+     "this_side": 24263
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Canadiens (+1.5)",
+     "price": 0.63,
+     "this_side": 45040
+    }
+   },
+   "fade_price": 0.38,
+   "first_seen_utc": "2026-10-29T12:10:11Z",
+   "game": "Montreal vs Dallas: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLSPREAD-26OCT29MTLDAL-DAL2\"}",
+   "lead_min": 700,
+   "league": "NHL",
+   "line": 1.5,
+   "market": "spread",
+   "new_money": 58088,
+   "paper_only": false,
+   "price": 0.63,
+   "price_american": -170,
+   "price_rule": "fails_cap",
+   "price_when_first_seen": 0.63,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 1.5,
+     "price": -180
+    },
+    "betonlineag": {
+     "point": 1.5,
+     "price": -188
+    },
+    "betopenly": {
+     "point": 1.5,
+     "price": -172
+    },
+    "betrivers": {
+     "point": 1.5,
+     "price": -190
+    },
+    "betus": {
+     "point": 1.5,
+     "price": -190
+    },
+    "bovada": {
+     "point": 1.5,
+     "price": -185
+    },
+    "draftkings": {
+     "point": 1.5,
+     "price": -192
+    },
+    "fanatics": {
+     "point": 1.5,
+     "price": -190
+    },
+    "fanduel": {
+     "point": 1.5,
+     "price": -176
+    },
+    "kalshi": {
+     "point": 1.5,
+     "price": -170
+    },
+    "lowvig": {
+     "point": 1.5,
+     "price": -188
+    },
+    "mybookieag": {
+     "point": 1.5,
+     "price": -185
+    },
+    "novig": {
+     "point": 1.5,
+     "price": -174
+    },
+    "polymarket": {
+     "point": -3.5,
+     "price": -108
+    },
+    "prophetx": {
+     "point": 1.5,
+     "price": -174
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNHLSPREAD-26OCT29MTLDAL-DAL2"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "polymarket"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Montreal",
+   "side_label": "NOT Dallas wins by over 1.5 goals",
+   "start_source": "odds",
+   "start_utc": "2026-10-30T00:00:00Z",
+   "teams": [
+    "Montreal",
+    "Dallas"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-29T12:00:20Z",
    "base_depth": 30428,
    "best_price": 0.495,
@@ -59,6 +361,8 @@
    "new_money": 62188,
    "paper_only": false,
    "price": 0.5,
+   "price_after_15m": 0.505,
+   "price_after_15m_book": "novig",
    "price_american": -100,
    "price_rule": "ok",
    "price_when_first_seen": 0.5,
@@ -149,6 +453,7 @@
    "side_label": "Trail Blazers (-7.5)",
    "start_source": "odds",
    "start_utc": "2026-10-30T02:00:00Z",
+   "still_actionable": false,
    "teams": [
     "Grizzlies",
     "Trail Blazers"
@@ -197,6 +502,8 @@
    "new_money": 206654,
    "paper_only": false,
    "price": 0.73,
+   "price_after_15m": 0.7438,
+   "price_after_15m_book": "kalshi",
    "price_american": -270,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.73,
@@ -217,6 +524,7 @@
    "side_label": "Pittsburgh",
    "start_source": "kalshi",
    "start_utc": "2026-10-31T03:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Georgia Tech",
     "Pittsburgh"

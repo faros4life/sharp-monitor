@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Oct 29, 8:10 AM ET. This run: 0 new, 0 not confirmed, 3 pending. Open alerts: 62.
+Updated Thu Oct 29, 8:20 AM ET. This run: 2 new, 1 not confirmed, 0 pending. Open alerts: 64.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Oct 29 8:20AM | NHL | Canadiens vs. Stars | moneyline: Stars | polymarket | $30k | -156 | ✅ kalshi,novig |  | +0.0c |  | pending |
+| Oct 29 8:20AM | NHL | Montreal vs Dallas: Spread | spread: NOT Dallas wins by over 1.5 goals | kalshi | $58k | -170 | ✅ novig,polymarket |  | +0.0c |  | pending |
 | Oct 29 8:00AM | NBA | Grizzlies vs. Trail Blazers | spread: Trail Blazers (-7.5) | polymarket | $62k | -100 | ✅ kalshi,prophetx | ❌ | +1.0c |  | pending |
 | Oct 29 8:00AM | NCAAF | Georgia Tech vs Pittsburgh | moneyline: Pittsburgh | kalshi | $207k | -270 |  |  | +0.0c |  | pending |
 | Oct 29 7:30AM | NFL | Carolina Panthers @ Green Bay Packers | moneyline: GB (0) | novig | $32k | -186 | ✅ kalshi,prophetx |  | +0.0c |  | pending |
@@ -208,5 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 27 6:00PM | NHL | Vancouver vs Anaheim: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $47k | +113 | ✅ prophetx |  | -16.0c | yes | L |
 | Oct 27 5:54PM | NHL | New Jersey vs Dallas: Total Goals | total: Over 5.5 goals scored | kalshi | $111k | -100 | ✅ novig |  | +26.0c | yes | W |
 | Oct 27 5:40PM | NBA | Trail Blazers vs. Lakers | total: Under (233.5) | polymarket | $26k | -104 | ✅ novig | ✅ | -2.0c | yes | L |
-| Oct 27 5:30PM | NHL | Los Angeles vs Chicago | moneyline: Los Angeles | kalshi | $115k | -100 | ✅ novig,prophetx |  | -44.0c | yes | L |
-| Oct 27 5:20PM | NBA | Brooklyn vs Boston: Total Points | total: Over 222.5 points | kalshi | $45k | -104 |  | ✅ | +5.0c | yes | W |
