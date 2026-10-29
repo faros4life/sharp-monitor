@@ -1,6 +1,145 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-29T18:40:10Z",
+   "base_depth": 138684,
+   "best_price": 0.51,
+   "best_price_american": -104,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-29",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 30810,
+     "new_this_side": 98981,
+     "other_side": 148471,
+     "other_side_all_levels": 193497,
+     "ratio": 1.1,
+     "this_side": 167539,
+     "this_side_all_levels": 228324
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "Under 237.5 (237.5)",
+     "price": 0.51,
+     "this_side": 18917
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Under (237.5)",
+     "price": 0.51,
+     "this_side": 27987
+    }
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-10-29T18:30:13Z",
+   "game": "Cleveland vs Atlanta: Total Points",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBATOTAL-26OCT29CLEATL-238\"}",
+   "lead_min": 320,
+   "league": "NBA",
+   "line": 237.5,
+   "market": "total",
+   "new_money": 98981,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 237.5,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 237.5,
+     "price": -103
+    },
+    "betrivers": {
+     "point": 237.5,
+     "price": -110
+    },
+    "betus": {
+     "point": 237.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 237.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 237.5,
+     "price": -112
+    },
+    "fanatics": {
+     "point": 237.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 238.5,
+     "price": -115
+    },
+    "kalshi": {
+     "point": 237.5,
+     "price": -104
+    },
+    "mybookieag": {
+     "point": 237.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 237.5,
+     "price": -104
+    },
+    "polymarket": {
+     "point": 237.5,
+     "price": -104
+    },
+    "prophetx": {
+     "point": 238.5,
+     "price": -117
+    },
+    "williamhill_us": {
+     "point": 238.0,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNBATOTAL-26OCT29CLEATL-238"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "polymarket"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "NOT Over 237.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-10-30T00:00:00Z",
+   "teams": [
+    "Cleveland",
+    "Atlanta"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-29T18:30:13Z",
    "base_depth": 114606,
    "best_price": 0.465,
@@ -2825,8 +2964,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.47,
-   "clv_cents": 0.0,
+   "close_price": 0.49,
+   "clv_cents": 2.0,
    "confirmed_after_min": 6,
    "date": "2026-10-30",
    "depth_by_book": {
@@ -3416,7 +3555,8 @@
      "price": -120
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-29T18:40:10Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNHLTOTAL-26OCT29BOSSTL-6"
@@ -3560,7 +3700,8 @@
      "price": -182
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-29T18:40:10Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNHLSPREAD-26OCT29BUFANA-BUF2"
@@ -3634,7 +3775,8 @@
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.65,
    "prices_by_book": {},
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-29T18:40:10Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26OCT30APPGASO-GASO"
@@ -8835,8 +8977,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.54,
-   "clv_cents": 0.0,
+   "close_price": 0.55,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-29",
    "depth_by_book": {
@@ -10078,7 +10220,8 @@
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.85,
    "prices_by_book": {},
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-29T18:40:10Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26OCT30MIAUNC-MIA"
@@ -10812,7 +10955,8 @@
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.77,
    "prices_by_book": {},
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-29T18:40:10Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26OCT30SMUSYR-SMU"
