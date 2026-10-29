@@ -1,6 +1,166 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-29T18:00:17Z",
+   "base_depth": 12918,
+   "best_price": 0.59,
+   "best_price_american": -144,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "prophetx",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.5902,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-29",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Detroit",
+     "price": 0.59,
+     "this_side": 314066
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "DET (0)",
+     "price": 0.59,
+     "this_side": 18708
+    },
+    "polymarket": {
+     "heavier_side": false,
+     "label": "Red Wings",
+     "price": 0.59,
+     "this_side": 103185
+    },
+    "prophetx": {
+     "new_other_side": -19000,
+     "new_this_side": 27383,
+     "other_side": 9553,
+     "other_side_all_levels": 14634,
+     "ratio": 4.1,
+     "this_side": 39582,
+     "this_side_all_levels": 39725
+    }
+   },
+   "fade_price": 0.4132,
+   "first_seen_utc": "2026-10-29T17:50:10Z",
+   "game": "Chicago Blackhawks at Detroit Red Wings",
+   "key": "prophetx|{\"line\": 0, \"px_event\": 1704704070, \"px_market\": 406, \"side\": \"1\"}",
+   "lead_min": 330,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 27383,
+   "paper_only": false,
+   "price": 0.5902,
+   "price_american": -144,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.5902,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -160
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -153
+    },
+    "betopenly": {
+     "point": null,
+     "price": -160
+    },
+    "betrivers": {
+     "point": null,
+     "price": -167
+    },
+    "betus": {
+     "point": null,
+     "price": -160
+    },
+    "bovada": {
+     "point": null,
+     "price": -155
+    },
+    "draftkings": {
+     "point": null,
+     "price": -162
+    },
+    "fanatics": {
+     "point": null,
+     "price": -155
+    },
+    "fanduel": {
+     "point": null,
+     "price": -156
+    },
+    "kalshi": {
+     "point": null,
+     "price": -144
+    },
+    "lowvig": {
+     "point": null,
+     "price": -153
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -160
+    },
+    "novig": {
+     "point": null,
+     "price": -144
+    },
+    "polymarket": {
+     "point": null,
+     "price": -144
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -144
+    },
+    "prophetx": {
+     "point": null,
+     "price": -144
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -165
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "line": 0,
+    "px_event": 1704704070,
+    "px_market": 406,
+    "side": "1"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi",
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Detroit Red Wings",
+   "side_label": "Detroit Red Wings",
+   "start_source": "odds",
+   "start_utc": "2026-10-29T23:30:00Z",
+   "teams": [
+    "Chicago Blackhawks",
+    "Detroit Red Wings"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-29T17:50:10Z",
    "base_depth": 644322,
    "best_price": 0.485,
@@ -190,6 +350,8 @@
    "new_money": 36345,
    "paper_only": false,
    "price": 0.49,
+   "price_after_15m": 0.49,
+   "price_after_15m_book": "novig",
    "price_american": 104,
    "price_rule": "ok",
    "price_when_first_seen": 0.49,
@@ -279,6 +441,7 @@
    "side_label": "Over 233.5 points",
    "start_source": "odds",
    "start_utc": "2026-10-30T02:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Memphis",
     "Portland"
@@ -339,6 +502,8 @@
    "new_money": 44229,
    "paper_only": false,
    "price": 0.5,
+   "price_after_15m": 0.5,
+   "price_after_15m_book": "novig",
    "price_american": -100,
    "price_rule": "ok",
    "price_when_first_seen": 0.49,
@@ -426,6 +591,7 @@
    "side_label": "Over 237.5 points",
    "start_source": "odds",
    "start_utc": "2026-10-30T00:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Cleveland",
     "Atlanta"
@@ -492,6 +658,8 @@
    "new_money": 140727,
    "paper_only": false,
    "price": 0.5,
+   "price_after_15m": 0.5,
+   "price_after_15m_book": "novig",
    "price_american": -100,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.5,
@@ -583,6 +751,7 @@
    "side_label": "Boston",
    "start_source": "odds",
    "start_utc": "2026-10-30T00:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Boston",
     "St. Louis"
@@ -896,8 +1065,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.72,
-   "clv_cents": 0.0,
+   "close_price": 0.73,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-30",
    "depth_by_book": {
@@ -1292,7 +1461,8 @@
      "price": -105
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-29T18:00:17Z",
    "ref": {
     "outcome_index": 0,
     "pm_market_id": "5406659"
@@ -2625,8 +2795,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.68,
-   "clv_cents": 0.0,
+   "close_price": 0.7,
+   "clv_cents": 2.0,
    "confirmed_after_min": 6,
    "date": "2026-10-30",
    "depth_by_book": {
@@ -4044,8 +4214,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 0.0,
+   "close_price": 0.51,
+   "clv_cents": -1.0,
    "confirmed_after_min": 4,
    "date": "2026-10-29",
    "depth_by_book": {
@@ -5851,7 +6021,8 @@
      "price": -120
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-29T18:00:17Z",
    "ref": {
     "outcome_index": 0,
     "pm_market_id": "5406713"
