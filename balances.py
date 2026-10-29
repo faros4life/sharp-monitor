@@ -20,6 +20,9 @@ import liquidity_monitor as lm
 import px_live
 
 ET = lm.ET
+TOT = {}   # book -> cash + money in open bets (this run); compared with the week's first email (private, Gmail only)
+NAMES = {"px": "ProphetX", "kalshi": "Kalshi", "pmus": "Polymarket US", "novig_main": "Novig main",
+         "novig_auto": "Novig auto-place"}
 
 
 def money(x):
@@ -44,6 +47,8 @@ def prophetx():
     open_ = [t for t in px_live.trades() if not any(w in str(t.get("winning_status") or "").lower() for w in DONE)
              and not any(w in str(t.get("status") or "").lower() for w in ("settled", "cancel", "void"))]
     expo = round(sum(px_live.stake_of(t) for t in open_), 2)
+    if bal is not None:
+        TOT["px"] = bal + expo
     return f"ProphetX: balance {money(bal)} | open exposure {money(expo)} ({len(open_)} open bet(s))"
 
 
@@ -59,6 +64,8 @@ def kalshi():
         if e:
             expo += e
             n += 1
+    if bal is not None:
+        TOT["kalshi"] = bal + expo
     return f"Kalshi: balance {money(bal)} | open exposure {money(round(expo, 2))} ({n} market(s))"
 
 
@@ -66,6 +73,9 @@ def pmus():
     st, d = book_live._pm_call("GET", "/v1/account/balances")
     b = ((d.get("balances") or [{}])[0] if isinstance(d, dict) else {})
     parts = []
+    cur = _num(b.get("currentBalance"))
+    if cur is None:
+        cur = _num(b.get("balance"))
     for k in ("currentBalance", "balance", "buyingPower"):
         v = _num(b.get(k))
         if v is not None:
@@ -80,6 +90,8 @@ def pmus():
             c = _num(x.get("cost")) or _num(x.get("costBasis")) or 0
             cost += c
         parts.append(f"open cost {money(round(cost, 2))} ({len(items or [])} position(s))")
+        if cur is not None:
+            TOT["pmus"] = cur + cost
     except Exception:
         parts.append("open cost n/a")
     return "Polymarket US: " + (" | ".join(parts) if parts else "unavailable")
@@ -96,8 +108,10 @@ def novig():
     if not b:
         return [f"Novig: balances not in the home snapshot yet (snapshot {age:.0f} min old; update novig_positions_snapshot.py)"]
     out = [f"Novig main: balance {money(_num(b.get('main')))} (home snapshot {age:.0f} min old)"]
+    nm, na = _num(b.get("main")), 0.0
     for s in b.get("subaccounts") or []:
         out.append(f"Novig {s.get('label') or 'sub-account'}: balance {money(_num(s.get('balance')))}")
+        na += _num(s.get("balance")) or 0.0
     expo, unread, names = 0.0, 0, set()
     for p in snap.get("positions") or []:
         names |= set(p.keys())
@@ -115,8 +129,78 @@ def novig():
             unread += 1
     if unread:   # public log: field NAMES only (no values) so the cost field can be wired
         print(f"Novig exposure: {unread} position(s) without a cost field; fields seen: {sorted(names)}")
+    if nm is not None:   # Peter's open Novig bets sit in main (app check Oct 29): exposure counted with main
+        TOT["novig_main"] = nm + expo
+        TOT["novig_auto"] = na
     out.append(f"Novig open exposure (all wallets): {money(round(expo, 2))} ({len(snap.get('positions') or [])} position(s)"
                + (f"; {unread} without a cost, not counted" if unread else "") + ")")
+    return out
+
+
+def week_start(now):
+    d = now.astimezone(ET)
+    return (d - __import__("datetime").timedelta(days=d.weekday())).replace(hour=0, minute=0, second=0, microsecond=0)
+
+
+def baseline(now):
+    """The week's FIRST balances email that carries a TOTALS line (private Gmail). Returns (when, {book: total})."""
+    import email
+    import re
+    ws = week_start(now)
+    M = ex.imap_open()
+    try:
+        typ, data = M.search(None, '(SUBJECT "Bets balances" SINCE "%s")' % ws.strftime("%d-%b-%Y"))
+        for num in (data[0].split() if data and data[0] else []):
+            typ, msg = M.fetch(num, "(RFC822)")
+            m = email.message_from_bytes(msg[0][1])
+            if not str(m.get("Subject") or "").startswith("Bets balances"):
+                continue
+            part = m.get_payload(decode=True) if not m.is_multipart() else m.get_payload(0).get_payload(decode=True)
+            body = (part or b"").decode("utf-8", "replace")
+            t = re.search(r"^TOTALS (\S+) (.*)$", body, re.M)
+            if not t:
+                continue
+            when = datetime.fromisoformat(t.group(1).replace("Z", "+00:00"))
+            if when < ws:
+                continue
+            vals = {k: float(v) for k, v in re.findall(r"(\w+)=(-?[\d.]+)", t.group(2))}
+            return when, vals
+    finally:
+        try:
+            M.logout()
+        except Exception:
+            pass
+    return None, {}
+
+
+def week_compare(now):
+    if not TOT:
+        return []
+    out = ["", "Totals (cash + open bets):"]
+    try:
+        when, base = baseline(now)
+    except Exception as e:
+        when, base = None, {}
+        out.append(f"(baseline unreadable: {str(e)[:60]})")
+    label = when.astimezone(ET).strftime("%a %I:%M %p") if when else "this run (first of the week)"
+    tn = tb = 0.0
+    for k, nm in NAMES.items():
+        if k not in TOT:
+            out.append(f"{nm}: n/a")
+            continue
+        v = TOT[k]
+        tn += v
+        if k in base:
+            tb += base[k]
+            out.append(f"{nm}: {money(v)} | vs {label}: {'+' if v >= base[k] else '-'}"
+                       f"{money(abs(v - base[k]))}")
+        else:
+            out.append(f"{nm}: {money(v)}")
+    out.append(f"ALL (ex Hard Rock): {money(tn)}" + (f" | vs {label}: {'+' if tn >= tb else '-'}{money(abs(tn - tb))}"
+                                                    if base else ""))
+    out.append("Change includes deposits/withdrawals; Hard Rock has no read path (not in totals).")
+    out.append("TOTALS " + now.strftime("%Y-%m-%dT%H:%M:%SZ") + " " +
+               " ".join(f"{k}={TOT[k]:.2f}" for k in NAMES if k in TOT))
     return out
 
 
@@ -135,6 +219,7 @@ def main():
     kay = _num(os.environ.get("KAY_HARDROCK"))
     lines.append("Hard Rock: unavailable (no read path; never guessed)"
                  + (f" | Kay's bucket (Hard Rock only): {money(kay)}, manual figure from Peter" if kay is not None else ""))
+    lines += week_compare(now)
     lines += ["", "Read-only. Exposure = money in open bets (cost); Kalshi = market exposure; ProphetX = open stake.",
               "Sent hourly and right after any live bot order."]
     reason = os.environ.get("BAL_REASON", "hourly")
