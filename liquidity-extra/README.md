@@ -1,16 +1,16 @@
 # Liquidity alerts (paper)
 
-Updated Thu Oct 29, 9:30 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 11.
+Updated Thu Oct 29, 9:40 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 10.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 71-50 (-7.65u flat) | rule met: 25-25
+**Record:** 72-50 (-7.40u flat) | rule met: 25-25
 
-**Fade (paper, betting against the print):** 25-36 (+2.46u flat, after fees)
+**Fade (paper, betting against the print):** 25-37 (+1.46u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Oct 29 9:00AM | TENNIS | Norrie vs Medvedev | moneyline: Norrie | kalshi | $200k | +122 |  |  | -3.0c |  | pending |
+| Oct 29 9:00AM | TENNIS | Norrie vs Medvedev | moneyline: Norrie | kalshi | $200k | +122 |  |  | -13.0c |  | pending |
 | Oct 29 8:05AM | TENNIS | Michelsen vs Fils | moneyline: Fils | kalshi | $29k | -203 | ✅ novig |  | -1.0c |  | pending |
 | Oct 29 5:20AM | TENNIS | Shelton vs Kym | moneyline: Shelton | kalshi | $42k | -317 |  |  | +0.0c |  | pending |
 | Oct 29 5:10AM | TENNIS | Fritz vs Shapovalov | moneyline: Fritz | kalshi | $48k | -223 |  |  | -2.0c |  | pending |
@@ -28,7 +28,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 28 9:40AM | MLB | Milwaukee vs Tampa Bay: Total Runs | total: NOT Over 6.5 runs scored | kalshi | $108k | +108 |  |  | +5.0c |  | W |
 | Oct 28 9:30AM | TENNIS | Borges vs Ruud | moneyline: Ruud | kalshi | $50k | -426 |  |  | +5.0c |  | L |
 | Oct 28 9:20AM | MLB | Milwaukee Brewers vs. Tampa Bay Rays | spread: Tampa Bay Rays (+1.5) | polymarket | $47k | -127 | ✅ kalshi,novig |  | +3.0c |  | L |
-| Oct 28 8:30AM | TENNIS | Paul vs Darderi | moneyline: Paul | kalshi | $44k | -400 |  |  | -2.0c |  | pending |
+| Oct 28 8:30AM | TENNIS | Paul vs Darderi | moneyline: Paul | kalshi | $44k | -400 |  |  | -2.0c |  | W |
 | Oct 28 7:30AM | TENNIS | Altmaier vs Lehecka | moneyline: Lehecka | kalshi | $62k | -567 |  |  | +0.0c |  | pending |
 | Oct 28 6:30AM | TENNIS | Vacherot vs Jodar | moneyline: Jodar | kalshi | $55k | -285 |  |  | -1.0c | yes | pending |
 | Oct 28 5:30AM | TENNIS | Tien vs de Minaur | moneyline: de Minaur | kalshi | $33k | -104 |  |  | +1.0c | yes | W |
