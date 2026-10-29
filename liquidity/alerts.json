@@ -1,6 +1,143 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-29T12:40:10Z",
+   "base_depth": 119837,
+   "best_price": 0.705,
+   "best_price_american": -239,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.7,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-29",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 17888,
+     "new_this_side": 60060,
+     "other_side": 71867,
+     "other_side_all_levels": 82482,
+     "ratio": 1.9,
+     "this_side": 139238,
+     "this_side_all_levels": 183832
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Capitals (+1.5)",
+     "price": 0.7,
+     "this_side": 50302
+    }
+   },
+   "fade_price": 0.31,
+   "first_seen_utc": "2026-10-29T12:30:14Z",
+   "game": "Washington vs Nashville: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLSPREAD-26OCT29WSHNSH-NSH2\"}",
+   "lead_min": 680,
+   "league": "NHL",
+   "line": 1.5,
+   "market": "spread",
+   "new_money": 60060,
+   "paper_only": false,
+   "price": 0.7,
+   "price_american": -233,
+   "price_rule": "fails_cap",
+   "price_when_first_seen": 0.7,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -1.5,
+     "price": 200
+    },
+    "betonlineag": {
+     "point": 1.5,
+     "price": -266
+    },
+    "betopenly": {
+     "point": 1.5,
+     "price": -240
+    },
+    "betrivers": {
+     "point": -1.5,
+     "price": 215
+    },
+    "betus": {
+     "point": 1.5,
+     "price": -265
+    },
+    "bovada": {
+     "point": -1.5,
+     "price": 220
+    },
+    "draftkings": {
+     "point": 1.5,
+     "price": -278
+    },
+    "fanatics": {
+     "point": 1.5,
+     "price": -270
+    },
+    "fanduel": {
+     "point": 1.5,
+     "price": -260
+    },
+    "kalshi": {
+     "point": 1.5,
+     "price": -233
+    },
+    "lowvig": {
+     "point": 1.5,
+     "price": -266
+    },
+    "mybookieag": {
+     "point": -1.5,
+     "price": 202
+    },
+    "novig": {
+     "point": 1.5,
+     "price": -239
+    },
+    "polymarket": {
+     "point": 1.5,
+     "price": -233
+    },
+    "prophetx": {
+     "point": 1.5,
+     "price": -250
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNHLSPREAD-26OCT29WSHNSH-NSH2"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "polymarket"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Washington",
+   "side_label": "NOT Nashville wins by over 1.5 goals",
+   "start_source": "odds",
+   "start_utc": "2026-10-30T00:00:00Z",
+   "teams": [
+    "Washington",
+    "Nashville"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-29T12:20:12Z",
    "base_depth": 70359,
    "best_price": 0.6,
@@ -59,6 +196,8 @@
    "new_money": 30500,
    "paper_only": false,
    "price": 0.61,
+   "price_after_15m": 0.6,
+   "price_after_15m_book": "novig",
    "price_american": -156,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.61,
@@ -151,6 +290,7 @@
    "side_label": "Stars",
    "start_source": "odds",
    "start_utc": "2026-10-30T00:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Canadiens",
     "Stars"
@@ -211,6 +351,8 @@
    "new_money": 58088,
    "paper_only": false,
    "price": 0.63,
+   "price_after_15m": 0.635,
+   "price_after_15m_book": "novig",
    "price_american": -170,
    "price_rule": "fails_cap",
    "price_when_first_seen": 0.63,
@@ -295,6 +437,7 @@
    "side_label": "NOT Dallas wins by over 1.5 goals",
    "start_source": "odds",
    "start_utc": "2026-10-30T00:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Montreal",
     "Dallas"
@@ -856,8 +999,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.85,
-   "clv_cents": 0.0,
+   "close_price": 0.86,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-30",
    "depth_by_book": {
@@ -3800,8 +3943,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": -1.0,
+   "close_price": 0.5,
+   "clv_cents": -2.0,
    "confirmed_after_min": 3,
    "date": "2026-10-29",
    "depth_by_book": {
@@ -4615,8 +4758,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.72,
-   "clv_cents": -1.0,
+   "close_price": 0.73,
+   "clv_cents": 0.0,
    "confirmed_after_min": 3,
    "date": "2026-10-29",
    "depth_by_book": {
@@ -5203,8 +5346,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.67,
-   "clv_cents": 2.0,
+   "close_price": 0.68,
+   "clv_cents": 3.0,
    "confirmed_after_min": 10,
    "date": "2026-10-29",
    "depth_by_book": {
