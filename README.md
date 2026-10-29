@@ -1,6 +1,6 @@
 # EV sightings study (paper, measurement only)
 
-Started 2026-10-27T16:06:50Z. Updated 2026-10-29T07:40:12Z. Sightings are a record, never bets. CLV = close fair - sighting after-fee cost, in cents (+ = beat the close). Gate: >= 50 graded, positive average CLV and positive flat record; reviewed only at a scheduled review. A/B gate on consensus CLV; move-watch (A1) gate on Pinnacle CLV. Held = Pinnacle close minus Pinnacle's pre-move fair at the old number (+ = the move held).
+Started 2026-10-27T16:06:50Z. Updated 2026-10-29T07:45:00Z. Sightings are a record, never bets. CLV = close fair - sighting after-fee cost, in cents (+ = beat the close). Gate: >= 50 graded, positive average CLV and positive flat record; reviewed only at a scheduled review. A/B gate on consensus CLV; move-watch (A1) gate on Pinnacle CLV. Held = Pinnacle close minus Pinnacle's pre-move fair at the old number (+ = the move held).
 
 | Bucket | Sightings | Closed | CLV vs consensus | Beat % | Pin-closed | CLV vs Pinnacle | Graded | Record | Units | ROI | Held | Lag (med) | Gate |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
@@ -20,10 +20,11 @@ A and B on the same side/line: 18.
 
 ## Odds API credits (100K/month plan)
 
-Study: 520/day, projected 15590/30 days. All monitors on the key: 2070/day, projected 62097/30 days. Remaining 68094; guard holds 10800 for the sharp monitor; polls skipped by the guard: 0.
+Study: 518/day, projected 15555/30 days. All monitors on the key: 2065/day, projected 61959/30 days. Remaining 68094; guard holds 10800 for the sharp monitor; polls skipped by the guard: 0.
 
 ## Last runs
 
+- 2026-10-29T07:45:00Z: outside read hours: closes/grades only
 - 2026-10-29T07:40:12Z: outside read hours: closes/grades only
 - 2026-10-29T07:30:15Z: outside read hours: closes/grades only
 - 2026-10-29T07:20:12Z: outside read hours: closes/grades only
@@ -33,4 +34,3 @@ Study: 520/day, projected 15590/30 days. All monitors on the key: 2070/day, proj
 - 2026-10-29T06:50:27Z: outside read hours: closes/grades only
 - 2026-10-29T06:50:13Z: outside read hours: closes/grades only
 - 2026-10-29T06:40:12Z: outside read hours: closes/grades only
-- 2026-10-29T06:30:16Z: outside read hours: closes/grades only
