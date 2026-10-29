@@ -1451,6 +1451,38 @@ def main():
         for b in [b for b, v in held.items() if v is None]:
             held[b] = retry[b]()
     blind = (["Novig"] if pos is None else []) + [BOOK_NAME[b] for b, v in held.items() if v is None]
+    # Oct 29 (Muse): when a book's positions can't be read and a LIVE-eligible play (phase-1, Muse AGREE) is waiting,
+    # re-read every 60 s inside this run (up to 4 min - the runs queue behind each other, so not longer), and push an
+    # escalation at ~3 min naming the play and the book so it can be placed by hand while the number is live.
+    # Unreadable still means no order (fail closed).
+    if blind:
+        p1 = []
+        for p in new:
+            e1 = feed_entry(p, load_feed()) if p.get("source") != "rules" else None
+            if e1 and agree_rules.phase1(e1, True)[0]:
+                p1.append(p)
+        retry = {"kalshi": positions.kalshi_positions, "prophetx": positions.px_positions,
+                 "polymarket_us": positions.pmus_positions}
+        pushed = False
+        for i in range(4 if p1 else 0):
+            time.sleep(60)
+            if pos is None:
+                pos = novig_positions()
+            for b in [b for b, v in held.items() if v is None]:
+                held[b] = retry[b]()
+            blind = (["Novig"] if pos is None else []) + [BOOK_NAME[b] for b, v in held.items() if v is None]
+            if not blind:
+                break
+            if i == 2 and not pushed:
+                why = "; ".join(f"{BOOK_NAME[b]}: {positions.WHY.get(b, '?')}" for b, v in held.items() if v is None)
+                if pos is None:
+                    why += ("; " if why else "") + f"Novig: {(_NVERR.get('why') or '?').strip(' |')[:80]}"
+                for p in p1:
+                    push("LIVE play held: " + (p.get("bet") or "")[:50],
+                         f"{p.get('sport')} {p.get('game')}\n{p.get('bet')}\nCan't read your open bets on {', '.join(blind)} "
+                         f"for 3 min ({why[:160]}). The bot won't bet it blind. Place it by hand if you want it now.")
+                pushed = True
+        print(f"Held-retry: {len(p1)} live-eligible play(s); still unreadable: {len(blind)} book(s)")   # counts only
     results, taken_now = [], set()
     M2 = imap_open()
 
@@ -1576,6 +1608,14 @@ def main():
          + f", {len(skips)} skipped",
          "\n".join(body))
     print(f"Dry-run email sent: {len(golive)} would go live, {nw} would place, {len(helds)} held, {len(skips)} skipped.")   # counts only
+    rested = sum(1 for r in results if ((r.get("live") or {}).get("rest") or {}).get("status") == "placed")
+    if nplaced or rested:   # Oct 29 (Muse): a private balances email right after any live order or resting bid
+        try:
+            import balances
+            os.environ["BAL_REASON"] = "after a live order"
+            balances.main()
+        except Exception as ex:
+            print(f"balances email failed: {str(ex)[:60]}")
 
 
 if __name__ == "__main__":
