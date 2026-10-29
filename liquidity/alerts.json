@@ -1,6 +1,328 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-29T00:30:12Z",
+   "base_depth": 90180,
+   "best_price": 0.5148,
+   "best_price_american": -106,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-28",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "NOT Oklahoma City wins by over 5.5 points",
+     "price": 0.52,
+     "this_side": 191331
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "DAL +5.5 (5.5)",
+     "price": 0.515,
+     "this_side": 43547
+    },
+    "polymarket": {
+     "new_other_side": -13100,
+     "new_this_side": 283756,
+     "other_side": 46853,
+     "other_side_all_levels": 82487,
+     "ratio": 7.1,
+     "this_side": 333145,
+     "this_side_all_levels": 373820
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "Dallas Mavericks +5.5 (+5.5)",
+     "price": 0.5098,
+     "this_side": 3560
+    }
+   },
+   "fade_price": 0.49,
+   "first_seen_utc": "2026-10-29T00:20:11Z",
+   "game": "Thunder vs. Mavericks",
+   "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6322523\"}",
+   "lead_min": 60,
+   "league": "NBA",
+   "line": 5.5,
+   "market": "spread",
+   "new_money": 283756,
+   "paper_only": false,
+   "price": 0.52,
+   "price_american": -108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.52,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 4.5,
+     "price": -105
+    },
+    "betonlineag": {
+     "point": 5.0,
+     "price": -107
+    },
+    "betopenly": {
+     "point": 5.0,
+     "price": 104
+    },
+    "betrivers": {
+     "point": 5.5,
+     "price": -109
+    },
+    "betus": {
+     "point": 5.0,
+     "price": -105
+    },
+    "bovada": {
+     "point": 5.0,
+     "price": -105
+    },
+    "draftkings": {
+     "point": 5.5,
+     "price": -115
+    },
+    "fanatics": {
+     "point": 5.5,
+     "price": -115
+    },
+    "fanduel": {
+     "point": 5.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": 5.5,
+     "price": -108
+    },
+    "lowvig": {
+     "point": 5.0,
+     "price": -103
+    },
+    "mybookieag": {
+     "point": 5.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 5.5,
+     "price": -106
+    },
+    "polymarket": {
+     "point": 5.5,
+     "price": -108
+    },
+    "prophetx": {
+     "point": 5.5,
+     "price": -104
+    },
+    "williamhill_us": {
+     "point": 5.0,
+     "price": -105
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 1,
+    "pm_market_id": "6322523"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi",
+    "novig"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [
+    "Dallas Mavericks +5.5 (-109)",
+    "Dallas Mavericks +5.5 (-103)"
+   ],
+   "sharp_oppose": [],
+   "side": "Mavericks",
+   "side_label": "Mavericks (+5.5)",
+   "start_source": "odds",
+   "start_utc": "2026-10-29T01:30:00Z",
+   "teams": [
+    "Thunder",
+    "Mavericks"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-29T00:30:12Z",
+   "base_depth": 67127,
+   "best_price": 0.635,
+   "best_price_american": -174,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.635,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-28",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Oklahoma City",
+     "price": 0.64,
+     "this_side": 1220959
+    },
+    "novig": {
+     "new_other_side": 10921,
+     "new_this_side": 33487,
+     "other_side": 49437,
+     "other_side_all_levels": 57492,
+     "ratio": 2.1,
+     "this_side": 101491,
+     "this_side_all_levels": 101686
+    },
+    "polymarket": {
+     "heavier_side": false,
+     "label": "Thunder",
+     "price": 0.64,
+     "this_side": 247597
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Oklahoma City Thunder",
+     "price": 0.6377,
+     "this_side": 55967
+    }
+   },
+   "fade_price": 0.37,
+   "first_seen_utc": "2026-10-29T00:20:11Z",
+   "game": "Oklahoma City Thunder @ Dallas Mavericks",
+   "key": "novig|{\"market_id\": \"01a17fdb-6cbe-7440-a928-46ceaf599ea2\", \"outcome_id\": \"01a17fdb-6cbe-7440-a928-46e1a2334009\"}",
+   "lead_min": 60,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 33487,
+   "paper_only": false,
+   "price": 0.635,
+   "price_american": -174,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.635,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -190
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -185
+    },
+    "betopenly": {
+     "point": null,
+     "price": -200
+    },
+    "betrivers": {
+     "point": null,
+     "price": -205
+    },
+    "betus": {
+     "point": null,
+     "price": -185
+    },
+    "bovada": {
+     "point": null,
+     "price": -185
+    },
+    "draftkings": {
+     "point": null,
+     "price": -192
+    },
+    "fanatics": {
+     "point": null,
+     "price": -190
+    },
+    "fanduel": {
+     "point": null,
+     "price": -200
+    },
+    "kalshi": {
+     "point": null,
+     "price": -178
+    },
+    "limitless": {
+     "point": null,
+     "price": -180
+    },
+    "lowvig": {
+     "point": null,
+     "price": -185
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -191
+    },
+    "novig": {
+     "point": null,
+     "price": -174
+    },
+    "polymarket": {
+     "point": null,
+     "price": -178
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -178
+    },
+    "prophetx": {
+     "point": null,
+     "price": -176
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -190
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a17fdb-6cbe-7440-a928-46ceaf599ea2",
+    "outcome_id": "01a17fdb-6cbe-7440-a928-46e1a2334009"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi",
+    "prophetx"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [
+    "Dallas Mavericks +5.5 (-109)",
+    "Dallas Mavericks +5.5 (-103)"
+   ],
+   "side": "Oklahoma City Thunder",
+   "side_label": "OKC (0)",
+   "start_source": "odds",
+   "start_utc": "2026-10-29T01:30:00Z",
+   "teams": [
+    "Oklahoma City Thunder",
+    "Dallas Mavericks"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-29T00:20:11Z",
    "base_depth": 110985,
    "best_price": 0.635,
@@ -200,6 +522,8 @@
    "new_money": 99539,
    "paper_only": false,
    "price": 0.51,
+   "price_after_15m": 0.51,
+   "price_after_15m_book": "novig",
    "price_american": -104,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.51,
@@ -298,6 +622,7 @@
    "side_label": "Clippers",
    "start_source": "polymarket",
    "start_utc": "2026-10-29T02:30:00Z",
+   "still_actionable": true,
    "teams": [
     "Lakers",
     "Clippers"
@@ -352,6 +677,8 @@
    "new_money": 239186,
    "paper_only": false,
    "price": 0.48,
+   "price_after_15m": 0.475,
+   "price_after_15m_book": "novig",
    "price_american": 108,
    "price_rule": "ok",
    "price_when_first_seen": 0.48,
@@ -439,6 +766,7 @@
    "side_label": "Clippers (-1.5)",
    "start_source": "polymarket",
    "start_utc": "2026-10-29T02:30:00Z",
+   "still_actionable": true,
    "teams": [
     "Lakers",
     "Clippers"
@@ -499,6 +827,8 @@
    "new_money": 31038,
    "paper_only": false,
    "price": 0.52,
+   "price_after_15m": 0.5148,
+   "price_after_15m_book": "prophetx",
    "price_american": -108,
    "price_rule": "ok",
    "price_when_first_seen": 0.52,
@@ -589,6 +919,7 @@
    "side_label": "NOT Oklahoma City wins by over 5.5 points",
    "start_source": "odds",
    "start_utc": "2026-10-29T01:30:00Z",
+   "still_actionable": true,
    "teams": [
     "Oklahoma City",
     "Dallas"
@@ -5169,8 +5500,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.55,
-   "clv_cents": 3.0,
+   "close_price": 0.54,
+   "clv_cents": 2.0,
    "confirmed_after_min": 10,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -12703,8 +13034,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.87,
-   "clv_cents": 3.0,
+   "close_price": 0.86,
+   "clv_cents": 2.0,
    "confirmed_after_min": 5,
    "date": "2026-10-28",
    "depth_by_book": {
