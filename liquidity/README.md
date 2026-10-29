@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Oct 29, 5:50 AM ET. This run: 7 new, 0 not confirmed, 2 pending. Open alerts: 47.
+Updated Thu Oct 29, 6:00 AM ET. This run: 1 new, 0 not confirmed, 6 pending. Open alerts: 48.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Oct 29 6:00AM | NCAAF | Miami (FL) vs North Carolina | moneyline: Miami (FL) | kalshi | $209k | -567 |  |  | +0.0c |  | pending |
 | Oct 29 5:50AM | NCAAF | Washington vs Nebraska | moneyline: Nebraska | kalshi | $154k | -285 |  |  | +0.0c |  | pending |
 | Oct 29 5:50AM | NCAAF | Oklahoma St. vs Iowa St. | moneyline: Oklahoma St. | kalshi | $85k | -317 |  |  | +0.0c |  | pending |
 | Oct 29 5:50AM | NCAAF | Missouri vs Arkansas | moneyline: Missouri | kalshi | $172k | -335 |  |  | +0.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 27 1:44PM | NBA | Nets vs. Celtics | total: Under (222.5) | polymarket | $52k | -104 | ✅ kalshi,novig | ❌ | -2.0c | yes | L |
 | Oct 27 1:44PM | NBA | Brooklyn vs Boston: Spread | spread: NOT Boston wins by over 12.5 points | kalshi | $43k | -100 | ✅ prophetx |  | +37.0c | yes | W |
 | Oct 27 1:33PM | NHL | Sabres vs. Sharks | total: Over (6.5) | polymarket | $49k | -122 | ✅ kalshi,novig |  | +1.0c |  | L |
-| Oct 27 1:20PM | NBA | Brooklyn Nets at Boston Celtics | moneyline: Boston Celtics | prophetx | $42k | -560 | ✅ kalshi |  | +1.4c |  | W |
