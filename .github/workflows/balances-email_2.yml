@@ -1,0 +1,39 @@
+name: balances-email
+
+on:
+  schedule:
+    - cron: "7 * * * *"   # hourly
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: balances-email
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Email balances (private; nothing financial in this log)
+        env:
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          PROPHETX_TRADE_ACCESS_KEY: ${{ secrets.PROPHETX_TRADE_ACCESS_KEY }}
+          PROPHETX_TRADE_SECRET_KEY: ${{ secrets.PROPHETX_TRADE_SECRET_KEY }}
+          KALSHI_KEY_ID: ${{ secrets.KALSHI_KEY_ID }}
+          KALSHI_PRIVATE_KEY: ${{ secrets.KALSHI_PRIVATE_KEY }}
+          PMUS_KEY_ID: ${{ secrets.PMUS_KEY_ID }}
+          PMUS_SECRET_KEY: ${{ secrets.PMUS_SECRET_KEY }}
+          NOVIG_SNAPSHOT_TOKEN: ${{ secrets.NOVIG_SNAPSHOT_TOKEN }}
+          KAY_HARDROCK: ${{ secrets.KAY_HARDROCK }}
+          BAL_REASON: ${{ github.event_name == 'schedule' && 'hourly' || 'on demand' }}
+        run: python -u balances.py
