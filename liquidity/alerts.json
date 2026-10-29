@@ -1,6 +1,148 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-29T05:30:12Z",
+   "base_depth": 1331818,
+   "best_price": 0.6267,
+   "best_price_american": -168,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.61,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-30",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -1269,
+     "new_this_side": 775424,
+     "other_side": 324083,
+     "other_side_all_levels": 494125,
+     "ratio": 5.7,
+     "this_side": 1850009,
+     "this_side_all_levels": 2107151
+    }
+   },
+   "fade_price": 0.4,
+   "first_seen_utc": "2026-10-29T05:20:12Z",
+   "game": "Wisconsin vs Iowa",
+   "key": "kalshi|KXNCAAFGAME-26OCT30WISIOWA|ml|1",
+   "lead_min": 2730,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 775424,
+   "paper_only": false,
+   "price": 0.61,
+   "price_american": -156,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.61,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26OCT30WISIOWA-IOWA"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Iowa",
+   "side_label": "Iowa",
+   "start_source": "kalshi",
+   "start_utc": "2026-10-31T03:00:00Z",
+   "teams": [
+    "Wisconsin",
+    "Iowa"
+   ],
+   "top25": true,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-29T05:30:12Z",
+   "base_depth": 27758,
+   "best_price": 0.6869,
+   "best_price_american": -219,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.68,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-29",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 366,
+     "new_this_side": 27967,
+     "other_side": 17599,
+     "other_side_all_levels": 22499,
+     "ratio": 2.2,
+     "this_side": 38949,
+     "this_side_all_levels": 53597
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "South Carolina State",
+     "price": 0.6825,
+     "this_side": 257
+    }
+   },
+   "fade_price": 0.33,
+   "first_seen_utc": "2026-10-29T05:20:12Z",
+   "game": "South Carolina St. vs Morgan St.",
+   "key": "kalshi|KXNCAAFGAME-26OCT29SCSTMORG|ml|0",
+   "lead_min": 1050,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 27967,
+   "paper_only": false,
+   "price": 0.68,
+   "price_american": -213,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.68,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26OCT29SCSTMORG-SCST"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "South Carolina St.",
+   "side_label": "South Carolina St.",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-29T23:00:00Z",
+   "teams": [
+    "South Carolina St.",
+    "Morgan St."
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-29T05:05:37Z",
    "base_depth": 790568,
    "best_price": 0.8303,
@@ -41,6 +183,8 @@
    "new_money": 521684,
    "paper_only": false,
    "price": 0.82,
+   "price_after_15m": 0.8303,
+   "price_after_15m_book": "kalshi",
    "price_american": -456,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.82,
@@ -61,6 +205,7 @@
    "side_label": "Ole Miss",
    "start_source": "kalshi",
    "start_utc": "2026-10-31T03:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Auburn",
     "Ole Miss"
@@ -524,8 +669,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.71,
-   "clv_cents": -2.0,
+   "close_price": 0.72,
+   "clv_cents": -1.0,
    "confirmed_after_min": 3,
    "date": "2026-10-29",
    "depth_by_book": {
@@ -2054,6 +2199,7 @@
     }
    },
    "fade_price": 0.5,
+   "fade_units": 0.97,
    "first_seen_utc": "2026-10-29T00:00:56Z",
    "game": "Lakers vs. Clippers",
    "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6037145\"}",
@@ -2149,7 +2295,7 @@
     "outcome_index": 1,
     "pm_market_id": "6037145"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig",
@@ -2157,6 +2303,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-29T05:30:12Z",
    "sharp_agree": [
     "Los Angeles Clippers +1.5 (-117)"
    ],
@@ -2171,7 +2318,7 @@
     "Clippers"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-29T00:10:10Z",
@@ -3276,8 +3423,10 @@
     }
    },
    "fade_price": 0.495,
+   "fade_units": 1.02,
    "first_seen_utc": "2026-10-28T22:38:46Z",
    "game": "Los Angeles Lakers @ Los Angeles Clippers",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a17fa5-0ec5-7d61-bc79-f8fd11f9a7f7\", \"outcome_id\": \"01a17fa5-0ec5-7d61-bc79-f90d3c6c8cc8\"}",
    "lead_min": 218,
    "league": "NBA",
@@ -3370,7 +3519,7 @@
     "market_id": "01a17fa5-0ec5-7d61-bc79-f8fd11f9a7f7",
     "outcome_id": "01a17fa5-0ec5-7d61-bc79-f90d3c6c8cc8"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "kalshi",
@@ -3378,6 +3527,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-29T05:30:12Z",
    "sharp_agree": [
     "Los Angeles Clippers +1.5 (-117)"
    ],
@@ -3392,7 +3542,7 @@
     "Los Angeles Clippers"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-28T22:38:46Z",
@@ -6822,6 +6972,7 @@
     }
    },
    "fade_price": 0.5,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-28T20:20:13Z",
    "game": "Lakers vs. Clippers",
    "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"6037145\"}",
@@ -6916,13 +7067,14 @@
     "outcome_index": 0,
     "pm_market_id": "6037145"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-29T05:30:12Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Lakers",
@@ -6935,7 +7087,7 @@
     "Clippers"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.98
   },
   {
    "alerted_utc": "2026-10-28T20:20:13Z",
