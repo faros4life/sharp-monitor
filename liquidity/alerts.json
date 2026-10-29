@@ -1,6 +1,282 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-29T16:50:11Z",
+   "base_depth": 149543,
+   "best_price": 0.5242,
+   "best_price_american": -110,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-29",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 16261,
+     "new_this_side": 85579,
+     "other_side": 74520,
+     "other_side_all_levels": 115691,
+     "ratio": 2.0,
+     "this_side": 152149,
+     "this_side_all_levels": 221243
+    }
+   },
+   "fade_price": 0.49,
+   "first_seen_utc": "2026-10-29T16:40:11Z",
+   "game": "Sacramento vs New Orleans: Total Points",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNBATOTAL-26OCT29SACNOP-236\"}",
+   "lead_min": 430,
+   "league": "NBA",
+   "line": 235.5,
+   "market": "total",
+   "new_money": 85579,
+   "paper_only": false,
+   "price": 0.52,
+   "price_american": -108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.52,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 236.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 236.0,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 236.5,
+     "price": 101
+    },
+    "betrivers": {
+     "point": 236.5,
+     "price": -108
+    },
+    "betus": {
+     "point": 236.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 236.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 236.5,
+     "price": -108
+    },
+    "fanatics": {
+     "point": 236.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 236.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": 235.5,
+     "price": -108
+    },
+    "lowvig": {
+     "point": 236.0,
+     "price": -107
+    },
+    "mybookieag": {
+     "point": 236.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 236.5,
+     "price": 102
+    },
+    "polymarket": {
+     "point": 235.5,
+     "price": -104
+    },
+    "prophetx": {
+     "point": 236.5,
+     "price": 108
+    },
+    "williamhill_us": {
+     "point": 236.0,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBATOTAL-26OCT29SACNOP-236"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [
+    "Under 237.5 (-113)"
+   ],
+   "side": "OVER",
+   "side_label": "Over 235.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-10-30T00:00:00Z",
+   "teams": [
+    "Sacramento",
+    "New Orleans"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-29T16:50:11Z",
+   "base_depth": 179752,
+   "best_price": 0.505,
+   "best_price_american": -102,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-30",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 7455,
+     "new_this_side": 78595,
+     "other_side": 84515,
+     "other_side_all_levels": 142637,
+     "ratio": 2.4,
+     "this_side": 201840,
+     "this_side_all_levels": 251958
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "SAC +7.5 (7.5)",
+     "price": 0.505,
+     "this_side": 10572
+    }
+   },
+   "fade_price": 0.51,
+   "first_seen_utc": "2026-10-29T16:40:11Z",
+   "game": "Kent St. vs Sacramento St.: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFSPREAD-26OCT30KENTSAC-KENT8\"}",
+   "lead_min": 2020,
+   "league": "NCAAF",
+   "line": 7.5,
+   "market": "spread",
+   "new_money": 78595,
+   "paper_only": false,
+   "price": 0.5,
+   "price_american": -100,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.5,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 7.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 7.5,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 7.5,
+     "price": 100
+    },
+    "betrivers": {
+     "point": 8.5,
+     "price": -114
+    },
+    "betus": {
+     "point": 8.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 7.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 7.5,
+     "price": -108
+    },
+    "fanatics": {
+     "point": 7.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 7.5,
+     "price": -108
+    },
+    "kalshi": {
+     "point": 7.5,
+     "price": 100
+    },
+    "lowvig": {
+     "point": 7.5,
+     "price": -106
+    },
+    "mybookieag": {
+     "point": 8.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 7.5,
+     "price": -102
+    },
+    "polymarket": {
+     "point": 7.5,
+     "price": -104
+    },
+    "prophetx": {
+     "point": 7.5,
+     "price": -102
+    },
+    "williamhill_us": {
+     "point": 7.5,
+     "price": -112
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAFSPREAD-26OCT30KENTSAC-KENT8"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Sacramento St.",
+   "side_label": "NOT Kent St. wins by over 7.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-10-31T02:30:00Z",
+   "teams": [
+    "Kent St.",
+    "Sacramento St."
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-29T16:40:11Z",
    "base_depth": 95508,
    "best_price": 0.335,
@@ -797,6 +1073,8 @@
    "new_money": 32311,
    "paper_only": false,
    "price": 0.55,
+   "price_after_15m": 0.555,
+   "price_after_15m_book": "novig",
    "price_american": -122,
    "price_rule": "ok",
    "price_when_first_seen": 0.55,
@@ -884,6 +1162,7 @@
    "side_label": "NOT Over 6.5 goals scored",
    "start_source": "odds",
    "start_utc": "2026-10-29T23:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Winnipeg",
     "Tampa Bay"
@@ -944,6 +1223,8 @@
    "new_money": 50609,
    "paper_only": false,
    "price": 0.45,
+   "price_after_15m": 0.45,
+   "price_after_15m_book": "novig",
    "price_american": 122,
    "price_rule": "ok",
    "price_when_first_seen": 0.45,
@@ -1029,6 +1310,7 @@
    "side_label": "NOT Over 5.5 goals scored",
    "start_source": "odds",
    "start_utc": "2026-10-30T00:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Boston",
     "St. Louis"
@@ -4985,8 +5267,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": 2.0,
+   "close_price": 0.52,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-29",
    "depth_by_book": {
@@ -5597,8 +5879,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.63,
-   "clv_cents": 0.0,
+   "close_price": 0.62,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-29",
    "depth_by_book": {
@@ -19934,8 +20216,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.68,
-   "clv_cents": 0.0,
+   "close_price": 0.67,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-29",
    "depth_by_book": {
