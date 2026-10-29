@@ -1,6 +1,162 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-29T05:00:16Z",
+   "base_depth": 9738961,
+   "best_price": 0.65,
+   "best_price_american": -186,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.65,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-29",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -2736,
+     "new_this_side": 622377,
+     "other_side": 5743120,
+     "other_side_all_levels": 5951881,
+     "ratio": 1.8,
+     "this_side": 10056316,
+     "this_side_all_levels": 10405559
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "GB (0)",
+     "price": 0.65,
+     "this_side": 98722
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Green Bay Packers",
+     "price": 0.6503,
+     "this_side": 47789
+    }
+   },
+   "fade_price": 0.36,
+   "first_seen_utc": "2026-10-29T04:50:10Z",
+   "game": "Carolina vs Green Bay",
+   "key": "kalshi|KXNFLGAME-26OCT29CARGB|ml|1",
+   "lead_min": 1155,
+   "league": "NFL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 622377,
+   "paper_only": false,
+   "price": 0.65,
+   "price_american": -186,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.65,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -200
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -205
+    },
+    "betopenly": {
+     "point": null,
+     "price": -187
+    },
+    "betrivers": {
+     "point": null,
+     "price": -195
+    },
+    "betus": {
+     "point": null,
+     "price": -205
+    },
+    "bovada": {
+     "point": null,
+     "price": -200
+    },
+    "draftkings": {
+     "point": null,
+     "price": -192
+    },
+    "fanatics": {
+     "point": null,
+     "price": -200
+    },
+    "fanduel": {
+     "point": null,
+     "price": -198
+    },
+    "kalshi": {
+     "point": null,
+     "price": -186
+    },
+    "limitless": {
+     "point": null,
+     "price": -194
+    },
+    "lowvig": {
+     "point": null,
+     "price": -205
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -199
+    },
+    "novig": {
+     "point": null,
+     "price": -186
+    },
+    "polymarket": {
+     "point": null,
+     "price": -186
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -184
+    },
+    "prophetx": {
+     "point": null,
+     "price": -186
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -190
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNFLGAME-26OCT29CARGB-GB"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "prophetx"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Green Bay",
+   "side_label": "Green Bay",
+   "start_source": "odds",
+   "start_utc": "2026-10-30T00:15:00Z",
+   "teams": [
+    "Carolina",
+    "Green Bay"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-29T04:10:11Z",
    "base_depth": 37707,
    "best_price": 0.45,
@@ -7076,6 +7232,7 @@
     }
    },
    "fade_price": 0.56,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-28T19:50:13Z",
    "game": "Maple Leafs vs. Kraken",
    "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"5179051\"}",
@@ -7167,7 +7324,7 @@
     "outcome_index": 1,
     "pm_market_id": "5179051"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "kalshi",
@@ -7176,6 +7333,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-29T05:00:16Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Kraken",
@@ -7188,7 +7346,7 @@
     "Kraken"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.25
   },
   {
    "alerted_utc": "2026-10-28T20:00:17Z",
@@ -15186,6 +15344,7 @@
     }
    },
    "fade_price": 0.32,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-28T13:10:11Z",
    "game": "Maple Leafs vs. Kraken",
    "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6301160\"}",
@@ -15268,7 +15427,7 @@
     "outcome_index": 1,
     "pm_market_id": "6301160"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "kalshi",
@@ -15276,6 +15435,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-29T05:00:16Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Kraken",
@@ -15288,7 +15448,7 @@
     "Kraken"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.44
   },
   {
    "alerted_utc": "2026-10-28T13:20:11Z",
