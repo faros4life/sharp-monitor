@@ -1,6 +1,145 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-29T13:40:12Z",
+   "base_depth": 108379,
+   "best_price": 0.49,
+   "best_price_american": 104,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-29",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -7345,
+     "new_this_side": 26608,
+     "other_side": 71914,
+     "other_side_all_levels": 129923,
+     "ratio": 1.2,
+     "this_side": 85781,
+     "this_side_all_levels": 134023
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "NOP -6.5 (-6.5)",
+     "price": 0.49,
+     "this_side": 12466
+    }
+   },
+   "fade_price": 0.52,
+   "first_seen_utc": "2026-10-29T13:30:15Z",
+   "game": "Sacramento vs New Orleans: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNBASPREAD-26OCT29SACNOP-NOP7\"}",
+   "lead_min": 620,
+   "league": "NBA",
+   "line": -6.5,
+   "market": "spread",
+   "new_money": 26608,
+   "paper_only": false,
+   "price": 0.5,
+   "price_american": -100,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.49,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -5.5,
+     "price": -115
+    },
+    "betonlineag": {
+     "point": -6.0,
+     "price": -110
+    },
+    "betopenly": {
+     "point": -6.0,
+     "price": -103
+    },
+    "betrivers": {
+     "point": -6.5,
+     "price": -106
+    },
+    "betus": {
+     "point": -6.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": -6.0,
+     "price": -115
+    },
+    "draftkings": {
+     "point": -6.5,
+     "price": -102
+    },
+    "fanatics": {
+     "point": -6.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": -5.5,
+     "price": -112
+    },
+    "kalshi": {
+     "point": -6.5,
+     "price": 100
+    },
+    "lowvig": {
+     "point": -6.0,
+     "price": -106
+    },
+    "mybookieag": {
+     "point": -6.0,
+     "price": -110
+    },
+    "novig": {
+     "point": -6.5,
+     "price": 104
+    },
+    "polymarket": {
+     "point": -6.5,
+     "price": 104
+    },
+    "prophetx": {
+     "point": -5.5,
+     "price": -113
+    },
+    "williamhill_us": {
+     "point": -6.0,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBASPREAD-26OCT29SACNOP-NOP7"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "New Orleans",
+   "side_label": "New Orleans wins by over 6.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-10-30T00:00:00Z",
+   "teams": [
+    "Sacramento",
+    "New Orleans"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-29T13:30:15Z",
    "base_depth": 32969,
    "best_price": 0.5,
@@ -12448,8 +12587,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.48,
-   "clv_cents": -2.0,
+   "close_price": 0.49,
+   "clv_cents": -1.0,
    "confirmed_after_min": 9,
    "date": "2026-10-29",
    "depth_by_book": {
