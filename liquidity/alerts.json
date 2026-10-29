@@ -1,6 +1,117 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-29T01:00:16Z",
+   "base_depth": 183660,
+   "best_price": 0.645,
+   "best_price_american": -182,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.65,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-29",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 1264,
+     "new_this_side": 55726,
+     "other_side": 59202,
+     "other_side_all_levels": 141676,
+     "ratio": 0.5,
+     "this_side": 30036,
+     "this_side_all_levels": 245898
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "NOP (0)",
+     "price": 0.645,
+     "this_side": 4582
+    }
+   },
+   "fade_price": 0.35,
+   "first_seen_utc": "2026-10-29T00:50:10Z",
+   "game": "Sacramento vs New Orleans",
+   "key": "kalshi|KXNBAGAME-26OCT29SACNOP|ml|1",
+   "lead_min": 1380,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 55726,
+   "paper_only": false,
+   "price": 0.65,
+   "price_american": -186,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.65,
+   "prices_by_book": {
+    "draftkings": {
+     "point": null,
+     "price": -198
+    },
+    "fanduel": {
+     "point": null,
+     "price": -198
+    },
+    "kalshi": {
+     "point": null,
+     "price": -186
+    },
+    "limitless": {
+     "point": null,
+     "price": -180
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -177
+    },
+    "novig": {
+     "point": null,
+     "price": -182
+    },
+    "polymarket": {
+     "point": null,
+     "price": -178
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -194
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -220
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBAGAME-26OCT29SACNOP-NOP"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "New Orleans",
+   "side_label": "New Orleans",
+   "start_source": "odds",
+   "start_utc": "2026-10-30T00:00:00Z",
+   "teams": [
+    "Sacramento",
+    "New Orleans"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-29T00:50:10Z",
    "base_depth": 57492,
    "best_price": 0.37,
@@ -326,8 +437,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 0.0,
+   "close_price": 0.53,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -1802,7 +1913,8 @@
      "price": -108
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-29T01:00:16Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNHLGAME-26OCT29OTTLA-LA"
