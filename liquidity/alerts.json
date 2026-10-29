@@ -1,6 +1,160 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-29T19:10:10Z",
+   "base_depth": 89708,
+   "best_price": 0.465,
+   "best_price_american": 115,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.46,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-29",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -5935,
+     "new_this_side": 70152,
+     "other_side": 52689,
+     "other_side_all_levels": 115108,
+     "ratio": 2.5,
+     "this_side": 133653,
+     "this_side_all_levels": 181462
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "Under 6.5 (6.5)",
+     "price": 0.465,
+     "this_side": 17409
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Under (6.5)",
+     "price": 0.47,
+     "this_side": 16794
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "under 6.5 (6.5)",
+     "price": 0.4651,
+     "this_side": 6420
+    }
+   },
+   "fade_price": 0.55,
+   "first_seen_utc": "2026-10-29T19:00:19Z",
+   "game": "Buffalo vs Anaheim: Total Goals",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLTOTAL-26OCT29BUFANA-7\"}",
+   "lead_min": 410,
+   "league": "NHL",
+   "line": 6.5,
+   "market": "total",
+   "new_money": 70152,
+   "paper_only": false,
+   "price": 0.46,
+   "price_american": 117,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.46,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 6.5,
+     "price": 105
+    },
+    "betonlineag": {
+     "point": 6.5,
+     "price": 113
+    },
+    "betopenly": {
+     "point": 6.5,
+     "price": 117
+    },
+    "betrivers": {
+     "point": 6.5,
+     "price": 104
+    },
+    "betus": {
+     "point": 6.5,
+     "price": 110
+    },
+    "bovada": {
+     "point": 6.5,
+     "price": 105
+    },
+    "draftkings": {
+     "point": 6.5,
+     "price": 105
+    },
+    "fanatics": {
+     "point": 6.5,
+     "price": 105
+    },
+    "fanduel": {
+     "point": 6.5,
+     "price": 104
+    },
+    "kalshi": {
+     "point": 6.5,
+     "price": 117
+    },
+    "lowvig": {
+     "point": 6.5,
+     "price": 113
+    },
+    "mybookieag": {
+     "point": 6.5,
+     "price": 101
+    },
+    "novig": {
+     "point": 6.5,
+     "price": 115
+    },
+    "polymarket": {
+     "point": 6.5,
+     "price": 113
+    },
+    "prophetx": {
+     "point": 6.5,
+     "price": 115
+    },
+    "williamhill_us": {
+     "point": 6.5,
+     "price": 105
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNHLTOTAL-26OCT29BUFANA-7"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "polymarket"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "NOT Over 6.5 goals scored",
+   "start_source": "odds",
+   "start_utc": "2026-10-30T02:00:00Z",
+   "teams": [
+    "Buffalo",
+    "Anaheim"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-29T19:00:19Z",
    "base_depth": 457843,
    "best_price": 0.515,
@@ -2391,8 +2545,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 0.0,
+   "close_price": 0.51,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-29",
    "depth_by_book": {
@@ -6184,8 +6338,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": -1.0,
+   "close_price": 0.52,
+   "clv_cents": 0.0,
    "confirmed_after_min": 13,
    "date": "2026-10-29",
    "depth_by_book": {
@@ -11598,7 +11752,8 @@
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.65,
    "prices_by_book": {},
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-29T19:10:10Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26OCT30SCAROKLA-OKLA"
@@ -23027,8 +23182,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.48,
-   "clv_cents": -1.0,
+   "close_price": 0.47,
+   "clv_cents": -2.0,
    "confirmed_after_min": 5,
    "date": "2026-10-29",
    "depth_by_book": {
