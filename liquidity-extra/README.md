@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Thu Oct 29, 2:50 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 4.
+Updated Thu Oct 29, 3:00 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 3.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 76-52 (-8.05u flat) | rule met: 26-25
+**Record:** 76-53 (-9.05u flat) | rule met: 26-25
 
-**Fade (paper, betting against the print):** 27-41 (+0.59u flat, after fees)
+**Fade (paper, betting against the print):** 28-41 (+3.11u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -17,7 +17,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 28 6:50PM | MLB | Milwaukee Brewers @ Tampa Bay Rays | spread: TB +1.5 (1.5) | novig | $51k | -138 | ✅ kalshi,polymarket |  | +0.0c |  | L |
 | Oct 28 4:18PM | MLB | Milwaukee Brewers vs. Tampa Bay Rays | moneyline: Tampa Bay Rays | polymarket | $268k | +127 | ✅ kalshi,novig,prophetx |  | +0.0c |  | L |
 | Oct 28 4:18PM | MLB | Game 5: Milwaukee vs Tampa Bay | moneyline: Tampa Bay | kalshi | $175k | +127 | ✅ novig,polymarket,prophetx |  | +0.0c | yes | L |
-| Oct 28 4:18PM | TENNIS | Fery vs Musetti | moneyline: Musetti | kalshi | $71k | -285 |  |  | -1.0c |  | pending |
+| Oct 28 4:18PM | TENNIS | Fery vs Musetti | moneyline: Musetti | kalshi | $71k | -285 |  |  | -1.0c |  | L |
 | Oct 28 4:18PM | TENNIS | Djokovic vs Struff | moneyline: Djokovic | kalshi | $63k | -335 |  |  | -1.0c | yes | pending |
 | Oct 28 4:00PM | MLB | Milwaukee Brewers vs. Tampa Bay Rays | total: Under (6.5) | polymarket | $27k | -104 | ✅ kalshi,novig,prophetx |  | +2.0c |  | W |
 | Oct 28 3:40PM | MLB | Milwaukee Brewers @ Tampa Bay Rays | moneyline: TB (0) | novig | $201k | +133 | ✅ prophetx |  | +0.5c |  | L |
