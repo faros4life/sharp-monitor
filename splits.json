@@ -13,14 +13,14 @@
    "status": "OPEN",
    "closed_utc": null,
    "plays": 8,
-   "resulted": 7,
-   "W": 3,
+   "resulted": 8,
+   "W": 4,
    "L": 4,
    "P": 0,
-   "units": -1.44,
-   "u_per_play": -0.206,
-   "true_close_value_pct": -4.07,
-   "true_close_n": 7
+   "units": -0.49,
+   "u_per_play": -0.061,
+   "true_close_value_pct": -3.44,
+   "true_close_n": 8
   },
   {
    "id": "phase1_control",
@@ -55,14 +55,14 @@
    "status": "OPEN",
    "closed_utc": null,
    "plays": 14,
-   "resulted": 13,
+   "resulted": 14,
    "W": 9,
-   "L": 4,
+   "L": 5,
    "P": 0,
-   "units": 4.07,
-   "u_per_play": 0.313,
-   "true_close_value_pct": -0.48,
-   "true_close_n": 13
+   "units": 3.07,
+   "u_per_play": 0.219,
+   "true_close_value_pct": -0.26,
+   "true_close_n": 14
   },
   {
    "id": "hr_fade",
@@ -76,14 +76,14 @@
    "status": "OPEN",
    "closed_utc": null,
    "plays": 14,
-   "resulted": 13,
+   "resulted": 14,
    "W": 9,
-   "L": 4,
+   "L": 5,
    "P": 0,
-   "units": -5.17,
-   "u_per_play": -0.398,
-   "true_close_value_pct": -0.48,
-   "true_close_n": 13
+   "units": -4.1,
+   "u_per_play": -0.293,
+   "true_close_value_pct": -0.26,
+   "true_close_n": 14
   },
   {
    "id": "pmg_routed",
@@ -118,14 +118,14 @@
    "status": "OPEN",
    "closed_utc": null,
    "plays": 16,
-   "resulted": 15,
-   "W": 7,
+   "resulted": 16,
+   "W": 8,
    "L": 8,
    "P": 0,
-   "units": -1.79,
-   "u_per_play": -0.119,
-   "true_close_value_pct": -2.25,
-   "true_close_n": 15
+   "units": -0.86,
+   "u_per_play": -0.054,
+   "true_close_value_pct": -2.22,
+   "true_close_n": 16
   },
   {
    "id": "combined",
@@ -139,14 +139,14 @@
    "status": "OPEN",
    "closed_utc": null,
    "plays": 21,
-   "resulted": 18,
-   "W": 9,
-   "L": 9,
+   "resulted": 21,
+   "W": 11,
+   "L": 10,
    "P": 0,
-   "units": -1.05,
-   "u_per_play": -0.058,
-   "true_close_value_pct": -3.04,
-   "true_close_n": 18
+   "units": -0.17,
+   "u_per_play": -0.008,
+   "true_close_value_pct": -2.53,
+   "true_close_n": 21
   },
   {
    "id": "worse_125",
@@ -160,14 +160,14 @@
    "status": "OPEN",
    "closed_utc": null,
    "plays": 4,
-   "resulted": 3,
+   "resulted": 4,
    "W": 2,
-   "L": 1,
+   "L": 2,
    "P": 0,
-   "units": 0.59,
-   "u_per_play": 0.197,
-   "true_close_value_pct": -1.4,
-   "true_close_n": 3
+   "units": -0.41,
+   "u_per_play": -0.102,
+   "true_close_value_pct": -0.42,
+   "true_close_n": 4
   },
   {
    "id": "ncaab",
@@ -201,15 +201,15 @@
    "kill_bar": ">= 30 resulted at <= -0.1u/play -> CLOSED",
    "status": "OPEN",
    "closed_utc": null,
-   "plays": 12,
-   "resulted": 12,
-   "W": 8,
-   "L": 4,
+   "plays": 14,
+   "resulted": 14,
+   "W": 9,
+   "L": 5,
    "P": 0,
-   "units": -3.92,
-   "u_per_play": -0.327,
-   "true_close_value_pct": 2.53,
-   "true_close_n": 12
+   "units": -3.85,
+   "u_per_play": -0.275,
+   "true_close_value_pct": 2.5,
+   "true_close_n": 14
   },
   {
    "id": "tier2_core",
@@ -255,22 +255,22 @@
    "status": "OPEN",
    "closed_utc": null,
    "plays": 3,
-   "resulted": 2,
+   "resulted": 3,
    "W": 1,
-   "L": 1,
+   "L": 2,
    "P": 0,
-   "units": -0.11,
-   "u_per_play": -0.055,
+   "units": -1.11,
+   "u_per_play": -0.37,
    "true_close_value_pct": 9.3,
    "true_close_n": 1,
    "all_history": {
     "plays": 23,
-    "resulted": 22,
+    "resulted": 23,
     "W": 9,
-    "L": 12,
+    "L": 13,
     "P": 1,
-    "units": -4.43,
-    "u_per_play": -0.201,
+    "units": -5.43,
+    "u_per_play": -0.236,
     "true_close_value_pct": 1.03,
     "true_close_n": 7
    }
@@ -718,8 +718,8 @@
  ],
  "prophetx_tripwire": {
   "rule": "next 30 forward ProphetX-priced plays at or below 0.00u/play = PAUSE LIVE and review early",
-  "resulted": 18,
-  "u_per_play": -0.129,
+  "resulted": 20,
+  "u_per_play": -0.028,
   "status": "counting"
  },
  "gaps": {
@@ -741,5 +741,5 @@
   "liq_evening": 0
  },
  "resulted_rule": "resulted = result W, L or P with a unit value (pushes count as 0u); liquidity artifacts excluded; pending and ungraded plays do not count",
- "updated_utc": "2026-10-29T05:35:09Z"
+ "updated_utc": "2026-10-29T05:40:11Z"
 }

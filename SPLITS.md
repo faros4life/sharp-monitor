@@ -1,21 +1,21 @@
-# Paper splits (updated 2026-10-29T05:35:09Z)
+# Paper splits (updated 2026-10-29T05:40:11Z)
 
 Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kill bar: 30+ resulted at -0.10u/play or worse closes a split.
 
 | Split | Type | Start | W-L-P | Units | u/play | True close % | Status |
 |---|---|---|---|---|---|---|---|
-| Phase-1 live filter (paper view) | a-priori | 2026-10-26 | 3-4-0 | -1.44 | -0.206 | -4.07 | OPEN |
+| Phase-1 live filter (paper view) | a-priori | 2026-10-26 | 4-4-0 | -0.49 | -0.061 | -3.44 | OPEN |
 | Phase-1 control group | control | 2026-10-26 | 5-3-1 | +1.12 | +0.124 | -0.24 | OPEN |
-| Hard Rock-priced, routed | a-priori | 2026-10-26 | 9-4-0 | +4.07 | +0.313 | -0.48 | OPEN |
-| Fade Hard Rock-priced | scan | 2026-10-26 | 9-4-0 | -5.17 | -0.398 | -0.48 | OPEN |
+| Hard Rock-priced, routed | a-priori | 2026-10-26 | 9-5-0 | +3.07 | +0.219 | -0.26 | OPEN |
+| Fade Hard Rock-priced | scan | 2026-10-26 | 9-5-0 | -4.10 | -0.293 | -0.26 | OPEN |
 | PM-global-priced, routed | a-priori | 2026-10-26 | 0-0-0 | +0.00 |  |  | OPEN |
-| Unders only | scan | 2026-10-26 | 7-8-0 | -1.79 | -0.119 | -2.25 | OPEN |
-| Combined filter | scan | 2026-10-26 | 9-9-0 | -1.05 | -0.058 | -3.04 | OPEN |
-| Priced -125 or worse | scan | 2026-10-26 | 2-1-0 | +0.59 | +0.197 | -1.40 | OPEN |
+| Unders only | scan | 2026-10-26 | 8-8-0 | -0.86 | -0.054 | -2.22 | OPEN |
+| Combined filter | scan | 2026-10-26 | 11-10-0 | -0.17 | -0.008 | -2.53 | OPEN |
+| Priced -125 or worse | scan | 2026-10-26 | 2-2-0 | -0.41 | -0.102 | -0.42 | OPEN |
 | College basketball | scan | 2026-10-26 | 0-0-0 | +0.00 |  |  | OPEN |
-| Fade alerts sent 12-24h out | scan | 2026-10-26 | 8-4-0 | -3.92 | -0.327 | +2.53 | OPEN |
+| Fade alerts sent 12-24h out | scan | 2026-10-26 | 9-5-0 | -3.85 | -0.275 | +2.50 | OPEN |
 | Tier 2 core (paper) | tier | 2026-10-27 | 0-2-0 | -2.00 | -1.000 | -6.55 | OPEN (record only, no size) |
-| Evening sends, ex-Hard Rock | scan | 2026-10-26 | 1-1-0 | -0.11 | -0.055 | +9.30 | OPEN |
+| Evening sends, ex-Hard Rock | scan | 2026-10-26 | 1-2-0 | -1.11 | -0.370 | +9.30 | OPEN |
 | Muted midday (11 AM-2 PM ET) | scan | 2026-10-26 | 1-1-0 | -0.09 | -0.045 | +8.90 | OPEN |
 | Liquidity totals, no sharp agree | scan | 2026-10-22 | 76-68-0 | +4.79 | +0.033 |  | OPEN |
 | Liquidity vs sharp (oppose) | scan | 2026-10-22 | 58-64-0 | -10.97 | -0.090 |  | OPEN |
@@ -30,7 +30,7 @@ Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kil
 | NBA liquidity totals - evacuation | scan | 2026-10-28 | 5-4-0 | +0.86 | +0.096 |  | OPEN |
 | NBA liquidity, price -129..-105 | scan | 2026-10-28 | 12-8-0 | +3.00 | +0.150 |  | OPEN |
 
-**All-history reference (every resulted play in the feed, not forward; read only):** Tier 2 core (paper) 7-5-0, +0.87u (+0.072/play); Evening sends, ex-Hard Rock 9-12-1, -4.43u (-0.201/play); Muted midday (11 AM-2 PM ET) 25-9-0, +12.51u (+0.368/play); Liquidity overnight (12-5 AM ET) 51-35-0, +1.21u (+0.014/play); Liquidity evening (5-8 PM ET) 75-91-0, -32.46u (-0.196/play)
+**All-history reference (every resulted play in the feed, not forward; read only):** Tier 2 core (paper) 7-5-0, +0.87u (+0.072/play); Evening sends, ex-Hard Rock 9-13-1, -5.43u (-0.236/play); Muted midday (11 AM-2 PM ET) 25-9-0, +12.51u (+0.368/play); Liquidity overnight (12-5 AM ET) 51-35-0, +1.21u (+0.014/play); Liquidity evening (5-8 PM ET) 75-91-0, -32.46u (-0.196/play)
 
 **Muted midday (11 AM-2 PM ET): breakdowns** (resulted plays only)
 
@@ -47,7 +47,7 @@ Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kil
 
 **Closed by decision:** Liquidity spreads: Closed by Peter, Oct 27, on Muse's complete-log read: 191 resulted, -32.15u (-0.17/play), negative in every time block and every lead window.
 
-**ProphetX tripwire:** 18/30 resulted, -0.129u/play - counting.
+**ProphetX tripwire:** 20/30 resulted, -0.028u/play - counting.
 
 **Price gaps (measurement only):** {"gaps": 22, "per_day": 5.5, "edge_pct_median": 0.74, "edge_pct_p90": 2.57, "size_est_median_upper_bound": 5364.5, "seen_once_share": 1.0, "lifetime_min_median": 0.0, "lived_10min_plus": 0, "with_200_both_legs_upper_bound": 22, "scan_sec_median": 284}
 
