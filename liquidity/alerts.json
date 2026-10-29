@@ -1,6 +1,312 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-29T13:30:15Z",
+   "base_depth": 32969,
+   "best_price": 0.5,
+   "best_price_american": -100,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-29",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "NOT Over 233.5 points",
+     "price": 0.51,
+     "this_side": 146517
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "Under 233.5 (233.5)",
+     "price": 0.5,
+     "this_side": 6970
+    },
+    "polymarket": {
+     "new_other_side": 3807,
+     "new_this_side": 33208,
+     "other_side": 27048,
+     "other_side_all_levels": 43845,
+     "ratio": 2.1,
+     "this_side": 56518,
+     "this_side_all_levels": 66172
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "under 233.5 (233.5)",
+     "price": 0.5,
+     "this_side": 7765
+    }
+   },
+   "fade_price": 0.51,
+   "first_seen_utc": "2026-10-29T13:20:12Z",
+   "game": "Grizzlies vs. Trail Blazers",
+   "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6353856\"}",
+   "lead_min": 750,
+   "league": "NBA",
+   "line": 233.5,
+   "market": "total",
+   "new_money": 33208,
+   "paper_only": false,
+   "price": 0.5,
+   "price_american": -100,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.5,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 233.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 233.5,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 233.5,
+     "price": 100
+    },
+    "betrivers": {
+     "point": 233.5,
+     "price": -107
+    },
+    "betus": {
+     "point": 233.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 233.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 233.5,
+     "price": -110
+    },
+    "fanatics": {
+     "point": 233.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 233.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": 233.5,
+     "price": -104
+    },
+    "lowvig": {
+     "point": 233.5,
+     "price": -107
+    },
+    "mybookieag": {
+     "point": 233.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 233.5,
+     "price": 100
+    },
+    "polymarket": {
+     "point": 233.5,
+     "price": 100
+    },
+    "prophetx": {
+     "point": 233.5,
+     "price": 100
+    },
+    "williamhill_us": {
+     "point": 233.5,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 1,
+    "pm_market_id": "6353856"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "Under (233.5)",
+   "start_source": "odds",
+   "start_utc": "2026-10-30T02:00:00Z",
+   "teams": [
+    "Grizzlies",
+    "Trail Blazers"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-29T13:30:15Z",
+   "base_depth": 133388,
+   "best_price": 0.5,
+   "best_price_american": -100,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-29",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 3616,
+     "new_this_side": 63266,
+     "other_side": 76513,
+     "other_side_all_levels": 138558,
+     "ratio": 1.9,
+     "this_side": 146517,
+     "this_side_all_levels": 200071
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "Under 233.5 (233.5)",
+     "price": 0.5,
+     "this_side": 6970
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Under (233.5)",
+     "price": 0.5,
+     "this_side": 56518
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "under 233.5 (233.5)",
+     "price": 0.5,
+     "this_side": 7765
+    }
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-10-29T13:20:12Z",
+   "game": "Memphis vs Portland: Total Points",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBATOTAL-26OCT29MEMPOR-234\"}",
+   "lead_min": 750,
+   "league": "NBA",
+   "line": 233.5,
+   "market": "total",
+   "new_money": 63266,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 233.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 233.5,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 233.5,
+     "price": 100
+    },
+    "betrivers": {
+     "point": 233.5,
+     "price": -107
+    },
+    "betus": {
+     "point": 233.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 233.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 233.5,
+     "price": -110
+    },
+    "fanatics": {
+     "point": 233.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 233.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": 233.5,
+     "price": -104
+    },
+    "lowvig": {
+     "point": 233.5,
+     "price": -107
+    },
+    "mybookieag": {
+     "point": 233.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 233.5,
+     "price": 100
+    },
+    "polymarket": {
+     "point": 233.5,
+     "price": 100
+    },
+    "prophetx": {
+     "point": 233.5,
+     "price": 100
+    },
+    "williamhill_us": {
+     "point": 233.5,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNBATOTAL-26OCT29MEMPOR-234"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "polymarket"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "NOT Over 233.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-10-30T02:00:00Z",
+   "teams": [
+    "Memphis",
+    "Portland"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-29T12:50:10Z",
    "base_depth": 182205,
    "best_price": 0.51,
@@ -4322,8 +4628,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.7,
-   "clv_cents": 2.0,
+   "close_price": 0.71,
+   "clv_cents": 3.0,
    "confirmed_after_min": 10,
    "date": "2026-10-29",
    "depth_by_book": {
@@ -12142,8 +12448,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.49,
-   "clv_cents": -1.0,
+   "close_price": 0.48,
+   "clv_cents": -2.0,
    "confirmed_after_min": 9,
    "date": "2026-10-29",
    "depth_by_book": {
@@ -20261,8 +20567,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 1.0,
+   "close_price": 0.53,
+   "clv_cents": 2.0,
    "confirmed_after_min": 10,
    "date": "2026-10-29",
    "depth_by_book": {
