@@ -1,6 +1,143 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-29T18:30:13Z",
+   "base_depth": 114606,
+   "best_price": 0.465,
+   "best_price_american": 115,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.47,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 9,
+   "date": "2026-10-29",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -7939,
+     "new_this_side": 42328,
+     "other_side": 62275,
+     "other_side_all_levels": 107214,
+     "ratio": 1.6,
+     "this_side": 99628,
+     "this_side_all_levels": 156950
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "Under 5.5 (5.5)",
+     "price": 0.465,
+     "this_side": 6896
+    },
+    "polymarket": {
+     "heavier_side": false,
+     "label": "Under (5.5)",
+     "price": 0.46,
+     "this_side": 23787
+    }
+   },
+   "fade_price": 0.54,
+   "first_seen_utc": "2026-10-29T18:21:21Z",
+   "game": "Montreal vs Dallas: Total Goals",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLTOTAL-26OCT29MTLDAL-6\"}",
+   "lead_min": 330,
+   "league": "NHL",
+   "line": 5.5,
+   "market": "total",
+   "new_money": 42328,
+   "paper_only": false,
+   "price": 0.47,
+   "price_american": 113,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.47,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 6.0,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 6.0,
+     "price": 100
+    },
+    "betrivers": {
+     "point": 5.5,
+     "price": 104
+    },
+    "betus": {
+     "point": 6.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 6.0,
+     "price": -112
+    },
+    "draftkings": {
+     "point": 6.5,
+     "price": -135
+    },
+    "fanatics": {
+     "point": 5.5,
+     "price": 110
+    },
+    "fanduel": {
+     "point": 5.5,
+     "price": 106
+    },
+    "kalshi": {
+     "point": 5.5,
+     "price": 113
+    },
+    "mybookieag": {
+     "point": 6.0,
+     "price": -114
+    },
+    "novig": {
+     "point": 5.5,
+     "price": 115
+    },
+    "polymarket": {
+     "point": 5.5,
+     "price": 117
+    },
+    "prophetx": {
+     "point": 6.0,
+     "price": -106
+    },
+    "williamhill_us": {
+     "point": 6.0,
+     "price": -112
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNHLTOTAL-26OCT29MTLDAL-6"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "NOT Over 5.5 goals scored",
+   "start_source": "odds",
+   "start_utc": "2026-10-30T00:00:00Z",
+   "teams": [
+    "Montreal",
+    "Dallas"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-29T18:00:17Z",
    "base_depth": 12918,
    "best_price": 0.59,
@@ -15,8 +152,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5902,
-   "clv_cents": 0.0,
+   "close_price": 0.5935,
+   "clv_cents": 0.3,
    "confirmed_after_min": 10,
    "date": "2026-10-29",
    "depth_by_book": {
@@ -3026,8 +3163,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.55,
-   "clv_cents": 0.0,
+   "close_price": 0.56,
+   "clv_cents": 1.0,
    "confirmed_after_min": 14,
    "date": "2026-10-29",
    "depth_by_book": {
@@ -4227,8 +4364,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 0.0,
+   "close_price": 0.51,
+   "clv_cents": -1.0,
    "confirmed_after_min": 4,
    "date": "2026-10-29",
    "depth_by_book": {
@@ -8206,7 +8343,8 @@
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.73,
    "prices_by_book": {},
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-29T18:30:13Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26OCT30GTPITT-PITT"
@@ -10887,7 +11025,8 @@
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.45,
    "prices_by_book": {},
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-29T18:30:13Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26OCT30ILLMD-MD"
