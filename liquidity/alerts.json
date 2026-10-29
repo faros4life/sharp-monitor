@@ -1,6 +1,156 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-29T12:50:10Z",
+   "base_depth": 182205,
+   "best_price": 0.51,
+   "best_price_american": -104,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 7,
+   "date": "2026-10-29",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 19072,
+     "new_this_side": 276794,
+     "other_side": 103000,
+     "other_side_all_levels": 196158,
+     "ratio": 3.7,
+     "this_side": 383134,
+     "this_side_all_levels": 461957
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "POR -7.5 (-7.5)",
+     "price": 0.51,
+     "this_side": 17908
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Trail Blazers (-7.5)",
+     "price": 0.51,
+     "this_side": 104371
+    }
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-10-29T12:43:20Z",
+   "game": "Memphis vs Portland: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNBASPREAD-26OCT29MEMPOR-POR8\"}",
+   "lead_min": 790,
+   "league": "NBA",
+   "line": -7.5,
+   "market": "spread",
+   "new_money": 276794,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -7.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": -7.0,
+     "price": -115
+    },
+    "betopenly": {
+     "point": -7.0,
+     "price": 100
+    },
+    "betrivers": {
+     "point": -7.5,
+     "price": -115
+    },
+    "betus": {
+     "point": -7.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": -7.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": -7.5,
+     "price": -110
+    },
+    "fanatics": {
+     "point": -7.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": -7.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": -7.5,
+     "price": -104
+    },
+    "lowvig": {
+     "point": -7.0,
+     "price": -111
+    },
+    "mybookieag": {
+     "point": -7.5,
+     "price": -110
+    },
+    "novig": {
+     "point": -7.5,
+     "price": -104
+    },
+    "polymarket": {
+     "point": -7.5,
+     "price": -104
+    },
+    "prophetx": {
+     "point": -7.5,
+     "price": -104
+    },
+    "williamhill_us": {
+     "point": -7.5,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBASPREAD-26OCT29MEMPOR-POR8"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "polymarket"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [
+    "Memphis Grizzlies +7.5 (-105)"
+   ],
+   "side": "Portland",
+   "side_label": "Portland wins by over 7.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-10-30T02:00:00Z",
+   "teams": [
+    "Memphis",
+    "Portland"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-29T12:43:20Z",
    "base_depth": 119837,
    "best_price": 0.705,
@@ -4166,8 +4316,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.68,
-   "clv_cents": 0.0,
+   "close_price": 0.69,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-29",
    "depth_by_book": {
@@ -4624,8 +4774,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.61,
-   "clv_cents": 0.0,
+   "close_price": 0.6,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-29",
    "depth_by_book": {
