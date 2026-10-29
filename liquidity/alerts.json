@@ -1,6 +1,143 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-29T17:50:10Z",
+   "base_depth": 644322,
+   "best_price": 0.485,
+   "best_price_american": 106,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.48,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-29",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 45493,
+     "new_this_side": 223059,
+     "other_side": 556572,
+     "other_side_all_levels": 760500,
+     "ratio": 1.3,
+     "this_side": 751052,
+     "this_side_all_levels": 864401
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "UNT -14.5 (-14.5)",
+     "price": 0.485,
+     "this_side": 37115
+    }
+   },
+   "fade_price": 0.53,
+   "first_seen_utc": "2026-10-29T17:40:10Z",
+   "game": "Florida Atlantic vs North Texas: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFSPREAD-26OCT29FAUUNT-UNT15\"}",
+   "lead_min": 340,
+   "league": "NCAAF",
+   "line": -14.5,
+   "market": "spread",
+   "new_money": 223059,
+   "paper_only": false,
+   "price": 0.48,
+   "price_american": 108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.48,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -14.5,
+     "price": -105
+    },
+    "betonlineag": {
+     "point": -14.0,
+     "price": -112
+    },
+    "betrivers": {
+     "point": -14.5,
+     "price": -112
+    },
+    "betus": {
+     "point": -14.0,
+     "price": -115
+    },
+    "bovada": {
+     "point": -14.0,
+     "price": -115
+    },
+    "draftkings": {
+     "point": -14.0,
+     "price": -112
+    },
+    "fanatics": {
+     "point": -14.5,
+     "price": -105
+    },
+    "fanduel": {
+     "point": -14.5,
+     "price": -102
+    },
+    "kalshi": {
+     "point": -14.5,
+     "price": 108
+    },
+    "lowvig": {
+     "point": -14.0,
+     "price": -108
+    },
+    "mybookieag": {
+     "point": -14.0,
+     "price": -110
+    },
+    "novig": {
+     "point": -14.5,
+     "price": 106
+    },
+    "polymarket": {
+     "point": -14.5,
+     "price": 108
+    },
+    "prophetx": {
+     "point": -15.5,
+     "price": 115
+    },
+    "williamhill_us": {
+     "point": -14.0,
+     "price": -105
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFSPREAD-26OCT29FAUUNT-UNT15"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "North Texas",
+   "side_label": "North Texas wins by over 14.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-10-29T23:30:00Z",
+   "teams": [
+    "Florida Atlantic",
+    "North Texas"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-29T17:40:10Z",
    "base_depth": 295447,
    "best_price": 0.49,
@@ -500,6 +637,8 @@
    "new_money": 33287,
    "paper_only": false,
    "price": 0.47,
+   "price_after_15m": 0.465,
+   "price_after_15m_book": "novig",
    "price_american": 113,
    "price_rule": "ok",
    "price_when_first_seen": 0.47,
@@ -586,6 +725,7 @@
    "side_label": "NOT Over 5.5 goals scored",
    "start_source": "odds",
    "start_utc": "2026-10-30T00:00:00Z",
+   "still_actionable": true,
    "teams": [
     "New York I",
     "Minnesota"
@@ -646,6 +786,8 @@
    "new_money": 28013,
    "paper_only": false,
    "price": 0.45,
+   "price_after_15m": 0.445,
+   "price_after_15m_book": "novig",
    "price_american": 122,
    "price_rule": "ok",
    "price_when_first_seen": 0.45,
@@ -731,6 +873,7 @@
    "side_label": "NOT Over 5.5 goals scored",
    "start_source": "odds",
    "start_utc": "2026-10-29T23:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Columbus",
     "Carolina"
@@ -1351,8 +1494,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": 0.0,
+   "close_price": 0.54,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-29",
    "depth_by_book": {
@@ -2578,8 +2721,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.68,
-   "clv_cents": 1.0,
+   "close_price": 0.67,
+   "clv_cents": 0.0,
    "confirmed_after_min": 6,
    "date": "2026-10-30",
    "depth_by_book": {
@@ -4976,8 +5119,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.56,
-   "clv_cents": 2.0,
+   "close_price": 0.55,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-29",
    "depth_by_book": {
@@ -7538,8 +7681,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.62,
-   "clv_cents": -1.0,
+   "close_price": 0.63,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-10-29",
    "depth_by_book": {
@@ -11021,8 +11164,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": 1.0,
+   "close_price": 0.52,
+   "clv_cents": 2.0,
    "confirmed_after_min": 10,
    "date": "2026-10-30",
    "depth_by_book": {
