@@ -1,6 +1,153 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-29T00:44:29Z",
+   "base_depth": 47782,
+   "best_price": 0.5148,
+   "best_price_american": -106,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 14,
+   "date": "2026-10-28",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Over 232.5 points",
+     "price": 0.53,
+     "this_side": 100208
+    },
+    "polymarket": {
+     "new_other_side": 6921,
+     "new_this_side": 25845,
+     "other_side": 32538,
+     "other_side_all_levels": 60889,
+     "ratio": 1.2,
+     "this_side": 38790,
+     "this_side_all_levels": 72162
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "over 232.5 (232.5)",
+     "price": 0.5098,
+     "this_side": 8035
+    }
+   },
+   "fade_price": 0.49,
+   "first_seen_utc": "2026-10-29T00:30:12Z",
+   "game": "Spurs vs. Jazz",
+   "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"6327967\"}",
+   "lead_min": 16,
+   "league": "NBA",
+   "line": 232.5,
+   "market": "total",
+   "new_money": 25845,
+   "paper_only": false,
+   "price": 0.52,
+   "price_american": -108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.52,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 232.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 233.0,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 232.5,
+     "price": -102
+    },
+    "betrivers": {
+     "point": 234.5,
+     "price": -107
+    },
+    "betus": {
+     "point": 233.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 232.5,
+     "price": -115
+    },
+    "draftkings": {
+     "point": 232.5,
+     "price": -110
+    },
+    "fanatics": {
+     "point": 232.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 232.5,
+     "price": -112
+    },
+    "kalshi": {
+     "point": 232.5,
+     "price": -113
+    },
+    "lowvig": {
+     "point": 233.0,
+     "price": -107
+    },
+    "mybookieag": {
+     "point": 233.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 232.5,
+     "price": -104
+    },
+    "polymarket": {
+     "point": 232.5,
+     "price": -104
+    },
+    "prophetx": {
+     "point": 232.5,
+     "price": -103
+    },
+    "williamhill_us": {
+     "point": 232.5,
+     "price": -115
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 0,
+    "pm_market_id": "6327967"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "OVER",
+   "side_label": "Over (232.5)",
+   "start_source": "odds",
+   "start_utc": "2026-10-29T01:00:00Z",
+   "teams": [
+    "Spurs",
+    "Jazz"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-29T00:30:12Z",
    "base_depth": 90180,
    "best_price": 0.5148,
@@ -172,8 +319,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.64,
-   "clv_cents": 0.5,
+   "close_price": 0.635,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-10-28",
    "depth_by_book": {
@@ -605,7 +752,7 @@
     }
    },
    "pulled": true,
-   "pulled_utc": "2026-10-29T00:40:10Z",
+   "pulled_utc": "2026-10-29T00:44:29Z",
    "ref": {
     "outcome_index": 1,
     "pm_market_id": "6037145"
@@ -23155,7 +23302,8 @@
      "price": -218
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-29T00:44:29Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNHLGAME-26OCT28CGYEDM-EDM"
