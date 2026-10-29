@@ -1,6 +1,127 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-29T02:30:13Z",
+   "base_depth": 175496,
+   "best_price": 0.515,
+   "best_price_american": -106,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-29",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 8866,
+     "new_this_side": 52261,
+     "other_side": 60374,
+     "other_side_all_levels": 209980,
+     "ratio": 1.0,
+     "this_side": 61713,
+     "this_side_all_levels": 234559
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "ATL (0)",
+     "price": 0.515,
+     "this_side": 2848
+    },
+    "polymarket": {
+     "heavier_side": false,
+     "label": "Hawks",
+     "price": 0.52,
+     "this_side": 3269
+    }
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-10-29T02:20:10Z",
+   "game": "Cleveland vs Atlanta",
+   "key": "kalshi|KXNBAGAME-26OCT29CLEATL|ml|1",
+   "lead_min": 1290,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 52261,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -110
+    },
+    "betrivers": {
+     "point": null,
+     "price": -113
+    },
+    "draftkings": {
+     "point": null,
+     "price": -110
+    },
+    "kalshi": {
+     "point": null,
+     "price": -104
+    },
+    "limitless": {
+     "point": null,
+     "price": -109
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -112
+    },
+    "novig": {
+     "point": null,
+     "price": -108
+    },
+    "polymarket": {
+     "point": null,
+     "price": -108
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -108
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBAGAME-26OCT29CLEATL-ATL"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Atlanta",
+   "side_label": "Atlanta",
+   "start_source": "odds",
+   "start_utc": "2026-10-30T00:00:00Z",
+   "teams": [
+    "Cleveland",
+    "Atlanta"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-29T01:30:13Z",
    "base_depth": 1071796,
    "best_price": 0.51,
@@ -3395,6 +3516,7 @@
     }
    },
    "fade_price": 0.52,
+   "fade_units": 0.9,
    "first_seen_utc": "2026-10-28T22:10:28Z",
    "game": "Magic vs. Raptors",
    "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6326715\"}",
@@ -3481,7 +3603,7 @@
     "outcome_index": 1,
     "pm_market_id": "6326715"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "kalshi",
@@ -3489,6 +3611,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-29T02:30:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Magic",
@@ -3501,7 +3624,7 @@
     "Raptors"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-28T22:20:09Z",
@@ -7572,6 +7695,7 @@
     }
    },
    "fade_price": 0.63,
+   "fade_units": 0.55,
    "first_seen_utc": "2026-10-28T18:20:11Z",
    "game": "Denver vs New Orleans",
    "key": "kalshi|KXNBAGAME-26OCT28DENNOP|ml|1",
@@ -7667,13 +7791,14 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBAGAME-26OCT28DENNOP-NOP"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "polymarket"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-29T02:30:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "New Orleans",
@@ -7686,7 +7811,7 @@
     "New Orleans"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-28T18:20:11Z",
@@ -8680,6 +8805,7 @@
     }
    },
    "fade_price": 0.51,
+   "fade_units": 0.9,
    "first_seen_utc": "2026-10-28T17:50:12Z",
    "game": "Denver vs New Orleans: Spread",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBASPREAD-26OCT28DENNOP-DEN5\"}",
@@ -8767,7 +8893,7 @@
     "kalshi_side": "no",
     "market_ticker": "KXNBASPREAD-26OCT28DENNOP-DEN5"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig",
@@ -8775,6 +8901,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-29T02:30:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "New Orleans",
@@ -8787,7 +8914,7 @@
     "New Orleans"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-28T17:50:12Z",
@@ -10132,6 +10259,7 @@
     }
    },
    "fade_price": 0.32,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-28T17:00:18Z",
    "game": "Flyers vs. Capitals",
    "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"5179036\"}",
@@ -10222,7 +10350,7 @@
     "outcome_index": 1,
     "pm_market_id": "5179036"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "kalshi",
@@ -10231,6 +10359,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-29T02:30:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Capitals",
@@ -10243,7 +10372,7 @@
     "Capitals"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.45
   },
   {
    "alerted_utc": "2026-10-28T16:50:10Z",
@@ -11499,6 +11628,7 @@
     }
    },
    "fade_price": 0.5,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-28T14:50:12Z",
    "game": "Denver vs New Orleans: Spread",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNBASPREAD-26OCT28DENNOP-DEN5\"}",
@@ -11586,13 +11716,14 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBASPREAD-26OCT28DENNOP-DEN5"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-29T02:30:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Denver",
@@ -11605,7 +11736,7 @@
     "New Orleans"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.96
   },
   {
    "alerted_utc": "2026-10-28T15:00:18Z",
@@ -11639,6 +11770,7 @@
     }
    },
    "fade_price": 0.5,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-28T14:50:12Z",
    "game": "Denver vs New Orleans: Total Points",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBATOTAL-26OCT28DENNOP-242\"}",
@@ -11726,11 +11858,12 @@
     "kalshi_side": "no",
     "market_ticker": "KXNBATOTAL-26OCT28DENNOP-242"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settled_utc": "2026-10-29T02:30:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -11743,7 +11876,7 @@
     "New Orleans"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.92
   },
   {
    "alerted_utc": "2026-10-28T14:50:12Z",
@@ -12969,6 +13102,7 @@
     }
    },
    "fade_price": 0.46,
+   "fade_units": 1.14,
    "first_seen_utc": "2026-10-28T13:40:11Z",
    "game": "Flyers vs. Capitals",
    "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"5179039\"}",
@@ -13055,7 +13189,7 @@
     "outcome_index": 1,
     "pm_market_id": "5179039"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "kalshi",
@@ -13063,6 +13197,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-29T02:30:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -13075,7 +13210,7 @@
     "Capitals"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-28T13:50:10Z",
@@ -16202,6 +16337,7 @@
     }
    },
    "fade_price": 0.47,
+   "fade_units": 1.05,
    "first_seen_utc": "2026-10-28T08:30:14Z",
    "game": "Denver vs New Orleans: Total Points",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNBATOTAL-26OCT28DENNOP-240\"}",
@@ -16289,11 +16425,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBATOTAL-26OCT28DENNOP-240"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-10-29T02:30:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -16306,7 +16443,7 @@
     "New Orleans"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-28T08:10:10Z",
@@ -20932,6 +21069,7 @@
     }
    },
    "fade_price": 0.26,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-28T01:00:14Z",
    "game": "Houston vs Milwaukee",
    "key": "kalshi|KXNBAGAME-26OCT28HOUMIL|ml|0",
@@ -21011,11 +21149,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBAGAME-26OCT28HOUMIL-HOU"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-10-29T02:30:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Houston",
@@ -21028,7 +21167,7 @@
     "Milwaukee"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.35
   },
   {
    "alerted_utc": "2026-10-28T00:50:09Z",
@@ -21200,6 +21339,7 @@
     }
    },
    "fade_price": 0.36,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-28T00:10:11Z",
    "game": "Denver vs New Orleans",
    "key": "kalshi|KXNBAGAME-26OCT28DENNOP|ml|0",
@@ -21271,11 +21411,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBAGAME-26OCT28DENNOP-DEN"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-10-29T02:30:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Denver",
@@ -21288,7 +21429,7 @@
     "New Orleans"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.55
   },
   {
    "alerted_utc": "2026-10-27T23:55:09Z",
