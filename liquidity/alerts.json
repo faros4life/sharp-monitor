@@ -1,6 +1,605 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-29T15:33:59Z",
+   "base_depth": 80684,
+   "best_price": 0.385,
+   "best_price_american": 160,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.39,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 4,
+   "date": "2026-10-29",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Vancouver",
+     "price": 0.38,
+     "this_side": 287849
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "VAN (0)",
+     "price": 0.385,
+     "this_side": 21427
+    },
+    "polymarket": {
+     "new_other_side": -1239,
+     "new_this_side": 29403,
+     "other_side": 59430,
+     "other_side_all_levels": 76283,
+     "ratio": 1.5,
+     "this_side": 90188,
+     "this_side_all_levels": 110285
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "Vancouver Canucks",
+     "price": 0.3876,
+     "this_side": 7590
+    }
+   },
+   "fade_price": 0.62,
+   "first_seen_utc": "2026-10-29T15:30:14Z",
+   "game": "Canucks vs. Sharks",
+   "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"5406700\"}",
+   "lead_min": 626,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 29403,
+   "paper_only": false,
+   "price": 0.39,
+   "price_american": 156,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.39,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": 150
+    },
+    "betonlineag": {
+     "point": null,
+     "price": 153
+    },
+    "betopenly": {
+     "point": null,
+     "price": 164
+    },
+    "betrivers": {
+     "point": null,
+     "price": 160
+    },
+    "betus": {
+     "point": null,
+     "price": 150
+    },
+    "bovada": {
+     "point": null,
+     "price": 153
+    },
+    "draftkings": {
+     "point": null,
+     "price": 154
+    },
+    "fanatics": {
+     "point": null,
+     "price": 150
+    },
+    "fanduel": {
+     "point": null,
+     "price": 146
+    },
+    "kalshi": {
+     "point": null,
+     "price": 163
+    },
+    "lowvig": {
+     "point": null,
+     "price": 153
+    },
+    "mybookieag": {
+     "point": null,
+     "price": 144
+    },
+    "novig": {
+     "point": null,
+     "price": 156
+    },
+    "polymarket": {
+     "point": null,
+     "price": 156
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": 156
+    },
+    "prophetx": {
+     "point": null,
+     "price": 158
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": 154
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 0,
+    "pm_market_id": "5406700"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Canucks",
+   "side_label": "Canucks",
+   "start_source": "odds",
+   "start_utc": "2026-10-30T02:00:00Z",
+   "teams": [
+    "Canucks",
+    "Sharks"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-29T15:33:59Z",
+   "base_depth": 149073,
+   "best_price": 0.3644,
+   "best_price_american": 174,
+   "best_price_book": "prophetx",
+   "bid_improved": true,
+   "bid_improved_at_pending": false,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.365,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 4,
+   "date": "2026-10-29",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": false,
+     "label": "Carolina",
+     "price": 0.36,
+     "this_side": 6849362
+    },
+    "novig": {
+     "new_other_side": 918,
+     "new_this_side": 35989,
+     "other_side": 184041,
+     "other_side_all_levels": 184550,
+     "ratio": 1.1,
+     "this_side": 202312,
+     "this_side_all_levels": 202473
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "Carolina Panthers",
+     "price": 0.3597,
+     "this_side": 57482
+    }
+   },
+   "fade_price": 0.64,
+   "first_seen_utc": "2026-10-29T15:30:14Z",
+   "game": "Carolina Panthers @ Green Bay Packers",
+   "key": "novig|{\"market_id\": \"01a15b22-a6c2-7042-9c16-227dc86cf597\", \"outcome_id\": \"01a15b22-a6c2-7042-9c16-229670733763\"}",
+   "lead_min": 521,
+   "league": "NFL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 35989,
+   "paper_only": false,
+   "price": 0.365,
+   "price_american": 174,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.36,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": 165
+    },
+    "betonlineag": {
+     "point": null,
+     "price": 170
+    },
+    "betopenly": {
+     "point": null,
+     "price": 178
+    },
+    "betrivers": {
+     "point": null,
+     "price": 160
+    },
+    "betus": {
+     "point": null,
+     "price": 167
+    },
+    "bovada": {
+     "point": null,
+     "price": 165
+    },
+    "draftkings": {
+     "point": null,
+     "price": 160
+    },
+    "fanatics": {
+     "point": null,
+     "price": 165
+    },
+    "fanduel": {
+     "point": null,
+     "price": 166
+    },
+    "kalshi": {
+     "point": null,
+     "price": 178
+    },
+    "limitless": {
+     "point": null,
+     "price": 171
+    },
+    "lowvig": {
+     "point": null,
+     "price": 170
+    },
+    "mybookieag": {
+     "point": null,
+     "price": 165
+    },
+    "novig": {
+     "point": null,
+     "price": 174
+    },
+    "polymarket": {
+     "point": null,
+     "price": 178
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": 180
+    },
+    "prophetx": {
+     "point": null,
+     "price": 178
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": 165
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a15b22-a6c2-7042-9c16-227dc86cf597",
+    "outcome_id": "01a15b22-a6c2-7042-9c16-229670733763"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Carolina Panthers",
+   "side_label": "CAR (0)",
+   "start_source": "odds",
+   "start_utc": "2026-10-30T00:15:00Z",
+   "teams": [
+    "Carolina Panthers",
+    "Green Bay Packers"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-29T15:33:59Z",
+   "base_depth": 66721,
+   "best_price": 0.47,
+   "best_price_american": 113,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.47,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 4,
+   "date": "2026-10-29",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -6815,
+     "new_this_side": 34968,
+     "other_side": 39881,
+     "other_side_all_levels": 85998,
+     "ratio": 2.2,
+     "this_side": 87646,
+     "this_side_all_levels": 129810
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "Under 5.5 (5.5)",
+     "price": 0.47,
+     "this_side": 18836
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Under (5.5)",
+     "price": 0.47,
+     "this_side": 47138
+    }
+   },
+   "fade_price": 0.54,
+   "first_seen_utc": "2026-10-29T15:30:14Z",
+   "game": "Chicago vs Detroit: Total Goals",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLTOTAL-26OCT29CHIDET-6\"}",
+   "lead_min": 476,
+   "league": "NHL",
+   "line": 5.5,
+   "market": "total",
+   "new_money": 34968,
+   "paper_only": false,
+   "price": 0.47,
+   "price_american": 113,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.47,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 6.0,
+     "price": -118
+    },
+    "betonlineag": {
+     "point": 6.0,
+     "price": -123
+    },
+    "betopenly": {
+     "point": 6.0,
+     "price": -107
+    },
+    "betrivers": {
+     "point": 5.5,
+     "price": 107
+    },
+    "betus": {
+     "point": 6.0,
+     "price": -125
+    },
+    "bovada": {
+     "point": 6.0,
+     "price": -125
+    },
+    "draftkings": {
+     "point": 5.5,
+     "price": 110
+    },
+    "fanatics": {
+     "point": 5.5,
+     "price": 105
+    },
+    "fanduel": {
+     "point": 5.5,
+     "price": 108
+    },
+    "kalshi": {
+     "point": 5.5,
+     "price": 113
+    },
+    "lowvig": {
+     "point": 6.0,
+     "price": -123
+    },
+    "mybookieag": {
+     "point": 6.0,
+     "price": -120
+    },
+    "novig": {
+     "point": 5.5,
+     "price": 113
+    },
+    "polymarket": {
+     "point": 5.5,
+     "price": 113
+    },
+    "prophetx": {
+     "point": 6.0,
+     "price": -113
+    },
+    "williamhill_us": {
+     "point": 6.0,
+     "price": -120
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNHLTOTAL-26OCT29CHIDET-6"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "polymarket"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "NOT Over 5.5 goals scored",
+   "start_source": "odds",
+   "start_utc": "2026-10-29T23:30:00Z",
+   "teams": [
+    "Chicago",
+    "Detroit"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-29T15:33:59Z",
+   "base_depth": 73629,
+   "best_price": 0.5175,
+   "best_price_american": -107,
+   "best_price_book": "polymarket",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 4,
+   "date": "2026-10-29",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 11198,
+     "new_this_side": 35005,
+     "other_side": 73779,
+     "other_side_all_levels": 79476,
+     "ratio": 1.4,
+     "this_side": 100990,
+     "this_side_all_levels": 109370
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "CLE +1.5 (-1.5)",
+     "price": 0.52,
+     "this_side": 19423
+    }
+   },
+   "fade_price": 0.49,
+   "first_seen_utc": "2026-10-29T15:30:14Z",
+   "game": "Cleveland vs Atlanta: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBASPREAD-26OCT29CLEATL-ATL2\"}",
+   "lead_min": 506,
+   "league": "NBA",
+   "line": 1.5,
+   "market": "spread",
+   "new_money": 35005,
+   "paper_only": false,
+   "price": 0.52,
+   "price_american": -108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.52,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 1.5,
+     "price": -118
+    },
+    "betonlineag": {
+     "point": 1.0,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 1.5,
+     "price": -107
+    },
+    "betrivers": {
+     "point": 0.5,
+     "price": -108
+    },
+    "betus": {
+     "point": 1.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 1.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 1.5,
+     "price": -115
+    },
+    "fanatics": {
+     "point": 1.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 1.5,
+     "price": -122
+    },
+    "kalshi": {
+     "point": 1.5,
+     "price": -108
+    },
+    "lowvig": {
+     "point": 1.0,
+     "price": -106
+    },
+    "mybookieag": {
+     "point": 1.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 1.5,
+     "price": -108
+    },
+    "polymarket": {
+     "point": 1.5,
+     "price": -104
+    },
+    "prophetx": {
+     "point": 1.5,
+     "price": -105
+    },
+    "williamhill_us": {
+     "point": 1.0,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNBASPREAD-26OCT29CLEATL-ATL2"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Cleveland",
+   "side_label": "NOT Atlanta wins by over 1.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-10-30T00:00:00Z",
+   "teams": [
+    "Cleveland",
+    "Atlanta"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-29T15:30:14Z",
    "base_depth": 50542,
    "best_price": 0.635,
@@ -15,8 +614,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.64,
-   "clv_cents": 0.0,
+   "close_price": 0.65,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-29",
    "depth_by_book": {
@@ -316,8 +915,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.64,
-   "clv_cents": 0.0,
+   "close_price": 0.65,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-29",
    "depth_by_book": {
@@ -3871,8 +4470,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.645,
-   "clv_cents": -0.5,
+   "close_price": 0.64,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-29",
    "depth_by_book": {
@@ -7427,8 +8026,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.82,
-   "clv_cents": 0.0,
+   "close_price": 0.81,
+   "clv_cents": -1.0,
    "confirmed_after_min": 5,
    "date": "2026-10-30",
    "depth_by_book": {
