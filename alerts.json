@@ -2,7 +2,7 @@
  "alerts": [
   {
    "alert_utc": "2026-10-29T10:00:19Z",
-   "beat_close": true,
+   "beat_close": false,
    "beat_true_close": null,
    "bet": "Memphis Grizzlies +7.5 (-105)",
    "book": "Hard Rock",
@@ -10,7 +10,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+0.5 pts",
+   "clv": "+0 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline",
@@ -38,6 +38,46 @@
    "sent_to_phone": true,
    "sport": "NBA",
    "start_utc": "2026-10-30T02:00:00Z",
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alert_utc": "2026-10-29T11:10:16Z",
+   "beat_close": true,
+   "beat_true_close": null,
+   "bet": "Under 237.5 (-113)",
+   "book": "ProphetX",
+   "book_key": "prophetx",
+   "close_fair_prob": null,
+   "close_read_mins_before": null,
+   "close_value_pct": null,
+   "clv": "+1.5 pts",
+   "confirm": "yes",
+   "confirmed_by": [
+    "Matchbook"
+   ],
+   "edge_pct": -0.9,
+   "executable_book": true,
+   "fade_book": "prophetx",
+   "fade_point": 237.5,
+   "fade_price": 106,
+   "fade_price_after_fee": 104,
+   "fade_units": null,
+   "final": null,
+   "game": "Sacramento Kings @ New Orleans Pelicans",
+   "grade": "B",
+   "kind": "tot",
+   "late": false,
+   "minutes_before_start": 770,
+   "point": 237.5,
+   "price": -113,
+   "price_after_fee": -115,
+   "pricing_bettable": true,
+   "result": null,
+   "score": 74,
+   "sent_to_phone": true,
+   "sport": "NBA",
+   "start_utc": "2026-10-30T00:00:00Z",
    "top25": null,
    "units_flat": null
   },
@@ -16536,6 +16576,30 @@
   }
  ],
  "all_alerts": [
+  {
+   "alert_text": "Under 237.5 (-113) at ProphetX [-115 after ProphetX fee] (also: Hard Rock, Novig, Kalshi)",
+   "bet": "Under 237.5 (-113)",
+   "bet_result": null,
+   "book": "ProphetX",
+   "confirmed_by": [
+    "Matchbook"
+   ],
+   "edge_pct": -0.9,
+   "final": null,
+   "game": "Sacramento Kings @ New Orleans Pelicans",
+   "grade": "B",
+   "late": false,
+   "minutes_before_start": 770,
+   "price": -113,
+   "price_after_fee": -115,
+   "pushed_to_phone": true,
+   "repeat": false,
+   "score": 74,
+   "sent_et": "2026-10-29 07:10",
+   "sport": "NBA",
+   "start_utc": "2026-10-30T00:00:00Z",
+   "why": "Pinnacle total moved 237.5 -> 236; bet only at 236.5 or better (confirmed by Matchbook)"
+  },
   {
    "alert_text": "Memphis Grizzlies +7.5 (-105) at Hard Rock (also: ProphetX, Novig, Kalshi)",
    "bet": "Memphis Grizzlies +7.5 (-105)",
