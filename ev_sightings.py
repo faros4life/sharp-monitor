@@ -486,6 +486,29 @@ CREDITS_PER_POLL = 2
 SM_DAILY = float(os.environ.get("EV_SM_DAILY", "") or "2600")       # sharp monitor at its 5-min floor (~11 credits x 216 polls)
 SM_MARGIN = float(os.environ.get("EV_SM_MARGIN", "") or "3000")     # liquidity monitor / book check / closing reads
 MOVE_LINE, MOVE_CENTS, M_DEPTH = 0.5, 5.0, 250.0
+# Data-quality rules (Oct 28, Peter approved): a best price 10c+ under the other books is almost always a misread quote
+# (e.g. a wrong line on an alternate market), so it is flagged suspect and kept out of the headline rows; and the
+# Pinnacle close is only trusted within 3 points of Pinnacle's own number (farther out the half-point estimate breaks).
+SUSPECT_C = 10.0
+PIN_NEAR_PTS = 3.0
+
+
+def is_suspect(s):
+    """Flag computed from stored fields, so it applies to every sighting already logged."""
+    if s.get("trigger") in ("A", "B"):
+        if (s.get("discrepancy_c") or 0) >= SUSPECT_C - 1e-9:
+            return True
+        return bool(((s.get("prices") or {}).get(s.get("best_book")) or {}).get("crossed"))
+    if s.get("trigger") == "M" and s.get("sighting_cost_af") is not None:
+        others = [v["cost_after_fee"] for b, v in (s.get("books") or {}).items()
+                  if b != s.get("best_book") and v.get("cost_after_fee") is not None]
+        return bool(others) and 100 * (statistics.median(others) - s["sighting_cost_af"]) >= SUSPECT_C - 1e-9
+    return False
+
+
+def pin_close_far(s):
+    pl = s.get("pin_close_line")
+    return pl is not None and abs(float(pl) - float(s["line"])) > PIN_NEAR_PTS + 1e-9
 
 
 def odds_get(path, params, acct):
@@ -811,7 +834,8 @@ def update_closes(sightings, groups, pin, n):
                 s["pin_close_read_utc"] = iso(datetime.fromtimestamp(mk["fetched"], timezone.utc))
                 s["pin_close_mins_before_start"] = round((st - mk["fetched"]) / 60)
                 s["pin_close_fair"], s["pin_close_line"], s["pin_close_same_line"] = p, pl, same
-                s["clv_pinnacle_c"] = round(100 * (p - c), 2) if c is not None else None
+                s["pin_close_far"] = pin_close_far(s)
+                s["clv_pinnacle_c"] = (round(100 * (p - c), 2) if (c is not None and not s["pin_close_far"]) else None)
                 if s.get("pin_before_fair") is not None:   # A1: did Pinnacle's move hold to the close?
                     s["move_held_c"] = round(100 * (p - s["pin_before_fair"]), 2)
 
@@ -975,7 +999,7 @@ def sightings_from(groups, pin, n, existing, xbooks):
 # ---------------------------------------------------------------- report
 def bucket_stats(rows):
     closed = [s for s in rows if s.get("clv_consensus_c") is not None and s.get("close_final")]
-    pinc = [s for s in rows if s.get("clv_pinnacle_c") is not None and s.get("close_final")]
+    pinc = [s for s in rows if s.get("clv_pinnacle_c") is not None and s.get("close_final") and not pin_close_far(s)]
     gr = [s for s in rows if s.get("result") in ("W", "L", "P") and s.get("units_flat") is not None]
     w = sum(1 for s in gr if s["result"] == "W")
     l = sum(1 for s in gr if s["result"] == "L")
@@ -1026,17 +1050,21 @@ def credit_projection(doc, n):
 
 def report(doc):
     ss = doc.get("sightings", [])
-    M = [s for s in ss if s["trigger"] == "M"]
-    groups = [("A cross-book (>= 2c)", [s for s in ss if s["trigger"] == "A"], "clv_consensus_avg_c"),
-              ("A qualifying (>= 3c)", [s for s in ss if s["trigger"] == "A" and s.get("qualifying")], "clv_consensus_avg_c"),
-              ("B Pinnacle (>= 3% EV)", [s for s in ss if s["trigger"] == "B"], "clv_consensus_avg_c")]
-    for b in ("<60s", "1-5m", "5m+"):
-        groups.append((f"  B ref age {b}", [s for s in ss if s["trigger"] == "B" and s.get("ref_age_bucket") == b], None))
-    groups += [("M move-watch: gettable (sightings)", [s for s in M if s.get("gettable")], "clv_pinnacle_avg_c"),
-               ("  M gettable, line moves", [s for s in M if s.get("gettable") and s["move_type"] == "line"], None),
-               ("  M gettable, price moves", [s for s in M if s.get("gettable") and s["move_type"] == "price"], None),
-               ("M control: not gettable", [s for s in M if not s.get("gettable")], None),
-               ("M all moves", M, None)]
+    for x in ss:
+        x["suspect"] = is_suspect(x)
+    C = [x for x in ss if not x["suspect"]]
+    M = [x for x in C if x["trigger"] == "M"]
+    groups = [("A cross-book (>= 2c)", [x for x in C if x["trigger"] == "A"], "clv_consensus_avg_c"),
+              ("A qualifying (>= 3c)", [x for x in C if x["trigger"] == "A" and x.get("qualifying")], "clv_consensus_avg_c"),
+              ("B Pinnacle (>= 3% EV)", [x for x in C if x["trigger"] == "B"], "clv_consensus_avg_c")]
+    for bk in ("<60s", "1-5m", "5m+"):
+        groups.append((f"  B ref age {bk}", [x for x in C if x["trigger"] == "B" and x.get("ref_age_bucket") == bk], None))
+    groups += [("M move-watch: gettable (sightings)", [x for x in M if x.get("gettable")], "clv_pinnacle_avg_c"),
+               ("  M gettable, line moves", [x for x in M if x.get("gettable") and x["move_type"] == "line"], None),
+               ("  M gettable, price moves", [x for x in M if x.get("gettable") and x["move_type"] == "price"], None),
+               ("M control: not gettable", [x for x in M if not x.get("gettable")], None),
+               ("M all moves", M, None),
+               ("Suspect (10c+ gap / crossed), all legs - excluded above", [x for x in ss if x["suspect"]], None)]
     out = {"study": doc.get("study"), "generated_utc": iso(datetime.now(timezone.utc)), "rows": []}
     for name, rows, gk in groups:
         st = bucket_stats(rows)
@@ -1054,7 +1082,9 @@ def report_md(rep, runs):
          f"Sightings are a record, never bets. CLV = close fair - sighting after-fee cost, in cents (+ = beat the close). "
          f"Gate: >= 50 graded, positive average CLV and positive flat record; reviewed only at a scheduled review. "
          f"A/B gate on consensus CLV; move-watch (A1) gate on Pinnacle CLV. Held = Pinnacle close minus Pinnacle's pre-move "
-         f"fair at the old number (+ = the move held).", "",
+         f"fair at the old number (+ = the move held). Rows exclude suspect sightings (best price {SUSPECT_C:g}c+ under the "
+         f"other books, or a crossed quote: usually a misread line); Pinnacle CLV only within {PIN_NEAR_PTS:g} points of "
+         f"Pinnacle's number.", "",
          "| Bucket | Sightings | Closed | CLV vs consensus | Beat % | Pin-closed | CLV vs Pinnacle | Graded | Record | Units | ROI | Held | Lag (med) | Gate |",
          "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|"]
     for r in rep["rows"]:
@@ -1101,7 +1131,9 @@ NOTE = ("EV SIGHTINGS - PAPER STUDY, MEASUREMENT ONLY. Never bets, never pushed.
         "half points priced in). clv_*_c = (close fair - sighting_cost_af) x 100. result/units_flat = ESPN final, flat 1u at "
         "sighting_cost_af. crossed = that book's two sides cost < 97c total (stale/crossed quote). Pinnacle polls: every "
         "{FAST}s per sport while a game starts within {NEAR}h, every {SLOW}s otherwise; skipped when the credits left would fall below "
-        "the sharp monitor's projected need for the rest of the month." .replace("{FAST}", f"{FAST_S:g}").replace("{NEAR}", f"{NEAR_H:g}").replace("{SLOW}", f"{SLOW_S:g}"))
+        "the sharp monitor's projected need for the rest of the month. Oct 28 data-quality rules: suspect = best price "
+        "10c+ under the other books' median or a crossed quote (kept, flagged, excluded from headline report rows); "
+        "clv_pinnacle_c only when the sighting's line is within 3 points of Pinnacle's (pin_close_far)." .replace("{FAST}", f"{FAST_S:g}").replace("{NEAR}", f"{NEAR_H:g}").replace("{SLOW}", f"{SLOW_S:g}"))
 
 
 def read_all(n, stop_at, horizon=None, only=None):
