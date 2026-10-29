@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Oct 29, 3:41 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 28.
+Updated Thu Oct 29, 3:50 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 28.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -57,7 +57,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 28 5:30PM | NBA | Heat vs. Hawks | spread: Hawks (-2.5) | polymarket | $268k | +104 | ✅ kalshi | ❌ | +2.0c |  | L |
 | Oct 28 5:30PM | NHL | Boston vs St. Louis | moneyline: St. Louis | kalshi | $29k | -108 | ✅ polymarket |  | +0.0c |  | pending |
 | Oct 28 5:22PM | NBA | 76ers vs. Pacers | spread: 76ers (-7.5) | polymarket | $27k | -104 | ✅ novig,prophetx | ✅ | -1.0c | yes | L |
-| Oct 28 5:00PM | NCAAF | Troy vs James Madison: Spread | spread: James Madison wins by over 17.5 points | kalshi | $40k | -113 |  |  | +1.0c |  | pending |
+| Oct 28 5:00PM | NCAAF | Troy vs James Madison: Spread | spread: James Madison wins by over 17.5 points | kalshi | $40k | -113 |  |  | +1.0c | yes | pending |
 | Oct 28 4:24PM | NBA | Lakers vs. Clippers | moneyline: Lakers | polymarket | $85k | -104 | ✅ novig |  | -1.0c |  | W |
 | Oct 28 4:20PM | NBA | Charlotte vs Detroit: Total Points | total: Over 212.5 points | kalshi | $32k | -100 | ✅ novig,prophetx | ❌ | +2.0c | yes | L |
 | Oct 28 4:10PM | NBA | San Antonio vs Utah: Spread | spread: San Antonio wins by over 13.5 points | kalshi | $46k | -108 | ✅ novig,polymarket,prophetx | ✅ | +1.0c | yes | L |
