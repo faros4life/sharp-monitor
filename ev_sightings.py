@@ -18,6 +18,11 @@ AMENDMENT A1 (approved Oct 27): M  PINNACLE MOVE-WATCH. Pinnacle (The Odds API) 
                  Graded like A/B, reported separately. Credit guard: polls only from credits the sharp monitor doesn't
                  need for the rest of the month (it sets its own polling speed from what's left).
 
+AMENDMENT A2 (Oct 29): MK MAKER TEST. Paper resting bids on Novig and ProphetX at Pinnacle no-vig fair minus 1c / 2c
+                 (after fees), main lines, games within 6 h, 60-min life. Filled when the book later trades through the
+                 bid. Fills graded (Pinnacle CLV + flat 1u); unfilled CLV kept for the adverse-selection comparison.
+                 Stored under "maker" / "maker_agg" in the same file. No extra credits or reads.
+
 Scope: NFL / NCAAF / NBA, spreads + totals, pregame. A/B full exchange reads cover games starting in the next 24 h, every
 10 min (own workflow), 9am-midnight ET; each run then keeps polling in-window sports for ~7 min and reads the exchanges
 only for games whose Pinnacle line moved. Closes and grading run at any hour from data already stored.
@@ -925,6 +930,114 @@ def record_moves(moves, groups, n, sightings):
     return added
 
 
+# ---------------------------------------------------------------- A2: maker test (paper resting orders)
+# Amendment A2 (Oct 29, Peter: "do what you think is best"). Hypothetical bids on Novig and ProphetX at Pinnacle's no-vig
+# fair minus 1c and 2c (after fees), main lines only (Pinnacle's own number), games within MK_NEAR_H hours. One order per
+# book/side/line/margin at a time, living MK_LIFE_S or until the start. FILLED when a later read shows that book's best
+# price to BUY the side BELOW our bid (the market traded through us; equal-price fills and between-read touches are not
+# counted, so the fill rate is a lower bound). Filled orders are graded (Pinnacle CLV + flat 1u at our after-fee price);
+# unfilled orders get Pinnacle CLV too, so filled vs unfilled shows adverse selection.
+MK_BOOKS = ("novig", "prophetx")
+MK_MARGINS = (0.01, 0.02)
+MK_NEAR_H = float(os.environ.get("EV_MK_NEAR_HOURS", "") or "6")
+MK_LIFE_S = float(os.environ.get("EV_MK_LIFE_SEC", "") or "3600")
+
+
+def screen_for_cost(book, e):
+    """Screen price whose after-fee cost is e (inverse of after_fee)."""
+    if book == "prophetx":
+        return (1 - PX_FEE) / ((1 / e - 1) + (1 - PX_FEE))
+    return e   # Novig: no fee
+
+
+def maker_step(doc, groups, pin, n):
+    """Fill/expire open paper orders against this read, then post new ones. Returns (posted, filled)."""
+    orders = doc.setdefault("maker", [])
+    agg = doc.setdefault("maker_agg", {})
+    keep = []
+    for o in orders:   # unfilled orders whose game has started: fold into counters (keeps the file small), drop detail
+        if o.get("status") == "expired" and o.get("close_final"):
+            a = agg.setdefault(f"{o['book']}|{o['margin']}", {"n": 0, "clv_n": 0, "clv_sum": 0.0})
+            a["n"] += 1
+            if o.get("clv_pinnacle_c") is not None:
+                a["clv_n"] += 1
+                a["clv_sum"] = round(a["clv_sum"] + o["clv_pinnacle_c"], 2)
+        else:
+            keep.append(o)
+    orders[:] = keep
+    now = n.timestamp()
+    posted = filled = 0
+    open_keys = set()
+    for o in orders:
+        if o.get("status") != "open":
+            continue
+        grp = groups.get((o["game_id"], o["market"], o["line"], o["side"]))
+        q = (grp or {}).get("books", {}).get(o["book"]) if grp else None
+        if q and q.get("cost") is not None and q["read_ts"] > o["posted_ts"] and q["cost"] < o["bid_screen"] - 1e-9:
+            o.update(status="filled", filled_utc=iso(n), fill_read_cost=q["cost"])
+            filled += 1
+        elif now >= o["expires_ts"] or now >= piso(o["start_utc"]).timestamp():
+            o["status"] = "expired"
+        else:
+            open_keys.add((o["book"], o["game_id"], o["market"], o["line"], o["side"], o["margin"]))
+    for (gid, market, line, side), grp in groups.items():
+        g = grp["game"]
+        lead = g["start_ts"] - now
+        if not 0 < lead <= MK_NEAR_H * 3600:
+            continue
+        fair, pline, pupd = pin_fair(pin.get(gid), market, side, line, g["teams"])
+        if not fair:
+            continue   # main lines only: Pinnacle must price this exact number
+        for b in MK_BOOKS:
+            q = grp["books"].get(b)
+            if not q or q.get("cost") is None:
+                continue
+            for m in MK_MARGINS:
+                if (b, gid, market, line, side, m) in open_keys:
+                    continue
+                e = fair - m
+                if not 0.05 < e < 0.95:
+                    continue
+                bid = screen_for_cost(b, e)
+                if b == "novig":
+                    bid = int(bid * 100 + 1e-9) / 100.0   # 1c ticks, rounded down (never better than fair - margin)
+                if bid >= q["cost"] - 1e-9:
+                    continue   # at or above the price you can already take: that is a take, not a resting order
+                orders.append({
+                    "trigger": "MK", "status": "open", "book": b, "margin": m, "game_id": gid, "league": g["league"],
+                    "game": f"{g['teams'][0]} @ {g['teams'][1]}", "teams": g["teams"], "market": market, "line": line,
+                    "side": side, "start_utc": iso(datetime.fromtimestamp(g["start_ts"], timezone.utc)),
+                    "lead_min": round(lead / 60), "posted_utc": iso(n), "posted_ts": q["read_ts"],
+                    "expires_ts": q["read_ts"] + MK_LIFE_S, "pin_fair_at_post": fair,
+                    "bid_screen": round(bid, 4), "sighting_cost_af": round(after_fee(b, bid), 5),
+                    "taker_cost_at_post": q["cost"], "result": None, "units_flat": None, "close_final": False})
+                posted += 1
+    return posted, filled
+
+
+def maker_rows(doc):
+    """Report rows per book x margin (+ all): orders, fill rate, filled CLV/record, unfilled CLV (adverse selection)."""
+    ms = doc.get("maker") or []
+    agg = doc.get("maker_agg") or {}
+    out = []
+    for b in MK_BOOKS + ("all",):
+        for m in MK_MARGINS:
+            rows = [o for o in ms if (b == "all" or o["book"] == b) and o["margin"] == m]
+            ag = [v for k, v in agg.items() if (b == "all" or k.split("|")[0] == b) and abs(float(k.split("|")[1]) - m) < 1e-9]
+            fl = [o for o in rows if o["status"] == "filled"]
+            un = [o for o in rows if o["status"] == "expired"]
+            n_un = len(un) + sum(v["n"] for v in ag)
+            ucl = [o["clv_pinnacle_c"] for o in un if o.get("clv_pinnacle_c") is not None and o.get("close_final")]
+            u_n = len(ucl) + sum(v["clv_n"] for v in ag)
+            u_sum = sum(ucl) + sum(v["clv_sum"] for v in ag)
+            st = bucket_stats(fl)
+            out.append(dict(name=f"MK {b} fair-{m * 100:g}c", orders=len(fl) + n_un + sum(1 for o in rows if o["status"] == "open"),
+                            filled=len(fl), fill_rate_pct=round(100 * len(fl) / max(len(fl) + n_un, 1), 1),
+                            unfilled_clv_pinnacle_avg_c=round(u_sum / u_n, 2) if u_n else None,
+                            gate=(gate(st, "clv_pinnacle_avg_c") if b == "all" else ""), **st))
+    return out
+
+
 # ---------------------------------------------------------------- sightings A / B
 def sightings_from(groups, pin, n, existing, xbooks):
     """New sightings this scan (and last_seen updates on existing ones). Returns count added per trigger."""
@@ -1072,6 +1185,7 @@ def report(doc):
         out["rows"].append(dict(name=name, **st))
     both = {s["key"].split("|", 1)[1] for s in ss if s["trigger"] == "A"} & {s["key"].split("|", 1)[1] for s in ss if s["trigger"] == "B"}
     out["overlap_A_and_B"] = len(both)
+    out["maker"] = maker_rows(doc)
     out["credits"] = credit_projection(doc, datetime.now(timezone.utc))
     return out
 
@@ -1092,6 +1206,15 @@ def report_md(rep, runs):
         L.append(f"| {r['name'].strip()} | {r['n']} | {r['n_closed']} | {f(r['clv_consensus_avg_c'], 'c')} | {f(r['beat_consensus_pct'], '%')} | "
                  f"{r['n_pin_closed']} | {f(r['clv_pinnacle_avg_c'], 'c')} | {r['graded']} | {r['record']} | {r['units']:+.2f}u | "
                  f"{f(r['roi_pct'], '%')} | {f(r['move_held_avg_c'], 'c')} | {f(r['detection_lag_median_s'], 's')} | {r['gate']} |")
+    L += ["", "## A2 maker test (paper resting orders, Novig + ProphetX, main lines)", "",
+          "Filled = the book later traded through our bid (lower bound). Unfilled CLV = what the orders that never filled "
+          "would have gained; if fills do much worse than unfilled, that is adverse selection.", "",
+          "| Orders | Posted | Filled | Fill rate | Fill CLV vs Pinnacle | Unfilled CLV | Record | Units | Gate |",
+          "|---|---|---|---|---|---|---|---|---|"]
+    for r in rep.get("maker") or []:
+        f = lambda v, sfx="": "" if v is None else f"{v}{sfx}"
+        L.append(f"| {r['name']} | {r['orders']} | {r['filled']} | {r['fill_rate_pct']}% | {f(r['clv_pinnacle_avg_c'], 'c')} | "
+                 f"{f(r['unfilled_clv_pinnacle_avg_c'], 'c')} | {r['record']} | {r['units']:+.2f}u | {r['gate']} |")
     c = rep.get("credits") or {}
     L += ["", f"A and B on the same side/line: {rep['overlap_A_and_B']}.", "",
           "## Odds API credits (100K/month plan)", "",
@@ -1131,7 +1254,7 @@ NOTE = ("EV SIGHTINGS - PAPER STUDY, MEASUREMENT ONLY. Never bets, never pushed.
         "half points priced in). clv_*_c = (close fair - sighting_cost_af) x 100. result/units_flat = ESPN final, flat 1u at "
         "sighting_cost_af. crossed = that book's two sides cost < 97c total (stale/crossed quote). Pinnacle polls: every "
         "{FAST}s per sport while a game starts within {NEAR}h, every {SLOW}s otherwise; skipped when the credits left would fall below "
-        "the sharp monitor's projected need for the rest of the month. Oct 28 data-quality rules: suspect = best price "
+        "the sharp monitor's projected need for the rest of the month. A2 maker test: see the maker list (paper resting bids). Oct 28 data-quality rules: suspect = best price "
         "10c+ under the other books' median or a crossed quote (kept, flagged, excluded from headline report rows); "
         "clv_pinnacle_c only when the sighting's line is within 3 points of Pinnacle's (pin_close_far)." .replace("{FAST}", f"{FAST_S:g}").replace("{NEAR}", f"{NEAR_H:g}").replace("{SLOW}", f"{SLOW_S:g}"))
 
@@ -1198,6 +1321,7 @@ def run():
             n_moves = snapshot_moves(moves, n, games, quotes, horizon, sightings)
             added = sightings_from(groups, pin, n, sightings, xbooks)
             update_closes(sightings, groups, pin, n)
+            mk_posted, mk_filled = maker_step(doc, groups, pin, n)
             loop_polls = []
             while True:   # A1: keep polling in-window sports until LOOP_S; read exchanges only on a move
                 dues = [poll_due(lg, games, polls, time.time()) for lg in LEAGUES]
@@ -1210,15 +1334,19 @@ def run():
                 loop_polls.append(p2)
                 n_moves += snapshot_moves(mv2, n2, games, None, horizon, sightings)
                 update_closes(sightings, {}, pin, n2)   # Pinnacle close only (consensus close needs the full read)
+                update_closes(doc.get("maker") or [], {}, pin, n2)
             by_book = {b: sum(1 for q in quotes if q["book"] == b) for b in BOOKS}
             summary = (f"{len(games)} games ({len(games24)} in 24h), quotes {by_book}, {unmatched} unmatched, {len(groups)} side/lines, "
                        f"polls [{pst}{'; ' + '; '.join(loop_polls) if loop_polls else ''}], moves {n_moves}, "
-                       f"new A {added['A']} B {added['B']}, credits used {acct['used']} left {acct['remaining']}, "
+                       f"new A {added['A']} B {added['B']}, maker posted {mk_posted} filled {mk_filled}, credits used {acct['used']} left {acct['remaining']}, "
                        f"{time.time() - t0:.0f}s")
         else:
             update_closes(sightings, {}, pin, n)
+            update_closes(doc.get("maker") or [], {}, pin, n)
             summary = "outside read hours: closes/grades only" if ODDS_KEY else "no ODDS_API_KEY"
+        update_closes(doc.get("maker") or [], {}, pin, n)
         grade(sightings, n)
+        grade([o for o in doc.get("maker") or [] if o["status"] == "filled"], n)
     except Exception as ex:   # never lose the record: log the failure and still save
         import traceback
         err = traceback.format_exc()[-600:]
