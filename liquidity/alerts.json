@@ -1,6 +1,459 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-29T17:40:10Z",
+   "base_depth": 295447,
+   "best_price": 0.49,
+   "best_price_american": 104,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.49,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 8,
+   "date": "2026-10-29",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -61035,
+     "new_this_side": 36345,
+     "other_side": 269300,
+     "other_side_all_levels": 317829,
+     "ratio": 1.0,
+     "this_side": 266094,
+     "this_side_all_levels": 333450
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "Over 233.5 (233.5)",
+     "price": 0.49,
+     "this_side": 16731
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Over (233.5)",
+     "price": 0.49,
+     "this_side": 41998
+    }
+   },
+   "fade_price": 0.52,
+   "first_seen_utc": "2026-10-29T17:31:47Z",
+   "game": "Memphis vs Portland: Total Points",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNBATOTAL-26OCT29MEMPOR-234\"}",
+   "lead_min": 500,
+   "league": "NBA",
+   "line": 233.5,
+   "market": "total",
+   "new_money": 36345,
+   "paper_only": false,
+   "price": 0.49,
+   "price_american": 104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.49,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 233.5,
+     "price": -105
+    },
+    "betonlineag": {
+     "point": 232.5,
+     "price": -115
+    },
+    "betopenly": {
+     "point": 232.5,
+     "price": -104
+    },
+    "betrivers": {
+     "point": 233.5,
+     "price": -113
+    },
+    "betus": {
+     "point": 233.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 233.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 233.5,
+     "price": -105
+    },
+    "fanatics": {
+     "point": 233.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 232.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": 233.5,
+     "price": 104
+    },
+    "lowvig": {
+     "point": 232.5,
+     "price": -113
+    },
+    "mybookieag": {
+     "point": 233.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 233.5,
+     "price": 104
+    },
+    "polymarket": {
+     "point": 233.5,
+     "price": 104
+    },
+    "prophetx": {
+     "point": 232.5,
+     "price": -107
+    },
+    "williamhill_us": {
+     "point": 233.0,
+     "price": -105
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBATOTAL-26OCT29MEMPOR-234"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "polymarket"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [
+    "Under 232.5 (-104)"
+   ],
+   "side": "OVER",
+   "side_label": "Over 233.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-10-30T02:00:00Z",
+   "teams": [
+    "Memphis",
+    "Portland"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-29T17:40:10Z",
+   "base_depth": 168457,
+   "best_price": 0.5,
+   "best_price_american": -100,
+   "best_price_book": "novig",
+   "bid_improved": true,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 8,
+   "date": "2026-10-29",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -27160,
+     "new_this_side": 44229,
+     "other_side": 91590,
+     "other_side_all_levels": 144096,
+     "ratio": 1.8,
+     "this_side": 160663,
+     "this_side_all_levels": 217380
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "Over 237.5 (237.5)",
+     "price": 0.5,
+     "this_side": 24753
+    },
+    "polymarket": {
+     "heavier_side": false,
+     "label": "Over (237.5)",
+     "price": 0.5,
+     "this_side": 44476
+    }
+   },
+   "fade_price": 0.51,
+   "first_seen_utc": "2026-10-29T17:31:47Z",
+   "game": "Cleveland vs Atlanta: Total Points",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNBATOTAL-26OCT29CLEATL-238\"}",
+   "lead_min": 380,
+   "league": "NBA",
+   "line": 237.5,
+   "market": "total",
+   "new_money": 44229,
+   "paper_only": false,
+   "price": 0.5,
+   "price_american": -100,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.49,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 237.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 237.5,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 237.5,
+     "price": 100
+    },
+    "betrivers": {
+     "point": 237.5,
+     "price": -112
+    },
+    "betus": {
+     "point": 237.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 237.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 237.5,
+     "price": -108
+    },
+    "fanatics": {
+     "point": 237.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 238.5,
+     "price": -105
+    },
+    "kalshi": {
+     "point": 237.5,
+     "price": 100
+    },
+    "lowvig": {
+     "point": 237.5,
+     "price": -107
+    },
+    "mybookieag": {
+     "point": 237.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 237.5,
+     "price": 100
+    },
+    "polymarket": {
+     "point": 237.5,
+     "price": 100
+    },
+    "prophetx": {
+     "point": 238.5,
+     "price": 111
+    },
+    "williamhill_us": {
+     "point": 237.5,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBATOTAL-26OCT29CLEATL-238"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "OVER",
+   "side_label": "Over 237.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-10-30T00:00:00Z",
+   "teams": [
+    "Cleveland",
+    "Atlanta"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-29T17:40:10Z",
+   "base_depth": 334860,
+   "best_price": 0.5,
+   "best_price_american": -100,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 8,
+   "date": "2026-10-29",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -105401,
+     "new_this_side": 140727,
+     "other_side": 252672,
+     "other_side_all_levels": 355994,
+     "ratio": 1.5,
+     "this_side": 382919,
+     "this_side_all_levels": 477140
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "BOS (0)",
+     "price": 0.5,
+     "this_side": 24301
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Bruins",
+     "price": 0.5,
+     "this_side": 154101
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "Boston Bruins",
+     "price": 0.495,
+     "this_side": 19487
+    }
+   },
+   "fade_price": 0.51,
+   "first_seen_utc": "2026-10-29T17:31:47Z",
+   "game": "Boston vs St. Louis",
+   "key": "kalshi|KXNHLGAME-26OCT29BOSSTL|ml|0",
+   "lead_min": 380,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 140727,
+   "paper_only": false,
+   "price": 0.5,
+   "price_american": -100,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.5,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -104
+    },
+    "betopenly": {
+     "point": null,
+     "price": 100
+    },
+    "betrivers": {
+     "point": null,
+     "price": -105
+    },
+    "betus": {
+     "point": null,
+     "price": -105
+    },
+    "bovada": {
+     "point": null,
+     "price": -108
+    },
+    "draftkings": {
+     "point": null,
+     "price": -105
+    },
+    "fanatics": {
+     "point": null,
+     "price": -110
+    },
+    "fanduel": {
+     "point": null,
+     "price": -110
+    },
+    "kalshi": {
+     "point": null,
+     "price": 100
+    },
+    "lowvig": {
+     "point": null,
+     "price": -104
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -109
+    },
+    "novig": {
+     "point": null,
+     "price": 100
+    },
+    "polymarket": {
+     "point": null,
+     "price": 100
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": 100
+    },
+    "prophetx": {
+     "point": null,
+     "price": 102
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -107
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNHLGAME-26OCT29BOSSTL-BOS"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "polymarket"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Boston",
+   "side_label": "Boston",
+   "start_source": "odds",
+   "start_utc": "2026-10-30T00:00:00Z",
+   "teams": [
+    "Boston",
+    "St. Louis"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-29T17:31:47Z",
    "base_depth": 93513,
    "best_price": 0.468,
@@ -116,7 +569,8 @@
      "price": -125
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-29T17:40:10Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNHLTOTAL-26OCT29NYIMIN-6"
@@ -343,6 +797,8 @@
    "new_money": 37548,
    "paper_only": false,
    "price": 0.72,
+   "price_after_15m": 0.725,
+   "price_after_15m_book": "novig",
    "price_american": -257,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.72,
@@ -396,6 +852,7 @@
    "side_label": "Detroit",
    "start_source": "odds",
    "start_utc": "2026-10-30T23:30:00Z",
+   "still_actionable": true,
    "teams": [
     "Detroit",
     "Brooklyn"
@@ -894,8 +1351,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.54,
-   "clv_cents": 1.0,
+   "close_price": 0.53,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-10-29",
    "depth_by_book": {
@@ -1905,8 +2362,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.48,
-   "clv_cents": 1.0,
+   "close_price": 0.47,
+   "clv_cents": 0.0,
    "confirmed_after_min": 6,
    "date": "2026-10-30",
    "depth_by_book": {
@@ -4519,8 +4976,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.55,
-   "clv_cents": 1.0,
+   "close_price": 0.56,
+   "clv_cents": 2.0,
    "confirmed_after_min": 10,
    "date": "2026-10-29",
    "depth_by_book": {
