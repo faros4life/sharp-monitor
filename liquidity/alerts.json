@@ -1,6 +1,221 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-29T15:50:10Z",
+   "base_depth": 54451,
+   "best_price": 0.51,
+   "best_price_american": -104,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-29",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": false,
+     "label": "NOT Over 237.5 points",
+     "price": 0.51,
+     "this_side": 77025
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "Under 237.5 (237.5)",
+     "price": 0.51,
+     "this_side": 13902
+    },
+    "polymarket": {
+     "new_other_side": 1449,
+     "new_this_side": 67617,
+     "other_side": 33597,
+     "other_side_all_levels": 51082,
+     "ratio": 2.9,
+     "this_side": 98204,
+     "this_side_all_levels": 122154
+    }
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-10-29T15:40:11Z",
+   "game": "Cavaliers vs. Hawks",
+   "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6353738\"}",
+   "lead_min": 490,
+   "league": "NBA",
+   "line": 237.5,
+   "market": "total",
+   "new_money": 67617,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 238.5,
+     "price": -115
+    },
+    "betonlineag": {
+     "point": 238.0,
+     "price": -112
+    },
+    "betopenly": {
+     "point": 237.5,
+     "price": 100
+    },
+    "betrivers": {
+     "point": 237.5,
+     "price": -108
+    },
+    "betus": {
+     "point": 238.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 237.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 237.5,
+     "price": -105
+    },
+    "fanatics": {
+     "point": 237.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 238.5,
+     "price": -115
+    },
+    "kalshi": {
+     "point": 237.5,
+     "price": -104
+    },
+    "lowvig": {
+     "point": 238.0,
+     "price": -109
+    },
+    "mybookieag": {
+     "point": 238.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 237.5,
+     "price": -104
+    },
+    "polymarket": {
+     "point": 237.5,
+     "price": -104
+    },
+    "prophetx": {
+     "point": 238.5,
+     "price": -115
+    },
+    "williamhill_us": {
+     "point": 237.5,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 1,
+    "pm_market_id": "6353738"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "Under (237.5)",
+   "start_source": "odds",
+   "start_utc": "2026-10-30T00:00:00Z",
+   "teams": [
+    "Cavaliers",
+    "Hawks"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-29T15:50:10Z",
+   "base_depth": 520778,
+   "best_price": 0.6757,
+   "best_price_american": -208,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.66,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-30",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 24397,
+     "new_this_side": 83123,
+     "other_side": 136279,
+     "other_side_all_levels": 261453,
+     "ratio": 2.1,
+     "this_side": 285849,
+     "this_side_all_levels": 603801
+    }
+   },
+   "fade_price": 0.35,
+   "first_seen_utc": "2026-10-29T15:40:11Z",
+   "game": "Army vs Memphis",
+   "key": "kalshi|KXNCAAFGAME-26OCT30ARMYMEM|ml|1",
+   "lead_min": 2110,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 83123,
+   "paper_only": false,
+   "price": 0.66,
+   "price_american": -194,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.66,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26OCT30ARMYMEM-MEM"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Memphis",
+   "side_label": "Memphis",
+   "start_source": "kalshi",
+   "start_utc": "2026-10-31T03:00:00Z",
+   "teams": [
+    "Army",
+    "Memphis"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-29T15:33:59Z",
    "base_depth": 80684,
    "best_price": 0.385,
@@ -59,6 +274,8 @@
    "new_money": 29403,
    "paper_only": false,
    "price": 0.39,
+   "price_after_15m": 0.385,
+   "price_after_15m_book": "novig",
    "price_american": 156,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.39,
@@ -150,6 +367,7 @@
    "side_label": "Canucks",
    "start_source": "odds",
    "start_utc": "2026-10-30T02:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Canucks",
     "Sharks"
@@ -210,6 +428,8 @@
    "new_money": 35989,
    "paper_only": false,
    "price": 0.365,
+   "price_after_15m": 0.3644,
+   "price_after_15m_book": "prophetx",
    "price_american": 174,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.36,
@@ -303,6 +523,7 @@
    "side_label": "CAR (0)",
    "start_source": "odds",
    "start_utc": "2026-10-30T00:15:00Z",
+   "still_actionable": true,
    "teams": [
     "Carolina Panthers",
     "Green Bay Packers"
@@ -363,6 +584,8 @@
    "new_money": 34968,
    "paper_only": false,
    "price": 0.47,
+   "price_after_15m": 0.47,
+   "price_after_15m_book": "novig",
    "price_american": 113,
    "price_rule": "ok",
    "price_when_first_seen": 0.47,
@@ -451,6 +674,7 @@
    "side_label": "NOT Over 5.5 goals scored",
    "start_source": "odds",
    "start_utc": "2026-10-29T23:30:00Z",
+   "still_actionable": true,
    "teams": [
     "Chicago",
     "Detroit"
@@ -505,6 +729,8 @@
    "new_money": 35005,
    "paper_only": false,
    "price": 0.52,
+   "price_after_15m": 0.52,
+   "price_after_15m_book": "novig",
    "price_american": -108,
    "price_rule": "ok",
    "price_when_first_seen": 0.52,
@@ -592,6 +818,7 @@
    "side_label": "NOT Atlanta wins by over 1.5 points",
    "start_source": "odds",
    "start_utc": "2026-10-30T00:00:00Z",
+   "still_actionable": false,
    "teams": [
     "Cleveland",
     "Atlanta"
@@ -652,6 +879,8 @@
    "new_money": 73403,
    "paper_only": false,
    "price": 0.64,
+   "price_after_15m": 0.64,
+   "price_after_15m_book": "novig",
    "price_american": -178,
    "price_rule": "fails_cap",
    "price_when_first_seen": 0.63,
@@ -736,6 +965,7 @@
    "side_label": "Blackhawks (+1.5)",
    "start_source": "odds",
    "start_utc": "2026-10-29T23:30:00Z",
+   "still_actionable": false,
    "teams": [
     "Blackhawks",
     "Red Wings"
@@ -802,6 +1032,8 @@
    "new_money": 96390,
    "paper_only": false,
    "price": 0.42,
+   "price_after_15m": 0.4147,
+   "price_after_15m_book": "prophetx",
    "price_american": 138,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.41,
@@ -893,6 +1125,7 @@
    "side_label": "Blackhawks",
    "start_source": "odds",
    "start_utc": "2026-10-29T23:30:00Z",
+   "still_actionable": false,
    "teams": [
     "Blackhawks",
     "Red Wings"
@@ -953,6 +1186,8 @@
    "new_money": 46466,
    "paper_only": false,
    "price": 0.64,
+   "price_after_15m": 0.64,
+   "price_after_15m_book": "novig",
    "price_american": -178,
    "price_rule": "fails_cap",
    "price_when_first_seen": 0.63,
@@ -1037,6 +1272,7 @@
    "side_label": "NOT Detroit wins by over 1.5 goals",
    "start_source": "odds",
    "start_utc": "2026-10-29T23:30:00Z",
+   "still_actionable": false,
    "teams": [
     "Chicago",
     "Detroit"
@@ -1103,6 +1339,8 @@
    "new_money": 137282,
    "paper_only": false,
    "price": 0.42,
+   "price_after_15m": 0.4147,
+   "price_after_15m_book": "prophetx",
    "price_american": 138,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.39,
@@ -1194,6 +1432,7 @@
    "side_label": "Chicago",
    "start_source": "odds",
    "start_utc": "2026-10-29T23:30:00Z",
+   "still_actionable": false,
    "teams": [
     "Chicago",
     "Detroit"
@@ -3324,8 +3563,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 2.0,
+   "close_price": 0.51,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-29",
    "depth_by_book": {
@@ -6568,8 +6807,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.78,
-   "clv_cents": 0.0,
+   "close_price": 0.79,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-30",
    "depth_by_book": {
@@ -22154,8 +22393,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.49,
-   "clv_cents": -3.0,
+   "close_price": 0.48,
+   "clv_cents": -4.0,
    "confirmed_after_min": 10,
    "date": "2026-10-29",
    "depth_by_book": {
