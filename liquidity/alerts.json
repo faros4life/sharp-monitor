@@ -1,6 +1,608 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-29T15:30:14Z",
+   "base_depth": 50542,
+   "best_price": 0.635,
+   "best_price_american": -174,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.64,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-29",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "NOT Detroit wins by over 1.5 goals",
+     "price": 0.64,
+     "this_side": 170750
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "CHI +1.5 (-1.5)",
+     "price": 0.635,
+     "this_side": 25493
+    },
+    "polymarket": {
+     "new_other_side": 15635,
+     "new_this_side": 73403,
+     "other_side": 31951,
+     "other_side_all_levels": 49281,
+     "ratio": 3.4,
+     "this_side": 107508,
+     "this_side_all_levels": 126345
+    }
+   },
+   "fade_price": 0.38,
+   "first_seen_utc": "2026-10-29T15:20:12Z",
+   "game": "Blackhawks vs. Red Wings",
+   "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6346055\"}",
+   "lead_min": 480,
+   "league": "NHL",
+   "line": 1.5,
+   "market": "spread",
+   "new_money": 73403,
+   "paper_only": false,
+   "price": 0.64,
+   "price_american": -178,
+   "price_rule": "fails_cap",
+   "price_when_first_seen": 0.63,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 1.5,
+     "price": -185
+    },
+    "betonlineag": {
+     "point": 1.5,
+     "price": -190
+    },
+    "betopenly": {
+     "point": 1.5,
+     "price": -174
+    },
+    "betrivers": {
+     "point": 1.5,
+     "price": -186
+    },
+    "betus": {
+     "point": 1.5,
+     "price": -190
+    },
+    "bovada": {
+     "point": 1.5,
+     "price": -185
+    },
+    "draftkings": {
+     "point": 1.5,
+     "price": -180
+    },
+    "fanatics": {
+     "point": 1.5,
+     "price": -190
+    },
+    "fanduel": {
+     "point": 1.5,
+     "price": -200
+    },
+    "kalshi": {
+     "point": 1.5,
+     "price": -186
+    },
+    "lowvig": {
+     "point": 1.5,
+     "price": -190
+    },
+    "mybookieag": {
+     "point": 1.5,
+     "price": -182
+    },
+    "novig": {
+     "point": 1.5,
+     "price": -178
+    },
+    "polymarket": {
+     "point": -3.5,
+     "price": 117
+    },
+    "prophetx": {
+     "point": 1.5,
+     "price": -178
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 1,
+    "pm_market_id": "6346055"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi",
+    "novig"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Blackhawks",
+   "side_label": "Blackhawks (+1.5)",
+   "start_source": "odds",
+   "start_utc": "2026-10-29T23:30:00Z",
+   "teams": [
+    "Blackhawks",
+    "Red Wings"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-29T15:30:14Z",
+   "base_depth": 53557,
+   "best_price": 0.41,
+   "best_price_american": 144,
+   "best_price_book": "novig",
+   "bid_improved": true,
+   "bid_improved_at_pending": true,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.42,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-29",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Chicago",
+     "price": 0.42,
+     "this_side": 277932
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "CHI (0)",
+     "price": 0.41,
+     "this_side": 18166
+    },
+    "polymarket": {
+     "new_other_side": -4311,
+     "new_this_side": 96390,
+     "other_side": 55307,
+     "other_side_all_levels": 84110,
+     "ratio": 2.3,
+     "this_side": 128757,
+     "this_side_all_levels": 163401
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "Chicago Blackhawks",
+     "price": 0.4065,
+     "this_side": 3281
+    }
+   },
+   "fade_price": 0.59,
+   "first_seen_utc": "2026-10-29T15:20:12Z",
+   "game": "Blackhawks vs. Red Wings",
+   "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"5406624\"}",
+   "lead_min": 480,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 96390,
+   "paper_only": false,
+   "price": 0.42,
+   "price_american": 138,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.41,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": 135
+    },
+    "betonlineag": {
+     "point": null,
+     "price": 134
+    },
+    "betopenly": {
+     "point": null,
+     "price": 150
+    },
+    "betrivers": {
+     "point": null,
+     "price": 143
+    },
+    "betus": {
+     "point": null,
+     "price": 138
+    },
+    "bovada": {
+     "point": null,
+     "price": 135
+    },
+    "draftkings": {
+     "point": null,
+     "price": 140
+    },
+    "fanatics": {
+     "point": null,
+     "price": 135
+    },
+    "fanduel": {
+     "point": null,
+     "price": 126
+    },
+    "kalshi": {
+     "point": null,
+     "price": 138
+    },
+    "lowvig": {
+     "point": null,
+     "price": 134
+    },
+    "mybookieag": {
+     "point": null,
+     "price": 135
+    },
+    "novig": {
+     "point": null,
+     "price": 144
+    },
+    "polymarket": {
+     "point": null,
+     "price": 138
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": 138
+    },
+    "prophetx": {
+     "point": null,
+     "price": 146
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": 140
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 0,
+    "pm_market_id": "5406624"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Blackhawks",
+   "side_label": "Blackhawks",
+   "start_source": "odds",
+   "start_utc": "2026-10-29T23:30:00Z",
+   "teams": [
+    "Blackhawks",
+    "Red Wings"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-29T15:30:14Z",
+   "base_depth": 159516,
+   "best_price": 0.635,
+   "best_price_american": -174,
+   "best_price_book": "novig",
+   "bid_improved": true,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.64,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-29",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -33188,
+     "new_this_side": 46466,
+     "other_side": 65069,
+     "other_side_all_levels": 82029,
+     "ratio": 2.6,
+     "this_side": 170750,
+     "this_side_all_levels": 223239
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "CHI +1.5 (-1.5)",
+     "price": 0.635,
+     "this_side": 25493
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Blackhawks (+1.5)",
+     "price": 0.64,
+     "this_side": 107508
+    }
+   },
+   "fade_price": 0.37,
+   "first_seen_utc": "2026-10-29T15:20:12Z",
+   "game": "Chicago vs Detroit: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLSPREAD-26OCT29CHIDET-DET2\"}",
+   "lead_min": 480,
+   "league": "NHL",
+   "line": 1.5,
+   "market": "spread",
+   "new_money": 46466,
+   "paper_only": false,
+   "price": 0.64,
+   "price_american": -178,
+   "price_rule": "fails_cap",
+   "price_when_first_seen": 0.63,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 1.5,
+     "price": -185
+    },
+    "betonlineag": {
+     "point": 1.5,
+     "price": -190
+    },
+    "betopenly": {
+     "point": 1.5,
+     "price": -174
+    },
+    "betrivers": {
+     "point": 1.5,
+     "price": -186
+    },
+    "betus": {
+     "point": 1.5,
+     "price": -190
+    },
+    "bovada": {
+     "point": 1.5,
+     "price": -185
+    },
+    "draftkings": {
+     "point": 1.5,
+     "price": -180
+    },
+    "fanatics": {
+     "point": 1.5,
+     "price": -190
+    },
+    "fanduel": {
+     "point": 1.5,
+     "price": -200
+    },
+    "kalshi": {
+     "point": 1.5,
+     "price": -186
+    },
+    "lowvig": {
+     "point": 1.5,
+     "price": -190
+    },
+    "mybookieag": {
+     "point": 1.5,
+     "price": -182
+    },
+    "novig": {
+     "point": 1.5,
+     "price": -178
+    },
+    "polymarket": {
+     "point": -3.5,
+     "price": 117
+    },
+    "prophetx": {
+     "point": 1.5,
+     "price": -178
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNHLSPREAD-26OCT29CHIDET-DET2"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "polymarket"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Chicago",
+   "side_label": "NOT Detroit wins by over 1.5 goals",
+   "start_source": "odds",
+   "start_utc": "2026-10-29T23:30:00Z",
+   "teams": [
+    "Chicago",
+    "Detroit"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-29T15:30:14Z",
+   "base_depth": 178407,
+   "best_price": 0.41,
+   "best_price_american": 144,
+   "best_price_book": "novig",
+   "bid_improved": true,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.42,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-29",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -58322,
+     "new_this_side": 137282,
+     "other_side": 146978,
+     "other_side_all_levels": 245667,
+     "ratio": 1.9,
+     "this_side": 277932,
+     "this_side_all_levels": 364770
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "CHI (0)",
+     "price": 0.41,
+     "this_side": 18166
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Blackhawks",
+     "price": 0.42,
+     "this_side": 128757
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "Chicago Blackhawks",
+     "price": 0.4065,
+     "this_side": 3281
+    }
+   },
+   "fade_price": 0.59,
+   "first_seen_utc": "2026-10-29T15:20:12Z",
+   "game": "Chicago vs Detroit",
+   "key": "kalshi|KXNHLGAME-26OCT29CHIDET|ml|0",
+   "lead_min": 480,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 137282,
+   "paper_only": false,
+   "price": 0.42,
+   "price_american": 138,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.39,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": 135
+    },
+    "betonlineag": {
+     "point": null,
+     "price": 134
+    },
+    "betopenly": {
+     "point": null,
+     "price": 150
+    },
+    "betrivers": {
+     "point": null,
+     "price": 143
+    },
+    "betus": {
+     "point": null,
+     "price": 138
+    },
+    "bovada": {
+     "point": null,
+     "price": 135
+    },
+    "draftkings": {
+     "point": null,
+     "price": 140
+    },
+    "fanatics": {
+     "point": null,
+     "price": 135
+    },
+    "fanduel": {
+     "point": null,
+     "price": 126
+    },
+    "kalshi": {
+     "point": null,
+     "price": 138
+    },
+    "lowvig": {
+     "point": null,
+     "price": 134
+    },
+    "mybookieag": {
+     "point": null,
+     "price": 135
+    },
+    "novig": {
+     "point": null,
+     "price": 144
+    },
+    "polymarket": {
+     "point": null,
+     "price": 138
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": 138
+    },
+    "prophetx": {
+     "point": null,
+     "price": 146
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": 140
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNHLGAME-26OCT29CHIDET-CHI"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "polymarket"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Chicago",
+   "side_label": "Chicago",
+   "start_source": "odds",
+   "start_utc": "2026-10-29T23:30:00Z",
+   "teams": [
+    "Chicago",
+    "Detroit"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-29T15:10:11Z",
    "base_depth": 74143,
    "best_price": 0.4975,
@@ -59,6 +661,8 @@
    "new_money": 36176,
    "paper_only": false,
    "price": 0.48,
+   "price_after_15m": 0.4975,
+   "price_after_15m_book": "kalshi",
    "price_american": 108,
    "price_rule": "ok",
    "price_when_first_seen": 0.48,
@@ -147,6 +751,7 @@
    "side_label": "Over 6.5 goals scored",
    "start_source": "odds",
    "start_utc": "2026-10-30T00:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Washington",
     "Nashville"
@@ -213,6 +818,8 @@
    "new_money": 33486,
    "paper_only": false,
    "price": 0.38,
+   "price_after_15m": 0.385,
+   "price_after_15m_book": "novig",
    "price_american": 163,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.38,
@@ -304,6 +911,7 @@
    "side_label": "Vancouver",
    "start_source": "odds",
    "start_utc": "2026-10-30T02:00:00Z",
+   "still_actionable": false,
    "teams": [
     "Vancouver",
     "San Jose"
@@ -2117,8 +2725,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": 1.0,
+   "close_price": 0.52,
+   "clv_cents": 2.0,
    "confirmed_after_min": 10,
    "date": "2026-10-29",
    "depth_by_book": {
@@ -2431,8 +3039,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": 0.0,
+   "close_price": 0.52,
+   "clv_cents": 1.0,
    "confirmed_after_min": 7,
    "date": "2026-10-29",
    "depth_by_book": {
@@ -6014,8 +6622,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.82,
-   "clv_cents": 0.0,
+   "close_price": 0.81,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-30",
    "depth_by_book": {
@@ -6478,7 +7086,8 @@
      "price": -102
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-29T15:30:14Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26OCT30BAYUCF-BAY"
@@ -14259,8 +14868,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.6,
-   "clv_cents": -2.0,
+   "close_price": 0.59,
+   "clv_cents": -3.0,
    "confirmed_after_min": 10,
    "date": "2026-10-29",
    "depth_by_book": {
