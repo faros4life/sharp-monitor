@@ -66,6 +66,9 @@ def _kalshi_get(path, params=None):
         return json.loads(r.read().decode())
 
 
+_KEV = {}   # Kalshi event ticker -> event title (team names)
+
+
 def kalshi_positions():
     if not os.environ.get("KALSHI_KEY_ID") or not os.environ.get("KALSHI_PRIVATE_KEY"):
         WHY["kalshi"] = "no key"
@@ -84,7 +87,15 @@ def kalshi_positions():
                 if not mtype:
                     continue
                 mk = (lm.get(f"{K_API}/markets/{tk}") or {}).get("market") or {}
-                out.append({"book": "kalshi", "game": mk.get("title") or "", "date": _date(tk), "mtype": mtype,
+                # Oct 29 (NO-read proof): a market's own title has no team names ("Full Game: Over 251.5 points scored",
+                # "Phoenix wins"), so the game never matched an alert. Use the EVENT title ("Sacramento at New Orleans").
+                et_full = mk.get("event_ticker") or tk.rsplit("-", 1)[0]
+                if et_full not in _KEV:
+                    try:
+                        _KEV[et_full] = ((lm.get(f"{K_API}/events/{et_full}") or {}).get("event") or {}).get("title") or ""
+                    except Exception:
+                        _KEV[et_full] = ""
+                out.append({"book": "kalshi", "game": _KEV[et_full] or mk.get("title") or "", "date": _date(tk), "mtype": mtype,
                             "label": mk.get("yes_sub_title") or mk.get("subtitle") or mk.get("title") or "", "flip": q < 0})
             cursor = d.get("cursor")
             if not cursor:
