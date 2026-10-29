@@ -1,6 +1,161 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-29T14:39:31Z",
+   "base_depth": 99438,
+   "best_price": 0.5148,
+   "best_price_american": -106,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 9,
+   "date": "2026-10-29",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Atlanta",
+     "price": 0.51,
+     "this_side": 786775
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "ATL (0)",
+     "price": 0.515,
+     "this_side": 43085
+    },
+    "polymarket": {
+     "new_other_side": -924,
+     "new_this_side": 56451,
+     "other_side": 64530,
+     "other_side_all_levels": 99653,
+     "ratio": 1.8,
+     "this_side": 113056,
+     "this_side_all_levels": 156051
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Atlanta Hawks",
+     "price": 0.5098,
+     "this_side": 34171
+    }
+   },
+   "fade_price": 0.49,
+   "first_seen_utc": "2026-10-29T14:30:14Z",
+   "game": "Cavaliers vs. Hawks",
+   "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6071103\"}",
+   "lead_min": 560,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 56451,
+   "paper_only": false,
+   "price": 0.52,
+   "price_american": -108,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.52,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -115
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -114
+    },
+    "betrivers": {
+     "point": null,
+     "price": -110
+    },
+    "bovada": {
+     "point": null,
+     "price": -115
+    },
+    "draftkings": {
+     "point": null,
+     "price": -115
+    },
+    "fanatics": {
+     "point": null,
+     "price": -115
+    },
+    "fanduel": {
+     "point": null,
+     "price": -110
+    },
+    "kalshi": {
+     "point": null,
+     "price": -104
+    },
+    "limitless": {
+     "point": null,
+     "price": -110
+    },
+    "lowvig": {
+     "point": null,
+     "price": -112
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -115
+    },
+    "novig": {
+     "point": null,
+     "price": -106
+    },
+    "polymarket": {
+     "point": null,
+     "price": -108
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -104
+    },
+    "prophetx": {
+     "point": null,
+     "price": -104
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 1,
+    "pm_market_id": "6071103"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Hawks",
+   "side_label": "Hawks",
+   "start_source": "odds",
+   "start_utc": "2026-10-30T00:00:00Z",
+   "teams": [
+    "Cavaliers",
+    "Hawks"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-29T14:30:14Z",
    "base_depth": 128792,
    "best_price": 0.5288,
@@ -490,6 +645,8 @@
    "new_money": 39359,
    "paper_only": false,
    "price": 0.53,
+   "price_after_15m": 0.525,
+   "price_after_15m_book": "novig",
    "price_american": -113,
    "price_rule": "ok",
    "price_when_first_seen": 0.53,
@@ -573,6 +730,7 @@
    "side_label": "NOT Carolina wins by over 1.5 goals",
    "start_source": "odds",
    "start_utc": "2026-10-29T23:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Columbus",
     "Carolina"
@@ -1174,8 +1332,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 2.0,
+   "close_price": 0.51,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-29",
    "depth_by_book": {
