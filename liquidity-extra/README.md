@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Oct 29, 10:30 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 9.
+Updated Thu Oct 29, 10:40 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 9.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,7 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Oct 29 9:00AM | TENNIS | Norrie vs Medvedev | moneyline: Norrie | kalshi | $200k | +122 |  |  | -11.0c |  | pending |
+| Oct 29 9:00AM | TENNIS | Norrie vs Medvedev | moneyline: Norrie | kalshi | $200k | +122 |  |  | -10.0c |  | pending |
 | Oct 29 8:05AM | TENNIS | Michelsen vs Fils | moneyline: Fils | kalshi | $29k | -203 | ✅ novig |  | -1.0c |  | pending |
 | Oct 29 5:20AM | TENNIS | Shelton vs Kym | moneyline: Shelton | kalshi | $42k | -317 |  |  | +0.0c |  | pending |
 | Oct 29 5:10AM | TENNIS | Fritz vs Shapovalov | moneyline: Fritz | kalshi | $48k | -223 |  |  | -3.0c |  | pending |
