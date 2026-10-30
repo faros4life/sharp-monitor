@@ -47,6 +47,8 @@
    "new_money": 33002,
    "paper_only": false,
    "price": 0.49,
+   "price_after_15m": 0.485,
+   "price_after_15m_book": "novig",
    "price_american": 104,
    "price_rule": "ok",
    "price_when_first_seen": 0.49,
@@ -128,6 +130,7 @@
    "side_label": "NOT Los Angeles L wins by over 2.5 points",
    "start_source": "odds",
    "start_utc": "2026-10-31T02:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Los Angeles L",
     "Golden State"
@@ -194,6 +197,8 @@
    "new_money": 67763,
    "paper_only": false,
    "price": 0.49,
+   "price_after_15m": 0.4904,
+   "price_after_15m_book": "prophetx",
    "price_american": 104,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.49,
@@ -285,6 +290,7 @@
    "side_label": "Calgary",
    "start_source": "odds",
    "start_utc": "2026-10-31T00:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Seattle",
     "Calgary"
@@ -1426,8 +1432,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": -1.0,
+   "close_price": 0.53,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-10-30",
    "depth_by_book": {
@@ -4641,6 +4647,7 @@
     }
    },
    "fade_price": 0.52,
+   "fade_units": 0.86,
    "first_seen_utc": "2026-10-29T17:31:47Z",
    "game": "Memphis vs Portland: Total Points",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNBATOTAL-26OCT29MEMPOR-234\"}",
@@ -4728,13 +4735,14 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBATOTAL-26OCT29MEMPOR-234"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "polymarket"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-30T04:30:12Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "Under 232.5 (-104)"
@@ -4749,7 +4757,7 @@
     "Portland"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-29T17:40:10Z",
@@ -7011,8 +7019,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.54,
-   "clv_cents": 7.0,
+   "close_price": 0.55,
+   "clv_cents": 8.0,
    "confirmed_after_min": 6,
    "date": "2026-10-30",
    "depth_by_book": {
@@ -9528,6 +9536,7 @@
     }
    },
    "fade_price": 0.62,
+   "fade_units": 0.57,
    "first_seen_utc": "2026-10-29T15:00:16Z",
    "game": "Vancouver vs San Jose",
    "key": "kalshi|KXNHLGAME-26OCT29VANSJ|ml|0",
@@ -9618,13 +9627,14 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNHLGAME-26OCT29VANSJ-VAN"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "polymarket"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-30T04:30:12Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Vancouver",
@@ -9637,7 +9647,7 @@
     "San Jose"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-29T15:00:16Z",
@@ -9688,6 +9698,7 @@
     }
    },
    "fade_price": 0.47,
+   "fade_units": 1.05,
    "first_seen_utc": "2026-10-29T14:50:11Z",
    "game": "Vancouver vs San Jose: Total Goals",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNHLTOTAL-26OCT29VANSJ-7\"}",
@@ -9775,7 +9786,7 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNHLTOTAL-26OCT29VANSJ-7"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig",
@@ -9783,6 +9794,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-30T04:30:12Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -9795,7 +9807,7 @@
     "San Jose"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-29T14:50:11Z",
@@ -10451,6 +10463,7 @@
     }
    },
    "fade_price": 0.52,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-29T14:20:11Z",
    "game": "Memphis vs Portland: Total Points",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBATOTAL-26OCT29MEMPOR-232\"}",
@@ -10538,11 +10551,12 @@
     "kalshi_side": "no",
     "market_ticker": "KXNBATOTAL-26OCT29MEMPOR-232"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settled_utc": "2026-10-30T04:30:12Z",
    "sharp_agree": [
     "Under 232.5 (-104)"
    ],
@@ -10557,7 +10571,7 @@
     "Portland"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.1
   },
   {
    "alerted_utc": "2026-10-29T14:30:14Z",
@@ -11660,6 +11674,7 @@
     }
    },
    "fade_price": 0.5,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-29T13:20:12Z",
    "game": "Memphis vs Portland: Total Points",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBATOTAL-26OCT29MEMPOR-234\"}",
@@ -11747,13 +11762,14 @@
     "kalshi_side": "no",
     "market_ticker": "KXNBATOTAL-26OCT29MEMPOR-234"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "polymarket"
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-30T04:30:12Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -11766,7 +11782,7 @@
     "Portland"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.0
   },
   {
    "alerted_utc": "2026-10-29T12:50:10Z",
@@ -11812,6 +11828,7 @@
     }
    },
    "fade_price": 0.5,
+   "fade_units": 0.93,
    "first_seen_utc": "2026-10-29T12:43:20Z",
    "game": "Memphis vs Portland: Spread",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNBASPREAD-26OCT29MEMPOR-POR8\"}",
@@ -11899,7 +11916,7 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBASPREAD-26OCT29MEMPOR-POR8"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig",
@@ -11907,6 +11924,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-30T04:30:12Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "Memphis Grizzlies +7.5 (-105)"
@@ -11921,7 +11939,7 @@
     "Portland"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-29T12:43:20Z",
@@ -12820,6 +12838,7 @@
     }
    },
    "fade_price": 0.55,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-29T11:20:10Z",
    "game": "Vancouver vs San Jose: Total Goals",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLTOTAL-26OCT29VANSJ-7\"}",
@@ -12906,11 +12925,12 @@
     "kalshi_side": "no",
     "market_ticker": "KXNHLTOTAL-26OCT29VANSJ-7"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-10-30T04:30:12Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -12923,7 +12943,7 @@
     "San Jose"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.15
   },
   {
    "alerted_utc": "2026-10-29T11:30:15Z",
@@ -13397,6 +13417,7 @@
     }
    },
    "fade_price": 0.41,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-29T10:30:13Z",
    "game": "Vancouver vs San Jose: Spread",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLSPREAD-26OCT29VANSJ-SJ2\"}",
@@ -13475,7 +13496,7 @@
     "kalshi_side": "no",
     "market_ticker": "KXNHLSPREAD-26OCT29VANSJ-SJ2"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig",
@@ -13483,6 +13504,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-30T04:30:12Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Vancouver",
@@ -13495,7 +13517,7 @@
     "San Jose"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.68
   },
   {
    "alerted_utc": "2026-10-29T10:10:10Z",
@@ -14738,8 +14760,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.77,
-   "clv_cents": -1.0,
+   "close_price": 0.78,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-10-30",
    "depth_by_book": {
@@ -15929,6 +15951,7 @@
     }
    },
    "fade_price": 0.49,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-29T06:26:59Z",
    "game": "Memphis vs Portland: Spread",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBASPREAD-26OCT29MEMPOR-POR8\"}",
@@ -16016,7 +16039,7 @@
     "kalshi_side": "no",
     "market_ticker": "KXNBASPREAD-26OCT29MEMPOR-POR8"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig",
@@ -16024,6 +16047,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-30T04:30:12Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Memphis",
@@ -16036,7 +16060,7 @@
     "Portland"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.96
   },
   {
    "alerted_utc": "2026-10-29T05:30:12Z",
@@ -16755,6 +16779,7 @@
     }
    },
    "fade_price": 0.28,
+   "fade_units": 2.4,
    "first_seen_utc": "2026-10-29T03:20:10Z",
    "game": "Memphis vs Portland",
    "key": "kalshi|KXNBAGAME-26OCT29MEMPOR|ml|1",
@@ -16838,7 +16863,7 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBAGAME-26OCT29MEMPOR-POR"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig",
@@ -16846,6 +16871,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-30T04:30:12Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Portland",
@@ -16858,7 +16884,7 @@
     "Portland"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-29T02:40:10Z",
@@ -16903,6 +16929,7 @@
     }
    },
    "fade_price": 0.38,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-29T02:33:08Z",
    "game": "Vancouver vs San Jose",
    "key": "kalshi|KXNHLGAME-26OCT29VANSJ|ml|1",
@@ -16990,13 +17017,14 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNHLGAME-26OCT29VANSJ-SJ"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "polymarket"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-30T04:30:12Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "San Jose",
@@ -17009,7 +17037,7 @@
     "San Jose"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.57
   },
   {
    "alerted_utc": "2026-10-29T02:33:08Z",
