@@ -15,7 +15,7 @@ concurrency:
 jobs:
   run:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 8
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -34,6 +34,11 @@ jobs:
           PMUS_KEY_ID: ${{ secrets.PMUS_KEY_ID }}
           PMUS_SECRET_KEY: ${{ secrets.PMUS_SECRET_KEY }}
           NOVIG_SNAPSHOT_TOKEN: ${{ secrets.NOVIG_SNAPSHOT_TOKEN }}
+          PROPHETX_ACCESS_KEY: ${{ secrets.PROPHETX_ACCESS_KEY }}   # Oct 30: ProphetX positions read (new-position report)
+          PROPHETX_SECRET_KEY: ${{ secrets.PROPHETX_SECRET_KEY }}
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}                     # new-position push
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           KAY_HARDROCK: ${{ secrets.KAY_HARDROCK }}
           BAL_REASON: ${{ github.event_name == 'schedule' && 'hourly' || 'on demand' }}
         run: python -u balances.py
