@@ -90,7 +90,7 @@ def after_fee(american, fee):
 
 
 def px_call(path, body=None):
-    for i in range(4):
+    for i in range(6):   # Oct 30: 429s on the positions read (several workflows share the ProphetX limit) - back off longer
         req = urllib.request.Request(PX_BASE + path, data=json.dumps(body).encode() if body is not None else None,
                                      method="POST" if body is not None else "GET",
                                      headers={"Content-Type": "application/json", "Accept": "application/json",
@@ -101,8 +101,8 @@ def px_call(path, body=None):
             time.sleep(1.1)   # ProphetX rate limit
             return out
         except urllib.error.HTTPError as ex:
-            if ex.code == 429 and i < 3:
-                time.sleep(int(ex.headers.get("Retry-After") or 0) or 5 * (i + 1))
+            if ex.code == 429 and i < 5:
+                time.sleep(min(int(ex.headers.get("Retry-After") or 0) or 5 * (i + 1), 30))
                 continue
             raise
 

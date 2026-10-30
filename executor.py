@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-Auto-placement executor (Oct 23 spec; LIVE phase 1 added Oct 26). Real orders happen ONLY through px_live.place()
-(ProphetX, fill-or-kill, phase-1 plays with Muse AGREE, $50 unit) and ONLY when the repo variable EXEC_LIVE is "on";
-px_live refuses on STOP, the $100 per-order guard and the $1,500 daily stop. Everything else stays a dry run. It reads Muse's AUTO-PLACE VERDICTS emails, runs every skip check, prices all 4
+Auto-placement executor (Oct 23 spec; LIVE phase 1 added Oct 26). Real orders happen ONLY when the repo variable
+EXEC_LIVE is "on": phase-1 plays on the coded rules AGREE (Oct 30; Muse is a veto, EXEC_RULES_LIVE=0 restores the gate),
+$200 to win, best after-fee price on ProphetX / Kalshi / Polymarket US / Novig, resting bids Novig then Kalshi; refused on
+STOP, the $275 per-order cap and the $1,500 daily stop. Everything else stays a dry run. It reads Muse's AUTO-PLACE VERDICTS emails, runs every skip check, prices all 4
 books after fees, sizes the stake, and emails what it WOULD have placed.
 
 Verdict email (from Muse, to the Bets address): subject contains "AUTO-PLACE VERDICTS"; body holds a JSON array of
@@ -1577,7 +1578,8 @@ def main():
                                                       if r["verdict"] == "WOULD PLACE" else (r.get("reason") or "skipped")]}
                 else:
                     r["live"] = {"go": False, "why": why}
-            if r["verdict"] == "WOULD PLACE" and blind:
+            if r["verdict"] == "WOULD PLACE" and blind and (r.get("live") or {}).get("go"):
+                # Oct 30 (Muse): HOLD only live-eligible phase-1 plays; a paper play (e.g. grade C) stays a paper WOULD PLACE
                 # can't see what's already held on every book: hold, retry next run, alert the phone once
                 r = dict(r, verdict="HELD", reason="positions unreadable on " + ", ".join(blind))
                 dk = derive_key(p) or p["play_key"]
