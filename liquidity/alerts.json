@@ -1,8 +1,8 @@
 {
  "alerts": [
   {
-   "alerted_utc": "2026-10-30T13:12:44Z",
-   "base_depth": 103024,
+   "alerted_utc": "2026-10-30T13:21:03Z",
+   "base_depth": 103228,
    "best_price": 0.5148,
    "best_price_american": -106,
    "best_price_book": "prophetx",
@@ -21,42 +21,42 @@
    "date": "2026-10-30",
    "depth_by_book": {
     "kalshi": {
-     "new_other_side": -12633,
-     "new_this_side": 29943,
-     "other_side": 91478,
-     "other_side_all_levels": 110772,
+     "new_other_side": -16347,
+     "new_this_side": 30798,
+     "other_side": 91912,
+     "other_side_all_levels": 111213,
      "ratio": 1.2,
-     "this_side": 110866,
-     "this_side_all_levels": 134276
+     "this_side": 110896,
+     "this_side_all_levels": 133264
     },
     "novig": {
      "heavier_side": true,
      "label": "Under 6.5 (6.5)",
      "price": 0.515,
-     "this_side": 24859
+     "this_side": 25359
     },
     "polymarket": {
      "heavier_side": true,
      "label": "Under (6.5)",
      "price": 0.51,
-     "this_side": 36290
+     "this_side": 38014
     },
     "prophetx": {
-     "heavier_side": true,
+     "heavier_side": false,
      "label": "under 6.5 (6.5)",
      "price": 0.5098,
-     "this_side": 6780
+     "this_side": 7846
     }
    },
    "fade_price": 0.49,
-   "first_seen_utc": "2026-10-30T12:54:38Z",
+   "first_seen_utc": "2026-10-30T13:03:30Z",
    "game": "Seattle vs Calgary: Total Goals",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLTOTAL-26OCT30SEACGY-7\"}",
-   "lead_min": 647,
+   "lead_min": 639,
    "league": "NHL",
    "line": 6.5,
    "market": "total",
-   "new_money": 29943,
+   "new_money": 30798,
    "paper_only": false,
    "price": 0.52,
    "price_american": -108,
@@ -73,7 +73,7 @@
     },
     "betopenly": {
      "point": 6.5,
-     "price": -110
+     "price": -104
     },
     "betrivers": {
      "point": 6.5,
@@ -125,7 +125,7 @@
     },
     "williamhill_us": {
      "point": 6.5,
-     "price": -125
+     "price": -120
     }
    },
    "pulled": false,
@@ -155,11 +155,11 @@
    "units_flat": null
   },
   {
-   "alerted_utc": "2026-10-30T12:37:03Z",
-   "base_depth": 116466,
-   "best_price": 0.4928,
-   "best_price_american": 103,
-   "best_price_book": "prophetx",
+   "alerted_utc": "2026-10-30T13:21:03Z",
+   "base_depth": 29370,
+   "best_price": 0.76,
+   "best_price_american": -317,
+   "best_price_book": "novig",
    "bid_improved": false,
    "bid_improved_at_pending": false,
    "book": "kalshi",
@@ -169,130 +169,73 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
+   "close_price": 0.76,
    "clv_cents": 0.0,
-   "confirmed_after_min": 17,
-   "date": "2026-10-30",
+   "confirmed_after_min": 18,
+   "date": "2026-10-31",
    "depth_by_book": {
     "kalshi": {
-     "new_other_side": -436,
-     "new_this_side": 25457,
-     "other_side": 62223,
-     "other_side_all_levels": 112276,
-     "ratio": 1.3,
-     "this_side": 78376,
-     "this_side_all_levels": 140571
-    }
-   },
-   "fade_price": 0.5,
-   "first_seen_utc": "2026-10-30T12:20:10Z",
-   "game": "Detroit vs Brooklyn: Total Points",
-   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNBATOTAL-26OCT30DETBKN-223\"}",
-   "lead_min": 653,
-   "league": "NBA",
-   "line": 222.5,
-   "market": "total",
-   "new_money": 25457,
-   "paper_only": false,
-   "price": 0.51,
-   "price_after_15m": 0.4904,
-   "price_after_15m_book": "prophetx",
-   "price_american": -104,
-   "price_rule": "ok",
-   "price_when_first_seen": 0.51,
-   "prices_by_book": {
-    "betmgm": {
-     "point": 222.5,
-     "price": -110
-    },
-    "betonlineag": {
-     "point": 221.5,
-     "price": -110
-    },
-    "betopenly": {
-     "point": 221.5,
-     "price": -102
-    },
-    "betrivers": {
-     "point": 221.5,
-     "price": -109
-    },
-    "betus": {
-     "point": 222.0,
-     "price": -105
-    },
-    "bovada": {
-     "point": 221.0,
-     "price": -110
-    },
-    "draftkings": {
-     "point": 222.5,
-     "price": -112
-    },
-    "fanatics": {
-     "point": 221.5,
-     "price": -110
-    },
-    "fanduel": {
-     "point": 222.5,
-     "price": -110
-    },
-    "kalshi": {
-     "point": 222.5,
-     "price": -104
-    },
-    "lowvig": {
-     "point": 221.5,
-     "price": -107
-    },
-    "mybookieag": {
-     "point": 222.5,
-     "price": -110
+     "new_other_side": 2633,
+     "new_this_side": 28449,
+     "other_side": 10070,
+     "other_side_all_levels": 15455,
+     "ratio": 3.9,
+     "this_side": 39762,
+     "this_side_all_levels": 57863
     },
     "novig": {
-     "point": 221.5,
-     "price": -102
-    },
-    "polymarket": {
-     "point": 221.5,
-     "price": 100
+     "heavier_side": true,
+     "label": "CCSU (0)",
+     "price": 0.76,
+     "this_side": 1864
     },
     "prophetx": {
-     "point": 222.5,
-     "price": 106
-    },
-    "williamhill_us": {
-     "point": 221.5,
-     "price": -110
+     "heavier_side": true,
+     "label": "Central Connecticut",
+     "price": 0.7849,
+     "this_side": 36
     }
    },
-   "pulled": true,
-   "pulled_utc": "2026-10-30T12:54:38Z",
+   "fade_price": 0.25,
+   "first_seen_utc": "2026-10-30T13:03:30Z",
+   "game": "Robert Morris vs Central Connecticut St.",
+   "key": "kalshi|KXNCAAFGAME-26OCT31RMUCCSU|ml|1",
+   "lead_min": 1599,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 28449,
+   "paper_only": false,
+   "price": 0.76,
+   "price_american": -317,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.76,
+   "prices_by_book": {},
+   "pulled": false,
    "ref": {
     "kalshi_side": "yes",
-    "market_ticker": "KXNBATOTAL-26OCT30DETBKN-223"
+    "market_ticker": "KXNCAAFGAME-26OCT31RMUCCSU-CCSU"
    },
    "result": null,
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
-   "second_book_status": "no_match",
+   "second_book_status": "none_10k",
    "sharp_agree": [],
    "sharp_oppose": [],
-   "side": "OVER",
-   "side_label": "Over 222.5 points",
-   "start_source": "odds",
-   "start_utc": "2026-10-30T23:30:00Z",
-   "still_actionable": true,
+   "side": "Central Connecticut St.",
+   "side_label": "Central Connecticut St.",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-31T16:00:00Z",
    "teams": [
-    "Detroit",
-    "Brooklyn"
+    "Robert Morris",
+    "Central Connecticut St."
    ],
-   "top25": null,
+   "top25": false,
    "units_flat": null
   },
   {
-   "alerted_utc": "2026-10-30T12:20:10Z",
+   "alerted_utc": "2026-10-30T12:28:28Z",
    "base_depth": 74010,
    "best_price": 0.74,
    "best_price_american": -285,
@@ -308,42 +251,42 @@
    ],
    "close_price": 0.74,
    "clv_cents": 0.0,
-   "confirmed_after_min": 9,
+   "confirmed_after_min": 17,
    "date": "2026-10-30",
    "depth_by_book": {
     "kalshi": {
      "heavier_side": true,
      "label": "Miami",
      "price": 0.73,
-     "this_side": 979582
+     "this_side": 980864
     },
     "novig": {
      "heavier_side": true,
      "label": "MIA (0)",
      "price": 0.74,
-     "this_side": 41948
+     "this_side": 42311
     },
     "polymarket": {
      "new_other_side": 6962,
      "new_this_side": 29037,
-     "other_side": 24438,
-     "other_side_all_levels": 39684,
-     "ratio": 3.2,
-     "this_side": 78113,
-     "this_side_all_levels": 102905
+     "other_side": 27020,
+     "other_side_all_levels": 42267,
+     "ratio": 2.9,
+     "this_side": 78533,
+     "this_side_all_levels": 103321
     },
     "prophetx": {
      "heavier_side": true,
      "label": "Miami Heat",
      "price": 0.7403,
-     "this_side": 20106
+     "this_side": 18486
     }
    },
    "fade_price": 0.27,
    "first_seen_utc": "2026-10-30T12:11:02Z",
    "game": "Pacers vs. Heat",
    "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6101719\"}",
-   "lead_min": 700,
+   "lead_min": 692,
    "league": "NBA",
    "line": null,
    "market": "moneyline",
@@ -398,7 +341,7 @@
     },
     "limitless": {
      "point": null,
-     "price": -305
+     "price": -303
     },
     "lowvig": {
      "point": null,
@@ -410,11 +353,11 @@
     },
     "novig": {
      "point": null,
-     "price": -292
+     "price": -285
     },
     "polymarket": {
      "point": null,
-     "price": -285
+     "price": -300
     },
     "polymarket_us": {
      "point": null,
@@ -475,8 +418,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 0.0,
+   "close_price": 0.51,
+   "clv_cents": -1.0,
    "confirmed_after_min": 17,
    "date": "2026-10-30",
    "depth_by_book": {
@@ -667,7 +610,7 @@
    "new_money": 58088,
    "paper_only": false,
    "price": 0.5,
-   "price_after_15m": 0.485,
+   "price_after_15m": 0.48,
    "price_after_15m_book": "novig",
    "price_american": -100,
    "price_rule": "ok",
@@ -1840,7 +1783,7 @@
     }
    },
    "pulled": true,
-   "pulled_utc": "2026-10-30T13:12:44Z",
+   "pulled_utc": "2026-10-30T13:03:30Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26OCT31BGSUWMU-WMU"
@@ -5561,8 +5504,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.64,
-   "clv_cents": -2.0,
+   "close_price": 0.65,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-30",
    "depth_by_book": {
@@ -9549,8 +9492,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.54,
-   "clv_cents": 7.0,
+   "close_price": 0.53,
+   "clv_cents": 6.0,
    "confirmed_after_min": 6,
    "date": "2026-10-30",
    "depth_by_book": {
@@ -9669,8 +9612,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.72,
-   "clv_cents": 4.0,
+   "close_price": 0.71,
+   "clv_cents": 3.0,
    "confirmed_after_min": 6,
    "date": "2026-10-30",
    "depth_by_book": {
@@ -17310,8 +17253,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.8,
-   "clv_cents": 2.0,
+   "close_price": 0.79,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-30",
    "depth_by_book": {
@@ -17393,8 +17336,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.71,
-   "clv_cents": 0.0,
+   "close_price": 0.72,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-30",
    "depth_by_book": {
