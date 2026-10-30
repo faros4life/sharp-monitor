@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Oct 30, 5:26 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 3.
+Updated Fri Oct 30, 5:30 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 3.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,7 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Oct 30 5:26PM | TENNIS | Medvedev vs Alcaraz | moneyline: Alcaraz | kalshi | $32k | -233 |  |  | +0.0c |  | pending |
+| Oct 30 5:26PM | TENNIS | Medvedev vs Alcaraz | moneyline: Alcaraz | kalshi | $32k | -233 |  |  | -1.0c |  | pending |
 | Oct 30 4:10PM | TENNIS | Berrettini vs de Minaur | moneyline: Berrettini | kalshi | $466k | +138 |  |  | -37.0c | yes | L |
 | Oct 30 11:30AM | TENNIS | Berrettini vs de Minaur | moneyline: de Minaur | kalshi | $30k | -213 | ✅ novig |  | +0.0c | yes | W |
 | Oct 30 11:10AM | TENNIS | Prozorova vs Kinoshita | moneyline: Prozorova | kalshi | $30k | -525 |  |  | +0.0c |  | pending |
