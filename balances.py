@@ -233,6 +233,66 @@ def week_compare(now):
     return out
 
 
+def _nv_label(p):
+    """Novig position -> 'game | side' from the public catalog (no key); falls back to the market id."""
+    try:
+        mk = lm.get(f"{lm.NOVIG}/v3/public/catalog/markets/{p.get('marketId')}")
+        side = next((o.get("name") for o in mk.get("outcomes") or [] if o.get("outcomeId") == p.get("outcomeId")), "?")
+        return f"{mk.get('description') or mk.get('title') or mk.get('marketType') or 'market'} | {side}"
+    except Exception:
+        return f"market {str(p.get('marketId'))[:8]}"
+
+
+def new_positions():
+    """Oct 30 (Peter): report NEW open positions on the 4 exchanges every hour, without Peter telling anyone (manual
+    plays included). Each position is reported once (Gmail token = the record). The first run only records what is
+    already open (no flood). Bot fills also show here; the bot's own FILLED message comes first."""
+    import hashlib
+    import positions as ps
+    cur = []   # (token, line)
+    for book, fn in (("Kalshi", ps.kalshi_positions), ("ProphetX", ps.px_positions), ("Polymarket US", ps.pmus_positions)):
+        try:
+            for h in fn() or []:
+                side = h.get("label") or "?"
+                if h.get("flip"):
+                    side = ("NO " if h.get("mtype") != "total" else "") + side
+                    if h.get("mtype") == "total":
+                        side = side.replace("Over", "Under") if "Over" in side else side.replace("Under", "Over")
+                cur.append((f"{book}|{h.get('game')}|{h.get('label')}|{h.get('flip')}", f"{book}: {h.get('game')} | {side}"))
+        except Exception:
+            pass
+    try:
+        snap, age = ex._snap_read((os.environ.get("NOVIG_SNAPSHOT_TOKEN") or "").strip())
+        for p in snap.get("positions") or []:
+            c = _num(p.get("cost"))
+            cur.append((f"Novig|{p.get('marketId')}|{p.get('outcomeId')}",
+                        f"Novig: {_nv_label(p)}" + (f" | cost {money(c)}" if c else "")))
+    except Exception:
+        pass
+    M = ex.imap_open()
+    out = []
+    try:
+        seeded = bool(ex.gsearch(M, "xmfseed"))
+        fresh = []
+        for k, line in cur:
+            tok = "xmf" + hashlib.sha1(k.encode()).hexdigest()[:12]
+            if not ex.gsearch(M, tok):
+                fresh.append((tok, line))
+    finally:
+        M.logout()
+    if not seeded:
+        ex.send("Bets new positions: baseline", "Already open (recorded, not reported):\n" +
+                "\n".join(l for _, l in cur) + "\n\nxmfseed " + " ".join(t for t, _ in fresh))
+        return ["", f"New positions: baseline recorded ({len(cur)} open)."]
+    if fresh:
+        msg = "NEW POSITIONS (last hour, manual or bot):\n" + "\n".join(l for _, l in fresh)
+        ex.tg(msg)
+        ex.push("New positions: " + str(len(fresh)), "\n".join(l for _, l in fresh)[:900], mirror=False)
+        ex.send(f"Bets new positions: {len(fresh)}", msg + "\n\n" + " ".join(t for t, _ in fresh))
+        out = ["", msg]
+    return out
+
+
 def main():
     now = datetime.now(timezone.utc)
     lines = [f"BALANCES as of {now.astimezone(ET).strftime('%a %b %d %I:%M %p ET')} ({now.strftime('%Y-%m-%dT%H:%M:%SZ')})", ""]
@@ -259,6 +319,10 @@ def main():
         lines.append("Hard Rock: unavailable (no read path; never guessed)"
                      + (f" | Kay's bucket (Hard Rock only): {money(kay)}, manual figure from Peter" if kay is not None else ""))
     lines += week_compare(now)
+    try:
+        lines += new_positions()
+    except Exception as e:
+        lines.append(f"New positions: check failed ({str(e)[:60]})")
     lines += ["", "Read-only. Exposure = money in open bets (cost); Kalshi = market exposure; ProphetX = open stake.",
               "Sent hourly and right after any live bot order."]
     reason = os.environ.get("BAL_REASON", "hourly")
