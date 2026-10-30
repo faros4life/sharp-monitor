@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Oct 30, 9:50 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 7.
+Updated Fri Oct 30, 10:00 AM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 8.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Oct 30 10:00AM | TENNIS | Fritz vs Fils | moneyline: Fils | kalshi | $44k | -108 |  |  | +0.0c |  | pending |
 | Oct 30 9:28AM | TENNIS | Kym vs Lehecka | moneyline: Lehecka | kalshi | $63k | -270 | ✅ novig |  | +0.0c |  | pending |
 | Oct 30 6:40AM | TENNIS | Tagger vs Shi | moneyline: Tagger | kalshi | $26k | -285 | ✅ novig |  | +0.0c |  | pending |
 | Oct 30 4:50AM | TENNIS | Struff vs Borges | moneyline: Struff | kalshi | $34k | -113 |  |  | -1.0c | yes | pending |
