@@ -20,6 +20,7 @@ import liquidity_monitor as lm
 import px_live
 
 ET = lm.ET
+PX_OPEN = {"n": None}   # Oct 30: open ProphetX bets from the balance read; 0 -> skip the slow ProphetX positions walk
 TOT = {}   # book -> cash + money in open bets (this run); compared with the week's first email (private, Gmail only)
 NAMES = {"px": "ProphetX", "kalshi": "Kalshi", "pmus": "Polymarket US", "novig_main": "Novig main",
          "novig_auto": "Novig auto-place", "hardrock": "Hard Rock (manual)"}
@@ -47,6 +48,7 @@ def prophetx():
     open_ = [t for t in px_live.trades() if not any(w in str(t.get("winning_status") or "").lower() for w in DONE)
              and not any(w in str(t.get("status") or "").lower() for w in ("settled", "cancel", "void"))]
     expo = round(sum(px_live.stake_of(t) for t in open_), 2)
+    PX_OPEN["n"] = len(open_)
     if bal is not None:
         TOT["px"] = bal + expo
     return f"ProphetX: balance {money(bal)} | open exposure {money(expo)} ({len(open_)} open bet(s))"
@@ -250,7 +252,11 @@ def new_positions():
     import hashlib
     import positions as ps
     cur = []   # (token, line)
+    import time as _t
     for book, fn in (("Kalshi", ps.kalshi_positions), ("ProphetX", ps.px_positions), ("Polymarket US", ps.pmus_positions)):
+        if book == "ProphetX" and PX_OPEN["n"] == 0:
+            continue   # nothing open on ProphetX: skip the slow (rate-limited) game walk
+        t0 = _t.time()
         try:
             for h in fn() or []:
                 side = h.get("label") or "?"
@@ -261,12 +267,13 @@ def new_positions():
                 cur.append((f"{book}|{h.get('game')}|{h.get('label')}|{h.get('flip')}", f"{book}: {h.get('game')} | {side}"))
         except Exception:
             pass
+        print(f"positions read {book}: {_t.time() - t0:.0f}s")   # timing only in the public log
     try:
         snap, age = ex._snap_read((os.environ.get("NOVIG_SNAPSHOT_TOKEN") or "").strip())
         for p in snap.get("positions") or []:
             c = _num(p.get("cost"))
             cur.append((f"Novig|{p.get('marketId')}|{p.get('outcomeId')}",
-                        f"Novig: {_nv_label(p)}" + (f" | cost {money(c)}" if c else "")))
+                        (lambda p=p, c=c: f"Novig: {_nv_label(p)}" + (f" | cost {money(c)}" if c else ""))))   # label only if new
     except Exception:
         pass
     M = ex.imap_open()
@@ -280,6 +287,8 @@ def new_positions():
                 fresh.append((tok, line))
     finally:
         M.logout()
+    fresh = [(t, l() if callable(l) else l) for t, l in fresh]
+    cur = [(k, (l() if callable(l) else l) if not seeded else "") for k, l in cur]
     if not seeded:
         ex.send("Bets new positions: baseline", "Already open (recorded, not reported):\n" +
                 "\n".join(l for _, l in cur) + "\n\nxmfseed " + " ".join(t for t, _ in fresh))
@@ -294,13 +303,16 @@ def new_positions():
 
 
 def main():
+    import time as _t
     now = datetime.now(timezone.utc)
     lines = [f"BALANCES as of {now.astimezone(ET).strftime('%a %b %d %I:%M %p ET')} ({now.strftime('%Y-%m-%dT%H:%M:%SZ')})", ""]
     for fn in (prophetx, kalshi, pmus):
+        t0 = _t.time()
         try:
             lines.append(fn())
         except Exception as e:
             lines.append(f"{fn.__name__}: unavailable ({str(e)[:80]})")
+        print(f"balance read {fn.__name__}: {_t.time() - t0:.0f}s")   # timing only
     try:
         lines += novig()
     except Exception as e:
