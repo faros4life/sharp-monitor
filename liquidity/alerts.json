@@ -1,6 +1,160 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-30T01:10:10Z",
+   "base_depth": 241602,
+   "best_price": 0.5375,
+   "best_price_american": -116,
+   "best_price_book": "polymarket",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.53,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-30",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 3029,
+     "new_this_side": 126718,
+     "other_side": 74079,
+     "other_side_all_levels": 262995,
+     "ratio": 2.4,
+     "this_side": 175955,
+     "this_side_all_levels": 369667
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "WAS (0)",
+     "price": 0.54,
+     "this_side": 18670
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Wizards",
+     "price": 0.53,
+     "this_side": 25197
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Washington Wizards",
+     "price": 0.5327,
+     "this_side": 1969
+    }
+   },
+   "fade_price": 0.48,
+   "first_seen_utc": "2026-10-30T01:00:18Z",
+   "game": "Charlotte vs Washington",
+   "key": "kalshi|KXNBAGAME-26OCT30CHAWAS|ml|1",
+   "lead_min": 1310,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 126718,
+   "paper_only": false,
+   "price": 0.53,
+   "price_american": -113,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.53,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -118
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -120
+    },
+    "betrivers": {
+     "point": null,
+     "price": -106
+    },
+    "betus": {
+     "point": null,
+     "price": -120
+    },
+    "bovada": {
+     "point": null,
+     "price": -110
+    },
+    "draftkings": {
+     "point": null,
+     "price": -110
+    },
+    "fanatics": {
+     "point": null,
+     "price": -115
+    },
+    "fanduel": {
+     "point": null,
+     "price": -122
+    },
+    "kalshi": {
+     "point": null,
+     "price": -117
+    },
+    "limitless": {
+     "point": null,
+     "price": -116
+    },
+    "lowvig": {
+     "point": null,
+     "price": -118
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -124
+    },
+    "novig": {
+     "point": null,
+     "price": -115
+    },
+    "polymarket": {
+     "point": null,
+     "price": -113
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -113
+    },
+    "prophetx": {
+     "point": null,
+     "price": -114
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBAGAME-26OCT30CHAWAS-WAS"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "polymarket"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Washington",
+   "side_label": "Washington",
+   "start_source": "odds",
+   "start_utc": "2026-10-30T23:00:00Z",
+   "teams": [
+    "Charlotte",
+    "Washington"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-30T00:30:12Z",
    "base_depth": 177989,
    "best_price": 0.6072,
@@ -9796,8 +9950,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.49,
-   "clv_cents": -1.0,
+   "close_price": 0.5,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-10-29",
    "depth_by_book": {
