@@ -1,6 +1,82 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-30T10:40:16Z",
+   "base_depth": 125396,
+   "best_price": 0.735,
+   "best_price_american": -277,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.74,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-30",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 8456,
+     "new_this_side": 26206,
+     "other_side": 41811,
+     "other_side_all_levels": 71028,
+     "ratio": 3.5,
+     "this_side": 147658,
+     "this_side_all_levels": 230808
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "L. Tagger (0)",
+     "price": 0.735,
+     "this_side": 13090
+    }
+   },
+   "fade_price": 0.27,
+   "first_seen_utc": "2026-10-30T10:30:19Z",
+   "game": "Tagger vs Shi",
+   "key": "kalshi|KXWTAMATCH-26OCT30TAGSHI|ml|0",
+   "lead_min": 20,
+   "league": "TENNIS",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 26206,
+   "paper_only": true,
+   "price": 0.74,
+   "price_american": -285,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.73,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXWTAMATCH-26OCT30TAGSHI-TAG"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Tagger",
+   "side_label": "Tagger",
+   "start_source": "novig",
+   "start_utc": "2026-10-30T11:00:00Z",
+   "teams": [
+    "Tagger",
+    "Shi"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-30T08:50:17Z",
    "base_depth": 103382,
    "best_price": 0.5474,
