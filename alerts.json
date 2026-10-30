@@ -2,7 +2,7 @@
  "alerts": [
   {
    "alert_utc": "2026-10-30T02:40:12Z",
-   "beat_close": true,
+   "beat_close": false,
    "beat_true_close": null,
    "bet": "Under 236.5 (-105)",
    "book": "Hard Rock",
@@ -10,7 +10,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+0.5 pts",
+   "clv": "-0.5 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline"
@@ -50,7 +50,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+1.5 pts",
+   "clv": "+1 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline"
@@ -78,6 +78,47 @@
    "sport": "NBA",
    "start_utc": "2026-10-30T23:00:00Z",
    "top25": null,
+   "units_flat": null
+  },
+  {
+   "alert_utc": "2026-10-30T10:00:18Z",
+   "beat_close": true,
+   "beat_true_close": null,
+   "bet": "Charlotte 49ers +9.5 (-111)",
+   "book": "ProphetX",
+   "book_key": "prophetx",
+   "close_fair_prob": null,
+   "close_read_mins_before": null,
+   "close_value_pct": null,
+   "clv": "+1 pts",
+   "confirm": "yes",
+   "confirmed_by": [
+    "BetOnline",
+    "Matchbook"
+   ],
+   "edge_pct": 0.1,
+   "executable_book": true,
+   "fade_book": "prophetx",
+   "fade_point": -9.5,
+   "fade_price": 109,
+   "fade_price_after_fee": 107,
+   "fade_units": null,
+   "final": null,
+   "game": "Tulane Green Wave @ Charlotte 49ers",
+   "grade": "B",
+   "kind": "spr",
+   "late": false,
+   "minutes_before_start": 780,
+   "point": 9.5,
+   "price": -111,
+   "price_after_fee": -113,
+   "pricing_bettable": true,
+   "result": null,
+   "score": 67,
+   "sent_to_phone": false,
+   "sport": "NCAAF",
+   "start_utc": "2026-10-30T23:00:00Z",
+   "top25": false,
    "units_flat": null
   },
   {
@@ -16860,6 +16901,31 @@
   }
  ],
  "all_alerts": [
+  {
+   "alert_text": "Charlotte 49ers +9.5 (-111) at ProphetX [-113 after ProphetX fee]",
+   "bet": "Charlotte 49ers +9.5 (-111)",
+   "bet_result": null,
+   "book": "ProphetX",
+   "confirmed_by": [
+    "BetOnline",
+    "Matchbook"
+   ],
+   "edge_pct": 0.1,
+   "final": null,
+   "game": "Tulane Green Wave @ Charlotte 49ers",
+   "grade": "B",
+   "late": false,
+   "minutes_before_start": 780,
+   "price": -111,
+   "price_after_fee": -113,
+   "pushed_to_phone": false,
+   "repeat": false,
+   "score": 67,
+   "sent_et": "2026-10-30 06:00",
+   "sport": "NCAAF",
+   "start_utc": "2026-10-30T23:00:00Z",
+   "why": "Pinnacle moved +9.5 -> +8.5; bet only at +9 or better (confirmed by BetOnline, Matchbook)"
+  },
   {
    "alert_text": "Under 236.5 (-105) at Hard Rock (also: ProphetX, Novig)",
    "bet": "Under 236.5 (-105)",
