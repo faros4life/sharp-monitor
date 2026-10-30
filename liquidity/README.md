@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Oct 30, 6:02 AM ET. This run: 0 new, 0 not confirmed, 4 pending. Open alerts: 55.
+Updated Fri Oct 30, 6:11 AM ET. This run: 2 new, 0 not confirmed, 3 pending. Open alerts: 56.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,9 +10,10 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Oct 30 4:03AM | NBA | Orlando vs Toronto: Total Points | total: Over 226.5 points | kalshi | $26k | -108 | ✅ polymarket |  | +1.0c |  | pending |
-| Oct 30 4:03AM | NBA | Houston vs Dallas: Total Points | total: NOT Over 225.5 points | kalshi | $37k | -100 | ✅ polymarket |  | +0.0c |  | pending |
-| Oct 30 4:03AM | NBA | Detroit vs Brooklyn: Spread | spread: NOT Detroit wins by over 7.5 points | kalshi | $36k | -104 | ✅ novig,polymarket |  | +0.0c |  | pending |
+| Oct 30 6:11AM | NHL | Devils vs. Golden Knights | total: Under (6.5) | polymarket | $26k | -127 | ✅ kalshi,novig |  | +0.0c |  | pending |
+| Oct 30 6:11AM | NCAAF | Bowling Green vs Western Michigan | moneyline: Western Michigan | kalshi | $123k | -488 | ✅ novig |  | +0.0c |  | pending |
+| Oct 30 3:54AM | NBA | Houston vs Dallas: Total Points | total: NOT Over 225.5 points | kalshi | $37k | -100 | ✅ polymarket |  | +0.0c |  | pending |
+| Oct 30 3:54AM | NBA | Detroit vs Brooklyn: Spread | spread: NOT Detroit wins by over 7.5 points | kalshi | $34k | -104 | ✅ novig,polymarket |  | +0.0c |  | pending |
 | Oct 30 2:52AM | NHL | New Jersey vs Vegas: Spread | spread: NOT Vegas wins by over 1.5 goals | kalshi | $26k | -233 |  |  | +0.0c | yes | pending |
 | Oct 30 1:40AM | NCAAF | Louisiana Tech vs South Alabama | moneyline: Louisiana Tech | kalshi | $47k | -203 |  |  | +0.0c |  | pending |
 | Oct 30 12:10AM | NBA | Los Angeles L vs Golden State: Spread | spread: NOT Los Angeles L wins by over 2.5 points | kalshi | $33k | +104 |  |  | +1.0c |  | pending |
@@ -105,7 +106,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 29 7:30AM | NFL | Carolina Panthers @ Green Bay Packers | moneyline: GB (0) | novig | $32k | -186 | ✅ kalshi,prophetx |  | -11.0c | yes | W |
 | Oct 29 7:30AM | NHL | Vancouver vs San Jose: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $26k | +117 |  |  | -1.0c |  | W |
 | Oct 29 7:30AM | NCAAF | Michigan vs Rutgers | moneyline: Michigan | kalshi | $132k | -567 |  |  | +1.0c | yes | pending |
-| Oct 29 7:30AM | NCAAF | Kansas St. vs Colorado | moneyline: Colorado | kalshi | $77k | -113 |  |  | +2.0c | yes | pending |
+| Oct 29 7:30AM | NCAAF | Kansas St. vs Colorado | moneyline: Colorado | kalshi | $77k | -113 |  |  | +3.0c | yes | pending |
 | Oct 29 7:00AM | NHL | Buffalo vs Anaheim: Total Goals | total: Over 6.5 goals scored | kalshi | $43k | -117 | ✅ novig,polymarket |  | +1.0c |  | W |
 | Oct 29 7:00AM | NHL | Ottawa vs Los Angeles: Spread | spread: NOT Ottawa wins by over 1.5 goals | kalshi | $58k | -233 |  |  | +0.0c |  | W |
 | Oct 29 6:40AM | NHL | Vancouver vs San Jose: Spread | spread: NOT San Jose wins by over 1.5 goals | kalshi | $64k | -150 | ✅ novig,polymarket |  | +1.0c |  | W |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 28 1:40PM | NHL | Columbus vs Carolina | moneyline: Carolina | kalshi | $28k | -213 |  |  | +2.0c | yes | W |
 | Oct 28 1:40PM | NCAAF | Florida Atlantic vs North Texas | moneyline: North Texas | kalshi | $114k | -456 | ✅ novig |  | +2.0c | yes | W |
 | Oct 28 1:30PM | NCAAF | Florida Atlantic vs North Texas: Total Points | total: NOT Over 76.5 points | kalshi | $72k | +104 |  |  | -2.0c | yes | L |
-| Oct 28 1:25PM | NBA | Houston Rockets at Milwaukee Bucks | moneyline: Houston Rockets | prophetx | $26k | -300 | ✅ kalshi,novig,polymarket |  | +0.6c |  | W |
