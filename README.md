@@ -1,11 +1,11 @@
 # EV sightings study (paper, measurement only)
 
-Started 2026-10-27T16:06:50Z. Updated 2026-10-30T13:13:21Z. Sightings are a record, never bets. CLV = close fair - sighting after-fee cost, in cents (+ = beat the close). Gate: >= 50 graded, positive average CLV and positive flat record; reviewed only at a scheduled review. A/B gate on consensus CLV; move-watch (A1) gate on Pinnacle CLV. Held = Pinnacle close minus Pinnacle's pre-move fair at the old number (+ = the move held). Rows exclude suspect sightings (best price 10c+ under the other books, or a crossed quote: usually a misread line); Pinnacle CLV only within 3 points of Pinnacle's number.
+Started 2026-10-27T16:06:50Z. Updated 2026-10-30T13:23:20Z. Sightings are a record, never bets. CLV = close fair - sighting after-fee cost, in cents (+ = beat the close). Gate: >= 50 graded, positive average CLV and positive flat record; reviewed only at a scheduled review. A/B gate on consensus CLV; move-watch (A1) gate on Pinnacle CLV. Held = Pinnacle close minus Pinnacle's pre-move fair at the old number (+ = the move held). Rows exclude suspect sightings (best price 10c+ under the other books, or a crossed quote: usually a misread line); Pinnacle CLV only within 3 points of Pinnacle's number.
 
 | Bucket | Sightings | Closed | CLV vs consensus | Beat % | Pin-closed | CLV vs Pinnacle | Graded | Record | Units | ROI | Held | Lag (med) | Gate |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| A cross-book (>= 2c) | 1564 | 1390 | -2.87c | 25.8% | 502 | -1.4c | 1390 | 694-696-0 | -97.14u | -7.0% |  |  | criteria not met (1390/50 graded, CLV not positive, record not positive) |
-| A qualifying (>= 3c) | 369 | 327 | -6.26c | 19.6% | 63 | -4.52c | 327 | 160-167-0 | -33.24u | -10.2% |  |  | criteria not met (327/50 graded, CLV not positive, record not positive) |
+| A cross-book (>= 2c) | 1568 | 1390 | -2.87c | 25.8% | 502 | -1.4c | 1390 | 694-696-0 | -97.14u | -7.0% |  |  | criteria not met (1390/50 graded, CLV not positive, record not positive) |
+| A qualifying (>= 3c) | 370 | 327 | -6.26c | 19.6% | 63 | -4.52c | 327 | 160-167-0 | -33.24u | -10.2% |  |  | criteria not met (327/50 graded, CLV not positive, record not positive) |
 | B Pinnacle (>= 3% EV) | 29 | 27 | -0.78c | 40.7% | 25 | -0.07c | 27 | 11-16-0 | -3.78u | -14.0% |  |  | criteria not met (27/50 graded, CLV not positive, record not positive) |
 | B ref age <60s | 2 | 2 | 2.69c | 100.0% | 2 | 2.44c | 2 | 1-1-0 | +0.11u | 5.3% |  |  |  |
 | B ref age 1-5m | 18 | 18 | -0.68c | 33.3% | 17 | 0.05c | 18 | 8-10-0 | -1.08u | -6.0% |  |  |  |
@@ -34,10 +34,11 @@ A and B on the same side/line: 24.
 
 ## Odds API credits (100K/month plan)
 
-Study: 483/day, projected 14479/30 days. All monitors on the key: 1934/day, projected 58016/30 days. Remaining 65920; guard holds 8200 for the sharp monitor; polls skipped by the guard: 0.
+Study: 481/day, projected 14442/30 days. All monitors on the key: 1932/day, projected 57945/30 days. Remaining 65913; guard holds 8200 for the sharp monitor; polls skipped by the guard: 0.
 
 ## Last runs
 
+- 2026-10-30T13:20:17Z: 60 games (13 in 24h), quotes {'prophetx': 1386, 'novig': 666, 'kalshi': 2558, 'polymarket_us': 1810}, 892 unmatched, 3609 side/lines, polls [none_due], moves 0, new A 4 B 0, maker posted 0 filled 0, credits used 0 left 65913, 183s
 - 2026-10-30T13:10:16Z: 60 games (13 in 24h), quotes {'prophetx': 1386, 'novig': 666, 'kalshi': 3702, 'polymarket_us': 1908}, 1423 unmatched, 4267 side/lines, polls [none_due], moves 0, new A 3 B 0, maker posted 0 filled 0, credits used 0 left 65920, 185s
 - 2026-10-30T13:00:21Z: 60 games (13 in 24h), quotes {'prophetx': 1314, 'novig': 662, 'kalshi': 2858, 'polymarket_us': 1908}, 1101 unmatched, 3705 side/lines, polls [NCAAF:slow,NBA:slow], moves 17, new A 20 B 0, maker posted 0 filled 0, credits used 4 left 65929, 185s
 - 2026-10-30T12:50:16Z: outside read hours: closes/grades only
@@ -47,4 +48,3 @@ Study: 483/day, projected 14479/30 days. All monitors on the key: 1934/day, proj
 - 2026-10-30T12:24:41Z: outside read hours: closes/grades only
 - 2026-10-30T12:20:16Z: outside read hours: closes/grades only
 - 2026-10-30T12:10:14Z: outside read hours: closes/grades only
-- 2026-10-30T12:00:22Z: outside read hours: closes/grades only
