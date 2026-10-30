@@ -1,6 +1,291 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-30T15:50:11Z",
+   "base_depth": 116622,
+   "best_price": 0.51,
+   "best_price_american": -104,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-30",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Charlotte",
+     "price": 0.5,
+     "this_side": 649956
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "CHA (0)",
+     "price": 0.51,
+     "this_side": 52986
+    },
+    "polymarket": {
+     "new_other_side": -20142,
+     "new_this_side": 55263,
+     "other_side": 85883,
+     "other_side_all_levels": 130886,
+     "ratio": 1.5,
+     "this_side": 128259,
+     "this_side_all_levels": 181728
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "Charlotte Hornets",
+     "price": 0.5098,
+     "this_side": 25507
+    }
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-10-30T15:40:13Z",
+   "game": "Hornets vs. Wizards",
+   "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"6101698\"}",
+   "lead_min": 430,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 55263,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -120
+    },
+    "betopenly": {
+     "point": null,
+     "price": -104
+    },
+    "betrivers": {
+     "point": null,
+     "price": -109
+    },
+    "bovada": {
+     "point": null,
+     "price": -115
+    },
+    "draftkings": {
+     "point": null,
+     "price": -112
+    },
+    "fanatics": {
+     "point": null,
+     "price": -115
+    },
+    "fanduel": {
+     "point": null,
+     "price": -106
+    },
+    "kalshi": {
+     "point": null,
+     "price": 100
+    },
+    "limitless": {
+     "point": null,
+     "price": -105
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -107
+    },
+    "novig": {
+     "point": null,
+     "price": -104
+    },
+    "polymarket": {
+     "point": null,
+     "price": -104
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": 100
+    },
+    "prophetx": {
+     "point": null,
+     "price": -103
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 0,
+    "pm_market_id": "6101698"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi",
+    "novig"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Hornets",
+   "side_label": "Hornets",
+   "start_source": "odds",
+   "start_utc": "2026-10-30T23:00:00Z",
+   "teams": [
+    "Hornets",
+    "Wizards"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-30T15:50:11Z",
+   "base_depth": 124118,
+   "best_price": 0.515,
+   "best_price_american": -106,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-31",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -2609,
+     "new_this_side": 36148,
+     "other_side": 125043,
+     "other_side_all_levels": 141397,
+     "ratio": 1.1,
+     "this_side": 135137,
+     "this_side_all_levels": 159945
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "WMU -13.5 (-13.5)",
+     "price": 0.515,
+     "this_side": 16790
+    }
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-10-30T15:40:13Z",
+   "game": "Bowling Green vs Western Michigan: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFSPREAD-26OCT31BGSUWMU-WMU14\"}",
+   "lead_min": 1450,
+   "league": "NCAAF",
+   "line": -13.5,
+   "market": "spread",
+   "new_money": 36148,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -13.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": -13.0,
+     "price": -120
+    },
+    "betrivers": {
+     "point": -13.5,
+     "price": -112
+    },
+    "betus": {
+     "point": -13.5,
+     "price": -115
+    },
+    "bovada": {
+     "point": -13.5,
+     "price": -115
+    },
+    "draftkings": {
+     "point": -13.5,
+     "price": -115
+    },
+    "fanatics": {
+     "point": -13.5,
+     "price": -115
+    },
+    "fanduel": {
+     "point": -13.5,
+     "price": -105
+    },
+    "kalshi": {
+     "point": -13.5,
+     "price": -104
+    },
+    "lowvig": {
+     "point": -13.0,
+     "price": -116
+    },
+    "mybookieag": {
+     "point": -13.5,
+     "price": -110
+    },
+    "novig": {
+     "point": -13.5,
+     "price": -106
+    },
+    "polymarket": {
+     "point": 16.5,
+     "price": -9900
+    },
+    "prophetx": {
+     "point": -13.5,
+     "price": -109
+    },
+    "williamhill_us": {
+     "point": -13.5,
+     "price": -112
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFSPREAD-26OCT31BGSUWMU-WMU14"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Western Michigan",
+   "side_label": "Western Michigan wins by over 13.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-10-31T16:00:00Z",
+   "teams": [
+    "Bowling Green",
+    "Western Michigan"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-30T15:20:11Z",
    "base_depth": 71792,
    "best_price": 0.3324,
@@ -5911,8 +6196,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": 0.0,
+   "close_price": 0.51,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-30",
    "depth_by_book": {
@@ -6283,8 +6568,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.49,
-   "clv_cents": 1.0,
+   "close_price": 0.5,
+   "clv_cents": 2.0,
    "confirmed_after_min": 12,
    "date": "2026-10-30",
    "depth_by_book": {
@@ -6598,8 +6883,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.69,
-   "clv_cents": 4.0,
+   "close_price": 0.68,
+   "clv_cents": 3.0,
    "confirmed_after_min": 10,
    "date": "2026-10-30",
    "depth_by_book": {
@@ -7033,8 +7318,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": -1.0,
+   "close_price": 0.51,
+   "clv_cents": -2.0,
    "confirmed_after_min": 10,
    "date": "2026-10-30",
    "depth_by_book": {
@@ -15598,8 +15883,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": -1.0,
+   "close_price": 0.5,
+   "clv_cents": -2.0,
    "confirmed_after_min": 7,
    "date": "2026-10-30",
    "depth_by_book": {
@@ -20386,8 +20671,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.77,
-   "clv_cents": -1.0,
+   "close_price": 0.78,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-10-30",
    "depth_by_book": {
@@ -20469,8 +20754,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.71,
-   "clv_cents": 0.0,
+   "close_price": 0.72,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-30",
    "depth_by_book": {
