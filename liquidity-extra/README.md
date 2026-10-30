@@ -1,21 +1,21 @@
 # Liquidity alerts (paper)
 
-Updated Fri Oct 30, 8:40 AM ET. This run: 0 new, 1 not confirmed, 0 pending. Open alerts: 10.
+Updated Fri Oct 30, 8:50 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 8.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 77-55 (-10.82u flat) | rule met: 26-25
+**Record:** 78-56 (-11.20u flat) | rule met: 26-25
 
-**Fade (paper, betting against the print):** 30-42 (+7.87u flat, after fees)
+**Fade (paper, betting against the print):** 31-43 (+9.05u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Oct 30 6:40AM | TENNIS | Tagger vs Shi | moneyline: Tagger | kalshi | $26k | -285 | ✅ novig |  | +0.0c |  | pending |
 | Oct 30 4:50AM | TENNIS | Struff vs Borges | moneyline: Struff | kalshi | $34k | -113 |  |  | +0.0c | yes | pending |
 | Oct 30 3:30AM | TENNIS | Mannarino vs Medvedev | moneyline: Medvedev | kalshi | $28k | -376 | ✅ novig |  | +0.0c | yes | pending |
-| Oct 30 3:00AM | TENNIS | Badosa vs Dart | moneyline: Dart | kalshi | $151k | -150 |  |  | +19.0c |  | pending |
-| Oct 30 1:30AM | TENNIS | Badosa vs Dart | moneyline: Badosa | kalshi | $141k | -245 |  |  | -49.0c | yes | pending |
-| Oct 29 11:10PM | TENNIS | Rune vs Vacherot | moneyline: Rune | kalshi | $27k | -133 | ✅ novig |  | +0.0c |  | pending |
+| Oct 30 3:00AM | TENNIS | Badosa vs Dart | moneyline: Dart | kalshi | $151k | -150 |  |  | +19.0c |  | W |
+| Oct 30 1:30AM | TENNIS | Badosa vs Dart | moneyline: Badosa | kalshi | $141k | -245 |  |  | -49.0c | yes | L |
+| Oct 29 11:10PM | TENNIS | Rune vs Vacherot | moneyline: Rune | kalshi | $27k | -133 | ✅ novig |  | -1.0c |  | pending |
 | Oct 29 10:30PM | TENNIS | Rakhimova vs Joint | moneyline: Rakhimova | kalshi | $355k | -270 |  |  | +18.0c |  | pending |
 | Oct 29 10:10PM | TENNIS | Rakhimova vs Joint | moneyline: Joint | kalshi | $347k | -335 |  |  | -67.0c | yes | pending |
 | Oct 29 10:00PM | TENNIS | Rybakina vs Fernandez | moneyline: Rybakina | kalshi | $56k | -335 | ✅ novig |  | +0.0c | yes | pending |
