@@ -1,21 +1,21 @@
 # Liquidity alerts (paper)
 
-Updated Fri Oct 30, 2:30 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 5.
+Updated Fri Oct 30, 2:40 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 4.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 82-59 (-12.96u flat) | rule met: 28-26
+**Record:** 83-59 (-12.59u flat) | rule met: 29-26
 
-**Fade (paper, betting against the print):** 34-47 (+10.17u flat, after fees)
+**Fade (paper, betting against the print):** 34-48 (+9.17u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Oct 30 11:30AM | TENNIS | Berrettini vs de Minaur | moneyline: de Minaur | kalshi | $30k | -213 | ✅ novig |  | +0.0c |  | pending |
 | Oct 30 11:10AM | TENNIS | Prozorova vs Kinoshita | moneyline: Prozorova | kalshi | $30k | -525 |  |  | +0.0c |  | pending |
 | Oct 30 10:00AM | TENNIS | Fritz vs Fils | moneyline: Fils | kalshi | $44k | -108 |  |  | +0.0c | yes | L |
-| Oct 30 9:28AM | TENNIS | Kym vs Lehecka | moneyline: Lehecka | kalshi | $63k | -270 | ✅ novig |  | +0.0c | yes | pending |
+| Oct 30 9:28AM | TENNIS | Kym vs Lehecka | moneyline: Lehecka | kalshi | $63k | -270 | ✅ novig |  | +0.0c | yes | W |
 | Oct 30 6:40AM | TENNIS | Tagger vs Shi | moneyline: Tagger | kalshi | $26k | -285 | ✅ novig |  | +0.0c |  | W |
-| Oct 30 4:50AM | TENNIS | Struff vs Borges | moneyline: Struff | kalshi | $34k | -113 |  |  | +2.0c | yes | pending |
+| Oct 30 4:50AM | TENNIS | Struff vs Borges | moneyline: Struff | kalshi | $34k | -113 |  |  | +1.0c | yes | pending |
 | Oct 30 3:30AM | TENNIS | Mannarino vs Medvedev | moneyline: Medvedev | kalshi | $28k | -376 | ✅ novig |  | +0.0c | yes | W |
 | Oct 30 3:00AM | TENNIS | Badosa vs Dart | moneyline: Dart | kalshi | $151k | -150 |  |  | +19.0c |  | W |
 | Oct 30 1:30AM | TENNIS | Badosa vs Dart | moneyline: Badosa | kalshi | $141k | -245 |  |  | -49.0c | yes | L |
