@@ -1,6 +1,82 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-30T15:30:22Z",
+   "base_depth": 175916,
+   "best_price": 0.685,
+   "best_price_american": -217,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.68,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 6,
+   "date": "2026-10-30",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -7034,
+     "new_this_side": 30048,
+     "other_side": 79511,
+     "other_side_all_levels": 100472,
+     "ratio": 2.5,
+     "this_side": 200890,
+     "this_side_all_levels": 230604
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "A. De Minaur (0)",
+     "price": 0.685,
+     "this_side": 18428
+    }
+   },
+   "fade_price": 0.33,
+   "first_seen_utc": "2026-10-30T15:24:09Z",
+   "game": "Berrettini vs de Minaur",
+   "key": "kalshi|KXATPMATCH-26OCT30BERDE|ml|1",
+   "lead_min": 210,
+   "league": "TENNIS",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 30048,
+   "paper_only": true,
+   "price": 0.68,
+   "price_american": -213,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.68,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXATPMATCH-26OCT30BERDE-DE"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "de Minaur",
+   "side_label": "de Minaur",
+   "start_source": "novig",
+   "start_utc": "2026-10-30T19:00:00Z",
+   "teams": [
+    "Berrettini",
+    "de Minaur"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-30T15:10:16Z",
    "base_depth": 8867,
    "best_price": 0.8494,
@@ -47,6 +123,8 @@
    "new_money": 29938,
    "paper_only": true,
    "price": 0.84,
+   "price_after_15m": 0.8494,
+   "price_after_15m_book": "kalshi",
    "price_american": -525,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.84,
@@ -67,6 +145,7 @@
    "side_label": "Prozorova",
    "start_source": "novig",
    "start_utc": "2026-10-31T02:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Prozorova",
     "Kinoshita"
