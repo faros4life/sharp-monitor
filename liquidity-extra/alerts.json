@@ -1,6 +1,80 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-30T23:10:15Z",
+   "base_depth": 73942,
+   "best_price": 0.83,
+   "best_price_american": -488,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.83,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-30",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 648,
+     "new_this_side": 35794,
+     "other_side": 9003,
+     "other_side_all_levels": 15945,
+     "ratio": 7.8,
+     "this_side": 70454,
+     "this_side_all_levels": 111621
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "H. Sakatsume (0)",
+     "price": 0.83,
+     "this_side": 5459
+    }
+   },
+   "fade_price": 0.18,
+   "first_seen_utc": "2026-10-30T23:00:23Z",
+   "game": "Sakatsume vs Wong",
+   "key": "kalshi|KXWTAMATCH-26OCT30SAKWON|ml|0",
+   "lead_min": 170,
+   "league": "TENNIS",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 35794,
+   "paper_only": true,
+   "price": 0.83,
+   "price_american": -488,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.83,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXWTAMATCH-26OCT30SAKWON-SAK"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Sakatsume",
+   "side_label": "Sakatsume",
+   "start_source": "novig",
+   "start_utc": "2026-10-31T02:00:00Z",
+   "teams": [
+    "Sakatsume",
+    "Wong"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-30T22:00:21Z",
    "base_depth": 99255,
    "best_price": 0.73,
@@ -92,8 +166,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.69,
-   "clv_cents": -1.0,
+   "close_price": 0.68,
+   "clv_cents": -2.0,
    "confirmed_after_min": 6,
    "date": "2026-10-31",
    "depth_by_book": {
