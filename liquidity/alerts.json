@@ -1,8 +1,8 @@
 {
  "alerts": [
   {
-   "alerted_utc": "2026-10-30T06:52:54Z",
-   "base_depth": 98594,
+   "alerted_utc": "2026-10-30T06:44:43Z",
+   "base_depth": 93371,
    "best_price": 0.705,
    "best_price_american": -239,
    "best_price_book": "novig",
@@ -17,30 +17,32 @@
    ],
    "close_price": 0.7,
    "clv_cents": 0.0,
-   "confirmed_after_min": 16,
+   "confirmed_after_min": 17,
    "date": "2026-10-30",
    "depth_by_book": {
     "kalshi": {
-     "new_other_side": 923,
-     "new_this_side": 25804,
+     "new_other_side": 1966,
+     "new_this_side": 27286,
      "other_side": 18860,
      "other_side_all_levels": 25286,
      "ratio": 3.7,
-     "this_side": 69091,
-     "this_side_all_levels": 124574
+     "this_side": 69095,
+     "this_side_all_levels": 124578
     }
    },
    "fade_price": 0.31,
-   "first_seen_utc": "2026-10-30T06:36:25Z",
+   "first_seen_utc": "2026-10-30T06:27:25Z",
    "game": "New Jersey vs Vegas: Spread",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLSPREAD-26OCT30NJVGK-VGK2\"}",
-   "lead_min": 907,
+   "lead_min": 915,
    "league": "NHL",
    "line": 1.5,
    "market": "spread",
-   "new_money": 25804,
+   "new_money": 27286,
    "paper_only": false,
    "price": 0.7,
+   "price_after_15m": 0.705,
+   "price_after_15m_book": "novig",
    "price_american": -233,
    "price_rule": "fails_cap",
    "price_when_first_seen": 0.7,
@@ -122,6 +124,7 @@
    "side_label": "NOT Vegas wins by over 1.5 goals",
    "start_source": "odds",
    "start_utc": "2026-10-30T22:00:00Z",
+   "still_actionable": true,
    "teams": [
     "New Jersey",
     "Vegas"
