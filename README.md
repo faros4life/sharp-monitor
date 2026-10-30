@@ -1,6 +1,6 @@
 # EV sightings study (paper, measurement only)
 
-Started 2026-10-27T16:06:50Z. Updated 2026-10-30T03:36:39Z. Sightings are a record, never bets. CLV = close fair - sighting after-fee cost, in cents (+ = beat the close). Gate: >= 50 graded, positive average CLV and positive flat record; reviewed only at a scheduled review. A/B gate on consensus CLV; move-watch (A1) gate on Pinnacle CLV. Held = Pinnacle close minus Pinnacle's pre-move fair at the old number (+ = the move held). Rows exclude suspect sightings (best price 10c+ under the other books, or a crossed quote: usually a misread line); Pinnacle CLV only within 3 points of Pinnacle's number.
+Started 2026-10-27T16:06:50Z. Updated 2026-10-30T03:43:18Z. Sightings are a record, never bets. CLV = close fair - sighting after-fee cost, in cents (+ = beat the close). Gate: >= 50 graded, positive average CLV and positive flat record; reviewed only at a scheduled review. A/B gate on consensus CLV; move-watch (A1) gate on Pinnacle CLV. Held = Pinnacle close minus Pinnacle's pre-move fair at the old number (+ = the move held). Rows exclude suspect sightings (best price 10c+ under the other books, or a crossed quote: usually a misread line); Pinnacle CLV only within 3 points of Pinnacle's number.
 
 | Bucket | Sightings | Closed | CLV vs consensus | Beat % | Pin-closed | CLV vs Pinnacle | Graded | Record | Units | ROI | Held | Lag (med) | Gate |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
@@ -34,10 +34,11 @@ A and B on the same side/line: 24.
 
 ## Odds API credits (100K/month plan)
 
-Study: 562/day, projected 16873/30 days. All monitors on the key: 2155/day, projected 64649/30 days. Remaining 66181; guard holds 10800 for the sharp monitor; polls skipped by the guard: 0.
+Study: 563/day, projected 16891/30 days. All monitors on the key: 2155/day, projected 64663/30 days. Remaining 66170; guard holds 10800 for the sharp monitor; polls skipped by the guard: 0.
 
 ## Last runs
 
+- 2026-10-30T03:40:15Z: 13 games (13 in 24h), quotes {'prophetx': 1382, 'novig': 668, 'kalshi': 1034, 'polymarket_us': 1898}, 280 unmatched, 2397 side/lines, polls [NCAAF:slow,NBA:slow], moves 0, new A 0 B 0, maker posted 0 filled 0, credits used 4 left 66170, 183s
 - 2026-10-30T03:33:38Z: 13 games (13 in 24h), quotes {'prophetx': 1382, 'novig': 668, 'kalshi': 1036, 'polymarket_us': 1898}, 282 unmatched, 2395 side/lines, polls [none_due], moves 0, new A 1 B 0, maker posted 0 filled 0, credits used 0 left 66181, 181s
 - 2026-10-30T03:30:20Z: 13 games (13 in 24h), quotes {'prophetx': 1382, 'novig': 670, 'kalshi': 1040, 'polymarket_us': 1898}, 286 unmatched, 2394 side/lines, polls [none_due], moves 0, new A 2 B 0, maker posted 0 filled 0, credits used 0 left 66181, 183s
 - 2026-10-30T03:20:57Z: 13 games (13 in 24h), quotes {'prophetx': 1382, 'novig': 670, 'kalshi': 1072, 'polymarket_us': 1794}, 316 unmatched, 2339 side/lines, polls [none_due], moves 0, new A 1 B 0, maker posted 0 filled 0, credits used 0 left 66195, 182s
@@ -47,4 +48,3 @@ Study: 562/day, projected 16873/30 days. All monitors on the key: 2155/day, proj
 - 2026-10-30T02:56:10Z: 13 games (13 in 24h), quotes {'prophetx': 1382, 'novig': 664, 'kalshi': 1142, 'polymarket_us': 1704}, 386 unmatched, 2290 side/lines, polls [NCAAF:slow,NBA:slow], moves 4, new A 5 B 0, maker posted 0 filled 0, credits used 4 left 66228, 183s
 - 2026-10-30T02:50:15Z: 13 games (13 in 24h), quotes {'prophetx': 1382, 'novig': 670, 'kalshi': 1156, 'polymarket_us': 1898}, 400 unmatched, 2399 side/lines, polls [none_due], moves 0, new A 8 B 0, maker posted 0 filled 0, credits used 0 left 66239, 183s
 - 2026-10-30T02:40:16Z: 13 games (13 in 24h), quotes {'prophetx': 1382, 'novig': 670, 'kalshi': 1164, 'polymarket_us': 1894}, 406 unmatched, 2388 side/lines, polls [none_due], moves 0, new A 3 B 1, maker posted 0 filled 0, credits used 0 left 66246, 183s
-- 2026-10-30T02:33:45Z: 13 games (13 in 24h), quotes {'prophetx': 1382, 'novig': 662, 'kalshi': 1172, 'polymarket_us': 1894}, 410 unmatched, 2338 side/lines, polls [none_due], moves 0, new A 2 B 0, maker posted 0 filled 0, credits used 0 left 66253, 181s
