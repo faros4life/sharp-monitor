@@ -1041,6 +1041,8 @@ def bot_orders(M, days=4):
                     if lo.get("status") != "placed" or not lo.get("order_id"):
                         continue
                     ids[str(lo["order_id"])] = lo.get("book") or "prophetx"
+                    if row.get("key"):
+                        LIVEKEYS.add(row["key"])
                     try:   # Oct 28: Kalshi / PM US / Novig dollars risked TODAY (ET) count as lost in the daily stop
                         d_et = datetime.fromisoformat(str(row.get("decided_utc")).replace("Z", "+00:00")).astimezone(lm.ET).date()
                     except Exception:
@@ -1226,6 +1228,10 @@ def live_order_other(r):
     return dict(res, asked_stake=stake, limit=limit_am)
 
 
+# Oct 30 (Peter, after Muse's (a)/(b) answers): phase-1 goes live on the CODED rules AGREE, no wait for Muse.
+# Muse is a veto: a DISAGREE on the play's key blocks any live order not yet sent. EXEC_RULES_LIVE=0 restores the gate.
+RULES_LIVE = (os.environ.get("EXEC_RULES_LIVE") or "1").strip() != "0"
+LIVEKEYS = set()   # play keys the bot already sent a live order or resting bid for (ledger registry + this run)
 REST_BOOKS = tuple(b.strip() for b in (os.environ.get("EXEC_REST_BOOKS") or "novig,kalshi").split(",") if b.strip())
 REST_BEFORE_MIN = 30   # resting bids expire this long before the listed start
 
@@ -1496,6 +1502,8 @@ def main():
                          f"for 3 min ({why[:160]}). The bot won't bet it blind. Place it by hand if you want it now.")
                 pushed = True
         print(f"Held-retry: {len(p1)} live-eligible play(s); still unreadable: {len(blind)} book(s)")   # counts only
+    if px_live.LIVE and new:
+        live_guards()   # Oct 30: load the ledger registry FIRST, so LIVEKEYS blocks a second live order on a play
     results, taken_now = [], set()
     M2 = imap_open()
 
@@ -1519,8 +1527,13 @@ def main():
                 continue
             r = evaluate(p, now, evs_by, mks_by_event, pos, None if p.get("source") == "rules" else taken, held)
             r["entry"] = ent
-            if p.get("source") != "rules" and ent:   # phase-1 live tag (Muse plays only: needs Muse AGREE)
+            if ent and (p.get("source") != "rules" or RULES_LIVE):   # phase-1 live tag (Oct 30: coded AGREE goes live too)
                 ok, why = agree_rules.phase1(ent, True)   # NCAAF/NBA spreads + unders, NFL unders only (Peter, Oct 26)
+                lk = derive_key(p) or p["play_key"]
+                if ok and lk in MUSE_DISAGREE:
+                    ok, why = False, ["Muse DISAGREE (veto)"]
+                elif ok and lk in LIVEKEYS:
+                    ok, why = False, ["a live order or resting bid was already sent for this play"]
                 if ok and r["verdict"] == "WOULD PLACE" and r.get("lc"):
                     lc = r["lc"]
                     lr, lw = live_stake(lc["shown"])
@@ -1544,8 +1557,10 @@ def main():
             if r["verdict"] == "WOULD PLACE" and (r.get("live") or {}).get("go"):
                 r["live"]["order"] = live_order(r)
                 r["live"]["more"] = live_remainder(r)   # Oct 28: $200 total per play across venues
+                LIVEKEYS.add(derive_key(p) or p["play_key"])
             if rest_wanted(r):   # Oct 28 (Peter): nothing filled at the number -> rest a bid until 30 min before the start
                 r["live"]["rest"] = rest_bid(r)
+                LIVEKEYS.add(derive_key(p) or p["play_key"])
             results.append(r)
             if (r["verdict"] == "WOULD PLACE" or ((r.get("live") or {}).get("rest") or {}).get("status") == "placed") \
                     and derive_key(p) and p.get("source") != "rules":
