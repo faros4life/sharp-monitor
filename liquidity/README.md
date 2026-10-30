@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Oct 30, 9:30 AM ET. This run: 6 new, 1 not confirmed, 1 pending. Open alerts: 75.
+Updated Fri Oct 30, 9:39 AM ET. This run: 7 new, 0 not confirmed, 2 pending. Open alerts: 76.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,14 +10,15 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Oct 30 9:30AM | NBA | New York vs Philadelphia: Total Points | total: NOT Over 226.5 points | kalshi | $33k | +104 |  |  | +0.0c |  | pending |
-| Oct 30 9:30AM | NBA | Denver vs Phoenix: Total Points | total: NOT Over 231.5 points | kalshi | $235k | -100 | ✅ novig,polymarket |  | +0.0c |  | pending |
-| Oct 30 9:30AM | NBA | Chicago vs Boston: Total Points | total: NOT Over 234.5 points | kalshi | $38k | +104 | ✅ polymarket |  | +0.0c |  | pending |
-| Oct 30 9:30AM | NBA | Charlotte vs Washington: Total Points | total: NOT Over 219.5 points | kalshi | $62k | +104 | ✅ polymarket | ✅ | +0.0c |  | pending |
-| Oct 30 9:30AM | NBA | Orlando vs Toronto: Spread | spread: NOT Toronto wins by over 5.5 points | kalshi | $54k | +108 | ✅ polymarket |  | +0.0c |  | pending |
-| Oct 30 9:30AM | NBA | Denver vs Phoenix: Spread | spread: NOT Denver wins by over 4.5 points | kalshi | $120k | -104 | ✅ novig |  | +0.0c |  | pending |
+| Oct 30 9:39AM | NBA | New York vs Philadelphia: Total Points | total: NOT Over 226.5 points | kalshi | $33k | +104 |  |  | +0.0c |  | pending |
+| Oct 30 9:39AM | NBA | Denver vs Phoenix: Total Points | total: NOT Over 231.5 points | kalshi | $235k | -100 | ✅ novig,polymarket |  | +0.0c |  | pending |
+| Oct 30 9:39AM | NBA | Chicago vs Boston: Total Points | total: NOT Over 234.5 points | kalshi | $38k | +104 | ✅ polymarket |  | +0.0c |  | pending |
+| Oct 30 9:39AM | NBA | Charlotte vs Washington: Total Points | total: NOT Over 219.5 points | kalshi | $62k | +104 | ✅ polymarket | ✅ | +0.0c |  | pending |
+| Oct 30 9:39AM | NBA | Orlando vs Toronto: Spread | spread: NOT Toronto wins by over 5.5 points | kalshi | $54k | +108 | ✅ polymarket |  | +0.0c |  | pending |
+| Oct 30 9:39AM | NBA | Denver vs Phoenix: Spread | spread: NOT Denver wins by over 4.5 points | kalshi | $120k | -104 | ✅ novig |  | +0.0c |  | pending |
+| Oct 30 9:39AM | NBA | New York vs Philadelphia | moneyline: Philadelphia | kalshi | $322k | +113 | ✅ prophetx |  | +0.0c |  | pending |
 | Oct 30 9:21AM | NHL | Seattle vs Calgary: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $31k | -108 | ✅ novig,polymarket |  | +0.0c |  | pending |
-| Oct 30 9:21AM | NCAAF | Robert Morris vs Central Connecticut St. | moneyline: Central Connecticut St. | kalshi | $28k | -317 |  |  | +0.0c | yes | pending |
+| Oct 30 9:21AM | NCAAF | Robert Morris vs Central Connecticut St. | moneyline: Central Connecticut St. | kalshi | $28k | -317 |  |  | +0.0c |  | pending |
 | Oct 30 8:28AM | NBA | Pacers vs. Heat | moneyline: Heat | polymarket | $29k | -285 | ✅ kalshi,novig,prophetx | ✅ | +0.0c |  | pending |
 | Oct 30 8:11AM | NBA | Denver vs Phoenix: Total Points | total: Over 231.5 points | kalshi | $25k | -108 |  |  | -1.0c |  | pending |
 | Oct 30 8:11AM | NBA | Denver vs Phoenix: Spread | spread: Denver wins by over 4.5 points | kalshi | $58k | -100 | ✅ polymarket |  | +0.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 28 4:00PM | NHL | Chicago vs Detroit | moneyline: Detroit | kalshi | $27k | -163 |  |  | -2.0c | yes | W |
 | Oct 28 4:00PM | NHL | Toronto vs Seattle | moneyline: Seattle | kalshi | $119k | +127 | ✅ novig,polymarket,prophetx |  | +2.0c |  | W |
 | Oct 28 3:10PM | NFL | Carolina vs Green Bay: Total Points | total: Over 47.5 points | kalshi | $738k | -100 | ✅ novig |  | +0.0c | yes | L |
-| Oct 28 3:10PM | NBA | New York vs Chicago: Total Points | total: NOT Over 232.5 points | kalshi | $34k | -108 |  | ✅ | -3.0c | yes | L |
