@@ -1413,6 +1413,62 @@ def novig_reports():
     return n
 
 
+def kalshi_rest_reports():
+    """Oct 30 (Muse): a Kalshi resting bid that fills must message Peter at fill time (the next run, within ~10 min),
+    not ride a later summary. Reads the bot's placed Kalshi resting bids (last 2 days) from its own 'Bets LIVE:' ledger
+    rows, checks each order, and messages once per new fill amount (token email = the record). Counts only in the log."""
+    M = imap_open()
+    n = 0
+    try:
+        since = (datetime.now(timezone.utc) - timedelta(days=2)).strftime("%d-%b-%Y")
+        typ, data = M.uid("SEARCH", None, "SUBJECT", '"Bets LIVE:"', "SINCE", since)
+        rests = {}
+        for uid in (data[0].split() if typ == "OK" and data and data[0] else []):
+            typ, d = M.uid("FETCH", uid, "(RFC822)")
+            if typ != "OK" or not d or not d[0]:
+                continue
+            txt = body_text(d[0][1])
+            i = txt.rfind("LEDGER (machine-readable")
+            if i < 0:
+                continue
+            try:
+                rows, _ = json.JSONDecoder().raw_decode(txt[txt.index("[", i):])
+            except Exception:
+                continue
+            for row in rows:
+                lo = row.get("live_rest") or {}
+                if lo.get("book") == "kalshi" and lo.get("status") == "placed" and lo.get("order_id"):
+                    rests[str(lo["order_id"])] = (row, lo)
+        for oid, (row, lo) in rests.items():
+            try:
+                st, d = book_live._k_call("GET", f"/portfolio/orders/{oid}")
+            except Exception:
+                continue
+            o = d.get("order") or {}
+            fc = lm.num(o.get("fill_count_fp")) or lm.num(o.get("fill_count")) or \
+                ((lm.num(o.get("taker_fill_count")) or 0) + (lm.num(o.get("maker_fill_count")) or 0))
+            if not fc:
+                continue
+            tok = "xkrf" + hashlib.sha1(f"{oid}|{fc}".encode()).hexdigest()[:12]
+            if gsearch_strict(M, tok):
+                continue
+            rem = lm.num(o.get("remaining_count_fp")) or lm.num(o.get("remaining_count")) or 0
+            head = "KALSHI RESTING BID FILLED" if not rem else "KALSHI RESTING BID PARTIAL FILL"
+            msg = (f"{head}: {row.get('key', '').replace('|', ' ')}\n{fc:g} contracts at the {lo.get('limit')} limit"
+                   + (f"; {rem:g} still resting until {lo.get('expires_utc')}" if rem else ""))
+            push(head.title(), msg, mirror=False)
+            tg(msg)
+            try:
+                send(f"Bets Kalshi order: {head.replace('KALSHI ', '')}", msg + f"\n\n{tok}")
+            except Exception:
+                pass
+            n += 1
+    finally:
+        M.logout()
+    print(f"Kalshi resting-fill reports sent: {n}")
+    return n
+
+
 def ledger_row(r, run_start):
     p, e = r["play"], r.get("entry") or {}
     at = iso_t(e.get("alert_utc") or p.get("alert_utc"))
@@ -1476,6 +1532,10 @@ def main():
         novig_reports()
     except Exception as ex:
         print(f"novig report check failed: {str(ex)[:60]}")
+    try:
+        kalshi_rest_reports()
+    except Exception as ex:
+        print(f"kalshi resting-fill check failed: {str(ex)[:60]}")
     print(f"Verdict plays seen (2 days): {len(plays)}; coded-rule alerts: {len(rplays)}; new: {len(new)}")
     if wake_s is not None:
         print(f"Wake: run started {wake_s:.0f}s after the newest sent alert (trigger: {trig})")
