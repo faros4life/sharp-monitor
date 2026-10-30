@@ -1249,6 +1249,16 @@ def rest_wanted(r):
     return r.get("verdict") == "SKIP" and str(r.get("reason") or "").startswith("price:") and lv.get("why") == [r.get("reason")]
 
 
+def novig_grid_floor(p, levels):
+    """Oct 30 fix: Novig only accepts prices on its grid ('price is not on the submittable price grid' killed the
+    Rockets/Mavs resting bid at 0.528). Snap DOWN (never a worse price than the alert) to the grid seen on the live
+    book: 0.005 steps if every listed price sits on 0.005 and some are off 0.01, else whole cents (the safe default)."""
+    pr = [round(float(lv.get("price")), 4) for lv in levels if lv.get("price") is not None]
+    on = lambda v, st: abs(v / st - round(v / st)) < 1e-6
+    step = 0.005 if pr and all(on(v, 0.005) for v in pr) and any(not on(v, 0.01) for v in pr) else 0.01
+    return round(math.floor(p / step + 1e-9) * step, 3)
+
+
 def rest_bid(r):
     """Rest ONE bid at the alert's after-fee number (no 2c extra) on the first REST_BOOKS book that lists the exact
     alert line: Kalshi (good-till-cancelled with an expiry) or Novig (GTT on the home PC). Same unit, cap, STOP and
@@ -1292,7 +1302,7 @@ def rest_bid(r):
             if not x.get("outcome_id"):
                 why_not.append("Novig: outcome unknown")
                 continue
-            c = math.floor(p_star * 1000 + 1e-9) / 1000
+            c = novig_grid_floor(p_star, x.get("buy_levels") or [])
             q = int(risk // c * 100)
             res = book_live.novig_place(x["outcome_id"], c, q, f"{p.get('sport')} {p.get('game')} | {p.get('bet')}",
                                         int(secs * 1000), derive_key(p) or "")
@@ -1308,6 +1318,9 @@ def rest_bid(r):
                f"{p.get('sport')} {p.get('game')}\nSTOP on ntfy does NOT cancel it: cancel in the {name} app if needed.")
         elif res["status"] == "error":
             tg(f"RESTING BID ERROR {name}: {(p.get('bet') or '')[:60]}\n{res['reason'][:200]}\nCheck {name} before retrying.")
+        if res["status"] == "refused":   # Oct 30: a clean refusal falls through to the next book (Novig first, else Kalshi)
+            why_not.append(f"{name}: {res.get('reason')}")
+            continue
         return res
     return {"status": "refused", "reason": "; ".join(why_not) or "no resting book"}
 
