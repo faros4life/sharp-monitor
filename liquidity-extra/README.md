@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Oct 30, 3:20 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 7.
+Updated Fri Oct 30, 3:30 AM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 8.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,8 +10,9 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Oct 30 3:00AM | TENNIS | Badosa vs Dart | moneyline: Dart | kalshi | $151k | -150 |  |  | +28.0c |  | pending |
-| Oct 30 1:30AM | TENNIS | Badosa vs Dart | moneyline: Badosa | kalshi | $141k | -245 |  |  | -58.0c | yes | pending |
+| Oct 30 3:30AM | TENNIS | Mannarino vs Medvedev | moneyline: Medvedev | kalshi | $28k | -376 | ✅ novig |  | +0.0c |  | pending |
+| Oct 30 3:00AM | TENNIS | Badosa vs Dart | moneyline: Dart | kalshi | $151k | -150 |  |  | +19.0c |  | pending |
+| Oct 30 1:30AM | TENNIS | Badosa vs Dart | moneyline: Badosa | kalshi | $141k | -245 |  |  | -49.0c | yes | pending |
 | Oct 29 11:10PM | TENNIS | Rune vs Vacherot | moneyline: Rune | kalshi | $27k | -133 | ✅ novig |  | +1.0c |  | pending |
 | Oct 29 10:30PM | TENNIS | Rakhimova vs Joint | moneyline: Rakhimova | kalshi | $355k | -270 |  |  | +18.0c |  | pending |
 | Oct 29 10:10PM | TENNIS | Rakhimova vs Joint | moneyline: Joint | kalshi | $347k | -335 |  |  | -67.0c | yes | pending |
