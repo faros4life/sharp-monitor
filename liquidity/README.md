@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Fri Oct 30, 12:30 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 64.
+Updated Fri Oct 30, 12:40 AM ET. This run: 0 new, 1 not confirmed, 0 pending. Open alerts: 63.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 491-445 (-57.52u flat) | rule met: 310-297
+**Record:** 491-446 (-58.52u flat) | rule met: 310-298
 
-**Fade (paper, betting against the print):** 179-218 (-29.68u flat, after fees)
+**Fade (paper, betting against the print):** 180-218 (-27.18u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -34,7 +34,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 29 4:00PM | NCAAF | Temple vs East Carolina | moneyline: East Carolina | kalshi | $55k | -194 |  |  | -1.0c |  | pending |
 | Oct 29 3:30PM | NFL | Carolina Panthers @ Green Bay Packers | spread: GB -3.5 (-3.5) | novig | $25k | -102 | ✅ kalshi |  | +0.5c | yes | W |
 | Oct 29 3:30PM | NFL | Carolina vs Green Bay: Total Points | total: NOT Over 46.5 points | kalshi | $360k | +108 | ✅ novig |  | +0.0c | yes | W |
-| Oct 29 3:21PM | NBA | Grizzlies vs. Trail Blazers | moneyline: Trail Blazers | polymarket | $111k | -270 | ✅ kalshi,novig,prophetx | ❌ | +0.0c |  | pending |
+| Oct 29 3:21PM | NBA | Grizzlies vs. Trail Blazers | moneyline: Trail Blazers | polymarket | $111k | -270 | ✅ kalshi,novig,prophetx | ❌ | +0.0c |  | L |
 | Oct 29 3:21PM | NHL | Utah vs Pittsburgh: Spread | spread: NOT Utah wins by over 1.5 goals | kalshi | $36k | -194 | ✅ novig,polymarket |  | +1.0c |  | W |
 | Oct 29 3:10PM | NHL | Buffalo vs Anaheim: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $70k | +117 | ✅ novig,polymarket |  | +0.0c |  | pending |
 | Oct 29 3:00PM | NCAAF | Troy vs James Madison: Total Points | total: NOT Over 51.5 points | kalshi | $103k | -104 |  | ❌ | -2.0c | yes | W |
