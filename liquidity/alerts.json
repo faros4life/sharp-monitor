@@ -1,6 +1,135 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-30T06:44:43Z",
+   "base_depth": 93371,
+   "best_price": 0.705,
+   "best_price_american": -239,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.7,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 17,
+   "date": "2026-10-30",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 1966,
+     "new_this_side": 27286,
+     "other_side": 18860,
+     "other_side_all_levels": 25286,
+     "ratio": 3.7,
+     "this_side": 69095,
+     "this_side_all_levels": 124578
+    }
+   },
+   "fade_price": 0.31,
+   "first_seen_utc": "2026-10-30T06:27:25Z",
+   "game": "New Jersey vs Vegas: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLSPREAD-26OCT30NJVGK-VGK2\"}",
+   "lead_min": 915,
+   "league": "NHL",
+   "line": 1.5,
+   "market": "spread",
+   "new_money": 27286,
+   "paper_only": false,
+   "price": 0.7,
+   "price_american": -233,
+   "price_rule": "fails_cap",
+   "price_when_first_seen": 0.7,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -1.5,
+     "price": 220
+    },
+    "betonlineag": {
+     "point": 1.5,
+     "price": -245
+    },
+    "betopenly": {
+     "point": 1.5,
+     "price": -228
+    },
+    "betrivers": {
+     "point": 1.5,
+     "price": -278
+    },
+    "betus": {
+     "point": 1.5,
+     "price": -245
+    },
+    "bovada": {
+     "point": 1.5,
+     "price": -260
+    },
+    "draftkings": {
+     "point": 1.5,
+     "price": -258
+    },
+    "fanatics": {
+     "point": 1.5,
+     "price": -255
+    },
+    "fanduel": {
+     "point": 1.5,
+     "price": -260
+    },
+    "kalshi": {
+     "point": 1.5,
+     "price": -233
+    },
+    "lowvig": {
+     "point": 1.5,
+     "price": -245
+    },
+    "mybookieag": {
+     "point": 1.5,
+     "price": -255
+    },
+    "novig": {
+     "point": 4.5,
+     "price": -100000
+    },
+    "polymarket": {
+     "point": 1.5,
+     "price": -245
+    },
+    "prophetx": {
+     "point": 1.5,
+     "price": -235
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNHLSPREAD-26OCT30NJVGK-VGK2"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "New Jersey",
+   "side_label": "NOT Vegas wins by over 1.5 goals",
+   "start_source": "odds",
+   "start_utc": "2026-10-30T22:00:00Z",
+   "teams": [
+    "New Jersey",
+    "Vegas"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-30T05:40:10Z",
    "base_depth": 292138,
    "best_price": 0.6855,
@@ -7096,8 +7225,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.54,
-   "clv_cents": 7.0,
+   "close_price": 0.55,
+   "clv_cents": 8.0,
    "confirmed_after_min": 6,
    "date": "2026-10-30",
    "depth_by_book": {
