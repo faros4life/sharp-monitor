@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Oct 29, 11:40 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 72.
+Updated Thu Oct 29, 11:50 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 73.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Oct 29 11:50PM | NCAAF | Baylor vs UCF: Total Points | total: Over 48.5 points | kalshi | $145k | -100 | ✅ novig |  | +0.0c |  | pending |
 | Oct 29 11:11PM | NCAAF | Wisconsin vs Iowa | moneyline: Wisconsin | kalshi | $216k | +122 |  |  | +0.0c |  | pending |
 | Oct 29 11:11PM | NBA | Los Angeles L vs Golden State | moneyline: Los Angeles L | kalshi | $70k | -127 | ✅ novig |  | +0.0c |  | pending |
 | Oct 29 10:21PM | NBA | Charlotte vs Washington | moneyline: Charlotte | kalshi | $97k | +108 |  |  | +0.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 28 12:10PM | NBA | Thunder vs. Mavericks | moneyline: Mavericks | polymarket | $65k | +186 |  |  | +3.0c |  | W |
 | Oct 28 12:10PM | NBA | Charlotte vs Detroit: Spread | spread: NOT Detroit wins by over 7.5 points | kalshi | $33k | -100 | ✅ novig,prophetx | ❌ | +1.0c | yes | L |
 | Oct 28 12:00PM | NBA | Magic vs. Raptors | total: Over (223.5) | polymarket | $29k | -108 |  | ❌ | +1.0c |  | W |
-| Oct 28 11:50AM | NHL | New Jersey vs Colorado: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $107k | -104 | ✅ novig | ❌ | +0.0c |  | L |

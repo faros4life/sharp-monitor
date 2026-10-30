@@ -1,6 +1,153 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-30T03:50:11Z",
+   "base_depth": 506344,
+   "best_price": 0.495,
+   "best_price_american": 102,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-30",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 15830,
+     "new_this_side": 145270,
+     "other_side": 519117,
+     "other_side_all_levels": 628847,
+     "ratio": 1.0,
+     "this_side": 523011,
+     "this_side_all_levels": 651603
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "Over 48.5 (48.5)",
+     "price": 0.495,
+     "this_side": 10713
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "over 48.5 (48.5)",
+     "price": 0.5,
+     "this_side": 2165
+    }
+   },
+   "fade_price": 0.51,
+   "first_seen_utc": "2026-10-30T03:40:12Z",
+   "game": "Baylor vs UCF: Total Points",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFTOTAL-26OCT30BAYUCF-49\"}",
+   "lead_min": 1180,
+   "league": "NCAAF",
+   "line": 48.5,
+   "market": "total",
+   "new_money": 145270,
+   "paper_only": false,
+   "price": 0.5,
+   "price_american": -100,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.5,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 48.5,
+     "price": -108
+    },
+    "betonlineag": {
+     "point": 49.0,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 48.5,
+     "price": 101
+    },
+    "betrivers": {
+     "point": 47.5,
+     "price": -109
+    },
+    "betus": {
+     "point": 48.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 48.0,
+     "price": -115
+    },
+    "draftkings": {
+     "point": 48.5,
+     "price": -108
+    },
+    "fanatics": {
+     "point": 48.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 48.5,
+     "price": -105
+    },
+    "kalshi": {
+     "point": 48.5,
+     "price": 100
+    },
+    "lowvig": {
+     "point": 49.0,
+     "price": -108
+    },
+    "mybookieag": {
+     "point": 48.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 48.5,
+     "price": 102
+    },
+    "polymarket": {
+     "point": 47.5,
+     "price": -113
+    },
+    "prophetx": {
+     "point": 48.5,
+     "price": 100
+    },
+    "williamhill_us": {
+     "point": 48.5,
+     "price": -106
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFTOTAL-26OCT30BAYUCF-49"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "OVER",
+   "side_label": "Over 48.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-10-30T23:30:00Z",
+   "teams": [
+    "Baylor",
+    "UCF"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-30T03:11:51Z",
    "base_depth": 501551,
    "best_price": 0.4673,
