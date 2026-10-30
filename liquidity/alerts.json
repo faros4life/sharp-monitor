@@ -41,6 +41,8 @@
    "new_money": 216333,
    "paper_only": false,
    "price": 0.45,
+   "price_after_15m": 0.4673,
+   "price_after_15m_book": "kalshi",
    "price_american": 122,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.45,
@@ -61,6 +63,7 @@
    "side_label": "Wisconsin",
    "start_source": "kalshi",
    "start_utc": "2026-10-31T03:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Wisconsin",
     "Iowa"
@@ -121,6 +124,8 @@
    "new_money": 70458,
    "paper_only": false,
    "price": 0.56,
+   "price_after_15m": 0.555,
+   "price_after_15m_book": "novig",
    "price_american": -127,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.56,
@@ -208,6 +213,7 @@
    "side_label": "Los Angeles L",
    "start_source": "odds",
    "start_utc": "2026-10-31T02:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Los Angeles L",
     "Golden State"
@@ -384,8 +390,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.66,
-   "clv_cents": 0.0,
+   "close_price": 0.67,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-30",
    "depth_by_book": {
@@ -978,8 +984,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": 0.0,
+   "close_price": 0.52,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-30",
    "depth_by_book": {
@@ -1301,8 +1307,10 @@
     }
    },
    "fade_price": 0.3597,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-29T23:50:09Z",
    "game": "Carolina Panthers at Green Bay Packers",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 0, \"px_event\": 1700008860, \"px_market\": 219, \"side\": \"1\"}",
    "lead_min": 15,
    "league": "NFL",
@@ -1395,7 +1403,7 @@
     "px_market": 219,
     "side": "1"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "kalshi",
@@ -1403,6 +1411,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-30T03:30:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Green Bay Packers",
@@ -1414,7 +1423,7 @@
     "Green Bay Packers"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.54
   },
   {
    "alerted_utc": "2026-10-29T23:10:10Z",
@@ -1453,8 +1462,10 @@
     }
    },
    "fade_price": 0.49,
+   "fade_units": 0.97,
    "first_seen_utc": "2026-10-29T23:03:58Z",
    "game": "Carolina vs Green Bay: Total Points",
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNFLTOTAL-26OCT29CARGB-47\"}",
    "lead_min": 65,
    "league": "NFL",
@@ -1540,13 +1551,14 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNFLTOTAL-26OCT29CARGB-47"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-30T03:30:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -1559,7 +1571,7 @@
     "Green Bay"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-29T22:50:09Z",
@@ -2669,8 +2681,10 @@
     }
    },
    "fade_price": 0.5,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-29T19:21:18Z",
    "game": "Carolina Panthers @ Green Bay Packers",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a15b22-a6c2-7042-9c16-22409b16d8be\", \"outcome_id\": \"01a15b22-a6c2-7042-9c16-2253b71bec9d\"}",
    "lead_min": 285,
    "league": "NFL",
@@ -2756,13 +2770,14 @@
     "market_id": "01a15b22-a6c2-7042-9c16-22409b16d8be",
     "outcome_id": "01a15b22-a6c2-7042-9c16-2253b71bec9d"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "kalshi"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-30T03:30:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Green Bay Packers",
@@ -2775,7 +2790,7 @@
     "Green Bay Packers"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.98
   },
   {
    "alerted_utc": "2026-10-29T19:30:14Z",
@@ -2814,8 +2829,10 @@
     }
    },
    "fade_price": 0.53,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-29T19:21:18Z",
    "game": "Carolina vs Green Bay: Total Points",
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNFLTOTAL-26OCT29CARGB-47\"}",
    "lead_min": 285,
    "league": "NFL",
@@ -2901,13 +2918,14 @@
     "kalshi_side": "no",
     "market_ticker": "KXNFLTOTAL-26OCT29CARGB-47"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-30T03:30:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -2920,7 +2938,7 @@
     "Green Bay"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.08
   },
   {
    "alerted_utc": "2026-10-29T19:21:18Z",
@@ -3434,8 +3452,10 @@
     }
    },
    "fade_price": 0.5,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-29T18:50:11Z",
    "game": "Troy vs James Madison: Total Points",
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFTOTAL-26OCT29TROYJMU-52\"}",
    "lead_min": 270,
    "league": "NCAAF",
@@ -3513,11 +3533,12 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFTOTAL-26OCT29TROYJMU-52"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-10-30T03:30:13Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "Over 50.5 (-116)"
@@ -3532,7 +3553,7 @@
     "James Madison"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.94
   },
   {
    "alerted_utc": "2026-10-29T18:40:10Z",
@@ -4027,8 +4048,10 @@
     }
    },
    "fade_price": 0.53,
+   "fade_units": 0.83,
    "first_seen_utc": "2026-10-29T17:40:10Z",
    "game": "Florida Atlantic vs North Texas: Spread",
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFSPREAD-26OCT29FAUUNT-UNT15\"}",
    "lead_min": 340,
    "league": "NCAAF",
@@ -4110,13 +4133,14 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFSPREAD-26OCT29FAUUNT-UNT15"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-30T03:30:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "North Texas",
@@ -4129,7 +4153,7 @@
     "North Texas"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-29T17:40:10Z",
@@ -5702,8 +5726,10 @@
     }
    },
    "fade_price": 0.5,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-29T16:50:11Z",
    "game": "Carolina vs Green Bay: Spread",
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNFLSPREAD-26OCT29CARGB-GB4\"}",
    "lead_min": 435,
    "league": "NFL",
@@ -5789,11 +5815,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNFLSPREAD-26OCT29CARGB-GB4"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-10-30T03:30:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Green Bay",
@@ -5806,7 +5833,7 @@
     "Green Bay"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.98
   },
   {
    "alerted_utc": "2026-10-29T16:50:11Z",
@@ -7810,8 +7837,10 @@
     }
    },
    "fade_price": 0.64,
+   "fade_units": 0.56,
    "first_seen_utc": "2026-10-29T15:30:14Z",
    "game": "Carolina Panthers @ Green Bay Packers",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a15b22-a6c2-7042-9c16-227dc86cf597\", \"outcome_id\": \"01a15b22-a6c2-7042-9c16-229670733763\"}",
    "lead_min": 521,
    "league": "NFL",
@@ -7905,11 +7934,12 @@
     "market_id": "01a15b22-a6c2-7042-9c16-227dc86cf597",
     "outcome_id": "01a15b22-a6c2-7042-9c16-229670733763"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-10-30T03:30:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Carolina Panthers",
@@ -7922,7 +7952,7 @@
     "Green Bay Packers"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-29T15:33:59Z",
@@ -10423,8 +10453,10 @@
     }
    },
    "fade_price": 0.49,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-29T14:00:18Z",
    "game": "Florida Atlantic vs North Texas: Total Points",
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFTOTAL-26OCT29FAUUNT-77\"}",
    "lead_min": 560,
    "league": "NCAAF",
@@ -10506,11 +10538,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFTOTAL-26OCT29FAUUNT-77"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settled_utc": "2026-10-30T03:30:13Z",
    "sharp_agree": [
     "Over 76.5 (-110)"
    ],
@@ -10525,7 +10558,7 @@
     "North Texas"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.86
   },
   {
    "alerted_utc": "2026-10-29T14:10:12Z",
@@ -12180,8 +12213,10 @@
     }
    },
    "fade_price": 0.355,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-29T11:20:10Z",
    "game": "Carolina Panthers @ Green Bay Packers",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a15b22-a6c2-7042-9c16-227dc86cf597\", \"outcome_id\": \"01a15b22-a6c2-7042-9c16-228b01931078\"}",
    "lead_min": 765,
    "league": "NFL",
@@ -12271,7 +12306,7 @@
     "market_id": "01a15b22-a6c2-7042-9c16-227dc86cf597",
     "outcome_id": "01a15b22-a6c2-7042-9c16-228b01931078"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "kalshi",
@@ -12279,6 +12314,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-30T03:30:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Green Bay Packers",
@@ -12291,7 +12327,7 @@
     "Green Bay Packers"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.54
   },
   {
    "alerted_utc": "2026-10-29T11:30:15Z",
@@ -15827,6 +15863,7 @@
     }
    },
    "fade_price": 0.36,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-29T04:50:10Z",
    "game": "Carolina vs Green Bay",
    "key": "kalshi|KXNFLGAME-26OCT29CARGB|ml|1",
@@ -15922,7 +15959,7 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNFLGAME-26OCT29CARGB-GB"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig",
@@ -15930,6 +15967,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-30T03:30:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Green Bay",
@@ -15942,7 +15980,7 @@
     "Green Bay"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.54
   },
   {
    "alerted_utc": "2026-10-29T04:10:11Z",
@@ -22420,8 +22458,10 @@
     }
    },
    "fade_price": 0.48,
+   "fade_units": 1.01,
    "first_seen_utc": "2026-10-28T20:50:12Z",
    "game": "Troy vs James Madison: Spread",
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFSPREAD-26OCT29TROYJMU-JMU18\"}",
    "lead_min": 1590,
    "league": "NCAAF",
@@ -22503,11 +22543,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFSPREAD-26OCT29TROYJMU-JMU18"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settled_utc": "2026-10-30T03:30:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "James Madison",
@@ -22520,7 +22561,7 @@
     "James Madison"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-28T20:24:33Z",
@@ -23510,8 +23551,10 @@
     }
    },
    "fade_price": 0.51,
+   "fade_units": 0.9,
    "first_seen_utc": "2026-10-28T19:01:40Z",
    "game": "Carolina vs Green Bay: Total Points",
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNFLTOTAL-26OCT29CARGB-48\"}",
    "lead_min": 1745,
    "league": "NFL",
@@ -23597,13 +23640,14 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNFLTOTAL-26OCT29CARGB-48"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-30T03:30:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -23616,7 +23660,7 @@
     "Green Bay"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-28T19:10:12Z",
@@ -24634,8 +24678,10 @@
     }
    },
    "fade_price": 0.5,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-28T18:10:11Z",
    "game": "Troy vs James Madison: Spread",
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFSPREAD-26OCT29TROYJMU-JMU21\"}",
    "lead_min": 1750,
    "league": "NCAAF",
@@ -24717,13 +24763,14 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFSPREAD-26OCT29TROYJMU-JMU21"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-30T03:30:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Troy",
@@ -24736,7 +24783,7 @@
     "James Madison"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.98
   },
   {
    "alerted_utc": "2026-10-28T18:10:11Z",
@@ -26431,8 +26478,10 @@
     }
    },
    "fade_price": 0.18,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-28T17:30:13Z",
    "game": "Florida Atlantic vs North Texas",
+   "graded_by": "espn",
    "key": "kalshi|KXNCAAFGAME-26OCT29FAUUNT|ml|1",
    "lead_min": 1790,
    "league": "NCAAF",
@@ -26514,13 +26563,14 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26OCT29FAUUNT-UNT"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-30T03:30:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "North Texas",
@@ -26533,7 +26583,7 @@
     "North Texas"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.2
   },
   {
    "alerted_utc": "2026-10-28T17:30:13Z",
@@ -26567,8 +26617,10 @@
     }
    },
    "fade_price": 0.52,
+   "fade_units": 0.86,
    "first_seen_utc": "2026-10-28T17:25:09Z",
    "game": "Florida Atlantic vs North Texas: Total Points",
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFTOTAL-26OCT29FAUUNT-77\"}",
    "lead_min": 1800,
    "league": "NCAAF",
@@ -26650,11 +26702,12 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFTOTAL-26OCT29FAUUNT-77"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settled_utc": "2026-10-30T03:30:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -26667,7 +26720,7 @@
     "North Texas"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-28T17:25:09Z",
@@ -27206,8 +27259,10 @@
     }
    },
    "fade_price": 0.49,
+   "fade_units": 0.97,
    "first_seen_utc": "2026-10-28T16:10:12Z",
    "game": "Troy vs James Madison: Spread",
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFSPREAD-26OCT29TROYJMU-JMU21\"}",
    "lead_min": 1870,
    "league": "NCAAF",
@@ -27289,13 +27344,14 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFSPREAD-26OCT29TROYJMU-JMU21"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-30T03:30:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "James Madison",
@@ -27308,7 +27364,7 @@
     "James Madison"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-28T16:10:12Z",
@@ -29289,8 +29345,10 @@
     }
    },
    "fade_price": 0.51,
+   "fade_units": 0.9,
    "first_seen_utc": "2026-10-28T14:00:17Z",
    "game": "Carolina vs Green Bay: Spread",
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNFLSPREAD-26OCT29CARGB-GB4\"}",
    "lead_min": 2045,
    "league": "NFL",
@@ -29372,13 +29430,14 @@
     "kalshi_side": "no",
     "market_ticker": "KXNFLSPREAD-26OCT29CARGB-GB4"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-30T03:30:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Carolina",
@@ -29391,7 +29450,7 @@
     "Green Bay"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-28T14:10:10Z",
@@ -29912,8 +29971,10 @@
     }
    },
    "fade_price": 0.49,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-28T13:40:11Z",
    "game": "Troy vs James Madison: Total Points",
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFTOTAL-26OCT29TROYJMU-51\"}",
    "lead_min": 2020,
    "league": "NCAAF",
@@ -29995,11 +30056,12 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFTOTAL-26OCT29TROYJMU-51"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-10-30T03:30:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -30012,7 +30074,7 @@
     "James Madison"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.92
   },
   {
    "alerted_utc": "2026-10-28T13:40:11Z",
@@ -31639,8 +31701,10 @@
     }
    },
    "fade_price": 0.5,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-28T13:00:16Z",
    "game": "Carolina vs Green Bay: Total Points",
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNFLTOTAL-26OCT29CARGB-48\"}",
    "lead_min": 2105,
    "league": "NFL",
@@ -31726,13 +31790,14 @@
     "kalshi_side": "no",
     "market_ticker": "KXNFLTOTAL-26OCT29CARGB-48"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-30T03:30:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -31745,7 +31810,7 @@
     "Green Bay"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.94
   },
   {
    "alerted_utc": "2026-10-28T13:10:11Z",
@@ -31779,8 +31844,10 @@
     }
    },
    "fade_price": 0.48,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-28T13:00:16Z",
    "game": "Florida Atlantic vs North Texas: Spread",
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFSPREAD-26OCT29FAUUNT-UNT15\"}",
    "lead_min": 2060,
    "league": "NCAAF",
@@ -31862,11 +31929,12 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFSPREAD-26OCT29FAUUNT-UNT15"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settled_utc": "2026-10-30T03:30:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Florida Atlantic",
@@ -31879,7 +31947,7 @@
     "North Texas"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.85
   },
   {
    "alerted_utc": "2026-10-28T12:23:27Z",
