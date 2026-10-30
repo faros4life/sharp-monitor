@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Oct 29, 10:10 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 3.
+Updated Thu Oct 29, 10:20 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 3.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,7 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Oct 29 10:10PM | TENNIS | Rakhimova vs Joint | moneyline: Joint | kalshi | $347k | -335 |  |  | +0.0c |  | pending |
+| Oct 29 10:10PM | TENNIS | Rakhimova vs Joint | moneyline: Joint | kalshi | $347k | -335 |  |  | -19.0c |  | pending |
 | Oct 29 10:00PM | TENNIS | Rybakina vs Fernandez | moneyline: Rybakina | kalshi | $56k | -335 | ✅ novig |  | +0.0c |  | pending |
 | Oct 29 4:10PM | TENNIS | Paul vs Alcaraz | moneyline: Alcaraz | kalshi | $64k | -400 |  |  | -3.0c |  | pending |
 | Oct 29 9:00AM | TENNIS | Norrie vs Medvedev | moneyline: Norrie | kalshi | $200k | +122 |  |  | -20.0c |  | L |
