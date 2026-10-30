@@ -1,19 +1,19 @@
-# Paper splits (updated 2026-10-30T02:55:12Z)
+# Paper splits (updated 2026-10-30T03:00:20Z)
 
 Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kill bar: 30+ resulted at -0.10u/play or worse closes a split.
 
 | Split | Type | Start | W-L-P | Units | u/play | True close % | Status |
 |---|---|---|---|---|---|---|---|
 | Phase-1 live filter (paper view) | a-priori | 2026-10-26 | 4-4-0 | -0.49 | -0.061 | -3.44 | OPEN |
-| Phase-1 control group | control | 2026-10-26 | 5-3-1 | +1.12 | +0.124 | -0.24 | OPEN |
+| Phase-1 control group | control | 2026-10-26 | 5-4-1 | +0.12 | +0.012 | +0.19 | OPEN |
 | Hard Rock-priced, routed | a-priori | 2026-10-26 | 9-5-0 | +3.07 | +0.219 | -0.26 | OPEN |
 | Fade Hard Rock-priced | scan | 2026-10-26 | 9-5-0 | -4.10 | -0.293 | -0.26 | OPEN |
 | PM-global-priced, routed | a-priori | 2026-10-26 | 0-0-0 | +0.00 |  |  | OPEN |
-| Unders only | scan | 2026-10-26 | 8-8-0 | -0.86 | -0.054 | -2.22 | OPEN |
+| Unders only | scan | 2026-10-26 | 8-9-0 | -1.86 | -0.109 | -1.88 | OPEN |
 | Combined filter | scan | 2026-10-26 | 11-10-0 | -0.17 | -0.008 | -2.53 | OPEN |
 | Priced -125 or worse | scan | 2026-10-26 | 2-2-0 | -0.41 | -0.102 | -0.42 | OPEN |
 | College basketball | scan | 2026-10-26 | 0-0-0 | +0.00 |  |  | OPEN |
-| Fade alerts sent 12-24h out | scan | 2026-10-26 | 9-5-0 | -3.85 | -0.275 | +2.50 | OPEN |
+| Fade alerts sent 12-24h out | scan | 2026-10-26 | 9-6-0 | -2.81 | -0.187 | +2.57 | OPEN |
 | Tier 2 core (paper) | tier | 2026-10-27 | 0-2-0 | -2.00 | -1.000 | -6.55 | OPEN (record only, no size) |
 | Evening sends, ex-Hard Rock | scan | 2026-10-26 | 1-2-0 | -1.11 | -0.370 | +9.30 | OPEN |
 | Muted midday (11 AM-2 PM ET) | scan | 2026-10-26 | 1-1-0 | -0.09 | -0.045 | +8.90 | OPEN |
@@ -47,7 +47,7 @@ Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kil
 
 **Closed by decision:** Liquidity spreads: Closed by Peter, Oct 27, on Muse's complete-log read: 191 resulted, -32.15u (-0.17/play), negative in every time block and every lead window.
 
-**ProphetX tripwire:** 20/30 resulted, -0.028u/play - counting.
+**ProphetX tripwire:** 21/30 resulted, -0.074u/play - counting.
 
 **Price gaps (measurement only):** {"gaps": 27, "per_day": 5.4, "edge_pct_median": 0.74, "edge_pct_p90": 2.73, "size_est_median_upper_bound": 5341, "seen_once_share": 1.0, "lifetime_min_median": 0, "lived_10min_plus": 0, "with_200_both_legs_upper_bound": 25, "scan_sec_median": 274.0}
 
