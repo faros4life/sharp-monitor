@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Fri Oct 30, 12:30 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 6.
+Updated Fri Oct 30, 12:40 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 5.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 81-59 (-13.23u flat) | rule met: 28-26
+**Record:** 82-59 (-12.96u flat) | rule met: 28-26
 
-**Fade (paper, betting against the print):** 34-46 (+11.17u flat, after fees)
+**Fade (paper, betting against the print):** 34-47 (+10.17u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -23,7 +23,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 29 10:30PM | TENNIS | Rakhimova vs Joint | moneyline: Rakhimova | kalshi | $355k | -270 |  |  | +18.0c |  | W |
 | Oct 29 10:10PM | TENNIS | Rakhimova vs Joint | moneyline: Joint | kalshi | $347k | -335 |  |  | -67.0c | yes | L |
 | Oct 29 10:00PM | TENNIS | Rybakina vs Fernandez | moneyline: Rybakina | kalshi | $56k | -335 | ✅ novig |  | +0.0c | yes | pending |
-| Oct 29 4:10PM | TENNIS | Paul vs Alcaraz | moneyline: Alcaraz | kalshi | $64k | -400 |  |  | -1.0c |  | pending |
+| Oct 29 4:10PM | TENNIS | Paul vs Alcaraz | moneyline: Alcaraz | kalshi | $64k | -400 |  |  | -1.0c |  | W |
 | Oct 29 9:00AM | TENNIS | Norrie vs Medvedev | moneyline: Norrie | kalshi | $200k | +122 |  |  | -20.0c |  | L |
 | Oct 29 8:05AM | TENNIS | Michelsen vs Fils | moneyline: Fils | kalshi | $29k | -203 | ✅ novig |  | -1.0c |  | W |
 | Oct 29 5:20AM | TENNIS | Shelton vs Kym | moneyline: Shelton | kalshi | $42k | -317 |  |  | +0.0c |  | L |
