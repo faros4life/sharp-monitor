@@ -1,7 +1,7 @@
 {
  "alerts": [
   {
-   "alerted_utc": "2026-10-30T15:50:11Z",
+   "alerted_utc": "2026-10-30T16:00:23Z",
    "base_depth": 116622,
    "best_price": 0.51,
    "best_price_american": -104,
@@ -17,42 +17,42 @@
    ],
    "close_price": 0.51,
    "clv_cents": 0.0,
-   "confirmed_after_min": 10,
+   "confirmed_after_min": 20,
    "date": "2026-10-30",
    "depth_by_book": {
     "kalshi": {
      "heavier_side": true,
      "label": "Charlotte",
      "price": 0.5,
-     "this_side": 649956
+     "this_side": 645671
     },
     "novig": {
      "heavier_side": true,
      "label": "CHA (0)",
      "price": 0.51,
-     "this_side": 52986
+     "this_side": 60239
     },
     "polymarket": {
      "new_other_side": -20142,
      "new_this_side": 55263,
-     "other_side": 85883,
-     "other_side_all_levels": 130886,
-     "ratio": 1.5,
-     "this_side": 128259,
-     "this_side_all_levels": 181728
+     "other_side": 83582,
+     "other_side_all_levels": 132851,
+     "ratio": 1.6,
+     "this_side": 134146,
+     "this_side_all_levels": 183377
     },
     "prophetx": {
-     "heavier_side": false,
+     "heavier_side": true,
      "label": "Charlotte Hornets",
-     "price": 0.5098,
-     "this_side": 25507
+     "price": 0.5074,
+     "this_side": 29996
     }
    },
    "fade_price": 0.5,
    "first_seen_utc": "2026-10-30T15:40:13Z",
    "game": "Hornets vs. Wizards",
    "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"6101698\"}",
-   "lead_min": 430,
+   "lead_min": 420,
    "league": "NBA",
    "line": null,
    "market": "moneyline",
@@ -133,7 +133,8 @@
    "rule_met": true,
    "second_book": [
     "kalshi",
-    "novig"
+    "novig",
+    "prophetx"
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
@@ -151,10 +152,10 @@
    "units_flat": null
   },
   {
-   "alerted_utc": "2026-10-30T15:50:11Z",
+   "alerted_utc": "2026-10-30T16:00:23Z",
    "base_depth": 124118,
-   "best_price": 0.515,
-   "best_price_american": -106,
+   "best_price": 0.51,
+   "best_price_american": -104,
    "best_price_book": "novig",
    "bid_improved": false,
    "bid_improved_at_pending": false,
@@ -167,30 +168,30 @@
    ],
    "close_price": 0.51,
    "clv_cents": 0.0,
-   "confirmed_after_min": 10,
+   "confirmed_after_min": 20,
    "date": "2026-10-31",
    "depth_by_book": {
     "kalshi": {
      "new_other_side": -2609,
      "new_this_side": 36148,
-     "other_side": 125043,
-     "other_side_all_levels": 141397,
+     "other_side": 126350,
+     "other_side_all_levels": 143154,
      "ratio": 1.1,
-     "this_side": 135137,
-     "this_side_all_levels": 159945
+     "this_side": 137542,
+     "this_side_all_levels": 163202
     },
     "novig": {
-     "heavier_side": false,
+     "heavier_side": true,
      "label": "WMU -13.5 (-13.5)",
-     "price": 0.515,
-     "this_side": 16790
+     "price": 0.51,
+     "this_side": 29074
     }
    },
    "fade_price": 0.5,
    "first_seen_utc": "2026-10-30T15:40:13Z",
    "game": "Bowling Green vs Western Michigan: Spread",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFSPREAD-26OCT31BGSUWMU-WMU14\"}",
-   "lead_min": 1450,
+   "lead_min": 1440,
    "league": "NCAAF",
    "line": -13.5,
    "market": "spread",
@@ -247,7 +248,7 @@
     },
     "novig": {
      "point": -13.5,
-     "price": -106
+     "price": -104
     },
     "polymarket": {
      "point": 16.5,
@@ -255,7 +256,7 @@
     },
     "prophetx": {
      "point": -13.5,
-     "price": -109
+     "price": -107
     },
     "williamhill_us": {
      "point": -13.5,
@@ -268,10 +269,12 @@
     "market_ticker": "KXNCAAFSPREAD-26OCT31BGSUWMU-WMU14"
    },
    "result": null,
-   "rule_met": false,
-   "second_book": [],
-   "second_book_fresh": false,
-   "second_book_status": "none_10k",
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Western Michigan",
@@ -3127,8 +3130,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.49,
-   "clv_cents": 1.0,
+   "close_price": 0.5,
+   "clv_cents": 2.0,
    "confirmed_after_min": 9,
    "date": "2026-10-30",
    "depth_by_book": {
@@ -20671,8 +20674,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.78,
-   "clv_cents": 0.0,
+   "close_price": 0.77,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-30",
    "depth_by_book": {
