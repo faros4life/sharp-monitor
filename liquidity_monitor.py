@@ -1086,8 +1086,11 @@ def _esc(t):
 LIQ_BOOK_NAME = {"kalshi": "Kalshi", "polymarket": "Polymarket", "novig": "Novig", "prophetx": "ProphetX"}
 
 
+PUSH_LIQ = (os.environ.get("PUSH_LIQ_ALERTS") or "off").strip().lower() == "on"   # Oct 30 (Peter): paper only -> no phone
+
+
 def notify(title, body, headline=None):
-    if not NTFY_TOPIC:
+    if not NTFY_TOPIC or not PUSH_LIQ:
         return
     try:
         hdr = {"Title": title.encode("ascii", "ignore").decode(), "Tags": "droplet"}

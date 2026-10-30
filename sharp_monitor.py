@@ -173,6 +173,11 @@ def listed_start(label, commence):
     return commence
 
 
+# Oct 30 (Peter): the phone only gets bot orders/fills. Sharp alert pushes go quiet (still logged, sent_to_phone, graded,
+# and they still wake the executor); PUSH_SHARP_ALERTS=on brings them back. Recaps are unchanged.
+PUSH_SHARP = (os.environ.get("PUSH_SHARP_ALERTS") or "off").strip().lower() == "on"
+
+
 def notify(title, body, red=False, yellow=False, extra_tags=(), headline=None):
     """red = late alert; yellow = an earlier alert already came in on this game (the first alert is the play).
     extra_tags: ntfy emoji tags (Oct 26: white_check_mark = phase-1 candidate, page_facing_up = paper only)."""
@@ -1405,7 +1410,8 @@ def run():
                                      + f" | {bet_size(a['price'], a['book'])}")
                         else:
                             label = "PAPER - don't bet (" + "; ".join(p1_why[:2]) + ")"
-                        notify(("LIVE " if p1_ok else "PAPER ") + f"Sharp alert {cfg['label']}" + (" LATE" if late else ""),
+                        (notify if PUSH_SHARP else (lambda *x, **y: print("push muted (Oct 30): sharp alert logged only")))(
+                               ("LIVE " if p1_ok else "PAPER ") + f"Sharp alert {cfg['label']}" + (" LATE" if late else ""),
                                f"{label}\n{a['text']}\n{bet_size(a['price'], a['book'])}{prior_note}\n{a['game']}{tag}, {a['start']}\n{a['why']}\n"
                                f"Grade {grade} ({score}/100)" + (f" | Edge {a['evp']:+.1f}%" if a.get("evp") is not None else "") + " | "
                                + (f"LATE: starts in {lead_text(lead)}" if late else f"starts in {lead_text(lead)}"),

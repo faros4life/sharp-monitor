@@ -317,8 +317,9 @@ def muse_watchdog(now, muse_plays, rplays, feed):
     for p, ent, tok, mins in late:
         msg = (f"{p.get('sport')} {p.get('game')} | {p.get('bet')}\nQualifies for LIVE, but no Muse verdict after {mins} min. "
                "Live won't bet it without Muse AGREE. Ping Muse.")
-        push("No Muse verdict: " + (p.get("bet") or "")[:50], msg, mirror=False)
-        tg("NO MUSE VERDICT\n" + msg)
+        if not RULES_LIVE:   # Oct 30: with coded-AGREE live, a missing Muse verdict blocks nothing -> no phone message
+            push("No Muse verdict: " + (p.get("bet") or "")[:50], msg, mirror=False)
+            tg("NO MUSE VERDICT\n" + msg)
         try:
             send(f"Bets watchdog: no Muse verdict ({(p.get('bet') or '')[:40]})", msg + f"\n\n{tok}")
         except Exception:
