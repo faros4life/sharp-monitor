@@ -1,6 +1,80 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-30T15:10:16Z",
+   "base_depth": 8867,
+   "best_price": 0.8494,
+   "best_price_american": -564,
+   "best_price_book": "kalshi",
+   "bid_improved": true,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.84,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-30",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 2730,
+     "new_this_side": 29938,
+     "other_side": 2672,
+     "other_side_all_levels": 5821,
+     "ratio": 6.2,
+     "this_side": 16606,
+     "this_side_all_levels": 47864
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "T. Prozorova (0)",
+     "price": 0.85,
+     "this_side": 1175
+    }
+   },
+   "fade_price": 0.17,
+   "first_seen_utc": "2026-10-30T15:00:22Z",
+   "game": "Prozorova vs Kinoshita",
+   "key": "kalshi|KXWTAMATCH-26OCT30PROKIN|ml|0",
+   "lead_min": 650,
+   "league": "TENNIS",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 29938,
+   "paper_only": true,
+   "price": 0.84,
+   "price_american": -525,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.84,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXWTAMATCH-26OCT30PROKIN-PRO"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Prozorova",
+   "side_label": "Prozorova",
+   "start_source": "novig",
+   "start_utc": "2026-10-31T02:00:00Z",
+   "teams": [
+    "Prozorova",
+    "Kinoshita"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-30T14:00:23Z",
    "base_depth": 179935,
    "best_price": 0.52,
@@ -195,6 +269,7 @@
     }
    },
    "fade_price": 0.27,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-30T10:30:19Z",
    "game": "Tagger vs Shi",
    "key": "kalshi|KXWTAMATCH-26OCT30TAGSHI|ml|0",
@@ -216,13 +291,14 @@
     "kalshi_side": "yes",
     "market_ticker": "KXWTAMATCH-26OCT30TAGSHI-TAG"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-30T15:10:16Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Tagger",
@@ -235,7 +311,7 @@
     "Shi"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.36
   },
   {
    "alerted_utc": "2026-10-30T08:50:17Z",
