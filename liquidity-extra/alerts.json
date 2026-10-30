@@ -1,6 +1,82 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-30T03:10:16Z",
+   "base_depth": 101842,
+   "best_price": 0.57,
+   "best_price_american": -133,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.57,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-30",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 90,
+     "new_this_side": 27125,
+     "other_side": 76069,
+     "other_side_all_levels": 85166,
+     "ratio": 1.6,
+     "this_side": 122702,
+     "this_side_all_levels": 128672
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "H. Rune (0)",
+     "price": 0.57,
+     "this_side": 15614
+    }
+   },
+   "fade_price": 0.44,
+   "first_seen_utc": "2026-10-30T03:00:23Z",
+   "game": "Rune vs Vacherot",
+   "key": "kalshi|KXATPMATCH-26OCT30RUNVAC|ml|0",
+   "lead_min": 590,
+   "league": "TENNIS",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 27125,
+   "paper_only": true,
+   "price": 0.57,
+   "price_american": -133,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.57,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXATPMATCH-26OCT30RUNVAC-RUN"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Rune",
+   "side_label": "Rune",
+   "start_source": "novig",
+   "start_utc": "2026-10-30T13:00:00Z",
+   "teams": [
+    "Rune",
+    "Vacherot"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-30T02:30:18Z",
    "base_depth": 596885,
    "best_price": 0.7438,
@@ -15,8 +91,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.63,
-   "clv_cents": -10.0,
+   "close_price": 0.62,
+   "clv_cents": -11.0,
    "confirmed_after_min": 4,
    "date": "2026-10-29",
    "depth_by_book": {
@@ -86,8 +162,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.38,
-   "clv_cents": -39.0,
+   "close_price": 0.39,
+   "clv_cents": -38.0,
    "confirmed_after_min": 10,
    "date": "2026-10-29",
    "depth_by_book": {
@@ -158,8 +234,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.77,
-   "clv_cents": 0.0,
+   "close_price": 0.76,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-30",
    "depth_by_book": {
