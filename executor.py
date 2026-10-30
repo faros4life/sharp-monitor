@@ -100,6 +100,32 @@ def body_text(raw):
 
 
 MUSE_DISAGREE = set()   # keys Muse killed on purpose: clear the watchdog, never placed
+MANUAL_HELD = {}   # Oct 30: play key -> "duplicate"/"conflict" from Peter's manual bets on books the bot can't read
+
+
+def read_manual(M):
+    """Peter's manual bets on books with no read path (Hard Rock), logged as private 'Bets manual:' notes in the Bets
+    inbox (last 3 days). Body lines: MANUAL: {"sport": "NBA", "game": "Away @ Home", "bet": "Under 225.5 (-110)", "book": "Hard Rock"}
+    (bet text in the feed's format WITH the price: "Team +3.5 (-110)", "Team ML (+130)", "Under 225.5 (-110)")
+    Same side -> duplicate, other side -> conflict: no live order or resting bid on either."""
+    for uid in gsearch(M, 'subject:"Bets manual" newer_than:3d'):
+        typ, data = M.uid("FETCH", uid, "(RFC822)")
+        if typ != "OK" or not data or not data[0]:
+            continue
+        for line in body_text(data[0][1]).splitlines():
+            m = re.match(r"\s*MANUAL:\s*(\{.*\})\s*$", line)
+            if not m:
+                continue
+            try:
+                d = json.loads(m.group(1))
+            except Exception:
+                LOG.append("unreadable MANUAL line")
+                continue
+            k, ok_ = derive_key(d), opposite_key(d)
+            if k:
+                MANUAL_HELD[k] = "duplicate"
+            if ok_:
+                MANUAL_HELD.setdefault(ok_, "conflict")
 
 
 def read_verdicts(M):
@@ -1429,6 +1455,10 @@ def main():
     now = datetime.now(timezone.utc)
     M = imap_open()
     plays = read_verdicts(M) if SOURCE in ("muse", "both") else []
+    try:
+        read_manual(M)
+    except Exception:
+        LOG.append("manual-bet notes unreadable")
     rplays = rule_plays(now) if SOURCE in ("rules", "both") else []
     new = [p for p in plays + rplays if not already_handled(M, p)]
     M.logout()
@@ -1532,6 +1562,8 @@ def main():
                 lk = derive_key(p) or p["play_key"]
                 if ok and lk in MUSE_DISAGREE:
                     ok, why = False, ["Muse DISAGREE (veto)"]
+                elif ok and lk in MANUAL_HELD:
+                    ok, why = False, [f"{MANUAL_HELD[lk]} with Peter's manual bet (Bets manual note)"]
                 elif ok and lk in LIVEKEYS:
                     ok, why = False, ["a live order or resting bid was already sent for this play"]
                 if ok and r["verdict"] == "WOULD PLACE" and r.get("lc"):
