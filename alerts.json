@@ -1,6 +1,47 @@
 {
  "alerts": [
   {
+   "alert_utc": "2026-10-30T23:10:11Z",
+   "beat_close": true,
+   "beat_true_close": null,
+   "bet": "Over 57.5 (-111)",
+   "book": "Novig",
+   "book_key": "novig",
+   "close_fair_prob": null,
+   "close_read_mins_before": null,
+   "close_value_pct": null,
+   "clv": "+0.5 pts",
+   "confirm": "yes",
+   "confirmed_by": [
+    "BetOnline",
+    "Matchbook"
+   ],
+   "edge_pct": -4.1,
+   "executable_book": true,
+   "fade_book": "novig",
+   "fade_point": 57.5,
+   "fade_price": 104,
+   "fade_price_after_fee": 104,
+   "fade_units": null,
+   "final": null,
+   "game": "Oklahoma State Cowboys @ Iowa State Cyclones",
+   "grade": "B",
+   "kind": "tot",
+   "late": false,
+   "minutes_before_start": 1430,
+   "point": 57.5,
+   "price": -111,
+   "price_after_fee": -111,
+   "pricing_bettable": true,
+   "result": null,
+   "score": 67,
+   "sent_to_phone": true,
+   "sport": "NCAAF",
+   "start_utc": "2026-10-31T23:00:00Z",
+   "top25": true,
+   "units_flat": null
+  },
+  {
    "alert_utc": "2026-10-30T18:25:11Z",
    "beat_close": true,
    "beat_true_close": null,
@@ -655,7 +696,7 @@
    "close_fair_prob": 0.5633,
    "close_read_mins_before": 30,
    "close_value_pct": 2.8,
-   "clv": "+2 pts",
+   "clv": "+3 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline"
@@ -736,7 +777,7 @@
    "close_fair_prob": 0.575,
    "close_read_mins_before": 30,
    "close_value_pct": 4.9,
-   "clv": "+2.5 pts",
+   "clv": "+3 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline"
@@ -17586,6 +17627,31 @@
   }
  ],
  "all_alerts": [
+  {
+   "alert_text": "Over 57.5 (-111) at Novig",
+   "bet": "Over 57.5 (-111)",
+   "bet_result": null,
+   "book": "Novig",
+   "confirmed_by": [
+    "BetOnline",
+    "Matchbook"
+   ],
+   "edge_pct": -4.1,
+   "final": null,
+   "game": "Oklahoma State Cowboys @ Iowa State Cyclones",
+   "grade": "B",
+   "late": false,
+   "minutes_before_start": 1430,
+   "price": -111,
+   "price_after_fee": -111,
+   "pushed_to_phone": true,
+   "repeat": false,
+   "score": 67,
+   "sent_et": "2026-10-30 19:10",
+   "sport": "NCAAF",
+   "start_utc": "2026-10-31T23:00:00Z",
+   "why": "Pinnacle total moved 57 -> 58; bet only at 57.5 or better (confirmed by BetOnline, Matchbook)"
+  },
   {
    "alert_text": "Over 48.5 (-105) at ProphetX [-107 after ProphetX fee] (also: Hard Rock)",
    "bet": "Over 48.5 (-105)",
