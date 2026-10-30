@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Oct 30, 7:00 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 10.
+Updated Fri Oct 30, 7:04 AM ET. This run: 0 new, 1 not confirmed, 0 pending. Open alerts: 10.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -12,7 +12,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Oct 30 6:40AM | TENNIS | Tagger vs Shi | moneyline: Tagger | kalshi | $26k | -285 | ✅ novig |  | +0.0c |  | pending |
 | Oct 30 4:50AM | TENNIS | Struff vs Borges | moneyline: Struff | kalshi | $34k | -113 |  |  | +0.0c | yes | pending |
-| Oct 30 3:30AM | TENNIS | Mannarino vs Medvedev | moneyline: Medvedev | kalshi | $28k | -376 | ✅ novig |  | +1.0c |  | pending |
+| Oct 30 3:30AM | TENNIS | Mannarino vs Medvedev | moneyline: Medvedev | kalshi | $28k | -376 | ✅ novig |  | +2.0c |  | pending |
 | Oct 30 3:00AM | TENNIS | Badosa vs Dart | moneyline: Dart | kalshi | $151k | -150 |  |  | +19.0c |  | pending |
 | Oct 30 1:30AM | TENNIS | Badosa vs Dart | moneyline: Badosa | kalshi | $141k | -245 |  |  | -49.0c | yes | pending |
 | Oct 29 11:10PM | TENNIS | Rune vs Vacherot | moneyline: Rune | kalshi | $27k | -133 | ✅ novig |  | +1.0c |  | pending |
