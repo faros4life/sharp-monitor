@@ -1,6 +1,758 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-31T22:30:11Z",
+   "base_depth": 64040,
+   "best_price": 0.5355,
+   "best_price_american": -115,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.53,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-31",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Over 228.5 points",
+     "price": 0.53,
+     "this_side": 133569
+    },
+    "polymarket": {
+     "new_other_side": -7676,
+     "new_this_side": 33350,
+     "other_side": 33041,
+     "other_side_all_levels": 61392,
+     "ratio": 2.3,
+     "this_side": 77012,
+     "this_side_all_levels": 112191
+    }
+   },
+   "fade_price": 0.48,
+   "first_seen_utc": "2026-10-31T22:20:12Z",
+   "game": "Timberwolves vs. Spurs",
+   "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"6440520\"}",
+   "lead_min": 90,
+   "league": "NBA",
+   "line": 228.5,
+   "market": "total",
+   "new_money": 33350,
+   "paper_only": false,
+   "price": 0.53,
+   "price_american": -113,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.53,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 229.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 229.0,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 229.5,
+     "price": 105
+    },
+    "betrivers": {
+     "point": 228.5,
+     "price": -115
+    },
+    "betus": {
+     "point": 229.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 229.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 228.5,
+     "price": -115
+    },
+    "fanatics": {
+     "point": 229.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 228.5,
+     "price": -114
+    },
+    "kalshi": {
+     "point": 228.5,
+     "price": -113
+    },
+    "lowvig": {
+     "point": 229.0,
+     "price": -107
+    },
+    "mybookieag": {
+     "point": 229.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 229.5,
+     "price": 100
+    },
+    "polymarket": {
+     "point": 228.5,
+     "price": -113
+    },
+    "prophetx": {
+     "point": 228.5,
+     "price": -113
+    },
+    "williamhill_us": {
+     "point": 229.0,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 0,
+    "pm_market_id": "6440520"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [
+    "Over 226.5 (-115)"
+   ],
+   "sharp_oppose": [
+    "Under 225.5 (-110)"
+   ],
+   "side": "OVER",
+   "side_label": "Over (228.5)",
+   "start_source": "odds",
+   "start_utc": "2026-11-01T00:00:00Z",
+   "teams": [
+    "Timberwolves",
+    "Spurs"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-31T22:30:11Z",
+   "base_depth": 106350,
+   "best_price": 0.5355,
+   "best_price_american": -115,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.53,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-31",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -6503,
+     "new_this_side": 81194,
+     "other_side": 59413,
+     "other_side_all_levels": 104901,
+     "ratio": 2.2,
+     "this_side": 133569,
+     "this_side_all_levels": 178460
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Over (228.5)",
+     "price": 0.53,
+     "this_side": 77012
+    }
+   },
+   "fade_price": 0.48,
+   "first_seen_utc": "2026-10-31T22:20:12Z",
+   "game": "Minnesota vs San Antonio: Total Points",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNBATOTAL-26OCT31MINSAS-229\"}",
+   "lead_min": 90,
+   "league": "NBA",
+   "line": 228.5,
+   "market": "total",
+   "new_money": 81194,
+   "paper_only": false,
+   "price": 0.53,
+   "price_american": -113,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.53,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 229.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 229.0,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 229.5,
+     "price": 105
+    },
+    "betrivers": {
+     "point": 228.5,
+     "price": -115
+    },
+    "betus": {
+     "point": 229.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 229.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 228.5,
+     "price": -115
+    },
+    "fanatics": {
+     "point": 229.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 228.5,
+     "price": -114
+    },
+    "kalshi": {
+     "point": 228.5,
+     "price": -113
+    },
+    "lowvig": {
+     "point": 229.0,
+     "price": -107
+    },
+    "mybookieag": {
+     "point": 229.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 229.5,
+     "price": 100
+    },
+    "polymarket": {
+     "point": 228.5,
+     "price": -113
+    },
+    "prophetx": {
+     "point": 228.5,
+     "price": -113
+    },
+    "williamhill_us": {
+     "point": 229.0,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBATOTAL-26OCT31MINSAS-229"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "polymarket"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [
+    "Over 226.5 (-115)"
+   ],
+   "sharp_oppose": [
+    "Under 225.5 (-110)"
+   ],
+   "side": "OVER",
+   "side_label": "Over 228.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-11-01T00:00:00Z",
+   "teams": [
+    "Minnesota",
+    "San Antonio"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-31T22:30:11Z",
+   "base_depth": 1099128,
+   "best_price": 0.4858,
+   "best_price_american": 106,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.49,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-31",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -12180,
+     "new_this_side": 464958,
+     "other_side": 582529,
+     "other_side_all_levels": 709368,
+     "ratio": 2.4,
+     "this_side": 1398171,
+     "this_side_all_levels": 1578499
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "UNC +13.5 (13.5)",
+     "price": 0.49,
+     "this_side": 55920
+    }
+   },
+   "fade_price": 0.52,
+   "first_seen_utc": "2026-10-31T22:20:12Z",
+   "game": "Miami (FL) vs North Carolina: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFSPREAD-26OCT31MIAUNC-MIA14\"}",
+   "lead_min": 60,
+   "league": "NCAAF",
+   "line": 13.5,
+   "market": "spread",
+   "new_money": 464958,
+   "paper_only": false,
+   "price": 0.49,
+   "price_american": 104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.49,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 14.0,
+     "price": -112
+    },
+    "betonlineag": {
+     "point": 13.5,
+     "price": -105
+    },
+    "betopenly": {
+     "point": 13.5,
+     "price": 104
+    },
+    "betrivers": {
+     "point": 14.0,
+     "price": -114
+    },
+    "betus": {
+     "point": 13.5,
+     "price": -105
+    },
+    "bovada": {
+     "point": 13.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 13.5,
+     "price": -108
+    },
+    "fanatics": {
+     "point": 13.5,
+     "price": -105
+    },
+    "fanduel": {
+     "point": 13.5,
+     "price": 100
+    },
+    "kalshi": {
+     "point": 13.5,
+     "price": 104
+    },
+    "lowvig": {
+     "point": 14.0,
+     "price": -115
+    },
+    "mybookieag": {
+     "point": 14.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 13.5,
+     "price": 104
+    },
+    "polymarket": {
+     "point": 13.5,
+     "price": 104
+    },
+    "prophetx": {
+     "point": 13.5,
+     "price": 108
+    },
+    "williamhill_us": {
+     "point": 13.5,
+     "price": -106
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAFSPREAD-26OCT31MIAUNC-MIA14"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "North Carolina",
+   "side_label": "NOT Miami (FL) wins by over 13.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-10-31T23:30:00Z",
+   "teams": [
+    "Miami (FL)",
+    "North Carolina"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-31T22:30:11Z",
+   "base_depth": 1058780,
+   "best_price": 0.755,
+   "best_price_american": -308,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.75,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-31",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 40356,
+     "new_this_side": 131491,
+     "other_side": 274403,
+     "other_side_all_levels": 327900,
+     "ratio": 3.9,
+     "this_side": 1061045,
+     "this_side_all_levels": 1310032
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "MEM (0)",
+     "price": 0.755,
+     "this_side": 84537
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Memphis Grizzlies",
+     "price": 0.7531,
+     "this_side": 56566
+    }
+   },
+   "fade_price": 0.25,
+   "first_seen_utc": "2026-10-31T22:20:12Z",
+   "game": "Sacramento vs Memphis",
+   "key": "kalshi|KXNBAGAME-26OCT31SACMEM|ml|1",
+   "lead_min": 90,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 131491,
+   "paper_only": false,
+   "price": 0.75,
+   "price_american": -300,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.76,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -350
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -340
+    },
+    "betopenly": {
+     "point": null,
+     "price": -337
+    },
+    "betrivers": {
+     "point": null,
+     "price": -335
+    },
+    "betus": {
+     "point": null,
+     "price": -340
+    },
+    "bovada": {
+     "point": null,
+     "price": -340
+    },
+    "draftkings": {
+     "point": null,
+     "price": -360
+    },
+    "fanatics": {
+     "point": null,
+     "price": -350
+    },
+    "fanduel": {
+     "point": null,
+     "price": -340
+    },
+    "kalshi": {
+     "point": null,
+     "price": -317
+    },
+    "limitless": {
+     "point": null,
+     "price": -327
+    },
+    "lowvig": {
+     "point": null,
+     "price": -336
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -360
+    },
+    "novig": {
+     "point": null,
+     "price": -308
+    },
+    "polymarket": {
+     "point": null,
+     "price": -317
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -317
+    },
+    "prophetx": {
+     "point": null,
+     "price": -305
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -355
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBAGAME-26OCT31SACMEM-MEM"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "prophetx"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [
+    "Sacramento Kings +9.5 (-113)",
+    "Sacramento Kings +9.5 (-108)",
+    "Sacramento Kings +10.5 (-115)"
+   ],
+   "side": "Memphis",
+   "side_label": "Memphis",
+   "start_source": "odds",
+   "start_utc": "2026-11-01T00:00:00Z",
+   "teams": [
+    "Sacramento",
+    "Memphis"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-31T22:30:11Z",
+   "base_depth": 1805569,
+   "best_price": 0.83,
+   "best_price_american": -488,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.83,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-31",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 66345,
+     "new_this_side": 304666,
+     "other_side": 213596,
+     "other_side_all_levels": 257875,
+     "ratio": 8.6,
+     "this_side": 1844832,
+     "this_side_all_levels": 2116684
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "SAS (0)",
+     "price": 0.83,
+     "this_side": 76101
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Spurs",
+     "price": 0.83,
+     "this_side": 157207
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "San Antonio Spurs",
+     "price": 0.8291,
+     "this_side": 26409
+    }
+   },
+   "fade_price": 0.18,
+   "first_seen_utc": "2026-10-31T22:20:12Z",
+   "game": "Minnesota vs San Antonio",
+   "key": "kalshi|KXNBAGAME-26OCT31MINSAS|ml|1",
+   "lead_min": 90,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 304666,
+   "paper_only": false,
+   "price": 0.83,
+   "price_american": -488,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.83,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -600
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -550
+    },
+    "betopenly": {
+     "point": null,
+     "price": -506
+    },
+    "betrivers": {
+     "point": null,
+     "price": -590
+    },
+    "betus": {
+     "point": null,
+     "price": -550
+    },
+    "bovada": {
+     "point": null,
+     "price": -600
+    },
+    "draftkings": {
+     "point": null,
+     "price": -575
+    },
+    "fanatics": {
+     "point": null,
+     "price": -600
+    },
+    "fanduel": {
+     "point": null,
+     "price": -560
+    },
+    "kalshi": {
+     "point": null,
+     "price": -488
+    },
+    "limitless": {
+     "point": null,
+     "price": -521
+    },
+    "lowvig": {
+     "point": null,
+     "price": -542
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -575
+    },
+    "novig": {
+     "point": null,
+     "price": -488
+    },
+    "polymarket": {
+     "point": null,
+     "price": -488
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -488
+    },
+    "prophetx": {
+     "point": null,
+     "price": -485
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -550
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBAGAME-26OCT31MINSAS-SAS"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "San Antonio",
+   "side_label": "San Antonio",
+   "start_source": "odds",
+   "start_utc": "2026-11-01T00:00:00Z",
+   "teams": [
+    "Minnesota",
+    "San Antonio"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-31T22:20:12Z",
    "base_depth": 178816,
    "best_price": 0.24,
@@ -671,6 +1423,8 @@
    "new_money": 221893,
    "paper_only": false,
    "price": 0.53,
+   "price_after_15m": 0.5375,
+   "price_after_15m_book": "polymarket",
    "price_american": -113,
    "price_rule": "ok",
    "price_when_first_seen": 0.53,
@@ -758,6 +1512,7 @@
    "side_label": "Hawks (-4.5)",
    "start_source": "odds",
    "start_utc": "2026-10-31T23:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Hawks",
     "Pelicans"
@@ -1386,8 +2141,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.6503,
-   "clv_cents": 1.5,
+   "close_price": 0.6552,
+   "clv_cents": 2.0,
    "confirmed_after_min": 13,
    "date": "2026-10-31",
    "depth_by_book": {
@@ -2029,8 +2784,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": 0.0,
+   "close_price": 0.51,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-31",
    "depth_by_book": {
@@ -2790,6 +3545,7 @@
     "polymarket",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.52,
    "clv_cents": 1.0,
    "confirmed_after_min": 7,
@@ -2883,7 +3639,8 @@
      "price": -110
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-31T22:30:11Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFSPREAD-26OCT31APPGASO-GASO7"
@@ -2922,8 +3679,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.655,
-   "clv_cents": -0.5,
+   "close_price": 0.65,
+   "clv_cents": -1.0,
    "confirmed_after_min": 16,
    "date": "2026-10-31",
    "depth_by_book": {
@@ -3746,6 +4503,7 @@
     }
    },
    "fade_price": 0.5,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-31T18:25:51Z",
    "game": "Temple vs East Carolina: Spread",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFSPREAD-26OCT31TEMECU-ECU4\"}",
@@ -3826,13 +4584,14 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFSPREAD-26OCT31TEMECU-ECU4"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-31T22:30:11Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "Temple Owls +4.5 (-110)"
@@ -3846,7 +4605,7 @@
     "East Carolina"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.98
   },
   {
    "alerted_utc": "2026-10-31T18:43:07Z",
@@ -4424,8 +5183,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": 2.0,
+   "close_price": 0.52,
+   "clv_cents": 1.0,
    "confirmed_after_min": 19,
    "date": "2026-10-31",
    "depth_by_book": {
@@ -5262,8 +6021,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": 0.0,
+   "close_price": 0.5,
+   "clv_cents": -1.0,
    "confirmed_after_min": 18,
    "date": "2026-10-31",
    "depth_by_book": {
@@ -6654,8 +7413,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.48,
-   "clv_cents": -3.0,
+   "close_price": 0.49,
+   "clv_cents": -2.0,
    "confirmed_after_min": 17,
    "date": "2026-10-31",
    "depth_by_book": {
@@ -8257,8 +9016,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.36,
-   "clv_cents": -2.0,
+   "close_price": 0.35,
+   "clv_cents": -3.0,
    "confirmed_after_min": 19,
    "date": "2026-10-31",
    "depth_by_book": {
@@ -13344,8 +14103,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.65,
-   "clv_cents": 2.0,
+   "close_price": 0.66,
+   "clv_cents": 3.0,
    "confirmed_after_min": 18,
    "date": "2026-10-31",
    "depth_by_book": {
@@ -29648,6 +30407,7 @@
     }
    },
    "fade_price": 0.34,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-30T05:31:56Z",
    "game": "Louisiana Tech vs South Alabama",
    "key": "kalshi|KXNCAAFGAME-26OCT30LTUSA|ml|0",
@@ -29670,11 +30430,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26OCT30LTUSA-LT"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settled_utc": "2026-10-31T22:30:11Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Louisiana Tech",
@@ -29687,7 +30448,7 @@
     "South Alabama"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.46
   },
   {
    "alerted_utc": "2026-10-30T04:10:10Z",
@@ -32776,6 +33537,7 @@
     }
    },
    "fade_price": 0.35,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-29T19:50:10Z",
    "game": "Temple vs East Carolina",
    "key": "kalshi|KXNCAAFGAME-26OCT30TEMECU|ml|1",
@@ -32798,11 +33560,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26OCT30TEMECU-ECU"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settled_utc": "2026-10-31T22:30:11Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "East Carolina",
@@ -32815,7 +33578,7 @@
     "East Carolina"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.48
   },
   {
    "alerted_utc": "2026-10-29T19:30:14Z",
