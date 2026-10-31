@@ -1,18 +1,18 @@
 # Liquidity alerts (paper)
 
-Updated Sat Oct 31, 4:50 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 64.
+Updated Sat Oct 31, 4:57 PM ET. This run: 0 new, 0 not confirmed, 3 pending. Open alerts: 63.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 598-529 (-61.31u flat) | rule met: 359-357
+**Record:** 598-530 (-62.31u flat) | rule met: 359-358
 
-**Fade (paper, betting against the print):** 263-325 (-37.98u flat, after fees)
+**Fade (paper, betting against the print):** 264-325 (-36.01u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Oct 31 4:40PM | NCAAF | The Citadel vs Mercer | moneyline: Mercer | kalshi | $45k | -108 |  |  | +16.0c |  | pending |
+| Oct 31 4:40PM | NCAAF | The Citadel vs Mercer | moneyline: Mercer | kalshi | $45k | -108 |  |  | +20.0c |  | pending |
 | Oct 31 4:02PM | NCAAF | Georgia Tech @ Pittsburgh | moneyline: PITT (0) | novig | $35k | -285 | ✅ prophetx |  | +0.0c |  | pending |
-| Oct 31 3:30PM | NCAAF | Delaware St. vs Norfolk St. | moneyline: Norfolk St. | kalshi | $29k | -245 |  |  | +3.0c | yes | pending |
+| Oct 31 3:30PM | NCAAF | Delaware St. vs Norfolk St. | moneyline: Norfolk St. | kalshi | $29k | -245 |  |  | +0.0c | yes | pending |
 | Oct 31 3:30PM | NCAAF | Drake vs Morehead St. | moneyline: Morehead St. | kalshi | $28k | -456 |  |  | +14.0c |  | L |
 | Oct 31 3:20PM | NCAAF | Florida International vs Liberty | moneyline: Liberty | kalshi | $281k | -525 | ✅ novig |  | +0.0c | yes | pending |
 | Oct 31 2:43PM | NCAAF | UConn vs Air Force: Total Points | total: Over 52.5 points | kalshi | $46k | -108 |  |  | +0.0c | yes | pending |
@@ -23,7 +23,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 31 2:09PM | NCAAF | Nicholls St. vs McNeese | moneyline: McNeese | kalshi | $33k | -285 |  |  | +0.0c | yes | pending |
 | Oct 31 2:09PM | NCAAF | Delaware St. vs Norfolk St. | moneyline: Delaware St. | kalshi | $25k | -127 |  |  | +0.0c | yes | pending |
 | Oct 31 1:49PM | NBA | Cavaliers vs. Bucks | spread: Bucks (+9.5) | polymarket | $25k | -104 | ✅ novig |  | +1.0c |  | pending |
-| Oct 31 1:49PM | NBA | 76ers vs. Hornets | moneyline: 76ers | polymarket | $37k | -108 | ✅ prophetx | ❌ | +0.0c |  | pending |
+| Oct 31 1:49PM | NBA | 76ers vs. Hornets | moneyline: 76ers | polymarket | $37k | -108 | ✅ prophetx | ❌ | +1.0c |  | pending |
 | Oct 31 1:49PM | NCAAF | Coastal Carolina vs Georgia St.: Spread | spread: NOT Georgia St. wins by over 3.5 points | kalshi | $55k | -104 | ✅ novig |  | +0.0c |  | pending |
 | Oct 31 1:30PM | NCAAF | Gardner-Webb vs Southeast Missouri St. | moneyline: Southeast Missouri St. | kalshi | $35k | -203 |  |  | +0.0c | yes | pending |
 | Oct 31 1:30PM | NCAAF | Alcorn St. vs Mississippi Valley St. | moneyline: Alcorn St. | kalshi | $40k | -376 |  |  | +0.0c | yes | pending |
@@ -63,7 +63,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 31 8:50AM | NHL | Chicago vs Boston: Spread | spread: NOT Boston wins by over 1.5 goals | kalshi | $50k | -122 | ✅ novig |  | -1.0c |  | W |
 | Oct 31 8:50AM | NCAAF | Coastal Carolina vs Georgia St. | moneyline: Georgia St. | kalshi | $86k | -163 |  |  | -1.0c | yes | pending |
 | Oct 31 8:30AM | NHL | St. Louis vs Detroit | moneyline: Detroit | kalshi | $87k | +104 | ✅ prophetx |  | +3.0c |  | L |
-| Oct 31 8:11AM | NHL | Oilers vs. Islanders | spread: Islanders (+1.5) | polymarket | $34k | -213 | ✅ novig |  | +2.0c |  | pending |
+| Oct 31 8:11AM | NHL | Oilers vs. Islanders | spread: Islanders (+1.5) | polymarket | $34k | -213 | ✅ novig |  | +2.0c |  | L |
 | Oct 31 8:11AM | NHL | Penguins vs. Canadiens | moneyline: Penguins | polymarket | $35k | +127 | ✅ prophetx |  | +3.0c |  | pending |
 | Oct 31 8:11AM | NHL | Edmonton vs New York I | moneyline: New York I | kalshi | $57k | +113 | ✅ prophetx |  | +4.0c | yes | L |
 | Oct 31 7:51AM | NBA | Trail Blazers vs. Jazz | spread: Jazz (+6.5) | polymarket | $26k | -104 |  |  | -3.0c | yes | pending |
