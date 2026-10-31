@@ -1,6 +1,311 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-31T17:40:10Z",
+   "base_depth": 86762,
+   "best_price": 0.51,
+   "best_price_american": -104,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-31",
+   "depth_by_book": {
+    "novig": {
+     "heavier_side": true,
+     "label": "MIL +9.5 (9.5)",
+     "price": 0.51,
+     "this_side": 23865
+    },
+    "polymarket": {
+     "new_other_side": 6956,
+     "new_this_side": 25405,
+     "other_side": 80519,
+     "other_side_all_levels": 106050,
+     "ratio": 0.9,
+     "this_side": 70351,
+     "this_side_all_levels": 114826
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "Milwaukee Bucks +9.5 (+9.5)",
+     "price": 0.505,
+     "this_side": 14111
+    }
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-10-31T17:30:19Z",
+   "game": "Cavaliers vs. Bucks",
+   "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6440500\"}",
+   "lead_min": 380,
+   "league": "NBA",
+   "line": 9.5,
+   "market": "spread",
+   "new_money": 25405,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 9.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 9.5,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 9.5,
+     "price": 103
+    },
+    "betrivers": {
+     "point": 9.5,
+     "price": -106
+    },
+    "betus": {
+     "point": 9.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 9.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 9.5,
+     "price": -108
+    },
+    "fanatics": {
+     "point": 9.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 9.5,
+     "price": -106
+    },
+    "kalshi": {
+     "point": 9.5,
+     "price": 100
+    },
+    "lowvig": {
+     "point": 9.5,
+     "price": -106
+    },
+    "mybookieag": {
+     "point": 9.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 9.5,
+     "price": -104
+    },
+    "polymarket": {
+     "point": 9.5,
+     "price": -104
+    },
+    "prophetx": {
+     "point": 9.5,
+     "price": -102
+    },
+    "williamhill_us": {
+     "point": 9.5,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 1,
+    "pm_market_id": "6440500"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Bucks",
+   "side_label": "Bucks (+9.5)",
+   "start_source": "odds",
+   "start_utc": "2026-11-01T00:00:00Z",
+   "teams": [
+    "Cavaliers",
+    "Bucks"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-31T17:40:10Z",
+   "base_depth": 83349,
+   "best_price": 0.5172,
+   "best_price_american": -107,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-31",
+   "depth_by_book": {
+    "novig": {
+     "heavier_side": false,
+     "label": "PHI (0)",
+     "price": 0.52,
+     "this_side": 12661
+    },
+    "polymarket": {
+     "new_other_side": 8804,
+     "new_this_side": 37056,
+     "other_side": 43479,
+     "other_side_all_levels": 67905,
+     "ratio": 2.1,
+     "this_side": 92833,
+     "this_side_all_levels": 121004
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Philadelphia 76ers",
+     "price": 0.5122,
+     "this_side": 12333
+    }
+   },
+   "fade_price": 0.49,
+   "first_seen_utc": "2026-10-31T17:30:19Z",
+   "game": "76ers vs. Hornets",
+   "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"6167325\"}",
+   "lead_min": 260,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 37056,
+   "paper_only": false,
+   "price": 0.52,
+   "price_american": -108,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.52,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -105
+    },
+    "betopenly": {
+     "point": null,
+     "price": -108
+    },
+    "betrivers": {
+     "point": null,
+     "price": -114
+    },
+    "betus": {
+     "point": null,
+     "price": -105
+    },
+    "bovada": {
+     "point": null,
+     "price": -110
+    },
+    "draftkings": {
+     "point": null,
+     "price": -108
+    },
+    "fanatics": {
+     "point": null,
+     "price": -110
+    },
+    "fanduel": {
+     "point": null,
+     "price": -108
+    },
+    "kalshi": {
+     "point": null,
+     "price": -108
+    },
+    "limitless": {
+     "point": null,
+     "price": -111
+    },
+    "lowvig": {
+     "point": null,
+     "price": -103
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -111
+    },
+    "novig": {
+     "point": null,
+     "price": -106
+    },
+    "polymarket": {
+     "point": null,
+     "price": -108
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -104
+    },
+    "prophetx": {
+     "point": null,
+     "price": -105
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -105
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 0,
+    "pm_market_id": "6167325"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "prophetx"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [
+    "Charlotte Hornets +1.5 (-120)",
+    "Charlotte Hornets +1.5 (-115)"
+   ],
+   "side": "76ers",
+   "side_label": "76ers",
+   "start_source": "odds",
+   "start_utc": "2026-10-31T22:00:00Z",
+   "teams": [
+    "76ers",
+    "Hornets"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-31T17:30:19Z",
    "base_depth": 93672,
    "best_price": 0.6855,
@@ -119,7 +424,8 @@
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.79,
    "prices_by_book": {},
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-31T17:40:10Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26OCT31ALCNMVSU-ALCN"
@@ -524,8 +830,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.845,
-   "clv_cents": 0.0,
+   "close_price": 0.84,
+   "clv_cents": -0.5,
    "confirmed_after_min": 18,
    "date": "2026-10-31",
    "depth_by_book": {
@@ -731,8 +1037,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.39,
-   "clv_cents": 0.0,
+   "close_price": 0.4,
+   "clv_cents": 1.0,
    "confirmed_after_min": 18,
    "date": "2026-10-31",
    "depth_by_book": {
@@ -3037,8 +3343,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.54,
-   "clv_cents": -2.0,
+   "close_price": 0.53,
+   "clv_cents": -3.0,
    "confirmed_after_min": 19,
    "date": "2026-10-31",
    "depth_by_book": {
@@ -3123,8 +3429,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.1,
-   "clv_cents": -46.0,
+   "close_price": 0.26,
+   "clv_cents": -30.0,
    "confirmed_after_min": 19,
    "date": "2026-10-31",
    "depth_by_book": {
@@ -4382,8 +4688,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.43,
-   "clv_cents": -1.0,
+   "close_price": 0.44,
+   "clv_cents": 0.0,
    "confirmed_after_min": 20,
    "date": "2026-10-31",
    "depth_by_book": {
@@ -4669,8 +4975,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.62,
-   "clv_cents": 0.0,
+   "close_price": 0.6,
+   "clv_cents": -2.0,
    "confirmed_after_min": 20,
    "date": "2026-10-31",
    "depth_by_book": {
@@ -5871,8 +6177,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.58,
-   "clv_cents": 1.0,
+   "close_price": 0.59,
+   "clv_cents": 2.0,
    "confirmed_after_min": 19,
    "date": "2026-10-31",
    "depth_by_book": {
