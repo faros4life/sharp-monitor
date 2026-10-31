@@ -1,24 +1,25 @@
 # Liquidity alerts (paper)
 
-Updated Sat Oct 31, 7:23 PM ET. This run: 2 new, 2 not confirmed, 5 pending. Open alerts: 57.
+Updated Sat Oct 31, 7:30 PM ET. This run: 1 new, 4 not confirmed, 5 pending. Open alerts: 57.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 626-539 (-53.80u flat) | rule met: 370-360
+**Record:** 626-540 (-54.80u flat) | rule met: 370-360
 
-**Fade (paper, betting against the print):** 273-353 (-49.72u flat, after fees)
+**Fade (paper, betting against the print):** 274-353 (-46.28u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Oct 31 7:23PM | NHL | Columbus vs Dallas: Spread | spread: NOT Dallas wins by over 1.5 goals | kalshi | $37k | -156 | ✅ novig,polymarket |  | +0.0c |  | pending |
-| Oct 31 7:23PM | NCAAF | Ohio St. vs USC | moneyline: Ohio St. | kalshi | $2,091k | -223 | ✅ novig,prophetx |  | +0.0c |  | pending |
+| Oct 31 7:30PM | NFL | Arizona vs Dallas | moneyline: Dallas | kalshi | $116k | -300 | ✅ novig,prophetx |  | +0.0c |  | pending |
+| Oct 31 7:23PM | NHL | Columbus vs Dallas: Spread | spread: NOT Dallas wins by over 1.5 goals | kalshi | $37k | -156 | ✅ novig,polymarket |  | +0.0c | yes | pending |
+| Oct 31 7:23PM | NCAAF | Ohio St. vs USC | moneyline: Ohio St. | kalshi | $2,091k | -223 | ✅ novig,prophetx |  | +0.0c | yes | pending |
 | Oct 31 7:00PM | NBA | Cavaliers vs. Bucks | total: Under (235.5) | polymarket | $67k | -100 | ✅ novig |  | +1.0c |  | pending |
-| Oct 31 6:40PM | NBA | Sacramento Kings at Memphis Grizzlies | moneyline: Memphis Grizzlies | prophetx | $31k | -305 | ✅ kalshi,novig,polymarket | ❌ | -1.6c |  | pending |
+| Oct 31 6:40PM | NBA | Sacramento Kings at Memphis Grizzlies | moneyline: Memphis Grizzlies | prophetx | $31k | -305 | ✅ kalshi,novig,polymarket | ❌ | -2.0c |  | pending |
 | Oct 31 6:40PM | NCAAF | Washington St. vs San Diego St.: Spread | spread: San Diego St. wins by over 2.5 points | kalshi | $81k | -108 | ✅ novig |  | +0.0c | yes | pending |
-| Oct 31 6:40PM | NHL | Columbus vs Dallas | moneyline: Dallas | kalshi | $64k | -170 | ✅ novig,polymarket,prophetx |  | +0.0c |  | pending |
-| Oct 31 6:30PM | NBA | Timberwolves vs. Spurs | total: Over (228.5) | polymarket | $33k | -113 | ✅ kalshi | ✅ | +1.0c |  | pending |
-| Oct 31 6:30PM | NBA | Minnesota vs San Antonio: Total Points | total: Over 228.5 points | kalshi | $81k | -113 | ✅ polymarket | ✅ | +1.0c |  | pending |
-| Oct 31 6:30PM | NCAAF | Miami (FL) vs North Carolina: Spread | spread: NOT Miami (FL) wins by over 13.5 points | kalshi | $465k | +104 |  |  | +1.0c |  | pending |
+| Oct 31 6:40PM | NHL | Columbus vs Dallas | moneyline: Dallas | kalshi | $64k | -170 | ✅ novig,polymarket,prophetx |  | +1.0c |  | pending |
+| Oct 31 6:30PM | NBA | Timberwolves vs. Spurs | total: Over (228.5) | polymarket | $33k | -113 | ✅ kalshi | ✅ | +2.0c |  | pending |
+| Oct 31 6:30PM | NBA | Minnesota vs San Antonio: Total Points | total: Over 228.5 points | kalshi | $81k | -113 | ✅ polymarket | ✅ | +2.0c |  | pending |
+| Oct 31 6:30PM | NCAAF | Miami (FL) vs North Carolina: Spread | spread: NOT Miami (FL) wins by over 13.5 points | kalshi | $465k | +104 |  |  | +1.0c | yes | pending |
 | Oct 31 6:30PM | NBA | Sacramento vs Memphis | moneyline: Memphis | kalshi | $131k | -300 | ✅ novig,prophetx | ❌ | -1.0c | yes | pending |
 | Oct 31 6:30PM | NBA | Minnesota vs San Antonio | moneyline: San Antonio | kalshi | $305k | -488 | ✅ novig,polymarket,prophetx |  | +0.0c | yes | pending |
 | Oct 31 6:20PM | NBA | Cavaliers vs. Bucks | moneyline: Bucks | polymarket | $114k | +317 |  |  | +1.0c |  | pending |
@@ -53,7 +54,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 31 2:09PM | NCAAF | South Dakota vs South Dakota St. | moneyline: NOT South Dakota | kalshi | $43k | -223 |  |  | +0.0c | yes | pending |
 | Oct 31 2:09PM | NCAAF | Nicholls St. vs McNeese | moneyline: McNeese | kalshi | $33k | -285 |  |  | +0.0c | yes | W |
 | Oct 31 2:09PM | NCAAF | Delaware St. vs Norfolk St. | moneyline: Delaware St. | kalshi | $25k | -127 |  |  | +0.0c | yes | W |
-| Oct 31 1:49PM | NBA | Cavaliers vs. Bucks | spread: Bucks (+9.5) | polymarket | $25k | -104 | ✅ novig |  | +1.0c |  | pending |
+| Oct 31 1:49PM | NBA | Cavaliers vs. Bucks | spread: Bucks (+9.5) | polymarket | $25k | -104 | ✅ novig |  | +2.0c |  | pending |
 | Oct 31 1:49PM | NBA | 76ers vs. Hornets | moneyline: 76ers | polymarket | $37k | -108 | ✅ prophetx | ❌ | +1.0c |  | pending |
 | Oct 31 1:49PM | NCAAF | Coastal Carolina vs Georgia St.: Spread | spread: NOT Georgia St. wins by over 3.5 points | kalshi | $55k | -104 | ✅ novig |  | +0.0c |  | W |
 | Oct 31 1:30PM | NCAAF | Gardner-Webb vs Southeast Missouri St. | moneyline: Southeast Missouri St. | kalshi | $35k | -203 |  |  | +0.0c | yes | L |
@@ -71,7 +72,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 31 11:30AM | NCAAF | Richmond vs Holy Cross | moneyline: Richmond | kalshi | $30k | -117 |  |  | +0.0c | yes | L |
 | Oct 31 11:20AM | NCAAF | SMU vs Syracuse: Total Points | total: Over 58.5 points | kalshi | $32k | -108 |  |  | +0.0c | yes | L |
 | Oct 31 11:20AM | NCAAF | Marshall vs Old Dominion: Spread | spread: Marshall wins by over 2.5 points | kalshi | $42k | -113 |  |  | +0.0c | yes | W |
-| Oct 31 10:43AM | NBA | Cavaliers vs. Bucks | spread: Cavaliers (-9.5) | polymarket | $112k | -104 |  |  | -2.0c | yes | pending |
+| Oct 31 10:43AM | NBA | Cavaliers vs. Bucks | spread: Cavaliers (-9.5) | polymarket | $112k | -104 |  |  | -3.0c | yes | pending |
 | Oct 31 10:43AM | NCAAF | Navy @ Notre Dame | spread: ND -30.5 (-30.5) | novig | $26k | -111 | ✅ kalshi |  | +0.5c | yes | L |
 | Oct 31 10:26AM | NBA | Cavaliers vs. Bucks | total: Under (236.5) | polymarket | $45k | -108 |  |  | +1.0c | yes | pending |
 | Oct 31 10:26AM | NHL | Blackhawks vs. Bruins | spread: Blackhawks (+1.5) | polymarket | $34k | -117 | ✅ kalshi,novig |  | -1.0c | yes | W |
@@ -160,7 +161,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 30 5:00PM | NCAAF | North Dakota vs Youngstown St. | moneyline: Youngstown St. | kalshi | $26k | -194 |  |  | +0.0c | yes | W |
 | Oct 30 4:39PM | NBA | Rockets vs. Mavericks | spread: Rockets (-6.5) | polymarket | $33k | -104 | ✅ kalshi,novig,prophetx |  | -3.0c | yes | L |
 | Oct 30 4:39PM | NBA | New York Knicks @ Philadelphia 76ers | moneyline: NYK (0) | novig | $27k | -144 | ✅ kalshi,polymarket,prophetx | ✅ | -0.5c |  | L |
-| Oct 30 4:39PM | NCAAF | Purdue @ Penn State | moneyline: PSU (0) | novig | $27k | -355 |  |  | +0.0c |  | pending |
+| Oct 30 4:39PM | NCAAF | Purdue @ Penn State | moneyline: PSU (0) | novig | $27k | -355 |  |  | +0.0c |  | L |
 | Oct 30 4:39PM | NBA | Indiana vs Miami: Total Points | total: NOT Over 237.5 points | kalshi | $57k | -108 | ✅ polymarket | ✅ | +0.0c |  | L |
 | Oct 30 4:19PM | NHL | Winnipeg vs Florida: Total Goals | total: Over 6.5 goals scored | kalshi | $29k | +113 |  | ❌ | -2.0c | yes | W |
 | Oct 30 4:19PM | NHL | Seattle vs Calgary: Total Goals | total: Over 6.5 goals scored | kalshi | $38k | +104 |  |  | +1.0c | yes | W |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 30 9:49AM | NHL | Jets vs. Panthers | moneyline: Panthers | polymarket | $29k | -223 | ✅ novig |  | -2.0c |  | W |
 | Oct 30 9:30AM | NBA | New York vs Philadelphia: Total Points | total: NOT Over 226.5 points | kalshi | $33k | +104 |  |  | +7.0c | yes | W |
 | Oct 30 9:30AM | NBA | Denver vs Phoenix: Total Points | total: NOT Over 231.5 points | kalshi | $235k | -100 | ✅ novig,polymarket |  | +0.0c | yes | L |
-| Oct 30 9:30AM | NBA | Chicago vs Boston: Total Points | total: NOT Over 234.5 points | kalshi | $38k | +104 | ✅ polymarket |  | -2.0c | yes | L |

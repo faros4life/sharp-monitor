@@ -1,6 +1,162 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-31T23:30:13Z",
+   "base_depth": 3365511,
+   "best_price": 0.745,
+   "best_price_american": -292,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.75,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 7,
+   "date": "2026-11-01",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 1958,
+     "new_this_side": 116236,
+     "other_side": 892607,
+     "other_side_all_levels": 1005724,
+     "ratio": 3.5,
+     "this_side": 3137761,
+     "this_side_all_levels": 3495598
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "DAL (0)",
+     "price": 0.745,
+     "this_side": 100025
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Dallas Cowboys",
+     "price": 0.7436,
+     "this_side": 28107
+    }
+   },
+   "fade_price": 0.26,
+   "first_seen_utc": "2026-10-31T23:23:22Z",
+   "game": "Arizona vs Dallas",
+   "key": "kalshi|KXNFLGAME-26NOV01ARIDAL|ml|1",
+   "lead_min": 1110,
+   "league": "NFL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 116236,
+   "paper_only": false,
+   "price": 0.75,
+   "price_american": -300,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.75,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -325
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -305
+    },
+    "betopenly": {
+     "point": null,
+     "price": -302
+    },
+    "betrivers": {
+     "point": null,
+     "price": -375
+    },
+    "betus": {
+     "point": null,
+     "price": -305
+    },
+    "bovada": {
+     "point": null,
+     "price": -320
+    },
+    "draftkings": {
+     "point": null,
+     "price": -310
+    },
+    "fanatics": {
+     "point": null,
+     "price": -320
+    },
+    "fanduel": {
+     "point": null,
+     "price": -335
+    },
+    "kalshi": {
+     "point": null,
+     "price": -300
+    },
+    "limitless": {
+     "point": null,
+     "price": -361
+    },
+    "lowvig": {
+     "point": null,
+     "price": -305
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -330
+    },
+    "novig": {
+     "point": null,
+     "price": -292
+    },
+    "polymarket": {
+     "point": null,
+     "price": -300
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -292
+    },
+    "prophetx": {
+     "point": null,
+     "price": -290
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -320
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNFLGAME-26NOV01ARIDAL-DAL"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "prophetx"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Dallas",
+   "side_label": "Dallas",
+   "start_source": "odds",
+   "start_utc": "2026-11-01T18:00:00Z",
+   "teams": [
+    "Arizona",
+    "Dallas"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-31T23:23:22Z",
    "base_depth": 288280,
    "best_price": 0.61,
@@ -118,7 +274,8 @@
      "price": -152
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-31T23:30:13Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNHLSPREAD-26OCT31CBJDAL-DAL2"
@@ -159,6 +316,7 @@
     "polymarket",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.69,
    "clv_cents": 0.0,
    "confirmed_after_min": 13,
@@ -266,7 +424,8 @@
      "price": -245
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-31T23:30:13Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26OCT31OSUUSC-OSU"
@@ -457,8 +616,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.7368,
-   "clv_cents": -1.6,
+   "close_price": 0.7333,
+   "clv_cents": -2.0,
    "confirmed_after_min": 10,
    "date": "2026-10-31",
    "depth_by_book": {
@@ -771,8 +930,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.63,
-   "clv_cents": 0.0,
+   "close_price": 0.64,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-31",
    "depth_by_book": {
@@ -933,8 +1092,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.54,
-   "clv_cents": 1.0,
+   "close_price": 0.55,
+   "clv_cents": 2.0,
    "confirmed_after_min": 10,
    "date": "2026-10-31",
    "depth_by_book": {
@@ -1081,8 +1240,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.54,
-   "clv_cents": 1.0,
+   "close_price": 0.55,
+   "clv_cents": 2.0,
    "confirmed_after_min": 10,
    "date": "2026-10-31",
    "depth_by_book": {
@@ -1229,6 +1388,7 @@
     "polymarket",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.5,
    "clv_cents": 1.0,
    "confirmed_after_min": 10,
@@ -1332,7 +1492,8 @@
      "price": -106
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-31T23:30:13Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFSPREAD-26OCT31MIAUNC-MIA14"
@@ -2798,6 +2959,7 @@
     "polymarket",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.49,
    "clv_cents": -3.0,
    "confirmed_after_min": 7,
@@ -6147,8 +6309,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 1.0,
+   "close_price": 0.53,
+   "clv_cents": 2.0,
    "confirmed_after_min": 19,
    "date": "2026-10-31",
    "depth_by_book": {
@@ -8382,8 +8544,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.49,
-   "clv_cents": -2.0,
+   "close_price": 0.48,
+   "clv_cents": -3.0,
    "confirmed_after_min": 17,
    "date": "2026-10-31",
    "depth_by_book": {
@@ -21208,8 +21370,10 @@
     }
    },
    "fade_price": 0.225,
+   "fade_units": 3.44,
    "first_seen_utc": "2026-10-30T20:19:13Z",
    "game": "Purdue @ Penn State",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a171cd-96e2-71b1-a3a2-f5295541ff3b\", \"outcome_id\": \"01a171cd-96e2-71b1-a3a2-f53f9a924cb3\"}",
    "lead_min": 1415,
    "league": "NCAAF",
@@ -21229,11 +21393,12 @@
     "market_id": "01a171cd-96e2-71b1-a3a2-f5295541ff3b",
     "outcome_id": "01a171cd-96e2-71b1-a3a2-f53f9a924cb3"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settled_utc": "2026-10-31T23:30:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "PSU (0)",
@@ -21246,7 +21411,7 @@
     "Penn State"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-30T20:39:59Z",
