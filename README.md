@@ -1,21 +1,21 @@
 # EV sightings study (paper, measurement only)
 
-Started 2026-10-27T16:06:50Z. Updated 2026-10-31T05:05:00Z. Sightings are a record, never bets. CLV = close fair - sighting after-fee cost, in cents (+ = beat the close). Gate: >= 50 graded, positive average CLV and positive flat record; reviewed only at a scheduled review. A/B gate on consensus CLV; move-watch (A1) gate on Pinnacle CLV. Held = Pinnacle close minus Pinnacle's pre-move fair at the old number (+ = the move held). Rows exclude suspect sightings (best price 10c+ under the other books, or a crossed quote: usually a misread line); Pinnacle CLV only within 3 points of Pinnacle's number.
+Started 2026-10-27T16:06:50Z. Updated 2026-10-31T05:10:18Z. Sightings are a record, never bets. CLV = close fair - sighting after-fee cost, in cents (+ = beat the close). Gate: >= 50 graded, positive average CLV and positive flat record; reviewed only at a scheduled review. A/B gate on consensus CLV; move-watch (A1) gate on Pinnacle CLV. Held = Pinnacle close minus Pinnacle's pre-move fair at the old number (+ = the move held). Rows exclude suspect sightings (best price 10c+ under the other books, or a crossed quote: usually a misread line); Pinnacle CLV only within 3 points of Pinnacle's number.
 
 | Bucket | Sightings | Closed | CLV vs consensus | Beat % | Pin-closed | CLV vs Pinnacle | Graded | Record | Units | ROI | Held | Lag (med) | Gate |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| A cross-book (>= 2c) | 2188 | 1881 | -2.53c | 25.4% | 734 | -1.22c | 1792 | 892-900-0 | -123.08u | -6.9% |  |  | criteria not met (1792/50 graded, CLV not positive, record not positive) |
-| A qualifying (>= 3c) | 547 | 397 | -5.93c | 18.6% | 79 | -3.91c | 384 | 186-198-0 | -32.90u | -8.6% |  |  | criteria not met (384/50 graded, CLV not positive, record not positive) |
+| A cross-book (>= 2c) | 2188 | 1881 | -2.53c | 25.4% | 734 | -1.22c | 1851 | 925-926-0 | -119.76u | -6.5% |  |  | criteria not met (1851/50 graded, CLV not positive, record not positive) |
+| A qualifying (>= 3c) | 547 | 397 | -5.93c | 18.6% | 79 | -3.91c | 391 | 190-201-0 | -32.17u | -8.2% |  |  | criteria not met (391/50 graded, CLV not positive, record not positive) |
 | B Pinnacle (>= 3% EV) | 37 | 37 | -0.72c | 37.8% | 35 | 0.03c | 37 | 16-21-0 | -3.35u | -9.1% |  |  | criteria not met (37/50 graded, CLV not positive, record not positive) |
 | B ref age <60s | 2 | 2 | 2.69c | 100.0% | 2 | 2.44c | 2 | 1-1-0 | +0.11u | 5.3% |  |  |  |
 | B ref age 1-5m | 24 | 24 | -0.48c | 33.3% | 23 | 0.22c | 24 | 11-13-0 | -0.83u | -3.4% |  |  |  |
 | B ref age 5m+ | 11 | 11 | -1.87c | 36.4% | 10 | -0.88c | 11 | 4-7-0 | -2.63u | -23.9% |  |  |  |
-| M move-watch: gettable (sightings) | 78 | 71 | -0.71c | 35.2% | 70 | -0.69c | 66 | 39-27-0 | +10.12u | 15.3% | 0.22c | 28s | criteria not met (66/50 graded, CLV not positive) |
-| M gettable, line moves | 44 | 40 | -0.66c | 37.5% | 39 | -0.89c | 35 | 21-14-0 | +5.28u | 15.1% | 0.09c | 54s |  |
+| M move-watch: gettable (sightings) | 78 | 71 | -0.71c | 35.2% | 70 | -0.69c | 68 | 40-28-0 | +10.05u | 14.8% | 0.22c | 28s | criteria not met (68/50 graded, CLV not positive) |
+| M gettable, line moves | 44 | 40 | -0.66c | 37.5% | 39 | -0.89c | 37 | 22-15-0 | +5.21u | 14.1% | 0.09c | 54s |  |
 | M gettable, price moves | 34 | 31 | -0.76c | 32.3% | 31 | -0.44c | 31 | 18-13-0 | +4.84u | 15.6% | 0.39c | 28s |  |
-| M control: not gettable | 287 | 184 | -0.64c | 33.2% | 180 | -1.17c | 179 | 93-83-3 | -0.79u | -0.4% | 1.82c | 148s |  |
-| M all moves | 365 | 255 | -0.66c | 33.7% | 250 | -1.03c | 245 | 132-110-3 | +9.34u | 3.8% | 1.45c | 63s |  |
-| Suspect (10c+ gap / crossed), all legs - excluded above | 275 | 145 | -0.09c | 22.1% | 18 | -0.21c | 138 | 67-71-0 | +97.93u | 71.0% |  |  |  |
+| M control: not gettable | 287 | 184 | -0.64c | 33.2% | 180 | -1.17c | 187 | 95-89-3 | -4.96u | -2.6% | 1.82c | 148s |  |
+| M all moves | 365 | 255 | -0.66c | 33.7% | 250 | -1.03c | 255 | 135-117-3 | +5.09u | 2.0% | 1.45c | 63s |  |
+| Suspect (10c+ gap / crossed), all legs - excluded above | 275 | 145 | -0.09c | 22.1% | 18 | -0.21c | 139 | 68-71-0 | +98.53u | 70.9% |  |  |  |
 
 ## A2 maker test (paper resting orders, Novig + ProphetX, main lines)
 
@@ -34,10 +34,11 @@ A and B on the same side/line: 29.
 
 ## Odds API credits (100K/month plan)
 
-Study: 518/day, projected 15543/30 days. All monitors on the key: 2003/day, projected 60097/30 days. Remaining 64403; guard holds 5600 for the sharp monitor; polls skipped by the guard: 0.
+Study: 518/day, projected 15526/30 days. All monitors on the key: 2001/day, projected 60032/30 days. Remaining 64403; guard holds 5600 for the sharp monitor; polls skipped by the guard: 0.
 
 ## Last runs
 
+- 2026-10-31T05:10:18Z: outside read hours: closes/grades only
 - 2026-10-31T05:05:00Z: outside read hours: closes/grades only
 - 2026-10-31T05:00:24Z: outside read hours: closes/grades only
 - 2026-10-31T04:56:06Z: outside read hours: closes/grades only
@@ -47,4 +48,3 @@ Study: 518/day, projected 15543/30 days. All monitors on the key: 2003/day, proj
 - 2026-10-31T04:24:26Z: outside read hours: closes/grades only
 - 2026-10-31T04:20:21Z: outside read hours: closes/grades only
 - 2026-10-31T04:16:39Z: outside read hours: closes/grades only
-- 2026-10-31T04:10:16Z: outside read hours: closes/grades only
