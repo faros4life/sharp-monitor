@@ -54,7 +54,9 @@ def _mine(tr):
 
 
 def _call(path, body=None):
+    import book_check as _bc   # Oct 31: same global ProphetX pace as the price checks (parallel-safe)
     for i in range(4):
+        _bc.px_pace()
         req = urllib.request.Request(BASE + path, data=json.dumps(body).encode() if body is not None else None,
                                      method="POST" if body is not None else "GET",
                                      headers={"Content-Type": "application/json", "Accept": "application/json",
@@ -62,7 +64,6 @@ def _call(path, body=None):
         try:
             with urllib.request.urlopen(req, timeout=20) as r:
                 out = json.loads(r.read().decode() or "{}")
-            time.sleep(1.05)   # starter limit: 1 request / second / endpoint
             return out
         except urllib.error.HTTPError as ex:
             if ex.code == 429 and i < 3:

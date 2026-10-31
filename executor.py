@@ -22,6 +22,7 @@ import hashlib
 import imaplib
 import json
 import math
+from concurrent.futures import ThreadPoolExecutor
 import os
 import re
 import smtplib
@@ -724,18 +725,19 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None, held=None):
     if not mtype or side is None or price is None:
         return dict(out, verdict="SKIP", reason="could not read the bet")
     def probe(ln):
-        """Each book's ladder at one line (the books pick their nearest strike; kept only if it IS this line)."""
-        got = {}
-        try:
-            got["novig"] = bc.check_alert(dict(al, bet=bet_at(al["bet"], mtype, line, ln)), evs_by, mks_by_event)
-        except Exception as ex:
-            got["novig"] = {"status": f"error: {str(ex)[:80]}"}
-        for b, fn in (("prophetx", bc.px_check), ("kalshi", bc.kalshi_check), ("polymarket_us", pmus_check)):
+        """Each book's ladder at one line (the books pick their nearest strike; kept only if it IS this line).
+        Oct 31: the 4 books are read at the same time (ProphetX keeps its own 1/sec pace)."""
+        def one(b):
             try:
-                got[b] = fn(al, mtype, side, ln, price, teams)
+                if b == "novig":
+                    return bc.check_alert(dict(al, bet=bet_at(al["bet"], mtype, line, ln)), evs_by, mks_by_event)
+                fn = {"prophetx": bc.px_check, "kalshi": bc.kalshi_check, "polymarket_us": pmus_check}[b]
+                return fn(al, mtype, side, ln, price, teams)
             except Exception as ex:
-                got[b] = {"status": f"error: {str(ex)[:80]}"}
-        return got
+                return {"status": f"error: {str(ex)[:80]}"}
+        books = ("novig", "prophetx", "kalshi", "polymarket_us")
+        with ThreadPoolExecutor(max_workers=4) as tp:
+            return dict(zip(books, tp.map(one, books)))
 
     res = probe(line)   # the alert line (also what the report's book table shows)
     if res["novig"].get("status") == "game_not_on_novig":   # show what Novig lists that day (names only)
@@ -770,8 +772,10 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None, held=None):
     # --- every nearby line on every book, converted to its EQUIVALENT price at the alert line (Peter, Oct 23)
     ladders = {}   # (book, line) -> result
     lines = [line] if (mtype == "moneyline" or line is None) else [line + d for d in (0, -0.5, 0.5, -1.0, 1.0)]
+    with ThreadPoolExecutor(max_workers=4) as tp:   # Oct 31: the nearby lines are probed at the same time
+        probed = dict(zip(lines[1:], tp.map(probe, lines[1:])))
     for ln in lines:
-        got = res if ln == line else probe(ln)
+        got = res if ln == line else probed[ln]
         for b, r in got.items():
             bl = book_line(r) if mtype != "moneyline" else None
             if r.get("status") == "ok" and r.get("best_price_american") is not None and \
@@ -789,8 +793,12 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None, held=None):
         alert_af = price
     alert_cost = american_to_prob(alert_af)
     px_tol = american_to_prob(cents_worse(alert_af, PX_TOL_CENTS)) - alert_cost   # Peter, Oct 27: ProphetX may be 2c worse
-    cands = []
+    floor = p.get("floor_line") if mtype in ("spread", "total") else None
+    cands, floor_blocked = [], 0
     for (b, bl), r in ladders.items():
+        if floor is not None and better_halfpoints(mtype, side, floor, bl) < -1e-9:
+            floor_blocked += 1   # Oct 31 (Muse): the alert's bet-only-at LINE is a hard floor, whatever the converted price
+            continue
         hb = 0.0 if mtype == "moneyline" else better_halfpoints(mtype, side, line, bl)
         am = r["best_price_american"]
         c_eq = american_to_prob(am) - hb * hp
@@ -810,9 +818,13 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None, held=None):
     if not cands:
         if not ladders:
             return dict(out, verdict="SKIP", reason="no book lists this market near the alert line")
+        if floor_blocked and floor_blocked == len(ladders):
+            return dict(out, verdict="SKIP", reason=f"no fill - blocked by bet-only-at floor ({fmt_line(mtype, floor)})")
         return dict(out, verdict="SKIP", reason=f"price: nothing at or better than {alert_af:+d} after fees (ProphetX: "
                                                 f"{cents_worse(alert_af, PX_TOL_CENTS):+d}) at {fmt_line(mtype, line)} "
-                                                f"(equivalent, after fees; half point = {hp * 100:.1f}c {hp_src})")
+                                                f"(equivalent, after fees; half point = {hp * 100:.1f}c {hp_src})"
+                                                + (f"; {floor_blocked} line(s) blocked by bet-only-at floor "
+                                                   f"({fmt_line(mtype, floor)})" if floor_blocked else ""))
     capped = [c for c in cands if not (mtype in ("spread", "total") and c["am"] < CAP_LINE)]
     if not capped:
         best = min(cands, key=lambda c: c["c_eq"])
@@ -1272,10 +1284,17 @@ def rest_wanted(r):
         return False
     if lv.get("go"):
         o = lv.get("order") or {}
-        if any(_got(x) > 0 or x.get("status") == "error" for x in (lv.get("more") or [])):
+        allo = [o] + list(lv.get("more") or [])
+        if o.get("status") != "placed" or any(x.get("status") == "error" for x in allo):
             return False
-        return (o.get("status") == "placed" and o.get("fills_read") is True and not o.get("sent_to_runner")
-                and not (o.get("filled_stake") or 0))
+        if (o.get("fills_read") is True and not o.get("sent_to_runner") and not (o.get("filled_stake") or 0)
+                and not any(_got(x) > 0 for x in (lv.get("more") or []))):
+            return True   # nothing filled anywhere: rest the full unit
+        rem = round(float(lv.get("risk") or 0) - sum(_got(x) for x in allo), 2)
+        if rem >= MIN_ORDER - 0.01:   # Oct 31 (Peter): a partial fill rests a bid for the unfilled part
+            lv["rest_risk"] = rem
+            return True
+        return False
     if r.get("books") is None:
         return False
     if r.get("verdict") == "WOULD PLACE":
@@ -1311,6 +1330,8 @@ def rest_bid(r):
         return {"status": "refused", "reason": "alert after-fee price unknown (fail closed)"}
     p_star = american_to_prob(int(af))
     risk, _ = live_stake(int(af))
+    if (r.get("live") or {}).get("rest_risk"):   # Oct 31: only the unfilled part of a partial fill
+        risk = min(risk, float(r["live"]["rest_risk"]))
     g_ok, g_why = live_guards()
     if not g_ok:
         return {"status": "refused", "reason": g_why}
@@ -1551,8 +1572,12 @@ def main():
     mks_by_event = {}
     for mk in mks:
         mks_by_event.setdefault(mk.get("eventId"), []).append(mk)
-    pos = novig_positions()
-    held = positions.all_positions()   # Kalshi / ProphetX / Polymarket US open positions (read-only)
+    with ThreadPoolExecutor(max_workers=4) as tp:   # Oct 31: all 4 position reads at the same time
+        f_nv = tp.submit(novig_positions)
+        f_h = {b: tp.submit(fn) for b, fn in (("kalshi", positions.kalshi_positions), ("prophetx", positions.px_positions),
+                                              ("polymarket_us", positions.pmus_positions))}
+        pos = f_nv.result()
+        held = {b: f.result() for b, f in f_h.items()}   # Kalshi / ProphetX / Polymarket US open positions (read-only)
     if pos is None or any(v is None for v in held.values()):   # one immediate retry before holding anything
         time.sleep(5)
         if pos is None:
@@ -1617,6 +1642,8 @@ def main():
                 results.append({"play": p, "pid": pid(p["play_key"]), "verdict": "SKIP",
                                 "reason": f"rules gate {d['gate']}: {d['reason']}"})
                 continue
+            if ent.get("floor_line") is not None and p.get("floor_line") is None:
+                p = dict(p, floor_line=ent["floor_line"])   # Oct 31: the alert's bet-only-at line (hard floor)
             r = evaluate(p, now, evs_by, mks_by_event, pos, None if p.get("source") == "rules" else taken, held)
             r["entry"] = ent
             if ent and (p.get("source") != "rules" or RULES_LIVE):   # phase-1 live tag (Oct 30: coded AGREE goes live too)

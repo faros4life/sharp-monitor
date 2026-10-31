@@ -1180,6 +1180,14 @@ def weekly_recap(st, n):
     notify("Sharp weekly recap", "\n".join(lines))
 
 
+def floor_line(kind, why):
+    """'... bet only at 214 or better' / '... at -7 or better' -> 214.0 / -7.0 (spreads and totals only; None otherwise)."""
+    if kind not in ("spr", "tot") or not why:
+        return None
+    m = re.search(r"bet only at ([+-]?\d+(?:\.\d+)?) or better", why)
+    return float(m.group(1)) if m else None
+
+
 def write_alerts_file(st, n):
     """alerts.json: every alert from the last 45 days (bet, book, price, grade, confirm books, result) for agents/other tools.
     Rewritten each run; the workflow commits it only when it changed."""
@@ -1209,9 +1217,10 @@ def write_alerts_file(st, n):
                     "fade_units": (round(units({"price": f["price"], "book": f["book"]},
                                                {"W": "L", "L": "W", "P": "P"}[res["r"]]), 2)
                                    if (f and res and res["r"] in ("W", "L", "P")) else None)})
-    first_text = {}
+    first_text, first_why = {}, {}
     for x in sorted(st.get("sent", []), key=lambda x: x["t"]):
         first_text.setdefault((x["ev"], x["kind"], x["side"]), x.get("text"))
+        first_why.setdefault((x["ev"], x["kind"], x["side"]), x.get("why"))
     for row, e in zip(out, sorted(st["log"], key=lambda x: x["start"], reverse=True)):
         cl = e.get("cl") or {}
         row.update({"close_fair_prob": cl.get("p"), "close_value_pct": cl.get("ev"),
@@ -1219,7 +1228,10 @@ def write_alerts_file(st, n):
                     "executable_book": executable(e, first_text.get((e["ev"], e["kind"], e["side"]))),
                     # Oct 28 (Muse fix list): global Polymarket is not bettable from the US; tag it so every split can
                     # exclude it. The feed stopped pricing on it Oct 25 (last such alert Oct 26 02:10Z).
-                    "pricing_bettable": e.get("book") != "polymarket"})
+                    "pricing_bettable": e.get("book") != "polymarket",
+                    # Oct 31 (Muse): the alert's "bet only at X or better" LINE, for spreads/totals - a hard floor for
+                    # the executor (no fill at a worse line, whatever the converted price).
+                    "floor_line": floor_line(e.get("kind"), first_why.get((e["ev"], e["kind"], e["side"])))})
     bets = {(e["ev"], e["kind"], e["side"]): e for e in st["log"]}
     every = []
     for e in sorted(st.get("sent", []), key=lambda x: x["t"], reverse=True):

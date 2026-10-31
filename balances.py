@@ -49,6 +49,7 @@ def prophetx():
              and not any(w in str(t.get("status") or "").lower() for w in ("settled", "cancel", "void"))]
     expo = round(sum(px_live.stake_of(t) for t in open_), 2)
     PX_OPEN["n"] = len(open_)
+    PX_OPEN["trades"] = open_
     if bal is not None:
         TOT["px"] = bal + expo
     return f"ProphetX: balance {money(bal)} | open exposure {money(expo)} ({len(open_)} open bet(s))"
@@ -253,9 +254,20 @@ def new_positions():
     import positions as ps
     cur = []   # (token, line)
     import time as _t
-    for book, fn in (("Kalshi", ps.kalshi_positions), ("ProphetX", ps.px_positions), ("Polymarket US", ps.pmus_positions)):
-        if book == "ProphetX" and PX_OPEN["n"] == 0:
-            continue   # nothing open on ProphetX: skip the slow (rate-limited) game walk
+    # ProphetX: one entry per open trade from the balance read (trading key), so a bet is never missed even when its
+    # game can't be named; the name comes from the positions walk when it matches.
+    px_names = {}
+    if PX_OPEN.get("n"):
+        try:
+            for h in ps.px_positions() or []:
+                px_names[str(h.get("strike_id") or "")] = f"{h.get('game')} | {h.get('label')}"
+        except Exception:
+            pass
+    for t in PX_OPEN.get("trades") or []:
+        nm = px_names.get(str(t.get("strike_id"))) or f"open bet (strike {str(t.get('strike_id'))[:8]})"
+        cur.append((f"ProphetX|trade|{t.get('id')}",
+                    f"ProphetX: {nm} | stake {money(px_live.stake_of(t))} at {int(t.get('price') or 0):+d}"))
+    for book, fn in (("Kalshi", ps.kalshi_positions), ("Polymarket US", ps.pmus_positions)):
         t0 = _t.time()
         try:
             for h in fn() or []:

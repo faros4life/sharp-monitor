@@ -171,7 +171,17 @@ def px_positions():
         if not bc.px_login():
             WHY["prophetx"] = "login failed"
             return None
-        trades = ((bc.px_call("/v4/mm/get_trades").get("data") or {}).get("trades")) or []
+        # Oct 30: open bets live on the TRADING account (the balance read showed 3 open ProphetX bets this key couldn't
+        # see), so read trades with the trading key when it is set; the data key still does the game/market walk.
+        trades = None
+        try:
+            import px_live
+            if px_live.ACCESS and px_live.SECRET and px_live.login():
+                trades = px_live.trades()
+        except Exception:
+            trades = None
+        if trades is None:
+            trades = ((bc.px_call("/v4/mm/get_trades").get("data") or {}).get("trades")) or []
         DONE = ("profit", "loss", "win", "won", "lose", "lost", "push", "void", "refund", "cancel")
         open_ = [t for t in trades if not any(w in str(t.get("winning_status") or "").lower() for w in DONE)
                  and not any(w in str(t.get("status") or "").lower() for w in ("settled", "cancel", "void"))]
@@ -199,7 +209,7 @@ def px_positions():
                         for x in (lv if isinstance(lv, list) else [lv]):
                             sid = str(x.get("strike_id"))
                             if sid in want and sid not in found:
-                                found[sid] = {"book": "prophetx", "game": e.get("name") or "", "date": (e.get("scheduled") or "")[:10],
+                                found[sid] = {"book": "prophetx", "strike_id": sid, "game": e.get("name") or "", "date": (e.get("scheduled") or "")[:10],
                                               "mtype": mtype, "label": x.get("name") or "", "flip": False}
         STATS["prophetx"] = {"trades": len(trades), "open_fills": len(open_), "open_strikes": len(want),
                              "matched_strikes": len(found)}

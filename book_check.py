@@ -89,8 +89,21 @@ def after_fee(american, fee):
     return round(-100 / win) if win < 1 else round(win * 100)
 
 
+import threading as _th
+_PX_PACE = {"lock": _th.Lock(), "last": 0.0}   # Oct 31: parallel checks share ONE ProphetX pace (1 request / 1.1 s)
+
+
+def px_pace():
+    with _PX_PACE["lock"]:
+        wait = _PX_PACE["last"] + 1.1 - time.time()
+        if wait > 0:
+            time.sleep(wait)
+        _PX_PACE["last"] = time.time()
+
+
 def px_call(path, body=None):
-    for i in range(6):   # Oct 30: 429s on the positions read (several workflows share the ProphetX limit) - back off longer
+    for i in range(6):
+        px_pace()   # Oct 30: 429s on the positions read (several workflows share the ProphetX limit) - back off longer
         req = urllib.request.Request(PX_BASE + path, data=json.dumps(body).encode() if body is not None else None,
                                      method="POST" if body is not None else "GET",
                                      headers={"Content-Type": "application/json", "Accept": "application/json",
@@ -98,7 +111,6 @@ def px_call(path, body=None):
         try:
             with urllib.request.urlopen(req, timeout=25) as r:
                 out = json.loads(r.read().decode())
-            time.sleep(1.1)   # ProphetX rate limit
             return out
         except urllib.error.HTTPError as ex:
             if ex.code == 429 and i < 5:
