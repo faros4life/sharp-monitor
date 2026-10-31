@@ -1,6 +1,82 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-31T10:20:24Z",
+   "base_depth": 58613,
+   "best_price": 0.67,
+   "best_price_american": -203,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.66,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 3,
+   "date": "2026-10-31",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 4723,
+     "new_this_side": 42849,
+     "other_side": 21374,
+     "other_side_all_levels": 42002,
+     "ratio": 3.4,
+     "this_side": 73034,
+     "this_side_all_levels": 102070
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "D. Dzumhur (0)",
+     "price": 0.67,
+     "this_side": 14220
+    }
+   },
+   "fade_price": 0.34,
+   "first_seen_utc": "2026-10-31T10:17:31Z",
+   "game": "Baez vs Dzumhur",
+   "key": "kalshi|KXATPMATCH-26OCT31BAEDZU|ml|1",
+   "lead_min": 120,
+   "league": "TENNIS",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 42849,
+   "paper_only": true,
+   "price": 0.66,
+   "price_american": -194,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.66,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXATPMATCH-26OCT31BAEDZU-DZU"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Dzumhur",
+   "side_label": "Dzumhur",
+   "start_source": "novig",
+   "start_utc": "2026-10-31T12:20:00Z",
+   "teams": [
+    "Baez",
+    "Dzumhur"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-31T09:00:22Z",
    "base_depth": 406144,
    "best_price": 0.7631,
@@ -15,8 +91,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.76,
-   "clv_cents": 1.0,
+   "close_price": 0.74,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-31",
    "depth_by_book": {
