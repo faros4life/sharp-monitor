@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Sat Oct 31, 11:50 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 9.
+Updated Sat Oct 31, 11:56 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 7.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 99-66 (-11.35u flat) | rule met: 30-27
+**Record:** 100-67 (-11.91u flat) | rule met: 30-28
 
-**Fade (paper, betting against the print):** 41-64 (+7.77u flat, after fees)
+**Fade (paper, betting against the print):** 42-65 (+8.58u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -20,7 +20,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 31 8:10AM | TENNIS | Machac vs Landaluce | moneyline: Machac | kalshi | $59k | -138 |  |  | +28.0c |  | W |
 | Oct 31 8:10AM | TENNIS | Duckworth vs Kecmanovic | moneyline: Kecmanovic | kalshi | $43k | -300 |  |  | -30.0c |  | W |
 | Oct 31 6:30AM | TENNIS | Tirante vs Svajda | moneyline: Svajda | kalshi | $42k | -270 |  |  | -69.0c | yes | L |
-| Oct 31 6:20AM | TENNIS | Baez vs Dzumhur | moneyline: Dzumhur | kalshi | $43k | -194 | ✅ novig |  | -1.0c |  | pending |
+| Oct 31 6:20AM | TENNIS | Baez vs Dzumhur | moneyline: Dzumhur | kalshi | $43k | -194 | ✅ novig |  | -1.0c |  | L |
 | Oct 31 5:00AM | TENNIS | Sun vs Dart | moneyline: Sun | kalshi | $169k | -300 |  |  | -61.0c | yes | L |
 | Oct 31 3:20AM | TENNIS | Zverev vs de Minaur | moneyline: Zverev | kalshi | $29k | -233 | ✅ novig |  | +2.0c |  | pending |
 | Oct 31 3:20AM | TENNIS | Vacherot vs Fritz | moneyline: Fritz | kalshi | $26k | -285 | ✅ novig |  | +0.0c | yes | L |
@@ -36,7 +36,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 30 8:00PM | TENNIS | Quevedo vs Tagger | moneyline: Tagger | kalshi | $54k | -203 |  |  | +0.0c |  | W |
 | Oct 30 7:10PM | TENNIS | Sakatsume vs Wong | moneyline: Sakatsume | kalshi | $36k | -488 |  |  | +0.0c | yes | W |
 | Oct 30 6:00PM | TENNIS | Fernandez vs Rakhimova | moneyline: Fernandez | kalshi | $29k | -285 |  |  | +0.0c |  | W |
-| Oct 30 5:26PM | TENNIS | Medvedev vs Alcaraz | moneyline: Alcaraz | kalshi | $32k | -233 |  |  | -1.0c |  | pending |
+| Oct 30 5:26PM | TENNIS | Medvedev vs Alcaraz | moneyline: Alcaraz | kalshi | $32k | -233 |  |  | -1.0c |  | W |
 | Oct 30 4:10PM | TENNIS | Berrettini vs de Minaur | moneyline: Berrettini | kalshi | $466k | +138 |  |  | -37.0c | yes | L |
 | Oct 30 11:30AM | TENNIS | Berrettini vs de Minaur | moneyline: de Minaur | kalshi | $30k | -213 | ✅ novig |  | +0.0c | yes | W |
 | Oct 30 11:10AM | TENNIS | Prozorova vs Kinoshita | moneyline: Prozorova | kalshi | $30k | -525 |  |  | +1.0c |  | W |
