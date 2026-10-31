@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Oct 31, 1:40 AM ET. This run: 0 new, 1 not confirmed, 2 pending. Open alerts: 4.
+Updated Sat Oct 31, 1:43 AM ET. This run: 2 new, 0 not confirmed, 0 pending. Open alerts: 6.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Oct 31 1:43AM | TENNIS | Shnaider vs Pohankova | moneyline: Pohankova | kalshi | $271k | +108 |  |  | +0.0c |  | pending |
+| Oct 31 1:43AM | TENNIS | Carreno Busta vs Bellucci | moneyline: Bellucci | kalshi | $47k | -133 |  |  | +0.0c |  | pending |
 | Oct 30 11:40PM | TENNIS | Jones vs Watson | moneyline: Jones | kalshi | $127k | -426 |  |  | +9.0c |  | W |
 | Oct 30 11:28PM | TENNIS | Sun vs Dart | moneyline: Dart | kalshi | $49k | +104 |  |  | -1.0c |  | pending |
 | Oct 30 11:28PM | TENNIS | Stojsavljevic vs Ibragimova | moneyline: Stojsavljevic | kalshi | $31k | -170 |  |  | +27.0c | yes | W |
