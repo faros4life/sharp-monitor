@@ -33,7 +33,7 @@
    "kill_bar": "none",
    "status": "OPEN",
    "closed_utc": null,
-   "plays": 14,
+   "plays": 15,
    "resulted": 13,
    "W": 7,
    "L": 5,
@@ -117,7 +117,7 @@
    "kill_bar": ">= 30 resulted at <= -0.1u/play -> CLOSED",
    "status": "OPEN",
    "closed_utc": null,
-   "plays": 30,
+   "plays": 31,
    "resulted": 25,
    "W": 13,
    "L": 12,
@@ -138,7 +138,7 @@
    "kill_bar": ">= 30 resulted at <= -0.1u/play -> CLOSED",
    "status": "OPEN",
    "closed_utc": null,
-   "plays": 41,
+   "plays": 43,
    "resulted": 33,
    "W": 19,
    "L": 14,
@@ -537,7 +537,7 @@
    "kill_bar": ">= 30 resulted at <= -0.1u/play -> CLOSED",
    "status": "CLOSED",
    "closed_utc": "2026-10-27T10:00:00Z",
-   "plays": 375,
+   "plays": 376,
    "resulted": 365,
    "W": 176,
    "L": 189,
@@ -591,7 +591,7 @@
    "kill_bar": ">= 30 resulted at <= -0.1u/play -> CLOSED",
    "status": "CLOSED",
    "closed_utc": "2026-10-28T06:05:10Z",
-   "plays": 110,
+   "plays": 112,
    "resulted": 97,
    "W": 47,
    "L": 50,
@@ -601,7 +601,7 @@
    "true_close_value_pct": null,
    "true_close_n": 0,
    "all_history": {
-    "plays": 215,
+    "plays": 217,
     "resulted": 202,
     "W": 95,
     "L": 107,
@@ -767,16 +767,16 @@
   "status": "PAUSE LIVE"
  },
  "gaps": {
-  "gaps": 49,
-  "per_day": 8.2,
-  "edge_pct_median": 1.44,
-  "edge_pct_p90": 8.45,
-  "size_est_median_upper_bound": 2384,
+  "gaps": 52,
+  "per_day": 8.7,
+  "edge_pct_median": 1.3450000000000002,
+  "edge_pct_p90": 7.71,
+  "size_est_median_upper_bound": 2540.5,
   "seen_once_share": 0.98,
-  "lifetime_min_median": 0,
+  "lifetime_min_median": 0.0,
   "lived_10min_plus": 1,
-  "with_200_both_legs_upper_bound": 38,
-  "scan_sec_median": 320.0
+  "with_200_both_legs_upper_bound": 40,
+  "scan_sec_median": 341
  },
  "untimed": {
   "ntfy_evening": 0,
@@ -785,5 +785,5 @@
   "liq_evening": 0
  },
  "resulted_rule": "resulted = result W, L or P with a unit value (pushes count as 0u); liquidity artifacts excluded; pending and ungraded plays do not count",
- "updated_utc": "2026-10-31T22:05:13Z"
+ "updated_utc": "2026-10-31T22:10:12Z"
 }
