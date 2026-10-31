@@ -1,23 +1,23 @@
 # Liquidity alerts (paper)
 
-Updated Fri Oct 30, 11:10 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 7.
+Updated Fri Oct 30, 11:20 PM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 6.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 85-60 (-12.30u flat) | rule met: 30-26
+**Record:** 86-60 (-12.12u flat) | rule met: 30-26
 
-**Fade (paper, betting against the print):** 35-50 (+7.82u flat, after fees)
+**Fade (paper, betting against the print):** 35-51 (+6.82u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Oct 30 10:40PM | TENNIS | Stojsavljevic vs Ibragimova | moneyline: Ibragimova | kalshi | $49k | -426 |  |  | -15.0c |  | pending |
+| Oct 30 10:40PM | TENNIS | Stojsavljevic vs Ibragimova | moneyline: Ibragimova | kalshi | $49k | -426 |  |  | -29.0c |  | pending |
 | Oct 30 8:00PM | TENNIS | Quevedo vs Tagger | moneyline: Tagger | kalshi | $54k | -203 |  |  | +0.0c |  | pending |
 | Oct 30 7:10PM | TENNIS | Sakatsume vs Wong | moneyline: Sakatsume | kalshi | $36k | -488 |  |  | +0.0c | yes | pending |
 | Oct 30 6:00PM | TENNIS | Fernandez vs Rakhimova | moneyline: Fernandez | kalshi | $29k | -285 |  |  | +0.0c |  | pending |
 | Oct 30 5:26PM | TENNIS | Medvedev vs Alcaraz | moneyline: Alcaraz | kalshi | $32k | -233 |  |  | -4.0c |  | pending |
 | Oct 30 4:10PM | TENNIS | Berrettini vs de Minaur | moneyline: Berrettini | kalshi | $466k | +138 |  |  | -37.0c | yes | L |
 | Oct 30 11:30AM | TENNIS | Berrettini vs de Minaur | moneyline: de Minaur | kalshi | $30k | -213 | ✅ novig |  | +0.0c | yes | W |
-| Oct 30 11:10AM | TENNIS | Prozorova vs Kinoshita | moneyline: Prozorova | kalshi | $30k | -525 |  |  | +1.0c |  | pending |
+| Oct 30 11:10AM | TENNIS | Prozorova vs Kinoshita | moneyline: Prozorova | kalshi | $30k | -525 |  |  | +1.0c |  | W |
 | Oct 30 10:00AM | TENNIS | Fritz vs Fils | moneyline: Fils | kalshi | $44k | -108 |  |  | +0.0c | yes | L |
 | Oct 30 9:28AM | TENNIS | Kym vs Lehecka | moneyline: Lehecka | kalshi | $63k | -270 | ✅ novig |  | +0.0c | yes | W |
 | Oct 30 6:40AM | TENNIS | Tagger vs Shi | moneyline: Tagger | kalshi | $26k | -285 | ✅ novig |  | +0.0c |  | W |
