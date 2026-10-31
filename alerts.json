@@ -513,7 +513,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+2 pts",
+   "clv": "+3 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline",
@@ -674,13 +674,13 @@
   {
    "alert_utc": "2026-10-31T18:00:19Z",
    "beat_close": true,
-   "beat_true_close": null,
+   "beat_true_close": false,
    "bet": "Wake Forest Demon Deacons -12.5 (-115)",
    "book": "Hard Rock",
    "book_key": "hardrockbet",
-   "close_fair_prob": null,
-   "close_read_mins_before": null,
-   "close_value_pct": null,
+   "close_fair_prob": 0.5181,
+   "close_read_mins_before": 30,
+   "close_value_pct": -3.1,
    "clv": "+1 pts",
    "confirm": "yes",
    "confirmed_by": [
@@ -1610,8 +1610,8 @@
    "fade_point": 44.5,
    "fade_price": -101,
    "fade_price_after_fee": -103,
-   "fade_units": null,
-   "final": null,
+   "fade_units": 0.97,
+   "final": "BGSU 10, WMU 23",
    "floor_line": 44.5,
    "game": "Bowling Green Falcons @ Western Michigan Broncos",
    "grade": "A",
@@ -1622,13 +1622,13 @@
    "price": -105,
    "price_after_fee": -105,
    "pricing_bettable": true,
-   "result": null,
+   "result": "L",
    "score": 82,
    "sent_to_phone": false,
    "sport": "NCAAF",
    "start_utc": "2026-10-31T16:00:00Z",
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alert_utc": "2026-10-30T23:00:23Z",
@@ -1778,8 +1778,8 @@
    "fade_point": 56.5,
    "fade_price": 112,
    "fade_price_after_fee": 110,
-   "fade_units": null,
-   "final": null,
+   "fade_units": -1.0,
+   "final": "ND 35, NAVY 13",
    "floor_line": 56.5,
    "game": "Notre Dame Fighting Irish @ Navy Midshipmen",
    "grade": "B",
@@ -1790,13 +1790,13 @@
    "price": -122,
    "price_after_fee": -124,
    "pricing_bettable": true,
-   "result": null,
+   "result": "W",
    "score": 60,
    "sent_to_phone": true,
    "sport": "NCAAF",
    "start_utc": "2026-10-31T16:00:00Z",
    "top25": true,
-   "units_flat": null
+   "units_flat": 0.8
   },
   {
    "alert_utc": "2026-10-31T15:13:30Z",
@@ -1861,8 +1861,8 @@
    "fade_point": 2.5,
    "fade_price": 111,
    "fade_price_after_fee": 111,
-   "fade_units": null,
-   "final": null,
+   "fade_units": -1.0,
+   "final": "ILL 20, MD 17",
    "floor_line": -2.5,
    "game": "Illinois Fighting Illini @ Maryland Terrapins",
    "grade": "B",
@@ -1873,13 +1873,13 @@
    "price": -113,
    "price_after_fee": -113,
    "pricing_bettable": true,
-   "result": null,
+   "result": "W",
    "score": 68,
    "sent_to_phone": false,
    "sport": "NCAAF",
    "start_utc": "2026-10-31T16:00:00Z",
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.88
   },
   {
    "alert_utc": "2026-10-30T19:40:11Z",
@@ -19871,6 +19871,31 @@
  ],
  "all_alerts": [
   {
+   "alert_text": "Under 212.5 (-111) at Novig (also: ProphetX)",
+   "bet": "Under 212.5 (-111)",
+   "bet_result": null,
+   "book": "Novig",
+   "confirmed_by": [
+    "BetOnline",
+    "Matchbook"
+   ],
+   "edge_pct": -3.4,
+   "final": null,
+   "game": "Philadelphia 76ers @ Charlotte Hornets",
+   "grade": "A",
+   "late": false,
+   "minutes_before_start": 170,
+   "price": -111,
+   "price_after_fee": -111,
+   "pushed_to_phone": false,
+   "repeat": true,
+   "score": 76,
+   "sent_et": "2026-10-31 15:10",
+   "sport": "NBA",
+   "start_utc": "2026-10-31T22:00:00Z",
+   "why": "Pinnacle total moved 214.5 -> 211.5; bet only at 212 or better (confirmed by BetOnline, Matchbook)"
+  },
+  {
    "alert_text": "Under 213.5 (-115) at Hard Rock (also: ProphetX, Kalshi)",
    "bet": "Under 213.5 (-115)",
    "bet_result": null,
@@ -20421,13 +20446,13 @@
   {
    "alert_text": "Illinois Fighting Illini -2.5 (-113) at Novig (also: Hard Rock, ProphetX, Kalshi)",
    "bet": "Illinois Fighting Illini -2.5 (-113)",
-   "bet_result": null,
+   "bet_result": "W",
    "book": "Novig",
    "confirmed_by": [
     "BetOnline"
    ],
    "edge_pct": -0.8,
-   "final": null,
+   "final": "ILL 20, MD 17",
    "game": "Illinois Fighting Illini @ Maryland Terrapins",
    "grade": "B",
    "late": true,
@@ -20792,14 +20817,14 @@
   {
    "alert_text": "Under 56.5 (-122) at ProphetX [-124 after ProphetX fee]",
    "bet": "Under 56.5 (-122)",
-   "bet_result": null,
+   "bet_result": "W",
    "book": "ProphetX",
    "confirmed_by": [
     "BetOnline",
     "Matchbook"
    ],
    "edge_pct": -6.6,
-   "final": null,
+   "final": "ND 35, NAVY 13",
    "game": "Notre Dame Fighting Irish @ Navy Midshipmen",
    "grade": "B",
    "late": false,
@@ -21163,13 +21188,13 @@
   {
    "alert_text": "Over 44.5 (-105) at Hard Rock (also: ProphetX, Kalshi)",
    "bet": "Over 44.5 (-105)",
-   "bet_result": null,
+   "bet_result": "L",
    "book": "Hard Rock",
    "confirmed_by": [
     "BetOnline"
    ],
    "edge_pct": 0.0,
-   "final": null,
+   "final": "BGSU 10, WMU 23",
    "game": "Bowling Green Falcons @ Western Michigan Broncos",
    "grade": "A",
    "late": false,
