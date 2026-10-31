@@ -1,18 +1,18 @@
 # Liquidity alerts (paper)
 
-Updated Sat Oct 31, 4:10 PM ET. This run: 1 new, 3 not confirmed, 6 pending. Open alerts: 77.
+Updated Sat Oct 31, 4:16 PM ET. This run: 0 new, 1 not confirmed, 1 pending. Open alerts: 74.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 590-523 (-60.22u flat) | rule met: 356-355
+**Record:** 593-523 (-58.74u flat) | rule met: 357-355
 
-**Fade (paper, betting against the print):** 257-317 (-38.73u flat, after fees)
+**Fade (paper, betting against the print):** 257-320 (-41.73u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Oct 31 4:10PM | NCAAF | Georgia Tech @ Pittsburgh | moneyline: PITT (0) | novig | $28k | -285 | ✅ prophetx |  | +0.0c |  | pending |
-| Oct 31 3:30PM | NCAAF | Delaware St. vs Norfolk St. | moneyline: Norfolk St. | kalshi | $29k | -245 |  |  | +19.0c |  | pending |
-| Oct 31 3:30PM | NCAAF | Drake vs Morehead St. | moneyline: Morehead St. | kalshi | $28k | -456 |  |  | -1.0c | yes | pending |
+| Oct 31 4:02PM | NCAAF | Georgia Tech @ Pittsburgh | moneyline: PITT (0) | novig | $35k | -285 | ✅ prophetx |  | +0.0c |  | pending |
+| Oct 31 3:30PM | NCAAF | Delaware St. vs Norfolk St. | moneyline: Norfolk St. | kalshi | $29k | -245 |  |  | +20.0c |  | pending |
+| Oct 31 3:30PM | NCAAF | Drake vs Morehead St. | moneyline: Morehead St. | kalshi | $28k | -456 |  |  | +14.0c |  | pending |
 | Oct 31 3:20PM | NCAAF | Florida International vs Liberty | moneyline: Liberty | kalshi | $281k | -525 | ✅ novig |  | +0.0c | yes | pending |
 | Oct 31 2:43PM | NCAAF | UConn vs Air Force: Total Points | total: Over 52.5 points | kalshi | $46k | -108 |  |  | +0.0c | yes | pending |
 | Oct 31 2:43PM | NCAAF | Temple vs East Carolina: Spread | spread: East Carolina wins by over 3.5 points | kalshi | $67k | -104 | ✅ novig | ❌ | +0.0c |  | pending |
@@ -56,7 +56,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 31 9:10AM | NCAAF | UAB @ South Florida | moneyline: USF (0) | novig | $28k | -277 | ✅ prophetx |  | +0.0c |  | W |
 | Oct 31 9:10AM | NCAAF | California @ North Carolina State | moneyline: NCSU (0) | novig | $28k | -277 | ✅ prophetx | ✅ | +0.5c | yes | W |
 | Oct 31 9:10AM | NCAAF | SMU @ Syracuse | moneyline: SMU (0) | novig | $30k | -317 |  | ❌ | -2.0c |  | L |
-| Oct 31 9:10AM | NCAAF | Auburn @ Ole Miss | moneyline: MISS (0) | novig | $31k | -388 | ✅ prophetx |  | -2.5c |  | pending |
+| Oct 31 9:10AM | NCAAF | Auburn @ Ole Miss | moneyline: MISS (0) | novig | $31k | -388 | ✅ prophetx |  | -2.5c |  | W |
 | Oct 31 9:10AM | NHL | St. Louis vs Detroit | moneyline: St. Louis | kalshi | $36k | -108 |  |  | -3.0c | yes | W |
 | Oct 31 8:50AM | NBA | Thunder vs. Rockets | moneyline: Thunder | polymarket | $57k | +127 |  |  | +0.0c | yes | pending |
 | Oct 31 8:50AM | NHL | Chicago vs Boston: Spread | spread: NOT Boston wins by over 1.5 goals | kalshi | $50k | -122 | ✅ novig |  | -1.0c |  | W |
@@ -95,7 +95,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 30 11:23PM | NCAAF | Notre Dame vs Navy: Spread | spread: NOT Notre Dame wins by over 30.5 points | kalshi | $71k | +104 | ✅ novig,prophetx |  | -1.0c | yes | W |
 | Oct 30 11:06PM | NCAAF | Wisconsin vs Iowa: Spread | spread: Iowa wins by over 2.5 points | kalshi | $124k | -104 | ✅ novig |  | +0.0c | yes | W |
 | Oct 30 11:06PM | NCAAF | SMU vs Syracuse: Total Points | total: NOT Over 58.5 points | kalshi | $63k | -108 |  |  | -3.0c | yes | W |
-| Oct 30 10:20PM | NCAAF | Auburn vs Ole Miss: Spread | spread: Ole Miss wins by over 11.5 points | kalshi | $52k | -100 |  |  | -3.0c | yes | pending |
+| Oct 30 10:20PM | NCAAF | Auburn vs Ole Miss: Spread | spread: Ole Miss wins by over 11.5 points | kalshi | $52k | -100 |  |  | -3.0c | yes | W |
 | Oct 30 10:20PM | NCAAF | Kent St. vs Sacramento St.: Spread | spread: Kent St. wins by over 7.5 points | kalshi | $452k | +104 | ✅ novig | ❌ | -1.0c | yes | L |
 | Oct 30 10:20PM | NCAAF | Boston College vs Duke: Spread | spread: NOT Duke wins by over 6.5 points | kalshi | $58k | +108 | ✅ novig |  | -1.0c | yes | L |
 | Oct 30 8:00PM | NBA | Nuggets vs. Suns | spread: Suns (+4.5) | polymarket | $181k | -113 | ✅ kalshi,novig |  | -1.0c | yes | L |
