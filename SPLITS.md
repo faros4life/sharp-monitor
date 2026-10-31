@@ -1,21 +1,21 @@
-# Paper splits (updated 2026-10-31T01:55:13Z)
+# Paper splits (updated 2026-10-31T02:00:19Z)
 
 Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kill bar: 30+ resulted at -0.10u/play or worse closes a split.
 
 | Split | Type | Start | W-L-P | Units | u/play | True close % | Status |
 |---|---|---|---|---|---|---|---|
-| Phase-1 live filter (paper view) | a-priori | 2026-10-26 | 4-4-0 | -0.49 | -0.061 | -3.44 | OPEN |
+| Phase-1 live filter (paper view) | a-priori | 2026-10-26 | 4-5-0 | -1.49 | -0.166 | -2.51 | OPEN |
 | Phase-1 control group | control | 2026-10-26 | 5-4-1 | +0.12 | +0.012 | +0.19 | OPEN |
 | Hard Rock-priced, routed | a-priori | 2026-10-26 | 10-5-0 | +4.02 | +0.268 | -0.69 | OPEN |
 | Fade Hard Rock-priced | scan | 2026-10-26 | 10-5-0 | -5.10 | -0.340 | -0.69 | OPEN |
 | PM-global-priced, routed | a-priori | 2026-10-26 | 0-0-0 | +0.00 |  |  | OPEN |
-| Unders only | scan | 2026-10-26 | 9-9-0 | -0.90 | -0.050 | -2.03 | OPEN |
-| Combined filter | scan | 2026-10-26 | 12-10-0 | +0.79 | +0.036 | -2.62 | OPEN |
+| Unders only | scan | 2026-10-26 | 10-10-0 | -1.08 | -0.054 | -1.52 | OPEN |
+| Combined filter | scan | 2026-10-26 | 12-12-0 | -1.21 | -0.050 | -2.06 | OPEN |
 | Priced -125 or worse | scan | 2026-10-26 | 2-2-0 | -0.41 | -0.102 | -0.42 | OPEN |
 | College basketball | scan | 2026-10-26 | 0-0-0 | +0.00 |  |  | OPEN |
-| Fade alerts sent 12-24h out | scan | 2026-10-26 | 10-6-0 | -3.81 | -0.238 | +1.99 | OPEN |
-| Tier 2 core (paper) | tier | 2026-10-27 | 0-2-0 | -2.00 | -1.000 | -6.55 | OPEN (record only, no size) |
-| Evening sends, ex-Hard Rock | scan | 2026-10-26 | 1-2-0 | -1.11 | -0.370 | +9.30 | OPEN |
+| Fade alerts sent 12-24h out | scan | 2026-10-26 | 11-6-0 | -4.81 | -0.283 | +2.04 | OPEN |
+| Tier 2 core (paper) | tier | 2026-10-27 | 0-3-0 | -3.00 | -1.000 | -2.73 | OPEN (record only, no size) |
+| Evening sends, ex-Hard Rock | scan | 2026-10-26 | 2-2-0 | -0.29 | -0.073 | +6.05 | OPEN |
 | Muted midday (11 AM-2 PM ET) | scan | 2026-10-26 | 1-1-0 | -0.09 | -0.045 | +8.90 | OPEN |
 | Liquidity totals, no sharp agree | scan | 2026-10-22 | 91-84-0 | +4.09 | +0.023 |  | OPEN |
 | Liquidity vs sharp (oppose) | scan | 2026-10-22 | 60-68-0 | -13.12 | -0.103 |  | CLOSED |
@@ -30,7 +30,7 @@ Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kil
 | NBA liquidity totals - evacuation | scan | 2026-10-28 | 6-6-0 | -0.04 | -0.003 |  | OPEN |
 | NBA liquidity, price -129..-105 | scan | 2026-10-28 | 17-9-0 | +6.61 | +0.254 |  | OPEN |
 
-**All-history reference (every resulted play in the feed, not forward; read only):** Tier 2 core (paper) 7-5-0, +0.87u (+0.072/play); Evening sends, ex-Hard Rock 9-13-1, -5.43u (-0.236/play); Muted midday (11 AM-2 PM ET) 25-9-0, +12.51u (+0.368/play); Liquidity overnight (12-5 AM ET) 56-36-0, +3.26u (+0.035/play); Liquidity evening (5-8 PM ET) 80-96-0, -32.92u (-0.187/play)
+**All-history reference (every resulted play in the feed, not forward; read only):** Tier 2 core (paper) 7-6-0, -0.13u (-0.010/play); Evening sends, ex-Hard Rock 10-13-1, -4.61u (-0.192/play); Muted midday (11 AM-2 PM ET) 25-9-0, +12.51u (+0.368/play); Liquidity overnight (12-5 AM ET) 56-36-0, +3.26u (+0.035/play); Liquidity evening (5-8 PM ET) 80-96-0, -32.92u (-0.187/play)
 
 **Muted midday (11 AM-2 PM ET): breakdowns** (resulted plays only)
 
@@ -47,7 +47,7 @@ Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kil
 
 **Closed by decision:** Liquidity spreads: Closed by Peter, Oct 27, on Muse's complete-log read: 191 resulted, -32.15u (-0.17/play), negative in every time block and every lead window.
 
-**ProphetX tripwire:** 21/30 resulted, -0.074u/play - counting.
+**ProphetX tripwire:** 22/30 resulted, -0.116u/play - counting.
 
 **Price gaps (measurement only):** {"gaps": 29, "per_day": 5.8, "edge_pct_median": 0.82, "edge_pct_p90": 2.73, "size_est_median_upper_bound": 4444, "seen_once_share": 0.97, "lifetime_min_median": 0, "lived_10min_plus": 1, "with_200_both_legs_upper_bound": 25, "scan_sec_median": 277.0}
 
