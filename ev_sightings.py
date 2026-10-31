@@ -45,6 +45,8 @@ import re
 import statistics
 import sys
 import time
+import unicodedata
+from collections import Counter
 import urllib.parse
 import urllib.request
 from concurrent.futures import ThreadPoolExecutor
@@ -701,10 +703,83 @@ def pin_lines(pm):
 
 
 # ---------------------------------------------------------------- grouping quotes across books
+# Oct 31 matching fix: exact matcher first (unchanged); when it finds nothing, a fallback that understands college
+# names (accents, apostrophes, common short names and abbreviations). Both teams must match, and only one game may.
+COLLEGE_ALIAS = (("ole miss", "mississippi"), ("uconn", "connecticut"), ("pitt", "pittsburgh"), ("umass", "massachusetts"),
+                 ("utsa", "texas san antonio"), ("utep", "texas el paso"), ("fiu", "florida international"),
+                 ("fau", "florida atlantic"), ("ucf", "central florida"), ("usc", "southern california"),
+                 ("smu", "southern methodist"), ("tcu", "texas christian"), ("byu", "brigham young"),
+                 ("unlv", "nevada las vegas"), ("uab", "alabama birmingham"), ("lsu", "louisiana state"),
+                 ("app state", "appalachian state"), ("appalachian st", "appalachian state"),
+                 ("ul monroe", "louisiana monroe"), ("ulm", "louisiana monroe"), ("ul lafayette", "louisiana"),
+                 ("miami (oh)", "miami ohio"), ("miami oh", "miami ohio"), ("miami (fl)", "miami"), ("miami fl", "miami"),
+                 ("nc state", "north carolina state"), ("n.c. state", "north carolina state"), ("unc", "north carolina"),
+                 ("uva", "virginia"), ("vt", "virginia tech"), ("gt", "georgia tech"), ("ga tech", "georgia tech"),
+                 ("wku", "western kentucky"), ("mtsu", "middle tennessee"), ("middle tenn", "middle tennessee"),
+                 ("niu", "northern illinois"), ("wmu", "western michigan"), ("cmu", "central michigan"),
+                 ("emu", "eastern michigan"), ("bgsu", "bowling green"), ("usf", "south florida"),
+                 ("so miss", "southern mississippi"), ("southern miss", "southern mississippi"),
+                 ("ul", "louisiana"), ("la tech", "louisiana tech"), ("sam houston state", "sam houston"),
+                 ("sjsu", "san jose state"), ("fresno st", "fresno state"), ("hawaii", "hawaii"),
+                 ("st.", "state"), (" st ", " state "))
+GENERIC = {"state", "university", "college", "the", "of", "at", "vs", "and", "university of"}
+UNMATCHED = {"samples": Counter(), "fuzzy": 0}
+
+
+def norm_name(x):
+    x = unicodedata.normalize("NFKD", x or "").encode("ascii", "ignore").decode().lower()
+    x = x.replace("'", "").replace("\u2019", "").replace("-", " ").replace("&", " and ")
+    x = " " + re.sub(r"\s+", " ", x).strip() + " "
+    for a, b in COLLEGE_ALIAS:
+        x = x.replace(" " + a + " ", " " + b + " ") if not a.startswith(" ") else x.replace(a, b)
+    return x.strip()
+
+
+def team_hit(qname, gname, lg):
+    """Does the book's team name `qname` name the Odds API team `gname`?"""
+    if lm.toks(qname, lg) & lm.toks(gname, lg):
+        return True
+    qn, gn = norm_name(qname), norm_name(gname)
+    if not qn or not gn:
+        return False
+    if gn.startswith(qn + " ") or gn == qn:   # 'western kentucky' vs 'western kentucky hilltoppers'
+        return True
+    qw = [w for w in qn.split() if w not in GENERIC]
+    gw = [w for w in gn.split() if w not in GENERIC]
+    if qw and all(w in gw for w in qw) and len(qw) >= 1 and len("".join(qw)) >= 4:
+        return True
+    raw = [w for w in re.findall(r"[A-Za-z]{2,5}", qname or "") if w.isupper()]
+    return any(lm.abbr_match(w, gname) for w in raw)
+
+
+def fuzzy_game(q, games):
+    hits = []
+    for g in games:
+        if g["league"] != q["league"]:
+            continue
+        if q.get("start"):
+            if abs(q["start"] - g["start_ts"]) > 30 * 3600:
+                continue
+        elif q.get("date") and abs((datetime.fromisoformat(q["date"]) - datetime.fromisoformat(g["date"])).days) > 1:
+            continue
+        a, b = q["teams"][0], q["teams"][1]
+        if team_hit(a, g["teams"][0], q["league"]) and team_hit(b, g["teams"][1], q["league"]):
+            hits.append((g, "same"))
+        elif team_hit(a, g["teams"][1], q["league"]) and team_hit(b, g["teams"][0], q["league"]):
+            hits.append((g, "flipped"))
+    if len({h[0]["id"] for h in hits}) == 1:
+        return hits[0]
+    if len(hits) > 1 and q.get("start"):   # several candidates: only the one starting within 3 h of the book's time
+        near = [h for h in hits if abs(q["start"] - h[0]["start_ts"]) < 3 * 3600]
+        if len({h[0]["id"] for h in near}) == 1:
+            return near[0]
+    return None, None
+
+
 def canon_for(q, games):
     """The Odds API game this quote belongs to: same league, both team names overlap, same ET date (or, when a book
-    files a late game under another date, a start within 6 h). Returns (game, 'same'|'flipped')."""
-    if not q.get("teams"):
+    files a late game under another date, a start within 6 h); else the college-aware fallback. (game, 'same'|'flipped')."""
+    if not q.get("teams") or len(q["teams"]) < 2:
         return None, None
     for g in games:
         if g["league"] != q["league"]:
@@ -714,18 +789,26 @@ def canon_for(q, games):
             how = lm.same_game(dict(q, date=g["date"]), g)
         if how:
             return g, how
-    return None, None
+    g, how = fuzzy_game(q, games)
+    if g:
+        UNMATCHED["fuzzy"] += 1
+    return g, how
 
 
 def build_groups(quotes, games):
     """{(game_id, market, line, side_name): {"game": g, "books": {book: quote}}} - best quote per book."""
     groups, unmatched = {}, 0
+    cache = {}
     for q in quotes:
         if q["cost"] is None:
             continue
-        g, how = canon_for(q, games)
+        ck = (q["book"], q["league"], tuple(q.get("teams") or ()), q.get("date"), round(q.get("start") or 0))
+        if ck not in cache:
+            cache[ck] = canon_for(q, games)
+        g, how = cache[ck]
         if not g:
             unmatched += 1
+            UNMATCHED["samples"][(q["book"], q["league"], q.get("date"), " @ ".join(q.get("teams") or ["?"]))] += 1
             continue
         if q["market"] == "total":
             side = q["side"]
@@ -1336,7 +1419,14 @@ def run():
                 update_closes(sightings, {}, pin, n2)   # Pinnacle close only (consensus close needs the full read)
                 update_closes(doc.get("maker") or [], {}, pin, n2)
             by_book = {b: sum(1 for q in quotes if q["book"] == b) for b in BOOKS}
-            summary = (f"{len(games)} games ({len(games24)} in 24h), quotes {by_book}, {unmatched} unmatched, {len(groups)} side/lines, "
+            um = UNMATCHED["samples"]
+            doc["unmatched_last"] = {"utc": iso(n), "quotes": unmatched, "fuzzy_matched_games": UNMATCHED["fuzzy"],
+                                     "by_book": {b: sum(v for k, v in um.items() if k[0] == b) for b in BOOKS},
+                                     "by_league": {lg: sum(v for k, v in um.items() if k[1] == lg) for lg in LEAGUES},
+                                     "games": [[k[0], k[1], k[2], k[3], v] for k, v in um.most_common(80)],
+                                     "odds_api_games": [[g["league"], g["date"], " @ ".join(g["teams"])] for g in games]}
+            summary = (f"{len(games)} games ({len(games24)} in 24h), quotes {by_book}, {unmatched} unmatched "
+                       f"({len(um)} book-games; fuzzy-matched {UNMATCHED['fuzzy']}), {len(groups)} side/lines, "
                        f"polls [{pst}{'; ' + '; '.join(loop_polls) if loop_polls else ''}], moves {n_moves}, "
                        f"new A {added['A']} B {added['B']}, maker posted {mk_posted} filled {mk_filled}, credits used {acct['used']} left {acct['remaining']}, "
                        f"{time.time() - t0:.0f}s")
