@@ -1,7 +1,7 @@
 {
  "alerts": [
   {
-   "alerted_utc": "2026-10-31T02:57:13Z",
+   "alerted_utc": "2026-10-31T03:06:48Z",
    "base_depth": 552926,
    "best_price": 0.51,
    "best_price_american": -104,
@@ -17,34 +17,34 @@
    ],
    "close_price": 0.51,
    "clv_cents": 0.0,
-   "confirmed_after_min": 17,
+   "confirmed_after_min": 18,
    "date": "2026-10-31",
    "depth_by_book": {
     "kalshi": {
-     "new_other_side": 38619,
-     "new_this_side": 124587,
-     "other_side": 389019,
-     "other_side_all_levels": 504619,
+     "new_other_side": 37995,
+     "new_this_side": 124199,
+     "other_side": 386450,
+     "other_side_all_levels": 501918,
      "ratio": 1.4,
-     "this_side": 536300,
-     "this_side_all_levels": 684302
+     "this_side": 537113,
+     "this_side_all_levels": 684977
     },
     "novig": {
      "heavier_side": true,
      "label": "IOWA -2.5 (-2.5)",
      "price": 0.51,
-     "this_side": 43170
+     "this_side": 43843
     }
    },
    "fade_price": 0.5,
-   "first_seen_utc": "2026-10-31T02:40:10Z",
+   "first_seen_utc": "2026-10-31T02:48:57Z",
    "game": "Wisconsin vs Iowa: Spread",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFSPREAD-26OCT31WISIOWA-IOWA3\"}",
-   "lead_min": 783,
+   "lead_min": 773,
    "league": "NCAAF",
    "line": -2.5,
    "market": "spread",
-   "new_money": 124587,
+   "new_money": 124199,
    "paper_only": false,
    "price": 0.51,
    "price_american": -104,
@@ -137,6 +137,151 @@
    "teams": [
     "Wisconsin",
     "Iowa"
+   ],
+   "top25": true,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-31T03:06:48Z",
+   "base_depth": 145640,
+   "best_price": 0.5,
+   "best_price_american": -100,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 18,
+   "date": "2026-10-31",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 2402,
+     "new_this_side": 63165,
+     "other_side": 116139,
+     "other_side_all_levels": 173875,
+     "ratio": 0.7,
+     "this_side": 79860,
+     "this_side_all_levels": 200387
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "Under 58.5 (58.5)",
+     "price": 0.5,
+     "this_side": 11014
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "under 58.5 (58.5)",
+     "price": 0.5,
+     "this_side": 5809
+    }
+   },
+   "fade_price": 0.49,
+   "first_seen_utc": "2026-10-31T02:48:57Z",
+   "game": "SMU vs Syracuse: Total Points",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFTOTAL-26OCT31SMUSYR-59\"}",
+   "lead_min": 773,
+   "league": "NCAAF",
+   "line": 58.5,
+   "market": "total",
+   "new_money": 63165,
+   "paper_only": false,
+   "price": 0.52,
+   "price_american": -108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.52,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 58.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 58.0,
+     "price": -105
+    },
+    "betopenly": {
+     "point": 58.5,
+     "price": -101
+    },
+    "betrivers": {
+     "point": 57.5,
+     "price": -108
+    },
+    "betus": {
+     "point": 58.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 58.5,
+     "price": -112
+    },
+    "draftkings": {
+     "point": 58.5,
+     "price": -115
+    },
+    "fanatics": {
+     "point": 58.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 58.5,
+     "price": -112
+    },
+    "kalshi": {
+     "point": 58.5,
+     "price": -108
+    },
+    "lowvig": {
+     "point": 58.0,
+     "price": -103
+    },
+    "mybookieag": {
+     "point": 58.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 58.5,
+     "price": 100
+    },
+    "polymarket": {
+     "point": 57.5,
+     "price": 113
+    },
+    "prophetx": {
+     "point": 58.5,
+     "price": 100
+    },
+    "williamhill_us": {
+     "point": 58.5,
+     "price": -114
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAFTOTAL-26OCT31SMUSYR-59"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "NOT Over 58.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-10-31T16:00:00Z",
+   "teams": [
+    "SMU",
+    "Syracuse"
    ],
    "top25": true,
    "units_flat": null
@@ -294,7 +439,6 @@
     "polymarket",
     "prophetx"
    ],
-   "close_frozen": true,
    "close_price": 0.48,
    "clv_cents": -1.0,
    "confirmed_after_min": 10,
@@ -327,8 +471,6 @@
    "new_money": 452038,
    "paper_only": false,
    "price": 0.49,
-   "price_after_15m": 0.4975,
-   "price_after_15m_book": "kalshi",
    "price_american": 104,
    "price_rule": "ok",
    "price_when_first_seen": 0.49,
@@ -419,7 +561,6 @@
    "side_label": "Kent St. wins by over 7.5 points",
    "start_source": "odds",
    "start_utc": "2026-10-31T02:35:00Z",
-   "still_actionable": false,
    "teams": [
     "Kent St.",
     "Sacramento St."
@@ -1151,7 +1292,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settled_utc": "2026-10-31T02:57:13Z",
+   "settled_utc": "2026-10-31T03:06:48Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Clippers",
@@ -1372,8 +1513,10 @@
     }
    },
    "fade_price": 0.5,
+   "fade_units": 0.97,
    "first_seen_utc": "2026-10-30T23:21:38Z",
    "game": "Rockets vs. Mavericks",
+   "graded_by": "espn",
    "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"6392418\"}",
    "lead_min": 19,
    "league": "NBA",
@@ -1456,7 +1599,7 @@
     "outcome_index": 0,
     "pm_market_id": "6392418"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "kalshi",
@@ -1464,6 +1607,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-31T03:06:48Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Rockets",
@@ -1475,7 +1619,7 @@
     "Mavericks"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-30T23:40:40Z",
@@ -1618,7 +1762,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settled_utc": "2026-10-31T02:57:13Z",
+   "settled_utc": "2026-10-31T03:06:48Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Clippers",
@@ -1774,7 +1918,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settled_utc": "2026-10-31T02:57:13Z",
+   "settled_utc": "2026-10-31T03:06:48Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Houston",
@@ -1837,8 +1981,10 @@
     }
    },
    "fade_price": 0.2667,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-30T23:01:39Z",
    "game": "Indiana Pacers at Miami Heat",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 0, \"px_event\": 1700103463, \"px_market\": 219, \"side\": \"1\"}",
    "lead_min": 38,
    "league": "NBA",
@@ -1933,7 +2079,7 @@
     "px_market": 219,
     "side": "1"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "kalshi",
@@ -1942,6 +2088,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-31T03:06:48Z",
    "sharp_agree": [
     "Miami Heat -7.5 (-122)",
     "Miami Heat -7.5 (-122)"
@@ -1957,7 +2104,7 @@
     "Miami Heat"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.36
   },
   {
    "alerted_utc": "2026-10-30T23:21:38Z",
@@ -2151,6 +2298,7 @@
     }
    },
    "fade_price": 0.51,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-30T22:40:48Z",
    "game": "Baylor vs UCF: Total Points",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFTOTAL-26OCT30BAYUCF-50\"}",
@@ -2237,13 +2385,14 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFTOTAL-26OCT30BAYUCF-50"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-31T03:06:48Z",
    "sharp_agree": [
     "Over 48.5 (-106)"
    ],
@@ -2258,7 +2407,7 @@
     "UCF"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.96
   },
   {
    "alerted_utc": "2026-10-30T22:40:48Z",
@@ -2309,8 +2458,10 @@
     }
    },
    "fade_price": 0.5,
+   "fade_units": 0.97,
    "first_seen_utc": "2026-10-30T22:21:27Z",
    "game": "Kraken vs. Flames",
+   "graded_by": "espn",
    "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"5237593\"}",
    "lead_min": 79,
    "league": "NHL",
@@ -2395,7 +2546,7 @@
     "outcome_index": 1,
     "pm_market_id": "5237593"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "kalshi",
@@ -2403,6 +2554,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-31T03:06:48Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -2415,7 +2567,7 @@
     "Flames"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-30T22:40:48Z",
@@ -3181,7 +3333,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settled_utc": "2026-10-31T02:57:13Z",
+   "settled_utc": "2026-10-31T02:48:57Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "Over 222.5 (-111)"
@@ -3247,8 +3399,10 @@
     }
    },
    "fade_price": 0.27,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-30T21:40:50Z",
    "game": "Indiana Pacers @ Miami Heat",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a18858-db8a-78d3-a599-b4cb658e5604\", \"outcome_id\": \"01a18858-db8a-78d3-a599-b4d3ac33bc29\"}",
    "lead_min": 120,
    "league": "NBA",
@@ -3341,7 +3495,7 @@
     "market_id": "01a18858-db8a-78d3-a599-b4cb658e5604",
     "outcome_id": "01a18858-db8a-78d3-a599-b4d3ac33bc29"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "kalshi",
@@ -3350,6 +3504,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-31T03:06:48Z",
    "sharp_agree": [
     "Miami Heat -7.5 (-122)",
     "Miami Heat -7.5 (-122)"
@@ -3365,7 +3520,7 @@
     "Miami Heat"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.35
   },
   {
    "alerted_utc": "2026-10-30T22:00:20Z",
@@ -3868,8 +4023,10 @@
     }
    },
    "fade_price": 0.32,
+   "fade_units": 2.06,
    "first_seen_utc": "2026-10-30T21:00:11Z",
    "game": "Rockets vs. Mavericks",
+   "graded_by": "espn",
    "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"6101724\"}",
    "lead_min": 160,
    "league": "NBA",
@@ -3962,7 +4119,7 @@
     "outcome_index": 0,
     "pm_market_id": "6101724"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "kalshi",
@@ -3971,6 +4128,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-31T03:06:48Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Rockets",
@@ -3983,7 +4141,7 @@
     "Mavericks"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-30T21:20:28Z",
@@ -4406,7 +4564,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settled_utc": "2026-10-31T02:57:13Z",
+   "settled_utc": "2026-10-31T03:06:48Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Calgary",
@@ -4462,7 +4620,6 @@
    "fade_units": 0.93,
    "first_seen_utc": "2026-10-30T20:39:59Z",
    "game": "Tulane vs Charlotte: Total Points",
-   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFTOTAL-26OCT30TULNCHAR-48\"}",
    "lead_min": 120,
    "league": "NCAAF",
@@ -4551,7 +4708,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settled_utc": "2026-10-31T02:57:13Z",
+   "settled_utc": "2026-10-31T03:06:48Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -4858,8 +5015,10 @@
     }
    },
    "fade_price": 0.5,
+   "fade_units": 0.97,
    "first_seen_utc": "2026-10-30T20:19:13Z",
    "game": "Rockets vs. Mavericks",
+   "graded_by": "espn",
    "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"6392437\"}",
    "lead_min": 200,
    "league": "NBA",
@@ -4945,7 +5104,7 @@
     "outcome_index": 0,
     "pm_market_id": "6392437"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "kalshi",
@@ -4954,6 +5113,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-31T03:06:48Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Rockets",
@@ -4966,7 +5126,7 @@
     "Mavericks"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-30T20:39:59Z",
@@ -5342,7 +5502,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settled_utc": "2026-10-31T02:57:13Z",
+   "settled_utc": "2026-10-31T02:48:57Z",
    "sharp_agree": [
     "Under 236.5 (-105)"
    ],
@@ -5650,7 +5810,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settled_utc": "2026-10-31T02:57:13Z",
+   "settled_utc": "2026-10-31T03:06:48Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -5783,7 +5943,6 @@
    "fade_units": 0.97,
    "first_seen_utc": "2026-10-30T19:37:35Z",
    "game": "Tulane vs Charlotte: Spread",
-   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFSPREAD-26OCT30TULNCHAR-TULN8\"}",
    "lead_min": 182,
    "league": "NCAAF",
@@ -5870,7 +6029,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settled_utc": "2026-10-31T02:57:13Z",
+   "settled_utc": "2026-10-31T03:06:48Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "Charlotte 49ers +9.5 (-111)"
@@ -6937,6 +7096,7 @@
     }
    },
    "fade_price": 0.54,
+   "fade_units": 0.79,
    "first_seen_utc": "2026-10-30T17:35:03Z",
    "game": "Baylor vs UCF",
    "key": "kalshi|KXNCAAFGAME-26OCT30BAYUCF|ml|1",
@@ -7024,7 +7184,7 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26OCT30BAYUCF-UCF"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig",
@@ -7032,6 +7192,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-31T03:06:48Z",
    "sharp_agree": [
     "UCF Knights +2.5 (-115)"
    ],
@@ -7048,7 +7209,7 @@
     "UCF"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-30T17:35:03Z",
@@ -7255,6 +7416,7 @@
     }
    },
    "fade_price": 0.51,
+   "fade_units": 0.93,
    "first_seen_utc": "2026-10-30T16:52:36Z",
    "game": "Pacers vs. Heat",
    "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6392394\"}",
@@ -7342,7 +7504,7 @@
     "outcome_index": 1,
     "pm_market_id": "6392394"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "kalshi",
@@ -7350,6 +7512,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-31T03:06:48Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "Miami Heat -7.5 (-122)",
@@ -7365,7 +7528,7 @@
     "Heat"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-30T17:13:27Z",
@@ -7416,8 +7579,10 @@
     }
    },
    "fade_price": 0.51,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-30T16:52:36Z",
    "game": "Kraken vs. Flames",
+   "graded_by": "espn",
    "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"5237590\"}",
    "lead_min": 407,
    "league": "NHL",
@@ -7506,13 +7671,14 @@
     "outcome_index": 1,
     "pm_market_id": "5237590"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "prophetx"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-31T03:06:48Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Flames",
@@ -7525,7 +7691,7 @@
     "Flames"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.0
   },
   {
    "alerted_utc": "2026-10-30T17:13:27Z",
@@ -7671,7 +7837,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settled_utc": "2026-10-31T02:57:13Z",
+   "settled_utc": "2026-10-31T02:48:57Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "Miami Heat -7.5 (-122)",
@@ -7724,7 +7890,6 @@
    "fade_units": -1.0,
    "first_seen_utc": "2026-10-30T16:31:30Z",
    "game": "Tulane vs Charlotte: Spread",
-   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFSPREAD-26OCT30TULNCHAR-TULN8\"}",
    "lead_min": 367,
    "league": "NCAAF",
@@ -7811,7 +7976,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settled_utc": "2026-10-31T02:57:13Z",
+   "settled_utc": "2026-10-31T03:06:48Z",
    "sharp_agree": [
     "Charlotte 49ers +9.5 (-111)"
    ],
@@ -8174,7 +8339,6 @@
    "fade_units": -1.0,
    "first_seen_utc": "2026-10-30T16:00:23Z",
    "game": "Tulane vs Charlotte: Total Points",
-   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFTOTAL-26OCT30TULNCHAR-48\"}",
    "lead_min": 410,
    "league": "NCAAF",
@@ -8261,7 +8425,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settled_utc": "2026-10-31T02:57:13Z",
+   "settled_utc": "2026-10-31T03:06:48Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -8412,7 +8576,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settled_utc": "2026-10-31T02:57:13Z",
+   "settled_utc": "2026-10-31T02:48:57Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "Under 236.5 (-105)"
@@ -10083,7 +10247,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settled_utc": "2026-10-31T02:57:13Z",
+   "settled_utc": "2026-10-31T02:48:57Z",
    "sharp_agree": [
     "Miami Heat -7.5 (-122)",
     "Miami Heat -7.5 (-122)"
@@ -10587,7 +10751,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settled_utc": "2026-10-31T02:57:13Z",
+   "settled_utc": "2026-10-31T03:06:48Z",
    "sharp_agree": [
     "Under 236.5 (-105)"
    ],
@@ -11274,7 +11438,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settled_utc": "2026-10-31T02:57:13Z",
+   "settled_utc": "2026-10-31T03:06:48Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Timberwolves",
@@ -11601,7 +11765,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settled_utc": "2026-10-31T02:57:13Z",
+   "settled_utc": "2026-10-31T03:06:48Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Houston",
@@ -12970,7 +13134,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settled_utc": "2026-10-31T02:57:13Z",
+   "settled_utc": "2026-10-31T03:06:48Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -13000,8 +13164,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.76,
-   "clv_cents": 0.0,
+   "close_price": 0.75,
+   "clv_cents": -1.0,
    "confirmed_after_min": 18,
    "date": "2026-10-31",
    "depth_by_book": {
@@ -13118,6 +13282,7 @@
     }
    },
    "fade_price": 0.27,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-30T12:11:02Z",
    "game": "Pacers vs. Heat",
    "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6101719\"}",
@@ -13212,7 +13377,7 @@
     "outcome_index": 1,
     "pm_market_id": "6101719"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "kalshi",
@@ -13221,6 +13386,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-31T03:06:48Z",
    "sharp_agree": [
     "Miami Heat -7.5 (-122)",
     "Miami Heat -7.5 (-122)"
@@ -13236,7 +13402,7 @@
     "Heat"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.35
   },
   {
    "alerted_utc": "2026-10-30T12:11:02Z",
@@ -14952,7 +15118,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settled_utc": "2026-10-31T02:57:13Z",
+   "settled_utc": "2026-10-31T03:06:48Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -15607,7 +15773,8 @@
      "price": 100
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-31T02:48:57Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNHLGAME-26OCT30SEACGY-CGY"
@@ -15619,7 +15786,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settled_utc": "2026-10-31T02:57:13Z",
+   "settled_utc": "2026-10-31T03:06:48Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Calgary",
@@ -15677,6 +15844,7 @@
     }
    },
    "fade_price": 0.51,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-30T03:40:12Z",
    "game": "Baylor vs UCF: Total Points",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFTOTAL-26OCT30BAYUCF-49\"}",
@@ -15764,13 +15932,14 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFTOTAL-26OCT30BAYUCF-49"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-31T03:06:48Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -15783,7 +15952,7 @@
     "UCF"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 1.02
   },
   {
    "alerted_utc": "2026-10-30T03:11:51Z",
@@ -16468,7 +16637,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settled_utc": "2026-10-31T02:57:13Z",
+   "settled_utc": "2026-10-31T03:06:48Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Houston",
@@ -21906,8 +22075,7 @@
      "price": -112
     }
    },
-   "pulled": true,
-   "pulled_utc": "2026-10-31T02:40:10Z",
+   "pulled": false,
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFSPREAD-26OCT30KENTSAC-KENT8"
@@ -22128,6 +22296,7 @@
     }
    },
    "fade_price": 0.51,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-29T16:34:25Z",
    "game": "Baylor vs UCF: Spread",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFSPREAD-26OCT30BAYUCF-BAY2\"}",
@@ -22214,13 +22383,14 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFSPREAD-26OCT30BAYUCF-BAY2"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-31T03:06:48Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Baylor",
@@ -22233,7 +22403,7 @@
     "UCF"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.96
   },
   {
    "alerted_utc": "2026-10-29T16:40:11Z",
@@ -22270,7 +22440,6 @@
    "fade_units": -1.0,
    "first_seen_utc": "2026-10-29T16:34:25Z",
    "game": "Tulane vs Charlotte: Spread",
-   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFSPREAD-26OCT30TULNCHAR-TULN10\"}",
    "lead_min": 1820,
    "league": "NCAAF",
@@ -22357,7 +22526,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settled_utc": "2026-10-31T02:57:13Z",
+   "settled_utc": "2026-10-31T03:06:48Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Charlotte",
@@ -22702,7 +22871,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settled_utc": "2026-10-31T02:57:13Z",
+   "settled_utc": "2026-10-31T02:48:57Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Miami",
@@ -25389,6 +25558,7 @@
     }
    },
    "fade_price": 0.49,
+   "fade_units": 0.97,
    "first_seen_utc": "2026-10-29T14:43:03Z",
    "game": "Baylor vs UCF: Total Points",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFTOTAL-26OCT30BAYUCF-49\"}",
@@ -25475,11 +25645,12 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFTOTAL-26OCT30BAYUCF-49"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-10-31T03:06:48Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -25492,7 +25663,7 @@
     "UCF"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-29T14:43:03Z",
@@ -26436,6 +26607,7 @@
     }
    },
    "fade_price": 0.48,
+   "fade_units": 1.01,
    "first_seen_utc": "2026-10-29T14:00:18Z",
    "game": "Baylor vs UCF: Spread",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFSPREAD-26OCT30BAYUCF-BAY2\"}",
@@ -26522,11 +26694,12 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFSPREAD-26OCT30BAYUCF-BAY2"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-10-31T03:06:48Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UCF",
@@ -26539,7 +26712,7 @@
     "UCF"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-29T14:10:12Z",
@@ -29606,7 +29779,6 @@
    "fade_units": -1.0,
    "first_seen_utc": "2026-10-29T10:00:16Z",
    "game": "Tulane vs Charlotte",
-   "graded_by": "espn",
    "key": "kalshi|KXNCAAFGAME-26OCT30TULNCHAR|ml|0",
    "lead_min": 2210,
    "league": "NCAAF",
@@ -29693,7 +29865,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settled_utc": "2026-10-31T02:57:13Z",
+   "settled_utc": "2026-10-31T03:06:48Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Tulane",
@@ -31206,6 +31378,7 @@
     }
    },
    "fade_price": 0.5,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-29T09:00:15Z",
    "game": "Baylor vs UCF",
    "key": "kalshi|KXNCAAFGAME-26OCT30BAYUCF|ml|0",
@@ -31293,11 +31466,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26OCT30BAYUCF-BAY"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-10-31T03:06:48Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Baylor",
@@ -31310,7 +31484,7 @@
     "UCF"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.96
   },
   {
    "alerted_utc": "2026-10-29T06:30:13Z",
