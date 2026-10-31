@@ -1,6 +1,142 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-31T19:30:12Z",
+   "base_depth": 8229,
+   "best_price": 0.7244,
+   "best_price_american": -263,
+   "best_price_book": "kalshi",
+   "bid_improved": true,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.71,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-31",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 8994,
+     "new_this_side": 28624,
+     "other_side": 123,
+     "other_side_all_levels": 10185,
+     "ratio": 10.2,
+     "this_side": 1255,
+     "this_side_all_levels": 46179
+    }
+   },
+   "fade_price": 0.31,
+   "first_seen_utc": "2026-10-31T19:20:29Z",
+   "game": "Delaware St. vs Norfolk St.",
+   "key": "kalshi|KXNCAAFGAME-26OCT31DSUNORF|ml|1",
+   "lead_min": 150,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 28624,
+   "paper_only": false,
+   "price": 0.71,
+   "price_american": -245,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.6,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26OCT31DSUNORF-NORF"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Norfolk St.",
+   "side_label": "Norfolk St.",
+   "start_source": "kalshi",
+   "start_utc": "2026-10-31T22:00:00Z",
+   "teams": [
+    "Delaware St.",
+    "Norfolk St."
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-31T19:30:12Z",
+   "base_depth": 1496,
+   "best_price": 0.8303,
+   "best_price_american": -489,
+   "best_price_book": "kalshi",
+   "bid_improved": true,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.82,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-31",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -24524,
+     "new_this_side": 28026,
+     "other_side": 390,
+     "other_side_all_levels": 3728,
+     "ratio": 6.1,
+     "this_side": 2369,
+     "this_side_all_levels": 54932
+    }
+   },
+   "fade_price": 0.18,
+   "first_seen_utc": "2026-10-31T19:20:29Z",
+   "game": "Drake vs Morehead St.",
+   "key": "kalshi|KXNCAAFGAME-26OCT31DRKEMORE|ml|1",
+   "lead_min": 30,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 28026,
+   "paper_only": false,
+   "price": 0.82,
+   "price_american": -456,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.61,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26OCT31DRKEMORE-MORE"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Morehead St.",
+   "side_label": "Morehead St.",
+   "start_source": "kalshi",
+   "start_utc": "2026-10-31T20:00:00Z",
+   "teams": [
+    "Drake",
+    "Morehead St."
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-31T19:20:29Z",
    "base_depth": 930089,
    "best_price": 0.835,
@@ -122,7 +258,8 @@
      "price": -590
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-31T19:30:12Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26OCT31FIULIB-LIB"
@@ -785,7 +922,8 @@
    "price_rule": "ml_edge_unknown",
    "price_when_first_seen": 0.7,
    "prices_by_book": {},
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-31T19:30:12Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFGAME-26OCT31SDAKSDST-SDAK"
@@ -2632,8 +2770,10 @@
     }
    },
    "fade_price": 0.53,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-31T15:30:12Z",
    "game": "Boston College vs Duke: Spread",
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFSPREAD-26OCT31BCDUKE-DUKE8\"}",
    "lead_min": 20,
    "league": "NCAAF",
@@ -2718,11 +2858,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFSPREAD-26OCT31BCDUKE-DUKE8"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-10-31T19:30:12Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Duke",
@@ -2735,7 +2876,7 @@
     "Duke"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 1.11
   },
   {
    "alerted_utc": "2026-10-31T15:40:14Z",
@@ -4586,6 +4727,7 @@
     }
    },
    "fade_price": 0.44,
+   "fade_units": 1.19,
    "first_seen_utc": "2026-10-31T14:07:41Z",
    "game": "Campbell vs University at Albany",
    "key": "kalshi|KXNCAAFGAME-26OCT31CAMPALBY|ml|0",
@@ -4608,11 +4750,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26OCT31CAMPALBY-CAMP"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settled_utc": "2026-10-31T19:30:12Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Campbell vs University",
@@ -4625,7 +4768,7 @@
     "Albany"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-31T13:49:00Z",
@@ -4664,8 +4807,10 @@
     }
    },
    "fade_price": 0.5,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-31T13:28:52Z",
    "game": "UAB vs South Florida: Total Points",
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFTOTAL-26OCT31UABUSF-43\"}",
    "lead_min": 131,
    "league": "NCAAF",
@@ -4751,11 +4896,12 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFTOTAL-26OCT31UABUSF-43"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-10-31T19:30:12Z",
    "sharp_agree": [
     "Under 42.5 (-105)"
    ],
@@ -4770,7 +4916,7 @@
     "South Florida"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.96
   },
   {
    "alerted_utc": "2026-10-31T13:28:52Z",
@@ -5116,8 +5262,10 @@
     }
    },
    "fade_price": 0.27,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-31T12:50:35Z",
    "game": "UAB @ South Florida",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a173bc-84e7-70d1-9698-73fb3731f0cc\", \"outcome_id\": \"01a173bc-84e7-70d1-9698-740e4202dfe7\"}",
    "lead_min": 170,
    "league": "NCAAF",
@@ -5202,13 +5350,14 @@
     "market_id": "01a173bc-84e7-70d1-9698-73fb3731f0cc",
     "outcome_id": "01a173bc-84e7-70d1-9698-740e4202dfe7"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "prophetx"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-31T19:30:12Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "South Florida",
@@ -5221,7 +5370,7 @@
     "South Florida"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.36
   },
   {
    "alerted_utc": "2026-10-31T13:10:16Z",
@@ -5260,8 +5409,10 @@
     }
    },
    "fade_price": 0.27,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-31T12:50:35Z",
    "game": "California @ North Carolina State",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a171e9-07e9-75c0-b69a-d2d4246b881d\", \"outcome_id\": \"01a171e9-07e9-75c0-b69a-d2e20be121f4\"}",
    "lead_min": 170,
    "league": "NCAAF",
@@ -5347,13 +5498,14 @@
     "market_id": "01a171e9-07e9-75c0-b69a-d2d4246b881d",
     "outcome_id": "01a171e9-07e9-75c0-b69a-d2e20be121f4"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "prophetx"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-31T19:30:12Z",
    "sharp_agree": [
     "NC State Wolfpack -7.5 (-115)",
     "NC State Wolfpack -7.5 (-115)"
@@ -5369,7 +5521,7 @@
     "North Carolina State"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.36
   },
   {
    "alerted_utc": "2026-10-31T13:10:16Z",
@@ -11177,8 +11329,10 @@
     }
    },
    "fade_price": 0.53,
+   "fade_units": 0.83,
    "first_seen_utc": "2026-10-31T02:10:24Z",
    "game": "Boston College vs Duke: Spread",
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFSPREAD-26OCT31BCDUKE-DUKE7\"}",
    "lead_min": 820,
    "league": "NCAAF",
@@ -11260,13 +11414,14 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFSPREAD-26OCT31BCDUKE-DUKE7"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-31T19:30:12Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Boston College",
@@ -11279,7 +11434,7 @@
     "Duke"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-31T00:00:20Z",
@@ -14771,8 +14926,10 @@
     }
    },
    "fade_price": 0.52,
+   "fade_units": 0.86,
    "first_seen_utc": "2026-10-30T21:00:11Z",
    "game": "UAB vs South Florida: Spread",
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFSPREAD-26OCT31UABUSF-USF8\"}",
    "lead_min": 1120,
    "league": "NCAAF",
@@ -14858,13 +15015,14 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFSPREAD-26OCT31UABUSF-USF8"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-31T19:30:12Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UAB",
@@ -14877,7 +15035,7 @@
     "South Florida"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-30T21:00:11Z",
@@ -15906,8 +16064,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.78,
-   "clv_cents": 0.0,
+   "close_price": 0.775,
+   "clv_cents": -0.5,
    "confirmed_after_min": 21,
    "date": "2026-10-31",
    "depth_by_book": {
@@ -20612,6 +20770,7 @@
     }
    },
    "fade_price": 0.51,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-30T15:10:24Z",
    "game": "California vs NC St.: Spread",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFSPREAD-26OCT31CALNCST-NCST8\"}",
@@ -20695,7 +20854,7 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFSPREAD-26OCT31CALNCST-NCST8"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig",
@@ -20703,6 +20862,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-31T19:30:12Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "NC St.",
@@ -20715,7 +20875,7 @@
     "NC St."
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 1.02
   },
   {
    "alerted_utc": "2026-10-30T15:20:11Z",
@@ -21052,8 +21212,10 @@
     }
    },
    "fade_price": 0.52,
+   "fade_units": 0.86,
    "first_seen_utc": "2026-10-30T15:10:24Z",
    "game": "Boston College vs Duke: Total Points",
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFTOTAL-26OCT31BCDUKE-49\"}",
    "lead_min": 1480,
    "league": "NCAAF",
@@ -21135,13 +21297,14 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFTOTAL-26OCT31BCDUKE-49"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-31T19:30:12Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -21154,7 +21317,7 @@
     "Duke"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-30T15:20:11Z",
@@ -24887,6 +25050,7 @@
     }
    },
    "fade_price": 0.28,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-30T10:20:42Z",
    "game": "Yale vs Columbia",
    "key": "kalshi|KXNCAAFGAME-26OCT31YALECLMB|ml|0",
@@ -24908,11 +25072,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26OCT31YALECLMB-YALE"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-10-31T19:30:12Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Yale",
@@ -24925,7 +25090,7 @@
     "Columbia"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.35
   },
   {
    "alerted_utc": "2026-10-30T10:20:42Z",
@@ -41083,8 +41248,10 @@
     }
    },
    "fade_price": 0.29,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-29T09:40:10Z",
    "game": "Boston College vs Duke",
+   "graded_by": "espn",
    "key": "kalshi|KXNCAAFGAME-26OCT30BCDUKE|ml|1",
    "lead_min": 2470,
    "league": "NCAAF",
@@ -41105,11 +41272,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26OCT30BCDUKE-DUKE"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settled_utc": "2026-10-31T19:30:12Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Duke",
@@ -41122,7 +41290,7 @@
     "Duke"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.38
   },
   {
    "alerted_utc": "2026-10-29T09:50:11Z",
@@ -41587,6 +41755,7 @@
     }
    },
    "fade_price": 0.3,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-29T09:20:11Z",
    "game": "California vs NC St.",
    "key": "kalshi|KXNCAAFGAME-26OCT30CALNCST|ml|1",
@@ -41608,11 +41777,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26OCT30CALNCST-NCST"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settled_utc": "2026-10-31T19:30:12Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "NC St.",
@@ -41625,7 +41795,7 @@
     "NC St."
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.4
   },
   {
    "alerted_utc": "2026-10-29T09:10:11Z",
@@ -41729,8 +41899,10 @@
     }
    },
    "fade_price": 0.26,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-29T09:00:15Z",
    "game": "UAB vs South Florida",
+   "graded_by": "espn",
    "key": "kalshi|KXNCAAFGAME-26OCT30UABUSF|ml|1",
    "lead_min": 2510,
    "league": "NCAAF",
@@ -41750,11 +41922,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26OCT30UABUSF-USF"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settled_utc": "2026-10-31T19:30:12Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "South Florida",
@@ -41767,7 +41940,7 @@
     "South Florida"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.33
   },
   {
    "alerted_utc": "2026-10-29T09:10:11Z",
