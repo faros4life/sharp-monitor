@@ -23,7 +23,8 @@ AMENDMENT A2 (Oct 29): MK MAKER TEST. Paper resting bids on Novig and ProphetX a
                  bid. Fills graded (Pinnacle CLV + flat 1u); unfilled CLV kept for the adverse-selection comparison.
                  Stored under "maker" / "maker_agg" in the same file. No extra credits or reads.
 
-Scope: NFL / NCAAF / NBA, spreads + totals, pregame. A/B full exchange reads cover games starting in the next 24 h, every
+Scope: NFL / NCAAF / NBA (+ NHL puck line and total from Oct 31; puck-line point flips are not moves), spreads +
+totals, pregame. A/B full exchange reads cover games starting in the next 24 h, every
 10 min (own workflow), 9am-midnight ET; each run then keeps polling in-window sports for ~7 min and reads the exchanges
 only for games whose Pinnacle line moved. Closes and grading run at any hour from data already stored.
 
@@ -53,12 +54,13 @@ from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timedelta, timezone
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-os.environ["LIQ_LEAGUES"] = "NFL,NCAAF,NBA"   # this process's copy of the helpers only
+os.environ["LIQ_LEAGUES"] = "NFL,NCAAF,NBA,NHL"   # this process's copy of the helpers only
 import liquidity_monitor as lm  # noqa: E402  read helpers only: get(), team matching, Kalshi/Novig/ProphetX parsing
 
 ET = lm.ET
-LEAGUES = ("NFL", "NCAAF", "NBA")
-ODDS_SPORT = {"NFL": "americanfootball_nfl", "NCAAF": "americanfootball_ncaaf", "NBA": "basketball_nba"}
+LEAGUES = ("NFL", "NCAAF", "NBA", "NHL")   # NHL added Oct 31 (puck line + total)
+ODDS_SPORT = {"NFL": "americanfootball_nfl", "NCAAF": "americanfootball_ncaaf", "NBA": "basketball_nba",
+              "NHL": "icehockey_nhl"}
 ODDS_API = "https://api.the-odds-api.com/v4"
 ODDS_KEY = os.environ.get("ODDS_API_KEY", "")
 ODDS_BOOKS = "pinnacle,prophetx,novig,kalshi,polymarket_us"   # <= 10 books = 1 credit per market; exchanges = log-only cross-check
@@ -75,7 +77,7 @@ READ_BOOKS = [b.strip() for b in (os.environ.get("EV_BOOKS", "") or ",".join(BOO
 TAKER = {"kalshi": 0.07, "polymarket_us": 0.0695}   # per $1 contract = coef x P x (1-P), as sharp_monitor / executor
 PX_FEE = 0.02                                       # ProphetX: 2% of winnings
 PMUS = "https://gateway.polymarket.us"
-PMUS_SLUGS = {"NFL": ["nfl"], "NBA": ["nba"], "NCAAF": ["cfb", "ncaaf", "college-football"]}
+PMUS_SLUGS = {"NFL": ["nfl"], "NBA": ["nba"], "NCAAF": ["cfb", "ncaaf", "college-football"], "NHL": ["nhl"]}
 LOG = []
 
 
@@ -609,7 +611,7 @@ def detect_moves(old, new, g, now_s):
             d = float(nn["Over"][0]) - float(oo["Over"][0]) if "Over" in oo else 0
             if abs(d) >= MOVE_LINE - 1e-9:
                 kind, mover = "line", ("Over" if d > 0 else "Under")
-        else:
+        elif g["league"] != "NHL":   # NHL puck line is fixed at 1.5: a point change is a favorite flip, not a move
             for k in oo:
                 d = float(nn[k][0]) - float(oo[k][0])
                 if d <= -(MOVE_LINE - 1e-9):   # this side's number got worse = money came on it
@@ -875,7 +877,7 @@ def pin_close_fair(s, pm):
     m = sm()
     if not m or not pm:
         return None, None, None
-    kind = "tot" if s["market"] == "total" else "spr"
+    kind = "tot" if s["market"] == "total" else ("rl" if s.get("league") == "NHL" else "spr")   # puck line: same number only
     side = ("Over" if s["side"] == "OVER" else "Under") if kind == "tot" else s["side"]
     e = {"kind": kind, "side": side, "pt": s["line"], "sport": s["league"]}
     try:
