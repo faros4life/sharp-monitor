@@ -118,14 +118,14 @@
    "status": "OPEN",
    "closed_utc": null,
    "plays": 32,
-   "resulted": 26,
-   "W": 14,
+   "resulted": 27,
+   "W": 15,
    "L": 12,
    "P": 0,
-   "units": 0.54,
-   "u_per_play": 0.021,
-   "true_close_value_pct": -1.69,
-   "true_close_n": 26
+   "units": 1.54,
+   "u_per_play": 0.057,
+   "true_close_value_pct": -1.42,
+   "true_close_n": 27
   },
   {
    "id": "combined",
@@ -139,14 +139,14 @@
    "status": "OPEN",
    "closed_utc": null,
    "plays": 43,
-   "resulted": 33,
-   "W": 19,
-   "L": 14,
+   "resulted": 35,
+   "W": 20,
+   "L": 15,
    "P": 0,
    "units": 2.94,
-   "u_per_play": 0.089,
-   "true_close_value_pct": -2.19,
-   "true_close_n": 32
+   "u_per_play": 0.084,
+   "true_close_value_pct": -1.98,
+   "true_close_n": 34
   },
   {
    "id": "worse_125",
@@ -495,7 +495,7 @@
    "kill_bar": ">= 30 resulted at <= -0.1u/play -> CLOSED",
    "status": "OPEN",
    "closed_utc": null,
-   "plays": 217,
+   "plays": 216,
    "resulted": 213,
    "W": 111,
    "L": 102,
@@ -767,16 +767,16 @@
   "status": "PAUSE LIVE"
  },
  "gaps": {
-  "gaps": 53,
-  "per_day": 8.8,
-  "edge_pct_median": 1.33,
+  "gaps": 52,
+  "per_day": 8.7,
+  "edge_pct_median": 1.3450000000000002,
   "edge_pct_p90": 7.71,
-  "size_est_median_upper_bound": 2697,
+  "size_est_median_upper_bound": 2540.5,
   "seen_once_share": 0.98,
-  "lifetime_min_median": 0,
+  "lifetime_min_median": 0.0,
   "lived_10min_plus": 1,
-  "with_200_both_legs_upper_bound": 41,
-  "scan_sec_median": 351.5
+  "with_200_both_legs_upper_bound": 40,
+  "scan_sec_median": 341
  },
  "untimed": {
   "ntfy_evening": 0,
@@ -785,5 +785,5 @@
   "liq_evening": 0
  },
  "resulted_rule": "resulted = result W, L or P with a unit value (pushes count as 0u); liquidity artifacts excluded; pending and ungraded plays do not count",
- "updated_utc": "2026-10-31T23:25:13Z"
+ "updated_utc": "2026-10-31T23:39:27Z"
 }
