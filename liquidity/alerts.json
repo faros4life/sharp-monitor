@@ -1,11 +1,324 @@
 {
  "alerts": [
   {
-   "alerted_utc": "2026-10-31T10:16:10Z",
-   "base_depth": 47163,
-   "best_price": 0.535,
-   "best_price_american": -115,
+   "alerted_utc": "2026-10-31T10:06:05Z",
+   "base_depth": 50810,
+   "best_price": 0.455,
+   "best_price_american": 120,
    "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.46,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 18,
+   "date": "2026-10-31",
+   "depth_by_book": {
+    "novig": {
+     "heavier_side": false,
+     "label": "NYI (0)",
+     "price": 0.455,
+     "this_side": 18233
+    },
+    "polymarket": {
+     "new_other_side": -6308,
+     "new_this_side": 25693,
+     "other_side": 34841,
+     "other_side_all_levels": 44051,
+     "ratio": 2.0,
+     "this_side": 69606,
+     "this_side_all_levels": 79044
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "New York Islanders",
+     "price": 0.4587,
+     "this_side": 6057
+    }
+   },
+   "fade_price": 0.55,
+   "first_seen_utc": "2026-10-31T09:47:44Z",
+   "game": "Oilers vs. Islanders",
+   "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"5285927\"}",
+   "lead_min": 474,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 25693,
+   "paper_only": false,
+   "price": 0.46,
+   "price_after_15m": 0.455,
+   "price_after_15m_book": "novig",
+   "price_american": 117,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.46,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": 110
+    },
+    "betonlineag": {
+     "point": null,
+     "price": 116
+    },
+    "betopenly": {
+     "point": null,
+     "price": 122
+    },
+    "betrivers": {
+     "point": null,
+     "price": 115
+    },
+    "betus": {
+     "point": null,
+     "price": 110
+    },
+    "bovada": {
+     "point": null,
+     "price": 112
+    },
+    "draftkings": {
+     "point": null,
+     "price": 114
+    },
+    "fanatics": {
+     "point": null,
+     "price": 115
+    },
+    "fanduel": {
+     "point": null,
+     "price": 108
+    },
+    "kalshi": {
+     "point": null,
+     "price": 117
+    },
+    "lowvig": {
+     "point": null,
+     "price": 116
+    },
+    "mybookieag": {
+     "point": null,
+     "price": 109
+    },
+    "novig": {
+     "point": null,
+     "price": 120
+    },
+    "polymarket": {
+     "point": null,
+     "price": 117
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": 117
+    },
+    "prophetx": {
+     "point": null,
+     "price": 118
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": 114
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 1,
+    "pm_market_id": "5285927"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Islanders",
+   "side_label": "Islanders",
+   "start_source": "odds",
+   "start_utc": "2026-10-31T18:00:00Z",
+   "still_actionable": true,
+   "teams": [
+    "Oilers",
+    "Islanders"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-31T10:06:05Z",
+   "base_depth": 70606,
+   "best_price": 0.69,
+   "best_price_american": -223,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.69,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 18,
+   "date": "2026-10-31",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Boston",
+     "price": 0.69,
+     "this_side": 260122
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "BOS (0)",
+     "price": 0.69,
+     "this_side": 33534
+    },
+    "polymarket": {
+     "new_other_side": -4395,
+     "new_this_side": 36765,
+     "other_side": 19456,
+     "other_side_all_levels": 25981,
+     "ratio": 5.3,
+     "this_side": 102156,
+     "this_side_all_levels": 108180
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Boston Bruins",
+     "price": 0.6875,
+     "this_side": 6634
+    }
+   },
+   "fade_price": 0.32,
+   "first_seen_utc": "2026-10-31T09:47:44Z",
+   "game": "Blackhawks vs. Bruins",
+   "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"5285917\"}",
+   "lead_min": 414,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 36765,
+   "paper_only": false,
+   "price": 0.69,
+   "price_after_15m": 0.69,
+   "price_after_15m_book": "novig",
+   "price_american": -223,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.69,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -225
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -225
+    },
+    "betopenly": {
+     "point": null,
+     "price": -205
+    },
+    "betrivers": {
+     "point": null,
+     "price": -250
+    },
+    "betus": {
+     "point": null,
+     "price": -225
+    },
+    "bovada": {
+     "point": null,
+     "price": -240
+    },
+    "draftkings": {
+     "point": null,
+     "price": -225
+    },
+    "fanatics": {
+     "point": null,
+     "price": -235
+    },
+    "fanduel": {
+     "point": null,
+     "price": -220
+    },
+    "kalshi": {
+     "point": null,
+     "price": -223
+    },
+    "lowvig": {
+     "point": null,
+     "price": -225
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -212
+    },
+    "novig": {
+     "point": null,
+     "price": -223
+    },
+    "polymarket": {
+     "point": null,
+     "price": -223
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -223
+    },
+    "prophetx": {
+     "point": null,
+     "price": -220
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -225
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 1,
+    "pm_market_id": "5285917"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi",
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Bruins",
+   "side_label": "Bruins",
+   "start_source": "odds",
+   "start_utc": "2026-10-31T17:00:00Z",
+   "still_actionable": true,
+   "teams": [
+    "Blackhawks",
+    "Bruins"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-31T10:06:05Z",
+   "base_depth": 46285,
+   "best_price": 0.5311,
+   "best_price_american": -113,
+   "best_price_book": "prophetx",
    "bid_improved": false,
    "bid_improved_at_pending": true,
    "book": "polymarket",
@@ -17,44 +330,44 @@
    ],
    "close_price": 0.54,
    "clv_cents": 0.0,
-   "confirmed_after_min": 19,
+   "confirmed_after_min": 18,
    "date": "2026-10-31",
    "depth_by_book": {
     "novig": {
      "heavier_side": true,
      "label": "BUF (0)",
      "price": 0.535,
-     "this_side": 24752
+     "this_side": 24751
     },
     "polymarket": {
-     "new_other_side": 9551,
-     "new_this_side": 29070,
-     "other_side": 34053,
-     "other_side_all_levels": 41947,
-     "ratio": 1.9,
-     "this_side": 65849,
-     "this_side_all_levels": 76312
+     "new_other_side": -2729,
+     "new_this_side": 29183,
+     "other_side": 33664,
+     "other_side_all_levels": 41551,
+     "ratio": 2.0,
+     "this_side": 65878,
+     "this_side_all_levels": 76343
     },
     "prophetx": {
      "heavier_side": false,
      "label": "Buffalo Sabres",
-     "price": 0.5349,
-     "this_side": 1933
+     "price": 0.5261,
+     "this_side": 1913
     }
    },
    "fade_price": 0.47,
-   "first_seen_utc": "2026-10-31T09:56:58Z",
+   "first_seen_utc": "2026-10-31T09:47:44Z",
    "game": "Sabres vs. Kings",
    "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"5285937\"}",
-   "lead_min": 584,
+   "lead_min": 594,
    "league": "NHL",
    "line": null,
    "market": "moneyline",
-   "new_money": 29070,
+   "new_money": 29183,
    "paper_only": false,
    "price": 0.54,
-   "price_after_15m": 0.535,
-   "price_after_15m_book": "novig",
+   "price_after_15m": 0.5399,
+   "price_after_15m_book": "prophetx",
    "price_american": -117,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.54,
@@ -73,7 +386,7 @@
     },
     "betrivers": {
      "point": null,
-     "price": -124
+     "price": -122
     },
     "betus": {
      "point": null,
@@ -121,7 +434,7 @@
     },
     "prophetx": {
      "point": null,
-     "price": -115
+     "price": -111
     },
     "williamhill_us": {
      "point": null,
@@ -146,7 +459,7 @@
    "side_label": "Sabres",
    "start_source": "odds",
    "start_utc": "2026-10-31T20:00:00Z",
-   "still_actionable": true,
+   "still_actionable": false,
    "teams": [
     "Sabres",
     "Kings"
@@ -155,8 +468,8 @@
    "units_flat": null
   },
   {
-   "alerted_utc": "2026-10-31T10:16:10Z",
-   "base_depth": 58365,
+   "alerted_utc": "2026-10-31T10:06:05Z",
+   "base_depth": 58358,
    "best_price": 0.56,
    "best_price_american": -127,
    "best_price_book": "novig",
@@ -171,23 +484,23 @@
    ],
    "close_price": 0.57,
    "clv_cents": 0.0,
-   "confirmed_after_min": 19,
+   "confirmed_after_min": 18,
    "date": "2026-10-31",
    "depth_by_book": {
     "novig": {
      "heavier_side": true,
      "label": "OTT (0)",
      "price": 0.56,
-     "this_side": 25372
+     "this_side": 26373
     },
     "polymarket": {
-     "new_other_side": 5788,
-     "new_this_side": 40219,
-     "other_side": 30909,
-     "other_side_all_levels": 37976,
-     "ratio": 2.9,
-     "this_side": 89614,
-     "this_side_all_levels": 98638
+     "new_other_side": -390,
+     "new_this_side": 40227,
+     "other_side": 30094,
+     "other_side_all_levels": 37546,
+     "ratio": 3.0,
+     "this_side": 89587,
+     "this_side_all_levels": 98610
     },
     "prophetx": {
      "heavier_side": true,
@@ -197,14 +510,14 @@
     }
    },
    "fade_price": 0.44,
-   "first_seen_utc": "2026-10-31T09:56:58Z",
+   "first_seen_utc": "2026-10-31T09:47:44Z",
    "game": "Senators vs. Sharks",
    "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"5285932\"}",
-   "lead_min": 584,
+   "lead_min": 594,
    "league": "NHL",
    "line": null,
    "market": "moneyline",
-   "new_money": 40219,
+   "new_money": 40227,
    "paper_only": false,
    "price": 0.57,
    "price_after_15m": 0.56,
@@ -309,321 +622,8 @@
    "units_flat": null
   },
   {
-   "alerted_utc": "2026-10-31T09:56:58Z",
-   "base_depth": 50684,
-   "best_price": 0.455,
-   "best_price_american": 120,
-   "best_price_book": "novig",
-   "bid_improved": false,
-   "bid_improved_at_pending": true,
-   "book": "polymarket",
-   "books_live": [
-    "kalshi",
-    "novig",
-    "polymarket",
-    "prophetx"
-   ],
-   "close_price": 0.46,
-   "clv_cents": 0.0,
-   "confirmed_after_min": 18,
-   "date": "2026-10-31",
-   "depth_by_book": {
-    "novig": {
-     "heavier_side": false,
-     "label": "NYI (0)",
-     "price": 0.455,
-     "this_side": 17900
-    },
-    "polymarket": {
-     "new_other_side": -13017,
-     "new_this_side": 25634,
-     "other_side": 34783,
-     "other_side_all_levels": 43981,
-     "ratio": 2.0,
-     "this_side": 69610,
-     "this_side_all_levels": 78608
-    },
-    "prophetx": {
-     "heavier_side": true,
-     "label": "New York Islanders",
-     "price": 0.4587,
-     "this_side": 5995
-    }
-   },
-   "fade_price": 0.55,
-   "first_seen_utc": "2026-10-31T09:38:32Z",
-   "game": "Oilers vs. Islanders",
-   "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"5285927\"}",
-   "lead_min": 483,
-   "league": "NHL",
-   "line": null,
-   "market": "moneyline",
-   "new_money": 25634,
-   "paper_only": false,
-   "price": 0.46,
-   "price_after_15m": 0.455,
-   "price_after_15m_book": "novig",
-   "price_american": 117,
-   "price_rule": "ml_edge_fail",
-   "price_when_first_seen": 0.46,
-   "prices_by_book": {
-    "betmgm": {
-     "point": null,
-     "price": 110
-    },
-    "betonlineag": {
-     "point": null,
-     "price": 116
-    },
-    "betopenly": {
-     "point": null,
-     "price": 122
-    },
-    "betrivers": {
-     "point": null,
-     "price": 115
-    },
-    "betus": {
-     "point": null,
-     "price": 110
-    },
-    "bovada": {
-     "point": null,
-     "price": 112
-    },
-    "draftkings": {
-     "point": null,
-     "price": 114
-    },
-    "fanatics": {
-     "point": null,
-     "price": 115
-    },
-    "fanduel": {
-     "point": null,
-     "price": 108
-    },
-    "kalshi": {
-     "point": null,
-     "price": 117
-    },
-    "lowvig": {
-     "point": null,
-     "price": 116
-    },
-    "mybookieag": {
-     "point": null,
-     "price": 109
-    },
-    "novig": {
-     "point": null,
-     "price": 120
-    },
-    "polymarket": {
-     "point": null,
-     "price": 117
-    },
-    "polymarket_us": {
-     "point": null,
-     "price": 117
-    },
-    "prophetx": {
-     "point": null,
-     "price": 118
-    },
-    "williamhill_us": {
-     "point": null,
-     "price": 114
-    }
-   },
-   "pulled": false,
-   "ref": {
-    "outcome_index": 1,
-    "pm_market_id": "5285927"
-   },
-   "result": null,
-   "rule_met": false,
-   "second_book": [],
-   "second_book_fresh": false,
-   "second_book_status": "none_10k",
-   "sharp_agree": [],
-   "sharp_oppose": [],
-   "side": "Islanders",
-   "side_label": "Islanders",
-   "start_source": "polymarket",
-   "start_utc": "2026-10-31T18:00:00Z",
-   "still_actionable": true,
-   "teams": [
-    "Oilers",
-    "Islanders"
-   ],
-   "top25": null,
-   "units_flat": null
-  },
-  {
-   "alerted_utc": "2026-10-31T09:56:58Z",
-   "base_depth": 70404,
-   "best_price": 0.69,
-   "best_price_american": -223,
-   "best_price_book": "novig",
-   "bid_improved": false,
-   "bid_improved_at_pending": false,
-   "book": "polymarket",
-   "books_live": [
-    "kalshi",
-    "novig",
-    "polymarket",
-    "prophetx"
-   ],
-   "close_price": 0.69,
-   "clv_cents": 0.0,
-   "confirmed_after_min": 18,
-   "date": "2026-10-31",
-   "depth_by_book": {
-    "kalshi": {
-     "heavier_side": true,
-     "label": "Boston",
-     "price": 0.69,
-     "this_side": 254211
-    },
-    "novig": {
-     "heavier_side": true,
-     "label": "BOS (0)",
-     "price": 0.69,
-     "this_side": 33329
-    },
-    "polymarket": {
-     "new_other_side": -3192,
-     "new_this_side": 37841,
-     "other_side": 18506,
-     "other_side_all_levels": 25031,
-     "ratio": 5.5,
-     "this_side": 102057,
-     "this_side_all_levels": 108081
-    },
-    "prophetx": {
-     "heavier_side": true,
-     "label": "Boston Bruins",
-     "price": 0.6875,
-     "this_side": 6636
-    }
-   },
-   "fade_price": 0.32,
-   "first_seen_utc": "2026-10-31T09:38:32Z",
-   "game": "Blackhawks vs. Bruins",
-   "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"5285917\"}",
-   "lead_min": 423,
-   "league": "NHL",
-   "line": null,
-   "market": "moneyline",
-   "new_money": 37841,
-   "paper_only": false,
-   "price": 0.69,
-   "price_after_15m": 0.685,
-   "price_after_15m_book": "novig",
-   "price_american": -223,
-   "price_rule": "ml_edge_fail",
-   "price_when_first_seen": 0.69,
-   "prices_by_book": {
-    "betmgm": {
-     "point": null,
-     "price": -225
-    },
-    "betonlineag": {
-     "point": null,
-     "price": -225
-    },
-    "betopenly": {
-     "point": null,
-     "price": -205
-    },
-    "betrivers": {
-     "point": null,
-     "price": -250
-    },
-    "betus": {
-     "point": null,
-     "price": -225
-    },
-    "bovada": {
-     "point": null,
-     "price": -240
-    },
-    "draftkings": {
-     "point": null,
-     "price": -225
-    },
-    "fanatics": {
-     "point": null,
-     "price": -235
-    },
-    "fanduel": {
-     "point": null,
-     "price": -220
-    },
-    "kalshi": {
-     "point": null,
-     "price": -223
-    },
-    "lowvig": {
-     "point": null,
-     "price": -225
-    },
-    "mybookieag": {
-     "point": null,
-     "price": -214
-    },
-    "novig": {
-     "point": null,
-     "price": -223
-    },
-    "polymarket": {
-     "point": null,
-     "price": -223
-    },
-    "polymarket_us": {
-     "point": null,
-     "price": -223
-    },
-    "prophetx": {
-     "point": null,
-     "price": -220
-    },
-    "williamhill_us": {
-     "point": null,
-     "price": -225
-    }
-   },
-   "pulled": false,
-   "ref": {
-    "outcome_index": 1,
-    "pm_market_id": "5285917"
-   },
-   "result": null,
-   "rule_met": true,
-   "second_book": [
-    "kalshi",
-    "novig"
-   ],
-   "second_book_fresh": false,
-   "second_book_status": "ok",
-   "sharp_agree": [],
-   "sharp_oppose": [],
-   "side": "Bruins",
-   "side_label": "Bruins",
-   "start_source": "odds",
-   "start_utc": "2026-10-31T17:00:00Z",
-   "still_actionable": true,
-   "teams": [
-    "Blackhawks",
-    "Bruins"
-   ],
-   "top25": null,
-   "units_flat": null
-  },
-  {
-   "alerted_utc": "2026-10-31T09:56:58Z",
-   "base_depth": 47202,
+   "alerted_utc": "2026-10-31T10:06:05Z",
+   "base_depth": 46457,
    "best_price": 0.615,
    "best_price_american": -160,
    "best_price_book": "novig",
@@ -645,22 +645,22 @@
      "heavier_side": true,
      "label": "Tampa Bay",
      "price": 0.62,
-     "this_side": 183230
+     "this_side": 182377
     },
     "novig": {
      "heavier_side": true,
      "label": "TBL (0)",
      "price": 0.615,
-     "this_side": 28321
+     "this_side": 28449
     },
     "polymarket": {
-     "new_other_side": 2055,
-     "new_this_side": 34909,
-     "other_side": 26325,
-     "other_side_all_levels": 33227,
+     "new_other_side": 2682,
+     "new_this_side": 35502,
+     "other_side": 26289,
+     "other_side_all_levels": 33192,
      "ratio": 3.3,
-     "this_side": 85966,
-     "this_side_all_levels": 93883
+     "this_side": 85829,
+     "this_side_all_levels": 93746
     },
     "prophetx": {
      "heavier_side": false,
@@ -670,14 +670,14 @@
     }
    },
    "fade_price": 0.39,
-   "first_seen_utc": "2026-10-31T09:38:32Z",
+   "first_seen_utc": "2026-10-31T09:47:44Z",
    "game": "Lightning vs. Predators",
    "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"5285922\"}",
-   "lead_min": 483,
+   "lead_min": 474,
    "league": "NHL",
    "line": null,
    "market": "moneyline",
-   "new_money": 34909,
+   "new_money": 35502,
    "paper_only": false,
    "price": 0.62,
    "price_after_15m": 0.615,
@@ -720,7 +720,7 @@
     },
     "fanduel": {
      "point": null,
-     "price": -166
+     "price": -170
     },
     "kalshi": {
      "point": null,
@@ -732,7 +732,7 @@
     },
     "mybookieag": {
      "point": null,
-     "price": -166
+     "price": -168
     },
     "novig": {
      "point": null,
@@ -783,168 +783,7 @@
    "units_flat": null
   },
   {
-   "alerted_utc": "2026-10-31T09:38:32Z",
-   "base_depth": 223466,
-   "best_price": 0.6869,
-   "best_price_american": -219,
-   "best_price_book": "prophetx",
-   "bid_improved": false,
-   "bid_improved_at_pending": false,
-   "book": "kalshi",
-   "books_live": [
-    "kalshi",
-    "novig",
-    "polymarket",
-    "prophetx"
-   ],
-   "close_price": 0.69,
-   "clv_cents": 1.0,
-   "confirmed_after_min": 19,
-   "date": "2026-10-31",
-   "depth_by_book": {
-    "kalshi": {
-     "new_other_side": 5447,
-     "new_this_side": 129808,
-     "other_side": 118216,
-     "other_side_all_levels": 133415,
-     "ratio": 2.2,
-     "this_side": 261511,
-     "this_side_all_levels": 348657
-    },
-    "novig": {
-     "heavier_side": true,
-     "label": "BOS (0)",
-     "price": 0.69,
-     "this_side": 33491
-    },
-    "polymarket": {
-     "heavier_side": true,
-     "label": "Bruins",
-     "price": 0.69,
-     "this_side": 101267
-    },
-    "prophetx": {
-     "heavier_side": true,
-     "label": "Boston Bruins",
-     "price": 0.6825,
-     "this_side": 6460
-    }
-   },
-   "fade_price": 0.33,
-   "first_seen_utc": "2026-10-31T09:19:09Z",
-   "game": "Chicago vs Boston",
-   "key": "kalshi|KXNHLGAME-26OCT31CHIBOS|ml|1",
-   "lead_min": 441,
-   "league": "NHL",
-   "line": null,
-   "market": "moneyline",
-   "new_money": 129808,
-   "paper_only": false,
-   "price": 0.68,
-   "price_after_15m": 0.69,
-   "price_after_15m_book": "novig",
-   "price_american": -213,
-   "price_rule": "ml_edge_fail",
-   "price_when_first_seen": 0.68,
-   "prices_by_book": {
-    "betmgm": {
-     "point": null,
-     "price": -225
-    },
-    "betonlineag": {
-     "point": null,
-     "price": -225
-    },
-    "betopenly": {
-     "point": null,
-     "price": -205
-    },
-    "betrivers": {
-     "point": null,
-     "price": -245
-    },
-    "betus": {
-     "point": null,
-     "price": -225
-    },
-    "bovada": {
-     "point": null,
-     "price": -240
-    },
-    "draftkings": {
-     "point": null,
-     "price": -225
-    },
-    "fanatics": {
-     "point": null,
-     "price": -235
-    },
-    "fanduel": {
-     "point": null,
-     "price": -220
-    },
-    "kalshi": {
-     "point": null,
-     "price": -213
-    },
-    "lowvig": {
-     "point": null,
-     "price": -225
-    },
-    "mybookieag": {
-     "point": null,
-     "price": -214
-    },
-    "novig": {
-     "point": null,
-     "price": -223
-    },
-    "polymarket": {
-     "point": null,
-     "price": -223
-    },
-    "polymarket_us": {
-     "point": null,
-     "price": -223
-    },
-    "prophetx": {
-     "point": null,
-     "price": -215
-    },
-    "williamhill_us": {
-     "point": null,
-     "price": -225
-    }
-   },
-   "pulled": false,
-   "ref": {
-    "kalshi_side": "yes",
-    "market_ticker": "KXNHLGAME-26OCT31CHIBOS-BOS"
-   },
-   "result": null,
-   "rule_met": true,
-   "second_book": [
-    "novig",
-    "polymarket"
-   ],
-   "second_book_fresh": true,
-   "second_book_status": "ok",
-   "sharp_agree": [],
-   "sharp_oppose": [],
-   "side": "Boston",
-   "side_label": "Boston",
-   "start_source": "odds",
-   "start_utc": "2026-10-31T17:00:00Z",
-   "still_actionable": false,
-   "teams": [
-    "Chicago",
-    "Boston"
-   ],
-   "top25": null,
-   "units_flat": null
-  },
-  {
-   "alerted_utc": "2026-10-31T09:19:09Z",
+   "alerted_utc": "2026-10-31T09:29:12Z",
    "base_depth": 175819,
    "best_price": 0.615,
    "best_price_american": -160,
@@ -964,25 +803,25 @@
    "date": "2026-10-31",
    "depth_by_book": {
     "kalshi": {
-     "new_other_side": -809,
-     "new_this_side": 60191,
-     "other_side": 128101,
-     "other_side_all_levels": 147192,
+     "new_other_side": 1453,
+     "new_this_side": 52311,
+     "other_side": 127800,
+     "other_side_all_levels": 146891,
      "ratio": 1.4,
-     "this_side": 183292,
-     "this_side_all_levels": 229064
+     "this_side": 185029,
+     "this_side_all_levels": 230231
     },
     "novig": {
      "heavier_side": true,
      "label": "TBL (0)",
      "price": 0.615,
-     "this_side": 23519
+     "this_side": 23510
     },
     "polymarket": {
      "heavier_side": true,
      "label": "Lightning",
      "price": 0.62,
-     "this_side": 37573
+     "this_side": 37683
     },
     "prophetx": {
      "heavier_side": false,
@@ -992,14 +831,14 @@
     }
    },
    "fade_price": 0.39,
-   "first_seen_utc": "2026-10-31T09:00:15Z",
+   "first_seen_utc": "2026-10-31T09:09:47Z",
    "game": "Tampa Bay vs Nashville",
    "key": "kalshi|KXNHLGAME-26OCT31TBNSH|ml|0",
-   "lead_min": 521,
+   "lead_min": 511,
    "league": "NHL",
    "line": null,
    "market": "moneyline",
-   "new_money": 60191,
+   "new_money": 52311,
    "paper_only": false,
    "price": 0.61,
    "price_after_15m": 0.615,
@@ -1105,7 +944,168 @@
    "units_flat": null
   },
   {
-   "alerted_utc": "2026-10-31T09:00:15Z",
+   "alerted_utc": "2026-10-31T09:29:12Z",
+   "base_depth": 221476,
+   "best_price": 0.6869,
+   "best_price_american": -219,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.69,
+   "clv_cents": 1.0,
+   "confirmed_after_min": 19,
+   "date": "2026-10-31",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 8880,
+     "new_this_side": 131327,
+     "other_side": 120226,
+     "other_side_all_levels": 135425,
+     "ratio": 2.2,
+     "this_side": 262435,
+     "this_side_all_levels": 349582
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "BOS (0)",
+     "price": 0.69,
+     "this_side": 32574
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Bruins",
+     "price": 0.69,
+     "this_side": 62672
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Boston Bruins",
+     "price": 0.6825,
+     "this_side": 6625
+    }
+   },
+   "fade_price": 0.33,
+   "first_seen_utc": "2026-10-31T09:09:47Z",
+   "game": "Chicago vs Boston",
+   "key": "kalshi|KXNHLGAME-26OCT31CHIBOS|ml|1",
+   "lead_min": 451,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 131327,
+   "paper_only": false,
+   "price": 0.68,
+   "price_after_15m": 0.69,
+   "price_after_15m_book": "novig",
+   "price_american": -213,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.68,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -225
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -225
+    },
+    "betopenly": {
+     "point": null,
+     "price": -205
+    },
+    "betrivers": {
+     "point": null,
+     "price": -245
+    },
+    "betus": {
+     "point": null,
+     "price": -225
+    },
+    "bovada": {
+     "point": null,
+     "price": -240
+    },
+    "draftkings": {
+     "point": null,
+     "price": -225
+    },
+    "fanatics": {
+     "point": null,
+     "price": -235
+    },
+    "fanduel": {
+     "point": null,
+     "price": -220
+    },
+    "kalshi": {
+     "point": null,
+     "price": -213
+    },
+    "lowvig": {
+     "point": null,
+     "price": -225
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -214
+    },
+    "novig": {
+     "point": null,
+     "price": -223
+    },
+    "polymarket": {
+     "point": null,
+     "price": -223
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -223
+    },
+    "prophetx": {
+     "point": null,
+     "price": -215
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -225
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNHLGAME-26OCT31CHIBOS-BOS"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "polymarket"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Boston",
+   "side_label": "Boston",
+   "start_source": "odds",
+   "start_utc": "2026-10-31T17:00:00Z",
+   "still_actionable": false,
+   "teams": [
+    "Chicago",
+    "Boston"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-31T09:09:47Z",
    "base_depth": 42609,
    "best_price": 0.8162,
    "best_price_american": -444,
@@ -1121,30 +1121,30 @@
    ],
    "close_price": 0.81,
    "clv_cents": -1.0,
-   "confirmed_after_min": 10,
+   "confirmed_after_min": 19,
    "date": "2026-10-31",
    "depth_by_book": {
     "polymarket": {
      "new_other_side": 8509,
      "new_this_side": 28444,
-     "other_side": 13169,
-     "other_side_all_levels": 18156,
+     "other_side": 14026,
+     "other_side_all_levels": 19013,
      "ratio": 2.9,
-     "this_side": 38737,
-     "this_side_all_levels": 69370
+     "this_side": 41290,
+     "this_side_all_levels": 72013
     },
     "prophetx": {
      "heavier_side": true,
      "label": "Memphis Grizzlies",
      "price": 0.8131,
-     "this_side": 8320
+     "this_side": 9701
     }
    },
    "fade_price": 0.19,
    "first_seen_utc": "2026-10-31T08:50:23Z",
    "game": "Kings vs. Grizzlies",
    "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6167331\"}",
-   "lead_min": 900,
+   "lead_min": 890,
    "league": "NBA",
    "line": null,
    "market": "moneyline",
@@ -1255,10 +1255,10 @@
    "units_flat": null
   },
   {
-   "alerted_utc": "2026-10-31T09:00:15Z",
+   "alerted_utc": "2026-10-31T09:09:47Z",
    "base_depth": 87873,
-   "best_price": 0.7883,
-   "best_price_american": -372,
+   "best_price": 0.786,
+   "best_price_american": -367,
    "best_price_book": "prophetx",
    "bid_improved": false,
    "bid_improved_at_pending": false,
@@ -1271,28 +1271,28 @@
    ],
    "close_price": 0.79,
    "clv_cents": 0.0,
-   "confirmed_after_min": 10,
+   "confirmed_after_min": 19,
    "date": "2026-10-31",
    "depth_by_book": {
     "kalshi": {
      "new_other_side": 351,
      "new_this_side": 34022,
-     "other_side": 22446,
-     "other_side_all_levels": 31829,
+     "other_side": 22015,
+     "other_side_all_levels": 31396,
      "ratio": 2.8,
-     "this_side": 63429,
-     "this_side_all_levels": 125233
+     "this_side": 60882,
+     "this_side_all_levels": 121340
     },
     "novig": {
      "heavier_side": true,
      "label": "ELON (0)",
      "price": 0.79,
-     "this_side": 3446
+     "this_side": 3504
     },
     "prophetx": {
      "heavier_side": true,
      "label": "Elon",
-     "price": 0.7849,
+     "price": 0.7826,
      "this_side": 1040
     }
    },
@@ -1300,7 +1300,7 @@
    "first_seen_utc": "2026-10-31T08:50:23Z",
    "game": "Elon vs North Carolina A&T",
    "key": "kalshi|KXNCAAFGAME-26OCT31ELONNCAT|ml|0",
-   "lead_min": 480,
+   "lead_min": 470,
    "league": "NCAAF",
    "line": null,
    "market": "moneyline",
@@ -1313,7 +1313,8 @@
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.79,
    "prices_by_book": {},
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-31T10:44:36Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26OCT31ELONNCAT-ELON"
@@ -1462,7 +1463,7 @@
     }
    },
    "pulled": true,
-   "pulled_utc": "2026-10-31T09:56:58Z",
+   "pulled_utc": "2026-10-31T10:06:05Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFTOTAL-26OCT31ILLMD-54"
@@ -1607,7 +1608,7 @@
     }
    },
    "pulled": true,
-   "pulled_utc": "2026-10-31T09:56:58Z",
+   "pulled_utc": "2026-10-31T10:06:05Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFTOTAL-26OCT31ARIZTTU-55"
@@ -1750,7 +1751,7 @@
     }
    },
    "pulled": true,
-   "pulled_utc": "2026-10-31T09:19:09Z",
+   "pulled_utc": "2026-10-31T09:29:12Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFTOTAL-26OCT31NDNAVY-57"
@@ -1834,7 +1835,7 @@
    "price_when_first_seen": 0.8,
    "prices_by_book": {},
    "pulled": true,
-   "pulled_utc": "2026-10-31T09:56:58Z",
+   "pulled_utc": "2026-10-31T09:47:44Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26OCT31WMCOLG-COLG"
@@ -2078,7 +2079,7 @@
    "price_when_first_seen": 0.79,
    "prices_by_book": {},
    "pulled": true,
-   "pulled_utc": "2026-10-31T09:56:58Z",
+   "pulled_utc": "2026-10-31T09:47:44Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26OCT31BUTPRE-BUT"
@@ -2161,7 +2162,8 @@
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.82,
    "prices_by_book": {},
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-31T09:47:44Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26OCT31BRYMONM-MONM"
@@ -2314,7 +2316,7 @@
     }
    },
    "pulled": true,
-   "pulled_utc": "2026-10-31T09:56:58Z",
+   "pulled_utc": "2026-10-31T09:47:44Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNHLGAME-26OCT31EDMNYI-EDM"
@@ -2606,7 +2608,7 @@
     }
    },
    "pulled": true,
-   "pulled_utc": "2026-10-31T09:56:58Z",
+   "pulled_utc": "2026-10-31T09:47:44Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFSPREAD-26OCT31KSUCOLO-COLO3"
@@ -3217,7 +3219,7 @@
     }
    },
    "pulled": true,
-   "pulled_utc": "2026-10-31T09:56:58Z",
+   "pulled_utc": "2026-10-31T09:47:44Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFTOTAL-26OCT31MICHRUTG-46"
@@ -3507,7 +3509,7 @@
     }
    },
    "pulled": true,
-   "pulled_utc": "2026-10-31T09:56:58Z",
+   "pulled_utc": "2026-10-31T10:06:05Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFSPREAD-26OCT31WISIOWA-IOWA3"
@@ -3797,7 +3799,7 @@
     }
    },
    "pulled": true,
-   "pulled_utc": "2026-10-31T09:56:58Z",
+   "pulled_utc": "2026-10-31T09:47:44Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFSPREAD-26OCT31AUBMISS-MISS12"
@@ -4082,7 +4084,7 @@
     }
    },
    "pulled": true,
-   "pulled_utc": "2026-10-31T09:56:58Z",
+   "pulled_utc": "2026-10-31T10:06:05Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFSPREAD-26OCT31BCDUKE-DUKE7"
@@ -7678,7 +7680,7 @@
     }
    },
    "pulled": true,
-   "pulled_utc": "2026-10-31T10:16:10Z",
+   "pulled_utc": "2026-10-31T10:06:05Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFSPREAD-26OCT31UABUSF-USF8"
