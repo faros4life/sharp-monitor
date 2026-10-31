@@ -1,8 +1,147 @@
 {
  "alerts": [
   {
-   "alerted_utc": "2026-10-31T04:55:41Z",
-   "base_depth": 80493,
+   "alerted_utc": "2026-10-31T05:43:08Z",
+   "base_depth": 119474,
+   "best_price": 0.47,
+   "best_price_american": 113,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.47,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 19,
+   "date": "2026-10-31",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 10199,
+     "new_this_side": 38652,
+     "other_side": 100177,
+     "other_side_all_levels": 112015,
+     "ratio": 1.5,
+     "this_side": 146596,
+     "this_side_all_levels": 158267
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "ODU +2.5 (2.5)",
+     "price": 0.47,
+     "this_side": 11979
+    }
+   },
+   "fade_price": 0.54,
+   "first_seen_utc": "2026-10-31T05:23:59Z",
+   "game": "Marshall vs Old Dominion: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFSPREAD-26OCT31MRSHODU-MRSH3\"}",
+   "lead_min": 677,
+   "league": "NCAAF",
+   "line": 2.5,
+   "market": "spread",
+   "new_money": 38652,
+   "paper_only": false,
+   "price": 0.47,
+   "price_american": 113,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.47,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 3.0,
+     "price": -115
+    },
+    "betonlineag": {
+     "point": 3.0,
+     "price": -112
+    },
+    "betopenly": {
+     "point": 3.0,
+     "price": -106
+    },
+    "betrivers": {
+     "point": 3.0,
+     "price": -118
+    },
+    "betus": {
+     "point": 3.0,
+     "price": -117
+    },
+    "bovada": {
+     "point": 3.0,
+     "price": -117
+    },
+    "draftkings": {
+     "point": 3.0,
+     "price": -112
+    },
+    "fanatics": {
+     "point": 3.0,
+     "price": -115
+    },
+    "fanduel": {
+     "point": 2.5,
+     "price": -102
+    },
+    "kalshi": {
+     "point": 2.5,
+     "price": 113
+    },
+    "lowvig": {
+     "point": 3.0,
+     "price": -108
+    },
+    "mybookieag": {
+     "point": 3.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 2.5,
+     "price": 113
+    },
+    "polymarket": {
+     "point": 2.5,
+     "price": 108
+    },
+    "prophetx": {
+     "point": 2.5,
+     "price": 113
+    },
+    "williamhill_us": {
+     "point": 3.0,
+     "price": -114
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAFSPREAD-26OCT31MRSHODU-MRSH3"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Old Dominion",
+   "side_label": "NOT Marshall wins by over 2.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-10-31T17:00:00Z",
+   "teams": [
+    "Marshall",
+    "Old Dominion"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-31T04:46:50Z",
+   "base_depth": 82919,
    "best_price": 0.65,
    "best_price_american": -186,
    "best_price_book": "novig",
@@ -17,17 +156,17 @@
    ],
    "close_price": 0.66,
    "clv_cents": 0.0,
-   "confirmed_after_min": 18,
+   "confirmed_after_min": 19,
    "date": "2026-10-31",
    "depth_by_book": {
     "kalshi": {
-     "new_other_side": 174,
-     "new_this_side": 46461,
-     "other_side": 24014,
-     "other_side_all_levels": 32453,
-     "ratio": 4.5,
-     "this_side": 107094,
-     "this_side_all_levels": 124917
+     "new_other_side": 72,
+     "new_this_side": 41635,
+     "other_side": 23953,
+     "other_side_all_levels": 32228,
+     "ratio": 4.6,
+     "this_side": 110855,
+     "this_side_all_levels": 128711
     },
     "novig": {
      "heavier_side": true,
@@ -43,14 +182,14 @@
     }
    },
    "fade_price": 0.35,
-   "first_seen_utc": "2026-10-31T04:37:54Z",
+   "first_seen_utc": "2026-10-31T04:27:59Z",
    "game": "Howard vs North Carolina Central",
    "key": "kalshi|KXNCAAFGAME-26OCT31HOWNCCU|ml|1",
-   "lead_min": 784,
+   "lead_min": 793,
    "league": "NCAAF",
    "line": null,
    "market": "moneyline",
-   "new_money": 46461,
+   "new_money": 41635,
    "paper_only": false,
    "price": 0.66,
    "price_after_15m": 0.65,
@@ -130,8 +269,8 @@
    "new_money": 115120,
    "paper_only": false,
    "price": 0.51,
-   "price_after_15m": 0.5275,
-   "price_after_15m_book": "kalshi",
+   "price_after_15m": 0.5265,
+   "price_after_15m_book": "prophetx",
    "price_american": -104,
    "price_rule": "ok",
    "price_when_first_seen": 0.51,
@@ -387,8 +526,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": 0.0,
+   "close_price": 0.52,
+   "clv_cents": 1.0,
    "confirmed_after_min": 18,
    "date": "2026-10-31",
    "depth_by_book": {
@@ -1226,7 +1365,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settled_utc": "2026-10-31T04:55:41Z",
+   "settled_utc": "2026-10-31T05:05:00Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Suns",
@@ -1393,7 +1532,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settled_utc": "2026-10-31T04:55:41Z",
+   "settled_utc": "2026-10-31T05:05:00Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Suns",
@@ -1448,6 +1587,7 @@
    "fade_units": -1.0,
    "first_seen_utc": "2026-10-30T23:21:38Z",
    "game": "Lakers vs. Warriors",
+   "graded_by": "espn",
    "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6392523\"}",
    "lead_min": 139,
    "league": "NBA",
@@ -1533,7 +1673,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settled_utc": "2026-10-31T05:14:45Z",
+   "settled_utc": "2026-10-31T05:05:00Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "Los Angeles Lakers -2.5 (-109)"
@@ -1737,6 +1877,7 @@
    "fade_units": -1.0,
    "first_seen_utc": "2026-10-30T23:21:38Z",
    "game": "Lakers vs. Warriors",
+   "graded_by": "espn",
    "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6110056\"}",
    "lead_min": 139,
    "league": "NBA",
@@ -1834,7 +1975,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settled_utc": "2026-10-31T05:14:45Z",
+   "settled_utc": "2026-10-31T05:05:00Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "Los Angeles Lakers -2.5 (-109)"
@@ -4205,7 +4346,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settled_utc": "2026-10-31T05:14:45Z",
+   "settled_utc": "2026-10-31T05:05:00Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -6450,8 +6591,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": 0.0,
+   "close_price": 0.49,
+   "clv_cents": -1.0,
    "confirmed_after_min": 21,
    "date": "2026-10-31",
    "depth_by_book": {
@@ -9560,7 +9701,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settled_utc": "2026-10-31T05:14:45Z",
+   "settled_utc": "2026-10-31T05:05:00Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "Los Angeles Lakers -2.5 (-109)"
@@ -12767,7 +12908,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settled_utc": "2026-10-31T04:37:54Z",
+   "settled_utc": "2026-10-31T04:46:50Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -13369,7 +13510,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settled_utc": "2026-10-31T04:37:54Z",
+   "settled_utc": "2026-10-31T04:46:50Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Phoenix",
@@ -13942,7 +14083,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settled_utc": "2026-10-31T04:37:54Z",
+   "settled_utc": "2026-10-31T04:46:50Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -14096,7 +14237,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settled_utc": "2026-10-31T04:37:54Z",
+   "settled_utc": "2026-10-31T04:46:50Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Denver",
@@ -16023,7 +16164,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settled_utc": "2026-10-31T05:14:45Z",
+   "settled_utc": "2026-10-31T05:05:00Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Golden State",
@@ -16564,7 +16705,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settled_utc": "2026-10-31T04:55:41Z",
+   "settled_utc": "2026-10-31T05:05:00Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Los Angeles L",
@@ -17179,7 +17320,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settled_utc": "2026-10-31T04:55:41Z",
+   "settled_utc": "2026-10-31T05:05:00Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Golden State",
@@ -17626,7 +17767,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settled_utc": "2026-10-31T04:37:54Z",
+   "settled_utc": "2026-10-31T04:46:50Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Denver",

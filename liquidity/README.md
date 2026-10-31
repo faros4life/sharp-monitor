@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Oct 31, 1:33 AM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 56.
+Updated Sat Oct 31, 1:43 AM ET. This run: 1 new, 0 not confirmed, 2 pending. Open alerts: 57.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,10 +10,11 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Oct 31 12:55AM | NCAAF | Howard vs North Carolina Central | moneyline: North Carolina Central | kalshi | $46k | -194 |  |  | +0.0c |  | pending |
+| Oct 31 1:43AM | NCAAF | Marshall vs Old Dominion: Spread | spread: NOT Marshall wins by over 2.5 points | kalshi | $39k | +113 |  |  | +0.0c |  | pending |
+| Oct 31 12:46AM | NCAAF | Howard vs North Carolina Central | moneyline: North Carolina Central | kalshi | $42k | -194 |  |  | +0.0c |  | pending |
 | Oct 31 12:00AM | NCAAF | Michigan vs Rutgers: Total Points | total: Over 45.5 points | kalshi | $115k | -104 |  |  | +0.0c |  | pending |
 | Oct 30 11:23PM | NCAAF | Notre Dame vs Navy: Spread | spread: NOT Notre Dame wins by over 30.5 points | kalshi | $71k | +104 | ✅ novig,prophetx |  | +0.0c |  | pending |
-| Oct 30 11:06PM | NCAAF | Wisconsin vs Iowa: Spread | spread: Iowa wins by over 2.5 points | kalshi | $124k | -104 | ✅ novig |  | +0.0c |  | pending |
+| Oct 30 11:06PM | NCAAF | Wisconsin vs Iowa: Spread | spread: Iowa wins by over 2.5 points | kalshi | $124k | -104 | ✅ novig |  | +1.0c |  | pending |
 | Oct 30 11:06PM | NCAAF | SMU vs Syracuse: Total Points | total: NOT Over 58.5 points | kalshi | $63k | -108 |  |  | -2.0c | yes | pending |
 | Oct 30 10:20PM | NCAAF | Auburn vs Ole Miss: Spread | spread: Ole Miss wins by over 11.5 points | kalshi | $52k | -100 |  |  | +0.0c |  | pending |
 | Oct 30 10:20PM | NCAAF | Kent St. vs Sacramento St.: Spread | spread: Kent St. wins by over 7.5 points | kalshi | $452k | +104 | ✅ novig | ❌ | -1.0c | yes | pending |
@@ -54,7 +55,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 30 4:19PM | NHL | Seattle vs Calgary: Total Goals | total: Over 6.5 goals scored | kalshi | $38k | +104 |  |  | +1.0c | yes | W |
 | Oct 30 4:19PM | NCAAF | Mercyhurst vs Stonehill | moneyline: Stonehill | kalshi | $28k | -223 |  |  | +0.0c |  | pending |
 | Oct 30 3:58PM | NCAAF | Tulane vs Charlotte: Spread | spread: Tulane wins by over 7.5 points | kalshi | $59k | -108 |  | ❌ | -2.0c | yes | L |
-| Oct 30 3:58PM | NCAAF | Wisconsin vs Iowa: Spread | spread: NOT Iowa wins by over 2.5 points | kalshi | $99k | -100 | ✅ novig |  | +0.0c | yes | pending |
+| Oct 30 3:58PM | NCAAF | Wisconsin vs Iowa: Spread | spread: NOT Iowa wins by over 2.5 points | kalshi | $99k | -100 | ✅ novig |  | -1.0c | yes | pending |
 | Oct 30 3:58PM | NBA | New York vs Philadelphia: Spread | spread: NOT New York wins by over 2.5 points | kalshi | $65k | -100 |  | ❌ | -2.0c | yes | W |
 | Oct 30 3:37PM | NBA | Hornets vs. Wizards | moneyline: Wizards | polymarket | $71k | -100 |  | ❌ | +0.0c |  | W |
 | Oct 30 3:37PM | NBA | Detroit vs Brooklyn: Total Points | total: NOT Over 222.5 points | kalshi | $41k | -100 |  | ✅ | +0.0c | yes | W |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 29 8:00AM | NCAAF | Georgia Tech vs Pittsburgh | moneyline: Pittsburgh | kalshi | $207k | -270 |  |  | +2.0c | yes | pending |
 | Oct 29 7:30AM | NFL | Carolina Panthers @ Green Bay Packers | moneyline: GB (0) | novig | $32k | -186 | ✅ kalshi,prophetx |  | -11.0c | yes | W |
 | Oct 29 7:30AM | NHL | Vancouver vs San Jose: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $26k | +117 |  |  | -1.0c |  | W |
-| Oct 29 7:30AM | NCAAF | Michigan vs Rutgers | moneyline: Michigan | kalshi | $132k | -567 |  |  | +1.0c | yes | pending |
