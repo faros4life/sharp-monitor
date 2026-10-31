@@ -1,6 +1,147 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-31T02:57:13Z",
+   "base_depth": 552926,
+   "best_price": 0.51,
+   "best_price_american": -104,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 17,
+   "date": "2026-10-31",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 38619,
+     "new_this_side": 124587,
+     "other_side": 389019,
+     "other_side_all_levels": 504619,
+     "ratio": 1.4,
+     "this_side": 536300,
+     "this_side_all_levels": 684302
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "IOWA -2.5 (-2.5)",
+     "price": 0.51,
+     "this_side": 43170
+    }
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-10-31T02:40:10Z",
+   "game": "Wisconsin vs Iowa: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFSPREAD-26OCT31WISIOWA-IOWA3\"}",
+   "lead_min": 783,
+   "league": "NCAAF",
+   "line": -2.5,
+   "market": "spread",
+   "new_money": 124587,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -2.5,
+     "price": -112
+    },
+    "betonlineag": {
+     "point": -2.5,
+     "price": -113
+    },
+    "betopenly": {
+     "point": -2.5,
+     "price": -103
+    },
+    "betrivers": {
+     "point": -2.5,
+     "price": -113
+    },
+    "betus": {
+     "point": -2.5,
+     "price": -115
+    },
+    "bovada": {
+     "point": -2.5,
+     "price": -120
+    },
+    "draftkings": {
+     "point": -2.5,
+     "price": -115
+    },
+    "fanatics": {
+     "point": -2.5,
+     "price": -115
+    },
+    "fanduel": {
+     "point": -1.5,
+     "price": -118
+    },
+    "kalshi": {
+     "point": -2.5,
+     "price": -104
+    },
+    "lowvig": {
+     "point": -2.5,
+     "price": -109
+    },
+    "mybookieag": {
+     "point": -2.5,
+     "price": -110
+    },
+    "novig": {
+     "point": -2.5,
+     "price": -104
+    },
+    "polymarket": {
+     "point": -2.5,
+     "price": -108
+    },
+    "prophetx": {
+     "point": -1.5,
+     "price": -118
+    },
+    "williamhill_us": {
+     "point": -2.5,
+     "price": -117
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFSPREAD-26OCT31WISIOWA-IOWA3"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Iowa",
+   "side_label": "Iowa wins by over 2.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-10-31T16:00:00Z",
+   "teams": [
+    "Wisconsin",
+    "Iowa"
+   ],
+   "top25": true,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-31T02:20:10Z",
    "base_depth": 505150,
    "best_price": 0.495,
@@ -153,6 +294,7 @@
     "polymarket",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.48,
    "clv_cents": -1.0,
    "confirmed_after_min": 10,
@@ -185,6 +327,8 @@
    "new_money": 452038,
    "paper_only": false,
    "price": 0.49,
+   "price_after_15m": 0.4975,
+   "price_after_15m_book": "kalshi",
    "price_american": 104,
    "price_rule": "ok",
    "price_when_first_seen": 0.49,
@@ -275,6 +419,7 @@
    "side_label": "Kent St. wins by over 7.5 points",
    "start_source": "odds",
    "start_utc": "2026-10-31T02:35:00Z",
+   "still_actionable": false,
    "teams": [
     "Kent St.",
     "Sacramento St."
@@ -916,6 +1061,7 @@
     }
    },
    "fade_price": 0.52,
+   "fade_units": 0.9,
    "first_seen_utc": "2026-10-30T23:21:38Z",
    "game": "Clippers vs. Timberwolves",
    "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6392503\"}",
@@ -1000,11 +1146,12 @@
     "outcome_index": 1,
     "pm_market_id": "6392503"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-10-31T02:57:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Clippers",
@@ -1016,7 +1163,7 @@
     "Timberwolves"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-30T23:40:40Z",
@@ -1373,6 +1520,7 @@
     }
    },
    "fade_price": 0.71,
+   "fade_units": 0.4,
    "first_seen_utc": "2026-10-30T23:21:38Z",
    "game": "Clippers vs. Timberwolves",
    "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"6101727\"}",
@@ -1465,11 +1613,12 @@
     "outcome_index": 0,
     "pm_market_id": "6101727"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-10-31T02:57:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Clippers",
@@ -1481,7 +1630,7 @@
     "Timberwolves"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-30T23:40:40Z",
@@ -1532,6 +1681,7 @@
     }
    },
    "fade_price": 0.5,
+   "fade_units": 0.93,
    "first_seen_utc": "2026-10-30T23:21:38Z",
    "game": "Houston vs Dallas: Spread",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNBASPREAD-26OCT30HOUDAL-HOU6\"}",
@@ -1616,7 +1766,7 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBASPREAD-26OCT30HOUDAL-HOU6"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig",
@@ -1624,6 +1774,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-31T02:57:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Houston",
@@ -1635,7 +1786,7 @@
     "Dallas"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-30T23:21:38Z",
@@ -3030,7 +3181,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settled_utc": "2026-10-31T02:48:57Z",
+   "settled_utc": "2026-10-31T02:57:13Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "Over 222.5 (-111)"
@@ -4166,6 +4317,7 @@
     }
    },
    "fade_price": 0.31,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-30T20:39:59Z",
    "game": "Seattle vs Calgary: Spread",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLSPREAD-26OCT30SEACGY-SEA2\"}",
@@ -4249,11 +4401,12 @@
     "kalshi_side": "no",
     "market_ticker": "KXNHLSPREAD-26OCT30SEACGY-SEA2"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settled_utc": "2026-10-31T02:57:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Calgary",
@@ -4266,7 +4419,7 @@
     "Calgary"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.42
   },
   {
    "alerted_utc": "2026-10-30T21:00:11Z",
@@ -4306,8 +4459,10 @@
     }
    },
    "fade_price": 0.5,
+   "fade_units": 0.93,
    "first_seen_utc": "2026-10-30T20:39:59Z",
    "game": "Tulane vs Charlotte: Total Points",
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFTOTAL-26OCT30TULNCHAR-48\"}",
    "lead_min": 120,
    "league": "NCAAF",
@@ -4389,13 +4544,14 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFTOTAL-26OCT30TULNCHAR-48"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-31T02:57:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -4408,7 +4564,7 @@
     "Charlotte"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-30T21:00:11Z",
@@ -5186,7 +5342,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settled_utc": "2026-10-31T02:48:57Z",
+   "settled_utc": "2026-10-31T02:57:13Z",
    "sharp_agree": [
     "Under 236.5 (-105)"
    ],
@@ -5401,6 +5557,7 @@
     }
    },
    "fade_price": 0.52,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-30T19:58:22Z",
    "game": "Seattle vs Calgary: Total Goals",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNHLTOTAL-26OCT30SEACGY-7\"}",
@@ -5488,11 +5645,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNHLTOTAL-26OCT30SEACGY-7"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-10-31T02:57:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -5505,7 +5663,7 @@
     "Calgary"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.04
   },
   {
    "alerted_utc": "2026-10-30T20:19:13Z",
@@ -5622,8 +5780,10 @@
     }
    },
    "fade_price": 0.49,
+   "fade_units": 0.97,
    "first_seen_utc": "2026-10-30T19:37:35Z",
    "game": "Tulane vs Charlotte: Spread",
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFSPREAD-26OCT30TULNCHAR-TULN8\"}",
    "lead_min": 182,
    "league": "NCAAF",
@@ -5705,11 +5865,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFSPREAD-26OCT30TULNCHAR-TULN8"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settled_utc": "2026-10-31T02:57:13Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "Charlotte 49ers +9.5 (-111)"
@@ -5724,7 +5885,7 @@
     "Charlotte"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-30T19:58:22Z",
@@ -7510,7 +7671,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settled_utc": "2026-10-31T02:48:57Z",
+   "settled_utc": "2026-10-31T02:57:13Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "Miami Heat -7.5 (-122)",
@@ -7560,8 +7721,10 @@
     }
    },
    "fade_price": 0.52,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-30T16:31:30Z",
    "game": "Tulane vs Charlotte: Spread",
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFSPREAD-26OCT30TULNCHAR-TULN8\"}",
    "lead_min": 367,
    "league": "NCAAF",
@@ -7643,11 +7806,12 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFSPREAD-26OCT30TULNCHAR-TULN8"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settled_utc": "2026-10-31T02:57:13Z",
    "sharp_agree": [
     "Charlotte 49ers +9.5 (-111)"
    ],
@@ -7662,7 +7826,7 @@
     "Charlotte"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 1.05
   },
   {
    "alerted_utc": "2026-10-30T16:52:36Z",
@@ -8007,8 +8171,10 @@
     }
    },
    "fade_price": 0.52,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-30T16:00:23Z",
    "game": "Tulane vs Charlotte: Total Points",
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFTOTAL-26OCT30TULNCHAR-48\"}",
    "lead_min": 410,
    "league": "NCAAF",
@@ -8090,11 +8256,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFTOTAL-26OCT30TULNCHAR-48"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settled_utc": "2026-10-31T02:57:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -8107,7 +8274,7 @@
     "Charlotte"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 1.06
   },
   {
    "alerted_utc": "2026-10-30T16:10:10Z",
@@ -8245,7 +8412,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settled_utc": "2026-10-31T02:48:57Z",
+   "settled_utc": "2026-10-31T02:57:13Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "Under 236.5 (-105)"
@@ -9916,7 +10083,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settled_utc": "2026-10-31T02:48:57Z",
+   "settled_utc": "2026-10-31T02:57:13Z",
    "sharp_agree": [
     "Miami Heat -7.5 (-122)",
     "Miami Heat -7.5 (-122)"
@@ -10326,6 +10493,7 @@
     }
    },
    "fade_price": 0.49,
+   "fade_units": 1.01,
    "first_seen_utc": "2026-10-30T14:51:12Z",
    "game": "Pacers vs. Heat",
    "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6392409\"}",
@@ -10412,13 +10580,14 @@
     "outcome_index": 1,
     "pm_market_id": "6392409"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "kalshi"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-31T02:57:13Z",
    "sharp_agree": [
     "Under 236.5 (-105)"
    ],
@@ -10433,7 +10602,7 @@
     "Heat"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-30T15:10:24Z",
@@ -11002,6 +11171,7 @@
     }
    },
    "fade_price": 0.3,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-30T13:49:15Z",
    "game": "Clippers vs. Timberwolves",
    "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6101727\"}",
@@ -11096,7 +11266,7 @@
     "outcome_index": 1,
     "pm_market_id": "6101727"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig",
@@ -11104,6 +11274,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-31T02:57:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Timberwolves",
@@ -11116,7 +11287,7 @@
     "Timberwolves"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.42
   },
   {
    "alerted_utc": "2026-10-30T14:09:41Z",
@@ -11333,6 +11504,7 @@
     }
    },
    "fade_price": 0.5,
+   "fade_units": 0.93,
    "first_seen_utc": "2026-10-30T13:49:15Z",
    "game": "Houston vs Dallas: Spread",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNBASPREAD-26OCT30HOUDAL-HOU7\"}",
@@ -11420,7 +11592,7 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBASPREAD-26OCT30HOUDAL-HOU7"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig",
@@ -11429,6 +11601,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-31T02:57:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Houston",
@@ -11441,7 +11614,7 @@
     "Dallas"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-30T14:09:41Z",
@@ -12702,6 +12875,7 @@
     }
    },
    "fade_price": 0.49,
+   "fade_units": 0.97,
    "first_seen_utc": "2026-10-30T13:03:30Z",
    "game": "Seattle vs Calgary: Total Goals",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLTOTAL-26OCT30SEACGY-7\"}",
@@ -12788,7 +12962,7 @@
     "kalshi_side": "no",
     "market_ticker": "KXNHLTOTAL-26OCT30SEACGY-7"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig",
@@ -12796,6 +12970,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-31T02:57:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -12808,7 +12983,7 @@
     "Calgary"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-30T13:21:03Z",
@@ -14683,6 +14858,7 @@
     }
    },
    "fade_price": 0.51,
+   "fade_units": 0.9,
    "first_seen_utc": "2026-10-30T07:46:30Z",
    "game": "Houston vs Dallas: Total Points",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBATOTAL-26OCT30HOUDAL-226\"}",
@@ -14769,13 +14945,14 @@
     "kalshi_side": "no",
     "market_ticker": "KXNBATOTAL-26OCT30HOUDAL-226"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "polymarket"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-31T02:57:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -14788,7 +14965,7 @@
     "Dallas"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-30T08:03:49Z",
@@ -15344,6 +15521,7 @@
     }
    },
    "fade_price": 0.52,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-30T04:00:15Z",
    "game": "Seattle vs Calgary",
    "key": "kalshi|KXNHLGAME-26OCT30SEACGY|ml|1",
@@ -15429,19 +15607,19 @@
      "price": 100
     }
    },
-   "pulled": true,
-   "pulled_utc": "2026-10-31T02:48:57Z",
+   "pulled": false,
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNHLGAME-26OCT30SEACGY-CGY"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "polymarket"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-31T02:57:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Calgary",
@@ -15454,7 +15632,7 @@
     "Calgary"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.04
   },
   {
    "alerted_utc": "2026-10-30T03:50:11Z",
@@ -16199,6 +16377,7 @@
     }
    },
    "fade_price": 0.35,
+   "fade_units": 1.73,
    "first_seen_utc": "2026-10-30T02:00:15Z",
    "game": "Houston vs Dallas",
    "key": "kalshi|KXNBAGAME-26OCT30HOUDAL|ml|0",
@@ -16281,7 +16460,7 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBAGAME-26OCT30HOUDAL-HOU"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig",
@@ -16289,6 +16468,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-31T02:57:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Houston",
@@ -16301,7 +16481,7 @@
     "Dallas"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-30T02:00:15Z",
@@ -21726,7 +21906,8 @@
      "price": -112
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-31T02:40:10Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFSPREAD-26OCT30KENTSAC-KENT8"
@@ -22086,8 +22267,10 @@
     }
    },
    "fade_price": 0.49,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-29T16:34:25Z",
    "game": "Tulane vs Charlotte: Spread",
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFSPREAD-26OCT30TULNCHAR-TULN10\"}",
    "lead_min": 1820,
    "league": "NCAAF",
@@ -22169,11 +22352,12 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFSPREAD-26OCT30TULNCHAR-TULN10"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settled_utc": "2026-10-31T02:57:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Charlotte",
@@ -22186,7 +22370,7 @@
     "Charlotte"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.92
   },
   {
    "alerted_utc": "2026-10-29T16:40:11Z",
@@ -22518,7 +22702,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settled_utc": "2026-10-31T02:48:57Z",
+   "settled_utc": "2026-10-31T02:57:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Miami",
@@ -29419,8 +29603,10 @@
     }
    },
    "fade_price": 0.23,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-29T10:00:16Z",
    "game": "Tulane vs Charlotte",
+   "graded_by": "espn",
    "key": "kalshi|KXNCAAFGAME-26OCT30TULNCHAR|ml|0",
    "lead_min": 2210,
    "league": "NCAAF",
@@ -29502,11 +29688,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26OCT30TULNCHAR-TULN"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-10-31T02:57:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Tulane",
@@ -29519,7 +29706,7 @@
     "Charlotte"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.3
   },
   {
    "alerted_utc": "2026-10-29T10:00:16Z",
