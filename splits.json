@@ -287,24 +287,24 @@
    "status": "OPEN",
    "closed_utc": null,
    "plays": 12,
-   "resulted": 10,
+   "resulted": 11,
    "W": 5,
-   "L": 5,
+   "L": 6,
    "P": 0,
-   "units": -0.53,
-   "u_per_play": -0.053,
-   "true_close_value_pct": 1.91,
-   "true_close_n": 9,
+   "units": -1.53,
+   "u_per_play": -0.139,
+   "true_close_value_pct": 1.52,
+   "true_close_n": 10,
    "all_history": {
     "plays": 44,
-    "resulted": 42,
+    "resulted": 43,
     "W": 29,
-    "L": 13,
+    "L": 14,
     "P": 0,
-    "units": 12.07,
-    "u_per_play": 0.287,
-    "true_close_value_pct": 1.91,
-    "true_close_n": 9
+    "units": 11.07,
+    "u_per_play": 0.257,
+    "true_close_value_pct": 1.52,
+    "true_close_n": 10
    },
    "by_book": {
     "forward": {
@@ -343,14 +343,14 @@
      },
      "hardrockbet": {
       "plays": 6,
-      "resulted": 5,
+      "resulted": 6,
       "W": 1,
-      "L": 4,
+      "L": 5,
       "P": 0,
-      "units": -3.09,
-      "u_per_play": -0.618,
-      "true_close_value_pct": 1.4,
-      "true_close_n": 5
+      "units": -4.09,
+      "u_per_play": -0.682,
+      "true_close_value_pct": 0.83,
+      "true_close_n": 6
      }
     },
     "all_history": {
@@ -400,30 +400,19 @@
      },
      "hardrockbet": {
       "plays": 9,
-      "resulted": 8,
+      "resulted": 9,
       "W": 1,
-      "L": 7,
+      "L": 8,
       "P": 0,
-      "units": -6.09,
-      "u_per_play": -0.761,
-      "true_close_value_pct": 1.4,
-      "true_close_n": 5
+      "units": -7.09,
+      "u_per_play": -0.788,
+      "true_close_value_pct": 0.83,
+      "true_close_n": 6
      }
     }
    },
    "by_market": {
     "forward": {
-     "total under": {
-      "plays": 2,
-      "resulted": 1,
-      "W": 1,
-      "L": 0,
-      "P": 0,
-      "units": 0.91,
-      "u_per_play": 0.91,
-      "true_close_value_pct": 4.4,
-      "true_close_n": 1
-     },
      "spread": {
       "plays": 6,
       "resulted": 5,
@@ -434,6 +423,17 @@
       "u_per_play": 0.152,
       "true_close_value_pct": 3.44,
       "true_close_n": 5
+     },
+     "total under": {
+      "plays": 2,
+      "resulted": 2,
+      "W": 1,
+      "L": 1,
+      "P": 0,
+      "units": -0.09,
+      "u_per_play": -0.045,
+      "true_close_value_pct": 1.2,
+      "true_close_n": 2
      },
      "total over": {
       "plays": 4,
@@ -461,14 +461,14 @@
      },
      "total under": {
       "plays": 4,
-      "resulted": 3,
+      "resulted": 4,
       "W": 3,
-      "L": 0,
+      "L": 1,
       "P": 0,
-      "units": 2.72,
-      "u_per_play": 0.907,
-      "true_close_value_pct": 4.4,
-      "true_close_n": 1
+      "units": 1.72,
+      "u_per_play": 0.43,
+      "true_close_value_pct": 1.2,
+      "true_close_n": 2
      },
      "total over": {
       "plays": 13,
@@ -591,7 +591,7 @@
    "kill_bar": ">= 30 resulted at <= -0.1u/play -> CLOSED",
    "status": "CLOSED",
    "closed_utc": "2026-10-28T06:05:10Z",
-   "plays": 125,
+   "plays": 124,
    "resulted": 97,
    "W": 47,
    "L": 50,
@@ -601,7 +601,7 @@
    "true_close_value_pct": null,
    "true_close_n": 0,
    "all_history": {
-    "plays": 230,
+    "plays": 229,
     "resulted": 202,
     "W": 95,
     "L": 107,
@@ -785,5 +785,5 @@
   "liq_evening": 0
  },
  "resulted_rule": "resulted = result W, L or P with a unit value (pushes count as 0u); liquidity artifacts excluded; pending and ungraded plays do not count",
- "updated_utc": "2026-10-31T22:50:14Z"
+ "updated_utc": "2026-10-31T22:55:11Z"
 }
