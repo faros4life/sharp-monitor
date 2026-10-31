@@ -1,6 +1,421 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-31T02:20:10Z",
+   "base_depth": 505150,
+   "best_price": 0.495,
+   "best_price_american": 102,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-31",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -18796,
+     "new_this_side": 51743,
+     "other_side": 319532,
+     "other_side_all_levels": 443016,
+     "ratio": 1.1,
+     "this_side": 366490,
+     "this_side_all_levels": 557294
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "MISS -11.5 (-11.5)",
+     "price": 0.495,
+     "this_side": 16334
+    }
+   },
+   "fade_price": 0.51,
+   "first_seen_utc": "2026-10-31T02:10:24Z",
+   "game": "Auburn vs Ole Miss: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFSPREAD-26OCT31AUBMISS-MISS12\"}",
+   "lead_min": 865,
+   "league": "NCAAF",
+   "line": -11.5,
+   "market": "spread",
+   "new_money": 51743,
+   "paper_only": false,
+   "price": 0.5,
+   "price_american": -100,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.5,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -11.5,
+     "price": -108
+    },
+    "betonlineag": {
+     "point": -11.5,
+     "price": -110
+    },
+    "betopenly": {
+     "point": -11.5,
+     "price": 101
+    },
+    "betrivers": {
+     "point": -11.5,
+     "price": -113
+    },
+    "betus": {
+     "point": -11.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": -11.5,
+     "price": -112
+    },
+    "draftkings": {
+     "point": -11.5,
+     "price": -110
+    },
+    "fanatics": {
+     "point": -11.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": -10.5,
+     "price": -118
+    },
+    "kalshi": {
+     "point": -11.5,
+     "price": 100
+    },
+    "mybookieag": {
+     "point": -11.5,
+     "price": -110
+    },
+    "novig": {
+     "point": -10.5,
+     "price": -104
+    },
+    "polymarket": {
+     "point": 16.5,
+     "price": -9900
+    },
+    "prophetx": {
+     "point": -10.5,
+     "price": -113
+    },
+    "williamhill_us": {
+     "point": -11.5,
+     "price": -113
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFSPREAD-26OCT31AUBMISS-MISS12"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Ole Miss",
+   "side_label": "Ole Miss wins by over 11.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-10-31T16:45:00Z",
+   "teams": [
+    "Auburn",
+    "Ole Miss"
+   ],
+   "top25": true,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-31T02:20:10Z",
+   "base_depth": 905762,
+   "best_price": 0.485,
+   "best_price_american": 106,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.49,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-30",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 16297,
+     "new_this_side": 452038,
+     "other_side": 1072375,
+     "other_side_all_levels": 1166627,
+     "ratio": 1.1,
+     "this_side": 1225730,
+     "this_side_all_levels": 1337815
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "KENT -7.5 (7.5)",
+     "price": 0.485,
+     "this_side": 72200
+    }
+   },
+   "fade_price": 0.52,
+   "first_seen_utc": "2026-10-31T02:10:24Z",
+   "game": "Kent St. vs Sacramento St.: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFSPREAD-26OCT30KENTSAC-KENT8\"}",
+   "lead_min": 15,
+   "league": "NCAAF",
+   "line": -7.5,
+   "market": "spread",
+   "new_money": 452038,
+   "paper_only": false,
+   "price": 0.49,
+   "price_american": 104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.49,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -7.0,
+     "price": -112
+    },
+    "betonlineag": {
+     "point": -7.0,
+     "price": -105
+    },
+    "betopenly": {
+     "point": -7.0,
+     "price": -107
+    },
+    "betrivers": {
+     "point": -7.5,
+     "price": -107
+    },
+    "betus": {
+     "point": -7.5,
+     "price": -120
+    },
+    "bovada": {
+     "point": -7.5,
+     "price": -103
+    },
+    "draftkings": {
+     "point": -7.5,
+     "price": -102
+    },
+    "fanatics": {
+     "point": -7.0,
+     "price": -115
+    },
+    "fanduel": {
+     "point": -7.5,
+     "price": 100
+    },
+    "kalshi": {
+     "point": -7.5,
+     "price": 108
+    },
+    "lowvig": {
+     "point": -7.0,
+     "price": -101
+    },
+    "mybookieag": {
+     "point": -7.5,
+     "price": -105
+    },
+    "novig": {
+     "point": -7.5,
+     "price": 108
+    },
+    "polymarket": {
+     "point": -7.5,
+     "price": 108
+    },
+    "prophetx": {
+     "point": -7.5,
+     "price": 107
+    },
+    "williamhill_us": {
+     "point": -7.5,
+     "price": -103
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFSPREAD-26OCT30KENTSAC-KENT8"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [
+    "Sacramento State Hornets +7.5 (-110)"
+   ],
+   "side": "Kent St.",
+   "side_label": "Kent St. wins by over 7.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-10-31T02:35:00Z",
+   "teams": [
+    "Kent St.",
+    "Sacramento St."
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-31T02:20:10Z",
+   "base_depth": 320269,
+   "best_price": 0.475,
+   "best_price_american": 111,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.48,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-31",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 4723,
+     "new_this_side": 57573,
+     "other_side": 149105,
+     "other_side_all_levels": 234389,
+     "ratio": 1.7,
+     "this_side": 247507,
+     "this_side_all_levels": 376467
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "BC +6.5 (-6.5)",
+     "price": 0.475,
+     "this_side": 32475
+    }
+   },
+   "fade_price": 0.53,
+   "first_seen_utc": "2026-10-31T02:10:24Z",
+   "game": "Boston College vs Duke: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFSPREAD-26OCT31BCDUKE-DUKE7\"}",
+   "lead_min": 820,
+   "league": "NCAAF",
+   "line": 6.5,
+   "market": "spread",
+   "new_money": 57573,
+   "paper_only": false,
+   "price": 0.48,
+   "price_american": 108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.48,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 7.0,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 7.0,
+     "price": -116
+    },
+    "betrivers": {
+     "point": 7.0,
+     "price": -108
+    },
+    "betus": {
+     "point": 7.0,
+     "price": -120
+    },
+    "bovada": {
+     "point": 7.0,
+     "price": -112
+    },
+    "draftkings": {
+     "point": 7.0,
+     "price": -110
+    },
+    "fanatics": {
+     "point": 7.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 7.5,
+     "price": -128
+    },
+    "kalshi": {
+     "point": 6.5,
+     "price": 108
+    },
+    "lowvig": {
+     "point": 7.0,
+     "price": -112
+    },
+    "mybookieag": {
+     "point": 7.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 6.5,
+     "price": 111
+    },
+    "polymarket": {
+     "point": -20.5,
+     "price": -9900
+    },
+    "prophetx": {
+     "point": 6.5,
+     "price": 112
+    },
+    "williamhill_us": {
+     "point": 7.0,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAFSPREAD-26OCT31BCDUKE-DUKE7"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Boston College",
+   "side_label": "NOT Duke wins by over 6.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-10-31T16:00:00Z",
+   "teams": [
+    "Boston College",
+    "Duke"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-31T00:00:20Z",
    "base_depth": 144066,
    "best_price": 0.525,
@@ -1886,6 +2301,7 @@
     }
    },
    "fade_price": 0.5,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-30T22:21:27Z",
    "game": "Chicago vs Boston: Spread",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBASPREAD-26OCT30CHIBOS-BOS15\"}",
@@ -1973,7 +2389,7 @@
     "kalshi_side": "no",
     "market_ticker": "KXNBASPREAD-26OCT30CHIBOS-BOS15"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig",
@@ -1981,6 +2397,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-31T02:20:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Chicago",
@@ -1993,7 +2410,7 @@
     "Boston"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.94
   },
   {
    "alerted_utc": "2026-10-30T22:21:27Z",
@@ -2032,6 +2449,7 @@
     }
    },
    "fade_price": 0.49,
+   "fade_units": 1.01,
    "first_seen_utc": "2026-10-30T22:00:20Z",
    "game": "Pistons vs. Nets",
    "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6101707\"}",
@@ -2118,13 +2536,14 @@
     "outcome_index": 1,
     "pm_market_id": "6101707"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-31T02:20:10Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "Detroit Pistons -7.5 (-106)"
@@ -2139,7 +2558,7 @@
     "Nets"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-30T22:21:27Z",
@@ -2360,6 +2779,7 @@
     }
    },
    "fade_price": 0.5,
+   "fade_units": 0.93,
    "first_seen_utc": "2026-10-30T22:00:20Z",
    "game": "Orlando vs Toronto: Spread",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNBASPREAD-26OCT30ORLTOR-TOR6\"}",
@@ -2447,11 +2867,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBASPREAD-26OCT30ORLTOR-TOR6"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-10-31T02:20:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Toronto",
@@ -2464,7 +2885,7 @@
     "Toronto"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-30T22:00:20Z",
@@ -4020,6 +4441,7 @@
     }
    },
    "fade_price": 0.5,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-30T20:39:59Z",
    "game": "Chicago vs Boston: Total Points",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBATOTAL-26OCT30CHIBOS-237\"}",
@@ -4107,13 +4529,14 @@
     "kalshi_side": "no",
     "market_ticker": "KXNBATOTAL-26OCT30CHIBOS-237"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "polymarket"
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-31T02:20:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -4126,7 +4549,7 @@
     "Boston"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.94
   },
   {
    "alerted_utc": "2026-10-30T21:00:11Z",
@@ -5462,6 +5885,7 @@
     }
    },
    "fade_price": 0.51,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-30T19:37:35Z",
    "game": "New York vs Philadelphia: Spread",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBASPREAD-26OCT30NYKPHI-NYK3\"}",
@@ -5549,11 +5973,12 @@
     "kalshi_side": "no",
     "market_ticker": "KXNBASPREAD-26OCT30NYKPHI-NYK3"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-10-31T02:20:10Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "New York Knicks -1.5 (-118)"
@@ -5568,7 +5993,7 @@
     "Philadelphia"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.0
   },
   {
    "alerted_utc": "2026-10-30T19:37:35Z",
@@ -10005,8 +10430,10 @@
     }
    },
    "fade_price": 0.44,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-30T14:51:12Z",
    "game": "Harvard vs Dartmouth: Spread",
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFSPREAD-26OCT30HARVDART-HARV11\"}",
    "lead_min": 470,
    "league": "NCAAF",
@@ -10027,11 +10454,12 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFSPREAD-26OCT30HARVDART-HARV11"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settled_utc": "2026-10-31T02:20:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Dartmouth",
@@ -10044,7 +10472,7 @@
     "Dartmouth"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.7
   },
   {
    "alerted_utc": "2026-10-30T14:30:57Z",
@@ -10095,6 +10523,7 @@
     }
    },
    "fade_price": 0.5,
+   "fade_units": 0.97,
    "first_seen_utc": "2026-10-30T14:09:41Z",
    "game": "Magic vs. Raptors",
    "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6101716\"}",
@@ -10181,7 +10610,7 @@
     "outcome_index": 1,
     "pm_market_id": "6101716"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "kalshi",
@@ -10190,6 +10619,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-31T02:20:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -10202,7 +10632,7 @@
     "Raptors"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-30T14:30:57Z",
@@ -10386,6 +10816,7 @@
     }
    },
    "fade_price": 0.53,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-30T14:09:41Z",
    "game": "New York vs Philadelphia: Spread",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBASPREAD-26OCT30NYKPHI-NYK2\"}",
@@ -10469,13 +10900,14 @@
     "kalshi_side": "no",
     "market_ticker": "KXNBASPREAD-26OCT30NYKPHI-NYK2"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-31T02:20:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Philadelphia",
@@ -10488,7 +10920,7 @@
     "Philadelphia"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.06
   },
   {
    "alerted_utc": "2026-10-30T14:09:41Z",
@@ -10698,6 +11130,7 @@
     }
    },
    "fade_price": 0.27,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-30T13:49:15Z",
    "game": "Pistons vs. Nets",
    "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"6101706\"}",
@@ -10788,7 +11221,7 @@
     "outcome_index": 0,
     "pm_market_id": "6101706"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "kalshi",
@@ -10797,6 +11230,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-31T02:20:10Z",
    "sharp_agree": [
     "Detroit Pistons -7.5 (-106)"
    ],
@@ -10811,7 +11245,7 @@
     "Nets"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.34
   },
   {
    "alerted_utc": "2026-10-30T14:09:41Z",
@@ -11022,6 +11456,7 @@
     }
    },
    "fade_price": 0.49,
+   "fade_units": 0.97,
    "first_seen_utc": "2026-10-30T13:49:15Z",
    "game": "Orlando vs Toronto: Total Points",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBATOTAL-26OCT30ORLTOR-227\"}",
@@ -11109,7 +11544,7 @@
     "kalshi_side": "no",
     "market_ticker": "KXNBATOTAL-26OCT30ORLTOR-227"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig",
@@ -11118,6 +11553,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-31T02:20:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -11130,7 +11566,7 @@
     "Toronto"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-30T13:49:15Z",
@@ -11320,6 +11756,7 @@
     }
    },
    "fade_price": 0.53,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-30T13:21:03Z",
    "game": "New York vs Philadelphia: Total Points",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBATOTAL-26OCT30NYKPHI-227\"}",
@@ -11403,11 +11840,12 @@
     "kalshi_side": "no",
     "market_ticker": "KXNBATOTAL-26OCT30NYKPHI-227"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settled_utc": "2026-10-31T02:20:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -11420,7 +11858,7 @@
     "Philadelphia"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.04
   },
   {
    "alerted_utc": "2026-10-30T13:30:15Z",
@@ -11615,6 +12053,7 @@
     }
    },
    "fade_price": 0.52,
+   "fade_units": 0.86,
    "first_seen_utc": "2026-10-30T13:21:03Z",
    "game": "Chicago vs Boston: Total Points",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBATOTAL-26OCT30CHIBOS-235\"}",
@@ -11702,13 +12141,14 @@
     "kalshi_side": "no",
     "market_ticker": "KXNBATOTAL-26OCT30CHIBOS-235"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "polymarket"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-31T02:20:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -11721,7 +12161,7 @@
     "Boston"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-30T13:30:15Z",
@@ -11917,6 +12357,7 @@
     }
    },
    "fade_price": 0.53,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-30T13:21:03Z",
    "game": "Orlando vs Toronto: Spread",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBASPREAD-26OCT30ORLTOR-TOR6\"}",
@@ -12004,13 +12445,14 @@
     "kalshi_side": "no",
     "market_ticker": "KXNBASPREAD-26OCT30ORLTOR-TOR6"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "polymarket"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-31T02:20:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Orlando",
@@ -12023,7 +12465,7 @@
     "Toronto"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.06
   },
   {
    "alerted_utc": "2026-10-30T13:30:15Z",
@@ -14043,6 +14485,7 @@
     }
    },
    "fade_price": 0.49,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-30T07:46:30Z",
    "game": "Orlando vs Toronto: Total Points",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNBATOTAL-26OCT30ORLTOR-227\"}",
@@ -14130,13 +14573,14 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBATOTAL-26OCT30ORLTOR-227"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "polymarket"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-31T02:20:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -14149,7 +14593,7 @@
     "Toronto"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.91
   },
   {
    "alerted_utc": "2026-10-30T08:03:49Z",
@@ -15552,6 +15996,7 @@
     }
    },
    "fade_price": 0.34,
+   "fade_units": 1.81,
    "first_seen_utc": "2026-10-30T02:00:15Z",
    "game": "Orlando vs Toronto",
    "key": "kalshi|KXNBAGAME-26OCT30ORLTOR|ml|1",
@@ -15642,7 +16087,7 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBAGAME-26OCT30ORLTOR-TOR"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig",
@@ -15650,6 +16095,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-31T02:20:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Toronto",
@@ -15662,7 +16108,7 @@
     "Toronto"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-30T02:10:10Z",
@@ -29330,8 +29776,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.73,
-   "clv_cents": -2.0,
+   "close_price": 0.72,
+   "clv_cents": -3.0,
    "confirmed_after_min": 10,
    "date": "2026-10-30",
    "depth_by_book": {
@@ -29510,8 +29956,10 @@
     }
    },
    "fade_price": 0.23,
+   "fade_units": 3.13,
    "first_seen_utc": "2026-10-29T09:40:10Z",
    "game": "Harvard vs Dartmouth",
+   "graded_by": "espn",
    "key": "kalshi|KXNCAAFGAME-26OCT30HARVDART|ml|0",
    "lead_min": 2230,
    "league": "NCAAF",
@@ -29532,11 +29980,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26OCT30HARVDART-HARV"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-10-31T02:20:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Harvard",
@@ -29549,7 +29998,7 @@
     "Dartmouth"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-29T09:50:11Z",
