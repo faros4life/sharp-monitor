@@ -1,11 +1,11 @@
-# Paper splits (updated 2026-10-31T06:15:13Z)
+# Paper splits (updated 2026-10-31T06:20:23Z)
 
 Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kill bar: 30+ resulted at -0.10u/play or worse closes a split.
 
 | Split | Type | Start | W-L-P | Units | u/play | True close % | Status |
 |---|---|---|---|---|---|---|---|
 | Phase-1 live filter (paper view) | a-priori | 2026-10-26 | 4-6-0 | -2.49 | -0.249 | -2.22 | OPEN |
-| Phase-1 control group | control | 2026-10-26 | 7-4-1 | +1.88 | +0.157 | -0.18 | OPEN |
+| Phase-1 control group | control | 2026-10-26 | 7-5-1 | +0.88 | +0.068 | -0.25 | OPEN |
 | Hard Rock-priced, routed | a-priori | 2026-10-26 | 10-6-0 | +3.02 | +0.189 | -0.90 | OPEN |
 | Fade Hard Rock-priced | scan | 2026-10-26 | 10-6-0 | -4.10 | -0.256 | -0.90 | OPEN |
 | PM-global-priced, routed | a-priori | 2026-10-26 | 0-0-0 | +0.00 |  |  | OPEN |
@@ -13,7 +13,7 @@ Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kil
 | Combined filter | scan | 2026-10-26 | 16-14-0 | +0.34 | +0.011 | -1.84 | OPEN |
 | Priced -125 or worse | scan | 2026-10-26 | 2-2-0 | -0.41 | -0.102 | -0.42 | OPEN |
 | College basketball | scan | 2026-10-26 | 0-0-0 | +0.00 |  |  | OPEN |
-| Fade alerts sent 12-24h out | scan | 2026-10-26 | 11-7-0 | -3.81 | -0.212 | +1.71 | OPEN |
+| Fade alerts sent 12-24h out | scan | 2026-10-26 | 11-8-0 | -2.75 | -0.145 | +1.57 | OPEN |
 | Tier 2 core (paper) | tier | 2026-10-27 | 0-3-0 | -3.00 | -1.000 | -2.73 | OPEN (record only, no size) |
 | Evening sends, ex-Hard Rock | scan | 2026-10-26 | 3-2-0 | +0.65 | +0.130 | +6.05 | OPEN |
 | Muted midday (11 AM-2 PM ET) | scan | 2026-10-26 | 2-2-0 | -0.13 | -0.033 | +3.83 | OPEN |
@@ -47,9 +47,9 @@ Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kil
 
 **Closed by decision:** Liquidity spreads: Closed by Peter, Oct 27, on Muse's complete-log read: 191 resulted, -32.15u (-0.17/play), negative in every time block and every lead window.
 
-**ProphetX tripwire:** 27/30 resulted, -0.074u/play - counting.
+**ProphetX tripwire:** 28/30 resulted, -0.107u/play - counting.
 
-**Price gaps (measurement only):** {"gaps": 30, "per_day": 5.0, "edge_pct_median": 0.865, "edge_pct_p90": 2.73, "size_est_median_upper_bound": 4892.5, "seen_once_share": 0.97, "lifetime_min_median": 0.0, "lived_10min_plus": 1, "with_200_both_legs_upper_bound": 26, "scan_sec_median": 280}
+**Price gaps (measurement only):** {"gaps": 30, "per_day": 5.0, "edge_pct_median": 0.79, "edge_pct_p90": 2.73, "size_est_median_upper_bound": 4384.0, "seen_once_share": 0.97, "lifetime_min_median": 0.0, "lived_10min_plus": 1, "with_200_both_legs_upper_bound": 26, "scan_sec_median": 280}
 
 **Counting rules:** resulted = W, L or P with a unit value (pushes count, at 0u); liquidity artifacts excluded; pending/ungraded plays don't count. Times are America/New_York (DST-aware). Lead = start minus alert time. Streams: SENT (pushed), MUTED (logged, never pushed), LIVE (phase-1 subset of SENT), LIQ-MAIN, LIQ-EXTRA; paper = never bet. ALL PLAYS = every resulted play in a stream; GRADED ERA = Oct 20+ only.
 
