@@ -1222,6 +1222,34 @@ def gate(st, clv_key="clv_consensus_avg_c"):
             + (", record not positive" if st["units"] <= 0 else "") + ")")
 
 
+# ---------------------------------------------------------------- pre-registered buckets (locked Oct 31, 2026)
+# Named BEFORE seeing the data they are judged on. These came from slicing data up to Oct 31 14:35 UTC, so they are
+# judged ONLY on sightings after that time (forward data). A bucket counts as positive only if, on forward data, it has
+# >= 50 graded with positive average Pinnacle CLV AND a positive flat record. Buckets not listed here are not candidates,
+# however they look later. Any change to this list must be dated and reported as a change.
+PREREG_FROM = "2026-10-31T14:35:00Z"
+PREREG = (
+    ("P1 B overall (all leagues, NHL included)", lambda x: x["trigger"] == "B"),
+    ("P2 B, NBA", lambda x: x["trigger"] == "B" and x["league"] == "NBA"),
+    ("P3 B, unders", lambda x: x["trigger"] == "B" and x["market"] == "total" and x["side"] == "UNDER"),
+    ("P4 B, underdog spreads (plus points)", lambda x: x["trigger"] == "B" and x["market"] == "spread" and x["line"] > 0),
+    ("P5 Move-watch gettable, caught 60-180 s after the move", lambda x: x["trigger"] == "M" and x.get("gettable")
+     and x.get("detection_lag_s") is not None and 60 <= x["detection_lag_s"] < 180),
+)
+
+
+def prereg_rows(ss):
+    fwd = [x for x in ss if not x.get("suspect") and (x.get("sighted_utc") or "") >= PREREG_FROM]
+    out = []
+    for name, f in PREREG:
+        st = bucket_stats([x for x in fwd if f(x)])
+        ok = st["graded"] >= 50 and (st["clv_pinnacle_avg_c"] or 0) > 0 and st["units"] > 0
+        st["verdict"] = ("POSITIVE - eligible for discussion at the scheduled review" if ok else
+                         ("not enough yet" if st["graded"] < 50 else "negative"))
+        out.append(dict(name=name, **st))
+    return out
+
+
 def credit_projection(doc, n):
     """Study's own credits/day and all-monitor burn/day (from x-requests-remaining), each projected to 30 days."""
     log = (doc.get("credits") or {}).get("log") or []
@@ -1271,6 +1299,7 @@ def report(doc):
     both = {s["key"].split("|", 1)[1] for s in ss if s["trigger"] == "A"} & {s["key"].split("|", 1)[1] for s in ss if s["trigger"] == "B"}
     out["overlap_A_and_B"] = len(both)
     out["maker"] = maker_rows(doc)
+    out["prereg"] = prereg_rows(ss)
     out["credits"] = credit_projection(doc, datetime.now(timezone.utc))
     return out
 
@@ -1291,6 +1320,11 @@ def report_md(rep, runs):
         L.append(f"| {r['name'].strip()} | {r['n']} | {r['n_closed']} | {f(r['clv_consensus_avg_c'], 'c')} | {f(r['beat_consensus_pct'], '%')} | "
                  f"{r['n_pin_closed']} | {f(r['clv_pinnacle_avg_c'], 'c')} | {r['graded']} | {r['record']} | {r['units']:+.2f}u | "
                  f"{f(r['roi_pct'], '%')} | {f(r['move_held_avg_c'], 'c')} | {f(r['detection_lag_median_s'], 's')} | {r['gate']} |")
+    L += ["", f"## Pre-registered buckets (locked Oct 31; judged only on sightings after {PREREG_FROM})", "",
+          "| Bucket | Sightings | Graded | CLV vs Pinnacle | Record | Units | Verdict |", "|---|---|---|---|---|---|---|"]
+    for r in rep.get("prereg") or []:
+        L.append(f"| {r['name']} | {r['n']} | {r['graded']} | {'' if r['clv_pinnacle_avg_c'] is None else str(r['clv_pinnacle_avg_c']) + 'c'} | "
+                 f"{r['record']} | {r['units']:+.2f}u | {r['verdict']} |")
     L += ["", "## A2 maker test (paper resting orders, Novig + ProphetX, main lines)", "",
           "Filled = the book later traded through our bid (lower bound). Unfilled CLV = what the orders that never filled "
           "would have gained; if fills do much worse than unfilled, that is adverse selection.", "",
