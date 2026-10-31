@@ -132,7 +132,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+2 pts",
+   "clv": "+3 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline",
@@ -898,7 +898,7 @@
   },
   {
    "alert_utc": "2026-10-31T03:55:12Z",
-   "beat_close": true,
+   "beat_close": false,
    "beat_true_close": null,
    "bet": "Under 42.5 (-105)",
    "book": "Hard Rock",
@@ -906,7 +906,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+1 pts",
+   "clv": "+0 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline",
@@ -976,6 +976,47 @@
    "sport": "NCAAF",
    "start_utc": "2026-10-31T16:00:00Z",
    "top25": true,
+   "units_flat": null
+  },
+  {
+   "alert_utc": "2026-10-31T15:13:30Z",
+   "beat_close": true,
+   "beat_true_close": null,
+   "bet": "Over 41.5 (-115)",
+   "book": "Hard Rock",
+   "book_key": "hardrockbet",
+   "close_fair_prob": null,
+   "close_read_mins_before": null,
+   "close_value_pct": null,
+   "clv": "+1 pts",
+   "confirm": "yes",
+   "confirmed_by": [
+    "BetOnline",
+    "Matchbook"
+   ],
+   "edge_pct": -2.0,
+   "executable_book": false,
+   "fade_book": "hardrockbet",
+   "fade_point": 41.5,
+   "fade_price": -105,
+   "fade_price_after_fee": -105,
+   "fade_units": null,
+   "final": null,
+   "game": "UAB Blazers @ South Florida Bulls",
+   "grade": "B",
+   "kind": "tot",
+   "late": true,
+   "minutes_before_start": 46,
+   "point": 41.5,
+   "price": -115,
+   "price_after_fee": -115,
+   "pricing_bettable": true,
+   "result": null,
+   "score": 62,
+   "sent_to_phone": false,
+   "sport": "NCAAF",
+   "start_utc": "2026-10-31T16:00:00Z",
+   "top25": false,
    "units_flat": null
   },
   {
@@ -18522,6 +18563,31 @@
   }
  ],
  "all_alerts": [
+  {
+   "alert_text": "Over 41.5 (-115) at Hard Rock",
+   "bet": "Over 41.5 (-115)",
+   "bet_result": null,
+   "book": "Hard Rock",
+   "confirmed_by": [
+    "BetOnline",
+    "Matchbook"
+   ],
+   "edge_pct": -2.0,
+   "final": null,
+   "game": "UAB Blazers @ South Florida Bulls",
+   "grade": "B",
+   "late": true,
+   "minutes_before_start": 46,
+   "price": -115,
+   "price_after_fee": -115,
+   "pushed_to_phone": false,
+   "repeat": false,
+   "score": 62,
+   "sent_et": "2026-10-31 11:13",
+   "sport": "NCAAF",
+   "start_utc": "2026-10-31T16:00:00Z",
+   "why": "Pinnacle total moved 41.5 -> 42.5; bet only at 42 or better (confirmed by BetOnline, Matchbook)"
+  },
   {
    "alert_text": "Temple Owls +4.5 (-110) at Hard Rock (also: ProphetX, Kalshi)",
    "bet": "Temple Owls +4.5 (-110)",
