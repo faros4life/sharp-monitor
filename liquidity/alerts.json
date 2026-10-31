@@ -1,88 +1,159 @@
 {
  "alerts": [
   {
-   "alerted_utc": "2026-10-31T06:02:07Z",
-   "base_depth": 57112,
-   "best_price": 0.75,
-   "best_price_american": -300,
+   "alerted_utc": "2026-10-31T06:10:59Z",
+   "base_depth": 50333,
+   "best_price": 0.625,
+   "best_price_american": -167,
    "best_price_book": "novig",
    "bid_improved": false,
    "bid_improved_at_pending": false,
-   "book": "kalshi",
+   "book": "polymarket",
    "books_live": [
     "kalshi",
     "novig",
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.75,
+   "close_price": 0.63,
    "clv_cents": 0.0,
-   "confirmed_after_min": 19,
+   "confirmed_after_min": 18,
    "date": "2026-10-31",
    "depth_by_book": {
-    "kalshi": {
-     "new_other_side": 149,
-     "new_this_side": 37561,
-     "other_side": 21939,
-     "other_side_all_levels": 31392,
-     "ratio": 3.8,
-     "this_side": 82984,
-     "this_side_all_levels": 97815
-    },
     "novig": {
      "heavier_side": true,
-     "label": "UNI (0)",
-     "price": 0.75,
-     "this_side": 5155
+     "label": "ATL (0)",
+     "price": 0.625,
+     "this_side": 16161
+    },
+    "polymarket": {
+     "new_other_side": -179,
+     "new_this_side": 26433,
+     "other_side": 20168,
+     "other_side_all_levels": 30285,
+     "ratio": 3.2,
+     "this_side": 64239,
+     "this_side_all_levels": 76977
     },
     "prophetx": {
      "heavier_side": true,
-     "label": "Northern Iowa",
-     "price": 0.7468,
-     "this_side": 1076
+     "label": "Atlanta Hawks",
+     "price": 0.6241,
+     "this_side": 1628
     }
    },
-   "fade_price": 0.26,
-   "first_seen_utc": "2026-10-31T05:43:08Z",
-   "game": "Indiana St. vs Northern Iowa",
-   "key": "kalshi|KXNCAAFGAME-26OCT31INSTUNI|ml|1",
-   "lead_min": 718,
-   "league": "NCAAF",
+   "fade_price": 0.38,
+   "first_seen_utc": "2026-10-31T05:52:39Z",
+   "game": "Hawks vs. Pelicans",
+   "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"6167328\"}",
+   "lead_min": 1009,
+   "league": "NBA",
    "line": null,
    "market": "moneyline",
-   "new_money": 37561,
+   "new_money": 26433,
    "paper_only": false,
-   "price": 0.75,
-   "price_american": -300,
+   "price": 0.63,
+   "price_american": -170,
    "price_rule": "ml_edge_fail",
-   "price_when_first_seen": 0.75,
-   "prices_by_book": {},
+   "price_when_first_seen": 0.63,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -175
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -170
+    },
+    "betrivers": {
+     "point": null,
+     "price": -165
+    },
+    "betus": {
+     "point": null,
+     "price": -170
+    },
+    "bovada": {
+     "point": null,
+     "price": -180
+    },
+    "draftkings": {
+     "point": null,
+     "price": -170
+    },
+    "fanatics": {
+     "point": null,
+     "price": -175
+    },
+    "fanduel": {
+     "point": null,
+     "price": -168
+    },
+    "kalshi": {
+     "point": null,
+     "price": -163
+    },
+    "limitless": {
+     "point": null,
+     "price": -173
+    },
+    "lowvig": {
+     "point": null,
+     "price": -170
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -180
+    },
+    "novig": {
+     "point": null,
+     "price": -167
+    },
+    "polymarket": {
+     "point": null,
+     "price": -170
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -163
+    },
+    "prophetx": {
+     "point": null,
+     "price": -166
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -175
+    }
+   },
    "pulled": false,
    "ref": {
-    "kalshi_side": "yes",
-    "market_ticker": "KXNCAAFGAME-26OCT31INSTUNI-UNI"
+    "outcome_index": 0,
+    "pm_market_id": "6167328"
    },
    "result": null,
-   "rule_met": false,
-   "second_book": [],
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
    "second_book_fresh": false,
-   "second_book_status": "none_10k",
+   "second_book_status": "ok",
    "sharp_agree": [],
    "sharp_oppose": [],
-   "side": "Northern Iowa",
-   "side_label": "Northern Iowa",
-   "start_source": "prophetx",
-   "start_utc": "2026-10-31T18:00:00Z",
+   "side": "Hawks",
+   "side_label": "Hawks",
+   "start_source": "odds",
+   "start_utc": "2026-10-31T23:00:00Z",
    "teams": [
-    "Indiana St.",
-    "Northern Iowa"
+    "Hawks",
+    "Pelicans"
    ],
-   "top25": false,
+   "top25": null,
    "units_flat": null
   },
   {
-   "alerted_utc": "2026-10-31T05:43:08Z",
-   "base_depth": 119474,
+   "alerted_utc": "2026-10-31T05:52:39Z",
+   "base_depth": 117914,
    "best_price": 0.47,
    "best_price_american": 113,
    "best_price_book": "novig",
@@ -101,30 +172,30 @@
    "date": "2026-10-31",
    "depth_by_book": {
     "kalshi": {
-     "new_other_side": 10199,
-     "new_this_side": 38652,
-     "other_side": 100177,
-     "other_side_all_levels": 112015,
+     "new_other_side": -12731,
+     "new_this_side": 39910,
+     "other_side": 100488,
+     "other_side_all_levels": 112653,
      "ratio": 1.5,
-     "this_side": 146596,
-     "this_side_all_levels": 158267
+     "this_side": 146587,
+     "this_side_all_levels": 158308
     },
     "novig": {
      "heavier_side": false,
      "label": "ODU +2.5 (2.5)",
      "price": 0.47,
-     "this_side": 11979
+     "this_side": 11980
     }
    },
    "fade_price": 0.54,
-   "first_seen_utc": "2026-10-31T05:23:59Z",
+   "first_seen_utc": "2026-10-31T05:33:11Z",
    "game": "Marshall vs Old Dominion: Spread",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFSPREAD-26OCT31MRSHODU-MRSH3\"}",
-   "lead_min": 677,
+   "lead_min": 667,
    "league": "NCAAF",
    "line": 2.5,
    "market": "spread",
-   "new_money": 38652,
+   "new_money": 39910,
    "paper_only": false,
    "price": 0.47,
    "price_after_15m": 0.47,
@@ -223,8 +294,91 @@
    "units_flat": null
   },
   {
-   "alerted_utc": "2026-10-31T04:46:50Z",
-   "base_depth": 82919,
+   "alerted_utc": "2026-10-31T05:52:39Z",
+   "base_depth": 57144,
+   "best_price": 0.745,
+   "best_price_american": -292,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.75,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 19,
+   "date": "2026-10-31",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -1126,
+     "new_this_side": 35576,
+     "other_side": 20927,
+     "other_side_all_levels": 30272,
+     "ratio": 3.9,
+     "this_side": 81389,
+     "this_side_all_levels": 96080
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "UNI (0)",
+     "price": 0.745,
+     "this_side": 4073
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Northern Iowa",
+     "price": 0.7468,
+     "this_side": 595
+    }
+   },
+   "fade_price": 0.26,
+   "first_seen_utc": "2026-10-31T05:33:11Z",
+   "game": "Indiana St. vs Northern Iowa",
+   "key": "kalshi|KXNCAAFGAME-26OCT31INSTUNI|ml|1",
+   "lead_min": 727,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 35576,
+   "paper_only": false,
+   "price": 0.75,
+   "price_after_15m": 0.75,
+   "price_after_15m_book": "novig",
+   "price_american": -300,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.75,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26OCT31INSTUNI-UNI"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Northern Iowa",
+   "side_label": "Northern Iowa",
+   "start_source": "prophetx",
+   "start_utc": "2026-10-31T18:00:00Z",
+   "still_actionable": false,
+   "teams": [
+    "Indiana St.",
+    "Northern Iowa"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-31T04:55:41Z",
+   "base_depth": 80493,
    "best_price": 0.65,
    "best_price_american": -186,
    "best_price_book": "novig",
@@ -239,17 +393,17 @@
    ],
    "close_price": 0.66,
    "clv_cents": 0.0,
-   "confirmed_after_min": 19,
+   "confirmed_after_min": 18,
    "date": "2026-10-31",
    "depth_by_book": {
     "kalshi": {
-     "new_other_side": 72,
-     "new_this_side": 41635,
-     "other_side": 23953,
-     "other_side_all_levels": 32228,
-     "ratio": 4.6,
-     "this_side": 110855,
-     "this_side_all_levels": 128711
+     "new_other_side": 174,
+     "new_this_side": 46461,
+     "other_side": 24014,
+     "other_side_all_levels": 32453,
+     "ratio": 4.5,
+     "this_side": 107094,
+     "this_side_all_levels": 124917
     },
     "novig": {
      "heavier_side": true,
@@ -265,14 +419,14 @@
     }
    },
    "fade_price": 0.35,
-   "first_seen_utc": "2026-10-31T04:27:59Z",
+   "first_seen_utc": "2026-10-31T04:37:54Z",
    "game": "Howard vs North Carolina Central",
    "key": "kalshi|KXNCAAFGAME-26OCT31HOWNCCU|ml|1",
-   "lead_min": 793,
+   "lead_min": 784,
    "league": "NCAAF",
    "line": null,
    "market": "moneyline",
-   "new_money": 41635,
+   "new_money": 46461,
    "paper_only": false,
    "price": 0.66,
    "price_after_15m": 0.65,
@@ -352,8 +506,8 @@
    "new_money": 115120,
    "paper_only": false,
    "price": 0.51,
-   "price_after_15m": 0.5265,
-   "price_after_15m_book": "prophetx",
+   "price_after_15m": 0.5275,
+   "price_after_15m_book": "kalshi",
    "price_american": -104,
    "price_rule": "ok",
    "price_when_first_seen": 0.51,
@@ -1448,7 +1602,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settled_utc": "2026-10-31T05:05:00Z",
+   "settled_utc": "2026-10-31T04:55:41Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Suns",
@@ -1615,7 +1769,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settled_utc": "2026-10-31T05:05:00Z",
+   "settled_utc": "2026-10-31T04:55:41Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Suns",
@@ -1670,7 +1824,6 @@
    "fade_units": -1.0,
    "first_seen_utc": "2026-10-30T23:21:38Z",
    "game": "Lakers vs. Warriors",
-   "graded_by": "espn",
    "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6392523\"}",
    "lead_min": 139,
    "league": "NBA",
@@ -1756,7 +1909,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settled_utc": "2026-10-31T05:05:00Z",
+   "settled_utc": "2026-10-31T05:14:45Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "Los Angeles Lakers -2.5 (-109)"
@@ -1960,7 +2113,6 @@
    "fade_units": -1.0,
    "first_seen_utc": "2026-10-30T23:21:38Z",
    "game": "Lakers vs. Warriors",
-   "graded_by": "espn",
    "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6110056\"}",
    "lead_min": 139,
    "league": "NBA",
@@ -2058,7 +2210,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settled_utc": "2026-10-31T05:05:00Z",
+   "settled_utc": "2026-10-31T05:14:45Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "Los Angeles Lakers -2.5 (-109)"
@@ -4429,7 +4581,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settled_utc": "2026-10-31T05:05:00Z",
+   "settled_utc": "2026-10-31T05:14:45Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -9784,7 +9936,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settled_utc": "2026-10-31T05:05:00Z",
+   "settled_utc": "2026-10-31T05:14:45Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "Los Angeles Lakers -2.5 (-109)"
@@ -12991,7 +13143,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settled_utc": "2026-10-31T04:46:50Z",
+   "settled_utc": "2026-10-31T04:37:54Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -13593,7 +13745,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settled_utc": "2026-10-31T04:46:50Z",
+   "settled_utc": "2026-10-31T04:37:54Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Phoenix",
@@ -14166,7 +14318,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settled_utc": "2026-10-31T04:46:50Z",
+   "settled_utc": "2026-10-31T04:37:54Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -14320,7 +14472,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settled_utc": "2026-10-31T04:46:50Z",
+   "settled_utc": "2026-10-31T04:37:54Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Denver",
@@ -16247,7 +16399,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settled_utc": "2026-10-31T05:05:00Z",
+   "settled_utc": "2026-10-31T05:14:45Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Golden State",
@@ -16788,7 +16940,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settled_utc": "2026-10-31T05:05:00Z",
+   "settled_utc": "2026-10-31T04:55:41Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Los Angeles L",
@@ -17403,7 +17555,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settled_utc": "2026-10-31T05:05:00Z",
+   "settled_utc": "2026-10-31T04:55:41Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Golden State",
@@ -17850,7 +18002,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settled_utc": "2026-10-31T04:46:50Z",
+   "settled_utc": "2026-10-31T04:37:54Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Denver",
