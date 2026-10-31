@@ -15,8 +15,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.86,
-   "clv_cents": 15.0,
+   "close_price": 0.89,
+   "clv_cents": 18.0,
    "confirmed_after_min": 10,
    "date": "2026-10-31",
    "depth_by_book": {
@@ -41,6 +41,8 @@
    "new_money": 28624,
    "paper_only": false,
    "price": 0.71,
+   "price_after_15m": 0.8969,
+   "price_after_15m_book": "kalshi",
    "price_american": -245,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.6,
@@ -61,6 +63,7 @@
    "side_label": "Norfolk St.",
    "start_source": "kalshi",
    "start_utc": "2026-10-31T22:00:00Z",
+   "still_actionable": false,
    "teams": [
     "Delaware St.",
     "Norfolk St."
@@ -83,8 +86,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.48,
-   "clv_cents": -34.0,
+   "close_price": 0.96,
+   "clv_cents": 14.0,
    "confirmed_after_min": 10,
    "date": "2026-10-31",
    "depth_by_book": {
@@ -109,12 +112,13 @@
    "new_money": 28026,
    "paper_only": false,
    "price": 0.82,
+   "price_after_15m": 0.9627,
+   "price_after_15m_book": "kalshi",
    "price_american": -456,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.61,
    "prices_by_book": {},
-   "pulled": true,
-   "pulled_utc": "2026-10-31T19:40:10Z",
+   "pulled": false,
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26OCT31DRKEMORE-MORE"
@@ -130,6 +134,7 @@
    "side_label": "Morehead St.",
    "start_source": "kalshi",
    "start_utc": "2026-10-31T20:00:00Z",
+   "still_actionable": false,
    "teams": [
     "Drake",
     "Morehead St."
@@ -1963,8 +1968,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": 0.0,
+   "close_price": 0.52,
+   "clv_cents": 1.0,
    "confirmed_after_min": 18,
    "date": "2026-10-31",
    "depth_by_book": {
@@ -3085,7 +3090,6 @@
    "fade_units": 0.97,
    "first_seen_utc": "2026-10-31T15:01:56Z",
    "game": "SMU vs Syracuse: Total Points",
-   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFTOTAL-26OCT31SMUSYR-59\"}",
    "lead_min": 39,
    "league": "NCAAF",
@@ -3176,7 +3180,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settled_utc": "2026-10-31T19:40:10Z",
+   "settled_utc": "2026-10-31T19:47:26Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -3624,8 +3628,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 0.0,
+   "close_price": 0.53,
+   "clv_cents": 1.0,
    "confirmed_after_min": 19,
    "date": "2026-10-31",
    "depth_by_book": {
@@ -5121,6 +5125,7 @@
     }
    },
    "fade_price": 0.5,
+   "fade_units": 0.93,
    "first_seen_utc": "2026-10-31T13:10:16Z",
    "game": "Michigan vs Rutgers: Total Points",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFTOTAL-26OCT31MICHRUTG-47\"}",
@@ -5208,13 +5213,14 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFTOTAL-26OCT31MICHRUTG-47"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-31T19:47:26Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -5227,7 +5233,7 @@
     "Rutgers"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-31T13:10:16Z",
@@ -5657,7 +5663,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settled_utc": "2026-10-31T19:40:10Z",
+   "settled_utc": "2026-10-31T19:47:26Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "Syracuse Orange +10.5 (-115)"
@@ -5960,7 +5966,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settled_utc": "2026-10-31T19:40:10Z",
+   "settled_utc": "2026-10-31T19:47:26Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "St. Louis",
@@ -6548,7 +6554,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settled_utc": "2026-10-31T19:40:10Z",
+   "settled_utc": "2026-10-31T19:47:26Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Detroit",
@@ -8431,8 +8437,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.77,
-   "clv_cents": -5.0,
+   "close_price": 0.76,
+   "clv_cents": -6.0,
    "confirmed_after_min": 10,
    "date": "2026-10-31",
    "depth_by_book": {
@@ -8841,6 +8847,7 @@
     }
    },
    "fade_price": 0.51,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-31T07:54:47Z",
    "game": "Arizona vs Texas Tech: Total Points",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFTOTAL-26OCT31ARIZTTU-55\"}",
@@ -8928,11 +8935,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFTOTAL-26OCT31ARIZTTU-55"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-10-31T19:47:26Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -8945,7 +8953,7 @@
     "Texas Tech"
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": 0.98
   },
   {
    "alerted_utc": "2026-10-31T07:54:47Z",
@@ -9221,6 +9229,7 @@
     }
    },
    "fade_price": 0.29,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-31T07:17:48Z",
    "game": "Villanova vs Lafayette",
    "key": "kalshi|KXNCAAFGAME-26OCT31VILLLAF|ml|0",
@@ -9243,11 +9252,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26OCT31VILLLAF-VILL"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-10-31T19:47:26Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Villanova",
@@ -9260,7 +9270,7 @@
     "Lafayette"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.41
   },
   {
    "alerted_utc": "2026-10-31T07:36:36Z",
@@ -9709,6 +9719,7 @@
     }
    },
    "fade_price": 0.5,
+   "fade_units": 0.93,
    "first_seen_utc": "2026-10-31T06:10:59Z",
    "game": "Arizona vs Texas Tech: Total Points",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFTOTAL-26OCT31ARIZTTU-55\"}",
@@ -9796,13 +9807,14 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFTOTAL-26OCT31ARIZTTU-55"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-31T19:47:26Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -9815,7 +9827,7 @@
     "Texas Tech"
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-31T06:20:12Z",
@@ -10465,6 +10477,7 @@
     }
    },
    "fade_price": 0.5,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-31T03:41:24Z",
    "game": "Michigan vs Rutgers: Total Points",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFTOTAL-26OCT31MICHRUTG-46\"}",
@@ -10552,11 +10565,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFTOTAL-26OCT31MICHRUTG-46"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-10-31T19:47:26Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -10569,7 +10583,7 @@
     "Rutgers"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.9
   },
   {
    "alerted_utc": "2026-10-31T03:23:17Z",
@@ -10915,7 +10929,6 @@
    "fade_units": -1.0,
    "first_seen_utc": "2026-10-31T02:48:57Z",
    "game": "SMU vs Syracuse: Total Points",
-   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFTOTAL-26OCT31SMUSYR-59\"}",
    "lead_min": 773,
    "league": "NCAAF",
@@ -11006,7 +11019,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settled_utc": "2026-10-31T19:40:10Z",
+   "settled_utc": "2026-10-31T19:47:26Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -39360,6 +39373,7 @@
     }
    },
    "fade_price": 0.15,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-29T11:20:10Z",
    "game": "Michigan vs Rutgers",
    "key": "kalshi|KXNCAAFGAME-26OCT30MICHRUTG|ml|0",
@@ -39382,11 +39396,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26OCT30MICHRUTG-MICH"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settled_utc": "2026-10-31T19:47:26Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Michigan",
@@ -39399,7 +39414,7 @@
     "Rutgers"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.16
   },
   {
    "alerted_utc": "2026-10-29T11:30:15Z",
@@ -41337,6 +41352,7 @@
     }
    },
    "fade_price": 0.39,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-29T09:40:10Z",
    "game": "Arizona vs Texas Tech",
    "key": "kalshi|KXNCAAFGAME-26OCT30ARIZTTU|ml|1",
@@ -41359,11 +41375,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26OCT30ARIZTTU-TTU"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settled_utc": "2026-10-31T19:47:26Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Texas Tech",
@@ -41376,7 +41393,7 @@
     "Texas Tech"
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": 0.57
   },
   {
    "alerted_utc": "2026-10-29T09:23:28Z",
@@ -41484,7 +41501,6 @@
    "fade_units": 2.96,
    "first_seen_utc": "2026-10-29T09:20:11Z",
    "game": "SMU vs Syracuse",
-   "graded_by": "espn",
    "key": "kalshi|KXNCAAFGAME-26OCT30SMUSYR|ml|0",
    "lead_min": 2497,
    "league": "NCAAF",
@@ -41510,7 +41526,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settled_utc": "2026-10-31T19:40:10Z",
+   "settled_utc": "2026-10-31T19:47:26Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "SMU",
