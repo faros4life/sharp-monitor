@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Oct 31, 3:07 AM ET. This run: 1 new, 0 not confirmed, 4 pending. Open alerts: 61.
+Updated Sat Oct 31, 3:17 AM ET. This run: 0 new, 0 not confirmed, 5 pending. Open alerts: 59.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,11 +10,9 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Oct 31 3:07AM | NCAAF | Villanova vs Lafayette | moneyline: Villanova | kalshi | $35k | -245 |  |  | +0.0c |  | pending |
-| Oct 31 2:48AM | NHL | Edmonton vs New York I | moneyline: Edmonton | kalshi | $36k | -127 | ✅ novig |  | +0.0c |  | pending |
-| Oct 31 2:48AM | NHL | Chicago vs Boston | moneyline: Boston | kalshi | $28k | -213 | ✅ novig,polymarket |  | +0.0c |  | pending |
-| Oct 31 2:30AM | NCAAF | Arizona vs Texas Tech: Total Points | total: NOT Over 54.5 points | kalshi | $36k | -104 | ✅ novig,prophetx |  | +0.0c |  | pending |
-| Oct 31 2:30AM | NCAAF | Kansas St. vs Colorado: Spread | spread: NOT Colorado wins by over 2.5 points | kalshi | $55k | +113 | ✅ novig | ❌ | +0.0c |  | pending |
+| Oct 31 2:58AM | NHL | Edmonton vs New York I | moneyline: Edmonton | kalshi | $55k | -127 | ✅ novig |  | +0.0c |  | pending |
+| Oct 31 2:20AM | NCAAF | Arizona vs Texas Tech: Total Points | total: NOT Over 54.5 points | kalshi | $36k | -104 | ✅ novig |  | +0.0c |  | pending |
+| Oct 31 2:20AM | NCAAF | Kansas St. vs Colorado: Spread | spread: NOT Colorado wins by over 2.5 points | kalshi | $55k | +113 | ✅ novig | ❌ | +0.0c |  | pending |
 | Oct 31 2:10AM | NBA | Hawks vs. Pelicans | moneyline: Hawks | polymarket | $26k | -170 | ✅ novig |  | +0.0c |  | pending |
 | Oct 31 1:52AM | NCAAF | Marshall vs Old Dominion: Spread | spread: NOT Marshall wins by over 2.5 points | kalshi | $40k | +113 |  |  | +0.0c | yes | pending |
 | Oct 31 1:52AM | NCAAF | Indiana St. vs Northern Iowa | moneyline: Northern Iowa | kalshi | $36k | -300 |  |  | +0.0c |  | pending |
@@ -118,7 +116,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 30 7:53AM | NCAAF | Illinois vs Maryland: Spread | spread: NOT Illinois wins by over 2.5 points | kalshi | $45k | -100 |  |  | -1.0c | yes | pending |
 | Oct 30 7:35AM | NHL | Winnipeg vs Florida | moneyline: Florida | kalshi | $45k | -203 |  |  | +0.0c |  | W |
 | Oct 30 6:50AM | NCAAF | Sacred Heart vs Stony Brook | moneyline: Stony Brook | kalshi | $35k | -376 |  |  | +0.0c |  | pending |
-| Oct 30 6:30AM | NCAAF | Yale vs Columbia | moneyline: Yale | kalshi | $26k | -270 |  |  | +1.0c |  | pending |
+| Oct 30 6:30AM | NCAAF | Yale vs Columbia | moneyline: Yale | kalshi | $26k | -270 |  |  | -1.0c |  | pending |
 | Oct 30 6:20AM | NHL | Devils vs. Golden Knights | total: Under (6.5) | polymarket | $28k | -127 | ✅ kalshi,novig |  | +0.0c |  | L |
 | Oct 30 6:20AM | NHL | New Jersey vs Vegas: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $102k | -127 | ✅ novig,polymarket |  | +0.0c |  | L |
 | Oct 30 6:20AM | NCAAF | Wagner vs Merrimack | moneyline: Merrimack | kalshi | $28k | -567 |  |  | +0.0c | yes | pending |
@@ -210,3 +208,5 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 29 9:30AM | NBA | Grizzlies vs. Trail Blazers | total: Under (233.5) | polymarket | $33k | -100 | ✅ kalshi |  | +1.0c | yes | W |
 | Oct 29 9:30AM | NBA | Memphis vs Portland: Total Points | total: NOT Over 233.5 points | kalshi | $63k | -104 | ✅ polymarket |  | +0.0c | yes | W |
 | Oct 29 8:50AM | NBA | Memphis vs Portland: Spread | spread: Portland wins by over 7.5 points | kalshi | $277k | -104 | ✅ novig,polymarket | ❌ | +1.0c | yes | L |
+| Oct 29 8:43AM | NHL | Washington vs Nashville: Spread | spread: NOT Nashville wins by over 1.5 goals | kalshi | $60k | -233 | ✅ polymarket |  | +0.0c | yes | W |
+| Oct 29 8:20AM | NHL | Canadiens vs. Stars | moneyline: Stars | polymarket | $30k | -156 | ✅ kalshi,novig |  | +1.0c | yes | L |
