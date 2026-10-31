@@ -1,7 +1,7 @@
 {
  "alerts": [
   {
-   "alerted_utc": "2026-10-31T17:40:10Z",
+   "alerted_utc": "2026-10-31T17:49:21Z",
    "base_depth": 86762,
    "best_price": 0.51,
    "best_price_american": -104,
@@ -17,36 +17,36 @@
    ],
    "close_price": 0.51,
    "clv_cents": 0.0,
-   "confirmed_after_min": 10,
+   "confirmed_after_min": 19,
    "date": "2026-10-31",
    "depth_by_book": {
     "novig": {
      "heavier_side": true,
      "label": "MIL +9.5 (9.5)",
      "price": 0.51,
-     "this_side": 23865
+     "this_side": 18965
     },
     "polymarket": {
      "new_other_side": 6956,
      "new_this_side": 25405,
-     "other_side": 80519,
-     "other_side_all_levels": 106050,
+     "other_side": 77680,
+     "other_side_all_levels": 103921,
      "ratio": 0.9,
-     "this_side": 70351,
-     "this_side_all_levels": 114826
+     "this_side": 67429,
+     "this_side_all_levels": 113407
     },
     "prophetx": {
      "heavier_side": false,
      "label": "Milwaukee Bucks +9.5 (+9.5)",
      "price": 0.505,
-     "this_side": 14111
+     "this_side": 13402
     }
    },
    "fade_price": 0.5,
    "first_seen_utc": "2026-10-31T17:30:19Z",
    "game": "Cavaliers vs. Bucks",
    "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6440500\"}",
-   "lead_min": 380,
+   "lead_min": 371,
    "league": "NBA",
    "line": 9.5,
    "market": "spread",
@@ -148,10 +148,10 @@
    "units_flat": null
   },
   {
-   "alerted_utc": "2026-10-31T17:40:10Z",
+   "alerted_utc": "2026-10-31T17:49:21Z",
    "base_depth": 83349,
-   "best_price": 0.5172,
-   "best_price_american": -107,
+   "best_price": 0.5148,
+   "best_price_american": -106,
    "best_price_book": "prophetx",
    "bid_improved": false,
    "bid_improved_at_pending": true,
@@ -164,36 +164,36 @@
    ],
    "close_price": 0.52,
    "clv_cents": 0.0,
-   "confirmed_after_min": 10,
+   "confirmed_after_min": 19,
    "date": "2026-10-31",
    "depth_by_book": {
     "novig": {
      "heavier_side": false,
      "label": "PHI (0)",
-     "price": 0.52,
-     "this_side": 12661
+     "price": 0.515,
+     "this_side": 6984
     },
     "polymarket": {
      "new_other_side": 8804,
      "new_this_side": 37056,
-     "other_side": 43479,
-     "other_side_all_levels": 67905,
-     "ratio": 2.1,
-     "this_side": 92833,
-     "this_side_all_levels": 121004
+     "other_side": 44607,
+     "other_side_all_levels": 68233,
+     "ratio": 1.9,
+     "this_side": 85940,
+     "this_side_all_levels": 113681
     },
     "prophetx": {
      "heavier_side": true,
      "label": "Philadelphia 76ers",
-     "price": 0.5122,
-     "this_side": 12333
+     "price": 0.5098,
+     "this_side": 11787
     }
    },
    "fade_price": 0.49,
    "first_seen_utc": "2026-10-31T17:30:19Z",
    "game": "76ers vs. Hornets",
    "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"6167325\"}",
-   "lead_min": 260,
+   "lead_min": 251,
    "league": "NBA",
    "line": null,
    "market": "moneyline",
@@ -306,6 +306,143 @@
    "units_flat": null
   },
   {
+   "alerted_utc": "2026-10-31T17:49:21Z",
+   "base_depth": 224741,
+   "best_price": 0.505,
+   "best_price_american": -102,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 19,
+   "date": "2026-10-31",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 11243,
+     "new_this_side": 55332,
+     "other_side": 353523,
+     "other_side_all_levels": 369978,
+     "ratio": 0.7,
+     "this_side": 249226,
+     "this_side_all_levels": 373422
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "CCU +3.5 (-3.5)",
+     "price": 0.505,
+     "this_side": 34629
+    }
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-10-31T17:30:19Z",
+   "game": "Coastal Carolina vs Georgia St.: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFSPREAD-26OCT31CCARGAST-GAST4\"}",
+   "lead_min": 16,
+   "league": "NCAAF",
+   "line": 3.5,
+   "market": "spread",
+   "new_money": 55332,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 3.5,
+     "price": -112
+    },
+    "betonlineag": {
+     "point": 3.5,
+     "price": -110
+    },
+    "betrivers": {
+     "point": 3.5,
+     "price": -112
+    },
+    "betus": {
+     "point": 3.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 3.5,
+     "price": -105
+    },
+    "draftkings": {
+     "point": 3.5,
+     "price": -112
+    },
+    "fanatics": {
+     "point": 3.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 3.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": 3.5,
+     "price": -104
+    },
+    "lowvig": {
+     "point": 3.5,
+     "price": -106
+    },
+    "mybookieag": {
+     "point": 3.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 3.5,
+     "price": 100
+    },
+    "polymarket": {
+     "point": 3.5,
+     "price": 100
+    },
+    "prophetx": {
+     "point": 3.5,
+     "price": 102
+    },
+    "williamhill_us": {
+     "point": 3.5,
+     "price": -107
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAFSPREAD-26OCT31CCARGAST-GAST4"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Coastal Carolina",
+   "side_label": "NOT Georgia St. wins by over 3.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-10-31T18:05:00Z",
+   "teams": [
+    "Coastal Carolina",
+    "Georgia St."
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-31T17:30:19Z",
    "base_depth": 93672,
    "best_price": 0.6855,
@@ -346,6 +483,8 @@
    "new_money": 35192,
    "paper_only": false,
    "price": 0.67,
+   "price_after_15m": 0.6855,
+   "price_after_15m_book": "kalshi",
    "price_american": -203,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.67,
@@ -366,6 +505,7 @@
    "side_label": "Southeast Missouri St.",
    "start_source": "novig",
    "start_utc": "2026-10-31T18:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Gardner-Webb",
     "Southeast Missouri St."
@@ -420,12 +560,13 @@
    "new_money": 40404,
    "paper_only": false,
    "price": 0.79,
+   "price_after_15m": 0.8012,
+   "price_after_15m_book": "prophetx",
    "price_american": -376,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.79,
    "prices_by_book": {},
-   "pulled": true,
-   "pulled_utc": "2026-10-31T17:40:10Z",
+   "pulled": false,
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26OCT31ALCNMVSU-ALCN"
@@ -441,6 +582,7 @@
    "side_label": "Alcorn St.",
    "start_source": "prophetx",
    "start_utc": "2026-10-31T19:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Alcorn St.",
     "Mississippi Valley St."
@@ -566,7 +708,8 @@
      "price": -110
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-31T17:49:21Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNHLTOTAL-26OCT31EDMNYI-7"
@@ -3429,8 +3572,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.26,
-   "clv_cents": -30.0,
+   "close_price": 0.25,
+   "clv_cents": -31.0,
    "confirmed_after_min": 19,
    "date": "2026-10-31",
    "depth_by_book": {
@@ -4975,8 +5118,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.6,
-   "clv_cents": -2.0,
+   "close_price": 0.61,
+   "clv_cents": -1.0,
    "confirmed_after_min": 20,
    "date": "2026-10-31",
    "depth_by_book": {
@@ -5274,8 +5417,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.71,
-   "clv_cents": 3.0,
+   "close_price": 0.7,
+   "clv_cents": 2.0,
    "confirmed_after_min": 19,
    "date": "2026-10-31",
    "depth_by_book": {

@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Oct 31, 1:40 PM ET. This run: 2 new, 2 not confirmed, 3 pending. Open alerts: 121.
+Updated Sat Oct 31, 1:49 PM ET. This run: 3 new, 1 not confirmed, 9 pending. Open alerts: 122.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,11 +10,12 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Oct 31 1:40PM | NBA | Cavaliers vs. Bucks | spread: Bucks (+9.5) | polymarket | $25k | -104 | ✅ novig |  | +0.0c |  | pending |
-| Oct 31 1:40PM | NBA | 76ers vs. Hornets | moneyline: 76ers | polymarket | $37k | -108 | ✅ prophetx | ❌ | +0.0c |  | pending |
+| Oct 31 1:49PM | NBA | Cavaliers vs. Bucks | spread: Bucks (+9.5) | polymarket | $25k | -104 | ✅ novig |  | +0.0c |  | pending |
+| Oct 31 1:49PM | NBA | 76ers vs. Hornets | moneyline: 76ers | polymarket | $37k | -108 | ✅ prophetx | ❌ | +0.0c |  | pending |
+| Oct 31 1:49PM | NCAAF | Coastal Carolina vs Georgia St.: Spread | spread: NOT Georgia St. wins by over 3.5 points | kalshi | $55k | -104 | ✅ novig |  | +0.0c |  | pending |
 | Oct 31 1:30PM | NCAAF | Gardner-Webb vs Southeast Missouri St. | moneyline: Southeast Missouri St. | kalshi | $35k | -203 |  |  | +0.0c |  | pending |
-| Oct 31 1:30PM | NCAAF | Alcorn St. vs Mississippi Valley St. | moneyline: Alcorn St. | kalshi | $40k | -376 |  |  | +0.0c | yes | pending |
-| Oct 31 1:12PM | NHL | Edmonton vs New York I: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $62k | -127 | ✅ novig |  | +0.0c |  | pending |
+| Oct 31 1:30PM | NCAAF | Alcorn St. vs Mississippi Valley St. | moneyline: Alcorn St. | kalshi | $40k | -376 |  |  | +0.0c |  | pending |
+| Oct 31 1:12PM | NHL | Edmonton vs New York I: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $62k | -127 | ✅ novig |  | +0.0c | yes | pending |
 | Oct 31 1:12PM | NCAAF | Western Carolina vs Furman | moneyline: Furman | kalshi | $26k | +113 |  |  | +0.0c |  | pending |
 | Oct 31 12:54PM | NBA | Thunder vs. Rockets | spread: Thunder (+2.5) | polymarket | $26k | -104 |  | ✅ | -1.0c |  | pending |
 | Oct 31 12:54PM | NCAAF | Miami Florida @ North Carolina | moneyline: MIA (0) | novig | $51k | -545 |  |  | -0.5c |  | pending |
@@ -37,7 +38,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 31 10:26AM | NBA | Trail Blazers vs. Jazz | moneyline: Trail Blazers | polymarket | $59k | -285 | ✅ novig | ✅ | +0.0c |  | pending |
 | Oct 31 10:26AM | NCAAF | Kansas St. vs Colorado: Spread | spread: Colorado wins by over 2.5 points | kalshi | $62k | -117 | ✅ novig | ✅ | +1.0c |  | pending |
 | Oct 31 10:26AM | NCAAF | Western Carolina vs Furman | moneyline: Western Carolina | kalshi | $37k | -127 | ✅ novig |  | -3.0c | yes | pending |
-| Oct 31 10:26AM | NCAAF | Campbell vs University at Albany | moneyline: Campbell vs University | kalshi | $37k | -127 |  |  | -30.0c | yes | pending |
+| Oct 31 10:26AM | NCAAF | Campbell vs University at Albany | moneyline: Campbell vs University | kalshi | $37k | -127 |  |  | -31.0c | yes | pending |
 | Oct 31 9:49AM | NCAAF | UAB vs South Florida: Total Points | total: NOT Over 42.5 points | kalshi | $80k | -104 |  | ✅ | -4.0c | yes | pending |
 | Oct 31 9:28AM | NBA | Hawks vs. Pelicans | moneyline: Pelicans | polymarket | $31k | +163 |  |  | +0.0c |  | pending |
 | Oct 31 9:28AM | NCAAF | Michigan vs Rutgers: Total Points | total: NOT Over 46.5 points | kalshi | $38k | -104 | ✅ novig |  | -4.0c | yes | pending |
@@ -48,9 +49,9 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 31 9:10AM | NHL | St. Louis vs Detroit | moneyline: St. Louis | kalshi | $36k | -108 |  |  | -3.0c | yes | pending |
 | Oct 31 8:50AM | NBA | Thunder vs. Rockets | moneyline: Thunder | polymarket | $57k | +127 |  |  | +0.0c | yes | pending |
 | Oct 31 8:50AM | NHL | Chicago vs Boston: Spread | spread: NOT Boston wins by over 1.5 goals | kalshi | $50k | -122 | ✅ novig |  | -1.0c |  | pending |
-| Oct 31 8:50AM | NCAAF | Coastal Carolina vs Georgia St. | moneyline: Georgia St. | kalshi | $86k | -163 |  |  | -2.0c | yes | pending |
+| Oct 31 8:50AM | NCAAF | Coastal Carolina vs Georgia St. | moneyline: Georgia St. | kalshi | $86k | -163 |  |  | -1.0c | yes | pending |
 | Oct 31 8:30AM | NHL | St. Louis vs Detroit | moneyline: Detroit | kalshi | $87k | +104 | ✅ prophetx |  | +3.0c |  | pending |
-| Oct 31 8:11AM | NHL | Oilers vs. Islanders | spread: Islanders (+1.5) | polymarket | $34k | -213 | ✅ novig |  | +3.0c |  | pending |
+| Oct 31 8:11AM | NHL | Oilers vs. Islanders | spread: Islanders (+1.5) | polymarket | $34k | -213 | ✅ novig |  | +2.0c |  | pending |
 | Oct 31 8:11AM | NHL | Penguins vs. Canadiens | moneyline: Penguins | polymarket | $35k | +127 | ✅ prophetx |  | +3.0c |  | pending |
 | Oct 31 8:11AM | NHL | Edmonton vs New York I | moneyline: New York I | kalshi | $57k | +113 | ✅ prophetx |  | +4.0c | yes | pending |
 | Oct 31 7:51AM | NBA | Trail Blazers vs. Jazz | spread: Jazz (+6.5) | polymarket | $26k | -104 |  |  | -7.0c | yes | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 29 5:00PM | NHL | Islanders vs. Wild | moneyline: Wild | polymarket | $42k | -186 | ✅ novig |  | +0.0c |  | L |
 | Oct 29 4:10PM | NHL | Winnipeg vs Tampa Bay: Spread | spread: NOT Tampa Bay wins by over 1.5 goals | kalshi | $48k | -122 | ✅ novig |  | +0.0c |  | L |
 | Oct 29 4:00PM | NCAAF | Southern Miss vs Louisiana-Monroe | moneyline: Southern Miss | kalshi | $64k | -156 |  |  | +0.0c |  | pending |
-| Oct 29 4:00PM | NCAAF | Temple vs East Carolina | moneyline: East Carolina | kalshi | $55k | -194 |  |  | -2.0c | yes | pending |
