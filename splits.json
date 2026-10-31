@@ -462,7 +462,7 @@
    "kill_bar": ">= 30 resulted at <= -0.1u/play -> CLOSED",
    "status": "OPEN",
    "closed_utc": null,
-   "plays": 204,
+   "plays": 205,
    "resulted": 198,
    "W": 102,
    "L": 96,
@@ -526,7 +526,7 @@
    "kill_bar": ">= 30 resulted at <= -0.1u/play -> CLOSED",
    "status": "CLOSED",
    "closed_utc": "2026-10-29T04:15:10Z",
-   "plays": 58,
+   "plays": 60,
    "resulted": 41,
    "W": 24,
    "L": 17,
@@ -536,7 +536,7 @@
    "true_close_value_pct": null,
    "true_close_n": 0,
    "all_history": {
-    "plays": 114,
+    "plays": 116,
     "resulted": 97,
     "W": 59,
     "L": 38,
@@ -734,16 +734,16 @@
   "status": "counting"
  },
  "gaps": {
-  "gaps": 30,
-  "per_day": 5.0,
-  "edge_pct_median": 0.79,
-  "edge_pct_p90": 2.73,
-  "size_est_median_upper_bound": 4384.0,
+  "gaps": 31,
+  "per_day": 5.2,
+  "edge_pct_median": 0.76,
+  "edge_pct_p90": 2.57,
+  "size_est_median_upper_bound": 4324,
   "seen_once_share": 0.97,
-  "lifetime_min_median": 0.0,
+  "lifetime_min_median": 0,
   "lived_10min_plus": 1,
-  "with_200_both_legs_upper_bound": 26,
-  "scan_sec_median": 280
+  "with_200_both_legs_upper_bound": 27,
+  "scan_sec_median": 282.0
  },
  "untimed": {
   "ntfy_evening": 0,
@@ -752,5 +752,5 @@
   "liq_evening": 0
  },
  "resulted_rule": "resulted = result W, L or P with a unit value (pushes count as 0u); liquidity artifacts excluded; pending and ungraded plays do not count",
- "updated_utc": "2026-10-31T08:05:09Z"
+ "updated_utc": "2026-10-31T08:15:10Z"
 }
