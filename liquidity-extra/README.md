@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Oct 31, 6:56 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 12.
+Updated Sat Oct 31, 7:00 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 12.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,7 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Oct 31 6:30AM | TENNIS | Tirante vs Svajda | moneyline: Svajda | kalshi | $42k | -270 |  |  | +0.0c |  | pending |
+| Oct 31 6:30AM | TENNIS | Tirante vs Svajda | moneyline: Svajda | kalshi | $42k | -270 |  |  | +6.0c |  | pending |
 | Oct 31 6:20AM | TENNIS | Baez vs Dzumhur | moneyline: Dzumhur | kalshi | $43k | -194 | ✅ novig |  | +0.0c |  | pending |
 | Oct 31 5:00AM | TENNIS | Sun vs Dart | moneyline: Sun | kalshi | $169k | -300 |  |  | -61.0c | yes | pending |
 | Oct 31 3:20AM | TENNIS | Zverev vs de Minaur | moneyline: Zverev | kalshi | $29k | -233 | ✅ novig |  | +0.0c |  | pending |
