@@ -1,6 +1,142 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-31T12:10:16Z",
+   "base_depth": 72159,
+   "best_price": 0.5971,
+   "best_price_american": -148,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.58,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-31",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 15822,
+     "new_this_side": 58562,
+     "other_side": 39186,
+     "other_side_all_levels": 105882,
+     "ratio": 2.0,
+     "this_side": 79873,
+     "this_side_all_levels": 208485
+    }
+   },
+   "fade_price": 0.43,
+   "first_seen_utc": "2026-10-31T12:00:21Z",
+   "game": "Machac vs Landaluce",
+   "key": "kalshi|KXATPMATCH-26OCT31MACLAN|ml|0",
+   "lead_min": 50,
+   "league": "TENNIS",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 58562,
+   "paper_only": true,
+   "price": 0.58,
+   "price_american": -138,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.67,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXATPMATCH-26OCT31MACLAN-MAC"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Machac",
+   "side_label": "Machac",
+   "start_source": "kalshi",
+   "start_utc": "2026-10-31T13:00:00Z",
+   "teams": [
+    "Machac",
+    "Landaluce"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-31T12:10:16Z",
+   "base_depth": 54701,
+   "best_price": 0.7631,
+   "best_price_american": -322,
+   "best_price_book": "kalshi",
+   "bid_improved": true,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.75,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-31",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -16909,
+     "new_this_side": 42545,
+     "other_side": 61794,
+     "other_side_all_levels": 92240,
+     "ratio": 2.3,
+     "this_side": 143899,
+     "this_side_all_levels": 333387
+    }
+   },
+   "fade_price": 0.26,
+   "first_seen_utc": "2026-10-31T12:00:21Z",
+   "game": "Duckworth vs Kecmanovic",
+   "key": "kalshi|KXATPMATCH-26OCT31DUCKEC|ml|1",
+   "lead_min": 50,
+   "league": "TENNIS",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 42545,
+   "paper_only": true,
+   "price": 0.75,
+   "price_american": -300,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.71,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXATPMATCH-26OCT31DUCKEC-KEC"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Kecmanovic",
+   "side_label": "Kecmanovic",
+   "start_source": "kalshi",
+   "start_utc": "2026-10-31T13:00:00Z",
+   "teams": [
+    "Duckworth",
+    "Kecmanovic"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-31T10:30:19Z",
    "base_depth": 47109,
    "best_price": 0.7438,
@@ -32,6 +168,7 @@
     }
    },
    "fade_price": 0.28,
+   "fade_units": 2.4,
    "first_seen_utc": "2026-10-31T10:20:24Z",
    "game": "Tirante vs Svajda",
    "key": "kalshi|KXATPMATCH-26OCT31TIRSVA|ml|1",
@@ -54,11 +191,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXATPMATCH-26OCT31TIRSVA-SVA"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settled_utc": "2026-10-31T12:10:16Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Svajda",
@@ -71,7 +209,7 @@
     "Svajda"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-31T10:20:24Z",
