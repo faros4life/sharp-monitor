@@ -1,6 +1,74 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-31T20:40:11Z",
+   "base_depth": 31167,
+   "best_price": 0.5375,
+   "best_price_american": -116,
+   "best_price_book": "kalshi",
+   "bid_improved": true,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 8,
+   "date": "2026-10-31",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 13862,
+     "new_this_side": 45318,
+     "other_side": 24974,
+     "other_side_all_levels": 73545,
+     "ratio": 1.1,
+     "this_side": 26367,
+     "this_side_all_levels": 92119
+    }
+   },
+   "fade_price": 0.49,
+   "first_seen_utc": "2026-10-31T20:32:32Z",
+   "game": "The Citadel vs Mercer",
+   "key": "kalshi|KXNCAAFGAME-26OCT31CITMER|ml|1",
+   "lead_min": 80,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 45318,
+   "paper_only": false,
+   "price": 0.52,
+   "price_american": -108,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26OCT31CITMER-MER"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Mercer",
+   "side_label": "Mercer",
+   "start_source": "kalshi",
+   "start_utc": "2026-10-31T22:00:00Z",
+   "teams": [
+    "The Citadel",
+    "Mercer"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-31T20:02:24Z",
    "base_depth": 35051,
    "best_price": 0.74,
@@ -155,8 +223,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.85,
-   "clv_cents": 14.0,
+   "close_price": 0.84,
+   "clv_cents": 13.0,
    "confirmed_after_min": 10,
    "date": "2026-10-31",
    "depth_by_book": {
@@ -1903,6 +1971,7 @@
     }
    },
    "fade_price": 0.46,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-31T16:54:30Z",
    "game": "Edmonton vs New York I: Total Goals",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLTOTAL-26OCT31EDMNYI-7\"}",
@@ -1990,13 +2059,14 @@
     "kalshi_side": "no",
     "market_ticker": "KXNHLTOTAL-26OCT31EDMNYI-7"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-31T20:40:11Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -2009,7 +2079,7 @@
     "New York I"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.79
   },
   {
    "alerted_utc": "2026-10-31T17:12:01Z",
@@ -3374,6 +3444,7 @@
     }
    },
    "fade_price": 0.48,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-31T15:01:56Z",
    "game": "Marshall vs Old Dominion: Spread",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFSPREAD-26OCT31MRSHODU-MRSH3\"}",
@@ -3461,11 +3532,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFSPREAD-26OCT31MRSHODU-MRSH3"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settled_utc": "2026-10-31T20:40:11Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Marshall",
@@ -3478,7 +3550,7 @@
     "Old Dominion"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.83
   },
   {
    "alerted_utc": "2026-10-31T14:43:28Z",
@@ -7062,6 +7134,7 @@
     }
    },
    "fade_price": 0.54,
+   "fade_units": 0.79,
    "first_seen_utc": "2026-10-31T11:51:54Z",
    "game": "Edmonton vs New York I",
    "key": "kalshi|KXNHLGAME-26OCT31EDMNYI|ml|1",
@@ -7153,13 +7226,14 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNHLGAME-26OCT31EDMNYI-NYI"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "prophetx"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-31T20:40:11Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "New York I",
@@ -7172,7 +7246,7 @@
     "New York I"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-31T11:51:54Z",
@@ -9737,6 +9811,7 @@
     }
    },
    "fade_price": 0.45,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-31T06:39:55Z",
    "game": "Edmonton vs New York I",
    "key": "kalshi|KXNHLGAME-26OCT31EDMNYI|ml|0",
@@ -9828,13 +9903,14 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNHLGAME-26OCT31EDMNYI-EDM"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-31T20:40:11Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Edmonton",
@@ -9847,7 +9923,7 @@
     "New York I"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.8
   },
   {
    "alerted_utc": "2026-10-31T06:20:12Z",
@@ -10337,6 +10413,7 @@
     }
    },
    "fade_price": 0.54,
+   "fade_units": 0.79,
    "first_seen_utc": "2026-10-31T05:33:11Z",
    "game": "Marshall vs Old Dominion: Spread",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFSPREAD-26OCT31MRSHODU-MRSH3\"}",
@@ -10424,11 +10501,12 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFSPREAD-26OCT31MRSHODU-MRSH3"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-10-31T20:40:11Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Old Dominion",
@@ -10441,7 +10519,7 @@
     "Old Dominion"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-31T05:52:39Z",
@@ -21552,6 +21630,7 @@
     }
    },
    "fade_price": 0.58,
+   "fade_units": 0.67,
    "first_seen_utc": "2026-10-30T15:10:24Z",
    "game": "Marshall vs Old Dominion",
    "key": "kalshi|KXNCAAFGAME-26OCT30MRSHODU|ml|1",
@@ -21574,11 +21653,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26OCT30MRSHODU-ODU"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settled_utc": "2026-10-31T20:40:11Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Old Dominion",
@@ -21591,7 +21671,7 @@
     "Old Dominion"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-30T15:10:24Z",
@@ -41747,6 +41827,7 @@
     }
    },
    "fade_price": 0.44,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-29T09:20:11Z",
    "game": "Marshall vs Old Dominion",
    "key": "kalshi|KXNCAAFGAME-26OCT30MRSHODU|ml|0",
@@ -41768,11 +41849,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26OCT30MRSHODU-MRSH"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settled_utc": "2026-10-31T20:40:11Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Marshall",
@@ -41785,7 +41867,7 @@
     "Old Dominion"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.73
   },
   {
    "alerted_utc": "2026-10-29T09:23:28Z",
