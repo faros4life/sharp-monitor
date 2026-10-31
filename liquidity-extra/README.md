@@ -1,25 +1,25 @@
 # Liquidity alerts (paper)
 
-Updated Sat Oct 31, 1:40 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 9.
+Updated Sat Oct 31, 1:49 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 8.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 100-68 (-12.91u flat) | rule met: 30-28
+**Record:** 101-68 (-12.20u flat) | rule met: 30-28
 
-**Fade (paper, betting against the print):** 43-65 (+9.92u flat, after fees)
+**Fade (paper, betting against the print):** 43-66 (+8.92u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Oct 31 12:50PM | TENNIS | Lehecka vs Struff | moneyline: Struff | kalshi | $291k | -203 |  |  | -57.0c | yes | pending |
+| Oct 31 12:50PM | TENNIS | Lehecka vs Struff | moneyline: Struff | kalshi | $291k | -203 |  |  | -56.0c | yes | pending |
 | Oct 31 12:37PM | TENNIS | Tagger vs Dart | moneyline: Tagger | kalshi | $33k | -355 |  |  | -1.0c |  | pending |
-| Oct 31 12:00PM | TENNIS | Zverev vs de Minaur | moneyline: de Minaur | kalshi | $246k | +245 |  |  | +7.0c |  | pending |
+| Oct 31 12:00PM | TENNIS | Zverev vs de Minaur | moneyline: de Minaur | kalshi | $246k | +245 |  |  | +11.0c |  | pending |
 | Oct 31 11:15AM | TENNIS | Vacherot vs Fritz | moneyline: Vacherot | kalshi | $247k | -127 |  |  | +5.0c |  | W |
 | Oct 31 8:50AM | TENNIS | Cerundolo vs Kovacevic | moneyline: Cerundolo | kalshi | $98k | -113 |  |  | +0.0c |  | W |
 | Oct 31 8:30AM | TENNIS | Sonego vs Munar | moneyline: Munar | kalshi | $34k | -150 |  |  | +0.0c |  | L |
 | Oct 31 8:20AM | TENNIS | Gaston vs Kopriva | moneyline: Kopriva | kalshi | $48k | -203 |  |  | -1.0c |  | W |
 | Oct 31 8:16AM | TENNIS | Fernandez vs Shnaider | moneyline: Shnaider | kalshi | $27k | -144 |  |  | +1.0c |  | pending |
 | Oct 31 8:16AM | TENNIS | Vallejo vs Dimitrov | moneyline: Vallejo | kalshi | $26k | +108 |  |  | +1.0c |  | pending |
-| Oct 31 8:16AM | TENNIS | Borges vs Mannarino | moneyline: Borges | kalshi | $56k | -144 |  |  | -1.0c |  | pending |
+| Oct 31 8:16AM | TENNIS | Borges vs Mannarino | moneyline: Borges | kalshi | $56k | -144 |  |  | -1.0c |  | W |
 | Oct 31 8:10AM | TENNIS | Machac vs Landaluce | moneyline: Machac | kalshi | $59k | -138 |  |  | +28.0c |  | W |
 | Oct 31 8:10AM | TENNIS | Duckworth vs Kecmanovic | moneyline: Kecmanovic | kalshi | $43k | -300 |  |  | -30.0c |  | W |
 | Oct 31 6:30AM | TENNIS | Tirante vs Svajda | moneyline: Svajda | kalshi | $42k | -270 |  |  | -69.0c | yes | L |
