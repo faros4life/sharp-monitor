@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Oct 31, 1:20 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 4.
+Updated Sat Oct 31, 1:30 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 4.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -11,7 +11,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Oct 30 11:40PM | TENNIS | Jones vs Watson | moneyline: Jones | kalshi | $127k | -426 |  |  | +9.0c |  | W |
-| Oct 30 11:28PM | TENNIS | Sun vs Dart | moneyline: Dart | kalshi | $49k | +104 |  |  | +0.0c |  | pending |
+| Oct 30 11:28PM | TENNIS | Sun vs Dart | moneyline: Dart | kalshi | $49k | +104 |  |  | -1.0c |  | pending |
 | Oct 30 11:28PM | TENNIS | Stojsavljevic vs Ibragimova | moneyline: Stojsavljevic | kalshi | $31k | -170 |  |  | +27.0c | yes | W |
 | Oct 30 10:40PM | TENNIS | Stojsavljevic vs Ibragimova | moneyline: Ibragimova | kalshi | $49k | -426 |  |  | -77.0c | yes | L |
 | Oct 30 8:00PM | TENNIS | Quevedo vs Tagger | moneyline: Tagger | kalshi | $54k | -203 |  |  | +0.0c |  | pending |
