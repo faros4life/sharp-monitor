@@ -1,6 +1,296 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-31T21:50:10Z",
+   "base_depth": 392341,
+   "best_price": 0.5333,
+   "best_price_american": -114,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 7,
+   "date": "2026-10-31",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -79292,
+     "new_this_side": 49051,
+     "other_side": 162662,
+     "other_side_all_levels": 265370,
+     "ratio": 1.2,
+     "this_side": 202905,
+     "this_side_all_levels": 444545
+    }
+   },
+   "fade_price": 0.49,
+   "first_seen_utc": "2026-10-31T21:43:09Z",
+   "game": "Georgia Tech vs Pittsburgh: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFSPREAD-26OCT31GTPITT-PITT10\"}",
+   "lead_min": 100,
+   "league": "NCAAF",
+   "line": 9.5,
+   "market": "spread",
+   "new_money": 49051,
+   "paper_only": false,
+   "price": 0.52,
+   "price_american": -108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.52,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 7.5,
+     "price": -108
+    },
+    "betonlineag": {
+     "point": 8.5,
+     "price": -115
+    },
+    "betrivers": {
+     "point": 7.5,
+     "price": -110
+    },
+    "betus": {
+     "point": 8.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 8.5,
+     "price": -112
+    },
+    "draftkings": {
+     "point": 7.5,
+     "price": -108
+    },
+    "fanatics": {
+     "point": 8.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 7.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": 7.5,
+     "price": 104
+    },
+    "lowvig": {
+     "point": 8.5,
+     "price": -111
+    },
+    "mybookieag": {
+     "point": 7.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 8.5,
+     "price": -106
+    },
+    "polymarket": {
+     "point": 8.5,
+     "price": -104
+    },
+    "prophetx": {
+     "point": 7.5,
+     "price": 110
+    },
+    "williamhill_us": {
+     "point": 7.5,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAFSPREAD-26OCT31GTPITT-PITT10"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Georgia Tech",
+   "side_label": "NOT Pittsburgh wins by over 9.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-10-31T23:30:00Z",
+   "teams": [
+    "Georgia Tech",
+    "Pittsburgh"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-31T21:50:10Z",
+   "base_depth": 1027387,
+   "best_price": 0.4858,
+   "best_price_american": 106,
+   "best_price_book": "prophetx",
+   "bid_improved": true,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.47,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 7,
+   "date": "2026-10-31",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -78860,
+     "new_this_side": 304096,
+     "other_side": 384736,
+     "other_side_all_levels": 600882,
+     "ratio": 3.5,
+     "this_side": 1342570,
+     "this_side_all_levels": 1483595
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Hornets",
+     "price": 0.48,
+     "this_side": 1062972
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Charlotte Hornets",
+     "price": 0.4808,
+     "this_side": 51570
+    }
+   },
+   "fade_price": 0.53,
+   "first_seen_utc": "2026-10-31T21:43:09Z",
+   "game": "Philadelphia vs Charlotte",
+   "key": "kalshi|KXNBAGAME-26OCT31PHICHA|ml|1",
+   "lead_min": 10,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 304096,
+   "paper_only": false,
+   "price": 0.47,
+   "price_american": 113,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.45,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -102
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -104
+    },
+    "betopenly": {
+     "point": null,
+     "price": 100
+    },
+    "betrivers": {
+     "point": null,
+     "price": 110
+    },
+    "betus": {
+     "point": null,
+     "price": -104
+    },
+    "bovada": {
+     "point": null,
+     "price": 100
+    },
+    "draftkings": {
+     "point": null,
+     "price": -102
+    },
+    "fanatics": {
+     "point": null,
+     "price": 100
+    },
+    "fanduel": {
+     "point": null,
+     "price": 106
+    },
+    "kalshi": {
+     "point": null,
+     "price": 113
+    },
+    "limitless": {
+     "point": null,
+     "price": 102
+    },
+    "lowvig": {
+     "point": null,
+     "price": -102
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -102
+    },
+    "novig": {
+     "point": null,
+     "price": 108
+    },
+    "polymarket": {
+     "point": null,
+     "price": 108
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": 108
+    },
+    "prophetx": {
+     "point": null,
+     "price": 108
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": 105
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBAGAME-26OCT31PHICHA-CHA"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "polymarket",
+    "prophetx"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [
+    "Charlotte Hornets +1.5 (-120)",
+    "Charlotte Hornets +1.5 (-115)"
+   ],
+   "sharp_oppose": [
+    "Philadelphia 76ers -1.5 (-111)"
+   ],
+   "side": "Charlotte",
+   "side_label": "Charlotte",
+   "start_source": "odds",
+   "start_utc": "2026-10-31T22:00:00Z",
+   "teams": [
+    "Philadelphia",
+    "Charlotte"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-31T21:43:09Z",
    "base_depth": 27099,
    "best_price": 0.635,
@@ -343,8 +633,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": 1.0,
+   "close_price": 0.55,
+   "clv_cents": 3.0,
    "confirmed_after_min": 10,
    "date": "2026-10-31",
    "depth_by_book": {
@@ -375,6 +665,8 @@
    "new_money": 358912,
    "paper_only": false,
    "price": 0.52,
+   "price_after_15m": 0.5574,
+   "price_after_15m_book": "polymarket",
    "price_american": -108,
    "price_rule": "ok",
    "price_when_first_seen": 0.52,
@@ -465,6 +757,7 @@
    "side_label": "Hornets (+2.5)",
    "start_source": "odds",
    "start_utc": "2026-10-31T22:00:00Z",
+   "still_actionable": false,
    "teams": [
     "76ers",
     "Hornets"
@@ -525,6 +818,8 @@
    "new_money": 145293,
    "paper_only": false,
    "price": 0.57,
+   "price_after_15m": 0.5702,
+   "price_after_15m_book": "prophetx",
    "price_american": -133,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.57,
@@ -624,6 +919,7 @@
    "side_label": "Rockets",
    "start_source": "odds",
    "start_utc": "2026-11-01T00:30:00Z",
+   "still_actionable": false,
    "teams": [
     "Thunder",
     "Rockets"
@@ -678,6 +974,8 @@
    "new_money": 112322,
    "paper_only": false,
    "price": 0.5,
+   "price_after_15m": 0.5075,
+   "price_after_15m_book": "polymarket",
    "price_american": -100,
    "price_rule": "ok",
    "price_when_first_seen": 0.5,
@@ -769,6 +1067,7 @@
    "side_label": "Rockets (-2.5)",
    "start_source": "odds",
    "start_utc": "2026-11-01T00:30:00Z",
+   "still_actionable": false,
    "teams": [
     "Thunder",
     "Rockets"
@@ -965,6 +1264,8 @@
    "new_money": 131206,
    "paper_only": false,
    "price": 0.53,
+   "price_after_15m": 0.5172,
+   "price_after_15m_book": "prophetx",
    "price_american": -113,
    "price_rule": "ok",
    "price_when_first_seen": 0.52,
@@ -1055,6 +1356,7 @@
    "side_label": "Over 211.5 points",
    "start_source": "odds",
    "start_utc": "2026-10-31T22:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Philadelphia",
     "Charlotte"
@@ -1077,8 +1379,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.47,
-   "clv_cents": 1.0,
+   "close_price": 0.48,
+   "clv_cents": 2.0,
    "confirmed_after_min": 7,
    "date": "2026-10-31",
    "depth_by_book": {
@@ -1401,8 +1703,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": 0.0,
+   "close_price": 0.52,
+   "clv_cents": 1.0,
    "confirmed_after_min": 7,
    "date": "2026-10-31",
    "depth_by_book": {
@@ -3178,8 +3480,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.54,
-   "clv_cents": 2.0,
+   "close_price": 0.53,
+   "clv_cents": 1.0,
    "confirmed_after_min": 19,
    "date": "2026-10-31",
    "depth_by_book": {
@@ -4381,6 +4683,7 @@
     }
    },
    "fade_price": 0.49,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-31T15:59:05Z",
    "game": "Trail Blazers vs. Jazz",
    "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6440490\"}",
@@ -4468,11 +4771,12 @@
     "outcome_index": 1,
     "pm_market_id": "6440490"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-10-31T21:50:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -4485,7 +4789,7 @@
     "Jazz"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.92
   },
   {
    "alerted_utc": "2026-10-31T15:40:14Z",
@@ -6268,6 +6572,7 @@
     }
    },
    "fade_price": 0.27,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-31T14:07:41Z",
    "game": "Trail Blazers vs. Jazz",
    "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"6167322\"}",
@@ -6362,13 +6667,14 @@
     "outcome_index": 0,
     "pm_market_id": "6167322"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-31T21:50:10Z",
    "sharp_agree": [
     "Portland Trail Blazers -7.5 (-113)",
     "Portland Trail Blazers -6.5 (-120)"
@@ -6384,7 +6690,7 @@
     "Jazz"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.35
   },
   {
    "alerted_utc": "2026-10-31T14:26:14Z",
@@ -8988,6 +9294,7 @@
     }
    },
    "fade_price": 0.5,
+   "fade_units": 0.97,
    "first_seen_utc": "2026-10-31T11:32:23Z",
    "game": "Trail Blazers vs. Jazz",
    "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6440485\"}",
@@ -9071,11 +9378,12 @@
     "outcome_index": 1,
     "pm_market_id": "6440485"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-10-31T21:50:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Jazz",
@@ -9088,7 +9396,7 @@
     "Jazz"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-31T11:51:54Z",
