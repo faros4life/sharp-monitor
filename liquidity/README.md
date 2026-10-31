@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Oct 31, 12:00 AM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 69.
+Updated Sat Oct 31, 12:10 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 69.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -57,7 +57,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 30 3:58PM | NBA | New York vs Philadelphia: Spread | spread: NOT New York wins by over 2.5 points | kalshi | $65k | -100 |  | ❌ | -2.0c | yes | W |
 | Oct 30 3:37PM | NBA | Hornets vs. Wizards | moneyline: Wizards | polymarket | $71k | -100 |  | ❌ | +0.0c |  | W |
 | Oct 30 3:37PM | NBA | Detroit vs Brooklyn: Total Points | total: NOT Over 222.5 points | kalshi | $41k | -100 |  | ✅ | +0.0c | yes | W |
-| Oct 30 3:37PM | NCAAF | Maine vs Rhode Island | moneyline: Rhode Island | kalshi | $25k | -525 |  |  | -1.0c | yes | pending |
+| Oct 30 3:37PM | NCAAF | Maine vs Rhode Island | moneyline: Rhode Island | kalshi | $25k | -525 |  |  | -2.0c | yes | pending |
 | Oct 30 2:37PM | NBA | Magic vs. Raptors | moneyline: Raptors | polymarket | $29k | -194 | ✅ kalshi,novig,prophetx |  | +0.0c | yes | L |
 | Oct 30 1:56PM | NCAAF | Bowling Green vs Western Michigan: Spread | spread: NOT Western Michigan wins by over 13.5 points | kalshi | $63k | -100 | ✅ prophetx |  | -2.0c |  | pending |
 | Oct 30 1:56PM | NCAAF | Baylor vs UCF | moneyline: UCF | kalshi | $1,564k | +113 | ✅ novig,prophetx | ✅ | -3.0c | yes | L |
@@ -113,7 +113,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 30 6:20AM | NHL | Devils vs. Golden Knights | total: Under (6.5) | polymarket | $28k | -127 | ✅ kalshi,novig |  | +0.0c |  | L |
 | Oct 30 6:20AM | NHL | New Jersey vs Vegas: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $102k | -127 | ✅ novig,polymarket |  | +0.0c |  | L |
 | Oct 30 6:20AM | NCAAF | Wagner vs Merrimack | moneyline: Merrimack | kalshi | $28k | -567 |  |  | +0.0c | yes | pending |
-| Oct 30 6:20AM | NCAAF | Bowling Green vs Western Michigan | moneyline: Western Michigan | kalshi | $121k | -488 | ✅ novig |  | +0.0c | yes | pending |
+| Oct 30 6:20AM | NCAAF | Bowling Green vs Western Michigan | moneyline: Western Michigan | kalshi | $121k | -488 | ✅ novig |  | +1.0c | yes | pending |
 | Oct 30 4:03AM | NBA | Orlando vs Toronto: Total Points | total: Over 226.5 points | kalshi | $26k | -108 | ✅ polymarket |  | -1.0c | yes | W |
 | Oct 30 4:03AM | NBA | Houston vs Dallas: Total Points | total: NOT Over 225.5 points | kalshi | $37k | -100 | ✅ polymarket |  | +5.0c |  | L |
 | Oct 30 4:03AM | NBA | Detroit vs Brooklyn: Spread | spread: NOT Detroit wins by over 7.5 points | kalshi | $36k | -104 | ✅ novig,polymarket |  | -1.0c | yes | L |
