@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Oct 30, 9:00 PM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 147.
+Updated Fri Oct 30, 9:09 PM ET. This run: 0 new, 1 not confirmed, 0 pending. Open alerts: 147.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,9 +10,9 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Oct 30 8:00PM | NBA | Nuggets vs. Suns | spread: Suns (+4.5) | polymarket | $181k | -113 | ✅ kalshi,novig |  | +0.0c |  | pending |
+| Oct 30 8:00PM | NBA | Nuggets vs. Suns | spread: Suns (+4.5) | polymarket | $181k | -113 | ✅ kalshi,novig |  | -1.0c |  | pending |
 | Oct 30 8:00PM | NBA | Nuggets vs. Suns | moneyline: Suns | polymarket | $245k | +150 | ✅ kalshi,prophetx |  | -1.0c |  | pending |
-| Oct 30 7:40PM | NBA | Lakers vs. Warriors | spread: Warriors (+3.5) | polymarket | $347k | -108 |  | ❌ | +1.0c |  | pending |
+| Oct 30 7:40PM | NBA | Lakers vs. Warriors | spread: Warriors (+3.5) | polymarket | $347k | -108 |  | ❌ | +0.0c |  | pending |
 | Oct 30 7:40PM | NBA | Clippers vs. Timberwolves | spread: Clippers (+6.5) | polymarket | $269k | +104 |  |  | +0.0c |  | pending |
 | Oct 30 7:40PM | NBA | Lakers vs. Warriors | moneyline: Warriors | polymarket | $298k | +133 |  | ❌ | +0.0c |  | pending |
 | Oct 30 7:40PM | NBA | Rockets vs. Mavericks | spread: Rockets (-5.5) | polymarket | $258k | -104 | ✅ kalshi,novig |  | +0.0c |  | pending |
