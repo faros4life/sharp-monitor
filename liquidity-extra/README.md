@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Oct 31, 12:50 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 10.
+Updated Sat Oct 31, 1:00 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 10.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,9 +10,9 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Oct 31 12:50PM | TENNIS | Lehecka vs Struff | moneyline: Struff | kalshi | $291k | -203 |  |  | +0.0c |  | pending |
+| Oct 31 12:50PM | TENNIS | Lehecka vs Struff | moneyline: Struff | kalshi | $291k | -203 |  |  | -5.0c |  | pending |
 | Oct 31 12:37PM | TENNIS | Tagger vs Dart | moneyline: Tagger | kalshi | $33k | -355 |  |  | +0.0c |  | pending |
-| Oct 31 12:00PM | TENNIS | Zverev vs de Minaur | moneyline: de Minaur | kalshi | $246k | +245 |  |  | +24.0c |  | pending |
+| Oct 31 12:00PM | TENNIS | Zverev vs de Minaur | moneyline: de Minaur | kalshi | $246k | +245 |  |  | +30.0c |  | pending |
 | Oct 31 11:15AM | TENNIS | Vacherot vs Fritz | moneyline: Vacherot | kalshi | $247k | -127 |  |  | +5.0c |  | W |
 | Oct 31 8:50AM | TENNIS | Cerundolo vs Kovacevic | moneyline: Cerundolo | kalshi | $98k | -113 |  |  | +0.0c |  | W |
 | Oct 31 8:30AM | TENNIS | Sonego vs Munar | moneyline: Munar | kalshi | $34k | -150 |  |  | +0.0c |  | pending |
