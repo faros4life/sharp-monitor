@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Oct 30, 10:30 PM ET. This run: 0 new, 2 not confirmed, 1 pending. Open alerts: 105.
+Updated Fri Oct 30, 10:40 PM ET. This run: 0 new, 1 not confirmed, 1 pending. Open alerts: 105.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -159,7 +159,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 29 1:00PM | NHL | Chicago vs Detroit: Total Goals | total: Over 5.5 goals scored | kalshi | $26k | -113 | ✅ novig,polymarket |  | +0.0c | yes | L |
 | Oct 29 1:00PM | NFL | Carolina vs Green Bay: Spread | spread: Green Bay wins by over 3.5 points | kalshi | $154k | -104 |  |  | +0.0c | yes | W |
 | Oct 29 12:50PM | NBA | Sacramento vs New Orleans: Total Points | total: Over 235.5 points | kalshi | $86k | -108 |  | ❌ | -3.0c | yes | W |
-| Oct 29 12:50PM | NCAAF | Kent St. vs Sacramento St.: Spread | spread: NOT Kent St. wins by over 7.5 points | kalshi | $79k | -100 | ✅ novig |  | +2.0c |  | pending |
+| Oct 29 12:50PM | NCAAF | Kent St. vs Sacramento St.: Spread | spread: NOT Kent St. wins by over 7.5 points | kalshi | $79k | -100 | ✅ novig |  | +2.0c | yes | pending |
 | Oct 29 12:40PM | NHL | Jets vs. Lightning | moneyline: Jets | polymarket | $44k | +194 | ✅ prophetx |  | +0.0c | yes | L |
 | Oct 29 12:40PM | NCAAF | Baylor vs UCF: Spread | spread: Baylor wins by over 1.5 points | kalshi | $50k | -100 | ✅ novig |  | +3.0c |  | pending |
 | Oct 29 12:40PM | NCAAF | Tulane vs Charlotte: Spread | spread: NOT Tulane wins by over 9.5 points | kalshi | $92k | -108 |  |  | +2.0c | yes | pending |
