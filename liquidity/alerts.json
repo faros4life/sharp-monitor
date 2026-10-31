@@ -153,7 +153,6 @@
     "polymarket",
     "prophetx"
    ],
-   "close_frozen": true,
    "close_price": 0.48,
    "clv_cents": -1.0,
    "confirmed_after_min": 10,
@@ -186,8 +185,6 @@
    "new_money": 452038,
    "paper_only": false,
    "price": 0.49,
-   "price_after_15m": 0.4975,
-   "price_after_15m_book": "kalshi",
    "price_american": 104,
    "price_rule": "ok",
    "price_when_first_seen": 0.49,
@@ -278,7 +275,6 @@
    "side_label": "Kent St. wins by over 7.5 points",
    "start_source": "odds",
    "start_utc": "2026-10-31T02:35:00Z",
-   "still_actionable": false,
    "teams": [
     "Kent St.",
     "Sacramento St."
@@ -2940,6 +2936,7 @@
     }
    },
    "fade_price": 0.5,
+   "fade_units": 0.97,
    "first_seen_utc": "2026-10-30T21:40:50Z",
    "game": "Clippers vs. Timberwolves",
    "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6423396\"}",
@@ -3026,13 +3023,14 @@
     "outcome_index": 1,
     "pm_market_id": "6423396"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-31T02:48:57Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "Over 222.5 (-111)"
@@ -3047,7 +3045,7 @@
     "Timberwolves"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-30T22:00:20Z",
@@ -5094,6 +5092,7 @@
     }
    },
    "fade_price": 0.49,
+   "fade_units": 0.97,
    "first_seen_utc": "2026-10-30T20:19:13Z",
    "game": "Indiana vs Miami: Total Points",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBATOTAL-26OCT30INDMIA-238\"}",
@@ -5180,13 +5179,14 @@
     "kalshi_side": "no",
     "market_ticker": "KXNBATOTAL-26OCT30INDMIA-238"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "polymarket"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-31T02:48:57Z",
    "sharp_agree": [
     "Under 236.5 (-105)"
    ],
@@ -5201,7 +5201,7 @@
     "Miami"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-30T20:19:13Z",
@@ -7415,6 +7415,7 @@
     }
    },
    "fade_price": 0.52,
+   "fade_units": 0.86,
    "first_seen_utc": "2026-10-30T16:52:36Z",
    "game": "Indiana vs Miami: Spread",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBASPREAD-26OCT30INDMIA-MIA9\"}",
@@ -7501,7 +7502,7 @@
     "kalshi_side": "no",
     "market_ticker": "KXNBASPREAD-26OCT30INDMIA-MIA9"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "polymarket",
@@ -7509,6 +7510,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-31T02:48:57Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "Miami Heat -7.5 (-122)",
@@ -7524,7 +7526,7 @@
     "Miami"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-30T16:52:36Z",
@@ -8150,6 +8152,7 @@
     }
    },
    "fade_price": 0.52,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-30T16:00:23Z",
    "game": "Indiana vs Miami: Total Points",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNBATOTAL-26OCT30INDMIA-238\"}",
@@ -8237,11 +8240,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBATOTAL-26OCT30INDMIA-238"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-10-31T02:48:57Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "Under 236.5 (-105)"
@@ -8256,7 +8260,7 @@
     "Miami"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.04
   },
   {
    "alerted_utc": "2026-10-30T16:10:10Z",
@@ -9817,6 +9821,7 @@
     }
    },
    "fade_price": 0.5,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-30T15:10:24Z",
    "game": "Indiana vs Miami: Spread",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNBASPREAD-26OCT30INDMIA-MIA9\"}",
@@ -9904,13 +9909,14 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBASPREAD-26OCT30INDMIA-MIA9"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-31T02:48:57Z",
    "sharp_agree": [
     "Miami Heat -7.5 (-122)",
     "Miami Heat -7.5 (-122)"
@@ -9926,7 +9932,7 @@
     "Miami"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.92
   },
   {
    "alerted_utc": "2026-10-30T15:20:11Z",
@@ -15423,7 +15429,8 @@
      "price": 100
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-10-31T02:48:57Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNHLGAME-26OCT30SEACGY-CGY"
@@ -21719,8 +21726,7 @@
      "price": -112
     }
    },
-   "pulled": true,
-   "pulled_utc": "2026-10-31T02:40:10Z",
+   "pulled": false,
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFSPREAD-26OCT30KENTSAC-KENT8"
@@ -22452,6 +22458,7 @@
     }
    },
    "fade_price": 0.33,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-29T16:34:25Z",
    "game": "Indiana vs Miami",
    "key": "kalshi|KXNBAGAME-26OCT30INDMIA|ml|1",
@@ -22506,11 +22513,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBAGAME-26OCT30INDMIA-MIA"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-10-31T02:48:57Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Miami",
@@ -22523,7 +22531,7 @@
     "Miami"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.5
   },
   {
    "alerted_utc": "2026-10-29T16:34:25Z",
@@ -30912,8 +30920,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.62,
-   "clv_cents": 0.0,
+   "close_price": 0.63,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-30",
    "depth_by_book": {
