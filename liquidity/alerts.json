@@ -1,6 +1,156 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-10-31T21:04:59Z",
+   "base_depth": 110957,
+   "best_price": 0.6574,
+   "best_price_american": -192,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.66,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 15,
+   "date": "2026-10-31",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Florida St.",
+     "price": 0.66,
+     "this_side": 1436134
+    },
+    "novig": {
+     "new_other_side": 582,
+     "new_this_side": 48614,
+     "other_side": 72043,
+     "other_side_all_levels": 72081,
+     "ratio": 2.2,
+     "this_side": 159961,
+     "this_side_all_levels": 160151
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Florida State",
+     "price": 0.6528,
+     "this_side": 17160
+    }
+   },
+   "fade_price": 0.35,
+   "first_seen_utc": "2026-10-31T20:50:11Z",
+   "game": "Clemson @ Florida State",
+   "key": "novig|{\"market_id\": \"01a1717b-876d-7040-9db2-0acbd95b74d8\", \"outcome_id\": \"01a1717b-876d-7040-9db2-0adb98ec92e3\"}",
+   "lead_min": 115,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 48614,
+   "paper_only": false,
+   "price": 0.66,
+   "price_american": -194,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.66,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -210
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -210
+    },
+    "betopenly": {
+     "point": null,
+     "price": -198
+    },
+    "betrivers": {
+     "point": null,
+     "price": -205
+    },
+    "betus": {
+     "point": null,
+     "price": -210
+    },
+    "bovada": {
+     "point": null,
+     "price": -205
+    },
+    "draftkings": {
+     "point": null,
+     "price": -218
+    },
+    "fanatics": {
+     "point": null,
+     "price": -215
+    },
+    "fanduel": {
+     "point": null,
+     "price": -215
+    },
+    "kalshi": {
+     "point": null,
+     "price": -194
+    },
+    "lowvig": {
+     "point": null,
+     "price": -210
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -232
+    },
+    "novig": {
+     "point": null,
+     "price": -194
+    },
+    "polymarket": {
+     "point": null,
+     "price": -186
+    },
+    "prophetx": {
+     "point": null,
+     "price": -188
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -218
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a1717b-876d-7040-9db2-0acbd95b74d8",
+    "outcome_id": "01a1717b-876d-7040-9db2-0adb98ec92e3"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi",
+    "prophetx"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [
+    "Clemson Tigers +5.5 (+101)"
+   ],
+   "side": "Florida State",
+   "side_label": "FSU (0)",
+   "start_source": "odds",
+   "start_utc": "2026-10-31T23:00:00Z",
+   "teams": [
+    "Clemson",
+    "Florida State"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-10-31T20:40:11Z",
    "base_depth": 31167,
    "best_price": 0.5375,
@@ -15,8 +165,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.72,
-   "clv_cents": 20.0,
+   "close_price": 0.88,
+   "clv_cents": 36.0,
    "confirmed_after_min": 8,
    "date": "2026-10-31",
    "depth_by_book": {
@@ -41,7 +191,7 @@
    "new_money": 45318,
    "paper_only": false,
    "price": 0.52,
-   "price_after_15m": 0.7341,
+   "price_after_15m": 0.8874,
    "price_after_15m_book": "kalshi",
    "price_american": -108,
    "price_rule": "ml_edge_fail",
@@ -226,8 +376,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.71,
-   "clv_cents": 0.0,
+   "close_price": 0.74,
+   "clv_cents": 3.0,
    "confirmed_after_min": 10,
    "date": "2026-10-31",
    "depth_by_book": {
@@ -259,7 +409,7 @@
    "price_when_first_seen": 0.6,
    "prices_by_book": {},
    "pulled": true,
-   "pulled_utc": "2026-10-31T20:57:11Z",
+   "pulled_utc": "2026-10-31T20:50:11Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26OCT31DSUNORF-NORF"
@@ -6928,7 +7078,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settled_utc": "2026-10-31T20:57:11Z",
+   "settled_utc": "2026-10-31T21:04:59Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Islanders",
@@ -8001,7 +8151,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settled_utc": "2026-10-31T20:57:11Z",
+   "settled_utc": "2026-10-31T20:50:11Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Islanders",
@@ -8229,6 +8379,7 @@
     }
    },
    "fade_price": 0.39,
+   "fade_units": 1.52,
    "first_seen_utc": "2026-10-31T09:38:32Z",
    "game": "Lightning vs. Predators",
    "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"5285922\"}",
@@ -8319,7 +8470,7 @@
     "outcome_index": 0,
     "pm_market_id": "5285922"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "kalshi",
@@ -8327,6 +8478,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-10-31T21:04:59Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Lightning",
@@ -8339,7 +8491,7 @@
     "Predators"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-31T09:38:32Z",
@@ -8652,7 +8804,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settled_utc": "2026-10-31T20:57:11Z",
+   "settled_utc": "2026-10-31T20:50:11Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Tampa Bay",
