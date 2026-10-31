@@ -1,16 +1,16 @@
 # Liquidity alerts (paper)
 
-Updated Sat Oct 31, 11:40 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 11.
+Updated Sat Oct 31, 11:50 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 9.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 98-65 (-11.08u flat) | rule met: 30-26
+**Record:** 99-66 (-11.35u flat) | rule met: 30-27
 
-**Fade (paper, betting against the print):** 40-63 (+6.25u flat, after fees)
+**Fade (paper, betting against the print):** 41-64 (+7.77u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Oct 31 11:15AM | TENNIS | Vacherot vs Fritz | moneyline: Vacherot | kalshi | $247k | -127 |  |  | +5.0c |  | pending |
+| Oct 31 11:15AM | TENNIS | Vacherot vs Fritz | moneyline: Vacherot | kalshi | $247k | -127 |  |  | +5.0c |  | W |
 | Oct 31 8:50AM | TENNIS | Cerundolo vs Kovacevic | moneyline: Cerundolo | kalshi | $98k | -113 |  |  | +0.0c |  | W |
 | Oct 31 8:30AM | TENNIS | Sonego vs Munar | moneyline: Munar | kalshi | $34k | -150 |  |  | +0.0c |  | pending |
 | Oct 31 8:20AM | TENNIS | Gaston vs Kopriva | moneyline: Kopriva | kalshi | $48k | -203 |  |  | -1.0c |  | W |
@@ -23,7 +23,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 31 6:20AM | TENNIS | Baez vs Dzumhur | moneyline: Dzumhur | kalshi | $43k | -194 | ✅ novig |  | -1.0c |  | pending |
 | Oct 31 5:00AM | TENNIS | Sun vs Dart | moneyline: Sun | kalshi | $169k | -300 |  |  | -61.0c | yes | L |
 | Oct 31 3:20AM | TENNIS | Zverev vs de Minaur | moneyline: Zverev | kalshi | $29k | -233 | ✅ novig |  | +2.0c |  | pending |
-| Oct 31 3:20AM | TENNIS | Vacherot vs Fritz | moneyline: Fritz | kalshi | $26k | -285 | ✅ novig |  | +0.0c | yes | pending |
+| Oct 31 3:20AM | TENNIS | Vacherot vs Fritz | moneyline: Fritz | kalshi | $26k | -285 | ✅ novig |  | +0.0c | yes | L |
 | Oct 31 3:20AM | TENNIS | Lehecka vs Struff | moneyline: Lehecka | kalshi | $34k | -203 | ✅ novig |  | -1.0c |  | pending |
 | Oct 31 3:20AM | TENNIS | Gaston vs Kopriva | moneyline: Gaston | kalshi | $31k | -203 |  |  | -3.0c | yes | L |
 | Oct 31 2:20AM | TENNIS | Shnaider vs Pohankova | moneyline: Shnaider | kalshi | $996k | -567 |  |  | -4.0c |  | W |
