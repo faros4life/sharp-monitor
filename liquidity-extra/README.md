@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Oct 31, 11:20 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 11.
+Updated Sat Oct 31, 11:30 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 11.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,7 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Oct 31 11:15AM | TENNIS | Vacherot vs Fritz | moneyline: Vacherot | kalshi | $247k | -127 |  |  | -1.0c |  | pending |
+| Oct 31 11:15AM | TENNIS | Vacherot vs Fritz | moneyline: Vacherot | kalshi | $247k | -127 |  |  | +5.0c |  | pending |
 | Oct 31 8:50AM | TENNIS | Cerundolo vs Kovacevic | moneyline: Cerundolo | kalshi | $98k | -113 |  |  | +0.0c |  | W |
 | Oct 31 8:30AM | TENNIS | Sonego vs Munar | moneyline: Munar | kalshi | $34k | -150 |  |  | +0.0c |  | pending |
 | Oct 31 8:20AM | TENNIS | Gaston vs Kopriva | moneyline: Kopriva | kalshi | $48k | -203 |  |  | -1.0c |  | W |
