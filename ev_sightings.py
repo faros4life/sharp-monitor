@@ -1223,30 +1223,60 @@ def gate(st, clv_key="clv_consensus_avg_c"):
 
 
 # ---------------------------------------------------------------- pre-registered buckets (locked Oct 31, 2026)
-# Named BEFORE seeing the data they are judged on. These came from slicing data up to Oct 31 14:35 UTC, so they are
-# judged ONLY on sightings after that time (forward data). A bucket counts as positive only if, on forward data, it has
-# >= 50 graded with positive average Pinnacle CLV AND a positive flat record. Buckets not listed here are not candidates,
-# however they look later. Any change to this list must be dated and reported as a change.
+# Named BEFORE looking at the data they are judged on. The list came from slicing data up to the cutoff, so buckets are
+# judged ONLY on sightings after PREREG_FROM (forward data). Amended once, Oct 31 ~10:45 ET, before any post-cutoff
+# sighting was read (Muse's review, Peter approved): three buckets that could not reach 50 graded by Nov 10 were made
+# descriptive; B with a fresh Pinnacle reference added; judged buckets exclude NHL (NHL enters the study at the cutoff,
+# so including it would change the mix); every judged bucket also gets a one-sighting-per-game check.
+# A judged bucket is POSITIVE only if, on forward data: >= 50 graded, positive average Pinnacle CLV, positive flat record,
+# AND the one-per-game version (first sighting per game) also has positive CLV and a positive record.
+# Buckets not judged here are not candidates, however they look later. Further changes must be dated and reported.
 PREREG_FROM = "2026-10-31T14:35:00Z"
-PREREG = (
-    ("P1 B overall (all leagues, NHL included)", lambda x: x["trigger"] == "B"),
-    ("P2 B, NBA", lambda x: x["trigger"] == "B" and x["league"] == "NBA"),
-    ("P3 B, unders", lambda x: x["trigger"] == "B" and x["market"] == "total" and x["side"] == "UNDER"),
-    ("P4 B, underdog spreads (plus points)", lambda x: x["trigger"] == "B" and x["market"] == "spread" and x["line"] > 0),
-    ("P5 Move-watch gettable, caught 60-180 s after the move", lambda x: x["trigger"] == "M" and x.get("gettable")
-     and x.get("detection_lag_s") is not None and 60 <= x["detection_lag_s"] < 180),
+PREREG_AMENDED = "2026-10-31T14:45:00Z"
+_noNHL = lambda x: x["league"] != "NHL"
+_getM = lambda x: x["trigger"] == "M" and x.get("gettable")
+PREREG = (   # (name, filter, judged)
+    ("J1 B overall (ex-NHL)", lambda x: x["trigger"] == "B" and _noNHL(x), True),
+    ("J2 B, NBA", lambda x: x["trigger"] == "B" and x["league"] == "NBA", True),
+    ("J3 B, fresh Pinnacle reference (< 5 min old, ex-NHL)", lambda x: x["trigger"] == "B" and _noNHL(x)
+     and x.get("ref_age_s") is not None and x["ref_age_s"] < 300, True),
+    ("J4 Move-watch gettable, all lags (ex-NHL)", lambda x: _getM(x) and _noNHL(x), True),
+    ("D1 B, unders (descriptive)", lambda x: x["trigger"] == "B" and x["market"] == "total" and x["side"] == "UNDER", False),
+    ("D2 B, underdog spreads (descriptive)", lambda x: x["trigger"] == "B" and x["market"] == "spread" and x["line"] > 0, False),
+    ("D3 Move-watch gettable, caught 60-180 s (descriptive)", lambda x: _getM(x) and x.get("detection_lag_s") is not None
+     and 60 <= x["detection_lag_s"] < 180, False),
+    ("D4 B, NHL (descriptive)", lambda x: x["trigger"] == "B" and x["league"] == "NHL", False),
+    ("D5 Move-watch gettable, NHL (descriptive)", lambda x: _getM(x) and x["league"] == "NHL", False),
 )
+
+
+def one_per_game(rows):
+    first = {}
+    for x in sorted(rows, key=lambda x: x.get("sighted_utc") or ""):
+        first.setdefault(x["game_id"], x)
+    return list(first.values())
 
 
 def prereg_rows(ss):
     fwd = [x for x in ss if not x.get("suspect") and (x.get("sighted_utc") or "") >= PREREG_FROM]
     out = []
-    for name, f in PREREG:
-        st = bucket_stats([x for x in fwd if f(x)])
-        ok = st["graded"] >= 50 and (st["clv_pinnacle_avg_c"] or 0) > 0 and st["units"] > 0
-        st["verdict"] = ("POSITIVE - eligible for discussion at the scheduled review" if ok else
-                         ("not enough yet" if st["graded"] < 50 else "negative"))
-        out.append(dict(name=name, **st))
+    for name, f, judged in PREREG:
+        rows = [x for x in fwd if f(x)]
+        st = bucket_stats(rows)
+        g1 = bucket_stats(one_per_game(rows))
+        st["one_per_game"] = {"graded": g1["graded"], "clv_pinnacle_avg_c": g1["clv_pinnacle_avg_c"], "record": g1["record"],
+                              "units": g1["units"]}
+        if not judged:
+            st["verdict"] = "descriptive only"
+        elif st["graded"] < 50:
+            st["verdict"] = "not enough yet"
+        elif (st["clv_pinnacle_avg_c"] or 0) > 0 and st["units"] > 0:
+            st["verdict"] = ("POSITIVE - eligible for discussion at the scheduled review"
+                             if (g1["clv_pinnacle_avg_c"] or 0) > 0 and g1["units"] > 0
+                             else "fails the one-per-game check (correlated sightings)")
+        else:
+            st["verdict"] = "negative"
+        out.append(dict(name=name, judged=judged, **st))
     return out
 
 
@@ -1320,11 +1350,15 @@ def report_md(rep, runs):
         L.append(f"| {r['name'].strip()} | {r['n']} | {r['n_closed']} | {f(r['clv_consensus_avg_c'], 'c')} | {f(r['beat_consensus_pct'], '%')} | "
                  f"{r['n_pin_closed']} | {f(r['clv_pinnacle_avg_c'], 'c')} | {r['graded']} | {r['record']} | {r['units']:+.2f}u | "
                  f"{f(r['roi_pct'], '%')} | {f(r['move_held_avg_c'], 'c')} | {f(r['detection_lag_median_s'], 's')} | {r['gate']} |")
-    L += ["", f"## Pre-registered buckets (locked Oct 31; judged only on sightings after {PREREG_FROM})", "",
-          "| Bucket | Sightings | Graded | CLV vs Pinnacle | Record | Units | Verdict |", "|---|---|---|---|---|---|---|"]
+    L += ["", f"## Pre-registered buckets (locked Oct 31, amended {PREREG_AMENDED} before any forward data was read; "
+          f"judged only on sightings after {PREREG_FROM}; J = judged, D = descriptive)", "",
+          "| Bucket | Sightings | Graded | CLV vs Pinnacle | Record | Units | One per game (graded, CLV, units) | Verdict |",
+          "|---|---|---|---|---|---|---|---|"]
     for r in rep.get("prereg") or []:
+        o = r["one_per_game"]
         L.append(f"| {r['name']} | {r['n']} | {r['graded']} | {'' if r['clv_pinnacle_avg_c'] is None else str(r['clv_pinnacle_avg_c']) + 'c'} | "
-                 f"{r['record']} | {r['units']:+.2f}u | {r['verdict']} |")
+                 f"{r['record']} | {r['units']:+.2f}u | {o['graded']}, {'' if o['clv_pinnacle_avg_c'] is None else str(o['clv_pinnacle_avg_c']) + 'c'}, "
+                 f"{o['units']:+.2f}u | {r['verdict']} |")
     L += ["", "## A2 maker test (paper resting orders, Novig + ProphetX, main lines)", "",
           "Filled = the book later traded through our bid (lower bound). Unfilled CLV = what the orders that never filled "
           "would have gained; if fills do much worse than unfilled, that is adverse selection.", "",
