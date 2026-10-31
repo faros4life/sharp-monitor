@@ -1,4 +1,4 @@
-# Paper splits (updated 2026-10-31T17:25:12Z)
+# Paper splits (updated 2026-10-31T17:35:11Z)
 
 Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kill bar: 30+ resulted at -0.10u/play or worse closes a split.
 
@@ -49,7 +49,7 @@ Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kil
 
 **ProphetX tripwire:** 28/30 resulted, -0.107u/play - counting.
 
-**Price gaps (measurement only):** {"gaps": 48, "per_day": 8.0, "edge_pct_median": 1.4, "edge_pct_p90": 8.45, "size_est_median_upper_bound": 2227.0, "seen_once_share": 0.98, "lifetime_min_median": 0.0, "lived_10min_plus": 1, "with_200_both_legs_upper_bound": 37, "scan_sec_median": 320}
+**Price gaps (measurement only):** {"gaps": 33, "per_day": 5.5, "edge_pct_median": 0.76, "edge_pct_p90": 2.57, "size_est_median_upper_bound": 4444, "seen_once_share": 0.97, "lifetime_min_median": 0, "lived_10min_plus": 1, "with_200_both_legs_upper_bound": 28, "scan_sec_median": 285.0}
 
 **Counting rules:** resulted = W, L or P with a unit value (pushes count, at 0u); liquidity artifacts excluded; pending/ungraded plays don't count. Times are America/New_York (DST-aware). Lead = start minus alert time. Streams: SENT (pushed), MUTED (logged, never pushed), LIVE (phase-1 subset of SENT), LIQ-MAIN, LIQ-EXTRA; paper = never bet. ALL PLAYS = every resulted play in a stream; GRADED ERA = Oct 20+ only.
 
