@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Oct 31, 9:20 PM ET. This run: 3 new, 0 not confirmed, 2 pending. Open alerts: 74.
+Updated Sat Oct 31, 9:30 PM ET. This run: 1 new, 1 not confirmed, 3 pending. Open alerts: 75.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,8 +10,9 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Oct 31 9:30PM | NFL | Atlanta vs Tampa Bay | moneyline: Tampa Bay | kalshi | $566k | -127 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Oct 31 9:20PM | NFL | Kansas City vs Denver: Total Points | total: Over 40.5 points | kalshi | $113k | -104 | ✅ novig |  | +0.0c |  | pending |
-| Oct 31 9:20PM | NBA | Boston vs Orlando | moneyline: Boston | kalshi | $133k | -223 | ✅ polymarket |  | +0.0c |  | pending |
+| Oct 31 9:20PM | NBA | Boston vs Orlando | moneyline: Boston | kalshi | $133k | -223 | ✅ polymarket |  | +2.0c |  | pending |
 | Oct 31 9:20PM | NBA | Brooklyn vs Indiana | moneyline: Indiana | kalshi | $29k | -163 | ✅ polymarket |  | +0.0c |  | pending |
 | Oct 31 9:10PM | NFL | Tennessee vs Cincinnati: Spread | spread: NOT Cincinnati wins by over 13.5 points | kalshi | $378k | -113 |  |  | +0.0c |  | pending |
 | Oct 31 9:10PM | NFL | Las Vegas vs New York J: Spread | spread: NOT New York J wins by over 1.5 points | kalshi | $841k | -100 |  |  | +0.0c |  | pending |
@@ -27,9 +28,9 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 31 8:20PM | NFL | Minnesota vs Detroit: Spread | spread: NOT Detroit wins by over 3.5 points | kalshi | $193k | -113 | ✅ novig |  | +0.0c | yes | pending |
 | Oct 31 8:20PM | NCAAF | Texas St. vs Boise St.: Total Points | total: NOT Over 63.5 points | kalshi | $190k | -104 | ✅ novig | ✅ | -2.0c |  | pending |
 | Oct 31 8:20PM | NCAAF | Oregon St. vs Fresno St.: Total Points | total: NOT Over 56.5 points | kalshi | $108k | +104 |  | ✅ | -1.0c |  | pending |
-| Oct 31 8:20PM | NCAAF | Texas St. vs Boise St. | moneyline: Boise St. | kalshi | $241k | -376 | ✅ novig | ❌ | +0.0c |  | pending |
+| Oct 31 8:20PM | NCAAF | Texas St. vs Boise St. | moneyline: Boise St. | kalshi | $241k | -376 | ✅ novig | ❌ | +0.0c | yes | pending |
 | Oct 31 8:10PM | NFL | Arizona vs Dallas: Total Points | total: NOT Over 54.5 points | kalshi | $63k | -104 |  |  | +0.0c |  | pending |
-| Oct 31 8:01PM | NHL | Calgary vs Colorado | moneyline: Colorado | kalshi | $75k | -376 | ✅ novig,polymarket,prophetx |  | +0.0c | yes | pending |
+| Oct 31 8:01PM | NHL | Calgary vs Colorado | moneyline: Colorado | kalshi | $75k | -376 | ✅ novig,polymarket,prophetx |  | -1.0c | yes | pending |
 | Oct 31 7:50PM | NBA | Cavaliers vs. Bucks | spread: Bucks (+8.5) | polymarket | $296k | -100 | ✅ kalshi,novig,prophetx |  | +0.0c |  | pending |
 | Oct 31 7:50PM | NFL | Indianapolis vs Jacksonville | moneyline: Jacksonville | kalshi | $765k | -426 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Oct 31 7:40PM | NCAAF | Army vs Memphis: Spread | spread: NOT Memphis wins by over 6.5 points | kalshi | $55k | -104 | ✅ novig |  | +1.0c | yes | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 30 12:10PM | NHL | Devils vs. Golden Knights | moneyline: Devils | polymarket | $40k | -100 | ✅ kalshi,novig |  | +0.0c | yes | W |
 | Oct 30 12:10PM | NCAAF | Tulane vs Charlotte: Total Points | total: Over 47.5 points | kalshi | $137k | +104 |  |  | +1.0c | yes | W |
 | Oct 30 12:10PM | NBA | Indiana vs Miami: Total Points | total: Over 237.5 points | kalshi | $125k | +104 |  | ❌ | +0.0c | yes | W |
-| Oct 30 12:10PM | NBA | Charlotte vs Washington: Spread | spread: Charlotte wins by over 1.5 points | kalshi | $28k | +104 | ✅ novig,polymarket | ✅ | +0.0c |  | L |
