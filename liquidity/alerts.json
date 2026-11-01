@@ -1,6 +1,466 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-01T12:00:16Z",
+   "base_depth": 54711,
+   "best_price": 0.725,
+   "best_price_american": -264,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.73,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-01",
+   "depth_by_book": {
+    "novig": {
+     "heavier_side": true,
+     "label": "CAR (0)",
+     "price": 0.725,
+     "this_side": 39500
+    },
+    "polymarket": {
+     "new_other_side": 6931,
+     "new_this_side": 30564,
+     "other_side": 24252,
+     "other_side_all_levels": 33027,
+     "ratio": 2.2,
+     "this_side": 54078,
+     "this_side_all_levels": 83888
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Carolina Hurricanes",
+     "price": 0.7333,
+     "this_side": 5066
+    }
+   },
+   "fade_price": 0.28,
+   "first_seen_utc": "2026-11-01T11:50:10Z",
+   "game": "Jets vs. Hurricanes",
+   "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"5329746\"}",
+   "lead_min": 360,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 30564,
+   "paper_only": false,
+   "price": 0.73,
+   "price_american": -270,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.73,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -285
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -285
+    },
+    "betopenly": {
+     "point": null,
+     "price": -262
+    },
+    "betrivers": {
+     "point": null,
+     "price": -286
+    },
+    "betus": {
+     "point": null,
+     "price": -285
+    },
+    "bovada": {
+     "point": null,
+     "price": -285
+    },
+    "draftkings": {
+     "point": null,
+     "price": -265
+    },
+    "fanatics": {
+     "point": null,
+     "price": -280
+    },
+    "fanduel": {
+     "point": null,
+     "price": -275
+    },
+    "kalshi": {
+     "point": null,
+     "price": -270
+    },
+    "lowvig": {
+     "point": null,
+     "price": -285
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -280
+    },
+    "novig": {
+     "point": null,
+     "price": -264
+    },
+    "polymarket": {
+     "point": null,
+     "price": -270
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -270
+    },
+    "prophetx": {
+     "point": null,
+     "price": -275
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -280
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 1,
+    "pm_market_id": "5329746"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Hurricanes",
+   "side_label": "Hurricanes",
+   "start_source": "polymarket",
+   "start_utc": "2026-11-01T18:00:00Z",
+   "teams": [
+    "Jets",
+    "Hurricanes"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-01T12:00:16Z",
+   "base_depth": 261309,
+   "best_price": 0.725,
+   "best_price_american": -264,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.73,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-01",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -6310,
+     "new_this_side": 28606,
+     "other_side": 114972,
+     "other_side_all_levels": 163976,
+     "ratio": 1.2,
+     "this_side": 142130,
+     "this_side_all_levels": 292141
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "CAR (0)",
+     "price": 0.725,
+     "this_side": 39500
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Carolina Hurricanes",
+     "price": 0.7333,
+     "this_side": 5066
+    }
+   },
+   "fade_price": 0.28,
+   "first_seen_utc": "2026-11-01T11:50:10Z",
+   "game": "Winnipeg vs Carolina",
+   "key": "kalshi|KXNHLGAME-26NOV01WPGCAR|ml|1",
+   "lead_min": 360,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 28606,
+   "paper_only": false,
+   "price": 0.73,
+   "price_american": -270,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.73,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -285
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -285
+    },
+    "betopenly": {
+     "point": null,
+     "price": -262
+    },
+    "betrivers": {
+     "point": null,
+     "price": -286
+    },
+    "betus": {
+     "point": null,
+     "price": -285
+    },
+    "bovada": {
+     "point": null,
+     "price": -285
+    },
+    "draftkings": {
+     "point": null,
+     "price": -265
+    },
+    "fanatics": {
+     "point": null,
+     "price": -280
+    },
+    "fanduel": {
+     "point": null,
+     "price": -275
+    },
+    "kalshi": {
+     "point": null,
+     "price": -270
+    },
+    "lowvig": {
+     "point": null,
+     "price": -285
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -280
+    },
+    "novig": {
+     "point": null,
+     "price": -264
+    },
+    "polymarket": {
+     "point": null,
+     "price": -270
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -270
+    },
+    "prophetx": {
+     "point": null,
+     "price": -275
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -280
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNHLGAME-26NOV01WPGCAR-CAR"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Carolina",
+   "side_label": "Carolina",
+   "start_source": "odds",
+   "start_utc": "2026-11-01T18:00:00Z",
+   "teams": [
+    "Winnipeg",
+    "Carolina"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-01T12:00:16Z",
+   "base_depth": 166019,
+   "best_price": 0.525,
+   "best_price_american": -111,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-01",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 6550,
+     "new_this_side": 119506,
+     "other_side": 106464,
+     "other_side_all_levels": 146422,
+     "ratio": 2.1,
+     "this_side": 223667,
+     "this_side_all_levels": 267163
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "OTT (0)",
+     "price": 0.525,
+     "this_side": 29388
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Senators",
+     "price": 0.52,
+     "this_side": 36385
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Ottawa Senators",
+     "price": 0.5215,
+     "this_side": 1990
+    }
+   },
+   "fade_price": 0.48,
+   "first_seen_utc": "2026-11-01T11:50:10Z",
+   "game": "Ottawa vs Anaheim",
+   "key": "kalshi|KXNHLGAME-26NOV01OTTANA|ml|0",
+   "lead_min": 780,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 119506,
+   "paper_only": false,
+   "price": 0.52,
+   "price_american": -108,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.52,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -120
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -117
+    },
+    "betopenly": {
+     "point": null,
+     "price": -112
+    },
+    "betrivers": {
+     "point": null,
+     "price": -120
+    },
+    "betus": {
+     "point": null,
+     "price": -115
+    },
+    "bovada": {
+     "point": null,
+     "price": -122
+    },
+    "draftkings": {
+     "point": null,
+     "price": -118
+    },
+    "fanatics": {
+     "point": null,
+     "price": -120
+    },
+    "fanduel": {
+     "point": null,
+     "price": -118
+    },
+    "kalshi": {
+     "point": null,
+     "price": -108
+    },
+    "lowvig": {
+     "point": null,
+     "price": -117
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -121
+    },
+    "novig": {
+     "point": null,
+     "price": -111
+    },
+    "polymarket": {
+     "point": null,
+     "price": -108
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -108
+    },
+    "prophetx": {
+     "point": null,
+     "price": -109
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -117
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNHLGAME-26NOV01OTTANA-OTT"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "polymarket"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Ottawa",
+   "side_label": "Ottawa",
+   "start_source": "odds",
+   "start_utc": "2026-11-02T01:00:00Z",
+   "teams": [
+    "Ottawa",
+    "Anaheim"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-01T11:20:11Z",
    "base_depth": 55317,
    "best_price": 0.5,
@@ -627,8 +1087,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 1.0,
+   "close_price": 0.515,
+   "clv_cents": 0.5,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
