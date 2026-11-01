@@ -1,6 +1,314 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-01T14:20:10Z",
+   "base_depth": 22992,
+   "best_price": 0.505,
+   "best_price_american": -102,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-01",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "NOT Over 230.5 points",
+     "price": 0.51,
+     "this_side": 66675
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "Under 230.5 (230.5)",
+     "price": 0.505,
+     "this_side": 12366
+    },
+    "polymarket": {
+     "new_other_side": 453,
+     "new_this_side": 30449,
+     "other_side": 24485,
+     "other_side_all_levels": 32234,
+     "ratio": 2.0,
+     "this_side": 48175,
+     "this_side_all_levels": 53583
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "under 230.5 (230.5)",
+     "price": 0.5074,
+     "this_side": 7663
+    }
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-11-01T14:10:11Z",
+   "game": "Nets vs. Pacers",
+   "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6484203\"}",
+   "lead_min": 460,
+   "league": "NBA",
+   "line": 230.5,
+   "market": "total",
+   "new_money": 30449,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 230.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 230.5,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 230.5,
+     "price": 100
+    },
+    "betrivers": {
+     "point": 230.5,
+     "price": -114
+    },
+    "betus": {
+     "point": 230.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 230.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 231.5,
+     "price": -110
+    },
+    "fanatics": {
+     "point": 230.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 229.5,
+     "price": -105
+    },
+    "kalshi": {
+     "point": 230.5,
+     "price": -104
+    },
+    "lowvig": {
+     "point": 230.5,
+     "price": -107
+    },
+    "mybookieag": {
+     "point": 230.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 230.5,
+     "price": -102
+    },
+    "polymarket": {
+     "point": 230.5,
+     "price": -104
+    },
+    "prophetx": {
+     "point": 229.5,
+     "price": 106
+    },
+    "williamhill_us": {
+     "point": 230.5,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 1,
+    "pm_market_id": "6484203"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi",
+    "novig"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "Under (230.5)",
+   "start_source": "odds",
+   "start_utc": "2026-11-01T22:00:00Z",
+   "teams": [
+    "Nets",
+    "Pacers"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-01T14:20:10Z",
+   "base_depth": 74949,
+   "best_price": 0.505,
+   "best_price_american": -102,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-01",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 652,
+     "new_this_side": 33900,
+     "other_side": 54603,
+     "other_side_all_levels": 107680,
+     "ratio": 1.2,
+     "this_side": 66675,
+     "this_side_all_levels": 110109
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "Under 230.5 (230.5)",
+     "price": 0.505,
+     "this_side": 12366
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Under (230.5)",
+     "price": 0.51,
+     "this_side": 48175
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "under 230.5 (230.5)",
+     "price": 0.5074,
+     "this_side": 7663
+    }
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-11-01T14:10:11Z",
+   "game": "Brooklyn vs Indiana: Total Points",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBATOTAL-26NOV01BKNIND-231\"}",
+   "lead_min": 460,
+   "league": "NBA",
+   "line": 230.5,
+   "market": "total",
+   "new_money": 33900,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 230.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 230.5,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 230.5,
+     "price": 100
+    },
+    "betrivers": {
+     "point": 230.5,
+     "price": -114
+    },
+    "betus": {
+     "point": 230.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 230.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 231.5,
+     "price": -110
+    },
+    "fanatics": {
+     "point": 230.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 229.5,
+     "price": -105
+    },
+    "kalshi": {
+     "point": 230.5,
+     "price": -104
+    },
+    "lowvig": {
+     "point": 230.5,
+     "price": -107
+    },
+    "mybookieag": {
+     "point": 230.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 230.5,
+     "price": -102
+    },
+    "polymarket": {
+     "point": 230.5,
+     "price": -104
+    },
+    "prophetx": {
+     "point": 229.5,
+     "price": 106
+    },
+    "williamhill_us": {
+     "point": 230.5,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNBATOTAL-26NOV01BKNIND-231"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "polymarket"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "NOT Over 230.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-11-01T22:00:00Z",
+   "teams": [
+    "Brooklyn",
+    "Indiana"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-01T14:10:11Z",
    "base_depth": 1393794,
    "best_price": 0.465,
@@ -382,7 +690,8 @@
      "price": -103
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-01T14:20:10Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNFLSPREAD-26NOV01NEMIA-NE8"
@@ -559,8 +868,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": 0.0,
+   "close_price": 0.52,
+   "clv_cents": 2.0,
    "confirmed_after_min": 7,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -692,8 +1001,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.61,
-   "clv_cents": 0.0,
+   "close_price": 0.62,
+   "clv_cents": 1.0,
    "confirmed_after_min": 7,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -1006,8 +1315,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.42,
-   "clv_cents": 1.0,
+   "close_price": 0.43,
+   "clv_cents": 2.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -5297,8 +5606,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.76,
-   "clv_cents": -0.5,
+   "close_price": 0.765,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -6733,8 +7042,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.58,
-   "clv_cents": -6.0,
+   "close_price": 0.57,
+   "clv_cents": -7.0,
    "confirmed_after_min": 7,
    "date": "2026-11-01",
    "depth_by_book": {
