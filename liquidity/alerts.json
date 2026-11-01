@@ -1,6 +1,152 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-01T20:30:13Z",
+   "base_depth": 28712,
+   "best_price": 0.515,
+   "best_price_american": -106,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "prophetx",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.5169,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-01",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Los Angeles R wins by over 6.5 points",
+     "price": 0.51,
+     "this_side": 1718927
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "LAR -6.5 (-6.5)",
+     "price": 0.515,
+     "this_side": 120911
+    },
+    "prophetx": {
+     "new_other_side": 374,
+     "new_this_side": 34185,
+     "other_side": 10363,
+     "other_side_all_levels": 15475,
+     "ratio": 2.8,
+     "this_side": 28953,
+     "this_side_all_levels": 60295
+    }
+   },
+   "fade_price": 0.4854,
+   "first_seen_utc": "2026-11-01T20:20:10Z",
+   "game": "Los Angeles Chargers at Los Angeles Rams",
+   "key": "prophetx|{\"line\": 6.5, \"px_event\": 1700008916, \"px_market\": 223, \"side\": \"1\"}",
+   "lead_min": 35,
+   "league": "NFL",
+   "line": -6.5,
+   "market": "spread",
+   "new_money": 34185,
+   "paper_only": false,
+   "price": 0.5169,
+   "price_american": -107,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.5169,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -6.5,
+     "price": -108
+    },
+    "betonlineag": {
+     "point": -6.5,
+     "price": -110
+    },
+    "betopenly": {
+     "point": -6.5,
+     "price": 102
+    },
+    "betrivers": {
+     "point": -7.0,
+     "price": -109
+    },
+    "betus": {
+     "point": -7.0,
+     "price": 100
+    },
+    "bovada": {
+     "point": -6.5,
+     "price": -112
+    },
+    "draftkings": {
+     "point": -6.5,
+     "price": -115
+    },
+    "fanatics": {
+     "point": -6.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": -6.5,
+     "price": -112
+    },
+    "lowvig": {
+     "point": -6.5,
+     "price": -109
+    },
+    "mybookieag": {
+     "point": -6.5,
+     "price": -115
+    },
+    "novig": {
+     "point": -6.5,
+     "price": -106
+    },
+    "polymarket": {
+     "point": -6.5,
+     "price": -108
+    },
+    "prophetx": {
+     "point": -6.5,
+     "price": -107
+    },
+    "williamhill_us": {
+     "point": -6.5,
+     "price": -109
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "line": 6.5,
+    "px_event": 1700008916,
+    "px_market": 223,
+    "side": "1"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi",
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Los Angeles Rams",
+   "side_label": "Los Angeles Rams -6.5 (-6.5)",
+   "start_source": "odds",
+   "start_utc": "2026-11-01T21:05:00Z",
+   "teams": [
+    "Los Angeles Chargers",
+    "Los Angeles Rams"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-01T20:20:10Z",
    "base_depth": 113483,
    "best_price": 0.475,
@@ -1537,8 +1683,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.4902,
-   "clv_cents": 0.5,
+   "close_price": 0.4926,
+   "clv_cents": 0.7,
    "confirmed_after_min": 8,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -12745,8 +12891,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.76,
-   "clv_cents": -0.5,
+   "close_price": 0.755,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
