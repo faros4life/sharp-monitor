@@ -4,7 +4,8 @@ Signal alerts (Nov 1, 2026; Peter). Every ~10 minutes, looks at the liquidity fe
 public) and the sharp feed, and pushes Peter's phone (ntfy + Telegram) ONLY for:
   1. TWO SIGNALS   confirmed big money (rule_met, >= $100k new) on a side a sharp alert also took (sharp_agree), pregame,
                    not pulled.
-  2. AGAINST YOU   confirmed big money (>= $250k new) on the OTHER side of a bet you or the bot hold, pregame.
+  2. AGAINST YOU   confirmed big money (>= $250k new) on the OTHER side of a bet you or the bot hold, SAME bet type
+                   (spread vs spread, moneyline vs moneyline, total vs total), pregame.
                    Held sides = the bot's own live orders (Gmail ledger), Peter's 'Bets manual' notes, and open exchange
                    positions (Kalshi / ProphetX / Polymarket US, plus Novig from the home snapshot).
   3. NBA UNDER     confirmed liquidity on an NBA total UNDER (the one liquidity lane that has made money; paper).
@@ -98,8 +99,9 @@ def held_sides(M):
             return
         tk = tuple(sorted(tok(x) for x in teams[:2]))
         s = side.upper() if side.upper() in ("OVER", "UNDER") else tok(side)
-        for m in (["spread", "moneyline"] if market == "side" else [mk.get(market, market)]):
-            out.add((league, tk, m, s))
+        # same market only (Muse, Nov 1): a moneyline flow is not "against" a spread bet. Bot/manual keys say "side" for
+        # spread-or-moneyline; phase-1 sides are spreads, so "side" counts as spread.
+        out.add((league, tk, "spread" if market == "side" else mk.get(market, market), s))
     # the bot's own live orders (last 2 days)
     try:
         ex.bot_orders(M, days=2)
@@ -129,8 +131,8 @@ def held_sides(M):
                     if s and h.get("flip"):
                         s = "UNDER" if s == "OVER" else "OVER"
                     add(None, h.get("game"), "total", s)
-                elif not h.get("flip"):
-                    add(None, h.get("game"), "side", re.sub(r"[+-]\d.*$", "", lab).strip())
+                elif not h.get("flip") and mt in ("spread", "moneyline"):
+                    add(None, h.get("game"), mt, re.sub(r"[+-]\d.*$", "", lab).strip())
     except Exception:
         pass
     # Novig (Peter's main wallet + the bot's auto-place), from the home PC's snapshot + the public catalog
