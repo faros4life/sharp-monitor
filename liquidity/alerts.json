@@ -1,6 +1,701 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-01T00:20:15Z",
+   "base_depth": 646044,
+   "best_price": 0.515,
+   "best_price_american": -106,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-01",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 13960,
+     "new_this_side": 83647,
+     "other_side": 614263,
+     "other_side_all_levels": 671561,
+     "ratio": 1.0,
+     "this_side": 628305,
+     "this_side_all_levels": 730259
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "Over 45.5 (45.5)",
+     "price": 0.515,
+     "this_side": 35447
+    }
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-11-01T00:10:17Z",
+   "game": "Las Vegas vs New York J: Total Points",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNFLTOTAL-26NOV01LVNYJ-46\"}",
+   "lead_min": 1060,
+   "league": "NFL",
+   "line": 45.5,
+   "market": "total",
+   "new_money": 83647,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 46.0,
+     "price": -108
+    },
+    "betonlineag": {
+     "point": 45.5,
+     "price": -113
+    },
+    "betopenly": {
+     "point": 45.5,
+     "price": 100
+    },
+    "betrivers": {
+     "point": 45.5,
+     "price": -112
+    },
+    "betus": {
+     "point": 46.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 45.5,
+     "price": -115
+    },
+    "draftkings": {
+     "point": 45.5,
+     "price": -110
+    },
+    "fanatics": {
+     "point": 45.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 45.5,
+     "price": -115
+    },
+    "kalshi": {
+     "point": 45.5,
+     "price": -104
+    },
+    "lowvig": {
+     "point": 45.5,
+     "price": -110
+    },
+    "mybookieag": {
+     "point": 46.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 45.5,
+     "price": -106
+    },
+    "polymarket": {
+     "point": 46.5,
+     "price": 108
+    },
+    "prophetx": {
+     "point": 45.5,
+     "price": -106
+    },
+    "williamhill_us": {
+     "point": 45.5,
+     "price": -108
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNFLTOTAL-26NOV01LVNYJ-46"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "OVER",
+   "side_label": "Over 45.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-11-01T18:00:00Z",
+   "teams": [
+    "Las Vegas",
+    "New York J"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-01T00:20:15Z",
+   "base_depth": 1688322,
+   "best_price": 0.525,
+   "best_price_american": -111,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.53,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-01",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -6512,
+     "new_this_side": 192690,
+     "other_side": 1380964,
+     "other_side_all_levels": 1437853,
+     "ratio": 1.2,
+     "this_side": 1663329,
+     "this_side_all_levels": 1880916
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "MIN +3.5 (-3.5)",
+     "price": 0.525,
+     "this_side": 98301
+    }
+   },
+   "fade_price": 0.48,
+   "first_seen_utc": "2026-11-01T00:10:17Z",
+   "game": "Minnesota vs Detroit: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNFLSPREAD-26NOV01MINDET-DET4\"}",
+   "lead_min": 1060,
+   "league": "NFL",
+   "line": 3.5,
+   "market": "spread",
+   "new_money": 192690,
+   "paper_only": false,
+   "price": 0.53,
+   "price_american": -113,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.53,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 3.5,
+     "price": -112
+    },
+    "betonlineag": {
+     "point": 3.5,
+     "price": -120
+    },
+    "betopenly": {
+     "point": 3.5,
+     "price": -110
+    },
+    "betrivers": {
+     "point": 3.0,
+     "price": -106
+    },
+    "betus": {
+     "point": 3.5,
+     "price": -115
+    },
+    "bovada": {
+     "point": 3.5,
+     "price": -125
+    },
+    "draftkings": {
+     "point": 3.0,
+     "price": 100
+    },
+    "fanatics": {
+     "point": 3.5,
+     "price": -120
+    },
+    "fanduel": {
+     "point": 3.5,
+     "price": -122
+    },
+    "kalshi": {
+     "point": 3.5,
+     "price": -113
+    },
+    "lowvig": {
+     "point": 3.5,
+     "price": -113
+    },
+    "mybookieag": {
+     "point": 3.5,
+     "price": -115
+    },
+    "novig": {
+     "point": 3.5,
+     "price": -111
+    },
+    "polymarket": {
+     "point": 3.5,
+     "price": -113
+    },
+    "prophetx": {
+     "point": 3.5,
+     "price": -111
+    },
+    "williamhill_us": {
+     "point": 3.5,
+     "price": -120
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNFLSPREAD-26NOV01MINDET-DET4"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Minnesota",
+   "side_label": "NOT Detroit wins by over 3.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-11-01T18:00:00Z",
+   "teams": [
+    "Minnesota",
+    "Detroit"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-01T00:20:15Z",
+   "base_depth": 272699,
+   "best_price": 0.5172,
+   "best_price_american": -107,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-31",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 55326,
+     "new_this_side": 190090,
+     "other_side": 100598,
+     "other_side_all_levels": 294531,
+     "ratio": 3.4,
+     "this_side": 337865,
+     "this_side_all_levels": 465660
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "Under 63.5 (63.5)",
+     "price": 0.52,
+     "this_side": 51686
+    }
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-11-01T00:10:17Z",
+   "game": "Texas St. vs Boise St.: Total Points",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFTOTAL-26OCT31TXSTBSU-64\"}",
+   "lead_min": 100,
+   "league": "NCAAF",
+   "line": 63.5,
+   "market": "total",
+   "new_money": 190090,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 62.5,
+     "price": -108
+    },
+    "betonlineag": {
+     "point": 63.0,
+     "price": -110
+    },
+    "betrivers": {
+     "point": 63.5,
+     "price": -108
+    },
+    "betus": {
+     "point": 63.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 63.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 62.5,
+     "price": -105
+    },
+    "fanatics": {
+     "point": 63.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 63.5,
+     "price": -115
+    },
+    "kalshi": {
+     "point": 63.5,
+     "price": -104
+    },
+    "lowvig": {
+     "point": 63.0,
+     "price": -108
+    },
+    "mybookieag": {
+     "point": 63.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 63.5,
+     "price": -108
+    },
+    "polymarket": {
+     "point": 63.5,
+     "price": -113
+    },
+    "prophetx": {
+     "point": 63.5,
+     "price": -105
+    },
+    "williamhill_us": {
+     "point": 63.0,
+     "price": -112
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAFTOTAL-26OCT31TXSTBSU-64"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [
+    "Under 63.5 (-105)"
+   ],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "NOT Over 63.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-11-01T02:00:00Z",
+   "teams": [
+    "Texas St.",
+    "Boise St."
+   ],
+   "top25": true,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-01T00:20:15Z",
+   "base_depth": 149067,
+   "best_price": 0.4881,
+   "best_price_american": 105,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.49,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-31",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 942,
+     "new_this_side": 108193,
+     "other_side": 85804,
+     "other_side_all_levels": 167413,
+     "ratio": 1.5,
+     "this_side": 128361,
+     "this_side_all_levels": 259115
+    }
+   },
+   "fade_price": 0.52,
+   "first_seen_utc": "2026-11-01T00:10:17Z",
+   "game": "Oregon St. vs Fresno St.: Total Points",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFTOTAL-26OCT31ORSTFRES-57\"}",
+   "lead_min": 160,
+   "league": "NCAAF",
+   "line": 56.5,
+   "market": "total",
+   "new_money": 108193,
+   "paper_only": false,
+   "price": 0.49,
+   "price_american": 104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.49,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 57.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 57.5,
+     "price": -110
+    },
+    "betrivers": {
+     "point": 57.5,
+     "price": -112
+    },
+    "betus": {
+     "point": 57.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 57.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 57.5,
+     "price": -112
+    },
+    "fanatics": {
+     "point": 57.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 57.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": 57.5,
+     "price": -108
+    },
+    "lowvig": {
+     "point": 57.5,
+     "price": -108
+    },
+    "mybookieag": {
+     "point": 57.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 57.5,
+     "price": -108
+    },
+    "polymarket": {
+     "point": 35.5,
+     "price": -9900
+    },
+    "prophetx": {
+     "point": 57.5,
+     "price": -108
+    },
+    "williamhill_us": {
+     "point": 57.5,
+     "price": -112
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAFTOTAL-26OCT31ORSTFRES-57"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [
+    "Under 58.5 (-110)"
+   ],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "NOT Over 56.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-11-01T03:00:00Z",
+   "teams": [
+    "Oregon St.",
+    "Fresno St."
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-01T00:20:15Z",
+   "base_depth": 1320969,
+   "best_price": 0.785,
+   "best_price_american": -365,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.79,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-31",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 51226,
+     "new_this_side": 240548,
+     "other_side": 327308,
+     "other_side_all_levels": 422675,
+     "ratio": 3.0,
+     "this_side": 968264,
+     "this_side_all_levels": 1570117
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "BSU (0)",
+     "price": 0.785,
+     "this_side": 106113
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Boise State",
+     "price": 0.7849,
+     "this_side": 8061
+    }
+   },
+   "fade_price": 0.22,
+   "first_seen_utc": "2026-11-01T00:10:17Z",
+   "game": "Texas St. vs Boise St.",
+   "key": "kalshi|KXNCAAFGAME-26OCT31TXSTBSU|ml|1",
+   "lead_min": 100,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 240548,
+   "paper_only": false,
+   "price": 0.79,
+   "price_american": -376,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.79,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -425
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -420
+    },
+    "betrivers": {
+     "point": null,
+     "price": -435
+    },
+    "betus": {
+     "point": null,
+     "price": -420
+    },
+    "bovada": {
+     "point": null,
+     "price": -420
+    },
+    "draftkings": {
+     "point": null,
+     "price": -425
+    },
+    "fanatics": {
+     "point": null,
+     "price": -425
+    },
+    "fanduel": {
+     "point": null,
+     "price": -385
+    },
+    "kalshi": {
+     "point": null,
+     "price": -376
+    },
+    "lowvig": {
+     "point": null,
+     "price": -420
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -429
+    },
+    "novig": {
+     "point": null,
+     "price": -365
+    },
+    "polymarket": {
+     "point": null,
+     "price": -376
+    },
+    "prophetx": {
+     "point": null,
+     "price": -365
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -460
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26OCT31TXSTBSU-BSU"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [
+    "Texas State Bobcats +10.5 (-108)"
+   ],
+   "side": "Boise St.",
+   "side_label": "Boise St.",
+   "start_source": "odds",
+   "start_utc": "2026-11-01T02:00:00Z",
+   "teams": [
+    "Texas St.",
+    "Boise St."
+   ],
+   "top25": true,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-01T00:10:17Z",
    "base_depth": 463015,
    "best_price": 0.505,
@@ -198,6 +893,8 @@
    "new_money": 75246,
    "paper_only": false,
    "price": 0.79,
+   "price_after_15m": 0.7836,
+   "price_after_15m_book": "prophetx",
    "price_american": -376,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.79,
@@ -291,6 +988,7 @@
    "side_label": "Colorado",
    "start_source": "odds",
    "start_utc": "2026-11-01T02:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Calgary",
     "Colorado"
@@ -4998,8 +5696,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": 3.0,
+   "close_price": 0.54,
+   "clv_cents": 4.0,
    "confirmed_after_min": 10,
    "date": "2026-10-31",
    "depth_by_book": {
@@ -8250,8 +8948,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.48,
-   "clv_cents": -3.0,
+   "close_price": 0.47,
+   "clv_cents": -4.0,
    "confirmed_after_min": 18,
    "date": "2026-10-31",
    "depth_by_book": {
