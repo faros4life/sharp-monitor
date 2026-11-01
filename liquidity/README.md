@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Oct 31, 8:30 PM ET. This run: 2 new, 0 not confirmed, 6 pending. Open alerts: 68.
+Updated Sat Oct 31, 8:40 PM ET. This run: 3 new, 0 not confirmed, 3 pending. Open alerts: 71.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,10 +10,13 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Oct 31 8:40PM | NFL | Indianapolis vs Jacksonville: Spread | spread: NOT Jacksonville wins by over 10.5 points | kalshi | $327k | -113 |  |  | +0.0c |  | pending |
+| Oct 31 8:40PM | NFL | Baltimore vs Buffalo: Spread | spread: NOT Buffalo wins by over 3.5 points | kalshi | $172k | -122 |  |  | +0.0c |  | pending |
+| Oct 31 8:40PM | NFL | Los Angeles C vs Los Angeles R | moneyline: Los Angeles R | kalshi | $190k | -270 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Oct 31 8:30PM | NCAAF | Texas State @ Boise State | moneyline: BSU (0) | novig | $27k | -365 | ✅ kalshi | ❌ | +0.0c |  | pending |
 | Oct 31 8:30PM | NCAAF | Texas St. vs Boise St.: Spread | spread: NOT Boise St. wins by over 10.5 points | kalshi | $81k | -108 |  | ✅ | +0.0c |  | pending |
 | Oct 31 8:20PM | NFL | Las Vegas vs New York J: Total Points | total: Over 45.5 points | kalshi | $84k | -104 |  |  | +1.0c |  | pending |
-| Oct 31 8:20PM | NFL | Minnesota vs Detroit: Spread | spread: NOT Detroit wins by over 3.5 points | kalshi | $193k | -113 | ✅ novig |  | +0.0c |  | pending |
+| Oct 31 8:20PM | NFL | Minnesota vs Detroit: Spread | spread: NOT Detroit wins by over 3.5 points | kalshi | $193k | -113 | ✅ novig |  | +0.0c | yes | pending |
 | Oct 31 8:20PM | NCAAF | Texas St. vs Boise St.: Total Points | total: NOT Over 63.5 points | kalshi | $190k | -104 | ✅ novig | ✅ | +0.0c |  | pending |
 | Oct 31 8:20PM | NCAAF | Oregon St. vs Fresno St.: Total Points | total: NOT Over 56.5 points | kalshi | $108k | +104 |  | ✅ | +0.0c |  | pending |
 | Oct 31 8:20PM | NCAAF | Texas St. vs Boise St. | moneyline: Boise St. | kalshi | $241k | -376 | ✅ novig | ❌ | +0.0c |  | pending |
@@ -207,6 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 30 12:00PM | NBA | Hornets vs. Wizards | moneyline: Hornets | polymarket | $55k | -104 | ✅ kalshi,novig,prophetx |  | +0.0c |  | L |
 | Oct 30 12:00PM | NCAAF | Bowling Green vs Western Michigan: Spread | spread: Western Michigan wins by over 13.5 points | kalshi | $36k | -104 | ✅ novig |  | +4.0c |  | L |
 | Oct 30 11:20AM | NHL | Jets vs. Panthers | moneyline: Jets | polymarket | $45k | +203 | ✅ prophetx |  | +1.0c |  | L |
-| Oct 30 11:20AM | NCAAF | California vs NC St.: Spread | spread: NC St. wins by over 7.5 points | kalshi | $55k | -100 | ✅ novig,prophetx |  | +5.0c | yes | W |
-| Oct 30 11:20AM | NBA | Indiana vs Miami: Spread | spread: Miami wins by over 8.5 points | kalshi | $34k | -108 | ✅ novig | ✅ | -1.0c | yes | W |
-| Oct 30 11:20AM | NBA | Detroit vs Brooklyn: Spread | spread: Detroit wins by over 7.5 points | kalshi | $99k | -104 |  | ✅ | +0.0c | yes | W |
