@@ -1,6 +1,303 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-01T12:40:10Z",
+   "base_depth": 50732,
+   "best_price": 0.52,
+   "best_price_american": -108,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-01",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Over 40.5 points",
+     "price": 0.52,
+     "this_side": 1019467
+    },
+    "novig": {
+     "new_other_side": 7929,
+     "new_this_side": 25558,
+     "other_side": 51278,
+     "other_side_all_levels": 60134,
+     "ratio": 1.5,
+     "this_side": 75838,
+     "this_side_all_levels": 76338
+    }
+   },
+   "fade_price": 0.49,
+   "first_seen_utc": "2026-11-01T12:30:13Z",
+   "game": "Kansas City Chiefs @ Denver Broncos",
+   "key": "novig|{\"market_id\": \"01a15b22-aeaf-7463-8cd7-b911d4c498fa\", \"outcome_id\": \"01a15b22-aeaf-7463-8cd7-b92f9bd37e0f\"}",
+   "lead_min": 525,
+   "league": "NFL",
+   "line": 40.5,
+   "market": "total",
+   "new_money": 25558,
+   "paper_only": false,
+   "price": 0.52,
+   "price_american": -108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.52,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 40.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 41.0,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 40.5,
+     "price": -101
+    },
+    "betrivers": {
+     "point": 40.5,
+     "price": -113
+    },
+    "betus": {
+     "point": 40.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 40.5,
+     "price": -112
+    },
+    "draftkings": {
+     "point": 40.5,
+     "price": -112
+    },
+    "fanatics": {
+     "point": 40.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 40.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": 41.5,
+     "price": 104
+    },
+    "lowvig": {
+     "point": 41.0,
+     "price": -107
+    },
+    "mybookieag": {
+     "point": 40.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 40.5,
+     "price": -108
+    },
+    "polymarket": {
+     "point": 40.5,
+     "price": -108
+    },
+    "prophetx": {
+     "point": 40.5,
+     "price": -108
+    },
+    "williamhill_us": {
+     "point": 40.5,
+     "price": -115
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a15b22-aeaf-7463-8cd7-b911d4c498fa",
+    "outcome_id": "01a15b22-aeaf-7463-8cd7-b92f9bd37e0f"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "OVER",
+   "side_label": "Over 40.5 (40.5)",
+   "start_source": "odds",
+   "start_utc": "2026-11-01T21:25:00Z",
+   "teams": [
+    "Kansas City Chiefs",
+    "Denver Broncos"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-01T12:40:10Z",
+   "base_depth": 2818676,
+   "best_price": 0.645,
+   "best_price_american": -182,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.65,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-01",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 40284,
+     "new_this_side": 492101,
+     "other_side": 1427172,
+     "other_side_all_levels": 1652020,
+     "ratio": 2.0,
+     "this_side": 2826697,
+     "this_side_all_levels": 3302917
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "PIT (0)",
+     "price": 0.645,
+     "this_side": 139868
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Pittsburgh Steelers",
+     "price": 0.6429,
+     "this_side": 33137
+    }
+   },
+   "fade_price": 0.36,
+   "first_seen_utc": "2026-11-01T12:30:13Z",
+   "game": "Cleveland vs Pittsburgh",
+   "key": "kalshi|KXNFLGAME-26NOV01CLEPIT|ml|1",
+   "lead_min": 320,
+   "league": "NFL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 492101,
+   "paper_only": false,
+   "price": 0.65,
+   "price_american": -186,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.65,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -200
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -193
+    },
+    "betopenly": {
+     "point": null,
+     "price": -180
+    },
+    "betrivers": {
+     "point": null,
+     "price": -195
+    },
+    "betus": {
+     "point": null,
+     "price": -195
+    },
+    "bovada": {
+     "point": null,
+     "price": -195
+    },
+    "draftkings": {
+     "point": null,
+     "price": -192
+    },
+    "fanatics": {
+     "point": null,
+     "price": -200
+    },
+    "fanduel": {
+     "point": null,
+     "price": -198
+    },
+    "kalshi": {
+     "point": null,
+     "price": -186
+    },
+    "limitless": {
+     "point": null,
+     "price": -199
+    },
+    "lowvig": {
+     "point": null,
+     "price": -193
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -208
+    },
+    "novig": {
+     "point": null,
+     "price": -182
+    },
+    "polymarket": {
+     "point": null,
+     "price": -186
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -182
+    },
+    "prophetx": {
+     "point": null,
+     "price": -180
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -190
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNFLGAME-26NOV01CLEPIT-PIT"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "prophetx"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Pittsburgh",
+   "side_label": "Pittsburgh",
+   "start_source": "odds",
+   "start_utc": "2026-11-01T18:00:00Z",
+   "teams": [
+    "Cleveland",
+    "Pittsburgh"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-01T12:30:13Z",
    "base_depth": 24181,
    "best_price": 0.515,
@@ -1655,8 +1952,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.515,
-   "clv_cents": 0.5,
+   "close_price": 0.51,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -2800,8 +3097,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.49,
-   "clv_cents": -1.0,
+   "close_price": 0.5,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -3676,8 +3973,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 0.0,
+   "close_price": 0.51,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -4821,8 +5118,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.63,
-   "clv_cents": -1.0,
+   "close_price": 0.62,
+   "clv_cents": -2.0,
    "confirmed_after_min": 7,
    "date": "2026-11-01",
    "depth_by_book": {
