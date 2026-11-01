@@ -24,6 +24,7 @@ jobs:
       - run: pip install -q cryptography
       - name: Signal alerts (two signals, against your bet, NBA unders, flips; counts only in this log)
         env:
+          PUSH_NBA_UNDER: ${{ vars.PUSH_NBA_UNDER }}   # Nov 1 (Peter): NBA UNDER push off unless this repo variable is 1
           GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
           EMAIL_TO: ${{ secrets.EMAIL_TO }}
