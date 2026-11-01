@@ -1,6 +1,145 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-01T05:16:38Z",
+   "base_depth": 981071,
+   "best_price": 0.475,
+   "best_price_american": 111,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.48,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 6,
+   "date": "2026-11-01",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -183167,
+     "new_this_side": 450139,
+     "other_side": 832411,
+     "other_side_all_levels": 940924,
+     "ratio": 1.6,
+     "this_side": 1318073,
+     "this_side_all_levels": 1449504
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "DAL -7.5 (-7.5)",
+     "price": 0.475,
+     "this_side": 64414
+    }
+   },
+   "fade_price": 0.53,
+   "first_seen_utc": "2026-11-01T05:10:10Z",
+   "game": "Arizona vs Dallas: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNFLSPREAD-26NOV01ARIDAL-DAL8\"}",
+   "lead_min": 763,
+   "league": "NFL",
+   "line": -7.5,
+   "market": "spread",
+   "new_money": 450139,
+   "paper_only": false,
+   "price": 0.48,
+   "price_american": 108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.48,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -7.0,
+     "price": -108
+    },
+    "betonlineag": {
+     "point": -7.0,
+     "price": -108
+    },
+    "betopenly": {
+     "point": -7.0,
+     "price": -104
+    },
+    "betrivers": {
+     "point": -7.0,
+     "price": -108
+    },
+    "betus": {
+     "point": -7.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": -7.0,
+     "price": -115
+    },
+    "draftkings": {
+     "point": -7.0,
+     "price": -110
+    },
+    "fanatics": {
+     "point": -7.0,
+     "price": -115
+    },
+    "fanduel": {
+     "point": -7.0,
+     "price": -108
+    },
+    "kalshi": {
+     "point": -7.5,
+     "price": 108
+    },
+    "lowvig": {
+     "point": -7.0,
+     "price": -106
+    },
+    "mybookieag": {
+     "point": -7.0,
+     "price": -110
+    },
+    "novig": {
+     "point": -7.5,
+     "price": 111
+    },
+    "polymarket": {
+     "point": -7.5,
+     "price": 113
+    },
+    "prophetx": {
+     "point": -7.0,
+     "price": -104
+    },
+    "williamhill_us": {
+     "point": -7.0,
+     "price": -108
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNFLSPREAD-26NOV01ARIDAL-DAL8"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Dallas",
+   "side_label": "Dallas wins by over 7.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-11-01T18:00:00Z",
+   "teams": [
+    "Arizona",
+    "Dallas"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-01T05:00:15Z",
    "base_depth": 120277,
    "best_price": 0.765,
@@ -53,6 +192,8 @@
    "new_money": 32960,
    "paper_only": false,
    "price": 0.765,
+   "price_after_15m": 0.765,
+   "price_after_15m_book": "novig",
    "price_american": -326,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.765,
@@ -149,6 +290,7 @@
    "side_label": "NE (0)",
    "start_source": "odds",
    "start_utc": "2026-11-01T21:25:00Z",
+   "still_actionable": true,
    "teams": [
     "New England Patriots",
     "Miami Dolphins"
@@ -203,6 +345,8 @@
    "new_money": 29879,
    "paper_only": false,
    "price": 0.68,
+   "price_after_15m": 0.685,
+   "price_after_15m_book": "novig",
    "price_american": -213,
    "price_rule": "fails_cap",
    "price_when_first_seen": 0.68,
@@ -276,6 +420,7 @@
    "side_label": "NOT New York R wins by over 1.5 goals",
    "start_source": "odds",
    "start_utc": "2026-11-01T23:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Edmonton",
     "New York R"
@@ -330,6 +475,8 @@
    "new_money": 151796,
    "paper_only": false,
    "price": 0.52,
+   "price_after_15m": 0.505,
+   "price_after_15m_book": "novig",
    "price_american": -108,
    "price_rule": "ok",
    "price_when_first_seen": 0.52,
@@ -415,6 +562,7 @@
    "side_label": "NOT Over 54.5 points",
    "start_source": "odds",
    "start_utc": "2026-11-01T18:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Baltimore",
     "Buffalo"
@@ -469,6 +617,8 @@
    "new_money": 126059,
    "paper_only": false,
    "price": 0.53,
+   "price_after_15m": 0.525,
+   "price_after_15m_book": "novig",
    "price_american": -113,
    "price_rule": "ok",
    "price_when_first_seen": 0.53,
@@ -556,6 +706,7 @@
    "side_label": "NOT Kansas City wins by over 1.5 points",
    "start_source": "odds",
    "start_utc": "2026-11-01T21:25:00Z",
+   "still_actionable": true,
    "teams": [
     "Kansas City",
     "Denver"
@@ -2450,8 +2601,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.46,
-   "clv_cents": 8.0,
+   "close_price": 0.45,
+   "clv_cents": 7.0,
    "confirmed_after_min": 13,
    "date": "2026-11-01",
    "depth_by_book": {
