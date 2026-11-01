@@ -1,6 +1,569 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-01T05:00:15Z",
+   "base_depth": 120277,
+   "best_price": 0.765,
+   "best_price_american": -326,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.765,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-01",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "New England",
+     "price": 0.76,
+     "this_side": 2645786
+    },
+    "novig": {
+     "new_other_side": 9675,
+     "new_this_side": 32960,
+     "other_side": 69739,
+     "other_side_all_levels": 69742,
+     "ratio": 2.2,
+     "this_side": 155576,
+     "this_side_all_levels": 155799
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "New England Patriots",
+     "price": 0.7647,
+     "this_side": 45383
+    }
+   },
+   "fade_price": 0.24,
+   "first_seen_utc": "2026-11-01T04:50:09Z",
+   "game": "New England Patriots @ Miami Dolphins",
+   "key": "novig|{\"market_id\": \"01a15b07-8931-7500-a806-e0b1a3fdf22c\", \"outcome_id\": \"01a15b07-8931-7500-a806-e0d935ed1373\"}",
+   "lead_min": 985,
+   "league": "NFL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 32960,
+   "paper_only": false,
+   "price": 0.765,
+   "price_american": -326,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.765,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -350
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -360
+    },
+    "betopenly": {
+     "point": null,
+     "price": -305
+    },
+    "betrivers": {
+     "point": null,
+     "price": -400
+    },
+    "betus": {
+     "point": null,
+     "price": -360
+    },
+    "bovada": {
+     "point": null,
+     "price": -370
+    },
+    "draftkings": {
+     "point": null,
+     "price": -340
+    },
+    "fanatics": {
+     "point": null,
+     "price": -350
+    },
+    "fanduel": {
+     "point": null,
+     "price": -320
+    },
+    "kalshi": {
+     "point": null,
+     "price": -317
+    },
+    "limitless": {
+     "point": null,
+     "price": -344
+    },
+    "lowvig": {
+     "point": null,
+     "price": -360
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -364
+    },
+    "novig": {
+     "point": null,
+     "price": -326
+    },
+    "polymarket": {
+     "point": null,
+     "price": -317
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -317
+    },
+    "prophetx": {
+     "point": null,
+     "price": -325
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -345
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a15b07-8931-7500-a806-e0b1a3fdf22c",
+    "outcome_id": "01a15b07-8931-7500-a806-e0d935ed1373"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi",
+    "prophetx"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "New England Patriots",
+   "side_label": "NE (0)",
+   "start_source": "odds",
+   "start_utc": "2026-11-01T21:25:00Z",
+   "teams": [
+    "New England Patriots",
+    "Miami Dolphins"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-01T05:00:15Z",
+   "base_depth": 66074,
+   "best_price": 0.685,
+   "best_price_american": -217,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.68,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-01",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 9757,
+     "new_this_side": 29879,
+     "other_side": 21704,
+     "other_side_all_levels": 30354,
+     "ratio": 2.3,
+     "this_side": 49956,
+     "this_side_all_levels": 96126
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "EDM +1.5 (-1.5)",
+     "price": 0.685,
+     "this_side": 7127
+    }
+   },
+   "fade_price": 0.33,
+   "first_seen_utc": "2026-11-01T04:50:09Z",
+   "game": "Edmonton vs New York R: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLSPREAD-26NOV01EDMNYR-NYR2\"}",
+   "lead_min": 1080,
+   "league": "NHL",
+   "line": 1.5,
+   "market": "spread",
+   "new_money": 29879,
+   "paper_only": false,
+   "price": 0.68,
+   "price_american": -213,
+   "price_rule": "fails_cap",
+   "price_when_first_seen": 0.68,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 1.5,
+     "price": -220
+    },
+    "betonlineag": {
+     "point": 1.5,
+     "price": -228
+    },
+    "betopenly": {
+     "point": 1.5,
+     "price": -210
+    },
+    "betrivers": {
+     "point": 1.5,
+     "price": -265
+    },
+    "bovada": {
+     "point": 1.5,
+     "price": -230
+    },
+    "draftkings": {
+     "point": 1.5,
+     "price": -230
+    },
+    "fanatics": {
+     "point": 1.5,
+     "price": -235
+    },
+    "fanduel": {
+     "point": 1.5,
+     "price": -235
+    },
+    "kalshi": {
+     "point": 1.5,
+     "price": -213
+    },
+    "lowvig": {
+     "point": 1.5,
+     "price": -228
+    },
+    "novig": {
+     "point": 1.5,
+     "price": -217
+    },
+    "polymarket": {
+     "point": -3.5,
+     "price": -194
+    },
+    "prophetx": {
+     "point": 1.5,
+     "price": -205
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNHLSPREAD-26NOV01EDMNYR-NYR2"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Edmonton",
+   "side_label": "NOT New York R wins by over 1.5 goals",
+   "start_source": "odds",
+   "start_utc": "2026-11-01T23:00:00Z",
+   "teams": [
+    "Edmonton",
+    "New York R"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-01T05:00:15Z",
+   "base_depth": 853743,
+   "best_price": 0.51,
+   "best_price_american": -104,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-01",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 28023,
+     "new_this_side": 151796,
+     "other_side": 694778,
+     "other_side_all_levels": 787090,
+     "ratio": 1.2,
+     "this_side": 804011,
+     "this_side_all_levels": 1005874
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "Under 54.5 (54.5)",
+     "price": 0.51,
+     "this_side": 54219
+    }
+   },
+   "fade_price": 0.49,
+   "first_seen_utc": "2026-11-01T04:50:09Z",
+   "game": "Baltimore vs Buffalo: Total Points",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNFLTOTAL-26NOV01BALBUF-55\"}",
+   "lead_min": 780,
+   "league": "NFL",
+   "line": 54.5,
+   "market": "total",
+   "new_money": 151796,
+   "paper_only": false,
+   "price": 0.52,
+   "price_american": -108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.52,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 54.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 54.5,
+     "price": -112
+    },
+    "betopenly": {
+     "point": 54.5,
+     "price": 100
+    },
+    "betrivers": {
+     "point": 54.5,
+     "price": -112
+    },
+    "betus": {
+     "point": 54.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 54.5,
+     "price": -115
+    },
+    "draftkings": {
+     "point": 54.5,
+     "price": -110
+    },
+    "fanatics": {
+     "point": 54.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 54.5,
+     "price": -112
+    },
+    "kalshi": {
+     "point": 54.5,
+     "price": -108
+    },
+    "lowvig": {
+     "point": 54.5,
+     "price": -109
+    },
+    "mybookieag": {
+     "point": 54.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 54.5,
+     "price": -102
+    },
+    "polymarket": {
+     "point": 54.5,
+     "price": -104
+    },
+    "prophetx": {
+     "point": 54.5,
+     "price": -102
+    },
+    "williamhill_us": {
+     "point": 54.5,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNFLTOTAL-26NOV01BALBUF-55"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "NOT Over 54.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-11-01T18:00:00Z",
+   "teams": [
+    "Baltimore",
+    "Buffalo"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-01T05:00:15Z",
+   "base_depth": 1563218,
+   "best_price": 0.525,
+   "best_price_american": -111,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.53,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-01",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 15796,
+     "new_this_side": 126059,
+     "other_side": 1017763,
+     "other_side_all_levels": 1119918,
+     "ratio": 1.3,
+     "this_side": 1342767,
+     "this_side_all_levels": 1690448
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "DEN +1.5 (1.5)",
+     "price": 0.525,
+     "this_side": 105113
+    }
+   },
+   "fade_price": 0.48,
+   "first_seen_utc": "2026-11-01T04:50:09Z",
+   "game": "Kansas City vs Denver: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNFLSPREAD-26NOV01KCDEN-KC2\"}",
+   "lead_min": 985,
+   "league": "NFL",
+   "line": 1.5,
+   "market": "spread",
+   "new_money": 126059,
+   "paper_only": false,
+   "price": 0.53,
+   "price_american": -113,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.53,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 1.0,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 1.0,
+     "price": -117
+    },
+    "betopenly": {
+     "point": 1.0,
+     "price": -101
+    },
+    "betrivers": {
+     "point": 1.5,
+     "price": -110
+    },
+    "betus": {
+     "point": 0.0,
+     "price": 100
+    },
+    "bovada": {
+     "point": 1.0,
+     "price": -112
+    },
+    "draftkings": {
+     "point": 1.5,
+     "price": -120
+    },
+    "fanatics": {
+     "point": 1.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 1.5,
+     "price": -112
+    },
+    "kalshi": {
+     "point": 1.5,
+     "price": -113
+    },
+    "lowvig": {
+     "point": 1.0,
+     "price": -113
+    },
+    "mybookieag": {
+     "point": 1.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 1.5,
+     "price": -111
+    },
+    "polymarket": {
+     "point": 1.5,
+     "price": -113
+    },
+    "prophetx": {
+     "point": 1.5,
+     "price": -110
+    },
+    "williamhill_us": {
+     "point": 1.0,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNFLSPREAD-26NOV01KCDEN-KC2"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Denver",
+   "side_label": "NOT Kansas City wins by over 1.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-11-01T21:25:00Z",
+   "teams": [
+    "Kansas City",
+    "Denver"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-01T04:30:11Z",
    "base_depth": 1145525,
    "best_price": 0.55,
@@ -15649,6 +16212,7 @@
     }
    },
    "fade_price": 0.22,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-31T14:07:41Z",
    "game": "Flames vs. Avalanche",
    "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"5285957\"}",
@@ -15739,11 +16303,12 @@
     "outcome_index": 1,
     "pm_market_id": "5285957"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settled_utc": "2026-11-01T05:00:15Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Avalanche",
@@ -15756,7 +16321,7 @@
     "Avalanche"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.26
   },
   {
    "alerted_utc": "2026-10-31T14:26:14Z",

@@ -1,15 +1,19 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 1, 12:50 AM ET. This run: 0 new, 2 not confirmed, 4 pending. Open alerts: 41.
+Updated Sun Nov 1, 1:00 AM ET. This run: 4 new, 0 not confirmed, 0 pending. Open alerts: 44.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 657-568 (-64.76u flat) | rule met: 387-378
+**Record:** 658-568 (-64.50u flat) | rule met: 387-378
 
-**Fade (paper, betting against the print):** 302-384 (-42.00u flat, after fees)
+**Fade (paper, betting against the print):** 302-385 (-43.00u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 1 1:00AM | NFL | New England Patriots @ Miami Dolphins | moneyline: NE (0) | novig | $33k | -326 | ✅ kalshi,prophetx |  | +0.0c |  | pending |
+| Nov 1 1:00AM | NHL | Edmonton vs New York R: Spread | spread: NOT New York R wins by over 1.5 goals | kalshi | $30k | -213 |  |  | +0.0c |  | pending |
+| Nov 1 1:00AM | NFL | Baltimore vs Buffalo: Total Points | total: NOT Over 54.5 points | kalshi | $152k | -108 |  |  | +0.0c |  | pending |
+| Nov 1 1:00AM | NFL | Kansas City vs Denver: Spread | spread: NOT Kansas City wins by over 1.5 points | kalshi | $126k | -113 | ✅ novig |  | +0.0c |  | pending |
 | Nov 1 12:30AM | NFL | Chicago vs Seattle: Spread | spread: NOT Seattle wins by over 3.5 points | kalshi | $213k | -117 | ✅ novig |  | +0.0c |  | pending |
 | Nov 1 12:20AM | NFL | Chicago vs Seattle: Total Points | total: Over 46.5 points | kalshi | $129k | -100 | ✅ novig |  | +0.0c |  | pending |
 | Nov 1 12:20AM | NFL | Los Angeles C vs Los Angeles R: Total Points | total: NOT Over 45.5 points | kalshi | $128k | -100 | ✅ novig |  | +0.0c |  | pending |
@@ -121,7 +125,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 31 10:26AM | NHL | Blackhawks vs. Bruins | spread: Blackhawks (+1.5) | polymarket | $34k | -117 | ✅ kalshi,novig |  | -1.0c | yes | W |
 | Oct 31 10:26AM | NHL | Sabres vs. Kings | spread: Kings (+1.5) | polymarket | $27k | -233 | ✅ novig |  | -2.0c | yes | W |
 | Oct 31 10:26AM | NBA | Timberwolves vs. Spurs | moneyline: Spurs | polymarket | $59k | -488 |  |  | +1.0c |  | W |
-| Oct 31 10:26AM | NHL | Flames vs. Avalanche | moneyline: Avalanche | polymarket | $47k | -376 |  |  | -1.0c |  | pending |
+| Oct 31 10:26AM | NHL | Flames vs. Avalanche | moneyline: Avalanche | polymarket | $47k | -376 |  |  | -1.0c |  | W |
 | Oct 31 10:26AM | NBA | Trail Blazers vs. Jazz | moneyline: Trail Blazers | polymarket | $59k | -285 | ✅ novig | ✅ | -4.0c |  | W |
 | Oct 31 10:26AM | NCAAF | Kansas St. vs Colorado: Spread | spread: Colorado wins by over 2.5 points | kalshi | $62k | -117 | ✅ novig | ✅ | +1.0c |  | W |
 | Oct 31 10:26AM | NCAAF | Western Carolina vs Furman | moneyline: Western Carolina | kalshi | $37k | -127 | ✅ novig |  | -3.0c | yes | W |
@@ -206,7 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 30 4:39PM | NBA | New York Knicks @ Philadelphia 76ers | moneyline: NYK (0) | novig | $27k | -144 | ✅ kalshi,polymarket,prophetx | ✅ | -0.5c |  | L |
 | Oct 30 4:39PM | NCAAF | Purdue @ Penn State | moneyline: PSU (0) | novig | $27k | -355 |  |  | +0.0c |  | L |
 | Oct 30 4:39PM | NBA | Indiana vs Miami: Total Points | total: NOT Over 237.5 points | kalshi | $57k | -108 | ✅ polymarket | ✅ | +0.0c |  | L |
-| Oct 30 4:19PM | NHL | Winnipeg vs Florida: Total Goals | total: Over 6.5 goals scored | kalshi | $29k | +113 |  | ❌ | -2.0c | yes | W |
-| Oct 30 4:19PM | NHL | Seattle vs Calgary: Total Goals | total: Over 6.5 goals scored | kalshi | $38k | +104 |  |  | +1.0c | yes | W |
-| Oct 30 4:19PM | NCAAF | Mercyhurst vs Stonehill | moneyline: Stonehill | kalshi | $28k | -223 |  |  | +1.0c | yes | W |
-| Oct 30 3:58PM | NCAAF | Tulane vs Charlotte: Spread | spread: Tulane wins by over 7.5 points | kalshi | $59k | -108 |  | ❌ | -2.0c | yes | L |
