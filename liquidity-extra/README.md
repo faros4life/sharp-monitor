@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 1, 5:54 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 7.
+Updated Sun Nov 1, 6:00 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 6.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 106-70 (-9.46u flat) | rule met: 31-29
+**Record:** 106-71 (-10.46u flat) | rule met: 31-29
 
-**Fade (paper, betting against the print):** 45-71 (+7.81u flat, after fees)
+**Fade (paper, betting against the print):** 46-71 (+10.94u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -17,7 +17,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 31 2:10PM | TENNIS | Tabilo vs Jodar | moneyline: Jodar | kalshi | $38k | -400 |  |  | -1.0c |  | pending |
 | Oct 31 2:10PM | TENNIS | Shapovalov vs Khachanov | moneyline: Khachanov | kalshi | $40k | -163 |  |  | -1.0c |  | pending |
 | Oct 31 12:50PM | TENNIS | Lehecka vs Struff | moneyline: Struff | kalshi | $291k | -203 |  |  | -58.0c | yes | L |
-| Oct 31 12:37PM | TENNIS | Tagger vs Dart | moneyline: Tagger | kalshi | $33k | -355 |  |  | +0.0c |  | pending |
+| Oct 31 12:37PM | TENNIS | Tagger vs Dart | moneyline: Tagger | kalshi | $33k | -355 |  |  | +0.0c |  | L |
 | Oct 31 12:00PM | TENNIS | Zverev vs de Minaur | moneyline: de Minaur | kalshi | $246k | +245 |  |  | +20.0c |  | W |
 | Oct 31 11:15AM | TENNIS | Vacherot vs Fritz | moneyline: Vacherot | kalshi | $247k | -127 |  |  | +5.0c |  | W |
 | Oct 31 8:50AM | TENNIS | Cerundolo vs Kovacevic | moneyline: Cerundolo | kalshi | $98k | -113 |  |  | +0.0c |  | W |
