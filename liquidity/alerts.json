@@ -1,6 +1,149 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-01T09:50:12Z",
+   "base_depth": 265146,
+   "best_price": 0.5196,
+   "best_price_american": -108,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-01",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 2739,
+     "new_this_side": 30036,
+     "other_side": 168967,
+     "other_side_all_levels": 219313,
+     "ratio": 1.4,
+     "this_side": 240272,
+     "this_side_all_levels": 298048
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "Under 46.5 (46.5)",
+     "price": 0.52,
+     "this_side": 39073
+    }
+   },
+   "fade_price": 0.49,
+   "first_seen_utc": "2026-11-01T09:40:09Z",
+   "game": "Las Vegas vs New York J: Total Points",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNFLTOTAL-26NOV01LVNYJ-47\"}",
+   "lead_min": 490,
+   "league": "NFL",
+   "line": 46.5,
+   "market": "total",
+   "new_money": 30036,
+   "paper_only": false,
+   "price": 0.52,
+   "price_american": -108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.52,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 46.0,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 46.0,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 46.0,
+     "price": -101
+    },
+    "betrivers": {
+     "point": 45.5,
+     "price": -109
+    },
+    "betus": {
+     "point": 46.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 46.0,
+     "price": -105
+    },
+    "draftkings": {
+     "point": 46.5,
+     "price": -112
+    },
+    "fanatics": {
+     "point": 46.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 45.5,
+     "price": -105
+    },
+    "kalshi": {
+     "point": 46.5,
+     "price": -108
+    },
+    "lowvig": {
+     "point": 46.0,
+     "price": -107
+    },
+    "mybookieag": {
+     "point": 46.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 46.5,
+     "price": -108
+    },
+    "polymarket": {
+     "point": 46.5,
+     "price": -113
+    },
+    "prophetx": {
+     "point": 45.5,
+     "price": 110
+    },
+    "williamhill_us": {
+     "point": 46.0,
+     "price": -112
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNFLTOTAL-26NOV01LVNYJ-47"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [
+    "Over 45.5 (-109)"
+   ],
+   "side": "UNDER",
+   "side_label": "NOT Over 46.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-11-01T18:00:00Z",
+   "teams": [
+    "Las Vegas",
+    "New York J"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-01T09:40:09Z",
    "base_depth": 79326,
    "best_price": 0.51,
@@ -1157,8 +1300,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": 0.0,
+   "close_price": 0.49,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -2751,8 +2894,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.56,
-   "clv_cents": 0.0,
+   "close_price": 0.57,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -4197,8 +4340,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.45,
-   "clv_cents": 7.0,
+   "close_price": 0.44,
+   "clv_cents": 6.0,
    "confirmed_after_min": 13,
    "date": "2026-11-01",
    "depth_by_book": {
