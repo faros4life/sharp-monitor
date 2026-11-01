@@ -1,12 +1,12 @@
 {
  "alerts": [
   {
-   "alerted_utc": "2026-11-01T14:38:05Z",
+   "alerted_utc": "2026-11-01T14:41:23Z",
    "base_depth": 187670,
-   "best_price": 0.745,
-   "best_price_american": -292,
+   "best_price": 0.75,
+   "best_price_american": -300,
    "best_price_book": "novig",
-   "bid_improved": false,
+   "bid_improved": true,
    "bid_improved_at_pending": false,
    "book": "novig",
    "books_live": [
@@ -15,51 +15,51 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.745,
+   "close_price": 0.75,
    "clv_cents": 0.0,
-   "confirmed_after_min": 8,
+   "confirmed_after_min": 11,
    "date": "2026-11-01",
    "depth_by_book": {
     "kalshi": {
      "heavier_side": true,
      "label": "Dallas",
      "price": 0.75,
-     "this_side": 4386654
+     "this_side": 4450339
     },
     "novig": {
      "new_other_side": 3977,
      "new_this_side": 27179,
-     "other_side": 73793,
-     "other_side_all_levels": 74009,
-     "ratio": 2.9,
-     "this_side": 214560,
-     "this_side_all_levels": 214987
+     "other_side": 66264,
+     "other_side_all_levels": 66412,
+     "ratio": 3.3,
+     "this_side": 217668,
+     "this_side_all_levels": 218094
     },
     "prophetx": {
      "heavier_side": true,
      "label": "Dallas Cowboys",
      "price": 0.7468,
-     "this_side": 63190
+     "this_side": 70023
     }
    },
-   "fade_price": 0.26,
+   "fade_price": 0.255,
    "first_seen_utc": "2026-11-01T14:30:13Z",
    "game": "Arizona Cardinals @ Dallas Cowboys",
    "key": "novig|{\"market_id\": \"01a15b07-8748-7c32-9291-8f140c6f7664\", \"outcome_id\": \"01a15b07-8748-7c32-9291-8f24a0be4b83\"}",
-   "lead_min": 202,
+   "lead_min": 199,
    "league": "NFL",
    "line": null,
    "market": "moneyline",
    "new_money": 27179,
    "paper_only": false,
-   "price": 0.745,
-   "price_american": -292,
+   "price": 0.75,
+   "price_american": -300,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.745,
    "prices_by_book": {
     "betmgm": {
      "point": null,
-     "price": -350
+     "price": -325
     },
     "betonlineag": {
      "point": null,
@@ -157,11 +157,11 @@
    "units_flat": null
   },
   {
-   "alerted_utc": "2026-11-01T14:38:05Z",
+   "alerted_utc": "2026-11-01T14:41:23Z",
    "base_depth": 922189,
-   "best_price": 0.485,
-   "best_price_american": 106,
-   "best_price_book": "novig",
+   "best_price": 0.4904,
+   "best_price_american": 104,
+   "best_price_book": "prophetx",
    "bid_improved": false,
    "bid_improved_at_pending": false,
    "book": "kalshi",
@@ -173,30 +173,24 @@
    ],
    "close_price": 0.48,
    "clv_cents": 0.0,
-   "confirmed_after_min": 8,
+   "confirmed_after_min": 11,
    "date": "2026-11-01",
    "depth_by_book": {
     "kalshi": {
      "new_other_side": -13669,
      "new_this_side": 406242,
-     "other_side": 885921,
-     "other_side_all_levels": 1039322,
-     "ratio": 1.5,
-     "this_side": 1323613,
-     "this_side_all_levels": 1430207
-    },
-    "novig": {
-     "heavier_side": true,
-     "label": "CIN -13.5 (-13.5)",
-     "price": 0.485,
-     "this_side": 69193
+     "other_side": 768934,
+     "other_side_all_levels": 922273,
+     "ratio": 1.6,
+     "this_side": 1242425,
+     "this_side_all_levels": 1348963
     }
    },
    "fade_price": 0.53,
    "first_seen_utc": "2026-11-01T14:30:13Z",
    "game": "Tennessee vs Cincinnati: Spread",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNFLSPREAD-26NOV01TENCIN-CIN14\"}",
-   "lead_min": 202,
+   "lead_min": 199,
    "league": "NFL",
    "line": -13.5,
    "market": "spread",
@@ -233,7 +227,7 @@
     },
     "draftkings": {
      "point": -12.5,
-     "price": -112
+     "price": -115
     },
     "fanatics": {
      "point": -13.0,
@@ -278,12 +272,10 @@
     "market_ticker": "KXNFLSPREAD-26NOV01TENCIN-CIN14"
    },
    "result": null,
-   "rule_met": true,
-   "second_book": [
-    "novig"
-   ],
+   "rule_met": false,
+   "second_book": [],
    "second_book_fresh": false,
-   "second_book_status": "ok",
+   "second_book_status": "no_match",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Cincinnati",

@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 1, 9:38 AM ET. This run: 2 new, 0 not confirmed, 2 pending. Open alerts: 78.
+Updated Sun Nov 1, 9:41 AM ET. This run: 2 new, 0 not confirmed, 2 pending. Open alerts: 78.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,8 +10,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 1 9:38AM | NFL | Arizona Cardinals @ Dallas Cowboys | moneyline: DAL (0) | novig | $27k | -292 | ✅ kalshi,prophetx |  | +0.0c |  | pending |
-| Nov 1 9:38AM | NFL | Tennessee vs Cincinnati: Spread | spread: Cincinnati wins by over 13.5 points | kalshi | $406k | +108 | ✅ novig |  | +0.0c |  | pending |
+| Nov 1 9:41AM | NFL | Arizona Cardinals @ Dallas Cowboys | moneyline: DAL (0) | novig | $27k | -300 | ✅ kalshi,prophetx |  | +0.0c |  | pending |
+| Nov 1 9:41AM | NFL | Tennessee vs Cincinnati: Spread | spread: Cincinnati wins by over 13.5 points | kalshi | $406k | +108 |  |  | +0.0c |  | pending |
 | Nov 1 9:30AM | NBA | Brooklyn vs Indiana: Spread | spread: NOT Indiana wins by over 3.5 points | kalshi | $28k | +104 |  |  | +0.0c |  | pending |
 | Nov 1 9:20AM | NBA | Nets vs. Pacers | total: Under (230.5) | polymarket | $30k | -104 | ✅ kalshi,novig |  | +0.0c |  | pending |
 | Nov 1 9:20AM | NBA | Brooklyn vs Indiana: Total Points | total: NOT Over 230.5 points | kalshi | $34k | -104 | ✅ novig,polymarket |  | +0.0c |  | pending |
