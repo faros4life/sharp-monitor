@@ -1,10 +1,10 @@
 # EV sightings study (paper, measurement only)
 
-Started 2026-10-27T16:06:50Z. Updated 2026-11-01T14:30:09Z. Sightings are a record, never bets. CLV = close fair - sighting after-fee cost, in cents (+ = beat the close). Gate: >= 50 graded, positive average CLV and positive flat record; reviewed only at a scheduled review. A/B gate on consensus CLV; move-watch (A1) gate on Pinnacle CLV. Held = Pinnacle close minus Pinnacle's pre-move fair at the old number (+ = the move held). Rows exclude suspect sightings (best price 10c+ under the other books, or a crossed quote: usually a misread line); Pinnacle CLV only within 3 points of Pinnacle's number.
+Started 2026-10-27T16:06:50Z. Updated 2026-11-01T14:35:08Z. Sightings are a record, never bets. CLV = close fair - sighting after-fee cost, in cents (+ = beat the close). Gate: >= 50 graded, positive average CLV and positive flat record; reviewed only at a scheduled review. A/B gate on consensus CLV; move-watch (A1) gate on Pinnacle CLV. Held = Pinnacle close minus Pinnacle's pre-move fair at the old number (+ = the move held). Rows exclude suspect sightings (best price 10c+ under the other books, or a crossed quote: usually a misread line); Pinnacle CLV only within 3 points of Pinnacle's number.
 
 | Bucket | Sightings | Closed | CLV vs consensus | Beat % | Pin-closed | CLV vs Pinnacle | Graded | Record | Units | ROI | Held | Lag (med) | Gate |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| A cross-book (>= 2c) | 3612 | 3326 | -2.08c | 21.5% | 1323 | -1.19c | 3326 | 1663-1663-0 | -211.71u | -6.4% |  |  | criteria not met (3326/50 graded, CLV not positive, record not positive) |
+| A cross-book (>= 2c) | 3615 | 3326 | -2.08c | 21.5% | 1323 | -1.19c | 3326 | 1663-1663-0 | -211.71u | -6.4% |  |  | criteria not met (3326/50 graded, CLV not positive, record not positive) |
 | A qualifying (>= 3c) | 931 | 865 | -3.99c | 14.2% | 204 | -2.98c | 865 | 451-414-0 | -50.81u | -5.9% |  |  | criteria not met (865/50 graded, CLV not positive, record not positive) |
 | B Pinnacle (>= 3% EV) | 59 | 59 | -0.68c | 32.2% | 57 | 0.08c | 59 | 26-33-0 | -3.25u | -5.5% |  |  | criteria not met (59/50 graded, CLV not positive, record not positive) |
 | B ref age <60s | 5 | 5 | 0.57c | 40.0% | 5 | 1.69c | 5 | 3-2-0 | +1.29u | 25.9% |  |  |  |
@@ -48,10 +48,11 @@ A and B on the same side/line: 49.
 
 ## Odds API credits (100K/month plan)
 
-Study: 561/day, projected 16837/30 days. All monitors on the key: 2040/day, projected 61199/30 days. Remaining 99135; guard holds 81000 for the sharp monitor; polls skipped by the guard: 0.
+Study: 562/day, projected 16851/30 days. All monitors on the key: 2042/day, projected 61252/30 days. Remaining 99120; guard holds 81000 for the sharp monitor; polls skipped by the guard: 0.
 
 ## Last runs
 
+- 2026-11-01T14:30:37Z: 22 games (21 in 24h), quotes {'prophetx': 1720, 'novig': 716, 'kalshi': 1228, 'polymarket_us': 2682}, 48 unmatched (4 book-games; fuzzy-matched 0), 3468 side/lines, polls [none_due; NFL:fast,NHL:fast], moves 0, new A 3 B 0, maker posted 0 filled 0, credits used 4 left 99120, 271s
 - 2026-11-01T14:26:00Z: 22 games (21 in 24h), quotes {'prophetx': 1728, 'novig': 720, 'kalshi': 1236, 'polymarket_us': 1476}, 48 unmatched (4 book-games; fuzzy-matched 0), 2916 side/lines, polls [none_due; NFL:fast,NHL:fast], moves 0, new A 8 B 0, maker posted 0 filled 0, credits used 4 left 99135, 249s
 - 2026-11-01T14:20:36Z: 22 games (21 in 24h), quotes {'prophetx': 1728, 'novig': 722, 'kalshi': 1232, 'polymarket_us': 3150}, 46 unmatched (4 book-games; fuzzy-matched 0), 3728 side/lines, polls [NBA:slow; NFL:fast,NHL:fast], moves 3, new A 3 B 0, maker posted 0 filled 0, credits used 6 left 99148, 291s
 - 2026-11-01T14:17:03Z: 22 games (21 in 24h), quotes {'prophetx': 1728, 'novig': 726, 'kalshi': 1236, 'polymarket_us': 2084}, 50 unmatched (4 book-games; fuzzy-matched 0), 3193 side/lines, polls [none_due; NFL:fast,NHL:fast], moves 0, new A 3 B 0, maker posted 0 filled 0, credits used 4 left 99156, 184s
@@ -61,4 +62,3 @@ Study: 561/day, projected 16837/30 days. All monitors on the key: 2040/day, proj
 - 2026-11-01T13:50:27Z: outside read hours: closes/grades only
 - 2026-11-01T13:40:28Z: outside read hours: closes/grades only
 - 2026-11-01T13:30:23Z: outside read hours: closes/grades only
-- 2026-11-01T13:28:27Z: outside read hours: closes/grades only
