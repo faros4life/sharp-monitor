@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 1, 5:20 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 73.
+Updated Sun Nov 1, 5:30 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 74.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,8 +10,9 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 1 5:30PM | NFL | Philadelphia vs Washington: Total Points | total: NOT Over 40.5 points | kalshi | $603k | -104 |  |  | +0.0c |  | pending |
 | Nov 1 5:10PM | NHL | Colorado vs Chicago | moneyline: Colorado | kalshi | $45k | -213 | ✅ polymarket |  | +0.0c |  | pending |
-| Nov 1 4:30PM | NFL | Philadelphia Eagles @ Washington Commanders | spread: PHI +5.5 (-5.5) | novig | $35k | +104 | ✅ kalshi,prophetx |  | +0.5c |  | pending |
+| Nov 1 4:30PM | NFL | Philadelphia Eagles @ Washington Commanders | spread: PHI +5.5 (-5.5) | novig | $35k | +104 | ✅ kalshi,prophetx |  | +0.0c |  | pending |
 | Nov 1 4:30PM | NBA | Brooklyn vs Indiana: Spread | spread: Indiana wins by over 3.5 points | kalshi | $51k | +104 |  |  | +0.0c |  | pending |
 | Nov 1 4:20PM | NFL | Kansas City Chiefs @ Denver Broncos | spread: DEN -1.5 (-1.5) | novig | $32k | +108 | ✅ kalshi |  | +0.0c |  | pending |
 | Nov 1 4:20PM | NBA | Los Angeles C vs Golden State: Spread | spread: NOT Golden State wins by over 2.5 points | kalshi | $29k | -108 | ✅ novig |  | +0.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 31 11:40AM | NHL | Chicago vs Boston: Total Goals | total: Over 6.5 goals scored | kalshi | $70k | +117 | ✅ novig,polymarket |  | +4.0c | yes | W |
 | Oct 31 11:40AM | NCAAF | Boston College vs Duke: Spread | spread: Duke wins by over 7.5 points | kalshi | $212k | +108 |  |  | -1.0c |  | W |
 | Oct 31 11:40AM | NCAAF | Tennessee St. vs Lindenwood | moneyline: Lindenwood | kalshi | $48k | -300 | ✅ novig |  | +0.0c | yes | W |
-| Oct 31 11:30AM | NCAAF | Richmond vs Holy Cross | moneyline: Richmond | kalshi | $30k | -117 |  |  | +0.0c | yes | L |
