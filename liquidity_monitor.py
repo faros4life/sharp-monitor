@@ -1591,14 +1591,18 @@ def run():
             a["close_suspect"] = "in_game_extreme"
 
     rows = []
-    if "kalshi" in BOOKS:
-        rows += kalshi_rows(days)
-    if "novig" in BOOKS:
-        rows += novig_rows(days, n)
-    if "polymarket" in BOOKS:
-        rows += pm_rows(days, n)
-    if "prophetx" in BOOKS:
-        rows += px_rows(days, n)
+    # Oct 31 (Peter): read the 4 books AT THE SAME TIME (each keeps its own pacing), so every alert's prices are
+    # from the same moment and the run finishes sooner. Same result order and the same failure behavior as before.
+    from concurrent.futures import ThreadPoolExecutor
+    jobs = [(b, fn) for b, fn in (("kalshi", lambda: kalshi_rows(days)), ("novig", lambda: novig_rows(days, n)),
+                                  ("polymarket", lambda: pm_rows(days, n)), ("prophetx", lambda: px_rows(days, n)))
+            if b in BOOKS]
+    t0 = time.time()
+    with ThreadPoolExecutor(max_workers=4) as tp:
+        futs = [tp.submit(fn) for _, fn in jobs]
+        for f in futs:
+            rows += f.result()
+    print(f"Book reads (parallel): {time.time() - t0:.0f}s")   # timing only
     rows = merge_kalshi_ml(rows)
     fill_starts(rows, odds_start_rows({r.get("league") for r in rows if r.get("league")}))
     all_by_key = {row_key(r): r for r in rows}                  # every side (for closing price / pulled checks)

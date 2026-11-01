@@ -1422,7 +1422,9 @@ def run():
                                      + f" | {bet_size(a['price'], a['book'])}")
                         else:
                             label = "PAPER - don't bet (" + "; ".join(p1_why[:2]) + ")"
-                        (notify if PUSH_SHARP else (lambda *x, **y: print("push muted (Oct 30): sharp alert logged only")))(
+                        # Nov 1 (Peter): the phone gets the play alert for LIVE (phase-1) plays, then the bot's fill or
+                        # resting-bid message; PAPER alerts stay muted (PUSH_SHARP_ALERTS=on unmutes them too)
+                        (notify if (PUSH_SHARP or p1_ok) else (lambda *x, **y: print("push muted: paper alert logged only")))(
                                ("LIVE " if p1_ok else "PAPER ") + f"Sharp alert {cfg['label']}" + (" LATE" if late else ""),
                                f"{label}\n{a['text']}\n{bet_size(a['price'], a['book'])}{prior_note}\n{a['game']}{tag}, {a['start']}\n{a['why']}\n"
                                f"Grade {grade} ({score}/100)" + (f" | Edge {a['evp']:+.1f}%" if a.get("evp") is not None else "") + " | "
