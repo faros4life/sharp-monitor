@@ -1,6 +1,143 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-01T04:10:10Z",
+   "base_depth": 23822,
+   "best_price": 0.5566,
+   "best_price_american": -126,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.56,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-01",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 8312,
+     "new_this_side": 42965,
+     "other_side": 38779,
+     "other_side_all_levels": 174696,
+     "ratio": 0.1,
+     "this_side": 5495,
+     "this_side_all_levels": 191213
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "GSW (0)",
+     "price": 0.56,
+     "this_side": 1352
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "Golden State Warriors",
+     "price": 0.5516,
+     "this_side": 85
+    }
+   },
+   "fade_price": 0.45,
+   "first_seen_utc": "2026-11-01T04:00:16Z",
+   "game": "Los Angeles C vs Golden State",
+   "key": "kalshi|KXNBAGAME-26NOV01LACGSW|ml|1",
+   "lead_min": 1280,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 42965,
+   "paper_only": false,
+   "price": 0.56,
+   "price_american": -127,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.57,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -135
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -130
+    },
+    "betrivers": {
+     "point": null,
+     "price": -130
+    },
+    "draftkings": {
+     "point": null,
+     "price": -130
+    },
+    "fanatics": {
+     "point": null,
+     "price": -130
+    },
+    "fanduel": {
+     "point": null,
+     "price": -126
+    },
+    "kalshi": {
+     "point": null,
+     "price": -127
+    },
+    "limitless": {
+     "point": null,
+     "price": -133
+    },
+    "lowvig": {
+     "point": null,
+     "price": -128
+    },
+    "novig": {
+     "point": null,
+     "price": -122
+    },
+    "polymarket": {
+     "point": null,
+     "price": -122
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -127
+    },
+    "prophetx": {
+     "point": null,
+     "price": -123
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -130
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBAGAME-26NOV01LACGSW-GSW"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Golden State",
+   "side_label": "Golden State",
+   "start_source": "odds",
+   "start_utc": "2026-11-02T01:30:00Z",
+   "teams": [
+    "Los Angeles C",
+    "Golden State"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-01T03:50:11Z",
    "base_depth": 604272,
    "best_price": 0.515,
@@ -47,6 +184,8 @@
    "new_money": 605105,
    "paper_only": false,
    "price": 0.51,
+   "price_after_15m": 0.5242,
+   "price_after_15m_book": "prophetx",
    "price_american": -104,
    "price_rule": "ok",
    "price_when_first_seen": 0.51,
@@ -133,6 +272,7 @@
    "side_label": "NOT Over 46.5 points",
    "start_source": "odds",
    "start_utc": "2026-11-01T18:00:00Z",
+   "still_actionable": false,
    "teams": [
     "Tennessee",
     "Cincinnati"
@@ -1316,8 +1456,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.44,
-   "clv_cents": 6.0,
+   "close_price": 0.45,
+   "clv_cents": 7.0,
    "confirmed_after_min": 13,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -1997,8 +2137,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": 0.0,
+   "close_price": 0.52,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
