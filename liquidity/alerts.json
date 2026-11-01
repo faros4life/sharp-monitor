@@ -1,7 +1,7 @@
 {
  "alerts": [
   {
-   "alerted_utc": "2026-11-01T02:30:11Z",
+   "alerted_utc": "2026-11-01T02:33:12Z",
    "base_depth": 726877,
    "best_price": 0.52,
    "best_price_american": -108,
@@ -17,30 +17,30 @@
    ],
    "close_price": 0.52,
    "clv_cents": 0.0,
-   "confirmed_after_min": 10,
+   "confirmed_after_min": 13,
    "date": "2026-11-01",
    "depth_by_book": {
     "kalshi": {
      "new_other_side": 29378,
      "new_this_side": 152877,
      "other_side": 660092,
-     "other_side_all_levels": 765544,
+     "other_side_all_levels": 765537,
      "ratio": 1.2,
      "this_side": 766447,
-     "this_side_all_levels": 879646
+     "this_side_all_levels": 879645
     },
     "novig": {
      "heavier_side": false,
      "label": "Under 43.5 (43.5)",
      "price": 0.52,
-     "this_side": 35221
+     "this_side": 35210
     }
    },
    "fade_price": 0.49,
    "first_seen_utc": "2026-11-01T02:20:10Z",
    "game": "Atlanta vs Tampa Bay: Total Points",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNFLTOTAL-26NOV01ATLTB-44\"}",
-   "lead_min": 930,
+   "lead_min": 927,
    "league": "NFL",
    "line": 43.5,
    "market": "total",
@@ -60,8 +60,8 @@
      "price": -108
     },
     "betopenly": {
-     "point": 43.5,
-     "price": -103
+     "point": 43.0,
+     "price": 100
     },
     "betrivers": {
      "point": 42.5,
@@ -135,145 +135,6 @@
    "teams": [
     "Atlanta",
     "Tampa Bay"
-   ],
-   "top25": null,
-   "units_flat": null
-  },
-  {
-   "alerted_utc": "2026-11-01T02:30:11Z",
-   "base_depth": 1607377,
-   "best_price": 0.525,
-   "best_price_american": -111,
-   "best_price_book": "novig",
-   "bid_improved": false,
-   "bid_improved_at_pending": false,
-   "book": "kalshi",
-   "books_live": [
-    "kalshi",
-    "novig",
-    "polymarket",
-    "prophetx"
-   ],
-   "close_price": 0.53,
-   "clv_cents": 0.0,
-   "confirmed_after_min": 10,
-   "date": "2026-11-01",
-   "depth_by_book": {
-    "kalshi": {
-     "new_other_side": -1244,
-     "new_this_side": 394269,
-     "other_side": 1222364,
-     "other_side_all_levels": 1320834,
-     "ratio": 1.4,
-     "this_side": 1680378,
-     "this_side_all_levels": 2024189
-    },
-    "novig": {
-     "heavier_side": false,
-     "label": "DEN +1.5 (1.5)",
-     "price": 0.525,
-     "this_side": 76726
-    }
-   },
-   "fade_price": 0.48,
-   "first_seen_utc": "2026-11-01T02:20:10Z",
-   "game": "Kansas City vs Denver: Spread",
-   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNFLSPREAD-26NOV01KCDEN-KC2\"}",
-   "lead_min": 1135,
-   "league": "NFL",
-   "line": 1.5,
-   "market": "spread",
-   "new_money": 394269,
-   "paper_only": false,
-   "price": 0.53,
-   "price_american": -113,
-   "price_rule": "ok",
-   "price_when_first_seen": 0.53,
-   "prices_by_book": {
-    "betmgm": {
-     "point": 1.0,
-     "price": -112
-    },
-    "betonlineag": {
-     "point": 1.0,
-     "price": -117
-    },
-    "betopenly": {
-     "point": 1.0,
-     "price": 100
-    },
-    "betrivers": {
-     "point": 1.5,
-     "price": -110
-    },
-    "betus": {
-     "point": 0.0,
-     "price": 100
-    },
-    "bovada": {
-     "point": 1.0,
-     "price": -112
-    },
-    "draftkings": {
-     "point": 1.5,
-     "price": -120
-    },
-    "fanatics": {
-     "point": 1.0,
-     "price": -110
-    },
-    "fanduel": {
-     "point": 1.5,
-     "price": -112
-    },
-    "kalshi": {
-     "point": 1.5,
-     "price": -113
-    },
-    "lowvig": {
-     "point": 1.0,
-     "price": -113
-    },
-    "mybookieag": {
-     "point": 1.0,
-     "price": -110
-    },
-    "novig": {
-     "point": 1.5,
-     "price": -111
-    },
-    "polymarket": {
-     "point": 1.5,
-     "price": -113
-    },
-    "prophetx": {
-     "point": 1.5,
-     "price": -111
-    },
-    "williamhill_us": {
-     "point": 1.0,
-     "price": -110
-    }
-   },
-   "pulled": false,
-   "ref": {
-    "kalshi_side": "no",
-    "market_ticker": "KXNFLSPREAD-26NOV01KCDEN-KC2"
-   },
-   "result": null,
-   "rule_met": false,
-   "second_book": [],
-   "second_book_fresh": false,
-   "second_book_status": "none_10k",
-   "sharp_agree": [],
-   "sharp_oppose": [],
-   "side": "Denver",
-   "side_label": "NOT Kansas City wins by over 1.5 points",
-   "start_source": "odds",
-   "start_utc": "2026-11-01T21:25:00Z",
-   "teams": [
-    "Kansas City",
-    "Denver"
    ],
    "top25": null,
    "units_flat": null
@@ -466,8 +327,6 @@
    "new_money": 67664,
    "paper_only": false,
    "price": 0.51,
-   "price_after_15m": 0.5275,
-   "price_after_15m_book": "kalshi",
    "price_american": -104,
    "price_rule": "ok",
    "price_when_first_seen": 0.51,
@@ -533,8 +392,7 @@
      "price": -109
     }
    },
-   "pulled": true,
-   "pulled_utc": "2026-11-01T02:30:11Z",
+   "pulled": false,
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFTOTAL-26OCT31NIUUNLV-57"
@@ -557,7 +415,6 @@
    "side_label": "NOT Over 56.5 points",
    "start_source": "odds",
    "start_utc": "2026-11-01T02:40:00Z",
-   "still_actionable": false,
    "teams": [
     "Northern Illinois",
     "UNLV"
@@ -1070,7 +927,7 @@
    "price_when_first_seen": 0.36,
    "prices_by_book": {},
    "pulled": true,
-   "pulled_utc": "2026-11-01T02:30:11Z",
+   "pulled_utc": "2026-11-01T02:33:12Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNBAGAME-26NOV01LACGSW-LAC"
@@ -3898,8 +3755,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": 2.0,
+   "close_price": 0.5,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-31",
    "depth_by_book": {
@@ -4982,6 +4839,7 @@
     }
    },
    "fade_price": 0.52,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-31T23:30:13Z",
    "game": "Minnesota vs San Antonio: Spread",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBASPREAD-26OCT31MINSAS-SAS13\"}",
@@ -5069,7 +4927,7 @@
     "kalshi_side": "no",
     "market_ticker": "KXNBASPREAD-26OCT31MINSAS-SAS13"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig",
@@ -5077,6 +4935,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-01T02:33:12Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Minnesota",
@@ -5089,7 +4948,7 @@
     "San Antonio"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.02
   },
   {
    "alerted_utc": "2026-10-31T23:40:10Z",
@@ -5857,7 +5716,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settled_utc": "2026-11-01T02:30:11Z",
+   "settled_utc": "2026-11-01T02:33:12Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -6537,6 +6396,7 @@
     }
    },
    "fade_price": 0.48,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-31T22:20:12Z",
    "game": "Minnesota vs San Antonio: Total Points",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNBATOTAL-26OCT31MINSAS-229\"}",
@@ -6624,13 +6484,14 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBATOTAL-26OCT31MINSAS-229"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "polymarket"
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-01T02:33:12Z",
    "sharp_agree": [
     "Over 226.5 (-115)"
    ],
@@ -6647,7 +6508,7 @@
     "San Antonio"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.87
   },
   {
    "alerted_utc": "2026-10-31T22:30:11Z",
@@ -7008,6 +6869,7 @@
     }
    },
    "fade_price": 0.18,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-31T22:20:12Z",
    "game": "Minnesota vs San Antonio",
    "key": "kalshi|KXNBAGAME-26OCT31MINSAS|ml|1",
@@ -7103,7 +6965,7 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBAGAME-26OCT31MINSAS-SAS"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig",
@@ -7112,6 +6974,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-01T02:33:12Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "San Antonio",
@@ -7124,7 +6987,7 @@
     "San Antonio"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.2
   },
   {
    "alerted_utc": "2026-10-31T22:20:12Z",
@@ -14246,7 +14109,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settled_utc": "2026-11-01T02:30:11Z",
+   "settled_utc": "2026-11-01T02:33:12Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
