@@ -1,6 +1,294 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-01T15:30:11Z",
+   "base_depth": 930602,
+   "best_price": 0.51,
+   "best_price_american": -104,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-01",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 36538,
+     "new_this_side": 228248,
+     "other_side": 729716,
+     "other_side_all_levels": 873481,
+     "ratio": 1.4,
+     "this_side": 1022341,
+     "this_side_all_levels": 1150085
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "Over 45.5 (45.5)",
+     "price": 0.51,
+     "this_side": 77449
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "over 45.5 (45.5)",
+     "price": 0.5122,
+     "this_side": 14063
+    }
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-11-01T15:20:12Z",
+   "game": "Minnesota vs Detroit: Total Points",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNFLTOTAL-26NOV01MINDET-46\"}",
+   "lead_min": 150,
+   "league": "NFL",
+   "line": 45.5,
+   "market": "total",
+   "new_money": 228248,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 46.0,
+     "price": -108
+    },
+    "betonlineag": {
+     "point": 46.0,
+     "price": -115
+    },
+    "betopenly": {
+     "point": 46.0,
+     "price": 100
+    },
+    "betrivers": {
+     "point": 46.5,
+     "price": -108
+    },
+    "betus": {
+     "point": 46.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 46.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 46.5,
+     "price": 100
+    },
+    "fanatics": {
+     "point": 46.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 46.5,
+     "price": -102
+    },
+    "kalshi": {
+     "point": 45.5,
+     "price": -104
+    },
+    "lowvig": {
+     "point": 46.0,
+     "price": -107
+    },
+    "mybookieag": {
+     "point": 46.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 45.5,
+     "price": -104
+    },
+    "polymarket": {
+     "point": 46.5,
+     "price": 108
+    },
+    "prophetx": {
+     "point": 46.5,
+     "price": 108
+    },
+    "williamhill_us": {
+     "point": 46.0,
+     "price": -113
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNFLTOTAL-26NOV01MINDET-46"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "OVER",
+   "side_label": "Over 45.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-11-01T18:00:00Z",
+   "teams": [
+    "Minnesota",
+    "Detroit"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-01T15:30:11Z",
+   "base_depth": 2415776,
+   "best_price": 0.485,
+   "best_price_american": 106,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.48,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-01",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -1873,
+     "new_this_side": 282062,
+     "other_side": 2217451,
+     "other_side_all_levels": 2497613,
+     "ratio": 1.1,
+     "this_side": 2535732,
+     "this_side_all_levels": 2647627
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "DET -3.5 (-3.5)",
+     "price": 0.485,
+     "this_side": 176763
+    }
+   },
+   "fade_price": 0.53,
+   "first_seen_utc": "2026-11-01T15:20:12Z",
+   "game": "Minnesota vs Detroit: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNFLSPREAD-26NOV01MINDET-DET4\"}",
+   "lead_min": 150,
+   "league": "NFL",
+   "line": -3.5,
+   "market": "spread",
+   "new_money": 282062,
+   "paper_only": false,
+   "price": 0.48,
+   "price_american": 108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.48,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -3.5,
+     "price": -102
+    },
+    "betonlineag": {
+     "point": -3.5,
+     "price": -103
+    },
+    "betopenly": {
+     "point": -3.5,
+     "price": 110
+    },
+    "betrivers": {
+     "point": -3.0,
+     "price": -115
+    },
+    "betus": {
+     "point": -3.5,
+     "price": -105
+    },
+    "bovada": {
+     "point": -3.5,
+     "price": -103
+    },
+    "draftkings": {
+     "point": -3.0,
+     "price": -120
+    },
+    "fanatics": {
+     "point": -3.5,
+     "price": 100
+    },
+    "fanduel": {
+     "point": -3.5,
+     "price": -102
+    },
+    "kalshi": {
+     "point": -3.5,
+     "price": 108
+    },
+    "lowvig": {
+     "point": -3.5,
+     "price": 104
+    },
+    "mybookieag": {
+     "point": -3.5,
+     "price": -110
+    },
+    "novig": {
+     "point": -3.5,
+     "price": 106
+    },
+    "polymarket": {
+     "point": -3.5,
+     "price": 108
+    },
+    "prophetx": {
+     "point": -3.5,
+     "price": 106
+    },
+    "williamhill_us": {
+     "point": -3.5,
+     "price": 100
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNFLSPREAD-26NOV01MINDET-DET4"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Detroit",
+   "side_label": "Detroit wins by over 3.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-11-01T18:00:00Z",
+   "teams": [
+    "Minnesota",
+    "Detroit"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-01T15:20:12Z",
    "base_depth": 191648,
    "best_price": 0.65,
@@ -565,7 +853,8 @@
      "price": -109
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-01T15:30:11Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNFLTOTAL-26NOV01KCDEN-42"
@@ -606,8 +895,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": 0.0,
+   "close_price": 0.52,
+   "clv_cents": 1.0,
    "confirmed_after_min": 5,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -5534,8 +5823,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": 0.0,
+   "close_price": 0.55,
+   "clv_cents": 2.0,
    "confirmed_after_min": 5,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -7989,8 +8278,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": 0.0,
+   "close_price": 0.49,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -10712,8 +11001,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": 0.0,
+   "close_price": 0.49,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
