@@ -309,8 +309,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.495,
-   "clv_cents": 0.5,
+   "close_price": 0.5,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -749,8 +749,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": 1.0,
+   "close_price": 0.54,
+   "clv_cents": 2.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -852,7 +852,8 @@
      "price": -105
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-01T23:10:10Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNBASPREAD-26NOV01LACGSW-GSW3"
@@ -1391,6 +1392,7 @@
     }
    },
    "fade_price": 0.51,
+   "fade_units": 0.9,
    "first_seen_utc": "2026-11-01T20:00:16Z",
    "game": "Boston vs Orlando: Total Points",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNBATOTAL-26NOV01BOSORL-223\"}",
@@ -1478,7 +1480,7 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBATOTAL-26NOV01BOSORL-223"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig",
@@ -1487,6 +1489,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-01T23:10:10Z",
    "sharp_agree": [
     "Over 221.5 (-115)",
     "Over 222.5 (+100)",
@@ -1506,7 +1509,7 @@
     "Orlando"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-01T20:10:09Z",
@@ -2152,6 +2155,7 @@
     }
    },
    "fade_price": 0.52,
+   "fade_units": 0.86,
    "first_seen_utc": "2026-11-01T19:20:11Z",
    "game": "Boston vs Orlando: Spread",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBASPREAD-26NOV01BOSORL-BOS8\"}",
@@ -2239,7 +2243,7 @@
     "kalshi_side": "no",
     "market_ticker": "KXNBASPREAD-26NOV01BOSORL-BOS8"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig",
@@ -2248,6 +2252,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-01T23:10:10Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "Boston Celtics -6.5 (-111)"
@@ -2262,7 +2267,7 @@
     "Orlando"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-01T19:20:11Z",
@@ -9271,6 +9276,7 @@
     }
    },
    "fade_price": 0.51,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-01T14:03:34Z",
    "game": "Boston vs Orlando: Total Points",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBATOTAL-26NOV01BOSORL-223\"}",
@@ -9353,11 +9359,12 @@
     "kalshi_side": "no",
     "market_ticker": "KXNBATOTAL-26NOV01BOSORL-223"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settled_utc": "2026-11-01T23:10:10Z",
    "sharp_agree": [
     "Under 222.5 (-104)"
    ],
@@ -9374,7 +9381,7 @@
     "Orlando"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.93
   },
   {
    "alerted_utc": "2026-11-01T14:10:11Z",
@@ -17378,6 +17385,7 @@
     }
    },
    "fade_price": 0.31,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-01T01:10:09Z",
    "game": "Boston vs Orlando",
    "key": "kalshi|KXNBAGAME-26NOV01BOSORL|ml|0",
@@ -17399,13 +17407,14 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBAGAME-26NOV01BOSORL-BOS"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "polymarket"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-01T23:10:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Boston",
@@ -17418,7 +17427,7 @@
     "Orlando"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.42
   },
   {
    "alerted_utc": "2026-11-01T01:20:11Z",
