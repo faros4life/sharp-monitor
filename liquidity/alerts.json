@@ -1,6 +1,145 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-01T02:00:15Z",
+   "base_depth": 1018259,
+   "best_price": 0.52,
+   "best_price_american": -108,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 7,
+   "date": "2026-11-01",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 177739,
+     "new_this_side": 675877,
+     "other_side": 953427,
+     "other_side_all_levels": 1126030,
+     "ratio": 1.7,
+     "this_side": 1625926,
+     "this_side_all_levels": 1727250
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "ATL +2.5 (-2.5)",
+     "price": 0.52,
+     "this_side": 86983
+    }
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-11-01T01:52:57Z",
+   "game": "Atlanta vs Tampa Bay: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNFLSPREAD-26NOV01ATLTB-TB3\"}",
+   "lead_min": 960,
+   "league": "NFL",
+   "line": 2.5,
+   "market": "spread",
+   "new_money": 675877,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 2.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 2.0,
+     "price": -104
+    },
+    "betopenly": {
+     "point": 2.5,
+     "price": 100
+    },
+    "betrivers": {
+     "point": 2.5,
+     "price": -110
+    },
+    "betus": {
+     "point": 2.0,
+     "price": -105
+    },
+    "bovada": {
+     "point": 1.5,
+     "price": -108
+    },
+    "draftkings": {
+     "point": 2.5,
+     "price": -115
+    },
+    "fanatics": {
+     "point": 2.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 2.5,
+     "price": -115
+    },
+    "kalshi": {
+     "point": 2.5,
+     "price": -104
+    },
+    "lowvig": {
+     "point": 2.0,
+     "price": 101
+    },
+    "mybookieag": {
+     "point": 2.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 2.5,
+     "price": -108
+    },
+    "polymarket": {
+     "point": 1.5,
+     "price": 104
+    },
+    "prophetx": {
+     "point": 2.5,
+     "price": -106
+    },
+    "williamhill_us": {
+     "point": 2.5,
+     "price": -113
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNFLSPREAD-26NOV01ATLTB-TB3"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Atlanta",
+   "side_label": "NOT Tampa Bay wins by over 2.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-11-01T18:00:00Z",
+   "teams": [
+    "Atlanta",
+    "Tampa Bay"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-01T01:52:57Z",
    "base_depth": 2530367,
    "best_price": 0.485,
@@ -15,8 +154,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.48,
-   "clv_cents": 0.0,
+   "close_price": 0.49,
+   "clv_cents": 1.0,
    "confirmed_after_min": 13,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -267,6 +406,8 @@
    "new_money": 72136,
    "paper_only": false,
    "price": 0.49,
+   "price_after_15m": 0.49,
+   "price_after_15m_book": "novig",
    "price_american": 104,
    "price_rule": "ok",
    "price_when_first_seen": 0.49,
@@ -354,6 +495,7 @@
    "side_label": "Over 46.5 points",
    "start_source": "odds",
    "start_utc": "2026-11-01T18:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Las Vegas",
     "New York J"
@@ -376,6 +518,7 @@
     "polymarket",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.5,
    "clv_cents": 0.0,
    "confirmed_after_min": 10,
@@ -414,6 +557,8 @@
    "new_money": 58396,
    "paper_only": false,
    "price": 0.5,
+   "price_after_15m": 0.5175,
+   "price_after_15m_book": "kalshi",
    "price_american": -100,
    "price_rule": "ok",
    "price_when_first_seen": 0.5,
@@ -479,7 +624,8 @@
      "price": -108
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-01T02:00:15Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFTOTAL-26OCT31TXSTBSU-65"
@@ -497,6 +643,7 @@
    "side_label": "Over 64.5 points",
    "start_source": "odds",
    "start_utc": "2026-11-01T02:00:00Z",
+   "still_actionable": false,
    "teams": [
     "Texas St.",
     "Boise St."
@@ -563,6 +710,8 @@
    "new_money": 43913,
    "paper_only": false,
    "price": 0.5,
+   "price_after_15m": 0.5,
+   "price_after_15m_book": "novig",
    "price_american": -100,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.5,
@@ -650,6 +799,7 @@
    "side_label": "Washington",
    "start_source": "odds",
    "start_utc": "2026-11-01T20:30:00Z",
+   "still_actionable": true,
    "teams": [
     "Minnesota",
     "Washington"
@@ -2446,6 +2596,7 @@
     "polymarket",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.52,
    "clv_cents": 0.0,
    "confirmed_after_min": 10,
@@ -2539,7 +2690,8 @@
      "price": -108
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-01T02:00:15Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFSPREAD-26OCT31TXSTBSU-BSU11"
@@ -2867,6 +3019,7 @@
     "polymarket",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.49,
    "clv_cents": -2.0,
    "confirmed_after_min": 10,
@@ -2966,7 +3119,8 @@
      "price": -112
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-01T02:00:15Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFTOTAL-26OCT31TXSTBSU-64"
@@ -3009,8 +3163,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.48,
-   "clv_cents": -1.0,
+   "close_price": 0.51,
+   "clv_cents": 2.0,
    "confirmed_after_min": 10,
    "date": "2026-10-31",
    "depth_by_book": {
@@ -3143,6 +3297,7 @@
     "polymarket",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.79,
    "clv_cents": 0.0,
    "confirmed_after_min": 10,
@@ -4503,7 +4658,8 @@
      "price": -320
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-01T02:00:15Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNFLGAME-26NOV01ARIDAL-DAL"
@@ -6440,8 +6596,10 @@
     }
    },
    "fade_price": 0.355,
+   "fade_units": 1.82,
    "first_seen_utc": "2026-10-31T22:13:56Z",
    "game": "Atlanta Hawks @ New Orleans Pelicans",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a18f75-be00-7083-8518-969bc638a3c0\", \"outcome_id\": \"01a18f75-be00-7083-8518-96b03ad3edcc\"}",
    "lead_min": 40,
    "league": "NBA",
@@ -6534,7 +6692,7 @@
     "market_id": "01a18f75-be00-7083-8518-969bc638a3c0",
     "outcome_id": "01a18f75-be00-7083-8518-96b03ad3edcc"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "kalshi",
@@ -6543,6 +6701,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-01T02:00:15Z",
    "sharp_agree": [
     "Atlanta Hawks -4.5 (-112)"
    ],
@@ -6557,7 +6716,7 @@
     "New Orleans Pelicans"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-31T22:20:12Z",
@@ -7678,8 +7837,10 @@
     }
    },
    "fade_price": 0.3676,
+   "fade_units": 1.69,
    "first_seen_utc": "2026-10-31T21:30:04Z",
    "game": "Atlanta Hawks at New Orleans Pelicans",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 0, \"px_event\": 1704705426, \"px_market\": 219, \"side\": \"0\"}",
    "lead_min": 77,
    "league": "NBA",
@@ -7774,7 +7935,7 @@
     "px_market": 219,
     "side": "0"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "kalshi",
@@ -7783,6 +7944,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-01T02:00:15Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Atlanta Hawks",
@@ -7795,7 +7957,7 @@
     "New Orleans Pelicans"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-31T21:43:09Z",
@@ -8469,8 +8631,10 @@
     }
    },
    "fade_price": 0.505,
+   "fade_units": 0.98,
    "first_seen_utc": "2026-10-31T21:20:15Z",
    "game": "Atlanta Hawks @ New Orleans Pelicans",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a18f68-0835-7840-af24-08dcbab720e2\", \"outcome_id\": \"01a18f68-0835-7840-af24-08fa2b6eed34\"}",
    "lead_min": 90,
    "league": "NBA",
@@ -8553,7 +8717,7 @@
     "market_id": "01a18f68-0835-7840-af24-08dcbab720e2",
     "outcome_id": "01a18f68-0835-7840-af24-08fa2b6eed34"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "kalshi",
@@ -8561,6 +8725,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-01T02:00:15Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Atlanta Hawks",
@@ -8572,7 +8737,7 @@
     "New Orleans Pelicans"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-31T21:30:04Z",
@@ -9075,6 +9240,7 @@
     }
    },
    "fade_price": 0.5,
+   "fade_units": 0.93,
    "first_seen_utc": "2026-10-31T21:13:02Z",
    "game": "Appalachian St. vs Georgia Southern: Spread",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFSPREAD-26OCT31APPGASO-GASO7\"}",
@@ -9158,11 +9324,12 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFSPREAD-26OCT31APPGASO-GASO7"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settled_utc": "2026-11-01T02:00:15Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Appalachian St.",
@@ -9175,7 +9342,7 @@
     "Georgia Southern"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-31T21:13:02Z",
@@ -14580,6 +14747,7 @@
     }
    },
    "fade_price": 0.63,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-31T13:10:16Z",
    "game": "Hawks vs. Pelicans",
    "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6167328\"}",
@@ -14674,11 +14842,12 @@
     "outcome_index": 1,
     "pm_market_id": "6167328"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-11-01T02:00:15Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Pelicans",
@@ -14691,7 +14860,7 @@
     "Pelicans"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.6
   },
   {
    "alerted_utc": "2026-10-31T13:28:52Z",
@@ -16372,8 +16541,10 @@
     }
    },
    "fade_price": 0.57,
+   "fade_units": 0.73,
    "first_seen_utc": "2026-10-31T11:51:54Z",
    "game": "Penguins vs. Canadiens",
+   "graded_by": "espn",
    "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"5285947\"}",
    "lead_min": 649,
    "league": "NHL",
@@ -16462,13 +16633,14 @@
     "outcome_index": 0,
     "pm_market_id": "5285947"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "prophetx"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-01T02:00:15Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Penguins",
@@ -16481,7 +16653,7 @@
     "Canadiens"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-31T12:11:15Z",
@@ -16830,8 +17002,10 @@
     }
    },
    "fade_price": 0.39,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-31T11:32:23Z",
    "game": "Maple Leafs vs. Canucks",
+   "graded_by": "espn",
    "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"5285942\"}",
    "lead_min": 668,
    "league": "NHL",
@@ -16920,7 +17094,7 @@
     "outcome_index": 0,
     "pm_market_id": "5285942"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig",
@@ -16928,6 +17102,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-01T02:00:15Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Maple Leafs",
@@ -16940,7 +17115,7 @@
     "Canucks"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.63
   },
   {
    "alerted_utc": "2026-10-31T10:16:10Z",
@@ -19672,6 +19847,7 @@
     }
    },
    "fade_price": 0.38,
+   "fade_units": 1.58,
    "first_seen_utc": "2026-10-31T05:52:39Z",
    "game": "Hawks vs. Pelicans",
    "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"6167328\"}",
@@ -19762,13 +19938,14 @@
     "outcome_index": 0,
     "pm_market_id": "6167328"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-01T02:00:15Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Hawks",
@@ -19781,7 +19958,7 @@
     "Pelicans"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-31T05:52:39Z",
@@ -43877,6 +44054,7 @@
     }
    },
    "fade_price": 0.35,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-29T15:50:10Z",
    "game": "Appalachian St. vs Georgia Southern",
    "key": "kalshi|KXNCAAFGAME-26OCT30APPGASO|ml|1",
@@ -43899,11 +44077,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26OCT30APPGASO-GASO"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settled_utc": "2026-11-01T02:00:15Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Georgia Southern",
@@ -43916,7 +44095,7 @@
     "Georgia Southern"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.5
   },
   {
    "alerted_utc": "2026-10-29T15:50:10Z",
