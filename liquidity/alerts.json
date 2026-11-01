@@ -1,6 +1,282 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-01T00:30:14Z",
+   "base_depth": 78922,
+   "best_price": 0.785,
+   "best_price_american": -365,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.785,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-31",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Boise St.",
+     "price": 0.79,
+     "this_side": 967304
+    },
+    "novig": {
+     "new_other_side": 5255,
+     "new_this_side": 27477,
+     "other_side": 38305,
+     "other_side_all_levels": 38356,
+     "ratio": 2.8,
+     "this_side": 105959,
+     "this_side_all_levels": 106244
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Boise State",
+     "price": 0.7849,
+     "this_side": 8042
+    }
+   },
+   "fade_price": 0.22,
+   "first_seen_utc": "2026-11-01T00:20:15Z",
+   "game": "Texas State @ Boise State",
+   "key": "novig|{\"market_id\": \"01a173a1-2698-7fc2-9e02-c65246374c8b\", \"outcome_id\": \"01a173a1-2698-7fc2-9e02-c660142a1eeb\"}",
+   "lead_min": 90,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 27477,
+   "paper_only": false,
+   "price": 0.785,
+   "price_american": -365,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.785,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -425
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -420
+    },
+    "betrivers": {
+     "point": null,
+     "price": -435
+    },
+    "betus": {
+     "point": null,
+     "price": -420
+    },
+    "bovada": {
+     "point": null,
+     "price": -420
+    },
+    "draftkings": {
+     "point": null,
+     "price": -425
+    },
+    "fanatics": {
+     "point": null,
+     "price": -425
+    },
+    "fanduel": {
+     "point": null,
+     "price": -385
+    },
+    "kalshi": {
+     "point": null,
+     "price": -376
+    },
+    "lowvig": {
+     "point": null,
+     "price": -420
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -429
+    },
+    "novig": {
+     "point": null,
+     "price": -365
+    },
+    "polymarket": {
+     "point": null,
+     "price": -376
+    },
+    "prophetx": {
+     "point": null,
+     "price": -365
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -460
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a173a1-2698-7fc2-9e02-c65246374c8b",
+    "outcome_id": "01a173a1-2698-7fc2-9e02-c660142a1eeb"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [
+    "Texas State Bobcats +10.5 (-108)"
+   ],
+   "side": "Boise State",
+   "side_label": "BSU (0)",
+   "start_source": "odds",
+   "start_utc": "2026-11-01T02:00:00Z",
+   "teams": [
+    "Texas State",
+    "Boise State"
+   ],
+   "top25": true,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-01T00:30:14Z",
+   "base_depth": 572525,
+   "best_price": 0.5242,
+   "best_price_american": -110,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-31",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 23693,
+     "new_this_side": 80553,
+     "other_side": 400521,
+     "other_side_all_levels": 528721,
+     "ratio": 1.3,
+     "this_side": 534685,
+     "this_side_all_levels": 651329
+    }
+   },
+   "fade_price": 0.49,
+   "first_seen_utc": "2026-11-01T00:20:15Z",
+   "game": "Texas St. vs Boise St.: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFSPREAD-26OCT31TXSTBSU-BSU11\"}",
+   "lead_min": 90,
+   "league": "NCAAF",
+   "line": 10.5,
+   "market": "spread",
+   "new_money": 80553,
+   "paper_only": false,
+   "price": 0.52,
+   "price_american": -108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.52,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 10.0,
+     "price": -112
+    },
+    "betonlineag": {
+     "point": 10.0,
+     "price": -105
+    },
+    "betrivers": {
+     "point": 10.5,
+     "price": -112
+    },
+    "betus": {
+     "point": 10.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 10.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 10.0,
+     "price": -108
+    },
+    "fanatics": {
+     "point": 10.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 10.5,
+     "price": -115
+    },
+    "kalshi": {
+     "point": 10.5,
+     "price": -108
+    },
+    "lowvig": {
+     "point": 10.0,
+     "price": -101
+    },
+    "mybookieag": {
+     "point": 10.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 10.5,
+     "price": -111
+    },
+    "polymarket": {
+     "point": 10.5,
+     "price": -108
+    },
+    "prophetx": {
+     "point": 10.5,
+     "price": -108
+    },
+    "williamhill_us": {
+     "point": 10.0,
+     "price": -108
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAFSPREAD-26OCT31TXSTBSU-BSU11"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [
+    "Texas State Bobcats +10.5 (-108)"
+   ],
+   "sharp_oppose": [],
+   "side": "Texas St.",
+   "side_label": "NOT Boise St. wins by over 10.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-11-01T02:00:00Z",
+   "teams": [
+    "Texas St.",
+    "Boise St."
+   ],
+   "top25": true,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-01T00:20:15Z",
    "base_depth": 646044,
    "best_price": 0.515,
@@ -15,8 +291,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": 0.0,
+   "close_price": 0.52,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -742,6 +1018,8 @@
    "new_money": 63058,
    "paper_only": false,
    "price": 0.51,
+   "price_after_15m": 0.505,
+   "price_after_15m_book": "novig",
    "price_american": -104,
    "price_rule": "ok",
    "price_when_first_seen": 0.51,
@@ -827,6 +1105,7 @@
    "side_label": "NOT Over 54.5 points",
    "start_source": "odds",
    "start_utc": "2026-11-01T18:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Arizona",
     "Dallas"
