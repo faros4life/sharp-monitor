@@ -1,6 +1,301 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-01T15:20:12Z",
+   "base_depth": 191648,
+   "best_price": 0.65,
+   "best_price_american": -186,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.65,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-01",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Pittsburgh",
+     "price": 0.65,
+     "this_side": 3775437
+    },
+    "novig": {
+     "new_other_side": -2373,
+     "new_this_side": 34950,
+     "other_side": 100809,
+     "other_side_all_levels": 101104,
+     "ratio": 2.3,
+     "this_side": 227542,
+     "this_side_all_levels": 227968
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Pittsburgh Steelers",
+     "price": 0.6479,
+     "this_side": 76438
+    }
+   },
+   "fade_price": 0.355,
+   "first_seen_utc": "2026-11-01T15:15:32Z",
+   "game": "Cleveland Browns @ Pittsburgh Steelers",
+   "key": "novig|{\"market_id\": \"01a15b22-a8cf-7172-8958-20a7c2fe8ec0\", \"outcome_id\": \"01a15b22-a8cf-7172-8958-20bf1d0f3431\"}",
+   "lead_min": 160,
+   "league": "NFL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 34950,
+   "paper_only": false,
+   "price": 0.65,
+   "price_american": -186,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.65,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -200
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -193
+    },
+    "betopenly": {
+     "point": null,
+     "price": -181
+    },
+    "betrivers": {
+     "point": null,
+     "price": -195
+    },
+    "betus": {
+     "point": null,
+     "price": -195
+    },
+    "bovada": {
+     "point": null,
+     "price": -205
+    },
+    "draftkings": {
+     "point": null,
+     "price": -185
+    },
+    "fanatics": {
+     "point": null,
+     "price": -200
+    },
+    "fanduel": {
+     "point": null,
+     "price": -200
+    },
+    "kalshi": {
+     "point": null,
+     "price": -186
+    },
+    "limitless": {
+     "point": null,
+     "price": -197
+    },
+    "lowvig": {
+     "point": null,
+     "price": -193
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -208
+    },
+    "novig": {
+     "point": null,
+     "price": -186
+    },
+    "polymarket": {
+     "point": null,
+     "price": -186
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -182
+    },
+    "prophetx": {
+     "point": null,
+     "price": -184
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -190
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a15b22-a8cf-7172-8958-20a7c2fe8ec0",
+    "outcome_id": "01a15b22-a8cf-7172-8958-20bf1d0f3431"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi",
+    "prophetx"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Pittsburgh Steelers",
+   "side_label": "PIT (0)",
+   "start_source": "odds",
+   "start_utc": "2026-11-01T18:00:00Z",
+   "teams": [
+    "Cleveland Browns",
+    "Pittsburgh Steelers"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-01T15:20:12Z",
+   "base_depth": 1444317,
+   "best_price": 0.48,
+   "best_price_american": 108,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.48,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-01",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -38893,
+     "new_this_side": 596432,
+     "other_side": 1486199,
+     "other_side_all_levels": 1636805,
+     "ratio": 1.2,
+     "this_side": 1837725,
+     "this_side_all_levels": 1942539
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "JAX -10.5 (-10.5)",
+     "price": 0.48,
+     "this_side": 103085
+    }
+   },
+   "fade_price": 0.53,
+   "first_seen_utc": "2026-11-01T15:15:32Z",
+   "game": "Indianapolis vs Jacksonville: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNFLSPREAD-26NOV01INDJAC-JAC11\"}",
+   "lead_min": 160,
+   "league": "NFL",
+   "line": -10.5,
+   "market": "spread",
+   "new_money": 596432,
+   "paper_only": false,
+   "price": 0.48,
+   "price_american": 108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.48,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -10.0,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": -10.0,
+     "price": -107
+    },
+    "betopenly": {
+     "point": -10.5,
+     "price": 105
+    },
+    "betrivers": {
+     "point": -10.0,
+     "price": -113
+    },
+    "betus": {
+     "point": -10.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": -10.0,
+     "price": -115
+    },
+    "draftkings": {
+     "point": -10.0,
+     "price": -112
+    },
+    "fanatics": {
+     "point": -10.5,
+     "price": -105
+    },
+    "fanduel": {
+     "point": -10.5,
+     "price": -105
+    },
+    "kalshi": {
+     "point": -10.5,
+     "price": 108
+    },
+    "lowvig": {
+     "point": -10.5,
+     "price": 104
+    },
+    "mybookieag": {
+     "point": -10.5,
+     "price": -110
+    },
+    "novig": {
+     "point": -10.5,
+     "price": 108
+    },
+    "polymarket": {
+     "point": -9.5,
+     "price": -113
+    },
+    "prophetx": {
+     "point": -10.5,
+     "price": 108
+    },
+    "williamhill_us": {
+     "point": -10.0,
+     "price": -109
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNFLSPREAD-26NOV01INDJAC-JAC11"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Jacksonville",
+   "side_label": "Jacksonville wins by over 10.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-11-01T18:00:00Z",
+   "teams": [
+    "Indianapolis",
+    "Jacksonville"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-01T15:15:32Z",
    "base_depth": 106581,
    "best_price": 0.455,
@@ -163,8 +458,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.49,
-   "clv_cents": 0.0,
+   "close_price": 0.5,
+   "clv_cents": 1.0,
    "confirmed_after_min": 5,
    "date": "2026-11-01",
    "depth_by_book": {

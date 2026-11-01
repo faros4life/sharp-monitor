@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 1, 10:15 AM ET. This run: 4 new, 1 not confirmed, 2 pending. Open alerts: 83.
+Updated Sun Nov 1, 10:20 AM ET. This run: 2 new, 0 not confirmed, 2 pending. Open alerts: 85.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,8 +10,10 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 1 10:20AM | NFL | Cleveland Browns @ Pittsburgh Steelers | moneyline: PIT (0) | novig | $35k | -186 | ✅ kalshi,prophetx |  | +0.0c |  | pending |
+| Nov 1 10:20AM | NFL | Indianapolis vs Jacksonville: Spread | spread: Jacksonville wins by over 10.5 points | kalshi | $596k | +108 |  |  | +0.0c |  | pending |
 | Nov 1 10:15AM | NHL | Minnesota vs Washington: Total Goals | total: Over 6.5 goals scored | kalshi | $84k | +122 | ✅ novig,polymarket |  | +0.0c |  | pending |
-| Nov 1 10:15AM | NFL | Kansas City vs Denver: Total Points | total: Over 41.5 points | kalshi | $179k | +104 | ✅ novig,prophetx |  | +0.0c |  | pending |
+| Nov 1 10:15AM | NFL | Kansas City vs Denver: Total Points | total: Over 41.5 points | kalshi | $179k | +104 | ✅ novig,prophetx |  | +1.0c |  | pending |
 | Nov 1 10:15AM | NFL | Las Vegas vs New York J: Spread | spread: New York J wins by over 1.5 points | kalshi | $320k | -104 | ✅ novig |  | +0.0c |  | pending |
 | Nov 1 10:15AM | NFL | Baltimore vs Buffalo | moneyline: Buffalo | kalshi | $643k | -163 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Nov 1 10:00AM | NFL | Las Vegas Raiders @ New York Jets | moneyline: NYJ (0) | novig | $29k | -117 | ✅ kalshi,prophetx |  | +0.0c |  | pending |
@@ -208,5 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 31 3:54AM | NCAAF | Notre Dame vs Navy: Total Points | total: NOT Over 56.5 points | kalshi | $39k | -104 |  |  | +6.0c | yes | W |
 | Oct 31 3:36AM | NCAAF | William & Mary vs Colgate | moneyline: Colgate | kalshi | $27k | -400 |  |  | -1.0c | yes | W |
 | Oct 31 3:36AM | NCAAF | Villanova vs Lafayette | moneyline: Villanova | kalshi | $27k | -245 |  |  | +0.0c | yes | W |
-| Oct 31 3:36AM | NCAAF | Drake vs Morehead St. | moneyline: Drake | kalshi | $62k | -335 |  |  | +1.0c | yes | W |
-| Oct 31 3:36AM | NCAAF | Butler vs Presbyterian | moneyline: Butler | kalshi | $27k | -376 |  |  | +1.0c | yes | W |
