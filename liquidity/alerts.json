@@ -1,6 +1,141 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-01T16:40:10Z",
+   "base_depth": 680889,
+   "best_price": 0.5311,
+   "best_price_american": -113,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-01",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 26439,
+     "new_this_side": 202091,
+     "other_side": 509551,
+     "other_side_all_levels": 640310,
+     "ratio": 1.4,
+     "this_side": 735700,
+     "this_side_all_levels": 874966
+    }
+   },
+   "fade_price": 0.49,
+   "first_seen_utc": "2026-11-01T16:35:02Z",
+   "game": "Tennessee vs Cincinnati: Total Points",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNFLTOTAL-26NOV01TENCIN-46\"}",
+   "lead_min": 80,
+   "league": "NFL",
+   "line": 45.5,
+   "market": "total",
+   "new_money": 202091,
+   "paper_only": false,
+   "price": 0.52,
+   "price_american": -108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.52,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 46.0,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 46.5,
+     "price": -105
+    },
+    "betopenly": {
+     "point": 45.5,
+     "price": -104
+    },
+    "betrivers": {
+     "point": 46.0,
+     "price": -109
+    },
+    "betus": {
+     "point": 46.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 46.0,
+     "price": -112
+    },
+    "draftkings": {
+     "point": 45.5,
+     "price": -115
+    },
+    "fanatics": {
+     "point": 46.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 45.5,
+     "price": -118
+    },
+    "kalshi": {
+     "point": 45.5,
+     "price": -108
+    },
+    "lowvig": {
+     "point": 46.5,
+     "price": -102
+    },
+    "mybookieag": {
+     "point": 46.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 46.5,
+     "price": 106
+    },
+    "polymarket": {
+     "point": 46.5,
+     "price": 104
+    },
+    "prophetx": {
+     "point": 45.5,
+     "price": -111
+    },
+    "williamhill_us": {
+     "point": 46.0,
+     "price": -108
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNFLTOTAL-26NOV01TENCIN-46"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [
+    "Under 46.5 (-106)"
+   ],
+   "side": "OVER",
+   "side_label": "Over 45.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-11-01T18:00:00Z",
+   "teams": [
+    "Tennessee",
+    "Cincinnati"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-01T16:10:09Z",
    "base_depth": 58125,
    "best_price": 0.5076,
@@ -5340,8 +5475,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.63,
-   "clv_cents": 0.0,
+   "close_price": 0.62,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
