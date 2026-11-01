@@ -1,6 +1,154 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-01T23:50:09Z",
+   "base_depth": 105723,
+   "best_price": 0.5,
+   "best_price_american": -100,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-01",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Over 40.5 points",
+     "price": 0.5,
+     "this_side": 1229844
+    },
+    "novig": {
+     "new_other_side": -7063,
+     "new_this_side": 40737,
+     "other_side": 89722,
+     "other_side_all_levels": 91361,
+     "ratio": 1.5,
+     "this_side": 138608,
+     "this_side_all_levels": 139121
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "over 40.5 (40.5)",
+     "price": 0.495,
+     "this_side": 33797
+    }
+   },
+   "fade_price": 0.505,
+   "first_seen_utc": "2026-11-01T23:40:09Z",
+   "game": "Philadelphia Eagles @ Washington Commanders",
+   "key": "novig|{\"market_id\": \"01a15b22-b24c-7252-8f15-8544ef1337f3\", \"outcome_id\": \"01a15b22-b24c-7252-8f15-8552d0ef43e6\"}",
+   "lead_min": 90,
+   "league": "NFL",
+   "line": 40.5,
+   "market": "total",
+   "new_money": 40737,
+   "paper_only": false,
+   "price": 0.5,
+   "price_american": -100,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.5,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 40.0,
+     "price": -112
+    },
+    "betonlineag": {
+     "point": 40.5,
+     "price": -105
+    },
+    "betopenly": {
+     "point": 40.5,
+     "price": 104
+    },
+    "betrivers": {
+     "point": 40.5,
+     "price": -112
+    },
+    "betus": {
+     "point": 40.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 40.0,
+     "price": -115
+    },
+    "draftkings": {
+     "point": 40.5,
+     "price": -110
+    },
+    "fanatics": {
+     "point": 40.5,
+     "price": -105
+    },
+    "fanduel": {
+     "point": 40.5,
+     "price": -104
+    },
+    "kalshi": {
+     "point": 40.5,
+     "price": 100
+    },
+    "lowvig": {
+     "point": 40.5,
+     "price": -102
+    },
+    "mybookieag": {
+     "point": 40.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 40.5,
+     "price": 102
+    },
+    "polymarket": {
+     "point": 40.5,
+     "price": 100
+    },
+    "prophetx": {
+     "point": 40.5,
+     "price": 102
+    },
+    "williamhill_us": {
+     "point": 40.5,
+     "price": -107
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a15b22-b24c-7252-8f15-8544ef1337f3",
+    "outcome_id": "01a15b22-b24c-7252-8f15-8552d0ef43e6"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi",
+    "prophetx"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "OVER",
+   "side_label": "Over 40.5 (40.5)",
+   "start_source": "odds",
+   "start_utc": "2026-11-02T01:20:00Z",
+   "teams": [
+    "Philadelphia Eagles",
+    "Washington Commanders"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-01T22:30:13Z",
    "base_depth": 918274,
    "best_price": 0.51,
@@ -163,8 +311,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.69,
-   "clv_cents": 1.0,
+   "close_price": 0.68,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -309,8 +457,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.495,
-   "clv_cents": 0.5,
+   "close_price": 0.5,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
