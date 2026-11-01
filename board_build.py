@@ -87,7 +87,8 @@ def money(v):
 
 
 def score(rows):
-    live = [r for r in rows if r["status"] == "still there"]
+    # a started game keeps the call it had at kickoff (pulled money is only ever marked before the game), so calls grade
+    live = [r for r in rows if r["status"] in ("still there", "game started")]
     SH = {}
     for r in rows:
         a = SH.setdefault((r["g"], r["mk"] == "total", r["sd"]), [set(), set()])
@@ -97,9 +98,6 @@ def score(rows):
         x, sd, g, mk = r["x"], r["sd"], r["g"], r["mk"]
         if r["status"] == "pulled":
             r["tag"], r["why"] = "DEAD", "money pulled"
-            continue
-        if r["status"] == "game started":
-            r["tag"], r["why"] = "", "game started"
             continue
         why, fights, beaten = [], [], None
         for o in live:
@@ -187,11 +185,12 @@ def rec(rs):
 def page(now, rows, flips):
     e = html.escape
     rank = {"PLAY": 0, "LEAN": 1, "DEAD": 2, "": 3}
+    started = lambda r: r["status"] == "game started"
     exmax = max([max(r["dep"].values() or [0]) for r in rows] + [1])
     nmax = max([r["new"] for r in rows] + [1])
 
     def table(mk):
-        rs = sorted([r for r in rows if r["mk"] == mk], key=lambda r: (rank[r["tag"]], -r["new"]))
+        rs = sorted([r for r in rows if r["mk"] == mk], key=lambda r: (started(r), rank[r["tag"]], -r["new"]))
         out = []
         for r in rs:
             bars = "".join(
@@ -200,7 +199,7 @@ def page(now, rows, flips):
             res = f" · {r['result']}" if r["result"] else ""
             live = r["status"] == "still there"
             out.append(
-                f'<tr class="{r["tag"].lower() or "done"}" data-league="{e(r["league"])}" data-tag="{r["tag"]}">'
+                f'<tr class="{r["tag"].lower()}{" done" if started(r) else ""}" data-league="{e(r["league"])}" data-tag="{r["tag"]}">'
                 f'<td><span class="tag {r["tag"]}">{r["tag"] or "—"}{res}</span><div class="why">{e(r["why"])}</div></td>'
                 f'<td class="r money">{money(r["new"])}<span class="bar" style="width:{max(2, 100 * r["new"] / nmax):.0f}%"></span></td>'
                 f'<td class="hide-m">{e(r["league"])}</td><td>{e(r["game"])}</td><td>{e(r["side"])}</td>'
@@ -232,7 +231,7 @@ body{{margin:0;background:var(--bg);color:var(--fg);font:14px/1.4 -apple-system,
 .wrap{{max-width:1200px;margin:0 auto;padding:16px}}h1{{font-weight:500;margin:0;font-size:26px}}
 .sub{{color:var(--muted);margin:4px 0 16px}}.tiles{{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:16px}}
 .tile,.card{{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px;min-width:0}}
-.tile .l{{color:var(--muted);font-size:12px}}.tile .n{{font-size:22px;margin-top:4px}}.card{{margin-bottom:16px}}
+.tile .l{{color:var(--muted);font-size:12px}}.tile .n{{font-size:20px;margin-top:4px}}.card{{margin-bottom:16px}}
 h2{{font-size:17px;margin:0 0 4px;font-weight:600}}h3{{font-size:15px;margin:14px 0 6px}}.note{{color:var(--muted);font-size:12px;margin:0 0 8px}}
 .scroll{{overflow:auto;max-height:30rem}}table{{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}}
 th{{text-align:left;color:var(--muted);font-weight:500;font-size:12px;padding:4px 6px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--panel)}}
@@ -250,12 +249,12 @@ td{{padding:5px 6px;border-bottom:1px solid var(--line);vertical-align:top}}.r{{
 @media (max-width:640px){{.hide-m{{display:none}}.ex{{min-width:7rem}}.why{{max-width:11rem}}}}
 </style></head><body><div class="wrap">
 <h1>Bets Board</h1><p class="sub">Updated {stamp}. Rebuilds itself after every liquidity run; this page reloads every 5 minutes.</p>
-<div class="tiles"><div class="tile"><div class="l">PLAY calls now</div><div class="n">{sum(1 for r in plays if r["status"] == "still there")}</div></div>
+<div class="tiles"><div class="tile"><div class="l">PLAY calls open now</div><div class="n">{sum(1 for r in plays if r["status"] == "still there")}</div></div>
 <div class="tile"><div class="l">Today's PLAY calls graded</div><div class="n">{rec(plays)}</div></div>
 <div class="tile"><div class="l">Today's LEAN calls graded</div><div class="n">{rec([r for r in rows if r["tag"] == "LEAN"])}</div></div>
 <div class="tile"><div class="l">Big-money moves today</div><div class="n">{len(rows)}</div></div></div>
 <div class="card"><h2>Big money today, by bet type</h2>
-<p class="note"><b>Call:</b> PLAY = still there, confirmed, $100k+ ($250k+ on spreads), a sharp alert agrees or it's the biggest confirmed flow in its game, and nothing fights it. LEAN = still there but short of that (reason shown). DEAD = pulled, or later spread money went the other way. Check the price before betting. Paper signal; spread flows have lost over time.</p>
+<p class="note"><b>Call:</b> PLAY = still there, confirmed, $100k+ ($250k+ on spreads), a sharp alert agrees or it's the biggest confirmed flow in its game, and nothing fights it. LEAN = still there but short of that (reason shown). DEAD = pulled, or later spread money went the other way. Started games keep their kickoff call and grade W/L when final. Check the price before betting. Paper signal; spread flows have lost over time.</p>
 <div class="legend"><span><i class="sw kalshi"></i>Kalshi</span><span><i class="sw novig"></i>Novig</span><span><i class="sw prophetx"></i>ProphetX</span><span><i class="sw polymarket"></i>Polymarket</span></div>
 <div class="filters"><button data-f="" class="on">All</button>{btns}<button data-f="live">PLAY + LEAN only</button></div>
 <h3>Moneylines</h3>{table("moneyline")}<h3>Spreads</h3>{table("spread")}<h3>Totals</h3>{table("total")}</div>
