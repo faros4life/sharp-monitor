@@ -1,6 +1,162 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-01T15:00:15Z",
+   "base_depth": 209392,
+   "best_price": 0.54,
+   "best_price_american": -117,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.54,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-01",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "New York J",
+     "price": 0.54,
+     "this_side": 5221201
+    },
+    "novig": {
+     "new_other_side": -313,
+     "new_this_side": 28830,
+     "other_side": 160374,
+     "other_side_all_levels": 160696,
+     "ratio": 1.4,
+     "this_side": 217915,
+     "this_side_all_levels": 240849
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "New York Jets",
+     "price": 0.5392,
+     "this_side": 72002
+    }
+   },
+   "fade_price": 0.465,
+   "first_seen_utc": "2026-11-01T14:50:11Z",
+   "game": "Las Vegas Raiders @ New York Jets",
+   "key": "novig|{\"market_id\": \"01a15b07-8680-7bd0-b71a-20f9edcfa365\", \"outcome_id\": \"01a15b07-8680-7bd0-b71a-210b3fd57532\"}",
+   "lead_min": 180,
+   "league": "NFL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 28830,
+   "paper_only": false,
+   "price": 0.54,
+   "price_american": -117,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.54,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -130
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -131
+    },
+    "betopenly": {
+     "point": null,
+     "price": -120
+    },
+    "betrivers": {
+     "point": null,
+     "price": -127
+    },
+    "betus": {
+     "point": null,
+     "price": -130
+    },
+    "bovada": {
+     "point": null,
+     "price": -130
+    },
+    "draftkings": {
+     "point": null,
+     "price": -130
+    },
+    "fanatics": {
+     "point": null,
+     "price": -130
+    },
+    "fanduel": {
+     "point": null,
+     "price": -132
+    },
+    "kalshi": {
+     "point": null,
+     "price": -117
+    },
+    "limitless": {
+     "point": null,
+     "price": -124
+    },
+    "lowvig": {
+     "point": null,
+     "price": -131
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -129
+    },
+    "novig": {
+     "point": null,
+     "price": -117
+    },
+    "polymarket": {
+     "point": null,
+     "price": -117
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -115
+    },
+    "prophetx": {
+     "point": null,
+     "price": -117
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -125
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a15b07-8680-7bd0-b71a-20f9edcfa365",
+    "outcome_id": "01a15b07-8680-7bd0-b71a-210b3fd57532"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi",
+    "prophetx"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "New York Jets",
+   "side_label": "NYJ (0)",
+   "start_source": "odds",
+   "start_utc": "2026-11-01T18:00:00Z",
+   "teams": [
+    "Las Vegas Raiders",
+    "New York Jets"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-01T14:41:23Z",
    "base_depth": 187670,
    "best_price": 0.75,
@@ -53,6 +209,8 @@
    "new_money": 27179,
    "paper_only": false,
    "price": 0.75,
+   "price_after_15m": 0.75,
+   "price_after_15m_book": "novig",
    "price_american": -300,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.745,
@@ -149,6 +307,7 @@
    "side_label": "DAL (0)",
    "start_source": "odds",
    "start_utc": "2026-11-01T18:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Arizona Cardinals",
     "Dallas Cowboys"
@@ -171,8 +330,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.48,
-   "clv_cents": 0.0,
+   "close_price": 0.49,
+   "clv_cents": 1.0,
    "confirmed_after_min": 11,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -197,6 +356,8 @@
    "new_money": 406242,
    "paper_only": false,
    "price": 0.48,
+   "price_after_15m": 0.49,
+   "price_after_15m_book": "novig",
    "price_american": 108,
    "price_rule": "ok",
    "price_when_first_seen": 0.48,
@@ -282,6 +443,7 @@
    "side_label": "Cincinnati wins by over 13.5 points",
    "start_source": "odds",
    "start_utc": "2026-11-01T18:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Tennessee",
     "Cincinnati"
@@ -3255,8 +3417,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.73,
-   "clv_cents": 0.0,
+   "close_price": 0.72,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -7076,8 +7238,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.55,
-   "clv_cents": -1.0,
+   "close_price": 0.54,
+   "clv_cents": -2.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -9521,8 +9683,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": 0.0,
+   "close_price": 0.52,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
