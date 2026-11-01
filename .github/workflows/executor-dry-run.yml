@@ -15,7 +15,7 @@ permissions:
 jobs:
   run:
     runs-on: ubuntu-latest
-    timeout-minutes: 10   # Oct 29: room for the 60-s held-retry loop (up to 4 min)
+    timeout-minutes: 20   # Oct 29: held-retry loop; Nov 1: up to 3 catch-up passes
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -47,4 +47,15 @@ jobs:
           PX_QTY_MEANS: ${{ vars.PX_QTY_MEANS }}                   # "stake" (default) or "to_win" - set from the $1 test
           PROPHETX_TRADE_ACCESS_KEY: ${{ secrets.PROPHETX_TRADE_ACCESS_KEY }}
           PROPHETX_TRADE_SECRET_KEY: ${{ secrets.PROPHETX_TRADE_SECRET_KEY }}
-        run: python -u executor.py
+        # Nov 1: a wake that arrives while another executor run is busy can be dropped by GitHub's queue (the 6:00 AM
+        # Celtics/Magic alert waited 10 min for the timer). So after each pass, if alerts.json got a newer commit
+        # than this pass started with, pull it and run again (up to 3 extra passes, same job = never two at once).
+        run: |
+          python -u executor.py
+          for i in 1 2 3; do
+            git fetch -q origin main || break
+            if git diff --quiet HEAD origin/main -- alerts.json; then break; fi
+            echo "newer alerts.json landed during the run: pass $((i + 1))"
+            git reset -q --hard origin/main
+            python -u executor.py
+          done
