@@ -1,6 +1,458 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-01T08:40:11Z",
+   "base_depth": 40409,
+   "best_price": 0.54,
+   "best_price_american": -117,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.55,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-01",
+   "depth_by_book": {
+    "novig": {
+     "heavier_side": true,
+     "label": "NYR (0)",
+     "price": 0.54,
+     "this_side": 18089
+    },
+    "polymarket": {
+     "new_other_side": -9344,
+     "new_this_side": 27949,
+     "other_side": 19203,
+     "other_side_all_levels": 28150,
+     "ratio": 2.7,
+     "this_side": 51330,
+     "this_side_all_levels": 70540
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "New York Rangers",
+     "price": 0.5434,
+     "this_side": 2149
+    }
+   },
+   "fade_price": 0.46,
+   "first_seen_utc": "2026-11-01T08:30:13Z",
+   "game": "Oilers vs. Rangers",
+   "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"5329761\"}",
+   "lead_min": 860,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 27949,
+   "paper_only": false,
+   "price": 0.55,
+   "price_american": -122,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.55,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -130
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -126
+    },
+    "betopenly": {
+     "point": null,
+     "price": -115
+    },
+    "betrivers": {
+     "point": null,
+     "price": -122
+    },
+    "betus": {
+     "point": null,
+     "price": -125
+    },
+    "bovada": {
+     "point": null,
+     "price": -130
+    },
+    "draftkings": {
+     "point": null,
+     "price": -125
+    },
+    "fanatics": {
+     "point": null,
+     "price": -130
+    },
+    "fanduel": {
+     "point": null,
+     "price": -126
+    },
+    "kalshi": {
+     "point": null,
+     "price": -113
+    },
+    "lowvig": {
+     "point": null,
+     "price": -126
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -128
+    },
+    "novig": {
+     "point": null,
+     "price": -122
+    },
+    "polymarket": {
+     "point": null,
+     "price": -122
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -122
+    },
+    "prophetx": {
+     "point": null,
+     "price": -119
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -122
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 1,
+    "pm_market_id": "5329761"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Rangers",
+   "side_label": "Rangers",
+   "start_source": "polymarket",
+   "start_utc": "2026-11-01T23:00:00Z",
+   "teams": [
+    "Oilers",
+    "Rangers"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-01T08:40:11Z",
+   "base_depth": 216629,
+   "best_price": 0.605,
+   "best_price_american": -153,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.61,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-01",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -8778,
+     "new_this_side": 49799,
+     "other_side": 67384,
+     "other_side_all_levels": 111011,
+     "ratio": 2.7,
+     "this_side": 182499,
+     "this_side_all_levels": 268344
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "UTA (0)",
+     "price": 0.605,
+     "this_side": 21691
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Utah",
+     "price": 0.61,
+     "this_side": 64506
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Utah Mammoth",
+     "price": 0.6124,
+     "this_side": 3175
+    }
+   },
+   "fade_price": 0.4,
+   "first_seen_utc": "2026-11-01T08:30:13Z",
+   "game": "Utah vs Philadelphia",
+   "key": "kalshi|KXNHLGAME-26NOV01UTAPHI|ml|0",
+   "lead_min": 740,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 49799,
+   "paper_only": false,
+   "price": 0.61,
+   "price_american": -156,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.61,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -165
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -160
+    },
+    "betopenly": {
+     "point": null,
+     "price": -150
+    },
+    "betrivers": {
+     "point": null,
+     "price": -162
+    },
+    "betus": {
+     "point": null,
+     "price": -160
+    },
+    "bovada": {
+     "point": null,
+     "price": -163
+    },
+    "draftkings": {
+     "point": null,
+     "price": -162
+    },
+    "fanatics": {
+     "point": null,
+     "price": -165
+    },
+    "fanduel": {
+     "point": null,
+     "price": -164
+    },
+    "kalshi": {
+     "point": null,
+     "price": -156
+    },
+    "lowvig": {
+     "point": null,
+     "price": -160
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -159
+    },
+    "novig": {
+     "point": null,
+     "price": -153
+    },
+    "polymarket": {
+     "point": null,
+     "price": -156
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -156
+    },
+    "prophetx": {
+     "point": null,
+     "price": -158
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -164
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNHLGAME-26NOV01UTAPHI-UTA"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "polymarket"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Utah",
+   "side_label": "Utah",
+   "start_source": "odds",
+   "start_utc": "2026-11-01T21:00:00Z",
+   "teams": [
+    "Utah",
+    "Philadelphia"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-01T08:40:11Z",
+   "base_depth": 2616747,
+   "best_price": 0.54,
+   "best_price_american": -117,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.54,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-01",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -1229,
+     "new_this_side": 128411,
+     "other_side": 2044773,
+     "other_side_all_levels": 2374083,
+     "ratio": 1.2,
+     "this_side": 2369137,
+     "this_side_all_levels": 2743169
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "NYJ (0)",
+     "price": 0.54,
+     "this_side": 109783
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "New York Jets",
+     "price": 0.5392,
+     "this_side": 29644
+    }
+   },
+   "fade_price": 0.47,
+   "first_seen_utc": "2026-11-01T08:30:13Z",
+   "game": "Las Vegas vs New York J",
+   "key": "kalshi|KXNFLGAME-26NOV01LVNYJ|ml|1",
+   "lead_min": 560,
+   "league": "NFL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 128411,
+   "paper_only": false,
+   "price": 0.54,
+   "price_american": -117,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.54,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -120
+    },
+    "betopenly": {
+     "point": null,
+     "price": -110
+    },
+    "betrivers": {
+     "point": null,
+     "price": -120
+    },
+    "bovada": {
+     "point": null,
+     "price": -127
+    },
+    "draftkings": {
+     "point": null,
+     "price": -122
+    },
+    "fanatics": {
+     "point": null,
+     "price": -125
+    },
+    "fanduel": {
+     "point": null,
+     "price": -118
+    },
+    "kalshi": {
+     "point": null,
+     "price": -117
+    },
+    "limitless": {
+     "point": null,
+     "price": -124
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -121
+    },
+    "novig": {
+     "point": null,
+     "price": -117
+    },
+    "polymarket": {
+     "point": null,
+     "price": -117
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -115
+    },
+    "prophetx": {
+     "point": null,
+     "price": -117
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -121
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNFLGAME-26NOV01LVNYJ-NYJ"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "New York J",
+   "side_label": "New York J",
+   "start_source": "odds",
+   "start_utc": "2026-11-01T18:00:00Z",
+   "teams": [
+    "Las Vegas",
+    "New York J"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-01T07:02:48Z",
    "base_depth": 13801,
    "best_price": 0.6865,
@@ -1988,8 +2440,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.57,
-   "clv_cents": 1.0,
+   "close_price": 0.56,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
