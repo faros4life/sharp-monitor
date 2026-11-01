@@ -1,6 +1,165 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-01T17:00:17Z",
+   "base_depth": 98718,
+   "best_price": 0.5288,
+   "best_price_american": -112,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.53,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-01",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Ottawa",
+     "price": 0.53,
+     "this_side": 487873
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "OTT (0)",
+     "price": 0.535,
+     "this_side": 32917
+    },
+    "polymarket": {
+     "new_other_side": -3954,
+     "new_this_side": 43333,
+     "other_side": 62644,
+     "other_side_all_levels": 63622,
+     "ratio": 2.0,
+     "this_side": 126472,
+     "this_side_all_levels": 141278
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Ottawa Senators",
+     "price": 0.5238,
+     "this_side": 10291
+    }
+   },
+   "fade_price": 0.48,
+   "first_seen_utc": "2026-11-01T16:50:09Z",
+   "game": "Senators vs. Ducks",
+   "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"5329766\"}",
+   "lead_min": 480,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 43333,
+   "paper_only": false,
+   "price": 0.53,
+   "price_american": -113,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.53,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -118
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -114
+    },
+    "betopenly": {
+     "point": null,
+     "price": -105
+    },
+    "betrivers": {
+     "point": null,
+     "price": -120
+    },
+    "betus": {
+     "point": null,
+     "price": -115
+    },
+    "bovada": {
+     "point": null,
+     "price": -120
+    },
+    "draftkings": {
+     "point": null,
+     "price": -118
+    },
+    "fanatics": {
+     "point": null,
+     "price": -120
+    },
+    "fanduel": {
+     "point": null,
+     "price": -115
+    },
+    "kalshi": {
+     "point": null,
+     "price": -113
+    },
+    "lowvig": {
+     "point": null,
+     "price": -114
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -121
+    },
+    "novig": {
+     "point": null,
+     "price": -115
+    },
+    "polymarket": {
+     "point": null,
+     "price": -113
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -113
+    },
+    "prophetx": {
+     "point": null,
+     "price": -110
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -117
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 0,
+    "pm_market_id": "5329766"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Senators",
+   "side_label": "Senators",
+   "start_source": "odds",
+   "start_utc": "2026-11-02T01:00:00Z",
+   "teams": [
+    "Senators",
+    "Ducks"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-01T16:50:09Z",
    "base_depth": 156982,
    "best_price": 0.53,
@@ -116,7 +275,8 @@
      "price": -120
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-01T17:00:17Z",
    "ref": {
     "market_id": "01a15b22-a773-7150-bbb5-16f7fc4720e2",
     "outcome_id": "01a15b22-a773-7150-bbb5-171caa38f520"
@@ -154,8 +314,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 0.0,
+   "close_price": 0.53,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -321,6 +481,8 @@
    "new_money": 202091,
    "paper_only": false,
    "price": 0.52,
+   "price_after_15m": 0.5333,
+   "price_after_15m_book": "prophetx",
    "price_american": -108,
    "price_rule": "ok",
    "price_when_first_seen": 0.52,
@@ -408,6 +570,7 @@
    "side_label": "Over 45.5 points",
    "start_source": "odds",
    "start_utc": "2026-11-01T18:00:00Z",
+   "still_actionable": false,
    "teams": [
     "Tennessee",
     "Cincinnati"
@@ -1104,7 +1267,8 @@
      "price": -115
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-01T17:00:17Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNFLSPREAD-26NOV01PHIWAS-WAS6"
@@ -1289,8 +1453,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.54,
-   "clv_cents": 0.0,
+   "close_price": 0.545,
+   "clv_cents": 0.5,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -1685,7 +1849,8 @@
      "price": 100
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-01T17:00:17Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNFLSPREAD-26NOV01MINDET-DET4"
@@ -1726,8 +1891,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.65,
-   "clv_cents": 0.0,
+   "close_price": 0.645,
+   "clv_cents": -0.5,
    "confirmed_after_min": 5,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -2635,8 +2800,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.545,
-   "clv_cents": 0.5,
+   "close_price": 0.54,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -2795,8 +2960,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.76,
-   "clv_cents": 1.0,
+   "close_price": 0.755,
+   "clv_cents": 0.5,
    "confirmed_after_min": 11,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -5017,8 +5182,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": 3.0,
+   "close_price": 0.52,
+   "clv_cents": 2.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -7124,8 +7289,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.495,
-   "clv_cents": -1.5,
+   "close_price": 0.5,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -10420,8 +10585,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 0.0,
+   "close_price": 0.53,
+   "clv_cents": 1.0,
    "confirmed_after_min": 13,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -15591,8 +15756,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.75,
-   "clv_cents": 0.0,
+   "close_price": 0.76,
+   "clv_cents": 1.0,
    "confirmed_after_min": 7,
    "date": "2026-11-01",
    "depth_by_book": {
