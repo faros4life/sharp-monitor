@@ -1,7 +1,166 @@
 {
  "alerts": [
   {
-   "alerted_utc": "2026-10-31T23:56:08Z",
+   "alerted_utc": "2026-11-01T00:01:47Z",
+   "base_depth": 529315,
+   "best_price": 0.7836,
+   "best_price_american": -362,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.79,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 12,
+   "date": "2026-10-31",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 2543,
+     "new_this_side": 75246,
+     "other_side": 234931,
+     "other_side_all_levels": 263834,
+     "ratio": 1.9,
+     "this_side": 435935,
+     "this_side_all_levels": 597925
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "COL (0)",
+     "price": 0.785,
+     "this_side": 32993
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Avalanche",
+     "price": 0.78,
+     "this_side": 174304
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Colorado Avalanche",
+     "price": 0.7802,
+     "this_side": 18713
+    }
+   },
+   "fade_price": 0.22,
+   "first_seen_utc": "2026-10-31T23:50:10Z",
+   "game": "Calgary vs Colorado",
+   "key": "kalshi|KXNHLGAME-26OCT31CGYCOL|ml|1",
+   "lead_min": 118,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 75246,
+   "paper_only": false,
+   "price": 0.79,
+   "price_american": -376,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.79,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -450
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -380
+    },
+    "betopenly": {
+     "point": null,
+     "price": -355
+    },
+    "betrivers": {
+     "point": null,
+     "price": -455
+    },
+    "betus": {
+     "point": null,
+     "price": -380
+    },
+    "bovada": {
+     "point": null,
+     "price": -410
+    },
+    "draftkings": {
+     "point": null,
+     "price": -380
+    },
+    "fanatics": {
+     "point": null,
+     "price": -400
+    },
+    "fanduel": {
+     "point": null,
+     "price": -420
+    },
+    "kalshi": {
+     "point": null,
+     "price": -376
+    },
+    "lowvig": {
+     "point": null,
+     "price": -380
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -440
+    },
+    "novig": {
+     "point": null,
+     "price": -365
+    },
+    "polymarket": {
+     "point": null,
+     "price": -355
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -376
+    },
+    "prophetx": {
+     "point": null,
+     "price": -355
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -420
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNHLGAME-26OCT31CGYCOL-COL"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Colorado",
+   "side_label": "Colorado",
+   "start_source": "odds",
+   "start_utc": "2026-11-01T02:00:00Z",
+   "teams": [
+    "Calgary",
+    "Colorado"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-10-31T23:50:10Z",
    "base_depth": 129962,
    "best_price": 0.4975,
    "best_price_american": 101,
@@ -17,42 +176,42 @@
    ],
    "close_price": 0.5,
    "clv_cents": 0.0,
-   "confirmed_after_min": 16,
+   "confirmed_after_min": 10,
    "date": "2026-10-31",
    "depth_by_book": {
     "kalshi": {
      "heavier_side": true,
      "label": "NOT Cleveland wins by over 8.5 points",
      "price": 0.48,
-     "this_side": 271757
+     "this_side": 294227
     },
     "novig": {
-     "heavier_side": false,
+     "heavier_side": true,
      "label": "MIL +8.5 (8.5)",
-     "price": 0.505,
-     "this_side": 44512
+     "price": 0.5,
+     "this_side": 33795
     },
     "polymarket": {
      "new_other_side": 15706,
      "new_this_side": 295780,
-     "other_side": 118188,
-     "other_side_all_levels": 157334,
-     "ratio": 3.2,
-     "this_side": 383021,
-     "this_side_all_levels": 411417
+     "other_side": 65007,
+     "other_side_all_levels": 91049,
+     "ratio": 5.9,
+     "this_side": 382705,
+     "this_side_all_levels": 427857
     },
     "prophetx": {
-     "heavier_side": false,
+     "heavier_side": true,
      "label": "Milwaukee Bucks +8.5 (+8.5)",
-     "price": 0.5074,
-     "this_side": 15211
+     "price": 0.5,
+     "this_side": 15818
     }
    },
    "fade_price": 0.51,
    "first_seen_utc": "2026-10-31T23:40:10Z",
    "game": "Cavaliers vs. Bucks",
    "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6440488\"}",
-   "lead_min": 4,
+   "lead_min": 10,
    "league": "NBA",
    "line": 8.5,
    "market": "spread",
@@ -101,27 +260,27 @@
     },
     "kalshi": {
      "point": 8.5,
-     "price": -104
+     "price": 108
     },
     "lowvig": {
      "point": 8.5,
      "price": -106
     },
     "mybookieag": {
-     "point": 8.5,
+     "point": 9.0,
      "price": -110
     },
     "novig": {
      "point": 8.5,
-     "price": -102
+     "price": 100
     },
     "polymarket": {
      "point": 8.5,
-     "price": -104
+     "price": 100
     },
     "prophetx": {
      "point": 9.5,
-     "price": -124
+     "price": -118
     },
     "williamhill_us": {
      "point": 8.5,
@@ -136,9 +295,11 @@
    "result": null,
    "rule_met": true,
    "second_book": [
-    "kalshi"
+    "kalshi",
+    "novig",
+    "prophetx"
    ],
-   "second_book_fresh": false,
+   "second_book_fresh": true,
    "second_book_status": "ok",
    "sharp_agree": [],
    "sharp_oppose": [],
@@ -154,7 +315,7 @@
    "units_flat": null
   },
   {
-   "alerted_utc": "2026-10-31T23:56:08Z",
+   "alerted_utc": "2026-10-31T23:50:10Z",
    "base_depth": 4091228,
    "best_price": 0.8144,
    "best_price_american": -439,
@@ -170,23 +331,23 @@
    ],
    "close_price": 0.81,
    "clv_cents": 0.0,
-   "confirmed_after_min": 16,
+   "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
     "kalshi": {
      "new_other_side": 1907,
      "new_this_side": 765084,
-     "other_side": 687059,
-     "other_side_all_levels": 781581,
+     "other_side": 687260,
+     "other_side_all_levels": 781524,
      "ratio": 6.4,
-     "this_side": 4366762,
-     "this_side_all_levels": 4856050
+     "this_side": 4366836,
+     "this_side_all_levels": 4856126
     },
     "novig": {
      "heavier_side": true,
      "label": "JAX (0)",
      "price": 0.815,
-     "this_side": 94234
+     "this_side": 94229
     },
     "prophetx": {
      "heavier_side": true,
@@ -199,7 +360,7 @@
    "first_seen_utc": "2026-10-31T23:40:10Z",
    "game": "Indianapolis vs Jacksonville",
    "key": "kalshi|KXNFLGAME-26NOV01INDJAC|ml|1",
-   "lead_min": 1084,
+   "lead_min": 1090,
    "league": "NFL",
    "line": null,
    "market": "moneyline",
@@ -324,8 +485,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": 0.0,
+   "close_price": 0.52,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-31",
    "depth_by_book": {
@@ -362,8 +523,8 @@
    "new_money": 55195,
    "paper_only": false,
    "price": 0.51,
-   "price_after_15m": 0.51,
-   "price_after_15m_book": "novig",
+   "price_after_15m": 0.5375,
+   "price_after_15m_book": "kalshi",
    "price_american": -104,
    "price_rule": "ok",
    "price_when_first_seen": 0.52,
@@ -433,7 +594,8 @@
      "price": -113
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-01T00:01:47Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFSPREAD-26OCT31ARMYMEM-MEM7"
@@ -451,7 +613,7 @@
    "side_label": "NOT Memphis wins by over 6.5 points",
    "start_source": "odds",
    "start_utc": "2026-11-01T00:10:00Z",
-   "still_actionable": true,
+   "still_actionable": false,
    "teams": [
     "Army",
     "Memphis"
@@ -512,8 +674,6 @@
    "new_money": 34416,
    "paper_only": false,
    "price": 0.49,
-   "price_after_15m": 0.485,
-   "price_after_15m_book": "novig",
    "price_american": 104,
    "price_rule": "ok",
    "price_when_first_seen": 0.49,
@@ -602,7 +762,6 @@
    "side_label": "NOT San Antonio wins by over 12.5 points",
    "start_source": "odds",
    "start_utc": "2026-11-01T00:00:00Z",
-   "still_actionable": true,
    "teams": [
     "Minnesota",
     "San Antonio"
@@ -669,7 +828,7 @@
    "new_money": 116627,
    "paper_only": false,
    "price": 0.57,
-   "price_after_15m": 0.57,
+   "price_after_15m": 0.575,
    "price_after_15m_book": "novig",
    "price_american": -133,
    "price_rule": "ml_edge_fail",
@@ -772,7 +931,7 @@
    "side_label": "Houston",
    "start_source": "odds",
    "start_utc": "2026-11-01T00:30:00Z",
-   "still_actionable": true,
+   "still_actionable": false,
    "teams": [
     "Oklahoma City",
     "Houston"
@@ -1252,8 +1411,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 2.0,
+   "close_price": 0.51,
+   "clv_cents": 1.0,
    "confirmed_after_min": 8,
    "date": "2026-10-31",
    "depth_by_book": {
@@ -1716,8 +1875,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.63,
-   "clv_cents": 0.0,
+   "close_price": 0.64,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-31",
    "depth_by_book": {
@@ -3579,6 +3738,7 @@
     "polymarket",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.76,
    "clv_cents": -1.0,
    "confirmed_after_min": 10,
@@ -4523,8 +4683,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.57,
-   "clv_cents": 0.0,
+   "close_price": 0.58,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-31",
    "depth_by_book": {
@@ -9613,8 +9773,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.54,
-   "clv_cents": 2.0,
+   "close_price": 0.53,
+   "clv_cents": 1.0,
    "confirmed_after_min": 19,
    "date": "2026-10-31",
    "depth_by_book": {
@@ -11996,8 +12156,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.44,
-   "clv_cents": 0.0,
+   "close_price": 0.43,
+   "clv_cents": -1.0,
    "confirmed_after_min": 20,
    "date": "2026-10-31",
    "depth_by_book": {
