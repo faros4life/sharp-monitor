@@ -1,6 +1,145 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-01T05:40:09Z",
+   "base_depth": 594604,
+   "best_price": 0.485,
+   "best_price_american": 106,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.49,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-01",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 48809,
+     "new_this_side": 657985,
+     "other_side": 745469,
+     "other_side_all_levels": 870302,
+     "ratio": 1.3,
+     "this_side": 934439,
+     "this_side_all_levels": 1113622
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "Under 40.5 (40.5)",
+     "price": 0.485,
+     "this_side": 39156
+    }
+   },
+   "fade_price": 0.52,
+   "first_seen_utc": "2026-11-01T05:30:13Z",
+   "game": "Kansas City vs Denver: Total Points",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNFLTOTAL-26NOV01KCDEN-41\"}",
+   "lead_min": 945,
+   "league": "NFL",
+   "line": 40.5,
+   "market": "total",
+   "new_money": 657985,
+   "paper_only": false,
+   "price": 0.49,
+   "price_american": 104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.49,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 40.5,
+     "price": -108
+    },
+    "betonlineag": {
+     "point": 41.0,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 40.5,
+     "price": 101
+    },
+    "betrivers": {
+     "point": 40.5,
+     "price": -108
+    },
+    "betus": {
+     "point": 40.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 40.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 40.5,
+     "price": -108
+    },
+    "fanatics": {
+     "point": 40.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 40.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": 41.5,
+     "price": -108
+    },
+    "lowvig": {
+     "point": 41.0,
+     "price": -107
+    },
+    "mybookieag": {
+     "point": 40.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 40.5,
+     "price": 106
+    },
+    "polymarket": {
+     "point": 40.5,
+     "price": 104
+    },
+    "prophetx": {
+     "point": 40.5,
+     "price": 106
+    },
+    "williamhill_us": {
+     "point": 40.5,
+     "price": -105
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNFLTOTAL-26NOV01KCDEN-41"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "NOT Over 40.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-11-01T21:25:00Z",
+   "teams": [
+    "Kansas City",
+    "Denver"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-01T05:30:13Z",
    "base_depth": 665083,
    "best_price": 0.5051,
@@ -194,6 +333,8 @@
    "new_money": 450139,
    "paper_only": false,
    "price": 0.48,
+   "price_after_15m": 0.475,
+   "price_after_15m_book": "novig",
    "price_american": 108,
    "price_rule": "ok",
    "price_when_first_seen": 0.48,
@@ -279,6 +420,7 @@
    "side_label": "Dallas wins by over 7.5 points",
    "start_source": "odds",
    "start_utc": "2026-11-01T18:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Arizona",
     "Dallas"
@@ -1305,8 +1447,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.56,
-   "clv_cents": 0.0,
+   "close_price": 0.55,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -2749,8 +2891,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.45,
-   "clv_cents": 7.0,
+   "close_price": 0.46,
+   "clv_cents": 8.0,
    "confirmed_after_min": 13,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -3660,8 +3802,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.61,
-   "clv_cents": -1.0,
+   "close_price": 0.62,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
