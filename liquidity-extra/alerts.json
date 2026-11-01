@@ -1,6 +1,154 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-01T02:50:15Z",
+   "base_depth": 196416,
+   "best_price": 0.645,
+   "best_price_american": -182,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.65,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-01",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 414,
+     "new_this_side": 80736,
+     "other_side": 95892,
+     "other_side_all_levels": 103466,
+     "ratio": 2.7,
+     "this_side": 262528,
+     "this_side_all_levels": 277222
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "J. Lehecka (0)",
+     "price": 0.645,
+     "this_side": 7439
+    }
+   },
+   "fade_price": 0.36,
+   "first_seen_utc": "2026-11-01T02:40:16Z",
+   "game": "Lehecka vs Vacherot",
+   "key": "kalshi|KXATPMATCH-26NOV01LEHVAC|ml|0",
+   "lead_min": 700,
+   "league": "TENNIS",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 80736,
+   "paper_only": true,
+   "price": 0.65,
+   "price_american": -186,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.65,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXATPMATCH-26NOV01LEHVAC-LEH"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Lehecka",
+   "side_label": "Lehecka",
+   "start_source": "novig",
+   "start_utc": "2026-11-01T14:30:00Z",
+   "teams": [
+    "Lehecka",
+    "Vacherot"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-01T02:50:15Z",
+   "base_depth": 56673,
+   "best_price": 0.83,
+   "best_price_american": -488,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.84,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-01",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 12476,
+     "new_this_side": 45145,
+     "other_side": 19081,
+     "other_side_all_levels": 21907,
+     "ratio": 4.2,
+     "this_side": 80424,
+     "this_side_all_levels": 102936
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "T. Machac (0)",
+     "price": 0.83,
+     "this_side": 8797
+    }
+   },
+   "fade_price": 0.17,
+   "first_seen_utc": "2026-11-01T02:40:16Z",
+   "game": "Baez vs Machac",
+   "key": "kalshi|KXATPMATCH-26NOV01BAEMAC|ml|1",
+   "lead_min": 500,
+   "league": "TENNIS",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 45145,
+   "paper_only": true,
+   "price": 0.84,
+   "price_american": -525,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.84,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXATPMATCH-26NOV01BAEMAC-MAC"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Machac",
+   "side_label": "Machac",
+   "start_source": "novig",
+   "start_utc": "2026-11-01T11:10:00Z",
+   "teams": [
+    "Baez",
+    "Machac"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-01T02:20:16Z",
    "base_depth": 29453,
    "best_price": 0.8494,
@@ -15,8 +163,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.71,
-   "clv_cents": -13.0,
+   "close_price": 0.74,
+   "clv_cents": -10.0,
    "confirmed_after_min": 10,
    "date": "2026-10-31",
    "depth_by_book": {
