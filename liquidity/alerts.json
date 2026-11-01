@@ -1,6 +1,141 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-01T16:10:09Z",
+   "base_depth": 58125,
+   "best_price": 0.5076,
+   "best_price_american": -103,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "prophetx",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.5025,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-01",
+   "depth_by_book": {
+    "prophetx": {
+     "new_other_side": 7534,
+     "new_this_side": 32229,
+     "other_side": 58143,
+     "other_side_all_levels": 58365,
+     "ratio": 1.5,
+     "this_side": 88340,
+     "this_side_all_levels": 88532
+    }
+   },
+   "fade_price": 0.5025,
+   "first_seen_utc": "2026-11-01T16:00:15Z",
+   "game": "Indianapolis Colts at Jacksonville Jaguars",
+   "key": "prophetx|{\"line\": 10.0, \"px_event\": 1700008832, \"px_market\": 223, \"side\": \"1\"}",
+   "lead_min": 110,
+   "league": "NFL",
+   "line": -10.0,
+   "market": "spread",
+   "new_money": 32229,
+   "paper_only": false,
+   "price": 0.5025,
+   "price_american": -101,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.5098,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -10.0,
+     "price": -108
+    },
+    "betonlineag": {
+     "point": -10.0,
+     "price": -107
+    },
+    "betopenly": {
+     "point": -10.0,
+     "price": -104
+    },
+    "betrivers": {
+     "point": -10.0,
+     "price": -113
+    },
+    "betus": {
+     "point": -10.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": -10.0,
+     "price": -112
+    },
+    "draftkings": {
+     "point": -10.0,
+     "price": -112
+    },
+    "fanatics": {
+     "point": -10.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": -10.5,
+     "price": -102
+    },
+    "kalshi": {
+     "point": -10.5,
+     "price": 108
+    },
+    "lowvig": {
+     "point": -10.5,
+     "price": 104
+    },
+    "mybookieag": {
+     "point": -10.5,
+     "price": -110
+    },
+    "novig": {
+     "point": -10.5,
+     "price": 108
+    },
+    "polymarket": {
+     "point": -9.5,
+     "price": -113
+    },
+    "prophetx": {
+     "point": -10.5,
+     "price": 108
+    },
+    "williamhill_us": {
+     "point": -10.0,
+     "price": -109
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "line": 10.0,
+    "px_event": 1700008832,
+    "px_market": 223,
+    "side": "1"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Jacksonville Jaguars",
+   "side_label": "Jacksonville Jaguars -10 (-10)",
+   "start_source": "odds",
+   "start_utc": "2026-11-01T18:00:00Z",
+   "teams": [
+    "Indianapolis Colts",
+    "Jacksonville Jaguars"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-01T16:00:15Z",
    "base_depth": 1673682,
    "best_price": 0.5148,
@@ -15,8 +150,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": 0.0,
+   "close_price": 0.51,
+   "clv_cents": 1.0,
    "confirmed_after_min": 7,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -611,6 +746,8 @@
    "new_money": 79235,
    "paper_only": false,
    "price": 0.52,
+   "price_after_15m": 0.515,
+   "price_after_15m_book": "novig",
    "price_american": -108,
    "price_rule": "ok",
    "price_when_first_seen": 0.52,
@@ -698,6 +835,7 @@
    "side_label": "NOT Over 46.5 points",
    "start_source": "odds",
    "start_utc": "2026-11-01T18:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Indianapolis",
     "Jacksonville"
@@ -720,8 +858,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.545,
-   "clv_cents": 0.5,
+   "close_price": 0.55,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -1610,8 +1748,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": 1.0,
+   "close_price": 0.51,
+   "clv_cents": 2.0,
    "confirmed_after_min": 5,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -2065,8 +2203,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.54,
-   "clv_cents": 0.0,
+   "close_price": 0.545,
+   "clv_cents": 0.5,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -2182,7 +2320,8 @@
      "price": -125
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-01T16:10:09Z",
    "ref": {
     "market_id": "01a15b07-8680-7bd0-b71a-20f9edcfa365",
     "outcome_id": "01a15b07-8680-7bd0-b71a-210b3fd57532"
@@ -2224,8 +2363,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.755,
-   "clv_cents": 0.5,
+   "close_price": 0.75,
+   "clv_cents": 0.0,
    "confirmed_after_min": 11,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -4283,8 +4422,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.62,
-   "clv_cents": 1.0,
+   "close_price": 0.63,
+   "clv_cents": 2.0,
    "confirmed_after_min": 14,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -7466,8 +7605,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.84,
-   "clv_cents": 1.0,
+   "close_price": 0.85,
+   "clv_cents": 2.0,
    "confirmed_after_min": 13,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -9991,8 +10130,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": 0.0,
+   "close_price": 0.5,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
