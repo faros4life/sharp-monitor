@@ -1,6 +1,316 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-01T19:20:11Z",
+   "base_depth": 94487,
+   "best_price": 0.49,
+   "best_price_american": 104,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.49,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-01",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "NOT Boston wins by over 7.5 points",
+     "price": 0.49,
+     "this_side": 150710
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "ORL +7.5 (7.5)",
+     "price": 0.49,
+     "this_side": 37159
+    },
+    "polymarket": {
+     "new_other_side": -4505,
+     "new_this_side": 263026,
+     "other_side": 97638,
+     "other_side_all_levels": 152134,
+     "ratio": 3.5,
+     "this_side": 344479,
+     "this_side_all_levels": 386577
+    }
+   },
+   "fade_price": 0.52,
+   "first_seen_utc": "2026-11-01T19:10:11Z",
+   "game": "Celtics vs. Magic",
+   "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6484208\"}",
+   "lead_min": 70,
+   "league": "NBA",
+   "line": 7.5,
+   "market": "spread",
+   "new_money": 263026,
+   "paper_only": false,
+   "price": 0.49,
+   "price_american": 104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.49,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 7.5,
+     "price": -105
+    },
+    "betonlineag": {
+     "point": 7.5,
+     "price": -105
+    },
+    "betopenly": {
+     "point": 8.0,
+     "price": -104
+    },
+    "betrivers": {
+     "point": 7.5,
+     "price": -108
+    },
+    "betus": {
+     "point": 7.5,
+     "price": -105
+    },
+    "bovada": {
+     "point": 8.0,
+     "price": -115
+    },
+    "draftkings": {
+     "point": 7.5,
+     "price": -108
+    },
+    "fanatics": {
+     "point": 7.5,
+     "price": -105
+    },
+    "fanduel": {
+     "point": 7.5,
+     "price": -106
+    },
+    "kalshi": {
+     "point": 7.5,
+     "price": 104
+    },
+    "lowvig": {
+     "point": 7.5,
+     "price": -101
+    },
+    "mybookieag": {
+     "point": 7.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 7.5,
+     "price": 104
+    },
+    "polymarket": {
+     "point": 7.5,
+     "price": 104
+    },
+    "prophetx": {
+     "point": 7.5,
+     "price": 104
+    },
+    "williamhill_us": {
+     "point": 8.0,
+     "price": -115
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 1,
+    "pm_market_id": "6484208"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [
+    "Boston Celtics -6.5 (-111)"
+   ],
+   "side": "Magic",
+   "side_label": "Magic (+7.5)",
+   "start_source": "odds",
+   "start_utc": "2026-11-01T20:30:00Z",
+   "teams": [
+    "Celtics",
+    "Magic"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-01T19:20:11Z",
+   "base_depth": 85034,
+   "best_price": 0.28,
+   "best_price_american": 257,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.28,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-01",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": false,
+     "label": "Orlando",
+     "price": 0.28,
+     "this_side": 391540
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "ORL (0)",
+     "price": 0.28,
+     "this_side": 34509
+    },
+    "polymarket": {
+     "new_other_side": 486,
+     "new_this_side": 206332,
+     "other_side": 151971,
+     "other_side_all_levels": 221144,
+     "ratio": 2.1,
+     "this_side": 311767,
+     "this_side_all_levels": 336620
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "Orlando Magic",
+     "price": 0.2817,
+     "this_side": 14536
+    }
+   },
+   "fade_price": 0.73,
+   "first_seen_utc": "2026-11-01T19:10:11Z",
+   "game": "Celtics vs. Magic",
+   "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6233644\"}",
+   "lead_min": 70,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 206332,
+   "paper_only": false,
+   "price": 0.28,
+   "price_american": 257,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.28,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": 240
+    },
+    "betonlineag": {
+     "point": null,
+     "price": 245
+    },
+    "betopenly": {
+     "point": null,
+     "price": 235
+    },
+    "betrivers": {
+     "point": null,
+     "price": 240
+    },
+    "betus": {
+     "point": null,
+     "price": 240
+    },
+    "bovada": {
+     "point": null,
+     "price": 230
+    },
+    "draftkings": {
+     "point": null,
+     "price": 240
+    },
+    "fanatics": {
+     "point": null,
+     "price": 240
+    },
+    "fanduel": {
+     "point": null,
+     "price": 245
+    },
+    "kalshi": {
+     "point": null,
+     "price": 257
+    },
+    "limitless": {
+     "point": null,
+     "price": 234
+    },
+    "lowvig": {
+     "point": null,
+     "price": 248
+    },
+    "mybookieag": {
+     "point": null,
+     "price": 220
+    },
+    "novig": {
+     "point": null,
+     "price": 257
+    },
+    "polymarket": {
+     "point": null,
+     "price": 257
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": 257
+    },
+    "prophetx": {
+     "point": null,
+     "price": 255
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": 235
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 1,
+    "pm_market_id": "6233644"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [
+    "Boston Celtics -6.5 (-111)"
+   ],
+   "side": "Magic",
+   "side_label": "Magic",
+   "start_source": "odds",
+   "start_utc": "2026-11-01T20:30:00Z",
+   "teams": [
+    "Celtics",
+    "Magic"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-01T18:50:11Z",
    "base_depth": 104689,
    "best_price": 0.5265,
@@ -6848,7 +7158,8 @@
      "price": -170
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-01T19:20:11Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNFLGAME-26NOV02CHISEA-SEA"
