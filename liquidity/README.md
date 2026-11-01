@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 1, 2:40 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 44.
+Updated Sun Nov 1, 2:50 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 44.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -58,7 +58,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 31 8:20PM | NCAAF | Texas St. vs Boise St.: Total Points | total: NOT Over 63.5 points | kalshi | $190k | -104 | ✅ novig | ✅ | -2.0c | yes | L |
 | Oct 31 8:20PM | NCAAF | Oregon St. vs Fresno St.: Total Points | total: NOT Over 56.5 points | kalshi | $108k | +104 |  | ✅ | +1.0c | yes | L |
 | Oct 31 8:20PM | NCAAF | Texas St. vs Boise St. | moneyline: Boise St. | kalshi | $241k | -376 | ✅ novig | ❌ | +0.0c | yes | W |
-| Oct 31 8:10PM | NFL | Arizona vs Dallas: Total Points | total: NOT Over 54.5 points | kalshi | $63k | -104 |  |  | +0.0c |  | pending |
+| Oct 31 8:10PM | NFL | Arizona vs Dallas: Total Points | total: NOT Over 54.5 points | kalshi | $63k | -104 |  |  | -1.0c |  | pending |
 | Oct 31 8:01PM | NHL | Calgary vs Colorado | moneyline: Colorado | kalshi | $75k | -376 | ✅ novig,polymarket,prophetx |  | +0.0c | yes | W |
 | Oct 31 7:50PM | NBA | Cavaliers vs. Bucks | spread: Bucks (+8.5) | polymarket | $296k | -100 | ✅ kalshi,novig,prophetx |  | +0.0c |  | L |
 | Oct 31 7:50PM | NFL | Indianapolis vs Jacksonville | moneyline: Jacksonville | kalshi | $765k | -426 | ✅ novig,prophetx |  | +0.0c |  | pending |
