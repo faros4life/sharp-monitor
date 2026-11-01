@@ -1,7 +1,7 @@
 {
  "alerts": [
   {
-   "alerted_utc": "2026-11-01T01:48:41Z",
+   "alerted_utc": "2026-11-01T01:52:57Z",
    "base_depth": 2530367,
    "best_price": 0.485,
    "best_price_american": 106,
@@ -17,36 +17,36 @@
    ],
    "close_price": 0.48,
    "clv_cents": 0.0,
-   "confirmed_after_min": 9,
+   "confirmed_after_min": 13,
    "date": "2026-11-01",
    "depth_by_book": {
     "kalshi": {
      "new_other_side": -110660,
      "new_this_side": 234557,
-     "other_side": 1846355,
-     "other_side_all_levels": 2320397,
+     "other_side": 1850631,
+     "other_side_all_levels": 2324686,
      "ratio": 1.4,
-     "this_side": 2516498,
-     "this_side_all_levels": 2909085
+     "this_side": 2521023,
+     "this_side_all_levels": 2913611
     },
     "novig": {
      "heavier_side": true,
      "label": "DEN (0)",
      "price": 0.485,
-     "this_side": 84382
+     "this_side": 84104
     },
     "prophetx": {
      "heavier_side": true,
      "label": "Denver Broncos",
      "price": 0.4854,
-     "this_side": 28001
+     "this_side": 27874
     }
    },
    "fade_price": 0.52,
    "first_seen_utc": "2026-11-01T01:40:10Z",
    "game": "Kansas City vs Denver",
    "key": "kalshi|KXNFLGAME-26NOV01KCDEN|ml|1",
-   "lead_min": 1176,
+   "lead_min": 1172,
    "league": "NFL",
    "line": null,
    "market": "moneyline",
@@ -153,12 +153,12 @@
    "units_flat": null
   },
   {
-   "alerted_utc": "2026-11-01T01:48:41Z",
+   "alerted_utc": "2026-11-01T01:52:57Z",
    "base_depth": 12797,
-   "best_price": 0.3761,
-   "best_price_american": 166,
+   "best_price": 0.3965,
+   "best_price_american": 152,
    "best_price_book": "kalshi",
-   "bid_improved": false,
+   "bid_improved": true,
    "bid_improved_at_pending": true,
    "book": "kalshi",
    "books_live": [
@@ -167,33 +167,33 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.36,
+   "close_price": 0.38,
    "clv_cents": 0.0,
-   "confirmed_after_min": 9,
+   "confirmed_after_min": 13,
    "date": "2026-11-01",
    "depth_by_book": {
     "kalshi": {
      "new_other_side": -602,
      "new_this_side": 27722,
-     "other_side": 1552,
-     "other_side_all_levels": 16286,
-     "ratio": 18.5,
-     "this_side": 28641,
-     "this_side_all_levels": 37951
+     "other_side": 1923,
+     "other_side_all_levels": 16994,
+     "ratio": 10.8,
+     "this_side": 20708,
+     "this_side_all_levels": 36782
     }
    },
-   "fade_price": 0.65,
+   "fade_price": 0.63,
    "first_seen_utc": "2026-11-01T01:40:10Z",
    "game": "Los Angeles C vs Golden State",
    "key": "kalshi|KXNBAGAME-26NOV01LACGSW|ml|0",
-   "lead_min": 1426,
+   "lead_min": 1422,
    "league": "NBA",
    "line": null,
    "market": "moneyline",
    "new_money": 27722,
    "paper_only": false,
-   "price": 0.36,
-   "price_american": 178,
+   "price": 0.38,
+   "price_american": 163,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.36,
    "prices_by_book": {},
@@ -3102,8 +3102,7 @@
      "price": -112
     }
    },
-   "pulled": true,
-   "pulled_utc": "2026-11-01T01:48:41Z",
+   "pulled": false,
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFTOTAL-26OCT31ORSTFRES-57"
@@ -3435,8 +3434,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.78,
-   "clv_cents": -1.0,
+   "close_price": 0.79,
+   "clv_cents": 0.0,
    "confirmed_after_min": 12,
    "date": "2026-10-31",
    "depth_by_book": {
@@ -6905,6 +6904,7 @@
     }
    },
    "fade_price": 0.48,
+   "fade_units": 1.05,
    "first_seen_utc": "2026-10-31T22:00:15Z",
    "game": "Hawks vs. Pelicans",
    "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"6440486\"}",
@@ -6991,13 +6991,14 @@
     "outcome_index": 0,
     "pm_market_id": "6440486"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "kalshi"
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-01T01:52:57Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Hawks",
@@ -7010,7 +7011,7 @@
     "Pelicans"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-31T22:00:15Z",
@@ -7148,7 +7149,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settled_utc": "2026-11-01T01:48:41Z",
+   "settled_utc": "2026-11-01T01:52:57Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Vancouver",
