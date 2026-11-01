@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Oct 31, 8:47 PM ET. This run: 0 new, 0 not confirmed, 6 pending. Open alerts: 69.
+Updated Sat Oct 31, 8:51 PM ET. This run: 0 new, 2 not confirmed, 4 pending. Open alerts: 69.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
