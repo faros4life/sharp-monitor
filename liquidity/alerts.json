@@ -1,6 +1,476 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-01T17:50:10Z",
+   "base_depth": 66351,
+   "best_price": 0.76,
+   "best_price_american": -317,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "prophetx",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.7647,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-01",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "New England",
+     "price": 0.76,
+     "this_side": 3954498
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "NE (0)",
+     "price": 0.76,
+     "this_side": 194618
+    },
+    "prophetx": {
+     "new_other_side": 8759,
+     "new_this_side": 33949,
+     "other_side": 39539,
+     "other_side_all_levels": 40905,
+     "ratio": 2.5,
+     "this_side": 100411,
+     "this_side_all_levels": 100411
+    }
+   },
+   "fade_price": 0.2381,
+   "first_seen_utc": "2026-11-01T17:40:09Z",
+   "game": "New England Patriots at Miami Dolphins",
+   "key": "prophetx|{\"line\": 0, \"px_event\": 1700008861, \"px_market\": 219, \"side\": \"0\"}",
+   "lead_min": 215,
+   "league": "NFL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 33949,
+   "paper_only": false,
+   "price": 0.7647,
+   "price_american": -325,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.7647,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -350
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -363
+    },
+    "betopenly": {
+     "point": null,
+     "price": -318
+    },
+    "betrivers": {
+     "point": null,
+     "price": -375
+    },
+    "betus": {
+     "point": null,
+     "price": -350
+    },
+    "bovada": {
+     "point": null,
+     "price": -370
+    },
+    "draftkings": {
+     "point": null,
+     "price": -340
+    },
+    "fanatics": {
+     "point": null,
+     "price": -350
+    },
+    "fanduel": {
+     "point": null,
+     "price": -370
+    },
+    "kalshi": {
+     "point": null,
+     "price": -317
+    },
+    "limitless": {
+     "point": null,
+     "price": -342
+    },
+    "lowvig": {
+     "point": null,
+     "price": -363
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -377
+    },
+    "novig": {
+     "point": null,
+     "price": -317
+    },
+    "polymarket": {
+     "point": null,
+     "price": -317
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -321
+    },
+    "prophetx": {
+     "point": null,
+     "price": -325
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -345
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "line": 0,
+    "px_event": 1700008861,
+    "px_market": 219,
+    "side": "0"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi",
+    "novig"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "New England Patriots",
+   "side_label": "New England Patriots",
+   "start_source": "odds",
+   "start_utc": "2026-11-01T21:25:00Z",
+   "teams": [
+    "New England Patriots",
+    "Miami Dolphins"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-01T17:50:10Z",
+   "base_depth": 154806,
+   "best_price": 0.7142,
+   "best_price_american": -250,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.71,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-01",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Boston",
+     "price": 0.72,
+     "this_side": 667661
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "BOS (0)",
+     "price": 0.715,
+     "this_side": 93712
+    },
+    "polymarket": {
+     "new_other_side": 8866,
+     "new_this_side": 41941,
+     "other_side": 51063,
+     "other_side_all_levels": 68606,
+     "ratio": 2.4,
+     "this_side": 124895,
+     "this_side_all_levels": 186541
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Boston Celtics",
+     "price": 0.7101,
+     "this_side": 27456
+    }
+   },
+   "fade_price": 0.3,
+   "first_seen_utc": "2026-11-01T17:40:09Z",
+   "game": "Celtics vs. Magic",
+   "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"6233644\"}",
+   "lead_min": 160,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 41941,
+   "paper_only": false,
+   "price": 0.71,
+   "price_american": -245,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.71,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -275
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -270
+    },
+    "betrivers": {
+     "point": null,
+     "price": -275
+    },
+    "betus": {
+     "point": null,
+     "price": -265
+    },
+    "bovada": {
+     "point": null,
+     "price": -270
+    },
+    "draftkings": {
+     "point": null,
+     "price": -270
+    },
+    "fanatics": {
+     "point": null,
+     "price": -280
+    },
+    "fanduel": {
+     "point": null,
+     "price": -275
+    },
+    "kalshi": {
+     "point": null,
+     "price": -257
+    },
+    "limitless": {
+     "point": null,
+     "price": -269
+    },
+    "lowvig": {
+     "point": null,
+     "price": -267
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -275
+    },
+    "novig": {
+     "point": null,
+     "price": -251
+    },
+    "polymarket": {
+     "point": null,
+     "price": -245
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -245
+    },
+    "prophetx": {
+     "point": null,
+     "price": -250
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -278
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 0,
+    "pm_market_id": "6233644"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [
+    "Boston Celtics -6.5 (-111)"
+   ],
+   "sharp_oppose": [],
+   "side": "Celtics",
+   "side_label": "Celtics",
+   "start_source": "odds",
+   "start_utc": "2026-11-01T20:30:00Z",
+   "teams": [
+    "Celtics",
+    "Magic"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-01T17:50:10Z",
+   "base_depth": 116474,
+   "best_price": 0.51,
+   "best_price_american": -104,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-01",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Kansas City",
+     "price": 0.51,
+     "this_side": 3480125
+    },
+    "novig": {
+     "new_other_side": 7929,
+     "new_this_side": 38714,
+     "other_side": 132052,
+     "other_side_all_levels": 132519,
+     "ratio": 1.2,
+     "this_side": 153890,
+     "this_side_all_levels": 154121
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "Kansas City Chiefs",
+     "price": 0.5098,
+     "this_side": 55611
+    }
+   },
+   "fade_price": 0.495,
+   "first_seen_utc": "2026-11-01T17:40:09Z",
+   "game": "Kansas City Chiefs @ Denver Broncos",
+   "key": "novig|{\"market_id\": \"01a15b22-aeae-73e3-a657-5227a8657c41\", \"outcome_id\": \"01a15b22-aeae-73e3-a657-524ea29e821b\"}",
+   "lead_min": 215,
+   "league": "NFL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 38714,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -112
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -116
+    },
+    "betopenly": {
+     "point": null,
+     "price": -112
+    },
+    "betrivers": {
+     "point": null,
+     "price": -120
+    },
+    "bovada": {
+     "point": null,
+     "price": -112
+    },
+    "draftkings": {
+     "point": null,
+     "price": -112
+    },
+    "fanatics": {
+     "point": null,
+     "price": -110
+    },
+    "fanduel": {
+     "point": null,
+     "price": -112
+    },
+    "kalshi": {
+     "point": null,
+     "price": -104
+    },
+    "limitless": {
+     "point": null,
+     "price": -110
+    },
+    "lowvig": {
+     "point": null,
+     "price": -116
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -115
+    },
+    "novig": {
+     "point": null,
+     "price": -104
+    },
+    "polymarket": {
+     "point": null,
+     "price": -104
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -103
+    },
+    "prophetx": {
+     "point": null,
+     "price": -104
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -115
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a15b22-aeae-73e3-a657-5227a8657c41",
+    "outcome_id": "01a15b22-aeae-73e3-a657-524ea29e821b"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Kansas City Chiefs",
+   "side_label": "KC (0)",
+   "start_source": "odds",
+   "start_utc": "2026-11-01T21:25:00Z",
+   "teams": [
+    "Kansas City Chiefs",
+    "Denver Broncos"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-01T17:40:09Z",
    "base_depth": 163890,
    "best_price": 0.47,
@@ -345,6 +815,8 @@
    "new_money": 88757,
    "paper_only": false,
    "price": 0.62,
+   "price_after_15m": 0.62,
+   "price_after_15m_book": "novig",
    "price_american": -163,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.62,
@@ -443,6 +915,7 @@
    "side_label": "BUF (0)",
    "start_source": "odds",
    "start_utc": "2026-11-01T18:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Baltimore Ravens",
     "Buffalo Bills"
@@ -503,6 +976,8 @@
    "new_money": 101422,
    "paper_only": false,
    "price": 0.46,
+   "price_after_15m": 0.46,
+   "price_after_15m_book": "novig",
    "price_american": 117,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.46,
@@ -596,6 +1071,7 @@
    "side_label": "ATL (0)",
    "start_source": "odds",
    "start_utc": "2026-11-01T18:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Atlanta Falcons",
     "Tampa Bay Buccaneers"
@@ -656,6 +1132,8 @@
    "new_money": 102773,
    "paper_only": false,
    "price": 0.51,
+   "price_after_15m": 0.51,
+   "price_after_15m_book": "novig",
    "price_american": -104,
    "price_rule": "ok",
    "price_when_first_seen": 0.515,
@@ -741,6 +1219,7 @@
    "side_label": "ARI +7.5 (-7.5)",
    "start_source": "odds",
    "start_utc": "2026-11-01T18:00:00Z",
+   "still_actionable": false,
    "teams": [
     "Arizona Cardinals",
     "Dallas Cowboys"
@@ -801,6 +1280,8 @@
    "new_money": 94107,
    "paper_only": false,
    "price": 0.465,
+   "price_after_15m": 0.4637,
+   "price_after_15m_book": "prophetx",
    "price_american": 115,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.465,
@@ -896,6 +1377,7 @@
    "side_label": "LV (0)",
    "start_source": "odds",
    "start_utc": "2026-11-01T18:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Las Vegas Raiders",
     "New York Jets"
@@ -944,6 +1426,8 @@
    "new_money": 91331,
    "paper_only": false,
    "price": 0.495,
+   "price_after_15m": 0.495,
+   "price_after_15m_book": "novig",
    "price_american": 102,
    "price_rule": "ok",
    "price_when_first_seen": 0.495,
@@ -1029,6 +1513,7 @@
    "side_label": "LV +1.5 (-1.5)",
    "start_source": "odds",
    "start_utc": "2026-11-01T18:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Las Vegas Raiders",
     "New York Jets"
@@ -1051,8 +1536,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5475,
-   "clv_cents": 0.4,
+   "close_price": 0.5455,
+   "clv_cents": 0.2,
    "confirmed_after_min": 8,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -1694,8 +2179,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": 0.0,
+   "close_price": 0.52,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -1940,7 +2425,8 @@
      "price": -107
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-01T17:50:10Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNFLSPREAD-26NOV01LVNYJ-NYJ3"
@@ -2119,8 +2605,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": -0.2,
+   "close_price": 0.495,
+   "clv_cents": -0.7,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -3122,8 +3608,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 1.0,
+   "close_price": 0.53,
+   "clv_cents": 2.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -3272,8 +3758,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.48,
-   "clv_cents": 0.0,
+   "close_price": 0.49,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -3417,8 +3903,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.65,
-   "clv_cents": 0.0,
+   "close_price": 0.645,
+   "clv_cents": -0.5,
    "confirmed_after_min": 5,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -5763,7 +6249,8 @@
      "price": -115
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-01T17:50:10Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNFLSPREAD-26NOV01ATLTB-TB3"
@@ -7888,8 +8375,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.73,
-   "clv_cents": 0.0,
+   "close_price": 0.72,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -8509,8 +8996,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.625,
-   "clv_cents": -0.5,
+   "close_price": 0.63,
+   "clv_cents": 0.0,
    "confirmed_after_min": 4,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -8815,8 +9302,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.495,
-   "clv_cents": -1.5,
+   "close_price": 0.5,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -9960,8 +10447,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.49,
-   "clv_cents": -1.0,
+   "close_price": 0.48,
+   "clv_cents": -2.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -13831,8 +14318,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.71,
-   "clv_cents": 2.0,
+   "close_price": 0.72,
+   "clv_cents": 3.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -14241,7 +14728,8 @@
      "price": -114
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-01T17:50:10Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNFLSPREAD-26NOV01LVNYJ-NYJ2"
@@ -15006,8 +15494,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.73,
-   "clv_cents": 0.0,
+   "close_price": 0.74,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -15595,8 +16083,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": 0.0,
+   "close_price": 0.52,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
