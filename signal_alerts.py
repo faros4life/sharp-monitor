@@ -9,6 +9,7 @@ public) and the sharp feed, and pushes Peter's phone (ntfy + Telegram) ONLY for:
                    Held sides = the bot's own live orders (Gmail ledger), Peter's 'Bets manual' notes, and open exchange
                    positions (Kalshi / ProphetX / Polymarket US, plus Novig from the home snapshot).
   3. NBA UNDER     confirmed liquidity on an NBA total UNDER (the one liquidity lane that has made money; paper).
+                   SILENT by default (Nov 1, Peter): email log only; repo variable PUSH_NBA_UNDER=1 turns the push on.
   4. FLIP          big money (>= $100k) on one side, then later big money (>= $100k) on the other side of the same game
                    and bet type, with what history says (Nov 1 study of 262 flips): totals and NBA -> the FIRST money
                    won 58%; spreads -> the LATER money won 61%; moneylines -> coin flip.
@@ -25,6 +26,9 @@ import liquidity_monitor as lm
 
 ET = lm.ET
 TWO_MIN, AGAINST_MIN, FLIP_MIN = 100_000, 250_000, 100_000
+# Nov 1 (Peter, via Muse): the NBA UNDER lane is silent until Peter turns it on (repo variable PUSH_NBA_UNDER=1).
+# Off = no phone push; the alert is still logged by email (its dedupe record), so paper tracking is unchanged.
+PUSH_NBA_UNDER = (os.environ.get("PUSH_NBA_UNDER") or "").strip().lower() in ("1", "on", "true", "yes")
 HIST = {"total": "On totals the FIRST money has won 58% of flips (57 games).",
         "spread": "On spreads the LATER money has won 61% of flips (74 games).",
         "moneyline": "On moneylines flips have been a coin flip (131 games)."}
@@ -231,7 +235,8 @@ def main():
             tokn = "xsig" + hashlib.sha1(key.encode()).hexdigest()[:12]
             if ex.gsearch(M, tokn):
                 continue
-            ex.push(title[:80], body)
+            if PUSH_NBA_UNDER or not key.startswith("nbau|"):
+                ex.push(title[:80], body)
             try:
                 ex.send(f"Bets signal: {title[:60]}", body + f"\n\n{tokn}")
             except Exception:

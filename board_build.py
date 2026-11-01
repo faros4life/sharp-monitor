@@ -7,8 +7,8 @@ and the sharp feed already in this repo). No bets, balances or keys.
 
 Call rules (Muse + Peter, Nov 1):
   DEAD  money pulled, or later spread money went the other way (later money wins spread flips 61%).
-  PLAY  still there + confirmed + $100k+ ($250k+ on spreads) + a sharp alert agrees or it is the biggest confirmed
-        flow in its game, and nothing fights it (sharp alert on the other side, opposite ML money, same-team ML+spread
+  PLAY  still there + confirmed + $100k+ ($250k+ on spreads) + a sharp alert agrees, and nothing fights it
+        (Nov 1, Muse: biggest flow alone caps at LEAN) (sharp alert on the other side, opposite ML money, same-team ML+spread
         money on a spread, late side of a total/NBA flip).
   LEAN  still there but short of PLAY; the reason says why.
 """
@@ -16,7 +16,7 @@ import html
 import json
 import os
 import re
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
 
 ET = ZoneInfo("America/New_York")
@@ -126,23 +126,26 @@ def score(rows):
         if agree:
             why.append("sharp alert agrees: " + ", ".join(sorted(agree)))
         elif cleanest:
-            why.append("biggest confirmed flow in this game")
+            why.append("biggest confirmed flow in this game (caps at LEAN, Muse Nov 1)")
         need = 250_000 if mk == "spread" else 100_000
         short = ([] if r["conf"] else ["not confirmed"]) + ([f"under {money(need)}"] if r["new"] < need else []) \
-            + ([] if agree or cleanest else ["no system agrees"])
+            + ([] if agree else ["no system agrees"])
         if not short and not fights:
             r["tag"], r["why"] = "PLAY", "; ".join(why) + ". Check the price is still there."
         else:
             r["tag"], r["why"] = "LEAN", "; ".join(short + fights + why)
 
 
-def build():
+def build(upcoming=False):
+    """Today's rows (alerted since midnight ET). upcoming=True: every row whose game starts in the next 2 days
+    (lanes.py uses this so an alert from yesterday for tonight's game is still seen)."""
     now = datetime.now(timezone.utc)
     day0 = now.astimezone(ET).replace(hour=0, minute=0, second=0, microsecond=0)
     rows = []
     for x in load():
         at = t(x.get("alerted_utc"))
-        if not at or at < day0:
+        st0 = t(x.get("start_utc"))
+        if not at or (at < day0 if not upcoming else not st0 or not (now - timedelta(hours=6) < st0 < now + timedelta(days=2))):
             continue
         st = t(x.get("start_utc"))
         fs = t(x.get("first_seen_utc")) or at
@@ -254,7 +257,7 @@ td{{padding:5px 6px;border-bottom:1px solid var(--line);vertical-align:top}}.r{{
 <div class="tile"><div class="l">Today's LEAN calls graded</div><div class="n">{rec([r for r in rows if r["tag"] == "LEAN"])}</div></div>
 <div class="tile"><div class="l">Big-money moves today</div><div class="n">{len(rows)}</div></div></div>
 <div class="card"><h2>Big money today, by bet type</h2>
-<p class="note"><b>Call:</b> PLAY = still there, confirmed, $100k+ ($250k+ on spreads), a sharp alert agrees or it's the biggest confirmed flow in its game, and nothing fights it. LEAN = still there but short of that (reason shown). DEAD = pulled, or later spread money went the other way. Started games keep their kickoff call and grade W/L when final. Check the price before betting. Paper signal; spread flows have lost over time.</p>
+<p class="note"><b>Call:</b> PLAY = still there, confirmed, $100k+ ($250k+ on spreads), a sharp alert agrees, and nothing fights it (biggest flow alone caps at LEAN). LEAN = still there but short of that (reason shown). DEAD = pulled, or later spread money went the other way. Started games keep their kickoff call and grade W/L when final. Check the price before betting. Paper signal; spread flows have lost over time.</p>
 <div class="legend"><span><i class="sw kalshi"></i>Kalshi</span><span><i class="sw novig"></i>Novig</span><span><i class="sw prophetx"></i>ProphetX</span><span><i class="sw polymarket"></i>Polymarket</span></div>
 <div class="filters"><button data-f="" class="on">All</button>{btns}<button data-f="live">PLAY + LEAN only</button></div>
 <h3>Moneylines</h3>{table("moneyline")}<h3>Spreads</h3>{table("spread")}<h3>Totals</h3>{table("total")}</div>
@@ -268,11 +271,32 @@ document.querySelectorAll('tbody tr[data-league]').forEach(tr=>{{tr.style.displa
 </script></body></html>"""
 
 
+def lanes_card():
+    try:
+        L = json.load(open("lanes/lanes.json"))
+    except Exception:
+        return ""
+    out = []
+    for name, lab, bar in (("ml_stay", "LIQ-ML-STAY", "readout at 50 resulted; kill at 40 if <= 0.00u/play"),
+                           ("pull_fade", "LIQ-PULL-FADE", "readout at 40 resulted; kill at 30 if <= 0.00u/play")):
+        es = [e for e in (L.get(name) or {}).values() if e.get("entered")]
+        g = [e for e in es if e.get("result") in ("W", "L", "P")]
+        w = sum(e["result"] == "W" for e in g)
+        l_ = sum(e["result"] == "L" for e in g)
+        u = sum(e.get("units") or 0 for e in g)
+        out.append(f"<tr><td>{lab}</td><td class=r>{len(es)}</td><td class=r>{w}-{l_}</td><td class=r>{u:+.2f}u</td>"
+                   f"<td class=r>{(u / len(g)) if g else 0:+.3f}</td><td class=muted>{bar}</td></tr>")
+    return ('<div class="card"><h2>Paper lanes (forward from Nov 2)</h2><p class="note">Pre-registered by Muse. Paper only; '
+            'entries at decision time, monitor prices. Full log: lanes/lanes.json in the repo.</p><table><thead><tr><th>Lane</th>'
+            '<th class=r>Entries</th><th class=r>Record</th><th class=r>Units</th><th class=r>Per play</th><th>Bar</th></tr></thead>'
+            f'<tbody>{"".join(out)}</tbody></table></div>')
+
+
 def main():
     now, rows, flips = build()
     os.makedirs(OUT, exist_ok=True)
     with open(os.path.join(OUT, "index.html"), "w") as f:
-        f.write(page(now, rows, flips))
+        f.write(page(now, rows, flips).replace("</div><script>", lanes_card() + "</div><script>", 1))
     print(f"Bets board: {len(rows)} rows, {sum(r['tag'] == 'PLAY' for r in rows)} PLAY, {len(flips)} flips")   # counts only
 
 
