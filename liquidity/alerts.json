@@ -1,6 +1,153 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-01T05:30:13Z",
+   "base_depth": 665083,
+   "best_price": 0.5051,
+   "best_price_american": -102,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-01",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -7274,
+     "new_this_side": 501860,
+     "other_side": 449790,
+     "other_side_all_levels": 641980,
+     "ratio": 2.4,
+     "this_side": 1057568,
+     "this_side_all_levels": 1176798
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "Under 42.5 (42.5)",
+     "price": 0.51,
+     "this_side": 57917
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "under 42.5 (42.5)",
+     "price": 0.5,
+     "this_side": 8086
+    }
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-11-01T05:20:40Z",
+   "game": "New England vs Miami: Total Points",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNFLTOTAL-26NOV01NEMIA-43\"}",
+   "lead_min": 955,
+   "league": "NFL",
+   "line": 42.5,
+   "market": "total",
+   "new_money": 501860,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 43.0,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 43.0,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 43.0,
+     "price": -101
+    },
+    "betrivers": {
+     "point": 43.5,
+     "price": -117
+    },
+    "betus": {
+     "point": 43.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 42.5,
+     "price": -105
+    },
+    "draftkings": {
+     "point": 43.5,
+     "price": -112
+    },
+    "fanatics": {
+     "point": 43.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 43.5,
+     "price": -118
+    },
+    "kalshi": {
+     "point": 42.5,
+     "price": -104
+    },
+    "lowvig": {
+     "point": 43.0,
+     "price": -112
+    },
+    "mybookieag": {
+     "point": 43.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 42.5,
+     "price": -104
+    },
+    "polymarket": {
+     "point": 42.5,
+     "price": -104
+    },
+    "prophetx": {
+     "point": 43.5,
+     "price": -117
+    },
+    "williamhill_us": {
+     "point": 43.0,
+     "price": -112
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNFLTOTAL-26NOV01NEMIA-43"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "NOT Over 42.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-11-01T21:25:00Z",
+   "teams": [
+    "New England",
+    "Miami"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-01T05:20:40Z",
    "base_depth": 981071,
    "best_price": 0.475,
@@ -404,7 +551,8 @@
      "price": -205
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-01T05:30:13Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNHLSPREAD-26NOV01EDMNYR-NYR2"
@@ -1157,8 +1305,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.55,
-   "clv_cents": -1.0,
+   "close_price": 0.56,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -2601,8 +2749,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.46,
-   "clv_cents": 8.0,
+   "close_price": 0.45,
+   "clv_cents": 7.0,
    "confirmed_after_min": 13,
    "date": "2026-11-01",
    "depth_by_book": {
