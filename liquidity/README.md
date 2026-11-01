@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 1, 5:10 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 50.
+Updated Sun Nov 1, 5:13 AM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 51.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,7 +10,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 1 4:50AM | NFL | Las Vegas vs New York J: Total Points | total: NOT Over 46.5 points | kalshi | $30k | -108 | ✅ novig | ❌ | +1.0c |  | pending |
+| Nov 1 5:13AM | NFL | Minnesota Vikings @ Detroit Lions | moneyline: DET (0) | novig | $34k | -170 | ✅ kalshi,prophetx |  | +0.0c |  | pending |
+| Nov 1 4:50AM | NFL | Las Vegas vs New York J: Total Points | total: NOT Over 46.5 points | kalshi | $30k | -108 | ✅ novig | ❌ | +1.0c | yes | pending |
 | Nov 1 4:40AM | NFL | Cleveland Browns @ Pittsburgh Steelers | spread: CLE +3.5 (-3.5) | novig | $28k | -104 | ✅ kalshi |  | +0.0c |  | pending |
 | Nov 1 3:45AM | NHL | Edmonton vs New York R | moneyline: New York R | kalshi | $47k | -113 | ✅ novig |  | +0.0c |  | pending |
 | Nov 1 3:40AM | NHL | Oilers vs. Rangers | moneyline: Rangers | polymarket | $28k | -122 | ✅ novig |  | +0.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 30 6:21PM | NBA | New York Knicks @ Philadelphia 76ers | moneyline: PHI (0) | novig | $50k | +135 | ✅ polymarket,prophetx | ❌ | -0.5c | yes | W |
 | Oct 30 6:21PM | NBA | Orlando vs Toronto: Spread | spread: Toronto wins by over 5.5 points | kalshi | $85k | -104 |  |  | +0.0c | yes | L |
 | Oct 30 6:00PM | NBA | Clippers vs. Timberwolves | total: Under (223.5) | polymarket | $26k | -104 | ✅ novig | ❌ | +2.0c |  | L |
-| Oct 30 6:00PM | NBA | Indiana Pacers @ Miami Heat | moneyline: MIA (0) | novig | $34k | -285 | ✅ kalshi,polymarket,prophetx | ✅ | -0.5c |  | W |
