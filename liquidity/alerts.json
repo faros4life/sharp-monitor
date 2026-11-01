@@ -1,6 +1,288 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-01T21:20:11Z",
+   "base_depth": 57628,
+   "best_price": 0.48,
+   "best_price_american": 108,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.48,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-01",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Denver wins by over 1.5 points",
+     "price": 0.48,
+     "this_side": 2419432
+    },
+    "novig": {
+     "new_other_side": -12012,
+     "new_this_side": 32293,
+     "other_side": 46972,
+     "other_side_all_levels": 47463,
+     "ratio": 1.9,
+     "this_side": 91010,
+     "this_side_all_levels": 91315
+    }
+   },
+   "fade_price": 0.525,
+   "first_seen_utc": "2026-11-01T21:10:11Z",
+   "game": "Kansas City Chiefs @ Denver Broncos",
+   "key": "novig|{\"market_id\": \"01a15b22-aeb0-7862-b592-b53111fd5fb6\", \"outcome_id\": \"01a15b22-aeb0-7862-b592-b5406e0ef010\"}",
+   "lead_min": 5,
+   "league": "NFL",
+   "line": -1.5,
+   "market": "spread",
+   "new_money": 32293,
+   "paper_only": false,
+   "price": 0.48,
+   "price_american": 108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.48,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -1.0,
+     "price": -102
+    },
+    "betonlineag": {
+     "point": 0.0,
+     "price": -110
+    },
+    "betopenly": {
+     "point": -1.0,
+     "price": 107
+    },
+    "betrivers": {
+     "point": 1.0,
+     "price": -113
+    },
+    "betus": {
+     "point": 0.0,
+     "price": -115
+    },
+    "bovada": {
+     "point": -1.0,
+     "price": -108
+    },
+    "draftkings": {
+     "point": -1.5,
+     "price": 100
+    },
+    "fanatics": {
+     "point": -1.0,
+     "price": -105
+    },
+    "fanduel": {
+     "point": 1.5,
+     "price": -120
+    },
+    "kalshi": {
+     "point": -1.5,
+     "price": 108
+    },
+    "lowvig": {
+     "point": 0.0,
+     "price": -105
+    },
+    "mybookieag": {
+     "point": -1.0,
+     "price": -110
+    },
+    "novig": {
+     "point": -1.5,
+     "price": 108
+    },
+    "polymarket": {
+     "point": -1.5,
+     "price": 108
+    },
+    "prophetx": {
+     "point": 1.5,
+     "price": -122
+    },
+    "williamhill_us": {
+     "point": -1.5,
+     "price": 103
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a15b22-aeb0-7862-b592-b53111fd5fb6",
+    "outcome_id": "01a15b22-aeb0-7862-b592-b5406e0ef010"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Denver Broncos",
+   "side_label": "DEN -1.5 (-1.5)",
+   "start_source": "odds",
+   "start_utc": "2026-11-01T21:25:00Z",
+   "teams": [
+    "Kansas City Chiefs",
+    "Denver Broncos"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-01T21:20:11Z",
+   "base_depth": 218271,
+   "best_price": 0.52,
+   "best_price_american": -108,
+   "best_price_book": "novig",
+   "bid_improved": true,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-01",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 2228,
+     "new_this_side": 29485,
+     "other_side": 131087,
+     "other_side_all_levels": 181395,
+     "ratio": 1.2,
+     "this_side": 162808,
+     "this_side_all_levels": 243940
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "LAC +2.5 (-2.5)",
+     "price": 0.52,
+     "this_side": 51950
+    }
+   },
+   "fade_price": 0.49,
+   "first_seen_utc": "2026-11-01T21:10:11Z",
+   "game": "Los Angeles C vs Golden State: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBASPREAD-26NOV01LACGSW-GSW3\"}",
+   "lead_min": 250,
+   "league": "NBA",
+   "line": 2.5,
+   "market": "spread",
+   "new_money": 29485,
+   "paper_only": false,
+   "price": 0.52,
+   "price_american": -108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.52,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 2.5,
+     "price": -118
+    },
+    "betonlineag": {
+     "point": 2.0,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 2.5,
+     "price": -105
+    },
+    "betrivers": {
+     "point": 2.5,
+     "price": -117
+    },
+    "betus": {
+     "point": 2.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 2.0,
+     "price": -105
+    },
+    "draftkings": {
+     "point": 2.5,
+     "price": -118
+    },
+    "fanatics": {
+     "point": 2.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 2.5,
+     "price": -118
+    },
+    "kalshi": {
+     "point": 2.5,
+     "price": -108
+    },
+    "lowvig": {
+     "point": 2.0,
+     "price": -106
+    },
+    "mybookieag": {
+     "point": 2.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 2.5,
+     "price": -108
+    },
+    "polymarket": {
+     "point": 2.5,
+     "price": -108
+    },
+    "prophetx": {
+     "point": 2.5,
+     "price": -109
+    },
+    "williamhill_us": {
+     "point": 2.0,
+     "price": -105
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNBASPREAD-26NOV01LACGSW-GSW3"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Los Angeles C",
+   "side_label": "NOT Golden State wins by over 2.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-11-02T01:30:00Z",
+   "teams": [
+    "Los Angeles C",
+    "Golden State"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-01T20:40:09Z",
    "base_depth": 181533,
    "best_price": 0.585,
@@ -1856,8 +2138,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.4902,
-   "clv_cents": 0.5,
+   "close_price": 0.4878,
+   "clv_cents": 0.2,
    "confirmed_after_min": 8,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -7329,8 +7611,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.49,
-   "clv_cents": 0.0,
+   "close_price": 0.5,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -12700,8 +12982,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.46,
-   "clv_cents": -3.0,
+   "close_price": 0.45,
+   "clv_cents": -4.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -13137,8 +13419,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.755,
-   "clv_cents": -1.0,
+   "close_price": 0.765,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -16295,8 +16577,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.55,
-   "clv_cents": 4.0,
+   "close_price": 0.56,
+   "clv_cents": 5.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
