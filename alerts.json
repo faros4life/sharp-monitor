@@ -262,7 +262,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+0.5 pts",
+   "clv": "+1.5 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline",
@@ -296,7 +296,7 @@
   },
   {
    "alert_utc": "2026-11-01T13:40:12Z",
-   "beat_close": true,
+   "beat_close": false,
    "beat_true_close": null,
    "bet": "Over 221.5 (-125)",
    "book": "ProphetX",
@@ -304,7 +304,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+0.5 pts",
+   "clv": "-0.5 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline",
@@ -20876,6 +20876,30 @@
   }
  ],
  "all_alerts": [
+  {
+   "alert_text": "Under 222.5 (-104) at Kalshi [-112 after Kalshi fee] (also: Hard Rock, ProphetX, Novig)",
+   "bet": "Under 222.5 (-104)",
+   "bet_result": null,
+   "book": "Kalshi",
+   "confirmed_by": [
+    "Matchbook"
+   ],
+   "edge_pct": -0.2,
+   "final": null,
+   "game": "Boston Celtics @ Orlando Magic",
+   "grade": "A",
+   "late": false,
+   "minutes_before_start": 290,
+   "price": -104,
+   "price_after_fee": -112,
+   "pushed_to_phone": false,
+   "repeat": true,
+   "score": 80,
+   "sent_et": "2026-11-01 10:40",
+   "sport": "NBA",
+   "start_utc": "2026-11-01T20:30:00Z",
+   "why": "Pinnacle total moved 223.5 -> 221; bet only at 221.5 or better (confirmed by Matchbook)"
+  },
   {
    "alert_text": "Over 41 (-110) at Hard Rock",
    "bet": "Over 41 (-110)",
