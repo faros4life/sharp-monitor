@@ -1,6 +1,145 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-01T00:10:17Z",
+   "base_depth": 463015,
+   "best_price": 0.505,
+   "best_price_american": -102,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 8,
+   "date": "2026-11-01",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -1441,
+     "new_this_side": 63058,
+     "other_side": 449697,
+     "other_side_all_levels": 497542,
+     "ratio": 0.9,
+     "this_side": 404949,
+     "this_side_all_levels": 526462
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "Under 54.5 (54.5)",
+     "price": 0.505,
+     "this_side": 35669
+    }
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-11-01T00:01:47Z",
+   "game": "Arizona vs Dallas: Total Points",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNFLTOTAL-26NOV01ARIDAL-55\"}",
+   "lead_min": 1070,
+   "league": "NFL",
+   "line": 54.5,
+   "market": "total",
+   "new_money": 63058,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 54.5,
+     "price": -108
+    },
+    "betonlineag": {
+     "point": 54.5,
+     "price": -107
+    },
+    "betopenly": {
+     "point": 54.5,
+     "price": 100
+    },
+    "betrivers": {
+     "point": 54.5,
+     "price": -117
+    },
+    "betus": {
+     "point": 54.5,
+     "price": -105
+    },
+    "bovada": {
+     "point": 54.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 54.5,
+     "price": -108
+    },
+    "fanatics": {
+     "point": 54.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 54.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": 54.5,
+     "price": -104
+    },
+    "lowvig": {
+     "point": 54.5,
+     "price": -104
+    },
+    "mybookieag": {
+     "point": 54.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 54.5,
+     "price": -102
+    },
+    "polymarket": {
+     "point": 54.5,
+     "price": 100
+    },
+    "prophetx": {
+     "point": 54.5,
+     "price": -102
+    },
+    "williamhill_us": {
+     "point": 54.5,
+     "price": -109
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNFLTOTAL-26NOV01ARIDAL-55"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "NOT Over 54.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-11-01T18:00:00Z",
+   "teams": [
+    "Arizona",
+    "Dallas"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-01T00:01:47Z",
    "base_depth": 529315,
    "best_price": 0.7836,
@@ -367,6 +506,8 @@
    "new_money": 765084,
    "paper_only": false,
    "price": 0.81,
+   "price_after_15m": 0.815,
+   "price_after_15m_book": "novig",
    "price_american": -426,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.81,
@@ -463,6 +604,7 @@
    "side_label": "Jacksonville",
    "start_source": "odds",
    "start_utc": "2026-11-01T18:00:00Z",
+   "still_actionable": false,
    "teams": [
     "Indianapolis",
     "Jacksonville"
@@ -636,6 +778,7 @@
     "polymarket",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.49,
    "clv_cents": 0.0,
    "confirmed_after_min": 10,
@@ -674,6 +817,8 @@
    "new_money": 34416,
    "paper_only": false,
    "price": 0.49,
+   "price_after_15m": 0.5275,
+   "price_after_15m_book": "kalshi",
    "price_american": 104,
    "price_rule": "ok",
    "price_when_first_seen": 0.49,
@@ -743,7 +888,8 @@
      "price": -110
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-01T00:10:17Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNBASPREAD-26OCT31MINSAS-SAS13"
@@ -762,6 +908,7 @@
    "side_label": "NOT San Antonio wins by over 12.5 points",
    "start_source": "odds",
    "start_utc": "2026-11-01T00:00:00Z",
+   "still_actionable": false,
    "teams": [
     "Minnesota",
     "San Antonio"
@@ -784,8 +931,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.57,
-   "clv_cents": 0.0,
+   "close_price": 0.58,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-10-31",
    "depth_by_book": {
@@ -2185,6 +2332,7 @@
     "polymarket",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.54,
    "clv_cents": 1.0,
    "confirmed_after_min": 10,
@@ -2288,7 +2436,8 @@
      "price": -110
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-01T00:10:17Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNBATOTAL-26OCT31MINSAS-229"
@@ -2477,6 +2626,7 @@
     "polymarket",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.73,
    "clv_cents": -2.0,
    "confirmed_after_min": 10,
@@ -2641,6 +2791,7 @@
     "polymarket",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.84,
    "clv_cents": 1.0,
    "confirmed_after_min": 10,
@@ -3290,6 +3441,7 @@
     "polymarket",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.54,
    "clv_cents": 4.0,
    "confirmed_after_min": 6,
@@ -3862,7 +4014,8 @@
      "price": -355
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-01T00:10:17Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNBAGAME-26OCT31CLEMIL-CLE"
@@ -4845,8 +4998,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 2.0,
+   "close_price": 0.53,
+   "clv_cents": 3.0,
    "confirmed_after_min": 10,
    "date": "2026-10-31",
    "depth_by_book": {
@@ -8097,8 +8250,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.49,
-   "clv_cents": -2.0,
+   "close_price": 0.48,
+   "clv_cents": -3.0,
    "confirmed_after_min": 18,
    "date": "2026-10-31",
    "depth_by_book": {
@@ -48238,8 +48391,10 @@
     }
    },
    "fade_price": 0.36,
+   "fade_units": 1.66,
    "first_seen_utc": "2026-10-29T09:00:15Z",
    "game": "South Carolina vs Oklahoma",
+   "graded_by": "espn",
    "key": "kalshi|KXNCAAFGAME-26OCT30SCAROKLA|ml|1",
    "lead_min": 2510,
    "league": "NCAAF",
@@ -48260,11 +48415,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26OCT30SCAROKLA-OKLA"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settled_utc": "2026-11-01T00:10:17Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Oklahoma",
@@ -48277,7 +48433,7 @@
     "Oklahoma"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-29T09:10:11Z",
