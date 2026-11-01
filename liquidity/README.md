@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 1, 1:00 PM ET. This run: 1 new, 0 not confirmed, 4 pending. Open alerts: 112.
+Updated Sun Nov 1, 1:10 PM ET. This run: 0 new, 0 not confirmed, 4 pending. Open alerts: 112.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -62,7 +62,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 1 7:50AM | NFL | Baltimore vs Buffalo: Total Points | total: Over 54.5 points | kalshi | $203k | -100 | ✅ novig,prophetx |  | +3.0c | yes | pending |
 | Nov 1 7:40AM | NFL | Kansas City Chiefs @ Denver Broncos | total: Over 40.5 (40.5) | novig | $26k | -108 | ✅ kalshi |  | +0.5c |  | pending |
 | Nov 1 7:40AM | NFL | Cleveland vs Pittsburgh | moneyline: Pittsburgh | kalshi | $492k | -186 | ✅ novig,prophetx |  | +1.0c | yes | pending |
-| Nov 1 7:30AM | NBA | Clippers vs. Warriors | total: Over (218.5) | polymarket | $40k | -104 | ✅ novig |  | +7.0c | yes | pending |
+| Nov 1 7:30AM | NBA | Clippers vs. Warriors | total: Over (218.5) | polymarket | $40k | -104 | ✅ novig |  | +6.0c | yes | pending |
 | Nov 1 7:30AM | NHL | Winnipeg vs Carolina: Spread | spread: NOT Carolina wins by over 1.5 goals | kalshi | $29k | -104 | ✅ novig |  | +0.0c |  | pending |
 | Nov 1 7:30AM | NHL | Utah vs Philadelphia: Spread | spread: NOT Utah wins by over 1.5 goals | kalshi | $31k | -170 | ✅ novig,polymarket |  | -1.0c |  | pending |
 | Nov 1 7:30AM | NHL | Ottawa vs Anaheim: Spread | spread: NOT Ottawa wins by over 1.5 goals | kalshi | $38k | -223 | ✅ novig |  | +0.0c |  | pending |
@@ -86,7 +86,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 1 1:40AM | NFL | Kansas City vs Denver: Total Points | total: NOT Over 40.5 points | kalshi | $658k | +104 |  |  | -3.0c | yes | pending |
 | Nov 1 1:30AM | NFL | New England vs Miami: Total Points | total: NOT Over 42.5 points | kalshi | $502k | -104 | ✅ novig |  | +4.0c |  | pending |
 | Nov 1 1:20AM | NFL | Arizona vs Dallas: Spread | spread: Dallas wins by over 7.5 points | kalshi | $450k | +108 |  |  | +2.0c | yes | pending |
-| Nov 1 1:00AM | NFL | New England Patriots @ Miami Dolphins | moneyline: NE (0) | novig | $33k | -326 | ✅ kalshi,prophetx |  | -0.5c | yes | pending |
+| Nov 1 1:00AM | NFL | New England Patriots @ Miami Dolphins | moneyline: NE (0) | novig | $33k | -326 | ✅ kalshi,prophetx |  | +0.0c | yes | pending |
 | Nov 1 1:00AM | NHL | Edmonton vs New York R: Spread | spread: NOT New York R wins by over 1.5 goals | kalshi | $30k | -213 |  |  | +0.0c | yes | pending |
 | Nov 1 1:00AM | NFL | Baltimore vs Buffalo: Total Points | total: NOT Over 54.5 points | kalshi | $152k | -108 |  |  | -4.0c | yes | pending |
 | Nov 1 1:00AM | NFL | Kansas City vs Denver: Spread | spread: NOT Kansas City wins by over 1.5 points | kalshi | $126k | -113 | ✅ novig |  | +0.0c | yes | pending |
