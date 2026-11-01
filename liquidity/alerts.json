@@ -1,6 +1,286 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-01T16:50:09Z",
+   "base_depth": 156982,
+   "best_price": 0.53,
+   "best_price_american": -113,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.53,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-01",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": false,
+     "label": "NOT Detroit wins by over 3.5 points",
+     "price": 0.53,
+     "this_side": 2305967
+    },
+    "novig": {
+     "new_other_side": -19194,
+     "new_this_side": 32259,
+     "other_side": 112001,
+     "other_side_all_levels": 112353,
+     "ratio": 1.6,
+     "this_side": 181469,
+     "this_side_all_levels": 196150
+    }
+   },
+   "fade_price": 0.475,
+   "first_seen_utc": "2026-11-01T16:40:10Z",
+   "game": "Minnesota Vikings @ Detroit Lions",
+   "key": "novig|{\"market_id\": \"01a15b22-a773-7150-bbb5-16f7fc4720e2\", \"outcome_id\": \"01a15b22-a773-7150-bbb5-171caa38f520\"}",
+   "lead_min": 70,
+   "league": "NFL",
+   "line": 3.5,
+   "market": "spread",
+   "new_money": 32259,
+   "paper_only": false,
+   "price": 0.53,
+   "price_american": -113,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.53,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 3.5,
+     "price": -115
+    },
+    "betonlineag": {
+     "point": 3.5,
+     "price": -112
+    },
+    "betopenly": {
+     "point": 3.5,
+     "price": -108
+    },
+    "betrivers": {
+     "point": 3.0,
+     "price": -106
+    },
+    "betus": {
+     "point": 3.5,
+     "price": -115
+    },
+    "bovada": {
+     "point": 3.0,
+     "price": 102
+    },
+    "draftkings": {
+     "point": 3.0,
+     "price": 100
+    },
+    "fanatics": {
+     "point": 3.5,
+     "price": -120
+    },
+    "fanduel": {
+     "point": 3.5,
+     "price": -120
+    },
+    "kalshi": {
+     "point": 3.5,
+     "price": -113
+    },
+    "lowvig": {
+     "point": 3.5,
+     "price": -114
+    },
+    "mybookieag": {
+     "point": 3.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 3.5,
+     "price": -117
+    },
+    "polymarket": {
+     "point": 3.5,
+     "price": -113
+    },
+    "prophetx": {
+     "point": 3.5,
+     "price": -113
+    },
+    "williamhill_us": {
+     "point": 3.5,
+     "price": -120
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a15b22-a773-7150-bbb5-16f7fc4720e2",
+    "outcome_id": "01a15b22-a773-7150-bbb5-171caa38f520"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Minnesota Vikings",
+   "side_label": "MIN +3.5 (-3.5)",
+   "start_source": "odds",
+   "start_utc": "2026-11-01T18:00:00Z",
+   "teams": [
+    "Minnesota Vikings",
+    "Detroit Lions"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-01T16:50:09Z",
+   "base_depth": 1223696,
+   "best_price": 0.52,
+   "best_price_american": -108,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-01",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -38544,
+     "new_this_side": 108300,
+     "other_side": 956704,
+     "other_side_all_levels": 1098881,
+     "ratio": 1.3,
+     "this_side": 1211639,
+     "this_side_all_levels": 1344161
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "LV +2.5 (-2.5)",
+     "price": 0.52,
+     "this_side": 105631
+    }
+   },
+   "fade_price": 0.49,
+   "first_seen_utc": "2026-11-01T16:40:10Z",
+   "game": "Las Vegas vs New York J: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNFLSPREAD-26NOV01LVNYJ-NYJ3\"}",
+   "lead_min": 70,
+   "league": "NFL",
+   "line": 2.5,
+   "market": "spread",
+   "new_money": 108300,
+   "paper_only": false,
+   "price": 0.52,
+   "price_american": -108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.52,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 2.0,
+     "price": -105
+    },
+    "betonlineag": {
+     "point": 1.5,
+     "price": -109
+    },
+    "betopenly": {
+     "point": 2.0,
+     "price": 100
+    },
+    "betrivers": {
+     "point": 2.0,
+     "price": -113
+    },
+    "betus": {
+     "point": 1.0,
+     "price": -105
+    },
+    "bovada": {
+     "point": 2.0,
+     "price": -112
+    },
+    "draftkings": {
+     "point": 1.5,
+     "price": -108
+    },
+    "fanatics": {
+     "point": 2.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 1.5,
+     "price": -105
+    },
+    "kalshi": {
+     "point": 2.5,
+     "price": -108
+    },
+    "lowvig": {
+     "point": 1.0,
+     "price": 107
+    },
+    "mybookieag": {
+     "point": 1.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 1.5,
+     "price": 104
+    },
+    "polymarket": {
+     "point": 1.5,
+     "price": 100
+    },
+    "prophetx": {
+     "point": 1.5,
+     "price": 105
+    },
+    "williamhill_us": {
+     "point": 1.5,
+     "price": -107
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNFLSPREAD-26NOV01LVNYJ-NYJ3"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Las Vegas",
+   "side_label": "NOT New York J wins by over 2.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-11-01T18:00:00Z",
+   "teams": [
+    "Las Vegas",
+    "New York J"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-01T16:40:10Z",
    "base_depth": 680889,
    "best_price": 0.5311,
@@ -435,8 +715,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": 0.0,
+   "close_price": 0.51,
+   "clv_cents": 1.0,
    "confirmed_after_min": 7,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -1009,8 +1289,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.545,
-   "clv_cents": 0.5,
+   "close_price": 0.54,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -1112,7 +1392,8 @@
      "price": -105
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-01T16:50:09Z",
    "ref": {
     "market_id": "01a15b22-abb4-78b2-9331-3e7da9df7aba",
     "outcome_id": "01a15b22-abb4-78b2-9331-3e904b75c451"
@@ -2354,8 +2635,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.55,
-   "clv_cents": 1.0,
+   "close_price": 0.545,
+   "clv_cents": 0.5,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -2514,8 +2795,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.755,
-   "clv_cents": 0.5,
+   "close_price": 0.76,
+   "clv_cents": 1.0,
    "confirmed_after_min": 11,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -4441,8 +4722,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.57,
-   "clv_cents": 4.0,
+   "close_price": 0.56,
+   "clv_cents": 3.0,
    "confirmed_after_min": 6,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -4736,8 +5017,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": 1.0,
+   "close_price": 0.53,
+   "clv_cents": 3.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -6537,8 +6818,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.63,
-   "clv_cents": 0.0,
+   "close_price": 0.625,
+   "clv_cents": -0.5,
    "confirmed_after_min": 4,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -7456,8 +7737,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.54,
-   "clv_cents": 0.0,
+   "close_price": 0.55,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -8865,8 +9146,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": -2.0,
+   "close_price": 0.49,
+   "clv_cents": -3.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
