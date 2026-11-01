@@ -1,6 +1,570 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-01T16:00:15Z",
+   "base_depth": 1673682,
+   "best_price": 0.5148,
+   "best_price_american": -106,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 7,
+   "date": "2026-11-01",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -111120,
+     "new_this_side": 145339,
+     "other_side": 1572100,
+     "other_side_all_levels": 1805274,
+     "ratio": 1.1,
+     "this_side": 1726486,
+     "this_side_all_levels": 1840847
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "LAR -6.5 (-6.5)",
+     "price": 0.515,
+     "this_side": 132566
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "Los Angeles Rams -6.5 (-6.5)",
+     "price": 0.5098,
+     "this_side": 55643
+    }
+   },
+   "fade_price": 0.51,
+   "first_seen_utc": "2026-11-01T15:53:22Z",
+   "game": "Los Angeles C vs Los Angeles R: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNFLSPREAD-26NOV01LACLAR-LAR7\"}",
+   "lead_min": 305,
+   "league": "NFL",
+   "line": -6.5,
+   "market": "spread",
+   "new_money": 145339,
+   "paper_only": false,
+   "price": 0.5,
+   "price_american": -100,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.5,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -6.5,
+     "price": -108
+    },
+    "betonlineag": {
+     "point": -6.5,
+     "price": -110
+    },
+    "betopenly": {
+     "point": -6.5,
+     "price": -105
+    },
+    "betrivers": {
+     "point": -7.0,
+     "price": -107
+    },
+    "betus": {
+     "point": -7.0,
+     "price": 100
+    },
+    "bovada": {
+     "point": -6.5,
+     "price": -115
+    },
+    "draftkings": {
+     "point": -6.5,
+     "price": -118
+    },
+    "fanatics": {
+     "point": -6.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": -6.5,
+     "price": -108
+    },
+    "lowvig": {
+     "point": -6.5,
+     "price": -112
+    },
+    "mybookieag": {
+     "point": -6.5,
+     "price": -115
+    },
+    "novig": {
+     "point": -6.5,
+     "price": -106
+    },
+    "polymarket": {
+     "point": -6.5,
+     "price": -104
+    },
+    "prophetx": {
+     "point": -6.5,
+     "price": -104
+    },
+    "williamhill_us": {
+     "point": -6.5,
+     "price": -109
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNFLSPREAD-26NOV01LACLAR-LAR7"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Los Angeles R",
+   "side_label": "Los Angeles R wins by over 6.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-11-01T21:05:00Z",
+   "teams": [
+    "Los Angeles C",
+    "Los Angeles R"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-01T16:00:15Z",
+   "base_depth": 1491550,
+   "best_price": 0.51,
+   "best_price_american": -104,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 7,
+   "date": "2026-11-01",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 41963,
+     "new_this_side": 315934,
+     "other_side": 1359238,
+     "other_side_all_levels": 1494434,
+     "ratio": 1.2,
+     "this_side": 1670748,
+     "this_side_all_levels": 1793094
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "PIT -3.5 (-3.5)",
+     "price": 0.51,
+     "this_side": 116606
+    }
+   },
+   "fade_price": 0.51,
+   "first_seen_utc": "2026-11-01T15:53:22Z",
+   "game": "Cleveland vs Pittsburgh: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNFLSPREAD-26NOV01CLEPIT-PIT4\"}",
+   "lead_min": 120,
+   "league": "NFL",
+   "line": -3.5,
+   "market": "spread",
+   "new_money": 315934,
+   "paper_only": false,
+   "price": 0.5,
+   "price_american": -100,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.5,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -3.5,
+     "price": -108
+    },
+    "betonlineag": {
+     "point": -3.5,
+     "price": -108
+    },
+    "betopenly": {
+     "point": -3.5,
+     "price": 102
+    },
+    "betrivers": {
+     "point": -3.5,
+     "price": -112
+    },
+    "betus": {
+     "point": -3.5,
+     "price": -105
+    },
+    "bovada": {
+     "point": -3.5,
+     "price": -108
+    },
+    "draftkings": {
+     "point": -3.5,
+     "price": -110
+    },
+    "fanatics": {
+     "point": -3.5,
+     "price": -105
+    },
+    "fanduel": {
+     "point": -3.5,
+     "price": -108
+    },
+    "kalshi": {
+     "point": -3.5,
+     "price": 100
+    },
+    "lowvig": {
+     "point": -3.5,
+     "price": -104
+    },
+    "mybookieag": {
+     "point": -3.5,
+     "price": -120
+    },
+    "novig": {
+     "point": -3.5,
+     "price": -104
+    },
+    "polymarket": {
+     "point": -3.5,
+     "price": 100
+    },
+    "prophetx": {
+     "point": -3.5,
+     "price": -103
+    },
+    "williamhill_us": {
+     "point": -3.5,
+     "price": -106
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNFLSPREAD-26NOV01CLEPIT-PIT4"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Pittsburgh",
+   "side_label": "Pittsburgh wins by over 3.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-11-01T18:00:00Z",
+   "teams": [
+    "Cleveland",
+    "Pittsburgh"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-01T16:00:15Z",
+   "base_depth": 892448,
+   "best_price": 0.51,
+   "best_price_american": -104,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 7,
+   "date": "2026-11-02",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 27236,
+     "new_this_side": 166018,
+     "other_side": 847054,
+     "other_side_all_levels": 975199,
+     "ratio": 1.1,
+     "this_side": 911488,
+     "this_side_all_levels": 1058461
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "Under 46.5 (46.5)",
+     "price": 0.51,
+     "this_side": 40395
+    }
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-11-01T15:53:22Z",
+   "game": "Chicago vs Seattle: Total Points",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNFLTOTAL-26NOV02CHISEA-47\"}",
+   "lead_min": 2000,
+   "league": "NFL",
+   "line": 46.5,
+   "market": "total",
+   "new_money": 166018,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 46.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 46.5,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 46.5,
+     "price": -101
+    },
+    "betrivers": {
+     "point": 46.5,
+     "price": -109
+    },
+    "betus": {
+     "point": 46.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 46.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 46.5,
+     "price": -110
+    },
+    "fanatics": {
+     "point": 46.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 46.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": 46.5,
+     "price": -104
+    },
+    "lowvig": {
+     "point": 46.5,
+     "price": -107
+    },
+    "mybookieag": {
+     "point": 46.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 46.5,
+     "price": -104
+    },
+    "polymarket": {
+     "point": 46.5,
+     "price": -104
+    },
+    "prophetx": {
+     "point": 46.5,
+     "price": -102
+    },
+    "williamhill_us": {
+     "point": 46.5,
+     "price": -111
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNFLTOTAL-26NOV02CHISEA-47"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "NOT Over 46.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-11-03T01:20:00Z",
+   "teams": [
+    "Chicago",
+    "Seattle"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-01T16:00:15Z",
+   "base_depth": 1939037,
+   "best_price": 0.485,
+   "best_price_american": 106,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.49,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 7,
+   "date": "2026-11-01",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 32057,
+     "new_this_side": 122691,
+     "other_side": 1656519,
+     "other_side_all_levels": 1762814,
+     "ratio": 1.2,
+     "this_side": 1945993,
+     "this_side_all_levels": 2059435
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "PHI +5.5 (-5.5)",
+     "price": 0.485,
+     "this_side": 121824
+    }
+   },
+   "fade_price": 0.52,
+   "first_seen_utc": "2026-11-01T15:53:22Z",
+   "game": "Philadelphia vs Washington: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNFLSPREAD-26NOV01PHIWAS-WAS6\"}",
+   "lead_min": 560,
+   "league": "NFL",
+   "line": 5.5,
+   "market": "spread",
+   "new_money": 122691,
+   "paper_only": false,
+   "price": 0.49,
+   "price_american": 104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.49,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 6.0,
+     "price": -108
+    },
+    "betonlineag": {
+     "point": 6.5,
+     "price": -112
+    },
+    "betopenly": {
+     "point": 5.5,
+     "price": 104
+    },
+    "betrivers": {
+     "point": 6.5,
+     "price": -109
+    },
+    "betus": {
+     "point": 6.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 6.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 6.0,
+     "price": -108
+    },
+    "fanatics": {
+     "point": 5.5,
+     "price": -105
+    },
+    "fanduel": {
+     "point": 5.5,
+     "price": 100
+    },
+    "kalshi": {
+     "point": 5.5,
+     "price": 104
+    },
+    "lowvig": {
+     "point": 6.5,
+     "price": -112
+    },
+    "mybookieag": {
+     "point": 6.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 5.5,
+     "price": 106
+    },
+    "polymarket": {
+     "point": 5.5,
+     "price": 113
+    },
+    "prophetx": {
+     "point": 5.5,
+     "price": 107
+    },
+    "williamhill_us": {
+     "point": 6.5,
+     "price": -115
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNFLSPREAD-26NOV01PHIWAS-WAS6"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Philadelphia",
+   "side_label": "NOT Washington wins by over 5.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-11-02T01:20:00Z",
+   "teams": [
+    "Philadelphia",
+    "Washington"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-01T15:53:22Z",
    "base_depth": 765648,
    "best_price": 0.515,
@@ -188,6 +752,8 @@
    "new_money": 27836,
    "paper_only": false,
    "price": 0.54,
+   "price_after_15m": 0.545,
+   "price_after_15m_book": "novig",
    "price_american": -117,
    "price_rule": "ok",
    "price_when_first_seen": 0.54,
@@ -273,6 +839,7 @@
    "side_label": "BAL +3.5 (-3.5)",
    "start_source": "odds",
    "start_utc": "2026-11-01T18:00:00Z",
+   "still_actionable": false,
    "teams": [
     "Baltimore Ravens",
     "Buffalo Bills"
@@ -1498,8 +2065,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.545,
-   "clv_cents": 0.5,
+   "close_price": 0.54,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -1657,8 +2224,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.75,
-   "clv_cents": 0.0,
+   "close_price": 0.755,
+   "clv_cents": 0.5,
    "confirmed_after_min": 11,
    "date": "2026-11-01",
    "depth_by_book": {
