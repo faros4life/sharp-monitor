@@ -477,6 +477,8 @@
    "new_money": 27477,
    "paper_only": false,
    "price": 0.785,
+   "price_after_15m": 0.785,
+   "price_after_15m_book": "novig",
    "price_american": -365,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.785,
@@ -562,6 +564,7 @@
    "side_label": "BSU (0)",
    "start_source": "odds",
    "start_utc": "2026-11-01T02:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Texas State",
     "Boise State"
@@ -610,6 +613,8 @@
    "new_money": 80553,
    "paper_only": false,
    "price": 0.52,
+   "price_after_15m": 0.5311,
+   "price_after_15m_book": "prophetx",
    "price_american": -108,
    "price_rule": "ok",
    "price_when_first_seen": 0.52,
@@ -693,6 +698,7 @@
    "side_label": "NOT Boise St. wins by over 10.5 points",
    "start_source": "odds",
    "start_utc": "2026-11-01T02:00:00Z",
+   "still_actionable": false,
    "teams": [
     "Texas St.",
     "Boise St."
@@ -5638,6 +5644,7 @@
     }
    },
    "fade_price": 0.53,
+   "fade_units": 0.83,
    "first_seen_utc": "2026-10-31T21:43:09Z",
    "game": "Philadelphia vs Charlotte",
    "key": "kalshi|KXNBAGAME-26OCT31PHICHA|ml|1",
@@ -5730,7 +5737,7 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBAGAME-26OCT31PHICHA-CHA"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "polymarket",
@@ -5738,6 +5745,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-01T00:47:37Z",
    "sharp_agree": [
     "Charlotte Hornets +1.5 (-120)",
     "Charlotte Hornets +1.5 (-115)"
@@ -5754,7 +5762,7 @@
     "Charlotte"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-31T21:43:09Z",
@@ -6728,6 +6736,7 @@
     }
    },
    "fade_price": 0.48,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-31T21:20:15Z",
    "game": "Philadelphia vs Charlotte: Total Points",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNBATOTAL-26OCT31PHICHA-212\"}",
@@ -6815,11 +6824,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBATOTAL-26OCT31PHICHA-212"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settled_utc": "2026-11-01T00:47:37Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "Under 212.5 (-111)",
@@ -6836,7 +6846,7 @@
     "Charlotte"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.93
   },
   {
    "alerted_utc": "2026-10-31T21:20:15Z",
