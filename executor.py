@@ -1056,6 +1056,16 @@ def bot_orders(M, days=4):
     Oct 27 fix (found by the brake check): match the SUBJECT PREFIX exactly ('Bets LIVE:'), via IMAP SUBJECT + SINCE and
     a header re-check, so dry-run emails (whose body says 'WOULD GO LIVE') are never read as live ones."""
     NONPX["today"] = 0.0
+    # Nov 1 (Peter, "1a"): a non-ProphetX bot bet whose game is already graded in the feed no longer counts as lost:
+    # a WIN or PUSH frees its money for the daily stop, a LOSS counts in full, ungraded still counts in full (safe side).
+    graded = {}
+    try:
+        for e in load_feed():
+            k = derive_key(e)
+            if k and e.get("result") in ("W", "L", "P"):
+                graded[k] = e["result"]
+    except Exception:
+        graded = {}
     try:
         since = (datetime.now(timezone.utc) - timedelta(days=days)).strftime("%d-%b-%Y")
         typ, data = M.uid("SEARCH", None, "SUBJECT", '"Bets LIVE:"', "SINCE", since)
@@ -1087,6 +1097,8 @@ def bot_orders(M, days=4):
                         d_et = datetime.fromisoformat(str(row.get("decided_utc")).replace("Z", "+00:00")).astimezone(lm.ET).date()
                     except Exception:
                         d_et = None
+                    if graded.get(row.get("key")) in ("W", "P"):
+                        continue   # settled win/push: not a loss toward the daily stop
                     if (lo.get("book") or "prophetx") != "prophetx" and d_et in (None, datetime.now(lm.ET).date()):
                         fs = lo.get("filled_stake")   # fill-or-kill: what filled (unknown = all asked); resting: all asked
                         NONPX["today"] += (max(float(fs or 0), float(lo.get("asked_stake") or 0)) if (is_rest or fs is None)
