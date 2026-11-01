@@ -1,6 +1,304 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-01T02:10:10Z",
+   "base_depth": 102443,
+   "best_price": 0.52,
+   "best_price_american": -108,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-10-31",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 18952,
+     "new_this_side": 67664,
+     "other_side": 102321,
+     "other_side_all_levels": 155033,
+     "ratio": 1.1,
+     "this_side": 109097,
+     "this_side_all_levels": 163199
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "Under 56.5 (56.5)",
+     "price": 0.52,
+     "this_side": 24042
+    }
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-11-01T02:00:15Z",
+   "game": "Northern Illinois vs UNLV: Total Points",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFTOTAL-26OCT31NIUUNLV-57\"}",
+   "lead_min": 30,
+   "league": "NCAAF",
+   "line": 56.5,
+   "market": "total",
+   "new_money": 67664,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 55.5,
+     "price": -108
+    },
+    "betonlineag": {
+     "point": 56.0,
+     "price": -105
+    },
+    "betrivers": {
+     "point": 54.5,
+     "price": -106
+    },
+    "betus": {
+     "point": 56.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 55.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 55.5,
+     "price": -110
+    },
+    "fanatics": {
+     "point": 55.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 56.5,
+     "price": -118
+    },
+    "kalshi": {
+     "point": 56.5,
+     "price": -104
+    },
+    "lowvig": {
+     "point": 56.0,
+     "price": -103
+    },
+    "mybookieag": {
+     "point": 55.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 56.5,
+     "price": -106
+    },
+    "polymarket": {
+     "point": 55.5,
+     "price": 100
+    },
+    "prophetx": {
+     "point": 56.5,
+     "price": -109
+    },
+    "williamhill_us": {
+     "point": 55.5,
+     "price": -109
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAFTOTAL-26OCT31NIUUNLV-57"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [
+    "Under 54.5 (+102)"
+   ],
+   "sharp_oppose": [
+    "Over 54.5 (-115)",
+    "Over 54.5 (-105)"
+   ],
+   "side": "UNDER",
+   "side_label": "NOT Over 56.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-11-01T02:40:00Z",
+   "teams": [
+    "Northern Illinois",
+    "UNLV"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-01T02:10:10Z",
+   "base_depth": 3919398,
+   "best_price": 0.76,
+   "best_price_american": -317,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.76,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-01",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -11451,
+     "new_this_side": 113065,
+     "other_side": 1187075,
+     "other_side_all_levels": 1328961,
+     "ratio": 3.0,
+     "this_side": 3525463,
+     "this_side_all_levels": 4033718
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "NE (0)",
+     "price": 0.76,
+     "this_side": 111428
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "New England Patriots",
+     "price": 0.7619,
+     "this_side": 45525
+    }
+   },
+   "fade_price": 0.24,
+   "first_seen_utc": "2026-11-01T02:00:15Z",
+   "game": "New England vs Miami",
+   "key": "kalshi|KXNFLGAME-26NOV01NEMIA|ml|0",
+   "lead_min": 1155,
+   "league": "NFL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 113065,
+   "paper_only": false,
+   "price": 0.76,
+   "price_american": -317,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.76,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -325
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -330
+    },
+    "betopenly": {
+     "point": null,
+     "price": -280
+    },
+    "betrivers": {
+     "point": null,
+     "price": -360
+    },
+    "betus": {
+     "point": null,
+     "price": -330
+    },
+    "bovada": {
+     "point": null,
+     "price": -370
+    },
+    "draftkings": {
+     "point": null,
+     "price": -310
+    },
+    "fanatics": {
+     "point": null,
+     "price": -350
+    },
+    "fanduel": {
+     "point": null,
+     "price": -320
+    },
+    "kalshi": {
+     "point": null,
+     "price": -317
+    },
+    "limitless": {
+     "point": null,
+     "price": -344
+    },
+    "lowvig": {
+     "point": null,
+     "price": -330
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -348
+    },
+    "novig": {
+     "point": null,
+     "price": -317
+    },
+    "polymarket": {
+     "point": null,
+     "price": -317
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -317
+    },
+    "prophetx": {
+     "point": null,
+     "price": -320
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -335
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNFLGAME-26NOV01NEMIA-NE"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "prophetx"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "New England",
+   "side_label": "New England",
+   "start_source": "odds",
+   "start_utc": "2026-11-01T21:25:00Z",
+   "teams": [
+    "New England",
+    "Miami"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-01T02:00:15Z",
    "base_depth": 1018259,
    "best_price": 0.52,
@@ -192,6 +490,8 @@
    "new_money": 234557,
    "paper_only": false,
    "price": 0.48,
+   "price_after_15m": 0.485,
+   "price_after_15m_book": "novig",
    "price_american": 108,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.48,
@@ -284,6 +584,7 @@
    "side_label": "Denver",
    "start_source": "odds",
    "start_utc": "2026-11-01T21:25:00Z",
+   "still_actionable": true,
    "teams": [
     "Kansas City",
     "Denver"
@@ -332,6 +633,8 @@
    "new_money": 27722,
    "paper_only": false,
    "price": 0.38,
+   "price_after_15m": 0.3965,
+   "price_after_15m_book": "kalshi",
    "price_american": 163,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.36,
@@ -352,6 +655,7 @@
    "side_label": "Los Angeles C",
    "start_source": "novig",
    "start_utc": "2026-11-02T01:35:00Z",
+   "still_actionable": true,
    "teams": [
     "Los Angeles C",
     "Golden State"
@@ -3589,6 +3893,7 @@
     "polymarket",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.79,
    "clv_cents": 0.0,
    "confirmed_after_min": 12,
@@ -5344,8 +5649,10 @@
     }
    },
    "fade_price": 0.49,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-31T22:30:11Z",
    "game": "Washington St. vs San Diego St.: Spread",
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFSPREAD-26OCT31WSUSDSU-SDSU3\"}",
    "lead_min": 20,
    "league": "NCAAF",
@@ -5427,13 +5734,14 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFSPREAD-26OCT31WSUSDSU-SDSU3"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-01T02:10:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "San Diego St.",
@@ -5446,7 +5754,7 @@
     "San Diego St."
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.89
   },
   {
    "alerted_utc": "2026-10-31T22:40:09Z",
