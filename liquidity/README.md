@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 1, 11:30 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 94.
+Updated Sun Nov 1, 11:35 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 94.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -15,7 +15,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 1 11:00AM | NFL | Cleveland vs Pittsburgh: Spread | spread: Pittsburgh wins by over 3.5 points | kalshi | $316k | -100 |  |  | +0.0c |  | pending |
 | Nov 1 11:00AM | NFL | Chicago vs Seattle: Total Points | total: NOT Over 46.5 points | kalshi | $166k | -104 | ✅ novig |  | +0.0c |  | pending |
 | Nov 1 11:00AM | NFL | Philadelphia vs Washington: Spread | spread: NOT Washington wins by over 5.5 points | kalshi | $123k | +104 | ✅ novig |  | +0.0c |  | pending |
-| Nov 1 10:53AM | NFL | Indianapolis vs Jacksonville: Total Points | total: NOT Over 46.5 points | kalshi | $79k | -108 | ✅ novig |  | +0.0c |  | pending |
+| Nov 1 10:53AM | NFL | Indianapolis vs Jacksonville: Total Points | total: NOT Over 46.5 points | kalshi | $79k | -108 | ✅ novig |  | +1.0c |  | pending |
 | Nov 1 10:40AM | NFL | Baltimore Ravens @ Buffalo Bills | spread: BAL +3.5 (-3.5) | novig | $28k | -117 |  |  | +0.5c |  | pending |
 | Nov 1 10:30AM | NFL | Minnesota vs Detroit: Total Points | total: Over 45.5 points | kalshi | $228k | -104 | ✅ novig |  | +0.0c |  | pending |
 | Nov 1 10:30AM | NFL | Minnesota vs Detroit: Spread | spread: Detroit wins by over 3.5 points | kalshi | $282k | +108 | ✅ novig |  | +0.0c |  | pending |
@@ -25,12 +25,12 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 1 10:15AM | NFL | Kansas City vs Denver: Total Points | total: Over 41.5 points | kalshi | $179k | +104 | ✅ novig,prophetx |  | +1.0c | yes | pending |
 | Nov 1 10:15AM | NFL | Las Vegas vs New York J: Spread | spread: New York J wins by over 1.5 points | kalshi | $320k | -104 | ✅ novig |  | +1.0c |  | pending |
 | Nov 1 10:15AM | NFL | Baltimore vs Buffalo | moneyline: Buffalo | kalshi | $643k | -163 | ✅ novig,prophetx |  | +0.0c |  | pending |
-| Nov 1 10:00AM | NFL | Las Vegas Raiders @ New York Jets | moneyline: NYJ (0) | novig | $29k | -117 | ✅ kalshi,prophetx |  | +0.5c | yes | pending |
-| Nov 1 9:41AM | NFL | Arizona Cardinals @ Dallas Cowboys | moneyline: DAL (0) | novig | $27k | -300 | ✅ kalshi,prophetx |  | +0.0c | yes | pending |
+| Nov 1 10:00AM | NFL | Las Vegas Raiders @ New York Jets | moneyline: NYJ (0) | novig | $29k | -117 | ✅ kalshi,prophetx |  | +1.0c | yes | pending |
+| Nov 1 9:41AM | NFL | Arizona Cardinals @ Dallas Cowboys | moneyline: DAL (0) | novig | $27k | -300 | ✅ kalshi,prophetx |  | +0.5c | yes | pending |
 | Nov 1 9:41AM | NFL | Tennessee vs Cincinnati: Spread | spread: Cincinnati wins by over 13.5 points | kalshi | $406k | +108 |  |  | +3.0c |  | pending |
 | Nov 1 9:30AM | NBA | Brooklyn vs Indiana: Spread | spread: NOT Indiana wins by over 3.5 points | kalshi | $28k | +104 |  |  | +0.0c |  | pending |
 | Nov 1 9:20AM | NBA | Nets vs. Pacers | total: Under (230.5) | polymarket | $30k | -104 | ✅ kalshi,novig |  | +1.0c |  | pending |
-| Nov 1 9:20AM | NBA | Brooklyn vs Indiana: Total Points | total: NOT Over 230.5 points | kalshi | $34k | -104 | ✅ novig,polymarket |  | +1.0c |  | pending |
+| Nov 1 9:20AM | NBA | Brooklyn vs Indiana: Total Points | total: NOT Over 230.5 points | kalshi | $34k | -104 | ✅ novig,polymarket |  | +2.0c |  | pending |
 | Nov 1 9:10AM | NFL | Chicago vs Seattle: Spread | spread: Seattle wins by over 3.5 points | kalshi | $356k | +113 |  |  | +0.0c |  | pending |
 | Nov 1 9:10AM | NFL | Philadelphia vs Washington: Spread | spread: Washington wins by over 5.5 points | kalshi | $203k | -108 |  |  | +0.0c | yes | pending |
 | Nov 1 9:10AM | NFL | New England vs Miami: Spread | spread: New England wins by over 7.5 points | kalshi | $226k | +113 |  |  | +0.0c | yes | pending |
