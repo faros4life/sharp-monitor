@@ -1,0 +1,43 @@
+name: bets-board
+
+# Rebuilds the public Bets Board page (GitHub Pages) right after each liquidity run, plus a 10-minute backup timer.
+# Public data only: the liquidity feeds and the sharp feed already in this repo.
+on:
+  workflow_run:
+    workflows: ["liquidity-monitor", "liquidity-extra"]
+    types: [completed]
+  schedule:
+    - cron: "8-59/10 * * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: bets-board
+  cancel-in-progress: true   # only the newest build matters
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build the board
+        run: python -u board_build.py
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - id: deploy
+        uses: actions/deploy-pages@v4
