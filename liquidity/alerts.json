@@ -1,6 +1,309 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-01T20:10:09Z",
+   "base_depth": 333101,
+   "best_price": 0.5,
+   "best_price_american": -100,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-01",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -34112,
+     "new_this_side": 37986,
+     "other_side": 145308,
+     "other_side_all_levels": 211977,
+     "ratio": 2.2,
+     "this_side": 318923,
+     "this_side_all_levels": 369423
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "Over 222.5 (222.5)",
+     "price": 0.5,
+     "this_side": 47921
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Over (222.5)",
+     "price": 0.5,
+     "this_side": 130606
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "over 222.5 (222.5)",
+     "price": 0.5,
+     "this_side": 19547
+    }
+   },
+   "fade_price": 0.51,
+   "first_seen_utc": "2026-11-01T20:00:16Z",
+   "game": "Boston vs Orlando: Total Points",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNBATOTAL-26NOV01BOSORL-223\"}",
+   "lead_min": 20,
+   "league": "NBA",
+   "line": 222.5,
+   "market": "total",
+   "new_money": 37986,
+   "paper_only": false,
+   "price": 0.5,
+   "price_american": -100,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.5,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 222.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 222.5,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 222.5,
+     "price": 100
+    },
+    "betrivers": {
+     "point": 221.5,
+     "price": -114
+    },
+    "betus": {
+     "point": 222.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 222.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 221.5,
+     "price": -112
+    },
+    "fanatics": {
+     "point": 222.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 222.5,
+     "price": -106
+    },
+    "kalshi": {
+     "point": 222.5,
+     "price": 100
+    },
+    "lowvig": {
+     "point": 222.5,
+     "price": -107
+    },
+    "mybookieag": {
+     "point": 222.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 222.5,
+     "price": 100
+    },
+    "polymarket": {
+     "point": 222.5,
+     "price": 100
+    },
+    "prophetx": {
+     "point": 222.5,
+     "price": 100
+    },
+    "williamhill_us": {
+     "point": 222.5,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBATOTAL-26NOV01BOSORL-223"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [
+    "Over 221.5 (-115)",
+    "Over 222.5 (+100)",
+    "Over 221.5 (-125)"
+   ],
+   "sharp_oppose": [
+    "Under 222.5 (-104)",
+    "Under 222.5 (-104)"
+   ],
+   "side": "OVER",
+   "side_label": "Over 222.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-11-01T20:30:00Z",
+   "teams": [
+    "Boston",
+    "Orlando"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-01T20:10:09Z",
+   "base_depth": 238767,
+   "best_price": 0.695,
+   "best_price_american": -228,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.7,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-01",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 7307,
+     "new_this_side": 65436,
+     "other_side": 64052,
+     "other_side_all_levels": 102498,
+     "ratio": 3.4,
+     "this_side": 220044,
+     "this_side_all_levels": 304729
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "WSH +1.5 (1.5)",
+     "price": 0.695,
+     "this_side": 43598
+    }
+   },
+   "fade_price": 0.31,
+   "first_seen_utc": "2026-11-01T20:00:16Z",
+   "game": "Minnesota vs Washington: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLSPREAD-26NOV01MINWSH-MIN2\"}",
+   "lead_min": 20,
+   "league": "NHL",
+   "line": 1.5,
+   "market": "spread",
+   "new_money": 65436,
+   "paper_only": false,
+   "price": 0.7,
+   "price_american": -233,
+   "price_rule": "fails_cap",
+   "price_when_first_seen": 0.7,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 1.5,
+     "price": -235
+    },
+    "betonlineag": {
+     "point": 1.5,
+     "price": -255
+    },
+    "betopenly": {
+     "point": 1.5,
+     "price": -215
+    },
+    "betrivers": {
+     "point": -1.5,
+     "price": 235
+    },
+    "betus": {
+     "point": 1.5,
+     "price": -250
+    },
+    "bovada": {
+     "point": 1.5,
+     "price": -250
+    },
+    "draftkings": {
+     "point": 1.5,
+     "price": -258
+    },
+    "fanatics": {
+     "point": 1.5,
+     "price": -255
+    },
+    "fanduel": {
+     "point": 1.5,
+     "price": -260
+    },
+    "kalshi": {
+     "point": 1.5,
+     "price": -233
+    },
+    "lowvig": {
+     "point": 1.5,
+     "price": -255
+    },
+    "mybookieag": {
+     "point": 1.5,
+     "price": -250
+    },
+    "novig": {
+     "point": 1.5,
+     "price": -228
+    },
+    "polymarket": {
+     "point": 1.5,
+     "price": -245
+    },
+    "prophetx": {
+     "point": 1.5,
+     "price": -240
+    },
+    "williamhill_us": {
+     "point": 1.5,
+     "price": -260
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNHLSPREAD-26NOV01MINWSH-MIN2"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Washington",
+   "side_label": "NOT Minnesota wins by over 1.5 goals",
+   "start_source": "odds",
+   "start_utc": "2026-11-01T20:30:00Z",
+   "teams": [
+    "Minnesota",
+    "Washington"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-01T20:00:16Z",
    "base_depth": 134384,
    "best_price": 0.4975,
@@ -15,8 +318,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.48,
-   "clv_cents": 0.0,
+   "close_price": 0.49,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -1080,8 +1383,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.4902,
-   "clv_cents": 0.5,
+   "close_price": 0.4878,
+   "clv_cents": 0.2,
    "confirmed_after_min": 8,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -1177,7 +1480,8 @@
      "price": -108
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-01T20:10:09Z",
    "ref": {
     "line": 7.0,
     "px_event": 1700008861,
@@ -10425,6 +10729,7 @@
     }
    },
    "fade_price": 0.49,
+   "fade_units": 0.97,
    "first_seen_utc": "2026-11-01T09:40:09Z",
    "game": "Las Vegas vs New York J: Total Points",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNFLTOTAL-26NOV01LVNYJ-47\"}",
@@ -10512,13 +10817,14 @@
     "kalshi_side": "no",
     "market_ticker": "KXNFLTOTAL-26NOV01LVNYJ-47"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-01T20:10:09Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "Over 45.5 (-109)"
@@ -10533,7 +10839,7 @@
     "New York J"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-01T09:40:09Z",
@@ -14842,6 +15148,7 @@
     }
    },
    "fade_price": 0.52,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-01T01:30:12Z",
    "game": "Las Vegas vs New York J: Total Points",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNFLTOTAL-26NOV01LVNYJ-47\"}",
@@ -14929,11 +15236,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNFLTOTAL-26NOV01LVNYJ-47"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-11-01T20:10:09Z",
    "sharp_agree": [
     "Over 45.5 (-109)"
    ],
@@ -14948,7 +15256,7 @@
     "New York J"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.04
   },
   {
    "alerted_utc": "2026-11-01T01:40:10Z",
@@ -17229,6 +17537,7 @@
     }
    },
    "fade_price": 0.5,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-01T00:10:17Z",
    "game": "Las Vegas vs New York J: Total Points",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNFLTOTAL-26NOV01LVNYJ-46\"}",
@@ -17316,11 +17625,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNFLTOTAL-26NOV01LVNYJ-46"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-11-01T20:10:09Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -17333,7 +17643,7 @@
     "New York J"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.94
   },
   {
    "alerted_utc": "2026-11-01T00:20:15Z",
