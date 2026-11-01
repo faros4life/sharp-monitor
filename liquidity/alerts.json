@@ -1,6 +1,162 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-01T06:40:10Z",
+   "base_depth": 2676287,
+   "best_price": 0.705,
+   "best_price_american": -239,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.71,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-01",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -19425,
+     "new_this_side": 166261,
+     "other_side": 1048275,
+     "other_side_all_levels": 1264500,
+     "ratio": 2.1,
+     "this_side": 2168379,
+     "this_side_all_levels": 2842116
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "WSH (0)",
+     "price": 0.705,
+     "this_side": 116160
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Washington Commanders",
+     "price": 0.7059,
+     "this_side": 20874
+    }
+   },
+   "fade_price": 0.3,
+   "first_seen_utc": "2026-11-01T06:30:13Z",
+   "game": "Philadelphia vs Washington",
+   "key": "kalshi|KXNFLGAME-26NOV01PHIWAS|ml|1",
+   "lead_min": 1120,
+   "league": "NFL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 166261,
+   "paper_only": false,
+   "price": 0.71,
+   "price_american": -245,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.71,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -275
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -260
+    },
+    "betopenly": {
+     "point": null,
+     "price": -242
+    },
+    "betrivers": {
+     "point": null,
+     "price": -265
+    },
+    "betus": {
+     "point": null,
+     "price": -260
+    },
+    "bovada": {
+     "point": null,
+     "price": -250
+    },
+    "draftkings": {
+     "point": null,
+     "price": -258
+    },
+    "fanatics": {
+     "point": null,
+     "price": -260
+    },
+    "fanduel": {
+     "point": null,
+     "price": -275
+    },
+    "kalshi": {
+     "point": null,
+     "price": -245
+    },
+    "limitless": {
+     "point": null,
+     "price": -264
+    },
+    "lowvig": {
+     "point": null,
+     "price": -260
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -275
+    },
+    "novig": {
+     "point": null,
+     "price": -239
+    },
+    "polymarket": {
+     "point": null,
+     "price": -245
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -239
+    },
+    "prophetx": {
+     "point": null,
+     "price": -240
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -265
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNFLGAME-26NOV01PHIWAS-WAS"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "prophetx"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Washington",
+   "side_label": "Washington",
+   "start_source": "odds",
+   "start_utc": "2026-11-02T01:20:00Z",
+   "teams": [
+    "Philadelphia",
+    "Washington"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-01T05:50:10Z",
    "base_depth": 573775,
    "best_price": 0.495,
@@ -1604,8 +1760,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.56,
-   "clv_cents": 0.0,
+   "close_price": 0.57,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -3050,8 +3206,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.45,
-   "clv_cents": 7.0,
+   "close_price": 0.43,
+   "clv_cents": 5.0,
    "confirmed_after_min": 13,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -4496,6 +4652,7 @@
     }
    },
    "fade_price": 0.51,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-01T00:51:55Z",
    "game": "Oregon St. vs Fresno St.: Spread",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFSPREAD-26OCT31ORSTFRES-ORST7\"}",
@@ -4579,11 +4736,12 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFSPREAD-26OCT31ORSTFRES-ORST7"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-11-01T06:40:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Fresno St.",
@@ -4596,7 +4754,7 @@
     "Fresno St."
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.94
   },
   {
    "alerted_utc": "2026-11-01T01:00:21Z",
@@ -5950,6 +6108,7 @@
     }
    },
    "fade_price": 0.52,
+   "fade_units": 0.86,
    "first_seen_utc": "2026-11-01T00:10:17Z",
    "game": "Oregon St. vs Fresno St.: Total Points",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFTOTAL-26OCT31ORSTFRES-57\"}",
@@ -6033,11 +6192,12 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFTOTAL-26OCT31ORSTFRES-57"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settled_utc": "2026-11-01T06:40:10Z",
    "sharp_agree": [
     "Under 58.5 (-110)"
    ],
@@ -6052,7 +6212,7 @@
     "Fresno St."
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-01T00:20:15Z",
@@ -6222,8 +6382,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": 0.0,
+   "close_price": 0.5,
+   "clv_cents": -1.0,
    "confirmed_after_min": 8,
    "date": "2026-11-01",
    "depth_by_book": {
