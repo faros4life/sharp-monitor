@@ -1,17 +1,17 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 1, 8:20 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 6.
+Updated Sun Nov 1, 8:30 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 5.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 106-71 (-10.46u flat) | rule met: 31-29
+**Record:** 107-71 (-10.26u flat) | rule met: 31-29
 
-**Fade (paper, betting against the print):** 46-71 (+10.94u flat, after fees)
+**Fade (paper, betting against the print):** 46-72 (+9.94u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Oct 31 10:50PM | TENNIS | Lehecka vs Vacherot | moneyline: Lehecka | kalshi | $81k | -186 |  |  | -1.0c |  | pending |
-| Oct 31 10:50PM | TENNIS | Baez vs Machac | moneyline: Machac | kalshi | $45k | -525 |  |  | +0.0c |  | pending |
+| Oct 31 10:50PM | TENNIS | Baez vs Machac | moneyline: Machac | kalshi | $45k | -525 |  |  | +0.0c |  | W |
 | Oct 31 10:20PM | TENNIS | Prozorova vs Stojsavljevic | moneyline: Prozorova | kalshi | $62k | -525 |  |  | +7.0c |  | W |
 | Oct 31 5:10PM | TENNIS | de Minaur vs Alcaraz | moneyline: Alcaraz | kalshi | $33k | -456 |  |  | +0.0c |  | pending |
 | Oct 31 2:10PM | TENNIS | Tabilo vs Jodar | moneyline: Jodar | kalshi | $38k | -400 |  |  | -1.0c |  | pending |
