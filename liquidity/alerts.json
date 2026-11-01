@@ -1,6 +1,131 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-01T02:40:10Z",
+   "base_depth": 159672,
+   "best_price": 0.63,
+   "best_price_american": -170,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.64,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 7,
+   "date": "2026-11-01",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 2296,
+     "new_this_side": 28807,
+     "other_side": 95347,
+     "other_side_all_levels": 108615,
+     "ratio": 1.8,
+     "this_side": 172627,
+     "this_side_all_levels": 189134
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "LAL (0)",
+     "price": 0.63,
+     "this_side": 5138
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Los Angeles Lakers",
+     "price": 0.6324,
+     "this_side": 978
+    }
+   },
+   "fade_price": 0.37,
+   "first_seen_utc": "2026-11-01T02:33:12Z",
+   "game": "Toronto vs Los Angeles L",
+   "key": "kalshi|KXNBAGAME-26NOV01TORLAL|ml|1",
+   "lead_min": 1400,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 28807,
+   "paper_only": false,
+   "price": 0.64,
+   "price_american": -178,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.64,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -190
+    },
+    "bovada": {
+     "point": null,
+     "price": -185
+    },
+    "draftkings": {
+     "point": null,
+     "price": -180
+    },
+    "kalshi": {
+     "point": null,
+     "price": -178
+    },
+    "limitless": {
+     "point": null,
+     "price": -178
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -198
+    },
+    "novig": {
+     "point": null,
+     "price": -170
+    },
+    "polymarket": {
+     "point": null,
+     "price": -170
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -178
+    },
+    "prophetx": {
+     "point": null,
+     "price": -172
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -190
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBAGAME-26NOV01TORLAL-LAL"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Los Angeles L",
+   "side_label": "Los Angeles L",
+   "start_source": "odds",
+   "start_utc": "2026-11-02T02:00:00Z",
+   "teams": [
+    "Toronto",
+    "Los Angeles L"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-01T02:33:12Z",
    "base_depth": 726877,
    "best_price": 0.52,
@@ -192,6 +317,8 @@
    "new_money": 471168,
    "paper_only": false,
    "price": 0.51,
+   "price_after_15m": 0.505,
+   "price_after_15m_book": "novig",
    "price_american": -104,
    "price_rule": "ok",
    "price_when_first_seen": 0.51,
@@ -273,6 +400,7 @@
    "side_label": "NOT Los Angeles R wins by over 6.5 points",
    "start_source": "odds",
    "start_utc": "2026-11-01T21:05:00Z",
+   "still_actionable": true,
    "teams": [
     "Los Angeles C",
     "Los Angeles R"
@@ -894,8 +1022,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.45,
-   "clv_cents": 7.0,
+   "close_price": 0.4,
+   "clv_cents": 2.0,
    "confirmed_after_min": 13,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -1069,7 +1197,8 @@
      "price": -108
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-01T02:40:10Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNFLTOTAL-26NOV01LVNYJ-47"
@@ -1717,8 +1846,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.71,
-   "clv_cents": 2.0,
+   "close_price": 0.69,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -2845,7 +2974,8 @@
      "price": -105
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-01T02:40:10Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNFLSPREAD-26NOV01BALBUF-BUF4"
@@ -4379,6 +4509,7 @@
     }
    },
    "fade_price": 0.51,
+   "fade_units": 0.93,
    "first_seen_utc": "2026-10-31T23:40:10Z",
    "game": "Cavaliers vs. Bucks",
    "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6440488\"}",
@@ -4463,7 +4594,7 @@
     "outcome_index": 1,
     "pm_market_id": "6440488"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "kalshi",
@@ -4472,6 +4603,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-01T02:40:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Bucks",
@@ -4483,7 +4615,7 @@
     "Bucks"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-31T23:50:10Z",
@@ -6698,6 +6830,7 @@
     }
    },
    "fade_price": 0.25,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-31T22:20:12Z",
    "game": "Sacramento vs Memphis",
    "key": "kalshi|KXNBAGAME-26OCT31SACMEM|ml|1",
@@ -6793,7 +6926,7 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBAGAME-26OCT31SACMEM-MEM"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig",
@@ -6801,6 +6934,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-01T02:40:10Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "Sacramento Kings +9.5 (-113)",
@@ -6817,7 +6951,7 @@
     "Memphis"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.32
   },
   {
    "alerted_utc": "2026-10-31T22:30:11Z",
@@ -7038,6 +7172,7 @@
     }
    },
    "fade_price": 0.77,
+   "fade_units": 0.29,
    "first_seen_utc": "2026-10-31T22:13:56Z",
    "game": "Cavaliers vs. Bucks",
    "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6167334\"}",
@@ -7132,11 +7267,12 @@
     "outcome_index": 1,
     "pm_market_id": "6167334"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-11-01T02:40:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Bucks",
@@ -7149,7 +7285,7 @@
     "Bucks"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-31T22:20:12Z",
@@ -7337,8 +7473,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.81,
-   "clv_cents": 0.0,
+   "close_price": 0.815,
+   "clv_cents": 0.5,
    "confirmed_after_min": 6,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -9698,6 +9834,7 @@
     }
    },
    "fade_price": 0.24,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-31T21:13:02Z",
    "game": "Cavaliers vs. Bucks",
    "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"6167334\"}",
@@ -9792,7 +9929,7 @@
     "outcome_index": 0,
     "pm_market_id": "6167334"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig",
@@ -9800,6 +9937,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-01T02:40:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Cavaliers",
@@ -9812,7 +9950,7 @@
     "Bucks"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.31
   },
   {
    "alerted_utc": "2026-10-31T21:20:15Z",
@@ -11510,6 +11648,7 @@
     }
    },
    "fade_price": 0.5,
+   "fade_units": 0.97,
    "first_seen_utc": "2026-10-31T17:30:19Z",
    "game": "Cavaliers vs. Bucks",
    "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6440500\"}",
@@ -11596,13 +11735,14 @@
     "outcome_index": 1,
     "pm_market_id": "6440500"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-01T02:40:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Bucks",
@@ -11615,7 +11755,7 @@
     "Bucks"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-10-31T17:49:21Z",
@@ -13735,6 +13875,7 @@
     }
    },
    "fade_price": 0.5,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-31T14:26:14Z",
    "game": "Cavaliers vs. Bucks",
    "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"6440500\"}",
@@ -13822,11 +13963,12 @@
     "outcome_index": 0,
     "pm_market_id": "6440500"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settled_utc": "2026-11-01T02:40:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Cavaliers",
@@ -13839,7 +13981,7 @@
     "Bucks"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.93
   },
   {
    "alerted_utc": "2026-10-31T14:43:28Z",
