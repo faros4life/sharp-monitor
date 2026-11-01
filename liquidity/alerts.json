@@ -1,6 +1,161 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-01T10:40:10Z",
+   "base_depth": 2286305,
+   "best_price": 0.46,
+   "best_price_american": 117,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.45,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-01",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -11861,
+     "new_this_side": 114718,
+     "other_side": 1885677,
+     "other_side_all_levels": 2332077,
+     "ratio": 1.1,
+     "this_side": 2110660,
+     "this_side_all_levels": 2423644
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "ATL (0)",
+     "price": 0.46,
+     "this_side": 132299
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Atlanta Falcons",
+     "price": 0.4566,
+     "this_side": 43535
+    }
+   },
+   "fade_price": 0.56,
+   "first_seen_utc": "2026-11-01T10:30:14Z",
+   "game": "Atlanta vs Tampa Bay",
+   "key": "kalshi|KXNFLGAME-26NOV01ATLTB|ml|0",
+   "lead_min": 440,
+   "league": "NFL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 114718,
+   "paper_only": false,
+   "price": 0.45,
+   "price_american": 122,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.45,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": 105
+    },
+    "betonlineag": {
+     "point": null,
+     "price": 103
+    },
+    "betopenly": {
+     "point": null,
+     "price": 115
+    },
+    "betrivers": {
+     "point": null,
+     "price": 106
+    },
+    "betus": {
+     "point": null,
+     "price": 105
+    },
+    "bovada": {
+     "point": null,
+     "price": 112
+    },
+    "draftkings": {
+     "point": null,
+     "price": 110
+    },
+    "fanatics": {
+     "point": null,
+     "price": 110
+    },
+    "fanduel": {
+     "point": null,
+     "price": 108
+    },
+    "kalshi": {
+     "point": null,
+     "price": 122
+    },
+    "limitless": {
+     "point": null,
+     "price": 116
+    },
+    "lowvig": {
+     "point": null,
+     "price": 103
+    },
+    "mybookieag": {
+     "point": null,
+     "price": 110
+    },
+    "novig": {
+     "point": null,
+     "price": 117
+    },
+    "polymarket": {
+     "point": null,
+     "price": 122
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": 121
+    },
+    "prophetx": {
+     "point": null,
+     "price": 119
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": 110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNFLGAME-26NOV01ATLTB-ATL"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "prophetx"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Atlanta",
+   "side_label": "Atlanta",
+   "start_source": "odds",
+   "start_utc": "2026-11-01T18:00:00Z",
+   "teams": [
+    "Atlanta",
+    "Tampa Bay"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-01T10:13:58Z",
    "base_depth": 129385,
    "best_price": 0.6288,
@@ -1466,8 +1621,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": 0.0,
+   "close_price": 0.49,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -4506,8 +4661,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.45,
-   "clv_cents": 7.0,
+   "close_price": 0.44,
+   "clv_cents": 6.0,
    "confirmed_after_min": 13,
    "date": "2026-11-01",
    "depth_by_book": {
