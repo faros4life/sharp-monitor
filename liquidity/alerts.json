@@ -1,6 +1,147 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-01T04:30:11Z",
+   "base_depth": 1145525,
+   "best_price": 0.55,
+   "best_price_american": -122,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.54,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 6,
+   "date": "2026-11-02",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 62733,
+     "new_this_side": 212764,
+     "other_side": 922643,
+     "other_side_all_levels": 1054916,
+     "ratio": 1.3,
+     "this_side": 1216234,
+     "this_side_all_levels": 1358285
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "CHI +3.5 (-3.5)",
+     "price": 0.55,
+     "this_side": 56564
+    }
+   },
+   "fade_price": 0.47,
+   "first_seen_utc": "2026-11-01T04:24:37Z",
+   "game": "Chicago vs Seattle: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNFLSPREAD-26NOV02CHISEA-SEA4\"}",
+   "lead_min": 2690,
+   "league": "NFL",
+   "line": 3.5,
+   "market": "spread",
+   "new_money": 212764,
+   "paper_only": false,
+   "price": 0.54,
+   "price_american": -117,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.54,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 3.0,
+     "price": -105
+    },
+    "betonlineag": {
+     "point": 3.0,
+     "price": -105
+    },
+    "betopenly": {
+     "point": 3.0,
+     "price": 108
+    },
+    "betrivers": {
+     "point": 3.0,
+     "price": -110
+    },
+    "betus": {
+     "point": 3.0,
+     "price": 100
+    },
+    "bovada": {
+     "point": 3.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 3.0,
+     "price": -105
+    },
+    "fanatics": {
+     "point": 3.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 3.0,
+     "price": -102
+    },
+    "kalshi": {
+     "point": 3.5,
+     "price": -117
+    },
+    "lowvig": {
+     "point": 3.0,
+     "price": 102
+    },
+    "mybookieag": {
+     "point": 3.0,
+     "price": -105
+    },
+    "novig": {
+     "point": 3.5,
+     "price": -122
+    },
+    "polymarket": {
+     "point": 3.5,
+     "price": -117
+    },
+    "prophetx": {
+     "point": 3.0,
+     "price": 104
+    },
+    "williamhill_us": {
+     "point": 3.0,
+     "price": -104
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNFLSPREAD-26NOV02CHISEA-SEA4"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Chicago",
+   "side_label": "NOT Seattle wins by over 3.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-11-03T01:20:00Z",
+   "teams": [
+    "Chicago",
+    "Seattle"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-01T04:20:10Z",
    "base_depth": 448903,
    "best_price": 0.5,
@@ -331,6 +472,8 @@
    "new_money": 42965,
    "paper_only": false,
    "price": 0.56,
+   "price_after_15m": 0.555,
+   "price_after_15m_book": "novig",
    "price_american": -127,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.57,
@@ -408,6 +551,7 @@
    "side_label": "Golden State",
    "start_source": "odds",
    "start_utc": "2026-11-02T01:30:00Z",
+   "still_actionable": true,
    "teams": [
     "Los Angeles C",
     "Golden State"
