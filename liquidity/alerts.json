@@ -194,6 +194,8 @@
    "new_money": 28807,
    "paper_only": false,
    "price": 0.64,
+   "price_after_15m": 0.63,
+   "price_after_15m_book": "novig",
    "price_american": -178,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.64,
@@ -260,6 +262,7 @@
    "side_label": "Los Angeles L",
    "start_source": "odds",
    "start_utc": "2026-11-02T02:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Toronto",
     "Los Angeles L"
@@ -827,7 +830,8 @@
      "price": -335
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-01T03:00:14Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNFLGAME-26NOV01NEMIA-NE"
@@ -1167,8 +1171,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.41,
-   "clv_cents": 3.0,
+   "close_price": 0.39,
+   "clv_cents": 1.0,
    "confirmed_after_min": 13,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -2583,6 +2587,7 @@
     "polymarket",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.5,
    "clv_cents": 0.0,
    "confirmed_after_min": 8,
@@ -4031,6 +4036,7 @@
     "polymarket",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.5,
    "clv_cents": 1.0,
    "confirmed_after_min": 10,
@@ -4124,7 +4130,8 @@
      "price": -112
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-01T03:00:14Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFTOTAL-26OCT31ORSTFRES-57"
@@ -6062,8 +6069,10 @@
     }
    },
    "fade_price": 0.25,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-31T22:30:11Z",
    "game": "Sacramento Kings at Memphis Grizzlies",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 0, \"px_event\": 1704705424, \"px_market\": 219, \"side\": \"1\"}",
    "lead_min": 80,
    "league": "NBA",
@@ -6158,7 +6167,7 @@
     "px_market": 219,
     "side": "1"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "kalshi",
@@ -6167,6 +6176,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-01T03:00:14Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "Sacramento Kings +9.5 (-113)",
@@ -6183,7 +6193,7 @@
     "Memphis Grizzlies"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.32
   },
   {
    "alerted_utc": "2026-10-31T22:40:09Z",
@@ -14751,6 +14761,7 @@
     }
    },
    "fade_price": 0.18,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-31T14:07:41Z",
    "game": "Timberwolves vs. Spurs",
    "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6167337\"}",
@@ -14841,11 +14852,12 @@
     "outcome_index": 1,
     "pm_market_id": "6167337"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settled_utc": "2026-11-01T03:00:14Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Spurs",
@@ -14858,7 +14870,7 @@
     "Spurs"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.2
   },
   {
    "alerted_utc": "2026-10-31T14:26:14Z",
@@ -19183,6 +19195,7 @@
     }
    },
    "fade_price": 0.19,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-10-31T08:50:23Z",
    "game": "Kings vs. Grizzlies",
    "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6167331\"}",
@@ -19277,11 +19290,12 @@
     "outcome_index": 1,
     "pm_market_id": "6167331"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-11-01T03:00:14Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Grizzlies",
@@ -19294,7 +19308,7 @@
     "Grizzlies"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.23
   },
   {
    "alerted_utc": "2026-10-31T09:00:15Z",
