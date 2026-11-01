@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 1, 1:30 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 8.
+Updated Sun Nov 1, 1:40 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 7.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 105-70 (-10.13u flat) | rule met: 31-29
+**Record:** 106-70 (-9.46u flat) | rule met: 31-29
 
-**Fade (paper, betting against the print):** 45-70 (+8.81u flat, after fees)
+**Fade (paper, betting against the print):** 45-71 (+7.81u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -23,7 +23,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 31 8:50AM | TENNIS | Cerundolo vs Kovacevic | moneyline: Cerundolo | kalshi | $98k | -113 |  |  | +0.0c |  | W |
 | Oct 31 8:30AM | TENNIS | Sonego vs Munar | moneyline: Munar | kalshi | $34k | -150 |  |  | +0.0c |  | L |
 | Oct 31 8:20AM | TENNIS | Gaston vs Kopriva | moneyline: Kopriva | kalshi | $48k | -203 |  |  | -1.0c |  | W |
-| Oct 31 8:16AM | TENNIS | Fernandez vs Shnaider | moneyline: Shnaider | kalshi | $27k | -144 |  |  | +3.0c |  | pending |
+| Oct 31 8:16AM | TENNIS | Fernandez vs Shnaider | moneyline: Shnaider | kalshi | $27k | -144 |  |  | +3.0c |  | W |
 | Oct 31 8:16AM | TENNIS | Vallejo vs Dimitrov | moneyline: Vallejo | kalshi | $26k | +108 |  |  | +1.0c |  | W |
 | Oct 31 8:16AM | TENNIS | Borges vs Mannarino | moneyline: Borges | kalshi | $56k | -144 |  |  | -1.0c |  | W |
 | Oct 31 8:10AM | TENNIS | Machac vs Landaluce | moneyline: Machac | kalshi | $59k | -138 |  |  | +28.0c |  | W |
