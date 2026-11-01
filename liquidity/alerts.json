@@ -1,6 +1,154 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-01T12:50:09Z",
+   "base_depth": 819561,
+   "best_price": 0.5,
+   "best_price_american": -100,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-01",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 55141,
+     "new_this_side": 202908,
+     "other_side": 991700,
+     "other_side_all_levels": 1149772,
+     "ratio": 1.2,
+     "this_side": 1165579,
+     "this_side_all_levels": 1264906
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "Over 54.5 (54.5)",
+     "price": 0.5,
+     "this_side": 74834
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "over 54.5 (54.5)",
+     "price": 0.5,
+     "this_side": 16495
+    }
+   },
+   "fade_price": 0.51,
+   "first_seen_utc": "2026-11-01T12:40:10Z",
+   "game": "Baltimore vs Buffalo: Total Points",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNFLTOTAL-26NOV01BALBUF-55\"}",
+   "lead_min": 310,
+   "league": "NFL",
+   "line": 54.5,
+   "market": "total",
+   "new_money": 202908,
+   "paper_only": false,
+   "price": 0.5,
+   "price_american": -100,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.5,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 54.5,
+     "price": -108
+    },
+    "betonlineag": {
+     "point": 54.5,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 54.0,
+     "price": -106
+    },
+    "betrivers": {
+     "point": 54.5,
+     "price": -110
+    },
+    "betus": {
+     "point": 54.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 54.5,
+     "price": -108
+    },
+    "draftkings": {
+     "point": 54.5,
+     "price": -110
+    },
+    "fanatics": {
+     "point": 54.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 54.5,
+     "price": -108
+    },
+    "kalshi": {
+     "point": 54.5,
+     "price": 100
+    },
+    "lowvig": {
+     "point": 54.5,
+     "price": -107
+    },
+    "mybookieag": {
+     "point": 54.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 54.5,
+     "price": 100
+    },
+    "polymarket": {
+     "point": 54.5,
+     "price": 100
+    },
+    "prophetx": {
+     "point": 54.5,
+     "price": 100
+    },
+    "williamhill_us": {
+     "point": 54.5,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNFLTOTAL-26NOV01BALBUF-55"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "prophetx"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "OVER",
+   "side_label": "Over 54.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-11-01T18:00:00Z",
+   "teams": [
+    "Baltimore",
+    "Buffalo"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-01T12:40:10Z",
    "base_depth": 50732,
    "best_price": 0.52,
@@ -344,6 +492,8 @@
    "new_money": 40498,
    "paper_only": false,
    "price": 0.51,
+   "price_after_15m": 0.5175,
+   "price_after_15m_book": "polymarket",
    "price_american": -104,
    "price_rule": "ok",
    "price_when_first_seen": 0.51,
@@ -431,6 +581,7 @@
    "side_label": "Over (218.5)",
    "start_source": "polymarket",
    "start_utc": "2026-11-02T01:30:00Z",
+   "still_actionable": false,
    "teams": [
     "Clippers",
     "Warriors"
@@ -485,6 +636,8 @@
    "new_money": 28760,
    "paper_only": false,
    "price": 0.51,
+   "price_after_15m": 0.51,
+   "price_after_15m_book": "novig",
    "price_american": -104,
    "price_rule": "ok",
    "price_when_first_seen": 0.51,
@@ -568,6 +721,7 @@
    "side_label": "NOT Carolina wins by over 1.5 goals",
    "start_source": "odds",
    "start_utc": "2026-11-01T18:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Winnipeg",
     "Carolina"
@@ -628,6 +782,8 @@
    "new_money": 31468,
    "paper_only": false,
    "price": 0.63,
+   "price_after_15m": 0.625,
+   "price_after_15m_book": "novig",
    "price_american": -170,
    "price_rule": "fails_cap",
    "price_when_first_seen": 0.63,
@@ -712,6 +868,7 @@
    "side_label": "NOT Utah wins by over 1.5 goals",
    "start_source": "odds",
    "start_utc": "2026-11-01T21:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Utah",
     "Philadelphia"
@@ -766,6 +923,8 @@
    "new_money": 38200,
    "paper_only": false,
    "price": 0.69,
+   "price_after_15m": 0.695,
+   "price_after_15m_book": "novig",
    "price_american": -223,
    "price_rule": "fails_cap",
    "price_when_first_seen": 0.69,
@@ -849,6 +1008,7 @@
    "side_label": "NOT Ottawa wins by over 1.5 goals",
    "start_source": "odds",
    "start_utc": "2026-11-02T01:00:00Z",
+   "still_actionable": false,
    "teams": [
     "Ottawa",
     "Anaheim"
@@ -1952,8 +2112,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": 0.0,
+   "close_price": 0.515,
+   "clv_cents": 0.5,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -4831,8 +4991,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": 2.0,
+   "close_price": 0.52,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -7861,8 +8021,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.54,
-   "clv_cents": 1.0,
+   "close_price": 0.53,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
