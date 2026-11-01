@@ -1,6 +1,145 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-01T15:40:10Z",
+   "base_depth": 183847,
+   "best_price": 0.54,
+   "best_price_american": -117,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.54,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-01",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": false,
+     "label": "NOT Buffalo wins by over 3.5 points",
+     "price": 0.54,
+     "this_side": 1604768
+    },
+    "novig": {
+     "new_other_side": 6912,
+     "new_this_side": 27836,
+     "other_side": 126968,
+     "other_side_all_levels": 127147,
+     "ratio": 1.6,
+     "this_side": 208934,
+     "this_side_all_levels": 209244
+    }
+   },
+   "fade_price": 0.465,
+   "first_seen_utc": "2026-11-01T15:30:11Z",
+   "game": "Baltimore Ravens @ Buffalo Bills",
+   "key": "novig|{\"market_id\": \"01a15b22-abb4-78b2-9331-3e7da9df7aba\", \"outcome_id\": \"01a15b22-abb4-78b2-9331-3e904b75c451\"}",
+   "lead_min": 140,
+   "league": "NFL",
+   "line": 3.5,
+   "market": "spread",
+   "new_money": 27836,
+   "paper_only": false,
+   "price": 0.54,
+   "price_american": -117,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.54,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 3.0,
+     "price": -102
+    },
+    "betonlineag": {
+     "point": 3.0,
+     "price": 100
+    },
+    "betopenly": {
+     "point": 3.5,
+     "price": -113
+    },
+    "betrivers": {
+     "point": 3.0,
+     "price": -105
+    },
+    "betus": {
+     "point": 3.0,
+     "price": 100
+    },
+    "bovada": {
+     "point": 3.0,
+     "price": 100
+    },
+    "draftkings": {
+     "point": 3.0,
+     "price": -105
+    },
+    "fanatics": {
+     "point": 3.5,
+     "price": -120
+    },
+    "fanduel": {
+     "point": 3.0,
+     "price": -104
+    },
+    "kalshi": {
+     "point": 3.5,
+     "price": -117
+    },
+    "lowvig": {
+     "point": 3.5,
+     "price": -119
+    },
+    "mybookieag": {
+     "point": 3.0,
+     "price": 100
+    },
+    "novig": {
+     "point": 3.5,
+     "price": -117
+    },
+    "polymarket": {
+     "point": 3.5,
+     "price": -117
+    },
+    "prophetx": {
+     "point": 3.0,
+     "price": 107
+    },
+    "williamhill_us": {
+     "point": 3.0,
+     "price": -105
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a15b22-abb4-78b2-9331-3e7da9df7aba",
+    "outcome_id": "01a15b22-abb4-78b2-9331-3e904b75c451"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Baltimore Ravens",
+   "side_label": "BAL +3.5 (-3.5)",
+   "start_source": "odds",
+   "start_utc": "2026-11-01T18:00:00Z",
+   "teams": [
+    "Baltimore Ravens",
+    "Buffalo Bills"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-01T15:30:11Z",
    "base_depth": 930602,
    "best_price": 0.51,
@@ -341,6 +480,8 @@
    "new_money": 34950,
    "paper_only": false,
    "price": 0.65,
+   "price_after_15m": 0.65,
+   "price_after_15m_book": "novig",
    "price_american": -186,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.65,
@@ -437,6 +578,7 @@
    "side_label": "PIT (0)",
    "start_source": "odds",
    "start_utc": "2026-11-01T18:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Cleveland Browns",
     "Pittsburgh Steelers"
@@ -491,6 +633,8 @@
    "new_money": 596432,
    "paper_only": false,
    "price": 0.48,
+   "price_after_15m": 0.4789,
+   "price_after_15m_book": "prophetx",
    "price_american": 108,
    "price_rule": "ok",
    "price_when_first_seen": 0.48,
@@ -560,7 +704,8 @@
      "price": -109
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-01T15:40:10Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNFLSPREAD-26NOV01INDJAC-JAC11"
@@ -576,6 +721,7 @@
    "side_label": "Jacksonville wins by over 10.5 points",
    "start_source": "odds",
    "start_utc": "2026-11-01T18:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Indianapolis",
     "Jacksonville"
@@ -636,6 +782,8 @@
    "new_money": 83806,
    "paper_only": false,
    "price": 0.45,
+   "price_after_15m": 0.46,
+   "price_after_15m_book": "novig",
    "price_american": 122,
    "price_rule": "ok",
    "price_when_first_seen": 0.45,
@@ -724,6 +872,7 @@
    "side_label": "Over 6.5 goals scored",
    "start_source": "odds",
    "start_utc": "2026-11-01T20:30:00Z",
+   "still_actionable": false,
    "teams": [
     "Minnesota",
     "Washington"
@@ -784,6 +933,8 @@
    "new_money": 178893,
    "paper_only": false,
    "price": 0.49,
+   "price_after_15m": 0.5,
+   "price_after_15m_book": "novig",
    "price_american": 104,
    "price_rule": "ok",
    "price_when_first_seen": 0.49,
@@ -873,6 +1024,7 @@
    "side_label": "Over 41.5 points",
    "start_source": "odds",
    "start_utc": "2026-11-01T21:25:00Z",
+   "still_actionable": true,
    "teams": [
     "Kansas City",
     "Denver"
@@ -927,6 +1079,8 @@
    "new_money": 320284,
    "paper_only": false,
    "price": 0.51,
+   "price_after_15m": 0.515,
+   "price_after_15m_book": "novig",
    "price_american": -104,
    "price_rule": "ok",
    "price_when_first_seen": 0.51,
@@ -1014,6 +1168,7 @@
    "side_label": "New York J wins by over 1.5 points",
    "start_source": "odds",
    "start_utc": "2026-11-01T18:00:00Z",
+   "still_actionable": false,
    "teams": [
     "Las Vegas",
     "New York J"
@@ -1074,6 +1229,8 @@
    "new_money": 643493,
    "paper_only": false,
    "price": 0.62,
+   "price_after_15m": 0.62,
+   "price_after_15m_book": "novig",
    "price_american": -163,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.62,
@@ -1170,6 +1327,7 @@
    "side_label": "Buffalo",
    "start_source": "odds",
    "start_utc": "2026-11-01T18:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Baltimore",
     "Buffalo"
@@ -1510,8 +1668,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.49,
-   "clv_cents": 1.0,
+   "close_price": 0.51,
+   "clv_cents": 3.0,
    "confirmed_after_min": 11,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -3410,8 +3568,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.61,
-   "clv_cents": 0.0,
+   "close_price": 0.62,
+   "clv_cents": 1.0,
    "confirmed_after_min": 14,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -5067,8 +5225,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.49,
-   "clv_cents": 0.0,
+   "close_price": 0.5,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -10864,8 +11022,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": -1.0,
+   "close_price": 0.5,
+   "clv_cents": -3.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
