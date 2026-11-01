@@ -1,6 +1,151 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-01T11:20:11Z",
+   "base_depth": 55317,
+   "best_price": 0.5,
+   "best_price_american": -100,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.49,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-01",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -6802,
+     "new_this_side": 26955,
+     "other_side": 29587,
+     "other_side_all_levels": 53539,
+     "ratio": 2.0,
+     "this_side": 57831,
+     "this_side_all_levels": 85406
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "Under 6.5 (6.5)",
+     "price": 0.5,
+     "this_side": 7841
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "under 6.5 (6.5)",
+     "price": 0.495,
+     "this_side": 4235
+    }
+   },
+   "fade_price": 0.52,
+   "first_seen_utc": "2026-11-01T11:10:10Z",
+   "game": "Edmonton vs New York R: Total Goals",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLTOTAL-26NOV01EDMNYR-7\"}",
+   "lead_min": 700,
+   "league": "NHL",
+   "line": 6.5,
+   "market": "total",
+   "new_money": 26955,
+   "paper_only": false,
+   "price": 0.49,
+   "price_american": 104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.49,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 6.5,
+     "price": -105
+    },
+    "betonlineag": {
+     "point": 6.5,
+     "price": -108
+    },
+    "betopenly": {
+     "point": 6.5,
+     "price": 104
+    },
+    "betrivers": {
+     "point": 6.5,
+     "price": -106
+    },
+    "betus": {
+     "point": 6.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 6.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 6.5,
+     "price": -108
+    },
+    "fanatics": {
+     "point": 6.5,
+     "price": -105
+    },
+    "fanduel": {
+     "point": 6.5,
+     "price": -105
+    },
+    "kalshi": {
+     "point": 6.5,
+     "price": 104
+    },
+    "lowvig": {
+     "point": 6.5,
+     "price": -108
+    },
+    "mybookieag": {
+     "point": 6.5,
+     "price": -107
+    },
+    "novig": {
+     "point": 6.5,
+     "price": 100
+    },
+    "polymarket": {
+     "point": 6.5,
+     "price": 100
+    },
+    "prophetx": {
+     "point": 6.5,
+     "price": 102
+    },
+    "williamhill_us": {
+     "point": 6.5,
+     "price": -112
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNHLTOTAL-26NOV01EDMNYR-7"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "NOT Over 6.5 goals scored",
+   "start_source": "odds",
+   "start_utc": "2026-11-01T23:00:00Z",
+   "teams": [
+    "Edmonton",
+    "New York R"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-01T10:40:10Z",
    "base_depth": 2286305,
    "best_price": 0.46,
@@ -15,8 +160,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.45,
-   "clv_cents": 0.0,
+   "close_price": 0.46,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -5188,8 +5333,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.56,
-   "clv_cents": 0.0,
+   "close_price": 0.55,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -5493,8 +5638,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.7,
-   "clv_cents": 1.0,
+   "close_price": 0.69,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -5578,8 +5723,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.61,
-   "clv_cents": -1.0,
+   "close_price": 0.6,
+   "clv_cents": -2.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {

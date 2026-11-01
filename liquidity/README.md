@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 1, 6:10 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 52.
+Updated Sun Nov 1, 6:20 AM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 53.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,7 +10,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 1 5:40AM | NFL | Atlanta vs Tampa Bay | moneyline: Atlanta | kalshi | $115k | +122 | ✅ prophetx |  | +0.0c |  | pending |
+| Nov 1 6:20AM | NHL | Edmonton vs New York R: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $27k | +104 |  |  | +0.0c |  | pending |
+| Nov 1 5:40AM | NFL | Atlanta vs Tampa Bay | moneyline: Atlanta | kalshi | $115k | +122 | ✅ prophetx |  | +1.0c |  | pending |
 | Nov 1 5:13AM | NFL | Minnesota Vikings @ Detroit Lions | moneyline: DET (0) | novig | $34k | -170 | ✅ kalshi,prophetx |  | -0.5c |  | pending |
 | Nov 1 4:50AM | NFL | Las Vegas vs New York J: Total Points | total: NOT Over 46.5 points | kalshi | $30k | -108 | ✅ novig | ❌ | +1.0c | yes | pending |
 | Nov 1 4:40AM | NFL | Cleveland Browns @ Pittsburgh Steelers | spread: CLE +3.5 (-3.5) | novig | $28k | -104 | ✅ kalshi |  | +0.0c |  | pending |
@@ -47,10 +48,10 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 31 9:40PM | NFL | Las Vegas vs New York J: Total Points | total: Over 46.5 points | kalshi | $72k | +104 |  | ✅ | +0.0c | yes | pending |
 | Oct 31 9:40PM | NCAAF | Texas St. vs Boise St.: Total Points | total: Over 64.5 points | kalshi | $58k | -100 |  | ❌ | +0.0c | yes | W |
 | Oct 31 9:40PM | NHL | Minnesota vs Washington | moneyline: Washington | kalshi | $44k | -100 | ✅ polymarket |  | +0.0c |  | pending |
-| Oct 31 9:30PM | NFL | Atlanta vs Tampa Bay | moneyline: Tampa Bay | kalshi | $566k | -127 | ✅ novig,prophetx |  | +0.0c | yes | pending |
+| Oct 31 9:30PM | NFL | Atlanta vs Tampa Bay | moneyline: Tampa Bay | kalshi | $566k | -127 | ✅ novig,prophetx |  | -1.0c | yes | pending |
 | Oct 31 9:20PM | NFL | Kansas City vs Denver: Total Points | total: Over 40.5 points | kalshi | $113k | -104 | ✅ novig |  | +1.0c | yes | pending |
-| Oct 31 9:20PM | NBA | Boston vs Orlando | moneyline: Boston | kalshi | $133k | -223 | ✅ polymarket |  | +1.0c |  | pending |
-| Oct 31 9:20PM | NBA | Brooklyn vs Indiana | moneyline: Indiana | kalshi | $29k | -163 | ✅ polymarket |  | -1.0c |  | pending |
+| Oct 31 9:20PM | NBA | Boston vs Orlando | moneyline: Boston | kalshi | $133k | -223 | ✅ polymarket |  | +0.0c |  | pending |
+| Oct 31 9:20PM | NBA | Brooklyn vs Indiana | moneyline: Indiana | kalshi | $29k | -163 | ✅ polymarket |  | -2.0c |  | pending |
 | Oct 31 9:10PM | NFL | Tennessee vs Cincinnati: Spread | spread: NOT Cincinnati wins by over 13.5 points | kalshi | $378k | -113 |  |  | +0.0c | yes | pending |
 | Oct 31 9:10PM | NFL | Las Vegas vs New York J: Spread | spread: NOT New York J wins by over 1.5 points | kalshi | $841k | -100 |  |  | +0.0c |  | pending |
 | Oct 31 9:00PM | NFL | New England vs Miami: Spread | spread: NOT New England wins by over 7.5 points | kalshi | $390k | -117 | ✅ novig |  | +0.0c | yes | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 30 6:40PM | NBA | Chicago vs Boston: Spread | spread: NOT Boston wins by over 14.5 points | kalshi | $42k | -104 | ✅ novig,polymarket |  | +2.0c | yes | W |
 | Oct 30 6:21PM | NBA | Pistons vs. Nets | spread: Nets (+8.5) | polymarket | $39k | -108 | ✅ novig | ❌ | +0.0c |  | L |
 | Oct 30 6:21PM | NBA | New York Knicks @ Philadelphia 76ers | moneyline: PHI (0) | novig | $50k | +135 | ✅ polymarket,prophetx | ❌ | -0.5c | yes | W |
-| Oct 30 6:21PM | NBA | Orlando vs Toronto: Spread | spread: Toronto wins by over 5.5 points | kalshi | $85k | -104 |  |  | +0.0c | yes | L |
