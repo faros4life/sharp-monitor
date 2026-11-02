@@ -26,6 +26,7 @@ from datetime import datetime, timedelta, timezone
 
 import clv_ledger as cl
 import executor as ex
+import hist_cache as hc
 import slow_hr as sh
 import tracker_build as tb
 
@@ -85,9 +86,8 @@ def main():
     sh.FLOOR = WINDOW_FROM
     new = 0
     for s, fid, f in todo[:MAX_GAMES]:
-        h1 = cl.api("/historical-odds", False, fixtureId=fid, bookmakers="pinnacle,novig.us,prophetx")
-        h2 = cl.api("/historical-odds", False, fixtureId=fid, bookmakers="kalshi,polymarket.us")
-        if any(isinstance(h, dict) and h.get("_error") for h in (h1, h2)):
+        h1 = h2 = hc.get_hist(fid, ["pinnacle", "novig.us", "prophetx", "kalshi", "polymarket.us"], s)   # shared cache
+        if isinstance(h1, dict) and h1.get("_error"):
             continue
         pin = cl.book_markets(h1, "pinnacle")
         if not pin:
@@ -160,7 +160,7 @@ def report(st, now, read, waiting, new):
                  f"{x['line'] if x['line'] is not None else ''} | {x['hr_am']:+d} | {x['detail'].replace('Hard Rock', NAME[x['book']])} | "
                  f"Type {x['kind']}{' LATE' if x['late'] else ''} | {x['mins_before']} min pre-start"
                  + (f" | after-fee CLV {x['clv_af']:+.2f}%" if x.get("clv_af") is not None else ""))
-    L += ["", f"Calls this run: {len(cl.CALLS)} (billable {cl.STATS['billable']})"]
+    L += ["", f"Calls this run: {len(cl.CALLS)} (billable {cl.STATS['billable']}); history cache hits {hc.STATS['hit']}, downloads {hc.STATS['miss']}"]
     ex.send(f"Bets EXCHANGE-LAG STUDY {now.astimezone(ET).strftime('%Y-%m-%d %H:%M')}", "\n".join(L))
 
 
