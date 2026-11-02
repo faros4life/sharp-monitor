@@ -32,6 +32,7 @@ from datetime import date, datetime, timedelta, timezone
 
 import clv_ledger as cl
 import exchange_lag as el
+import buckets as bkt
 import executor as ex
 import hist_cache as hc
 import sharp_monitor as sm
@@ -371,6 +372,16 @@ def main():
                 if e == EDGE_REG:
                     L.append(f"      FIT  {stats(F)} | exch {stats(F, 'clv_x')}")
                     L.append(f"      CHECK {stats(C)} | exch {stats(C, 'clv_x')}")
+    def _b(s):
+        mk = "totals" if s["typ"].startswith("all-") else s["typ"]
+        ln_ = s["line"] if (mk != "spreads" or s["side"] == "team1") else -s["line"]
+        return {"day": s["day"], "clv": s["clv"], "lg": s["lg"], "mk": mk, "sc": bkt.side_class(mk, s["side"], ln_),
+                "key": bkt.key_class(s["lg"], mk, ln_), "edge": None if s["typ"].startswith("all-") else s["edge"],
+                "am": bkt.dec_to_am(s["dec"])}
+    L += [""] + bkt.section("model picks, edge >= 4 (CLV % at Pinnacle open price)",
+                            [_b(s) for s in sigs if not s["typ"].startswith("all-") and s["edge"] >= EDGE_REG], "%")
+    L += [""] + bkt.section("no-model all unders / all overs at the open (CLV % at Pinnacle open price)",
+                            [_b(s) for s in sigs if s["typ"].startswith("all-")], "%")
     L += ["", f"Calls: {len(cl.CALLS)} (billable {cl.STATS['billable']})"]
     ex.send("Bets MODEL LAB (HYPOTHESIS)", "\n".join(L))
     print(f"model lab: sightings {len(sigs)}, calls {len(cl.CALLS)}")   # counts only
