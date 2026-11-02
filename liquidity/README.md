@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 2, 12:20 PM ET. This run: 0 new, 1 not confirmed, 0 pending. Open alerts: 66.
+Updated Mon Nov 2, 12:26 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 66.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -23,7 +23,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 2 11:00AM | NBA | Trail Blazers vs. Nuggets | total: Under (231.5) | polymarket | $33k | -104 | ✅ novig | ✅ | +1.0c |  | pending |
 | Nov 2 10:40AM | NBA | Milwaukee vs Minnesota: Spread | spread: Minnesota wins by over 11.5 points | kalshi | $37k | +104 | ✅ polymarket | ✅ | +2.0c |  | pending |
 | Nov 2 10:30AM | NBA | Suns vs. Warriors | moneyline: Suns | polymarket | $30k | +127 | ✅ kalshi,novig | ✅ | +0.0c | yes | pending |
-| Nov 2 10:30AM | NBA | Hawks vs. Pacers | moneyline: Hawks | polymarket | $79k | -194 | ✅ kalshi,novig |  | +1.0c |  | pending |
+| Nov 2 10:30AM | NBA | Hawks vs. Pacers | moneyline: Hawks | polymarket | $79k | -194 | ✅ kalshi,novig |  | +0.0c |  | pending |
 | Nov 2 10:20AM | NFL | Chicago Bears @ Seattle Seahawks | moneyline: SEA (0) | novig | $91k | -163 | ✅ kalshi,prophetx |  | +0.0c |  | pending |
 | Nov 2 10:10AM | NBA | Pistons vs. Hornets | moneyline: Pistons | polymarket | $29k | -178 | ✅ kalshi,novig,prophetx |  | +3.0c | yes | pending |
 | Nov 2 10:10AM | NBA | Phoenix vs Golden State | moneyline: Phoenix | kalshi | $242k | +133 | ✅ polymarket,prophetx | ✅ | +1.0c |  | pending |
@@ -50,7 +50,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 2 3:30AM | NHL | Detroit vs Florida: Total Goals | total: NOT Over 5.5 goals scored | kalshi | $65k | +113 |  |  | +1.0c |  | pending |
 | Nov 2 3:20AM | NHL | Vegas vs Boston: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $34k | -122 | ✅ novig,polymarket |  | +0.0c |  | pending |
 | Nov 2 1:10AM | NBA | Washington vs Orlando | moneyline: Washington | kalshi | $116k | +133 |  | ❌ | +0.0c |  | pending |
-| Nov 2 12:30AM | NBA | Detroit vs Charlotte: Total Points | total: NOT Over 210.5 points | kalshi | $31k | -108 |  |  | +0.0c |  | pending |
+| Nov 2 12:30AM | NBA | Detroit vs Charlotte: Total Points | total: NOT Over 210.5 points | kalshi | $31k | -108 |  |  | -1.0c |  | pending |
 | Nov 2 12:10AM | NBA | Miami vs Los Angeles L | moneyline: Los Angeles L | kalshi | $124k | -117 |  |  | +1.0c |  | pending |
 | Nov 2 12:00AM | NBA | Toronto vs Los Angeles C | moneyline: Toronto | kalshi | $65k | -178 |  |  | +2.0c |  | pending |
 | Nov 1 11:30PM | NHL | Calgary vs San Jose | moneyline: San Jose | kalshi | $25k | -127 |  |  | -4.0c |  | pending |
