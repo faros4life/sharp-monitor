@@ -3,16 +3,21 @@ name: hcache-fill
 # Fills the shared OddsPapi history cache (private Actions cache, never committed) with every finished NBA/NFL/NCAAF/NHL
 # game since Oct 12 for Pinnacle, the exchanges and Hard Rock, so models and tests run from disk. Started daily by tick.py;
 # dispatch to work through the backlog. Free history calls (plus 4 billable /fixtures). The log prints counts only.
+# Nov 2 (Peter: faster): order = newest | oldest (a 2nd fill can work the other end); merge_a / merge_b = earlier fill run
+# ids whose caches are folded in first; the cache is saved even if the run is stopped or times out.
 on:
   workflow_dispatch:
     inputs:
       max_games: {required: false, type: string, default: "700"}
+      order: {required: false, type: string, default: "newest"}
+      merge_a: {required: false, type: string, default: ""}
+      merge_b: {required: false, type: string, default: ""}
 
 permissions:
   contents: read
 
 concurrency:
-  group: hcache-fill
+  group: hcache-fill-${{ inputs.order || 'newest' }}
   cancel-in-progress: false
 
 jobs:
@@ -26,13 +31,33 @@ jobs:
           python-version: "3.12"
       - run: pip install -q cryptography
       - name: Restore shared OddsPapi history cache (private Actions cache, never committed)
-        uses: actions/cache@v4
+        uses: actions/cache/restore@v4
         with:
           path: hcache
           key: hcache-${{ github.run_id }}
           restore-keys: hcache-
+      - name: Restore another fill's cache (merge_a)
+        if: inputs.merge_a != ''
+        uses: actions/cache/restore@v4
+        with:
+          path: hcache_a
+          key: hcache-${{ inputs.merge_a }}
+      - name: Restore another fill's cache (merge_b)
+        if: inputs.merge_b != ''
+        uses: actions/cache/restore@v4
+        with:
+          path: hcache_b
+          key: hcache-${{ inputs.merge_b }}
       - name: Fill the cache
         env:
           ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
           FILL_MAX: ${{ inputs.max_games }}
+          FILL_ORDER: ${{ inputs.order }}
+          FILL_MERGE: hcache_a,hcache_b
         run: python -u hcache_fill.py
+      - name: Save the cache even if the run is stopped or times out
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: hcache
+          key: hcache-${{ github.run_id }}
