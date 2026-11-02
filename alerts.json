@@ -1000,7 +1000,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+2 pts",
+   "clv": "+2.5 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline"
@@ -1662,7 +1662,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+0.5 pts",
+   "clv": "+1 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline"
@@ -1695,7 +1695,7 @@
   },
   {
    "alert_utc": "2026-11-02T21:40:14Z",
-   "beat_close": true,
+   "beat_close": false,
    "beat_true_close": null,
    "bet": "Over 158.5 (+100)",
    "book": "Novig",
@@ -1703,7 +1703,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+0.5 pts",
+   "clv": "-0.5 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline"
@@ -1732,6 +1732,47 @@
    "sport": "NCAAB",
    "start_utc": "2026-11-03T01:00:00Z",
    "top25": false,
+   "units_flat": null
+  },
+  {
+   "alert_utc": "2026-11-02T22:00:24Z",
+   "beat_close": true,
+   "beat_true_close": null,
+   "bet": "Over 144.5 (-115)",
+   "book": "Hard Rock",
+   "book_key": "hardrockbet",
+   "close_fair_prob": null,
+   "close_read_mins_before": null,
+   "close_value_pct": null,
+   "clv": "+1 pts",
+   "confirm": "yes",
+   "confirmed_by": [
+    "BetOnline"
+   ],
+   "edge_pct": -3.6,
+   "executable_book": true,
+   "fade_book": "prophetx",
+   "fade_point": 144.5,
+   "fade_price": -102,
+   "fade_price_after_fee": -104,
+   "fade_units": null,
+   "final": null,
+   "floor_line": 145.0,
+   "game": "Fordham Rams @ Kansas Jayhawks",
+   "grade": "B",
+   "kind": "tot",
+   "late": false,
+   "minutes_before_start": 180,
+   "point": 144.5,
+   "price": -115,
+   "price_after_fee": -115,
+   "pricing_bettable": true,
+   "result": null,
+   "score": 64,
+   "sent_to_phone": true,
+   "sport": "NCAAB",
+   "start_utc": "2026-11-03T01:00:00Z",
+   "top25": true,
    "units_flat": null
   },
   {
@@ -1786,7 +1827,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+1.5 pts",
+   "clv": "+2 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline"
@@ -2940,7 +2981,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+1 pts",
+   "clv": "+0.5 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline"
@@ -3145,7 +3186,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+1 pts",
+   "clv": "+2.5 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline"
@@ -3179,13 +3220,13 @@
   {
    "alert_utc": "2026-11-02T21:40:14Z",
    "beat_close": true,
-   "beat_true_close": null,
+   "beat_true_close": false,
    "bet": "UAB Blazers +3.5 (-115)",
    "book": "Hard Rock",
    "book_key": "hardrockbet",
-   "close_fair_prob": null,
-   "close_read_mins_before": null,
-   "close_value_pct": null,
+   "close_fair_prob": 0.5257,
+   "close_read_mins_before": 30,
+   "close_value_pct": -1.7,
    "clv": "+1 pts",
    "confirm": "yes",
    "confirmed_by": [
@@ -24673,6 +24714,54 @@
   }
  ],
  "all_alerts": [
+  {
+   "alert_text": "Over 144.5 (-115) at Hard Rock (also: ProphetX)",
+   "bet": "Over 144.5 (-115)",
+   "bet_result": null,
+   "book": "Hard Rock",
+   "confirmed_by": [
+    "BetOnline"
+   ],
+   "edge_pct": -3.6,
+   "final": null,
+   "game": "Fordham Rams @ Kansas Jayhawks",
+   "grade": "B",
+   "late": false,
+   "minutes_before_start": 180,
+   "price": -115,
+   "price_after_fee": -115,
+   "pushed_to_phone": true,
+   "repeat": false,
+   "score": 64,
+   "sent_et": "2026-11-02 17:00",
+   "sport": "NCAAB",
+   "start_utc": "2026-11-03T01:00:00Z",
+   "why": "Pinnacle total moved 144 -> 145.5; bet only at 145 or better (confirmed by BetOnline)"
+  },
+  {
+   "alert_text": "Over 160.5 (-115) at Hard Rock (also: ProphetX, Novig, Kalshi)",
+   "bet": "Over 160.5 (-115)",
+   "bet_result": null,
+   "book": "Hard Rock",
+   "confirmed_by": [
+    "BetOnline"
+   ],
+   "edge_pct": -1.2,
+   "final": null,
+   "game": "Bowling Green Falcons @ Georgia St Panthers",
+   "grade": "A",
+   "late": true,
+   "minutes_before_start": 60,
+   "price": -115,
+   "price_after_fee": -115,
+   "pushed_to_phone": false,
+   "repeat": true,
+   "score": 80,
+   "sent_et": "2026-11-02 17:00",
+   "sport": "NCAAB",
+   "start_utc": "2026-11-02T23:00:00Z",
+   "why": "Pinnacle total moved 158 -> 162; bet only at 161.5 or better (confirmed by BetOnline)"
+  },
   {
    "alert_text": "Over 158.5 (+100) at Novig (also: Hard Rock, ProphetX, Kalshi)",
    "bet": "Over 158.5 (+100)",
