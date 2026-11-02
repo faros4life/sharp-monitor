@@ -25,8 +25,10 @@ import os
 from datetime import datetime, timedelta, timezone
 
 import clv_ledger as cl
+import buckets as bkt
 import executor as ex
 import hist_cache as hc
+import slowhr_backtest as sbt
 import slow_hr as sh
 import tracker_build as tb
 
@@ -103,6 +105,10 @@ def main():
             for x in sh.sightings(fid, f2, f["lg"], pin, xm, mkmap, s):
                 x["book"] = bk
                 x["day"] = s.astimezone(ET).strftime("%Y-%m-%d")
+                try:   # standard bucket fields (BUCKETS.md): side class, key numbers, still up +1/+5, market-wide, Pinnacle limit
+                    sbt.enrich(x, f["lg"], pin, xm, h1, mkmap, s)
+                except Exception:
+                    pass
                 if x.get("close_fair") is not None:
                     x["clv_af"] = round(100 * (x["close_fair"] * eff(bk, x["hr_price"]) - 1), 2)
                 st["sightings"].append(x)
@@ -154,6 +160,19 @@ def report(st, now, read, waiting, new):
         lt = [x for x in S if x["book"] == bk and x["late"]]
         if lt:
             L.append(f"   LATE (final 30 min, own split): {stats(lt)}")
+    def _b(x):
+        mk, ln_ = x["type"], x.get("line")
+        if mk == "spreads" and ln_ is not None and x.get("side") == "2":
+            ln_ = -ln_
+        return {"day": x["day"], "clv": x.get("clv_af"), "lg": x["league"], "mk": mk,
+                "sc": x.get("sclass") if x.get("sclass") in ("under", "over", "fav", "dog") else bkt.side_class(mk, x.get("side"), ln_),
+                "key": bkt.key_class(x["league"], mk, ln_), "move": x.get("kind"),
+                "ldelta": bkt.ldelta_from_detail(x.get("detail")) if x.get("kind") == "L" else None,
+                "live1": x.get("live1"), "live5": x.get("live5"), "wide": x.get("wide"), "pin_limit": x.get("pin_limit"),
+                "lead": x.get("mins_before"), "late": x.get("late"), "am": x.get("hr_am")}
+    L.append("(Sightings stored before Nov 2 lack still-up / market-wide / limit fields: those buckets cover new sightings only.)")
+    for bx in EXCH:
+        L += [""] + bkt.section(f"{NAME[bx]} slow quotes (CLV % after fees)", [_b(x) for x in S if x["book"] == bx], "%")
     L += ["", "NEWEST 25 SIGHTINGS:"]
     for x in sorted(S, key=lambda x: x["t_move"])[-25:][::-1]:
         L.append(f"  {x['t_confirm'][:16]}Z {NAME[x['book']]} {x['league']} {x['game']} | {x['type']} {x['team']} "
