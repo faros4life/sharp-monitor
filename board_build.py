@@ -136,12 +136,22 @@ def score(rows):
             r["tag"], r["why"] = "LEAN", "; ".join(short + fights + why)
 
 
+def x2_limits():
+    """Nov 2 (Peter + Muse): P limit at alert / now and the 2X tag per row, from x2_tag.py (OddsJam scale). {} if absent."""
+    try:
+        with open("x2/limits.json") as f:
+            return json.load(f).get("rows") or {}
+    except Exception:
+        return {}
+
+
 def build(upcoming=False):
     """Today's rows (alerted since midnight ET). upcoming=True: every row whose game starts in the next 2 days
     (lanes.py uses this so an alert from yesterday for tonight's game is still seen)."""
     now = datetime.now(timezone.utc)
     day0 = now.astimezone(ET).replace(hour=0, minute=0, second=0, microsecond=0)
     rows = []
+    X2 = x2_limits()
     for x in load():
         at = t(x.get("alerted_utc"))
         st0 = t(x.get("start_utc"))
@@ -158,7 +168,8 @@ def build(upcoming=False):
                      "dep": dep, "first": fs.astimezone(ET).strftime("%-I:%M %p"),
                      "sit": round((now - fs).total_seconds() / 60),
                      "status": "pulled" if x.get("pulled") else ("game started" if st and st < now else "still there"),
-                     "result": x.get("result") or "", "units": x.get("units_flat") or 0})
+                     "result": x.get("result") or "", "units": x.get("units_flat") or 0,
+                     "pl": X2.get(f"{x.get('key')}|{x.get('alerted_utc')}") or {}})
     score(rows)
     # flips: $100k+ on one side, later $100k+ on the other (same game + bet type)
     groups = {}
@@ -192,6 +203,17 @@ def page(now, rows, flips):
     exmax = max([max(r["dep"].values() or [0]) for r in rows] + [1])
     nmax = max([r["new"] for r in rows] + [1])
 
+    def plim(r):
+        p = r.get("pl") or {}
+        if not p.get("p_alert"):
+            return '<span class="muted">—</span>'
+        s = money(p["p_alert"])
+        if p.get("p_now") and abs(p["p_now"] - p["p_alert"]) >= 0.05 * p["p_alert"]:
+            s += f' <span class="muted">now {money(p["p_now"])}</span>'
+        if p.get("x2"):
+            s += ' <span class="pill yes" title="Exchange money on this side is at least 2x the P limit (2 of Novig/ProphetX/Kalshi at $5k+, $25k+ total)">2X</span>'
+        return s
+
     def table(mk):
         rs = sorted([r for r in rows if r["mk"] == mk], key=lambda r: (started(r), rank[r["tag"]], -r["new"]))
         out = []
@@ -207,14 +229,15 @@ def page(now, rows, flips):
                 f'<td class="r money">{money(r["new"])}<span class="bar" style="width:{max(2, 100 * r["new"] / nmax):.0f}%"></span></td>'
                 f'<td class="hide-m">{e(r["league"])}</td><td>{e(r["game"])}</td><td>{e(r["side"])}</td>'
                 f'<td class="ex">{bars}</td>'
+                f'<td class="r">{plim(r)}</td>'
                 f'<td class="r">{(str(r["sit"] // 60) + "h " + str(r["sit"] % 60) + "m") if live and r["sit"] >= 60 else (str(r["sit"]) + "m" if live else "")}</td>'
                 f'<td><span class="pill {"yes" if live else "gone"}">{r["status"]}</span></td>'
                 f'<td class="hide-m"><span class="pill {"yes" if r["conf"] else ""}">{"yes" if r["conf"] else "no"}</span></td>'
                 f'<td class="hide-m muted">{r["first"]}</td></tr>')
         head = ('<tr><th>Call</th><th class="r">New money</th><th class="hide-m">League</th><th>Game</th><th>Money on</th>'
-                '<th>Bids by exchange</th><th class="r">Sitting</th><th>Status</th><th class="hide-m">Confirmed</th>'
+                '<th>Bids by exchange</th><th class="r" title="Pinnacle limit on OddsJam scale: at the alert, and now">P limit</th><th class="r">Sitting</th><th>Status</th><th class="hide-m">Confirmed</th>'
                 '<th class="hide-m">First seen ET</th></tr>')
-        return f'<div class="scroll"><table><thead>{head}</thead><tbody>{"".join(out) or "<tr><td colspan=10 class=muted>Nothing yet today.</td></tr>"}</tbody></table></div>'
+        return f'<div class="scroll"><table><thead>{head}</thead><tbody>{"".join(out) or "<tr><td colspan=11 class=muted>Nothing yet today.</td></tr>"}</tbody></table></div>'
 
     fl = "".join(
         f'<tr data-league="{e(a["league"])}"><td>{e(a["game"])}</td><td>{mk}</td><td>{e(a["side"])}</td><td class="r">{money(a["new"])}</td>'
