@@ -14,6 +14,8 @@ MODELS (current-season scores only, from ESPN; ratings use only games on EARLIER
     the MARKET-DRIFT baseline instead: EVERY game's total, Under and (for contrast) Over, at the OPEN, graded on the close -
     at Pinnacle's price, the best exchange after fees, and Hard Rock's own open price. Tests whether NBA totals open too
     high this season (the drift found in backtest #1/#2), with no model at all.
+  ALL LEAGUES (Peter 16:06: "unders in all sports work better most of the time"): the same no-model baseline - every
+    game's total, Under and Over at the open, graded on the close - runs for NHL, NFL and NCAAF too, per league.
 SIGHTING: model chance for a side minus Pinnacle's no-vig chance at the OPEN (first tick + 1 min, main line = largest
   limit) >= EDGE (4 pts registered here; 2 and 6 shown). Markets: total, spread (football; NBA), moneyline (NHL).
 GRADE: CLV % = Pinnacle no-vig close at that line x decimal - 1, at (a) Pinnacle's own open price and (b) the best
@@ -208,9 +210,6 @@ def run_league(lg, mkmap, st, sigs, why):
     for g in sorted(graded, key=lambda x: x["start"]):
         prior = [x for x in games if etd(x["start"]) < etd(g["start"])]
         r = ratings(prior, lg) if lg != "NBA" else {"drift": True}
-        if not r:
-            why[lg]["too early"] = why[lg].get("too early", 0) + 1
-            continue
         s0 = datetime.fromisoformat(g["start"].replace("Z", "+00:00"))
         words = tb.toks(g["home"]) | tb.toks(g["away"])
         fid = next((k for k, f in fx.items() if cl.tp(f.get("start")) and abs((cl.tp(f["start"]) - s0).total_seconds()) <= 6 * 3600
@@ -232,7 +231,7 @@ def run_league(lg, mkmap, st, sigs, why):
             why[lg]["no Pinnacle history"] = why[lg].get("no Pinnacle history", 0) + 1
             continue
         t_open = min(ft + timedelta(minutes=1), s0)
-        if lg == "NBA":   # market-drift baseline: every game, both sides of the total at the open
+        if True:   # market-drift baseline (all leagues): every game, both sides of the total at the open
             co, cc = cands(pm, mkmap, sid, "totals", t_open), cands(pm, mkmap, sid, "totals", s0)
             m = main_of(co)
             if not m or not cc:
@@ -254,6 +253,10 @@ def run_league(lg, mkmap, st, sigs, why):
                              "clv_hr": None if (pc is None or not hrd) else round(100 * (pc * hrd - 1), 2),
                              "move": None if pc is None else round(100 * (pc - (m["pa"] if side_a else 1 - m["pa"])), 2),
                              "u": 0.0 if res == "P" else (dec - 1 if res == "W" else -1.0)})
+        if lg == "NBA":
+            continue
+        if not r:
+            why[lg]["too early for a model"] = why[lg].get("too early for a model", 0) + 1
             continue
         eh, ea = predict(r, g)
         day = etd(g["start"])
@@ -336,12 +339,12 @@ def main():
          "CLV % = Pinnacle no-vig close at that line x decimal - 1; 'exch' = best after-fee exchange price at the open.", "",
          "Coverage: " + "; ".join(f"{k}: " + ", ".join(f"{a} {b}" for a, b in v.items()) for k, v in why.items()),
          f"History cache hits {hc.STATS['hit']}, downloads {hc.STATS['miss']}", ""]
-    for typ in ("all-unders", "all-overs"):
-        S = [s for s in sigs if s["typ"] == typ]
+    for lg_, typ in [(l_, t_) for l_ in LEAGUES for t_ in ("all-unders", "all-overs")]:
+        S = [s for s in sigs if s["typ"] == typ and s["lg"] == lg_]
         if S:
             F, C = [s for s in S if s["day"] <= mid], [s for s in S if s["day"] > mid]
             mv = [s["move"] for s in S if s.get("move") is not None]
-            L += [f"NBA {typ.upper()} AT THE OPEN (no model; Peter's NBA-unders read):",
+            L += [f"{lg_} {typ.upper()} AT THE OPEN (no model; Peter's unders read):",
                   f"  Pinnacle price: {stats(S)} | avg no-vig move open->close {stt.mean(mv):+.2f} pts" if mv else f"  Pinnacle price: {stats(S)}",
                   f"  best exchange after fees: {stats(S, 'clv_x')}", f"  Hard Rock open price: {stats(S, 'clv_hr')}",
                   f"  FIT  {stats(F)} | exch {stats(F, 'clv_x')} | HR {stats(F, 'clv_hr')}",
