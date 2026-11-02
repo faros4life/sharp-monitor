@@ -123,7 +123,7 @@ def main():
         rec = {"league": r["league"], "market": r["market"], "game": r.get("game"), "side": r.get("side_label"),
                "alerted": r.get("alerted_utc"), "limit_raw": lim, "how": how, "liq": round(tot), "two5k": two5k,
                "result": r.get("result"), "units": r.get("units_flat"), "clv": r.get("clv_cents"), "pulled": bool(r.get("pulled")),
-               "confirmed": bool(r.get("rule_met"))}
+               "confirmed": bool(r.get("rule_met")), "book": r.get("book"), "price": tb.num(r.get("price"))}
         for sc, k in SCALE.items():
             rec["pass_" + sc] = bool(tot >= 2 * lim * k and two5k and tot >= 25000)
         res.append(rec)
@@ -174,16 +174,30 @@ def main():
     # its CHECK result is reported as the out-of-sample answer. HOLDS = >= 30 rows and avg CLV > 0 in BOTH halves.
     GRID = (1, 2, 3, 5, 10, 15, 20, 30, 50, 75, 100, 150, 200, 300, 500)
 
+    def fee_c(x):
+        """Fee load in cents of probability at the row's own book and price (Muse 13:54: freeze on AFTER-FEE CLV)."""
+        p, bk = x.get("price"), (x.get("book") or "").lower()
+        if not p or not 0 < p < 1:
+            return 0.0
+        if bk == "prophetx":
+            return 100 * (1 / (1 + (1 / p - 1) * 0.98) - p)
+        if bk == "kalshi":
+            return 100 * 0.07 * p * (1 - p)
+        if bk.startswith("polymarket"):
+            return 100 * ex.PMUS_FEE * p * (1 - p)
+        return 0.0
+
     def cell(xs):
-        c = [float(x["clv"]) for x in xs if x["clv"] is not None]
+        c = [float(x["clv"]) - fee_c(x) for x in xs if x["clv"] is not None]
         g = [x for x in xs if x["result"] in ("W", "L", "P")]
         u = sum(float(x["units"] or 0) for x in g)
         return len(xs), (sum(c) / len(c) if c else None), (u / len(g) if g else None)
 
     def fmt(t):
         n, c, u = t
-        return f"n {n:>3} CLV {c:+.2f}c {u:+.3f}u" if c is not None and u is not None else f"n {n:>3}"
+        return f"n {n:>3} after-fee CLV {c:+.2f}c {u:+.3f}u" if c is not None and u is not None else f"n {n:>3}"
     L += ["", "MULTIPLIER SWEEP (OJ scale; gates kept). '>=' = ratio at or above; '<' = below (low money vs limit).",
+          "CLV here is AFTER FEES at the row's own book and price (Muse 13:54): ProphetX 2% of winnings, Kalshi 0.07xPx(1-P), PM US 0.0695xPx(1-P).",
           "Cutoff picked on FIT ONLY (best FIT CLV, >= 30 rows); CHECK = out-of-sample answer. HOLDS = >= 30 rows, CLV > 0 both halves.",
           "CAUTION: about 30 cutoffs x 20 sport/market cells are tested; some HOLDS lines will be luck. Trust only the FIT-chosen list."]
     picks = []
