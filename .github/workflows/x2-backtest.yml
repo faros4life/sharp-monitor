@@ -1,0 +1,32 @@
+name: x2-backtest
+
+# On demand: the 2X backtest (HYPOTHESIS) - board rows vs Pinnacle's limit at the row's time (OddsPapi free history).
+# Private email; the log prints counts only. Reads only; writes nothing to the repo.
+on:
+  workflow_dispatch:
+    inputs:
+      bt_from: {required: false, type: string, default: "2026-10-22"}
+      bt_to: {required: false, type: string, default: "2026-11-01"}
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: 2X backtest (private email)
+        env:
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
+          BT_FROM: ${{ inputs.bt_from }}
+          BT_TO: ${{ inputs.bt_to }}
+        run: python -u x2_backtest.py
