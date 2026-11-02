@@ -151,6 +151,24 @@ def main():
         for mk in ("moneyline", "spread", "total"):
             L.append(line([x for x in p if x["market"] == mk], f"  2X PASS {mk}"))
         L.append(line([x for x in p if x["confirmed"] and not x["pulled"]], "  2X PASS, confirmed and not pulled"))
+    # Nov 2 (Peter: "adjust per sport ... back test to see what works"): ratio bands per sport, fit half vs check half
+    MID = os.environ.get("BT_SPLIT", "2026-10-27")
+    BANDS = (2, 3, 5, 10, 20, 50)
+    L += ["", f"PER-SPORT RATIO BANDS (ratio = bet-side exchange money / P limit on OddsJam scale; gates 2 of 3 >= $5k and >= $25k kept).",
+          f"FIT half = alerts through {MID} ET; CHECK half = after. A cutoff only counts if it holds in CHECK."]
+    for x in res:
+        x["ratio"] = x["liq"] / (x["limit_raw"] * 4 / 3) if x["limit_raw"] else 0
+        x["half"] = "FIT" if (tb.tparse(x["alerted"]).astimezone(ET).strftime("%Y-%m-%d") <= MID) else "CHECK"
+    for lg in sorted({x["league"] for x in res}):
+        rs_ = sorted(x["ratio"] for x in res if x["league"] == lg)
+        if not rs_:
+            continue
+        q = lambda p: rs_[min(len(rs_) - 1, int(p * len(rs_)))]
+        L.append(f"  {lg}: rows {len(rs_)}, ratio median {q(0.5):.1f}x, top 25% >= {q(0.75):.1f}x, top 10% >= {q(0.9):.1f}x")
+        for bnd in BANDS:
+            for hf in ("FIT", "CHECK"):
+                xs = [x for x in res if x["league"] == lg and x["half"] == hf and x["ratio"] >= bnd and x["two5k"] and x["liq"] >= 25000]
+                L.append(line(xs, f"    >= {bnd}x {hf}"))
     L += ["", "2X PASS rows on the OJ scale (newest 25):"]
     for x in sorted([x for x in res if x["pass_OJ"]], key=lambda x: x["alerted"])[-25:][::-1]:
         L.append(f"  {x['alerted'][:16]} {x['league']} {x['game']} | {x['side']} | liq USD {x['liq']:,} vs limit {x['limit_raw']:,.0f} "
