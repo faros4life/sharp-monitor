@@ -1502,6 +1502,26 @@ def kalshi_rest_reports():
     return n
 
 
+def books_snapshot(r):
+    """Queue #7 price capture (Nov 2, Peter yes): every book's after-fee price at the alert line at decision time.
+    Logging only - never used for a decision; any problem returns None so the run is unaffected."""
+    try:
+        if not r.get("books"):
+            return None
+        out = {}
+        for b in BOOKS:
+            x = (r.get("books") or {}).get(b) or {}
+            if x.get("status") == "ok":
+                out[b] = {"best_after_fee": (int(x["best_price_american"]) if x.get("best_price_american") is not None else None), "line": book_line(x),
+                          "exact_line": bool(x.get("exact_line")),
+                          "dollars_at_alert_or_better": round(float(x.get("dollars_at_alert_price_or_better") or 0), 2)}
+            else:
+                out[b] = {"status": x.get("status", "not checked")}
+        return out
+    except Exception:
+        return None
+
+
 def ledger_row(r, run_start):
     p, e = r["play"], r.get("entry") or {}
     at = iso_t(e.get("alert_utc") or p.get("alert_utc"))
@@ -1523,6 +1543,7 @@ def ledger_row(r, run_start):
             "px_gettable": ((r.get("px") is not None) if r.get("books") else None),
             "px_best_after_fee": ((r.get("books") or {}).get("prophetx") or {}).get("best_price_american"),
             "px_best_line": ((r.get("books") or {}).get("prophetx") or {}).get("line"),
+            "books_at_decision": books_snapshot(r),
             "live_order": dict({k: (lv.get("order") or {}).get(k) for k in ("status", "reason", "order_id", "asked_stake", "limit",
                                                                             "filled_stake", "avg_price")},
                                book=(lv.get("order") or {}).get("book") or "prophetx") if lv.get("order") else None,
