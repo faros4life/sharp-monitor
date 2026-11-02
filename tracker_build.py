@@ -280,7 +280,7 @@ def read_prophetx():
              "bet": (h or {}).get("label") or title, "price": pr, "stake": round(stake, 2),
              "to_pay": round(stake + win * 0.98, 2), "date": (h or {}).get("date"), "placed": str(t.get("created_at") or "")}
         when = None
-        for k in ("settled_at", "settle_time", "settled_time", "updated_at", "update_time"):
+        for k in ("settled_at", "settle_time", "settled_time", "updated_at", "update_time", "matched_at", "created_at"):
             when = tparse(t.get(k))
             if when:
                 break
@@ -560,6 +560,12 @@ def reclass(b):
 
 def bot_match(b, keys):
     pb = parse_bet(b.get("bet"), b.get("flip"))
+    bw = (b.get("bet") or "").strip().upper()
+    if not pb and bw in ("UNDER", "OVER", "NOT UNDER", "NOT OVER"):   # PM US labels a total side without its number
+        side = bw.split()[-1]
+        if bw.startswith("NOT "):
+            side = "UNDER" if side == "OVER" else "OVER"
+        pb = ("total", side, None)
     bt = toks(b.get("game"))
     for k in keys:
         sp, game, market, side = (k.split("|") + [None] * 4)[:4]
