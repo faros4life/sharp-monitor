@@ -19,6 +19,7 @@ from datetime import datetime, timedelta, timezone
 
 import clv_ledger as cl
 import executor as ex
+import hist_cache as hc
 import tracker_build as tb
 
 ET = tb.ET
@@ -106,7 +107,7 @@ def main():
             why["no OddsPapi fixture matched"] = why.get("no OddsPapi fixture matched", 0) + 1
             continue
         if fid not in hist:
-            hist[fid] = cl.api("/historical-odds", False, fixtureId=fid, bookmakers="pinnacle")
+            hist[fid] = hc.get_hist(fid, ["pinnacle"], tb.tparse(r.get("start_utc")))   # shared history cache
         h = hist[fid]
         if isinstance(h, dict) and h.get("_error"):
             why[f"history HTTP {h['_error']}"] = why.get(f"history HTTP {h['_error']}", 0) + 1
