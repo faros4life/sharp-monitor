@@ -3,6 +3,8 @@ name: plimit-probe
 # On demand: one-off OddsPapi read-path probe for Pinnacle limits (about 8 calls). Private email; counts only here.
 on:
   workflow_dispatch:
+    inputs:
+      hr_fixture: {required: false, type: string, default: ""}
 
 permissions:
   contents: read
@@ -23,4 +25,5 @@ jobs:
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
           EMAIL_TO: ${{ secrets.EMAIL_TO }}
           ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
+          HR_FIXTURE: ${{ inputs.hr_fixture }}
         run: python -u plimit_probe.py
