@@ -1,10 +1,12 @@
 name: fill-audit
 
 # ntfy fill audit (paper, HYPOTHESIS ONLY): was each alert's price really there at the book at the alert, +1 and +5 min,
-# and what CLV was gettable. Reads the shared OddsPapi history cache (cached games cost nothing). Private email; the log
-# prints counts only.
+# and what CLV was gettable. Reads the shared OddsPapi history cache (cached games cost nothing). cache_only=1 grades only
+# games already cached and downloads nothing. Private email; the log prints counts only.
 on:
   workflow_dispatch:
+    inputs:
+      cache_only: {required: false, type: string, default: "0"}
 
 permissions:
   contents: read
@@ -31,4 +33,5 @@ jobs:
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
           EMAIL_TO: ${{ secrets.EMAIL_TO }}
           ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
+          FILL_CACHE_ONLY: ${{ inputs.cache_only }}
         run: python -u fill_audit.py
