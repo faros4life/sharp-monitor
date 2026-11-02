@@ -1,0 +1,56 @@
+name: exchange-lag
+
+# Exchange-lag study (paper): Pinnacle moves the exchanges (Novig / ProphetX / Kalshi / Polymarket US) were slow to
+# follow, from OddsPapi free history. Daily for new games; dispatch to work through the backlog. Encrypted state;
+# private email; the log prints counts only.
+on:
+  schedule:
+    - cron: "37 9 * * *"
+  workflow_dispatch:
+    inputs:
+      max_games: {required: false, type: string, default: "300"}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: exchange-lag
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Exchange-lag study (private email)
+        env:
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+          EXLAG_MAX: ${{ inputs.max_games }}
+        run: python -u exchange_lag.py
+      - name: Commit encrypted state
+        if: always()
+        run: |
+          # Only this workflow writes exlag/; save over upstream, never a merge.
+          if [ -n "$(git status --porcelain exlag)" ]; then
+            git config user.name "exchange-lag"
+            git config user.email "exchange-lag@users.noreply.github.com"
+            rm -rf "$RUNNER_TEMP/out" && mkdir -p "$RUNNER_TEMP/out" && cp -r exlag "$RUNNER_TEMP/out/"
+            for i in 1 2 3 4 5; do
+              git fetch -q origin main && git reset -q --hard origin/main
+              rm -rf exlag && cp -r "$RUNNER_TEMP/out/exlag" .
+              git add -A exlag
+              git diff --cached --quiet && break
+              git commit -q -m "Update exchange-lag state"
+              git push -q origin HEAD:main && break
+              sleep 5
+            done
+          fi
