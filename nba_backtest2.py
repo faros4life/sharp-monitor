@@ -116,9 +116,13 @@ def main():
             why["no prior games (opening days)"] = why.get("no prior games (opening days)", 0) + 1
             continue
         num = b1.number(r, g["home"], g["away"])[0]
+        # keep only the exchange quotes needed (both sides at each snapshot line), not whole histories (memory: runs died ~17 min)
+        quotes = {k: {sd: {px: novig_at(xm[px], mkmap, sn["line"], sd, sn["t"]) for px in EXCH if xm.get(px)}
+                      for sd in ("Over", "Under")} for k, sn in snap.items()}
         rows.append({"day": b1.etd(g["start"]), "game": f"{g['away']} @ {g['home']}", "final": g["final"],
                      "close": b1.main_line(close)[0], "close_c": close, "snap": snap, "reg": num, "xm": [k for k, v in xm.items() if v],
-                     "_xm": xm})
+                     "_q": quotes})
+        del hs, h, pm, xm
     # bias per day from EARLIER dates only
     for row in rows:
         prev = [x["close"] - x["reg"] for x in rows if x["day"] < row["day"]]
@@ -137,7 +141,7 @@ def main():
                 pin_dec = sn["over"] if side == "Over" else sn["under"]
                 q = {"PIN": (pin_dec, 0, None)}
                 for px, bk in EXCH.items():
-                    nv = novig_at(row["_xm"].get(px) or {}, mkmap, sn["line"], side, sn["t"])
+                    nv = row["_q"][k][side].get(px)
                     if nv:
                         q[px] = (el.eff(bk, nv[0]), nv[3], nv[2])
                 ex_q = [(px, x) for px, x in q.items() if px != "PIN"]
@@ -153,7 +157,7 @@ def main():
                         "res": res, "u": 0.0 if res == "P" else (dec - 1 if res == "W" else -1.0),
                         "delay": x[1], "lim": x[2], "src": x[3] if len(x) > 3 else px}
     for row in rows:
-        row.pop("_xm", None)
+        row.pop("_q", None)
         row.pop("close_c", None)
     report(rows, why, len(games))
     print(f"NBA backtest 2: games {len(games)}, graded {len(rows)}, calls {len(cl.CALLS)}")   # counts only
