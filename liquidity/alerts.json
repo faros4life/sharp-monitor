@@ -1,6 +1,163 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-02T23:10:11Z",
+   "base_depth": 107741,
+   "best_price": 0.425,
+   "best_price_american": 135,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.42,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-02",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Washington",
+     "price": 0.42,
+     "this_side": 542946
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "WAS (0)",
+     "price": 0.425,
+     "this_side": 30432
+    },
+    "polymarket": {
+     "new_other_side": 6837,
+     "new_this_side": 42942,
+     "other_side": 118833,
+     "other_side_all_levels": 131915,
+     "ratio": 1.1,
+     "this_side": 132760,
+     "this_side_all_levels": 152219
+    }
+   },
+   "fade_price": 0.59,
+   "first_seen_utc": "2026-11-02T23:00:17Z",
+   "game": "Wizards vs. Magic",
+   "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"6281404\"}",
+   "lead_min": 80,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 42942,
+   "paper_only": false,
+   "price": 0.42,
+   "price_american": 138,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.42,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": 125
+    },
+    "betonlineag": {
+     "point": null,
+     "price": 132
+    },
+    "betopenly": {
+     "point": null,
+     "price": 114
+    },
+    "betrivers": {
+     "point": null,
+     "price": 128
+    },
+    "betus": {
+     "point": null,
+     "price": 129
+    },
+    "bovada": {
+     "point": null,
+     "price": 125
+    },
+    "draftkings": {
+     "point": null,
+     "price": 131
+    },
+    "fanatics": {
+     "point": null,
+     "price": 125
+    },
+    "fanduel": {
+     "point": null,
+     "price": 130
+    },
+    "kalshi": {
+     "point": null,
+     "price": 133
+    },
+    "limitless": {
+     "point": null,
+     "price": 127
+    },
+    "lowvig": {
+     "point": null,
+     "price": 133
+    },
+    "mybookieag": {
+     "point": null,
+     "price": 119
+    },
+    "novig": {
+     "point": null,
+     "price": 135
+    },
+    "polymarket": {
+     "point": null,
+     "price": 138
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": 138
+    },
+    "prophetx": {
+     "point": null,
+     "price": 136
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": 126
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 0,
+    "pm_market_id": "6281404"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [
+    "Orlando Magic -1.5 (-123)"
+   ],
+   "side": "Wizards",
+   "side_label": "Wizards",
+   "start_source": "odds",
+   "start_utc": "2026-11-03T00:30:00Z",
+   "teams": [
+    "Wizards",
+    "Magic"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-02T23:00:17Z",
    "base_depth": 34608,
    "best_price": 0.475,
@@ -1197,8 +1354,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.49,
-   "clv_cents": 0.0,
+   "close_price": 0.5,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -2681,8 +2838,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": 1.0,
+   "close_price": 0.54,
+   "clv_cents": 2.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -9244,8 +9401,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": -1.0,
+   "close_price": 0.51,
+   "clv_cents": -2.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -9849,8 +10006,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.83,
-   "clv_cents": 1.0,
+   "close_price": 0.84,
+   "clv_cents": 2.0,
    "confirmed_after_min": 10,
    "date": "2026-11-03",
    "depth_by_book": {
@@ -11156,8 +11313,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.61,
-   "clv_cents": 0.0,
+   "close_price": 0.62,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
