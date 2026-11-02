@@ -37,7 +37,7 @@ CAP = int(os.environ.get("CLV_MONTH_CAP", "") or "150")
 SPORT = {"NBA": 11, "NFL": 14, "NCAAF": 14, "NHL": 15}
 TOURN = {"NBA": 132, "NFL": 31, "NHL": 234}           # NCAAF looked up once (the probe's 850 was wrong)
 ML_MARKET = {11: "111", 14: "141", 15: "151"}         # Winner incl. overtime (hockey: incl. OT and penalties)
-FRESH_MIN = 90        # a Pinnacle line whose last pre-start tick is older than this is not used as 'the close'
+FRESH_MIN = 24 * 60  # history stores CHANGES: a line's last pre-start tick is its price at the start unless it is a day old
 SCORE_AFTER_MIN = 10  # score a bet this long after its listed start
 MAX_TRIES = 8
 MAX_HIST = 60        # free history calls per run
@@ -247,7 +247,7 @@ def two_way(pm, mid, before):
     for oid, o in (m.get("outcomes") or {}).items():
         lt = last_tick((o.get("players") or {}).get("0"), before)
         if lt and tb.num(lt[1].get("price")):
-            out[oid] = (float(lt[1]["price"]), lt[0])
+            out[oid] = (float(lt[1]["price"]), lt[0], tb.num(lt[1].get("limit")) or 0.0)
     return out
 
 
@@ -293,10 +293,11 @@ def close_for(b, f, pm, mkmap, start, lg):
         if age > FRESH_MIN:
             continue
         pa = novig_p(tw[a_id][0], tw[b_id][0])   # P(team 1 covers hcap) or P(over hcap)
-        cands.append((hcap, pa, age))
+        cands.append((hcap, pa, age, min(tw[a_id][2], tw[b_id][2])))
     if not cands:
-        return None, f"no fresh Pinnacle {typ} close"
-    main = min(cands, key=lambda c: abs(c[1] - 0.5))
+        return None, f"no Pinnacle {typ} close"
+    # Pinnacle's main line carries its biggest limit (alt lines are capped lower); ties: the most even price
+    main = max(cands, key=lambda c: (c[3], -abs(c[1] - 0.5)))
     if typ == "totals":
         want, over = pz[2], pz[1] == "OVER"
         exact = next((c for c in cands if abs(c[0] - want) < 1e-9), None)
@@ -457,6 +458,11 @@ def main():
     for o in nvo:
         st.setdefault("novig_checks", {}).setdefault(o["id"], {"snap": o})
     mkmap = load_markets(st, now)
+    if not st.get("rescored_v2"):   # v1 freshness rule could pick an alt line as main: score everything again once
+        for rec in st["bets"].values():
+            for f in ("clv", "close_p", "eff_am", "close_am", "how", "age_min", "scored", "done", "tries", "why", "fixture"):
+                rec.pop(f, None)
+        st["rescored_v2"] = iso(now)
     # 3) which leagues need fixtures
     pend = []
     for k, rec in st["bets"].items():
@@ -597,6 +603,13 @@ def main():
         L += [f"  {v} x {k2}" for k2, v in sorted(reasons.items(), key=lambda x: -x[1])]
         waiting = sum(1 for k, r in st["bets"].items() if not r.get("done") and r.get("clv") is None)
         L.append(f"  still waiting (game not started yet or retrying): {waiting}")
+        wr = {}
+        for k, r in st["bets"].items():
+            if not r.get("done") and r.get("clv") is None:
+                w = r.get("why") or ("game not started" if (tp(r["snap"].get("game_start")) or now) > now - timedelta(minutes=SCORE_AFTER_MIN)
+                                     else "no game start on the tracker row" if not r["snap"].get("game_start") else "queued")
+                wr[w] = wr.get(w, 0) + 1
+        L += [f"    {v} x {k2}" for k2, v in sorted(wr.items(), key=lambda x: -x[1])]
         nc = [r for r in (st.get("novig_checks") or {}).values() if r.get("novig_price_then") is not None]
         L += ["", f"NOVIG STALE CHECK (bot Novig orders: the price the bot used vs Novig's own price in OddsPapi history at that "
                   f"moment): {len(nc)} checked"]
