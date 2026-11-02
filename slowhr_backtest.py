@@ -14,6 +14,7 @@ import statistics as stt
 from datetime import datetime, timedelta, timezone
 
 import clv_ledger as cl
+import buckets as bkt
 import executor as ex
 import hist_cache as hc
 import slow_hr as sh
@@ -264,6 +265,17 @@ def main():
     mb = [x["mins_before"] for x in J]
     if mb:
         L.append(f"  Minutes before start (median): {stt.median(mb):.0f}")
+    def _b(x):
+        mk, ln_ = x["type"], x.get("line")
+        if mk == "spreads" and ln_ is not None and x.get("side") == "2":
+            ln_ = -ln_
+        return {"day": x["day"], "clv": x.get("clv_pct"), "lg": x["league"], "mk": mk,
+                "sc": x.get("sclass") if x.get("sclass") in ("under", "over", "fav", "dog") else None,
+                "key": bkt.key_class(x["league"], mk, ln_), "move": x.get("kind"),
+                "ldelta": bkt.ldelta_from_detail(x.get("detail")) if x.get("kind") == "L" else None,
+                "live1": x.get("live1"), "live5": x.get("live5"), "wide": x.get("wide"), "pin_limit": x.get("pin_limit"),
+                "lead": x.get("mins_before"), "late": x.get("late"), "edge": x.get("ev_pct"), "am": x.get("hr_am")}
+    L += [""] + bkt.section("SLOW-HR sightings at the Hard Rock price (CLV %)", [_b(x) for x in S], "%")
     L += ["", "NEWEST 25 SIGHTINGS:"]
     for x in sorted(S, key=lambda x: x["t_move"])[-25:][::-1]:
         L.append(f"  {x['t_confirm'][:16]}Z {x['league']} {x['game']} | {x['type']} {x['team']} {x['line'] if x['line'] is not None else ''} | "
