@@ -1,6 +1,157 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-02T13:10:11Z",
+   "base_depth": 78212,
+   "best_price": 0.55,
+   "best_price_american": -122,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.56,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-02",
+   "depth_by_book": {
+    "novig": {
+     "heavier_side": true,
+     "label": "LAL (0)",
+     "price": 0.55,
+     "this_side": 26286
+    },
+    "polymarket": {
+     "new_other_side": 751,
+     "new_this_side": 26195,
+     "other_side": 44087,
+     "other_side_all_levels": 65614,
+     "ratio": 1.2,
+     "this_side": 50750,
+     "this_side_all_levels": 103424
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "Los Angeles Lakers",
+     "price": 0.5516,
+     "this_side": 3641
+    }
+   },
+   "fade_price": 0.45,
+   "first_seen_utc": "2026-11-02T13:00:16Z",
+   "game": "Heat vs. Lakers",
+   "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6293074\"}",
+   "lead_min": 830,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 26195,
+   "paper_only": false,
+   "price": 0.56,
+   "price_american": -127,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.56,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -135
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -130
+    },
+    "betrivers": {
+     "point": null,
+     "price": -125
+    },
+    "betus": {
+     "point": null,
+     "price": -130
+    },
+    "bovada": {
+     "point": null,
+     "price": -130
+    },
+    "draftkings": {
+     "point": null,
+     "price": -130
+    },
+    "fanatics": {
+     "point": null,
+     "price": -130
+    },
+    "fanduel": {
+     "point": null,
+     "price": -134
+    },
+    "kalshi": {
+     "point": null,
+     "price": -122
+    },
+    "limitless": {
+     "point": null,
+     "price": -138
+    },
+    "lowvig": {
+     "point": null,
+     "price": -128
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -136
+    },
+    "novig": {
+     "point": null,
+     "price": -122
+    },
+    "polymarket": {
+     "point": null,
+     "price": -127
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -122
+    },
+    "prophetx": {
+     "point": null,
+     "price": -123
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -130
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 1,
+    "pm_market_id": "6293074"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Lakers",
+   "side_label": "Lakers",
+   "start_source": "polymarket",
+   "start_utc": "2026-11-03T03:00:00Z",
+   "teams": [
+    "Heat",
+    "Lakers"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-02T13:00:16Z",
    "base_depth": 345068,
    "best_price": 0.4637,
@@ -212,6 +363,8 @@
    "new_money": 40268,
    "paper_only": false,
    "price": 0.49,
+   "price_after_15m": 0.5,
+   "price_after_15m_book": "novig",
    "price_american": 104,
    "price_rule": "ok",
    "price_when_first_seen": 0.49,
@@ -295,6 +448,7 @@
    "side_label": "Suns (+3.5)",
    "start_source": "odds",
    "start_utc": "2026-11-03T03:00:00Z",
+   "still_actionable": false,
    "teams": [
     "Suns",
     "Warriors"
@@ -361,6 +515,8 @@
    "new_money": 67831,
    "paper_only": false,
    "price": 0.51,
+   "price_after_15m": 0.515,
+   "price_after_15m_book": "novig",
    "price_american": -104,
    "price_rule": "ok",
    "price_when_first_seen": 0.5,
@@ -449,6 +605,7 @@
    "side_label": "Over (224.5)",
    "start_source": "odds",
    "start_utc": "2026-11-03T00:30:00Z",
+   "still_actionable": false,
    "teams": [
     "Wizards",
     "Magic"
@@ -515,6 +672,8 @@
    "new_money": 77317,
    "paper_only": false,
    "price": 0.51,
+   "price_after_15m": 0.515,
+   "price_after_15m_book": "novig",
    "price_american": -104,
    "price_rule": "ok",
    "price_when_first_seen": 0.51,
@@ -603,6 +762,7 @@
    "side_label": "Over 224.5 points",
    "start_source": "odds",
    "start_utc": "2026-11-03T00:30:00Z",
+   "still_actionable": false,
    "teams": [
     "Washington",
     "Orlando"
@@ -663,6 +823,8 @@
    "new_money": 40542,
    "paper_only": false,
    "price": 0.5,
+   "price_after_15m": 0.5,
+   "price_after_15m_book": "novig",
    "price_american": -100,
    "price_rule": "ok",
    "price_when_first_seen": 0.49,
@@ -746,6 +908,7 @@
    "side_label": "NOT Golden State wins by over 3.5 points",
    "start_source": "odds",
    "start_utc": "2026-11-03T03:00:00Z",
+   "still_actionable": false,
    "teams": [
     "Phoenix",
     "Golden State"
@@ -1381,8 +1544,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.56,
-   "clv_cents": 4.0,
+   "close_price": 0.55,
+   "clv_cents": 3.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -2847,8 +3010,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.48,
-   "clv_cents": 1.0,
+   "close_price": 0.47,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
