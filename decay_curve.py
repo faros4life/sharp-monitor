@@ -82,7 +82,7 @@ def main():
                     "beats_close": (pd < close) if pd is not None and isinstance(close, (int, float)) else None,
                     "alert_beats_close": (pa < close) if pa is not None and isinstance(close, (int, float)) else None,
                     "result": e.get("result"), "units": e.get("units_flat"), "live": bool(r.get("live")),
-                    "verdict": r.get("verdict")})
+                    "verdict": r.get("verdict"), "book": r.get("alert_book"), "pd": pd})
 
     def med(xs):
         xs = [x for x in xs if x is not None]
@@ -115,6 +115,28 @@ def main():
     for name, lo, hi in B:
         lines.append(block(name, [x for x in out if x["live"] and lo <= x["lat"] < hi]))
     lines += ["", f"Joined to the feed for close/result: {sum(1 for x in out if x['result'] or x['beats_close'] is not None)} of {len(out)}."]
+
+    # v2 checks (Nov 2, Peter: fix the cents read, matched subset, reconcile latency)
+    def q(xs, f):
+        xs = sorted(x for x in xs if x is not None)
+        return xs[min(len(xs) - 1, int(f * len(xs)))] if xs else None
+    lt = [x["lat"] for x in out]
+    lines += ["", "LATENCY DISTRIBUTION (alert -> decision, first decision per play):",
+              f"  n {len(lt)} | median {q(lt, .5):.0f}s | mean {st.mean(lt):.0f}s | p75 {q(lt, .75):.0f}s | p90 {q(lt, .9):.0f}s | max {max(lt):.0f}s"
+              if lt else "  none"]
+    m = [x for x in out if x["beats_close"] is not None and x["alert_beats_close"] is not None]
+    lines += ["", "MATCHED SUBSET (same plays have alert price, ProphetX decision price and close):",
+              f"  n {len(m)} | alert beats close {pct([x['alert_beats_close'] for x in m])} | decision beats close {pct([x['beats_close'] for x in m])}",
+              f"  both beat {sum(x['alert_beats_close'] and x['beats_close'] for x in m)} | alert only {sum(x['alert_beats_close'] and not x['beats_close'] for x in m)}"
+              f" | decision only {sum(x['beats_close'] and not x['alert_beats_close'] for x in m)} | neither {sum(not x['alert_beats_close'] and not x['beats_close'] for x in m)}"]
+    for lab, cond in (("  ProphetX-priced alerts", lambda x: x["book"] == "prophetx"), ("  other-book alerts", lambda x: x["book"] != "prophetx")):
+        mm = [x for x in m if cond(x)]
+        lines.append(f"{lab}: n {len(mm)} | alert beats close {pct([x['alert_beats_close'] for x in mm])} | decision beats close {pct([x['beats_close'] for x in mm])}")
+    c = [x["cents"] for x in out if x["cents"] is not None]
+    lines += ["", "PROPHETX CENTS CHECK (ProphetX-priced alerts; decision price is a live read at decision time):",
+              f"  n {len(c)} | worse {sum(v > 0.05 for v in c)} | same {sum(abs(v) <= 0.05 for v in c)} | better {sum(v < -0.05 for v in c)}"
+              + (f" | min {min(c):+.1f}c max {max(c):+.1f}c" if c else "")]
+    lines.append("  No ProphetX decision price: " + str(sum(1 for x in out if x["pd"] is None)) + f" of {len(out)} (book not listing the alert line at decision).")
     ex.send("Bets DECAY CURVE (alert -> decision)", "\n".join(lines))
     print(f"Decay curve emailed: {len(out)} decisions read")   # counts only
 
