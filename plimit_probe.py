@@ -285,7 +285,7 @@ def oldcheck(arg):
             return [f"OLD-CARD CHECK: no {lg} tournament found"]
     T = datetime.fromisoformat(ts.replace("Z", "+00:00"))
     L = [f"OLD-CARD CHECK: {lg} {ta} vs {tb_}, card time {ts}, {typ} {line:g}"]
-    fx = get("/fixtures", tournamentId=tid, **{"from": (T - timedelta(days=1)).strftime("%Y-%m-%d"), "to": (T + timedelta(days=2)).strftime("%Y-%m-%d")})
+    fx = get("/fixtures", tournamentId=tid, **{"from": (T - timedelta(days=1)).strftime("%Y-%m-%d"), "to": (T + timedelta(days=8)).strftime("%Y-%m-%d")})   # cards can be for games later in the week
     f = next((x for x in (fx if isinstance(fx, list) else []) if ta.lower() in f"{x.get('participant1Name')} {x.get('participant2Name')}".lower()
               and tb_.lower() in f"{x.get('participant1Name')} {x.get('participant2Name')}".lower()), None)
     if not f:
