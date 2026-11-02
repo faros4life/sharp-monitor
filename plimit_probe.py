@@ -99,7 +99,53 @@ def books_check(fid, books):
     return L
 
 
+def discover(fid):
+    """Markets map (1 billable) + one fixture's participants (1 billable) + its Pinnacle markets (free history)."""
+    L = ["MARKETS DISCOVERY"]
+    mk = get("/markets")
+    rows = [m for m in (mk if isinstance(mk, list) else []) if m.get("sportId") in (11, 14, 15) and not m.get("playerProp")]
+    by = {}
+    for m in rows:
+        by.setdefault((m.get("sportId"), m.get("period"), m.get("marketType")), []).append(m)
+    L.append(f"markets total {len(mk) if isinstance(mk, list) else mk}; basketball/football/hockey non-prop {len(rows)}")
+    for k, v in sorted(by.items(), key=lambda kv: (kv[0][0], str(kv[0][1]), str(kv[0][2]))):
+        if k[1] not in ("fulltime", "full_time", "fulltime_ot", "ot", None) and "full" not in str(k[1]):
+            continue
+        ex1 = v[:3]
+        L.append(f"  sport {k[0]} period {k[1]} type {k[2]}: {len(v)} markets; e.g. " + "; ".join(
+            f"{m['marketId']} '{m.get('marketName')}' h={m.get('handicap')} outs={[(o['outcomeId'], o['outcomeName']) for o in m.get('outcomes') or []]}" for m in ex1))
+    periods = sorted({str(m.get("period")) for m in rows})
+    L.append("periods seen: " + ", ".join(periods))
+    fx = get("/fixture", fixtureId=fid)
+    L.append("fixture: " + json.dumps({k: (fx.get(k) if isinstance(fx, dict) else None) for k in ("participant1Name", "participant2Name", "startTime", "tournamentId", "statusId")}))
+    h = get("/historical-odds", fixtureId=fid, bookmakers="pinnacle")
+    pm = ((h.get("bookmakers") or {}).get("pinnacle") or {}).get("markets") or {} if isinstance(h, dict) else {}
+    meta = {m["marketId"]: m for m in (mk if isinstance(mk, list) else [])}
+    show = 0
+    for mid, m in pm.items():
+        md = meta.get(int(mid)) if str(mid).isdigit() else None
+        if not md or "full" not in str(md.get("period")):
+            continue
+        last = {}
+        for oid, o in (m.get("outcomes") or {}).items():
+            ticks = (o.get("players") or {}).get("0") or []
+            if ticks:
+                t = max(ticks, key=lambda t: t.get("createdAt") or "")
+                last[oid] = (t.get("price"), t.get("limit"))
+        L.append(f"  pin market {mid} {md.get('marketType')} h={md.get('handicap')} '{md.get('marketName')}' last={last}")
+        show += 1
+        if show >= 25:
+            break
+    return L
+
+
 def main():
+    if os.environ.get("HR_FIXTURE") and os.environ.get("HR_BOOKS") == "DISCOVER":
+        L = discover(os.environ["HR_FIXTURE"])
+        L += ["", "Calls: " + "; ".join(f"{p} {c}" for p, c in CALLS)]
+        ex.send("Bets ODDSPAPI MARKETS DISCOVERY", "\n".join(L))
+        print(f"discovery emailed: {len(CALLS)} calls")
+        return
     if os.environ.get("HR_FIXTURE") and os.environ.get("HR_BOOKS"):
         L = books_check(os.environ["HR_FIXTURE"], [b.strip() for b in os.environ["HR_BOOKS"].split(",") if b.strip()])
         L += ["", "Calls: " + "; ".join(f"{p} {c}" for p, c in CALLS) + " (historical-odds is free)"]
