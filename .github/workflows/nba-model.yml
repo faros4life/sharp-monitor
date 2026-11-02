@@ -1,0 +1,58 @@
+name: nba-model
+
+# PAPER ONLY (spec #1, Peter yes Nov 2, 2026): NBA totals own-number model. Never places orders, never alerts,
+# never writes main: data lives on the nba-model branch. Reads ESPN (public) and the EV study's Pinnacle cache.
+on:
+  schedule:
+    - cron: "7,27,47 * * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: nba-model
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Load model data + Pinnacle cache
+        run: |
+          mkdir -p nba-model ev-study
+          if git fetch -q origin nba-model 2>/dev/null; then
+            git show origin/nba-model:nba_model.json > nba-model/nba_model.json 2>/dev/null || rm -f nba-model/nba_model.json
+          fi
+          if git fetch -q origin ev-study 2>/dev/null; then
+            git show origin/ev-study:ev_sightings.json > ev-study/ev_sightings.json 2>/dev/null || true
+          fi
+      - name: Model run (paper)
+        run: python -u nba_totals_model.py
+      - name: Save to the nba-model branch (never main)
+        if: always()
+        run: |
+          [ -f nba-model/nba_model.json ] || exit 0
+          rm -rf "$RUNNER_TEMP/out" && mkdir -p "$RUNNER_TEMP/out" && cp nba-model/* "$RUNNER_TEMP/out/"
+          git config user.name "nba-model"
+          git config user.email "nba-model@users.noreply.github.com"
+          for i in 1 2 3; do
+            if git fetch -q origin nba-model 2>/dev/null; then
+              git checkout -q -f -B nba-model origin/nba-model
+            else
+              git checkout -q -f --orphan nba-model
+              git rm -rq --cached . >/dev/null 2>&1 || true
+            fi
+            find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
+            cp "$RUNNER_TEMP/out/"* .
+            git add -A
+            git diff --cached --quiet && break
+            git commit -q -m "NBA model update"
+            git push -q origin nba-model && break
+            sleep 5
+          done
