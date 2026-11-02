@@ -82,6 +82,37 @@ def main():
             xs = [x for x in J if x["league"] == lg and x["type"] == typ]
             if xs:
                 L.append(f"  {lg} {typ}: {stats(xs)}")
+    # Peter 15:49: buckets by SIZE of Pinnacle's move (half point, full point, ...; price-move cents for Type P)
+    import re
+
+    def move_size(x):
+        m = re.search(r"Pinnacle ([-+]?[0-9.]+) -> ([-+]?[0-9.]+)", x["detail"]) if x["kind"] == "L" else None
+        if m:
+            return abs(float(m.group(2)) - float(m.group(1)))
+        m = re.search(r"\(([0-9.]+)c\)", x["detail"])
+        return float(m.group(1)) if m else None
+    for x in S:
+        x["msize"] = move_size(x)
+    L.append("  BY SIZE OF PINNACLE'S MOVE (Type L, points; Hard Rock still on the old number):")
+    for lo, hi, lab in ((0.5, 1.0, "half point"), (1.0, 1.5, "1 point"), (1.5, 2.0, "1.5 points"), (2.0, 3.0, "2-2.5 points"), (3.0, 99, "3+ points")):
+        xs = [x for x in J if x["kind"] == "L" and x.get("msize") is not None and lo - 1e-9 <= x["msize"] < hi - 1e-9]
+        L.append(f"    {lab:<12}: {stats(xs)}")
+        for lg in LEAGUES:
+            ys = [x for x in xs if x["league"] == lg]
+            if ys:
+                L.append(f"        {lg}: {stats(ys)}")
+    L.append("  BY SIZE OF PINNACLE'S MOVE (Type P, cents; same number, Hard Rock price within 2c):")
+    for lo, hi, lab in ((8, 12, "8-11c"), (12, 20, "12-19c"), (20, 30, "20-29c"), (30, 999, "30c+")):
+        xs = [x for x in J if x["kind"] == "P" and x.get("msize") is not None and lo <= x["msize"] < hi]
+        L.append(f"    {lab:<12}: {stats(xs)}")
+        for lg in LEAGUES:
+            ys = [x for x in xs if x["league"] == lg]
+            if ys:
+                L.append(f"        {lg}: {stats(ys)}")
+    L.append("  BY MINUTES BEFORE START:")
+    for lo, hi in ((30, 120), (120, 360), (360, 1440), (1440, 99999)):
+        xs = [x for x in J if lo <= x["mins_before"] < hi]
+        L.append(f"    {lo // 60 if lo >= 60 else lo}{'h' if lo >= 60 else 'm'}-{(str(hi // 60) + 'h') if hi < 99999 else '+'}: {stats(xs)}")
     for lo, hi in ((2, 4), (4, 8), (8, 99)):
         xs = [x for x in J if x.get("ev_pct") is not None and lo <= x["ev_pct"] < hi]
         L.append(f"  EV vs Pinnacle fair at sighting {lo}-{hi if hi < 99 else '+'}%: {stats(xs)}")
