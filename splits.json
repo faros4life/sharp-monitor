@@ -13,14 +13,14 @@
    "status": "OPEN",
    "closed_utc": null,
    "plays": 20,
-   "resulted": 19,
+   "resulted": 20,
    "W": 9,
-   "L": 10,
+   "L": 11,
    "P": 0,
-   "units": -2.39,
-   "u_per_play": -0.126,
-   "true_close_value_pct": -1.35,
-   "true_close_n": 19
+   "units": -3.39,
+   "u_per_play": -0.17,
+   "true_close_value_pct": -0.78,
+   "true_close_n": 20
   },
   {
    "id": "phase1_control",
@@ -54,15 +54,15 @@
    "kill_bar": ">= 30 resulted at <= -0.1u/play -> CLOSED",
    "status": "ELIGIBLE at next review",
    "closed_utc": null,
-   "plays": 36,
-   "resulted": 32,
+   "plays": 38,
+   "resulted": 33,
    "W": 18,
-   "L": 14,
+   "L": 15,
    "P": 0,
-   "units": 2.14,
-   "u_per_play": 0.067,
-   "true_close_value_pct": -0.96,
-   "true_close_n": 32
+   "units": 1.14,
+   "u_per_play": 0.035,
+   "true_close_value_pct": -1.12,
+   "true_close_n": 33
   },
   {
    "id": "hr_fade",
@@ -75,15 +75,15 @@
    "kill_bar": ">= 30 resulted at <= -0.1u/play -> CLOSED",
    "status": "CLOSED",
    "closed_utc": "2026-11-01T03:35:12Z",
-   "plays": 36,
-   "resulted": 32,
+   "plays": 38,
+   "resulted": 33,
    "W": 18,
-   "L": 14,
+   "L": 15,
    "P": 0,
-   "units": -3.89,
-   "u_per_play": -0.122,
-   "true_close_value_pct": -0.96,
-   "true_close_n": 32
+   "units": -2.81,
+   "u_per_play": -0.085,
+   "true_close_value_pct": -1.12,
+   "true_close_n": 33
   },
   {
    "id": "pmg_routed",
@@ -117,15 +117,15 @@
    "kill_bar": ">= 30 resulted at <= -0.1u/play -> CLOSED",
    "status": "OPEN",
    "closed_utc": null,
-   "plays": 41,
-   "resulted": 39,
+   "plays": 42,
+   "resulted": 40,
    "W": 20,
-   "L": 19,
+   "L": 20,
    "P": 0,
-   "units": -0.96,
-   "u_per_play": -0.025,
-   "true_close_value_pct": -1.67,
-   "true_close_n": 39
+   "units": -1.96,
+   "u_per_play": -0.049,
+   "true_close_value_pct": -1.38,
+   "true_close_n": 40
   },
   {
    "id": "combined",
@@ -139,14 +139,14 @@
    "status": "OPEN",
    "closed_utc": null,
    "plays": 55,
-   "resulted": 54,
+   "resulted": 55,
    "W": 28,
-   "L": 26,
+   "L": 27,
    "P": 0,
-   "units": -0.87,
-   "u_per_play": -0.016,
-   "true_close_value_pct": -1.33,
-   "true_close_n": 52
+   "units": -1.87,
+   "u_per_play": -0.034,
+   "true_close_value_pct": -1.12,
+   "true_close_n": 53
   },
   {
    "id": "worse_125",
@@ -180,7 +180,7 @@
    "kill_bar": ">= 30 resulted at <= -0.1u/play -> CLOSED",
    "status": "OPEN",
    "closed_utc": null,
-   "plays": 10,
+   "plays": 12,
    "resulted": 0,
    "W": 0,
    "L": 0,
@@ -223,24 +223,24 @@
    "status": "OPEN (record only, no size)",
    "closed_utc": null,
    "plays": 10,
-   "resulted": 9,
+   "resulted": 10,
    "W": 3,
-   "L": 6,
+   "L": 7,
    "P": 0,
-   "units": -3.5,
-   "u_per_play": -0.389,
-   "true_close_value_pct": -1.26,
-   "true_close_n": 9,
+   "units": -4.5,
+   "u_per_play": -0.45,
+   "true_close_value_pct": -0.14,
+   "true_close_n": 10,
    "all_history": {
     "plays": 20,
-    "resulted": 19,
+    "resulted": 20,
     "W": 10,
-    "L": 9,
+    "L": 10,
     "P": 0,
-    "units": -0.63,
-    "u_per_play": -0.033,
-    "true_close_value_pct": -1.61,
-    "true_close_n": 12
+    "units": -1.63,
+    "u_per_play": -0.082,
+    "true_close_value_pct": -0.72,
+    "true_close_n": 13
    }
   },
   {
@@ -785,5 +785,5 @@
   "liq_evening": 0
  },
  "resulted_rule": "resulted = result W, L or P with a unit value (pushes count as 0u); liquidity artifacts excluded; pending and ungraded plays do not count",
- "updated_utc": "2026-11-02T08:35:13Z"
+ "updated_utc": "2026-11-02T11:05:13Z"
 }
