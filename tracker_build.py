@@ -276,6 +276,15 @@ def read_prophetx():
     return op, se
 
 
+def lg_of(text):
+    t = (text or "").upper()
+    for k, v in (("NCAAF", "NCAAF"), ("NCAAMB", "NCAAB"), ("NCAAB", "NCAAB"), ("WNBA", "WNBA"), ("NBA", "NBA"), ("NFL", "NFL"),
+                 ("NHL", "NHL"), ("MLB", "MLB"), ("CFB", "NCAAF")):
+        if k in t:
+            return v
+    return None
+
+
 def iso(d):
     return d.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ") if d else None
 
@@ -302,7 +311,7 @@ def read_kalshi(since):
                 title = ""
             label = mk.get("yes_sub_title") or mk.get("subtitle") or mk.get("title") or tk
             pr = (cost / abs(q)) if q else None
-            op.append({"id": f"ks|{tk}|{'no' if q < 0 else 'yes'}", "book": "Kalshi", "game": title,
+            op.append({"id": f"ks|{tk}|{'no' if q < 0 else 'yes'}", "book": "Kalshi", "game": title, "league": lg_of(tk),
                        "bet": ("NOT " if q < 0 else "") + label, "flip": False, "stake": round(cost, 2),
                        "to_pay": round(abs(q), 2), "price": p_to_american(pr), "date": ps._date(tk), "ticker": tk})
         cur = d.get("cursor")
@@ -363,6 +372,7 @@ def read_pmus(since):
             continue
         cost = num(p.get("cost")) or (abs(q) * (num(p.get("avgPx")) or 0))
         op.append({"id": f"pm|{md.get('slug') or slug}|{md.get('outcome')}", "book": "Polymarket US", "game": md.get("title") or "",
+                   "league": lg_of((md.get("eventSlug") or md.get("slug") or slug or "").split("-")[0]),
                    "bet": md.get("outcome") or "", "flip": q < 0, "stake": round(cost, 2), "to_pay": round(abs(q), 2),
                    "price": p_to_american(cost / abs(q)) if cost else None, "date": ps._date(md.get("eventSlug") or md.get("slug") or slug)})
     acts, params = [], {"limit": 100}
@@ -393,24 +403,61 @@ def read_pmus(since):
 def read_novig():
     import executor as ex
     import liquidity_monitor as lm
+    import book_check as bc
     snap, age = ex._snap_read((os.environ.get("NOVIG_SNAPSHOT_TOKEN") or "").strip())
     op = []
-    for p in snap.get("positions") or []:
+    pos = snap.get("positions") or []
+    ev_by, mk_by = {}, {}
+    if pos:
+        try:
+            now_ms = int(datetime.now(timezone.utc).timestamp() * 1000)
+            evs, mks = bc.novig_catalog(now_ms - 12 * 3600 * 1000, now_ms + 9 * 86400 * 1000)
+            ev_by = {e.get("eventId"): e for e in evs}
+            mk_by = {m.get("marketId"): m for m in mks}
+        except Exception:
+            pass
+    for p in pos:
         qty = num(p.get("qty")) or 0
         cost = num(p.get("cost")) or 0
-        game, side = "", ""
+        game, side, league, start = "", "", None, None
         try:
-            mk = lm.get(f"{lm.NOVIG}/v3/public/catalog/markets/{p.get('marketId')}")
+            mk = mk_by.get(p.get("marketId")) or lm.get(f"{lm.NOVIG}/v3/public/catalog/markets/{p.get('marketId')}")
             side = next((o.get("name") for o in mk.get("outcomes") or [] if o.get("outcomeId") == p.get("outcomeId")), "") or ""
-            game = mk.get("description") or mk.get("title") or ""
-            ev = mk.get("event") or {}
-            game = ev.get("description") or game
+            ev = ev_by.get(mk.get("eventId")) or {}
+            game = ev.get("description") or mk.get("description") or mk.get("title") or ""
+            league = lm.N_LEAGUE.get((ev.get("league") or "").upper().strip())
+            start = ev.get("startTime") or ev.get("start_time") or ev.get("scheduledStart")
+            mt = bc.N_MKT.get((mk.get("marketType") or "").upper())
+            if mt == "total" and side and not re.search(r"\d", side):
+                strike = num(mk.get("strike"))
+                side = f"{side} {strike:g}" if strike is not None else side
+            elif mt == "spread" and side and not re.search(r"[+-]\d", side):
+                strike = num(mk.get("strike"))
+                idx = next((i for i, o in enumerate(mk.get("outcomes") or []) if o.get("outcomeId") == p.get("outcomeId")), 0)
+                if strike is not None:
+                    side = f"{side} {(strike if idx == 1 else -strike):+g}"
         except Exception:
             pass
         op.append({"id": f"nv|{p.get('marketId')}|{p.get('outcomeId')}", "book": "Novig", "game": game, "bet": side,
+                   "league": league,
                    "stake": round(cost, 2), "to_pay": round(qty, 2), "price": p_to_american(cost / qty) if qty and cost else None})
-    LOG["novig"] = f"ok {len(op)} open (snapshot {age:.0f} min old)"
-    return op
+    se = []
+    for r in snap.get("settled") or []:   # Nov 1: Novig's own settled numbers, written by the home PC
+        res = {"WIN": "W", "LOSS": "L", "PUSH": "P"}.get(r.get("result"))
+        if not res:
+            continue
+        cost, pay = num(r.get("cost")) or 0, num(r.get("payout")) or 0
+        st = r.get("start")
+        if isinstance(st, (int, float)) or str(st or "").isdigit():
+            st = iso(tparse(st))
+        se.append({"id": f"nv|{r.get('marketId')}|{r.get('outcomeId')}", "book": "Novig", "game": r.get("game") or "",
+                   "bet": r.get("label") or "", "league": lm.N_LEAGUE.get(str(r.get("league") or "").upper().strip()),
+                   "stake": round(cost, 2), "to_pay": round(pay if res != "L" else cost * 0 + pay, 2),
+                   "price": p_to_american(cost / pay) if res == "W" and pay else None, "result": res,
+                   "profit": round(num(r.get("pnl")) if num(r.get("pnl")) is not None else pay - cost, 2),
+                   "settled": iso(tparse(r.get("settledTs"))), "game_start": st, "site": True})
+    LOG["novig"] = f"ok {len(op)} open {len(se)} settled (snapshot {age:.0f} min old)"
+    return op, se
 
 
 def read_manual_and_bot():
@@ -469,10 +516,12 @@ PAGE = """<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name=
 body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.4 -apple-system,system-ui,Segoe UI,Roboto,sans-serif}
 .wrap{max-width:900px;margin:0 auto;padding:16px}h1{font-weight:500;margin:0;font-size:26px}.sub{color:var(--muted);margin:4px 0 14px;font-size:13px}
 .tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}.tile{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px}
-.tile .l{color:var(--muted);font-size:12px}.tile .n{font-size:22px;margin-top:2px;font-variant-numeric:tabular-nums}
+.tile .l{color:var(--muted);font-size:12px}.tile .n{font-size:clamp(15px,4.6vw,22px);margin-top:2px;font-variant-numeric:tabular-nums;white-space:nowrap}.tile{min-width:0;overflow:hidden}
 h2{font-size:16px;margin:16px 0 6px}.bet{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-bottom:8px}
-.top{display:flex;justify-content:space-between;gap:8px}.b{font-weight:600}.m{color:var(--muted);font-size:13px}.r{text-align:right;white-space:nowrap}
-.st{font-weight:700;font-size:13px}.good{color:var(--ok)}.bad{color:var(--bad)}.warn{color:var(--warn)}
+.top{display:flex;justify-content:space-between;gap:8px}.top>div:first-child{flex:1;min-width:0}.b{font-weight:600}.m{color:var(--muted);font-size:13px}.r{text-align:right;max-width:42%}
+.st{font-weight:700;font-size:13px}
+.bet.win{border-left:5px solid var(--ok);background:color-mix(in srgb,var(--ok) 12%,var(--panel))}
+.bet.loss{border-left:5px solid var(--bad);background:color-mix(in srgb,var(--bad) 12%,var(--panel))}.good{color:var(--ok)}.bad{color:var(--bad)}.warn{color:var(--warn)}
 .lock{max-width:340px;margin:20vh auto;text-align:center}.lock input{font:inherit;padding:10px;width:100%;box-sizing:border-box;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--fg)}
 .lock button{margin-top:10px;font:inherit;padding:10px 16px;border-radius:8px;border:1px solid var(--fg);background:var(--fg);color:var(--bg);width:100%}
 .err{color:var(--bad);font-size:13px;margin-top:8px;min-height:1em}
@@ -489,7 +538,7 @@ const $=v=>v==null?'—':(v<0?'-$':'$')+Math.abs(v).toLocaleString(undefined,{mi
 const sg=v=>v==null?'—':(v>0?'+':'')+$(v);const pr=p=>p==null?'':(p>0?'+'+p:p);
 function card(b,kind){const cls=b.result==='W'?'good':b.result==='L'?'bad':(/COVERING|HOLDING$|WINNING/.test(b.status||'')?'good':/BEHIND|NOT HOLDING|LOSING/.test(b.status||'')?'bad':'warn');
 const right=kind==='settled'?`<div class="st ${cls}">${b.result==='W'?'Won':b.result==='L'?'Lost':'Push'} ${sg(b.profit)}</div>`:`<div class="st ${cls}">${esc(b.status||'')}</div>`;
-return `<div class="bet"><div class="top"><div><div class="b">${esc(b.bet)} ${pr(b.price)}</div><div class="m">${esc(b.game)}${b.when?' · '+esc(b.when):''}</div>
+return `<div class="bet ${cls==='good'?'win':cls==='bad'?'loss':''}"><div class="top"><div><div class="b">${esc(b.bet)} ${pr(b.price)}</div><div class="m">${esc(b.game)}${b.when?' · '+esc(b.when):''}</div>
 <div class="m">${esc(b.book)} · stake ${$(b.stake)} · to pay ${$(b.to_pay)} · ${esc(b.source||'')}${b.site===false?' · graded':''}</div>${b.score?`<div class="m">${esc(b.score)}</div>`:''}</div><div class="r">${right}</div></div></div>`;}
 function render(d){const t=d.tiles;const tile=(l,v)=>`<div class="tile"><div class="l">${l}</div><div class="n ${v>0?'good':v<0?'bad':''}">${sg(v)}</div></div>`;
 const sec=(h,a,k)=>a.length?`<h2>${h} (${a.length})</h2>`+a.map(b=>card(b,k)).join(''):'';
@@ -524,7 +573,7 @@ def main():
 
     opened, settled = [], []
     for name, fn in (("prophetx", read_prophetx), ("kalshi", lambda: read_kalshi(since)), ("polymarket_us", lambda: read_pmus(since)),
-                     ("novig", lambda: (read_novig(), []))):
+                     ("novig", read_novig)):
         try:
             o, s = fn()
             opened += o
@@ -560,10 +609,12 @@ def main():
         s["source"] = (bets.get(s["id"]) or {}).get("source") or ("bot" if bot_match(s, keys) else "Peter")
         bets[s["id"]] = {**(bets.get(s["id"]) or {}), **s}
     # bets that left the open list without a site settlement (Novig, manual): grade from the final score
+    nm = [0, 0]
     for k, b in list(bets.items()):
         if b.get("result"):
             continue
         g = match_game(b, games)
+        nm[0 if g else 1] += 1
         if g:
             b["game_start"] = g["start"]
             st, outc = read_status(b, g)
@@ -614,7 +665,7 @@ def main():
     os.makedirs(OUT, exist_ok=True)
     with open(os.path.join(OUT, "index.html"), "w") as f:
         f.write(PAGE.replace("__BLOB__", json.dumps(enc(view))))
-    print("Tracker:", "; ".join(f"{k} {v}" for k, v in LOG.items()),
+    print("Tracker:", "; ".join(f"{k} {v}" for k, v in LOG.items()), f"| games matched {nm[0]}, not matched {nm[1]}",
           f"| open {len(live) + len(up) + len(unm)}, settled this week {len(week_settled)}")   # counts only
 
 
