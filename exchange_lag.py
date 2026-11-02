@@ -11,8 +11,9 @@ confirmation read at +5 min), with the exchange in Hard Rock's place:
   Type P = same line, Pinnacle's price moves >= 8c within 15 min while the exchange's price on that side stays within
            2c of its pre-move price.
 Grade: CLV vs Pinnacle's no-vig close at that line. Shown raw (cents of probability, as SLOW-HR) and AFTER FEES
-(close chance x after-fee decimal - 1, in %). Fee assumptions: ProphetX 2% of winnings; Kalshi 0.07 x P x (1 - P) per
-contract; Novig and Polymarket US none. DEPTH IS NOT CHECKED: a stale quote may have had no size behind it, so any
+(close chance x after-fee decimal - 1, in %). Fees (Muse registration 12:50): ProphetX 2% of winnings; Kalshi
+0.07 x P x (1 - P) per contract; Polymarket US = the executor's taker model 0.0695 x P x (1 - P) per contract (today's
+Pistons fill: screen -117, after-fee -126); Novig none. DEPTH IS NOT CHECKED: a stale quote may have had no size behind it, so any
 pass needs the gettable-price audit before bot use.
 Split: FIT = first half of the window by date, CHECK = second half. Bar shown (proposed, pending Muse): >= 100
 sightings, avg after-fee CLV > 0 and beat-close >= 53%, in both halves.
@@ -41,9 +42,9 @@ def eff(book, dec):
     """After-fee decimal: what $1 staked pays back."""
     if book == "prophetx":
         return 1 + (dec - 1) * 0.98
-    if book == "kalshi":
+    if book in ("kalshi", "polymarket.us"):
         p = 1 / dec
-        return 1 / (p * (1 + 0.07 * (1 - p)))
+        return 1 / (p * (1 + (0.07 if book == "kalshi" else ex.PMUS_FEE) * (1 - p)))
     return dec
 
 
@@ -61,6 +62,9 @@ def main():
     for k in ("done", "fixtures", "fx_last", "billable"):
         st.setdefault(k, {})
     st.setdefault("sightings", [])
+    for x in st["sightings"]:   # re-price every sighting with the current fee model (Muse 12:50: PM US is not 0 fee)
+        if x.get("close_fair") is not None:
+            x["clv_af"] = round(100 * (x["close_fair"] * eff(x["book"], x["hr_price"]) - 1), 2)
     mkmap = cl.load_markets(st, now)
     for lg in LEAGUES:
         init = st.get("init_" + lg)
@@ -127,7 +131,7 @@ def report(st, now, read, waiting, new):
     L = [f"EXCHANGE-LAG STUDY (paper; OddsPapi history; Pinnacle vs Novig / ProphetX / Kalshi / Polymarket US; "
          f"NBA/NFL/NCAAF/NHL from {WINDOW_FROM.date()})",
          "Test = SLOW-HR registered L/P (persist 3 min + confirm at +5) with the exchange in Hard Rock's place.",
-         "CLV vs Pinnacle no-vig close at that line; after fees: ProphetX 2% of winnings, Kalshi 0.07xPx(1-P), Novig/Polymarket 0.",
+         "CLV vs Pinnacle no-vig close at that line; after fees: ProphetX 2% of winnings, Kalshi 0.07xPx(1-P), Polymarket US 0.0695xPx(1-P), Novig 0.",
          "DEPTH NOT CHECKED: a stale quote may have had no size. Any pass needs the gettable-price audit before bot use.",
          f"FIT = sightings on game days <= {mid}; CHECK = after. Bar (proposed): >= 100, after-fee CLV > 0, beat close >= 53%, both halves.",
          "", f"This run: {read} games read ({waiting - read} still waiting), sightings +{new}. Games done: {len(st['done'])}.",
