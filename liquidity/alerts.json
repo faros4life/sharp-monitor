@@ -1,6 +1,417 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-02T01:05:54Z",
+   "base_depth": 77536,
+   "best_price": 0.495,
+   "best_price_american": 102,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "prophetx",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.4975,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 6,
+   "date": "2026-11-01",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": false,
+     "label": "NOT Washington wins by over 5.5 points",
+     "price": 0.5,
+     "this_side": 2080596
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "PHI +5.5 (-5.5)",
+     "price": 0.495,
+     "this_side": 134388
+    },
+    "prophetx": {
+     "new_other_side": -4084,
+     "new_this_side": 52158,
+     "other_side": 62139,
+     "other_side_all_levels": 62139,
+     "ratio": 2.1,
+     "this_side": 130957,
+     "this_side_all_levels": 130957
+    }
+   },
+   "fade_price": 0.505,
+   "first_seen_utc": "2026-11-02T01:00:14Z",
+   "game": "Philadelphia Eagles at Washington Commanders",
+   "key": "prophetx|{\"line\": 5.5, \"px_event\": 1700008917, \"px_market\": 223, \"side\": \"0\"}",
+   "lead_min": 14,
+   "league": "NFL",
+   "line": 5.5,
+   "market": "spread",
+   "new_money": 52158,
+   "paper_only": false,
+   "price": 0.4975,
+   "price_american": 101,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.5,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 6.0,
+     "price": -108
+    },
+    "betonlineag": {
+     "point": 5.5,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 5.5,
+     "price": -101
+    },
+    "betrivers": {
+     "point": 6.0,
+     "price": -110
+    },
+    "betus": {
+     "point": 5.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 5.5,
+     "price": -112
+    },
+    "draftkings": {
+     "point": 5.5,
+     "price": -112
+    },
+    "fanatics": {
+     "point": 5.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 5.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": 5.5,
+     "price": 100
+    },
+    "lowvig": {
+     "point": 5.5,
+     "price": -103
+    },
+    "mybookieag": {
+     "point": 5.5,
+     "price": -115
+    },
+    "novig": {
+     "point": 5.5,
+     "price": 102
+    },
+    "polymarket": {
+     "point": 5.5,
+     "price": 100
+    },
+    "prophetx": {
+     "point": 5.5,
+     "price": -101
+    },
+    "williamhill_us": {
+     "point": 5.5,
+     "price": -109
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "line": 5.5,
+    "px_event": 1700008917,
+    "px_market": 223,
+    "side": "0"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Philadelphia Eagles",
+   "side_label": "Philadelphia Eagles +5.5 (+5.5)",
+   "start_source": "odds",
+   "start_utc": "2026-11-02T01:20:00Z",
+   "teams": [
+    "Philadelphia Eagles",
+    "Washington Commanders"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-02T01:05:54Z",
+   "base_depth": 23570,
+   "best_price": 0.835,
+   "best_price_american": -506,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.84,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 6,
+   "date": "2026-11-02",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Philadelphia",
+     "price": 0.83,
+     "this_side": 110874
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "PHI (0)",
+     "price": 0.835,
+     "this_side": 8507
+    },
+    "polymarket": {
+     "new_other_side": 1216,
+     "new_this_side": 25993,
+     "other_side": 6861,
+     "other_side_all_levels": 12019,
+     "ratio": 4.8,
+     "this_side": 32885,
+     "this_side_all_levels": 50580
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Philadelphia 76ers",
+     "price": 0.8361,
+     "this_side": 1175
+    }
+   },
+   "fade_price": 0.17,
+   "first_seen_utc": "2026-11-02T01:00:14Z",
+   "game": "Bulls vs. 76ers",
+   "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6281407\"}",
+   "lead_min": 1404,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 25993,
+   "paper_only": false,
+   "price": 0.84,
+   "price_american": -525,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.84,
+   "prices_by_book": {
+    "betopenly": {
+     "point": null,
+     "price": -513
+    },
+    "betrivers": {
+     "point": null,
+     "price": -530
+    },
+    "draftkings": {
+     "point": null,
+     "price": -650
+    },
+    "fanduel": {
+     "point": null,
+     "price": -590
+    },
+    "kalshi": {
+     "point": null,
+     "price": -488
+    },
+    "limitless": {
+     "point": null,
+     "price": -562
+    },
+    "novig": {
+     "point": null,
+     "price": -506
+    },
+    "polymarket": {
+     "point": null,
+     "price": -525
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -488
+    },
+    "prophetx": {
+     "point": null,
+     "price": -510
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -600
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 1,
+    "pm_market_id": "6281407"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "76ers",
+   "side_label": "76ers",
+   "start_source": "odds",
+   "start_utc": "2026-11-03T00:30:00Z",
+   "teams": [
+    "Bulls",
+    "76ers"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-02T01:05:54Z",
+   "base_depth": 160755,
+   "best_price": 0.61,
+   "best_price_american": -156,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.6,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 6,
+   "date": "2026-11-02",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 4497,
+     "new_this_side": 31554,
+     "other_side": 16659,
+     "other_side_all_levels": 132328,
+     "ratio": 1.8,
+     "this_side": 30298,
+     "this_side_all_levels": 210579
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "DEN (0)",
+     "price": 0.61,
+     "this_side": 4926
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Nuggets",
+     "price": 0.61,
+     "this_side": 9598
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Denver Nuggets",
+     "price": 0.6324,
+     "this_side": 1875
+    }
+   },
+   "fade_price": 0.4,
+   "first_seen_utc": "2026-11-02T01:00:14Z",
+   "game": "Portland vs Denver",
+   "key": "kalshi|KXNBAGAME-26NOV02PORDEN|ml|1",
+   "lead_min": 1494,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 31554,
+   "paper_only": false,
+   "price": 0.6,
+   "price_american": -150,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.6,
+   "prices_by_book": {
+    "betopenly": {
+     "point": null,
+     "price": -158
+    },
+    "betrivers": {
+     "point": null,
+     "price": -175
+    },
+    "draftkings": {
+     "point": null,
+     "price": -170
+    },
+    "fanduel": {
+     "point": null,
+     "price": -172
+    },
+    "kalshi": {
+     "point": null,
+     "price": -150
+    },
+    "limitless": {
+     "point": null,
+     "price": -170
+    },
+    "novig": {
+     "point": null,
+     "price": -156
+    },
+    "polymarket": {
+     "point": null,
+     "price": -156
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -156
+    },
+    "prophetx": {
+     "point": null,
+     "price": -172
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -175
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBAGAME-26NOV02PORDEN-DEN"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Denver",
+   "side_label": "Denver",
+   "start_source": "odds",
+   "start_utc": "2026-11-03T02:00:00Z",
+   "teams": [
+    "Portland",
+    "Denver"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-02T01:00:14Z",
    "base_depth": 150132,
    "best_price": 0.51,
@@ -15,8 +426,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": 0.0,
+   "close_price": 0.52,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -164,8 +575,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.54,
-   "clv_cents": 0.0,
+   "close_price": 0.53,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -208,6 +619,8 @@
    "new_money": 34963,
    "paper_only": false,
    "price": 0.54,
+   "price_after_15m": 0.535,
+   "price_after_15m_book": "novig",
    "price_american": -117,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.54,
@@ -277,6 +690,7 @@
    "side_label": "Orlando",
    "start_source": "odds",
    "start_utc": "2026-11-03T00:30:00Z",
+   "still_actionable": true,
    "teams": [
     "Washington",
     "Orlando"
@@ -770,8 +1184,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.505,
-   "clv_cents": 0.5,
+   "close_price": 0.51,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -3527,8 +3941,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": -1.0,
+   "close_price": 0.53,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
