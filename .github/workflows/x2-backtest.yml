@@ -21,6 +21,12 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install -q cryptography
+      - name: Restore shared OddsPapi history cache (private Actions cache, never committed)
+        uses: actions/cache@v4
+        with:
+          path: hcache
+          key: hcache-${{ github.run_id }}
+          restore-keys: hcache-
       - name: 2X backtest (private email)
         env:
           GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
