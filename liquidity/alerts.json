@@ -1,6 +1,153 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-02T00:30:12Z",
+   "base_depth": 112505,
+   "best_price": 0.505,
+   "best_price_american": -102,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.505,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-01",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": false,
+     "label": "Washington wins by over 5.5 points",
+     "price": 0.51,
+     "this_side": 2246519
+    },
+    "novig": {
+     "new_other_side": -6969,
+     "new_this_side": 26904,
+     "other_side": 100566,
+     "other_side_all_levels": 130609,
+     "ratio": 1.4,
+     "this_side": 138286,
+     "this_side_all_levels": 138311
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Washington Commanders -5.5 (-5.5)",
+     "price": 0.505,
+     "this_side": 79280
+    }
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-11-02T00:20:10Z",
+   "game": "Philadelphia Eagles @ Washington Commanders",
+   "key": "novig|{\"market_id\": \"01a15b22-b24d-7ba2-9887-a10816670377\", \"outcome_id\": \"01a15b22-b24d-7ba2-9887-a11689cb8501\"}",
+   "lead_min": 50,
+   "league": "NFL",
+   "line": -5.5,
+   "market": "spread",
+   "new_money": 26904,
+   "paper_only": false,
+   "price": 0.505,
+   "price_american": -102,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.505,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -6.0,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": -5.5,
+     "price": -110
+    },
+    "betopenly": {
+     "point": -5.5,
+     "price": 100
+    },
+    "betrivers": {
+     "point": -6.0,
+     "price": -110
+    },
+    "betus": {
+     "point": -5.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": -5.5,
+     "price": -115
+    },
+    "draftkings": {
+     "point": -6.0,
+     "price": -112
+    },
+    "fanatics": {
+     "point": -5.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": -5.5,
+     "price": -112
+    },
+    "kalshi": {
+     "point": -5.5,
+     "price": -104
+    },
+    "lowvig": {
+     "point": -5.5,
+     "price": -105
+    },
+    "mybookieag": {
+     "point": -5.5,
+     "price": -110
+    },
+    "novig": {
+     "point": -5.5,
+     "price": -102
+    },
+    "polymarket": {
+     "point": -5.5,
+     "price": -104
+    },
+    "prophetx": {
+     "point": -5.5,
+     "price": -102
+    },
+    "williamhill_us": {
+     "point": -5.5,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a15b22-b24d-7ba2-9887-a10816670377",
+    "outcome_id": "01a15b22-b24d-7ba2-9887-a11689cb8501"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "prophetx"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Washington Commanders",
+   "side_label": "WSH -5.5 (-5.5)",
+   "start_source": "odds",
+   "start_utc": "2026-11-02T01:20:00Z",
+   "teams": [
+    "Philadelphia Eagles",
+    "Washington Commanders"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-02T00:20:10Z",
    "base_depth": 217050,
    "best_price": 0.465,
@@ -208,6 +355,8 @@
    "new_money": 43353,
    "paper_only": false,
    "price": 0.697,
+   "price_after_15m": 0.7,
+   "price_after_15m_book": "novig",
    "price_american": -230,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.697,
@@ -306,6 +455,7 @@
    "side_label": "Washington Commanders",
    "start_source": "odds",
    "start_utc": "2026-11-02T01:20:00Z",
+   "still_actionable": true,
    "teams": [
     "Philadelphia Eagles",
     "Washington Commanders"
@@ -10204,8 +10354,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.42,
-   "clv_cents": 1.0,
+   "close_price": 0.41,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -10363,8 +10513,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.56,
-   "clv_cents": 3.0,
+   "close_price": 0.55,
+   "clv_cents": 2.0,
    "confirmed_after_min": 6,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -14275,6 +14425,7 @@
     }
    },
    "fade_price": 0.5,
+   "fade_units": 0.93,
    "first_seen_utc": "2026-11-01T05:20:40Z",
    "game": "New England vs Miami: Total Points",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNFLTOTAL-26NOV01NEMIA-43\"}",
@@ -14361,13 +14512,14 @@
     "kalshi_side": "no",
     "market_ticker": "KXNFLTOTAL-26NOV01NEMIA-43"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-02T00:30:12Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -14380,7 +14532,7 @@
     "Miami"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-01T05:20:40Z",
