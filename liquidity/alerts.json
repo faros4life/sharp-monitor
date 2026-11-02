@@ -1,6 +1,439 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-02T21:20:12Z",
+   "base_depth": 13774,
+   "best_price": 0.49,
+   "best_price_american": 104,
+   "best_price_book": "novig",
+   "bid_improved": true,
+   "bid_improved_at_pending": false,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-02",
+   "depth_by_book": {
+    "novig": {
+     "heavier_side": true,
+     "label": "TOR -4.5 (4.5)",
+     "price": 0.49,
+     "this_side": 8827
+    },
+    "polymarket": {
+     "new_other_side": 3786,
+     "new_this_side": 31032,
+     "other_side": 8856,
+     "other_side_all_levels": 21110,
+     "ratio": 2.3,
+     "this_side": 20231,
+     "this_side_all_levels": 41276
+    }
+   },
+   "fade_price": 0.51,
+   "first_seen_utc": "2026-11-02T21:10:12Z",
+   "game": "Raptors vs. Clippers",
+   "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"6544348\"}",
+   "lead_min": 340,
+   "league": "NBA",
+   "line": -4.5,
+   "market": "spread",
+   "new_money": 31032,
+   "paper_only": false,
+   "price": 0.5,
+   "price_american": -100,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.49,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -4.5,
+     "price": -105
+    },
+    "betonlineag": {
+     "point": -4.0,
+     "price": -110
+    },
+    "betopenly": {
+     "point": -4.5,
+     "price": 100
+    },
+    "betrivers": {
+     "point": -4.5,
+     "price": -113
+    },
+    "betus": {
+     "point": -4.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": -4.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": -4.5,
+     "price": -106
+    },
+    "fanatics": {
+     "point": -4.5,
+     "price": -105
+    },
+    "fanduel": {
+     "point": -3.5,
+     "price": -122
+    },
+    "kalshi": {
+     "point": -4.5,
+     "price": 104
+    },
+    "lowvig": {
+     "point": -4.0,
+     "price": -106
+    },
+    "mybookieag": {
+     "point": -4.5,
+     "price": -110
+    },
+    "novig": {
+     "point": -4.5,
+     "price": 104
+    },
+    "polymarket": {
+     "point": -4.5,
+     "price": 100
+    },
+    "prophetx": {
+     "point": -3.5,
+     "price": -116
+    },
+    "williamhill_us": {
+     "point": -4.5,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 0,
+    "pm_market_id": "6544348"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Raptors",
+   "side_label": "Raptors (-4.5)",
+   "start_source": "polymarket",
+   "start_utc": "2026-11-03T03:00:00Z",
+   "teams": [
+    "Raptors",
+    "Clippers"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-02T21:20:12Z",
+   "base_depth": 37485,
+   "best_price": 0.62,
+   "best_price_american": -163,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.62,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-02",
+   "depth_by_book": {
+    "novig": {
+     "heavier_side": true,
+     "label": "TOR (0)",
+     "price": 0.62,
+     "this_side": 20696
+    },
+    "polymarket": {
+     "new_other_side": 257,
+     "new_this_side": 69439,
+     "other_side": 50281,
+     "other_side_all_levels": 67744,
+     "ratio": 1.6,
+     "this_side": 81533,
+     "this_side_all_levels": 106955
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "Toronto Raptors",
+     "price": 0.6241,
+     "this_side": 6084
+    }
+   },
+   "fade_price": 0.39,
+   "first_seen_utc": "2026-11-02T21:10:12Z",
+   "game": "Raptors vs. Clippers",
+   "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"6293071\"}",
+   "lead_min": 340,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 69439,
+   "paper_only": false,
+   "price": 0.62,
+   "price_american": -163,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.62,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -185
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -172
+    },
+    "betopenly": {
+     "point": null,
+     "price": -165
+    },
+    "betrivers": {
+     "point": null,
+     "price": -182
+    },
+    "betus": {
+     "point": null,
+     "price": -170
+    },
+    "bovada": {
+     "point": null,
+     "price": -185
+    },
+    "draftkings": {
+     "point": null,
+     "price": -180
+    },
+    "fanatics": {
+     "point": null,
+     "price": -180
+    },
+    "fanduel": {
+     "point": null,
+     "price": -180
+    },
+    "kalshi": {
+     "point": null,
+     "price": -163
+    },
+    "limitless": {
+     "point": null,
+     "price": -178
+    },
+    "lowvig": {
+     "point": null,
+     "price": -172
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -193
+    },
+    "novig": {
+     "point": null,
+     "price": -163
+    },
+    "polymarket": {
+     "point": null,
+     "price": -163
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -163
+    },
+    "prophetx": {
+     "point": null,
+     "price": -164
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -178
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 0,
+    "pm_market_id": "6293071"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Raptors",
+   "side_label": "Raptors",
+   "start_source": "polymarket",
+   "start_utc": "2026-11-03T03:00:00Z",
+   "teams": [
+    "Raptors",
+    "Clippers"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-02T21:20:12Z",
+   "base_depth": 70862,
+   "best_price": 0.49,
+   "best_price_american": 104,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.49,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-02",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 12173,
+     "new_this_side": 40209,
+     "other_side": 35462,
+     "other_side_all_levels": 97511,
+     "ratio": 1.1,
+     "this_side": 40241,
+     "this_side_all_levels": 107411
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "TOR -4.5 (4.5)",
+     "price": 0.49,
+     "this_side": 8827
+    }
+   },
+   "fade_price": 0.52,
+   "first_seen_utc": "2026-11-02T21:10:12Z",
+   "game": "Toronto vs Los Angeles C: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNBASPREAD-26NOV02TORLAC-TOR5\"}",
+   "lead_min": 340,
+   "league": "NBA",
+   "line": -4.5,
+   "market": "spread",
+   "new_money": 40209,
+   "paper_only": false,
+   "price": 0.49,
+   "price_american": 104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.49,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -4.5,
+     "price": -105
+    },
+    "betonlineag": {
+     "point": -4.0,
+     "price": -110
+    },
+    "betopenly": {
+     "point": -4.5,
+     "price": 100
+    },
+    "betrivers": {
+     "point": -4.5,
+     "price": -113
+    },
+    "betus": {
+     "point": -4.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": -4.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": -4.5,
+     "price": -106
+    },
+    "fanatics": {
+     "point": -4.5,
+     "price": -105
+    },
+    "fanduel": {
+     "point": -3.5,
+     "price": -122
+    },
+    "kalshi": {
+     "point": -4.5,
+     "price": 104
+    },
+    "lowvig": {
+     "point": -4.0,
+     "price": -106
+    },
+    "mybookieag": {
+     "point": -4.5,
+     "price": -110
+    },
+    "novig": {
+     "point": -4.5,
+     "price": 104
+    },
+    "polymarket": {
+     "point": -4.5,
+     "price": 100
+    },
+    "prophetx": {
+     "point": -3.5,
+     "price": -116
+    },
+    "williamhill_us": {
+     "point": -4.5,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBASPREAD-26NOV02TORLAC-TOR5"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Toronto",
+   "side_label": "Toronto wins by over 4.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-11-03T03:00:00Z",
+   "teams": [
+    "Toronto",
+    "Los Angeles C"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-02T21:00:19Z",
    "base_depth": 96946,
    "best_price": 0.505,
@@ -15,8 +448,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": 0.0,
+   "close_price": 0.48,
+   "clv_cents": -2.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -59,6 +492,8 @@
    "new_money": 79061,
    "paper_only": false,
    "price": 0.5,
+   "price_after_15m": 0.4928,
+   "price_after_15m_book": "prophetx",
    "price_american": -100,
    "price_rule": "ok",
    "price_when_first_seen": 0.5,
@@ -128,7 +563,8 @@
      "price": -110
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-02T21:20:12Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNBATOTAL-26NOV02BOSHOU-217"
@@ -149,6 +585,7 @@
    "side_label": "Over 216.5 points",
    "start_source": "odds",
    "start_utc": "2026-11-03T01:30:00Z",
+   "still_actionable": true,
    "teams": [
     "Boston",
     "Houston"
@@ -1335,8 +1772,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.7895,
-   "clv_cents": 0.7,
+   "close_price": 0.7917,
+   "clv_cents": 0.9,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -3957,8 +4394,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.46,
-   "clv_cents": -3.0,
+   "close_price": 0.47,
+   "clv_cents": -2.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -5926,8 +6363,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.56,
-   "clv_cents": 0.0,
+   "close_price": 0.57,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -8512,8 +8949,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.55,
-   "clv_cents": 1.0,
+   "close_price": 0.56,
+   "clv_cents": 2.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
