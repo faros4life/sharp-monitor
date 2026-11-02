@@ -658,6 +658,17 @@ def main():
         nnc = [r for r in (st.get("novig_checks") or {}).values() if r.get("done") and r.get("novig_price_then") is None]
         if nnc:
             L.append(f"  not found: {len(nnc)}")
+        # Nov 2 (Peter): every open bet, all books, by game time (for the pinned Bets Board)
+        ob = sorted([b for b in tracker.values() if b.get("open") and not b.get("result")], key=lambda b: b.get("game_start") or "9")
+        L += ["", f"OPEN BETS (all books, by game time): {len(ob)}"]
+        orows = []
+        for b in ob:
+            gs = tp(b.get("game_start"))
+            when = gs.astimezone(ET).strftime("%a %-I:%M %p") if gs else "no game time"
+            L.append(f"  {when} | {b.get('league') or '?'} | {b.get('book')} [{b.get('source')}] | {b.get('bet')} {b.get('price') or ''} | "
+                     f"stake {b.get('stake')} to pay {b.get('to_pay')} | {b.get('game')}")
+            orows.append({k: b.get(k) for k in ("game_start", "league", "book", "source", "bet", "price", "stake", "to_pay", "game", "status", "score")})
+        L.append("OPEN_BETS_JSON " + json.dumps(orows, separators=(",", ":")))
         L += ["", f"OddsPapi calls this run: billable {STATS['billable']}, free {STATS['free']}; billable this month "
                   f"{st['billable'].get(month_key(now), 0)} of cap {CAP} (plan 250)."]
         if st.get("errors"):
