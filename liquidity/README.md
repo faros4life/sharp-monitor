@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 1, 10:10 PM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 45.
+Updated Sun Nov 1, 10:20 PM ET. This run: 1 new, 1 not confirmed, 0 pending. Open alerts: 46.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 1 10:20PM | NBA | Boston vs Houston | moneyline: Houston | kalshi | $164k | -170 | ✅ novig,polymarket |  | +0.0c |  | pending |
 | Nov 1 10:00PM | NHL | Vegas vs Boston | moneyline: Vegas | kalshi | $27k | -104 | ✅ novig,polymarket |  | +0.0c |  | pending |
 | Nov 1 9:50PM | NHL | Detroit Red Wings @ Florida Panthers | spread: FLA -1.5 (-1.5) | novig | $68k | +153 | ✅ kalshi,polymarket |  | +0.5c |  | pending |
 | Nov 1 9:50PM | NHL | Detroit vs Florida: Spread | spread: Florida wins by over 1.5 goals | kalshi | $64k | +156 | ✅ novig |  | +0.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 31 2:09PM | NHL | Sabres vs. Kings | total: Over (6.5) | polymarket | $28k | +117 |  |  | +0.0c |  | L |
 | Oct 31 2:09PM | NCAAF | South Dakota vs South Dakota St. | moneyline: NOT South Dakota | kalshi | $43k | -223 |  |  | +0.0c | yes | W |
 | Oct 31 2:09PM | NCAAF | Nicholls St. vs McNeese | moneyline: McNeese | kalshi | $33k | -285 |  |  | +0.0c | yes | W |
-| Oct 31 2:09PM | NCAAF | Delaware St. vs Norfolk St. | moneyline: Delaware St. | kalshi | $25k | -127 |  |  | +0.0c | yes | W |

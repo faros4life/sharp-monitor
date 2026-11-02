@@ -1,6 +1,160 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-02T03:20:10Z",
+   "base_depth": 259799,
+   "best_price": 0.6463,
+   "best_price_american": -183,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.63,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-02",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -7697,
+     "new_this_side": 164154,
+     "other_side": 32368,
+     "other_side_all_levels": 171652,
+     "ratio": 9.0,
+     "this_side": 289704,
+     "this_side_all_levels": 426957
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "HOU (0)",
+     "price": 0.65,
+     "this_side": 17439
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Rockets",
+     "price": 0.65,
+     "this_side": 18464
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Houston Rockets",
+     "price": 0.6503,
+     "this_side": 1639
+    }
+   },
+   "fade_price": 0.37,
+   "first_seen_utc": "2026-11-02T03:10:10Z",
+   "game": "Boston vs Houston",
+   "key": "kalshi|KXNBAGAME-26NOV02BOSHOU|ml|1",
+   "lead_min": 1330,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 164154,
+   "paper_only": false,
+   "price": 0.63,
+   "price_american": -170,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.63,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -210
+    },
+    "betopenly": {
+     "point": null,
+     "price": -182
+    },
+    "betrivers": {
+     "point": null,
+     "price": -180
+    },
+    "betus": {
+     "point": null,
+     "price": -190
+    },
+    "bovada": {
+     "point": null,
+     "price": -210
+    },
+    "draftkings": {
+     "point": null,
+     "price": -198
+    },
+    "fanatics": {
+     "point": null,
+     "price": -200
+    },
+    "fanduel": {
+     "point": null,
+     "price": -205
+    },
+    "kalshi": {
+     "point": null,
+     "price": -178
+    },
+    "limitless": {
+     "point": null,
+     "price": -202
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -208
+    },
+    "novig": {
+     "point": null,
+     "price": -186
+    },
+    "polymarket": {
+     "point": null,
+     "price": -186
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -178
+    },
+    "prophetx": {
+     "point": null,
+     "price": -186
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -195
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBAGAME-26NOV02BOSHOU-HOU"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "polymarket"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Houston",
+   "side_label": "Houston",
+   "start_source": "odds",
+   "start_utc": "2026-11-03T01:30:00Z",
+   "teams": [
+    "Boston",
+    "Houston"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-02T03:00:21Z",
    "base_depth": 226467,
    "best_price": 0.51,
@@ -59,6 +213,8 @@
    "new_money": 26873,
    "paper_only": false,
    "price": 0.51,
+   "price_after_15m": 0.505,
+   "price_after_15m_book": "novig",
    "price_american": -104,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.51,
@@ -143,6 +299,7 @@
    "side_label": "Vegas",
    "start_source": "odds",
    "start_utc": "2026-11-03T00:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Vegas",
     "Boston"
