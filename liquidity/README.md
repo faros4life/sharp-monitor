@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 1, 11:40 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 26.
+Updated Sun Nov 1, 11:50 PM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 26.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,12 +10,12 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 1 11:30PM | NHL | Calgary vs San Jose | moneyline: San Jose | kalshi | $25k | -127 |  |  | +0.0c |  | pending |
+| Nov 1 11:30PM | NHL | Calgary vs San Jose | moneyline: San Jose | kalshi | $25k | -127 |  |  | +1.0c |  | pending |
 | Nov 1 11:20PM | NHL | Colorado vs Chicago: Spread | spread: Colorado wins by over 1.5 goals | kalshi | $47k | +113 | ✅ polymarket |  | +0.0c |  | pending |
-| Nov 1 11:10PM | NBA | Oklahoma City vs Cleveland | moneyline: Cleveland | kalshi | $39k | -156 | ✅ novig,polymarket | ❌ | +0.0c |  | pending |
+| Nov 1 11:10PM | NBA | Oklahoma City vs Cleveland | moneyline: Cleveland | kalshi | $39k | -156 | ✅ novig,polymarket | ❌ | +1.0c |  | pending |
 | Nov 1 10:50PM | NBA | Atlanta vs Indiana | moneyline: Atlanta | kalshi | $39k | -186 |  |  | +0.0c |  | pending |
 | Nov 1 10:40PM | NBA | Phoenix vs Golden State | moneyline: Golden State | kalshi | $42k | -156 |  |  | +1.0c | yes | pending |
-| Nov 1 10:20PM | NBA | Boston vs Houston | moneyline: Houston | kalshi | $164k | -170 | ✅ novig,polymarket |  | +0.0c |  | pending |
+| Nov 1 10:20PM | NBA | Boston vs Houston | moneyline: Houston | kalshi | $164k | -170 | ✅ novig,polymarket |  | +1.0c |  | pending |
 | Nov 1 10:00PM | NHL | Vegas vs Boston | moneyline: Vegas | kalshi | $27k | -104 | ✅ novig,polymarket |  | +0.0c | yes | pending |
 | Nov 1 9:50PM | NHL | Detroit Red Wings @ Florida Panthers | spread: FLA -1.5 (-1.5) | novig | $68k | +153 | ✅ kalshi,polymarket |  | +0.5c |  | pending |
 | Nov 1 9:50PM | NHL | Detroit vs Florida: Spread | spread: Florida wins by over 1.5 goals | kalshi | $64k | +156 | ✅ novig |  | +0.0c |  | pending |
