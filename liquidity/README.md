@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 1, 8:20 PM ET. This run: 0 new, 1 not confirmed, 1 pending. Open alerts: 46.
+Updated Sun Nov 1, 8:30 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 46.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -17,7 +17,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 1 8:05PM | NBA | Bulls vs. 76ers | moneyline: 76ers | polymarket | $26k | -525 | ✅ kalshi |  | +0.0c |  | pending |
 | Nov 1 8:05PM | NBA | Portland vs Denver | moneyline: Denver | kalshi | $32k | -150 |  |  | +0.0c |  | pending |
 | Nov 1 8:00PM | NBA | Toronto vs Los Angeles L: Total Points | total: NOT Over 223.5 points | kalshi | $91k | -104 | ✅ novig | ✅ | +1.0c |  | pending |
-| Nov 1 7:50PM | NBA | Washington vs Orlando | moneyline: Orlando | kalshi | $35k | -117 |  |  | +0.0c |  | pending |
+| Nov 1 7:50PM | NBA | Washington vs Orlando | moneyline: Orlando | kalshi | $35k | -117 |  |  | +2.0c |  | pending |
 | Nov 1 7:30PM | NFL | Philadelphia Eagles @ Washington Commanders | spread: WSH -5.5 (-5.5) | novig | $27k | -102 | ✅ prophetx |  | +0.5c | yes | pending |
 | Nov 1 7:20PM | NBA | Clippers vs. Warriors | moneyline: Clippers | polymarket | $44k | +113 |  | ✅ | -1.0c | yes | pending |
 | Nov 1 7:10PM | NFL | Philadelphia Eagles at Washington Commanders | moneyline: Washington Commanders | prophetx | $43k | -230 | ✅ kalshi,novig |  | +0.0c |  | pending |
