@@ -1,6 +1,153 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-02T04:20:10Z",
+   "base_depth": 42721,
+   "best_price": 0.465,
+   "best_price_american": 115,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.47,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-02",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 8561,
+     "new_this_side": 47173,
+     "other_side": 24301,
+     "other_side_all_levels": 60295,
+     "ratio": 2.0,
+     "this_side": 48021,
+     "this_side_all_levels": 89920
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "COL -1.5 (1.5)",
+     "price": 0.465,
+     "this_side": 10709
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Avalanche (-1.5)",
+     "price": 0.47,
+     "this_side": 20852
+    }
+   },
+   "fade_price": 0.54,
+   "first_seen_utc": "2026-11-02T04:10:11Z",
+   "game": "Colorado vs Chicago: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNHLSPREAD-26NOV02COLCHI-COL2\"}",
+   "lead_min": 1240,
+   "league": "NHL",
+   "line": -1.5,
+   "market": "spread",
+   "new_money": 47173,
+   "paper_only": false,
+   "price": 0.47,
+   "price_american": 113,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.47,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -1.5,
+     "price": 100
+    },
+    "betonlineag": {
+     "point": -1.5,
+     "price": 110
+    },
+    "betopenly": {
+     "point": -1.5,
+     "price": 110
+    },
+    "betrivers": {
+     "point": -1.5,
+     "price": -103
+    },
+    "betus": {
+     "point": -1.5,
+     "price": 110
+    },
+    "bovada": {
+     "point": -1.5,
+     "price": 110
+    },
+    "draftkings": {
+     "point": -1.5,
+     "price": 110
+    },
+    "fanatics": {
+     "point": -1.5,
+     "price": 105
+    },
+    "fanduel": {
+     "point": -1.5,
+     "price": 106
+    },
+    "kalshi": {
+     "point": -1.5,
+     "price": 113
+    },
+    "lowvig": {
+     "point": -1.5,
+     "price": 110
+    },
+    "mybookieag": {
+     "point": -1.5,
+     "price": 104
+    },
+    "novig": {
+     "point": -1.5,
+     "price": 115
+    },
+    "polymarket": {
+     "point": -1.5,
+     "price": 113
+    },
+    "prophetx": {
+     "point": -1.5,
+     "price": 114
+    },
+    "williamhill_us": {
+     "point": -1.5,
+     "price": 100
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNHLSPREAD-26NOV02COLCHI-COL2"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "polymarket"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Colorado",
+   "side_label": "Colorado wins by over 1.5 goals",
+   "start_source": "odds",
+   "start_utc": "2026-11-03T01:00:00Z",
+   "teams": [
+    "Colorado",
+    "Chicago"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-02T04:10:11Z",
    "base_depth": 303789,
    "best_price": 0.615,
@@ -2294,6 +2441,7 @@
     }
    },
    "fade_price": 0.54,
+   "fade_units": 0.83,
    "first_seen_utc": "2026-11-02T00:10:10Z",
    "game": "Clippers vs. Warriors",
    "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"6242645\"}",
@@ -2389,11 +2537,12 @@
     "outcome_index": 0,
     "pm_market_id": "6242645"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-11-02T04:20:10Z",
    "sharp_agree": [
     "Los Angeles Clippers +2.5 (-113)"
    ],
@@ -2408,7 +2557,7 @@
     "Warriors"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-02T00:10:10Z",
