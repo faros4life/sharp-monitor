@@ -68,3 +68,9 @@ jobs:
           if [ -f wake_executor ]; then
             gh workflow run executor-dry-run.yml --ref main || echo "executor wake failed (its timer will pick it up)"
           fi
+      - name: Start due paper / measurement jobs (GitHub's own cron barely fires here)
+        if: always()
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: timeout 120 python tick.py || echo "tick skipped"
