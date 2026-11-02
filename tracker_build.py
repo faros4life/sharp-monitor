@@ -143,7 +143,8 @@ def espn_games(days):
                     names = " ".join(str(t.get(k) or "") for k in ("displayName", "shortDisplayName", "name", "location", "abbreviation"))
                     teams.append({"home": c.get("homeAway") == "home", "names": names, "toks": toks(names),
                                   "abbr": (t.get("abbreviation") or "").lower(), "score": num(c.get("score")) or 0,
-                                  "short": t.get("shortDisplayName") or t.get("displayName") or ""})
+                                  "short": t.get("shortDisplayName") or t.get("displayName") or "",
+                                  "full": t.get("displayName") or t.get("shortDisplayName") or ""})
                 st = (ev.get("status") or {}).get("type") or {}
                 games.append({"league": lg, "id": ev.get("id"), "start": ev.get("date"), "teams": teams,
                               "state": st.get("state"), "detail": st.get("shortDetail") or st.get("detail") or "",
@@ -226,6 +227,19 @@ def elapsed(g):
     return min(1.0, ((min(p, n) - 1) * mins + (mins - left)) / (n * mins))
 
 
+def attach(b, g):
+    """Scoreboard fields for the card: league, both teams (away first) with scores, game state and clock."""
+    if not g or len(g["teams"]) != 2:
+        return
+    a, h = sorted(g["teams"], key=lambda t: t["home"])
+    b["league"] = b.get("league") or g["league"]
+    b["teams"] = [{"name": a["full"], "score": int(a["score"])}, {"name": h["full"], "score": int(h["score"])}]
+    b["g_state"], b["g_detail"] = g["state"], g["detail"]
+    b["game_start"] = b.get("game_start") or g["start"]
+    if g["final"]:
+        b["teams_final"] = True
+
+
 def score_line(g):
     if not g or len(g["teams"]) != 2:
         return ""
@@ -274,6 +288,29 @@ def read_prophetx():
             op.append(b)
     LOG["prophetx"] = f"ok {len(op)} open {len(se)} settled"
     return op, se
+
+
+def k_name(tk):
+    """KXNBAGAME-26OCT30DENPHX-PHX -> 'NBA DEN @ PHX (Oct 30)'."""
+    m = re.match(r"KX([A-Z]+?)(GAME|SPREAD|TOTAL)-(\d\d)([A-Z]{3})(\d\d)([A-Z]+?)-", tk or "")
+    if not m:
+        return tk or ""
+    teams = m.group(6)
+    a, b = (teams[:len(teams) // 2], teams[len(teams) // 2:]) if len(teams) in (4, 6) else (teams, "")
+    return f"{m.group(1)} {a} @ {b} ({m.group(4).title()} {int(m.group(5))})".replace(" @ ", " @ " if b else "")
+
+
+def k_bet(tk, res):
+    m = re.match(r"KX[A-Z]+?(GAME|SPREAD|TOTAL)-[^-]+-(.+)$", tk or "")
+    if not m:
+        return tk or ""
+    kind, tail = m.group(1), m.group(2)
+    if kind == "TOTAL":
+        return f"Total {tail}"
+    if kind == "SPREAD":
+        mm = re.match(r"([A-Z]+)(\d+)", tail)
+        return f"{mm.group(1)} -{int(mm.group(2)) - 0.5:g}" if mm else tail
+    return f"{tail} ML"
 
 
 def lg_of(text):
@@ -336,7 +373,8 @@ def read_kalshi(since):
             return v / 100 if v is not None else 0.0
         rev, cost, fee = dollars("revenue"), dollars("yes_total_cost") + dollars("no_total_cost"), num(s.get("fee_cost")) or 0.0
         p = rev - cost - fee
-        se.append({"id": f"ks|{s.get('ticker')}|settled", "book": "Kalshi", "game": "", "bet": s.get("ticker") or "",
+        se.append({"id": f"ks|{s.get('ticker')}|settled", "book": "Kalshi", "game": k_name(s.get("ticker")),
+                   "bet": k_bet(s.get("ticker"), s.get("market_result")),
                    "stake": round(cost, 2), "to_pay": round(rev, 2), "result": "W" if p > 0 else "L" if p < 0 else "P",
                    "profit": round(p, 2), "settled": iso(tparse(s.get("settled_time"))), "site": True, "ticker": s.get("ticker")})
     LOG["kalshi"] = f"ok {len(op)} open {len(se)} settled"
@@ -417,7 +455,7 @@ def read_novig():
         except Exception:
             pass
     for p in pos:
-        qty = num(p.get("qty")) or 0
+        qty = (num(p.get("qty")) or 0) / 100   # Novig qty = payout in cents (qty 40000 = $400 to pay)
         cost = num(p.get("cost")) or 0
         game, side, league, start = "", "", None, None
         try:
@@ -439,7 +477,7 @@ def read_novig():
         except Exception:
             pass
         op.append({"id": f"nv|{p.get('marketId')}|{p.get('outcomeId')}", "book": "Novig", "game": game, "bet": side,
-                   "league": league,
+                   "league": league, "source": "bot" if p.get("wallet") == "sub" else ("Peter" if p.get("wallet") else None),
                    "stake": round(cost, 2), "to_pay": round(qty, 2), "price": p_to_american(cost / qty) if qty and cost else None})
     se = []
     for r in snap.get("settled") or []:   # Nov 1: Novig's own settled numbers, written by the home PC
@@ -452,7 +490,8 @@ def read_novig():
             st = iso(tparse(st))
         se.append({"id": f"nv|{r.get('marketId')}|{r.get('outcomeId')}", "book": "Novig", "game": r.get("game") or "",
                    "bet": r.get("label") or "", "league": lm.N_LEAGUE.get(str(r.get("league") or "").upper().strip()),
-                   "stake": round(cost, 2), "to_pay": round(pay if res != "L" else cost * 0 + pay, 2),
+                   "source": "bot" if r.get("wallet") == "sub" else "Peter",
+                   "stake": round(cost, 2), "to_pay": round(pay, 2) if res != "L" else None,
                    "price": p_to_american(cost / pay) if res == "W" and pay else None, "result": res,
                    "profit": round(num(r.get("pnl")) if num(r.get("pnl")) is not None else pay - cost, 2),
                    "settled": iso(tparse(r.get("settledTs"))), "game_start": st, "site": True})
@@ -483,10 +522,14 @@ def read_manual_and_bot():
                 mp = re.search(r"\(([+-]\d+)\)", d.get("bet") or "")
                 pr = int(mp.group(1)) if mp else None
                 stake = num(d.get("stake"))
+                est = False
+                if not stake and pr:   # Peter's sizing (Oct 20): minus price risks to win $200, plus price risks $200
+                    stake, est = (round(200 * abs(pr) / 100, 2) if pr < 0 else 200.0), True
                 win = (stake * 100 / abs(pr) if pr and pr < 0 else stake * pr / 100 if pr else None) if stake else None
                 man.append({"id": "mn|" + hashlib.sha1(line.strip().encode()).hexdigest()[:12], "book": d.get("book") or "manual",
                             "game": d.get("game") or "", "bet": d.get("bet") or "", "league": (d.get("sport") or "").upper() or None,
-                            "price": pr, "stake": stake, "to_pay": round(stake + win, 2) if win else None, "source": "Peter (note)"})
+                            "price": pr, "stake": stake, "to_pay": round(stake + win, 2) if win else None,
+                            "source": "Peter (Hard Rock note" + (", est. stake)" if est else ")")})
     finally:
         M.logout()
     LOG["manual"] = f"ok {len(man)}"
@@ -510,45 +553,68 @@ def bot_match(b, keys):
 
 # ------------------------------------------------------------------ page
 PAGE = """<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Bet Tracker</title><meta name="robots" content="noindex"><style>
-:root{--bg:#faf9f5;--panel:#fff;--fg:#1f1e1d;--muted:#6b6a68;--line:#e6e3da;--ok:#2f7d4f;--bad:#b3261e;--warn:#a8650b}
-@media (prefers-color-scheme:dark){:root{--bg:#1c1b1a;--panel:#262624;--fg:#f0eee8;--muted:#a3a19c;--line:#3a3936;--ok:#6cc08b;--bad:#ff8a80;--warn:#e0a94a}}
-body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.4 -apple-system,system-ui,Segoe UI,Roboto,sans-serif}
-.wrap{max-width:900px;margin:0 auto;padding:16px}h1{font-weight:500;margin:0;font-size:26px}.sub{color:var(--muted);margin:4px 0 14px;font-size:13px}
-.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}.tile{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px}
-.tile .l{color:var(--muted);font-size:12px}.tile .n{font-size:clamp(15px,4.6vw,22px);margin-top:2px;font-variant-numeric:tabular-nums;white-space:nowrap}.tile{min-width:0;overflow:hidden}
-h2{font-size:16px;margin:16px 0 6px}.bet{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-bottom:8px}
-.top{display:flex;justify-content:space-between;gap:8px}.top>div:first-child{flex:1;min-width:0}.b{font-weight:600}.m{color:var(--muted);font-size:13px}.r{text-align:right;max-width:42%}
-.st{font-weight:700;font-size:13px}
-.bet.win{border-left:5px solid var(--ok);background:color-mix(in srgb,var(--ok) 12%,var(--panel))}
-.bet.loss{border-left:5px solid var(--bad);background:color-mix(in srgb,var(--bad) 12%,var(--panel))}.good{color:var(--ok)}.bad{color:var(--bad)}.warn{color:var(--warn)}
-.lock{max-width:340px;margin:20vh auto;text-align:center}.lock input{font:inherit;padding:10px;width:100%;box-sizing:border-box;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--fg)}
-.lock button{margin-top:10px;font:inherit;padding:10px 16px;border-radius:8px;border:1px solid var(--fg);background:var(--fg);color:var(--bg);width:100%}
-.err{color:var(--bad);font-size:13px;margin-top:8px;min-height:1em}
+<meta name="theme-color" content="#121614"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Bet Tracker</title><meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0f1311;--card:#171c1a;--line:#2a312e;--fg:#eef1ef;--muted:#8b958f;--win:#4ade80;--loss:#f87171;--winbg:#14301f;--lossbg:#3a1a1a;--live:#f87171}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.4 Inter,-apple-system,system-ui,sans-serif}
+.wrap{max-width:560px;margin:0 auto;padding:16px 16px 40px}.cond{font-family:Oswald,Impact,sans-serif;text-transform:uppercase;letter-spacing:.02em}
+h1{font:600 26px Oswald,sans-serif;margin:4px 0 2px;text-transform:uppercase}.sub{color:var(--muted);font-size:12px;margin:0 0 14px}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:18px}.tile{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px;min-width:0}
+.tile .l{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.06em}.tile .n{font:600 clamp(16px,5vw,24px) Oswald,sans-serif;margin-top:2px;white-space:nowrap}
+h2{font:600 22px Oswald,sans-serif;text-transform:uppercase;margin:22px 0 10px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px 16px;margin-bottom:12px}
+.card.win{border-color:var(--win);box-shadow:inset 5px 0 0 var(--win)}.card.loss{border-color:var(--loss);box-shadow:inset 5px 0 0 var(--loss)}
+.hdr{display:flex;justify-content:space-between;gap:8px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.hdr .s.win{color:var(--win)}.hdr .s.loss{color:var(--loss)}.hdr .s.live{color:var(--live)}.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--live);margin-right:5px;vertical-align:1px}
+.banner{display:flex;justify-content:space-between;align-items:center;border-radius:10px;padding:8px 12px;margin-top:10px;font:600 22px Oswald,sans-serif;text-transform:uppercase}
+.banner.win{background:var(--winbg);color:var(--win)}.banner.loss{background:var(--lossbg);color:var(--loss)}.banner.push{background:#222;color:var(--muted)}
+.banner .c{display:inline-block;width:14px;height:14px;border-radius:50%;background:currentColor;margin-right:8px}
+.team{display:flex;justify-content:space-between;align-items:baseline;margin-top:8px;font:500 20px Oswald,sans-serif;text-transform:uppercase}
+.team b{font:600 28px Oswald,sans-serif}.team.lead{color:var(--fg)}.team.trail{color:#cfd6d2}
+hr{border:0;border-top:1px solid var(--line);margin:12px 0 10px}
+.betl{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px}.betl .b{font:600 24px Oswald,sans-serif;text-transform:uppercase}
+.betl .p{font:500 18px Oswald,sans-serif}.betl .m{color:var(--muted)}.betl .bk{color:var(--muted);font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:600}
+.pill{display:inline-block;margin-top:8px;border-radius:8px;padding:4px 10px;font:600 15px Oswald,sans-serif;text-transform:uppercase;letter-spacing:.04em}
+.pill.win{background:var(--winbg);color:var(--win)}.pill.loss{background:var(--lossbg);color:var(--loss)}.pill.neu{background:#232a27;color:var(--muted)}
+.note{color:var(--muted);font-size:13px;margin-top:8px}
+.lock{max-width:340px;margin:22vh auto;text-align:center}.lock input{font:inherit;padding:12px;width:100%;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--fg)}
+.lock button{margin-top:10px;font:600 16px Oswald,sans-serif;text-transform:uppercase;padding:12px;border-radius:10px;border:0;background:var(--win);color:#08210f;width:100%}
+.err{color:var(--loss);font-size:13px;margin-top:8px;min-height:1em}
 </style></head><body><div class="wrap" id="app"><div class="lock"><h1>Bet Tracker</h1><p class="sub">Private. Enter your passphrase.</p>
 <form id="f"><input id="p" type="password" autocomplete="current-password" placeholder="Passphrase"><button>Unlock</button></form><div class="err" id="e"></div></div></div>
 <script>
 const BLOB=__BLOB__;
 const b64=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
-async function open(pass){const k=await crypto.subtle.importKey('raw',new TextEncoder().encode(pass),'PBKDF2',false,['deriveKey']);
+async function unlock(pass){const k=await crypto.subtle.importKey('raw',new TextEncoder().encode(pass),'PBKDF2',false,['deriveKey']);
 const key=await crypto.subtle.deriveKey({name:'PBKDF2',salt:b64(BLOB.s),iterations:BLOB.n,hash:'SHA-256'},k,{name:'AES-GCM',length:256},false,['decrypt']);
 const pt=await crypto.subtle.decrypt({name:'AES-GCM',iv:b64(BLOB.i)},key,b64(BLOB.c));return JSON.parse(new TextDecoder().decode(pt));}
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const $=v=>v==null?'—':(v<0?'-$':'$')+Math.abs(v).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2});
-const sg=v=>v==null?'—':(v>0?'+':'')+$(v);const pr=p=>p==null?'':(p>0?'+'+p:p);
-function card(b,kind){const cls=b.result==='W'?'good':b.result==='L'?'bad':(/COVERING|HOLDING$|WINNING/.test(b.status||'')?'good':/BEHIND|NOT HOLDING|LOSING/.test(b.status||'')?'bad':'warn');
-const right=kind==='settled'?`<div class="st ${cls}">${b.result==='W'?'Won':b.result==='L'?'Lost':'Push'} ${sg(b.profit)}</div>`:`<div class="st ${cls}">${esc(b.status||'')}</div>`;
-return `<div class="bet ${cls==='good'?'win':cls==='bad'?'loss':''}"><div class="top"><div><div class="b">${esc(b.bet)} ${pr(b.price)}</div><div class="m">${esc(b.game)}${b.when?' · '+esc(b.when):''}</div>
-<div class="m">${esc(b.book)} · stake ${$(b.stake)} · to pay ${$(b.to_pay)} · ${esc(b.source||'')}${b.site===false?' · graded':''}</div>${b.score?`<div class="m">${esc(b.score)}</div>`:''}</div><div class="r">${right}</div></div></div>`;}
-function render(d){const t=d.tiles;const tile=(l,v)=>`<div class="tile"><div class="l">${l}</div><div class="n ${v>0?'good':v<0?'bad':''}">${sg(v)}</div></div>`;
-const sec=(h,a,k)=>a.length?`<h2>${h} (${a.length})</h2>`+a.map(b=>card(b,k)).join(''):'';
-document.getElementById('app').innerHTML=`<h1>Bet Tracker</h1><p class="sub">Updated ${esc(d.updated)}. Settled profit from the books' own numbers${d.graded_note?'; '+esc(d.graded_note):''}.</p>
+const sg=v=>v==null?'—':(v>0?'+':v<0?'':'')+$(v);const pr=p=>p==null?'':(p>0?'+'+p:String(p));
+const src=b=>b.source==='bot'?'Bot fill':'Peter';
+function teams(b){if(b.teams&&b.teams.length===2){const [a,h]=b.teams;const live=b.g_state==='in'||b.g_state==='post';
+return b.teams.map((t,i)=>{const o=b.teams[1-i];const cl=live?(t.score>=o.score?'lead':'trail'):'';return `<div class="team ${cl}"><span>${esc(t.name)}</span><b>${live?t.score:'—'}</b></div>`}).join('');}
+const g=String(b.game||'').split(/\\s+(?:@|at|vs\\.?)\\s+/i);return g.length===2?g.map(n=>`<div class="team"><span>${esc(n)}</span><b>—</b></div>`).join(''):`<div class="team"><span>${esc(b.game||'')}</span></div>`;}
+function card(b,kind){const res=b.result;const cls=res==='W'?'win':res==='L'?'loss':'';
+let st;if(kind==='settled')st=`<span class="s ${cls}">Final · ${res==='W'?'Won':res==='L'?'Lost':'Push'}</span>`;
+else if(kind==='live')st=`<span class="s live"><i class="dot"></i>Live · ${esc(b.g_detail||'')}</span>`;else st=`<span class="s">${esc(b.when||'')}</span>`;
+const banner=kind==='settled'?`<div class="banner ${res==='W'?'win':res==='L'?'loss':'push'}"><span><i class="c"></i>${res==='W'?'Won':res==='L'?'Lost':'Push'}</span><span>${sg(b.profit)}</span></div>`:'';
+const s=b.status||'';const good=/COVERING|HOLDING$|WINNING/.test(s),bad=/BEHIND|NOT HOLDING|LOSING/.test(s);
+const pill=kind==='settled'?`<span class="pill ${cls||'neu'}">${res==='W'?'Won':res==='L'?'Lost':'Push'} ${sg(b.profit)}</span>`:(s?`<span class="pill ${good?'win':bad?'loss':'neu'}">${esc(s)}</span>`:'');
+const notes=[b.site===false?'graded from the final score':'',/est\\./.test(b.source||'')?'stake estimated (log it to make it exact)':''].filter(Boolean).join(' · ');
+return `<div class="card ${kind==='settled'?cls:''}"><div class="hdr"><span>${esc(b.league||'')}${b.league?' · ':''}${esc(src(b))}</span>${st}</div>${banner}${teams(b)}<hr>
+<div class="betl"><span class="b">${esc(b.bet)}</span><span class="p">${pr(b.price)}</span><span class="m">${$(b.stake)} → ${b.to_pay?$(b.to_pay):'—'}</span><span class="bk">${esc(b.book)}</span></div>
+${pill}${notes?`<div class="note">${esc(notes)}</div>`:''}</div>`;}
+function render(d){const t=d.tiles;const tile=(l,v)=>`<div class="tile"><div class="l">${l}</div><div class="n" style="color:${v>0?'var(--win)':v<0?'var(--loss)':'var(--fg)'}">${sg(v)}</div></div>`;
+const sec=(h,a,k)=>a.length?`<h2>${h}</h2>`+a.map(b=>card(b,k)).join(''):'';
+document.getElementById('app').innerHTML=`<h1>Bet Tracker</h1><p class="sub">Updated ${esc(d.updated)} · settled profit from the books' own numbers</p>
 <div class="tiles">${tile('Today',t.today)}${tile('This week',t.week)}${tile('This month',t.month)}</div>
-${sec('Live',d.live,'live')}${sec('Upcoming',d.upcoming,'up')}${sec('Settled this week',d.settled,'settled')}
-${d.unmatched&&d.unmatched.length?`<h2>Open, game not matched (${d.unmatched.length})</h2>`+d.unmatched.map(b=>card(b,'up')).join(''):''}
+${sec('Live',d.live,'live')}${sec('Coming up',d.upcoming,'up')}${sec('Settled',d.settled,'settled')}${sec('Other open bets',d.unmatched||[],'up')}
 <p class="sub">Reads: ${esc(d.reads)}</p>`;
-if(d.live.length)setTimeout(()=>location.reload(),60000);else setTimeout(()=>location.reload(),300000);}
-async function go(pass,save){try{const d=await open(pass);try{if(save)localStorage.setItem('btp',pass)}catch(e){}render(d);}catch(e){document.getElementById('e').textContent='Wrong passphrase.';try{localStorage.removeItem('btp')}catch(_){}}}
+setTimeout(()=>location.reload(),d.live.length?60000:300000);}
+async function go(pass,save){try{const d=await unlock(pass);try{if(save)localStorage.setItem('btp',pass)}catch(e){}render(d);}catch(e){const el=document.getElementById('e');if(el)el.textContent='Wrong passphrase.';try{localStorage.removeItem('btp')}catch(_){}}}
 document.getElementById('f').onsubmit=e=>{e.preventDefault();go(document.getElementById('p').value,true);};
 try{const s=localStorage.getItem('btp');if(s)go(s,false);}catch(e){}
 </script></body></html>"""
@@ -592,6 +658,10 @@ def main():
         open_ids.add(b["id"])
         prev = bets.get(b["id"]) or {}
         if prev.get("result"):
+            if b["id"].startswith("mn|") and b.get("stake") and prev.get("stake") != b["stake"]:   # stake added later
+                r = prev["result"]
+                prev.update(stake=b["stake"], to_pay=b.get("to_pay"), source=b.get("source"),
+                            profit=round((b["to_pay"] - b["stake"]) if r == "W" and b.get("to_pay") else (-b["stake"] if r == "L" else 0.0), 2))
             continue
         b["source"] = b.get("source") or ("bot" if bot_match(b, keys) else "Peter")
         b["first_seen"] = prev.get("first_seen") or iso(now)
@@ -606,8 +676,27 @@ def main():
         elif s["book"] == "ProphetX":
             pass
         s["open"] = False
-        s["source"] = (bets.get(s["id"]) or {}).get("source") or ("bot" if bot_match(s, keys) else "Peter")
+        s["source"] = s.get("source") or (bets.get(s["id"]) or {}).get("source") or ("bot" if bot_match(s, keys) else "Peter")
         bets[s["id"]] = {**(bets.get(s["id"]) or {}), **s}
+    # settled bets from earlier days this week need their own ESPN dates (scores shown on every card)
+    have = {g["start"][:10] for g in games if g.get("start")}
+    extra = set()
+    for b in bets.values():
+        if b.get("teams_final"):
+            continue
+        t0 = tparse(b.get("game_start")) or tparse(b.get("settled"))
+        if t0 and t0 >= week0 - timedelta(days=1):
+            for dd in (t0.astimezone(ET), t0.astimezone(ET) - timedelta(days=1)):
+                if dd.date() < (d - timedelta(days=1)).date():
+                    extra.add(dd.replace(hour=12))
+    if extra:
+        games += espn_games(sorted(extra)[:8])
+    for b in bets.values():
+        if not b.get("result") or b.get("teams_final"):
+            continue
+        g = match_game(b, games)
+        if g:
+            attach(b, g)
     # bets that left the open list without a site settlement (Novig, manual): grade from the final score
     nm = [0, 0]
     for k, b in list(bets.items()):
@@ -617,8 +706,9 @@ def main():
         nm[0 if g else 1] += 1
         if g:
             b["game_start"] = g["start"]
-            st, outc = read_status(b, g)
+            st, outc = read_status(b, g) if g["state"] in ("in", "post") else ("", None)
             b["status"], b["score"] = st, score_line(g)
+            attach(b, g)
             if outc and (k not in open_ids or b["book"] in ("Novig", "Hard Rock", "manual")) and b["book"] not in ("ProphetX", "Kalshi", "Polymarket US"):
                 b["result"] = outc
                 b["profit"] = round((b["to_pay"] - b["stake"]) if outc == "W" and b.get("to_pay") and b.get("stake") else
