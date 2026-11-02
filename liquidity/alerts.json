@@ -1,6 +1,154 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-02T13:40:10Z",
+   "base_depth": 104732,
+   "best_price": 0.5,
+   "best_price_american": -100,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-02",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -6226,
+     "new_this_side": 43353,
+     "other_side": 52046,
+     "other_side_all_levels": 122995,
+     "ratio": 1.9,
+     "this_side": 97159,
+     "this_side_all_levels": 156060
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "DET -4.5 (4.5)",
+     "price": 0.5,
+     "this_side": 17194
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Pistons (-4.5)",
+     "price": 0.5,
+     "this_side": 50166
+    }
+   },
+   "fade_price": 0.51,
+   "first_seen_utc": "2026-11-02T13:30:13Z",
+   "game": "Detroit vs Charlotte: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNBASPREAD-26NOV02DETCHA-DET5\"}",
+   "lead_min": 650,
+   "league": "NBA",
+   "line": -4.5,
+   "market": "spread",
+   "new_money": 43353,
+   "paper_only": false,
+   "price": 0.5,
+   "price_american": -100,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.5,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -4.5,
+     "price": -105
+    },
+    "betonlineag": {
+     "point": -4.5,
+     "price": -110
+    },
+    "betopenly": {
+     "point": -4.5,
+     "price": 107
+    },
+    "betrivers": {
+     "point": -4.5,
+     "price": -109
+    },
+    "betus": {
+     "point": -4.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": -4.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": -3.5,
+     "price": -115
+    },
+    "fanatics": {
+     "point": -4.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": -3.5,
+     "price": -115
+    },
+    "kalshi": {
+     "point": -4.5,
+     "price": 100
+    },
+    "lowvig": {
+     "point": -4.5,
+     "price": -106
+    },
+    "mybookieag": {
+     "point": -4.0,
+     "price": -110
+    },
+    "novig": {
+     "point": -4.5,
+     "price": 100
+    },
+    "polymarket": {
+     "point": -4.5,
+     "price": 100
+    },
+    "prophetx": {
+     "point": -3.5,
+     "price": -120
+    },
+    "williamhill_us": {
+     "point": -4.5,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBASPREAD-26NOV02DETCHA-DET5"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "polymarket"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Detroit",
+   "side_label": "Detroit wins by over 4.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-11-03T00:30:00Z",
+   "teams": [
+    "Detroit",
+    "Charlotte"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-02T13:10:11Z",
    "base_depth": 78212,
    "best_price": 0.55,
@@ -331,8 +479,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.54,
-   "clv_cents": 5.0,
+   "close_price": 0.53,
+   "clv_cents": 4.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -1360,7 +1508,8 @@
      "price": -110
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-02T13:40:10Z",
    "ref": {
     "outcome_index": 0,
     "pm_market_id": "6544125"
@@ -2298,8 +2447,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.44,
-   "clv_cents": 1.0,
+   "close_price": 0.43,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -3596,8 +3745,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.65,
-   "clv_cents": 2.0,
+   "close_price": 0.64,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
