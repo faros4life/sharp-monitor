@@ -1,6 +1,159 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-02T23:30:17Z",
+   "base_depth": 35765,
+   "best_price": 0.5148,
+   "best_price_american": -106,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-02",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": false,
+     "label": "Atlanta wins by over 9.5 points",
+     "price": 0.51,
+     "this_side": 96638
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "ATL -9.5 (9.5)",
+     "price": 0.515,
+     "this_side": 36269
+    },
+    "polymarket": {
+     "new_other_side": 30749,
+     "new_this_side": 307324,
+     "other_side": 63419,
+     "other_side_all_levels": 66843,
+     "ratio": 10.2,
+     "this_side": 647706,
+     "this_side_all_levels": 651520
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "Atlanta Hawks -9.5 (-9.5)",
+     "price": 0.5098,
+     "this_side": 18161
+    }
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-11-02T23:20:11Z",
+   "game": "Hawks vs. Pacers",
+   "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"6592031\"}",
+   "lead_min": 60,
+   "league": "NBA",
+   "line": -9.5,
+   "market": "spread",
+   "new_money": 307324,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -9.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": -9.5,
+     "price": -115
+    },
+    "betopenly": {
+     "point": -9.5,
+     "price": -110
+    },
+    "betrivers": {
+     "point": -9.5,
+     "price": -113
+    },
+    "betus": {
+     "point": -9.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": -9.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": -9.5,
+     "price": -108
+    },
+    "fanatics": {
+     "point": -9.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": -9.5,
+     "price": -120
+    },
+    "kalshi": {
+     "point": -9.5,
+     "price": -104
+    },
+    "lowvig": {
+     "point": -9.5,
+     "price": -111
+    },
+    "mybookieag": {
+     "point": -9.0,
+     "price": -110
+    },
+    "novig": {
+     "point": -9.5,
+     "price": -106
+    },
+    "polymarket": {
+     "point": -9.5,
+     "price": -104
+    },
+    "prophetx": {
+     "point": -10.5,
+     "price": 113
+    },
+    "williamhill_us": {
+     "point": -9.5,
+     "price": -115
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 0,
+    "pm_market_id": "6592031"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Hawks",
+   "side_label": "Hawks (-9.5)",
+   "start_source": "odds",
+   "start_utc": "2026-11-03T00:30:00Z",
+   "teams": [
+    "Hawks",
+    "Pacers"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-02T23:20:11Z",
    "base_depth": 98145,
    "best_price": 0.495,
@@ -204,6 +357,8 @@
    "new_money": 42942,
    "paper_only": false,
    "price": 0.42,
+   "price_after_15m": 0.425,
+   "price_after_15m_book": "novig",
    "price_american": 138,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.42,
@@ -301,6 +456,7 @@
    "side_label": "Wizards",
    "start_source": "odds",
    "start_utc": "2026-11-03T00:30:00Z",
+   "still_actionable": true,
    "teams": [
     "Wizards",
     "Magic"
@@ -323,8 +479,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.47,
-   "clv_cents": 0.0,
+   "close_price": 0.48,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-03",
    "depth_by_book": {
@@ -3720,8 +3876,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.7872,
-   "clv_cents": 0.5,
+   "close_price": 0.7849,
+   "clv_cents": 0.2,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -5788,8 +5944,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": 0.0,
+   "close_price": 0.52,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -11168,8 +11324,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": -4.0,
+   "close_price": 0.53,
+   "clv_cents": -3.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -11631,8 +11787,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.77,
-   "clv_cents": 12.0,
+   "close_price": 0.78,
+   "clv_cents": 13.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -14369,8 +14525,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.67,
-   "clv_cents": -1.0,
+   "close_price": 0.68,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -27533,8 +27689,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.82,
-   "clv_cents": -1.0,
+   "close_price": 0.83,
+   "clv_cents": 0.0,
    "confirmed_after_min": 13,
    "date": "2026-11-02",
    "depth_by_book": {
