@@ -168,7 +168,7 @@ def idcheck(arg):
     T = datetime.fromisoformat(ts.replace("Z", "+00:00"))
     L = [f"LIMIT-IDENTITY CHECK + PROP-LIMIT PROBE: {ta} vs {tb_}, read time {ts}"]
     d0 = T.strftime("%Y-%m-%d")
-    d1 = (T + timedelta(days=1)).strftime("%Y-%m-%d")
+    d1 = (T + timedelta(days=2)).strftime("%Y-%m-%d")   # "to" looks exclusive of late-night ET starts (00:30Z next day)
     fx = get("/fixtures", tournamentId=132, **{"from": d0, "to": d1})
     fid, f = None, None
     for x in fx if isinstance(fx, list) else []:
@@ -176,7 +176,7 @@ def idcheck(arg):
         if ta.lower() in nm and tb_.lower() in nm:
             fid, f = x.get("fixtureId"), x
     if not fid:
-        L.append(f"fixture not found ({fx if isinstance(fx, dict) else len(fx or [])})")
+        L.append(f"fixture not found ({fx if isinstance(fx, dict) else [(x.get('participant1Name'), x.get('participant2Name'), x.get('startTime')) for x in fx]})")
         return L
     L.append(f"fixture {fid}: team 1 = {f.get('participant1Name')}, team 2 = {f.get('participant2Name')}, start {f.get('startTime')}")
     mk = get("/markets")
