@@ -279,7 +279,7 @@ def lanes_card():
     out = []
     for name, lab, bar in (("ml_stay", "LIQ-ML-STAY", "readout at 50 resulted; kill at 40 if <= 0.00u/play"),
                            ("pull_fade", "LIQ-PULL-FADE", "readout at 40 resulted; kill at 30 if <= 0.00u/play"),
-                           ("solo", "LIQ-SOLO", "one-book $100k+ money that stays; bars set by Muse")):
+                           ("solo", "LIQ-SOLO", "readout at 50; promote >= +0.08/play, ML >= +0.05, CLV >= 0; kill at 40 if <= 0.00u/play")):
         es = [e for e in (L.get(name) or {}).values() if e.get("entered")]
         g = [e for e in es if e.get("result") in ("W", "L", "P")]
         w = sum(e["result"] == "W" for e in g)
