@@ -116,12 +116,15 @@ def novig():
         out.append(f"Novig {s.get('label') or 'sub-account'}: balance {money(_num(s.get('balance')))}")
         na += _num(s.get("balance")) or 0.0
     expo, unread, names = 0.0, 0, set()
+    expo_sub = 0.0   # Nov 2: positions the home snapshot tags wallet='sub' are the bot's (auto-place wallet)
     for p in snap.get("positions") or []:
         names |= set(p.keys())
         c = next((_num(p.get(k)) for k in ("cost", "costBasis", "totalCost", "cost_basis", "openCost", "notional")
                   if _num(p.get(k))), None)
         if c:
             expo += c
+            if p.get("wallet") == "sub":
+                expo_sub += c
             continue
         q = _num(p.get("qty")) or _num(p.get("quantity"))
         a = next((_num(p.get(k)) for k in ("avgPrice", "avg", "averagePrice", "avg_price", "avgCost", "averageCost",
@@ -132,10 +135,10 @@ def novig():
             unread += 1
     if unread:   # public log: field NAMES only (no values) so the cost field can be wired
         print(f"Novig exposure: {unread} position(s) without a cost field; fields seen: {sorted(names)}")
-    if nm is not None:   # Peter's open Novig bets sit in main (app check Oct 29): exposure counted with main
-        TOT["novig_main"] = nm + expo
-        TOT["novig_auto"] = na
-    out.append(f"Novig open exposure (all wallets): {money(round(expo, 2))} ({len(snap.get('positions') or [])} position(s)"
+    if nm is not None:   # Peter's own open Novig bets sit in main (app check Oct 29); the bot's sit in auto-place (Nov 2)
+        TOT["novig_main"] = nm + expo - expo_sub
+        TOT["novig_auto"] = na + expo_sub
+    out.append(f"Novig open exposure (all wallets): {money(round(expo, 2))}, of it auto-place {money(round(expo_sub, 2))} ({len(snap.get('positions') or [])} position(s)"
                + (f"; {unread} without a cost, not counted" if unread else "") + ")")
     return out
 
