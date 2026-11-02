@@ -32,9 +32,10 @@ import tracker_build as tb
 
 ET = tb.ET
 NOW = datetime.now(timezone.utc)
-LO = os.environ.get("BT_FROM", "") or "2026-10-20"
+LO = os.environ.get("BT_FROM", "") or "2026-10-21"   # Muse 12:19 registration: Oct 21 to present
 HI = os.environ.get("BT_TO", "") or (NOW.astimezone(ET).date() - timedelta(days=1)).isoformat()
-SPLIT = os.environ.get("BT_SPLIT", "") or "2026-10-27"
+_nd = (datetime.fromisoformat(HI) - datetime.fromisoformat(LO)).days + 1
+SPLIT = os.environ.get("BT_SPLIT", "") or (datetime.fromisoformat(LO) + timedelta(days=_nd // 2 - 1)).date().isoformat()   # FIT = first half by date
 THRESH = (2.0, 3.0, 4.0)
 VARIANTS = {"REG": (10, 10.0), "S5": (10, 5.0), "S20": (10, 20.0), "SEASON": (999, 10.0)}
 TIMES = ("OPEN", "T-6h", "T-2h")
@@ -266,6 +267,18 @@ def report(rows, why, n_games):
                 if v == "REG" and th == 3.0:
                     for sd in ("Over", "Under"):
                         L.append(f"      {sd}s {stats([s for s in S if s['side'] == sd])}")
+    # registered bar (Muse 12:19): >= 100 games AND avg CLV > 0 AND beat-close >= 53%, holding in BOTH halves
+    L += ["", "REGISTERED BAR (REG, gap >= 3.0): >= 100 games graded, avg CLV > 0 and beat-close >= 53% in FIT and in CHECK"]
+    for k in TIMES:
+        ok = len(rows) >= 100
+        parts = []
+        for lab, sel in (("FIT", lambda r: r["day"] <= SPLIT), ("CHECK", lambda r: r["day"] > SPLIT)):
+            c = [r["sig"][f"REG|{k}"]["clv"] for r in rows if sel(r) and f"REG|{k}" in r.get("sig", {})
+                 and abs(r["sig"][f"REG|{k}"]["gap"]) >= 3.0 and r["sig"][f"REG|{k}"]["clv"] is not None]
+            good = bool(c) and stt.mean(c) > 0 and sum(x > 0 for x in c) / len(c) >= 0.53
+            ok = ok and good
+            parts.append(f"{lab} n {len(c)} {'pass' if good else 'fail'}")
+        L.append(f"  {k:<5}: {'MEETS BAR' if ok else 'does not meet bar'} (games {len(rows)}; " + "; ".join(parts) + ")")
     L += ["", "REG T-6h SIGHTINGS (gap >= 3.0):"]
     for r in rows:
         s = r.get("sig", {}).get("REG|T-6h")
