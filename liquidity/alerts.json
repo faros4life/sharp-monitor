@@ -1,6 +1,291 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-02T19:30:14Z",
+   "base_depth": 214929,
+   "best_price": 0.61,
+   "best_price_american": -156,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.61,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-02",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -5325,
+     "new_this_side": 53161,
+     "other_side": 63725,
+     "other_side_all_levels": 102524,
+     "ratio": 2.8,
+     "this_side": 177795,
+     "this_side_all_levels": 268216
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "DET +1.5 (-1.5)",
+     "price": 0.61,
+     "this_side": 42951
+    }
+   },
+   "fade_price": 0.4,
+   "first_seen_utc": "2026-11-02T19:20:09Z",
+   "game": "Detroit vs Florida: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLSPREAD-26NOV02DETFLA-FLA2\"}",
+   "lead_min": 270,
+   "league": "NHL",
+   "line": 1.5,
+   "market": "spread",
+   "new_money": 53161,
+   "paper_only": false,
+   "price": 0.61,
+   "price_american": -156,
+   "price_rule": "fails_cap",
+   "price_when_first_seen": 0.61,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 1.5,
+     "price": -165
+    },
+    "betonlineag": {
+     "point": 1.5,
+     "price": -165
+    },
+    "betopenly": {
+     "point": 1.5,
+     "price": -156
+    },
+    "betrivers": {
+     "point": 1.5,
+     "price": -167
+    },
+    "betus": {
+     "point": 1.5,
+     "price": -165
+    },
+    "bovada": {
+     "point": 1.5,
+     "price": -170
+    },
+    "draftkings": {
+     "point": 1.5,
+     "price": -170
+    },
+    "fanatics": {
+     "point": 1.5,
+     "price": -170
+    },
+    "fanduel": {
+     "point": 1.5,
+     "price": -158
+    },
+    "kalshi": {
+     "point": 1.5,
+     "price": -156
+    },
+    "lowvig": {
+     "point": 1.5,
+     "price": -165
+    },
+    "mybookieag": {
+     "point": 1.5,
+     "price": -168
+    },
+    "novig": {
+     "point": 1.5,
+     "price": -156
+    },
+    "polymarket": {
+     "point": 1.5,
+     "price": -156
+    },
+    "prophetx": {
+     "point": 1.5,
+     "price": -156
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNHLSPREAD-26NOV02DETFLA-FLA2"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Detroit",
+   "side_label": "NOT Florida wins by over 1.5 goals",
+   "start_source": "odds",
+   "start_utc": "2026-11-03T00:00:00Z",
+   "teams": [
+    "Detroit",
+    "Florida"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-02T19:30:14Z",
+   "base_depth": 425454,
+   "best_price": 0.62,
+   "best_price_american": -163,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.62,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-02",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 16135,
+     "new_this_side": 68140,
+     "other_side": 204519,
+     "other_side_all_levels": 279586,
+     "ratio": 1.7,
+     "this_side": 347906,
+     "this_side_all_levels": 493743
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "FLA (0)",
+     "price": 0.62,
+     "this_side": 44762
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Florida Panthers",
+     "price": 0.6154,
+     "this_side": 18685
+    }
+   },
+   "fade_price": 0.39,
+   "first_seen_utc": "2026-11-02T19:20:09Z",
+   "game": "Detroit vs Florida",
+   "key": "kalshi|KXNHLGAME-26NOV02DETFLA|ml|1",
+   "lead_min": 270,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 68140,
+   "paper_only": false,
+   "price": 0.62,
+   "price_american": -163,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.62,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -185
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -180
+    },
+    "betopenly": {
+     "point": null,
+     "price": -166
+    },
+    "betrivers": {
+     "point": null,
+     "price": -190
+    },
+    "betus": {
+     "point": null,
+     "price": -180
+    },
+    "bovada": {
+     "point": null,
+     "price": -180
+    },
+    "draftkings": {
+     "point": null,
+     "price": -185
+    },
+    "fanatics": {
+     "point": null,
+     "price": -180
+    },
+    "fanduel": {
+     "point": null,
+     "price": -184
+    },
+    "kalshi": {
+     "point": null,
+     "price": -163
+    },
+    "lowvig": {
+     "point": null,
+     "price": -180
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -179
+    },
+    "novig": {
+     "point": null,
+     "price": -163
+    },
+    "polymarket": {
+     "point": null,
+     "price": -163
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -163
+    },
+    "prophetx": {
+     "point": null,
+     "price": -160
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNHLGAME-26NOV02DETFLA-FLA"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "prophetx"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Florida",
+   "side_label": "Florida",
+   "start_source": "odds",
+   "start_utc": "2026-11-03T00:00:00Z",
+   "teams": [
+    "Detroit",
+    "Florida"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-02T19:20:09Z",
    "base_depth": 847,
    "best_price": 0.785,
@@ -277,7 +562,8 @@
      "price": 102
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-02T19:30:14Z",
    "ref": {
     "market_id": "01a15b22-b2cb-79e2-8084-042eaab1cca0",
     "outcome_id": "01a15b22-b2cb-79e2-8084-043c2275d4c0"
@@ -347,6 +633,8 @@
    "new_money": 282290,
    "paper_only": false,
    "price": 0.69,
+   "price_after_15m": 0.7012,
+   "price_after_15m_book": "prophetx",
    "price_american": -223,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.69,
@@ -424,6 +712,7 @@
    "side_label": "Miami",
    "start_source": "odds",
    "start_utc": "2026-11-04T01:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Buffalo",
     "Miami"
@@ -484,6 +773,8 @@
    "new_money": 356380,
    "paper_only": false,
    "price": 0.46,
+   "price_after_15m": 0.465,
+   "price_after_15m_book": "novig",
    "price_american": 117,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.46,
@@ -575,6 +866,7 @@
    "side_label": "Miami",
    "start_source": "odds",
    "start_utc": "2026-11-03T03:00:00Z",
+   "still_actionable": false,
    "teams": [
     "Miami",
     "Los Angeles L"
