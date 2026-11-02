@@ -1,6 +1,143 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-02T20:10:23Z",
+   "base_depth": 34947,
+   "best_price": 0.74,
+   "best_price_american": -285,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.74,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-02",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 3368,
+     "new_this_side": 38965,
+     "other_side": 10859,
+     "other_side_all_levels": 16053,
+     "ratio": 5.6,
+     "this_side": 61072,
+     "this_side_all_levels": 73863
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "Marist (0)",
+     "price": 0.74,
+     "this_side": 9341
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Marist",
+     "price": 0.7368,
+     "this_side": 6960
+    }
+   },
+   "fade_price": 0.27,
+   "first_seen_utc": "2026-11-02T20:00:21Z",
+   "game": "Dartmouth vs Marist",
+   "key": "kalshi|KXNCAAMBGAME-26NOV02DARTMRST|ml|1",
+   "lead_min": 230,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 38965,
+   "paper_only": false,
+   "price": 0.74,
+   "price_american": -285,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.74,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -325
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -320
+    },
+    "betopenly": {
+     "point": null,
+     "price": -282
+    },
+    "betrivers": {
+     "point": null,
+     "price": -360
+    },
+    "betus": {
+     "point": null,
+     "price": -320
+    },
+    "bovada": {
+     "point": null,
+     "price": -320
+    },
+    "draftkings": {
+     "point": null,
+     "price": -298
+    },
+    "fanatics": {
+     "point": null,
+     "price": -275
+    },
+    "fanduel": {
+     "point": null,
+     "price": -320
+    },
+    "kalshi": {
+     "point": null,
+     "price": -285
+    },
+    "lowvig": {
+     "point": null,
+     "price": -320
+    },
+    "novig": {
+     "point": null,
+     "price": -285
+    },
+    "polymarket": {
+     "point": null,
+     "price": -285
+    },
+    "prophetx": {
+     "point": null,
+     "price": -280
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV02DARTMRST-MRST"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Marist",
+   "side_label": "Marist",
+   "start_source": "odds",
+   "start_utc": "2026-11-03T00:00:00Z",
+   "teams": [
+    "Dartmouth",
+    "Marist"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-02T20:00:21Z",
    "base_depth": 374485,
    "best_price": 0.7147,
@@ -15,8 +152,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.7,
-   "clv_cents": 0.0,
+   "close_price": 0.71,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
