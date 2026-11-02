@@ -13,11 +13,13 @@ Kalshi, Polymarket US and Hard Rock (where history carries it):
 FIT / CHECK by date; LATE (final 30 min) apart. Private email; the log prints counts only.
 """
 import json
+import os
 import statistics as stt
 from datetime import datetime, timedelta, timezone
 
 import clv_ledger as cl
 import exchange_lag as el
+import buckets as bkt
 import executor as ex
 import hist_cache as hc
 import tracker_build as tb
@@ -28,6 +30,7 @@ BOOKS = {"prophetx": "ProphetX", "novig.us": "Novig", "kalshi": "Kalshi", "polym
 ALERT_BOOK = {"Hard Rock": "hardrockbet", "ProphetX": "prophetx", "Kalshi": "kalshi", "Novig": "novig.us"}
 FROM = datetime(2026, 10, 12, tzinfo=timezone.utc)
 TOL = 0.002   # decimal-price tolerance for "same price"
+CACHE_ONLY = (os.environ.get("FILL_CACHE_ONLY") or "") == "1"   # Peter 16:29: run on the data we already hold, no downloads
 
 
 def main():
@@ -42,7 +45,8 @@ def main():
     mkmap = cl.load_markets(st, now)
     for lg in LEAGUES:
         cl.refresh_fixtures(st, now, lg, (FROM - timedelta(days=1)).astimezone(ET), (now + timedelta(days=1)).astimezone(ET))
-    R, miss = [], {"no fixture": 0, "game not finished": 0, "history error": 0, "no close": 0, "alert line on no book": 0}
+    R, miss = [], {"no fixture": 0, "game not finished": 0, "history error": 0, "no close": 0, "alert line on no book": 0,
+                   "not in cache yet": 0}
     for a in alerts:
         lg, t0 = a["sport"], cl.tp(a["alert_utc"])
         b = {"bet": a.get("bet"), "league": lg, "game": a.get("game"), "game_start": a.get("start_utc"), "book": a.get("book")}
@@ -54,6 +58,9 @@ def main():
         start = cl.tp(f["start"]) or cl.tp(a.get("start_utc"))
         if not start or now - start < hc.FINAL_AFTER:
             miss["game not finished"] += 1
+            continue
+        if CACHE_ONLY and not all(os.path.exists(hc._path(fid, x)) for x in ["pinnacle"] + list(BOOKS)):
+            miss["not in cache yet"] += 1
             continue
         h = hc.get_hist(fid, ["pinnacle"] + list(BOOKS), start)
         if isinstance(h, dict) and h.get("_error"):
@@ -76,7 +83,16 @@ def main():
             miss["alert line on no book"] += 1
             continue
         own = ALERT_BOOK.get(a.get("book"))
-        r = {"book": a.get("book"), "lg": lg, "kind": a.get("kind"), "sent": bool(a.get("sent_to_phone")),
+        pz = cl.parsed(b)
+        sc = None
+        if pz and pz[0] == "total":
+            sc = pz[1].lower()
+        elif pz and pz[0] == "spread" and pz[2] is not None:
+            ln = -pz[2] if pz[3] else pz[2]
+            sc = "fav" if ln < 0 else "dog" if ln > 0 else None
+        r = {"book": a.get("book"), "lg": lg, "kind": a.get("kind"), "sent": bool(a.get("sent_to_phone")), "sc": sc,
+             "lead": (start - t0).total_seconds() / 60, "edge": a.get("edge_pct"), "am": cl.dec_to_am(want),
+             "line": (-pz[2] if pz[3] else pz[2]) if pz and pz[0] == "spread" and pz[2] is not None else None,
              "day": t0.astimezone(ET).strftime("%Y-%m-%d"), "late": (start - t0) <= timedelta(minutes=30),
              "alert_clv": round(100 * (c["p"] * want - 1), 2),
              "seen": (q["t0"][own] is not None and q["t0"][own] >= want - TOL) if own else None}
@@ -111,7 +127,7 @@ def main():
     days = sorted({x["day"] for x in S})
     mid = days[(len(days) - 1) // 2] if days else ""
     J = [x for x in S if not x["late"]]
-    L = [f"NTFY FILL AUDIT - HYPOTHESIS ONLY (terms: Muse 16:19 ET) | {now.astimezone(ET):%Y-%m-%d %H:%M} ET | FIT <= {mid} < CHECK",
+    L = [("PARTIAL - CACHED GAMES ONLY (no downloads; full run follows the cache fill) | " if CACHE_ONLY else "") + f"NTFY FILL AUDIT - HYPOTHESIS ONLY (terms: Muse 16:19 ET) | {now.astimezone(ET):%Y-%m-%d %H:%M} ET | FIT <= {mid} < CHECK",
          f"COVERAGE WINDOW: history cache starts {FROM.date()}; {before} NBA/NFL/NCAAF/NHL alerts before then are NOT covered (stated, not dropped silently).",
          "GETTABLE = the alert line at the alert after-fee price or better on ProphetX / Novig / Kalshi / Polymarket US / Hard Rock (history).",
          "CLV = Pinnacle no-vig close x after-fee decimal - 1. 'Best price up' = best after-fee price at the alert line on those books (line gone = excluded).",
@@ -132,6 +148,11 @@ def main():
             if xs:
                 L += row(f"{lg} {nm}", xs)
     L += ["", "NOT SENT (labelled split, not part of the judged population):"] + row("not sent, not LATE", [x for x in R if not x["sent"] and not x["late"]])
+    mkn = {"tot": "totals", "spr": "spreads", "ml": "moneyline"}
+    L += [""] + bkt.section("SENT alerts at the best price up +1 min (CLV %); still bettable = gettable at +1 / +5",
+                            [{"day": x["day"], "clv": x["clv_t1"], "lg": x["lg"], "mk": mkn.get(x["kind"]), "sc": x["sc"],
+                              "key": bkt.key_class(x["lg"], mkn.get(x["kind"]), x.get("line")), "live1": x["get_t1"], "live5": x["get_t5"],
+                              "lead": x["lead"], "late": x["late"], "edge": x.get("edge"), "am": x.get("am")} for x in S], "%")
     L.append(f"\nHistory cache: hits {hc.STATS['hit']}, downloads {hc.STATS['miss']}; OddsPapi calls {len(cl.CALLS)} (billable {cl.STATS['billable']}).")
     ex.send("Bets NTFY FILL AUDIT (HYPOTHESIS)", "\n".join(L))
     print(f"fill audit: in window {len(alerts)}, graded {len(R)}, cache hits {hc.STATS['hit']}, downloads {hc.STATS['miss']}")   # counts only
