@@ -268,8 +268,21 @@ def oldcheck(arg):
     from datetime import datetime, timedelta
     lg, ta, tb_, ts, typ, line = [x.strip() for x in arg.split("|")]
     line = float(line)
-    tid = {"NBA": 132, "NFL": 31, "NHL": 234}[lg]
-    sid = {"NBA": 11, "NFL": 14, "NHL": 15}[lg]
+    sid = {"NBA": 11, "NFL": 14, "NHL": 15, "NCAAB": 11, "NCAAF": 14}[lg]
+    tid = {"NBA": 132, "NFL": 31, "NHL": 234}.get(lg)
+    if tid is None:   # Nov 2: college leagues - look the tournament up (1 billable): the USA NCAA one with the most fixtures
+        best = None
+        for t in (get("/tournaments", sportId=sid) or []) if True else []:
+            if not isinstance(t, dict):
+                continue
+            nm, cat = (t.get("tournamentName") or "").lower(), (t.get("categorySlug") or "").lower()
+            if "ncaa" in nm and "usa" in cat and "women" not in nm:
+                n = (t.get("upcomingFixtures") or 0) + (t.get("futureFixtures") or 0)
+                if not best or n > best[0]:
+                    best = (n, t.get("tournamentId"), t.get("tournamentName"))
+        tid = best[1] if best else None
+        if not tid:
+            return [f"OLD-CARD CHECK: no {lg} tournament found"]
     T = datetime.fromisoformat(ts.replace("Z", "+00:00"))
     L = [f"OLD-CARD CHECK: {lg} {ta} vs {tb_}, card time {ts}, {typ} {line:g}"]
     fx = get("/fixtures", tournamentId=tid, **{"from": (T - timedelta(days=1)).strftime("%Y-%m-%d"), "to": (T + timedelta(days=2)).strftime("%Y-%m-%d")})
