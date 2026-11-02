@@ -21,6 +21,7 @@ from datetime import datetime, timedelta, timezone
 
 import clv_ledger as cl
 import exchange_lag as el
+import buckets as bkt
 import executor as ex
 import hist_cache as hc
 import nba_backtest as b1
@@ -231,6 +232,12 @@ def report(rows, why, n_games):
                      f"Pin {cl.dec_to_am(s['dec']):+d} CLV {s['clv'] if s['clv'] is not None else '-'}%"
                      + (f" | best exchange {n_['src']} {cl.dec_to_am(n_['dec']):+d} after fees, CLV {n_['clv'] if n_['clv'] is not None else '-'}%" if n_ else " | no exchange price")
                      + f" | final {r['final']:g} {s['res']}")
+    for k in TIMES:
+        kk = f"REG+B|{k}|PIN"
+        S = [dict(r["sig"][kk], day=r["day"]) for r in rows if kk in r["sig"] and abs(r["sig"][kk]["gap"]) >= 3.0]
+        L += [""] + bkt.section(f"REG+B {k}, gap >= 3 (CLV % at Pinnacle price)",
+                                [{"day": s["day"], "clv": s["clv"], "lg": "NBA", "mk": "totals", "sc": s["side"].lower(),
+                                  "am": bkt.dec_to_am(s["dec"]), "lead": 360 if k == "T-6h" else None} for s in S], "%")
     L += ["", f"Calls: {len(cl.CALLS)} total; billable {cl.STATS['billable']}; history cache hits {hc.STATS['hit']}, downloads {hc.STATS['miss']}"]
     ex.send("Bets NBA MODEL BACKTEST #2 (HYPOTHESIS)", "\n".join(L))
 
