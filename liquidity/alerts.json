@@ -1,6 +1,908 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-02T22:40:09Z",
+   "base_depth": 78790,
+   "best_price": 0.515,
+   "best_price_american": -106,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-02",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "NOT Cleveland wins by over 4.5 points",
+     "price": 0.52,
+     "this_side": 280623
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "OKC +4.5 (-4.5)",
+     "price": 0.515,
+     "this_side": 38978
+    },
+    "polymarket": {
+     "new_other_side": -2187,
+     "new_this_side": 605232,
+     "other_side": 62574,
+     "other_side_all_levels": 75976,
+     "ratio": 10.7,
+     "this_side": 669264,
+     "this_side_all_levels": 679132
+    }
+   },
+   "fade_price": 0.49,
+   "first_seen_utc": "2026-11-02T22:30:15Z",
+   "game": "Thunder vs. Cavaliers",
+   "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6544098\"}",
+   "lead_min": 80,
+   "league": "NBA",
+   "line": 4.5,
+   "market": "spread",
+   "new_money": 605232,
+   "paper_only": false,
+   "price": 0.52,
+   "price_american": -108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.52,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 4.5,
+     "price": -115
+    },
+    "betonlineag": {
+     "point": 4.0,
+     "price": -107
+    },
+    "betopenly": {
+     "point": 4.5,
+     "price": -104
+    },
+    "betrivers": {
+     "point": 4.5,
+     "price": -113
+    },
+    "betus": {
+     "point": 4.0,
+     "price": -105
+    },
+    "bovada": {
+     "point": 4.0,
+     "price": -105
+    },
+    "draftkings": {
+     "point": 4.5,
+     "price": -116
+    },
+    "fanatics": {
+     "point": 4.5,
+     "price": -115
+    },
+    "fanduel": {
+     "point": 4.5,
+     "price": -118
+    },
+    "kalshi": {
+     "point": 4.5,
+     "price": -108
+    },
+    "lowvig": {
+     "point": 4.0,
+     "price": -103
+    },
+    "mybookieag": {
+     "point": 4.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 4.5,
+     "price": -106
+    },
+    "polymarket": {
+     "point": 4.5,
+     "price": -108
+    },
+    "prophetx": {
+     "point": 4.5,
+     "price": -107
+    },
+    "williamhill_us": {
+     "point": 4.5,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 1,
+    "pm_market_id": "6544098"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi",
+    "novig"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [
+    "Oklahoma City Thunder +4.5 (-113)"
+   ],
+   "sharp_oppose": [],
+   "side": "Thunder",
+   "side_label": "Thunder (+4.5)",
+   "start_source": "odds",
+   "start_utc": "2026-11-03T00:00:00Z",
+   "teams": [
+    "Thunder",
+    "Cavaliers"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-02T22:40:09Z",
+   "base_depth": 157676,
+   "best_price": 0.66,
+   "best_price_american": -194,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.67,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-02",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Memphis",
+     "price": 0.65,
+     "this_side": 778536
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "MEM (0)",
+     "price": 0.66,
+     "this_side": 26004
+    },
+    "polymarket": {
+     "new_other_side": -18783,
+     "new_this_side": 517343,
+     "other_side": 91926,
+     "other_side_all_levels": 102990,
+     "ratio": 7.1,
+     "this_side": 652519,
+     "this_side_all_levels": 676997
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Memphis Grizzlies",
+     "price": 0.6599,
+     "this_side": 20649
+    }
+   },
+   "fade_price": 0.34,
+   "first_seen_utc": "2026-11-02T22:30:15Z",
+   "game": "Pelicans vs. Grizzlies",
+   "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6293053\"}",
+   "lead_min": 140,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 517343,
+   "paper_only": false,
+   "price": 0.67,
+   "price_american": -203,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.67,
+   "prices_by_book": {
+    "betonlineag": {
+     "point": null,
+     "price": -215
+    },
+    "betopenly": {
+     "point": null,
+     "price": -186
+    },
+    "betrivers": {
+     "point": null,
+     "price": -215
+    },
+    "betus": {
+     "point": null,
+     "price": -195
+    },
+    "bovada": {
+     "point": null,
+     "price": -225
+    },
+    "draftkings": {
+     "point": null,
+     "price": -214
+    },
+    "fanatics": {
+     "point": null,
+     "price": -220
+    },
+    "fanduel": {
+     "point": null,
+     "price": -220
+    },
+    "kalshi": {
+     "point": null,
+     "price": -186
+    },
+    "limitless": {
+     "point": null,
+     "price": -223
+    },
+    "lowvig": {
+     "point": null,
+     "price": -214
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -224
+    },
+    "novig": {
+     "point": null,
+     "price": -194
+    },
+    "polymarket": {
+     "point": null,
+     "price": -203
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -186
+    },
+    "prophetx": {
+     "point": null,
+     "price": -194
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -225
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 1,
+    "pm_market_id": "6293053"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi",
+    "prophetx"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [
+    "New Orleans Pelicans +5.5 (-115)",
+    "New Orleans Pelicans +6.5 (-120)"
+   ],
+   "side": "Grizzlies",
+   "side_label": "Grizzlies",
+   "start_source": "odds",
+   "start_utc": "2026-11-03T01:00:00Z",
+   "teams": [
+    "Pelicans",
+    "Grizzlies"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-02T22:40:09Z",
+   "base_depth": 79324,
+   "best_price": 0.5175,
+   "best_price_american": -107,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-02",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Memphis wins by over 5.5 points",
+     "price": 0.5,
+     "this_side": 111805
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "MEM -5.5 (-5.5)",
+     "price": 0.52,
+     "this_side": 24714
+    },
+    "polymarket": {
+     "new_other_side": 5178,
+     "new_this_side": 198813,
+     "other_side": 68391,
+     "other_side_all_levels": 76669,
+     "ratio": 4.0,
+     "this_side": 270822,
+     "this_side_all_levels": 286637
+    }
+   },
+   "fade_price": 0.49,
+   "first_seen_utc": "2026-11-02T22:30:15Z",
+   "game": "Pelicans vs. Grizzlies",
+   "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"6544119\"}",
+   "lead_min": 140,
+   "league": "NBA",
+   "line": -5.5,
+   "market": "spread",
+   "new_money": 198813,
+   "paper_only": false,
+   "price": 0.52,
+   "price_american": -108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.52,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -5.5,
+     "price": -115
+    },
+    "betonlineag": {
+     "point": -6.0,
+     "price": -110
+    },
+    "betopenly": {
+     "point": -5.0,
+     "price": -104
+    },
+    "betrivers": {
+     "point": -5.5,
+     "price": -110
+    },
+    "betus": {
+     "point": -5.0,
+     "price": -115
+    },
+    "bovada": {
+     "point": -6.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": -5.5,
+     "price": -115
+    },
+    "fanatics": {
+     "point": -6.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": -5.5,
+     "price": -115
+    },
+    "kalshi": {
+     "point": -5.5,
+     "price": 100
+    },
+    "lowvig": {
+     "point": -6.0,
+     "price": -106
+    },
+    "mybookieag": {
+     "point": -6.0,
+     "price": -110
+    },
+    "novig": {
+     "point": -5.5,
+     "price": -108
+    },
+    "polymarket": {
+     "point": -5.5,
+     "price": -108
+    },
+    "prophetx": {
+     "point": -5.5,
+     "price": -106
+    },
+    "williamhill_us": {
+     "point": -6.0,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 0,
+    "pm_market_id": "6544119"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [
+    "New Orleans Pelicans +5.5 (-115)",
+    "New Orleans Pelicans +6.5 (-120)"
+   ],
+   "side": "Grizzlies",
+   "side_label": "Grizzlies (-5.5)",
+   "start_source": "odds",
+   "start_utc": "2026-11-03T01:00:00Z",
+   "teams": [
+    "Pelicans",
+    "Grizzlies"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-02T22:40:09Z",
+   "base_depth": 104700,
+   "best_price": 0.39,
+   "best_price_american": 156,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.39,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-02",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": false,
+     "label": "Oklahoma City",
+     "price": 0.39,
+     "this_side": 446515
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "OKC (0)",
+     "price": 0.39,
+     "this_side": 24258
+    },
+    "polymarket": {
+     "new_other_side": -36477,
+     "new_this_side": 517744,
+     "other_side": 131594,
+     "other_side_all_levels": 154813,
+     "ratio": 4.6,
+     "this_side": 601662,
+     "this_side_all_levels": 613524
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "Oklahoma City Thunder",
+     "price": 0.3876,
+     "this_side": 25281
+    }
+   },
+   "fade_price": 0.62,
+   "first_seen_utc": "2026-11-02T22:30:15Z",
+   "game": "Thunder vs. Cavaliers",
+   "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"6281392\"}",
+   "lead_min": 80,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 517744,
+   "paper_only": false,
+   "price": 0.39,
+   "price_american": 156,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.39,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": 145
+    },
+    "betonlineag": {
+     "point": null,
+     "price": 149
+    },
+    "betopenly": {
+     "point": null,
+     "price": 158
+    },
+    "betrivers": {
+     "point": null,
+     "price": 150
+    },
+    "betus": {
+     "point": null,
+     "price": 146
+    },
+    "bovada": {
+     "point": null,
+     "price": 140
+    },
+    "draftkings": {
+     "point": null,
+     "price": 142
+    },
+    "fanatics": {
+     "point": null,
+     "price": 145
+    },
+    "fanduel": {
+     "point": null,
+     "price": 144
+    },
+    "kalshi": {
+     "point": null,
+     "price": 150
+    },
+    "limitless": {
+     "point": null,
+     "price": 144
+    },
+    "lowvig": {
+     "point": null,
+     "price": 150
+    },
+    "mybookieag": {
+     "point": null,
+     "price": 141
+    },
+    "novig": {
+     "point": null,
+     "price": 156
+    },
+    "polymarket": {
+     "point": null,
+     "price": 156
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": 150
+    },
+    "prophetx": {
+     "point": null,
+     "price": 158
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": 150
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 0,
+    "pm_market_id": "6281392"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [
+    "Oklahoma City Thunder +4.5 (-113)"
+   ],
+   "sharp_oppose": [],
+   "side": "Thunder",
+   "side_label": "Thunder",
+   "start_source": "odds",
+   "start_utc": "2026-11-03T00:00:00Z",
+   "teams": [
+    "Thunder",
+    "Cavaliers"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-02T22:40:09Z",
+   "base_depth": 42036,
+   "best_price": 0.5973,
+   "best_price_american": -148,
+   "best_price_book": "polymarket",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.59,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-03",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 7775,
+     "new_this_side": 48885,
+     "other_side": 31147,
+     "other_side_all_levels": 40138,
+     "ratio": 2.7,
+     "this_side": 83611,
+     "this_side_all_levels": 90945
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "NJD (0)",
+     "price": 0.6,
+     "this_side": 3339
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Devils",
+     "price": 0.59,
+     "this_side": 14726
+    }
+   },
+   "fade_price": 0.41,
+   "first_seen_utc": "2026-11-02T22:30:15Z",
+   "game": "Edmonton vs New Jersey",
+   "key": "kalshi|KXNHLGAME-26NOV03EDMNJ|ml|1",
+   "lead_min": 1550,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 48885,
+   "paper_only": false,
+   "price": 0.59,
+   "price_american": -144,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.59,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -165
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -165
+    },
+    "betopenly": {
+     "point": null,
+     "price": -146
+    },
+    "betrivers": {
+     "point": null,
+     "price": -150
+    },
+    "betus": {
+     "point": null,
+     "price": -165
+    },
+    "bovada": {
+     "point": null,
+     "price": -163
+    },
+    "draftkings": {
+     "point": null,
+     "price": -162
+    },
+    "fanatics": {
+     "point": null,
+     "price": -165
+    },
+    "fanduel": {
+     "point": null,
+     "price": -160
+    },
+    "kalshi": {
+     "point": null,
+     "price": -150
+    },
+    "lowvig": {
+     "point": null,
+     "price": -165
+    },
+    "novig": {
+     "point": null,
+     "price": -150
+    },
+    "polymarket": {
+     "point": null,
+     "price": -144
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -150
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -159
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNHLGAME-26NOV03EDMNJ-NJ"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "polymarket"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "New Jersey",
+   "side_label": "New Jersey",
+   "start_source": "odds",
+   "start_utc": "2026-11-04T00:30:00Z",
+   "teams": [
+    "Edmonton",
+    "New Jersey"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-02T22:40:09Z",
+   "base_depth": 33986,
+   "best_price": 0.3568,
+   "best_price_american": 180,
+   "best_price_book": "polymarket",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.36,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-03",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -143,
+     "new_this_side": 39730,
+     "other_side": 32296,
+     "other_side_all_levels": 62769,
+     "ratio": 1.9,
+     "this_side": 61126,
+     "this_side_all_levels": 72473
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "NSH (0)",
+     "price": 0.365,
+     "this_side": 2520
+    },
+    "polymarket": {
+     "heavier_side": false,
+     "label": "Predators",
+     "price": 0.35,
+     "this_side": 7689
+    }
+   },
+   "fade_price": 0.65,
+   "first_seen_utc": "2026-11-02T22:30:15Z",
+   "game": "Carolina vs Nashville",
+   "key": "kalshi|KXNHLGAME-26NOV03CARNSH|ml|1",
+   "lead_min": 1580,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 39730,
+   "paper_only": false,
+   "price": 0.36,
+   "price_american": 178,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.36,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": 155
+    },
+    "betonlineag": {
+     "point": null,
+     "price": 163
+    },
+    "betrivers": {
+     "point": null,
+     "price": 148
+    },
+    "betus": {
+     "point": null,
+     "price": 160
+    },
+    "bovada": {
+     "point": null,
+     "price": 163
+    },
+    "draftkings": {
+     "point": null,
+     "price": 160
+    },
+    "fanatics": {
+     "point": null,
+     "price": 155
+    },
+    "fanduel": {
+     "point": null,
+     "price": 158
+    },
+    "kalshi": {
+     "point": null,
+     "price": 178
+    },
+    "lowvig": {
+     "point": null,
+     "price": 163
+    },
+    "novig": {
+     "point": null,
+     "price": 174
+    },
+    "polymarket": {
+     "point": null,
+     "price": 186
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": 178
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": 158
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNHLGAME-26NOV03CARNSH-NSH"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Nashville",
+   "side_label": "Nashville",
+   "start_source": "odds",
+   "start_utc": "2026-11-04T01:00:00Z",
+   "teams": [
+    "Carolina",
+    "Nashville"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-02T22:30:15Z",
    "base_depth": 299835,
    "best_price": 0.4875,
@@ -1195,8 +2097,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.49,
-   "clv_cents": 0.0,
+   "close_price": 0.48,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -2221,8 +3123,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.7895,
-   "clv_cents": 0.7,
+   "close_price": 0.7849,
+   "clv_cents": 0.2,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -2389,8 +3291,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.495,
-   "clv_cents": 0.0,
+   "close_price": 0.5,
+   "clv_cents": 0.5,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -2662,8 +3564,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.45,
-   "clv_cents": -1.0,
+   "close_price": 0.44,
+   "clv_cents": -2.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -3400,8 +4302,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": -1.0,
+   "close_price": 0.52,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -5932,8 +6834,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.36,
-   "clv_cents": -1.0,
+   "close_price": 0.35,
+   "clv_cents": -2.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -7740,8 +8642,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.67,
-   "clv_cents": 4.0,
+   "close_price": 0.68,
+   "clv_cents": 5.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -10399,8 +11301,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.64,
-   "clv_cents": 1.0,
+   "close_price": 0.63,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -25957,8 +26859,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.79,
-   "clv_cents": 1.0,
+   "close_price": 0.78,
+   "clv_cents": 0.0,
    "confirmed_after_min": 13,
    "date": "2026-11-02",
    "depth_by_book": {
