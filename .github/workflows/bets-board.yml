@@ -4,7 +4,9 @@ name: bets-board
 # and keeps the paper-lane log (lanes/lanes.json). Public data only: the liquidity feeds and the sharp feed.
 on:
   workflow_run:
-    workflows: ["liquidity-monitor", "liquidity-extra"]
+    # Nov 1 (Peter): also rebuild right after every executor run (orders / fills) and the hourly balances run
+    # (new-position report), so a fill shows on the private tracker within a minute or two.
+    workflows: ["liquidity-monitor", "liquidity-extra", "executor-dry-run", "balances-email"]
     types: [completed]
   schedule:
     - cron: "8-59/10 * * * *"
