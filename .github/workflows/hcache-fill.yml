@@ -1,0 +1,38 @@
+name: hcache-fill
+
+# Fills the shared OddsPapi history cache (private Actions cache, never committed) with every finished NBA/NFL/NCAAF/NHL
+# game since Oct 12 for Pinnacle, the exchanges and Hard Rock, so models and tests run from disk. Started daily by tick.py;
+# dispatch to work through the backlog. Free history calls (plus 4 billable /fixtures). The log prints counts only.
+on:
+  workflow_dispatch:
+    inputs:
+      max_games: {required: false, type: string, default: "700"}
+
+permissions:
+  contents: read
+
+concurrency:
+  group: hcache-fill
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Restore shared OddsPapi history cache (private Actions cache, never committed)
+        uses: actions/cache@v4
+        with:
+          path: hcache
+          key: hcache-${{ github.run_id }}
+          restore-keys: hcache-
+      - name: Fill the cache
+        env:
+          ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
+          FILL_MAX: ${{ inputs.max_games }}
+        run: python -u hcache_fill.py
