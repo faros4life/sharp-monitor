@@ -37,12 +37,14 @@ def main():
                 todo.append((s, fid))
     todo.sort(reverse=True)   # newest first: the games the models use most
     done = errs = 0
-    for s, fid in todo[:MAX_GAMES]:
+    for i, (s, fid) in enumerate(todo[:MAX_GAMES], 1):
         h = hc.get_hist(fid, BOOKS, s)
         if isinstance(h, dict) and h.get("_error"):
             errs += 1
-            continue
-        done += 1
+        else:
+            done += 1
+        if i % 25 == 0:   # progress (counts only) so a long fill can be read while it runs
+            print(f"cache fill progress: {i} of {min(len(todo), MAX_GAMES)} games, errors {errs}, spacing {cl.HIST_GAP[0]:.1f}s", flush=True)
     n_files = len(os.listdir(hc.DIR)) if os.path.isdir(hc.DIR) else 0
     size = sum(os.path.getsize(os.path.join(hc.DIR, x)) for x in os.listdir(hc.DIR)) if n_files else 0
     print(f"cache fill: fixtures {len(st.get('fixtures') or {})}, needing data {len(todo)}, filled {done}, errors {errs}, "
