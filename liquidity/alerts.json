@@ -1,6 +1,151 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-02T15:40:12Z",
+   "base_depth": 108903,
+   "best_price": 0.495,
+   "best_price_american": 102,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.49,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-02",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 8068,
+     "new_this_side": 36586,
+     "other_side": 71028,
+     "other_side_all_levels": 138595,
+     "ratio": 1.2,
+     "this_side": 88398,
+     "this_side_all_levels": 145521
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "MIN -11.5 (-11.5)",
+     "price": 0.495,
+     "this_side": 24257
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Timberwolves (-11.5)",
+     "price": 0.5,
+     "this_side": 65738
+    }
+   },
+   "fade_price": 0.52,
+   "first_seen_utc": "2026-11-02T15:30:13Z",
+   "game": "Milwaukee vs Minnesota: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNBASPREAD-26NOV02MILMIN-MIN12\"}",
+   "lead_min": 560,
+   "league": "NBA",
+   "line": -11.5,
+   "market": "spread",
+   "new_money": 36586,
+   "paper_only": false,
+   "price": 0.49,
+   "price_american": 104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.49,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -10.5,
+     "price": -115
+    },
+    "betonlineag": {
+     "point": -11.0,
+     "price": -110
+    },
+    "betopenly": {
+     "point": -11.5,
+     "price": 101
+    },
+    "betrivers": {
+     "point": -10.5,
+     "price": -113
+    },
+    "betus": {
+     "point": -11.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": -11.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": -10.5,
+     "price": -112
+    },
+    "fanatics": {
+     "point": -11.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": -10.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": -11.5,
+     "price": 104
+    },
+    "lowvig": {
+     "point": -11.0,
+     "price": -106
+    },
+    "mybookieag": {
+     "point": -11.0,
+     "price": -110
+    },
+    "novig": {
+     "point": -11.5,
+     "price": 102
+    },
+    "polymarket": {
+     "point": -11.5,
+     "price": 100
+    },
+    "prophetx": {
+     "point": -10.5,
+     "price": -113
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBASPREAD-26NOV02MILMIN-MIN12"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "polymarket"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [
+    "Minnesota Timberwolves -10.5 (-110)"
+   ],
+   "sharp_oppose": [],
+   "side": "Minnesota",
+   "side_label": "Minnesota wins by over 11.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-11-03T01:00:00Z",
+   "teams": [
+    "Milwaukee",
+    "Minnesota"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-02T15:30:13Z",
    "base_depth": 114916,
    "best_price": 0.43,
@@ -365,6 +510,8 @@
    "new_money": 90856,
    "paper_only": false,
    "price": 0.62,
+   "price_after_15m": 0.62,
+   "price_after_15m_book": "novig",
    "price_american": -163,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.62,
@@ -457,6 +604,7 @@
    "side_label": "SEA (0)",
    "start_source": "odds",
    "start_utc": "2026-11-03T01:20:00Z",
+   "still_actionable": true,
    "teams": [
     "Chicago Bears",
     "Seattle Seahawks"
@@ -4262,8 +4410,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": -2.0,
+   "close_price": 0.51,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -5135,8 +5283,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.65,
-   "clv_cents": 0.0,
+   "close_price": 0.66,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
