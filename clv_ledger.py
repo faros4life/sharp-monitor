@@ -304,6 +304,8 @@ def close_for(b, f, pm, mkmap, start, lg):
         if exact:
             return {"p": exact[1] if over else 1 - exact[1], "how": "own line", "age_min": round(exact[2])}, None
         ppt, po = main[0], main[1]
+        if abs(want - ppt) > max(1.5, 0.03 * ppt):   # Nov 2: 'Over 5.5' scored on an NBA total = wrong league/market
+            return None, "bet line far from Pinnacle's main line (wrong league or market?)"
         p = po if over else 1 - po
         v = sm.half_point_value(lab, "tot", ppt, want, ppt)
         better = (want < ppt) if over else (want > ppt)
@@ -324,6 +326,8 @@ def close_for(b, f, pm, mkmap, start, lg):
         return None, "puck line at a different number: not comparable"
     hp, p1 = main[0], main[1]
     my_pin_line = hp if side == "1" else -hp           # Pinnacle's main number from the bet team's side
+    if abs(want - my_pin_line) > 4.5:
+        return None, "bet line far from Pinnacle's main line (wrong league or market?)"
     p = p1 if side == "1" else 1 - p1
     v = sm.half_point_value(lab, "spr", my_pin_line, want, my_pin_line)
     p += v if want > my_pin_line else -v
@@ -493,6 +497,9 @@ def main():
     for o in nvo:
         st.setdefault("novig_checks", {}).setdefault(o["id"], {"snap": o})
     mkmap = load_markets(st, now)
+    if st.get("rescored_v3") is None:   # v3 (Nov 2): line-distance guard; score everything again once
+        st.pop("rescored_v2", None)
+        st["rescored_v3"] = iso(now)
     if not st.get("rescored_v2"):   # v1 freshness rule could pick an alt line as main: score everything again once
         for rec in st["bets"].values():
             for f in ("clv", "close_p", "eff_am", "close_am", "how", "age_min", "scored", "done", "tries", "why", "fixture"):
@@ -594,7 +601,7 @@ def main():
         else:
             rec["tries"] = rec.get("tries", 0) + 1
             rec["why"] = why or "no price on the bet"
-            if rec["tries"] >= MAX_TRIES or (why and ("not parsed" in why or "not comparable" in why)) or not d:
+            if rec["tries"] >= MAX_TRIES or (why and ("not parsed" in why or "not comparable" in why or "far from" in why)) or not d:
                 rec["done"] = True
     # 5) report
     scored = sorted([dict(r, id=k) for k, r in st["bets"].items() if r.get("clv") is not None], key=lambda r: r.get("scored") or "")
