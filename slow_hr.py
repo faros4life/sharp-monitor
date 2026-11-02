@@ -104,7 +104,7 @@ def sightings(fid, f, lg, pin, hr, mkmap, start):
     def fair(side_name, typ, line, when):
         """Pinnacle no-vig chance for a side at a number: own market, else main line moved by half-point values."""
         for mid, hcap, outs in by_type.get(typ, []):
-            if abs(hcap - line) < 1e-9:
+            if (line is None and typ == "moneyline") or (line is not None and abs(hcap - line) < 1e-9):
                 t = two(pin, mid, outs, typ, when)
                 if t:
                     ia, ib = 1 / t["pa"][1], 1 / t["pb"][1]
