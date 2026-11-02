@@ -1,6 +1,131 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-02T18:20:10Z",
+   "base_depth": 89289,
+   "best_price": 0.4812,
+   "best_price_american": 108,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.49,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-03",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 7167,
+     "new_this_side": 26476,
+     "other_side": 43754,
+     "other_side_all_levels": 99191,
+     "ratio": 1.7,
+     "this_side": 75592,
+     "this_side_all_levels": 115105
+    }
+   },
+   "fade_price": 0.54,
+   "first_seen_utc": "2026-11-02T18:10:10Z",
+   "game": "Buffalo vs Miami (OH): Total Points",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFTOTAL-26NOV03BUFFMOH-44\"}",
+   "lead_min": 1840,
+   "league": "NCAAF",
+   "line": 43.5,
+   "market": "total",
+   "new_money": 26476,
+   "paper_only": false,
+   "price": 0.49,
+   "price_american": 104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.49,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 44.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 44.5,
+     "price": -110
+    },
+    "betrivers": {
+     "point": 44.5,
+     "price": -114
+    },
+    "betus": {
+     "point": 44.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 44.5,
+     "price": -112
+    },
+    "draftkings": {
+     "point": 44.5,
+     "price": -110
+    },
+    "fanatics": {
+     "point": 44.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 44.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": 44.5,
+     "price": -108
+    },
+    "lowvig": {
+     "point": 44.5,
+     "price": -108
+    },
+    "mybookieag": {
+     "point": 44.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 44.5,
+     "price": -106
+    },
+    "prophetx": {
+     "point": 44.5,
+     "price": -104
+    },
+    "williamhill_us": {
+     "point": 44.5,
+     "price": -107
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAFTOTAL-26NOV03BUFFMOH-44"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "NOT Over 43.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-11-04T01:00:00Z",
+   "teams": [
+    "Buffalo",
+    "Miami"
+   ],
+   "top25": true,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-02T18:10:10Z",
    "base_depth": 147907,
    "best_price": 0.495,
@@ -160,8 +285,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": 0.0,
+   "close_price": 0.54,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -198,6 +323,8 @@
    "new_money": 26013,
    "paper_only": false,
    "price": 0.53,
+   "price_after_15m": 0.5375,
+   "price_after_15m_book": "polymarket",
    "price_american": -113,
    "price_rule": "ok",
    "price_when_first_seen": 0.53,
@@ -289,6 +416,7 @@
    "side_label": "NOT Memphis wins by over 5.5 points",
    "start_source": "odds",
    "start_utc": "2026-11-03T01:00:00Z",
+   "still_actionable": false,
    "teams": [
     "New Orleans",
     "Memphis"
@@ -1201,8 +1329,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 0.0,
+   "close_price": 0.53,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -2210,8 +2338,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.77,
-   "clv_cents": 11.0,
+   "close_price": 0.78,
+   "clv_cents": 12.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -7187,8 +7315,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.77,
-   "clv_cents": 12.0,
+   "close_price": 0.78,
+   "clv_cents": 13.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
