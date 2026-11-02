@@ -1,0 +1,29 @@
+name: px-trade-lookup
+
+# On demand, read-only: one ProphetX trade lookup (Muse T3 chase). Private email; counts only here.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: ProphetX lookup (private email)
+        env:
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          PROPHETX_TRADE_ACCESS_KEY: ${{ secrets.PROPHETX_TRADE_ACCESS_KEY }}
+          PROPHETX_TRADE_SECRET_KEY: ${{ secrets.PROPHETX_TRADE_SECRET_KEY }}
+          PROPHETX_ACCESS_KEY: ${{ secrets.PROPHETX_ACCESS_KEY }}
+          PROPHETX_SECRET_KEY: ${{ secrets.PROPHETX_SECRET_KEY }}
+        run: python -u px_trade_lookup.py
