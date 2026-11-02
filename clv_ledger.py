@@ -107,6 +107,8 @@ def eff_dec(b):
     st, pay = tb.num(b.get("stake")), tb.num(b.get("to_pay"))
     if st and pay and pay > st:
         return pay / st
+    if b.get("price_af") not in (None, ""):   # Nov 2 (Peter): after-fee price from the bot's own fill record
+        return am_to_dec(b["price_af"])
     if b.get("price") not in (None, ""):
         d = am_to_dec(b["price"])
         return 1 + (d - 1) * 0.98 if b.get("book") == "ProphetX" else d   # ProphetX: 2% fee on winnings
@@ -335,7 +337,7 @@ def close_for(b, f, pm, mkmap, start, lg):
 
 
 # ------------------------------------------------------------------ bot Novig orders (stale check)
-def bot_novig_orders(days=10):
+def bot_novig_orders(days=45):
     """Bot Novig orders from its own 'Bets LIVE:' ledger rows: decision time, price used, line."""
     import email as em
     out = []
@@ -359,9 +361,9 @@ def bot_novig_orders(days=10):
                 continue
             for r in rows:
                 for lo in [r.get("live_order") or {}, r.get("live_rest") or {}] + [x or {} for x in r.get("live_more") or []]:
-                    if lo.get("status") != "placed" or (lo.get("book") or "") != "novig" or not lo.get("order_id"):
+                    if lo.get("status") != "placed" or not lo.get("order_id"):
                         continue
-                    out.append({"order_id": str(lo["order_id"]), "key": r.get("key"), "decided_utc": r.get("decided_utc"),
+                    out.append({"order_id": str(lo["order_id"]), "book": lo.get("book") or "prophetx", "key": r.get("key"), "decided_utc": r.get("decided_utc"),
                                 "line": r.get("live_px_line"), "price": r.get("live_px_price_after_fee"),
                                 "nv_at_decision": ((r.get("books_at_decision") or {}).get("novig") or {})})
     finally:
@@ -382,7 +384,33 @@ def order_as_bet(o):
     else:
         bet = f"{side} ML"
     return {"id": "nvo|" + o["order_id"], "league": sp, "game": game, "bet": bet, "price": o.get("price"),
-            "decided_utc": o.get("decided_utc")}
+            "decided_utc": o.get("decided_utc"), "book": o.get("book")}
+
+
+def fill_for(s, fills):
+    """The bot's own fill record (after-fee price) for a tracker bet that lost its price, or None."""
+    gs = tp(s.get("game_start"))
+    words = tb.toks(" ".join(t.get("name", "") for t in s.get("teams") or [])) | tb.toks(s.get("game"))
+    sz = parsed(s)
+    if not sz or not words:
+        return None
+    for b in fills:
+        if b.get("price") in (None, "") or (s.get("league") and b.get("league") != s.get("league")):
+            continue
+        if len(tb.toks(b.get("game")) & words) < 2:
+            continue
+        dt = tp(b.get("decided_utc"))
+        if gs and dt and not (gs - timedelta(days=4) <= dt <= gs + timedelta(hours=1)):
+            continue
+        bz = parsed(b)
+        if not bz or bz[0] != sz[0]:
+            continue
+        if sz[0] == "total":
+            if bz[1] == sz[1] and abs((bz[2] or 0) - (sz[2] or 0)) < 0.01:
+                return b
+        elif tb.toks(str(bz[1])) & tb.toks(str(sz[1])) and (sz[0] == "ml" or abs((bz[2] or 0) - (sz[2] or 0)) < 0.01):
+            return b
+    return None
 
 
 def novig_at(b, f, nm_pm, mkmap, when, lg):
@@ -532,11 +560,22 @@ def main():
     except Exception as e:
         st.setdefault("errors", []).append(f"{iso(now)} espn fill: {type(e).__name__}")
     # 2) bot Novig orders for the stale check
-    nvo = []
+    nvo, fills = [], []
     try:
-        nvo = [x for x in (order_as_bet(o) for o in bot_novig_orders()) if x]
+        fills = [x for x in (order_as_bet(o) for o in bot_novig_orders()) if x]
+        nvo = [x for x in fills if x.get("book") == "novig" and (tp(x.get("decided_utc")) or now) > now - timedelta(days=10)]
     except Exception as e:
         st.setdefault("errors", []).append(f"{iso(now)} novig orders: {type(e).__name__}")
+    # Nov 2 (Peter, "you have bot fills"): a bet whose price the tracker lost (Novig losses) takes the bot's own fill price
+    for k, rec in st["bets"].items():
+        s = rec["snap"]
+        if s.get("price_af") is None and not (s.get("stake") and s.get("to_pay")) and s.get("price") in (None, ""):
+            f = fill_for(s, fills)
+            if f:
+                s["price_af"], s["price_from"] = f["price"], "bot fill record"
+                if rec.get("why") == "no price on the bet":
+                    for x in ("done", "tries", "why"):
+                        rec.pop(x, None)
     for o in nvo:
         st.setdefault("novig_checks", {}).setdefault(o["id"], {"snap": o})
     mkmap = load_markets(st, now)
