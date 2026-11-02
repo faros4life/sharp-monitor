@@ -680,7 +680,7 @@ return `<div class="day"><span>${esc(k)} · ${w}-${lo}</span><span style="color:
 const wl=a=>{const w=a.filter(b=>b.result==='W').length,l=a.filter(b=>b.result==='L').length;return w+l?`${w}-${l}`:'';};
 const today=new Date().toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric',timeZone:'America/New_York'});
 const ymd=x=>{const s=x.game_start||x.settled||x.first_seen;if(!s)return null;return new Date(s).toLocaleDateString('en-CA',{timeZone:'America/New_York'});};
-const ALL=(d.all||[]);const byDay={};ALL.forEach(b=>{const k=ymd(b);if(k)(byDay[k]=byDay[k]||[]).push(b)});
+const ALL=(d.all||[]);const byDay={};ALL.forEach(b=>{const k=ymd(b);if(k)(byDay[k]=byDay[k]||[]).push(b)});const tk=b=>b.game_start||b.placed||b.settled||'';Object.values(byDay).forEach(l=>l.sort((x,y)=>tk(x).localeCompare(tk(y))));
 const todayK=new Date().toLocaleDateString('en-CA',{timeZone:'America/New_York'});
 window.SEL=window.SEL||todayK;window.CALM=window.CALM||todayK.slice(0,7);
 const shift=(k,n)=>{const x=new Date(k+'T12:00:00');x.setDate(x.getDate()+n);return x.toLocaleDateString('en-CA');};
@@ -706,7 +706,7 @@ return `<div class="box"><div class="calh"><div><button onclick="CALM='${mv(-1)}
 <div class="cal">${['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].map(x=>`<div class="dn">${x}</div>`).join('')}${cells}</div></div>`;};
 const dayList=()=>{const st=dayStats(window.SEL);const live=st.o.filter(b=>b.g_state==='in'),up=st.o.filter(b=>b.g_state!=='in');
 return (live.length?'<h2>Live</h2>'+live.map(b=>card(b,'live')).join(''):'')+(up.length?'<h2>Coming up</h2>'+up.map(b=>card(b,'up')).join(''):'')+
-(st.s.length?'<h2>Settled</h2>'+st.s.sort((a,b)=>(b.settled||'').localeCompare(a.settled||'')).map(rowOf).join(''):'')+
+(st.s.length?'<h2>Settled</h2>'+st.s.map(rowOf).join(''):'')+
 (!st.l.length?'<p class="sub">No bets this day.</p>':'');};
 document.getElementById('app').innerHTML=`<div class="top1"><h1>Bet Tracker</h1><button class="rf" id="rf" onclick="refresh()">↻ Refresh</button></div><p class="sub">Updated ${esc(d.updated)} · settled profit from the books' own numbers</p>
 <div class="tiles">${tile('Today',t.today,wl(d.settled.filter(b=>dkey(b)===today)))}${tile('This week',t.week,wl(d.settled))}${tile('This month',t.month,'')}</div>
