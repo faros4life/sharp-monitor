@@ -1,6 +1,135 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-02T05:10:10Z",
+   "base_depth": 159546,
+   "best_price": 0.545,
+   "best_price_american": -120,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.54,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-02",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 35458,
+     "new_this_side": 124434,
+     "other_side": 74809,
+     "other_side_all_levels": 232141,
+     "ratio": 1.9,
+     "this_side": 141816,
+     "this_side_all_levels": 298862
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "LAL (0)",
+     "price": 0.545,
+     "this_side": 4921
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Los Angeles Lakers",
+     "price": 0.5633,
+     "this_side": 1115
+    }
+   },
+   "fade_price": 0.47,
+   "first_seen_utc": "2026-11-02T05:00:17Z",
+   "game": "Miami vs Los Angeles L",
+   "key": "kalshi|KXNBAGAME-26NOV02MIALAL|ml|1",
+   "lead_min": 1310,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 124434,
+   "paper_only": false,
+   "price": 0.54,
+   "price_american": -117,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.54,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -135
+    },
+    "betrivers": {
+     "point": null,
+     "price": -122
+    },
+    "draftkings": {
+     "point": null,
+     "price": -130
+    },
+    "fanatics": {
+     "point": null,
+     "price": -130
+    },
+    "fanduel": {
+     "point": null,
+     "price": -142
+    },
+    "kalshi": {
+     "point": null,
+     "price": -117
+    },
+    "limitless": {
+     "point": null,
+     "price": -127
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -137
+    },
+    "novig": {
+     "point": null,
+     "price": -120
+    },
+    "polymarket": {
+     "point": null,
+     "price": -122
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -117
+    },
+    "prophetx": {
+     "point": null,
+     "price": -129
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBAGAME-26NOV02MIALAL-LAL"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Los Angeles L",
+   "side_label": "Los Angeles L",
+   "start_source": "odds",
+   "start_utc": "2026-11-03T03:00:00Z",
+   "teams": [
+    "Miami",
+    "Los Angeles L"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-02T05:00:17Z",
    "base_depth": 173685,
    "best_price": 0.635,
@@ -878,8 +1007,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.64,
-   "clv_cents": 1.0,
+   "close_price": 0.65,
+   "clv_cents": 2.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -993,7 +1122,8 @@
      "price": -195
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-02T05:10:10Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNBAGAME-26NOV02BOSHOU-HOU"
@@ -1776,8 +1906,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.79,
-   "clv_cents": 0.0,
+   "close_price": 0.8,
+   "clv_cents": 1.0,
    "confirmed_after_min": 4,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -2423,8 +2553,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.57,
-   "clv_cents": 3.0,
+   "close_price": 0.58,
+   "clv_cents": 4.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
