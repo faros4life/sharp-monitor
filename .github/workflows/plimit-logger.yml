@@ -1,0 +1,54 @@
+name: plimit-logger
+
+# PLIMIT logger (paper): Pinnacle + BookMaker.eu limit moves and Pinnacle prop limit cuts from OddsPapi free history,
+# once a day for games that have started. Encrypted state; private email; the log prints counts only.
+on:
+  schedule:
+    - cron: "41 14 * * *"
+  workflow_dispatch:
+    inputs:
+      email_now: {required: false, type: string, default: "1"}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: plimit-logger
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: PLIMIT logger (private email)
+        env:
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+          EMAIL_NOW: ${{ inputs.email_now }}
+        run: python -u plimit_logger.py
+      - name: Commit encrypted PLIMIT state
+        run: |
+          # Only this workflow writes plimit/; save over upstream, never a merge.
+          if [ -n "$(git status --porcelain plimit)" ]; then
+            git config user.name "plimit-logger"
+            git config user.email "plimit-logger@users.noreply.github.com"
+            rm -rf "$RUNNER_TEMP/out" && mkdir -p "$RUNNER_TEMP/out" && cp -r plimit "$RUNNER_TEMP/out/"
+            for i in 1 2 3 4 5; do
+              git fetch -q origin main && git reset -q --hard origin/main
+              rm -rf plimit && cp -r "$RUNNER_TEMP/out/plimit" .
+              git add -A plimit
+              git diff --cached --quiet && break
+              git commit -q -m "Update PLIMIT log state"
+              git push -q origin HEAD:main && break
+              sleep 5
+            done
+          fi
