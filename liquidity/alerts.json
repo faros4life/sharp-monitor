@@ -1,6 +1,281 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-02T16:10:13Z",
+   "base_depth": 131324,
+   "best_price": 0.615,
+   "best_price_american": -160,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.62,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-02",
+   "depth_by_book": {
+    "novig": {
+     "heavier_side": true,
+     "label": "FLA (0)",
+     "price": 0.615,
+     "this_side": 36615
+    },
+    "polymarket": {
+     "new_other_side": 9201,
+     "new_this_side": 30817,
+     "other_side": 84950,
+     "other_side_all_levels": 103956,
+     "ratio": 1.5,
+     "this_side": 125950,
+     "this_side_all_levels": 157213
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Florida Panthers",
+     "price": 0.6154,
+     "this_side": 11478
+    }
+   },
+   "fade_price": 0.39,
+   "first_seen_utc": "2026-11-02T16:00:23Z",
+   "game": "Red Wings vs. Panthers",
+   "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"5377056\"}",
+   "lead_min": 470,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 30817,
+   "paper_only": false,
+   "price": 0.62,
+   "price_american": -163,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.62,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -175
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -179
+    },
+    "betopenly": {
+     "point": null,
+     "price": -166
+    },
+    "betrivers": {
+     "point": null,
+     "price": -190
+    },
+    "betus": {
+     "point": null,
+     "price": -180
+    },
+    "bovada": {
+     "point": null,
+     "price": -175
+    },
+    "draftkings": {
+     "point": null,
+     "price": -175
+    },
+    "fanatics": {
+     "point": null,
+     "price": -180
+    },
+    "fanduel": {
+     "point": null,
+     "price": -184
+    },
+    "kalshi": {
+     "point": null,
+     "price": -163
+    },
+    "lowvig": {
+     "point": null,
+     "price": -179
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -179
+    },
+    "novig": {
+     "point": null,
+     "price": -160
+    },
+    "polymarket": {
+     "point": null,
+     "price": -163
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -163
+    },
+    "prophetx": {
+     "point": null,
+     "price": -160
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 1,
+    "pm_market_id": "5377056"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "prophetx"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Panthers",
+   "side_label": "Panthers",
+   "start_source": "polymarket",
+   "start_utc": "2026-11-03T00:00:00Z",
+   "teams": [
+    "Red Wings",
+    "Panthers"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-02T16:10:13Z",
+   "base_depth": 64202,
+   "best_price": 0.505,
+   "best_price_american": -102,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-03",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 7516,
+     "new_this_side": 30614,
+     "other_side": 20985,
+     "other_side_all_levels": 81386,
+     "ratio": 2.2,
+     "this_side": 45512,
+     "this_side_all_levels": 94801
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "Under 44.5 (44.5)",
+     "price": 0.505,
+     "this_side": 3202
+    }
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-11-02T16:00:23Z",
+   "game": "Buffalo vs Miami (OH): Total Points",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFTOTAL-26NOV03BUFFMOH-45\"}",
+   "lead_min": 1970,
+   "league": "NCAAF",
+   "line": 44.5,
+   "market": "total",
+   "new_money": 30614,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 44.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 44.5,
+     "price": -110
+    },
+    "betrivers": {
+     "point": 44.5,
+     "price": -113
+    },
+    "betus": {
+     "point": 44.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 44.0,
+     "price": -108
+    },
+    "draftkings": {
+     "point": 44.5,
+     "price": -110
+    },
+    "fanatics": {
+     "point": 44.5,
+     "price": -115
+    },
+    "fanduel": {
+     "point": 44.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": 44.5,
+     "price": -104
+    },
+    "lowvig": {
+     "point": 44.5,
+     "price": -108
+    },
+    "mybookieag": {
+     "point": 44.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 44.5,
+     "price": -102
+    },
+    "prophetx": {
+     "point": 44.5,
+     "price": -107
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAFTOTAL-26NOV03BUFFMOH-45"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "NOT Over 44.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-11-04T01:00:00Z",
+   "teams": [
+    "Buffalo",
+    "Miami"
+   ],
+   "top25": true,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-02T16:00:23Z",
    "base_depth": 43635,
    "best_price": 0.5175,
@@ -896,7 +1171,8 @@
      "price": -172
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-02T16:10:13Z",
    "ref": {
     "outcome_index": 0,
     "pm_market_id": "6281395"
@@ -2738,8 +3014,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.54,
-   "clv_cents": 3.0,
+   "close_price": 0.53,
+   "clv_cents": 2.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
