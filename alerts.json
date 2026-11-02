@@ -1496,7 +1496,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+1 pts",
+   "clv": "+1.5 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline",
@@ -1827,7 +1827,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+5 pts",
+   "clv": "+2 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline"
@@ -1910,7 +1910,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+2 pts",
+   "clv": "+3 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline"
@@ -2158,7 +2158,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+1.5 pts",
+   "clv": "+2 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline",
@@ -2440,7 +2440,7 @@
   },
   {
    "alert_utc": "2026-11-02T03:30:15Z",
-   "beat_close": true,
+   "beat_close": false,
    "beat_true_close": null,
    "bet": "Oklahoma City Thunder +4.5 (-113)",
    "book": "Kalshi",
@@ -2448,7 +2448,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+0.5 pts",
+   "clv": "+0 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline",
@@ -3251,6 +3251,47 @@
    "point": 156.5,
    "price": -110,
    "price_after_fee": -110,
+   "pricing_bettable": true,
+   "result": null,
+   "score": 66,
+   "sent_to_phone": false,
+   "sport": "NCAAB",
+   "start_utc": "2026-11-03T00:00:00Z",
+   "top25": false,
+   "units_flat": null
+  },
+  {
+   "alert_utc": "2026-11-02T23:25:17Z",
+   "beat_close": true,
+   "beat_true_close": null,
+   "bet": "Over 155.5 (-115)",
+   "book": "Hard Rock",
+   "book_key": "hardrockbet",
+   "close_fair_prob": null,
+   "close_read_mins_before": null,
+   "close_value_pct": null,
+   "clv": "+1 pts",
+   "confirm": "yes",
+   "confirmed_by": [
+    "BetOnline"
+   ],
+   "edge_pct": -4.0,
+   "executable_book": true,
+   "fade_book": "kalshi",
+   "fade_point": 155.5,
+   "fade_price": 117,
+   "fade_price_after_fee": 109,
+   "fade_units": null,
+   "final": null,
+   "floor_line": 156.0,
+   "game": "Arkansas-Little Rock Trojans @ VCU Rams",
+   "grade": "B",
+   "kind": "tot",
+   "late": true,
+   "minutes_before_start": 35,
+   "point": 155.5,
+   "price": -115,
+   "price_after_fee": -115,
    "pricing_bettable": true,
    "result": null,
    "score": 66,
@@ -24962,6 +25003,54 @@
   }
  ],
  "all_alerts": [
+  {
+   "alert_text": "Over 155.5 (-115) at Hard Rock (also: ProphetX, Kalshi)",
+   "bet": "Over 155.5 (-115)",
+   "bet_result": null,
+   "book": "Hard Rock",
+   "confirmed_by": [
+    "BetOnline"
+   ],
+   "edge_pct": -4.0,
+   "final": null,
+   "game": "Arkansas-Little Rock Trojans @ VCU Rams",
+   "grade": "B",
+   "late": true,
+   "minutes_before_start": 35,
+   "price": -115,
+   "price_after_fee": -115,
+   "pushed_to_phone": false,
+   "repeat": false,
+   "score": 66,
+   "sent_et": "2026-11-02 18:25",
+   "sport": "NCAAB",
+   "start_utc": "2026-11-03T00:00:00Z",
+   "why": "Pinnacle total moved 155 -> 156.5; bet only at 156 or better (confirmed by BetOnline)"
+  },
+  {
+   "alert_text": "Wright St Raiders -12.5 (-111) at ProphetX [-113 after ProphetX fee] (also: Hard Rock, Kalshi)",
+   "bet": "Wright St Raiders -12.5 (-111)",
+   "bet_result": null,
+   "book": "ProphetX",
+   "confirmed_by": [
+    "BetOnline"
+   ],
+   "edge_pct": -4.3,
+   "final": null,
+   "game": "Air Force Falcons @ Wright St Raiders",
+   "grade": "B",
+   "late": true,
+   "minutes_before_start": 35,
+   "price": -111,
+   "price_after_fee": -113,
+   "pushed_to_phone": false,
+   "repeat": true,
+   "score": 66,
+   "sent_et": "2026-11-02 18:25",
+   "sport": "NCAAB",
+   "start_utc": "2026-11-03T00:00:00Z",
+   "why": "Pinnacle moved -12 -> -13; bet only at -12.5 or better (confirmed by BetOnline)"
+  },
   {
    "alert_text": "Over 156.5 (-110) at Hard Rock (also: ProphetX)",
    "bet": "Over 156.5 (-110)",
