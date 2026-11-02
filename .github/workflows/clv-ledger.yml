@@ -1,0 +1,54 @@
+name: clv-ledger
+
+# Live CLV ledger: every real bet vs Pinnacle's true close (OddsPapi free history). Encrypted state; private email once a
+# day (and a kill-switch alert line when due). The log prints counts only.
+on:
+  schedule:
+    - cron: "23 */2 * * *"
+  workflow_dispatch:
+    inputs:
+      email_now: {required: false, type: string, default: "1"}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: clv-ledger
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: CLV ledger (private email)
+        env:
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+          EMAIL_NOW: ${{ inputs.email_now }}
+        run: python -u clv_ledger.py
+      - name: Commit encrypted CLV state
+        run: |
+          # Only this workflow writes clv/; save over upstream, never a merge.
+          if [ -n "$(git status --porcelain clv)" ]; then
+            git config user.name "clv-ledger"
+            git config user.email "clv-ledger@users.noreply.github.com"
+            rm -rf "$RUNNER_TEMP/out" && mkdir -p "$RUNNER_TEMP/out" && cp -r clv "$RUNNER_TEMP/out/"
+            for i in 1 2 3 4 5; do
+              git fetch -q origin main && git reset -q --hard origin/main
+              rm -rf clv && cp -r "$RUNNER_TEMP/out/clv" .
+              git add -A clv
+              git diff --cached --quiet && break
+              git commit -q -m "Update CLV ledger state"
+              git push -q origin HEAD:main && break
+              sleep 5
+            done
+          fi
