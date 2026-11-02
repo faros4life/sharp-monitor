@@ -446,6 +446,49 @@ def espn_fill(st, now, max_days=12):
             rec["espn_tries"] = rec.get("espn_tries", 0) + 1
 
 
+# ------------------------------------------------------------------ lanes (Nov 2, Peter: ntfy trades and Street Value separate)
+def sv_registry(days=150):
+    """Street Value picks from private 'Bets SV' notes: lines 'SV: {\"game\": ..., \"bet\": ..., \"date\": \"YYYY-MM-DD\"}'."""
+    out = []
+    M = ex.imap_open()
+    try:
+        for uid in ex.gsearch(M, f'subject:"Bets SV" newer_than:{days}d'):
+            typ, d = M.uid("FETCH", uid, "(RFC822)")
+            if typ != "OK" or not d or not d[0]:
+                continue
+            for ln in ex.body_text(d[0][1]).splitlines():
+                ln = ln.strip()
+                if ln.startswith("SV:"):
+                    try:
+                        out.append(json.loads(ln[3:].strip()))
+                    except Exception:
+                        pass
+    finally:
+        M.logout()
+    return out
+
+
+def lane_of(s, sv):
+    src = s.get("source") or ""
+    if src == "bot":
+        return "bot"
+    if src.startswith("ntfy"):
+        return "ntfy (alerts you played)"
+    gs = tp(s.get("game_start"))
+    bt = tb.toks(s.get("bet")) | tb.toks(s.get("game"))
+    for p in sv:
+        d = tp((p.get("date") or "") + "T12:00:00Z") if p.get("date") else None
+        if d and gs and abs((gs - d).total_seconds()) > 4 * 86400:
+            continue
+        pz = parsed({"bet": p.get("bet")})
+        sz = parsed(s)
+        if not pz or not sz or pz[0] != sz[0]:
+            continue
+        if tb.toks(p.get("game")) & bt and (pz[0] == "total" and pz[1] == sz[1] or tb.toks(str(pz[1])) & tb.toks(str(sz[1]))):
+            return "Street Value"
+    return "Peter other"
+
+
 # ------------------------------------------------------------------ main
 def lane_stats(rows):
     n = len(rows)
@@ -619,6 +662,17 @@ def main():
         L.append(f"ALL scored: {lane_stats(scored)}")
         L.append(f"  bot: {lane_stats(bot)} | rolling 50: {lane_stats(bot[-50:])}")
         L.append(f"  Peter/other: {lane_stats(man)} | rolling 50: {lane_stats(man[-50:])}")
+        try:
+            sv = sv_registry()
+        except Exception:
+            sv = []
+        lanes = {}
+        for r in scored:
+            lanes.setdefault(lane_of(r["snap"], sv), []).append(r)
+        L.append(f"  LANES (Street Value picks on file: {len(sv)}):")
+        for ln_ in ("bot", "ntfy (alerts you played)", "Street Value", "Peter other"):
+            v = lanes.get(ln_, [])
+            L.append(f"    {ln_}: {lane_stats(v)} | rolling 50: {lane_stats(v[-50:])}")
         for lab, keyf in (("by book", lambda r: r["snap"].get("book")), ("by sport", lambda r: r["snap"].get("league")),
                           ("by source tag", lambda r: r["snap"].get("source"))):
             g = {}
@@ -633,7 +687,7 @@ def main():
         L += ["", "LAST 30 SCORED (newest first):"]
         for r in scored[::-1][:30]:
             s = r["snap"]
-            L.append(f"  {(s.get('game_start') or '')[:10]} {s.get('league')} {s.get('book')} [{s.get('source')}] "
+            L.append(f"  {(s.get('game_start') or '')[:10]} {s.get('league')} {s.get('book')} [{lane_of(s, sv)}] "
                      f"{s.get('bet')} | you {r['eff_am']:+d} after fee, close fair {r['close_am']:+d} ({r['how']}, "
                      f"tick {r['age_min']} min pre-start) -> CLV {100 * r['clv']:+.1f}%" if r.get("eff_am") and r.get("close_am") else
                      f"  {s.get('bet')}: CLV {100 * r['clv']:+.1f}%")
