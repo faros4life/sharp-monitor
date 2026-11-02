@@ -23,13 +23,17 @@ def get(path, **params):
     q = urllib.parse.urlencode({k: v for k, v in params.items() if v is not None})
     req = urllib.request.Request(f"{BASE}{path}?{q}", headers={"Accept": "application/json", "User-Agent": "sharp-monitor-probe"})
     time.sleep(8 if path == "/historical-odds" else 1.1)   # history endpoint throttles harder (429 at ~1 s)
-    try:
-        with urllib.request.urlopen(req, timeout=40) as r:
-            CALLS.append((path, r.status))
-            return json.loads(r.read().decode())
-    except urllib.error.HTTPError as e:
-        CALLS.append((path, e.code))
-        return {"_error": e.code, "_body": e.read().decode()[:300]}
+    for attempt in range(4):   # Nov 2: the key's rate limit is shared with the CLV ledger; wait it out on 429
+        try:
+            with urllib.request.urlopen(req, timeout=40) as r:
+                CALLS.append((path, r.status))
+                return json.loads(r.read().decode())
+        except urllib.error.HTTPError as e:
+            if e.code == 429 and attempt < 3:
+                time.sleep(30 * (attempt + 1))
+                continue
+            CALLS.append((path, e.code))
+            return {"_error": e.code, "_body": e.read().decode()[:300]}
 
 
 def walk(book):
