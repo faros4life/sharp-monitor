@@ -47,6 +47,7 @@ STATS = {"billable": 0, "free": 0}
 
 # ------------------------------------------------------------------ OddsPapi
 HIST_GAP = [float(os.environ.get("HIST_GAP", "") or "4.0")]   # Nov 2 (Peter: "run faster"): adaptive history spacing
+HIST_MIN = float(os.environ.get("HIST_GAP_MIN", "") or "2.0")   # Nov 2 18:00 (Peter: "make it faster"): spacing eases back down
 
 
 def api(path, billable, **params):
@@ -60,6 +61,8 @@ def api(path, billable, **params):
         try:
             with urllib.request.urlopen(req, timeout=60) as r:
                 CALLS.append((path, r.status))
+                if path == "/historical-odds":   # a clean call eases the spacing back toward HIST_MIN (it only grew before)
+                    HIST_GAP[0] = max(HIST_MIN, HIST_GAP[0] * 0.95)
                 return json.loads(r.read().decode())
         except urllib.error.HTTPError as e:
             if e.code == 429 and attempt == 0:
