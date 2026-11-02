@@ -18,6 +18,7 @@ import os
 from datetime import datetime, timedelta, timezone
 
 import clv_ledger as cl
+import buckets as bkt
 import executor as ex
 import hist_cache as hc
 import tracker_build as tb
@@ -124,7 +125,8 @@ def main():
         rec = {"league": r["league"], "market": r["market"], "game": r.get("game"), "side": r.get("side_label"),
                "alerted": r.get("alerted_utc"), "limit_raw": lim, "how": how, "liq": round(tot), "two5k": two5k,
                "result": r.get("result"), "units": r.get("units_flat"), "clv": r.get("clv_cents"), "pulled": bool(r.get("pulled")),
-               "confirmed": bool(r.get("rule_met")), "book": r.get("book"), "price": tb.num(r.get("price"))}
+               "confirmed": bool(r.get("rule_met")), "book": r.get("book"), "price": tb.num(r.get("price")),
+               "line": tb.num(r.get("line")), "start": r.get("start_utc")}
         for sc, k in SCALE.items():
             rec["pass_" + sc] = bool(tot >= 2 * lim * k and two5k and tot >= 25000)
         res.append(rec)
@@ -229,6 +231,16 @@ def main():
         L.append(f"  {x['alerted'][:16]} {x['league']} {x['game']} | {x['side']} | liq USD {x['liq']:,} vs limit {x['limit_raw']:,.0f} "
                  f"(OJ {x['limit_raw'] * 4 / 3:,.0f}, {x['how']}) | {x['result'] or '-'} {x['units'] if x['units'] is not None else ''}")
     L += ["", "Calls: " + "; ".join(f"{p} {c}" for p, c in cl.CALLS[:3]) + f" ... ({len(cl.CALLS)} total; billable {cl.STATS['billable']})"]
+    def _b(x):
+        mk = {"spread": "spreads", "total": "totals"}.get(x["market"], x["market"])
+        t0, t1 = tb.tparse(x.get("alerted")), tb.tparse(x.get("start"))
+        return {"day": t0.astimezone(ET).strftime("%Y-%m-%d") if t0 else None,
+                "clv": None if x["clv"] is None else round(float(x["clv"]) - fee_c(x), 2), "lg": x["league"], "mk": mk,
+                "sc": bkt.side_class(mk, x.get("side"), x.get("line")), "key": bkt.key_class(x["league"], mk, x.get("line")),
+                "pin_limit": x.get("limit_raw"), "lead": (t1 - t0).total_seconds() / 60 if t0 and t1 else None,
+                "am": bkt.p_to_am(x.get("price"))}
+    L += [""] + bkt.section("all board rows with a Pinnacle limit (CLV cents after fees)", [_b(x) for x in res], "c")
+    L += [""] + bkt.section("2X PASS rows, raw scale (CLV cents after fees)", [_b(x) for x in res if x.get("pass_RAW")], "c")
     ex.send("Bets 2X BACKTEST (HYPOTHESIS)", "\n".join(L))
     print(f"2X backtest: rows {len(rs)}, limited {len(res)}, calls {len(cl.CALLS)}")   # counts only
 
