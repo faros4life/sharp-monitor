@@ -22,6 +22,7 @@ from datetime import datetime, timedelta, timezone
 import clv_ledger as cl
 import exchange_lag as el
 import executor as ex
+import hist_cache as hc
 import nba_backtest as b1
 import nba_totals_model as nm
 import tracker_build as tb
@@ -86,19 +87,12 @@ def main():
         if not fid:
             why["no OddsPapi fixture"] = why.get("no OddsPapi fixture", 0) + 1
             continue
-        hs = []
-        for books in ("pinnacle,novig.us,prophetx", "kalshi,polymarket.us"):
-            h = None
-            for _ in range(2):   # one retry on a history error (#1 lost 4 games to 404 / 429 / read errors)
-                h = cl.api("/historical-odds", False, fixtureId=fid, bookmakers=books)
-                if not (isinstance(h, dict) and h.get("_error")):
-                    break
-            hs.append(h)
-        if isinstance(hs[0], dict) and hs[0].get("_error"):
-            why[f"history {hs[0]['_error']}"] = why.get(f"history {hs[0]['_error']}", 0) + 1
+        h = hc.get_hist(fid, ["pinnacle", "novig.us", "prophetx", "kalshi", "polymarket.us"], nm.pt(g["start"]))   # shared cache
+        if isinstance(h, dict) and h.get("_error"):
+            why[f"history {h['_error']}"] = why.get(f"history {h['_error']}", 0) + 1
             continue
-        pm = cl.book_markets(hs[0], "pinnacle")
-        xm = {k: cl.book_markets(hs[0] if b in ("novig.us", "prophetx") else hs[1], b) for k, b in EXCH.items()}
+        pm = cl.book_markets(h, "pinnacle")
+        xm = {k: cl.book_markets(h, b) for k, b in EXCH.items()}
         s0 = nm.pt(g["start"])
         close = b1.totals_at(pm, mkmap, s0)
         if not b1.main_line(close):
@@ -122,7 +116,7 @@ def main():
         rows.append({"day": b1.etd(g["start"]), "game": f"{g['away']} @ {g['home']}", "final": g["final"],
                      "close": b1.main_line(close)[0], "close_c": close, "snap": snap, "reg": num, "xm": [k for k, v in xm.items() if v],
                      "_q": quotes})
-        del hs, h, pm, xm
+        del h, pm, xm
     # bias per day from EARLIER dates only
     for row in rows:
         prev = [x["close"] - x["reg"] for x in rows if x["day"] < row["day"]]
@@ -237,7 +231,7 @@ def report(rows, why, n_games):
                      f"Pin {cl.dec_to_am(s['dec']):+d} CLV {s['clv'] if s['clv'] is not None else '-'}%"
                      + (f" | best exchange {n_['src']} {cl.dec_to_am(n_['dec']):+d} after fees, CLV {n_['clv'] if n_['clv'] is not None else '-'}%" if n_ else " | no exchange price")
                      + f" | final {r['final']:g} {s['res']}")
-    L += ["", f"Calls: {len(cl.CALLS)} total; billable {cl.STATS['billable']}"]
+    L += ["", f"Calls: {len(cl.CALLS)} total; billable {cl.STATS['billable']}; history cache hits {hc.STATS['hit']}, downloads {hc.STATS['miss']}"]
     ex.send("Bets NBA MODEL BACKTEST #2 (HYPOTHESIS)", "\n".join(L))
 
 
