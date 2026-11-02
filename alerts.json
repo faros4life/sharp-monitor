@@ -2,7 +2,7 @@
  "alerts": [
   {
    "alert_utc": "2026-11-02T01:40:12Z",
-   "beat_close": true,
+   "beat_close": false,
    "beat_true_close": null,
    "bet": "Over 235.5 (-110)",
    "book": "Hard Rock",
@@ -10,7 +10,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+1 pts",
+   "clv": "+0 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline"
@@ -162,6 +162,47 @@
    "sent_to_phone": false,
    "sport": "NCAAB",
    "start_utc": "2026-11-03T00:30:00Z",
+   "top25": false,
+   "units_flat": null
+  },
+  {
+   "alert_utc": "2026-11-02T02:50:11Z",
+   "beat_close": true,
+   "beat_true_close": null,
+   "bet": "High Point Panthers -7.5 (-110)",
+   "book": "Hard Rock",
+   "book_key": "hardrockbet",
+   "close_fair_prob": null,
+   "close_read_mins_before": null,
+   "close_value_pct": null,
+   "clv": "+0.5 pts",
+   "confirm": "yes",
+   "confirmed_by": [
+    "BetOnline"
+   ],
+   "edge_pct": -0.8,
+   "executable_book": true,
+   "fade_book": "prophetx",
+   "fade_point": 7.5,
+   "fade_price": 114,
+   "fade_price_after_fee": 112,
+   "fade_units": null,
+   "final": null,
+   "floor_line": -7.5,
+   "game": "High Point Panthers @ Liberty Flames",
+   "grade": "B",
+   "kind": "spr",
+   "late": false,
+   "minutes_before_start": 129,
+   "point": -7.5,
+   "price": -110,
+   "price_after_fee": -110,
+   "pricing_bettable": true,
+   "result": null,
+   "score": 69,
+   "sent_to_phone": false,
+   "sport": "NCAAB",
+   "start_utc": "2026-11-02T04:59:00Z",
    "top25": false,
    "units_flat": null
   },
@@ -21375,6 +21416,30 @@
   }
  ],
  "all_alerts": [
+  {
+   "alert_text": "High Point Panthers -7.5 (-110) at Hard Rock (also: ProphetX)",
+   "bet": "High Point Panthers -7.5 (-110)",
+   "bet_result": null,
+   "book": "Hard Rock",
+   "confirmed_by": [
+    "BetOnline"
+   ],
+   "edge_pct": -0.8,
+   "final": null,
+   "game": "High Point Panthers @ Liberty Flames",
+   "grade": "B",
+   "late": false,
+   "minutes_before_start": 129,
+   "price": -110,
+   "price_after_fee": -110,
+   "pushed_to_phone": false,
+   "repeat": false,
+   "score": 69,
+   "sent_et": "2026-11-01 21:50",
+   "sport": "NCAAB",
+   "start_utc": "2026-11-02T04:59:00Z",
+   "why": "Pinnacle moved -7 -> -8; bet only at -7.5 or better (confirmed by BetOnline)"
+  },
   {
    "alert_text": "Penn State Nittany Lions -21.5 (-115) at Hard Rock (also: Novig, Kalshi)",
    "bet": "Penn State Nittany Lions -21.5 (-115)",
