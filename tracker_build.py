@@ -483,7 +483,7 @@ def read_novig():
         except Exception:
             pass
         op.append({"id": f"nv|{p.get('marketId')}|{p.get('outcomeId')}", "book": "Novig", "game": game, "bet": side,
-                   "league": league, "source": "bot" if p.get("wallet") == "sub" else ("Peter" if p.get("wallet") else None),
+                   "league": league, "source": "bot" if p.get("wallet") == "sub" else None,
                    "stake": round(cost, 2), "to_pay": round(qty, 2), "price": p_to_american(cost / qty) if qty and cost else None})
     se = []
     for r in snap.get("settled") or []:   # Nov 1: Novig's own settled numbers, written by the home PC
@@ -496,7 +496,7 @@ def read_novig():
             st = iso(tparse(st))
         se.append({"id": f"nv|{r.get('marketId')}|{r.get('outcomeId')}", "book": "Novig", "game": r.get("game") or "",
                    "bet": r.get("label") or "", "league": lm.N_LEAGUE.get(str(r.get("league") or "").upper().strip()),
-                   "source": "bot" if r.get("wallet") == "sub" else "Peter",
+                   "source": "bot" if r.get("wallet") == "sub" else None,   # main wallet: the bot ledger decides
                    "stake": round(cost, 2), "to_pay": round(pay, 2) if res != "L" else None,
                    "price": p_to_american(cost / pay) if res == "W" and pay else None, "result": res,
                    "profit": round(num(r.get("pnl")) if num(r.get("pnl")) is not None else pay - cost, 2),
@@ -541,6 +541,21 @@ def read_manual_and_bot():
     LOG["manual"] = f"ok {len(man)}"
     LOG["bot_keys"] = f"ok {len(keys)}"
     return man, keys
+
+
+# Peter, Nov 2 (via Muse): ntfy alerts he played by hand while testing them count in the ntfy stream, not his own record.
+RECLASS = [("2026-10-25", {"bengals", "cincinnati"}), ("2026-10-23", {"mavericks", "pacers", "mavs"}),
+           ("2026-10-23", {"clippers"}, "Hard Rock"), ("2026-10-24", {"heat"}), ("2026-10-28", {"rays", "tb"}),
+           ("2026-10-28", {"magic", "orlando"}, "Hard Rock")]   # the Clippers and Magic items are Hard Rock add-ons only
+
+
+def reclass(b):
+    t0 = tparse(b.get("game_start")) or tparse(b.get("settled"))
+    if not t0:
+        return False
+    d = t0.astimezone(ET).strftime("%Y-%m-%d")
+    words = set(WORDS.findall(f"{b.get('game')} {b.get('bet')}".lower()))
+    return any(d == r[0] and (r[1] & words) and (len(r) < 3 or b.get("book") == r[2]) for r in RECLASS)
 
 
 def bot_match(b, keys):
@@ -588,10 +603,36 @@ hr{border:0;border-top:1px solid var(--line);margin:12px 0 10px}
 .lock{max-width:340px;margin:22vh auto;text-align:center}.lock input{font:inherit;padding:12px;width:100%;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--fg)}
 .lock button{margin-top:10px;font:600 16px Oswald,sans-serif;text-transform:uppercase;padding:12px;border-radius:10px;border:0;background:var(--win);color:#08210f;width:100%}
 .err{color:var(--loss);font-size:13px;margin-top:8px;min-height:1em}
+.top1{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.rf{font:600 14px Oswald,sans-serif;text-transform:uppercase;letter-spacing:.04em;padding:9px 14px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--fg);cursor:pointer}
+.rf:active{opacity:.6}.rf.busy{opacity:.5}
+/* compact (Nov 1, Peter: less scrolling) */
+.wrap{padding:12px 12px 32px}h1{font-size:22px}.sub{margin-bottom:10px}.rf{padding:6px 10px;font-size:13px}
+.tiles{margin-bottom:12px;gap:6px}.tile{padding:7px 9px;border-radius:12px}.tile .n{font-size:clamp(15px,4.6vw,20px)}.tile .r{color:var(--muted);font-size:11px}
+h2{font-size:17px;margin:14px 0 6px}.card{padding:10px 12px;border-radius:14px;margin-bottom:8px}
+.team{margin-top:3px;font-size:16px}.team b{font-size:19px}hr{margin:7px 0 6px}
+.betl{gap:2px 10px}.betl .b{font-size:18px}.betl .p{font-size:15px}.betl .m{font-size:13px}.pill{margin-top:6px;font-size:13px;padding:3px 8px}.note{font-size:12px;margin-top:5px}
+.day{display:flex;justify-content:space-between;color:var(--muted);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin:10px 2px 4px}
+.row{display:flex;justify-content:space-between;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:7px 10px;margin-bottom:5px}
+.row.win{box-shadow:inset 4px 0 0 var(--win)}.row.loss{box-shadow:inset 4px 0 0 var(--loss)}
+.row .l1{font:600 15px Oswald,sans-serif;text-transform:uppercase}.row .l1 span{color:var(--muted);font:500 13px Inter,sans-serif;text-transform:none}
+.row .l2{color:var(--muted);font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.row>div:first-child{min-width:0}
+.row .amt{font:600 17px Oswald,sans-serif;white-space:nowrap}.row.win .amt{color:var(--win)}.row.loss .amt{color:var(--loss)}
+.box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px;margin-bottom:10px}
+.seg{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.seg button{font:500 14px Inter,sans-serif;padding:8px 0;background:none;border:0;color:var(--muted)}.seg button.on{background:#222a27;color:var(--fg);font-weight:600}
+.sum{color:var(--muted);font-size:13px;margin:8px 2px}.sum b{color:var(--fg)}
+.kpi{display:grid;grid-template-columns:repeat(3,1fr);text-align:center;gap:6px}.kpi .v{font:600 20px Oswald,sans-serif}.kpi .k{color:var(--muted);font-size:12px}
+.calh{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}.calh button{background:none;border:0;color:var(--fg);font-size:20px;padding:2px 10px}
+.calh .mo{font:600 17px Oswald,sans-serif}.calh .mp{font:600 15px Oswald,sans-serif}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;text-align:center}.cal .dn{color:var(--muted);font-size:11px;padding:2px 0}
+.cal .c{border-radius:8px;padding:4px 0;min-height:40px;border:1px solid transparent;cursor:pointer}.cal .c .n{font-size:13px}.cal .c .p{font:600 11px Oswald,sans-serif}
+.cal .c.pos{background:var(--winbg)}.cal .c.neg{background:var(--lossbg)}.cal .c.sel{border-color:#60a5fa}.cal .c.today .n{font-weight:700;text-decoration:underline}
+.cal .c .p.pos{color:var(--win)}.cal .c .p.neg{color:var(--loss)}.cal .c .p.open{color:#60a5fa}
 </style></head><body><div class="wrap" id="app"><div class="lock"><h1>Bet Tracker</h1><p class="sub">Private. Enter your passphrase.</p>
 <form id="f"><input id="p" type="password" autocomplete="current-password" placeholder="Passphrase"><button>Unlock</button></form><div class="err" id="e"></div></div></div>
 <script>
-const BLOB=__BLOB__;
+let BLOB=__BLOB__;let PASS=null;
 const b64=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
 async function unlock(pass){const k=await crypto.subtle.importKey('raw',new TextEncoder().encode(pass),'PBKDF2',false,['deriveKey']);
 const key=await crypto.subtle.deriveKey({name:'PBKDF2',salt:b64(BLOB.s),iterations:BLOB.n,hash:'SHA-256'},k,{name:'AES-GCM',length:256},false,['decrypt']);
@@ -599,7 +640,7 @@ const pt=await crypto.subtle.decrypt({name:'AES-GCM',iv:b64(BLOB.i)},key,b64(BLO
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const $=v=>v==null?'—':(v<0?'-$':'$')+Math.abs(v).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2});
 const sg=v=>v==null?'—':(v>0?'+':v<0?'':'')+$(v);const pr=p=>p==null?'':(p>0?'+'+p:String(p));
-const src=b=>b.source==='bot'?'Bot fill':'Peter';
+const src=b=>b.source==='bot'?'Bot fill':(b.source==='ntfy (Peter manual)'?'ntfy (manual)':'Peter');
 function teams(b){if(b.teams&&b.teams.length===2){const [a,h]=b.teams;const live=b.g_state==='in'||b.g_state==='post';
 return b.teams.map((t,i)=>{const o=b.teams[1-i];const cl=live?(t.score>=o.score?'lead':'trail'):'';return `<div class="team ${cl}"><span>${esc(t.name)}</span><b>${live?t.score:'—'}</b></div>`}).join('');}
 const g=String(b.game||'').split(/\\s+(?:@|at|vs\\.?)\\s+/i);return g.length===2?g.map(n=>`<div class="team"><span>${esc(n)}</span><b>—</b></div>`).join(''):`<div class="team"><span>${esc(b.game||'')}</span></div>`;}
@@ -613,14 +654,54 @@ const notes=[b.site===false?'graded from the final score':'',/est\\./.test(b.sou
 return `<div class="card ${kind==='settled'?cls:''}"><div class="hdr"><span>${esc(b.league||'')}${b.league?' · ':''}${esc(src(b))}</span>${st}</div>${banner}${teams(b)}<hr>
 <div class="betl"><span class="b">${esc(b.bet)}</span><span class="p">${pr(b.price)}</span><span class="m">${$(b.stake)} → ${b.to_pay?$(b.to_pay):'—'}</span><span class="bk">${esc(b.book)}</span></div>
 ${pill}${notes?`<div class="note">${esc(notes)}</div>`:''}</div>`;}
-function render(d){const t=d.tiles;const tile=(l,v)=>`<div class="tile"><div class="l">${l}</div><div class="n" style="color:${v>0?'var(--win)':v<0?'var(--loss)':'var(--fg)'}">${sg(v)}</div></div>`;
+let DATA=null;function render(d){DATA=d;const t=d.tiles;const tile=(l,v,r)=>`<div class="tile"><div class="l">${l}</div><div class="n" style="color:${v>0?'var(--win)':v<0?'var(--loss)':'var(--fg)'}">${sg(v)}</div>${r?`<div class="r">${r}</div>`:''}</div>`;
 const sec=(h,a,k)=>a.length?`<h2>${h}</h2>`+a.map(b=>card(b,k)).join(''):'';
-document.getElementById('app').innerHTML=`<h1>Bet Tracker</h1><p class="sub">Updated ${esc(d.updated)} · settled profit from the books' own numbers</p>
-<div class="tiles">${tile('Today',t.today)}${tile('This week',t.week)}${tile('This month',t.month)}</div>
-${sec('Live',d.live,'live')}${sec('Coming up',d.upcoming,'up')}${sec('Settled',d.settled,'settled')}${sec('Other open bets',d.unmatched||[],'up')}
+const rowOf=b=>{const c=b.result==='W'?'win':b.result==='L'?'loss':'';const sc=b.teams&&b.teams.length===2?`${b.teams[0].name} ${b.teams[0].score}, ${b.teams[1].name} ${b.teams[1].score}`:(b.game||'');
+return `<div class="row ${c}"><div><div class="l1">${esc(b.bet)} <span>${pr(b.price)} · ${$(b.stake)}</span></div><div class="l2">${esc(b.book)} · ${esc(src(b))} · ${esc(sc)}${b.site===false?' · graded':''}</div></div><div class="amt">${sg(b.profit)}</div></div>`;};
+const dkey=b=>{const x=new Date(b.game_start||b.settled||0);return isNaN(x)?'Earlier':x.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric',timeZone:'America/New_York'});};
+const settledHTML=a=>{if(!a.length)return '';const g={};a.forEach(b=>{(g[dkey(b)]=g[dkey(b)]||[]).push(b)});
+return '<h2>Settled</h2>'+Object.entries(g).map(([k,l])=>{const tot=l.reduce((s,b)=>s+(b.profit||0),0);const w=l.filter(b=>b.result==='W').length,lo=l.filter(b=>b.result==='L').length;
+return `<div class="day"><span>${esc(k)} · ${w}-${lo}</span><span style="color:${tot>0?'var(--win)':tot<0?'var(--loss)':'var(--muted)'}">${sg(Math.round(tot*100)/100)}</span></div>`+l.map(rowOf).join('')}).join('');};
+const wl=a=>{const w=a.filter(b=>b.result==='W').length,l=a.filter(b=>b.result==='L').length;return w+l?`${w}-${l}`:'';};
+const today=new Date().toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric',timeZone:'America/New_York'});
+const ymd=x=>{const s=x.game_start||x.settled||x.first_seen;if(!s)return null;return new Date(s).toLocaleDateString('en-CA',{timeZone:'America/New_York'});};
+const ALL=(d.all||[]);const byDay={};ALL.forEach(b=>{const k=ymd(b);if(k)(byDay[k]=byDay[k]||[]).push(b)});
+const todayK=new Date().toLocaleDateString('en-CA',{timeZone:'America/New_York'});
+window.SEL=window.SEL||todayK;window.CALM=window.CALM||todayK.slice(0,7);
+const shift=(k,n)=>{const x=new Date(k+'T12:00:00');x.setDate(x.getDate()+n);return x.toLocaleDateString('en-CA');};
+const dayStats=k=>{const l=byDay[k]||[];const s=l.filter(b=>b.result),o=l.filter(b=>!b.result&&b.open);
+return {l,s,o,live:o.filter(b=>b.g_state==='in').length,up:o.filter(b=>b.g_state!=='in').length,
+pnl:s.reduce((a,b)=>a+(b.profit||0),0),risk:o.reduce((a,b)=>a+(b.stake||0),0),max:o.reduce((a,b)=>a+((b.to_pay||0)-(b.stake||0)),0)};};
+const fmt0=v=>(v<0?'-$':'$')+Math.abs(Math.round(v)).toLocaleString();
+const dayBox=()=>{const k=window.SEL,st=dayStats(k);const lab=new Date(k+'T12:00:00').toLocaleDateString('en-US',{weekday:'long',month:'short',day:'numeric'});
+const segb=(n,txt)=>`<button class="${shift(todayK,n)===k?'on':''}" onclick="SEL='${shift(todayK,n)}';CALM=SEL.slice(0,7);render(DATA)">${txt}</button>`;
+return `<div class="box"><div class="seg">${segb(-1,'Yesterday')}${segb(0,'Today')}${segb(1,'Tomorrow')}</div>
+<div class="sum">${esc(lab)}: <b>${st.s.length}</b> settled, <b>${st.live}</b> live, <b>${st.up}</b> upcoming</div>
+<div class="kpi"><div><div class="v" style="color:${st.pnl>0?'var(--win)':st.pnl<0?'var(--loss)':'var(--fg)'}">${sg(Math.round(st.pnl*100)/100)}</div><div class="k">Settled</div></div>
+<div><div class="v">${$(st.risk)}</div><div class="k">At risk</div></div><div><div class="v">${$(st.max)}</div><div class="k">Max profit</div></div></div></div>`;};
+const calBox=()=>{const [Y,M]=window.CALM.split('-').map(Number);const first=new Date(Y,M-1,1),days=new Date(Y,M,0).getDate();
+let mp=0;Object.entries(byDay).forEach(([k,l])=>{if(k.startsWith(window.CALM))mp+=l.reduce((a,b)=>a+(b.result?(b.profit||0):0),0)});
+let cells='';for(let i=0;i<first.getDay();i++)cells+='<div></div>';
+for(let dd=1;dd<=days;dd++){const k=`${window.CALM}-${String(dd).padStart(2,'0')}`;const st=dayStats(k);let p='',cl='';
+if(st.s.length){cl=st.pnl>0?'pos':st.pnl<0?'neg':'';p=`<div class="p ${cl}">${fmt0(st.pnl)}</div>`;}else if(st.o.length){p=`<div class="p open">${fmt0(st.risk)}</div>`;}
+cells+=`<div class="c ${cl} ${k===window.SEL?'sel':''} ${k===todayK?'today':''}" onclick="SEL='${k}';render(DATA)"><div class="n">${dd}</div>${p}</div>`;}
+const mv=n=>{const x=new Date(Y,M-1+n,1);return `${x.getFullYear()}-${String(x.getMonth()+1).padStart(2,'0')}`;};
+return `<div class="box"><div class="calh"><div><button onclick="CALM='${mv(-1)}';render(DATA)">‹</button><span class="mo">${first.toLocaleDateString('en-US',{month:'short',year:'numeric'})}</span><button onclick="CALM='${mv(1)}';render(DATA)">›</button></div>
+<div class="mp" style="color:${mp>0?'var(--win)':mp<0?'var(--loss)':'var(--fg)'}">${sg(Math.round(mp*100)/100)}</div></div>
+<div class="cal">${['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].map(x=>`<div class="dn">${x}</div>`).join('')}${cells}</div></div>`;};
+const dayList=()=>{const st=dayStats(window.SEL);const live=st.o.filter(b=>b.g_state==='in'),up=st.o.filter(b=>b.g_state!=='in');
+return (live.length?'<h2>Live</h2>'+live.map(b=>card(b,'live')).join(''):'')+(up.length?'<h2>Coming up</h2>'+up.map(b=>card(b,'up')).join(''):'')+
+(st.s.length?'<h2>Settled</h2>'+st.s.sort((a,b)=>(b.settled||'').localeCompare(a.settled||'')).map(rowOf).join(''):'')+
+(!st.l.length?'<p class="sub">No bets this day.</p>':'');};
+document.getElementById('app').innerHTML=`<div class="top1"><h1>Bet Tracker</h1><button class="rf" id="rf" onclick="refresh()">↻ Refresh</button></div><p class="sub">Updated ${esc(d.updated)} · settled profit from the books' own numbers</p>
+<div class="tiles">${tile('Today',t.today,wl(d.settled.filter(b=>dkey(b)===today)))}${tile('This week',t.week,wl(d.settled))}${tile('This month',t.month,'')}</div>
+${dayBox()}${calBox()}${dayList()}${sec('Other open bets',d.unmatched||[],'up')}
 <p class="sub">Reads: ${esc(d.reads)}</p>`;
-setTimeout(()=>location.reload(),d.live.length?60000:300000);}
-async function go(pass,save){try{const d=await unlock(pass);try{if(save)localStorage.setItem('btp',pass)}catch(e){}render(d);}catch(e){const el=document.getElementById('e');if(el)el.textContent='Wrong passphrase.';try{localStorage.removeItem('btp')}catch(_){}}}
+clearTimeout(window._rt);window._rt=setTimeout(refresh,d.live.length?60000:300000);}
+async function refresh(){const btn=document.getElementById('rf');if(btn){btn.classList.add('busy');btn.textContent='Refreshing…';}
+try{const h=await (await fetch(location.pathname+'?t='+Date.now(),{cache:'no-store'})).text();const m=h.match(/let BLOB=(\\{[^;]*\\});/);
+if(m)BLOB=JSON.parse(m[1]);if(PASS)render(await unlock(PASS));}catch(e){if(btn)btn.textContent='↻ Refresh';}}
+async function go(pass,save){try{const d=await unlock(pass);PASS=pass;try{if(save)localStorage.setItem('btp',pass)}catch(e){}render(d);}catch(e){const el=document.getElementById('e');if(el)el.textContent='Wrong passphrase.';try{localStorage.removeItem('btp')}catch(_){}}}
 document.getElementById('f').onsubmit=e=>{e.preventDefault();go(document.getElementById('p').value,true);};
 try{const s=localStorage.getItem('btp');if(s)go(s,false);}catch(e){}
 </script></body></html>"""
@@ -682,7 +763,9 @@ def main():
         elif s["book"] == "ProphetX":
             pass
         s["open"] = False
-        s["source"] = s.get("source") or (bets.get(s["id"]) or {}).get("source") or ("bot" if bot_match(s, keys) else "Peter")
+        prev_src = (bets.get(s["id"]) or {}).get("source")
+        s["source"] = s.get("source") or ("bot" if bot_match(s, keys) or prev_src == "bot" else None) or \
+            (prev_src if prev_src and prev_src != "Peter" else None) or "Peter"
         bets[s["id"]] = {**(bets.get(s["id"]) or {}), **s}
     # settled bets from earlier days this week need their own ESPN dates (scores shown on every card)
     have = {g["start"][:10] for g in games if g.get("start")}
@@ -731,6 +814,10 @@ def main():
         elif k not in open_ids and b["book"] in ("ProphetX", "Kalshi", "Polymarket US") and not b.get("result"):
             b["open"] = False   # left the book's open list; its site settlement will arrive in a later read
 
+    for b in bets.values():
+        if b.get("source") == "Peter" and reclass(b):
+            b["source"] = "ntfy (Peter manual)"
+
     def et_date(s):
         t = tparse(s)
         return t.astimezone(ET) if t else None
@@ -760,6 +847,10 @@ def main():
     view = {"updated": d.strftime("%a %b %-d, %-I:%M %p ET"),
             "tiles": {"today": tile(day0), "week": tile(week0), "month": tile(month0)},
             "live": live, "upcoming": up, "settled": week_settled, "unmatched": unm,
+            "all": [{k: b.get(k) for k in ("bet", "price", "stake", "to_pay", "book", "source", "result", "profit", "teams",
+                                           "game", "league", "g_state", "g_detail", "status", "game_start", "settled",
+                                           "first_seen", "open", "site", "when")}
+                    for b in state["bets"].values() if b.get("result") or b.get("open")],
             "graded_note": "Novig and manual bets graded from final scores" if any(b.get("site") is False for b in sett) else "",
             "reads": ", ".join(f"{k} {'ok' if str(v).startswith('ok') else 'failed'}" for k, v in LOG.items())}
     if json.dumps(state, sort_keys=True) != before:   # re-encrypt (new IV) only when the bets changed: fewer commits
