@@ -29,6 +29,7 @@ import urllib.parse
 import urllib.request
 from datetime import datetime, timedelta, timezone
 
+import buckets as bkt
 import executor as ex
 import tracker_build as tb
 
@@ -310,6 +311,16 @@ def main():
                  + (f", CLV {e['clv_cents']:+.2f}c" if e.get('clv_cents') is not None else ""))
     L += ["", f"OddsPapi calls this run: {len(CALLS)} ({sum(1 for p, _ in CALLS if p != '/historical-odds')} billable); billable this month "
               f"{st['billable'].get(now.strftime('%Y-%m'), 0)}."]
+    def _b(e):
+        mk, ln_ = e["type"], e.get("line")
+        if mk == "spreads" and ln_ is not None and e.get("side") == "2":
+            ln_ = -ln_
+        return {"day": tp(e["start"]).astimezone(ET).strftime("%Y-%m-%d"), "clv": e.get("clv_cents_after"), "lg": e["league"],
+                "mk": mk, "sc": bkt.side_class(mk, e.get("side"), ln_), "key": bkt.key_class(e["league"], mk, ln_),
+                "pin_limit": e.get("limit_before") if e["book"] == "P" else None, "lead": e.get("mins_before"), "am": e.get("am_after")}
+    for ev_ in ("CUT", "RAISE"):
+        L += [""] + bkt.section(f"Q1 {ev_} events: post-move price vs close (cents)",
+                                [_b(e) for e in q1 if e["event"] == ev_ and e.get("clv_cents_after") is not None], "c")
     if os.environ.get("EMAIL_NOW") == "1" or st.get("emailed") != today:
         ex.send(f"Bets PLIMIT LOG {today}", "\n".join(L))
         st["emailed"] = today
