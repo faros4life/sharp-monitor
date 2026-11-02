@@ -123,17 +123,29 @@ LEAGUES = {"NFL": "football/nfl", "NCAAF": "football/college-football", "NBA": "
            "MLB": "baseball/mlb", "NCAAB": "basketball/mens-college-basketball", "WNBA": "basketball/wnba"}
 
 
+def _espn_get(url):
+    try:
+        with urllib.request.urlopen(urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"}), timeout=15) as r:
+            return json.loads(r.read().decode())
+    except Exception:
+        return None
+
+
 def espn_games(days):
-    games = []
+    from concurrent.futures import ThreadPoolExecutor
+    jobs = []
     for lg, path in LEAGUES.items():
         for d in days:
             url = f"https://site.api.espn.com/apis/site/v2/sports/{path}/scoreboard?dates={d.strftime('%Y%m%d')}&limit=400"
             if lg == "NCAAF":
                 url += "&groups=80"
-            try:
-                with urllib.request.urlopen(urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"}), timeout=15) as r:
-                    data = json.loads(r.read().decode())
-            except Exception:
+            jobs.append((lg, url))
+    with ThreadPoolExecutor(max_workers=8) as pool:   # Nov 2 (Peter: tracker too slow): fetch the scoreboards in parallel
+        got = list(pool.map(lambda j: _espn_get(j[1]), jobs))
+    games = []
+    for (lg, url), data in zip(jobs, got):
+        if True:
+            if data is None:
                 continue
             for ev in data.get("events") or []:
                 comp = (ev.get("competitions") or [{}])[0]
@@ -517,7 +529,8 @@ def read_manual_and_bot():
     man, keys = [], set()
     M = ex.imap_open()
     try:
-        ex.bot_orders(M, days=10)
+        ex.bot_orders(M, days=2)   # Nov 2 (Peter: tracker too slow): 10 days of full 'Bets LIVE' emails took minutes;
+        # older bot bets keep their stored 'bot' tag (see prev source below)
         keys = set(ex.LIVEKEYS)
         for uid in ex.gsearch(M, 'subject:"Bets manual" newer_than:10d'):
             typ, data = M.uid("FETCH", uid, "(RFC822)")
@@ -739,21 +752,29 @@ def main():
     before = json.dumps(state, sort_keys=True)
     bets = state["bets"]
 
+    import time as _t
+    T = {}   # seconds per read (log only), to find what slows the tracker
     opened, settled = [], []
     for name, fn in (("prophetx", read_prophetx), ("kalshi", lambda: read_kalshi(since)), ("polymarket_us", lambda: read_pmus(since)),
                      ("novig", read_novig)):
+        t0 = _t.time()
         try:
             o, s = fn()
             opened += o
             settled += s
         except (Exception, SystemExit) as e:
             LOG[name] = f"failed ({type(e).__name__})"
+        T[name] = round(_t.time() - t0)
+    t0 = _t.time()
     try:
         man, keys = read_manual_and_bot()
     except (Exception, SystemExit) as e:
         man, keys = [], set()
         LOG["manual"] = f"failed ({type(e).__name__})"
+    T["manual+bot"] = round(_t.time() - t0)
+    t0 = _t.time()
     games = espn_games([d - timedelta(days=1), d, d + timedelta(days=1)])
+    T["espn"] = round(_t.time() - t0)
 
     open_ids = set()
     for b in opened + man:
@@ -765,7 +786,7 @@ def main():
                 prev.update(stake=b["stake"], to_pay=b.get("to_pay"), source=b.get("source"),
                             profit=round((b["to_pay"] - b["stake"]) if r == "W" and b.get("to_pay") else (-b["stake"] if r == "L" else 0.0), 2))
             continue
-        b["source"] = b.get("source") or ("bot" if bot_match(b, keys) else "Peter")
+        b["source"] = b.get("source") or ("bot" if bot_match(b, keys) or prev.get("source") == "bot" else "Peter")
         b["first_seen"] = prev.get("first_seen") or iso(now)
         bets[b["id"]] = {**prev, **b, "open": True}
     # Kalshi settlements carry only a ticker: join them to the open row we saw before (game + bet text)
@@ -876,7 +897,8 @@ def main():
     with open(os.path.join(OUT, "index.html"), "w") as f:
         f.write(PAGE.replace("__BLOB__", json.dumps(enc(view))))
     print("Tracker:", "; ".join(f"{k} {v}" for k, v in LOG.items()), f"| games matched {nm[0]}, not matched {nm[1]}",
-          f"| open {len(live) + len(up) + len(unm)}, settled this week {len(week_settled)}")   # counts only
+          f"| open {len(live) + len(up) + len(unm)}, settled this week {len(week_settled)}",
+          "| seconds: " + ", ".join(f"{k} {v}" for k, v in T.items()))   # counts only
 
 
 if __name__ == "__main__":
