@@ -1,6 +1,321 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-02T15:10:11Z",
+   "base_depth": 116247,
+   "best_price": 0.64,
+   "best_price_american": -178,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.64,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-02",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Detroit",
+     "price": 0.64,
+     "this_side": 476336
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "DET (0)",
+     "price": 0.64,
+     "this_side": 41243
+    },
+    "polymarket": {
+     "new_other_side": 1013,
+     "new_this_side": 28725,
+     "other_side": 41142,
+     "other_side_all_levels": 58824,
+     "ratio": 3.1,
+     "this_side": 128488,
+     "this_side_all_levels": 146850
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Detroit Pistons",
+     "price": 0.6403,
+     "this_side": 15175
+    }
+   },
+   "fade_price": 0.37,
+   "first_seen_utc": "2026-11-02T15:00:17Z",
+   "game": "Pistons vs. Hornets",
+   "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"6281395\"}",
+   "lead_min": 560,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 28725,
+   "paper_only": false,
+   "price": 0.64,
+   "price_american": -178,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.64,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -190
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -185
+    },
+    "betopenly": {
+     "point": null,
+     "price": -172
+    },
+    "betrivers": {
+     "point": null,
+     "price": -195
+    },
+    "betus": {
+     "point": null,
+     "price": -185
+    },
+    "bovada": {
+     "point": null,
+     "price": -185
+    },
+    "draftkings": {
+     "point": null,
+     "price": -191
+    },
+    "fanatics": {
+     "point": null,
+     "price": -195
+    },
+    "fanduel": {
+     "point": null,
+     "price": -205
+    },
+    "kalshi": {
+     "point": null,
+     "price": -178
+    },
+    "limitless": {
+     "point": null,
+     "price": -193
+    },
+    "lowvig": {
+     "point": null,
+     "price": -185
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -188
+    },
+    "novig": {
+     "point": null,
+     "price": -178
+    },
+    "polymarket": {
+     "point": null,
+     "price": -178
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -178
+    },
+    "prophetx": {
+     "point": null,
+     "price": -172
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 0,
+    "pm_market_id": "6281395"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Pistons",
+   "side_label": "Pistons",
+   "start_source": "odds",
+   "start_utc": "2026-11-03T00:30:00Z",
+   "teams": [
+    "Pistons",
+    "Hornets"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-02T15:10:11Z",
+   "base_depth": 411689,
+   "best_price": 0.4286,
+   "best_price_american": 133,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.43,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-02",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -86922,
+     "new_this_side": 242107,
+     "other_side": 157320,
+     "other_side_all_levels": 380992,
+     "ratio": 3.2,
+     "this_side": 510453,
+     "this_side_all_levels": 650944
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "PHX (0)",
+     "price": 0.43,
+     "this_side": 22195
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Suns",
+     "price": 0.43,
+     "this_side": 98258
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Phoenix Suns",
+     "price": 0.4237,
+     "this_side": 10766
+    }
+   },
+   "fade_price": 0.58,
+   "first_seen_utc": "2026-11-02T15:00:17Z",
+   "game": "Phoenix vs Golden State",
+   "key": "kalshi|KXNBAGAME-26NOV02PHXGSW|ml|0",
+   "lead_min": 710,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 242107,
+   "paper_only": false,
+   "price": 0.43,
+   "price_american": 133,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.43,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": 125
+    },
+    "betonlineag": {
+     "point": null,
+     "price": 127
+    },
+    "betrivers": {
+     "point": null,
+     "price": 123
+    },
+    "betus": {
+     "point": null,
+     "price": 120
+    },
+    "bovada": {
+     "point": null,
+     "price": 135
+    },
+    "draftkings": {
+     "point": null,
+     "price": 125
+    },
+    "fanatics": {
+     "point": null,
+     "price": 125
+    },
+    "fanduel": {
+     "point": null,
+     "price": 128
+    },
+    "kalshi": {
+     "point": null,
+     "price": 133
+    },
+    "limitless": {
+     "point": null,
+     "price": 123
+    },
+    "lowvig": {
+     "point": null,
+     "price": 129
+    },
+    "mybookieag": {
+     "point": null,
+     "price": 118
+    },
+    "novig": {
+     "point": null,
+     "price": 133
+    },
+    "polymarket": {
+     "point": null,
+     "price": 133
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": 133
+    },
+    "prophetx": {
+     "point": null,
+     "price": 136
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBAGAME-26NOV02PHXGSW-PHX"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "polymarket",
+    "prophetx"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [
+    "Phoenix Suns +3.5 (-111)"
+   ],
+   "sharp_oppose": [],
+   "side": "Phoenix",
+   "side_label": "Phoenix",
+   "start_source": "odds",
+   "start_utc": "2026-11-03T03:00:00Z",
+   "teams": [
+    "Phoenix",
+    "Golden State"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-02T15:00:17Z",
    "base_depth": 30120,
    "best_price": 0.515,
@@ -342,6 +657,8 @@
    "new_money": 29661,
    "paper_only": false,
    "price": 0.51,
+   "price_after_15m": 0.5148,
+   "price_after_15m_book": "prophetx",
    "price_american": -104,
    "price_rule": "ok",
    "price_when_first_seen": 0.51,
@@ -421,6 +738,7 @@
    "side_label": "Over (238.5)",
    "start_source": "odds",
    "start_utc": "2026-11-03T00:30:00Z",
+   "still_actionable": true,
    "teams": [
     "Bulls",
     "76ers"
@@ -875,8 +1193,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": 1.0,
+   "close_price": 0.53,
+   "clv_cents": 3.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -3468,8 +3786,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": -2.0,
+   "close_price": 0.51,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -5199,8 +5517,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.8,
-   "clv_cents": 0.0,
+   "close_price": 0.81,
+   "clv_cents": 1.0,
    "confirmed_after_min": 4,
    "date": "2026-11-02",
    "depth_by_book": {
