@@ -23,6 +23,7 @@ from datetime import datetime, timedelta, timezone
 
 import clv_ledger as cl
 import executor as ex
+import hist_cache as hc
 import sharp_monitor as sm
 import tracker_build as tb
 
@@ -247,8 +248,7 @@ def main():
     todo.sort()
     new = []
     for s, fid, f in todo[:MAX_FIX]:
-        hp = cl.api("/historical-odds", False, fixtureId=fid, bookmakers="pinnacle")
-        hh = cl.api("/historical-odds", False, fixtureId=fid, bookmakers="hardrockbet")
+        hp = hh = hc.get_hist(fid, ["pinnacle", "hardrockbet"], s)   # shared history cache
         if any(isinstance(h, dict) and h.get("_error") for h in (hp, hh)):
             continue
         f2 = {"participant1Name": f.get("n1"), "participant2Name": f.get("n2")}
