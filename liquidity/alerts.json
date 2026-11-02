@@ -1,6 +1,156 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-02T03:00:21Z",
+   "base_depth": 226467,
+   "best_price": 0.51,
+   "best_price_american": -104,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-02",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -21033,
+     "new_this_side": 26873,
+     "other_side": 102319,
+     "other_side_all_levels": 182859,
+     "ratio": 1.7,
+     "this_side": 176787,
+     "this_side_all_levels": 260873
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "VGK (0)",
+     "price": 0.51,
+     "this_side": 18182
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Golden Knights",
+     "price": 0.51,
+     "this_side": 31951
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "Vegas Golden Knights",
+     "price": 0.5098,
+     "this_side": 1057
+    }
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-11-02T02:50:10Z",
+   "game": "Vegas vs Boston",
+   "key": "kalshi|KXNHLGAME-26NOV02VGKBOS|ml|0",
+   "lead_min": 1260,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 26873,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -115
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -109
+    },
+    "betrivers": {
+     "point": null,
+     "price": -114
+    },
+    "betus": {
+     "point": null,
+     "price": -110
+    },
+    "bovada": {
+     "point": null,
+     "price": -112
+    },
+    "draftkings": {
+     "point": null,
+     "price": -112
+    },
+    "fanatics": {
+     "point": null,
+     "price": -115
+    },
+    "fanduel": {
+     "point": null,
+     "price": -118
+    },
+    "kalshi": {
+     "point": null,
+     "price": -104
+    },
+    "lowvig": {
+     "point": null,
+     "price": -109
+    },
+    "novig": {
+     "point": null,
+     "price": -104
+    },
+    "polymarket": {
+     "point": null,
+     "price": -104
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -104
+    },
+    "prophetx": {
+     "point": null,
+     "price": -104
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -112
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNHLGAME-26NOV02VGKBOS-VGK"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "polymarket"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Vegas",
+   "side_label": "Vegas",
+   "start_source": "odds",
+   "start_utc": "2026-11-03T00:00:00Z",
+   "teams": [
+    "Vegas",
+    "Boston"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-02T02:50:10Z",
    "base_depth": 7511,
    "best_price": 0.395,
@@ -15,8 +165,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.395,
-   "clv_cents": 0.0,
+   "close_price": 0.4,
+   "clv_cents": 0.5,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
