@@ -1,0 +1,36 @@
+name: slowhr-backtest
+
+# On demand: SLOW-HR BACKTEST (HYPOTHESIS ONLY) - registered SLOW-HR test over NFL/NCAAF/NHL since Oct 12, Pinnacle vs Hard Rock.
+# Reads the shared history cache. Private email; the log prints counts only.
+on:
+  workflow_dispatch:
+    inputs:
+      bt_from: {required: false, type: string, default: "2026-10-12"}
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Restore shared OddsPapi history cache (private Actions cache, never committed)
+        uses: actions/cache@v4
+        with:
+          path: hcache
+          key: hcache-${{ github.run_id }}
+          restore-keys: hcache-
+      - name: SLOW-HR backtest (private email)
+        env:
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
+          BT_FROM: ${{ inputs.bt_from }}
+        run: python -u slowhr_backtest.py
