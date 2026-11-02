@@ -84,7 +84,8 @@ def main():
                     "result": e.get("result"), "units": e.get("units_flat"), "live": bool(r.get("live")),
                     "verdict": r.get("verdict"), "book": r.get("alert_book"), "pd": pd, "pa": pa, "joined": bool(e),
                     "pf": prob(r.get("fill_price_after_fee")), "fbook": r.get("fill_book"), "close": close,
-                    "aline": r.get("alert_line"), "fline": r.get("fill_line"), "res_or_close": bool(e.get("result") or isinstance(close, (int, float)))})
+                    "aline": r.get("alert_line"), "fline": r.get("fill_line"), "res_or_close": bool(e.get("result") or isinstance(close, (int, float))),
+                    "kind": e.get("kind"), "bet": e.get("bet") or "", "sport": (e.get("sport") or "").upper()})
 
     def med(xs):
         xs = [x for x in xs if x is not None]
@@ -177,6 +178,47 @@ def main():
         lines.append(f"  fill book {b}: n {len(F)} | fill beats close {pct([x['pf'] < x['close'] for x in F])} | "
                      f"alert beat close {pct([x['pa'] < x['close'] for x in F if x['pa'] is not None])} | "
                      f"different line {sum(not same_line(x) for x in F)}")
+    # v5 (Nov 2, Peter + Muse): OWN-LINE scoring. Close at the fill's line = close at the alert line moved by the sharp
+    # monitor's half_point_value() (the same math close_prob() uses when Pinnacle's number differs). Both scorings kept.
+    import sharp_monitor as sm
+
+    def own_close(x):
+        if same_line(x):
+            return x["close"]
+        k = x["kind"]
+        if k not in ("spr", "tot"):
+            return None
+        side = ("UNDER" if "under" in x["bet"].lower() else "OVER") if k == "tot" else None
+        hb = ex.better_halfpoints("spread" if k == "spr" else "total", side, float(x["aline"]), float(x["fline"]))
+        try:
+            v = sm.half_point_value(x["sport"], k, float(x["aline"]), float(x["fline"]), float(x["aline"]))
+        except Exception:
+            return None
+        return min(max(x["close"] + (v if hb > 0 else -v), .01), .99)
+
+    lines += ["", "V5 OWN-LINE SCORING (close moved to the fill's line with the sharp monitor's half-point values):"]
+    for lab, sel in (("all fills", lambda x: True), ("different-line fills", lambda x: not same_line(x)),
+                     ("Novig fills", lambda x: x["fbook"] == "novig"), ("Novig different-line", lambda x: x["fbook"] == "novig" and not same_line(x)),
+                     ("other books", lambda x: x["fbook"] != "novig")):
+        F = [x for x in f if sel(x)]
+        oc = [(x, own_close(x)) for x in F]
+        ok = [(x, c) for x, c in oc if c is not None]
+        lines.append(f"  {lab}: n {len(F)} (priced {len(ok)}) | OWN line: fill beats close {pct([x['pf'] < c for x, c in ok])} | "
+                     f"ALERT line: fill beats close {pct([x['pf'] < x['close'] for x, c in ok])} | "
+                     f"alert price beat close {pct([x['pa'] < x['close'] for x, c in ok if x['pa'] is not None])}")
+    # tolerance check: equivalent price at the alert line = fill cost minus the line value gained; above the alert cost = worse
+    eqs = [(x, x["pf"] - (c - x["close"])) for x, c in ((x, own_close(x)) for x in f if not same_line(x)) if c is not None and x["pa"] is not None]
+    for lab, sel in (("Novig", lambda x: x["fbook"] == "novig"), ("other books", lambda x: x["fbook"] != "novig")):
+        E = [(x, q_) for x, q_ in eqs if sel(x)]
+        worse = [(q_ - x["pa"]) * 100 for x, q_ in E if q_ > x["pa"] + 1e-9]
+        lines.append(f"  Tolerance ({lab}, different line): n {len(E)} | equivalent price worse than alert {len(worse)}"
+                     + (f" (avg {st.mean(worse):.1f}c, max {max(worse):.1f}c)" if worse else "")
+                     + f" | equal or better {len(E) - len(worse)}")
+    by_sport = {}
+    for x in f:
+        if not same_line(x):
+            by_sport[x["sport"]] = by_sport.get(x["sport"], 0) + 1
+    lines.append("  Different-line fills by sport: " + ", ".join(f"{k} {v}" for k, v in sorted(by_sport.items())))
     lines.append("No result and no close, by bucket: " + ", ".join(
         f"{name} {sum(not x['res_or_close'] for x in out if lo <= x['lat'] < hi)}" for name, lo, hi in B))
     ex.send("Bets DECAY CURVE (alert -> decision)", "\n".join(lines))
