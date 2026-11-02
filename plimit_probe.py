@@ -22,7 +22,7 @@ def get(path, **params):
     params["apiKey"] = KEY
     q = urllib.parse.urlencode({k: v for k, v in params.items() if v is not None})
     req = urllib.request.Request(f"{BASE}{path}?{q}", headers={"Accept": "application/json", "User-Agent": "sharp-monitor-probe"})
-    time.sleep(1.1)   # endpoint cooldowns are ~1 s
+    time.sleep(8 if path == "/historical-odds" else 1.1)   # history endpoint throttles harder (429 at ~1 s)
     try:
         with urllib.request.urlopen(req, timeout=40) as r:
             CALLS.append((path, r.status))
