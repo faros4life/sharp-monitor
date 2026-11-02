@@ -22,6 +22,7 @@ import statistics as stt
 from datetime import datetime, timezone
 
 import clv_ledger as cl
+import buckets as bkt
 import executor as ex
 import tracker_build as tb
 
@@ -81,7 +82,8 @@ def ev_rows():
         alive = (ls - fs).total_seconds() / 60 if fs and ls else None
         out.append(norm(f"EV study trigger {s.get('trigger')}", s.get("league"), s.get("market"), s.get("side") if s.get("market") != "total" else s.get("side"),
                         s.get("line"), s.get("sighting_american_af"), s.get("lead_min"), day(s.get("sighted_utc")), s.get("clv_pinnacle_c"),
-                        edge=s.get("ev_pct"), alive=alive, move=s.get("move_type"), ldelta=s.get("line_delta"), pdelta=s.get("price_delta_cents"),
+                        edge=s.get("ev_pct"), alive=alive, live1=None if alive is None else alive >= 1,
+                        live5=None if alive is None else alive >= 5, move=s.get("move_type"), ldelta=s.get("line_delta"), pdelta=s.get("price_delta_cents"),
                         nbooks=s.get("n_books")))
     for m in d.get("maker") or []:
         if m.get("clv_pinnacle_c") is None:
@@ -254,7 +256,8 @@ def main():
     L.append("Paper lanes (counts only): " + ", ".join(f"{k} {len(v)}" for k, v in lanes.items() if isinstance(v, dict)))
     L.append("")
     for name in sorted(sources, key=lambda k: -len(sources[k])):
-        L += report_source(name, sources[name]) + [""]
+        unit = "%" if name.startswith("CLV ledger") else ("" if name.startswith("ntfy") else "c")
+        L += bkt.section(name, [dict(r, move={"line": "L", "price": "P"}.get(r.get("move"))) for r in sources[name]], unit) + [""]
     ex.send("Bets BUCKET REPORT (HYPOTHESIS)", "\n".join(L))
     print(f"bucket report: sources {len(sources)}, records {sum(len(v) for v in sources.values())}")   # counts only
 
