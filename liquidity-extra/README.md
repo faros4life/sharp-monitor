@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 2, 11:00 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 2.
+Updated Mon Nov 2, 11:10 AM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 3.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 2 11:10AM | NCAAB | Tennessee St. vs Murray St. | moneyline: Murray St. | kalshi | $71k | -400 | ✅ novig |  | +0.0c |  | pending |
 | Oct 31 10:50PM | TENNIS | Lehecka vs Vacherot | moneyline: Lehecka | kalshi | $81k | -186 |  |  | -1.0c |  | L |
 | Oct 31 10:50PM | TENNIS | Baez vs Machac | moneyline: Machac | kalshi | $45k | -525 |  |  | +0.0c |  | W |
 | Oct 31 10:20PM | TENNIS | Prozorova vs Stojsavljevic | moneyline: Prozorova | kalshi | $62k | -525 |  |  | +7.0c |  | W |
