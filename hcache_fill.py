@@ -8,6 +8,7 @@ so every model and test can run from disk. Games already cached cost nothing. Fr
 """
 import json
 import os
+import shutil
 from datetime import datetime, timedelta, timezone
 
 import clv_ledger as cl
@@ -19,6 +20,8 @@ LEAGUES = ("NBA", "NFL", "NCAAF", "NHL")
 BOOKS = ["pinnacle", "novig.us", "prophetx", "kalshi", "polymarket.us", "hardrockbet"]
 FILL_FROM = datetime.fromisoformat(os.environ.get("FILL_FROM", "") or "2026-10-12").replace(tzinfo=timezone.utc)
 MAX_GAMES = int(os.environ.get("FILL_MAX", "") or "700")
+ORDER = (os.environ.get("FILL_ORDER", "") or "newest").lower()   # Nov 2 18:01 (Peter: faster now): a 2nd fill runs oldest-first
+MERGE = [d for d in (os.environ.get("FILL_MERGE", "") or "").split(",") if d]   # extra restored cache dirs folded in first
 
 
 def main():
@@ -26,6 +29,16 @@ def main():
     if not cl.KEY:
         print("cache fill: ODDSPAPI_KEY not set")
         return
+    os.makedirs(hc.DIR, exist_ok=True)
+    merged = 0
+    for d in MERGE:   # fold other fills' caches into this one (files are per game x book, so a plain copy is a merge)
+        if os.path.isdir(d):
+            for x in os.listdir(d):
+                if not os.path.exists(os.path.join(hc.DIR, x)):
+                    shutil.copy2(os.path.join(d, x), os.path.join(hc.DIR, x))
+                    merged += 1
+    if MERGE:
+        print(f"cache fill: merged {merged} files from {len(MERGE)} other caches", flush=True)
     st = {"billable": {}}
     for lg in LEAGUES:
         cl.refresh_fixtures(st, now, lg, (FILL_FROM - timedelta(days=1)).astimezone(ET), (now + timedelta(days=1)).astimezone(ET))
@@ -35,7 +48,7 @@ def main():
         if f.get("lg") in LEAGUES and s and FILL_FROM <= s <= now - hc.FINAL_AFTER:
             if not all(os.path.exists(hc._path(fid, b)) for b in BOOKS):
                 todo.append((s, fid))
-    todo.sort(reverse=True)   # newest first: the games the models use most
+    todo.sort(reverse=(ORDER != "oldest"))   # newest first: the games the models use most (oldest first for a 2nd fill)
     done = errs = 0
     for i, (s, fid) in enumerate(todo[:MAX_GAMES], 1):
         h = hc.get_hist(fid, BOOKS, s)
