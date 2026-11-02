@@ -37,6 +37,11 @@ jobs:
           python-version: "3.12"
       - name: Paper lanes (LIQ-ML-STAY, LIQ-PULL-FADE)
         run: python -u lanes.py
+      - name: Phone alert on new PLAY calls (Peter Nov 2)
+        continue-on-error: true
+        env:
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+        run: python -u board_alerts.py
       - run: pip install -q cryptography
       - name: Private bet tracker (encrypted; counts only in this log)
         continue-on-error: true   # a book read failing never stops the board
