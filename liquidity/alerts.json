@@ -180,6 +180,8 @@
    "new_money": 42307,
    "paper_only": false,
    "price": 0.61,
+   "price_after_15m": 0.62,
+   "price_after_15m_book": "novig",
    "price_american": -156,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.62,
@@ -254,6 +256,7 @@
    "side_label": "Golden State",
    "start_source": "odds",
    "start_utc": "2026-11-03T03:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Phoenix",
     "Golden State"
@@ -544,7 +547,8 @@
      "price": -112
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-02T04:00:15Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNHLGAME-26NOV02VGKBOS-VGK"
@@ -3338,6 +3342,7 @@
     }
    },
    "fade_price": 0.49,
+   "fade_units": 0.97,
    "first_seen_utc": "2026-11-01T21:10:11Z",
    "game": "Los Angeles C vs Golden State: Spread",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBASPREAD-26NOV01LACGSW-GSW3\"}",
@@ -3425,13 +3430,14 @@
     "kalshi_side": "no",
     "market_ticker": "KXNBASPREAD-26NOV01LACGSW-GSW3"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-02T04:00:15Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Los Angeles C",
@@ -3444,7 +3450,7 @@
     "Golden State"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-01T20:40:09Z",
@@ -5200,6 +5206,7 @@
     }
    },
    "fade_price": 0.49,
+   "fade_units": 0.97,
    "first_seen_utc": "2026-11-01T18:40:13Z",
    "game": "Los Angeles C vs Golden State: Total Points",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBATOTAL-26NOV01LACGSW-222\"}",
@@ -5287,11 +5294,12 @@
     "kalshi_side": "no",
     "market_ticker": "KXNBATOTAL-26NOV01LACGSW-222"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settled_utc": "2026-11-02T04:00:15Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "Over 220.5 (-104)"
@@ -5306,7 +5314,7 @@
     "Golden State"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-01T18:00:14Z",
@@ -7552,8 +7560,10 @@
     }
    },
    "fade_price": 0.48,
+   "fade_units": 1.05,
    "first_seen_utc": "2026-11-01T16:50:09Z",
    "game": "Senators vs. Ducks",
+   "graded_by": "espn",
    "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"5329766\"}",
    "lead_min": 480,
    "league": "NHL",
@@ -7642,7 +7652,7 @@
     "outcome_index": 0,
     "pm_market_id": "5329766"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "kalshi",
@@ -7651,6 +7661,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-02T04:00:15Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Senators",
@@ -7663,7 +7674,7 @@
     "Ducks"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-01T16:50:09Z",
@@ -17741,6 +17752,7 @@
     }
    },
    "fade_price": 0.45,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-01T04:00:16Z",
    "game": "Los Angeles C vs Golden State",
    "key": "kalshi|KXNBAGAME-26NOV01LACGSW|ml|1",
@@ -17819,11 +17831,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBAGAME-26NOV01LACGSW-GSW"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-11-02T04:00:15Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Golden State",
@@ -17836,7 +17849,7 @@
     "Golden State"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.8
   },
   {
    "alerted_utc": "2026-11-01T03:50:11Z",
@@ -19196,6 +19209,7 @@
     }
    },
    "fade_price": 0.63,
+   "fade_units": 0.55,
    "first_seen_utc": "2026-11-01T01:40:10Z",
    "game": "Los Angeles C vs Golden State",
    "key": "kalshi|KXNBAGAME-26NOV01LACGSW|ml|0",
@@ -19218,11 +19232,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBAGAME-26NOV01LACGSW-LAC"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settled_utc": "2026-11-02T04:00:15Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Los Angeles C",
@@ -19235,7 +19250,7 @@
     "Golden State"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-01T01:40:10Z",
