@@ -523,15 +523,44 @@ def read_novig():
     return op, se
 
 
+def bot_keys(M, days=2):
+    """The bot's own bet keys (rows with a placed order) from its 'Bets LIVE:' emails - for tagging sources only.
+    Uses Gmail's indexed search (X-GM-RAW); the executor's IMAP SUBJECT scan of All Mail took ~6 minutes per build."""
+    import email
+    import email.header
+    import executor as ex
+    keys = set()
+    for uid in ex.gsearch(M, f'subject:(Bets LIVE) newer_than:{days}d'):
+        typ, d = M.uid("FETCH", uid, "(RFC822)")
+        if typ != "OK" or not d or not d[0]:
+            continue
+        raw = d[0][1]
+        subj = str(email.header.make_header(email.header.decode_header(email.message_from_bytes(raw).get("Subject") or "")))
+        if not subj.startswith("Bets LIVE:"):
+            continue
+        txt = ex.body_text(raw)
+        i = txt.rfind("LEDGER (machine-readable")
+        if i < 0:
+            continue
+        try:
+            rows, _ = json.JSONDecoder().raw_decode(txt[txt.index("[", i):])
+        except Exception:
+            continue
+        for row in rows:
+            los = [row.get("live_order") or {}, row.get("live_rest") or {}] + [x or {} for x in (row.get("live_more") or [])]
+            if row.get("key") and any(lo.get("status") == "placed" and lo.get("order_id") for lo in los):
+                keys.add(row["key"])
+    return keys
+
+
 def read_manual_and_bot():
     """Peter's 'Bets manual' notes (Hard Rock etc.) + the bot's own live keys (to tag sources)."""
     import executor as ex
     man, keys = [], set()
     M = ex.imap_open()
     try:
-        ex.bot_orders(M, days=2)   # Nov 2 (Peter: tracker too slow): 10 days of full 'Bets LIVE' emails took minutes;
+        keys = bot_keys(M, days=2)   # Nov 2 (Peter: tracker too slow): indexed Gmail search, not a 6-minute IMAP scan;
         # older bot bets keep their stored 'bot' tag (see prev source below)
-        keys = set(ex.LIVEKEYS)
         for uid in ex.gsearch(M, 'subject:"Bets manual" newer_than:10d'):
             typ, data = M.uid("FETCH", uid, "(RFC822)")
             if typ != "OK" or not data or not data[0]:
