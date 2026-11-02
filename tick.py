@@ -16,6 +16,7 @@ JOBS = {   # workflow file: minimum minutes between runs (matches each workflow'
     "slow-hr.yml": 360,
     "plimit-logger.yml": 1440,
     "exchange-lag.yml": 1440,
+    "hcache-fill.yml": 1440,   # Peter 15:24: keep downloading history so models run from disk
 }
 BUSY = {"queued", "in_progress", "waiting", "pending", "requested"}
 
