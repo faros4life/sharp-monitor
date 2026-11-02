@@ -105,6 +105,34 @@ def board_rows(path, label):
     return out
 
 
+def board_call_rows():
+    """Peter 18:30 ("we tracking plays and lean?"): the Bets Board's PLAY / LEAN / DEAD call for every past board row,
+    re-derived day by day with the board's own rules (board_build.score) - each game keeps its kickoff call."""
+    import board_build as bb
+    by_day = {}
+    for x in bb.load():
+        at = bb.t(x.get("alerted_utc"))
+        if at:
+            by_day.setdefault(at.astimezone(ET).strftime("%Y-%m-%d"), []).append(x)
+    out = []
+    for d, xs in sorted(by_day.items()):
+        rows = []
+        for x in xs:
+            st = bb.t(x.get("start_utc"))
+            rows.append({"x": x, "at": bb.t(x.get("alerted_utc")), "g": bb.game_of(x), "mk": x.get("market"), "sd": bb.side_of(x),
+                         "side": x.get("side_label") or "", "new": x.get("new_money") or 0, "conf": bool(x.get("rule_met")),
+                         "status": "pulled" if x.get("pulled") else ("game started" if st else "still there")})
+        bb.score(rows)
+        for r in rows:
+            x = r["x"]
+            if x.get("clv_cents") is None or x.get("artifact"):
+                continue
+            out.append(norm(f"Board call {r['tag']}", x.get("league"), x.get("market"), x.get("side"), tb.num(x.get("line")),
+                            x.get("price_american"), mins(x.get("alerted_utc"), x.get("start_utc")), d, float(x["clv_cents"]),
+                            wl=x.get("result"), units=x.get("units_flat")))
+    return out
+
+
 def ntfy_rows():
     a = (load("alerts.json", {}) or {}).get("alerts") or []
     out = []
@@ -246,7 +274,7 @@ def main():
     now = datetime.now(timezone.utc)
     sources = {}
     for r in ev_rows() + board_rows("liquidity/alerts.json", "Liquidity board") + board_rows("liquidity-extra/alerts.json", "Liquidity extra") \
-            + ntfy_rows() + ledger_rows():
+            + board_call_rows() + ntfy_rows() + ledger_rows():
         sources.setdefault(r["src"], []).append(r)
     L = [f"BUCKET REPORT - HYPOTHESIS ONLY | standard buckets (BUCKETS.md) on every graded record we hold | {now.astimezone(ET):%Y-%m-%d %H:%M} ET",
          "Sources are never pooled (CLV units differ: EV / board = cents; ledger = %; ntfy = beat-close only).",
@@ -254,6 +282,15 @@ def main():
          "Paper lanes (ml_stay / pull_fade / solo) carry no grade field yet: listed by count only.", ""]
     lanes = load("lanes/lanes.json", {}) or {}
     L.append("Paper lanes (counts only): " + ", ".join(f"{k} {len(v)}" for k, v in lanes.items() if isinstance(v, dict)))
+    L.append("")
+    L.append("BOARD CALL RECORD (PLAY / LEAN / DEAD re-derived day by day with the board's own rules; each game keeps its kickoff call):")
+    for tag in ("PLAY", "LEAN", "DEAD"):
+        xs = sources.get(f"Board call {tag}") or []
+        g = [x for x in xs if x.get("wl") in ("W", "L")]
+        c = [x["clv"] for x in xs if x.get("clv") is not None]
+        L.append(f"  {tag}: {len(xs)} calls | W-L {sum(x['wl'] == 'W' for x in g)}-{sum(x['wl'] == 'L' for x in g)} "
+                 f"({sum(float(x.get('units') or 0) for x in g):+.2f}u flat) | CLV {(sum(c) / len(c)) if c else 0:+.2f}c | beat close "
+                 f"{sum(1 for v in c if v > 0)}/{len(c)}")
     L.append("")
     for name in sorted(sources, key=lambda k: -len(sources[k])):
         unit = "%" if name.startswith("CLV ledger") else ("" if name.startswith("ntfy") else "c")
