@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 2, 3:10 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 27.
+Updated Mon Nov 2, 3:20 AM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 28.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 2 3:20AM | NHL | Vegas vs Boston: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $34k | -122 | ✅ novig,polymarket |  | +0.0c |  | pending |
 | Nov 2 1:10AM | NBA | Washington vs Orlando | moneyline: Washington | kalshi | $116k | +133 |  | ❌ | +2.0c |  | pending |
 | Nov 2 12:30AM | NBA | Detroit vs Charlotte: Total Points | total: NOT Over 210.5 points | kalshi | $31k | -108 |  |  | +0.0c |  | pending |
 | Nov 2 12:10AM | NBA | Miami vs Los Angeles L | moneyline: Los Angeles L | kalshi | $124k | -117 |  |  | +1.0c |  | pending |
@@ -36,7 +37,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 1 7:10PM | NFL | Philadelphia Eagles at Washington Commanders | moneyline: Washington Commanders | prophetx | $43k | -230 | ✅ kalshi,novig |  | +0.0c |  | W |
 | Nov 1 6:50PM | NFL | Philadelphia Eagles @ Washington Commanders | total: Over 40.5 (40.5) | novig | $41k | -100 | ✅ kalshi,prophetx |  | +1.0c | yes | L |
 | Nov 1 5:30PM | NFL | Philadelphia vs Washington: Total Points | total: NOT Over 40.5 points | kalshi | $603k | -104 |  |  | -1.0c | yes | W |
-| Nov 1 5:10PM | NHL | Colorado vs Chicago | moneyline: Colorado | kalshi | $45k | -213 | ✅ polymarket |  | +1.0c |  | pending |
+| Nov 1 5:10PM | NHL | Colorado vs Chicago | moneyline: Colorado | kalshi | $45k | -213 | ✅ polymarket |  | +0.0c |  | pending |
 | Nov 1 4:30PM | NFL | Philadelphia Eagles @ Washington Commanders | spread: PHI +5.5 (-5.5) | novig | $35k | +104 | ✅ kalshi,prophetx |  | +0.5c | yes | L |
 | Nov 1 4:30PM | NBA | Brooklyn vs Indiana: Spread | spread: Indiana wins by over 3.5 points | kalshi | $51k | +104 |  |  | +0.0c |  | L |
 | Nov 1 4:20PM | NFL | Kansas City Chiefs @ Denver Broncos | spread: DEN -1.5 (-1.5) | novig | $32k | +108 | ✅ kalshi |  | +0.0c |  | W |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 31 5:20PM | NCAAF | Appalachian St. vs Georgia Southern: Spread | spread: NOT Georgia Southern wins by over 6.5 points | kalshi | $57k | -104 |  |  | +1.0c | yes | L |
 | Oct 31 5:13PM | NCAAF | Clemson @ Florida State | moneyline: FSU (0) | novig | $49k | -194 | ✅ kalshi,prophetx | ❌ | -1.0c | yes | L |
 | Oct 31 4:40PM | NCAAF | The Citadel vs Mercer | moneyline: Mercer | kalshi | $45k | -108 |  |  | +44.0c |  | W |
-| Oct 31 4:02PM | NCAAF | Georgia Tech @ Pittsburgh | moneyline: PITT (0) | novig | $35k | -285 | ✅ prophetx |  | +1.0c |  | W |
