@@ -1,0 +1,54 @@
+name: slow-hr
+
+# SLOW-HR logger (paper): Pinnacle moves that Hard Rock was slow to follow, from OddsPapi free history (NFL/NCAAF/NHL),
+# every 6 hours for games that have started. Encrypted state; private email; the log prints counts only.
+on:
+  schedule:
+    - cron: "23 */6 * * *"
+  workflow_dispatch:
+    inputs:
+      email_now: {required: false, type: string, default: "1"}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: slow-hr
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: SLOW-HR logger (private email)
+        env:
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+          EMAIL_NOW: ${{ inputs.email_now }}
+        run: python -u slow_hr.py
+      - name: Commit encrypted SLOW-HR state
+        run: |
+          # Only this workflow writes slowhr/; save over upstream, never a merge.
+          if [ -n "$(git status --porcelain slowhr)" ]; then
+            git config user.name "slow-hr"
+            git config user.email "slow-hr@users.noreply.github.com"
+            rm -rf "$RUNNER_TEMP/out" && mkdir -p "$RUNNER_TEMP/out" && cp -r slowhr "$RUNNER_TEMP/out/"
+            for i in 1 2 3 4 5; do
+              git fetch -q origin main && git reset -q --hard origin/main
+              rm -rf slowhr && cp -r "$RUNNER_TEMP/out/slowhr" .
+              git add -A slowhr
+              git diff --cached --quiet && break
+              git commit -q -m "Update SLOW-HR state"
+              git push -q origin HEAD:main && break
+              sleep 5
+            done
+          fi
