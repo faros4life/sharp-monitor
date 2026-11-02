@@ -448,7 +448,13 @@ def read_novig():
     import executor as ex
     import liquidity_monitor as lm
     import book_check as bc
-    snap, age = ex._snap_read((os.environ.get("NOVIG_SNAPSHOT_TOKEN") or "").strip())
+    tok = (os.environ.get("NOVIG_SNAPSHOT_TOKEN") or "").strip()
+    snap, age = ex._snap_read(tok)
+    if age > 12:   # Nov 2: GitHub runs the home PC's 5-min schedule hours late -> ask for a fresh snapshot now (read-only)
+        try:
+            ex._snap_refresh(tok)   # not waited on: the next board run (minutes away) reads the fresh one
+        except Exception:
+            pass
     op = []
     pos = snap.get("positions") or []
     ev_by, mk_by = {}, {}
