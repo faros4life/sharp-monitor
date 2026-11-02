@@ -560,7 +560,7 @@ def main():
         is_nv = k.startswith("nvo|")
         if not is_nv and now < start + timedelta(minutes=SCORE_AFTER_MIN):
             continue
-        bk = "novig" if is_nv else "pinnacle"   # one book per call: a bad slug never costs the Pinnacle read
+        bk = "novig.us" if is_nv else "pinnacle"   # OddsPapi slug for Novig is novig.us   # one book per call: a bad slug never costs the Pinnacle read
         if (fid, bk) not in hist and len(hist) >= MAX_HIST:
             continue   # backfill spreads over runs (history throttles at ~8 s a call)
         if (fid, bk) not in hist:
@@ -572,7 +572,7 @@ def main():
             continue
         if is_nv:
             when = tp(s.get("decided_utc"))
-            got = novig_at(s, f, book_markets(h, "novig"), mkmap, when, lg) if when else None
+            got = novig_at(s, f, book_markets(h, "novig.us"), mkmap, when, lg) if when else None
             if got:
                 rec["novig_price_then"] = dec_to_am(got[0])
                 rec["quote_age_s"] = round(got[1])
