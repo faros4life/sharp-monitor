@@ -1,6 +1,158 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-02T15:20:11Z",
+   "base_depth": 170366,
+   "best_price": 0.62,
+   "best_price_american": -163,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.62,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-02",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Seattle",
+     "price": 0.62,
+     "this_side": 10624381
+    },
+    "novig": {
+     "new_other_side": 15131,
+     "new_this_side": 90856,
+     "other_side": 134037,
+     "other_side_all_levels": 134170,
+     "ratio": 2.0,
+     "this_side": 261424,
+     "this_side_all_levels": 261502
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Seattle Seahawks",
+     "price": 0.6212,
+     "this_side": 74692
+    }
+   },
+   "fade_price": 0.385,
+   "first_seen_utc": "2026-11-02T15:10:11Z",
+   "game": "Chicago Bears @ Seattle Seahawks",
+   "key": "novig|{\"market_id\": \"01a15b22-b2cb-79e2-8084-04590cda4761\", \"outcome_id\": \"01a15b22-b2cb-79e2-8084-0468987e3d25\"}",
+   "lead_min": 600,
+   "league": "NFL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 90856,
+   "paper_only": false,
+   "price": 0.62,
+   "price_american": -163,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.62,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -175
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -175
+    },
+    "betopenly": {
+     "point": null,
+     "price": -160
+    },
+    "betrivers": {
+     "point": null,
+     "price": -175
+    },
+    "betus": {
+     "point": null,
+     "price": -175
+    },
+    "bovada": {
+     "point": null,
+     "price": -173
+    },
+    "draftkings": {
+     "point": null,
+     "price": -180
+    },
+    "fanatics": {
+     "point": null,
+     "price": -180
+    },
+    "fanduel": {
+     "point": null,
+     "price": -178
+    },
+    "kalshi": {
+     "point": null,
+     "price": -163
+    },
+    "limitless": {
+     "point": null,
+     "price": -181
+    },
+    "lowvig": {
+     "point": null,
+     "price": -175
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -169
+    },
+    "novig": {
+     "point": null,
+     "price": -163
+    },
+    "polymarket": {
+     "point": null,
+     "price": -170
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -160
+    },
+    "prophetx": {
+     "point": null,
+     "price": -164
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a15b22-b2cb-79e2-8084-04590cda4761",
+    "outcome_id": "01a15b22-b2cb-79e2-8084-0468987e3d25"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi",
+    "prophetx"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Seattle Seahawks",
+   "side_label": "SEA (0)",
+   "start_source": "odds",
+   "start_utc": "2026-11-03T01:20:00Z",
+   "teams": [
+    "Chicago Bears",
+    "Seattle Seahawks"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-02T15:10:11Z",
    "base_depth": 116247,
    "best_price": 0.64,
@@ -15,8 +167,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.64,
-   "clv_cents": 0.0,
+   "close_price": 0.65,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -362,6 +514,8 @@
    "new_money": 37669,
    "paper_only": false,
    "price": 0.51,
+   "price_after_15m": 0.515,
+   "price_after_15m_book": "novig",
    "price_american": -104,
    "price_rule": "ok",
    "price_when_first_seen": 0.52,
@@ -445,6 +599,7 @@
    "side_label": "Under (231.5)",
    "start_source": "odds",
    "start_utc": "2026-11-03T00:30:00Z",
+   "still_actionable": true,
    "teams": [
     "Hawks",
     "Pacers"
@@ -511,6 +666,8 @@
    "new_money": 171457,
    "paper_only": false,
    "price": 0.37,
+   "price_after_15m": 0.36,
+   "price_after_15m_book": "novig",
    "price_american": 170,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.37,
@@ -603,6 +760,7 @@
    "side_label": "New Orleans",
    "start_source": "odds",
    "start_utc": "2026-11-03T01:00:00Z",
+   "still_actionable": true,
    "teams": [
     "New Orleans",
     "Memphis"
@@ -761,8 +919,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": 2.0,
+   "close_price": 0.54,
+   "clv_cents": 3.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -3786,8 +3944,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": -1.0,
+   "close_price": 0.5,
+   "clv_cents": -2.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -4659,8 +4817,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.64,
-   "clv_cents": -1.0,
+   "close_price": 0.65,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
