@@ -82,7 +82,8 @@ def main():
                     "beats_close": (pd < close) if pd is not None and isinstance(close, (int, float)) else None,
                     "alert_beats_close": (pa < close) if pa is not None and isinstance(close, (int, float)) else None,
                     "result": e.get("result"), "units": e.get("units_flat"), "live": bool(r.get("live")),
-                    "verdict": r.get("verdict"), "book": r.get("alert_book"), "pd": pd})
+                    "verdict": r.get("verdict"), "book": r.get("alert_book"), "pd": pd, "pa": pa, "joined": bool(e),
+                    "pf": prob(r.get("fill_price_after_fee")), "fbook": r.get("fill_book"), "close": close})
 
     def med(xs):
         xs = [x for x in xs if x is not None]
@@ -137,6 +138,27 @@ def main():
               f"  n {len(c)} | worse {sum(v > 0.05 for v in c)} | same {sum(abs(v) <= 0.05 for v in c)} | better {sum(v < -0.05 for v in c)}"
               + (f" | min {min(c):+.1f}c max {max(c):+.1f}c" if c else "")]
     lines.append("  No ProphetX decision price: " + str(sum(1 for x in out if x["pd"] is None)) + f" of {len(out)} (book not listing the alert line at decision).")
+
+    # v3 (Nov 2, Muse challenge): tails per bucket, gettable by alert book, unjoined by bucket, phase-1 matched, fill vs close
+    lines += ["", "V3 CHECKS (Muse Nov 2 challenge):", "Tails per bucket (p90 wake / p90 alert->decision):"]
+    for name, lo, hi in B:
+        L = [x for x in out if lo <= x["lat"] < hi]
+        w9, l9 = q([x["wake"] for x in L], .9), q([x["lat"] for x in L], .9)
+        lines.append(f"  {name:<9} n {len(L):>3} | p90 wake {'-' if w9 is None else f'{w9:.0f}s'} | p90 decision {'-' if l9 is None else f'{l9:.0f}s'}"
+                     f" | ProphetX-priced alerts {sum(x['book'] == 'prophetx' for x in L)} | unjoined {sum(not x['joined'] for x in L)}"
+                     f" | no ProphetX price {sum(x['pd'] is None for x in L)}")
+    lines.append("Still gettable by alert book (ProphetX at the alert price or better at decision):")
+    for name, lo, hi in B:
+        L = [x for x in out if lo <= x["lat"] < hi]
+        lines.append(f"  {name:<9} ProphetX-priced {pct([x['gettable'] for x in L if x['book'] == 'prophetx'])} | "
+                     f"other-book {pct([x['gettable'] for x in L if x['book'] != 'prophetx'])}")
+    m1 = [x for x in m if x["live"]]
+    lines.append(f"Phase-1 matched: n {len(m1)} | alert beats close {pct([x['alert_beats_close'] for x in m1])} | "
+                 f"decision beats close {pct([x['beats_close'] for x in m1])}")
+    f = [x for x in out if x["pf"] is not None and isinstance(x["close"], (int, float))]
+    lines.append(f"Actual fills vs close (fill price after fee, any book): n {len(f)} | fill beats close {pct([x['pf'] < x['close'] for x in f])} | "
+                 f"alert beat close on the same plays {pct([x['pa'] < x['close'] for x in f if x.get('pa') is not None])}")
+    lines.append("  fills by book: " + ", ".join(f"{b} {sum(x['fbook'] == b for x in f)}" for b in sorted({x['fbook'] for x in f if x['fbook']})))
     ex.send("Bets DECAY CURVE (alert -> decision)", "\n".join(lines))
     print(f"Decay curve emailed: {len(out)} decisions read")   # counts only
 
