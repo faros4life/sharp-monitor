@@ -1543,6 +1543,37 @@ def old_rule_block(r):
         return None
 
 
+def _cap_units(asked, am):
+    """Spec #4 unit: to-win $200. Plus money counts risk/200; minus money counts to-win/200."""
+    asked, am = float(asked or 0), float(am or 0)
+    if asked <= 0 or am == 0:
+        return 0.0
+    return asked / 200.0 if am > 0 else asked * 100.0 / abs(am) / 200.0
+
+
+def stack_cap_report(r):
+    """Spec #4 STACKING CAP - REPORT ONLY (Peter yes, Nov 2). Never changes an order. Counts this play's live order +
+    resting bid + top-ups at asked stake (a bid that can fill is exposure) and flags anything over 1.0 unit. Held
+    positions: the duplicate rule already skips a play when the same side is held on a readable book, so held
+    before = 0 on readable books; Hard Rock is never readable (labelled unknown). Any problem returns None."""
+    try:
+        lv = r.get("live") or {}
+        orders = [lv.get("order"), lv.get("rest")] + list(lv.get("more") or [])
+        bad = ("fail", "reject", "error", "cancel", "skip", "refus", "not ", "none")
+        units = 0.0
+        for o in orders:
+            if not o or any(w in str(o.get("status") or "").lower() for w in bad):
+                continue
+            units += _cap_units(o.get("asked_stake"), o.get("limit") or o.get("avg_price"))
+        if units <= 0:
+            return None
+        return {"order_units": round(units, 3), "held_units_before": 0.0,
+                "held_source": "positions read (duplicate rule); Hard Rock unknown",
+                "would_cap": units > 1.0 + 1e-6, "trim_to_units": 1.0 if units > 1.0 + 1e-6 else None}
+    except Exception:
+        return None
+
+
 def ledger_row(r, run_start):
     p, e = r["play"], r.get("entry") or {}
     at = iso_t(e.get("alert_utc") or p.get("alert_utc"))
@@ -1566,6 +1597,7 @@ def ledger_row(r, run_start):
             "px_best_line": ((r.get("books") or {}).get("prophetx") or {}).get("line"),
             "books_at_decision": books_snapshot(r),
             "old_rule_would_block": old_rule_block(r),
+            "stack_cap": stack_cap_report(r),
             "live_order": dict({k: (lv.get("order") or {}).get(k) for k in ("status", "reason", "order_id", "asked_stake", "limit",
                                                                             "filled_stake", "avg_price")},
                                book=(lv.get("order") or {}).get("book") or "prophetx") if lv.get("order") else None,
@@ -1805,6 +1837,12 @@ def main():
     if GUARD["ok"] is not None:
         body += [f"Live guards: {'OK' if GUARD['ok'] else 'REFUSED'}" + (f" - {GUARD['why']}" if GUARD["why"] else "")
                  + " (the daily stop counts only the bot's own orders).", ""]
+    try:   # spec #4 stacking cap, REPORT ONLY (Nov 2): counts only, nothing is changed
+        _sc = [x for x in (stack_cap_report(r) for r in results) if x]
+        body += [f"Stack cap (report-only): {sum(1 for x in _sc if x['would_cap'])} would-cap of {len(_sc)} live order set(s)"
+                 + "".join(f" | {x['order_units']}u" for x in _sc if x["would_cap"]), ""]
+    except Exception:
+        pass
     body += ["LEDGER (machine-readable, one row per play; latency = decision time minus first alert time)",
              json.dumps([ledger_row(r, now) for r in results], separators=(",", ":"))]
     first = ", ".join(short(r) for r in places[:3]) + ("..." if len(places) > 3 else "")
