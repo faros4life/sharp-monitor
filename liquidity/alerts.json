@@ -1,6 +1,139 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-02T03:40:10Z",
+   "base_depth": 163421,
+   "best_price": 0.62,
+   "best_price_american": -163,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.61,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-02",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -3674,
+     "new_this_side": 42307,
+     "other_side": 12782,
+     "other_side_all_levels": 134815,
+     "ratio": 2.0,
+     "this_side": 25330,
+     "this_side_all_levels": 201760
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "GSW (0)",
+     "price": 0.62,
+     "this_side": 5296
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "Golden State Warriors",
+     "price": 0.6212,
+     "this_side": 401
+    }
+   },
+   "fade_price": 0.39,
+   "first_seen_utc": "2026-11-02T03:30:12Z",
+   "game": "Phoenix vs Golden State",
+   "key": "kalshi|KXNBAGAME-26NOV02PHXGSW|ml|1",
+   "lead_min": 1400,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 42307,
+   "paper_only": false,
+   "price": 0.61,
+   "price_american": -156,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.62,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -185
+    },
+    "betopenly": {
+     "point": null,
+     "price": -166
+    },
+    "betrivers": {
+     "point": null,
+     "price": -190
+    },
+    "draftkings": {
+     "point": null,
+     "price": -180
+    },
+    "fanatics": {
+     "point": null,
+     "price": -180
+    },
+    "fanduel": {
+     "point": null,
+     "price": -176
+    },
+    "kalshi": {
+     "point": null,
+     "price": -163
+    },
+    "limitless": {
+     "point": null,
+     "price": -173
+    },
+    "novig": {
+     "point": null,
+     "price": -163
+    },
+    "polymarket": {
+     "point": null,
+     "price": -156
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -163
+    },
+    "prophetx": {
+     "point": null,
+     "price": -164
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -180
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBAGAME-26NOV02PHXGSW-GSW"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Golden State",
+   "side_label": "Golden State",
+   "start_source": "odds",
+   "start_utc": "2026-11-03T03:00:00Z",
+   "teams": [
+    "Phoenix",
+    "Golden State"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-02T03:20:10Z",
    "base_depth": 259799,
    "best_price": 0.6463,
@@ -59,6 +192,8 @@
    "new_money": 164154,
    "paper_only": false,
    "price": 0.63,
+   "price_after_15m": 0.6463,
+   "price_after_15m_book": "kalshi",
    "price_american": -170,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.63,
@@ -147,6 +282,7 @@
    "side_label": "Houston",
    "start_source": "odds",
    "start_utc": "2026-11-03T01:30:00Z",
+   "still_actionable": true,
    "teams": [
     "Boston",
     "Houston"
