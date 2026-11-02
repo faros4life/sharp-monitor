@@ -1,6 +1,145 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-02T05:30:12Z",
+   "base_depth": 35937,
+   "best_price": 0.52,
+   "best_price_american": -108,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-02",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -10805,
+     "new_this_side": 30897,
+     "other_side": 11205,
+     "other_side_all_levels": 54519,
+     "ratio": 2.8,
+     "this_side": 31762,
+     "this_side_all_levels": 66643
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "Under 210.5 (210.5)",
+     "price": 0.52,
+     "this_side": 4276
+    }
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-11-02T05:20:09Z",
+   "game": "Detroit vs Charlotte: Total Points",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBATOTAL-26NOV02DETCHA-211\"}",
+   "lead_min": 1140,
+   "league": "NBA",
+   "line": 210.5,
+   "market": "total",
+   "new_money": 30897,
+   "paper_only": false,
+   "price": 0.52,
+   "price_american": -108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.52,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 210.5,
+     "price": -105
+    },
+    "betonlineag": {
+     "point": 211.0,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 210.0,
+     "price": 100
+    },
+    "betrivers": {
+     "point": 209.5,
+     "price": -109
+    },
+    "betus": {
+     "point": 211.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 210.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 210.5,
+     "price": -110
+    },
+    "fanatics": {
+     "point": 210.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 211.5,
+     "price": -114
+    },
+    "kalshi": {
+     "point": 210.5,
+     "price": -108
+    },
+    "lowvig": {
+     "point": 211.0,
+     "price": -107
+    },
+    "mybookieag": {
+     "point": 211.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 210.5,
+     "price": -108
+    },
+    "polymarket": {
+     "point": 209.5,
+     "price": 104
+    },
+    "prophetx": {
+     "point": 211.5,
+     "price": -121
+    },
+    "williamhill_us": {
+     "point": 210.0,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNBATOTAL-26NOV02DETCHA-211"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "NOT Over 210.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-11-03T00:30:00Z",
+   "teams": [
+    "Detroit",
+    "Charlotte"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-02T05:10:10Z",
    "base_depth": 159546,
    "best_price": 0.545,
@@ -53,6 +192,8 @@
    "new_money": 124434,
    "paper_only": false,
    "price": 0.54,
+   "price_after_15m": 0.55,
+   "price_after_15m_book": "novig",
    "price_american": -117,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.54,
@@ -122,6 +263,7 @@
    "side_label": "Los Angeles L",
    "start_source": "odds",
    "start_utc": "2026-11-03T03:00:00Z",
+   "still_actionable": false,
    "teams": [
     "Miami",
     "Los Angeles L"
