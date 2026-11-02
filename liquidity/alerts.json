@@ -15,8 +15,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.505,
-   "clv_cents": 0.0,
+   "close_price": 0.51,
+   "clv_cents": 0.5,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -200,6 +200,8 @@
    "new_money": 43659,
    "paper_only": false,
    "price": 0.47,
+   "price_after_15m": 0.465,
+   "price_after_15m_book": "novig",
    "price_american": 113,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.47,
@@ -295,6 +297,7 @@
    "side_label": "Clippers",
    "start_source": "polymarket",
    "start_utc": "2026-11-02T01:30:00Z",
+   "still_actionable": true,
    "teams": [
     "Clippers",
     "Warriors"
@@ -317,8 +320,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.697,
-   "clv_cents": 0.0,
+   "close_price": 0.7015,
+   "clv_cents": 0.5,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -924,8 +927,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": 1.0,
+   "close_price": 0.495,
+   "clv_cents": 0.5,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -1033,7 +1036,8 @@
      "price": -109
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-02T00:40:11Z",
    "ref": {
     "market_id": "01a15b22-b24d-7ba2-9887-a10816670377",
     "outcome_id": "01a15b22-b24d-7ba2-9887-a120278535ee"
@@ -1245,8 +1249,10 @@
     }
    },
    "fade_price": 0.525,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-01T21:10:11Z",
    "game": "Kansas City Chiefs @ Denver Broncos",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a15b22-aeb0-7862-b592-b53111fd5fb6\", \"outcome_id\": \"01a15b22-aeb0-7862-b592-b5406e0ef010\"}",
    "lead_min": 5,
    "league": "NFL",
@@ -1329,13 +1335,14 @@
     "market_id": "01a15b22-aeb0-7862-b592-b53111fd5fb6",
     "outcome_id": "01a15b22-aeb0-7862-b592-b5406e0ef010"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "kalshi"
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-02T00:40:11Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Denver Broncos",
@@ -1347,7 +1354,7 @@
     "Denver Broncos"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.08
   },
   {
    "alerted_utc": "2026-11-01T21:20:11Z",
@@ -1364,8 +1371,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.54,
-   "clv_cents": 2.0,
+   "close_price": 0.53,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -2289,8 +2296,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.49,
-   "clv_cents": 1.0,
+   "close_price": 0.5,
+   "clv_cents": 2.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -3384,8 +3391,10 @@
     }
    },
    "fade_price": 0.5192,
+   "fade_units": 0.91,
    "first_seen_utc": "2026-11-01T17:52:15Z",
    "game": "New England Patriots at Miami Dolphins",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 7.0, \"px_event\": 1700008861, \"px_market\": 223, \"side\": \"0\"}",
    "lead_min": 205,
    "league": "NFL",
@@ -3473,11 +3482,12 @@
     "px_market": 223,
     "side": "0"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settled_utc": "2026-11-02T00:40:11Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "New England Patriots",
@@ -3490,7 +3500,7 @@
     "Miami Dolphins"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-01T17:52:15Z",
@@ -3535,8 +3545,10 @@
     }
    },
    "fade_price": 0.2381,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-01T17:40:09Z",
    "game": "New England Patriots at Miami Dolphins",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 0, \"px_event\": 1700008861, \"px_market\": 219, \"side\": \"0\"}",
    "lead_min": 213,
    "league": "NFL",
@@ -3632,7 +3644,7 @@
     "px_market": 219,
     "side": "0"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "kalshi",
@@ -3640,6 +3652,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-02T00:40:11Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "New England Patriots",
@@ -3652,7 +3665,7 @@
     "Miami Dolphins"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.32
   },
   {
    "alerted_utc": "2026-11-01T17:52:15Z",
@@ -3863,8 +3876,10 @@
     }
    },
    "fade_price": 0.5,
+   "fade_units": 1.0,
    "first_seen_utc": "2026-11-01T17:40:09Z",
    "game": "Kansas City Chiefs @ Denver Broncos",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a15b22-aeae-73e3-a657-5227a8657c41\", \"outcome_id\": \"01a15b22-aeae-73e3-a657-524ea29e821b\"}",
    "lead_min": 213,
    "league": "NFL",
@@ -3953,13 +3968,14 @@
     "market_id": "01a15b22-aeae-73e3-a657-5227a8657c41",
     "outcome_id": "01a15b22-aeae-73e3-a657-524ea29e821b"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "kalshi"
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-02T00:40:11Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Kansas City Chiefs",
@@ -3972,7 +3988,7 @@
     "Denver Broncos"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-01T17:40:09Z",
@@ -4133,8 +4149,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.45,
-   "clv_cents": 0.0,
+   "close_price": 0.46,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -9629,6 +9645,7 @@
     }
    },
    "fade_price": 0.54,
+   "fade_units": 0.79,
    "first_seen_utc": "2026-11-01T14:03:34Z",
    "game": "New England vs Miami: Spread",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNFLSPREAD-26NOV01NEMIA-NE8\"}",
@@ -9716,11 +9733,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNFLSPREAD-26NOV01NEMIA-NE8"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settled_utc": "2026-11-02T00:40:11Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "New England",
@@ -9733,7 +9751,7 @@
     "Miami"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-01T14:10:11Z",
@@ -10987,8 +11005,10 @@
     }
    },
    "fade_price": 0.49,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-01T12:30:13Z",
    "game": "Kansas City Chiefs @ Denver Broncos",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a15b22-aeaf-7463-8cd7-b911d4c498fa\", \"outcome_id\": \"01a15b22-aeaf-7463-8cd7-b92f9bd37e0f\"}",
    "lead_min": 525,
    "league": "NFL",
@@ -11073,13 +11093,14 @@
     "market_id": "01a15b22-aeaf-7463-8cd7-b911d4c498fa",
     "outcome_id": "01a15b22-aeaf-7463-8cd7-b92f9bd37e0f"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "kalshi"
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-02T00:40:11Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -11092,7 +11113,7 @@
     "Denver Broncos"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.92
   },
   {
    "alerted_utc": "2026-11-01T12:40:10Z",
@@ -12161,8 +12182,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": 1.0,
+   "close_price": 0.54,
+   "clv_cents": 2.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -14724,8 +14745,10 @@
     }
    },
    "fade_price": 0.24,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-01T04:50:09Z",
    "game": "New England Patriots @ Miami Dolphins",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a15b07-8931-7500-a806-e0b1a3fdf22c\", \"outcome_id\": \"01a15b07-8931-7500-a806-e0d935ed1373\"}",
    "lead_min": 985,
    "league": "NFL",
@@ -14819,7 +14842,7 @@
     "market_id": "01a15b07-8931-7500-a806-e0b1a3fdf22c",
     "outcome_id": "01a15b07-8931-7500-a806-e0d935ed1373"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "kalshi",
@@ -14827,6 +14850,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-02T00:40:11Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "New England Patriots",
@@ -14839,7 +14863,7 @@
     "Miami Dolphins"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.31
   },
   {
    "alerted_utc": "2026-11-01T05:00:15Z",
@@ -15155,8 +15179,10 @@
     }
    },
    "fade_price": 0.48,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-01T04:50:09Z",
    "game": "Kansas City vs Denver: Spread",
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNFLSPREAD-26NOV01KCDEN-KC2\"}",
    "lead_min": 985,
    "league": "NFL",
@@ -15242,13 +15268,14 @@
     "kalshi_side": "no",
     "market_ticker": "KXNFLSPREAD-26NOV01KCDEN-KC2"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-02T00:40:11Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Denver",
@@ -15261,7 +15288,7 @@
     "Denver"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.9
   },
   {
    "alerted_utc": "2026-11-01T04:30:11Z",
@@ -16739,6 +16766,7 @@
     }
    },
    "fade_price": 0.24,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-01T02:00:15Z",
    "game": "New England vs Miami",
    "key": "kalshi|KXNFLGAME-26NOV01NEMIA|ml|0",
@@ -16834,7 +16862,7 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNFLGAME-26NOV01NEMIA-NE"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig",
@@ -16842,6 +16870,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-02T00:40:11Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "New England",
@@ -16854,7 +16883,7 @@
     "Miami"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.32
   },
   {
    "alerted_utc": "2026-11-01T02:00:15Z",
@@ -17045,6 +17074,7 @@
     }
    },
    "fade_price": 0.52,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-01T01:40:10Z",
    "game": "Kansas City vs Denver",
    "key": "kalshi|KXNFLGAME-26NOV01KCDEN|ml|1",
@@ -17135,7 +17165,7 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNFLGAME-26NOV01KCDEN-DEN"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig",
@@ -17143,6 +17173,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-02T00:40:11Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Denver",
@@ -17155,7 +17186,7 @@
     "Denver"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.06
   },
   {
    "alerted_utc": "2026-11-01T01:52:57Z",
@@ -18492,6 +18523,7 @@
     }
    },
    "fade_price": 0.47,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-01T00:51:55Z",
    "game": "New England vs Miami: Spread",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNFLSPREAD-26NOV01NEMIA-NE8\"}",
@@ -18579,13 +18611,14 @@
     "kalshi_side": "no",
     "market_ticker": "KXNFLSPREAD-26NOV01NEMIA-NE8"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-02T00:40:11Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Miami",
@@ -18598,7 +18631,7 @@
     "Miami"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.85
   },
   {
    "alerted_utc": "2026-11-01T01:00:21Z",
