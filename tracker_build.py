@@ -573,10 +573,13 @@ def bot_match(b, keys):
             side = "UNDER" if side == "OVER" else "OVER"
         pb = ("total", side, None)
     bt = toks(b.get("game"))
+    bare = bool(re.fullmatch(r"\s*[+-]\d+(?:\.\d+)?\s*", b.get("bet") or ""))   # Nov 2: PM US labels a spread by its number only ("-3.50")
     for k in keys:
         sp, game, market, side = (k.split("|") + [None] * 4)[:4]
         if not game or len(toks(game) & bt) < 2 and not (toks(game) & toks(b.get("bet"))):
             continue
+        if bare and market == "side" and len(toks(game) & bt) >= 2:
+            return True
         if pb and pb[0] == "total" and market == "total" and side == pb[1]:
             return True
         if pb and pb[0] in ("spread", "ml") and market == "side" and (toks(side) & toks(pb[1])):
