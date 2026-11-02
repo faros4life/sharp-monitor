@@ -1,6 +1,268 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-02T23:00:17Z",
+   "base_depth": 34608,
+   "best_price": 0.475,
+   "best_price_american": 111,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.47,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-03",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 2476,
+     "new_this_side": 41201,
+     "other_side": 9533,
+     "other_side_all_levels": 16793,
+     "ratio": 6.9,
+     "this_side": 66020,
+     "this_side_all_levels": 75809
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "Under 5.5 (5.5)",
+     "price": 0.475,
+     "this_side": 2731
+    }
+   },
+   "fade_price": 0.54,
+   "first_seen_utc": "2026-11-02T22:50:13Z",
+   "game": "Dallas vs Washington: Total Goals",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLTOTAL-26NOV03DALWSH-6\"}",
+   "lead_min": 1500,
+   "league": "NHL",
+   "line": 5.5,
+   "market": "total",
+   "new_money": 41201,
+   "paper_only": false,
+   "price": 0.47,
+   "price_american": 113,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.47,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 5.5,
+     "price": 100
+    },
+    "betonlineag": {
+     "point": 5.5,
+     "price": 102
+    },
+    "betrivers": {
+     "point": 5.5,
+     "price": -103
+    },
+    "betus": {
+     "point": 5.5,
+     "price": 100
+    },
+    "bovada": {
+     "point": 5.5,
+     "price": 100
+    },
+    "draftkings": {
+     "point": 5.5,
+     "price": 100
+    },
+    "fanatics": {
+     "point": 5.5,
+     "price": 100
+    },
+    "fanduel": {
+     "point": 5.5,
+     "price": -102
+    },
+    "kalshi": {
+     "point": 5.5,
+     "price": 113
+    },
+    "lowvig": {
+     "point": 5.5,
+     "price": 102
+    },
+    "novig": {
+     "point": 5.5,
+     "price": 111
+    },
+    "polymarket": {
+     "point": 5.5,
+     "price": 108
+    },
+    "williamhill_us": {
+     "point": 5.5,
+     "price": 100
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNHLTOTAL-26NOV03DALWSH-6"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "NOT Over 5.5 goals scored",
+   "start_source": "odds",
+   "start_utc": "2026-11-04T00:00:00Z",
+   "teams": [
+    "Dallas",
+    "Washington"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-02T23:00:17Z",
+   "base_depth": 193652,
+   "best_price": 0.5,
+   "best_price_american": -100,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.49,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-03",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 5794,
+     "new_this_side": 45394,
+     "other_side": 140891,
+     "other_side_all_levels": 235801,
+     "ratio": 1.3,
+     "this_side": 178606,
+     "this_side_all_levels": 259960
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "AKR +13.5 (13.5)",
+     "price": 0.5,
+     "this_side": 5673
+    }
+   },
+   "fade_price": 0.52,
+   "first_seen_utc": "2026-11-02T22:50:13Z",
+   "game": "Ohio vs Akron: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFSPREAD-26NOV03OHIOAKR-OHIO14\"}",
+   "lead_min": 1500,
+   "league": "NCAAF",
+   "line": 13.5,
+   "market": "spread",
+   "new_money": 45394,
+   "paper_only": false,
+   "price": 0.49,
+   "price_american": 104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.49,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 13.5,
+     "price": -108
+    },
+    "betonlineag": {
+     "point": 13.5,
+     "price": -108
+    },
+    "betrivers": {
+     "point": 13.5,
+     "price": -112
+    },
+    "betus": {
+     "point": 13.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 14.0,
+     "price": -117
+    },
+    "draftkings": {
+     "point": 14.0,
+     "price": -115
+    },
+    "fanatics": {
+     "point": 13.5,
+     "price": -105
+    },
+    "fanduel": {
+     "point": 13.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": 13.5,
+     "price": 104
+    },
+    "lowvig": {
+     "point": 13.5,
+     "price": -104
+    },
+    "mybookieag": {
+     "point": 14.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 13.5,
+     "price": 100
+    },
+    "polymarket": {
+     "point": 13.5,
+     "price": 100
+    },
+    "prophetx": {
+     "point": 13.5,
+     "price": 100
+    },
+    "williamhill_us": {
+     "point": 13.5,
+     "price": -105
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAFSPREAD-26NOV03OHIOAKR-OHIO14"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Akron",
+   "side_label": "NOT Ohio wins by over 13.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-11-04T00:00:00Z",
+   "teams": [
+    "Ohio",
+    "Akron"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-02T22:40:09Z",
    "base_depth": 78790,
    "best_price": 0.515,
@@ -53,6 +315,8 @@
    "new_money": 605232,
    "paper_only": false,
    "price": 0.52,
+   "price_after_15m": 0.515,
+   "price_after_15m_book": "novig",
    "price_american": -108,
    "price_rule": "ok",
    "price_when_first_seen": 0.52,
@@ -143,6 +407,7 @@
    "side_label": "Thunder (+4.5)",
    "start_source": "odds",
    "start_utc": "2026-11-03T00:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Thunder",
     "Cavaliers"
@@ -209,6 +474,8 @@
    "new_money": 517343,
    "paper_only": false,
    "price": 0.67,
+   "price_after_15m": 0.66,
+   "price_after_15m_book": "novig",
    "price_american": -203,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.67,
@@ -304,6 +571,7 @@
    "side_label": "Grizzlies",
    "start_source": "odds",
    "start_utc": "2026-11-03T01:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Pelicans",
     "Grizzlies"
@@ -364,6 +632,8 @@
    "new_money": 198813,
    "paper_only": false,
    "price": 0.52,
+   "price_after_15m": 0.5175,
+   "price_after_15m_book": "kalshi",
    "price_american": -108,
    "price_rule": "ok",
    "price_when_first_seen": 0.52,
@@ -454,6 +724,7 @@
    "side_label": "Grizzlies (-5.5)",
    "start_source": "odds",
    "start_utc": "2026-11-03T01:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Pelicans",
     "Grizzlies"
@@ -520,6 +791,8 @@
    "new_money": 517744,
    "paper_only": false,
    "price": 0.39,
+   "price_after_15m": 0.39,
+   "price_after_15m_book": "novig",
    "price_american": 156,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.39,
@@ -615,6 +888,7 @@
    "side_label": "Thunder",
    "start_source": "odds",
    "start_utc": "2026-11-03T00:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Thunder",
     "Cavaliers"
@@ -675,6 +949,8 @@
    "new_money": 48885,
    "paper_only": false,
    "price": 0.59,
+   "price_after_15m": 0.5973,
+   "price_after_15m_book": "polymarket",
    "price_american": -144,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.59,
@@ -758,6 +1034,7 @@
    "side_label": "New Jersey",
    "start_source": "odds",
    "start_utc": "2026-11-04T00:30:00Z",
+   "still_actionable": true,
    "teams": [
     "Edmonton",
     "New Jersey"
@@ -818,6 +1095,8 @@
    "new_money": 39730,
    "paper_only": false,
    "price": 0.36,
+   "price_after_15m": 0.3568,
+   "price_after_15m_book": "polymarket",
    "price_american": 178,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.36,
@@ -895,6 +1174,7 @@
    "side_label": "Nashville",
    "start_source": "odds",
    "start_utc": "2026-11-04T01:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Carolina",
     "Nashville"
@@ -3126,8 +3406,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.7802,
-   "clv_cents": -0.2,
+   "close_price": 0.7826,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -3294,8 +3574,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": 0.5,
+   "close_price": 0.495,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -4305,8 +4585,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 0.0,
+   "close_price": 0.51,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -4447,8 +4727,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.56,
-   "clv_cents": 6.0,
+   "close_price": 0.55,
+   "clv_cents": 5.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -5194,8 +5474,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": 0.0,
+   "close_price": 0.52,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -5750,8 +6030,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.45,
-   "clv_cents": -4.0,
+   "close_price": 0.46,
+   "clv_cents": -3.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -6057,8 +6337,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.78,
-   "clv_cents": 12.0,
+   "close_price": 0.77,
+   "clv_cents": 11.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -6696,8 +6976,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.54,
-   "clv_cents": 3.0,
+   "close_price": 0.59,
+   "clv_cents": 8.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -8964,8 +9244,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": 0.0,
+   "close_price": 0.52,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -11037,8 +11317,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.79,
-   "clv_cents": 14.0,
+   "close_price": 0.77,
+   "clv_cents": 12.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -12425,8 +12705,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.83,
-   "clv_cents": -1.0,
+   "close_price": 0.82,
+   "clv_cents": -2.0,
    "confirmed_after_min": 6,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -12851,8 +13131,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.59,
-   "clv_cents": 5.0,
+   "close_price": 0.58,
+   "clv_cents": 4.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
