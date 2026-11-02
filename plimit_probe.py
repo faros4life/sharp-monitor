@@ -70,7 +70,42 @@ def hr_check(fid):
     return L
 
 
+def books_check(fid, books):
+    """Free-only: which books carry a limit (or exchange depth) in history for one fixture. 3 books per call."""
+    L = [f"LIMIT COVERAGE BY BOOK (free history calls only), fixture {fid}"]
+    for i in range(0, len(books), 3):
+        grp = books[i:i + 3]
+        h = get("/historical-odds", fixtureId=fid, bookmakers=",".join(grp))
+        if isinstance(h, dict) and h.get("_error"):
+            L.append(f"  {grp}: HTTP {h['_error']} {h['_body'][:120]}")
+            continue
+        for bk in grp:
+            mk = ((h.get("bookmakers") or {}).get(bk) or {}).get("markets") or {}
+            n = lim = ex_ = 0
+            samp = None
+            for m in mk.values():
+                for o in (m.get("outcomes") or {}).values():
+                    for v in (o.get("players") or {}).values():
+                        for t in (v if isinstance(v, list) else []):
+                            n += 1
+                            if t.get("limit") is not None:
+                                lim += 1
+                                samp = samp or t
+                            if t.get("exchangeMeta"):
+                                ex_ += 1
+                                samp = samp or t
+            L.append(f"  {bk}: markets {len(mk)}, ticks {n}, with limit {lim}, with exchange depth {ex_}"
+                     + (f" | sample {json.dumps(samp)[:220]}" if samp else ""))
+    return L
+
+
 def main():
+    if os.environ.get("HR_FIXTURE") and os.environ.get("HR_BOOKS"):
+        L = books_check(os.environ["HR_FIXTURE"], [b.strip() for b in os.environ["HR_BOOKS"].split(",") if b.strip()])
+        L += ["", "Calls: " + "; ".join(f"{p} {c}" for p, c in CALLS) + " (historical-odds is free)"]
+        ex.send("Bets LIMIT COVERAGE BY BOOK (OddsPapi)", "\n".join(L))
+        print(f"coverage check emailed: {len(CALLS)} calls")
+        return
     if os.environ.get("HR_FIXTURE"):
         L = hr_check(os.environ["HR_FIXTURE"])
         L += ["", "Calls: " + "; ".join(f"{p} {c}" for p, c in CALLS) + " (historical-odds is free)"]
