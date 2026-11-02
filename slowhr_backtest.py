@@ -21,6 +21,95 @@ import tracker_build as tb
 
 ET = tb.ET
 LEAGUES = ("NFL", "NCAAF", "NHL")
+EXB = ["novig.us", "prophetx", "kalshi", "polymarket.us"]
+KEYS = (3, 7, 10, 14)
+
+
+def _hr_main(book, mkmap, sid, typ, when):
+    """Closest-to-even line for that market type at that time (fresh ticks), or None."""
+    best = None
+    for mid, (s, t, hcap, outs) in mkmap.items():
+        if s != sid or t != typ or mid not in book:
+            continue
+        nmo = {v: k for k, v in outs.items()}
+        a, b = (nmo.get("Over"), nmo.get("Under")) if typ == "totals" else (nmo.get("1"), nmo.get("2"))
+        pa = sh.at(sh.ticks((book[mid].get("outcomes") or {}).get(a) or {}), when)
+        pb = sh.at(sh.ticks((book[mid].get("outcomes") or {}).get(b) or {}), when)
+        if not pa or not pb or when - min(pa[0], pb[0]) > timedelta(hours=24):
+            continue
+        d = abs(1 / pa[1] - 1 / pb[1])
+        if best is None or d < best[0]:
+            best = (d, hcap)
+    return best[1] if best else None
+
+
+def enrich(x, lg, pin, hr, h, mkmap, start):
+    """Muse 15:52 conditioning fields: market, side class (fav/dog by POINTS, over/under), key numbers, still bettable at
+    +1 / +5 min after detection, and whether other books (exchanges) moved with Pinnacle."""
+    sid, typ, side, line = cl.SPORT[lg], x["type"], x["side"], x["line"]
+    tc, tm = cl.tp(x["t_confirm"]), cl.tp(x["t_move"])
+    mid = outs = None
+    for m, (s, t, hcap, o) in mkmap.items():
+        if s == sid and t == typ and m in hr and (typ == "moneyline" or (line is not None and abs(hcap - line) < 1e-9)):
+            mid, outs = m, o
+            break
+    oid = {v: k for k, v in (outs or {}).items()}.get(side)
+    # side class
+    if typ == "totals":
+        x["sclass"] = "under" if side == "Under" else "over"
+    else:
+        if typ == "spreads":
+            mine = line if side == "1" else -line
+        else:
+            spl = None
+            best = None
+            for m, (s, t, hcap, o) in mkmap.items():
+                if s == sid and t == "spreads" and m in pin:
+                    tw = cl.two_way(pin, m, tm)
+                    if len(tw) == 2:
+                        lim = min(v[2] for v in tw.values())
+                        if best is None or lim > best:
+                            best, spl = lim, hcap
+            mine = None if spl is None else (spl if side == "1" else -spl)
+        x["sclass"] = "pick" if mine in (None, 0) else ("fav" if mine < 0 else "dog")
+    # key numbers (football spreads)
+    x["key"] = None
+    if typ == "spreads" and lg in ("NFL", "NCAAF"):
+        import re
+        mm = re.search(r"Pinnacle ([-+]?[0-9.]+) -> ([-+]?[0-9.]+)", x["detail"])
+        a, b = (abs(float(mm.group(1))), abs(float(mm.group(2)))) if mm else (abs(line), abs(line))
+        lo_, hi_ = min(a, b), max(a, b)
+        if a != b and any(lo_ <= k <= hi_ for k in KEYS):
+            x["key"] = "move crosses/lands on 3/7/10/14"
+        elif abs(line) in KEYS or any(abs(abs(line) - k) == 0.5 for k in KEYS):
+            x["key"] = "stale line on/next to a key number"
+        else:
+            x["key"] = "no key number"
+    # still bettable at Hard Rock 1 and 5 minutes after detection (same line still Hard Rock's, price within 2c)
+    for mins in (1, 5):
+        t = tc + timedelta(minutes=mins)
+        ok = False
+        if mid and oid and t <= start:
+            tk = sh.at(sh.ticks((hr[mid].get("outcomes") or {}).get(oid) or {}), t)
+            cur = _hr_main(hr, mkmap, sid, typ, t) if typ != "moneyline" else line
+            ok = bool(tk) and abs(sh.cents(tk[1]) - sh.cents(x["hr_price"])) <= 2 and (typ == "moneyline" or cur == line)
+        x[f"live{mins}"] = ok
+    # did the other books (exchanges) move with Pinnacle?
+    moved = False
+    for bk in EXB:
+        xb = cl.book_markets(h, bk)
+        if not xb:
+            continue
+        if x["kind"] == "L" and typ != "moneyline":
+            l0, l1 = _hr_main(xb, mkmap, sid, typ, tm - timedelta(minutes=15)), _hr_main(xb, mkmap, sid, typ, tc)
+            if l0 is not None and l1 is not None and l0 != l1:
+                moved = True
+        elif mid and oid and mid in xb:
+            s0 = sh.at(sh.ticks((xb[mid].get("outcomes") or {}).get(oid) or {}), tm - timedelta(minutes=15))
+            s1 = sh.at(sh.ticks((xb[mid].get("outcomes") or {}).get(oid) or {}), tc)
+            if s0 and s1 and sh.cents(s0[1]) - sh.cents(s1[1]) >= 4:
+                moved = True
+    x["wide"] = moved
 FROM = datetime.fromisoformat(os.environ.get("BT_FROM", "") or "2026-10-12").replace(tzinfo=timezone.utc)
 
 
@@ -38,7 +127,7 @@ def main():
     sh.FLOOR = FROM
     S, games, no_hr, errs = [], 0, 0, 0
     for s, fid, f in todo:
-        h = hc.get_hist(fid, ["pinnacle", "hardrockbet"], s)
+        h = hc.get_hist(fid, ["pinnacle", "hardrockbet"] + EXB, s)
         if isinstance(h, dict) and h.get("_error"):
             errs += 1
             continue
@@ -51,6 +140,10 @@ def main():
             x["day"] = s.astimezone(ET).strftime("%Y-%m-%d")
             if x.get("close_fair") is not None:
                 x["clv_pct"] = round(100 * (x["close_fair"] * x["hr_price"] - 1), 2)
+            try:
+                enrich(x, f["lg"], pin, hr, h, mkmap, s)
+            except Exception:
+                x.setdefault("sclass", None)
             S.append(x)
     days = sorted({x["day"] for x in S})
     mid = days[(len(days) - 1) // 2] if days else ""
@@ -77,6 +170,33 @@ def main():
          f"  LATE (final 30 min, own split): {stats([x for x in S if x['late']])}"]
     for k in ("L", "P"):
         L.append(f"  Type {k}: {stats([x for x in J if x['kind'] == k])}")
+    # Muse 15:52: PRIMARY buckets (may trigger the alert rule) and SECONDARY (refine only)
+    L += ["", "PRIMARY BUCKETS (Muse 15:52) - each with FIT / CHECK:"]
+
+    def fc(xs):
+        f_, c_ = [x for x in xs if x["day"] <= mid], [x for x in xs if x["day"] > mid]
+        return f"{stats(xs)}\n        FIT {stats(f_)}\n        CHECK {stats(c_)}" + ("   << HOLDS BOTH HALVES" if ok(f_) and ok(c_) and len(f_) >= 15 and len(c_) >= 15 else "")
+    for typ in ("totals", "spreads", "moneyline"):
+        L.append(f"  Market {typ}: " + fc([x for x in J if x["type"] == typ]))
+    for sc in ("under", "over", "dog", "fav", "pick"):
+        xs = [x for x in J if x.get("sclass") == sc]
+        if xs:
+            L.append(f"  Side {sc}: " + fc(xs))
+    for typ, scs in (("totals", ("under", "over")), ("spreads", ("dog", "fav")), ("moneyline", ("dog", "fav"))):
+        for sc in scs:
+            xs = [x for x in J if x["type"] == typ and x.get("sclass") == sc]
+            if xs:
+                L.append(f"  {typ} x {sc}: " + fc(xs))
+    for mins in (1, 5):
+        L.append(f"  Still bettable at Hard Rock {mins} min after detection: " + fc([x for x in J if x.get(f"live{mins}")]))
+        L.append(f"  Gone within {mins} min: " + fc([x for x in J if f"live{mins}" in x and not x.get(f"live{mins}")]))
+    L += ["", "SECONDARY BUCKETS (refine only; cannot trigger the alert rule on their own):"]
+    for kb in ("move crosses/lands on 3/7/10/14", "stale line on/next to a key number", "no key number"):
+        xs = [x for x in J if x.get("key") == kb]
+        if xs:
+            L.append(f"  Football spreads, {kb}: {stats(xs)}")
+    L.append(f"  Other books (exchanges) moved with Pinnacle: {stats([x for x in J if x.get('wide')])}")
+    L.append(f"  Pinnacle moved alone: {stats([x for x in J if 'wide' in x and not x.get('wide')])}")
     for lg in LEAGUES:
         for typ in ("totals", "spreads", "moneyline"):
             xs = [x for x in J if x["league"] == lg and x["type"] == typ]
