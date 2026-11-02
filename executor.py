@@ -1663,8 +1663,8 @@ def main():
         try:
             ent = feed_entry(p, feed) or {}
             if ent:
-                fs = agree_rules.first_side(ent, feed)
-                if fs:   # coded fix 2 (Oct 26): first side stays against ANY earlier sent alert
+                fs = agree_rules.first_side(ent, feed, live_only=True)
+                if fs:   # coded fix 2 (Oct 26) + Nov 2 (Peter): only an earlier LIVE-ELIGIBLE sent alert keeps the first side
                     ft = iso_t(fs.get("alert_utc"))
                     results.append({"play": p, "pid": pid(p["play_key"]), "verdict": "SKIP", "entry": ent,
                                     "reason": f"CONFLICT: opposite side of an earlier sent alert ({fs.get('bet')}, "
