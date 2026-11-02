@@ -97,9 +97,11 @@ def side_of(a):
     return re.split(r"\s[+-]\d|\sML\b|\sPK\b|\s\(", b)[0].strip()
 
 
-def first_side(a, feed):
+def first_side(a, feed, live_only=False):
     """Coded fix 2 (Oct 26): the earliest SENT alert on the OTHER side of this game+market, or None.
-    First side stays against ANY earlier sent alert, not only positions the executor took or can see."""
+    First side stays against ANY earlier sent alert, not only positions the executor took or can see.
+    live_only=True (Peter, Nov 2: "a no live play can't stop a live play"): only an earlier alert that was itself
+    phase-1 live-eligible (coded view) can block. Held positions are still blocked separately (positions.conflict)."""
     t0 = _t(a.get("alert_utc"))
     if t0 is None:
         return None
@@ -111,6 +113,8 @@ def first_side(a, feed):
             continue
         tx = _t(x.get("alert_utc"))
         if tx and tx < t0 and side_of(x) != mine:
+            if live_only and not phase1(x, True)[0]:
+                continue
             opp.append((tx, x))
     return min(opp, key=lambda z: z[0])[1] if opp else None
 
