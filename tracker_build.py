@@ -523,14 +523,37 @@ def read_novig():
     return op, se
 
 
+IMAP_CACHE = {"v": None, "b": {}, "m": {}}   # Nov 2: parsed emails by Gmail UID, kept in the encrypted state (fetch each once)
+IMAP_T = {}   # seconds per IMAP step (log only)
+
+
+def _uidvalidity(M):
+    try:
+        r = M.response("UIDVALIDITY")[1]
+        return r[0].decode() if r and r[0] else None
+    except Exception:
+        return None
+
+
 def bot_keys(M, days=2):
     """The bot's own bet keys (rows with a placed order) from its 'Bets LIVE:' emails - for tagging sources only.
     Uses Gmail's indexed search (X-GM-RAW); the executor's IMAP SUBJECT scan of All Mail took ~6 minutes per build."""
     import email
     import email.header
     import executor as ex
+    import time as _t
     keys = set()
-    for uid in ex.gsearch(M, f'subject:(Bets LIVE) newer_than:{days}d'):
+    t0 = _t.time()
+    uids = ex.gsearch(M, f'subject:(Bets LIVE) newer_than:{days}d')
+    IMAP_T["bot search"] = round(_t.time() - t0)
+    t0, n = _t.time(), 0
+    for uid in uids:
+        u = uid.decode() if isinstance(uid, bytes) else str(uid)
+        if u in IMAP_CACHE["b"]:
+            keys |= set(IMAP_CACHE["b"][u])
+            continue
+        n += 1
+        got = set()
         typ, d = M.uid("FETCH", uid, "(RFC822)")
         if typ != "OK" or not d or not d[0]:
             continue
@@ -540,32 +563,46 @@ def bot_keys(M, days=2):
             continue
         txt = ex.body_text(raw)
         i = txt.rfind("LEDGER (machine-readable")
-        if i < 0:
-            continue
-        try:
-            rows, _ = json.JSONDecoder().raw_decode(txt[txt.index("[", i):])
-        except Exception:
-            continue
-        for row in rows:
-            los = [row.get("live_order") or {}, row.get("live_rest") or {}] + [x or {} for x in (row.get("live_more") or [])]
-            if row.get("key") and any(lo.get("status") == "placed" and lo.get("order_id") for lo in los):
-                keys.add(row["key"])
+        if i >= 0:
+            try:
+                rows, _ = json.JSONDecoder().raw_decode(txt[txt.index("[", i):])
+            except Exception:
+                rows = None
+            if rows is None:
+                continue   # unreadable ledger: not cached, retried next build
+            for row in rows:
+                los = [row.get("live_order") or {}, row.get("live_rest") or {}] + [x or {} for x in (row.get("live_more") or [])]
+                if row.get("key") and any(lo.get("status") == "placed" and lo.get("order_id") for lo in los):
+                    got.add(row["key"])
+        IMAP_CACHE["b"][u] = sorted(got)
+        keys |= got
+    IMAP_T[f"bot fetch ({n} new of {len(uids)})"] = round(_t.time() - t0)
     return keys
 
 
 def read_manual_and_bot():
     """Peter's 'Bets manual' notes (Hard Rock etc.) + the bot's own live keys (to tag sources)."""
     import executor as ex
+    import time as _t
     man, keys = [], set()
+    t0 = _t.time()
     M = ex.imap_open()
+    IMAP_T["login+select"] = round(_t.time() - t0)
+    v = _uidvalidity(M)
+    if v and IMAP_CACHE.get("v") != v:   # mailbox UIDs renumbered: drop the cache
+        IMAP_CACHE.update({"v": v, "b": {}, "m": {}})
     try:
         keys = bot_keys(M, days=2)   # Nov 2 (Peter: tracker too slow): indexed Gmail search, not a 6-minute IMAP scan;
         # older bot bets keep their stored 'bot' tag (see prev source below)
+        t0 = _t.time()
         for uid in ex.gsearch(M, 'subject:"Bets manual" newer_than:10d'):
-            typ, data = M.uid("FETCH", uid, "(RFC822)")
-            if typ != "OK" or not data or not data[0]:
-                continue
-            for line in ex.body_text(data[0][1]).splitlines():
+            u = uid.decode() if isinstance(uid, bytes) else str(uid)
+            if u not in IMAP_CACHE["m"]:
+                typ, data = M.uid("FETCH", uid, "(RFC822)")
+                if typ != "OK" or not data or not data[0]:
+                    continue
+                IMAP_CACHE["m"][u] = [ln for ln in ex.body_text(data[0][1]).splitlines() if "MANUAL:" in ln]
+            for line in IMAP_CACHE["m"][u]:
                 m = re.match(r"\s*MANUAL:\s*(\{.*\})\s*$", line)
                 if not m:
                     continue
@@ -584,6 +621,7 @@ def read_manual_and_bot():
                             "game": d.get("game") or "", "bet": d.get("bet") or "", "league": (d.get("sport") or "").upper() or None,
                             "price": pr, "stake": stake, "to_pay": round(stake + win, 2) if win else None,
                             "source": "Peter (Hard Rock note" + (", est. stake)" if est else ")")})
+        IMAP_T["manual"] = round(_t.time() - t0)
     finally:
         M.logout()
     LOG["manual"] = f"ok {len(man)}"
@@ -795,12 +833,17 @@ def main():
             LOG[name] = f"failed ({type(e).__name__})"
         T[name] = round(_t.time() - t0)
     t0 = _t.time()
+    IMAP_CACHE.update(state.get("imap_cache") or {})
     try:
         man, keys = read_manual_and_bot()
     except (Exception, SystemExit) as e:
         man, keys = [], set()
         LOG["manual"] = f"failed ({type(e).__name__})"
     T["manual+bot"] = round(_t.time() - t0)
+    T.update(IMAP_T)
+    IMAP_CACHE["b"] = dict(list(IMAP_CACHE["b"].items())[-400:])
+    IMAP_CACHE["m"] = dict(list(IMAP_CACHE["m"].items())[-200:])
+    state["imap_cache"] = IMAP_CACHE
     t0 = _t.time()
     games = espn_games([d - timedelta(days=1), d, d + timedelta(days=1)])
     T["espn"] = round(_t.time() - t0)
