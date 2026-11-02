@@ -9,8 +9,8 @@ Every record keeps the RAW limit and the IMPLIED BASE = raw limit x (decimal pri
 OddsJam scale factor seen on Nov 2 (OddsJam limit = OddsPapi limit x 4/3 on all six markets checked); absolute tests
 are left to the report so the scale ruling can be applied either way.
 
-Q1 (main markets: full-game moneyline, spreads, totals incl. overtime): an EVENT is a tick where an outcome's implied
-base moves >= 25% from that outcome's previous tick (CUT down, RAISE up). One record per fixture / book / bet type /
+Q1 (main markets: full-game moneyline, spreads, totals incl. overtime): an EVENT is the first tick where an outcome's
+implied base has moved >= 25% from that outcome's FIRST SNAPSHOT OF THE GAME'S ET DAY (CUT down, RAISE up; Muse 11:35). One record per fixture / book / bet type /
 side / tick time (the line with the largest pre-move limit stands for the cluster, since Pinnacle moves every line).
 Q2 (player props, Pinnacle only): implied base vs the prop's FIRST snapshot of the ET day; MINOR cut 25-39%, MAJOR
 >= 40%; PERSISTENT = the reduced base holds on ticks spanning >= 10 min; TIMING = confirmed >= 2 h before start (later:
@@ -130,14 +130,23 @@ def q1_events(fid, fx, lg, bk, pm, meta, start):
         close = close_two_way(m, start)
         for oid, o in (m.get("outcomes") or {}).items():
             s = series(o, start)
-            for (t0, p0, l0, b0), (t1, p1, l1, b1) in zip(s, s[1:]):
-                if b0 <= 0:
+            if not s:
+                continue
+            # Muse 11:35 ruling: the reference is the outcome's FIRST SNAPSHOT OF THE ET DAY (game day), not the previous tick
+            ref = next((x for x in s if x[0].astimezone(ET).date() == start.astimezone(ET).date()), s[0])
+            t0, p0, l0, b0 = ref
+            if b0 <= 0:
+                continue
+            fired = set()
+            for (t1, p1, l1, b1) in s:
+                if t1 <= t0:
                     continue
                 ch = b1 / b0 - 1
-                if abs(ch) < MOVE:
+                if abs(ch) < MOVE or (ch < 0) in fired:
                     continue
+                fired.add(ch < 0)   # first CUT and first RAISE from the reference, per outcome
                 side = names.get(oid, oid)
-                k = (md["marketType"], side, iso(t1))
+                k = (md["marketType"], side, "CUT" if ch < 0 else "RAISE", iso(t1))
                 rec = {"fixture": fid, "league": lg, "game": f"{fx.get('participant1Name')} vs {fx.get('participant2Name')}",
                        "start": iso(start), "book": "P" if bk == "pinnacle" else "B", "type": md["marketType"],
                        "side": side, "team": (fx.get("participant1Name") if side == "1" else fx.get("participant2Name")) if side in ("1", "2") else side,
@@ -204,7 +213,7 @@ def q2_events(fid, fx, lg, pm, meta, start):
                     key = (pid, md.get("marketType"), str(day0))
                     first_of_day = key not in seen
                     seen.add(key)
-                    judged = (band == "MAJOR" and persistent and mins_before >= 120 and b_first >= 100 and first_of_day)
+                    judged = (band == "MAJOR" and persistent and mins_before >= 120 and b_first * OJ_SCALE >= 100 and first_of_day)   # floor in OddsJam dollars (Muse 11:35)
                     rec = {"fixture": fid, "league": lg, "game": f"{fx.get('participant1Name')} vs {fx.get('participant2Name')}",
                            "start": iso(start), "type": md.get("marketType"), "player_id": pid, "line": md.get("handicap"),
                            "side": names.get(oid, oid), "band": band, "cut_pct": round(100 * cut, 1), "t": iso(ct),
@@ -229,6 +238,8 @@ def main():
         st = tb.dec(json.load(open(STATE)))
     except Exception:
         st = {}
+    if st.get("v") != 2:   # v2 (Muse 11:35): Q1 reference = first snapshot of the ET day; Q2 floor in OddsJam dollars -> re-derive
+        st = {"v": 2, "billable": st.get("billable") or {}, "ncaaf_tid": st.get("ncaaf_tid")}
     st.setdefault("done", {})
     st.setdefault("q1", [])
     st.setdefault("q2", [])
