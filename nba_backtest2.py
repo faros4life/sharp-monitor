@@ -9,7 +9,7 @@ kept only if it improves the CHECK half (Muse rule).
   b) TIMING: OPEN (Pinnacle's first totals tick + 1 min) is primary; T-6h (the live model's post time) for comparison.
   c) PRICE: each sighting graded at Pinnacle's own price (PIN) and at each exchange's price on that side at that line,
      AFTER FEES (Peter 13:06: add Polymarket and Kalshi): NOVIG (no fee), PROPHETX (2% of winnings), KALSHI
-     (0.07 x P x (1-P) per contract), POLY = Polymarket US (no fee assumed), and BEST = the best after-fee exchange price.
+     (0.07 x P x (1-P) per contract), POLY = Polymarket US (executor taker model 0.0695 x P x (1-P), Muse 13:19), and BEST.
      An exchange's quote = its last tick at or before the sighting time if under 24 h old, else its first tick within
      2 h after (delay logged). DEPTH: the tick's 'limit' is logged where history carries it; not gettable proof.
 
@@ -179,7 +179,7 @@ def report(rows, why, n_games):
     L = [f"NBA TOTALS MODEL - BACKTEST #2 (HYPOTHESIS) | games {LO} to {HI} ET | FIT <= {SPLIT} < CHECK",
          "Tests: a) bias fix REG+B (our number + avg Pinnacle-close-minus-ours from EARLIER dates, >= 15 games);",
          "b) OPEN vs T-6h; c) price: PIN = Pinnacle's own; NOVIG / PROPHETX / KALSHI / POLY = that exchange AFTER FEES; BEST = best exchange.",
-         "CLV % = Pinnacle no-vig close at that line x after-fee decimal - 1. Fees: ProphetX 2% of winnings, Kalshi 0.07xPx(1-P), Novig/Poly 0.",
+         "CLV % = Pinnacle no-vig close at that line x after-fee decimal - 1. Fees: ProphetX 2% of winnings, Kalshi 0.07xPx(1-P), Polymarket US 0.0695xPx(1-P), Novig 0.",
          "Kept only if it improves the CHECK half. Exchange depth logged where history has it; not proof the price was gettable.",
          "", f"Games {n_games}; graded {len(rows)}; not graded: " + (", ".join(f"{v} x {k}" for k, v in why.items()) or "none"),
          "Games with exchange history: " + ", ".join(f"{px} {sum(1 for r in rows if px in r['xm'])}" for px in EXCH)]
