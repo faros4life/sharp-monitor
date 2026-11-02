@@ -109,22 +109,23 @@ def discover(fid):
         by.setdefault((m.get("sportId"), m.get("period"), m.get("marketType")), []).append(m)
     L.append(f"markets total {len(mk) if isinstance(mk, list) else mk}; basketball/football/hockey non-prop {len(rows)}")
     for k, v in sorted(by.items(), key=lambda kv: (kv[0][0], str(kv[0][1]), str(kv[0][2]))):
-        if k[1] not in ("fulltime", "full_time", "fulltime_ot", "ot", None) and "full" not in str(k[1]):
+        if str(k[1]) != "result" or any(w in str(k[2]) for w in ("winningmargin", "correctscore", "exactgoals", "halftime", "highestscoring")):
             continue
         ex1 = v[:3]
         L.append(f"  sport {k[0]} period {k[1]} type {k[2]}: {len(v)} markets; e.g. " + "; ".join(
-            f"{m['marketId']} '{m.get('marketName')}' h={m.get('handicap')} outs={[(o['outcomeId'], o['outcomeName']) for o in m.get('outcomes') or []]}" for m in ex1))
+            f"{m['marketId']} '{m.get('marketName')}' h={m.get('handicap')} outs={[(o['outcomeId'], o['outcomeName']) for o in (m.get('outcomes') or [])[:4]]}" for m in ex1))
     periods = sorted({str(m.get("period")) for m in rows})
     L.append("periods seen: " + ", ".join(periods))
     fx = get("/fixture", fixtureId=fid)
     L.append("fixture: " + json.dumps({k: (fx.get(k) if isinstance(fx, dict) else None) for k in ("participant1Name", "participant2Name", "startTime", "tournamentId", "statusId")}))
+    L.append("fixture keys: " + (",".join(sorted(fx.keys())) if isinstance(fx, dict) else str(fx)[:200]))
     h = get("/historical-odds", fixtureId=fid, bookmakers="pinnacle")
     pm = ((h.get("bookmakers") or {}).get("pinnacle") or {}).get("markets") or {} if isinstance(h, dict) else {}
     meta = {m["marketId"]: m for m in (mk if isinstance(mk, list) else [])}
     show = 0
     for mid, m in pm.items():
         md = meta.get(int(mid)) if str(mid).isdigit() else None
-        if not md or "full" not in str(md.get("period")):
+        if not md or str(md.get("period")) not in ("fulltime", "result"):
             continue
         last = {}
         for oid, o in (m.get("outcomes") or {}).items():
@@ -134,7 +135,7 @@ def discover(fid):
                 last[oid] = (t.get("price"), t.get("limit"))
         L.append(f"  pin market {mid} {md.get('marketType')} h={md.get('handicap')} '{md.get('marketName')}' last={last}")
         show += 1
-        if show >= 25:
+        if show >= 40:
             break
     return L
 
