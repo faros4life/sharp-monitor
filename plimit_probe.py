@@ -47,7 +47,36 @@ def walk(book):
     return n, k, s
 
 
+def hr_check(fid):
+    """Free-only: Hard Rock + Pinnacle history for one fixture (historical-odds is unmetered)."""
+    L = [f"HARD ROCK HISTORY CHECK (free calls only), fixture {fid}"]
+    h = get("/historical-odds", fixtureId=fid, bookmakers="hardrockbet,pinnacle")
+    for bk in ("hardrockbet", "pinnacle"):
+        b = ((h.get("bookmakers") or {}).get(bk) or {}) if isinstance(h, dict) else {}
+        mk = b.get("markets") or {}
+        ticks = sum(len(v) for m in mk.values() for o in (m.get("outcomes") or {}).values() for v in (o.get("players") or {}).values() if isinstance(v, list))
+        first = None
+        for m in mk.values():
+            for o in (m.get("outcomes") or {}).values():
+                for v in (o.get("players") or {}).values():
+                    if isinstance(v, list) and v:
+                        first = v[0]
+                        break
+                if first: break
+            if first: break
+        L.append(f"  {bk}: markets {len(mk)}, ticks {ticks}, sample tick {json.dumps(first)[:300] if first else '-'}")
+    if isinstance(h, dict) and h.get("_error"):
+        L.append(f"  HTTP {h['_error']} {h['_body']}")
+    return L
+
+
 def main():
+    if os.environ.get("HR_FIXTURE"):
+        L = hr_check(os.environ["HR_FIXTURE"])
+        L += ["", "Calls: " + "; ".join(f"{p} {c}" for p, c in CALLS) + " (historical-odds is free)"]
+        ex.send("Bets HR HISTORY CHECK (OddsPapi)", "\n".join(L))
+        print(f"HR check emailed: {len(CALLS)} calls")
+        return
     L = ["PLIMIT PROBE v2 (OddsPapi v4, free plan)", ""]
     if not KEY:
         ex.send("Bets PLIMIT PROBE", "ODDSPAPI_KEY not set - nothing read.")
