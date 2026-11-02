@@ -1,6 +1,155 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-02T04:30:13Z",
+   "base_depth": 146705,
+   "best_price": 0.5586,
+   "best_price_american": -127,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.56,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-02",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -3879,
+     "new_this_side": 25118,
+     "other_side": 104597,
+     "other_side_all_levels": 171566,
+     "ratio": 0.6,
+     "this_side": 64605,
+     "this_side_all_levels": 182576
+    },
+    "polymarket": {
+     "heavier_side": false,
+     "label": "Sharks",
+     "price": 0.56,
+     "this_side": 18763
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "San Jose Sharks",
+     "price": 0.5536,
+     "this_side": 850
+    }
+   },
+   "fade_price": 0.44,
+   "first_seen_utc": "2026-11-02T04:20:10Z",
+   "game": "Calgary vs San Jose",
+   "key": "kalshi|KXNHLGAME-26NOV02CGYSJ|ml|1",
+   "lead_min": 1290,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 25118,
+   "paper_only": false,
+   "price": 0.56,
+   "price_american": -127,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.56,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -140
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -133
+    },
+    "betopenly": {
+     "point": null,
+     "price": -128
+    },
+    "betrivers": {
+     "point": null,
+     "price": -139
+    },
+    "betus": {
+     "point": null,
+     "price": -135
+    },
+    "bovada": {
+     "point": null,
+     "price": -137
+    },
+    "draftkings": {
+     "point": null,
+     "price": -135
+    },
+    "fanatics": {
+     "point": null,
+     "price": -140
+    },
+    "fanduel": {
+     "point": null,
+     "price": -142
+    },
+    "kalshi": {
+     "point": null,
+     "price": -127
+    },
+    "lowvig": {
+     "point": null,
+     "price": -133
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -138
+    },
+    "novig": {
+     "point": null,
+     "price": -125
+    },
+    "polymarket": {
+     "point": null,
+     "price": -127
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -127
+    },
+    "prophetx": {
+     "point": null,
+     "price": -124
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -136
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNHLGAME-26NOV02CGYSJ-SJ"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "San Jose",
+   "side_label": "San Jose",
+   "start_source": "odds",
+   "start_utc": "2026-11-03T02:00:00Z",
+   "teams": [
+    "Calgary",
+    "San Jose"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-02T04:20:10Z",
    "base_depth": 42721,
    "best_price": 0.465,
@@ -162,8 +311,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.61,
-   "clv_cents": 0.0,
+   "close_price": 0.62,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -200,6 +349,8 @@
    "new_money": 39199,
    "paper_only": false,
    "price": 0.61,
+   "price_after_15m": 0.615,
+   "price_after_15m_book": "novig",
    "price_american": -156,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.61,
@@ -298,6 +449,7 @@
    "side_label": "Cleveland",
    "start_source": "odds",
    "start_utc": "2026-11-03T00:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Oklahoma City",
     "Cleveland"
@@ -320,8 +472,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.65,
-   "clv_cents": 0.0,
+   "close_price": 0.64,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -1581,8 +1733,10 @@
     }
    },
    "fade_price": 0.505,
+   "fade_units": 0.96,
    "first_seen_utc": "2026-11-02T01:00:14Z",
    "game": "Philadelphia Eagles at Washington Commanders",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 5.5, \"px_event\": 1700008917, \"px_market\": 223, \"side\": \"0\"}",
    "lead_min": 14,
    "league": "NFL",
@@ -1667,11 +1821,12 @@
     "px_market": 223,
     "side": "0"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-11-02T04:30:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Philadelphia Eagles",
@@ -1683,7 +1838,7 @@
     "Washington Commanders"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-02T01:05:54Z",
@@ -2290,8 +2445,10 @@
     }
    },
    "fade_price": 0.5,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-02T00:20:10Z",
    "game": "Philadelphia Eagles @ Washington Commanders",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a15b22-b24d-7ba2-9887-a10816670377\", \"outcome_id\": \"01a15b22-b24d-7ba2-9887-a11689cb8501\"}",
    "lead_min": 50,
    "league": "NFL",
@@ -2377,13 +2534,14 @@
     "market_id": "01a15b22-b24d-7ba2-9887-a10816670377",
     "outcome_id": "01a15b22-b24d-7ba2-9887-a11689cb8501"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "prophetx"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-02T04:30:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Washington Commanders",
@@ -2396,7 +2554,7 @@
     "Washington Commanders"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.98
   },
   {
    "alerted_utc": "2026-11-02T00:20:10Z",
@@ -2602,8 +2760,10 @@
     }
    },
    "fade_price": 0.3077,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-02T00:00:18Z",
    "game": "Philadelphia Eagles at Washington Commanders",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 0, \"px_event\": 1700008917, \"px_market\": 219, \"side\": \"1\"}",
    "lead_min": 70,
    "league": "NFL",
@@ -2698,7 +2858,7 @@
     "px_market": 219,
     "side": "1"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "kalshi",
@@ -2706,6 +2866,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-02T04:30:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Washington Commanders",
@@ -2718,7 +2879,7 @@
     "Washington Commanders"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.43
   },
   {
    "alerted_utc": "2026-11-01T23:50:09Z",
@@ -2763,8 +2924,10 @@
     }
    },
    "fade_price": 0.505,
+   "fade_units": 0.98,
    "first_seen_utc": "2026-11-01T23:40:09Z",
    "game": "Philadelphia Eagles @ Washington Commanders",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a15b22-b24c-7252-8f15-8544ef1337f3\", \"outcome_id\": \"01a15b22-b24c-7252-8f15-8552d0ef43e6\"}",
    "lead_min": 90,
    "league": "NFL",
@@ -2850,7 +3013,7 @@
     "market_id": "01a15b22-b24c-7252-8f15-8544ef1337f3",
     "outcome_id": "01a15b22-b24c-7252-8f15-8552d0ef43e6"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "kalshi",
@@ -2858,6 +3021,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-02T04:30:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -2870,7 +3034,7 @@
     "Washington Commanders"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-01T22:30:13Z",
@@ -2916,6 +3080,7 @@
     }
    },
    "fade_price": 0.5,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-01T22:20:09Z",
    "game": "Philadelphia vs Washington: Total Points",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNFLTOTAL-26NOV01PHIWAS-41\"}",
@@ -3003,11 +3168,12 @@
     "kalshi_side": "no",
     "market_ticker": "KXNFLTOTAL-26NOV01PHIWAS-41"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-11-02T04:30:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -3020,7 +3186,7 @@
     "Washington"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.96
   },
   {
    "alerted_utc": "2026-11-01T22:10:09Z",
@@ -3211,8 +3377,10 @@
     }
    },
    "fade_price": 0.515,
+   "fade_units": 0.94,
    "first_seen_utc": "2026-11-01T21:20:11Z",
    "game": "Philadelphia Eagles @ Washington Commanders",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a15b22-b24d-7ba2-9887-a10816670377\", \"outcome_id\": \"01a15b22-b24d-7ba2-9887-a120278535ee\"}",
    "lead_min": 230,
    "league": "NFL",
@@ -3298,7 +3466,7 @@
     "market_id": "01a15b22-b24d-7ba2-9887-a10816670377",
     "outcome_id": "01a15b22-b24d-7ba2-9887-a120278535ee"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "kalshi",
@@ -3306,6 +3474,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-02T04:30:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Philadelphia Eagles",
@@ -3318,7 +3487,7 @@
     "Washington Commanders"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-01T21:30:13Z",
@@ -4726,8 +4895,10 @@
     }
    },
    "fade_price": 0.3,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-01T19:30:13Z",
    "game": "Philadelphia Eagles @ Washington Commanders",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a15b22-b24c-7252-8f15-85a2f0f57940\", \"outcome_id\": \"01a15b22-b24c-7252-8f15-85bfc2ba9780\"}",
    "lead_min": 340,
    "league": "NFL",
@@ -4820,7 +4991,7 @@
     "market_id": "01a15b22-b24c-7252-8f15-85a2f0f57940",
     "outcome_id": "01a15b22-b24c-7252-8f15-85bfc2ba9780"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "kalshi",
@@ -4828,6 +4999,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-02T04:30:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Washington Commanders",
@@ -4840,7 +5012,7 @@
     "Washington Commanders"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.42
   },
   {
    "alerted_utc": "2026-11-01T19:30:13Z",
@@ -9043,6 +9215,7 @@
     }
    },
    "fade_price": 0.52,
+   "fade_units": 0.86,
    "first_seen_utc": "2026-11-01T15:53:22Z",
    "game": "Philadelphia vs Washington: Spread",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNFLSPREAD-26NOV01PHIWAS-WAS6\"}",
@@ -9130,13 +9303,14 @@
     "kalshi_side": "no",
     "market_ticker": "KXNFLSPREAD-26NOV01PHIWAS-WAS6"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-02T04:30:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Philadelphia",
@@ -9149,7 +9323,7 @@
     "Washington"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-01T15:53:22Z",
@@ -11788,6 +11962,7 @@
     }
    },
    "fade_price": 0.49,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-01T14:03:34Z",
    "game": "Philadelphia vs Washington: Spread",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNFLSPREAD-26NOV01PHIWAS-WAS6\"}",
@@ -11875,11 +12050,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNFLSPREAD-26NOV01PHIWAS-WAS6"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settled_utc": "2026-11-02T04:30:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Washington",
@@ -11892,7 +12068,7 @@
     "Washington"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.87
   },
   {
    "alerted_utc": "2026-11-01T14:10:11Z",
@@ -16281,6 +16457,7 @@
     }
    },
    "fade_price": 0.3,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-01T06:30:13Z",
    "game": "Philadelphia vs Washington",
    "key": "kalshi|KXNFLGAME-26NOV01PHIWAS|ml|1",
@@ -16376,7 +16553,7 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNFLGAME-26NOV01PHIWAS-WAS"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig",
@@ -16384,6 +16561,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-02T04:30:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Washington",
@@ -16396,7 +16574,7 @@
     "Washington"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.42
   },
   {
    "alerted_utc": "2026-11-01T05:50:10Z",
