@@ -274,7 +274,7 @@ td{{padding:5px 6px;border-bottom:1px solid var(--line);vertical-align:top}}.r{{
 .filters button.on{{border-color:var(--fg);font-weight:600}}
 @media (max-width:640px){{.hide-m{{display:none}}.ex{{min-width:7rem}}.why{{max-width:11rem}}}}
 </style></head><body><div class="wrap">
-<h1>Bets Board</h1><p class="sub">Updated {stamp}. Rebuilds itself after every liquidity run; this page reloads every 5 minutes.</p>
+<h1>Bets Board</h1><p class="sub"><b>Last updated {stamp}</b> <span id="ago" data-t="{now.isoformat()}"></span> · <span id="ld"></span>. Rebuilds itself after every liquidity run; this page reloads every 5 minutes.</p>
 <div class="tiles"><div class="tile"><div class="l">PLAY calls open now</div><div class="n">{sum(1 for r in plays if r["status"] == "still there")}</div></div>
 <div class="tile"><div class="l">Today's PLAY calls graded</div><div class="n">{rec(plays)}</div></div>
 <div class="tile"><div class="l">Today's LEAN calls graded</div><div class="n">{rec([r for r in rows if r["tag"] == "LEAN"])}</div></div>
@@ -288,6 +288,8 @@ td{{padding:5px 6px;border-bottom:1px solid var(--line);vertical-align:top}}.r{{
 <div class="scroll"><table><thead><tr><th>Game</th><th>Bet type</th><th>First money on</th><th class="r">First $</th><th>Time</th><th>Later money on</th><th class="r">Later $</th><th>Time</th><th>History favors</th></tr></thead>
 <tbody>{fl or "<tr><td colspan=9 class=muted>No flips today.</td></tr>"}</tbody></table></div></div>
 </div><script>
+(()=>{{const a=document.getElementById('ago'),l=document.getElementById('ld'),t=new Date(a.dataset.t),f=x=>x.toLocaleTimeString('en-US',{{hour:'numeric',minute:'2-digit'}});
+l.textContent='page loaded '+f(new Date());const u=()=>{{const m=Math.round((Date.now()-t)/60000);a.textContent='('+(m<1?'just now':m+' min ago')+')';}};u();setInterval(u,30000);}})();
 document.querySelectorAll('.filters button').forEach(b=>b.onclick=()=>{{
 document.querySelectorAll('.filters button').forEach(x=>x.classList.toggle('on',x===b));const f=b.dataset.f;
 document.querySelectorAll('tbody tr[data-league]').forEach(tr=>{{tr.style.display=!f||(f==='live'?(tr.dataset.tag==='PLAY'||tr.dataset.tag==='LEAN'):tr.dataset.league===f)?'':'none';}});}});
