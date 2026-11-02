@@ -154,12 +154,18 @@ def espn_games(days):
     return games
 
 
-def match_game(bet, games):
+def match_game(bet, games, near=None):
+    """near: a datetime the game must start within 36 h of (settled bets: their settle time), so an old bet is never
+    pinned to this week's game between the same teams."""
     bt = toks(bet.get("game")) | toks(bet.get("bet"))
     best, score = None, 0
     for g in games:
         if bet.get("league") and bet["league"] != g["league"]:
             continue
+        if near is not None:
+            gs = tparse(g.get("start"))
+            if not gs or abs((gs - near).total_seconds()) > 36 * 3600:
+                continue
         hits = sum(1 for t in g["teams"] if (t["toks"] & bt) or (t["abbr"] and t["abbr"] in bt))
         if hits > score or (hits == score and best and g["start"] and bet.get("date") and g["start"][:10] == bet["date"]):
             best, score = g, hits
@@ -692,9 +698,17 @@ def main():
     if extra:
         games += espn_games(sorted(extra)[:8])
     for b in bets.values():
+        # undo an earlier bad pin: a game more than 2 days from when the bet settled is not its game
+        gs, ss = tparse(b.get("game_start")), tparse(b.get("settled"))
+        if gs and ss and abs((gs - ss).total_seconds()) > 48 * 3600 and b.get("book") != "Novig":
+            for f in ("game_start", "teams", "teams_final", "g_state", "g_detail"):
+                b.pop(f, None)
         if not b.get("result") or b.get("teams_final"):
             continue
-        g = match_game(b, games)
+        near = tparse(b.get("game_start")) or tparse(b.get("settled"))
+        if not near:
+            continue
+        g = match_game(b, games, near)
         if g:
             attach(b, g)
     # bets that left the open list without a site settlement (Novig, manual): grade from the final score
