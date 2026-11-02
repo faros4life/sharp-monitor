@@ -12,10 +12,11 @@ LIQ-PULL-FADE: a row with new money >= $100k and confirmed whose money is detect
   start -> paper-bet the OPPOSITE side of the same market at 1 - the pulled side's monitor price at detection
   (price_source=monitor). Pulls detected < 30 min pre-start are logged observe-only. Bars: readout 40; kill at 30 if
   <= 0.00u/play.
-LIQ-SOLO (Nov 1, Peter; bars to be set by Muse): a moneyline or total row enters at the LAST snapshot taken >= 60 min
+LIQ-SOLO (Nov 1, Peter; pre-registered by Muse, VALUE LAB): a moneyline or total row enters at the LAST snapshot taken >= 60 min
   before start if, at that snapshot, status = still there, NOT confirmed (rule_met false: big money on one book only),
   new money >= $100k. Paper bet = that side at the monitor price. Backtest (hypothesis only, hindsight): unconfirmed
-  rows that stayed, $100k+, 49-23 +13.2u; unconfirmed ML that stayed 118-52 +15.5u.
+  rows that stayed, $100k+, 49-23 +13.2u; unconfirmed ML that stayed 118-52 +15.5u. Spreads excluded. Bars: readout
+  at 50 resulted; promotion needs >= +0.08u/play overall AND ML split >= +0.05 AND CLV >= 0; kill at 40 if <= 0.00u/play.
 Grading: flat 1.00u risked at the entry price (win pays (1-p)/p), from the liquidity feed's result. Forward from
 Mon Nov 2, 2026 00:00 ET; the Oct 22-31 backtest is never part of the record.
 """
@@ -76,7 +77,8 @@ def main():
                              "book": r["book"], "new_money": round(r["new"]), "status": r["status"],
                              "confirmed": r["conf"], "tag": r["tag"], "start_utc": x.get("start_utc"),
                              "snapshot_utc": now.strftime("%Y-%m-%dT%H:%M:%SZ"), "mins_to_start": round(mins),
-                             "entered": ok, "price": p, "price_source": "monitor"}
+                             "entered": ok, "price": p, "price_source": "monitor",
+                             "headline": r["league"] in HEAD}   # Muse: NHL+NBA+NFL headline; others observe-only
             # LIQ-PULL-FADE: first time we see a qualifying pull
             if r["new"] >= 100_000 and r["conf"] and x.get("pulled") and k not in pf:
                 pu = bb.t(x.get("pulled_utc")) or now
