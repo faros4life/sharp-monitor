@@ -1,0 +1,32 @@
+name: nba-backtest2
+
+# On demand: NBA totals model backtest #2 (HYPOTHESIS): bias fix, open timing, Novig price. ESPN box scores (public) + Pinnacle from OddsPapi free
+# history (one billable /fixtures call). Private email; the log prints counts only. Reads only; writes nothing.
+on:
+  workflow_dispatch:
+    inputs:
+      bt_from: {required: false, type: string, default: "2026-10-21"}
+      bt_to: {required: false, type: string, default: ""}
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: NBA model backtest 2 (private email)
+        env:
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
+          BT_FROM: ${{ inputs.bt_from }}
+          BT_TO: ${{ inputs.bt_to }}
+        run: python -u nba_backtest2.py
