@@ -1,0 +1,32 @@
+name: bucket-report
+
+# Bucket report (paper, HYPOTHESIS ONLY): the standard bucket list (BUCKETS.md) applied to every graded record we hold -
+# EV study sightings and maker posts, liquidity board rows, ntfy alerts and the CLV ledger (bot / ntfy played / Street
+# Value / other). Reads stored files only: no OddsPapi calls. Private email; the log prints counts only.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          ref: ev-study
+          path: ev-study
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Bucket report (private email)
+        env:
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+        run: python -u bucket_report.py
