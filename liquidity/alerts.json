@@ -1,6 +1,161 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-02T00:20:10Z",
+   "base_depth": 217050,
+   "best_price": 0.465,
+   "best_price_american": 115,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.47,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-01",
+   "depth_by_book": {
+    "novig": {
+     "heavier_side": false,
+     "label": "LAC (0)",
+     "price": 0.465,
+     "this_side": 67169
+    },
+    "polymarket": {
+     "new_other_side": 7404,
+     "new_this_side": 43659,
+     "other_side": 143800,
+     "other_side_all_levels": 213230,
+     "ratio": 1.3,
+     "this_side": 191797,
+     "this_side_all_levels": 259131
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "Los Angeles Clippers",
+     "price": 0.4651,
+     "this_side": 22202
+    }
+   },
+   "fade_price": 0.54,
+   "first_seen_utc": "2026-11-02T00:10:10Z",
+   "game": "Clippers vs. Warriors",
+   "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"6242645\"}",
+   "lead_min": 70,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 43659,
+   "paper_only": false,
+   "price": 0.47,
+   "price_american": 113,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.47,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": 105
+    },
+    "betonlineag": {
+     "point": null,
+     "price": 104
+    },
+    "betopenly": {
+     "point": null,
+     "price": 110
+    },
+    "betrivers": {
+     "point": null,
+     "price": 105
+    },
+    "betus": {
+     "point": null,
+     "price": 100
+    },
+    "bovada": {
+     "point": null,
+     "price": 105
+    },
+    "draftkings": {
+     "point": null,
+     "price": 105
+    },
+    "fanatics": {
+     "point": null,
+     "price": 105
+    },
+    "fanduel": {
+     "point": null,
+     "price": 114
+    },
+    "kalshi": {
+     "point": null,
+     "price": 113
+    },
+    "limitless": {
+     "point": null,
+     "price": 109
+    },
+    "lowvig": {
+     "point": null,
+     "price": 106
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -101
+    },
+    "novig": {
+     "point": null,
+     "price": 115
+    },
+    "polymarket": {
+     "point": null,
+     "price": 113
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": 117
+    },
+    "prophetx": {
+     "point": null,
+     "price": 115
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": 105
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 0,
+    "pm_market_id": "6242645"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [
+    "Los Angeles Clippers +2.5 (-113)"
+   ],
+   "sharp_oppose": [],
+   "side": "Clippers",
+   "side_label": "Clippers",
+   "start_source": "polymarket",
+   "start_utc": "2026-11-02T01:30:00Z",
+   "teams": [
+    "Clippers",
+    "Warriors"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-02T00:10:10Z",
    "base_depth": 65181,
    "best_price": 0.7,
@@ -473,8 +628,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.68,
-   "clv_cents": 0.0,
+   "close_price": 0.69,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -619,8 +774,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.505,
-   "clv_cents": 1.5,
+   "close_price": 0.5,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -1204,8 +1359,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.6,
-   "clv_cents": 1.0,
+   "close_price": 0.59,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -7663,6 +7818,7 @@
     }
    },
    "fade_price": 0.52,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-01T15:10:09Z",
    "game": "Kansas City vs Denver: Total Points",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNFLTOTAL-26NOV01KCDEN-42\"}",
@@ -7750,7 +7906,7 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNFLTOTAL-26NOV01KCDEN-42"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig",
@@ -7758,6 +7914,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-02T00:20:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -7770,7 +7927,7 @@
     "Denver"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.0
   },
   {
    "alerted_utc": "2026-11-01T15:15:32Z",
@@ -9888,8 +10045,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.41,
-   "clv_cents": 1.0,
+   "close_price": 0.42,
+   "clv_cents": 2.0,
    "confirmed_after_min": 10,
    "date": "2026-11-01",
    "depth_by_book": {
@@ -13967,6 +14124,7 @@
     }
    },
    "fade_price": 0.52,
+   "fade_units": 0.86,
    "first_seen_utc": "2026-11-01T05:30:13Z",
    "game": "Kansas City vs Denver: Total Points",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNFLTOTAL-26NOV01KCDEN-41\"}",
@@ -14054,11 +14212,12 @@
     "kalshi_side": "no",
     "market_ticker": "KXNFLTOTAL-26NOV01KCDEN-41"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-11-02T00:20:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -14071,7 +14230,7 @@
     "Denver"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-01T05:30:13Z",
@@ -17575,6 +17734,7 @@
     }
    },
    "fade_price": 0.5,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-01T01:10:09Z",
    "game": "Kansas City vs Denver: Total Points",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNFLTOTAL-26NOV01KCDEN-41\"}",
@@ -17662,13 +17822,14 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNFLTOTAL-26NOV01KCDEN-41"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-02T00:20:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -17681,7 +17842,7 @@
     "Denver"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.92
   },
   {
    "alerted_utc": "2026-11-01T01:20:11Z",
