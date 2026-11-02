@@ -1,6 +1,288 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-02T19:10:11Z",
+   "base_depth": 517177,
+   "best_price": 0.7012,
+   "best_price_american": -235,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.69,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-03",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 3242,
+     "new_this_side": 282290,
+     "other_side": 70819,
+     "other_side_all_levels": 192075,
+     "ratio": 6.7,
+     "this_side": 474313,
+     "this_side_all_levels": 801462
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Miami Ohio",
+     "price": 0.697,
+     "this_side": 4594
+    }
+   },
+   "fade_price": 0.32,
+   "first_seen_utc": "2026-11-02T19:00:18Z",
+   "game": "Buffalo vs Miami (OH)",
+   "key": "kalshi|KXNCAAFGAME-26NOV03BUFFMOH|ml|1",
+   "lead_min": 1790,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 282290,
+   "paper_only": false,
+   "price": 0.69,
+   "price_american": -223,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.69,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -235
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -235
+    },
+    "betrivers": {
+     "point": null,
+     "price": -275
+    },
+    "betus": {
+     "point": null,
+     "price": -235
+    },
+    "bovada": {
+     "point": null,
+     "price": -245
+    },
+    "draftkings": {
+     "point": null,
+     "price": -238
+    },
+    "fanatics": {
+     "point": null,
+     "price": -245
+    },
+    "fanduel": {
+     "point": null,
+     "price": -265
+    },
+    "kalshi": {
+     "point": null,
+     "price": -223
+    },
+    "lowvig": {
+     "point": null,
+     "price": -235
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -265
+    },
+    "novig": {
+     "point": null,
+     "price": -223
+    },
+    "prophetx": {
+     "point": null,
+     "price": -230
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -240
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26NOV03BUFFMOH-MOH"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Miami",
+   "side_label": "Miami",
+   "start_source": "odds",
+   "start_utc": "2026-11-04T01:00:00Z",
+   "teams": [
+    "Buffalo",
+    "Miami"
+   ],
+   "top25": true,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-02T19:10:11Z",
+   "base_depth": 297328,
+   "best_price": 0.46,
+   "best_price_american": 117,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.46,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-02",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 54371,
+     "new_this_side": 356380,
+     "other_side": 345346,
+     "other_side_all_levels": 544193,
+     "ratio": 1.5,
+     "this_side": 528242,
+     "this_side_all_levels": 669741
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "MIA (0)",
+     "price": 0.46,
+     "this_side": 28676
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Miami Heat",
+     "price": 0.4608,
+     "this_side": 21544
+    }
+   },
+   "fade_price": 0.55,
+   "first_seen_utc": "2026-11-02T19:00:18Z",
+   "game": "Miami vs Los Angeles L",
+   "key": "kalshi|KXNBAGAME-26NOV02MIALAL|ml|0",
+   "lead_min": 470,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 356380,
+   "paper_only": false,
+   "price": 0.46,
+   "price_american": 117,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.46,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": 105
+    },
+    "betonlineag": {
+     "point": null,
+     "price": 105
+    },
+    "betrivers": {
+     "point": null,
+     "price": 102
+    },
+    "betus": {
+     "point": null,
+     "price": 105
+    },
+    "bovada": {
+     "point": null,
+     "price": 105
+    },
+    "draftkings": {
+     "point": null,
+     "price": 106
+    },
+    "fanatics": {
+     "point": null,
+     "price": 105
+    },
+    "fanduel": {
+     "point": null,
+     "price": 110
+    },
+    "kalshi": {
+     "point": null,
+     "price": 117
+    },
+    "limitless": {
+     "point": null,
+     "price": 113
+    },
+    "lowvig": {
+     "point": null,
+     "price": 107
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -104
+    },
+    "novig": {
+     "point": null,
+     "price": 117
+    },
+    "polymarket": {
+     "point": null,
+     "price": 122
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": 117
+    },
+    "prophetx": {
+     "point": null,
+     "price": 117
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": 105
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBAGAME-26NOV02MIALAL-MIA"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "prophetx"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Miami",
+   "side_label": "Miami",
+   "start_source": "odds",
+   "start_utc": "2026-11-03T03:00:00Z",
+   "teams": [
+    "Miami",
+    "Los Angeles L"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-02T18:20:10Z",
    "base_depth": 89289,
    "best_price": 0.4812,
@@ -739,8 +1021,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": 1.0,
+   "close_price": 0.56,
+   "clv_cents": 6.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -2040,8 +2322,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": 1.0,
+   "close_price": 0.45,
+   "clv_cents": -4.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -3426,8 +3708,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.55,
-   "clv_cents": 4.0,
+   "close_price": 0.54,
+   "clv_cents": 3.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -8184,8 +8466,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.8,
-   "clv_cents": 0.0,
+   "close_price": 0.79,
+   "clv_cents": -1.0,
    "confirmed_after_min": 4,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -23150,8 +23432,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.81,
-   "clv_cents": 3.0,
+   "close_price": 0.78,
+   "clv_cents": 0.0,
    "confirmed_after_min": 13,
    "date": "2026-11-02",
    "depth_by_book": {
