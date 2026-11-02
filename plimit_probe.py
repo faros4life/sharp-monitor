@@ -140,7 +140,140 @@ def discover(fid):
     return L
 
 
+def _ticks_at(ticks, T):
+    """(last tick at or before T, first tick after T) as dicts with parsed time."""
+    from datetime import datetime
+    def pt(x):
+        try:
+            return datetime.fromisoformat(str(x).replace("Z", "+00:00"))
+        except Exception:
+            return None
+    before = after = None
+    for t in ticks or []:
+        ct = pt(t.get("createdAt"))
+        if not ct:
+            continue
+        if ct <= T and (before is None or ct > before[0]):
+            before = (ct, t)
+        if ct > T and (after is None or ct < after[0]):
+            after = (ct, t)
+    return before, after
+
+
+def idcheck(arg):
+    """Limit-identity check vs an OddsJam read + Pinnacle player-prop limit probe (PLIMIT Q2 step 0).
+    arg: 'TeamA,TeamB,ISO-time'. Billable: /fixtures NBA, /markets, /fixtures NFL (3). History is free."""
+    from datetime import datetime, timedelta
+    ta, tb_, ts = [x.strip() for x in arg.split(",")]
+    T = datetime.fromisoformat(ts.replace("Z", "+00:00"))
+    L = [f"LIMIT-IDENTITY CHECK + PROP-LIMIT PROBE: {ta} vs {tb_}, read time {ts}"]
+    d0 = T.strftime("%Y-%m-%d")
+    d1 = (T + timedelta(days=1)).strftime("%Y-%m-%d")
+    fx = get("/fixtures", tournamentId=132, **{"from": d0, "to": d1})
+    fid, f = None, None
+    for x in fx if isinstance(fx, list) else []:
+        nm = f"{x.get('participant1Name')} {x.get('participant2Name')}".lower()
+        if ta.lower() in nm and tb_.lower() in nm:
+            fid, f = x.get("fixtureId"), x
+    if not fid:
+        L.append(f"fixture not found ({fx if isinstance(fx, dict) else len(fx or [])})")
+        return L
+    L.append(f"fixture {fid}: team 1 = {f.get('participant1Name')}, team 2 = {f.get('participant2Name')}, start {f.get('startTime')}")
+    mk = get("/markets")
+    meta = {str(m["marketId"]): m for m in (mk if isinstance(mk, list) else [])}
+    h = get("/historical-odds", fixtureId=fid, bookmakers="pinnacle")
+    pm = ((h.get("bookmakers") or {}).get("pinnacle") or {}).get("markets") or {} if isinstance(h, dict) else {}
+    a_is_1 = ta.lower() in str(f.get("participant1Name")).lower()
+
+    def show(mid, label):
+        m = pm.get(str(mid)) or {}
+        md = meta.get(str(mid)) or {}
+        names = {str(o["outcomeId"]): o.get("outcomeName") for o in md.get("outcomes") or []}
+        for oid, o in (m.get("outcomes") or {}).items():
+            b, a = _ticks_at((o.get("players") or {}).get("0"), T)
+            nm = names.get(oid, oid)
+            who = (ta if (nm == "1") == a_is_1 else tb_) if nm in ("1", "2") else nm
+            if b:
+                t = b[1]
+                pr = t.get("price")
+                lim = t.get("limit")
+                base = round(lim * (pr - 1), 1) if (lim is not None and pr) else None
+                L.append(f"  {label} {who}: tick at {b[0].strftime('%H:%M:%S')}Z price {pr} (am {_am(pr)}) limit {lim} implied base {base}"
+                         + (f" | next tick {a[0].strftime('%H:%M:%S')}Z price {a[1].get('price')} limit {a[1].get('limit')}" if a else ""))
+            else:
+                L.append(f"  {label} {who}: no tick at or before the read")
+
+    L.append("MONEYLINE (market 111):")
+    show("111", "ML")
+    sp = sorted([(float(m.get("handicap") or 0), k) for k, m in meta.items() if m.get("sportId") == 11 and m.get("period") == "result"
+                 and m.get("marketType") == "spreads" and k in pm])
+    tt = sorted([(float(m.get("handicap") or 0), k) for k, m in meta.items() if m.get("sportId") == 11 and m.get("period") == "result"
+                 and m.get("marketType") == "totals" and k in pm])
+    L.append("SPREADS near the read (team 1 handicap; OddsJam: DET -5 / CHA +5):")
+    for hcap, k in sp:
+        if abs(abs(hcap) - 5) <= 1.0:
+            show(k, f"spread h={hcap:+g}")
+    L.append("TOTALS near the read (OddsJam: 210.5):")
+    for hcap, k in tt:
+        if abs(hcap - 210.5) <= 1.0:
+            show(k, f"total {hcap:g}")
+
+    def props(pmk, sport):
+        by = {}
+        samples = []
+        for mid, m in pmk.items():
+            md = meta.get(str(mid)) or {}
+            if md.get("sportId") != sport or not (md.get("playerProp") or "player" in str(md.get("marketType"))):
+                continue
+            typ = md.get("marketType")
+            for oid, o in (m.get("outcomes") or {}).items():
+                for pid, ticks in (o.get("players") or {}).items():
+                    if not isinstance(ticks, list) or not ticks:
+                        continue
+                    last = max(ticks, key=lambda t: str(t.get("createdAt")))
+                    c = by.setdefault(typ, [0, 0])
+                    c[0] += 1
+                    if last.get("limit") is not None:
+                        c[1] += 1
+                        if len(samples) < 3 and last.get("price"):
+                            samples.append(f"{typ} h={md.get('handicap')} player {pid}: price {last.get('price')} limit {last.get('limit')} "
+                                           f"implied base {round(last['limit'] * (last['price'] - 1), 1)} at {last.get('createdAt')}")
+        return by, samples
+    by, samples = props(pm, 11)
+    L.append("NBA PLAYER PROPS on this fixture (Pinnacle history, last tick per player outcome): outcomes with a limit / total")
+    L += [f"  {k}: {v[1]} / {v[0]}" for k, v in sorted(by.items())] or ["  none listed"]
+    L += ["  sample: " + s for s in samples]
+    fx2 = get("/fixtures", tournamentId=31, **{"from": d0, "to": d1})
+    nfl = [x for x in (fx2 if isinstance(fx2, list) else [])]
+    if nfl:
+        g = nfl[0]
+        h2 = get("/historical-odds", fixtureId=g.get("fixtureId"), bookmakers="pinnacle")
+        pm2 = ((h2.get("bookmakers") or {}).get("pinnacle") or {}).get("markets") or {} if isinstance(h2, dict) else {}
+        by2, s2 = props(pm2, 14)
+        L.append(f"NFL PLAYER PROPS ({g.get('participant1Name')} vs {g.get('participant2Name')}): outcomes with a limit / total")
+        L += [f"  {k}: {v[1]} / {v[0]}" for k, v in sorted(by2.items())] or ["  none listed"]
+        L += ["  sample: " + s for s in s2]
+    else:
+        L.append("NFL: no fixture in the window")
+    return L
+
+
+def _am(d):
+    try:
+        d = float(d)
+        return round((d - 1) * 100) if d >= 2 else round(-100 / (d - 1))
+    except Exception:
+        return None
+
+
+
 def main():
+    if os.environ.get("HR_FIXTURE") and os.environ.get("HR_BOOKS") == "IDCHECK":
+        L = idcheck(os.environ["HR_FIXTURE"])
+        L += ["", "Calls: " + "; ".join(f"{p} {c}" for p, c in CALLS)]
+        ex.send("Bets ODDSPAPI LIMIT-IDENTITY + PROP PROBE", "\n".join(L))
+        print(f"idcheck emailed: {len(CALLS)} calls")
+        return
     if os.environ.get("HR_FIXTURE") and os.environ.get("HR_BOOKS") == "DISCOVER":
         L = discover(os.environ["HR_FIXTURE"])
         L += ["", "Calls: " + "; ".join(f"{p} {c}" for p, c in CALLS)]
