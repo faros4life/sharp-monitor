@@ -1,6 +1,272 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-02T14:20:13Z",
+   "base_depth": 25132,
+   "best_price": 0.505,
+   "best_price_american": -102,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-02",
+   "depth_by_book": {
+    "novig": {
+     "heavier_side": true,
+     "label": "Under 220.5 (220.5)",
+     "price": 0.505,
+     "this_side": 18032
+    },
+    "polymarket": {
+     "new_other_side": 6682,
+     "new_this_side": 39423,
+     "other_side": 22074,
+     "other_side_all_levels": 35546,
+     "ratio": 5.9,
+     "this_side": 130807,
+     "this_side_all_levels": 149129
+    }
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-11-02T14:10:11Z",
+   "game": "Nets vs. Knicks",
+   "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6544218\"}",
+   "lead_min": 610,
+   "league": "NBA",
+   "line": 220.5,
+   "market": "total",
+   "new_money": 39423,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 221.5,
+     "price": -115
+    },
+    "betonlineag": {
+     "point": 221.0,
+     "price": -110
+    },
+    "betrivers": {
+     "point": 221.5,
+     "price": -113
+    },
+    "betus": {
+     "point": 221.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 220.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 220.5,
+     "price": -105
+    },
+    "fanatics": {
+     "point": 221.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 221.5,
+     "price": -115
+    },
+    "kalshi": {
+     "point": 220.5,
+     "price": -108
+    },
+    "lowvig": {
+     "point": 221.0,
+     "price": -107
+    },
+    "mybookieag": {
+     "point": 221.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 219.5,
+     "price": 104
+    },
+    "polymarket": {
+     "point": 220.5,
+     "price": -108
+    },
+    "prophetx": {
+     "point": 221.5,
+     "price": -119
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 1,
+    "pm_market_id": "6544218"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "Under (220.5)",
+   "start_source": "polymarket",
+   "start_utc": "2026-11-03T00:30:00Z",
+   "teams": [
+    "Nets",
+    "Knicks"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-02T14:20:13Z",
+   "base_depth": 53857,
+   "best_price": 0.505,
+   "best_price_american": -102,
+   "best_price_book": "novig",
+   "bid_improved": true,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-02",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 2204,
+     "new_this_side": 43171,
+     "other_side": 25907,
+     "other_side_all_levels": 70522,
+     "ratio": 4.7,
+     "this_side": 122802,
+     "this_side_all_levels": 208694
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "Under 220.5 (220.5)",
+     "price": 0.505,
+     "this_side": 18032
+    }
+   },
+   "fade_price": 0.49,
+   "first_seen_utc": "2026-11-02T14:10:11Z",
+   "game": "Brooklyn vs New York: Total Points",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBATOTAL-26NOV02BKNNYK-221\"}",
+   "lead_min": 610,
+   "league": "NBA",
+   "line": 220.5,
+   "market": "total",
+   "new_money": 43171,
+   "paper_only": false,
+   "price": 0.52,
+   "price_american": -108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.5,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 221.5,
+     "price": -115
+    },
+    "betonlineag": {
+     "point": 221.0,
+     "price": -110
+    },
+    "betrivers": {
+     "point": 221.5,
+     "price": -113
+    },
+    "betus": {
+     "point": 221.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 220.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 220.5,
+     "price": -105
+    },
+    "fanatics": {
+     "point": 221.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 221.5,
+     "price": -115
+    },
+    "kalshi": {
+     "point": 220.5,
+     "price": -108
+    },
+    "lowvig": {
+     "point": 221.0,
+     "price": -107
+    },
+    "mybookieag": {
+     "point": 221.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 219.5,
+     "price": 104
+    },
+    "polymarket": {
+     "point": 220.5,
+     "price": -108
+    },
+    "prophetx": {
+     "point": 221.5,
+     "price": -119
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNBATOTAL-26NOV02BKNNYK-221"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "NOT Over 220.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-11-03T00:30:00Z",
+   "teams": [
+    "Brooklyn",
+    "New York"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-02T13:50:11Z",
    "base_depth": 103698,
    "best_price": 0.79,
@@ -3329,8 +3595,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.47,
-   "clv_cents": 0.0,
+   "close_price": 0.48,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -3770,8 +4036,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.59,
-   "clv_cents": -2.0,
+   "close_price": 0.58,
+   "clv_cents": -3.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
