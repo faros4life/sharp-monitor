@@ -1,6 +1,157 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-02T18:00:18Z",
+   "base_depth": 164588,
+   "best_price": 0.5275,
+   "best_price_american": -112,
+   "best_price_book": "polymarket",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.53,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-02",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -1381,
+     "new_this_side": 26013,
+     "other_side": 100567,
+     "other_side_all_levels": 172143,
+     "ratio": 1.3,
+     "this_side": 130424,
+     "this_side_all_levels": 191077
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Pelicans (+5.5)",
+     "price": 0.52,
+     "this_side": 72440
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "New Orleans Pelicans +5.5 (+5.5)",
+     "price": 0.5283,
+     "this_side": 20731
+    }
+   },
+   "fade_price": 0.49,
+   "first_seen_utc": "2026-11-02T17:50:11Z",
+   "game": "New Orleans vs Memphis: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBASPREAD-26NOV02NOPMEM-MEM6\"}",
+   "lead_min": 420,
+   "league": "NBA",
+   "line": 5.5,
+   "market": "spread",
+   "new_money": 26013,
+   "paper_only": false,
+   "price": 0.53,
+   "price_american": -113,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.53,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 5.5,
+     "price": -118
+    },
+    "betonlineag": {
+     "point": 4.5,
+     "price": -105
+    },
+    "betopenly": {
+     "point": 5.0,
+     "price": 101
+    },
+    "betrivers": {
+     "point": 4.5,
+     "price": -104
+    },
+    "betus": {
+     "point": 4.5,
+     "price": -105
+    },
+    "bovada": {
+     "point": 5.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 5.5,
+     "price": -112
+    },
+    "fanatics": {
+     "point": 5.5,
+     "price": -115
+    },
+    "fanduel": {
+     "point": 4.5,
+     "price": -106
+    },
+    "kalshi": {
+     "point": 5.5,
+     "price": -113
+    },
+    "lowvig": {
+     "point": 4.5,
+     "price": -101
+    },
+    "mybookieag": {
+     "point": 4.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 4.5,
+     "price": 106
+    },
+    "polymarket": {
+     "point": 5.5,
+     "price": -108
+    },
+    "prophetx": {
+     "point": 4.5,
+     "price": 107
+    },
+    "williamhill_us": {
+     "point": 5.0,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNBASPREAD-26NOV02NOPMEM-MEM6"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "polymarket",
+    "prophetx"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [
+    "New Orleans Pelicans +5.5 (-115)",
+    "New Orleans Pelicans +6.5 (-120)"
+   ],
+   "sharp_oppose": [],
+   "side": "New Orleans",
+   "side_label": "NOT Memphis wins by over 5.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-11-03T01:00:00Z",
+   "teams": [
+    "New Orleans",
+    "Memphis"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-02T17:10:11Z",
    "base_depth": 73707,
    "best_price": 0.55,
@@ -166,8 +317,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 0.0,
+   "close_price": 0.53,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -1914,8 +2065,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.66,
-   "clv_cents": 0.0,
+   "close_price": 0.73,
+   "clv_cents": 7.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -2033,7 +2184,8 @@
      "price": -186
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-02T18:00:18Z",
    "ref": {
     "outcome_index": 0,
     "pm_market_id": "6281398"
@@ -4498,8 +4650,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.66,
-   "clv_cents": 3.0,
+   "close_price": 0.67,
+   "clv_cents": 4.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -4663,8 +4815,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": 2.0,
+   "close_price": 0.52,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -4772,7 +4924,8 @@
      "price": -110
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-02T18:00:18Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNBASPREAD-26NOV02WASORL-ORL3"
@@ -6889,8 +7042,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.66,
-   "clv_cents": 1.0,
+   "close_price": 0.73,
+   "clv_cents": 8.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
