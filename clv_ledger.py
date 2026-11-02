@@ -46,8 +46,9 @@ STATS = {"billable": 0, "free": 0}
 
 
 # ------------------------------------------------------------------ OddsPapi
-HIST_GAP = [float(os.environ.get("HIST_GAP", "") or "4.0")]   # Nov 2 (Peter: "run faster"): adaptive history spacing
-HIST_MIN = float(os.environ.get("HIST_GAP_MIN", "") or "2.0")   # Nov 2 18:00 (Peter: "make it faster"): spacing eases back down
+HIST_GAP = [float(os.environ.get("HIST_GAP", "") or "5.2")]   # Nov 2 (Peter: "run faster"): adaptive history spacing
+HIST_MIN = float(os.environ.get("HIST_GAP_MIN", "") or "5.2")   # Nov 2: spacing eases back down, never below OddsPapi's documented
+# 5,000 ms cooldown on /historical-odds (docs: get-historical-odds; a 304 counts too)
 
 
 def api(path, billable, **params):
