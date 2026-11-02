@@ -258,6 +258,50 @@ def idcheck(arg):
     return L
 
 
+def oldcheck(arg):
+    """History-depth + limit-identity check on an older OddsJam card. arg: 'LEAGUE|TeamA|TeamB|ISO-time|type|line'.
+    Billable: /fixtures, /markets (2). History is free (Pinnacle and BookMaker.eu, one call each)."""
+    from datetime import datetime, timedelta
+    lg, ta, tb_, ts, typ, line = [x.strip() for x in arg.split("|")]
+    line = float(line)
+    tid = {"NBA": 132, "NFL": 31, "NHL": 234}[lg]
+    sid = {"NBA": 11, "NFL": 14, "NHL": 15}[lg]
+    T = datetime.fromisoformat(ts.replace("Z", "+00:00"))
+    L = [f"OLD-CARD CHECK: {lg} {ta} vs {tb_}, card time {ts}, {typ} {line:g}"]
+    fx = get("/fixtures", tournamentId=tid, **{"from": (T - timedelta(days=1)).strftime("%Y-%m-%d"), "to": (T + timedelta(days=2)).strftime("%Y-%m-%d")})
+    f = next((x for x in (fx if isinstance(fx, list) else []) if ta.lower() in f"{x.get('participant1Name')} {x.get('participant2Name')}".lower()
+              and tb_.lower() in f"{x.get('participant1Name')} {x.get('participant2Name')}".lower()), None)
+    if not f:
+        L.append(f"fixture not found: {fx if isinstance(fx, dict) else [(x.get('participant1Name'), x.get('participant2Name'), x.get('startTime')) for x in fx]}")
+        return L
+    fid = f["fixtureId"]
+    L.append(f"fixture {fid}: team 1 = {f.get('participant1Name')}, team 2 = {f.get('participant2Name')}, start {f.get('startTime')}")
+    mk = get("/markets")
+    meta = {str(m["marketId"]): m for m in (mk if isinstance(mk, list) else [])}
+    want = [k for k, m in meta.items() if m.get("sportId") == sid and m.get("period") == "result" and m.get("marketType") == typ
+            and abs(float(m.get("handicap") or 0) - line) <= 1.0]
+    for bk in ("pinnacle", "bookmaker.eu"):
+        h = get("/historical-odds", fixtureId=fid, bookmakers=bk)
+        if isinstance(h, dict) and h.get("_error"):
+            L.append(f"{bk}: HTTP {h['_error']} {h['_body'][:150]}")
+            continue
+        pm = ((h.get("bookmakers") or {}).get(bk) or {}).get("markets") or {}
+        allt = [t for m in pm.values() for o in (m.get("outcomes") or {}).values() for t in ((o.get("players") or {}).get("0") or [])]
+        first = min((str(t.get("createdAt")) for t in allt), default=None)
+        L.append(f"{bk}: {len(pm)} markets, {len(allt)} ticks, earliest tick {first}")
+        for k in sorted(want, key=lambda k: float(meta[k].get("handicap") or 0)):
+            m = pm.get(k) or {}
+            names = {str(o["outcomeId"]): o.get("outcomeName") for o in meta[k].get("outcomes") or []}
+            for oid, o in (m.get("outcomes") or {}).items():
+                b, a = _ticks_at((o.get("players") or {}).get("0"), T)
+                if b:
+                    pr, lim = b[1].get("price"), b[1].get("limit")
+                    L.append(f"  {typ} {meta[k].get('handicap')} {names.get(oid, oid)}: tick {b[0].strftime('%m-%d %H:%M:%S')}Z price {pr} (am {_am(pr)}) "
+                             f"limit {lim}" + (f" (x4/3 = {lim * 4 / 3:,.0f})" if lim else "")
+                             + (f" | next {a[0].strftime('%m-%d %H:%M')}Z {a[1].get('price')} lim {a[1].get('limit')}" if a else ""))
+    return L
+
+
 def _am(d):
     try:
         d = float(d)
@@ -268,6 +312,12 @@ def _am(d):
 
 
 def main():
+    if os.environ.get("HR_FIXTURE") and os.environ.get("HR_BOOKS") == "OLDCHECK":
+        L = oldcheck(os.environ["HR_FIXTURE"])
+        L += ["", "Calls: " + "; ".join(f"{p} {c}" for p, c in CALLS)]
+        ex.send("Bets ODDSPAPI OLD-CARD LIMIT CHECK", "\n".join(L))
+        print(f"oldcheck emailed: {len(CALLS)} calls")
+        return
     if os.environ.get("HR_FIXTURE") and os.environ.get("HR_BOOKS") == "IDCHECK":
         L = idcheck(os.environ["HR_FIXTURE"])
         L += ["", "Calls: " + "; ".join(f"{p} {c}" for p, c in CALLS)]
