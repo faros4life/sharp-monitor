@@ -12,6 +12,10 @@ LIQ-PULL-FADE: a row with new money >= $100k and confirmed whose money is detect
   start -> paper-bet the OPPOSITE side of the same market at 1 - the pulled side's monitor price at detection
   (price_source=monitor). Pulls detected < 30 min pre-start are logged observe-only. Bars: readout 40; kill at 30 if
   <= 0.00u/play.
+LIQ-SOLO (Nov 1, Peter; bars to be set by Muse): a moneyline or total row enters at the LAST snapshot taken >= 60 min
+  before start if, at that snapshot, status = still there, NOT confirmed (rule_met false: big money on one book only),
+  new money >= $100k. Paper bet = that side at the monitor price. Backtest (hypothesis only, hindsight): unconfirmed
+  rows that stayed, $100k+, 49-23 +13.2u; unconfirmed ML that stayed 118-52 +15.5u.
 Grading: flat 1.00u risked at the entry price (win pays (1-p)/p), from the liquidity feed's result. Forward from
 Mon Nov 2, 2026 00:00 ET; the Oct 22-31 backtest is never part of the record.
 """
@@ -40,7 +44,7 @@ def main():
         L = json.load(open(F))
     except Exception:
         L = {}
-    ml, pf = L.setdefault("ml_stay", {}), L.setdefault("pull_fade", {})
+    ml, pf, so = L.setdefault("ml_stay", {}), L.setdefault("pull_fade", {}), L.setdefault("solo", {})
     _, rows, _ = bb.build(upcoming=True)
     # results for everything we've logged (rows may have rolled out of the upcoming window)
     feed = {f"{x.get('key')}|{x.get('alerted_utc')}": x for x in bb.load()}
@@ -63,6 +67,16 @@ def main():
                              "start_utc": x.get("start_utc"), "snapshot_utc": now.strftime("%Y-%m-%dT%H:%M:%SZ"),
                              "mins_to_start": round(mins), "entered": ok, "price": p, "price_source": "monitor",
                              "headline": r["league"] in HEAD}
+            # LIQ-SOLO: same freeze-at-T-60 mechanics as ML-STAY
+            if r["mk"] in ("moneyline", "total") and mins >= 60:
+                e = so.get(k) or {}
+                if not e.get("frozen"):
+                    ok = r["status"] == "still there" and not r["conf"] and r["new"] >= 100_000
+                    so[k] = {"game": r["game"], "league": r["league"], "market": r["mk"], "side": r["side"],
+                             "book": r["book"], "new_money": round(r["new"]), "status": r["status"],
+                             "confirmed": r["conf"], "tag": r["tag"], "start_utc": x.get("start_utc"),
+                             "snapshot_utc": now.strftime("%Y-%m-%dT%H:%M:%SZ"), "mins_to_start": round(mins),
+                             "entered": ok, "price": p, "price_source": "monitor"}
             # LIQ-PULL-FADE: first time we see a qualifying pull
             if r["new"] >= 100_000 and r["conf"] and x.get("pulled") and k not in pf:
                 pu = bb.t(x.get("pulled_utc")) or now
@@ -74,7 +88,7 @@ def main():
                          "detected_utc": now.strftime("%Y-%m-%dT%H:%M:%SZ"), "mins_to_start_at_pull": round(lead),
                          "entered": lead >= 30, "price": round(1 - p, 4) if p else None, "price_source": "monitor",
                          "start_utc": x.get("start_utc")}
-    for k, e in ml.items():
+    for k, e in list(ml.items()) + list(so.items()):
         st = bb.t(e.get("start_utc"))
         if st and (st - now).total_seconds() < 3600:
             e["frozen"] = True
@@ -95,7 +109,7 @@ def main():
     with open(F, "w") as f:
         json.dump(L, f, indent=1, sort_keys=True)
     n = lambda d: sum(1 for e in d.values() if e.get("entered"))
-    print(f"Lanes: ML-STAY {n(ml)} entries, PULL-FADE {n(pf)} entries")   # counts only
+    print(f"Lanes: ML-STAY {n(ml)}, PULL-FADE {n(pf)}, SOLO {n(so)} entries")   # counts only
 
 
 if __name__ == "__main__":
