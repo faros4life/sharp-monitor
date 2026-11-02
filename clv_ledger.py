@@ -46,11 +46,15 @@ STATS = {"billable": 0, "free": 0}
 
 
 # ------------------------------------------------------------------ OddsPapi
+HIST_GAP = [float(os.environ.get("HIST_GAP", "") or "4.0")]   # Nov 2 (Peter: "run faster"): adaptive history spacing
+
+
 def api(path, billable, **params):
     params["apiKey"] = KEY
     q = urllib.parse.urlencode({k: v for k, v in params.items() if v is not None})
     req = urllib.request.Request(f"{BASE}{path}?{q}", headers={"Accept": "application/json", "User-Agent": "sharp-monitor-clv"})
-    time.sleep(8.0 if path == "/historical-odds" else 1.1)   # history throttles (429 seen at ~1 s spacing)
+    # history throttles (429 seen at ~1 s spacing): start at HIST_GAP s, back off 1.5x on every 429 (max 10 s)
+    time.sleep(HIST_GAP[0] if path == "/historical-odds" else 1.1)
     STATS["billable" if billable else "free"] += 1
     for attempt in range(2):
         try:
@@ -59,6 +63,8 @@ def api(path, billable, **params):
                 return json.loads(r.read().decode())
         except urllib.error.HTTPError as e:
             if e.code == 429 and attempt == 0:
+                if path == "/historical-odds":
+                    HIST_GAP[0] = min(HIST_GAP[0] * 1.5, 10.0)
                 time.sleep(20)
                 continue
             CALLS.append((path, e.code))
