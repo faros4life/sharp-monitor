@@ -5,6 +5,7 @@ on:
   workflow_dispatch:
     inputs:
       hr_fixture: {required: false, type: string, default: ""}
+      hr_books: {required: false, type: string, default: ""}
 
 permissions:
   contents: read
@@ -26,4 +27,5 @@ jobs:
           EMAIL_TO: ${{ secrets.EMAIL_TO }}
           ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
           HR_FIXTURE: ${{ inputs.hr_fixture }}
+          HR_BOOKS: ${{ inputs.hr_books }}
         run: python -u plimit_probe.py
