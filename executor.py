@@ -1522,6 +1522,27 @@ def books_snapshot(r):
         return None
 
 
+_OLDRULE_FEED = {}
+
+
+def old_rule_block(r):
+    """Nov 2 (Peter yes): tag a play the OLD first-side rule (any earlier sent alert) would have blocked but the new
+    live-only rule lets through, so the rule change can be measured. Logging only; any problem returns None."""
+    try:
+        e = r.get("entry")
+        if not e:
+            return None
+        if "feed" not in _OLDRULE_FEED:
+            _OLDRULE_FEED["feed"] = load_feed()
+        feed = _OLDRULE_FEED["feed"]
+        fs = agree_rules.first_side(e, feed)
+        if not fs or agree_rules.first_side(e, feed, live_only=True):
+            return None
+        return {"bet": fs.get("bet"), "book": fs.get("book"), "alert_utc": fs.get("alert_utc")}
+    except Exception:
+        return None
+
+
 def ledger_row(r, run_start):
     p, e = r["play"], r.get("entry") or {}
     at = iso_t(e.get("alert_utc") or p.get("alert_utc"))
@@ -1544,6 +1565,7 @@ def ledger_row(r, run_start):
             "px_best_after_fee": ((r.get("books") or {}).get("prophetx") or {}).get("best_price_american"),
             "px_best_line": ((r.get("books") or {}).get("prophetx") or {}).get("line"),
             "books_at_decision": books_snapshot(r),
+            "old_rule_would_block": old_rule_block(r),
             "live_order": dict({k: (lv.get("order") or {}).get(k) for k in ("status", "reason", "order_id", "asked_stake", "limit",
                                                                             "filled_stake", "avg_price")},
                                book=(lv.get("order") or {}).get("book") or "prophetx") if lv.get("order") else None,
