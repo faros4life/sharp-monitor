@@ -7,9 +7,11 @@ kept only if it improves the CHECK half (Muse rule).
   a) BIAS FIX: variant REG+B = the live model's number + the average (Pinnacle close - our number) over all graded games
      on EARLIER dates (no look-ahead; needs >= 15 earlier games, else no number that day).
   b) TIMING: OPEN (Pinnacle's first totals tick + 1 min) is primary; T-6h (the live model's post time) for comparison.
-  c) PRICE: each sighting graded twice - at Pinnacle's own price (PIN) and at NOVIG's price on that side at that line
-     (no fee): Novig's last tick at or before the sighting time if under 24 h old, else its first tick within 2 h after
-     (delay logged). DEPTH: Novig's 'limit' at that tick is logged where history carries it; no depth = not gettable proof.
+  c) PRICE: each sighting graded at Pinnacle's own price (PIN) and at each exchange's price on that side at that line,
+     AFTER FEES (Peter 13:06: add Polymarket and Kalshi): NOVIG (no fee), PROPHETX (2% of winnings), KALSHI
+     (0.07 x P x (1-P) per contract), POLY = Polymarket US (no fee assumed), and BEST = the best after-fee exchange price.
+     An exchange's quote = its last tick at or before the sighting time if under 24 h old, else its first tick within
+     2 h after (delay logged). DEPTH: the tick's 'limit' is logged where history carries it; not gettable proof.
 
 Grade: CLV % = Pinnacle no-vig close at that line x decimal - 1. Bar per cell (registered): >= 100 games graded,
 avg CLV > 0 and beat-close >= 53% in FIT and in CHECK. Read-only: private email; the log prints counts only.
@@ -18,6 +20,7 @@ import statistics as stt
 from datetime import datetime, timedelta, timezone
 
 import clv_ledger as cl
+import exchange_lag as el
 import executor as ex
 import nba_backtest as b1
 import nba_totals_model as nm
@@ -27,10 +30,12 @@ LO, HI, SPLIT = b1.LO, b1.HI, b1.SPLIT
 THRESH = (2.0, 3.0, 4.0)
 TIMES = ("OPEN", "T-6h")
 MIN_BIAS_N = 15
+EXCH = {"NOVIG": "novig.us", "PROPHETX": "prophetx", "KALSHI": "kalshi", "POLY": "polymarket.us"}
+PX = ("PIN", "NOVIG", "PROPHETX", "KALSHI", "POLY", "BEST")
 
 
 def novig_at(xm, mkmap, line, side, t):
-    """(decimal, tick time, limit, delay_min) for Novig's side at that total line, or None."""
+    """(decimal, tick time, limit, delay_min) for an exchange's side at that total line, or None."""
     for mid, (s, ty, hcap, outs) in mkmap.items():
         if s != 11 or ty != "totals" or abs(hcap - line) > 1e-9 or mid not in xm:
             continue
@@ -81,15 +86,19 @@ def main():
         if not fid:
             why["no OddsPapi fixture"] = why.get("no OddsPapi fixture", 0) + 1
             continue
-        h = None
-        for _ in range(2):   # one retry on a history error (#1 lost 4 games to 404 / 429 / read errors)
-            h = cl.api("/historical-odds", False, fixtureId=fid, bookmakers="pinnacle,novig.us")
-            if not (isinstance(h, dict) and h.get("_error")):
-                break
-        if isinstance(h, dict) and h.get("_error"):
-            why[f"history {h['_error']}"] = why.get(f"history {h['_error']}", 0) + 1
+        hs = []
+        for books in ("pinnacle,novig.us,prophetx", "kalshi,polymarket.us"):
+            h = None
+            for _ in range(2):   # one retry on a history error (#1 lost 4 games to 404 / 429 / read errors)
+                h = cl.api("/historical-odds", False, fixtureId=fid, bookmakers=books)
+                if not (isinstance(h, dict) and h.get("_error")):
+                    break
+            hs.append(h)
+        if isinstance(hs[0], dict) and hs[0].get("_error"):
+            why[f"history {hs[0]['_error']}"] = why.get(f"history {hs[0]['_error']}", 0) + 1
             continue
-        pm, xm = cl.book_markets(h, "pinnacle"), cl.book_markets(h, "novig.us")
+        pm = cl.book_markets(hs[0], "pinnacle")
+        xm = {k: cl.book_markets(hs[0] if b in ("novig.us", "prophetx") else hs[1], b) for k, b in EXCH.items()}
         s0 = nm.pt(g["start"])
         close = b1.totals_at(pm, mkmap, s0)
         if not b1.main_line(close):
@@ -108,7 +117,7 @@ def main():
             continue
         num = b1.number(r, g["home"], g["away"])[0]
         rows.append({"day": b1.etd(g["start"]), "game": f"{g['away']} @ {g['home']}", "final": g["final"],
-                     "close": b1.main_line(close)[0], "close_c": close, "snap": snap, "reg": num, "xm": bool(xm),
+                     "close": b1.main_line(close)[0], "close_c": close, "snap": snap, "reg": num, "xm": [k for k, v in xm.items() if v],
                      "_xm": xm})
     # bias per day from EARLIER dates only
     for row in rows:
@@ -126,15 +135,23 @@ def main():
                 d = (row["final"] - sn["line"]) * (1 if side == "Over" else -1)
                 res = "P" if abs(d) < 1e-9 else ("W" if d > 0 else "L")
                 pin_dec = sn["over"] if side == "Over" else sn["under"]
-                nv = novig_at(row["_xm"], mkmap, sn["line"], side, sn["t"])
-                for px, dec in (("PIN", pin_dec), ("NOVIG", nv[0] if nv else None)):
-                    if dec is None:
-                        continue
+                q = {"PIN": (pin_dec, 0, None)}
+                for px, bk in EXCH.items():
+                    nv = novig_at(row["_xm"].get(px) or {}, mkmap, sn["line"], side, sn["t"])
+                    if nv:
+                        q[px] = (el.eff(bk, nv[0]), nv[3], nv[2])
+                ex_q = [(px, x) for px, x in q.items() if px != "PIN"]
+                if ex_q:
+                    bp, bx = max(ex_q, key=lambda z: z[1][0])
+                    q["BEST"] = (bx[0], bx[1], bx[2])
+                    q["BEST"] = q["BEST"] + (bp,)
+                for px, x in q.items():
+                    dec = x[0]
                     row["sig"][f"{v}|{k}|{px}"] = {
                         "gap": round(gap, 1), "side": side, "line": sn["line"], "dec": dec,
                         "clv": None if pc is None else round(100 * (pc * dec - 1), 2),
                         "res": res, "u": 0.0 if res == "P" else (dec - 1 if res == "W" else -1.0),
-                        "delay": nv[3] if (px == "NOVIG" and nv) else 0, "lim": nv[2] if (px == "NOVIG" and nv) else None}
+                        "delay": x[1], "lim": x[2], "src": x[3] if len(x) > 3 else px}
     for row in rows:
         row.pop("_xm", None)
         row.pop("close_c", None)
@@ -161,10 +178,11 @@ def passes(S):
 def report(rows, why, n_games):
     L = [f"NBA TOTALS MODEL - BACKTEST #2 (HYPOTHESIS) | games {LO} to {HI} ET | FIT <= {SPLIT} < CHECK",
          "Tests: a) bias fix REG+B (our number + avg Pinnacle-close-minus-ours from EARLIER dates, >= 15 games);",
-         "b) OPEN vs T-6h; c) price at Pinnacle (PIN) vs Novig, no fee (NOVIG). CLV % = Pinnacle no-vig close at that line x decimal - 1.",
-         "Kept only if it improves the CHECK half. Novig depth logged where history has it; not proof the price was gettable.",
+         "b) OPEN vs T-6h; c) price: PIN = Pinnacle's own; NOVIG / PROPHETX / KALSHI / POLY = that exchange AFTER FEES; BEST = best exchange.",
+         "CLV % = Pinnacle no-vig close at that line x after-fee decimal - 1. Fees: ProphetX 2% of winnings, Kalshi 0.07xPx(1-P), Novig/Poly 0.",
+         "Kept only if it improves the CHECK half. Exchange depth logged where history has it; not proof the price was gettable.",
          "", f"Games {n_games}; graded {len(rows)}; not graded: " + (", ".join(f"{v} x {k}" for k, v in why.items()) or "none"),
-         f"Games with Novig history: {sum(1 for r in rows if r['xm'])}"]
+         "Games with exchange history: " + ", ".join(f"{px} {sum(1 for r in rows if px in r['xm'])}" for px in EXCH)]
     bl = [r["bias"] for r in rows if r["bias"] is not None]
     if bl:
         L.append(f"Bias applied (Pinnacle close minus our number, earlier dates): first {bl[0]:+.1f}, last {bl[-1]:+.1f}, "
@@ -178,7 +196,7 @@ def report(rows, why, n_games):
     L += ["", "BAR CELLS (gap >= 3.0): >= 100 games graded, CLV > 0 and beat-close >= 53% in FIT and CHECK"]
     for v in ("REG", "REG+B"):
         for k in TIMES:
-            for px in ("PIN", "NOVIG"):
+            for px in PX:
                 key = f"{v}|{k}|{px}"
                 S = [r["sig"][key] for r in rows if key in r["sig"] and abs(r["sig"][key]["gap"]) >= 3.0]
                 F = [r["sig"][key] for r in rows if key in r["sig"] and abs(r["sig"][key]["gap"]) >= 3.0 and r["day"] <= SPLIT]
@@ -189,26 +207,31 @@ def report(rows, why, n_games):
     L += ["", "ALL THRESHOLDS:"]
     for v in ("REG", "REG+B"):
         for k in TIMES:
-            for px in ("PIN", "NOVIG"):
+            for px in PX:
                 key = f"{v}|{k}|{px}"
                 for th in THRESH:
                     S = [r["sig"][key] for r in rows if key in r["sig"] and abs(r["sig"][key]["gap"]) >= th]
                     sides = f" (Over {sum(s['side'] == 'Over' for s in S)} / Under {sum(s['side'] == 'Under' for s in S)})" if S else ""
                     L.append(f"  {v:<5} {k:<4} {px:<5} gap>={th:g}: {stats(S)}{sides}")
-    nv = [r["sig"][k] for r in rows for k in r["sig"] if k.endswith("|OPEN|NOVIG") and k.startswith("REG+B")]
-    if nv:
-        d = [s["delay"] for s in nv]
-        lims = [s["lim"] for s in nv if s["lim"]]
-        L += ["", f"Novig at OPEN (REG+B, all gaps): {len(nv)} priced; same-time quote {sum(1 for x in d if x == 0)}, later quote "
-                  f"{sum(1 for x in d if x > 0)} (median delay {stt.median([x for x in d if x > 0]) if any(x > 0 for x in d) else 0} min); "
-                  f"depth logged on {len(lims)}" + (f", median USD {stt.median(lims):,.0f}" if lims else "")]
+    L.append("")
+    for px in EXCH:
+        nv = [r["sig"][k] for r in rows for k in r["sig"] if k == f"REG+B|OPEN|{px}"]
+        if nv:
+            d = [s["delay"] for s in nv]
+            lims = [s["lim"] for s in nv if s["lim"]]
+            L.append(f"{px} at OPEN (REG+B, all gaps): {len(nv)} priced; same-time quote {sum(1 for x in d if x == 0)}, later quote "
+                     f"{sum(1 for x in d if x > 0)} (median delay {stt.median([x for x in d if x > 0]) if any(x > 0 for x in d) else 0} min); "
+                     f"depth logged on {len(lims)}" + (f", median USD {stt.median(lims):,.0f}" if lims else ""))
+    bs = [r["sig"][k]["src"] for r in rows for k in r["sig"] if k == "REG+B|OPEN|BEST"]
+    if bs:
+        L.append("BEST price came from: " + ", ".join(f"{px} {bs.count(px)}" for px in EXCH if bs.count(px)))
     L += ["", "REG+B OPEN SIGHTINGS (gap >= 3.0):"]
     for r in rows:
-        s, n_ = r["sig"].get("REG+B|OPEN|PIN"), r["sig"].get("REG+B|OPEN|NOVIG")
+        s, n_ = r["sig"].get("REG+B|OPEN|PIN"), r["sig"].get("REG+B|OPEN|BEST")
         if s and abs(s["gap"]) >= 3.0:
             L.append(f"  {r['day']} {r['game']} | ours {r['num']['REG+B']} vs Pin open {s['line']:g} (close {r['close']:g}) | {s['side']} "
                      f"Pin {cl.dec_to_am(s['dec']):+d} CLV {s['clv'] if s['clv'] is not None else '-'}%"
-                     + (f" | Novig {cl.dec_to_am(n_['dec']):+d} CLV {n_['clv'] if n_['clv'] is not None else '-'}%" if n_ else " | no Novig")
+                     + (f" | best exchange {n_['src']} {cl.dec_to_am(n_['dec']):+d} after fees, CLV {n_['clv'] if n_['clv'] is not None else '-'}%" if n_ else " | no exchange price")
                      + f" | final {r['final']:g} {s['res']}")
     L += ["", f"Calls: {len(cl.CALLS)} total; billable {cl.STATS['billable']}"]
     ex.send("Bets NBA MODEL BACKTEST #2 (HYPOTHESIS)", "\n".join(L))
