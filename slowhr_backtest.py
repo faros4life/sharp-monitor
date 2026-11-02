@@ -110,6 +110,16 @@ def enrich(x, lg, pin, hr, h, mkmap, start):
             if s0 and s1 and sh.cents(s0[1]) - sh.cents(s1[1]) >= 4:
                 moved = True
     x["wide"] = moved
+    # #11 (Muse 15:57): Pinnacle's RAW limit when it moved (main market of that type, largest limit at the move time)
+    plim = None
+    for m, (s, t, hcap, o) in mkmap.items():
+        if s == sid and t == typ and m in pin:
+            tw = cl.two_way(pin, m, tm)
+            if len(tw) == 2:
+                lim = min(v[2] for v in tw.values())
+                if plim is None or lim > plim:
+                    plim = lim
+    x["pin_limit"] = plim
 FROM = datetime.fromisoformat(os.environ.get("BT_FROM", "") or "2026-10-12").replace(tzinfo=timezone.utc)
 
 
@@ -197,6 +207,21 @@ def main():
             L.append(f"  Football spreads, {kb}: {stats(xs)}")
     L.append(f"  Other books (exchanges) moved with Pinnacle: {stats([x for x in J if x.get('wide')])}")
     L.append(f"  Pinnacle moved alone: {stats([x for x in J if 'wide' in x and not x.get('wide')])}")
+    L.append("    (#7 definition: books = Novig, ProphetX, Kalshi, Polymarket US. Window = 15 min before Pinnacle's move to the "
+             "confirmation read. Type L: that exchange's closest-to-even number changed; Type P: its price on the bet side "
+             "shortened >= 4c.)")
+    # #11 (Muse 15:57): Pinnacle's raw limit at the move; cut = that league's median raw limit (stated)
+    L.append("  #11 PINNACLE LIMIT WHEN IT MOVED (raw OddsPapi dollars; cut = league median over these sightings):")
+    for lg in LEAGUES:
+        xs = [x for x in J if x["league"] == lg and x.get("pin_limit")]
+        if not xs:
+            continue
+        med = stt.median(x["pin_limit"] for x in xs)
+        L.append(f"    {lg} cut {med:,.0f}: high {stats([x for x in xs if x['pin_limit'] > med])} | "
+                 f"low {stats([x for x in xs if x['pin_limit'] <= med])}")
+    # #12 (Muse 15:57): Hard Rock's price on the stale side
+    L.append(f"  #12 Hard Rock stale price better than -110: {stats([x for x in J if sh.cents(x['hr_price']) > -10])}")
+    L.append(f"  #12 Hard Rock stale price -110 or worse: {stats([x for x in J if sh.cents(x['hr_price']) <= -10])}")
     for lg in LEAGUES:
         for typ in ("totals", "spreads", "moneyline"):
             xs = [x for x in J if x["league"] == lg and x["type"] == typ]
@@ -243,6 +268,7 @@ def main():
     for x in sorted(S, key=lambda x: x["t_move"])[-25:][::-1]:
         L.append(f"  {x['t_confirm'][:16]}Z {x['league']} {x['game']} | {x['type']} {x['team']} {x['line'] if x['line'] is not None else ''} | "
                  f"HR {x['hr_am']:+d} | {x['detail']} | Type {x['kind']}{' LATE' if x['late'] else ''} | {x['mins_before']} min pre-start"
+                 + (f" | Pin limit {x['pin_limit']:,.0f}" if x.get("pin_limit") else "")
                  + (f" | CLV {x['clv_cents']:+.2f}c" if x.get("clv_cents") is not None else ""))
     L += ["", f"Calls: {len(cl.CALLS)} (billable {cl.STATS['billable']})"]
     ex.send("Bets SLOW-HR BACKTEST (HYPOTHESIS)", "\n".join(L))
