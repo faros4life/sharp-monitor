@@ -22,7 +22,7 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 6
+    timeout-minutes: 9
     environment:
       name: github-pages
       url: ${{ steps.deploy.outputs.page_url }}
@@ -35,19 +35,38 @@ jobs:
           python-version: "3.12"
       - name: Paper lanes (LIQ-ML-STAY, LIQ-PULL-FADE)
         run: python -u lanes.py
-      - name: Commit lane log
+      - run: pip install -q cryptography
+      - name: Private bet tracker (encrypted; counts only in this log)
+        continue-on-error: true   # a book read failing never stops the board
+        env:
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          PROPHETX_TRADE_ACCESS_KEY: ${{ secrets.PROPHETX_TRADE_ACCESS_KEY }}
+          PROPHETX_TRADE_SECRET_KEY: ${{ secrets.PROPHETX_TRADE_SECRET_KEY }}
+          PROPHETX_ACCESS_KEY: ${{ secrets.PROPHETX_ACCESS_KEY }}
+          PROPHETX_SECRET_KEY: ${{ secrets.PROPHETX_SECRET_KEY }}
+          KALSHI_KEY_ID: ${{ secrets.KALSHI_KEY_ID }}
+          KALSHI_PRIVATE_KEY: ${{ secrets.KALSHI_PRIVATE_KEY }}
+          PMUS_KEY_ID: ${{ secrets.PMUS_KEY_ID }}
+          PMUS_SECRET_KEY: ${{ secrets.PMUS_SECRET_KEY }}
+          NOVIG_SNAPSHOT_TOKEN: ${{ secrets.NOVIG_SNAPSHOT_TOKEN }}
+        run: python -u tracker_build.py
+      - name: Commit lane log and encrypted tracker state
         run: |
-          # Only this workflow writes lanes/; save over upstream, never a merge.
-          if [ -n "$(git status --porcelain lanes)" ]; then
+          # Only this workflow writes lanes/ and tracker/; save over upstream, never a merge.
+          if [ -n "$(git status --porcelain lanes tracker)" ]; then
             git config user.name "bets-board"
             git config user.email "bets-board@users.noreply.github.com"
-            rm -rf "$RUNNER_TEMP/out" && mkdir -p "$RUNNER_TEMP/out" && cp -r lanes "$RUNNER_TEMP/out/"
+            rm -rf "$RUNNER_TEMP/out" && mkdir -p "$RUNNER_TEMP/out" && cp -r lanes "$RUNNER_TEMP/out/" && { [ -d tracker ] && cp -r tracker "$RUNNER_TEMP/out/" || true; }
             for i in 1 2 3 4 5; do
               git fetch -q origin main && git reset -q --hard origin/main
               rm -rf lanes && cp -r "$RUNNER_TEMP/out/lanes" .
-              git add -A lanes
+              if [ -d "$RUNNER_TEMP/out/tracker" ]; then rm -rf tracker && cp -r "$RUNNER_TEMP/out/tracker" .; fi
+              git add -A lanes tracker
               git diff --cached --quiet && break
-              git commit -q -m "Update paper lanes"
+              git commit -q -m "Update paper lanes / tracker state"
               git push -q origin HEAD:main && break
               sleep 5
             done
