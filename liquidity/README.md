@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 2, 12:10 AM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 25.
+Updated Mon Nov 2, 12:20 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 25.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -19,7 +19,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 1 10:40PM | NBA | Phoenix vs Golden State | moneyline: Golden State | kalshi | $42k | -156 |  |  | +1.0c | yes | pending |
 | Nov 1 10:20PM | NBA | Boston vs Houston | moneyline: Houston | kalshi | $164k | -170 | ✅ novig,polymarket |  | +2.0c | yes | pending |
 | Nov 1 10:00PM | NHL | Vegas vs Boston | moneyline: Vegas | kalshi | $27k | -104 | ✅ novig,polymarket |  | +0.0c | yes | pending |
-| Nov 1 9:50PM | NHL | Detroit Red Wings @ Florida Panthers | spread: FLA -1.5 (-1.5) | novig | $68k | +153 | ✅ kalshi,polymarket |  | +0.5c |  | pending |
+| Nov 1 9:50PM | NHL | Detroit Red Wings @ Florida Panthers | spread: FLA -1.5 (-1.5) | novig | $68k | +153 | ✅ kalshi,polymarket |  | +1.0c |  | pending |
 | Nov 1 9:50PM | NHL | Detroit vs Florida: Spread | spread: Florida wins by over 1.5 goals | kalshi | $64k | +156 | ✅ novig |  | +0.0c |  | pending |
 | Nov 1 8:10PM | NBA | Bucks vs. Timberwolves | moneyline: Timberwolves | polymarket | $27k | -400 | ✅ kalshi,novig |  | +0.0c |  | pending |
 | Nov 1 8:10PM | NBA | Toronto Raptors @ Los Angeles Lakers | moneyline: LAL (0) | novig | $41k | -150 | ✅ kalshi,prophetx | ❌ | +0.0c |  | W |
