@@ -83,7 +83,8 @@ def main():
                     "alert_beats_close": (pa < close) if pa is not None and isinstance(close, (int, float)) else None,
                     "result": e.get("result"), "units": e.get("units_flat"), "live": bool(r.get("live")),
                     "verdict": r.get("verdict"), "book": r.get("alert_book"), "pd": pd, "pa": pa, "joined": bool(e),
-                    "pf": prob(r.get("fill_price_after_fee")), "fbook": r.get("fill_book"), "close": close})
+                    "pf": prob(r.get("fill_price_after_fee")), "fbook": r.get("fill_book"), "close": close,
+                    "aline": r.get("alert_line"), "fline": r.get("fill_line"), "res_or_close": bool(e.get("result") or isinstance(close, (int, float)))})
 
     def med(xs):
         xs = [x for x in xs if x is not None]
@@ -159,6 +160,25 @@ def main():
     lines.append(f"Actual fills vs close (fill price after fee, any book): n {len(f)} | fill beats close {pct([x['pf'] < x['close'] for x in f])} | "
                  f"alert beat close on the same plays {pct([x['pa'] < x['close'] for x in f if x.get('pa') is not None])}")
     lines.append("  fills by book: " + ", ".join(f"{b} {sum(x['fbook'] == b for x in f)}" for b in sorted({x['fbook'] for x in f if x['fbook']})))
+
+    # v4 (Nov 2): why fills trail the alert vs close - line moved by half-point conversion, or a worse price
+    def same_line(x):
+        return x["aline"] is None or x["fline"] is None or abs(float(x["fline"]) - float(x["aline"])) < 1e-9
+    lines += ["", "V4 FILL CHECK (fills with a close; price after fee; close is at the ALERT line):"]
+    for lab, sel in (("same line as alert", lambda x: same_line(x)), ("different line (half-point conversion)", lambda x: not same_line(x))):
+        F = [x for x in f if sel(x)]
+        lines.append(f"  {lab}: n {len(F)} | fill beats close {pct([x['pf'] < x['close'] for x in F])} | "
+                     f"alert beat close {pct([x['pa'] < x['close'] for x in F if x['pa'] is not None])} | "
+                     f"fill price worse than alert price {sum(x['pa'] is not None and x['pf'] > x['pa'] + 1e-9 for x in F)} | "
+                     f"better {sum(x['pa'] is not None and x['pf'] < x['pa'] - 1e-9 for x in F)} | "
+                     f"same {sum(x['pa'] is not None and abs(x['pf'] - x['pa']) <= 1e-9 for x in F)}")
+    for b in sorted({x["fbook"] for x in f if x["fbook"]}):
+        F = [x for x in f if x["fbook"] == b]
+        lines.append(f"  fill book {b}: n {len(F)} | fill beats close {pct([x['pf'] < x['close'] for x in F])} | "
+                     f"alert beat close {pct([x['pa'] < x['close'] for x in F if x['pa'] is not None])} | "
+                     f"different line {sum(not same_line(x) for x in F)}")
+    lines.append("No result and no close, by bucket: " + ", ".join(
+        f"{name} {sum(not x['res_or_close'] for x in out if lo <= x['lat'] < hi)}" for name, lo, hi in B))
     ex.send("Bets DECAY CURVE (alert -> decision)", "\n".join(lines))
     print(f"Decay curve emailed: {len(out)} decisions read")   # counts only
 
