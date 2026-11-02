@@ -412,6 +412,36 @@ def novig_at(b, f, nm_pm, mkmap, when, lg):
     return None
 
 
+# ------------------------------------------------------------------ ESPN fill
+def espn_fill(st, now, max_days=12):
+    """Settled tracker rows the tracker never pinned to a game: match them on ESPN (free) within 36 h of the settle
+    or placed time, and take league, start and teams from there. At most max_days scoreboard dates per run."""
+    todo = []
+    for k, rec in st["bets"].items():
+        s = rec["snap"]
+        if s.get("game_start") or rec.get("espn_tries", 0) >= 3:
+            continue
+        t0 = tp(s.get("settled")) or tp(s.get("placed")) or tp(rec.get("first_seen"))
+        if t0 and t0 > now - timedelta(days=45):
+            todo.append((k, rec, t0))
+    if not todo:
+        return
+    days = sorted({(t0 - timedelta(days=dd)).astimezone(ET).replace(hour=12, minute=0, second=0, microsecond=0)
+                   for _, _, t0 in todo for dd in (0, 1)}, reverse=True)[:max_days]
+    games = tb.espn_games(days)
+    for k, rec, t0 in todo:
+        s = rec["snap"]
+        g = tb.match_game(s, games, t0)
+        if g and len(g["teams"]) == 2:
+            a, h = sorted(g["teams"], key=lambda t: t["home"])
+            s["league"] = s.get("league") or g["league"]
+            s["game_start"] = g["start"]
+            s["teams"] = [{"name": a["full"]}, {"name": h["full"]}]
+            s["espn_filled"] = True
+        else:
+            rec["espn_tries"] = rec.get("espn_tries", 0) + 1
+
+
 # ------------------------------------------------------------------ main
 def lane_stats(rows):
     n = len(rows)
@@ -441,7 +471,7 @@ def main():
     for k, b in tracker.items():
         rec = st["bets"].setdefault(k, {"first_seen": iso(now)})
         snap = rec.setdefault("snap", {})
-        for f in ("book", "game", "bet", "flip", "league", "source", "teams", "game_start", "placed"):
+        for f in ("book", "game", "bet", "flip", "league", "source", "teams", "game_start", "placed", "settled"):
             if b.get(f) not in (None, "", []):
                 snap[f] = b[f]
         for f in ("price", "stake", "to_pay"):
@@ -449,6 +479,11 @@ def main():
                 snap[f] = b[f]
         if b.get("result"):
             snap["result"] = b["result"]
+    # 1b) tracker rows with no game attached (older settled rows): find the game on ESPN (free) near when it settled
+    try:
+        espn_fill(st, now)
+    except Exception as e:
+        st.setdefault("errors", []).append(f"{iso(now)} espn fill: {type(e).__name__}")
     # 2) bot Novig orders for the stale check
     nvo = []
     try:
@@ -606,8 +641,8 @@ def main():
         wr = {}
         for k, r in st["bets"].items():
             if not r.get("done") and r.get("clv") is None:
-                w = r.get("why") or ("game not started" if (tp(r["snap"].get("game_start")) or now) > now - timedelta(minutes=SCORE_AFTER_MIN)
-                                     else "no game start on the tracker row" if not r["snap"].get("game_start") else "queued")
+                w = r.get("why") or ("no game found for the tracker row (ESPN)" if not r["snap"].get("game_start") else
+                                     "game not started" if tp(r["snap"]["game_start"]) > now - timedelta(minutes=SCORE_AFTER_MIN) else "queued")
                 wr[w] = wr.get(w, 0) + 1
         L += [f"    {v} x {k2}" for k2, v in sorted(wr.items(), key=lambda x: -x[1])]
         nc = [r for r in (st.get("novig_checks") or {}).values() if r.get("novig_price_then") is not None]
