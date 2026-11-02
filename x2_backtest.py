@@ -169,6 +169,46 @@ def main():
             for hf in ("FIT", "CHECK"):
                 xs = [x for x in res if x["league"] == lg and x["half"] == hf and x["ratio"] >= bnd and x["two5k"] and x["liq"] >= 25000]
                 L.append(line(xs, f"    >= {bnd}x {hf}"))
+    # Nov 2 13:50 (Peter: "run a bunch of tests, see what's the best P-limit number"): full multiplier sweep per sport x
+    # market, both directions. Honest selection: the cutoff is CHOSEN on FIT only (best FIT CLV with >= 30 rows), then
+    # its CHECK result is reported as the out-of-sample answer. HOLDS = >= 30 rows and avg CLV > 0 in BOTH halves.
+    GRID = (1, 2, 3, 5, 10, 15, 20, 30, 50, 75, 100, 150, 200, 300, 500)
+
+    def cell(xs):
+        c = [float(x["clv"]) for x in xs if x["clv"] is not None]
+        g = [x for x in xs if x["result"] in ("W", "L", "P")]
+        u = sum(float(x["units"] or 0) for x in g)
+        return len(xs), (sum(c) / len(c) if c else None), (u / len(g) if g else None)
+
+    def fmt(t):
+        n, c, u = t
+        return f"n {n:>3} CLV {c:+.2f}c {u:+.3f}u" if c is not None and u is not None else f"n {n:>3}"
+    L += ["", "MULTIPLIER SWEEP (OJ scale; gates kept). '>=' = ratio at or above; '<' = below (low money vs limit).",
+          "Cutoff picked on FIT ONLY (best FIT CLV, >= 30 rows); CHECK = out-of-sample answer. HOLDS = >= 30 rows, CLV > 0 both halves.",
+          "CAUTION: about 30 cutoffs x 20 sport/market cells are tested; some HOLDS lines will be luck. Trust only the FIT-chosen list."]
+    picks = []
+    for lg in sorted({x["league"] for x in res}) + ["ALL"]:
+        for mk in ("ALL", "moneyline", "spread", "total"):
+            base = [x for x in res if (lg == "ALL" or x["league"] == lg) and (mk == "ALL" or x["market"] == mk)
+                    and x["two5k"] and x["liq"] >= 25000]
+            if len(base) < 40:
+                continue
+            L.append(f"  {lg} {mk}: rows {len(base)}")
+            best = None
+            for d in (">=", "<"):
+                for m in GRID:
+                    sel = [x for x in base if (x["ratio"] >= m if d == ">=" else x["ratio"] < m)]
+                    F, C = cell([x for x in sel if x["half"] == "FIT"]), cell([x for x in sel if x["half"] == "CHECK"])
+                    if F[0] < 10 and C[0] < 10:
+                        continue
+                    holds = F[0] >= 30 and C[0] >= 30 and (F[1] or -1) > 0 and (C[1] or -1) > 0
+                    L.append(f"    {d}{m:>4}x  FIT {fmt(F)} | CHECK {fmt(C)}" + ("  HOLDS" if holds else ""))
+                    if F[0] >= 30 and F[1] is not None and (best is None or F[1] > best[0]):
+                        best = (F[1], d, m, F, C)
+            if best:
+                picks.append(f"  {lg} {mk}: FIT-chosen cutoff {best[1]}{best[2]}x -> FIT {fmt(best[3])} | CHECK {fmt(best[4])}"
+                             + ("  (holds out of sample)" if best[4][0] >= 30 and (best[4][1] or -1) > 0 else "  (does NOT hold)"))
+    L += ["", "FIT-CHOSEN CUTOFFS AND THEIR OUT-OF-SAMPLE RESULT:"] + picks
     L += ["", "2X PASS rows on the OJ scale (newest 25):"]
     for x in sorted([x for x in res if x["pass_OJ"]], key=lambda x: x["alerted"])[-25:][::-1]:
         L.append(f"  {x['alerted'][:16]} {x['league']} {x['game']} | {x['side']} | liq USD {x['liq']:,} vs limit {x['limit_raw']:,.0f} "
