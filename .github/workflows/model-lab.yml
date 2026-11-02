@@ -1,0 +1,36 @@
+name: model-lab
+
+# On demand: MODEL LAB (HYPOTHESIS ONLY) - simple fixed models per league vs Pinnacle's opener, graded on the close, plus the
+# NBA all-unders-at-the-open baseline. Reads the shared history cache. Private email; the log prints counts only.
+on:
+  workflow_dispatch:
+    inputs:
+      leagues: {required: false, type: string, default: "NBA,NHL,NFL,NCAAF"}
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Restore shared OddsPapi history cache (private Actions cache, never committed)
+        uses: actions/cache@v4
+        with:
+          path: hcache
+          key: hcache-${{ github.run_id }}
+          restore-keys: hcache-
+      - name: Model lab (private email)
+        env:
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
+          LAB_LEAGUES: ${{ inputs.leagues }}
+        run: python -u model_lab.py
