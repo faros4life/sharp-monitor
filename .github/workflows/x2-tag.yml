@@ -1,0 +1,47 @@
+name: x2-tag
+
+# P limit (at alert and now, OddsJam scale) + the 2X tag for today's board rows, from OddsPapi free history.
+# Writes x2/limits.json (public market data, read by the board) and oddspapi/fixtures.json. The log prints counts only.
+on:
+  schedule:
+    - cron: "11,41 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: x2-tag
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: P limit + 2X tag
+        env:
+          ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
+        run: python -u x2_tag.py
+      - name: Commit limits and fixture cache
+        run: |
+          # Only this workflow writes x2/ and oddspapi/; save over upstream, never a merge.
+          if [ -n "$(git status --porcelain x2 oddspapi)" ]; then
+            git config user.name "x2-tag"
+            git config user.email "x2-tag@users.noreply.github.com"
+            rm -rf "$RUNNER_TEMP/out" && mkdir -p "$RUNNER_TEMP/out" && cp -r x2 oddspapi "$RUNNER_TEMP/out/"
+            for i in 1 2 3 4 5; do
+              git fetch -q origin main && git reset -q --hard origin/main
+              rm -rf x2 oddspapi && cp -r "$RUNNER_TEMP/out/x2" "$RUNNER_TEMP/out/oddspapi" .
+              git add -A x2 oddspapi
+              git diff --cached --quiet && break
+              git commit -q -m "Update P limits / 2X tags"
+              git push -q origin HEAD:main && break
+              sleep 5
+            done
+          fi
