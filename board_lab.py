@@ -81,6 +81,34 @@ def st(xs):
     return f"n{len(xs)} {w}-{l_} {u:+.1f}u CLV {c:+.2f}c beat {b}/{len(xs)}"
 
 
+def gettable(r):
+    """Muse registration Nov 3 ~10:21 AM: the +15-minute price is the gettable proxy (price_after_15m, best book then).
+    None when nothing was still bettable at +15 min."""
+    g = r.get("price_after_15m")
+    if r.get("still_actionable") is False or g is None or not 0 < g < 1:
+        return None
+    return g
+
+
+def gst(xs):
+    """Same calls graded at the +15-min gettable price: 1u flat at that cost; CLV = (close - gettable cost) x 100."""
+    G = [(r, gettable(r)) for r in xs]
+    ok = [(r, g) for r, g in G if g is not None]
+    if not ok:
+        return f"n0 gettable (of {len(xs)})"
+    u = sum(((1 - g) / g) if r["result"] == "W" else (-1.0 if r["result"] == "L" else 0.0) for r, g in ok)
+    c = [(r["close_price"] - g) * 100 for r, g in ok if r.get("close_price") is not None]
+    w = sum(r["result"] == "W" for r, _ in ok)
+    l_ = sum(r["result"] == "L" for r, _ in ok)
+    return (f"n{len(ok)} gettable (of {len(xs)}) {w}-{l_} {u:+.1f}u CLV {sum(c) / max(len(c), 1):+.2f}c "
+            f"beat {sum(v > 0 for v in c)}/{len(c)}")
+
+
+def gclv(xs):
+    c = [(r["close_price"] - gettable(r)) * 100 for r in xs if gettable(r) is not None and r.get("close_price") is not None]
+    return (sum(c) / len(c) if c else None), len(c)
+
+
 def holds(a, b):
     f = lambda xs: len(xs) >= 15 and sum(r.get("units_flat") or 0 for r in xs) > 0 and sum(r["clv_cents"] for r in xs) > 0
     return f(a) and f(b)
@@ -117,6 +145,14 @@ def main():
                      lambda r: r.get("market") == "moneyline" and -250 <= (r.get("price_american") or 0) <= -110
                      and not r.get("pulled") and not moved_toward(r))):
         L.append(f"   {name}: {st([r for r in FW if f(r)])}")
+    PL = [r for r in FW if v2s(r) == "PLAY"]
+    L.append(f"   BOARD PLAY (NBA totals only; the one registered PLAY rule) at the +15-min GETTABLE price - THE JUDGED LINE: {gst(PL)}")
+    L.append(f"   same PLAY calls at the board price (secondary): {st(PL)}")
+    c50, k = gclv(PL)
+    L.append(f"   STOP-AT-50 counter (gettable basis): {min(k, 50)}/50 resulted" + (f", avg CLV {c50:+.2f}c" if c50 is not None else "")
+             + (" -> STOP: negative at 50, lane closed (Muse registration)" if k >= 50 and c50 is not None and c50 < 0 else
+                (" -> passed the 50 check; live still needs the full 100" if k >= 50 else "")))
+    L.append(f"   in-sample for reference, board PLAY at gettable price: {gst([r for r in R if v2s(r) == 'PLAY'])}")
     L.append("Everything above FORWARD ONLY is in-sample (the rules were picked from it): descriptive, not judged.")
     today = (datetime.now(timezone.utc).astimezone(ET)).strftime("%Y-%m-%d")
     yday = sorted(d for d in days if d < today)[-1:] if days else []
