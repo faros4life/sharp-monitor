@@ -1,6 +1,149 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-03T15:30:17Z",
+   "base_depth": 282024,
+   "best_price": 0.51,
+   "best_price_american": -104,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-03",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 5435,
+     "new_this_side": 34529,
+     "other_side": 168881,
+     "other_side_all_levels": 302904,
+     "ratio": 1.2,
+     "this_side": 200261,
+     "this_side_all_levels": 353033
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "Under 51.5 (51.5)",
+     "price": 0.51,
+     "this_side": 24715
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "under 51.5 (51.5)",
+     "price": 0.5146,
+     "this_side": 7967
+    }
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-11-03T15:20:16Z",
+   "game": "Ohio vs Akron: Total Points",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFTOTAL-26NOV03OHIOAKR-52\"}",
+   "lead_min": 510,
+   "league": "NCAAF",
+   "line": 51.5,
+   "market": "total",
+   "new_money": 34529,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 51.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 51.0,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 51.5,
+     "price": -101
+    },
+    "betrivers": {
+     "point": 51.5,
+     "price": -114
+    },
+    "betus": {
+     "point": 51.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 51.5,
+     "price": -112
+    },
+    "draftkings": {
+     "point": 51.5,
+     "price": -112
+    },
+    "fanatics": {
+     "point": 51.5,
+     "price": -115
+    },
+    "kalshi": {
+     "point": 51.5,
+     "price": -104
+    },
+    "lowvig": {
+     "point": 51.0,
+     "price": -108
+    },
+    "mybookieag": {
+     "point": 51.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 51.5,
+     "price": -104
+    },
+    "polymarket": {
+     "point": 51.5,
+     "price": -104
+    },
+    "prophetx": {
+     "point": 51.5,
+     "price": -106
+    },
+    "williamhill_us": {
+     "point": 51.5,
+     "price": -117
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAFTOTAL-26NOV03OHIOAKR-52"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "NOT Over 51.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-11-04T00:00:00Z",
+   "teams": [
+    "Ohio",
+    "Akron"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-03T14:41:57Z",
    "base_depth": 77391,
    "best_price": 0.59,
@@ -4454,8 +4597,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.83,
-   "clv_cents": -2.0,
+   "close_price": 0.81,
+   "clv_cents": -4.0,
    "confirmed_after_min": 10,
    "date": "2026-11-04",
    "depth_by_book": {
@@ -4566,8 +4709,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": -1.0,
+   "close_price": 0.5,
+   "clv_cents": -2.0,
    "confirmed_after_min": 10,
    "date": "2026-11-04",
    "depth_by_book": {
