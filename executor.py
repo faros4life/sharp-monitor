@@ -211,6 +211,68 @@ def rule_plays(now):
     return out
 
 
+BOARD_LIVE = (os.environ.get("EXEC_BOARD_LIVE") or "off").strip().lower() == "on"   # Lane 3 money switch (repo variable)
+BOARD_CONFIRM_MIN = 15   # Lane 3: a PLAY call must still be PLAY 15 min after it posted (the board's gettable-price basis)
+
+
+def board_plays(now):
+    """Nov 3 (Peter 2:01 PM "ok build"; rulebook v5 Lane 3): Bets Board v2 PLAY calls (NBA totals, overs and unders) that
+    survive: money not pulled, price not moved toward the side (v2 tags those DEAD), still PLAY >= 15 min after posting,
+    game not started. Same downstream path as every play: books checked, line floor, caps, stacking, positions, live
+    guards. Places money only when EXEC_BOARD_LIVE is "on" AND live is on; otherwise a dry-run WOULD PLACE."""
+    try:
+        import board_build as bb
+        _, rows, _ = bb.build(upcoming=True)
+    except Exception as ex:
+        LOG.append(f"board unreadable: {str(ex)[:60]}")
+        return []
+    out, seen = [], set()
+    for r in sorted(rows, key=lambda r: r["at"]):
+        x = r["x"]
+        if r.get("tag") != "PLAY" or r.get("status") != "still there" or x.get("pulled") or x.get("artifact"):
+            continue
+        if (x.get("league") or "") != "NBA" or x.get("market") != "total":
+            continue
+        st = iso_t(x.get("start_utc"))
+        if not st or st <= now or not r.get("at") or now - r["at"] < timedelta(minutes=BOARD_CONFIRM_MIN):
+            continue
+        sd, ln, am = x.get("side"), x.get("line"), x.get("price_american")
+        if sd not in ("OVER", "UNDER") or ln is None or am is None:
+            continue
+        p = {"sport": "NBA", "game": x.get("game") or "", "bet": f"{'Over' if sd == 'OVER' else 'Under'} {float(ln):g} ({int(am):+d})",
+             "start_utc": x.get("start_utc"), "late": False, "source": "board", "alert_utc": x.get("alerted_utc"),
+             "rules": {"verdict": "AGREE", "gate": None, "reason": "board v2 PLAY (Lane 3)"},
+             "board_entry": {"alert_utc": x.get("alerted_utc"), "book_key": x.get("book"), "price_after_fee": am,
+                             "point": ln, "sport": "NBA", "bet": None}}
+        k = derive_key(p)
+        if not k or k in seen:
+            continue
+        seen.add(k)
+        out.append(dict(p, play_key="board|" + k))
+    return out
+
+
+def same_bet(k1, k2):
+    """Same bet from two lanes despite different game spellings ('Hawks vs. Hornets' / 'Atlanta Hawks @ Charlotte Hornets'):
+    same league, market and side, and each team of one shares a name word with a team of the other."""
+    try:
+        a = (k1.split("|", 1)[1] if k1.startswith(("board|", "rule|")) else k1).split("|")
+        b = (k2.split("|", 1)[1] if k2.startswith(("board|", "rule|")) else k2).split("|")
+        if len(a) != 4 or len(b) != 4 or a[0] != b[0] or a[2] != b[2]:
+            return False
+        ta, tb = lm.split_teams(a[1]) or (), lm.split_teams(b[1]) or ()
+        if len(ta) != 2 or len(tb) != 2:
+            return False
+        sa, sb = [lm.toks(x, a[0]) for x in ta], [lm.toks(x, a[0]) for x in tb]
+        if not all(any(x & y for y in sb) for x in sa):
+            return False
+        if a[2] == "total":
+            return a[3] == b[3]
+        return bool(lm.toks(a[3], a[0]) & lm.toks(b[3], a[0]))
+    except Exception:
+        return False
+
+
 def derive_key(p):
     """No play_key (e.g. a raw alerts.json entry): sport|game|market|side, so repeat alerts on one play count once."""
     try:
@@ -930,7 +992,8 @@ BOOK_NAME = {"novig": "Novig", "prophetx": "ProphetX", "kalshi": "Kalshi", "poly
 
 
 def src_tag(p):
-    return "[coded rules] " if p.get("source") == "rules" else ("[Muse] " if SOURCE == "both" else "")
+    return ("[coded rules] " if p.get("source") == "rules" else "[board Lane 3] " if p.get("source") == "board"
+            else ("[Muse] " if SOURCE == "both" else ""))
 
 
 def lag_text(p, now=None):
@@ -1626,7 +1689,8 @@ def main():
     except Exception:
         LOG.append("manual-bet notes unreadable")
     rplays = rule_plays(now) if SOURCE in ("rules", "both") else []
-    new = [p for p in plays + rplays if not already_handled(M, p)]
+    bplays = board_plays(now)   # Nov 3: Lane 3 (board NBA totals)
+    new = [p for p in plays + rplays + bplays if not already_handled(M, p)]
     M.logout()
     feed = load_feed()
     # wake time: this run's start vs the newest SENT alert (Oct 26; counts/seconds only in the public log)
@@ -1733,7 +1797,26 @@ def main():
                 p = dict(p, floor_line=ent["floor_line"])   # Oct 31: the alert's bet-only-at line (hard floor)
             r = evaluate(p, now, evs_by, mks_by_event, pos, None if p.get("source") == "rules" else taken, held)
             r["entry"] = ent
-            if ent and (p.get("source") != "rules" or RULES_LIVE):   # phase-1 live tag (Oct 30: coded AGREE goes live too)
+            if p.get("source") == "board":   # Lane 3: its own live decision (never the phase-1 filter), own record
+                r["entry"] = ent = p.get("board_entry") or {}
+                lk = derive_key(p) or p["play_key"]
+                why = [] if BOARD_LIVE else ["board lane not switched on (EXEC_BOARD_LIVE)"]
+                if lk in MANUAL_HELD:
+                    why.append(f"{MANUAL_HELD[lk]} with Peter's manual bet (Bets manual note)")
+                if lk in LIVEKEYS or any(same_bet(lk, k) for k in LIVEKEYS):
+                    why.append("a live order or resting bid was already sent for this bet (another lane)")
+                if not why and r["verdict"] == "WOULD PLACE" and r.get("lc"):
+                    lc = r["lc"]
+                    lr, lw = live_stake(lc["shown"])
+                    r["live"] = {"go": True, "book": lc["book"], "risk": lr, "to_win": lw, "am": lc["am"], "shown": lc["shown"],
+                                 "line": lc["line"], "partial": lc["avail"] < lr, "px": lc, "ids": lc.get("ids") or {},
+                                 "nfl": False, "lane": "board"}
+                elif not why:
+                    r["live"] = {"go": False, "lane": "board", "why": ["no live book has the alert number or better"
+                                                                        if r["verdict"] == "WOULD PLACE" else (r.get("reason") or "skipped")]}
+                else:
+                    r["live"] = {"go": False, "lane": "board", "why": why}
+            elif ent and (p.get("source") != "rules" or RULES_LIVE):   # phase-1 live tag (Oct 30: coded AGREE goes live too)
                 ok, why = agree_rules.phase1(ent, True)   # NCAAF/NBA spreads + unders, NFL unders only (Peter, Oct 26)
                 lk = derive_key(p) or p["play_key"]
                 if ok and lk in MUSE_DISAGREE:
@@ -1772,7 +1855,7 @@ def main():
                 LIVEKEYS.add(derive_key(p) or p["play_key"])
             results.append(r)
             if (r["verdict"] == "WOULD PLACE" or ((r.get("live") or {}).get("rest") or {}).get("status") == "placed") \
-                    and derive_key(p) and p.get("source") != "rules":
+                    and derive_key(p) and p.get("source") not in ("rules", "board"):
                 taken_now.add(derive_key(p))
         except Exception as ex:
             results.append({"play": p, "pid": pid(p["play_key"]), "verdict": "SKIP", "reason": f"error: {str(ex)[:100]}"})
