@@ -185,6 +185,20 @@ def main():
     F += [("ML fav -110 to -250", lambda r: r.get("market") == "moneyline" and -250 <= (r.get("price_american") or 0) <= -110),
           ("ML fav worse than -250", lambda r: r.get("market") == "moneyline" and (r.get("price_american") or 0) < -250),
           ("ML dog", lambda r: r.get("market") == "moneyline" and (r.get("price_american") or 0) > 0)]
+    # Nov 3 (Peter 10:33 "can we also use the P limit"): Pinnacle limit at alert (x2/limits.json, from Nov 2 only)
+    X2 = bb.x2_limits()
+    for r in R:
+        r["_pl"] = X2.get(f"{r.get('key')}|{r.get('alerted_utc')}") or {}
+    has = [r for r in R if r["_pl"].get("p_alert")]
+    med = {}
+    for lg in {r.get("league") for r in has}:
+        v = sorted(r["_pl"]["p_alert"] for r in has if r.get("league") == lg)
+        med[lg] = v[len(v) // 2]
+    F += [("P limit at alert known (from Nov 2)", lambda r: bool(r["_pl"].get("p_alert"))),
+          ("P limit at alert > league median", lambda r: bool(r["_pl"].get("p_alert")) and r["_pl"]["p_alert"] > med.get(r.get("league"), 1e18)),
+          ("P limit at alert <= league median", lambda r: bool(r["_pl"].get("p_alert")) and r["_pl"]["p_alert"] <= med.get(r.get("league"), -1)),
+          ("2X tag (exchange money >= 2x P limit)", lambda r: r["_pl"].get("x2") is True),
+          ("no 2X tag (limit known)", lambda r: bool(r["_pl"].get("p_alert")) and r["_pl"].get("x2") is not True)]
     for name, f in F:
         xs = [r for r in R if f(r)]
         if xs:
