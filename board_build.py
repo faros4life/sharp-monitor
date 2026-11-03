@@ -134,6 +134,22 @@ def score(rows):
             r["tag"], r["why"] = "PLAY", "; ".join(why) + ". Check the price is still there."
         else:
             r["tag"], r["why"] = "LEAN", "; ".join(short + fights + why)
+    # Nov 3 (Peter 10:31 "update it to the board, the v1 wasn't working anyway"): v2 calls, registered by Muse Nov 3.
+    # PLAY = NBA totals only, money still there, price not already moved toward the side, no ML edge-fail.
+    # Spreads and late money are off (shown as DEAD). The old call is kept in r["v1"] (paper lanes + Board Lab use it).
+    for r in rows:
+        r["v1"] = r["tag"]
+        if r["tag"] == "DEAD":
+            continue
+        x = r["x"]
+        if r["mk"] == "spread":
+            r["tag"], r["why"] = "DEAD", "v2: spreads are off the board (lost in every league)"
+        elif (x.get("price") or 0) > (x.get("price_when_first_seen") or 0) + 0.005:
+            r["tag"], r["why"] = "DEAD", "v2: late money (price already moved toward this side)"
+        elif r["mk"] == "total" and x.get("league") == "NBA" and x.get("price_rule") != "ml_edge_fail":
+            r["tag"], r["why"] = "PLAY", "v2: NBA total, money still there. Check the price is still there."
+        else:
+            r["tag"], r["why"] = "LEAN", "v2: only NBA totals are PLAY" + (f" | {r['why']}" if r["why"] else "")
 
 
 def x2_limits():
@@ -280,7 +296,7 @@ td{{padding:5px 6px;border-bottom:1px solid var(--line);vertical-align:top}}.r{{
 <div class="tile"><div class="l">Today's LEAN calls graded</div><div class="n">{rec([r for r in rows if r["tag"] == "LEAN"])}</div></div>
 <div class="tile"><div class="l">Big-money moves today</div><div class="n">{len(rows)}</div></div></div>
 <div class="card"><h2>Big money today, by bet type</h2>
-<p class="note"><b>Call:</b> PLAY = still there, confirmed, $100k+ ($250k+ on spreads), a sharp alert agrees, and nothing fights it (biggest flow alone caps at LEAN). LEAN = still there but short of that (reason shown). DEAD = pulled, or later spread money went the other way. Started games keep their kickoff call and grade W/L when final. Check the price before betting. Paper signal; spread flows have lost over time.</p>
+<p class="note"><b>Call (v2, from Nov 3):</b> PLAY = an NBA total whose money is still there and whose price has not already moved toward it. LEAN = any other moneyline or total still there. DEAD = pulled, flipped, late money, or any spread (spreads are off the board: they lost in every league). Started games keep their kickoff call and grade W/L when final. Check the price before betting. Paper signal; spread flows have lost over time.</p>
 <div class="legend"><span><i class="sw kalshi"></i>Kalshi</span><span><i class="sw novig"></i>Novig</span><span><i class="sw prophetx"></i>ProphetX</span><span><i class="sw polymarket"></i>Polymarket</span></div>
 <div class="filters"><button data-f="" class="on">All</button>{btns}<button data-f="live">PLAY + LEAN only</button></div>
 <h3>Moneylines</h3>{table("moneyline")}<h3>Spreads</h3>{table("spread")}<h3>Totals</h3>{table("total")}</div>
