@@ -143,7 +143,9 @@ def main():
                     ("v2-STRICT PLAY", lambda r: v2s(r) == "PLAY"),
                     ("DESCRIPTIVE ML fav -110..-250 (not pulled, not moved toward, any price_rule; Muse Nov 3, not PLAY)",
                      lambda r: r.get("market") == "moneyline" and -250 <= (r.get("price_american") or 0) <= -110
-                     and not r.get("pulled") and not moved_toward(r))):
+                     and not r.get("pulled") and not moved_toward(r)),
+                    ("DESCRIPTIVE NBA-TOTALS-ALL (pulled included; Muse Amendment 3, item 55, not PLAY)",
+                     lambda r: r.get("league") == "NBA" and r.get("market") == "total")):
         L.append(f"   {name}: {st([r for r in FW if f(r)])}")
     PL = [r for r in FW if v2s(r) == "PLAY"]
     L.append(f"   BOARD PLAY (NBA totals only; the one registered PLAY rule) at the +15-min GETTABLE price - THE JUDGED LINE: {gst(PL)}")
@@ -153,6 +155,8 @@ def main():
              + (" -> STOP: negative at 50, lane closed (Muse registration)" if k >= 50 and c50 is not None and c50 < 0 else
                 (" -> passed the 50 check; live still needs the full 100" if k >= 50 else "")))
     L.append(f"   in-sample for reference, board PLAY at gettable price: {gst([r for r in R if v2s(r) == 'PLAY'])}")
+    NA = [r for r in FW if r.get("league") == "NBA" and r.get("market") == "total"]
+    L.append(f"   item 55 NBA-TOTALS-ALL forward at gettable price: {gst(NA)} | pulled only: {gst([r for r in NA if r.get('pulled')])}")
     L.append("Everything above FORWARD ONLY is in-sample (the rules were picked from it): descriptive, not judged.")
     today = (datetime.now(timezone.utc).astimezone(ET)).strftime("%Y-%m-%d")
     yday = sorted(d for d in days if d < today)[-1:] if days else []
