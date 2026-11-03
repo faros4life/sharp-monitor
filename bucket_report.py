@@ -85,7 +85,9 @@ def ev_rows():
                         s.get("line"), s.get("sighting_american_af"), s.get("lead_min"), day(s.get("sighted_utc")), s.get("clv_pinnacle_c"),
                         edge=s.get("ev_pct"), alive=alive, live1=None if alive is None else alive >= 1,
                         live5=None if alive is None else alive >= 5, move=s.get("move_type"), ldelta=s.get("line_delta"), pdelta=s.get("price_delta_cents"),
-                        nbooks=s.get("n_books")))
+                        nbooks=s.get("n_books"),
+                        units=fin.units_wl(fin.result_named(s.get("league"), s.get("game"), s.get("start_utc"), s.get("market"),
+                                                            s.get("side"), s.get("line")), fin.am_dec(s.get("sighting_american_af")))))   # Nov 3: ESPN final
     for m in d.get("maker") or []:
         if m.get("clv_pinnacle_c") is None:
             continue
