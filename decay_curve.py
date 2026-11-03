@@ -240,7 +240,7 @@ def _bucket_recs(pairs):
                   "mk": {"tot": "totals", "spr": "spreads", "ml": "moneyline"}.get(kind), "sc": sc,
                   "clv": round((close - p) * 100, 2) if isinstance(close, (int, float)) and p is not None else None,
                   "lead": e.get("minutes_before_start"), "late": bool(e.get("late")), "edge": e.get("edge_pct"),
-                  "am": e.get("price_after_fee")})
+                  "am": e.get("price_after_fee"), "units": e.get("units_flat") if e.get("result") in ("W", "L", "P") else None})
     return bkt.section("phase-1 decisions, CLV cents = Pinnacle no-vig close minus the decision/fill implied prob", R, "c")
 
 
