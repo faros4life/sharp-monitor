@@ -1,6 +1,302 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-03T18:40:23Z",
+   "base_depth": 110038,
+   "best_price": 0.575,
+   "best_price_american": -135,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.58,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-03",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Utah",
+     "price": 0.58,
+     "this_side": 376302
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "UTA (0)",
+     "price": 0.575,
+     "this_side": 27785
+    },
+    "polymarket": {
+     "new_other_side": -9217,
+     "new_this_side": 77414,
+     "other_side": 55537,
+     "other_side_all_levels": 60398,
+     "ratio": 3.0,
+     "this_side": 166335,
+     "this_side_all_levels": 184802
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Utah Mammoth",
+     "price": 0.5763,
+     "this_side": 29313
+    }
+   },
+   "fade_price": 0.43,
+   "first_seen_utc": "2026-11-03T18:35:52Z",
+   "game": "Utah vs. Maple Leafs",
+   "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"5406771\"}",
+   "lead_min": 320,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 77414,
+   "paper_only": false,
+   "price": 0.58,
+   "price_american": -138,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.58,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -145
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -140
+    },
+    "betopenly": {
+     "point": null,
+     "price": -130
+    },
+    "betrivers": {
+     "point": null,
+     "price": -137
+    },
+    "betus": {
+     "point": null,
+     "price": -140
+    },
+    "bovada": {
+     "point": null,
+     "price": -142
+    },
+    "draftkings": {
+     "point": null,
+     "price": -142
+    },
+    "fanatics": {
+     "point": null,
+     "price": -145
+    },
+    "fanduel": {
+     "point": null,
+     "price": -142
+    },
+    "kalshi": {
+     "point": null,
+     "price": -138
+    },
+    "lowvig": {
+     "point": null,
+     "price": -140
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -139
+    },
+    "novig": {
+     "point": null,
+     "price": -135
+    },
+    "polymarket": {
+     "point": null,
+     "price": -138
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -138
+    },
+    "prophetx": {
+     "point": null,
+     "price": -136
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -139
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 0,
+    "pm_market_id": "5406771"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Utah",
+   "side_label": "Utah",
+   "start_source": "odds",
+   "start_utc": "2026-11-04T00:00:00Z",
+   "teams": [
+    "Utah",
+    "Maple Leafs"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-03T18:40:23Z",
+   "base_depth": 226991,
+   "best_price": 0.52,
+   "best_price_american": -108,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-04",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -2376,
+     "new_this_side": 71135,
+     "other_side": 163965,
+     "other_side_all_levels": 254330,
+     "ratio": 1.3,
+     "this_side": 208875,
+     "this_side_all_levels": 294884
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "CMU +1.5 (-1.5)",
+     "price": 0.52,
+     "this_side": 26895
+    }
+   },
+   "fade_price": 0.49,
+   "first_seen_utc": "2026-11-03T18:35:52Z",
+   "game": "Central Michigan vs Eastern Michigan: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFSPREAD-26NOV04CMUEMU-EMU2\"}",
+   "lead_min": 1790,
+   "league": "NCAAF",
+   "line": 1.5,
+   "market": "spread",
+   "new_money": 71135,
+   "paper_only": false,
+   "price": 0.52,
+   "price_american": -108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.52,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 1.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 1.5,
+     "price": -120
+    },
+    "betrivers": {
+     "point": 1.5,
+     "price": -109
+    },
+    "betus": {
+     "point": 1.5,
+     "price": -120
+    },
+    "bovada": {
+     "point": 1.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 1.5,
+     "price": -110
+    },
+    "fanatics": {
+     "point": 1.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 1.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": 1.5,
+     "price": -108
+    },
+    "lowvig": {
+     "point": 1.5,
+     "price": -116
+    },
+    "mybookieag": {
+     "point": 1.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 1.5,
+     "price": -108
+    },
+    "polymarket": {
+     "point": -0.5,
+     "price": 100
+    },
+    "prophetx": {
+     "point": 1.5,
+     "price": -110
+    },
+    "williamhill_us": {
+     "point": 1.5,
+     "price": -113
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAFSPREAD-26NOV04CMUEMU-EMU2"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Central Michigan",
+   "side_label": "NOT Eastern Michigan wins by over 1.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-11-05T00:30:00Z",
+   "teams": [
+    "Central Michigan",
+    "Eastern Michigan"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-03T18:25:41Z",
    "base_depth": 106102,
    "best_price": 0.6048,
@@ -6255,8 +6551,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": 1.0,
+   "close_price": 0.52,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-11-04",
    "depth_by_book": {
