@@ -41,6 +41,7 @@ jobs:
           PMUS_KEY_ID: ${{ secrets.PMUS_KEY_ID }}                   # positions only (GET)
           PMUS_SECRET_KEY: ${{ secrets.PMUS_SECRET_KEY }}
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}                     # phone alert when a bet is held (positions unreadable)
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}                 # Nov 3: Pinnacle price check at each live order (read only)
           EXEC_UNIT: "200"
           # LIVE phase 1 (Oct 26): real ProphetX orders only when the repo VARIABLE EXEC_LIVE is "on"
           EXEC_LIVE: ${{ vars.EXEC_LIVE }}
