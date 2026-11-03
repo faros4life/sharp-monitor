@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 3, 2:40 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 24.
+Updated Tue Nov 3, 2:50 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 24.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,14 +10,14 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 3 1:30AM | NBA | Minnesota vs Houston | moneyline: Houston | kalshi | $67k | -317 |  |  | +0.0c |  | pending |
+| Nov 3 1:30AM | NBA | Minnesota vs Houston | moneyline: Houston | kalshi | $67k | -317 |  |  | -1.0c |  | pending |
 | Nov 3 1:30AM | NBA | Dallas vs San Antonio | moneyline: San Antonio | kalshi | $27k | -567 |  |  | -1.0c |  | pending |
 | Nov 3 12:50AM | NBA | Philadelphia vs Detroit | moneyline: Detroit | kalshi | $35k | -108 |  |  | +1.0c | yes | pending |
 | Nov 3 12:30AM | NHL | Detroit vs Tampa Bay: Spread | spread: NOT Tampa Bay wins by over 1.5 goals | kalshi | $36k | -113 |  |  | -1.0c | yes | pending |
 | Nov 3 12:20AM | NCAAF | Ball St. vs UMass: Spread | spread: NOT UMass wins by over 3.5 points | kalshi | $39k | -108 |  |  | +0.0c |  | pending |
 | Nov 3 12:10AM | NHL | Utah vs Toronto | moneyline: Toronto | kalshi | $33k | +122 |  |  | +0.0c |  | pending |
 | Nov 2 11:50PM | NHL | Colorado vs Columbus | moneyline: Columbus | kalshi | $58k | +117 |  |  | +0.0c | yes | pending |
-| Nov 2 11:10PM | NHL | Detroit vs Tampa Bay | moneyline: Tampa Bay | kalshi | $39k | -233 | ✅ polymarket |  | +1.0c | yes | pending |
+| Nov 2 11:10PM | NHL | Detroit vs Tampa Bay | moneyline: Tampa Bay | kalshi | $39k | -233 | ✅ polymarket |  | +0.0c | yes | pending |
 | Nov 2 11:10PM | NHL | Carolina vs Nashville | moneyline: Carolina | kalshi | $30k | -178 | ✅ novig,polymarket |  | +0.0c | yes | pending |
 | Nov 2 10:10PM | NCAAF | Ohio vs Akron: Spread | spread: Ohio wins by over 13.5 points | kalshi | $28k | -108 |  |  | +1.0c |  | pending |
 | Nov 2 9:50PM | NBA | Heat vs. Lakers | total: Over (237.5) | polymarket | $31k | -104 | ✅ novig |  | +0.0c |  | W |
