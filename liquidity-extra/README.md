@@ -1,17 +1,17 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 3, 9:30 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 6.
+Updated Tue Nov 3, 9:40 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 5.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 114-73 (-9.65u flat) | rule met: 32-29
+**Record:** 115-73 (-9.34u flat) | rule met: 32-29
 
-**Fade (paper, betting against the print):** 48-79 (+7.12u flat, after fees)
+**Fade (paper, betting against the print):** 48-80 (+6.12u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 3 5:20AM | TENNIS | Zverev vs Musetti | moneyline: Zverev | kalshi | $35k | -233 |  |  | +0.0c |  | pending |
-| Nov 3 3:30AM | TENNIS | Zolotareva vs Stefanini | moneyline: Stefanini | kalshi | $42k | -317 |  |  | +0.0c | yes | pending |
+| Nov 3 3:30AM | TENNIS | Zolotareva vs Stefanini | moneyline: Stefanini | kalshi | $42k | -317 |  |  | +0.0c | yes | W |
 | Nov 3 3:20AM | TENNIS | Ruud vs Jodar | moneyline: Jodar | kalshi | $39k | -178 | ✅ novig |  | +0.0c |  | pending |
 | Nov 2 11:40PM | NCAAB | North Florida vs California Baptist | moneyline: California Baptist | kalshi | $39k | -400 |  |  | +2.0c |  | pending |
 | Nov 2 11:00PM | NCAAB | Purdue Fort Wayne vs Duquesne | moneyline: Duquesne | kalshi | $45k | -400 |  |  | +2.0c | yes | pending |
