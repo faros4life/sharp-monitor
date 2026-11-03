@@ -1,6 +1,135 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-03T19:56:19Z",
+   "base_depth": 655315,
+   "best_price": 0.4928,
+   "best_price_american": 103,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.49,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 6,
+   "date": "2026-11-03",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -26367,
+     "new_this_side": 435288,
+     "other_side": 658045,
+     "other_side_all_levels": 828907,
+     "ratio": 1.5,
+     "this_side": 990703,
+     "this_side_all_levels": 1090609
+    }
+   },
+   "fade_price": 0.52,
+   "first_seen_utc": "2026-11-03T19:50:26Z",
+   "game": "Buffalo vs Miami (OH): Spread",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFSPREAD-26NOV03BUFFMOH-MOH7\"}",
+   "lead_min": 304,
+   "league": "NCAAF",
+   "line": -6.5,
+   "market": "spread",
+   "new_money": 435288,
+   "paper_only": false,
+   "price": 0.49,
+   "price_american": 104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.49,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -6.0,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": -6.5,
+     "price": -109
+    },
+    "betopenly": {
+     "point": -6.0,
+     "price": 100
+    },
+    "betrivers": {
+     "point": -6.0,
+     "price": -114
+    },
+    "betus": {
+     "point": -6.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": -6.0,
+     "price": -115
+    },
+    "draftkings": {
+     "point": -6.0,
+     "price": -112
+    },
+    "fanatics": {
+     "point": -6.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": -6.5,
+     "price": -105
+    },
+    "kalshi": {
+     "point": -6.5,
+     "price": 104
+    },
+    "lowvig": {
+     "point": -6.5,
+     "price": -102
+    },
+    "mybookieag": {
+     "point": -5.5,
+     "price": -110
+    },
+    "novig": {
+     "point": -6.5,
+     "price": 104
+    },
+    "prophetx": {
+     "point": -5.5,
+     "price": -114
+    },
+    "williamhill_us": {
+     "point": -6.0,
+     "price": -112
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFSPREAD-26NOV03BUFFMOH-MOH7"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Miami",
+   "side_label": "Miami (OH) wins by over 6.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-11-04T01:00:00Z",
+   "teams": [
+    "Buffalo",
+    "Miami"
+   ],
+   "top25": true,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-03T19:45:59Z",
    "base_depth": 118456,
    "best_price": 0.51,
@@ -159,8 +288,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.31,
-   "clv_cents": 0.0,
+   "close_price": 0.315,
+   "clv_cents": 0.5,
    "confirmed_after_min": 4,
    "date": "2026-11-03",
    "depth_by_book": {
@@ -1868,8 +1997,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": 2.0,
+   "close_price": 0.52,
+   "clv_cents": 1.0,
    "confirmed_after_min": 5,
    "date": "2026-11-03",
    "depth_by_book": {
@@ -3527,8 +3656,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.58,
-   "clv_cents": 0.0,
+   "close_price": 0.57,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-03",
    "depth_by_book": {
@@ -6794,8 +6923,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.74,
-   "clv_cents": -2.0,
+   "close_price": 0.73,
+   "clv_cents": -3.0,
    "confirmed_after_min": 10,
    "date": "2026-11-04",
    "depth_by_book": {
@@ -7014,8 +7143,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.54,
-   "clv_cents": 2.0,
+   "close_price": 0.53,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-04",
    "depth_by_book": {
@@ -15625,8 +15754,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.45,
-   "clv_cents": -4.0,
+   "close_price": 0.46,
+   "clv_cents": -3.0,
    "confirmed_after_min": 10,
    "date": "2026-11-03",
    "depth_by_book": {
@@ -17412,8 +17541,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.48,
-   "clv_cents": -3.0,
+   "close_price": 0.49,
+   "clv_cents": -2.0,
    "confirmed_after_min": 10,
    "date": "2026-11-03",
    "depth_by_book": {
