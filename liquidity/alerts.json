@@ -1,6 +1,127 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-03T17:00:20Z",
+   "base_depth": 28902,
+   "best_price": 0.4977,
+   "best_price_american": 101,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-04",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -5390,
+     "new_this_side": 89775,
+     "other_side": 32499,
+     "other_side_all_levels": 36795,
+     "ratio": 3.2,
+     "this_side": 102453,
+     "this_side_all_levels": 124551
+    }
+   },
+   "fade_price": 0.51,
+   "first_seen_utc": "2026-11-03T16:55:24Z",
+   "game": "Toledo vs Sacramento St.: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFSPREAD-26NOV04TOLSAC-TOL25\"}",
+   "lead_min": 1860,
+   "league": "NCAAF",
+   "line": 24.5,
+   "market": "spread",
+   "new_money": 89775,
+   "paper_only": false,
+   "price": 0.5,
+   "price_american": -100,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.5,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 25.0,
+     "price": -108
+    },
+    "betonlineag": {
+     "point": 25.0,
+     "price": -107
+    },
+    "betrivers": {
+     "point": 25.5,
+     "price": -114
+    },
+    "betus": {
+     "point": 25.0,
+     "price": -105
+    },
+    "bovada": {
+     "point": 25.0,
+     "price": -103
+    },
+    "draftkings": {
+     "point": 25.5,
+     "price": -112
+    },
+    "fanatics": {
+     "point": 25.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 24.5,
+     "price": -110
+    },
+    "lowvig": {
+     "point": 25.0,
+     "price": -103
+    },
+    "mybookieag": {
+     "point": 25.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 25.5,
+     "price": -106
+    },
+    "polymarket": {
+     "point": -1.5,
+     "price": -3233
+    },
+    "prophetx": {
+     "point": 24.5,
+     "price": 103
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAFSPREAD-26NOV04TOLSAC-TOL25"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Sacramento St.",
+   "side_label": "NOT Toledo wins by over 24.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-11-05T00:00:00Z",
+   "teams": [
+    "Toledo",
+    "Sacramento St."
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-03T16:55:24Z",
    "base_depth": 285403,
    "best_price": 0.5,
@@ -4150,8 +4271,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.62,
-   "clv_cents": -2.0,
+   "close_price": 0.61,
+   "clv_cents": -3.0,
    "confirmed_after_min": 10,
    "date": "2026-11-03",
    "depth_by_book": {
@@ -5191,8 +5312,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.81,
-   "clv_cents": -4.0,
+   "close_price": 0.8,
+   "clv_cents": -5.0,
    "confirmed_after_min": 10,
    "date": "2026-11-04",
    "depth_by_book": {
