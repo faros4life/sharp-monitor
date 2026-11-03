@@ -1,6 +1,154 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-03T19:40:26Z",
+   "base_depth": 25231,
+   "best_price": 0.785,
+   "best_price_american": -365,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.79,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-04",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 22408,
+     "new_this_side": 85221,
+     "other_side": 27591,
+     "other_side_all_levels": 31433,
+     "ratio": 3.7,
+     "this_side": 101355,
+     "this_side_all_levels": 110268
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "T. Paul (0)",
+     "price": 0.785,
+     "this_side": 1738
+    }
+   },
+   "fade_price": 0.23,
+   "first_seen_utc": "2026-11-03T19:30:36Z",
+   "game": "Paul vs Merida",
+   "key": "kalshi|KXATPMATCH-26NOV04PAUMER|ml|0",
+   "lead_min": 950,
+   "league": "TENNIS",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 85221,
+   "paper_only": true,
+   "price": 0.79,
+   "price_american": -376,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.79,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXATPMATCH-26NOV04PAUMER-PAU"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Paul",
+   "side_label": "Paul",
+   "start_source": "novig",
+   "start_utc": "2026-11-04T11:30:00Z",
+   "teams": [
+    "Paul",
+    "Merida"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-03T19:40:26Z",
+   "base_depth": 22885,
+   "best_price": 0.805,
+   "best_price_american": -413,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.81,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-04",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 20884,
+     "new_this_side": 92597,
+     "other_side": 30984,
+     "other_side_all_levels": 33758,
+     "ratio": 3.4,
+     "this_side": 104198,
+     "this_side_all_levels": 117341
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "N. Djokovic (0)",
+     "price": 0.805,
+     "this_side": 2472
+    }
+   },
+   "fade_price": 0.19,
+   "first_seen_utc": "2026-11-03T19:30:36Z",
+   "game": "Djokovic vs Hijikata",
+   "key": "kalshi|KXATPMATCH-26NOV04DJOHIJ|ml|0",
+   "lead_min": 1080,
+   "league": "TENNIS",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 92597,
+   "paper_only": true,
+   "price": 0.81,
+   "price_american": -426,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.81,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXATPMATCH-26NOV04DJOHIJ-DJO"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Djokovic",
+   "side_label": "Djokovic",
+   "start_source": "novig",
+   "start_utc": "2026-11-04T13:40:00Z",
+   "teams": [
+    "Djokovic",
+    "Hijikata"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-03T19:30:36Z",
    "base_depth": 20503,
    "best_price": 0.81,
@@ -363,7 +511,8 @@
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.64,
    "prices_by_book": {},
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-03T19:40:26Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXATPMATCH-26NOV03RUUJOD-JOD"
