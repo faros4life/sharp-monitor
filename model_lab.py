@@ -377,7 +377,7 @@ def main():
         ln_ = s["line"] if (mk != "spreads" or s["side"] == "team1") else -s["line"]
         return {"day": s["day"], "clv": s["clv"], "lg": s["lg"], "mk": mk, "sc": bkt.side_class(mk, s["side"], ln_),
                 "key": bkt.key_class(s["lg"], mk, ln_), "edge": None if s["typ"].startswith("all-") else s["edge"],
-                "am": bkt.dec_to_am(s["dec"])}
+                "am": bkt.dec_to_am(s["dec"]), "units": {"W": s["dec"] - 1, "L": -1.0, "P": 0.0}.get(s.get("res"))}
     L += [""] + bkt.section("model picks, edge >= 4 (CLV % at Pinnacle open price)",
                             [_b(s) for s in sigs if not s["typ"].startswith("all-") and s["edge"] >= EDGE_REG], "%")
     L += [""] + bkt.section("no-model all unders / all overs at the open (CLV % at Pinnacle open price)",
