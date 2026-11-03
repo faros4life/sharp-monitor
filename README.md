@@ -1,11 +1,11 @@
 # EV sightings study (paper, measurement only)
 
-Started 2026-10-27T16:06:50Z. Updated 2026-11-03T06:10:28Z. Sightings are a record, never bets. CLV = close fair - sighting after-fee cost, in cents (+ = beat the close). Gate: >= 50 graded, positive average CLV and positive flat record; reviewed only at a scheduled review. A/B gate on consensus CLV; move-watch (A1) gate on Pinnacle CLV. Held = Pinnacle close minus Pinnacle's pre-move fair at the old number (+ = the move held). Rows exclude suspect sightings (best price 10c+ under the other books, or a crossed quote: usually a misread line); Pinnacle CLV only within 3 points of Pinnacle's number.
+Started 2026-10-27T16:06:50Z. Updated 2026-11-03T06:20:33Z. Sightings are a record, never bets. CLV = close fair - sighting after-fee cost, in cents (+ = beat the close). Gate: >= 50 graded, positive average CLV and positive flat record; reviewed only at a scheduled review. A/B gate on consensus CLV; move-watch (A1) gate on Pinnacle CLV. Held = Pinnacle close minus Pinnacle's pre-move fair at the old number (+ = the move held). Rows exclude suspect sightings (best price 10c+ under the other books, or a crossed quote: usually a misread line); Pinnacle CLV only within 3 points of Pinnacle's number.
 
 | Bucket | Sightings | Closed | CLV vs consensus | Beat % | Pin-closed | CLV vs Pinnacle | Graded | Record | Units | ROI | Held | Lag (med) | Gate |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| A cross-book (>= 2c) | 4929 | 4850 | -1.95c | 22.6% | 1942 | -1.21c | 4840 | 2453-2387-0 | -264.07u | -5.5% |  |  | criteria not met (4840/50 graded, CLV not positive, record not positive) |
-| A qualifying (>= 3c) | 1263 | 1227 | -3.79c | 14.9% | 276 | -3.08c | 1226 | 635-591-0 | -86.05u | -7.0% |  |  | criteria not met (1226/50 graded, CLV not positive, record not positive) |
+| A cross-book (>= 2c) | 4929 | 4850 | -1.95c | 22.6% | 1942 | -1.21c | 4850 | 2456-2394-0 | -270.18u | -5.6% |  |  | criteria not met (4850/50 graded, CLV not positive, record not positive) |
+| A qualifying (>= 3c) | 1263 | 1227 | -3.79c | 14.9% | 276 | -3.08c | 1227 | 635-592-0 | -87.05u | -7.1% |  |  | criteria not met (1227/50 graded, CLV not positive, record not positive) |
 | B Pinnacle (>= 3% EV) | 78 | 78 | -0.79c | 32.1% | 74 | 0.04c | 78 | 32-46-0 | -9.85u | -12.6% |  |  | criteria not met (78/50 graded, CLV not positive, record not positive) |
 | B ref age <60s | 5 | 5 | 0.57c | 40.0% | 5 | 1.69c | 5 | 3-2-0 | +1.29u | 25.9% |  |  |  |
 | B ref age 1-5m | 48 | 48 | -0.56c | 31.2% | 46 | 0.07c | 48 | 21-27-0 | -2.81u | -5.9% |  |  |  |
@@ -48,10 +48,11 @@ A and B on the same side/line: 66.
 
 ## Odds API credits (100K/month plan)
 
-Study: 630/day, projected 18893/30 days. All monitors on the key: 2136/day, projected 64082/30 days. Remaining 95139; guard holds 75800 for the sharp monitor; polls skipped by the guard: 0.
+Study: 629/day, projected 18872/30 days. All monitors on the key: 2134/day, projected 64012/30 days. Remaining 95139; guard holds 75800 for the sharp monitor; polls skipped by the guard: 0.
 
 ## Last runs
 
+- 2026-11-03T06:20:32Z: outside read hours: closes/grades only
 - 2026-11-03T06:10:28Z: outside read hours: closes/grades only
 - 2026-11-03T06:00:44Z: outside read hours: closes/grades only
 - 2026-11-03T05:50:38Z: outside read hours: closes/grades only
@@ -61,4 +62,3 @@ Study: 630/day, projected 18893/30 days. All monitors on the key: 2136/day, proj
 - 2026-11-03T05:10:40Z: outside read hours: closes/grades only
 - 2026-11-03T05:00:55Z: outside read hours: closes/grades only
 - 2026-11-03T04:50:39Z: 13 games (13 in 24h), quotes {'prophetx': 552, 'novig': 401, 'kalshi': 474, 'polymarket_us': 0}, 140 unmatched (3 book-games; fuzzy-matched 0), 671 side/lines, polls [NCAAF:slow,NHL:slow], moves 0, new A 2 B 0, maker posted 0 filled 0, credits used 4 left 95139, 106s
-- 2026-11-03T04:40:26Z: 13 games (13 in 24h), quotes {'prophetx': 552, 'novig': 401, 'kalshi': 484, 'polymarket_us': 660}, 150 unmatched (3 book-games; fuzzy-matched 0), 876 side/lines, polls [none_due], moves 0, new A 0 B 0, maker posted 0 filled 0, credits used 0 left 95152, 105s
