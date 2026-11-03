@@ -60,6 +60,12 @@ jobs:
           PMUS_SECRET_KEY: ${{ secrets.PMUS_SECRET_KEY }}
           NOVIG_SNAPSHOT_TOKEN: ${{ secrets.NOVIG_SNAPSHOT_TOKEN }}
         run: python -u tracker_build.py
+      - name: Real plays recap to the phone (Peter Nov 3; once a day after 8 AM ET; counts only in this log)
+        continue-on-error: true
+        env:
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+        run: python -u plays_recap.py
       - name: Commit lane log and encrypted tracker state
         run: |
           # Only this workflow writes lanes/ and tracker/; save over upstream, never a merge.
