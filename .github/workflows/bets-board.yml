@@ -93,9 +93,18 @@ jobs:
       - id: deploy
         continue-on-error: true   # Nov 3: 5-min scans -> more builds; a deploy can collide with one still finishing
         uses: actions/deploy-pages@v4
-      - name: Wait, then retry the deploy once (previous Pages deploy was still in progress)
+      - name: Cancel a stuck earlier Pages deploy, then retry once
         if: steps.deploy.outcome == 'failure'
-        run: sleep 45
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # Nov 3: a cancelled board run left a Pages deploy "in progress", which blocks every later deploy.
+          # Cancel any earlier github-pages deploys (by commit) that are not this run's; finished ones just error.
+          for sha in $( (gh api "repos/$GITHUB_REPOSITORY/deployments?environment=github-pages&per_page=15" --jq '.[].sha'; echo ed1be5234e93df6770a2c7926da7704f5893b781) | sort -u); do
+            [ "$sha" = "$GITHUB_SHA" ] && continue
+            gh api -X POST "repos/$GITHUB_REPOSITORY/pages/deployments/$sha/cancel" >/dev/null 2>&1 && echo "cancelled a stuck deploy" || true
+          done
+          sleep 20
       - id: deploy2
         if: steps.deploy.outcome == 'failure'
         continue-on-error: true   # still busy: the next build (about 5 min) deploys the page
