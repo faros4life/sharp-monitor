@@ -1,6 +1,153 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-03T17:10:22Z",
+   "base_depth": 101686,
+   "best_price": 0.45,
+   "best_price_american": 122,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.45,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 4,
+   "date": "2026-11-03",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -118,
+     "new_this_side": 30517,
+     "other_side": 105644,
+     "other_side_all_levels": 128040,
+     "ratio": 0.8,
+     "this_side": 86280,
+     "this_side_all_levels": 131447
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "Under 6.5 (6.5)",
+     "price": 0.45,
+     "this_side": 15674
+    },
+    "polymarket": {
+     "heavier_side": false,
+     "label": "Under (6.5)",
+     "price": 0.46,
+     "this_side": 18196
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "under 6.5 (6.5)",
+     "price": 0.4525,
+     "this_side": 5400
+    }
+   },
+   "fade_price": 0.56,
+   "first_seen_utc": "2026-11-03T17:06:08Z",
+   "game": "Anaheim vs Vancouver: Total Goals",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLTOTAL-26NOV03ANAVAN-7\"}",
+   "lead_min": 530,
+   "league": "NHL",
+   "line": 6.5,
+   "market": "total",
+   "new_money": 30517,
+   "paper_only": false,
+   "price": 0.45,
+   "price_american": 122,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.45,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 7.0,
+     "price": -135
+    },
+    "betonlineag": {
+     "point": 6.5,
+     "price": 117
+    },
+    "betopenly": {
+     "point": 6.5,
+     "price": 125
+    },
+    "betrivers": {
+     "point": 6.5,
+     "price": 120
+    },
+    "betus": {
+     "point": 6.5,
+     "price": 115
+    },
+    "bovada": {
+     "point": 6.5,
+     "price": 115
+    },
+    "draftkings": {
+     "point": 6.5,
+     "price": 114
+    },
+    "fanatics": {
+     "point": 6.5,
+     "price": 115
+    },
+    "fanduel": {
+     "point": 6.5,
+     "price": 112
+    },
+    "kalshi": {
+     "point": 6.5,
+     "price": 122
+    },
+    "lowvig": {
+     "point": 6.5,
+     "price": 117
+    },
+    "mybookieag": {
+     "point": 6.5,
+     "price": 112
+    },
+    "novig": {
+     "point": 6.5,
+     "price": 122
+    },
+    "polymarket": {
+     "point": 6.5,
+     "price": 117
+    },
+    "prophetx": {
+     "point": 6.5,
+     "price": 121
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNHLTOTAL-26NOV03ANAVAN-7"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "NOT Over 6.5 goals scored",
+   "start_source": "odds",
+   "start_utc": "2026-11-04T02:00:00Z",
+   "teams": [
+    "Anaheim",
+    "Vancouver"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-03T17:00:20Z",
    "base_depth": 28902,
    "best_price": 0.4977,
@@ -5312,8 +5459,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.82,
-   "clv_cents": -3.0,
+   "close_price": 0.83,
+   "clv_cents": -2.0,
    "confirmed_after_min": 10,
    "date": "2026-11-04",
    "depth_by_book": {
@@ -5424,8 +5571,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 0.0,
+   "close_price": 0.51,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-04",
    "depth_by_book": {
@@ -6430,8 +6577,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.54,
-   "clv_cents": 2.0,
+   "close_price": 0.53,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-03",
    "depth_by_book": {
@@ -10105,8 +10252,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.47,
-   "clv_cents": -2.0,
+   "close_price": 0.48,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-03",
    "depth_by_book": {
