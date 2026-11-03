@@ -80,7 +80,8 @@ def read_settled(prev):
             pid = f"{kid}|{p.get('marketId')}|{p.get('outcomeId')}|{ts}"
             row = {"id": pid, "wallet": "main" if kid == nv._S["id"] else "sub", "settledTs": ts,
                    "result": str(p.get("result") or "").upper(), "cost": p.get("cost"), "payout": p.get("payout"),
-                   "pnl": p.get("pnl"), "marketId": p.get("marketId"), "outcomeId": p.get("outcomeId")}
+                   "pnl": p.get("pnl"), "marketId": p.get("marketId"), "outcomeId": p.get("outcomeId"),
+                   "qty": p.get("qty")}   # Nov 2 (Peter "do it"): contracts = payout if it won, so a LOSS keeps its price
             if pid in known:
                 row.update({k: known[pid].get(k) for k in ("label", "game", "league", "start")})
             else:
