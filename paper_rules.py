@@ -127,7 +127,8 @@ def main():
     L.append("")
     for title, xs in sec:
         recs = [{"day": x["day"], "clv": x.get("tcv"), "beat": x["beat"], "lg": x["lg"], "mk": x["mk"], "sc": x["sc"],
-                 "lead": x["lead"], "late": x["late"], "edge": x["edge"], "am": x["paf"]} for x in xs]
+                 "lead": x["lead"], "late": x["late"], "edge": x["edge"], "am": x["paf"],
+                 "units": x["u"] if x["res"] in ("W", "L", "P") else None} for x in xs]
         L += bkt.section(f"{title} (CLV = TRUE close value %, price-based; units above)", recs, "%") + [""]
     # Nov 3 11:45 (Peter "ok do it"): the two rebuild candidates for LIVE, judged on TRUE close, clock from T60
     import agree_rules as ar
