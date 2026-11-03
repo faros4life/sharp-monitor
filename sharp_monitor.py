@@ -901,7 +901,7 @@ def closing_reads(st, n):
     """Take the final Pinnacle read for every logged play whose game starts within CLOSE_WINDOW minutes."""
     due = {}
     for e in st["log"]:
-        if e.get("cl") or e.get("sport") not in LABEL_KEY:
+        if e.get("cl") or e.get("sport") not in LABEL_KEY or str(e.get("ev", "")).startswith("R|"):
             continue
         mins = (parse_iso(e["start"]) - n).total_seconds() / 60
         if CLOSE_MIN_LEAD <= mins <= CLOSE_WINDOW or (0 < mins < CLOSE_MIN_LEAD and not e.get("cl")):
@@ -1320,6 +1320,135 @@ def poll_interval_min(st, active_sports):
     return max(MIN_INTERVAL, active_min * cost / daily)
 
 
+# ---------------------------------------------------------------- state self-heal (Nov 3)
+# GitHub evicted the sharp-state cache (Actions cache 10 GB limit) at ~8:10 AM ET Nov 3; the next run started empty and
+# alerts.json dropped to 0 bets. If the state ever comes back empty again, rebuild the alert log (bets, results, closing
+# reads) and the sent-alert list from the published alerts.json in the checkout. This once: from the last good commit.
+RESTORE_SHA = "c4d01d16eeace14170bdfc4e39de8c5a5f955823"
+_BOOK_KEY = {v: k for k, v in NAMES.items()}
+
+
+def _kind_of(bet):
+    if re.match(r"^(Over|Under) [0-9.]+ \([+-]?\d+\)$", bet):
+        return "tot"
+    if re.search(r" ML [+-]?\d+$", bet):
+        return "ml"
+    if re.search(r" (PL|RL) [+-]?\d+$", bet):
+        return "rl"
+    return "spr"
+
+
+def _parse_bet(kind, bet):
+    """describe() inverted: (side, point)."""
+    if kind == "tot":
+        m = re.match(r"^(Over|Under) ([0-9.]+) \(", bet)
+        return m.group(1), float(m.group(2))
+    if kind == "ml":
+        return re.match(r"^(.*) ML [+-]?\d+$", bet).group(1), None
+    m = re.match(r"^(.*) ([+-][0-9.]+|PK) (?:\(|PL |RL )", bet)
+    return m.group(1), (0.0 if m.group(2) == "PK" else float(m.group(2)))
+
+
+def _close_from(kind, side, pt, price, book, clv):
+    """grade() inverted: the sharp closing number from the published clv text."""
+    try:
+        v = float(str(clv).split()[0].rstrip("%"))
+    except Exception:
+        return None
+    if str(clv).endswith("pts"):
+        if kind in ("spr", "rl"):
+            return round(pt - v, 2)
+        return round(pt + v if side == "Over" else pt - v, 2)
+    return am_to_prob(net(price, book)) * (1 + v / 100)
+
+
+def restore_state(st):
+    d, src = None, None
+    if not st.get("log"):
+        try:
+            x = json.load(open(os.environ.get("ALERTS_FILE", "") or "alerts.json"))
+            if x.get("alerts"):
+                d, src = x, "checkout alerts.json"
+        except Exception:
+            pass
+    if d is None and st.get("restored_from") != RESTORE_SHA:
+        try:
+            with urllib.request.urlopen("https://raw.githubusercontent.com/faros4life/sharp-monitor/"
+                                        f"{RESTORE_SHA}/alerts.json", timeout=30) as r:
+                d, src = json.load(r), RESTORE_SHA[:7]
+        except Exception as ex:
+            print(f"State restore skipped: {str(ex)[:100]}")
+            return
+    if d is None:
+        return
+    st["restored_from"] = RESTORE_SHA
+    have = {(e["game"], e["start"], e["kind"], e["side"]) for e in st["log"]}
+    evs = {}
+    for e in st["log"]:
+        evs.setdefault(e["game"], []).append((parse_iso(e["start"]), e["ev"]))
+
+    def ev_of(game, start):   # same game within 6 h = same event (listed starts drift between alerts)
+        t0 = parse_iso(start)
+        m = [v for t1, v in evs.get(game, []) if abs((t1 - t0).total_seconds()) < 6 * 3600]
+        if not m:
+            m = [f"R|{game}|{start}"]
+            evs.setdefault(game, []).append((t0, m[0]))
+        return m[0]
+    nb = ns = bad = 0
+    for a in d.get("alerts") or []:
+        try:
+            side, _ = _parse_bet(a["kind"], a["bet"])
+            if (a["game"], a["start_utc"], a["kind"], side) in have:
+                continue
+            e = {"id": f"R|{a['game']}|{a['start_utc']}|{a['kind']}|{side}", "ev": ev_of(a["game"], a["start_utc"]),
+                 "game": a["game"], "kind": a["kind"], "side": side, "pt": a.get("point"), "price": a["price"],
+                 "book": a["book_key"], "conf": a.get("confirm"), "cby": a.get("confirmed_by") or [],
+                 "nconf": len(a.get("confirmed_by") or []) if a.get("confirm") == "yes" else 0,
+                 "evp": a.get("edge_pct"), "sport": a["sport"], "start": a["start_utc"], "late": bool(a.get("late")),
+                 "score": a.get("score"), "grade": a.get("grade"), "restored": True,
+                 "fade": ({"book": a["fade_book"], "pt": a.get("fade_point"), "price": a["fade_price"]}
+                          if a.get("fade_book") and a.get("fade_price") is not None else None)}
+            e["close"] = _close_from(e["kind"], side, e["pt"], e["price"], e["book"], a.get("clv"))
+            if a.get("alert_utc"):
+                e["t"] = parse_iso(a["alert_utc"]).timestamp()
+            if a.get("minutes_before_start") is not None:
+                e["lead"] = a["minutes_before_start"]
+            if a.get("top25") is not None:
+                e["t25"] = a["top25"]
+            if not a.get("sent_to_phone", True):
+                e["muted"] = True
+            if a.get("result"):
+                e["res"] = {"r": a["result"], "score": a.get("final")}
+            if a.get("close_value_pct") is not None:
+                e["cl"] = {"p": a.get("close_fair_prob"), "ev": a["close_value_pct"],
+                           "mins_before": a.get("close_read_mins_before")}
+            st["log"].append(e)
+            nb += 1
+        except Exception:
+            bad += 1
+    sh = {(x["game"], x["start"], int(x.get("t", 0)) // 60) for x in st.setdefault("sent", [])}
+    for x in d.get("all_alerts") or []:
+        try:
+            t = datetime.strptime(x["sent_et"], "%Y-%m-%d %H:%M").replace(tzinfo=ET).timestamp()
+            if (x["game"], x["start_utc"], int(t) // 60) in sh:
+                continue
+            kind = _kind_of(x["bet"])
+            side, pt = _parse_bet(kind, x["bet"])
+            s = {"ev": ev_of(x["game"], x["start_utc"]), "game": x["game"], "kind": kind, "side": side, "pt": pt,
+                 "price": x["price"], "book": _BOOK_KEY.get(x["book"], x["book"]), "sport": x["sport"],
+                 "start": x["start_utc"], "t": t, "grade": x.get("grade"), "score": x.get("score"),
+                 "evp": x.get("edge_pct"), "cby": x.get("confirmed_by") or [], "late": bool(x.get("late")),
+                 "repeat": bool(x.get("repeat")), "pushed": bool(x.get("pushed_to_phone")),
+                 "text": x.get("alert_text"), "why": x.get("why"), "restored": True}
+            if x.get("minutes_before_start") is not None:
+                s["lead"] = x["minutes_before_start"]
+            st["sent"].append(s)
+            ns += 1
+        except Exception:
+            bad += 1
+    print(f"State restored from {src}: {nb} bets, {ns} sent alerts, {bad} skipped")   # counts only
+
+
 def run():
     if not KEY:
         sys.exit("Set ODDS_API_KEY")
@@ -1328,6 +1457,7 @@ def run():
     st.setdefault("last_poll", {})
     st.setdefault("alerted", {})
     st.setdefault("log", [])
+    restore_state(st)   # Nov 3: self-heal after a cache eviction
     n = now_utc()
     hour_et = n.astimezone(ET).hour
     before_cl = sum(1 for e in st["log"] if e.get("cl"))
@@ -1383,6 +1513,11 @@ def run():
             vals = sharp_values(lines)
             if not vals:
                 continue
+            _g = f"{ev['away_team']} @ {ev['home_team']}"
+            for e in st["log"] + st.get("sent", []):   # restored entries get their real event id back
+                if (str(e.get("ev", "")).startswith("R|") and e["game"] == _g
+                        and abs((parse_iso(e["start"]) - parse_iso(ev["commence_time"])).total_seconds()) < 6 * 3600):
+                    e["ev"] = ev["id"]
             for e in st["log"]:  # keep each pending alert's closing number current
                 if e["ev"] == ev["id"]:
                     c = close_value(e, vals)
