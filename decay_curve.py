@@ -221,8 +221,27 @@ def main():
     lines.append("  Different-line fills by sport: " + ", ".join(f"{k} {v}" for k, v in sorted(by_sport.items())))
     lines.append("No result and no close, by bucket: " + ", ".join(
         f"{name} {sum(not x['res_or_close'] for x in out if lo <= x['lat'] < hi)}" for name, lo, hi in B))
+    lines += [""] + _bucket_recs([(r, fk.get((r.get("key"), r.get("alert_utc"))) or {}, x["pf"] if x["pf"] is not None else x["pd"])
+                                  for r, x in zip(rows, out)])
     ex.send("Bets DECAY CURVE (alert -> decision)", "\n".join(lines))
     print(f"Decay curve emailed: {len(out)} decisions read")   # counts only
+
+
+def _bucket_recs(pairs):
+    """Nov 3 (Peter: every test reports the standard bucket list). pairs = (ledger row, alerts.json entry, decision prob)."""
+    import buckets as bkt
+    R = []
+    for r, e, p in pairs:
+        close = e.get("close_fair_prob")
+        kind, bet = e.get("kind"), str(e.get("bet") or "")
+        sc = ("under" if bet.upper().startswith("UNDER") else "over") if kind == "tot" else \
+             (("dog" if (e.get("point") or 0) > 0 else "fav") if kind == "spr" else None)
+        R.append({"day": str(r.get("alert_utc") or "")[:10], "lg": e.get("sport"),
+                  "mk": {"tot": "totals", "spr": "spreads", "ml": "moneyline"}.get(kind), "sc": sc,
+                  "clv": round((close - p) * 100, 2) if isinstance(close, (int, float)) and p is not None else None,
+                  "lead": e.get("minutes_before_start"), "late": bool(e.get("late")), "edge": e.get("edge_pct"),
+                  "am": e.get("price_after_fee")})
+    return bkt.section("phase-1 decisions, CLV cents = Pinnacle no-vig close minus the decision/fill implied prob", R, "c")
 
 
 if __name__ == "__main__":
