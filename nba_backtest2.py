@@ -237,7 +237,8 @@ def report(rows, why, n_games):
         S = [dict(r["sig"][kk], day=r["day"]) for r in rows if kk in r["sig"] and abs(r["sig"][kk]["gap"]) >= 3.0]
         L += [""] + bkt.section(f"REG+B {k}, gap >= 3 (CLV % at Pinnacle price)",
                                 [{"day": s["day"], "clv": s["clv"], "lg": "NBA", "mk": "totals", "sc": s["side"].lower(),
-                                  "am": bkt.dec_to_am(s["dec"]), "lead": 360 if k == "T-6h" else None} for s in S], "%")
+                                  "am": bkt.dec_to_am(s["dec"]), "lead": 360 if k == "T-6h" else None,
+                                  "units": {"W": s["dec"] - 1, "L": -1.0, "P": 0.0}.get(s.get("res"))} for s in S], "%")
     L += ["", f"Calls: {len(cl.CALLS)} total; billable {cl.STATS['billable']}; history cache hits {hc.STATS['hit']}, downloads {hc.STATS['miss']}"]
     ex.send("Bets NBA MODEL BACKTEST #2 (HYPOTHESIS)", "\n".join(L))
 
