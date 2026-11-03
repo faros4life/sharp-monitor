@@ -26,6 +26,7 @@ from datetime import datetime, timedelta, timezone
 
 import clv_ledger as cl
 import buckets as bkt
+import finals as fin
 import executor as ex
 import hist_cache as hc
 import slowhr_backtest as sbt
@@ -169,7 +170,8 @@ def report(st, now, read, waiting, new):
                 "key": bkt.key_class(x["league"], mk, ln_), "move": x.get("kind"),
                 "ldelta": bkt.ldelta_from_detail(x.get("detail")) if x.get("kind") == "L" else None,
                 "live1": x.get("live1"), "live5": x.get("live5"), "wide": x.get("wide"), "pin_limit": x.get("pin_limit"),
-                "lead": x.get("mins_before"), "late": x.get("late"), "am": x.get("hr_am")}
+                "lead": x.get("mins_before"), "late": x.get("late"), "am": x.get("hr_am"),
+                "units": fin.units(x, eff(x["book"], x["hr_price"]) if x.get("hr_price") else None)}   # Nov 3: ESPN final, flat 1u after fees
     L.append("(Sightings stored before Nov 2 lack still-up / market-wide / limit fields: those buckets cover new sightings only.)")
     for bx in EXCH:
         L += [""] + bkt.section(f"{NAME[bx]} slow quotes (CLV % after fees)", [_b(x) for x in S if x["book"] == bx], "%")
