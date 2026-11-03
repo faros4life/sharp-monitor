@@ -6,13 +6,13 @@
    "best_now": {
     "american": -115,
     "book": "novig",
-    "dollars_at_alert_price_or_better_all_books": 1316,
+    "dollars_at_alert_price_or_better_all_books": 1320,
     "exact_line": true,
     "line": 154.5
    },
    "bet": "Over 154.5 (-125)",
    "book": "novig",
-   "checked_utc": "2026-11-03T18:40:13Z",
+   "checked_utc": "2026-11-03T18:40:40Z",
    "first": {
     "alert_line": 154.5,
     "alert_price": -125,
@@ -45,7 +45,7 @@
     "status": "no_odds_key"
    },
    "hardrock_latest": {
-    "checked_utc": "2026-11-03T18:10:33Z",
+    "checked_utc": "2026-11-03T18:40:40Z",
     "status": "no_odds_key"
    },
    "kalshi_first": {
@@ -246,8 +246,8 @@
     "buy_levels": [
      {
       "american": -115,
-      "contracts": 1025,
-      "dollars": 5,
+      "contracts": 1670,
+      "dollars": 9,
       "price": 0.535
      },
      {
@@ -275,17 +275,17 @@
       "price": 0.57
      }
     ],
-    "dollars_at_alert_price_or_better": 1159,
-    "dollars_at_best": 5,
+    "dollars_at_alert_price_or_better": 1163,
+    "dollars_at_best": 9,
     "exact_line": true,
     "market_id": "01a19d4c-7f34-75b0-b8a0-77ccf84f4a1d",
     "novig_label": "Over 154.5",
     "novig_line": 154.5,
     "outcome_id": "01a19d4c-7f34-75b0-b8a0-77d829c9bb2b",
-    "resting_bids_on_this_side_dollars": 1472,
+    "resting_bids_on_this_side_dollars": 1475,
     "status": "ok"
    },
-   "lead_min_now": 260,
+   "lead_min_now": 259,
    "polymarket_first": {
     "checked_utc": "2026-11-03T14:50:15Z",
     "status": "game_not_on_polymarket"
@@ -382,7 +382,7 @@
    },
    "bet": "Kentucky Wildcats -32.5 (-115)",
    "book": "novig",
-   "checked_utc": "2026-11-03T18:40:13Z",
+   "checked_utc": "2026-11-03T18:40:40Z",
    "first": {
     "alert_line": -32.5,
     "alert_price": -115,
@@ -427,7 +427,7 @@
     "status": "no_odds_key"
    },
    "hardrock_latest": {
-    "checked_utc": "2026-11-03T18:10:33Z",
+    "checked_utc": "2026-11-03T18:40:40Z",
     "status": "no_odds_key"
    },
    "kalshi_first": {
@@ -673,7 +673,7 @@
     "resting_bids_on_this_side_dollars": 4483,
     "status": "ok"
    },
-   "lead_min_now": 320,
+   "lead_min_now": 319,
    "polymarket_first": {
     "checked_utc": "2026-11-03T04:02:14Z",
     "status": "game_not_on_polymarket"
@@ -765,7 +765,7 @@
    },
    "bet": "Virginia Cavaliers -30.5 (-130)",
    "book": "novig",
-   "checked_utc": "2026-11-03T18:40:13Z",
+   "checked_utc": "2026-11-03T18:40:40Z",
    "first": {
     "checked_utc": "2026-11-03T04:02:14Z",
     "status": "market_not_on_novig"
@@ -777,7 +777,7 @@
     "status": "no_odds_key"
    },
    "hardrock_latest": {
-    "checked_utc": "2026-11-03T18:10:33Z",
+    "checked_utc": "2026-11-03T18:40:40Z",
     "status": "no_odds_key"
    },
    "kalshi_first": {
@@ -972,7 +972,7 @@
    "latest": {
     "status": "market_not_on_novig"
    },
-   "lead_min_now": 350,
+   "lead_min_now": 349,
    "polymarket_first": {
     "checked_utc": "2026-11-03T04:02:14Z",
     "status": "game_not_on_polymarket"
@@ -31391,5 +31391,5 @@
   }
  ],
  "note": "Exchange book check (FLAG ONLY) for sharp-monitor phone alerts with 2h+ lead. latest/first = Novig (public order books, no key); prophetx_latest/prophetx_first = ProphetX (read-only key; prices are AFTER its 2%% fee on winnings, displayed price kept as best_price_american_displayed): best_price_american, dollars_at_best and dollars_at_alert_price_or_better = amount you could bet at the alert price or better, buy_levels = the ladder. kalshi_latest/_first and polymarket_latest/_first: same fields (public books, no key), prices AFTER taker fees (Kalshi 0.07, Polymarket global 0.03 x P x (1-P) per contract unless gamma marks the market zero-fee; displayed price kept as best_price_american_displayed). Novig pregame: no fee. hardrock_latest/_first: Hard Rock sportsbook price and line via The Odds API (no order book; refreshed every 30 min). best_now = best gettable price across the books, plus total dollars at the alert price or better on books with the exact line. Novig fields: best_price = cheapest cost to BUY the alert side now (0-1, with American); dollars_at_alert_price_or_better = dollars you could buy at the alert's price or better on the same line; exact_line=false means Novig had no market at the alert's line and the nearest line is shown. resting_bids_on_this_side_dollars = others bidding the same side. 'first' = first check after the alert, 'latest' = this run. Novig orders are bids (verified Oct 21).",
- "updated_utc": "2026-11-03T18:40:13Z"
+ "updated_utc": "2026-11-03T18:40:40Z"
 }
