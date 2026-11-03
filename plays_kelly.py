@@ -26,6 +26,15 @@ WINDOWS = (("last month (Oct 5 on)", "2026-10-05"), ("last 3 weeks (Oct 12 on)",
 
 def plays():
     st = tb.dec(json.load(open(cl.STATE)))
+    try:   # Nov 2 19:20: fresh prices straight from the tracker (Novig losses now carry them) ahead of the ledger's next run
+        trk = tb.dec(json.load(open(tb.STATE))).get("bets") or {}
+    except Exception:
+        trk = {}
+    for k, b in trk.items():
+        s = st.setdefault("bets", {}).setdefault(k, {}).setdefault("snap", {})
+        for f in ("book", "game", "bet", "flip", "league", "source", "game_start", "placed", "settled", "result", "stake", "to_pay", "price"):
+            if b.get(f) not in (None, "", []) and s.get(f) in (None, "", []):
+                s[f] = b[f]
     try:
         sv = cl.sv_registry()
     except (Exception, SystemExit):
