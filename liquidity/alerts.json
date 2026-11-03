@@ -1,6 +1,139 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-03T16:35:32Z",
+   "base_depth": 385917,
+   "best_price": 0.5219,
+   "best_price_american": -109,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-03",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -161850,
+     "new_this_side": 189980,
+     "other_side": 176798,
+     "other_side_all_levels": 299821,
+     "ratio": 2.5,
+     "this_side": 438832,
+     "this_side_all_levels": 564806
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "Over 44.5 (44.5)",
+     "price": 0.525,
+     "this_side": 34336
+    }
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-11-03T16:30:14Z",
+   "game": "Buffalo vs Miami (OH): Total Points",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFTOTAL-26NOV03BUFFMOH-45\"}",
+   "lead_min": 504,
+   "league": "NCAAF",
+   "line": 44.5,
+   "market": "total",
+   "new_money": 189980,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 44.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 44.5,
+     "price": -111
+    },
+    "betopenly": {
+     "point": 44.0,
+     "price": -101
+    },
+    "betrivers": {
+     "point": 44.5,
+     "price": -113
+    },
+    "betus": {
+     "point": 44.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 44.5,
+     "price": -108
+    },
+    "draftkings": {
+     "point": 44.5,
+     "price": -110
+    },
+    "fanatics": {
+     "point": 44.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 44.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": 44.5,
+     "price": -104
+    },
+    "lowvig": {
+     "point": 44.5,
+     "price": -109
+    },
+    "mybookieag": {
+     "point": 44.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 44.5,
+     "price": -111
+    },
+    "prophetx": {
+     "point": 43.5,
+     "price": -118
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFTOTAL-26NOV03BUFFMOH-45"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "OVER",
+   "side_label": "Over 44.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-11-04T01:00:00Z",
+   "teams": [
+    "Buffalo",
+    "Miami"
+   ],
+   "top25": true,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-03T16:30:14Z",
    "base_depth": 297558,
    "best_price": 0.495,
@@ -206,6 +339,8 @@
    "new_money": 73706,
    "paper_only": false,
    "price": 0.39,
+   "price_after_15m": 0.395,
+   "price_after_15m_book": "novig",
    "price_american": 156,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.38,
@@ -293,6 +428,7 @@
    "side_label": "Jets",
    "start_source": "polymarket",
    "start_utc": "2026-11-04T00:00:00Z",
+   "still_actionable": false,
    "teams": [
     "Jets",
     "Canadiens"
@@ -2113,8 +2249,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.6,
-   "clv_cents": 1.0,
+   "close_price": 0.61,
+   "clv_cents": 2.0,
    "confirmed_after_min": 10,
    "date": "2026-11-03",
    "depth_by_book": {
@@ -4638,8 +4774,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.63,
-   "clv_cents": 1.0,
+   "close_price": 0.64,
+   "clv_cents": 2.0,
    "confirmed_after_min": 10,
    "date": "2026-11-03",
    "depth_by_book": {
@@ -4904,8 +5040,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.83,
-   "clv_cents": -2.0,
+   "close_price": 0.82,
+   "clv_cents": -3.0,
    "confirmed_after_min": 10,
    "date": "2026-11-04",
    "depth_by_book": {
