@@ -1,6 +1,141 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-03T03:10:09Z",
+   "base_depth": 153935,
+   "best_price": 0.52,
+   "best_price_american": -108,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-03",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 4330,
+     "new_this_side": 27870,
+     "other_side": 92436,
+     "other_side_all_levels": 162264,
+     "ratio": 1.1,
+     "this_side": 105388,
+     "this_side_all_levels": 189393
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "OHIO -13.5 (13.5)",
+     "price": 0.52,
+     "this_side": 9749
+    }
+   },
+   "fade_price": 0.49,
+   "first_seen_utc": "2026-11-03T03:00:17Z",
+   "game": "Ohio vs Akron: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFSPREAD-26NOV03OHIOAKR-OHIO14\"}",
+   "lead_min": 1250,
+   "league": "NCAAF",
+   "line": -13.5,
+   "market": "spread",
+   "new_money": 27870,
+   "paper_only": false,
+   "price": 0.52,
+   "price_american": -108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.52,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -13.5,
+     "price": -112
+    },
+    "betonlineag": {
+     "point": -13.5,
+     "price": -115
+    },
+    "betrivers": {
+     "point": -13.5,
+     "price": -112
+    },
+    "betus": {
+     "point": -14.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": -14.0,
+     "price": -103
+    },
+    "draftkings": {
+     "point": -14.0,
+     "price": -108
+    },
+    "fanatics": {
+     "point": -13.5,
+     "price": -115
+    },
+    "fanduel": {
+     "point": -13.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": -13.5,
+     "price": -108
+    },
+    "lowvig": {
+     "point": -13.5,
+     "price": -111
+    },
+    "mybookieag": {
+     "point": -14.0,
+     "price": -110
+    },
+    "novig": {
+     "point": -13.5,
+     "price": -108
+    },
+    "polymarket": {
+     "point": -13.5,
+     "price": -113
+    },
+    "prophetx": {
+     "point": -13.5,
+     "price": -113
+    },
+    "williamhill_us": {
+     "point": -13.5,
+     "price": -115
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFSPREAD-26NOV03OHIOAKR-OHIO14"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Ohio",
+   "side_label": "Ohio wins by over 13.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-11-04T00:00:00Z",
+   "teams": [
+    "Ohio",
+    "Akron"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-03T02:50:10Z",
    "base_depth": 19773,
    "best_price": 0.51,
@@ -451,6 +586,7 @@
     "polymarket",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.51,
    "clv_cents": -1.0,
    "confirmed_after_min": 10,
@@ -489,6 +625,8 @@
    "new_money": 36488,
    "paper_only": false,
    "price": 0.52,
+   "price_after_15m": 0.5574,
+   "price_after_15m_book": "kalshi",
    "price_american": -108,
    "price_rule": "ok",
    "price_when_first_seen": 0.52,
@@ -558,7 +696,8 @@
      "price": -110
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-03T03:10:09Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNBATOTAL-26NOV02TORLAC-220"
@@ -578,6 +717,7 @@
    "side_label": "Over 219.5 points",
    "start_source": "odds",
    "start_utc": "2026-11-03T03:00:00Z",
+   "still_actionable": false,
    "teams": [
     "Toronto",
     "Los Angeles C"
@@ -2454,8 +2594,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": 2.0,
+   "close_price": 0.51,
+   "clv_cents": 3.0,
    "confirmed_after_min": 13,
    "date": "2026-11-03",
    "depth_by_book": {
@@ -2555,7 +2695,8 @@
      "price": -108
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-03T03:10:09Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFSPREAD-26NOV03BUFFMOH-MOH7"
@@ -5314,6 +5455,7 @@
     "polymarket",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.57,
    "clv_cents": 8.0,
    "confirmed_after_min": 10,
@@ -5788,6 +5930,7 @@
     }
    },
    "fade_price": 0.52,
+   "fade_units": 0.86,
    "first_seen_utc": "2026-11-02T20:00:18Z",
    "game": "Detroit vs Charlotte: Spread",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBASPREAD-26NOV02DETCHA-DET6\"}",
@@ -5871,7 +6014,7 @@
     "kalshi_side": "no",
     "market_ticker": "KXNBASPREAD-26NOV02DETCHA-DET6"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig",
@@ -5879,6 +6022,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-03T03:10:09Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "Detroit Pistons -4.5 (-119)",
@@ -5894,7 +6038,7 @@
     "Charlotte"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-02T20:00:18Z",
@@ -5940,6 +6084,7 @@
     }
    },
    "fade_price": 0.51,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-02T19:50:11Z",
    "game": "Chicago vs Philadelphia: Spread",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNBASPREAD-26NOV02CHIPHI-PHI11\"}",
@@ -6023,7 +6168,7 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBASPREAD-26NOV02CHIPHI-PHI11"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig",
@@ -6031,6 +6176,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-03T03:10:09Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "Chicago Bulls +11.5 (-115)"
@@ -6045,7 +6191,7 @@
     "Philadelphia"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.04
   },
   {
    "alerted_utc": "2026-11-02T20:00:18Z",
@@ -6344,6 +6490,7 @@
     "polymarket",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.5,
    "clv_cents": -1.0,
    "confirmed_after_min": 10,
@@ -10223,6 +10370,7 @@
     "polymarket",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.44,
    "clv_cents": 1.0,
    "confirmed_after_min": 10,
@@ -11287,6 +11435,7 @@
     }
    },
    "fade_price": 0.51,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-02T13:30:13Z",
    "game": "Detroit vs Charlotte: Spread",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNBASPREAD-26NOV02DETCHA-DET5\"}",
@@ -11374,7 +11523,7 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBASPREAD-26NOV02DETCHA-DET5"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig",
@@ -11382,6 +11531,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-03T03:10:09Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Detroit",
@@ -11394,7 +11544,7 @@
     "Charlotte"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.0
   },
   {
    "alerted_utc": "2026-11-02T13:10:11Z",
@@ -11911,6 +12061,7 @@
     }
    },
    "fade_price": 0.5,
+   "fade_units": 0.97,
    "first_seen_utc": "2026-11-02T12:40:20Z",
    "game": "Wizards vs. Magic",
    "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"6544472\"}",
@@ -11998,7 +12149,7 @@
     "outcome_index": 0,
     "pm_market_id": "6544472"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "kalshi",
@@ -12006,6 +12157,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-03T03:10:09Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -12018,7 +12170,7 @@
     "Magic"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-02T12:50:11Z",
@@ -12196,6 +12348,7 @@
     "polymarket",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.55,
    "clv_cents": 5.0,
    "confirmed_after_min": 10,
@@ -12301,7 +12454,8 @@
      "price": -110
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-03T03:10:09Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNBASPREAD-26NOV02PHXGSW-GSW4"
@@ -12377,6 +12531,7 @@
     }
    },
    "fade_price": 0.38,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-02T12:30:18Z",
    "game": "Detroit vs Charlotte",
    "key": "kalshi|KXNBAGAME-26NOV02DETCHA|ml|0",
@@ -12472,7 +12627,7 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBAGAME-26NOV02DETCHA-DET"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig",
@@ -12480,6 +12635,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-03T03:10:09Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Detroit",
@@ -12492,7 +12648,7 @@
     "Charlotte"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.59
   },
   {
    "alerted_utc": "2026-11-02T12:30:18Z",
@@ -13899,6 +14055,7 @@
     }
    },
    "fade_price": 0.5,
+   "fade_units": 0.93,
    "first_seen_utc": "2026-11-02T05:20:09Z",
    "game": "Detroit vs Charlotte: Total Points",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBATOTAL-26NOV02DETCHA-211\"}",
@@ -13985,11 +14142,12 @@
     "kalshi_side": "no",
     "market_ticker": "KXNBATOTAL-26NOV02DETCHA-211"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-11-03T03:10:09Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -14002,7 +14160,7 @@
     "Charlotte"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-02T05:10:10Z",
@@ -14152,6 +14310,7 @@
     "polymarket",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.67,
    "clv_cents": 3.0,
    "confirmed_after_min": 10,
@@ -14790,6 +14949,7 @@
     }
    },
    "fade_price": 0.36,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-02T03:40:10Z",
    "game": "Atlanta vs Indiana",
    "key": "kalshi|KXNBAGAME-26NOV02ATLIND|ml|0",
@@ -14852,11 +15012,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBAGAME-26NOV02ATLIND-ATL"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-11-03T03:10:09Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Atlanta",
@@ -14869,7 +15030,7 @@
     "Indiana"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.55
   },
   {
    "alerted_utc": "2026-11-02T03:40:10Z",
@@ -14886,6 +15047,7 @@
     "polymarket",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.57,
    "clv_cents": -4.0,
    "confirmed_after_min": 10,
@@ -30687,6 +30849,7 @@
     }
    },
    "fade_price": 0.18,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-01T06:50:09Z",
    "game": "Chicago vs Philadelphia",
    "key": "kalshi|KXNBAGAME-26NOV02CHIPHI|ml|1",
@@ -30708,11 +30871,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBAGAME-26NOV02CHIPHI-PHI"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settled_utc": "2026-11-03T03:10:09Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Philadelphia",
@@ -30725,7 +30889,7 @@
     "Philadelphia"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.19
   },
   {
    "alerted_utc": "2026-11-01T06:40:10Z",
