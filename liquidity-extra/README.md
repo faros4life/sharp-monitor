@@ -1,16 +1,16 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 2, 8:50 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 4.
+Updated Mon Nov 2, 9:00 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 3.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 112-72 (-9.57u flat) | rule met: 32-29
+**Record:** 113-72 (-9.34u flat) | rule met: 32-29
 
-**Fade (paper, betting against the print):** 47-77 (+6.60u flat, after fees)
+**Fade (paper, betting against the print):** 47-78 (+5.60u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 2 7:50PM | NCAAB | UMass vs Troy | moneyline: UMass | kalshi | $37k | -400 |  |  | +2.0c |  | pending |
+| Nov 2 7:50PM | NCAAB | UMass vs Troy | moneyline: UMass | kalshi | $37k | -400 |  |  | +2.0c |  | W |
 | Nov 2 6:40PM | NCAAB | Buffalo vs Marshall | moneyline: Marshall | kalshi | $41k | -144 |  |  | +0.0c |  | pending |
 | Nov 2 3:10PM | NCAAB | Dartmouth vs Marist | moneyline: Marist | kalshi | $39k | -285 |  |  | +1.0c |  | pending |
 | Nov 2 3:00PM | NCAAB | Florida vs Miami (FL) | moneyline: Florida | kalshi | $47k | -233 |  |  | +2.0c | yes | W |
