@@ -103,3 +103,51 @@ def am_dec(am):
     except (TypeError, ValueError):
         return None
     return 1 + (am / 100 if am > 0 else 100 / abs(am))
+
+
+def _split(game):
+    g = str(game or "")
+    for sep in (" @ ", " vs ", " at "):
+        if sep in g:
+            return g.split(sep, 1)
+    return None, None
+
+
+def _result_named(lg, game, start, market, side, line):
+    """W / L / P for a bet named by team ('Away @ Home' or 'A vs B'; side = a team name or Over / Under; line = the side's own
+    spread). Used for EV sightings and other records that carry names rather than participant numbers."""
+    n1, n2 = _split(game)
+    if not n1:
+        return None
+    mk = {"total": "totals", "totals": "totals", "tot": "totals", "spread": "spreads", "spreads": "spreads", "spr": "spreads",
+          "ml": "moneyline", "moneyline": "moneyline", "h2h": "moneyline"}.get(str(market))
+    s = str(side or "")
+    x = {"league": lg, "game": f"{n1} vs {n2}", "start": start, "type": mk}
+    if mk == "totals":
+        if s.upper().startswith("OVER"):
+            x["side"] = "Over"
+        elif s.upper().startswith("UNDER"):
+            x["side"] = "Under"
+        else:
+            return None
+        x["line"] = line
+        return result(x)
+    ns, a, b = sm._norm(s), sm._norm(n1), sm._norm(n2)
+    if ns == a or (ns and (a.startswith(ns) or ns.startswith(a))):
+        x["side"] = "1"
+    elif ns == b or (ns and (b.startswith(ns) or ns.startswith(b))):
+        x["side"] = "2"
+    else:
+        return None
+    if mk == "spreads":
+        if line is None:
+            return None
+        x["line"] = line if x["side"] == "1" else -line
+    return result(x)
+
+
+def result_named(*a):
+    try:
+        return _result_named(*a)
+    except Exception:
+        return None
