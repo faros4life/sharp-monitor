@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 3, 10:36 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 54.
+Updated Tue Nov 3, 10:40 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 54.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -21,7 +21,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 3 9:20AM | NHL | Carolina vs Nashville: Spread | spread: NOT Carolina wins by over 1.5 goals | kalshi | $48k | -138 | ✅ novig,polymarket |  | +0.0c |  | pending |
 | Nov 3 9:20AM | NHL | Anaheim vs Vancouver: Spread | spread: NOT Anaheim wins by over 1.5 goals | kalshi | $83k | -170 | ✅ polymarket |  | +0.0c |  | pending |
 | Nov 3 9:10AM | NHL | St. Louis vs New York R: Spread | spread: NOT New York R wins by over 1.5 goals | kalshi | $46k | -233 |  |  | +0.0c |  | pending |
-| Nov 3 8:20AM | NHL | Golden Knights vs. Penguins | moneyline: Penguins | polymarket | $35k | -100 |  |  | +1.0c |  | pending |
+| Nov 3 8:20AM | NHL | Golden Knights vs. Penguins | moneyline: Penguins | polymarket | $35k | -100 |  |  | +2.0c |  | pending |
 | Nov 3 8:20AM | NHL | Winnipeg vs Montreal: Spread | spread: NOT Montreal wins by over 1.5 goals | kalshi | $32k | -144 | ✅ novig |  | +1.0c |  | pending |
 | Nov 3 8:20AM | NHL | Utah vs Toronto: Spread | spread: NOT Utah wins by over 1.5 goals | kalshi | $26k | -194 | ✅ novig,polymarket |  | +0.0c |  | pending |
 | Nov 3 8:20AM | NHL | Edmonton vs New Jersey: Spread | spread: NOT New Jersey wins by over 1.5 goals | kalshi | $32k | -178 | ✅ novig,polymarket |  | +0.0c |  | pending |
