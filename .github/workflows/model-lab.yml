@@ -21,7 +21,7 @@ jobs:
           python-version: "3.12"
       - run: pip install -q cryptography
       - name: Restore shared OddsPapi history cache (private Actions cache, never committed)
-        uses: actions/cache@v4
+        uses: actions/cache/restore@v4   # Nov 3: restore-only (a saved 6 GB copy per run filled the 10 GB limit)
         with:
           path: hcache
           key: hcache-${{ github.run_id }}
