@@ -1,6 +1,159 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-03T16:30:14Z",
+   "base_depth": 297558,
+   "best_price": 0.495,
+   "best_price_american": 102,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 4,
+   "date": "2026-11-03",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -6870,
+     "new_this_side": 38505,
+     "other_side": 265018,
+     "other_side_all_levels": 329298,
+     "ratio": 0.9,
+     "this_side": 245803,
+     "this_side_all_levels": 335894
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "DAL (0)",
+     "price": 0.495,
+     "this_side": 24867
+    },
+    "polymarket": {
+     "heavier_side": false,
+     "label": "Stars",
+     "price": 0.5,
+     "this_side": 64986
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Dallas Stars",
+     "price": 0.4975,
+     "this_side": 13857
+    }
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-11-03T16:26:07Z",
+   "game": "Dallas vs Washington",
+   "key": "kalshi|KXNHLGAME-26NOV03DALWSH|ml|0",
+   "lead_min": 450,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 38505,
+   "paper_only": false,
+   "price": 0.5,
+   "price_american": -100,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.5,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -109
+    },
+    "betopenly": {
+     "point": null,
+     "price": 104
+    },
+    "betrivers": {
+     "point": null,
+     "price": -113
+    },
+    "betus": {
+     "point": null,
+     "price": -110
+    },
+    "bovada": {
+     "point": null,
+     "price": -108
+    },
+    "draftkings": {
+     "point": null,
+     "price": -108
+    },
+    "fanatics": {
+     "point": null,
+     "price": -105
+    },
+    "fanduel": {
+     "point": null,
+     "price": -110
+    },
+    "kalshi": {
+     "point": null,
+     "price": -104
+    },
+    "lowvig": {
+     "point": null,
+     "price": -109
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -110
+    },
+    "novig": {
+     "point": null,
+     "price": 102
+    },
+    "polymarket": {
+     "point": null,
+     "price": 100
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": 100
+    },
+    "prophetx": {
+     "point": null,
+     "price": 101
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNHLGAME-26NOV03DALWSH-DAL"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "prophetx"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Dallas",
+   "side_label": "Dallas",
+   "start_source": "odds",
+   "start_utc": "2026-11-04T00:00:00Z",
+   "teams": [
+    "Dallas",
+    "Washington"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-03T16:15:36Z",
    "base_depth": 90418,
    "best_price": 0.39,
@@ -580,7 +733,8 @@
      "price": 107
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-03T16:30:14Z",
    "ref": {
     "outcome_index": 1,
     "pm_market_id": "5406742"
@@ -1080,8 +1234,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": 1.0,
+   "close_price": 0.54,
+   "clv_cents": 2.0,
    "confirmed_after_min": 10,
    "date": "2026-11-03",
    "depth_by_book": {
@@ -1336,7 +1490,8 @@
      "price": 106
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-03T16:30:14Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNHLTOTAL-26NOV03UTATOR-7"
@@ -2561,8 +2716,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.55,
-   "clv_cents": 0.0,
+   "close_price": 0.56,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-03",
    "depth_by_book": {
@@ -3557,8 +3712,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.69,
-   "clv_cents": 2.0,
+   "close_price": 0.68,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-03",
    "depth_by_book": {
@@ -4749,8 +4904,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.82,
-   "clv_cents": -3.0,
+   "close_price": 0.83,
+   "clv_cents": -2.0,
    "confirmed_after_min": 10,
    "date": "2026-11-04",
    "depth_by_book": {
@@ -4970,8 +5125,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": -2.0,
+   "close_price": 0.52,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-03",
    "depth_by_book": {
@@ -5867,8 +6022,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.56,
-   "clv_cents": 4.0,
+   "close_price": 0.54,
+   "clv_cents": 2.0,
    "confirmed_after_min": 10,
    "date": "2026-11-03",
    "depth_by_book": {
@@ -9542,8 +9697,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.45,
-   "clv_cents": -4.0,
+   "close_price": 0.47,
+   "clv_cents": -2.0,
    "confirmed_after_min": 10,
    "date": "2026-11-03",
    "depth_by_book": {
@@ -13472,8 +13627,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.48,
-   "clv_cents": -1.0,
+   "close_price": 0.47,
+   "clv_cents": -2.0,
    "confirmed_after_min": 10,
    "date": "2026-11-03",
    "depth_by_book": {
@@ -15259,8 +15414,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 1.0,
+   "close_price": 0.5,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-03",
    "depth_by_book": {
