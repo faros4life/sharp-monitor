@@ -127,7 +127,7 @@ def board_call_rows():
             x = r["x"]
             if x.get("clv_cents") is None or x.get("artifact"):
                 continue
-            out.append(norm(f"Board call {r['tag']}", x.get("league"), x.get("market"), x.get("side"), tb.num(x.get("line")),
+            out.append(norm(f"Board call {r.get('v1', r['tag'])}", x.get("league"), x.get("market"), x.get("side"), tb.num(x.get("line")),
                             x.get("price_american"), mins(x.get("alerted_utc"), x.get("start_utc")), d, float(x["clv_cents"]),
                             wl=x.get("result"), units=x.get("units_flat")))
     return out
@@ -137,17 +137,17 @@ def ntfy_rows():
     a = (load("alerts.json", {}) or {}).get("alerts") or []
     out = []
     for x in a:
-        if x.get("beat_close") is None:
+        if x.get("close_value_pct") is None:   # Nov 3 (item 16): TRUE close only; the line-based beat_close is dropped
             continue
         bet = x.get("bet") or ""
         m = re.search(r"([+-]?\d+(?:\.\d+)?)\s*\(", bet)
         line = float(m.group(1)) if m else tb.num(x.get("point"))
         side = bet.split(" ")[0] if x.get("kind") == "tot" else bet
-        cv = re.match(r"([+-]?\d+(?:\.\d+)?)", str(x.get("clv") or ""))
-        out.append(norm("ntfy sharp alerts", x.get("sport"), x.get("kind"), side, line if x.get("kind") != "ml" else None, x.get("price_after_fee"),
+        out.append(norm("ntfy sharp alerts" + (" (SENT)" if x.get("sent_to_phone") else " (muted)"), x.get("sport"), x.get("kind"), side,
+                        line if x.get("kind") != "ml" else None, x.get("price_after_fee"),
                         x.get("minutes_before_start") or mins(x.get("alert_utc"), x.get("start_utc")), day(x.get("alert_utc")),
-                        float(cv.group(1)) if cv else None, beat=bool(x.get("beat_close")), edge=x.get("edge_pct"),
-                        clv_unit="pts / % mixed (beat-close is the comparable figure)"))
+                        float(x["close_value_pct"]), beat=x["close_value_pct"] > 0, edge=x.get("edge_pct"),
+                        clv_unit="% TRUE close value at the alert after-fee price"))
     return out
 
 
@@ -277,7 +277,7 @@ def main():
             + board_call_rows() + ntfy_rows() + ledger_rows():
         sources.setdefault(r["src"], []).append(r)
     L = [f"BUCKET REPORT - HYPOTHESIS ONLY | standard buckets (BUCKETS.md) on every graded record we hold | {now.astimezone(ET):%Y-%m-%d %H:%M} ET",
-         "Sources are never pooled (CLV units differ: EV / board = cents; ledger = %; ntfy = beat-close only).",
+         "Sources are never pooled (CLV units differ: EV / board = cents; ledger and ntfy = % TRUE close, price-based; Nov 3 item 16).",
          "Fav / dog by POINTS (spreads); moneyline sides are not classed (no spread in these records). HOLDS = >= 15 per half, CLV > 0, beat >= 53%.",
          "Paper lanes (ml_stay / pull_fade / solo) carry no grade field yet: listed by count only.", ""]
     lanes = load("lanes/lanes.json", {}) or {}
@@ -293,7 +293,7 @@ def main():
                  f"{sum(1 for v in c if v > 0)}/{len(c)}")
     L.append("")
     for name in sorted(sources, key=lambda k: -len(sources[k])):
-        unit = "%" if name.startswith("CLV ledger") else ("" if name.startswith("ntfy") else "c")
+        unit = "%" if name.startswith("CLV ledger") or name.startswith("ntfy") else "c"
         L += bkt.section(name, [dict(r, move={"line": "L", "price": "P"}.get(r.get("move"))) for r in sources[name]], unit) + [""]
     ex.send("Bets BUCKET REPORT (HYPOTHESIS)", "\n".join(L))
     print(f"bucket report: sources {len(sources)}, records {sum(len(v) for v in sources.values())}")   # counts only
