@@ -878,6 +878,81 @@ try{const s=localStorage.getItem('btp');if(s)go(s,false);}catch(e){}
 </script></body></html>"""
 
 
+def self_check(bets, settled_reads, open_ids, now, state):
+    """Nov 3 (Peter: "how do we make sure it doesn't happen"): checks every build; a phone alert once per new issue.
+    No amounts in the alert (dollars stay in private email). Returns the list of issue lines (counted in the log)."""
+    issues = []
+    recent = now - timedelta(days=10)
+
+    def when(b):
+        return tparse(b.get("game_start")) or tparse(b.get("settled")) or tparse(b.get("first_seen"))
+
+    def label(b):
+        t = when(b)
+        return f"{b.get('book')} {b.get('bet') or '?'} ({b.get('game') or 'no game'}{', ' + t.astimezone(ET).strftime('%a %b %-d') if t else ''})"
+
+    rows = [b for b in bets.values() if (when(b) or now) >= recent]
+    for b in rows:
+        if not (b.get("bet") or b.get("game")):
+            continue   # ProphetX settlements carry no bet text: nothing to check
+        gs, placed = tparse(b.get("game_start")), tparse(b.get("placed")) or tparse(b.get("first_seen"))
+        if gs and placed and gs < placed - timedelta(hours=8) and b.get("site") is not True:
+            issues.append(("wrong", b, "matched to a game that started before the bet was placed"))
+        if b.get("result") and not gs and b.get("site") is False:
+            issues.append(("nogame", b, "graded but has no game"))
+        tm = b.get("teams") or []
+        if len(tm) == 2:
+            bt = (toks(b.get("game")) | toks(b.get("bet"))) - WEAK
+            pre = {w[:3] for w in bt if len(w) >= 3}
+            def hit(t):
+                tt = toks(t.get("name")) - WEAK
+                return bool(tt & bt) or any(w[:3] in bt or w[:3] in pre for w in tt if len(w) >= 3)
+            if not any(hit(t) for t in tm):
+                issues.append(("teams", b, "scoreboard teams don't match the bet"))
+        if b.get("result") and b.get("site") is False and b.get("id") in open_ids and b.get("book") not in ("Hard Rock", "manual"):
+            st = tparse(b.get("settled"))
+            if st and now - st > timedelta(hours=24):
+                issues.append(("open", b, "graded from a final but the book still lists it open (24 h+)"))
+    seen = {}
+    for b in rows:
+        if not b.get("bet"):
+            continue
+        k = (b.get("book"), b.get("bet"), b.get("game_start") or (b.get("settled") or "")[:10], b.get("stake"), b.get("result"))
+        if k in seen and (b.get("result") or b.get("open")):
+            issues.append(("dup", b, "appears twice"))
+        seen[k] = b
+    # each book's own settled list this run vs what the tracker holds, by ET settle day (amounts compared, not shown)
+    got = {}
+    for s in settled_reads:
+        t = tparse(s.get("settled"))
+        if t and t >= recent:
+            k = (s.get("book"), t.astimezone(ET).strftime("%Y-%m-%d"))
+            got.setdefault(k, set()).add(s.get("id"))
+    for (book, day), ids in got.items():
+        held = [i for i in ids if i in bets]
+        if len(held) != len(ids):
+            issues.append(("count", {"book": book, "bet": f"{day} settled count", "game": f"book {len(ids)}, tracker {len(held)}"},
+                           "tracker is missing settled bets the book lists"))
+    sent = state.setdefault("check_sent", {})
+    new = []
+    for kind, b, why in issues:
+        fp = hashlib.sha1(f"{kind}|{b.get('id') or ''}|{b.get('book')}|{b.get('bet')}|{b.get('game')}".encode()).hexdigest()[:12]
+        if fp not in sent:   # stored once (a timestamp rewrite every run would re-encrypt and commit the state every build)
+            new.append(f"- {label(b)}: {why}")
+            sent[fp] = iso(now)
+    cut = iso(now - timedelta(days=14))
+    state["check_sent"] = {k: v for k, v in sent.items() if v >= cut}
+    if new:
+        try:
+            import executor as ex
+            ex.push(f"TRACKER CHECK: {len(new)} new issue(s)", "\n".join(new[:12]) + ("\n..." if len(new) > 12 else "") +
+                    "\nClaude will fix; nothing on the books changed.")
+        except Exception:
+            pass
+    LOG["self_check"] = f"ok {len(issues)} issues, {len(new)} new"
+    return issues
+
+
 def main():
     if not PASS:
         print("Tracker: TRACKER_PASSPHRASE not set; skipped")
@@ -1047,6 +1122,10 @@ def main():
     # keep 45 days of history in the state
     cut = iso(now - timedelta(days=45))
     state["bets"] = {k: v for k, v in bets.items() if not v.get("result") or (v.get("settled") or "") >= cut}
+    try:
+        self_check(bets, settled, open_ids, now, state)
+    except Exception as e:
+        LOG["self_check"] = f"failed ({type(e).__name__})"
     view = {"updated": d.strftime("%a %b %-d, %-I:%M %p ET"),
             "tiles": {"today": tile(day0), "week": tile(week0), "month": tile(month0)},
             "live": live, "upcoming": up, "settled": week_settled, "unmatched": unm,
