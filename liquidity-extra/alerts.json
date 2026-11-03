@@ -1,6 +1,91 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-03T23:40:17Z",
+   "base_depth": 9655,
+   "best_price": 0.7244,
+   "best_price_american": -263,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.71,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-04",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 2912,
+     "new_this_side": 35429,
+     "other_side": 2547,
+     "other_side_all_levels": 8445,
+     "ratio": 2.0,
+     "this_side": 5066,
+     "this_side_all_levels": 53374
+    }
+   },
+   "fade_price": 0.31,
+   "first_seen_utc": "2026-11-03T23:30:20Z",
+   "game": "Queens University vs Loyola Marymount",
+   "key": "kalshi|KXNCAAMBGAME-26NOV04QUCLMU|ml|1",
+   "lead_min": 1640,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 35429,
+   "paper_only": false,
+   "price": 0.71,
+   "price_american": -245,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.71,
+   "prices_by_book": {
+    "fanatics": {
+     "point": null,
+     "price": -245
+    },
+    "fanduel": {
+     "point": null,
+     "price": -250
+    },
+    "kalshi": {
+     "point": null,
+     "price": -257
+    },
+    "polymarket": {
+     "point": null,
+     "price": -285
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV04QUCLMU-LMU"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Loyola Marymount",
+   "side_label": "Loyola Marymount",
+   "start_source": "odds",
+   "start_utc": "2026-11-05T03:00:00Z",
+   "teams": [
+    "Queens University",
+    "Loyola Marymount"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-03T23:30:20Z",
    "base_depth": 10289,
    "best_price": 0.8303,
@@ -15,8 +100,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.82,
-   "clv_cents": 0.0,
+   "close_price": 0.81,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-04",
    "depth_by_book": {
