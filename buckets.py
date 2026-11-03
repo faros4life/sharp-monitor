@@ -53,6 +53,9 @@ def stats(xs, unit=""):
         out += f" | CLV {stt.mean(c):+.2f}{unit}"
     if b:
         out += f" | beat close {sum(b)}/{len(b)} ({100 * sum(b) / len(b):.0f}%)"
+    u = [x["units"] for x in xs if x.get("units") is not None]   # Nov 3 (Peter): flat 1u result where a final score is known
+    if u:
+        out += f" | units {sum(u):+.2f}u ({sum(v > 0 for v in u)}-{sum(v < 0 for v in u)}, {len(u)} graded)"
     return out
 
 
