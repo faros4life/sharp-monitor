@@ -1,6 +1,153 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-03T17:20:14Z",
+   "base_depth": 111851,
+   "best_price": 0.525,
+   "best_price_american": -111,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.54,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 4,
+   "date": "2026-11-03",
+   "depth_by_book": {
+    "novig": {
+     "heavier_side": true,
+     "label": "NYR (0)",
+     "price": 0.525,
+     "this_side": 34964
+    },
+    "polymarket": {
+     "new_other_side": -29528,
+     "new_this_side": 51563,
+     "other_side": 41073,
+     "other_side_all_levels": 42730,
+     "ratio": 3.7,
+     "this_side": 150049,
+     "this_side_all_levels": 165692
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "New York Rangers",
+     "price": 0.5305,
+     "this_side": 12039
+    }
+   },
+   "fade_price": 0.47,
+   "first_seen_utc": "2026-11-03T17:16:21Z",
+   "game": "Blues vs. Rangers",
+   "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"5406813\"}",
+   "lead_min": 400,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 51563,
+   "paper_only": false,
+   "price": 0.54,
+   "price_american": -117,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.54,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -118
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -114
+    },
+    "betopenly": {
+     "point": null,
+     "price": -107
+    },
+    "betrivers": {
+     "point": null,
+     "price": -121
+    },
+    "betus": {
+     "point": null,
+     "price": -115
+    },
+    "bovada": {
+     "point": null,
+     "price": -120
+    },
+    "draftkings": {
+     "point": null,
+     "price": -120
+    },
+    "fanatics": {
+     "point": null,
+     "price": -120
+    },
+    "fanduel": {
+     "point": null,
+     "price": -118
+    },
+    "kalshi": {
+     "point": null,
+     "price": -113
+    },
+    "lowvig": {
+     "point": null,
+     "price": -114
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -119
+    },
+    "novig": {
+     "point": null,
+     "price": -111
+    },
+    "polymarket": {
+     "point": null,
+     "price": -117
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -117
+    },
+    "prophetx": {
+     "point": null,
+     "price": -113
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 1,
+    "pm_market_id": "5406813"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Rangers",
+   "side_label": "Rangers",
+   "start_source": "polymarket",
+   "start_utc": "2026-11-04T00:00:00Z",
+   "teams": [
+    "Blues",
+    "Rangers"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-03T17:10:22Z",
    "base_depth": 101686,
    "best_price": 0.45,
@@ -1795,8 +1942,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.54,
-   "clv_cents": 2.0,
+   "close_price": 0.56,
+   "clv_cents": 4.0,
    "confirmed_after_min": 10,
    "date": "2026-11-03",
    "depth_by_book": {
@@ -5465,8 +5612,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.84,
-   "clv_cents": -1.0,
+   "close_price": 0.83,
+   "clv_cents": -2.0,
    "confirmed_after_min": 10,
    "date": "2026-11-04",
    "depth_by_book": {
@@ -6583,8 +6730,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": -2.0,
+   "close_price": 0.51,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-03",
    "depth_by_book": {
