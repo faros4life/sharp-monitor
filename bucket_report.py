@@ -23,6 +23,7 @@ from datetime import datetime, timezone
 
 import clv_ledger as cl
 import buckets as bkt
+import finals as fin
 import executor as ex
 import tracker_build as tb
 
@@ -101,7 +102,8 @@ def board_rows(path, label):
         if r.get("clv_cents") is None or r.get("artifact"):
             continue
         out.append(norm(label, r.get("league"), r.get("market"), r.get("side"), tb.num(r.get("line")), r.get("price_american"),
-                        mins(r.get("alerted_utc"), r.get("start_utc")), day(r.get("alerted_utc")), float(r["clv_cents"])))
+                        mins(r.get("alerted_utc"), r.get("start_utc")), day(r.get("alerted_utc")), float(r["clv_cents"]),
+                        units=fin.units_wl(r.get("result"), fin.am_dec(r.get("price_american")))))   # Nov 3: flat 1u
     return out
 
 
@@ -147,6 +149,7 @@ def ntfy_rows():
                         line if x.get("kind") != "ml" else None, x.get("price_after_fee"),
                         x.get("minutes_before_start") or mins(x.get("alert_utc"), x.get("start_utc")), day(x.get("alert_utc")),
                         float(x["close_value_pct"]), beat=x["close_value_pct"] > 0, edge=x.get("edge_pct"),
+                        units=x.get("units_flat") if x.get("result") in ("W", "L", "P") else None,
                         clv_unit="% TRUE close value at the alert after-fee price"))
     return out
 
