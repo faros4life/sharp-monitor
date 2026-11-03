@@ -1,17 +1,17 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 2, 11:50 PM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 39.
+Updated Tue Nov 3, 12:00 AM ET. This run: 0 new, 1 not confirmed, 1 pending. Open alerts: 37.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 774-671 (-75.03u flat) | rule met: 464-443
+**Record:** 776-671 (-73.62u flat) | rule met: 466-443
 
-**Fade (paper, betting against the print):** 405-501 (-45.59u flat, after fees)
+**Fade (paper, betting against the print):** 405-503 (-47.59u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 2 11:50PM | NHL | Colorado vs Columbus | moneyline: Columbus | kalshi | $58k | +117 |  |  | +0.0c |  | pending |
-| Nov 2 11:10PM | NHL | Detroit vs Tampa Bay | moneyline: Tampa Bay | kalshi | $39k | -233 | ✅ polymarket |  | +0.0c |  | pending |
+| Nov 2 11:10PM | NHL | Detroit vs Tampa Bay | moneyline: Tampa Bay | kalshi | $39k | -233 | ✅ polymarket |  | +0.0c | yes | pending |
 | Nov 2 11:10PM | NHL | Carolina vs Nashville | moneyline: Carolina | kalshi | $30k | -178 | ✅ novig,polymarket |  | +0.0c |  | pending |
 | Nov 2 10:10PM | NCAAF | Ohio vs Akron: Spread | spread: Ohio wins by over 13.5 points | kalshi | $28k | -108 |  |  | +0.0c |  | pending |
 | Nov 2 9:50PM | NBA | Heat vs. Lakers | total: Over (237.5) | polymarket | $31k | -104 | ✅ novig |  | +0.0c |  | pending |
@@ -76,7 +76,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 2 11:20AM | NBA | Miami vs Los Angeles L: Spread | spread: NOT Los Angeles L wins by over 2.5 points | kalshi | $29k | -113 |  |  | +1.0c | yes | pending |
 | Nov 2 11:10AM | NHL | Red Wings vs. Panthers | moneyline: Panthers | polymarket | $31k | -163 | ✅ novig,prophetx |  | +1.0c | yes | L |
 | Nov 2 11:10AM | NCAAF | Buffalo vs Miami (OH): Total Points | total: NOT Over 44.5 points | kalshi | $31k | -104 |  |  | +0.0c |  | pending |
-| Nov 2 11:00AM | NBA | Trail Blazers vs. Nuggets | total: Under (231.5) | polymarket | $33k | -104 | ✅ novig | ✅ | -1.0c | yes | pending |
+| Nov 2 11:00AM | NBA | Trail Blazers vs. Nuggets | total: Under (231.5) | polymarket | $33k | -104 | ✅ novig | ✅ | -1.0c | yes | W |
 | Nov 2 10:40AM | NBA | Milwaukee vs Minnesota: Spread | spread: Minnesota wins by over 11.5 points | kalshi | $37k | +104 | ✅ polymarket | ✅ | +1.0c | yes | W |
 | Nov 2 10:30AM | NBA | Suns vs. Warriors | moneyline: Suns | polymarket | $30k | +127 | ✅ kalshi,novig | ✅ | +1.0c | yes | pending |
 | Nov 2 10:30AM | NBA | Hawks vs. Pacers | moneyline: Hawks | polymarket | $79k | -194 | ✅ kalshi,novig |  | +13.0c | yes | W |
@@ -99,7 +99,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 2 7:40AM | NBA | Detroit vs Charlotte | moneyline: Detroit | kalshi | $44k | -170 | ✅ novig,polymarket |  | +5.0c | yes | W |
 | Nov 2 7:30AM | NBA | Washington vs Orlando: Spread | spread: Orlando wins by over 2.5 points | kalshi | $34k | -104 | ✅ novig,polymarket | ✅ | +1.0c | yes | L |
 | Nov 2 7:00AM | NBA | Celtics vs. Rockets | spread: Rockets (-4.5) | polymarket | $96k | -113 | ✅ novig |  | -3.0c | yes | W |
-| Nov 2 6:50AM | NHL | Flames vs. Sharks | spread: Flames (+1.5) | polymarket | $31k | -213 | ✅ kalshi,novig |  | +1.0c |  | pending |
+| Nov 2 6:50AM | NHL | Flames vs. Sharks | spread: Flames (+1.5) | polymarket | $31k | -213 | ✅ kalshi,novig |  | +1.0c |  | W |
 | Nov 2 6:50AM | NHL | Colorado vs Chicago: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $66k | -108 | ✅ novig,polymarket |  | +1.0c | yes | L |
 | Nov 2 6:50AM | NHL | Calgary vs San Jose: Spread | spread: NOT San Jose wins by over 1.5 goals | kalshi | $80k | -213 | ✅ novig,polymarket |  | +1.0c | yes | W |
 | Nov 2 6:10AM | NCAAF | Ohio vs Akron | moneyline: Ohio | kalshi | $136k | -456 |  |  | +2.0c |  | pending |
