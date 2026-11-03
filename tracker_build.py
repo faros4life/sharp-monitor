@@ -168,6 +168,14 @@ def espn_games(days, leagues=None):
     return games
 
 
+def pin_bad(b, gs=None):
+    """Nov 3 (Peter: Monday settleds off): a game that started 8 h+ before the tracker first saw the bet open is not
+    its game (Seattle -10.5 placed Nov 3 for Sun Nov 8 had been pinned to, and graded on, Monday's Bears @ Seahawks)."""
+    gs = gs or tparse(b.get("game_start"))
+    fs = tparse(b.get("first_seen"))
+    return bool(gs and fs and gs < fs - timedelta(hours=8))
+
+
 def match_game(bet, games, near=None):
     """near: a datetime the game must start within 36 h of (settled bets: their settle time), so an old bet is never
     pinned to this week's game between the same teams."""
@@ -175,6 +183,8 @@ def match_game(bet, games, near=None):
     best, score = None, 0
     for g in games:
         if bet.get("league") and bet["league"] != g["league"]:
+            continue
+        if near is None and pin_bad(bet, tparse(g.get("start"))):
             continue
         if near is not None:
             gs = tparse(g.get("start"))
@@ -808,7 +818,7 @@ const ALL=(d.all||[]);const byDay={};ALL.forEach(b=>{const k=ymd(b);if(k)(byDay[
 const todayK=new Date().toLocaleDateString('en-CA',{timeZone:'America/New_York'});
 window.SEL=window.SEL||todayK;window.CALM=window.CALM||todayK.slice(0,7);
 const shift=(k,n)=>{const x=new Date(k+'T12:00:00');x.setDate(x.getDate()+n);return x.toLocaleDateString('en-CA');};
-const dayStats=k=>{const l=byDay[k]||[];const s=l.filter(b=>b.result),o=l.filter(b=>!b.result&&b.open);
+const dayStats=k=>{const l=byDay[k]||[];const s=l.filter(b=>b.result),o=l.filter(b=>!b.result&&b.open&&!s.some(x=>x.book===b.book&&x.bet===b.bet&&x.game_start===b.game_start));
 const isUp=b=>b.g_state==='pre'||(!b.g_state&&b.game_start&&new Date(b.game_start)>new Date());
 return {l,s,o,live:o.filter(b=>!isUp(b)).length,up:o.filter(isUp).length,
 pnl:s.reduce((a,b)=>a+(b.profit||0),0),risk:o.reduce((a,b)=>a+(b.stake||0),0),max:o.reduce((a,b)=>a+((b.to_pay||0)-(b.stake||0)),0)};};
@@ -906,6 +916,9 @@ def main():
     for b in opened + man:
         open_ids.add(b["id"])
         prev = bets.get(b["id"]) or {}
+        if prev.get("result") and not prev.get("site") and pin_bad(prev):   # Nov 3: graded on the wrong (earlier) game
+            prev = {k: v for k, v in prev.items() if k not in ("result", "profit", "settled", "game_start", "teams", "teams_final",
+                                                              "g_state", "g_detail", "status", "score")}
         if prev.get("result"):
             if b["id"].startswith("mn|") and b.get("stake") and prev.get("stake") != b["stake"]:   # stake added later
                 r = prev["result"]
