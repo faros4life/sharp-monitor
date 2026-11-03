@@ -1,6 +1,163 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-03T23:00:17Z",
+   "base_depth": 19786,
+   "best_price": 0.4723,
+   "best_price_american": 112,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.475,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-03",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "St. Louis",
+     "price": 0.47,
+     "this_side": 472176
+    },
+    "novig": {
+     "new_other_side": -278,
+     "new_this_side": 43650,
+     "other_side": 31243,
+     "other_side_all_levels": 31442,
+     "ratio": 2.0,
+     "this_side": 63071,
+     "this_side_all_levels": 63270
+    },
+    "polymarket": {
+     "heavier_side": false,
+     "label": "Blues",
+     "price": 0.47,
+     "this_side": 70326
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "St. Louis Blues",
+     "price": 0.4673,
+     "this_side": 14800
+    }
+   },
+   "fade_price": 0.53,
+   "first_seen_utc": "2026-11-03T22:55:28Z",
+   "game": "St. Louis Blues @ New York Rangers",
+   "key": "novig|{\"market_id\": \"01a19d4c-ba8e-7c20-930a-f93097fee8d3\", \"outcome_id\": \"01a19d4c-ba8e-7c20-930a-f9508c49ba5b\"}",
+   "lead_min": 60,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 43650,
+   "paper_only": false,
+   "price": 0.475,
+   "price_american": 111,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.475,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -102
+    },
+    "betonlineag": {
+     "point": null,
+     "price": 108
+    },
+    "betopenly": {
+     "point": null,
+     "price": 105
+    },
+    "betrivers": {
+     "point": null,
+     "price": 104
+    },
+    "betus": {
+     "point": null,
+     "price": 100
+    },
+    "bovada": {
+     "point": null,
+     "price": 102
+    },
+    "draftkings": {
+     "point": null,
+     "price": 100
+    },
+    "fanatics": {
+     "point": null,
+     "price": 100
+    },
+    "fanduel": {
+     "point": null,
+     "price": -102
+    },
+    "kalshi": {
+     "point": null,
+     "price": 113
+    },
+    "lowvig": {
+     "point": null,
+     "price": 108
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -104
+    },
+    "novig": {
+     "point": null,
+     "price": 111
+    },
+    "polymarket": {
+     "point": null,
+     "price": 113
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": 113
+    },
+    "prophetx": {
+     "point": null,
+     "price": 113
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": 102
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a19d4c-ba8e-7c20-930a-f93097fee8d3",
+    "outcome_id": "01a19d4c-ba8e-7c20-930a-f9508c49ba5b"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "St. Louis Blues",
+   "side_label": "STL (0)",
+   "start_source": "odds",
+   "start_utc": "2026-11-04T00:00:00Z",
+   "teams": [
+    "St. Louis Blues",
+    "New York Rangers"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-03T22:20:13Z",
    "base_depth": 141940,
    "best_price": 0.56,
@@ -931,8 +1088,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.82,
-   "clv_cents": 0.0,
+   "close_price": 0.81,
+   "clv_cents": -1.0,
    "confirmed_after_min": 6,
    "date": "2026-11-04",
    "depth_by_book": {
@@ -10289,8 +10446,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.6,
-   "clv_cents": -2.0,
+   "close_price": 0.61,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-03",
    "depth_by_book": {
@@ -13095,8 +13252,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.46,
-   "clv_cents": -1.0,
+   "close_price": 0.47,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-11-03",
    "depth_by_book": {
