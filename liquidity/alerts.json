@@ -1,6 +1,598 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-03T13:20:10Z",
+   "base_depth": 49337,
+   "best_price": 0.5001,
+   "best_price_american": -100,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-03",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": false,
+     "label": "Pittsburgh",
+     "price": 0.51,
+     "this_side": 145830
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "PIT (0)",
+     "price": 0.505,
+     "this_side": 20736
+    },
+    "polymarket": {
+     "new_other_side": 3107,
+     "new_this_side": 35427,
+     "other_side": 49758,
+     "other_side_all_levels": 53845,
+     "ratio": 1.7,
+     "this_side": 83460,
+     "this_side_all_levels": 85189
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Pittsburgh Penguins",
+     "price": 0.495,
+     "this_side": 8820
+    }
+   },
+   "fade_price": 0.51,
+   "first_seen_utc": "2026-11-03T13:10:10Z",
+   "game": "Golden Knights vs. Penguins",
+   "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"5406786\"}",
+   "lead_min": 640,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 35427,
+   "paper_only": false,
+   "price": 0.5,
+   "price_american": -100,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.5,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -103
+    },
+    "betopenly": {
+     "point": null,
+     "price": 101
+    },
+    "betrivers": {
+     "point": null,
+     "price": -105
+    },
+    "betus": {
+     "point": null,
+     "price": -110
+    },
+    "bovada": {
+     "point": null,
+     "price": -105
+    },
+    "draftkings": {
+     "point": null,
+     "price": -108
+    },
+    "fanatics": {
+     "point": null,
+     "price": -105
+    },
+    "fanduel": {
+     "point": null,
+     "price": -110
+    },
+    "kalshi": {
+     "point": null,
+     "price": -104
+    },
+    "lowvig": {
+     "point": null,
+     "price": -103
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -108
+    },
+    "novig": {
+     "point": null,
+     "price": -102
+    },
+    "polymarket": {
+     "point": null,
+     "price": 100
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -104
+    },
+    "prophetx": {
+     "point": null,
+     "price": 102
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -106
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 1,
+    "pm_market_id": "5406786"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Penguins",
+   "side_label": "Penguins",
+   "start_source": "odds",
+   "start_utc": "2026-11-04T00:00:00Z",
+   "teams": [
+    "Golden Knights",
+    "Penguins"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-03T13:20:10Z",
+   "base_depth": 119493,
+   "best_price": 0.595,
+   "best_price_american": -147,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.59,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-03",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 9932,
+     "new_this_side": 32434,
+     "other_side": 37810,
+     "other_side_all_levels": 70408,
+     "ratio": 2.3,
+     "this_side": 87167,
+     "this_side_all_levels": 152344
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "WPG +1.5 (-1.5)",
+     "price": 0.595,
+     "this_side": 27301
+    }
+   },
+   "fade_price": 0.42,
+   "first_seen_utc": "2026-11-03T13:10:10Z",
+   "game": "Winnipeg vs Montreal: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLSPREAD-26NOV03WPGMTL-MTL2\"}",
+   "lead_min": 640,
+   "league": "NHL",
+   "line": 1.5,
+   "market": "spread",
+   "new_money": 32434,
+   "paper_only": false,
+   "price": 0.59,
+   "price_american": -144,
+   "price_rule": "fails_cap",
+   "price_when_first_seen": 0.59,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 1.5,
+     "price": -145
+    },
+    "betonlineag": {
+     "point": 1.5,
+     "price": -155
+    },
+    "betopenly": {
+     "point": 1.5,
+     "price": -132
+    },
+    "betrivers": {
+     "point": 1.5,
+     "price": -148
+    },
+    "betus": {
+     "point": 1.5,
+     "price": -155
+    },
+    "bovada": {
+     "point": 1.5,
+     "price": -155
+    },
+    "draftkings": {
+     "point": 1.5,
+     "price": -162
+    },
+    "fanatics": {
+     "point": 1.5,
+     "price": -160
+    },
+    "fanduel": {
+     "point": 1.5,
+     "price": -158
+    },
+    "kalshi": {
+     "point": 1.5,
+     "price": -144
+    },
+    "lowvig": {
+     "point": 1.5,
+     "price": -155
+    },
+    "mybookieag": {
+     "point": 1.5,
+     "price": -159
+    },
+    "novig": {
+     "point": 1.5,
+     "price": -147
+    },
+    "polymarket": {
+     "point": 1.5,
+     "price": -144
+    },
+    "prophetx": {
+     "point": 1.5,
+     "price": -146
+    },
+    "williamhill_us": {
+     "point": 1.5,
+     "price": -162
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNHLSPREAD-26NOV03WPGMTL-MTL2"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Winnipeg",
+   "side_label": "NOT Montreal wins by over 1.5 goals",
+   "start_source": "odds",
+   "start_utc": "2026-11-04T00:00:00Z",
+   "teams": [
+    "Winnipeg",
+    "Montreal"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-03T13:20:10Z",
+   "base_depth": 104221,
+   "best_price": 0.655,
+   "best_price_american": -190,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.66,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-03",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 7574,
+     "new_this_side": 26058,
+     "other_side": 32289,
+     "other_side_all_levels": 61927,
+     "ratio": 2.0,
+     "this_side": 64247,
+     "this_side_all_levels": 130708
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "TOR +1.5 (1.5)",
+     "price": 0.655,
+     "this_side": 12986
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Maple Leafs (+1.5)",
+     "price": 0.67,
+     "this_side": 28382
+    }
+   },
+   "fade_price": 0.35,
+   "first_seen_utc": "2026-11-03T13:10:10Z",
+   "game": "Utah vs Toronto: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLSPREAD-26NOV03UTATOR-UTA2\"}",
+   "lead_min": 640,
+   "league": "NHL",
+   "line": 1.5,
+   "market": "spread",
+   "new_money": 26058,
+   "paper_only": false,
+   "price": 0.66,
+   "price_american": -194,
+   "price_rule": "fails_cap",
+   "price_when_first_seen": 0.66,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 1.5,
+     "price": -210
+    },
+    "betonlineag": {
+     "point": 1.5,
+     "price": -215
+    },
+    "betopenly": {
+     "point": 1.5,
+     "price": -190
+    },
+    "betrivers": {
+     "point": 1.5,
+     "price": -225
+    },
+    "betus": {
+     "point": 1.5,
+     "price": -215
+    },
+    "bovada": {
+     "point": 1.5,
+     "price": -215
+    },
+    "draftkings": {
+     "point": 1.5,
+     "price": -218
+    },
+    "fanatics": {
+     "point": 1.5,
+     "price": -220
+    },
+    "fanduel": {
+     "point": 1.5,
+     "price": -210
+    },
+    "kalshi": {
+     "point": 1.5,
+     "price": -194
+    },
+    "lowvig": {
+     "point": 1.5,
+     "price": -215
+    },
+    "mybookieag": {
+     "point": 1.5,
+     "price": -212
+    },
+    "novig": {
+     "point": 1.5,
+     "price": -190
+    },
+    "polymarket": {
+     "point": 1.5,
+     "price": -194
+    },
+    "prophetx": {
+     "point": 1.5,
+     "price": -198
+    },
+    "williamhill_us": {
+     "point": 1.5,
+     "price": -205
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNHLSPREAD-26NOV03UTATOR-UTA2"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "polymarket"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Toronto",
+   "side_label": "NOT Utah wins by over 1.5 goals",
+   "start_source": "odds",
+   "start_utc": "2026-11-04T00:00:00Z",
+   "teams": [
+    "Utah",
+    "Toronto"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-03T13:20:10Z",
+   "base_depth": 111716,
+   "best_price": 0.64,
+   "best_price_american": -178,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.64,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-03",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 8999,
+     "new_this_side": 32126,
+     "other_side": 33150,
+     "other_side_all_levels": 64613,
+     "ratio": 2.5,
+     "this_side": 82026,
+     "this_side_all_levels": 144332
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "EDM +1.5 (-1.5)",
+     "price": 0.64,
+     "this_side": 29962
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Oilers (+1.5)",
+     "price": 0.64,
+     "this_side": 33409
+    }
+   },
+   "fade_price": 0.37,
+   "first_seen_utc": "2026-11-03T13:10:10Z",
+   "game": "Edmonton vs New Jersey: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLSPREAD-26NOV03EDMNJ-NJ2\"}",
+   "lead_min": 670,
+   "league": "NHL",
+   "line": 1.5,
+   "market": "spread",
+   "new_money": 32126,
+   "paper_only": false,
+   "price": 0.64,
+   "price_american": -178,
+   "price_rule": "fails_cap",
+   "price_when_first_seen": 0.64,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 1.5,
+     "price": -175
+    },
+    "betonlineag": {
+     "point": 1.5,
+     "price": -190
+    },
+    "betopenly": {
+     "point": 1.5,
+     "price": -161
+    },
+    "betrivers": {
+     "point": 1.5,
+     "price": -200
+    },
+    "betus": {
+     "point": 1.5,
+     "price": -190
+    },
+    "bovada": {
+     "point": 1.5,
+     "price": -190
+    },
+    "draftkings": {
+     "point": 1.5,
+     "price": -192
+    },
+    "fanatics": {
+     "point": 1.5,
+     "price": -190
+    },
+    "fanduel": {
+     "point": 1.5,
+     "price": -178
+    },
+    "kalshi": {
+     "point": 1.5,
+     "price": -178
+    },
+    "lowvig": {
+     "point": 1.5,
+     "price": -190
+    },
+    "mybookieag": {
+     "point": 1.5,
+     "price": -186
+    },
+    "novig": {
+     "point": 1.5,
+     "price": -178
+    },
+    "polymarket": {
+     "point": 1.5,
+     "price": -178
+    },
+    "prophetx": {
+     "point": 1.5,
+     "price": -178
+    },
+    "williamhill_us": {
+     "point": 1.5,
+     "price": -190
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNHLSPREAD-26NOV03EDMNJ-NJ2"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "polymarket"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Edmonton",
+   "side_label": "NOT New Jersey wins by over 1.5 goals",
+   "start_source": "odds",
+   "start_utc": "2026-11-04T00:30:00Z",
+   "teams": [
+    "Edmonton",
+    "New Jersey"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-03T12:50:12Z",
    "base_depth": 44282,
    "best_price": 0.485,
@@ -2579,8 +3171,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": 0.0,
+   "close_price": 0.52,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-03",
    "depth_by_book": {
