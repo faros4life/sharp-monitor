@@ -509,14 +509,16 @@ def read_novig():
         if not res:
             continue
         cost, pay = num(r.get("cost")) or 0, num(r.get("payout")) or 0
+        qty = (num(r.get("qty")) or 0) / 100   # Nov 2: Novig qty = payout in cents if it won (known for losses too)
+        tp_ = pay if res != "L" else (qty or None)
         st = r.get("start")
         if isinstance(st, (int, float)) or str(st or "").isdigit():
             st = iso(tparse(st))
         se.append({"id": f"nv|{r.get('marketId')}|{r.get('outcomeId')}", "book": "Novig", "game": r.get("game") or "",
                    "bet": r.get("label") or "", "league": lm.N_LEAGUE.get(str(r.get("league") or "").upper().strip()),
                    "source": "bot" if r.get("wallet") == "sub" else None,   # main wallet: the bot ledger decides
-                   "stake": round(cost, 2), "to_pay": round(pay, 2) if res != "L" else None,
-                   "price": p_to_american(cost / pay) if res == "W" and pay else None, "result": res,
+                   "stake": round(cost, 2), "to_pay": round(tp_, 2) if tp_ else None,
+                   "price": p_to_american(cost / tp_) if tp_ and cost and res in ("W", "L") else None, "result": res,
                    "profit": round(num(r.get("pnl")) if num(r.get("pnl")) is not None else pay - cost, 2),
                    "settled": iso(tparse(r.get("settledTs"))), "game_start": st, "site": True})
     LOG["novig"] = f"ok {len(op)} open {len(se)} settled (snapshot {age:.0f} min old)"
@@ -874,7 +876,8 @@ def main():
         prev_src = (bets.get(s["id"]) or {}).get("source")
         s["source"] = s.get("source") or ("bot" if bot_match(s, keys) or prev_src == "bot" else None) or \
             (prev_src if prev_src and prev_src != "Peter" else None) or "Peter"
-        bets[s["id"]] = {**(bets.get(s["id"]) or {}), **s}
+        bets[s["id"]] = {**(bets.get(s["id"]) or {}), **{k: v for k, v in s.items() if v is not None}}   # Nov 2: a settlement row
+        # without price / payout (Novig losses) no longer wipes the price the open row already had
     # settled bets from earlier days this week need their own ESPN dates (scores shown on every card)
     have = {g["start"][:10] for g in games if g.get("start")}
     extra = set()
