@@ -1,0 +1,29 @@
+name: board-lab
+
+# BOARD LAB (Peter Nov 3, 9:53 AM): paper, read-only report on every Bets Board field, current vs proposed v2 rules,
+# standard bucket list with both halves. Reads the public board feeds only; no bets, no changes. Private email daily;
+# the log prints counts only.
+on:
+  schedule:
+    - cron: "11 15 * * *"   # ~10:11 AM ET
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Board lab (private email)
+        env:
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+        run: python -u board_lab.py
