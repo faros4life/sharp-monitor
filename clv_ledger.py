@@ -586,6 +586,10 @@ def main():
                 if rec.get("why") == "no price on the bet":
                     for x in ("done", "tries", "why"):
                         rec.pop(x, None)
+    for k, rec in st["bets"].items():   # Nov 2 (Peter "do it"): Novig losses now carry their price from the tracker - retry them
+        if rec.get("why") == "no price on the bet" and eff_dec(rec["snap"]):
+            for x in ("done", "tries", "why"):
+                rec.pop(x, None)
     for o in nvo:
         st.setdefault("novig_checks", {}).setdefault(o["id"], {"snap": o})
     mkmap = load_markets(st, now)
