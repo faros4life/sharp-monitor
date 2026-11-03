@@ -440,8 +440,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": 0.0,
+   "close_price": 0.51,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-03",
    "depth_by_book": {
@@ -635,6 +635,8 @@
    "new_money": 32648,
    "paper_only": false,
    "price": 0.39,
+   "price_after_15m": 0.39,
+   "price_after_15m_book": "novig",
    "price_american": 156,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.39,
@@ -704,7 +706,8 @@
      "price": 145
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-03T02:30:13Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNHLGAME-26NOV03MINPHI-PHI"
@@ -720,6 +723,7 @@
    "side_label": "Philadelphia",
    "start_source": "odds",
    "start_utc": "2026-11-04T00:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Minnesota",
     "Philadelphia"
@@ -6061,6 +6065,7 @@
     }
    },
    "fade_price": 0.39,
+   "fade_units": 1.46,
    "first_seen_utc": "2026-11-02T19:20:09Z",
    "game": "Detroit vs Florida",
    "key": "kalshi|KXNHLGAME-26NOV02DETFLA|ml|1",
@@ -6147,7 +6152,7 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNHLGAME-26NOV02DETFLA-FLA"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig",
@@ -6155,6 +6160,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-03T02:30:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Florida",
@@ -6167,7 +6173,7 @@
     "Florida"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-02T19:20:09Z",
@@ -8263,8 +8269,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": -1.0,
+   "close_price": 0.53,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -11577,8 +11583,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.54,
-   "clv_cents": 4.0,
+   "close_price": 0.55,
+   "clv_cents": 5.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -12818,6 +12824,7 @@
     }
    },
    "fade_price": 0.54,
+   "fade_units": 0.79,
    "first_seen_utc": "2026-11-02T08:20:11Z",
    "game": "Detroit vs Florida: Total Goals",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLTOTAL-26NOV02DETFLA-6\"}",
@@ -12904,11 +12911,12 @@
     "kalshi_side": "no",
     "market_ticker": "KXNHLTOTAL-26NOV02DETFLA-6"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-11-03T02:30:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -12921,7 +12929,7 @@
     "Florida"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-02T08:20:11Z",
@@ -14872,6 +14880,7 @@
     }
    },
    "fade_price": 0.62,
+   "fade_units": 0.57,
    "first_seen_utc": "2026-11-02T02:40:11Z",
    "game": "Detroit vs Florida: Spread",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNHLSPREAD-26NOV02DETFLA-FLA2\"}",
@@ -14950,13 +14959,14 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNHLSPREAD-26NOV02DETFLA-FLA2"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-03T02:30:13Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Florida",
@@ -14969,7 +14979,7 @@
     "Florida"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-02T01:10:21Z",
