@@ -1,6 +1,154 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-03T21:06:37Z",
+   "base_depth": 205264,
+   "best_price": 0.69,
+   "best_price_american": -223,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.69,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 6,
+   "date": "2026-11-03",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -406,
+     "new_this_side": 66407,
+     "other_side": 91112,
+     "other_side_all_levels": 145388,
+     "ratio": 2.4,
+     "this_side": 214858,
+     "this_side_all_levels": 270576
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "VGK +1.5 (-1.5)",
+     "price": 0.69,
+     "this_side": 39345
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Golden Knights (+1.5)",
+     "price": 0.69,
+     "this_side": 51823
+    }
+   },
+   "fade_price": 0.32,
+   "first_seen_utc": "2026-11-03T21:00:19Z",
+   "game": "Vegas vs Pittsburgh: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLSPREAD-26NOV03VGKPIT-PIT2\"}",
+   "lead_min": 173,
+   "league": "NHL",
+   "line": 1.5,
+   "market": "spread",
+   "new_money": 66407,
+   "paper_only": false,
+   "price": 0.69,
+   "price_american": -223,
+   "price_rule": "fails_cap",
+   "price_when_first_seen": 0.69,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 1.5,
+     "price": -250
+    },
+    "betonlineag": {
+     "point": 1.5,
+     "price": -245
+    },
+    "betopenly": {
+     "point": 1.5,
+     "price": -238
+    },
+    "betrivers": {
+     "point": 1.5,
+     "price": -275
+    },
+    "betus": {
+     "point": 1.5,
+     "price": -245
+    },
+    "bovada": {
+     "point": 1.5,
+     "price": -250
+    },
+    "draftkings": {
+     "point": 1.5,
+     "price": -250
+    },
+    "fanatics": {
+     "point": 1.5,
+     "price": -255
+    },
+    "fanduel": {
+     "point": 1.5,
+     "price": -250
+    },
+    "kalshi": {
+     "point": 1.5,
+     "price": -223
+    },
+    "lowvig": {
+     "point": 1.5,
+     "price": -245
+    },
+    "mybookieag": {
+     "point": 1.5,
+     "price": -248
+    },
+    "novig": {
+     "point": 1.5,
+     "price": -223
+    },
+    "polymarket": {
+     "point": 1.5,
+     "price": -223
+    },
+    "prophetx": {
+     "point": 1.5,
+     "price": -230
+    },
+    "williamhill_us": {
+     "point": 1.5,
+     "price": -250
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNHLSPREAD-26NOV03VGKPIT-PIT2"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "polymarket"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Vegas",
+   "side_label": "NOT Pittsburgh wins by over 1.5 goals",
+   "start_source": "odds",
+   "start_utc": "2026-11-04T00:00:00Z",
+   "teams": [
+    "Vegas",
+    "Pittsburgh"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-03T19:56:19Z",
    "base_depth": 655315,
    "best_price": 0.4928,
@@ -4248,8 +4396,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.62,
-   "clv_cents": 3.0,
+   "close_price": 0.61,
+   "clv_cents": 2.0,
    "confirmed_after_min": 10,
    "date": "2026-11-03",
    "depth_by_book": {
@@ -7039,8 +7187,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.83,
-   "clv_cents": -2.0,
+   "close_price": 0.82,
+   "clv_cents": -3.0,
    "confirmed_after_min": 10,
    "date": "2026-11-04",
    "depth_by_book": {
