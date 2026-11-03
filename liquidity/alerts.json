@@ -1,6 +1,157 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-03T04:50:10Z",
+   "base_depth": 92772,
+   "best_price": 0.46,
+   "best_price_american": 117,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.46,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-03",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 7035,
+     "new_this_side": 58193,
+     "other_side": 72216,
+     "other_side_all_levels": 113785,
+     "ratio": 1.5,
+     "this_side": 111775,
+     "this_side_all_levels": 152043
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "CBJ (0)",
+     "price": 0.46,
+     "this_side": 8018
+    },
+    "polymarket": {
+     "heavier_side": false,
+     "label": "Blue Jackets",
+     "price": 0.46,
+     "this_side": 8427
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Columbus Blue Jackets",
+     "price": 0.4587,
+     "this_side": 950
+    }
+   },
+   "fade_price": 0.55,
+   "first_seen_utc": "2026-11-03T04:40:10Z",
+   "game": "Colorado vs Columbus",
+   "key": "kalshi|KXNHLGAME-26NOV03COLCBJ|ml|1",
+   "lead_min": 1150,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 58193,
+   "paper_only": false,
+   "price": 0.46,
+   "price_american": 117,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.46,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": 110
+    },
+    "betonlineag": {
+     "point": null,
+     "price": 112
+    },
+    "betopenly": {
+     "point": null,
+     "price": 121
+    },
+    "betrivers": {
+     "point": null,
+     "price": 107
+    },
+    "betus": {
+     "point": null,
+     "price": 105
+    },
+    "bovada": {
+     "point": null,
+     "price": 112
+    },
+    "draftkings": {
+     "point": null,
+     "price": 114
+    },
+    "fanatics": {
+     "point": null,
+     "price": 110
+    },
+    "fanduel": {
+     "point": null,
+     "price": 110
+    },
+    "kalshi": {
+     "point": null,
+     "price": 117
+    },
+    "lowvig": {
+     "point": null,
+     "price": 112
+    },
+    "novig": {
+     "point": null,
+     "price": 117
+    },
+    "polymarket": {
+     "point": null,
+     "price": 117
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": 122
+    },
+    "prophetx": {
+     "point": null,
+     "price": 118
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": 112
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNHLGAME-26NOV03COLCBJ-CBJ"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Columbus",
+   "side_label": "Columbus",
+   "start_source": "odds",
+   "start_utc": "2026-11-04T00:00:00Z",
+   "teams": [
+    "Colorado",
+    "Columbus"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-03T04:10:14Z",
    "base_depth": 190161,
    "best_price": 0.705,
@@ -12157,6 +12308,7 @@
     }
    },
    "fade_price": 0.54,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-02T12:50:11Z",
    "game": "Calgary vs San Jose",
    "key": "kalshi|KXNHLGAME-26NOV02CGYSJ|ml|0",
@@ -12248,7 +12400,7 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNHLGAME-26NOV02CGYSJ-CGY"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig",
@@ -12257,6 +12409,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-03T04:50:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Calgary",
@@ -12269,7 +12422,7 @@
     "San Jose"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.16
   },
   {
    "alerted_utc": "2026-11-02T12:50:11Z",
@@ -13715,6 +13868,7 @@
     }
    },
    "fade_price": 0.34,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-02T11:40:12Z",
    "game": "Calgary vs San Jose: Spread",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLSPREAD-26NOV02CGYSJ-SJ2\"}",
@@ -13802,7 +13956,7 @@
     "kalshi_side": "no",
     "market_ticker": "KXNHLSPREAD-26NOV02CGYSJ-SJ2"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig",
@@ -13810,6 +13964,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-03T04:50:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Calgary",
@@ -13822,7 +13977,7 @@
     "San Jose"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.48
   },
   {
    "alerted_utc": "2026-11-02T11:10:10Z",
@@ -14886,6 +15041,7 @@
     }
    },
    "fade_price": 0.44,
+   "fade_units": 1.19,
    "first_seen_utc": "2026-11-02T04:20:10Z",
    "game": "Calgary vs San Jose",
    "key": "kalshi|KXNHLGAME-26NOV02CGYSJ|ml|1",
@@ -14976,11 +15132,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNHLGAME-26NOV02CGYSJ-SJ"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-11-03T04:50:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "San Jose",
@@ -14993,7 +15150,7 @@
     "San Jose"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-02T04:20:10Z",
