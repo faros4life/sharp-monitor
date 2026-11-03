@@ -1,6 +1,654 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-03T22:06:08Z",
+   "base_depth": 146699,
+   "best_price": 0.7147,
+   "best_price_american": -251,
+   "best_price_book": "kalshi",
+   "bid_improved": true,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.7,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 6,
+   "date": "2026-11-04",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 9176,
+     "new_this_side": 52377,
+     "other_side": 585,
+     "other_side_all_levels": 90329,
+     "ratio": 2.0,
+     "this_side": 1161,
+     "this_side_all_levels": 199122
+    }
+   },
+   "fade_price": 0.31,
+   "first_seen_utc": "2026-11-03T22:00:20Z",
+   "game": "Utah vs New Orleans",
+   "key": "kalshi|KXNBAGAME-26NOV04UTANOP|ml|1",
+   "lead_min": 1794,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 52377,
+   "paper_only": false,
+   "price": 0.7,
+   "price_american": -233,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.68,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBAGAME-26NOV04UTANOP-NOP"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "New Orleans",
+   "side_label": "New Orleans",
+   "start_source": "kalshi",
+   "start_utc": "2026-11-05T04:00:00Z",
+   "teams": [
+    "Utah",
+    "New Orleans"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-03T22:06:08Z",
+   "base_depth": 149579,
+   "best_price": 0.6568,
+   "best_price_american": -191,
+   "best_price_book": "polymarket",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.66,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 6,
+   "date": "2026-11-04",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 239,
+     "new_this_side": 60940,
+     "other_side": 1999,
+     "other_side_all_levels": 102621,
+     "ratio": 2.7,
+     "this_side": 5344,
+     "this_side_all_levels": 210447
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "DEN (0)",
+     "price": 0.665,
+     "this_side": 658
+    },
+    "polymarket": {
+     "heavier_side": false,
+     "label": "Nuggets",
+     "price": 0.65,
+     "this_side": 2318
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "Denver Nuggets",
+     "price": 0.6875,
+     "this_side": 36
+    }
+   },
+   "fade_price": 0.35,
+   "first_seen_utc": "2026-11-03T22:00:20Z",
+   "game": "Toronto vs Denver",
+   "key": "kalshi|KXNBAGAME-26NOV04TORDEN|ml|1",
+   "lead_min": 1674,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 60940,
+   "paper_only": false,
+   "price": 0.66,
+   "price_american": -194,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.66,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -220
+    },
+    "betrivers": {
+     "point": null,
+     "price": -215
+    },
+    "bovada": {
+     "point": null,
+     "price": -230
+    },
+    "draftkings": {
+     "point": null,
+     "price": -217
+    },
+    "fanatics": {
+     "point": null,
+     "price": -220
+    },
+    "kalshi": {
+     "point": null,
+     "price": -194
+    },
+    "limitless": {
+     "point": null,
+     "price": -203
+    },
+    "novig": {
+     "point": null,
+     "price": -199
+    },
+    "polymarket": {
+     "point": null,
+     "price": -186
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -203
+    },
+    "prophetx": {
+     "point": null,
+     "price": -225
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -220
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBAGAME-26NOV04TORDEN-DEN"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Denver",
+   "side_label": "Denver",
+   "start_source": "odds",
+   "start_utc": "2026-11-05T02:00:00Z",
+   "teams": [
+    "Toronto",
+    "Denver"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-03T22:06:08Z",
+   "base_depth": 155090,
+   "best_price": 0.595,
+   "best_price_american": -147,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.59,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 6,
+   "date": "2026-11-04",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 2915,
+     "new_this_side": 26138,
+     "other_side": 1350,
+     "other_side_all_levels": 123961,
+     "ratio": 1.9,
+     "this_side": 2585,
+     "this_side_all_levels": 181815
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "POR (0)",
+     "price": 0.595,
+     "this_side": 656
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "Portland Trail Blazers",
+     "price": 0.6377,
+     "this_side": 63
+    }
+   },
+   "fade_price": 0.42,
+   "first_seen_utc": "2026-11-03T22:00:20Z",
+   "game": "Portland vs Phoenix",
+   "key": "kalshi|KXNBAGAME-26NOV04PORPHX|ml|0",
+   "lead_min": 1674,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 26138,
+   "paper_only": false,
+   "price": 0.59,
+   "price_american": -144,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.58,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -155
+    },
+    "betrivers": {
+     "point": null,
+     "price": -148
+    },
+    "bovada": {
+     "point": null,
+     "price": -150
+    },
+    "draftkings": {
+     "point": null,
+     "price": -148
+    },
+    "fanatics": {
+     "point": null,
+     "price": -140
+    },
+    "kalshi": {
+     "point": null,
+     "price": -144
+    },
+    "limitless": {
+     "point": null,
+     "price": -156
+    },
+    "novig": {
+     "point": null,
+     "price": -147
+    },
+    "polymarket": {
+     "point": null,
+     "price": -133
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -144
+    },
+    "prophetx": {
+     "point": null,
+     "price": -176
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -150
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBAGAME-26NOV04PORPHX-POR"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Portland",
+   "side_label": "Portland",
+   "start_source": "odds",
+   "start_utc": "2026-11-05T02:00:00Z",
+   "teams": [
+    "Portland",
+    "Phoenix"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-03T22:06:08Z",
+   "base_depth": 230638,
+   "best_price": 0.8303,
+   "best_price_american": -489,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.82,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 6,
+   "date": "2026-11-04",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 406,
+     "new_this_side": 37908,
+     "other_side": 803,
+     "other_side_all_levels": 42668,
+     "ratio": 10.2,
+     "this_side": 8220,
+     "this_side_all_levels": 267735
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "BOS (0)",
+     "price": 0.835,
+     "this_side": 4122
+    },
+    "polymarket": {
+     "heavier_side": false,
+     "label": "Celtics",
+     "price": 0.84,
+     "this_side": 374
+    }
+   },
+   "fade_price": 0.19,
+   "first_seen_utc": "2026-11-03T22:00:20Z",
+   "game": "Milwaukee vs Boston",
+   "key": "kalshi|KXNBAGAME-26NOV04MILBOS|ml|1",
+   "lead_min": 1584,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 37908,
+   "paper_only": false,
+   "price": 0.82,
+   "price_american": -456,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.84,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -550
+    },
+    "betrivers": {
+     "point": null,
+     "price": -560
+    },
+    "bovada": {
+     "point": null,
+     "price": -625
+    },
+    "draftkings": {
+     "point": null,
+     "price": -514
+    },
+    "fanatics": {
+     "point": null,
+     "price": -525
+    },
+    "fanduel": {
+     "point": null,
+     "price": -520
+    },
+    "kalshi": {
+     "point": null,
+     "price": -456
+    },
+    "limitless": {
+     "point": null,
+     "price": -614
+    },
+    "novig": {
+     "point": null,
+     "price": -525
+    },
+    "polymarket": {
+     "point": null,
+     "price": -525
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -525
+    },
+    "prophetx": {
+     "point": null,
+     "price": -590
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -550
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBAGAME-26NOV04MILBOS-BOS"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Boston",
+   "side_label": "Boston",
+   "start_source": "odds",
+   "start_utc": "2026-11-05T00:30:00Z",
+   "teams": [
+    "Milwaukee",
+    "Boston"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-03T22:06:08Z",
+   "base_depth": 188244,
+   "best_price": 0.835,
+   "best_price_american": -506,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.83,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 6,
+   "date": "2026-11-04",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -21897,
+     "new_this_side": 82717,
+     "other_side": 1036,
+     "other_side_all_levels": 41639,
+     "ratio": 8.1,
+     "this_side": 8380,
+     "this_side_all_levels": 271609
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "LAL (0)",
+     "price": 0.835,
+     "this_side": 205
+    }
+   },
+   "fade_price": 0.18,
+   "first_seen_utc": "2026-11-03T22:00:20Z",
+   "game": "Los Angeles L vs Sacramento",
+   "key": "kalshi|KXNBAGAME-26NOV04LALSAC|ml|0",
+   "lead_min": 1734,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 82717,
+   "paper_only": false,
+   "price": 0.83,
+   "price_american": -488,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.83,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -625
+    },
+    "bovada": {
+     "point": null,
+     "price": -800
+    },
+    "draftkings": {
+     "point": null,
+     "price": -610
+    },
+    "fanatics": {
+     "point": null,
+     "price": -650
+    },
+    "kalshi": {
+     "point": null,
+     "price": -488
+    },
+    "limitless": {
+     "point": null,
+     "price": -590
+    },
+    "novig": {
+     "point": null,
+     "price": -506
+    },
+    "polymarket": {
+     "point": null,
+     "price": -456
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -488
+    },
+    "prophetx": {
+     "point": null,
+     "price": -570
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBAGAME-26NOV04LALSAC-LAL"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Los Angeles L",
+   "side_label": "Los Angeles L",
+   "start_source": "odds",
+   "start_utc": "2026-11-05T03:00:00Z",
+   "teams": [
+    "Los Angeles L",
+    "Sacramento"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-03T22:06:08Z",
+   "base_depth": 151692,
+   "best_price": 0.7438,
+   "best_price_american": -290,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.73,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 6,
+   "date": "2026-11-04",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -4563,
+     "new_this_side": 83290,
+     "other_side": 991,
+     "other_side_all_levels": 79348,
+     "ratio": 1.3,
+     "this_side": 1329,
+     "this_side_all_levels": 234928
+    }
+   },
+   "fade_price": 0.28,
+   "first_seen_utc": "2026-11-03T22:00:20Z",
+   "game": "Indiana vs Memphis",
+   "key": "kalshi|KXNBAGAME-26NOV04INDMEM|ml|1",
+   "lead_min": 1794,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 83290,
+   "paper_only": false,
+   "price": 0.73,
+   "price_american": -270,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.73,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBAGAME-26NOV04INDMEM-MEM"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Memphis",
+   "side_label": "Memphis",
+   "start_source": "kalshi",
+   "start_utc": "2026-11-05T04:00:00Z",
+   "teams": [
+    "Indiana",
+    "Memphis"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-03T21:06:37Z",
    "base_depth": 205264,
    "best_price": 0.69,
@@ -446,8 +1094,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.32,
-   "clv_cents": 1.0,
+   "close_price": 0.325,
+   "clv_cents": 1.5,
    "confirmed_after_min": 4,
    "date": "2026-11-03",
    "depth_by_book": {
@@ -4242,8 +4890,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 2.0,
+   "close_price": 0.53,
+   "clv_cents": 3.0,
    "confirmed_after_min": 10,
    "date": "2026-11-03",
    "depth_by_book": {
@@ -5469,8 +6117,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.49,
-   "clv_cents": -1.0,
+   "close_price": 0.48,
+   "clv_cents": -2.0,
    "confirmed_after_min": 10,
    "date": "2026-11-03",
    "depth_by_book": {
@@ -7191,8 +7839,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.8,
-   "clv_cents": -5.0,
+   "close_price": 0.79,
+   "clv_cents": -6.0,
    "confirmed_after_min": 10,
    "date": "2026-11-04",
    "depth_by_book": {
@@ -7303,8 +7951,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.54,
-   "clv_cents": 2.0,
+   "close_price": 0.53,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-04",
    "depth_by_book": {
