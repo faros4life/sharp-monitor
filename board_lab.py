@@ -112,7 +112,10 @@ def main():
     L.append(f"FORWARD ONLY (alerted after registration {REG_UTC}; the judged numbers; bar n >= 100, CLV > 0, beat >= 53%, both halves):")
     for name, f in (("current PLAY", lambda r: r["_tag"] == "PLAY"), ("current LEAN", lambda r: r["_tag"] == "LEAN"),
                     ("v2 PLAY", lambda r: v2(r) == "PLAY"), ("v2 LEAN", lambda r: v2(r) == "LEAN"),
-                    ("v2-STRICT PLAY", lambda r: v2s(r) == "PLAY")):
+                    ("v2-STRICT PLAY", lambda r: v2s(r) == "PLAY"),
+                    ("DESCRIPTIVE ML fav -110..-250 (not pulled, not moved toward, any price_rule; Muse Nov 3, not PLAY)",
+                     lambda r: r.get("market") == "moneyline" and -250 <= (r.get("price_american") or 0) <= -110
+                     and not r.get("pulled") and not moved_toward(r))):
         L.append(f"   {name}: {st([r for r in FW if f(r)])}")
     L.append("Everything above FORWARD ONLY is in-sample (the rules were picked from it): descriptive, not judged.")
     today = (datetime.now(timezone.utc).astimezone(ET)).strftime("%Y-%m-%d")
