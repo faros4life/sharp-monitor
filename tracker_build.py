@@ -87,6 +87,10 @@ STOP = {"at", "vs", "v", "the", "fc", "game", "points", "point", "goals", "wins"
         "full", "scored", "spread", "moneyline", "ml", "and", "of"}
 
 
+WEAK = {"state", "st", "tech", "university", "college", "north", "south", "east", "west", "central", "new", "city"}   # Nov 3:
+# shared by many schools/teams, so they never pin a bet to a game by themselves (match_game only)
+
+
 def toks(s):
     return {w for w in WORDS.findall((s or "").lower()) if w not in STOP and not w.replace(".", "").isdigit() and len(w) > 1}
 
@@ -179,8 +183,8 @@ def pin_bad(b, gs=None):
 def match_game(bet, games, near=None):
     """near: a datetime the game must start within 36 h of (settled bets: their settle time), so an old bet is never
     pinned to this week's game between the same teams."""
-    bt = toks(bet.get("game")) | toks(bet.get("bet"))
-    best, score = None, 0
+    bt = (toks(bet.get("game")) | toks(bet.get("bet"))) - WEAK
+    best, score, tsc = None, 0, 0
     for g in games:
         if bet.get("league") and bet["league"] != g["league"]:
             continue
@@ -191,10 +195,12 @@ def match_game(bet, games, near=None):
             if not gs or abs((gs - near).total_seconds()) > 36 * 3600:
                 continue
         hits = sum(1 for t in g["teams"] if (t["toks"] & bt) or (t["abbr"] and t["abbr"] in bt))
-        if hits > score or (hits == score and best and g["start"] and bet.get("date") and g["start"][:10] == bet["date"]) \
-                or (hits == score and best and near is None and g.get("start") and best.get("start") and
+        ts = sum(len(t["toks"] & bt) for t in g["teams"])   # Nov 3: more shared name words wins a tie (BYU vs Kent St/Sac St)
+        if hits > score or (hits == score and ts > tsc) or (hits == score and ts == tsc and best and g["start"] and bet.get("date")
+                                                             and g["start"][:10] == bet["date"]) \
+                or (hits == score and ts == tsc and best and near is None and g.get("start") and best.get("start") and
                     tparse(g["start"]) < tparse(best["start"])):   # Nov 3: an open bet is on the NEXT game, not a later one
-            best, score = g, hits
+            best, score, tsc = g, hits, ts
     return best if score >= 2 or (score == 1 and bet.get("league")) else None
 
 
