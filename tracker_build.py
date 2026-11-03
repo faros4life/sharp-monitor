@@ -240,8 +240,17 @@ def elapsed(g):
         return None
     if mins is None:
         return min(1.0, (p - 0.5) / n)
-    m = re.match(r"(\d+):(\d+)", str(g.get("clock") or ""))
-    left = (int(m.group(1)) + int(m.group(2)) / 60) if m else mins / 2
+    c = str(g.get("clock") or "").strip()   # Nov 2: ESPN shows "0.0" at breaks and "45.3" in the last minute
+    m = re.match(r"(\d+):(\d+(?:\.\d+)?)$", c)
+    if m:
+        left = int(m.group(1)) + float(m.group(2)) / 60
+    elif re.match(r"\d+(?:\.\d+)?$", c):
+        left = float(c) / 60
+    else:
+        left = mins / 2
+    if re.match(r"(halftime|end of|end )", str(g.get("detail") or "").strip(), re.I):
+        left = 0   # quarter / period break: the period is fully played
+    left = max(0.0, min(float(mins), left))
     return min(1.0, ((min(p, n) - 1) * mins + (mins - left)) / (n * mins))
 
 
