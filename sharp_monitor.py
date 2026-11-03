@@ -1437,15 +1437,22 @@ def run():
                                      + f" | {bet_size(a['price'], a['book'])}")
                         else:
                             label = "PAPER - don't bet (" + "; ".join(p1_why[:2]) + ")"
+                        # Nov 3 (Peter yes 8:07 AM): SLOW-HR-EV paper ping - Hard Rock-priced alert whose after-fee price is
+                        # >= +2% vs Pinnacle's new no-vig fair. Paper only: check the app's price and the max bet it allows.
+                        hr_ev = (a.get("book") in ("hardrockbet", "hardrockbet_fl") and a.get("evp") is not None
+                                 and a["evp"] >= 2.0 and not p1_ok)
+                        if hr_ev:
+                            label = (f"HR MISPRICE {a['evp']:+.1f}% vs Pinnacle fair - PAPER: open Hard Rock, check the price "
+                                     "is there and the max bet it allows")
                         # Nov 1 (Peter): the phone gets the play alert for LIVE (phase-1) plays, then the bot's fill or
                         # resting-bid message; PAPER alerts stay muted (PUSH_SHARP_ALERTS=on unmutes them too)
-                        (notify if (PUSH_SHARP or p1_ok) else (lambda *x, **y: print("push muted: paper alert logged only")))(
-                               ("LIVE " if p1_ok else "PAPER ") + f"Sharp alert {cfg['label']}" + (" LATE" if late else ""),
+                        (notify if (PUSH_SHARP or p1_ok or hr_ev) else (lambda *x, **y: print("push muted: paper alert logged only")))(
+                               ("LIVE " if p1_ok else "HR MISPRICE " if hr_ev else "PAPER ") + f"Sharp alert {cfg['label']}" + (" LATE" if late else ""),
                                f"{label}\n{a['text']}\n{bet_size(a['price'], a['book'])}{prior_note}\n{a['game']}{tag}, {a['start']}\n{a['why']}\n"
                                f"Grade {grade} ({score}/100) | "
                                + (f"LATE: starts in {lead_text(lead)}" if late else f"starts in {lead_text(lead)}"),
                                red=late, yellow=(not late) and bool(prior or (repeat and REPEAT_MODE != "mute")),   # late = red only
-                               extra_tags=("white_check_mark",) if p1_ok else ("page_facing_up",),
+                               extra_tags=("white_check_mark",) if p1_ok else (("mag",) if hr_ev else ("page_facing_up",)),
                                headline=f"{a['game']} \u2014 {a['text'].split(' at ')[0]} @ {nm(a['book'])}")
                     st["alerted"][a["id"]] = time.time()
                     e = {k: a[k] for k in ("id", "ev", "game", "kind", "side", "pt", "price", "book", "conf", "nconf", "cby", "evp", "fade")}
