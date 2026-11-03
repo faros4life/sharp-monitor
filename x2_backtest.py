@@ -238,7 +238,7 @@ def main():
                 "clv": None if x["clv"] is None else round(float(x["clv"]) - fee_c(x), 2), "lg": x["league"], "mk": mk,
                 "sc": bkt.side_class(mk, x.get("side"), x.get("line")), "key": bkt.key_class(x["league"], mk, x.get("line")),
                 "pin_limit": x.get("limit_raw"), "lead": (t1 - t0).total_seconds() / 60 if t0 and t1 else None,
-                "am": bkt.p_to_am(x.get("price"))}
+                "am": bkt.p_to_am(x.get("price")), "units": x.get("units") if x.get("result") in ("W", "L", "P") else None}
     L += [""] + bkt.section("all board rows with a Pinnacle limit (CLV cents after fees)", [_b(x) for x in res], "c")
     L += [""] + bkt.section("2X PASS rows, raw scale (CLV cents after fees)", [_b(x) for x in res if x.get("pass_RAW")], "c")
     ex.send("Bets 2X BACKTEST (HYPOTHESIS)", "\n".join(L))
