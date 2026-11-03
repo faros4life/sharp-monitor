@@ -19,6 +19,9 @@ Frozen definitions (band = a TOTAL priced -111 to -120 after fee; lead = minutes
  27 12-24H           SENT ProphetX-priced, grade A/B, not late, lead 720-1440 min (approximation of "phase-1 qualifying,
                      12-24h out": the phase-1 market scope is not re-applied - labelled)
  50 HR-EV (live)     SENT or not, Hard Rock-priced, edge_pct >= 2 (bands 2-4 / 4-8 / 8+) - the live analog of SLOW-HR-EV
+ 60 P1-TOTALS        SENT phase-1 LIVE-qualifying alerts, totals only (control: phase-1 spreads); from Nov 3 11:45 AM ET
+ 61 EDGE2            any book, SENT or not, edge_pct >= +2 vs Pinnacle's new no-vig fair after fee, per book; from 11:45 AM ET
+Nov 3 (item 16): beat close / CLV here are the TRUE close (close_value_pct, beat_true_close), price-based - not the line.
 """
 import json
 import statistics as stt
@@ -31,6 +34,7 @@ ET_OFF = 5   # EST (DST ended Nov 1)
 T29 = "2026-11-03T05:00:00Z"   # items 29-33 and 50: from Nov 3 00:00 ET (Muse 6:19 AM: start as paper today)
 T25 = "2026-11-03T01:24:00Z"   # Nov 2 8:24 PM ET registration
 T27 = "2026-11-02T21:30:00Z"   # Nov 2 4:30 PM ET (12-24h split adopted at the Nov 2 review)
+T60 = "2026-11-03T16:45:00Z"   # items 60/61: Nov 3 11:45 AM ET (Peter "ok do it"; LIVE paused 11:33)
 
 
 def tp(s):
@@ -56,7 +60,7 @@ def rows():
                     "lg": a.get("sport"), "mk": {"tot": "totals", "spr": "spreads", "ml": "moneyline"}.get(kind),
                     "sc": sc, "paf": paf, "lead": lead, "edge": a.get("edge_pct"), "grade": a.get("grade"),
                     "late": bool(a.get("late")), "res": a.get("result"), "u": a.get("units_flat"),
-                    "beat": a.get("beat_close"), "day": (t.timestamp() - ET_OFF * 3600),
+                    "beat": a.get("beat_true_close"), "tcv": a.get("close_value_pct"), "day": (t.timestamp() - ET_OFF * 3600),   # Nov 3: TRUE close (item 16)
                     "band": kind == "tot" and paf is not None and -120 <= paf <= -111})
     for r in out:
         r["day"] = datetime.fromtimestamp(r["day"], timezone.utc).strftime("%Y-%m-%d")
@@ -70,8 +74,9 @@ def rec(xs):
     p = sum(x["res"] == "P" for x in g)
     u = sum(x["u"] or 0 for x in g)
     b = [x["beat"] for x in g if x["beat"] is not None]
+    tc = [x["tcv"] for x in g if x.get("tcv") is not None]
     return (f"n {len(xs)} (graded {len(g)}) {w}-{l_}" + (f"-{p}" if p else "") + f" {u:+.2f}u"
-            + (f" | beat close (line-based) {sum(map(bool, b))}/{len(b)}" if b else ""))
+            + (f" | TRUE close {stt.mean(tc):+.2f}%, beat {sum(map(bool, b))}/{len(b)}" if b and tc else ""))
 
 
 def main():
@@ -82,7 +87,7 @@ def main():
     better = lambda x: x["paf"] is not None and x["paf"] > -110
     l3 = lambda x: (x["lead"] or 0) >= 180
     L = [f"PAPER RULES TRACKER - FORWARD PAPER ONLY | {datetime.now(timezone.utc):%Y-%m-%d %H:%M} UTC",
-         "1u flat at the alert after-fee price. Beat close here is LINE-based (item 16 pending). Readouts at each rule's",
+         "1u flat at the alert after-fee price. Beat close / CLV = TRUE close (close_value_pct, price-based; item 16). Readouts at each rule's",
          "registered count; nothing is judged before then.", ""]
     sec = []
 
@@ -121,10 +126,27 @@ def main():
     sec.append(("50 HR-EV", H))
     L.append("")
     for title, xs in sec:
-        recs = [{"day": x["day"], "clv": None, "beat": x["beat"], "lg": x["lg"], "mk": x["mk"], "sc": x["sc"],
+        recs = [{"day": x["day"], "clv": x.get("tcv"), "beat": x["beat"], "lg": x["lg"], "mk": x["mk"], "sc": x["sc"],
                  "lead": x["lead"], "late": x["late"], "edge": x["edge"], "am": x["paf"]} for x in xs]
-        L += bkt.section(f"{title} (beat close line-based; units above)", recs) + [""]
-    ex.send("Bets PAPER RULES TRACKER (forward, items 25/27/29-33/50)", "\n".join(L))
+        L += bkt.section(f"{title} (CLV = TRUE close value %, price-based; units above)", recs, "%") + [""]
+    # Nov 3 11:45 (Peter "ok do it"): the two rebuild candidates for LIVE, judged on TRUE close, clock from T60
+    import agree_rules as ar
+
+    def p1(a):
+        ok, why = ar.phase1(a, True)
+        why = [w for w in why if w != "no Muse AGREE"]
+        return bool(ok or not why) and ar.hr_priced(a) is False and ar.deadband(a) is False   # = sharp_monitor.phase1_label
+    F = after([x for x in R if x["sent"] and x["a"].get("pricing_bettable") is not False], T60)
+    L += ["", "60 P1-TOTALS (phase-1 LIVE-qualifying SENT alerts, totals only; candidate LIVE rebuild):",
+          f"   {rec([x for x in F if x['mk'] == 'totals' and p1(x['a'])])}",
+          f"   control, phase-1 spreads: {rec([x for x in F if x['mk'] == 'spreads' and p1(x['a'])])}",
+          "61 EDGE2 (any book, SENT or not, stated edge vs Pinnacle's new no-vig fair >= +2% after fee; mispricing, not lag):"]
+    E2 = after([x for x in R if x["a"].get("pricing_bettable") is not False and x["edge"] is not None and x["edge"] >= 2], T60)
+    for bk in sorted({x["book"] for x in E2}):
+        L.append(f"   {bk}: {rec([x for x in E2 if x['book'] == bk])}")
+    L.append(f"   all books: {rec(E2)}")
+    sec += [("60 P1-TOTALS", [x for x in F if x["mk"] == "totals" and p1(x["a"])]), ("61 EDGE2", E2)]
+    ex.send("Bets PAPER RULES TRACKER (forward, items 25/27/29-33/50/60/61; TRUE close)", "\n".join(L))
     print(f"paper rules: {len(R)} alerts read, {len(S29)} sent since Nov 3")   # counts only
 
 
