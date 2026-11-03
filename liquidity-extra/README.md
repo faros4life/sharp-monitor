@@ -1,23 +1,23 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 3, 4:30 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 9.
+Updated Tue Nov 3, 4:40 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 7.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 116-73 (-8.94u flat) | rule met: 33-29
+**Record:** 117-74 (-9.11u flat) | rule met: 33-30
 
-**Fade (paper, betting against the print):** 48-81 (+5.12u flat, after fees)
+**Fade (paper, betting against the print):** 49-82 (+5.71u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 3 3:20PM | TENNIS | Ruud vs Jodar | moneyline: Ruud | kalshi | $914k | -113 |  |  | +8.0c |  | pending |
+| Nov 3 3:20PM | TENNIS | Ruud vs Jodar | moneyline: Ruud | kalshi | $914k | -113 |  |  | +8.0c |  | W |
 | Nov 3 2:40PM | TENNIS | Paul vs Merida | moneyline: Paul | kalshi | $85k | -376 |  |  | +0.0c |  | pending |
 | Nov 3 2:40PM | TENNIS | Djokovic vs Hijikata | moneyline: Djokovic | kalshi | $93k | -426 |  |  | -2.0c |  | pending |
 | Nov 3 2:30PM | TENNIS | Etcheverry vs de Minaur | moneyline: de Minaur | kalshi | $100k | -426 |  |  | +0.0c |  | pending |
 | Nov 3 12:40PM | TENNIS | Shelton vs Norrie | moneyline: Shelton | kalshi | $42k | -257 | ✅ novig |  | +0.0c | yes | W |
 | Nov 3 5:20AM | TENNIS | Zverev vs Musetti | moneyline: Zverev | kalshi | $35k | -233 |  |  | +0.0c |  | pending |
 | Nov 3 3:30AM | TENNIS | Zolotareva vs Stefanini | moneyline: Stefanini | kalshi | $42k | -317 |  |  | +0.0c | yes | W |
-| Nov 3 3:20AM | TENNIS | Ruud vs Jodar | moneyline: Jodar | kalshi | $39k | -178 | ✅ novig |  | -1.0c | yes | pending |
+| Nov 3 3:20AM | TENNIS | Ruud vs Jodar | moneyline: Jodar | kalshi | $39k | -178 | ✅ novig |  | -1.0c | yes | L |
 | Nov 2 11:40PM | NCAAB | North Florida vs California Baptist | moneyline: California Baptist | kalshi | $39k | -400 |  |  | +6.0c |  | pending |
 | Nov 2 11:00PM | NCAAB | Purdue Fort Wayne vs Duquesne | moneyline: Duquesne | kalshi | $45k | -400 |  |  | +1.0c | yes | pending |
 | Nov 2 7:50PM | NCAAB | UMass vs Troy | moneyline: UMass | kalshi | $37k | -400 |  |  | +2.0c |  | W |
