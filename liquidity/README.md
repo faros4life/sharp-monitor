@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 3, 1:15 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 64.
+Updated Tue Nov 3, 1:20 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 64.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -16,18 +16,18 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 3 12:20PM | NHL | Blues vs. Rangers | moneyline: Rangers | polymarket | $52k | -117 | ✅ novig |  | +0.0c |  | pending |
 | Nov 3 12:10PM | NHL | Anaheim vs Vancouver: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $31k | +122 |  |  | +0.0c |  | pending |
 | Nov 3 12:00PM | NCAAF | Toledo vs Sacramento St.: Spread | spread: NOT Toledo wins by over 24.5 points | kalshi | $90k | -100 |  |  | +0.0c |  | pending |
-| Nov 3 11:55AM | NCAAF | Ohio vs Akron: Total Points | total: Over 51.5 points | kalshi | $35k | -100 | ✅ prophetx |  | -1.0c |  | pending |
+| Nov 3 11:55AM | NCAAF | Ohio vs Akron: Total Points | total: Over 51.5 points | kalshi | $35k | -100 | ✅ prophetx |  | +0.0c |  | pending |
 | Nov 3 11:35AM | NCAAF | Buffalo vs Miami (OH): Total Points | total: Over 44.5 points | kalshi | $190k | -104 | ✅ novig |  | +1.0c |  | pending |
 | Nov 3 11:30AM | NHL | Dallas vs Washington | moneyline: Dallas | kalshi | $39k | -100 | ✅ prophetx |  | +0.0c | yes | pending |
 | Nov 3 11:15AM | NHL | Jets vs. Canadiens | moneyline: Jets | polymarket | $74k | +156 | ✅ novig |  | +1.0c |  | pending |
-| Nov 3 10:30AM | NCAAF | Ohio vs Akron: Total Points | total: NOT Over 51.5 points | kalshi | $35k | -104 | ✅ novig |  | +1.0c | yes | pending |
+| Nov 3 10:30AM | NCAAF | Ohio vs Akron: Total Points | total: NOT Over 51.5 points | kalshi | $35k | -104 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 3 9:41AM | NHL | Oilers vs. Devils | moneyline: Devils | polymarket | $35k | -150 | ✅ kalshi,novig |  | +0.0c |  | pending |
 | Nov 3 9:41AM | NHL | Avalanche vs. Blue Jackets | moneyline: Blue Jackets | polymarket | $31k | +108 | ✅ kalshi |  | +0.0c | yes | pending |
 | Nov 3 9:41AM | NHL | Avalanche vs. Blue Jackets | total: Over (6.5) | polymarket | $25k | +104 | ✅ kalshi |  | +0.0c |  | pending |
 | Nov 3 9:41AM | NHL | Colorado vs Columbus: Total Goals | total: Over 6.5 goals scored | kalshi | $48k | +104 | ✅ polymarket |  | +0.0c |  | pending |
 | Nov 3 9:41AM | NHL | Carolina vs Nashville: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $64k | -117 | ✅ novig,polymarket,prophetx |  | +0.0c | yes | pending |
 | Nov 3 9:30AM | NCAAF | Ohio vs Akron: Spread | spread: NOT Ohio wins by over 14.5 points | kalshi | $223k | -108 | ✅ novig |  | +4.0c | yes | pending |
-| Nov 3 9:20AM | NHL | Utah vs Toronto: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $58k | +117 |  |  | +0.0c | yes | pending |
+| Nov 3 9:20AM | NHL | Utah vs Toronto: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $58k | +117 |  |  | -1.0c | yes | pending |
 | Nov 3 9:20AM | NHL | Carolina vs Nashville: Spread | spread: NOT Carolina wins by over 1.5 goals | kalshi | $48k | -138 | ✅ novig,polymarket |  | +0.0c |  | pending |
 | Nov 3 9:20AM | NHL | Anaheim vs Vancouver: Spread | spread: NOT Anaheim wins by over 1.5 goals | kalshi | $83k | -170 | ✅ polymarket |  | +0.0c |  | pending |
 | Nov 3 9:10AM | NHL | St. Louis vs New York R: Spread | spread: NOT New York R wins by over 1.5 goals | kalshi | $46k | -233 |  |  | -1.0c | yes | pending |
@@ -36,7 +36,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 3 8:20AM | NHL | Utah vs Toronto: Spread | spread: NOT Utah wins by over 1.5 goals | kalshi | $26k | -194 | ✅ novig,polymarket |  | +0.0c |  | pending |
 | Nov 3 8:20AM | NHL | Edmonton vs New Jersey: Spread | spread: NOT New Jersey wins by over 1.5 goals | kalshi | $32k | -178 | ✅ novig,polymarket |  | +0.0c |  | pending |
 | Nov 3 7:50AM | NHL | Carolina vs Nashville: Total Goals | total: Over 6.5 goals scored | kalshi | $47k | +113 | ✅ novig,polymarket |  | +0.0c |  | pending |
-| Nov 3 7:50AM | NHL | Anaheim vs Vancouver: Total Goals | total: Over 6.5 goals scored | kalshi | $44k | -122 | ✅ novig,polymarket |  | +1.0c |  | pending |
+| Nov 3 7:50AM | NHL | Anaheim vs Vancouver: Total Goals | total: Over 6.5 goals scored | kalshi | $44k | -122 | ✅ novig,polymarket |  | +2.0c |  | pending |
 | Nov 3 7:50AM | NHL | Vegas vs Pittsburgh: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $55k | +104 | ✅ novig,polymarket |  | +0.0c | yes | pending |
 | Nov 3 7:50AM | NHL | Minnesota vs Philadelphia: Total Goals | total: NOT Over 5.5 goals scored | kalshi | $50k | +117 | ✅ novig,polymarket |  | +1.0c |  | pending |
 | Nov 3 7:50AM | NHL | Vegas vs Pittsburgh | moneyline: Vegas | kalshi | $46k | -100 | ✅ novig |  | -1.0c | yes | pending |
@@ -52,7 +52,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 3 4:20AM | NHL | Minnesota vs Philadelphia | moneyline: Minnesota | kalshi | $64k | -163 | ✅ novig,polymarket |  | +1.0c | yes | pending |
 | Nov 3 1:30AM | NBA | Minnesota vs Houston | moneyline: Houston | kalshi | $67k | -317 |  |  | -2.0c |  | pending |
 | Nov 3 1:30AM | NBA | Dallas vs San Antonio | moneyline: San Antonio | kalshi | $27k | -567 |  |  | -2.0c |  | pending |
-| Nov 3 12:50AM | NBA | Philadelphia vs Detroit | moneyline: Detroit | kalshi | $35k | -108 |  |  | +0.0c | yes | pending |
+| Nov 3 12:50AM | NBA | Philadelphia vs Detroit | moneyline: Detroit | kalshi | $35k | -108 |  |  | -1.0c | yes | pending |
 | Nov 3 12:30AM | NHL | Detroit vs Tampa Bay: Spread | spread: NOT Tampa Bay wins by over 1.5 goals | kalshi | $36k | -113 |  |  | -2.0c | yes | pending |
 | Nov 3 12:20AM | NCAAF | Ball St. vs UMass: Spread | spread: NOT UMass wins by over 3.5 points | kalshi | $39k | -108 |  |  | +1.0c | yes | pending |
 | Nov 3 12:10AM | NHL | Utah vs Toronto | moneyline: Toronto | kalshi | $33k | +122 |  |  | -1.0c | yes | pending |
