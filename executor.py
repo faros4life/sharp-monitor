@@ -273,6 +273,27 @@ def same_bet(k1, k2):
         return False
 
 
+def opp_bet(k1, k2):
+    """Nov 3 (Peter 2:51 PM: "if a bet is in and the other side comes in, the 2nd bet does not get played"): k2 is the OTHER
+    side of k1's game and market (totals: OVER vs UNDER; spreads / moneylines: the other team), across any lane."""
+    try:
+        a = (k1.split("|", 1)[1] if k1.startswith(("board|", "rule|")) else k1).split("|")
+        b = (k2.split("|", 1)[1] if k2.startswith(("board|", "rule|")) else k2).split("|")
+        if len(a) != 4 or len(b) != 4 or a[0] != b[0] or a[2] != b[2]:
+            return False
+        ta, tb = lm.split_teams(a[1]) or (), lm.split_teams(b[1]) or ()
+        if len(ta) != 2 or len(tb) != 2:
+            return False
+        sa, sb = [lm.toks(x, a[0]) for x in ta], [lm.toks(x, a[0]) for x in tb]
+        if not all(any(x & y for y in sb) for x in sa):
+            return False
+        if a[2] == "total":
+            return {a[3], b[3]} == {"OVER", "UNDER"}
+        return not (lm.toks(a[3], a[0]) & lm.toks(b[3], a[0]))
+    except Exception:
+        return False
+
+
 def derive_key(p):
     """No play_key (e.g. a raw alerts.json entry): sport|game|market|side, so repeat alerts on one play count once."""
     try:
@@ -1805,6 +1826,8 @@ def main():
                     why.append(f"{MANUAL_HELD[lk]} with Peter's manual bet (Bets manual note)")
                 if lk in LIVEKEYS or any(same_bet(lk, k) for k in LIVEKEYS):
                     why.append("a live order or resting bid was already sent for this bet (another lane)")
+                if any(opp_bet(lk, k) for k in LIVEKEYS):
+                    why.append("CONFLICT: the other side of this game was already bet (first side stays)")
                 if not why and r["verdict"] == "WOULD PLACE" and r.get("lc"):
                     lc = r["lc"]
                     lr, lw = live_stake(lc["shown"])
@@ -1825,6 +1848,8 @@ def main():
                     ok, why = False, [f"{MANUAL_HELD[lk]} with Peter's manual bet (Bets manual note)"]
                 elif ok and lk in LIVEKEYS:
                     ok, why = False, ["a live order or resting bid was already sent for this play"]
+                elif ok and any(opp_bet(lk, k) for k in LIVEKEYS):   # Nov 3 (Peter 2:51 PM): first side stays, any lane
+                    ok, why = False, ["CONFLICT: the other side of this game was already bet (first side stays)"]
                 if ok and r["verdict"] == "WOULD PLACE" and r.get("lc"):
                     lc = r["lc"]
                     lr, lw = live_stake(lc["shown"])
