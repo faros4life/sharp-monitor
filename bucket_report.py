@@ -187,6 +187,81 @@ def ledger_rows():
     return out
 
 
+def nba_model_rows():
+    """Nov 3 (Peter "lets get it done"): NBA totals own-number model, forward paper sightings (nba-model/nba_model.json)."""
+    d = load("nba-model/nba_model.json", {}) or {}
+    out = []
+    for rec in (d.get("games") or {}).values():
+        sg = (rec.get("post") or {}).get("sighting")
+        if not sg or sg.get("clv_c") is None:
+            continue
+        out.append(norm("NBA totals model (paper, forward)", "NBA", "totals", sg.get("side"), tb.num(sg.get("line")), sg.get("price"),
+                        None, day(rec.get("start")), float(sg["clv_c"]),
+                        units=sg.get("units") if sg.get("result") in ("W", "L", "P") else None))
+    return out
+
+
+def signal_rows():
+    """Nov 3: the phone signal rules re-applied to graded liquidity rows (signal_alerts.py): TWO SIGNALS and NBA UNDER.
+    AGAINST YOU and FLIP need held positions / pairs and are not re-derived here."""
+    a = load("liquidity/alerts.json", []) or []
+    a = a if isinstance(a, list) else a.get("alerts") or []
+    out = []
+    for r in a:
+        if r.get("clv_cents") is None or r.get("artifact"):
+            continue
+        tags = []
+        if r.get("rule_met") and (r.get("new_money") or 0) >= 100_000 and r.get("sharp_agree") and not r.get("pulled"):
+            tags.append("Signal TWO SIGNALS")
+        if r.get("league") == "NBA" and r.get("market") == "total" and r.get("side") == "UNDER" and r.get("rule_met"):
+            tags.append("Signal NBA UNDER")
+        for tg in tags:
+            out.append(norm(tg, r.get("league"), r.get("market"), r.get("side"), tb.num(r.get("line")), r.get("price_american"),
+                            mins(r.get("alerted_utc"), r.get("start_utc")), day(r.get("alerted_utc")), float(r["clv_cents"]),
+                            units=fin.units_wl(r.get("result"), fin.am_dec(r.get("price_american")))))
+    return out
+
+
+def split_rows():
+    """Nov 3: every paper split in splits.py (same definitions and forward starts), graded on true close (alerts) or the
+    monitor's CLV (liquidity), with the split's own unit field."""
+    try:
+        import splits as sp
+    except Exception:
+        return []
+    alerts = sp.load("alerts.json", "alerts")
+    liq = [a for a in sp.load(os.path.join("liquidity", "alerts.json"), "alerts") if not a.get("artifact")]
+    out = []
+    for stream, src, specs in (("ntfy", alerts, sp.NTFY), ("liq", liq, sp.LIQ)):
+        for sid, name, kind, defn, f, uf in specs:
+            try:
+                start = (sp.TIER[sid]["start"] if sid in sp.TIER else sp.FWD) if stream == "ntfy" else sp.LIQ_START.get(sid, sp.LIQ_CLEAN)
+                tfs = sp.TIMED.get(sid) or (("alert_utc",) if stream == "ntfy" else ("alerted_utc",))
+                rows = [x for x in src if next((x[k] for k in tfs if x.get(k)), "") >= start and f(x)]
+            except Exception:
+                continue
+            for x in rows:
+                u = x.get(uf) if x.get("result") in ("W", "L", "P") else None
+                if stream == "ntfy":
+                    if x.get("close_value_pct") is None:
+                        continue
+                    bet = x.get("bet") or ""
+                    m = re.search(r"([+-]?\d+(?:\.\d+)?)\s*\(", bet)
+                    line = float(m.group(1)) if m else tb.num(x.get("point"))
+                    out.append(norm(f"ntfy split: {name}", x.get("sport"), x.get("kind"),
+                                    bet.split(" ")[0] if x.get("kind") == "tot" else bet, line if x.get("kind") != "ml" else None,
+                                    x.get("price_after_fee"), x.get("minutes_before_start") or mins(x.get("alert_utc"), x.get("start_utc")),
+                                    day(x.get("alert_utc")), float(x["close_value_pct"]), beat=x["close_value_pct"] > 0,
+                                    edge=x.get("edge_pct"), units=u))
+                else:
+                    if x.get("clv_cents") is None:
+                        continue
+                    out.append(norm(f"Liquidity split: {name}", x.get("league"), x.get("market"), x.get("side"), tb.num(x.get("line")),
+                                    x.get("price_american"), mins(x.get("alerted_utc"), x.get("start_utc")), day(x.get("alerted_utc")),
+                                    float(x["clv_cents"]), units=u))
+    return out
+
+
 def stats(xs):
     c = [x["clv"] for x in xs if x.get("clv") is not None]
     b = [x["beat"] for x in xs if x.get("beat") is not None]
@@ -279,7 +354,7 @@ def main():
     now = datetime.now(timezone.utc)
     sources = {}
     for r in ev_rows() + board_rows("liquidity/alerts.json", "Liquidity board") + board_rows("liquidity-extra/alerts.json", "Liquidity extra") \
-            + board_call_rows() + ntfy_rows() + ledger_rows():
+            + board_call_rows() + ntfy_rows() + ledger_rows() + nba_model_rows() + signal_rows() + split_rows():
         sources.setdefault(r["src"], []).append(r)
     L = [f"BUCKET REPORT - HYPOTHESIS ONLY | standard buckets (BUCKETS.md) on every graded record we hold | {now.astimezone(ET):%Y-%m-%d %H:%M} ET",
          "Sources are never pooled (CLV units differ: EV / board = cents; ledger and ntfy = % TRUE close, price-based; Nov 3 item 16).",
