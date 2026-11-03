@@ -131,10 +131,12 @@ def _espn_get(url):
         return None
 
 
-def espn_games(days):
+def espn_games(days, leagues=None):
     from concurrent.futures import ThreadPoolExecutor
     jobs = []
     for lg, path in LEAGUES.items():
+        if leagues and lg not in leagues:
+            continue
         for d in days:
             url = f"https://site.api.espn.com/apis/site/v2/sports/{path}/scoreboard?dates={d.strftime('%Y%m%d')}&limit=400"
             if lg == "NCAAF":
@@ -895,6 +897,9 @@ def main():
     state["imap_cache"] = IMAP_CACHE
     t0 = _t.time()
     games = espn_games([d - timedelta(days=1), d, d + timedelta(days=1)])
+    # Nov 3 (Peter: Street Value bets placed today "should be under Saturday's and Sunday's date"): football bets are
+    # often placed days ahead, so NFL / college football schedules are read 6 days out (one game a week per team).
+    games += espn_games([d + timedelta(days=k) for k in range(2, 7)], leagues=("NFL", "NCAAF"))
     T["espn"] = round(_t.time() - t0)
 
     open_ids = set()
