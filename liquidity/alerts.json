@@ -1,6 +1,147 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-03T02:50:10Z",
+   "base_depth": 19773,
+   "best_price": 0.51,
+   "best_price_american": -104,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-02",
+   "depth_by_book": {
+    "novig": {
+     "heavier_side": true,
+     "label": "Over 237.5 (237.5)",
+     "price": 0.51,
+     "this_side": 38766
+    },
+    "polymarket": {
+     "new_other_side": 1216,
+     "new_this_side": 30566,
+     "other_side": 18994,
+     "other_side_all_levels": 31055,
+     "ratio": 2.0,
+     "this_side": 38782,
+     "this_side_all_levels": 51205
+    }
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-11-03T02:40:10Z",
+   "game": "Heat vs. Lakers",
+   "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"6544242\"}",
+   "lead_min": 10,
+   "league": "NBA",
+   "line": 237.5,
+   "market": "total",
+   "new_money": 30566,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 237.5,
+     "price": -105
+    },
+    "betonlineag": {
+     "point": 237.5,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 236.5,
+     "price": -106
+    },
+    "betrivers": {
+     "point": 237.5,
+     "price": -110
+    },
+    "betus": {
+     "point": 237.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 237.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 237.5,
+     "price": -107
+    },
+    "fanatics": {
+     "point": 237.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 237.5,
+     "price": -105
+    },
+    "kalshi": {
+     "point": 237.5,
+     "price": -104
+    },
+    "lowvig": {
+     "point": 237.5,
+     "price": -107
+    },
+    "mybookieag": {
+     "point": 237.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 237.5,
+     "price": -104
+    },
+    "polymarket": {
+     "point": 237.5,
+     "price": -104
+    },
+    "prophetx": {
+     "point": 237.5,
+     "price": -103
+    },
+    "williamhill_us": {
+     "point": 237.5,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 0,
+    "pm_market_id": "6544242"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "OVER",
+   "side_label": "Over (237.5)",
+   "start_source": "polymarket",
+   "start_utc": "2026-11-03T03:00:00Z",
+   "teams": [
+    "Heat",
+    "Lakers"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-03T02:40:10Z",
    "base_depth": 30509,
    "best_price": 0.5051,
@@ -164,8 +305,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 0.0,
+   "close_price": 0.53,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -310,8 +451,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 0.0,
+   "close_price": 0.51,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -4869,8 +5010,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.56,
-   "clv_cents": 6.0,
+   "close_price": 0.57,
+   "clv_cents": 7.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -5011,8 +5152,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.67,
-   "clv_cents": 5.0,
+   "close_price": 0.68,
+   "clv_cents": 6.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -5169,8 +5310,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.56,
-   "clv_cents": 7.0,
+   "close_price": 0.57,
+   "clv_cents": 8.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -8729,8 +8870,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": 0.0,
+   "close_price": 0.54,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -8886,6 +9027,7 @@
     }
    },
    "fade_price": 0.39,
+   "fade_units": 1.52,
    "first_seen_utc": "2026-11-02T16:00:23Z",
    "game": "Red Wings vs. Panthers",
    "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"5377056\"}",
@@ -8973,7 +9115,7 @@
     "outcome_index": 1,
     "pm_market_id": "5377056"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig",
@@ -8981,6 +9123,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-03T02:50:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Panthers",
@@ -8993,7 +9136,7 @@
     "Panthers"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-02T16:10:13Z",
@@ -13434,6 +13577,7 @@
     }
    },
    "fade_price": 0.46,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-02T08:10:10Z",
    "game": "Vegas vs Boston: Total Goals",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLTOTAL-26NOV02VGKBOS-7\"}",
@@ -13520,7 +13664,7 @@
     "kalshi_side": "no",
     "market_ticker": "KXNHLTOTAL-26NOV02VGKBOS-7"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig",
@@ -13528,6 +13672,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-03T02:50:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -13540,7 +13685,7 @@
     "Boston"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.82
   },
   {
    "alerted_utc": "2026-11-02T06:10:10Z",
@@ -13992,8 +14137,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.66,
-   "clv_cents": 2.0,
+   "close_price": 0.67,
+   "clv_cents": 3.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -15056,6 +15201,7 @@
     }
    },
    "fade_price": 0.5,
+   "fade_units": 0.93,
    "first_seen_utc": "2026-11-02T02:50:10Z",
    "game": "Vegas vs Boston",
    "key": "kalshi|KXNHLGAME-26NOV02VGKBOS|ml|0",
@@ -15139,7 +15285,7 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNHLGAME-26NOV02VGKBOS-VGK"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig",
@@ -15147,6 +15293,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-03T02:50:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Vegas",
@@ -15159,7 +15306,7 @@
     "Boston"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-02T02:50:10Z",
