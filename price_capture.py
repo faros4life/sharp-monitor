@@ -106,8 +106,31 @@ def main():
                          f"worse {sum(x > 0.05 for x in v)} | same {sum(abs(x) <= 0.05 for x in v)} | better {sum(x < -0.05 for x in v)}")
     L.append("Converted-line slippage is price only: the better line bought with it is not credited here (see decay curve v5).")
     L.append("* = book's best is not at the exact alert line.")
+    feed = json.load(open("alerts.json"))
+    feed = feed if isinstance(feed, list) else feed.get("alerts")
+    fk = {(ex.derive_key(e), e.get("alert_utc")): e for e in feed if ex.derive_key(e)}
+    L += [""] + _bucket_recs([(r, fk.get((r.get("key"), r.get("alert_utc"))) or {},
+                               prob(r.get("fill_price_after_fee") if r.get("fill_price_after_fee") is not None else r.get("alert_price_after_fee")))
+                              for r in rows])
     ex.send("Bets PRICE CAPTURE (phase-1 decisions)", "\n".join(L))
     print(f"Price capture emailed: {len(rows)} decisions, {full} with all-book capture")   # counts only
+
+
+def _bucket_recs(pairs):
+    """Nov 3 (Peter: every test reports the standard bucket list). pairs = (ledger row, alerts.json entry, decision prob)."""
+    import buckets as bkt
+    R = []
+    for r, e, p in pairs:
+        close = e.get("close_fair_prob")
+        kind, bet = e.get("kind"), str(e.get("bet") or "")
+        sc = ("under" if bet.upper().startswith("UNDER") else "over") if kind == "tot" else \
+             (("dog" if (e.get("point") or 0) > 0 else "fav") if kind == "spr" else None)
+        R.append({"day": str(r.get("alert_utc") or "")[:10], "lg": e.get("sport"),
+                  "mk": {"tot": "totals", "spr": "spreads", "ml": "moneyline"}.get(kind), "sc": sc,
+                  "clv": round((close - p) * 100, 2) if isinstance(close, (int, float)) and p is not None else None,
+                  "lead": e.get("minutes_before_start"), "late": bool(e.get("late")), "edge": e.get("edge_pct"),
+                  "am": e.get("price_after_fee")})
+    return bkt.section("phase-1 decisions, CLV cents = Pinnacle no-vig close minus the decision/fill implied prob", R, "c")
 
 
 if __name__ == "__main__":
