@@ -172,7 +172,7 @@ def pin_bad(b, gs=None):
     """Nov 3 (Peter: Monday settleds off): a game that started 8 h+ before the tracker first saw the bet open is not
     its game (Seattle -10.5 placed Nov 3 for Sun Nov 8 had been pinned to, and graded on, Monday's Bears @ Seahawks)."""
     gs = gs or tparse(b.get("game_start"))
-    fs = tparse(b.get("first_seen"))
+    fs = tparse(b.get("placed")) or tparse(b.get("first_seen"))   # manual notes: the note's send time
     return bool(gs and fs and gs < fs - timedelta(hours=8))
 
 
@@ -191,7 +191,9 @@ def match_game(bet, games, near=None):
             if not gs or abs((gs - near).total_seconds()) > 36 * 3600:
                 continue
         hits = sum(1 for t in g["teams"] if (t["toks"] & bt) or (t["abbr"] and t["abbr"] in bt))
-        if hits > score or (hits == score and best and g["start"] and bet.get("date") and g["start"][:10] == bet["date"]):
+        if hits > score or (hits == score and best and g["start"] and bet.get("date") and g["start"][:10] == bet["date"]) \
+                or (hits == score and best and near is None and g.get("start") and best.get("start") and
+                    tparse(g["start"]) < tparse(best["start"])):   # Nov 3: an open bet is on the NEXT game, not a later one
             best, score = g, hits
     return best if score >= 2 or (score == 1 and bet.get("league")) else None
 
@@ -620,11 +622,18 @@ def read_manual_and_bot():
         t0 = _t.time()
         for uid in ex.gsearch(M, 'subject:"Bets manual" newer_than:10d'):
             u = uid.decode() if isinstance(uid, bytes) else str(uid)
-            if u not in IMAP_CACHE["m"]:
+            if u not in IMAP_CACHE["m"] or not any(x.startswith("@DATE ") for x in IMAP_CACHE["m"][u]):
                 typ, data = M.uid("FETCH", uid, "(RFC822)")
                 if typ != "OK" or not data or not data[0]:
                     continue
-                IMAP_CACHE["m"][u] = [ln for ln in ex.body_text(data[0][1]).splitlines() if "MANUAL:" in ln]
+                import email as _em
+                import email.utils as _eu
+                try:   # Nov 3: when the note was sent = when the bet was placed (bounds which game it can be on)
+                    sent = iso(_eu.parsedate_to_datetime(_em.message_from_bytes(data[0][1]).get("Date")).astimezone(timezone.utc))
+                except Exception:
+                    sent = ""
+                IMAP_CACHE["m"][u] = ["@DATE " + (sent or "")] + [ln for ln in ex.body_text(data[0][1]).splitlines() if "MANUAL:" in ln]
+            sent = next((x[6:] for x in IMAP_CACHE["m"][u] if x.startswith("@DATE ")), "") or None
             for line in IMAP_CACHE["m"][u]:
                 m = re.match(r"\s*MANUAL:\s*(\{.*\})\s*$", line)
                 if not m:
@@ -642,7 +651,7 @@ def read_manual_and_bot():
                 win = (stake * 100 / abs(pr) if pr and pr < 0 else stake * pr / 100 if pr else None) if stake else None
                 man.append({"id": "mn|" + hashlib.sha1(line.strip().encode()).hexdigest()[:12], "book": d.get("book") or "manual",
                             "game": d.get("game") or "", "bet": d.get("bet") or "", "league": (d.get("sport") or "").upper() or None,
-                            "price": pr, "stake": stake, "to_pay": round(stake + win, 2) if win else None,
+                            "price": pr, "stake": stake, "to_pay": round(stake + win, 2) if win else None, "placed": sent,
                             "source": "Peter (Hard Rock note" + (", est. stake)" if est else ")")})
         IMAP_T["manual"] = round(_t.time() - t0)
     finally:
@@ -916,7 +925,7 @@ def main():
     for b in opened + man:
         open_ids.add(b["id"])
         prev = bets.get(b["id"]) or {}
-        if prev.get("result") and not prev.get("site") and pin_bad(prev):   # Nov 3: graded on the wrong (earlier) game
+        if prev.get("result") and not prev.get("site") and pin_bad({**prev, "placed": b.get("placed") or prev.get("placed")}):   # Nov 3: graded on the wrong (earlier) game
             prev = {k: v for k, v in prev.items() if k not in ("result", "profit", "settled", "game_start", "teams", "teams_final",
                                                               "g_state", "g_detail", "status", "score")}
         if prev.get("result"):
@@ -954,8 +963,17 @@ def main():
             for dd in (t0.astimezone(ET), t0.astimezone(ET) - timedelta(days=1)):
                 if dd.date() < (d - timedelta(days=1)).date():
                     extra.add(dd.replace(hour=12))
+    for b in bets.values():   # Nov 3: an ungraded bet placed before yesterday needs the schedule from its placed day on
+        if b.get("result"):
+            continue
+        t0 = tparse(b.get("placed")) or tparse(b.get("first_seen"))
+        if t0 and t0 >= week0 - timedelta(days=7):
+            for k in range(0, 4):
+                dd = (t0.astimezone(ET) + timedelta(days=k)).replace(hour=12)
+                if dd.date() < (d - timedelta(days=1)).date():
+                    extra.add(dd)
     if extra:
-        games += espn_games(sorted(extra)[:8])
+        games += espn_games(sorted(extra)[:14])
     for b in bets.values():
         # undo an earlier bad pin: a game more than 2 days from when the bet settled is not its game
         gs, ss = tparse(b.get("game_start")), tparse(b.get("settled"))
