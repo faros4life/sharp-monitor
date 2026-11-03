@@ -1,6 +1,154 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-03T11:10:12Z",
+   "base_depth": 69877,
+   "best_price": 0.685,
+   "best_price_american": -217,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.67,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-03",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 7801,
+     "new_this_side": 28464,
+     "other_side": 8339,
+     "other_side_all_levels": 27495,
+     "ratio": 5.7,
+     "this_side": 47210,
+     "this_side_all_levels": 99990
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "CBJ +1.5 (1.5)",
+     "price": 0.685,
+     "this_side": 12418
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Blue Jackets (+1.5)",
+     "price": 0.68,
+     "this_side": 21295
+    }
+   },
+   "fade_price": 0.34,
+   "first_seen_utc": "2026-11-03T11:00:16Z",
+   "game": "Colorado vs Columbus: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLSPREAD-26NOV03COLCBJ-COL2\"}",
+   "lead_min": 770,
+   "league": "NHL",
+   "line": 1.5,
+   "market": "spread",
+   "new_money": 28464,
+   "paper_only": false,
+   "price": 0.67,
+   "price_american": -203,
+   "price_rule": "fails_cap",
+   "price_when_first_seen": 0.67,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 1.5,
+     "price": -210
+    },
+    "betonlineag": {
+     "point": 1.5,
+     "price": -230
+    },
+    "betopenly": {
+     "point": 1.5,
+     "price": -190
+    },
+    "betrivers": {
+     "point": 1.5,
+     "price": -235
+    },
+    "betus": {
+     "point": 1.5,
+     "price": -230
+    },
+    "bovada": {
+     "point": 1.5,
+     "price": -235
+    },
+    "draftkings": {
+     "point": 1.5,
+     "price": -230
+    },
+    "fanatics": {
+     "point": 1.5,
+     "price": -235
+    },
+    "fanduel": {
+     "point": 1.5,
+     "price": -225
+    },
+    "kalshi": {
+     "point": 1.5,
+     "price": -203
+    },
+    "lowvig": {
+     "point": 1.5,
+     "price": -230
+    },
+    "mybookieag": {
+     "point": 1.5,
+     "price": -224
+    },
+    "novig": {
+     "point": 1.5,
+     "price": -217
+    },
+    "polymarket": {
+     "point": 1.5,
+     "price": -213
+    },
+    "prophetx": {
+     "point": 1.5,
+     "price": -225
+    },
+    "williamhill_us": {
+     "point": 1.5,
+     "price": -230
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNHLSPREAD-26NOV03COLCBJ-COL2"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "polymarket"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Columbus",
+   "side_label": "NOT Colorado wins by over 1.5 goals",
+   "start_source": "odds",
+   "start_utc": "2026-11-04T00:00:00Z",
+   "teams": [
+    "Colorado",
+    "Columbus"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-03T10:20:12Z",
    "base_depth": 146555,
    "best_price": 0.64,
@@ -1168,8 +1316,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.54,
-   "clv_cents": 2.0,
+   "close_price": 0.53,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-04",
    "depth_by_book": {
