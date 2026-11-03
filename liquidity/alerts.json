@@ -1,6 +1,151 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-03T23:20:12Z",
+   "base_depth": 136089,
+   "best_price": 0.45,
+   "best_price_american": 122,
+   "best_price_book": "novig",
+   "bid_improved": true,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.46,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 4,
+   "date": "2026-11-03",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -244,
+     "new_this_side": 43338,
+     "other_side": 102957,
+     "other_side_all_levels": 148359,
+     "ratio": 1.2,
+     "this_side": 120875,
+     "this_side_all_levels": 179553
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "Over 6.5 (6.5)",
+     "price": 0.45,
+     "this_side": 14006
+    },
+    "polymarket": {
+     "heavier_side": false,
+     "label": "Over (6.5)",
+     "price": 0.46,
+     "this_side": 28165
+    }
+   },
+   "fade_price": 0.55,
+   "first_seen_utc": "2026-11-03T23:16:05Z",
+   "game": "Edmonton vs New Jersey: Total Goals",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNHLTOTAL-26NOV03EDMNJ-7\"}",
+   "lead_min": 70,
+   "league": "NHL",
+   "line": 6.5,
+   "market": "total",
+   "new_money": 43338,
+   "paper_only": false,
+   "price": 0.46,
+   "price_american": 117,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.45,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 6.0,
+     "price": -115
+    },
+    "betonlineag": {
+     "point": 6.0,
+     "price": -114
+    },
+    "betopenly": {
+     "point": 6.0,
+     "price": -108
+    },
+    "betrivers": {
+     "point": 6.5,
+     "price": 104
+    },
+    "betus": {
+     "point": 6.0,
+     "price": -120
+    },
+    "bovada": {
+     "point": 6.0,
+     "price": -117
+    },
+    "draftkings": {
+     "point": 6.5,
+     "price": 110
+    },
+    "fanatics": {
+     "point": 6.5,
+     "price": 110
+    },
+    "fanduel": {
+     "point": 6.5,
+     "price": 108
+    },
+    "kalshi": {
+     "point": 6.5,
+     "price": 117
+    },
+    "lowvig": {
+     "point": 6.0,
+     "price": -114
+    },
+    "mybookieag": {
+     "point": 6.0,
+     "price": -117
+    },
+    "novig": {
+     "point": 6.5,
+     "price": 122
+    },
+    "polymarket": {
+     "point": 6.5,
+     "price": 117
+    },
+    "prophetx": {
+     "point": 6.0,
+     "price": -109
+    },
+    "williamhill_us": {
+     "point": 6.0,
+     "price": -118
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNHLTOTAL-26NOV03EDMNJ-7"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "OVER",
+   "side_label": "Over 6.5 goals scored",
+   "start_source": "odds",
+   "start_utc": "2026-11-04T00:30:00Z",
+   "teams": [
+    "Edmonton",
+    "New Jersey"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-03T23:10:11Z",
    "base_depth": 510075,
    "best_price": 0.535,
@@ -5083,8 +5228,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.57,
-   "clv_cents": 5.0,
+   "close_price": 0.58,
+   "clv_cents": 6.0,
    "confirmed_after_min": 10,
    "date": "2026-11-03",
    "depth_by_book": {
