@@ -101,6 +101,7 @@ def main():
             best = max(ups) if ups else None
             r[f"get_{lab}"] = best is not None and best >= want - TOL
             r[f"clv_{lab}"] = round(100 * (c["p"] * best - 1), 2) if best else None
+            r[f"u_{lab}"] = (best - 1 if a.get("result") == "W" else -1.0 if a.get("result") == "L" else 0.0 if a.get("result") == "P" else None) if best else None
             for slug in BOOKS:
                 v = q[lab][slug]
                 r[f"{slug}_{lab}"] = None if v is None else (v >= want - TOL)
@@ -152,7 +153,7 @@ def main():
     L += [""] + bkt.section("SENT alerts at the best price up +1 min (CLV %); still bettable = gettable at +1 / +5",
                             [{"day": x["day"], "clv": x["clv_t1"], "lg": x["lg"], "mk": mkn.get(x["kind"]), "sc": x["sc"],
                               "key": bkt.key_class(x["lg"], mkn.get(x["kind"]), x.get("line")), "live1": x["get_t1"], "live5": x["get_t5"],
-                              "lead": x["lead"], "late": x["late"], "edge": x.get("edge"), "am": x.get("am")} for x in S], "%")
+                              "lead": x["lead"], "late": x["late"], "edge": x.get("edge"), "am": x.get("am"), "units": x.get("u_t1")} for x in S], "%")
     L.append(f"\nHistory cache: hits {hc.STATS['hit']}, downloads {hc.STATS['miss']}; OddsPapi calls {len(cl.CALLS)} (billable {cl.STATS['billable']}).")
     ex.send("Bets NTFY FILL AUDIT (HYPOTHESIS)", "\n".join(L))
     print(f"fill audit: in window {len(alerts)}, graded {len(R)}, cache hits {hc.STATS['hit']}, downloads {hc.STATS['miss']}")   # counts only
