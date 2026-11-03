@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 3, 5:10 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 5.
+Updated Tue Nov 3, 5:20 AM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 6.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 3 5:20AM | TENNIS | Zverev vs Musetti | moneyline: Zverev | kalshi | $35k | -233 |  |  | +0.0c |  | pending |
 | Nov 3 3:30AM | TENNIS | Zolotareva vs Stefanini | moneyline: Stefanini | kalshi | $42k | -317 |  |  | +0.0c | yes | pending |
 | Nov 3 3:20AM | TENNIS | Ruud vs Jodar | moneyline: Jodar | kalshi | $39k | -178 | ✅ novig |  | +0.0c |  | pending |
 | Nov 2 11:40PM | NCAAB | North Florida vs California Baptist | moneyline: California Baptist | kalshi | $39k | -400 |  |  | +1.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 23 1:15PM | TENNIS | Cobolli vs Nakashima | moneyline: Nakashima | kalshi | $157k | -213 |  |  | -67.0c | yes | L |
 | Oct 23 12:50PM | TENNIS | Bublik vs Khachanov | moneyline: Bublik | kalshi | $210k | -108 |  |  |  | yes | W |
 | Oct 23 12:40PM | MLB | Tampa Bay Rays vs. Milwaukee Brewers | total: Under (6.5) | polymarket | $40k | -104 | ✅ prophetx |  | -1.0c | yes | W |
-| Oct 23 12:40PM | MLB | Tampa Bay Rays @ Milwaukee Brewers | moneyline: TB (0) | novig | $51k | +167 | ✅ kalshi |  | +0.0c |  | L |
