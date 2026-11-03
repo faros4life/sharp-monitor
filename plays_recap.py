@@ -6,8 +6,8 @@ top ... keep track of actual plays"). Replaces the alert-based daily recap on th
 Once per ET day (first bets-board run at or after RECAP_HOUR, default 8 AM ET) it pushes ONE ntfy message:
   - header: yesterday's record and units, then week and month totals (totals only, no old bets listed)
   - one line per bet settled for yesterday's games: result, bet, price, book, who placed it, final score, units
-Reads the encrypted tracker state (tracker/state.enc, the same record the Bet Tracker page shows). Units = profit / UNIT
-(default $200, Peter's unit), so no dollar amounts go through ntfy. The only thing written is lanes/plays_recap.json
+Reads the encrypted tracker state (tracker/state.enc, the same record the Bet Tracker page shows). Peter 6:40 AM:
+profit/loss in dollars for day, week and month (units beside them, 1u = UNIT, default $200); nothing goes to the log. The only thing written is lanes/plays_recap.json
 (the last date sent - public, no bet data). The Actions log prints counts only.
 """
 import json
@@ -39,8 +39,12 @@ def rec(xs):
     w = sum(b["result"] == "W" for b in xs)
     l_ = sum(b["result"] == "L" for b in xs)
     p = sum(b["result"] == "P" for b in xs)
-    u = sum((b.get("profit") or 0) for b in xs) / UNIT
-    return f"{w}-{l_}" + (f"-{p}" if p else "") + f" {u:+.1f}u"
+    d = sum((b.get("profit") or 0) for b in xs)
+    return f"{w}-{l_}" + (f"-{p}" if p else "") + f" | {usd(d)} ({d / UNIT:+.1f}u)"
+
+
+def usd(d):
+    return f"{'+' if d >= 0 else '-'}${abs(d):,.2f}"
 
 
 def line(b):
@@ -49,7 +53,7 @@ def line(b):
     pr = b.get("price")
     pr = "" if pr is None else (f" {'+' if pr > 0 else ''}{int(pr)}" if isinstance(pr, (int, float)) else f" {pr}")
     return (f"{ICON.get(b['result'], '?')} {b.get('bet')}{pr} · {tb.nice(b.get('book')) if hasattr(tb, 'nice') else b.get('book')}"
-            f" · {who(b)}" + (f" · {sc}" if sc else "") + f" · {(b.get('profit') or 0) / UNIT:+.1f}u")
+            f" · {who(b)}" + (f" · {sc}" if sc else "") + f" · {usd(b.get('profit') or 0)}")
 
 
 def main(force=False):
@@ -75,8 +79,9 @@ def main(force=False):
     opn = sum(1 for b in bets if not b.get("result") and b.get("open"))
     head = [f"REAL PLAYS · {y.strftime('%a %b %-d')}",
             f"Day: {rec(yday)} ({len(yday)} bets)" if yday else "Day: no settled bets",
-            f"Week (from {week0.strftime('%b %-d')}): {rec(wk)} · {y.strftime('%B')}: {rec(mo)}",
-            f"Units: 1u = ${UNIT:,.0f} of profit or loss. Open now: {opn}.", ""]
+            f"Week (from {week0.strftime('%b %-d')}): {rec(wk)}",
+            f"{y.strftime('%B')}: {rec(mo)}",
+            f"1u = ${UNIT:,.0f}. Open now: {opn}.", ""]
     body = "\n".join(head + [line(b) for b in yday])
     if TOPIC:
         try:
