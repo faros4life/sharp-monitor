@@ -1,6 +1,171 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-03T00:40:10Z",
+   "base_depth": 40330,
+   "best_price": 0.74,
+   "best_price_american": -285,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.74,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-02",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Dallas",
+     "price": 0.74,
+     "this_side": 696594
+    },
+    "novig": {
+     "new_other_side": 6909,
+     "new_this_side": 31981,
+     "other_side": 34085,
+     "other_side_all_levels": 34341,
+     "ratio": 2.1,
+     "this_side": 70578,
+     "this_side_all_levels": 78938
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Mavericks",
+     "price": 0.76,
+     "this_side": 227452
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Dallas Mavericks",
+     "price": 0.7403,
+     "this_side": 14266
+    }
+   },
+   "fade_price": 0.265,
+   "first_seen_utc": "2026-11-03T00:30:18Z",
+   "game": "Sacramento Kings @ Dallas Mavericks",
+   "key": "novig|{\"market_id\": \"01a199dd-4976-7e21-a795-3741ee133195\", \"outcome_id\": \"01a199dd-4976-7e21-a795-375faa6bba3b\"}",
+   "lead_min": 20,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 31981,
+   "paper_only": false,
+   "price": 0.74,
+   "price_american": -285,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.74,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -300
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -300
+    },
+    "betopenly": {
+     "point": null,
+     "price": -270
+    },
+    "betrivers": {
+     "point": null,
+     "price": -305
+    },
+    "betus": {
+     "point": null,
+     "price": -300
+    },
+    "bovada": {
+     "point": null,
+     "price": -300
+    },
+    "draftkings": {
+     "point": null,
+     "price": -308
+    },
+    "fanatics": {
+     "point": null,
+     "price": -300
+    },
+    "fanduel": {
+     "point": null,
+     "price": -320
+    },
+    "kalshi": {
+     "point": null,
+     "price": -285
+    },
+    "limitless": {
+     "point": null,
+     "price": -344
+    },
+    "lowvig": {
+     "point": null,
+     "price": -297
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -319
+    },
+    "novig": {
+     "point": null,
+     "price": -285
+    },
+    "polymarket": {
+     "point": null,
+     "price": -317
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -285
+    },
+    "prophetx": {
+     "point": null,
+     "price": -285
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -320
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a199dd-4976-7e21-a795-3741ee133195",
+    "outcome_id": "01a199dd-4976-7e21-a795-375faa6bba3b"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi",
+    "polymarket",
+    "prophetx"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [
+    "Sacramento Kings +9.5 (-115)"
+   ],
+   "side": "Dallas Mavericks",
+   "side_label": "DAL (0)",
+   "start_source": "odds",
+   "start_utc": "2026-11-03T01:00:00Z",
+   "teams": [
+    "Sacramento Kings",
+    "Dallas Mavericks"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-03T00:30:18Z",
    "base_depth": 122315,
    "best_price": 0.5265,
@@ -110,7 +275,8 @@
      "price": -110
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-03T00:40:10Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNBATOTAL-26NOV02BOSHOU-217"
@@ -3928,6 +4094,7 @@
     "polymarket",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.5,
    "clv_cents": 1.0,
    "confirmed_after_min": 10,
@@ -4079,6 +4246,7 @@
     "polymarket",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.51,
    "clv_cents": 1.0,
    "confirmed_after_min": 10,
@@ -4372,6 +4540,7 @@
     "polymarket",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.49,
    "clv_cents": 0.0,
    "confirmed_after_min": 10,
@@ -4954,8 +5123,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.8,
-   "clv_cents": 1.7,
+   "close_price": 0.8165,
+   "clv_cents": 3.4,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -5680,6 +5849,7 @@
     "polymarket",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.5,
    "clv_cents": 0.0,
    "confirmed_after_min": 10,
@@ -5789,7 +5959,8 @@
      "price": -115
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-03T00:40:10Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNBASPREAD-26NOV02BKNNYK-NYK15"
@@ -6732,8 +6903,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 1.0,
+   "close_price": 0.5,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -7026,8 +7197,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": 0.0,
+   "close_price": 0.54,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -9105,6 +9276,7 @@
     "polymarket",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.54,
    "clv_cents": 2.0,
    "confirmed_after_min": 10,
@@ -9200,7 +9372,8 @@
      "price": -119
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-03T00:40:10Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNBATOTAL-26NOV02BKNNYK-221"
@@ -9401,6 +9574,7 @@
     "polymarket",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.57,
    "clv_cents": 7.0,
    "confirmed_after_min": 10,
@@ -10175,6 +10349,7 @@
     "polymarket",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.52,
    "clv_cents": 1.0,
    "confirmed_after_min": 10,
@@ -10479,6 +10654,7 @@
     "polymarket",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.68,
    "clv_cents": 5.0,
    "confirmed_after_min": 10,
@@ -10602,7 +10778,8 @@
      "price": -180
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-03T00:40:10Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNBAGAME-26NOV02DETCHA-DET"
@@ -10644,6 +10821,7 @@
     "polymarket",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.52,
    "clv_cents": 1.0,
    "confirmed_after_min": 10,
@@ -11840,6 +12018,7 @@
     "polymarket",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.43,
    "clv_cents": 0.0,
    "confirmed_after_min": 10,
@@ -11957,7 +12136,8 @@
      "price": 122
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-03T00:40:10Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNBAGAME-26NOV02WASORL-WAS"
@@ -11998,6 +12178,7 @@
     "polymarket",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.54,
    "clv_cents": 2.0,
    "confirmed_after_min": 10,
@@ -12872,6 +13053,7 @@
     "polymarket",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.79,
    "clv_cents": 14.0,
    "confirmed_after_min": 10,
@@ -13731,8 +13913,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.81,
-   "clv_cents": 1.0,
+   "close_price": 0.82,
+   "clv_cents": 2.0,
    "confirmed_after_min": 4,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -14686,6 +14868,7 @@
     "polymarket",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.58,
    "clv_cents": 4.0,
    "confirmed_after_min": 10,
@@ -28697,8 +28880,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.8,
-   "clv_cents": 2.0,
+   "close_price": 0.81,
+   "clv_cents": 3.0,
    "confirmed_after_min": 13,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -28774,8 +28957,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.82,
-   "clv_cents": -1.0,
+   "close_price": 0.81,
+   "clv_cents": -2.0,
    "confirmed_after_min": 13,
    "date": "2026-11-02",
    "depth_by_book": {
