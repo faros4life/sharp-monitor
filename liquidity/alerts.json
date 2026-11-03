@@ -1,6 +1,932 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-03T12:50:12Z",
+   "base_depth": 44282,
+   "best_price": 0.485,
+   "best_price_american": 106,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.47,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-03",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 14054,
+     "new_this_side": 47179,
+     "other_side": 27558,
+     "other_side_all_levels": 80921,
+     "ratio": 2.2,
+     "this_side": 59873,
+     "this_side_all_levels": 91238
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "Over 6.5 (6.5)",
+     "price": 0.485,
+     "this_side": 14306
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Over (6.5)",
+     "price": 0.48,
+     "this_side": 26467
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "over 6.5 (6.5)",
+     "price": 0.4854,
+     "this_side": 5450
+    }
+   },
+   "fade_price": 0.54,
+   "first_seen_utc": "2026-11-03T12:40:13Z",
+   "game": "Carolina vs Nashville: Total Goals",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNHLTOTAL-26NOV03CARNSH-7\"}",
+   "lead_min": 730,
+   "league": "NHL",
+   "line": 6.5,
+   "market": "total",
+   "new_money": 47179,
+   "paper_only": false,
+   "price": 0.47,
+   "price_american": 113,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.47,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 6.0,
+     "price": -120
+    },
+    "betonlineag": {
+     "point": 6.0,
+     "price": -123
+    },
+    "betopenly": {
+     "point": 6.0,
+     "price": -107
+    },
+    "betrivers": {
+     "point": 6.5,
+     "price": 100
+    },
+    "betus": {
+     "point": 6.0,
+     "price": -125
+    },
+    "bovada": {
+     "point": 6.5,
+     "price": 102
+    },
+    "draftkings": {
+     "point": 6.5,
+     "price": 105
+    },
+    "fanatics": {
+     "point": 6.5,
+     "price": 105
+    },
+    "fanduel": {
+     "point": 6.5,
+     "price": 102
+    },
+    "kalshi": {
+     "point": 6.5,
+     "price": 113
+    },
+    "lowvig": {
+     "point": 6.0,
+     "price": -123
+    },
+    "mybookieag": {
+     "point": 6.5,
+     "price": 102
+    },
+    "novig": {
+     "point": 6.5,
+     "price": 106
+    },
+    "polymarket": {
+     "point": 6.5,
+     "price": 108
+    },
+    "prophetx": {
+     "point": 6.5,
+     "price": 106
+    },
+    "williamhill_us": {
+     "point": 6.5,
+     "price": 102
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNHLTOTAL-26NOV03CARNSH-7"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "polymarket"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "OVER",
+   "side_label": "Over 6.5 goals scored",
+   "start_source": "odds",
+   "start_utc": "2026-11-04T01:00:00Z",
+   "teams": [
+    "Carolina",
+    "Nashville"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-03T12:50:12Z",
+   "base_depth": 72539,
+   "best_price": 0.555,
+   "best_price_american": -125,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.55,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-03",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 8006,
+     "new_this_side": 44134,
+     "other_side": 25355,
+     "other_side_all_levels": 79528,
+     "ratio": 2.5,
+     "this_side": 63298,
+     "this_side_all_levels": 116792
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "Over 6.5 (6.5)",
+     "price": 0.555,
+     "this_side": 22490
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Over (6.5)",
+     "price": 0.56,
+     "this_side": 30136
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "over 6.5 (6.5)",
+     "price": 0.5575,
+     "this_side": 5800
+    }
+   },
+   "fade_price": 0.46,
+   "first_seen_utc": "2026-11-03T12:40:13Z",
+   "game": "Anaheim vs Vancouver: Total Goals",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNHLTOTAL-26NOV03ANAVAN-7\"}",
+   "lead_min": 790,
+   "league": "NHL",
+   "line": 6.5,
+   "market": "total",
+   "new_money": 44134,
+   "paper_only": false,
+   "price": 0.55,
+   "price_american": -122,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.55,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 6.5,
+     "price": -135
+    },
+    "betonlineag": {
+     "point": 6.5,
+     "price": -135
+    },
+    "betopenly": {
+     "point": 6.5,
+     "price": -124
+    },
+    "betrivers": {
+     "point": 6.5,
+     "price": -137
+    },
+    "betus": {
+     "point": 6.5,
+     "price": -135
+    },
+    "bovada": {
+     "point": 6.5,
+     "price": -135
+    },
+    "draftkings": {
+     "point": 6.5,
+     "price": -135
+    },
+    "fanatics": {
+     "point": 6.5,
+     "price": -135
+    },
+    "fanduel": {
+     "point": 6.5,
+     "price": -130
+    },
+    "kalshi": {
+     "point": 6.5,
+     "price": -122
+    },
+    "lowvig": {
+     "point": 6.5,
+     "price": -135
+    },
+    "mybookieag": {
+     "point": 6.5,
+     "price": -135
+    },
+    "novig": {
+     "point": 6.5,
+     "price": -125
+    },
+    "polymarket": {
+     "point": 6.5,
+     "price": -127
+    },
+    "prophetx": {
+     "point": 6.5,
+     "price": -126
+    },
+    "williamhill_us": {
+     "point": 6.5,
+     "price": -132
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNHLTOTAL-26NOV03ANAVAN-7"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "polymarket"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "OVER",
+   "side_label": "Over 6.5 goals scored",
+   "start_source": "odds",
+   "start_utc": "2026-11-04T02:00:00Z",
+   "teams": [
+    "Anaheim",
+    "Vancouver"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-03T12:50:12Z",
+   "base_depth": 86649,
+   "best_price": 0.48,
+   "best_price_american": 108,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.49,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-03",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 4246,
+     "new_this_side": 54767,
+     "other_side": 29605,
+     "other_side_all_levels": 67250,
+     "ratio": 2.7,
+     "this_side": 78590,
+     "this_side_all_levels": 133232
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "Under 6.5 (6.5)",
+     "price": 0.48,
+     "this_side": 20940
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Under (6.5)",
+     "price": 0.49,
+     "this_side": 30147
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "under 6.5 (6.5)",
+     "price": 0.4831,
+     "this_side": 7713
+    }
+   },
+   "fade_price": 0.52,
+   "first_seen_utc": "2026-11-03T12:40:13Z",
+   "game": "Vegas vs Pittsburgh: Total Goals",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLTOTAL-26NOV03VGKPIT-7\"}",
+   "lead_min": 670,
+   "league": "NHL",
+   "line": 6.5,
+   "market": "total",
+   "new_money": 54767,
+   "paper_only": false,
+   "price": 0.49,
+   "price_american": 104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.49,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 6.5,
+     "price": 100
+    },
+    "betonlineag": {
+     "point": 6.5,
+     "price": 102
+    },
+    "betopenly": {
+     "point": 6.5,
+     "price": 110
+    },
+    "betrivers": {
+     "point": 6.5,
+     "price": -103
+    },
+    "betus": {
+     "point": 6.5,
+     "price": 100
+    },
+    "bovada": {
+     "point": 6.5,
+     "price": 102
+    },
+    "draftkings": {
+     "point": 6.5,
+     "price": 100
+    },
+    "fanatics": {
+     "point": 6.5,
+     "price": 100
+    },
+    "fanduel": {
+     "point": 6.5,
+     "price": 100
+    },
+    "kalshi": {
+     "point": 6.5,
+     "price": 104
+    },
+    "lowvig": {
+     "point": 6.5,
+     "price": 102
+    },
+    "mybookieag": {
+     "point": 6.5,
+     "price": -101
+    },
+    "novig": {
+     "point": 6.5,
+     "price": 108
+    },
+    "polymarket": {
+     "point": 6.5,
+     "price": 104
+    },
+    "prophetx": {
+     "point": 6.5,
+     "price": 107
+    },
+    "williamhill_us": {
+     "point": 6.5,
+     "price": 103
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNHLTOTAL-26NOV03VGKPIT-7"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "polymarket"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "NOT Over 6.5 goals scored",
+   "start_source": "odds",
+   "start_utc": "2026-11-04T00:00:00Z",
+   "teams": [
+    "Vegas",
+    "Pittsburgh"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-03T12:50:12Z",
+   "base_depth": 67471,
+   "best_price": 0.465,
+   "best_price_american": 115,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.46,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-03",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 10547,
+     "new_this_side": 49854,
+     "other_side": 21881,
+     "other_side_all_levels": 82810,
+     "ratio": 3.1,
+     "this_side": 68397,
+     "this_side_all_levels": 120525
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "Under 5.5 (5.5)",
+     "price": 0.465,
+     "this_side": 17934
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Under (5.5)",
+     "price": 0.46,
+     "this_side": 21532
+    }
+   },
+   "fade_price": 0.55,
+   "first_seen_utc": "2026-11-03T12:40:13Z",
+   "game": "Minnesota vs Philadelphia: Total Goals",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLTOTAL-26NOV03MINPHI-6\"}",
+   "lead_min": 670,
+   "league": "NHL",
+   "line": 5.5,
+   "market": "total",
+   "new_money": 49854,
+   "paper_only": false,
+   "price": 0.46,
+   "price_american": 117,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.46,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 6.0,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 5.5,
+     "price": 112
+    },
+    "betopenly": {
+     "point": 5.5,
+     "price": 122
+    },
+    "betrivers": {
+     "point": 5.5,
+     "price": 108
+    },
+    "betus": {
+     "point": 5.5,
+     "price": 110
+    },
+    "bovada": {
+     "point": 6.0,
+     "price": -117
+    },
+    "draftkings": {
+     "point": 5.5,
+     "price": 110
+    },
+    "fanatics": {
+     "point": 5.5,
+     "price": 110
+    },
+    "fanduel": {
+     "point": 5.5,
+     "price": 106
+    },
+    "kalshi": {
+     "point": 5.5,
+     "price": 117
+    },
+    "lowvig": {
+     "point": 5.5,
+     "price": 112
+    },
+    "mybookieag": {
+     "point": 6.0,
+     "price": -118
+    },
+    "novig": {
+     "point": 5.5,
+     "price": 115
+    },
+    "polymarket": {
+     "point": 5.5,
+     "price": 117
+    },
+    "prophetx": {
+     "point": 6.0,
+     "price": -113
+    },
+    "williamhill_us": {
+     "point": 6.0,
+     "price": -120
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNHLTOTAL-26NOV03MINPHI-6"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "polymarket"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "NOT Over 5.5 goals scored",
+   "start_source": "odds",
+   "start_utc": "2026-11-04T00:00:00Z",
+   "teams": [
+    "Minnesota",
+    "Philadelphia"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-03T12:50:12Z",
+   "base_depth": 195410,
+   "best_price": 0.5,
+   "best_price_american": -100,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-03",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 3155,
+     "new_this_side": 46064,
+     "other_side": 91823,
+     "other_side_all_levels": 238283,
+     "ratio": 1.6,
+     "this_side": 149209,
+     "this_side_all_levels": 247295
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "VGK (0)",
+     "price": 0.5,
+     "this_side": 20077
+    },
+    "polymarket": {
+     "heavier_side": false,
+     "label": "Golden Knights",
+     "price": 0.51,
+     "this_side": 45702
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Vegas Golden Knights",
+     "price": 0.505,
+     "this_side": 7919
+    }
+   },
+   "fade_price": 0.51,
+   "first_seen_utc": "2026-11-03T12:40:13Z",
+   "game": "Vegas vs Pittsburgh",
+   "key": "kalshi|KXNHLGAME-26NOV03VGKPIT|ml|0",
+   "lead_min": 670,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 46064,
+   "paper_only": false,
+   "price": 0.5,
+   "price_american": -100,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.5,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -111
+    },
+    "betopenly": {
+     "point": null,
+     "price": -105
+    },
+    "betrivers": {
+     "point": null,
+     "price": -114
+    },
+    "betus": {
+     "point": null,
+     "price": -110
+    },
+    "bovada": {
+     "point": null,
+     "price": -115
+    },
+    "draftkings": {
+     "point": null,
+     "price": -112
+    },
+    "fanatics": {
+     "point": null,
+     "price": -115
+    },
+    "fanduel": {
+     "point": null,
+     "price": -110
+    },
+    "kalshi": {
+     "point": null,
+     "price": 100
+    },
+    "lowvig": {
+     "point": null,
+     "price": -111
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -113
+    },
+    "novig": {
+     "point": null,
+     "price": 100
+    },
+    "polymarket": {
+     "point": null,
+     "price": -104
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": 100
+    },
+    "prophetx": {
+     "point": null,
+     "price": -102
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -112
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNHLGAME-26NOV03VGKPIT-VGK"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Vegas",
+   "side_label": "Vegas",
+   "start_source": "odds",
+   "start_utc": "2026-11-04T00:00:00Z",
+   "teams": [
+    "Vegas",
+    "Pittsburgh"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-03T12:50:12Z",
+   "base_depth": 200314,
+   "best_price": 0.59,
+   "best_price_american": -144,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.59,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-03",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 22128,
+     "new_this_side": 79984,
+     "other_side": 106454,
+     "other_side_all_levels": 182978,
+     "ratio": 1.6,
+     "this_side": 172419,
+     "this_side_all_levels": 269563
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "ANA (0)",
+     "price": 0.59,
+     "this_side": 27350
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Ducks",
+     "price": 0.59,
+     "this_side": 68992
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Anaheim Ducks",
+     "price": 0.5902,
+     "this_side": 10183
+    }
+   },
+   "fade_price": 0.42,
+   "first_seen_utc": "2026-11-03T12:40:13Z",
+   "game": "Anaheim vs Vancouver",
+   "key": "kalshi|KXNHLGAME-26NOV03ANAVAN|ml|0",
+   "lead_min": 790,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 79984,
+   "paper_only": false,
+   "price": 0.59,
+   "price_american": -144,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.59,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -155
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -155
+    },
+    "betopenly": {
+     "point": null,
+     "price": -144
+    },
+    "betrivers": {
+     "point": null,
+     "price": -162
+    },
+    "betus": {
+     "point": null,
+     "price": -155
+    },
+    "bovada": {
+     "point": null,
+     "price": -155
+    },
+    "draftkings": {
+     "point": null,
+     "price": -155
+    },
+    "fanatics": {
+     "point": null,
+     "price": -155
+    },
+    "fanduel": {
+     "point": null,
+     "price": -150
+    },
+    "kalshi": {
+     "point": null,
+     "price": -144
+    },
+    "lowvig": {
+     "point": null,
+     "price": -155
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -152
+    },
+    "novig": {
+     "point": null,
+     "price": -144
+    },
+    "polymarket": {
+     "point": null,
+     "price": -144
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -138
+    },
+    "prophetx": {
+     "point": null,
+     "price": -144
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -152
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNHLGAME-26NOV03ANAVAN-ANA"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Anaheim",
+   "side_label": "Anaheim",
+   "start_source": "odds",
+   "start_utc": "2026-11-04T02:00:00Z",
+   "teams": [
+    "Anaheim",
+    "Vancouver"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-03T11:30:13Z",
    "base_depth": 64347,
    "best_price": 0.71,
@@ -1306,8 +2232,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.74,
-   "clv_cents": -2.0,
+   "close_price": 0.75,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-04",
    "depth_by_book": {
@@ -1526,8 +2452,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": -2.0,
+   "close_price": 0.48,
+   "clv_cents": -4.0,
    "confirmed_after_min": 10,
    "date": "2026-11-04",
    "depth_by_book": {
@@ -3556,8 +4482,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 1.0,
+   "close_price": 0.53,
+   "clv_cents": 2.0,
    "confirmed_after_min": 10,
    "date": "2026-11-03",
    "depth_by_book": {
