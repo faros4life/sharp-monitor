@@ -1,0 +1,56 @@
+name: ncaab-openers
+
+# PAPER ONLY (item 28; Muse registered Nov 2, Peter yes Nov 3): NCAAB openers freezer. Never places orders, never
+# alerts, never writes main: data lives on the ncaab-openers branch. Reads ESPN (public, free) only. Counts-only log.
+on:
+  schedule:
+    - cron: "19,49 * * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: ncaab-openers
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90   # the first run builds last season's prior from ESPN box scores (one time)
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Load lane data
+        run: |
+          mkdir -p ncaab-openers
+          if git fetch -q origin ncaab-openers 2>/dev/null; then
+            git show origin/ncaab-openers:ncaab_openers.json > ncaab-openers/ncaab_openers.json 2>/dev/null || rm -f ncaab-openers/ncaab_openers.json
+            git show origin/ncaab-openers:ncaab_prior.json > ncaab-openers/ncaab_prior.json 2>/dev/null || rm -f ncaab-openers/ncaab_prior.json
+          fi
+      - name: Freeze numbers (paper)
+        run: python -u ncaab_openers.py
+      - name: Save to the ncaab-openers branch (never main)
+        if: always()
+        run: |
+          [ -f ncaab-openers/ncaab_openers.json ] || exit 0
+          rm -rf "$RUNNER_TEMP/out" && mkdir -p "$RUNNER_TEMP/out" && cp ncaab-openers/* "$RUNNER_TEMP/out/"
+          git config user.name "ncaab-openers"
+          git config user.email "ncaab-openers@users.noreply.github.com"
+          for i in 1 2 3; do
+            if git fetch -q origin ncaab-openers 2>/dev/null; then
+              git checkout -q -f -B ncaab-openers origin/ncaab-openers
+            else
+              git checkout -q -f --orphan ncaab-openers
+              git rm -rq --cached . >/dev/null 2>&1 || true
+            fi
+            find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
+            cp "$RUNNER_TEMP/out/"* .
+            git add -A
+            git diff --cached --quiet && break
+            git commit -q -m "NCAAB openers update"
+            git push -q origin ncaab-openers && break
+            sleep 5
+          done
