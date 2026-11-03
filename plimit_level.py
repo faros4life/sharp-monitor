@@ -213,7 +213,7 @@ def main():
 
     def recs(xs):
         return [{"day": r["day"], "clv": r["clv_g"], "lg": r["lg"], "mk": r["mk"], "sc": r["sc"], "lead": r["lead"], "late": r["late"],
-                 "edge": r["edge"], "am": r["am"], "pin_limit": r["limit"]} for r in xs if r["clv_g"] is not None]
+                 "edge": r["edge"], "am": r["am"], "pin_limit": r["limit"], "units": r["u_g"]} for r in xs if r["clv_g"] is not None]
     for g in ("HIGH", "LOW"):
         L += [""] + bkt.section(f"item 56 {g}-limit SENT alerts at the +5-min gettable price (CLV %)", recs([r for r in S if r["grp"] == g]), "%")
     L.append(f"\nHistory cache: hits {hc.STATS['hit']}, downloads {hc.STATS['miss']}; OddsPapi calls {len(cl.CALLS)} (billable {cl.STATS['billable']}).")
