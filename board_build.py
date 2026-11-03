@@ -149,7 +149,7 @@ def score(rows):
         elif r["mk"] == "total" and x.get("league") == "NBA" and x.get("price_rule") != "ml_edge_fail":
             r["tag"], r["why"] = "PLAY", "v2: NBA total, money still there. Check the price is still there."
         else:
-            r["tag"], r["why"] = "LEAN", "v2: only NBA totals are PLAY" + (f" | {r['why']}" if r["why"] else "")
+            r["tag"], r["why"] = "LEAN", "money still there; v2 PLAY is NBA totals only"
 
 
 def x2_limits():
