@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 3, 2:20 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 68.
+Updated Tue Nov 3, 2:26 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 68.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -35,7 +35,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 3 9:20AM | NHL | Carolina vs Nashville: Spread | spread: NOT Carolina wins by over 1.5 goals | kalshi | $48k | -138 | ✅ novig,polymarket |  | +0.0c |  | pending |
 | Nov 3 9:20AM | NHL | Anaheim vs Vancouver: Spread | spread: NOT Anaheim wins by over 1.5 goals | kalshi | $83k | -170 | ✅ polymarket |  | +0.0c |  | pending |
 | Nov 3 9:10AM | NHL | St. Louis vs New York R: Spread | spread: NOT New York R wins by over 1.5 goals | kalshi | $46k | -233 |  |  | -1.0c | yes | pending |
-| Nov 3 8:20AM | NHL | Golden Knights vs. Penguins | moneyline: Penguins | polymarket | $35k | -100 |  |  | +2.0c |  | pending |
+| Nov 3 8:20AM | NHL | Golden Knights vs. Penguins | moneyline: Penguins | polymarket | $35k | -100 |  |  | +3.0c |  | pending |
 | Nov 3 8:20AM | NHL | Winnipeg vs Montreal: Spread | spread: NOT Montreal wins by over 1.5 goals | kalshi | $32k | -144 | ✅ novig |  | +2.0c |  | pending |
 | Nov 3 8:20AM | NHL | Utah vs Toronto: Spread | spread: NOT Utah wins by over 1.5 goals | kalshi | $26k | -194 | ✅ novig,polymarket |  | -1.0c |  | pending |
 | Nov 3 8:20AM | NHL | Edmonton vs New Jersey: Spread | spread: NOT New Jersey wins by over 1.5 goals | kalshi | $32k | -178 | ✅ novig,polymarket |  | +0.0c |  | pending |
@@ -56,7 +56,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 3 4:20AM | NHL | Minnesota vs Philadelphia | moneyline: Minnesota | kalshi | $64k | -163 | ✅ novig,polymarket |  | +1.0c | yes | pending |
 | Nov 3 1:30AM | NBA | Minnesota vs Houston | moneyline: Houston | kalshi | $67k | -317 |  |  | -2.0c |  | pending |
 | Nov 3 1:30AM | NBA | Dallas vs San Antonio | moneyline: San Antonio | kalshi | $27k | -567 |  |  | -2.0c |  | pending |
-| Nov 3 12:50AM | NBA | Philadelphia vs Detroit | moneyline: Detroit | kalshi | $35k | -108 |  |  | +0.0c | yes | pending |
+| Nov 3 12:50AM | NBA | Philadelphia vs Detroit | moneyline: Detroit | kalshi | $35k | -108 |  |  | +1.0c | yes | pending |
 | Nov 3 12:30AM | NHL | Detroit vs Tampa Bay: Spread | spread: NOT Tampa Bay wins by over 1.5 goals | kalshi | $36k | -113 |  |  | -2.0c | yes | pending |
 | Nov 3 12:20AM | NCAAF | Ball St. vs UMass: Spread | spread: NOT UMass wins by over 3.5 points | kalshi | $39k | -108 |  |  | +1.0c | yes | pending |
 | Nov 3 12:10AM | NHL | Utah vs Toronto | moneyline: Toronto | kalshi | $33k | +122 |  |  | -2.0c | yes | pending |
@@ -113,7 +113,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 2 2:20PM | NFL | Chicago Bears @ Seattle Seahawks | total: Over 46.5 (46.5) | novig | $38k | +102 |  |  | +0.5c | yes | W |
 | Nov 2 2:10PM | NCAAF | Buffalo vs Miami (OH) | moneyline: Miami | kalshi | $282k | -223 |  |  | -1.0c | yes | pending |
 | Nov 2 2:10PM | NBA | Miami vs Los Angeles L | moneyline: Miami | kalshi | $356k | +117 | ✅ prophetx |  | -2.0c | yes | L |
-| Nov 2 1:20PM | NCAAF | Buffalo vs Miami (OH): Total Points | total: NOT Over 43.5 points | kalshi | $26k | +104 |  |  | -3.0c | yes | pending |
+| Nov 2 1:20PM | NCAAF | Buffalo vs Miami (OH): Total Points | total: NOT Over 43.5 points | kalshi | $26k | +104 |  |  | -4.0c | yes | pending |
 | Nov 2 1:10PM | NBA | Brooklyn vs New York: Spread | spread: NOT New York wins by over 14.5 points | kalshi | $106k | -100 |  |  | +0.0c | yes | W |
 | Nov 2 1:00PM | NBA | New Orleans vs Memphis: Spread | spread: NOT Memphis wins by over 5.5 points | kalshi | $26k | -113 | ✅ polymarket,prophetx | ✅ | -3.0c | yes | W |
 | Nov 2 12:10PM | NHL | Avalanche vs. Blackhawks | spread: Blackhawks (+1.5) | polymarket | $45k | -127 | ✅ kalshi,novig |  | -1.0c | yes | L |
