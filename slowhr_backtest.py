@@ -15,6 +15,7 @@ from datetime import datetime, timedelta, timezone
 
 import clv_ledger as cl
 import buckets as bkt
+import finals as fin
 import executor as ex
 import hist_cache as hc
 import slow_hr as sh
@@ -274,7 +275,8 @@ def main():
                 "key": bkt.key_class(x["league"], mk, ln_), "move": x.get("kind"),
                 "ldelta": bkt.ldelta_from_detail(x.get("detail")) if x.get("kind") == "L" else None,
                 "live1": x.get("live1"), "live5": x.get("live5"), "wide": x.get("wide"), "pin_limit": x.get("pin_limit"),
-                "lead": x.get("mins_before"), "late": x.get("late"), "edge": x.get("ev_pct"), "am": x.get("hr_am")}
+                "lead": x.get("mins_before"), "late": x.get("late"), "edge": x.get("ev_pct"), "am": x.get("hr_am"),
+                "units": fin.units(x, x.get("hr_price"))}   # Nov 3: ESPN final, flat 1u at the Hard Rock price
     L += [""] + bkt.section("SLOW-HR sightings at the Hard Rock price (CLV %)", [_b(x) for x in S], "%")
     L += ["", "NEWEST 25 SIGHTINGS:"]
     for x in sorted(S, key=lambda x: x["t_move"])[-25:][::-1]:
