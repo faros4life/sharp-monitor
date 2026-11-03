@@ -801,13 +801,14 @@ return '<h2>Settled</h2>'+Object.entries(g).map(([k,l])=>{const tot=l.reduce((s,
 return `<div class="day"><span>${esc(k)} · ${w}-${lo}</span><span style="color:${tot>0?'var(--win)':tot<0?'var(--loss)':'var(--muted)'}">${sg(Math.round(tot*100)/100)}</span></div>`+l.map(rowOf).join('')}).join('');};
 const wl=a=>{const w=a.filter(b=>b.result==='W').length,l=a.filter(b=>b.result==='L').length;return w+l?`${w}-${l}`:'';};
 const today=new Date().toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric',timeZone:'America/New_York'});
-const ymd=x=>{const s=x.game_start||x.settled||x.first_seen;if(!s)return null;return new Date(s).toLocaleDateString('en-CA',{timeZone:'America/New_York'});};
+const ymd=x=>{const s=x.game_start||(x.result?x.settled:null);if(!s)return null;return new Date(s).toLocaleDateString('en-CA',{timeZone:'America/New_York'});};
 const ALL=(d.all||[]);const byDay={};ALL.forEach(b=>{const k=ymd(b);if(k)(byDay[k]=byDay[k]||[]).push(b)});const tk=b=>b.game_start||b.placed||b.settled||'';Object.values(byDay).forEach(l=>l.sort((x,y)=>tk(x).localeCompare(tk(y))));
 const todayK=new Date().toLocaleDateString('en-CA',{timeZone:'America/New_York'});
 window.SEL=window.SEL||todayK;window.CALM=window.CALM||todayK.slice(0,7);
 const shift=(k,n)=>{const x=new Date(k+'T12:00:00');x.setDate(x.getDate()+n);return x.toLocaleDateString('en-CA');};
 const dayStats=k=>{const l=byDay[k]||[];const s=l.filter(b=>b.result),o=l.filter(b=>!b.result&&b.open);
-return {l,s,o,live:o.filter(b=>b.g_state==='in').length,up:o.filter(b=>b.g_state!=='in').length,
+const isUp=b=>b.g_state==='pre'||(!b.g_state&&b.game_start&&new Date(b.game_start)>new Date());
+return {l,s,o,live:o.filter(b=>!isUp(b)).length,up:o.filter(isUp).length,
 pnl:s.reduce((a,b)=>a+(b.profit||0),0),risk:o.reduce((a,b)=>a+(b.stake||0),0),max:o.reduce((a,b)=>a+((b.to_pay||0)-(b.stake||0)),0)};};
 const fmt0=v=>(v<0?'-$':'$')+Math.abs(Math.round(v)).toLocaleString();
 const dayBox=()=>{const k=window.SEL,st=dayStats(k);const lab=new Date(k+'T12:00:00').toLocaleDateString('en-US',{weekday:'long',month:'short',day:'numeric'});
@@ -826,7 +827,7 @@ const mv=n=>{const x=new Date(Y,M-1+n,1);return `${x.getFullYear()}-${String(x.g
 return `<div class="box"><div class="calh"><div><button onclick="CALM='${mv(-1)}';render(DATA)">‹</button><span class="mo">${first.toLocaleDateString('en-US',{month:'short',year:'numeric'})}</span><button onclick="CALM='${mv(1)}';render(DATA)">›</button></div>
 <div class="mp" style="color:${mp>0?'var(--win)':mp<0?'var(--loss)':'var(--fg)'}">${sg(Math.round(mp*100)/100)}<small>Profit</small></div></div>
 <div class="cal">${['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].map(x=>`<div class="dn">${x}</div>`).join('')}${cells}</div></div>`;};
-const dayList=()=>{const st=dayStats(window.SEL);const live=st.o.filter(b=>b.g_state==='in'),up=st.o.filter(b=>b.g_state!=='in');
+const dayList=()=>{const st=dayStats(window.SEL);const isUp=b=>b.g_state==='pre'||(!b.g_state&&b.game_start&&new Date(b.game_start)>new Date());const live=st.o.filter(b=>!isUp(b)),up=st.o.filter(isUp);
 if(!st.l.length)return '<p class="sub">No bets this day.</p>';
 let T=window.TAB;if(!T||(T==='live'&&!live.length&&(st.s.length||up.length))||(T==='settled'&&!st.s.length)||(T==='up'&&!up.length))T=live.length?'live':(st.s.length?'settled':'up');window.TAB=T;
 const tb=(k,n,txt)=>`<button class="${T===k?'on':''}" onclick="TAB='${k}';render(DATA)">${n} ${txt}</button>`;
