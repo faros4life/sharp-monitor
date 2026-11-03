@@ -719,19 +719,23 @@ def sport_rate(st, n, label):
     return (sum(1 for v, _ in g if v > 0) / len(g), len(g)) if g else (None, 0)
 
 
+def hr_dog(a):
+    """Nov 3 (Peter yes, item 34): Hard Rock-priced spread underdogs (points > 0) are not sent: 8-19, -11.9u, lost every week."""
+    return a.get("book") in ("hardrockbet", "hardrockbet_fl") and a.get("kind") in ("spr", "rl") and (a.get("pt") or 0) > 0
+
+
 def confidence(a, st, n, lead_min):
     """0-100 heuristic and an A-D grade. Not a win probability: the recap shows how each grade has actually done.
     25 confirm book agrees (10 if Pinnacle only) + 25 size of the sharp move vs the sport's trigger (caps at 3x)
-    + 15 books offering the number (1=5, 2=10, 3+=15) + 15 price (edge vs fair, or juice) + 15 sport's 30-day
+    + 15 books offering the number (1=5, 2=10, 3+=15) + 15 price (juice only; Nov 3 Peter: edge out) + 15 sport's 30-day
     beat-the-close rate (neutral 50% until 10 samples) + 5 lead time (3h+ = 5, 1h+ = 3, under 1h = 0)."""
     s = {"yes": 25, "na": 10}.get(a.get("conf"), 0)
     s += min(a.get("mag", 1.0), 3.0) / 3.0 * 25
     s += {1: 5, 2: 10}.get(a.get("nb", 1), 15)
-    if a.get("edge") is not None:
-        s += min(max(a["edge"], 0) / 0.06, 1.0) * 15
-    else:
-        p = float(net(a["price"], a.get("book")))
-        s += 15 if p >= -110 else 10 if p >= -120 else 5 if p >= -130 else 0
+    # Nov 3 (Peter yes, item 36): edge ran backwards on W/L, so price points come from the after-fee juice only.
+    # Edge is still computed and logged (edge_pct) for the registered edge >= 0 paper slice.
+    p = float(net(a["price"], a.get("book")))
+    s += 15 if p >= -110 else 10 if p >= -120 else 5 if p >= -130 else 0
     rate, cnt = sport_rate(st, n, a.get("sport") or a.get("label") or "")
     s += (rate if cnt >= 10 else 0.5) * 15
     s += 5 if lead_min >= 180 else 3 if lead_min >= 60 else 0
@@ -967,7 +971,7 @@ def line_for(e, g):
     if g:
         s += f" | CLV {g[1]}"
     if e.get("grade"):
-        s += f" | {e['grade']}{e['score']}" + (f" {e['evp']:+.1f}%" if e.get("evp") is not None else "") + (" LATE" if e.get("late") else "")
+        s += f" | {e['grade']}{e['score']}" + (" LATE" if e.get("late") else "")   # Nov 3: edge off the phone
     return s
 
 
@@ -1413,6 +1417,8 @@ def run():
                         print(f"Not sent (late, {lead_text(lead)} to start): {a['text']} | {a['game']}")
                     elif repeat and REPEAT_MODE == "mute":
                         print(f"Not sent (repeat): {a['text']} | {a['game']}")
+                    elif hr_dog(a):
+                        print(f"Not sent (Hard Rock spread dog, Peter Nov 3): {a['text']} | {a['game']}")
                     else:
                         p1_ok, p1_why = phase1_label(a, cfg["label"], grade, lead, late, bool(opp))
                         if p1_ok:   # Oct 26 (Peter): say exactly where to play it
@@ -1427,7 +1433,7 @@ def run():
                         (notify if (PUSH_SHARP or p1_ok) else (lambda *x, **y: print("push muted: paper alert logged only")))(
                                ("LIVE " if p1_ok else "PAPER ") + f"Sharp alert {cfg['label']}" + (" LATE" if late else ""),
                                f"{label}\n{a['text']}\n{bet_size(a['price'], a['book'])}{prior_note}\n{a['game']}{tag}, {a['start']}\n{a['why']}\n"
-                               f"Grade {grade} ({score}/100)" + (f" | Edge {a['evp']:+.1f}%" if a.get("evp") is not None else "") + " | "
+                               f"Grade {grade} ({score}/100) | "
                                + (f"LATE: starts in {lead_text(lead)}" if late else f"starts in {lead_text(lead)}"),
                                red=late, yellow=(not late) and bool(prior or (repeat and REPEAT_MODE != "mute")),   # late = red only
                                extra_tags=("white_check_mark",) if p1_ok else ("page_facing_up",),
@@ -1439,6 +1445,9 @@ def run():
                     if is_t25 is not None:
                         e["t25"] = is_t25
                         e["muted"] = bool(is_t25 is False and NCAAF_TOP25 == "filter")
+                    if hr_dog(a):   # Nov 3 (Peter yes, item 34): logged and graded, never sent
+                        e["muted"] = True
+                        e["mute_why"] = "hr_spread_dog"
                     e["close"] = close_value(e, vals)
                     # one scorecard entry per bet, even if the line keeps moving
                     if not repeat:
@@ -1448,7 +1457,7 @@ def run():
                                                           pushed=not e.get("muted") and not (late and LATE_MODE == "mute")
                                                           and not (repeat and REPEAT_MODE == "mute")))
                     sent += 0 if ((is_t25 is False and NCAAF_TOP25 == "filter") or (late and LATE_MODE == "mute")
-                                  or (repeat and REPEAT_MODE == "mute")) else 1
+                                  or (repeat and REPEAT_MODE == "mute") or hr_dog(a)) else 1
             h["obs"].append([time.time(), vals])
 
     # Tidy: drop started games and old alert keys.
