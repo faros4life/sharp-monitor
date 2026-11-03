@@ -9,6 +9,7 @@ of game dates, CHECK = second half. Bar shown (house): >= 100, CLV > 0 and beat-
 DEVIATIONS as in SLOW-HR: Pinnacle close as the consensus proxy; FEED-LAG not wired. Hard Rock limits Peter on NBA / NCAAB,
 so those leagues are excluded. Private email; the log prints counts only.
 """
+import json
 import os
 import statistics as stt
 from datetime import datetime, timedelta, timezone
@@ -134,6 +135,23 @@ def main():
     mkmap = cl.load_markets(st, now)
     for lg in LEAGUES:
         cl.refresh_fixtures(st, now, lg, (FROM - timedelta(days=1)).astimezone(ET), (now + timedelta(days=1)).astimezone(ET))
+    # Nov 3: OddsPapi answered 429 "Request limit exceeded" on the billable /fixtures calls, so the run read 0 games. Fall
+    # back to the fixture lists other jobs already hold (exchange-lag, SLOW-HR logger; encrypted state, same leagues).
+    have = {f.get("lg") for f in (st.get("fixtures") or {}).values()}
+    st["fixture_source"] = "OddsPapi /fixtures"
+    if any(lg not in have for lg in LEAGUES):
+        for path in ("exlag/state.enc", "slowhr/state.enc"):
+            try:
+                other = tb.dec(json.load(open(path)))
+            except Exception:
+                continue
+            n = 0
+            for fid, f in (other.get("fixtures") or {}).items():
+                if f.get("lg") in LEAGUES and f.get("lg") not in have and fid not in st.setdefault("fixtures", {}):
+                    st["fixtures"][fid] = f
+                    n += 1
+            if n:
+                st["fixture_source"] = f"{path} (fallback, {n} fixtures)"
     todo = sorted((cl.tp(f["start"]), fid, f) for fid, f in (st.get("fixtures") or {}).items()
                   if f.get("lg") in LEAGUES and cl.tp(f.get("start")) and FROM <= cl.tp(f["start"]) <= now - hc.FINAL_AFTER)
     sh.FLOOR = FROM
@@ -177,7 +195,7 @@ def main():
          "Registered SLOW-HR test, unchanged (L: line moved >= 0.5, HR on old line; P: price moved >= 8c, HR within 2c; persist 3 min + confirm +5).",
          "Grade: Pinnacle no-vig close at Hard Rock's line. DEVIATIONS: Pinnacle close as consensus proxy; FEED-LAG not wired.", "",
          f"Games read: {games} (no Hard Rock or Pinnacle history: {no_hr}; errors: {errs}); cache hits {hc.STATS['hit']}, downloads {hc.STATS['miss']}",
-         f"Fixtures listed: {len(st.get('fixtures') or {})} | fixture-call errors: {'; '.join((st.get('errors') or [])[-3:]) or 'none'} | calls {cl.CALLS[-6:]}",
+         f"Fixtures listed: {len(st.get('fixtures') or {})} from {st.get('fixture_source')} | fixture-call errors: {'; '.join((st.get('errors') or [])[-3:]) or 'none'} | calls {cl.CALLS[-6:]}",
          f"ALL (not LATE): {stats(J)}  | bar: {'MEETS' if len(J) >= 100 and ok(F) and ok(C) else 'does not meet'}",
          f"  FIT  {stats(F)}", f"  CHECK {stats(C)}",
          f"  LATE (final 30 min, own split): {stats([x for x in S if x['late']])}"]
