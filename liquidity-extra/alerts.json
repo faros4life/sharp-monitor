@@ -1,6 +1,109 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-03T04:00:30Z",
+   "base_depth": 27533,
+   "best_price": 0.8112,
+   "best_price_american": -430,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.8,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-03",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -12,
+     "new_this_side": 44670,
+     "other_side": 2309,
+     "other_side_all_levels": 4895,
+     "ratio": 2.6,
+     "this_side": 5903,
+     "this_side_all_levels": 72752
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "DUQ (0)",
+     "price": 0.82,
+     "this_side": 1547
+    }
+   },
+   "fade_price": 0.21,
+   "first_seen_utc": "2026-11-03T03:50:21Z",
+   "game": "Purdue Fort Wayne vs Duquesne",
+   "key": "kalshi|KXNCAAMBGAME-26NOV03PFWDUQ|ml|1",
+   "lead_min": 1199,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 44670,
+   "paper_only": false,
+   "price": 0.8,
+   "price_american": -400,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.8,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -475
+    },
+    "draftkings": {
+     "point": null,
+     "price": -500
+    },
+    "fanatics": {
+     "point": null,
+     "price": -475
+    },
+    "fanduel": {
+     "point": null,
+     "price": -430
+    },
+    "kalshi": {
+     "point": null,
+     "price": -456
+    },
+    "novig": {
+     "point": null,
+     "price": -456
+    },
+    "polymarket": {
+     "point": null,
+     "price": -456
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV03PFWDUQ-DUQ"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Duquesne",
+   "side_label": "Duquesne",
+   "start_source": "odds",
+   "start_utc": "2026-11-04T00:00:00Z",
+   "teams": [
+    "Purdue Fort Wayne",
+    "Duquesne"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-03T00:50:16Z",
    "base_depth": 19912,
    "best_price": 0.8112,
