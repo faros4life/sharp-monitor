@@ -159,8 +159,9 @@ def phase1(a, muse_agree, tag_nfl=False):
         why.append(f"priced on {a.get('book') or '?'}, not ProphetX")
     if deadband(a):
         why.append(f"retail deadband: non-ProphetX at {a.get('price_after_fee')} after fee (-119 to -110 never live, Oct 27)")
-    if a.get("grade") not in ("A", "B"):
-        why.append(f"grade {a.get('grade') or 'none'}")
+    # Nov 3 (Peter 1:23 PM "ok drop grade we revisit it"; Muse + Claude review): the monitor grade is NO LONGER a gate.
+    # On true close no grade construction separated winners (sent alerts: A -1.23% n82, B -0.19% n75). It stays a label
+    # on alerts and recaps; a graded candidate earns the gate back only with 100+ forward graded plays.
     sp = (a.get("sport") or "").upper()
     under = a.get("kind") == "tot" and side_of(a) == "UNDER"
     if sp not in ("NCAAF", "NBA", "NFL"):
