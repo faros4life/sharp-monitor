@@ -13,6 +13,7 @@ concurrency:
 
 permissions:
   contents: write
+  actions: read   # Nov 3: the grader waits while another OddsPapi download job is running
 
 jobs:
   run:
@@ -29,9 +30,21 @@ jobs:
           if git fetch -q origin ncaab-openers 2>/dev/null; then
             git show origin/ncaab-openers:ncaab_openers.json > ncaab-openers/ncaab_openers.json 2>/dev/null || rm -f ncaab-openers/ncaab_openers.json
             git show origin/ncaab-openers:ncaab_prior.json > ncaab-openers/ncaab_prior.json 2>/dev/null || rm -f ncaab-openers/ncaab_prior.json
+            git show origin/ncaab-openers:ncaab_grades.enc > ncaab-openers/ncaab_grades.enc 2>/dev/null || rm -f ncaab-openers/ncaab_grades.enc
           fi
       - name: Freeze numbers (paper)
         run: python -u ncaab_openers.py
+      - run: pip install -q cryptography
+      - name: Grade frozen numbers v1.1 (paper; OddsPapi free history; encrypted grades; private email; counts only)
+        continue-on-error: true   # a grader failure never stops the freezer's save
+        env:
+          ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python -u ncaab_grade.py
       - name: Save to the ncaab-openers branch (never main)
         if: always()
         run: |
