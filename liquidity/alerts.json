@@ -1,6 +1,111 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-03T05:50:10Z",
+   "base_depth": 154195,
+   "best_price": 0.5375,
+   "best_price_american": -116,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-04",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 1798,
+     "new_this_side": 34974,
+     "other_side": 2584,
+     "other_side_all_levels": 166253,
+     "ratio": 26.6,
+     "this_side": 68807,
+     "this_side_all_levels": 219816
+    }
+   },
+   "fade_price": 0.49,
+   "first_seen_utc": "2026-11-03T05:40:10Z",
+   "game": "Philadelphia vs Detroit",
+   "key": "kalshi|KXNBAGAME-26NOV04PHIDET|ml|1",
+   "lead_min": 2530,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 34974,
+   "paper_only": false,
+   "price": 0.52,
+   "price_american": -108,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.52,
+   "prices_by_book": {
+    "betrivers": {
+     "point": null,
+     "price": -127
+    },
+    "draftkings": {
+     "point": null,
+     "price": -125
+    },
+    "fanatics": {
+     "point": null,
+     "price": -125
+    },
+    "fanduel": {
+     "point": null,
+     "price": -124
+    },
+    "kalshi": {
+     "point": null,
+     "price": -108
+    },
+    "limitless": {
+     "point": null,
+     "price": -127
+    },
+    "polymarket": {
+     "point": null,
+     "price": -108
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -108
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -125
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBAGAME-26NOV04PHIDET-DET"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Detroit",
+   "side_label": "Detroit",
+   "start_source": "odds",
+   "start_utc": "2026-11-05T00:00:00Z",
+   "teams": [
+    "Philadelphia",
+    "Detroit"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-03T05:30:15Z",
    "base_depth": 63915,
    "best_price": 0.53,
@@ -47,6 +152,8 @@
    "new_money": 36338,
    "paper_only": false,
    "price": 0.53,
+   "price_after_15m": 0.53,
+   "price_after_15m_book": "novig",
    "price_american": -113,
    "price_rule": "ok",
    "price_when_first_seen": 0.53,
@@ -128,6 +235,7 @@
    "side_label": "NOT Tampa Bay wins by over 1.5 goals",
    "start_source": "odds",
    "start_utc": "2026-11-04T00:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Detroit",
     "Tampa Bay"
@@ -1066,6 +1174,7 @@
     }
    },
    "fade_price": 0.5,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-03T02:40:10Z",
    "game": "Heat vs. Lakers",
    "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"6544242\"}",
@@ -1150,13 +1259,14 @@
     "outcome_index": 0,
     "pm_market_id": "6544242"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-03T05:50:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -1168,7 +1278,7 @@
     "Lakers"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.96
   },
   {
    "alerted_utc": "2026-11-03T02:40:10Z",
@@ -4571,8 +4681,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.48,
-   "clv_cents": -1.0,
+   "close_price": 0.49,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-11-03",
    "depth_by_book": {
@@ -12585,6 +12695,7 @@
     }
    },
    "fade_price": 0.45,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-02T13:00:16Z",
    "game": "Heat vs. Lakers",
    "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6293074\"}",
@@ -12676,13 +12787,14 @@
     "outcome_index": 1,
     "pm_market_id": "6293074"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-03T05:50:10Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Lakers",
@@ -12695,7 +12807,7 @@
     "Lakers"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.82
   },
   {
    "alerted_utc": "2026-11-02T13:00:16Z",
