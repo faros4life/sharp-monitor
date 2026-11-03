@@ -168,8 +168,8 @@ def phase1(a, muse_agree, tag_nfl=False):
         why.append(f"{a.get('sport')} (NCAAF, NBA, NFL only)")
     elif sp == "NFL" and not under:
         why.append("NFL: unders only (Peter, Oct 26)")
-    if sp != "NFL" and not (a.get("kind") == "spr" or under):
-        why.append("overs and moneylines stay paper")
+    if sp != "NFL" and not under:   # Nov 3 (Peter 1:51 PM, rulebook v4 Lane 1): totals UNDERS only; spreads now paper too
+        why.append("Lane 1 is totals unders only (spreads, overs, moneylines stay paper)")
     ld = lead_min(a)
     if ld is not None and 720 <= ld < 1440:
         why.append(f"sent {ld / 60:.0f}h before start (12-24h window is paper)")
