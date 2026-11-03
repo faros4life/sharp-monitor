@@ -91,4 +91,12 @@ jobs:
         with:
           path: site
       - id: deploy
+        continue-on-error: true   # Nov 3: 5-min scans -> more builds; a deploy can collide with one still finishing
+        uses: actions/deploy-pages@v4
+      - name: Wait, then retry the deploy once (previous Pages deploy was still in progress)
+        if: steps.deploy.outcome == 'failure'
+        run: sleep 45
+      - id: deploy2
+        if: steps.deploy.outcome == 'failure'
+        continue-on-error: true   # still busy: the next build (about 5 min) deploys the page
         uses: actions/deploy-pages@v4
