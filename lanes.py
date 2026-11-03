@@ -62,7 +62,7 @@ def main():
             if r["mk"] == "moneyline" and mins >= 60:
                 e = ml.get(k) or {}
                 if not e.get("frozen"):
-                    ok = (r["status"] == "still there" and r["conf"] and r["new"] >= 100_000 and r["tag"] in ("PLAY", "LEAN"))
+                    ok = (r["status"] == "still there" and r["conf"] and r["new"] >= 100_000 and r.get("v1", r["tag"]) in ("PLAY", "LEAN"))   # v1 call: lane registered on it
                     ml[k] = {"game": r["game"], "league": r["league"], "side": r["side"], "book": r["book"],
                              "new_money": round(r["new"]), "status": r["status"], "confirmed": r["conf"], "tag": r["tag"],
                              "start_utc": x.get("start_utc"), "snapshot_utc": now.strftime("%Y-%m-%dT%H:%M:%SZ"),
