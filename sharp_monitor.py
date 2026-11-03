@@ -1577,8 +1577,9 @@ def run():
                         hr_ev = (a.get("book") in ("hardrockbet", "hardrockbet_fl") and a.get("evp") is not None
                                  and a["evp"] >= 2.0 and not p1_ok)
                         if hr_ev:
-                            label = (f"HR MISPRICE {a['evp']:+.1f}% vs Pinnacle fair - PAPER: open Hard Rock, check the price "
-                                     "is there and the max bet it allows")
+                            # Nov 3 (Peter 1:51 PM): Hard Rock alerts to the phone = edge >= 2% only, as a MANUAL bet alert
+                            label = (f"HARD ROCK EDGE {a['evp']:+.1f}% vs Pinnacle fair - MANUAL BET: open Hard Rock, bet only if "
+                                     "this price is still there; check the max bet it allows")
                         # Nov 1 (Peter): the phone gets the play alert for LIVE (phase-1) plays, then the bot's fill or
                         # resting-bid message; PAPER alerts stay muted (PUSH_SHARP_ALERTS=on unmutes them too)
                         (notify if (PUSH_SHARP or p1_ok or hr_ev) else (lambda *x, **y: print("push muted: paper alert logged only")))(
