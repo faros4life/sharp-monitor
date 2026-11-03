@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 3, 5:46 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 82.
+Updated Tue Nov 3, 5:50 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 82.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -16,7 +16,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 3 5:10PM | NHL | Chicago vs Florida | moneyline: Florida | kalshi | $45k | -233 |  |  | +0.0c |  | pending |
 | Nov 3 5:06PM | NBA | Utah vs New Orleans | moneyline: New Orleans | kalshi | $52k | -233 |  |  | +0.0c |  | pending |
 | Nov 3 5:06PM | NBA | Toronto vs Denver | moneyline: Denver | kalshi | $61k | -194 |  |  | +0.0c |  | pending |
-| Nov 3 5:06PM | NBA | Portland vs Phoenix | moneyline: Portland | kalshi | $26k | -144 |  |  | -2.0c |  | pending |
+| Nov 3 5:06PM | NBA | Portland vs Phoenix | moneyline: Portland | kalshi | $26k | -144 |  |  | -1.0c |  | pending |
 | Nov 3 5:06PM | NBA | Milwaukee vs Boston | moneyline: Boston | kalshi | $38k | -456 |  |  | +0.0c |  | pending |
 | Nov 3 5:06PM | NBA | Los Angeles L vs Sacramento | moneyline: Los Angeles L | kalshi | $83k | -488 |  |  | +0.0c |  | pending |
 | Nov 3 5:06PM | NBA | Indiana vs Memphis | moneyline: Memphis | kalshi | $83k | -270 |  |  | +1.0c |  | pending |
