@@ -176,6 +176,9 @@ def listed_start(label, commence):
 # Oct 30 (Peter): the phone only gets bot orders/fills. Sharp alert pushes go quiet (still logged, sent_to_phone, graded,
 # and they still wake the executor); PUSH_SHARP_ALERTS=on brings them back. Recaps are unchanged.
 PUSH_SHARP = (os.environ.get("PUSH_SHARP_ALERTS") or "off").strip().lower() == "on"
+# Nov 3 (Peter): the phone recap is now REAL PLAYS only (plays_recap.py in the bets-board job). The alert-based daily and
+# weekly recaps still run and mark alerts reported, but only push when PUSH_ALERT_RECAP=on.
+PUSH_ALERT_RECAP = (os.environ.get("PUSH_ALERT_RECAP") or "off").strip().lower() == "on"
 
 
 def notify(title, body, red=False, yellow=False, extra_tags=(), headline=None):
@@ -1134,7 +1137,10 @@ def recap(st, n):
         footer += (f"\nTrue closing value (sent, all sports, n={len(vals)}, as of {n.astimezone(ET).strftime('%b %-d %-I:%M %p ET')}): "
                    f"beat close {beat}/{len(vals)}, avg {sum(vals) / len(vals):+.1f}%, median {mid:+.1f}% per play")
     footer += f"\n(Line check = {OLD_CLV}.)"
-    notify_chunks("Sharp recap", header, lines, footer)
+    if PUSH_ALERT_RECAP:
+        notify_chunks("Sharp recap", header, lines, footer)
+    else:
+        print("alert recap: phone push off (real plays recap replaces it)")
 
 
 def weekly_recap(st, n):
@@ -1181,7 +1187,10 @@ def weekly_recap(st, n):
         if len(nt) >= 10:
             lines.append("NBA by grade: " + ", ".join(f"{gr} {rl([x for x in nt if x[0]['grade'] == gr])}"
                                                       for gr in "ABCD" if any(x[0]["grade"] == gr for x in nt)))
-    notify("Sharp weekly recap", "\n".join(lines))
+    if PUSH_ALERT_RECAP:
+        notify("Sharp weekly recap", "\n".join(lines))
+    else:
+        print("alert weekly recap: phone push off (real plays recap replaces it)")
 
 
 def floor_line(kind, why):
