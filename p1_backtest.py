@@ -179,7 +179,8 @@ def main():
 
     def recs(xs, basis):
         return [{"day": r["day"], "clv": r[f"clv_{basis}"], "lg": r["lg"], "mk": r["mk"], "sc": r["sc"], "lead": r["lead"],
-                 "late": r["late"], "edge": r["edge"], "am": r["am"], "pin_limit": r["limit"]} for r in xs if r[f"clv_{basis}"] is not None]
+                 "late": r["late"], "edge": r["edge"], "am": r["am"], "pin_limit": r["limit"], "units": r[f"u_{basis}"]}
+                for r in xs if r[f"clv_{basis}"] is not None]
     PA = [r for r in R if r["p1"] and r["sent"]]
     L += [""] + bkt.section("PHASE-1 alerts at the +5-min exchange price (CLV % TRUE close)", recs(PA, "g"), "%")
     L += [""] + bkt.section("PHASE-1 alerts at the alert price (CLV % TRUE close)", recs(PA, "a"), "%")
