@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 3, 5:26 PM ET. This run: 0 new, 1 not confirmed, 0 pending. Open alerts: 82.
+Updated Tue Nov 3, 5:30 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 82.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -46,7 +46,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 3 9:41AM | NHL | Carolina vs Nashville: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $64k | -117 | ✅ novig,polymarket,prophetx |  | +0.0c | yes | pending |
 | Nov 3 9:30AM | NCAAF | Ohio vs Akron: Spread | spread: NOT Ohio wins by over 14.5 points | kalshi | $223k | -108 | ✅ novig |  | +5.0c | yes | pending |
 | Nov 3 9:20AM | NHL | Utah vs Toronto: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $58k | +117 |  |  | +0.0c | yes | pending |
-| Nov 3 9:20AM | NHL | Carolina vs Nashville: Spread | spread: NOT Carolina wins by over 1.5 goals | kalshi | $48k | -138 | ✅ novig,polymarket |  | +0.0c |  | pending |
+| Nov 3 9:20AM | NHL | Carolina vs Nashville: Spread | spread: NOT Carolina wins by over 1.5 goals | kalshi | $48k | -138 | ✅ novig,polymarket |  | -1.0c |  | pending |
 | Nov 3 9:20AM | NHL | Anaheim vs Vancouver: Spread | spread: NOT Anaheim wins by over 1.5 goals | kalshi | $83k | -170 | ✅ polymarket |  | -3.0c |  | pending |
 | Nov 3 9:10AM | NHL | St. Louis vs New York R: Spread | spread: NOT New York R wins by over 1.5 goals | kalshi | $46k | -233 |  |  | -1.0c | yes | pending |
 | Nov 3 8:20AM | NHL | Golden Knights vs. Penguins | moneyline: Penguins | polymarket | $35k | -100 |  |  | +3.0c |  | pending |
@@ -82,7 +82,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 2 9:40PM | NBA | Raptors vs. Clippers | total: Over (219.5) | polymarket | $33k | -104 | ✅ novig | ❌ | +0.0c |  | W |
 | Nov 2 9:40PM | NBA | Raptors vs. Clippers | spread: Raptors (-5.5) | polymarket | $33k | -108 | ✅ novig | ✅ | +1.0c |  | W |
 | Nov 2 9:40PM | NBA | Toronto vs Los Angeles C: Total Points | total: Over 219.5 points | kalshi | $36k | -108 | ✅ novig | ❌ | -1.0c | yes | W |
-| Nov 2 9:20PM | NHL | Minnesota vs Philadelphia: Spread | spread: NOT Minnesota wins by over 1.5 goals | kalshi | $46k | -163 |  |  | -2.0c |  | pending |
+| Nov 2 9:20PM | NHL | Minnesota vs Philadelphia: Spread | spread: NOT Minnesota wins by over 1.5 goals | kalshi | $46k | -163 |  |  | -1.0c |  | pending |
 | Nov 2 9:20PM | NHL | Winnipeg vs Montreal | moneyline: Winnipeg | kalshi | $41k | +170 |  |  | +4.0c |  | pending |
 | Nov 2 9:20PM | NHL | St. Louis vs New York R | moneyline: New York R | kalshi | $94k | -104 |  |  | +3.0c |  | pending |
 | Nov 2 9:20PM | NHL | Dallas vs Washington | moneyline: Washington | kalshi | $34k | -100 |  |  | +0.0c |  | pending |
