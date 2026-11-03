@@ -59,6 +59,17 @@ def v2(r):
     return "LEAN" if r.get("market") in ("moneyline", "total") else "OFF"
 
 
+def v2s(r):
+    """v2-STRICT (Muse, Nov 3 ~10:15 AM): PLAY = NBA totals only (no ML-favorite leg); same OFF rules as v2."""
+    t = v2(r)
+    if t == "PLAY" and not (r.get("league") == "NBA" and r.get("market") == "total"):
+        return "LEAN"
+    return t
+
+
+REG_UTC = "2026-11-03T15:15:00Z"   # v2 / v2-STRICT registered by Muse ~10:15 AM ET Nov 3: judged on calls alerted after this
+
+
 def st(xs):
     if not xs:
         return "n0"
@@ -93,9 +104,17 @@ def main():
     L.append("CURRENT RULES (kickoff call):")
     for t in ("PLAY", "LEAN", "DEAD"):
         line(t, [r for r in R if r["_tag"] == t])
-    L.append("PROPOSED v2 (pending Muse registration; forward clock starts at registration):")
+    L.append("v2 (registered by Muse ~10:15 AM ET Nov 3) - IN-SAMPLE backtest:")
     for t in ("PLAY", "LEAN", "OFF"):
         line(f"v2 {t}", [r for r in R if v2(r) == t])
+    line("v2-STRICT PLAY (NBA totals only)", [r for r in R if v2s(r) == "PLAY"])
+    FW = [r for r in R if str(r.get("alerted_utc") or "") >= REG_UTC]
+    L.append(f"FORWARD ONLY (alerted after registration {REG_UTC}; the judged numbers; bar n >= 100, CLV > 0, beat >= 53%, both halves):")
+    for name, f in (("current PLAY", lambda r: r["_tag"] == "PLAY"), ("current LEAN", lambda r: r["_tag"] == "LEAN"),
+                    ("v2 PLAY", lambda r: v2(r) == "PLAY"), ("v2 LEAN", lambda r: v2(r) == "LEAN"),
+                    ("v2-STRICT PLAY", lambda r: v2s(r) == "PLAY")):
+        L.append(f"   {name}: {st([r for r in FW if f(r)])}")
+    L.append("Everything above FORWARD ONLY is in-sample (the rules were picked from it): descriptive, not judged.")
     today = (datetime.now(timezone.utc).astimezone(ET)).strftime("%Y-%m-%d")
     yday = sorted(d for d in days if d < today)[-1:] if days else []
     if yday:
@@ -141,7 +160,8 @@ def main():
         return {"day": r["_day"], "clv": r["clv_cents"], "lg": r.get("league"), "mk": mk, "sc": sc, "lead": r.get("lead_min"),
                 "am": r.get("price_american")}
     for title, xs in (("Board: current LEAN + PLAY", [r for r in R if r["_tag"] in ("PLAY", "LEAN")]),
-                      ("Board: v2 PLAY (proposed)", [r for r in R if v2(r) == "PLAY"]),
+                      ("Board: v2 PLAY (in-sample)", [r for r in R if v2(r) == "PLAY"]),
+                      ("Board: v2 PLAY forward only", [r for r in R if v2(r) == "PLAY" and str(r.get("alerted_utc") or "") >= REG_UTC]),
                       ("Board: every call", R)):
         L += [""] + bkt.section(f"{title} (CLV cents vs board close)", [rec(r) for r in xs], "c")
     ex.send("Bets BOARD LAB (paper: every board field, current vs v2 rules)", "\n".join(L))
