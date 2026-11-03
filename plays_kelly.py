@@ -118,6 +118,16 @@ def main():
             if ys:
                 L.append(f"  Time before start {lab}: " + sims(ys, P))
         L.append("")
+    # Peter 19:02: "do it by weeks as we changed strategy - how are we doing" (weeks run Monday to Sunday, ET)
+    L.append("===== BY WEEK (Mon-Sun ET) =====")
+    wk = lambda x: (datetime.fromisoformat(x["day"]) - timedelta(days=datetime.fromisoformat(x["day"]).weekday())).strftime("%b %d")
+    for w in sorted({wk(x) for x in P}, key=lambda v: datetime.strptime(v + " 2026", "%b %d %Y")):
+        xs = [x for x in P if wk(x) == w]
+        L.append(f"  Week of {w}: " + sims(xs, P))
+        for k, lab in (("lane", "lane"), ("book", "book")):
+            for v in sorted({x[k] for x in xs if x.get(k)}):
+                L.append(f"      {lab} {v}: " + sims([x for x in xs if x.get(k) == v], P))
+    L.append("")
     L += bkt.section("actual plays, CLV % vs Pinnacle close (all windows)", [dict(x, edge=None) for x in P], "%")
     ex.send("Bets ACTUAL PLAYS - FLAT vs KELLY BY BUCKET (HYPOTHESIS)", "\n".join(L))
     print(f"plays kelly: graded plays {len(P)}")   # counts only
