@@ -215,7 +215,7 @@ def main():
              (("dog" if (r.get("line") or 0) > 0 else "fav") if mk == "spreads" else
               ("dog" if (r.get("price_american") or 0) > 0 else "fav"))
         return {"day": r["_day"], "clv": r["clv_cents"], "lg": r.get("league"), "mk": mk, "sc": sc, "lead": r.get("lead_min"),
-                "am": r.get("price_american")}
+                "am": r.get("price_american"), "units": r.get("units_flat") if r.get("result") in ("W", "L", "P") else None}
     for title, xs in (("Board: current LEAN + PLAY", [r for r in R if r["_tag"] in ("PLAY", "LEAN")]),
                       ("Board: v2 PLAY (in-sample)", [r for r in R if v2(r) == "PLAY"]),
                       ("Board: v2 PLAY forward only", [r for r in R if v2(r) == "PLAY" and str(r.get("alerted_utc") or "") >= REG_UTC]),
