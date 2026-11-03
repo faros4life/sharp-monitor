@@ -1,6 +1,582 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-03T02:20:10Z",
+   "base_depth": 33801,
+   "best_price": 0.615,
+   "best_price_american": -160,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.62,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-03",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -4027,
+     "new_this_side": 45839,
+     "other_side": 10411,
+     "other_side_all_levels": 17685,
+     "ratio": 8.6,
+     "this_side": 89994,
+     "this_side_all_levels": 100368
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "PHI +1.5 (1.5)",
+     "price": 0.615,
+     "this_side": 3026
+    }
+   },
+   "fade_price": 0.39,
+   "first_seen_utc": "2026-11-03T02:10:12Z",
+   "game": "Minnesota vs Philadelphia: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLSPREAD-26NOV03MINPHI-MIN2\"}",
+   "lead_min": 1300,
+   "league": "NHL",
+   "line": 1.5,
+   "market": "spread",
+   "new_money": 45839,
+   "paper_only": false,
+   "price": 0.62,
+   "price_american": -163,
+   "price_rule": "fails_cap",
+   "price_when_first_seen": 0.62,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 1.5,
+     "price": -160
+    },
+    "betonlineag": {
+     "point": 1.5,
+     "price": -175
+    },
+    "betopenly": {
+     "point": 1.5,
+     "price": -148
+    },
+    "betrivers": {
+     "point": 1.5,
+     "price": -190
+    },
+    "betus": {
+     "point": 1.5,
+     "price": -175
+    },
+    "bovada": {
+     "point": 1.5,
+     "price": -177
+    },
+    "draftkings": {
+     "point": 1.5,
+     "price": -175
+    },
+    "fanatics": {
+     "point": 1.5,
+     "price": -180
+    },
+    "fanduel": {
+     "point": 1.5,
+     "price": -170
+    },
+    "kalshi": {
+     "point": 1.5,
+     "price": -163
+    },
+    "lowvig": {
+     "point": 1.5,
+     "price": -175
+    },
+    "novig": {
+     "point": 3.5,
+     "price": -1329
+    },
+    "polymarket": {
+     "point": 1.5,
+     "price": -170
+    },
+    "prophetx": {
+     "point": 1.5,
+     "price": -174
+    },
+    "williamhill_us": {
+     "point": 1.5,
+     "price": -170
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNHLSPREAD-26NOV03MINPHI-MIN2"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Philadelphia",
+   "side_label": "NOT Minnesota wins by over 1.5 goals",
+   "start_source": "odds",
+   "start_utc": "2026-11-04T00:00:00Z",
+   "teams": [
+    "Minnesota",
+    "Philadelphia"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-03T02:20:10Z",
+   "base_depth": 51462,
+   "best_price": 0.37,
+   "best_price_american": 170,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.37,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-03",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 9,
+     "new_this_side": 40695,
+     "other_side": 60917,
+     "other_side_all_levels": 90450,
+     "ratio": 1.1,
+     "this_side": 68453,
+     "this_side_all_levels": 95676
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "WPG (0)",
+     "price": 0.37,
+     "this_side": 3207
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "Winnipeg Jets",
+     "price": 0.3704,
+     "this_side": 570
+    }
+   },
+   "fade_price": 0.63,
+   "first_seen_utc": "2026-11-03T02:10:12Z",
+   "game": "Winnipeg vs Montreal",
+   "key": "kalshi|KXNHLGAME-26NOV03WPGMTL|ml|0",
+   "lead_min": 1300,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 40695,
+   "paper_only": false,
+   "price": 0.37,
+   "price_american": 170,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.37,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": 154
+    },
+    "betonlineag": {
+     "point": null,
+     "price": 159
+    },
+    "betopenly": {
+     "point": null,
+     "price": 168
+    },
+    "betrivers": {
+     "point": null,
+     "price": 155
+    },
+    "betus": {
+     "point": null,
+     "price": 155
+    },
+    "bovada": {
+     "point": null,
+     "price": 160
+    },
+    "draftkings": {
+     "point": null,
+     "price": 150
+    },
+    "fanatics": {
+     "point": null,
+     "price": 155
+    },
+    "fanduel": {
+     "point": null,
+     "price": 155
+    },
+    "kalshi": {
+     "point": null,
+     "price": 170
+    },
+    "lowvig": {
+     "point": null,
+     "price": 159
+    },
+    "novig": {
+     "point": null,
+     "price": 170
+    },
+    "polymarket": {
+     "point": null,
+     "price": 170
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": 170
+    },
+    "prophetx": {
+     "point": null,
+     "price": 170
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": 151
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNHLGAME-26NOV03WPGMTL-WPG"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Winnipeg",
+   "side_label": "Winnipeg",
+   "start_source": "odds",
+   "start_utc": "2026-11-04T00:00:00Z",
+   "teams": [
+    "Winnipeg",
+    "Montreal"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-03T02:20:10Z",
+   "base_depth": 81378,
+   "best_price": 0.52,
+   "best_price_american": -108,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-03",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -1073,
+     "new_this_side": 94209,
+     "other_side": 17230,
+     "other_side_all_levels": 60803,
+     "ratio": 9.1,
+     "this_side": 157399,
+     "this_side_all_levels": 175696
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "NYR (0)",
+     "price": 0.52,
+     "this_side": 9420
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "New York Rangers",
+     "price": 0.5215,
+     "this_side": 778
+    }
+   },
+   "fade_price": 0.49,
+   "first_seen_utc": "2026-11-03T02:10:12Z",
+   "game": "St. Louis vs New York R",
+   "key": "kalshi|KXNHLGAME-26NOV03STLNYR|ml|1",
+   "lead_min": 1300,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 94209,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -125
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -120
+    },
+    "betopenly": {
+     "point": null,
+     "price": -114
+    },
+    "betrivers": {
+     "point": null,
+     "price": -125
+    },
+    "betus": {
+     "point": null,
+     "price": -120
+    },
+    "bovada": {
+     "point": null,
+     "price": -122
+    },
+    "draftkings": {
+     "point": null,
+     "price": -125
+    },
+    "fanatics": {
+     "point": null,
+     "price": -125
+    },
+    "fanduel": {
+     "point": null,
+     "price": -122
+    },
+    "kalshi": {
+     "point": null,
+     "price": -108
+    },
+    "lowvig": {
+     "point": null,
+     "price": -120
+    },
+    "novig": {
+     "point": null,
+     "price": -108
+    },
+    "polymarket": {
+     "point": null,
+     "price": -108
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -108
+    },
+    "prophetx": {
+     "point": null,
+     "price": -109
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -125
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNHLGAME-26NOV03STLNYR-NYR"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "New York R",
+   "side_label": "New York R",
+   "start_source": "odds",
+   "start_utc": "2026-11-04T00:00:00Z",
+   "teams": [
+    "St. Louis",
+    "New York R"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-03T02:20:10Z",
+   "base_depth": 47957,
+   "best_price": 0.51,
+   "best_price_american": -104,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-03",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 47,
+     "new_this_side": 34140,
+     "other_side": 26516,
+     "other_side_all_levels": 57205,
+     "ratio": 2.0,
+     "this_side": 52675,
+     "this_side_all_levels": 78667
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "WSH (0)",
+     "price": 0.51,
+     "this_side": 3936
+    },
+    "polymarket": {
+     "heavier_side": false,
+     "label": "Capitals",
+     "price": 0.51,
+     "this_side": 12082
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "Washington Capitals",
+     "price": 0.5098,
+     "this_side": 734
+    }
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-11-03T02:10:12Z",
+   "game": "Dallas vs Washington",
+   "key": "kalshi|KXNHLGAME-26NOV03DALWSH|ml|1",
+   "lead_min": 1300,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 34140,
+   "paper_only": false,
+   "price": 0.5,
+   "price_american": -100,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.5,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -105
+    },
+    "betopenly": {
+     "point": null,
+     "price": 100
+    },
+    "betrivers": {
+     "point": null,
+     "price": -110
+    },
+    "betus": {
+     "point": null,
+     "price": -110
+    },
+    "bovada": {
+     "point": null,
+     "price": -108
+    },
+    "draftkings": {
+     "point": null,
+     "price": -112
+    },
+    "fanatics": {
+     "point": null,
+     "price": -110
+    },
+    "fanduel": {
+     "point": null,
+     "price": -110
+    },
+    "kalshi": {
+     "point": null,
+     "price": 100
+    },
+    "lowvig": {
+     "point": null,
+     "price": -105
+    },
+    "novig": {
+     "point": null,
+     "price": -104
+    },
+    "polymarket": {
+     "point": null,
+     "price": -104
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -104
+    },
+    "prophetx": {
+     "point": null,
+     "price": -104
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNHLGAME-26NOV03DALWSH-WSH"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Washington",
+   "side_label": "Washington",
+   "start_source": "odds",
+   "start_utc": "2026-11-04T00:00:00Z",
+   "teams": [
+    "Dallas",
+    "Washington"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-03T02:10:12Z",
    "base_depth": 126956,
    "best_price": 0.39,
@@ -3833,8 +4409,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 2.0,
+   "close_price": 0.54,
+   "clv_cents": 4.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -3975,8 +4551,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.63,
-   "clv_cents": 1.0,
+   "close_price": 0.65,
+   "clv_cents": 3.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -4133,8 +4709,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 3.0,
+   "close_price": 0.55,
+   "clv_cents": 6.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -4236,7 +4812,8 @@
      "price": -110
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-03T02:20:10Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNBASPREAD-26NOV02TORLAC-TOR5"
@@ -7686,8 +8263,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": 0.0,
+   "close_price": 0.52,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -8391,8 +8968,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.44,
-   "clv_cents": 0.0,
+   "close_price": 0.45,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
@@ -12947,8 +13524,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.63,
-   "clv_cents": -1.0,
+   "close_price": 0.66,
+   "clv_cents": 2.0,
    "confirmed_after_min": 10,
    "date": "2026-11-02",
    "depth_by_book": {
