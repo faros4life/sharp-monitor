@@ -17,6 +17,7 @@ JOBS = {   # workflow file: minimum minutes between runs (matches each workflow'
     "plimit-logger.yml": 1440,
     "exchange-lag.yml": 1440,
     "hcache-fill.yml": 1440,   # Peter 15:24: keep downloading history so models run from disk
+    "liquidity-monitor.yml": 5,   # Peter Nov 3 10:27 "yes": exchange scan every ~5 min (cron-job.org still starts :00/:10)
 }
 BUSY = {"queued", "in_progress", "waiting", "pending", "requested"}
 
