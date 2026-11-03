@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 3, 8:30 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 6.
+Updated Tue Nov 3, 8:40 AM ET. This run: 0 new, 1 not confirmed, 1 pending. Open alerts: 6.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -13,7 +13,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 3 5:20AM | TENNIS | Zverev vs Musetti | moneyline: Zverev | kalshi | $35k | -233 |  |  | +0.0c |  | pending |
 | Nov 3 3:30AM | TENNIS | Zolotareva vs Stefanini | moneyline: Stefanini | kalshi | $42k | -317 |  |  | +0.0c | yes | pending |
 | Nov 3 3:20AM | TENNIS | Ruud vs Jodar | moneyline: Jodar | kalshi | $39k | -178 | ✅ novig |  | +0.0c |  | pending |
-| Nov 2 11:40PM | NCAAB | North Florida vs California Baptist | moneyline: California Baptist | kalshi | $39k | -400 |  |  | +1.0c |  | pending |
+| Nov 2 11:40PM | NCAAB | North Florida vs California Baptist | moneyline: California Baptist | kalshi | $39k | -400 |  |  | +2.0c |  | pending |
 | Nov 2 11:00PM | NCAAB | Purdue Fort Wayne vs Duquesne | moneyline: Duquesne | kalshi | $45k | -400 |  |  | +2.0c | yes | pending |
 | Nov 2 7:50PM | NCAAB | UMass vs Troy | moneyline: UMass | kalshi | $37k | -400 |  |  | +2.0c |  | W |
 | Nov 2 6:40PM | NCAAB | Buffalo vs Marshall | moneyline: Marshall | kalshi | $41k | -144 |  |  | +0.0c |  | W |
