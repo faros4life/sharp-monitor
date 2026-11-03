@@ -32,5 +32,6 @@ jobs:
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
           EMAIL_TO: ${{ secrets.EMAIL_TO }}
           ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}   # Nov 3: read other jobs' fixture lists when OddsPapi /fixtures is rate-limited
           BT_FROM: ${{ inputs.bt_from }}
         run: python -u slowhr_backtest.py
