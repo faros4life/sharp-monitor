@@ -735,6 +735,27 @@ h2{font-size:17px;margin:14px 0 6px}.card{padding:10px 12px;border-radius:14px;m
 .cal .c{border-radius:8px;padding:4px 0;min-height:40px;border:1px solid transparent;cursor:pointer}.cal .c .n{font-size:13px}.cal .c .p{font:600 11px Oswald,sans-serif}
 .cal .c.pos{background:var(--winbg)}.cal .c.neg{background:var(--lossbg)}.cal .c.sel{border-color:#60a5fa}.cal .c.today .n{font-weight:700;text-decoration:underline}
 .cal .c .p.pos{color:var(--win)}.cal .c .p.neg{color:var(--loss)}.cal .c .p.open{color:#60a5fa}
+/* Nov 3 (Peter): look more like OddsJam - solid calendar tiles, Settled/Live/Upcoming tabs, bet rows with result badge */
+.calh .mo{font:600 22px Oswald,sans-serif;margin:0 6px}.calh .mp{font:600 20px Oswald,sans-serif}.calh .mp small{color:var(--muted);font:500 13px Inter,sans-serif;margin-left:4px}
+.cal{gap:5px}.cal .dn{font-size:12px;font-weight:600;padding:4px 0}
+.cal .c{min-height:50px;border-radius:9px;padding:5px 0;border:1px solid transparent;background:none}
+.cal .c .n{font:500 14px Inter,sans-serif}.cal .c .p{font:700 13px Inter,sans-serif;letter-spacing:-.02em}
+.cal .c.pos{background:#3f6b2a;border-color:#5f9a3e}.cal .c.neg{background:#7a1c1c;border-color:#a83232}
+.cal .c.pos .n,.cal .c.neg .n,.cal .c.pos .p,.cal .c.neg .p{color:#fff}.cal .c.open{border-color:#60a5fa}
+.cal .c.sel{outline:2px solid #60a5fa;outline-offset:1px}.cal .c.empty{background:none;border-color:transparent}
+.tabs{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-bottom:10px}
+.tabs button{font:500 15px Inter,sans-serif;padding:9px 0;background:none;border:0;color:var(--muted)}.tabs button.on{background:#222a27;color:var(--fg);font-weight:600}
+.tk{display:grid;grid-template-columns:repeat(3,1fr);text-align:center;margin:4px 0 10px}.tk .v{font:600 26px Oswald,sans-serif}.tk .k{color:var(--muted);font-size:13px}
+.bl{border-top:1px solid var(--line);padding:12px 2px}.bl:first-of-type{border-top:0}
+.bl .t1{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}.bl .nm{font:600 16px Inter,sans-serif}.bl .ty{color:var(--muted);font-size:14px;margin-top:1px}
+.bl .pf{text-align:right;white-space:nowrap}.bl .pf .k{color:var(--muted);font-size:13px}.bl .pf .v{font:700 19px Inter,sans-serif}
+.bl .mk{font:600 15px Inter,sans-serif;margin-top:10px}.bl .gm{color:#cfd6d2;font-size:13px}
+.bl .t3{display:flex;justify-content:space-between;align-items:center;margin-top:6px}.bl .sc{font:500 15px Inter,sans-serif}
+.badge{display:inline-block;margin-left:8px;padding:1px 7px;border-radius:5px;font:700 13px Inter,sans-serif;letter-spacing:.03em;border:1px solid}
+.badge.win{color:#86efac;background:#14301f;border-color:#2f6b45}.badge.loss{color:#fca5a5;background:#3a1a1a;border-color:#7a2a2a}.badge.push{color:var(--muted);border-color:var(--line)}
+.bl .od{font:500 14px Inter,sans-serif;color:#cfd6d2;display:flex;align-items:center;gap:6px}.bk1{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:6px;background:#eef1ef;color:#0f1311;font:700 12px Inter,sans-serif}
+.bar{position:relative;height:8px;border-radius:4px;background:#2a312e;margin:12px 34px 4px 0}.bar i{position:absolute;left:0;top:0;bottom:0;border-radius:4px}.bar i.win{background:var(--win)}.bar i.loss{background:#e5483b}
+.bar b{position:absolute;top:50%;transform:translate(-50%,-50%);font:600 12px Inter,sans-serif;background:var(--card);border:2px solid currentColor;border-radius:10px;padding:1px 6px}.bar u{position:absolute;top:-3px;bottom:-3px;width:2px;background:#cfd6d2}
 </style></head><body><div class="wrap" id="app"><div class="lock"><h1>Bet Tracker</h1><p class="sub">Private. Enter your passphrase.</p>
 <form id="f"><input id="p" type="password" autocomplete="current-password" placeholder="Passphrase"><button>Unlock</button></form><div class="err" id="e"></div></div></div>
 <script>
@@ -762,8 +783,18 @@ return `<div class="card ${kind==='settled'?cls:''}"><div class="hdr"><span>${es
 ${pill}${notes?`<div class="note">${esc(notes)}</div>`:''}</div>`;}
 let DATA=null;function render(d){DATA=d;const t=d.tiles;const tile=(l,v,r)=>`<div class="tile"><div class="l">${l}</div><div class="n" style="color:${v>0?'var(--win)':v<0?'var(--loss)':'var(--fg)'}">${sg(v)}</div>${r?`<div class="r">${r}</div>`:''}</div>`;
 const sec=(h,a,k)=>a.length?`<h2>${h}</h2>`+a.map(b=>card(b,k)).join(''):'';
-const rowOf=b=>{const c=b.result==='W'?'win':b.result==='L'?'loss':'';const sc=b.teams&&b.teams.length===2?`${b.teams[0].name} ${b.teams[0].score}, ${b.teams[1].name} ${b.teams[1].score}`:(b.game||'');
-return `<div class="row ${c}"><div><div class="l1">${esc(b.bet)} <span>${pr(b.price)} · ${$(b.stake)}</span></div><div class="l2">${esc(b.book)} · ${esc(src(b))} · ${esc(sc)}${b.site===false?' · graded':''}</div></div><div class="amt">${sg(b.profit)}</div></div>`;};
+const mkOf=b=>{const t=String(b.bet||'');return /^(over|under|not over|not under)/i.test(t)?'Total Points':(/\\bml\\b|moneyline|to win/i.test(t)?'Moneyline':(/[+-]\\d/.test(t)?'Point Spread':''));};
+const k1=v=>{const a=Math.abs(v);return (v<0?'-$':'$')+(a>=1000?(a/1000).toFixed(1).replace(/\\.0$/,'')+'k':Math.round(a).toLocaleString());};
+const rowOf=b=>{const r=b.result,c=r==='W'?'win':r==='L'?'loss':'push';const tm=b.teams&&b.teams.length===2?b.teams:null;
+const gm=tm?`${tm[0].name} vs ${tm[1].name}`:(b.game||'');const sc=tm?`${tm[0].score}-${tm[1].score}`:'';
+let bar='';const mk=mkOf(b);const lm=String(b.bet||'').match(/(\\d+(?:\\.\\d+)?)/);
+if(mk==='Total Points'&&tm&&lm){const tot=tm[0].score+tm[1].score,ln=parseFloat(lm[1]),mx=Math.max(tot,ln)*1.15||1;
+bar=`<div class="bar" style="color:${r==='W'?'var(--win)':'#e5483b'}"><i class="${c}" style="width:${Math.min(100,tot/mx*100)}%"></i><u style="left:${ln/mx*100}%"></u><b style="left:${Math.min(100,tot/mx*100)}%">${tot}</b></div>`;}
+return `<div class="bl"><div class="t1"><div><div class="nm">${esc(b.bet)}</div><div class="ty">${esc(src(b))}</div></div>
+<div class="pf"><div class="k">Profit</div><div class="v" style="color:${r==='W'?'var(--win)':r==='L'?'var(--loss)':'var(--fg)'}">${$(Math.abs(b.profit||0))}</div></div></div>
+${mk?`<div class="mk">${mk}</div>`:''}<div class="gm">${esc(gm)}</div>
+<div class="t3"><div class="sc">${esc(sc)}<span class="badge ${c}">${r==='W'?'WON':r==='L'?'LOST':'PUSH'}</span></div>
+<div class="od">${pr(b.price)}<span class="bk1" title="${esc(b.book)}">${esc(String(b.book||'?').charAt(0))}</span></div></div>${bar}</div>`;};
 const dkey=b=>{const x=new Date(b.game_start||b.settled||0);return isNaN(x)?'Earlier':x.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric',timeZone:'America/New_York'});};
 const settledHTML=a=>{if(!a.length)return '';const g={};a.forEach(b=>{(g[dkey(b)]=g[dkey(b)]||[]).push(b)});
 return '<h2>Settled</h2>'+Object.entries(g).map(([k,l])=>{const tot=l.reduce((s,b)=>s+(b.profit||0),0);const w=l.filter(b=>b.result==='W').length,lo=l.filter(b=>b.result==='L').length;
@@ -787,18 +818,24 @@ return `<div class="box"><div class="seg">${segb(-1,'Yesterday')}${segb(0,'Today
 <div><div class="v">${$(st.risk)}</div><div class="k">At risk</div></div><div><div class="v">${$(st.max)}</div><div class="k">Max profit</div></div></div></div>`;};
 const calBox=()=>{const [Y,M]=window.CALM.split('-').map(Number);const first=new Date(Y,M-1,1),days=new Date(Y,M,0).getDate();
 let mp=0;Object.entries(byDay).forEach(([k,l])=>{if(k.startsWith(window.CALM))mp+=l.reduce((a,b)=>a+(b.result?(b.profit||0):0),0)});
-let cells='';for(let i=0;i<first.getDay();i++)cells+='<div></div>';
+let cells='';for(let i=0;i<first.getDay();i++)cells+='<div class="c empty"></div>';
 for(let dd=1;dd<=days;dd++){const k=`${window.CALM}-${String(dd).padStart(2,'0')}`;const st=dayStats(k);let p='',cl='';
-if(st.s.length){cl=st.pnl>0?'pos':st.pnl<0?'neg':'';p=`<div class="p ${cl}">${fmt0(st.pnl)}</div>`;}else if(st.o.length){p=`<div class="p open">${fmt0(st.risk)}</div>`;}
+if(st.s.length){cl=st.pnl>0?'pos':st.pnl<0?'neg':'';p=`<div class="p">${k1(Math.abs(st.pnl))}</div>`;}else if(st.o.length){cl='open';p=`<div class="p open">${k1(st.risk)}</div>`;}
 cells+=`<div class="c ${cl} ${k===window.SEL?'sel':''} ${k===todayK?'today':''}" onclick="SEL='${k}';render(DATA)"><div class="n">${dd}</div>${p}</div>`;}
 const mv=n=>{const x=new Date(Y,M-1+n,1);return `${x.getFullYear()}-${String(x.getMonth()+1).padStart(2,'0')}`;};
 return `<div class="box"><div class="calh"><div><button onclick="CALM='${mv(-1)}';render(DATA)">‹</button><span class="mo">${first.toLocaleDateString('en-US',{month:'short',year:'numeric'})}</span><button onclick="CALM='${mv(1)}';render(DATA)">›</button></div>
-<div class="mp" style="color:${mp>0?'var(--win)':mp<0?'var(--loss)':'var(--fg)'}">${sg(Math.round(mp*100)/100)}</div></div>
+<div class="mp" style="color:${mp>0?'var(--win)':mp<0?'var(--loss)':'var(--fg)'}">${sg(Math.round(mp*100)/100)}<small>Profit</small></div></div>
 <div class="cal">${['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].map(x=>`<div class="dn">${x}</div>`).join('')}${cells}</div></div>`;};
 const dayList=()=>{const st=dayStats(window.SEL);const live=st.o.filter(b=>b.g_state==='in'),up=st.o.filter(b=>b.g_state!=='in');
-return (live.length?'<h2>Live</h2>'+live.map(b=>card(b,'live')).join(''):'')+(up.length?'<h2>Coming up</h2>'+up.map(b=>card(b,'up')).join(''):'')+
-(st.s.length?'<h2>Settled</h2>'+st.s.map(rowOf).join(''):'')+
-(!st.l.length?'<p class="sub">No bets this day.</p>':'');};
+if(!st.l.length)return '<p class="sub">No bets this day.</p>';
+let T=window.TAB;if(!T||(T==='live'&&!live.length&&(st.s.length||up.length))||(T==='settled'&&!st.s.length)||(T==='up'&&!up.length))T=live.length?'live':(st.s.length?'settled':'up');window.TAB=T;
+const tb=(k,n,txt)=>`<button class="${T===k?'on':''}" onclick="TAB='${k}';render(DATA)">${n} ${txt}</button>`;
+const list=T==='settled'?st.s:(T==='live'?live:up);const risk=list.filter(b=>!b.result).reduce((a,b)=>a+(b.stake||0),0);
+const pnl=T==='settled'?st.pnl:list.reduce((a,b)=>a+((b.to_pay||0)-(b.stake||0)),0);
+return `<div class="box"><div class="tabs">${tb('settled',st.s.length,'Settled')}${tb('live',live.length,'Live')}${tb('up',up.length,'Upcoming')}</div>
+<div class="tk"><div><div class="v">${list.length}</div><div class="k">Bets</div></div><div><div class="v">${$(risk)}</div><div class="k">At Risk</div></div>
+<div><div class="v" style="color:${T!=='settled'?'var(--fg)':pnl>0?'var(--win)':pnl<0?'var(--loss)':'var(--fg)'}">${sg(Math.round(pnl*100)/100)}</div><div class="k">${T==='settled'?'Profit':'Max Profit'}</div></div></div>
+${T==='settled'?list.map(rowOf).join(''):'</div>'+list.map(b=>card(b,T==='live'?'live':'up')).join('')+'<div>'}</div>`;};
 document.getElementById('app').innerHTML=`<div class="top1"><h1>Bet Tracker</h1><button class="rf" id="rf" onclick="refresh()">↻ Refresh</button></div><p class="sub">Updated ${esc(d.updated)} · settled profit from the books' own numbers</p>
 <div class="tiles">${tile('Today',t.today,wl(d.settled.filter(b=>dkey(b)===today)))}${tile('This week',t.week,wl(d.settled))}${tile('This month',t.month,'')}</div>
 ${dayBox()}${calBox()}${dayList()}${sec('Other open bets',d.unmatched||[],'up')}
