@@ -755,7 +755,7 @@ let st;if(kind==='settled')st=`<span class="s ${cls}">Final · ${res==='W'?'Won'
 else if(kind==='live')st=`<span class="s live"><i class="dot"></i>Live · ${esc(b.g_detail||'')}</span>`;else st=`<span class="s">${esc(b.when||'')}</span>`;
 const banner=kind==='settled'?`<div class="banner ${res==='W'?'win':res==='L'?'loss':'push'}"><span><i class="c"></i>${res==='W'?'Won':res==='L'?'Lost':'Push'}</span><span>${sg(b.profit)}</span></div>`:'';
 const s=b.status||'';const good=/COVERING|HOLDING$|WINNING/.test(s),bad=/BEHIND|NOT HOLDING|LOSING/.test(s);
-const pill=kind==='settled'?`<span class="pill ${cls||'neu'}">${res==='W'?'Won':res==='L'?'Lost':'Push'} ${sg(b.profit)}</span>`:(s?`<span class="pill ${good?'win':bad?'loss':'neu'}">${esc(s)}</span>`:'');
+const pill=kind==='settled'?`<span class="pill ${cls||'neu'}">${res==='W'?'Won':res==='L'?'Lost':'Push'} ${sg(b.profit)}</span>`:(s?`<span class="pill ${bad?'loss':good?'win':'neu'}">${esc(s)}</span>`:'');
 const notes=[b.site===false?'graded from the final score':'',/est\\./.test(b.source||'')?'stake estimated (log it to make it exact)':''].filter(Boolean).join(' · ');
 return `<div class="card ${kind==='settled'?cls:''}"><div class="hdr"><span>${esc(b.league||'')}${b.league?' · ':''}${esc(src(b))}</span>${st}</div>${banner}${teams(b)}<hr>
 <div class="betl"><span class="b">${esc(b.bet)}</span><span class="p">${pr(b.price)}</span><span class="m">${$(b.stake)} → ${b.to_pay?$(b.to_pay):'—'}</span><span class="bk">${esc(b.book)}</span></div>
