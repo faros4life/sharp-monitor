@@ -970,7 +970,7 @@ def main():
                 if dd.date() < (d - timedelta(days=1)).date():
                     extra.add(dd.replace(hour=12))
     for b in bets.values():   # Nov 3: an ungraded bet placed before yesterday needs the schedule from its placed day on
-        if b.get("result"):
+        if b.get("result") and not (b.get("site") is False and not b.get("game_start")):
             continue
         t0 = tparse(b.get("placed")) or tparse(b.get("first_seen"))
         if t0 and t0 >= week0 - timedelta(days=7):
@@ -983,15 +983,17 @@ def main():
     for b in bets.values():
         # undo an earlier bad pin: a game more than 2 days from when the bet settled is not its game
         gs, ss = tparse(b.get("game_start")), tparse(b.get("settled"))
-        if gs and ss and abs((gs - ss).total_seconds()) > 48 * 3600 and b.get("book") != "Novig":
-            for f in ("game_start", "teams", "teams_final", "g_state", "g_detail"):
+        if gs and ss and abs((gs - ss).total_seconds()) > 48 * 3600 and b.get("book") != "Novig" and b.get("site") is not False:
+            for f in ("game_start", "teams", "teams_final", "g_state", "g_detail"):   # (Nov 3: never a bet we graded from
+                b.pop(f, None)                                                       # its own ESPN final)
+        if not b.get("game_start") and b.get("teams"):   # Nov 3: a scoreboard left over from a dropped pin is another game's
+            for f in ("teams", "teams_final", "g_state", "g_detail"):
                 b.pop(f, None)
         if not b.get("result") or b.get("teams_final"):
             continue
-        near = tparse(b.get("game_start")) or tparse(b.get("settled"))
-        if not near:
-            continue
-        g = match_game(b, games, near)
+        near = tparse(b.get("game_start")) or (None if b.get("site") is False and (b.get("placed") or b.get("first_seen"))
+                                                 else tparse(b.get("settled")))
+        g = match_game(b, games, near) if near or b.get("site") is False else None   # Nov 3: graded by us -> its placed-date game
         if g:
             attach(b, g)
     # bets that left the open list without a site settlement (Novig, manual): grade from the final score
@@ -1010,7 +1012,8 @@ def main():
                 b["result"] = outc
                 b["profit"] = round((b["to_pay"] - b["stake"]) if outc == "W" and b.get("to_pay") and b.get("stake") else
                                     (-(b.get("stake") or 0) if outc == "L" else 0.0), 2)
-                b["settled"], b["site"], b["open"] = iso(now), False, False
+                gst = tparse(g.get("start"))   # Nov 3: settle time = about the game's end, not this run
+                b["settled"], b["site"], b["open"] = iso(min(now, gst + timedelta(hours=4)) if gst else now), False, False
         elif k not in open_ids and b["book"] in ("ProphetX", "Kalshi", "Polymarket US") and not b.get("result"):
             b["open"] = False   # left the book's open list; its site settlement will arrive in a later read
 
