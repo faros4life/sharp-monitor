@@ -1,6 +1,153 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-03T16:15:36Z",
+   "base_depth": 90418,
+   "best_price": 0.39,
+   "best_price_american": 156,
+   "best_price_book": "novig",
+   "bid_improved": true,
+   "bid_improved_at_pending": true,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.39,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-03",
+   "depth_by_book": {
+    "novig": {
+     "heavier_side": true,
+     "label": "WPG (0)",
+     "price": 0.39,
+     "this_side": 36237
+    },
+    "polymarket": {
+     "new_other_side": -5315,
+     "new_this_side": 73706,
+     "other_side": 58623,
+     "other_side_all_levels": 71050,
+     "ratio": 2.6,
+     "this_side": 155344,
+     "this_side_all_levels": 157580
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "Winnipeg Jets",
+     "price": 0.3906,
+     "this_side": 10388
+    }
+   },
+   "fade_price": 0.62,
+   "first_seen_utc": "2026-11-03T16:10:10Z",
+   "game": "Jets vs. Canadiens",
+   "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"5406831\"}",
+   "lead_min": 464,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 73706,
+   "paper_only": false,
+   "price": 0.39,
+   "price_american": 156,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.38,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": 150
+    },
+    "betonlineag": {
+     "point": null,
+     "price": 147
+    },
+    "betopenly": {
+     "point": null,
+     "price": 176
+    },
+    "betrivers": {
+     "point": null,
+     "price": 155
+    },
+    "betus": {
+     "point": null,
+     "price": 148
+    },
+    "bovada": {
+     "point": null,
+     "price": 153
+    },
+    "draftkings": {
+     "point": null,
+     "price": 154
+    },
+    "fanatics": {
+     "point": null,
+     "price": 150
+    },
+    "fanduel": {
+     "point": null,
+     "price": 150
+    },
+    "kalshi": {
+     "point": null,
+     "price": 156
+    },
+    "lowvig": {
+     "point": null,
+     "price": 147
+    },
+    "mybookieag": {
+     "point": null,
+     "price": 154
+    },
+    "novig": {
+     "point": null,
+     "price": 156
+    },
+    "polymarket": {
+     "point": null,
+     "price": 156
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": 156
+    },
+    "prophetx": {
+     "point": null,
+     "price": 156
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 0,
+    "pm_market_id": "5406831"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Jets",
+   "side_label": "Jets",
+   "start_source": "polymarket",
+   "start_utc": "2026-11-04T00:00:00Z",
+   "teams": [
+    "Jets",
+    "Canadiens"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-03T15:30:17Z",
    "base_depth": 282024,
    "best_price": 0.51,
@@ -2686,7 +2833,8 @@
      "price": 103
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-03T16:15:36Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNHLTOTAL-26NOV03VGKPIT-7"
@@ -2879,8 +3027,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": 0.0,
+   "close_price": 0.49,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-03",
    "depth_by_book": {
@@ -3409,8 +3557,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.68,
-   "clv_cents": 1.0,
+   "close_price": 0.69,
+   "clv_cents": 2.0,
    "confirmed_after_min": 10,
    "date": "2026-11-03",
    "depth_by_book": {
@@ -3560,8 +3708,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.63,
-   "clv_cents": -1.0,
+   "close_price": 0.62,
+   "clv_cents": -2.0,
    "confirmed_after_min": 10,
    "date": "2026-11-03",
    "depth_by_book": {
@@ -4713,8 +4861,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": -2.0,
+   "close_price": 0.49,
+   "clv_cents": -3.0,
    "confirmed_after_min": 10,
    "date": "2026-11-04",
    "depth_by_book": {
@@ -6595,8 +6743,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.38,
-   "clv_cents": 1.0,
+   "close_price": 0.39,
+   "clv_cents": 2.0,
    "confirmed_after_min": 10,
    "date": "2026-11-03",
    "depth_by_book": {
@@ -13324,8 +13472,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.49,
-   "clv_cents": 0.0,
+   "close_price": 0.48,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-03",
    "depth_by_book": {
