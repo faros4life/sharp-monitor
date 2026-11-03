@@ -177,6 +177,7 @@ def main():
          "Registered SLOW-HR test, unchanged (L: line moved >= 0.5, HR on old line; P: price moved >= 8c, HR within 2c; persist 3 min + confirm +5).",
          "Grade: Pinnacle no-vig close at Hard Rock's line. DEVIATIONS: Pinnacle close as consensus proxy; FEED-LAG not wired.", "",
          f"Games read: {games} (no Hard Rock or Pinnacle history: {no_hr}; errors: {errs}); cache hits {hc.STATS['hit']}, downloads {hc.STATS['miss']}",
+         f"Fixtures listed: {len(st.get('fixtures') or {})} | fixture-call errors: {'; '.join((st.get('errors') or [])[-3:]) or 'none'} | calls {cl.CALLS[-6:]}",
          f"ALL (not LATE): {stats(J)}  | bar: {'MEETS' if len(J) >= 100 and ok(F) and ok(C) else 'does not meet'}",
          f"  FIT  {stats(F)}", f"  CHECK {stats(C)}",
          f"  LATE (final 30 min, own split): {stats([x for x in S if x['late']])}"]
