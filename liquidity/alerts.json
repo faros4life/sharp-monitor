@@ -1,6 +1,161 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-03T05:10:10Z",
+   "base_depth": 126834,
+   "best_price": 0.45,
+   "best_price_american": 122,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.45,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-03",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -6436,
+     "new_this_side": 33403,
+     "other_side": 66596,
+     "other_side_all_levels": 134805,
+     "ratio": 1.6,
+     "this_side": 109400,
+     "this_side_all_levels": 158131
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "TOR (0)",
+     "price": 0.45,
+     "this_side": 10442
+    },
+    "polymarket": {
+     "heavier_side": false,
+     "label": "Maple Leafs",
+     "price": 0.46,
+     "this_side": 15549
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Toronto Maple Leafs",
+     "price": 0.4587,
+     "this_side": 3005
+    }
+   },
+   "fade_price": 0.56,
+   "first_seen_utc": "2026-11-03T05:00:16Z",
+   "game": "Utah vs Toronto",
+   "key": "kalshi|KXNHLGAME-26NOV03UTATOR|ml|1",
+   "lead_min": 1130,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 33403,
+   "paper_only": false,
+   "price": 0.45,
+   "price_american": 122,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.45,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": 110
+    },
+    "betonlineag": {
+     "point": null,
+     "price": 115
+    },
+    "betopenly": {
+     "point": null,
+     "price": 122
+    },
+    "betrivers": {
+     "point": null,
+     "price": 108
+    },
+    "betus": {
+     "point": null,
+     "price": 110
+    },
+    "bovada": {
+     "point": null,
+     "price": 112
+    },
+    "draftkings": {
+     "point": null,
+     "price": 110
+    },
+    "fanatics": {
+     "point": null,
+     "price": 110
+    },
+    "fanduel": {
+     "point": null,
+     "price": 112
+    },
+    "kalshi": {
+     "point": null,
+     "price": 122
+    },
+    "lowvig": {
+     "point": null,
+     "price": 115
+    },
+    "mybookieag": {
+     "point": null,
+     "price": 107
+    },
+    "novig": {
+     "point": null,
+     "price": 122
+    },
+    "polymarket": {
+     "point": null,
+     "price": 117
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": 117
+    },
+    "prophetx": {
+     "point": null,
+     "price": 118
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": 110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNHLGAME-26NOV03UTATOR-TOR"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Toronto",
+   "side_label": "Toronto",
+   "start_source": "odds",
+   "start_utc": "2026-11-04T00:00:00Z",
+   "teams": [
+    "Utah",
+    "Toronto"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-03T04:50:10Z",
    "base_depth": 92772,
    "best_price": 0.46,
@@ -59,6 +214,8 @@
    "new_money": 58193,
    "paper_only": false,
    "price": 0.46,
+   "price_after_15m": 0.46,
+   "price_after_15m_book": "novig",
    "price_american": 117,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.46,
@@ -144,6 +301,7 @@
    "side_label": "Columbus",
    "start_source": "odds",
    "start_utc": "2026-11-04T00:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Colorado",
     "Columbus"
@@ -434,7 +592,8 @@
      "price": -190
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-03T05:10:10Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNHLGAME-26NOV03CARNSH-CAR"
@@ -476,8 +635,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 0.0,
+   "close_price": 0.53,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-03",
    "depth_by_book": {
