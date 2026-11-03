@@ -39,7 +39,7 @@ def rows():
                     or x.get("result") not in ("W", "L", "P")):
                 continue
             y = dict(x)
-            y["_tag"], y["_day"] = r["tag"], d
+            y["_tag"], y["_day"] = r.get("v1", r["tag"]), d   # v1 call (the board shows v2 from Nov 3)
             R.append(y)
     return R
 
@@ -129,7 +129,7 @@ def main():
         a, b = H1(xs), H2(xs)
         L.append(f"{'**' if holds(a, b) else '  '}{name}: {st(xs)} | H1 {st(a)} | H2 {st(b)}")
 
-    L.append("CURRENT RULES (kickoff call):")
+    L.append("v1 RULES (the board until Nov 3; kickoff call):")
     for t in ("PLAY", "LEAN", "DEAD"):
         line(t, [r for r in R if r["_tag"] == t])
     L.append("v2 (registered by Muse ~10:15 AM ET Nov 3) - IN-SAMPLE backtest:")
