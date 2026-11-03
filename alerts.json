@@ -134,7 +134,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+0.5 pts",
+   "clv": "+1 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline",
@@ -341,7 +341,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+0 pts",
+   "clv": "-1 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline",
@@ -375,7 +375,7 @@
   },
   {
    "alert_utc": "2026-11-03T00:10:15Z",
-   "beat_close": false,
+   "beat_close": true,
    "beat_true_close": null,
    "bet": "Toronto Raptors -4.5 (+100)",
    "book": "Novig",
@@ -383,7 +383,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+0 pts",
+   "clv": "+1 pts",
    "confirm": "yes",
    "confirmed_by": [
     "Matchbook"
@@ -25704,6 +25704,31 @@
   }
  ],
  "all_alerts": [
+  {
+   "alert_text": "Toronto Raptors -4.5 (-124) at ProphetX [-127 after ProphetX fee]",
+   "bet": "Toronto Raptors -4.5 (-124)",
+   "bet_result": null,
+   "book": "ProphetX",
+   "confirmed_by": [
+    "BetOnline",
+    "Matchbook"
+   ],
+   "edge_pct": -4.3,
+   "final": null,
+   "game": "Toronto Raptors @ Los Angeles Clippers",
+   "grade": "C",
+   "late": true,
+   "minutes_before_start": 35,
+   "price": -124,
+   "price_after_fee": -127,
+   "pushed_to_phone": false,
+   "repeat": true,
+   "score": 54,
+   "sent_et": "2026-11-02 21:25",
+   "sport": "NBA",
+   "start_utc": "2026-11-03T03:00:00Z",
+   "why": "Pinnacle moved -4.5 -> -5.5; bet only at -5 or better (confirmed by BetOnline, Matchbook)"
+  },
   {
    "alert_text": "Over 141.5 (-125) at Hard Rock (also: ProphetX, Novig)",
    "bet": "Over 141.5 (-125)",
