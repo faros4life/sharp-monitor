@@ -52,6 +52,51 @@ def eff(book, dec):
     return dec
 
 
+def size_at(xm, mkmap, lg, x, when):
+    """Nov 3 (Peter yes: size check): OddsPapi's 'limit' on the exchange tick for this side at that time, or None."""
+    sid = cl.SPORT.get(lg)
+    typ, name = x.get("type"), str(x.get("side"))
+    if sid is None:
+        return None
+    for mid, (s, t, hcap, outs) in mkmap.items():
+        if s != sid or t != typ or mid not in xm:
+            continue
+        if typ != "moneyline" and (x.get("line") is None or abs(hcap - x["line"]) > 1e-9):
+            continue
+        if typ == "moneyline" and mid != cl.ML_MARKET.get(sid):
+            continue
+        oid = {v: k for k, v in outs.items()}.get(name)
+        m = (xm.get(mid) or {}).get("outcomes", {}).get(oid) or {}
+        lt = cl.last_tick((m.get("players") or {}).get("0"), when)
+        if lt:
+            return tb.num(lt[1].get("limit"))
+    return None
+
+
+def size_fill(st, mkmap):
+    """Fill x['size'] on stored sightings from the shared history cache only (never downloads)."""
+    by = {}
+    for x in st["sightings"]:
+        if "size_checked" not in x:
+            by.setdefault(x.get("fixture"), []).append(x)
+    n = 0
+    for fid, xs in by.items():
+        books = sorted({x["book"] for x in xs})
+        if not fid or not all(os.path.exists(hc._path(fid, b)) for b in books):
+            continue
+        h = hc.get_hist(fid, books, cl.tp(xs[0].get("start")))
+        if isinstance(h, dict) and h.get("_error"):
+            continue
+        for x in xs:
+            try:
+                x["size"] = size_at(cl.book_markets(h, x["book"]), mkmap, x["league"], x, cl.tp(x["t_confirm"]))
+            except Exception:
+                x["size"] = None
+            x["size_checked"] = True
+            n += 1
+    return n
+
+
 def main():
     now = datetime.now(timezone.utc)
     if not cl.KEY or not tb.PASS:
@@ -115,6 +160,8 @@ def main():
                 st["sightings"].append(x)
                 new += 1
         st["done"][fid] = cl.iso(now)
+    sized = size_fill(st, mkmap)
+    print(f"exchange lag: size checked on {sized} sightings (cache only)")   # counts only
     report(st, now, len(todo[:MAX_GAMES]), len(todo), new)
     os.makedirs("exlag", exist_ok=True)
     json.dump(tb.enc(st), open(STATE, "w"))
@@ -161,6 +208,16 @@ def report(st, now, read, waiting, new):
         lt = [x for x in S if x["book"] == bk and x["late"]]
         if lt:
             L.append(f"   LATE (final 30 min, own split): {stats(lt)}")
+    L += ["", "SIZE AT THE STALE QUOTE (Nov 3; OddsPapi 'limit' on the exchange's own tick at the +5-min confirm; not LATE):"]
+    for bk in EXCH:
+        xs = [x for x in S if x["book"] == bk and not x["late"] and x.get("size_checked")]
+        for lo, hi, lab in ((None, None, "no size shown"), (0, 100, "under 100"), (100, 500, "100-499"), (500, 10 ** 12, "500+")):
+            v = [x for x in xs if (x.get("size") is None if lo is None else (x.get("size") is not None and lo <= x["size"] < hi))]
+            if v:
+                u = [fin.units(x, eff(bk, x["hr_price"])) for x in v if x.get("hr_price")]
+                u = [z for z in u if z is not None]
+                L.append(f"   {NAME[bk]} size {lab}: {stats(v)}" + (f" | units {sum(u):+.2f}u ({len(u)} graded)" if u else ""))
+
     def _b(x):
         mk, ln_ = x["type"], x.get("line")
         if mk == "spreads" and ln_ is not None and x.get("side") == "2":
