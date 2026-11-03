@@ -1658,6 +1658,102 @@ def stack_cap_report(r):
         return None
 
 
+# Nov 3 (Peter 4:38 PM, rulebook v5 price check, option b): at the moment of a live order, re-read Pinnacle. Fresher than
+# PIN_MAX_AGE_S -> the order goes, with Pinnacle's age, no-vig fair and our gap to it logged. Stale or missing -> the
+# live order is skipped (logged). Never an edge gate: the gap is recorded only.
+PIN_MAX_AGE_S = int(os.environ.get("PIN_MAX_AGE_S", "") or "300")
+PIN_SPORT = {"NFL": "americanfootball_nfl", "NCAAF": "americanfootball_ncaaf", "NBA": "basketball_nba",
+             "NCAAB": "basketball_ncaab", "NHL": "icehockey_nhl", "MLB": "baseball_mlb"}
+_PIN, _PIN_AT = {}, {}
+
+
+def _pin_events(sk):
+    at = _PIN_AT.get(sk)
+    if sk not in _PIN or (at and (datetime.now(timezone.utc) - at).total_seconds() > 240):   # re-read on long runs
+        key = os.environ.get("ODDS_API_KEY", "")
+        _PIN[sk] = None
+        if key:
+            try:
+                url = (f"https://api.the-odds-api.com/v4/sports/{sk}/odds?bookmakers=pinnacle&markets=spreads,totals"
+                       f"&oddsFormat=american&dateFormat=iso&apiKey={key}")
+                with urllib.request.urlopen(url, timeout=20) as resp:
+                    _PIN[sk] = json.loads(resp.read().decode())
+                _PIN_AT[sk] = datetime.now(timezone.utc)
+            except Exception:
+                _PIN[sk] = None
+    return _PIN[sk]
+
+
+def pin_check(p, lc, now):
+    """{'ok', 'age_s', 'changed_s', 'pin_line', 'fair_am', 'gap_pct', 'why'} for the live candidate lc (our book, line, price
+    after fee). age_s = how old our Pinnacle read is (the guard); changed_s = time since Pinnacle last moved this market
+    (logged only: a steady price is still a current price)."""
+    out = {"ok": False, "age_s": None, "changed_s": None, "pin_line": None, "fair_am": None, "gap_pct": None, "why": ""}
+    try:
+        lg = (p.get("sport") or "").upper()
+        sk = PIN_SPORT.get(lg)
+        if not sk or not os.environ.get("ODDS_API_KEY"):
+            out["why"] = "Pinnacle not readable here (no key or sport)"
+            return out
+        evs = _pin_events(sk)
+        if evs is None:
+            out["why"] = "Pinnacle read failed"
+            return out
+        teams = lm.split_teams(p.get("game") or "")
+        mt, sd, _, _ = bc.parse_bet(p.get("bet") or "", teams, lg) if teams else (None, None, None, None)
+        if mt not in ("total", "spread") or sd is None:
+            out["why"] = "bet not mapped to a Pinnacle market"
+            return out
+        tt = [lm.toks(x, lg) for x in teams]
+        ev = next((e for e in evs if all(any(t & lm.toks(n, lg) for n in (e.get("home_team"), e.get("away_team"))) for t in tt)), None)
+        if not ev:
+            out["why"] = "game not on Pinnacle"
+            return out
+        bk = next((b for b in ev.get("bookmakers") or [] if b.get("key") == "pinnacle"), None)
+        mk = next((m for m in (bk or {}).get("markets") or [] if m.get("key") == ("totals" if mt == "total" else "spreads")), None)
+        if not mk or len(mk.get("outcomes") or []) != 2:
+            out["why"] = "Pinnacle has no price for this market"
+            return out
+        lu = iso_t(mk.get("last_update") or (bk or {}).get("last_update"))
+        out["changed_s"] = round((now - lu).total_seconds()) if lu else None
+        out["age_s"] = round((now - _PIN_AT[sk]).total_seconds()) if _PIN_AT.get(sk) else None
+        oc = mk["outcomes"]
+        if mt == "total":
+            mine = next((o for o in oc if o.get("name", "").upper() == sd), None)
+        else:
+            mine = next((o for o in oc if lm.toks(o.get("name"), lg) & tt[sd]), None)
+        if mine:
+            q = [american_to_prob(o["price"]) for o in oc]
+            fair = american_to_prob(mine["price"]) / sum(q)
+            out["pin_line"], out["fair_am"] = mine.get("point"), lm.american(fair)
+            am = lc.get("am")
+            if am is not None:
+                dec = 1 + (am / 100 if am > 0 else 100 / abs(am))
+                out["gap_pct"] = round((fair * dec - 1) * 100, 2)
+        if out["age_s"] is None or out["age_s"] > PIN_MAX_AGE_S:
+            out["why"] = (f"Pinnacle read {out['age_s']}s old (max {PIN_MAX_AGE_S}s)" if out["age_s"] is not None
+                          else "Pinnacle read has no time")
+            return out
+        out["ok"] = True
+        return out
+    except Exception as ex:
+        out["why"] = f"Pinnacle check error ({str(ex)[:40]})"
+        return out
+
+
+def pin_note(pc):
+    if not pc:
+        return ""
+    bits = [f"read {pc['age_s']}s ago" if pc.get("age_s") is not None else "read time ?"]
+    if pc.get("changed_s") is not None:
+        bits.append(f"last moved {pc['changed_s'] // 60} min ago")
+    if pc.get("fair_am") is not None:
+        bits.append(f"fair {pc['fair_am']:+d}" + (f" at {pc['pin_line']:g}" if pc.get("pin_line") is not None else ""))
+    if pc.get("gap_pct") is not None:
+        bits.append(f"our price vs fair {pc['gap_pct']:+.1f}%")
+    return "  [Pinnacle " + ", ".join(bits) + "]"
+
+
 def ledger_row(r, run_start):
     p, e = r["play"], r.get("entry") or {}
     at = iso_t(e.get("alert_utc") or p.get("alert_utc"))
@@ -1673,6 +1769,7 @@ def ledger_row(r, run_start):
             "fill_book": r.get("book"), "fill_price_after_fee": r.get("american"), "fill_screen": r.get("shown"),
             "fill_line": r.get("take_line"), "live": bool(lv.get("go")), "live_nfl": bool(lv.get("nfl")), "live_why_not": lv.get("why"),
             "live_px_price_after_fee": lv.get("am"), "live_px_line": lv.get("line"), "live_book": lv.get("book"),
+            "pin_check": lv.get("pin"),   # Nov 3: Pinnacle age / fair / our gap at the order (gap logged, never a gate)
             # Oct 27 gettable-price counter (Muse): phase-1 qualifying (coded view, ignoring Muse AGREE), ProphetX at the
             # alert price or better at check (equivalent price, same rule as live), best ProphetX price seen at the alert line
             "p1_qualifies": (agree_rules.phase1(e, True)[0] if e else None),
@@ -1871,6 +1968,12 @@ def main():
                          f"{p.get('sport')} {p.get('game')}\nCouldn't check your open bets on {', '.join(blind)}. "
                          "Retrying every 10 min while the price is there. If you know you don't hold the other side, "
                          "you can place it by hand.")
+            if r["verdict"] == "WOULD PLACE" and (r.get("live") or {}).get("go"):   # Nov 3: price check at the order
+                pc = pin_check(p, r["live"], datetime.now(timezone.utc))
+                r["live"]["pin"] = pc
+                if not pc["ok"]:
+                    r["live"] = {"go": False, "lane": r["live"].get("lane"), "pin": pc,
+                                 "why": [f"price check: {pc['why']} - live order skipped (Peter Nov 3)"]}
             if r["verdict"] == "WOULD PLACE" and (r.get("live") or {}).get("go"):
                 r["live"]["order"] = live_order(r)
                 r["live"]["more"] = live_remainder(r)   # Oct 28: $200 total per play across venues
@@ -1905,6 +2008,7 @@ def main():
              + order_note(r['live'].get('order'))
              + "".join(f" + {BOOK_NAME.get(o.get('book'), o.get('book'))}" + order_note(o) for o in (r['live'].get('more') or []))
              + ("  [partial: not all of it at this price]" if r["live"]["partial"] else "")
+             + pin_note(r["live"].get("pin"))
              + ("  [NFL: tagged for the dry run; in/out decided at the pre-live review]" if r["live"].get("nfl") else "")
              for r in golive] or ["  - none this run"]
     near = [r for r in results if r.get("live") and not r["live"]["go"] and len(r["live"].get("why") or []) == 1]
