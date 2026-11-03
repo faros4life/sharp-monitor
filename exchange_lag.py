@@ -223,6 +223,37 @@ def report(st, now, read, waiting, new):
                 u = [z for z in u if z is not None]
                 L.append(f"   {NAME[bk]} size {lab}: {stats(v)}" + (f" | units {sum(u):+.2f}u ({len(u)} graded)" if u else ""))
 
+    # Nov 3 (Peter "get everything done now"; Muse): the stale edge sits largely on ALT lines at extreme prices. Split every
+    # exchange by price band (main = screen price -135..+125; long = above +125; heavy = below -135) x size shown, with units.
+    L += ["", "PRICE BAND x SIZE AT THE STALE QUOTE (not LATE; screen American price at the stale quote; size = OddsPapi limit at the confirm):"]
+
+    def _pb(x):
+        am = x.get("hr_am")
+        if am is None:
+            return None
+        return "main (-135..+125)" if -135 <= am <= 125 else ("long (+126 or more)" if am > 125 else "heavy (-136 or less)")
+    for bk in EXCH:
+        xs = [x for x in S if x["book"] == bk and not x["late"]]
+        for band in ("main (-135..+125)", "long (+126 or more)", "heavy (-136 or less)"):
+            v = [x for x in xs if _pb(x) == band]
+            if not v:
+                continue
+            for lab, w in (("any size", v), ("size 100-499", [x for x in v if x.get("size") is not None and 100 <= x["size"] < 500]),
+                           ("size 500+", [x for x in v if x.get("size") is not None and x["size"] >= 500])):
+                if not w:
+                    continue
+                u = [fin.units(x, eff(bk, x["hr_price"])) for x in w if x.get("hr_price")]
+                u = [z for z in u if z is not None]
+                fit, chk = [x for x in w if x["day"] <= mid], [x for x in w if x["day"] > mid]
+                L.append(f"   {NAME[bk]} {band} {lab}: {stats(w)}" + (f" | units {sum(u):+.2f}u ({len(u)} graded)" if u else "")
+                         + f" || FIT {stats(fit)} || CHECK {stats(chk)}")
+            for typ in ("spreads", "moneyline", "totals"):
+                w = [x for x in v if x["type"] == typ]
+                if w:
+                    u = [fin.units(x, eff(bk, x["hr_price"])) for x in w if x.get("hr_price")]
+                    u = [z for z in u if z is not None]
+                    L.append(f"      {typ}: {stats(w)}" + (f" | units {sum(u):+.2f}u" if u else ""))
+
     def _b(x):
         mk, ln_ = x["type"], x.get("line")
         if mk == "spreads" and ln_ is not None and x.get("side") == "2":
