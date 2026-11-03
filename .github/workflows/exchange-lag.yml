@@ -8,7 +8,7 @@ on:
     - cron: "37 9 * * *"
   workflow_dispatch:
     inputs:
-      max_games: {required: false, type: string, default: "300"}
+      max_games: {required: false, type: string, default: "1000"}
 
 permissions:
   contents: write
@@ -27,8 +27,8 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install -q cryptography
-      - name: Restore shared OddsPapi history cache (private Actions cache, never committed)
-        uses: actions/cache@v4
+      - name: Restore shared OddsPapi history cache (private Actions cache, never committed; Nov 3 restore-only - a saved copy per run filled the 10 GB limit)
+        uses: actions/cache/restore@v4
         with:
           path: hcache
           key: hcache-${{ github.run_id }}
