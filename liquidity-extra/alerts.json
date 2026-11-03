@@ -1,6 +1,80 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-03T19:30:36Z",
+   "base_depth": 20503,
+   "best_price": 0.81,
+   "best_price_american": -426,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.81,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-04",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 23560,
+     "new_this_side": 99522,
+     "other_side": 33079,
+     "other_side_all_levels": 36703,
+     "ratio": 3.7,
+     "this_side": 122132,
+     "this_side_all_levels": 131640
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "A. De Minaur (0)",
+     "price": 0.81,
+     "this_side": 2504
+    }
+   },
+   "fade_price": 0.19,
+   "first_seen_utc": "2026-11-03T19:20:19Z",
+   "game": "Etcheverry vs de Minaur",
+   "key": "kalshi|KXATPMATCH-26NOV04ETCDE|ml|1",
+   "lead_min": 1029,
+   "league": "TENNIS",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 99522,
+   "paper_only": true,
+   "price": 0.81,
+   "price_american": -426,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.81,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXATPMATCH-26NOV04ETCDE-DE"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "de Minaur",
+   "side_label": "de Minaur",
+   "start_source": "novig",
+   "start_utc": "2026-11-04T12:40:00Z",
+   "teams": [
+    "Etcheverry",
+    "de Minaur"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-03T17:40:24Z",
    "base_depth": 218226,
    "best_price": 0.715,
@@ -38,6 +112,7 @@
     }
    },
    "fade_price": 0.28,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-03T17:30:26Z",
    "game": "Shelton vs Norrie",
    "key": "kalshi|KXATPMATCH-26NOV03SHENOR|ml|0",
@@ -60,13 +135,14 @@
     "kalshi_side": "yes",
     "market_ticker": "KXATPMATCH-26NOV03SHENOR-SHE"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-03T19:30:36Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Shelton",
@@ -79,7 +155,7 @@
     "Norrie"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.4
   },
   {
    "alerted_utc": "2026-11-03T10:20:16Z",
@@ -248,6 +324,7 @@
     "polymarket",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.63,
    "clv_cents": -1.0,
    "confirmed_after_min": 10,

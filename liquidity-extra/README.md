@@ -1,16 +1,17 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 3, 2:20 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 6.
+Updated Tue Nov 3, 2:30 PM ET. This run: 1 new, 0 not confirmed, 2 pending. Open alerts: 6.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 115-73 (-9.34u flat) | rule met: 32-29
+**Record:** 116-73 (-8.94u flat) | rule met: 33-29
 
-**Fade (paper, betting against the print):** 48-80 (+6.12u flat, after fees)
+**Fade (paper, betting against the print):** 48-81 (+5.12u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 3 12:40PM | TENNIS | Shelton vs Norrie | moneyline: Shelton | kalshi | $42k | -257 | ✅ novig |  | +0.0c | yes | pending |
+| Nov 3 2:30PM | TENNIS | Etcheverry vs de Minaur | moneyline: de Minaur | kalshi | $100k | -426 |  |  | +0.0c |  | pending |
+| Nov 3 12:40PM | TENNIS | Shelton vs Norrie | moneyline: Shelton | kalshi | $42k | -257 | ✅ novig |  | +0.0c | yes | W |
 | Nov 3 5:20AM | TENNIS | Zverev vs Musetti | moneyline: Zverev | kalshi | $35k | -233 |  |  | +0.0c |  | pending |
 | Nov 3 3:30AM | TENNIS | Zolotareva vs Stefanini | moneyline: Stefanini | kalshi | $42k | -317 |  |  | +0.0c | yes | W |
 | Nov 3 3:20AM | TENNIS | Ruud vs Jodar | moneyline: Jodar | kalshi | $39k | -178 | ✅ novig |  | -1.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 23 1:40PM | MLB | Tampa Bay Rays vs. Milwaukee Brewers | spread: Tampa Bay Rays (+1.5) | polymarket | $29k | -144 | ✅ kalshi,novig |  | -1.0c | yes | W |
 | Oct 23 1:30PM | MLB | Tampa Bay Rays vs. Milwaukee Brewers | total: Over (6.5) | polymarket | $48k | -104 | ✅ kalshi,novig,prophetx |  | +0.0c |  | L |
 | Oct 23 1:15PM | TENNIS | Cobolli vs Nakashima | moneyline: Nakashima | kalshi | $157k | -213 |  |  | -67.0c | yes | L |
-| Oct 23 12:50PM | TENNIS | Bublik vs Khachanov | moneyline: Bublik | kalshi | $210k | -108 |  |  |  | yes | W |
