@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 3, 5:16 PM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 81.
+Updated Tue Nov 3, 5:20 PM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 82.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,17 +10,18 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 3 5:20PM | NHL | St. Louis vs New York R: Total Goals | total: Over 5.5 goals scored | kalshi | $28k | -127 | ✅ novig |  | +0.0c |  | pending |
 | Nov 3 5:16PM | NHL | Avalanche vs. Blue Jackets | moneyline: Avalanche | polymarket | $37k | -113 | ✅ kalshi,novig,prophetx |  | +0.0c |  | pending |
 | Nov 3 5:10PM | NHL | San Jose vs Los Angeles | moneyline: Los Angeles | kalshi | $31k | -138 |  |  | +0.0c |  | pending |
 | Nov 3 5:10PM | NHL | Chicago vs Florida | moneyline: Florida | kalshi | $45k | -233 |  |  | +0.0c |  | pending |
 | Nov 3 5:06PM | NBA | Utah vs New Orleans | moneyline: New Orleans | kalshi | $52k | -233 |  |  | +0.0c |  | pending |
 | Nov 3 5:06PM | NBA | Toronto vs Denver | moneyline: Denver | kalshi | $61k | -194 |  |  | +0.0c |  | pending |
-| Nov 3 5:06PM | NBA | Portland vs Phoenix | moneyline: Portland | kalshi | $26k | -144 |  |  | +0.0c |  | pending |
+| Nov 3 5:06PM | NBA | Portland vs Phoenix | moneyline: Portland | kalshi | $26k | -144 |  |  | -1.0c |  | pending |
 | Nov 3 5:06PM | NBA | Milwaukee vs Boston | moneyline: Boston | kalshi | $38k | -456 |  |  | +0.0c |  | pending |
 | Nov 3 5:06PM | NBA | Los Angeles L vs Sacramento | moneyline: Los Angeles L | kalshi | $83k | -488 |  |  | +0.0c |  | pending |
 | Nov 3 5:06PM | NBA | Indiana vs Memphis | moneyline: Memphis | kalshi | $83k | -270 |  |  | +0.0c |  | pending |
 | Nov 3 4:06PM | NHL | Vegas vs Pittsburgh: Spread | spread: NOT Pittsburgh wins by over 1.5 goals | kalshi | $66k | -223 | ✅ novig,polymarket |  | +0.0c |  | pending |
-| Nov 3 2:56PM | NCAAF | Buffalo vs Miami (OH): Spread | spread: Miami (OH) wins by over 6.5 points | kalshi | $435k | +104 |  |  | +3.0c |  | pending |
+| Nov 3 2:56PM | NCAAF | Buffalo vs Miami (OH): Spread | spread: Miami (OH) wins by over 6.5 points | kalshi | $435k | +104 |  |  | +4.0c |  | pending |
 | Nov 3 2:45PM | NHL | Detroit vs Tampa Bay: Spread | spread: Tampa Bay wins by over 1.5 goals | kalshi | $76k | -100 | ✅ novig,polymarket |  | +1.0c | yes | pending |
 | Nov 3 2:30PM | NHL | Vegas Golden Knights @ Pittsburgh Penguins | spread: PIT -1.5 (-1.5) | novig | $43k | +223 | ✅ kalshi,polymarket |  | +1.5c | yes | pending |
 | Nov 3 1:50PM | NHL | Vegas vs Pittsburgh: Total Goals | total: Over 6.5 goals scored | kalshi | $41k | -108 | ✅ novig,polymarket |  | +1.0c |  | pending |
@@ -36,7 +37,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 3 11:55AM | NCAAF | Ohio vs Akron: Total Points | total: Over 51.5 points | kalshi | $35k | -100 | ✅ prophetx |  | +2.0c | yes | pending |
 | Nov 3 11:35AM | NCAAF | Buffalo vs Miami (OH): Total Points | total: Over 44.5 points | kalshi | $190k | -104 | ✅ novig |  | +1.0c |  | pending |
 | Nov 3 11:30AM | NHL | Dallas vs Washington | moneyline: Dallas | kalshi | $39k | -100 | ✅ prophetx |  | +0.0c | yes | pending |
-| Nov 3 11:15AM | NHL | Jets vs. Canadiens | moneyline: Jets | polymarket | $74k | +156 | ✅ novig |  | +2.0c |  | pending |
+| Nov 3 11:15AM | NHL | Jets vs. Canadiens | moneyline: Jets | polymarket | $74k | +156 | ✅ novig |  | +1.0c |  | pending |
 | Nov 3 10:30AM | NCAAF | Ohio vs Akron: Total Points | total: NOT Over 51.5 points | kalshi | $35k | -104 | ✅ novig |  | -2.0c | yes | pending |
 | Nov 3 9:41AM | NHL | Oilers vs. Devils | moneyline: Devils | polymarket | $35k | -150 | ✅ kalshi,novig |  | +0.0c |  | pending |
 | Nov 3 9:41AM | NHL | Avalanche vs. Blue Jackets | moneyline: Blue Jackets | polymarket | $31k | +108 | ✅ kalshi |  | +0.0c | yes | pending |
@@ -93,7 +94,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 2 7:20PM | NBA | Nets vs. Knicks | spread: Knicks (-14.5) | polymarket | $289k | -104 | ✅ novig,prophetx |  | +0.0c |  | L |
 | Nov 2 7:02PM | NBA | Wizards vs. Magic | moneyline: Magic | polymarket | $339k | -144 | ✅ kalshi,novig,prophetx | ✅ | +0.0c |  | L |
 | Nov 2 7:02PM | NBA | Pistons vs. Hornets | moneyline: Hornets | polymarket | $217k | +203 |  | ❌ | +0.0c |  | L |
-| Nov 2 7:02PM | NCAAF | Buffalo vs Miami (OH): Spread | spread: NOT Miami (OH) wins by over 6.5 points | kalshi | $56k | +108 |  |  | +1.0c | yes | pending |
+| Nov 2 7:02PM | NCAAF | Buffalo vs Miami (OH): Spread | spread: NOT Miami (OH) wins by over 6.5 points | kalshi | $56k | +108 |  |  | +0.0c | yes | pending |
 | Nov 2 6:40PM | NHL | Avalanche vs. Blackhawks | moneyline: Avalanche | polymarket | $77k | -213 | ✅ kalshi,novig,prophetx |  | +1.0c |  | W |
 | Nov 2 6:40PM | NBA | Portland vs Denver: Spread | spread: Denver wins by over 4.5 points | kalshi | $29k | -100 |  |  | -1.0c | yes | L |
 | Nov 2 6:30PM | NBA | Hawks vs. Pacers | spread: Hawks (-9.5) | polymarket | $307k | -104 | ✅ novig |  | +3.0c |  | L |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 1 2:30PM | NFL | Los Angeles Chargers @ Los Angeles Rams | moneyline: LAR (0) | novig | $60k | -285 | ✅ kalshi,prophetx |  | +0.0c |  | W |
 | Nov 1 2:30PM | NBA | Boston vs Orlando: Spread | spread: NOT Boston wins by over 7.5 points | kalshi | $26k | +104 | ✅ novig,polymarket,prophetx | ❌ | +1.0c | yes | L |
 | Nov 1 2:20PM | NBA | Celtics vs. Magic | spread: Magic (+7.5) | polymarket | $263k | +104 | ✅ kalshi | ❌ | +2.0c |  | L |
-| Nov 1 2:20PM | NBA | Celtics vs. Magic | moneyline: Magic | polymarket | $206k | +257 |  | ❌ | +2.0c |  | L |
