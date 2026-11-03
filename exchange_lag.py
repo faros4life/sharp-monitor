@@ -179,7 +179,11 @@ def stats(xs):
 
 
 def report(st, now, read, waiting, new):
-    S = st["sightings"]
+    S0 = st["sightings"]
+    # Nov 3 (Muse): a quote implying more than +15% vs Pinnacle's close is a misread / crossed book, not a fill (same rule
+    # as p1_backtest). Dropped from every line below and counted here.
+    S = [x for x in S0 if not (x.get("clv_af") is not None and x["clv_af"] > 15)]
+    dropped = {bk: sum(1 for x in S0 if x["book"] == bk and x.get("clv_af") is not None and x["clv_af"] > 15) for bk in EXCH}
     days = sorted({x["day"] for x in S})
     mid = days[(len(days) - 1) // 2] if days else ""
     L = [f"EXCHANGE-LAG STUDY (paper; OddsPapi history; Pinnacle vs Novig / ProphetX / Kalshi / Polymarket US; "
@@ -188,6 +192,7 @@ def report(st, now, read, waiting, new):
          "CLV vs Pinnacle no-vig close at that line; after fees: ProphetX 2% of winnings, Kalshi 0.07xPx(1-P), Polymarket US 0.0695xPx(1-P), Novig 0.",
          "DEPTH NOT CHECKED: a stale quote may have had no size. Any pass needs the gettable-price audit before bot use.",
          f"FIT = sightings on game days <= {mid}; CHECK = after. Bar (proposed): >= 100, after-fee CLV > 0, beat close >= 53%, both halves.",
+         "Suspect quotes dropped (> +15% vs the close): " + ", ".join(f"{NAME[k]} {v}" for k, v in dropped.items()),
          "", f"This run: {read} games read ({waiting - read} still waiting), sightings +{new}. Games done: {len(st['done'])}.",
          "Coverage (games with that exchange in history): " + ", ".join(f"{k} {v}" for k, v in sorted((st.get("coverage") or {}).items())),
          "", "BY EXCHANGE (not LATE):"]
