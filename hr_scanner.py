@@ -30,7 +30,8 @@ FILE = "hrscan.json"
 MIN_EV = float(os.environ.get("HRSCAN_MIN_EV", "") or "2.0")
 FLAG = (os.environ.get("HRSCAN_FLAG") or "on").strip().lower() == "on"
 HR_BOOKS = ("hardrockbet_fl", "hardrockbet")
-LEAGUES = ("NBA", "NFL", "NCAAF")
+LEAGUES = ("NBA", "NFL", "NCAAF", "NHL", "NCAAB", "MLB")   # Nov 4 12:29 (Peter): all six paid sports, 0 extra credits
+FLAG_LEAGUES = ("NBA", "NFL", "NCAAF")   # Peter "no push to me": NHL / NCAAB / MLB are logged and graded, never pinged
 NO_FLAG_MIN = 30          # inside the final 30 minutes: logged, not flagged
 RECHECK_S = 300
 KEEP_DAYS = 30
@@ -219,7 +220,8 @@ def scan(sm, ev, cfg, lines, is_t25, d, now):
                  "lead": round(lead), "t25": is_t25, "recheck": None, "flag": False,
                  "repeat": bool(mine)}
             pk = f"{ev['id']}|{mk}|{side}"
-            want = (not mine) and lead >= NO_FLAG_MIN and (label != "NCAAF" or is_t25 is True) and not pinged(d, pk)
+            want = ((not mine) and label in FLAG_LEAGUES and lead >= NO_FLAG_MIN and (label != "NCAAF" or is_t25 is True)
+                    and not pinged(d, pk))
             if FLAG and want:
                 mark(d, pk, ts)
                 bet = (f"{side} {hpt:g}" if mk == "totals" else f"{side} {hpt:+g}") + f" ({_fmt(hpr)})"
