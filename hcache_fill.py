@@ -21,6 +21,7 @@ LEAGUES = ("NBA", "NFL", "NCAAF", "NHL")
 BOOKS = ["pinnacle", "novig.us", "prophetx", "kalshi", "polymarket.us", "hardrockbet"]
 FILL_FROM = datetime.fromisoformat(os.environ.get("FILL_FROM", "") or "2026-10-12").replace(tzinfo=timezone.utc)
 MAX_GAMES = int(os.environ.get("FILL_MAX", "") or "700")
+BUDGET_MIN = int(os.environ.get("FILL_BUDGET_MIN", "") or "300")   # Nov 4: stop in time for the cache save
 ORDER = (os.environ.get("FILL_ORDER", "") or "newest").lower()   # Nov 2 18:01 (Peter: faster now): a 2nd fill runs oldest-first
 MERGE = [d for d in (os.environ.get("FILL_MERGE", "") or "").split(",") if d]   # extra restored cache dirs folded in first
 
@@ -69,7 +70,15 @@ def main():
     todo.sort(reverse=(ORDER != "oldest"))   # newest first: the games the models use most (oldest first for a 2nd fill)
     done = errs = 0
     codes, first_err = {}, ""   # Nov 3 19:50: error codes + first error text in the log (no amounts) so a failing fill is diagnosable
+    t_start = datetime.now(timezone.utc)
+    stopped = False
     for i, (s, fid) in enumerate(todo[:MAX_GAMES], 1):
+        # Nov 4 4:45 AM: run 41768012373 hit GitHub's 6 h job limit mid-download, so the save step was killed and about 350
+        # games were lost. Stop downloading after FILL_BUDGET_MIN (default 300) so the cache save always has time to finish.
+        if datetime.now(timezone.utc) - t_start > timedelta(minutes=BUDGET_MIN):
+            stopped = True
+            print(f"cache fill: time budget {BUDGET_MIN} min reached at game {i - 1}; stopping so the cache can save", flush=True)
+            break
         h = hc.get_hist(fid, BOOKS, s)
         if isinstance(h, dict) and h.get("_error"):
             errs += 1
