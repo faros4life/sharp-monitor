@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 4, 10:50 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 9.
+Updated Wed Nov 4, 11:00 AM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 10.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 4 11:00AM | TENNIS | Tirante vs Struff | moneyline: Struff | kalshi | $27k | -213 |  |  | +0.0c |  | pending |
 | Nov 4 7:10AM | TENNIS | Montgomery vs Vandromme | moneyline: Vandromme | kalshi | $44k | -456 |  |  | +5.0c |  | L |
 | Nov 4 6:40AM | TENNIS | Montgomery vs Vandromme | moneyline: Montgomery | kalshi | $89k | -150 |  |  | -47.0c | yes | W |
 | Nov 4 6:10AM | TENNIS | Halys vs Tiafoe | moneyline: Tiafoe | kalshi | $97k | -117 |  |  | -34.0c | yes | L |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 24 4:40AM | TENNIS | Schwaerzler vs Droguet | moneyline: Droguet | kalshi | $26k | -270 |  |  | -6.0c | yes | W |
 | Oct 24 4:40AM | TENNIS | Paul vs Fritz | moneyline: Fritz | kalshi | $38k | -170 | ✅ novig |  | +7.0c | yes | W |
 | Oct 24 4:40AM | TENNIS | Basilashvili vs Tsitsipas | moneyline: Tsitsipas | kalshi | $43k | -245 | ✅ novig |  | -25.0c | yes | L |
-| Oct 24 3:50AM | TENNIS | Fernandez vs Bouzkova | moneyline: Bouzkova | kalshi | $90k | -156 |  |  | +0.0c |  | L |
