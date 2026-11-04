@@ -1,6 +1,136 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-04T20:40:16Z",
+   "base_depth": 57769,
+   "best_price": 0.63,
+   "best_price_american": -170,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.63,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-05",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -3151,
+     "new_this_side": 41360,
+     "other_side": 25801,
+     "other_side_all_levels": 33590,
+     "ratio": 3.0,
+     "this_side": 77942,
+     "this_side_all_levels": 91058
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "A. Eala (0)",
+     "price": 0.63,
+     "this_side": 15982
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 6103.71,
+    "volume_24h_fp": 6173.9800000000005,
+    "volume_fp": 6289.5
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 115.52,
+    "volume_24h_fp": 152.4,
+    "volume_fp": 115.52
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 5988.1900000000005,
+    "volume_24h_fp": 6021.58,
+    "volume_fp": 6173.9800000000005
+   },
+   "fade_price": 0.37,
+   "first_seen_utc": "2026-11-04T20:30:20Z",
+   "game": "Valentova vs Eala",
+   "game_surge_books": [
+    "kalshi",
+    "novig"
+   ],
+   "game_x": 2.09,
+   "key": "kalshi|KXWTAMATCH-26NOV05VALEAL|ml|1",
+   "lead_min": 740,
+   "league": "TENNIS",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 41360,
+   "new_x": 2.22,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 6103.71,
+      "volume_24h_fp": 6173.9800000000005,
+      "volume_fp": 6289.5
+     },
+     "game_normal": 43580,
+     "game_x": 2.09,
+     "normal": 18607,
+     "now": 91058,
+     "type": "ML",
+     "x": 4.89
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 206809.0,
+      "volume": 239019.0
+     },
+     "game_normal": 6046,
+     "game_x": 2.64,
+     "normal": 1927,
+     "now": 15982,
+     "type": "ML",
+     "x": 8.29
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": true,
+   "price": 0.63,
+   "price_american": -170,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.63,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXWTAMATCH-26NOV05VALEAL-EAL"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Eala",
+   "side_label": "Eala",
+   "size_x": 4.89,
+   "start_source": "kalshi",
+   "start_utc": "2026-11-05T09:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig"
+   ],
+   "teams": [
+    "Valentova",
+    "Eala"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-04T18:20:16Z",
    "base_depth": 53674,
    "best_price": 0.575,
@@ -53,9 +183,9 @@
     "volume_fp": 7173.95
    },
    "ex_stats_close": {
-    "open_interest_fp": 44199.05,
-    "volume_24h_fp": 47202.090000000004,
-    "volume_fp": 47434.35
+    "open_interest_fp": 44498.340000000004,
+    "volume_24h_fp": 47239.850000000006,
+    "volume_fp": 47733.64
    },
    "ex_stats_first": {
     "open_interest_fp": 28795.48,
@@ -1518,9 +1648,9 @@
     }
    },
    "ex_stats_close": {
-    "open_interest_fp": 9781.630000000001,
-    "volume_24h_fp": 9368.619999999999,
-    "volume_fp": 10006.26
+    "open_interest_fp": 9790.26,
+    "volume_24h_fp": 9862.23,
+    "volume_fp": 10014.89
    },
    "fade_price": 0.31,
    "first_seen_utc": "2026-11-03T23:30:20Z",
@@ -1612,9 +1742,9 @@
     }
    },
    "ex_stats_close": {
-    "open_interest_fp": 10824.02,
-    "volume_24h_fp": 11789.15,
-    "volume_fp": 11912.5
+    "open_interest_fp": 10849.060000000001,
+    "volume_24h_fp": 11811.93,
+    "volume_fp": 11937.54
    },
    "fade_price": 0.21,
    "first_seen_utc": "2026-11-03T23:20:19Z",
