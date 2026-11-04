@@ -1,6 +1,156 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-04T00:30:13Z",
+   "base_depth": 201047,
+   "best_price": 0.5525,
+   "best_price_american": -123,
+   "best_price_book": "prophetx",
+   "bid_improved": true,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.54,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-04",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 386,
+     "new_this_side": 34884,
+     "other_side": 50207,
+     "other_side_all_levels": 209262,
+     "ratio": 1.4,
+     "this_side": 67997,
+     "this_side_all_levels": 260288
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "ATL (0)",
+     "price": 0.555,
+     "this_side": 24904
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Hawks",
+     "price": 0.55,
+     "this_side": 12232
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Atlanta Hawks",
+     "price": 0.5475,
+     "this_side": 3846
+    }
+   },
+   "fade_price": 0.46,
+   "first_seen_utc": "2026-11-04T00:25:43Z",
+   "game": "Atlanta vs Washington",
+   "key": "kalshi|KXNBAGAME-26NOV04ATLWAS|ml|0",
+   "lead_min": 1410,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 34884,
+   "paper_only": false,
+   "price": 0.54,
+   "price_american": -117,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.54,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -135
+    },
+    "betopenly": {
+     "point": null,
+     "price": -118
+    },
+    "betrivers": {
+     "point": null,
+     "price": -125
+    },
+    "bovada": {
+     "point": null,
+     "price": -125
+    },
+    "draftkings": {
+     "point": null,
+     "price": -128
+    },
+    "fanatics": {
+     "point": null,
+     "price": -125
+    },
+    "fanduel": {
+     "point": null,
+     "price": -130
+    },
+    "kalshi": {
+     "point": null,
+     "price": -122
+    },
+    "limitless": {
+     "point": null,
+     "price": -138
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -126
+    },
+    "novig": {
+     "point": null,
+     "price": -130
+    },
+    "polymarket": {
+     "point": null,
+     "price": -122
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -122
+    },
+    "prophetx": {
+     "point": null,
+     "price": -126
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -125
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBAGAME-26NOV04ATLWAS-ATL"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "polymarket"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Atlanta",
+   "side_label": "Atlanta",
+   "start_source": "odds",
+   "start_utc": "2026-11-05T00:00:00Z",
+   "teams": [
+    "Atlanta",
+    "Washington"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-04T00:20:10Z",
    "base_depth": 277004,
    "best_price": 0.83,
@@ -150,6 +300,7 @@
     "polymarket",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.55,
    "clv_cents": -1.0,
    "confirmed_after_min": 4,
@@ -585,6 +736,7 @@
     "polymarket",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.47,
    "clv_cents": 1.0,
    "confirmed_after_min": 4,
@@ -694,7 +846,8 @@
      "price": -118
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-04T00:30:13Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNHLTOTAL-26NOV03EDMNJ-7"
@@ -6990,6 +7143,7 @@
     "polymarket",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.64,
    "clv_cents": 0.0,
    "confirmed_after_min": 10,
@@ -9381,8 +9535,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.75,
-   "clv_cents": -1.0,
+   "close_price": 0.74,
+   "clv_cents": -2.0,
    "confirmed_after_min": 10,
    "date": "2026-11-04",
    "depth_by_book": {
@@ -15070,6 +15224,7 @@
     "polymarket",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.6,
    "clv_cents": 1.0,
    "confirmed_after_min": 10,
