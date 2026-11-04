@@ -496,7 +496,10 @@ def pmus_events(sport):
 def pmus_type(mk):
     """FULL-GAME markets only: never halves, quarters, periods, innings or team totals."""
     smt = (mk.get("sportsMarketType") or mk.get("sportsMarketTypeV2") or mk.get("marketType") or "").lower()
-    if "full_game" not in smt or any(w in smt for w in ("half", "quarter", "period", "inning", "team_total", "player")):
+    if "full_game" not in smt or any(w in smt for w in ("half", "quarter", "period", "inning", "team_total", "player",
+                                                         "team_points")):   # Nov 4: team points totals (slug "-tt-")
+        return None
+    if "-tt-" in (mk.get("slug") or ""):
         return None
     if any(w in smt for w in ("spread", "handicap", "run_line", "puck_line")):
         return "spread"
