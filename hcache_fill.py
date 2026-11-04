@@ -41,8 +41,25 @@ def main():
     if MERGE:
         print(f"cache fill: merged {merged} files from {len(MERGE)} other caches", flush=True)
     st = {"billable": {}}
-    for lg in LEAGUES:
-        cl.refresh_fixtures(st, now, lg, (FILL_FROM - timedelta(days=1)).astimezone(ET), (now + timedelta(days=1)).astimezone(ET))
+    # Nov 3 21:10 (Peter: "dont use credits for this"): by default the game list comes from the fixture lists other jobs
+    # already hold (exchange-lag, SLOW-HR logger; encrypted state) - zero credits. FILL_FIXTURES=api uses 4 billable calls.
+    src = "OddsPapi /fixtures (billable)"
+    if (os.environ.get("FILL_FIXTURES", "") or "cached").lower() != "api":
+        n_ = 0
+        for path in ("exlag/state.enc", "slowhr/state.enc"):
+            try:
+                other = tb.dec(json.load(open(path)))
+            except Exception:
+                continue
+            for fid, f in (other.get("fixtures") or {}).items():
+                if f.get("lg") in LEAGUES and fid not in st.setdefault("fixtures", {}):
+                    st["fixtures"][fid] = f
+                    n_ += 1
+        src = f"cached lists ({n_} fixtures, 0 credits)"
+    else:
+        for lg in LEAGUES:
+            cl.refresh_fixtures(st, now, lg, (FILL_FROM - timedelta(days=1)).astimezone(ET), (now + timedelta(days=1)).astimezone(ET))
+    print(f"cache fill: game list from {src}", flush=True)   # counts only
     todo = []
     for fid, f in (st.get("fixtures") or {}).items():
         s = cl.tp(f.get("start"))
