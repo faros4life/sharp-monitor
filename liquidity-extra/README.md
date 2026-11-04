@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 4, 3:40 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 15.
+Updated Wed Nov 4, 3:50 AM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 16.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,9 +10,10 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 4 3:50AM | TENNIS | Liu vs Boulter | moneyline: Boulter | kalshi | $112k | -257 |  |  | +0.0c |  | pending |
 | Nov 4 2:00AM | TENNIS | Joint vs Sakkari | moneyline: Sakkari | kalshi | $35k | -186 |  |  | +0.0c |  | pending |
 | Nov 4 1:50AM | TENNIS | Stojsavljevic vs Kenin | moneyline: Stojsavljevic | kalshi | $38k | -178 |  |  | +15.0c |  | W |
-| Nov 4 1:40AM | TENNIS | Joint vs Sakkari | moneyline: Joint | kalshi | $30k | +178 |  |  | +0.0c |  | pending |
+| Nov 4 1:40AM | TENNIS | Joint vs Sakkari | moneyline: Joint | kalshi | $30k | +178 |  |  | +0.0c | yes | pending |
 | Nov 4 1:00AM | TENNIS | Halys vs Tiafoe | moneyline: Halys | kalshi | $52k | +144 |  |  | +1.0c | yes | pending |
 | Nov 4 1:00AM | TENNIS | Fils vs Machac | moneyline: Fils | kalshi | $33k | -170 |  |  | +0.0c |  | pending |
 | Nov 4 12:20AM | TENNIS | Michelsen vs Alcaraz | moneyline: Michelsen | kalshi | $263k | +525 |  |  | +0.0c |  | pending |
@@ -24,7 +25,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 3 3:20PM | TENNIS | Ruud vs Jodar | moneyline: Ruud | kalshi | $914k | -113 |  |  | +8.0c |  | W |
 | Nov 3 2:40PM | TENNIS | Paul vs Merida | moneyline: Paul | kalshi | $85k | -376 |  |  | +2.0c |  | pending |
 | Nov 3 2:40PM | TENNIS | Djokovic vs Hijikata | moneyline: Djokovic | kalshi | $93k | -426 |  |  | -2.0c |  | pending |
-| Nov 3 2:30PM | TENNIS | Etcheverry vs de Minaur | moneyline: de Minaur | kalshi | $100k | -426 |  |  | +1.0c |  | pending |
+| Nov 3 2:30PM | TENNIS | Etcheverry vs de Minaur | moneyline: de Minaur | kalshi | $100k | -426 |  |  | +2.0c |  | pending |
 | Nov 3 12:40PM | TENNIS | Shelton vs Norrie | moneyline: Shelton | kalshi | $42k | -257 | ✅ novig |  | +0.0c | yes | W |
 | Nov 3 5:20AM | TENNIS | Zverev vs Musetti | moneyline: Zverev | kalshi | $35k | -233 |  |  | +0.0c |  | pending |
 | Nov 3 3:30AM | TENNIS | Zolotareva vs Stefanini | moneyline: Stefanini | kalshi | $42k | -317 |  |  | +0.0c | yes | W |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 24 12:10AM | MLB | Tampa Bay vs Milwaukee: Spread | spread: NOT Milwaukee wins by over 1.5 runs | kalshi | $27k | -213 |  |  | +10.0c | yes | W |
 | Oct 23 11:51PM | TENNIS | Iatcenko vs Shubladze | moneyline: Iatcenko | kalshi | $75k | -223 |  |  | +0.0c |  | W |
 | Oct 23 11:40PM | TENNIS | Shibahara vs Parks | moneyline: Shibahara | kalshi | $199k | -233 |  |  | +9.0c |  | L |
-| Oct 23 10:00PM | TENNIS | Starodubtseva vs Sasnovich | moneyline: Sasnovich | kalshi | $32k | -178 |  |  |  |  | W |

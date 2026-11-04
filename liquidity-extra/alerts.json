@@ -1,6 +1,74 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-04T08:50:17Z",
+   "base_depth": 96666,
+   "best_price": 0.7341,
+   "best_price_american": -276,
+   "best_price_book": "kalshi",
+   "bid_improved": true,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.72,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-04",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 33942,
+     "new_this_side": 111925,
+     "other_side": 57989,
+     "other_side_all_levels": 70522,
+     "ratio": 2.2,
+     "this_side": 128787,
+     "this_side_all_levels": 212083
+    }
+   },
+   "fade_price": 0.28,
+   "first_seen_utc": "2026-11-04T08:40:16Z",
+   "game": "Liu vs Boulter",
+   "key": "kalshi|KXWTAMATCH-26NOV04LIUBOU|ml|1",
+   "lead_min": 10,
+   "league": "TENNIS",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 111925,
+   "paper_only": true,
+   "price": 0.72,
+   "price_american": -257,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.6,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXWTAMATCH-26NOV04LIUBOU-BOU"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Boulter",
+   "side_label": "Boulter",
+   "start_source": "kalshi",
+   "start_utc": "2026-11-04T09:00:00Z",
+   "teams": [
+    "Liu",
+    "Boulter"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-04T07:00:20Z",
    "base_depth": 61342,
    "best_price": 0.64,
@@ -204,7 +272,8 @@
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.37,
    "prices_by_book": {},
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-04T08:50:17Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXWTAMATCH-26NOV04JOISAK-JOI"
@@ -1113,8 +1182,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.82,
-   "clv_cents": 1.0,
+   "close_price": 0.83,
+   "clv_cents": 2.0,
    "confirmed_after_min": 10,
    "date": "2026-11-04",
    "depth_by_book": {
