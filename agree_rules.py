@@ -119,7 +119,7 @@ def first_side(a, feed, live_only=False):
     return min(opp, key=lambda z: z[0])[1] if opp else None
 
 
-PHASE1 = ("ProphetX-priced at alert time (Hard Rock-priced never), Grade A/B, Muse AGREE, NCAAF + NBA spreads + unders, NFL unders only, "
+PHASE1 = ("ProphetX-priced at alert time (Hard Rock-priced never), Muse AGREE, NBA + NCAAF + NFL totals unders, NCAAF overs (Peter Nov 4 3:58 PM), "
           "not sent 12-24h before start, $50 unit, ProphetX only")
 
 
@@ -168,8 +168,11 @@ def phase1(a, muse_agree, tag_nfl=False):
         why.append(f"{a.get('sport')} (NCAAF, NBA, NFL only)")
     elif sp == "NFL" and not under:
         why.append("NFL: unders only (Peter, Oct 26)")
-    if sp != "NFL" and not under:   # Nov 3 (Peter 1:51 PM, rulebook v4 Lane 1): totals UNDERS only; spreads now paper too
-        why.append("Lane 1 is totals unders only (spreads, overs, moneylines stay paper)")
+    over = a.get("kind") == "tot" and side_of(a) == "OVER"
+    # Nov 3 (Peter 1:51 PM, rulebook v4 Lane 1): totals UNDERS only; spreads paper. Nov 4 3:58 PM (Peter "lets add the overs
+    # prophetx"): NCAAF totals OVERS join the live lane (ProphetX-priced sent alerts: overs 8-3 +3.48u, unders 12-3 +6.91u).
+    if sp != "NFL" and not under and not (sp == "NCAAF" and over):
+        why.append("Lane 1 is totals unders only, plus NCAAF overs (spreads, other overs, moneylines stay paper)")
     ld = lead_min(a)
     if ld is not None and 720 <= ld < 1440:
         why.append(f"sent {ld / 60:.0f}h before start (12-24h window is paper)")
