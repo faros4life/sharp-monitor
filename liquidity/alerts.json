@@ -1,6 +1,164 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-04T03:50:10Z",
+   "base_depth": 106038,
+   "best_price": 0.44,
+   "best_price_american": 127,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.43,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-04",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -405,
+     "new_this_side": 95539,
+     "other_side": 45193,
+     "other_side_all_levels": 110297,
+     "ratio": 3.0,
+     "this_side": 133733,
+     "this_side_all_levels": 202324
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "CGY (0)",
+     "price": 0.44,
+     "this_side": 12667
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Flames",
+     "price": 0.44,
+     "this_side": 14030
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Calgary Flames",
+     "price": 0.4367,
+     "this_side": 943
+    }
+   },
+   "fade_price": 0.57,
+   "first_seen_utc": "2026-11-04T03:45:29Z",
+   "game": "Calgary vs Seattle",
+   "key": "kalshi|KXNHLGAME-26NOV04CGYSEA|ml|0",
+   "lead_min": 1390,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 95539,
+   "paper_only": false,
+   "price": 0.43,
+   "price_american": 133,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.43,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": 115
+    },
+    "betonlineag": {
+     "point": null,
+     "price": 123
+    },
+    "betopenly": {
+     "point": null,
+     "price": 119
+    },
+    "betrivers": {
+     "point": null,
+     "price": 120
+    },
+    "betus": {
+     "point": null,
+     "price": 120
+    },
+    "bovada": {
+     "point": null,
+     "price": 120
+    },
+    "draftkings": {
+     "point": null,
+     "price": 120
+    },
+    "fanatics": {
+     "point": null,
+     "price": 115
+    },
+    "fanduel": {
+     "point": null,
+     "price": 112
+    },
+    "kalshi": {
+     "point": null,
+     "price": 127
+    },
+    "lowvig": {
+     "point": null,
+     "price": 123
+    },
+    "mybookieag": {
+     "point": null,
+     "price": 115
+    },
+    "novig": {
+     "point": null,
+     "price": 127
+    },
+    "polymarket": {
+     "point": null,
+     "price": 127
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": 127
+    },
+    "prophetx": {
+     "point": null,
+     "price": 129
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": 118
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNHLGAME-26NOV04CGYSEA-CGY"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "polymarket"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Calgary",
+   "side_label": "Calgary",
+   "start_source": "odds",
+   "start_utc": "2026-11-05T03:00:00Z",
+   "teams": [
+    "Calgary",
+    "Seattle"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-04T02:50:11Z",
    "base_depth": 187234,
    "best_price": 0.5275,
@@ -421,7 +579,8 @@
      "price": 126
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-04T03:50:10Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNBAGAME-26NOV04PORPHX-PHX"
