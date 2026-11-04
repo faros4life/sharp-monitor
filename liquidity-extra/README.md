@@ -1,17 +1,17 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 3, 9:00 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 10.
+Updated Tue Nov 3, 9:10 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 9.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 117-74 (-9.11u flat) | rule met: 33-30
+**Record:** 118-74 (-8.88u flat) | rule met: 33-30
 
-**Fade (paper, betting against the print):** 49-82 (+5.71u flat, after fees)
+**Fade (paper, betting against the print):** 49-83 (+4.71u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 3 8:00PM | TENNIS | Molcan vs Fritz | moneyline: Fritz | kalshi | $101k | -376 |  |  | +0.0c |  | pending |
-| Nov 3 6:40PM | NCAAB | Queens University vs Loyola Marymount | moneyline: Loyola Marymount | kalshi | $35k | -245 |  |  | +0.0c |  | pending |
+| Nov 3 6:40PM | NCAAB | Queens University vs Loyola Marymount | moneyline: Loyola Marymount | kalshi | $35k | -245 |  |  | +2.0c |  | pending |
 | Nov 3 6:30PM | NCAAB | Longwood vs Saint Joseph's | moneyline: Saint Joseph's | kalshi | $58k | -456 |  |  | -1.0c |  | pending |
 | Nov 3 3:20PM | TENNIS | Ruud vs Jodar | moneyline: Ruud | kalshi | $914k | -113 |  |  | +8.0c |  | W |
 | Nov 3 2:40PM | TENNIS | Paul vs Merida | moneyline: Paul | kalshi | $85k | -376 |  |  | +0.0c |  | pending |
@@ -22,7 +22,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 3 3:30AM | TENNIS | Zolotareva vs Stefanini | moneyline: Stefanini | kalshi | $42k | -317 |  |  | +0.0c | yes | W |
 | Nov 3 3:20AM | TENNIS | Ruud vs Jodar | moneyline: Jodar | kalshi | $39k | -178 | ✅ novig |  | -1.0c | yes | L |
 | Nov 2 11:40PM | NCAAB | North Florida vs California Baptist | moneyline: California Baptist | kalshi | $39k | -400 |  |  | +5.0c |  | pending |
-| Nov 2 11:00PM | NCAAB | Purdue Fort Wayne vs Duquesne | moneyline: Duquesne | kalshi | $45k | -400 |  |  | +1.0c | yes | pending |
+| Nov 2 11:00PM | NCAAB | Purdue Fort Wayne vs Duquesne | moneyline: Duquesne | kalshi | $45k | -400 |  |  | +1.0c | yes | W |
 | Nov 2 7:50PM | NCAAB | UMass vs Troy | moneyline: UMass | kalshi | $37k | -400 |  |  | +2.0c |  | W |
 | Nov 2 6:40PM | NCAAB | Buffalo vs Marshall | moneyline: Marshall | kalshi | $41k | -144 |  |  | +0.0c |  | W |
 | Nov 2 3:10PM | NCAAB | Dartmouth vs Marist | moneyline: Marist | kalshi | $39k | -285 |  |  | +1.0c |  | L |
