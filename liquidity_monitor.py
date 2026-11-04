@@ -39,6 +39,7 @@ PM_MTYPE = {"moneyline": "moneyline", "spreads": "spread", "spread": "spread", "
 OUT_DIR = os.environ.get("LIQ_DIR", "") or "liquidity"
 STATE_FILE = os.path.join(OUT_DIR, "state.json")
 ALERTS_FILE = os.path.join(OUT_DIR, "alerts.json")
+MOVES_FILE = os.path.join(OUT_DIR, "moves.json")   # Nov 4: unusual raise / drop log (silent; see MOVE_UP)
 PRIMARY_MIN = float(os.environ.get("LIQ_PRIMARY_MIN", "") or "25000")   # floor for NEW money on one side
 REL_MIN = float(os.environ.get("LIQ_REL_MIN", "") or "0.10")             # ...and >= 10% of what was already on that side
 NEED_CAP = float(os.environ.get("LIQ_NEED_CAP", "") or "100000")         # ...but never more than $100k (big books)
@@ -143,6 +144,18 @@ SURGE_X = float(os.environ.get("LIQ_SURGE_X", "") or "2.0")           # an excha
 # (row_key), faster smoothing (alpha 0.10, half-life ~1 hour), used after 3 readings; dropped 2 days after last seen.
 GAME_ALPHA = float(os.environ.get("LIQ_GAME_ALPHA", "") or "0.10")
 GAME_MIN_N = int(os.environ.get("LIQ_GAME_MIN_N", "") or "3")
+# Nov 4 (Peter 11:43-11:45 "lets monitor both and try and find unusual raises and lower" / "4 hours before and 3x"):
+# MOVES LOG, PAPER / SILENT. Every pregame main-line side on every exchange, only while 4h+ before tip, vs THAT SIDE'S OWN
+# size over the previous 4 hours (median of the readings, plus the one carried in). RAISE = now >= MOVE_UP x that normal,
+# DROP = now <= MOVE_DN x it; logged at 2x / 0.5x with the multiple, bar = Peter's 3x / one-third flagged, so 2x vs 3x can
+# be graded forward. First per side per direction; first_play = first move on that game + market + side + direction across
+# exchanges (one play counts once). Own file moves.json: never pushed, never on the board, lanes or executor. Graded W/L.
+MOVE_LOOK = 4 * 3600
+MOVE_COVER = 3 * 3600   # the 4-hour window needs readings reaching back at least 3 hours
+MOVE_MIN_LEAD = 4 * 3600
+MOVE_UP = float(os.environ.get("LIQ_MOVE_UP", "") or "2.0")
+MOVE_DN = float(os.environ.get("LIQ_MOVE_DN", "") or "0.5")
+MOVE_BAR_UP, MOVE_BAR_DN = 3.0, 1 / 3
 
 
 def game_norm_of(gnorms, key):
@@ -1662,6 +1675,7 @@ def run():
     state = load(STATE_FILE, None)
     doc = load(ALERTS_FILE, {"alerts": []})
     alerts = doc.get("alerts", [])
+    moves = load(MOVES_FILE, {"moves": []}).get("moves", [])   # Nov 4: unusual raise / drop log (silent)
     if state is None:
         # unreadable state (e.g. damaged by a save collision): KEEP the alert record, rebuild baselines and dedupe keys
         print("State file unreadable: keeping the alert record, rebuilding baselines")
@@ -1670,12 +1684,13 @@ def run():
     if state.get("v") != STATE_VERSION:   # older rules logged standing market-maker size: start the record clean
         print(f"New rules (v{STATE_VERSION}): clearing old alerts and state")
         state, alerts = {"v": STATE_VERSION}, []
-    for k in ("alerted", "seen", "pending", "norms", "gnorms"):
+    for k in ("alerted", "seen", "pending", "norms", "gnorms", "win", "moves_seen"):
         state.setdefault(k, {})
     norms = state["norms"]   # Nov 4: per-exchange normals (log-only); alerts are measured against the pre-run values
     gnorms = state["gnorms"]   # Nov 4: per-game-side normals per exchange (log-only), same pre-run rule
     settle(alerts, n)
-    for a in alerts:   # Oct 25 regrade: resulted plays that never had a real pregame close read are kept out of records
+    settle(moves, n)
+    for a in alerts + moves:   # Oct 25 regrade: resulted plays that never had a real pregame close read are kept out of records
         if a.get("result") in ("W", "L", "P") and a.get("close_price") is None:
             a["artifact"] = "no_pregame_close"
     for a in alerts:   # Oct 28 (fix list #3): second_book is always a list; the old string values move to second_book_status
@@ -1684,7 +1699,7 @@ def run():
             a["second_book_status"], a["second_book"] = sb, []
         elif isinstance(sb, list) and "second_book_status" not in a:
             a["second_book_status"] = "ok" if sb else "no_match"
-    for a in alerts:   # Oct 28 (forensic): a close at an in-game extreme (<= 3c / >= 97c) was read live, not pregame:
+    for a in alerts + moves:   # Oct 28 (forensic): a close at an in-game extreme (<= 3c / >= 97c) was read live, not pregame:
         # flag it so CLV cuts can exclude it (W/L and units are graded from settlement and stay valid)
         cp = a.get("close_price")
         if cp is not None and (cp <= 0.03 or cp >= 0.97) and not (a.get("price") and (a["price"] <= 0.05 or a["price"] >= 0.95)):
@@ -1719,7 +1734,7 @@ def run():
         print(f"gap scan failed: {str(ex)[:80]}")
 
     # --- open alerts: closing price (last pregame price), pulled money, 15-minute actionability
-    for a in alerts:
+    for a in alerts + moves:
         r = pre.get(a.get("key"))
         if a.get("result") is not None or not r:
             continue
@@ -1765,6 +1780,69 @@ def run():
 
     def improved(now_bid, then_bid):
         return None if (now_bid is None or then_bid is None) else now_bid > then_bid + 1e-9
+
+    # --- Nov 4 MOVES (log-only): unusual raise / drop vs the side's own previous 4 hours, 4h+ before tip
+    moved = 0
+    try:
+        win, ms = state["win"], state["moves_seen"]
+        for k, r in by_key.items():
+            if not r.get("start") or r["start"] - now_s < MOVE_MIN_LEAD or not r.get("tot"):
+                continue
+            hist_k = win.get(k) or []
+            w = [p for p in hist_k if now_s - p[0] <= MOVE_LOOK]
+            carry = [p for p in hist_k if now_s - p[0] > MOVE_LOOK][-1:]
+            if not w or now_s - w[0][0] < MOVE_COVER:
+                continue
+            vals = sorted(p[1] for p in w + carry)
+            nm = vals[len(vals) // 2] if len(vals) % 2 else (vals[len(vals) // 2 - 1] + vals[len(vals) // 2]) / 2
+            if nm <= 0:
+                continue
+            x = r["tot"] / nm
+            d = "RAISE" if x >= MOVE_UP else ("DROP" if x <= MOVE_DN else None)
+            if not d or f"{k}|{d}" in ms:
+                continue
+            ms[f"{k}|{d}"] = round(now_s)
+            me = {"league": r["league"], "date": r["date"], "teams": r.get("teams"), "side": r["side"], "game": r["game"],
+                  "market": r["market"], "line": r.get("line")}
+            first = True
+            for m in moves:
+                if m.get("dir") != d or m.get("date") != r["date"]:
+                    continue
+                o = {"league": m["league"], "date": m["date"], "teams": m.get("teams"), "side": m.get("side_raw"), "game": m.get("game"),
+                     "market": m["market"], "line": m.get("line")}
+                try:
+                    how = same_game(me, o)
+                    hit = bool(how) and same_side(me, o, how, check_line=False)
+                except Exception:
+                    hit = False
+                if hit:
+                    first = False
+                    break
+            lnm = norm_of(norms, r)
+            bp, bpb = best_across(r, pre_rows)
+            moves.insert(0, {
+                "alerted_utc": n.strftime("%Y-%m-%dT%H:%M:%SZ"), "key": k, "book": r["book"], "league": r["league"],
+                "date": r["date"], "game": r["game"], "teams": r.get("teams"),
+                "start_utc": datetime.fromtimestamp(r["start"], timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+                "market": r["market"], "side": side_key(r), "side_raw": r["side"], "side_label": r["side_label"],
+                "line": r.get("line"), "dir": d, "x": round(x, 2),
+                "bar": (x >= MOVE_BAR_UP) if d == "RAISE" else (x <= MOVE_BAR_DN),
+                "normal_4h": round(nm), "now": round(r["tot"]), "other_side_now": round(r["otot"]),
+                "league_x": round(r["tot"] / lnm, 2) if lnm else None, "first_play": first,
+                "lead_min": round((r["start"] - now_s) / 60), "price": r["price"], "price_american": american(r["price"]),
+                "best_price": bp, "best_price_book": bpb, "ex_stats": r.get("ex_stats"), "ref": r["ref"],
+                "close_price": r["price"], "clv_cents": 0.0, "result": None, "units_flat": None, "paper_only": True})
+            moved += 1
+        for k, r in by_key.items():   # this run's reading joins the window (kept: last 4h + the one before)
+            pts = (win.get(k) or []) + [[round(now_s), round(r["tot"])]]
+            old = [p for p in pts if now_s - p[0] > MOVE_LOOK]
+            win[k] = old[-1:] + [p for p in pts if now_s - p[0] <= MOVE_LOOK]
+        for k in [k for k, v in win.items() if not v or now_s - v[-1][0] > 6 * 3600]:
+            win.pop(k, None)
+        cut_m = now_s - 3 * 86400
+        state["moves_seen"] = {k: v for k, v in ms.items() if v >= cut_m}
+    except Exception as ex_:
+        print(f"moves log failed: {str(ex_)[:80]}")
 
     sharp = sharp_alerts(n)
     fired = dropped = 0
@@ -1897,6 +1975,7 @@ def run():
     cutoff = (n - timedelta(days=60)).strftime("%Y-%m-%dT%H:%M:%SZ")
     alerts = [a for a in alerts if a["alerted_utc"] >= cutoff]
     state["alerted"] = {k: v for k, v in state["alerted"].items() if v >= cutoff}
+    moves = [m for m in moves if m["alerted_utc"] >= cutoff]
     state["v"] = STATE_VERSION
     try:   # Nov 4: fold this run into the normals AFTER alerts were measured (log-only; never blocks the run)
         update_norms(norms, by_key.values(), now_s)
@@ -1939,10 +2018,17 @@ def run():
         "(ATP/WTA match winner, paper_only = true: data collection only, never pushed, not a betting lane; graded only from "
         "Kalshi/Polymarket settlement)." % (PRIMARY_MIN, NEAR * 100, RATIO, SECOND_MIN)),
         "v": STATE_VERSION, "alerts": alerts})
+    save(MOVES_FILE, {"note": (
+        "Unusual exchange size moves, PAPER / SILENT (Nov 4, 2026): every pregame main-line side, only 4h+ before tip, vs that "
+        "side's own size over the previous 4 hours. RAISE >= %gx, DROP <= %gx (logged), bar = 3x / one-third (Peter). x = now / "
+        "normal_4h; league_x = vs the exchange's league x bet-type normal; first_play = first move on that game + market + side + "
+        "direction across exchanges (one play counts once). Graded like alerts.json (result, units_flat at best_price). Never "
+        "pushed; not on the board, lanes or executor." % (MOVE_UP, MOVE_DN)), "v": STATE_VERSION, "moves": moves})
     save(STATE_FILE, state)
     stats = (f"This run: {fired} new, {dropped} not confirmed, {len(state['pending'])} pending. "
              f"Open alerts: {sum(1 for a in alerts if a['result'] is None)}.")
     write_page(alerts, n, stats)
+    print(f"Moves (paper): {moved} new, {len(moves)} logged")
     print(f"Done. New alerts: {fired}. Not confirmed: {dropped}. Pending: {len(state['pending'])}. "
           f"Open alerts: {sum(1 for a in alerts if a['result'] is None)}. Total run: {time.time() - RUN_T0:.0f}s")
 
