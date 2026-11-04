@@ -649,7 +649,7 @@ def main():
     for k, b in tracker.items():
         rec = st["bets"].setdefault(k, {"first_seen": iso(now)})
         snap = rec.setdefault("snap", {})
-        for f in ("book", "game", "bet", "flip", "league", "source", "teams", "game_start", "placed", "settled"):
+        for f in ("book", "game", "bet", "flip", "league", "source", "teams", "game_start", "placed", "settled", "first_seen"):
             if b.get(f) not in (None, "", []):
                 snap[f] = b[f]
         for f in ("price", "stake", "to_pay"):
@@ -689,12 +689,12 @@ def main():
     if st.get("rescored_v3") is None:   # v3 (Nov 2): line-distance guard; score everything again once
         st.pop("rescored_v2", None)
         st["rescored_v3"] = iso(now)
-    if not st.get("plimit_v2"):   # Nov 4: read Pinnacle's limit at placed time on every already-scored bet, once (v2: tz fix)
+    if not st.get("plimit_v3"):   # Nov 4: read Pinnacle's limit at placed time on every already-scored bet, once (v3: first-seen fallback)
         for rec in st["bets"].values():
             if rec.get("clv") is not None and not (rec.get("plimit") or {}).get("grp"):
                 for fld in ("clv", "close_p", "eff_am", "close_am", "how", "age_min", "scored", "plimit"):
                     rec.pop(fld, None)
-        st["plimit_v1"] = st["plimit_v2"] = iso(now)
+        st["plimit_v1"] = st["plimit_v2"] = st["plimit_v3"] = iso(now)
     if not st.get("rescored_v2"):   # v1 freshness rule could pick an alt line as main: score everything again once
         for rec in st["bets"].values():
             for f in ("clv", "close_p", "eff_am", "close_am", "how", "age_min", "scored", "done", "tries", "why", "fixture"):
@@ -793,11 +793,23 @@ def main():
             rec["how"], rec["age_min"], rec["scored"] = c["how"], c["age_min"], iso(now)
             rec.pop("why", None)
             new_scored += 1
-            when = tp(s.get("placed")) or tp(s.get("decided_utc"))
+            # Nov 4: bot rows carry no 'placed' (positions have no order time) -> fall back to when the tracker, then
+            # this ledger, first saw the bet (<= ~2h after placement; the limit read is the last Pinnacle tick before it)
+            when, basis = None, None
+            for fld, nm in (("placed", "placed"), ("decided_utc", "placed"), ("first_seen", "first seen (tracker)")):
+                when = tp(s.get(fld))
+                if when:
+                    basis = nm
+                    break
+            if not when and tp(rec.get("first_seen")):
+                when, basis = tp(rec["first_seen"]), "first seen (ledger, <=2h late)"
             if when:
                 pt = plimit_tag(s, f, book_markets(h, "pinnacle"), mkmap, lg, when)
                 if pt:
+                    pt["basis"] = basis
                     rec["plimit"] = pt
+            else:
+                rec["plimit"] = {"why": "no placed / first-seen time on the row"}
         else:
             rec["tries"] = rec.get("tries", 0) + 1
             rec["why"] = why or "no price on the bet"
@@ -854,7 +866,7 @@ def main():
             L.append(f"  {(s.get('game_start') or '')[:10]} {s.get('league')} {s.get('book')} [{lane_of(s, sv)}] "
                      f"{s.get('bet')} | you {r['eff_am']:+d} after fee, close fair {r['close_am']:+d} ({r['how']}, "
                      f"tick {r['age_min']} min pre-start) -> CLV {100 * r['clv']:+.1f}%"
-                     + (f" | P limit {r['plimit']['limit']:,} {r['plimit']['grp'] or ''}" if (r.get("plimit") or {}).get("limit")
+                     + (f" | P limit {r['plimit']['limit']:,} {r['plimit']['grp'] or ''} @{r['plimit'].get('basis') or 'placed'}" if (r.get("plimit") or {}).get("limit")
                         else f" | P limit: {r['plimit']['why']}" if (r.get("plimit") or {}).get("why") else "")
                      if r.get("eff_am") and r.get("close_am") else
                      f"  {s.get('bet')}: CLV {100 * r['clv']:+.1f}%")
