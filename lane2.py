@@ -33,7 +33,11 @@ EDGE_MAX = 4.0
 LOOKBACK_H = 6
 _ODDS = {}      # this run: league -> {fixtureId: fixture with bookmakerOdds}
 _ST = {"billable": {}}   # throwaway OddsPapi state for this run (tournament / fixtures lookups)
-STATS = {"calls": 0, "candidates": 0, "low": 0, "high": 0, "no_limit": 0}
+STATS = {"calls": 0, "candidates": 0, "low": 0, "high": 0, "no_limit": 0, "no_fixture": 0, "notes": []}
+# Nov 4: the paid plan answers 403 RESTRICTED_ACCESS "Restricted bookmakers: pinnacle" on the history endpoint and sells
+# "Pinnacle +30 sec" instead, so the live odds call may need the same slug. Try the plain name, then the paid slug.
+SLUGS = ("pinnacle", "pinnacle+30")
+_BOOK = {"slug": None}
 
 
 def _live(lg, now):
@@ -41,12 +45,22 @@ def _live(lg, now):
         return _ODDS[lg]
     out = {}
     tid = cl.tournament(_ST, now, lg) if cl.KEY else None
-    if tid:
-        d = cl.api("/odds-by-tournaments", True, tournamentIds=str(tid), bookmaker="pinnacle", verbosity=3)
+    if not tid:
+        STATS["notes"].append(f"{lg}: no tournament id")
+    for slug in (SLUGS if tid else ()):
+        d = cl.api("/odds-by-tournaments", True, tournamentIds=str(tid), bookmaker=slug, verbosity=3)
         STATS["calls"] += 1
-        for f in d if isinstance(d, list) else []:
-            if f.get("fixtureId"):
-                out[str(f["fixtureId"])] = f
+        if isinstance(d, dict) and d.get("_error"):
+            STATS["notes"].append(f"{lg} {slug}: HTTP {d['_error']}")
+            continue
+        fx = [f for f in (d if isinstance(d, list) else []) if f.get("fixtureId")]
+        if not fx:
+            STATS["notes"].append(f"{lg} {slug}: 0 fixtures")
+            continue
+        _BOOK["slug"] = slug
+        for f in fx:
+            out[str(f["fixtureId"])] = f
+        break
     _ODDS[lg] = out
     return out
 
@@ -148,7 +162,10 @@ def decide(a, now, mkmap):
         return ent
     live = _live(lg, now)
     fid, f = _fixture(a, lg, now, live)
-    pm = (((live.get(fid) or {}).get("bookmakerOdds") or {}).get("pinnacle") or {}).get("markets") or {} if fid else {}
+    bo = ((live.get(fid) or {}).get("bookmakerOdds") or {}) if fid else {}
+    pm = ((bo.get(_BOOK["slug"]) or bo.get("pinnacle") or next(iter(bo.values()), None) or {}).get("markets")) or {}
+    if not fid:
+        STATS["no_fixture"] += 1
     b = {"bet": a.get("bet"), "league": lg, "game": a.get("game"), "game_start": a.get("start_utc"), "book": a.get("book")}
     limit, how = _limit(b, lg, f, pm, mkmap) if (f and pm) else (None, None)
     ent["limit"], ent["limit_how"] = limit, how
@@ -196,4 +213,5 @@ def plays(now, feed, mkmap):
 
 def summary_line():
     return (f"Lane 2 (dry run only): {STATS['candidates']} candidate(s); LOW {STATS['low']}, HIGH {STATS['high']}, "
-            f"no limit {STATS['no_limit']}; OddsPapi calls {STATS['calls']}")
+            f"no limit {STATS['no_limit']} (no fixture match {STATS['no_fixture']}); OddsPapi calls {STATS['calls']}; "
+            f"Pinnacle slug {_BOOK['slug'] or '-'}" + ("; " + "; ".join(STATS["notes"][:6]) if STATS["notes"] else ""))
