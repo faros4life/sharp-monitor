@@ -583,11 +583,13 @@ def plimit_tag(s, f, pin, mkmap, lg, when):
     """{limit, cut, grp} or None: Pinnacle's raw limit on the held side at `when` (last tick within 60 min)."""
     try:
         import plimit_level as pl   # lazy: plimit_level imports this module
+        if when.tzinfo is None:   # Nov 4: a naive 'placed' stamp (Novig created_at) raised against aware ticks -> no read
+            when = when.replace(tzinfo=timezone.utc)
         lim, how = pl.pin_limit_at(s, f, pin, mkmap, when, lg)
-    except Exception:
-        return None
+    except Exception as ex:
+        return {"why": f"{type(ex).__name__}: {str(ex)[:60]}"}
     if not lim:
-        return None
+        return {"why": "no Pinnacle tick within 60 min of placed time"}
     pz = parsed(s)
     mk = {"ml": "moneyline", "spread": "spread", "total": "total"}.get(pz[0] if pz else "", "")
     cut = PLIM_CUT.get((lg, mk)) or PLIM_LEAGUE.get(lg)
@@ -611,7 +613,12 @@ def plim_stats(rows):
         u = [units_of(r) for r in xs]
         u = [x for x in u if x is not None]
         out.append(f"{grp} {lane_stats(xs)}" + (f", units {sum(u):+.2f}u on {len(u)}" if u else ""))
-    return " || ".join(out) + f" | no limit read: {len(rows) - len(g)}"
+    miss = [r.get("plimit", {}).get("why") or "not tried" for r in rows if not r.get("plimit", {}).get("grp")]
+    top = ""
+    if miss:
+        from collections import Counter
+        top = " (" + "; ".join(f"{k} x{v}" for k, v in Counter(miss).most_common(2)) + ")"
+    return " || ".join(out) + f" | no limit read: {len(miss)}{top}"
 
 
 def lane_stats(rows):
@@ -682,12 +689,12 @@ def main():
     if st.get("rescored_v3") is None:   # v3 (Nov 2): line-distance guard; score everything again once
         st.pop("rescored_v2", None)
         st["rescored_v3"] = iso(now)
-    if not st.get("plimit_v1"):   # Nov 4: read Pinnacle's limit at placed time on every already-scored bet, once
+    if not st.get("plimit_v2"):   # Nov 4: read Pinnacle's limit at placed time on every already-scored bet, once (v2: tz fix)
         for rec in st["bets"].values():
-            if rec.get("clv") is not None and "plimit" not in rec:
-                for fld in ("clv", "close_p", "eff_am", "close_am", "how", "age_min", "scored"):
+            if rec.get("clv") is not None and not (rec.get("plimit") or {}).get("grp"):
+                for fld in ("clv", "close_p", "eff_am", "close_am", "how", "age_min", "scored", "plimit"):
                     rec.pop(fld, None)
-        st["plimit_v1"] = iso(now)
+        st["plimit_v1"] = st["plimit_v2"] = iso(now)
     if not st.get("rescored_v2"):   # v1 freshness rule could pick an alt line as main: score everything again once
         for rec in st["bets"].values():
             for f in ("clv", "close_p", "eff_am", "close_am", "how", "age_min", "scored", "done", "tries", "why", "fixture"):
