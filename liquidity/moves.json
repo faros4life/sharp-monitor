@@ -1,6 +1,95 @@
 {
  "moves": [
   {
+   "alerted_utc": "2026-11-04T20:46:15Z",
+   "bar": false,
+   "best_price": 0.5,
+   "best_price_book": "novig",
+   "book": "kalshi",
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "date": "2026-11-05",
+   "dir": "RAISE",
+   "ex_stats": {
+    "open_interest_fp": 366.43,
+    "volume_24h_fp": 366.43,
+    "volume_fp": 366.43
+   },
+   "first_play": true,
+   "game": "Dallas vs Columbus: Total Goals",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLTOTAL-26NOV05DALCBJ-6\"}",
+   "lead_min": 1634,
+   "league": "NHL",
+   "league_x": 7.97,
+   "line": 5.5,
+   "market": "total",
+   "normal_4h": 6642,
+   "now": 13440,
+   "other_side_now": 14248,
+   "paper_only": true,
+   "price": 0.5,
+   "price_american": -100,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNHLTOTAL-26NOV05DALCBJ-6"
+   },
+   "result": null,
+   "side": "UNDER",
+   "side_label": "NOT Over 5.5 goals scored",
+   "side_raw": "UNDER",
+   "start_utc": "2026-11-06T00:00:00Z",
+   "teams": [
+    "Dallas",
+    "Columbus"
+   ],
+   "units_flat": null,
+   "x": 2.02
+  },
+  {
+   "alerted_utc": "2026-11-04T20:46:15Z",
+   "bar": false,
+   "best_price": 0.19,
+   "best_price_book": "novig",
+   "book": "novig",
+   "close_price": 0.19,
+   "clv_cents": 0.0,
+   "date": "2026-11-05",
+   "dir": "RAISE",
+   "ex_stats": {
+    "openInterest": 15498172.0,
+    "volume": 25636065.0
+   },
+   "first_play": true,
+   "game": "Jacksonville Jaguars @ Baltimore Ravens",
+   "key": "novig|{\"market_id\": \"01a17f1a-e8bd-7933-abcd-3b8ea3009ae5\", \"outcome_id\": \"01a17f1a-e8bd-7933-abcd-3b9157a9f516\"}",
+   "lead_min": 1709,
+   "league": "NFL",
+   "league_x": 0.59,
+   "line": null,
+   "market": "moneyline",
+   "normal_4h": 16622,
+   "now": 33295,
+   "other_side_now": 60852,
+   "paper_only": true,
+   "price": 0.19,
+   "price_american": 426,
+   "ref": {
+    "market_id": "01a17f1a-e8bd-7933-abcd-3b8ea3009ae5",
+    "outcome_id": "01a17f1a-e8bd-7933-abcd-3b9157a9f516"
+   },
+   "result": null,
+   "side": "Baltimore Ravens",
+   "side_label": "BAL (0)",
+   "side_raw": 1,
+   "start_utc": "2026-11-06T01:15:00Z",
+   "teams": [
+    "Jacksonville Jaguars",
+    "Baltimore Ravens"
+   ],
+   "units_flat": null,
+   "x": 2.0
+  },
+  {
    "alerted_utc": "2026-11-04T20:40:10Z",
    "bar": false,
    "best_price": 0.5124,
@@ -100,6 +189,10 @@
     "openInterest": 76849.0,
     "volume": 76849.0
    },
+   "ex_stats_close": {
+    "openInterest": 76849.0,
+    "volume": 76849.0
+   },
    "first_play": false,
    "game": "St. Louis Blues @ New Jersey Devils",
    "key": "novig|{\"market_id\": \"01a1a799-5b32-7ff0-8871-dbab67fd66b0\", \"outcome_id\": \"01a1a799-5b32-7ff0-8871-dbccb81a1a2c\"}",
@@ -141,6 +234,11 @@
    "date": "2026-11-05",
    "dir": "RAISE",
    "ex_stats": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_close": {
     "open_interest_fp": 0.0,
     "volume_24h_fp": 0.0,
     "volume_fp": 0.0
@@ -190,6 +288,11 @@
     "volume_24h_fp": 44.0,
     "volume_fp": 44.0
    },
+   "ex_stats_close": {
+    "open_interest_fp": 44.0,
+    "volume_24h_fp": 44.0,
+    "volume_fp": 44.0
+   },
    "first_play": true,
    "game": "Carolina vs New York I: Total Goals",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLTOTAL-26NOV05CARNYI-6\"}",
@@ -231,6 +334,10 @@
    "date": "2026-11-05",
    "dir": "RAISE",
    "ex_stats": {
+    "openInterest": 7086.0,
+    "volume": 7086.0
+   },
+   "ex_stats_close": {
     "openInterest": 7086.0,
     "volume": 7086.0
    },
@@ -510,8 +617,8 @@
    "best_price": 0.4975,
    "best_price_book": "kalshi",
    "book": "novig",
-   "close_price": 0.51,
-   "clv_cents": 0.0,
+   "close_price": 0.505,
+   "clv_cents": -0.5,
    "date": "2026-11-05",
    "dir": "RAISE",
    "ex_stats": {
@@ -672,6 +779,8 @@
    "other_side_now": 6018,
    "paper_only": true,
    "price": 0.5074,
+   "price_after_15m": 0.51,
+   "price_after_15m_book": "novig",
    "price_american": -103,
    "ref": {
     "line": 44.5,
@@ -684,6 +793,7 @@
    "side_label": "over 44.5 (44.5)",
    "side_raw": "OVER",
    "start_utc": "2026-11-05T00:30:00Z",
+   "still_actionable": true,
    "teams": [
     "Central Michigan",
     "Eastern Michigan"
@@ -756,7 +866,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 241.19,
-    "volume_24h_fp": 327.16,
+    "volume_24h_fp": 327.33,
     "volume_fp": 327.33
    },
    "first_play": true,
@@ -772,6 +882,8 @@
    "other_side_now": 25914,
    "paper_only": true,
    "price": 0.44,
+   "price_after_15m": 0.435,
+   "price_after_15m_book": "novig",
    "price_american": 127,
    "ref": {
     "kalshi_side": "no",
@@ -782,6 +894,7 @@
    "side_label": "NOT Over 6.5 goals scored",
    "side_raw": "UNDER",
    "start_utc": "2026-11-06T01:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Anaheim",
     "Edmonton"
@@ -822,6 +935,8 @@
    "other_side_now": 14120,
    "paper_only": true,
    "price": 0.52,
+   "price_after_15m": 0.515,
+   "price_after_15m_book": "novig",
    "price_american": -108,
    "ref": {
     "kalshi_side": "no",
@@ -832,6 +947,7 @@
    "side_label": "NOT Over 6.5 goals scored",
    "side_raw": "UNDER",
    "start_utc": "2026-11-06T00:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Utah",
     "Montreal"
@@ -872,6 +988,8 @@
    "other_side_now": 10514,
    "paper_only": true,
    "price": 0.46,
+   "price_after_15m": 0.465,
+   "price_after_15m_book": "novig",
    "price_american": 117,
    "ref": {
     "kalshi_side": "no",
@@ -882,6 +1000,7 @@
    "side_label": "NOT Over 5.5 goals scored",
    "side_raw": "UNDER",
    "start_utc": "2026-11-06T00:00:00Z",
+   "still_actionable": true,
    "teams": [
     "St. Louis",
     "New Jersey"
@@ -906,7 +1025,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 1417.71,
-    "volume_24h_fp": 1345.98,
+    "volume_24h_fp": 1373.27,
     "volume_fp": 1507.4899999999998
    },
    "first_play": true,
@@ -922,6 +1041,8 @@
    "other_side_now": 85896,
    "paper_only": true,
    "price": 0.33,
+   "price_after_15m": 0.345,
+   "price_after_15m_book": "novig",
    "price_american": 203,
    "ref": {
     "kalshi_side": "yes",
@@ -932,6 +1053,7 @@
    "side_label": "Nashville",
    "side_raw": 0,
    "start_utc": "2026-11-06T02:30:00Z",
+   "still_actionable": false,
    "teams": [
     "Nashville",
     "Colorado"
@@ -970,6 +1092,8 @@
    "other_side_now": 61290,
    "paper_only": true,
    "price": 0.17,
+   "price_after_15m": 0.1695,
+   "price_after_15m_book": "prophetx",
    "price_american": 488,
    "ref": {
     "market_id": "01a1a332-ac81-7d63-919d-964ea590dd9f",
@@ -980,6 +1104,7 @@
    "side_label": "CHI (0)",
    "side_raw": 0,
    "start_utc": "2026-11-05T00:30:00Z",
+   "still_actionable": true,
    "teams": [
     "Chicago Bulls",
     "New York Knicks"
@@ -1004,7 +1129,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 241.19,
-    "volume_24h_fp": 327.16,
+    "volume_24h_fp": 327.33,
     "volume_fp": 327.33
    },
    "first_play": true,
@@ -1056,9 +1181,9 @@
     "volume_fp": 1579.54
    },
    "ex_stats_close": {
-    "open_interest_fp": 1553.0,
+    "open_interest_fp": 1574.0,
     "volume_24h_fp": 1579.54,
-    "volume_fp": 1579.54
+    "volume_fp": 1600.54
    },
    "first_play": true,
    "game": "Vegas vs Detroit: Total Goals",
@@ -1109,9 +1234,9 @@
     "volume_fp": 1579.54
    },
    "ex_stats_close": {
-    "open_interest_fp": 1553.0,
+    "open_interest_fp": 1574.0,
     "volume_24h_fp": 1579.54,
-    "volume_fp": 1579.54
+    "volume_fp": 1600.54
    },
    "first_play": true,
    "game": "Vegas vs Detroit: Total Goals",
@@ -1600,9 +1725,9 @@
     "volume_fp": 17750.67
    },
    "ex_stats_close": {
-    "open_interest_fp": 16442.07,
-    "volume_24h_fp": 13815.16,
-    "volume_fp": 17806.46
+    "open_interest_fp": 16464.39,
+    "volume_24h_fp": 13874.69,
+    "volume_fp": 17828.78
    },
    "first_play": true,
    "game": "Boston vs Pittsburgh",
@@ -1643,8 +1768,8 @@
    "best_price": 0.4975,
    "best_price_book": "polymarket",
    "book": "prophetx",
-   "close_price": 0.495,
-   "clv_cents": 0.0,
+   "close_price": 0.4926,
+   "clv_cents": -0.2,
    "date": "2026-11-04",
    "dir": "RAISE",
    "ex_stats": null,
@@ -1949,8 +2074,8 @@
    "best_price": 0.48,
    "best_price_book": "novig",
    "book": "kalshi",
-   "close_price": 0.48,
-   "clv_cents": 0.0,
+   "close_price": 0.47,
+   "clv_cents": -1.0,
    "date": "2026-11-04",
    "dir": "DROP",
    "ex_stats": {
@@ -1959,9 +2084,9 @@
     "volume_fp": 26444.24
    },
    "ex_stats_close": {
-    "open_interest_fp": 29165.74,
-    "volume_24h_fp": 27611.92,
-    "volume_fp": 29566.77
+    "open_interest_fp": 30350.14,
+    "volume_24h_fp": 28392.8,
+    "volume_fp": 30759.27
    },
    "first_play": true,
    "game": "Central Michigan vs Eastern Michigan: Spread",
@@ -2012,9 +2137,9 @@
     "volume_fp": 1229083.77
    },
    "ex_stats_close": {
-    "open_interest_fp": 1009297.01,
-    "volume_24h_fp": 572305.75,
-    "volume_fp": 1251491.32
+    "open_interest_fp": 1011824.03,
+    "volume_24h_fp": 565646.41,
+    "volume_fp": 1254102.18
    },
    "first_play": true,
    "game": "Jacksonville vs Baltimore",
@@ -2065,9 +2190,9 @@
     "volume_fp": 1229083.77
    },
    "ex_stats_close": {
-    "open_interest_fp": 1009297.01,
-    "volume_24h_fp": 572305.75,
-    "volume_fp": 1251491.32
+    "open_interest_fp": 1011824.03,
+    "volume_24h_fp": 565646.41,
+    "volume_fp": 1254102.18
    },
    "first_play": true,
    "game": "Jacksonville vs Baltimore",
