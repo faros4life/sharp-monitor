@@ -23,6 +23,10 @@ AMENDMENT A2 (Oct 29): MK MAKER TEST. Paper resting bids on Novig and ProphetX a
                  bid. Fills graded (Pinnacle CLV + flat 1u); unfilled CLV kept for the adverse-selection comparison.
                  Stored under "maker" / "maker_agg" in the same file. No extra credits or reads.
 
+NOV 3 AUDIT LOGGING: every A/B sighting stores best_ref (the exact contract behind the best price); Polymarket US refs
+also carry the market's raw line, side text, market type and best offer/bid, so suspect quotes can be checked
+against the real market. Logging only: no trigger, rule or judged bucket changed.
+
 Scope: NFL / NCAAF / NBA (+ NHL puck line and total from Oct 31; puck-line point flips are not moves), spreads +
 totals, pregame. A/B full exchange reads cover games starting in the next 24 h, every
 10 min (own workflow), 9am-midnight ET; each run then keeps polling in-window sports for ~7 min and reads the exchanges
@@ -389,7 +393,9 @@ def read_pmus(n, stop_at, horizon=None, only=None):
                     continue
                 mine, other = (long_buy, short_buy) if is_long else (short_buy, long_buy)
                 out.append(quote("polymarket_us", lg, teams, st.timestamp(), st.astimezone(ET).date().isoformat(), mt,
-                                 side, line, mine[0], mine[1], other[0], ts, {"slug": mk["slug"], "long": is_long},
+                                 side, line, mine[0], mine[1], other[0], ts, {"slug": mk["slug"], "long": is_long, "raw_line": mk.get("line"),
+                                  "side_desc": desc[:60], "smt": str(mk.get("sportsMarketType") or mk.get("marketType") or "")[:40],
+                                  "best_offer": long_buy[0], "best_bid": (round(bb, 4) if bb is not None else None)},
                                  long_lad if is_long else short_lad))
     say(f"Polymarket US: {reads} books read, {len(out)} quotes")
     return out
@@ -1171,7 +1177,7 @@ def sightings_from(groups, pin, n, existing, xbooks):
                 "start_utc": iso(datetime.fromtimestamp(g["start_ts"], timezone.utc)),
                 "lead_min": round((g["start_ts"] - n.timestamp()) / 60),
                 "market": market, "line": line, "side": side,
-                "prices": snap["prices"], "best_book": sb, "depth_at_best_usd": round(bq["depth"]),
+                "prices": snap["prices"], "best_book": sb, "best_ref": bq.get("ref"), "depth_at_best_usd": round(bq["depth"]),
                 "sighting_cost": bq["cost"], "sighting_cost_af": round(best_c, 5),
                 "sighting_american_af": lm.american(round(best_c, 4)), "n_books": snap["n_books"],
                 "median_others_af": round(snap["median_others"], 5) if snap["median_others"] is not None else None,
