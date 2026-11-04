@@ -47,6 +47,7 @@ STATS = {"billable": 0, "free": 0}
 
 # ------------------------------------------------------------------ OddsPapi
 HIST_GAP = [float(os.environ.get("HIST_GAP", "") or "5.2")]   # Nov 2 (Peter: "run faster"): adaptive history spacing
+RL_TRIES = int(os.environ.get("RL_TRIES", "") or "12")   # Nov 3: rate-limit retries per call (about 4-12 min at most)
 HIST_MIN = float(os.environ.get("HIST_GAP_MIN", "") or "5.2")   # Nov 2: spacing eases back down, never below OddsPapi's documented
 # 5,000 ms cooldown on /historical-odds (docs: get-historical-odds; a 304 counts too)
 
@@ -58,7 +59,11 @@ def api(path, billable, **params):
     # history throttles (429 seen at ~1 s spacing): start at HIST_GAP s, back off 1.5x on every 429 (max 10 s)
     time.sleep(HIST_GAP[0] if path == "/historical-odds" else 1.1)
     STATS["billable" if billable else "free"] += 1
-    for attempt in range(2):
+    # Nov 3 20:30 (Peter: build the one-downloader guard, "as long as it doesnt stop the download"): jobs sharing the key
+    # no longer lose games to RATE_LIMITED. A rate-limit 429 waits (Retry-After, at least 20 s, at most 60 s) and retries
+    # up to RL_TRIES times while the history spacing widens, so two jobs settle at the key's shared rate instead of
+    # dropping data. A quota 429 (REQUEST_LIMIT_EXCEEDED) is never retried. Counts only in the log.
+    for attempt in range(RL_TRIES):
         try:
             with urllib.request.urlopen(req, timeout=60) as r:
                 CALLS.append((path, r.status))
@@ -66,13 +71,19 @@ def api(path, billable, **params):
                     HIST_GAP[0] = max(HIST_MIN, HIST_GAP[0] * 0.95)
                 return json.loads(r.read().decode())
         except urllib.error.HTTPError as e:
-            if e.code == 429 and attempt == 0:
+            body = e.read().decode()[:200]
+            if e.code == 429 and "REQUEST_LIMIT" not in body and attempt < RL_TRIES - 1:
+                STATS["rate_waits"] = STATS.get("rate_waits", 0) + 1
                 if path == "/historical-odds":
-                    HIST_GAP[0] = min(HIST_GAP[0] * 1.5, 10.0)
-                time.sleep(20)
+                    HIST_GAP[0] = min(HIST_GAP[0] * 1.5, 15.0)
+                try:
+                    ra = float(e.headers.get("Retry-After") or 0)
+                except Exception:
+                    ra = 0.0
+                time.sleep(min(60.0, max(20.0, ra)))
                 continue
             CALLS.append((path, e.code))
-            return {"_error": e.code, "_body": e.read().decode()[:200]}
+            return {"_error": e.code, "_body": body}
         except Exception as e:
             CALLS.append((path, type(e).__name__))
             return {"_error": type(e).__name__, "_body": str(e)[:200]}
