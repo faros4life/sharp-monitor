@@ -1,6 +1,153 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-04T02:20:10Z",
+   "base_depth": 476240,
+   "best_price": 0.4675,
+   "best_price_american": 114,
+   "best_price_book": "polymarket",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.47,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-04",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -4062,
+     "new_this_side": 565722,
+     "other_side": 383030,
+     "other_side_all_levels": 583308,
+     "ratio": 2.3,
+     "this_side": 873205,
+     "this_side_all_levels": 1043915
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "PHI (0)",
+     "price": 0.47,
+     "this_side": 5672
+    },
+    "polymarket": {
+     "heavier_side": false,
+     "label": "76ers",
+     "price": 0.46,
+     "this_side": 13727
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "Philadelphia 76ers",
+     "price": 0.4673,
+     "this_side": 1650
+    }
+   },
+   "fade_price": 0.54,
+   "first_seen_utc": "2026-11-04T02:15:29Z",
+   "game": "Philadelphia vs Detroit",
+   "key": "kalshi|KXNBAGAME-26NOV04PHIDET|ml|0",
+   "lead_min": 1300,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 565722,
+   "paper_only": false,
+   "price": 0.47,
+   "price_american": 113,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.47,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": 105
+    },
+    "betopenly": {
+     "point": null,
+     "price": 120
+    },
+    "betrivers": {
+     "point": null,
+     "price": 106
+    },
+    "bovada": {
+     "point": null,
+     "price": 105
+    },
+    "draftkings": {
+     "point": null,
+     "price": 110
+    },
+    "fanatics": {
+     "point": null,
+     "price": 110
+    },
+    "fanduel": {
+     "point": null,
+     "price": 106
+    },
+    "kalshi": {
+     "point": null,
+     "price": 113
+    },
+    "limitless": {
+     "point": null,
+     "price": 108
+    },
+    "mybookieag": {
+     "point": null,
+     "price": 114
+    },
+    "novig": {
+     "point": null,
+     "price": 113
+    },
+    "polymarket": {
+     "point": null,
+     "price": 117
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": 113
+    },
+    "prophetx": {
+     "point": null,
+     "price": 114
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": 110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBAGAME-26NOV04PHIDET-PHI"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Philadelphia",
+   "side_label": "Philadelphia",
+   "start_source": "odds",
+   "start_utc": "2026-11-05T00:00:00Z",
+   "teams": [
+    "Philadelphia",
+    "Detroit"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-04T02:15:29Z",
    "base_depth": 33889,
    "best_price": 0.54,
@@ -2986,8 +3133,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.71,
-   "clv_cents": -2.0,
+   "close_price": 0.7,
+   "clv_cents": -3.0,
    "confirmed_after_min": 6,
    "date": "2026-11-04",
    "depth_by_book": {
