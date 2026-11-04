@@ -17,6 +17,7 @@ GRADE: 1u flat at that tick's price after the exchange's fee (the price the bot 
 CLV vs Pinnacle's no-vig close. H1 <= FIT_END < H2. Private email; the log prints counts only.
 """
 import os
+import random
 import statistics as stt
 from datetime import datetime, timedelta, timezone
 
@@ -35,7 +36,8 @@ FROM = datetime.fromisoformat(os.environ.get("SBS_FROM", "") or "2026-10-12").re
 FIT_END = os.environ.get("SBS_FIT_END", "") or "2026-10-28"
 REL_X = float(os.environ.get("SBS_REL_X", "") or "2.0")
 REL_NEW_FRAC = float(os.environ.get("SBS_REL_NEW_FRAC", "") or "0.5")
-NORM_MIN_TICKS = int(os.environ.get("SBS_NORM_MIN_TICKS", "") or "200")
+NORM_MIN_TICKS = int(os.environ.get("SBS_NORM_MIN_TICKS", "") or "50")
+RES_CAP = 20000   # Nov 4: normals keep a capped random sample of sizes per key (memory)
 ABS_MIN = 25000   # the live monitor's absolute trigger, to split out what the relative trigger ADDS
 LOOKBACK = timedelta(hours=4)   # Nov 4 (Peter 10:29 "both"): GAME normal = that side's own size over the 4 hours before
 MIN_LEAD = timedelta(hours=4)   # ...and the 4H variants use only times 4+ hours before tip, for the normal and the surge
@@ -86,7 +88,11 @@ def series(f, xm, mkmap, start, lg):
                     ticks.append((ct, pr, lim))   # Nov 4: main-band ticks only (memory: alt lines dropped here)
             if ticks:
                 ticks.sort(key=lambda z: z[0])
-                out.append((kind, str(mid), typ, hcap, name, ticks))
+                slim = [ticks[0]]
+                for z in ticks[1:]:   # Nov 4 (memory): keep only ticks where the offered size changed
+                    if z[2] != slim[-1][2]:
+                        slim.append(z)
+                out.append((kind, str(mid), typ, hcap, name, slim))
     return out
 
 
@@ -106,8 +112,28 @@ def main():
             games.append((s, fid, f))
     games.sort()
     miss = {"not in cache": 0, "history error": 0}
-    # pass 1: every game's pregame exchange tick series (kept in memory; read the cache once)
-    G = []
+    # Nov 4: ONE PASS, one game at a time (two runs were killed holding every game's ticks): read a game, find its surges
+    # under all three normals, grade them while its history is loaded, fold its sizes into the normals, drop it.
+    # Normals keep a capped random sample per key (RES_CAP sizes) instead of every tick.
+    rng = random.Random(7)
+    seen_n = {m: {} for m in MODES}          # key -> sizes seen so far (for the reservoir)
+    hist = {m: {} for m in MODES}            # key -> reservoir of sizes from PRIOR days
+    pend = {m: {} for m in MODES}            # key -> sizes from the current day, folded in when the day changes
+    cur_day, norm_cache = None, {}
+    R, read = [], 0
+
+    def fold(mode, key, vals):
+        res, n = hist[mode].setdefault(key, []), seen_n[mode].get(key, 0)
+        for v in vals:
+            n += 1
+            if len(res) < RES_CAP:
+                res.append(v)
+            else:
+                k = rng.randrange(n)
+                if k < RES_CAP:
+                    res[k] = v
+        seen_n[mode][key] = n
+
     for s, fid, f in games:
         if not all(os.path.exists(hc._path(fid, b)) for b in ("pinnacle",) + EXCH):
             miss["not in cache"] += 1
@@ -116,99 +142,95 @@ def main():
         if isinstance(h, dict) and h.get("_error"):
             miss["history error"] += 1
             continue
+        pin = cl.book_markets(h, "pinnacle")
         ser = {b: series(f, cl.book_markets(h, b), mkmap, s, f["lg"]) for b in EXCH}
-        del h   # Nov 4: the first run was killed (memory); Pinnacle is re-read below only for games with a surge
-        G.append((s, fid, f, ser, None))
-        if len(G) % 200 == 0:
-            print(f"small-book surge: read {len(G)} games")   # counts only
-    # pass 2: surges per mode (normals from prior days only, or the game's own previous 4 hours)
-    S = []
-    for mode in MODES:
-        hist, pend, cur_day, norm_cache = {}, {}, None, {}
-        for s, fid, f, ser, pin in G:
-            day = s.astimezone(ET).strftime("%Y-%m-%d")
-            if day != cur_day:
-                for k, v in pend.items():
-                    hist.setdefault(k, []).extend(v)
-                pend, cur_day, norm_cache = {}, day, {}
+        del h
+        read += 1
+        if read % 200 == 0:
+            print(f"small-book surge: read {read} games")   # counts only
+        day = s.astimezone(ET).strftime("%Y-%m-%d")
+        if day != cur_day:
+            for m in MODES:
+                for k, v in pend[m].items():
+                    fold(m, k, v)
+            pend = {m: {} for m in MODES}
+            cur_day, norm_cache = day, {}
+        found = []
+        for mode in MODES:
             for b, rows in ser.items():
                 seen_side = set()
                 for kind, mid, typ, hcap, name, ticks in rows:
                     key = f"{b}|{f['lg']}|{kind}"
-                    main = [z for z in ticks if band_ok(typ, 1 / z[1])]
-                    if mode != "LEAGUE":
-                        main = [z for z in main if s - z[0] >= MIN_LEAD]
-                    if (kind, name) in seen_side or not main:
-                        if mode != "GAME-4H":
-                            pend.setdefault(key, []).extend(z[2] for z in main if z[2] > 0)
+                    main = ticks if mode == "LEAGUE" else [z for z in ticks if s - z[0] >= MIN_LEAD]
+                    if mode != "GAME-4H":   # time-weighted: one sample per 15 min the size was on the book (max 96)
+                        end = s if mode == "LEAGUE" else s - MIN_LEAD
+                        pv = pend[mode].setdefault(key, [])
+                        for i3, z in enumerate(main):
+                            if z[2] <= 0:
+                                continue
+                            nxt = main[i3 + 1][0] if i3 + 1 < len(main) else end
+                            pv.extend([z[2]] * max(1, min(96, int((nxt - z[0]).total_seconds() // 900))))
+                    if (kind, name) in seen_side or len(main) < 2:
                         continue
                     if mode == "GAME-4H":
                         for i2 in range(1, len(main)):
                             ct, pr, lim = main[i2]
                             prev = main[i2 - 1][2]
                             lo = ct - LOOKBACK
-                            win = [z[2] for z in main[:i2] if z[0] >= lo]
-                            carry = [z[2] for z in main[:i2] if z[0] < lo][-1:]   # the size in force when the window opened
-                            base = win + carry
-                            if not base or main[0][0] > lo:
+                            if main[0][0] > lo:
                                 continue   # need a full 4 hours of this side's history first
+                            base = [z[2] for z in main[:i2] if z[0] >= lo] + [z[2] for z in main[:i2] if z[0] < lo][-1:]
                             nm = stt.median(base)
                             if nm > 0 and prev < REL_X * nm <= lim and lim - prev >= REL_NEW_FRAC * nm:
-                                S.append({"mode": mode, "day": day, "lg": f["lg"], "book": b, "kind": kind, "typ": typ,
-                                          "hcap": hcap, "name": name, "t": ct, "start": s, "dec": pr, "lim": lim,
-                                          "prev": prev, "normal": nm, "f": f, "fid": fid, "pin": None})
+                                found.append((mode, b, kind, typ, hcap, name, ct, pr, lim, prev, nm))
                                 seen_side.add((kind, name))
                                 break
                         continue
-                    pend.setdefault(key, []).extend(z[2] for z in main if z[2] > 0)
-                    if key not in norm_cache:
-                        hv = hist.get(key) or []
-                        norm_cache[key] = stt.median(hv) if len(hv) >= NORM_MIN_TICKS else None
-                    nm = norm_cache[key]
+                    ck = (mode, key)
+                    if ck not in norm_cache:
+                        hv = hist[mode].get(key) or []
+                        norm_cache[ck] = stt.median(hv) if seen_n[mode].get(key, 0) >= NORM_MIN_TICKS and hv else None
+                    nm = norm_cache[ck]
                     if not nm:
                         continue
-                    prev = None
-                    for ct, pr, lim in main:
-                        if prev is not None and prev < REL_X * nm <= lim and lim - prev >= REL_NEW_FRAC * nm:
-                            S.append({"mode": mode, "day": day, "lg": f["lg"], "book": b, "kind": kind, "typ": typ,
-                                      "hcap": hcap, "name": name, "t": ct, "start": s, "dec": pr, "lim": lim, "prev": prev,
-                                      "normal": nm, "f": f, "fid": fid, "pin": None})
+                    for i2 in range(1, len(main)):
+                        ct, pr, lim = main[i2]
+                        prev = main[i2 - 1][2]
+                        if prev < REL_X * nm <= lim and lim - prev >= REL_NEW_FRAC * nm:
+                            found.append((mode, b, kind, typ, hcap, name, ct, pr, lim, prev, nm))
                             seen_side.add((kind, name))
                             break
-                        prev = lim
-    # grade (Pinnacle re-read from the cache once per game that has a surge)
-    R = []
-    pins = {}
-    S.sort(key=lambda z: (z["start"], z["fid"]))
-    for x in S:
-        fidk = x["fid"]
-        if fidk not in pins:
-            h = hc.get_hist(fidk, ["pinnacle"] + list(EXCH), x["start"])
-            pins = {fidk: cl.book_markets(h, "pinnacle") if isinstance(h, dict) and not h.get("_error") else {}}
-            del h
-        x["pin"] = pins[fidk]
-        f = x["f"]
-        side = x["name"]
-        res = None
-        try:
-            res = fin.result({"league": x["lg"], "game": f"{f['n1']} vs {f['n2']}", "start": f.get("start"),
-                              "type": x["typ"], "line": x["hcap"], "side": side})
-        except Exception:
-            res = None
-        if res not in ("W", "L", "P"):
-            miss["no final"] = miss.get("no final", 0) + 1
-            continue
-        dec = el.eff(x["book"], x["dec"])
-        b = {"bet": bet_text(f, x["typ"], x["hcap"], side), "league": x["lg"], "game": f"{f['n1']} vs {f['n2']}",
-             "game_start": f.get("start"), "book": x["book"]}
-        c, _ = cl.close_for(b, f, x["pin"], mkmap, x["start"], x["lg"])
-        clv = round(100 * (c["p"] * dec - 1), 2) if c else None
-        if clv is not None and clv > 15:   # same rule as P1 / exchange-lag: > +15% vs the close is a misread quote
-            miss["suspect quote dropped"] = miss.get("suspect quote dropped", 0) + 1
-            continue
-        R.append({"mode": x["mode"], "day": x["day"], "lg": x["lg"], "book": x["book"], "kind": x["kind"],
-                  "lead": (x["start"] - x["t"]).total_seconds() / 3600, "mult": x["lim"] / x["normal"],
-                  "new": x["lim"] - x["prev"], "clv": clv, "u": fin.units_wl(res, dec), "res": res})
+        # one play counts once (Peter 10:58): per mode, the FIRST surge on a game + bet type + side across exchanges
+        found.sort(key=lambda z: z[6])
+        firsts = set()
+        for mode, b, kind, typ, hcap, name, ct, pr, lim, prev, nm in found:
+            pk = (mode, kind, name)
+            first = pk not in firsts
+            firsts.add(pk)
+            try:
+                res = fin.result({"league": f["lg"], "game": f"{f['n1']} vs {f['n2']}", "start": f.get("start"),
+                                  "type": typ, "line": hcap, "side": name})
+            except Exception:
+                res = None
+            if res not in ("W", "L", "P"):
+                miss["no final"] = miss.get("no final", 0) + 1
+                continue
+            dec = el.eff(b, pr)
+            bb = {"bet": bet_text(f, typ, hcap, name), "league": f["lg"], "game": f"{f['n1']} vs {f['n2']}",
+                  "game_start": f.get("start"), "book": b}
+            c, _ = cl.close_for(bb, f, pin, mkmap, s, f["lg"])
+            clv = round(100 * (c["p"] * dec - 1), 2) if c else None
+            if clv is not None and clv > 15:   # same rule as P1 / exchange-lag: > +15% vs the close is a misread quote
+                miss["suspect quote dropped"] = miss.get("suspect quote dropped", 0) + 1
+                continue
+            R.append({"mode": mode, "first": first, "day": day, "lg": f["lg"], "book": b, "kind": kind,
+                      "lead": (s - ct).total_seconds() / 3600, "mult": lim / nm, "new": lim - prev, "clv": clv,
+                      "u": fin.units_wl(res, dec), "res": res})
+        del ser, pin
+    G = range(read)
+    S = R
+    RALL = R
+    R = [r for r in RALL if r["first"]]   # every table below is one-play-once unless it says otherwise
 
     def stl(xs):
         if not xs:
@@ -225,7 +247,7 @@ def main():
 
     L = [f"SMALL-BOOK SURGE BACKTEST - PAPER ONLY | {now.astimezone(ET):%Y-%m-%d %H:%M} ET",
          f"Surge = a side's offered size (OddsPapi tick limit) crosses {REL_X:g}x its NORMAL with a jump >= {REL_NEW_FRAC:g}x normal; "
-         "first per game x exchange x bet type x side; main lines, pregame. Graded 1u at that tick's price after fee; ESPN "
+         "ONE PLAY COUNTS ONCE: the first surge per game x bet type x side across exchanges; main lines, pregame. Graded 1u at that tick's price after fee; ESPN "
          f"finals; CLV vs Pinnacle no-vig close. H1 <= {FIT_END} < H2. Three NORMALS, side by side:"]
     L += [f"   {m}: {d}" for m, d in MODES.items()]
     L += [f"Games {len(games)}, read {len(G)}; surges {len(S)}, graded {len(R)}. Not graded: "
@@ -241,7 +263,8 @@ def main():
              f"jump ${ABS_MIN:,}+ (the live trigger would see these): {stl([r for r in R if r['new'] >= ABS_MIN])}", "",
              "BY EXCHANGE (all leagues and bet types):"]
         for b in EXCH:
-            L.append(f"   {NAME[b]}: {stl([r for r in R if r['book'] == b])}")
+            L.append(f"   {NAME[b]} (surged first): {stl([r for r in R if r['book'] == b])}")
+            L.append(f"      incl. surges after another exchange on the same play: {stl([r for r in RALL if r['mode'] == mode and r['book'] == b])}")
             L.append(f"      under ${ABS_MIN // 1000}k jump: {stl([r for r in small if r['book'] == b])}")
         L += ["", "NBA TOTALS (the rule's market):"]
         nt = [r for r in R if r["lg"] == "NBA" and r["kind"] in ("OVER", "UNDER")]
