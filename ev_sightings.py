@@ -23,6 +23,9 @@ AMENDMENT A2 (Oct 29): MK MAKER TEST. Paper resting bids on Novig and ProphetX a
                  bid. Fills graded (Pinnacle CLV + flat 1u); unfilled CLV kept for the adverse-selection comparison.
                  Stored under "maker" / "maker_agg" in the same file. No extra credits or reads.
 
+NOV 4 FIX: Polymarket US football team totals (market type '..team_points..', slug '-tt-') were being read as game
+totals; they are now skipped, and earlier Polymarket US football-total sightings are flagged suspect (data error,
+not a rule change).
 NOV 3 AUDIT LOGGING: every A/B sighting stores best_ref (the exact contract behind the best price); Polymarket US refs
 also carry the market's raw line, side text, market type and best offer/bid, so suspect quotes can be checked
 against the real market. Logging only: no trigger, rule or judged bucket changed.
@@ -285,7 +288,10 @@ def read_novig(n, stop_at, horizon=None, only=None):
 # ---------------------------------------------------------------- Polymarket US (public gateway; same routes as the executor)
 def pmus_type(mk):
     smt = (mk.get("sportsMarketType") or mk.get("sportsMarketTypeV2") or mk.get("marketType") or "").lower()
-    if "full_game" not in smt or any(w in smt for w in ("half", "quarter", "period", "inning", "team_total", "player")):
+    if "full_game" not in smt or any(w in smt for w in ("half", "quarter", "period", "inning", "team_total", "player",
+                                                         "team_points")):   # Nov 4: team points totals (slug "-tt-")
+        return None
+    if "-tt-" in (mk.get("slug") or ""):
         return None
     if any(w in smt for w in ("spread", "handicap")):
         return "spread"
@@ -508,8 +514,20 @@ SUSPECT_C = 10.0
 PIN_NEAR_PTS = 3.0
 
 
+def pm_team_total(s):
+    """Nov 4 audit: before the fix, Polymarket US football TEAM totals were read as game totals. Logged contracts show
+    it directly (slug '-tt-'); older football-total sightings whose best price was Polymarket US have no contract
+    logged, so they are all treated as possibly affected."""
+    if s.get("best_book") != "polymarket_us" or s.get("market") != "total" or s.get("league") not in ("NCAAF", "NFL"):
+        return False
+    ref = s.get("best_ref")
+    return ref is None or "-tt-" in (ref.get("slug") or "") or "team_points" in (ref.get("smt") or "")
+
+
 def is_suspect(s):
     """Flag computed from stored fields, so it applies to every sighting already logged."""
+    if pm_team_total(s):
+        return True
     if s.get("trigger") in ("A", "B"):
         if (s.get("discrepancy_c") or 0) >= SUSPECT_C - 1e-9:
             return True
