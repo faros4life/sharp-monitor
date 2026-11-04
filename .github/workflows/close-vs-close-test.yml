@@ -1,0 +1,37 @@
+name: close-vs-close-test
+
+# Nov 4: close-vs-close by league, run 1 (preliminary, not judged). Paper / measurement only. Reads the shared OddsPapi
+# history cache only (restore-only; cache_only=1 = no downloads). Private email; counts-only log.
+on:
+  workflow_dispatch:
+    inputs:
+      cache_only: {required: false, type: string, default: "1"}
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Restore shared OddsPapi history cache (read only)
+        uses: actions/cache/restore@v4
+        with:
+          path: hcache
+          key: hcache-${{ github.run_id }}
+          restore-keys: hcache-
+      - name: Close vs close run 1 (private email)
+        env:
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
+          ODDSPAPI_FREE_KEY: ${{ secrets.ODDSPAPI_FREE_KEY }}
+          CVC_CACHE_ONLY: ${{ inputs.cache_only }}
+        run: python -u close_vs_close_test.py
