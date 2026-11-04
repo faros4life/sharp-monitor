@@ -92,8 +92,8 @@ def get_hist(fid, books, start=None):
         h = None
         for _ in range(2):
             h = cl.api("/historical-odds", False, apikey=key, fixtureId=fid, bookmakers=",".join(names))
-            if not (isinstance(h, dict) and h.get("_error")):
-                break
+            if not (isinstance(h, dict) and h.get("_error")) or h.get("_error") == 404:
+                break   # Nov 4 11:10: a 404 is a final "no data" answer - never ask twice (halves calls on empty games)
         if isinstance(h, dict) and isinstance(h.get("bookmakers"), dict) and is_paid:
             h["bookmakers"] = {b: h["bookmakers"].get(PAID_SLUG.get(b, b)) for b in grp}   # back to the plain names
         return h
