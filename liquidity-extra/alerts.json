@@ -1,6 +1,208 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-04T18:20:16Z",
+   "base_depth": 53674,
+   "best_price": 0.575,
+   "best_price_american": -135,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.58,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-04",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -903,
+     "new_this_side": 28037,
+     "other_side": 29291,
+     "other_side_all_levels": 43757,
+     "ratio": 2.1,
+     "this_side": 60209,
+     "this_side_all_levels": 78140
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "NKU (0)",
+     "price": 0.575,
+     "this_side": 8062
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "Northern Kentucky",
+     "price": 0.5833,
+     "this_side": 1800
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 35954.11,
+    "volume_24h_fp": 30645.96,
+    "volume_fp": 37848.0
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 7158.63,
+    "volume_24h_fp": 831.2,
+    "volume_fp": 7173.95
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 28795.48,
+    "volume_24h_fp": 29814.760000000002,
+    "volume_fp": 30674.050000000003
+   },
+   "fade_price": 0.43,
+   "first_seen_utc": "2026-11-04T18:10:18Z",
+   "game": "Northern Kentucky vs South Dakota",
+   "game_surge_books": [],
+   "game_x": 1.1,
+   "key": "kalshi|KXNCAAMBGAME-26NOV04NKUSDAK|ml|0",
+   "lead_min": 400,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 28037,
+   "new_x": 10.57,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 35954.11,
+      "volume_24h_fp": 30645.96,
+      "volume_fp": 37848.0
+     },
+     "game_normal": 70887,
+     "game_x": 1.1,
+     "normal": 2653,
+     "now": 78140,
+     "type": "ML",
+     "x": 29.45
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 1828127.0,
+      "volume": 2637836.0
+     },
+     "game_normal": 4748,
+     "game_x": 1.75,
+     "normal": 2303,
+     "now": 8299,
+     "type": "ML",
+     "x": 3.6
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 1086,
+     "game_x": 1.77,
+     "normal": 203,
+     "now": 1926,
+     "type": "ML",
+     "x": 9.48
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.58,
+   "price_american": -138,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.58,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -145
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -148
+    },
+    "betopenly": {
+     "point": null,
+     "price": -134
+    },
+    "betrivers": {
+     "point": null,
+     "price": -150
+    },
+    "betus": {
+     "point": null,
+     "price": -150
+    },
+    "bovada": {
+     "point": null,
+     "price": -145
+    },
+    "draftkings": {
+     "point": null,
+     "price": -148
+    },
+    "fanatics": {
+     "point": null,
+     "price": -150
+    },
+    "fanduel": {
+     "point": null,
+     "price": -142
+    },
+    "kalshi": {
+     "point": null,
+     "price": -138
+    },
+    "lowvig": {
+     "point": null,
+     "price": -148
+    },
+    "novig": {
+     "point": null,
+     "price": -135
+    },
+    "polymarket": {
+     "point": null,
+     "price": -138
+    },
+    "prophetx": {
+     "point": null,
+     "price": -140
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -150
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV04NKUSDAK-NKU"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Northern Kentucky",
+   "side_label": "Northern Kentucky",
+   "size_x": 29.45,
+   "start_source": "odds",
+   "start_utc": "2026-11-05T01:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "teams": [
+    "Northern Kentucky",
+    "South Dakota"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-04T16:00:30Z",
    "base_depth": 143851,
    "best_price": 0.6952,
@@ -1302,9 +1504,9 @@
     }
    },
    "ex_stats_close": {
-    "open_interest_fp": 9141.64,
-    "volume_24h_fp": 8957.119999999999,
-    "volume_fp": 9183.54
+    "open_interest_fp": 9160.82,
+    "volume_24h_fp": 9042.73,
+    "volume_fp": 9202.720000000001
    },
    "fade_price": 0.31,
    "first_seen_utc": "2026-11-03T23:30:20Z",
@@ -1396,9 +1598,9 @@
     }
    },
    "ex_stats_close": {
-    "open_interest_fp": 8326.470000000001,
-    "volume_24h_fp": 8632.710000000001,
-    "volume_fp": 8753.1
+    "open_interest_fp": 8696.4,
+    "volume_24h_fp": 8727.14,
+    "volume_fp": 9303.31
    },
    "fade_price": 0.21,
    "first_seen_utc": "2026-11-03T23:20:19Z",
