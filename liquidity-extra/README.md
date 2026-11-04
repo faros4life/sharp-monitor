@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 4, 6:30 AM ET. This run: 0 new, 1 not confirmed, 1 pending. Open alerts: 18.
+Updated Wed Nov 4, 6:40 AM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 19.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,7 +10,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 4 6:10AM | TENNIS | Halys vs Tiafoe | moneyline: Tiafoe | kalshi | $97k | -117 |  |  | +34.0c |  | pending |
+| Nov 4 6:40AM | TENNIS | Montgomery vs Vandromme | moneyline: Montgomery | kalshi | $89k | -150 |  |  | +0.0c |  | pending |
+| Nov 4 6:10AM | TENNIS | Halys vs Tiafoe | moneyline: Tiafoe | kalshi | $97k | -117 |  |  | +40.0c |  | pending |
 | Nov 4 5:50AM | TENNIS | Berrettini vs Humbert | moneyline: Humbert | kalshi | $26k | -108 | ✅ novig |  | +0.0c |  | pending |
 | Nov 4 5:20AM | TENNIS | Tjen vs Garland | moneyline: Tjen | kalshi | $28k | -233 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 4 3:50AM | TENNIS | Liu vs Boulter | moneyline: Boulter | kalshi | $112k | -257 |  |  | +0.0c |  | L |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 24 4:40AM | TENNIS | Basilashvili vs Tsitsipas | moneyline: Tsitsipas | kalshi | $43k | -245 | ✅ novig |  | -25.0c | yes | L |
 | Oct 24 3:50AM | TENNIS | Fernandez vs Bouzkova | moneyline: Bouzkova | kalshi | $90k | -156 |  |  | +0.0c |  | L |
 | Oct 24 3:00AM | TENNIS | Medvedev vs Bublik | moneyline: Medvedev | kalshi | $26k | -186 | ✅ novig |  | +32.0c | yes | W |
-| Oct 24 1:50AM | MLB | Tampa Bay Rays vs. Milwaukee Brewers | moneyline: Tampa Bay Rays | polymarket | $110k | +113 | ✅ kalshi |  | +1.0c |  | L |
