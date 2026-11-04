@@ -52,10 +52,10 @@ jobs:
       - name: Publish alerts.json
         if: always()
         run: |
-          if [ -n "$(git status --porcelain alerts.json splits.json SPLITS.md)" ]; then
+          if [ -n "$(git status --porcelain alerts.json splits.json SPLITS.md hrscan.json)" ]; then
             git config user.name "sharp-monitor"
             git config user.email "sharp-monitor@users.noreply.github.com"
-            git add alerts.json splits.json SPLITS.md 2>/dev/null || git add alerts.json
+            git add alerts.json splits.json SPLITS.md hrscan.json 2>/dev/null || git add alerts.json
             git commit -m "Update alerts.json"
             git pull --rebase -q || true
             git push || true
