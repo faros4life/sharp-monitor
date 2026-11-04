@@ -47,7 +47,8 @@ CALLS = []
 
 
 def api(path, **params):
-    params["apiKey"] = KEY
+    fk = (os.environ.get("ODDSPAPI_FREE_KEY") or "").strip()   # Nov 3 21:45: history via the free key (paid key: 403 on pinnacle)
+    params["apiKey"] = fk if (fk and path == "/historical-odds") else KEY
     q = urllib.parse.urlencode({k: v for k, v in params.items() if v is not None})
     req = urllib.request.Request(f"{BASE}{path}?{q}", headers={"Accept": "application/json", "User-Agent": "sharp-monitor-plimit"})
     time.sleep(8.0 if path == "/historical-odds" else 1.1)
