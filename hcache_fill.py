@@ -21,7 +21,7 @@ LEAGUES = ("NBA", "NFL", "NCAAF", "NHL")
 BOOKS = ["pinnacle", "novig.us", "prophetx", "kalshi", "polymarket.us", "hardrockbet"]
 FILL_FROM = datetime.fromisoformat(os.environ.get("FILL_FROM", "") or "2026-10-12").replace(tzinfo=timezone.utc)
 MAX_GAMES = int(os.environ.get("FILL_MAX", "") or "700")
-BUDGET_MIN = int(os.environ.get("FILL_BUDGET_MIN", "") or "300")   # Nov 4: stop in time for the cache save
+BUDGET_MIN = int(os.environ.get("FILL_BUDGET_MIN", "") or "150")   # Nov 4 (Peter): 2.5 h batches - stop in time for the save, lose less on a failure
 ORDER = (os.environ.get("FILL_ORDER", "") or "newest").lower()   # Nov 2 18:01 (Peter: faster now): a 2nd fill runs oldest-first
 MERGE = [d for d in (os.environ.get("FILL_MERGE", "") or "").split(",") if d]   # extra restored cache dirs folded in first
 
@@ -95,6 +95,11 @@ def main():
     print(f"cache fill: fixtures {len(st.get('fixtures') or {})}, needing data {len(todo)}, filled {done}, errors {errs}, "
           f"cache files {n_files}, size {size / 1e6:.0f} MB, calls {len(cl.CALLS)} (billable {cl.STATS['billable']}), "
           f"rate-limit waits {cl.STATS.get('rate_waits', 0)}, free key {'on' if hc.FREE_KEY else 'off'}")   # counts only
+    left = max(0, len(todo) - done - errs)
+    print(f"cache fill: {'stopped at the time budget' if stopped else 'finished the list'}; games still needing data about {left}", flush=True)
+    if os.environ.get("GITHUB_OUTPUT"):   # Nov 4: the workflow starts the next batch after a SUCCESSFUL save when more remain
+        with open(os.environ["GITHUB_OUTPUT"], "a") as fh:
+            fh.write(f"more={'1' if (stopped and left > 0) else '0'}\n")
     print("cache fill per book (answers with markets / empty): " +
           ", ".join(f"{b} {v['markets']}/{v['empty']}" for b, v in sorted(hc.BOOK_STATS.items())), flush=True)   # counts only
 
