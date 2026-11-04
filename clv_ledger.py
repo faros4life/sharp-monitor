@@ -854,7 +854,8 @@ def main():
             L.append(f"  {(s.get('game_start') or '')[:10]} {s.get('league')} {s.get('book')} [{lane_of(s, sv)}] "
                      f"{s.get('bet')} | you {r['eff_am']:+d} after fee, close fair {r['close_am']:+d} ({r['how']}, "
                      f"tick {r['age_min']} min pre-start) -> CLV {100 * r['clv']:+.1f}%"
-                     + (f" | P limit {r['plimit']['limit']:,} {r['plimit']['grp'] or ''}" if r.get("plimit") else "")
+                     + (f" | P limit {r['plimit']['limit']:,} {r['plimit']['grp'] or ''}" if (r.get("plimit") or {}).get("limit")
+                        else f" | P limit: {r['plimit']['why']}" if (r.get("plimit") or {}).get("why") else "")
                      if r.get("eff_am") and r.get("close_am") else
                      f"  {s.get('bet')}: CLV {100 * r['clv']:+.1f}%")
         un = [(k, r) for k, r in st["bets"].items() if r.get("done") and r.get("clv") is None]
