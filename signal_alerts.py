@@ -29,6 +29,9 @@ TWO_MIN, AGAINST_MIN, FLIP_MIN = 100_000, 250_000, 100_000
 # Nov 1 (Peter, via Muse): the NBA UNDER lane is silent until Peter turns it on (repo variable PUSH_NBA_UNDER=1).
 # Off = no phone push; the alert is still logged by email (its dedupe record), so paper tracking is unchanged.
 PUSH_NBA_UNDER = (os.environ.get("PUSH_NBA_UNDER") or "").strip().lower() in ("1", "on", "true", "yes")
+# Nov 4 (Peter: "I don't want to see any other alerts unless we make them bot or actionable"): signal pushes OFF.
+# Still detected and logged by email (the dedupe record) exactly as before. PUSH_SIGNALS=on brings the push back.
+PUSH_SIGNALS = (os.environ.get("PUSH_SIGNALS") or "off").strip().lower() == "on"
 HIST = {"total": "On totals the FIRST money has won 58% of flips (57 games).",
         "spread": "On spreads the LATER money has won 61% of flips (74 games).",
         "moneyline": "On moneylines flips have been a coin flip (131 games)."}
@@ -235,7 +238,7 @@ def main():
             tokn = "xsig" + hashlib.sha1(key.encode()).hexdigest()[:12]
             if ex.gsearch(M, tokn):
                 continue
-            if PUSH_NBA_UNDER or not key.startswith("nbau|"):
+            if PUSH_SIGNALS and (PUSH_NBA_UNDER or not key.startswith("nbau|")):
                 ex.push(title[:80], body)
             try:
                 ex.send(f"Bets signal: {title[:60]}", body + f"\n\n{tokn}")
