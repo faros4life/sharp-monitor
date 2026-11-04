@@ -1,6 +1,152 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-04T01:45:24Z",
+   "base_depth": 17637,
+   "best_price": 0.844,
+   "best_price_american": -541,
+   "best_price_book": "polymarket",
+   "bid_improved": true,
+   "bid_improved_at_pending": false,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.845,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-04",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "New York",
+     "price": 0.84,
+     "this_side": 138474
+    },
+    "novig": {
+     "new_other_side": -91,
+     "new_this_side": 73151,
+     "other_side": 1243,
+     "other_side_all_levels": 1325,
+     "ratio": 70.6,
+     "this_side": 87765,
+     "this_side_all_levels": 89774
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Knicks",
+     "price": 0.84,
+     "this_side": 63021
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "New York Knicks",
+     "price": 0.8413,
+     "this_side": 6154
+    }
+   },
+   "fade_price": 0.16,
+   "first_seen_utc": "2026-11-04T01:40:10Z",
+   "game": "Chicago Bulls @ New York Knicks",
+   "key": "novig|{\"market_id\": \"01a1a332-ac81-7d63-919d-964ea590dd9f\", \"outcome_id\": \"01a1a332-ac81-7d63-919d-965b8c9a0a0e\"}",
+   "lead_min": 1365,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 73151,
+   "paper_only": false,
+   "price": 0.845,
+   "price_american": -545,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.84,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -625
+    },
+    "betrivers": {
+     "point": null,
+     "price": -670
+    },
+    "bovada": {
+     "point": null,
+     "price": -625
+    },
+    "draftkings": {
+     "point": null,
+     "price": -597
+    },
+    "fanatics": {
+     "point": null,
+     "price": -600
+    },
+    "fanduel": {
+     "point": null,
+     "price": -600
+    },
+    "kalshi": {
+     "point": null,
+     "price": -525
+    },
+    "limitless": {
+     "point": null,
+     "price": -590
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -599
+    },
+    "novig": {
+     "point": null,
+     "price": -545
+    },
+    "polymarket": {
+     "point": null,
+     "price": -525
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -525
+    },
+    "prophetx": {
+     "point": null,
+     "price": -540
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -600
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a1a332-ac81-7d63-919d-964ea590dd9f",
+    "outcome_id": "01a1a332-ac81-7d63-919d-965b8c9a0a0e"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi",
+    "polymarket"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "New York Knicks",
+   "side_label": "NYK (0)",
+   "start_source": "odds",
+   "start_utc": "2026-11-05T00:30:00Z",
+   "teams": [
+    "Chicago Bulls",
+    "New York Knicks"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-04T00:30:13Z",
    "base_depth": 201047,
    "best_price": 0.5525,
@@ -2388,8 +2534,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.71,
-   "clv_cents": -2.0,
+   "close_price": 0.7,
+   "clv_cents": -3.0,
    "confirmed_after_min": 6,
    "date": "2026-11-04",
    "depth_by_book": {
