@@ -15,6 +15,9 @@ import board_build as bb
 FILE = "lanes/board_alerts.json"
 TOPIC = (os.environ.get("NTFY_TOPIC") or "").strip()
 TAGS = [t.strip().upper() for t in (os.environ.get("BOARD_ALERT_TAGS") or "PLAY").split(",") if t.strip()]
+# Nov 4 (Peter via Muse, 7:42 AM): board PLAY pushes OFF - Lane 3 is off, so every board call is paper. Rows are still
+# recorded as sent (so turning it back on never floods old calls). BOARD_PUSH=on brings the push back.
+PUSH = (os.environ.get("BOARD_PUSH") or "off").strip().lower() == "on"
 
 
 def main():
@@ -35,7 +38,7 @@ def main():
         title = f"Bets Board {r['tag']}: {r['side']}"
         body = (f"{r['league']} {r['game']} | {r['mk']} | {bb.money(r['new'])} new money | {r['book']}\n"
                 f"{r.get('why') or ''}\nPaper signal - check the price before betting. faros4life.github.io/sharp-monitor")
-        if TOPIC:
+        if TOPIC and PUSH:
             try:
                 req = urllib.request.Request(f"https://ntfy.sh/{TOPIC}", data=body.encode(), method="POST",
                                              headers={"Title": title.encode("ascii", "ignore").decode(), "Priority": "high",
