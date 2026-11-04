@@ -1,17 +1,17 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 4, 3:30 AM ET. This run: 0 new, 2 not confirmed, 0 pending. Open alerts: 16.
+Updated Wed Nov 4, 3:40 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 15.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 118-75 (-9.88u flat) | rule met: 33-30
+**Record:** 119-75 (-9.36u flat) | rule met: 33-30
 
-**Fade (paper, betting against the print):** 50-83 (+8.02u flat, after fees)
+**Fade (paper, betting against the print):** 50-84 (+7.02u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 4 2:00AM | TENNIS | Joint vs Sakkari | moneyline: Sakkari | kalshi | $35k | -186 |  |  | +0.0c |  | pending |
-| Nov 4 1:50AM | TENNIS | Stojsavljevic vs Kenin | moneyline: Stojsavljevic | kalshi | $38k | -178 |  |  | +15.0c |  | pending |
+| Nov 4 1:50AM | TENNIS | Stojsavljevic vs Kenin | moneyline: Stojsavljevic | kalshi | $38k | -178 |  |  | +15.0c |  | W |
 | Nov 4 1:40AM | TENNIS | Joint vs Sakkari | moneyline: Joint | kalshi | $30k | +178 |  |  | +0.0c |  | pending |
 | Nov 4 1:00AM | TENNIS | Halys vs Tiafoe | moneyline: Halys | kalshi | $52k | +144 |  |  | +1.0c | yes | pending |
 | Nov 4 1:00AM | TENNIS | Fils vs Machac | moneyline: Fils | kalshi | $33k | -170 |  |  | +0.0c |  | pending |
