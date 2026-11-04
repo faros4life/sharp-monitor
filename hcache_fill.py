@@ -47,7 +47,7 @@ def main():
     for fid, f in (st.get("fixtures") or {}).items():
         s = cl.tp(f.get("start"))
         if f.get("lg") in LEAGUES and s and FILL_FROM <= s <= now - hc.FINAL_AFTER:
-            if not all(os.path.exists(hc._path(fid, b)) for b in BOOKS):
+            if not all(hc.have(fid, b) for b in BOOKS):   # Nov 3: a paid-key empty exchange answer is re-asked once a free key exists
                 todo.append((s, fid))
     todo.sort(reverse=(ORDER != "oldest"))   # newest first: the games the models use most (oldest first for a 2nd fill)
     done = errs = 0
@@ -67,7 +67,10 @@ def main():
     n_files = len(os.listdir(hc.DIR)) if os.path.isdir(hc.DIR) else 0
     size = sum(os.path.getsize(os.path.join(hc.DIR, x)) for x in os.listdir(hc.DIR)) if n_files else 0
     print(f"cache fill: fixtures {len(st.get('fixtures') or {})}, needing data {len(todo)}, filled {done}, errors {errs}, "
-          f"cache files {n_files}, size {size / 1e6:.0f} MB, calls {len(cl.CALLS)} (billable {cl.STATS['billable']})")   # counts only
+          f"cache files {n_files}, size {size / 1e6:.0f} MB, calls {len(cl.CALLS)} (billable {cl.STATS['billable']}), "
+          f"rate-limit waits {cl.STATS.get('rate_waits', 0)}, free key {'on' if hc.FREE_KEY else 'off'}")   # counts only
+    print("cache fill per book (answers with markets / empty): " +
+          ", ".join(f"{b} {v['markets']}/{v['empty']}" for b, v in sorted(hc.BOOK_STATS.items())), flush=True)   # counts only
 
 
 if __name__ == "__main__":
