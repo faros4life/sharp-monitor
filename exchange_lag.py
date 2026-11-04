@@ -268,6 +268,54 @@ def report(st, now, read, waiting, new):
     L.append("(Sightings stored before Nov 2 lack still-up / market-wide / limit fields: those buckets cover new sightings only.)")
     for bx in EXCH:
         L += [""] + bkt.section(f"{NAME[bx]} slow quotes (CLV % after fees)", [_b(x) for x in S if x["book"] == bx], "%")
+    # Nov 3 20:55 (Peter: "beat clv both half and constant losers - that doesnt look right"): DATA CHECK. If the close is right
+    # and the grading is right, wins should track the Pinnacle close win chance. Wins far below it = a side / line / match error.
+    try:   # the data check must never cost the rest of the report
+        L += ["", "DATA CHECK - wins vs the close's own win chance (not LATE, graded, no push; z = (wins - expected) / sd):"]
+
+        def _cal(xs):
+            g = []
+            for x in xs:
+                if x.get("close_fair") is None or not x.get("hr_price"):
+                    continue
+                r = fin.result(x)
+                if r in ("W", "L"):
+                    g.append((x, r))
+            if not g:
+                return "graded 0", g
+            w = sum(1 for _, r in g if r == "W")
+            ex_ = sum(x["close_fair"] for x, _ in g)
+            sd = sum(x["close_fair"] * (1 - x["close_fair"]) for x, _ in g) ** 0.5 or 1
+            eu = sum(x["close_fair"] * eff(x["book"], x["hr_price"]) - 1 for x, _ in g)
+            au = sum((eff(x["book"], x["hr_price"]) - 1) if r == "W" else -1.0 for x, r in g)
+            return (f"graded {len(g)} | wins {w} vs expected {ex_:.1f} (z {(w - ex_) / sd:+.1f}) | "
+                    f"units {au:+.2f}u vs expected {eu:+.2f}u"), g
+        cells = []
+        for bk in ("novig.us", "prophetx"):
+            base = [x for x in S if x["book"] == bk and not x["late"]]
+            bb_ = [(x, _b(x)) for x in base]
+            cells += [(f"{NAME[bk]} all", base),
+                      (f"{NAME[bk]} spreads x fav", [x for x, b in bb_ if b["mk"] == "spreads" and b["sc"] == "fav"]),
+                      (f"{NAME[bk]} spreads x dog", [x for x, b in bb_ if b["mk"] == "spreads" and b["sc"] == "dog"]),
+                      (f"{NAME[bk]} moneyline x dog", [x for x, b in bb_ if b["mk"] == "moneyline" and b["sc"] == "dog"]),
+                      (f"{NAME[bk]} moneyline x fav", [x for x, b in bb_ if b["mk"] == "moneyline" and b["sc"] == "fav"]),
+                      (f"{NAME[bk]} totals", [x for x, b in bb_ if b["mk"] == "totals"]),
+                      (f"{NAME[bk]} price better than -110", [x for x in base if (x.get("hr_am") or -999) > -110])]
+        samp = []
+        for nm, xs in cells:
+            txt, g = _cal(xs)
+            L.append(f"   {nm}: {txt}")
+            if nm.endswith("better than -110") and not samp:
+                samp = g
+        L += ["", "HAND-CHECK SAMPLE (Novig, price better than -110; every 15th graded sighting, oldest first):"]
+        for x, r in sorted(samp, key=lambda z: z[0]["start"])[::15][:20]:
+            gm, p1h = fin.find(x["league"], x["game"], x["start"])
+            sc = (f"ESPN away {gm['away'].get('abbr')} {gm['away'].get('pts')} - home {gm['home'].get('abbr')} {gm['home'].get('pts')}, "
+                  f"participant 1 is {'home' if p1h else 'away'}") if gm else "ESPN not found"
+            L.append(f"   {x['start'][:10]} {x['league']} {x['game']} | {x['type']} side {x['side']} ({x['team']}) line {x['line']} | "
+                     f"price {x['hr_am']:+d} | close fair {x['close_fair']:.3f} | result {r} | {sc}")
+    except Exception as e_:
+        L.append(f"   DATA CHECK failed: {type(e_).__name__}: {str(e_)[:120]}")
     L += ["", "NEWEST 25 SIGHTINGS:"]
     for x in sorted(S, key=lambda x: x["t_move"])[-25:][::-1]:
         L.append(f"  {x['t_confirm'][:16]}Z {NAME[x['book']]} {x['league']} {x['game']} | {x['type']} {x['team']} "
