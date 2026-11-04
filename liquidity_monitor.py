@@ -17,6 +17,7 @@ Output: liquidity/alerts.json, newest first. Results come from each exchange's o
 Standard library only.
 """
 import json
+import math
 import os
 import re
 import sys
@@ -101,6 +102,21 @@ def k_price(mk, field):
     return v / 100.0 if v is not None else None
 
 
+def ex_stats(mk):
+    """Nov 4 (Peter 9:04, log-only): whatever traded-volume / open-interest numbers the exchange itself reports on the
+    market (Kalshi volume / volume_24h / open_interest in contracts; Polymarket volume / volume24hr in $; Novig and
+    ProphetX whatever matched/volume fields they carry). Raw values under the exchange's own field names; None if none."""
+    out = {}
+    for k, v in (mk or {}).items():
+        lk = k.lower()
+        if isinstance(v, (dict, list)) or not any(s in lk for s in ("volume", "open_interest", "openinterest", "matched")):
+            continue
+        f = num(v)
+        if f is not None:
+            out[k] = f
+    return out or None
+
+
 def k_liquidity(mk):
     v = num(mk.get("liquidity_dollars"))
     if v is not None:
@@ -113,6 +129,81 @@ BAND_ML = (0.15, 0.85)    # moneyline sides priced 15-85c
 BAND_LINE = (0.30, 0.70)  # spread/total sides priced 30-70c (main lines, not alternates)
 FRESH_MIN = float(os.environ.get("LIQ_FRESH_MIN", "") or "60")   # compare against a reading at most this many minutes old
 STATE_VERSION = 5   # v5: Novig sizes fixed (1 contract = 1c, not $1); record restarts clean
+
+# Nov 4, 2026 (Peter 8:59 "we need to make normal for all exchanges for each league and ml spread under over"):
+# PAPER / LOG-ONLY. A rolling "normal" side size per exchange x league x bet type (ML, SPREAD, OVER, UNDER), so every
+# alert records each exchange's size now vs ITS OWN normal (e.g. Kalshi NBA unders normally $100k, now $250k = 2.5x)
+# and how many exchanges are surging on the same side at once. Changes no trigger, push, board call or executor input.
+# One reading per key per run = the median total side depth over that run's pregame main-line sides (one big game
+# barely moves it); smoothed in log space. Runs every ~10 min, so alpha 0.02 is a half-life of about 6 hours.
+NORM_ALPHA = float(os.environ.get("LIQ_NORM_ALPHA", "") or "0.02")
+NORM_MIN_N = int(os.environ.get("LIQ_NORM_MIN_N", "") or "12")       # readings before a normal is used (~2 hours)
+SURGE_X = float(os.environ.get("LIQ_SURGE_X", "") or "2.0")           # an exchange is "surging" at >= this x its normal
+# Nov 4 (Peter 9:02 "it might even have normal for each game we can go by"): the same idea per GAME side per exchange
+# (row_key), faster smoothing (alpha 0.10, half-life ~1 hour), used after 3 readings; dropped 2 days after last seen.
+GAME_ALPHA = float(os.environ.get("LIQ_GAME_ALPHA", "") or "0.10")
+GAME_MIN_N = int(os.environ.get("LIQ_GAME_MIN_N", "") or "3")
+
+
+def game_norm_of(gnorms, key):
+    v = gnorms.get(key)
+    if not v or v.get("n", 0) < GAME_MIN_N:
+        return None
+    return math.exp(v["l"])
+
+
+def update_game_norms(gnorms, rows_by_key, now_s):
+    for k, r in rows_by_key.items():
+        t = r.get("tot")
+        if not t or t <= 0:
+            continue
+        v = gnorms.get(k)
+        if v:
+            v["l"] = (1 - GAME_ALPHA) * v["l"] + GAME_ALPHA * math.log(t)
+            v["n"] = v.get("n", 0) + 1
+        else:
+            v = gnorms[k] = {"l": math.log(t), "n": 1}
+        v["t"] = round(now_s)
+    for k in [k for k, v in gnorms.items() if now_s - v.get("t", 0) > 2 * 86400]:
+        gnorms.pop(k, None)
+    return gnorms
+
+
+def bet_type(r):
+    m = r.get("market")
+    if m == "total":
+        return r["side"] if r.get("side") in ("OVER", "UNDER") else "TOTAL"
+    return {"moneyline": "ML", "spread": "SPREAD"}.get(m, str(m).upper())
+
+
+def norm_key(r):
+    return f"{r['book']}|{r.get('league')}|{bet_type(r)}"
+
+
+def norm_of(norms, r):
+    v = norms.get(norm_key(r))
+    if not v or v.get("n", 0) < NORM_MIN_N:
+        return None
+    return math.exp(v["l"])
+
+
+def update_norms(norms, rows, now_s):
+    by = {}
+    for r in rows:
+        t = r.get("tot")
+        if t and t > 0:
+            by.setdefault(norm_key(r), []).append(t)
+    for k, xs in by.items():
+        xs.sort()
+        lm = math.log(xs[len(xs) // 2])
+        v = norms.get(k)
+        if v:
+            v["l"] = (1 - NORM_ALPHA) * v["l"] + NORM_ALPHA * lm
+            v["n"] = v.get("n", 0) + 1
+        else:
+            v = norms[k] = {"l": lm, "n": 1}
+        v["t"] = round(now_s)
+    return norms
 NTFY_TOPIC = os.environ.get("LIQ_NTFY_TOPIC", "")                       # optional push; empty = file only
 ODDS_KEY = os.environ.get("ODDS_API_KEY", "")                             # optional: sportsbook prices at alert time
 ODDS_SPORT = {"NFL": "americanfootball_nfl", "NCAAF": "americanfootball_ncaaf", "NBA": "basketball_nba", "NHL": "icehockey_nhl",
@@ -492,7 +583,7 @@ def kalshi_rows(days):
                              best_bid=max((p for p, _ in bids[x]), default=None),
                              price=round(1 - best_other, 4) if best_other is not None else None,
                              event=ev.get("event_ticker"), start=k_start(mk), mid=mk["ticker"],
-                             ref={"market_ticker": mk["ticker"], "kalshi_side": x}))
+                             ref={"market_ticker": mk["ticker"], "kalshi_side": x}, ex_stats=ex_stats(mk)))
     print(f"Kalshi: {calls} books read in {time.time() - T0:.0f}s of {len(todo)} candidates"
           + (" (time budget hit)" if out_of_time() else ""))
     return rows
@@ -636,7 +727,8 @@ def novig_rows(days, n):
                              other_depth=dep[other["outcomeId"]], total_depth=tot[o["outcomeId"]],
                              other_total=tot[other["outcomeId"]], best_bid=max((p for p, _ in lv[o["outcomeId"]]), default=None),
                              price=round(1 - best_other, 4) if best_other is not None else None,
-                             start=e["startsTs"] / 1000, ref={"market_id": mk["marketId"], "outcome_id": o["outcomeId"]}))
+                             start=e["startsTs"] / 1000, ref={"market_id": mk["marketId"], "outcome_id": o["outcomeId"]},
+                             ex_stats=ex_stats(mk)))
     if not direction["done"]:
         print("Novig direction test: not run (no book with both catalog bid and orders this run)")
     print(f"Novig: {calls} books read in {time.time() - T0:.0f}s of {len(chosen)} main lines, {skipped} alternate/empty lines skipped"
@@ -756,7 +848,7 @@ def pm_rows(days, n):
                              best_bid=max((p for p, _ in bids[i]), default=None),
                              price=round(1 - best_other, 4) if best_other is not None else None,
                              start=start.timestamp(), mid=str(mk.get("id")),
-                             ref={"pm_market_id": str(mk.get("id")), "outcome_index": i}))
+                             ref={"pm_market_id": str(mk.get("id")), "outcome_index": i}, ex_stats=ex_stats(mk)))
     print(f"Polymarket: {calls} books read in {time.time() - T0:.0f}s of {len(todo)} candidate markets"
           + (" (time budget hit)" if out_of_time() else ""))
     return rows
@@ -951,7 +1043,8 @@ def px_rows(days, n):
                                      total_depth=sum(q for _, q in bids), other_total=sum(q for _, q in obids),
                                      best_bid=max((p for p, _ in bids), default=None), price=cost,
                                      start=st.timestamp(), mid=mid,
-                                     ref={"px_event": e["event_id"], "px_market": mk.get("id"), "line": gkey, "side": str(side)}))
+                                     ref={"px_event": e["event_id"], "px_market": mk.get("id"), "line": gkey, "side": str(side)},
+                                     ex_stats=ex_stats(mk)))
     print(f"ProphetX: {calls} games read in {time.time() - T0:.0f}s of {len(todo)} candidates"
           + (" (time budget hit)" if out_of_time() else ""))
     return rows
@@ -1129,6 +1222,11 @@ def merge_kalshi_ml(rows):
         prices = [r["price"] for r in rs if r["price"] is not None]
         base["price"] = min(prices) if prices else None   # cheapest way to buy this team
         base["side_label"] = base["teams"][side] if base.get("teams") else base["side_label"]
+        es = {}   # Nov 4: exchange-reported volume/OI summed over the team markets that make up this side
+        for r in rs:
+            for k, v in (r.get("ex_stats") or {}).items():
+                es[k] = es.get(k, 0) + v
+        base["ex_stats"] = es or None
         keep.append(base)
     return keep
 
@@ -1572,8 +1670,10 @@ def run():
     if state.get("v") != STATE_VERSION:   # older rules logged standing market-maker size: start the record clean
         print(f"New rules (v{STATE_VERSION}): clearing old alerts and state")
         state, alerts = {"v": STATE_VERSION}, []
-    for k in ("alerted", "seen", "pending"):
+    for k in ("alerted", "seen", "pending", "norms", "gnorms"):
         state.setdefault(k, {})
+    norms = state["norms"]   # Nov 4: per-exchange normals (log-only); alerts are measured against the pre-run values
+    gnorms = state["gnorms"]   # Nov 4: per-game-side normals per exchange (log-only), same pre-run rule
     settle(alerts, n)
     for a in alerts:   # Oct 25 regrade: resulted plays that never had a real pregame close read are kept out of records
         if a.get("result") in ("W", "L", "P") and a.get("close_price") is None:
@@ -1631,6 +1731,8 @@ def run():
             # closes of 0.01/0.99 showed games read live when one book listed a late start.
             a["close_price"] = r["price"]
             a["clv_cents"] = round(100 * (r["price"] - a["price"]), 1) if a.get("price") else None
+            if r.get("ex_stats"):
+                a["ex_stats_close"] = r["ex_stats"]   # Nov 4 log-only: exchange-reported volume/OI at the last pregame read
         elif a.get("close_price") is not None:
             a["close_frozen"] = True
         base, new = a.get("base_depth"), a.get("new_money")
@@ -1689,6 +1791,7 @@ def run():
             print(f"Not confirmed (money pulled or side no longer heavier): {r['game']} | {r['side_label']} ({r['book']})")
             continue
         others = {}
+        other_rows = {}   # Nov 4: the matched row per book, for its size vs its own normal (log-only)
         for o in by_key.values():
             if o["book"] == r["book"] or o["market"] != r["market"]:
                 continue
@@ -1697,6 +1800,16 @@ def run():
                 others[o["book"]] = {"depth": round(o["depth"]), "price": o["price"], "label": o["side_label"],
                                      "heavier": o["depth"] > o["other_depth"],
                                      "fresh": max(o.get("delta") or 0, o.get("prev_nd") or 0) >= SECOND_MIN}
+                other_rows[o["book"]] = o
+        nb = {}
+        for b, o in [(r["book"], r)] + list(other_rows.items()):
+            nm = norm_of(norms, o)
+            gm = game_norm_of(gnorms, row_key(o))
+            nb[b] = {"type": bet_type(o), "now": round(o["tot"]), "normal": round(nm) if nm else None,
+                     "x": round(o["tot"] / nm, 2) if nm else None,
+                     "game_normal": round(gm) if gm else None, "game_x": round(o["tot"] / gm, 2) if gm else None,
+                     "ex_stats": o.get("ex_stats")}
+        tnorm = nb[r["book"]]["normal"]
         second = {b: v for b, v in others.items() if v["depth"] >= SECOND_MIN and v.get("heavier")}
         agree, oppose = sharp_view(r, sharp)
         bp, bpb = best_across(r, pre_rows)
@@ -1730,6 +1843,19 @@ def run():
             "price_rule": price_rule(r, pre_rows, bp),
             "result": None, "units_flat": None,
             "paper_only": r["league"] in PAPER_ONLY,
+            # Nov 4 log-only: each exchange's side size now vs its own normal for this league & bet type
+            "norm_by_book": nb,
+            "size_x": nb[r["book"]]["x"],                                 # trigger exchange, size now / normal
+            "new_x": round(pd["new"] / tnorm, 2) if tnorm else None,      # new money / normal
+            "surge_books": sorted(b for b, v in nb.items() if (v["x"] or 0) >= SURGE_X),   # exchanges >= 2x normal
+            "norm_ready_books": sum(1 for v in nb.values() if v["x"] is not None),
+            "game_x": nb[r["book"]]["game_x"],                            # trigger exchange vs this game's own normal
+            "game_surge_books": sorted(b for b, v in nb.items() if (v["game_x"] or 0) >= SURGE_X),
+            # Nov 4 log-only: the exchange's own traded volume / open interest when the money first showed and at the
+            # alert, and the change between (did real trading come with the bids?); ex_stats_close fills in pregame
+            "ex_stats_first": pd.get("ex"), "ex_stats_alert": r.get("ex_stats"),
+            "ex_stats_change": ({k: round(v - (pd.get("ex") or {})[k], 2) for k, v in (r.get("ex_stats") or {}).items()
+                                 if k in (pd.get("ex") or {})} or None),
         }
         alerts.insert(0, a)
         state["alerted"][key] = a["alerted_utc"]
@@ -1764,7 +1890,7 @@ def run():
         bi = improved(r.get("best_bid"), r.get("prev_bid"))
         state["pending"][key] = {"t": now_s, "first_utc": n.strftime("%Y-%m-%dT%H:%M:%SZ"), "base": round(r["prev_depth"]),
                                  "new": round(r["delta"]), "new_other": round(r["other_delta"] or 0), "price": r["price"],
-                                 "bb": r.get("best_bid"), "bid_improved": bi}
+                                 "bb": r.get("best_bid"), "bid_improved": bi, "ex": r.get("ex_stats")}
         print(f"Pending (confirm next check): {r['game']} | {r['side_label']} ({r['book']}) +${r['delta']:,.0f}"
               f" | bid improved: {bi}")
 
@@ -1772,6 +1898,17 @@ def run():
     alerts = [a for a in alerts if a["alerted_utc"] >= cutoff]
     state["alerted"] = {k: v for k, v in state["alerted"].items() if v >= cutoff}
     state["v"] = STATE_VERSION
+    try:   # Nov 4: fold this run into the normals AFTER alerts were measured (log-only; never blocks the run)
+        update_norms(norms, by_key.values(), now_s)
+        update_game_norms(gnorms, by_key, now_s)
+        save(os.path.join(OUT_DIR, "norms.json"), {
+            "note": "Normal side size per exchange|league|bet type (rolling median of total side depth on pregame main "
+                    f"lines, alpha {NORM_ALPHA}, used after {NORM_MIN_N} readings). Log-only (Nov 4, 2026).",
+            "updated_utc": n.strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "normals": {k: {"normal": round(math.exp(v["l"])), "readings": v["n"]} for k, v in sorted(norms.items())}})
+        print(f"Normals: {len(norms)} exchange/league/bet-type keys, {sum(v['n'] >= NORM_MIN_N for v in norms.values())} ready")
+    except Exception as ex:
+        print(f"normals update failed: {str(ex)[:80]}")
     try:
         update_alert_times(alerts, n)
     except Exception as ex:
@@ -1792,7 +1929,12 @@ def run():
         "real close and sets close_frozen). Log-only fields: bid_improved (best bid on the alert side "
         "rose between readings), best_price/best_price_book, prices_by_book (Odds API sportsbooks), second_book_fresh (second book "
         "added >= $10k on the side in the last two checks), lead_min, price_rule (fails_cap = worse than -130 on spread/total; "
-        "ml_edge_ok/fail = 2%% edge vs cross-book fair mid), price_after_15m/still_actionable. Leagues: NFL, NCAAF, NBA, NHL, "
+        "ml_edge_ok/fail = 2%% edge vs cross-book fair mid), price_after_15m/still_actionable. Nov 4 log-only: norm_by_book "
+        "(per exchange on the same side: bet type, size now, its normal for that league and bet type, x = now / normal; "
+        "normals in norms.json), size_x (trigger exchange), new_x (new money / normal), surge_books (exchanges at 2x+ "
+        "normal), norm_ready_books (exchanges with a normal yet), game_normal/game_x per exchange and game_x / "
+        "game_surge_books (same, against that game side's own rolling normal), ex_stats_first/alert/close and "
+        "ex_stats_change (the exchange's own reported traded volume / open interest, raw field names). Leagues: NFL, NCAAF, NBA, NHL, "
         "plus MLB and NCAAB (added Oct 23, same rules; read after the original leagues with leftover capacity) and TENNIS "
         "(ATP/WTA match winner, paper_only = true: data collection only, never pushed, not a betting lane; graded only from "
         "Kalshi/Polymarket settlement)." % (PRIMARY_MIN, NEAR * 100, RATIO, SECOND_MIN)),
