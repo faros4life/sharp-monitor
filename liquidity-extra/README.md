@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 4, 12:00 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 10.
+Updated Wed Nov 4, 12:10 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 9.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 124-82 (-13.11u flat) | rule met: 34-30
+**Record:** 124-83 (-14.11u flat) | rule met: 34-30
 
-**Fade (paper, betting against the print):** 57-89 (+17.67u flat, after fees)
+**Fade (paper, betting against the print):** 58-89 (+21.65u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -30,7 +30,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 3 6:30PM | NCAAB | Longwood vs Saint Joseph's | moneyline: Saint Joseph's | kalshi | $58k | -456 |  |  | +3.0c | yes | pending |
 | Nov 3 3:20PM | TENNIS | Ruud vs Jodar | moneyline: Ruud | kalshi | $914k | -113 |  |  | +8.0c |  | W |
 | Nov 3 2:40PM | TENNIS | Paul vs Merida | moneyline: Paul | kalshi | $85k | -376 |  |  | +2.0c |  | W |
-| Nov 3 2:40PM | TENNIS | Djokovic vs Hijikata | moneyline: Djokovic | kalshi | $93k | -426 |  |  | +0.0c |  | pending |
+| Nov 3 2:40PM | TENNIS | Djokovic vs Hijikata | moneyline: Djokovic | kalshi | $93k | -426 |  |  | +0.0c |  | L |
 | Nov 3 2:30PM | TENNIS | Etcheverry vs de Minaur | moneyline: de Minaur | kalshi | $100k | -426 |  |  | +3.0c |  | L |
 | Nov 3 12:40PM | TENNIS | Shelton vs Norrie | moneyline: Shelton | kalshi | $42k | -257 | ✅ novig |  | +0.0c | yes | W |
 | Nov 3 5:20AM | TENNIS | Zverev vs Musetti | moneyline: Zverev | kalshi | $35k | -233 |  |  | +0.0c |  | L |
