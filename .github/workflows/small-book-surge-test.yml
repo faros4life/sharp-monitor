@@ -1,0 +1,37 @@
+name: small-book-surge-test
+
+# Nov 4: would a RELATIVE size trigger (a side at 2x+ its exchange's normal) find winners on thin books (Novig, ProphetX)?
+# Paper / measurement only, from the shared OddsPapi history cache (restore-only, no downloads). Private email; counts-only log.
+on:
+  workflow_dispatch:
+    inputs:
+      rel_x: {required: false, type: string, default: "2.0"}
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Restore shared OddsPapi history cache (read only)
+        uses: actions/cache/restore@v4
+        with:
+          path: hcache
+          key: hcache-${{ github.run_id }}
+          restore-keys: hcache-
+      - name: Small-book surge backtest (private email)
+        env:
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
+          ODDSPAPI_FREE_KEY: ${{ secrets.ODDSPAPI_FREE_KEY }}
+          SBS_REL_X: ${{ inputs.rel_x }}
+        run: python -u small_book_surge_test.py
