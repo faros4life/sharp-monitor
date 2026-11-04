@@ -70,7 +70,7 @@ def get_hist(fid, books, start=None):
             except Exception:
                 pass
         need.append(b)
-    free = [b for b in need if FREE_KEY and b in EXCH_BOOKS]
+    free = [b for b in need if FREE_KEY]   # Nov 3 21:30: with the free key, ALL books' history uses it (paid key: 403 on pinnacle)
     paid = [b for b in need if b not in free]
     groups = [(paid[i:i + 3], None) for i in range(0, len(paid), 3)] + [(free[i:i + 3], FREE_KEY) for i in range(0, len(free), 3)]
     for grp, key in groups:   # OddsPapi takes up to 3 bookmakers per history call
