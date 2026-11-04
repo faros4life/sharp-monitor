@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 4, 9:26 AM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 59.
+Updated Wed Nov 4, 9:30 AM ET. This run: 2 new, 0 not confirmed, 1 pending. Open alerts: 61.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,8 +10,10 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 4 9:20AM | NBA | Cavaliers vs. Thunder | total: Under (227.5) | polymarket | $54k | -100 | ✅ novig |  | +1.0c |  | pending |
-| Nov 4 9:20AM | NBA | Atlanta vs Washington: Total Points | total: NOT Over 232.5 points | kalshi | $98k | -104 | ✅ novig,polymarket |  | +0.0c |  | pending |
+| Nov 4 9:30AM | NBA | Utah vs New Orleans: Total Points | total: Over 233.5 points | kalshi | $27k | -104 |  |  | +0.0c |  | pending |
+| Nov 4 9:30AM | NBA | Toronto vs Denver: Spread | spread: NOT Denver wins by over 4.5 points | kalshi | $43k | -100 | ✅ polymarket |  | +0.0c |  | pending |
+| Nov 4 9:20AM | NBA | Cavaliers vs. Thunder | total: Under (227.5) | polymarket | $54k | -100 | ✅ novig |  | +2.0c |  | pending |
+| Nov 4 9:20AM | NBA | Atlanta vs Washington: Total Points | total: NOT Over 232.5 points | kalshi | $98k | -104 | ✅ novig,polymarket |  | +1.0c |  | pending |
 | Nov 4 9:16AM | NBA | Chicago vs New York: Spread | spread: NOT New York wins by over 11.5 points | kalshi | $60k | +104 |  |  | +0.0c |  | pending |
 | Nov 4 9:16AM | NBA | Charlotte vs Brooklyn: Spread | spread: NOT Charlotte wins by over 3.5 points | kalshi | $52k | -100 | ✅ polymarket |  | -1.0c | yes | pending |
 | Nov 4 9:10AM | NHL | San Jose vs Los Angeles: Total Goals | total: Over 6.5 goals scored | kalshi | $30k | +122 |  |  | +0.0c | yes | pending |
@@ -22,10 +24,10 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 4 9:00AM | NBA | Atlanta vs Washington: Spread | spread: Atlanta wins by over 2.5 points | kalshi | $75k | -113 | ✅ polymarket |  | +0.0c |  | pending |
 | Nov 4 8:10AM | NBA | Indiana vs Memphis: Spread | spread: NOT Memphis wins by over 6.5 points | kalshi | $39k | -100 | ✅ polymarket | ✅ | +0.0c |  | pending |
 | Nov 4 7:56AM | NBA | Cavaliers vs. Thunder | moneyline: Thunder | polymarket | $46k | -138 | ✅ kalshi,novig | ❌ | +1.0c |  | pending |
-| Nov 4 7:56AM | NBA | 76ers vs. Pistons | total: Over (218.5) | polymarket | $53k | -104 |  |  | +2.0c |  | pending |
+| Nov 4 7:56AM | NBA | 76ers vs. Pistons | total: Over (218.5) | polymarket | $53k | -104 |  |  | +1.0c |  | pending |
 | Nov 4 7:56AM | NCAAF | James Madison vs Southern Miss: Spread | spread: NOT James Madison wins by over 14.5 points | kalshi | $29k | -104 |  |  | +0.0c |  | pending |
-| Nov 4 7:50AM | NBA | Cavaliers vs. Thunder | total: Under (228.5) | polymarket | $28k | -104 | ✅ kalshi,novig |  | +1.0c | yes | pending |
-| Nov 4 7:50AM | NBA | Cleveland vs Oklahoma City: Total Points | total: NOT Over 228.5 points | kalshi | $41k | -108 | ✅ novig,polymarket |  | -1.0c | yes | pending |
+| Nov 4 7:50AM | NBA | Cavaliers vs. Thunder | total: Under (228.5) | polymarket | $28k | -104 | ✅ kalshi,novig |  | +2.0c | yes | pending |
+| Nov 4 7:50AM | NBA | Cleveland vs Oklahoma City: Total Points | total: NOT Over 228.5 points | kalshi | $41k | -108 | ✅ novig,polymarket |  | +1.0c | yes | pending |
 | Nov 4 7:46AM | NBA | Cleveland vs Oklahoma City: Spread | spread: Oklahoma City wins by over 2.5 points | kalshi | $39k | -104 | ✅ polymarket | ❌ | +3.0c |  | pending |
 | Nov 4 7:36AM | NHL | Senators vs. Sabres | spread: Senators (+1.5) | polymarket | $26k | -213 | ✅ kalshi,novig |  | +0.0c |  | pending |
 | Nov 4 7:30AM | NBA | Milwaukee vs Boston: Total Points | total: NOT Over 223.5 points | kalshi | $43k | -100 | ✅ polymarket | ✅ | +2.0c |  | pending |
@@ -35,7 +37,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 4 4:55AM | NCAAF | James Madison vs Southern Miss | moneyline: James Madison | kalshi | $228k | -567 |  |  | +0.0c |  | pending |
 | Nov 4 2:35AM | NBA | Toronto vs Denver: Spread | spread: Denver wins by over 4.5 points | kalshi | $27k | -104 | ✅ polymarket |  | +0.0c |  | pending |
 | Nov 4 1:45AM | NBA | Miami vs Los Angeles C | moneyline: Miami | kalshi | $93k | -194 |  |  | -1.0c |  | pending |
-| Nov 4 1:05AM | NBA | Miami vs Los Angeles C | moneyline: Los Angeles C | kalshi | $64k | +186 |  |  | +1.0c |  | pending |
+| Nov 4 1:05AM | NBA | Miami vs Los Angeles C | moneyline: Los Angeles C | kalshi | $64k | +186 |  |  | +1.0c | yes | pending |
 | Nov 4 12:15AM | NFL | Jacksonville vs Baltimore | moneyline: Jacksonville | kalshi | $171k | -456 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Nov 3 11:45PM | NCAAF | Ball St. vs UMass: Total Points | total: Over 49.5 points | kalshi | $79k | -100 |  |  | +0.0c | yes | pending |
 | Nov 3 11:20PM | NHL | Flames vs. Kraken | moneyline: Kraken | polymarket | $25k | -133 |  |  | -2.0c | yes | pending |
@@ -208,5 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 2 7:50AM | NBA | Washington vs Orlando: Total Points | total: Over 224.5 points | kalshi | $77k | -104 | ✅ novig,polymarket |  | +1.0c | yes | L |
 | Nov 2 7:50AM | NBA | Phoenix vs Golden State: Spread | spread: NOT Golden State wins by over 3.5 points | kalshi | $41k | -100 | ✅ polymarket |  | +5.0c | yes | W |
 | Nov 2 7:40AM | NBA | Detroit vs Charlotte | moneyline: Detroit | kalshi | $44k | -170 | ✅ novig,polymarket |  | +5.0c | yes | W |
-| Nov 2 7:30AM | NBA | Washington vs Orlando: Spread | spread: Orlando wins by over 2.5 points | kalshi | $34k | -104 | ✅ novig,polymarket | ✅ | +1.0c | yes | L |
-| Nov 2 7:00AM | NBA | Celtics vs. Rockets | spread: Rockets (-4.5) | polymarket | $96k | -113 | ✅ novig |  | -3.0c | yes | W |
