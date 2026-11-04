@@ -38,6 +38,7 @@ jobs:
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
           EMAIL_TO: ${{ secrets.EMAIL_TO }}
           ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
+          ODDSPAPI_FREE_KEY: ${{ secrets.ODDSPAPI_FREE_KEY }}   # Nov 3: history goes through the free key (paid key: 403 on pinnacle)
           TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
           EMAIL_NOW: ${{ inputs.email_now }}
         run: python -u slow_hr.py
