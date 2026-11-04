@@ -1185,6 +1185,11 @@
      "this_side_all_levels": 53374
     }
    },
+   "ex_stats_close": {
+    "open_interest_fp": 4781.39,
+    "volume_24h_fp": 4768.570000000001,
+    "volume_fp": 4816.290000000001
+   },
    "fade_price": 0.31,
    "first_seen_utc": "2026-11-03T23:30:20Z",
    "game": "Queens University vs Loyola Marymount",
@@ -1273,6 +1278,11 @@
      "this_side": 5079,
      "this_side_all_levels": 68466
     }
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 5345.82,
+    "volume_24h_fp": 5197.75,
+    "volume_fp": 5623.4
    },
    "fade_price": 0.21,
    "first_seen_utc": "2026-11-03T23:20:19Z",
@@ -21474,6 +21484,6 @@
    "units_flat": 0.54
   }
  ],
- "note": "Liquidity paper alerts (Kalshi + Novig + Polymarket public books; ProphetX read-only key, a trigger book from Oct 24), newest first. Trigger: >= $25000 (and >= 10% of the side's prior size, capped at $100k) of NEW bids on one side since the last check, measured on total side depth (all price levels; near-price depth within 3c is shown and used for the second-book test), >= 3x any new money on the other side, leaving that side heavier; main lines only (ML 15-85c, spread/total 30-70c), pregame; Kalshi moneylines combined per game. Spoof filter: logged only if >= 75% of the new money is still there on the next check (confirmed_after_min). pulled = the new money later disappeared before the game. rule_met = another book has >= $10000 on the same side and it is the heavier side there. sharp_agree/sharp_oppose = sharp-monitor (Pinnacle move) alerts on the same game & market. price = cost to buy the side when logged (0-1); close_price = last pregame price; clv_cents = close_price - price (positive = the market moved toward this side). result W/L/P/VOID from the exchange's settlement; units_flat = 1u at best_price (cheapest across books at alert). artifact = 'no_pregame_close': the play never got a real pregame close read (reads continued after a wrong/late start time); EXCLUDE these from every record (Oct 25 regrade; from then on, a read with no offers keeps the last real close and sets close_frozen). Log-only fields: bid_improved (best bid on the alert side rose between readings), best_price/best_price_book, prices_by_book (Odds API sportsbooks), second_book_fresh (second book added >= $10k on the side in the last two checks), lead_min, price_rule (fails_cap = worse than -130 on spread/total; ml_edge_ok/fail = 2% edge vs cross-book fair mid), price_after_15m/still_actionable. Leagues: NFL, NCAAF, NBA, NHL, plus MLB and NCAAB (added Oct 23, same rules; read after the original leagues with leftover capacity) and TENNIS (ATP/WTA match winner, paper_only = true: data collection only, never pushed, not a betting lane; graded only from Kalshi/Polymarket settlement).",
+ "note": "Liquidity paper alerts (Kalshi + Novig + Polymarket public books; ProphetX read-only key, a trigger book from Oct 24), newest first. Trigger: >= $25000 (and >= 10% of the side's prior size, capped at $100k) of NEW bids on one side since the last check, measured on total side depth (all price levels; near-price depth within 3c is shown and used for the second-book test), >= 3x any new money on the other side, leaving that side heavier; main lines only (ML 15-85c, spread/total 30-70c), pregame; Kalshi moneylines combined per game. Spoof filter: logged only if >= 75% of the new money is still there on the next check (confirmed_after_min). pulled = the new money later disappeared before the game. rule_met = another book has >= $10000 on the same side and it is the heavier side there. sharp_agree/sharp_oppose = sharp-monitor (Pinnacle move) alerts on the same game & market. price = cost to buy the side when logged (0-1); close_price = last pregame price; clv_cents = close_price - price (positive = the market moved toward this side). result W/L/P/VOID from the exchange's settlement; units_flat = 1u at best_price (cheapest across books at alert). artifact = 'no_pregame_close': the play never got a real pregame close read (reads continued after a wrong/late start time); EXCLUDE these from every record (Oct 25 regrade; from then on, a read with no offers keeps the last real close and sets close_frozen). Log-only fields: bid_improved (best bid on the alert side rose between readings), best_price/best_price_book, prices_by_book (Odds API sportsbooks), second_book_fresh (second book added >= $10k on the side in the last two checks), lead_min, price_rule (fails_cap = worse than -130 on spread/total; ml_edge_ok/fail = 2% edge vs cross-book fair mid), price_after_15m/still_actionable. Nov 4 log-only: norm_by_book (per exchange on the same side: bet type, size now, its normal for that league and bet type, x = now / normal; normals in norms.json), size_x (trigger exchange), new_x (new money / normal), surge_books (exchanges at 2x+ normal), norm_ready_books (exchanges with a normal yet), game_normal/game_x per exchange and game_x / game_surge_books (same, against that game side's own rolling normal), ex_stats_first/alert/close and ex_stats_change (the exchange's own reported traded volume / open interest, raw field names). Leagues: NFL, NCAAF, NBA, NHL, plus MLB and NCAAB (added Oct 23, same rules; read after the original leagues with leftover capacity) and TENNIS (ATP/WTA match winner, paper_only = true: data collection only, never pushed, not a betting lane; graded only from Kalshi/Polymarket settlement).",
  "v": 5
 }
