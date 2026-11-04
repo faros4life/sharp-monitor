@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 4, 1:05 AM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 34.
+Updated Wed Nov 4, 1:10 AM ET. This run: 0 new, 1 not confirmed, 0 pending. Open alerts: 34.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -15,7 +15,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 3 11:45PM | NCAAF | Ball St. vs UMass: Total Points | total: Over 49.5 points | kalshi | $79k | -100 |  |  | +0.0c |  | pending |
 | Nov 3 11:20PM | NHL | Flames vs. Kraken | moneyline: Kraken | polymarket | $25k | -133 |  |  | +0.0c | yes | pending |
 | Nov 3 11:06PM | NHL | Chicago vs Florida: Total Goals | total: NOT Over 5.5 goals scored | kalshi | $44k | +127 |  |  | +0.0c |  | pending |
-| Nov 3 10:50PM | NHL | Calgary vs Seattle | moneyline: Calgary | kalshi | $96k | +133 | ✅ novig,polymarket |  | +0.0c |  | pending |
+| Nov 3 10:50PM | NHL | Calgary vs Seattle | moneyline: Calgary | kalshi | $96k | +133 | ✅ novig,polymarket |  | +1.0c |  | pending |
 | Nov 3 9:50PM | NCAAF | Ball St. vs UMass: Total Points | total: NOT Over 49.5 points | kalshi | $55k | -104 |  |  | +0.0c | yes | pending |
 | Nov 3 9:40PM | NHL | Ottawa vs Buffalo | moneyline: Buffalo | kalshi | $48k | -127 | ✅ novig,polymarket |  | +0.0c | yes | pending |
 | Nov 3 9:40PM | NBA | Portland vs Phoenix | moneyline: Phoenix | kalshi | $87k | +133 | ✅ polymarket |  | -1.0c | yes | pending |
@@ -40,7 +40,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 3 5:06PM | NBA | Toronto vs Denver | moneyline: Denver | kalshi | $61k | -194 |  |  | -2.0c |  | pending |
 | Nov 3 5:06PM | NBA | Portland vs Phoenix | moneyline: Portland | kalshi | $26k | -144 |  |  | -1.0c |  | pending |
 | Nov 3 5:06PM | NBA | Milwaukee vs Boston | moneyline: Boston | kalshi | $38k | -456 |  |  | +1.0c |  | pending |
-| Nov 3 5:06PM | NBA | Los Angeles L vs Sacramento | moneyline: Los Angeles L | kalshi | $83k | -488 |  |  | +0.0c |  | pending |
+| Nov 3 5:06PM | NBA | Los Angeles L vs Sacramento | moneyline: Los Angeles L | kalshi | $83k | -488 |  |  | +1.0c |  | pending |
 | Nov 3 5:06PM | NBA | Indiana vs Memphis | moneyline: Memphis | kalshi | $83k | -270 |  |  | -4.0c |  | pending |
 | Nov 3 4:06PM | NHL | Vegas vs Pittsburgh: Spread | spread: NOT Pittsburgh wins by over 1.5 goals | kalshi | $66k | -223 | ✅ novig,polymarket |  | +0.0c | yes | W |
 | Nov 3 2:56PM | NCAAF | Buffalo vs Miami (OH): Spread | spread: Miami (OH) wins by over 6.5 points | kalshi | $435k | +104 |  |  | +4.0c | yes | L |
