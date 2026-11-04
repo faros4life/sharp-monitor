@@ -77,10 +77,15 @@ def _fixture(a, lg, now, live):
 
 
 def _tick(o):
-    t = (o.get("players") or {}).get("0")
-    if isinstance(t, list):
-        t = max(t, key=lambda x: x.get("createdAt") or "") if t else None
-    return t or {}
+    """The outcome's current quote. History keys players by "0" and holds a list of ticks; the LIVE odds response keys
+    players by its own id and holds one dict (Nov 4: that mismatch made every Lane 2 play read NO_LIMIT), so take "0"
+    when it is there and otherwise the first player, and the newest tick when it is a list."""
+    p = o.get("players")
+    if isinstance(p, dict):
+        p = p.get("0") if "0" in p else next(iter(p.values()), None)
+    if isinstance(p, list):
+        p = max(p, key=lambda x: x.get("createdAt") or "") if p else None
+    return p if isinstance(p, dict) else {}
 
 
 def _limit(b, lg, f, pm, mkmap):
