@@ -74,3 +74,15 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh workflow run hcache-fill.yml --repo "${{ github.repository }}" --ref main -f max_games="${{ inputs.max_games || '700' }}" -f order="${{ inputs.order || 'newest' }}" -f budget_min=60
+      - name: Remove older copies of the cache (only once the new one is confirmed saved; keeps the 10 GB limit free for other jobs)
+        # Nov 4: two 6.5 GB copies went over GitHub's 10 GB total, which would evict other jobs' small caches.
+        if: success() && steps.restore.outputs.cache-matched-key != ''
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+          R: ${{ github.repository }}
+          ME: hcache-${{ github.run_id }}
+        run: |
+          keys=$(gh cache list --repo "$R" --key hcache- --limit 50 --json key -q '.[].key')
+          if ! echo "$keys" | grep -qx "$ME"; then echo "new copy not found - keeping the older ones"; exit 0; fi
+          echo "$keys" | grep -vx "$ME" | while read -r k; do [ -n "$k" ] && gh cache delete "$k" --repo "$R" && echo "removed one older copy"; done || true
