@@ -127,6 +127,9 @@ def main():
             x = cl.novig_at(b, f, bk, mkmap, w5, lg) if bk else None
             if x:
                 v = el.eff(slug, x[0])
+                if c["p"] * v - 1 > 0.15:   # Nov 4: same rule as P1 / exchange-lag - a quote > +15% vs the close is a misread
+                    miss["suspect quote dropped"] = miss.get("suspect quote dropped", 0) + 1
+                    continue
                 best = v if best is None or v > best else best
         want = cl.am_to_dec(a.get("price_after_fee") or a.get("price"))
         res = a["result"]
@@ -144,6 +147,8 @@ def main():
         fres = {"W": "L", "L": "W"}.get(res, res)
         clv_f = round(100 * ((1 - c["p"]) * fdec - 1), 2) if fdec else None
         u_f = ((fdec - 1) if fres == "W" else (-1.0 if fres == "L" else 0.0)) if fdec else None
+        if clv_f is not None and clv_f > 15:   # Nov 4: misread fade quote - drop the fade read only
+            clv_f = u_f = None
         R.append({"lg": lg, "mk": kind, "sc": sc, "sent": bool(a.get("sent_to_phone")), "day": t0.astimezone(ET).strftime("%Y-%m-%d"),
                   "lead": lead, "late": lead is not None and lead < 30, "am": a.get("price_after_fee"), "edge": a.get("edge_pct"),
                   "limit": limit, "lim_how": how, "gettable": best is not None,
