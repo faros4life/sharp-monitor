@@ -137,11 +137,18 @@ def main():
               (("dog" if (a.get("point") or 0) > 0 else "fav") if kind == "spreads" else
                ("dog" if (a.get("price") or 0) > 0 else "fav")))
         lead = (start - t0).total_seconds() / 60 if start else a.get("minutes_before_start")
+        # Nov 3 20:45 (Peter: "fade calls too" + P limit for up and down plays): the FADE side, graded at the true close -
+        # the opposite side at the retail price logged when the alert fired (fade_price_after_fee), fair = 1 - bet-side fair.
+        # Descriptive only (not judged); plays without a logged fade price are not counted.
+        fdec = cl.am_to_dec(a.get("fade_price_after_fee")) if a.get("fade_price_after_fee") is not None else None
+        fres = {"W": "L", "L": "W"}.get(res, res)
+        clv_f = round(100 * ((1 - c["p"]) * fdec - 1), 2) if fdec else None
+        u_f = ((fdec - 1) if fres == "W" else (-1.0 if fres == "L" else 0.0)) if fdec else None
         R.append({"lg": lg, "mk": kind, "sc": sc, "sent": bool(a.get("sent_to_phone")), "day": t0.astimezone(ET).strftime("%Y-%m-%d"),
                   "lead": lead, "late": lead is not None and lead < 30, "am": a.get("price_after_fee"), "edge": a.get("edge_pct"),
                   "limit": limit, "lim_how": how, "gettable": best is not None,
                   "clv_g": round(100 * (c["p"] * best - 1), 2) if best else None, "u_g": units(best) if best else None,
-                  "clv_a": round(100 * (c["p"] * want - 1), 2), "u_a": units(want)})
+                  "clv_a": round(100 * (c["p"] * want - 1), 2), "u_a": units(want), "clv_f": clv_f, "u_f": u_f})
     S = [r for r in R if r["sent"]]
     # FIT-only medians and tertiles per league x market, frozen
     cuts = {}
@@ -203,6 +210,29 @@ def main():
     for lo_, hi_, nm in ((30, 120, "30m-2h"), (120, 360, "2-6h"), (360, 1440, "6-24h"), (1440, 1e9, "24h+")):
         xs = [r for r in J if r["lead"] is not None and lo_ <= r["lead"] < hi_]
         L.append(f"   {nm}: HIGH {st_([r for r in xs if r['grp'] == 'HIGH'])} || LOW {st_([r for r in xs if r['grp'] == 'LOW'])}")
+    L += ["", "BY SIDE - up/down plays (descriptive; over/under, fav/dog): HIGH || LOW limit"]
+    for sc in ("under", "over", "fav", "dog"):
+        xs = [r for r in J if r["sc"] == sc]
+        L.append(f"   {sc}: HIGH {st_([r for r in xs if r['grp'] == 'HIGH'])} || LOW {st_([r for r in xs if r['grp'] == 'LOW'])}")
+    F = [r for r in J if r["clv_f"] is not None]
+    L += ["", f"FADE SIDE (descriptive; opposite side at the retail price logged at the alert, true close; {len(F)} of {len(J)} sent alerts carry a fade price):",
+          f"   ALL: {st_(F, 'f')}", f"   H1: {st_([r for r in F if r['day'] <= FIT_END], 'f')} || H2: {st_([r for r in F if r['day'] > FIT_END], 'f')}"]
+    for g in ("HIGH", "LOW"):
+        L.append(f"   {g} limit: {st_([r for r in F if r['grp'] == g], 'f')}")
+    for sc in ("under", "over", "fav", "dog"):
+        L.append(f"   fade of {sc}: {st_([r for r in F if r['sc'] == sc], 'f')}")
+    # Peter 20:38 "fade calls on the biggest - units or clv": fade the groups whose alerts lose most, side by side with the alert
+    FL = [r for r in S if r["late"] and r["clv_f"] is not None]
+    L.append(f"   fade of LATE alerts (final 30 min): {st_(FL, 'f')}")
+    for lo_, hi_, nm in ((30, 120, "30m-2h"), (120, 360, "2-6h"), (360, 1440, "6-24h"), (1440, 1e9, "24h+")):
+        L.append(f"   fade, alerts {nm} out: {st_([r for r in F if r['lead'] is not None and lo_ <= r['lead'] < hi_], 'f')}")
+    grp = {}
+    for r in F:
+        grp.setdefault((r["lg"], r["mk"], r["sc"]), []).append(r)
+    worst = sorted(((stt.mean(x["clv_a"] for x in v), k, v) for k, v in grp.items() if len(v) >= 10))[:5]
+    L.append("   BIGGEST LOSERS (league x market x side, n >= 10, worst alert CLV first) - alert side vs fade side:")
+    for m, k, v in worst:
+        L.append(f"      {k[0]} {k[1]} {k[2]}: alert {st_(v, 'a')} || FADE {st_(v, 'f')}")
     L += ["", "TERTILES (descriptive):"] + [f"   {t}: {st_([r for r in J if r['ter'] == t])}" for t in ("T1 low", "T2 mid", "T3 high")]
     L += ["", "BY LEAGUE x MARKET (sent, not late):"]
     for (lg, mk) in sorted(cuts):
