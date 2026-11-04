@@ -35,6 +35,12 @@ def main():
             seen.add(lg)
     pick = pick[:0]   # Nov 3 22:25: per-league check already answered; this pass only tests the newest games   # two games keep the probe short (it shares the free key with the running fill)
     print(f"history probe: {len(fx)} fixtures in saved lists, testing {len(pick)} games ({', '.join(lg for _, _, lg in pick)})")
+    bk = cl.api("/bookmakers", False, apikey=PAID)   # Nov 4: which Pinnacle slugs does the paid plan list?
+    try:
+        slugs = [b.get("slug") or b.get("bookmakerSlug") or str(b) for b in (bk if isinstance(bk, list) else bk.get("data") or bk.get("bookmakers") or [])]
+        print("history probe: paid-key bookmaker slugs with 'pinn': " + ", ".join(x for x in slugs if "pinn" in str(x).lower())[:300])
+    except Exception as x:
+        print(f"history probe: bookmakers list unreadable: {str(bk)[:160]}")
     tally = {}
     for s, fid, lg in pick:
         for b in BOOKS:
@@ -64,7 +70,8 @@ def main():
         for grp in (["pinnacle+30s"], ["pinnacle+30s", "hardrockbet"]):
             h = cl.api("/historical-odds", False, apikey=PAID, fixtureId=fid, bookmakers=",".join(grp))
             if isinstance(h, dict) and h.get("_error"):
-                print(f"history probe: {lg} game {s:%m-%d %H:%M}Z PAID {'+'.join(grp)}: error {h['_error']}")
+                body = str(h.get("_body", ""))[:160].replace(PAID, "***") if PAID else ""
+                print(f"history probe: {lg} game {s:%m-%d %H:%M}Z PAID {'+'.join(grp)}: error {h['_error']} {body}")
             else:
                 bms = (h or {}).get("bookmakers") or {}
                 print(f"history probe: {lg} game {s:%m-%d %H:%M}Z PAID {','.join(grp)}: ok, books returned "
