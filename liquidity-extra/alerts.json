@@ -1,6 +1,82 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-04T10:50:22Z",
+   "base_depth": 168223,
+   "best_price": 0.525,
+   "best_price_american": -111,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-04",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -3450,
+     "new_this_side": 26379,
+     "other_side": 127807,
+     "other_side_all_levels": 174154,
+     "ratio": 1.4,
+     "this_side": 178341,
+     "this_side_all_levels": 206094
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "U. Humbert (0)",
+     "price": 0.525,
+     "this_side": 12744
+    }
+   },
+   "fade_price": 0.48,
+   "first_seen_utc": "2026-11-04T10:40:23Z",
+   "game": "Berrettini vs Humbert",
+   "key": "kalshi|KXATPMATCH-26NOV04BERHUM|ml|1",
+   "lead_min": 290,
+   "league": "TENNIS",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 26379,
+   "paper_only": true,
+   "price": 0.52,
+   "price_american": -108,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.52,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXATPMATCH-26NOV04BERHUM-HUM"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Humbert",
+   "side_label": "Humbert",
+   "start_source": "novig",
+   "start_utc": "2026-11-04T15:40:00Z",
+   "teams": [
+    "Berrettini",
+    "Humbert"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-04T10:20:20Z",
    "base_depth": 108683,
    "best_price": 0.705,
@@ -477,8 +553,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.63,
-   "clv_cents": 0.0,
+   "close_price": 0.62,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-04",
    "depth_by_book": {
@@ -631,8 +707,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.64,
-   "clv_cents": -1.0,
+   "close_price": 0.65,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-11-04",
    "depth_by_book": {
@@ -1115,8 +1191,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.81,
-   "clv_cents": 2.0,
+   "close_price": 0.82,
+   "clv_cents": 3.0,
    "confirmed_after_min": 10,
    "date": "2026-11-04",
    "depth_by_book": {
@@ -1192,8 +1268,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.79,
-   "clv_cents": -2.0,
+   "close_price": 0.81,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-11-04",
    "depth_by_book": {
@@ -1269,8 +1345,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.83,
-   "clv_cents": 2.0,
+   "close_price": 0.84,
+   "clv_cents": 3.0,
    "confirmed_after_min": 10,
    "date": "2026-11-04",
    "depth_by_book": {
