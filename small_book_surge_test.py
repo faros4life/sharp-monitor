@@ -37,6 +37,13 @@ REL_X = float(os.environ.get("SBS_REL_X", "") or "2.0")
 REL_NEW_FRAC = float(os.environ.get("SBS_REL_NEW_FRAC", "") or "0.5")
 NORM_MIN_TICKS = int(os.environ.get("SBS_NORM_MIN_TICKS", "") or "200")
 ABS_MIN = 25000   # the live monitor's absolute trigger, to split out what the relative trigger ADDS
+LOOKBACK = timedelta(hours=4)   # Nov 4 (Peter 10:29 "both"): GAME normal = that side's own size over the 4 hours before
+MIN_LEAD = timedelta(hours=4)   # ...and the 4H variants use only times 4+ hours before tip, for the normal and the surge
+MODES = {   # all three run on the same games and are reported side by side
+    "LEAGUE": "league normal (exchange x league x bet type, prior days' median), any time pregame",
+    "LEAGUE-4H": "league normal from ticks 4h+ before tip only; surges 4h+ before tip only",
+    "GAME-4H": "that game side's own size over the previous 4 hours (time-weighted: the size carried in counts); 4h+ before tip only",
+}
 
 
 def band_ok(typ, p):
@@ -111,38 +118,61 @@ def main():
             continue
         ser = {b: series(f, cl.book_markets(h, b), mkmap, s, f["lg"]) for b in EXCH}
         G.append((s, fid, f, ser, cl.book_markets(h, "pinnacle")))
-    # pass 2: normals from prior days only, then surges
-    hist = {}      # key -> sizes from games on earlier days
-    pend = {}      # key -> sizes from today's games, added when the day changes
-    cur_day = None
-    norm_cache = {}
+    # pass 2: surges per mode (normals from prior days only, or the game's own previous 4 hours)
     S = []
-    for s, fid, f, ser, pin in G:
-        day = s.astimezone(ET).strftime("%Y-%m-%d")
-        if day != cur_day:
-            for k, v in pend.items():
-                hist.setdefault(k, []).extend(v)
-            pend, cur_day, norm_cache = {}, day, {}
-        for b, rows in ser.items():
-            seen_side = set()
-            for kind, mid, typ, hcap, name, ticks in rows:
-                key = f"{b}|{f['lg']}|{kind}"
-                main = [z for z in ticks if band_ok(typ, 1 / z[1])]
-                pend.setdefault(key, []).extend(z[2] for z in main if z[2] > 0)
-                if key not in norm_cache:
-                    hv = hist.get(key) or []
-                    norm_cache[key] = stt.median(hv) if len(hv) >= NORM_MIN_TICKS else None
-                nm = norm_cache[key]
-                if not nm or (kind, name) in seen_side:
-                    continue
-                prev = None
-                for ct, pr, lim in main:
-                    if prev is not None and prev < REL_X * nm <= lim and lim - prev >= REL_NEW_FRAC * nm:
-                        S.append({"day": day, "lg": f["lg"], "book": b, "kind": kind, "typ": typ, "hcap": hcap, "name": name,
-                                  "t": ct, "start": s, "dec": pr, "lim": lim, "prev": prev, "normal": nm, "f": f, "pin": pin})
-                        seen_side.add((kind, name))
-                        break
-                    prev = lim
+    for mode in MODES:
+        hist, pend, cur_day, norm_cache = {}, {}, None, {}
+        for s, fid, f, ser, pin in G:
+            day = s.astimezone(ET).strftime("%Y-%m-%d")
+            if day != cur_day:
+                for k, v in pend.items():
+                    hist.setdefault(k, []).extend(v)
+                pend, cur_day, norm_cache = {}, day, {}
+            for b, rows in ser.items():
+                seen_side = set()
+                for kind, mid, typ, hcap, name, ticks in rows:
+                    key = f"{b}|{f['lg']}|{kind}"
+                    main = [z for z in ticks if band_ok(typ, 1 / z[1])]
+                    if mode != "LEAGUE":
+                        main = [z for z in main if s - z[0] >= MIN_LEAD]
+                    if (kind, name) in seen_side or not main:
+                        if mode != "GAME-4H":
+                            pend.setdefault(key, []).extend(z[2] for z in main if z[2] > 0)
+                        continue
+                    if mode == "GAME-4H":
+                        for i2 in range(1, len(main)):
+                            ct, pr, lim = main[i2]
+                            prev = main[i2 - 1][2]
+                            lo = ct - LOOKBACK
+                            win = [z[2] for z in main[:i2] if z[0] >= lo]
+                            carry = [z[2] for z in main[:i2] if z[0] < lo][-1:]   # the size in force when the window opened
+                            base = win + carry
+                            if not base or main[0][0] > lo:
+                                continue   # need a full 4 hours of this side's history first
+                            nm = stt.median(base)
+                            if nm > 0 and prev < REL_X * nm <= lim and lim - prev >= REL_NEW_FRAC * nm:
+                                S.append({"mode": mode, "day": day, "lg": f["lg"], "book": b, "kind": kind, "typ": typ,
+                                          "hcap": hcap, "name": name, "t": ct, "start": s, "dec": pr, "lim": lim,
+                                          "prev": prev, "normal": nm, "f": f, "pin": pin})
+                                seen_side.add((kind, name))
+                                break
+                        continue
+                    pend.setdefault(key, []).extend(z[2] for z in main if z[2] > 0)
+                    if key not in norm_cache:
+                        hv = hist.get(key) or []
+                        norm_cache[key] = stt.median(hv) if len(hv) >= NORM_MIN_TICKS else None
+                    nm = norm_cache[key]
+                    if not nm:
+                        continue
+                    prev = None
+                    for ct, pr, lim in main:
+                        if prev is not None and prev < REL_X * nm <= lim and lim - prev >= REL_NEW_FRAC * nm:
+                            S.append({"mode": mode, "day": day, "lg": f["lg"], "book": b, "kind": kind, "typ": typ,
+                                      "hcap": hcap, "name": name, "t": ct, "start": s, "dec": pr, "lim": lim, "prev": prev,
+                                      "normal": nm, "f": f, "pin": pin})
+                            seen_side.add((kind, name))
+                            break
+                        prev = lim
     # grade
     R = []
     for x in S:
@@ -165,7 +195,7 @@ def main():
         if clv is not None and clv > 15:   # same rule as P1 / exchange-lag: > +15% vs the close is a misread quote
             miss["suspect quote dropped"] = miss.get("suspect quote dropped", 0) + 1
             continue
-        R.append({"day": x["day"], "lg": x["lg"], "book": x["book"], "kind": x["kind"],
+        R.append({"mode": x["mode"], "day": x["day"], "lg": x["lg"], "book": x["book"], "kind": x["kind"],
                   "lead": (x["start"] - x["t"]).total_seconds() / 3600, "mult": x["lim"] / x["normal"],
                   "new": x["lim"] - x["prev"], "clv": clv, "u": fin.units_wl(res, dec), "res": res})
 
@@ -182,47 +212,52 @@ def main():
         cvs = f"Pinnacle CLV {stt.mean(cv):+.2f}% beat {100 * sum(v > 0 for v in cv) / len(cv):.0f}%" if cv else "no CLV"
         return f"n {len(xs)} | {w}-{l_} {u:+.2f}u {u / len(xs):+.3f}/play | {cvs} | H1 {pp(h1)} H2 {pp(h2)}"
 
-    small = [r for r in R if r["new"] < ABS_MIN]
     L = [f"SMALL-BOOK SURGE BACKTEST - PAPER ONLY | {now.astimezone(ET):%Y-%m-%d %H:%M} ET",
-         f"Surge = a side's offered size (OddsPapi tick limit) crosses {REL_X:g}x its exchange x league x bet-type normal (prior days' "
-         f"median), jump >= {REL_NEW_FRAC:g}x normal; first per game x exchange x bet type x side; main lines, pregame. "
-         f"Graded 1u at that tick's price after fee; ESPN finals; CLV vs Pinnacle no-vig close. H1 <= {FIT_END} < H2.",
-         f"Games {len(games)}, read {len(G)}; surges {len(S)}, graded {len(R)}. Not graded: "
-         + ", ".join(f"{k} {v}" for k, v in miss.items() if v),
-         "Size is the offer at the best price only, not the full bid stack the monitor reads: a proxy.", "",
-         f"ALL SURGES: {stl(R)}",
-         f"WHAT THE FIX ADDS (jump under ${ABS_MIN:,} - the live trigger can't see these): {stl(small)}",
-         f"jump ${ABS_MIN:,}+ (the live trigger would see these): {stl([r for r in R if r['new'] >= ABS_MIN])}", "",
-         "BY EXCHANGE (all leagues and bet types):"]
-    for b in EXCH:
-        L.append(f"   {NAME[b]}: {stl([r for r in R if r['book'] == b])}")
-        L.append(f"      under ${ABS_MIN // 1000}k jump: {stl([r for r in small if r['book'] == b])}")
-    L += ["", "NBA TOTALS (the rule's market):"]
-    nt = [r for r in R if r["lg"] == "NBA" and r["kind"] in ("OVER", "UNDER")]
-    L.append(f"   all: {stl(nt)}")
-    L.append(f"   4h+ before tip: {stl([r for r in nt if r['lead'] >= 4])}")
-    L.append(f"   under 4h: {stl([r for r in nt if r['lead'] < 4])}")
-    for b in EXCH:
-        L.append(f"   {NAME[b]}, 4h+: {stl([r for r in nt if r['book'] == b and r['lead'] >= 4])}")
-    for k in ("UNDER", "OVER"):
-        L.append(f"   {k.title()}s, 4h+: {stl([r for r in nt if r['kind'] == k and r['lead'] >= 4])}")
-    L += ["", "SIZE OF THE SURGE (all, 4h+):"]
-    f4 = [r for r in R if r["lead"] >= 4]
-    for lo, hi, nm in ((2, 3, "2-3x normal"), (3, 5, "3-5x"), (5, 1e9, "5x+")):
-        L.append(f"   {nm}: {stl([r for r in f4 if lo <= r['mult'] < hi])}")
-    L += ["", "BY LEAGUE x BET TYPE (all leads):"]
-    for lg in LEAGUES:
-        for k in ("UNDER", "OVER", "ML", "SPREAD"):
-            xs = [r for r in R if r["lg"] == lg and r["kind"] == k]
-            if xs:
-                L.append(f"   {lg} {k}: {stl(xs)}")
-    L += ["", "LEAD TIME (all):"]
-    for lo, hi, nm in ((0, 1, "under 1h"), (1, 4, "1-4h"), (4, 12, "4-12h"), (12, 1e9, "12h+")):
-        L.append(f"   {nm}: {stl([r for r in R if lo <= r['lead'] < hi])}")
+         f"Surge = a side's offered size (OddsPapi tick limit) crosses {REL_X:g}x its NORMAL with a jump >= {REL_NEW_FRAC:g}x normal; "
+         "first per game x exchange x bet type x side; main lines, pregame. Graded 1u at that tick's price after fee; ESPN "
+         f"finals; CLV vs Pinnacle no-vig close. H1 <= {FIT_END} < H2. Three NORMALS, side by side:"]
+    L += [f"   {m}: {d}" for m, d in MODES.items()]
+    L += [f"Games {len(games)}, read {len(G)}; surges {len(S)}, graded {len(R)}. Not graded: "
+          + ", ".join(f"{k} {v}" for k, v in miss.items() if v),
+          "Size is the offer at the best price only, not the full bid stack the monitor reads: a proxy."]
+    RA = R
+    for mode in MODES:
+        R = [r for r in RA if r["mode"] == mode]
+        L += ["", "=" * 20 + f" NORMAL: {mode} " + "=" * 20]
+        small = [r for r in R if r["new"] < ABS_MIN]
+        L += [f"ALL SURGES: {stl(R)}",
+             f"WHAT THE FIX ADDS (jump under ${ABS_MIN:,} - the live trigger can't see these): {stl(small)}",
+             f"jump ${ABS_MIN:,}+ (the live trigger would see these): {stl([r for r in R if r['new'] >= ABS_MIN])}", "",
+             "BY EXCHANGE (all leagues and bet types):"]
+        for b in EXCH:
+            L.append(f"   {NAME[b]}: {stl([r for r in R if r['book'] == b])}")
+            L.append(f"      under ${ABS_MIN // 1000}k jump: {stl([r for r in small if r['book'] == b])}")
+        L += ["", "NBA TOTALS (the rule's market):"]
+        nt = [r for r in R if r["lg"] == "NBA" and r["kind"] in ("OVER", "UNDER")]
+        L.append(f"   all: {stl(nt)}")
+        L.append(f"   4h+ before tip: {stl([r for r in nt if r['lead'] >= 4])}")
+        L.append(f"   under 4h: {stl([r for r in nt if r['lead'] < 4])}")
+        for b in EXCH:
+            L.append(f"   {NAME[b]}, 4h+: {stl([r for r in nt if r['book'] == b and r['lead'] >= 4])}")
+        for k in ("UNDER", "OVER"):
+            L.append(f"   {k.title()}s, 4h+: {stl([r for r in nt if r['kind'] == k and r['lead'] >= 4])}")
+        L += ["", "SIZE OF THE SURGE (all, 4h+):"]
+        f4 = [r for r in R if r["lead"] >= 4]
+        for lo, hi, nm in ((2, 3, "2-3x normal"), (3, 5, "3-5x"), (5, 1e9, "5x+")):
+            L.append(f"   {nm}: {stl([r for r in f4 if lo <= r['mult'] < hi])}")
+        L += ["", "BY LEAGUE x BET TYPE (all leads):"]
+        for lg in LEAGUES:
+            for k in ("UNDER", "OVER", "ML", "SPREAD"):
+                xs = [r for r in R if r["lg"] == lg and r["kind"] == k]
+                if xs:
+                    L.append(f"   {lg} {k}: {stl(xs)}")
+        L += ["", "LEAD TIME (all):"]
+        for lo, hi, nm in ((0, 1, "under 1h"), (1, 4, "1-4h"), (4, 12, "4-12h"), (12, 1e9, "12h+")):
+            L.append(f"   {nm}: {stl([r for r in R if lo <= r['lead'] < hi])}")
     L.append(f"\nHistory cache: hits {hc.STATS['hit']}, downloads {hc.STATS['miss']}; OddsPapi calls {len(cl.CALLS)} "
              f"(billable {cl.STATS['billable']}).")
     ex.send("Bets SMALL-BOOK SURGE BACKTEST (paper)", "\n".join(L))
-    print(f"small-book surge: games {len(games)}, read {len(G)}, surges {len(S)}, graded {len(R)}, "
+    print(f"small-book surge: games {len(games)}, read {len(G)}, surges {len(S)}, graded {len(RA)}, "
           f"cache hits {hc.STATS['hit']}, downloads {hc.STATS['miss']}")   # counts only
 
 
