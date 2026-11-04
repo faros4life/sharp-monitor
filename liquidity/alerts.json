@@ -1,6 +1,163 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-04T12:30:15Z",
+   "base_depth": 55485,
+   "best_price": 0.5,
+   "best_price_american": -100,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-04",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 5567,
+     "new_this_side": 43201,
+     "other_side": 11032,
+     "other_side_all_levels": 64560,
+     "ratio": 5.2,
+     "this_side": 57860,
+     "this_side_all_levels": 98615
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "Under 223.5 (223.5)",
+     "price": 0.5,
+     "this_side": 6496
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Under (223.5)",
+     "price": 0.5,
+     "this_side": 44338
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "under 223.5 (223.5)",
+     "price": 0.5,
+     "this_side": 6306
+    }
+   },
+   "fade_price": 0.51,
+   "first_seen_utc": "2026-11-04T12:25:25Z",
+   "game": "Milwaukee vs Boston: Total Points",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBATOTAL-26NOV04MILBOS-224\"}",
+   "lead_min": 720,
+   "league": "NBA",
+   "line": 223.5,
+   "market": "total",
+   "new_money": 43201,
+   "paper_only": false,
+   "price": 0.5,
+   "price_american": -100,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.5,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 224.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 224.5,
+     "price": -112
+    },
+    "betopenly": {
+     "point": 224.5,
+     "price": 100
+    },
+    "betrivers": {
+     "point": 224.5,
+     "price": -107
+    },
+    "betus": {
+     "point": 224.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 223.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 224.5,
+     "price": -110
+    },
+    "fanatics": {
+     "point": 224.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 224.5,
+     "price": -108
+    },
+    "kalshi": {
+     "point": 223.5,
+     "price": 100
+    },
+    "lowvig": {
+     "point": 224.5,
+     "price": -109
+    },
+    "mybookieag": {
+     "point": 225.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 223.5,
+     "price": 100
+    },
+    "polymarket": {
+     "point": 223.5,
+     "price": 100
+    },
+    "prophetx": {
+     "point": 224.5,
+     "price": -109
+    },
+    "williamhill_us": {
+     "point": 224.5,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNBATOTAL-26NOV04MILBOS-224"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "polymarket"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [
+    "Under 224.5 (-110)"
+   ],
+   "sharp_oppose": [
+    "Over 224.5 (-108)"
+   ],
+   "side": "UNDER",
+   "side_label": "NOT Over 223.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-11-05T00:30:00Z",
+   "teams": [
+    "Milwaukee",
+    "Boston"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-04T11:50:11Z",
    "base_depth": 28078,
    "best_price": 0.445,
@@ -175,8 +332,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.67,
-   "clv_cents": 0.0,
+   "close_price": 0.68,
+   "clv_cents": 1.0,
    "confirmed_after_min": 6,
    "date": "2026-11-04",
    "depth_by_book": {
