@@ -82,8 +82,8 @@ def series(f, xm, mkmap, start, lg):
             ticks = []
             for t in (o.get("players") or {}).get("0") or []:
                 ct, pr, lim = cl.tp(t.get("createdAt")), tb.num(t.get("price")), tb.num(t.get("limit"))
-                if ct and pr and pr > 1 and lim is not None and ct < start:
-                    ticks.append((ct, pr, lim))
+                if ct and pr and pr > 1 and lim is not None and ct < start and band_ok(typ, 1 / pr):
+                    ticks.append((ct, pr, lim))   # Nov 4: main-band ticks only (memory: alt lines dropped here)
             if ticks:
                 ticks.sort(key=lambda z: z[0])
                 out.append((kind, str(mid), typ, hcap, name, ticks))
@@ -117,7 +117,10 @@ def main():
             miss["history error"] += 1
             continue
         ser = {b: series(f, cl.book_markets(h, b), mkmap, s, f["lg"]) for b in EXCH}
-        G.append((s, fid, f, ser, cl.book_markets(h, "pinnacle")))
+        del h   # Nov 4: the first run was killed (memory); Pinnacle is re-read below only for games with a surge
+        G.append((s, fid, f, ser, None))
+        if len(G) % 200 == 0:
+            print(f"small-book surge: read {len(G)} games")   # counts only
     # pass 2: surges per mode (normals from prior days only, or the game's own previous 4 hours)
     S = []
     for mode in MODES:
@@ -153,7 +156,7 @@ def main():
                             if nm > 0 and prev < REL_X * nm <= lim and lim - prev >= REL_NEW_FRAC * nm:
                                 S.append({"mode": mode, "day": day, "lg": f["lg"], "book": b, "kind": kind, "typ": typ,
                                           "hcap": hcap, "name": name, "t": ct, "start": s, "dec": pr, "lim": lim,
-                                          "prev": prev, "normal": nm, "f": f, "pin": pin})
+                                          "prev": prev, "normal": nm, "f": f, "fid": fid, "pin": None})
                                 seen_side.add((kind, name))
                                 break
                         continue
@@ -169,13 +172,21 @@ def main():
                         if prev is not None and prev < REL_X * nm <= lim and lim - prev >= REL_NEW_FRAC * nm:
                             S.append({"mode": mode, "day": day, "lg": f["lg"], "book": b, "kind": kind, "typ": typ,
                                       "hcap": hcap, "name": name, "t": ct, "start": s, "dec": pr, "lim": lim, "prev": prev,
-                                      "normal": nm, "f": f, "pin": pin})
+                                      "normal": nm, "f": f, "fid": fid, "pin": None})
                             seen_side.add((kind, name))
                             break
                         prev = lim
-    # grade
+    # grade (Pinnacle re-read from the cache once per game that has a surge)
     R = []
+    pins = {}
+    S.sort(key=lambda z: (z["start"], z["fid"]))
     for x in S:
+        fidk = x["fid"]
+        if fidk not in pins:
+            h = hc.get_hist(fidk, ["pinnacle"] + list(EXCH), x["start"])
+            pins = {fidk: cl.book_markets(h, "pinnacle") if isinstance(h, dict) and not h.get("_error") else {}}
+            del h
+        x["pin"] = pins[fidk]
         f = x["f"]
         side = x["name"]
         res = None
