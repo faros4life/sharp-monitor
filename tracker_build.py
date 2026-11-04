@@ -945,7 +945,8 @@ def self_check(bets, settled_reads, open_ids, now, state):
     if new:
         try:
             import executor as ex
-            ex.push(f"TRACKER CHECK: {len(new)} new issue(s)", "\n".join(new[:12]) + ("\n..." if len(new) > 12 else "") +
+            # Nov 4 (Peter: bot or actionable alerts only): tracker checks go by email, not to the phone
+            ex.send(f"Bets tracker check: {len(new)} new issue(s)", "\n".join(new[:12]) + ("\n..." if len(new) > 12 else "") +
                     "\nClaude will fix; nothing on the books changed.")
         except Exception:
             pass
