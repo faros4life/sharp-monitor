@@ -10,11 +10,21 @@ SAME LINE (both sides of Pinnacle's market at that number). Everything is logged
 - Flag (Peter Nov 4 7:45 AM "those come to ntfy"): one ntfy MANUAL-BET ping on the first sighting of a bet.
   NCAAF flags only for Top-25 games (Muse amendment a: log everything, flag selectively). No flags inside T-30.
   HRSCAN_FLAG=off silences the pings; the log keeps running.
-- Graded later at Pinnacle's true close, forward only (from registered_utc). Checkpoint 50, judged at 100.
-hrscan.json is public like alerts.json: game, market, side, line, prices, EV, times. No stakes, no amounts.
+- One ping per bet (Peter Nov 4 9:09 "fix double ping"): the scanner and the alert-based HR MISPRICE ping share one
+  'pinged' list, so whichever fires first is the only ping for that game / market / side.
+- Max bet (Peter Nov 4 9:09 "you can tell me max bet"): Peter sends "max 500" on his ntfy topic after checking a flag;
+  it is attached to his most recent flag. Dollar figures stay in the PRIVATE state (Actions cache), never in this public
+  file - here only a size bucket (S < 100, M 100-499, L 500+).
+- Auto grade (Peter Nov 4 9:09): every poll keeps the newest Pinnacle read for each open sighting (the last one before
+  start = the close, 0 credits); 3 h after start the final score comes from ESPN. Units first: 1u flat at the Hard Rock
+  price. CLV vs Pinnacle's no-vig close when Pinnacle closed on the same number. Forward only, checkpoint 50, judged 100.
+hrscan.json is public like alerts.json: game, market, side, line, prices, EV, times, results. No stakes, no amounts.
 """
 import json
 import os
+import re
+import urllib.request
+from datetime import timedelta
 
 FILE = "hrscan.json"
 MIN_EV = float(os.environ.get("HRSCAN_MIN_EV", "") or "2.0")
@@ -47,12 +57,110 @@ def load():
 
 def save(d, now_ts):
     d["sightings"] = [s for s in d["sightings"] if s["t"] > now_ts - KEEP_DAYS * 86400]
+    d["pinged"] = {k: t for k, t in (d.get("pinged") or {}).items() if t > now_ts - 3 * 86400}
     json.dump(d, open(FILE, "w"), indent=1)
 
 
 def _fmt(a):
     a = round(a)
     return f"+{a}" if a > 0 else str(a)
+
+
+def pinged(d, k):
+    return k in (d.get("pinged") or {})
+
+
+def mark(d, k, ts=None):
+    import time
+    d.setdefault("pinged", {})[k] = ts or time.time()
+
+
+def _bucket(v):
+    return "S" if v < 100 else ("M" if v < 500 else "L")
+
+
+def attach_max(d, priv, topic):
+    """Read 'max <n>' messages from Peter's ntfy topic (last 12 h) and attach each to the newest flag sent before it."""
+    if not topic:
+        return 0
+    try:
+        with urllib.request.urlopen(f"https://ntfy.sh/{topic}/json?poll=1&since=12h", timeout=15) as r:
+            msgs = r.read().decode().splitlines()
+    except Exception:
+        return 0
+    seen = priv.setdefault("max_msgs", [])
+    got = 0
+    for ln in msgs:
+        try:
+            m = json.loads(ln)
+        except Exception:
+            continue
+        x = re.match(r"^\s*max\s*\$?\s*([\d,]+(?:\.\d+)?)\s*$", m.get("message") or "", re.I)
+        if not x or m.get("id") in seen:
+            continue
+        seen.append(m.get("id"))
+        v = float(x.group(1).replace(",", ""))
+        fl = [s for s in d["sightings"] if s.get("flag") and s["t"] <= (m.get("time") or 0)]
+        if not fl:
+            continue
+        s = max(fl, key=lambda z: z["t"])
+        priv.setdefault("max_bet", {})[s["key"] + "|" + str(s["t"])] = v
+        s["max_bet_bucket"] = _bucket(v)
+        got += 1
+    del seen[:-200]
+    return got
+
+
+def grade(sm, d, now):
+    """Final score (ESPN) -> W/L/P and units for sightings whose game started 3+ h ago; CLV from the stored close."""
+    n = 0
+    for s in d["sightings"]:
+        if s.get("res") or sm.parse_iso(s["start"]) > now - timedelta(hours=3):
+            continue
+        e = {"game": s["game"], "start": s["start"], "sport": s["lg"], "kind": "tot" if s["mk"] == "totals" else "spr",
+             "side": s["side"], "pt": s["pt"]}
+        try:
+            g = sm.find_game(e)
+            r = sm.settle(e, g) if g else None
+        except Exception:
+            r = None
+        if not r:
+            if sm.parse_iso(s["start"]) < now - timedelta(days=4):
+                s["res"] = {"r": "NG", "why": "no final found"}   # not graded; counted, never dropped
+            continue
+        dec = _dec(s["hr"])
+        u = (dec - 1) if r[0] == "W" else (-1.0 if r[0] == "L" else 0.0)
+        s["res"] = {"r": r[0], "score": r[1], "u": round(u, 3)}
+        c = s.get("close")
+        if c and c.get("pt") == s["pt"]:
+            q, o = _p(c["pr"]), _p(c["other"])
+            fair = q / (q + o)
+            s["res"]["clv"] = round(100 * (fair * dec - 1), 2)
+            s["res"]["close_fair_am"] = round(sm.prob_to_am(fair))
+        elif c:
+            s["res"]["close_line"] = c.get("pt")   # Pinnacle closed on another number: units only, no CLV
+        n += 1
+    return n
+
+
+def summary(d):
+    def line(xs):
+        g = [s for s in xs if (s.get("res") or {}).get("r") in ("W", "L", "P")]
+        w = sum(1 for s in g if s["res"]["r"] == "W")
+        l_ = sum(1 for s in g if s["res"]["r"] == "L")
+        u = sum(s["res"]["u"] for s in g)
+        c = [s["res"]["clv"] for s in g if s["res"].get("clv") is not None]
+        return {"n": len(g), "w": w, "l": l_, "units": round(u, 2), "roi_pct": round(100 * u / len(g), 1) if g else None,
+                "clv_n": len(c), "clv_avg": round(sum(c) / len(c), 2) if c else None,
+                "beat": sum(1 for x in c if x > 0)}
+    first = [s for s in d["sightings"] if not s.get("repeat")]
+    out = {"all": line(first), "flagged": line([s for s in first if s.get("flag")])}
+    for lg in LEAGUES:
+        out[lg] = line([s for s in first if s["lg"] == lg])
+    for b in ("S", "M", "L"):
+        out["max_bet_" + b] = line([s for s in first if s.get("max_bet_bucket") == b])
+    d["summary"] = out
+    return out
 
 
 def scan(sm, ev, cfg, lines, is_t25, d, now):
@@ -73,6 +181,12 @@ def scan(sm, ev, cfg, lines, is_t25, d, now):
     ts = now.timestamp()
     game = f"{ev['away_team']} @ {ev['home_team']}"
     flags = 0
+    for s in d["sightings"]:   # keep the newest Pinnacle read for this bet: the last one before start is the close
+        if s["ev"] == ev["id"] and not s.get("res"):
+            P = pin.get(s["mk"]) or {}
+            if s["side"] in P and len(P) == 2:
+                o = next(x for x in P if x != s["side"])
+                s["close"] = {"pt": P[s["side"]][0], "pr": P[s["side"]][1], "other": P[o][1], "lead": round(lead)}
     for mk in ("spreads", "totals"):
         P = pin.get(mk) or {}
         H = lines[hrk].get(mk) or {}
@@ -104,8 +218,10 @@ def scan(sm, ev, cfg, lines, is_t25, d, now):
                  "fair_am": round(sm.prob_to_am(fair)), "evp": round(evp, 2), "t": ts, "utc": sm.iso(now),
                  "lead": round(lead), "t25": is_t25, "recheck": None, "flag": False,
                  "repeat": bool(mine)}
-            want = (not mine) and lead >= NO_FLAG_MIN and (label != "NCAAF" or is_t25 is True)
+            pk = f"{ev['id']}|{mk}|{side}"
+            want = (not mine) and lead >= NO_FLAG_MIN and (label != "NCAAF" or is_t25 is True) and not pinged(d, pk)
             if FLAG and want:
+                mark(d, pk, ts)
                 bet = (f"{side} {hpt:g}" if mk == "totals" else f"{side} {hpt:+g}") + f" ({_fmt(hpr)})"
                 try:
                     sm.notify(f"HR EDGE {label} {evp:+.1f}% - MANUAL BET",
