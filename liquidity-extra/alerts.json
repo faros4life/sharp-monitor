@@ -15,6 +15,7 @@
     "polymarket",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.7,
    "clv_cents": 0.0,
    "confirmed_after_min": 10,
@@ -47,11 +48,14 @@
    "new_money": 28259,
    "paper_only": true,
    "price": 0.7,
+   "price_after_15m": 0.7147,
+   "price_after_15m_book": "kalshi",
    "price_american": -233,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.7,
    "prices_by_book": {},
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-04T10:40:23Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXWTAMATCH-26NOV04TJEGAR-TJE"
@@ -69,6 +73,7 @@
    "side_label": "Tjen",
    "start_source": "novig",
    "start_utc": "2026-11-04T10:40:00Z",
+   "still_actionable": false,
    "teams": [
     "Tjen",
     "Garland"
@@ -107,6 +112,7 @@
     }
    },
    "fade_price": 0.28,
+   "fade_units": 2.4,
    "first_seen_utc": "2026-11-04T08:40:16Z",
    "game": "Liu vs Boulter",
    "key": "kalshi|KXWTAMATCH-26NOV04LIUBOU|ml|1",
@@ -126,11 +132,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXWTAMATCH-26NOV04LIUBOU-BOU"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settled_utc": "2026-11-04T10:40:23Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Boulter",
@@ -142,7 +149,7 @@
     "Boulter"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-04T07:00:20Z",
@@ -470,8 +477,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.62,
-   "clv_cents": -1.0,
+   "close_price": 0.63,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-11-04",
    "depth_by_book": {
