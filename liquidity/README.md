@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 3, 11:56 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 33.
+Updated Wed Nov 4, 12:00 AM ET. This run: 0 new, 1 not confirmed, 0 pending. Open alerts: 32.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 831-704 (-58.93u flat) | rule met: 505-461
+**Record:** 832-704 (-58.28u flat) | rule met: 506-461
 
-**Fade (paper, betting against the print):** 438-558 (-69.07u flat, after fees)
+**Fade (paper, betting against the print):** 438-559 (-70.07u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -47,7 +47,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 3 1:50PM | NHL | Vegas vs Pittsburgh: Total Goals | total: Over 6.5 goals scored | kalshi | $41k | -108 | ✅ novig,polymarket |  | +1.0c |  | L |
 | Nov 3 1:40PM | NHL | Utah vs. Maple Leafs | moneyline: Utah | polymarket | $77k | -138 | ✅ kalshi,novig,prophetx |  | +0.0c |  | W |
 | Nov 3 1:40PM | NCAAF | Central Michigan vs Eastern Michigan: Spread | spread: NOT Eastern Michigan wins by over 1.5 points | kalshi | $71k | -108 | ✅ novig |  | +1.0c | yes | pending |
-| Nov 3 1:25PM | NHL | Ducks vs. Canucks | moneyline: Ducks | polymarket | $100k | -150 | ✅ kalshi,novig,prophetx |  | +4.0c |  | pending |
+| Nov 3 1:25PM | NHL | Ducks vs. Canucks | moneyline: Ducks | polymarket | $100k | -150 | ✅ kalshi,novig,prophetx |  | +4.0c |  | W |
 | Nov 3 1:00PM | NCAAF | Central Michigan vs Eastern Michigan: Spread | spread: Eastern Michigan wins by over 1.5 points | kalshi | $72k | +108 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 3 1:00PM | NCAAF | Central Michigan vs Eastern Michigan | moneyline: Eastern Michigan | kalshi | $224k | -104 |  |  | +0.0c |  | pending |
 | Nov 3 12:50PM | NHL | Wild vs. Flyers | moneyline: Wild | polymarket | $60k | -178 | ✅ kalshi,novig,prophetx |  | -1.0c |  | W |
