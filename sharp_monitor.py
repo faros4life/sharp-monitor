@@ -1583,7 +1583,8 @@ def run():
                         # Nov 3 (Peter yes 8:07 AM): SLOW-HR-EV paper ping - Hard Rock-priced alert whose after-fee price is
                         # >= +2% vs Pinnacle's new no-vig fair. Paper only: check the app's price and the max bet it allows.
                         hr_ev = (a.get("book") in ("hardrockbet", "hardrockbet_fl") and a.get("evp") is not None
-                                 and a["evp"] >= 2.0 and not p1_ok)
+                                 and a["evp"] >= 2.0 and not p1_ok
+                                 and cfg["label"] in hr_scanner.FLAG_LEAGUES)   # Nov 4 12:29: no Hard Rock pings for NHL
                         if hr_ev:   # Nov 4 9:09 (Peter "fix double ping"): one Hard Rock ping per game / market / side
                             _hk = f"{a.get('ev')}|{'totals' if a.get('kind') == 'tot' else 'spreads'}|{a.get('side')}"
                             if hr_scanner.pinged(HRS, _hk):
