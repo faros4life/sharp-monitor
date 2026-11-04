@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 4, 10:00 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 11.
+Updated Wed Nov 4, 10:10 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 10.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 123-81 (-12.53u flat) | rule met: 33-30
+**Record:** 124-81 (-12.11u flat) | rule met: 34-30
 
-**Fade (paper, betting against the print):** 56-88 (+14.69u flat, after fees)
+**Fade (paper, betting against the print):** 56-89 (+13.69u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -14,7 +14,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 4 6:40AM | TENNIS | Montgomery vs Vandromme | moneyline: Montgomery | kalshi | $89k | -150 |  |  | -47.0c | yes | W |
 | Nov 4 6:10AM | TENNIS | Halys vs Tiafoe | moneyline: Tiafoe | kalshi | $97k | -117 |  |  | -34.0c | yes | L |
 | Nov 4 5:50AM | TENNIS | Berrettini vs Humbert | moneyline: Humbert | kalshi | $26k | -108 | ✅ novig |  | +1.0c |  | pending |
-| Nov 4 5:20AM | TENNIS | Tjen vs Garland | moneyline: Tjen | kalshi | $28k | -233 | ✅ novig |  | +0.0c | yes | pending |
+| Nov 4 5:20AM | TENNIS | Tjen vs Garland | moneyline: Tjen | kalshi | $28k | -233 | ✅ novig |  | +0.0c | yes | W |
 | Nov 4 3:50AM | TENNIS | Liu vs Boulter | moneyline: Boulter | kalshi | $112k | -257 |  |  | +0.0c |  | L |
 | Nov 4 2:00AM | TENNIS | Joint vs Sakkari | moneyline: Sakkari | kalshi | $35k | -186 |  |  | -1.0c | yes | W |
 | Nov 4 1:50AM | TENNIS | Stojsavljevic vs Kenin | moneyline: Stojsavljevic | kalshi | $38k | -178 |  |  | +15.0c |  | W |
