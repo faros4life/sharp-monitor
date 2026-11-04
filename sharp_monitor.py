@@ -21,6 +21,8 @@ import urllib.request
 from datetime import datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
 
+import hr_scanner   # Nov 4: Hard Rock EV scanner (paper lane + manual ntfy flag; Muse terms 7:19 AM)
+
 ET = ZoneInfo("America/New_York")
 API = "https://api.the-odds-api.com/v4"
 
@@ -1492,6 +1494,7 @@ def run():
 
     books = ",".join(BOOKS)
     sent = 0
+    HRS = hr_scanner.load()
     top25s = {k: load_top25(st, n, k) for k in RANKINGS if NCAAF_TOP25 != "off" and k in active}
     for key in active:
         if st.get("remaining") is not None and st["remaining"] <= RESERVE:
@@ -1513,6 +1516,11 @@ def run():
             vals = sharp_values(lines)
             if not vals:
                 continue
+            try:   # Nov 4: Hard Rock EV scanner on the lines this poll already has (0 extra credits)
+                hr_scanner.scan(sys.modules[__name__], ev, cfg, lines,
+                                (top25_tag(ev, top25s.get(key))[0] if key in top25s else None), HRS, now_utc())
+            except Exception as _x:
+                print(f"hr scanner skipped: {str(_x)[:60]}")
             _g = f"{ev['away_team']} @ {ev['home_team']}"
             for e in st["log"] + st.get("sent", []):   # restored entries get their real event id back
                 if (str(e.get("ev", "")).startswith("R|") and e["game"] == _g
@@ -1618,6 +1626,11 @@ def run():
     st["log"] = [e for e in st["log"] if parse_iso(e["start"]) > n - timedelta(days=LOG_DAYS)]
     st["sent"] = [e for e in st.get("sent", []) if parse_iso(e["start"]) > n - timedelta(days=LOG_DAYS)]
     save_state(st)
+    try:
+        hr_scanner.save(HRS, time.time())
+        print(f"hr scanner: {len(HRS['sightings'])} sightings logged")   # counts only
+    except Exception as _x:
+        print(f"hr scanner save failed: {str(_x)[:60]}")
     write_summary(st, n)
     write_alerts_file(st, n)
     if sent:   # Oct 25: wake the executor right away instead of waiting for its 5-minute timer
