@@ -52,8 +52,8 @@ HIST_MIN = float(os.environ.get("HIST_GAP_MIN", "") or "5.2")   # Nov 2: spacing
 # 5,000 ms cooldown on /historical-odds (docs: get-historical-odds; a 304 counts too)
 
 
-def api(path, billable, **params):
-    params["apiKey"] = KEY
+def api(path, billable, apikey=None, **params):
+    params["apiKey"] = apikey or KEY   # Nov 3 21:00: apikey = the free-account key for exchange history (hist_cache)
     q = urllib.parse.urlencode({k: v for k, v in params.items() if v is not None})
     req = urllib.request.Request(f"{BASE}{path}?{q}", headers={"Accept": "application/json", "User-Agent": "sharp-monitor-clv"})
     # history throttles (429 seen at ~1 s spacing): start at HIST_GAP s, back off 1.5x on every 429 (max 10 s)
