@@ -586,8 +586,8 @@ def plimit_tag(s, f, pin, mkmap, lg, when):
         if when.tzinfo is None:   # Nov 4: a naive 'placed' stamp (Novig created_at) raised against aware ticks -> no read
             when = when.replace(tzinfo=timezone.utc)
         lim, how = pl.pin_limit_at(s, f, pin, mkmap, when, lg)
-    except Exception as ex:
-        return {"why": f"{type(ex).__name__}: {str(ex)[:60]}"}
+    except Exception as e_:
+        return {"why": f"{type(e_).__name__}: {str(e_)[:60]}"}
     if not lim:
         return {"why": "no Pinnacle tick within 60 min of placed time"}
     pz = parsed(s)
@@ -765,8 +765,8 @@ def main():
                 try:
                     import hist_cache as hc   # lazy: hist_cache imports this module
                     hist[(fid, bk)] = hc.get_hist(fid, ["pinnacle"], start)
-                except Exception as ex:
-                    hist[(fid, bk)] = {"_error": f"cache: {str(ex)[:40]}"}
+                except Exception as e_:
+                    hist[(fid, bk)] = {"_error": f"cache: {str(e_)[:40]}"}
                 if isinstance(hist[(fid, bk)], dict) and hist[(fid, bk)].get("_error"):
                     hist[(fid, bk)] = api("/historical-odds", False, fixtureId=fid, bookmakers=bk)
             else:
