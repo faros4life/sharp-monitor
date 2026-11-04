@@ -179,6 +179,89 @@ def section(title, R, unit=""):
         ln("12 Price -110 or worse", [x for x in J if x.get("am") is not None and x["am"] <= -110])
     else:
         L.append("  12 Price vs -110: not in this test")
+    L += grid_lines(J, unit, mid)
+    return L
+
+
+# Nov 4 (Muse's grid, Peter 2:09 PM "when we have all data we start with this table"): every test also prints
+# League x Market (ML Fav / ML Dog / Spread Fav / Spread Dog / Over / Under), units first, ranked by total units. Per cell: units, % per
+# 1u play, W-L-P, n, distinct games (where the records carry a game key), CLV in units (actual / expected / difference;
+# expected = sum of each play's CLV at the Pinnacle close, only where CLV is in % of the stake), both halves, and the
+# judged size (smaller of n and distinct games: < 50 too thin, 50 checkpoint, 100 judged). A short candidate list ends it.
+def _mlabel(x):
+    mk = x.get("mk")
+    if mk == "totals":
+        return {"under": "Under", "over": "Over"}.get(x.get("sc"), "Total")
+    m = {"spreads": "Spread", "moneyline": "ML"}.get(mk, mk or "?")
+    # Peter Nov 4 2:24 PM "we should do favorite underdog": ML and Spread are split into favorite and underdog
+    sc = x.get("sc")
+    if sc not in ("fav", "dog") and mk == "moneyline" and x.get("am") is not None:
+        sc = "fav" if float(x["am"]) < 0 else "dog"   # ML records carry no side class: the price decides (minus = favorite)
+    return m + {"fav": " Fav", "dog": " Dog"}.get(sc, "")
+
+
+def _gkey(x):
+    for k in ("game_id", "fid", "ev", "game", "match"):
+        if x.get(k):
+            return str(x[k])
+    return None
+
+
+def grid_lines(J, unit, mid):
+    G = [x for x in J if x.get("units") is not None and x.get("lg")]
+    if not G:
+        return ["  GRID (league x market, units first): not in this test (no graded units)"]
+    pct = unit == "%"
+    bench = "Pinnacle no-vig close" if pct else "this test's own close (cents; expected units not computed)"
+    L = [f" GRID - League x Market, units first (benchmark: {bench}); judged on the smaller of n and distinct games"]
+    cells = {}
+    for x in G:
+        cells.setdefault((x["lg"], _mlabel(x)), []).append(x)
+    rows = []
+    for (lg, mk), xs in cells.items():
+        u = sum(x["units"] for x in xs)
+        n = len(xs)
+        w = sum(1 for x in xs if x["units"] > 0)
+        lo = sum(1 for x in xs if x["units"] < 0)
+        g = {_gkey(x) for x in xs if _gkey(x)}
+        ng = len(g) if g else None
+        jn = min(n, ng) if ng else n
+        h1 = [x for x in xs if x.get("day") and x["day"] <= mid]
+        h2 = [x for x in xs if x.get("day") and x["day"] > mid]
+        hu = lambda h: (sum(x["units"] for x in h), len(h))
+        (u1, n1), (u2, n2) = hu(h1), hu(h2)
+        c = [x["clv"] for x in xs if x.get("clv") is not None]
+        if pct and c:
+            exp = sum(c) / 100.0
+            clv = f"CLV units actual {u:+.2f} / expected {exp:+.2f} / {u - exp:+.2f}"
+        else:
+            exp = None
+            clv = f"CLV {sum(c) / len(c):+.2f}{unit}" if c else "CLV -"
+        size = "too thin" if jn < 50 else ("checkpoint" if jn < 100 else "judged")
+        read = ""
+        if exp is not None:
+            if exp > 0 and u > 0:
+                read = " | read: beat the close and won"
+            elif exp > 0 and u < 0 and jn >= 100:
+                read = " | read: FLAG - beat the close but lost units (data check / benchmark)"
+            elif exp < 0 and u > 0:
+                read = " | read: lost to the close but won units (ran hot)"
+        rows.append((u, f"  {lg} {mk}: {u:+.2f}u | {100 * u / n:+.1f}% | {w}-{lo}-{n - w - lo} | n {n}"
+                        f" | games {ng if ng is not None else '-'} | {clv}"
+                        f" | H1 {u1:+.2f}u {(100 * u1 / n1) if n1 else 0:+.1f}% (n {n1}) | H2 {u2:+.2f}u {(100 * u2 / n2) if n2 else 0:+.1f}% (n {n2})"
+                        f" | {size}{read}", dict(u=u, n=n, jn=jn, u1=u1, u2=u2, exp=exp, lab=f"{lg} {mk}")))
+    rows.sort(key=lambda r: -r[0])
+    L += [r[1] for r in rows]
+    # Peter Nov 4 2:10 PM "i want to see all cells": every league x every market is printed, empty ones too
+    lgs = sorted({x["lg"] for x in G})
+    empty = [f"{lg} {mk}" for lg in lgs for mk in ("ML Fav", "ML Dog", "Spread Fav", "Spread Dog", "Over", "Under") if (lg, mk) not in cells]
+    if empty:
+        L.append("  n 0 (no plays in this test): " + ", ".join(empty))
+    cand = [r[2] for r in rows if r[2]["u"] > 0 and r[2]["u1"] > 0 and r[2]["u2"] > 0 and r[2]["jn"] >= 50
+            and (r[2]["exp"] is None or r[2]["exp"] >= 0)]
+    L.append("  GRID CANDIDATES (positive units, both halves positive, judged size 50+"
+             + (", not behind the close" if pct else "") + "): "
+             + (", ".join(f"{c_['lab']} ({c_['u']:+.2f}u, n {c_['n']})" for c_ in cand) if cand else "none"))
     return L
 
 
