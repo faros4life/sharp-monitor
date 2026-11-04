@@ -1,0 +1,194 @@
+#!/usr/bin/env python3
+"""
+LANE 2 - LOW-LIMIT SHARP ALERTS. Muse registration Nov 4 3:48 PM (Peter approved, with Muse's five pins).
+DRY RUN ONLY (Peter Nov 4 4:01 PM "no live play"): there is no live order path in this module or for its plays in the
+executor. Every Lane 2 play is priced, logged and emailed exactly like a dry-run play; nothing is ever sent to a book.
+Friday's go-live is a separate decision by Peter; until then EXEC_LANE2_LIVE does not exist on purpose.
+
+The lane (Item 56 P-limit test, Nov 4 12:47 PM: LOW +18.77u on 116, halves +13.18 / +5.59; HIGH -13.73u on 108):
+  trigger  any SENT sharp alert, spreads or totals, NBA / NCAAF / NFL (not NHL), any pricing book, not late,
+           alert gates 2-6 of agree_rules.decide (late, -130 after-fee cap, Top 25, executable book), edge under 4%
+  gate     Pinnacle's RAW limit on that side, read live at decision time, at or below the FROZEN league x market median
+           (FIT sent alerts to Oct 28, never re-fit). No NFL spreads median exists -> NFL spreads are out of the lane.
+  price    the executor's own pricing (best after-fee exchange price at the alert number or better; Lane 1 rules)
+  stake    1u flat (Lane 1's unit) - reported only, never placed
+  logged   on every play: LOW / HIGH / no-limit, the limit and median used, pricing book (Hard Rock-priced split),
+           timing (inside / outside 6-24 h, Muse pin 2: logged, not gated), edge band (<0, 0-2, 2-4, 4+; pin 3)
+  stop     -8u from peak is an ALERT to Peter, never an auto-pause (pin 4) - computed by the Friday package, not here
+Limits come from OddsPapi's live odds (paid key; the Nov 2 probe confirmed Pinnacle carries a per-market limit there),
+one billable /odds-by-tournaments call per league per run that has a new Lane 2 candidate, plus /fixtures only when the
+odds response carries no team names. Dollar limits go to the private dry-run email; the public log prints counts only.
+"""
+import os
+from datetime import timedelta
+
+import agree_rules as ar
+import clv_ledger as cl
+import tracker_build as tb
+
+MEDIAN = {("NBA", "totals"): 1808.0, ("NBA", "spreads"): 4464.0, ("NCAAF", "spreads"): 10992.0,
+          ("NCAAF", "totals"): 3101.0, ("NFL", "totals"): 16892.0}   # frozen (Item 56 FIT medians, raw OddsPapi dollars)
+LEAGUES = ("NBA", "NCAAF", "NFL")
+EDGE_MAX = 4.0
+LOOKBACK_H = 6
+_ODDS = {}      # this run: league -> {fixtureId: fixture with bookmakerOdds}
+_ST = {"billable": {}}   # throwaway OddsPapi state for this run (tournament / fixtures lookups)
+STATS = {"calls": 0, "candidates": 0, "low": 0, "high": 0, "no_limit": 0}
+
+
+def _live(lg, now):
+    if lg in _ODDS:
+        return _ODDS[lg]
+    out = {}
+    tid = cl.tournament(_ST, now, lg) if cl.KEY else None
+    if tid:
+        d = cl.api("/odds-by-tournaments", True, tournamentIds=str(tid), bookmaker="pinnacle", verbosity=3)
+        STATS["calls"] += 1
+        for f in d if isinstance(d, list) else []:
+            if f.get("fixtureId"):
+                out[str(f["fixtureId"])] = f
+    _ODDS[lg] = out
+    return out
+
+
+def _names(f):
+    p1 = " ".join(str(f.get(k) or "") for k in ("participant1Name", "participant1ShortName", "participant1Abbr")).strip()
+    p2 = " ".join(str(f.get(k) or "") for k in ("participant2Name", "participant2ShortName", "participant2Abbr")).strip()
+    return p1, p2
+
+
+def _fixture(a, lg, now, live):
+    """(fixtureId, fixture record) for the alert's game: names from the live response when present, else /fixtures."""
+    b = {"bet": a.get("bet"), "league": lg, "game": a.get("game"), "game_start": a.get("start_utc")}
+    fx = {}
+    for fid, f in live.items():
+        p1, p2 = _names(f)
+        if p1 and p2:
+            fx[fid] = {"lg": lg, "start": f.get("startTime"), "p1": p1, "p2": p2,
+                       "n1": f.get("participant1Name"), "n2": f.get("participant2Name")}
+    if fx:
+        fid = cl.find_fixture({"fixtures": fx}, b)
+        if fid:
+            return fid, fx[fid]
+    gs = cl.tp(a.get("start_utc")) or now
+    cl.refresh_fixtures(_ST, now, lg, (gs - timedelta(days=1)).astimezone(cl.ET), (gs + timedelta(days=1)).astimezone(cl.ET))
+    fid = cl.find_fixture(_ST, b)
+    return (fid, _ST["fixtures"][fid]) if fid else (None, None)
+
+
+def _tick(o):
+    t = (o.get("players") or {}).get("0")
+    if isinstance(t, list):
+        t = max(t, key=lambda x: x.get("createdAt") or "") if t else None
+    return t or {}
+
+
+def _limit(b, lg, f, pm, mkmap):
+    """(raw limit, 'own line' | 'main line') of Pinnacle's current limit for the held side (plimit_level.pin_limit_at,
+    on the live shape). Spreads and totals only."""
+    pz = cl.parsed(b)
+    if not pz or pz[0] == "ml":
+        return None, None
+    sid = cl.SPORT[lg]
+
+    def lim(mid, oid):
+        m = (pm.get(str(mid)) or {}).get("outcomes", {}).get(oid) or {}
+        return tb.num(_tick(m).get("limit"))
+    typ = "spreads" if pz[0] == "spread" else "totals"
+    if typ == "totals":
+        want, name = pz[2], ("Over" if pz[1] == "OVER" else "Under")
+    else:
+        side = cl.which_team(f, pz[1])
+        if not side:
+            return None, None
+        if pz[3]:
+            side = "2" if side == "1" else "1"
+        want, name = (pz[2] if side == "1" else -pz[2]), side
+    main = None
+    for mid, (s, t, hcap, outs) in mkmap.items():
+        if s != sid or t != typ or mid not in pm:
+            continue
+        oid = {v: k for k, v in outs.items()}.get(name)
+        v = lim(mid, oid) if oid else None
+        if not v:
+            continue
+        if abs(hcap - want) < 1e-9:
+            return v, "own line"
+        if main is None or v > main:
+            main = v
+    return (main, "main line") if main else (None, None)
+
+
+def _edge_band(e):
+    if e is None:
+        return "n/a"
+    return "<0" if e < 0 else ("0-2" if e < 2 else ("2-4" if e < 4 else "4+"))
+
+
+def decide(a, now, mkmap):
+    """Lane 2 entry for one sent alert: label LOW / HIGH / NO_LIMIT plus every logged split. Never places anything."""
+    lg, kind = a.get("sport"), a.get("kind")
+    typ = "spreads" if kind == "spr" else "totals"
+    med = MEDIAN.get((lg, typ))
+    ld = ar.lead_min(a)
+    ent = {"lane": "lane2", "league": lg, "market": typ, "median": med, "limit": None, "limit_how": None, "label": None,
+           "book_key": a.get("book_key"), "hr_priced": bool(ar.hr_priced(a)), "edge_pct": a.get("edge_pct"),
+           "edge_band": _edge_band(a.get("edge_pct")), "lead_min": round(ld) if ld is not None else None,
+           "timing": ("inside 6-24h" if ld is not None and 360 <= ld < 1440 else "outside 6-24h"),
+           "alert_utc": a.get("alert_utc"), "price_after_fee": a.get("price_after_fee"), "point": a.get("point"),
+           "sport": lg, "bet": a.get("bet"), "top25": a.get("top25")}
+    if med is None:
+        ent["label"] = "NOT IN LANE"
+        ent["why"] = f"no frozen median for {lg} {typ}"
+        return ent
+    live = _live(lg, now)
+    fid, f = _fixture(a, lg, now, live)
+    pm = (((live.get(fid) or {}).get("bookmakerOdds") or {}).get("pinnacle") or {}).get("markets") or {} if fid else {}
+    b = {"bet": a.get("bet"), "league": lg, "game": a.get("game"), "game_start": a.get("start_utc"), "book": a.get("book")}
+    limit, how = _limit(b, lg, f, pm, mkmap) if (f and pm) else (None, None)
+    ent["limit"], ent["limit_how"] = limit, how
+    if limit is None:
+        ent["label"] = "NO_LIMIT"
+        ent["why"] = "no Pinnacle limit readable for this side right now" + ("" if fid else " (fixture not matched)")
+        STATS["no_limit"] += 1
+    elif limit <= med:
+        ent["label"] = "LOW"
+        STATS["low"] += 1
+    else:
+        ent["label"] = "HIGH"
+        STATS["high"] += 1
+    return ent
+
+
+def plays(now, feed, mkmap):
+    """Lane 2 candidate plays from the feed (alerts.json), each with its lane2_entry. All are DRY RUN."""
+    out = []
+    for a in feed or []:
+        try:
+            t, st = cl.tp(a.get("alert_utc")), cl.tp(a.get("start_utc"))
+        except Exception:
+            continue
+        if not t or not st or t < now - timedelta(hours=LOOKBACK_H) or st <= now:
+            continue
+        if not a.get("sent_to_phone") or a.get("sport") not in LEAGUES or a.get("kind") not in ("spr", "tot") or a.get("late"):
+            continue
+        if (a.get("edge_pct") or 0) >= EDGE_MAX:
+            continue
+        d = ar.decide(a)
+        if d.get("verdict") != "AGREE":
+            continue
+        STATS["candidates"] += 1
+        ent = decide(a, now, mkmap)
+        if ent["label"] == "NOT IN LANE":
+            continue
+        out.append({"sport": a.get("sport"), "game": a.get("game"), "bet": a.get("bet"), "start_utc": a.get("start_utc"),
+                    "late": False, "source": "lane2", "alert_utc": a.get("alert_utc"),
+                    "rules": {"verdict": "AGREE" if ent["label"] == "LOW" else "DISAGREE", "gate": "limit",
+                              "reason": f"Lane 2 {ent['label']}: Pinnacle limit {ent['limit']} vs median {ent['median']:g} ({ent['limit_how'] or '-'})"},
+                    "lane2_entry": ent})
+    return out
+
+
+def summary_line():
+    return (f"Lane 2 (dry run only): {STATS['candidates']} candidate(s); LOW {STATS['low']}, HIGH {STATS['high']}, "
+            f"no limit {STATS['no_limit']}; OddsPapi calls {STATS['calls']}")
