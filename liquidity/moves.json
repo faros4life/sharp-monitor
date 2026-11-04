@@ -1,6 +1,51 @@
 {
  "moves": [
   {
+   "alerted_utc": "2026-11-04T21:26:17Z",
+   "bar": false,
+   "best_price": 0.4904,
+   "best_price_book": "prophetx",
+   "book": "kalshi",
+   "close_price": 0.49,
+   "clv_cents": 0.0,
+   "date": "2026-11-04",
+   "dir": "RAISE",
+   "ex_stats": {
+    "open_interest_fp": 5065.47,
+    "volume_24h_fp": 5400.44,
+    "volume_fp": 5419.04
+   },
+   "first_play": true,
+   "game": "Miami vs Los Angeles C: Total Points",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBATOTAL-26NOV04MIALAC-233\"}",
+   "lead_min": 364,
+   "league": "NBA",
+   "league_x": 2.18,
+   "line": 232.5,
+   "market": "total",
+   "normal_4h": 102862,
+   "now": 221839,
+   "other_side_now": 163942,
+   "paper_only": true,
+   "price": 0.49,
+   "price_american": 104,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNBATOTAL-26NOV04MIALAC-233"
+   },
+   "result": null,
+   "side": "UNDER",
+   "side_label": "NOT Over 232.5 points",
+   "side_raw": "UNDER",
+   "start_utc": "2026-11-05T03:30:00Z",
+   "teams": [
+    "Miami",
+    "Los Angeles C"
+   ],
+   "units_flat": null,
+   "x": 2.16
+  },
+  {
    "alerted_utc": "2026-11-04T21:20:12Z",
    "bar": false,
    "best_price": 0.545,
@@ -11,6 +56,11 @@
    "date": "2026-11-05",
    "dir": "RAISE",
    "ex_stats": {
+    "open_interest_fp": 44.0,
+    "volume_24h_fp": 44.0,
+    "volume_fp": 44.0
+   },
+   "ex_stats_close": {
     "open_interest_fp": 44.0,
     "volume_24h_fp": 44.0,
     "volume_fp": 44.0
@@ -60,6 +110,11 @@
     "volume_24h_fp": 24469.88,
     "volume_fp": 24644.51
    },
+   "ex_stats_close": {
+    "open_interest_fp": 21774.24,
+    "volume_24h_fp": 24644.51,
+    "volume_fp": 24875.94
+   },
    "first_play": false,
    "game": "Portland vs Phoenix: Spread",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNBASPREAD-26NOV04PORPHX-POR3\"}",
@@ -103,6 +158,10 @@
    "ex_stats": {
     "openInterest": 15522264.0,
     "volume": 27832258.0
+   },
+   "ex_stats_close": {
+    "openInterest": 16584946.0,
+    "volume": 28894940.0
    },
    "first_play": true,
    "game": "Jacksonville Jaguars @ Baltimore Ravens",
@@ -299,7 +358,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 2191.57,
-    "volume_24h_fp": 2607.02,
+    "volume_24h_fp": 2611.71,
     "volume_fp": 2611.71
    },
    "first_play": true,
@@ -349,7 +408,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 23441.41,
-    "volume_24h_fp": 14492.080000000002,
+    "volume_24h_fp": 14558.95,
     "volume_fp": 24649.27
    },
    "first_play": false,
@@ -399,7 +458,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 1736.1599999999999,
-    "volume_24h_fp": 2428.83,
+    "volume_24h_fp": 2429.08,
     "volume_fp": 2545.25
    },
    "first_play": false,
@@ -492,7 +551,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 4795.79,
-    "volume_24h_fp": 1771.53,
+    "volume_24h_fp": 1809.44,
     "volume_fp": 5276.06
    },
    "first_play": true,
@@ -508,6 +567,8 @@
    "other_side_now": 239405,
    "paper_only": true,
    "price": 0.51,
+   "price_after_15m": 0.51,
+   "price_after_15m_book": "novig",
    "price_american": -104,
    "ref": {
     "kalshi_side": "yes",
@@ -518,6 +579,7 @@
    "side_label": "Over 72.5 points",
    "side_raw": "OVER",
    "start_utc": "2026-11-06T00:30:00Z",
+   "still_actionable": true,
    "teams": [
     "UTSA",
     "Florida Atlantic"
@@ -558,6 +620,8 @@
    "other_side_now": 17198,
    "paper_only": true,
    "price": 0.5,
+   "price_after_15m": 0.505,
+   "price_after_15m_book": "novig",
    "price_american": -100,
    "ref": {
     "kalshi_side": "yes",
@@ -568,6 +632,7 @@
    "side_label": "Over 6.5 goals scored",
    "side_raw": "OVER",
    "start_utc": "2026-11-06T00:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Utah",
     "Montreal"
@@ -591,9 +656,9 @@
     "volume_fp": 48537.54
    },
    "ex_stats_close": {
-    "open_interest_fp": 42895.15,
-    "volume_24h_fp": 45218.24,
-    "volume_fp": 48982.68
+    "open_interest_fp": 43354.33,
+    "volume_24h_fp": 45663.38,
+    "volume_fp": 49441.86
    },
    "first_play": true,
    "game": "Dallas vs San Antonio: Spread",
@@ -608,6 +673,8 @@
    "other_side_now": 451193,
    "paper_only": true,
    "price": 0.51,
+   "price_after_15m": 0.51,
+   "price_after_15m_book": "novig",
    "price_american": -104,
    "ref": {
     "kalshi_side": "no",
@@ -618,6 +685,7 @@
    "side_label": "NOT San Antonio wins by over 12.5 points",
    "side_raw": 0,
    "start_utc": "2026-11-05T02:30:00Z",
+   "still_actionable": true,
    "teams": [
     "Dallas",
     "San Antonio"
@@ -649,6 +717,8 @@
    "other_side_now": 3549,
    "paper_only": true,
    "price": 0.1515,
+   "price_after_15m": 0.15,
+   "price_after_15m_book": "novig",
    "price_american": 560,
    "ref": {
     "line": 0,
@@ -661,6 +731,7 @@
    "side_label": "Southern Mississippi",
    "side_raw": 1,
    "start_utc": "2026-11-06T01:00:00Z",
+   "still_actionable": true,
    "teams": [
     "James Madison",
     "Southern Mississippi"
@@ -701,6 +772,8 @@
    "other_side_now": 18947,
    "paper_only": true,
    "price": 0.57,
+   "price_after_15m": 0.575,
+   "price_after_15m_book": "novig",
    "price_american": -133,
    "ref": {
     "kalshi_side": "no",
@@ -711,6 +784,7 @@
    "side_label": "NOT Colorado wins by over 1.5 goals",
    "side_raw": 0,
    "start_utc": "2026-11-06T02:30:00Z",
+   "still_actionable": true,
    "teams": [
     "Nashville",
     "Colorado"
@@ -751,6 +825,8 @@
    "other_side_now": 24010,
    "paper_only": true,
    "price": 0.44,
+   "price_after_15m": 0.445,
+   "price_after_15m_book": "novig",
    "price_american": 127,
    "ref": {
     "kalshi_side": "yes",
@@ -761,6 +837,7 @@
    "side_label": "Colorado wins by over 1.5 goals",
    "side_raw": 1,
    "start_utc": "2026-11-06T02:30:00Z",
+   "still_actionable": true,
    "teams": [
     "Nashville",
     "Colorado"
@@ -801,6 +878,8 @@
    "other_side_now": 10832,
    "paper_only": true,
    "price": 0.48,
+   "price_after_15m": 0.4975,
+   "price_after_15m_book": "kalshi",
    "price_american": 108,
    "ref": {
     "kalshi_side": "yes",
@@ -811,6 +890,7 @@
    "side_label": "Over 6.5 goals scored",
    "side_raw": "OVER",
    "start_utc": "2026-11-06T00:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Boston",
     "Pittsburgh"
@@ -851,6 +931,8 @@
    "other_side_now": 24669,
    "paper_only": true,
    "price": 0.39,
+   "price_after_15m": 0.39,
+   "price_after_15m_book": "novig",
    "price_american": 156,
    "ref": {
     "kalshi_side": "yes",
@@ -861,6 +943,7 @@
    "side_label": "Carolina wins by over 1.5 goals",
    "side_raw": 0,
    "start_utc": "2026-11-06T00:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Carolina",
     "New York I"
@@ -884,9 +967,9 @@
     "volume_fp": 5232.05
    },
    "ex_stats_close": {
-    "open_interest_fp": 5046.87,
+    "open_interest_fp": 5065.47,
     "volume_24h_fp": 5400.44,
-    "volume_fp": 5400.44
+    "volume_fp": 5419.04
    },
    "first_play": true,
    "game": "Miami vs Los Angeles C: Total Points",
@@ -901,6 +984,8 @@
    "other_side_now": 190766,
    "paper_only": true,
    "price": 0.52,
+   "price_after_15m": 0.5288,
+   "price_after_15m_book": "prophetx",
    "price_american": -108,
    "ref": {
     "kalshi_side": "yes",
@@ -911,6 +996,7 @@
    "side_label": "Over 232.5 points",
    "side_raw": "OVER",
    "start_utc": "2026-11-05T03:30:00Z",
+   "still_actionable": true,
    "teams": [
     "Miami",
     "Los Angeles C"
@@ -934,9 +1020,9 @@
     "volume_fp": 9590.52
    },
    "ex_stats_close": {
-    "open_interest_fp": 8676.01,
-    "volume_24h_fp": 9811.87,
-    "volume_fp": 9929.97
+    "open_interest_fp": 8685.14,
+    "volume_24h_fp": 9929.97,
+    "volume_fp": 9939.1
    },
    "first_play": true,
    "game": "Los Angeles L vs Sacramento: Total Points",
@@ -951,6 +1037,8 @@
    "other_side_now": 233261,
    "paper_only": true,
    "price": 0.49,
+   "price_after_15m": 0.4928,
+   "price_after_15m_book": "prophetx",
    "price_american": 104,
    "ref": {
     "kalshi_side": "yes",
@@ -961,6 +1049,7 @@
    "side_label": "Over 234.5 points",
    "side_raw": "OVER",
    "start_utc": "2026-11-05T03:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Los Angeles L",
     "Sacramento"
@@ -974,8 +1063,8 @@
    "best_price": 0.4928,
    "best_price_book": "prophetx",
    "book": "kalshi",
-   "close_price": 0.5,
-   "clv_cents": 0.0,
+   "close_price": 0.49,
+   "clv_cents": -1.0,
    "date": "2026-11-04",
    "dir": "RAISE",
    "ex_stats": {
@@ -985,7 +1074,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 3052.69,
-    "volume_24h_fp": 3219.23,
+    "volume_24h_fp": 3263.55,
     "volume_fp": 3263.55
    },
    "first_play": true,
@@ -1001,6 +1090,8 @@
    "other_side_now": 162029,
    "paper_only": true,
    "price": 0.5,
+   "price_after_15m": 0.495,
+   "price_after_15m_book": "novig",
    "price_american": -100,
    "ref": {
     "kalshi_side": "no",
@@ -1011,6 +1102,7 @@
    "side_label": "NOT Over 218.5 points",
    "side_raw": "UNDER",
    "start_utc": "2026-11-05T01:30:00Z",
+   "still_actionable": false,
    "teams": [
     "Minnesota",
     "Houston"
@@ -1024,8 +1116,8 @@
    "best_price": 0.3,
    "best_price_book": "novig",
    "book": "kalshi",
-   "close_price": 0.31,
-   "clv_cents": 0.0,
+   "close_price": 0.3,
+   "clv_cents": -1.0,
    "date": "2026-11-05",
    "dir": "RAISE",
    "ex_stats": {
@@ -1034,9 +1126,9 @@
     "volume_fp": 6606.54
    },
    "ex_stats_close": {
-    "open_interest_fp": 6102.5,
-    "volume_24h_fp": 3378.0199999999995,
-    "volume_fp": 6639.12
+    "open_interest_fp": 6109.49,
+    "volume_24h_fp": 3410.2599999999998,
+    "volume_fp": 6646.11
    },
    "first_play": true,
    "game": "UTSA vs Florida Atlantic",
@@ -1051,6 +1143,8 @@
    "other_side_now": 846976,
    "paper_only": true,
    "price": 0.31,
+   "price_after_15m": 0.305,
+   "price_after_15m_book": "novig",
    "price_american": 223,
    "ref": {
     "kalshi_side": "yes",
@@ -1061,6 +1155,7 @@
    "side_label": "Florida Atlantic",
    "side_raw": 1,
    "start_utc": "2026-11-06T00:30:00Z",
+   "still_actionable": false,
    "teams": [
     "UTSA",
     "Florida Atlantic"
@@ -1332,8 +1427,8 @@
    "best_price": 0.19,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.19,
-   "clv_cents": 0.0,
+   "close_price": 0.185,
+   "clv_cents": -0.5,
    "date": "2026-11-05",
    "dir": "RAISE",
    "ex_stats": {
@@ -1341,8 +1436,8 @@
     "volume": 25636065.0
    },
    "ex_stats_close": {
-    "openInterest": 15522264.0,
-    "volume": 27832258.0
+    "openInterest": 16584946.0,
+    "volume": 28894940.0
    },
    "first_play": true,
    "game": "Jacksonville Jaguars @ Baltimore Ravens",
@@ -2355,7 +2450,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 1419.68,
-    "volume_24h_fp": 1374.6999999999998,
+    "volume_24h_fp": 1375.24,
     "volume_fp": 1509.46
    },
    "first_play": true,
@@ -2406,8 +2501,8 @@
     "volume": 23982580.0
    },
    "ex_stats_close": {
-    "openInterest": 23513868.0,
-    "volume": 24254074.0
+    "openInterest": 23563528.0,
+    "volume": 24307613.0
    },
    "first_play": true,
    "game": "Chicago Bulls @ New York Knicks",
@@ -2617,9 +2712,9 @@
     "volume_fp": 1375.8600000000001
    },
    "ex_stats_close": {
-    "open_interest_fp": 1378.13,
-    "volume_24h_fp": 1249.66,
-    "volume_fp": 1378.13
+    "open_interest_fp": 1473.47,
+    "volume_24h_fp": 1250.11,
+    "volume_fp": 1473.47
    },
    "first_play": true,
    "game": "Utah vs Montreal",
@@ -2670,9 +2765,9 @@
     "volume_fp": 1375.8600000000001
    },
    "ex_stats_close": {
-    "open_interest_fp": 1378.13,
-    "volume_24h_fp": 1249.66,
-    "volume_fp": 1378.13
+    "open_interest_fp": 1473.47,
+    "volume_24h_fp": 1250.11,
+    "volume_fp": 1473.47
    },
    "first_play": false,
    "game": "Utah vs Montreal",
@@ -3055,9 +3150,9 @@
     "volume_fp": 17750.67
    },
    "ex_stats_close": {
-    "open_interest_fp": 16584.64,
-    "volume_24h_fp": 13975.449999999999,
-    "volume_fp": 17949.03
+    "open_interest_fp": 16718.23,
+    "volume_24h_fp": 13976.38,
+    "volume_fp": 18082.62
    },
    "first_play": true,
    "game": "Boston vs Pittsburgh",
@@ -3415,8 +3510,8 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 32798.62,
-    "volume_24h_fp": 31834.56,
-    "volume_fp": 33207.75
+    "volume_24h_fp": 32001.68,
+    "volume_fp": 33358.55
    },
    "first_play": true,
    "game": "Central Michigan vs Eastern Michigan: Spread",
@@ -3467,9 +3562,9 @@
     "volume_fp": 1229083.77
    },
    "ex_stats_close": {
-    "open_interest_fp": 1025639.9099999999,
-    "volume_24h_fp": 555345.86,
-    "volume_fp": 1269356.9100000001
+    "open_interest_fp": 1026966.8599999999,
+    "volume_24h_fp": 551927.0700000001,
+    "volume_fp": 1270757.58
    },
    "first_play": true,
    "game": "Jacksonville vs Baltimore",
@@ -3520,9 +3615,9 @@
     "volume_fp": 1229083.77
    },
    "ex_stats_close": {
-    "open_interest_fp": 1025639.9099999999,
-    "volume_24h_fp": 555345.86,
-    "volume_fp": 1269356.9100000001
+    "open_interest_fp": 1026966.8599999999,
+    "volume_24h_fp": 551927.0700000001,
+    "volume_fp": 1270757.58
    },
    "first_play": true,
    "game": "Jacksonville vs Baltimore",
