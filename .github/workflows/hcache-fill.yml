@@ -15,6 +15,7 @@ on:
 
 permissions:
   contents: read
+  actions: write   # Nov 4: start the next batch when this one stopped at its time budget
 
 concurrency:
   group: hcache-fill-${{ inputs.order || 'newest' }}
@@ -50,6 +51,7 @@ jobs:
           path: hcache_b
           key: hcache-${{ inputs.merge_b }}
       - name: Fill the cache
+        id: fill
         env:
           ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
           ODDSPAPI_FREE_KEY: ${{ secrets.ODDSPAPI_FREE_KEY }}   # Nov 3: free-account key for exchange history (empty = not used)
@@ -65,3 +67,8 @@ jobs:
         with:
           path: hcache
           key: hcache-${{ github.run_id }}
+      - name: Start the next batch (only after a successful save, only if games remain)
+        if: success() && steps.fill.outputs.more == '1'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run hcache-fill.yml --repo "${{ github.repository }}" --ref main -f max_games="${{ inputs.max_games || '700' }}" -f order="${{ inputs.order || 'newest' }}"
