@@ -30,6 +30,7 @@ import tracker_build as tb
 
 BASE = "https://api.oddspapi.io/v4"
 KEY = (os.environ.get("ODDSPAPI_KEY") or "").strip()
+FREE_KEY = (os.environ.get("ODDSPAPI_FREE_KEY") or "").strip()   # Nov 3: free-account key, history only
 STATE = "clv/state.enc"
 MKFILE = "clv/markets.json"
 ET = tb.ET
@@ -53,7 +54,12 @@ HIST_MIN = float(os.environ.get("HIST_GAP_MIN", "") or "5.2")   # Nov 2: spacing
 
 
 def api(path, billable, apikey=None, **params):
-    params["apiKey"] = apikey or KEY   # Nov 3 21:00: apikey = the free-account key for exchange history (hist_cache)
+    # Nov 3 21:30: the paid plan answers 403 RESTRICTED_ACCESS "Restricted bookmakers: pinnacle" on /historical-odds (it sells
+    # "Pinnacle +30 sec", a different product), so ALL history goes through the free-account key when it is set; the paid
+    # key keeps every billable call. The free key never makes a billable call, so its 250 can never run out.
+    if apikey is None and path == "/historical-odds" and FREE_KEY:
+        apikey = FREE_KEY
+    params["apiKey"] = apikey or KEY
     q = urllib.parse.urlencode({k: v for k, v in params.items() if v is not None})
     req = urllib.request.Request(f"{BASE}{path}?{q}", headers={"Accept": "application/json", "User-Agent": "sharp-monitor-clv"})
     # history throttles (429 seen at ~1 s spacing): start at HIST_GAP s, back off 1.5x on every 429 (max 10 s)
