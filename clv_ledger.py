@@ -53,17 +53,35 @@ HIST_MIN = float(os.environ.get("HIST_GAP_MIN", "") or "5.2")   # Nov 2: spacing
 # 5,000 ms cooldown on /historical-odds (docs: get-historical-odds; a 304 counts too)
 
 
+_KEY_LOCKS, _GAPS = {}, {}   # Nov 4: history spacing is per key (each key has its own OddsPapi cooldown)
+
+
 def api(path, billable, apikey=None, **params):
     # Nov 3 21:30: the paid plan answers 403 RESTRICTED_ACCESS "Restricted bookmakers: pinnacle" on /historical-odds (it sells
     # "Pinnacle +30 sec", a different product), so ALL history goes through the free-account key when it is set; the paid
     # key keeps every billable call. The free key never makes a billable call, so its 250 can never run out.
+    # Nov 4 (Wenzel, OddsPapi): the paid plan's Pinnacle history slug is "pinnacle+30"; hist_cache sends Pinnacle / Hard Rock
+    # history on the paid key with that slug (apikey=KEY passed explicitly), so the two keys run side by side.
     if apikey is None and path == "/historical-odds" and FREE_KEY:
         apikey = FREE_KEY
-    params["apiKey"] = apikey or KEY
-    q = urllib.parse.urlencode({k: v for k, v in params.items() if v is not None})
+    k = apikey or KEY
+    if path != "/historical-odds":
+        return _api(path, billable, k, params)
+    import threading
+    lk = _KEY_LOCKS.setdefault(k, threading.Lock())
+    with lk:   # one history call at a time per key, spaced by that key's own gap
+        return _api(path, billable, k, params)
+
+
+def _api(path, billable, k, params):
+    params["apiKey"] = k
+    q = urllib.parse.urlencode({x: v for x, v in params.items() if v is not None})
     req = urllib.request.Request(f"{BASE}{path}?{q}", headers={"Accept": "application/json", "User-Agent": "sharp-monitor-clv"})
-    # history throttles (429 seen at ~1 s spacing): start at HIST_GAP s, back off 1.5x on every 429 (max 10 s)
-    time.sleep(HIST_GAP[0] if path == "/historical-odds" else 1.1)
+    hist = path == "/historical-odds"
+    if hist:
+        _GAPS.setdefault(k, HIST_GAP[0])
+    # history throttles (429 seen at ~1 s spacing): start at HIST_GAP s, back off 1.5x on every 429 (max 15 s)
+    time.sleep(_GAPS[k] if hist else 1.1)
     STATS["billable" if billable else "free"] += 1
     # Nov 3 20:30 (Peter: build the one-downloader guard, "as long as it doesnt stop the download"): jobs sharing the key
     # no longer lose games to RATE_LIMITED. A rate-limit 429 waits (Retry-After, at least 20 s, at most 60 s) and retries
@@ -73,15 +91,19 @@ def api(path, billable, apikey=None, **params):
         try:
             with urllib.request.urlopen(req, timeout=60) as r:
                 CALLS.append((path, r.status))
-                if path == "/historical-odds":   # a clean call eases the spacing back toward HIST_MIN (it only grew before)
-                    HIST_GAP[0] = max(HIST_MIN, HIST_GAP[0] * 0.95)
+                if hist:   # a clean call eases the spacing back toward HIST_MIN (it only grew before)
+                    _GAPS[k] = max(HIST_MIN, _GAPS[k] * 0.95)
+                    if k == (FREE_KEY or KEY):
+                        HIST_GAP[0] = _GAPS[k]   # the logged spacing = the free key's
                 return json.loads(r.read().decode())
         except urllib.error.HTTPError as e:
             body = e.read().decode()[:200]
             if e.code == 429 and "REQUEST_LIMIT" not in body and attempt < RL_TRIES - 1:
                 STATS["rate_waits"] = STATS.get("rate_waits", 0) + 1
-                if path == "/historical-odds":
-                    HIST_GAP[0] = min(HIST_GAP[0] * 1.5, 15.0)
+                if hist:
+                    _GAPS[k] = min(_GAPS[k] * 1.5, 15.0)
+                    if k == (FREE_KEY or KEY):
+                        HIST_GAP[0] = _GAPS[k]
                 try:
                     ra = float(e.headers.get("Retry-After") or 0)
                 except Exception:
