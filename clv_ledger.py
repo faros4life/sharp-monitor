@@ -689,12 +689,12 @@ def main():
     if st.get("rescored_v3") is None:   # v3 (Nov 2): line-distance guard; score everything again once
         st.pop("rescored_v2", None)
         st["rescored_v3"] = iso(now)
-    if not st.get("plimit_v3"):   # Nov 4: read Pinnacle's limit at placed time on every already-scored bet, once (v3: first-seen fallback)
+    if not st.get("plimit_v4"):   # Nov 4: read Pinnacle's limit at placed time on every already-scored bet, once (v4: dense history)
         for rec in st["bets"].values():
             if rec.get("clv") is not None and not (rec.get("plimit") or {}).get("grp"):
                 for fld in ("clv", "close_p", "eff_am", "close_am", "how", "age_min", "scored", "plimit"):
                     rec.pop(fld, None)
-        st["plimit_v1"] = st["plimit_v2"] = st["plimit_v3"] = iso(now)
+        st["plimit_v1"] = st["plimit_v2"] = st["plimit_v3"] = st["plimit_v4"] = iso(now)
     if not st.get("rescored_v2"):   # v1 freshness rule could pick an alt line as main: score everything again once
         for rec in st["bets"].values():
             for f in ("clv", "close_p", "eff_am", "close_am", "how", "age_min", "scored", "done", "tries", "why", "fixture"):
@@ -759,7 +759,18 @@ def main():
         if (fid, bk) not in hist and len(hist) >= MAX_HIST:
             continue   # backfill spreads over runs (history throttles at ~8 s a call)
         if (fid, bk) not in hist:
-            hist[(fid, bk)] = api("/historical-odds", False, fixtureId=fid, bookmakers=bk)
+            if bk == "pinnacle":
+                # Nov 4: Pinnacle history through the shared cache (paid "pinnacle+30" ticks, as Item 56 reads it). The free
+                # key's "pinnacle" history is sparse away from the close, so limit-at-placed reads found no tick within 60 min.
+                try:
+                    import hist_cache as hc   # lazy: hist_cache imports this module
+                    hist[(fid, bk)] = hc.get_hist(fid, ["pinnacle"], start)
+                except Exception as ex:
+                    hist[(fid, bk)] = {"_error": f"cache: {str(ex)[:40]}"}
+                if isinstance(hist[(fid, bk)], dict) and hist[(fid, bk)].get("_error"):
+                    hist[(fid, bk)] = api("/historical-odds", False, fixtureId=fid, bookmakers=bk)
+            else:
+                hist[(fid, bk)] = api("/historical-odds", False, fixtureId=fid, bookmakers=bk)
         h = hist[(fid, bk)]
         if isinstance(h, dict) and h.get("_error"):
             rec["tries"] = rec.get("tries", 0) + 1
