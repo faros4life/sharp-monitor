@@ -1584,6 +1584,13 @@ def run():
                         # >= +2% vs Pinnacle's new no-vig fair. Paper only: check the app's price and the max bet it allows.
                         hr_ev = (a.get("book") in ("hardrockbet", "hardrockbet_fl") and a.get("evp") is not None
                                  and a["evp"] >= 2.0 and not p1_ok)
+                        if hr_ev:   # Nov 4 9:09 (Peter "fix double ping"): one Hard Rock ping per game / market / side
+                            _hk = f"{a.get('ev')}|{'totals' if a.get('kind') == 'tot' else 'spreads'}|{a.get('side')}"
+                            if hr_scanner.pinged(HRS, _hk):
+                                hr_ev = False
+                                print("HR ping skipped: the scanner already pinged this bet")
+                            else:
+                                hr_scanner.mark(HRS, _hk)
                         if hr_ev:
                             # Nov 3 (Peter 1:51 PM): Hard Rock alerts to the phone = edge >= 2% only, as a MANUAL bet alert
                             label = (f"HARD ROCK EDGE {a['evp']:+.1f}% vs Pinnacle fair - MANUAL BET: open Hard Rock, bet only if "
@@ -1625,6 +1632,12 @@ def run():
     st["alerted"] = {k: t for k, t in st["alerted"].items() if t > time.time() - 3 * 86400}
     st["log"] = [e for e in st["log"] if parse_iso(e["start"]) > n - timedelta(days=LOG_DAYS)]
     st["sent"] = [e for e in st.get("sent", []) if parse_iso(e["start"]) > n - timedelta(days=LOG_DAYS)]
+    try:   # Nov 4 9:09 (Peter): max bet from his ntfy "max <n>" (private state), auto grade, summary
+        hr_scanner.attach_max(HRS, st.setdefault("hr_private", {}), NTFY_TOPIC)
+        hr_scanner.grade(sys.modules[__name__], HRS, now_utc())
+        hr_scanner.summary(HRS)
+    except Exception as _x:
+        print(f"hr scanner grade skipped: {str(_x)[:60]}")
     save_state(st)
     try:
         hr_scanner.save(HRS, time.time())
