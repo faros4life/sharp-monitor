@@ -1,4 +1,4 @@
-# Paper splits (updated 2026-11-04T01:15:15Z)
+# Paper splits (updated 2026-11-04T02:05:14Z)
 
 Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kill bar: 30+ resulted at -0.10u/play or worse closes a split.
 
@@ -6,18 +6,18 @@ Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kil
 |---|---|---|---|---|---|---|---|
 | Phase-1 live filter (paper view) | a-priori | 2026-10-26 | 12-14-0 | -3.83 | -0.147 | -0.45 | OPEN |
 | Phase-1 control group | control | 2026-10-26 | 12-13-1 | -2.85 | -0.110 | -1.95 | OPEN |
-| Hard Rock-priced, routed | a-priori | 2026-10-26 | 26-21-0 | +2.26 | +0.048 | -1.25 | ELIGIBLE at next review |
-| Fade Hard Rock-priced | scan | 2026-10-26 | 26-21-0 | -4.81 | -0.102 | -1.25 | CLOSED |
+| Hard Rock-priced, routed | a-priori | 2026-10-26 | 26-22-0 | +1.26 | +0.026 | -1.34 | ELIGIBLE at next review |
+| Fade Hard Rock-priced | scan | 2026-10-26 | 26-22-0 | -3.76 | -0.078 | -1.34 | CLOSED |
 | PM-global-priced, routed | a-priori | 2026-10-26 | 0-0-0 | +0.00 |  |  | OPEN |
 | Unders only | scan | 2026-10-26 | 29-24-0 | +1.95 | +0.037 | -1.03 | OPEN |
 | Combined filter | scan | 2026-10-26 | 40-35-0 | +0.72 | +0.010 | -1.53 | OPEN |
-| Priced -125 or worse | scan | 2026-10-26 | 6-6-0 | -1.22 | -0.102 | -1.63 | OPEN |
-| College basketball | scan | 2026-10-26 | 34-33-0 | -3.40 | -0.051 | -0.77 | OPEN |
+| Priced -125 or worse | scan | 2026-10-26 | 6-7-0 | -2.22 | -0.171 | -1.93 | OPEN |
+| College basketball | scan | 2026-10-26 | 34-34-0 | -4.40 | -0.065 | -0.84 | OPEN |
 | Fade alerts sent 12-24h out | scan | 2026-10-26 | 19-14-0 | -4.52 | -0.137 | -0.32 | CLOSED |
 | Tier 2 core (paper) | tier | 2026-10-27 | 5-10-0 | -5.82 | -0.388 | +0.24 | OPEN (record only, no size) |
 | Evening sends, ex-Hard Rock | scan | 2026-10-26 | 6-6-0 | -0.70 | -0.058 | -1.31 | OPEN |
 | Muted midday (11 AM-2 PM ET) | scan | 2026-10-26 | 10-8-0 | +1.02 | +0.057 | -0.26 | OPEN |
-| Liquidity totals, no sharp agree | scan | 2026-10-22 | 137-125-0 | +7.92 | +0.030 |  | OPEN |
+| Liquidity totals, no sharp agree | scan | 2026-10-22 | 138-125-0 | +8.96 | +0.034 |  | OPEN |
 | Liquidity vs sharp (oppose) | scan | 2026-10-22 | 101-99-0 | -8.34 | -0.042 |  | CLOSED |
 | Liquidity spreads | scan | 2026-10-22 | 228-241-0 | -40.84 | -0.087 |  | CLOSED (by decision, 2026-10-27) |
 | Liquidity overnight (12-5 AM ET) | scan | 2026-10-26 | 54-34-0 | +1.56 | +0.018 |  | CLOSED |
