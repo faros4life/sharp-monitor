@@ -1,6 +1,305 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-04T02:15:29Z",
+   "base_depth": 33889,
+   "best_price": 0.54,
+   "best_price_american": -117,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "polymarket",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.55,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-04",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": false,
+     "label": "Detroit",
+     "price": 0.54,
+     "this_side": 324472
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "DET (0)",
+     "price": 0.54,
+     "this_side": 11764
+    },
+    "polymarket": {
+     "new_other_side": 1123,
+     "new_this_side": 28157,
+     "other_side": 13932,
+     "other_side_all_levels": 25469,
+     "ratio": 3.6,
+     "this_side": 49764,
+     "this_side_all_levels": 62394
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Detroit Pistons",
+     "price": 0.5413,
+     "this_side": 2947
+    }
+   },
+   "fade_price": 0.46,
+   "first_seen_utc": "2026-11-04T02:10:10Z",
+   "game": "76ers vs. Pistons",
+   "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6374089\"}",
+   "lead_min": 1305,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 28157,
+   "paper_only": false,
+   "price": 0.55,
+   "price_american": -122,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.55,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -125
+    },
+    "betopenly": {
+     "point": null,
+     "price": -120
+    },
+    "betrivers": {
+     "point": null,
+     "price": -129
+    },
+    "bovada": {
+     "point": null,
+     "price": -125
+    },
+    "draftkings": {
+     "point": null,
+     "price": -130
+    },
+    "fanatics": {
+     "point": null,
+     "price": -130
+    },
+    "fanduel": {
+     "point": null,
+     "price": -124
+    },
+    "kalshi": {
+     "point": null,
+     "price": -117
+    },
+    "limitless": {
+     "point": null,
+     "price": -133
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -134
+    },
+    "novig": {
+     "point": null,
+     "price": -117
+    },
+    "polymarket": {
+     "point": null,
+     "price": -122
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -117
+    },
+    "prophetx": {
+     "point": null,
+     "price": -118
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -130
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "outcome_index": 1,
+    "pm_market_id": "6374089"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Pistons",
+   "side_label": "Pistons",
+   "start_source": "odds",
+   "start_utc": "2026-11-05T00:00:00Z",
+   "teams": [
+    "76ers",
+    "Pistons"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-04T02:15:29Z",
+   "base_depth": 451653,
+   "best_price": 0.565,
+   "best_price_american": -130,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.57,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-04",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 4116,
+     "new_this_side": 136749,
+     "other_side": 198761,
+     "other_side_all_levels": 367437,
+     "ratio": 2.1,
+     "this_side": 411548,
+     "this_side_all_levels": 590250
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "OKC (0)",
+     "price": 0.565,
+     "this_side": 10993
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Thunder",
+     "price": 0.57,
+     "this_side": 26078
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "Oklahoma City Thunder",
+     "price": 0.5652,
+     "this_side": 1199
+    }
+   },
+   "fade_price": 0.44,
+   "first_seen_utc": "2026-11-04T02:10:10Z",
+   "game": "Cleveland vs Oklahoma City",
+   "key": "kalshi|KXNBAGAME-26NOV04CLEOKC|ml|1",
+   "lead_min": 1365,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 136749,
+   "paper_only": false,
+   "price": 0.57,
+   "price_american": -133,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.57,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -145
+    },
+    "betopenly": {
+     "point": null,
+     "price": -135
+    },
+    "betrivers": {
+     "point": null,
+     "price": -141
+    },
+    "bovada": {
+     "point": null,
+     "price": -145
+    },
+    "draftkings": {
+     "point": null,
+     "price": -148
+    },
+    "fanatics": {
+     "point": null,
+     "price": -145
+    },
+    "fanduel": {
+     "point": null,
+     "price": -136
+    },
+    "kalshi": {
+     "point": null,
+     "price": -133
+    },
+    "limitless": {
+     "point": null,
+     "price": -144
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -146
+    },
+    "novig": {
+     "point": null,
+     "price": -130
+    },
+    "polymarket": {
+     "point": null,
+     "price": -133
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -138
+    },
+    "prophetx": {
+     "point": null,
+     "price": -130
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -145
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBAGAME-26NOV04CLEOKC-OKC"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "polymarket"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Oklahoma City",
+   "side_label": "Oklahoma City",
+   "start_source": "odds",
+   "start_utc": "2026-11-05T01:00:00Z",
+   "teams": [
+    "Cleveland",
+    "Oklahoma City"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-04T02:06:00Z",
    "base_depth": 30835,
    "best_price": 0.605,
@@ -2687,8 +2986,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.7,
-   "clv_cents": -3.0,
+   "close_price": 0.71,
+   "clv_cents": -2.0,
    "confirmed_after_min": 6,
    "date": "2026-11-04",
    "depth_by_book": {
