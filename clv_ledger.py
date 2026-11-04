@@ -571,6 +571,49 @@ def lane_of(s, sv):
 
 
 # ------------------------------------------------------------------ main
+# Nov 4 (Peter 14:56 "yes"): Pinnacle's LIMIT at the bet's placed time, on every scored fill (read-only, from the same history
+# the close comes from). LOW = at or below the P-limit test's frozen FIT median for that league x market (Item 56, Nov 4);
+# markets without a frozen cut fall back to the board lab's league median. A split, never a filter.
+PLIM_CUT = {("NBA", "spread"): 4464, ("NBA", "total"): 1808, ("NCAAF", "spread"): 10992, ("NCAAF", "total"): 3101,
+            ("NFL", "total"): 16892, ("NHL", "total"): 2324}
+PLIM_LEAGUE = {"NBA": 4578, "NCAAF": 10586, "NFL": 19206, "NHL": 3536}
+
+
+def plimit_tag(s, f, pin, mkmap, lg, when):
+    """{limit, cut, grp} or None: Pinnacle's raw limit on the held side at `when` (last tick within 60 min)."""
+    try:
+        import plimit_level as pl   # lazy: plimit_level imports this module
+        lim, how = pl.pin_limit_at(s, f, pin, mkmap, when, lg)
+    except Exception:
+        return None
+    if not lim:
+        return None
+    pz = parsed(s)
+    mk = {"ml": "moneyline", "spread": "spread", "total": "total"}.get(pz[0] if pz else "", "")
+    cut = PLIM_CUT.get((lg, mk)) or PLIM_LEAGUE.get(lg)
+    return {"limit": round(lim), "how": how, "cut": cut, "grp": (None if not cut else ("LOW" if lim <= cut else "HIGH"))}
+
+
+def units_of(r):
+    """Flat 1u result for a scored bet from its tracker result and after-fee price; None if unknown."""
+    res = (r["snap"].get("result") or "").upper()
+    d = eff_dec(r["snap"])
+    if not d or res not in ("W", "L", "P", "WIN", "LOSS", "PUSH"):
+        return None
+    return (d - 1) if res in ("W", "WIN") else (-1.0 if res in ("L", "LOSS") else 0.0)
+
+
+def plim_stats(rows):
+    g = [r for r in rows if r.get("plimit", {}).get("grp")]
+    out = []
+    for grp in ("LOW", "HIGH"):
+        xs = [r for r in g if r["plimit"]["grp"] == grp]
+        u = [units_of(r) for r in xs]
+        u = [x for x in u if x is not None]
+        out.append(f"{grp} {lane_stats(xs)}" + (f", units {sum(u):+.2f}u on {len(u)}" if u else ""))
+    return " || ".join(out) + f" | no limit read: {len(rows) - len(g)}"
+
+
 def lane_stats(rows):
     n = len(rows)
     if not n:
@@ -639,6 +682,12 @@ def main():
     if st.get("rescored_v3") is None:   # v3 (Nov 2): line-distance guard; score everything again once
         st.pop("rescored_v2", None)
         st["rescored_v3"] = iso(now)
+    if not st.get("plimit_v1"):   # Nov 4: read Pinnacle's limit at placed time on every already-scored bet, once
+        for rec in st["bets"].values():
+            if rec.get("clv") is not None and "plimit" not in rec:
+                for fld in ("clv", "close_p", "eff_am", "close_am", "how", "age_min", "scored"):
+                    rec.pop(fld, None)
+        st["plimit_v1"] = iso(now)
     if not st.get("rescored_v2"):   # v1 freshness rule could pick an alt line as main: score everything again once
         for rec in st["bets"].values():
             for f in ("clv", "close_p", "eff_am", "close_am", "how", "age_min", "scored", "done", "tries", "why", "fixture"):
@@ -737,6 +786,11 @@ def main():
             rec["how"], rec["age_min"], rec["scored"] = c["how"], c["age_min"], iso(now)
             rec.pop("why", None)
             new_scored += 1
+            when = tp(s.get("placed")) or tp(s.get("decided_utc"))
+            if when:
+                pt = plimit_tag(s, f, book_markets(h, "pinnacle"), mkmap, lg, when)
+                if pt:
+                    rec["plimit"] = pt
         else:
             rec["tries"] = rec.get("tries", 0) + 1
             rec["why"] = why or "no price on the bet"
@@ -780,12 +834,21 @@ def main():
             how["own line" if r["how"] in ("own line", "moneyline") else "moved to your number"] = \
                 how.get("own line" if r["how"] in ("own line", "moneyline") else "moved to your number", 0) + 1
         L.append(f"  close read: {how}")
+        L += ["", "PINNACLE LIMIT AT PLACED TIME (split, not a filter; LOW = at or below the Item 56 frozen league x market median):",
+              f"  bot: {plim_stats(bot)}", f"  Peter/other: {plim_stats(man)}"]
+        for ln_ in ("bot",):
+            for lg_ in ("NBA", "NFL", "NCAAF", "NHL"):
+                v = [r for r in lanes.get(ln_, []) if r["snap"].get("league") == lg_]
+                if v:
+                    L.append(f"    bot {lg_}: {plim_stats(v)}")
         L += ["", "LAST 30 SCORED (newest first):"]
         for r in scored[::-1][:30]:
             s = r["snap"]
             L.append(f"  {(s.get('game_start') or '')[:10]} {s.get('league')} {s.get('book')} [{lane_of(s, sv)}] "
                      f"{s.get('bet')} | you {r['eff_am']:+d} after fee, close fair {r['close_am']:+d} ({r['how']}, "
-                     f"tick {r['age_min']} min pre-start) -> CLV {100 * r['clv']:+.1f}%" if r.get("eff_am") and r.get("close_am") else
+                     f"tick {r['age_min']} min pre-start) -> CLV {100 * r['clv']:+.1f}%"
+                     + (f" | P limit {r['plimit']['limit']:,} {r['plimit']['grp'] or ''}" if r.get("plimit") else "")
+                     if r.get("eff_am") and r.get("close_am") else
                      f"  {s.get('bet')}: CLV {100 * r['clv']:+.1f}%")
         un = [(k, r) for k, r in st["bets"].items() if r.get("done") and r.get("clv") is None]
         L += ["", f"NOT SCORED (counted, never dropped): {len(un)}"]
