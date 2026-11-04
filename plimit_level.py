@@ -22,6 +22,7 @@ import statistics as stt
 from datetime import datetime, timedelta, timezone
 import json
 
+import agree_rules
 import buckets as bkt
 import clv_ledger as cl
 import exchange_lag as el
@@ -149,7 +150,11 @@ def main():
         u_f = ((fdec - 1) if fres == "W" else (-1.0 if fres == "L" else 0.0)) if fdec else None
         if clv_f is not None and clv_f > 15:   # Nov 4: misread fade quote - drop the fade read only
             clv_f = u_f = None
-        R.append({"lg": lg, "mk": kind, "sc": sc, "sent": bool(a.get("sent_to_phone")), "day": t0.astimezone(ET).strftime("%Y-%m-%d"),
+        try:   # Nov 4 (Muse): Lane 1's exact subset - the coded phase-1 rule as it stands today (ProphetX-priced totals unders)
+            p1 = bool(agree_rules.phase1(a, True)[0])
+        except Exception:
+            p1 = False
+        R.append({"lg": lg, "mk": kind, "sc": sc, "sent": bool(a.get("sent_to_phone")), "p1": p1, "day": t0.astimezone(ET).strftime("%Y-%m-%d"),
                   "lead": lead, "late": lead is not None and lead < 30, "am": a.get("price_after_fee"), "edge": a.get("edge_pct"),
                   "limit": limit, "lim_how": how, "gettable": best is not None,
                   "clv_g": round(100 * (c["p"] * best - 1), 2) if best else None, "u_g": units(best) if best else None,
@@ -227,6 +232,18 @@ def main():
     for sc in ("under", "over", "fav", "dog"):
         L.append(f"   fade of {sc}: {st_([r for r in F if r['sc'] == sc], 'f')}")
     # Peter 20:38 "fade calls on the biggest - units or clv": fade the groups whose alerts lose most, side by side with the alert
+    # Nov 4 (Muse, 3:16 PM): the split INSIDE Lane 1's exact subset (today's phase-1 rule: ProphetX-priced totals unders,
+    # NCAAF/NBA/NFL, not 12-24h, not late). Every other LOW/HIGH number is the whole alert population.
+    P1 = [r for r in J if r["p1"]]
+    L += ["", f"LANE 1 SUBSET (today's phase-1 rule, {len(P1)} of {len(J)} judged sent alerts): HIGH || LOW limit"]
+    for nm, xs in (("ALL", P1), ("H1", [r for r in P1 if r["day"] <= FIT_END]), ("H2", [r for r in P1 if r["day"] > FIT_END])):
+        L.append(f"   {nm}: HIGH {st_([r for r in xs if r['grp'] == 'HIGH'])} || LOW {st_([r for r in xs if r['grp'] == 'LOW'])}")
+    L.append(f"   at the ALERT price: HIGH {st_([r for r in P1 if r['grp'] == 'HIGH'], 'a')} || LOW {st_([r for r in P1 if r['grp'] == 'LOW'], 'a')}")
+    for lg in LEAGUES:
+        xs = [r for r in P1 if r["lg"] == lg]
+        if xs:
+            L.append(f"   {lg}: HIGH {st_([r for r in xs if r['grp'] == 'HIGH'])} || LOW {st_([r for r in xs if r['grp'] == 'LOW'])}")
+    L.append(f"   no limit read in subset: {sum(1 for r in P1 if not r['grp'])}")
     FL = [r for r in S if r["late"] and r["clv_f"] is not None]
     L.append(f"   fade of LATE alerts (final 30 min): {st_(FL, 'f')}")
     for lo_, hi_, nm in ((30, 120, "30m-2h"), (120, 360, "2-6h"), (360, 1440, "6-24h"), (1440, 1e9, "24h+")):
