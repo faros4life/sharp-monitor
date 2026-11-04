@@ -33,12 +33,12 @@ def main():
         if lg not in seen:
             pick.append((s, fid, lg))
             seen.add(lg)
-    pick = pick[:2]   # two games keep the probe short (it shares the free key with the running fill)
+    pick = pick[:0]   # Nov 3 22:25: per-league check already answered; this pass only tests the newest games   # two games keep the probe short (it shares the free key with the running fill)
     print(f"history probe: {len(fx)} fixtures in saved lists, testing {len(pick)} games ({', '.join(lg for _, _, lg in pick)})")
     tally = {}
     for s, fid, lg in pick:
         for b in BOOKS:
-            for name, key in (("paid", PAID), ("free", FREE)):
+            for name, key in ((("free", FREE),) if os.environ.get("PROBE_FREE_ONLY") else (("paid", PAID), ("free", FREE))):
                 if not key:
                     continue
                 h = cl.api("/historical-odds", False, apikey=key, fixtureId=fid, bookmakers=b)
@@ -48,6 +48,23 @@ def main():
                     bm = ((h or {}).get("bookmakers") or {}).get(b) or {}
                     res = "markets" if bm.get("markets") else "empty"
                 tally.setdefault((b, name), []).append(res)
+    # Nov 3 22:25: the fill gets 404 on most games. Test the fill's exact grouped calls (3 books per call) on the NEWEST
+    # finished games, plus each book alone, free key only, and print the 404 text (counts / codes only).
+    newest = [g for g in games if g[0] <= now - timedelta(hours=4)][:4]
+    for s, fid, lg in newest:
+        for grp in (["pinnacle", "novig.us", "prophetx"], ["kalshi", "polymarket.us", "hardrockbet"]):
+            h = cl.api("/historical-odds", False, apikey=FREE, fixtureId=fid, bookmakers=",".join(grp))
+            if isinstance(h, dict) and h.get("_error"):
+                body = str(h.get("_body", ""))[:120].replace(FREE, "***") if FREE else ""
+                print(f"history probe: {lg} game {s:%m-%d %H:%M}Z group {'+'.join(grp)}: error {h['_error']} {body}")
+            else:
+                got = [b for b in grp if (((h or {}).get("bookmakers") or {}).get(b) or {}).get("markets")]
+                print(f"history probe: {lg} game {s:%m-%d %H:%M}Z group {'+'.join(grp)}: ok, markets for {len(got)} of 3")
+        for b in BOOKS:
+            h = cl.api("/historical-odds", False, apikey=FREE, fixtureId=fid, bookmakers=b)
+            r = f"error {h['_error']}" if isinstance(h, dict) and h.get("_error") else (
+                "markets" if (((h or {}).get("bookmakers") or {}).get(b) or {}).get("markets") else "empty")
+            print(f"history probe: {lg} game {s:%m-%d %H:%M}Z {b}: {r}")
     for b in BOOKS:
         print(f"history probe: {b:14s} paid {', '.join(tally.get((b, 'paid'), ['-']))} | free {', '.join(tally.get((b, 'free'), ['-']))}")
     print(f"history probe: calls {len(cl.CALLS)}, billable {cl.STATS['billable']}")   # counts only
