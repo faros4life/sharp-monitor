@@ -52,7 +52,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+1.5 pts",
+   "clv": "+2 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline"
@@ -961,7 +961,7 @@
   },
   {
    "alert_utc": "2026-11-04T14:10:14Z",
-   "beat_close": true,
+   "beat_close": false,
    "beat_true_close": null,
    "bet": "Atlanta Hawks -2.5 (-111)",
    "book": "Novig",
@@ -969,7 +969,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+0.5 pts",
+   "clv": "-0.5 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline",
@@ -1011,7 +1011,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+1 pts",
+   "clv": "+2.5 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline",
@@ -1206,6 +1206,48 @@
    "sport": "NCAAB",
    "start_utc": "2026-11-05T00:00:00Z",
    "top25": false,
+   "units_flat": null
+  },
+  {
+   "alert_utc": "2026-11-04T23:10:13Z",
+   "beat_close": true,
+   "beat_true_close": null,
+   "bet": "Washington Wizards +2.5 (-111)",
+   "book": "Novig",
+   "book_key": "novig",
+   "close_fair_prob": null,
+   "close_read_mins_before": null,
+   "close_value_pct": null,
+   "clv": "+0.5 pts",
+   "confirm": "yes",
+   "confirmed_by": [
+    "BetOnline",
+    "Matchbook"
+   ],
+   "edge_pct": -2.5,
+   "executable_book": true,
+   "fade_book": "novig",
+   "fade_point": -2.5,
+   "fade_price": 108,
+   "fade_price_after_fee": 108,
+   "fade_units": null,
+   "final": null,
+   "floor_line": 2.5,
+   "game": "Atlanta Hawks @ Washington Wizards",
+   "grade": "B",
+   "kind": "spr",
+   "late": true,
+   "minutes_before_start": 50,
+   "point": 2.5,
+   "price": -111,
+   "price_after_fee": -111,
+   "pricing_bettable": true,
+   "result": null,
+   "score": 69,
+   "sent_to_phone": true,
+   "sport": "NBA",
+   "start_utc": "2026-11-05T00:00:00Z",
+   "top25": null,
    "units_flat": null
   },
   {
@@ -27691,6 +27733,56 @@
   }
  ],
  "all_alerts": [
+  {
+   "alert_text": "Under 230.5 (-107) at ProphetX [-109 after ProphetX fee] (also: Hard Rock, Kalshi)",
+   "bet": "Under 230.5 (-107)",
+   "bet_result": null,
+   "book": "ProphetX",
+   "confirmed_by": [
+    "BetOnline",
+    "Matchbook"
+   ],
+   "edge_pct": -2.1,
+   "final": null,
+   "game": "Atlanta Hawks @ Washington Wizards",
+   "grade": "B",
+   "late": true,
+   "minutes_before_start": 50,
+   "price": -107,
+   "price_after_fee": -109,
+   "pushed_to_phone": false,
+   "repeat": true,
+   "score": 74,
+   "sent_et": "2026-11-04 18:10",
+   "sport": "NBA",
+   "start_utc": "2026-11-05T00:00:00Z",
+   "why": "Pinnacle total moved 231.5 -> 230; bet only at 230.5 or better (confirmed by BetOnline, Matchbook)"
+  },
+  {
+   "alert_text": "Washington Wizards +2.5 (-111) at Novig (also: Hard Rock, Kalshi)",
+   "bet": "Washington Wizards +2.5 (-111)",
+   "bet_result": null,
+   "book": "Novig",
+   "confirmed_by": [
+    "BetOnline",
+    "Matchbook"
+   ],
+   "edge_pct": -2.5,
+   "final": null,
+   "game": "Atlanta Hawks @ Washington Wizards",
+   "grade": "B",
+   "late": true,
+   "minutes_before_start": 50,
+   "price": -111,
+   "price_after_fee": -111,
+   "pushed_to_phone": true,
+   "repeat": false,
+   "score": 69,
+   "sent_et": "2026-11-04 18:10",
+   "sport": "NBA",
+   "start_utc": "2026-11-05T00:00:00Z",
+   "why": "Pinnacle moved +3 -> +2; bet only at +2.5 or better (confirmed by BetOnline, Matchbook)"
+  },
   {
    "alert_text": "Over 161.5 (-105) at Hard Rock (also: ProphetX, Kalshi)",
    "bet": "Over 161.5 (-105)",
