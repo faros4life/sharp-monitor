@@ -12,6 +12,7 @@ on:
       order: {required: false, type: string, default: "newest"}
       merge_a: {required: false, type: string, default: ""}
       merge_b: {required: false, type: string, default: ""}
+      budget_min: {required: false, type: string, default: "60"}   # Nov 4 (Peter): save every hour; 10 for a quick save test
 
 permissions:
   contents: read
@@ -31,8 +32,6 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install -q cryptography
-      - name: Free runner disk (room to unpack and re-pack the 6+ GB cache)
-        run: sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL || true; df -h / | tail -1
       - name: Restore shared OddsPapi history cache (private Actions cache, never committed)
         id: restore
         uses: actions/cache/restore@v4
@@ -59,6 +58,7 @@ jobs:
           ODDSPAPI_FREE_KEY: ${{ secrets.ODDSPAPI_FREE_KEY }}   # Nov 3: free-account key for exchange history (empty = not used)
           TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}   # Nov 3: read other jobs' saved game lists (0 credits)
           FILL_MAX: ${{ inputs.max_games }}
+          FILL_BUDGET_MIN: ${{ inputs.budget_min || '60' }}
           FILL_ORDER: ${{ inputs.order }}
           FILL_MERGE: hcache_a,hcache_b
         run: python -u hcache_fill.py
@@ -73,4 +73,4 @@ jobs:
         if: success() && steps.fill.outputs.more == '1'
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh workflow run hcache-fill.yml --repo "${{ github.repository }}" --ref main -f max_games="${{ inputs.max_games || '700' }}" -f order="${{ inputs.order || 'newest' }}"
+        run: gh workflow run hcache-fill.yml --repo "${{ github.repository }}" --ref main -f max_games="${{ inputs.max_games || '700' }}" -f order="${{ inputs.order || 'newest' }}" -f budget_min=60
