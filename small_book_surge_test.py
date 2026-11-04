@@ -37,6 +37,7 @@ FIT_END = os.environ.get("SBS_FIT_END", "") or "2026-10-28"
 REL_X = float(os.environ.get("SBS_REL_X", "") or "2.0")
 REL_NEW_FRAC = float(os.environ.get("SBS_REL_NEW_FRAC", "") or "0.5")
 NORM_MIN_TICKS = int(os.environ.get("SBS_NORM_MIN_TICKS", "") or "50")
+SANE_C = float(os.environ.get("SBS_SANE_C", "") or "0.05")   # Nov 4 (Peter 12:11 "fix yes"): price within 5c of Pinnacle fair
 RES_CAP = 20000   # Nov 4: normals keep a capped random sample of sizes per key (memory)
 ABS_MIN = 25000   # the live monitor's absolute trigger, to split out what the relative trigger ADDS
 LOOKBACK = timedelta(hours=4)   # Nov 4 (Peter 10:29 "both"): GAME normal = that side's own size over the 4 hours before
@@ -219,13 +220,18 @@ def main():
             bb = {"bet": bet_text(f, typ, hcap, name), "league": f["lg"], "game": f"{f['n1']} vs {f['n2']}",
                   "game_start": f.get("start"), "book": b}
             c, _ = cl.close_for(bb, f, pin, mkmap, s, f["lg"])
+            # Nov 4 fix: a surge counts as SANE only if the exchange's own price (before fee) was within SANE_C of
+            # Pinnacle's no-vig fair for that side AT THE SURGE TIME - big size parked at an off-market price is not a bet
+            ft, _ = cl.close_for(bb, f, pin, mkmap, ct, f["lg"])
+            sane = bool(ft) and abs(1 / pr - ft["p"]) <= SANE_C
             clv = round(100 * (c["p"] * dec - 1), 2) if c else None
             if clv is not None and clv > 15:   # same rule as P1 / exchange-lag: > +15% vs the close is a misread quote
                 miss["suspect quote dropped"] = miss.get("suspect quote dropped", 0) + 1
                 continue
             R.append({"mode": mode, "first": first, "day": day, "lg": f["lg"], "book": b, "kind": kind,
                       "lead": (s - ct).total_seconds() / 3600, "mult": lim / nm, "new": lim - prev, "clv": clv,
-                      "u": fin.units_wl(res, dec), "res": res})
+                      "u": fin.units_wl(res, dec), "res": res, "sane": sane, "hcap": hcap, "price": pr,
+                      "fair_t": ft["p"] if ft else None, "game": f"{f['n1']} vs {f['n2']}"})
         del ser, pin
     G = range(read)
     S = R
@@ -288,6 +294,40 @@ def main():
         L += ["", "LEAD TIME (all):"]
         for lo, hi, nm in ((0, 1, "under 1h"), (1, 4, "1-4h"), (4, 12, "4-12h"), (12, 1e9, "12h+")):
             L.append(f"   {nm}: {stl([r for r in R if lo <= r['lead'] < hi])}")
+    L += ["", "=" * 20 + " PRICE-SANE ONLY (exchange price within %.0fc of Pinnacle fair at the surge; one play counts once) " % (SANE_C * 100) + "=" * 20]
+    for mode in MODES:
+        Z = [r for r in RA if r["mode"] == mode and r["sane"]]
+        z4 = [r for r in Z if r["lead"] >= 4]
+        L += ["", f"-- {mode} --", f"   ALL: {stl(Z)}", f"   jump under ${ABS_MIN // 1000}k (what the fix adds): {stl([r for r in Z if r['new'] < ABS_MIN])}",
+              f"   4h+ before tip: {stl(z4)}"]
+        for b in EXCH:
+            L.append(f"   {NAME[b]} (surged first), 4h+: {stl([r for r in z4 if r['book'] == b])}")
+        nt = [r for r in z4 if r["lg"] == "NBA" and r["kind"] in ("OVER", "UNDER")]
+        L.append(f"   NBA totals 4h+: {stl(nt)}")
+        for b in EXCH:
+            L.append(f"      {NAME[b]}: {stl([r for r in nt if r['book'] == b])}")
+        for k in ("UNDER", "OVER"):
+            L.append(f"      {k.title()}s: {stl([r for r in nt if r['kind'] == k])}")
+        for lo, hi, nm in ((2, 3, "2-3x"), (3, 5, "3-5x"), (5, 1e9, "5x+")):
+            L.append(f"   size {nm}, 4h+: {stl([r for r in z4 if lo <= r['mult'] < hi])}")
+        for lg in LEAGUES:
+            for k in ("UNDER", "OVER", "ML", "SPREAD"):
+                xs = [r for r in z4 if r["lg"] == lg and r["kind"] == k]
+                if xs:
+                    L.append(f"   {lg} {k}, 4h+: {stl(xs)}")
+    sane_n = sum(1 for r in RA if r["sane"])
+    L += ["", f"Price-sane share of graded surges: {sane_n} of {len(RA)} ({100 * sane_n / max(len(RA), 1):.0f}%)."]
+    # NHL totals diagnostic (Nov 4: NHL unders 1-155 in the first run = a grading or line-mapping bug to find)
+    NH = [r for r in RA if r["mode"] == "GAME-4H" and r["lg"] == "NHL" and r["kind"] in ("OVER", "UNDER")]
+    from collections import Counter
+    L += ["", "NHL TOTALS DIAGNOSTIC (GAME-4H, all graded surges):",
+          "   lines seen: " + ", ".join(f"{k}: {v}" for k, v in sorted(Counter(r["hcap"] for r in NH).items())),
+          "   by side and result: " + ", ".join(f"{k}: {v}" for k, v in sorted(Counter((r["kind"], r["res"]) for r in NH).items())),
+          f"   with a Pinnacle fair at the surge: {sum(1 for r in NH if r['fair_t'] is not None)} of {len(NH)}; price-sane: {sum(1 for r in NH if r['sane'])}",
+          "   sample (first 12 unders): game | book | line | exchange price (decimal) | Pinnacle fair at surge | result"]
+    for r in [r for r in NH if r["kind"] == "UNDER"][:12]:
+        L.append(f"      {r['game']} | {NAME[r['book']]} | {r['hcap']} | {r['price']} | "
+                 f"{'-' if r['fair_t'] is None else round(r['fair_t'], 3)} | {r['res']}")
     L.append(f"\nHistory cache: hits {hc.STATS['hit']}, downloads {hc.STATS['miss']}; OddsPapi calls {len(cl.CALLS)} "
              f"(billable {cl.STATS['billable']}).")
     ex.send("Bets SMALL-BOOK SURGE BACKTEST (paper)", "\n".join(L))
