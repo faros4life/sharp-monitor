@@ -51,17 +51,22 @@ def api(path, **params):
     q = urllib.parse.urlencode({k: v for k, v in params.items() if v is not None})
     req = urllib.request.Request(f"{BASE}{path}?{q}", headers={"Accept": "application/json", "User-Agent": "sharp-monitor-plimit"})
     time.sleep(8.0 if path == "/historical-odds" else 1.1)
-    for attempt in range(2):
+    for attempt in range(12):   # Nov 3 20:30: a rate-limit 429 (shared key) waits and retries; a quota 429 never does
         try:
             with urllib.request.urlopen(req, timeout=60) as r:
                 CALLS.append((path, r.status))
                 return json.loads(r.read().decode())
         except urllib.error.HTTPError as e:
-            if e.code == 429 and attempt == 0:
-                time.sleep(20)
+            body = e.read().decode()[:200]
+            if e.code == 429 and "REQUEST_LIMIT" not in body and attempt < 11:
+                try:
+                    ra = float(e.headers.get("Retry-After") or 0)
+                except Exception:
+                    ra = 0.0
+                time.sleep(min(60.0, max(20.0, ra)))
                 continue
             CALLS.append((path, e.code))
-            return {"_error": e.code, "_body": e.read().decode()[:200]}
+            return {"_error": e.code, "_body": body}
         except Exception as e:
             CALLS.append((path, type(e).__name__))
             return {"_error": type(e).__name__, "_body": str(e)[:200]}
