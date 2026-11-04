@@ -39,6 +39,7 @@ jobs:
         continue-on-error: true   # a grader failure never stops the freezer's save
         env:
           ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
+          ODDSPAPI_FREE_KEY: ${{ secrets.ODDSPAPI_FREE_KEY }}   # Nov 3: history goes through the free key (paid key: 403 on pinnacle)
           TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
           GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
