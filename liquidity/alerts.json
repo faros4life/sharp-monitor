@@ -192,6 +192,8 @@
    "new_money": 47982,
    "paper_only": false,
    "price": 0.56,
+   "price_after_15m": 0.55,
+   "price_after_15m_book": "novig",
    "price_american": -127,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.56,
@@ -281,6 +283,7 @@
    "side_label": "Buffalo",
    "start_source": "odds",
    "start_utc": "2026-11-05T00:30:00Z",
+   "still_actionable": true,
    "teams": [
     "Ottawa",
     "Buffalo"
@@ -303,8 +306,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.43,
-   "clv_cents": 0.0,
+   "close_price": 0.42,
+   "clv_cents": -1.0,
    "confirmed_after_min": 4,
    "date": "2026-11-04",
    "depth_by_book": {
@@ -347,6 +350,8 @@
    "new_money": 86786,
    "paper_only": false,
    "price": 0.43,
+   "price_after_15m": 0.425,
+   "price_after_15m_book": "novig",
    "price_american": 133,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.42,
@@ -430,6 +435,7 @@
    "side_label": "Phoenix",
    "start_source": "odds",
    "start_utc": "2026-11-05T02:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Portland",
     "Phoenix"
@@ -1060,8 +1066,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.84,
-   "clv_cents": -0.5,
+   "close_price": 0.845,
+   "clv_cents": 0.0,
    "confirmed_after_min": 5,
    "date": "2026-11-04",
    "depth_by_book": {
@@ -1209,8 +1215,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.56,
-   "clv_cents": 2.0,
+   "close_price": 0.57,
+   "clv_cents": 3.0,
    "confirmed_after_min": 5,
    "date": "2026-11-04",
    "depth_by_book": {
@@ -2435,6 +2441,7 @@
     }
    },
    "fade_price": 0.45,
+   "fade_units": 1.14,
    "first_seen_utc": "2026-11-03T22:16:15Z",
    "game": "St. Louis vs New York R: Total Goals",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNHLTOTAL-26NOV03STLNYR-6\"}",
@@ -2522,13 +2529,14 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNHLTOTAL-26NOV03STLNYR-6"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-04T02:55:58Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -2541,7 +2549,7 @@
     "New York R"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-03T22:16:15Z",
@@ -2592,6 +2600,7 @@
     }
    },
    "fade_price": 0.48,
+   "fade_units": 1.05,
    "first_seen_utc": "2026-11-03T22:10:17Z",
    "game": "Avalanche vs. Blue Jackets",
    "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"5406742\"}",
@@ -2682,7 +2691,7 @@
     "outcome_index": 0,
     "pm_market_id": "5406742"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "kalshi",
@@ -2691,6 +2700,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-04T02:55:58Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Avalanche",
@@ -2703,7 +2713,7 @@
     "Blue Jackets"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-03T22:10:17Z",
@@ -3198,8 +3208,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.58,
-   "clv_cents": -1.0,
+   "close_price": 0.59,
+   "clv_cents": 0.0,
    "confirmed_after_min": 6,
    "date": "2026-11-04",
    "depth_by_book": {
@@ -5111,6 +5121,7 @@
     }
    },
    "fade_price": 0.37,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-03T17:46:18Z",
    "game": "Wild vs. Flyers",
    "key": "polymarket|{\"outcome_index\": 0, \"pm_market_id\": \"5406799\"}",
@@ -5197,7 +5208,7 @@
     "outcome_index": 0,
     "pm_market_id": "5406799"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "kalshi",
@@ -5206,6 +5217,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-04T02:55:58Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Wild",
@@ -5218,7 +5230,7 @@
     "Flyers"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.59
   },
   {
    "alerted_utc": "2026-11-03T17:20:14Z",
@@ -6596,6 +6608,7 @@
     }
    },
    "fade_price": 0.53,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-03T14:30:16Z",
    "game": "Avalanche vs. Blue Jackets",
    "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"5406742\"}",
@@ -6683,13 +6696,14 @@
     "outcome_index": 1,
     "pm_market_id": "5406742"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "kalshi"
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-04T02:55:58Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Blue Jackets",
@@ -6702,7 +6716,7 @@
     "Blue Jackets"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.08
   },
   {
    "alerted_utc": "2026-11-03T14:41:57Z",
@@ -7798,6 +7812,7 @@
     }
    },
    "fade_price": 0.31,
+   "fade_units": 2.08,
    "first_seen_utc": "2026-11-03T14:00:19Z",
    "game": "St. Louis vs New York R: Spread",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLSPREAD-26NOV03STLNYR-NYR2\"}",
@@ -7881,11 +7896,12 @@
     "kalshi_side": "no",
     "market_ticker": "KXNHLSPREAD-26NOV03STLNYR-NYR2"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settled_utc": "2026-11-04T02:55:58Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "St. Louis",
@@ -7898,7 +7914,7 @@
     "New York R"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-03T13:20:10Z",
@@ -11007,8 +11023,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.54,
-   "clv_cents": 2.0,
+   "close_price": 0.53,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-04",
    "depth_by_book": {
@@ -13079,6 +13095,7 @@
     }
    },
    "fade_price": 0.49,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-03T02:10:12Z",
    "game": "St. Louis vs New York R",
    "key": "kalshi|KXNHLGAME-26NOV03STLNYR|ml|1",
@@ -13165,11 +13182,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNHLGAME-26NOV03STLNYR-NYR"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-11-04T02:55:58Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "New York R",
@@ -13182,7 +13200,7 @@
     "New York R"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.92
   },
   {
    "alerted_utc": "2026-11-03T02:20:10Z",
