@@ -27,6 +27,14 @@ STATS = {"hit": 0, "miss": 0}
 FREE_KEY = (os.environ.get("ODDSPAPI_FREE_KEY") or "").strip()
 EXCH_BOOKS = {"novig.us", "prophetx", "kalshi", "polymarket.us"}
 BOOK_STATS = {}
+# Nov 4 9:37 (Wenzel, OddsPapi): on v4 the paid plan's Pinnacle is "Pinnacle +30 sec", slug "pinnacle+30" - asking for
+# "pinnacle" is what gave the 403. Probe (run 41852138523): the paid key returns Pinnacle (as pinnacle+30) and Hard Rock
+# history. Peter 10:02 "let the run save then change": Pinnacle + Hard Rock go on the PAID key, the exchanges on the FREE
+# key, and the two keys' calls run side by side (each key keeps its own OddsPapi cooldown). Stored under the plain book
+# name. History stays free on both keys. HIST_PAID=off returns to all-on-the-free-key.
+PAID_SLUG = {"pinnacle": "pinnacle+30"}
+PAID_BOOKS = ("pinnacle", "hardrockbet")
+PAID_HIST = (os.environ.get("HIST_PAID") or "on").strip().lower() == "on" and bool(cl.KEY)
 
 
 def _paid_empty(d):
@@ -70,15 +78,35 @@ def get_hist(fid, books, start=None):
             except Exception:
                 pass
         need.append(b)
-    free = [b for b in need if FREE_KEY]   # Nov 3 21:30: with the free key, ALL books' history uses it (paid key: 403 on pinnacle)
-    paid = [b for b in need if b not in free]
-    groups = [(paid[i:i + 3], None) for i in range(0, len(paid), 3)] + [(free[i:i + 3], FREE_KEY) for i in range(0, len(free), 3)]
-    for grp, key in groups:   # OddsPapi takes up to 3 bookmakers per history call
+    if FREE_KEY:
+        paid = [b for b in need if PAID_HIST and b in PAID_BOOKS]
+        free = [b for b in need if b not in paid]
+    else:
+        paid, free = list(need), []
+    pkey = cl.KEY if FREE_KEY else None   # explicit, or cl.api would route history to the free key
+    groups = ([(paid[i:i + 3], pkey, True) for i in range(0, len(paid), 3)]
+              + [(free[i:i + 3], FREE_KEY, False) for i in range(0, len(free), 3)])
+
+    def _fetch(grp, key, is_paid):
+        names = [PAID_SLUG.get(b, b) if is_paid else b for b in grp]
         h = None
         for _ in range(2):
-            h = cl.api("/historical-odds", False, apikey=key, fixtureId=fid, bookmakers=",".join(grp))
+            h = cl.api("/historical-odds", False, apikey=key, fixtureId=fid, bookmakers=",".join(names))
             if not (isinstance(h, dict) and h.get("_error")):
                 break
+        if isinstance(h, dict) and isinstance(h.get("bookmakers"), dict) and is_paid:
+            h["bookmakers"] = {b: h["bookmakers"].get(PAID_SLUG.get(b, b)) for b in grp}   # back to the plain names
+        return h
+
+    # Nov 4: the paid-key groups and the free-key groups run in parallel (one thread per key; each key stays serial)
+    from concurrent.futures import ThreadPoolExecutor
+    by_key = {}
+    for g in groups:
+        by_key.setdefault(g[2], []).append(g)
+    with ThreadPoolExecutor(max_workers=2) as pool:
+        futs = {k: pool.submit(lambda gs: [(g, _fetch(*g)) for g in gs], gs) for k, gs in by_key.items()}
+        results = [x for k in (True, False) if k in futs for x in futs[k].result()]
+    for (grp, key, is_paid), h in results:   # OddsPapi takes up to 3 bookmakers per history call
         if isinstance(h, dict) and h.get("_error") == 404:
             # Nov 3 22:35 (probe run 41766896409): OddsPapi answers 404 when NONE of the requested books has history for the
             # game (e.g. Kalshi alone on a game it never listed); a group where some books have data answers 200 with the
@@ -92,7 +120,7 @@ def get_hist(fid, books, start=None):
             bm = ((h or {}).get("bookmakers") or {}).get(b) or {}
             s_ = BOOK_STATS.setdefault(b, {"markets": 0, "empty": 0})
             s_["markets" if (bm.get("markets") if isinstance(bm, dict) else None) else "empty"] += 1
-            if not bm and b in EXCH_BOOKS and key is None:
+            if not bm and b in EXCH_BOOKS and is_paid:
                 bm = {"_empty_by": "paid"}   # not a final "no data": re-asked once a free key exists
             out["bookmakers"][b] = bm
             if final:
