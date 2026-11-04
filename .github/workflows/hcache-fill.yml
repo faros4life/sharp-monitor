@@ -52,6 +52,7 @@ jobs:
       - name: Fill the cache
         env:
           ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
+          ODDSPAPI_FREE_KEY: ${{ secrets.ODDSPAPI_FREE_KEY }}   # Nov 3: free-account key for exchange history (empty = not used)
           FILL_MAX: ${{ inputs.max_games }}
           FILL_ORDER: ${{ inputs.order }}
           FILL_MERGE: hcache_a,hcache_b
