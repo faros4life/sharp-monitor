@@ -8,6 +8,7 @@ on:
     inputs:
       cache_only: {required: false, type: string, default: "1"}
       get_sec: {required: false, type: string, default: "60"}
+      script: {required: false, type: string, default: "liq_history_test.py"}   # Nov 4: also runs close_vs_close_test.py
 
 permissions:
   contents: read
@@ -37,4 +38,8 @@ jobs:
           ODDSPAPI_FREE_KEY: ${{ secrets.ODDSPAPI_FREE_KEY }}
           LIQH_CACHE_ONLY: ${{ inputs.cache_only }}
           LIQH_GET_SEC: ${{ inputs.get_sec }}
-        run: python -u liq_history_test.py
+        run: |
+          case "${{ inputs.script }}" in
+            liq_history_test.py|close_vs_close_test.py) python -u "${{ inputs.script }}" ;;
+            *) echo "unknown script"; exit 1 ;;
+          esac
