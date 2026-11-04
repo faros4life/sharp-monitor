@@ -1,6 +1,163 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-04T13:10:12Z",
+   "base_depth": 109343,
+   "best_price": 0.505,
+   "best_price_american": -102,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 4,
+   "date": "2026-11-04",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 4416,
+     "new_this_side": 39434,
+     "other_side": 19372,
+     "other_side_all_levels": 110637,
+     "ratio": 4.8,
+     "this_side": 92905,
+     "this_side_all_levels": 150657
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "IND +6.5 (-6.5)",
+     "price": 0.505,
+     "this_side": 7504
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Pacers (+6.5)",
+     "price": 0.5,
+     "this_side": 34016
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Indiana Pacers +6.5 (+6.5)",
+     "price": 0.505,
+     "this_side": 8596
+    }
+   },
+   "fade_price": 0.51,
+   "first_seen_utc": "2026-11-04T13:05:51Z",
+   "game": "Indiana vs Memphis: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBASPREAD-26NOV04INDMEM-MEM7\"}",
+   "lead_min": 710,
+   "league": "NBA",
+   "line": 6.5,
+   "market": "spread",
+   "new_money": 39434,
+   "paper_only": false,
+   "price": 0.5,
+   "price_american": -100,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.5,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 6.5,
+     "price": -105
+    },
+    "betonlineag": {
+     "point": 7.0,
+     "price": -114
+    },
+    "betopenly": {
+     "point": 7.5,
+     "price": -107
+    },
+    "betrivers": {
+     "point": 6.5,
+     "price": -107
+    },
+    "betus": {
+     "point": 7.0,
+     "price": -115
+    },
+    "bovada": {
+     "point": 6.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 6.5,
+     "price": -107
+    },
+    "fanatics": {
+     "point": 6.5,
+     "price": -105
+    },
+    "fanduel": {
+     "point": 6.5,
+     "price": -106
+    },
+    "kalshi": {
+     "point": 6.5,
+     "price": 100
+    },
+    "lowvig": {
+     "point": 7.0,
+     "price": -110
+    },
+    "mybookieag": {
+     "point": 7.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 6.5,
+     "price": -102
+    },
+    "polymarket": {
+     "point": 6.5,
+     "price": 100
+    },
+    "prophetx": {
+     "point": 6.5,
+     "price": -102
+    },
+    "williamhill_us": {
+     "point": 6.5,
+     "price": -105
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNBASPREAD-26NOV04INDMEM-MEM7"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "polymarket"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [
+    "Indiana Pacers +7.5 (-115)"
+   ],
+   "sharp_oppose": [
+    "Memphis Grizzlies -6.5 (-111)"
+   ],
+   "side": "Indiana",
+   "side_label": "NOT Memphis wins by over 6.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-11-05T01:00:00Z",
+   "teams": [
+    "Indiana",
+    "Memphis"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-04T12:56:10Z",
    "base_depth": 93790,
    "best_price": 0.575,
@@ -3474,8 +3631,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.46,
-   "clv_cents": -1.0,
+   "close_price": 0.45,
+   "clv_cents": -2.0,
    "confirmed_after_min": 5,
    "date": "2026-11-04",
    "depth_by_book": {
