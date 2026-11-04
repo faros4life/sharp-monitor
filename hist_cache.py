@@ -79,6 +79,12 @@ def get_hist(fid, books, start=None):
             h = cl.api("/historical-odds", False, apikey=key, fixtureId=fid, bookmakers=",".join(grp))
             if not (isinstance(h, dict) and h.get("_error")):
                 break
+        if isinstance(h, dict) and h.get("_error") == 404:
+            # Nov 3 22:35 (probe run 41766896409): OddsPapi answers 404 when NONE of the requested books has history for the
+            # game (e.g. Kalshi alone on a game it never listed); a group where some books have data answers 200 with the
+            # rest empty. So a 404 is a final "no data" for these books - store it empty instead of re-asking every run.
+            STATS["no_data_404"] = STATS.get("no_data_404", 0) + 1
+            h = {"bookmakers": {}}
         if isinstance(h, dict) and h.get("_error"):
             return h
         STATS["miss"] += len(grp)
