@@ -66,8 +66,26 @@ def side_of(x):
     return None
 
 
+# Nov 4: Kalshi names NBA teams by city ("Cleveland"), Polymarket by nickname ("Cavaliers") - without this the same game
+# got two keys, so "one play per game" and the flip/sharp groups missed cross-book duplicates. City -> nickname token.
+NBA_CITY = {"atlanta": "hawks", "boston": "celtics", "brooklyn": "nets", "charlotte": "hornets", "chicago": "bulls",
+            "cleveland": "cavaliers", "dallas": "mavericks", "denver": "nuggets", "detroit": "pistons", "goldenstate": "warriors",
+            "houston": "rockets", "indiana": "pacers", "losangelesc": "clippers", "lac": "clippers", "losangelesl": "lakers",
+            "lal": "lakers", "memphis": "grizzlies", "miami": "heat", "milwaukee": "bucks", "minnesota": "timberwolves",
+            "neworleans": "pelicans", "newyork": "knicks", "newyorkk": "knicks", "oklahomacity": "thunder", "orlando": "magic",
+            "philadelphia": "76ers", "phoenix": "suns", "portland": "trail", "sacramento": "kings", "sanantonio": "spurs",
+            "toronto": "raptors", "utah": "jazz", "washington": "wizards", "trailblazers": "trail", "blazers": "trail", "ers": "76ers"}
+
+
+def team_key(league, tm):
+    k = tok(tm)
+    if league == "NBA":
+        return NBA_CITY.get(k, NBA_CITY.get(re.sub(r"[^a-z]", "", (tm or "").lower()), k))
+    return k
+
+
 def game_of(x):
-    return (x.get("league"), tuple(sorted(tok(tm) for tm in (x.get("teams") or [])[:2])), (x.get("start_utc") or "")[:10])
+    return (x.get("league"), tuple(sorted(team_key(x.get("league"), tm) for tm in (x.get("teams") or [])[:2])), (x.get("start_utc") or "")[:10])
 
 
 def load():
@@ -150,6 +168,38 @@ def score(rows):
             r["tag"], r["why"] = "PLAY", "v2: NBA total, money still there. Check the price is still there."
         else:
             r["tag"], r["why"] = "LEAN", "money still there; v2 PLAY is NBA totals only"
+    # Nov 4 (Peter 3:48 PM "make that the version bets board uses for plays"; Muse 3:05 item 1): v3 = the real LIQ-BOT rule.
+    # PLAY = NBA total, alerted 4h+ before tip, money still there, ONE play per game total (the first alert; first side
+    # stays), nightly cap 5 (first 5 by alert time). Backtest: 57 plays 36-21 +11.29u, both halves. The v2 call is kept
+    # in r["v2"] and keeps grading (its tile stays on the page), v1 in r["v1"]. Paper: the executor's Lane 3 dry-run reads
+    # the 4 books at the alert line and records WOULD PLACE / no price - that record is the shadow.
+    first_tot = {}
+    for r in sorted(rows, key=lambda r: r["at"]):
+        r["v2"] = r["tag"]
+        x = r["x"]
+        st = t(x.get("start_utc"))
+        lead_h = ((st - r["at"]).total_seconds() / 3600) if st else None
+        if r["mk"] != "total" or x.get("league") != "NBA":
+            if r["tag"] == "PLAY":
+                r["tag"], r["why"] = "LEAN", "v3 PLAY is NBA totals 4h+ only (v2 called PLAY)"
+            continue
+        if lead_h is None or lead_h < 4:
+            r["tag"], r["why"] = "LEAN", f"v3: alerted {lead_h:.1f}h before tip (PLAY needs 4h+)" if lead_h is not None else "v3: no start time"
+            continue
+        gk = r["g"]
+        if gk in first_tot:   # the first 4h+ alert on this game total is the play, pulled or not (backtest basis)
+            f0 = first_tot[gk]
+            r["tag"], r["why"] = "LEAN", f"v3: one play per game total - first alert was {f0['side']} at {f0['first']} (first side stays)"
+            continue
+        first_tot[gk] = r
+        if r["status"] == "pulled":
+            continue   # stays DEAD (money pulled) but still holds the game's one play
+        r["tag"], r["why"] = "PLAY", f"v3: NBA total {lead_h:.0f}h before tip, money still there. Alert line at the alert price or better."
+    plays = sorted([r for r in rows if r["tag"] == "PLAY"], key=lambda r: r["at"])
+    for n, r in enumerate(plays, 1):
+        r["v3_n"] = n
+        if n > 5:
+            r["tag"], r["why"] = "LEAN", f"v3: nightly cap 5 - this was play #{n} by alert time"
 
 
 def x2_limits():
@@ -294,9 +344,10 @@ td{{padding:5px 6px;border-bottom:1px solid var(--line);vertical-align:top}}.r{{
 <div class="tiles"><div class="tile"><div class="l">PLAY calls open now</div><div class="n">{sum(1 for r in plays if r["status"] == "still there")}</div></div>
 <div class="tile"><div class="l">Today's PLAY calls graded</div><div class="n">{rec(plays)}</div></div>
 <div class="tile"><div class="l">Today's LEAN calls graded</div><div class="n">{rec([r for r in rows if r["tag"] == "LEAN"])}</div></div>
+<div class="tile"><div class="l">v2 PLAY calls graded (old rule, still tracked)</div><div class="n">{rec([r for r in rows if r.get("v2") == "PLAY"])}</div></div>
 <div class="tile"><div class="l">Big-money moves today</div><div class="n">{len(rows)}</div></div></div>
 <div class="card"><h2>Big money today, by bet type</h2>
-<p class="note"><b>Call (v2, from Nov 3):</b> PLAY = an NBA total whose money is still there and whose price has not already moved toward it. LEAN = any other moneyline or total still there. DEAD = pulled, flipped, late money, or any spread (spreads are off the board: they lost in every league). Started games keep their kickoff call and grade W/L when final. Check the price before betting. Paper signal; spread flows have lost over time.</p>
+<p class="note"><b>Call (v3, from Nov 4):</b> PLAY = an NBA total alerted 4 hours or more before tip, money still there, one play per game total (the first alert; first side stays), at most 5 a night (first 5 by alert time). Bet the alert line at the alert price or better. LEAN = anything else still there, including later alerts on a game already played and NBA totals inside 4 hours. DEAD = pulled, flipped, late money, or any spread. Started games keep their kickoff call and grade W/L when final. The v2 call (NBA total, money still there, price not moved) keeps grading in its own tile. Paper signal.</p>
 <div class="legend"><span><i class="sw kalshi"></i>Kalshi</span><span><i class="sw novig"></i>Novig</span><span><i class="sw prophetx"></i>ProphetX</span><span><i class="sw polymarket"></i>Polymarket</span></div>
 <div class="filters"><button data-f="" class="on">All</button>{btns}<button data-f="live">PLAY + LEAN only</button></div>
 <h3>Moneylines</h3>{table("moneyline")}<h3>Spreads</h3>{table("spread")}<h3>Totals</h3>{table("total")}</div>
