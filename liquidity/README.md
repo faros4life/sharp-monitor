@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 4, 9:45 AM ET. This run: 4 new, 0 not confirmed, 2 pending. Open alerts: 66.
+Updated Wed Nov 4, 9:50 AM ET. This run: 1 new, 1 not confirmed, 0 pending. Open alerts: 67.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 4 9:50AM | NBA | Bulls vs. Knicks | moneyline: Knicks | polymarket | $41k | -525 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Nov 4 9:45AM | NBA | Mavericks vs. Spurs | moneyline: Spurs | polymarket | $27k | -488 | ✅ kalshi,novig,prophetx |  | +0.0c |  | pending |
 | Nov 4 9:45AM | NBA | Bucks vs. Celtics | moneyline: Celtics | polymarket | $35k | -525 | ✅ kalshi,novig,prophetx |  | +0.0c |  | pending |
 | Nov 4 9:45AM | NBA | Lakers vs. Kings | moneyline: Lakers | polymarket | $40k | -525 | ✅ novig,prophetx | ✅ | +0.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 2 8:50AM | NBA | Kings vs. Mavericks | moneyline: Mavericks | polymarket | $32k | -376 | ✅ novig,prophetx |  | -4.0c | yes | L |
 | Nov 2 8:40AM | NBA | Detroit vs Charlotte: Spread | spread: Detroit wins by over 4.5 points | kalshi | $43k | -100 | ✅ novig,polymarket |  | +7.0c | yes | W |
 | Nov 2 8:10AM | NBA | Heat vs. Lakers | moneyline: Lakers | polymarket | $26k | -127 | ✅ novig |  | +0.0c | yes | W |
-| Nov 2 8:00AM | NHL | Calgary vs San Jose | moneyline: Calgary | kalshi | $35k | +117 | ✅ novig,polymarket,prophetx |  | +2.0c | yes | W |
