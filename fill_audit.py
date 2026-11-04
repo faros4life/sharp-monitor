@@ -97,7 +97,7 @@ def main():
              "alert_clv": round(100 * (c["p"] * want - 1), 2),
              "seen": (q["t0"][own] is not None and q["t0"][own] >= want - TOL) if own else None}
         for lab in ("t1", "t5"):
-            ups = [v for v in q[lab].values() if v]
+            ups = [v for v in q[lab].values() if v and c["p"] * v - 1 <= 0.15]   # Nov 4: drop misreads (> +15% vs the close), as P1
             best = max(ups) if ups else None
             r[f"get_{lab}"] = best is not None and best >= want - TOL
             r[f"clv_{lab}"] = round(100 * (c["p"] * best - 1), 2) if best else None
