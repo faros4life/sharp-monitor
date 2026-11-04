@@ -34,6 +34,7 @@ from email.mime.text import MIMEText
 import book_check as bc
 import liquidity_monitor as lm
 import agree_rules
+import lane2   # Nov 4: Lane 2 LOW-limit sharp alerts, DRY RUN ONLY (Peter 4:01 PM "no live play")
 import positions
 import px_live
 import book_live
@@ -468,7 +469,7 @@ def opposite_key(p):
 
 def already_handled(M, p):
     """Handled before under its own key OR under the play's game+side key (so a re-sent play never runs twice)."""
-    if p.get("source") == "rules":   # separate namespace, so Muse's verdict on the same play is still evaluated
+    if p.get("source") in ("rules", "lane2"):   # separate namespace, so Muse's verdict on the same play is still evaluated (Lane 2 too: it never blocks or is blocked by another lane's record)
         return bool(gsearch(M, pid(p["play_key"])))
     keys = {p["play_key"], derive_key(p) or p["play_key"]}
     return any(gsearch(M, pid(k)) for k in keys)
@@ -1017,6 +1018,7 @@ BOOK_NAME = {"novig": "Novig", "prophetx": "ProphetX", "kalshi": "Kalshi", "poly
 
 def src_tag(p):
     return ("[coded rules] " if p.get("source") == "rules" else "[board Lane 3] " if p.get("source") == "board"
+            else "[Lane 2 dry run] " if p.get("source") == "lane2"
             else ("[Muse] " if SOURCE == "both" else ""))
 
 
@@ -1088,7 +1090,7 @@ def fmt(r):
     if r["verdict"] == "HELD":   # no xpid token: the play stays new and is retried next run
         return f"HELD  [{held_tok(dk or p['play_key'])}] {p.get('sport')} {p.get('game')} | {p.get('bet')}\n      reason: {r['reason']}"
     rested = ((r.get("live") or {}).get("rest") or {}).get("status") == "placed"   # Oct 28: a resting bid takes the side too
-    tag = r["pid"] + (f" {wp(dk)}" if ((r["verdict"] == "WOULD PLACE" or rested) and dk and p.get("source") != "rules") else "")
+    tag = r["pid"] + (f" {wp(dk)}" if ((r["verdict"] == "WOULD PLACE" or rested) and dk and p.get("source") not in ("rules", "lane2")) else "")   # Nov 4: a Lane 2 dry-run row never marks a side as taken
     head = f"{src_tag(p)}[{tag}] {p.get('sport')} {p.get('game')} | {p.get('bet')}"
     if p.get("source") == "rules":
         head += f"\n      decided {lag_text(p)}; flags (never veto): {'; '.join(p['rules'].get('flags') or []) or '-'}"
@@ -1782,6 +1784,8 @@ def ledger_row(r, run_start):
             "books_at_decision": books_snapshot(r),
             "old_rule_would_block": old_rule_block(r),
             "stack_cap": stack_cap_report(r),
+            "lane2": ({k: e.get(k) for k in ("label", "limit", "limit_how", "median", "market", "book_key", "hr_priced", "edge_pct",
+                                              "edge_band", "lead_min", "timing", "top25")} if p.get("source") == "lane2" else None),
             "live_order": dict({k: (lv.get("order") or {}).get(k) for k in ("status", "reason", "order_id", "asked_stake", "limit",
                                                                             "filled_stake", "avg_price")},
                                book=(lv.get("order") or {}).get("book") or "prophetx") if lv.get("order") else None,
@@ -1811,7 +1815,13 @@ def main():
         LOG.append("manual-bet notes unreadable")
     rplays = rule_plays(now) if SOURCE in ("rules", "both") else []
     bplays = board_plays(now)   # Nov 3: Lane 3 (board NBA totals)
-    new = [p for p in plays + rplays + bplays if not already_handled(M, p)]
+    try:   # Nov 4: Lane 2 (Muse registration 3:48 PM) - dry run only, no live path exists for these plays
+        import clv_ledger as _cl
+        l2plays = lane2.plays(now, load_feed(), _cl.load_markets(lane2._ST, now))
+    except Exception as ex:
+        LOG.append(f"lane 2 unavailable: {str(ex)[:60]}")
+        l2plays = []
+    new = [p for p in plays + rplays + bplays + l2plays if not already_handled(M, p)]
     M.logout()
     feed = load_feed()
     # wake time: this run's start vs the newest SENT alert (Oct 26; counts/seconds only in the public log)
@@ -1916,9 +1926,12 @@ def main():
                 continue
             if ent.get("floor_line") is not None and p.get("floor_line") is None:
                 p = dict(p, floor_line=ent["floor_line"])   # Oct 31: the alert's bet-only-at line (hard floor)
-            r = evaluate(p, now, evs_by, mks_by_event, pos, None if p.get("source") == "rules" else taken, held)
+            r = evaluate(p, now, evs_by, mks_by_event, pos, None if p.get("source") in ("rules", "lane2") else taken, held)
             r["entry"] = ent
-            if p.get("source") == "board":   # Lane 3: its own live decision (never the phase-1 filter), own record
+            if p.get("source") == "lane2":   # Nov 4: Lane 2 - priced and logged like any dry-run play; NEVER live (Peter "no live play")
+                r["entry"] = ent = p.get("lane2_entry") or {}
+                r["live"] = {"go": False, "lane": "lane2", "why": [f"Lane 2 is dry-run only (Peter Nov 4) - {p['rules']['reason']}"]}
+            elif p.get("source") == "board":   # Lane 3: its own live decision (never the phase-1 filter), own record
                 r["entry"] = ent = p.get("board_entry") or {}
                 lk = derive_key(p) or p["play_key"]
                 why = [] if BOARD_LIVE else ["board lane not switched on (EXEC_BOARD_LIVE)"]
@@ -1986,7 +1999,7 @@ def main():
                 LIVEKEYS.add(derive_key(p) or p["play_key"])
             results.append(r)
             if (r["verdict"] == "WOULD PLACE" or ((r.get("live") or {}).get("rest") or {}).get("status") == "placed") \
-                    and derive_key(p) and p.get("source") not in ("rules", "board"):
+                    and derive_key(p) and p.get("source") not in ("rules", "board", "lane2"):
                 taken_now.add(derive_key(p))
         except Exception as ex:
             results.append({"play": p, "pid": pid(p["play_key"]), "verdict": "SKIP", "reason": f"error: {str(ex)[:100]}"})
@@ -2049,6 +2062,7 @@ def main():
         g = [r for r in q if r.get("px") is not None]
         body += [f"Gettable check (phase-1 qualifying this run, coded view): {len(q)} qualifying; ProphetX at the alert price "
                  f"or better at check: {len(g)}; not gettable: {sum(1 for r in q if r.get('books') and r.get('px') is None)}.", ""]
+    body += [lane2.summary_line(), ""]   # Nov 4: Lane 2 counts (private email; dollars never in the public log)
     if GUARD["ok"] is not None:
         body += [f"Live guards: {'OK' if GUARD['ok'] else 'REFUSED'}" + (f" - {GUARD['why']}" if GUARD["why"] else "")
                  + " (the daily stop counts only the bot's own orders).", ""]
