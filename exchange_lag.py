@@ -291,7 +291,7 @@ def report(st, now, read, waiting, new):
             return (f"graded {len(g)} | wins {w} vs expected {ex_:.1f} (z {(w - ex_) / sd:+.1f}) | "
                     f"units {au:+.2f}u vs expected {eu:+.2f}u"), g
         cells = []
-        for bk in ("novig.us", "prophetx"):
+        for bk in ("novig.us", "prophetx", "polymarket.us", "kalshi"):
             base = [x for x in S if x["book"] == bk and not x["late"]]
             bb_ = [(x, _b(x)) for x in base]
             cells += [(f"{NAME[bk]} all", base),
@@ -300,7 +300,11 @@ def report(st, now, read, waiting, new):
                       (f"{NAME[bk]} moneyline x dog", [x for x, b in bb_ if b["mk"] == "moneyline" and b["sc"] == "dog"]),
                       (f"{NAME[bk]} moneyline x fav", [x for x, b in bb_ if b["mk"] == "moneyline" and b["sc"] == "fav"]),
                       (f"{NAME[bk]} totals", [x for x, b in bb_ if b["mk"] == "totals"]),
-                      (f"{NAME[bk]} price better than -110", [x for x in base if (x.get("hr_am") or -999) > -110])]
+                      (f"{NAME[bk]} price better than -110", [x for x in base if (x.get("hr_am") or -999) > -110]),
+                      # Nov 3 21:20 (EV-lane audit: Polymarket US suspect gains sit on ALTERNATE lines - a misread line/side
+                      # risk): main-price band (-135..+125) vs off-band (alternate-line prices) side by side
+                      (f"{NAME[bk]} main price band -135..+125", [x for x in base if -135 <= (x.get("hr_am") or 0) <= 125]),
+                      (f"{NAME[bk]} off-band (+126 or more / -136 or less)", [x for x in base if not -135 <= (x.get("hr_am") or 0) <= 125])]
         samp = []
         for nm, xs in cells:
             txt, g = _cal(xs)
