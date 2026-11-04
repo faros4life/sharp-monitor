@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 3, 11:16 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 41.
+Updated Tue Nov 3, 11:20 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 42.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 3 11:20PM | NHL | Flames vs. Kraken | moneyline: Kraken | polymarket | $25k | -133 |  |  | +0.0c |  | pending |
 | Nov 3 11:06PM | NHL | Chicago vs Florida: Total Goals | total: NOT Over 5.5 goals scored | kalshi | $44k | +127 |  |  | +0.0c |  | pending |
 | Nov 3 10:50PM | NHL | Calgary vs Seattle | moneyline: Calgary | kalshi | $96k | +133 | ✅ novig,polymarket |  | +0.0c |  | pending |
 | Nov 3 9:50PM | NCAAF | Ball St. vs UMass: Total Points | total: NOT Over 49.5 points | kalshi | $55k | -104 |  |  | +0.0c | yes | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 1 8:00PM | NBA | Toronto vs Los Angeles L: Total Points | total: NOT Over 223.5 points | kalshi | $91k | -104 | ✅ novig | ✅ | +0.0c | yes | L |
 | Nov 1 7:50PM | NBA | Washington vs Orlando | moneyline: Orlando | kalshi | $35k | -117 |  |  | +4.0c |  | L |
 | Nov 1 7:30PM | NFL | Philadelphia Eagles @ Washington Commanders | spread: WSH -5.5 (-5.5) | novig | $27k | -102 | ✅ prophetx |  | +0.5c | yes | W |
-| Nov 1 7:20PM | NBA | Clippers vs. Warriors | moneyline: Clippers | polymarket | $44k | +113 |  | ✅ | -1.0c | yes | L |
