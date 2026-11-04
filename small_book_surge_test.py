@@ -315,6 +315,36 @@ def main():
                 xs = [r for r in z4 if r["lg"] == lg and r["kind"] == k]
                 if xs:
                     L.append(f"   {lg} {k}, 4h+: {stl(xs)}")
+    # Nov 4 (Peter 12:57 "yes. but it looks promising"): 5x+ price-sane breakdown, every normal, 4h+, one play once
+    L += ["", "=" * 20 + " 5x+ PRICE-SANE BREAKDOWN (4h+ before tip; one play counts once) " + "=" * 20]
+    for mode in MODES:
+        F5 = [r for r in RA if r["mode"] == mode and r["sane"] and r["lead"] >= 4 and r["mult"] >= 5]
+        L += ["", f"-- {mode} --", f"   ALL 5x+: {stl(F5)}"]
+        for lo, hi, nm in ((5, 10, "5-10x"), (10, 1e9, "10x+")):
+            L.append(f"   {nm}: {stl([r for r in F5 if lo <= r['mult'] < hi])}")
+        for b in EXCH:
+            L.append(f"   {NAME[b]} (surged first): {stl([r for r in F5 if r['book'] == b])}")
+        for lg in LEAGUES:
+            xs = [r for r in F5 if r["lg"] == lg]
+            if xs:
+                L.append(f"   {lg}: {stl(xs)}")
+                for k in ("UNDER", "OVER", "ML", "SPREAD"):
+                    ys = [r for r in xs if r["kind"] == k]
+                    if ys:
+                        L.append(f"      {lg} {k}: {stl(ys)}")
+        for k in ("UNDER", "OVER", "ML", "SPREAD"):
+            L.append(f"   all leagues {k}: {stl([r for r in F5 if r['kind'] == k])}")
+        L.append(f"   4-12h before tip: {stl([r for r in F5 if r['lead'] < 12])}")
+        L.append(f"   12h+ before tip: {stl([r for r in F5 if r['lead'] >= 12])}")
+        L.append(f"   jump under $25k: {stl([r for r in F5 if r['new'] < ABS_MIN])}")
+        L.append(f"   jump $25k+: {stl([r for r in F5 if r['new'] >= ABS_MIN])}")
+        L.append(f"   exchange price at or better than Pinnacle fair: {stl([r for r in F5 if r['fair_t'] is not None and 1 / r['price'] <= r['fair_t']])}")
+        L.append(f"   exchange price worse than Pinnacle fair (within 5c): {stl([r for r in F5 if r['fair_t'] is not None and 1 / r['price'] > r['fair_t']])}")
+        if mode == "LEAGUE-4H":
+            L.append("   plays (date | league | bet | exchange | x normal | jump $ | hrs to tip | price dec | Pinnacle fair | result | units):")
+            for r in sorted(F5, key=lambda z: z["day"]):
+                L.append(f"      {r['day']} | {r['lg']} | {r['kind']} {r['hcap']} | {NAME[r['book']]} | {r['mult']:.1f}x | "
+                         f"${r['new']:,.0f} | {r['lead']:.1f} | {r['price']} | {r['fair_t']:.3f} | {r['res']} | {r['u']:+.2f}")
     sane_n = sum(1 for r in RA if r["sane"])
     L += ["", f"Price-sane share of graded surges: {sane_n} of {len(RA)} ({100 * sane_n / max(len(RA), 1):.0f}%)."]
     # NHL totals diagnostic (Nov 4: NHL unders 1-155 in the first run = a grading or line-mapping bug to find)
