@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 4, 12:10 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 10.
+Updated Wed Nov 4, 12:20 AM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 11.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 4 12:20AM | TENNIS | Michelsen vs Alcaraz | moneyline: Michelsen | kalshi | $263k | +525 |  |  | +0.0c |  | pending |
 | Nov 3 11:30PM | TENNIS | Van Assche vs Tien | moneyline: Tien | kalshi | $28k | -186 |  |  | +0.0c |  | pending |
 | Nov 3 10:00PM | TENNIS | Michelsen vs Alcaraz | moneyline: Alcaraz | kalshi | $94k | -525 |  |  | +0.0c |  | pending |
 | Nov 3 8:00PM | TENNIS | Molcan vs Fritz | moneyline: Fritz | kalshi | $101k | -376 |  |  | +0.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 23 8:30PM | MLB | Game 2: Tampa Bay vs Milwaukee | moneyline: Game 2: Tampa Bay | kalshi | $51k | +144 |  |  | -4.0c |  | L |
 | Oct 23 7:57PM | MLB | Tampa Bay Rays @ Milwaukee Brewers | spread: TB +1.5 (-1.5) | novig | $84k | -138 | ✅ kalshi |  | +0.0c |  | W |
 | Oct 23 6:00PM | TENNIS | Fils vs Struff | moneyline: Fils | kalshi | $27k | -456 |  |  | -81.0c | yes | L |
-| Oct 23 5:54PM | MLB | Tampa Bay Rays vs. Milwaukee Brewers | moneyline: Milwaukee Brewers | polymarket | $75k | -178 | ✅ kalshi,prophetx |  | +0.0c | yes | W |
