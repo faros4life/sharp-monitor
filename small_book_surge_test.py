@@ -49,8 +49,27 @@ MODES = {   # all three run on the same games and are reported side by side
 }
 
 
+# Nov 4 (Peter 13:44, after the 5x+ breakdown): main lines only, no dust jumps, no off-range lines.
+# The 5x+ cell's units came from ~19 longshots priced ~30c (mostly Kalshi alt spreads) and from tiny jumps ($233-$900).
+MAIN_LO = float(os.environ.get("SBS_MAIN_LO", "") or "0.35")   # implied price band for every bet type
+MAIN_HI = float(os.environ.get("SBS_MAIN_HI", "") or "0.65")
+MIN_JUMP = float(os.environ.get("SBS_MIN_JUMP", "") or "2000")  # a surge's jump must be at least this many dollars
+# full-game line ranges (the NHL 1.5 "totals" were another market mislabeled in the history)
+TOTAL_RANGE = {"NBA": (190, 265), "NFL": (30, 65), "NCAAF": (30, 85), "NHL": (4.5, 7.5)}
+SPREAD_MAX = {"NBA": 20, "NFL": 17.5, "NCAAF": 35, "NHL": 1.5}
+
+
 def band_ok(typ, p):
-    return (0.15 <= p <= 0.85) if typ == "moneyline" else (0.30 <= p <= 0.70)
+    return MAIN_LO <= p <= MAIN_HI
+
+
+def line_ok(lg, typ, hcap):
+    if typ == "totals":
+        lo, hi = TOTAL_RANGE.get(lg, (0, 1e9))
+        return lo <= hcap <= hi
+    if typ == "spreads":
+        return abs(hcap) <= SPREAD_MAX.get(lg, 1e9)
+    return True
 
 
 def bet_kind(typ, name):
@@ -77,6 +96,8 @@ def series(f, xm, mkmap, start, lg):
         if mm[1] == "moneyline" and str(mid) != str(cl.ML_MARKET.get(sid)):
             continue
         _, typ, hcap, outs = mm
+        if not line_ok(lg, typ, hcap):
+            continue   # Nov 4: off-range line = not the full-game main market
         for oid, o in (m.get("outcomes") or {}).items():
             name = outs.get(str(oid))
             kind = bet_kind(typ, name) if name else None
@@ -182,7 +203,7 @@ def main():
                                 continue   # need a full 4 hours of this side's history first
                             base = [z[2] for z in main[:i2] if z[0] >= lo] + [z[2] for z in main[:i2] if z[0] < lo][-1:]
                             nm = stt.median(base)
-                            if nm > 0 and prev < REL_X * nm <= lim and lim - prev >= REL_NEW_FRAC * nm:
+                            if nm > 0 and prev < REL_X * nm <= lim and lim - prev >= max(REL_NEW_FRAC * nm, MIN_JUMP):
                                 found.append((mode, b, kind, typ, hcap, name, ct, pr, lim, prev, nm))
                                 seen_side.add((kind, name))
                                 break
@@ -197,7 +218,7 @@ def main():
                     for i2 in range(1, len(main)):
                         ct, pr, lim = main[i2]
                         prev = main[i2 - 1][2]
-                        if prev < REL_X * nm <= lim and lim - prev >= REL_NEW_FRAC * nm:
+                        if prev < REL_X * nm <= lim and lim - prev >= max(REL_NEW_FRAC * nm, MIN_JUMP):
                             found.append((mode, b, kind, typ, hcap, name, ct, pr, lim, prev, nm))
                             seen_side.add((kind, name))
                             break
@@ -252,7 +273,8 @@ def main():
         return f"n {len(xs)} | {w}-{l_} {u:+.2f}u {u / len(xs):+.3f}/play | {cvs} | H1 {pp(h1)} H2 {pp(h2)}"
 
     L = [f"SMALL-BOOK SURGE BACKTEST - PAPER ONLY | {now.astimezone(ET):%Y-%m-%d %H:%M} ET",
-         f"Surge = a side's offered size (OddsPapi tick limit) crosses {REL_X:g}x its NORMAL with a jump >= {REL_NEW_FRAC:g}x normal; "
+         f"Surge = a side's offered size (OddsPapi tick limit) crosses {REL_X:g}x its NORMAL with a jump >= {REL_NEW_FRAC:g}x normal and >= ${MIN_JUMP:,.0f}; "
+         f"main lines priced {MAIN_LO * 100:.0f}-{MAIN_HI * 100:.0f}c, full-game line ranges only; "
          "ONE PLAY COUNTS ONCE: the first surge per game x bet type x side across exchanges; main lines, pregame. Graded 1u at that tick's price after fee; ESPN "
          f"finals; CLV vs Pinnacle no-vig close. H1 <= {FIT_END} < H2. Three NORMALS, side by side:"]
     L += [f"   {m}: {d}" for m, d in MODES.items()]
