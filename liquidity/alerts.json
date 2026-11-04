@@ -1,6 +1,139 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-04T02:50:11Z",
+   "base_depth": 187234,
+   "best_price": 0.5275,
+   "best_price_american": -112,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 4,
+   "date": "2026-11-04",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 2205,
+     "new_this_side": 54844,
+     "other_side": 69109,
+     "other_side_all_levels": 176645,
+     "ratio": 1.5,
+     "this_side": 104352,
+     "this_side_all_levels": 242313
+    }
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-11-04T02:45:58Z",
+   "game": "Ball St. vs UMass: Total Points",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFTOTAL-26NOV04BALLMASS-50\"}",
+   "lead_min": 1270,
+   "league": "NCAAF",
+   "line": 49.5,
+   "market": "total",
+   "new_money": 54844,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 49.5,
+     "price": -108
+    },
+    "betonlineag": {
+     "point": 50.0,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 49.5,
+     "price": 101
+    },
+    "betrivers": {
+     "point": 49.5,
+     "price": -115
+    },
+    "betus": {
+     "point": 50.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 49.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 49.5,
+     "price": -108
+    },
+    "fanatics": {
+     "point": 49.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 49.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": 49.5,
+     "price": -104
+    },
+    "lowvig": {
+     "point": 50.0,
+     "price": -108
+    },
+    "mybookieag": {
+     "point": 50.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 49.5,
+     "price": -108
+    },
+    "polymarket": {
+     "point": 49.5,
+     "price": -108
+    },
+    "prophetx": {
+     "point": 49.5,
+     "price": -106
+    },
+    "williamhill_us": {
+     "point": 49.5,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAFTOTAL-26NOV04BALLMASS-50"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "NOT Over 49.5 points",
+   "start_source": "odds",
+   "start_utc": "2026-11-05T00:00:00Z",
+   "teams": [
+    "Ball St.",
+    "UMass"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-04T02:40:10Z",
    "base_depth": 143489,
    "best_price": 0.55,
@@ -128,7 +261,8 @@
      "price": -132
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-04T02:50:11Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNHLGAME-26NOV04OTTBUF-BUF"
