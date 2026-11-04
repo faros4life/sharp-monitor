@@ -8,6 +8,7 @@ so every model and test can run from disk. Games already cached cost nothing. Fr
 """
 import json
 import os
+import re
 import shutil
 from datetime import datetime, timedelta, timezone
 
@@ -50,14 +51,19 @@ def main():
                 todo.append((s, fid))
     todo.sort(reverse=(ORDER != "oldest"))   # newest first: the games the models use most (oldest first for a 2nd fill)
     done = errs = 0
+    codes, first_err = {}, ""   # Nov 3 19:50: error codes + first error text in the log (no amounts) so a failing fill is diagnosable
     for i, (s, fid) in enumerate(todo[:MAX_GAMES], 1):
         h = hc.get_hist(fid, BOOKS, s)
         if isinstance(h, dict) and h.get("_error"):
             errs += 1
+            codes[h["_error"]] = codes.get(h["_error"], 0) + 1
+            if not first_err:
+                first_err = re.sub(r"[A-Za-z0-9_-]{20,}", "***", str(h.get("_body", "")))[:150].replace("\n", " ")   # never echo a key
+                print(f"cache fill first error: code {h['_error']} - {first_err}", flush=True)
         else:
             done += 1
         if i % 25 == 0:   # progress (counts only) so a long fill can be read while it runs
-            print(f"cache fill progress: {i} of {min(len(todo), MAX_GAMES)} games, errors {errs}, spacing {cl.HIST_GAP[0]:.1f}s", flush=True)
+            print(f"cache fill progress: {i} of {min(len(todo), MAX_GAMES)} games, errors {errs} {codes}, spacing {cl.HIST_GAP[0]:.1f}s", flush=True)
     n_files = len(os.listdir(hc.DIR)) if os.path.isdir(hc.DIR) else 0
     size = sum(os.path.getsize(os.path.join(hc.DIR, x)) for x in os.listdir(hc.DIR)) if n_files else 0
     print(f"cache fill: fixtures {len(st.get('fixtures') or {})}, needing data {len(todo)}, filled {done}, errors {errs}, "
