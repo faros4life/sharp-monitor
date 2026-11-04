@@ -34,7 +34,7 @@ FREE_KEY = (os.environ.get("ODDSPAPI_FREE_KEY") or "").strip()   # Nov 3: free-a
 STATE = "clv/state.enc"
 MKFILE = "clv/markets.json"
 ET = tb.ET
-CAP = int(os.environ.get("CLV_MONTH_CAP", "") or "150")
+CAP = int(os.environ.get("CLV_MONTH_CAP", "") or "1000")   # Nov 4: paid plan has 5,000 a month (was 150 for the 250 free plan)
 SPORT = {"NBA": 11, "NFL": 14, "NCAAF": 14, "NHL": 15}
 TOURN = {"NBA": 132, "NFL": 31, "NHL": 234}           # NCAAF looked up once (the probe's 850 was wrong)
 ML_MARKET = {11: "111", 14: "141", 15: "151"}         # Winner incl. overtime (hockey: incl. OT and penalties)
@@ -472,24 +472,28 @@ def novig_at(b, f, nm_pm, mkmap, when, lg):
 
 
 # ------------------------------------------------------------------ ESPN fill
-def espn_fill(st, now, max_days=12):
+def espn_fill(st, now, max_days=50):   # Nov 4: was 12 - older bets' dates were never fetched, so they used up their tries
     """Settled tracker rows the tracker never pinned to a game: match them on ESPN (free) within 36 h of the settle
     or placed time, and take league, start and teams from there. At most max_days scoreboard dates per run."""
     todo = []
     for k, rec in st["bets"].items():
         s = rec["snap"]
-        if s.get("game_start") or rec.get("espn_tries", 0) >= 3:
+        if s.get("game_start") or rec.get("espn_tries", 0) >= 6:   # Nov 4: 3 more tries for rows stuck under the old 12-day window
             continue
         t0 = tp(s.get("settled")) or tp(s.get("placed")) or tp(rec.get("first_seen"))
         if t0 and t0 > now - timedelta(days=45):
             todo.append((k, rec, t0))
     if not todo:
         return
-    days = sorted({(t0 - timedelta(days=dd)).astimezone(ET).replace(hour=12, minute=0, second=0, microsecond=0)
-                   for _, _, t0 in todo for dd in (0, 1)}, reverse=True)[:max_days]
+    def _days(t0):
+        return {(t0 - timedelta(days=dd)).astimezone(ET).replace(hour=12, minute=0, second=0, microsecond=0) for dd in (0, 1)}
+    days = sorted(set().union(*(_days(t0) for _, _, t0 in todo)), reverse=True)[:max_days]
     games = tb.espn_games(days)
+    got = set(days)
     for k, rec, t0 in todo:
         s = rec["snap"]
+        if not _days(t0) <= got:   # Nov 4: this bet's dates weren't fetched this run - don't count it as a failed try
+            continue
         g = tb.match_game(s, games, t0)
         if g and len(g["teams"]) == 2:
             a, h = sorted(g["teams"], key=lambda t: t["home"])
