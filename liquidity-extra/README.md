@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 4, 8:40 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 13.
+Updated Wed Nov 4, 8:50 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 12.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 123-79 (-10.53u flat) | rule met: 33-30
+**Record:** 123-80 (-11.53u flat) | rule met: 33-30
 
-**Fade (paper, betting against the print):** 54-88 (+10.95u flat, after fees)
+**Fade (paper, betting against the print):** 55-88 (+12.61u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -22,11 +22,11 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 4 1:00AM | TENNIS | Halys vs Tiafoe | moneyline: Halys | kalshi | $52k | +144 |  |  | +1.0c | yes | W |
 | Nov 4 1:00AM | TENNIS | Fils vs Machac | moneyline: Fils | kalshi | $33k | -170 |  |  | -1.0c |  | pending |
 | Nov 4 12:20AM | TENNIS | Michelsen vs Alcaraz | moneyline: Michelsen | kalshi | $263k | +525 |  |  | +0.0c |  | pending |
-| Nov 3 11:30PM | TENNIS | Van Assche vs Tien | moneyline: Tien | kalshi | $28k | -186 |  |  | -1.0c | yes | pending |
+| Nov 3 11:30PM | TENNIS | Van Assche vs Tien | moneyline: Tien | kalshi | $28k | -186 |  |  | -1.0c | yes | L |
 | Nov 3 10:00PM | TENNIS | Michelsen vs Alcaraz | moneyline: Alcaraz | kalshi | $94k | -525 |  |  | +0.0c |  | pending |
 | Nov 3 8:00PM | TENNIS | Molcan vs Fritz | moneyline: Fritz | kalshi | $101k | -376 |  |  | +1.0c |  | pending |
 | Nov 3 6:40PM | NCAAB | Queens University vs Loyola Marymount | moneyline: Loyola Marymount | kalshi | $35k | -245 |  |  | +3.0c | yes | pending |
-| Nov 3 6:30PM | NCAAB | Longwood vs Saint Joseph's | moneyline: Saint Joseph's | kalshi | $58k | -456 |  |  | -1.0c | yes | pending |
+| Nov 3 6:30PM | NCAAB | Longwood vs Saint Joseph's | moneyline: Saint Joseph's | kalshi | $58k | -456 |  |  | +0.0c | yes | pending |
 | Nov 3 3:20PM | TENNIS | Ruud vs Jodar | moneyline: Ruud | kalshi | $914k | -113 |  |  | +8.0c |  | W |
 | Nov 3 2:40PM | TENNIS | Paul vs Merida | moneyline: Paul | kalshi | $85k | -376 |  |  | +2.0c |  | W |
 | Nov 3 2:40PM | TENNIS | Djokovic vs Hijikata | moneyline: Djokovic | kalshi | $93k | -426 |  |  | +0.0c |  | pending |
