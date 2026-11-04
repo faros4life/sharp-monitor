@@ -679,6 +679,19 @@ def main():
                 if rec.get("why") == "no price on the bet":
                     for x in ("done", "tries", "why"):
                         rec.pop(x, None)
+    # Nov 4: bot rows carry no placed time (positions have none) - take the executor's decision time from its own fill record
+    for k, rec in st["bets"].items():
+        s = rec["snap"]
+        if not s.get("placed_bot") and (s.get("source") or "").lower().startswith("bot") and not tp(s.get("placed")):
+            try:
+                f = fill_for({**s, "price": None}, fills)   # price-blind match: game + league + bet
+            except Exception:
+                f = None
+            if f and f.get("decided_utc"):
+                s["placed_bot"] = f["decided_utc"]
+                if (rec.get("plimit") or {}).get("why"):   # a failed read on a stale time: read it again
+                    for fld in ("clv", "close_p", "eff_am", "close_am", "how", "age_min", "scored", "plimit"):
+                        rec.pop(fld, None)
     for k, rec in st["bets"].items():   # Nov 2 (Peter "do it"): Novig losses now carry their price from the tracker - retry them
         if rec.get("why") == "no price on the bet" and eff_dec(rec["snap"]):
             for x in ("done", "tries", "why"):
@@ -807,7 +820,7 @@ def main():
             # Nov 4: bot rows carry no 'placed' (positions have no order time) -> fall back to when the tracker, then
             # this ledger, first saw the bet (<= ~2h after placement; the limit read is the last Pinnacle tick before it)
             when, basis = None, None
-            for fld, nm in (("placed", "placed"), ("decided_utc", "placed"), ("first_seen", "first seen (tracker)")):
+            for fld, nm in (("placed", "placed"), ("decided_utc", "placed"), ("placed_bot", "bot decision"), ("first_seen", "first seen (tracker)")):
                 when = tp(s.get(fld))
                 if when:
                     basis = nm
