@@ -1,6 +1,74 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-04T11:10:17Z",
+   "base_depth": 89606,
+   "best_price": 0.5574,
+   "best_price_american": -126,
+   "best_price_book": "kalshi",
+   "bid_improved": true,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.54,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-04",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -104261,
+     "new_this_side": 97471,
+     "other_side": 132501,
+     "other_side_all_levels": 193167,
+     "ratio": 1.1,
+     "this_side": 145063,
+     "this_side_all_levels": 254866
+    }
+   },
+   "fade_price": 0.47,
+   "first_seen_utc": "2026-11-04T11:00:24Z",
+   "game": "Halys vs Tiafoe",
+   "key": "kalshi|KXATPMATCH-26NOV04HALTIA|ml|1",
+   "lead_min": 110,
+   "league": "TENNIS",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 97471,
+   "paper_only": true,
+   "price": 0.54,
+   "price_american": -117,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.46,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXATPMATCH-26NOV04HALTIA-TIA"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Tiafoe",
+   "side_label": "Tiafoe",
+   "start_source": "kalshi",
+   "start_utc": "2026-11-04T13:00:00Z",
+   "teams": [
+    "Halys",
+    "Tiafoe"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-04T10:50:22Z",
    "base_depth": 168223,
    "best_price": 0.525,
@@ -47,6 +115,8 @@
    "new_money": 26379,
    "paper_only": true,
    "price": 0.52,
+   "price_after_15m": 0.525,
+   "price_after_15m_book": "novig",
    "price_american": -108,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.52,
@@ -69,6 +139,7 @@
    "side_label": "Humbert",
    "start_source": "novig",
    "start_utc": "2026-11-04T15:40:00Z",
+   "still_actionable": true,
    "teams": [
     "Berrettini",
     "Humbert"
@@ -707,6 +778,7 @@
     "polymarket",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.64,
    "clv_cents": -1.0,
    "confirmed_after_min": 10,
@@ -1268,8 +1340,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.81,
-   "clv_cents": 0.0,
+   "close_price": 0.8,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-04",
    "depth_by_book": {

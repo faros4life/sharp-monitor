@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 4, 6:00 AM ET. This run: 0 new, 1 not confirmed, 3 pending. Open alerts: 17.
+Updated Wed Nov 4, 6:10 AM ET. This run: 1 new, 1 not confirmed, 1 pending. Open alerts: 18.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 4 6:10AM | TENNIS | Halys vs Tiafoe | moneyline: Tiafoe | kalshi | $97k | -117 |  |  | +0.0c |  | pending |
 | Nov 4 5:50AM | TENNIS | Berrettini vs Humbert | moneyline: Humbert | kalshi | $26k | -108 | ✅ novig |  | +0.0c |  | pending |
 | Nov 4 5:20AM | TENNIS | Tjen vs Garland | moneyline: Tjen | kalshi | $28k | -233 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 4 3:50AM | TENNIS | Liu vs Boulter | moneyline: Boulter | kalshi | $112k | -257 |  |  | +0.0c |  | L |
@@ -26,7 +27,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 3 6:30PM | NCAAB | Longwood vs Saint Joseph's | moneyline: Saint Joseph's | kalshi | $58k | -456 |  |  | -1.0c | yes | pending |
 | Nov 3 3:20PM | TENNIS | Ruud vs Jodar | moneyline: Ruud | kalshi | $914k | -113 |  |  | +8.0c |  | W |
 | Nov 3 2:40PM | TENNIS | Paul vs Merida | moneyline: Paul | kalshi | $85k | -376 |  |  | +2.0c |  | pending |
-| Nov 3 2:40PM | TENNIS | Djokovic vs Hijikata | moneyline: Djokovic | kalshi | $93k | -426 |  |  | +0.0c |  | pending |
+| Nov 3 2:40PM | TENNIS | Djokovic vs Hijikata | moneyline: Djokovic | kalshi | $93k | -426 |  |  | -1.0c |  | pending |
 | Nov 3 2:30PM | TENNIS | Etcheverry vs de Minaur | moneyline: de Minaur | kalshi | $100k | -426 |  |  | +2.0c |  | pending |
 | Nov 3 12:40PM | TENNIS | Shelton vs Norrie | moneyline: Shelton | kalshi | $42k | -257 | ✅ novig |  | +0.0c | yes | W |
 | Nov 3 5:20AM | TENNIS | Zverev vs Musetti | moneyline: Zverev | kalshi | $35k | -233 |  |  | +0.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 24 3:50AM | TENNIS | Fernandez vs Bouzkova | moneyline: Bouzkova | kalshi | $90k | -156 |  |  | +0.0c |  | L |
 | Oct 24 3:00AM | TENNIS | Medvedev vs Bublik | moneyline: Medvedev | kalshi | $26k | -186 | ✅ novig |  | +32.0c | yes | W |
 | Oct 24 1:50AM | MLB | Tampa Bay Rays vs. Milwaukee Brewers | moneyline: Tampa Bay Rays | polymarket | $110k | +113 | ✅ kalshi |  | +1.0c |  | L |
-| Oct 24 12:10AM | MLB | Tampa Bay vs Milwaukee: Spread | spread: NOT Milwaukee wins by over 1.5 runs | kalshi | $27k | -213 |  |  | +10.0c | yes | W |
