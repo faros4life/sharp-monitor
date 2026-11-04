@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 4, 8:10 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 15.
+Updated Wed Nov 4, 8:20 AM ET. This run: 0 new, 1 not confirmed, 0 pending. Open alerts: 13.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 122-78 (-10.09u flat) | rule met: 33-30
+**Record:** 123-79 (-10.53u flat) | rule met: 33-30
 
-**Fade (paper, betting against the print):** 53-87 (+11.45u flat, after fees)
+**Fade (paper, betting against the print):** 54-88 (+10.95u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -16,9 +16,9 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 4 5:50AM | TENNIS | Berrettini vs Humbert | moneyline: Humbert | kalshi | $26k | -108 | ✅ novig |  | +1.0c |  | pending |
 | Nov 4 5:20AM | TENNIS | Tjen vs Garland | moneyline: Tjen | kalshi | $28k | -233 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 4 3:50AM | TENNIS | Liu vs Boulter | moneyline: Boulter | kalshi | $112k | -257 |  |  | +0.0c |  | L |
-| Nov 4 2:00AM | TENNIS | Joint vs Sakkari | moneyline: Sakkari | kalshi | $35k | -186 |  |  | -1.0c | yes | pending |
+| Nov 4 2:00AM | TENNIS | Joint vs Sakkari | moneyline: Sakkari | kalshi | $35k | -186 |  |  | -1.0c | yes | W |
 | Nov 4 1:50AM | TENNIS | Stojsavljevic vs Kenin | moneyline: Stojsavljevic | kalshi | $38k | -178 |  |  | +15.0c |  | W |
-| Nov 4 1:40AM | TENNIS | Joint vs Sakkari | moneyline: Joint | kalshi | $30k | +178 |  |  | +1.0c | yes | pending |
+| Nov 4 1:40AM | TENNIS | Joint vs Sakkari | moneyline: Joint | kalshi | $30k | +178 |  |  | +1.0c | yes | L |
 | Nov 4 1:00AM | TENNIS | Halys vs Tiafoe | moneyline: Halys | kalshi | $52k | +144 |  |  | +1.0c | yes | W |
 | Nov 4 1:00AM | TENNIS | Fils vs Machac | moneyline: Fils | kalshi | $33k | -170 |  |  | -1.0c |  | pending |
 | Nov 4 12:20AM | TENNIS | Michelsen vs Alcaraz | moneyline: Michelsen | kalshi | $263k | +525 |  |  | +0.0c |  | pending |
