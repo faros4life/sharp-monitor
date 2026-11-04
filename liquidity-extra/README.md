@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 3, 9:50 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 9.
+Updated Tue Nov 3, 10:00 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 10.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 3 10:00PM | TENNIS | Michelsen vs Alcaraz | moneyline: Alcaraz | kalshi | $94k | -525 |  |  | +0.0c |  | pending |
 | Nov 3 8:00PM | TENNIS | Molcan vs Fritz | moneyline: Fritz | kalshi | $101k | -376 |  |  | +0.0c |  | pending |
 | Nov 3 6:40PM | NCAAB | Queens University vs Loyola Marymount | moneyline: Loyola Marymount | kalshi | $35k | -245 |  |  | +1.0c |  | pending |
 | Nov 3 6:30PM | NCAAB | Longwood vs Saint Joseph's | moneyline: Saint Joseph's | kalshi | $58k | -456 |  |  | -1.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 23 6:00PM | TENNIS | Fils vs Struff | moneyline: Fils | kalshi | $27k | -456 |  |  | -81.0c | yes | L |
 | Oct 23 5:54PM | MLB | Tampa Bay Rays vs. Milwaukee Brewers | moneyline: Milwaukee Brewers | polymarket | $75k | -178 | ✅ kalshi,prophetx |  | +0.0c | yes | W |
 | Oct 23 5:17PM | MLB | Tampa Bay vs Milwaukee: Total Runs | total: NOT Over 6.5 runs scored | kalshi | $159k | +104 | ✅ polymarket |  | +29.0c | yes | W |
-| Oct 23 4:46PM | TENNIS | Van Assche vs Musetti | moneyline: Musetti | kalshi | $85k | -203 |  |  | +12.0c | yes | W |
