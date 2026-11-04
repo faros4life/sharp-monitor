@@ -67,7 +67,7 @@ def main():
                 got = [b for b in grp if (((h or {}).get("bookmakers") or {}).get(b) or {}).get("markets")]
                 print(f"history probe: {lg} game {s:%m-%d %H:%M}Z group {'+'.join(grp)}: ok, markets for {len(got)} of 3")
         # Nov 4 9:37 (Wenzel, OddsPapi): on v4 the paid plan's Pinnacle slug is "pinnacle+30s", not "pinnacle"
-        for grp in (["pinnacle+30s"], ["pinnacle+30s", "hardrockbet"]):
+        for grp in (["pinnacle+30"], ["pinnacle+30", "hardrockbet"]):   # the slug list says "pinnacle+30" (no s)
             h = cl.api("/historical-odds", False, apikey=PAID, fixtureId=fid, bookmakers=",".join(grp))
             if isinstance(h, dict) and h.get("_error"):
                 body = str(h.get("_body", ""))[:160].replace(PAID, "***") if PAID else ""
