@@ -90,6 +90,30 @@ def main():
             done += 1
         if i % 25 == 0:   # progress (counts only) so a long fill can be read while it runs
             print(f"cache fill progress: {i} of {min(len(todo), MAX_GAMES)} games, errors {errs} {codes}, spacing {cl.HIST_GAP[0]:.1f}s", flush=True)
+    # Nov 4 (Peter: "before we get to full memory leave room - delete the oldest games and keep the newest"): GitHub keeps at
+    # most 10 GB of caches, so cap this one at CAP_GB (default 8). Over the cap, whole OLDEST games (by listed start, then
+    # file age for games not in the list) are deleted until it fits. Counts only in the log.
+    cap = float(os.environ.get("CAP_GB", "") or "8") * 1e9
+    if os.path.isdir(hc.DIR):
+        files = [os.path.join(hc.DIR, x) for x in os.listdir(hc.DIR)]
+        total = sum(os.path.getsize(p) for p in files)
+        if total > cap:
+            starts = {fid: cl.tp(f.get("start")) for fid, f in (st.get("fixtures") or {}).items()}
+            games = {}
+            for p in files:
+                games.setdefault(os.path.basename(p).split("__")[0], []).append(p)
+            def age(fid):
+                t = starts.get(fid)
+                return t.timestamp() if t else min(os.path.getmtime(p) for p in games[fid])
+            cut = 0
+            for fid in sorted(games, key=age):
+                if total <= cap:
+                    break
+                for p in games[fid]:
+                    total -= os.path.getsize(p)
+                    os.remove(p)
+                cut += 1
+            print(f"cache fill: over the {cap / 1e9:.0f} GB cap - removed the {cut} oldest games to make room", flush=True)
     n_files = len(os.listdir(hc.DIR)) if os.path.isdir(hc.DIR) else 0
     size = sum(os.path.getsize(os.path.join(hc.DIR, x)) for x in os.listdir(hc.DIR)) if n_files else 0
     print(f"cache fill: fixtures {len(st.get('fixtures') or {})}, needing data {len(todo)}, filled {done}, errors {errs}, "
