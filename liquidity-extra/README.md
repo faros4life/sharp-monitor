@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 4, 9:20 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 12.
+Updated Wed Nov 4, 9:30 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 11.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 123-80 (-11.53u flat) | rule met: 33-30
+**Record:** 123-81 (-12.53u flat) | rule met: 33-30
 
-**Fade (paper, betting against the print):** 55-88 (+12.61u flat, after fees)
+**Fade (paper, betting against the print):** 56-88 (+14.69u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -32,7 +32,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 3 2:40PM | TENNIS | Djokovic vs Hijikata | moneyline: Djokovic | kalshi | $93k | -426 |  |  | +0.0c |  | pending |
 | Nov 3 2:30PM | TENNIS | Etcheverry vs de Minaur | moneyline: de Minaur | kalshi | $100k | -426 |  |  | +3.0c |  | pending |
 | Nov 3 12:40PM | TENNIS | Shelton vs Norrie | moneyline: Shelton | kalshi | $42k | -257 | ✅ novig |  | +0.0c | yes | W |
-| Nov 3 5:20AM | TENNIS | Zverev vs Musetti | moneyline: Zverev | kalshi | $35k | -233 |  |  | +0.0c |  | pending |
+| Nov 3 5:20AM | TENNIS | Zverev vs Musetti | moneyline: Zverev | kalshi | $35k | -233 |  |  | +0.0c |  | L |
 | Nov 3 3:30AM | TENNIS | Zolotareva vs Stefanini | moneyline: Stefanini | kalshi | $42k | -317 |  |  | +0.0c | yes | W |
 | Nov 3 3:20AM | TENNIS | Ruud vs Jodar | moneyline: Jodar | kalshi | $39k | -178 | ✅ novig |  | -1.0c | yes | L |
 | Nov 2 11:40PM | NCAAB | North Florida vs California Baptist | moneyline: California Baptist | kalshi | $39k | -400 |  |  | +4.0c |  | L |
