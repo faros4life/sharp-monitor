@@ -1,0 +1,40 @@
+name: liq-history-test
+
+# Nov 4: liquidity alerts graded at the ALERT price vs the downloaded OddsPapi history (gettable within 60s, Pinnacle
+# true close, Pinnacle limit). Paper / measurement only. Reads the shared history cache only (restore-only; cache_only=1 =
+# no downloads). Private email; counts-only log.
+on:
+  workflow_dispatch:
+    inputs:
+      cache_only: {required: false, type: string, default: "1"}
+      get_sec: {required: false, type: string, default: "60"}
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Restore shared OddsPapi history cache (read only)
+        uses: actions/cache/restore@v4
+        with:
+          path: hcache
+          key: hcache-${{ github.run_id }}
+          restore-keys: hcache-
+      - name: Liquidity vs history (private email)
+        env:
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
+          ODDSPAPI_FREE_KEY: ${{ secrets.ODDSPAPI_FREE_KEY }}
+          LIQH_CACHE_ONLY: ${{ inputs.cache_only }}
+          LIQH_GET_SEC: ${{ inputs.get_sec }}
+        run: python -u liq_history_test.py
