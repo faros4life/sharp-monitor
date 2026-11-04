@@ -27,6 +27,7 @@ jobs:
       - name: P limit + 2X tag
         env:
           ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
+          ODDSPAPI_FREE_KEY: ${{ secrets.ODDSPAPI_FREE_KEY }}   # Nov 3: history goes through the free key (paid key: 403 on pinnacle)
         run: python -u x2_tag.py
       - name: Commit limits and fixture cache
         run: |
