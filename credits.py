@@ -122,8 +122,8 @@ def _pick(d, *names):
 def period_key(acct, now):
     """(key, label, authoritative). The provider's billing period when it reports one, else the
     calendar month with authoritative=False so the report can say the boundary is a guess."""
-    start = _pick(acct, "periodStart", "currentPeriodStart", "startsAt", "startDate")
-    end = _pick(acct, "periodEnd", "currentPeriodEnd", "endsAt", "expiresAt", "endDate")
+    start = _pick(acct, "valid_from", "periodStart", "currentPeriodStart")
+    end = _pick(acct, "valid_until", "periodEnd", "currentPeriodEnd")
     if start:
         s = tb.tparse(start)
         e = tb.tparse(end) if end else None
@@ -156,11 +156,13 @@ def report(now=None):
     now = now or datetime.now(timezone.utc)
     acct = account()
     key, plabel, auth = period_key(acct, now)
-    used = _pick(acct, "requestsUsed", "used", "requestsConsumed", "callsUsed", "usage")
-    limit = _pick(acct, "requestsLimit", "limit", "requestsIncluded", "quota", "maxRequests")
-    plan = _pick(acct, "plan", "planName", "planTitle", "tier", "productName")
-    p_start = _pick(acct, "periodStart", "currentPeriodStart", "startsAt", "startDate")
-    p_end = _pick(acct, "periodEnd", "currentPeriodEnd", "endsAt", "expiresAt", "endDate")
+    # Field names confirmed from the live response on 2026-11-05: the counters live under
+    # subscriptions[0] as request_count / request_limit, with the billing window as
+    # valid_from / valid_until. Earlier guesses ("requestsUsed", "requestsLimit") missed on the
+    # singular/plural of "request", which is why two runs reported "? of ?".
+    used = _pick(acct, "request_count", "requestsUsed", "used")
+    limit = _pick(acct, "request_limit", "requestsLimit", "limit")
+    plan = _pick(acct, "plan", "planName", "tier")
 
     L = [f"ODDSPAPI CREDIT RECONCILIATION | {now:%Y-%m-%d %H:%M} UTC",
          "",
