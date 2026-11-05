@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 5, 8:56 AM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 50.
+Updated Thu Nov 5, 9:00 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 50.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -155,7 +155,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 4 9:16AM | NBA | Charlotte vs Brooklyn: Spread | spread: NOT Charlotte wins by over 3.5 points | kalshi | $52k | -100 | ✅ polymarket |  | -2.0c | yes | W |
 | Nov 4 9:10AM | NHL | San Jose vs Los Angeles: Total Goals | total: Over 6.5 goals scored | kalshi | $30k | +122 |  |  | +1.0c | yes | W |
 | Nov 4 9:10AM | NHL | San Jose vs Los Angeles: Spread | spread: Los Angeles wins by over 1.5 goals | kalshi | $26k | +170 |  |  | +2.0c | yes | W |
-| Nov 4 9:10AM | NFL | Jacksonville vs Baltimore: Total Points | total: NOT Over 39.5 points | kalshi | $323k | +104 |  |  | +3.0c | yes | pending |
+| Nov 4 9:10AM | NFL | Jacksonville vs Baltimore: Total Points | total: NOT Over 39.5 points | kalshi | $323k | +104 |  |  | +2.0c | yes | pending |
 | Nov 4 9:10AM | NFL | Jacksonville vs Baltimore: Spread | spread: NOT Jacksonville wins by over 9.5 points | kalshi | $565k | +104 | ✅ novig |  | -1.0c | yes | pending |
 | Nov 4 9:00AM | NBA | Hawks vs. Wizards | moneyline: Hawks | polymarket | $28k | -138 | ✅ kalshi,prophetx |  | -3.0c |  | W |
 | Nov 4 9:00AM | NBA | Atlanta vs Washington: Spread | spread: Atlanta wins by over 2.5 points | kalshi | $75k | -113 | ✅ polymarket |  | -3.0c | yes | W |
