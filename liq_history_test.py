@@ -118,7 +118,7 @@ def main():
         sd = (a.get("side") or "").upper()
         R.append({"lg": lg, "mk": a["market"], "day": t0.astimezone(ET).strftime("%Y-%m-%d"), "lead": lead,
                   "side": sd if sd in ("OVER", "UNDER") else a["market"], "book": a.get("book"),
-                  "size_x": size_x(a), "quiet": not a.get("sharp_agree") and not a.get("sharp_oppose"),
+                  "size_x": size_x(a), "nm": a.get("new_money"), "quiet": not a.get("sharp_agree") and not a.get("sharp_oppose"),
                   "agree": bool(a.get("sharp_agree")), "pulled": bool(a.get("pulled")),
                   "gettable": best is not None and best >= want - 1e-9, "best": best, "best_bk": best_bk,
                   "clv": round(100 * (c["p"] * want - 1), 2), "u": units(res, want),
@@ -160,7 +160,20 @@ def main():
                   ("Kalshi trigger", lambda r: r["book"] == "kalshi"), ("Polymarket trigger", lambda r: r["book"] == "polymarket"),
                   ("Pinnacle limit rising 1.5x+ (vs 2h before)", lambda r: (r["lim_x"] or 0) >= 1.5),
                   ("Pinnacle limit not rising", lambda r: r["lim_x"] is not None and r["lim_x"] < 1.5),
-                  ("no Pinnacle limit read", lambda r: r["lim"] is None)):
+                  ("no Pinnacle limit read", lambda r: r["lim"] is None),
+                  # Nov 4 (Peter + Muse): the print-size split. On the board's own close, NBA totals 4h+ with a
+                  # 25-50k print is +18.22u on 80 (both halves) while 50k+ is negative. These rows grade that same
+                  # split at the ALERT price against PINNACLE'S no-vig close - the test that decides whether the
+                  # candidate cell is a lane or a hot streak.
+                  ("print under 25k", lambda r: (r["nm"] or 0) < 25_000),
+                  ("print 25-50k  <= THE CANDIDATE", lambda r: 25_000 <= (r["nm"] or 0) < 50_000),
+                  ("print 50-100k", lambda r: 50_000 <= (r["nm"] or 0) < 100_000),
+                  ("print 100k+", lambda r: (r["nm"] or 0) >= 100_000),
+                  ("print 25-50k, unders", lambda r: 25_000 <= (r["nm"] or 0) < 50_000 and r["side"] == "UNDER"),
+                  ("print 25-50k, overs", lambda r: 25_000 <= (r["nm"] or 0) < 50_000 and r["side"] == "OVER"),
+                  ("print 25-50k, quiet (no sharp tag)", lambda r: 25_000 <= (r["nm"] or 0) < 50_000 and r["quiet"]),
+                  ("print 25-50k, 4-12h", lambda r: 25_000 <= (r["nm"] or 0) < 50_000 and r["lead"] < 12),
+                  ("print 25-50k, 12h+", lambda r: 25_000 <= (r["nm"] or 0) < 50_000 and r["lead"] >= 12)):
         L.append(f"   {nm}: {st_([r for r in rule if f(r)])}")
     lims = sorted(r["lim"] for r in rule if r["lim"])
     if len(lims) >= 9:
