@@ -337,6 +337,36 @@ def fixture_check(st, rec):
     return "doubt", f"stored fixture does not pass the matcher ({len(q)} other(s) qualify)"
 
 
+def identity_check(rec):
+    """Was the row's GAME identity established, or inherited from a one-team ESPN match?
+
+    Nov 5 (Peter): "validate the original game identity, not just the fixture assigned by the
+    tracker." tracker_build.match_game returns a game on score==1 when the league is known:
+        return best if score >= 2 or (score == 1 and bet.get("league")) else None
+    espn_fill then OVERWRITES s["teams"] with that game's two teams. find_fixture afterwards matches
+    a fixture against those teams and passes the two-token floor and the uniqueness test - because it
+    is checking against the data the upstream error wrote. The downstream matcher therefore cannot
+    catch this class of mistake at all; it can only confirm it.
+    s["bet"] and s["game"] are never overwritten, so the bet's ORIGINAL text is an independent
+    witness: it must support BOTH assigned teams, and any tracker date must agree with the game."""
+    s = rec.get("snap") or {}
+    if not s.get("espn_filled"):
+        return "ok", ""                  # the tracker supplied the game - nothing was inherited
+    tms = [(t.get("name") or "").strip() for t in (s.get("teams") or []) if (t.get("name") or "").strip()]
+    if len(tms) < 2:
+        return "doubt", "ESPN-filled row without two named teams"
+    own = (tb.toks(s.get("bet")) | tb.toks(s.get("game"))) - tb.WEAK
+    if not own:
+        return "doubt", "ESPN-filled and the bet's own text names no team - identity unverifiable"
+    hits = sum(1 for t in tms if (tb.toks(t) - tb.WEAK) & own)
+    if hits < 2:
+        return "doubt", f"ESPN-filled: the bet's own text supports {hits} of the 2 assigned teams"
+    d, gs = tp((s.get("date") or "") + "T12:00:00Z") if s.get("date") else None, tp(s.get("game_start"))
+    if d and gs and abs((gs - d).total_seconds()) > 36 * 3600:
+        return "doubt", "ESPN-filled: assigned game date disagrees with the tracker's own date"
+    return "ok", ""
+
+
 def which_team(f, team_text):
     w = tb.toks(team_text)
     a, c = len(tb.toks(f["p1"]) & w), len(tb.toks(f["p2"]) & w)
@@ -929,16 +959,33 @@ def main():
     for k, rec in st["bets"].items():
         if rec.get("clv") is None:
             continue
-        verdict, why_ = fixture_check(st, rec)
-        if verdict == "doubt" and not rec.get("fixture_doubt"):
-            rec["fixture_doubt"] = {"since": iso(now), "why": why_}
+        fv, fw = fixture_check(st, rec)
+        iv, iw = identity_check(rec)
+        if (fv == "doubt" or iv == "doubt") and not rec.get("fixture_doubt"):
+            rec["fixture_doubt"] = {"since": iso(now), "why": (fw if fv == "doubt" else iw)}
+        elif fv == "ok" and iv == "ok":
+            # Durable record of an independent validation, keyed to the fixture it validated. Keeps
+            # the FIRST date, so a row checked while its fixture was cached is not punished later when
+            # the cache rolls - that is the "durable record of prior validation" Peter asked for.
+            if (rec.get("fixture_ok") or {}).get("fixture") != rec.get("fixture"):
+                rec["fixture_ok"] = {"at": iso(now), "fixture": rec.get("fixture")}
     all_scored = sorted([dict(r, id=k) for k, r in st["bets"].items() if r.get("clv") is not None],
                         key=lambda r: r.get("scored") or "")
     held = [r for r in all_scored if r.get("fixture_doubt")]        # sticky - out of every figure
     hid = {r["id"] for r in held}
-    scored = [r for r in all_scored if r["id"] not in hid]
-    unvalidated = [(r, fixture_check(st, r)[1]) for r in scored
-                   if fixture_check(st, r)[0] == "unvalidatable"]
+    rest = [r for r in all_scored if r["id"] not in hid]
+
+    def _unverified(r):
+        """FAIL CLOSED (Peter, Nov 5): a row with no currently validated fixture AND no durable record
+        of a prior validation of that same fixture is excluded, not counted. Previously these were
+        counted, which let an unverifiable row sit inside the verified headline."""
+        if fixture_check(st, r)[0] != "unvalidatable":
+            return False
+        prev = r.get("fixture_ok") or {}
+        return not (prev.get("fixture") and prev["fixture"] == r.get("fixture"))
+    unvalidated = [(r, fixture_check(st, r)[1]) for r in rest if _unverified(r)]
+    uid = {r["id"] for r, _ in unvalidated}
+    scored = [r for r in rest if r["id"] not in uid]
     bot = [r for r in scored if (r["snap"].get("source") or "") == "bot"]
     man = [r for r in scored if (r["snap"].get("source") or "") != "bot"]
     alert = len(bot) >= 50 and sum(r["clv"] for r in bot[-50:]) / 50 < 0
@@ -969,8 +1016,10 @@ def main():
                 L.append(f"      re-checked now: {now_v}" + (f" - {now_w}" if now_w else "")
                          + ". Stays out until the real game is established and the CLV recalculated.")
         if unvalidated:
-            L += ["", f"UNVALIDATED ({len(unvalidated)}) - fixture no longer in the cache, so the assignment cannot",
-                  "be judged either way. These ARE counted above; flagged so they are not read as a clean check."]
+            L += ["", f"EXCLUDED AS UNVERIFIED ({len(unvalidated)}) - no currently validated fixture and no durable",
+                  "record of a prior validation of that same fixture, so the assignment cannot be verified at all.",
+                  "These are NOT counted above: the headline fails closed rather than carry an unverifiable row.",
+                  "A row validated earlier, while its fixture was cached, keeps that validation and stays counted."]
             for r, why_ in unvalidated:
                 s = r["snap"]
                 L.append(f"  {s.get('league') or '?'} {s.get('book') or '?'} {(s.get('bet') or '')[:26]} | "
