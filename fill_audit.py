@@ -47,6 +47,7 @@ def main():
         cl.refresh_fixtures(st, now, lg, (FROM - timedelta(days=1)).astimezone(ET), (now + timedelta(days=1)).astimezone(ET))
     R, miss = [], {"no fixture": 0, "game not finished": 0, "history error": 0, "no close": 0, "alert line on no book": 0,
                    "not in cache yet": 0}
+    drops = {}   # per-book quote-reads rejected as misreads (> +15% vs the close), by slug
     for a in alerts:
         lg, t0 = a["sport"], cl.tp(a["alert_utc"])
         b = {"bet": a.get("bet"), "league": lg, "game": a.get("game"), "game_start": a.get("start_utc"), "book": a.get("book")}
@@ -97,13 +98,20 @@ def main():
              "alert_clv": round(100 * (c["p"] * want - 1), 2),
              "seen": (q["t0"][own] is not None and q["t0"][own] >= want - TOL) if own else None}
         for lab in ("t1", "t5"):
-            ups = [v for v in q[lab].values() if v and c["p"] * v - 1 <= 0.15]   # Nov 4: drop misreads (> +15% vs the close), as P1
+            # Nov 4: drop misreads (> +15% vs the close), as P1. Nov 5 (Muse found Polymarket US printing CLV +63.7%):
+            # the same test now gates the PER-BOOK columns below as well. It used to gate only the cross-book best, so a
+            # bad quote was excluded from `best` and still printed in that book's own CLV and hit rate - that was +63.7%.
+            ok = {s: (v is not None and c["p"] * v - 1 <= 0.15) for s, v in q[lab].items()}
+            for s, v in q[lab].items():
+                if v is not None and not ok[s]:
+                    drops[s] = drops.get(s, 0) + 1
+            ups = [v for s, v in q[lab].items() if v and ok[s]]
             best = max(ups) if ups else None
             r[f"get_{lab}"] = best is not None and best >= want - TOL
             r[f"clv_{lab}"] = round(100 * (c["p"] * best - 1), 2) if best else None
             r[f"u_{lab}"] = (best - 1 if a.get("result") == "W" else -1.0 if a.get("result") == "L" else 0.0 if a.get("result") == "P" else None) if best else None
             for slug in BOOKS:
-                v = q[lab][slug]
+                v = q[lab][slug] if ok[slug] else None   # a misread counts as no quote, never as a good one
                 r[f"{slug}_{lab}"] = None if v is None else (v >= want - TOL)
                 r[f"{slug}_clv_{lab}"] = round(100 * (c["p"] * v - 1), 2) if v else None
         R.append(r)
@@ -136,9 +144,12 @@ def main():
          "SENT ALERTS (primary):"]
     L += row("ALL (not LATE)", J) + row("FIT", [x for x in J if x["day"] <= mid]) + row("CHECK", [x for x in J if x["day"] > mid])
     L += row("LATE (final 30 min)", [x for x in S if x["late"]])
-    L += ["", "PER BOOK (sent, not LATE): alert line at the alert price or better on that book / CLV at that book's price"]
+    L += ["", "PER BOOK (sent, not LATE): alert line at the alert price or better on that book / CLV at that book's price",
+          "  A quote implying better than +15% vs the close is dropped as a misread here too, not only in the cross-book best."]
     for slug, nm in BOOKS.items():
-        L.append(f"  {nm}: +1 {pct(J, f'{slug}_t1')}, +5 {pct(J, f'{slug}_t5')} | CLV +1 {cl_(J, f'{slug}_clv_t1')} | +5 {cl_(J, f'{slug}_clv_t5')}")
+        d = drops.get(slug, 0)
+        L.append(f"  {nm}: +1 {pct(J, f'{slug}_t1')}, +5 {pct(J, f'{slug}_t5')} | CLV +1 {cl_(J, f'{slug}_clv_t1')} | +5 {cl_(J, f'{slug}_clv_t5')}"
+                 + (f" | {d} misread quote-read(s) dropped" if d else ""))
     L += ["", "BY ALERTED BOOK (sent, not LATE):"]
     for bk in sorted({x["book"] for x in J}):
         L += row(bk, [x for x in J if x["book"] == bk])
