@@ -1616,8 +1616,13 @@ def run():
                                      "this price is still there; check the max bet it allows"
                                      + (f" | Pinnacle {a['pin_line']:g} vs this bet {a['pt']:g}"
                                         if a.get("pin_line") is not None and a.get("pt") is not None else "")
-                                     + (f" | EV CONVERTED {_cv:g} pt from Pinnacle's number - treat the % as UNVERIFIED"
-                                        if _cv else " | same line as Pinnacle, no conversion"))
+                                     # Nov 5 (Peter's correction): conv 0 and conv None are BOTH falsy, so the old
+                                     # branch lumped them together and mislabelled the one verified kind. Separate:
+                                     # conv == 0 is the same-line comparison, conv None has no line to convert at all
+                                     # (run / puck line - a price move at a fixed 1.5), conv > 0 is UNVERIFIED.
+                                     + (" | No line conversion - run/puck-line price comparison." if _cv is None
+                                        else " | same line as Pinnacle, no conversion" if _cv == 0
+                                        else f" | EV CONVERTED {_cv:g} pt from Pinnacle's number - treat the % as UNVERIFIED"))
                         # Nov 1 (Peter): the phone gets the play alert for LIVE (phase-1) plays, then the bot's fill or
                         # resting-bid message; PAPER alerts stay muted (PUSH_SHARP_ALERTS=on unmutes them too)
                         (notify if (PUSH_SHARP or p1_ok or hr_ev) else (lambda *x, **y: print("push muted: paper alert logged only")))(
