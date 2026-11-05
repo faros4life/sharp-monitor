@@ -1590,17 +1590,17 @@ def run():
                             label = "PAPER - don't bet (" + "; ".join(p1_why[:2]) + ")"
                         # Nov 3 (Peter yes 8:07 AM): SLOW-HR-EV paper ping - Hard Rock-priced alert whose after-fee price is
                         # >= +2% vs Pinnacle's new no-vig fair. Paper only: check the app's price and the max bet it allows.
-                        # Nov 5 (Peter, bound approved): PUSH SUPPRESSION ONLY, not data suppression. An alert with
-                        # conv > 0.5 still records, still grades, still fills the forward log at every distance - it just
-                        # does not raise an actionable notification. Reason, so this is not reopened: same-line Hard Rock
-                        # was 0 of 602 at +2% overnight (~93% worse than -2% EV), while a CONVERTED % can be manufactured
-                        # by walking half_point_value 6+ points into a clamp. Measuring does not require leaving an
-                        # actionable alert unbound. The bound is revisited on the conv-bucket table, and may loosen or
-                        # tighten to same-line only. conv None (moneyline / run line) means no conversion and passes.
+                        # Nov 5 ~6:54 AM (Peter, REVERSING the 11:41 UTC bound): "don't limit the pushes, let's see how
+                        # many I get and adjust. Show me all HR lag." The conv <= 0.5 push condition is REMOVED - every
+                        # conversion distance pushes again, and all six sports flag (hr_scanner.FLAG_LEAGUES). What
+                        # STAYS from commit d306dead is the LABELLING: pin_line and conv ride on every alert, and the
+                        # push prints Pinnacle's line, the bet's line, and either "same line" or "EV CONVERTED N pt -
+                        # treat the % as UNVERIFIED". Volume is COUNTED by league x conversion bucket
+                        # (hr_scanner.count_push) so the next adjustment is made on observed numbers, not on argument.
+                        # +2% remains the flag's definition, not a limit. Scanner flags still stop inside T-30.
                         hr_ev = (a.get("book") in ("hardrockbet", "hardrockbet_fl") and a.get("evp") is not None
                                  and a["evp"] >= 2.0 and not p1_ok
-                                 and (a.get("conv") or 0) <= 0.5
-                                 and cfg["label"] in hr_scanner.FLAG_LEAGUES)   # Nov 4 12:29: no Hard Rock pings for NHL
+                                 and cfg["label"] in hr_scanner.FLAG_LEAGUES)
                         if hr_ev:   # Nov 4 9:09 (Peter "fix double ping"): one Hard Rock ping per game / market / side
                             _hk = f"{a.get('ev')}|{'totals' if a.get('kind') == 'tot' else 'spreads'}|{a.get('side')}"
                             if hr_scanner.pinged(HRS, _hk):
@@ -1610,6 +1610,7 @@ def run():
                                 hr_scanner.mark(HRS, _hk)
                         if hr_ev:
                             # Nov 3 (Peter 1:51 PM): Hard Rock alerts to the phone = edge >= 2% only, as a MANUAL bet alert
+                            hr_scanner.count_push(HRS, cfg["label"], a.get("conv"), now_utc(), "alert")
                             _cv = a.get("conv")
                             label = (f"HARD ROCK EDGE {a['evp']:+.1f}% vs Pinnacle fair - MANUAL BET: open Hard Rock, bet only if "
                                      "this price is still there; check the max bet it allows"
