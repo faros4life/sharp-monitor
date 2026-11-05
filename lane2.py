@@ -163,7 +163,12 @@ def decide(a, now, mkmap):
     live = _live(lg, now)
     fid, f = _fixture(a, lg, now, live)
     bo = ((live.get(fid) or {}).get("bookmakerOdds") or {}) if fid else {}
-    pm = ((bo.get(_BOOK["slug"]) or bo.get("pinnacle") or next(iter(bo.values()), None) or {}).get("markets")) or {}
+    # Nov 5 (Peter, urgent before the Friday package): there WAS a fallback to next(iter(bo.values())) here - if
+    # neither Pinnacle slug was present it took whatever bookmaker happened to be first in the dict and compared THAT
+    # book's limits against the frozen PINNACLE-derived league x market medians, producing LOW / HIGH labels from an
+    # unidentified book. Verified Pinnacle only now; anything else is NO_LIMIT, never a label.
+    pin = bo.get("pinnacle") or bo.get("pinnacle+30") or {}
+    pm = pin.get("markets") or {}
     if not fid:
         STATS["no_fixture"] += 1
     b = {"bet": a.get("bet"), "league": lg, "game": a.get("game"), "game_start": a.get("start_utc"), "book": a.get("book")}
