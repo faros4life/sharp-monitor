@@ -1,0 +1,29 @@
+name: grade-audit
+
+# READ-ONLY historical grading audit (Nov 5 2026, on Peter's written approval). Dispatch only.
+# Writes nothing - no state, no commit step at all. Holds NO OddsPapi key: the only external reads
+# are ESPN scoreboards (site.api.espn.com), which are free, so this job cannot spend a credit.
+# The log prints counts only; row-level detail and any dollar figures go to the private email.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Grading audit (private email)
+        env:
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+        run: python -u grade_audit.py
