@@ -134,7 +134,7 @@ async function load(){
     const r=await fetch(SRC+"?t="+Date.now(),{cache:"no-store"});
     if(!r.ok)throw new Error(r.status);
     D=await r.json();
-    document.getElementById("upd").textContent="updated "+new Date(D.updated_utc).toLocaleTimeString("en-US",{timeZone:"America/New_York",hour:"numeric",minute:"2-digit"})+" ET";
+    document.getElementById("upd").textContent="updated "+new Date(D.updated_utc).toLocaleTimeString("en-US",{timeZone:"America/New_York",hour:"numeric",minute:"2-digit"})+" ET"+(D.credits_left!=null?" · "+Number(D.credits_left).toLocaleString()+" credits":"");
     chips();render();
   }catch(err){
     document.getElementById("upd").textContent="couldn't load — retrying";

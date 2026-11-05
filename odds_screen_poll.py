@@ -49,7 +49,7 @@ def main():
         for ev in events:
             ev["commence_time"] = sm.listed_start(cfg["label"], ev["commence_time"])
             odds_screen.add(lg, ev, sm.book_lines(ev), [tuple(x) for x in t25.get(ev["id"], [])], sm.RETAIL, sm.SHARP)
-    odds_screen.save(sm.RETAIL, sm.SHARP, sm.NAMES)
+    odds_screen.save(sm.RETAIL, sm.SHARP, sm.NAMES, rem)
     d = json.load(open(odds_screen.FILE))
     d["fast_poll"] = round(now)
     with open(odds_screen.FILE, "w") as f:

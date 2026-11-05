@@ -88,7 +88,7 @@ def add(label, event, lines, rank_info, show_books, sharp):
         "t25": [[t, r] for t, r in (rank_info or [])], "books": books, "fair": fair, "links": links})
 
 
-def save(retail, sharp, names):
+def save(retail, sharp, names, remaining=None):
     """Merge this run's sports into the published file."""
     try:
         old = json.load(open(FILE))
@@ -118,7 +118,8 @@ def save(retail, sharp, names):
     out = {"updated_utc": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
            "books": list(retail), "sharp": sharp,
            "names": {b: names.get(b, b) for b in list(retail) + [sharp]},
-           "sports": sports, "games": games}
+           "sports": sports, "games": games,
+           "credits_left": remaining if remaining is not None else old.get("credits_left")}
     tmp = FILE + ".tmp"
     with open(tmp, "w") as f:
         json.dump(out, f, separators=(",", ":"))

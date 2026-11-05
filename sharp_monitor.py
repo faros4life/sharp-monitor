@@ -1693,7 +1693,7 @@ def run():
     except Exception as _x:
         print(f"hr scanner save failed: {str(_x)[:60]}")
     try:
-        odds_screen.save(RETAIL, SHARP, NAMES)
+        odds_screen.save(RETAIL, SHARP, NAMES, st.get("remaining"))
     except Exception as _x:
         print(f"odds screen save failed: {str(_x)[:60]}")
     write_summary(st, n)
