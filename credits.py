@@ -101,17 +101,29 @@ def _shape(d):
 
 
 def _pick(d, *names):
-    for n in names:
-        if d.get(n) is not None:
-            return d[n]
+    """Look for a field at the top level AND inside subscriptions[0].
+
+    The first run showed /account carries no usage field at the top level - the plan and its counters
+    sit under subscriptions[0] - so a top-level-only search reported '? of ?' and the whole point of
+    the reconciliation was lost. Names are matched case-insensitively and ignoring underscores, since
+    the provider uses snake_case inside subscriptions where the docs use camelCase.
+    """
+    def norm(x):
+        return str(x).replace("_", "").lower()
+    wanted = {norm(n) for n in names}
+    subs = (d or {}).get("subscriptions")
+    for scope in ((d or {}), (subs[0] if isinstance(subs, list) and subs and isinstance(subs[0], dict) else {})):
+        for k, v in scope.items():
+            if norm(k) in wanted and v is not None:
+                return v
     return None
 
 
 def period_key(acct, now):
     """(key, label, authoritative). The provider's billing period when it reports one, else the
     calendar month with authoritative=False so the report can say the boundary is a guess."""
-    start = _pick(acct, "periodStart", "currentPeriodStart", "period_start")
-    end = _pick(acct, "periodEnd", "currentPeriodEnd", "period_end")
+    start = _pick(acct, "periodStart", "currentPeriodStart", "startsAt", "startDate")
+    end = _pick(acct, "periodEnd", "currentPeriodEnd", "endsAt", "expiresAt", "endDate")
     if start:
         s = tb.tparse(start)
         e = tb.tparse(end) if end else None
@@ -144,9 +156,11 @@ def report(now=None):
     now = now or datetime.now(timezone.utc)
     acct = account()
     key, plabel, auth = period_key(acct, now)
-    used = _pick(acct, "requestsUsed", "used", "requests_used")
-    limit = _pick(acct, "requestsLimit", "limit", "requests_limit")
-    plan = _pick(acct, "plan", "planName")
+    used = _pick(acct, "requestsUsed", "used", "requestsConsumed", "callsUsed", "usage")
+    limit = _pick(acct, "requestsLimit", "limit", "requestsIncluded", "quota", "maxRequests")
+    plan = _pick(acct, "plan", "planName", "planTitle", "tier", "productName")
+    p_start = _pick(acct, "periodStart", "currentPeriodStart", "startsAt", "startDate")
+    p_end = _pick(acct, "periodEnd", "currentPeriodEnd", "endsAt", "expiresAt", "endDate")
 
     L = [f"ODDSPAPI CREDIT RECONCILIATION | {now:%Y-%m-%d %H:%M} UTC",
          "",
