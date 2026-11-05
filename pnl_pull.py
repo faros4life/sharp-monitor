@@ -36,12 +36,27 @@ UNIT = float(os.environ.get("EXEC_UNIT", "") or "200")
 
 
 def rows():
+    """The bet records, whatever shape the state holds them in.
+
+    tracker_build builds state = {"bets": {}} - a DICT keyed by bet id, not a list. The first
+    version of this pull required a list and so reported 0 rows against a populated state. It now
+    accepts either, and falls back to scanning for the largest collection of dicts that look like
+    bet records, so a future reshape degrades to a wrong label rather than a silent zero.
+    """
     st = tb.dec(json.load(open(STATE)))
-    for key in ("all", "bets", "rows"):
+    for key in ("bets", "all", "rows"):
         v = (st or {}).get(key)
+        if isinstance(v, dict) and v:
+            return list(v.values()), f"{key} (dict of {len(v)})"
         if isinstance(v, list) and v:
-            return v, key
-    return [], "(none found)"
+            return v, f"{key} (list)"
+    best, where = [], "(nothing bet-shaped found)"
+    for k, v in (st or {}).items():
+        cand = list(v.values()) if isinstance(v, dict) else (v if isinstance(v, list) else [])
+        cand = [x for x in cand if isinstance(x, dict) and ("bet" in x or "result" in x)]
+        if len(cand) > len(best):
+            best, where = cand, f"{k} (scanned)"
+    return best, where
 
 
 def num(x):
@@ -59,7 +74,12 @@ def main():
         ex.send("Bets BOT FILL P&L (failed)", f"could not read {STATE}: {str(e)[:200]}")
         print(f"pnl pull: state unreadable ({str(e)[:60]})")
         return
-    L += [f"tracker state: {len(R)} rows, read from st[{where!r}]", ""]
+    try:
+        top = sorted((tb.dec(json.load(open(STATE))) or {}).keys())
+    except Exception:
+        top = []
+    L += [f"tracker state: {len(R)} rows, read from st[{where!r}]",
+          f"  top-level keys present: {top}", ""]
 
     # ---- inventory first: do not invent a lane marker
     srcs = Counter(str(b.get("source") or "(none)") for b in R)
