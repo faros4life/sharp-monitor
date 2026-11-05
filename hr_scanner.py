@@ -20,6 +20,7 @@ SAME LINE (both sides of Pinnacle's market at that number). Everything is logged
   price. CLV vs Pinnacle's no-vig close when Pinnacle closed on the same number. Forward only, checkpoint 50, judged 100.
 hrscan.json is public like alerts.json: game, market, side, line, prices, EV, times, results. No stakes, no amounts.
 """
+import hashlib
 import json
 import os
 import re
@@ -39,6 +40,8 @@ FLAG_LEAGUES = ("NBA", "NFL", "NCAAF", "NHL", "NCAAB", "MLB")
 NO_FLAG_MIN = 30          # inside the final 30 minutes: logged, not flagged
 RECHECK_S = 300
 KEEP_DAYS = 30
+DISTINCT_DAYS = 2   # Nov 5 (Peter, option 2): rolling retention for the seen-key SETS. The distinct COUNTS keep
+                    # the full KEEP_DAYS window; only the hash sets that answer "already counted today?" are pruned.
 
 
 def _p(a):
@@ -51,8 +54,32 @@ def _dec(a):
     return 1 + (a / 100 if a > 0 else 100 / -a)
 
 
-def _bucket(conv):
-    """Conversion-distance bucket for push-volume reporting (Peter Nov 5: count it, do not gate on it)."""
+def _uid(ev_id, mk, side):
+    """Short stable id for one game x market x side. Hashed so the committed diagnostic file stays small; the
+    distinct COUNTS are what gets reported, the hash set only answers 'already counted this one today?'."""
+    return hashlib.sha1(f"{ev_id}|{mk}|{side}".encode()).hexdigest()[:10]
+
+
+def _dd(d, day, lg, mk, cat, uid):
+    """Count one game x market x side ONCE per day per category, per league and market. Opposite sides are
+    different uids, so they count separately. PROSPECTIVE ONLY - no distinct count is ever inferred from
+    aggregate polling totals; a day that predates this code simply has no distinct figures."""
+    if not uid:
+        return
+    seen = d.setdefault("seen", {}).setdefault(day, {}).setdefault(cat, {})
+    if uid in seen:
+        return
+    seen[uid] = 1
+    dd = d.setdefault("distinct", {}).setdefault(day, {})
+    k = f"{lg or '?'} {mk}: {cat}"
+    dd[k] = dd.get(k, 0) + 1
+
+
+def _convb(conv):
+    """Conversion-distance bucket for push-volume reporting (Peter Nov 5: count it, do not gate on it).
+    NAMED _convb, not _bucket: the pre-existing _bucket(v) below is the max-bet S/M/L sizer and, being defined
+    later in the module, shadowed this one - which labelled every push S/M/L and raised TypeError on conv None
+    (None < 100), i.e. it would have crashed the poll on the first run/puck-line push."""
     if conv is None:
         return "none (no line to convert)"
     try:
@@ -63,13 +90,15 @@ def _bucket(conv):
             else ">1.0-2.0" if c <= 2.0 else ">2.0")
 
 
-def count_push(d, lg, conv, now, src="alert"):
-    """Record one FIRED push, by UTC day x league x conversion bucket x source. Counts only; this file is public."""
+def count_push(d, lg, conv, now, src="alert", mk=None, ev=None, side=None):
+    """Record one FIRED push, by UTC day x league x conversion bucket x source, raw AND distinct. Counts only."""
     day = now.strftime("%Y-%m-%d")
     g = d.setdefault("pushes", {}).setdefault(day, {}).setdefault(lg or "?", {})
-    k = f"{_bucket(conv)} [{src}]"
+    k = f"{_convb(conv)} [{src}]"
     g[k] = g.get(k, 0) + 1
-    _dg(d, f"{lg or '?'} PUSH SENT [{src}] conv {_bucket(conv)}", day=day)
+    _dg(d, f"{lg or '?'} PUSH SENT [{src}] conv {_convb(conv)}", day=day)
+    if mk and ev is not None:
+        _dd(d, day, lg, mk, f"PUSH SENT [{src}]", _uid(ev, mk, side))
 
 
 def _dg(d, k, n=1, day=None):
@@ -98,6 +127,12 @@ def save(d, now_ts):
     if d.get("daily"):   # keep the per-day counters to the same window as the sightings
         keep = sorted(d["daily"])[-KEEP_DAYS:]
         d["daily"] = {k: v for k, v in d["daily"].items() if k in keep}
+    if d.get("distinct"):
+        keep = sorted(d["distinct"])[-KEEP_DAYS:]
+        d["distinct"] = {k: v for k, v in d["distinct"].items() if k in keep}
+    if d.get("seen"):    # the hash SETS are bounded to 2 days; the counts above outlive them
+        keep = sorted(d["seen"])[-DISTINCT_DAYS:]
+        d["seen"] = {k: v for k, v in d["seen"].items() if k in keep}
     json.dump(d, open(FILE, "w"), indent=1)
 
 
@@ -213,6 +248,10 @@ def scan(sm, ev, cfg, lines, is_t25, d, now):
     d.setdefault("diag", {}).setdefault("diag_since_utc", sm.iso(now))
     _day = now.strftime("%Y-%m-%d")
 
+    def dd(mk_, side_, cat):
+        """Distinct (game x market x side) counter for this event, league-aware."""
+        _dd(d, _day, label, mk_, cat, _uid(ev.get("id"), mk_, side_))
+
     def dg(k, n=1):
         """Nov 5 (Peter): every scanner counter is split BY LEAGUE and kept per day. Spreads and totals stay
         separate because the key carries the market. Counts only; this file is public."""
@@ -253,8 +292,10 @@ def scan(sm, ev, cfg, lines, is_t25, d, now):
             other = next(s for s in P if s != side)
             opt, opr = P[other]
             dg(f"{mk}: sides compared")
+            dd(mk, side, "sides compared")
             if ppt != hpt or opt != (ppt if mk == "totals" else -ppt):
                 dg(f"{mk}: line mismatch, HR vs Pinnacle")
+                dd(mk, side, "mismatched line")
                 # Nov 5: how FAR apart. A standing mismatch is only a Type L CANDIDATE (SLOW-HR Type L also needs a
                 # Pinnacle move >= 0.5 inside the window plus persistence, which this scanner does not track), so these
                 # are an upper bound on Type L flow, not Type L sightings. Half-point gaps are the bettable shape.
@@ -266,6 +307,7 @@ def scan(sm, ev, cfg, lines, is_t25, d, now):
                     pass
                 continue
             dg(f"{mk}: same line at both")
+            dd(mk, side, "same line")
             q, r = _p(ppr), _p(opr)
             fair = q / (q + r)
             evp = 100 * (fair * _dec(hpr) - 1)
@@ -283,6 +325,7 @@ def scan(sm, ev, cfg, lines, is_t25, d, now):
                                             "-2 to 0%" if evp >= -2 else "-5 to -2%" if evp >= -5 else "under -5%"))
                 continue
             dg(f"{mk}: SIGHTING")
+            dd(mk, side, "EV >= 2%")
             if mine and float(mine[-1]["hr"]) == float(hpr):
                 continue   # same price still standing: one sighting, not one per poll
             s = {"key": key, "ev": ev["id"], "lg": label, "game": game, "start": ev["commence_time"], "mk": mk,
