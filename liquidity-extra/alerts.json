@@ -1,6 +1,170 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-05T03:10:18Z",
+   "base_depth": 64634,
+   "best_price": 0.7341,
+   "best_price_american": -276,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.72,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-05",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 6814,
+     "new_this_side": 25096,
+     "other_side": 7252,
+     "other_side_all_levels": 18844,
+     "ratio": 4.5,
+     "this_side": 32556,
+     "this_side_all_levels": 93758
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "DEP (0)",
+     "price": 0.745,
+     "this_side": 2081
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 1256.64,
+    "volume_24h_fp": 210.20000000000002,
+    "volume_fp": 1261.31
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 1256.64,
+    "volume_24h_fp": 210.20000000000002,
+    "volume_fp": 1261.31
+   },
+   "fade_price": 0.29,
+   "first_seen_utc": "2026-11-05T03:00:25Z",
+   "game": "South Florida vs DePaul",
+   "game_surge_books": [
+    "kalshi"
+   ],
+   "game_x": 3.55,
+   "key": "kalshi|KXNCAAMBGAME-26NOV05USFDEP|ml|1",
+   "lead_min": 1340,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 25096,
+   "new_x": 4.82,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 1256.64,
+      "volume_24h_fp": 210.20000000000002,
+      "volume_fp": 1261.31
+     },
+     "game_normal": 26422,
+     "game_x": 3.55,
+     "normal": 5208,
+     "now": 93758,
+     "type": "ML",
+     "x": 18.0
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 12444.0,
+      "volume": 12444.0
+     },
+     "game_normal": 1823,
+     "game_x": 1.24,
+     "normal": 728,
+     "now": 2252,
+     "type": "ML",
+     "x": 3.09
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.72,
+   "price_american": -257,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.72,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -285
+    },
+    "betrivers": {
+     "point": null,
+     "price": -315
+    },
+    "bovada": {
+     "point": null,
+     "price": -285
+    },
+    "draftkings": {
+     "point": null,
+     "price": -285
+    },
+    "fanatics": {
+     "point": null,
+     "price": -285
+    },
+    "fanduel": {
+     "point": null,
+     "price": -280
+    },
+    "kalshi": {
+     "point": null,
+     "price": -257
+    },
+    "novig": {
+     "point": null,
+     "price": -292
+    },
+    "polymarket": {
+     "point": null,
+     "price": -285
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV05USFDEP-DEP"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "DePaul",
+   "side_label": "DePaul",
+   "size_x": 18.0,
+   "start_source": "odds",
+   "start_utc": "2026-11-06T01:30:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig"
+   ],
+   "teams": [
+    "South Florida",
+    "DePaul"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-05T01:10:17Z",
    "base_depth": 23893,
    "best_price": 0.84,
@@ -48,7 +212,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 12473.19,
-    "volume_24h_fp": 13375.699999999999,
+    "volume_24h_fp": 13673.36,
     "volume_fp": 13673.36
    },
    "ex_stats_first": {
@@ -180,9 +344,9 @@
     "volume_fp": 115.52
    },
    "ex_stats_close": {
-    "open_interest_fp": 9351.21,
-    "volume_24h_fp": 9411.89,
-    "volume_fp": 9538.89
+    "open_interest_fp": 9987.630000000001,
+    "volume_24h_fp": 9538.89,
+    "volume_fp": 10175.31
    },
    "ex_stats_first": {
     "open_interest_fp": 5988.1900000000005,

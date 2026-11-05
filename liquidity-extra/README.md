@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 4, 10:00 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 5.
+Updated Wed Nov 4, 10:10 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 6.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 4 10:10PM | NCAAB | South Florida vs DePaul | moneyline: DePaul | kalshi | $25k | -257 |  |  | +0.0c |  | pending |
 | Nov 4 8:10PM | TENNIS | Berrettini vs Alcaraz | moneyline: Alcaraz | kalshi | $98k | -525 |  |  | -1.0c |  | pending |
 | Nov 4 3:40PM | TENNIS | Valentova vs Eala | moneyline: Eala | kalshi | $41k | -170 | ✅ novig |  | +0.0c |  | pending |
 | Nov 4 1:20PM | NCAAB | Northern Kentucky vs South Dakota | moneyline: Northern Kentucky | kalshi | $28k | -138 |  |  | +0.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 24 6:18AM | TENNIS | Marozsan vs Sorger | moneyline: Marozsan | kalshi | $29k | -525 |  |  | -20.0c | yes | W |
 | Oct 24 6:10AM | TENNIS | Rybakina vs Shnaider | moneyline: Rybakina | kalshi | $476k | -186 |  |  |  |  | W |
 | Oct 24 5:30AM | TENNIS | Giron vs Hanfmann | moneyline: Hanfmann | kalshi | $26k | -567 |  |  | +4.0c |  | W |
-| Oct 24 5:00AM | TENNIS | Tirante vs Mannarino | moneyline: Tirante | kalshi | $31k | -133 | ✅ novig |  | -56.0c | yes | L |
