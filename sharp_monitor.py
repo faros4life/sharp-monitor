@@ -21,6 +21,7 @@ import urllib.request
 from datetime import datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
 
+import odds_screen  # Nov 5: odds screen feed (odds_screen.json), every game incl. all CFB, 0 extra credits
 import hr_scanner   # Nov 4: Hard Rock EV scanner (paper lane + manual ntfy flag; Muse terms 7:19 AM)
 
 ET = ZoneInfo("America/New_York")
@@ -1521,6 +1522,13 @@ def run():
         for ev in events:
             ev["commence_time"] = listed_start(cfg["label"], ev["commence_time"])
             lines = book_lines(ev)
+            try:   # Nov 5: odds screen - every game (all CFB, no Top 25 filter), Peter's books + Pinnacle
+                _tm = top25s.get(key)
+                _rk = [(t, r[0]) for t in (ev["away_team"], ev["home_team"])
+                       for r in [top25_rank(t, _tm) if _tm else None] if r]
+                odds_screen.add(cfg["label"], ev, lines, _rk, RETAIL, SHARP)
+            except Exception as _x:
+                print(f"odds screen skipped: {str(_x)[:60]}")
             vals = sharp_values(lines)
             if not vals:
                 continue
@@ -1674,6 +1682,10 @@ def run():
         print(f"hr scanner: {len(HRS['sightings'])} sightings logged")   # counts only
     except Exception as _x:
         print(f"hr scanner save failed: {str(_x)[:60]}")
+    try:
+        odds_screen.save(RETAIL, SHARP, NAMES)
+    except Exception as _x:
+        print(f"odds screen save failed: {str(_x)[:60]}")
     write_summary(st, n)
     write_alerts_file(st, n)
     if sent:   # Oct 25: wake the executor right away instead of waiting for its 5-minute timer
