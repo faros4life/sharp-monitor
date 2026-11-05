@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 5, 5:00 PM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 20.
+Updated Thu Nov 5, 5:10 PM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 21.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 5 5:10PM | NCAAB | Mercyhurst @ Notre Dame | spread: Mercyh +21.5 (-21.5) | novig | $67k | +102 |  | ❌ | +0.0c |  | pending |
 | Nov 5 3:20PM | NCAAB | Tarleton St. vs San Diego | moneyline: San Diego | kalshi | $31k | -223 |  |  | +0.0c |  | pending |
 | Nov 5 3:20PM | NCAAB | Robert Morris vs UIC | moneyline: UIC | kalshi | $40k | -567 |  |  | -1.0c | yes | pending |
 | Nov 5 3:20PM | NCAAB | North Dakota St. vs San Francisco | moneyline: San Francisco | kalshi | $41k | -317 |  |  | +0.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 24 11:50PM | TENNIS | Lee vs Pridankina | moneyline: Lee | kalshi | $79k | -285 |  |  | -5.0c |  | W |
 | Oct 24 11:40PM | TENNIS | Ibragimova vs Iatcenko | moneyline: Ibragimova | kalshi | $143k | -150 |  |  | +8.0c |  | W |
 | Oct 24 11:13PM | TENNIS | Sasnovich vs Rakhimova | moneyline: Sasnovich | kalshi | $188k | -376 |  |  | +5.0c |  | W |
-| Oct 24 11:13PM | TENNIS | Ibragimova vs Iatcenko | moneyline: Iatcenko | kalshi | $55k | -194 |  |  | -33.0c |  | L |
