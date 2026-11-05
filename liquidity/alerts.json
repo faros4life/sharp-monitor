@@ -1,6 +1,137 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-05T04:56:11Z",
+   "base_depth": 172222,
+   "best_price": 0.6865,
+   "best_price_american": -219,
+   "best_price_book": "polymarket",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.68,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 6,
+   "date": "2026-11-05",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 715,
+     "new_this_side": 36778,
+     "other_side": 4867,
+     "other_side_all_levels": 138014,
+     "ratio": 4.6,
+     "this_side": 22315,
+     "this_side_all_levels": 209605
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Warriors",
+     "price": 0.68,
+     "this_side": 8713
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 34954.71,
+    "volume_24h_fp": 31884.840000000004,
+    "volume_fp": 45919.83
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 602.55,
+    "volume_24h_fp": 3175.34,
+    "volume_fp": 920.9
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 34352.16,
+    "volume_24h_fp": 28709.5,
+    "volume_fp": 44998.93
+   },
+   "fade_price": 0.33,
+   "first_seen_utc": "2026-11-05T04:50:10Z",
+   "game": "Miami vs Golden State",
+   "game_surge_books": [],
+   "game_x": 1.19,
+   "key": "kalshi|KXNBAGAME-26NOV05MIAGSW|ml|1",
+   "lead_min": 1324,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 36778,
+   "new_x": 0.11,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 34954.71,
+      "volume_24h_fp": 31884.840000000004,
+      "volume_fp": 45919.83
+     },
+     "game_normal": 176603,
+     "game_x": 1.19,
+     "normal": 338929,
+     "now": 209605,
+     "type": "ML",
+     "x": 0.62
+    },
+    "polymarket": {
+     "ex_stats": {
+      "volume": 7193.519783,
+      "volume1mo": 7394.519783000001,
+      "volume1moClob": 7394.519783000001,
+      "volume1wk": 7394.519783000001,
+      "volume1wkClob": 7394.519783000001,
+      "volume1yr": 7394.519783000001,
+      "volume1yrClob": 7394.519783000001,
+      "volume24hr": 6778.4185370000005,
+      "volume24hrClob": 6778.4185370000005,
+      "volumeClob": 7193.519783,
+      "volumeNum": 7193.519783
+     },
+     "game_normal": 16804,
+     "game_x": 1.19,
+     "normal": 108411,
+     "now": 19937,
+     "type": "ML",
+     "x": 0.18
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.68,
+   "price_american": -213,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.69,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBAGAME-26NOV05MIAGSW-GSW"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Golden State",
+   "side_label": "Golden State",
+   "size_x": 0.62,
+   "start_source": "polymarket",
+   "start_utc": "2026-11-06T03:00:00Z",
+   "surge_books": [],
+   "teams": [
+    "Miami",
+    "Golden State"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-05T04:10:11Z",
    "base_depth": 230097,
    "best_price": 0.51,
@@ -59,9 +190,9 @@
     "volume_fp": 51.15
    },
    "ex_stats_close": {
-    "open_interest_fp": 22282.67,
-    "volume_24h_fp": 13145.6,
-    "volume_fp": 24733.769999999997
+    "open_interest_fp": 22286.21,
+    "volume_24h_fp": 13326.060000000001,
+    "volume_fp": 24737.309999999998
    },
    "ex_stats_first": {
     "open_interest_fp": 21220.5,
@@ -302,7 +433,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 3355.59,
-    "volume_24h_fp": 3235.92,
+    "volume_24h_fp": 3315.92,
     "volume_fp": 3759.9399999999996
    },
    "ex_stats_first": {
@@ -532,9 +663,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 854.82,
+    "open_interest_fp": 878.82,
     "volume_24h_fp": 852.82,
-    "volume_fp": 861.82
+    "volume_fp": 885.82
    },
    "ex_stats_first": {
     "open_interest_fp": 782.82,
@@ -1479,8 +1610,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 12959551.0,
-    "volume": 19622886.0
+    "openInterest": 12966819.0,
+    "volume": 19630154.0
    },
    "ex_stats_first": {
     "openInterest": 9642446.0,
@@ -2500,6 +2631,7 @@
     "volume_fp": 6332.61
    },
    "fade_price": 0.49,
+   "fade_units": 0.97,
    "first_seen_utc": "2026-11-05T00:40:11Z",
    "game": "Portland vs Phoenix: Total Points",
    "game_surge_books": [],
@@ -2627,11 +2759,12 @@
     "kalshi_side": "no",
     "market_ticker": "KXNBATOTAL-26NOV04PORPHX-229"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-11-05T04:56:11Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -2646,7 +2779,7 @@
     "Phoenix"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-05T00:40:11Z",
@@ -4596,9 +4729,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 5248.59,
+    "open_interest_fp": 5255.639999999999,
     "volume_24h_fp": 3711.51,
-    "volume_fp": 6682.68
+    "volume_fp": 6689.73
    },
    "ex_stats_first": {
     "open_interest_fp": 3574.0,
@@ -11760,7 +11893,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 2829.97,
-    "volume_24h_fp": 2581.44,
+    "volume_24h_fp": 2581.79,
     "volume_fp": 2919.75
    },
    "ex_stats_first": {
@@ -12344,8 +12477,8 @@
     "volume": 1062682.0
    },
    "ex_stats_close": {
-    "openInterest": 18511956.0,
-    "volume": 31343004.0
+    "openInterest": 18519800.0,
+    "volume": 31350848.0
    },
    "ex_stats_first": {
     "openInterest": 15522264.0,
@@ -13922,9 +14055,9 @@
     "volume_fp": 119.32
    },
    "ex_stats_close": {
-    "open_interest_fp": 22282.67,
-    "volume_24h_fp": 13145.6,
-    "volume_fp": 24733.769999999997
+    "open_interest_fp": 22286.21,
+    "volume_24h_fp": 13326.060000000001,
+    "volume_fp": 24737.309999999998
    },
    "ex_stats_first": {
     "open_interest_fp": 16464.39,
@@ -14102,9 +14235,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 77885.4,
-    "volume_24h_fp": 77168.39,
-    "volume_fp": 78046.46
+    "open_interest_fp": 77924.86,
+    "volume_24h_fp": 77178.39,
+    "volume_fp": 78085.92
    },
    "ex_stats_first": {
     "open_interest_fp": 73649.17,
@@ -15040,9 +15173,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 6512.59,
-    "volume_24h_fp": 2769.7,
-    "volume_fp": 7068.69
+    "open_interest_fp": 6569.33,
+    "volume_24h_fp": 2807.56,
+    "volume_fp": 7125.43
    },
    "ex_stats_first": {
     "open_interest_fp": 4710.49,
@@ -16132,7 +16265,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 8046.380000000001,
-    "volume_24h_fp": 7926.84,
+    "volume_24h_fp": 7958.4,
     "volume_fp": 8576.27
    },
    "ex_stats_first": {
@@ -17070,9 +17203,9 @@
     "volume_fp": 3.07
    },
    "ex_stats_close": {
-    "open_interest_fp": 12738.7,
-    "volume_24h_fp": 9868.33,
-    "volume_fp": 14077.48
+    "open_interest_fp": 13140.98,
+    "volume_24h_fp": 9966.720000000001,
+    "volume_fp": 14492.46
    },
    "ex_stats_first": {
     "open_interest_fp": 5815.17,
@@ -19646,6 +19779,7 @@
     "volume_fp": 10718.66
    },
    "fade_price": 0.52,
+   "fade_units": 0.86,
    "first_seen_utc": "2026-11-04T17:00:19Z",
    "game": "Portland vs Phoenix: Spread",
    "game_surge_books": [],
@@ -19781,7 +19915,7 @@
     "kalshi_side": "no",
     "market_ticker": "KXNBASPREAD-26NOV04PORPHX-POR3"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig",
@@ -19789,6 +19923,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-05T04:56:11Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Phoenix",
@@ -19803,7 +19938,7 @@
     "Phoenix"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-04T17:00:19Z",
@@ -22567,9 +22702,9 @@
     "volume_fp": 366.38
    },
    "ex_stats_close": {
-    "open_interest_fp": 491471.89,
-    "volume_24h_fp": 74606.65,
-    "volume_fp": 493900.34
+    "open_interest_fp": 491679.94,
+    "volume_24h_fp": 74550.01,
+    "volume_fp": 494117.69
    },
    "ex_stats_first": {
     "open_interest_fp": 421423.02,
@@ -23022,6 +23157,7 @@
     "volume_fp": 1422.8
    },
    "fade_price": 0.52,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-04T15:20:13Z",
    "game": "Portland vs Phoenix: Total Points",
    "game_surge_books": [
@@ -23158,7 +23294,7 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBATOTAL-26NOV04PORPHX-229"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig",
@@ -23166,6 +23302,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-05T04:56:11Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -23180,7 +23317,7 @@
     "Phoenix"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.02
   },
   {
    "alerted_utc": "2026-11-04T14:50:11Z",
@@ -24597,6 +24734,7 @@
     "volumeNum": 1274.203138
    },
    "fade_price": 0.49,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-04T14:30:30Z",
    "game": "Trail Blazers vs. Suns",
    "game_surge_books": [
@@ -24726,13 +24864,14 @@
     "outcome_index": 0,
     "pm_market_id": "6663624"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-05T04:56:11Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -24747,7 +24886,7 @@
     "Suns"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.96
   },
   {
    "alerted_utc": "2026-11-04T14:30:30Z",
@@ -26551,9 +26690,9 @@
    },
    "ex_stats_change": null,
    "ex_stats_close": {
-    "open_interest_fp": 491471.89,
-    "volume_24h_fp": 74606.65,
-    "volume_fp": 493900.34
+    "open_interest_fp": 491679.94,
+    "volume_24h_fp": 74550.01,
+    "volume_fp": 494117.69
    },
    "ex_stats_first": null,
    "fade_price": 0.52,
@@ -26739,9 +26878,9 @@
    },
    "ex_stats_change": null,
    "ex_stats_close": {
-    "open_interest_fp": 293836.52,
-    "volume_24h_fp": 203812.69,
-    "volume_fp": 320101.2
+    "open_interest_fp": 293986.52,
+    "volume_24h_fp": 205143.06,
+    "volume_fp": 320251.2
    },
    "ex_stats_first": null,
    "fade_price": 0.52,
@@ -27766,9 +27905,9 @@
     }
    },
    "ex_stats_close": {
-    "open_interest_fp": 3618.11,
-    "volume_24h_fp": 1622.67,
-    "volume_fp": 3898.27
+    "open_interest_fp": 3716.63,
+    "volume_24h_fp": 1641.67,
+    "volume_fp": 3996.79
    },
    "fade_price": 0.5,
    "first_seen_utc": "2026-11-04T12:50:18Z",
@@ -29223,9 +29362,9 @@
     }
    },
    "ex_stats_close": {
-    "open_interest_fp": 31779.61,
-    "volume_24h_fp": 21927.46,
-    "volume_fp": 33844.74
+    "open_interest_fp": 32369.9,
+    "volume_24h_fp": 22606.010000000002,
+    "volume_fp": 34435.03
    },
    "fade_price": 0.16,
    "first_seen_utc": "2026-11-04T09:50:30Z",
@@ -29846,9 +29985,9 @@
     }
    },
    "ex_stats_close": {
-    "open_interest_fp": 1308055.28,
-    "volume_24h_fp": 684181.85,
-    "volume_fp": 1595698.7999999998
+    "open_interest_fp": 1313015.26,
+    "volume_24h_fp": 692018.77,
+    "volume_fp": 1602534.8599999999
    },
    "fade_price": 0.19,
    "first_seen_utc": "2026-11-04T05:10:11Z",
