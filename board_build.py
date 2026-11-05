@@ -189,7 +189,10 @@ def score(rows):
         gk = r["g"]
         if gk in first_tot:   # the first 4h+ alert on this game total is the play, pulled or not (backtest basis)
             f0 = first_tot[gk]
-            r["tag"], r["why"] = "LEAN", f"v3: one play per game total - first alert was {f0['side']} at {f0['first']} (first side stays)"
+            # Nov 4 fix: a row carries 'at' (datetime); 'first' is only added later, when the page rows are built,
+            # so reading it here raised KeyError and killed board-lab (run 41914406598).
+            ft = f0.get("first") or (f0["at"].astimezone(ET).strftime("%-I:%M %p") if f0.get("at") else "?")
+            r["tag"], r["why"] = "LEAN", f"v3: one play per game total - first alert was {f0['side']} at {ft} (first side stays)"
             continue
         first_tot[gk] = r
         if r["status"] == "pulled":
