@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 5, 3:40 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 20.
+Updated Thu Nov 5, 3:50 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 20.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -13,12 +13,12 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 5 3:20PM | NCAAB | Tarleton St. vs San Diego | moneyline: San Diego | kalshi | $31k | -223 |  |  | +0.0c |  | pending |
 | Nov 5 3:20PM | NCAAB | Robert Morris vs UIC | moneyline: UIC | kalshi | $40k | -567 |  |  | +0.0c |  | pending |
 | Nov 5 3:20PM | NCAAB | North Dakota St. vs San Francisco | moneyline: San Francisco | kalshi | $41k | -317 |  |  | +0.0c |  | pending |
-| Nov 5 3:20PM | NCAAB | Cal State Northridge vs Kansas St. | moneyline: Kansas St. | kalshi | $43k | -525 |  |  | +1.0c |  | pending |
+| Nov 5 3:20PM | NCAAB | Cal State Northridge vs Kansas St. | moneyline: Kansas St. | kalshi | $43k | -525 |  |  | -1.0c |  | pending |
 | Nov 5 3:00PM | NCAAB | Hofstra vs Princeton | moneyline: Princeton | kalshi | $27k | -138 |  | ❌ | +0.0c |  | pending |
 | Nov 5 1:10PM | TENNIS | Fils vs Fritz | moneyline: Fritz | kalshi | $764k | +133 |  |  | +46.0c |  | W |
 | Nov 5 10:30AM | NCAAB | Chicago St. vs Incarnate Word | moneyline: Incarnate Word | kalshi | $39k | -355 |  |  | +0.0c | yes | pending |
 | Nov 5 7:00AM | TENNIS | Hontama vs Kulambayeva | moneyline: Hontama | kalshi | $313k | -567 |  |  | +7.0c |  | W |
-| Nov 5 6:50AM | NCAAB | UMBC vs Marist | moneyline: Marist | kalshi | $25k | -156 |  |  | +5.0c |  | pending |
+| Nov 5 6:50AM | NCAAB | UMBC vs Marist | moneyline: Marist | kalshi | $25k | -156 |  |  | +4.0c |  | pending |
 | Nov 5 5:10AM | TENNIS | Paul vs Halys | moneyline: Paul | kalshi | $48k | -426 |  |  | +8.0c |  | W |
 | Nov 5 1:30AM | NCAAB | Towson vs Utah | moneyline: Utah | kalshi | $44k | -488 |  |  | -3.0c | yes | pending |
 | Nov 5 1:20AM | TENNIS | Pridankina vs Shubladze | moneyline: Shubladze | kalshi | $135k | -203 |  |  | +3.0c | yes | W |
