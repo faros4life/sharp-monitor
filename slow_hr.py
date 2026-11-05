@@ -37,6 +37,47 @@ PERSIST = timedelta(minutes=3)
 CONFIRM = timedelta(minutes=5)
 LATE = timedelta(minutes=30)
 MAX_FIX = int(os.environ.get("SLOWHR_MAX_FIX", "") or "60")
+# Nov 5 (Peter): stop re-fetching a league that has no eligible game. PROBE_MIN_H is the hard
+# cooldown and applies to an EMPTY result exactly as it does to a full one - "we asked and the
+# window held nothing" is itself a cached answer, not a reason to ask again. PROBE_MAX_H bounds how
+# long that answer may be reused even when it still covers the window, so a newly SCHEDULED game is
+# always discovered within PROBE_MAX_H. The decision never looks at cached future fixtures: a future
+# fixture proves only that some fetch once returned it, not that the schedule is still current.
+# PROBE_MAX_H defaults to the cooldown itself, which makes the coverage-reuse branch INERT: every
+# league is re-asked on the first run after 6 h, so a game added to the schedule late is discovered
+# within 6 h. Raising it (SLOWHR_PROBE_MAX_H=12 or 24) trades credits against that discovery lag -
+# at 12 h the ask rate halves and the worst-case lag is still far inside the 40 h lookback window.
+# That trade is Peter's to set, so the default changes nothing about what gets discovered.
+PROBE_MIN_H = 6
+PROBE_MAX_H = max(PROBE_MIN_H, int(os.environ.get("SLOWHR_PROBE_MAX_H", "") or PROBE_MIN_H))
+
+
+def _probe_skip(pr, now, w0, w1):
+    """(skip, why) for one league, from its last fetch attempt alone.
+
+    pr is the stored attempt: {"at", "from", "to", "ok"}; w0/w1 are the ends of the window this run
+    could actually use (games that have already started). Returns False for a league never probed.
+    """
+    if not pr:
+        return False, "never probed"
+    # NOT named `at`: a module-level at(series, when) exists (line ~96) and a local by that name
+    # would shadow it here, which is how the bk / _bucket defects were introduced earlier today.
+    when = _aware(pr.get("at"))
+    if when is None:
+        return False, "probe has no usable timestamp"
+    age = (now - when).total_seconds() / 3600.0
+    if age < PROBE_MIN_H:
+        return True, f"asked {age:.1f} h ago, inside the {PROBE_MIN_H} h cooldown"
+    if not pr.get("ok"):
+        return False, f"last attempt failed {age:.1f} h ago - retry (a failure is not an empty schedule)"
+    if age >= PROBE_MAX_H:
+        return False, f"last answer is {age:.1f} h old (>= {PROBE_MAX_H} h) - re-ask in case the schedule changed"
+    fr, to = pr.get("from"), pr.get("to")
+    if not fr or not to:
+        return False, "stored range unknown"
+    if fr <= w0.strftime("%Y-%m-%d") and to >= w1.strftime("%Y-%m-%d"):
+        return True, f"the {age:.1f} h-old fetch covered {fr}..{to}, which spans this run's window"
+    return False, f"window {w0:%Y-%m-%d}..{w1:%Y-%m-%d} is outside the stored {fr}..{to}"
 
 
 def _aware(v):
@@ -266,12 +307,29 @@ def main():
     shared = set(cache.get("fixtures") or {})
     mkmap = cl.load_markets(cst, now)
     lo, hi = (now - timedelta(days=2)).astimezone(ET), (now + timedelta(days=1)).astimezone(ET)
+    st.setdefault("fx_probe", {})
+    w0, w1 = max(FLOOR, now - timedelta(hours=40)), now - timedelta(minutes=5)
+    fetch_log = []
     for lg in LEAGUES:
         have = [k for k, v in cst["fixtures"].items()
                 if v.get("lg") == lg and _aware(v.get("start"))
                 and now - timedelta(hours=40) <= _aware(v["start"]) <= now]
-        if not have:
-            cl.refresh_fixtures(cst, now, lg, lo, hi)
+        if have:
+            fetch_log.append((lg, "no fetch", f"{len(have)} eligible game(s) already cached"))
+            continue
+        skip, why = _probe_skip(st["fx_probe"].get(lg), now, w0, w1)
+        if skip:
+            fetch_log.append((lg, "no fetch", why))
+            continue
+        ok = cl.refresh_fixtures(cst, now, lg, lo, hi)
+        # Record the ATTEMPT either way. An empty answer is an answer and is cached under the same
+        # cooldown; a failure is recorded as a failure so the next run retries rather than reading
+        # the silence as "this league has no games".
+        st["fx_probe"][lg] = {"at": cl.iso(now), "from": lo.strftime("%Y-%m-%d"),
+                              "to": hi.strftime("%Y-%m-%d"), "ok": bool(ok)}
+        n_el = sum(1 for v in cst["fixtures"].values()
+                   if v.get("lg") == lg and _aware(v.get("start")) and w0 <= _aware(v["start"]) <= w1)
+        fetch_log.append((lg, "FETCHED" if ok else "fetch FAILED", f"{why}; eligible after: {n_el}"))
     # Keep what this run paid for, and the timestamps that stop the NEXT run paying for it again.
     st["fx_last"] = cst.get("fx_last") or {}
     st["billable"] = cst.get("billable") or {}
@@ -327,6 +385,9 @@ def main():
             _acct = {k: _a.get(k) for k in ("plan", "requestsUsed", "requestsLimit") if _a.get(k) is not None}
     except Exception:
         _acct = {}
+    L += ["", "FETCH DECISIONS (why each league was or was not asked for fixtures this run)"]
+    for lg, what, why in fetch_log:
+        L.append(f"  {lg:<6} {what:<12} {why}")
     L += ["", "API CREDITS",
           f"  this run: {len(cl.CALLS)} calls, billable {_billed - billed0}",
           f"  slow_hr month-to-date ({mk_}): {_billed}  [this script's own counter; cap {cl.CAP}]",
@@ -345,7 +406,12 @@ def main():
     os.makedirs("slowhr", exist_ok=True)
     cut = cl.iso(now - timedelta(days=120))
     st["done"] = {k: v for k, v in st["done"].items() if v >= cut}
-    json.dump(tb.enc(st), open(STATE, "w"))
+    _tmp = STATE + ".tmp"
+    with open(_tmp, "w") as _f:          # write-then-rename: a crash leaves the OLD state intact,
+        json.dump(tb.enc(st), _f)        # where json.dump(open(STATE,"w")) would leave a truncated
+        _f.flush()                       # file and lose the month's credit counter.
+        os.fsync(_f.fileno())
+    os.replace(_tmp, STATE)
     print(f"SLOW-HR: games {len(todo[:MAX_FIX])}, sightings +{len(new)} (total {len(S)}), calls {len(cl.CALLS)}")   # counts only
 
 
