@@ -65,17 +65,22 @@ def _bucket(conv):
 
 def count_push(d, lg, conv, now, src="alert"):
     """Record one FIRED push, by UTC day x league x conversion bucket x source. Counts only; this file is public."""
-    g = d.setdefault("pushes", {}).setdefault(now.strftime("%Y-%m-%d"), {}).setdefault(lg or "?", {})
+    day = now.strftime("%Y-%m-%d")
+    g = d.setdefault("pushes", {}).setdefault(day, {}).setdefault(lg or "?", {})
     k = f"{_bucket(conv)} [{src}]"
     g[k] = g.get(k, 0) + 1
+    _dg(d, f"{lg or '?'} PUSH SENT [{src}] conv {_bucket(conv)}", day=day)
 
 
-def _dg(d, k, n=1):
+def _dg(d, k, n=1, day=None):
     """Nov 5 (Peter: scanner has shown 0 sightings since it registered 13:55 UTC Nov 4): the scanner had exactly one
     print statement, so a hard zero was indistinguishable from a dead feed. These counters record WHERE each candidate
     dies, every poll. Counts only - this file is public, and no counter is an alert."""
     g = d.setdefault("diag", {})
     g[k] = g.get(k, 0) + n
+    if day:   # Nov 5 (Peter): the same counter, also kept per UTC day so volume is readable day by day
+        dd = d.setdefault("daily", {}).setdefault(day, {})
+        dd[k] = dd.get(k, 0) + n
 
 
 def load():
@@ -90,6 +95,9 @@ def load():
 def save(d, now_ts):
     d["sightings"] = [s for s in d["sightings"] if s["t"] > now_ts - KEEP_DAYS * 86400]
     d["pinged"] = {k: t for k, t in (d.get("pinged") or {}).items() if t > now_ts - 3 * 86400}
+    if d.get("daily"):   # keep the per-day counters to the same window as the sightings
+        keep = sorted(d["daily"])[-KEEP_DAYS:]
+        d["daily"] = {k: v for k, v in d["daily"].items() if k in keep}
     json.dump(d, open(FILE, "w"), indent=1)
 
 
@@ -203,9 +211,15 @@ def scan(sm, ev, cfg, lines, is_t25, d, now):
     pin = lines.get(sm.SHARP) or {}
     hrk = next((b for b in HR_BOOKS if b in lines), None)
     d.setdefault("diag", {}).setdefault("diag_since_utc", sm.iso(now))
-    _dg(d, "events seen")
+    _day = now.strftime("%Y-%m-%d")
+
+    def dg(k, n=1):
+        """Nov 5 (Peter): every scanner counter is split BY LEAGUE and kept per day. Spreads and totals stay
+        separate because the key carries the market. Counts only; this file is public."""
+        _dg(d, f"{label} {k}", n, day=_day)
+    dg("events seen")
     if not hrk or not pin:
-        _dg(d, "no Hard Rock book in the poll lines" if not hrk else "no Pinnacle lines")
+        dg("no Hard Rock book in the poll lines" if not hrk else "no Pinnacle lines")
         return 0
     start = sm.parse_iso(ev["commence_time"])
     lead = (start - now).total_seconds() / 60
@@ -226,32 +240,32 @@ def scan(sm, ev, cfg, lines, is_t25, d, now):
         P = pin.get(mk) or {}
         H = lines[hrk].get(mk) or {}
         if len(P) != 2:
-            _dg(d, f"{mk}: Pinnacle not two-sided")
+            dg(f"{mk}: Pinnacle not two-sided")
             continue
         if not H:
-            _dg(d, f"{mk}: no Hard Rock line")
+            dg(f"{mk}: no Hard Rock line")
             continue
         for side, (hpt, hpr) in H.items():
             if side not in P:
-                _dg(d, f"{mk}: side not at Pinnacle")
+                dg(f"{mk}: side not at Pinnacle")
                 continue
             ppt, ppr = P[side]
             other = next(s for s in P if s != side)
             opt, opr = P[other]
-            _dg(d, f"{mk}: both books have this side")
+            dg(f"{mk}: sides compared")
             if ppt != hpt or opt != (ppt if mk == "totals" else -ppt):
-                _dg(d, f"{mk}: line mismatch, HR vs Pinnacle")
+                dg(f"{mk}: line mismatch, HR vs Pinnacle")
                 # Nov 5: how FAR apart. A standing mismatch is only a Type L CANDIDATE (SLOW-HR Type L also needs a
                 # Pinnacle move >= 0.5 inside the window plus persistence, which this scanner does not track), so these
                 # are an upper bound on Type L flow, not Type L sightings. Half-point gaps are the bettable shape.
                 try:
                     gap = abs(float(hpt) - float(ppt))
-                    _dg(d, f"{mk}: gap " + ("0.5" if gap <= 0.5 else "1.0" if gap <= 1.0 else
+                    dg(f"{mk}: gap " + ("0.5" if gap <= 0.5 else "1.0" if gap <= 1.0 else
                                             "1.5-2" if gap <= 2.0 else "2.5-3" if gap <= 3.0 else "over 3"))
                 except Exception:
                     pass
                 continue
-            _dg(d, f"{mk}: same line at both")
+            dg(f"{mk}: same line at both")
             q, r = _p(ppr), _p(opr)
             fair = q / (q + r)
             evp = 100 * (fair * _dec(hpr) - 1)
@@ -262,13 +276,13 @@ def scan(sm, ev, cfg, lines, is_t25, d, now):
                     s["recheck"] = {"utc": sm.iso(now), "hr": hpr, "still_there": float(hpr) >= float(s["hr"]),
                                     "evp": round(evp, 2), "max_bet": None}
             if evp < MIN_EV:
-                _dg(d, f"{mk}: same line but EV under {MIN_EV:g}%")
+                dg(f"{mk}: same line but EV under {MIN_EV:g}%")
                 # Nov 5: HOW far under. Is the bar slightly wrong (HR landing at 1.9%) or is Hard Rock simply worse
                 # than Pinnacle at the same number (negative EV), in which case no threshold rescues this test.
-                _dg(d, f"{mk}: EV band " + ("1 to 2%" if evp >= 1 else "0 to 1%" if evp >= 0 else
+                dg(f"{mk}: EV band " + ("1 to 2%" if evp >= 1 else "0 to 1%" if evp >= 0 else
                                             "-2 to 0%" if evp >= -2 else "-5 to -2%" if evp >= -5 else "under -5%"))
                 continue
-            _dg(d, f"{mk}: SIGHTING")
+            dg(f"{mk}: SIGHTING")
             if mine and float(mine[-1]["hr"]) == float(hpr):
                 continue   # same price still standing: one sighting, not one per poll
             s = {"key": key, "ev": ev["id"], "lg": label, "game": game, "start": ev["commence_time"], "mk": mk,
