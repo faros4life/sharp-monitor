@@ -1,6 +1,131 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-05T05:10:16Z",
+   "base_depth": 85285,
+   "best_price": 0.78,
+   "best_price_american": -355,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.78,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-05",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 403,
+     "new_this_side": 38259,
+     "other_side": 22653,
+     "other_side_all_levels": 27796,
+     "ratio": 4.6,
+     "this_side": 104980,
+     "this_side_all_levels": 123488
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "S. Cirstea (0)",
+     "price": 0.78,
+     "this_side": 9601
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 4043.9900000000002,
+    "volume_24h_fp": 7159.4800000000005,
+    "volume_fp": 7159.4800000000005
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 40.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 4043.9900000000002,
+    "volume_24h_fp": 7119.4800000000005,
+    "volume_fp": 7159.4800000000005
+   },
+   "fade_price": 0.23,
+   "first_seen_utc": "2026-11-05T05:00:22Z",
+   "game": "Cirstea vs Stoiana",
+   "game_surge_books": [],
+   "game_x": 1.43,
+   "key": "kalshi|KXWTAMATCH-26NOV05CIRSTO|ml|0",
+   "lead_min": 390,
+   "league": "TENNIS",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 38259,
+   "new_x": 0.9,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 4043.9900000000002,
+      "volume_24h_fp": 7159.4800000000005,
+      "volume_fp": 7159.4800000000005
+     },
+     "game_normal": 86204,
+     "game_x": 1.43,
+     "normal": 42297,
+     "now": 123488,
+     "type": "ML",
+     "x": 2.92
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 148593.0,
+      "volume": 149678.0
+     },
+     "game_normal": 9564,
+     "game_x": 1.0,
+     "normal": 2025,
+     "now": 9601,
+     "type": "ML",
+     "x": 4.74
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": true,
+   "price": 0.78,
+   "price_american": -355,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.78,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXWTAMATCH-26NOV05CIRSTO-CIR"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Cirstea",
+   "side_label": "Cirstea",
+   "size_x": 2.92,
+   "start_source": "novig",
+   "start_utc": "2026-11-05T11:40:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig"
+   ],
+   "teams": [
+    "Cirstea",
+    "Stoiana"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-05T03:10:18Z",
    "base_depth": 64634,
    "best_price": 0.7341,
@@ -219,9 +344,9 @@
     "volume_fp": 47.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 53875.83,
-    "volume_24h_fp": 57346.91,
-    "volume_fp": 57363.36
+    "open_interest_fp": 56022.009999999995,
+    "volume_24h_fp": 57363.36,
+    "volume_fp": 59509.54
    },
    "ex_stats_first": {
     "open_interest_fp": 5646.38,
@@ -352,9 +477,9 @@
     "volume_fp": 115.52
    },
    "ex_stats_close": {
-    "open_interest_fp": 25340.79,
-    "volume_24h_fp": 21965.629999999997,
-    "volume_fp": 25698.39
+    "open_interest_fp": 25588.97,
+    "volume_24h_fp": 25698.39,
+    "volume_fp": 25946.57
    },
    "ex_stats_first": {
     "open_interest_fp": 5988.1900000000005,
