@@ -211,6 +211,43 @@ def main():
     for bk in sorted({str(b.get("book")) for b in pool}):
         L.append(tot([b for b in pool if str(b.get("book")) == bk], f"book {bk}"))
 
+    # ---- OPEN / UPCOMING across every source (Peter, Nov 5: "tracker is wrong ... upcoming")
+    L += ["", "=" * 74, "OPEN / UPCOMING ROWS - every source, not just the bot", "=" * 74]
+    now_ = datetime.now(timezone.utc)
+    opens = [b for b in R if b.get("result") not in ("W", "L", "P")]
+    L.append(f"  rows with no W/L/P result: {len(opens)} of {len(R)}")
+    buckets = {"upcoming (game not started)": [], "in play or just started (0-4h)": [],
+               "STALE - game ended 4h+ ago, still ungraded": [], "no start time on the row": []}
+    for b in opens:
+        s_ = tb.tparse(b.get("game_start")) or tb.tparse(b.get("placed"))
+        if s_ is None:
+            buckets["no start time on the row"].append((None, b))
+            continue
+        if s_.tzinfo is None:
+            s_ = s_.replace(tzinfo=timezone.utc)
+        age = (now_ - s_).total_seconds() / 3600.0
+        if age < 0:
+            buckets["upcoming (game not started)"].append((s_, b))
+        elif age < 4:
+            buckets["in play or just started (0-4h)"].append((s_, b))
+        else:
+            buckets["STALE - game ended 4h+ ago, still ungraded"].append((s_, b))
+    for name in ("STALE - game ended 4h+ ago, still ungraded", "no start time on the row",
+                 "in play or just started (0-4h)", "upcoming (game not started)"):
+        xs = buckets[name]
+        L.append("")
+        L.append(f"  {name}: {len(xs)}")
+        for s_, b in sorted(xs, key=lambda t: str(t[0]))[:30]:
+            when = f"{s_:%Y-%m-%d %H:%M}Z" if s_ else "(none)"
+            hrs = f" ({(now_ - s_).total_seconds() / 3600.0:+.1f}h)" if s_ else ""
+            L.append(f"     {when}{hrs}  {str(b.get('bet'))[:30]:<30} "
+                     f"{str(b.get('book'))[:11]:<11} {str(b.get('source'))[:16]:<16} "
+                     f"{str(b.get('game'))[:34]}")
+        if len(xs) > 30:
+            L.append(f"     ... +{len(xs) - 30} more")
+    L += ["", "  A STALE row is the tracker being wrong: the game is over and the row still shows",
+          "  as open. A row with no start time cannot be placed in time at all."]
+
     L += ["", "Read-only: no file written, no bet placed, no rule changed. Dollars are in this",
           "email only; the Actions log carries counts."]
     body = "\n".join(L)
