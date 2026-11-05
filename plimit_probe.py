@@ -388,7 +388,10 @@ def main():
     L.append("tournaments: " + json.dumps(tids))
     ids = ",".join(str(tids[l][0]) for l in ("NBA", "NFL", "NHL") if l in tids)
     first = {}
-    for bk in ("pinnacle", "circasports"):
+    # Nov 5: the paid plan answers 403 "Restricted bookmakers: pinnacle" on the LIVE odds endpoint too (probe at 01:06),
+    # exactly as it does on /historical-odds, where the paid slug is "pinnacle+30". Lane 2's live limit read depends on
+    # whether that slug is allowed here, so test it explicitly.
+    for bk in ("pinnacle", "pinnacle+30", "circasports"):
         d = get("/odds-by-tournaments", tournamentIds=ids, bookmaker=bk, verbosity=3)
         if isinstance(d, dict) and d.get("_error"):
             L.append(f"{bk}: HTTP {d['_error']} {d['_body']}")
