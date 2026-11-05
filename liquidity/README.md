@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 5, 9:40 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 57.
+Updated Thu Nov 5, 9:46 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 57.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -15,7 +15,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 5 9:30AM | NHL | Dallas vs Columbus: Total Goals | total: NOT Over 5.5 goals scored | kalshi | $40k | +104 | ✅ novig,polymarket |  | +0.0c | yes | pending |
 | Nov 5 9:30AM | NHL | Vancouver vs Winnipeg: Spread | spread: NOT Winnipeg wins by over 1.5 goals | kalshi | $51k | -138 | ✅ novig |  | +0.0c |  | pending |
 | Nov 5 9:30AM | NHL | Nashville vs Colorado | moneyline: Nashville | kalshi | $103k | +186 | ✅ polymarket |  | +0.0c |  | pending |
-| Nov 5 9:26AM | NCAAF | New Mexico vs Nevada: Total Points | total: Over 38.5 points | kalshi | $37k | +108 |  |  | +0.0c |  | pending |
+| Nov 5 9:26AM | NCAAF | New Mexico vs Nevada: Total Points | total: Over 38.5 points | kalshi | $37k | +108 |  |  | +1.0c |  | pending |
 | Nov 5 9:06AM | NCAAF | TCU vs Arizona: Total Points | total: Over 45.5 points | kalshi | $109k | -108 |  |  | +0.0c |  | pending |
 | Nov 5 8:56AM | NBA | Orlando vs Phoenix | moneyline: Orlando | kalshi | $248k | +104 |  |  | +1.0c |  | pending |
 | Nov 5 8:20AM | NHL | Bruins vs. Penguins | moneyline: Bruins | polymarket | $35k | -104 | ✅ novig |  | +0.0c |  | pending |
@@ -46,7 +46,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 5 1:35AM | NCAAF | James Madison vs Southern Miss: Total Points | total: Over 57.5 points | kalshi | $34k | -104 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 5 1:05AM | NHL | Vancouver vs Winnipeg | moneyline: Winnipeg | kalshi | $26k | -194 |  |  | +0.0c | yes | pending |
 | Nov 5 12:10AM | NBA | Orlando vs Phoenix | moneyline: Phoenix | kalshi | $69k | -113 |  |  | -2.0c | yes | pending |
-| Nov 4 11:56PM | NBA | Miami vs Golden State | moneyline: Golden State | kalshi | $37k | -213 |  |  | +3.0c | yes | pending |
+| Nov 4 11:56PM | NBA | Miami vs Golden State | moneyline: Golden State | kalshi | $37k | -213 |  |  | +4.0c | yes | pending |
 | Nov 4 11:10PM | NHL | Boston vs Pittsburgh | moneyline: Boston | kalshi | $27k | -104 | ✅ novig,polymarket |  | +0.0c | yes | pending |
 | Nov 4 11:06PM | NHL | Anaheim vs Edmonton | moneyline: Edmonton | kalshi | $43k | -170 | ✅ novig |  | +1.0c | yes | pending |
 | Nov 4 10:20PM | NHL | Vegas vs Detroit: Spread | spread: NOT Vegas wins by over 1.5 goals | kalshi | $29k | -194 |  |  | +1.0c | yes | pending |
@@ -163,7 +163,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 4 9:10AM | NHL | San Jose vs Los Angeles: Total Goals | total: Over 6.5 goals scored | kalshi | $30k | +122 |  |  | +1.0c | yes | W |
 | Nov 4 9:10AM | NHL | San Jose vs Los Angeles: Spread | spread: Los Angeles wins by over 1.5 goals | kalshi | $26k | +170 |  |  | +2.0c | yes | W |
 | Nov 4 9:10AM | NFL | Jacksonville vs Baltimore: Total Points | total: NOT Over 39.5 points | kalshi | $323k | +104 |  |  | +2.0c | yes | pending |
-| Nov 4 9:10AM | NFL | Jacksonville vs Baltimore: Spread | spread: NOT Jacksonville wins by over 9.5 points | kalshi | $565k | +104 | ✅ novig |  | -1.0c | yes | pending |
+| Nov 4 9:10AM | NFL | Jacksonville vs Baltimore: Spread | spread: NOT Jacksonville wins by over 9.5 points | kalshi | $565k | +104 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 4 9:00AM | NBA | Hawks vs. Wizards | moneyline: Hawks | polymarket | $28k | -138 | ✅ kalshi,prophetx |  | -3.0c |  | W |
 | Nov 4 9:00AM | NBA | Atlanta vs Washington: Spread | spread: Atlanta wins by over 2.5 points | kalshi | $75k | -113 | ✅ polymarket |  | -3.0c | yes | W |
 | Nov 4 8:10AM | NBA | Indiana vs Memphis: Spread | spread: NOT Memphis wins by over 6.5 points | kalshi | $39k | -100 | ✅ polymarket | ✅ | +3.0c | yes | W |
