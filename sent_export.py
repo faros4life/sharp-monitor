@@ -17,8 +17,11 @@ export, built so that (Muse, Nov 4):
 Grading basis, stated so it can be reproduced rather than trusted:
   entry       = the alert's own after-fee price at the trigger book, American -> decimal (cl.am_to_dec).
   exec 5m     = best after-fee price on ProphetX / Novig / Kalshi / Polymarket US at alert + 5 min, on the alert's
-                own line. A quote implying better than +15% vs the close is dropped as a misread (the P1 rule, and
-                the same test the fill audit now applies per book) and counted in suspect_quotes_dropped.
+                own line, RAW: no quote is removed. The +15%-vs-close misread test is information from AFTER the bet,
+                so using it to pick the executable price would condition this export on the future and hand any
+                downstream split a population selected on data it could not have had. Instead exec_5m_* is the raw
+                best, exec_5m_suspect flags whether that quote fails the +15% test, and exec_5m_clean_* carries the
+                filtered best beside it, labelled. The analyst picks the basis; this file does not pick one for them.
   pin close   = Pinnacle's no-vig fair at the LAST pre-start read, at the bet's own line where Pinnacle had it;
                 close_same_line = 1 only then, and close_how records how it was derived otherwise. Compare only
                 equivalent contracts.
@@ -57,10 +60,11 @@ COLS = ["game_id", "game", "league", "market", "side", "line", "alert_utc", "lea
         "pin_limit_at_alert", "pin_limit_read", "pin_limit_x_vs_2h_before",
         "entry_after_fee_dec", "entry_after_fee_american", "trigger_book", "trigger_book_key",
         "exec_5m_after_fee_dec", "exec_5m_after_fee_american", "exec_5m_book", "exec_5m_beats_entry",
+        "exec_5m_suspect", "exec_5m_clean_after_fee_dec", "exec_5m_clean_after_fee_american", "exec_5m_clean_book",
         "pin_novig_at_entry", "pin_novig_at_close", "close_same_line", "close_how", "close_age_min",
-        "entry_vs_close_clv_pct", "exec_5m_vs_close_clv_pct",
+        "entry_vs_close_clv_pct", "exec_5m_vs_close_clv_pct", "exec_5m_clean_vs_close_clv_pct",
         "result", "units_flat", "late", "top25", "edge_pct", "confirmed_by", "executable_book",
-        "pricing_bettable", "suspect_quotes_dropped", "exclusion_reason"]
+        "pricing_bettable", "suspect_quotes_flagged", "exclusion_reason"]
 
 
 def am(dec):
@@ -136,7 +140,7 @@ def main():
              "confirmed_by": "|".join(str(x) for x in cb) if cb else "",
              "executable_book": 1 if a.get("executable_book") else 0,
              "pricing_bettable": 1 if a.get("pricing_bettable") else 0,
-             "suspect_quotes_dropped": 0, "exclusion_reason": ""}
+             "suspect_quotes_flagged": 0, "exclusion_reason": ""}
         d.update(kw)
         X.append(d)
         return d
@@ -187,19 +191,25 @@ def main():
         ce, _ = cl.close_for(b, f, pin, mkmap, t0, lg)   # same basis, read at entry
 
         when = min(t0 + timedelta(seconds=EXEC_SEC), start)
-        best, best_bk, dropped = None, None, 0
+        # Nov 5 (Peter + Muse audit, and my bug): the +15% misread test compares a quote to the Pinnacle CLOSE, which
+        # is information from AFTER the bet. Dropping quotes on it would make the executable price - and anything
+        # selected from it, such as a LOW / HIGH split - conditional on the future. So nothing is dropped. The raw best
+        # is reported; the filtered best is reported beside it; the flag says which rows differ.
+        best, best_bk, flagged = None, None, 0
+        cbest, cbest_bk = None, None
         for slug in EXCH:
             bk = cl.book_markets(h, slug)
             x = cl.novig_at(b, f, bk, mkmap, when, lg) if bk else None
             if not x:
                 continue
             v = el.eff(slug, x[0])
-            if c["p"] * v - 1 > 0.15:   # P1 misread rule: a quote this far above the close is bad data, not a price
-                dropped += 1
-                bump("suspect quote dropped")
-                continue
             if best is None or v > best:
-                best, best_bk = v, slug
+                best, best_bk = v, slug           # RAW: every quote competes, nothing peeks at the close
+            if c["p"] * v - 1 > 0.15:
+                flagged += 1
+                bump("suspect quote flagged (kept, never dropped)")
+            elif cbest is None or v > cbest:
+                cbest, cbest_bk = v, slug          # the close-filtered basis, carried separately and labelled
 
         xrow(a, game_id=fid,
              pin_limit_at_alert=lim, pin_limit_read=how, pin_limit_x_vs_2h_before=limx,
@@ -209,13 +219,18 @@ def main():
              exec_5m_after_fee_american=(am(best) if best else None),
              exec_5m_book=best_bk,
              exec_5m_beats_entry=("" if (best is None or want is None) else (1 if best >= want - 1e-9 else 0)),
+             exec_5m_suspect=("" if best is None else (1 if c["p"] * best - 1 > 0.15 else 0)),
+             exec_5m_clean_after_fee_dec=(round(cbest, 4) if cbest else None),
+             exec_5m_clean_after_fee_american=(am(cbest) if cbest else None),
+             exec_5m_clean_book=cbest_bk,
+             exec_5m_clean_vs_close_clv_pct=(round(100 * (c["p"] * cbest - 1), 3) if cbest else None),
              pin_novig_at_entry=(round(ce["p"], 5) if ce else None),
              pin_novig_at_close=round(c["p"], 5),
              close_same_line=1 if c.get("how") in ("own line", "moneyline") else 0,
              close_how=c.get("how"), close_age_min=c.get("age_min"),
              entry_vs_close_clv_pct=(round(100 * (c["p"] * want - 1), 3) if want else None),
              exec_5m_vs_close_clv_pct=(round(100 * (c["p"] * best - 1), 3) if best else None),
-             suspect_quotes_dropped=dropped)
+             suspect_quotes_flagged=flagged)
 
     graded = [r for r in X if r.get("entry_vs_close_clv_pct") is not None]
     sameln = [r for r in graded if r.get("close_same_line") == 1]
@@ -240,7 +255,11 @@ def main():
                  f"| beat {sum(1 for x in cv if x > 0)}/{len(cv)}")
         L.append("  (descriptive only - this is the export's own arithmetic, not a registered test result)")
         L.append("")
-    L += ["Columns: " + ", ".join(COLS), "",
+    sus = sum(1 for r in X if r.get("exec_5m_suspect") == 1)
+    L += [f"Executable price basis: exec_5m_* is RAW (no quote removed). {sus} row(s) carry a +5min best that fails the",
+          "+15%-vs-close misread test; they are FLAGGED, not dropped, because that test reads the close and would",
+          "condition this export on information from after the bet. exec_5m_clean_* is the filtered basis, beside it.",
+          "", "Columns: " + ", ".join(COLS), "",
           "Intended use: measure the SENT <-> LIQ game overlap, and reproduce item 56's Pinnacle-limit LOW / HIGH",
           "split off the raw rows. Until that overlap is measured, the Pinnacle-limit result is TWO populations that",
           "may share games, never two independent sightings."]
