@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 5, 9:06 AM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 51.
+Updated Thu Nov 5, 9:10 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 51.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -11,7 +11,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 5 9:06AM | NCAAF | TCU vs Arizona: Total Points | total: Over 45.5 points | kalshi | $109k | -108 |  |  | +0.0c |  | pending |
-| Nov 5 8:56AM | NBA | Orlando vs Phoenix | moneyline: Orlando | kalshi | $248k | +104 |  |  | +1.0c |  | pending |
+| Nov 5 8:56AM | NBA | Orlando vs Phoenix | moneyline: Orlando | kalshi | $248k | +104 |  |  | +0.0c |  | pending |
 | Nov 5 8:20AM | NHL | Bruins vs. Penguins | moneyline: Bruins | polymarket | $35k | -104 | ✅ novig |  | +0.0c |  | pending |
 | Nov 5 8:16AM | NHL | Predators vs. Avalanche | spread: Predators (+1.5) | polymarket | $31k | -133 | ✅ kalshi |  | +0.0c |  | pending |
 | Nov 5 8:10AM | NHL | Hurricanes vs. Islanders | total: Over (5.5) | polymarket | $26k | -122 |  |  | +0.0c |  | pending |
@@ -163,7 +163,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 4 8:10AM | NBA | Indiana vs Memphis: Spread | spread: NOT Memphis wins by over 6.5 points | kalshi | $39k | -100 | ✅ polymarket | ✅ | +3.0c | yes | W |
 | Nov 4 7:56AM | NBA | Cavaliers vs. Thunder | moneyline: Thunder | polymarket | $46k | -138 | ✅ kalshi,novig | ❌ | +2.0c |  | W |
 | Nov 4 7:56AM | NBA | 76ers vs. Pistons | total: Over (218.5) | polymarket | $53k | -104 |  |  | +2.0c | yes | L |
-| Nov 4 7:56AM | NCAAF | James Madison vs Southern Miss: Spread | spread: NOT James Madison wins by over 14.5 points | kalshi | $29k | -104 |  |  | +2.0c | yes | pending |
+| Nov 4 7:56AM | NCAAF | James Madison vs Southern Miss: Spread | spread: NOT James Madison wins by over 14.5 points | kalshi | $29k | -104 |  |  | +3.0c | yes | pending |
 | Nov 4 7:50AM | NBA | Cavaliers vs. Thunder | total: Under (228.5) | polymarket | $28k | -104 | ✅ kalshi,novig |  | +5.0c | yes | L |
 | Nov 4 7:50AM | NBA | Cleveland vs Oklahoma City: Total Points | total: NOT Over 228.5 points | kalshi | $41k | -108 | ✅ novig,polymarket |  | +4.0c | yes | L |
 | Nov 4 7:46AM | NBA | Cleveland vs Oklahoma City: Spread | spread: Oklahoma City wins by over 2.5 points | kalshi | $39k | -104 | ✅ polymarket | ❌ | +3.0c | yes | W |
