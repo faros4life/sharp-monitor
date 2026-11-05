@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 5, 5:34 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 21.
+Updated Thu Nov 5, 5:41 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 21.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -19,11 +19,11 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 5 1:10PM | TENNIS | Fils vs Fritz | moneyline: Fritz | kalshi | $764k | +133 |  |  | +46.0c |  | W |
 | Nov 5 10:30AM | NCAAB | Chicago St. vs Incarnate Word | moneyline: Incarnate Word | kalshi | $39k | -355 |  |  | +0.0c | yes | pending |
 | Nov 5 7:00AM | TENNIS | Hontama vs Kulambayeva | moneyline: Hontama | kalshi | $313k | -567 |  |  | +7.0c |  | W |
-| Nov 5 6:50AM | NCAAB | UMBC vs Marist | moneyline: Marist | kalshi | $25k | -156 |  |  | +4.0c | yes | pending |
+| Nov 5 6:50AM | NCAAB | UMBC vs Marist | moneyline: Marist | kalshi | $25k | -156 |  |  | +5.0c |  | pending |
 | Nov 5 5:10AM | TENNIS | Paul vs Halys | moneyline: Paul | kalshi | $48k | -426 |  |  | +8.0c |  | W |
 | Nov 5 1:30AM | NCAAB | Towson vs Utah | moneyline: Utah | kalshi | $44k | -488 |  |  | -4.0c | yes | pending |
 | Nov 5 1:20AM | TENNIS | Pridankina vs Shubladze | moneyline: Shubladze | kalshi | $135k | -203 |  |  | +3.0c | yes | W |
-| Nov 5 1:20AM | NCAAB | Michigan vs UConn | moneyline: UConn | kalshi | $42k | -257 |  |  | +1.0c | yes | pending |
+| Nov 5 1:20AM | NCAAB | Michigan vs UConn | moneyline: UConn | kalshi | $42k | -257 |  |  | +0.0c | yes | pending |
 | Nov 5 1:10AM | NCAAB | NJIT vs Iona | moneyline: Iona | kalshi | $42k | -456 |  |  | +0.0c | yes | pending |
 | Nov 5 1:10AM | NCAAB | Maine vs Sacred Heart | moneyline: Sacred Heart | kalshi | $36k | -245 |  |  | -2.0c | yes | pending |
 | Nov 5 1:10AM | NCAAB | UMass Lowell vs Merrimack | moneyline: Merrimack | kalshi | $39k | -300 |  |  | +5.0c | yes | pending |
