@@ -12,11 +12,14 @@ from datetime import datetime, timedelta, timezone
 import odds_screen
 import sharp_monitor as sm
 
-EVERY_S = float(os.environ.get("ODDS_SCREEN_MIN", "") or "10") * 60   # GitHub variable ODDS_SCREEN_MIN (5 or 10)
-FRESH_S = EVERY_S - 60
+_M = (os.environ.get("ODDS_SCREEN_MIN", "") or "off").strip().lower()   # Nov 5: off by default (Refresh button on the page);
+EVERY_S = None if _M in ("off", "0", "none") else float(_M) * 60     # set GitHub variable ODDS_SCREEN_MIN to 10 or 5 to turn on
+FRESH_S = (EVERY_S or 0) - 60
 
 
 def main():
+    if EVERY_S is None:
+        return print("odds screen poll: off (page Refresh button only)")
     n = datetime.now(timezone.utc)
     if not 9 <= n.astimezone(sm.ET).hour <= 23:
         return print("odds screen poll: outside 9 AM-midnight ET")
