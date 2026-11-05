@@ -348,7 +348,9 @@ def scan(sm, ev, cfg, lines, is_t25, d, now):
                               extra_tags=("mag",), headline=f"{game} — {bet} @ Hard Rock")
                     s["flag"] = True
                     flags += 1
-                    count_push(d, label, 0.0, now, "scanner")   # the scanner is same-line by construction: conv 0
+                    # the scanner is same-line by construction: conv 0. Nov 5 (Peter): pass the identifiers too,
+                    # or a scanner push raises the RAW total and can never raise the DISTINCT one.
+                    count_push(d, label, 0.0, now, "scanner", mk=mk, ev=ev.get("id"), side=side)
                 except Exception as x:
                     print(f"hr scanner flag failed: {str(x)[:60]}")
             d["sightings"].append(s)
