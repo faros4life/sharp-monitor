@@ -264,19 +264,31 @@ def refresh_fixtures(st, now, lg, lo, hi):
 
 
 def find_fixture(st, b):
+    """Nov 5 (Peter, approval of the targeted recovery): BOTH participants must match on a DISTINCTIVE
+    token, neither side may be carried by a word the other also matched, and the winner must be unique.
+    tb.WEAK is stripped here because match_game already strips it, and without that a "New Orleans ..."
+    bet reached sc==2 against a "New York ..." fixture purely on the shared word "new" - a wrong
+    fixture, and so a confidently wrong CLV, which is worse than no CLV. "Bay" (Tampa Bay / Green Bay)
+    and "Cougars" (Houston / Misericordia) fail the same way; both were seen in the Nov 5 inspection.
+    Several qualifying fixtures, or none, returns None and the bet is left UNSCORED rather than
+    mis-scored. This only tightens: it never invalidates a fixture already stored on a row, and a
+    scored row is skipped before this is reached."""
     lg, gs = b.get("league"), tp(b.get("game_start"))
-    words = tb.toks(" ".join(t.get("name", "") for t in b.get("teams") or [])) or tb.toks(b.get("game"))
-    best, sc = None, 0
+    words = (tb.toks(" ".join(t.get("name", "") for t in b.get("teams") or []))
+             or tb.toks(b.get("game"))) - tb.WEAK
+    if not words:
+        return None
+    hit = []
     for fid, f in (st.get("fixtures") or {}).items():
         if f["lg"] != lg:
             continue
         fs = tp(f["start"])
         if gs and fs and abs((fs - gs).total_seconds()) > 36 * 3600:
             continue
-        hits = (1 if tb.toks(f["p1"]) & words else 0) + (1 if tb.toks(f["p2"]) & words else 0)
-        if hits > sc:
-            best, sc = fid, hits
-    return best if sc == 2 else None
+        a, c = (tb.toks(f["p1"]) - tb.WEAK) & words, (tb.toks(f["p2"]) - tb.WEAK) & words
+        if a and c and (a - c) and (c - a):   # each side on its own word, not one shared word twice
+            hit.append(fid)
+    return hit[0] if len(hit) == 1 else None
 
 
 def which_team(f, team_text):
