@@ -240,19 +240,23 @@ def tournament(st, now, lg):
 
 
 def refresh_fixtures(st, now, lg, lo, hi):
-    """One billable /fixtures call for a league over [lo, hi] (dates), at most every 6 h per league."""
+    """One billable /fixtures call for a league over [lo, hi] (dates), at most every 6 h per league.
+
+    Returns True only when a FRESH lookup actually reached OddsPapi, so the caller can tell the
+    difference between "we looked and the game is not there" and "we never looked". Nov 5 (Peter):
+    a run that made no lookup must not burn a retry - see the tries accounting in main()."""
     last = tp((st.get("fx_last") or {}).get(lg))
     if last and now - last < timedelta(hours=6):
-        return
+        return False
     tid = tournament(st, now, lg)
     if not tid or not can_bill(st, now):
-        return
+        return False
     d = api("/fixtures", True, tournamentId=tid, **{"from": lo.strftime("%Y-%m-%d"), "to": hi.strftime("%Y-%m-%d")})
     bill(st, now)
     st.setdefault("fx_last", {})[lg] = iso(now)
     if isinstance(d, dict) and d.get("_error"):
         st.setdefault("errors", []).append(f"{iso(now)} fixtures {lg}: {d['_error']} {d['_body'][:120]}")
-        return
+        return False   # the call failed, so the cache is unchanged - that is not the bet's fault
     fx = st.setdefault("fixtures", {})
     for f in d if isinstance(d, list) else []:
         if not f.get("fixtureId"):
@@ -261,6 +265,7 @@ def refresh_fixtures(st, now, lg, lo, hi):
                               "p1": " ".join(str(f.get(k) or "") for k in ("participant1Name", "participant1ShortName", "participant1Abbr")),
                               "p2": " ".join(str(f.get(k) or "") for k in ("participant2Name", "participant2ShortName", "participant2Abbr")),
                               "n1": f.get("participant1Name"), "n2": f.get("participant2Name")}
+    return True
 
 
 def find_fixture(st, b):
@@ -762,8 +767,11 @@ def main():
         d0 = max(tp(s.get("game_start") or s.get("decided_utc")) or now, now - timedelta(days=FETCH_DAYS))   # keep the call small
         lo, hi = need.get(lg, (d0, d0))
         need[lg] = (min(lo, d0), max(hi, d0))
+    fetched = set()        # leagues whose fixtures were ACTUALLY re-read from OddsPapi this run
     for lg, (lo, hi) in need.items():
-        refresh_fixtures(st, now, lg, (lo - timedelta(days=1)).astimezone(ET), (hi + timedelta(days=1)).astimezone(ET))
+        if refresh_fixtures(st, now, lg, (lo - timedelta(days=1)).astimezone(ET),
+                            (hi + timedelta(days=1)).astimezone(ET)):
+            fetched.add(lg)
     # 4) score: free history calls, one per fixture and book
     hist = {}
     new_scored = 0
@@ -778,10 +786,18 @@ def main():
             continue
         fid = rec.get("fixture") or find_fixture(st, s)
         if not fid:
-            rec["tries"] = rec.get("tries", 0) + 1
-            rec["why"] = "no OddsPapi fixture matched"
-            if rec["tries"] >= MAX_TRIES:
-                rec["done"] = True
+            # Nov 5 (Peter): only a run that actually looked fixtures up for this league may burn a
+            # retry. The ledger runs every 2 h but refresh_fixtures has a 6 h cooldown, so roughly two
+            # runs in three would otherwise exhaust MAX_TRIES against an UNCHANGED cache in about 16
+            # hours - which is how the 70 rows recovered on Nov 5 died in the first place. espn_fill
+            # already guards the same way ("this bet's dates weren't fetched this run").
+            if lg in fetched:
+                rec["tries"] = rec.get("tries", 0) + 1
+                rec["why"] = "no OddsPapi fixture matched"
+                if rec["tries"] >= MAX_TRIES:
+                    rec["done"] = True
+            else:
+                rec["why"] = "no fixture yet - no fresh lookup this run (6 h cooldown), retry not counted"
             continue
         f = (st.get("fixtures") or {}).get(fid)
         if not f:
