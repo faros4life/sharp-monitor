@@ -125,15 +125,46 @@ def main():
     bets = st.get("bets") or {}
 
     # the ledger's own definitions, copied verbatim so this audits the same population the switch reads
-    scored = sorted([dict(r, id=k) for k, r in bets.items() if r.get("clv") is not None],
-                    key=lambda r: r.get("scored") or "")
+    scored_all = sorted([dict(r, id=k) for k, r in bets.items() if r.get("clv") is not None],
+                        key=lambda r: r.get("scored") or "")
+
+    def _ledger_held(r):
+        """The LIVE ledger's own exclusion, applied here so the statistical sections reconcile with it.
+
+        Nov 5 (Peter): "Its statistical sections must apply the same exclusion rules before we treat
+        its kill-switch, CLV and freshness reports as reconciled. Its forensic sections should
+        continue showing all original observations."
+        This calls clv_ledger's OWN fixture_check rather than re-implementing the rule, for the same
+        reason the matcher is shared: a second copy that merely agrees today is how the audit and the
+        ledger diverged in the first place."""
+        if r.get("fixture_doubt"):
+            return True
+        if cl is None or not hasattr(cl, "fixture_check"):
+            return False
+        if cl.fixture_check(st, r)[0] != "unvalidatable":
+            return False
+        prev = r.get("fixture_ok") or {}
+        return not (prev.get("fixture") and prev["fixture"] == r.get("fixture"))
+
+    held_rows = [r for r in scored_all if _ledger_held(r)]
+    scored = [r for r in scored_all if not _ledger_held(r)]      # ACCEPTED - what the ledger counts
     bot = [r for r in scored if (r["snap"].get("source") or "") == "bot"]
     man = [r for r in scored if (r["snap"].get("source") or "") != "bot"]
     unavail = [dict(r, id=k) for k, r in bets.items() if r.get("clv") is None]
 
     L = [f"CLV BASIS AUDIT - READ-ONLY | {now.astimezone(ET):%Y-%m-%d %H:%M} ET",
          "Separates VERIFIED same-line closes from MODELED (line-converted) ones. Applies nothing; changes no rule,",
-         "threshold, stake or execution path. Proposed caps are PRICED here, not enforced.", ""]
+         "threshold, stake or execution path. Proposed caps are PRICED here, not enforced.", "",
+         f"POPULATIONS: statistical sections (1-6, 11) use the {len(scored)} ACCEPTED rows - the live",
+         f"ledger's exclusions are applied, so the kill-switch, CLV and freshness figures below reconcile",
+         f"with the ledger email. {len(held_rows)} held-out row(s) are excluded from them.",
+         f"Forensic sections (8, 16) deliberately show ALL {len(scored_all)} scored rows, held ones included,",
+         "because their job is to examine the originals."]
+    for r in held_rows:
+        sh = r.get("snap") or {}
+        L.append(f"   held: {sh.get('league') or '?'} {sh.get('book') or '?'} {(sh.get('bet') or '')[:24]} "
+                 f"| CLV {100 * r['clv']:+.2f}% | {((r.get('fixture_doubt') or {}).get('why') or 'unverifiable')[:58]}")
+    L.append("")
 
     # ---------------------------------------------------------------- 1. the kill-switch
     w = bot[-SWITCH_N:]
@@ -308,11 +339,11 @@ def main():
     L.append("")
 
     # ============================================================ 8. BASIS x BOOK
-    L += ["=" * 70, "8. BASIS x BOOK on the scored rows", "=" * 70]
-    sbk = sorted({bookof(r) for r in scored})
+    L += ["=" * 70, f"8. BASIS x BOOK - FORENSIC, all {len(scored_all)} scored rows incl. held-out", "=" * 70]
+    sbk = sorted({bookof(r) for r in scored_all})
     L.append("  " + "basis".ljust(10) + "".join(f"{b[:11]:>13}" for b in sbk) + f"{'TOTAL':>8}")
     for b in ("VERIFIED", "MODELED", "OTHER"):
-        rows = [r for r in scored if basis(r) == b]
+        rows = [r for r in scored_all if basis(r) == b]
         if rows:
             L.append("  " + b.ljust(10) + "".join(f"{sum(1 for r in rows if bookof(r) == x):>13}" for x in sbk)
                      + f"{len(rows):>8}")
@@ -676,7 +707,7 @@ def main():
     NEW_FROM = "2026-11-05T14:56"          # the recovery run; rows scored at or after it are the new ones
     v = {}
     fails, sides = [], []
-    for r in scored:
+    for r in scored_all:                 # FORENSIC: validate every stored fixture, held ones included
         s = r.get("snap") or {}
         fid = r.get("fixture")
         tag = "new" if (r.get("scored") or "") >= NEW_FROM else "pre-existing"
