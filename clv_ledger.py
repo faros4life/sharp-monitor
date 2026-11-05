@@ -288,41 +288,53 @@ def find_fixture(st, b):
              or tb.toks(b.get("game"))) - tb.WEAK
     if not words:
         return None
-    hit = []
-    for fid, f in (st.get("fixtures") or {}).items():
-        if f["lg"] != lg:
-            continue
-        fs = tp(f["start"])
-        if gs and fs and abs((fs - gs).total_seconds()) > 36 * 3600:
-            continue
-        a, c = (tb.toks(f["p1"]) - tb.WEAK) & words, (tb.toks(f["p2"]) - tb.WEAK) & words
-        if a and c and (a - c) and (c - a) and max(len(a), len(c)) >= 2:
-            hit.append(fid)                   # each side on its own word, and one side on two of them
+    # the per-fixture test lives in _qualifies so this and fixture_check() can never diverge - two
+    # standards for the same question is exactly how the first version of the exclusion went wrong.
+    hit = [fid for fid, f in (st.get("fixtures") or {}).items() if _qualifies(f, lg, gs, words)]
     return hit[0] if len(hit) == 1 else None
 
 
-def fixture_suspect(st, rec):
-    """True when a row's STORED fixture is cached but no longer passes the matcher above.
-
-    Nov 5 (Peter): "exclude this observation from verified CLV statistics and the bot's rolling-50
-    calculation until its correct fixture is independently established and the CLV recalculated. Do
-    not silently replace its fixture or price." So this is a READ-ONLY test applied at report time:
-    the row keeps its clv, its fixture and its price, and simply sits outside the headline figures
-    until the assignment is re-established, at which point it returns on its own.
-    A fixture that is no longer cached cannot be judged either way, so it is NOT suspect - it stays
-    counted and is reported separately as unvalidated."""
-    fid = rec.get("fixture")
-    f = ((st.get("fixtures") or {}).get(fid)) if fid else None
-    if not f:
+def _qualifies(f, lg, gs, words):
+    """The matcher's own test for ONE fixture, so find_fixture and the validation cannot drift."""
+    if f.get("lg") != lg:
         return False
+    fs = tp(f.get("start"))
+    if gs and fs and abs((fs - gs).total_seconds()) > 36 * 3600:
+        return False
+    a = (tb.toks(f.get("p1") or "") - tb.WEAK) & words
+    c = (tb.toks(f.get("p2") or "") - tb.WEAK) & words
+    return bool(a and c and (a - c) and (c - a) and max(len(a), len(c)) >= 2)
+
+
+def fixture_check(st, rec):
+    """('ok' | 'doubt' | 'unvalidatable', reason) for a scored row's STORED fixture.
+
+    Nov 5 (Peter, closing two holes in the first version):
+      - the stored fixture must be the UNIQUELY correct one, not merely pass the token rule. A
+        fixture that qualifies while others also qualify is not established, it is ambiguous.
+      - a fixture that has left the cache is 'unvalidatable', NOT 'ok'. The first version returned
+        not-suspect in that case, so cache expiry would have quietly restored a doubtful row to the
+        headline with no independent re-check - exactly what must not happen.
+    Pairs with the sticky fixture_doubt marker set in main(): once a row is found doubtful it stays
+    out until someone establishes its real game and its CLV is recalculated. Nothing here clears it."""
+    fid = rec.get("fixture")
+    if not fid:
+        return "ok", ""                     # scored without a fixture id - nothing to validate here
     s = rec.get("snap") or {}
     words = (tb.toks(" ".join(t.get("name", "") for t in s.get("teams") or []))
              or tb.toks(s.get("game"))) - tb.WEAK
     if not words:
-        return False
-    a = (tb.toks(f.get("p1") or "") - tb.WEAK) & words
-    c = (tb.toks(f.get("p2") or "") - tb.WEAK) & words
-    return not (a and c and (a - c) and (c - a) and max(len(a), len(c)) >= 2)
+        return "unvalidatable", "no distinctive team words on the row"
+    fx = st.get("fixtures") or {}
+    if fid not in fx:
+        return "unvalidatable", "stored fixture is no longer in the cache"
+    lg, gs = s.get("league"), tp(s.get("game_start"))
+    q = [k for k, f in fx.items() if _qualifies(f, lg, gs, words)]
+    if q == [fid]:
+        return "ok", ""
+    if fid in q:
+        return "doubt", f"stored fixture qualifies but so do {len(q) - 1} other(s) - not established"
+    return "doubt", f"stored fixture does not pass the matcher ({len(q)} other(s) qualify)"
 
 
 def which_team(f, team_text):
@@ -909,13 +921,24 @@ def main():
             if rec["tries"] >= MAX_TRIES or (why and ("not parsed" in why or "not comparable" in why or "far from" in why)) or not d:
                 rec["done"] = True
     # 5) report
+    # Nov 5 (Peter): the doubt marker is STICKY. A row found doubtful is written with fixture_doubt
+    # and stays out of every figure even after its fixture leaves the cache, so neither expiry nor a
+    # routine refresh can restore it. Only the marker is written - never the fixture, price or clv -
+    # and nothing in this file ever clears it: that needs the real game established and the CLV
+    # recalculated, which is a decision, not a side effect.
+    for k, rec in st["bets"].items():
+        if rec.get("clv") is None:
+            continue
+        verdict, why_ = fixture_check(st, rec)
+        if verdict == "doubt" and not rec.get("fixture_doubt"):
+            rec["fixture_doubt"] = {"since": iso(now), "why": why_}
     all_scored = sorted([dict(r, id=k) for k, r in st["bets"].items() if r.get("clv") is not None],
                         key=lambda r: r.get("scored") or "")
-    held = [r for r in all_scored if fixture_suspect(st, r)]       # doubtful fixture - out of every figure
+    held = [r for r in all_scored if r.get("fixture_doubt")]        # sticky - out of every figure
     hid = {r["id"] for r in held}
     scored = [r for r in all_scored if r["id"] not in hid]
-    unvalidated = [r for r in scored
-                   if r.get("fixture") and r["fixture"] not in (st.get("fixtures") or {})]
+    unvalidated = [(r, fixture_check(st, r)[1]) for r in scored
+                   if fixture_check(st, r)[0] == "unvalidatable"]
     bot = [r for r in scored if (r["snap"].get("source") or "") == "bot"]
     man = [r for r in scored if (r["snap"].get("source") or "") != "bot"]
     alert = len(bot) >= 50 and sum(r["clv"] for r in bot[-50:]) / 50 < 0
@@ -937,16 +960,21 @@ def main():
                   "re-established. Excluded from the rolling 50 and from the kill-switch arithmetic."]
             for r in held:
                 s, fx = r["snap"], ((st.get("fixtures") or {}).get(r.get("fixture")) or {})
+                d = r.get("fixture_doubt") or {}
                 L.append(f"  {s.get('league') or '?'} {s.get('book') or '?'} {(s.get('bet') or '')[:26]} | "
                          f"CLV {100 * r['clv']:+.2f}% | stored fixture points at "
                          f"{(fx.get('n1') or fx.get('p1') or '?')[:22]} vs {(fx.get('n2') or fx.get('p2') or '?')[:22]}")
+                L.append(f"      flagged {(d.get('since') or '')[:16]}: {d.get('why') or '?'}")
+                now_v, now_w = fixture_check(st, r)
+                L.append(f"      re-checked now: {now_v}" + (f" - {now_w}" if now_w else "")
+                         + ". Stays out until the real game is established and the CLV recalculated.")
         if unvalidated:
             L += ["", f"UNVALIDATED ({len(unvalidated)}) - fixture no longer in the cache, so the assignment cannot",
                   "be judged either way. These ARE counted above; flagged so they are not read as a clean check."]
-            for r in unvalidated:
+            for r, why_ in unvalidated:
                 s = r["snap"]
                 L.append(f"  {s.get('league') or '?'} {s.get('book') or '?'} {(s.get('bet') or '')[:26]} | "
-                         f"CLV {100 * r['clv']:+.2f}%")
+                         f"CLV {100 * r['clv']:+.2f}% | {why_}")
         try:
             sv = sv_registry()
         except Exception:
