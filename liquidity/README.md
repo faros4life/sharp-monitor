@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 5, 12:40 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 65.
+Updated Thu Nov 5, 12:45 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 66.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 5 12:45PM | NBA | Magic vs. Suns | moneyline: Magic | polymarket | $50k | -100 | ✅ kalshi,prophetx |  | +0.0c |  | pending |
 | Nov 5 12:20PM | NHL | St. Louis vs New Jersey: Spread | spread: New Jersey wins by over 1.5 goals | kalshi | $61k | +127 | ✅ polymarket |  | +0.0c |  | pending |
 | Nov 5 11:25AM | NHL | Blues vs. Devils | spread: Devils (-1.5) | polymarket | $30k | +133 |  |  | +1.0c |  | pending |
 | Nov 5 11:20AM | NCAAF | James Madison @ Southern Mississippi | moneyline: JMU (0) | novig | $26k | -488 | ✅ kalshi,prophetx |  | +0.0c |  | pending |
@@ -33,7 +34,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 5 8:05AM | NHL | Canucks vs. Jets | total: Over (6.5) | polymarket | $46k | -100 |  |  | +0.0c |  | pending |
 | Nov 5 8:00AM | NHL | Canucks vs. Jets | spread: Canucks (+1.5) | polymarket | $43k | -138 |  |  | +0.0c |  | pending |
 | Nov 5 7:40AM | NHL | Predators vs. Avalanche | moneyline: Predators | polymarket | $152k | +194 | ✅ kalshi |  | +1.0c |  | pending |
-| Nov 5 7:40AM | NHL | Nashville vs Colorado: Spread | spread: NOT Colorado wins by over 1.5 goals | kalshi | $29k | -127 | ✅ polymarket |  | +1.0c |  | pending |
+| Nov 5 7:40AM | NHL | Nashville vs Colorado: Spread | spread: NOT Colorado wins by over 1.5 goals | kalshi | $29k | -127 | ✅ polymarket |  | +0.0c |  | pending |
 | Nov 5 7:40AM | NHL | Dallas vs Columbus | moneyline: Dallas | kalshi | $76k | -122 | ✅ polymarket |  | +0.0c |  | pending |
 | Nov 5 7:30AM | NHL | Boston vs Pittsburgh: Total Goals | total: Over 6.5 goals scored | kalshi | $31k | -108 | ✅ polymarket |  | +0.0c |  | pending |
 | Nov 5 5:20AM | NBA | Magic vs. Suns | moneyline: Suns | polymarket | $106k | -113 | ✅ kalshi |  | -2.0c |  | pending |
@@ -125,7 +126,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 4 2:10PM | NBA | Miami vs Los Angeles C: Spread | spread: NOT Miami wins by over 5.5 points | kalshi | $57k | +108 |  |  | +2.0c | yes | W |
 | Nov 4 2:00PM | NBA | Mavericks vs. Spurs | total: Over (226.5) | polymarket | $46k | -104 | ✅ novig,prophetx |  | +0.0c |  | L |
 | Nov 4 1:50PM | NCAAF | Toledo vs Sacramento St.: Total Points | total: Over 52.5 points | kalshi | $50k | -104 |  |  | -1.0c | yes | L |
-| Nov 4 1:45PM | NHL | Chicago vs Tampa Bay | moneyline: Tampa Bay | kalshi | $64k | -335 |  |  | +2.0c | yes | pending |
+| Nov 4 1:45PM | NHL | Chicago vs Tampa Bay | moneyline: Tampa Bay | kalshi | $64k | -335 |  |  | +3.0c | yes | pending |
 | Nov 4 1:45PM | NHL | Ottawa vs Buffalo | moneyline: Ottawa | kalshi | $137k | +117 |  |  | +0.0c | yes | W |
 | Nov 4 1:20PM | NBA | Bucks vs. Celtics | spread: Celtics (-10.5) | polymarket | $176k | -104 | ✅ kalshi,prophetx | ❌ | +6.0c | yes | L |
 | Nov 4 1:20PM | NBA | Atlanta vs Washington: Total Points | total: Over 230.5 points | kalshi | $29k | -104 | ✅ prophetx | ❌ | -3.0c | yes | L |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 3 6:45PM | NHL | Jets vs. Canadiens | moneyline: Canadiens | polymarket | $56k | -156 | ✅ novig |  | +1.0c |  | L |
 | Nov 3 6:40PM | NCAAF | Ball St. vs UMass: Spread | spread: UMass wins by over 3.5 points | kalshi | $47k | +108 |  |  | -6.0c | yes | L |
 | Nov 3 6:20PM | NHL | Edmonton vs New Jersey: Total Goals | total: Over 6.5 goals scored | kalshi | $43k | +117 |  |  | +1.0c | yes | W |
-| Nov 3 6:10PM | NHL | Colorado vs Columbus | moneyline: Colorado | kalshi | $65k | -113 | ✅ novig,polymarket,prophetx |  | +0.0c | yes | L |
