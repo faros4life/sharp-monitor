@@ -1,6 +1,6 @@
 # EV sightings study (paper, measurement only)
 
-Started 2026-10-27T16:06:50Z. Updated 2026-11-05T18:36:34Z. Sightings are a record, never bets. CLV = close fair - sighting after-fee cost, in cents (+ = beat the close). Gate: >= 50 graded, positive average CLV and positive flat record; reviewed only at a scheduled review. A/B gate on consensus CLV; move-watch (A1) gate on Pinnacle CLV. Held = Pinnacle close minus Pinnacle's pre-move fair at the old number (+ = the move held). Rows exclude suspect sightings (best price 10c+ under the other books, or a crossed quote: usually a misread line); Pinnacle CLV only within 3 points of Pinnacle's number.
+Started 2026-10-27T16:06:50Z. Updated 2026-11-05T18:44:06Z. Sightings are a record, never bets. CLV = close fair - sighting after-fee cost, in cents (+ = beat the close). Gate: >= 50 graded, positive average CLV and positive flat record; reviewed only at a scheduled review. A/B gate on consensus CLV; move-watch (A1) gate on Pinnacle CLV. Held = Pinnacle close minus Pinnacle's pre-move fair at the old number (+ = the move held). Rows exclude suspect sightings (best price 10c+ under the other books, or a crossed quote: usually a misread line); Pinnacle CLV only within 3 points of Pinnacle's number.
 
 | Bucket | Sightings | Closed | CLV vs consensus | Beat % | Pin-closed | CLV vs Pinnacle | Graded | Record | Units | ROI | Held | Lag (med) | Gate |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
@@ -48,10 +48,11 @@ A and B on the same side/line: 83.
 
 ## Odds API credits (100K/month plan)
 
-Study: 590/day, projected 17714/30 days. All monitors on the key: 2062/day, projected 61866/30 days. Remaining 90429; guard holds 70600 for the sharp monitor; polls skipped by the guard: 0.
+Study: 590/day, projected 17714/30 days. All monitors on the key: 2062/day, projected 61868/30 days. Remaining 90414; guard holds 70600 for the sharp monitor; polls skipped by the guard: 0.
 
 ## Last runs
 
+- 2026-11-05T18:41:03Z: 24 games (16 in 24h), quotes {'prophetx': 990, 'novig': 704, 'kalshi': 980, 'polymarket_us': 1070}, 201 unmatched (4 book-games; fuzzy-matched 0), 2021 side/lines, polls [none_due; NCAAF:fast,NHL:fast], moves 0, new A 0 B 0, maker posted 0 filled 0, credits used 4 left 90414, 183s
 - 2026-11-05T18:31:06Z: 24 games (16 in 24h), quotes {'prophetx': 990, 'novig': 702, 'kalshi': 982, 'polymarket_us': 1070}, 203 unmatched (4 book-games; fuzzy-matched 0), 2019 side/lines, polls [NFL:slow,NCAAF:fast,NBA:slow,NHL:fast; NCAAF:fast,NHL:fast], moves 1, new A 1 B 0, maker posted 16 filled 0, credits used 12 left 90429, 329s
 - 2026-11-05T18:21:01Z: 24 games (16 in 24h), quotes {'prophetx': 990, 'novig': 704, 'kalshi': 984, 'polymarket_us': 1070}, 199 unmatched (4 book-games; fuzzy-matched 0), 2021 side/lines, polls [none_due; NHL:fast], moves 0, new A 0 B 0, maker posted 0 filled 0, credits used 2 left 90463, 182s
 - 2026-11-05T18:11:04Z: 24 games (16 in 24h), quotes {'prophetx': 990, 'novig': 709, 'kalshi': 980, 'polymarket_us': 1070}, 197 unmatched (4 book-games; fuzzy-matched 0), 2021 side/lines, polls [NFL:slow,NCAAF:slow,NBA:slow,NHL:fast; NHL:fast], moves 1, new A 1 B 0, maker posted 88 filled 0, credits used 10 left 90467, 309s
@@ -61,4 +62,3 @@ Study: 590/day, projected 17714/30 days. All monitors on the key: 2062/day, proj
 - 2026-11-05T17:30:57Z: 24 games (16 in 24h), quotes {'prophetx': 982, 'novig': 714, 'kalshi': 982, 'polymarket_us': 1070}, 181 unmatched (4 book-games; fuzzy-matched 0), 2027 side/lines, polls [none_due], moves 0, new A 4 B 0, maker posted 0 filled 0, credits used 0 left 90553, 184s
 - 2026-11-05T17:21:01Z: 24 games (16 in 24h), quotes {'prophetx': 946, 'novig': 704, 'kalshi': 988, 'polymarket_us': 1070}, 180 unmatched (4 book-games; fuzzy-matched 0), 2015 side/lines, polls [NFL:slow,NCAAF:slow,NBA:slow,NHL:slow], moves 4, new A 5 B 0, maker posted 0 filled 0, credits used 8 left 90566, 182s
 - 2026-11-05T17:11:02Z: 24 games (16 in 24h), quotes {'prophetx': 980, 'novig': 714, 'kalshi': 984, 'polymarket_us': 1070}, 179 unmatched (4 book-games; fuzzy-matched 0), 2030 side/lines, polls [none_due], moves 0, new A 4 B 0, maker posted 0 filled 0, credits used 0 left 90585, 183s
-- 2026-11-05T17:00:49Z: 24 games (16 in 24h), quotes {'prophetx': 976, 'novig': 708, 'kalshi': 982, 'polymarket_us': 1070}, 175 unmatched (4 book-games; fuzzy-matched 0), 2027 side/lines, polls [NFL:slow,NCAAF:slow,NBA:slow,NHL:slow], moves 1, new A 6 B 1, maker posted 0 filled 0, credits used 8 left 90596, 183s
