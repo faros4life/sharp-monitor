@@ -120,6 +120,7 @@ def first_side(a, feed, live_only=False):
 
 
 PHASE1 = ("ProphetX-priced at alert time (Hard Rock-priced never), Muse AGREE, NBA + NCAAF + NFL totals unders, NCAAF overs (Peter Nov 4 3:58 PM), "
+          "not Matchbook-only confirmations (Peter Nov 4), "
           "not sent 12-24h before start, $50 unit, ProphetX only")
 
 
@@ -173,7 +174,19 @@ def phase1(a, muse_agree, tag_nfl=False):
     # prophetx"): NCAAF totals OVERS join the live lane (ProphetX-priced sent alerts: overs 8-3 +3.48u, unders 12-3 +6.91u).
     if sp != "NFL" and not under and not (sp == "NCAAF" and over):
         why.append("Lane 1 is totals unders only, plus NCAAF overs (spreads, other overs, moneylines stay paper)")
+    # Nov 4 (Peter's ruling, in Muse's chat): MATCHBOOK-ONLY CONFIRMATIONS ARE NOT LIVE. An alert whose only confirmer is
+    # Matchbook is paper-logged and graded as before, but never placed and never rested. BetOnline-only (+9.56u on 45) and
+    # no-confirmer alerts are unchanged. Honest basis, as ruled: the POPULATION read carries this (Matchbook-only -8.46u on
+    # 42); in-lane it is 0-2, so one losing play produces its -13.10% CLV and the in-lane sample does NOT independently
+    # support the cut. The deciding argument is direction of risk - if the population read is wrong this costs about 2
+    # plays in 31, where the rejected alternative (lifting the 12-24h window) would have ADDED live exposure on an n6
+    # cell. The Matchbook tag stays logged in-lane; revisit at the 50-fill checkpoint with the P-limit split.
+    cb = [str(x).strip().lower() for x in (a.get("confirmed_by") or [])]
+    if cb == ["matchbook"]:
+        why.append("confirmed by Matchbook alone (never live, Peter Nov 4; population -8.46u on 42)")
     ld = lead_min(a)
+    # 12-24h stays PAPER (Peter Nov 4: hold). Revisit at ~20 paper plays in the window, and only if its CLV still holds
+    # (in-subset at the ruling: 4-2, +1.23u, CLV +2.55%).
     if ld is not None and 720 <= ld < 1440:
         why.append(f"sent {ld / 60:.0f}h before start (12-24h window is paper)")
     if a.get("late"):
