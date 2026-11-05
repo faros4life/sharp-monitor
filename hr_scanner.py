@@ -218,6 +218,15 @@ def scan(sm, ev, cfg, lines, is_t25, d, now):
             _dg(d, f"{mk}: both books have this side")
             if ppt != hpt or opt != (ppt if mk == "totals" else -ppt):
                 _dg(d, f"{mk}: line mismatch, HR vs Pinnacle")
+                # Nov 5: how FAR apart. A standing mismatch is only a Type L CANDIDATE (SLOW-HR Type L also needs a
+                # Pinnacle move >= 0.5 inside the window plus persistence, which this scanner does not track), so these
+                # are an upper bound on Type L flow, not Type L sightings. Half-point gaps are the bettable shape.
+                try:
+                    gap = abs(float(hpt) - float(ppt))
+                    _dg(d, f"{mk}: gap " + ("0.5" if gap <= 0.5 else "1.0" if gap <= 1.0 else
+                                            "1.5-2" if gap <= 2.0 else "2.5-3" if gap <= 3.0 else "over 3"))
+                except Exception:
+                    pass
                 continue
             _dg(d, f"{mk}: same line at both")
             q, r = _p(ppr), _p(opr)
@@ -231,6 +240,10 @@ def scan(sm, ev, cfg, lines, is_t25, d, now):
                                     "evp": round(evp, 2), "max_bet": None}
             if evp < MIN_EV:
                 _dg(d, f"{mk}: same line but EV under {MIN_EV:g}%")
+                # Nov 5: HOW far under. Is the bar slightly wrong (HR landing at 1.9%) or is Hard Rock simply worse
+                # than Pinnacle at the same number (negative EV), in which case no threshold rescues this test.
+                _dg(d, f"{mk}: EV band " + ("1 to 2%" if evp >= 1 else "0 to 1%" if evp >= 0 else
+                                            "-2 to 0%" if evp >= -2 else "-5 to -2%" if evp >= -5 else "under -5%"))
                 continue
             _dg(d, f"{mk}: SIGHTING")
             if mine and float(mine[-1]["hr"]) == float(hpr):
