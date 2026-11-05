@@ -217,6 +217,41 @@ def main():
                 L.append(f"     {lab:<10} {stats(bk[lab])}")
         if "unknown" in bk:
             L.append(f"     {'unknown':<10} {stats(bk['unknown'])}")
+    # ---------------------------------------------------------------- 6. WHY 212 BETS HAVE NO CLV
+    # Nov 5 (Peter, ranked above everything else in the study): every CLV figure in the system rests on the scored
+    # minority. If the unscored majority is unscored for SYSTEMATIC reasons - a book, a league, a fixture-matching
+    # failure - then the scored sample is not representative and no CLV figure generalises. This section reports the
+    # ledger's OWN reason fields; it infers nothing.
+    L += ["=" * 60, f"6. UNSCORED COVERAGE - why {len(unavail)} of {len(bets)} bets have no CLV", "=" * 60,
+          f"  Scored: {len(scored)} of {len(bets)} ({100 * len(scored) / max(1, len(bets)):.0f}%). "
+          f"Every CLV figure above rests on that share.", ""]
+
+    def tally(rows, keyf, label, top=14):
+        c = {}
+        for r in rows:
+            c[str(keyf(r) or "(blank)")] = c.get(str(keyf(r) or "(blank)"), 0) + 1
+        L.append(f"  by {label}:")
+        for k, v in sorted(c.items(), key=lambda kv: -kv[1])[:top]:
+            L.append(f"     {v:>5}  {k[:96]}")
+        if len(c) > top:
+            L.append(f"     ... +{len(c) - top} more values")
+
+    tally(unavail, lambda r: r.get("why"), "the ledger's own reason ('why')")
+    tally(unavail, lambda r: "done (given up)" if r.get("done") else f"still retrying (tries {r.get('tries') or 0})",
+          "retry state")
+    tally(unavail, lambda r: (r.get("snap") or {}).get("league"), "league")
+    tally(unavail, lambda r: (r.get("snap") or {}).get("book"), "book")
+    tally(unavail, lambda r: (r.get("snap") or {}).get("source"), "source")
+    tally(unavail, lambda r: ((r.get("snap") or {}).get("game_start") or "")[:7], "game month")
+    tally(unavail, lambda r: "fixture matched" if r.get("fixture") else "NO fixture matched", "fixture match")
+
+    # the same cuts on the SCORED rows, so systematic skew is visible as a difference rather than asserted
+    L += ["", "  For comparison, the SCORED rows on the same cuts (a large gap here means the scored sample is skewed):"]
+    tally(scored, lambda r: (r.get("snap") or {}).get("league"), "league (scored)")
+    tally(scored, lambda r: (r.get("snap") or {}).get("book"), "book (scored)")
+    tally(scored, lambda r: (r.get("snap") or {}).get("source"), "source (scored)")
+    L.append("")
+
     L += ["", "Read-only: this script wrote no state and changed no rule. Verified and modeled CLV are never again to",
           "be combined into a primary headline."]
 
