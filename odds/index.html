@@ -32,6 +32,7 @@ tr.fair td{color:var(--dim);font-size:12.5px;background:transparent}
 .ev.p{color:var(--ev)}.ev.n{color:var(--neg)}
 td.b .ev.p{color:var(--bestink)}
 .na{color:var(--line)}
+td a{color:inherit;text-decoration:underline;text-decoration-color:var(--dim);text-underline-offset:3px}
 .stale{color:var(--neg)}
 .empty{color:var(--dim);text-align:center;padding:40px 0}
 .note{color:var(--dim);font-size:12px;margin-top:18px}
@@ -101,7 +102,9 @@ function render(){
           const fp=MK==="m"?f:f[1], fpt=MK==="m"?null:f[0], px=MK==="m"?v:v[1];
           if(MK==="m"||fpt===v[0]){const e=(prob(fp)/prob(px)-1)*100;if(Math.abs(e)>=0.05)ev=`<span class="ev ${e>0?"p":"n"}">${e>0?"+":""}${e.toFixed(1)}%</span>`}
         }
-        html+=`<td class="${best[i]===b?"b":""}">${txt}${ev}</td>`;
+        const lk=g.links&&g.links[b]&&((g.links[b][MK]&&g.links[b][MK][s])||g.links[b].e);
+        const safe=lk&&/^https:\/\//.test(lk)?lk.replace(/"/g,"%22"):null;
+        html+=`<td class="${best[i]===b?"b":""}">${safe?`<a href="${safe}" target="_blank" rel="noopener">${txt}</a>`:txt}${ev}</td>`;
       });
       html+=`</tr>`;
     }
@@ -109,7 +112,7 @@ function render(){
     html+=`</table></div>`;
   }
   out.innerHTML=html||`<div class="empty">No games${q?` matching “${Q.replace(/[<>&]/g,"")}”`:""} in the next 24 hours.</div>`;
-  out.innerHTML+=`<div class="note">Green = best price on that side across your books. % = edge vs ${N[sharp]||"Pinnacle"} no-vig (same number only). Games within the next 24 hours; each sport refreshes on the monitor's poll.</div>`;
+  out.innerHTML+=`<div class="note">Green = best price on that side across your books. Underlined prices open that game on the book. % = edge vs ${N[sharp]||"Pinnacle"} no-vig (same number only). Games within the next 24 hours; each sport refreshes on the monitor's poll.</div>`;
 }
 function chips(){
   const lgs=["All",...[...new Set(D.games.map(g=>g.lg))]];

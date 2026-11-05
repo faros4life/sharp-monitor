@@ -54,6 +54,22 @@ def add(label, event, lines, rank_info, show_books, sharp):
             books[bk] = b
     if not books:
         return
+    links = {}   # Nov 5: deepest link each book gives (outcome > market > event), per market and side
+    for bk in event.get("bookmakers", []):
+        if bk["key"] not in books:
+            continue
+        L = {"e": bk.get("link")}
+        for m in bk.get("markets", []):
+            short = {"spreads": "s", "totals": "t", "h2h": "m"}.get(m["key"])
+            if not short:
+                continue
+            for o in m.get("outcomes", []):
+                u = o.get("link") or m.get("link") or bk.get("link")
+                if u:
+                    L.setdefault(short, {})[o["name"]] = u
+        L = {k: v for k, v in L.items() if v}
+        if L:
+            links[bk["key"]] = L
     fair = {}
     p = lines.get(sharp, {})
     for mk, short in (("spreads", "s"), ("totals", "t")):
@@ -69,7 +85,7 @@ def add(label, event, lines, rank_info, show_books, sharp):
     _new.setdefault(label, []).append({
         "id": event["id"], "lg": label, "start": event["commence_time"],
         "away": event["away_team"], "home": event["home_team"],
-        "t25": [[t, r] for t, r in (rank_info or [])], "books": books, "fair": fair})
+        "t25": [[t, r] for t, r in (rank_info or [])], "books": books, "fair": fair, "links": links})
 
 
 def save(retail, sharp, names):

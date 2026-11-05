@@ -1524,6 +1524,7 @@ def run():
         cfg = SPORTS[key]
         events, rem = http_get(f"/sports/{key}/odds", {
             "bookmakers": books, "markets": ",".join(cfg["markets"]), "oddsFormat": "american",
+            "includeLinks": "true",   # Nov 5: book deep links for the odds screen (tap a price -> that game on the book)
             "commenceTimeFrom": iso(n), "commenceTimeTo": iso(n + timedelta(hours=LOOKAHEAD_H))})
         if rem is not None:
             st["remaining"] = rem
