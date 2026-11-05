@@ -255,7 +255,10 @@ def main():
                   ("sharp agrees", lambda r: r["agree"]), ("pulled", lambda r: r["pulled"]), ("stayed", lambda r: not r["pulled"]),
                   ("Kalshi trigger", lambda r: r["book"] == "kalshi"), ("Polymarket trigger", lambda r: r["book"] == "polymarket"),
                   ("Pinnacle limit rising 1.5x+ (vs 2h before)", lambda r: (r["lim_x"] or 0) >= 1.5),
-                  ("Pinnacle limit not rising", lambda r: r["lim_x"] is not None and r["lim_x"] < 1.5),
+                  # Nov 5: renamed. This is the COMPLEMENT of the rising bucket (lim_x < 1.5), not a flat-limit read -
+                  # on the Nov 4 CSV the per-play edge is higher in the 1.0-1.5x band than at <= 1.0x, so the old name
+                  # ("not rising") invited a mechanism that is not there. Treat it as a threshold artifact.
+                  ("Pinnacle limit not rising 1.5x+ (complement, NOT a flat-limit read)", lambda r: r["lim_x"] is not None and r["lim_x"] < 1.5),
                   ("no Pinnacle limit read", lambda r: r["lim"] is None),
                   # Nov 4 (Peter + Muse): the print-size split. On the board's own close, NBA totals 4h+ with a
                   # 25-50k print is +18.22u on 80 (both halves) while 50k+ is negative. These rows grade that same
