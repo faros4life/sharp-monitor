@@ -653,7 +653,15 @@ def main():
         out = []
         if not words:
             return out, words
+        # Call the LEDGER'S OWN per-fixture test. A second implementation that merely agrees today is
+        # how the earlier divergence started: the audit required uniqueness while the ledger did not.
+        # The local copy below is a fallback for the case where clv_ledger could not be imported, and
+        # it is the only thing here that could ever drift - it is kept deliberately minimal.
         for fid, f in fxc.items():
+            if cl is not None and hasattr(cl, "_qualifies"):
+                if cl._qualifies(f, lg, gs, words):
+                    out.append(fid)
+                continue
             if f.get("lg") != lg:
                 continue
             fs = tpa(f.get("start"))
@@ -662,7 +670,7 @@ def main():
             a = (tb.toks(f.get("p1") or "") - tb.WEAK) & words
             c = (tb.toks(f.get("p2") or "") - tb.WEAK) & words
             if a and c and (a - c) and (c - a) and max(len(a), len(c)) >= 2:
-                out.append(fid)       # mirrors cl.find_fixture exactly, two-token floor included
+                out.append(fid)
         return out, words
 
     NEW_FROM = "2026-11-05T14:56"          # the recovery run; rows scored at or after it are the new ones
