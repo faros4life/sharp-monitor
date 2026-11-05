@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 5, 10:20 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 59.
+Updated Thu Nov 5, 10:26 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 59.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -23,7 +23,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 5 8:20AM | NHL | Bruins vs. Penguins | moneyline: Bruins | polymarket | $35k | -104 | ✅ novig |  | +0.0c |  | pending |
 | Nov 5 8:16AM | NHL | Predators vs. Avalanche | spread: Predators (+1.5) | polymarket | $31k | -133 | ✅ kalshi |  | +0.0c |  | pending |
 | Nov 5 8:10AM | NHL | Hurricanes vs. Islanders | total: Over (5.5) | polymarket | $26k | -122 |  |  | +0.0c |  | pending |
-| Nov 5 8:10AM | NHL | Carolina vs New York I: Total Goals | total: Over 5.5 goals scored | kalshi | $47k | -122 |  |  | +0.0c |  | pending |
+| Nov 5 8:10AM | NHL | Carolina vs New York I: Total Goals | total: Over 5.5 goals scored | kalshi | $47k | -122 |  |  | +1.0c |  | pending |
 | Nov 5 8:05AM | NHL | Canucks vs. Jets | total: Over (6.5) | polymarket | $46k | -100 |  |  | +0.0c |  | pending |
 | Nov 5 8:00AM | NHL | Canucks vs. Jets | spread: Canucks (+1.5) | polymarket | $43k | -138 |  |  | +0.0c |  | pending |
 | Nov 5 7:40AM | NHL | Predators vs. Avalanche | moneyline: Predators | polymarket | $152k | +194 | ✅ kalshi |  | +1.0c |  | pending |
@@ -38,14 +38,14 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 5 5:10AM | NHL | Utah vs Montreal | moneyline: Utah | kalshi | $34k | -113 | ✅ polymarket |  | +0.0c |  | pending |
 | Nov 5 5:10AM | NHL | St. Louis vs New Jersey | moneyline: New Jersey | kalshi | $46k | -178 | ✅ polymarket |  | +0.0c |  | pending |
 | Nov 5 5:06AM | NHL | Philadelphia vs New York R: Total Goals | total: Over 5.5 goals scored | kalshi | $28k | -122 |  |  | +0.0c |  | pending |
-| Nov 5 5:06AM | NHL | Carolina vs New York I | moneyline: Carolina | kalshi | $40k | -170 |  |  | +0.0c |  | pending |
+| Nov 5 5:06AM | NHL | Carolina vs New York I | moneyline: Carolina | kalshi | $40k | -170 |  |  | +1.0c |  | pending |
 | Nov 5 5:06AM | NCAAF | New Mexico vs Nevada | moneyline: New Mexico | kalshi | $157k | -355 | ✅ novig |  | +0.0c |  | pending |
 | Nov 5 4:50AM | NHL | Predators vs. Avalanche | moneyline: Avalanche | polymarket | $27k | -203 |  |  | -1.0c |  | pending |
 | Nov 5 4:50AM | NHL | Ducks vs. Oilers | moneyline: Oilers | polymarket | $25k | -178 | ✅ kalshi,novig |  | +0.0c |  | pending |
 | Nov 5 4:45AM | NHL | Blues vs. Devils | moneyline: Devils | polymarket | $27k | -186 | ✅ kalshi |  | +1.0c |  | pending |
 | Nov 5 4:45AM | NHL | Blackhawks vs. Lightning | moneyline: Lightning | polymarket | $30k | -400 | ✅ kalshi |  | +0.0c |  | pending |
 | Nov 5 3:05AM | NHL | Stars vs. Blue Jackets | moneyline: Stars | polymarket | $30k | -122 | ✅ kalshi |  | +1.0c |  | pending |
-| Nov 5 1:35AM | NCAAF | James Madison vs Southern Miss: Total Points | total: Over 57.5 points | kalshi | $34k | -104 | ✅ novig |  | +0.0c | yes | pending |
+| Nov 5 1:35AM | NCAAF | James Madison vs Southern Miss: Total Points | total: Over 57.5 points | kalshi | $34k | -104 | ✅ novig |  | +1.0c | yes | pending |
 | Nov 5 1:05AM | NHL | Vancouver vs Winnipeg | moneyline: Winnipeg | kalshi | $26k | -194 |  |  | +0.0c | yes | pending |
 | Nov 5 12:10AM | NBA | Orlando vs Phoenix | moneyline: Phoenix | kalshi | $69k | -113 |  |  | -2.0c | yes | pending |
 | Nov 4 11:56PM | NBA | Miami vs Golden State | moneyline: Golden State | kalshi | $37k | -213 |  |  | +4.0c | yes | pending |
@@ -100,7 +100,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 4 5:10PM | NBA | Charlotte vs Brooklyn | moneyline: Charlotte | kalshi | $82k | -156 | ✅ novig,polymarket,prophetx |  | +0.0c | yes | L |
 | Nov 4 5:00PM | NBA | Charlotte vs Brooklyn: Total Points | total: NOT Over 212.5 points | kalshi | $29k | +104 |  |  | +0.0c | yes | L |
 | Nov 4 4:55PM | NHL | Nashville vs Colorado | moneyline: Colorado | kalshi | $38k | -194 |  |  | -1.0c | yes | pending |
-| Nov 4 4:29PM | NCAAF | James Madison vs Southern Miss: Total Points | total: NOT Over 57.5 points | kalshi | $60k | -100 |  |  | +0.0c | yes | pending |
+| Nov 4 4:29PM | NCAAF | James Madison vs Southern Miss: Total Points | total: NOT Over 57.5 points | kalshi | $60k | -100 |  |  | -1.0c | yes | pending |
 | Nov 4 4:29PM | NBA | Miami vs Los Angeles C: Total Points | total: NOT Over 232.5 points | kalshi | $30k | +104 |  |  | +0.0c | yes | L |
 | Nov 4 4:26PM | NFL | Jacksonville Jaguars @ Baltimore Ravens | moneyline: JAX (0) | novig | $84k | -456 | ✅ kalshi,prophetx |  | -0.5c | yes | pending |
 | Nov 4 4:20PM | NBA | Toronto vs Denver: Total Points | total: NOT Over 231.5 points | kalshi | $28k | -104 | ✅ prophetx |  | +1.0c | yes | L |
