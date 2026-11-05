@@ -4,7 +4,7 @@
    "alert_book": "Hard Rock",
    "alert_key": "2026-11-05 09:20|Pennsylvania Quakers @ Illinois Fighting Illini|Over 171.5 (-110)",
    "best_now": {
-    "american": -130,
+    "american": -135,
     "book": "prophetx",
     "dollars_at_alert_price_or_better_all_books": 0,
     "exact_line": true,
@@ -12,7 +12,7 @@
    },
    "bet": "Over 171.5 (-110)",
    "book": "novig",
-   "checked_utc": "2026-11-05T14:30:15Z",
+   "checked_utc": "2026-11-05T14:40:12Z",
    "first": {
     "alert_line": 171.5,
     "alert_price": -110,
@@ -59,18 +59,18 @@
     "alert_line": 171.5,
     "alert_price": -110,
     "alert_price_prob": 0.5238,
-    "best_price": 0.6,
-    "best_price_american": -150,
+    "best_price": 0.61,
+    "best_price_american": -156,
     "buy_levels": [
      {
-      "american": -150,
+      "american": -156,
       "contracts": 40000,
-      "dollars": 240,
-      "price": 0.6
+      "dollars": 244,
+      "price": 0.61
      }
     ],
     "dollars_at_alert_price_or_better": 0,
-    "dollars_at_best": 240,
+    "dollars_at_best": 244,
     "exact_line": true,
     "market_id": "01a1aa04-5a35-7f53-988a-1026eebabad8",
     "novig_label": "Over 171.5",
@@ -79,7 +79,7 @@
     "resting_bids_on_this_side_dollars": 2445,
     "status": "ok"
    },
-   "lead_min_now": 660,
+   "lead_min_now": 650,
    "polymarket_first": {
     "checked_utc": "2026-11-05T14:30:15Z",
     "status": "game_not_on_polymarket"
@@ -127,22 +127,22 @@
    "prophetx_latest": {
     "alert_line": 171.5,
     "alert_price": -110,
-    "best_price_american": -130,
-    "best_price_american_displayed": -127,
+    "best_price_american": -135,
+    "best_price_american_displayed": -132,
     "buy_levels": [
      {
-      "american": -127,
-      "american_after_fee": -130,
+      "american": -132,
+      "american_after_fee": -135,
       "dollars": 350,
       "strike_id": "0f6c523fcb8ed9c264b94fff1ad4bd1a",
-      "to_win": 276
+      "to_win": 265
      },
      {
-      "american": -128,
-      "american_after_fee": -131,
-      "dollars": 13,
+      "american": -134,
+      "american_after_fee": -137,
+      "dollars": 15,
       "strike_id": "0f6c523fcb8ed9c264b94fff1ad4bd1a",
-      "to_win": 10
+      "to_win": 11
      },
      {
       "american": -280,
@@ -14458,5 +14458,5 @@
   }
  ],
  "note": "Exchange book check (FLAG ONLY) for sharp-monitor phone alerts with 2h+ lead. latest/first = Novig (public order books, no key); prophetx_latest/prophetx_first = ProphetX (read-only key; prices are AFTER its 2%% fee on winnings, displayed price kept as best_price_american_displayed): best_price_american, dollars_at_best and dollars_at_alert_price_or_better = amount you could bet at the alert price or better, buy_levels = the ladder. kalshi_latest/_first and polymarket_latest/_first: same fields (public books, no key), prices AFTER taker fees (Kalshi 0.07, Polymarket global 0.03 x P x (1-P) per contract unless gamma marks the market zero-fee; displayed price kept as best_price_american_displayed). Novig pregame: no fee. hardrock_latest/_first: Hard Rock sportsbook price and line via The Odds API (no order book; refreshed every 30 min). best_now = best gettable price across the books, plus total dollars at the alert price or better on books with the exact line. Novig fields: best_price = cheapest cost to BUY the alert side now (0-1, with American); dollars_at_alert_price_or_better = dollars you could buy at the alert's price or better on the same line; exact_line=false means Novig had no market at the alert's line and the nearest line is shown. resting_bids_on_this_side_dollars = others bidding the same side. 'first' = first check after the alert, 'latest' = this run. Novig orders are bids (verified Oct 21).",
- "updated_utc": "2026-11-05T14:30:15Z"
+ "updated_utc": "2026-11-05T14:40:12Z"
 }
