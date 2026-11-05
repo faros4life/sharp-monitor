@@ -551,6 +551,90 @@ def main():
         L.append(f"   ... +{len(q) - 20} more")
     L.append("")
 
+    # ============================================================ 15. DONE-FLAG + NAME-MATCH INSPECTION
+    # Nov 5 (Peter): "Inspect the 15 done-flags and the 25 name mismatches before clearing or
+    # normalizing anything." Read-only - nothing is cleared, reset or normalized by this script.
+    # Step 3 of the ledger skips any row with done=True:
+    #     if rec.get("clv") is not None or rec.get("done"): continue
+    # so a done row is unreachable by the widened window until its flag is cleared.
+    L += ["=" * 70, "15. DONE-FLAG and NAME-MATCH INSPECTION (read-only, nothing cleared)", "=" * 70]
+    grp = {r["id"]: classify(r)[0][:2] for r in unavail}
+    L += ["  A. done x recoverability group x window bucket - what the window fix can actually reach:",
+          "     group  done  retrying   future  in-win  pre-floor   what unblocks it"]
+    for g in sorted(set(grp.values())):
+        rows = [r for r in unavail if grp[r["id"]] == g]
+        dn = sum(1 for r in rows if r.get("done"))
+        wb = {k: sum(1 for r in rows if wbucket(r) == k) for k in ("future", "inwin", "prefloor")}
+        need = ("window fix + clearing done" if g == "G." and dn else
+                "window fix alone" if g == "G." else
+                "name normalisation + clearing done" if g == "F." and dn else
+                "name normalisation" if g == "F." else
+                "clearing done only" if g == "A." and dn else
+                "nothing - already resolvable" if g == "A." else "not recoverable")
+        L.append(f"     {g:<6} {dn:>4}  {len(rows) - dn:>8}   {wb['future']:>6}  {wb['inwin']:>6}  "
+                 f"{wb['prefloor']:>9}   {need}")
+    gdone = sum(1 for r in unavail if grp[r["id"]] == "G." and r.get("done"))
+    L += ["", f"     MEASURED: {gdone} of the {sum(1 for r in unavail if grp[r['id']] == 'G.')} group-G rows carry "
+          f"done=True. The window fix alone recovers the other "
+          f"{sum(1 for r in unavail if grp[r['id']] == 'G.') - gdone}.", ""]
+    L.append("  B. why the done rows gave up (their own 'why' and try count):")
+    wc = {}
+    for r in unavail:
+        if r.get("done"):
+            wc[f"{(r.get('why') or '(no reason recorded)')[:52]} | tries {r.get('tries', 0)}"] = \
+                wc.get(f"{(r.get('why') or '(no reason recorded)')[:52]} | tries {r.get('tries', 0)}", 0) + 1
+    for k, v in sorted(wc.items(), key=lambda kv: -kv[1]):
+        L.append(f"     {v:>5}  {k}")
+    L.append("")
+
+    # C. replay find_fixture's own scoring on the F rows and report WHERE it fell short of sc==2
+    def diag(s):
+        lg, gs = s.get("league"), tpa(s.get("game_start"))
+        words = (tb.toks(" ".join(t.get("name", "") for t in s.get("teams") or []))
+                 or tb.toks(s.get("game")))
+        best, sc, tsb = None, -1, -1
+        for f in fxc.values():
+            if f.get("lg") != lg:
+                continue
+            fs = tpa(f.get("start"))
+            if gs and fs and abs((fs - gs).total_seconds()) > 36 * 3600:
+                continue
+            h = (1 if tb.toks(f["p1"]) & words else 0) + (1 if tb.toks(f["p2"]) & words else 0)
+            t_ = len(tb.toks(f["p1"]) & words) + len(tb.toks(f["p2"]) & words)
+            if h > sc or (h == sc and t_ > tsb):
+                best, sc, tsb = f, h, t_
+        return words, best, sc
+
+    frows = [r for r in unavail if grp[r["id"]] == "F."]
+    L += [f"  C. the {len(frows)} match failures, scored exactly as find_fixture() scores them",
+          "     (sc==2 is required; sc==1 means one side matched, sc==0 means no token overlap at all):"]
+    verdict = {}
+    for r in frows[:25]:
+        s = r.get("snap") or {}
+        words, best, sc = diag(s)
+        if not best:
+            verdict["no candidate fixture in the 36h window"] = verdict.get("no candidate fixture in the 36h window", 0) + 1
+            L.append(f"     sc  -  {s.get('league') or '?':<6} {bookof(r):<8} no candidate | bet words "
+                     f"{sorted(words)[:5]}")
+            continue
+        w1, w2 = tb.toks(best["p1"]), tb.toks(best["p2"])
+        miss = "p2" if (w1 & words) and not (w2 & words) else "p1" if (w2 & words) else "both"
+        v = (f"sc {sc}: only {('p1' if miss == 'p2' else 'p2')} matched, {miss} did not" if sc == 1
+             else "sc 0: no token overlap with either side" if sc == 0 else f"sc {sc}")
+        verdict[v] = verdict.get(v, 0) + 1
+        L.append(f"     sc {sc}  {s.get('league') or '?':<6} {bookof(r):<8} bet {sorted(words)[:4]}")
+        L.append(f"            fixture p1 {sorted(w1)[:4]} | p2 {sorted(w2)[:4]} | unmatched side: {miss}")
+    if len(frows) > 25:
+        L.append(f"     ... +{len(frows) - 25} more")
+    L += ["", "     verdict counts over the rows shown:"]
+    for k, v in sorted(verdict.items(), key=lambda kv: -kv[1]):
+        L.append(f"       {v:>4}  {k}")
+    L += ["",
+          "     Read this before normalising: an sc==1 row is a one-sided naming gap (an abbreviation or a",
+          "     short name) and normalisation plausibly fixes it. An sc==0 row shares no token with either",
+          "     participant, which is more often the WRONG GAME than a spelling problem - normalising names",
+          "     would not fix it and could create a false match. These two need different treatment.", ""]
+
     L += ["", "Read-only: this script wrote no state and changed no rule. Verified and modeled CLV are never again to",
           "be combined into a primary headline."]
 
