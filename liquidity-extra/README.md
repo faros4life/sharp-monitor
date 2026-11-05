@@ -1,17 +1,18 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 5, 6:50 AM ET. This run: 1 new, 1 not confirmed, 1 pending. Open alerts: 17.
+Updated Thu Nov 5, 7:00 AM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 17.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 131-86 (-14.22u flat) | rule met: 34-31
+**Record:** 132-86 (-14.00u flat) | rule met: 34-31
 
-**Fade (paper, betting against the print):** 61-96 (+17.92u flat, after fees)
+**Fade (paper, betting against the print):** 61-97 (+16.92u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 5 7:00AM | TENNIS | Hontama vs Kulambayeva | moneyline: Hontama | kalshi | $313k | -567 |  |  | +0.0c |  | pending |
 | Nov 5 6:50AM | NCAAB | UMBC vs Marist | moneyline: Marist | kalshi | $25k | -156 |  |  | +0.0c |  | pending |
-| Nov 5 5:10AM | TENNIS | Paul vs Halys | moneyline: Paul | kalshi | $48k | -426 |  |  | +8.0c |  | pending |
+| Nov 5 5:10AM | TENNIS | Paul vs Halys | moneyline: Paul | kalshi | $48k | -426 |  |  | +8.0c |  | W |
 | Nov 5 1:30AM | NCAAB | Towson vs Utah | moneyline: Utah | kalshi | $44k | -488 |  |  | +0.0c | yes | pending |
 | Nov 5 1:20AM | TENNIS | Pridankina vs Shubladze | moneyline: Shubladze | kalshi | $135k | -203 |  |  | +3.0c | yes | W |
 | Nov 5 1:20AM | NCAAB | Michigan vs UConn | moneyline: UConn | kalshi | $42k | -257 |  |  | -1.0c | yes | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 24 7:00PM | TENNIS | Rybakina vs Fernandez | moneyline: Rybakina | kalshi | $40k | -317 | ✅ novig |  |  |  | W |
 | Oct 24 5:20PM | MLB | Tampa Bay Rays @ Milwaukee Brewers | spread: MIL +1.5 (1.5) | novig | $31k | -203 | ✅ kalshi,polymarket |  | -0.5c |  | W |
 | Oct 24 4:48PM | MLB | Tampa Bay Rays @ Milwaukee Brewers | moneyline: TB (0) | novig | $68k | +111 | ✅ kalshi,prophetx |  | +1.0c |  | L |
-| Oct 24 4:16PM | MLB | Tampa Bay Rays vs. Milwaukee Brewers | moneyline: Milwaukee Brewers | polymarket | $79k | -113 | ✅ novig |  | +0.0c | yes | W |
