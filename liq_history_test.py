@@ -54,7 +54,11 @@ ALERTS = os.environ.get("LIQH_ALERTS", "") or "liquidity/alerts.json"
 EXPORT_COLS = ["game_id", "game", "league", "market", "side", "line", "alert_utc", "lead_hours",
                "entry_after_fee_dec", "entry_after_fee_american", "trigger_book",
                "best_exch_after_fee_dec", "best_exch_after_fee_american", "best_exch_book", "gettable",
-               "pin_novig_at_entry", "pin_novig_at_close", "close_same_line", "close_how", "close_age_min",
+               "best_raw_after_fee_dec", "best_raw_book", "best_raw_age_s", "gettable_raw",
+               "best_causal_after_fee_dec", "best_causal_book", "best_causal_age_s", "gettable_causal",
+               "best_causal_vs_close_clv_pct", "quotes_seen", "quotes_fresh_in_window", "quotes_rejected_causal",
+               "pin_novig_at_entry", "pin_novig_at_exec", "pin_age_at_exec_min",
+               "pin_novig_at_close", "close_same_line", "close_how", "close_age_min",
                "entry_vs_close_clv_pct", "best_vs_close_clv_pct",
                "pin_limit_at_alert", "pin_limit_read", "pin_limit_x_vs_2h_before",
                "base_depth", "new_money", "size_x", "sharp_agree", "sharp_oppose", "sharp_quiet",
@@ -178,13 +182,34 @@ def main():
         ce, _ = cl.close_for(b, f, pin, mkmap, t0, lg)   # Pinnacle's no-vig fair for the same side AT ENTRY TIME
         want = el.eff(SLUG.get(a.get("book"), a.get("book")), 1 / a["price"])   # alert price, after the trigger book's fee
         when = min(t0 + timedelta(seconds=GET_SEC), start)
+        # Nov 5 (Peter GO 22:50): THREE BASES. `best` keeps the ORIGINAL close-filtered behaviour, so every figure
+        # already published by this report is unchanged - nothing is overwritten retroactively. Beside it: `rbest`
+        # (RAW, nothing removed) and `kbest` (CAUSAL - a quote is rejected only against Pinnacle's fair read at the
+        # quote's OWN timestamp, which was observable then). The CAUSAL BASIS section below reports the judged-row
+        # membership delta and the Gate 1 rerun.
+        # Peter's guard: causality is not executability. A quote can be causally valid and still be a price nobody
+        # could take. So exchange quote age, Pinnacle quote age and in-window publication are reported SEPARATELY
+        # and are never folded into any basis.
+        cw, _ = cl.close_for(b, f, pin, mkmap, when, lg)
         best, best_bk, dropped = None, None, 0
+        rbest, rbest_bk, rage = None, None, None
+        kbest, kbest_bk, kage, krej = None, None, None, 0
+        seen, fresh = 0, 0
         for slug in EXCH:
             bk = cl.book_markets(h, slug)
             x = cl.novig_at(b, f, bk, mkmap, when, lg) if bk else None
             if not x:
                 continue
-            v = el.eff(slug, x[0])
+            v, age = el.eff(slug, x[0]), x[1]
+            seen += 1
+            if age is not None and age <= GET_SEC:
+                fresh += 1          # this book actually published inside the alert -> +GET_SEC window
+            if rbest is None or v > rbest:
+                rbest, rbest_bk, rage = v, slug, age
+            if cw and cw["p"] * v - 1 > 0.15:
+                krej += 1
+            elif kbest is None or v > kbest:
+                kbest, kbest_bk, kage = v, slug, age
             if c["p"] * v - 1 > 0.15:   # same rule as P1 / exchange-lag: a quote > +15% vs the close is a misread
                 miss["suspect quote dropped"] = miss.get("suspect quote dropped", 0) + 1
                 dropped += 1
@@ -204,14 +229,29 @@ def main():
                   "clv": round(100 * (c["p"] * want - 1), 2), "u": units(res, want),
                   "u_best": units(res, best) if best and best >= want - 1e-9 else None,
                   "lim": lim, "lim_how": how, "lim_x": (lim / lim2) if lim and lim2 else None,
-                  "own_clv": a.get("clv_cents")})
+                  "own_clv": a.get("clv_cents"),
+                  # the causal and raw bases, beside the original, so the membership delta is measurable
+                  "get_k": kbest is not None and kbest >= want - 1e-9, "best_k": kbest,
+                  "get_r": rbest is not None and rbest >= want - 1e-9, "best_r": rbest,
+                  "age_k": kage, "age_r": rage, "seen": seen, "fresh": fresh, "krej": krej})
         got = best is not None and best >= want - 1e-9
         xrow(a, game_id=fid,
              entry_after_fee_dec=round(want, 4), entry_after_fee_american=am(want),
              best_exch_after_fee_dec=(round(best, 4) if best else None),
              best_exch_after_fee_american=(am(best) if best else None),
              best_exch_book=best_bk, gettable=1 if got else 0,
-             pin_novig_at_entry=(round(ce["p"], 5) if ce else None), pin_novig_at_close=round(c["p"], 5),
+             best_raw_after_fee_dec=(round(rbest, 4) if rbest else None), best_raw_book=rbest_bk,
+             best_raw_age_s=(round(rage) if rage is not None else None),
+             gettable_raw=1 if (rbest is not None and rbest >= want - 1e-9) else 0,
+             best_causal_after_fee_dec=(round(kbest, 4) if kbest else None), best_causal_book=kbest_bk,
+             best_causal_age_s=(round(kage) if kage is not None else None),
+             gettable_causal=1 if (kbest is not None and kbest >= want - 1e-9) else 0,
+             best_causal_vs_close_clv_pct=(round(100 * (c["p"] * kbest - 1), 3) if kbest else None),
+             quotes_seen=seen, quotes_fresh_in_window=fresh, quotes_rejected_causal=krej,
+             pin_novig_at_entry=(round(ce["p"], 5) if ce else None),
+             pin_novig_at_exec=(round(cw["p"], 5) if cw else None),
+             pin_age_at_exec_min=(cw.get("age_min") if cw else None),
+             pin_novig_at_close=round(c["p"], 5),
              close_same_line=1 if c.get("how") in ("own line", "moneyline") else 0,
              close_how=c.get("how"), close_age_min=c.get("age_min"),
              entry_vs_close_clv_pct=round(100 * (c["p"] * want - 1), 3),
@@ -292,6 +332,37 @@ def main():
     if ag:
         L += ["", f"CHECK - exchange close vs Pinnacle close on the rule's plays: exchange CLV {stt.mean(r['own_clv'] for r in ag):+.2f}c, "
                   f"Pinnacle CLV {stt.mean(r['clv'] for r in ag):+.2f}% (n {len(ag)})"]
+    def st_k(xs):
+        """The same statistics as st_(), on the CAUSAL basis (gettable decided without future information)."""
+        g = [x for x in xs if x.get("get_k")]
+        if not g:
+            return f"n {len(xs)} | gettable 0"
+        u = sum(x["u"] for x in g)
+        cv = [x["clv"] for x in g]
+        h1 = [x for x in g if x["day"] <= FIT_END]
+        h2 = [x for x in g if x["day"] > FIT_END]
+        pp = lambda z: f"{sum(x['u'] for x in z) / len(z):+.3f} (n{len(z)})" if z else "n0"
+        return (f"n {len(xs)} | gettable {len(g)} | {sum(x['u'] > 0 for x in g)}-{sum(x['u'] < 0 for x in g)} "
+                f"{u:+.2f}u {u / len(g):+.3f}/play | Pinnacle CLV {stt.mean(cv):+.2f}% "
+                f"beat {100 * sum(v > 0 for v in cv) / len(cv):.0f}% | H1 {pp(h1)} H2 {pp(h2)}")
+
+    gh_ = sum(1 for r in R if r["gettable"])
+    gk_ = sum(1 for r in R if r.get("get_k"))
+    gr_ = sum(1 for r in R if r.get("get_r"))
+    flip = [r for r in R if bool(r["gettable"]) != bool(r.get("get_k"))]
+    agk = [r["age_k"] for r in R if r.get("age_k") is not None]
+    L += ["", "=== CAUSAL BASIS v2 (NEW; every figure above is the ORIGINAL hindsight basis and is unchanged) ===",
+          "Causal = a quote is rejected only against Pinnacle's no-vig fair at the quote's OWN timestamp. No future data.",
+          f"Judged-row membership, of {len(R)} read plays: gettable under hindsight {gh_}, causal {gk_}, raw {gr_}.",
+          f"  Plays whose membership FLIPS between the hindsight and causal bases: {len(flip)}.",
+          "AVAILABILITY is reported separately and forms no part of any basis (Peter Nov 4 22:50): a causal pass is",
+          "  NOT an executable fill. Exchange quote age, Pinnacle quote age and in-window publication stay distinct:",
+          f"  median exchange quote age on the causal pick {(f'{stt.median(agk):.0f}s' if agk else '-')}; quotes that",
+          f"  actually published inside the {GET_SEC}s window {sum(r.get('fresh') or 0 for r in R)}"
+          f"/{sum(r.get('seen') or 0 for r in R)}; Pinnacle's own age per row in pin_age_at_exec_min.",
+          f"GATE 1 on the causal basis - NBA totals, 4h+ before tip: {st_k(rule)}",
+          f"  print 25-50k (the candidate) on the causal basis: "
+          f"{st_k([r for r in rule if 25_000 <= (r['nm'] or 0) < 50_000])}"]
     L.append(f"\nHistory cache: hits {hc.STATS['hit']}, downloads {hc.STATS['miss']}; OddsPapi calls {len(cl.CALLS)} "
              f"(billable {cl.STATS['billable']}).")
     L += ["", f"PER-PLAY EXPORT attached: {len(X)} rows - every qualifying play, including the {len(X) - len(R)} not fully read.",
