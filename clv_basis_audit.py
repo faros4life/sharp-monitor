@@ -252,6 +252,41 @@ def main():
     tally(scored, lambda r: (r.get("snap") or {}).get("source"), "source (scored)")
     L.append("")
 
+    # ---------------------------------------------------------------- 7. CROSS-TAB: reason x book
+    # Nov 5 (agreed first output of the coverage diagnosis): two close marginals - 117 blank-reason rows and 104
+    # ProphetX rows - say NOTHING about overlap. 104 + 13 MLB = 117 is arithmetic, not structure: the MLB rows carry
+    # their own reason string, so they are not in the blank 117 at all. Only the cross-tab answers whether the
+    # never-attempted rows ARE the ProphetX rows. No backfill is specced before this table.
+    books = sorted({((r.get("snap") or {}).get("book") or "?") for r in unavail})
+    rsn = lambda r: (r.get("why") or "(blank)")
+    reasons = sorted({rsn(r) for r in unavail}, key=lambda x: -sum(1 for r in unavail if rsn(r) == x))
+    w = max([len(x) for x in reasons] + [20])
+    L += ["=" * 60, "7. CROSS-TAB - unscored reason x book (the overlap question)", "=" * 60,
+          "  " + "reason".ljust(w) + "".join(f"{b[:11]:>13}" for b in books) + f"{'TOTAL':>8}"]
+    for rr in reasons:
+        rows = [r for r in unavail if rsn(r) == rr]
+        cells = [sum(1 for r in rows if ((r.get("snap") or {}).get("book") or "?") == b) for b in books]
+        L.append("  " + rr[:w].ljust(w) + "".join(f"{c:>13}" for c in cells) + f"{len(rows):>8}")
+    tot = [sum(1 for r in unavail if ((r.get("snap") or {}).get("book") or "?") == b) for b in books]
+    L.append("  " + "TOTAL".ljust(w) + "".join(f"{c:>13}" for c in tot) + f"{len(unavail):>8}")
+
+    # the never-attempted subset, profiled on its own
+    na = [r for r in unavail if not r.get("why") and not r.get("tries")]
+    L += ["", f"  NEVER ATTEMPTED (blank reason AND tries 0): n {len(na)}"]
+    if na:
+        for lab, keyf in (("book", lambda r: (r.get("snap") or {}).get("book")),
+                          ("source", lambda r: (r.get("snap") or {}).get("source")),
+                          ("league", lambda r: (r.get("snap") or {}).get("league")),
+                          ("has a game_start", lambda r: "yes" if (r.get("snap") or {}).get("game_start") else "NO"),
+                          ("has a line/bet text", lambda r: "yes" if (r.get("snap") or {}).get("bet") else "NO")):
+            c = {}
+            for r in na:
+                c[str(keyf(r) or "(blank)")] = c.get(str(keyf(r) or "(blank)"), 0) + 1
+            L.append(f"     by {lab}: " + ", ".join(f"{k} {v}" for k, v in sorted(c.items(), key=lambda kv: -kv[1])))
+        L.append("     Read this before any backfill: a row missing game_start or bet text cannot be matched at all,")
+        L.append("     whereas a row that has both and was still never attempted is a queueing failure, not a data gap.")
+    L.append("")
+
     L += ["", "Read-only: this script wrote no state and changed no rule. Verified and modeled CLV are never again to",
           "be combined into a primary headline."]
 
