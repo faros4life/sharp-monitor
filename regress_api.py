@@ -428,6 +428,70 @@ def inv8():
               "no-confirmer alerts keep their previous verdict (no rule added or removed)")
 
 
+# ------------------------------------- 9. both Hard Rock alert paths enforce the same chain
+def inv9():
+    """Nov 5 (Peter): a Hard Rock MANUAL BET ping must pass the same chain on either path.
+
+    The alert path blocks Hard Rock spread underdogs with sm.hr_dog (Peter Nov 3). The scanner path
+    did not check, and Wake Forest +18.5 at +100 pinged at 17:55Z on Nov 5. This drives the REAL
+    hr_scanner.scan() with both of that day's actual sightings reconstructed from hrscan.json, with
+    sm.notify stubbed so nothing can reach the phone from a test.
+    """
+    from datetime import datetime, timedelta, timezone
+    import hr_scanner as hs
+    import sharp_monitor as sm
+
+    assert hs.FLAG, "scanner flags are off; this test would prove nothing"
+    now = datetime(2026, 11, 5, 17, 55, tzinfo=timezone.utc)
+    start = now + timedelta(minutes=305)
+
+    def case(side, other, pt, hr_price, pin_side, pin_other):
+        """One event where Hard Rock and Pinnacle sit on the SAME number (conv 0)."""
+        ev = {"id": f"t-{side[:6]}-{pt}", "commence_time": start.strftime("%Y-%m-%dT%H:%M:%SZ"),
+              "away_team": other, "home_team": side}
+        lines = {sm.SHARP: {"spreads": {side: (pt, pin_side), other: (-pt, pin_other)}},
+                 "hardrockbet": {"spreads": {side: (pt, hr_price)}}}
+        sent, d = [], {"sightings": []}      # what load() seeds; scan() reads this key directly
+        real = sm.notify
+        sm.notify = lambda *a, **k: sent.append(a[0] if a else "")
+        try:
+            flags = hs.scan(sm, ev, {"label": "NCAAB"}, lines, None, d, now)
+        finally:
+            sm.notify = real
+        evp = (d.get("sightings") or [{}])[-1].get("evp") if d.get("sightings") else None
+        return flags, len(sent), evp
+
+    # the real Nov 5 underdog: Wake Forest +18.5 at +100 vs Pinnacle -115 / -102 (EV +2.88%)
+    f_dog, n_dog, evp_dog = case("Wake Forest Demon Deacons", "Vanderbilt Commodores", 18.5, 100, -115, -102)
+    # the real Nov 5 favourite: Indiana -29.5 at -105 vs Pinnacle -121 / +100 (EV +2.05%)
+    f_fav, n_fav, evp_fav = case("Indiana Hoosiers", "Bellarmine Knights", -29.5, -105, -121, 100)
+
+    assert evp_dog is not None and evp_dog >= hs.MIN_EV, \
+        f"the underdog case no longer clears +2% ({evp_dog}) - the test would pass for the wrong reason"
+    assert f_dog == 0 and n_dog == 0, \
+        f"a Hard Rock spread underdog was flagged: {f_dog} flag(s), {n_dog} push(es)"
+    assert evp_fav is not None and evp_fav >= hs.MIN_EV, f"the favourite case lost its edge ({evp_fav})"
+    assert f_fav == 1 and n_fav == 1, \
+        f"a qualifying Hard Rock favourite lost its flag: {f_fav} flag(s), {n_fav} push(es)"
+
+    # the guard must not reach totals, whose pt is a positive total number
+    for tot in (150.5, 223.5, 46.0, 7.5):
+        assert not sm.hr_dog({"book": "hardrockbet", "kind": "tot", "pt": tot}), \
+            f"the guard would wrongly block a total at {tot}"
+    # and hr_dog must still be exactly the Nov 3 rule on the alert path
+    for bk in ("hardrockbet", "hardrockbet_fl"):
+        for kind in ("spr", "rl"):
+            assert sm.hr_dog({"book": bk, "kind": kind, "pt": 3.5}) is True
+            assert sm.hr_dog({"book": bk, "kind": kind, "pt": -3.5}) is False
+    assert sm.hr_dog({"book": "prophetx", "kind": "spr", "pt": 3.5}) is False, \
+        "hr_dog must apply to Hard Rock only"
+
+    return (f"scanner path: underdog +18.5 (EV {evp_dog:+.2f}%) blocked, 0 pushes; "
+            f"favourite -29.5 (EV {evp_fav:+.2f}%) still flags, 1 push\n  "
+            "totals unaffected at 150.5/223.5/46/7.5; hr_dog unchanged on the alert path "
+            "(Hard Rock only, spr/rl only, pt > 0 only)")
+
+
 def main():
     print(f"REGRESSION GUARD | repo {REPO}\n" + "=" * 78)
     check("1. betting signals / qualification thresholds / alert routing", inv1)
@@ -438,6 +502,7 @@ def main():
     check("6. a failed call or crash cannot corrupt accounting state", inv6, expect_red=True)
     check("7. the Stage-1 credit meter cannot spend or write", inv7)
     check("8. the phone's LIVE label matches the executor's qualification", inv8)
+    check("9. both Hard Rock paths enforce the same qualification chain", inv9)
     print("=" * 78)
     hard = [n for n, ok, _, red in RESULTS if not ok and not red]
     known = [n for n, ok, _, red in RESULTS if not ok and red]

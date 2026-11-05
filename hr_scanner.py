@@ -334,8 +334,16 @@ def scan(sm, ev, cfg, lines, is_t25, d, now):
                  "lead": round(lead), "t25": is_t25, "recheck": None, "flag": False,
                  "repeat": bool(mine)}
             pk = f"{ev['id']}|{mk}|{side}"
+            # Nov 5 (Peter): no Top-25 gate on HR flags. But the alert path ALSO blocks Hard Rock
+            # spread underdogs via sm.hr_dog (Peter Nov 3: "8-19, -11.9u, lost every week"), and
+            # this path never checked, so Wake Forest +18.5 at +100 pinged at 17:55Z on Nov 5.
+            # One rule, both paths - called through sm so there is only ever one definition of it.
+            # Totals are untouched: hr_dog tests only spr/rl, so a total's positive number cannot
+            # be mistaken for an underdog.
             want = ((not mine) and label in FLAG_LEAGUES and lead >= NO_FLAG_MIN
-                    and not pinged(d, pk))   # Nov 5 (Peter): no Top-25 gate on HR flags
+                    and not pinged(d, pk)
+                    and not sm.hr_dog({"book": hrk, "kind": "spr" if mk == "spreads" else "tot",
+                                       "pt": hpt}))
             if FLAG and want:
                 mark(d, pk, ts)
                 bet = (f"{side} {hpt:g}" if mk == "totals" else f"{side} {hpt:+g}") + f" ({_fmt(hpr)})"
