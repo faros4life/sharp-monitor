@@ -22,7 +22,7 @@ main{padding:10px 16px 40px;max-width:900px;margin:0 auto}
 .gh{display:flex;justify-content:space-between;gap:8px;padding:8px 10px;border-bottom:1px solid var(--line);font-size:12px;color:var(--dim)}
 .rk{color:var(--hr);font-weight:600}
 table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
-th{font-weight:600;font-size:13px;text-align:center;padding:6px 4px;color:var(--ink)}
+th{font-weight:600;font-size:12.5px;text-align:center;padding:6px 4px;color:var(--ink)}
 th:first-child,td:first-child{text-align:left;padding-left:10px;width:34%;color:var(--dim);font-size:12.5px}
 td{text-align:center;padding:5px 4px;border-top:1px solid var(--line)}
 td.b{background:var(--best);color:var(--bestink);font-weight:700}
@@ -55,7 +55,7 @@ const pt=(x,mk)=>mk==="t"?""+x:(x>0?"+"+x:""+x);
 const prob=a=>a>0?100/(a+100):-a/(-a+100);
 const et=s=>new Date(s).toLocaleString("en-US",{timeZone:"America/New_York",weekday:"short",hour:"numeric",minute:"2-digit"});
 const etDay=s=>new Date(s).toLocaleDateString("en-US",{timeZone:"America/New_York",weekday:"long",month:"short",day:"numeric"});
-const short=t=>{const w=t.split(" ");return w.length>2?w.slice(0,-1).join(" "):t};
+const short=t=>t;
 function ago(ts){const m=Math.round((Date.now()/1000-ts)/60);return m<1?"just now":m+" min ago"}
 
 function sides(g,mk){
