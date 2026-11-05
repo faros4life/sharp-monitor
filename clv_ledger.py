@@ -270,11 +270,16 @@ def refresh_fixtures(st, now, lg, lo, hi):
 
 def find_fixture(st, b):
     """Nov 5 (Peter, approval of the targeted recovery): BOTH participants must match on a DISTINCTIVE
-    token, neither side may be carried by a word the other also matched, and the winner must be unique.
+    token, neither side may be carried by a word the other also matched, AT LEAST ONE side must match
+    on TWO or more distinctive tokens, and the winner must be unique.
     tb.WEAK is stripped here because match_game already strips it, and without that a "New Orleans ..."
     bet reached sc==2 against a "New York ..." fixture purely on the shared word "new" - a wrong
     fixture, and so a confidently wrong CLV, which is worse than no CLV. "Bay" (Tampa Bay / Green Bay)
     and "Cougars" (Houston / Misericordia) fail the same way; both were seen in the Nov 5 inspection.
+    The two-token floor (Peter, Nov 5) stops a single coincidental token per side from carrying a
+    match: "Penn State Nittany Lions / Purdue" otherwise matched "Pennsylvania Quakers / Columbia
+    Lions" on "penn" and "lions" alone. It also UNBLOCKS real matches, because the junk low-division
+    fixture in an NCAAF collision drops out and leaves the true game unique.
     Several qualifying fixtures, or none, returns None and the bet is left UNSCORED rather than
     mis-scored. This only tightens: it never invalidates a fixture already stored on a row, and a
     scored row is skipped before this is reached."""
@@ -291,9 +296,33 @@ def find_fixture(st, b):
         if gs and fs and abs((fs - gs).total_seconds()) > 36 * 3600:
             continue
         a, c = (tb.toks(f["p1"]) - tb.WEAK) & words, (tb.toks(f["p2"]) - tb.WEAK) & words
-        if a and c and (a - c) and (c - a):   # each side on its own word, not one shared word twice
-            hit.append(fid)
+        if a and c and (a - c) and (c - a) and max(len(a), len(c)) >= 2:
+            hit.append(fid)                   # each side on its own word, and one side on two of them
     return hit[0] if len(hit) == 1 else None
+
+
+def fixture_suspect(st, rec):
+    """True when a row's STORED fixture is cached but no longer passes the matcher above.
+
+    Nov 5 (Peter): "exclude this observation from verified CLV statistics and the bot's rolling-50
+    calculation until its correct fixture is independently established and the CLV recalculated. Do
+    not silently replace its fixture or price." So this is a READ-ONLY test applied at report time:
+    the row keeps its clv, its fixture and its price, and simply sits outside the headline figures
+    until the assignment is re-established, at which point it returns on its own.
+    A fixture that is no longer cached cannot be judged either way, so it is NOT suspect - it stays
+    counted and is reported separately as unvalidated."""
+    fid = rec.get("fixture")
+    f = ((st.get("fixtures") or {}).get(fid)) if fid else None
+    if not f:
+        return False
+    s = rec.get("snap") or {}
+    words = (tb.toks(" ".join(t.get("name", "") for t in s.get("teams") or []))
+             or tb.toks(s.get("game"))) - tb.WEAK
+    if not words:
+        return False
+    a = (tb.toks(f.get("p1") or "") - tb.WEAK) & words
+    c = (tb.toks(f.get("p2") or "") - tb.WEAK) & words
+    return not (a and c and (a - c) and (c - a) and max(len(a), len(c)) >= 2)
 
 
 def which_team(f, team_text):
@@ -880,7 +909,13 @@ def main():
             if rec["tries"] >= MAX_TRIES or (why and ("not parsed" in why or "not comparable" in why or "far from" in why)) or not d:
                 rec["done"] = True
     # 5) report
-    scored = sorted([dict(r, id=k) for k, r in st["bets"].items() if r.get("clv") is not None], key=lambda r: r.get("scored") or "")
+    all_scored = sorted([dict(r, id=k) for k, r in st["bets"].items() if r.get("clv") is not None],
+                        key=lambda r: r.get("scored") or "")
+    held = [r for r in all_scored if fixture_suspect(st, r)]       # doubtful fixture - out of every figure
+    hid = {r["id"] for r in held}
+    scored = [r for r in all_scored if r["id"] not in hid]
+    unvalidated = [r for r in scored
+                   if r.get("fixture") and r["fixture"] not in (st.get("fixtures") or {})]
     bot = [r for r in scored if (r["snap"].get("source") or "") == "bot"]
     man = [r for r in scored if (r["snap"].get("source") or "") != "bot"]
     alert = len(bot) >= 50 and sum(r["clv"] for r in bot[-50:]) / 50 < 0
@@ -895,6 +930,23 @@ def main():
         L.append(f"ALL scored: {lane_stats(scored)}")
         L.append(f"  bot: {lane_stats(bot)} | rolling 50: {lane_stats(bot[-50:])}")
         L.append(f"  Peter/other: {lane_stats(man)} | rolling 50: {lane_stats(man[-50:])}")
+        if held:
+            L += ["", f"HELD OUT of every figure above ({len(held)}) - the stored fixture no longer passes the",
+                  "matcher, so the game assignment is doubtful. Nothing was changed: the row keeps its CLV, its",
+                  "fixture and its price, and it returns to these figures by itself once the assignment is",
+                  "re-established. Excluded from the rolling 50 and from the kill-switch arithmetic."]
+            for r in held:
+                s, fx = r["snap"], ((st.get("fixtures") or {}).get(r.get("fixture")) or {})
+                L.append(f"  {s.get('league') or '?'} {s.get('book') or '?'} {(s.get('bet') or '')[:26]} | "
+                         f"CLV {100 * r['clv']:+.2f}% | stored fixture points at "
+                         f"{(fx.get('n1') or fx.get('p1') or '?')[:22]} vs {(fx.get('n2') or fx.get('p2') or '?')[:22]}")
+        if unvalidated:
+            L += ["", f"UNVALIDATED ({len(unvalidated)}) - fixture no longer in the cache, so the assignment cannot",
+                  "be judged either way. These ARE counted above; flagged so they are not read as a clean check."]
+            for r in unvalidated:
+                s = r["snap"]
+                L.append(f"  {s.get('league') or '?'} {s.get('book') or '?'} {(s.get('bet') or '')[:26]} | "
+                         f"CLV {100 * r['clv']:+.2f}%")
         try:
             sv = sv_registry()
         except Exception:
