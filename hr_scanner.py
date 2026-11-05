@@ -334,7 +334,15 @@ def scan(sm, ev, cfg, lines, is_t25, d, now):
                  "lead": round(lead), "t25": is_t25, "recheck": None, "flag": False,
                  "repeat": bool(mine)}
             pk = f"{ev['id']}|{mk}|{side}"
-            # Nov 5 (Peter): no Top-25 gate on HR flags. But the alert path ALSO blocks Hard Rock
+            # Nov 5 (Peter, later): NOTIFICATION-ONLY gate on non-Top-25 Hard Rock flags, superseding
+            # the earlier "no Top-25 gate on HR flags". The PUSH is suppressed; the sighting is still
+            # logged, counted and graded with full labels, the same way the suppressed NBA half-point
+            # conversions are kept. is_t25 is None for non-college leagues and True when the poll
+            # could not read the AP poll (top25_tag fails open), so only an ESTABLISHED non-Top-25
+            # game is gated - an unreadable poll never silences a flag.
+            # The alert path needs no equivalent: its Top-25 arm already consumes non-Top-25 alerts
+            # before hr_ev is reached, so that path has never pinged a non-Top-25 college game.
+            # The alert path ALSO blocks Hard Rock
             # spread underdogs via sm.hr_dog (Peter Nov 3: "8-19, -11.9u, lost every week"), and
             # this path never checked, so Wake Forest +18.5 at +100 pinged at 17:55Z on Nov 5.
             # One rule, both paths - called through sm so there is only ever one definition of it.
@@ -344,6 +352,17 @@ def scan(sm, ev, cfg, lines, is_t25, d, now):
                     and not pinged(d, pk)
                     and not sm.hr_dog({"book": hrk, "kind": "spr" if mk == "spreads" else "tot",
                                        "pt": hpt}))
+            t25_gated = bool(want and is_t25 is False)
+            if t25_gated:
+                want = False
+                # Nov 5: set when the push was suppressed by the non-Top-25 gate. The row is graded
+                # and counted exactly as a flagged one; only the notification differs. Assigned here
+                # rather than in the dict literal above, which is built before this gate is known.
+                s["gated"] = "non-Top-25 (notification-only gate, Peter Nov 5)"
+                dg(f"{mk}: flag GATED - non-Top-25 (notification only, Peter Nov 5)")
+                dd(mk, side, "FLAG GATED non-Top-25")
+                count_push(d, label, 0.0, now, "scanner-gated-non-top25",
+                           mk=mk, ev=ev.get("id"), side=side)
             if FLAG and want:
                 mark(d, pk, ts)
                 bet = (f"{side} {hpt:g}" if mk == "totals" else f"{side} {hpt:+g}") + f" ({_fmt(hpr)})"

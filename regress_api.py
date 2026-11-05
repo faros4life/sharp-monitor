@@ -492,6 +492,57 @@ def inv9():
             "(Hard Rock only, spr/rl only, pt > 0 only)")
 
 
+# ------------------- 10. non-Top-25 HR flags: push gated, data still collected
+def inv10():
+    """Nov 5 (Peter): gate the PUSH for non-Top-25 Hard Rock flags; keep collecting ALL data -
+    gated flags still counted and graded in diagnostics with full labels. So this asserts both
+    halves: no notification, and the row plus its counters still present."""
+    from datetime import datetime, timedelta, timezone
+    import hr_scanner as hs
+    import sharp_monitor as sm
+    now = datetime(2026, 11, 5, 18, 5, tzinfo=timezone.utc)
+    start = now + timedelta(minutes=295)
+
+    def run(is_t25):
+        """Indiana -29.5 at -105 vs Pinnacle -121/+100: the real Nov 5 favourite, EV +2.05%."""
+        ev = {"id": f"g-{is_t25}", "commence_time": start.strftime("%Y-%m-%dT%H:%M:%SZ"),
+              "away_team": "Bellarmine Knights", "home_team": "Indiana Hoosiers"}
+        lines = {sm.SHARP: {"spreads": {"Indiana Hoosiers": (-29.5, -121), "Bellarmine Knights": (29.5, 100)}},
+                 "hardrockbet": {"spreads": {"Indiana Hoosiers": (-29.5, -105)}}}
+        sent, d = [], {"sightings": []}
+        real = sm.notify
+        sm.notify = lambda *a, **k: sent.append(a[0] if a else "")
+        try:
+            flags = hs.scan(sm, ev, {"label": "NCAAB"}, lines, is_t25, d, now)
+        finally:
+            sm.notify = real
+        return flags, len(sent), d
+
+    # established non-Top-25 -> gated
+    f, n, d = run(False)
+    s_ = d["sightings"][-1]
+    assert f == 0 and n == 0, f"a non-Top-25 Hard Rock flag still pushed: {f} flag(s), {n} push(es)"
+    assert s_["evp"] >= hs.MIN_EV, "the gated row no longer clears +2% - the test would prove nothing"
+    assert s_.get("gated"), "the gated row carries no label"
+    assert s_.get("flag") is False, "a gated row must not be marked as flagged"
+    diag = {k: v for k, v in (d.get("diag") or {}).items() if "GATED" in k}
+    assert diag, "the gate was not counted in diagnostics"
+    pushes = d.get("pushes") or {}
+    assert any("gated" in k for day in pushes.values() for lg in day.values() for k in lg), \
+        "the gated flag was not counted by count_push with its own label"
+    assert (d.get("distinct") or {}), "the gated flag was not counted as a distinct game/market/side"
+    assert not (d.get("pinged") or {}), "a gated flag must not consume the ping dedupe"
+
+    # Top-25 and non-college are untouched
+    for t in (True, None):
+        f2, n2, d2 = run(t)
+        assert f2 == 1 and n2 == 1, f"is_t25={t} lost its flag: {f2} flag(s), {n2} push(es)"
+        assert not d2["sightings"][-1].get("gated"), f"is_t25={t} was wrongly gated"
+    return ("non-Top-25: 0 pushes, row kept with a gate label, counted in diag + pushes + distinct, "
+            "ping dedupe untouched\n  Top-25 and non-college (is_t25 None, incl. an unreadable AP "
+            "poll): 1 flag and 1 push each, ungated")
+
+
 def main():
     print(f"REGRESSION GUARD | repo {REPO}\n" + "=" * 78)
     check("1. betting signals / qualification thresholds / alert routing", inv1)
@@ -503,6 +554,7 @@ def main():
     check("7. the Stage-1 credit meter cannot spend or write", inv7)
     check("8. the phone's LIVE label matches the executor's qualification", inv8)
     check("9. both Hard Rock paths enforce the same qualification chain", inv9)
+    check("10. non-Top-25 HR flags: push gated, data still collected", inv10)
     print("=" * 78)
     hard = [n for n, ok, _, red in RESULTS if not ok and not red]
     known = [n for n, ok, _, red in RESULTS if not ok and red]
