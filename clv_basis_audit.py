@@ -635,6 +635,131 @@ def main():
           "     participant, which is more often the WRONG GAME than a spelling problem - normalising names",
           "     would not fix it and could create a false match. These two need different treatment.", ""]
 
+    # ============================================================ 16. SCORED-ROW FIXTURE VALIDATION
+    # Nov 5 (Peter, check 2): "Previously stored fixture IDs can bypass the new matcher. Please verify
+    # that the 65 scored bets, particularly the 34 newly recovered, reference the correct games and
+    # betting sides. This should be a read-only validation first."
+    # Nothing is changed here. A row that fails is REPORTED, never un-scored - invalidating an
+    # assignment needs Peter's word, per his condition 3.
+    L += ["=" * 70, "16. SCORED-ROW FIXTURE VALIDATION (read-only, nothing changed)", "=" * 70,
+          "  Re-tests each scored row's STORED fixture against the hardened rule, which the stored id",
+          "  otherwise bypasses (both call sites read rec['fixture'] before calling find_fixture).", ""]
+
+    def quals(s):
+        """Every fixture that would qualify under the HARDENED rule - the list, not just the winner."""
+        lg, gs = s.get("league"), tpa(s.get("game_start"))
+        words = (tb.toks(" ".join(t.get("name", "") for t in s.get("teams") or []))
+                 or tb.toks(s.get("game"))) - tb.WEAK
+        out = []
+        if not words:
+            return out, words
+        for fid, f in fxc.items():
+            if f.get("lg") != lg:
+                continue
+            fs = tpa(f.get("start"))
+            if gs and fs and abs((fs - gs).total_seconds()) > 36 * 3600:
+                continue
+            a = (tb.toks(f.get("p1") or "") - tb.WEAK) & words
+            c = (tb.toks(f.get("p2") or "") - tb.WEAK) & words
+            if a and c and (a - c) and (c - a):
+                out.append(fid)
+        return out, words
+
+    NEW_FROM = "2026-11-05T14:56"          # the recovery run; rows scored at or after it are the new ones
+    v = {}
+    fails, sides = [], []
+    for r in scored:
+        s = r.get("snap") or {}
+        fid = r.get("fixture")
+        tag = "new" if (r.get("scored") or "") >= NEW_FROM else "pre-existing"
+        if not fid:
+            v[f"{tag}: no fixture id on the row (scored another way)"] = \
+                v.get(f"{tag}: no fixture id on the row (scored another way)", 0) + 1
+            continue
+        f = fxc.get(fid)
+        if not f:
+            v[f"{tag}: fixture no longer cached - cannot re-validate"] = \
+                v.get(f"{tag}: fixture no longer cached - cannot re-validate", 0) + 1
+            continue
+        ok, words = quals(s)
+        lg_ok = (f.get("lg") == s.get("league"))
+        gs, fs = tpa(s.get("game_start")), tpa(f.get("start"))
+        dt_ok = not (gs and fs) or abs((fs - gs).total_seconds()) <= 36 * 3600
+        if fid in ok and len(ok) == 1 and lg_ok and dt_ok:
+            k = f"{tag}: PASS - stored fixture is the unique hardened match"
+        elif fid in ok and len(ok) > 1:
+            k = f"{tag}: AMBIGUOUS - stored fixture qualifies but so do {len(ok) - 1} other(s)"
+            fails.append((r, f, ok, "ambiguous"))
+        elif not lg_ok:
+            k = f"{tag}: LEAGUE MISMATCH"
+            fails.append((r, f, ok, "league"))
+        elif not dt_ok:
+            k = f"{tag}: DATE OUTSIDE 36h"
+            fails.append((r, f, ok, "date"))
+        else:
+            k = f"{tag}: WOULD NOT BE CHOSEN NOW - fails the hardened rule"
+            fails.append((r, f, ok, "hardened"))
+        v[k] = v.get(k, 0) + 1
+        # side check: the bet text must resolve to exactly one participant
+        try:
+            pb = tb.parse_bet(s.get("bet") or "", bool(s.get("flip")))
+        except Exception:
+            pb = None
+        if pb and pb[0] in ("spread", "ml") and pb[1]:
+            w = tb.toks(pb[1]) - tb.WEAK
+            h1 = bool((tb.toks(f.get("p1") or "") - tb.WEAK) & w)
+            h2 = bool((tb.toks(f.get("p2") or "") - tb.WEAK) & w)
+            if h1 == h2:                   # neither side, or BOTH - the side is not established
+                sides.append((r, f, pb[1], "both sides" if h1 else "neither side"))
+
+    L.append("  A. stored fixture re-validated:")
+    for a, b in sorted(v.items(), key=lambda kv: -kv[1]):
+        L.append(f"     {b:>5}  {a}")
+    L += ["", f"  B. rows whose stored fixture would NOT be chosen now: {len(fails)}"]
+    for r, f, ok, kind in fails[:15]:
+        s = r.get("snap") or {}
+        L.append(f"     [{kind}] {s.get('league') or '?':<6} {bookof(r):<9} clv {r.get('clv')} | "
+                 f"bet {(s.get('bet') or '')[:24]}")
+        L.append(f"            stored fixture: {(f.get('n1') or f.get('p1') or '?')[:26]} vs "
+                 f"{(f.get('n2') or f.get('p2') or '?')[:26]} | qualifying now: {len(ok)}")
+    if len(fails) > 15:
+        L.append(f"     ... +{len(fails) - 15} more")
+    L += ["", f"  C. rows whose BETTING SIDE is not established by the fixture names: {len(sides)}"]
+    for r, f, txt, kind in sides[:12]:
+        s = r.get("snap") or {}
+        L.append(f"     {s.get('league') or '?':<6} {bookof(r):<9} side text {txt[:18]!r} matches {kind} | "
+                 f"{(f.get('n1') or '?')[:18]} vs {(f.get('n2') or '?')[:18]}")
+    if len(sides) > 12:
+        L.append(f"     ... +{len(sides) - 12} more")
+    L.append("")
+
+    # ---- D. ambiguity census: answers the Colorado/Dallas question directly
+    L += ["  D. AMBIGUITY CENSUS on the unmatched rows - how many fixtures qualify under the hardened",
+          "     rule. Exactly 1 means it SHOULD have matched; 2+ means the uniqueness check correctly",
+          "     refused to guess; 0 means the fixture genuinely is not cached.", ""]
+    cen, multi = {}, []
+    for r in unavail:
+        s = r.get("snap") or {}
+        if not tpa(s.get("game_start")):
+            continue
+        ok, words = quals(s)
+        cen[len(ok) if len(ok) < 3 else "3+"] = cen.get(len(ok) if len(ok) < 3 else "3+", 0) + 1
+        if len(ok) >= 1:
+            multi.append((r, ok, words))
+    for a in sorted(cen, key=lambda x: str(x)):
+        L.append(f"     {cen[a]:>5}  {a} qualifying fixture(s)")
+    L += ["", f"     rows with at least one qualifying fixture ({len(multi)}) - these are the ones to look at:"]
+    for r, ok, words in multi[:12]:
+        s = r.get("snap") or {}
+        L.append(f"     {s.get('league') or '?':<6} {bookof(r):<9} n={len(ok)} | bet {sorted(words)[:4]} | "
+                 f"why {(r.get('why') or '-')[:28]}")
+        for fid in ok[:3]:
+            f = fxc.get(fid) or {}
+            L.append(f"            cand {(f.get('n1') or f.get('p1') or '?')[:24]} vs "
+                     f"{(f.get('n2') or f.get('p2') or '?')[:24]}  start {(f.get('start') or '')[:16]}")
+    if len(multi) > 12:
+        L.append(f"     ... +{len(multi) - 12} more")
+    L.append("")
     L += ["", "Read-only: this script wrote no state and changed no rule. Verified and modeled CLV are never again to",
           "be combined into a primary headline."]
 
