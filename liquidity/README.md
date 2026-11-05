@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 4, 9:00 PM ET. This run: 1 new, 1 not confirmed, 1 pending. Open alerts: 161.
+Updated Wed Nov 4, 9:06 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 161.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -13,7 +13,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 4 9:00PM | NBA | Mavericks vs. Spurs | spread: Spurs (-12.5) | polymarket | $74k | -100 | ✅ kalshi,prophetx | ✅ | +0.0c |  | pending |
 | Nov 4 8:16PM | NBA | Trail Blazers vs. Suns | moneyline: Suns | polymarket | $284k | +138 |  |  | +0.0c |  | pending |
 | Nov 4 7:56PM | NBA | Indiana Pacers @ Memphis Grizzlies | moneyline: MEM (0) | novig | $49k | -213 | ✅ kalshi,polymarket,prophetx | ✅ | +0.0c |  | pending |
-| Nov 4 7:45PM | NBA | Portland vs Phoenix: Total Points | total: NOT Over 228.5 points | kalshi | $47k | -108 |  |  | +1.0c |  | pending |
+| Nov 4 7:45PM | NBA | Portland vs Phoenix: Total Points | total: NOT Over 228.5 points | kalshi | $47k | -108 |  |  | +1.0c | yes | pending |
 | Nov 4 7:40PM | NBA | Jazz vs. Pelicans | spread: Jazz (+4.5) | polymarket | $304k | -100 |  | ✅ | +0.0c |  | pending |
 | Nov 4 7:40PM | NBA | Jazz vs. Pelicans | moneyline: Jazz | polymarket | $273k | +170 |  | ✅ | +0.0c |  | pending |
 | Nov 4 7:36PM | NBA | Timberwolves vs. Rockets | spread: Timberwolves (+7.5) | polymarket | $41k | -104 | ✅ kalshi,novig,prophetx | ✅ | +0.0c | yes | pending |
