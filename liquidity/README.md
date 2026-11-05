@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 5, 4:40 AM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 25.
+Updated Thu Nov 5, 4:45 AM ET. This run: 2 new, 0 not confirmed, 2 pending. Open alerts: 27.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 5 4:45AM | NHL | Blues vs. Devils | moneyline: Devils | polymarket | $27k | -186 | ✅ kalshi |  | +0.0c |  | pending |
+| Nov 5 4:45AM | NHL | Blackhawks vs. Lightning | moneyline: Lightning | polymarket | $30k | -400 | ✅ kalshi |  | +0.0c |  | pending |
 | Nov 5 3:05AM | NHL | Stars vs. Blue Jackets | moneyline: Stars | polymarket | $30k | -122 | ✅ kalshi |  | +0.0c |  | pending |
 | Nov 5 1:35AM | NCAAF | James Madison vs Southern Miss: Total Points | total: Over 57.5 points | kalshi | $34k | -104 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 5 1:05AM | NHL | Vancouver vs Winnipeg | moneyline: Winnipeg | kalshi | $26k | -194 |  |  | +0.0c | yes | pending |
@@ -208,5 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 3 9:30AM | NCAAF | Ohio vs Akron: Spread | spread: NOT Ohio wins by over 14.5 points | kalshi | $223k | -108 | ✅ novig |  | +6.0c | yes | W |
 | Nov 3 9:20AM | NHL | Utah vs Toronto: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $58k | +117 |  |  | -2.0c | yes | W |
 | Nov 3 9:20AM | NHL | Carolina vs Nashville: Spread | spread: NOT Carolina wins by over 1.5 goals | kalshi | $48k | -138 | ✅ novig,polymarket |  | +0.0c | yes | W |
-| Nov 3 9:20AM | NHL | Anaheim vs Vancouver: Spread | spread: NOT Anaheim wins by over 1.5 goals | kalshi | $83k | -170 | ✅ polymarket |  | -3.0c | yes | W |
-| Nov 3 9:10AM | NHL | St. Louis vs New York R: Spread | spread: NOT New York R wins by over 1.5 goals | kalshi | $46k | -233 |  |  | -1.0c | yes | L |
