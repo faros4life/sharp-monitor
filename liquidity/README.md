@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 5, 10:26 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 59.
+Updated Thu Nov 5, 10:30 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 59.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,7 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 5 10:16AM | NHL | Vegas vs Detroit | moneyline: Vegas | kalshi | $55k | -133 | ✅ novig,polymarket |  | +0.0c |  | pending |
+| Nov 5 10:16AM | NHL | Vegas vs Detroit | moneyline: Vegas | kalshi | $55k | -133 | ✅ novig,polymarket |  | +0.0c | yes | pending |
 | Nov 5 9:56AM | NCAAF | James Madison vs Southern Miss: Spread | spread: NOT James Madison wins by over 13.5 points | kalshi | $66k | -104 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Nov 5 9:36AM | NCAAF | Nebraska vs Illinois | moneyline: Nebraska | kalshi | $109k | -186 | ✅ novig |  | +0.0c |  | pending |
 | Nov 5 9:30AM | NHL | Utah vs Montreal: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $37k | -104 | ✅ novig,polymarket |  | +0.0c |  | pending |
@@ -109,7 +109,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 4 4:15PM | NBA | Cavaliers vs. Thunder | spread: Thunder (-3.5) | polymarket | $104k | -100 | ✅ kalshi | ✅ | -1.0c |  | W |
 | Nov 4 4:15PM | NCAAF | Central Michigan vs Eastern Michigan: Spread | spread: NOT Central Michigan wins by over 1.5 points | kalshi | $51k | -108 |  | ❌ | -5.0c | yes | L |
 | Nov 4 4:15PM | NBA | Philadelphia vs Detroit: Total Points | total: NOT Over 219.5 points | kalshi | $74k | -100 |  | ❌ | +1.0c | yes | W |
-| Nov 4 4:10PM | NHL | Boston vs Pittsburgh | moneyline: Pittsburgh | kalshi | $139k | +104 |  |  | +0.0c | yes | pending |
+| Nov 4 4:10PM | NHL | Boston vs Pittsburgh | moneyline: Pittsburgh | kalshi | $139k | +104 |  |  | +1.0c | yes | pending |
 | Nov 4 3:46PM | NCAAF | UTSA vs Florida Atlantic: Spread | spread: NOT UTSA wins by over 7.5 points | kalshi | $28k | -117 |  |  | +0.0c | yes | pending |
 | Nov 4 3:46PM | NBA | Cleveland vs Oklahoma City: Spread | spread: NOT Oklahoma City wins by over 3.5 points | kalshi | $49k | -104 |  | ✅ | +1.0c | yes | L |
 | Nov 4 3:40PM | NBA | Bucks vs. Celtics | spread: Celtics (-11.5) | polymarket | $56k | -104 |  | ✅ | +1.0c |  | L |
