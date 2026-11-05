@@ -1,6 +1,185 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-05T11:50:22Z",
+   "base_depth": 24949,
+   "best_price": 0.615,
+   "best_price_american": -160,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.61,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-05",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -5,
+     "new_this_side": 25061,
+     "other_side": 2788,
+     "other_side_all_levels": 22459,
+     "ratio": 3.4,
+     "this_side": 9382,
+     "this_side_all_levels": 50051
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "Marist (0)",
+     "price": 0.615,
+     "this_side": 1003
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "Marist",
+     "price": 0.6296,
+     "this_side": 58
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 53.489999999999995,
+    "volume_24h_fp": 24.840000000000003,
+    "volume_fp": 54.260000000000005
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 53.489999999999995,
+    "volume_24h_fp": 24.840000000000003,
+    "volume_fp": 54.260000000000005
+   },
+   "fade_price": 0.41,
+   "first_seen_utc": "2026-11-05T11:40:18Z",
+   "game": "UMBC vs Marist",
+   "game_surge_books": [
+    "novig"
+   ],
+   "game_x": 1.88,
+   "key": "kalshi|KXNCAAMBGAME-26NOV05UMBCMRST|ml|1",
+   "lead_min": 730,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 25061,
+   "new_x": 3.6,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 53.489999999999995,
+      "volume_24h_fp": 24.840000000000003,
+      "volume_fp": 54.260000000000005
+     },
+     "game_normal": 26667,
+     "game_x": 1.88,
+     "normal": 6956,
+     "now": 50051,
+     "type": "ML",
+     "x": 7.19
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 22430.0,
+      "volume": 22430.0
+     },
+     "game_normal": 1196,
+     "game_x": 2.36,
+     "normal": 590,
+     "now": 2822,
+     "type": "ML",
+     "x": 4.79
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 217,
+     "game_x": 1.53,
+     "normal": 359,
+     "now": 334,
+     "type": "ML",
+     "x": 0.93
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.61,
+   "price_american": -156,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.61,
+   "prices_by_book": {
+    "betrivers": {
+     "point": null,
+     "price": -180
+    },
+    "bovada": {
+     "point": null,
+     "price": -165
+    },
+    "draftkings": {
+     "point": null,
+     "price": -166
+    },
+    "fanatics": {
+     "point": null,
+     "price": -165
+    },
+    "fanduel": {
+     "point": null,
+     "price": -156
+    },
+    "kalshi": {
+     "point": null,
+     "price": -156
+    },
+    "novig": {
+     "point": null,
+     "price": -160
+    },
+    "polymarket": {
+     "point": null,
+     "price": -170
+    },
+    "prophetx": {
+     "point": null,
+     "price": -170
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV05UMBCMRST-MRST"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Marist",
+   "side_label": "Marist",
+   "size_x": 7.19,
+   "start_source": "odds",
+   "start_utc": "2026-11-06T00:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig"
+   ],
+   "teams": [
+    "UMBC",
+    "Marist"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-05T10:10:18Z",
    "base_depth": 37186,
    "best_price": 0.8208,
@@ -2104,8 +2283,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.71,
-   "clv_cents": -1.0,
+   "close_price": 0.72,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-11-05",
    "depth_by_book": {
@@ -2136,9 +2315,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1490.15,
-    "volume_24h_fp": 474.59000000000003,
-    "volume_fp": 1543.9299999999998
+    "open_interest_fp": 1494.2,
+    "volume_24h_fp": 478.64000000000004,
+    "volume_fp": 1547.98
    },
    "ex_stats_first": {
     "open_interest_fp": 1256.64,
