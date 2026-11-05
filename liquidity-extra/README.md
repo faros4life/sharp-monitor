@@ -1,19 +1,19 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 4, 10:10 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 6.
+Updated Wed Nov 4, 10:20 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 5.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 129-85 (-14.42u flat) | rule met: 34-31
+**Record:** 130-85 (-13.68u flat) | rule met: 34-31
 
-**Fade (paper, betting against the print):** 60-94 (+17.84u flat, after fees)
+**Fade (paper, betting against the print):** 60-95 (+16.84u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 4 10:10PM | NCAAB | South Florida vs DePaul | moneyline: DePaul | kalshi | $25k | -257 |  |  | +0.0c |  | pending |
 | Nov 4 8:10PM | TENNIS | Berrettini vs Alcaraz | moneyline: Alcaraz | kalshi | $98k | -525 |  |  | -1.0c |  | pending |
 | Nov 4 3:40PM | TENNIS | Valentova vs Eala | moneyline: Eala | kalshi | $41k | -170 | ✅ novig |  | +0.0c |  | pending |
-| Nov 4 1:20PM | NCAAB | Northern Kentucky vs South Dakota | moneyline: Northern Kentucky | kalshi | $28k | -138 |  |  | +0.0c |  | pending |
+| Nov 4 1:20PM | NCAAB | Northern Kentucky vs South Dakota | moneyline: Northern Kentucky | kalshi | $28k | -138 |  |  | +0.0c |  | W |
 | Nov 4 11:00AM | TENNIS | Tirante vs Struff | moneyline: Struff | kalshi | $27k | -213 |  |  | +0.0c |  | W |
 | Nov 4 7:10AM | TENNIS | Montgomery vs Vandromme | moneyline: Vandromme | kalshi | $44k | -456 |  |  | +5.0c |  | L |
 | Nov 4 6:40AM | TENNIS | Montgomery vs Vandromme | moneyline: Montgomery | kalshi | $89k | -150 |  |  | -47.0c | yes | W |
