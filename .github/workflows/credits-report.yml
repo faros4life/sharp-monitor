@@ -1,0 +1,37 @@
+name: credits-report
+
+# Stage 1 of the OddsPapi credit meter (Peter, Nov 5 2026): MEASUREMENT ONLY.
+# Reads the provider's own /account usage - a FREE call, so this workflow spends no credits - and
+# reconciles it against every local counter it can read. It gates nothing, writes nothing and
+# commits nothing. contents: read, and no commit step exists.
+on:
+  schedule:
+    - cron: "47 13 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# Shares the clv-ledger group only to avoid reading clv/state.enc while the ledger is rewriting it.
+concurrency:
+  group: clv-ledger
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Reconcile OddsPapi credits (read-only; /account is free)
+        env:
+          ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+        run: python -u credits.py

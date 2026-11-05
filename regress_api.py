@@ -306,6 +306,38 @@ def inv6():
     return "\n".join(notes)
 
 
+# ---------------------------------------------------------------- 7. the credit meter cannot spend
+def inv7():
+    """Stage 1 of the credit meter must be incapable of spending a credit or writing any state.
+    Checked structurally (AST), so it stays true even if the module is edited later."""
+    import ast
+    f = os.path.join(REPO, "credits.py")
+    if not os.path.exists(f):
+        return "credits.py not present (nothing to check)"
+    t = ast.parse(open(f).read())
+    calls, writes = [], []
+    for n in ast.walk(t):
+        if isinstance(n, ast.Call) and isinstance(n.func, ast.Attribute) and n.func.attr == "api":
+            path = n.args[0].value if n.args and isinstance(n.args[0], ast.Constant) else "?"
+            bill = n.args[1].value if len(n.args) > 1 and isinstance(n.args[1], ast.Constant) else "?"
+            calls.append((path, bill))
+            assert path == "/account" and bill is False, \
+                f"credits.py made a non-free provider call: api({path!r}, {bill!r})"
+        if isinstance(n, ast.Call) and isinstance(n.func, ast.Name) and n.func.id == "open":
+            mode = n.args[1].value if len(n.args) > 1 and isinstance(n.args[1], ast.Constant) else "r"
+            if "w" in str(mode) or "a" in str(mode) or "+" in str(mode):
+                writes.append(mode)
+    assert not writes, f"credits.py opened a file for writing: {writes}"
+    # and it must not be imported by anything that places bets or sends alerts
+    for risky in ("executor.py", "px_live.py", "book_live.py", "sharp_monitor.py", "hr_scanner.py"):
+        rp = os.path.join(REPO, risky)
+        if os.path.exists(rp):
+            src = open(rp).read()
+            assert "import credits" not in src, f"{risky} imports credits - Stage 1 must stay out of the live path"
+    return (f"only provider call is {calls}; no file opened for writing; not imported by the "
+            f"executor, either live-order module, the monitor or the HR scanner")
+
+
 def main():
     print(f"REGRESSION GUARD | repo {REPO}\n" + "=" * 78)
     check("1. betting signals / qualification thresholds / alert routing", inv1)
@@ -314,6 +346,7 @@ def main():
     check("4. no OddsPapi call double-counted or uncounted", inv4)
     check("5. concurrent workflows cannot exceed the cap", inv5, expect_red=True)
     check("6. a failed call or crash cannot corrupt accounting state", inv6, expect_red=True)
+    check("7. the Stage-1 credit meter cannot spend or write", inv7)
     print("=" * 78)
     hard = [n for n, ok, _, red in RESULTS if not ok and not red]
     known = [n for n, ok, _, red in RESULTS if not ok and red]
