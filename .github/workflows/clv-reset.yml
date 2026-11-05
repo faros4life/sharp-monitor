@@ -1,0 +1,60 @@
+name: clv-reset
+
+# One-off targeted recovery reset (Nov 5 2026, on Peter's written approval). Dispatch only, never
+# scheduled. Writes nothing unless apply=1, and backs clv/state.enc up byte-for-byte first. Holds no
+# OddsPapi key: this job makes no API call, so it cannot spend a credit. The log prints counts and
+# digests only - row detail goes to private email.
+on:
+  workflow_dispatch:
+    inputs:
+      apply:
+        description: "1 to write the reset. Anything else is a dry run."
+        required: false
+        type: string
+        default: "0"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: clv-ledger          # MUST share the ledger's group: both write clv/state.enc
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Targeted recovery reset
+        env:
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+          APPLY: ${{ inputs.apply }}
+        run: python -u clv_reset.py
+      - name: Commit encrypted state and its backup
+        if: ${{ inputs.apply == '1' }}
+        run: |
+          if [ -n "$(git status --porcelain clv clv_backup)" ]; then
+            git config user.name "clv-reset"
+            git config user.email "clv-reset@users.noreply.github.com"
+            rm -rf "$RUNNER_TEMP/out" && mkdir -p "$RUNNER_TEMP/out"
+            cp -r clv "$RUNNER_TEMP/out/"
+            cp -r clv_backup "$RUNNER_TEMP/out/"
+            for i in 1 2 3 4 5; do
+              git fetch -q origin main && git reset -q --hard origin/main
+              rm -rf clv && cp -r "$RUNNER_TEMP/out/clv" .
+              mkdir -p clv_backup && cp -r "$RUNNER_TEMP/out/clv_backup/." clv_backup/
+              git add -A clv clv_backup
+              git diff --cached --quiet && break
+              git commit -q -m "CLV targeted recovery reset: clear 74 stale done flags (state backup included)"
+              git push -q origin HEAD:main && break
+              sleep 5
+            done
+          fi
