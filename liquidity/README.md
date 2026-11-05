@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 4, 9:20 PM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 163.
+Updated Wed Nov 4, 9:25 PM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 163.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -12,7 +12,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 4 9:20PM | NBA | Heat vs. Clippers | moneyline: Heat | polymarket | $34k | -194 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Nov 4 9:16PM | NFL | Jacksonville Jaguars @ Baltimore Ravens | spread: JAX -9.5 (9.5) | novig | $51k | -111 |  |  | +0.0c |  | pending |
-| Nov 4 9:00PM | NBA | Mavericks vs. Spurs | spread: Spurs (-12.5) | polymarket | $74k | -100 | ✅ kalshi,prophetx | ✅ | +1.0c |  | pending |
+| Nov 4 9:00PM | NBA | Mavericks vs. Spurs | spread: Spurs (-12.5) | polymarket | $74k | -100 | ✅ kalshi,prophetx | ✅ | +1.0c | yes | pending |
 | Nov 4 8:16PM | NBA | Trail Blazers vs. Suns | moneyline: Suns | polymarket | $284k | +138 |  |  | +0.0c |  | pending |
 | Nov 4 7:56PM | NBA | Indiana Pacers @ Memphis Grizzlies | moneyline: MEM (0) | novig | $49k | -213 | ✅ kalshi,polymarket,prophetx | ✅ | +0.0c |  | pending |
 | Nov 4 7:45PM | NBA | Portland vs Phoenix: Total Points | total: NOT Over 228.5 points | kalshi | $47k | -108 |  |  | +1.0c | yes | pending |
@@ -133,7 +133,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 4 7:46AM | NBA | Cleveland vs Oklahoma City: Spread | spread: Oklahoma City wins by over 2.5 points | kalshi | $39k | -104 | ✅ polymarket | ❌ | +3.0c | yes | pending |
 | Nov 4 7:36AM | NHL | Senators vs. Sabres | spread: Senators (+1.5) | polymarket | $26k | -213 | ✅ kalshi,novig |  | +0.0c |  | pending |
 | Nov 4 7:30AM | NBA | Milwaukee vs Boston: Total Points | total: NOT Over 223.5 points | kalshi | $43k | -100 | ✅ polymarket | ✅ | +4.0c |  | pending |
-| Nov 4 6:50AM | NHL | Flames vs. Kraken | moneyline: Flames | polymarket | $99k | +122 | ✅ kalshi |  | +1.0c |  | pending |
+| Nov 4 6:50AM | NHL | Flames vs. Kraken | moneyline: Flames | polymarket | $99k | +122 | ✅ kalshi |  | +0.0c |  | pending |
 | Nov 4 6:11AM | NHL | Ottawa vs Buffalo: Spread | spread: NOT Buffalo wins by over 1.5 goals | kalshi | $26k | -203 | ✅ polymarket |  | +1.0c | yes | pending |
 | Nov 4 5:10AM | NHL | Calgary vs Seattle: Spread | spread: NOT Seattle wins by over 1.5 goals | kalshi | $33k | -194 |  |  | +1.0c |  | pending |
 | Nov 4 4:55AM | NCAAF | James Madison vs Southern Miss | moneyline: James Madison | kalshi | $228k | -567 |  |  | +0.0c | yes | pending |
@@ -142,7 +142,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 4 1:05AM | NBA | Miami vs Los Angeles C | moneyline: Los Angeles C | kalshi | $64k | +186 |  |  | +0.0c | yes | pending |
 | Nov 4 12:15AM | NFL | Jacksonville vs Baltimore | moneyline: Jacksonville | kalshi | $171k | -456 | ✅ novig,prophetx |  | +0.0c | yes | pending |
 | Nov 3 11:45PM | NCAAF | Ball St. vs UMass: Total Points | total: Over 49.5 points | kalshi | $79k | -100 |  |  | -2.0c | yes | pending |
-| Nov 3 11:20PM | NHL | Flames vs. Kraken | moneyline: Kraken | polymarket | $25k | -133 |  |  | -2.0c | yes | pending |
+| Nov 3 11:20PM | NHL | Flames vs. Kraken | moneyline: Kraken | polymarket | $25k | -133 |  |  | -1.0c | yes | pending |
 | Nov 3 11:06PM | NHL | Chicago vs Florida: Total Goals | total: NOT Over 5.5 goals scored | kalshi | $44k | +127 |  |  | +1.0c |  | pending |
 | Nov 3 10:50PM | NHL | Calgary vs Seattle | moneyline: Calgary | kalshi | $96k | +133 | ✅ novig,polymarket |  | +3.0c |  | pending |
 | Nov 3 9:50PM | NCAAF | Ball St. vs UMass: Total Points | total: NOT Over 49.5 points | kalshi | $55k | -104 |  |  | +2.0c | yes | pending |
