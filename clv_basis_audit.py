@@ -427,20 +427,63 @@ def main():
     bat = {}
     for r in sp:
         bat.setdefault(((r.get("snap") or {}).get("league") or "?"), []).append(r)
+    # Nov 5 (Peter/Muse): MEASURED, not derived. A credit only helps a row the fetch window would
+    # actually ask for. clv_ledger line ~745 clamps the request to
+    #     d0 = max(game_start, now - FETCH_DAYS)
+    # so a game BEFORE the floor is never requested, and buying its league's fixtures today fetches
+    # the wrong dates. Three buckets, because they have three different costs:
+    #   FUTURE    - game has not started: it scores itself, no credit and no code change
+    #   IN-WINDOW - past and inside the floor: a credit recovers it TODAY
+    #   PRE-FLOOR - past and older than the floor: needs the window fix FIRST, then the same credit
+    def wbucket(r):
+        gs = tpa(((r.get("snap") or {}).get("game_start")))
+        if gs and gs > now:
+            return "future"
+        if gs and gs >= floor:
+            return "inwin"
+        return "prefloor"
+
     rank = []
     for lg, rows in bat.items():
         ds = sorted((((r.get("snap") or {}).get("game_start") or "")[:10]) for r in rows)
         credits = 1 + (1 if lg == "NCAAF" and not st.get("ncaaf_tid") else 0)
-        rank.append((len(rows) / credits, lg, rows, ds[0], ds[-1], credits))
+        b = {k: sum(1 for r in rows if wbucket(r) == k) for k in ("future", "inwin", "prefloor")}
+        rank.append((b["inwin"] / credits, lg, rows, ds[0], ds[-1], credits, b))
     rank.sort(reverse=True)
     if rank:
-        L += ["", "  rank  league   date range                 recoverable  credits  bets/credit",
-              "  " + "-" * 70]
-        for i, (pc, lg, rows, d0, d1, cr) in enumerate(rank, 1):
-            L.append(f"  {i:>4}  {lg:<8} {d0} to {d1}  {len(rows):>12}  {cr:>7}  {pc:>11.1f}")
+        L += ["", "  rank  league   date range                 total  future  in-win  pre-floor  credits  per-credit",
+              "  " + "-" * 94]
+        for i, (pc, lg, rows, d0, d1, cr, b) in enumerate(rank, 1):
+            L.append(f"  {i:>4}  {lg:<8} {d0} to {d1}  {len(rows):>5}  {b['future']:>6}  {b['inwin']:>6}  "
+                     f"{b['prefloor']:>9}  {cr:>7}  {pc:>10.1f}")
         tr, tc = sum(len(x[2]) for x in rank), sum(x[5] for x in rank)
-        L.append("  " + "-" * 70)
-        L.append(f"  {'ALL':>4}  {'':<8} {'':<25}  {tr:>12}  {tc:>7}  {tr / max(1, tc):>11.1f}")
+        tf = sum(x[6]["future"] for x in rank)
+        ti = sum(x[6]["inwin"] for x in rank)
+        tp_ = sum(x[6]["prefloor"] for x in rank)
+        L.append("  " + "-" * 94)
+        L.append(f"  {'ALL':>4}  {'':<8} {'':<25}  {tr:>5}  {tf:>6}  {ti:>6}  {tp_:>9}  {tc:>7}  "
+                 f"{ti / max(1, tc):>10.1f}")
+        L += ["",
+              "  per-credit is IN-WINDOW only: what 4 credits buys with no code change. The pre-floor column",
+              "  is what the held window fix unlocks, at the same credit cost - the credits are not the gate.",
+              "", "  STAGED COVERAGE LADDER (each step measured, none applied):",
+              f"    now                                        {len(scored):>3} of {len(bets)}"
+              f"  ({100.0 * len(scored) / max(1, len(bets)):.1f}%)",
+              f"    + {ti} in-window recovered for {tc} credit(s)        {len(scored) + ti:>3} of {len(bets)}"
+              f"  ({100.0 * (len(scored) + ti) / max(1, len(bets)):.1f}%)",
+              f"    + {tf} future games, settle on their own     {len(scored) + ti + tf:>3} of {len(bets)}"
+              f"  ({100.0 * (len(scored) + ti + tf) / max(1, len(bets)):.1f}%)",
+              f"    + {tp_} pre-floor, needs the window fix      {len(scored) + ti + tf + tp_:>3} of {len(bets)}"
+              f"  ({100.0 * (len(scored) + ti + tf + tp_) / max(1, len(bets)):.1f}%)"]
+        nmatch = sum(len(v) for k, v in cls.items() if k.startswith("F."))
+        ndone = sum(len(v) for k, v in cls.items() if k.startswith("A."))
+        L += [f"    + {ndone} already-resolvable, blocked on the done flag"
+              f"  {len(scored) + ti + tf + tp_ + ndone:>3} of {len(bets)}"
+              f"  ({100.0 * (len(scored) + ti + tf + tp_ + ndone) / max(1, len(bets)):.1f}%)",
+              f"    + {nmatch} team-name match failures, code fix only  "
+              f"{len(scored) + ti + tf + tp_ + ndone + nmatch:>3} of {len(bets)}"
+              f"  ({100.0 * (len(scored) + ti + tf + tp_ + ndone + nmatch) / max(1, len(bets)):.1f}%)",
+              "    Everything above this line costs 4 credits in total; the rest is code, not spend."]
         if any(x[1] == "NCAAF" for x in rank) and not st.get("ncaaf_tid"):
             L.append("  NOTE: NCAAF carries +1 credit for the one-off /tournaments lookup (ncaaf_tid not cached).")
     used = (st.get("billable") or {}).get(f"{now:%Y-%m}", 0)
