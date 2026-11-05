@@ -31,7 +31,11 @@ MIN_EV = float(os.environ.get("HRSCAN_MIN_EV", "") or "2.0")
 FLAG = (os.environ.get("HRSCAN_FLAG") or "on").strip().lower() == "on"
 HR_BOOKS = ("hardrockbet_fl", "hardrockbet")
 LEAGUES = ("NBA", "NFL", "NCAAF", "NHL", "NCAAB", "MLB")   # Nov 4 12:29 (Peter): all six paid sports, 0 extra credits
-FLAG_LEAGUES = ("NBA", "NFL", "NCAAF")   # Peter "no push to me": NHL / NCAAB / MLB are logged and graded, never pinged
+# Nov 5 ~6:54 AM (Peter, reversing the earlier restriction): "don't limit the pushes, let's see how many I get and
+# adjust. Show me all HR lag." All six sports flag on both paths; the NCAAF Top-25 ping gate is lifted FOR HR FLAGS
+# ONLY (ntfy rules elsewhere unchanged). Volume is COUNTED by league x conversion bucket instead of being gated, so
+# any later adjustment is made on real numbers. NCAAB maxes at Hard Rock are small - noted in reporting, not gated.
+FLAG_LEAGUES = ("NBA", "NFL", "NCAAF", "NHL", "NCAAB", "MLB")
 NO_FLAG_MIN = 30          # inside the final 30 minutes: logged, not flagged
 RECHECK_S = 300
 KEEP_DAYS = 30
@@ -45,6 +49,25 @@ def _p(a):
 def _dec(a):
     a = float(a)
     return 1 + (a / 100 if a > 0 else 100 / -a)
+
+
+def _bucket(conv):
+    """Conversion-distance bucket for push-volume reporting (Peter Nov 5: count it, do not gate on it)."""
+    if conv is None:
+        return "none (no line to convert)"
+    try:
+        c = float(conv)
+    except Exception:
+        return "unknown"
+    return ("0" if c <= 0 else ">0-0.5" if c <= 0.5 else ">0.5-1.0" if c <= 1.0
+            else ">1.0-2.0" if c <= 2.0 else ">2.0")
+
+
+def count_push(d, lg, conv, now, src="alert"):
+    """Record one FIRED push, by UTC day x league x conversion bucket x source. Counts only; this file is public."""
+    g = d.setdefault("pushes", {}).setdefault(now.strftime("%Y-%m-%d"), {}).setdefault(lg or "?", {})
+    k = f"{_bucket(conv)} [{src}]"
+    g[k] = g.get(k, 0) + 1
 
 
 def _dg(d, k, n=1):
@@ -254,8 +277,8 @@ def scan(sm, ev, cfg, lines, is_t25, d, now):
                  "lead": round(lead), "t25": is_t25, "recheck": None, "flag": False,
                  "repeat": bool(mine)}
             pk = f"{ev['id']}|{mk}|{side}"
-            want = ((not mine) and label in FLAG_LEAGUES and lead >= NO_FLAG_MIN and (label != "NCAAF" or is_t25 is True)
-                    and not pinged(d, pk))
+            want = ((not mine) and label in FLAG_LEAGUES and lead >= NO_FLAG_MIN
+                    and not pinged(d, pk))   # Nov 5 (Peter): no Top-25 gate on HR flags
             if FLAG and want:
                 mark(d, pk, ts)
                 bet = (f"{side} {hpt:g}" if mk == "totals" else f"{side} {hpt:+g}") + f" ({_fmt(hpr)})"
@@ -268,6 +291,7 @@ def scan(sm, ev, cfg, lines, is_t25, d, now):
                               extra_tags=("mag",), headline=f"{game} — {bet} @ Hard Rock")
                     s["flag"] = True
                     flags += 1
+                    count_push(d, label, 0.0, now, "scanner")   # the scanner is same-line by construction: conv 0
                 except Exception as x:
                     print(f"hr scanner flag failed: {str(x)[:60]}")
             d["sightings"].append(s)
