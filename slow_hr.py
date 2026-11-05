@@ -39,6 +39,17 @@ LATE = timedelta(minutes=30)
 MAX_FIX = int(os.environ.get("SLOWHR_MAX_FIX", "") or "60")
 
 
+def _aware(v):
+    """tb.tparse forced tz-aware, or None. A bare date ('2026-11-04') parses NAIVE, and comparing one
+    with an aware `now` raises TypeError - which in the fixture scan below would kill the whole run.
+    Every start in the shared cache currently carries a full timestamp, so this is a guard, not a fix
+    for an observed failure; the same class of defect did fire in clv_basis_audit on 2026-11-05."""
+    d = tb.tparse(v)
+    if d is None:
+        return None
+    return d.replace(tzinfo=timezone.utc) if d.tzinfo is None else d
+
+
 def ticks(o):
     out = []
     for t in (o.get("players") or {}).get("0") or []:
@@ -225,24 +236,54 @@ def main():
     except Exception:
         st = {}
     if st.get("v") != "reg2":   # 12:19 correction: re-derive everything under the registered test
-        st = {"v": "reg2"}
+        # Nov 5 (Peter): the credit counter and the fetch timestamps are ACCOUNTING, not test results.
+        # A re-derivation must not reset them, or the month's recorded spend silently restarts at zero.
+        st = {"v": "reg2", "billable": st.get("billable") or {},
+              "fx_last": st.get("fx_last") or {}, "fx": st.get("fx") or {}}
     st.setdefault("done", {})
     st.setdefault("sightings", [])
+    for _k in ("billable", "fx_last", "fx"):
+        st.setdefault(_k, {})
     try:
         cache = json.load(open(CACHE))
     except Exception:
         cache = {}
-    cst = {"fixtures": cache.get("fixtures") or {}, "fx_last": {}, "billable": {}}
+    # Nov 5 (Peter, "fix the SLOW-HR API-credit accounting issue"). Three defects, all from the state
+    # handed to refresh_fixtures being rebuilt empty each run and then thrown away:
+    #   fx_last {}  -> refresh_fixtures' 6 h per-league cooldown never fired, so a league with no game
+    #                  inside the rolling 40 h window re-fetched EVERY run (NFL, Tue-Thu, pays 4x a day).
+    #   billable {} -> can_bill() always read 0 used, so CLV_MONTH_CAP was not enforced here and the
+    #                  spend entered no month total anywhere. These credits were invisible.
+    #   fixtures    -> whatever the run paid for was dropped at the end of it.
+    # oddspapi/fixtures.json is written by the plimit-logger workflow, which runs under a different
+    # concurrency group, so this script must NOT write that file (lost update). It READS that cache and
+    # keeps its own fetches, its own timestamps and its own counter in slowhr/state.enc instead.
+    cst = {"fixtures": {**(cache.get("fixtures") or {}), **st["fx"]},
+           "fx_last": {**(cache.get("fx_last") or {}), **st["fx_last"]},
+           "billable": st["billable"]}
+    mk_ = now.strftime("%Y-%m")
+    billed0 = cst["billable"].get(mk_, 0)
+    shared = set(cache.get("fixtures") or {})
     mkmap = cl.load_markets(cst, now)
     lo, hi = (now - timedelta(days=2)).astimezone(ET), (now + timedelta(days=1)).astimezone(ET)
     for lg in LEAGUES:
-        have = [k for k, v in cst["fixtures"].items() if v.get("lg") == lg and tb.tparse(v.get("start"))
-                and now - timedelta(hours=40) <= tb.tparse(v["start"]) <= now]
+        have = [k for k, v in cst["fixtures"].items()
+                if v.get("lg") == lg and _aware(v.get("start"))
+                and now - timedelta(hours=40) <= _aware(v["start"]) <= now]
         if not have:
             cl.refresh_fixtures(cst, now, lg, lo, hi)
+    # Keep what this run paid for, and the timestamps that stop the NEXT run paying for it again.
+    st["fx_last"] = cst.get("fx_last") or {}
+    st["billable"] = cst.get("billable") or {}
+    _cut = now - timedelta(days=3)
+
+    def _keep(v):
+        d = _aware(v.get("start"))
+        return d is not None and d >= _cut
+    st["fx"] = {k: v for k, v in cst["fixtures"].items() if k not in shared and _keep(v)}
     todo = []
     for fid, f in cst["fixtures"].items():
-        s = tb.tparse(f.get("start"))
+        s = _aware(f.get("start"))
         if f.get("lg") in LEAGUES and s and max(FLOOR, now - timedelta(hours=40)) <= s <= now - timedelta(minutes=5) and fid not in st["done"]:
             todo.append((s, fid, f))
     todo.sort()
@@ -274,6 +315,24 @@ def main():
          f"  Type L: {stats([x for x in S if x['kind'] == 'L'])} | Type P: {stats([x for x in S if x['kind'] == 'P'])}"]
     for lg in LEAGUES:
         L.append(f"  {lg}: {stats([x for x in S if x['league'] == lg])}")
+    # Nov 5 (Peter): API-credit accounting. This counter is this script's OWN. clv_ledger (clv/state.enc)
+    # and plimit_logger (plimit/state.enc) each keep a SEPARATE st["billable"] checked against the same
+    # CLV_MONTH_CAP, so no local figure is the month's total and the cap bounds no single total. The
+    # provider's own number is the only authoritative one; /account is a free call.
+    _billed = (st.get("billable") or {}).get(mk_, 0)
+    _acct = {}
+    try:
+        _a = cl.api("/account", False)
+        if isinstance(_a, dict) and not _a.get("_error"):
+            _acct = {k: _a.get(k) for k in ("plan", "requestsUsed", "requestsLimit") if _a.get(k) is not None}
+    except Exception:
+        _acct = {}
+    L += ["", "API CREDITS",
+          f"  this run: {len(cl.CALLS)} calls, billable {_billed - billed0}",
+          f"  slow_hr month-to-date ({mk_}): {_billed}  [this script's own counter; cap {cl.CAP}]",
+          "  OddsPapi /account: " + (", ".join(f"{k} {v}" for k, v in _acct.items()) if _acct else "unavailable"),
+          "  clv_ledger and plimit_logger hold separate month counters against the same cap, so the",
+          "  /account figure above is the only one that reflects total spend."]
     L += ["", "NEWEST 20 SIGHTINGS:"]
     for x in sorted(S, key=lambda x: x["t_move"])[-20:][::-1]:
         L.append(f"  {x['t_confirm'][:16]}Z {x['league']} {x['game']} | {x['type']} {x['team']} {x['line'] if x['line'] is not None else ''} | "
