@@ -1,6 +1,112 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-05T10:10:18Z",
+   "base_depth": 37186,
+   "best_price": 0.8208,
+   "best_price_american": -458,
+   "best_price_book": "kalshi",
+   "bid_improved": true,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.81,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-05",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 26,
+     "new_this_side": 48305,
+     "other_side": 18355,
+     "other_side_all_levels": 22863,
+     "ratio": 2.4,
+     "this_side": 43576,
+     "this_side_all_levels": 133833
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 56588.78,
+    "volume_24h_fp": 60165.48,
+    "volume_fp": 60406.28999999999
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 13303.71,
+    "volume_24h_fp": 22620.43,
+    "volume_fp": 13325.71
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 43285.07,
+    "volume_24h_fp": 37545.05,
+    "volume_fp": 47080.58
+   },
+   "fade_price": 0.21,
+   "first_seen_utc": "2026-11-05T10:00:24Z",
+   "game": "Paul vs Halys",
+   "game_surge_books": [],
+   "game_x": 1.26,
+   "key": "kalshi|KXATPMATCH-26NOV05PAUHAL|ml|0",
+   "lead_min": 170,
+   "league": "TENNIS",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 48305,
+   "new_x": 0.92,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 56588.78,
+      "volume_24h_fp": 60165.48,
+      "volume_fp": 60406.28999999999
+     },
+     "game_normal": 106626,
+     "game_x": 1.26,
+     "normal": 52770,
+     "now": 133833,
+     "type": "ML",
+     "x": 2.54
+    }
+   },
+   "norm_ready_books": 1,
+   "paper_only": true,
+   "price": 0.81,
+   "price_american": -426,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.76,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXATPMATCH-26NOV05PAUHAL-PAU"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Paul",
+   "side_label": "Paul",
+   "size_x": 2.54,
+   "start_source": "kalshi",
+   "start_utc": "2026-11-05T13:00:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "Paul",
+    "Halys"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-05T06:30:20Z",
    "base_depth": 51869,
    "best_price": 0.835,
@@ -53,9 +159,9 @@
     "volume_fp": 9.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 2826.62,
-    "volume_24h_fp": 2852.54,
-    "volume_fp": 2879.15
+    "open_interest_fp": 2976.62,
+    "volume_24h_fp": 3002.54,
+    "volume_fp": 3029.15
    },
    "ex_stats_first": {
     "open_interest_fp": 2310.1400000000003,
@@ -237,6 +343,7 @@
     "volume_fp": 38041.43
    },
    "fade_price": 0.34,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-05T06:10:17Z",
    "game": "Pridankina vs Shubladze",
    "game_surge_books": [
@@ -280,11 +387,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXWTAMATCH-26NOV05PRISHU-SHU"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settled_utc": "2026-11-05T10:10:18Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Shubladze",
@@ -301,7 +409,7 @@
     "Shubladze"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.46
   },
   {
    "alerted_utc": "2026-11-05T06:20:16Z",
@@ -501,7 +609,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 81.05000000000001,
-    "volume_24h_fp": 70.56,
+    "volume_24h_fp": 69.46,
     "volume_fp": 81.05000000000001
    },
    "ex_stats_first": {
@@ -808,8 +916,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.75,
-   "clv_cents": 0.0,
+   "close_price": 0.76,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-05",
    "depth_by_book": {
@@ -846,9 +954,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 14.9,
-    "volume_24h_fp": 13.08,
-    "volume_fp": 14.9
+    "open_interest_fp": 17.9,
+    "volume_24h_fp": 16.08,
+    "volume_fp": 17.9
    },
    "ex_stats_first": {
     "open_interest_fp": 14.9,
@@ -1383,9 +1491,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 858.0400000000001,
-    "volume_24h_fp": 268.62,
-    "volume_fp": 878.16
+    "open_interest_fp": 859.22,
+    "volume_24h_fp": 269.8,
+    "volume_fp": 879.34
    },
    "ex_stats_first": {
     "open_interest_fp": 844.22,
@@ -2193,9 +2301,9 @@
     "volume_fp": 47.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 79588.17000000001,
-    "volume_24h_fp": 83646.26,
-    "volume_fp": 83646.26
+    "open_interest_fp": 79596.15,
+    "volume_24h_fp": 83654.23999999999,
+    "volume_fp": 83654.23999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 5646.38,
