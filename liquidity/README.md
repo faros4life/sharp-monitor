@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 5, 12:15 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 64.
+Updated Thu Nov 5, 12:20 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 65.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 5 12:20PM | NHL | St. Louis vs New Jersey: Spread | spread: New Jersey wins by over 1.5 goals | kalshi | $61k | +127 | ✅ polymarket |  | +0.0c |  | pending |
 | Nov 5 11:25AM | NHL | Blues vs. Devils | spread: Devils (-1.5) | polymarket | $30k | +133 |  |  | +1.0c |  | pending |
 | Nov 5 11:20AM | NCAAF | James Madison @ Southern Mississippi | moneyline: JMU (0) | novig | $26k | -488 | ✅ kalshi,prophetx |  | +0.0c |  | pending |
 | Nov 5 10:56AM | NCAAF | Virginia Tech vs SMU | moneyline: SMU | kalshi | $106k | -203 |  |  | +0.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 3 6:40PM | NCAAF | Ball St. vs UMass: Spread | spread: UMass wins by over 3.5 points | kalshi | $47k | +108 |  |  | -6.0c | yes | L |
 | Nov 3 6:20PM | NHL | Edmonton vs New Jersey: Total Goals | total: Over 6.5 goals scored | kalshi | $43k | +117 |  |  | +1.0c | yes | W |
 | Nov 3 6:10PM | NHL | Colorado vs Columbus | moneyline: Colorado | kalshi | $65k | -113 | ✅ novig,polymarket,prophetx |  | +0.0c | yes | L |
-| Nov 3 6:00PM | NHL | St. Louis Blues @ New York Rangers | moneyline: STL (0) | novig | $44k | +111 | ✅ kalshi |  | -0.5c | yes | L |
