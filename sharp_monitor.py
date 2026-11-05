@@ -1610,7 +1610,9 @@ def run():
                                 hr_scanner.mark(HRS, _hk)
                         if hr_ev:
                             # Nov 3 (Peter 1:51 PM): Hard Rock alerts to the phone = edge >= 2% only, as a MANUAL bet alert
-                            hr_scanner.count_push(HRS, cfg["label"], a.get("conv"), now_utc(), "alert")
+                            hr_scanner.count_push(HRS, cfg["label"], a.get("conv"), now_utc(), "alert",
+                                                  mk=("totals" if a.get("kind") == "tot" else "spreads"),
+                                                  ev=a.get("ev"), side=a.get("side"))
                             _cv = a.get("conv")
                             label = (f"HARD ROCK EDGE {a['evp']:+.1f}% vs Pinnacle fair - MANUAL BET: open Hard Rock, bet only if "
                                      "this price is still there; check the max bet it allows"
