@@ -1,0 +1,38 @@
+name: sent-export
+
+# READ-ONLY per-play CSV over the SENT sharp-alert population (Peter Nov 4 "go"; Muse's column spec Nov 4 22:04 ET).
+# Changes no rule, threshold, alert or execution path. Reads the shared OddsPapi history cache; cache_only=1 grades
+# only games already cached and downloads nothing. Private email; the log prints counts only.
+on:
+  workflow_dispatch:
+    inputs:
+      cache_only: {required: false, type: string, default: "1"}
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Restore shared OddsPapi history cache (private Actions cache, never committed)
+        uses: actions/cache/restore@v4   # restore-only: a saved copy per run fills the 10 GB limit
+        with:
+          path: hcache
+          key: hcache-${{ github.run_id }}
+          restore-keys: hcache-
+      - name: SENT per-play export (private email)
+        env:
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
+          ODDSPAPI_FREE_KEY: ${{ secrets.ODDSPAPI_FREE_KEY }}   # history goes through the free key (paid key: 403 on pinnacle)
+          SENTX_CACHE_ONLY: ${{ inputs.cache_only }}
+        run: python -u sent_export.py
