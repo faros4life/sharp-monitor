@@ -17,11 +17,19 @@ export, built so that (Muse, Nov 4):
 Grading basis, stated so it can be reproduced rather than trusted:
   entry       = the alert's own after-fee price at the trigger book, American -> decimal (cl.am_to_dec).
   exec 5m     = best after-fee price on ProphetX / Novig / Kalshi / Polymarket US at alert + 5 min, on the alert's
-                own line, RAW: no quote is removed. The +15%-vs-close misread test is information from AFTER the bet,
-                so using it to pick the executable price would condition this export on the future and hand any
-                downstream split a population selected on data it could not have had. Instead exec_5m_* is the raw
-                best, exec_5m_suspect flags whether that quote fails the +15% test, and exec_5m_clean_* carries the
-                filtered best beside it, labelled. The analyst picks the basis; this file does not pick one for them.
+                own line, carried on THREE BASES side by side (Peter Nov 4 22:40), because removing a hindsight
+                filter does not make every extreme quote executable - some are genuinely bad data:
+                  exec_5m_*           RAW. Every quote competes. Nothing is removed, nothing peeks forward.
+                  exec_5m_causal_*    CAUSAL. Rejects a quote only on information available at that moment: it is
+                                      compared with Pinnacle's no-vig fair read at the SAME timestamp (not the
+                                      close). This is the basis an analyst should use for an executable-price claim.
+                  exec_5m_hindsight_* HINDSIGHT, kept strictly for reconciliation and labelled as such. This is the
+                                      old +15%-vs-CLOSE test, which reads information from after the bet. It is here
+                                      only so the look-ahead's effect on the apparent edge can be measured.
+                Every basis reports its own price, book, CLV, quote age and reject count. No basis is silently
+                preferred; the row carries all three and the analyst chooses.
+                Quote freshness: exec_5m_age_s is the chosen quote's age in seconds; pin_age_at_exec_min is
+                Pinnacle's own age at that same moment, so staleness on either side is visible per row.
   pin close   = Pinnacle's no-vig fair at the LAST pre-start read, at the bet's own line where Pinnacle had it;
                 close_same_line = 1 only then, and close_how records how it was derived otherwise. Compare only
                 equivalent contracts.
@@ -60,11 +68,17 @@ COLS = ["game_id", "game", "league", "market", "side", "line", "alert_utc", "lea
         "pin_limit_at_alert", "pin_limit_read", "pin_limit_x_vs_2h_before",
         "entry_after_fee_dec", "entry_after_fee_american", "trigger_book", "trigger_book_key",
         "exec_5m_after_fee_dec", "exec_5m_after_fee_american", "exec_5m_book", "exec_5m_beats_entry",
-        "exec_5m_suspect", "exec_5m_clean_after_fee_dec", "exec_5m_clean_after_fee_american", "exec_5m_clean_book",
-        "pin_novig_at_entry", "pin_novig_at_close", "close_same_line", "close_how", "close_age_min",
-        "entry_vs_close_clv_pct", "exec_5m_vs_close_clv_pct", "exec_5m_clean_vs_close_clv_pct",
+        "exec_5m_age_s", "exec_5m_vs_close_clv_pct",
+        "exec_5m_causal_after_fee_dec", "exec_5m_causal_after_fee_american", "exec_5m_causal_book",
+        "exec_5m_causal_age_s", "exec_5m_causal_vs_close_clv_pct",
+        "exec_5m_hindsight_after_fee_dec", "exec_5m_hindsight_after_fee_american", "exec_5m_hindsight_book",
+        "exec_5m_hindsight_vs_close_clv_pct", "exec_5m_suspect",
+        "quotes_seen", "quotes_rejected_causal", "quotes_rejected_hindsight",
+        "pin_novig_at_entry", "pin_novig_at_exec", "pin_age_at_exec_min",
+        "pin_novig_at_close", "close_same_line", "close_how", "close_age_min",
+        "entry_vs_close_clv_pct",
         "result", "units_flat", "late", "top25", "edge_pct", "confirmed_by", "executable_book",
-        "pricing_bettable", "suspect_quotes_flagged", "exclusion_reason"]
+        "pricing_bettable", "exclusion_reason"]
 
 
 def am(dec):
@@ -140,7 +154,8 @@ def main():
              "confirmed_by": "|".join(str(x) for x in cb) if cb else "",
              "executable_book": 1 if a.get("executable_book") else 0,
              "pricing_bettable": 1 if a.get("pricing_bettable") else 0,
-             "suspect_quotes_flagged": 0, "exclusion_reason": ""}
+             "quotes_seen": 0, "quotes_rejected_causal": 0, "quotes_rejected_hindsight": 0,
+             "exclusion_reason": ""}
         d.update(kw)
         X.append(d)
         return d
@@ -191,25 +206,33 @@ def main():
         ce, _ = cl.close_for(b, f, pin, mkmap, t0, lg)   # same basis, read at entry
 
         when = min(t0 + timedelta(seconds=EXEC_SEC), start)
-        # Nov 5 (Peter + Muse audit, and my bug): the +15% misread test compares a quote to the Pinnacle CLOSE, which
-        # is information from AFTER the bet. Dropping quotes on it would make the executable price - and anything
-        # selected from it, such as a LOW / HIGH split - conditional on the future. So nothing is dropped. The raw best
-        # is reported; the filtered best is reported beside it; the flag says which rows differ.
-        best, best_bk, flagged = None, None, 0
-        cbest, cbest_bk = None, None
+        # Nov 5 (Peter + Muse audit, and my bug): the old +15% test compared a quote with the Pinnacle CLOSE - data
+        # from AFTER the bet - and DROPPED the loser, so the executable price, and anything selected from it, was
+        # conditioned on the future. Three bases are now carried side by side and none is silently preferred. The
+        # CAUSAL test uses Pinnacle's fair at the quote's own timestamp (cw), which was observable at that moment.
+        cw, _ = cl.close_for(b, f, pin, mkmap, when, lg)
+        best, best_bk, best_age = None, None, None                 # RAW
+        kbest, kbest_bk, kbest_age, krej = None, None, None, 0     # CAUSAL (contemporaneous fair)
+        hbest, hbest_bk, hrej = None, None, 0                      # HINDSIGHT (the close; reconciliation only)
+        seen = 0
         for slug in EXCH:
             bk = cl.book_markets(h, slug)
             x = cl.novig_at(b, f, bk, mkmap, when, lg) if bk else None
             if not x:
                 continue
-            v = el.eff(slug, x[0])
+            v, age = el.eff(slug, x[0]), x[1]
+            seen += 1
             if best is None or v > best:
-                best, best_bk = v, slug           # RAW: every quote competes, nothing peeks at the close
-            if c["p"] * v - 1 > 0.15:
-                flagged += 1
-                bump("suspect quote flagged (kept, never dropped)")
-            elif cbest is None or v > cbest:
-                cbest, cbest_bk = v, slug          # the close-filtered basis, carried separately and labelled
+                best, best_bk, best_age = v, slug, age
+            if cw and cw["p"] * v - 1 > 0.15:      # identifiable as bad AT THE TIME, no future information used
+                krej += 1
+            elif kbest is None or v > kbest:
+                kbest, kbest_bk, kbest_age = v, slug, age
+            if c["p"] * v - 1 > 0.15:              # the old test: reads the close, kept only to measure its effect
+                hrej += 1
+                bump("quote rejected by the hindsight test (measured, never dropped)")
+            elif hbest is None or v > hbest:
+                hbest, hbest_bk = v, slug
 
         xrow(a, game_id=fid,
              pin_limit_at_alert=lim, pin_limit_read=how, pin_limit_x_vs_2h_before=limx,
@@ -219,18 +242,26 @@ def main():
              exec_5m_after_fee_american=(am(best) if best else None),
              exec_5m_book=best_bk,
              exec_5m_beats_entry=("" if (best is None or want is None) else (1 if best >= want - 1e-9 else 0)),
+             exec_5m_age_s=(round(best_age) if best_age is not None else None),
+             exec_5m_causal_after_fee_dec=(round(kbest, 4) if kbest else None),
+             exec_5m_causal_after_fee_american=(am(kbest) if kbest else None),
+             exec_5m_causal_book=kbest_bk,
+             exec_5m_causal_age_s=(round(kbest_age) if kbest_age is not None else None),
+             exec_5m_causal_vs_close_clv_pct=(round(100 * (c["p"] * kbest - 1), 3) if kbest else None),
+             exec_5m_hindsight_after_fee_dec=(round(hbest, 4) if hbest else None),
+             exec_5m_hindsight_after_fee_american=(am(hbest) if hbest else None),
+             exec_5m_hindsight_book=hbest_bk,
+             exec_5m_hindsight_vs_close_clv_pct=(round(100 * (c["p"] * hbest - 1), 3) if hbest else None),
              exec_5m_suspect=("" if best is None else (1 if c["p"] * best - 1 > 0.15 else 0)),
-             exec_5m_clean_after_fee_dec=(round(cbest, 4) if cbest else None),
-             exec_5m_clean_after_fee_american=(am(cbest) if cbest else None),
-             exec_5m_clean_book=cbest_bk,
-             exec_5m_clean_vs_close_clv_pct=(round(100 * (c["p"] * cbest - 1), 3) if cbest else None),
+             quotes_seen=seen, quotes_rejected_causal=krej, quotes_rejected_hindsight=hrej,
              pin_novig_at_entry=(round(ce["p"], 5) if ce else None),
+             pin_novig_at_exec=(round(cw["p"], 5) if cw else None),
+             pin_age_at_exec_min=(cw.get("age_min") if cw else None),
              pin_novig_at_close=round(c["p"], 5),
              close_same_line=1 if c.get("how") in ("own line", "moneyline") else 0,
              close_how=c.get("how"), close_age_min=c.get("age_min"),
              entry_vs_close_clv_pct=(round(100 * (c["p"] * want - 1), 3) if want else None),
-             exec_5m_vs_close_clv_pct=(round(100 * (c["p"] * best - 1), 3) if best else None),
-             suspect_quotes_flagged=flagged)
+             exec_5m_vs_close_clv_pct=(round(100 * (c["p"] * best - 1), 3) if best else None))
 
     graded = [r for r in X if r.get("entry_vs_close_clv_pct") is not None]
     sameln = [r for r in graded if r.get("close_same_line") == 1]
@@ -255,10 +286,26 @@ def main():
                  f"| beat {sum(1 for x in cv if x > 0)}/{len(cv)}")
         L.append("  (descriptive only - this is the export's own arithmetic, not a registered test result)")
         L.append("")
-    sus = sum(1 for r in X if r.get("exec_5m_suspect") == 1)
-    L += [f"Executable price basis: exec_5m_* is RAW (no quote removed). {sus} row(s) carry a +5min best that fails the",
-          "+15%-vs-close misread test; they are FLAGGED, not dropped, because that test reads the close and would",
-          "condition this export on information from after the bet. exec_5m_clean_* is the filtered basis, beside it.",
+    # THE THREE BASES, side by side, so the look-ahead's effect on the apparent edge is a measured number.
+    L.append("EXECUTABLE-PRICE BASES (+5 min) - no basis is preferred; the look-ahead's effect is the difference:")
+    L.append("  basis          | n    | games | CLV vs close      | quotes rejected | median quote age")
+    for nm, k, rj in (("raw        ", "exec_5m_vs_close_clv_pct", None),
+                      ("causal     ", "exec_5m_causal_vs_close_clv_pct", "quotes_rejected_causal"),
+                      ("hindsight  ", "exec_5m_hindsight_vs_close_clv_pct", "quotes_rejected_hindsight")):
+        rr = [r for r in X if r.get(k) is not None]
+        if not rr:
+            L.append(f"  {nm}    | 0    | -     | -                 | -               | -")
+            continue
+        cv = [r[k] for r in rr]
+        gm = len({r.get("game_id") for r in rr if r.get("game_id")})
+        ag = [r["exec_5m_causal_age_s"] if "causal" in k else r["exec_5m_age_s"] for r in rr]
+        ag = [a for a in ag if a is not None]
+        rjn = sum(r.get(rj) or 0 for r in X) if rj else 0
+        L.append(f"  {nm}    | {len(cv):<4} | {gm:<5} | {stt.mean(cv):+7.3f}% beat {sum(1 for x in cv if x > 0):>4}/{len(cv):<4} "
+                 f"| {rjn:<15} | {(f'{stt.median(ag):.0f}s' if ag else '-')}")
+    L += ["  The RAW and CAUSAL bases use only information available at the quote's own timestamp. The HINDSIGHT basis",
+          "  compares each quote with the Pinnacle CLOSE and is retained for reconciliation ONLY - it reads the future.",
+          "  Pinnacle's own freshness at that moment is per row in pin_age_at_exec_min; the exchange's in exec_5m_age_s.",
           "", "Columns: " + ", ".join(COLS), "",
           "Intended use: measure the SENT <-> LIQ game overlap, and reproduce item 56's Pinnacle-limit LOW / HIGH",
           "split off the raw rows. Until that overlap is measured, the Pinnacle-limit result is TWO populations that",
