@@ -1,6 +1,140 @@
 {
  "moves": [
   {
+   "alerted_utc": "2026-11-05T01:20:10Z",
+   "bar": false,
+   "best_price": 0.405,
+   "best_price_book": "novig",
+   "book": "novig",
+   "close_price": 0.405,
+   "clv_cents": 0.0,
+   "date": "2026-11-05",
+   "dir": "RAISE",
+   "ex_stats": {
+    "openInterest": 76849.0,
+    "volume": 76849.0
+   },
+   "first_play": false,
+   "game": "St. Louis Blues @ New Jersey Devils",
+   "key": "novig|{\"market_id\": \"01a1a799-5b32-7ff0-8871-dbab67fd66b0\", \"outcome_id\": \"01a1a799-5b32-7ff0-8871-dbb1fc237d92\"}",
+   "lead_min": 1360,
+   "league": "NHL",
+   "league_x": 0.99,
+   "line": -1.5,
+   "market": "spread",
+   "normal_4h": 2311,
+   "now": 4878,
+   "other_side_now": 9402,
+   "paper_only": true,
+   "price": 0.405,
+   "price_american": 147,
+   "ref": {
+    "market_id": "01a1a799-5b32-7ff0-8871-dbab67fd66b0",
+    "outcome_id": "01a1a799-5b32-7ff0-8871-dbb1fc237d92"
+   },
+   "result": null,
+   "side": "New Jersey Devils",
+   "side_label": "NJD -1.5 (-1.5)",
+   "side_raw": 1,
+   "start_utc": "2026-11-06T00:00:00Z",
+   "teams": [
+    "St. Louis Blues",
+    "New Jersey Devils"
+   ],
+   "units_flat": null,
+   "x": 2.11
+  },
+  {
+   "alerted_utc": "2026-11-05T01:20:10Z",
+   "bar": false,
+   "best_price": 0.515,
+   "best_price_book": "novig",
+   "book": "kalshi",
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "date": "2026-11-05",
+   "dir": "RAISE",
+   "ex_stats": {
+    "open_interest_fp": 481283.26,
+    "volume_24h_fp": 63573.57,
+    "volume_fp": 483311.4
+   },
+   "first_play": true,
+   "game": "Jacksonville vs Baltimore: Total Points",
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNFLTOTAL-26NOV05JACBAL-40\"}",
+   "lead_min": 1435,
+   "league": "NFL",
+   "league_x": 1.99,
+   "line": 39.5,
+   "market": "total",
+   "normal_4h": 841249,
+   "now": 1840664,
+   "other_side_now": 1203328,
+   "paper_only": true,
+   "price": 0.52,
+   "price_american": -108,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNFLTOTAL-26NOV05JACBAL-40"
+   },
+   "result": null,
+   "side": "UNDER",
+   "side_label": "NOT Over 39.5 points",
+   "side_raw": "UNDER",
+   "start_utc": "2026-11-06T01:15:00Z",
+   "teams": [
+    "Jacksonville",
+    "Baltimore"
+   ],
+   "units_flat": null,
+   "x": 2.19
+  },
+  {
+   "alerted_utc": "2026-11-05T01:20:10Z",
+   "bar": false,
+   "best_price": 0.52,
+   "best_price_book": "novig",
+   "book": "kalshi",
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "date": "2026-11-05",
+   "dir": "RAISE",
+   "ex_stats": {
+    "open_interest_fp": 209722.32,
+    "volume_24h_fp": 115410.76,
+    "volume_fp": 228156.62
+   },
+   "first_play": false,
+   "game": "Jacksonville vs Baltimore: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNFLSPREAD-26NOV05JACBAL-JAC10\"}",
+   "lead_min": 1435,
+   "league": "NFL",
+   "league_x": 1.56,
+   "line": -9.5,
+   "market": "spread",
+   "normal_4h": 817059,
+   "now": 1695030,
+   "other_side_now": 1526823,
+   "paper_only": true,
+   "price": 0.52,
+   "price_american": -108,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNFLSPREAD-26NOV05JACBAL-JAC10"
+   },
+   "result": null,
+   "side": "Jacksonville",
+   "side_label": "Jacksonville wins by over 9.5 points",
+   "side_raw": 0,
+   "start_utc": "2026-11-06T01:15:00Z",
+   "teams": [
+    "Jacksonville",
+    "Baltimore"
+   ],
+   "units_flat": null,
+   "x": 2.07
+  },
+  {
    "alerted_utc": "2026-11-05T01:16:20Z",
    "bar": false,
    "best_price": 0.82,
@@ -14,6 +148,11 @@
     "open_interest_fp": 1130192.0699999998,
     "volume_24h_fp": 579493.47,
     "volume_fp": 1384815.46
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 1131406.28,
+    "volume_24h_fp": 579493.47,
+    "volume_fp": 1386041.0899999999
    },
    "first_play": false,
    "game": "Jacksonville vs Baltimore",
@@ -59,6 +198,11 @@
     "open_interest_fp": 1130192.0699999998,
     "volume_24h_fp": 579493.47,
     "volume_fp": 1384815.46
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 1131406.28,
+    "volume_24h_fp": 579493.47,
+    "volume_fp": 1386041.0899999999
    },
    "first_play": false,
    "game": "Jacksonville vs Baltimore",
@@ -386,8 +530,8 @@
    "best_price": 0.695,
    "best_price_book": "novig",
    "book": "kalshi",
-   "close_price": 0.69,
-   "clv_cents": 0.0,
+   "close_price": 0.7,
+   "clv_cents": 1.0,
    "date": "2026-11-05",
    "dir": "RAISE",
    "ex_stats": {
@@ -814,9 +958,9 @@
     "volume_fp": 1020.27
    },
    "ex_stats_close": {
-    "open_interest_fp": 982.04,
+    "open_interest_fp": 993.22,
     "volume_24h_fp": 893.3,
-    "volume_fp": 1030.14
+    "volume_fp": 1041.3200000000002
    },
    "first_play": false,
    "game": "Philadelphia vs New York R",
@@ -1433,8 +1577,8 @@
     "volume": 79817.0
    },
    "ex_stats_close": {
-    "openInterest": 79817.0,
-    "volume": 79817.0
+    "openInterest": 80726.0,
+    "volume": 80726.0
    },
    "first_play": false,
    "game": "Carolina Hurricanes @ New York Islanders",
@@ -2709,8 +2853,8 @@
    "best_price": 0.32,
    "best_price_book": "novig",
    "book": "kalshi",
-   "close_price": 0.32,
-   "clv_cents": 0.0,
+   "close_price": 0.31,
+   "clv_cents": -1.0,
    "date": "2026-11-05",
    "dir": "RAISE",
    "ex_stats": {
@@ -3162,9 +3306,9 @@
     "volume_fp": 219190.24
    },
    "ex_stats_close": {
-    "open_interest_fp": 209674.32,
+    "open_interest_fp": 209722.32,
     "volume_24h_fp": 115410.76,
-    "volume_fp": 228108.62
+    "volume_fp": 228156.62
    },
    "first_play": false,
    "game": "Jacksonville vs Baltimore: Spread",
@@ -3452,8 +3596,8 @@
    "best_price": 0.5,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.505,
-   "clv_cents": 0.5,
+   "close_price": 0.5,
+   "clv_cents": 0.0,
    "date": "2026-11-05",
    "dir": "RAISE",
    "ex_stats": {
@@ -4235,7 +4379,7 @@
    "ex_stats_close": {
     "open_interest_fp": 50414.84,
     "volume_24h_fp": 60581.25,
-    "volume_fp": 62483.06
+    "volume_fp": 62707.68
    },
    "first_play": false,
    "game": "Portland vs Phoenix: Spread",
@@ -4285,8 +4429,8 @@
     "volume": 27832258.0
    },
    "ex_stats_close": {
-    "openInterest": 17452111.0,
-    "volume": 29799574.0
+    "openInterest": 17461611.0,
+    "volume": 29809074.0
    },
    "first_play": true,
    "game": "Jacksonville Jaguars @ Baltimore Ravens",
@@ -4494,9 +4638,9 @@
     "volume_fp": 2607.02
    },
    "ex_stats_close": {
-    "open_interest_fp": 7856.79,
+    "open_interest_fp": 7903.79,
     "volume_24h_fp": 8891.54,
-    "volume_fp": 9317.64
+    "volume_fp": 9364.64
    },
    "first_play": true,
    "game": "Toronto vs Denver: Total Points",
@@ -4699,9 +4843,9 @@
     "volume_fp": 5238.15
    },
    "ex_stats_close": {
-    "open_interest_fp": 5474.69,
+    "open_interest_fp": 5476.62,
     "volume_24h_fp": 2126.81,
-    "volume_fp": 6030.79
+    "volume_fp": 6032.72
    },
    "first_play": true,
    "game": "UTSA vs Florida Atlantic: Total Points",
@@ -4805,9 +4949,9 @@
     "volume_fp": 48537.54
    },
    "ex_stats_close": {
-    "open_interest_fp": 66795.72,
+    "open_interest_fp": 67143.53,
     "volume_24h_fp": 68379.92,
-    "volume_fp": 72973.28
+    "volume_fp": 73321.09
    },
    "first_play": true,
    "game": "Dallas vs San Antonio: Spread",
@@ -5159,8 +5303,8 @@
    "best_price": 0.4928,
    "best_price_book": "prophetx",
    "book": "kalshi",
-   "close_price": 0.48,
-   "clv_cents": -1.0,
+   "close_price": 0.47,
+   "clv_cents": -2.0,
    "date": "2026-11-04",
    "dir": "RAISE",
    "ex_stats": {
@@ -5212,8 +5356,8 @@
    "best_price": 0.4928,
    "best_price_book": "prophetx",
    "book": "kalshi",
-   "close_price": 0.48,
-   "clv_cents": -2.0,
+   "close_price": 0.47,
+   "clv_cents": -3.0,
    "date": "2026-11-04",
    "dir": "RAISE",
    "ex_stats": {
@@ -5222,9 +5366,9 @@
     "volume_fp": 2817.57
    },
    "ex_stats_close": {
-    "open_interest_fp": 13080.6,
+    "open_interest_fp": 13529.11,
     "volume_24h_fp": 14071.75,
-    "volume_fp": 14074.75
+    "volume_fp": 14523.26
    },
    "first_play": true,
    "game": "Minnesota vs Houston: Total Points",
@@ -5275,9 +5419,9 @@
     "volume_fp": 6606.54
    },
    "ex_stats_close": {
-    "open_interest_fp": 7925.25,
+    "open_interest_fp": 8091.030000000001,
     "volume_24h_fp": 4763.860000000001,
-    "volume_fp": 8543.48
+    "volume_fp": 8709.26
    },
    "first_play": true,
    "game": "UTSA vs Florida Atlantic",
@@ -5585,8 +5729,8 @@
     "volume": 25636065.0
    },
    "ex_stats_close": {
-    "openInterest": 17452111.0,
-    "volume": 29799574.0
+    "openInterest": 17461611.0,
+    "volume": 29809074.0
    },
    "first_play": true,
    "game": "Jacksonville Jaguars @ Baltimore Ravens",
@@ -5719,8 +5863,8 @@
    "best_price": 0.615,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.615,
-   "clv_cents": 0.0,
+   "close_price": 0.61,
+   "clv_cents": -0.5,
    "date": "2026-11-05",
    "dir": "RAISE",
    "ex_stats": {
@@ -7302,9 +7446,9 @@
     "volume_fp": 17750.67
    },
    "ex_stats_close": {
-    "open_interest_fp": 18737.9,
+    "open_interest_fp": 18831.940000000002,
     "volume_24h_fp": 10358.87,
-    "volume_fp": 20523.13
+    "volume_fp": 20617.17
    },
    "first_play": true,
    "game": "Boston vs Pittsburgh",
@@ -7715,9 +7859,9 @@
     "volume_fp": 1229083.77
    },
    "ex_stats_close": {
-    "open_interest_fp": 1130192.0699999998,
+    "open_interest_fp": 1131406.28,
     "volume_24h_fp": 579493.47,
-    "volume_fp": 1384815.46
+    "volume_fp": 1386041.0899999999
    },
    "first_play": true,
    "game": "Jacksonville vs Baltimore",
@@ -7768,9 +7912,9 @@
     "volume_fp": 1229083.77
    },
    "ex_stats_close": {
-    "open_interest_fp": 1130192.0699999998,
+    "open_interest_fp": 1131406.28,
     "volume_24h_fp": 579493.47,
-    "volume_fp": 1384815.46
+    "volume_fp": 1386041.0899999999
    },
    "first_play": true,
    "game": "Jacksonville vs Baltimore",
