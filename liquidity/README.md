@@ -1,15 +1,16 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 4, 11:06 PM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 65.
+Updated Wed Nov 4, 11:10 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 65.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 885-753 (-65.25u flat) | rule met: 540-487
+**Record:** 885-754 (-66.25u flat) | rule met: 540-487
 
-**Fade (paper, betting against the print):** 487-612 (-71.93u flat, after fees)
+**Fade (paper, betting against the print):** 488-612 (-69.13u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 4 11:10PM | NHL | Boston vs Pittsburgh | moneyline: Boston | kalshi | $27k | -104 | ✅ novig,polymarket |  | +0.0c |  | pending |
 | Nov 4 11:06PM | NHL | Anaheim vs Edmonton | moneyline: Edmonton | kalshi | $43k | -170 | ✅ novig |  | +0.0c |  | pending |
 | Nov 4 10:20PM | NHL | Vegas vs Detroit: Spread | spread: NOT Vegas wins by over 1.5 goals | kalshi | $29k | -194 |  |  | +0.0c | yes | pending |
 | Nov 4 9:50PM | NBA | Lakers vs. Kings | spread: Kings (+12.5) | polymarket | $131k | -108 | ✅ novig | ❌ | +0.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 3 8:20AM | NHL | Utah vs Toronto: Spread | spread: NOT Utah wins by over 1.5 goals | kalshi | $26k | -194 | ✅ novig,polymarket |  | -2.0c |  | W |
 | Nov 3 8:20AM | NHL | Edmonton vs New Jersey: Spread | spread: NOT New Jersey wins by over 1.5 goals | kalshi | $32k | -178 | ✅ novig,polymarket |  | +0.0c | yes | W |
 | Nov 3 7:50AM | NHL | Carolina vs Nashville: Total Goals | total: Over 6.5 goals scored | kalshi | $47k | +113 | ✅ novig,polymarket |  | -1.0c | yes | L |
-| Nov 3 7:50AM | NHL | Anaheim vs Vancouver: Total Goals | total: Over 6.5 goals scored | kalshi | $44k | -122 | ✅ novig,polymarket |  | +3.0c | yes | W |
