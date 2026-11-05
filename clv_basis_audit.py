@@ -661,8 +661,8 @@ def main():
                 continue
             a = (tb.toks(f.get("p1") or "") - tb.WEAK) & words
             c = (tb.toks(f.get("p2") or "") - tb.WEAK) & words
-            if a and c and (a - c) and (c - a):
-                out.append(fid)
+            if a and c and (a - c) and (c - a) and max(len(a), len(c)) >= 2:
+                out.append(fid)       # mirrors cl.find_fixture exactly, two-token floor included
         return out, words
 
     NEW_FROM = "2026-11-05T14:56"          # the recovery run; rows scored at or after it are the new ones
