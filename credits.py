@@ -74,8 +74,22 @@ def account():
     except Exception as ex:
         return {"_error": f"call failed: {str(ex)[:80]}"}
     if not isinstance(d, dict) or d.get("_error"):
-        return {"_error": str((d or {}).get("_error") or "unexpected shape")[:120]}
+        return {"_error": str((d or {}).get("_error") or f"unexpected shape: {type(d).__name__}")[:120]}
     return d
+
+
+def _shape(d):
+    """Field NAMES and short, redacted values from /account, so an unexpected shape can be read once
+    and the field names pinned - without this the reconciliation silently reports '? of ?'. Any value
+    that looks like a credential is replaced: /account is account metadata, but the report goes to
+    email and no key is ever worth printing."""
+    out = []
+    for k, v in sorted((d or {}).items()):
+        sv = str(v)
+        if isinstance(v, str) and (len(sv) >= 20 and sum(c.isalnum() for c in sv) >= len(sv) - 2):
+            sv = f"<redacted {len(sv)} chars>"
+        out.append(f"{k}={sv[:40]}")
+    return out
 
 
 def _pick(d, *names):
@@ -135,6 +149,12 @@ def report(now=None):
     if acct.get("_error"):
         L += [f"  /account unreadable: {acct['_error']}",
               "  No authoritative figure this run. The local sums below are a FLOOR, not the total."]
+    elif used is None:
+        L += ["  /account answered but reported no usage field under any name this code knows.",
+              "  Raw field names, values redacted where they could be a credential:",
+              "    " + ", ".join(_shape(acct) or ["(empty response)"]),
+              "  Until a usage field is identified the reconciliation below has no authoritative",
+              "  total, and the local sums are a FLOOR. Peter's dashboard is the figure to use."]
     else:
         L += [f"  plan: {plan if plan is not None else '?'}",
               f"  period: {plabel}" + ("" if auth else "   <-- GUESSED: the provider did not report a"
