@@ -1,0 +1,29 @@
+name: pnl-pull
+
+# Bot fill P&L pull (Peter, Nov 5 2026): read-only. Reads tracker/state.enc, reports every bot
+# fill with stake, result and site P&L, and splits by whatever lane field the state carries.
+# Writes nothing, places nothing, commits nothing. Dispatch-only. No OddsPapi key: it makes no
+# provider call at all.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Bot fill P&L (read-only; dollars by private email, log counts only)
+        env:
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+        run: python -u pnl_pull.py
