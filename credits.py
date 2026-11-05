@@ -79,16 +79,24 @@ def account():
 
 
 def _shape(d):
-    """Field NAMES and short, redacted values from /account, so an unexpected shape can be read once
-    and the field names pinned - without this the reconciliation silently reports '? of ?'. Any value
-    that looks like a credential is replaced: /account is account metadata, but the report goes to
-    email and no key is ever worth printing."""
+    """Field NAMES ONLY. Never values.
+
+    Nov 5: an earlier version printed short values with a redaction test, and /account returned
+    api_key=<a UUID>. The test required a value to be almost entirely alphanumeric, so the UUID's
+    hyphens defeated it and the live key was printed into Peter's private email. No value from this
+    endpoint is worth printing: the field names alone are what pinning the usage field needs, so
+    values are now never emitted and no redaction rule has to be trusted.
+    """
     out = []
     for k, v in sorted((d or {}).items()):
-        sv = str(v)
-        if isinstance(v, str) and (len(sv) >= 20 and sum(c.isalnum() for c in sv) >= len(sv) - 2):
-            sv = f"<redacted {len(sv)} chars>"
-        out.append(f"{k}={sv[:40]}")
+        if isinstance(v, dict):
+            out.append(f"{k}{{{','.join(sorted(v))}}}")
+        elif isinstance(v, list) and v and isinstance(v[0], dict):
+            out.append(f"{k}[0]{{{','.join(sorted(v[0]))}}}")
+        elif isinstance(v, list):
+            out.append(f"{k}[{len(v)}]")
+        else:
+            out.append(f"{k}:{type(v).__name__}")
     return out
 
 
@@ -151,7 +159,7 @@ def report(now=None):
               "  No authoritative figure this run. The local sums below are a FLOOR, not the total."]
     elif used is None:
         L += ["  /account answered but reported no usage field under any name this code knows.",
-              "  Raw field names, values redacted where they could be a credential:",
+              "  Field NAMES and types only - no value from this endpoint is ever printed:",
               "    " + ", ".join(_shape(acct) or ["(empty response)"]),
               "  Until a usage field is identified the reconciliation below has no authoritative",
               "  total, and the local sums are a FLOOR. Peter's dashboard is the figure to use."]
