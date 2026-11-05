@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 5, 1:10 AM ET. This run: 8 new, 0 not confirmed, 2 pending. Open alerts: 13.
+Updated Thu Nov 5, 1:20 AM ET. This run: 2 new, 0 not confirmed, 1 pending. Open alerts: 15.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 5 1:20AM | TENNIS | Pridankina vs Shubladze | moneyline: Shubladze | kalshi | $135k | -203 |  |  | +0.0c |  | pending |
+| Nov 5 1:20AM | NCAAB | Michigan vs UConn | moneyline: UConn | kalshi | $42k | -257 |  |  | +0.0c |  | pending |
 | Nov 5 1:10AM | NCAAB | NJIT vs Iona | moneyline: Iona | kalshi | $42k | -456 |  |  | +0.0c |  | pending |
 | Nov 5 1:10AM | NCAAB | Maine vs Sacred Heart | moneyline: Sacred Heart | kalshi | $36k | -245 |  |  | +0.0c |  | pending |
 | Nov 5 1:10AM | NCAAB | UMass Lowell vs Merrimack | moneyline: Merrimack | kalshi | $39k | -300 |  |  | +0.0c |  | pending |
@@ -20,7 +22,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 5 1:10AM | NCAAB | Binghamton vs Saint Peter's | moneyline: Saint Peter's | kalshi | $41k | -300 |  |  | +0.0c |  | pending |
 | Nov 5 12:10AM | TENNIS | Cirstea vs Stoiana | moneyline: Cirstea | kalshi | $38k | -355 |  |  | +0.0c | yes | pending |
 | Nov 4 10:10PM | NCAAB | South Florida vs DePaul | moneyline: DePaul | kalshi | $25k | -257 |  |  | +0.0c | yes | pending |
-| Nov 4 8:10PM | TENNIS | Berrettini vs Alcaraz | moneyline: Alcaraz | kalshi | $98k | -525 |  |  | +0.0c |  | pending |
+| Nov 4 8:10PM | TENNIS | Berrettini vs Alcaraz | moneyline: Alcaraz | kalshi | $98k | -525 |  |  | +1.0c |  | pending |
 | Nov 4 3:40PM | TENNIS | Valentova vs Eala | moneyline: Eala | kalshi | $41k | -170 | ✅ novig |  | +0.0c |  | pending |
 | Nov 4 1:20PM | NCAAB | Northern Kentucky vs South Dakota | moneyline: Northern Kentucky | kalshi | $28k | -138 |  |  | +0.0c |  | W |
 | Nov 4 11:00AM | TENNIS | Tirante vs Struff | moneyline: Struff | kalshi | $27k | -213 |  |  | +0.0c |  | W |
@@ -208,5 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 24 1:50PM | MLB | Tampa Bay Rays vs. Milwaukee Brewers | total: Under (6.5) | polymarket | $51k | -104 | ✅ kalshi,novig |  | +0.0c |  | L |
 | Oct 24 1:20PM | MLB | Tampa Bay Rays vs. Milwaukee Brewers | spread: Milwaukee Brewers (+1.5) | polymarket | $25k | -203 | ✅ novig |  | +0.0c |  | W |
 | Oct 24 1:20PM | TENNIS | Tirante vs Mannarino | moneyline: Mannarino | kalshi | $83k | -213 |  |  |  |  | W |
-| Oct 24 12:20PM | MLB | Tampa Bay vs Milwaukee: Total Runs | total: NOT Over 6.5 runs scored | kalshi | $121k | -100 | ✅ prophetx |  | -13.0c | yes | L |
-| Oct 24 12:10PM | TENNIS | Medvedev vs Basilashvili | moneyline: Medvedev | kalshi | $47k | -376 |  |  |  |  | W |
