@@ -104,7 +104,7 @@ function render(){
           const fp=MK==="m"?f:f[1], fpt=MK==="m"?null:f[0], px=MK==="m"?v:v[1];
           if(MK==="m"||fpt===v[0]){const e=(prob(fp)/prob(px)-1)*100;if(Math.abs(e)>=0.05)ev=`<span class="ev ${e>0?"p":"n"}">${e>0?"+":""}${e.toFixed(1)}%</span>`}
         }
-        const lk=g.links&&g.links[b]&&((g.links[b][MK]&&g.links[b][MK][s])||g.links[b].e);
+        const L0=g.links&&g.links[b],l1=L0&&L0[MK]&&L0[MK][s],lk=L0&&((l1&&!/[{}]/.test(l1)&&l1)||L0.e);   // Nov 5: Novig side links carry a {wager} placeholder -> use its event link
         const safe=lk&&/^https:\/\//.test(lk)?lk.replace(/"/g,"%22"):null;
         html+=`<td class="${best[i]===b?"b":""}">${safe?`<a href="${safe}" target="_blank" rel="noopener">${txt}</a>`:txt}${ev}</td>`;
       });
