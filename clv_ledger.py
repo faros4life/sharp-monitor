@@ -40,7 +40,12 @@ CAP = int(os.environ.get("CLV_MONTH_CAP", "") or "1000")   # Nov 4: paid plan ha
 # bet older than ~12 days could neither find a cached fixture nor fetch one (the max() below moves the window off the
 # game date rather than shrinking it). Bets are kept 60 days, so the ledger retained bets five times longer than any
 # means of scoring them. Derived now, so the two can never drift apart again: the cache must OUTLIVE the window.
-FETCH_DAYS = 14                  # fixture-fetch window floor
+FETCH_DAYS = 45                  # Nov 5 (Peter, explicit release): was 14. The /fixtures request is built as
+                                 #   d0 = max(game_start, now - FETCH_DAYS)
+                                 # so at 14 the window CLAMPED to now-14d and never asked for an older game's
+                                 # own date - those fixtures could not be fetched at any price. 45 centres the
+                                 # window on the game date across the classified scope (earliest 2026-10-04)
+                                 # while staying bounded, so one stale row cannot widen it without limit.
 FX_KEEP_DAYS = FETCH_DAYS + 14   # fixture cache retention - always longer than the window, never inside it
 SPORT = {"NBA": 11, "NFL": 14, "NCAAF": 14, "NHL": 15}
 TOURN = {"NBA": 132, "NFL": 31, "NHL": 234}           # NCAAF looked up once (the probe's 850 was wrong)
