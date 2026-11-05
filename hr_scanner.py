@@ -47,6 +47,14 @@ def _dec(a):
     return 1 + (a / 100 if a > 0 else 100 / -a)
 
 
+def _dg(d, k, n=1):
+    """Nov 5 (Peter: scanner has shown 0 sightings since it registered 13:55 UTC Nov 4): the scanner had exactly one
+    print statement, so a hard zero was indistinguishable from a dead feed. These counters record WHERE each candidate
+    dies, every poll. Counts only - this file is public, and no counter is an alert."""
+    g = d.setdefault("diag", {})
+    g[k] = g.get(k, 0) + n
+
+
 def load():
     try:
         d = json.load(open(FILE))
@@ -171,7 +179,10 @@ def scan(sm, ev, cfg, lines, is_t25, d, now):
         return 0
     pin = lines.get(sm.SHARP) or {}
     hrk = next((b for b in HR_BOOKS if b in lines), None)
+    d.setdefault("diag", {}).setdefault("diag_since_utc", sm.iso(now))
+    _dg(d, "events seen")
     if not hrk or not pin:
+        _dg(d, "no Hard Rock book in the poll lines" if not hrk else "no Pinnacle lines")
         return 0
     start = sm.parse_iso(ev["commence_time"])
     lead = (start - now).total_seconds() / 60
@@ -192,15 +203,23 @@ def scan(sm, ev, cfg, lines, is_t25, d, now):
         P = pin.get(mk) or {}
         H = lines[hrk].get(mk) or {}
         if len(P) != 2:
+            _dg(d, f"{mk}: Pinnacle not two-sided")
+            continue
+        if not H:
+            _dg(d, f"{mk}: no Hard Rock line")
             continue
         for side, (hpt, hpr) in H.items():
             if side not in P:
+                _dg(d, f"{mk}: side not at Pinnacle")
                 continue
             ppt, ppr = P[side]
             other = next(s for s in P if s != side)
             opt, opr = P[other]
+            _dg(d, f"{mk}: both books have this side")
             if ppt != hpt or opt != (ppt if mk == "totals" else -ppt):
+                _dg(d, f"{mk}: line mismatch, HR vs Pinnacle")
                 continue
+            _dg(d, f"{mk}: same line at both")
             q, r = _p(ppr), _p(opr)
             fair = q / (q + r)
             evp = 100 * (fair * _dec(hpr) - 1)
@@ -211,7 +230,9 @@ def scan(sm, ev, cfg, lines, is_t25, d, now):
                     s["recheck"] = {"utc": sm.iso(now), "hr": hpr, "still_there": float(hpr) >= float(s["hr"]),
                                     "evp": round(evp, 2), "max_bet": None}
             if evp < MIN_EV:
+                _dg(d, f"{mk}: same line but EV under {MIN_EV:g}%")
                 continue
+            _dg(d, f"{mk}: SIGHTING")
             if mine and float(mine[-1]["hr"]) == float(hpr):
                 continue   # same price still standing: one sighting, not one per poll
             s = {"key": key, "ev": ev["id"], "lg": label, "game": game, "start": ev["commence_time"], "mk": mk,
