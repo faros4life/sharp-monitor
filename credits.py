@@ -66,6 +66,9 @@ UNCOUNTED = [
 ]
 
 
+_LAST = {}
+
+
 def account():
     """The provider's own usage. /account is free, so this spends nothing. Returns {} when it cannot
     be read - never a zero, which would read as 'nothing used'."""
@@ -73,6 +76,7 @@ def account():
         d = cl.api("/account", False)
     except Exception as ex:
         return {"_error": f"call failed: {str(ex)[:80]}"}
+    _LAST["acct"] = d if isinstance(d, dict) else {}
     if not isinstance(d, dict) or d.get("_error"):
         return {"_error": str((d or {}).get("_error") or f"unexpected shape: {type(d).__name__}")[:120]}
     return d
@@ -232,12 +236,13 @@ def main():
         ex.send("Bets ODDSPAPI CREDITS (reconciliation)", body)
     except Exception as e:
         print(f"email skipped: {str(e)[:80]}", file=sys.stderr)
-    # the public Actions log gets counts only, never the body
-    acct = account()
-    u = _pick(acct, "requestsUsed", "used")
+    # The public Actions log gets counts only, never the body. It reuses the response the report
+    # already fetched rather than calling /account a second time, and reads the same field names -
+    # a separate lookup here is how the log said "?" while the email reported the real figure.
+    u = _pick(_LAST.get("acct") or {}, "request_count", "requestsUsed", "used")
+    n = sum(1 for _, _, v, _ in local_counters(datetime.now(timezone.utc)) if v is not None)
     print(f"credits: provider used {u if u is not None else '?'}, internal cap {INTERNAL_CAP}, "
-          f"local counters read {sum(1 for _, _, v, _ in local_counters(datetime.now(timezone.utc)) if v is not None)}"
-          f"/{len(COUNTERS)}")
+          f"local counters read {n}/{len(COUNTERS)}")
 
 
 if __name__ == "__main__":
