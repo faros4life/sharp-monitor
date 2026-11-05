@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 5, 10:10 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 15.
+Updated Thu Nov 5, 10:20 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 14.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 134-86 (-13.25u flat) | rule met: 35-31
+**Record:** 135-86 (-12.97u flat) | rule met: 35-31
 
-**Fade (paper, betting against the print):** 61-99 (+14.92u flat, after fees)
+**Fade (paper, betting against the print):** 61-100 (+13.92u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -19,12 +19,12 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 5 1:10AM | NCAAB | NJIT vs Iona | moneyline: Iona | kalshi | $42k | -456 |  |  | -1.0c | yes | pending |
 | Nov 5 1:10AM | NCAAB | Maine vs Sacred Heart | moneyline: Sacred Heart | kalshi | $36k | -245 |  |  | -1.0c | yes | pending |
 | Nov 5 1:10AM | NCAAB | UMass Lowell vs Merrimack | moneyline: Merrimack | kalshi | $39k | -300 |  |  | +5.0c | yes | pending |
-| Nov 5 1:10AM | NCAAB | Howard vs Alcorn St. | moneyline: Howard | kalshi | $37k | -285 |  |  | +5.0c | yes | pending |
+| Nov 5 1:10AM | NCAAB | Howard vs Alcorn St. | moneyline: Howard | kalshi | $37k | -285 |  |  | +6.0c | yes | pending |
 | Nov 5 1:10AM | NCAAB | East Texas A&M vs Rice | moneyline: Rice | kalshi | $28k | -178 |  |  | -4.0c | yes | pending |
 | Nov 5 1:10AM | NCAAB | Delaware St. vs Navy | moneyline: Navy | kalshi | $41k | -426 |  |  | -3.0c | yes | pending |
 | Nov 5 1:10AM | NCAAB | Bryant vs Quinnipiac | moneyline: Quinnipiac | kalshi | $32k | -223 |  |  | +0.0c | yes | pending |
 | Nov 5 1:10AM | NCAAB | Binghamton vs Saint Peter's | moneyline: Saint Peter's | kalshi | $41k | -300 |  |  | +1.0c | yes | pending |
-| Nov 5 12:10AM | TENNIS | Cirstea vs Stoiana | moneyline: Cirstea | kalshi | $38k | -355 |  |  | +0.0c | yes | pending |
+| Nov 5 12:10AM | TENNIS | Cirstea vs Stoiana | moneyline: Cirstea | kalshi | $38k | -355 |  |  | +0.0c | yes | W |
 | Nov 4 10:10PM | NCAAB | South Florida vs DePaul | moneyline: DePaul | kalshi | $25k | -257 |  |  | +0.0c | yes | pending |
 | Nov 4 8:10PM | TENNIS | Berrettini vs Alcaraz | moneyline: Alcaraz | kalshi | $98k | -525 |  |  | +0.0c |  | pending |
 | Nov 4 3:40PM | TENNIS | Valentova vs Eala | moneyline: Eala | kalshi | $41k | -170 | ✅ novig |  | +1.0c | yes | W |
