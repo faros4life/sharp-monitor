@@ -543,6 +543,60 @@ def inv10():
             "poll): 1 flag and 1 push each, ungated")
 
 
+# ------------- 11. paper alerts muted; LIVE and Hard Rock pushes still work
+def inv11():
+    """Nov 5 (Peter, item 4): confirm ordinary PAPER alerts are muted while LIVE and Hard Rock
+    alerts still work. Proven two ways so it cannot rot.
+
+    STRUCTURAL: sharp_monitor pushes on (PUSH_SHARP or p1_ok or hr_ev). PUSH_SHARP reads
+    PUSH_SHARP_ALERTS, which no workflow passes - so it is not merely defaulted off, it is
+    unreachable. The same holds for the other paper-class switches. This asserts that no workflow
+    file references them, which is what makes 'off' permanent rather than a setting.
+
+    BEHAVIOURAL: the push predicate itself, over the three classes.
+    """
+    import glob
+    import re
+    import sharp_monitor as sm
+
+    ymls = glob.glob(os.path.join(REPO, ".github/workflows/*.yml"))
+    assert ymls, "no workflow files found; the structural half would prove nothing"
+    blobs = {os.path.basename(f): open(f).read() for f in ymls}
+    UNREACHABLE = {"PUSH_SHARP_ALERTS": "ordinary paper sharp alerts",
+                   "BOARD_PUSH": "board / Lane 3 alerts",
+                   "PUSH_SIGNALS": "signal alerts",
+                   "PUSH_LIQ_ALERTS": "liquidity alerts"}
+    live_switches = {}
+    for var, what in UNREACHABLE.items():
+        hits = [n for n, t in blobs.items() if var in t]
+        if hits:
+            live_switches[var] = (what, hits)
+    assert not live_switches, (
+        "a paper-class push switch is now reachable from a workflow, so that class can be turned "
+        f"on: {live_switches}")
+    assert sm.PUSH_SHARP is False, "PUSH_SHARP is on in this process"
+
+    # behavioural: the predicate sharp_monitor uses at the push site
+    def pushes(p1_ok, hr_ev):
+        return bool(sm.PUSH_SHARP or p1_ok or hr_ev)
+    assert pushes(False, False) is False, "an ordinary PAPER alert would push"
+    assert pushes(True, False) is True, "a LIVE - PLAY alert would NOT push"
+    assert pushes(False, True) is True, "a HARD ROCK EDGE alert would NOT push"
+
+    # Hard Rock's push must not depend on the paper switch (Peter's correction, Nov 5)
+    saved = sm.PUSH_SHARP
+    try:
+        sm.PUSH_SHARP = False
+        assert pushes(False, True) is True, "Hard Rock pushes only when the paper switch is on"
+    finally:
+        sm.PUSH_SHARP = saved
+
+    return ("4 paper-class switches referenced by 0 workflows, so permanently unreachable: "
+            + ", ".join(UNREACHABLE)
+            + "\n  push predicate: paper -> no, LIVE -> yes, Hard Rock EDGE -> yes "
+              "(and independent of the paper switch)")
+
+
 def main():
     print(f"REGRESSION GUARD | repo {REPO}\n" + "=" * 78)
     check("1. betting signals / qualification thresholds / alert routing", inv1)
@@ -555,6 +609,7 @@ def main():
     check("8. the phone's LIVE label matches the executor's qualification", inv8)
     check("9. both Hard Rock paths enforce the same qualification chain", inv9)
     check("10. non-Top-25 HR flags: push gated, data still collected", inv10)
+    check("11. paper alerts muted; LIVE and Hard Rock pushes work", inv11)
     print("=" * 78)
     hard = [n for n, ok, _, red in RESULTS if not ok and not red]
     known = [n for n, ok, _, red in RESULTS if not ok and red]

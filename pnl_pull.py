@@ -154,6 +154,59 @@ def main():
               "  fill from a resting bid or the Lane 3 board bet. That split lives in the executor's",
               "  ledger (live_order / live_rest / live_more in the 'Bets LIVE' emails), not here, so",
               "  it cannot be produced from this record alone."]
+    # ---- unit-exposure check (Peter, Nov 5 item 2): did any bot order exceed one unit?
+    # The unit is "$UNIT to win": on MINUS money the stake is sized so the win is UNIT, so the
+    # stake legitimately exceeds UNIT; on PLUS money the stake IS the risk and equals UNIT. So the
+    # quantity to test is TO-WIN, never the stake. A stake over UNIT is normal and not a breach.
+    L += ["", "=" * 74, f"UNIT EXPOSURE - to-win per fill against a ${UNIT:,.0f} unit", "=" * 74]
+    over, part, fine, unknown = [], [], [], []
+    for b in pool:
+        st_ = num(b.get("stake")) or num(b.get("risk"))
+        pr = num(b.get("price"))
+        if st_ is None or pr is None or pr == 0:
+            unknown.append(b)
+            continue
+        win = st_ * 100.0 / abs(pr) if pr < 0 else st_ * pr / 100.0
+        risk = st_
+        # a breach is to-win materially above the unit; 2% of tolerance covers rounding and the
+        # half-point snapping the ladder does
+        b["_win"], b["_risk"] = win, risk
+        if win > UNIT * 1.02:
+            over.append(b)
+        elif win < UNIT * 0.5:
+            part.append(b)
+        else:
+            fine.append(b)
+    L.append(f"  within one unit (to-win {UNIT * 0.5:,.0f}-{UNIT * 1.02:,.0f}): {len(fine)}")
+    L.append(f"  partials (to-win under half a unit, expected on a thin ladder): {len(part)}")
+    L.append(f"  price or stake unreadable: {len(unknown)}")
+    L.append(f"  *** OVER ONE UNIT: {len(over)} ***" if over else "  OVER ONE UNIT: none")
+    for b in sorted(over, key=lambda x: -x["_win"]):
+        L.append(f"     {str(b.get('game_start') or '')[:10]}  {str(b.get('bet'))[:26]:<26} "
+                 f"{str(b.get('book'))[:10]:<10} price {b.get('price')} stake ${b['_risk']:,.2f} "
+                 f"-> TO-WIN ${b['_win']:,.2f} = {b['_win'] / UNIT:.2f} units")
+    if over:
+        L += ["", "  A to-win above one unit means either a stake sized off a different unit (the",
+              "  unit was $50 before Oct 28), a top-up aggregated into one tracker row, or a real",
+              "  breach of the per-order cap. The row's date against the unit history and the",
+              "  executor ledger for that day separate those three; this report cannot."]
+
+    # ---- duplicate detection: the same bet recorded twice
+    L += ["", "=" * 74, "DUPLICATE ROWS (same bet, book and stake)", "=" * 74]
+    seen = defaultdict(list)
+    for b in pool:
+        st_ = num(b.get("stake")) or num(b.get("risk"))
+        seen[(str(b.get("bet")), str(b.get("book")), round(st_, 2) if st_ else None,
+              str(b.get("game_start") or "")[:10])].append(b)
+    dups = {k: v for k, v in seen.items() if len(v) > 1}
+    L.append(f"  groups with more than one row: {len(dups)}")
+    for k, v in dups.items():
+        L.append(f"     {k[3]} {k[0][:26]} {k[1]} ${k[2]} x{len(v)}  "
+                 f"results {[x.get('result') or 'open' for x in v]}")
+    if dups:
+        L += ["", "  Only settled rows enter the totals above, so an open duplicate does not",
+              "  double-count P&L - but one bet held as two rows is a tracker-state problem."]
+
     L += ["", "  by book:"]
     for bk in sorted({str(b.get("book")) for b in pool}):
         L.append(tot([b for b in pool if str(b.get("book")) == bk], f"book {bk}"))
