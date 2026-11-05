@@ -338,6 +338,96 @@ def inv7():
             f"executor, either live-order module, the monitor or the HR scanner")
 
 
+# ------------------------------------------------- 8. the phone's LIVE label matches the executor
+def inv8():
+    """Nov 5 (Peter): anything labelled LIVE - PLAY must satisfy the same qualification rules the
+    executor applies. Both call agree_rules.phase1; the phone hand-builds the dict it passes, so a
+    field phase1 reads but the phone omits silently disables that rule on the phone path only.
+    That is exactly how the Matchbook-only exclusion went dead on the phone for two days.
+
+    Part A is structural (AST): every field phase1 reads must be supplied or knowingly compensated.
+    Part B is behavioural, built from the three real archived alerts that were mislabelled.
+    """
+    import ast
+    import agree_rules
+    import sharp_monitor as sm
+
+    # ---- A. field parity between what phase1 READS and what phase1_label SUPPLIES
+    src = open(os.path.join(REPO, "agree_rules.py")).read()
+    t = ast.parse(src)
+    fn = next(n for n in t.body if isinstance(n, ast.FunctionDef) and n.name == "phase1")
+    reads = set()
+    for n in ast.walk(fn):
+        if (isinstance(n, ast.Call) and isinstance(n.func, ast.Attribute) and n.func.attr == "get"
+                and isinstance(n.func.value, ast.Name) and n.func.value.id == "a"
+                and n.args and isinstance(n.args[0], ast.Constant)):
+            reads.add(n.args[0].value)
+    # phase1 delegates to these, which read further fields off the same dict
+    for helper in ("hr_priced", "deadband", "side_of", "lead_min"):
+        h = next((n for n in t.body if isinstance(n, ast.FunctionDef) and n.name == helper), None)
+        for n in ast.walk(h) if h else ():
+            if (isinstance(n, ast.Call) and isinstance(n.func, ast.Attribute) and n.func.attr == "get"
+                    and isinstance(n.func.value, ast.Name) and n.func.value.id == "a"
+                    and n.args and isinstance(n.args[0], ast.Constant)):
+                reads.add(n.args[0].value)
+
+    smt = ast.parse(open(os.path.join(REPO, "sharp_monitor.py")).read())
+    lab = next(n for n in ast.walk(smt) if isinstance(n, ast.FunctionDef) and n.name == "phase1_label")
+    call = next(n for n in ast.walk(lab)
+                if isinstance(n, ast.Call) and isinstance(n.func, ast.Attribute) and n.func.attr == "phase1")
+    supplied = {k.value for k in call.args[0].keys if isinstance(k, ast.Constant)}
+    # Known-compensated. phase1_label calls agree_rules.deadband itself immediately after, with the
+    # real after-fee price and sent_to_phone=True, so both fields reach the same verdict by that
+    # route; inside phase1 they are absent, deadband returns None (unknown) and its gate stays
+    # silent. Verified by reading that call, not assumed. Nothing else may be missing - anything
+    # else phase1 reads and the phone omits is a rule the executor enforces and the phone does not.
+    COMPENSATED = {"price_after_fee", "sent_to_phone"}
+    missing = reads - supplied - COMPENSATED
+    assert not missing, (f"phase1 reads {sorted(missing)} but phase1_label does not pass them - those "
+                         f"rules are disabled on the phone path while the executor enforces them")
+
+    # ---- B. behaviour, from the three real alerts that were mislabelled (archive, Oct 22-28)
+    def label(book, sport, kind, bet, price, cby, lead=120.0, late=False):
+        a = {"book": book, "kind": kind, "text": bet, "price": price,
+             "commence": "2026-11-06T01:00:00Z", "pt": None, "cby": cby}
+        return sm.phase1_label(a, sport, "B", lead, late, False)
+
+    CASES = [("prophetx", "NBA", "tot", "Under 223.5 (-121)", -121),
+             ("prophetx", "NCAAF", "tot", "Over 49 (-123)", -123),
+             ("prophetx", "NCAAF", "tot", "Over 46 (-115)", -115)]
+    out = []
+    for book, sport, kind, bet, price in CASES:
+        mb_ok, mb_why = label(book, sport, kind, bet, price, ["Matchbook"])
+        bo_ok, bo_why = label(book, sport, kind, bet, price, ["BetOnline"])
+        # 1. Matchbook-only must NOT be LIVE, and for the stated reason
+        assert mb_ok is False, f"Matchbook-only still labelled LIVE: {sport} {bet}"
+        assert any("matchbook" in w.lower() for w in mb_why), \
+            f"Matchbook-only refused for the wrong reason: {mb_why}"
+        # 2. the same alert confirmed elsewhere must still get its LIVE label
+        assert bo_ok is True, f"a qualifying alert lost its LIVE label: {sport} {bet} -> {bo_why}"
+        out.append(f"{sport} {bet[:18]}: matchbook-only refused, betonline still LIVE")
+
+    # 3. Hard Rock and paper alerts unchanged - HR can never be LIVE, whatever confirms it
+    for cby in ([], ["BetOnline"], ["Matchbook"], ["BetOnline", "Matchbook"]):
+        for hb in ("hardrockbet", "hardrockbet_fl"):
+            ok, _ = label(hb, "NCAAF", "tot", "Over 49 (-123)", -123, cby)
+            assert ok is False, f"Hard Rock labelled LIVE with confirms {cby}"
+    # a paper sport stays paper regardless of confirms
+    for cby in ([], ["BetOnline"], ["Matchbook"]):
+        ok, _ = label("prophetx", "NCAAB", "tot", "Under 150.5 (-115)", -115, cby)
+        assert ok is False, f"NCAAB (paper) labelled LIVE with confirms {cby}"
+
+    # 4. no rule added or removed: an alert with NO confirms behaves exactly as before the fix
+    for book, sport, kind, bet, price in CASES:
+        none_ok, _ = label(book, sport, kind, bet, price, [])
+        assert none_ok is True, "a no-confirmer alert changed verdict - the fix altered an existing rule"
+
+    return ("field parity: phase1 reads " + str(len(reads)) + " fields, all supplied or compensated\n  "
+            + "\n  ".join(out)
+            + "\n  Hard Rock refused on all 8 book x confirm combinations; NCAAB stays paper;\n  "
+              "no-confirmer alerts keep their previous verdict (no rule added or removed)")
+
+
 def main():
     print(f"REGRESSION GUARD | repo {REPO}\n" + "=" * 78)
     check("1. betting signals / qualification thresholds / alert routing", inv1)
@@ -347,6 +437,7 @@ def main():
     check("5. concurrent workflows cannot exceed the cap", inv5, expect_red=True)
     check("6. a failed call or crash cannot corrupt accounting state", inv6, expect_red=True)
     check("7. the Stage-1 credit meter cannot spend or write", inv7)
+    check("8. the phone's LIVE label matches the executor's qualification", inv8)
     print("=" * 78)
     hard = [n for n, ok, _, red in RESULTS if not ok and not red]
     known = [n for n, ok, _, red in RESULTS if not ok and red]

@@ -659,6 +659,15 @@ def phase1_label(a, sport, grade, lead, late, opposite_earlier):
         import agree_rules
         ok, why = agree_rules.phase1({"book_key": a.get("book"), "book": nm(a.get("book")), "grade": grade, "sport": sport,
                                       "kind": a.get("kind"), "bet": a.get("text") or "",
+                                      # Nov 5 (Peter): the Matchbook-only exclusion lives INSIDE phase1 and reads
+                                      # confirmed_by. This dict omitted it, so that rule read an empty list and could
+                                      # never fire on the phone path, while the executor - which passes the whole
+                                      # ledger entry - enforced it. Same function, different inputs. Measured: 3 of
+                                      # 629 archived alerts were labelled LIVE that the executor would refuse.
+                                      # a["cby"] is set at the detect() site as display names ("Matchbook"), and
+                                      # phase1 lowercases before comparing, so it matches. No rule is added or
+                                      # changed here; the phone simply now applies the rule that already exists.
+                                      "confirmed_by": a.get("cby") or [],
                                       "start_utc": a.get("commence"), "alert_utc": _alert_iso(a.get("commence"), lead),
                                       "late": late}, True)
         why = [w for w in why if w != "no Muse AGREE"]
