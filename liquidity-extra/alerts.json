@@ -1,6 +1,131 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-05T01:10:17Z",
+   "base_depth": 23893,
+   "best_price": 0.84,
+   "best_price_american": -525,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.84,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-05",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 20570,
+     "new_this_side": 97706,
+     "other_side": 24999,
+     "other_side_all_levels": 27282,
+     "ratio": 0.7,
+     "this_side": 17201,
+     "this_side_all_levels": 117755
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "C. Alcaraz (0)",
+     "price": 0.84,
+     "this_side": 2830
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 5599.4,
+    "volume_24h_fp": 5997.19,
+    "volume_fp": 6044.19
+   },
+   "ex_stats_change": {
+    "open_interest_fp": -46.98,
+    "volume_24h_fp": 772.17,
+    "volume_fp": 47.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 5646.38,
+    "volume_24h_fp": 5225.0199999999995,
+    "volume_fp": 5997.19
+   },
+   "fade_price": 0.16,
+   "first_seen_utc": "2026-11-05T01:00:23Z",
+   "game": "Berrettini vs Alcaraz",
+   "game_surge_books": [],
+   "game_x": null,
+   "key": "kalshi|KXATPMATCH-26NOV05BERALC|ml|1",
+   "lead_min": 1010,
+   "league": "TENNIS",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 97706,
+   "new_x": 3.76,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 5599.4,
+      "volume_24h_fp": 5997.19,
+      "volume_fp": 6044.19
+     },
+     "game_normal": null,
+     "game_x": null,
+     "normal": 26019,
+     "now": 117755,
+     "type": "ML",
+     "x": 4.53
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 43150.0,
+      "volume": 43180.0
+     },
+     "game_normal": null,
+     "game_x": null,
+     "normal": 1728,
+     "now": 3583,
+     "type": "ML",
+     "x": 2.07
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": true,
+   "price": 0.84,
+   "price_american": -525,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.85,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXATPMATCH-26NOV05BERALC-ALC"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Alcaraz",
+   "side_label": "Alcaraz",
+   "size_x": 4.53,
+   "start_source": "novig",
+   "start_utc": "2026-11-05T18:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig"
+   ],
+   "teams": [
+    "Berrettini",
+    "Alcaraz"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-04T20:40:16Z",
    "base_depth": 57769,
    "best_price": 0.63,
@@ -47,9 +172,9 @@
     "volume_fp": 115.52
    },
    "ex_stats_close": {
-    "open_interest_fp": 8199.19,
+    "open_interest_fp": 8214.43,
     "volume_24h_fp": 8386.869999999999,
-    "volume_fp": 8386.869999999999
+    "volume_fp": 8402.11
    },
    "ex_stats_first": {
     "open_interest_fp": 5988.1900000000005,
@@ -1660,9 +1785,9 @@
     }
    },
    "ex_stats_close": {
-    "open_interest_fp": 29925.739999999998,
-    "volume_24h_fp": 25615.76,
-    "volume_fp": 30928.35
+    "open_interest_fp": 31305.629999999997,
+    "volume_24h_fp": 30629.54,
+    "volume_fp": 32380.239999999998
    },
    "fade_price": 0.31,
    "first_seen_utc": "2026-11-03T23:30:20Z",
