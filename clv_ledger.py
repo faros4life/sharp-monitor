@@ -35,6 +35,13 @@ STATE = "clv/state.enc"
 MKFILE = "clv/markets.json"
 ET = tb.ET
 CAP = int(os.environ.get("CLV_MONTH_CAP", "") or "1000")   # Nov 4: paid plan has 5,000 a month (was 150 for the 250 free plan)
+# Nov 5 (Peter, approved): these two WERE independent constants - the fixture cache pruned at 12 days while the fixture
+# FETCH window floored at 14. 12 inside 14 meant the cache deleted fixtures the fetcher still considered in range, so a
+# bet older than ~12 days could neither find a cached fixture nor fetch one (the max() below moves the window off the
+# game date rather than shrinking it). Bets are kept 60 days, so the ledger retained bets five times longer than any
+# means of scoring them. Derived now, so the two can never drift apart again: the cache must OUTLIVE the window.
+FETCH_DAYS = 14                  # fixture-fetch window floor
+FX_KEEP_DAYS = FETCH_DAYS + 14   # fixture cache retention - always longer than the window, never inside it
 SPORT = {"NBA": 11, "NFL": 14, "NCAAF": 14, "NHL": 15}
 TOURN = {"NBA": 132, "NFL": 31, "NHL": 234}           # NCAAF looked up once (the probe's 850 was wrong)
 ML_MARKET = {11: "111", 14: "141", 15: "151"}         # Winner incl. overtime (hockey: incl. OT and penalties)
@@ -735,7 +742,7 @@ def main():
             continue
         if rec.get("fixture") or find_fixture(st, s):
             continue
-        d0 = max(tp(s.get("game_start") or s.get("decided_utc")) or now, now - timedelta(days=14))   # keep the call small
+        d0 = max(tp(s.get("game_start") or s.get("decided_utc")) or now, now - timedelta(days=FETCH_DAYS))   # keep the call small
         lo, hi = need.get(lg, (d0, d0))
         need[lg] = (min(lo, d0), max(hi, d0))
     for lg, (lo, hi) in need.items():
@@ -945,7 +952,8 @@ def main():
     cut = iso(now - timedelta(days=60))
     st["bets"] = {k: v for k, v in st["bets"].items() if (v.get("first_seen") or "") >= cut}
     st["novig_checks"] = {k: v for k, v in (st.get("novig_checks") or {}).items() if (v["snap"].get("decided_utc") or "") >= cut}
-    st["fixtures"] = {k: v for k, v in (st.get("fixtures") or {}).items() if (v.get("start") or "") >= iso(now - timedelta(days=12))}
+    st["fixtures"] = {k: v for k, v in (st.get("fixtures") or {}).items()
+                      if (v.get("start") or "") >= iso(now - timedelta(days=FX_KEEP_DAYS))}
     st["errors"] = (st.get("errors") or [])[-20:]
     os.makedirs("clv", exist_ok=True)
     json.dump(tb.enc(st), open(STATE, "w"))
