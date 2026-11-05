@@ -41,6 +41,16 @@ jobs:
           LATE_MODE: ${{ vars.LATE_MODE }}
           ACTIVE_START_ET: "6"
         run: python sharp_monitor.py
+      - name: Odds screen fast refresh (Nov 5; screen only, no alerts)
+        if: always()
+        continue-on-error: true
+        env:
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+          SPORTS: ${{ vars.SPORTS }}
+          RETAIL_BOOKS: ${{ vars.RETAIL_BOOKS }}
+          SHARP_BOOK: ${{ vars.SHARP_BOOK }}
+          ODDS_SCREEN_MIN: ${{ vars.ODDS_SCREEN_MIN }}
+        run: python odds_screen_poll.py
       - uses: actions/cache/save@v4
         if: always()
         with:
