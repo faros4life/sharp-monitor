@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 5, 8:50 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 49.
+Updated Thu Nov 5, 8:56 AM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 50.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 5 8:56AM | NBA | Orlando vs Phoenix | moneyline: Orlando | kalshi | $248k | +104 |  |  | +0.0c |  | pending |
 | Nov 5 8:20AM | NHL | Bruins vs. Penguins | moneyline: Bruins | polymarket | $35k | -104 | ✅ novig |  | +0.0c |  | pending |
 | Nov 5 8:16AM | NHL | Predators vs. Avalanche | spread: Predators (+1.5) | polymarket | $31k | -133 | ✅ kalshi |  | +0.0c |  | pending |
 | Nov 5 8:10AM | NHL | Hurricanes vs. Islanders | total: Over (5.5) | polymarket | $26k | -122 |  |  | +0.0c |  | pending |
@@ -92,7 +93,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 4 4:55PM | NHL | Nashville vs Colorado | moneyline: Colorado | kalshi | $38k | -194 |  |  | +1.0c | yes | pending |
 | Nov 4 4:29PM | NCAAF | James Madison vs Southern Miss: Total Points | total: NOT Over 57.5 points | kalshi | $60k | -100 |  |  | +0.0c | yes | pending |
 | Nov 4 4:29PM | NBA | Miami vs Los Angeles C: Total Points | total: NOT Over 232.5 points | kalshi | $30k | +104 |  |  | +0.0c | yes | L |
-| Nov 4 4:26PM | NFL | Jacksonville Jaguars @ Baltimore Ravens | moneyline: JAX (0) | novig | $84k | -456 | ✅ kalshi,prophetx |  | -0.5c |  | pending |
+| Nov 4 4:26PM | NFL | Jacksonville Jaguars @ Baltimore Ravens | moneyline: JAX (0) | novig | $84k | -456 | ✅ kalshi,prophetx |  | -0.5c | yes | pending |
 | Nov 4 4:20PM | NBA | Toronto vs Denver: Total Points | total: NOT Over 231.5 points | kalshi | $28k | -104 | ✅ prophetx |  | +1.0c | yes | L |
 | Nov 4 4:20PM | NBA | Milwaukee vs Boston: Total Points | total: NOT Over 221.5 points | kalshi | $49k | -104 | ✅ novig,prophetx | ✅ | -4.0c | yes | W |
 | Nov 4 4:20PM | NBA | Utah vs New Orleans: Spread | spread: NOT New Orleans wins by over 5.5 points | kalshi | $32k | -104 | ✅ prophetx | ✅ | +1.0c | yes | L |
@@ -154,7 +155,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 4 9:16AM | NBA | Charlotte vs Brooklyn: Spread | spread: NOT Charlotte wins by over 3.5 points | kalshi | $52k | -100 | ✅ polymarket |  | -2.0c | yes | W |
 | Nov 4 9:10AM | NHL | San Jose vs Los Angeles: Total Goals | total: Over 6.5 goals scored | kalshi | $30k | +122 |  |  | +1.0c | yes | W |
 | Nov 4 9:10AM | NHL | San Jose vs Los Angeles: Spread | spread: Los Angeles wins by over 1.5 goals | kalshi | $26k | +170 |  |  | +2.0c | yes | W |
-| Nov 4 9:10AM | NFL | Jacksonville vs Baltimore: Total Points | total: NOT Over 39.5 points | kalshi | $323k | +104 |  |  | +2.0c | yes | pending |
+| Nov 4 9:10AM | NFL | Jacksonville vs Baltimore: Total Points | total: NOT Over 39.5 points | kalshi | $323k | +104 |  |  | +3.0c | yes | pending |
 | Nov 4 9:10AM | NFL | Jacksonville vs Baltimore: Spread | spread: NOT Jacksonville wins by over 9.5 points | kalshi | $565k | +104 | ✅ novig |  | -1.0c | yes | pending |
 | Nov 4 9:00AM | NBA | Hawks vs. Wizards | moneyline: Hawks | polymarket | $28k | -138 | ✅ kalshi,prophetx |  | -3.0c |  | W |
 | Nov 4 9:00AM | NBA | Atlanta vs Washington: Spread | spread: Atlanta wins by over 2.5 points | kalshi | $75k | -113 | ✅ polymarket |  | -3.0c | yes | W |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 3 2:56PM | NCAAF | Buffalo vs Miami (OH): Spread | spread: Miami (OH) wins by over 6.5 points | kalshi | $435k | +104 |  |  | +4.0c | yes | L |
 | Nov 3 2:45PM | NHL | Detroit vs Tampa Bay: Spread | spread: Tampa Bay wins by over 1.5 goals | kalshi | $76k | -100 | ✅ novig,polymarket |  | +2.0c | yes | W |
 | Nov 3 2:30PM | NHL | Vegas Golden Knights @ Pittsburgh Penguins | spread: PIT -1.5 (-1.5) | novig | $43k | +223 | ✅ kalshi,polymarket |  | +1.0c | yes | L |
-| Nov 3 1:50PM | NHL | Vegas vs Pittsburgh: Total Goals | total: Over 6.5 goals scored | kalshi | $41k | -108 | ✅ novig,polymarket |  | +1.0c |  | L |
