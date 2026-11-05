@@ -523,7 +523,8 @@ def detect(event, cfg, lines, base):
         p2, pr, b = max(offers, key=lambda x: 1 / am_to_prob(net(x[1], x[2])))
         return {"pt": p2, "price": pr, "book": b}
 
-    def add(kind, side, pt, price, book, new_key, text, why, conf, mag=1.0, nb=1, edge=None, evp=None):
+    def add(kind, side, pt, price, book, new_key, text, why, conf, mag=1.0, nb=1, edge=None, evp=None,
+            pin_line=None, conv=None):
         nc = len(cnames) if conf == "yes" else 0
         if conf == "no":
             return  # confirm book disagrees: likely noise or stale sharp data
@@ -533,6 +534,11 @@ def detect(event, cfg, lines, base):
                            book=book, net=round(net(price, book), 1), conf=conf, text=text, why=why + note,
                            mag=round(mag, 2), nb=nb, edge=edge, nconf=nc, cby=[nm(b) for b in cnames] if conf == "yes" else [],
                            fade=fade_offer(kind, side, pt),
+                           # Nov 5 (Peter): evp is computed by walking Pinnacle's number to this bet's number with
+                           # half_point_value, which has no distance guard. Carry BOTH numbers and the distance so the
+                           # push, the exports and the audit can all see whether an EV figure is a same-line
+                           # comparison or a conversion. conv 0 = same line.
+                           pin_line=pin_line, conv=conv,
                            evp=round(100 * (evp if evp is not None else edge), 1) if (evp is not None or edge is not None) else None))
 
     # Spreads: sharp side = team whose number got worse (money pushed it).
@@ -556,7 +562,8 @@ def detect(event, cfg, lines, base):
                 f"{team} {fmt_pt(pt)} ({fmt_price(pr)}) at {nm(b)}{fee_note(pr, b)}" + also([x[2] for x in offers if x[0] > new], b),
                 f"{nm(SHARP)} moved {fmt_pt(old)} -> {fmt_pt(new)}; bet only at {fmt_pt(new + 0.5)} or better",
                 agree(f"spreads|{team}", old, new),
-                mag=move / (cfg.get("spread") or 1), nb=len([x for x in offers if x[0] > new]), evp=evp)
+                mag=move / (cfg.get("spread") or 1), nb=len([x for x in offers if x[0] > new]), evp=evp,
+                pin_line=new, conv=round(abs(pt - new), 1))
 
     # Totals
     if "Over" in sb.get("totals", {}):
@@ -584,7 +591,8 @@ def detect(event, cfg, lines, base):
                         f"{nm(SHARP)} total moved {old:g} -> {new:g}; bet only at {thr:g} or better",
                         agree("totals|Over", old, new),
                         mag=abs(new - old) / cfg["total"],
-                        nb=len([x for x in offers if (x[0] < new if side == "Over" else x[0] > new)]), evp=evp)
+                        nb=len([x for x in offers if (x[0] < new if side == "Over" else x[0] > new)]), evp=evp,
+                        pin_line=new, conv=round(abs(pt - new), 1))
 
     # Run lines (MLB) and puck lines (NHL): point usually stays at 1.5, so watch the price at that point.
     # Sharp side = team whose no-vig run-line probability rose at an unchanged point.
@@ -1582,8 +1590,16 @@ def run():
                             label = "PAPER - don't bet (" + "; ".join(p1_why[:2]) + ")"
                         # Nov 3 (Peter yes 8:07 AM): SLOW-HR-EV paper ping - Hard Rock-priced alert whose after-fee price is
                         # >= +2% vs Pinnacle's new no-vig fair. Paper only: check the app's price and the max bet it allows.
+                        # Nov 5 (Peter, bound approved): PUSH SUPPRESSION ONLY, not data suppression. An alert with
+                        # conv > 0.5 still records, still grades, still fills the forward log at every distance - it just
+                        # does not raise an actionable notification. Reason, so this is not reopened: same-line Hard Rock
+                        # was 0 of 602 at +2% overnight (~93% worse than -2% EV), while a CONVERTED % can be manufactured
+                        # by walking half_point_value 6+ points into a clamp. Measuring does not require leaving an
+                        # actionable alert unbound. The bound is revisited on the conv-bucket table, and may loosen or
+                        # tighten to same-line only. conv None (moneyline / run line) means no conversion and passes.
                         hr_ev = (a.get("book") in ("hardrockbet", "hardrockbet_fl") and a.get("evp") is not None
                                  and a["evp"] >= 2.0 and not p1_ok
+                                 and (a.get("conv") or 0) <= 0.5
                                  and cfg["label"] in hr_scanner.FLAG_LEAGUES)   # Nov 4 12:29: no Hard Rock pings for NHL
                         if hr_ev:   # Nov 4 9:09 (Peter "fix double ping"): one Hard Rock ping per game / market / side
                             _hk = f"{a.get('ev')}|{'totals' if a.get('kind') == 'tot' else 'spreads'}|{a.get('side')}"
@@ -1594,8 +1610,13 @@ def run():
                                 hr_scanner.mark(HRS, _hk)
                         if hr_ev:
                             # Nov 3 (Peter 1:51 PM): Hard Rock alerts to the phone = edge >= 2% only, as a MANUAL bet alert
+                            _cv = a.get("conv")
                             label = (f"HARD ROCK EDGE {a['evp']:+.1f}% vs Pinnacle fair - MANUAL BET: open Hard Rock, bet only if "
-                                     "this price is still there; check the max bet it allows")
+                                     "this price is still there; check the max bet it allows"
+                                     + (f" | Pinnacle {a['pin_line']:g} vs this bet {a['pt']:g}"
+                                        if a.get("pin_line") is not None and a.get("pt") is not None else "")
+                                     + (f" | EV CONVERTED {_cv:g} pt from Pinnacle's number - treat the % as UNVERIFIED"
+                                        if _cv else " | same line as Pinnacle, no conversion"))
                         # Nov 1 (Peter): the phone gets the play alert for LIVE (phase-1) plays, then the bot's fill or
                         # resting-bid message; PAPER alerts stay muted (PUSH_SHARP_ALERTS=on unmutes them too)
                         (notify if (PUSH_SHARP or p1_ok or hr_ev) else (lambda *x, **y: print("push muted: paper alert logged only")))(
