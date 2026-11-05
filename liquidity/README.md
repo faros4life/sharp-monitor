@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 5, 5:00 AM ET. This run: 0 new, 0 not confirmed, 3 pending. Open alerts: 29.
+Updated Thu Nov 5, 5:06 AM ET. This run: 3 new, 0 not confirmed, 4 pending. Open alerts: 32.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,9 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 5 5:06AM | NHL | Philadelphia vs New York R: Total Goals | total: Over 5.5 goals scored | kalshi | $28k | -122 |  |  | +0.0c |  | pending |
+| Nov 5 5:06AM | NHL | Carolina vs New York I | moneyline: Carolina | kalshi | $40k | -170 |  |  | +0.0c |  | pending |
+| Nov 5 5:06AM | NCAAF | New Mexico vs Nevada | moneyline: New Mexico | kalshi | $157k | -355 | ✅ novig |  | +0.0c |  | pending |
 | Nov 5 4:50AM | NHL | Predators vs. Avalanche | moneyline: Avalanche | polymarket | $27k | -203 |  |  | +0.0c |  | pending |
 | Nov 5 4:50AM | NHL | Ducks vs. Oilers | moneyline: Oilers | polymarket | $25k | -178 | ✅ kalshi,novig |  | +0.0c |  | pending |
 | Nov 5 4:45AM | NHL | Blues vs. Devils | moneyline: Devils | polymarket | $27k | -186 | ✅ kalshi |  | +0.0c |  | pending |
@@ -207,6 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 3 9:41AM | NHL | Oilers vs. Devils | moneyline: Devils | polymarket | $35k | -150 | ✅ kalshi,novig |  | +0.0c |  | W |
 | Nov 3 9:41AM | NHL | Avalanche vs. Blue Jackets | moneyline: Blue Jackets | polymarket | $31k | +108 | ✅ kalshi |  | +0.0c | yes | W |
 | Nov 3 9:41AM | NHL | Avalanche vs. Blue Jackets | total: Over (6.5) | polymarket | $25k | +104 | ✅ kalshi |  | +0.0c | yes | W |
-| Nov 3 9:41AM | NHL | Colorado vs Columbus: Total Goals | total: Over 6.5 goals scored | kalshi | $48k | +104 | ✅ polymarket |  | -2.0c | yes | W |
-| Nov 3 9:41AM | NHL | Carolina vs Nashville: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $64k | -117 | ✅ novig,polymarket,prophetx |  | +1.0c | yes | W |
-| Nov 3 9:30AM | NCAAF | Ohio vs Akron: Spread | spread: NOT Ohio wins by over 14.5 points | kalshi | $223k | -108 | ✅ novig |  | +6.0c | yes | W |
