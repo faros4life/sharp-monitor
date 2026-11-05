@@ -87,6 +87,8 @@ jobs:
           fi
       - name: Build the board
         run: python -u board_build.py
+      - name: Odds screen page (Nov 5; reads odds_screen.json from the repo)
+        run: mkdir -p site/odds && cp odds/index.html site/odds/index.html
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

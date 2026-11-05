@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Odds Screen</title>
+<style>
+:root{--bg:#0d1014;--card:#161b22;--line:#262d36;--ink:#e6e9ee;--dim:#8b95a3;--best:#1f6f43;--bestink:#d9ffe8;--hr:#f2b134;--ev:#4cd07d;--neg:#e5675a;--chip:#1d242d}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f4f5f7;--card:#fff;--line:#e2e5ea;--ink:#14181d;--dim:#5f6b7a;--best:#d6f5e2;--bestink:#0d4a27;--hr:#a86b00;--ev:#16803f;--neg:#b5372a;--chip:#eef0f3}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.35 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+header{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line);padding:10px 16px 8px}
+h1{font-size:17px;margin:0 0 6px;display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+#upd{font-size:12px;color:var(--dim);font-weight:400}
+.row{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.chip{background:var(--chip);border:1px solid var(--line);color:var(--ink);border-radius:16px;padding:5px 11px;font-size:13px;cursor:pointer}
+.chip.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+input[type=search]{width:100%;background:var(--card);border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:8px 10px;font-size:15px}
+main{padding:10px 16px 40px;max-width:900px;margin:0 auto}
+.day{color:var(--dim);font-size:12px;text-transform:uppercase;letter-spacing:.06em;margin:16px 2px 6px}
+.g{background:var(--card);border:1px solid var(--line);border-radius:10px;margin-bottom:10px;overflow:hidden}
+.gh{display:flex;justify-content:space-between;gap:8px;padding:8px 10px;border-bottom:1px solid var(--line);font-size:12px;color:var(--dim)}
+.rk{color:var(--hr);font-weight:600}
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+th{font-weight:600;font-size:13px;text-align:center;padding:6px 4px;color:var(--ink)}
+th:first-child,td:first-child{text-align:left;padding-left:10px;width:34%;color:var(--dim);font-size:12.5px}
+td{text-align:center;padding:5px 4px;border-top:1px solid var(--line)}
+td.b{background:var(--best);color:var(--bestink);font-weight:700}
+tr.hr td:first-child{color:var(--hr);font-weight:600}
+tr.fair td{color:var(--dim);font-size:12.5px;background:transparent}
+.ev{display:block;font-size:11px;font-weight:600}
+.ev.p{color:var(--ev)}.ev.n{color:var(--neg)}
+td.b .ev.p{color:var(--bestink)}
+.na{color:var(--line)}
+.stale{color:var(--neg)}
+.empty{color:var(--dim);text-align:center;padding:40px 0}
+.note{color:var(--dim);font-size:12px;margin-top:18px}
+</style>
+</head>
+<body>
+<header>
+  <h1>Odds Screen <span id="upd">loading…</span></h1>
+  <input id="q" type="search" placeholder="Team (e.g. Wake Forest)" autocomplete="off">
+  <div class="row" id="lgs"></div>
+  <div class="row" id="mks"></div>
+</header>
+<main id="out"><div class="empty">Loading odds…</div></main>
+<script>
+const SRC="https://raw.githubusercontent.com/faros4life/sharp-monitor/main/odds_screen.json";
+const ss={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
+let D=null,LG=ss.get("os_lg")||"All",MK=ss.get("os_mk")||"s",T25=ss.get("os_t25")==="1",Q="";
+const MKS=[["s","Spread"],["t","Total"],["m","Moneyline"]];
+const fmt=p=>p==null?"":(p>0?"+"+p:""+p);
+const pt=(x,mk)=>mk==="t"?""+x:(x>0?"+"+x:""+x);
+const prob=a=>a>0?100/(a+100):-a/(-a+100);
+const et=s=>new Date(s).toLocaleString("en-US",{timeZone:"America/New_York",weekday:"short",hour:"numeric",minute:"2-digit"});
+const etDay=s=>new Date(s).toLocaleDateString("en-US",{timeZone:"America/New_York",weekday:"long",month:"short",day:"numeric"});
+const short=t=>{const w=t.split(" ");return w.length>2?w.slice(0,-1).join(" "):t};
+function ago(ts){const m=Math.round((Date.now()/1000-ts)/60);return m<1?"just now":m+" min ago"}
+
+function sides(g,mk){
+  if(mk==="t")return["Over","Under"];
+  return[g.away,g.home];
+}
+// better(a,b): is quote a better for the bettor than b on this side
+function score(q,mk,side){ // higher = better
+  if(mk==="m")return prob(q)*-1;            // lower implied prob = better price
+  const [p,px]=q;
+  const ptv=mk==="t"?(side==="Over"?-p:p):p; // more points = better
+  return ptv*1000-prob(px);
+}
+function render(){
+  if(!D)return;
+  const out=document.getElementById("out");
+  const q=Q.trim().toLowerCase();
+  let games=D.games.filter(g=>(LG==="All"||g.lg===LG)&&(!T25||g.lg!=="NCAAF"||g.t25.length)&&(!q||(g.away+" "+g.home).toLowerCase().includes(q)));
+  const books=D.books, sharp=D.sharp, N=D.names||{};
+  let html="",day="";
+  for(const g of games){
+    const sd=sides(g,MK);
+    const has=books.some(b=>g.books[b]&&g.books[b][MK]);
+    if(!has)continue;
+    const d=etDay(g.start); if(d!==day){html+=`<div class="day">${d}</div>`;day=d}
+    // best per side
+    const best=sd.map(s=>{let bb=null,bs=-1e18;for(const b of books){const v=g.books[b]&&g.books[b][MK]&&g.books[b][MK][s];if(v==null)continue;const sc=score(v,MK,s);if(sc>bs){bs=sc;bb=b}}return bb});
+    const fair=g.fair&&g.fair[MK];
+    const rk=g.t25.map(([t,r])=>`#${r} ${short(t)}`).join(", ");
+    const stale=(Date.now()/1000-(g.upd||0))>1800;
+    html+=`<div class="g"><div class="gh"><span>${g.lg} · ${et(g.start)}${rk?` · <span class="rk">${rk}</span>`:""}</span><span class="${stale?"stale":""}">${ago(g.upd||0)}</span></div><table>`;
+    html+=`<tr><th></th>${sd.map(s=>`<th>${MK==="t"?s:short(s)}</th>`).join("")}</tr>`;
+    for(const b of books){
+      const m=g.books[b]&&g.books[b][MK];
+      html+=`<tr class="${b.startsWith("hardrock")?"hr":""}"><td>${N[b]||b}</td>`;
+      sd.forEach((s,i)=>{
+        const v=m&&m[s];
+        if(v==null){html+=`<td class="na">—</td>`;return}
+        let txt=MK==="m"?fmt(v):`${pt(v[0],MK)} <small>${fmt(v[1])}</small>`;
+        let ev="";
+        const f=fair&&fair[s];
+        if(f!=null){
+          const fp=MK==="m"?f:f[1], fpt=MK==="m"?null:f[0], px=MK==="m"?v:v[1];
+          if(MK==="m"||fpt===v[0]){const e=(prob(fp)/prob(px)-1)*100;if(Math.abs(e)>=0.05)ev=`<span class="ev ${e>0?"p":"n"}">${e>0?"+":""}${e.toFixed(1)}%</span>`}
+        }
+        html+=`<td class="${best[i]===b?"b":""}">${txt}${ev}</td>`;
+      });
+      html+=`</tr>`;
+    }
+    html+=`<tr class="fair"><td>${N[sharp]||sharp} fair</td>${sd.map(s=>{const f=fair&&fair[s];return f==null?`<td class="na">—</td>`:`<td>${MK==="m"?fmt(f):pt(f[0],MK)+" "+fmt(f[1])}</td>`}).join("")}</tr>`;
+    html+=`</table></div>`;
+  }
+  out.innerHTML=html||`<div class="empty">No games${q?` matching “${Q.replace(/[<>&]/g,"")}”`:""} in the next 24 hours.</div>`;
+  out.innerHTML+=`<div class="note">Green = best price on that side across your books. % = edge vs ${N[sharp]||"Pinnacle"} no-vig (same number only). Games within the next 24 hours; each sport refreshes on the monitor's poll.</div>`;
+}
+function chips(){
+  const lgs=["All",...[...new Set(D.games.map(g=>g.lg))]];
+  if(!lgs.includes(LG))LG="All";
+  document.getElementById("lgs").innerHTML=lgs.map(l=>`<button class="chip ${l===LG?"on":""}" data-lg="${l}">${l}</button>`).join("")+
+    (lgs.includes("NCAAF")?`<button class="chip ${T25?"on":""}" id="t25">CFB Top 25 only</button>`:"");
+  document.getElementById("mks").innerHTML=MKS.map(([k,l])=>`<button class="chip ${k===MK?"on":""}" data-mk="${k}">${l}</button>`).join("");
+}
+document.addEventListener("click",e=>{
+  const t=e.target.closest("button");if(!t)return;
+  if(t.dataset.lg){LG=t.dataset.lg;ss.set("os_lg",LG)}
+  else if(t.dataset.mk){MK=t.dataset.mk;ss.set("os_mk",MK)}
+  else if(t.id==="t25"){T25=!T25;ss.set("os_t25",T25?"1":"0")}
+  chips();render();
+});
+document.getElementById("q").addEventListener("input",e=>{Q=e.target.value;render()});
+async function load(){
+  try{
+    const r=await fetch(SRC+"?t="+Date.now(),{cache:"no-store"});
+    if(!r.ok)throw new Error(r.status);
+    D=await r.json();
+    document.getElementById("upd").textContent="updated "+new Date(D.updated_utc).toLocaleTimeString("en-US",{timeZone:"America/New_York",hour:"numeric",minute:"2-digit"})+" ET";
+    chips();render();
+  }catch(err){
+    document.getElementById("upd").textContent="couldn't load — retrying";
+    if(!D)document.getElementById("out").innerHTML=`<div class="empty">The odds feed isn't published yet. It appears after the monitor's next run.</div>`;
+  }
+}
+load();setInterval(load,60000);
+</script>
+</body>
+</html>
