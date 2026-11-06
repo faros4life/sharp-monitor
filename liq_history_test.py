@@ -6,7 +6,18 @@ board, no executor input.
 
 Population: liquidity/alerts.json, NBA / NFL / NCAAF / NHL, moneyline / spread / total, graded W/L/P, not an artifact
 or close_suspect, inside the history window (Oct 12+; liquidity alerts start Oct 22).
-PRICE: every play is graded at the ALERT price (after the trigger exchange's fee) - the bot only bets that price or better.
+PRICE - TWO BASES, both printed (Peter, Nov 6: "lets fix the clv first"):
+  TRIGGER-BOOK basis (the original, unchanged): the ALERT price after the TRIGGER exchange's fee. This prices the play
+    as if we took Kalshi or Polymarket and paid their TAKER fee. We would not - we post on a venue that charges us
+    nothing. Measured fee drag across the frozen board PLAYs: 3.42%, which is the entire difference between this
+    basis reading -2.09% and the executable one reading positive. Kept because Peter's Nov 5 rule is that no figure
+    already published by this report is overwritten retroactively.
+  EXECUTABLE basis (clv_k / u_k, labelled "EXECUTABLE" in every line): the CAUSAL best after-fee exchange price -
+    the best price actually available at or before the decision, with no future data. This is the basis a decision
+    should be read from; the trigger-book number is descriptive.
+  Note the two are NOT comparable across reports: plimit_level has always judged at the best after-fee exchange
+    price, so its CLV figures were already on the executable basis. Lane 3's -2.09% and the P-limit -0.60% / -1.11%
+    differed partly by BASIS, not only by edge.
 GETTABLE: at least one exchange we can bet (ProphetX / Novig / Kalshi / Polymarket US) had that after-fee price OR BETTER
 on its last quote at or before alert + GET_SEC seconds (default 60). Not gettable = counted, not graded in the judged rows.
 CLV: Pinnacle's true no-vig close for the held side x the alert's after-fee price - 1 (percent), not the exchange's own close.
@@ -269,6 +280,19 @@ def main():
                   "gettable": best is not None and best >= want - 1e-9, "best": best, "best_bk": best_bk,
                   "clv": round(100 * (c["p"] * want - 1), 2), "u": units(res, want),
                   "u_best": units(res, best) if best and best >= want - 1e-9 else None,
+                  # Nov 6 (Peter: "lets fix the clv first"). "clv"/"u" above price the play at the
+                  # TRIGGER book's after-fee alert price - i.e. as if we took Kalshi or Polymarket and
+                  # paid their taker fee. We would not: we post on a venue that charges us nothing, and
+                  # the fee drag measured across the frozen PLAYs is 3.42%, which is the whole
+                  # difference between -2.09% and a positive number. So the EXECUTABLE basis is carried
+                  # beside it, never instead of it - Peter's Nov 5 rule that no published figure from
+                  # this report is overwritten retroactively still holds, and both appear in the output.
+                  #   clv_k / u_k = the CAUSAL best after-fee exchange price (no future data). Honest.
+                  #   clv_x / u_x = the hindsight best. Upper bound, kept only for the gap to clv_k.
+                  "clv_k": (round(100 * (c["p"] * kbest - 1), 2) if kbest else None),
+                  "u_k": (units(res, kbest) if kbest and kbest >= want - 1e-9 else None),
+                  "clv_x": (round(100 * (c["p"] * best - 1), 2) if best else None),
+                  "u_x": (units(res, best) if best and best >= want - 1e-9 else None),
                   "lim": lim, "lim_how": how, "lim_x": (lim / lim2) if lim and lim2 else None,
                   "own_clv": a.get("clv_cents"),
                   # the causal and raw bases, beside the original, so the membership delta is measurable
@@ -318,8 +342,19 @@ def main():
         h1 = [x for x in g if x["day"] <= FIT_END]
         h2 = [x for x in g if x["day"] > FIT_END]
         pp = lambda z: f"{sum(x['u'] for x in z) / len(z):+.3f} (n{len(z)})" if z else "n0"
+        # Nov 6: the EXECUTABLE basis beside the trigger-book one. ck is the causal best after-fee
+        # exchange price - what we could actually have had, with no future data. When it differs from
+        # the figure before it, the difference is the taker fee we would not have paid.
+        ck = [x["clv_k"] for x in g if x.get("clv_k") is not None]
+        uk = [x["u_k"] for x in g if x.get("u_k") is not None]
+        xtra = ""
+        if ck:
+            xtra = (f" || EXECUTABLE (causal best, no fee paid): CLV {stt.mean(ck):+.2f}% "
+                    f"beat {100 * sum(v > 0 for v in ck) / len(ck):.0f}%"
+                    + (f" {sum(uk):+.2f}u {sum(uk) / len(uk):+.3f}/play (n {len(uk)})" if uk else ""))
         return (f"n {len(xs)} | gettable {len(g)} | {w}-{l_} {u:+.2f}u {u / len(g):+.3f}/play | Pinnacle CLV "
-                f"{stt.mean(cv):+.2f}% beat {100 * sum(v > 0 for v in cv) / len(cv):.0f}% | H1 {pp(h1)} H2 {pp(h2)}")
+                f"{stt.mean(cv):+.2f}% beat {100 * sum(v > 0 for v in cv) / len(cv):.0f}% | H1 {pp(h1)} H2 {pp(h2)}"
+                + xtra)
 
     rule = [r for r in R if r["lg"] == "NBA" and r["mk"] == "total" and r["lead"] is not None and r["lead"] >= 4]
     L = [f"LIQUIDITY ALERTS vs DOWNLOADED HISTORY - PAPER ONLY | {now.astimezone(ET):%Y-%m-%d %H:%M} ET",
