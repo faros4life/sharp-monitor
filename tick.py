@@ -54,6 +54,12 @@ JOBS = {   # workflow file: minimum minutes between runs (matches each workflow'
                                  # band-clearing disagreements were discarded as frozen-after-the-open.
                                  # AHEAD_DAYS=3 bought margin for exactly this; the cadence is the
                                  # other half of that fix.
+    # Nov 6: plimit-level.yml has NO cron at all and was never registered, so the Item 56 P-limit
+    # report only ever ran when someone dispatched it by hand - it last ran Nov 4 15:20 ET. That
+    # silently stalled Peter's own check-in ("remind me when you have enough data", 50 graded H2
+    # plays each side): the reminder fires, reads a stale email, and reschedules forever. 720 min
+    # matches the twice-daily cadence the check-in expects. Paper, read-only, history-cache only.
+    "plimit-level.yml": 720,
 }
 BUSY = {"queued", "in_progress", "waiting", "pending", "requested"}
 

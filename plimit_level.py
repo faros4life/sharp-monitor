@@ -95,8 +95,22 @@ def main():
          if a.get("sport") in LEAGUES and a.get("kind") in ("spr", "tot", "ml") and a.get("result") in ("W", "L", "P")
          and a.get("pricing_bettable") is not False and cl.tp(a.get("alert_utc")) and cl.tp(a["alert_utc"]) >= FROM]
     st = {"billable": {}}
+    # Nov 6 (Peter): same two fixes as liq_history_test. This started from a bare dict every run, so
+    # it re-bought /fixtures data already sitting in clv/state.enc, and it bought one call per league
+    # in LEAGUES whatever the population held. Read-only (this script never saves st), and now only
+    # for the leagues actually present. A re-run inside the ledger's 6 h window spends NOTHING.
+    try:
+        _prev = cl.tb.dec(json.load(open(cl.STATE)))
+        st["fixtures"] = dict(_prev.get("fixtures") or {})
+        st["fx_last"] = dict(_prev.get("fx_last") or {})
+        print(f"plimit level: reusing {len(st['fixtures'])} cached fixtures - no re-purchase")
+    except Exception as _e:
+        print(f"plimit level: no fixture cache ({type(_e).__name__}) - will fetch")
     mkmap = cl.load_markets(st, now)
-    for lg in LEAGUES:
+    _need = sorted({(a.get("sport") or "").upper() for a in A} & set(LEAGUES))
+    print(f"plimit level: fixtures needed for {_need or 'no leagues'} "
+          f"({len(LEAGUES) - len(_need)} league refresh(es) skipped as unused)")
+    for lg in _need:
         cl.refresh_fixtures(st, now, lg, (FROM - timedelta(days=1)).astimezone(ET), (now + timedelta(days=1)).astimezone(ET))
     R, miss = [], {"no fixture": 0, "not in cache": 0, "history error": 0, "no close": 0}
     for a in A:
