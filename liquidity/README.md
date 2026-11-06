@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 5, 7:40 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 99.
+Updated Thu Nov 5, 7:46 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 99.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -29,7 +29,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 5 5:33PM | NHL | Utah vs Montreal: Spread | spread: NOT Utah wins by over 1.5 goals | kalshi | $41k | -213 | ✅ novig,polymarket |  | +0.0c | yes | pending |
 | Nov 5 5:10PM | NHL | Hurricanes vs. Islanders | moneyline: Hurricanes | polymarket | $29k | -186 | ✅ novig,prophetx |  | +0.0c | yes | pending |
 | Nov 5 5:00PM | NHL | Dallas Stars at Columbus Blue Jackets | moneyline: Dallas Stars | prophetx | $35k | -118 |  |  | -0.6c | yes | pending |
-| Nov 5 5:00PM | NFL | Jacksonville Jaguars at Baltimore Ravens | moneyline: Jacksonville Jaguars | prophetx | $36k | -405 | ✅ kalshi,novig |  | -1.5c | yes | pending |
+| Nov 5 5:00PM | NFL | Jacksonville Jaguars at Baltimore Ravens | moneyline: Jacksonville Jaguars | prophetx | $36k | -405 | ✅ kalshi,novig |  | -2.2c | yes | pending |
 | Nov 5 4:50PM | NBA | Miami vs Golden State: Spread | spread: NOT Golden State wins by over 3.5 points | kalshi | $29k | -104 | ✅ polymarket | ✅ | -2.0c |  | pending |
 | Nov 5 4:40PM | NBA | Orlando vs Phoenix: Total Points | total: Over 222.5 points | kalshi | $60k | -100 | ✅ polymarket | ❌ | +1.0c |  | pending |
 | Nov 5 4:26PM | NBA | Orlando vs Phoenix: Spread | spread: NOT Phoenix wins by over 1.5 points | kalshi | $31k | -108 | ✅ novig,polymarket |  | -1.0c |  | pending |
@@ -59,7 +59,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 5 9:30AM | NHL | Nashville vs Colorado | moneyline: Nashville | kalshi | $103k | +186 | ✅ polymarket |  | +0.0c | yes | pending |
 | Nov 5 9:26AM | NCAAF | New Mexico vs Nevada: Total Points | total: Over 38.5 points | kalshi | $37k | +108 |  |  | +1.0c |  | pending |
 | Nov 5 9:06AM | NCAAF | TCU vs Arizona: Total Points | total: Over 45.5 points | kalshi | $109k | -108 |  |  | +1.0c |  | pending |
-| Nov 5 8:56AM | NBA | Orlando vs Phoenix | moneyline: Orlando | kalshi | $248k | +104 |  |  | -1.0c |  | pending |
+| Nov 5 8:56AM | NBA | Orlando vs Phoenix | moneyline: Orlando | kalshi | $248k | +104 |  |  | +0.0c |  | pending |
 | Nov 5 8:20AM | NHL | Bruins vs. Penguins | moneyline: Bruins | polymarket | $35k | -104 | ✅ novig |  | -5.0c | yes | pending |
 | Nov 5 8:16AM | NHL | Predators vs. Avalanche | spread: Predators (+1.5) | polymarket | $31k | -133 | ✅ kalshi |  | +0.0c | yes | pending |
 | Nov 5 8:10AM | NHL | Hurricanes vs. Islanders | total: Over (5.5) | polymarket | $26k | -122 |  |  | +3.0c |  | pending |
@@ -142,7 +142,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 4 4:55PM | NHL | Nashville vs Colorado | moneyline: Colorado | kalshi | $38k | -194 |  |  | -1.0c | yes | pending |
 | Nov 4 4:29PM | NCAAF | James Madison vs Southern Miss: Total Points | total: NOT Over 57.5 points | kalshi | $60k | -100 |  |  | -2.0c | yes | pending |
 | Nov 4 4:29PM | NBA | Miami vs Los Angeles C: Total Points | total: NOT Over 232.5 points | kalshi | $30k | +104 |  |  | +0.0c | yes | L |
-| Nov 4 4:26PM | NFL | Jacksonville Jaguars @ Baltimore Ravens | moneyline: JAX (0) | novig | $84k | -456 | ✅ kalshi,prophetx |  | -3.5c | yes | pending |
+| Nov 4 4:26PM | NFL | Jacksonville Jaguars @ Baltimore Ravens | moneyline: JAX (0) | novig | $84k | -456 | ✅ kalshi,prophetx |  | -4.0c | yes | pending |
 | Nov 4 4:20PM | NBA | Toronto vs Denver: Total Points | total: NOT Over 231.5 points | kalshi | $28k | -104 | ✅ prophetx |  | +1.0c | yes | L |
 | Nov 4 4:20PM | NBA | Milwaukee vs Boston: Total Points | total: NOT Over 221.5 points | kalshi | $49k | -104 | ✅ novig,prophetx | ✅ | -4.0c | yes | W |
 | Nov 4 4:20PM | NBA | Utah vs New Orleans: Spread | spread: NOT New Orleans wins by over 5.5 points | kalshi | $32k | -104 | ✅ prophetx | ✅ | +1.0c | yes | L |
