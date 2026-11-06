@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 6, 11:36 AM ET. This run: 2 new, 0 not confirmed, 2 pending. Open alerts: 57.
+Updated Fri Nov 6, 11:41 AM ET. This run: 2 new, 0 not confirmed, 3 pending. Open alerts: 57.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,8 +10,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 6 11:36AM | NCAAF | South Florida @ East Carolina | moneyline: USF (0) | novig | $26k | +108 | ✅ kalshi |  | +0.0c |  | pending |
-| Nov 6 11:36AM | NCAAF | South Florida vs East Carolina | moneyline: South Florida | kalshi | $170k | +113 | ✅ novig |  | +0.0c |  | pending |
+| Nov 6 11:41AM | NCAAF | South Florida @ East Carolina | moneyline: USF (0) | novig | $26k | +108 | ✅ kalshi |  | +0.0c |  | pending |
+| Nov 6 11:41AM | NCAAF | South Florida vs East Carolina | moneyline: South Florida | kalshi | $170k | +113 | ✅ novig |  | +0.0c |  | pending |
 | Nov 6 11:30AM | NBA | Wizards vs. Hawks | spread: Hawks (-7.5) | polymarket | $27k | -108 | ✅ kalshi,novig |  | +0.0c |  | pending |
 | Nov 6 11:30AM | NCAAF | TCU @ Arizona | moneyline: ARIZ (0) | novig | $52k | -239 | ✅ kalshi | ❌ | +0.0c |  | pending |
 | Nov 6 11:20AM | NBA | Utah vs Dallas | moneyline: Dallas | kalshi | $86k | -257 | ✅ novig,polymarket | ✅ | +0.0c |  | pending |
@@ -23,7 +23,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 6 10:20AM | NBA | Jazz vs. Mavericks | spread: Jazz (+7.5) | polymarket | $27k | -108 | ✅ kalshi | ❌ | +0.0c |  | pending |
 | Nov 6 10:20AM | NCAAF | Valparaiso vs Dayton | moneyline: Dayton | kalshi | $27k | -355 |  |  | -1.0c |  | pending |
 | Nov 6 10:11AM | NHL | Blue Jackets vs. Sabres | spread: Blue Jackets (+1.5) | polymarket | $31k | -170 | ✅ kalshi,novig |  | +0.0c |  | pending |
-| Nov 6 9:50AM | NHL | San Jose vs Minnesota: Spread | spread: NOT Minnesota wins by over 1.5 goals | kalshi | $26k | -108 | ✅ polymarket |  | +1.0c |  | pending |
+| Nov 6 9:50AM | NHL | San Jose vs Minnesota: Spread | spread: NOT Minnesota wins by over 1.5 goals | kalshi | $26k | -108 | ✅ polymarket |  | -1.0c |  | pending |
 | Nov 6 9:50AM | NHL | Columbus vs Buffalo: Spread | spread: NOT Buffalo wins by over 1.5 goals | kalshi | $43k | -170 | ✅ novig,polymarket |  | +0.0c |  | pending |
 | Nov 6 9:31AM | NBA | Celtics vs. Hornets | moneyline: Celtics | polymarket | $27k | -300 | ✅ kalshi,novig,prophetx |  | +1.0c | yes | pending |
 | Nov 6 9:20AM | NBA | Trail Blazers vs. Lakers | total: Under (232.5) | polymarket | $29k | -104 | ✅ novig |  | +2.0c |  | pending |
