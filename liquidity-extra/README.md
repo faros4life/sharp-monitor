@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 6, 2:40 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 13.
+Updated Fri Nov 6, 2:50 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 13.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -13,7 +13,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 6 1:20AM | NCAAB | Loyola Maryland vs Mount St. Mary's | moneyline: Mount St. Mary's | kalshi | $28k | -245 |  |  | -1.0c |  | pending |
 | Nov 6 1:20AM | NCAAB | Boston University vs Brown | moneyline: Brown | kalshi | $31k | -213 |  |  | -13.0c |  | pending |
 | Nov 6 1:00AM | NCAAB | UNC Greensboro vs Elon | moneyline: Elon | kalshi | $33k | -335 |  |  | +1.0c |  | pending |
-| Nov 6 1:00AM | NCAAB | Austin Peay vs Kennesaw St. | moneyline: Kennesaw St. | kalshi | $28k | -233 |  |  | +0.0c |  | pending |
+| Nov 6 1:00AM | NCAAB | Austin Peay vs Kennesaw St. | moneyline: Kennesaw St. | kalshi | $28k | -233 |  |  | +1.0c |  | pending |
 | Nov 6 1:00AM | NCAAB | UMass vs Boston College | moneyline: Boston College | kalshi | $45k | -223 |  |  | +0.0c |  | pending |
 | Nov 6 12:40AM | TENNIS | Shelton vs Paul | moneyline: Shelton | kalshi | $440k | +117 |  |  | +0.0c |  | W |
 | Nov 5 10:30PM | TENNIS | Sonmez vs Liu | moneyline: Sonmez | kalshi | $46k | +113 |  |  | +1.0c |  | L |
@@ -22,7 +22,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 5 3:20PM | NCAAB | Tarleton St. vs San Diego | moneyline: San Diego | kalshi | $31k | -223 |  |  | +5.0c |  | pending |
 | Nov 5 3:20PM | NCAAB | Robert Morris vs UIC | moneyline: UIC | kalshi | $40k | -567 |  |  | -1.0c | yes | pending |
 | Nov 5 3:20PM | NCAAB | North Dakota St. vs San Francisco | moneyline: San Francisco | kalshi | $41k | -317 |  |  | +4.0c |  | pending |
-| Nov 5 3:20PM | NCAAB | Cal State Northridge vs Kansas St. | moneyline: Kansas St. | kalshi | $43k | -525 |  |  | +0.0c | yes | pending |
+| Nov 5 3:20PM | NCAAB | Cal State Northridge vs Kansas St. | moneyline: Kansas St. | kalshi | $43k | -525 |  |  | +1.0c | yes | pending |
 | Nov 5 3:00PM | NCAAB | Hofstra vs Princeton | moneyline: Princeton | kalshi | $27k | -138 |  | ❌ | +1.0c | yes | W |
 | Nov 5 1:10PM | TENNIS | Fils vs Fritz | moneyline: Fritz | kalshi | $764k | +133 |  |  | +46.0c |  | W |
 | Nov 5 10:30AM | NCAAB | Chicago St. vs Incarnate Word | moneyline: Incarnate Word | kalshi | $39k | -355 |  |  | +0.0c | yes | L |
