@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 6, 5:50 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 27.
+Updated Fri Nov 6, 5:56 AM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 28.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 6 5:56AM | NHL | Anaheim vs Calgary: Spread | spread: NOT Calgary wins by over 1.5 goals | kalshi | $28k | -203 |  |  | +0.0c |  | pending |
 | Nov 6 5:40AM | NCAAF | Nebraska vs Illinois: Total Points | total: NOT Over 50.5 points | kalshi | $26k | -100 |  |  | +0.0c |  | pending |
 | Nov 6 5:40AM | NCAAF | North Carolina Central vs Norfolk St. | moneyline: North Carolina Central | kalshi | $26k | -170 |  |  | +0.0c |  | pending |
 | Nov 6 2:20AM | NBA | Thunder vs. Grizzlies | moneyline: Grizzlies | polymarket | $26k | +144 |  | ✅ | +0.0c |  | pending |
@@ -21,7 +22,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 5 11:56PM | NBA | San Antonio vs Sacramento: Total Points | total: Over 228.5 points | kalshi | $26k | -113 |  |  | +1.0c |  | pending |
 | Nov 5 11:50PM | NBA | Philadelphia vs Cleveland | moneyline: Philadelphia | kalshi | $142k | -133 | ✅ polymarket |  | +2.0c | yes | pending |
 | Nov 5 11:20PM | NCAAF | TCU vs Arizona: Total Points | total: NOT Over 46.5 points | kalshi | $42k | -104 |  |  | -1.0c | yes | pending |
-| Nov 5 10:40PM | NBA | Boston vs Charlotte | moneyline: Boston | kalshi | $109k | -285 |  |  | +1.0c |  | pending |
+| Nov 5 10:40PM | NBA | Boston vs Charlotte | moneyline: Boston | kalshi | $109k | -285 |  |  | +2.0c |  | pending |
 | Nov 5 8:55PM | NBA | Miami Heat @ Golden State Warriors | spread: GSW -3.5 (-3.5) | novig | $26k | -108 | ✅ kalshi,polymarket | ❌ | +0.0c |  | W |
 | Nov 5 8:45PM | NCAAF | Nebraska vs Illinois: Spread | spread: NOT Nebraska wins by over 4.5 points | kalshi | $62k | -100 | ✅ novig |  | +1.0c |  | pending |
 | Nov 5 8:40PM | NCAAF | South Carolina St. vs Howard | moneyline: South Carolina St. | kalshi | $85k | -488 |  |  | +11.0c | yes | W |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 4 10:30AM | NBA | Dallas vs San Antonio: Spread | spread: San Antonio wins by over 12.5 points | kalshi | $116k | -100 | ✅ polymarket,prophetx | ✅ | +1.0c | yes | L |
 | Nov 4 10:26AM | NBA | Portland vs Phoenix: Total Points | total: Over 228.5 points | kalshi | $32k | -100 | ✅ novig,polymarket |  | -2.0c |  | W |
 | Nov 4 9:50AM | NBA | Bulls vs. Knicks | moneyline: Knicks | polymarket | $41k | -525 | ✅ novig,prophetx |  | -1.0c |  | W |
-| Nov 4 9:45AM | NBA | Mavericks vs. Spurs | moneyline: Spurs | polymarket | $27k | -488 | ✅ kalshi,novig,prophetx |  | +1.0c |  | W |
