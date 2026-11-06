@@ -169,6 +169,19 @@ def main():
     alerts = bb.load()
     P = build(rows, alerts)
     st = {"billable": {}}
+    # Nov 6 (Peter): reuse the fixtures the CLV ledger already paid for instead of re-buying them.
+    # This started from a bare dict, so every run bought /fixtures data already on disk - and with
+    # this script now registered in tick at a daily cadence that was about to become a standing
+    # charge. Read-only: nothing here saves that state. Needs TRACKER_PASSPHRASE in the workflow;
+    # without it the decrypt fails, this falls through, and the calls are bought silently - which is
+    # exactly how plimit-level spent 5 unapproved credits on Nov 6.
+    try:
+        _prev = cl.tb.dec(json.load(open(cl.STATE)))
+        st["fixtures"] = dict(_prev.get("fixtures") or {})
+        st["fx_last"] = dict(_prev.get("fx_last") or {})
+        print(f"fixture cache: reusing {len(st['fixtures'])} fixtures - no re-purchase")
+    except Exception as _e:
+        print(f"fixture cache: unavailable ({type(_e).__name__}) - fixtures will be fetched")
     now = datetime.now(timezone.utc)
     mkmap = cl.load_markets(st, now) if cl.KEY else {}
     if cl.KEY and P:
