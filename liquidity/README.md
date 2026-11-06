@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 5, 8:55 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 105.
+Updated Thu Nov 5, 9:00 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 104.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 910-774 (-70.01u flat) | rule met: 554-499
+**Record:** 911-774 (-69.19u flat) | rule met: 554-499
 
-**Fade (paper, betting against the print):** 508-637 (-75.06u flat, after fees)
+**Fade (paper, betting against the print):** 508-638 (-76.06u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -68,7 +68,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 5 8:56AM | NBA | Orlando vs Phoenix | moneyline: Orlando | kalshi | $248k | +104 |  |  | -1.0c |  | pending |
 | Nov 5 8:20AM | NHL | Bruins vs. Penguins | moneyline: Bruins | polymarket | $35k | -104 | ✅ novig |  | -5.0c | yes | pending |
 | Nov 5 8:16AM | NHL | Predators vs. Avalanche | spread: Predators (+1.5) | polymarket | $31k | -133 | ✅ kalshi |  | +0.0c | yes | pending |
-| Nov 5 8:10AM | NHL | Hurricanes vs. Islanders | total: Over (5.5) | polymarket | $26k | -122 |  |  | +3.0c |  | pending |
+| Nov 5 8:10AM | NHL | Hurricanes vs. Islanders | total: Over (5.5) | polymarket | $26k | -122 |  |  | +3.0c |  | W |
 | Nov 5 8:10AM | NHL | Carolina vs New York I: Total Goals | total: Over 5.5 goals scored | kalshi | $47k | -122 |  |  | +3.0c | yes | pending |
 | Nov 5 8:05AM | NHL | Canucks vs. Jets | total: Over (6.5) | polymarket | $46k | -100 |  |  | +0.0c |  | pending |
 | Nov 5 8:00AM | NHL | Canucks vs. Jets | spread: Canucks (+1.5) | polymarket | $43k | -138 |  |  | -1.0c |  | pending |
