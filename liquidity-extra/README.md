@@ -1,20 +1,20 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 5, 9:52 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 11.
+Updated Thu Nov 5, 10:00 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 10.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 142-90 (-13.21u flat) | rule met: 35-31
+**Record:** 142-91 (-14.21u flat) | rule met: 35-31
 
-**Fade (paper, betting against the print):** 65-107 (+17.41u flat, after fees)
+**Fade (paper, betting against the print):** 66-107 (+18.31u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 5 5:10PM | NCAAB | Mercyhurst @ Notre Dame | spread: Mercyh +21.5 (-21.5) | novig | $67k | +102 |  | ❌ | +0.0c |  | pending |
+| Nov 5 5:10PM | NCAAB | Mercyhurst @ Notre Dame | spread: Mercyh +21.5 (-21.5) | novig | $67k | +102 |  | ❌ | +0.0c |  | L |
 | Nov 5 3:20PM | NCAAB | Tarleton St. vs San Diego | moneyline: San Diego | kalshi | $31k | -223 |  |  | +0.0c |  | pending |
 | Nov 5 3:20PM | NCAAB | Robert Morris vs UIC | moneyline: UIC | kalshi | $40k | -567 |  |  | -1.0c | yes | pending |
 | Nov 5 3:20PM | NCAAB | North Dakota St. vs San Francisco | moneyline: San Francisco | kalshi | $41k | -317 |  |  | +0.0c |  | pending |
-| Nov 5 3:20PM | NCAAB | Cal State Northridge vs Kansas St. | moneyline: Kansas St. | kalshi | $43k | -525 |  |  | +0.0c |  | pending |
+| Nov 5 3:20PM | NCAAB | Cal State Northridge vs Kansas St. | moneyline: Kansas St. | kalshi | $43k | -525 |  |  | +0.0c | yes | pending |
 | Nov 5 3:00PM | NCAAB | Hofstra vs Princeton | moneyline: Princeton | kalshi | $27k | -138 |  | ❌ | +1.0c | yes | W |
 | Nov 5 1:10PM | TENNIS | Fils vs Fritz | moneyline: Fritz | kalshi | $764k | +133 |  |  | +46.0c |  | W |
 | Nov 5 10:30AM | NCAAB | Chicago St. vs Incarnate Word | moneyline: Incarnate Word | kalshi | $39k | -355 |  |  | +0.0c | yes | L |
