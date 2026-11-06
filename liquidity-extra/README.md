@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 5, 8:50 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 21.
+Updated Thu Nov 5, 9:00 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 21.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -12,7 +12,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 5 5:10PM | NCAAB | Mercyhurst @ Notre Dame | spread: Mercyh +21.5 (-21.5) | novig | $67k | +102 |  | ❌ | +0.0c |  | pending |
 | Nov 5 3:20PM | NCAAB | Tarleton St. vs San Diego | moneyline: San Diego | kalshi | $31k | -223 |  |  | +0.0c |  | pending |
-| Nov 5 3:20PM | NCAAB | Robert Morris vs UIC | moneyline: UIC | kalshi | $40k | -567 |  |  | -2.0c | yes | pending |
+| Nov 5 3:20PM | NCAAB | Robert Morris vs UIC | moneyline: UIC | kalshi | $40k | -567 |  |  | -1.0c | yes | pending |
 | Nov 5 3:20PM | NCAAB | North Dakota St. vs San Francisco | moneyline: San Francisco | kalshi | $41k | -317 |  |  | -1.0c |  | pending |
 | Nov 5 3:20PM | NCAAB | Cal State Northridge vs Kansas St. | moneyline: Kansas St. | kalshi | $43k | -525 |  |  | +1.0c |  | pending |
 | Nov 5 3:00PM | NCAAB | Hofstra vs Princeton | moneyline: Princeton | kalshi | $27k | -138 |  | ❌ | +1.0c | yes | pending |
@@ -23,7 +23,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 5 5:10AM | TENNIS | Paul vs Halys | moneyline: Paul | kalshi | $48k | -426 |  |  | +8.0c |  | W |
 | Nov 5 1:30AM | NCAAB | Towson vs Utah | moneyline: Utah | kalshi | $44k | -488 |  |  | -3.0c | yes | pending |
 | Nov 5 1:20AM | TENNIS | Pridankina vs Shubladze | moneyline: Shubladze | kalshi | $135k | -203 |  |  | +3.0c | yes | W |
-| Nov 5 1:20AM | NCAAB | Michigan vs UConn | moneyline: UConn | kalshi | $42k | -257 |  |  | +1.0c | yes | pending |
+| Nov 5 1:20AM | NCAAB | Michigan vs UConn | moneyline: UConn | kalshi | $42k | -257 |  |  | +2.0c | yes | pending |
 | Nov 5 1:10AM | NCAAB | NJIT vs Iona | moneyline: Iona | kalshi | $42k | -456 |  |  | +0.0c | yes | pending |
 | Nov 5 1:10AM | NCAAB | Maine vs Sacred Heart | moneyline: Sacred Heart | kalshi | $36k | -245 |  |  | -2.0c | yes | pending |
 | Nov 5 1:10AM | NCAAB | UMass Lowell vs Merrimack | moneyline: Merrimack | kalshi | $39k | -300 |  |  | +5.0c | yes | pending |
