@@ -49,7 +49,7 @@ import exchange_lag as el
 
 # Stamp this on every CLV figure (Peter, item 2: "record the fee-model version used").
 # Bump it whenever eff(), a coefficient, or the venue registry changes.
-FEE_MODEL = "2026-11-06.8"
+FEE_MODEL = "2026-11-06.9"
 # Each entry carries its VERIFICATION STATUS, not just its rate. Peter, Nov 6: "cant you check out
 # fills or the account" - so where his own exports could settle a coefficient, they were used, and
 # where they could not, that is stated rather than assumed.
@@ -87,24 +87,25 @@ FEE_NOTES = {
                 "p(1-p) shape as every other venue. Reproduces their worked example to the cent. We "
                 "carried 2% across all leagues, which understated NHL takes (0.96% booked, 1.64% real) "
                 "and overstated NHL posts (0.96% booked, 0.47% real). 3 ProphetX NHL rows so far.",
-    "polymarket.us": "TAKER 0.06 x contracts x p x (1-p); MAKER -0.0125, a REBATE. Given by Peter "
-                     "Nov 6 from the venue's own schedule, and his worked example checks exactly: "
-                     "0.06 x 100 contracts x 0.50 x 0.50 = $1.50. Two corrections follow. (1) This "
-                     "repo used 0.0695, so Polymarket TAKER CLV has been UNDERSTATED by about 0.45 "
-                     "points of the decimal at -110 (modelled drag 3.31%, actual 2.86%). (2) The "
-                     "maker side PAYS US: posting there is worth +0.60% of the decimal at -110, "
-                     "which makes Polymarket US a BETTER posting venue than Novig's zero - about a "
-                     "third of the measured Lane 3 edge from venue choice alone. Fees apply only on "
-                     "execution; cancelled, expired and rejected orders are not charged.",
+    "polymarket.us": "TAKER 0.0695 x C x p x (1-p) - FILL-VERIFIED, and reverted here on Nov 6. I "
+                     "had changed it to 0.06 on text Peter pasted; he then applied the test it "
+                     "should have faced first - official schedule, effective date, and one recent "
+                     "fill reconciling at the new rate - and it fails all three. His Oct 25 "
+                     "Grizzlies/Kings fill is effective 0.5374 exactly: a raw 0.52 gives 0.537347 "
+                     "under 0.0695 and 0.5350 under 0.06. The fill fits the old rate. Four sources "
+                     "disagree, and the CFTC filing for QCX LLC (Mar 2026) is a different STRUCTURE "
+                     "entirely - 0.10% of total contract premium, ~30x smaller than any p(1-p) "
+                     "reading. UNRESOLVED; the fill wins until it is not. The MAKER REBATE is not "
+                     "modelled at all: Peter requires it be its own separate change, never bundled, "
+                     "so maker falls back to taker and posting is costed too high, not too low.",
 }
-# What would close the three open ones, in order of how much it matters:
+# What would close the open ones, in order of how much it matters:
+#   Polymarket US  the Nov 2 Pistons fill's contract count and price (Peter has it), which pins the
+#                  rate from a second independent fill; or an issuer-dated PM US schedule
 #   ProphetX       the wallet-ledger endpoint name for this API version (/v3/account/transactions
 #                  404s), or one normally-settled winning fill rather than manually_settled
-#   Polymarket US  a trades endpoint, or one filled order's fee line from a statement
 #   Kalshi maker   any maker-side fill; is_taker already splits them when data exists
 
-# canonical key -> (display, auto-eligible, manual-eligible). AUTO excludes Hard Rock by Peter's
-# instruction; Hard Rock is manual-only and its CLV is never pooled with AUTO.
 VENUES = {
     "novig.us":      ("Novig",         True,  True),
     "prophetx":      ("ProphetX",      True,  True),

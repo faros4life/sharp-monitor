@@ -67,11 +67,10 @@ PX_NHL = {"taker": 0.035, "maker": 0.01}           # F(p) = a x (1-p) per traded
 # ("the taker fee is added on top of the trade price, not taken out of it" - Novig).
 TAKER = {"kalshi":        0.07,                    # schedule, Jul 7 2026, AND 32 live fills, median
                                                    # exactly 0.0700. Verified twice over.
-         "polymarket.us": 0.06,                    # schedule via Peter. Was 0.0695 here - too high.
+         "polymarket.us": 0.0695,                  # REVERTED Nov 6. See PMUS_UNRESOLVED below.
          "novig.us":      0.0}                     # PRE-GAME straights only; see NOVIG_LIVE_TAKER.
 
-MAKER = {"polymarket.us": -0.0125,                 # a REBATE: Polymarket PAYS us to post. +0.60% at -110.
-         "novig.us":      0.0,                     # "The maker fee is $0 across all trade types."
+MAKER = {"novig.us":      0.0,                     # "The maker fee is $0 across all trade types."
          "kalshi":        0.0175}                  # CONSERVATIVE. See KALSHI_MAKER_OPEN below.
 
 # Novig is NOT flat zero, which is how this repo has modelled it. Pre-game straights are free on
@@ -81,6 +80,25 @@ MAKER = {"polymarket.us": -0.0125,                 # a REBATE: Polymarket PAYS u
 # while the closing VWAP note says "0.03 for Live". We use the worse of the two until a live fill
 # settles it. Parlays are 0.10 and already inside the quoted price; we do not trade them.
 NOVIG_LIVE_TAKER = 0.06
+
+# PMUS_UNRESOLVED. I changed this coefficient to 0.06 on text Peter pasted, then he applied the
+# test it should have faced first: official schedule, effective date, and one recent fill that
+# reconciles at the new rate. It fails all three, so it is reverted to the FILL-VERIFIED 0.0695.
+#   Oct 25 Grizzlies/Kings, Peter's own fill: effective 0.5374 exactly. A raw 0.52 under 0.0695
+#   gives 0.537347 -> 0.5374. Under 0.06 the same raw gives 0.5350. The fill fits 0.0695 and not
+#   0.06. (Nov 2 Pistons, a $7.48 gap exactly, is his second confirmation; pinning it needs the
+#   contract count and price, which I have asked for.)
+# FOUR sources disagree on one trade of 100 contracts at $0.50:
+#   Peter's Oct 25 fill            0.0695 x C x p x (1-p)      $1.74
+#   the pasted text (no issuer)    0.06   x C x p x (1-p)      $1.50
+#   CFTC filing, QCX LLC, Mar 2026 0.10% of TOTAL PREMIUM      $0.05   <- a different structure
+#   Polymarket GLOBAL category     0.03-0.07 x C x p x (1-p)   $1.75
+# The CFTC-filed US schedule is a percentage of premium, not the p(1-p) shape, and ~30x smaller.
+# It cannot be reconciled with a fill that fits p(1-p), so either the filed schedule was superseded
+# or the pasted text describes the global book. Unresolved, so the fill wins.
+# The MAKER REBATE is deliberately NOT in the table. Peter, Nov 6: "Maker rebate, if it verifies,
+# is its own separate change - never bundled." With no entry, maker falls back to taker, which
+# OVERSTATES the cost of posting - the safe direction while it is unverified.
 
 # KALSHI_MAKER_OPEN. Kalshi's maker formula is 0.0175 x M x C x p x (1-p) with "M = the multiplier
 # for each contract (default is 0 unless otherwise indicated)", and the indicated multipliers live
