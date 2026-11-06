@@ -1,0 +1,283 @@
+name: novig-probe
+
+# Manual-only, read-only, paper-only probe (Nov 6 2026). One run:
+#  1. downloads Novig's Oct 29 trades.csv + markets.csv (raw files stay on the runner; never uploaded or committed)
+#  2. validates sizes / headers / timestamps / maker-taker fields / market ids
+#  3. counts executed trades for NBA / NFL / NCAAF, totals separately
+#  4. reports whether the taker's betting direction can be identified
+#  5. restores the OddsPapi history cache RESTORE-ONLY (actions/cache/restore never saves) - zero API calls
+#  6. best-effort exact-game and same-line Pinnacle match
+#  7. uploads ONE small aggregate summary (no raw rows; 3-day retention)
+# No cron, no secrets, no live-bot changes, no OddsPapi calls.
+on:
+  workflow_dispatch:
+    inputs:
+      day:
+        description: "Trade-data day (YYYY-MM-DD)"
+        required: false
+        type: string
+        default: "2026-10-29"
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download Novig files (runner temp only)
+        env:
+          DAY: ${{ inputs.day }}
+        run: |
+          set -e
+          mkdir -p "$RUNNER_TEMP/novig"
+          for f in markets trades; do
+            url="https://data.novig.com/reporting/trade-data/${DAY}/${f}.csv"
+            curl -fsS -m 600 -o "$RUNNER_TEMP/novig/${f}.csv" "$url" || { echo "DOWNLOAD FAILED: $url"; exit 1; }
+            echo "$f.csv bytes: $(stat -c %s "$RUNNER_TEMP/novig/${f}.csv")"
+          done
+
+      - name: Restore OddsPapi history cache (restore-only, never saves)
+        uses: actions/cache/restore@v4
+        with:
+          path: hcache
+          key: hcache-restore-probe-${{ github.run_id }}
+          restore-keys: hcache-
+
+      - name: Analyze (aggregates only; raw rows are never printed)
+        env:
+          DAY: ${{ inputs.day }}
+        run: |
+          mkdir -p summary
+          python3 - <<'PY'
+          import csv, os, re, json, gzip, glob, collections, datetime as dt
+          csv.field_size_limit(10**9)
+          W = os.path.join(os.environ["RUNNER_TEMP"], "novig")
+          DAY = os.environ["DAY"]
+          out = []
+          def P(*a):
+              s = " ".join(str(x) for x in a); print(s); out.append(s)
+
+          def load(name):
+              p = os.path.join(W, name)
+              size = os.path.getsize(p)
+              with open(p, newline="", encoding="utf-8-sig", errors="replace") as fh:
+                  head = fh.read(200)
+              if head.lstrip().startswith("<"):
+                  raise SystemExit(f"{name}: looks like HTML, not CSV")
+              with open(p, newline="", encoding="utf-8-sig", errors="replace") as fh:
+                  r = csv.DictReader(fh)
+                  rows = list(r)
+                  return size, r.fieldnames or [], rows
+
+          def find(cols, *pats, excl=()):
+              for p in pats:
+                  for c in cols:
+                      l = c.lower()
+                      if re.search(p, l) and not any(re.search(e, l) for e in excl):
+                          return c
+              return None
+
+          msz, mcols, mrows = load("markets.csv")
+          tsz, tcols, trows = load("trades.csv")
+          P("## FILES")
+          P(f"markets.csv bytes {msz} rows {len(mrows)} | columns: {mcols}")
+          P(f"trades.csv  bytes {tsz} rows {len(trows)} | columns: {tcols}")
+
+          # ---- keys
+          m_id = find(mcols, r"^(market_?)?id$", r"market.*id", r"^id$")
+          t_mid = find(tcols, r"market.*id", r"^market$")
+          if not t_mid:
+              common = [c for c in tcols if c in mcols and "id" in c.lower()]
+              t_mid = common[0] if common else None
+              m_id = m_id or t_mid
+          P("market id cols: markets=", m_id, " trades=", t_mid)
+          mk = {r[m_id]: r for r in mrows} if m_id else {}
+          P(f"markets unique ids {len(mk)} | trades whose market id found in markets.csv: "
+            f"{sum(1 for r in trows if t_mid and r.get(t_mid) in mk)}/{len(trows)}")
+
+          # ---- league / totals classification
+          typecols = [c for c in mcols if re.search(r"type|name|title|desc|categ", c.lower())]
+          def league(txt):
+              t = txt.lower()
+              if re.search(r"\bncaaf\b|college football|\bcfb\b", t): return "NCAAF"
+              if re.search(r"\bnfl\b", t): return "NFL"
+              if re.search(r"\bnba\b", t): return "NBA"
+              return None
+          def is_total(row):
+              t = " ".join(row.get(c, "") for c in typecols).lower()
+              return bool(re.search(r"total|over/under|\bo/u\b|\bover\b|\bunder\b", t))
+          minfo = {}
+          for k, r in mk.items():
+              lg = league(" ".join(str(v) for v in r.values()))
+              minfo[k] = (lg, is_total(r))
+
+          # ---- value columns
+          ts_c = find(tcols, r"time|date|created|executed|^ts$")
+          px_c = find(tcols, r"price|prob|odds")
+          q_c = find(tcols, r"qty|quantity|size|amount|contracts|shares|volume")
+          def num(x):
+              try: return float(x)
+              except Exception: return None
+          def ts(x):
+              v = num(x)
+              if v is not None:
+                  for div in (1, 1e3, 1e6, 1e9):
+                      try:
+                          d = dt.datetime.fromtimestamp(v / div, dt.timezone.utc)
+                          if 2020 < d.year < 2030: return d
+                      except Exception: pass
+                  return None
+              try:
+                  d = dt.datetime.fromisoformat(str(x).strip().replace("Z", "+00:00"))
+                  return d if d.tzinfo else d.replace(tzinfo=dt.timezone.utc)
+              except Exception:
+                  return None
+
+          cnt = collections.Counter(); qty = collections.Counter()
+          tsv = []; pxv = []; qv = []
+          for r in trows:
+              lg, tot = minfo.get(r.get(t_mid), (None, False)) if t_mid else (None, False)
+              if lg:
+                  cnt[(lg, "ALL")] += 1; q = num(r.get(q_c)) if q_c else None
+                  qty[(lg, "ALL")] += q or 0
+                  if tot:
+                      cnt[(lg, "TOTALS")] += 1; qty[(lg, "TOTALS")] += q or 0
+              if ts_c: tsv.append(ts(r.get(ts_c)))
+              if px_c: pxv.append(num(r.get(px_c)))
+              if q_c: qv.append(num(r.get(q_c)))
+          P("\n## EXECUTED TRADES (rows in trades.csv; one row assumed = one execution - verify)")
+          P("| league | all markets | totals | totals qty |"); P("|---|---|---|---|")
+          for lg in ("NBA", "NFL", "NCAAF"):
+              P(f"| {lg} | {cnt[(lg,'ALL')]} | {cnt[(lg,'TOTALS')]} | {qty[(lg,'TOTALS')]:.0f} |")
+          unk = sum(1 for r in trows if (minfo.get(r.get(t_mid), (None, 0))[0] is None))
+          P(f"trades with league not NBA/NFL/NCAAF (other sports or unclassified): {unk}")
+
+          P("\n## TIMESTAMPS / PRICE / QTY")
+          good = [t for t in tsv if t]
+          if ts_c:
+              P(f"ts col {ts_c}: parsed {len(good)}/{len(tsv)}"
+                + (f" | min {min(good).isoformat()} max {max(good).isoformat()} | sorted asc: "
+                   f"{all(a <= b for a, b in zip(good, good[1:]))}" if good else ""))
+          else: P("no timestamp column found")
+          for nm, col, v in (("price", px_c, pxv), ("qty", q_c, qv)):
+              vv = [x for x in v if x is not None]
+              P(f"{nm} col {col}: numeric {len(vv)}/{len(v)}" + (f" | min {min(vv)} max {max(vv)}" if vv else ""))
+
+          P("\n## MAKER / TAKER / SIDE FIELDS")
+          sidecols = [c for c in tcols if re.search(r"taker|maker|aggress|side|direction|buy|sell|initiat|outcome|role", c.lower())]
+          for c in sidecols:
+              d = collections.Counter(r.get(c, "") for r in trows)
+              P(f"{c}: {len(d)} distinct" + (f" -> {dict(d.most_common(8))}" if len(d) <= 12 else " (id-like, values not printed)"))
+          tk = [c for c in tcols if re.search(r"taker|aggress|initiat", c.lower())]
+          mkr = [c for c in tcols if re.search(r"maker", c.lower())]
+          P("aggressor columns:", tk, "| maker columns:", mkr)
+          P("AGGRESSOR VERDICT (heuristic - read the columns above): "
+            + ("a taker/aggressor field exists; combine it with the outcome/side column to get the taker's bet direction"
+               if tk else "NO explicit taker/aggressor field; direction would have to be inferred (not reliable)"))
+
+          # ---- sample of league totals market descriptions (public market text only)
+          P("\n## SAMPLE TOTAL MARKETS (type/name columns only)")
+          shown = 0
+          for k, (lg, tot) in minfo.items():
+              if lg and tot and shown < 4:
+                  P(lg, {c: mk[k].get(c, "")[:60] for c in typecols[:4]}); shown += 1
+          if shown == 0: P("(none classified as league totals - check columns)")
+
+          # ---- Pinnacle cache matching (restore-only; best effort)
+          P("\n## PINNACLE CACHE MATCH (best effort)")
+          fx = {}
+          try:
+              fx = json.load(open("oddspapi/fixtures.json")).get("fixtures", {})
+          except Exception as e:
+              P("fixtures.json unreadable:", e)
+          lo = dt.datetime.fromisoformat(DAY).replace(tzinfo=dt.timezone.utc) - dt.timedelta(hours=6)
+          hi = lo + dt.timedelta(hours=42)
+          cand = {}
+          for fid, f in fx.items():
+              try:
+                  s = dt.datetime.fromisoformat(f["start"].replace("Z", "+00:00"))
+              except Exception: continue
+              if f.get("lg") in ("NBA", "NFL", "NCAAF") and lo <= s <= hi: cand[fid] = f
+          pin = {fid for fid in cand if os.path.exists(f"hcache/{fid}__pinnacle.json.gz")}
+          P(f"hcache files: {len(glob.glob('hcache/*__pinnacle.json.gz'))} pinnacle | fixtures (repo file) in window: {len(cand)} | with pinnacle file: {len(pin)}")
+          evc = find(mcols, r"event.*(name|title)", r"game", r"event")
+          P("event column used:", evc)
+          def variants(n):
+              n = n.lower(); return {n, n.rsplit(" ", 1)[0]}
+          ev_tot = collections.defaultdict(list)
+          for k, (lg, tot) in minfo.items():
+              if lg and tot and evc: ev_tot[(lg, mk[k].get(evc, ""))].append(k)
+          match = {}
+          for (lg, ev), ks in ev_tot.items():
+              t = ev.lower()
+              for fid, f in cand.items():
+                  if f["lg"] == lg and any(v in t for v in variants(f["n1"])) and any(v in t for v in variants(f["n2"])):
+                      match[(lg, ev)] = fid; break
+          tot_trades = collections.Counter(); hit_trades = collections.Counter(); pin_trades = collections.Counter()
+          for r in trows:
+              k = r.get(t_mid); lg, tot = minfo.get(k, (None, False)) if t_mid else (None, False)
+              if lg and tot and evc:
+                  key = (lg, mk[k].get(evc, "")); tot_trades[lg] += 1
+                  if key in match:
+                      hit_trades[lg] += 1
+                      if match[key] in pin: pin_trades[lg] += 1
+          P("| league | total-trades | game matched to fixture | + pinnacle file in cache |"); P("|---|---|---|---|")
+          for lg in ("NBA", "NFL", "NCAAF"):
+              n = tot_trades[lg]
+              pct = lambda x: f"{x} ({100*x/n:.0f}%)" if n else "0"
+              P(f"| {lg} | {n} | {pct(hit_trades[lg])} | {pct(pin_trades[lg])} |")
+          P(f"distinct Novig total games: {len(ev_tot)} | matched to a fixture: {len(match)}")
+
+          # same-line: compare Novig strike with numbers found in Pinnacle file (structure unknown -> prints key shape)
+          line_c = find(mcols, r"strike|line|point|handicap|threshold")
+          P("line column used:", line_c, "(else parsed from market text)")
+          def pin_lines(fid):
+              try: d = json.load(gzip.open(f"hcache/{fid}__pinnacle.json.gz", "rt"))
+              except Exception: return None
+              vals = set()
+              def walk(o, depth=0):
+                  if isinstance(o, dict):
+                      for k, v in o.items():
+                          if re.search(r"handicap|line|point|total", str(k).lower()):
+                              x = num(v)
+                              if x is not None: vals.add(round(x, 2))
+                          walk(v, depth + 1)
+                  elif isinstance(o, list):
+                      for v in o[:2000]: walk(v, depth + 1)
+              walk(d); return vals
+          shape_done = False; same = collections.Counter(); chk = collections.Counter()
+          cache_lines = {}
+          for (lg, ev), fid in match.items():
+              if fid not in pin: continue
+              if fid not in cache_lines: cache_lines[fid] = pin_lines(fid)
+              if not shape_done and cache_lines[fid] is not None:
+                  d = json.load(gzip.open(f"hcache/{fid}__pinnacle.json.gz", "rt"))
+                  bm = d.get("bookmakers", d) if isinstance(d, dict) else {}
+                  P("pinnacle file top-level keys:", list(d)[:6] if isinstance(d, dict) else type(d).__name__,
+                    "| bookmakers keys:", list(bm)[:4] if isinstance(bm, dict) else "-")
+                  shape_done = True
+              for k in ev_tot[(lg, ev)]:
+                  r = mk[k]
+                  x = num(r.get(line_c)) if line_c else None
+                  if x is None:
+                      m = re.search(r"(\d+\.\d)", " ".join(r.get(c, "") for c in typecols)); x = float(m.group(1)) if m else None
+                  chk[lg] += 1
+                  if x is not None and cache_lines[fid] and round(x, 2) in cache_lines[fid]: same[lg] += 1
+          P("| league | total markets checked | Novig line also a Pinnacle line (same game) |"); P("|---|---|---|")
+          for lg in ("NBA", "NFL", "NCAAF"):
+              P(f"| {lg} | {chk[lg]} | {same[lg]} |")
+          P("NOTE: same-line check only tests that the number appears among Pinnacle's lines for that game; "
+            "a proper tick-level same-line check needs clv_std/cl.book_markets once the schema is confirmed.")
+          open("summary/summary.md", "w").write("\n".join(out) + "\n")
+          PY
+
+      - name: Upload summary only (no raw trade files)
+        uses: actions/upload-artifact@v4
+        with:
+          name: novig-probe-summary
+          path: summary/summary.md
+          retention-days: 3
