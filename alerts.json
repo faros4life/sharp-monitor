@@ -92,7 +92,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+0.5 pts",
+   "clv": "+1 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline"
@@ -248,7 +248,7 @@
   },
   {
    "alert_utc": "2026-11-06T11:00:20Z",
-   "beat_close": true,
+   "beat_close": false,
    "beat_true_close": null,
    "bet": "St. Thomas (MN) Tommies +14.5 (-104)",
    "book": "Novig",
@@ -256,7 +256,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+0.5 pts",
+   "clv": "+0 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline"
@@ -289,7 +289,7 @@
   },
   {
    "alert_utc": "2026-11-06T12:25:20Z",
-   "beat_close": true,
+   "beat_close": false,
    "beat_true_close": null,
    "bet": "Over 229.5 (-110)",
    "book": "Hard Rock",
@@ -297,7 +297,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+1 pts",
+   "clv": "+0 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline"
@@ -338,7 +338,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+0.5 pts",
+   "clv": "+2 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline"
@@ -379,7 +379,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+0.5 pts",
+   "clv": "+1.5 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline"
@@ -445,6 +445,47 @@
    "pricing_bettable": true,
    "result": null,
    "score": 67,
+   "sent_to_phone": false,
+   "sport": "NCAAB",
+   "start_utc": "2026-11-07T00:00:00Z",
+   "top25": false,
+   "units_flat": null
+  },
+  {
+   "alert_utc": "2026-11-06T13:10:14Z",
+   "beat_close": true,
+   "beat_true_close": null,
+   "bet": "Indiana St Sycamores +2.5 (-111)",
+   "book": "Novig",
+   "book_key": "novig",
+   "close_fair_prob": null,
+   "close_read_mins_before": null,
+   "close_value_pct": null,
+   "clv": "+0.5 pts",
+   "confirm": "yes",
+   "confirmed_by": [
+    "BetOnline"
+   ],
+   "edge_pct": -3.8,
+   "executable_book": true,
+   "fade_book": "novig",
+   "fade_point": -2.5,
+   "fade_price": 102,
+   "fade_price_after_fee": 102,
+   "fade_units": null,
+   "final": null,
+   "floor_line": 2.5,
+   "game": "Indiana St Sycamores @ Ball State Cardinals",
+   "grade": "A",
+   "kind": "spr",
+   "late": false,
+   "minutes_before_start": 650,
+   "point": 2.5,
+   "price": -111,
+   "price_after_fee": -111,
+   "pricing_bettable": true,
+   "result": null,
+   "score": 77,
    "sent_to_phone": false,
    "sport": "NCAAB",
    "start_utc": "2026-11-07T00:00:00Z",
@@ -30405,6 +30446,54 @@
   }
  ],
  "all_alerts": [
+  {
+   "alert_text": "Xavier Musketeers -22.5 (-115) at Hard Rock (also: ProphetX, Novig, Kalshi)",
+   "bet": "Xavier Musketeers -22.5 (-115)",
+   "bet_result": null,
+   "book": "Hard Rock",
+   "confirmed_by": [
+    "BetOnline"
+   ],
+   "edge_pct": 0.5,
+   "final": null,
+   "game": "Eastern Michigan Eagles @ Xavier Musketeers",
+   "grade": "A",
+   "late": false,
+   "minutes_before_start": 650,
+   "price": -115,
+   "price_after_fee": -115,
+   "pushed_to_phone": false,
+   "repeat": true,
+   "score": 77,
+   "sent_et": "2026-11-06 08:10",
+   "sport": "NCAAB",
+   "start_utc": "2026-11-07T00:00:00Z",
+   "why": "Pinnacle moved -23 -> -24; bet only at -23.5 or better (confirmed by BetOnline)"
+  },
+  {
+   "alert_text": "Indiana St Sycamores +2.5 (-111) at Novig (also: ProphetX, Kalshi)",
+   "bet": "Indiana St Sycamores +2.5 (-111)",
+   "bet_result": null,
+   "book": "Novig",
+   "confirmed_by": [
+    "BetOnline"
+   ],
+   "edge_pct": -3.8,
+   "final": null,
+   "game": "Indiana St Sycamores @ Ball State Cardinals",
+   "grade": "A",
+   "late": false,
+   "minutes_before_start": 650,
+   "price": -111,
+   "price_after_fee": -111,
+   "pushed_to_phone": false,
+   "repeat": false,
+   "score": 77,
+   "sent_et": "2026-11-06 08:10",
+   "sport": "NCAAB",
+   "start_utc": "2026-11-07T00:00:00Z",
+   "why": "Pinnacle moved +3 -> +2; bet only at +2.5 or better (confirmed by BetOnline)"
+  },
   {
    "alert_text": "Over 229.5 (-110) at Hard Rock (also: ProphetX)",
    "bet": "Over 229.5 (-110)",
