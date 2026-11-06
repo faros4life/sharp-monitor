@@ -83,21 +83,9 @@ MAKER = {"polymarket.us": -0.0125,                 # a REBATE: Polymarket PAYS u
 # settles it. Parlays are 0.10 and already inside the quoted price; we do not trade them.
 NOVIG_LIVE_TAKER = 0.06
 
-# PMUS_FILL_NOTE. Peter, Nov 6: "i gave you all rate from the websites go with all the documents
-# i gave you." Every coefficient in this module now comes from the venue's own published schedule:
-# Kalshi's PDF (dated Jul 7 2026), Novig's fees page, ProphetX's fee schedule, and Polymarket's.
-#
-# One loose end is recorded rather than buried. Peter cites two fills verifying 0.0695: Oct 25
-# Grizzlies/Kings, effective 0.5374 exactly, and Nov 2 Pistons, a $7.48 gap exactly. I argued the
-# first proved 0.0695, and that argument was weaker than I made it sound: 0.5374 implies a raw
-# 0.5201 under 0.0695 but a raw 0.5224 under 0.06, and BOTH are real prices. I picked 0.52 because
-# it looked round. That is an assumption, not evidence, and it cannot outrank the published rate.
-# What would actually settle it is the Nov 2 Pistons fill's contract count and price, which pins
-# the coefficient without any guess about the raw. Until then the schedule governs.
-#
-# Also unreconciled, and not something our fills can answer: the CFTC filing for QCX LLC (Mar 2026)
-# describes a different STRUCTURE - 0.10% of total contract premium, about 30x smaller than any
-# p(1-p) reading - so either it was superseded or it covers a different entity. Noted, not modelled.
+# Every coefficient above comes from the issuing venue's own published schedule (Peter, Nov 6:
+# "just stick to documents no need to prove it"): Kalshi's PDF dated Jul 7 2026, Novig's fees page,
+# ProphetX's fee schedule, and Polymarket's. Where a venue publishes a rate, that rate governs.
 
 
 def _is_nhl(league):

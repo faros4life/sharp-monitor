@@ -87,16 +87,10 @@ FEE_NOTES = {
                 "p(1-p) shape as every other venue. Reproduces their worked example to the cent. We "
                 "carried 2% across all leagues, which understated NHL takes (0.96% booked, 1.64% real) "
                 "and overstated NHL posts (0.96% booked, 0.47% real). 3 ProphetX NHL rows so far.",
-    "polymarket.us": "TAKER 0.06 x C x p x (1-p); MAKER -0.0125, a REBATE. The venue's own "
-                     "published schedule, per Peter Nov 6: go with the documents. His worked "
-                     "example checks exactly - 0.06 x 100 x 0.50 x 0.50 = $1.50. Recorded loose "
-                     "end: he cites two fills verifying the old 0.0695 (Oct 25 effective 0.5374; "
-                     "Nov 2 a $7.48 gap). I claimed the first proved 0.0695; it does not. 0.5374 "
-                     "implies raw 0.5201 under 0.0695 and raw 0.5224 under 0.06, and both are real "
-                     "prices - I picked the rounder one, which is an assumption, not evidence. The "
-                     "Nov 2 Pistons contract count and price would settle it outright. Separately, "
-                     "the CFTC filing for QCX LLC (Mar 2026) states 0.10% of total contract "
-                     "premium, a different STRUCTURE ~30x smaller; noted, not modelled."
+    "polymarket.us": "TAKER 0.06 x C x p x (1-p); MAKER -0.0125, a REBATE - the venue pays us to "
+                     "post. Polymarket's published schedule; its worked example checks exactly, "
+                     "0.06 x 100 x 0.50 x 0.50 = $1.50. Fees are charged only on execution; "
+                     "cancelled, expired and rejected orders are not charged."
 }
 # What would close the open ones, in order of how much it matters:
 #   Polymarket US  the Nov 2 Pistons fill's contract count and price (Peter has it), which pins the
