@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 6, 12:30 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 9.
+Updated Fri Nov 6, 12:40 AM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 10.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 6 12:40AM | TENNIS | Shelton vs Paul | moneyline: Shelton | kalshi | $440k | +117 |  |  | +0.0c |  | pending |
 | Nov 5 10:30PM | TENNIS | Sonmez vs Liu | moneyline: Sonmez | kalshi | $46k | +113 |  |  | +1.0c |  | pending |
 | Nov 5 10:30PM | NCAAB | Yale vs UCF | moneyline: UCF | kalshi | $43k | -426 |  |  | +0.0c | yes | pending |
 | Nov 5 5:10PM | NCAAB | Mercyhurst @ Notre Dame | spread: Mercyh +21.5 (-21.5) | novig | $67k | +102 |  | ❌ | +0.0c |  | L |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 25 4:50AM | TENNIS | Valentova vs Zhang | moneyline: Valentova | kalshi | $27k | -270 |  |  | +0.0c |  | W |
 | Oct 25 1:10AM | MLB | Milwaukee vs Tampa Bay: Spread | spread: NOT Milwaukee wins by over 1.5 runs | kalshi | $58k | -203 | ✅ polymarket |  | -31.0c | yes | L |
 | Oct 25 12:30AM | MLB | Game 3: Milwaukee vs Tampa Bay | moneyline: Tampa Bay | kalshi | $146k | -104 |  |  | -50.0c | yes | L |
-| Oct 24 11:50PM | TENNIS | Lee vs Pridankina | moneyline: Lee | kalshi | $79k | -285 |  |  | -5.0c |  | W |
