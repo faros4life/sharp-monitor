@@ -104,9 +104,12 @@ function render(){
           const fp=MK==="m"?f:f[1], fpt=MK==="m"?null:f[0], px=MK==="m"?v:v[1];
           if(MK==="m"||fpt===v[0]){const e=(prob(fp)/prob(px)-1)*100;if(Math.abs(e)>=0.05)ev=`<span class="ev ${e>0?"p":"n"}">${e>0?"+":""}${e.toFixed(1)}%</span>`}
         }
-        const L0=g.links&&g.links[b],l1=L0&&L0[MK]&&L0[MK][s],lk=L0&&((l1&&!/[{}]/.test(l1)&&l1)||L0.e);   // Nov 5: Novig side links carry a {wager} placeholder -> use its event link
+        const L0=g.links&&g.links[b],l1=L0&&L0[MK]&&L0[MK][s];let lk=L0&&((l1&&!/[{}]/.test(l1)&&l1)||L0.e);   // Nov 5: Novig side links carry a {wager} placeholder -> use its event link
+        // Nov 6 (Peter): Hard Rock must open the APP on the phone. Use Hard Rock's own share-link format (opens the app with the bet on the slip).
+        const hm=lk&&b.startsWith("hardrock")&&lk.match(/deep_link_value=betslip\/(\d+)/);
+        if(hm)lk="https://share.hardrock.bet/Pt0T/bet?deep_link_value=hardrock://betslip/"+hm[1];
         const safe=lk&&/^https:\/\//.test(lk)?lk.replace(/"/g,"%22"):null;
-        html+=`<td class="${best[i]===b?"b":""}">${safe?`<a href="${safe}" target="_blank" rel="noopener">${txt}</a>`:txt}${ev}</td>`;
+        html+=`<td class="${best[i]===b?"b":""}">${safe?`<a href="${safe}"${hm?"":` target="_blank" rel="noopener"`}>${txt}</a>`:txt}${ev}</td>`;
       });
       html+=`</tr>`;
     }
