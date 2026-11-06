@@ -45,6 +45,16 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install -q cryptography
+      # Nov 6: the history cache is a GitHub ACTIONS cache, not a committed directory. My first
+      # two runs omitted this step, so hcache/ was empty and all 1,774 rows fell out on "fixture
+      # not in the history cache" - the report was correct, it simply had nothing to read.
+      # restore-only, exactly as liq-history-test does it: this job never writes the cache back.
+      - name: Restore shared OddsPapi history cache (read only)
+        uses: actions/cache/restore@v4
+        with:
+          path: hcache
+          key: hcache-${{ github.run_id }}
+          restore-keys: hcache-
       - name: CLV report (cache only, zero credits)
         env:
           GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
@@ -53,6 +63,7 @@ jobs:
           # required: without it the fixture cache cannot be decrypted and the run stops
           TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
           ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
+          ODDSPAPI_FREE_KEY: ${{ secrets.ODDSPAPI_FREE_KEY }}
           CLV_FROM: ${{ inputs.from }}
           CLV_QUOTE_MAX_AGE_S: ${{ inputs.quote_max_age_s }}
           CLV_QUOTE_MIN_SIZE: ${{ inputs.quote_min_size }}
