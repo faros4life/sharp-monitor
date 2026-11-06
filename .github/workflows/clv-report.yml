@@ -26,11 +26,7 @@ on:
         required: false
         type: string
         default: "900"
-      quote_min_size:
-        description: "minimum displayed size; 0 counts unsized quotes but reports how many"
-        required: false
-        type: string
-        default: "0"
+      # no quote_min_size input: displayed size is not an eligibility requirement (Peter, Nov 6)
 
 permissions:
   contents: read
@@ -66,5 +62,4 @@ jobs:
           ODDSPAPI_FREE_KEY: ${{ secrets.ODDSPAPI_FREE_KEY }}
           CLV_FROM: ${{ inputs.from }}
           CLV_QUOTE_MAX_AGE_S: ${{ inputs.quote_max_age_s }}
-          CLV_QUOTE_MIN_SIZE: ${{ inputs.quote_min_size }}
         run: python -u clv_report.py

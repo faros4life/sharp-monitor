@@ -49,7 +49,7 @@ import exchange_lag as el
 
 # Stamp this on every CLV figure (Peter, item 2: "record the fee-model version used").
 # Bump it whenever eff(), a coefficient, or the venue registry changes.
-FEE_MODEL = "2026-11-06.10"
+FEE_MODEL = "2026-11-06.11"
 # Each entry carries its VERIFICATION STATUS, not just its rate. Peter, Nov 6: "cant you check out
 # fills or the account" - so where his own exports could settle a coefficient, they were used, and
 # where they could not, that is stated rather than assumed.
@@ -162,7 +162,7 @@ def canon(book, strict=True):
     return None
 
 
-def net_dec(book, raw_dec, maker=False):
+def net_dec(book, raw_dec, maker=False, league=None, live=False):
     """Effective decimal AFTER that venue's fee. Hard Rock and Novig return the raw price unchanged,
     for different reasons: Novig charges nothing, Hard Rock's vig is already in the price.
 
@@ -175,18 +175,23 @@ def net_dec(book, raw_dec, maker=False):
                            f"and it must not enter AUTO or MANUAL opportunity")
     if raw_dec is None or raw_dec <= 1:
         return None
-    return raw_dec if c == "hardrockbet" else el.eff(c, float(raw_dec), maker)
+    # Nov 6 (Peter, code review): league and live were not passed through, so ProphetX NHL was
+    # priced on the 2%-of-gains commission instead of its 0.035/0.01 maker-taker scale, and a Novig
+    # live or futures take was priced at zero instead of 0.06. Both are documented schedules that
+    # eff() already implements - the context simply never reached it. Callers that know the league
+    # must pass it; the defaults keep the pre-game, non-NHL behaviour every existing caller assumes.
+    return raw_dec if c == "hardrockbet" else el.eff(c, float(raw_dec), maker, live, league)
 
 
-def net_clv(close_prob, raw_dec, book, maker=False):
+def net_clv(close_prob, raw_dec, book, maker=False, league=None, live=False):
     """The one formula, as a percentage. None when any input is missing."""
-    nd = net_dec(book, raw_dec, maker)
+    nd = net_dec(book, raw_dec, maker, league, live)
     if nd is None or close_prob is None:
         return None
     return round(100.0 * (float(close_prob) * nd - 1.0), 3)
 
 
-def best_net(quotes, scope="auto", maker=False):
+def best_net(quotes, scope="auto", maker=False, league=None, live=False):
     """(canonical venue, net decimal, SOURCE venue key as the row spelled it) for the best price
     AFTER fees within a scope.
 
@@ -208,7 +213,7 @@ def best_net(quotes, scope="auto", maker=False):
             continue                       # reported by the caller, never priced as free
         if c not in allow:
             continue
-        nd = net_dec(c, raw, maker)
+        nd = net_dec(c, raw, maker, league, live)
         if nd is not None and (best is None or nd > best[1]):
             best = (c, nd, bk)
     return best if best else (None, None, None)

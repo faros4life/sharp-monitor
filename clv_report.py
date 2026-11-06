@@ -100,8 +100,10 @@ def main():
     say("VALUE LAB CLV REPORT")
     say("SCOPE: LIQUIDITY ALERTS ONLY - not system-wide. This speaks for no other lane or test.")
     say(cs.stamp())
-    say(f"Quote safeguard: contemporaneous within {QUOTE_MAX_AGE_S}s, displayed size >= "
-        f"{QUOTE_MIN_SIZE:g}. Age printed on every headline row; failures are quote-only, excluded.")
+    say(f"Quote rule: read AT OR BEFORE the alert timestamp - no look-ahead - and no staler than "
+        f"{QUOTE_MAX_AGE_S}s. Age printed on every headline row; a stale quote is excluded.")
+    say("Displayed size is NOT an eligibility requirement (Peter's decision, Nov 6). Size is "
+        "reported where known and never used to admit or reject a posting opportunity.")
     say("Public log carries counts, percentages and field names only - never an amount.")
 
     try:
@@ -173,8 +175,14 @@ def main():
             drop(f"close not same-line (derived: {c.get('how')})")
             continue
 
-        # the opportunity set, with Peter's safeguard applied per quote
-        when = min(t0 + timedelta(seconds=QUOTE_MAX_AGE_S), start) if start else t0
+        # the opportunity set, with Peter's safeguard applied per quote.
+        # Nov 6 (Peter, code review): this read the book AS OF t0 + QUOTE_MAX_AGE_S, i.e. up to 15
+        # MINUTES AFTER the alert fired - look-ahead bias, and it would have flattered every
+        # opportunity figure with prices nobody could have seen at the alert. two_way() returns the
+        # last tick AT OR BEFORE the time it is given, so the read time is the alert itself and
+        # QUOTE_MAX_AGE_S does the job it was named for: a ceiling on how STALE a quote may be,
+        # never a licence to look forward.
+        when = t0
         quotes, ages, sizes, unqualified = {}, {}, {}, 0
         for slug in EXCH:
             bk = cl.book_markets(h, slug)
@@ -190,18 +198,18 @@ def main():
             if age is None or age > QUOTE_MAX_AGE_S:
                 unqualified += 1
                 continue
-            # sufficient displayed size? size None = unknown, allowed only while the bar is 0
-            if QUOTE_MIN_SIZE > 0 and (size is None or size < QUOTE_MIN_SIZE):
-                unqualified += 1
-                continue
+            # Peter, Nov 6: displayed size is NOT an eligibility requirement for a posting
+            # opportunity. It is recorded and reported, and it never admits or rejects a quote.
             quotes[slug], ages[slug], sizes[slug] = raw, age, size
 
         if not quotes:
             drop("quote-only: no contemporaneous, sufficiently sized quote at the alert")
             continue
 
-        av, and_, asrc = cs.best_net(quotes, "auto")
-        mv, mnd, msrc = cs.best_net(quotes, "manual")
+        # league drives ProphetX's NHL schedule; live=False because this population is pre-game
+        # alerts by construction (close_price is the last PREGAME price), never in-game Novig.
+        av, and_, asrc = cs.best_net(quotes, "auto", league=lg, live=False)
+        mv, mnd, msrc = cs.best_net(quotes, "manual", league=lg, live=False)
         if and_ is None:
             drop("quote-only: no AUTO-eligible quote cleared the safeguard")
             continue

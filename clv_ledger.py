@@ -445,6 +445,12 @@ def close_for(b, f, pm, mkmap, start, lg):
         if o1 not in tw or o2 not in tw:
             return None, "no Pinnacle moneyline close"
         age = (start - min(tw[o1][1], tw[o2][1])).total_seconds() / 60
+        # Nov 6 (Peter, code review): the spreads/totals branch below drops a candidate whose last
+        # tick is older than FRESH_MIN, and this branch computed the same age and then ignored it.
+        # A moneyline close could therefore be a day-plus stale and still be reported as verified.
+        # The registered freshness rule now applies to BOTH paths, as it always should have.
+        if age > FRESH_MIN:
+            return None, "Pinnacle moneyline close older than the freshness limit"
         p = novig_p(tw[o1][0], tw[o2][0])
         return {"p": p if side == "1" else 1 - p, "how": "moneyline", "age_min": round(age)}, None
     # spreads / totals: every Pinnacle line of that type for this fixture
