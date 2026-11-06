@@ -383,6 +383,7 @@ def main():
     except Exception as exn:   # the report must still arrive even if the attachment fails
         print(f"per-play export failed: {str(exn)[:80]}")
         ex.send("Bets LIQUIDITY vs HISTORY (paper)" + (" - FROZEN BOARD PLAYS" if (os.environ.get("LIQH_FROZEN") or "") == "1" else ""), "\n".join(L))
+    print("liq history test: not read -> " + ", ".join(f"{k} {v}" for k, v in miss.items() if v))   # Nov 5: why, in the log
     print(f"liq history test: scope {len(A)}, read {len(R)}, gettable {sum(r['gettable'] for r in R)}, "
           f"rule {len(rule)}, cache hits {hc.STATS['hit']}, downloads {hc.STATS['miss']}")   # counts only
 
