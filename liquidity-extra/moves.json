@@ -1,16 +1,109 @@
 {
  "moves": [
   {
+   "alerted_utc": "2026-11-06T10:50:17Z",
+   "bar": false,
+   "best_price": 0.555,
+   "best_price_book": "novig",
+   "book": "novig",
+   "close_price": 0.555,
+   "clv_cents": 0.0,
+   "date": "2026-11-06",
+   "dir": "RAISE",
+   "ex_stats": {
+    "openInterest": 30749.0,
+    "volume": 32709.0
+   },
+   "first_play": false,
+   "game": "Massachusetts @ Boston College",
+   "key": "novig|{\"market_id\": \"01a1acd8-0e09-7ac1-8747-e5fffde9be21\", \"outcome_id\": \"01a1acd8-0e09-7ac1-8747-e61efc043003\"}",
+   "lead_min": 610,
+   "league": "NCAAB",
+   "league_x": 0.57,
+   "line": 6.5,
+   "market": "spread",
+   "normal_4h": 251,
+   "now": 545,
+   "other_side_now": 328,
+   "paper_only": true,
+   "price": 0.555,
+   "price_american": -125,
+   "ref": {
+    "market_id": "01a1acd8-0e09-7ac1-8747-e5fffde9be21",
+    "outcome_id": "01a1acd8-0e09-7ac1-8747-e61efc043003"
+   },
+   "result": null,
+   "side": "Massachusetts",
+   "side_label": "MASS +6.5 (-6.5)",
+   "side_raw": 0,
+   "start_utc": "2026-11-06T21:00:00Z",
+   "teams": [
+    "Massachusetts",
+    "Boston College"
+   ],
+   "units_flat": null,
+   "x": 2.17
+  },
+  {
+   "alerted_utc": "2026-11-06T10:50:17Z",
+   "bar": true,
+   "best_price": 0.6267,
+   "best_price_book": "kalshi",
+   "book": "kalshi",
+   "close_price": 0.61,
+   "clv_cents": 0.0,
+   "date": "2026-11-06",
+   "dir": "RAISE",
+   "ex_stats": {
+    "open_interest_fp": 644.78,
+    "volume_24h_fp": 649.78,
+    "volume_fp": 649.78
+   },
+   "first_play": true,
+   "game": "Boston University vs Brown: Point Total",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAMBTOTAL-26NOV06BUBRWN-152\"}",
+   "lead_min": 790,
+   "league": "NCAAB",
+   "league_x": 2.13,
+   "line": 151.5,
+   "market": "total",
+   "normal_4h": 9310,
+   "now": 28856,
+   "other_side_now": 4043,
+   "paper_only": true,
+   "price": 0.61,
+   "price_american": -156,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBTOTAL-26NOV06BUBRWN-152"
+   },
+   "result": null,
+   "side": "OVER",
+   "side_label": "Over 151.5 points",
+   "side_raw": "OVER",
+   "start_utc": "2026-11-07T00:00:00Z",
+   "teams": [
+    "Boston University",
+    "Brown"
+   ],
+   "units_flat": null,
+   "x": 3.1
+  },
+  {
    "alerted_utc": "2026-11-06T10:40:17Z",
    "bar": true,
    "best_price": 0.46,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.46,
-   "clv_cents": 0.0,
+   "close_price": 0.44,
+   "clv_cents": -2.0,
    "date": "2026-11-06",
    "dir": "RAISE",
    "ex_stats": {
+    "openInterest": 0.0,
+    "volume": 0.0
+   },
+   "ex_stats_close": {
     "openInterest": 0.0,
     "volume": 0.0
    },
@@ -50,11 +143,15 @@
    "best_price": 0.63,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.63,
-   "clv_cents": 0.0,
+   "close_price": 0.625,
+   "clv_cents": -0.5,
    "date": "2026-11-06",
    "dir": "RAISE",
    "ex_stats": {
+    "openInterest": 0.0,
+    "volume": 0.0
+   },
+   "ex_stats_close": {
     "openInterest": 0.0,
     "volume": 0.0
    },
@@ -112,6 +209,8 @@
    "other_side_now": 79,
    "paper_only": true,
    "price": 0.5074,
+   "price_after_15m": 0.5124,
+   "price_after_15m_book": "prophetx",
    "price_american": -103,
    "ref": {
     "line": 163.5,
@@ -124,6 +223,7 @@
    "side_label": "under 163.5 (163.5)",
    "side_raw": "UNDER",
    "start_utc": "2026-11-07T02:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Cal State Northridge",
     "Kansas State"
@@ -155,6 +255,8 @@
    "other_side_now": 47,
    "paper_only": true,
    "price": 0.5238,
+   "price_after_15m": 0.5288,
+   "price_after_15m_book": "prophetx",
    "price_american": -110,
    "ref": {
     "line": 2.0,
@@ -167,6 +269,7 @@
    "side_label": "Southern Illinois -2 (-2)",
    "side_raw": 0,
    "start_utc": "2026-11-07T01:30:00Z",
+   "still_actionable": true,
    "teams": [
     "Southern Illinois",
     "Kansas City"
@@ -198,6 +301,8 @@
    "other_side_now": 44,
    "paper_only": true,
    "price": 0.5261,
+   "price_after_15m": 0.5311,
+   "price_after_15m_book": "prophetx",
    "price_american": -111,
    "ref": {
     "line": 2.0,
@@ -210,6 +315,7 @@
    "side_label": "Kansas City +2 (+2)",
    "side_raw": 1,
    "start_utc": "2026-11-07T01:30:00Z",
+   "still_actionable": true,
    "teams": [
     "Southern Illinois",
     "Kansas City"
@@ -241,6 +347,8 @@
    "other_side_now": 76,
    "paper_only": true,
    "price": 0.5122,
+   "price_after_15m": 0.5,
+   "price_after_15m_book": "novig",
    "price_american": -105,
    "ref": {
     "line": 23.5,
@@ -253,6 +361,7 @@
    "side_label": "Southern +23.5 (+23.5)",
    "side_raw": 0,
    "start_utc": "2026-11-07T01:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Southern",
     "TCU"
@@ -291,6 +400,8 @@
    "other_side_now": 368,
    "paper_only": true,
    "price": 0.5,
+   "price_after_15m": 0.5,
+   "price_after_15m_book": "novig",
    "price_american": -100,
    "ref": {
     "market_id": "01a1af65-4b96-7bd0-b5eb-e5adbcf01274",
@@ -301,6 +412,7 @@
    "side_label": "SOU +23.5 (-23.5)",
    "side_raw": 0,
    "start_utc": "2026-11-07T01:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Southern",
     "TCU"
@@ -339,6 +451,8 @@
    "other_side_now": 56,
    "paper_only": true,
    "price": 0.64,
+   "price_after_15m": 0.64,
+   "price_after_15m_book": "novig",
    "price_american": -178,
    "ref": {
     "market_id": "01a1aea9-9f6b-75d0-b303-39c22ec170e0",
@@ -349,6 +463,7 @@
    "side_label": "Under 160.5 (160.5)",
    "side_raw": "UNDER",
    "start_utc": "2026-11-07T00:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Georgia Southern",
     "Georgia Tech"
@@ -3641,8 +3756,8 @@
    "best_price": 0.525,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.5349,
-   "clv_cents": 0.0,
+   "close_price": 0.5434,
+   "clv_cents": 0.8,
    "date": "2026-11-06",
    "dir": "RAISE",
    "ex_stats": null,
@@ -4040,8 +4155,8 @@
    "best_price": 0.31,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.3279,
-   "clv_cents": 0.5,
+   "close_price": 0.3226,
+   "clv_cents": 0.0,
    "date": "2026-11-06",
    "dir": "RAISE",
    "ex_stats": null,
@@ -4086,8 +4201,8 @@
    "best_price": 0.16,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.1739,
-   "clv_cents": 0.0,
+   "close_price": 0.1754,
+   "clv_cents": 0.2,
    "date": "2026-11-06",
    "dir": "RAISE",
    "ex_stats": null,
@@ -4270,8 +4385,8 @@
    "best_price": 0.4286,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.4237,
-   "clv_cents": 0.0,
+   "close_price": 0.4367,
+   "clv_cents": 1.3,
    "date": "2026-11-06",
    "dir": "RAISE",
    "ex_stats": null,
@@ -4791,9 +4906,9 @@
     "volume_fp": 147.12
    },
    "ex_stats_close": {
-    "open_interest_fp": 149.12,
-    "volume_24h_fp": 149.12,
-    "volume_fp": 149.12
+    "open_interest_fp": 496.19,
+    "volume_24h_fp": 496.19,
+    "volume_fp": 496.19
    },
    "first_play": false,
    "game": "Cal State Northridge vs Kansas St.: Spread",
@@ -4844,9 +4959,9 @@
     "volume_fp": 147.12
    },
    "ex_stats_close": {
-    "open_interest_fp": 149.12,
-    "volume_24h_fp": 149.12,
-    "volume_fp": 149.12
+    "open_interest_fp": 496.19,
+    "volume_24h_fp": 496.19,
+    "volume_fp": 496.19
    },
    "first_play": false,
    "game": "Cal State Northridge vs Kansas St.: Spread",
@@ -5046,8 +5161,8 @@
    "best_price": 0.5311,
    "best_price_book": "prophetx",
    "book": "kalshi",
-   "close_price": 0.54,
-   "clv_cents": 1.0,
+   "close_price": 0.55,
+   "clv_cents": 2.0,
    "date": "2026-11-06",
    "dir": "RAISE",
    "ex_stats": {
@@ -5666,8 +5781,8 @@
    "best_price": 0.5265,
    "best_price_book": "prophetx",
    "book": "novig",
-   "close_price": 0.57,
-   "clv_cents": 0.0,
+   "close_price": 0.565,
+   "clv_cents": -0.5,
    "date": "2026-11-06",
    "dir": "RAISE",
    "ex_stats": {
@@ -5874,8 +5989,8 @@
    "best_price": 0.31,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.3279,
-   "clv_cents": 0.0,
+   "close_price": 0.3226,
+   "clv_cents": -0.5,
    "date": "2026-11-06",
    "dir": "DROP",
    "ex_stats": null,
@@ -5920,8 +6035,8 @@
    "best_price": 0.71,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.726,
-   "clv_cents": 0.8,
+   "close_price": 0.7222,
+   "clv_cents": 0.4,
    "date": "2026-11-06",
    "dir": "DROP",
    "ex_stats": null,
@@ -6579,8 +6694,8 @@
     "volume": 135161.0
    },
    "ex_stats_close": {
-    "openInterest": 114678.0,
-    "volume": 173399.0
+    "openInterest": 116916.0,
+    "volume": 175637.0
    },
    "first_play": false,
    "game": "Michigan @ Connecticut",
@@ -7624,8 +7739,8 @@
    "best_price": 0.5566,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5475,
-   "clv_cents": -0.4,
+   "close_price": 0.569,
+   "clv_cents": 1.7,
    "date": "2026-11-06",
    "dir": "RAISE",
    "ex_stats": null,
@@ -8627,8 +8742,8 @@
    "best_price": 0.525,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.5434,
-   "clv_cents": -4.0,
+   "close_price": 0.5392,
+   "clv_cents": -4.4,
    "date": "2026-11-06",
    "dir": "DROP",
    "ex_stats": null,
@@ -8789,9 +8904,9 @@
     "volume_fp": 3894.77
    },
    "ex_stats_close": {
-    "open_interest_fp": 3006.17,
-    "volume_24h_fp": 4574.38,
-    "volume_fp": 4574.38
+    "open_interest_fp": 3049.42,
+    "volume_24h_fp": 4617.63,
+    "volume_fp": 4617.63
    },
    "first_play": false,
    "game": "Yale vs UCF: Spread",
@@ -9076,8 +9191,8 @@
    "best_price": 0.5265,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5516,
-   "clv_cents": 3.0,
+   "close_price": 0.5215,
+   "clv_cents": 0.0,
    "date": "2026-11-06",
    "dir": "RAISE",
    "ex_stats": null,
@@ -9328,8 +9443,8 @@
    "best_price": 0.5574,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.54,
-   "clv_cents": 0.0,
+   "close_price": 0.53,
+   "clv_cents": -1.0,
    "date": "2026-11-06",
    "dir": "RAISE",
    "ex_stats": {
@@ -9752,8 +9867,8 @@
    "best_price": 0.5971,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.58,
-   "clv_cents": 0.0,
+   "close_price": 0.57,
+   "clv_cents": -1.0,
    "date": "2026-11-06",
    "dir": "RAISE",
    "ex_stats": {
@@ -10223,8 +10338,8 @@
    "best_price": 0.4774,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.45,
-   "clv_cents": -1.0,
+   "close_price": 0.46,
+   "clv_cents": 0.0,
    "date": "2026-11-06",
    "dir": "RAISE",
    "ex_stats": {
@@ -10276,8 +10391,8 @@
    "best_price": 0.5971,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.57,
-   "clv_cents": -1.0,
+   "close_price": 0.58,
+   "clv_cents": 0.0,
    "date": "2026-11-06",
    "dir": "RAISE",
    "ex_stats": {
@@ -10681,9 +10796,9 @@
     "volume_fp": 35.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 284.99,
+    "open_interest_fp": 426.42,
     "volume_24h_fp": 284.99,
-    "volume_fp": 284.99
+    "volume_fp": 426.42
    },
    "first_play": true,
    "game": "California Baptist vs Oregon St.: Spread",
@@ -10734,9 +10849,9 @@
     "volume_fp": 35.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 284.99,
+    "open_interest_fp": 426.42,
     "volume_24h_fp": 284.99,
-    "volume_fp": 284.99
+    "volume_fp": 426.42
    },
    "first_play": true,
    "game": "California Baptist vs Oregon St.: Spread",
@@ -10883,8 +10998,8 @@
    "best_price": 0.5051,
    "best_price_book": "prophetx",
    "book": "kalshi",
-   "close_price": 0.49,
-   "clv_cents": 0.0,
+   "close_price": 0.48,
+   "clv_cents": -1.0,
    "date": "2026-11-06",
    "dir": "RAISE",
    "ex_stats": {
@@ -10936,8 +11051,8 @@
    "best_price": 0.5474,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.54,
-   "clv_cents": 1.0,
+   "close_price": 0.55,
+   "clv_cents": 2.0,
    "date": "2026-11-06",
    "dir": "RAISE",
    "ex_stats": {
@@ -10989,8 +11104,8 @@
    "best_price": 0.5148,
    "best_price_book": "prophetx",
    "book": "kalshi",
-   "close_price": 0.52,
-   "clv_cents": 0.0,
+   "close_price": 0.51,
+   "clv_cents": -1.0,
    "date": "2026-11-06",
    "dir": "RAISE",
    "ex_stats": {
@@ -11307,8 +11422,8 @@
    "best_price": 0.4874,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.49,
-   "clv_cents": 2.0,
+   "close_price": 0.47,
+   "clv_cents": 0.0,
    "date": "2026-11-06",
    "dir": "RAISE",
    "ex_stats": {
@@ -11317,9 +11432,9 @@
     "volume_fp": 29.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 330.91,
+    "open_interest_fp": 479.91,
     "volume_24h_fp": 330.91,
-    "volume_fp": 330.91
+    "volume_fp": 479.91
    },
    "first_play": false,
    "game": "Northern Kentucky vs Texas A&M: Spread",
@@ -11635,9 +11750,9 @@
     "volume_fp": 3799.99
    },
    "ex_stats_close": {
-    "open_interest_fp": 3006.17,
-    "volume_24h_fp": 4574.38,
-    "volume_fp": 4574.38
+    "open_interest_fp": 3049.42,
+    "volume_24h_fp": 4617.63,
+    "volume_fp": 4617.63
    },
    "first_play": false,
    "game": "Yale vs UCF: Spread",
@@ -11902,7 +12017,7 @@
    "ex_stats_close": {
     "open_interest_fp": 686.52,
     "volume_24h_fp": 759.91,
-    "volume_fp": 759.91
+    "volume_fp": 768.57
    },
    "first_play": true,
    "game": "Eastern Washington vs Oregon: Spread",
@@ -11955,7 +12070,7 @@
    "ex_stats_close": {
     "open_interest_fp": 686.52,
     "volume_24h_fp": 759.91,
-    "volume_fp": 759.91
+    "volume_fp": 768.57
    },
    "first_play": true,
    "game": "Eastern Washington vs Oregon: Spread",
@@ -12006,9 +12121,9 @@
     "volume_fp": 12052.27
    },
    "ex_stats_close": {
-    "open_interest_fp": 13787.15,
-    "volume_24h_fp": 8834.1,
-    "volume_fp": 13990.79
+    "open_interest_fp": 14058.5,
+    "volume_24h_fp": 9039.1,
+    "volume_fp": 14262.140000000001
    },
    "first_play": false,
    "game": "Michigan vs UConn",
@@ -12252,8 +12367,8 @@
    "best_price": 0.4874,
    "best_price_book": "kalshi",
    "book": "prophetx",
-   "close_price": 0.505,
-   "clv_cents": 0.0,
+   "close_price": 0.4717,
+   "clv_cents": -3.3,
    "date": "2026-11-06",
    "dir": "RAISE",
    "ex_stats": null,
@@ -13336,8 +13451,8 @@
    "best_price": 0.5474,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.53,
-   "clv_cents": 0.0,
+   "close_price": 0.54,
+   "clv_cents": 1.0,
    "date": "2026-11-06",
    "dir": "RAISE",
    "ex_stats": {
@@ -13346,9 +13461,9 @@
     "volume_fp": 2563.37
    },
    "ex_stats_close": {
-    "open_interest_fp": 2743.04,
+    "open_interest_fp": 3640.08,
     "volume_24h_fp": 3152.85,
-    "volume_fp": 3152.85
+    "volume_fp": 4049.89
    },
    "first_play": false,
    "game": "Missouri vs Saint Louis: Spread",
@@ -13399,9 +13514,9 @@
     "volume_fp": 2563.37
    },
    "ex_stats_close": {
-    "open_interest_fp": 2743.04,
+    "open_interest_fp": 3640.08,
     "volume_24h_fp": 3152.85,
-    "volume_fp": 3152.85
+    "volume_fp": 4049.89
    },
    "first_play": false,
    "game": "Missouri vs Saint Louis: Spread",
@@ -13866,8 +13981,8 @@
    "best_price": 0.16,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.1739,
-   "clv_cents": -0.6,
+   "close_price": 0.1754,
+   "clv_cents": -0.5,
    "date": "2026-11-06",
    "dir": "DROP",
    "ex_stats": null,
@@ -13958,8 +14073,8 @@
    "best_price": 0.45,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.4587,
-   "clv_cents": -0.2,
+   "close_price": 0.4608,
+   "clv_cents": 0.0,
    "date": "2026-11-06",
    "dir": "DROP",
    "ex_stats": null,
@@ -14004,8 +14119,8 @@
    "best_price": 0.4371,
    "best_price_book": "kalshi",
    "book": "prophetx",
-   "close_price": 0.4237,
-   "clv_cents": -1.3,
+   "close_price": 0.4367,
+   "clv_cents": 0.0,
    "date": "2026-11-06",
    "dir": "DROP",
    "ex_stats": null,
@@ -14653,8 +14768,8 @@
    "best_price": 0.5242,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5392,
-   "clv_cents": 2.0,
+   "close_price": 0.5283,
+   "clv_cents": 0.9,
    "date": "2026-11-06",
    "dir": "RAISE",
    "ex_stats": null,
@@ -14960,8 +15075,8 @@
    "best_price": 0.5574,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.55,
-   "clv_cents": 1.0,
+   "close_price": 0.54,
+   "clv_cents": 0.0,
    "date": "2026-11-06",
    "dir": "RAISE",
    "ex_stats": {
@@ -15331,8 +15446,8 @@
    "best_price": 0.5673,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.57,
-   "clv_cents": 2.0,
+   "close_price": 0.58,
+   "clv_cents": 3.0,
    "date": "2026-11-06",
    "dir": "RAISE",
    "ex_stats": {
@@ -15621,8 +15736,8 @@
    "best_price": 0.52,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.5413,
-   "clv_cents": 0.0,
+   "close_price": 0.5305,
+   "clv_cents": -1.1,
    "date": "2026-11-06",
    "dir": "RAISE",
    "ex_stats": null,
@@ -16370,8 +16485,8 @@
    "best_price": 0.5574,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.53,
-   "clv_cents": -1.0,
+   "close_price": 0.55,
+   "clv_cents": 1.0,
    "date": "2026-11-06",
    "dir": "DROP",
    "ex_stats": {
@@ -16380,9 +16495,9 @@
     "volume_fp": 29.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 330.91,
+    "open_interest_fp": 479.91,
     "volume_24h_fp": 330.91,
-    "volume_fp": 330.91
+    "volume_fp": 479.91
    },
    "first_play": true,
    "game": "Northern Kentucky vs Texas A&M: Spread",
@@ -16887,9 +17002,9 @@
     "volume_fp": 95.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 149.12,
-    "volume_24h_fp": 149.12,
-    "volume_fp": 149.12
+    "open_interest_fp": 496.19,
+    "volume_24h_fp": 496.19,
+    "volume_fp": 496.19
    },
    "first_play": true,
    "game": "Cal State Northridge vs Kansas St.: Spread",
@@ -16940,9 +17055,9 @@
     "volume_fp": 95.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 149.12,
-    "volume_24h_fp": 149.12,
-    "volume_fp": 149.12
+    "open_interest_fp": 496.19,
+    "volume_24h_fp": 496.19,
+    "volume_fp": 496.19
    },
    "first_play": false,
    "game": "Cal State Northridge vs Kansas St.: Spread",
@@ -17089,8 +17204,8 @@
    "best_price": 0.5148,
    "best_price_book": "prophetx",
    "book": "kalshi",
-   "close_price": 0.52,
-   "clv_cents": 0.0,
+   "close_price": 0.51,
+   "clv_cents": -1.0,
    "date": "2026-11-06",
    "dir": "DROP",
    "ex_stats": {
@@ -17339,8 +17454,8 @@
    "best_price": 0.33,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.3401,
-   "clv_cents": 0.0,
+   "close_price": 0.3333,
+   "clv_cents": -0.7,
    "date": "2026-11-06",
    "dir": "RAISE",
    "ex_stats": null,
@@ -17924,8 +18039,8 @@
    "best_price": 0.5673,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.57,
-   "clv_cents": 2.0,
+   "close_price": 0.58,
+   "clv_cents": 3.0,
    "date": "2026-11-06",
    "dir": "DROP",
    "ex_stats": {
@@ -17977,8 +18092,8 @@
    "best_price": 0.4774,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.44,
-   "clv_cents": -2.0,
+   "close_price": 0.43,
+   "clv_cents": -3.0,
    "date": "2026-11-06",
    "dir": "DROP",
    "ex_stats": {
@@ -18348,8 +18463,8 @@
    "best_price": 0.5474,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.53,
-   "clv_cents": 0.0,
+   "close_price": 0.54,
+   "clv_cents": 1.0,
    "date": "2026-11-06",
    "dir": "DROP",
    "ex_stats": {
@@ -18358,9 +18473,9 @@
     "volume_fp": 2211.13
    },
    "ex_stats_close": {
-    "open_interest_fp": 2743.04,
+    "open_interest_fp": 3640.08,
     "volume_24h_fp": 3152.85,
-    "volume_fp": 3152.85
+    "volume_fp": 4049.89
    },
    "first_play": true,
    "game": "Missouri vs Saint Louis: Spread",
@@ -18599,8 +18714,8 @@
    "best_price": 0.495,
    "best_price_book": "novig",
    "book": "kalshi",
-   "close_price": 0.49,
-   "clv_cents": 0.0,
+   "close_price": 0.48,
+   "clv_cents": -1.0,
    "date": "2026-11-06",
    "dir": "DROP",
    "ex_stats": {
@@ -18652,8 +18767,8 @@
    "best_price": 0.525,
    "best_price_book": "novig",
    "book": "kalshi",
-   "close_price": 0.54,
-   "clv_cents": 1.0,
+   "close_price": 0.55,
+   "clv_cents": 2.0,
    "date": "2026-11-06",
    "dir": "DROP",
    "ex_stats": {
@@ -19214,8 +19329,8 @@
    "best_price": 0.6069,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.58,
-   "clv_cents": -1.0,
+   "close_price": 0.59,
+   "clv_cents": 0.0,
    "date": "2026-11-06",
    "dir": "RAISE",
    "ex_stats": {
@@ -19224,9 +19339,9 @@
     "volume_fp": 65.78
    },
    "ex_stats_close": {
-    "open_interest_fp": 1263.53,
+    "open_interest_fp": 1314.87,
     "volume_24h_fp": 1307.95,
-    "volume_fp": 1307.95
+    "volume_fp": 1359.29
    },
    "first_play": false,
    "game": "UMass vs Boston College: Spread",
@@ -19277,9 +19392,9 @@
     "volume_fp": 65.78
    },
    "ex_stats_close": {
-    "open_interest_fp": 1263.53,
+    "open_interest_fp": 1314.87,
     "volume_24h_fp": 1307.95,
-    "volume_fp": 1307.95
+    "volume_fp": 1359.29
    },
    "first_play": false,
    "game": "UMass vs Boston College: Spread",
@@ -19523,8 +19638,8 @@
    "best_price": 0.4952,
    "best_price_book": "prophetx",
    "book": "kalshi",
-   "close_price": 0.49,
-   "clv_cents": 1.0,
+   "close_price": 0.47,
+   "clv_cents": -1.0,
    "date": "2026-11-06",
    "dir": "DROP",
    "ex_stats": {
@@ -19533,9 +19648,9 @@
     "volume_fp": 29.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 330.91,
+    "open_interest_fp": 479.91,
     "volume_24h_fp": 330.91,
-    "volume_fp": 330.91
+    "volume_fp": 479.91
    },
    "first_play": true,
    "game": "Northern Kentucky vs Texas A&M: Spread",
@@ -19777,8 +19892,8 @@
    "best_price": 0.5288,
    "best_price_book": "prophetx",
    "book": "kalshi",
-   "close_price": 0.54,
-   "clv_cents": 1.0,
+   "close_price": 0.55,
+   "clv_cents": 2.0,
    "date": "2026-11-06",
    "dir": "DROP",
    "ex_stats": {
@@ -20307,8 +20422,8 @@
    "best_price": 0.5474,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.58,
-   "clv_cents": 5.0,
+   "close_price": 0.57,
+   "clv_cents": 4.0,
    "date": "2026-11-06",
    "dir": "DROP",
    "ex_stats": {
@@ -20476,9 +20591,9 @@
     "volume_fp": 10895.54
    },
    "ex_stats_close": {
-    "open_interest_fp": 13729.03,
-    "volume_24h_fp": 13044.240000000002,
-    "volume_fp": 14416.82
+    "open_interest_fp": 14778.760000000002,
+    "volume_24h_fp": 14093.970000000001,
+    "volume_fp": 15466.55
    },
    "first_play": true,
    "game": "Missouri vs Saint Louis",
@@ -22001,7 +22116,7 @@
    },
    "ex_stats_close": {
     "openInterest": 1144574.0,
-    "volume": 1302197.0
+    "volume": 1303287.0
    },
    "first_play": false,
    "game": "Carlos Alcaraz @ Taylor Fritz Quarterfinals",
@@ -22204,8 +22319,8 @@
     "volume": 462082.0
    },
    "ex_stats_close": {
-    "openInterest": 5351905.0,
-    "volume": 7379465.0
+    "openInterest": 5402703.0,
+    "volume": 7469863.0
    },
    "first_play": true,
    "game": "Tommy Paul @ Ben Shelton Quarterfinals",
@@ -22955,8 +23070,8 @@
    "best_price": 0.535,
    "best_price_book": "novig",
    "book": "kalshi",
-   "close_price": 0.53,
-   "clv_cents": 0.0,
+   "close_price": 0.55,
+   "clv_cents": 2.0,
    "date": "2026-11-06",
    "dir": "RAISE",
    "ex_stats": {
@@ -22965,9 +23080,9 @@
     "volume_fp": 18.95
    },
    "ex_stats_close": {
-    "open_interest_fp": 330.91,
+    "open_interest_fp": 479.91,
     "volume_24h_fp": 330.91,
-    "volume_fp": 330.91
+    "volume_fp": 479.91
    },
    "first_play": true,
    "game": "Northern Kentucky vs Texas A&M: Spread",
@@ -23775,8 +23890,8 @@
    "best_price": 0.515,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.515,
-   "clv_cents": 0.0,
+   "close_price": 0.51,
+   "clv_cents": -0.5,
    "date": "2026-11-06",
    "dir": "RAISE",
    "ex_stats": {
@@ -25109,8 +25224,8 @@
    "best_price": 0.495,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.495,
-   "clv_cents": 0.0,
+   "close_price": 0.5,
+   "clv_cents": 0.5,
    "date": "2026-11-06",
    "dir": "RAISE",
    "ex_stats": {
@@ -25749,7 +25864,7 @@
    },
    "ex_stats_close": {
     "openInterest": 1144574.0,
-    "volume": 1302197.0
+    "volume": 1303287.0
    },
    "first_play": false,
    "game": "Carlos Alcaraz @ Taylor Fritz Quarterfinals",
@@ -25800,7 +25915,7 @@
    },
    "ex_stats_close": {
     "openInterest": 1144574.0,
-    "volume": 1302197.0
+    "volume": 1303287.0
    },
    "first_play": false,
    "game": "Carlos Alcaraz @ Taylor Fritz Quarterfinals",
@@ -25994,8 +26109,8 @@
    "best_price": 0.71,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.71,
-   "clv_cents": 0.0,
+   "close_price": 0.705,
+   "clv_cents": -0.5,
    "date": "2026-11-06",
    "dir": "RAISE",
    "ex_stats": {
@@ -26147,8 +26262,8 @@
    "best_price": 0.2,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.155,
-   "clv_cents": -4.5,
+   "close_price": 0.16,
+   "clv_cents": -4.0,
    "date": "2026-11-06",
    "dir": "RAISE",
    "ex_stats": {
@@ -26620,9 +26735,9 @@
     "volume_fp": 25.29
    },
    "ex_stats_close": {
-    "open_interest_fp": 269.73,
-    "volume_24h_fp": 352.36,
-    "volume_fp": 352.36
+    "open_interest_fp": 284.93,
+    "volume_24h_fp": 392.56,
+    "volume_fp": 392.56
    },
    "first_play": true,
    "game": "Northeastern vs Virginia: Point Total",
@@ -26673,9 +26788,9 @@
     "volume_fp": 25.29
    },
    "ex_stats_close": {
-    "open_interest_fp": 269.73,
-    "volume_24h_fp": 352.36,
-    "volume_fp": 352.36
+    "open_interest_fp": 284.93,
+    "volume_24h_fp": 392.56,
+    "volume_fp": 392.56
    },
    "first_play": true,
    "game": "Northeastern vs Virginia: Point Total",
@@ -26777,9 +26892,9 @@
     "volume_fp": 25.29
    },
    "ex_stats_close": {
-    "open_interest_fp": 269.73,
-    "volume_24h_fp": 352.36,
-    "volume_fp": 352.36
+    "open_interest_fp": 284.93,
+    "volume_24h_fp": 392.56,
+    "volume_fp": 392.56
    },
    "first_play": true,
    "game": "Northeastern vs Virginia: Point Total",
@@ -26830,9 +26945,9 @@
     "volume_fp": 25.29
    },
    "ex_stats_close": {
-    "open_interest_fp": 269.73,
-    "volume_24h_fp": 352.36,
-    "volume_fp": 352.36
+    "open_interest_fp": 284.93,
+    "volume_24h_fp": 392.56,
+    "volume_fp": 392.56
    },
    "first_play": true,
    "game": "Northeastern vs Virginia: Point Total",
@@ -27282,8 +27397,8 @@
    "best_price": 0.49,
    "best_price_book": "novig",
    "book": "kalshi",
-   "close_price": 0.43,
-   "clv_cents": -6.0,
+   "close_price": 0.45,
+   "clv_cents": -4.0,
    "date": "2026-11-06",
    "dir": "DROP",
    "ex_stats": {
@@ -27647,8 +27762,8 @@
    "best_price": 0.285,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.23,
-   "clv_cents": -5.5,
+   "close_price": 0.225,
+   "clv_cents": -6.0,
    "date": "2026-11-06",
    "dir": "RAISE",
    "ex_stats": {
@@ -28002,8 +28117,8 @@
    "best_price": 0.232,
    "best_price_book": "kalshi",
    "book": "novig",
-   "close_price": 0.2,
-   "clv_cents": -5.5,
+   "close_price": 0.195,
+   "clv_cents": -6.0,
    "date": "2026-11-06",
    "dir": "RAISE",
    "ex_stats": {
@@ -28272,8 +28387,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 140261.0,
-    "volume": 143744.0
+    "openInterest": 145715.0,
+    "volume": 149198.0
    },
    "first_play": true,
    "game": "Laslo Djere @ Matej Dodig Quarterfinals",
@@ -28467,8 +28582,8 @@
    "best_price": 0.52,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.5595,
-   "clv_cents": 1.0,
+   "close_price": 0.5614,
+   "clv_cents": 1.2,
    "date": "2026-11-06",
    "dir": "DROP",
    "ex_stats": null,
@@ -28820,6 +28935,7 @@
    "best_price": 0.5,
    "best_price_book": "novig",
    "book": "novig",
+   "close_frozen": true,
    "close_price": 0.505,
    "clv_cents": 0.5,
    "date": "2026-11-06",
@@ -28871,6 +28987,7 @@
    "best_price": 0.525,
    "best_price_book": "novig",
    "book": "novig",
+   "close_frozen": true,
    "close_price": 0.51,
    "clv_cents": -1.5,
    "date": "2026-11-06",
@@ -29394,8 +29511,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 140261.0,
-    "volume": 143744.0
+    "openInterest": 145715.0,
+    "volume": 149198.0
    },
    "first_play": true,
    "game": "Laslo Djere @ Matej Dodig Quarterfinals",
@@ -29832,9 +29949,9 @@
     "volume_fp": 595.44
    },
    "ex_stats_close": {
-    "open_interest_fp": 4206.51,
-    "volume_24h_fp": 4696.76,
-    "volume_fp": 4696.76
+    "open_interest_fp": 4208.98,
+    "volume_24h_fp": 4699.23,
+    "volume_fp": 4699.23
    },
    "first_play": true,
    "game": "Michigan vs UConn: Spread",
@@ -29885,9 +30002,9 @@
     "volume_fp": 595.44
    },
    "ex_stats_close": {
-    "open_interest_fp": 4206.51,
-    "volume_24h_fp": 4696.76,
-    "volume_fp": 4696.76
+    "open_interest_fp": 4208.98,
+    "volume_24h_fp": 4699.23,
+    "volume_fp": 4699.23
    },
    "first_play": false,
    "game": "Michigan vs UConn: Spread",
@@ -30085,9 +30202,9 @@
     "volume_fp": 756.74
    },
    "ex_stats_close": {
-    "open_interest_fp": 3584.44,
-    "volume_24h_fp": 3480.7,
-    "volume_fp": 3643.44
+    "open_interest_fp": 2050.14,
+    "volume_24h_fp": 5800.77,
+    "volume_fp": 5963.51
    },
    "first_play": true,
    "game": "Yale vs UCF",
@@ -31081,7 +31198,7 @@
    },
    "ex_stats_close": {
     "openInterest": 382986.0,
-    "volume": 543089.0
+    "volume": 543894.0
    },
    "first_play": false,
    "game": "Lucrezia Stefanini @ Anastasia Zakharova Quarterfinals",
@@ -31441,8 +31558,8 @@
     "volume": 96771.0
    },
    "ex_stats_close": {
-    "openInterest": 5351905.0,
-    "volume": 7379465.0
+    "openInterest": 5402703.0,
+    "volume": 7469863.0
    },
    "first_play": false,
    "game": "Tommy Paul @ Ben Shelton Quarterfinals",
@@ -31841,8 +31958,8 @@
    "best_price": 0.45,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.47,
-   "clv_cents": 2.0,
+   "close_price": 0.465,
+   "clv_cents": 1.5,
    "date": "2026-11-06",
    "dir": "RAISE",
    "ex_stats": {
@@ -31850,8 +31967,8 @@
     "volume": 96771.0
    },
    "ex_stats_close": {
-    "openInterest": 5351905.0,
-    "volume": 7379465.0
+    "openInterest": 5402703.0,
+    "volume": 7469863.0
    },
    "first_play": false,
    "game": "Tommy Paul @ Ben Shelton Quarterfinals",
@@ -31902,7 +32019,7 @@
    },
    "ex_stats_close": {
     "openInterest": 382986.0,
-    "volume": 543089.0
+    "volume": 543894.0
    },
    "first_play": false,
    "game": "Lucrezia Stefanini @ Anastasia Zakharova Quarterfinals",
@@ -32409,8 +32526,8 @@
    "best_price": 0.2008,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.2,
-   "clv_cents": 1.0,
+   "close_price": 0.19,
+   "clv_cents": 0.0,
    "date": "2026-11-06",
    "dir": "RAISE",
    "ex_stats": {
@@ -32419,9 +32536,9 @@
     "volume_fp": 756.74
    },
    "ex_stats_close": {
-    "open_interest_fp": 3584.44,
-    "volume_24h_fp": 3480.7,
-    "volume_fp": 3643.44
+    "open_interest_fp": 2050.14,
+    "volume_24h_fp": 5800.77,
+    "volume_fp": 5963.51
    },
    "first_play": true,
    "game": "Yale vs UCF",
@@ -33943,8 +34060,8 @@
    "best_price": 0.5525,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5595,
-   "clv_cents": 1.2,
+   "close_price": 0.5614,
+   "clv_cents": 1.4,
    "date": "2026-11-06",
    "dir": "RAISE",
    "ex_stats": null,
@@ -34660,9 +34777,9 @@
     "volume_fp": 1426.6799999999998
    },
    "ex_stats_close": {
-    "open_interest_fp": 13729.03,
-    "volume_24h_fp": 13044.240000000002,
-    "volume_fp": 14416.82
+    "open_interest_fp": 14778.760000000002,
+    "volume_24h_fp": 14093.970000000001,
+    "volume_fp": 15466.55
    },
    "first_play": true,
    "game": "Missouri vs Saint Louis",
@@ -36191,9 +36308,9 @@
     "volume_fp": 1426.6799999999998
    },
    "ex_stats_close": {
-    "open_interest_fp": 13729.03,
-    "volume_24h_fp": 13044.240000000002,
-    "volume_fp": 14416.82
+    "open_interest_fp": 14778.760000000002,
+    "volume_24h_fp": 14093.970000000001,
+    "volume_fp": 15466.55
    },
    "first_play": true,
    "game": "Missouri vs Saint Louis",
@@ -36505,8 +36622,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 19143.0,
-    "volume": 19143.0
+    "openInterest": 20095.0,
+    "volume": 20095.0
    },
    "first_play": true,
    "game": "Jerome Kym @ Nishesh Basavareddy Quarterfinals",
@@ -37182,9 +37299,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 81.44,
-    "volume_24h_fp": 81.44,
-    "volume_fp": 81.44
+    "open_interest_fp": 1620.02,
+    "volume_24h_fp": 1620.02,
+    "volume_fp": 1620.02
    },
    "first_play": true,
    "game": "Tarleton St. vs San Diego",
@@ -37235,9 +37352,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 81.44,
-    "volume_24h_fp": 81.44,
-    "volume_fp": 81.44
+    "open_interest_fp": 1620.02,
+    "volume_24h_fp": 1620.02,
+    "volume_fp": 1620.02
    },
    "first_play": true,
    "game": "Tarleton St. vs San Diego",
@@ -39296,8 +39413,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 344001.0,
-    "volume": 411972.0
+    "openInterest": 346701.0,
+    "volume": 414672.0
    },
    "first_play": true,
    "game": "Magda Linette @ Mai Hontama Quarterfinals",
@@ -39347,8 +39464,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 344001.0,
-    "volume": 411972.0
+    "openInterest": 346701.0,
+    "volume": 414672.0
    },
    "first_play": false,
    "game": "Magda Linette @ Mai Hontama Quarterfinals",
@@ -49146,8 +49263,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 19143.0,
-    "volume": 19143.0
+    "openInterest": 20095.0,
+    "volume": 20095.0
    },
    "first_play": true,
    "game": "Jerome Kym @ Nishesh Basavareddy Quarterfinals",
@@ -50357,8 +50474,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 19143.0,
-    "volume": 19143.0
+    "openInterest": 20095.0,
+    "volume": 20095.0
    },
    "first_play": true,
    "game": "Jerome Kym @ Nishesh Basavareddy Quarterfinals",
@@ -50408,8 +50525,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 19143.0,
-    "volume": 19143.0
+    "openInterest": 20095.0,
+    "volume": 20095.0
    },
    "first_play": true,
    "game": "Jerome Kym @ Nishesh Basavareddy Quarterfinals",
@@ -62326,8 +62443,8 @@
    "best_price": 0.7244,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.73,
-   "clv_cents": 2.0,
+   "close_price": 0.74,
+   "clv_cents": 3.0,
    "date": "2026-11-06",
    "dir": "RAISE",
    "ex_stats": {
@@ -62336,9 +62453,9 @@
     "volume_fp": 5156.6900000000005
    },
    "ex_stats_close": {
-    "open_interest_fp": 13787.15,
-    "volume_24h_fp": 8834.1,
-    "volume_fp": 13990.79
+    "open_interest_fp": 14058.5,
+    "volume_24h_fp": 9039.1,
+    "volume_fp": 14262.140000000001
    },
    "first_play": true,
    "game": "Michigan vs UConn",
@@ -79985,9 +80102,9 @@
     "volume_fp": 5156.6900000000005
    },
    "ex_stats_close": {
-    "open_interest_fp": 13787.15,
-    "volume_24h_fp": 8834.1,
-    "volume_fp": 13990.79
+    "open_interest_fp": 14058.5,
+    "volume_24h_fp": 9039.1,
+    "volume_fp": 14262.140000000001
    },
    "first_play": true,
    "game": "Michigan vs UConn",
@@ -80028,8 +80145,8 @@
    "best_price": 0.7341,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.73,
-   "clv_cents": 1.0,
+   "close_price": 0.74,
+   "clv_cents": 2.0,
    "date": "2026-11-06",
    "dir": "DROP",
    "ex_stats": {
@@ -80038,9 +80155,9 @@
     "volume_fp": 5156.6900000000005
    },
    "ex_stats_close": {
-    "open_interest_fp": 13787.15,
-    "volume_24h_fp": 8834.1,
-    "volume_fp": 13990.79
+    "open_interest_fp": 14058.5,
+    "volume_24h_fp": 9039.1,
+    "volume_fp": 14262.140000000001
    },
    "first_play": true,
    "game": "Michigan vs UConn",
