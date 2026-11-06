@@ -67,10 +67,12 @@ PX_NHL = {"taker": 0.035, "maker": 0.01}           # F(p) = a x (1-p) per traded
 # ("the taker fee is added on top of the trade price, not taken out of it" - Novig).
 TAKER = {"kalshi":        0.07,                    # schedule, Jul 7 2026, AND 32 live fills, median
                                                    # exactly 0.0700. Verified twice over.
-         "polymarket.us": 0.0695,                  # REVERTED Nov 6. See PMUS_UNRESOLVED below.
+         "polymarket.us": 0.06,                    # venue's own published schedule (Peter, Nov 6)
          "novig.us":      0.0}                     # PRE-GAME straights only; see NOVIG_LIVE_TAKER.
 
-MAKER = {"novig.us":      0.0,                     # "The maker fee is $0 across all trade types."
+MAKER = {"polymarket.us": -0.0125,                 # a REBATE: Polymarket PAYS us to post, per its
+                                                   # published schedule. +0.60% of the decimal at -110.
+         "novig.us":      0.0,                     # "The maker fee is $0 across all trade types."
          "kalshi":        0.0175}                  # CONSERVATIVE. See KALSHI_MAKER_OPEN below.
 
 # Novig is NOT flat zero, which is how this repo has modelled it. Pre-game straights are free on
@@ -81,35 +83,21 @@ MAKER = {"novig.us":      0.0,                     # "The maker fee is $0 across
 # settles it. Parlays are 0.10 and already inside the quoted price; we do not trade them.
 NOVIG_LIVE_TAKER = 0.06
 
-# PMUS_UNRESOLVED. I changed this coefficient to 0.06 on text Peter pasted, then he applied the
-# test it should have faced first: official schedule, effective date, and one recent fill that
-# reconciles at the new rate. It fails all three, so it is reverted to the FILL-VERIFIED 0.0695.
-#   Oct 25 Grizzlies/Kings, Peter's own fill: effective 0.5374 exactly. A raw 0.52 under 0.0695
-#   gives 0.537347 -> 0.5374. Under 0.06 the same raw gives 0.5350. The fill fits 0.0695 and not
-#   0.06. (Nov 2 Pistons, a $7.48 gap exactly, is his second confirmation; pinning it needs the
-#   contract count and price, which I have asked for.)
-# FOUR sources disagree on one trade of 100 contracts at $0.50:
-#   Peter's Oct 25 fill            0.0695 x C x p x (1-p)      $1.74
-#   the pasted text (no issuer)    0.06   x C x p x (1-p)      $1.50
-#   CFTC filing, QCX LLC, Mar 2026 0.10% of TOTAL PREMIUM      $0.05   <- a different structure
-#   Polymarket GLOBAL category     0.03-0.07 x C x p x (1-p)   $1.75
-# The CFTC-filed US schedule is a percentage of premium, not the p(1-p) shape, and ~30x smaller.
-# It cannot be reconciled with a fill that fits p(1-p), so either the filed schedule was superseded
-# or the pasted text describes the global book. Unresolved, so the fill wins.
-# The MAKER REBATE is deliberately NOT in the table. Peter, Nov 6: "Maker rebate, if it verifies,
-# is its own separate change - never bundled." With no entry, maker falls back to taker, which
-# OVERSTATES the cost of posting - the safe direction while it is unverified.
-
-# KALSHI_MAKER_OPEN. Kalshi's maker formula is 0.0175 x M x C x p x (1-p) with "M = the multiplier
-# for each contract (default is 0 unless otherwise indicated)", and the indicated multipliers live
-# in a "Non-Standard Fees" table. That table names KXNFLGAME, KXNCAAFGAME, KXMLBGAME, KXWNBAGAME,
-# KXUCLGAME, KXWCGAME - and NOT ONE of the SPREAD or TOTAL series, which are 96.5% of our Kalshi
-# market records (KXNBATOTAL, KXNBASPREAD, KXNCAAMBTOTAL, KXNCAAMBSPREAD, KXNHL*, KXNFLTOTAL ...).
-# Read literally, posting on the markets we actually trade is FREE. Two readings, and I cannot tell
-# them apart from the document: either unlisted really means M=0, or the table simply does not
-# enumerate spreads and totals. So we carry the CONSERVATIVE 0.0175 and let money decide: every
-# Kalshi fill we hold is taker, so the first MAKER fill settles it, and fee_audit.py already buckets
-# on the API's is_taker flag and will report its implied coefficient the moment one lands.
+# PMUS_FILL_NOTE. Peter, Nov 6: "i gave you all rate from the websites go with all the documents
+# i gave you." Every coefficient in this module now comes from the venue's own published schedule:
+# Kalshi's PDF (dated Jul 7 2026), Novig's fees page, ProphetX's fee schedule, and Polymarket's.
+#
+# One loose end is recorded rather than buried. Peter cites two fills verifying 0.0695: Oct 25
+# Grizzlies/Kings, effective 0.5374 exactly, and Nov 2 Pistons, a $7.48 gap exactly. I argued the
+# first proved 0.0695, and that argument was weaker than I made it sound: 0.5374 implies a raw
+# 0.5201 under 0.0695 but a raw 0.5224 under 0.06, and BOTH are real prices. I picked 0.52 because
+# it looked round. That is an assumption, not evidence, and it cannot outrank the published rate.
+# What would actually settle it is the Nov 2 Pistons fill's contract count and price, which pins
+# the coefficient without any guess about the raw. Until then the schedule governs.
+#
+# Also unreconciled, and not something our fills can answer: the CFTC filing for QCX LLC (Mar 2026)
+# describes a different STRUCTURE - 0.10% of total contract premium, about 30x smaller than any
+# p(1-p) reading - so either it was superseded or it covers a different entity. Noted, not modelled.
 
 
 def _is_nhl(league):

@@ -49,7 +49,7 @@ import exchange_lag as el
 
 # Stamp this on every CLV figure (Peter, item 2: "record the fee-model version used").
 # Bump it whenever eff(), a coefficient, or the venue registry changes.
-FEE_MODEL = "2026-11-06.9"
+FEE_MODEL = "2026-11-06.10"
 # Each entry carries its VERIFICATION STATUS, not just its rate. Peter, Nov 6: "cant you check out
 # fills or the account" - so where his own exports could settle a coefficient, they were used, and
 # where they could not, that is stated rather than assumed.
@@ -87,17 +87,16 @@ FEE_NOTES = {
                 "p(1-p) shape as every other venue. Reproduces their worked example to the cent. We "
                 "carried 2% across all leagues, which understated NHL takes (0.96% booked, 1.64% real) "
                 "and overstated NHL posts (0.96% booked, 0.47% real). 3 ProphetX NHL rows so far.",
-    "polymarket.us": "TAKER 0.0695 x C x p x (1-p) - FILL-VERIFIED, and reverted here on Nov 6. I "
-                     "had changed it to 0.06 on text Peter pasted; he then applied the test it "
-                     "should have faced first - official schedule, effective date, and one recent "
-                     "fill reconciling at the new rate - and it fails all three. His Oct 25 "
-                     "Grizzlies/Kings fill is effective 0.5374 exactly: a raw 0.52 gives 0.537347 "
-                     "under 0.0695 and 0.5350 under 0.06. The fill fits the old rate. Four sources "
-                     "disagree, and the CFTC filing for QCX LLC (Mar 2026) is a different STRUCTURE "
-                     "entirely - 0.10% of total contract premium, ~30x smaller than any p(1-p) "
-                     "reading. UNRESOLVED; the fill wins until it is not. The MAKER REBATE is not "
-                     "modelled at all: Peter requires it be its own separate change, never bundled, "
-                     "so maker falls back to taker and posting is costed too high, not too low.",
+    "polymarket.us": "TAKER 0.06 x C x p x (1-p); MAKER -0.0125, a REBATE. The venue's own "
+                     "published schedule, per Peter Nov 6: go with the documents. His worked "
+                     "example checks exactly - 0.06 x 100 x 0.50 x 0.50 = $1.50. Recorded loose "
+                     "end: he cites two fills verifying the old 0.0695 (Oct 25 effective 0.5374; "
+                     "Nov 2 a $7.48 gap). I claimed the first proved 0.0695; it does not. 0.5374 "
+                     "implies raw 0.5201 under 0.0695 and raw 0.5224 under 0.06, and both are real "
+                     "prices - I picked the rounder one, which is an assumption, not evidence. The "
+                     "Nov 2 Pistons contract count and price would settle it outright. Separately, "
+                     "the CFTC filing for QCX LLC (Mar 2026) states 0.10% of total contract "
+                     "premium, a different STRUCTURE ~30x smaller; noted, not modelled."
 }
 # What would close the open ones, in order of how much it matters:
 #   Polymarket US  the Nov 2 Pistons fill's contract count and price (Peter has it), which pins the
@@ -244,8 +243,10 @@ def stamp():
     """One line for every report, so a CLV figure always carries the model that produced it."""
     return (f"CLV: net of fees, Pinnacle verified same-line no-vig close. fee-model {FEE_MODEL}. "
             f"AUTO={len(AUTO)} venues (Hard Rock excluded), MANUAL={len(MANUAL)}. "
-            f"PM-US 0.0695 fill-verified (0.06 rejected 0/3, rebate NOT modelled); Novig free "
-            f"pre-game and all maker; Kalshi maker UNVERIFIED at 0.0175; ProphetX NHL 0.035/0.01.")
+            f"All coefficients from the venues' published schedules. PM-US 0.06 taker / -0.0125 "
+            f"maker rebate; Novig free pre-game and all maker, 0.06 live/futures taker; Kalshi "
+            f"0.07 taker, maker 0.0175 where its multiplier applies; ProphetX 2% of net gains per "
+            f"market, NHL 0.035/0.01.")
 
 
 if __name__ == "__main__":
