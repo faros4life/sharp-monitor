@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 6, 7:56 AM ET. This run: 2 new, 0 not confirmed, 0 pending. Open alerts: 33.
+Updated Fri Nov 6, 8:01 AM ET. This run: 1 new, 0 not confirmed, 2 pending. Open alerts: 32.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,11 +10,10 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 6 7:56AM | NCAAF | North Carolina vs UConn: Spread | spread: North Carolina wins by over 7.5 points | kalshi | $158k | +104 |  |  | +0.0c |  | pending |
-| Nov 6 7:56AM | NBA | Boston vs Charlotte: Total Points | total: NOT Over 210.5 points | kalshi | $34k | -108 |  |  | +0.0c |  | pending |
+| Nov 6 8:01AM | NCAAF | North Carolina vs UConn: Spread | spread: North Carolina wins by over 7.5 points | kalshi | $158k | +104 |  |  | +0.0c |  | pending |
 | Nov 6 7:00AM | NBA | Portland vs Los Angeles L: Spread | spread: Los Angeles L wins by over 2.5 points | kalshi | $25k | -108 |  |  | +0.0c |  | pending |
 | Nov 6 7:00AM | NBA | Oklahoma City vs Memphis: Spread | spread: Oklahoma City wins by over 3.5 points | kalshi | $33k | +108 |  | ❌ | +1.0c |  | pending |
-| Nov 6 7:00AM | NHL | Anaheim vs Calgary | moneyline: Calgary | kalshi | $73k | -122 | ✅ novig,polymarket |  | +1.0c |  | pending |
+| Nov 6 7:00AM | NHL | Anaheim vs Calgary | moneyline: Calgary | kalshi | $73k | -122 | ✅ novig,polymarket |  | +0.0c |  | pending |
 | Nov 6 6:00AM | NHL | Anaheim vs Calgary: Spread | spread: NOT Calgary wins by over 1.5 goals | kalshi | $28k | -203 |  |  | +0.0c |  | pending |
 | Nov 6 5:40AM | NCAAF | Nebraska vs Illinois: Total Points | total: NOT Over 50.5 points | kalshi | $26k | -100 |  |  | +0.0c | yes | pending |
 | Nov 6 5:40AM | NCAAF | North Carolina Central vs Norfolk St. | moneyline: North Carolina Central | kalshi | $26k | -170 |  |  | -1.0c |  | pending |
@@ -27,7 +26,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 5 11:56PM | NBA | San Antonio vs Sacramento: Total Points | total: Over 228.5 points | kalshi | $26k | -113 |  |  | +0.0c |  | pending |
 | Nov 5 11:50PM | NBA | Philadelphia vs Cleveland | moneyline: Philadelphia | kalshi | $142k | -133 | ✅ polymarket |  | +2.0c | yes | pending |
 | Nov 5 11:20PM | NCAAF | TCU vs Arizona: Total Points | total: NOT Over 46.5 points | kalshi | $42k | -104 |  |  | -1.0c | yes | pending |
-| Nov 5 10:40PM | NBA | Boston vs Charlotte | moneyline: Boston | kalshi | $109k | -285 |  |  | +2.0c |  | pending |
+| Nov 5 10:40PM | NBA | Boston vs Charlotte | moneyline: Boston | kalshi | $109k | -285 |  |  | +1.0c |  | pending |
 | Nov 5 8:55PM | NBA | Miami Heat @ Golden State Warriors | spread: GSW -3.5 (-3.5) | novig | $26k | -108 | ✅ kalshi,polymarket | ❌ | +0.0c |  | W |
 | Nov 5 8:45PM | NCAAF | Nebraska vs Illinois: Spread | spread: NOT Nebraska wins by over 4.5 points | kalshi | $62k | -100 | ✅ novig |  | +1.0c |  | pending |
 | Nov 5 8:40PM | NCAAF | South Carolina St. vs Howard | moneyline: South Carolina St. | kalshi | $85k | -488 |  |  | +11.0c | yes | W |
@@ -210,3 +209,4 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 4 11:10AM | NBA | Milwaukee vs Boston: Spread | spread: NOT Boston wins by over 11.5 points | kalshi | $48k | -100 |  |  | -2.0c | yes | W |
 | Nov 4 11:00AM | NCAAF | Toledo vs Sacramento St.: Total Points | total: NOT Over 52.5 points | kalshi | $123k | -100 | ✅ novig,prophetx |  | +1.0c | yes | W |
 | Nov 4 11:00AM | NBA | Los Angeles L vs Sacramento: Spread | spread: NOT Los Angeles L wins by over 12.5 points | kalshi | $32k | -108 | ✅ novig | ❌ | +0.0c | yes | L |
+| Nov 4 10:50AM | NCAAF | Toledo vs Sacramento St.: Spread | spread: Toledo wins by over 24.5 points | kalshi | $137k | -104 |  |  | +0.0c | yes | L |
