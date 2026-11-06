@@ -9,6 +9,7 @@ on:
       cache_only: {required: false, type: string, default: "1"}
       get_sec: {required: false, type: string, default: "60"}
       script: {required: false, type: string, default: "liq_history_test.py"}   # Nov 4: also runs close_vs_close_test.py
+      frozen: {required: false, type: string, default: "0"}   # Nov 5: 1 = judge only the board's frozen PLAY calls
 
 permissions:
   contents: read
@@ -31,6 +32,7 @@ jobs:
           restore-keys: hcache-
       - name: Liquidity vs history (private email)
         env:
+          LIQH_FROZEN: ${{ inputs.frozen }}
           GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
           EMAIL_TO: ${{ secrets.EMAIL_TO }}

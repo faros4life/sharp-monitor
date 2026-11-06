@@ -128,6 +128,16 @@ def main():
          if a.get("league") in LEAGUES and a.get("market") in ("moneyline", "spread", "total")
          and a.get("result") in ("W", "L", "P") and not a.get("artifact") and not a.get("close_suspect")
          and cl.tp(a.get("alerted_utc")) and cl.tp(a["alerted_utc"]) >= FROM and a.get("price")]
+    if (os.environ.get("LIQH_FROZEN") or "") == "1":
+        # Nov 5 (Peter): judge exactly the board's FROZEN PLAY calls (board/calls.json - the call each row had when it
+        # posted), not the whole alert population. Pinnacle no-vig close is the benchmark; the monitor's own clv_cents
+        # grades an alert against the book the money hit, which moves toward it.
+        try:
+            FZ = {k for k, e in (json.load(open("board/calls.json")).get("calls") or {}).items() if e.get("call") == "PLAY"}
+        except Exception:
+            FZ = set()
+        A = [a for a in A if f"{a.get('key') or ''}|{a.get('alerted_utc') or ''}" in FZ]
+        print(f"liq history test: frozen-PLAY filter -> {len(A)} of {len(FZ)} frozen calls carry a graded alert")
     st = {"billable": {}}
     mkmap = cl.load_markets(st, now)
     for lg in LEAGUES:
@@ -372,7 +382,7 @@ def main():
                  f"liq_history_perplay_{now.astimezone(ET):%Y%m%d_%H%M}.csv")
     except Exception as exn:   # the report must still arrive even if the attachment fails
         print(f"per-play export failed: {str(exn)[:80]}")
-        ex.send("Bets LIQUIDITY vs HISTORY (paper)", "\n".join(L))
+        ex.send("Bets LIQUIDITY vs HISTORY (paper)" + (" - FROZEN BOARD PLAYS" if (os.environ.get("LIQH_FROZEN") or "") == "1" else ""), "\n".join(L))
     print(f"liq history test: scope {len(A)}, read {len(R)}, gettable {sum(r['gettable'] for r in R)}, "
           f"rule {len(rule)}, cache hits {hc.STATS['hit']}, downloads {hc.STATS['miss']}")   # counts only
 
