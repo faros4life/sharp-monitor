@@ -46,6 +46,17 @@ VENUES = ["novig.us", "prophetx", "kalshi", "polymarket.us"]
 NOFEE = [v for v in VENUES if abs(el.eff(v, 1.9091) - 1.9091) < 1e-9]
 SLUG = {"kalshi": "kalshi", "polymarket": "polymarket.us", "novig": "novig.us", "prophetx": "prophetx"}
 
+# Nov 6, after Peter asked whether the CLV was fee-inclusive. It is (liq_history_test line 302 uses
+# el.eff of the alert price), so the measured -2.09% already had the 3.42% taker fee deducted - which
+# means the RAW screen price was worth about +1.26% and the fee is what made it negative. Posting the
+# fee-EQUIVALENT therefore hands that edge straight back; posting the SCREEN price keeps it, at the
+# cost of a harder fill. These three bases price that trade-off instead of assuming it.
+BASES = [
+    ("feeq",   ["novig.us"], lambda d, bk: el.eff(bk, d)),      # net of the fee: same CLV as measured
+    ("screen", ["novig.us"], lambda d, bk: d),                  # the screen price: keeps the +1.26%
+    ("prem",   ["novig.us"], lambda d, bk: 1 + (d - 1) * 1.05), # 5% better than screen: demands a premium
+]
+
 
 def am(d):
     return round(-100 / (d - 1)) if d < 2 else round(100 * (d - 1))
@@ -86,7 +97,6 @@ def main():
             miss["no alert price"] += 1
             continue
         trig = SLUG.get(a.get("book"), a.get("book"))
-        target = el.eff(trig, 1 / a["price"])
         b = {"league": lg, "game": a.get("game"), "teams": nn.teams_of(a),
              "bet": f"{'Over' if side == 'OVER' else 'Under'} {float(line):g} (-110)",
              "game_start": a.get("start_utc"), "flip": False}
@@ -102,10 +112,14 @@ def main():
         pin = cl.book_markets(h, "pinnacle")
         pa, _ = cl.close_for(b, f, pin, mkmap, t0, lg)
         row = {"game": a.get("game"), "side": side, "line": line, "trig": trig,
-               "screen": a.get("price_american"), "post_am": am(target), "post_dec": round(target, 4),
+               "screen": a.get("price_american"),
                "lead_h": round((tip - t0).total_seconds() / 3600, 1), "res": a.get("result"),
                "pin_alert": (round(pa["p"], 4) if pa else None)}
-        for basis, vs in (("nofee", NOFEE), ("any", VENUES)):
+        pc, _ = cl.close_for(b, f, pin, mkmap, cl.tp(f.get("start")) or tip, lg)   # Pinnacle's CLOSE
+        row["pin_close"] = (round(pc["p"], 5) if pc else None)
+        for basis, vs, tgt in BASES:
+            target = tgt(1 / a["price"], trig)
+            row[basis + "_post"] = am(target)
             best = None
             for v in vs:
                 w, d = first_fill(b, f, cl.book_markets(h, v), mkmap, t0, tip, lg, target)
@@ -118,6 +132,10 @@ def main():
                 row[basis] = {"fill": True, "wait_h": round((best[0] - t0).total_seconds() / 3600, 1),
                               "dec": round(best[1], 4), "venue": best[2],
                               "pin_fill": (round(pf["p"], 4) if pf else None),
+                              # CLV at the price we ACTUALLY filled, vs Pinnacle's close. This is the
+                              # number Peter asked about: the board's -2.09% was the fee-inclusive
+                              # alert price, so a basis only improves CLV if it fills BETTER than that.
+                              "clv": (round(100 * (pc["p"] * best[1] - 1), 3) if pc else None),
                               "u": (round(u, 3) if u is not None else None)}
             else:
                 row[basis] = {"fill": False}
@@ -138,7 +156,10 @@ def main():
          + (f" | not measured: {', '.join(f'{v} {k}' for k, v in miss.items() if v)}" if any(miss.values()) else ""),
          f"walked each venue's own history every {STEP} min from the alert to tip.", ""]
 
-    for basis, name in (("nofee", f"POSTED ON A NO-FEE VENUE {NOFEE}"), ("any", "POSTED ANYWHERE (upper bracket)")):
+    for basis, _vs, _t in BASES:
+        name = {"feeq": "POST AT THE FEE-EQUIVALENT (net of fee - same CLV as measured, by construction)",
+                "screen": "POST AT THE SCREEN PRICE (keeps the fee the taker was paying)",
+                "prem": "POST 5% BETTER THAN SCREEN (demands a premium)"}[basis]
         fl = [r for r in R if r[basis]["fill"]]
         gr = [r for r in fl if r[basis].get("u") is not None]
         L.append(f"--- {name} ---")
@@ -153,6 +174,11 @@ def main():
             for r in fl:
                 vc[r[basis]["venue"]] = vc.get(r[basis]["venue"], 0) + 1
             L.append(f"  filled on: {', '.join(f'{k} {v}' for k, v in sorted(vc.items(), key=lambda x: -x[1]))}")
+            cv = [r[basis]["clv"] for r in gr if r[basis].get("clv") is not None]
+            if cv:
+                L.append(f"  CLV vs Pinnacle close at the FILL price: {sum(cv)/len(cv):+.2f}% "
+                         f"| beat the close {sum(1 for x in cv if x > 0)}/{len(cv)} "
+                         f"({sum(1 for x in cv if x > 0)/len(cv)*100:.0f}%)")
         both = [r for r in fl if r["pin_alert"] and r[basis].get("pin_fill")]
         if both:
             d = [r[basis]["pin_fill"] - r["pin_alert"] for r in both]
@@ -164,18 +190,18 @@ def main():
 
     L.append(f"{'game':24s} {'sd':5s} {'line':>6s} {'trig':13s} {'scr':>5s} {'post':>5s} {'lead':>5s} "
              f"{'fill':>4s} {'wait':>5s} {'venue':11s} {'res':>4s} {'u':>7s}")
-    for r in sorted(R, key=lambda r: (not r["nofee"]["fill"], str(r["game"]))):
-        n = r["nofee"]
+    for r in sorted(R, key=lambda r: (not r["screen"]["fill"], str(r["game"]))):
+        n = r["screen"]
         L.append(f"{str(r['game'])[:24]:24s} {str(r['side'])[:5]:5s} {str(r['line']):>6s} {r['trig'][:13]:13s} "
-                 f"{str(r['screen']):>5s} {r['post_am']:>5d} {r['lead_h']:>5.1f} "
+                 f"{str(r['screen']):>5s} {r['screen_post']:>5d} {r['lead_h']:>5.1f} "
                  f"{'yes' if n['fill'] else 'no':>4s} "
                  f"{(format(n['wait_h'], '.1f') if n.get('wait_h') is not None else '-'):>5s} "
                  f"{str(n.get('venue') or '-')[:11]:11s} {str(r['res']):>4s} "
                  f"{(format(n['u'], '+.3f') if n.get('u') is not None else '-'):>7s}")
 
     body = "\n".join(L)
-    nf = sum(1 for r in R if r["nofee"]["fill"])
-    print(f"post test: measured {len(R)}, no-fee fills {nf}, any-venue fills {sum(1 for r in R if r['any']['fill'])}")
+    print("post test: measured %d | " % len(R) + ", ".join(
+        f"{bz} fills {sum(1 for r in R if r[bz]['fill'])}" for bz, _v, _t in BASES))
     try:
         ex.send("Bets LANE 3 - post and wait at the fee-equivalent price (paper)", body)
     except Exception as e:
