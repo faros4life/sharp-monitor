@@ -1,6 +1,169 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-06T21:30:21Z",
+   "base_depth": 126924,
+   "best_price": 0.5474,
+   "best_price_american": -121,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.53,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-06",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -355,
+     "new_this_side": 25629,
+     "other_side": 26293,
+     "other_side_all_levels": 96031,
+     "ratio": 3.3,
+     "this_side": 86099,
+     "this_side_all_levels": 152213
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 57582.33,
+    "volume_24h_fp": 59122.36,
+    "volume_fp": 59539.0
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 468.09,
+    "volume_24h_fp": 288.68,
+    "volume_fp": 468.09
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 57114.24,
+    "volume_24h_fp": 58833.68,
+    "volume_fp": 59070.91
+   },
+   "fade_price": 0.48,
+   "first_seen_utc": "2026-11-06T21:20:17Z",
+   "game": "Michigan vs UConn: Spread",
+   "game_surge_books": [],
+   "game_x": 1.24,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAMBSPREAD-26NOV06MICHCONN-CONN8\"}",
+   "lead_min": 210,
+   "league": "NCAAB",
+   "line": 7.5,
+   "market": "spread",
+   "new_money": 25629,
+   "new_x": 1.11,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 57582.33,
+      "volume_24h_fp": 59122.36,
+      "volume_fp": 59539.0
+     },
+     "game_normal": 122612,
+     "game_x": 1.24,
+     "normal": 23028,
+     "now": 152213,
+     "type": "SPREAD",
+     "x": 6.61
+    }
+   },
+   "norm_ready_books": 1,
+   "paper_only": false,
+   "price": 0.53,
+   "price_american": -113,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.53,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 7.5,
+     "price": -115
+    },
+    "betonlineag": {
+     "point": 7.0,
+     "price": -105
+    },
+    "betrivers": {
+     "point": 7.5,
+     "price": -110
+    },
+    "betus": {
+     "point": 7.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 7.0,
+     "price": -105
+    },
+    "draftkings": {
+     "point": 7.5,
+     "price": -115
+    },
+    "fanatics": {
+     "point": 7.5,
+     "price": -115
+    },
+    "fanduel": {
+     "point": 7.5,
+     "price": -118
+    },
+    "kalshi": {
+     "point": 7.5,
+     "price": -113
+    },
+    "lowvig": {
+     "point": 7.0,
+     "price": -101
+    },
+    "novig": {
+     "point": 7.5,
+     "price": -113
+    },
+    "polymarket": {
+     "point": 7.5,
+     "price": -113
+    },
+    "prophetx": {
+     "point": 7.5,
+     "price": -117
+    },
+    "williamhill_us": {
+     "point": 7.0,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAMBSPREAD-26NOV06MICHCONN-CONN8"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Michigan",
+   "side_label": "NOT UConn wins by over 7.5 points",
+   "size_x": 6.61,
+   "start_source": "odds",
+   "start_utc": "2026-11-07T01:00:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "Michigan",
+    "UConn"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-06T20:20:19Z",
    "base_depth": 13725,
    "best_price": 0.68,
@@ -229,9 +392,9 @@
     "volume_fp": 281.2
    },
    "ex_stats_close": {
-    "open_interest_fp": 579.54,
-    "volume_24h_fp": 579.54,
-    "volume_fp": 579.54
+    "open_interest_fp": 586.87,
+    "volume_24h_fp": 586.87,
+    "volume_fp": 586.87
    },
    "ex_stats_first": {
     "open_interest_fp": 7.25,
@@ -507,9 +670,9 @@
     "volume_fp": 1.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 6521.129999999999,
-    "volume_24h_fp": 6214.31,
-    "volume_fp": 6563.92
+    "open_interest_fp": 6522.16,
+    "volume_24h_fp": 6222.88,
+    "volume_fp": 6565.26
    },
    "ex_stats_first": {
     "open_interest_fp": 369.85,
@@ -691,9 +854,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1092.7,
-    "volume_24h_fp": 390.48,
-    "volume_fp": 1092.7
+    "open_interest_fp": 1099.69,
+    "volume_24h_fp": 1098.46,
+    "volume_fp": 1099.69
    },
    "ex_stats_first": {
     "open_interest_fp": 164.99,
@@ -841,8 +1004,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.54,
-   "clv_cents": -15.0,
+   "close_price": 0.57,
+   "clv_cents": -12.0,
    "confirmed_after_min": 10,
    "date": "2026-11-06",
    "depth_by_book": {
@@ -867,9 +1030,9 @@
     "volume_fp": 348.39
    },
    "ex_stats_close": {
-    "open_interest_fp": 395530.29,
-    "volume_24h_fp": 452951.41000000003,
-    "volume_fp": 499091.65
+    "open_interest_fp": 502466.04,
+    "volume_24h_fp": 627413.6699999999,
+    "volume_fp": 655008.05
    },
    "ex_stats_first": {
     "open_interest_fp": 2376.19,
@@ -1261,9 +1424,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 3188.01,
-    "volume_24h_fp": 6487.450000000001,
-    "volume_fp": 7244.1900000000005
+    "open_interest_fp": 3421.98,
+    "volume_24h_fp": 6685.15,
+    "volume_fp": 7488.16
    },
    "ex_stats_first": {
     "open_interest_fp": 1200.74,
@@ -1551,7 +1714,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 2010.3,
-    "volume_24h_fp": 1973.74,
+    "volume_24h_fp": 2010.3,
     "volume_fp": 2010.3
    },
    "ex_stats_first": {
@@ -1683,9 +1846,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 3039.0,
-    "volume_24h_fp": 1926.04,
-    "volume_fp": 3145.76
+    "open_interest_fp": 3144.07,
+    "volume_24h_fp": 1954.3000000000002,
+    "volume_fp": 3252.83
    },
    "ex_stats_first": {
     "open_interest_fp": 1193.46,
@@ -1974,7 +2137,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 2321.07,
-    "volume_24h_fp": 1427.95,
+    "volume_24h_fp": 1431.49,
     "volume_fp": 2433.85
    },
    "ex_stats_first": {
@@ -3348,9 +3511,9 @@
     "volume_fp": 2909.33
    },
    "ex_stats_close": {
-    "open_interest_fp": 54654.71,
-    "volume_24h_fp": 50417.259999999995,
-    "volume_fp": 56773.229999999996
+    "open_interest_fp": 55825.24,
+    "volume_24h_fp": 51519.39,
+    "volume_fp": 57943.76
    },
    "ex_stats_first": {
     "open_interest_fp": 2043.04,
