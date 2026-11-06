@@ -49,7 +49,7 @@ import exchange_lag as el
 
 # Stamp this on every CLV figure (Peter, item 2: "record the fee-model version used").
 # Bump it whenever eff(), a coefficient, or the venue registry changes.
-FEE_MODEL = "2026-11-06.6"
+FEE_MODEL = "2026-11-06.7"
 # Each entry carries its VERIFICATION STATUS, not just its rate. Peter, Nov 6: "cant you check out
 # fills or the account" - so where his own exports could settle a coefficient, they were used, and
 # where they could not, that is stated rather than assumed.
@@ -77,21 +77,16 @@ FEE_NOTES = {
               "or the table just does not enumerate spreads and totals, so eff() carries the "
               "CONSERVATIVE 0.0175 and the first maker fill decides it: fee_audit.py already buckets on "
               "the API's is_taker flag.",
-    "prophetx":      "2% of winnings. VERIFIED EXACTLY from the ProphetX wallet ledger. The fee is "
-                     "booked as its OWN 'Fees' wallet entry beside the Payout row, NOT on the trade - "
-                     "which is why GET /v4/mm/get_trades reports fee 0.00 on every fill and why I "
-                     "briefly and wrongly read that as 'no fee charged'. EIGHT independent fee rows "
-                     "across eight different games (Oct 25-26), EVERY ONE exactly -4.00: Memphis/Utah, "
-                     "Indiana/Milwaukee, Memphis/Sacramento, Orlando/NY, LAL/Utah, LAR/LV, SF/Atlanta, "
-                     "Cincinnati/Baltimore. Two have their Payout row alongside and pin the arithmetic: "
-                     "+426.00 with Fees -4.00 (winnings 200, stake 226, price -113) and +440.00 with "
-                     "Fees -4.00 (winnings 200, stake 240, price -120). A ninth row, Fees -0.02 on 1.00 "
-                     "of winnings, agrees at the other end of the scale. Rate = 2.000% of winnings in "
-                     "every case. eff() was right all along; nothing changes. Practical note: "
-                     "at a 200-to-win unit every ProphetX winner costs a flat 4.00, and the eight rows "
-                     "being identical also confirms the unit is being staked consistently.\n"
-                     "                     LESSON: a venue's fee may not live on its trade record. "
-                     "Absence of a fee field is not evidence of no fee.",
+    "prophetx": "TWO models, split by LEAGUE (their schedule, Nov 6). Everything except NHL: 2% "
+                "commission on NET GAINS PER MARKET - VERIFIED EXACTLY from 8 wallet Fees rows "
+                "(-4.00 on 200.00 twice, -0.02 on a 1.00 net gain), all NBA/NFL, so schedule and "
+                "ledger agree to three decimals. Note it is per MARKET, so wins and losses in one "
+                "market net before the 2%; we bet one side per market, and where that breaks the "
+                "model overcharges, which is the safe direction. NHL ALONE is an ordinary maker/taker "
+                "scale, F(p) = a x (1-p) per traded dollar, a = 0.035 taker and 0.01 maker - the same "
+                "p(1-p) shape as every other venue. Reproduces their worked example to the cent. We "
+                "carried 2% across all leagues, which understated NHL takes (0.96% booked, 1.64% real) "
+                "and overstated NHL posts (0.96% booked, 0.47% real). 3 ProphetX NHL rows so far.",
     "polymarket.us": "TAKER 0.06 x contracts x p x (1-p); MAKER -0.0125, a REBATE. Given by Peter "
                      "Nov 6 from the venue's own schedule, and his worked example checks exactly: "
                      "0.06 x 100 contracts x 0.50 x 0.50 = $1.50. Two corrections follow. (1) This "

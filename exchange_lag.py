@@ -45,8 +45,22 @@ MAX_GAMES = int(os.environ.get("EXLAG_MAX", "") or "300")
 # Fee rates, per side. Positive = charged on top of the contract cost; NEGATIVE = a rebate paid to
 # us. Verified Nov 6 from Peter's own accounts and venue schedules - see clv_std.FEE_NOTES for the
 # evidence behind each one.
-PX_WIN_FEE = 0.02                                  # ProphetX: 2% of WINNINGS. Verified exactly from
-                                                   # 8 wallet "Fees" rows, each -4.00 on 200.00 won.
+# ProphetX runs TWO fee models, and which one applies is decided by the LEAGUE (their schedule,
+# via Peter Nov 6). Everything except NHL: a commission of 2% on NET GAINS PER MARKET. NHL alone:
+# an ordinary maker/taker scale of the same p(1-p) shape every other venue uses.
+PX_WIN_FEE = 0.02                                  # 2% of net gains per market. VERIFIED EXACTLY from
+                                                   # 8 wallet "Fees" rows: -4.00 on 200.00 twice over,
+                                                   # and -0.02 on a 1.00 net gain. All NBA/NFL markets,
+                                                   # so all under this model - the schedule and the
+                                                   # ledger agree to three decimal places.
+# "Net gains PER MARKET", not per bet: wins and losses in the same market net off before the 2% is
+# taken. We bet one side per market, so per-bet and per-market coincide almost always; where they do
+# not, this model charges MORE than reality, which is the safe direction. The -0.02 row is itself
+# evidence of the netting - a $1.00 net gain, not a $1.00 bet.
+PX_NHL = {"taker": 0.035, "maker": 0.01}           # F(p) = a x (1-p) per traded dollar, i.e.
+                                                   # a x C x P x (1-P) per contract - the same shape as
+                                                   # Kalshi, Polymarket and Novig, so it drops straight
+                                                   # into the standard form below.
 
 # Every coefficient below is of the form fee = COEF x contracts x p x (1-p), charged ON TOP of the
 # stake - which is what this module has always modelled, and both venues' schedules confirm it
@@ -80,15 +94,24 @@ NOVIG_LIVE_TAKER = 0.06
 # on the API's is_taker flag and will report its implied coefficient the moment one lands.
 
 
-def eff(book, dec, maker=False, live=False):
+def _is_nhl(league):
+    return str(league or "").strip().lower() in ("nhl", "icehockey_nhl", "hockey", "ice hockey")
+
+
+def eff(book, dec, maker=False, live=False, league=None):
     """After-fee decimal: what $1 staked pays back.
+
+    league matters for ProphetX alone, which prices NHL on a maker/taker scale and everything else
+    as a 2% commission on gains. Pass it whenever the book might be ProphetX.
 
     maker=True prices us as the resting side - which is Peter's actual strategy, and on Polymarket
     US it pays a rebate, so eff() can come back ABOVE the raw price. live=True switches Novig to its
     in-game taker schedule. Both default False, so every existing caller keeps its old answer."""
-    if book == "prophetx":
-        return 1 + (dec - 1) * (1 - PX_WIN_FEE)    # on winnings, so the same either side as far as known
-    if maker:
+    if book == "prophetx" and not _is_nhl(league):
+        return 1 + (dec - 1) * (1 - PX_WIN_FEE)    # on gains, so the same whichever side we are on
+    if book == "prophetx":                         # NHL only: a real maker/taker scale
+        f = PX_NHL["maker" if maker else "taker"]
+    elif maker:
         f = MAKER.get(book)
         if f is None:
             f = TAKER.get(book)                    # unknown maker rate -> taker, the conservative way
@@ -102,7 +125,7 @@ def eff(book, dec, maker=False, live=False):
     return 1 / (p * (1 + f * (1 - p)))
 
 
-def raw_for(book, net_dec, lo=1.0001, hi=200.0, maker=False, live=False):
+def raw_for(book, net_dec, lo=1.0001, hi=200.0, maker=False, live=False, league=None):
     """The RAW price this venue must SHOW so that, after its fee, we net net_dec.
 
     Peter, Nov 6: "post clv net fees and add to the price for those exchanges". One CLV basis - net
@@ -120,11 +143,11 @@ def raw_for(book, net_dec, lo=1.0001, hi=200.0, maker=False, live=False):
     """
     if net_dec is None or net_dec <= 1:
         return None
-    if abs(eff(book, net_dec, maker, live) - net_dec) < 1e-12:   # nothing taken: the raw price IS the net
+    if abs(eff(book, net_dec, maker, live, league) - net_dec) < 1e-12:   # nothing taken: the raw price IS the net
         return net_dec
     for _ in range(200):                           # eff() is monotonic in dec, so bisection is exact enough
         mid = (lo + hi) / 2
-        if eff(book, mid, maker, live) < net_dec:
+        if eff(book, mid, maker, live, league) < net_dec:
             lo = mid
         else:
             hi = mid
