@@ -225,6 +225,8 @@ def score(rows):
             r["tag"], r["why"] = "LEAN", f"v3: nightly cap 5 - this was play #{n} by alert time"
 
 
+BOOK_LABEL = {"kalshi": "Kalshi", "polymarket": "Polymarket", "polymarket_us": "Polymarket US",
+              "novig": "Novig", "prophetx": "ProphetX"}
 CALLS_LOG = {}
 CALLS = "board/calls.json"   # Nov 5 (Peter): the call each row had WHEN IT POSTED, frozen - append-only
 
@@ -271,6 +273,47 @@ def rec_log(es):
         return "none graded yet"
     w = sum(e["result"] == "W" for e in g)
     return f"{w}-{len(g) - w} ({sum(e.get('units') or 0 for e in g):+.2f}u)"
+
+
+def to_american(d):
+    """Decimal -> American, as a signed string."""
+    if not d or d <= 1:
+        return "—"
+    v = (d - 1) * 100 if d >= 2 else -100 / (d - 1)
+    return f"{v:+.0f}" if v > 0 else f"{v:.0f}"
+
+
+# Nov 6 (Peter, "where is the price?"): the call says "the alert price or better", so the board has to show that price.
+# Fees are kept here rather than imported, so the board never pulls the executor's credentials at import time.
+# Kalshi 0.07 x p x (1-p) and Polymarket 0.0695 x p x (1-p) per contract (~3.4% of stake at even money);
+# ProphetX 2% of winnings (~1%); Novig none.
+def after_fee_dec(book, p):
+    if not p or not 0 < p < 1:
+        return None
+    b = (book or "").lower()
+    if b in ("kalshi", "polymarket", "polymarket_us", "polymarket.us"):
+        return 1 / (p * (1 + (0.07 if b == "kalshi" else 0.0695) * (1 - p)))
+    if b == "prophetx":
+        return 1 + (1 / p - 1) * 0.98
+    return 1 / p
+
+
+def price_cell(r):
+    """The alert price the call refers to: as quoted on the trigger book, and what it really pays after that book's fee."""
+    e = html.escape
+    x = r["x"]
+    am, pr = x.get("price_american"), x.get("price")
+    if pr in (None, "") and am:
+        pr = (abs(am) / (abs(am) + 100)) if am < 0 else (100 / (am + 100))
+    if am is None and not pr:
+        return '<span class="muted">—</span>'
+    raw = f"{int(am):+d}" if am is not None else to_american(1 / pr)
+    af = after_fee_dec(x.get("book"), pr)
+    bk = BOOK_LABEL.get((x.get("book") or "").lower(), (x.get("book") or "").title())
+    if not af:
+        return f'<b>{raw}</b> <span class="muted">{e(bk)}</span>'
+    return (f'<b>{raw}</b> <span class="muted">{e(bk)}</span>'
+            f'<div class="why">{to_american(af)} after {e(bk)} fee</div>')
 
 
 def x2_limits():
@@ -367,6 +410,7 @@ def page(now, rows, flips):
                 f'<td><span class="tag {r["tag"]}">{r["tag"] or "—"}{res}</span><div class="why">{e(r["why"])}</div></td>'
                 f'<td class="r money">{money(r["new"])}<span class="bar" style="width:{max(2, 100 * r["new"] / nmax):.0f}%"></span></td>'
                 f'<td class="hide-m">{e(r["league"])}</td><td>{e(r["game"])}</td><td>{e(r["side"])}</td>'
+                f'<td class="r">{price_cell(r)}</td>'
                 f'<td class="ex">{bars}</td>'
                 f'<td class="r">{plim(r)}</td>'
                 f'<td class="r">{(str(r["sit"] // 60) + "h " + str(r["sit"] % 60) + "m") if live and r["sit"] >= 60 else (str(r["sit"]) + "m" if live else "")}</td>'
@@ -374,9 +418,9 @@ def page(now, rows, flips):
                 f'<td class="hide-m"><span class="pill {"yes" if r["conf"] else ""}">{"yes" if r["conf"] else "no"}</span></td>'
                 f'<td class="hide-m muted">{r["first"]}</td></tr>')
         head = ('<tr><th>Call</th><th class="r">New money</th><th class="hide-m">League</th><th>Game</th><th>Money on</th>'
-                '<th>Bids by exchange</th><th class="r" title="Pinnacle limit on OddsJam scale: at the alert, and now">P limit</th><th class="r">Sitting</th><th>Status</th><th class="hide-m">Confirmed</th>'
+                '<th class="r" title="The alert price on the trigger book, and what it pays after that book\'s fee">Price</th><th>Bids by exchange</th><th class="r" title="Pinnacle limit on OddsJam scale: at the alert, and now">P limit</th><th class="r">Sitting</th><th>Status</th><th class="hide-m">Confirmed</th>'
                 '<th class="hide-m">First seen ET</th></tr>')
-        return f'<div class="scroll"><table><thead>{head}</thead><tbody>{"".join(out) or "<tr><td colspan=11 class=muted>Nothing yet today.</td></tr>"}</tbody></table></div>'
+        return f'<div class="scroll"><table><thead>{head}</thead><tbody>{"".join(out) or "<tr><td colspan=12 class=muted>Nothing yet today.</td></tr>"}</tbody></table></div>'
 
     fl = "".join(
         f'<tr data-league="{e(a["league"])}"><td>{e(a["game"])}</td><td>{mk}</td><td>{e(a["side"])}</td><td class="r">{money(a["new"])}</td>'
