@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 6, 12:55 PM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 63.
+Updated Fri Nov 6, 1:01 PM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 63.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,13 +10,13 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 6 12:55PM | NCAAF | UCLA vs Minnesota: Spread | spread: UCLA wins by over 4.5 points | kalshi | $40k | -100 |  |  | +0.0c |  | pending |
+| Nov 6 1:01PM | NCAAF | UCLA vs Minnesota: Spread | spread: UCLA wins by over 4.5 points | kalshi | $40k | -100 |  |  | +0.0c |  | pending |
 | Nov 6 12:40PM | NCAAF | Texas vs Missouri: Spread | spread: Texas wins by over 2.5 points | kalshi | $47k | -108 |  |  | +0.0c |  | pending |
 | Nov 6 12:32PM | NCAAF | North Carolina @ Connecticut | moneyline: UNC (0) | novig | $26k | -270 |  |  | +0.0c |  | pending |
 | Nov 6 11:50AM | NBA | Utah vs Dallas: Total Points | total: Over 225.5 points | kalshi | $53k | -108 |  |  | +0.0c |  | pending |
 | Nov 6 11:50AM | NCAAF | Virginia Tech vs SMU: Spread | spread: NOT SMU wins by over 6.5 points | kalshi | $70k | -108 | ✅ novig |  | +0.0c |  | pending |
 | Nov 6 11:50AM | NBA | Utah vs Dallas: Spread | spread: NOT Dallas wins by over 7.5 points | kalshi | $27k | -113 | ✅ polymarket | ❌ | +0.0c |  | pending |
-| Nov 6 11:41AM | NCAAF | South Florida @ East Carolina | moneyline: USF (0) | novig | $26k | +108 | ✅ kalshi |  | +1.0c |  | pending |
+| Nov 6 11:41AM | NCAAF | South Florida @ East Carolina | moneyline: USF (0) | novig | $26k | +108 | ✅ kalshi |  | +1.5c |  | pending |
 | Nov 6 11:41AM | NCAAF | South Florida vs East Carolina | moneyline: South Florida | kalshi | $170k | +113 | ✅ novig |  | +2.0c | yes | pending |
 | Nov 6 11:30AM | NBA | Wizards vs. Hawks | spread: Hawks (-7.5) | polymarket | $27k | -108 | ✅ kalshi,novig |  | +0.0c |  | pending |
 | Nov 6 11:30AM | NCAAF | TCU @ Arizona | moneyline: ARIZ (0) | novig | $52k | -239 | ✅ kalshi | ❌ | +0.5c |  | pending |
