@@ -1,0 +1,45 @@
+name: fee-audit
+
+# Peter, Nov 6 ("YOU HAVE THE API"): derive each venue's actual fee coefficient from our own fills
+# rather than trusting a constant or a website. READ-ONLY - GET requests only, through the same
+# authenticated callers the executor already uses. It places, cancels and modifies nothing and
+# touches no order endpoint. contents: read, no commit step, dispatch only, no cron.
+#
+# The Actions log is public, so fee_audit.py prints RATIOS, COUNTS and FIELD NAMES only - never an
+# amount, never a field value. Detail goes to the private address. (Nov 5: a report of mine printed
+# /account values behind a redaction test that a UUID defeated and put a live API key in Peter's
+# inbox. Names only, no exceptions.)
+on:
+  workflow_dispatch:
+    inputs:
+      limit: {required: false, type: string, default: "200"}   # fills/activities read per venue
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Fee coefficients from live fills (read-only, no orders)
+        env:
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          # ProphetX: the trade keys read the wallet ledger, the market keys read /v4/mm/get_trades
+          PROPHETX_TRADE_ACCESS_KEY: ${{ secrets.PROPHETX_TRADE_ACCESS_KEY }}
+          PROPHETX_TRADE_SECRET_KEY: ${{ secrets.PROPHETX_TRADE_SECRET_KEY }}
+          PROPHETX_ACCESS_KEY: ${{ secrets.PROPHETX_ACCESS_KEY }}
+          PROPHETX_SECRET_KEY: ${{ secrets.PROPHETX_SECRET_KEY }}
+          KALSHI_KEY_ID: ${{ secrets.KALSHI_KEY_ID }}
+          KALSHI_PRIVATE_KEY: ${{ secrets.KALSHI_PRIVATE_KEY }}
+          PMUS_KEY_ID: ${{ secrets.PMUS_KEY_ID }}
+          PMUS_SECRET_KEY: ${{ secrets.PMUS_SECRET_KEY }}
+          FEE_AUDIT_LIMIT: ${{ inputs.limit }}
+        run: python -u fee_audit.py
