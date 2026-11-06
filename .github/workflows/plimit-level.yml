@@ -33,5 +33,10 @@ jobs:
           EMAIL_TO: ${{ secrets.EMAIL_TO }}
           ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
           ODDSPAPI_FREE_KEY: ${{ secrets.ODDSPAPI_FREE_KEY }}   # Nov 3: history goes through the free key (paid key: 403 on pinnacle)
+          # Nov 6: WITHOUT this the cache-reuse added to plimit_level.py cannot decrypt
+          # clv/state.enc, silently falls through to "will fetch", and buys one /fixtures call per
+          # league. That is exactly what happened on the 12:33Z run: 5 billable calls Peter had not
+          # approved. contents: read, never commits, and plimit_level never saves that state.
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
           PLEVEL_CACHE_ONLY: ${{ inputs.cache_only }}
         run: python -u plimit_level.py
