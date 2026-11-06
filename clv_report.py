@@ -50,6 +50,7 @@ import clv_ledger as cl
 import clv_std as cs
 import exchange_lag as el
 import hist_cache as hc
+import liq_history_test as lh
 import nba_names as nn
 import tracker_build as tb
 
@@ -85,14 +86,14 @@ def fmt(x, s="%"):
     return "n/a" if x is None else f"{x:+.2f}{s}"
 
 
-def bet_of(a):
-    """The bet text clv_ledger parses, built the same way liq_history_test builds it."""
-    mk, side, line = a.get("market"), a.get("side"), a.get("line")
-    if mk == "moneyline":
-        return f"{side} ML"
-    if mk == "total":
-        return f"{str(side).title()} {line}"
-    return f"{side} {line:+g}" if isinstance(line, (int, float)) else f"{side} {line}"
+# Nov 6: I first wrote my own bet-text builder here and every one of 1,774 rows fell out -
+# 810 on "no fixture matched". liq_history_test.bet_text() is the one that actually parses this
+# population, and its EXCH tuple carries the keys the history cache really uses ("novig.us",
+# "polymarket.us"), which my own SLUG map had inverted. Reusing both rather than reinventing them,
+# for the same reason event_id.py was refactored onto nba_names: a second copy drifts from the
+# first and the drift shows up as an empty report, not as an error.
+bet_text = lh.bet_text
+EXCH = lh.EXCH                       # ("prophetx", "novig.us", "kalshi", "polymarket.us")
 
 
 def main():
@@ -130,11 +131,6 @@ def main():
         return 1
     mkmap = cl.load_markets(st, now)
 
-    EXCH = tuple(cs.VENUES)           # every registry venue; scope filtering happens in best_net
-    SLUG = {"novig.us": "novig", "prophetx": "prophetx", "kalshi": "kalshi",
-            "polymarket.us": "polymarket_us", "polymarket.global": "polymarket",
-            "hardrockbet": "hardrockbet"}
-
     head, excl, selfmove = [], {}, []
 
     def drop(why):
@@ -143,7 +139,7 @@ def main():
     for a in A:
         lg, t0 = a.get("league"), cl.tp(a["alerted_utc"])
         game = (a.get("game") or "").split(":")[0]
-        b = {"bet": bet_of(a), "league": lg, "game": game,
+        b = {"bet": bet_text(a), "league": lg, "game": game,
              "game_start": a.get("start_utc"), "book": a.get("book")}
         tms = nn.teams_of(a)
         if tms:
@@ -159,10 +155,10 @@ def main():
             continue
         f = st["fixtures"][fid]
         start = cl.tp(f.get("start")) or cl.tp(a.get("start_utc"))
-        if not all(os.path.exists(hc._path(fid, x)) for x in ("pinnacle",)):
+        if not all(os.path.exists(hc._path(fid, x)) for x in ("pinnacle",) + EXCH):
             drop("fixture not in the history cache")
             continue
-        h = hc.get_hist(fid, ["pinnacle"] + [SLUG[v] for v in EXCH if v in SLUG], start)
+        h = hc.get_hist(fid, ["pinnacle"] + list(EXCH), start)
         if isinstance(h, dict) and h.get("_error"):
             drop("history read error")
             continue
@@ -180,10 +176,7 @@ def main():
         # the opportunity set, with Peter's safeguard applied per quote
         when = min(t0 + timedelta(seconds=QUOTE_MAX_AGE_S), start) if start else t0
         quotes, ages, sizes, unqualified = {}, {}, {}, 0
-        for v in EXCH:
-            slug = SLUG.get(v)
-            if not slug:
-                continue
+        for slug in EXCH:
             bk = cl.book_markets(h, slug)
             x = cl.novig_at(b, f, bk, mkmap, when, lg) if bk else None
             if not x:
