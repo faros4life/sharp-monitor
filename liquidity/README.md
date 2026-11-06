@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 5, 8:36 PM ET. This run: 0 new, 0 not confirmed, 3 pending. Open alerts: 102.
+Updated Thu Nov 5, 8:40 PM ET. This run: 1 new, 0 not confirmed, 3 pending. Open alerts: 103.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 5 8:40PM | NCAAF | South Carolina St. vs Howard | moneyline: South Carolina St. | kalshi | $85k | -488 |  |  | +0.0c |  | pending |
 | Nov 5 8:10PM | NFL | Jacksonville Jaguars at Baltimore Ravens | spread: Baltimore Ravens +8.5 (+8.5) | prophetx | $30k | +101 |  |  | +0.0c |  | pending |
 | Nov 5 8:06PM | NBA | Oklahoma City vs Memphis | moneyline: Oklahoma City | kalshi | $25k | -170 | ✅ polymarket |  | -1.0c |  | pending |
 | Nov 5 7:50PM | NBA | Philadelphia vs Cleveland | moneyline: Cleveland | kalshi | $83k | +133 |  |  | +1.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 4 9:10AM | NHL | San Jose vs Los Angeles: Spread | spread: Los Angeles wins by over 1.5 goals | kalshi | $26k | +170 |  |  | +2.0c | yes | W |
 | Nov 4 9:10AM | NFL | Jacksonville vs Baltimore: Total Points | total: NOT Over 39.5 points | kalshi | $323k | +104 |  |  | -1.0c | yes | pending |
 | Nov 4 9:10AM | NFL | Jacksonville vs Baltimore: Spread | spread: NOT Jacksonville wins by over 9.5 points | kalshi | $565k | +104 | ✅ novig |  | +4.0c | yes | pending |
-| Nov 4 9:00AM | NBA | Hawks vs. Wizards | moneyline: Hawks | polymarket | $28k | -138 | ✅ kalshi,prophetx |  | -3.0c |  | W |
