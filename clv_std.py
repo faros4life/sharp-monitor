@@ -49,7 +49,7 @@ import exchange_lag as el
 
 # Stamp this on every CLV figure (Peter, item 2: "record the fee-model version used").
 # Bump it whenever eff(), a coefficient, or the venue registry changes.
-FEE_MODEL = "2026-11-06.3"
+FEE_MODEL = "2026-11-06.4"
 # Each entry carries its VERIFICATION STATUS, not just its rate. Peter, Nov 6: "cant you check out
 # fills or the account" - so where his own exports could settle a coefficient, they were used, and
 # where they could not, that is stated rather than assumed.
@@ -67,16 +67,17 @@ FEE_NOTES = {
                      "coefficient median 0.0700, min 0.0700, max 0.0705 against a model of 0.0700. "
                      "MAKER side untested - 0 of 32 fills were maker, so the maker rate is unknown "
                      "and Kalshi's API does expose is_taker to split them when there is data.",
-    "prophetx":      "2% of winnings. CONTRADICTED BY THE ACCOUNT, not verified. px_fee_check on "
-                     "GET /v4/mm/get_trades: 100 recent LIVE fills report fee 0.00% of profit AND "
-                     "0.00% of stake - including 12 SETTLED WINNERS, which is exactly where a "
-                     "2%-of-winnings fee must appear. Caveat: 80 of the 100 are manually_settled, "
-                     "which may be a fee-exempt path, and /v3/account/transactions 404s on this "
-                     "account's API version so the wallet ledger could not confirm it. Note though "
-                     "that what matters for CLV is what this account is CHARGED, and across 100 "
-                     "fills it was charged nothing. If that holds, ProphetX joins Novig as a "
-                     "no-fee venue and we have been docking its prices ~0.96% at -110 for nothing. "
-                     "NOT changed here: it is a real-money coefficient and needs the ledger.",
+    "prophetx":      "2% of winnings. VERIFIED EXACTLY from the ProphetX wallet ledger. The fee is "
+                     "booked as its OWN 'Fees' wallet entry beside the Payout row, NOT on the trade - "
+                     "which is why GET /v4/mm/get_trades reports fee 0.00 on every fill and why I "
+                     "briefly and wrongly read that as 'no fee charged'. Two independent rows: "
+                     "Payout +426.00 with Fees -4.00 (stake 226, price -113) and Payout +440.00 with "
+                     "Fees -4.00 (stake 240, price -120). Both fees are exactly 2.000% of exactly "
+                     "200.00 of winnings - Peter's unit - and a third row, Fees -0.02 on 1.00 of "
+                     "winnings, agrees. eff() was right all along; nothing changes. Practical note: "
+                     "at a 200-to-win unit every ProphetX winner costs a flat 4.00.\n"
+                     "                     LESSON: a venue's fee may not live on its trade record. "
+                     "Absence of a fee field is not evidence of no fee.",
     "polymarket.us": "0.0695 x p x (1-p) taker. NOT VERIFIED, and contradicted by the published "
                      "docs. No Polymarket export supplied. Polymarket's own docs give SPORTS taker "
                      "0.05 and MAKER 0.00 in every category, but cover Polymarket global rather "
