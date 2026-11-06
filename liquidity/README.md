@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 5, 10:36 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 62.
+Updated Thu Nov 5, 10:40 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 63.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 5 10:40PM | NBA | Boston vs Charlotte | moneyline: Boston | kalshi | $109k | -285 |  |  | +0.0c |  | pending |
 | Nov 5 8:55PM | NBA | Miami Heat @ Golden State Warriors | spread: GSW -3.5 (-3.5) | novig | $26k | -108 | ✅ kalshi,polymarket | ❌ | +0.0c |  | pending |
 | Nov 5 8:45PM | NCAAF | Nebraska vs Illinois: Spread | spread: NOT Nebraska wins by over 4.5 points | kalshi | $62k | -100 | ✅ novig |  | +0.0c |  | pending |
 | Nov 5 8:40PM | NCAAF | South Carolina St. vs Howard | moneyline: South Carolina St. | kalshi | $85k | -488 |  |  | +11.0c | yes | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 4 9:16AM | NBA | Chicago vs New York: Spread | spread: NOT New York wins by over 11.5 points | kalshi | $60k | +104 |  |  | +1.0c | yes | L |
 | Nov 4 9:16AM | NBA | Charlotte vs Brooklyn: Spread | spread: NOT Charlotte wins by over 3.5 points | kalshi | $52k | -100 | ✅ polymarket |  | -2.0c | yes | W |
 | Nov 4 9:10AM | NHL | San Jose vs Los Angeles: Total Goals | total: Over 6.5 goals scored | kalshi | $30k | +122 |  |  | +1.0c | yes | W |
-| Nov 4 9:10AM | NHL | San Jose vs Los Angeles: Spread | spread: Los Angeles wins by over 1.5 goals | kalshi | $26k | +170 |  |  | +2.0c | yes | W |
