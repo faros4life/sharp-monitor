@@ -1602,7 +1602,7 @@
   },
   {
    "alert_utc": "2026-11-06T15:30:27Z",
-   "beat_close": true,
+   "beat_close": false,
    "beat_true_close": null,
    "bet": "Over 147.5 (+100)",
    "book": "Kalshi",
@@ -1610,7 +1610,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+0.5 pts",
+   "clv": "-0.5 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline"
@@ -1680,6 +1680,47 @@
    "sport": "NCAAB",
    "start_utc": "2026-11-07T00:00:00Z",
    "top25": false,
+   "units_flat": null
+  },
+  {
+   "alert_utc": "2026-11-06T17:40:15Z",
+   "beat_close": true,
+   "beat_true_close": null,
+   "bet": "Boston Celtics -8.5 (-120)",
+   "book": "Hard Rock",
+   "book_key": "hardrockbet",
+   "close_fair_prob": null,
+   "close_read_mins_before": null,
+   "close_value_pct": null,
+   "clv": "+1 pts",
+   "confirm": "yes",
+   "confirmed_by": [
+    "BetOnline"
+   ],
+   "edge_pct": -5.0,
+   "executable_book": false,
+   "fade_book": "hardrockbet",
+   "fade_point": 8.5,
+   "fade_price": 100,
+   "fade_price_after_fee": 100,
+   "fade_units": null,
+   "final": null,
+   "floor_line": -9.0,
+   "game": "Boston Celtics @ Charlotte Hornets",
+   "grade": "B",
+   "kind": "spr",
+   "late": false,
+   "minutes_before_start": 380,
+   "point": -8.5,
+   "price": -120,
+   "price_after_fee": -120,
+   "pricing_bettable": true,
+   "result": null,
+   "score": 64,
+   "sent_to_phone": true,
+   "sport": "NBA",
+   "start_utc": "2026-11-07T00:00:00Z",
+   "top25": null,
    "units_flat": null
   },
   {
@@ -31841,6 +31882,30 @@
   }
  ],
  "all_alerts": [
+  {
+   "alert_text": "Boston Celtics -8.5 (-120) at Hard Rock",
+   "bet": "Boston Celtics -8.5 (-120)",
+   "bet_result": null,
+   "book": "Hard Rock",
+   "confirmed_by": [
+    "BetOnline"
+   ],
+   "edge_pct": -5.0,
+   "final": null,
+   "game": "Boston Celtics @ Charlotte Hornets",
+   "grade": "B",
+   "late": false,
+   "minutes_before_start": 380,
+   "price": -120,
+   "price_after_fee": -120,
+   "pushed_to_phone": true,
+   "repeat": false,
+   "score": 64,
+   "sent_et": "2026-11-06 12:40",
+   "sport": "NBA",
+   "start_utc": "2026-11-07T00:00:00Z",
+   "why": "Pinnacle moved -8.5 -> -9.5; bet only at -9 or better (confirmed by BetOnline)"
+  },
   {
    "alert_text": "Over 156.5 (-110) at Hard Rock",
    "bet": "Over 156.5 (-110)",
