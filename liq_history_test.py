@@ -30,6 +30,7 @@ from email.mime.text import MIMEText
 import clv_ledger as cl
 import exchange_lag as el
 import nba_names as nn
+import event_id as eid
 import executor as ex
 import hist_cache as hc
 import plimit_level as pl
@@ -255,7 +256,11 @@ def main():
                   # the causal and raw bases, beside the original, so the membership delta is measurable
                   "get_k": kbest is not None and kbest >= want - 1e-9, "best_k": kbest,
                   "get_r": rbest is not None and rbest >= want - 1e-9, "best_r": rbest,
-                  "age_k": kage, "age_r": rage, "seen": seen, "fresh": fresh, "krej": krej})
+                  "age_k": kage, "age_r": rage, "seen": seen, "fresh": fresh, "krej": krej,
+                  # Nov 6 (Peter): canonical identity (event_id.py) so duplicate alerts on one game collapse
+                  "at": a.get("alerted_utc"),
+                  "ekey": eid.event_key(lg, a.get("teams"), a.get("start_utc"), a.get("game"))[0],
+                  "bkey": eid.bet_key(lg, a.get("teams"), a.get("start_utc"), a.get("market"), sd, a.get("line"), a.get("game"))[0]})
         got = best is not None and best >= want - 1e-9
         xrow(a, game_id=fid,
              entry_after_fee_dec=round(want, 4), entry_after_fee_american=am(want),
@@ -385,6 +390,32 @@ def main():
           f"GATE 1 on the causal basis - NBA totals, 4h+ before tip: {st_k(rule)}",
           f"  print 25-50k (the candidate) on the causal basis: "
           f"{st_k([r for r in rule if 25_000 <= (r['nm'] or 0) < 50_000])}"]
+
+    # Nov 6 (Peter): the candidate DEDUPLICATED on event_id.py's canonical identity, first alert kept. Two views:
+    # one play per game total (event + market; first side stays, the v3 rule's intent) and one per exact bet
+    # (event + market + side + line). Rows whose identity does not resolve are kept and counted, never dropped.
+    def _dedupe(xs, key):
+        seen_, out_, unres = set(), [], 0
+        for r_ in sorted(xs, key=lambda z: z.get("at") or ""):
+            k_ = key(r_)
+            if k_ is None:
+                unres += 1
+                out_.append(r_)
+                continue
+            if k_ in seen_:
+                continue
+            seen_.add(k_)
+            out_.append(r_)
+        return out_, unres
+    cand = [r for r in rule if 25_000 <= (r["nm"] or 0) < 50_000]
+    d_ev, u_ev = _dedupe(cand, lambda r: (r["ekey"], r["mk"]) if r.get("ekey") else None)
+    d_bt, u_bt = _dedupe(cand, lambda r: r.get("bkey"))
+    L += ["", f"CANDIDATE DEDUPED (event_id.py, first alert kept) - print 25-50k, NBA totals 4h+ | before dedupe {len(cand)} rows:",
+          f"  one per game total (event + market): {len(d_ev)} plays, {len({r['ekey'] for r in d_ev if r.get('ekey')})} distinct games"
+          f"{f', {u_ev} unresolved kept' if u_ev else ''}",
+          f"     hindsight basis: {st_(d_ev)}", f"     causal basis:    {st_k(d_ev)}",
+          f"  one per exact bet (event + market + side + line): {len(d_bt)} plays{f', {u_bt} unresolved kept' if u_bt else ''}",
+          f"     hindsight basis: {st_(d_bt)}", f"     causal basis:    {st_k(d_bt)}"]
     L.append(f"\nHistory cache: hits {hc.STATS['hit']}, downloads {hc.STATS['miss']}; OddsPapi calls {len(cl.CALLS)} "
              f"(billable {cl.STATS['billable']}).")
     L += ["", f"PER-PLAY EXPORT attached: {len(X)} rows - every qualifying play, including the {len(X) - len(R)} not fully read.",

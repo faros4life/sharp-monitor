@@ -1787,7 +1787,9 @@ def ledger_row(r, run_start):
             "muse_delay_s": round((vt - at).total_seconds()) if (vt and at) else None,
             "alert_book": e.get("book_key"), "alert_price_after_fee": e.get("price_after_fee"), "alert_line": e.get("point"),
             "fill_book": r.get("book"), "fill_price_after_fee": r.get("american"), "fill_screen": r.get("shown"),
-            "fill_line": r.get("take_line"), "live": bool(lv.get("go")), "live_nfl": bool(lv.get("nfl")), "live_why_not": lv.get("why"),
+            "fill_line": r.get("take_line"),
+            # Nov 6 (Peter, $25-50k NBA forward paper test): depth at the chosen price and whether the unit fits. Logging only.
+            "fill_avail": r.get("fillable"), "fill_partial": r.get("partial"), "live": bool(lv.get("go")), "live_nfl": bool(lv.get("nfl")), "live_why_not": lv.get("why"),
             "live_px_price_after_fee": lv.get("am"), "live_px_line": lv.get("line"), "live_book": lv.get("book"),
             "pin_check": lv.get("pin"),   # Nov 3: Pinnacle age / fair / our gap at the order (gap logged, never a gate)
             # Oct 27 gettable-price counter (Muse): phase-1 qualifying (coded view, ignoring Muse AGREE), ProphetX at the

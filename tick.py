@@ -19,6 +19,7 @@ JOBS = {   # workflow file: minimum minutes between runs (matches each workflow'
     "plimit-logger.yml": 1440,
     "exchange-lag.yml": 1440,
     "hcache-fill.yml": 1440,   # Peter 15:24: keep downloading history so models run from disk
+    "liq-small-fwd.yml": 1440,   # Nov 6 (Peter): $25-50k NBA forward paper test - daily report, read-only
     "model-lab.yml": 1440,   # Nov 6 (Peter: "pull all history every night... find new trend or edge"): daily re-run on the
                              # updated cache. Read-only, hypothesis only, private email; free history calls for anything missing.
     "liquidity-monitor.yml": 5,   # Peter Nov 3 10:27 "yes": exchange scan every ~5 min (cron-job.org still starts :00/:10)
