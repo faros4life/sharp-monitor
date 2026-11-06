@@ -33,6 +33,8 @@ jobs:
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
           EMAIL_TO: ${{ secrets.EMAIL_TO }}
           ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
+          # Nov 6: required by the script's fixture-cache reuse; without it /fixtures is re-bought.
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
           ODDSPAPI_FREE_KEY: ${{ secrets.ODDSPAPI_FREE_KEY }}   # Nov 3: history goes through the free key (paid key: 403 on pinnacle)
           FILL_CACHE_ONLY: ${{ inputs.cache_only }}
         run: python -u fill_audit.py

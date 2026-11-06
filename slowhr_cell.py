@@ -98,6 +98,18 @@ def verdict(games, clv):
 def population():
     now = datetime.now(timezone.utc)
     st = {"billable": {}}
+    # Nov 6 (Peter, "everything fixed"): reuse the fixtures the CLV ledger already paid for rather
+    # than re-buying them. Read-only - nothing here saves that state. Requires TRACKER_PASSPHRASE in
+    # the workflow; without it the decrypt fails, this falls through to the fetch, and the calls are
+    # bought with nothing in the log to say so. That silence is how plimit-level spent 5 unapproved
+    # credits on Nov 6, so the secret and this block always ship together.
+    try:
+        _prev = cl.tb.dec(json.load(open(cl.STATE)))
+        st["fixtures"] = dict(_prev.get("fixtures") or {})
+        st["fx_last"] = dict(_prev.get("fx_last") or {})
+        print(f"fixture cache: reusing {len(st['fixtures'])} fixtures - no re-purchase")
+    except Exception as _e:
+        print(f"fixture cache: unavailable ({type(_e).__name__}) - fixtures will be fetched")
     mkmap = cl.load_markets(st, now)
     for lg in bt.LEAGUES:
         cl.refresh_fixtures(st, now, lg, (FROM - timedelta(days=1)).astimezone(ET), (now + timedelta(days=1)).astimezone(ET))
