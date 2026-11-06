@@ -47,9 +47,9 @@
     "volume_fp": 1.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 31027.74,
-    "volume_24h_fp": 29876.78,
-    "volume_fp": 31239.44
+    "open_interest_fp": 31045.74,
+    "volume_24h_fp": 29885.78,
+    "volume_fp": 31257.44
    },
    "ex_stats_first": {
     "open_interest_fp": 31010.74,
@@ -98,6 +98,8 @@
    "norm_ready_books": 2,
    "paper_only": false,
    "price": 0.51,
+   "price_after_15m": 0.5,
+   "price_after_15m_book": "novig",
    "price_american": -104,
    "price_rule": "ok",
    "price_when_first_seen": 0.51,
@@ -185,6 +187,7 @@
    "size_x": 1.28,
    "start_source": "odds",
    "start_utc": "2026-11-07T03:15:00Z",
+   "still_actionable": true,
    "surge_books": [],
    "teams": [
     "TCU",
@@ -234,9 +237,9 @@
     "volume_fp": 165.2
    },
    "ex_stats_close": {
-    "open_interest_fp": 49965.229999999996,
-    "volume_24h_fp": 58719.45,
-    "volume_fp": 61976.05
+    "open_interest_fp": 50598.979999999996,
+    "volume_24h_fp": 59972.26,
+    "volume_fp": 62692.22
    },
    "ex_stats_first": {
     "open_interest_fp": 47046.3,
@@ -613,8 +616,8 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 33749.44,
-    "volume_24h_fp": 7112.9,
-    "volume_fp": 38421.93
+    "volume_24h_fp": 7603.74,
+    "volume_fp": 38436.93
    },
    "ex_stats_first": {
     "open_interest_fp": 31990.96,
@@ -1115,9 +1118,9 @@
     "volume_fp": 271.86
    },
    "ex_stats_close": {
-    "open_interest_fp": 28479.04,
-    "volume_24h_fp": 26374.260000000002,
-    "volume_fp": 31891.4
+    "open_interest_fp": 28549.22,
+    "volume_24h_fp": 26891.28,
+    "volume_fp": 31961.579999999998
    },
    "ex_stats_first": {
     "open_interest_fp": 19684.41,
@@ -1337,9 +1340,9 @@
     "volume_fp": 895.93
    },
    "ex_stats_close": {
-    "open_interest_fp": 148051.49,
-    "volume_24h_fp": 134662.78,
-    "volume_fp": 165763.78
+    "open_interest_fp": 149063.64,
+    "volume_24h_fp": 146336.38,
+    "volume_fp": 167191.59
    },
    "ex_stats_first": {
     "open_interest_fp": 106418.84,
@@ -1564,9 +1567,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 14795.970000000001,
-    "volume_24h_fp": 19071.85,
-    "volume_fp": 20567.65
+    "open_interest_fp": 14808.39,
+    "volume_24h_fp": 19834.41,
+    "volume_fp": 20580.07
    },
    "ex_stats_first": {
     "open_interest_fp": 6767.57,
@@ -5255,10 +5258,12 @@
     "volume": 11751277.0
    },
    "fade_price": 0.29,
+   "fade_units": 2.45,
    "first_seen_utc": "2026-11-05T22:33:14Z",
    "game": "UTSA @ Florida Atlantic",
    "game_surge_books": [],
    "game_x": 1.53,
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a194b6-7b4d-7a70-9c2d-fc88b056450d\", \"outcome_id\": \"01a194b6-7b4d-7a70-9c2d-fca8f5ca2a71\"}",
    "lead_min": 110,
    "league": "NCAAF",
@@ -5377,7 +5382,7 @@
     "market_id": "01a194b6-7b4d-7a70-9c2d-fc88b056450d",
     "outcome_id": "01a194b6-7b4d-7a70-9c2d-fca8f5ca2a71"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "kalshi",
@@ -5385,6 +5390,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-06T04:36:20Z",
    "sharp_agree": [
     "UTSA Roadrunners -6.5 (-115)"
    ],
@@ -5405,7 +5411,7 @@
     "Florida Atlantic"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-05T22:33:14Z",
@@ -7580,6 +7586,7 @@
     "volume_fp": 49226.15
    },
    "fade_price": 0.53,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-05T20:40:13Z",
    "game": "UTSA vs Florida Atlantic: Spread",
    "game_surge_books": [],
@@ -7703,13 +7710,14 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFSPREAD-26NOV05UTSAFAU-UTSA7"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "prophetx"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-06T04:36:20Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Florida Atlantic",
@@ -7728,7 +7736,7 @@
     "Florida Atlantic"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 1.06
   },
   {
    "alerted_utc": "2026-11-05T20:20:11Z",
@@ -8451,9 +8459,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 5608.68,
-    "volume_24h_fp": 2412.74,
-    "volume_fp": 6540.55
+    "open_interest_fp": 5850.54,
+    "volume_24h_fp": 2432.44,
+    "volume_fp": 6782.41
    },
    "ex_stats_first": {
     "open_interest_fp": 4643.31,
@@ -9042,9 +9050,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 5083.549999999999,
-    "volume_24h_fp": 4273.92,
-    "volume_fp": 5594.23
+    "open_interest_fp": 5132.969999999999,
+    "volume_24h_fp": 4471.79,
+    "volume_fp": 5665.73
    },
    "ex_stats_first": {
     "open_interest_fp": 2907.76,
@@ -10228,9 +10236,9 @@
     "volume_fp": 28.49
    },
    "ex_stats_close": {
-    "open_interest_fp": 68431.04000000001,
-    "volume_24h_fp": 17280.12,
-    "volume_fp": 73856.67
+    "open_interest_fp": 68811.54000000001,
+    "volume_24h_fp": 17783.94,
+    "volume_fp": 74251.31
    },
    "ex_stats_first": {
     "open_interest_fp": 55562.990000000005,
@@ -11350,9 +11358,9 @@
     "volume_fp": 39.88
    },
    "ex_stats_close": {
-    "open_interest_fp": 49613.85,
-    "volume_24h_fp": 16223.33,
-    "volume_fp": 57080.77
+    "open_interest_fp": 49967.03,
+    "volume_24h_fp": 16618.27,
+    "volume_fp": 57433.95
    },
    "ex_stats_first": {
     "open_interest_fp": 38744.36,
@@ -12511,7 +12519,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 65450.31,
-    "volume_24h_fp": 63296.56,
+    "volume_24h_fp": 63493.6,
     "volume_fp": 66130.03
    },
    "ex_stats_first": {
@@ -12699,9 +12707,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 8398.37,
+    "open_interest_fp": 8425.77,
     "volume_24h_fp": 7289.25,
-    "volume_fp": 9260.89
+    "volume_fp": 9288.29
    },
    "ex_stats_first": {
     "open_interest_fp": 7442.62,
@@ -16125,9 +16133,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 18781.41,
-    "volume_24h_fp": 5438.18,
-    "volume_fp": 21387.62
+    "open_interest_fp": 18798.41,
+    "volume_24h_fp": 5612.84,
+    "volume_fp": 21404.62
    },
    "ex_stats_first": {
     "open_interest_fp": 13752.77,
@@ -16582,7 +16590,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 9899.56,
-    "volume_24h_fp": 6131.53,
+    "volume_24h_fp": 6178.25,
     "volume_fp": 10092.23
    },
    "ex_stats_first": {
@@ -17703,9 +17711,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 12538.72,
-    "volume_24h_fp": 5064.97,
-    "volume_fp": 15682.060000000001
+    "open_interest_fp": 12590.3,
+    "volume_24h_fp": 5544.3,
+    "volume_fp": 15733.64
    },
    "ex_stats_first": {
     "open_interest_fp": 8504.11,
@@ -34129,6 +34137,7 @@
     "volume_fp": 73790.23
    },
    "fade_price": 0.47,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-04T20:40:10Z",
    "game": "UTSA vs Florida Atlantic: Spread",
    "game_surge_books": [],
@@ -34243,11 +34252,12 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFSPREAD-26NOV05UTSAFAU-UTSA8"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-11-06T04:36:20Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Florida Atlantic",
@@ -34262,7 +34272,7 @@
     "Florida Atlantic"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.9
   },
   {
    "alerted_utc": "2026-11-04T20:46:15Z",
@@ -35069,6 +35079,7 @@
     "volume_fp": 5190.76
    },
    "fade_price": 0.51,
+   "fade_units": 0.9,
    "first_seen_utc": "2026-11-04T20:15:34Z",
    "game": "UTSA vs Florida Atlantic: Total Points",
    "game_surge_books": [],
@@ -35183,13 +35194,14 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFTOTAL-26NOV05UTSAFAU-73"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-06T04:36:20Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -35204,7 +35216,7 @@
     "Florida Atlantic"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-04T19:25:46Z",
@@ -37109,6 +37121,7 @@
     "volume_fp": 6345.76
    },
    "fade_price": 0.31,
+   "fade_units": 2.08,
    "first_seen_utc": "2026-11-04T18:00:18Z",
    "game": "UTSA vs Florida Atlantic",
    "game_surge_books": [],
@@ -37232,13 +37245,14 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26NOV05UTSAFAU-UTSA"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-06T04:36:20Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UTSA",
@@ -37253,7 +37267,7 @@
     "Florida Atlantic"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-04T18:00:18Z",
