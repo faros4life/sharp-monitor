@@ -244,7 +244,8 @@ def stamp():
     """One line for every report, so a CLV figure always carries the model that produced it."""
     return (f"CLV: net of fees, Pinnacle verified same-line no-vig close. fee-model {FEE_MODEL}. "
             f"AUTO={len(AUTO)} venues (Hard Rock excluded), MANUAL={len(MANUAL)}. "
-            f"PM-US taker 0.06 / maker -0.0125 rebate; Novig free pre-game + all maker; Kalshi maker UNVERIFIED (0.0175 assumed).")
+            f"PM-US 0.0695 fill-verified (0.06 rejected 0/3, rebate NOT modelled); Novig free "
+            f"pre-game and all maker; Kalshi maker UNVERIFIED at 0.0175; ProphetX NHL 0.035/0.01.")
 
 
 if __name__ == "__main__":
