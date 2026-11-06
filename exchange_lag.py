@@ -42,17 +42,67 @@ WINDOW_FROM = datetime.fromisoformat(os.environ.get("EXLAG_FROM", "") or "2026-1
 MAX_GAMES = int(os.environ.get("EXLAG_MAX", "") or "300")
 
 
-def eff(book, dec):
-    """After-fee decimal: what $1 staked pays back."""
+# Fee rates, per side. Positive = charged on top of the contract cost; NEGATIVE = a rebate paid to
+# us. Verified Nov 6 from Peter's own accounts and venue schedules - see clv_std.FEE_NOTES for the
+# evidence behind each one.
+PX_WIN_FEE = 0.02                                  # ProphetX: 2% of WINNINGS. Verified exactly from
+                                                   # 8 wallet "Fees" rows, each -4.00 on 200.00 won.
+
+# Every coefficient below is of the form fee = COEF x contracts x p x (1-p), charged ON TOP of the
+# stake - which is what this module has always modelled, and both venues' schedules confirm it
+# ("the taker fee is added on top of the trade price, not taken out of it" - Novig).
+TAKER = {"kalshi":        0.07,                    # schedule, Jul 7 2026, AND 32 live fills, median
+                                                   # exactly 0.0700. Verified twice over.
+         "polymarket.us": 0.06,                    # schedule via Peter. Was 0.0695 here - too high.
+         "novig.us":      0.0}                     # PRE-GAME straights only; see NOVIG_LIVE_TAKER.
+
+MAKER = {"polymarket.us": -0.0125,                 # a REBATE: Polymarket PAYS us to post. +0.60% at -110.
+         "novig.us":      0.0,                     # "The maker fee is $0 across all trade types."
+         "kalshi":        0.0175}                  # CONSERVATIVE. See KALSHI_MAKER_OPEN below.
+
+# Novig is NOT flat zero, which is how this repo has modelled it. Pre-game straights are free on
+# both sides - that is Lane 1, and the 14 verified Novig fills were pre-game, so nothing measured
+# so far moves. But TAKING a live or futures straight costs 0.06, which we have been booking at 0.
+# Novig's own page contradicts itself here: the fee table and worked Example 1 both say live = 0.06,
+# while the closing VWAP note says "0.03 for Live". We use the worse of the two until a live fill
+# settles it. Parlays are 0.10 and already inside the quoted price; we do not trade them.
+NOVIG_LIVE_TAKER = 0.06
+
+# KALSHI_MAKER_OPEN. Kalshi's maker formula is 0.0175 x M x C x p x (1-p) with "M = the multiplier
+# for each contract (default is 0 unless otherwise indicated)", and the indicated multipliers live
+# in a "Non-Standard Fees" table. That table names KXNFLGAME, KXNCAAFGAME, KXMLBGAME, KXWNBAGAME,
+# KXUCLGAME, KXWCGAME - and NOT ONE of the SPREAD or TOTAL series, which are 96.5% of our Kalshi
+# market records (KXNBATOTAL, KXNBASPREAD, KXNCAAMBTOTAL, KXNCAAMBSPREAD, KXNHL*, KXNFLTOTAL ...).
+# Read literally, posting on the markets we actually trade is FREE. Two readings, and I cannot tell
+# them apart from the document: either unlisted really means M=0, or the table simply does not
+# enumerate spreads and totals. So we carry the CONSERVATIVE 0.0175 and let money decide: every
+# Kalshi fill we hold is taker, so the first MAKER fill settles it, and fee_audit.py already buckets
+# on the API's is_taker flag and will report its implied coefficient the moment one lands.
+
+
+def eff(book, dec, maker=False, live=False):
+    """After-fee decimal: what $1 staked pays back.
+
+    maker=True prices us as the resting side - which is Peter's actual strategy, and on Polymarket
+    US it pays a rebate, so eff() can come back ABOVE the raw price. live=True switches Novig to its
+    in-game taker schedule. Both default False, so every existing caller keeps its old answer."""
     if book == "prophetx":
-        return 1 + (dec - 1) * 0.98
-    if book in ("kalshi", "polymarket.us"):
-        p = 1 / dec
-        return 1 / (p * (1 + (0.07 if book == "kalshi" else ex.PMUS_FEE) * (1 - p)))
-    return dec
+        return 1 + (dec - 1) * (1 - PX_WIN_FEE)    # on winnings, so the same either side as far as known
+    if maker:
+        f = MAKER.get(book)
+        if f is None:
+            f = TAKER.get(book)                    # unknown maker rate -> taker, the conservative way
+    else:
+        f = TAKER.get(book)
+        if book == "novig.us" and live:
+            f = NOVIG_LIVE_TAKER
+    if f is None:
+        return dec                                 # Hard Rock: vig is already in the price
+    p = 1 / dec
+    return 1 / (p * (1 + f * (1 - p)))
 
 
-def raw_for(book, net_dec, lo=1.0001, hi=200.0):
+def raw_for(book, net_dec, lo=1.0001, hi=200.0, maker=False, live=False):
     """The RAW price this venue must SHOW so that, after its fee, we net net_dec.
 
     Peter, Nov 6: "post clv net fees and add to the price for those exchanges". One CLV basis - net
@@ -70,11 +120,11 @@ def raw_for(book, net_dec, lo=1.0001, hi=200.0):
     """
     if net_dec is None or net_dec <= 1:
         return None
-    if eff(book, net_dec) >= net_dec - 1e-12:      # no fee at this venue: the raw price IS the net
+    if abs(eff(book, net_dec, maker, live) - net_dec) < 1e-12:   # nothing taken: the raw price IS the net
         return net_dec
     for _ in range(200):                           # eff() is monotonic in dec, so bisection is exact enough
         mid = (lo + hi) / 2
-        if eff(book, mid) < net_dec:
+        if eff(book, mid, maker, live) < net_dec:
             lo = mid
         else:
             hi = mid

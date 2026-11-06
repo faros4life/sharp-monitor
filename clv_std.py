@@ -49,24 +49,34 @@ import exchange_lag as el
 
 # Stamp this on every CLV figure (Peter, item 2: "record the fee-model version used").
 # Bump it whenever eff(), a coefficient, or the venue registry changes.
-FEE_MODEL = "2026-11-06.4"
+FEE_MODEL = "2026-11-06.6"
 # Each entry carries its VERIFICATION STATUS, not just its rate. Peter, Nov 6: "cant you check out
 # fills or the account" - so where his own exports could settle a coefficient, they were used, and
 # where they could not, that is stated rather than assumed.
 FEE_NOTES = {
-    "novig.us":      "none. VERIFIED from 14 filled Novig rows (novig-trading-history 2026-10-20): "
-                     "payout/cost against the raw decimal deviates by a mean of -0.016%, scattering "
-                     "BOTH directions (-0.18% to +0.23%), which is price rounding; a real fee is "
-                     "one-directional. The +100 fill is exactly 0.000%.",
+    "novig.us": "PRE-GAME straights: ZERO both sides, and that is where Lane 1 trades - verified "
+                "from 14 fills, mean drag -0.016%. But Novig is NOT flat zero, which is how this repo "
+                "has carried it. Their schedule (Peter, Nov 6): TAKING a live in-game or futures "
+                "straight costs 0.06 x C x p x (1-p), i.e. 2.78% of the decimal at -110, which we have "
+                "been booking at zero. MAKER is $0 across every trade type, stated outright - so "
+                "posting on Novig is free, confirmed, not assumed. Their own page contradicts itself on "
+                "the live coefficient (table and Example 1 say 0.06; the closing VWAP note says 0.03); "
+                "we take the worse until a live fill settles it. Parlays 0.10, inside the quote, not traded.",
     "hardrockbet":   "no commission; retail vig is inside the price. VERIFIED from 43 settled Hard "
                      "Rock bets (All_Bets_Export 1 and 2): payout/(wager x decimal) is exactly "
                      "0.0000%, or -0.047% where a cent price does not divide evenly. No fee column "
                      "exists in the export, and none is being taken.",
-    "kalshi":        "0.07 x p x (1-p) taker. VERIFIED EXACTLY from the live account "
-                     "(fee_audit, GET /portfolio/fills): 32 taker fills, every one charged, implied "
-                     "coefficient median 0.0700, min 0.0700, max 0.0705 against a model of 0.0700. "
-                     "MAKER side untested - 0 of 32 fills were maker, so the maker rate is unknown "
-                     "and Kalshi's API does expose is_taker to split them when there is data.",
+    "kalshi": "TAKER 0.07 x C x p x (1-p), verified TWICE: 32 live fills with median exactly "
+              "0.0700, and now Kalshi's own schedule dated Jul 7 2026. No settlement fee, no membership "
+              "fee. MAKER is the one coefficient still open repo-wide. The formula is 0.0175 x M with "
+              "'M = the multiplier for each contract (default is 0 unless otherwise indicated)', and the "
+              "indicated multipliers sit in a Non-Standard Fees table that names KXNFLGAME, KXNCAAFGAME, "
+              "KXMLBGAME, KXWNBAGAME, KXUCLGAME, KXWCGAME - and not one SPREAD or TOTAL series, which "
+              "are 96.5% of our Kalshi market records. Read literally, posting on the markets we "
+              "actually trade is FREE. I cannot tell from the document whether unlisted truly means M=0 "
+              "or the table just does not enumerate spreads and totals, so eff() carries the "
+              "CONSERVATIVE 0.0175 and the first maker fill decides it: fee_audit.py already buckets on "
+              "the API's is_taker flag.",
     "prophetx":      "2% of winnings. VERIFIED EXACTLY from the ProphetX wallet ledger. The fee is "
                      "booked as its OWN 'Fees' wallet entry beside the Payout row, NOT on the trade - "
                      "which is why GET /v4/mm/get_trades reports fee 0.00 on every fill and why I "
@@ -82,15 +92,15 @@ FEE_NOTES = {
                      "being identical also confirms the unit is being staked consistently.\n"
                      "                     LESSON: a venue's fee may not live on its trade record. "
                      "Absence of a fee field is not evidence of no fee.",
-    "polymarket.us": "0.0695 x p x (1-p) taker. NOT VERIFIED, and contradicted by the published "
-                     "docs. No Polymarket export supplied. Polymarket's own docs give SPORTS taker "
-                     "0.05 and MAKER 0.00 in every category, but cover Polymarket global rather "
-                     "than the CFTC-regulated US entity, and no authoritative US schedule was "
-                     "reachable. If 0.05 is right we UNDERSTATE Polymarket CLV; if maker is really "
-                     "0.00 then posting there is free and it joins Novig for the posting strategy. "
-                     "NOT MEASURABLE from the API as currently reachable either: /v1/portfolio/trades "
-                     "and /v1/portfolio/fills both 404, and /v1/portfolio/activities returns only "
-                     "positionResolution events carrying no fee field at all.",
+    "polymarket.us": "TAKER 0.06 x contracts x p x (1-p); MAKER -0.0125, a REBATE. Given by Peter "
+                     "Nov 6 from the venue's own schedule, and his worked example checks exactly: "
+                     "0.06 x 100 contracts x 0.50 x 0.50 = $1.50. Two corrections follow. (1) This "
+                     "repo used 0.0695, so Polymarket TAKER CLV has been UNDERSTATED by about 0.45 "
+                     "points of the decimal at -110 (modelled drag 3.31%, actual 2.86%). (2) The "
+                     "maker side PAYS US: posting there is worth +0.60% of the decimal at -110, "
+                     "which makes Polymarket US a BETTER posting venue than Novig's zero - about a "
+                     "third of the measured Lane 3 edge from venue choice alone. Fees apply only on "
+                     "execution; cancelled, expired and rejected orders are not charged.",
 }
 # What would close the three open ones, in order of how much it matters:
 #   ProphetX       the wallet-ledger endpoint name for this API version (/v3/account/transactions
@@ -149,24 +159,28 @@ def canon(book, strict=True):
     return None
 
 
-def net_dec(book, raw_dec):
+def net_dec(book, raw_dec, maker=False):
     """Effective decimal AFTER that venue's fee. Hard Rock and Novig return the raw price unchanged,
-    for different reasons: Novig charges nothing, Hard Rock's vig is already in the price."""
+    for different reasons: Novig charges nothing, Hard Rock's vig is already in the price.
+
+    maker=True prices us as the resting side. It is not merely cheaper: on Polymarket US the maker
+    side is a REBATE, so net_dec can exceed the raw price. Peter's strategy is to post, so this is
+    the side that matters - but it defaults to False, because every fill in our history is taker."""
     c = canon(book)
     if raw_dec is None or raw_dec <= 1:
         return None
-    return raw_dec if c == "hardrockbet" else el.eff(c, float(raw_dec))
+    return raw_dec if c == "hardrockbet" else el.eff(c, float(raw_dec), maker)
 
 
-def net_clv(close_prob, raw_dec, book):
+def net_clv(close_prob, raw_dec, book, maker=False):
     """The one formula, as a percentage. None when any input is missing."""
-    nd = net_dec(book, raw_dec)
+    nd = net_dec(book, raw_dec, maker)
     if nd is None or close_prob is None:
         return None
     return round(100.0 * (float(close_prob) * nd - 1.0), 3)
 
 
-def best_net(quotes, scope="auto"):
+def best_net(quotes, scope="auto", maker=False):
     """(canonical venue, net decimal) for the best price AFTER fees within a scope.
 
     quotes: {venue: raw_decimal}. scope "auto" = auto-eligible exchanges only (Hard Rock excluded,
@@ -183,7 +197,7 @@ def best_net(quotes, scope="auto"):
             continue                       # reported by the caller, never priced as free
         if c not in allow:
             continue
-        nd = net_dec(c, raw)
+        nd = net_dec(c, raw, maker)
         if nd is not None and (best is None or nd > best[1]):
             best = (c, nd)
     return best if best else (None, None)
@@ -200,11 +214,19 @@ def close_verified(how):
     return h in ("own line", "moneyline")
 
 
+# LIVE-CODE FLAG, needs Peter's explicit yes (no live-betting change without it):
+# executor.PMUS_FEE is still 0.0695 and is used in LIVE Polymarket order pricing, not just grading.
+# It is now known to be 0.06 taker. The error direction is conservative - it demands a better price
+# than necessary, so it under-bets rather than over-bets - but it is wrong, and it knows nothing of
+# the maker rebate, so a posted Polymarket order is priced as if we paid a fee we would instead be
+# PAID. Not touched here.
+
+
 def stamp():
     """One line for every report, so a CLV figure always carries the model that produced it."""
     return (f"CLV: net of fees, Pinnacle verified same-line no-vig close. fee-model {FEE_MODEL}. "
             f"AUTO={len(AUTO)} venues (Hard Rock excluded), MANUAL={len(MANUAL)}. "
-            f"Polymarket US coefficient UNVERIFIED.")
+            f"PM-US taker 0.06 / maker -0.0125 rebate; Novig free pre-game + all maker; Kalshi maker UNVERIFIED (0.0175 assumed).")
 
 
 if __name__ == "__main__":
