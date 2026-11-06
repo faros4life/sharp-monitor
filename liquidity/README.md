@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 6, 6:16 PM ET. This run: 1 new, 1 not confirmed, 1 pending. Open alerts: 89.
+Updated Fri Nov 6, 6:21 PM ET. This run: 1 new, 1 not confirmed, 2 pending. Open alerts: 89.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,14 +10,14 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 6 6:16PM | NBA | 76ers vs. Cavaliers | spread: Cavaliers (+2.5) | polymarket | $29k | -100 |  |  | +0.0c |  | pending |
+| Nov 6 6:21PM | NBA | 76ers vs. Cavaliers | spread: Cavaliers (+2.5) | polymarket | $29k | -100 |  |  | +0.0c |  | pending |
 | Nov 6 6:00PM | NCAAF | Marshall @ Georgia Southern | spread: MRSH +8.5 (-8.5) | novig | $25k | -100 |  |  | +0.0c |  | pending |
 | Nov 6 6:00PM | NBA | Boston vs Charlotte: Spread | spread: NOT Boston wins by over 10.5 points | kalshi | $32k | -104 | ✅ novig | ❌ | +0.0c |  | pending |
-| Nov 6 5:51PM | NCAAF | Virginia Tech vs SMU: Spread | spread: NOT SMU wins by over 5.5 points | kalshi | $130k | +104 | ✅ novig |  | +1.0c |  | pending |
+| Nov 6 5:51PM | NCAAF | Virginia Tech vs SMU: Spread | spread: NOT SMU wins by over 5.5 points | kalshi | $130k | +104 | ✅ novig |  | +0.0c |  | pending |
 | Nov 6 5:51PM | NBA | Washington vs Atlanta: Total Points | total: NOT Over 228.5 points | kalshi | $27k | -104 |  | ✅ | -1.0c |  | pending |
 | Nov 6 5:51PM | NCAAF | Dartmouth vs Princeton | moneyline: Princeton | kalshi | $25k | -113 |  |  | +0.0c |  | pending |
-| Nov 6 5:31PM | NBA | Boston Celtics at Charlotte Hornets | moneyline: Boston Celtics | prophetx | $35k | -365 | ✅ kalshi,novig,polymarket | ✅ | +0.2c |  | pending |
-| Nov 6 5:31PM | NBA | Boston Celtics @ Charlotte Hornets | moneyline: BOS (0) | novig | $81k | -365 | ✅ kalshi,polymarket,prophetx | ✅ | +0.0c |  | pending |
+| Nov 6 5:31PM | NBA | Boston Celtics at Charlotte Hornets | moneyline: Boston Celtics | prophetx | $35k | -365 | ✅ kalshi,novig,polymarket | ✅ | +0.7c |  | pending |
+| Nov 6 5:31PM | NBA | Boston Celtics @ Charlotte Hornets | moneyline: BOS (0) | novig | $81k | -365 | ✅ kalshi,polymarket,prophetx | ✅ | +0.5c |  | pending |
 | Nov 6 5:31PM | NBA | Utah Jazz @ Dallas Mavericks | moneyline: DAL (0) | novig | $55k | -245 | ✅ kalshi,polymarket,prophetx | ✅ | -0.5c |  | pending |
 | Nov 6 5:20PM | NBA | Oklahoma City vs Memphis: Spread | spread: Oklahoma City wins by over 4.5 points | kalshi | $45k | +104 | ✅ polymarket | ✅ | +1.0c |  | pending |
 | Nov 6 4:50PM | NCAAF | South Florida vs East Carolina: Spread | spread: NOT East Carolina wins by over 1.5 points | kalshi | $49k | -113 | ✅ novig | ✅ | -1.0c | yes | pending |
@@ -29,7 +29,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 6 3:11PM | NBA | Jazz vs. Mavericks | total: Over (225.5) | polymarket | $88k | -104 | ✅ kalshi,novig |  | +0.0c |  | pending |
 | Nov 6 3:11PM | NBA | Timberwolves vs. Pelicans | moneyline: Timberwolves | polymarket | $26k | -156 | ✅ kalshi,novig,prophetx |  | -1.0c |  | pending |
 | Nov 6 2:51PM | NHL | San Jose vs Minnesota: Total Goals | total: Over 6.5 goals scored | kalshi | $32k | +104 |  |  | +1.0c |  | pending |
-| Nov 6 2:51PM | NCAAF | BYU vs Utah: Total Points | total: NOT Over 48.5 points | kalshi | $26k | +104 |  |  | -1.0c |  | pending |
+| Nov 6 2:51PM | NCAAF | BYU vs Utah: Total Points | total: NOT Over 48.5 points | kalshi | $26k | +104 |  |  | -2.0c |  | pending |
 | Nov 6 2:51PM | NBA | Utah vs Dallas: Spread | spread: NOT Dallas wins by over 6.5 points | kalshi | $72k | -100 | ✅ novig,polymarket | ❌ | +0.0c |  | pending |
 | Nov 6 2:31PM | NCAAF | TCU @ Arizona | spread: ARIZ -6.5 (-6.5) | novig | $28k | -113 | ✅ kalshi | ❌ | -0.5c | yes | pending |
 | Nov 6 1:51PM | NCAAF | Colgate vs Lehigh | moneyline: Lehigh | kalshi | $32k | -178 |  |  | +0.0c |  | pending |
