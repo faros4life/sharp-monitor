@@ -141,7 +141,15 @@ def main():
         print(f"liq history test: frozen-PLAY filter -> {len(A)} of {len(FZ)} frozen calls carry a graded alert")
     st = {"billable": {}}
     mkmap = cl.load_markets(st, now)
-    for lg in LEAGUES:
+    # Nov 6 (Peter, 1-credit budget): refresh fixtures only for the leagues actually IN the population.
+    # Each refresh_fixtures is one billable /fixtures call, and this loop used to spend one per league in
+    # LEAGUES whatever the population held - so a LIQH_FROZEN=1 run, whose board PLAYs are all NBA
+    # totals, paid for NFL, NCAAF and NHL fixtures it never looked at. Never more calls than before,
+    # usually fewer, and identical results because a league with no rows had no fixture to match.
+    need = sorted({(a.get("league") or "").upper() for a in A} & set(LEAGUES))
+    print(f"liq history test: fixtures needed for {need or 'no leagues'} "
+          f"({len(LEAGUES) - len(need)} league refresh(es) skipped as unused)")
+    for lg in need:
         cl.refresh_fixtures(st, now, lg, (FROM - timedelta(days=1)).astimezone(ET), (now + timedelta(days=1)).astimezone(ET))
     R = []
     X = []   # the per-play export: every qualifying play, kept whatever happened to it

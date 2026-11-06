@@ -217,10 +217,23 @@ BOARD_CONFIRM_MIN = 15   # Lane 3: a PLAY call must still be PLAY 15 min after i
 
 
 def board_plays(now):
-    """Nov 3 (Peter 2:01 PM "ok build"; rulebook v5 Lane 3): Bets Board v2 PLAY calls (NBA totals, overs and unders) that
-    survive: money not pulled, price not moved toward the side (v2 tags those DEAD), still PLAY >= 15 min after posting,
-    game not started. Same downstream path as every play: books checked, line floor, caps, stacking, positions, live
-    guards. Places money only when EXEC_BOARD_LIVE is "on" AND live is on; otherwise a dry-run WOULD PLACE."""
+    """Nov 3 (Peter 2:01 PM "ok build"; rulebook v5 Lane 3): board PLAY calls (NBA totals, overs and unders) that
+    survive: money not pulled, price not moved toward the side, still PLAY >= 15 min after posting, game not started.
+    Same downstream path as every play: books checked, line floor, caps, stacking, positions, live guards. Places money
+    only when EXEC_BOARD_LIVE is "on" AND live is on; otherwise a dry-run WOULD PLACE.
+
+    LABEL CORRECTION, Nov 6 (Peter). This read "Bets Board v2 PLAY calls" and stamped every row it emitted
+    "board v2 PLAY (Lane 3)". It never selected on v2. It filters on r["tag"], and score() leaves the V3
+    tag there (v2 is kept in r["v2"], v1 in r["v1"]), so the shadow has been driven by the v3 rule - NBA
+    total, 4h+ lead, money still there, one play per game, nightly cap 5 - which applies no money,
+    confirmation, sharp-agreement or fights test. Rows now carry the version that actually produced them
+    plus what v2 and v1 said, so the shadow record reads honestly. Selection, sizing, alerts and orders
+    are UNCHANGED by this correction.
+
+    Dedup caveat, same date: derive_key() still keys on the raw game STRING, not event_id.py's canonical
+    event. So two books naming one game differently ("Cavaliers vs. Thunder" / "Cleveland vs Oklahoma
+    City") are still two keys here, while two different lines on one game-string collapse into one. Not
+    changed in this commit - it alters selection, which needs Peter's approval."""
     try:
         import board_build as bb
         _, rows, _ = bb.build(upcoming=True)
@@ -242,7 +255,9 @@ def board_plays(now):
             continue
         p = {"sport": "NBA", "game": x.get("game") or "", "bet": f"{'Over' if sd == 'OVER' else 'Under'} {float(ln):g} ({int(am):+d})",
              "start_utc": x.get("start_utc"), "late": False, "source": "board", "alert_utc": x.get("alerted_utc"),
-             "rules": {"verdict": "AGREE", "gate": None, "reason": "board v2 PLAY (Lane 3)"},
+             "rules": {"verdict": "AGREE", "gate": None,
+                       # Nov 6: the version that actually produced this row, not "v2" as it used to say.
+                       "reason": f"board v3 PLAY (Lane 3) [v2={r.get('v2')}, v1={r.get('v1')}]"},
              "board_entry": {"alert_utc": x.get("alerted_utc"), "book_key": x.get("book"), "price_after_fee": am,
                              "point": ln, "sport": "NBA", "bet": None}}
         k = derive_key(p)

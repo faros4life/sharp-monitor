@@ -5,12 +5,32 @@ publishes a static page with GitHub Pages: today's big money on every sport, the
 sat there, and a PLAY / LEAN / DEAD call on every row, graded as games finish. Public data only (the liquidity feeds
 and the sharp feed already in this repo). No bets, balances or keys.
 
-Call rules (Muse + Peter, Nov 1):
-  DEAD  money pulled, or later spread money went the other way (later money wins spread flips 61%).
-  PLAY  still there + confirmed + $100k+ ($250k+ on spreads) + a sharp alert agrees, and nothing fights it
-        (Nov 1, Muse: biggest flow alone caps at LEAN) (sharp alert on the other side, opposite ML money, same-team ML+spread
-        money on a spread, late side of a total/NBA flip).
-  LEAN  still there but short of PLAY; the reason says why.
+LIVE CALL RULE - v3, from Nov 4 (ratified by Peter Nov 6 as the rule the historical record ran on).
+Documentation corrected Nov 6: this block described the Nov 1 v1 rule long after v2 and v3 replaced it,
+which read as though PLAY still required $100k and a sharp alert. It does not, and has not since Nov 4.
+  PLAY  an NBA TOTAL, alerted 4h+ before tip, money still there, ONE play per game total (the first
+        alert; first side stays), at most 5 a night (first 5 by alert time). Bet the alert line at the
+        alert price or better.
+        Implementation detail not stated in the Nov 4 description, and deliberate (the backtest basis):
+        a PULLED first alert still CONSUMES the game's one play - it stays DEAD and the play does not
+        pass to the next alert on that game.
+  LEAN  anything else still there, including later alerts on a game already played and NBA totals
+        inside 4 hours.
+  DEAD  pulled, flipped, late money, or any spread.
+  v3 applies NO money threshold, NO confirmation test, NO sharp-agreement test and NO fights test.
+  It is a liquidity-flow heuristic, not a demonstrated +EV model (Peter, Nov 6). Paper only.
+
+Superseded rules, kept because they still grade in their own tiles - v2 in r["v2"], v1 in r["v1"]:
+  v2 (Nov 3)  PLAY = NBA totals only, money still there, price not already moved toward the side.
+  v1 (Nov 1)  PLAY = still there + confirmed + $100k+ ($250k+ on spreads) + a sharp alert agrees, and
+              nothing fights it (biggest flow alone caps at LEAN; fights = sharp alert on the other
+              side, opposite ML money, same-team ML+spread money on a spread, late side of a
+              total/NBA flip).
+              DEAD = money pulled, or later spread money went the other way.
+
+A call is written down when it posts and its posted tag never changes, so grading stays honest. Its
+CURRENT status is tracked separately (board_alerts.restatus, Nov 6) so a PLAY whose money was pulled
+does not keep reading as actionable.
 """
 import html
 import json
