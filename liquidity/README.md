@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 6, 10:51 AM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 50.
+Updated Fri Nov 6, 11:00 AM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 51.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 6 11:00AM | NBA | Jazz vs. Mavericks | moneyline: Mavericks | polymarket | $45k | -257 | ✅ kalshi,novig | ✅ | +0.0c |  | pending |
 | Nov 6 10:51AM | NCAAF | Nebraska vs Illinois: Total Points | total: Over 50.5 points | kalshi | $129k | -104 |  |  | +0.0c |  | pending |
 | Nov 6 10:40AM | NCAAF | South Florida vs East Carolina: Total Points | total: Over 40.5 points | kalshi | $30k | +113 |  |  | +0.0c |  | pending |
 | Nov 6 10:31AM | NCAAF | Florida St. vs Boston College: Spread | spread: Florida St. wins by over 6.5 points | kalshi | $31k | -104 |  |  | +0.0c |  | pending |
@@ -39,7 +40,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 6 1:15AM | NBA | Portland vs Los Angeles L | moneyline: Los Angeles L | kalshi | $90k | -138 |  |  | +0.0c |  | pending |
 | Nov 6 12:55AM | NHL | Columbus vs Buffalo | moneyline: Buffalo | kalshi | $54k | -156 | ✅ polymarket |  | +0.0c | yes | pending |
 | Nov 6 12:20AM | NCAAF | North Carolina vs UConn | moneyline: North Carolina | kalshi | $162k | -233 |  |  | +2.0c |  | pending |
-| Nov 6 12:00AM | NBA | Utah vs Dallas: Total Points | total: NOT Over 227.5 points | kalshi | $27k | -104 | ✅ polymarket |  | +2.0c |  | pending |
+| Nov 6 12:00AM | NBA | Utah vs Dallas: Total Points | total: NOT Over 227.5 points | kalshi | $27k | -104 | ✅ polymarket |  | +3.0c |  | pending |
 | Nov 6 12:00AM | NBA | Washington vs Atlanta | moneyline: Atlanta | kalshi | $42k | -223 |  |  | +4.0c | yes | pending |
 | Nov 5 11:56PM | NBA | San Antonio vs Sacramento: Total Points | total: Over 228.5 points | kalshi | $26k | -113 |  |  | +0.0c |  | pending |
 | Nov 5 11:50PM | NBA | Philadelphia vs Cleveland | moneyline: Philadelphia | kalshi | $142k | -133 | ✅ polymarket |  | +2.0c | yes | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 4 1:00PM | NBA | Milwaukee vs Boston: Spread | spread: Boston wins by over 10.5 points | kalshi | $62k | -104 | ✅ novig,polymarket,prophetx | ❌ | +6.0c |  | L |
 | Nov 4 1:00PM | NBA | Atlanta vs Washington: Spread | spread: Atlanta wins by over 3.5 points | kalshi | $87k | +104 | ✅ polymarket | ✅ | -4.0c | yes | W |
 | Nov 4 12:56PM | NBA | Milwaukee Bucks @ Boston Celtics | moneyline: BOS (0) | novig | $82k | -441 | ✅ kalshi,polymarket,prophetx | ❌ | +2.5c | yes | W |
-| Nov 4 12:40PM | NCAAF | Ball St. vs UMass: Spread | spread: UMass wins by over 2.5 points | kalshi | $158k | -108 |  | ✅ | -1.0c | yes | L |
