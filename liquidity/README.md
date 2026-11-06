@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 6, 4:40 PM ET. This run: 1 new, 1 not confirmed, 1 pending. Open alerts: 78.
+Updated Fri Nov 6, 4:46 PM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 79.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 6 4:46PM | NCAAF | South Florida vs East Carolina: Spread | spread: NOT East Carolina wins by over 1.5 points | kalshi | $49k | -113 | ✅ novig | ✅ | +0.0c |  | pending |
 | Nov 6 4:40PM | NBA | Thunder vs. Grizzlies | spread: Thunder (-4.5) | polymarket | $51k | -100 | ✅ kalshi | ✅ | +0.0c |  | pending |
 | Nov 6 3:51PM | NCAAF | Texas vs Missouri: Total Points | total: NOT Over 43.5 points | kalshi | $34k | -113 |  |  | +0.0c |  | pending |
 | Nov 6 3:30PM | NCAAF | Clemson vs Syracuse: Spread | spread: NOT Clemson wins by over 2.5 points | kalshi | $57k | +104 |  |  | +0.0c |  | pending |
@@ -78,7 +79,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 5 8:40PM | NCAAF | South Carolina St. vs Howard | moneyline: South Carolina St. | kalshi | $85k | -488 |  |  | +11.0c | yes | W |
 | Nov 5 8:10PM | NFL | Jacksonville Jaguars at Baltimore Ravens | spread: Baltimore Ravens +8.5 (+8.5) | prophetx | $30k | +101 |  |  | +0.0c |  | L |
 | Nov 5 8:06PM | NBA | Oklahoma City vs Memphis | moneyline: Oklahoma City | kalshi | $25k | -170 | ✅ polymarket |  | -1.0c | yes | pending |
-| Nov 5 7:50PM | NBA | Philadelphia vs Cleveland | moneyline: Cleveland | kalshi | $83k | +133 |  |  | -1.0c | yes | pending |
+| Nov 5 7:50PM | NBA | Philadelphia vs Cleveland | moneyline: Cleveland | kalshi | $83k | +133 |  |  | -2.0c | yes | pending |
 | Nov 5 7:40PM | NBA | Toronto vs Milwaukee | moneyline: Toronto | kalshi | $26k | -300 | ✅ polymarket |  | -12.0c |  | pending |
 | Nov 5 7:10PM | NBA | Heat vs. Warriors | moneyline: Warriors | polymarket | $442k | -156 | ✅ kalshi,prophetx | ❌ | +1.0c |  | W |
 | Nov 5 7:10PM | NBA | Heat vs. Warriors | spread: Warriors (-3.5) | polymarket | $676k | -108 | ✅ novig | ❌ | +0.0c |  | W |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 4 5:10PM | NBA | Charlotte vs Brooklyn | moneyline: Charlotte | kalshi | $82k | -156 | ✅ novig,polymarket,prophetx |  | +0.0c | yes | L |
 | Nov 4 5:00PM | NBA | Charlotte vs Brooklyn: Total Points | total: NOT Over 212.5 points | kalshi | $29k | +104 |  |  | +0.0c | yes | L |
 | Nov 4 4:55PM | NHL | Nashville vs Colorado | moneyline: Colorado | kalshi | $38k | -194 |  |  | -1.0c | yes | L |
-| Nov 4 4:29PM | NCAAF | James Madison vs Southern Miss: Total Points | total: NOT Over 57.5 points | kalshi | $60k | -100 |  |  | -2.0c | yes | L |
