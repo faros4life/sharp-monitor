@@ -1,0 +1,36 @@
+name: lane2-search
+
+# Manual-only, research-only, paper-only (Nov 6 2026). One offline backtest of H1/H2/H3 on the existing history.
+# Restore-only cache (nothing saved), no OddsPapi key in the environment (so no API call is possible), no cron,
+# no change to any live rule. Output: one small summary artifact.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Restore OddsPapi history cache (restore-only, never saves)
+        uses: actions/cache/restore@v4
+        with:
+          path: hcache
+          key: hcache-restore-lane2-${{ github.run_id }}
+          restore-keys: hcache-
+      - name: Lane 2 search
+        env:
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}   # read-only decrypt of the fixture cache
+        run: python -u lane2_search.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lane2-search-summary
+          path: summary/summary.md
+          retention-days: 7
