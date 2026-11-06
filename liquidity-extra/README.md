@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 6, 11:10 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 13.
+Updated Fri Nov 6, 11:20 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 13.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -14,7 +14,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 6 1:20AM | NCAAB | Boston University vs Brown | moneyline: Brown | kalshi | $31k | -213 |  |  | -12.0c |  | pending |
 | Nov 6 1:00AM | NCAAB | UNC Greensboro vs Elon | moneyline: Elon | kalshi | $33k | -335 |  |  | +0.0c |  | pending |
 | Nov 6 1:00AM | NCAAB | Austin Peay vs Kennesaw St. | moneyline: Kennesaw St. | kalshi | $28k | -233 |  |  | +1.0c |  | pending |
-| Nov 6 1:00AM | NCAAB | UMass vs Boston College | moneyline: Boston College | kalshi | $45k | -223 |  |  | +2.0c |  | pending |
+| Nov 6 1:00AM | NCAAB | UMass vs Boston College | moneyline: Boston College | kalshi | $45k | -223 |  |  | +1.0c |  | pending |
 | Nov 6 12:40AM | TENNIS | Shelton vs Paul | moneyline: Shelton | kalshi | $440k | +117 |  |  | +0.0c |  | W |
 | Nov 5 10:30PM | TENNIS | Sonmez vs Liu | moneyline: Sonmez | kalshi | $46k | +113 |  |  | +1.0c |  | L |
 | Nov 5 10:30PM | NCAAB | Yale vs UCF | moneyline: UCF | kalshi | $43k | -426 |  |  | +0.0c | yes | pending |
