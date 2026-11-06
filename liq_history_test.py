@@ -29,6 +29,7 @@ from email.mime.text import MIMEText
 
 import clv_ledger as cl
 import exchange_lag as el
+import nba_names as nn
 import executor as ex
 import hist_cache as hc
 import plimit_level as pl
@@ -164,6 +165,9 @@ def main():
         lg, t0 = a["league"], cl.tp(a["alerted_utc"])
         game = (a.get("game") or "").split(":")[0]
         b = {"bet": bet_text(a), "league": lg, "game": game, "game_start": a.get("start_utc"), "book": a.get("book")}
+        tms = nn.teams_of(a)   # Nov 5 (Peter "do now"): Kalshi names NBA teams by city, Polymarket by nickname, so a
+        if tms:                # game string has one distinctive word a side and fails the matcher's two-word floor.
+            b["teams"] = tms   # Handing it the full names clears that floor without loosening the matcher.
         fid = cl.find_fixture(st, b)
         if not fid:
             miss["no fixture"] += 1
