@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 6, 12:50 AM ET. This run: 0 new, 0 not confirmed, 3 pending. Open alerts: 10.
+Updated Fri Nov 6, 1:00 AM ET. This run: 3 new, 0 not confirmed, 0 pending. Open alerts: 13.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,9 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 6 1:00AM | NCAAB | UNC Greensboro vs Elon | moneyline: Elon | kalshi | $33k | -335 |  |  | +0.0c |  | pending |
+| Nov 6 1:00AM | NCAAB | Austin Peay vs Kennesaw St. | moneyline: Kennesaw St. | kalshi | $28k | -233 |  |  | +0.0c |  | pending |
+| Nov 6 1:00AM | NCAAB | UMass vs Boston College | moneyline: Boston College | kalshi | $45k | -223 |  |  | +0.0c |  | pending |
 | Nov 6 12:40AM | TENNIS | Shelton vs Paul | moneyline: Shelton | kalshi | $440k | +117 |  |  | +0.0c |  | pending |
 | Nov 5 10:30PM | TENNIS | Sonmez vs Liu | moneyline: Sonmez | kalshi | $46k | +113 |  |  | +1.0c |  | pending |
 | Nov 5 10:30PM | NCAAB | Yale vs UCF | moneyline: UCF | kalshi | $43k | -426 |  |  | +0.0c | yes | pending |
@@ -207,6 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 25 7:10AM | TENNIS | Khachanov vs Alcaraz | moneyline: Alcaraz | kalshi | $25k | -488 |  |  | -1.0c |  | W |
 | Oct 25 7:00AM | TENNIS | Merida vs Medvedev | moneyline: Medvedev | kalshi | $29k | -488 |  |  | -1.0c |  | W |
 | Oct 25 5:00AM | TENNIS | Neumayer vs Droguet | moneyline: Droguet | kalshi | $28k | -257 |  |  | +0.0c | yes | L |
-| Oct 25 4:50AM | TENNIS | Valentova vs Zhang | moneyline: Valentova | kalshi | $27k | -270 |  |  | +0.0c |  | W |
-| Oct 25 1:10AM | MLB | Milwaukee vs Tampa Bay: Spread | spread: NOT Milwaukee wins by over 1.5 runs | kalshi | $58k | -203 | ✅ polymarket |  | -31.0c | yes | L |
-| Oct 25 12:30AM | MLB | Game 3: Milwaukee vs Tampa Bay | moneyline: Tampa Bay | kalshi | $146k | -104 |  |  | -50.0c | yes | L |
