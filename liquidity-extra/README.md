@@ -1,15 +1,17 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 5, 10:20 PM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 10.
+Updated Thu Nov 5, 10:30 PM ET. This run: 2 new, 0 not confirmed, 0 pending. Open alerts: 11.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 142-91 (-14.21u flat) | rule met: 35-31
+**Record:** 142-92 (-15.21u flat) | rule met: 35-31
 
-**Fade (paper, betting against the print):** 66-107 (+18.31u flat, after fees)
+**Fade (paper, betting against the print):** 67-107 (+19.83u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 5 10:30PM | TENNIS | Sonmez vs Liu | moneyline: Sonmez | kalshi | $46k | +113 |  |  | +0.0c |  | pending |
+| Nov 5 10:30PM | NCAAB | Yale vs UCF | moneyline: UCF | kalshi | $43k | -426 |  |  | +0.0c |  | pending |
 | Nov 5 5:10PM | NCAAB | Mercyhurst @ Notre Dame | spread: Mercyh +21.5 (-21.5) | novig | $67k | +102 |  | ❌ | +0.0c |  | L |
 | Nov 5 3:20PM | NCAAB | Tarleton St. vs San Diego | moneyline: San Diego | kalshi | $31k | -223 |  |  | +0.0c |  | pending |
 | Nov 5 3:20PM | NCAAB | Robert Morris vs UIC | moneyline: UIC | kalshi | $40k | -567 |  |  | -1.0c | yes | pending |
@@ -28,7 +30,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 5 1:10AM | NCAAB | Maine vs Sacred Heart | moneyline: Sacred Heart | kalshi | $36k | -245 |  |  | -2.0c | yes | L |
 | Nov 5 1:10AM | NCAAB | UMass Lowell vs Merrimack | moneyline: Merrimack | kalshi | $39k | -300 |  |  | +5.0c | yes | L |
 | Nov 5 1:10AM | NCAAB | Howard vs Alcorn St. | moneyline: Howard | kalshi | $37k | -285 |  |  | +6.0c | yes | W |
-| Nov 5 1:10AM | NCAAB | East Texas A&M vs Rice | moneyline: Rice | kalshi | $28k | -178 |  |  | -3.0c | yes | pending |
+| Nov 5 1:10AM | NCAAB | East Texas A&M vs Rice | moneyline: Rice | kalshi | $28k | -178 |  |  | -3.0c | yes | L |
 | Nov 5 1:10AM | NCAAB | Delaware St. vs Navy | moneyline: Navy | kalshi | $41k | -426 |  |  | -1.0c | yes | W |
 | Nov 5 1:10AM | NCAAB | Bryant vs Quinnipiac | moneyline: Quinnipiac | kalshi | $32k | -223 |  |  | +3.0c | yes | W |
 | Nov 5 1:10AM | NCAAB | Binghamton vs Saint Peter's | moneyline: Saint Peter's | kalshi | $41k | -300 |  |  | +1.0c | yes | L |
@@ -208,5 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 25 1:10AM | MLB | Milwaukee vs Tampa Bay: Spread | spread: NOT Milwaukee wins by over 1.5 runs | kalshi | $58k | -203 | ✅ polymarket |  | -31.0c | yes | L |
 | Oct 25 12:30AM | MLB | Game 3: Milwaukee vs Tampa Bay | moneyline: Tampa Bay | kalshi | $146k | -104 |  |  | -50.0c | yes | L |
 | Oct 24 11:50PM | TENNIS | Lee vs Pridankina | moneyline: Lee | kalshi | $79k | -285 |  |  | -5.0c |  | W |
-| Oct 24 11:40PM | TENNIS | Ibragimova vs Iatcenko | moneyline: Ibragimova | kalshi | $143k | -150 |  |  | +8.0c |  | W |
-| Oct 24 11:13PM | TENNIS | Sasnovich vs Rakhimova | moneyline: Sasnovich | kalshi | $188k | -376 |  |  | +5.0c |  | W |
