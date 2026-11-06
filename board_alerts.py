@@ -86,6 +86,39 @@ def migrate(sent, rows):
     return n
 
 
+def restatus(sent, rows, now):
+    """Nov 6 (Peter): the historical PLAY event is preserved, but its CURRENT status is not.
+
+    The page said "every call is written down when it posts and never rewritten, so a PLAY whose
+    money is pulled afterwards still grades as the PLAY it was" - good for grading fidelity, wrong
+    for reading the file, because 14 of the first 17 records had their money pulled before tip and
+    still read as PLAY. Both can hold: 'tag' is what it was called when it posted and never changes,
+    while status_now / tag_now track the board today and flipped_at records WHEN it stopped being
+    actionable. A record whose row is no longer on the board is left alone rather than guessed at.
+    """
+    by = {}
+    for r in rows:
+        x = r["x"]
+        if x.get("key") and x.get("alerted_utc"):
+            by[(x["key"], x["alerted_utc"])] = r
+    n = 0
+    for k, v in sent.items():
+        if not isinstance(v, dict):
+            continue
+        p = k.split("|")
+        r = by.get(("|".join(p[1:-1]), p[-1])) if len(p) >= 3 else None
+        if r is None:
+            continue                      # not on the board this run: say nothing new about it
+        st, tg = r.get("status"), r.get("tag")
+        v["status_now"], v["tag_now"], v["checked_at"] = st, tg, now.isoformat()
+        gone = st != "still there" or tg != v.get("tag")
+        if gone and not v.get("flipped_at"):
+            v["flipped_at"] = now.isoformat()
+            v["flip_reason"] = (r.get("why") or "")[:160] or f"status {st}, tag {tg}"
+            n += 1
+    return n
+
+
 def main():
     now, rows, _ = bb.build()
     try:
@@ -116,11 +149,12 @@ def main():
         sent[k] = record(now.isoformat(), r, x)
         new += 1
     migrated = migrate(sent, rows)
+    flipped = restatus(sent, rows, now)
     cut = (now - timedelta(days=3)).isoformat()
     st["sent"] = {k: v for k, v in sent.items() if when_of(v) >= cut}
     os.makedirs("lanes", exist_ok=True)
     json.dump(st, open(FILE, "w"), indent=1)
-    print(f"board alerts: {new} sent ({', '.join(TAGS)})")   # counts only
+    print(f"board alerts: {new} sent, {migrated} migrated, {flipped} newly flipped from PLAY ({', '.join(TAGS)})")   # counts only
 
 
 if __name__ == "__main__":
