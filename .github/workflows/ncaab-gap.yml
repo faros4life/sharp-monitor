@@ -1,0 +1,40 @@
+name: ncaab-gap
+
+# READ-ONLY one-off (Peter approved Nov 5): the |our number - Pinnacle open| distribution across
+# every graded NCAAB game, not just the 2 that cleared the band. Reads only what the grader
+# already stored, so it makes NO OddsPapi calls - free or billable. Writes nothing, commits
+# nothing: contents: read and no commit step exists. Dispatch only, no cron.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# Shares the lane's group so it cannot read ncaab_grades.enc while the grader is rewriting it.
+concurrency:
+  group: ncaab-openers
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Load the lane's data (read-only)
+        run: |
+          mkdir -p ncaab-openers
+          git fetch -q origin ncaab-openers
+          git show origin/ncaab-openers:ncaab_openers.json > ncaab-openers/ncaab_openers.json
+          git show origin/ncaab-openers:ncaab_grades.enc   > ncaab-openers/ncaab_grades.enc
+      - name: Gap distribution (no OddsPapi key is passed to this step)
+        env:
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+        run: python -u ncaab_gap.py
