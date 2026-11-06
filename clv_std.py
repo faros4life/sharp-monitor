@@ -49,10 +49,37 @@ import exchange_lag as el
 
 # Stamp this on every CLV figure (Peter, item 2: "record the fee-model version used").
 # Bump it whenever eff(), a coefficient, or the venue registry changes.
-FEE_MODEL = "2026-11-06.1"
-FEE_NOTES = {"novig.us": "none", "prophetx": "2% of winnings", "kalshi": "0.07 x p x (1-p) taker",
-             "polymarket.us": "0.0695 x p x (1-p) taker - UNVERIFIED for the US entity; docs say 0.05 sports, 0.00 maker",
-             "hardrockbet": "no commission; retail vig inside the price"}
+FEE_MODEL = "2026-11-06.2"
+# Each entry carries its VERIFICATION STATUS, not just its rate. Peter, Nov 6: "cant you check out
+# fills or the account" - so where his own exports could settle a coefficient, they were used, and
+# where they could not, that is stated rather than assumed.
+FEE_NOTES = {
+    "novig.us":      "none. VERIFIED from 14 filled Novig rows (novig-trading-history 2026-10-20): "
+                     "payout/cost against the raw decimal deviates by a mean of -0.016%, scattering "
+                     "BOTH directions (-0.18% to +0.23%), which is price rounding; a real fee is "
+                     "one-directional. The +100 fill is exactly 0.000%.",
+    "hardrockbet":   "no commission; retail vig is inside the price. VERIFIED from 43 settled Hard "
+                     "Rock bets (All_Bets_Export 1 and 2): payout/(wager x decimal) is exactly "
+                     "0.0000%, or -0.047% where a cent price does not divide evenly. No fee column "
+                     "exists in the export, and none is being taken.",
+    "kalshi":        "0.07 x p x (1-p) taker. NOT VERIFIED. The export supplied is Kalshi 'Recent "
+                     "Activity - Settlement', 10 rows, and Fee_In_Dollars is empty on all of them "
+                     "because the fee is charged on the TRADE, not the settlement. The column does "
+                     "exist, so a Kalshi TRADES/FILLS export would settle the coefficient exactly: "
+                     "rate = fee / (contracts x p x (1-p)).",
+    "prophetx":      "2% of winnings. NOT VERIFIED - no ProphetX export has been supplied. Peter "
+                     "does execute here, so this is the unverified coefficient that matters most.",
+    "polymarket.us": "0.0695 x p x (1-p) taker. NOT VERIFIED, and contradicted by the published "
+                     "docs. No Polymarket export supplied. Polymarket's own docs give SPORTS taker "
+                     "0.05 and MAKER 0.00 in every category, but cover Polymarket global rather "
+                     "than the CFTC-regulated US entity, and no authoritative US schedule was "
+                     "reachable. If 0.05 is right we UNDERSTATE Polymarket CLV; if maker is really "
+                     "0.00 then posting there is free and it joins Novig for the posting strategy.",
+}
+# What would close the three open ones, in order of how much it matters:
+#   ProphetX       any ProphetX fill showing cost and payout, or a statement fee line
+#   Kalshi         a TRADES/FILLS export (not Settlements) - Fee_In_Dollars populated
+#   Polymarket US  one filled order's fee line from the US account
 
 # canonical key -> (display, auto-eligible, manual-eligible). AUTO excludes Hard Rock by Peter's
 # instruction; Hard Rock is manual-only and its CLV is never pooled with AUTO.
