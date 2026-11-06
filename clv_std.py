@@ -49,7 +49,7 @@ import exchange_lag as el
 
 # Stamp this on every CLV figure (Peter, item 2: "record the fee-model version used").
 # Bump it whenever eff(), a coefficient, or the venue registry changes.
-FEE_MODEL = "2026-11-06.2"
+FEE_MODEL = "2026-11-06.3"
 # Each entry carries its VERIFICATION STATUS, not just its rate. Peter, Nov 6: "cant you check out
 # fills or the account" - so where his own exports could settle a coefficient, they were used, and
 # where they could not, that is stated rather than assumed.
@@ -62,24 +62,36 @@ FEE_NOTES = {
                      "Rock bets (All_Bets_Export 1 and 2): payout/(wager x decimal) is exactly "
                      "0.0000%, or -0.047% where a cent price does not divide evenly. No fee column "
                      "exists in the export, and none is being taken.",
-    "kalshi":        "0.07 x p x (1-p) taker. NOT VERIFIED. The export supplied is Kalshi 'Recent "
-                     "Activity - Settlement', 10 rows, and Fee_In_Dollars is empty on all of them "
-                     "because the fee is charged on the TRADE, not the settlement. The column does "
-                     "exist, so a Kalshi TRADES/FILLS export would settle the coefficient exactly: "
-                     "rate = fee / (contracts x p x (1-p)).",
-    "prophetx":      "2% of winnings. NOT VERIFIED - no ProphetX export has been supplied. Peter "
-                     "does execute here, so this is the unverified coefficient that matters most.",
+    "kalshi":        "0.07 x p x (1-p) taker. VERIFIED EXACTLY from the live account "
+                     "(fee_audit, GET /portfolio/fills): 32 taker fills, every one charged, implied "
+                     "coefficient median 0.0700, min 0.0700, max 0.0705 against a model of 0.0700. "
+                     "MAKER side untested - 0 of 32 fills were maker, so the maker rate is unknown "
+                     "and Kalshi's API does expose is_taker to split them when there is data.",
+    "prophetx":      "2% of winnings. CONTRADICTED BY THE ACCOUNT, not verified. px_fee_check on "
+                     "GET /v4/mm/get_trades: 100 recent LIVE fills report fee 0.00% of profit AND "
+                     "0.00% of stake - including 12 SETTLED WINNERS, which is exactly where a "
+                     "2%-of-winnings fee must appear. Caveat: 80 of the 100 are manually_settled, "
+                     "which may be a fee-exempt path, and /v3/account/transactions 404s on this "
+                     "account's API version so the wallet ledger could not confirm it. Note though "
+                     "that what matters for CLV is what this account is CHARGED, and across 100 "
+                     "fills it was charged nothing. If that holds, ProphetX joins Novig as a "
+                     "no-fee venue and we have been docking its prices ~0.96% at -110 for nothing. "
+                     "NOT changed here: it is a real-money coefficient and needs the ledger.",
     "polymarket.us": "0.0695 x p x (1-p) taker. NOT VERIFIED, and contradicted by the published "
                      "docs. No Polymarket export supplied. Polymarket's own docs give SPORTS taker "
                      "0.05 and MAKER 0.00 in every category, but cover Polymarket global rather "
                      "than the CFTC-regulated US entity, and no authoritative US schedule was "
                      "reachable. If 0.05 is right we UNDERSTATE Polymarket CLV; if maker is really "
-                     "0.00 then posting there is free and it joins Novig for the posting strategy.",
+                     "0.00 then posting there is free and it joins Novig for the posting strategy. "
+                     "NOT MEASURABLE from the API as currently reachable either: /v1/portfolio/trades "
+                     "and /v1/portfolio/fills both 404, and /v1/portfolio/activities returns only "
+                     "positionResolution events carrying no fee field at all.",
 }
 # What would close the three open ones, in order of how much it matters:
-#   ProphetX       any ProphetX fill showing cost and payout, or a statement fee line
-#   Kalshi         a TRADES/FILLS export (not Settlements) - Fee_In_Dollars populated
-#   Polymarket US  one filled order's fee line from the US account
+#   ProphetX       the wallet-ledger endpoint name for this API version (/v3/account/transactions
+#                  404s), or one normally-settled winning fill rather than manually_settled
+#   Polymarket US  a trades endpoint, or one filled order's fee line from a statement
+#   Kalshi maker   any maker-side fill; is_taker already splits them when data exists
 
 # canonical key -> (display, auto-eligible, manual-eligible). AUTO excludes Hard Rock by Peter's
 # instruction; Hard Rock is manual-only and its CLV is never pooled with AUTO.
