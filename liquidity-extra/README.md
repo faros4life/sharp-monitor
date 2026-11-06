@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 5, 7:00 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 21.
+Updated Thu Nov 5, 7:10 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 21.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -28,7 +28,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 5 1:10AM | NCAAB | Maine vs Sacred Heart | moneyline: Sacred Heart | kalshi | $36k | -245 |  |  | -2.0c | yes | pending |
 | Nov 5 1:10AM | NCAAB | UMass Lowell vs Merrimack | moneyline: Merrimack | kalshi | $39k | -300 |  |  | +5.0c | yes | pending |
 | Nov 5 1:10AM | NCAAB | Howard vs Alcorn St. | moneyline: Howard | kalshi | $37k | -285 |  |  | +6.0c | yes | pending |
-| Nov 5 1:10AM | NCAAB | East Texas A&M vs Rice | moneyline: Rice | kalshi | $28k | -178 |  |  | -3.0c | yes | pending |
+| Nov 5 1:10AM | NCAAB | East Texas A&M vs Rice | moneyline: Rice | kalshi | $28k | -178 |  |  | -2.0c | yes | pending |
 | Nov 5 1:10AM | NCAAB | Delaware St. vs Navy | moneyline: Navy | kalshi | $41k | -426 |  |  | -1.0c | yes | pending |
 | Nov 5 1:10AM | NCAAB | Bryant vs Quinnipiac | moneyline: Quinnipiac | kalshi | $32k | -223 |  |  | +3.0c | yes | pending |
 | Nov 5 1:10AM | NCAAB | Binghamton vs Saint Peter's | moneyline: Saint Peter's | kalshi | $41k | -300 |  |  | +1.0c | yes | pending |
