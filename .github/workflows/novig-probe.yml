@@ -49,125 +49,108 @@ jobs:
 
       - run: pip install -q cryptography
 
-      - name: Analyze (aggregates + small public samples only; no OddsPapi key is present, so no API call is possible)
+      - name: Analyze (market-ID overlap with our liquidity records; aggregates only; no OddsPapi key present)
         env:
           DAY: ${{ inputs.day }}
-          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}   # read-only decrypt of the fixture cache; same use as model_lab
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}   # read-only decrypt of the fixture cache
         run: |
           mkdir -p summary
           python3 - <<'PY'
-          import csv, os, re, json, gzip, glob, sys, collections, statistics as stt, datetime as dt, traceback
+          import csv, os, re, json, gzip, glob, sys, collections, datetime as dt, traceback
           csv.field_size_limit(10**9)
           sys.path.insert(0, os.getcwd())
-          W = os.path.join(os.environ["RUNNER_TEMP"], "novig")
-          DAY = os.environ["DAY"]
+          W = os.path.join(os.environ["RUNNER_TEMP"], "novig"); DAY = os.environ["DAY"]
           out = []
           def P(*a):
               s = " ".join(str(x) for x in a); print(s); out.append(s)
-          def rd(n):
-              with open(os.path.join(W, n), newline="", encoding="utf-8-sig", errors="replace") as fh:
-                  r = csv.DictReader(fh); return r.fieldnames, list(r)
-          def num(x):
-              try: return float(x)
-              except Exception: return None
           def tsp(x):
               try:
                   d = dt.datetime.fromisoformat(str(x).strip().replace("Z", "+00:00"))
                   return d if d.tzinfo else d.replace(tzinfo=dt.timezone.utc)
               except Exception: return None
-          def q(v, p):
-              v = sorted(v); return v[min(len(v) - 1, int(p * len(v)))] if v else None
-
-          mcols, mrows = rd("markets.csv"); tcols, trows = rd("trades.csv")
-          P("## FILES"); P(f"markets {len(mrows)} rows {mcols}"); P(f"trades {len(trows)} rows {tcols}")
-          ticker = {r["marketId"]: r.get("reportTicker", "") for r in mrows}
-          def lgof(v):
-              u = (v or "").upper()
-              if re.search(r"NCAAF|CFB|COLLEGE.?FOOTBALL", u): return "NCAAF"
-              if "NFL" in u: return "NFL"
-              if "NBA" in u: return "NBA"
-              return None
-          for c in ("league", "tradeType", "legs", "side"):
-              P(f"{c} values:", dict(collections.Counter(r[c] for r in trows).most_common(15)))
           LG = ("NBA", "NFL", "NCAAF")
-          sel = [r for r in trows if lgof(r["league"])]
-          P(f"\nrows classified NBA/NFL/NCAAF: {len(sel)} of {len(trows)} (other sports: {len(trows)-len(sel)})")
+          with open(os.path.join(W, "trades.csv"), newline="", encoding="utf-8-sig", errors="replace") as fh:
+              rows = [r for r in csv.DictReader(fh) if r["league"] in LG and r["marketType"] == "TOTAL" and r["tradeType"] == "STRAIGHT"]
+          P(f"STRICT filter marketType==TOTAL, STRAIGHT, NBA/NFL/NCAAF: {len(rows)} rows")
+          mlg = {}; mouts = collections.defaultdict(set)
+          for r in rows: mlg[r["marketId"]] = r["league"]; mouts[r["marketId"]].add(r["outcomeId"])
+          groups = collections.defaultdict(list)           # unique executions = (timestamp, marketId) taker groups
+          for r in rows:
+              if r["side"] == "TAKER": groups[(r["timestamp"], r["marketId"])].append(r)
+          P(f"unique totals markets {len(mlg)} | taker rows {sum(len(v) for v in groups.values())} | unique taker groups {len(groups)}")
+          P("per league (markets / taker groups):", {lg: (sum(1 for m in mlg.values() if m == lg), sum(1 for k in groups if mlg[k[1]] == lg)) for lg in LG})
+
+          # ---- our liquidity records
+          UU = r"[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"
+          files = [f for f in glob.glob("liquidity/*.json") + glob.glob("liquidity-extra/*.json") + ["books/novig-books.json", "board/calls.json", "lanes/lanes.json"] if os.path.exists(f)]
+          idsfile = {}
+          for f in files:
+              idsfile[f] = set(re.findall(UU, open(f).read()))
+          allids = set().union(*idsfile.values())
+          P("\n## ID OVERLAP (any UUID in our files vs Oct 29 totals market ids)")
+          for f, ids in idsfile.items():
+              o = len(ids & set(mlg))
+              if ids: P(f"{f}: {len(ids)} uuids, overlap with totals marketIds {o}")
+          recs = []
+          for f in ("liquidity/alerts.json", "liquidity/moves.json", "liquidity-extra/alerts.json", "liquidity-extra/moves.json"):
+              try:
+                  d = json.load(open(f)); recs += d.get("alerts") or d.get("moves") or []
+              except Exception: pass
+          meta = collections.defaultdict(list); omap = collections.defaultdict(set)
+          for rec in recs:
+              txt = json.dumps(rec)
+              mids = re.findall(r'market_id\\*": \\*"(' + UU + ')', txt); oids = re.findall(r'outcome_id\\*": \\*"(' + UU + ')', txt)
+              for i, m in enumerate(mids):
+                  meta[m].append(rec)
+                  lab = str(rec.get("side") or "") + " " + str(rec.get("side_label") or "")
+                  lm = re.search(r"\b(over|under)\b", lab, re.I)
+                  if lm and i < len(oids): omap[(m, oids[i])].add(lm.group(1).upper())
+          ov = {m for m in mlg if m in allids}; ovm = {m for m in mlg if m in meta}
+          tg = lambda S, lg: sum(1 for k in groups if k[1] in S and mlg[k[1]] == lg)
+          P(f"records scanned (alerts+moves, both dirs): {len(recs)} | Novig market ids with a game/line record: {len(meta)}")
+          fld = collections.Counter()
+          for m in ovm:
+              r = meta[m][0]
+              for k in ("game", "line", "start_utc", "teams", "side", "side_label"): fld[k] += r.get(k) not in (None, "", [])
+          P(f"fields present on overlapping markets (n={len(ovm)}):", dict(fld))
+          P("\n| league | totals markets | id in any file | id with game/line record | trade groups | groups covered (any file) | groups covered (record) |"); P("|---|---|---|---|---|---|---|")
           for lg in LG:
-              P(f"marketType values {lg}:", dict(collections.Counter(r["marketType"] for r in sel if lgof(r["league"]) == lg).most_common(10)))
-          istot = lambda r: bool(re.search(r"total|over|under", r["marketType"], re.I))
-          tot = [r for r in sel if istot(r)]
+              M = {m for m, l in mlg.items() if l == lg}; n = sum(1 for k in groups if mlg[k[1]] == lg)
+              P(f"| {lg} | {len(M)} | {len(M & ov)} | {len(M & ovm)} | {n} | {tg(ov, lg)} ({100*tg(ov, lg)/max(n,1):.1f}%) | {tg(ovm, lg)} ({100*tg(ovm, lg)/max(n,1):.1f}%) |")
+          if not ovm:
+              P("\nNO market with a game/line record -> STOP: no reliable mapping exists. No further funnel run.")
+              open("summary/summary.md", "w").write("\n".join(out) + "\n"); sys.exit(0)
 
-          P("\n## SAMPLES (public market trades; no account ids exist in these files)")
-          for lg in LG:
-              for sd in ("TAKER", "MAKER"):
-                  for r in [x for x in tot if lgof(x["league"]) == lg and x["side"] == sd][:2]:
-                      P(lg, sd, {k: r[k] for k in tcols if k != "legs"} | {"legs": r["legs"][:60]})
-              tk = sorted({r["marketId"] for r in tot if lgof(r["league"]) == lg})[:4]
-              P(lg, "sample reportTickers:", [ticker.get(m) for m in tk])
-
-          P("\n## QTY / COST (TAKER rows, totals)")
-          for lg in LG:
-              rr = [r for r in tot if lgof(r["league"]) == lg and r["side"] == "TAKER"]
-              qv = [num(r["qty"]) for r in rr if num(r["qty"]) is not None]
-              cv = [num(r["cost"]) for r in rr if num(r["cost"]) is not None]
-              rv = [c / x for c, x in zip(cv, qv) if x]
-              P(lg, f"n {len(rr)} | qty p50/p90/p99/max {q(qv,.5)}/{q(qv,.9)}/{q(qv,.99)}/{max(qv) if qv else None}"
-                f" | cost p50/p90/max {q(cv,.5)}/{q(cv,.9)}/{max(cv) if cv else None}"
-                f" | cost/qty min/p50/max {min(rv) if rv else None}/{q(rv,.5)}/{max(rv) if rv else None}")
-
-          P("\n## UNIQUE EXECUTIONS vs MAKER/TAKER RECORDS (totals)")
-          g = collections.defaultdict(lambda: ([], []))
-          for r in tot: g[(r["timestamp"], r["marketId"])][0 if r["side"] == "TAKER" else 1].append(r)
-          grp_tk = [(k, v) for k, v in g.items() if v[0]]
-          one = [(k, v) for k, v in grp_tk if len(v[0]) == 1 and v[1]]
-          rec = same = opp = 0
-          for k, (tk, mk) in one:
-              tq = num(tk[0]["qty"]) or 0; mq = sum(num(m["qty"]) or 0 for m in mk)
-              if abs(tq - mq) <= 1e-6 * max(1, tq): rec += 1
-              o = {m["outcomeId"] for m in mk}
-              if o == {tk[0]["outcomeId"]}: same += 1
-              elif tk[0]["outcomeId"] not in o: opp += 1
-          dup = len([r for r in tot if r["side"] == "TAKER"]) - len({tuple(r.values()) for r in tot if r["side"] == "TAKER"})
-          P(f"totals rows {len(tot)}: TAKER {sum(1 for r in tot if r['side']=='TAKER')} MAKER {sum(1 for r in tot if r['side']=='MAKER')}")
-          P(f"(timestamp,marketId) groups with a taker: {len(grp_tk)} | takers per group: {dict(collections.Counter(len(v[0]) for k,v in grp_tk))}")
-          P(f"groups with 1 taker + makers: {len(one)} | maker qty sums to taker qty: {rec} | makers on SAME outcomeId as taker: {same} | on a DIFFERENT outcomeId: {opp}")
-          P(f"identical duplicate TAKER rows: {dup}")
-          P("UNIQUE EXECUTIONS (totals) = TAKER rows, one per aggressor order; MAKER rows are counterparties and must not be counted as separate trades.")
-          lab = [c for c in tcols if c not in ("timestamp", "outcomeId", "marketId", "cost", "qty") and
-                 any(re.search(r"over|under|yes|no", v, re.I) for v in {r[c] for r in tot[:20000]})]
-          P("columns whose values look like Over/Under/Yes/No labels:", lab)
-          P("AGGRESSOR OUTCOME: the TAKER row's outcomeId is the contract the aggressor bought; its Over/Under meaning "
-            + ("is in column(s) " + str(lab) if lab else "is NOT in these files - needs an outcomeId->Over/Under mapping"))
-
-          P("\n## GAME / SAME-LINE MATCH TO PINNACLE CACHE")
+          # ---- funnel: fixtures, same line, direction, horizons
+          P("\n## FUNNEL")
           try:
               import clv_ledger as cl
               st = cl.tb.dec(json.load(open(cl.STATE))); fx = st.get("fixtures") or {}
               mkmap = json.load(open("clv/markets.json"))["m"]
-              lo = dt.datetime.fromisoformat(DAY).replace(tzinfo=dt.timezone.utc)
-              hi = lo + dt.timedelta(hours=34)
-              cand = {}
-              for fid, f in fx.items():
-                  s = tsp(f.get("start"))
-                  if s and f.get("lg") in LG and lo <= s <= hi: cand[fid] = f
+              lo = dt.datetime.fromisoformat(DAY).replace(tzinfo=dt.timezone.utc); hi = lo + dt.timedelta(hours=34)
+              cand = {fid: f for fid, f in fx.items() if f.get("lg") in LG and (tsp(f.get("start")) or lo) >= lo and (tsp(f.get("start")) or lo) <= hi}
               havep = {fid for fid in cand if os.path.exists(f"hcache/{fid}__pinnacle.json.gz")}
-              P(f"fixtures in decrypted cache {len(fx)} | in window {len(cand)} | with pinnacle file {len(havep)} | pinnacle files in hcache {len(glob.glob('hcache/*__pinnacle.json.gz'))}")
+              P(f"fixtures in window {len(cand)} | with pinnacle file {len(havep)}")
               sq = lambda s: re.sub(r"[^A-Z0-9]", "", s.upper())
               def toks(f, n, p):
-                  nm = f.get(n, ""); w = nm.split(); ab = (f.get(p, "").split() or [""])[-1]
+                  w = f.get(n, "").split(); ab = (f.get(p, "").split() or [""])[-1]
                   return {t for t in {sq(ab) if ab.isupper() else "", sq(w[-1]) if w else "", sq(" ".join(w[:-1]))} if len(t) >= 3}
               ftok = {fid: (toks(f, "n1", "p1"), toks(f, "n2", "p2")) for fid, f in cand.items()}
-              def plaus(lg, x): return {"NBA": (150, 300), "NFL": (20, 90), "NCAAF": (20, 120)}[lg][0] <= x <= {"NBA": (150, 300), "NFL": (20, 90), "NCAAF": (20, 120)}[lg][1]
-              minfo = {}
-              for r in tot:
-                  m = r["marketId"]
-                  if m in minfo: continue
-                  lg = lgof(r["league"]); t = sq(ticker.get(m, "") + r.get("contractSeries", ""))
-                  nums = [float(x) for x in re.findall(r"\d{1,3}\.5", ticker.get(m, "") + " " + r.get("contractSeries", ""))] or \
-                         [float(x) for x in re.findall(r"\d{2,3}", ticker.get(m, ""))]
-                  nums = [x for x in nums if plaus(lg, x)]
-                  hits = [fid for fid, f in cand.items() if f["lg"] == lg and any(a in t for a in ftok[fid][0]) and any(b in t for b in ftok[fid][1])]
-                  minfo[m] = (lg, nums[-1] if nums else None, hits[0] if len(hits) == 1 else None, len(hits))
+              info = {}
+              for m in ovm:
+                  recs_m = [r for r in meta[m] if r.get("line") is not None]
+                  r0 = recs_m[0] if recs_m else meta[m][0]
+                  lines = {r.get("line") for r in recs_m}
+                  t = sq(str(r0.get("game", "")) + str(r0.get("teams", ""))); s0 = tsp(r0.get("start_utc"))
+                  hits = [fid for fid, f in cand.items() if f["lg"] == mlg[m] and s0 and abs((tsp(f["start"]) - s0).total_seconds()) <= 2700
+                          and any(a in t for a in ftok[fid][0]) and any(b in t for b in ftok[fid][1])]
+                  lab = {o: omap.get((m, o)) for o in mouts[m]}
+                  known = {o: next(iter(v)) for o, v in lab.items() if v and len(v) == 1}
+                  if len(mouts[m]) == 2 and len(known) == 1:
+                      o1 = next(iter(known)); o2 = next(o for o in mouts[m] if o != o1)
+                      known[o2] = "UNDER" if known[o1] == "OVER" else "OVER"
+                  info[m] = dict(lg=mlg[m], line=(next(iter(lines)) if len(lines) == 1 else None), fid=(hits[0] if len(hits) == 1 else None),
+                                 ambiguous=len(hits) > 1, dirmap=known, start=s0)
               hc = {}
               def pin(fid):
                   if fid not in hc:
@@ -175,55 +158,46 @@ jobs:
                       except Exception: hc[fid] = None
                   return hc[fid]
               def pline(fid, line):
-                  pm = pin(fid)
-                  if not pm: return None
-                  for mid in pm:
+                  for mid in (pin(fid) or {}):
                       mm = mkmap.get(str(mid))
-                      if mm and mm[1] == "totals" and abs(mm[2] - line) < 1e-9:
-                          return mid, mm
+                      if mm and mm[1] == "totals" and abs(mm[2] - float(line)) < 1e-9: return mid, mm
                   return None
-              tab = {lg: collections.Counter() for lg in LG}
-              for m, (lg, line, fid, nh) in minfo.items():
-                  c = tab[lg]; c["markets"] += 1
-                  c["line parsed"] += line is not None; c["ambiguous game"] += nh > 1
-                  if fid:
-                      c["game matched"] += 1; c["pinnacle file"] += fid in havep
-                      if line is not None and fid in havep and pline(fid, line): c["same line"] += 1
-              P("| league | totals markets | line parsed | game matched | ambiguous | pinnacle file | exact same line |"); P("|---|---|---|---|---|---|---|")
-              for lg in LG:
-                  c = tab[lg]; P(f"| {lg} | {c['markets']} | {c['line parsed']} | {c['game matched']} | {c['ambiguous game']} | {c['pinnacle file']} | {c['same line']} |")
-              # trade-level + 15/30/60 feasibility (TAKER rows only = unique executions)
-              H = (15, 30, 60); res = {lg: collections.Counter() for lg in LG}
-              for r in tot:
-                  if r["side"] != "TAKER": continue
-                  lg, line, fid, nh = minfo[r["marketId"]]; c = res[lg]; c["taker trades"] += 1
-                  if not fid: continue
-                  c["game matched"] += 1
-                  if line is None or fid not in havep: continue
-                  pl = pline(fid, line)
+              H = (15, 30, 60); mc = {lg: collections.Counter() for lg in LG}; gc = {lg: collections.Counter() for lg in LG}
+              for m, i in info.items():
+                  c = mc[i["lg"]]; c["markets with record"] += 1
+                  c["line single-valued"] += i["line"] is not None; c["outcome mapped"] += bool(i["dirmap"])
+                  c["game->fixture"] += bool(i["fid"]); c["ambiguous"] += i["ambiguous"]
+                  c["+pinnacle file"] += bool(i["fid"] and i["fid"] in havep)
+                  c["+exact same line"] += bool(i["fid"] in havep and i["line"] is not None and pline(i["fid"], i["line"]))
+              for (ts, m), tk in groups.items():
+                  if m not in info: continue
+                  i = info[m]; c = gc[i["lg"]]; c["groups with record"] += 1
+                  outs = {r["outcomeId"] for r in tk}
+                  if len(outs) != 1: c["mixed-outcome groups (dropped)"] += 1; continue
+                  d = i["dirmap"].get(next(iter(outs)))
+                  if not d: continue
+                  c["direction known"] += 1
+                  if not (i["fid"] and i["fid"] in havep and i["line"] is not None): continue
+                  pl = pline(i["fid"], i["line"])
                   if not pl: continue
-                  c["same-line pinnacle"] += 1
-                  t = tsp(r["timestamp"]); s = tsp(cand[fid]["start"]); mid, mm = pl
+                  c["+same-line pinnacle"] += 1
+                  t = tsp(ts); s = tsp(cand[i["fid"]]["start"]); mid, mm = pl
                   oid = next((k for k, v in mm[3].items() if v == "Over"), None)
-                  ticks = (((pin(fid).get(str(mid)) or {}).get("outcomes") or {}).get(oid) or {}).get("players", {}).get("0") if oid else None
+                  ticks = (((pin(i["fid"]).get(str(mid)) or {}).get("outcomes") or {}).get(oid) or {}).get("players", {}).get("0") if oid else None
                   b0 = cl.last_tick(ticks, t) if ticks and t else None
                   if not b0 or t >= s: continue
-                  c["pre-game + pinnacle tick at trade"] += 1
+                  c["+pregame, pinnacle tick at trade"] += 1
                   for h in H:
                       th = t + dt.timedelta(minutes=h)
                       if th >= s: continue
                       b1 = cl.last_tick(ticks, th)
                       if b1:
-                          c[f"{h}m usable"] += 1
-                          c[f"{h}m price moved"] += (b1[1].get("price") != b0[1].get("price"))
-              P("\n| league | taker trades | game matched | same-line Pinnacle | pregame+tick | 15m usable (moved) | 30m usable (moved) | 60m usable (moved) |"); P("|---|---|---|---|---|---|---|---|")
-              for lg in LG:
-                  c = res[lg]
-                  P(f"| {lg} | {c['taker trades']} | {c['game matched']} | {c['same-line Pinnacle']} | {c['pre-game + pinnacle tick at trade']} | "
-                    + " | ".join(f"{c[f'{h}m usable']} ({c[f'{h}m price moved']})" for h in H) + " |")
-              P("Over/Under label for the taker side still needed before direction can be tested (see AGGRESSOR OUTCOME above).")
+                          c[f"{h}m usable"] += 1; c[f"{h}m moved"] += (b1[1].get("price") != b0[1].get("price"))
+              P("MARKETS:", {lg: dict(mc[lg]) for lg in LG})
+              P("TRADE GROUPS (unique taker executions):", {lg: dict(gc[lg]) for lg in LG})
+              P(f"TOTAL usable groups: any-horizon " + str({h: sum(gc[lg][f'{h}m usable'] for lg in LG) for h in H}))
           except Exception:
-              P("MATCH SECTION FAILED:", traceback.format_exc()[-700:])
+              P("FUNNEL FAILED:", traceback.format_exc()[-800:])
           open("summary/summary.md", "w").write("\n".join(out) + "\n")
           PY
 
