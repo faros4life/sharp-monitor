@@ -279,23 +279,35 @@ def pm_fee_coef(mk):
     return TAKER_COEF["polymarket"]
 
 
-def ladder_result(levels, price, line, book_line, extra=None, fee_coef=0.0):
+def ladder_result(levels, price, line, book_line, extra=None, fee_coef=0.0, qual_coef=None):
     """levels: [(cost 0-1, dollars)] you can BUY at. Prices compared AFTER the taker fee (coef x P x (1-P) per contract).
-    Returns the common result block."""
+    Returns the common result block.
+
+    qual_coef (Peter, Nov 6): a SECOND, stricter coefficient used only for ELIGIBILITY. Polymarket
+    US passes its old 0.0695 here while fee_coef carries the corrected 0.06, so correcting the fee
+    can improve which venue we choose and what we report, but can never lift a price level over a
+    gate it previously failed. Defaults to fee_coef, so every other caller is unchanged."""
+    qual_coef = fee_coef if qual_coef is None else qual_coef
     agg = {}
     for c, dol in levels:
         if c is None or c <= 0 or c >= 1 or dol <= 0:
             continue
         agg[round(c, 4)] = agg.get(round(c, 4), 0) + dol
     lv = [{"price": c, "american_displayed": lm.american(c), "price_after_fee": round(c + fee_coef * c * (1 - c), 4),
-           "american": lm.american(round(c + fee_coef * c * (1 - c), 4)), "dollars": round(d)} for c, d in sorted(agg.items())]
+           "american": lm.american(round(c + fee_coef * c * (1 - c), 4)),
+           # the frozen eligibility price, per level. Identical to "american" unless qual_coef differs.
+           "price_after_fee_qual": round(c + qual_coef * c * (1 - c), 4),
+           "american_after_fee_qual": lm.american(round(c + qual_coef * c * (1 - c), 4)),
+           "dollars": round(d)} for c, d in sorted(agg.items())]
     best = lv[0] if lv else None
-    at_or_better = sum(x["dollars"] for x in lv if price is not None and x["american"] is not None and x["american"] >= price)
+    at_or_better = sum(x["dollars"] for x in lv if price is not None and x["american_after_fee_qual"] is not None
+                       and x["american_after_fee_qual"] >= price)
     out = {"status": "ok" if lv else "no_liquidity", "line": book_line, "alert_line": line,
            "exact_line": (line is None) or (book_line is not None and abs(book_line - line) < 1e-9),
            "alert_price": price, "best_price": best["price_after_fee"] if best else None,
            "best_price_american": best["american"] if best else None,
            "best_price_american_displayed": best["american_displayed"] if best else None, "taker_fee_coef": fee_coef,
+           "best_price_american_qual": best["american_after_fee_qual"] if best else None, "qual_fee_coef": qual_coef,
            "dollars_at_best": best["dollars"] if best else 0,
            "dollars_at_alert_price_or_better": round(at_or_better), "buy_levels": lv[:10]}
     out.update(extra or {})

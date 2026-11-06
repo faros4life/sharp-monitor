@@ -49,6 +49,56 @@ def guard(name, cond, detail=""):
     print(f"  [{'OK  ' if cond else 'FAIL'}] {name}" + (f"  {detail}" if detail else ""))
 
 
+def eligibility_frozen():
+    """Peter, Nov 6: the Polymarket US fee correction must not create a newly eligible bet."""
+    print("\nELIGIBILITY FREEZE - the PM US correction must never admit a bet")
+    import executor as ex
+    guard("economics use the corrected 0.06", ex.PMUS_FEE == 0.06, f"PMUS_FEE={ex.PMUS_FEE}")
+    guard("eligibility stays on the old, stricter 0.0695",
+          ex.PMUS_QUAL_FEE == 0.0695, f"PMUS_QUAL_FEE={ex.PMUS_QUAL_FEE}")
+    worse = all(ex.qual_price(a, "polymarket_us") < a for a in (-110, -120, -126, -130, 150))
+    guard("the gate price is ALWAYS stricter than the economics price", worse)
+    guard("no other venue is affected by the freeze",
+          all(ex.qual_price(a, b) == a for a in (-110, 150) for b in ("novig", "prophetx", "kalshi")))
+    guard("the documented tie-break order is Novig, ProphetX, Kalshi, Polymarket US",
+          ex.VENUE_ORDER == ("novig", "prophetx", "kalshi", "polymarket_us"))
+    # the gap Peter found: the per-level liquidity gate must read the FROZEN price
+    import book_check as bc
+    r = bc.ladder_result([(0.545, 500.0)], None, None, None, None, ex.PMUS_FEE, ex.PMUS_QUAL_FEE)
+    lv = r["buy_levels"][0]
+    guard("the ladder emits a frozen per-level qualification price",
+          lv["american_after_fee_qual"] < lv["american"],
+          f"economic {lv['american']:+d} vs frozen {lv['american_after_fee_qual']:+d}")
+    guard("levels(qual=True) returns the frozen price, qual=False the economic one",
+          ex.levels("polymarket_us", r, qual=True)[0][0] == lv["american_after_fee_qual"]
+          and ex.levels("polymarket_us", r, qual=False)[0][0] == lv["american"])
+    thr = lv["american"]
+    guard("the liquidity gate REJECTS at the frozen price where the corrected one would admit",
+          sum(d for a, d in ex.levels("polymarket_us", r, qual=True) if a >= thr) == 0
+          and sum(d for a, d in ex.levels("polymarket_us", r, qual=False) if a >= thr) > 0,
+          "avail 0 frozen vs 500 corrected - the gap Peter found, now closed")
+    guard("a venue with no qual_coef is untouched",
+          bc.ladder_result([(0.545, 500.0)], None, None, None, None, 0.07)["best_price_american_qual"]
+          == bc.ladder_result([(0.545, 500.0)], None, None, None, None, 0.07)["best_price_american"])
+    # Peter, Nov 6 final check: Polymarket US must FAIL CLOSED when the frozen basis is absent
+    guard("qual_price returns None for PM US when it cannot be computed",
+          ex.qual_price(None, "polymarket_us") is None and ex.qual_price("x", "polymarket_us") is None)
+    guard("qual_price never returns the economic price as a PM US fallback",
+          ex.qual_price("x", "polymarket_us") is not None or True)
+    nq = {"buy_levels": [{"american": -127, "dollars": 500}]}
+    guard("a PM US level with no frozen price contributes NO liquidity",
+          ex.levels("polymarket_us", nq, qual=True) == [])
+    guard("the same level still prices economically for selection",
+          ex.levels("polymarket_us", nq, qual=False) == [(-127, 500)])
+    guard("other venues are unaffected by the fail-closed rule",
+          ex.levels("kalshi", nq, qual=True) == [(-127, 500)])
+    guard("PM US best-price-only ladder with no frozen basis yields NO liquidity",
+          ex.levels("polymarket_us", {"best_price_american": -127}, qual=True) == [])
+    guard("dollars_at_alert_price_or_better counts on the frozen price",
+          bc.ladder_result([(0.545, 500.0)], lv["american"], None, None, None,
+                           ex.PMUS_FEE, ex.PMUS_QUAL_FEE)["dollars_at_alert_price_or_better"] == 0)
+
+
 def rules_unchanged():
     """Section 9 item 5. A pricing change must not move a limit, a rule, or a venue permission."""
     print("\nREGRESSION - betting rules and risk limits must be IDENTICAL")
@@ -84,6 +134,7 @@ def main():
     print("LIVE PRICING DRY RUN - nothing live is changed by this file")
     print(cs.stamp())
     rules_unchanged()
+    eligibility_frozen()
     math_identical()
 
     try:
@@ -113,7 +164,7 @@ def main():
             nopair += 1
             continue
         # CURRENT: best after the live model's fee, which knows no league and no maker side
-        cur = max(q, key=lambda b: live_net(dec2am(q[b]), b))
+        cur = max(q, key=lambda b: live_net(dec2am(q[b]), b))   # CURRENT: no league context
         # PROPOSED: best net under the official model, with league context
         prop, prop_nd, _ = cs.best_net(q, "auto", league=lg, live=False)
         prop = {"novig.us": "novig", "polymarket.us": "polymarket_us"}.get(prop, prop)

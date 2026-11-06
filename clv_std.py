@@ -59,7 +59,7 @@ import exchange_lag as el
 
 # Stamp this on every CLV figure (Peter, item 2: "record the fee-model version used").
 # Bump it whenever eff(), a coefficient, or the venue registry changes.
-FEE_MODEL = "2026-11-06.11"
+FEE_MODEL = "2026-11-06.12"
 # Each entry carries its VERIFICATION STATUS, not just its rate. Peter, Nov 6: "cant you check out
 # fills or the account" - so where his own exports could settle a coefficient, they were used, and
 # where they could not, that is stated rather than assumed.
@@ -215,6 +215,12 @@ def best_net(quotes, scope="auto", maker=False, league=None, live=False):
     venue needs excluding by rule.
     """
     allow = AUTO if scope == "auto" else MANUAL
+    # Peter, Nov 6: on an EXACT net tie, a fixed documented venue order, applied identically in
+    # selection and in reporting. Without it the winner depends on dict iteration order, which is
+    # how the dry run found the live model and this one disagreeing on a tie that was not a real
+    # price difference at all.
+    order = ("novig.us", "prophetx", "kalshi", "polymarket.us", "hardrockbet")
+    rank = {v: i for i, v in enumerate(order)}
     best = None
     for bk, raw in (quotes or {}).items():
         try:
@@ -224,7 +230,10 @@ def best_net(quotes, scope="auto", maker=False, league=None, live=False):
         if c not in allow:
             continue
         nd = net_dec(c, raw, maker, league, live)
-        if nd is not None and (best is None or nd > best[1]):
+        if nd is None:
+            continue
+        if best is None or nd > best[1] + 1e-12 or (
+                abs(nd - best[1]) <= 1e-12 and rank.get(c, 99) < rank.get(best[0], 99)):
             best = (c, nd, bk)
     return best if best else (None, None, None)
 

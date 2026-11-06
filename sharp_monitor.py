@@ -298,31 +298,57 @@ def _p2am(p):
     return (100 * (1 - p) / p) if p < 0.5 else (-100 * p / (1 - p))
 
 
-def net(price, book):
+# Nov 6 (Peter, live pricing decision). TWO league/status-dependent schedules, both documented:
+#   ProphetX prices NHL on a maker/taker SCALE (0.035 taker), everything else as 2% of winnings.
+#   Novig charges 0.06 to TAKE a live or futures straight; pre-game straights are free both sides.
+# Both default off, so a caller that passes no league and no live flag gets exactly today's answer.
+PX_NHL_TAKER = 0.035
+NOVIG_LIVE_TAKER = 0.06
+
+
+def _is_nhl(league):
+    return str(league or "").strip().upper() in ("NHL", "ICEHOCKEY_NHL")
+
+
+def _coef(book, league, live):
+    """The taker coefficient, or None when this book/league takes the win-fee path instead."""
+    if book == "prophetx" and _is_nhl(league):
+        return PX_NHL_TAKER
+    if book == "novig" and live:
+        return NOVIG_LIVE_TAKER
+    return None
+
+
+def net(price, book, league=None, live=False):
     """American price after the book's fee: ProphetX 2% of winnings (-114 -> about -116, +150 -> +147);
-    Kalshi / Polymarket US taker fee added to the contract cost (Kalshi -110 -> about -113)."""
+    Kalshi / Polymarket US taker fee added to the contract cost (Kalshi -110 -> about -113).
+    ProphetX NHL and a live Novig take use their own documented schedules instead."""
     if price is None:
         return price
-    fee = WIN_FEE.get(book, 0)
-    if fee:
-        w = (100 / abs(price) if price < 0 else price / 100) * (1 - fee)
-        return -100 / w if w < 1 else w * 100
-    k = TAKER_FEE.get(book, 0)
+    k = _coef(book, league, live)
+    if k is None:
+        fee = WIN_FEE.get(book, 0)
+        if fee:
+            w = (100 / abs(price) if price < 0 else price / 100) * (1 - fee)
+            return -100 / w if w < 1 else w * 100
+        k = TAKER_FEE.get(book, 0)
     if k:
         c = am_to_prob(price)
         return _p2am(c + k * c * (1 - c))
     return price
 
 
-def gross(price, book):
+def gross(price, book, league=None, live=False):
     """Inverse of net(): the price the book must show to equal `price` after its fee."""
     if price is None:
         return price
-    fee = WIN_FEE.get(book, 0)
-    if fee:
-        w = (100 / abs(price) if price < 0 else price / 100) / (1 - fee)
-        return -100 / w if w < 1 else w * 100
-    k = TAKER_FEE.get(book, 0)
+    k = _coef(book, league, live)
+    if k is None:
+        fee = WIN_FEE.get(book, 0)
+        if fee:
+            w = (100 / abs(price) if price < 0 else price / 100) / (1 - fee)
+            return -100 / w if w < 1 else w * 100
+        k = TAKER_FEE.get(book, 0)
     if k:
         e = am_to_prob(price)   # solve c + k c (1 - c) = e for the screen cost c
         c = ((1 + k) - math.sqrt((1 + k) ** 2 - 4 * k * e)) / (2 * k)
@@ -330,16 +356,18 @@ def gross(price, book):
     return price
 
 
-def has_fee(book):
-    return bool(WIN_FEE.get(book) or TAKER_FEE.get(book))
+def has_fee(book, league=None, live=False):
+    return bool(WIN_FEE.get(book) or TAKER_FEE.get(book) or _coef(book, league, live))
 
 
-def fee_note(price, book):
-    return f" [{fmt_price(net(price, book))} after {nm(book)} fee]" if has_fee(book) else ""
+def fee_note(price, book, league=None, live=False):
+    return (f" [{fmt_price(net(price, book, league, live))} after {nm(book)} fee]"
+            if has_fee(book, league, live) else "")
 
 
-def floor_note(fl, book):
-    return f" ({nm(book)}: {fmt_price(gross(fl, book))} or better on screen)" if has_fee(book) else ""
+def floor_note(fl, book, league=None, live=False):
+    return (f" ({nm(book)}: {fmt_price(gross(fl, book, league, live))} or better on screen)"
+            if has_fee(book, league, live) else "")
 
 
 UNIT = float(os.environ.get("EXEC_UNIT", "") or "200")   # + money: risk UNIT; - money: risk to win UNIT (resets ~Nov 1)
@@ -525,7 +553,7 @@ def detect(event, cfg, lines, base):
                 offers += [(None, pr, b) for t, pr in d.get("h2h", {}).items() if t != side]
         if not offers:
             return None
-        p2, pr, b = max(offers, key=lambda x: 1 / am_to_prob(net(x[1], x[2])))
+        p2, pr, b = max(offers, key=lambda x: 1 / am_to_prob(net(x[1], x[2], cfg["label"])))
         return {"pt": p2, "price": pr, "book": b}
 
     def add(kind, side, pt, price, book, new_key, text, why, conf, mag=1.0, nb=1, edge=None, evp=None,
@@ -536,7 +564,7 @@ def detect(event, cfg, lines, base):
         note = {"yes": f" (confirmed by {', '.join(nm(b) for b in cnames)})", "na": f" ({nm(SHARP)} only)", "off": ""}[conf]
         alerts.append(dict(id=f"{event['id']}|{new_key}", ev=event["id"], game=game, start=start,
                            commence=event["commence_time"], kind=kind, side=side, pt=pt, price=price,
-                           book=book, net=round(net(price, book), 1), conf=conf, text=text, why=why + note,
+                           book=book, net=round(net(price, book, cfg["label"]), 1), conf=conf, text=text, why=why + note,
                            mag=round(mag, 2), nb=nb, edge=edge, nconf=nc, cby=[nm(b) for b in cnames] if conf == "yes" else [],
                            fade=fade_offer(kind, side, pt),
                            # Nov 5 (Peter): evp is computed by walking Pinnacle's number to this bet's number with
@@ -558,11 +586,11 @@ def detect(event, cfg, lines, base):
                   for t, (pt, pr) in d.get("spreads", {}).items() if t == team]
         if not offers:
             continue
-        pt, pr, b = max(offers, key=lambda x: (x[0], net(x[1], x[2])))
-        if pt > new and not too_juiced(net(pr, b)):
+        pt, pr, b = max(offers, key=lambda x: (x[0], net(x[1], x[2], cfg["label"])))
+        if pt > new and not too_juiced(net(pr, b, cfg["label"])):
             opp = [p2 for t2, (_, p2) in sb["spreads"].items() if t2 != team]
             p0 = (am_to_prob(sb["spreads"][team][1]) / (am_to_prob(sb["spreads"][team][1]) + am_to_prob(opp[0]))) if opp else 0.5
-            evp = ev_pct(min(max(p0 + half_point_value(cfg["label"], "spr", new, pt, new), .01), .99), net(pr, b))
+            evp = ev_pct(min(max(p0 + half_point_value(cfg["label"], "spr", new, pt, new), .01), .99), net(pr, b, cfg["label"]))
             add("spr", team, pt, pr, b, f"spr|{team}|{new}",
                 f"{team} {fmt_pt(pt)} ({fmt_price(pr)}) at {nm(b)}{fee_note(pr, b)}" + also([x[2] for x in offers if x[0] > new], b),
                 f"{nm(SHARP)} moved {fmt_pt(old)} -> {fmt_pt(new)}; bet only at {fmt_pt(new + 0.5)} or better",
@@ -580,16 +608,16 @@ def detect(event, cfg, lines, base):
                       for b, d in retail.items() if side in d.get("totals", {})]
             if offers:
                 if side == "Over":
-                    pt, pr, b = min(offers, key=lambda x: (x[0], -net(x[1], x[2])))
+                    pt, pr, b = min(offers, key=lambda x: (x[0], -net(x[1], x[2], cfg["label"])))
                     ok, thr = pt < new, new - 0.5
                 else:
-                    pt, pr, b = max(offers, key=lambda x: (x[0], net(x[1], x[2])))
+                    pt, pr, b = max(offers, key=lambda x: (x[0], net(x[1], x[2], cfg["label"])))
                     ok, thr = pt > new, new + 0.5
-                if ok and not too_juiced(net(pr, b)):
+                if ok and not too_juiced(net(pr, b, cfg["label"])):
                     tt = sb["totals"]
                     p0 = (am_to_prob(tt[side][1]) / (am_to_prob(tt["Over"][1]) + am_to_prob(tt["Under"][1]))
                           if "Under" in tt and side in tt else 0.5)
-                    evp = ev_pct(min(max(p0 + half_point_value(cfg["label"], "tot", pt, new, new), .01), .99), net(pr, b))
+                    evp = ev_pct(min(max(p0 + half_point_value(cfg["label"], "tot", pt, new, new), .01), .99), net(pr, b, cfg["label"]))
                     add("tot", side, pt, pr, b, f"tot|{side}|{new}",
                         f"{side} {pt:g} ({fmt_price(pr)}) at {nm(b)}{fee_note(pr, b)}"
                         + also([x[2] for x in offers if (x[0] < new if side == "Over" else x[0] > new)], b),
@@ -612,17 +640,17 @@ def detect(event, cfg, lines, base):
                       for t, (p2, pr) in d.get("spreads", {}).items() if t == team and p2 == pt]
             if not offers:
                 continue
-            pr, b = max(offers, key=lambda x: 1 / am_to_prob(net(x[0], x[1])))
-            if edge_ok(net(pr, b), new):
+            pr, b = max(offers, key=lambda x: 1 / am_to_prob(net(x[0], x[1], cfg["label"])))
+            if edge_ok(net(pr, b, cfg["label"]), new):
                 add("rl", team, pt, pr, b, f"rl|{team}|{pt:g}|{round(new, 2)}",
                     f"{team} {fmt_pt(pt)} {cfg.get('rl_name', 'RL')} {fmt_price(pr)} at {nm(b)}{fee_note(pr, b)}"
-                    + also([x[1] for x in offers if edge_ok(net(x[0], x[1]), new)], b),
+                    + also([x[1] for x in offers if edge_ok(net(x[0], x[1], cfg["label"]), new)], b),
                     (f"{nm(SHARP)} {fmt_pt(pt)} fair moved {fmt_price(prob_to_am(old))} -> "
                      f"{fmt_price(prob_to_am(new))}; bet only at {fmt_price(edge_price(new))} or better"
                      + floor_note(edge_price(new), b)),
                     agree(k, old, new),
-                    mag=(new - old) / cfg["rl"], nb=len([x for x in offers if edge_ok(net(x[0], x[1]), new)]),
-                    edge=new / am_to_prob(net(pr, b)) - 1)
+                    mag=(new - old) / cfg["rl"], nb=len([x for x in offers if edge_ok(net(x[0], x[1], cfg["label"]), new)]),
+                    edge=new / am_to_prob(net(pr, b, cfg["label"])) - 1)
 
     # Moneyline (MLB/NHL): sharp side = team whose no-vig win prob rose.
     if "ml" in cfg and len(sb.get("h2h", {})) == 2:
@@ -634,16 +662,16 @@ def detect(event, cfg, lines, base):
             offers = [(d["h2h"][team], b) for b, d in retail.items() if team in d.get("h2h", {})]
             if not offers:
                 continue
-            pr, b = max(offers, key=lambda x: 1 / am_to_prob(net(x[0], x[1])))
-            if edge_ok(net(pr, b), new):  # retail price (after any win fee) beats the sharp fair price by MIN_EDGE
+            pr, b = max(offers, key=lambda x: 1 / am_to_prob(net(x[0], x[1], cfg["label"])))
+            if edge_ok(net(pr, b, cfg["label"]), new):  # retail price (after any win fee) beats the sharp fair price by MIN_EDGE
                 add("ml", team, None, pr, b, f"ml|{team}|{round(new, 2)}",
                     f"{team} ML {fmt_price(pr)} at {nm(b)}{fee_note(pr, b)}"
-                    + also([x[1] for x in offers if edge_ok(net(x[0], x[1]), new)], b),
+                    + also([x[1] for x in offers if edge_ok(net(x[0], x[1], cfg["label"]), new)], b),
                     (f"{nm(SHARP)} fair moved {fmt_price(prob_to_am(old))} -> {fmt_price(prob_to_am(new))}; "
                      f"bet only at {fmt_price(edge_price(new))} or better" + floor_note(edge_price(new), b)),
                     agree(f"h2h|{team}", old, new),
-                    mag=(new - old) / cfg["ml"], nb=len([x for x in offers if edge_ok(net(x[0], x[1]), new)]),
-                    edge=new / am_to_prob(net(pr, b)) - 1)
+                    mag=(new - old) / cfg["ml"], nb=len([x for x in offers if edge_ok(net(x[0], x[1], cfg["label"]), new)]),
+                    edge=new / am_to_prob(net(pr, b, cfg["label"])) - 1)
     return alerts
 
 

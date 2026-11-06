@@ -45,7 +45,14 @@ RULES_LOOKBACK_H = 6                                             # coded rules l
 MIN_LEAD_MIN = float(os.environ.get("EXEC_MIN_LEAD_MIN", "") or "60")
 CAP_LINE = -130                                                  # spreads/totals: never worse than -130
 PMUS = "https://gateway.polymarket.us"
-PMUS_FEE = 0.0695                                                # Polymarket US taker: 0.0695 x C x p x (1-p)
+PMUS_FEE = 0.06                                                  # Polymarket US taker, their published schedule
+# ELIGIBILITY FREEZE (Peter, Nov 6): correcting the taker fee DOWN makes every Polymarket US net
+# price better, so a raw price that used to miss the -130 cap or the alert threshold could now
+# clear it. That would be the correction CREATING a bet, which Peter prohibited. So selection and
+# economics use the corrected 0.06, while the eligibility GATES price Polymarket US at the old,
+# stricter coefficient. The correction can therefore improve which venue we choose, and can never
+# make a bet eligible that was not eligible before.
+PMUS_QUAL_FEE = 0.0695
 PMUS_LEAGUES = {"NFL": ["nfl"], "NBA": ["nba"], "NHL": ["nhl"], "MLB": ["mlb"], "NCAAF": ["cfb", "ncaaf", "college-football"],
                 "NCAAB": ["cbb", "ncaab", "college-basketball"]}
 BANNED_SPORTS = {"UFC", "MMA", "BOXING", "TENNIS", "ATP", "WTA", "SOCCER", "EPL", "MLS", "LA LIGA", "SERIE A",
@@ -630,7 +637,9 @@ def pmus_check(al, mtype, side, line, price, teams):
             levels = [(px(o), px(o) * lm.num(o.get("qty"))) for o in book.get("offers") or [] if px(o) is not None]
         else:         # buy NO = sell YES into bids: cost 1 - bid
             levels = [(round(1 - px(b), 4), (1 - px(b)) * lm.num(b.get("qty"))) for b in book.get("bids") or [] if px(b) is not None]
-        return bc.ladder_result(levels, price, line, pline, {"market_slug": mk["slug"], "long_side": is_long}, PMUS_FEE)
+        # PMUS_FEE prices the economics; PMUS_QUAL_FEE freezes every eligibility gate at the old rate
+        return bc.ladder_result(levels, price, line, pline, {"market_slug": mk["slug"], "long_side": is_long},
+                                PMUS_FEE, PMUS_QUAL_FEE)
     return {"status": "game_not_on_polymarket_us",
             "seen": [ev.get("title") for ev in pmus_events(al["sport"])[:0]] or [f"{len(pmus_events(al['sport']))} {al['sport']} events listed"]}
 
@@ -785,6 +794,38 @@ LIVE_BOOKS = tuple(b.strip() for b in (os.environ.get("EXEC_LIVE_BOOKS") or "pro
                    if b.strip())   # Oct 28 (Peter): books the bot may fill phase-1 plays on; repo VARIABLE EXEC_LIVE_BOOKS
 PX_TOL_CENTS = 2   # Peter, Oct 27: ProphetX (the live book) may fill up to 2 cents worse than the alert's after-fee price
 
+# Peter, Nov 6: on an EXACT net-price tie, a fixed documented venue order, applied identically in
+# selection and in reporting, so the choice is deliberate and reproducible rather than whatever
+# order a dict happened to iterate in.
+VENUE_ORDER = ("novig", "prophetx", "kalshi", "polymarket_us")
+
+
+def venue_rank(book):
+    return VENUE_ORDER.index(book) if book in VENUE_ORDER else len(VENUE_ORDER)
+
+
+def qual_price(am, book):
+    """The price the ELIGIBILITY gates see. Identical to `am` everywhere except Polymarket US,
+    where it is re-priced at the old, stricter taker fee so the fee correction cannot admit a bet
+    that would previously have been skipped. Pure arithmetic: invert the new fee to recover the
+    screen price, then re-apply the old one."""
+    if book != "polymarket_us":
+        return am
+    if am is None:
+        return None
+    try:
+        e = american_to_prob(am)                      # cost after the CORRECTED fee
+        k = PMUS_FEE
+        c = ((1 + k) - math.sqrt((1 + k) ** 2 - 4 * k * e)) / (2 * k) if k else e   # screen cost
+        q = PMUS_QUAL_FEE
+        v = lm.american(min(max(c + q * c * (1 - c), 0.01), 0.99))                  # old-fee cost
+        return v if v is not None else None
+    except Exception:
+        # FAILS CLOSED (Peter, Nov 6). Returning `am` here would hand an eligibility gate the
+        # PERMISSIVE 0.06 price, which is exactly the thing the freeze exists to prevent. A
+        # Polymarket US candidate whose frozen basis cannot be computed is rejected, not admitted.
+        return None
+
 
 def cents_worse(am, c):
     """An American price c cents worse for the bettor (-109 -> -111; +105 -> +103; +101 -> -101)."""
@@ -795,7 +836,9 @@ def cents_worse(am, c):
     return w if w >= 100 else -(100 + (100 - w))
 
 
-WIN_FEE = {"prophetx": 0.02}   # fee on winnings: a ProphetX win nets 98% of the screen payout
+WIN_FEE = {"prophetx": 0.02}   # fee on winnings: a ProphetX win nets 98% of the screen payout.
+# NHL is NOT on this schedule - ProphetX prices NHL on a 0.035 taker scale. sharp_monitor.net()
+# carries that split; this table is used for the win-net display below, which is a non-NHL path.
 
 
 def stake_for(am):
@@ -896,28 +939,42 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None, held=None):
     alert_cost = american_to_prob(alert_af)
     px_tol = american_to_prob(cents_worse(alert_af, PX_TOL_CENTS)) - alert_cost   # Peter, Oct 27: ProphetX may be 2c worse
     floor = p.get("floor_line") if mtype in ("spread", "total") else None
-    cands, floor_blocked = [], 0
+    cands, floor_blocked, no_qual_basis = [], 0, 0
     for (b, bl), r in ladders.items():
         if floor is not None and better_halfpoints(mtype, side, floor, bl) < -1e-9:
             floor_blocked += 1   # Oct 31 (Muse): the alert's bet-only-at LINE is a hard floor, whatever the converted price
             continue
         hb = 0.0 if mtype == "moneyline" else better_halfpoints(mtype, side, line, bl)
         am = r["best_price_american"]
+        # frozen for Polymarket US, identical elsewhere. The ladder now carries it directly; the
+        # arithmetic inversion stays only as a fallback for a checker that has not been updated.
+        am_q = r.get("best_price_american_qual")
+        if am_q is None:
+            am_q = qual_price(am, b)
+        if am_q is None:                              # FAILS CLOSED: no frozen basis -> no candidate
+            no_qual_basis += 1
+            continue
         c_eq = american_to_prob(am) - hb * hp
+        c_eq_q = american_to_prob(am_q) - hb * hp     # what the eligibility gates compare
         tol = px_tol if b == "prophetx" else 0.0
-        if c_eq > alert_cost + tol + 1e-9:
+        if c_eq_q > alert_cost + tol + 1e-9:          # gate on the frozen price, never the improved one
             continue
         thr = lm.american(min(max(alert_cost + tol + hb * hp, 0.01), 0.99))   # worst acceptable real price at this line
         if mtype in ("spread", "total") and thr is not None:
             thr = max(thr, CAP_LINE)   # Oct 28: never fill below the -130 after-fee cap, whatever the line conversion says
-        avail = sum(d for a, d in levels(b, r) if a is not None and thr is not None and a >= thr)
+        # the liquidity gate reads the FROZEN per-level price, never the corrected one
+        avail = sum(d for a, d in levels(b, r, qual=True) if a is not None and thr is not None and a >= thr)
         if avail <= 0:
             continue
         shown = r.get("best_price_american_displayed")
         cands.append({"book": b, "line": bl, "am": am, "shown": int(shown) if shown is not None else am, "eq": lm.american(min(max(c_eq, 0.01), 0.99)), "c_eq": c_eq,
+                      "am_q": am_q,
                       "hb": hb, "avail": avail, "thr": thr, "buy": r.get("buy_levels") or [],
                       "ids": {k: r.get(k) for k in ("kalshi_buy", "market_slug", "long_side", "outcome_id") if r.get(k) is not None}})
     if not cands:
+        if no_qual_basis:
+            return dict(out, verdict="SKIP", reason=f"no frozen qualification price on "
+                                                    f"{no_qual_basis} candidate(s) - rejected safely")
         if not ladders:
             return dict(out, verdict="SKIP", reason="no book lists this market near the alert line")
         if floor_blocked and floor_blocked == len(ladders):
@@ -927,12 +984,14 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None, held=None):
                                                 f"(equivalent, after fees; half point = {hp * 100:.1f}c {hp_src})"
                                                 + (f"; {floor_blocked} line(s) blocked by bet-only-at floor "
                                                    f"({fmt_line(mtype, floor)})" if floor_blocked else ""))
-    capped = [c for c in cands if not (mtype in ("spread", "total") and c["am"] < CAP_LINE)]
+    # the -130 cap applies to the FROZEN price too, so the correction cannot lift a bet over it
+    capped = [c for c in cands if not (mtype in ("spread", "total") and c["am_q"] < CAP_LINE)]
     if not capped:
         best = min(cands, key=lambda c: c["c_eq"])
         return dict(out, verdict="SKIP", reason=f"price cap: best take is {best['book']} {best['am']:+d} at "
                                                 f"{fmt_line(mtype, best['line'])}, worse than {CAP_LINE}")
-    capped.sort(key=lambda c: (round(c["c_eq"], 6), -c["hb"]))   # best equivalent price; tie -> better line
+    # best equivalent price; tie -> better line; still tied -> the fixed documented venue order
+    capped.sort(key=lambda c: (round(c["c_eq"], 6), -c["hb"], venue_rank(c["book"])))
     # stake is sized on the price on the book's screen (Peter, Oct 25: same as ntfy and Muse); routing/cap stay after-fee
     full = [c for c in capped if c["avail"] >= stake_for(c["shown"])[0]]
     pick = (full or capped)[0]
@@ -1003,14 +1062,38 @@ def half_point(ladders, mtype, side, sport):
     return min(max(g, fb / 2), fb * 2), f"(live, {len(gaps)} gap{'s' if len(gaps) > 1 else ''})"
 
 
-def levels(book, r):
-    """[(American price after fees, dollars)] from a checker's ladder."""
+def levels(book, r, qual=False):
+    """[(American price after fees, dollars)] from a checker's ladder.
+
+    qual=True returns the FROZEN eligibility price per level (Peter, Nov 6). Every gate - threshold,
+    liquidity, full size, partial size and the -130 cap - reads this one, so a fee correction can
+    never lift a level over a gate it previously failed. Identical to the economic price on every
+    venue except Polymarket US."""
     out = []
+    # FAILS CLOSED for Polymarket US (Peter, Nov 6): when a frozen price is missing we contribute
+    # NO liquidity from that level rather than falling back to the permissive economic price.
+    strict = bool(qual) and book == "polymarket_us"
     for x in r.get("buy_levels") or []:
-        a = x.get("american_after_fee", x.get("american"))
+        if qual:
+            a = x.get("american_after_fee_qual")
+            if a is None:
+                if strict:
+                    continue                          # no frozen basis -> this level does not count
+                a = x.get("american_after_fee", x.get("american"))
+        else:
+            a = x.get("american_after_fee", x.get("american"))
         out.append((a, x.get("dollars") or 0))
-    if not out and r.get("best_price_american") is not None:
-        out.append((r["best_price_american"], r.get("dollars_at_alert_price_or_better") or 0))
+    if not out:
+        if qual:
+            b = r.get("best_price_american_qual")
+            if b is None and strict:
+                return []                             # no frozen basis at all -> no liquidity
+            if b is None:
+                b = r.get("best_price_american")
+        else:
+            b = r.get("best_price_american")
+        if b is not None:
+            out.append((b, r.get("dollars_at_alert_price_or_better") or 0))
     return out
 
 
