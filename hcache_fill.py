@@ -14,10 +14,12 @@ from datetime import datetime, timedelta, timezone
 
 import clv_ledger as cl
 import hist_cache as hc
+import ncaab_top100 as t100
 import tracker_build as tb
 
 ET = tb.ET
-LEAGUES = ("NBA", "NFL", "NCAAF", "NHL")
+LEAGUES = ("NBA", "NFL", "NCAAF", "NHL", "NCAAB")   # Nov 6 (Peter): NCAAB, Top 100 games only (ncaab_top100.py)
+SHRINK_MIN = int(os.environ.get("FILL_SHRINK_MIN", "") or "40")   # Nov 6: time for trimming older untrimmed files per run
 BOOKS = ["pinnacle", "novig.us", "prophetx", "kalshi", "polymarket.us", "hardrockbet"]
 FILL_FROM = datetime.fromisoformat(os.environ.get("FILL_FROM", "") or "2026-10-12").replace(tzinfo=timezone.utc)
 MAX_GAMES = int(os.environ.get("FILL_MAX", "") or "700")
@@ -60,7 +62,30 @@ def main():
     else:
         for lg in LEAGUES:
             cl.refresh_fixtures(st, now, lg, (FILL_FROM - timedelta(days=1)).astimezone(ET), (now + timedelta(days=1)).astimezone(ET))
+    # Nov 6 (Peter): NCAAB is not in the other jobs' lists, so it always takes its own fixtures call (paid key, at most every
+    # 6 h). Only games with a Top 100 team are kept; no ratings file -> no NCAAB at all.
+    top = t100.load()
+    if top:
+        cl.refresh_fixtures(st, now, "NCAAB", (FILL_FROM - timedelta(days=1)).astimezone(ET), (now + timedelta(days=1)).astimezone(ET))
+    fx_all = st.get("fixtures") or {}
+    n_cbb = sum(1 for f in fx_all.values() if f.get("lg") == "NCAAB")
+    for fid in [k for k, f in fx_all.items() if f.get("lg") == "NCAAB" and not t100.game_in([f.get("p1"), f.get("p2")], top)]:
+        del fx_all[fid]
+    kept = sum(1 for f in fx_all.values() if f.get("lg") == "NCAAB")
+    print(f"cache fill: NCAAB {kept} of {n_cbb} games have a Top 100 team" if top else "cache fill: NCAAB skipped (Top 100 ratings missing)", flush=True)
     print(f"cache fill: game list from {src}", flush=True)   # counts only
+    # Nov 6: trim older (untrimmed) cache files to the tested markets, within SHRINK_MIN; the rest continue next run.
+    if os.path.isdir(hc.DIR) and hc.KEEP:
+        t0, saved, n_sh, left_sh = datetime.now(timezone.utc), 0, 0, 0
+        for x in sorted(os.listdir(hc.DIR)):
+            if datetime.now(timezone.utc) - t0 > timedelta(minutes=SHRINK_MIN):
+                left_sh += 1
+                continue
+            b_ = hc.shrink_file(os.path.join(hc.DIR, x))
+            if b_ is not None:
+                saved += b_
+                n_sh += 1
+        print(f"cache fill: trimmed {n_sh} older files, saved {saved / 1e6:.0f} MB" + (f", about {left_sh} files not checked yet" if left_sh else ""), flush=True)
     todo = []
     for fid, f in (st.get("fixtures") or {}).items():
         s = cl.tp(f.get("start"))

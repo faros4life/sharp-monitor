@@ -35,6 +35,7 @@ import exchange_lag as el
 import buckets as bkt
 import executor as ex
 import hist_cache as hc
+import ncaab_top100 as t100
 import sharp_monitor as sm
 import tracker_build as tb
 
@@ -42,11 +43,12 @@ ET = tb.ET
 NOW = datetime.now(timezone.utc)
 LO = os.environ.get("LAB_FROM", "") or "2026-10-12"
 HI = os.environ.get("LAB_TO", "") or (NOW.astimezone(ET).date() - timedelta(days=1)).isoformat()
-LEAGUES = [x.strip() for x in (os.environ.get("LAB_LEAGUES", "") or "NFL,NCAAF,NHL,NBA").split(",") if x.strip()]
+LEAGUES = [x.strip() for x in (os.environ.get("LAB_LEAGUES", "") or "NFL,NCAAF,NHL,NBA,NCAAB").split(",") if x.strip()]
 EDGES = (2.0, 4.0, 6.0)
 EDGE_REG = 4.0
 ESPN = {"NFL": ("football/nfl", "", date(2026, 9, 1)), "NCAAF": ("football/college-football", "&groups=80", date(2026, 8, 20)),
-        "NHL": ("hockey/nhl", "", date(2026, 10, 1)), "NBA": ("basketball/nba", "", date(2026, 10, 18))}
+        "NHL": ("hockey/nhl", "", date(2026, 10, 1)), "NBA": ("basketball/nba", "", date(2026, 10, 18)),
+        "NCAAB": ("basketball/mens-college-basketball", "&groups=50", date(2026, 11, 2))}   # Nov 6: Top 100 games, baseline only
 SD = {"NFL": (13.5, 13.0), "NCAAF": (16.0, 16.0), "NBA": (12.0, 18.0)}
 SHRINK = {"NFL": 3.0, "NCAAF": 3.0, "NHL": 10.0}
 EXCH = {"novig.us": "Novig", "prophetx": "ProphetX", "kalshi": "Kalshi", "polymarket.us": "PM US"}
@@ -201,8 +203,11 @@ def first_tick(pm, mkmap, sid):
 
 
 def run_league(lg, mkmap, st, sigs, why):
-    sid = cl.SPORT[lg]
+    sid = cl.SPORT.get(lg) or (11 if lg == "NCAAB" else None)
     games = espn_games(lg)
+    if lg == "NCAAB":   # Nov 6 (Peter): Top 100 games only - same rule as the history cache, so nothing extra downloads
+        top = t100.load()
+        games = [g for g in games if t100.game_in([g["home"], g["away"]], top)]
     cl.refresh_fixtures(st, NOW, lg, (datetime.fromisoformat(LO) - timedelta(days=1)).astimezone(ET),
                         (datetime.fromisoformat(HI) + timedelta(days=2)).astimezone(ET))
     fx = {k: v for k, v in (st.get("fixtures") or {}).items() if v.get("lg") == lg}
@@ -210,7 +215,7 @@ def run_league(lg, mkmap, st, sigs, why):
     why[lg] = {"espn games": len(games), "in window": len(graded)}
     for g in sorted(graded, key=lambda x: x["start"]):
         prior = [x for x in games if etd(x["start"]) < etd(g["start"])]
-        r = ratings(prior, lg) if lg != "NBA" else {"drift": True}
+        r = ratings(prior, lg) if lg not in ("NBA", "NCAAB") else {"drift": True}
         s0 = datetime.fromisoformat(g["start"].replace("Z", "+00:00"))
         words = tb.toks(g["home"]) | tb.toks(g["away"])
         fid = next((k for k, f in fx.items() if cl.tp(f.get("start")) and abs((cl.tp(f["start"]) - s0).total_seconds()) <= 6 * 3600
@@ -254,7 +259,7 @@ def run_league(lg, mkmap, st, sigs, why):
                              "clv_hr": None if (pc is None or not hrd) else round(100 * (pc * hrd - 1), 2),
                              "move": None if pc is None else round(100 * (pc - (m["pa"] if side_a else 1 - m["pa"])), 2),
                              "u": 0.0 if res == "P" else (dec - 1 if res == "W" else -1.0)})
-        if lg == "NBA":
+        if lg in ("NBA", "NCAAB"):   # baseline only (NCAAB: no model yet, Nov 6)
             continue
         if not r:
             why[lg]["too early for a model"] = why[lg].get("too early for a model", 0) + 1
@@ -328,7 +333,7 @@ def main():
     mkmap = cl.load_markets(st, NOW)
     sigs, why = [], {}
     for lg in LEAGUES:
-        if lg in ESPN and lg in cl.SPORT:
+        if lg in ESPN and (lg in cl.SPORT or lg == "NCAAB"):
             try:
                 run_league(lg, mkmap, st, sigs, why)
             except Exception as e:

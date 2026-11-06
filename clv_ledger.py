@@ -217,6 +217,24 @@ def load_markets(st, now):
 def tournament(st, now, lg):
     if lg in TOURN:
         return TOURN[lg]
+    if lg == "NCAAB":   # Nov 6 (history cache + model lab only; NCAAB stays out of SPORT so no other job changes)
+        if st.get("ncaab_tid"):
+            return st["ncaab_tid"]
+        if not can_bill(st, now):
+            return None
+        ts = api("/tournaments", True, sportId=11)
+        bill(st, now)
+        best = None
+        for t in ts if isinstance(ts, list) else []:
+            nm = (t.get("tournamentName") or "").lower()
+            if "ncaa" in nm and "women" not in nm and "usa" in (t.get("categorySlug") or "").lower():
+                n = (t.get("upcomingFixtures") or 0) + (t.get("futureFixtures") or 0)
+                if not best or n > best[0]:
+                    best = (n, t.get("tournamentId"), t.get("tournamentName"))
+        if best and best[0] > 0:
+            st["ncaab_tid"] = best[1]
+            return best[1]
+        return None
     if lg != "NCAAF":
         return None
     if st.get("ncaaf_tid"):

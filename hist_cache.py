@@ -37,6 +37,48 @@ PAID_BOOKS = ("pinnacle", "hardrockbet")
 PAID_HIST = (os.environ.get("HIST_PAID") or "on").strip().lower() == "on" and bool(cl.KEY)
 
 
+# Nov 6 (Peter yes 5:18 AM): store ONLY the markets every test reads - the full-game moneyline / spread / total market ids in
+# clv/markets.json (every handicap line, every tick, every book). All cache readers go through that same map
+# (cl.load_markets), so nothing they use is dropped; halves, quarters, props and the rest are. Keeps the cache inside
+# GitHub's 10 GB with all leagues + NCAAB Top 100. No markets file -> nothing is trimmed (fail safe, keeps everything).
+def _keep_ids():
+    try:
+        return set(json.load(open(os.path.join("clv", "markets.json")))["m"])
+    except Exception:
+        return None
+
+
+KEEP = _keep_ids()
+
+
+def trim(bm):
+    """A book's history with only the tested markets kept; marked _trim so a shrink pass skips it."""
+    if not KEEP or not isinstance(bm, dict) or not isinstance(bm.get("markets"), dict):
+        return bm
+    out = dict(bm)
+    out["markets"] = {k: v for k, v in bm["markets"].items() if str(k) in KEEP}
+    out["_trim"] = 1
+    return out
+
+
+def shrink_file(p):
+    """Rewrite one cached file trimmed (older, untrimmed downloads). Returns bytes saved, or None if skipped (already
+    trimmed, empty or unreadable)."""
+    try:
+        before = os.path.getsize(p)
+        with gzip.open(p, "rt") as fh:
+            d = json.load(fh)
+        if not isinstance(d, dict) or d.get("_trim") or not isinstance(d.get("markets"), dict) or not KEEP:
+            return None
+        tmp = p + ".tmp"
+        with gzip.open(tmp, "wt") as fh:
+            json.dump(trim(d), fh, separators=(",", ":"))
+        os.replace(tmp, p)
+        return max(0, before - os.path.getsize(p))
+    except Exception:
+        return None
+
+
 def _paid_empty(d):
     return isinstance(d, dict) and d.get("_empty_by") == "paid"
 
@@ -122,6 +164,7 @@ def get_hist(fid, books, start=None):
             s_["markets" if (bm.get("markets") if isinstance(bm, dict) else None) else "empty"] += 1
             if not bm and b in EXCH_BOOKS and is_paid:
                 bm = {"_empty_by": "paid"}   # not a final "no data": re-asked once a free key exists
+            bm = trim(bm)   # Nov 6: tested markets only
             out["bookmakers"][b] = bm
             if final:
                 try:

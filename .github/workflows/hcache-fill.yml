@@ -51,6 +51,9 @@ jobs:
         with:
           path: hcache_b
           key: hcache-${{ inputs.merge_b }}
+      - name: NCAAB Top 100 ratings (last season, from the ncaab-openers branch; Nov 6)
+        continue-on-error: true
+        run: git fetch -q --depth 1 origin ncaab-openers && git show FETCH_HEAD:ncaab_prior.json > ncaab_prior.json || echo "no ratings file - NCAAB skipped"
       - name: Fill the cache
         id: fill
         env:

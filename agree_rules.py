@@ -119,9 +119,12 @@ def first_side(a, feed, live_only=False):
     return min(opp, key=lambda z: z[0])[1] if opp else None
 
 
-PHASE1 = ("ProphetX-priced at alert time (Hard Rock-priced never), Muse AGREE, NBA + NCAAF + NFL totals unders, NCAAF overs (Peter Nov 4 3:58 PM), "
-          "not Matchbook-only confirmations (Peter Nov 4), "
-          "not sent 12-24h before start, $50 unit, ProphetX only")
+PHASE1 = ("ProphetX-priced at alert time (Hard Rock-priced never); coded-rules AGREE (Muse = veto only, Oct 30); "
+          "NBA + NCAAF + NFL totals unders, NCAAF totals overs (Peter Nov 4 3:58 PM) - college needs AP Top 25 (decide() gate 5); "
+          "spreads/MLs/other overs paper; no grade gate (Nov 3); not Matchbook-only confirmations (Nov 4); "
+          "not sent 12-24h before start; not late; non-ProphetX -119..-110 after fee = deadband; -130 after-fee cap; "
+          "$200 unit (to win on minus, risk on plus), $275 per-order cap, $1,500 daily stop; "
+          "best after-fee price on ProphetX, Kalshi, Polymarket US, Novig (EXEC_LIVE_BOOKS)")
 
 
 def hr_priced(a):

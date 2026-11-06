@@ -1969,7 +1969,7 @@ def main():
                 else:
                     r["live"] = {"go": False, "lane": "board", "why": why}
             elif ent and (p.get("source") != "rules" or RULES_LIVE):   # phase-1 live tag (Oct 30: coded AGREE goes live too)
-                ok, why = agree_rules.phase1(ent, True)   # NCAAF/NBA spreads + unders, NFL unders only (Peter, Oct 26)
+                ok, why = agree_rules.phase1(ent, True)   # totals unders NBA/NCAAF/NFL + NCAAF overs (Nov 3/Nov 4); spreads paper. See agree_rules.PHASE1
                 lk = derive_key(p) or p["play_key"]
                 if ok and lk in MUSE_DISAGREE:
                     ok, why = False, ["Muse DISAGREE (veto)"]

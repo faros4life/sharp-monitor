@@ -5,7 +5,7 @@ name: model-lab
 on:
   workflow_dispatch:
     inputs:
-      leagues: {required: false, type: string, default: "NBA,NHL,NFL,NCAAF"}
+      leagues: {required: false, type: string, default: "NBA,NHL,NFL,NCAAF,NCAAB"}
 
 permissions:
   contents: read
@@ -26,6 +26,9 @@ jobs:
           path: hcache
           key: hcache-${{ github.run_id }}
           restore-keys: hcache-
+      - name: NCAAB Top 100 ratings (last season, from the ncaab-openers branch; Nov 6)
+        continue-on-error: true
+        run: git fetch -q --depth 1 origin ncaab-openers && git show FETCH_HEAD:ncaab_prior.json > ncaab_prior.json || echo "no ratings file - NCAAB skipped"
       - name: Model lab (private email)
         env:
           GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
