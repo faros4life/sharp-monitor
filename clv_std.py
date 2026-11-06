@@ -1,5 +1,15 @@
 #!/usr/bin/env python3
 """
+ADOPTED STANDARD, 6 November 2026. CLV_STANDARD.md in this repo is the authoritative record of
+the VALUE LAB CLV standard Peter adopted system-wide. This module implements its formula and its
+venue registry; read that file for the reporting guards, the category definitions and the
+historical-integrity rules that govern how any figure from here may be published.
+
+Two of those rules bind every caller and are easy to lose:
+  Guard 1  every CLV figure carries its population, lane, execution basis and sample size
+  Guard 2  every headline carries its exclusion counts and coverage
+A figure published without both is not compliant with the standard, however correct its arithmetic.
+
 THE CLV STANDARD (Peter, VALUE LAB, Nov 6 2026). One CLV methodology for every script, exchange and
 report. Import this; do not re-derive the formula or the fee model locally.
 
