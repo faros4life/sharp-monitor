@@ -41,7 +41,16 @@ FORM_N, K = 10, 10.0
 SEASON_FROM = date(2026, 11, 2)          # 2026-27 season opening day
 PRIOR_FROM, PRIOR_TO = date(2025, 11, 3), date(2026, 4, 7)   # 2025-26 season
 STARTED = "2026-11-03"                   # forward only from the day it ships
-AHEAD_DAYS = 2                           # freeze games on today's ET date and the next 2
+# Nov 5 (Peter): was 2. A game only enters our radar when the ET date rolls to tip_day - AHEAD_DAYS,
+# so 2 put a hard ~72 h ceiling on freeze lead: measured median lead 61.4 h, 85% of freezes in the
+# 60-72 h band, none beyond 72 h. The grader measured Pinnacle opening these totals around 64 h out,
+# which disqualified 10 of 22 Pinnacle-posted games as "frozen after the open" - nearly half the
+# sample discarded for a scheduling reason, not a modelling one. 3 lifts the ceiling to ~96 h
+# (median ~85 h), clearing Pinnacle's open by about a day. Not higher: beyond this we trade rating
+# freshness for eligibility we already have. ESPN-only, so this costs no OddsPapi credits.
+# The registered on_time rule (06:00 ET the day before) is UNCHANGED and becomes trivially met;
+# the freeze-to-open lag the grader already logs is the measure that matters. Muse to be notified.
+AHEAD_DAYS = 3                           # freeze games on today's ET date and the next 3
 
 
 def get(url, tries=3):
