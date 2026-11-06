@@ -106,11 +106,11 @@ def main():
         sys.exit("No suitable moneyline (long bid 50-65c, not one of your games). Try later.")
     sport, ev, mk, bb, q = pick
     cost = round(1 - bb, 4)
-    exp_fee = 0.0695 * cost * (1 - cost)
+    exp_fee = 0.06 * cost * (1 - cost)          # Nov 6: corrected, published schedule
     long_side = next((s.get("description") for s in mk.get("marketSides") or [] if s.get("long", True)), "long side")
     short_side = next((s.get("description") for s in mk.get("marketSides") or [] if s.get("long") is False), "short side")
     print(f"2) {sport}: {ev.get('title')} | market {mk['slug']} | BUY SHORT = backing '{short_side}' (against '{long_side}')")
-    print(f"   best long bid {bb:.3f} ({q:g}) -> quoted short cost {cost:.3f}; expected fee 0.0695*P*(1-P) = {exp_fee:.4f}")
+    print(f"   best long bid {bb:.3f} ({q:g}) -> quoted short cost {cost:.3f}; expected fee 0.06*P*(1-P) = {exp_fee:.4f}")
     order = {"marketSlug": mk["slug"], "intent": "ORDER_INTENT_BUY_SHORT", "type": "ORDER_TYPE_LIMIT",
              "price": {"value": f"{bb:.3f}", "currency": "USD"}, "quantity": 1,
              "tif": "TIME_IN_FORCE_FILL_OR_KILL", "manualOrderIndicator": "MANUAL_ORDER_INDICATOR_AUTOMATIC",

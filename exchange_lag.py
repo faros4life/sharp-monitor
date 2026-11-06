@@ -12,7 +12,7 @@ confirmation read at +5 min), with the exchange in Hard Rock's place:
            2c of its pre-move price.
 Grade: CLV vs Pinnacle's no-vig close at that line. Shown raw (cents of probability, as SLOW-HR) and AFTER FEES
 (close chance x after-fee decimal - 1, in %). Fees (Muse registration 12:50): ProphetX 2% of winnings; Kalshi
-0.07 x P x (1 - P) per contract; Polymarket US = the executor's taker model 0.0695 x P x (1 - P) per contract (today's
+0.07 x P x (1 - P) per contract; Polymarket US = the executor's taker model 0.06 x P x (1 - P) per contract (today's
 Pistons fill: screen -117, after-fee -126); Novig none. DEPTH IS NOT CHECKED: a stale quote may have had no size behind it, so any
 pass needs the gettable-price audit before bot use.
 Split: FIT = first half of the window by date, CHECK = second half. Bar shown (proposed, pending Muse): >= 100
@@ -285,7 +285,7 @@ def report(st, now, read, waiting, new):
     L = [f"EXCHANGE-LAG STUDY (paper; OddsPapi history; Pinnacle vs Novig / ProphetX / Kalshi / Polymarket US; "
          f"NBA/NFL/NCAAF/NHL from {WINDOW_FROM.date()})",
          "Test = SLOW-HR registered L/P (persist 3 min + confirm at +5) with the exchange in Hard Rock's place.",
-         "CLV vs Pinnacle no-vig close at that line; after fees: ProphetX 2% of winnings, Kalshi 0.07xPx(1-P), Polymarket US 0.0695xPx(1-P), Novig 0.",
+         "CLV vs Pinnacle no-vig close at that line; after fees: ProphetX 2% of winnings, Kalshi 0.07xPx(1-P), Polymarket US 0.06xPx(1-P), Novig 0.",
          "DEPTH NOT CHECKED: a stale quote may have had no size. Any pass needs the gettable-price audit before bot use.",
          f"FIT = sightings on game days <= {mid}; CHECK = after. Bar (proposed): >= 100, after-fee CLV > 0, beat close >= 53%, both halves.",
          "Suspect quotes dropped (> +15% vs the close): " + ", ".join(f"{NAME[k]} {v}" for k, v in dropped.items()),

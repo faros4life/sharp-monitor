@@ -286,7 +286,11 @@ def edge_price(fair):
 WIN_FEE = {"prophetx": float(os.environ.get("PX_FEE", "") or "0.02")}
 # Taker fees charged on the buy, per $1 contract = coef x P x (1 - P) (Oct 25: Kalshi + Polymarket US added)
 TAKER_FEE = {"kalshi": float(os.environ.get("KALSHI_FEE", "") or "0.07"),
-             "polymarket_us": float(os.environ.get("PMUS_FEE", "") or "0.0695")}
+             # Nov 6: PM US taker corrected to Polymarket's own published schedule.
+             # exchange_lag.TAKER is
+             # the source of truth; this stays a literal rather than an import because this script
+             # runs live every 5 minutes and a new import is a new way for it to fail.
+             "polymarket_us": float(os.environ.get("PMUS_FEE", "") or "0.06")}
 
 
 def _p2am(p):

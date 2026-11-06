@@ -19,7 +19,7 @@ MODELS (current-season scores only, from ESPN; ratings use only games on EARLIER
 SIGHTING: model chance for a side minus Pinnacle's no-vig chance at the OPEN (first tick + 1 min, main line = largest
   limit) >= EDGE (4 pts registered here; 2 and 6 shown). Markets: total, spread (football; NBA), moneyline (NHL).
 GRADE: CLV % = Pinnacle no-vig close at that line x decimal - 1, at (a) Pinnacle's own open price and (b) the best
-  after-fee exchange price at the open (Novig 0, ProphetX 2% of winnings, Kalshi 0.07, PM US 0.0695 x P x (1-P)).
+  after-fee exchange price at the open (Novig 0, ProphetX 2% of winnings, Kalshi 0.07, PM US 0.06 x P x (1-P)).
   FIT = first half of game dates, CHECK = second half. Bar (house): >= 100, CLV > 0 and beat-close >= 53% in BOTH.
 Private email; the log prints counts only.
 """

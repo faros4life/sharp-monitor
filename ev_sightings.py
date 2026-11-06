@@ -81,7 +81,8 @@ A_MIN, A_QUAL, A_DEPTH = 0.02, 0.03, 250.0
 B_MIN_EV, B_DEPTH = 0.03, 250.0
 BOOKS = ("prophetx", "novig", "kalshi", "polymarket_us")
 READ_BOOKS = [b.strip() for b in (os.environ.get("EV_BOOKS", "") or ",".join(BOOKS)).split(",") if b.strip()]   # off switch per book
-TAKER = {"kalshi": 0.07, "polymarket_us": 0.0695}   # per $1 contract = coef x P x (1-P), as sharp_monitor / executor
+TAKER = {"kalshi": 0.07, "polymarket_us": 0.06}     # per $1 contract = coef x P x (1-P).
+                                                    # Nov 6: PM US 0.06 -> 0.06, published schedule.
 PX_FEE = 0.02                                       # ProphetX: 2% of winnings
 PMUS = "https://gateway.polymarket.us"
 PMUS_SLUGS = {"NFL": ["nfl"], "NBA": ["nba"], "NCAAF": ["cfb", "ncaaf", "college-football"], "NHL": ["nhl"]}
@@ -1424,7 +1425,7 @@ NOTE = ("EV SIGHTINGS - PAPER STUDY, MEASUREMENT ONLY. Never bets, never pushed.
         "number when any book lists it). detection_lag_s = detection time - Pinnacle's market last_update. "
         "move_held_c = Pinnacle close fair at the old number - pre-move fair. One record per A/B trigger/game/market/line/side "
         "(first sighting; last_seen/scans_seen while it persists); one record per move. Costs are 0-1 per $1 payout "
-        "after fees (Kalshi 0.07 and Polymarket US 0.0695 x P x (1-P) taker; ProphetX 2% of winnings; Novig none). "
+        "after fees (Kalshi 0.07 and Polymarket US 0.06 x P x (1-P) taker; ProphetX 2% of winnings; Novig none). "
         "depth_usd = $ bettable at that book's best price. ref_age_s = exchange read time - Pinnacle market last_update. "
         "Close = last pregame read; close_consensus_fair = median of books' no-vig mids; pin_close_fair = "
         "sharp_monitor.close_prob at the sighting's number from the last pregame Pinnacle poll (pin_close_same_line false = "

@@ -200,7 +200,7 @@ def main():
         n, c, u = t
         return f"n {n:>3} after-fee CLV {c:+.2f}c {u:+.3f}u" if c is not None and u is not None else f"n {n:>3}"
     L += ["", "MULTIPLIER SWEEP (OJ scale; gates kept). '>=' = ratio at or above; '<' = below (low money vs limit).",
-          "CLV here is AFTER FEES at the row's own book and price (Muse 13:54): ProphetX 2% of winnings, Kalshi 0.07xPx(1-P), PM US 0.0695xPx(1-P).",
+          "CLV here is AFTER FEES at the row's own book and price (Muse 13:54): ProphetX 2% of winnings, Kalshi 0.07xPx(1-P), PM US 0.06xPx(1-P).",
           "Cutoff picked on FIT ONLY (best FIT CLV, >= 30 rows); CHECK = out-of-sample answer. HOLDS = >= 30 rows, CLV > 0 both halves.",
           "CAUTION: about 30 cutoffs x 20 sport/market cells are tested; some HOLDS lines will be luck. Trust only the FIT-chosen list."]
     picks = []

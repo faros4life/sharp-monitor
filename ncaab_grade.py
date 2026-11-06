@@ -51,7 +51,8 @@ def eff(book, dec):
         return 1 + (dec - 1) * 0.98
     if book in ("kalshi", "polymarket.us"):
         p = 1 / dec
-        fee = 0.07 if book == "kalshi" else float(os.environ.get("PMUS_FEE", "") or "0.0695")
+        # Nov 6: PM US taker default corrected per the venue's published schedule
+        fee = 0.07 if book == "kalshi" else float(os.environ.get("PMUS_FEE", "") or "0.06")
         return 1 / (p * (1 + fee * (1 - p)))
     return dec
 
