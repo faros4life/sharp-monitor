@@ -347,14 +347,18 @@ def main():
         # the figure before it, the difference is the taker fee we would not have paid.
         ck = [x["clv_k"] for x in g if x.get("clv_k") is not None]
         uk = [x["u_k"] for x in g if x.get("u_k") is not None]
-        xtra = ""
-        if ck:
-            xtra = (f" || EXECUTABLE (causal best, no fee paid): CLV {stt.mean(ck):+.2f}% "
-                    f"beat {100 * sum(v > 0 for v in ck) / len(ck):.0f}%"
-                    + (f" {sum(uk):+.2f}u {sum(uk) / len(uk):+.3f}/play (n {len(uk)})" if uk else ""))
-        return (f"n {len(xs)} | gettable {len(g)} | {w}-{l_} {u:+.2f}u {u / len(g):+.3f}/play | Pinnacle CLV "
-                f"{stt.mean(cv):+.2f}% beat {100 * sum(v > 0 for v in cv) / len(cv):.0f}% | H1 {pp(h1)} H2 {pp(h2)}"
-                + xtra)
+        # Nov 6 (Peter): CLV is posted NET OF FEES - one basis, every venue apples-to-apples. The fee
+        # is not folded into the number; it is expressed as a per-venue price REQUIREMENT via
+        # exchange_lag.raw_for(), which is what the order layer needs. The as-triggered figure stays
+        # behind it, labelled, because Peter's Nov 5 rule is that published figures are never
+        # overwritten retroactively.
+        head = (f"NET CLV {stt.mean(ck):+.2f}% beat {100 * sum(v > 0 for v in ck) / len(ck):.0f}%"
+                if ck else "NET CLV n/a")
+        return (f"n {len(xs)} | gettable {len(g)} | {head}"
+                + (f" | {sum(uk):+.2f}u {sum(uk) / len(uk):+.3f}/play" if uk else "")
+                + f" | H1 {pp(h1)} H2 {pp(h2)}"
+                + f" || as-triggered (paid the taker fee): {w}-{l_} {u:+.2f}u "
+                  f"CLV {stt.mean(cv):+.2f}% beat {100 * sum(v > 0 for v in cv) / len(cv):.0f}%")
 
     rule = [r for r in R if r["lg"] == "NBA" and r["mk"] == "total" and r["lead"] is not None and r["lead"] >= 4]
     L = [f"LIQUIDITY ALERTS vs DOWNLOADED HISTORY - PAPER ONLY | {now.astimezone(ET):%Y-%m-%d %H:%M} ET",

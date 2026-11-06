@@ -52,6 +52,35 @@ def eff(book, dec):
     return dec
 
 
+def raw_for(book, net_dec, lo=1.0001, hi=200.0):
+    """The RAW price this venue must SHOW so that, after its fee, we net net_dec.
+
+    Peter, Nov 6: "post clv net fees and add to the price for those exchanges". One CLV basis - net
+    of fees, so every venue is apples-to-apples - and the fee expressed as a price REQUIREMENT per
+    venue, which is actionable at the order level instead of being a footnote on the number.
+
+    The add is NOT a constant and must never be hard-coded: Kalshi and Polymarket are p x (1-p)
+    shaped (1.7% of the decimal at -300, 3.4% at even money, 5.2% at +300) while ProphetX is a flat
+    2% of winnings and so moves the OTHER way, growing as the price shortens. This inverts eff()
+    numerically, so it stays correct for whatever eff() says and needs no separate fee table.
+
+    Worked, at -110 net: ProphetX -108, Kalshi -103, Polymarket -103. At -104 net, Kalshi needs
+    +103 - near even money the 7% is large enough that Kalshi and Polymarket fall out of contention
+    on arithmetic alone, with no rule needed to exclude them.
+    """
+    if net_dec is None or net_dec <= 1:
+        return None
+    if eff(book, net_dec) >= net_dec - 1e-12:      # no fee at this venue: the raw price IS the net
+        return net_dec
+    for _ in range(200):                           # eff() is monotonic in dec, so bisection is exact enough
+        mid = (lo + hi) / 2
+        if eff(book, mid) < net_dec:
+            lo = mid
+        else:
+            hi = mid
+    return (lo + hi) / 2
+
+
 def size_at(xm, mkmap, lg, x, when):
     """Nov 3 (Peter yes: size check): OddsPapi's 'limit' on the exchange tick for this side at that time, or None."""
     sid = cl.SPORT.get(lg)
