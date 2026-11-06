@@ -1,6 +1,187 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-06T20:20:19Z",
+   "base_depth": 13725,
+   "best_price": 0.68,
+   "best_price_american": -213,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.68,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-06",
+   "depth_by_book": {
+    "novig": {
+     "new_other_side": 6347,
+     "new_this_side": 27838,
+     "other_side": 17577,
+     "other_side_all_levels": 17892,
+     "ratio": 1.7,
+     "this_side": 29492,
+     "this_side_all_levels": 35914
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Boston College",
+     "price": 0.6774,
+     "this_side": 2943
+    }
+   },
+   "ex_stats_alert": {
+    "openInterest": 2619369.0,
+    "volume": 3600000.0
+   },
+   "ex_stats_change": {
+    "openInterest": 34444.0,
+    "volume": 34444.0
+   },
+   "ex_stats_first": {
+    "openInterest": 2584925.0,
+    "volume": 3565556.0
+   },
+   "fade_price": 0.325,
+   "first_seen_utc": "2026-11-06T20:10:17Z",
+   "game": "Massachusetts @ Boston College",
+   "game_surge_books": [
+    "novig"
+   ],
+   "game_x": 3.32,
+   "key": "novig|{\"market_id\": \"01a1ad0f-9d4c-7550-92a6-0d87c2f013da\", \"outcome_id\": \"01a1ad0f-9d4c-7550-92a6-0d9802c2c64d\"}",
+   "lead_min": 40,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 27838,
+   "new_x": 11.97,
+   "norm_by_book": {
+    "novig": {
+     "ex_stats": {
+      "openInterest": 2619369.0,
+      "volume": 3600000.0
+     },
+     "game_normal": 10823,
+     "game_x": 3.32,
+     "normal": 2326,
+     "now": 35914,
+     "type": "ML",
+     "x": 15.44
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 2414,
+     "game_x": 1.26,
+     "normal": 619,
+     "now": 3043,
+     "type": "ML",
+     "x": 4.91
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.68,
+   "price_american": -213,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.68,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -235
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -215
+    },
+    "betopenly": {
+     "point": null,
+     "price": -199
+    },
+    "betrivers": {
+     "point": null,
+     "price": -235
+    },
+    "betus": {
+     "point": null,
+     "price": -215
+    },
+    "bovada": {
+     "point": null,
+     "price": -240
+    },
+    "draftkings": {
+     "point": null,
+     "price": -238
+    },
+    "fanatics": {
+     "point": null,
+     "price": -245
+    },
+    "fanduel": {
+     "point": null,
+     "price": -235
+    },
+    "kalshi": {
+     "point": null,
+     "price": -213
+    },
+    "lowvig": {
+     "point": null,
+     "price": -215
+    },
+    "novig": {
+     "point": null,
+     "price": -212
+    },
+    "polymarket": {
+     "point": null,
+     "price": -223
+    },
+    "prophetx": {
+     "point": null,
+     "price": -210
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -235
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a1ad0f-9d4c-7550-92a6-0d87c2f013da",
+    "outcome_id": "01a1ad0f-9d4c-7550-92a6-0d9802c2c64d"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Boston College",
+   "side_label": "BC (0)",
+   "size_x": 15.44,
+   "start_source": "odds",
+   "start_utc": "2026-11-06T21:00:00Z",
+   "surge_books": [
+    "novig",
+    "prophetx"
+   ],
+   "teams": [
+    "Massachusetts",
+    "Boston College"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-06T06:20:17Z",
    "base_depth": 3634,
    "best_price": 0.7244,
@@ -42,7 +223,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 576.12,
-    "volume_24h_fp": 562.13,
+    "volume_24h_fp": 576.12,
     "volume_fp": 576.12
    },
    "ex_stats_first": {
@@ -148,8 +329,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": -15.0,
+   "close_price": 0.54,
+   "clv_cents": -14.0,
    "confirmed_after_min": 10,
    "date": "2026-11-06",
    "depth_by_book": {
@@ -174,9 +355,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 51078.54,
-    "volume_24h_fp": 51162.32,
-    "volume_fp": 51477.18
+    "open_interest_fp": 51330.99,
+    "volume_24h_fp": 51536.72,
+    "volume_fp": 52093.63
    },
    "ex_stats_first": {
     "open_interest_fp": 449.98,
@@ -319,9 +500,9 @@
     "volume_fp": 1.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 4717.07,
+    "open_interest_fp": 4718.32,
     "volume_24h_fp": 4410.25,
-    "volume_fp": 4752.63
+    "volume_fp": 4753.88
    },
    "ex_stats_first": {
     "open_interest_fp": 369.85,
@@ -679,9 +860,9 @@
     "volume_fp": 348.39
    },
    "ex_stats_close": {
-    "open_interest_fp": 96912.92000000001,
-    "volume_24h_fp": 99439.82,
-    "volume_fp": 104051.54999999999
+    "open_interest_fp": 106705.97,
+    "volume_24h_fp": 105785.83,
+    "volume_fp": 113855.45
    },
    "ex_stats_first": {
     "open_interest_fp": 2376.19,
@@ -1073,9 +1254,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 3179.06,
+    "open_interest_fp": 3203.42,
     "volume_24h_fp": 6373.22,
-    "volume_fp": 7129.96
+    "volume_fp": 7178.51
    },
    "ex_stats_first": {
     "open_interest_fp": 1200.74,
@@ -3160,9 +3341,9 @@
     "volume_fp": 2909.33
    },
    "ex_stats_close": {
-    "open_interest_fp": 50904.25,
-    "volume_24h_fp": 45848.11,
-    "volume_fp": 52193.91
+    "open_interest_fp": 51258.99,
+    "volume_24h_fp": 46232.770000000004,
+    "volume_fp": 52548.649999999994
    },
    "ex_stats_first": {
     "open_interest_fp": 2043.04,

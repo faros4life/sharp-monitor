@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 6, 3:10 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 13.
+Updated Fri Nov 6, 3:20 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 14.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,8 +10,9 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 6 3:20PM | NCAAB | Massachusetts @ Boston College | moneyline: BC (0) | novig | $28k | -213 |  |  | +0.0c |  | pending |
 | Nov 6 1:20AM | NCAAB | Loyola Maryland vs Mount St. Mary's | moneyline: Mount St. Mary's | kalshi | $28k | -245 |  |  | -1.0c |  | pending |
-| Nov 6 1:20AM | NCAAB | Boston University vs Brown | moneyline: Brown | kalshi | $31k | -213 |  |  | -15.0c |  | pending |
+| Nov 6 1:20AM | NCAAB | Boston University vs Brown | moneyline: Brown | kalshi | $31k | -213 |  |  | -14.0c |  | pending |
 | Nov 6 1:00AM | NCAAB | UNC Greensboro vs Elon | moneyline: Elon | kalshi | $33k | -335 |  |  | +1.0c |  | pending |
 | Nov 6 1:00AM | NCAAB | Austin Peay vs Kennesaw St. | moneyline: Kennesaw St. | kalshi | $28k | -233 |  |  | +0.0c |  | pending |
 | Nov 6 1:00AM | NCAAB | UMass vs Boston College | moneyline: Boston College | kalshi | $45k | -223 |  |  | -1.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 25 10:30AM | TENNIS | Mannarino vs Molcan | moneyline: Molcan | kalshi | $26k | -400 |  |  | -77.0c | yes | L |
 | Oct 25 10:10AM | TENNIS | Struff vs Griekspoor | moneyline: Griekspoor | kalshi | $66k | -122 |  |  | +0.0c |  | W |
 | Oct 25 10:10AM | TENNIS | Musetti vs Fritz | moneyline: Musetti | kalshi | $115k | -178 |  |  | +33.0c |  | W |
-| Oct 25 7:10AM | TENNIS | Khachanov vs Alcaraz | moneyline: Alcaraz | kalshi | $25k | -488 |  |  | -1.0c |  | W |
