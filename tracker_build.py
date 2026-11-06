@@ -655,7 +655,7 @@ def read_manual_and_bot():
                 if not stake and pr:   # Peter's sizing (Oct 20): minus price risks to win $200, plus price risks $200
                     stake, est = (round(200 * abs(pr) / 100, 2) if pr < 0 else 200.0), True
                 win = (stake * 100 / abs(pr) if pr and pr < 0 else stake * pr / 100 if pr else None) if stake else None
-                man.append({"id": "mn|" + hashlib.sha1(line.strip().encode()).hexdigest()[:12], "book": d.get("book") or "manual",
+                man.append({"id": man_id(d.get("book"), d.get("game"), d.get("bet")), "book": d.get("book") or "manual",
                             "game": d.get("game") or "", "bet": d.get("bet") or "", "league": (d.get("sport") or "").upper() or None,
                             "price": pr, "stake": stake, "to_pay": round(stake + win, 2) if win else None, "placed": sent,
                             "source": "Peter (Hard Rock note" + (", est. stake)" if est else ")")})
@@ -671,6 +671,59 @@ def read_manual_and_bot():
 RECLASS = [("2026-10-25", {"bengals", "cincinnati"}), ("2026-10-23", {"mavericks", "pacers", "mavs"}),
            ("2026-10-23", {"clippers"}, "Hard Rock"), ("2026-10-24", {"heat"}), ("2026-10-28", {"rays", "tb"}),
            ("2026-10-28", {"magic", "orlando"}, "Hard Rock")]   # the Clippers and Magic items are Hard Rock add-ons only
+
+
+def man_id(book, game, bet):
+    """Nov 5 (Peter: "says lost 200 was 10", "only 1play"). The manual row id used to be
+    sha1 of the WHOLE "MANUAL: {...}" line, so re-sending a note with the stake added hashed
+    to a NEW id and created a SECOND row instead of correcting the first - which is precisely
+    what the "stake added later" branch in the merge loop was written to do. It could never
+    fire, because it needs the ids to match. Keying on book+game+bet makes a re-send the same
+    row, so that branch works and no duplicate appears.
+    Measured: 5 rows carried an invented stake ("est. stake"), and his real stakes for the two
+    NCAAB notes were $10.50 and $10.00 against the $210 / $200 the sizing rule had guessed."""
+    def n(s):
+        return " ".join((s or "").strip().lower().split())
+    return "mn|" + hashlib.sha1("\x1f".join([n(book) or "manual", n(game), n(bet)]).encode()).hexdigest()[:12]
+
+
+def man_collapse(man):
+    """Collapse re-sends of the same note within one run. A real stake always beats an invented
+    one, and between two real notes the newer wins - so a correction can never be overwritten by
+    the older guess, whatever order IMAP hands them to us in."""
+    best = {}
+    for b in man:
+        rank = (0 if ", est. stake)" in (b.get("source") or "") else 1, b.get("placed") or "")
+        if best.get(b["id"], ((-1, ""),))[0] < rank:
+            best[b["id"]] = (rank, b)
+    return [v[1] for v in best.values()]
+
+
+def man_migrate(bets, man):
+    """One-time move of rows written under the OLD line-hash id onto the new book+game+bet id,
+    carrying the grade so no settled history is lost and no duplicate survives. Matched on
+    content, not on the old hash, so it also rescues rows whose note has aged out of the IMAP
+    window. Returns the ids it retired, for the log."""
+    retired = []
+    for b in man:
+        nid = b["id"]
+        old = [k for k, v in bets.items()
+               if k.startswith("mn|") and k != nid
+               and man_id(v.get("book"), v.get("game"), v.get("bet")) == nid]
+        if not old:
+            continue
+        # keep the richest row: a graded one first, then the earliest seen
+        keep = max(old, key=lambda k: (bool(bets[k].get("result")), bets[k].get("first_seen") or ""))
+        if nid not in bets:
+            bets[nid] = bets.pop(keep)
+        else:
+            bets.pop(keep, None)
+        for k in old:
+            if k in bets:
+                bets.pop(k, None)
+                retired.append(k)
+        retired.append(keep)
+    return [k for k in dict.fromkeys(retired) if k not in bets]
 
 
 def reclass(b):
@@ -1003,6 +1056,12 @@ def main():
     games += espn_games([d + timedelta(days=k) for k in range(2, 7)], leagues=("NFL", "NCAAF"))
     T["espn"] = round(_t.time() - t0)
 
+    # Nov 5 (Peter: the tracker showed a $200 loss on a $10 bet, and two rows for one play).
+    # Collapse re-sent notes, then move any row still under the old line-hash id onto the stable
+    # one so the "stake added later" branch below can correct it instead of a duplicate appearing.
+    man = man_collapse(man)
+    _retired = man_migrate(bets, man)
+    LOG["man_rows"] = f"{len(man)} after collapse" + (f", retired {len(_retired)}" if _retired else "")
     open_ids = set()
     for b in opened + man:
         open_ids.add(b["id"])
