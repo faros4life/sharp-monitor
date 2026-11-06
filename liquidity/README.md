@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 6, 5:56 AM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 28.
+Updated Fri Nov 6, 6:00 AM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 28.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,7 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 6 5:56AM | NHL | Anaheim vs Calgary: Spread | spread: NOT Calgary wins by over 1.5 goals | kalshi | $28k | -203 |  |  | +0.0c |  | pending |
+| Nov 6 6:00AM | NHL | Anaheim vs Calgary: Spread | spread: NOT Calgary wins by over 1.5 goals | kalshi | $28k | -203 |  |  | +0.0c |  | pending |
 | Nov 6 5:40AM | NCAAF | Nebraska vs Illinois: Total Points | total: NOT Over 50.5 points | kalshi | $26k | -100 |  |  | +0.0c |  | pending |
 | Nov 6 5:40AM | NCAAF | North Carolina Central vs Norfolk St. | moneyline: North Carolina Central | kalshi | $26k | -170 |  |  | +0.0c |  | pending |
 | Nov 6 2:20AM | NBA | Thunder vs. Grizzlies | moneyline: Grizzlies | polymarket | $26k | +144 |  | ✅ | +0.0c |  | pending |
