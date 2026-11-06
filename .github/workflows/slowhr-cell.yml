@@ -1,0 +1,35 @@
+name: slowhr-cell
+
+# On demand: SLOW-HR DECISIVE CELL (HYPOTHESIS ONLY) - Type P x ML dog x EV>=2%, registered population Oct 12-Nov 2. Nov 6.
+# Reads the shared history cache. Private email; the log prints counts only.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Restore shared OddsPapi history cache (private Actions cache, never committed)
+        uses: actions/cache/restore@v4   # Nov 3: restore-only (a saved 6 GB copy per run filled the 10 GB limit)
+        with:
+          path: hcache
+          key: hcache-${{ github.run_id }}
+          restore-keys: hcache-
+      - name: SLOW-HR decisive cell (private email)
+        env:
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
+          ODDSPAPI_FREE_KEY: ${{ secrets.ODDSPAPI_FREE_KEY }}   # Nov 3: history goes through the free key (paid key: 403 on pinnacle)
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}   # Nov 3: read other jobs' fixture lists when OddsPapi /fixtures is rate-limited
+        run: python -u slowhr_cell.py
