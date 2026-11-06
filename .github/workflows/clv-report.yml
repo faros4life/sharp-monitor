@@ -1,0 +1,59 @@
+name: clv-report
+
+# The one CLV reporter for the VALUE LAB Final CLV Calculation Standard (Peter, Nov 6).
+# One formula, net of fees, against Pinnacle's verified same-line no-vig close. AUTO, MANUAL,
+# Executed and paper-fill-supported are computed and printed apart and are never pooled.
+#
+# SCOPE: liquidity alerts only, labelled as such in the report's own header. Not system-wide.
+#
+# READ-ONLY and CACHE-ONLY. It buys no OddsPapi fixtures: a fixture that is not cached is excluded
+# with a reason. TRACKER_PASSPHRASE is required to read the encrypted fixture cache, and without it
+# the run STOPS rather than falling through to a paid fetch - that silent fall-through is how
+# plimit-level spent 5 unapproved credits on Nov 6, so the secret and the guard ship together.
+#
+# contents: read, dispatch only, no cron, no commit step. The repo is public, so the log carries
+# counts, percentages and field names only; per-bet detail goes to the private address.
+on:
+  workflow_dispatch:
+    inputs:
+      from:
+        description: "window start, ISO UTC"
+        required: false
+        type: string
+        default: "2026-10-12T00:00:00Z"
+      quote_max_age_s:
+        description: "a quote must be this fresh to count as contemporaneous"
+        required: false
+        type: string
+        default: "900"
+      quote_min_size:
+        description: "minimum displayed size; 0 counts unsized quotes but reports how many"
+        required: false
+        type: string
+        default: "0"
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: CLV report (cache only, zero credits)
+        env:
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          # required: without it the fixture cache cannot be decrypted and the run stops
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+          ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
+          CLV_FROM: ${{ inputs.from }}
+          CLV_QUOTE_MAX_AGE_S: ${{ inputs.quote_max_age_s }}
+          CLV_QUOTE_MIN_SIZE: ${{ inputs.quote_min_size }}
+        run: python -u clv_report.py
