@@ -32,6 +32,28 @@ JOBS = {   # workflow file: minimum minutes between runs (matches each workflow'
     # cadence restores the alert rule as written; the rule itself is untouched.
     # deadman.py returns before 8 AM ET, so overnight dispatches cost one no-op run each.
     "deadman.yml": 15,
+    # Nov 6 (Peter "fix everything that needs fixing"): the rest of the dispatcher-less set from the
+    # same firing inventory. Each ran only on GitHub's cron, which this file already records as barely
+    # firing, so each was delivering a few runs a day against hundreds claimed. Cadence only - none of
+    # these changes what any script decides, and each matches that workflow's own cron.
+    "signal-alerts.yml": 10,     # 12 of 431 (2.8%). Pushes the phone on two-signal confluence,
+                                 # PREGAME: confirmed >=$100k new money on a side a sharp alert also
+                                 # took. At ~4 runs a day a confluence is found hours late, past the
+                                 # price and sometimes past tip - the one push path that is meant to
+                                 # be actionable under Peter's "no alerts unless bot or actionable".
+    "ev-sightings.yml": 10,      # 12 of 431 (2.8%). Paper study, never notifies; exposure is sample
+                                 # accrual only. NOTE: a second file carries the same workflow NAME
+                                 # (ev-sightings_2.yml, hourly) and runs 436 times - tick keys on the
+                                 # FILE, so this entry is unambiguous, but the duplicate name still
+                                 # makes run attribution between them unreadable in logs.
+    "balances-email.yml": 60,    # 11 of 72 (15.3%). Hourly by design; staleness of the balance and
+                                 # open-exposure picture Muse reads. Reporting lag, not correctness.
+    "ncaab-openers.yml": 30,     # 9 of 114 (10.5%). The freeze-lead measurement traced straight to
+                                 # this: a game entering the window is only frozen at the next run, so
+                                 # at ~4 runs a day the freeze lands hours late and 10 of 13
+                                 # band-clearing disagreements were discarded as frozen-after-the-open.
+                                 # AHEAD_DAYS=3 bought margin for exactly this; the cadence is the
+                                 # other half of that fix.
 }
 BUSY = {"queued", "in_progress", "waiting", "pending", "requested"}
 

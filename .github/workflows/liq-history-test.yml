@@ -38,6 +38,10 @@ jobs:
           EMAIL_TO: ${{ secrets.EMAIL_TO }}
           ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
           ODDSPAPI_FREE_KEY: ${{ secrets.ODDSPAPI_FREE_KEY }}
+          # Nov 6 (Peter): lets the run READ clv/state.enc's fixture cache instead of re-buying
+          # /fixtures every run. This job is contents: read and never commits, and the script never
+          # saves that state, so the ledger cannot be modified from here.
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
           LIQH_CACHE_ONLY: ${{ inputs.cache_only }}
           LIQH_GET_SEC: ${{ inputs.get_sec }}
         run: |

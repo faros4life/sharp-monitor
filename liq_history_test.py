@@ -141,6 +141,24 @@ def main():
         A = [a for a in A if f"{a.get('key') or ''}|{a.get('alerted_utc') or ''}" in FZ]
         print(f"liq history test: frozen-PLAY filter -> {len(A)} of {len(FZ)} frozen calls carry a graded alert")
     st = {"billable": {}}
+    # Nov 6 (Peter): reuse the fixtures the CLV ledger has ALREADY paid for. This used to start from a
+    # bare dict every run, so it re-bought /fixtures on every single run - a re-run of this report cost
+    # a credit for data already on disk. Read-only: this script never saves st (checked), so the
+    # ledger's own state cannot be touched from here. Carrying fx_last too means a re-run inside the
+    # ledger's 6 h window spends NOTHING; outside it, one top-up call as before. The run still prints
+    # its own call count, so the spend is always visible. A fixture the cache lacks still shows up in
+    # the "no fixture" miss count rather than being silently dropped.
+    try:
+        _prev = cl.tb.dec(json.load(open(cl.STATE)))
+        st["fixtures"] = dict(_prev.get("fixtures") or {})
+        st["fx_last"] = dict(_prev.get("fx_last") or {})
+        for _k in ("tid", "tname"):
+            if _prev.get(_k) is not None:
+                st[_k] = _prev[_k]
+        print(f"liq history test: reusing {len(st['fixtures'])} cached fixtures "
+              f"({len(st['fx_last'])} league refresh timestamps) - no re-purchase")
+    except Exception as _e:
+        print(f"liq history test: no cached fixtures ({type(_e).__name__}) - will fetch")
     mkmap = cl.load_markets(st, now)
     # Nov 6 (Peter, 1-credit budget): refresh fixtures only for the leagues actually IN the population.
     # Each refresh_fixtures is one billable /fixtures call, and this loop used to spend one per league in
