@@ -113,11 +113,18 @@ def main():
         say(f"population unreadable ({type(e).__name__}) - nothing to report")
         return 1
 
+    # The already-established invalid-observation flags, the same two liq_history_test uses.
+    # artifact='no_pregame_close' = the play never got a real pregame close read; close_suspect =
+    # the close was flagged bad by the monitor's own forensics. Nothing new is invented here.
     A = [a for a in pop
          if a.get("result") in ("W", "L", "P")
          and not a.get("artifact")
+         and not a.get("close_suspect")
          and cl.tp(a.get("alerted_utc"))
          and cl.tp(a["alerted_utc"]) >= FROM]
+    n_artifact = sum(1 for a in pop if a.get("artifact"))
+    n_suspect = sum(1 for a in pop if a.get("close_suspect") and not a.get("artifact"))
+    say(f"invalid observations excluded up front: artifact {n_artifact}, close_suspect {n_suspect}")
     say(f"\npopulation: {len(pop)} rows -> {len(A)} graded, close-clean, in window")
 
     now = datetime.now(timezone.utc)
@@ -134,6 +141,7 @@ def main():
     mkmap = cl.load_markets(st, now)
 
     head, excl, selfmove = [], {}, []
+    cover, missing_book, n_inplay = {}, {}, 0
 
     def drop(why):
         excl[why] = excl.get(why, 0) + 1
@@ -157,10 +165,22 @@ def main():
             continue
         f = st["fixtures"][fid]
         start = cl.tp(f.get("start")) or cl.tp(a.get("start_utc"))
-        if not all(os.path.exists(hc._path(fid, x)) for x in ("pinnacle",) + EXCH):
-            drop("fixture not in the history cache")
+        # Peter, Nov 6: do not discard an opportunity because ONE exchange's history is missing.
+        # Pinnacle is required - it is the benchmark - but the opportunity set is whatever eligible
+        # exchanges we actually hold, with the shortfall recorded. This is also the credit guard:
+        # hist_cache fetches any book it is ASKED for and cannot find, so asking only for cached
+        # books is what keeps this run at zero OddsPapi spend.
+        if not os.path.exists(hc._path(fid, "pinnacle")):
+            drop("no Pinnacle history in the cache")
             continue
-        h = hc.get_hist(fid, ["pinnacle"] + list(EXCH), start)
+        have = [x for x in EXCH if os.path.exists(hc._path(fid, x))]
+        if not have:
+            drop("no exchange history in the cache for any eligible venue")
+            continue
+        cover[len(have)] = cover.get(len(have), 0) + 1
+        for miss in (set(EXCH) - set(have)):
+            missing_book[miss] = missing_book.get(miss, 0) + 1
+        h = hc.get_hist(fid, ["pinnacle"] + have, start)
         if isinstance(h, dict) and h.get("_error"):
             drop("history read error")
             continue
@@ -184,7 +204,7 @@ def main():
         # never a licence to look forward.
         when = t0
         quotes, ages, sizes, unqualified = {}, {}, {}, 0
-        for slug in EXCH:
+        for slug in have:
             bk = cl.book_markets(h, slug)
             x = cl.novig_at(b, f, bk, mkmap, when, lg) if bk else None
             if not x:
@@ -206,10 +226,15 @@ def main():
             drop("quote-only: no contemporaneous, sufficiently sized quote at the alert")
             continue
 
-        # league drives ProphetX's NHL schedule; live=False because this population is pre-game
-        # alerts by construction (close_price is the last PREGAME price), never in-game Novig.
-        av, and_, asrc = cs.best_net(quotes, "auto", league=lg, live=False)
-        mv, mnd, msrc = cs.best_net(quotes, "manual", league=lg, live=False)
+        # Peter, Nov 6: CONFIRM pregame rather than assume it, because the fee schedule turns on
+        # it - a Novig take is free pre-game and 0.06 in-game. The population is meant to be
+        # pregame (close_price is the last PREGAME price), but an alert that fired at or after the
+        # posted start is in-play and must be priced that way.
+        in_play = bool(start) and t0 >= start
+        if in_play:
+            n_inplay += 1
+        av, and_, asrc = cs.best_net(quotes, "auto", league=lg, live=in_play)
+        mv, mnd, msrc = cs.best_net(quotes, "manual", league=lg, live=in_play)
         if and_ is None:
             drop("quote-only: no AUTO-eligible quote cleared the safeguard")
             continue
@@ -227,6 +252,8 @@ def main():
             "pin_close_p": round(c["p"], 5), "close_how": c.get("how"),
             "close_age_min": c.get("age_min"), "close_same_line": 1,
             "quotes_unqualified": unqualified, "fee_model": cs.FEE_MODEL,
+            "in_play": 1 if in_play else 0, "books_held": len(have),
+            "books_missing": sorted(set(EXCH) - set(have)),
         })
 
     # ---------------------------------------------------------------- the nine required fields
@@ -262,6 +289,15 @@ def main():
             f"derived or converted reached this figure")
         say(f"     quote age: median {sorted(ages)[len(ages)//2] if ages else 'n/a'}s; "
             f"displayed size known on {pct(sized, n)} of rows")
+
+    if cover:
+        say(f"\nEXCHANGE COVERAGE - opportunities are priced on the venues actually held")
+        for k in sorted(cover, reverse=True):
+            say(f"  {cover[k]:5d} rows had {k} of {len(EXCH)} eligible exchanges cached")
+        for b, n in sorted(missing_book.items(), key=lambda x: -x[1]):
+            say(f"  missing on {n:5d} rows: {b}")
+    say(f"  pregame {n - n_inplay} of {n} headline rows; {n_inplay} fired at or after the posted "
+        f"start and were priced on the in-play schedule")
 
     say(f"\nEXCLUSIONS - every dropped row named ({sum(excl.values())} total)")
     for k, v in sorted(excl.items(), key=lambda x: -x[1]):

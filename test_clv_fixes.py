@@ -93,6 +93,39 @@ def main():
     check("FRESH_MIN is unchanged - the rule was not loosened to make this pass",
           cl.FRESH_MIN == 24 * 60, f"FRESH_MIN={cl.FRESH_MIN}")
 
+    # ---------------------------------------------------------------- 4. the final three
+    print("\n4. FINAL THREE - partial coverage, invalid-data exclusions, pregame verification")
+    rpt = open("clv_report.py").read()
+    check("Pinnacle alone is required; exchanges are whatever is held",
+          'os.path.exists(hc._path(fid, "pinnacle"))' in rpt
+          and "have = [x for x in EXCH if os.path.exists(hc._path(fid, x))]" in rpt
+          and 'for x in ("pinnacle",) + EXCH' not in rpt)
+    check("get_hist is asked ONLY for cached books - the zero-credit guard",
+          'hc.get_hist(fid, ["pinnacle"] + have, start)' in rpt
+          and 'hc.get_hist(fid, ["pinnacle"] + list(EXCH)' not in rpt)
+    check("the quote loop iterates the held books, not all of EXCH",
+          "for slug in have:" in rpt and "for slug in EXCH:" not in rpt)
+    check("missing coverage is recorded and reported",
+          "missing_book[" in rpt and "EXCHANGE COVERAGE" in rpt)
+    check("close_suspect is excluded, alongside the existing artifact flag",
+          'not a.get("close_suspect")' in rpt and 'not a.get("artifact")' in rpt)
+    # count flags inside the POPULATION comprehension only - a later counting line that mentions
+    # the same key is not a filter, which is what the first version of this check got wrong
+    comp = rpt[rpt.index("A = [a for a in pop"):rpt.index("n_artifact =")]
+    check("no NEW filter was invented - only the two established flags gate the population",
+          comp.count("and not a.get(") == 2
+          and 'not a.get("artifact")' in comp and 'not a.get("close_suspect")' in comp,
+          f"{comp.count('and not a.get(')} exclusion flags in the population filter")
+    check("pregame is VERIFIED, not assumed", "in_play = bool(start) and t0 >= start" in rpt)
+    check("the verified status drives the fee schedule", "live=in_play" in rpt
+          and "live=False)" not in rpt.split("in_play = ")[1][:600])
+    check("in-play rows are counted and reported", "n_inplay" in rpt and "in_play" in rpt)
+    # the pregame flag must actually change the price on a Novig take
+    check("in_play changes a Novig take's net price",
+          cs.net_dec("novig", 1.9091, live=True) < cs.net_dec("novig", 1.9091, live=False) - 1e-6,
+          f"pregame {cs.net_dec('novig', 1.9091, live=False):.4f} vs "
+          f"in-play {cs.net_dec('novig', 1.9091, live=True):.4f}")
+
     print(f"\n{len(OK)} passed, {len(BAD)} failed")
     if BAD:
         for b in BAD:
