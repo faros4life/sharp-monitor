@@ -205,6 +205,54 @@ def score(rows):
             r["tag"], r["why"] = "LEAN", f"v3: nightly cap 5 - this was play #{n} by alert time"
 
 
+CALLS_LOG = {}
+CALLS = "board/calls.json"   # Nov 5 (Peter): the call each row had WHEN IT POSTED, frozen - append-only
+
+
+def load_calls():
+    try:
+        with open(CALLS) as f:
+            return json.load(f).get("calls") or {}
+    except Exception:
+        return {}
+
+
+def freeze_calls(rows, now):
+    """Record every row's call the first time the board sees it, and never change it again; results are filled in later.
+    Nov 5 (Peter): a row's live call used to be recomputed every run, so money pulled AFTER a PLAY posted turned that
+    PLAY into a DEAD and the forward record lost it. The call is the board's claim at that moment - this is the record."""
+    C = load_calls()
+    for r in rows:
+        k = f"{(r['x'].get('key') or '')}|{r['x'].get('alerted_utc') or ''}"
+        if not k.strip("|"):
+            continue
+        e = C.get(k)
+        if e is None:
+            e = C[k] = {"call": r["tag"], "v2": r.get("v2"), "v1": r.get("v1"), "n": r.get("v3_n"),
+                        "at": r["x"].get("alerted_utc"), "day": r["at"].astimezone(ET).strftime("%Y-%m-%d"),
+                        "league": r["league"], "mk": r["mk"], "game": r["game"], "side": r["side"],
+                        "book": r["book"], "line": r["x"].get("line"), "price": r["x"].get("price_american"),
+                        "why": (r.get("why") or "")[:120], "frozen": now.strftime("%Y-%m-%dT%H:%M:%SZ")}
+        if r["result"] in ("W", "L", "P"):   # grades arrive after the call; only the result may change
+            e["result"], e["units"] = r["result"], r["units"]
+        r["frozen"] = e["call"]
+    try:
+        os.makedirs(os.path.dirname(CALLS), exist_ok=True)
+        with open(CALLS, "w") as f:
+            json.dump({"updated": now.strftime("%Y-%m-%dT%H:%M:%SZ"), "calls": C}, f, separators=(",", ":"))
+    except Exception:
+        pass
+    return C
+
+
+def rec_log(es):
+    g = [e for e in es if e.get("result") in ("W", "L")]
+    if not g:
+        return "none graded yet"
+    w = sum(e["result"] == "W" for e in g)
+    return f"{w}-{len(g) - w} ({sum(e.get('units') or 0 for e in g):+.2f}u)"
+
+
 def x2_limits():
     """Nov 2 (Peter + Muse): P limit at alert / now and the 2X tag per row, from x2_tag.py (OddsJam scale). {} if absent."""
     try:
@@ -240,6 +288,8 @@ def build(upcoming=False):
                      "result": x.get("result") or "", "units": x.get("units_flat") or 0,
                      "pl": X2.get(f"{x.get('key')}|{x.get('alerted_utc')}") or {}})
     score(rows)
+    CALLS_LOG.clear()
+    CALLS_LOG.update(freeze_calls(rows, now))
     # flips: $100k+ on one side, later $100k+ on the other (same game + bet type)
     groups = {}
     for r in rows:
@@ -313,6 +363,10 @@ def page(now, rows, flips):
         f'<td class="muted">{a["at"].astimezone(ET).strftime("%-I:%M %p")}</td><td>{e(b["side"])}</td><td class="r">{money(b["new"])}</td>'
         f'<td class="muted">{b["at"].astimezone(ET).strftime("%-I:%M %p")}</td><td>{fav}</td></tr>' for a, b, mk, fav in flips)
     plays = [r for r in rows if r["tag"] == "PLAY"]
+    # Nov 5: the graded record comes from the frozen call log, not from today's recomputed tags
+    today = now.astimezone(ET).strftime("%Y-%m-%d")
+    all_log = [e for e in CALLS_LOG.values() if e.get("call") == "PLAY"]
+    today_log = [e for e in all_log if e.get("day") == today]
     stamp = now.astimezone(ET).strftime("%-I:%M %p ET %a %b %-d")
     leagues = sorted({r["league"] for r in rows if r["league"]})
     btns = "".join(f'<button data-f="{e(l)}">{e(l)}</button>' for l in leagues)
@@ -345,12 +399,13 @@ td{{padding:5px 6px;border-bottom:1px solid var(--line);vertical-align:top}}.r{{
 </style></head><body><div class="wrap">
 <h1>Bets Board</h1><p class="sub"><b>Last updated {stamp}</b> <span id="ago" data-t="{now.isoformat()}"></span> · <span id="ld"></span>. Rebuilds itself after every liquidity run; this page reloads every 5 minutes.</p>
 <div class="tiles"><div class="tile"><div class="l">PLAY calls open now</div><div class="n">{sum(1 for r in plays if r["status"] == "still there")}</div></div>
-<div class="tile"><div class="l">Today's PLAY calls graded</div><div class="n">{rec(plays)}</div></div>
+<div class="tile"><div class="l">Today's PLAY calls graded</div><div class="n">{rec_log(today_log)}</div></div>
+<div class="tile"><div class="l">PLAY record since Oct 22 (frozen calls)</div><div class="n">{rec_log(all_log)}</div></div>
 <div class="tile"><div class="l">Today's LEAN calls graded</div><div class="n">{rec([r for r in rows if r["tag"] == "LEAN"])}</div></div>
 <div class="tile"><div class="l">v2 PLAY calls graded (old rule, still tracked)</div><div class="n">{rec([r for r in rows if r.get("v2") == "PLAY"])}</div></div>
 <div class="tile"><div class="l">Big-money moves today</div><div class="n">{len(rows)}</div></div></div>
 <div class="card"><h2>Big money today, by bet type</h2>
-<p class="note"><b>Call (v3, from Nov 4):</b> PLAY = an NBA total alerted 4 hours or more before tip, money still there, one play per game total (the first alert; first side stays), at most 5 a night (first 5 by alert time). Bet the alert line at the alert price or better. LEAN = anything else still there, including later alerts on a game already played and NBA totals inside 4 hours. DEAD = pulled, flipped, late money, or any spread. Started games keep their kickoff call and grade W/L when final. The v2 call (NBA total, money still there, price not moved) keeps grading in its own tile. Paper signal.</p>
+<p class="note"><b>Call (v3, from Nov 4):</b> PLAY = an NBA total alerted 4 hours or more before tip, money still there, one play per game total (the first alert; first side stays), at most 5 a night (first 5 by alert time). Bet the alert line at the alert price or better. LEAN = anything else still there, including later alerts on a game already played and NBA totals inside 4 hours. DEAD = pulled, flipped, late money, or any spread. Started games keep their kickoff call and grade W/L when final. The v2 call (NBA total, money still there, price not moved) keeps grading in its own tile. Paper signal. Every call is written down when it posts and never rewritten, so a PLAY whose money is pulled afterwards still grades as the PLAY it was.</p>
 <div class="legend"><span><i class="sw kalshi"></i>Kalshi</span><span><i class="sw novig"></i>Novig</span><span><i class="sw prophetx"></i>ProphetX</span><span><i class="sw polymarket"></i>Polymarket</span></div>
 <div class="filters"><button data-f="" class="on">All</button>{btns}<button data-f="live">PLAY + LEAN only</button></div>
 <h3>Moneylines</h3>{table("moneyline")}<h3>Spreads</h3>{table("spread")}<h3>Totals</h3>{table("total")}</div>
@@ -393,7 +448,8 @@ def main():
     os.makedirs(OUT, exist_ok=True)
     with open(os.path.join(OUT, "index.html"), "w") as f:
         f.write(page(now, rows, flips).replace("</div><script>", lanes_card() + "</div><script>", 1))
-    print(f"Bets board: {len(rows)} rows, {sum(r['tag'] == 'PLAY' for r in rows)} PLAY, {len(flips)} flips")   # counts only
+    print(f"Bets board: {len(rows)} rows, {sum(r['tag'] == 'PLAY' for r in rows)} PLAY, {len(flips)} flips; "
+          f"frozen calls {len(CALLS_LOG)}, frozen PLAY {sum(1 for e in CALLS_LOG.values() if e.get('call') == 'PLAY')}")   # counts only
 
 
 if __name__ == "__main__":

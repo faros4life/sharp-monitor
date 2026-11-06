@@ -87,6 +87,23 @@ jobs:
           fi
       - name: Build the board
         run: python -u board_build.py
+      - name: Commit the frozen call log (Nov 5; the call each row had when it posted)
+        run: |
+          # Only this workflow writes board/; save over upstream, never a merge.
+          if [ -n "$(git status --porcelain board)" ]; then
+            git config user.name "bets-board"
+            git config user.email "bets-board@users.noreply.github.com"
+            rm -rf "$RUNNER_TEMP/calls" && mkdir -p "$RUNNER_TEMP/calls" && cp -r board "$RUNNER_TEMP/calls/"
+            for i in 1 2 3 4 5; do
+              git fetch -q origin main && git reset -q --hard origin/main
+              rm -rf board && cp -r "$RUNNER_TEMP/calls/board" .
+              git add -A board
+              git diff --cached --quiet && break
+              git commit -q -m "Update frozen board call log"
+              git push -q origin HEAD:main && break
+              sleep 5
+            done
+          fi
       - name: Odds screen page (Nov 5; reads odds_screen.json from the repo)
         run: mkdir -p site/odds && cp odds/index.html site/odds/index.html
       - uses: actions/configure-pages@v5
