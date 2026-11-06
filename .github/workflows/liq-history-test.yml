@@ -46,6 +46,6 @@ jobs:
           LIQH_GET_SEC: ${{ inputs.get_sec }}
         run: |
           case "${{ inputs.script }}" in
-            liq_history_test.py|close_vs_close_test.py) python -u "${{ inputs.script }}" ;;
+            liq_history_test.py|close_vs_close_test.py|post_test.py) python -u "${{ inputs.script }}" ;;
             *) echo "unknown script"; exit 1 ;;
           esac
