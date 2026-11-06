@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 6, 9:41 AM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 42.
+Updated Fri Nov 6, 9:50 AM ET. This run: 2 new, 0 not confirmed, 0 pending. Open alerts: 44.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,14 +10,16 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 6 9:31AM | NBA | Celtics vs. Hornets | moneyline: Celtics | polymarket | $27k | -300 | ✅ kalshi,novig,prophetx |  | +0.0c |  | pending |
-| Nov 6 9:20AM | NBA | Trail Blazers vs. Lakers | total: Under (232.5) | polymarket | $29k | -104 | ✅ novig |  | +0.0c |  | pending |
+| Nov 6 9:50AM | NHL | San Jose vs Minnesota: Spread | spread: NOT Minnesota wins by over 1.5 goals | kalshi | $26k | -108 | ✅ polymarket |  | +0.0c |  | pending |
+| Nov 6 9:50AM | NHL | Columbus vs Buffalo: Spread | spread: NOT Buffalo wins by over 1.5 goals | kalshi | $43k | -170 | ✅ novig,polymarket |  | +0.0c |  | pending |
+| Nov 6 9:31AM | NBA | Celtics vs. Hornets | moneyline: Celtics | polymarket | $27k | -300 | ✅ kalshi,novig,prophetx |  | +0.0c | yes | pending |
+| Nov 6 9:20AM | NBA | Trail Blazers vs. Lakers | total: Under (232.5) | polymarket | $29k | -104 | ✅ novig |  | +3.0c |  | pending |
 | Nov 6 9:20AM | NBA | Trail Blazers vs. Lakers | moneyline: Lakers | polymarket | $28k | -138 | ✅ novig,prophetx | ✅ | +0.0c |  | pending |
 | Nov 6 9:20AM | NBA | Washington vs Atlanta: Total Points | total: Over 228.5 points | kalshi | $110k | -104 | ✅ polymarket |  | +0.0c |  | pending |
-| Nov 6 9:20AM | NBA | Portland vs Los Angeles L: Total Points | total: NOT Over 231.5 points | kalshi | $64k | +104 |  |  | +1.0c |  | pending |
+| Nov 6 9:20AM | NBA | Portland vs Los Angeles L: Total Points | total: NOT Over 231.5 points | kalshi | $64k | +104 |  |  | +2.0c |  | pending |
 | Nov 6 9:00AM | NBA | Celtics vs. Hornets | total: Under (208.5) | polymarket | $69k | -104 | ✅ kalshi |  | +1.0c |  | pending |
 | Nov 6 9:00AM | NBA | Boston vs Charlotte: Total Points | total: NOT Over 208.5 points | kalshi | $79k | -104 | ✅ polymarket |  | +1.0c |  | pending |
-| Nov 6 8:21AM | NHL | Ducks vs. Flames | moneyline: Flames | polymarket | $51k | -127 | ✅ kalshi,novig |  | +0.0c |  | pending |
+| Nov 6 8:21AM | NHL | Ducks vs. Flames | moneyline: Flames | polymarket | $51k | -127 | ✅ kalshi,novig |  | +1.0c |  | pending |
 | Nov 6 8:21AM | NHL | Anaheim vs Calgary: Spread | spread: Calgary wins by over 1.5 goals | kalshi | $58k | +186 | ✅ polymarket |  | +0.0c |  | pending |
 | Nov 6 8:11AM | NBA | Wizards vs. Hawks | moneyline: Hawks | polymarket | $35k | -245 | ✅ kalshi,novig,prophetx |  | +1.0c |  | pending |
 | Nov 6 8:01AM | NCAAF | North Carolina vs UConn: Spread | spread: North Carolina wins by over 7.5 points | kalshi | $158k | +104 |  |  | +1.0c |  | pending |
@@ -85,7 +87,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 5 10:40AM | NHL | Carolina vs New York I: Spread | spread: NOT Carolina wins by over 1.5 goals | kalshi | $29k | -150 |  |  | -1.0c | yes | L |
 | Nov 5 10:16AM | NHL | Vegas vs Detroit | moneyline: Vegas | kalshi | $55k | -133 | ✅ novig,polymarket |  | +1.0c | yes | W |
 | Nov 5 9:56AM | NCAAF | James Madison vs Southern Miss: Spread | spread: NOT James Madison wins by over 13.5 points | kalshi | $66k | -104 | ✅ novig,prophetx |  | -1.0c | yes | L |
-| Nov 5 9:36AM | NCAAF | Nebraska vs Illinois | moneyline: Nebraska | kalshi | $109k | -186 | ✅ novig |  | +0.0c | yes | pending |
+| Nov 5 9:36AM | NCAAF | Nebraska vs Illinois | moneyline: Nebraska | kalshi | $109k | -186 | ✅ novig |  | -1.0c | yes | pending |
 | Nov 5 9:30AM | NHL | Utah vs Montreal: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $37k | -104 | ✅ novig,polymarket |  | -4.0c | yes | L |
 | Nov 5 9:30AM | NHL | Dallas vs Columbus: Total Goals | total: NOT Over 5.5 goals scored | kalshi | $40k | +104 | ✅ novig,polymarket |  | -2.0c | yes | W |
 | Nov 5 9:30AM | NHL | Vancouver vs Winnipeg: Spread | spread: NOT Winnipeg wins by over 1.5 goals | kalshi | $51k | -138 | ✅ novig |  | -1.0c | yes | L |
@@ -208,5 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 4 12:10PM | NHL | Senators vs. Sabres | moneyline: Sabres | polymarket | $41k | -122 | ✅ kalshi,novig,prophetx |  | +0.0c | yes | L |
 | Nov 4 12:05PM | NBA | Charlotte vs Brooklyn: Total Points | total: Over 212.5 points | kalshi | $40k | -108 |  |  | +0.0c | yes | W |
 | Nov 4 12:05PM | NBA | Portland vs Phoenix: Spread | spread: NOT Portland wins by over 2.5 points | kalshi | $34k | +104 | ✅ novig,polymarket |  | +0.0c | yes | L |
-| Nov 4 12:00PM | NBA | Minnesota vs Houston: Spread | spread: NOT Houston wins by over 7.5 points | kalshi | $44k | -108 | ✅ novig,polymarket,prophetx | ✅ | -1.0c |  | W |
-| Nov 4 11:55AM | NBA | Cleveland vs Oklahoma City: Spread | spread: Oklahoma City wins by over 3.5 points | kalshi | $56k | -108 | ✅ novig,polymarket | ✅ | -3.0c | yes | W |
