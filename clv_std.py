@@ -49,7 +49,7 @@ import exchange_lag as el
 
 # Stamp this on every CLV figure (Peter, item 2: "record the fee-model version used").
 # Bump it whenever eff(), a coefficient, or the venue registry changes.
-FEE_MODEL = "2026-11-06.7"
+FEE_MODEL = "2026-11-06.8"
 # Each entry carries its VERIFICATION STATUS, not just its rate. Peter, Nov 6: "cant you check out
 # fills or the account" - so where his own exports could settle a coefficient, they were used, and
 # where they could not, that is stated rather than assumed.
@@ -111,13 +111,22 @@ VENUES = {
     "kalshi":        ("Kalshi",        True,  True),
     "polymarket.us": ("Polymarket US", True,  True),
     "hardrockbet":   ("Hard Rock",     False, True),
+    # NOT the same venue as polymarket.us. The global exchange is not CFTC-regulated and Peter
+    # cannot trade it, so it is ineligible for BOTH scopes and has no fee model. It is in the
+    # registry only so that canon() names it instead of refusing it - a refusal would read as a
+    # data error, when in fact the quote is real and simply not ours to take.
+    "polymarket.global": ("Polymarket Global", False, False),
 }
 # every spelling seen in this repo, mapped to one canonical key
 ALIASES = {
     "novig": "novig.us", "novig_us": "novig.us", "NOVIG": "novig.us", "Novig": "novig.us",
     "prophetx": "prophetx", "PROPHETX": "prophetx", "ProphetX": "prophetx", "px": "prophetx",
     "kalshi": "kalshi", "KALSHI": "kalshi", "Kalshi": "kalshi",
-    "polymarket": "polymarket.us", "polymarket_us": "polymarket.us", "POLY": "polymarket.us",
+    # Nov 6: "polymarket" was mapped to polymarket.us. It is the GLOBAL book. 633 alert rows carry
+    # both keys and 167 of the first 400 quote DIFFERENT prices, so the collapse let an untradeable
+    # quote win best-AUTO and inflate opportunity CLV. They are now separate venues.
+    "polymarket": "polymarket.global", "polymarket_global": "polymarket.global",
+    "polymarket_us": "polymarket.us", "POLY": "polymarket.us",
     "polymarket.us": "polymarket.us", "PM US": "polymarket.us", "Polymarket US": "polymarket.us",
     "pmus": "polymarket.us",
     "hardrockbet": "hardrockbet", "hardrockbet_fl": "hardrockbet", "Hard Rock": "hardrockbet",
@@ -129,6 +138,11 @@ MANUAL = tuple(k for k, v in VENUES.items() if v[2])
 
 class UnknownVenue(ValueError):
     """Raised instead of silently pricing a venue as fee-free."""
+
+
+class NotTradeable(ValueError):
+    """A real venue whose quotes we can see but cannot take (global Polymarket). Raised rather than
+    priced, so such a quote can never reach a CLV figure by accident."""
 
 
 def canon(book, strict=True):
@@ -162,6 +176,9 @@ def net_dec(book, raw_dec, maker=False):
     side is a REBATE, so net_dec can exceed the raw price. Peter's strategy is to post, so this is
     the side that matters - but it defaults to False, because every fill in our history is taker."""
     c = canon(book)
+    if c not in AUTO and c not in MANUAL:
+        raise NotTradeable(f"{VENUES[c][0]} quotes are visible but not tradeable - no fee model, "
+                           f"and it must not enter AUTO or MANUAL opportunity")
     if raw_dec is None or raw_dec <= 1:
         return None
     return raw_dec if c == "hardrockbet" else el.eff(c, float(raw_dec), maker)
@@ -176,7 +193,12 @@ def net_clv(close_prob, raw_dec, book, maker=False):
 
 
 def best_net(quotes, scope="auto", maker=False):
-    """(canonical venue, net decimal) for the best price AFTER fees within a scope.
+    """(canonical venue, net decimal, SOURCE venue key as the row spelled it) for the best price
+    AFTER fees within a scope.
+
+    The third element is Peter's requirement, Nov 6: the original source-venue ID is preserved on
+    every row, so a canonical key can always be traced back to the spelling the data used. That is
+    what makes the polymarket / polymarket.us split auditable after the fact.
 
     quotes: {venue: raw_decimal}. scope "auto" = auto-eligible exchanges only (Hard Rock excluded,
     per Peter); "manual" = everything manually reachable, Hard Rock included. The comparison is
@@ -194,8 +216,8 @@ def best_net(quotes, scope="auto", maker=False):
             continue
         nd = net_dec(c, raw, maker)
         if nd is not None and (best is None or nd > best[1]):
-            best = (c, nd)
-    return best if best else (None, None)
+            best = (c, nd, bk)
+    return best if best else (None, None, None)
 
 
 def close_verified(how):
@@ -238,7 +260,10 @@ if __name__ == "__main__":
     print("canon(): every repo spelling maps, unknown venue refused")
     d = 1.9091
     for b in VENUES:
-        print(f"  {VENUES[b][0]:14s} raw -110 -> net {am(net_dec(b, d)):+5d}   drag "
+        if b not in AUTO and b not in MANUAL:
+            print(f"  {VENUES[b][0]:18s} NOT TRADEABLE - net_dec() refuses it, excluded from both scopes")
+            continue
+        print(f"  {VENUES[b][0]:18s} raw -110 -> net {am(net_dec(b, d)):+5d}   drag "
               f"{(d / net_dec(b, d) - 1) * 100:5.2f}%   auto={VENUES[b][1]}")
     assert net_dec("hardrockbet", d) == d and net_dec("novig.us", d) == d
     assert net_dec("kalshi", d) < d and net_dec("prophetx", d) < d
@@ -246,10 +271,22 @@ if __name__ == "__main__":
     print(f"\n  quotes {q}")
     print(f"  best AUTO   (no Hard Rock): {best_net(q, 'auto')}")
     print(f"  best MANUAL (Hard Rock in): {best_net(q, 'manual')}")
-    av, an = best_net(q, "auto")
+    av, an, asrc = best_net(q, "auto")
     assert av == "novig.us", f"Kalshi 1.95 must LOSE to Novig 1.91 after its fee, got {av}"
     assert best_net(q, "manual")[0] == "hardrockbet"
+    assert asrc == "novig", "the SOURCE spelling must survive beside the canonical key"
     print("  -> Kalshi's better RAW price loses on NET, as it must")
+    # the Nov 6 split: a global Polymarket quote must never win, or even price
+    gq = {"novig": 1.91, "polymarket": 2.60}
+    assert best_net(gq, "auto")[0] == "novig.us", "global Polymarket must not win best-AUTO"
+    assert best_net(gq, "manual")[0] == "novig.us", "nor best-MANUAL"
+    try:
+        net_dec("polymarket", 2.60)
+        raise AssertionError("net_dec must REFUSE an untradeable venue, not price it")
+    except NotTradeable:
+        pass
+    assert canon("polymarket") == "polymarket.global" and canon("polymarket_us") == "polymarket.us"
+    print("  -> global Polymarket: priced by nothing, wins nothing, and canon() keeps it distinct")
     assert close_verified("own line") and close_verified("moneyline")
     assert not close_verified("main 228.5 moved to 226.5") and not close_verified(None)
     print("\nclose_verified(): own line and moneyline pass; a half-point conversion is excluded")
