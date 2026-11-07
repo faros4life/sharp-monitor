@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 7, 6:16 PM ET. This run: 1 new, 1 not confirmed, 3 pending. Open alerts: 59.
+Updated Sat Nov 7, 6:21 PM ET. This run: 1 new, 1 not confirmed, 5 pending. Open alerts: 59.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,7 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 7 6:16PM | NHL | Montreal vs Toronto: Spread | spread: NOT Montreal wins by over 1.5 goals | kalshi | $73k | -213 | ✅ novig,polymarket |  | +0.0c |  | pending |
+| Nov 7 6:21PM | NHL | Montreal vs Toronto: Spread | spread: NOT Montreal wins by over 1.5 goals | kalshi | $73k | -213 | ✅ novig,polymarket |  | +0.0c |  | pending |
 | Nov 7 6:10PM | NBA | Knicks vs. Cavaliers | spread: Knicks (-4.5) | polymarket | $47k | -104 | ✅ novig | ✅ | +0.0c |  | pending |
 | Nov 7 6:10PM | NBA | Rockets vs. Suns | moneyline: Rockets | polymarket | $26k | -245 | ✅ novig,prophetx | ❌ | +0.0c |  | pending |
 | Nov 7 6:03PM | NHL | Red Wings vs. Avalanche | moneyline: Avalanche | polymarket | $39k | -203 | ✅ novig |  | +0.0c |  | pending |
@@ -86,7 +86,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 7 8:50AM | NCAAF | Maryland vs Purdue: Total Points | total: NOT Over 57.5 points | kalshi | $54k | -104 | ✅ novig |  | +1.0c | yes | L |
 | Nov 7 8:50AM | NCAAF | Fordham vs Bucknell | moneyline: Fordham | kalshi | $30k | -127 |  |  | +1.0c | yes | W |
 | Nov 7 8:50AM | NCAAF | Brown vs Yale | moneyline: Yale | kalshi | $72k | -257 |  |  | +0.0c | yes | L |
-| Nov 7 8:30AM | NHL | Canucks vs. Oilers | spread: Canucks (+1.5) | polymarket | $30k | +122 |  |  | -2.0c | yes | pending |
+| Nov 7 8:30AM | NHL | Canucks vs. Oilers | spread: Canucks (+1.5) | polymarket | $30k | +122 |  |  | -3.0c | yes | pending |
 | Nov 7 8:30AM | NHL | Sharks vs. Stars | total: Under (6.5) | polymarket | $33k | -122 |  | ✅ | +2.0c |  | pending |
 | Nov 7 8:10AM | NHL | Canucks vs. Oilers | moneyline: Oilers | polymarket | $29k | -317 |  |  | +1.0c |  | pending |
 | Nov 7 8:10AM | NHL | Sharks vs. Stars | moneyline: Stars | polymarket | $34k | -285 |  |  | +0.0c |  | pending |
