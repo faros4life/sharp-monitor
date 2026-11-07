@@ -1,17 +1,18 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 7, 9:30 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 13.
+Updated Sat Nov 7, 9:40 AM ET. This run: 1 new, 0 not confirmed, 6 pending. Open alerts: 13.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 158-97 (-13.46u flat) | rule met: 36-31
+**Record:** 159-97 (-12.98u flat) | rule met: 36-31
 
-**Fade (paper, betting against the print):** 72-123 (+9.65u flat, after fees)
+**Fade (paper, betting against the print):** 72-124 (+8.65u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 7 9:40AM | TENNIS | Luca Van Assche vs Ben Shelton | moneyline: Luca Van Assche | kalshi | $363k | -104 |  |  | +0.0c |  | pending |
 | Nov 7 9:20AM | NCAAB | Northern Iowa vs Furman | moneyline: Furman | kalshi | $25k | -194 |  |  | +0.0c |  | pending |
-| Nov 7 8:20AM | TENNIS | Damir Dzumhur vs Inaki Montes-de la Torre | moneyline: Inaki Montes | kalshi | $106k | -194 |  |  | +27.0c | yes | pending |
+| Nov 7 8:20AM | TENNIS | Damir Dzumhur vs Inaki Montes-de la Torre | moneyline: Inaki Montes | kalshi | $106k | -194 |  |  | +27.0c | yes | W |
 | Nov 7 6:30AM | TENNIS | Viktor Durasovic vs Alexander Shevchenko | moneyline: Alexander Shevchenko | kalshi | $28k | -376 |  |  | +0.0c |  | pending |
 | Nov 7 4:50AM | NCAAB | Portland St. vs Seattle | moneyline: Seattle | kalshi | $39k | -525 |  |  | +1.0c |  | pending |
 | Nov 7 2:20AM | TENNIS | Luca Van Assche vs Ben Shelton | moneyline: Ben Shelton | kalshi | $29k | -335 | ✅ novig |  | -1.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 26 7:31AM | TENNIS | Bertola vs Shapovalov | moneyline: Shapovalov | kalshi | $29k | -285 |  |  | -1.0c |  | W |
 | Oct 26 6:50AM | TENNIS | Dart vs Prozorova | moneyline: Prozorova | kalshi | $649k | -213 |  |  | -63.0c | yes | L |
 | Oct 26 6:30AM | TENNIS | Altmaier vs Cerundolo | moneyline: Cerundolo | kalshi | $31k | -127 | ✅ novig |  | -45.0c | yes | L |
-| Oct 26 6:10AM | TENNIS | Brunold vs Borges | moneyline: Borges | kalshi | $28k | -203 | ✅ novig |  | +30.0c | yes | W |
