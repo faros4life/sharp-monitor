@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 7, 5:26 PM ET. This run: 0 new, 2 not confirmed, 0 pending. Open alerts: 50.
+Updated Sat Nov 7, 5:32 PM ET. This run: 0 new, 2 not confirmed, 1 pending. Open alerts: 50.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -16,12 +16,12 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 7 4:40PM | NHL | Rangers vs. Kraken | spread: Rangers (-1.5) | polymarket | $48k | +186 |  |  | +0.0c |  | pending |
 | Nov 7 4:40PM | NBA | Denver vs Indiana: Total Points | total: Over 228.5 points | kalshi | $54k | -117 |  | ✅ | +0.0c | yes | pending |
 | Nov 7 4:40PM | NHL | New York R vs Seattle | moneyline: New York R | kalshi | $67k | -133 | ✅ novig,prophetx |  | +0.0c |  | pending |
-| Nov 7 4:30PM | NHL | Devils vs. Islanders | moneyline: Devils | polymarket | $25k | -144 | ✅ novig |  | +0.0c |  | pending |
+| Nov 7 4:30PM | NHL | Devils vs. Islanders | moneyline: Devils | polymarket | $25k | -144 | ✅ novig |  | -1.0c | yes | pending |
 | Nov 7 4:30PM | NBA | Denver vs Indiana | moneyline: Denver | kalshi | $260k | -285 | ✅ novig,prophetx |  | -1.0c | yes | pending |
 | Nov 7 4:20PM | NHL | Sharks vs. Stars | spread: Sharks (+1.5) | polymarket | $29k | -100 |  |  | +0.0c |  | pending |
 | Nov 7 4:20PM | NCAAF | Georgia @ Ole Miss | moneyline: UGA (0) | novig | $75k | -163 |  |  | +0.5c |  | pending |
 | Nov 7 4:10PM | NCAAF | Texas State @ Oregon State | total: Under 71.5 (71.5) | novig | $28k | -102 |  |  | +0.5c |  | pending |
-| Nov 7 4:10PM | NCAAF | Hawai'i vs UTEP | moneyline: Hawai'i | kalshi | $70k | -285 |  |  | +0.0c | yes | pending |
+| Nov 7 4:10PM | NCAAF | Hawai'i vs UTEP | moneyline: Hawai'i | kalshi | $70k | -285 |  |  | +0.0c |  | pending |
 | Nov 7 4:00PM | NBA | Knicks vs. Cavaliers | moneyline: Knicks | polymarket | $58k | -186 | ✅ novig,prophetx | ✅ | +0.0c |  | pending |
 | Nov 7 4:00PM | NCAAF | Vanderbilt @ Mississippi State | total: Over 48.5 (48.5) | novig | $30k | -106 |  |  | +0.0c |  | pending |
 | Nov 7 3:50PM | NBA | Rockets vs. Suns | spread: Suns (+6.5) | polymarket | $63k | -108 |  | ✅ | +0.0c |  | pending |
