@@ -146,14 +146,25 @@ def espn_games(days, leagues=None):
             if lg == "NCAAF":
                 url += "&groups=80"
             jobs.append((lg, url))
+            # Nov 6 (Peter: a UCLA row had no ESPN feed and so could not auto-settle). ESPN's
+            # college-basketball scoreboard returns a PARTIAL slate without a groups filter, the
+            # way college football needs groups=80. groups=50 is Division I. This is an EXTRA
+            # fetch merged with the default, never a replacement, so coverage can only grow -
+            # and the merge below dedupes on the ESPN event id, so a game in both costs nothing.
+            if lg == "NCAAB":
+                jobs.append((lg, url + "&groups=50"))
     with ThreadPoolExecutor(max_workers=8) as pool:   # Nov 2 (Peter: tracker too slow): fetch the scoreboards in parallel
         got = list(pool.map(lambda j: _espn_get(j[1]), jobs))
-    games = []
+    games, seen_ids = [], set()
     for (lg, url), data in zip(jobs, got):
         if True:
             if data is None:
                 continue
             for ev in data.get("events") or []:
+                if ev.get("id") is not None:        # one game, one row, however many feeds carry it
+                    if (lg, ev["id"]) in seen_ids:
+                        continue
+                    seen_ids.add((lg, ev["id"]))
                 comp = (ev.get("competitions") or [{}])[0]
                 teams = []
                 for c in comp.get("competitors") or []:
