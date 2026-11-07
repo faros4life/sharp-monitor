@@ -1,6 +1,114 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-07T13:20:19Z",
+   "base_depth": 234094,
+   "best_price": 0.6757,
+   "best_price_american": -208,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.66,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-07",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -73161,
+     "new_this_side": 106064,
+     "other_side": 74447,
+     "other_side_all_levels": 116763,
+     "ratio": 2.0,
+     "this_side": 150913,
+     "this_side_all_levels": 334068
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 285002.27999999997,
+    "volume_24h_fp": 239230.91999999998,
+    "volume_fp": 339798.58999999997
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 110279.18,
+    "volume_24h_fp": 129182.28,
+    "volume_fp": 132894.42
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 174723.09999999998,
+    "volume_24h_fp": 110048.63999999998,
+    "volume_fp": 206904.16999999998
+   },
+   "fade_price": 0.35,
+   "first_seen_utc": "2026-11-07T13:10:16Z",
+   "game": "Damir Dzumhur vs Inaki Montes-de la Torre",
+   "game_surge_books": [
+    "kalshi"
+   ],
+   "game_x": 6.2,
+   "key": "kalshi|KXATPMATCH-26NOV07DZUMON|ml|1",
+   "lead_min": 70,
+   "league": "TENNIS",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 106064,
+   "new_x": 1.93,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 285002.27999999997,
+      "volume_24h_fp": 239230.91999999998,
+      "volume_fp": 339798.58999999997
+     },
+     "game_normal": 53910,
+     "game_x": 6.2,
+     "normal": 54889,
+     "now": 334068,
+     "type": "ML",
+     "x": 6.09
+    }
+   },
+   "norm_ready_books": 1,
+   "paper_only": true,
+   "price": 0.66,
+   "price_american": -194,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.76,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXATPMATCH-26NOV07DZUMON-MON"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Inaki Montes",
+   "side_label": "Inaki Montes",
+   "size_x": 6.09,
+   "start_source": "kalshi",
+   "start_utc": "2026-11-07T14:30:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "Damir Dzumhur",
+    "Inaki Montes"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-07T11:30:20Z",
    "base_depth": 31003,
    "best_price": 0.79,
@@ -335,9 +443,9 @@
     "volume_fp": 3179.72
    },
    "ex_stats_close": {
-    "open_interest_fp": 110823.37,
-    "volume_24h_fp": 111544.33000000002,
-    "volume_fp": 113554.71
+    "open_interest_fp": 117790.64000000001,
+    "volume_24h_fp": 119282.14,
+    "volume_fp": 120886.82
    },
    "ex_stats_first": {
     "open_interest_fp": 39973.85,
@@ -899,8 +1007,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.77,
-   "clv_cents": 0.0,
+   "close_price": 0.8,
+   "clv_cents": 3.0,
    "confirmed_after_min": 10,
    "date": "2026-11-07",
    "depth_by_book": {
@@ -931,9 +1039,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 4492.63,
-    "volume_24h_fp": 4771.92,
-    "volume_fp": 4771.92
+    "open_interest_fp": 4675.63,
+    "volume_24h_fp": 5054.92,
+    "volume_fp": 5054.92
    },
    "ex_stats_first": {
     "open_interest_fp": 4492.63,
@@ -1104,9 +1212,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 34253.38,
-    "volume_24h_fp": 32944.38,
-    "volume_fp": 34293.38
+    "open_interest_fp": 35602.38,
+    "volume_24h_fp": 35642.38,
+    "volume_fp": 35642.38
    },
    "ex_stats_first": {
     "open_interest_fp": 1.73,
@@ -1268,7 +1376,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 410.09000000000003,
-    "volume_24h_fp": 359.37,
+    "volume_24h_fp": 460.52,
     "volume_fp": 471.93
    },
    "ex_stats_first": {
