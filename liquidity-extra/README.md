@@ -1,15 +1,16 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 7, 5:40 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 14.
+Updated Sat Nov 7, 5:50 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 14.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 166-101 (-13.67u flat) | rule met: 38-31
+**Record:** 167-101 (-13.21u flat) | rule met: 38-31
 
-**Fade (paper, betting against the print):** 76-131 (+8.38u flat, after fees)
+**Fade (paper, betting against the print):** 76-132 (+7.38u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 7 5:50PM | NCAAB | San Jose St. vs UC Irvine | moneyline: UC Irvine | kalshi | $33k | -335 |  |  | +0.0c |  | pending |
 | Nov 7 4:20PM | NCAAB | Maryland vs Georgetown | moneyline: Maryland | kalshi | $29k | -138 |  |  | +0.0c | yes | pending |
 | Nov 7 12:10PM | NCAAB | North Carolina A&T @ Ohio | spread: OHIO -14.5 (-14.5) | novig | $33k | -108 |  | ✅ | +0.5c | yes | L |
 | Nov 7 11:40AM | NCAAB | Cal State Fullerton vs South Dakota | moneyline: South Dakota | kalshi | $28k | -108 |  | ❌ | +0.0c |  | L |
@@ -30,7 +31,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 7 2:20AM | TENNIS | Luca Van Assche vs Ben Shelton | moneyline: Ben Shelton | kalshi | $29k | -335 | ✅ novig |  | -1.0c |  | W |
 | Nov 7 1:50AM | TENNIS | Alexandra Shubladze vs Claire Liu | moneyline: Claire Liu | kalshi | $585k | -178 |  |  | +24.0c | yes | W |
 | Nov 7 1:50AM | NCAAB | Monmouth vs Rhode Island | moneyline: Rhode Island | kalshi | $30k | -233 |  |  | +2.0c |  | pending |
-| Nov 7 1:50AM | NCAAB | LIU vs La Salle | moneyline: La Salle | kalshi | $27k | -203 |  |  | +1.0c |  | pending |
+| Nov 7 1:50AM | NCAAB | LIU vs La Salle | moneyline: La Salle | kalshi | $27k | -203 |  |  | +1.0c |  | W |
 | Nov 7 12:50AM | NCAAB | St. Bonaventure vs Canisius | moneyline: St. Bonaventure | kalshi | $34k | -335 |  |  | +4.0c | yes | pending |
 | Nov 7 12:10AM | NCAAB | Lamar vs Abilene Christian | moneyline: Abilene Christian | kalshi | $27k | -138 |  |  | -12.0c | yes | W |
 | Nov 6 10:50PM | NCAAB | North Dakota vs Winthrop | moneyline: Winthrop | kalshi | $29k | -376 |  |  | +1.0c | yes | L |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 26 9:01PM | MLB | Game 3: Milwaukee vs Tampa Bay | moneyline: Game 3: Milwaukee | kalshi | $136k | -285 |  |  | +7.0c |  | W |
 | Oct 26 7:00PM | MLB | Milwaukee Brewers at Tampa Bay Rays | moneyline: Milwaukee Brewers | prophetx | $49k | +105 | ✅ novig |  | -0.5c | yes | W |
 | Oct 26 7:00PM | TENNIS | Shelton vs Kovacevic | moneyline: Shelton | kalshi | $48k | -488 |  |  | +0.0c |  | W |
-| Oct 26 6:00PM | TENNIS | Joint vs Cirstea | moneyline: Cirstea | kalshi | $39k | -223 |  |  | -68.0c | yes | L |
