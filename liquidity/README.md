@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 7, 7:10 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 43.
+Updated Sat Nov 7, 7:20 AM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 44.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 7 7:20AM | NHL | Panthers vs. Capitals | spread: Panthers (+1.5) | polymarket | $25k | -213 | ✅ novig |  | +0.0c |  | pending |
 | Nov 7 6:40AM | NBA | Nuggets vs. Pacers | moneyline: Nuggets | polymarket | $25k | -285 | ✅ novig |  | +0.0c |  | pending |
 | Nov 7 6:10AM | NCAAF | Maryland vs Purdue: Spread | spread: NOT Purdue wins by over 5.5 points | kalshi | $30k | -104 |  | ✅ | +0.0c |  | pending |
 | Nov 7 6:10AM | NCAAF | St. Thomas vs Butler | moneyline: Butler | kalshi | $44k | -104 |  |  | +0.0c | yes | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 5 4:50AM | NHL | Ducks vs. Oilers | moneyline: Oilers | polymarket | $25k | -178 | ✅ kalshi,novig |  | +0.0c |  | L |
 | Nov 5 4:45AM | NHL | Blues vs. Devils | moneyline: Devils | polymarket | $27k | -186 | ✅ kalshi |  | +3.0c |  | W |
 | Nov 5 4:45AM | NHL | Blackhawks vs. Lightning | moneyline: Lightning | polymarket | $30k | -400 | ✅ kalshi |  | +1.0c |  | W |
-| Nov 5 3:05AM | NHL | Stars vs. Blue Jackets | moneyline: Stars | polymarket | $30k | -122 | ✅ kalshi |  | -1.0c |  | L |
