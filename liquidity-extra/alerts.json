@@ -1,6 +1,153 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-07T09:50:17Z",
+   "base_depth": 17666,
+   "best_price": 0.8494,
+   "best_price_american": -564,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.84,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-07",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 2420,
+     "new_this_side": 38860,
+     "other_side": 5105,
+     "other_side_all_levels": 8876,
+     "ratio": 6.8,
+     "this_side": 34724,
+     "this_side_all_levels": 57396
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 8.34,
+    "volume_24h_fp": 6.18,
+    "volume_fp": 8.34
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 8.34,
+    "volume_24h_fp": 6.18,
+    "volume_fp": 8.34
+   },
+   "fade_price": 0.17,
+   "first_seen_utc": "2026-11-07T09:40:19Z",
+   "game": "Portland St. vs Seattle",
+   "game_surge_books": [],
+   "game_x": 1.43,
+   "key": "kalshi|KXNCAAMBGAME-26NOV07PRSTSEA|ml|1",
+   "lead_min": 1030,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 38860,
+   "new_x": 2.83,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 8.34,
+      "volume_24h_fp": 6.18,
+      "volume_fp": 8.34
+     },
+     "game_normal": 40272,
+     "game_x": 1.43,
+     "normal": 13741,
+     "now": 57396,
+     "type": "ML",
+     "x": 4.18
+    }
+   },
+   "norm_ready_books": 1,
+   "paper_only": false,
+   "price": 0.84,
+   "price_american": -525,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.84,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -650
+    },
+    "betrivers": {
+     "point": null,
+     "price": -670
+    },
+    "bovada": {
+     "point": null,
+     "price": -650
+    },
+    "draftkings": {
+     "point": null,
+     "price": -625
+    },
+    "fanatics": {
+     "point": null,
+     "price": -650
+    },
+    "fanduel": {
+     "point": null,
+     "price": -690
+    },
+    "kalshi": {
+     "point": null,
+     "price": -525
+    },
+    "novig": {
+     "point": null,
+     "price": -614
+    },
+    "polymarket": {
+     "point": null,
+     "price": -525
+    },
+    "prophetx": {
+     "point": null,
+     "price": -670
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV07PRSTSEA-SEA"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Seattle",
+   "side_label": "Seattle",
+   "size_x": 4.18,
+   "start_source": "odds",
+   "start_utc": "2026-11-08T03:00:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "Portland St.",
+    "Seattle"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-07T07:20:19Z",
    "base_depth": 164162,
    "best_price": 0.77,
@@ -47,9 +194,9 @@
     "volume_fp": 3179.72
    },
    "ex_stats_close": {
-    "open_interest_fp": 53425.05,
-    "volume_24h_fp": 55729.99,
-    "volume_fp": 55729.99
+    "open_interest_fp": 20912.48,
+    "volume_24h_fp": 21150.31,
+    "volume_fp": 21150.31
    },
    "ex_stats_first": {
     "open_interest_fp": 39973.85,
