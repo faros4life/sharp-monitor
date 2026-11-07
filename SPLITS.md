@@ -1,4 +1,4 @@
-# Paper splits (updated 2026-11-07T03:35:13Z)
+# Paper splits (updated 2026-11-07T03:45:15Z)
 
 Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kill bar: 30+ resulted at -0.10u/play or worse closes a split.
 
@@ -18,10 +18,10 @@ Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kil
 | Evening sends, ex-Hard Rock | scan | 2026-10-26 | 7-10-0 | -3.77 | -0.222 | -3.12 | OPEN |
 | Muted midday (11 AM-2 PM ET) | scan | 2026-10-26 | 17-11-0 | +4.25 | +0.152 | -0.41 | OPEN |
 | Liquidity totals, no sharp agree | scan | 2026-10-22 | 170-168-0 | -2.87 | -0.008 |  | OPEN |
-| Liquidity vs sharp (oppose) | scan | 2026-10-22 | 119-126-0 | -20.42 | -0.083 |  | CLOSED |
-| Liquidity spreads | scan | 2026-10-22 | 283-297-0 | -50.15 | -0.086 |  | CLOSED (by decision, 2026-10-27) |
+| Liquidity vs sharp (oppose) | scan | 2026-10-22 | 121-126-0 | -18.34 | -0.074 |  | CLOSED |
+| Liquidity spreads | scan | 2026-10-22 | 285-297-0 | -48.07 | -0.083 |  | CLOSED (by decision, 2026-10-27) |
 | Liquidity overnight (12-5 AM ET) | scan | 2026-10-26 | 72-43-0 | +3.26 | +0.028 |  | CLOSED |
-| Liquidity evening (5-8 PM ET) | scan | 2026-10-26 | 123-130-0 | -32.67 | -0.129 |  | CLOSED |
+| Liquidity evening (5-8 PM ET) | scan | 2026-10-26 | 124-130-0 | -31.65 | -0.125 |  | CLOSED |
 | NBA liquidity totals (lane) | scan | 2026-10-28 | 63-55-0 | +5.84 | +0.049 |  | OPEN |
 | NBA liquidity totals - unders | scan | 2026-10-28 | 41-34-0 | +5.95 | +0.079 |  | OPEN |
 | NBA liquidity totals - no sharp tag | scan | 2026-10-28 | 33-28-0 | +4.09 | +0.067 |  | OPEN |
@@ -30,7 +30,7 @@ Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kil
 | NBA liquidity totals - evacuation | scan | 2026-10-28 | 19-20-0 | -1.44 | -0.037 |  | OPEN |
 | NBA liquidity, price -129..-105 | scan | 2026-10-28 | 60-45-0 | +9.78 | +0.093 |  | OPEN |
 
-**All-history reference (every resulted play in the feed, not forward; read only):** Tier 2 core (paper) 16-15-0, -1.51u (-0.049/play); Evening sends, ex-Hard Rock 15-21-1, -8.09u (-0.219/play); Muted midday (11 AM-2 PM ET) 41-19-0, +16.85u (+0.281/play); Liquidity overnight (12-5 AM ET) 107-64-0, +7.87u (+0.046/play); Liquidity evening (5-8 PM ET) 171-187-0, -57.02u (-0.159/play)
+**All-history reference (every resulted play in the feed, not forward; read only):** Tier 2 core (paper) 16-15-0, -1.51u (-0.049/play); Evening sends, ex-Hard Rock 15-21-1, -8.09u (-0.219/play); Muted midday (11 AM-2 PM ET) 41-19-0, +16.85u (+0.281/play); Liquidity overnight (12-5 AM ET) 107-64-0, +7.87u (+0.046/play); Liquidity evening (5-8 PM ET) 172-187-0, -56.00u (-0.156/play)
 
 **Muted midday (11 AM-2 PM ET): breakdowns** (resulted plays only)
 
@@ -49,7 +49,7 @@ Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kil
 
 **ProphetX tripwire:** 30/30 resulted, -0.106u/play - PAUSE LIVE.
 
-**Price gaps (measurement only):** {"gaps": 111, "per_day": 8.5, "edge_pct_median": 2.09, "edge_pct_p90": 25.09, "size_est_median_upper_bound": 1976, "seen_once_share": 0.91, "lifetime_min_median": 0, "lived_10min_plus": 9, "with_200_both_legs_upper_bound": 68, "scan_sec_median": 279.0}
+**Price gaps (measurement only):** {"gaps": 114, "per_day": 8.8, "edge_pct_median": 2.3099999999999996, "edge_pct_p90": 25.09, "size_est_median_upper_bound": 1973.5, "seen_once_share": 0.89, "lifetime_min_median": 0.0, "lived_10min_plus": 11, "with_200_both_legs_upper_bound": 69, "scan_sec_median": 284}
 
 **Counting rules:** resulted = W, L or P with a unit value (pushes count, at 0u); liquidity artifacts excluded; pending/ungraded plays don't count. Times are America/New_York (DST-aware). Lead = start minus alert time. Streams: SENT (pushed), MUTED (logged, never pushed), LIVE (phase-1 subset of SENT), LIQ-MAIN, LIQ-EXTRA; paper = never bet. ALL PLAYS = every resulted play in a stream; GRADED ERA = Oct 20+ only.
 
