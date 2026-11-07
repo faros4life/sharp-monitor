@@ -1,4 +1,4 @@
-# Paper splits (updated 2026-11-07T21:35:12Z)
+# Paper splits (updated 2026-11-07T21:45:18Z)
 
 Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kill bar: 30+ resulted at -0.10u/play or worse closes a split.
 
@@ -17,10 +17,10 @@ Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kil
 | Tier 2 core (paper) | tier | 2026-10-27 | 10-13-0 | -4.49 | -0.195 | -0.79 | CLOSED |
 | Evening sends, ex-Hard Rock | scan | 2026-10-26 | 10-12-0 | -3.26 | -0.148 | -3.08 | OPEN |
 | Muted midday (11 AM-2 PM ET) | scan | 2026-10-26 | 19-17-0 | +0.03 | +0.001 | -0.40 | OPEN |
-| Liquidity totals, no sharp agree | scan | 2026-10-22 | 181-181-0 | -5.23 | -0.014 |  | OPEN |
-| Liquidity vs sharp (oppose) | scan | 2026-10-22 | 130-130-0 | -14.97 | -0.058 |  | CLOSED |
-| Liquidity spreads | scan | 2026-10-22 | 303-311-0 | -46.03 | -0.075 |  | CLOSED (by decision, 2026-10-27) |
-| Liquidity overnight (12-5 AM ET) | scan | 2026-10-26 | 78-48-0 | +2.96 | +0.023 |  | CLOSED |
+| Liquidity totals, no sharp agree | scan | 2026-10-22 | 181-182-0 | -6.23 | -0.017 |  | OPEN |
+| Liquidity vs sharp (oppose) | scan | 2026-10-22 | 131-132-0 | -16.52 | -0.063 |  | CLOSED |
+| Liquidity spreads | scan | 2026-10-22 | 306-313-0 | -45.05 | -0.073 |  | CLOSED (by decision, 2026-10-27) |
+| Liquidity overnight (12-5 AM ET) | scan | 2026-10-26 | 79-49-0 | +2.94 | +0.023 |  | CLOSED |
 | Liquidity evening (5-8 PM ET) | scan | 2026-10-26 | 135-132-0 | -25.83 | -0.097 |  | CLOSED |
 | NBA liquidity totals (lane) | scan | 2026-10-28 | 64-58-0 | +3.74 | +0.031 |  | OPEN |
 | NBA liquidity totals - unders | scan | 2026-10-28 | 41-36-0 | +3.95 | +0.051 |  | OPEN |
@@ -30,7 +30,7 @@ Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kil
 | NBA liquidity totals - evacuation | scan | 2026-10-28 | 20-21-0 | -1.54 | -0.038 |  | OPEN |
 | NBA liquidity, price -129..-105 | scan | 2026-10-28 | 62-46-0 | +10.62 | +0.098 |  | OPEN |
 
-**All-history reference (every resulted play in the feed, not forward; read only):** Tier 2 core (paper) 17-16-0, -1.62u (-0.049/play); Evening sends, ex-Hard Rock 18-23-1, -7.58u (-0.180/play); Muted midday (11 AM-2 PM ET) 43-25-0, +12.63u (+0.186/play); Liquidity overnight (12-5 AM ET) 113-69-0, +7.57u (+0.042/play); Liquidity evening (5-8 PM ET) 183-189-0, -50.18u (-0.135/play)
+**All-history reference (every resulted play in the feed, not forward; read only):** Tier 2 core (paper) 17-16-0, -1.62u (-0.049/play); Evening sends, ex-Hard Rock 18-23-1, -7.58u (-0.180/play); Muted midday (11 AM-2 PM ET) 43-25-0, +12.63u (+0.186/play); Liquidity overnight (12-5 AM ET) 114-70-0, +7.55u (+0.041/play); Liquidity evening (5-8 PM ET) 183-189-0, -50.18u (-0.135/play)
 
 **Muted midday (11 AM-2 PM ET): breakdowns** (resulted plays only)
 
