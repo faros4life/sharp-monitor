@@ -46,6 +46,11 @@
     "volume_24h_fp": 0.0,
     "volume_fp": 716.16
    },
+   "ex_stats_close": {
+    "open_interest_fp": 81249.07,
+    "volume_24h_fp": 69175.89,
+    "volume_fp": 92262.28
+   },
    "ex_stats_first": {
     "open_interest_fp": 79748.14,
     "volume_24h_fp": 69175.89,
@@ -303,6 +308,8 @@
    "norm_ready_books": 3,
    "paper_only": false,
    "price": 0.77,
+   "price_after_15m": 0.77,
+   "price_after_15m_book": "novig",
    "price_american": -335,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.77,
@@ -324,6 +331,7 @@
    "size_x": 1.27,
    "start_source": "prophetx",
    "start_utc": "2026-11-07T17:00:00Z",
+   "still_actionable": true,
    "surge_books": [],
    "teams": [
     "Robert Morris",
@@ -395,17 +403,17 @@
     "volumeNum": 111.0
    },
    "ex_stats_close": {
-    "volume": 21152.989987,
-    "volume1mo": 21442.887946999996,
-    "volume1moClob": 21442.887946999996,
-    "volume1wk": 21442.887946999996,
-    "volume1wkClob": 21442.887946999996,
-    "volume1yr": 21442.887946999996,
-    "volume1yrClob": 21442.887946999996,
-    "volume24hr": 21442.887946999996,
-    "volume24hrClob": 21442.887946999996,
-    "volumeClob": 21152.989987,
-    "volumeNum": 21152.989987
+    "volume": 21622.887947,
+    "volume1mo": 22361.887947,
+    "volume1moClob": 22361.887947,
+    "volume1wk": 22361.887947,
+    "volume1wkClob": 22361.887947,
+    "volume1yr": 22361.887947,
+    "volume1yrClob": 22361.887947,
+    "volume24hr": 22361.887947,
+    "volume24hrClob": 22361.887947,
+    "volumeClob": 21622.887947,
+    "volumeNum": 21622.887947
    },
    "ex_stats_first": {
     "volume": 20696.989987,
@@ -814,14 +822,14 @@
    },
    "ex_stats_close": {
     "volume": 5808.6003980000005,
-    "volume1mo": 5808.600398,
-    "volume1moClob": 5808.600398,
-    "volume1wk": 5808.600398,
-    "volume1wkClob": 5808.600398,
-    "volume1yr": 5808.600398,
-    "volume1yrClob": 5808.600398,
-    "volume24hr": 5808.600398,
-    "volume24hrClob": 5808.600398,
+    "volume1mo": 5836.6003980000005,
+    "volume1moClob": 5836.6003980000005,
+    "volume1wk": 5836.6003980000005,
+    "volume1wkClob": 5836.6003980000005,
+    "volume1yr": 5836.6003980000005,
+    "volume1yrClob": 5836.6003980000005,
+    "volume24hr": 5836.6003980000005,
+    "volume24hrClob": 5836.6003980000005,
     "volumeClob": 5808.6003980000005,
     "volumeNum": 5808.6003980000005
    },
@@ -2404,9 +2412,9 @@
     "volume_fp": 5652.24
    },
    "ex_stats_close": {
-    "open_interest_fp": 567273.78,
-    "volume_24h_fp": 703748.33,
-    "volume_fp": 746419.83
+    "open_interest_fp": 573694.83,
+    "volume_24h_fp": 736284.05,
+    "volume_fp": 753448.56
    },
    "ex_stats_first": {
     "open_interest_fp": 328521.52,
@@ -3628,9 +3636,9 @@
     "volume_fp": 81.28
    },
    "ex_stats_close": {
-    "open_interest_fp": 3878.5699999999997,
-    "volume_24h_fp": 3634.08,
-    "volume_fp": 4253.83
+    "open_interest_fp": 3880.58,
+    "volume_24h_fp": 3724.3100000000004,
+    "volume_fp": 4255.84
    },
    "ex_stats_first": {
     "open_interest_fp": 3322.95,
@@ -5596,6 +5604,7 @@
     "volume_fp": 35196.66
    },
    "fade_price": 0.5,
+   "fade_units": 0.93,
    "first_seen_utc": "2026-11-06T22:40:52Z",
    "game": "Washington vs Atlanta: Total Points",
    "game_surge_books": [],
@@ -5735,11 +5744,12 @@
     "kalshi_side": "no",
     "market_ticker": "KXNBATOTAL-26NOV06WASATL-229"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-11-07T02:26:00Z",
    "sharp_agree": [
     "Under 228.5 (+102)"
    ],
@@ -5756,7 +5766,7 @@
     "Atlanta"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-06T22:51:18Z",
@@ -5812,7 +5822,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 851.87,
-    "volume_24h_fp": 479.87,
+    "volume_24h_fp": 489.71999999999997,
     "volume_fp": 952.86
    },
    "ex_stats_first": {
@@ -7399,9 +7409,9 @@
     "volume_fp": 114.07
    },
    "ex_stats_close": {
-    "open_interest_fp": 21278.77,
-    "volume_24h_fp": 9399.76,
-    "volume_fp": 22781.22
+    "open_interest_fp": 21509.93,
+    "volume_24h_fp": 9610.76,
+    "volume_fp": 23012.38
    },
    "ex_stats_first": {
     "open_interest_fp": 16428.82,
@@ -7585,9 +7595,9 @@
     "volume_fp": 9.3
    },
    "ex_stats_close": {
-    "open_interest_fp": 11416.95,
-    "volume_24h_fp": 7649.92,
-    "volume_fp": 14513.72
+    "open_interest_fp": 12548.71,
+    "volume_24h_fp": 7769.94,
+    "volume_fp": 15645.48
    },
    "ex_stats_first": {
     "open_interest_fp": 7380.26,
@@ -8034,9 +8044,9 @@
     "volume_fp": 351.77
    },
    "ex_stats_close": {
-    "open_interest_fp": 830185.2999999999,
-    "volume_24h_fp": 124758.69,
-    "volume_fp": 872567.8999999999
+    "open_interest_fp": 831372.84,
+    "volume_24h_fp": 126145.84999999999,
+    "volume_fp": 873765.52
    },
    "ex_stats_first": {
     "open_interest_fp": 777181.62,
@@ -9657,7 +9667,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 742.79,
-    "volume_24h_fp": 338.99,
+    "volume_24h_fp": 313.11,
     "volume_fp": 758.8
    },
    "ex_stats_first": {
@@ -9796,9 +9806,9 @@
     "volume_fp": 18.93
    },
    "ex_stats_close": {
-    "open_interest_fp": 59016.22,
+    "open_interest_fp": 59313.8,
     "volume_24h_fp": 33587.16,
-    "volume_fp": 59867.76
+    "volume_fp": 60165.34
    },
    "ex_stats_first": {
     "open_interest_fp": 55939.95,
@@ -9991,9 +10001,9 @@
     "volume_fp": 132.68
    },
    "ex_stats_close": {
-    "open_interest_fp": 59681.25,
-    "volume_24h_fp": 38142.02,
-    "volume_fp": 61153.57
+    "open_interest_fp": 59874.16,
+    "volume_24h_fp": 34895.53,
+    "volume_fp": 61478.97
    },
    "ex_stats_first": {
     "open_interest_fp": 40073.79,
@@ -10392,9 +10402,9 @@
     "volume_fp": 197.09
    },
    "ex_stats_close": {
-    "open_interest_fp": 59681.25,
-    "volume_24h_fp": 38142.02,
-    "volume_fp": 61153.57
+    "open_interest_fp": 59874.16,
+    "volume_24h_fp": 34895.53,
+    "volume_fp": 61478.97
    },
    "ex_stats_first": {
     "open_interest_fp": 39663.28,
@@ -10591,9 +10601,9 @@
     "volume_fp": 179.5
    },
    "ex_stats_close": {
-    "open_interest_fp": 96223.21,
-    "volume_24h_fp": 53848.62,
-    "volume_fp": 105632.43
+    "open_interest_fp": 96260.42,
+    "volume_24h_fp": 53705.17,
+    "volume_fp": 105669.64
    },
    "ex_stats_first": {
     "open_interest_fp": 83089.53,
@@ -10788,8 +10798,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 1560118.0,
-    "volume": 1668273.0
+    "openInterest": 1571229.0,
+    "volume": 1679384.0
    },
    "ex_stats_first": {
     "openInterest": 803820.0,
@@ -12204,8 +12214,8 @@
     "volume": 7659.0
    },
    "ex_stats_close": {
-    "openInterest": 17909487.0,
-    "volume": 22962842.0
+    "openInterest": 18040048.0,
+    "volume": 23113743.0
    },
    "ex_stats_first": {
     "openInterest": 7459707.0,
@@ -13607,9 +13617,9 @@
     "volume_fp": 250.46
    },
    "ex_stats_close": {
-    "open_interest_fp": 10354.45,
+    "open_interest_fp": 10731.45,
     "volume_24h_fp": 7805.29,
-    "volume_fp": 11224.91
+    "volume_fp": 11601.91
    },
    "ex_stats_first": {
     "open_interest_fp": 3534.51,
@@ -15162,8 +15172,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.54,
-   "clv_cents": 3.0,
+   "close_price": 0.52,
+   "clv_cents": 1.0,
    "confirmed_after_min": 9,
    "date": "2026-11-06",
    "depth_by_book": {
@@ -15472,17 +15482,17 @@
     "volumeNum": 167.0
    },
    "ex_stats_close": {
-    "volume": 98082.991185,
-    "volume1mo": 98114.889488,
-    "volume1moClob": 98114.889488,
-    "volume1wk": 98114.889488,
-    "volume1wkClob": 98114.889488,
-    "volume1yr": 98114.889488,
-    "volume1yrClob": 98114.889488,
-    "volume24hr": 89020.756827,
-    "volume24hrClob": 89020.756827,
-    "volumeClob": 98082.991185,
-    "volumeNum": 98082.991185
+    "volume": 99139.238152,
+    "volume1mo": 100352.100541,
+    "volume1moClob": 100352.100541,
+    "volume1wk": 100352.100541,
+    "volume1wkClob": 100352.100541,
+    "volume1yr": 100352.100541,
+    "volume1yrClob": 100352.100541,
+    "volume24hr": 91253.44407000003,
+    "volume24hrClob": 91253.44407000003,
+    "volumeClob": 99139.238152,
+    "volumeNum": 99139.238152
    },
    "ex_stats_first": {
     "volume": 19452.842518999998,
@@ -15732,6 +15742,7 @@
     "volume_fp": 3888.54
    },
    "fade_price": 0.5,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-06T14:11:27Z",
    "game": "Washington vs Atlanta: Total Points",
    "game_surge_books": [
@@ -15874,13 +15885,14 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBATOTAL-26NOV06WASATL-229"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "polymarket"
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-07T02:26:00Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -15899,7 +15911,7 @@
     "Atlanta"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.02
   },
   {
    "alerted_utc": "2026-11-06T14:20:11Z",
@@ -15916,8 +15928,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": 2.0,
+   "close_price": 0.5,
+   "clv_cents": 1.0,
    "confirmed_after_min": 9,
    "date": "2026-11-06",
    "depth_by_book": {
@@ -15942,9 +15954,9 @@
     "volume_fp": 36.72
    },
    "ex_stats_close": {
-    "open_interest_fp": 93869.68,
+    "open_interest_fp": 94746.72,
     "volume_24h_fp": 119272.3,
-    "volume_fp": 122653.45
+    "volume_fp": 125907.41
    },
    "ex_stats_first": {
     "open_interest_fp": 2814.9,
@@ -17410,7 +17422,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 77800.65,
-    "volume_24h_fp": 30264.24,
+    "volume_24h_fp": 29982.84,
     "volume_fp": 86785.08
    },
    "ex_stats_first": {
@@ -17594,9 +17606,9 @@
     "volume_fp": 39.07
    },
    "ex_stats_close": {
-    "open_interest_fp": 46396.02,
-    "volume_24h_fp": 50588.92,
-    "volume_fp": 51247.13
+    "open_interest_fp": 47726.26,
+    "volume_24h_fp": 50787.46,
+    "volume_fp": 52577.37
    },
    "ex_stats_first": {
     "open_interest_fp": 4363.11,
@@ -19115,9 +19127,9 @@
     "volume_fp": 209.79
    },
    "ex_stats_close": {
-    "open_interest_fp": 609819.02,
+    "open_interest_fp": 633793.6599999999,
     "volume_24h_fp": 555844.34,
-    "volume_fp": 635833.67
+    "volume_fp": 661462.81
    },
    "ex_stats_first": {
     "open_interest_fp": 72666.7,
@@ -19562,9 +19574,9 @@
     "volume_fp": 6.99
    },
    "ex_stats_close": {
-    "open_interest_fp": 54228.490000000005,
-    "volume_24h_fp": 45546.39,
-    "volume_fp": 60445.76
+    "open_interest_fp": 88259.31000000001,
+    "volume_24h_fp": 45992.64,
+    "volume_fp": 94476.57999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 14922.27,
@@ -19985,6 +19997,7 @@
     "volume_fp": 48327.36
    },
    "fade_price": 0.32,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-06T04:56:24Z",
    "game": "Washington vs Atlanta",
    "game_surge_books": [],
@@ -20047,11 +20060,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBAGAME-26NOV06WASATL-ATL"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-11-07T02:26:00Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Atlanta",
@@ -20066,7 +20080,7 @@
     "Atlanta"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.46
   },
   {
    "alerted_utc": "2026-11-06T04:56:24Z",
@@ -20537,9 +20551,9 @@
     "volume_fp": 1.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 80464.3,
+    "open_interest_fp": 81249.07,
     "volume_24h_fp": 69175.89,
-    "volume_fp": 91477.51
+    "volume_fp": 92262.28
    },
    "ex_stats_first": {
     "open_interest_fp": 31010.74,
@@ -20738,6 +20752,7 @@
     "volume_fp": 58530.35
    },
    "fade_price": 0.27,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-06T03:36:08Z",
    "game": "Boston vs Charlotte",
    "game_surge_books": [],
@@ -20811,11 +20826,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBAGAME-26NOV06BOSCHA-BOS"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settled_utc": "2026-11-07T02:26:00Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Boston",
@@ -20830,7 +20846,7 @@
     "Charlotte"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.33
   },
   {
    "alerted_utc": "2026-11-06T01:55:57Z",
@@ -33242,9 +33258,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 19296.96,
+    "open_interest_fp": 19658.83,
     "volume_24h_fp": 11625.37,
-    "volume_fp": 20884.44
+    "volume_fp": 21246.31
    },
    "ex_stats_first": {
     "open_interest_fp": 7442.62,
@@ -36680,9 +36696,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 358905.56,
+    "open_interest_fp": 365394.19,
     "volume_24h_fp": 319450.42,
-    "volume_fp": 374270.57999999996
+    "volume_fp": 380765.48
    },
    "ex_stats_first": {
     "open_interest_fp": 13752.77,
@@ -37138,9 +37154,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 482005.36,
-    "volume_24h_fp": 480517.68,
-    "volume_fp": 500564.32
+    "open_interest_fp": 483438.33,
+    "volume_24h_fp": 489633.69,
+    "volume_fp": 502405.13
    },
    "ex_stats_first": {
     "open_interest_fp": 4437.27,
