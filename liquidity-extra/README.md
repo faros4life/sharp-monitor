@@ -1,19 +1,19 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 7, 12:20 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 8.
+Updated Sat Nov 7, 12:30 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 7.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 155-96 (-14.25u flat) | rule met: 35-31
+**Record:** 156-96 (-13.83u flat) | rule met: 35-31
 
-**Fade (paper, betting against the print):** 71-120 (+11.82u flat, after fees)
+**Fade (paper, betting against the print):** 71-121 (+10.82u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 7 12:10AM | NCAAB | Lamar vs Abilene Christian | moneyline: Abilene Christian | kalshi | $27k | -138 |  |  | +0.0c |  | pending |
 | Nov 6 10:50PM | NCAAB | North Dakota vs Winthrop | moneyline: Winthrop | kalshi | $29k | -376 |  |  | +3.0c | yes | pending |
 | Nov 6 10:50PM | NCAAB | Long Beach St. vs Montana St. | moneyline: Montana St. | kalshi | $27k | -426 |  |  | +3.0c | yes | pending |
-| Nov 6 9:40PM | TENNIS | Alexandra Shubladze vs Claire Liu | moneyline: Alexandra Shubladze | kalshi | $30k | +113 |  |  | +1.0c |  | pending |
+| Nov 6 9:40PM | TENNIS | Alexandra Shubladze vs Claire Liu | moneyline: Alexandra Shubladze | kalshi | $30k | +113 |  |  | +0.0c |  | pending |
 | Nov 6 9:20PM | TENNIS | Maria Sakkari vs Alexandra Eala | moneyline: Alexandra Eala | kalshi | $47k | -117 | ✅ novig |  | +1.0c |  | pending |
 | Nov 6 6:20PM | NCAAB | Missouri vs Saint Louis | moneyline: Missouri | kalshi | $38k | -150 |  |  | +0.0c | yes | L |
 | Nov 6 4:30PM | NCAAB | Michigan vs UConn: Spread | spread: NOT UConn wins by over 7.5 points | kalshi | $26k | -113 |  |  | -1.0c | yes | L |
@@ -27,7 +27,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 5 10:30PM | TENNIS | Sonmez vs Liu | moneyline: Sonmez | kalshi | $46k | +113 |  |  | +1.0c |  | L |
 | Nov 5 10:30PM | NCAAB | Yale vs UCF | moneyline: UCF | kalshi | $43k | -426 |  |  | +1.0c | yes | W |
 | Nov 5 5:10PM | NCAAB | Mercyhurst @ Notre Dame | spread: Mercyh +21.5 (-21.5) | novig | $67k | +102 |  | ❌ | +0.0c |  | L |
-| Nov 5 3:20PM | NCAAB | Tarleton St. vs San Diego | moneyline: San Diego | kalshi | $31k | -223 |  |  | +5.0c |  | pending |
+| Nov 5 3:20PM | NCAAB | Tarleton St. vs San Diego | moneyline: San Diego | kalshi | $31k | -223 |  |  | +5.0c |  | W |
 | Nov 5 3:20PM | NCAAB | Robert Morris vs UIC | moneyline: UIC | kalshi | $40k | -567 |  |  | -1.0c | yes | W |
 | Nov 5 3:20PM | NCAAB | North Dakota St. vs San Francisco | moneyline: San Francisco | kalshi | $41k | -317 |  |  | +2.0c |  | W |
 | Nov 5 3:20PM | NCAAB | Cal State Northridge vs Kansas St. | moneyline: Kansas St. | kalshi | $43k | -525 |  |  | +3.0c | yes | W |
