@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 7, 5:56 PM ET. This run: 2 new, 1 not confirmed, 1 pending. Open alerts: 56.
+Updated Sat Nov 7, 6:03 PM ET. This run: 2 new, 1 not confirmed, 2 pending. Open alerts: 56.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,10 +10,10 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 7 5:56PM | NHL | Red Wings vs. Avalanche | moneyline: Avalanche | polymarket | $39k | -203 |  |  | +0.0c |  | pending |
-| Nov 7 5:56PM | NCAAF | Michigan St. vs Michigan | moneyline: NOT Michigan St. | kalshi | $60k | -567 |  |  | +0.0c |  | pending |
+| Nov 7 6:03PM | NHL | Red Wings vs. Avalanche | moneyline: Avalanche | polymarket | $39k | -203 | ✅ novig |  | +0.0c |  | pending |
+| Nov 7 6:03PM | NCAAF | Michigan St. vs Michigan | moneyline: NOT Michigan St. | kalshi | $60k | -567 |  |  | +0.0c |  | pending |
 | Nov 7 5:51PM | NBA | Magic vs. Warriors | spread: Warriors (-7.5) | polymarket | $56k | -100 |  | ✅ | +0.0c |  | pending |
-| Nov 7 5:51PM | NBA | New York Knicks @ Cleveland Cavaliers | moneyline: NYK (0) | novig | $32k | -186 | ✅ polymarket,prophetx | ✅ | +0.0c |  | pending |
+| Nov 7 5:51PM | NBA | New York Knicks @ Cleveland Cavaliers | moneyline: NYK (0) | novig | $32k | -186 | ✅ polymarket,prophetx | ✅ | -0.5c | yes | pending |
 | Nov 7 5:51PM | NCAAF | Georgia vs Ole Miss | moneyline: Georgia | kalshi | $367k | -163 | ✅ prophetx |  | +0.0c |  | pending |
 | Nov 7 5:40PM | NBA | Nets vs. Hawks | moneyline: Hawks | polymarket | $30k | -257 | ✅ kalshi,novig,prophetx | ✅ | +0.0c |  | pending |
 | Nov 7 5:20PM | NCAAF | Oklahoma vs Florida | moneyline: Florida | kalshi | $122k | -186 | ✅ novig,prophetx | ❌ | +0.0c | yes | pending |
