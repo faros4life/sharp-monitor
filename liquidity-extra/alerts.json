@@ -1,6 +1,135 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-07T15:00:23Z",
+   "base_depth": 417558,
+   "best_price": 0.815,
+   "best_price_american": -441,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.81,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-07",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 991,
+     "new_this_side": 46273,
+     "other_side": 95524,
+     "other_side_all_levels": 122317,
+     "ratio": 4.8,
+     "this_side": 455292,
+     "this_side_all_levels": 516421
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "C. Alcaraz (0)",
+     "price": 0.815,
+     "this_side": 22832
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 79403.19,
+    "volume_24h_fp": 76719.8,
+    "volume_fp": 79485.17
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 4930.71,
+    "volume_24h_fp": 3437.66,
+    "volume_fp": 4930.71
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 74472.48000000001,
+    "volume_24h_fp": 73282.14,
+    "volume_fp": 74554.45999999999
+   },
+   "fade_price": 0.19,
+   "first_seen_utc": "2026-11-07T14:50:16Z",
+   "game": "Casper Ruud vs Carlos Alcaraz",
+   "game_surge_books": [
+    "kalshi"
+   ],
+   "game_x": 2.59,
+   "key": "kalshi|KXATPMATCH-26NOV07RUUALC|ml|1",
+   "lead_min": 60,
+   "league": "TENNIS",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 46273,
+   "new_x": 0.65,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 79403.19,
+      "volume_24h_fp": 76719.8,
+      "volume_fp": 79485.17
+     },
+     "game_normal": 199434,
+     "game_x": 2.59,
+     "normal": 71193,
+     "now": 516421,
+     "type": "ML",
+     "x": 7.25
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 1817586.0,
+      "volume": 2467206.0
+     },
+     "game_normal": 20329,
+     "game_x": 1.12,
+     "normal": 1104,
+     "now": 22832,
+     "type": "ML",
+     "x": 20.69
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": true,
+   "price": 0.81,
+   "price_american": -426,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.81,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXATPMATCH-26NOV07RUUALC-ALC"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Carlos Alcaraz",
+   "side_label": "Carlos Alcaraz",
+   "size_x": 7.25,
+   "start_source": "novig",
+   "start_utc": "2026-11-07T16:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig"
+   ],
+   "teams": [
+    "Casper Ruud",
+    "Carlos Alcaraz"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-07T14:50:16Z",
    "base_depth": 71024,
    "best_price": 0.4181,
@@ -45,6 +174,11 @@
     "open_interest_fp": 0.0,
     "volume_24h_fp": 0.0,
     "volume_fp": 0.0
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 1084.19,
+    "volume_24h_fp": 1096.71,
+    "volume_fp": 1108.86
    },
    "ex_stats_first": {
     "open_interest_fp": 1084.19,
@@ -231,6 +365,11 @@
     "volume_24h_fp": 0.0,
     "volume_fp": 0.0
    },
+   "ex_stats_close": {
+    "open_interest_fp": 1305.85,
+    "volume_24h_fp": 1305.85,
+    "volume_fp": 1305.85
+   },
    "ex_stats_first": {
     "open_interest_fp": 1305.85,
     "volume_24h_fp": 1305.85,
@@ -377,8 +516,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.82,
-   "clv_cents": 0.0,
+   "close_price": 0.83,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-07",
    "depth_by_book": {
@@ -413,6 +552,11 @@
     "open_interest_fp": 17.0,
     "volume_24h_fp": 17.0,
     "volume_fp": 17.0
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 3322.25,
+    "volume_24h_fp": 3323.9,
+    "volume_fp": 3323.9
    },
    "ex_stats_first": {
     "open_interest_fp": 3305.25,
@@ -598,6 +742,11 @@
     "volume_24h_fp": 0.0,
     "volume_fp": 0.0
    },
+   "ex_stats_close": {
+    "open_interest_fp": 164.86,
+    "volume_24h_fp": 164.86,
+    "volume_fp": 164.86
+   },
    "ex_stats_first": {
     "open_interest_fp": 164.86,
     "volume_24h_fp": 164.86,
@@ -773,6 +922,11 @@
     "open_interest_fp": 30.46,
     "volume_24h_fp": 30.46,
     "volume_fp": 30.46
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 229.15,
+    "volume_24h_fp": 229.15,
+    "volume_fp": 229.15
    },
    "ex_stats_first": {
     "open_interest_fp": 198.69,
@@ -960,6 +1114,11 @@
     "volume_24h_fp": 0.0,
     "volume_fp": 0.0
    },
+   "ex_stats_close": {
+    "open_interest_fp": 270.3,
+    "volume_24h_fp": 269.3,
+    "volume_fp": 270.3
+   },
    "ex_stats_first": {
     "open_interest_fp": 44.69,
     "volume_24h_fp": 43.69,
@@ -1103,8 +1262,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.55,
-   "clv_cents": 4.0,
+   "close_price": 0.28,
+   "clv_cents": -23.0,
    "confirmed_after_min": 10,
    "date": "2026-11-07",
    "depth_by_book": {
@@ -1129,9 +1288,9 @@
     "volume_fp": 2406201.77
    },
    "ex_stats_close": {
-    "open_interest_fp": 2730343.73,
-    "volume_24h_fp": 3669759.16,
-    "volume_fp": 3804649.99
+    "open_interest_fp": 2947292.96,
+    "volume_24h_fp": 4078222.62,
+    "volume_fp": 4208984.76
    },
    "ex_stats_first": {
     "open_interest_fp": 712315.72,
@@ -1170,6 +1329,8 @@
    "norm_ready_books": 1,
    "paper_only": true,
    "price": 0.51,
+   "price_after_15m": 0.2941,
+   "price_after_15m_book": "kalshi",
    "price_american": -104,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.55,
@@ -1191,6 +1352,7 @@
    "size_x": 22.03,
    "start_source": "kalshi",
    "start_utc": "2026-11-07T16:30:00Z",
+   "still_actionable": true,
    "surge_books": [
     "kalshi"
    ],
@@ -1254,9 +1416,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 704.74,
+    "open_interest_fp": 712.9300000000001,
     "volume_24h_fp": 685.27,
-    "volume_fp": 704.74
+    "volume_fp": 712.9300000000001
    },
    "ex_stats_first": {
     "open_interest_fp": 503.53000000000003,
@@ -2632,9 +2794,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 51226.759999999995,
-    "volume_24h_fp": 51290.17,
-    "volume_fp": 51322.78999999999
+    "open_interest_fp": 51379.84,
+    "volume_24h_fp": 51475.87,
+    "volume_fp": 51475.87
    },
    "ex_stats_first": {
     "open_interest_fp": 1.73,
@@ -2797,7 +2959,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 1001.45,
-    "volume_24h_fp": 1160.25,
+    "volume_24h_fp": 1172.57,
     "volume_fp": 1183.98
    },
    "ex_stats_first": {
