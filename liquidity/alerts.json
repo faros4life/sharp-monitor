@@ -56,6 +56,19 @@
     "volumeClob": 51.58,
     "volumeNum": 51.58
    },
+   "ex_stats_close": {
+    "volume": 47771.428534,
+    "volume1mo": 47771.428534,
+    "volume1moClob": 47771.428534,
+    "volume1wk": 47771.428534,
+    "volume1wkClob": 47771.428534,
+    "volume1yr": 47771.428534,
+    "volume1yrClob": 47771.428534,
+    "volume24hr": 47771.428534,
+    "volume24hrClob": 47771.428534,
+    "volumeClob": 47771.428534,
+    "volumeNum": 47771.428534
+   },
    "ex_stats_first": {
     "volume": 47719.85161,
     "volume1mo": 47748.697764000004,
@@ -266,6 +279,19 @@
     "volume24hrClob": 360.2,
     "volumeClob": 393.58,
     "volumeNum": 393.58
+   },
+   "ex_stats_close": {
+    "volume": 48388.392609999995,
+    "volume1mo": 48471.83908999999,
+    "volume1moClob": 48471.83908999999,
+    "volume1wk": 48471.83908999999,
+    "volume1wkClob": 48471.83908999999,
+    "volume1yr": 48471.83908999999,
+    "volume1yrClob": 48471.83908999999,
+    "volume24hr": 44647.817879,
+    "volume24hrClob": 44647.817879,
+    "volumeClob": 48388.392609999995,
+    "volumeNum": 48388.392609999995
    },
    "ex_stats_first": {
     "volume": 47994.808428,
@@ -486,9 +512,9 @@
     "volume_fp": 15.88
    },
    "ex_stats_close": {
-    "open_interest_fp": 8982.65,
+    "open_interest_fp": 8987.2,
     "volume_24h_fp": 3778.8500000000004,
-    "volume_fp": 9139.08
+    "volume_fp": 9143.630000000001
    },
    "ex_stats_first": {
     "open_interest_fp": 8963.64,
@@ -705,9 +731,9 @@
     "volume_fp": 320.6
    },
    "ex_stats_close": {
-    "open_interest_fp": 15949.470000000001,
-    "volume_24h_fp": 8979.56,
-    "volume_fp": 16362.13
+    "open_interest_fp": 16133.8,
+    "volume_24h_fp": 9209.93,
+    "volume_fp": 16546.46
    },
    "ex_stats_first": {
     "open_interest_fp": 15076.96,
@@ -907,8 +933,8 @@
     "volume": 197454.0
    },
    "ex_stats_close": {
-    "openInterest": 24248765.0,
-    "volume": 26539311.0
+    "openInterest": 24766864.0,
+    "volume": 27436357.0
    },
    "ex_stats_first": {
     "openInterest": 23677627.0,
@@ -1267,9 +1293,9 @@
     "volume_fp": 264.01
    },
    "ex_stats_close": {
-    "open_interest_fp": 55187.91,
-    "volume_24h_fp": 40147.36,
-    "volume_fp": 59952.29
+    "open_interest_fp": 57680.51,
+    "volume_24h_fp": 42559.77,
+    "volume_fp": 62444.89
    },
    "ex_stats_first": {
     "open_interest_fp": 38664.380000000005,
@@ -1484,9 +1510,9 @@
     "volume_fp": 1881.02
    },
    "ex_stats_close": {
-    "open_interest_fp": 532064.8,
-    "volume_24h_fp": 301343.77999999997,
-    "volume_fp": 606861.4299999999
+    "open_interest_fp": 532904.95,
+    "volume_24h_fp": 302029.39,
+    "volume_fp": 611654.29
    },
    "ex_stats_first": {
     "open_interest_fp": 522978.8,
@@ -1906,6 +1932,7 @@
     "volume_fp": 179573.11
    },
    "fade_price": 0.42,
+   "fade_units": 1.29,
    "first_seen_utc": "2026-11-07T18:12:58Z",
    "game": "Morehead St. vs Marist",
    "game_surge_books": [
@@ -1949,11 +1976,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26NOV07MOREMRST-MORE"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settled_utc": "2026-11-07T20:30:14Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Morehead St.",
@@ -1970,7 +1998,7 @@
     "Marist"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-07T18:32:46Z",
@@ -4218,6 +4246,7 @@
     "volume_fp": 86360.02
    },
    "fade_price": 0.5,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-07T16:12:10Z",
    "game": "Florida St. vs Boston College: Total Points",
    "game_surge_books": [
@@ -4338,13 +4367,14 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFTOTAL-26NOV07FSUBC-54"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-07T20:30:14Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -4362,7 +4392,7 @@
     "Boston College"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.98
   },
   {
    "alerted_utc": "2026-11-07T16:32:52Z",
@@ -6996,6 +7026,7 @@
     "volume": 2567057.0
    },
    "fade_price": 0.495,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-07T14:32:01Z",
    "game": "BYU @ Utah",
    "game_surge_books": [
@@ -7003,6 +7034,7 @@
     "prophetx"
    ],
    "game_x": 2.94,
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a18dd2-7583-7152-a2d5-2c5ece8135e5\", \"outcome_id\": \"01a18dd2-7583-7152-a2d5-2c720d5e57f7\"}",
    "lead_min": 128,
    "league": "NCAAF",
@@ -7121,13 +7153,14 @@
     "market_id": "01a18dd2-7583-7152-a2d5-2c5ece8135e5",
     "outcome_id": "01a18dd2-7583-7152-a2d5-2c720d5e57f7"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "kalshi"
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-07T20:30:14Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -7146,7 +7179,7 @@
     "Utah"
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": 0.96
   },
   {
    "alerted_utc": "2026-11-07T14:51:56Z",
@@ -10993,10 +11026,12 @@
     "volumeNum": 923.648097
    },
    "fade_price": 0.33,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-07T12:10:27Z",
    "game": "Panthers vs. Capitals",
    "game_surge_books": [],
    "game_x": 1.95,
+   "graded_by": "espn",
    "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6752955\"}",
    "lead_min": 310,
    "league": "NHL",
@@ -11118,13 +11153,14 @@
     "outcome_index": 1,
     "pm_market_id": "6752955"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-07T20:30:14Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Panthers",
@@ -11142,7 +11178,7 @@
     "Capitals"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.46
   },
   {
    "alerted_utc": "2026-11-07T11:40:10Z",
@@ -12200,10 +12236,12 @@
     "volume_fp": 56547.7
    },
    "fade_price": 0.51,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-07T07:20:11Z",
    "game": "BYU vs Utah: Total Points",
    "game_surge_books": [],
    "game_x": 1.18,
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFTOTAL-26NOV07BYUUTAH-50\"}",
    "lead_min": 570,
    "league": "NCAAF",
@@ -12314,13 +12352,14 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFTOTAL-26NOV07BYUUTAH-50"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-07T20:30:14Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -12338,7 +12377,7 @@
     "Utah"
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": 0.98
   },
   {
    "alerted_utc": "2026-11-07T07:30:13Z",
@@ -12769,8 +12808,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.69,
-   "clv_cents": -3.0,
+   "close_price": 0.65,
+   "clv_cents": -7.0,
    "confirmed_after_min": 10,
    "date": "2026-11-07",
    "depth_by_book": {
@@ -12795,9 +12834,9 @@
     "volume_fp": 104.85
    },
    "ex_stats_close": {
-    "open_interest_fp": 12667.55,
-    "volume_24h_fp": 16458.98,
-    "volume_fp": 17763.309999999998
+    "open_interest_fp": 14821.619999999999,
+    "volume_24h_fp": 19150.1,
+    "volume_fp": 20287.760000000002
    },
    "ex_stats_first": {
     "open_interest_fp": 1416.92,
@@ -12926,10 +12965,12 @@
     "volume_fp": 156159.07
    },
    "fade_price": 0.52,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-07T07:10:10Z",
    "game": "BYU vs Utah: Spread",
    "game_surge_books": [],
    "game_x": 1.21,
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFSPREAD-26NOV07BYUUTAH-UTAH5\"}",
    "lead_min": 580,
    "league": "NCAAF",
@@ -13039,13 +13080,14 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFSPREAD-26NOV07BYUUTAH-UTAH5"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-07T20:30:14Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "BYU Cougars +4.5 (-110)"
@@ -13065,7 +13107,7 @@
     "Utah"
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": 1.02
   },
   {
    "alerted_utc": "2026-11-07T07:10:10Z",
@@ -13942,10 +13984,12 @@
     "volume_fp": 140183.15
    },
    "fade_price": 0.49,
+   "fade_units": 0.97,
    "first_seen_utc": "2026-11-07T05:30:13Z",
    "game": "BYU vs Utah: Spread",
    "game_surge_books": [],
    "game_x": 1.04,
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFSPREAD-26NOV07BYUUTAH-UTAH5\"}",
    "lead_min": 680,
    "league": "NCAAF",
@@ -14056,13 +14100,14 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFSPREAD-26NOV07BYUUTAH-UTAH5"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-07T20:30:14Z",
    "sharp_agree": [
     "BYU Cougars +4.5 (-110)"
    ],
@@ -14082,7 +14127,7 @@
     "Utah"
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-07T05:30:13Z",
@@ -14506,6 +14551,7 @@
     "volumeNum": 3662.549795
    },
    "fade_price": 0.47,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-07T04:20:48Z",
    "game": "Panthers vs. Capitals",
    "game_surge_books": [
@@ -14513,6 +14559,7 @@
     "prophetx"
    ],
    "game_x": 2.91,
+   "graded_by": "espn",
    "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"5563938\"}",
    "lead_min": 779,
    "league": "NHL",
@@ -14643,13 +14690,14 @@
     "outcome_index": 1,
     "pm_market_id": "5563938"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-07T20:30:14Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Capitals",
@@ -14666,7 +14714,7 @@
     "Capitals"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.87
   },
   {
    "alerted_utc": "2026-11-07T03:50:12Z",
@@ -15082,6 +15130,7 @@
     "volume_fp": 11681.69
    },
    "fade_price": 0.5,
+   "fade_units": 0.93,
    "first_seen_utc": "2026-11-07T02:50:11Z",
    "game": "Florida St. vs Boston College: Spread",
    "game_surge_books": [],
@@ -15199,13 +15248,14 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFSPREAD-26NOV07FSUBC-FSU7"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-07T20:30:14Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Boston College",
@@ -15223,7 +15273,7 @@
     "Boston College"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-07T02:41:26Z",
@@ -23374,6 +23424,7 @@
     "volume_fp": 10477.03
    },
    "fade_price": 0.52,
+   "fade_units": 0.86,
    "first_seen_utc": "2026-11-06T20:20:12Z",
    "game": "Clemson vs Syracuse: Spread",
    "game_surge_books": [],
@@ -23492,11 +23543,12 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFSPREAD-26NOV07CLEMSYR-CLEM3"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-11-07T20:30:14Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Syracuse",
@@ -23513,7 +23565,7 @@
     "Syracuse"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-06T20:20:12Z",
@@ -23825,10 +23877,12 @@
     "volume_fp": 817997.26
    },
    "fade_price": 0.38,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-06T20:11:33Z",
    "game": "BYU vs Utah",
    "game_surge_books": [],
    "game_x": 1.08,
+   "graded_by": "espn",
    "key": "kalshi|KXNCAAFGAME-26NOV07BYUUTAH|ml|1",
    "lead_min": 1240,
    "league": "NCAAF",
@@ -23948,13 +24002,14 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26NOV07BYUUTAH-UTAH"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-07T20:30:14Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "BYU Cougars +4.5 (-110)"
@@ -23975,7 +24030,7 @@
     "Utah"
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": 0.6
   },
   {
    "alerted_utc": "2026-11-06T20:11:33Z",
@@ -24823,10 +24878,12 @@
     "volume_fp": 24402.62
    },
    "fade_price": 0.52,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-06T19:40:12Z",
    "game": "BYU vs Utah: Total Points",
    "game_surge_books": [],
    "game_x": 1.01,
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFTOTAL-26NOV07BYUUTAH-49\"}",
    "lead_min": 1269,
    "league": "NCAAF",
@@ -24925,11 +24982,12 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFTOTAL-26NOV07BYUUTAH-49"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settled_utc": "2026-11-07T20:30:14Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -24944,7 +25002,7 @@
     "Utah"
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": 1.02
   },
   {
    "alerted_utc": "2026-11-06T19:51:01Z",
@@ -29451,6 +29509,7 @@
     "volume_fp": 4300.7
    },
    "fade_price": 0.5,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-06T15:20:11Z",
    "game": "Florida St. vs Boston College: Spread",
    "game_surge_books": [],
@@ -29569,11 +29628,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFSPREAD-26NOV07FSUBC-FSU7"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-11-07T20:30:14Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Florida St.",
@@ -29590,7 +29650,7 @@
     "Boston College"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.96
   },
   {
    "alerted_utc": "2026-11-06T15:20:11Z",
@@ -34592,6 +34652,7 @@
     "volume_fp": 1119.71
    },
    "fade_price": 0.39,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-06T10:30:19Z",
    "game": "North Carolina Central vs Norfolk St.",
    "game_surge_books": [],
@@ -34654,11 +34715,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26NOV07NCCUNORF-NCCU"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-11-07T20:30:14Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "North Carolina Central",
@@ -34673,7 +34735,7 @@
     "Norfolk St."
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.59
   },
   {
    "alerted_utc": "2026-11-06T07:20:10Z",
