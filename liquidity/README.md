@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 7, 5:06 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 53.
+Updated Sat Nov 7, 5:12 PM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 50.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 1046-883 (-77.14u flat) | rule met: 635-565
+**Record:** 1049-883 (-76.33u flat) | rule met: 635-565
 
-**Fade (paper, betting against the print):** 617-773 (-87.96u flat, after fees)
+**Fade (paper, betting against the print):** 617-776 (-90.96u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -14,7 +14,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 7 4:50PM | NBA | Denver vs Indiana: Spread | spread: NOT Denver wins by over 7.5 points | kalshi | $182k | +104 | ✅ polymarket |  | +0.0c | yes | pending |
 | Nov 7 4:40PM | NHL | Rangers vs. Kraken | spread: Rangers (-1.5) | polymarket | $48k | +186 |  |  | +0.0c |  | pending |
 | Nov 7 4:40PM | NBA | Denver vs Indiana: Total Points | total: Over 228.5 points | kalshi | $54k | -117 |  | ✅ | +0.0c | yes | pending |
-| Nov 7 4:40PM | NHL | New York R vs Seattle | moneyline: New York R | kalshi | $67k | -133 | ✅ novig,prophetx |  | +0.0c | yes | pending |
+| Nov 7 4:40PM | NHL | New York R vs Seattle | moneyline: New York R | kalshi | $67k | -133 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Nov 7 4:30PM | NHL | Devils vs. Islanders | moneyline: Devils | polymarket | $25k | -144 | ✅ novig |  | +0.0c |  | pending |
 | Nov 7 4:30PM | NBA | Denver vs Indiana | moneyline: Denver | kalshi | $260k | -285 | ✅ novig,prophetx |  | -1.0c | yes | pending |
 | Nov 7 4:20PM | NHL | Sharks vs. Stars | spread: Sharks (+1.5) | polymarket | $29k | -100 |  |  | +0.0c |  | pending |
@@ -52,7 +52,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 7 11:32AM | NCAAF | Oklahoma St. vs Kansas St.: Total Points | total: Over 63.5 points | kalshi | $33k | -108 |  | ✅ | +0.0c | yes | W |
 | Nov 7 11:32AM | NCAAF | Florida St. vs Boston College: Total Points | total: Over 53.5 points | kalshi | $27k | -104 | ✅ novig |  | +2.0c | yes | W |
 | Nov 7 11:32AM | NHL | St. Louis vs Nashville: Total Goals | total: NOT Over 5.5 goals scored | kalshi | $30k | +108 |  |  | +0.0c | yes | W |
-| Nov 7 11:12AM | NCAAF | South Dakota State @ Northern Iowa | moneyline: SDKST (0) | novig | $26k | -525 |  |  | +1.5c | yes | pending |
+| Nov 7 11:12AM | NCAAF | South Dakota State @ Northern Iowa | moneyline: SDKST (0) | novig | $26k | -525 |  |  | +1.5c | yes | W |
 | Nov 7 10:51AM | NBA | Spurs vs. Trail Blazers | spread: Trail Blazers (+5.5) | polymarket | $26k | -104 |  | ✅ | +1.0c | yes | pending |
 | Nov 7 10:51AM | NCAAF | Oklahoma State @ Kansas State | moneyline: OKST (0) | novig | $50k | -223 |  | ❌ | +2.0c | yes | W |
 | Nov 7 10:32AM | NHL | Lightning vs. Wild | moneyline: Lightning | polymarket | $39k | -138 |  |  | -1.0c | yes | pending |
@@ -79,7 +79,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 7 8:30AM | NHL | Canucks vs. Oilers | spread: Canucks (+1.5) | polymarket | $30k | +122 |  |  | -2.0c | yes | pending |
 | Nov 7 8:30AM | NHL | Sharks vs. Stars | total: Under (6.5) | polymarket | $33k | -122 |  | ✅ | +2.0c |  | pending |
 | Nov 7 8:10AM | NHL | Canucks vs. Oilers | moneyline: Oilers | polymarket | $29k | -317 |  |  | +1.0c |  | pending |
-| Nov 7 8:10AM | NHL | Sharks vs. Stars | moneyline: Stars | polymarket | $34k | -285 |  |  | -1.0c |  | pending |
+| Nov 7 8:10AM | NHL | Sharks vs. Stars | moneyline: Stars | polymarket | $34k | -285 |  |  | +0.0c |  | pending |
 | Nov 7 8:10AM | NCAAF | Arkansas @ Auburn | spread: ARK +10.5 (-10.5) | novig | $25k | -104 | ✅ kalshi,prophetx |  | -1.5c |  | W |
 | Nov 7 8:10AM | NCAAF | Oklahoma St. vs Kansas St.: Spread | spread: NOT Oklahoma St. wins by over 6.5 points | kalshi | $37k | +108 | ✅ novig | ❌ | -2.0c | yes | L |
 | Nov 7 7:50AM | NCAAF | Tulsa vs Tulane: Spread | spread: NOT Tulsa wins by over 2.5 points | kalshi | $89k | +108 |  | ❌ | -1.0c | yes | L |
@@ -91,7 +91,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 7 4:46AM | NHL | Rangers vs. Kraken | moneyline: Rangers | polymarket | $32k | -127 | ✅ novig |  | +1.0c |  | pending |
 | Nov 7 2:30AM | NCAAF | BYU vs Utah: Total Points | total: NOT Over 49.5 points | kalshi | $31k | -100 | ✅ novig |  | -2.0c | yes | W |
 | Nov 7 2:30AM | NCAAF | Tennessee-Martin vs Charleston Southern | moneyline: Charleston Southern | kalshi | $26k | -223 |  |  | -5.0c | yes | pending |
-| Nov 7 2:30AM | NCAAF | South Dakota St. vs Northern Iowa | moneyline: South Dakota St. | kalshi | $29k | -525 |  |  | +1.0c | yes | pending |
+| Nov 7 2:30AM | NCAAF | South Dakota St. vs Northern Iowa | moneyline: South Dakota St. | kalshi | $29k | -525 |  |  | +1.0c | yes | W |
 | Nov 7 2:30AM | NCAAF | Samford vs East Tennessee St. | moneyline: East Tennessee St. | kalshi | $29k | -488 |  |  | +0.0c | yes | L |
 | Nov 7 2:30AM | NCAAF | Penn vs Cornell | moneyline: Cornell | kalshi | $25k | -257 |  |  | -30.0c | yes | L |
 | Nov 7 2:20AM | NCAAF | BYU vs Utah: Spread | spread: Utah wins by over 4.5 points | kalshi | $55k | -100 | ✅ novig | ❌ | +0.0c |  | W |
@@ -99,7 +99,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 7 1:40AM | NCAAF | Arkansas vs Auburn: Spread | spread: NOT Auburn wins by over 10.5 points | kalshi | $25k | -100 | ✅ novig,prophetx |  | +0.0c | yes | W |
 | Nov 7 1:40AM | NCAAF | Dartmouth vs Princeton | moneyline: Dartmouth | kalshi | $30k | +104 |  |  | +1.0c | yes | L |
 | Nov 7 1:20AM | NCAAF | Texas @ Missouri | moneyline: MIZ (0) | novig | $40k | +127 |  |  | +0.0c | yes | W |
-| Nov 7 12:50AM | NCAAF | Illinois St. vs North Dakota | moneyline: North Dakota | kalshi | $27k | -213 |  |  | +0.0c |  | pending |
+| Nov 7 12:50AM | NCAAF | Illinois St. vs North Dakota | moneyline: North Dakota | kalshi | $27k | -213 |  |  | +0.0c |  | W |
 | Nov 7 12:40AM | NCAAF | BYU vs Utah: Spread | spread: NOT Utah wins by over 4.5 points | kalshi | $40k | -108 | ✅ novig | ✅ | -1.0c | yes | L |
 | Nov 7 12:30AM | NCAAF | North Carolina vs UConn: Total Points | total: NOT Over 54.5 points | kalshi | $35k | +104 |  |  | -2.0c | yes | L |
 | Nov 7 12:10AM | NCAAF | Richmond vs Villanova | moneyline: Villanova | kalshi | $25k | -335 |  |  | +1.0c | yes | W |
