@@ -1,19 +1,20 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 6, 9:13 PM ET. This run: 0 new, 1 not confirmed, 0 pending. Open alerts: 12.
+Updated Fri Nov 6, 9:20 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 11.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 149-93 (-13.04u flat) | rule met: 35-31
+**Record:** 150-94 (-13.66u flat) | rule met: 35-31
 
-**Fade (paper, betting against the print):** 68-114 (+13.66u flat, after fees)
+**Fade (paper, betting against the print):** 69-115 (+14.00u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 6 6:20PM | NCAAB | Missouri vs Saint Louis | moneyline: Missouri | kalshi | $38k | -150 |  |  | +0.0c | yes | pending |
+| Nov 6 9:20PM | TENNIS | Maria Sakkari vs Alexandra Eala | moneyline: Alexandra Eala | kalshi | $47k | -117 | ✅ novig |  | +0.0c |  | pending |
+| Nov 6 6:20PM | NCAAB | Missouri vs Saint Louis | moneyline: Missouri | kalshi | $38k | -150 |  |  | +0.0c | yes | L |
 | Nov 6 4:30PM | NCAAB | Michigan vs UConn: Spread | spread: NOT UConn wins by over 7.5 points | kalshi | $26k | -113 |  |  | -1.0c | yes | pending |
 | Nov 6 3:20PM | NCAAB | Massachusetts @ Boston College | moneyline: BC (0) | novig | $28k | -213 |  |  | +0.0c |  | W |
-| Nov 6 1:20AM | NCAAB | Loyola Maryland vs Mount St. Mary's | moneyline: Mount St. Mary's | kalshi | $28k | -245 |  |  | -1.0c |  | pending |
+| Nov 6 1:20AM | NCAAB | Loyola Maryland vs Mount St. Mary's | moneyline: Mount St. Mary's | kalshi | $28k | -245 |  |  | -1.0c |  | W |
 | Nov 6 1:20AM | NCAAB | Boston University vs Brown | moneyline: Brown | kalshi | $31k | -213 |  |  | -14.0c |  | pending |
 | Nov 6 1:00AM | NCAAB | UNC Greensboro vs Elon | moneyline: Elon | kalshi | $33k | -335 |  |  | +2.0c |  | W |
 | Nov 6 1:00AM | NCAAB | Austin Peay vs Kennesaw St. | moneyline: Kennesaw St. | kalshi | $28k | -233 |  |  | +0.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 25 9:10PM | TENNIS | Wang vs Parks | moneyline: Wang | kalshi | $35k | -170 |  |  | -37.0c | yes | L |
 | Oct 25 7:10PM | MLB | Milwaukee vs Tampa Bay: Total Runs | total: NOT Over 7.5 runs scored | kalshi | $65k | -127 | ✅ novig,polymarket |  | +16.0c | yes | L |
 | Oct 25 11:12AM | TENNIS | Mannarino vs Molcan | moneyline: Mannarino | kalshi | $159k | -257 |  |  | +26.0c |  | W |
-| Oct 25 10:30AM | TENNIS | Mannarino vs Molcan | moneyline: Molcan | kalshi | $26k | -400 |  |  | -77.0c | yes | L |
