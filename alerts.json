@@ -300,7 +300,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+0.5 pts",
+   "clv": "+1 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline",
@@ -334,7 +334,7 @@
   },
   {
    "alert_utc": "2026-11-06T21:00:22Z",
-   "beat_close": true,
+   "beat_close": false,
    "beat_true_close": null,
    "bet": "Arizona Wildcats -6.5 (-115)",
    "book": "Hard Rock",
@@ -342,7 +342,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+0.5 pts",
+   "clv": "+0 pts",
    "confirm": "yes",
    "confirmed_by": [
     "Matchbook"
@@ -950,13 +950,13 @@
   {
    "alert_utc": "2026-11-06T13:50:20Z",
    "beat_close": true,
-   "beat_true_close": null,
+   "beat_true_close": true,
    "bet": "UMKC Kangaroos +1.5 (-125)",
    "book": "Hard Rock",
    "book_key": "hardrockbet",
-   "close_fair_prob": null,
-   "close_read_mins_before": null,
-   "close_value_pct": null,
+   "close_fair_prob": 0.5584,
+   "close_read_mins_before": 30,
+   "close_value_pct": 0.5,
    "clv": "+2.5 pts",
    "confirm": "yes",
    "confirmed_by": [
@@ -991,13 +991,13 @@
   {
    "alert_utc": "2026-11-06T14:40:13Z",
    "beat_close": true,
-   "beat_true_close": null,
+   "beat_true_close": true,
    "bet": "Under 149.5 (-120)",
    "book": "Hard Rock",
    "book_key": "hardrockbet",
-   "close_fair_prob": null,
-   "close_read_mins_before": null,
-   "close_value_pct": null,
+   "close_fair_prob": 0.5792,
+   "close_read_mins_before": 30,
+   "close_value_pct": 6.2,
    "clv": "+3.5 pts",
    "confirm": "yes",
    "confirmed_by": [
@@ -1032,13 +1032,13 @@
   {
    "alert_utc": "2026-11-06T15:55:12Z",
    "beat_close": true,
-   "beat_true_close": null,
+   "beat_true_close": false,
    "bet": "Over 153.5 (-115)",
    "book": "Hard Rock",
    "book_key": "hardrockbet",
-   "close_fair_prob": null,
-   "close_read_mins_before": null,
-   "close_value_pct": null,
+   "close_fair_prob": 0.5155,
+   "close_read_mins_before": 30,
+   "close_value_pct": -3.6,
    "clv": "+0.5 pts",
    "confirm": "yes",
    "confirmed_by": [
@@ -1073,13 +1073,13 @@
   {
    "alert_utc": "2026-11-06T16:40:15Z",
    "beat_close": true,
-   "beat_true_close": null,
+   "beat_true_close": true,
    "bet": "Central Arkansas Bears +19.5 (-120)",
    "book": "Hard Rock",
    "book_key": "hardrockbet",
-   "close_fair_prob": null,
-   "close_read_mins_before": null,
-   "close_value_pct": null,
+   "close_fair_prob": 0.5733,
+   "close_read_mins_before": 30,
+   "close_value_pct": 5.1,
    "clv": "+2 pts",
    "confirm": "yes",
    "confirmed_by": [
@@ -1195,7 +1195,7 @@
   },
   {
    "alert_utc": "2026-11-06T04:25:14Z",
-   "beat_close": true,
+   "beat_close": false,
    "beat_true_close": false,
    "bet": "Dallas Mavericks -6.5 (-120)",
    "book": "ProphetX",
@@ -1203,7 +1203,7 @@
    "close_fair_prob": 0.4977,
    "close_read_mins_before": 30,
    "close_value_pct": -9.6,
-   "clv": "+0.5 pts",
+   "clv": "+0 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline"
@@ -1613,7 +1613,7 @@
    "close_fair_prob": 0.5371,
    "close_read_mins_before": 30,
    "close_value_pct": 3.4,
-   "clv": "+2 pts",
+   "clv": "+1 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline"
@@ -1889,6 +1889,88 @@
    "sport": "NCAAB",
    "start_utc": "2026-11-07T01:00:00Z",
    "top25": false,
+   "units_flat": null
+  },
+  {
+   "alert_utc": "2026-11-07T00:50:15Z",
+   "beat_close": true,
+   "beat_true_close": true,
+   "bet": "Under 143.5 (-110)",
+   "book": "Hard Rock",
+   "book_key": "hardrockbet",
+   "close_fair_prob": 0.533,
+   "close_read_mins_before": 5,
+   "close_value_pct": 1.8,
+   "clv": "+1.5 pts",
+   "confirm": "yes",
+   "confirmed_by": [
+    "BetOnline"
+   ],
+   "edge_pct": 1.8,
+   "executable_book": true,
+   "fade_book": "kalshi",
+   "fade_point": 143.5,
+   "fade_price": 108,
+   "fade_price_after_fee": 101,
+   "fade_units": null,
+   "final": null,
+   "floor_line": 142.5,
+   "game": "Robert Morris Colonials @ UIC Flames",
+   "grade": "A",
+   "kind": "tot",
+   "late": true,
+   "minutes_before_start": 10,
+   "point": 143.5,
+   "price": -110,
+   "price_after_fee": -110,
+   "pricing_bettable": true,
+   "result": null,
+   "score": 76,
+   "sent_to_phone": false,
+   "sport": "NCAAB",
+   "start_utc": "2026-11-07T01:00:00Z",
+   "top25": false,
+   "units_flat": null
+  },
+  {
+   "alert_utc": "2026-11-07T01:00:29Z",
+   "beat_close": true,
+   "beat_true_close": null,
+   "bet": "Over 223.5 (-108)",
+   "book": "ProphetX",
+   "book_key": "prophetx",
+   "close_fair_prob": null,
+   "close_read_mins_before": null,
+   "close_value_pct": null,
+   "clv": "+1.5 pts",
+   "confirm": "yes",
+   "confirmed_by": [
+    "BetOnline"
+   ],
+   "edge_pct": -0.1,
+   "executable_book": true,
+   "fade_book": "hardrockbet",
+   "fade_point": 223.5,
+   "fade_price": 100,
+   "fade_price_after_fee": 100,
+   "fade_units": null,
+   "final": null,
+   "floor_line": 224.5,
+   "game": "Oklahoma City Thunder @ Memphis Grizzlies",
+   "grade": "B",
+   "kind": "tot",
+   "late": true,
+   "minutes_before_start": 0,
+   "point": 223.5,
+   "price": -108,
+   "price_after_fee": -110,
+   "pricing_bettable": true,
+   "result": null,
+   "score": 69,
+   "sent_to_phone": true,
+   "sport": "NBA",
+   "start_utc": "2026-11-07T01:00:00Z",
+   "top25": null,
    "units_flat": null
   },
   {
@@ -3224,8 +3306,8 @@
    "fade_point": 160.5,
    "fade_price": -108,
    "fade_price_after_fee": -116,
-   "fade_units": null,
-   "final": null,
+   "fade_units": -1.0,
+   "final": "NE 72, UVA 97",
    "floor_line": 161.5,
    "game": "Northeastern Huskies @ Virginia Cavaliers",
    "grade": "B",
@@ -3236,13 +3318,13 @@
    "price": -113,
    "price_after_fee": -121,
    "pricing_bettable": true,
-   "result": null,
+   "result": "W",
    "score": 74,
    "sent_to_phone": true,
    "sport": "NCAAB",
    "start_utc": "2026-11-06T22:00:00Z",
    "top25": true,
-   "units_flat": null
+   "units_flat": 0.82
   },
   {
    "alert_utc": "2026-11-06T15:10:18Z",
@@ -3265,8 +3347,8 @@
    "fade_point": 16.5,
    "fade_price": 100,
    "fade_price_after_fee": -107,
-   "fade_units": null,
-   "final": null,
+   "fade_units": 0.93,
+   "final": "UWF 75, FIU 85",
    "floor_line": -16.5,
    "game": "West Florida Argonauts @ Florida Int'l Golden Panthers",
    "grade": "B",
@@ -3277,13 +3359,13 @@
    "price": -117,
    "price_after_fee": -126,
    "pricing_bettable": true,
-   "result": null,
+   "result": "L",
    "score": 70,
    "sent_to_phone": false,
    "sport": "NCAAB",
    "start_utc": "2026-11-06T22:00:00Z",
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alert_utc": "2026-11-06T18:55:15Z",
@@ -3306,8 +3388,8 @@
    "fade_point": 160.5,
    "fade_price": -110,
    "fade_price_after_fee": -110,
-   "fade_units": null,
-   "final": null,
+   "fade_units": -1.0,
+   "final": "UAPB 53, BAY 109",
    "floor_line": 162.0,
    "game": "Arkansas-Pine Bluff Golden Lions @ Baylor Bears",
    "grade": "A",
@@ -3318,13 +3400,13 @@
    "price": -110,
    "price_after_fee": -110,
    "pricing_bettable": true,
-   "result": null,
+   "result": "W",
    "score": 90,
    "sent_to_phone": false,
    "sport": "NCAAB",
    "start_utc": "2026-11-06T22:00:00Z",
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.91
   },
   {
    "alert_utc": "2026-11-06T19:10:16Z",
@@ -3347,8 +3429,8 @@
    "fade_point": 161.5,
    "fade_price": -115,
    "fade_price_after_fee": -115,
-   "fade_units": null,
-   "final": null,
+   "fade_units": 0.87,
+   "final": "NE 72, UVA 97",
    "floor_line": 160.5,
    "game": "Northeastern Huskies @ Virginia Cavaliers",
    "grade": "A",
@@ -3359,13 +3441,13 @@
    "price": -105,
    "price_after_fee": -105,
    "pricing_bettable": true,
-   "result": null,
+   "result": "L",
    "score": 82,
    "sent_to_phone": true,
    "sport": "NCAAB",
    "start_utc": "2026-11-06T22:00:00Z",
    "top25": true,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alert_utc": "2026-11-06T19:55:15Z",
@@ -3388,8 +3470,8 @@
    "fade_point": 161.5,
    "fade_price": 101,
    "fade_price_after_fee": -101,
-   "fade_units": null,
-   "final": null,
+   "fade_units": 0.99,
+   "final": "UWF 75, FIU 85",
    "floor_line": 162.0,
    "game": "West Florida Argonauts @ Florida Int'l Golden Panthers",
    "grade": "B",
@@ -3400,13 +3482,13 @@
    "price": -112,
    "price_after_fee": -114,
    "pricing_bettable": true,
-   "result": null,
+   "result": "L",
    "score": 70,
    "sent_to_phone": false,
    "sport": "NCAAB",
    "start_utc": "2026-11-06T22:00:00Z",
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alert_utc": "2026-11-06T15:40:13Z",
@@ -33363,6 +33445,54 @@
  ],
  "all_alerts": [
   {
+   "alert_text": "Over 223.5 (-108) at ProphetX [-110 after ProphetX fee] (also: Hard Rock, Novig, Kalshi)",
+   "bet": "Over 223.5 (-108)",
+   "bet_result": null,
+   "book": "ProphetX",
+   "confirmed_by": [
+    "BetOnline"
+   ],
+   "edge_pct": -0.1,
+   "final": null,
+   "game": "Oklahoma City Thunder @ Memphis Grizzlies",
+   "grade": "B",
+   "late": true,
+   "minutes_before_start": 0,
+   "price": -108,
+   "price_after_fee": -110,
+   "pushed_to_phone": true,
+   "repeat": false,
+   "score": 69,
+   "sent_et": "2026-11-06 20:00",
+   "sport": "NBA",
+   "start_utc": "2026-11-07T01:00:00Z",
+   "why": "Pinnacle total moved 223.5 -> 225; bet only at 224.5 or better (confirmed by BetOnline)"
+  },
+  {
+   "alert_text": "Under 143.5 (-110) at Hard Rock (also: ProphetX, Novig, Kalshi)",
+   "bet": "Under 143.5 (-110)",
+   "bet_result": null,
+   "book": "Hard Rock",
+   "confirmed_by": [
+    "BetOnline"
+   ],
+   "edge_pct": 1.8,
+   "final": null,
+   "game": "Robert Morris Colonials @ UIC Flames",
+   "grade": "A",
+   "late": true,
+   "minutes_before_start": 10,
+   "price": -110,
+   "price_after_fee": -110,
+   "pushed_to_phone": false,
+   "repeat": false,
+   "score": 76,
+   "sent_et": "2026-11-06 19:50",
+   "sport": "NCAAB",
+   "start_utc": "2026-11-07T01:00:00Z",
+   "why": "Pinnacle total moved 143.5 -> 142; bet only at 142.5 or better (confirmed by BetOnline)"
+  },
+  {
    "alert_text": "Portland Pilots -1.5 (-110) at ProphetX [-112 after ProphetX fee] (also: Kalshi)",
    "bet": "Portland Pilots -1.5 (-110)",
    "bet_result": null,
@@ -33825,13 +33955,13 @@
   {
    "alert_text": "Over 163.5 (-111) at Novig (also: ProphetX)",
    "bet": "Over 163.5 (-111)",
-   "bet_result": null,
+   "bet_result": "L",
    "book": "Novig",
    "confirmed_by": [
     "BetOnline"
    ],
    "edge_pct": -4.3,
-   "final": null,
+   "final": "UWF 75, FIU 85",
    "game": "West Florida Argonauts @ Florida Int'l Golden Panthers",
    "grade": "B",
    "late": true,
@@ -34113,13 +34243,13 @@
   {
    "alert_text": "Over 161.5 (-112) at ProphetX [-114 after ProphetX fee] (also: Kalshi)",
    "bet": "Over 161.5 (-112)",
-   "bet_result": null,
+   "bet_result": "L",
    "book": "ProphetX",
    "confirmed_by": [
     "BetOnline"
    ],
    "edge_pct": -4.6,
-   "final": null,
+   "final": "UWF 75, FIU 85",
    "game": "West Florida Argonauts @ Florida Int'l Golden Panthers",
    "grade": "B",
    "late": false,
@@ -34137,13 +34267,13 @@
   {
    "alert_text": "Over 162.5 (-115) at Hard Rock",
    "bet": "Over 162.5 (-115)",
-   "bet_result": null,
+   "bet_result": "W",
    "book": "Hard Rock",
    "confirmed_by": [
     "BetOnline"
    ],
    "edge_pct": -4.8,
-   "final": null,
+   "final": "UAPB 53, BAY 109",
    "game": "Arkansas-Pine Bluff Golden Lions @ Baylor Bears",
    "grade": "B",
    "late": false,
@@ -34282,13 +34412,13 @@
   {
    "alert_text": "Under 161.5 (-105) at Hard Rock (also: ProphetX, Novig, Kalshi)",
    "bet": "Under 161.5 (-105)",
-   "bet_result": null,
+   "bet_result": "L",
    "book": "Hard Rock",
    "confirmed_by": [
     "BetOnline"
    ],
    "edge_pct": 4.1,
-   "final": null,
+   "final": "NE 72, UVA 97",
    "game": "Northeastern Huskies @ Virginia Cavaliers",
    "grade": "A",
    "late": false,
@@ -34306,13 +34436,13 @@
   {
    "alert_text": "Over 160.5 (-110) at Hard Rock (also: ProphetX)",
    "bet": "Over 160.5 (-110)",
-   "bet_result": null,
+   "bet_result": "W",
    "book": "Hard Rock",
    "confirmed_by": [
     "BetOnline"
    ],
    "edge_pct": -1.2,
-   "final": null,
+   "final": "UAPB 53, BAY 109",
    "game": "Arkansas-Pine Bluff Golden Lions @ Baylor Bears",
    "grade": "A",
    "late": false,
@@ -34330,13 +34460,13 @@
   {
    "alert_text": "Over 160.5 (-110) at Hard Rock (also: ProphetX, Novig, Kalshi)",
    "bet": "Over 160.5 (-110)",
-   "bet_result": null,
+   "bet_result": "W",
    "book": "Hard Rock",
    "confirmed_by": [
     "BetOnline"
    ],
    "edge_pct": 1.8,
-   "final": null,
+   "final": "UAPB 53, BAY 109",
    "game": "Arkansas-Pine Bluff Golden Lions @ Baylor Bears",
    "grade": "A",
    "late": false,
@@ -34834,13 +34964,13 @@
   {
    "alert_text": "Florida Int'l Golden Panthers -16.5 (-117) at Kalshi [-126 after Kalshi fee]",
    "bet": "Florida Int'l Golden Panthers -16.5 (-117)",
-   "bet_result": null,
+   "bet_result": "L",
    "book": "Kalshi",
    "confirmed_by": [
     "BetOnline"
    ],
    "edge_pct": -10.1,
-   "final": null,
+   "final": "UWF 75, FIU 85",
    "game": "West Florida Argonauts @ Florida Int'l Golden Panthers",
    "grade": "B",
    "late": false,
@@ -35170,13 +35300,13 @@
   {
    "alert_text": "Over 160.5 (-113) at Kalshi [-121 after Kalshi fee] (also: Hard Rock, ProphetX, Novig)",
    "bet": "Over 160.5 (-113)",
-   "bet_result": null,
+   "bet_result": "W",
    "book": "Kalshi",
    "confirmed_by": [
     "BetOnline"
    ],
    "edge_pct": -1.9,
-   "final": null,
+   "final": "NE 72, UVA 97",
    "game": "Northeastern Huskies @ Virginia Cavaliers",
    "grade": "B",
    "late": false,
