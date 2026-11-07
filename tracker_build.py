@@ -1033,9 +1033,10 @@ def self_check(bets, settled_reads, open_ids, now, state):
                 issues.append(("open", b, "graded from a final but the book still lists it open (24 h+)"))
     seen = {}
     for b in rows:
-        if not b.get("bet"):
+        if not b.get("bet") or b.get("dup_of"):
             continue
-        k = (b.get("book"), b.get("bet"), b.get("game_start") or (b.get("settled") or "")[:10], b.get("stake"), b.get("result"))
+        k = (b.get("book"), b.get("bet"), b.get("game_start") or (b.get("settled") or "")[:10], b.get("stake"), b.get("result"),
+             b.get("strike") and b.get("id"))   # Nov 6: ProphetX fills of one bet are one card, not duplicates
         if k in seen and (b.get("result") or b.get("open")):
             issues.append(("dup", b, "appears twice"))
         seen[k] = b
