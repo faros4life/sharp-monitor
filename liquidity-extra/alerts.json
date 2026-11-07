@@ -1,6 +1,204 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-07T14:20:17Z",
+   "base_depth": 60215,
+   "best_price": 0.66,
+   "best_price_american": -194,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.66,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-07",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 8302,
+     "new_this_side": 25053,
+     "other_side": 18876,
+     "other_side_all_levels": 36101,
+     "ratio": 1.5,
+     "this_side": 28906,
+     "this_side_all_levels": 85399
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "FUR (0)",
+     "price": 0.66,
+     "this_side": 3418
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Furman",
+     "price": 0.6644,
+     "this_side": 2132
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 503.53000000000003,
+    "volume_24h_fp": 484.06,
+    "volume_fp": 503.53000000000003
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 503.53000000000003,
+    "volume_24h_fp": 484.06,
+    "volume_fp": 503.53000000000003
+   },
+   "fade_price": 0.35,
+   "first_seen_utc": "2026-11-07T14:10:17Z",
+   "game": "Northern Iowa vs Furman",
+   "game_surge_books": [],
+   "game_x": 1.44,
+   "key": "kalshi|KXNCAAMBGAME-26NOV07UNIFUR|ml|1",
+   "lead_min": 460,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 25053,
+   "new_x": 2.16,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 503.53000000000003,
+      "volume_24h_fp": 484.06,
+      "volume_fp": 503.53000000000003
+     },
+     "game_normal": 59359,
+     "game_x": 1.44,
+     "normal": 11591,
+     "now": 85399,
+     "type": "ML",
+     "x": 7.37
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 162485.0,
+      "volume": 178291.0
+     },
+     "game_normal": 2974,
+     "game_x": 1.28,
+     "normal": 1308,
+     "now": 3802,
+     "type": "ML",
+     "x": 2.91
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 1464,
+     "game_x": 1.52,
+     "normal": 454,
+     "now": 2232,
+     "type": "ML",
+     "x": 4.91
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.66,
+   "price_american": -194,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.66,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -210
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -200
+    },
+    "betrivers": {
+     "point": null,
+     "price": -245
+    },
+    "betus": {
+     "point": null,
+     "price": -200
+    },
+    "bovada": {
+     "point": null,
+     "price": -195
+    },
+    "draftkings": {
+     "point": null,
+     "price": -205
+    },
+    "fanatics": {
+     "point": null,
+     "price": -215
+    },
+    "fanduel": {
+     "point": null,
+     "price": -230
+    },
+    "kalshi": {
+     "point": null,
+     "price": -194
+    },
+    "lowvig": {
+     "point": null,
+     "price": -200
+    },
+    "novig": {
+     "point": null,
+     "price": -194
+    },
+    "polymarket": {
+     "point": null,
+     "price": -194
+    },
+    "prophetx": {
+     "point": null,
+     "price": -196
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -205
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV07UNIFUR-FUR"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Furman",
+   "side_label": "Furman",
+   "size_x": 7.37,
+   "start_source": "odds",
+   "start_utc": "2026-11-07T22:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "teams": [
+    "Northern Iowa",
+    "Furman"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-07T13:20:19Z",
    "base_depth": 234094,
    "best_price": 0.6757,
@@ -1191,8 +1389,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": -7.0,
+   "close_price": 0.52,
+   "clv_cents": -6.0,
    "confirmed_after_min": 10,
    "date": "2026-11-07",
    "depth_by_book": {
@@ -1223,9 +1421,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 50266.07,
-    "volume_24h_fp": 49889.83,
-    "volume_fp": 50360.18
+    "open_interest_fp": 51146.93,
+    "volume_24h_fp": 50596.26,
+    "volume_fp": 51241.04
    },
    "ex_stats_first": {
     "open_interest_fp": 1.73,
@@ -1387,9 +1585,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 579.9200000000001,
+    "open_interest_fp": 608.9200000000001,
     "volume_24h_fp": 634.86,
-    "volume_fp": 646.27
+    "volume_fp": 675.27
    },
    "ex_stats_first": {
     "open_interest_fp": 31.939999999999998,
@@ -1564,9 +1762,9 @@
     "volume_fp": 648.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 862.42,
-    "volume_24h_fp": 848.77,
-    "volume_fp": 876.8599999999999
+    "open_interest_fp": 912.42,
+    "volume_24h_fp": 898.77,
+    "volume_fp": 926.8599999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 129.63,
