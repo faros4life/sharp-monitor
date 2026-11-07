@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 7, 6:03 PM ET. This run: 2 new, 1 not confirmed, 2 pending. Open alerts: 56.
+Updated Sat Nov 7, 6:10 PM ET. This run: 2 new, 0 not confirmed, 2 pending. Open alerts: 58.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 7 6:10PM | NBA | Knicks vs. Cavaliers | spread: Knicks (-4.5) | polymarket | $47k | -104 | ✅ novig | ✅ | +0.0c |  | pending |
+| Nov 7 6:10PM | NBA | Rockets vs. Suns | moneyline: Rockets | polymarket | $26k | -245 | ✅ novig,prophetx | ❌ | +0.0c |  | pending |
 | Nov 7 6:03PM | NHL | Red Wings vs. Avalanche | moneyline: Avalanche | polymarket | $39k | -203 | ✅ novig |  | +0.0c |  | pending |
 | Nov 7 6:03PM | NCAAF | Michigan St. vs Michigan | moneyline: NOT Michigan St. | kalshi | $60k | -567 |  |  | +0.0c |  | pending |
 | Nov 7 5:51PM | NBA | Magic vs. Warriors | spread: Warriors (-7.5) | polymarket | $56k | -100 |  | ✅ | +0.0c |  | pending |
@@ -25,7 +27,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 7 4:30PM | NHL | Devils vs. Islanders | moneyline: Devils | polymarket | $25k | -144 | ✅ novig |  | -1.0c | yes | pending |
 | Nov 7 4:30PM | NBA | Denver vs Indiana | moneyline: Denver | kalshi | $260k | -285 | ✅ novig,prophetx |  | -1.0c | yes | pending |
 | Nov 7 4:20PM | NHL | Sharks vs. Stars | spread: Sharks (+1.5) | polymarket | $29k | -100 |  |  | +0.0c |  | pending |
-| Nov 7 4:20PM | NCAAF | Georgia @ Ole Miss | moneyline: UGA (0) | novig | $75k | -163 |  |  | +0.0c |  | pending |
+| Nov 7 4:20PM | NCAAF | Georgia @ Ole Miss | moneyline: UGA (0) | novig | $75k | -163 |  |  | +0.5c |  | pending |
 | Nov 7 4:10PM | NCAAF | Texas State @ Oregon State | total: Under 71.5 (71.5) | novig | $28k | -102 |  |  | +0.5c |  | pending |
 | Nov 7 4:10PM | NCAAF | Hawai'i vs UTEP | moneyline: Hawai'i | kalshi | $70k | -285 |  |  | -1.0c |  | pending |
 | Nov 7 4:00PM | NBA | Knicks vs. Cavaliers | moneyline: Knicks | polymarket | $58k | -186 | ✅ novig,prophetx | ✅ | +0.0c |  | pending |
@@ -208,5 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 6 12:00AM | NBA | Washington vs Atlanta | moneyline: Atlanta | kalshi | $42k | -223 |  |  | +5.0c | yes | W |
 | Nov 5 11:56PM | NBA | San Antonio vs Sacramento: Total Points | total: Over 228.5 points | kalshi | $26k | -113 |  |  | +4.0c | yes | W |
 | Nov 5 11:50PM | NBA | Philadelphia vs Cleveland | moneyline: Philadelphia | kalshi | $142k | -133 | ✅ polymarket |  | +1.0c | yes | L |
-| Nov 5 11:20PM | NCAAF | TCU vs Arizona: Total Points | total: NOT Over 46.5 points | kalshi | $42k | -104 |  |  | -2.0c | yes | L |
-| Nov 5 10:40PM | NBA | Boston vs Charlotte | moneyline: Boston | kalshi | $109k | -285 |  |  | +6.0c |  | W |
