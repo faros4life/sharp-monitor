@@ -1,17 +1,18 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 7, 4:10 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 17.
+Updated Sat Nov 7, 4:20 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 17.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 163-100 (-14.95u flat) | rule met: 38-31
+**Record:** 163-101 (-15.95u flat) | rule met: 38-31
 
-**Fade (paper, betting against the print):** 75-128 (+10.37u flat, after fees)
+**Fade (paper, betting against the print):** 76-128 (+11.38u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 7 4:20PM | NCAAB | Maryland vs Georgetown | moneyline: Maryland | kalshi | $29k | -138 |  |  | +0.0c |  | pending |
 | Nov 7 12:10PM | NCAAB | North Carolina A&T @ Ohio | spread: OHIO -14.5 (-14.5) | novig | $33k | -108 |  | ✅ | +0.5c | yes | L |
-| Nov 7 11:40AM | NCAAB | Cal State Fullerton vs South Dakota | moneyline: South Dakota | kalshi | $28k | -108 |  | ❌ | +0.0c |  | pending |
+| Nov 7 11:40AM | NCAAB | Cal State Fullerton vs South Dakota | moneyline: South Dakota | kalshi | $28k | -108 |  | ❌ | +0.0c |  | L |
 | Nov 7 11:00AM | NCAAB | Denver vs UC Riverside | moneyline: UC Riverside | kalshi | $27k | -127 |  |  | +0.0c |  | pending |
 | Nov 7 10:50AM | TENNIS | Magda Linette vs Anastasia Zakharova | moneyline: Magda Linette | kalshi | $52k | -400 |  |  | +13.0c |  | W |
 | Nov 7 10:00AM | TENNIS | Casper Ruud vs Carlos Alcaraz | moneyline: Carlos Alcaraz | kalshi | $46k | -426 | ✅ novig |  | +3.0c | yes | W |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 26 7:00PM | MLB | Milwaukee Brewers at Tampa Bay Rays | moneyline: Milwaukee Brewers | prophetx | $49k | +105 | ✅ novig |  | -0.5c | yes | W |
 | Oct 26 7:00PM | TENNIS | Shelton vs Kovacevic | moneyline: Shelton | kalshi | $48k | -488 |  |  | +0.0c |  | W |
 | Oct 26 6:00PM | TENNIS | Joint vs Cirstea | moneyline: Cirstea | kalshi | $39k | -223 |  |  | -68.0c | yes | L |
-| Oct 26 2:46PM | MLB | Milwaukee Brewers @ Tampa Bay Rays | moneyline: TB (0) | novig | $50k | -108 | ✅ kalshi,polymarket |  | +0.0c |  | L |

@@ -1,6 +1,189 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-07T21:20:17Z",
+   "base_depth": 109103,
+   "best_price": 0.5951,
+   "best_price_american": -147,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.58,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-07",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 3624,
+     "new_this_side": 28764,
+     "other_side": 51926,
+     "other_side_all_levels": 87491,
+     "ratio": 1.4,
+     "this_side": 70251,
+     "this_side_all_levels": 138175
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Maryland",
+     "price": 0.5902,
+     "this_side": 2793
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 24100.53,
+    "volume_24h_fp": 21039.05,
+    "volume_fp": 27333.92
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 100.0,
+    "volume_24h_fp": 246.9,
+    "volume_fp": 100.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 24000.53,
+    "volume_24h_fp": 20792.15,
+    "volume_fp": 27233.92
+   },
+   "fade_price": 0.42,
+   "first_seen_utc": "2026-11-07T21:10:18Z",
+   "game": "Maryland vs Georgetown",
+   "game_surge_books": [],
+   "game_x": 1.48,
+   "key": "kalshi|KXNCAAMBGAME-26NOV07MDGTWN|ml|0",
+   "lead_min": 190,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 28764,
+   "new_x": 2.46,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 24100.53,
+      "volume_24h_fp": 21039.05,
+      "volume_fp": 27333.92
+     },
+     "game_normal": 93111,
+     "game_x": 1.48,
+     "normal": 11677,
+     "now": 138175,
+     "type": "ML",
+     "x": 11.83
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 2761,
+     "game_x": 1.07,
+     "normal": 956,
+     "now": 2964,
+     "type": "ML",
+     "x": 3.1
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.58,
+   "price_american": -138,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.58,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -160
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -150
+    },
+    "betopenly": {
+     "point": null,
+     "price": -145
+    },
+    "betrivers": {
+     "point": null,
+     "price": -159
+    },
+    "betus": {
+     "point": null,
+     "price": -160
+    },
+    "bovada": {
+     "point": null,
+     "price": -165
+    },
+    "draftkings": {
+     "point": null,
+     "price": -162
+    },
+    "fanatics": {
+     "point": null,
+     "price": -155
+    },
+    "fanduel": {
+     "point": null,
+     "price": -160
+    },
+    "kalshi": {
+     "point": null,
+     "price": -138
+    },
+    "lowvig": {
+     "point": null,
+     "price": -150
+    },
+    "novig": {
+     "point": null,
+     "price": -144
+    },
+    "polymarket": {
+     "point": null,
+     "price": -144
+    },
+    "prophetx": {
+     "point": null,
+     "price": -144
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -160
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV07MDGTWN-MD"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Maryland",
+   "side_label": "Maryland",
+   "size_x": 11.83,
+   "start_source": "odds",
+   "start_utc": "2026-11-08T00:30:00Z",
+   "surge_books": [
+    "kalshi",
+    "prophetx"
+   ],
+   "teams": [
+    "Maryland",
+    "Georgetown"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-07T17:10:18Z",
    "base_depth": 9640,
    "best_price": 0.52,
@@ -235,6 +418,7 @@
     "volume_fp": 13211.25
    },
    "fade_price": 0.48,
+   "fade_units": 1.01,
    "first_seen_utc": "2026-11-07T16:30:23Z",
    "game": "Cal State Fullerton vs South Dakota",
    "game_surge_books": [
@@ -347,11 +531,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAMBGAME-26NOV07CSFSDAK-SDAK"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-11-07T21:20:17Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "CSU Fullerton Titans +1.5 (-115)"
@@ -371,7 +556,7 @@
     "South Dakota"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-07T16:00:26Z",
@@ -420,9 +605,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1520.9099999999999,
+    "open_interest_fp": 1627.9,
     "volume_24h_fp": 1505.9099999999999,
-    "volume_fp": 1530.9099999999999
+    "volume_fp": 1637.9
    },
    "ex_stats_first": {
     "open_interest_fp": 1234.42,
@@ -1059,9 +1244,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1808.45,
-    "volume_24h_fp": 1808.45,
-    "volume_fp": 1808.45
+    "open_interest_fp": 2308.45,
+    "volume_24h_fp": 2308.45,
+    "volume_fp": 2308.45
    },
    "ex_stats_first": {
     "open_interest_fp": 1305.85,
@@ -1626,9 +1811,9 @@
     "volume_fp": 30.46
    },
    "ex_stats_close": {
-    "open_interest_fp": 7504.6900000000005,
+    "open_interest_fp": 7798.6900000000005,
     "volume_24h_fp": 7504.6900000000005,
-    "volume_fp": 7504.6900000000005
+    "volume_fp": 7798.6900000000005
    },
    "ex_stats_first": {
     "open_interest_fp": 198.69,
@@ -2578,7 +2763,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 1148.91,
-    "volume_24h_fp": 1141.75,
+    "volume_24h_fp": 1146.75,
     "volume_fp": 1148.91
    },
    "ex_stats_first": {
