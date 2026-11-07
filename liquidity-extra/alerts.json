@@ -1,6 +1,130 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-07T02:40:16Z",
+   "base_depth": 73253,
+   "best_price": 0.48,
+   "best_price_american": 108,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.47,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-07",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 7230,
+     "new_this_side": 30224,
+     "other_side": 69941,
+     "other_side_all_levels": 83076,
+     "ratio": 1.4,
+     "this_side": 100512,
+     "this_side_all_levels": 105970
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "A. Shubladze (0)",
+     "price": 0.48,
+     "this_side": 2558
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 51467.79,
+    "volume_24h_fp": 53195.18,
+    "volume_fp": 53574.18
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 399.38,
+    "volume_24h_fp": 20.38,
+    "volume_fp": 399.38
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 51068.409999999996,
+    "volume_24h_fp": 53174.8,
+    "volume_fp": 53174.8
+   },
+   "fade_price": 0.53,
+   "first_seen_utc": "2026-11-07T02:30:20Z",
+   "game": "Alexandra Shubladze vs Claire Liu",
+   "game_surge_books": [],
+   "game_x": 1.29,
+   "key": "kalshi|KXWTAMATCH-26NOV07SHULIU|ml|0",
+   "lead_min": 200,
+   "league": "TENNIS",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 30224,
+   "new_x": 0.71,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 51467.79,
+      "volume_24h_fp": 53195.18,
+      "volume_fp": 53574.18
+     },
+     "game_normal": 82023,
+     "game_x": 1.29,
+     "normal": 42421,
+     "now": 105970,
+     "type": "ML",
+     "x": 2.5
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 356805.0,
+      "volume": 1164442.0
+     },
+     "game_normal": 1979,
+     "game_x": 1.29,
+     "normal": 1706,
+     "now": 2558,
+     "type": "ML",
+     "x": 1.5
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": true,
+   "price": 0.47,
+   "price_american": 113,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.47,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXWTAMATCH-26NOV07SHULIU-SHU"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Alexandra Shubladze",
+   "side_label": "Alexandra Shubladze",
+   "size_x": 2.5,
+   "start_source": "novig",
+   "start_utc": "2026-11-07T06:00:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "Alexandra Shubladze",
+    "Claire Liu"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-07T02:20:52Z",
    "base_depth": 72804,
    "best_price": 0.54,
@@ -47,9 +171,9 @@
     "volume_fp": 1872.14
    },
    "ex_stats_close": {
-    "open_interest_fp": 58949.12,
-    "volume_24h_fp": 59187.020000000004,
-    "volume_fp": 59549.42
+    "open_interest_fp": 59372.99,
+    "volume_24h_fp": 59631.38,
+    "volume_fp": 60010.4
    },
    "ex_stats_first": {
     "open_interest_fp": 56348.65,
@@ -100,6 +224,8 @@
    "norm_ready_books": 2,
    "paper_only": true,
    "price": 0.54,
+   "price_after_15m": 0.535,
+   "price_after_15m_book": "novig",
    "price_american": -117,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.54,
@@ -123,6 +249,7 @@
    "size_x": 2.81,
    "start_source": "novig",
    "start_utc": "2026-11-07T07:10:00Z",
+   "still_actionable": true,
    "surge_books": [
     "kalshi",
     "novig"
@@ -2342,9 +2469,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 7578.700000000001,
-    "volume_24h_fp": 6605.9800000000005,
-    "volume_fp": 8869.48
+    "open_interest_fp": 8120.700000000001,
+    "volume_24h_fp": 6910.6900000000005,
+    "volume_fp": 9411.48
    },
    "ex_stats_first": {
     "open_interest_fp": 2139.29,
