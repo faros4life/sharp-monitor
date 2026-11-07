@@ -1,6 +1,173 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-07T17:10:18Z",
+   "base_depth": 9640,
+   "best_price": 0.52,
+   "best_price_american": -108,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-07",
+   "depth_by_book": {
+    "novig": {
+     "new_other_side": 1696,
+     "new_this_side": 33356,
+     "other_side": 17479,
+     "other_side_all_levels": 17505,
+     "ratio": 1.8,
+     "this_side": 32281,
+     "this_side_all_levels": 38002
+    }
+   },
+   "ex_stats_alert": {
+    "openInterest": 2927769.0,
+    "volume": 2948703.0
+   },
+   "ex_stats_change": {
+    "openInterest": 1108186.0,
+    "volume": 1108186.0
+   },
+   "ex_stats_first": {
+    "openInterest": 1819583.0,
+    "volume": 1840517.0
+   },
+   "fade_price": 0.485,
+   "first_seen_utc": "2026-11-07T17:00:29Z",
+   "game": "North Carolina A&T @ Ohio",
+   "game_surge_books": [
+    "novig"
+   ],
+   "game_x": 12.19,
+   "key": "novig|{\"market_id\": \"01a1b242-f2b2-73f3-a2d5-f2be8fae03fe\", \"outcome_id\": \"01a1b242-f2b2-73f3-a2d5-f2c165354a3f\"}",
+   "lead_min": 50,
+   "league": "NCAAB",
+   "line": -14.5,
+   "market": "spread",
+   "new_money": 33356,
+   "new_x": 34.57,
+   "norm_by_book": {
+    "novig": {
+     "ex_stats": {
+      "openInterest": 2927769.0,
+      "volume": 2948703.0
+     },
+     "game_normal": 3118,
+     "game_x": 12.19,
+     "normal": 965,
+     "now": 38002,
+     "type": "SPREAD",
+     "x": 39.39
+    }
+   },
+   "norm_ready_books": 1,
+   "paper_only": false,
+   "price": 0.52,
+   "price_american": -108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.52,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -14.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": -14.0,
+     "price": -117
+    },
+    "betopenly": {
+     "point": -14.5,
+     "price": -101
+    },
+    "betrivers": {
+     "point": -14.5,
+     "price": -115
+    },
+    "betus": {
+     "point": -14.5,
+     "price": -115
+    },
+    "bovada": {
+     "point": -14.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": -14.5,
+     "price": -110
+    },
+    "fanatics": {
+     "point": -14.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": -14.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": -15.5,
+     "price": 113
+    },
+    "lowvig": {
+     "point": -14.0,
+     "price": -113
+    },
+    "novig": {
+     "point": -14.5,
+     "price": -108
+    },
+    "polymarket": {
+     "point": -14.5,
+     "price": -104
+    },
+    "prophetx": {
+     "point": -14.5,
+     "price": -108
+    },
+    "williamhill_us": {
+     "point": -14.5,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a1b242-f2b2-73f3-a2d5-f2be8fae03fe",
+    "outcome_id": "01a1b242-f2b2-73f3-a2d5-f2c165354a3f"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [
+    "Ohio Bobcats -12.5 (-130)"
+   ],
+   "sharp_oppose": [],
+   "side": "Ohio",
+   "side_label": "OHIO -14.5 (-14.5)",
+   "size_x": 39.39,
+   "start_source": "odds",
+   "start_utc": "2026-11-07T18:00:00Z",
+   "surge_books": [
+    "novig"
+   ],
+   "teams": [
+    "North Carolina A&T",
+    "Ohio"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-07T16:40:18Z",
    "base_depth": 80065,
    "best_price": 0.5375,
@@ -47,9 +214,9 @@
     "volume_fp": 411.78
    },
    "ex_stats_close": {
-    "open_interest_fp": 12723.8,
-    "volume_24h_fp": 13498.810000000001,
-    "volume_fp": 13924.390000000001
+    "open_interest_fp": 13192.44,
+    "volume_24h_fp": 14171.59,
+    "volume_fp": 14393.03
    },
    "ex_stats_first": {
     "open_interest_fp": 12010.66,
@@ -685,9 +852,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1697.18,
-    "volume_24h_fp": 1707.06,
-    "volume_fp": 1721.8500000000001
+    "open_interest_fp": 1700.18,
+    "volume_24h_fp": 1710.06,
+    "volume_fp": 1724.8500000000001
    },
    "ex_stats_first": {
     "open_interest_fp": 1084.19,
@@ -878,9 +1045,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1405.86,
-    "volume_24h_fp": 1405.86,
-    "volume_fp": 1405.86
+    "open_interest_fp": 1412.33,
+    "volume_24h_fp": 1412.33,
+    "volume_fp": 1412.33
    },
    "ex_stats_first": {
     "open_interest_fp": 1305.85,
@@ -1261,9 +1428,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 188.86,
+    "open_interest_fp": 193.17000000000002,
     "volume_24h_fp": 188.86,
-    "volume_fp": 188.86
+    "volume_fp": 193.17000000000002
    },
    "ex_stats_first": {
     "open_interest_fp": 164.86,
@@ -1445,9 +1612,9 @@
     "volume_fp": 30.46
    },
    "ex_stats_close": {
-    "open_interest_fp": 5960.709999999999,
+    "open_interest_fp": 5960.92,
     "volume_24h_fp": 5960.709999999999,
-    "volume_fp": 5960.709999999999
+    "volume_fp": 5960.92
    },
    "ex_stats_first": {
     "open_interest_fp": 198.69,
@@ -1946,9 +2113,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 727.9300000000001,
-    "volume_24h_fp": 708.4599999999999,
-    "volume_fp": 727.9300000000001
+    "open_interest_fp": 765.25,
+    "volume_24h_fp": 735.78,
+    "volume_fp": 765.25
    },
    "ex_stats_first": {
     "open_interest_fp": 503.53000000000003,
@@ -3329,9 +3496,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 55132.18,
-    "volume_24h_fp": 55198.21,
-    "volume_fp": 55228.21
+    "open_interest_fp": 57653.75,
+    "volume_24h_fp": 57734.4,
+    "volume_fp": 57749.78
    },
    "ex_stats_first": {
     "open_interest_fp": 1.73,

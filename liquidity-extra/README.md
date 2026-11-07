@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 7, 12:00 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 19.
+Updated Sat Nov 7, 12:10 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 20.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 7 12:10PM | NCAAB | North Carolina A&T @ Ohio | spread: OHIO -14.5 (-14.5) | novig | $33k | -108 |  | ✅ | +0.0c |  | pending |
 | Nov 7 11:40AM | NCAAB | Cal State Fullerton vs South Dakota | moneyline: South Dakota | kalshi | $28k | -108 |  | ❌ | +0.0c |  | pending |
 | Nov 7 11:00AM | NCAAB | Denver vs UC Riverside | moneyline: UC Riverside | kalshi | $27k | -127 |  |  | +0.0c |  | pending |
 | Nov 7 10:50AM | TENNIS | Magda Linette vs Anastasia Zakharova | moneyline: Magda Linette | kalshi | $52k | -400 |  |  | +13.0c |  | W |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 26 7:00PM | TENNIS | Shelton vs Kovacevic | moneyline: Shelton | kalshi | $48k | -488 |  |  | +0.0c |  | W |
 | Oct 26 6:00PM | TENNIS | Joint vs Cirstea | moneyline: Cirstea | kalshi | $39k | -223 |  |  | -68.0c | yes | L |
 | Oct 26 2:46PM | MLB | Milwaukee Brewers @ Tampa Bay Rays | moneyline: TB (0) | novig | $50k | -108 | ✅ kalshi,polymarket |  | +0.0c |  | L |
-| Oct 26 2:46PM | MLB | Milwaukee vs Tampa Bay: Total Runs | total: Over 7.5 runs scored | kalshi | $231k | +122 |  |  | -16.0c | yes | W |
