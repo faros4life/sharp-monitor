@@ -1,6 +1,196 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-07T07:20:11Z",
+   "base_depth": 333561,
+   "best_price": 0.495,
+   "best_price_american": 102,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-07",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -12350,
+     "new_this_side": 55323,
+     "other_side": 222993,
+     "other_side_all_levels": 312931,
+     "ratio": 1.4,
+     "this_side": 321834,
+     "this_side_all_levels": 408338
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "UTAH -4.5 (-4.5)",
+     "price": 0.495,
+     "this_side": 33525
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 134693.43,
+    "volume_24h_fp": 133822.64,
+    "volume_fp": 166346.19
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 4394.41,
+    "volume_24h_fp": 13281.77,
+    "volume_fp": 10187.12
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 130299.02,
+    "volume_24h_fp": 120540.87,
+    "volume_fp": 156159.07
+   },
+   "fade_price": 0.52,
+   "first_seen_utc": "2026-11-07T07:10:10Z",
+   "game": "BYU vs Utah: Spread",
+   "game_surge_books": [],
+   "game_x": 1.21,
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFSPREAD-26NOV07BYUUTAH-UTAH5\"}",
+   "lead_min": 580,
+   "league": "NCAAF",
+   "line": -4.5,
+   "market": "spread",
+   "new_money": 55323,
+   "new_x": 1.3,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 134693.43,
+      "volume_24h_fp": 133822.64,
+      "volume_fp": 166346.19
+     },
+     "game_normal": 337874,
+     "game_x": 1.21,
+     "normal": 42396,
+     "now": 408338,
+     "type": "SPREAD",
+     "x": 9.63
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 4406391.0,
+      "volume": 7267296.0
+     },
+     "game_normal": 27236,
+     "game_x": 1.24,
+     "normal": 2620,
+     "now": 33898,
+     "type": "SPREAD",
+     "x": 12.94
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.5,
+   "price_american": -100,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.49,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -4.0,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": -4.5,
+     "price": -110
+    },
+    "betopenly": {
+     "point": -4.0,
+     "price": -106
+    },
+    "betrivers": {
+     "point": -4.5,
+     "price": -109
+    },
+    "betus": {
+     "point": -4.5,
+     "price": -105
+    },
+    "bovada": {
+     "point": -4.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": -4.5,
+     "price": -105
+    },
+    "fanatics": {
+     "point": -4.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": -4.5,
+     "price": -106
+    },
+    "kalshi": {
+     "point": -4.5,
+     "price": 100
+    },
+    "mybookieag": {
+     "point": -4.5,
+     "price": -110
+    },
+    "novig": {
+     "point": -4.5,
+     "price": 102
+    },
+    "polymarket": {
+     "point": -4.5,
+     "price": 104
+    },
+    "prophetx": {
+     "point": -4.5,
+     "price": 102
+    },
+    "williamhill_us": {
+     "point": -4.5,
+     "price": -106
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFSPREAD-26NOV07BYUUTAH-UTAH5"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [
+    "BYU Cougars +4.5 (-110)"
+   ],
+   "side": "Utah",
+   "side_label": "Utah wins by over 4.5 points",
+   "size_x": 9.63,
+   "start_source": "odds",
+   "start_utc": "2026-11-07T17:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig"
+   ],
+   "teams": [
+    "BYU",
+    "Utah"
+   ],
+   "top25": true,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-07T07:10:10Z",
    "base_depth": 114009,
    "best_price": 0.495,
@@ -45,6 +235,11 @@
     "open_interest_fp": 21.81,
     "volume_24h_fp": 79.87,
     "volume_fp": 21.81
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 13398.42,
+    "volume_24h_fp": 4915.21,
+    "volume_fp": 13496.42
    },
    "ex_stats_first": {
     "open_interest_fp": 13291.31,
@@ -239,9 +434,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 9776.12,
-    "volume_24h_fp": 7664.5,
-    "volume_fp": 9943.62
+    "open_interest_fp": 9793.78,
+    "volume_24h_fp": 7674.16,
+    "volume_fp": 9961.28
    },
    "ex_stats_first": {
     "open_interest_fp": 9628.24,
@@ -452,9 +647,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1018.69,
-    "volume_24h_fp": 596.8,
-    "volume_fp": 1119.68
+    "open_interest_fp": 1117.21,
+    "volume_24h_fp": 704.62,
+    "volume_fp": 1218.2
    },
    "ex_stats_first": {
     "open_interest_fp": 1007.4200000000001,
@@ -585,8 +780,8 @@
     "volume": 45964.0
    },
    "ex_stats_close": {
-    "openInterest": 4364349.0,
-    "volume": 6168664.0
+    "openInterest": 4473613.0,
+    "volume": 6277928.0
    },
    "ex_stats_first": {
     "openInterest": 3667712.0,
@@ -708,9 +903,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 3397.1,
-    "volume_24h_fp": 1187.2,
-    "volume_fp": 3410.27
+    "open_interest_fp": 3470.91,
+    "volume_24h_fp": 1190.09,
+    "volume_fp": 3484.08
    },
    "ex_stats_first": {
     "open_interest_fp": 3289.5200000000004,
@@ -849,9 +1044,9 @@
     "volume_fp": 1401.1
    },
    "ex_stats_close": {
-    "open_interest_fp": 130299.02,
-    "volume_24h_fp": 120540.87,
-    "volume_fp": 156159.07
+    "open_interest_fp": 134693.43,
+    "volume_24h_fp": 133822.64,
+    "volume_fp": 166346.19
    },
    "ex_stats_first": {
     "open_interest_fp": 116036.39,
@@ -1042,9 +1237,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 12769.48,
-    "volume_24h_fp": 10515.04,
-    "volume_fp": 13636.93
+    "open_interest_fp": 12939.48,
+    "volume_24h_fp": 10685.04,
+    "volume_fp": 13806.93
    },
    "ex_stats_first": {
     "open_interest_fp": 3126.38,
@@ -1392,17 +1587,17 @@
     "volumeNum": 0.0
    },
    "ex_stats_close": {
-    "volume": 4132.677455,
-    "volume1mo": 4132.677455,
-    "volume1moClob": 4132.677455,
-    "volume1wk": 4132.677455,
-    "volume1wkClob": 4132.677455,
-    "volume1yr": 4132.677455,
-    "volume1yrClob": 4132.677455,
-    "volume24hr": 4010.5352490000005,
-    "volume24hrClob": 4010.5352490000005,
-    "volumeClob": 4132.677455,
-    "volumeNum": 4132.677455
+    "volume": 4330.677454999999,
+    "volume1mo": 4330.677455,
+    "volume1moClob": 4330.677455,
+    "volume1wk": 4330.677455,
+    "volume1wkClob": 4330.677455,
+    "volume1yr": 4330.677455,
+    "volume1yrClob": 4330.677455,
+    "volume24hr": 4208.5352490000005,
+    "volume24hrClob": 4208.5352490000005,
+    "volumeClob": 4330.677454999999,
+    "volumeNum": 4330.677454999999
    },
    "ex_stats_first": {
     "volume": 3662.549795,
@@ -1633,9 +1828,9 @@
     "volume_fp": 57.05
    },
    "ex_stats_close": {
-    "open_interest_fp": 8061.51,
-    "volume_24h_fp": 7287.23,
-    "volume_fp": 8451.64
+    "open_interest_fp": 9094.89,
+    "volume_24h_fp": 8476.42,
+    "volume_fp": 9640.829999999998
    },
    "ex_stats_first": {
     "open_interest_fp": 2729.83,
@@ -1982,9 +2177,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 14065.25,
-    "volume_24h_fp": 10615.0,
-    "volume_fp": 15060.98
+    "open_interest_fp": 14175.22,
+    "volume_24h_fp": 11055.98,
+    "volume_fp": 15170.95
    },
    "ex_stats_first": {
     "open_interest_fp": 10811.23,
@@ -2434,9 +2629,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 633.37,
-    "volume_24h_fp": 633.37,
-    "volume_fp": 633.37
+    "open_interest_fp": 1048.82,
+    "volume_24h_fp": 1048.82,
+    "volume_fp": 1048.82
    },
    "ex_stats_first": {
     "open_interest_fp": 125.97,
@@ -2645,6 +2840,7 @@
     "volume_fp": 90761.35
    },
    "fade_price": 0.49,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-07T02:10:22Z",
    "game": "TCU vs Arizona: Total Points",
    "game_surge_books": [],
@@ -2763,11 +2959,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFTOTAL-26NOV06TCUARIZ-47"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-11-07T07:20:11Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -2785,7 +2982,7 @@
     "Arizona"
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": 0.94
   },
   {
    "alerted_utc": "2026-11-07T02:10:22Z",
@@ -2841,7 +3038,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 1827.3300000000002,
-    "volume_24h_fp": 1064.23,
+    "volume_24h_fp": 1065.25,
     "volume_fp": 1927.45
    },
    "ex_stats_first": {
@@ -5037,6 +5234,7 @@
     "volume_fp": 472477.14
    },
    "fade_price": 0.52,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-07T00:00:16Z",
    "game": "TCU vs Arizona: Spread",
    "game_surge_books": [],
@@ -5164,13 +5362,14 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFSPREAD-26NOV06TCUARIZ-ARIZ7"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-07T07:20:11Z",
    "sharp_agree": [
     "TCU Horned Frogs +7.5 (-115)"
    ],
@@ -5193,7 +5392,7 @@
     "Arizona"
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": 1.06
   },
   {
    "alerted_utc": "2026-11-07T00:10:51Z",
@@ -6262,9 +6461,9 @@
     "volume_fp": 81.28
    },
    "ex_stats_close": {
-    "open_interest_fp": 35506.13,
-    "volume_24h_fp": 35137.35,
-    "volume_fp": 36065.68
+    "open_interest_fp": 35882.57,
+    "volume_24h_fp": 35377.25,
+    "volume_fp": 36492.369999999995
    },
    "ex_stats_first": {
     "open_interest_fp": 3322.95,
@@ -8466,9 +8665,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1018.69,
-    "volume_24h_fp": 596.8,
-    "volume_fp": 1119.68
+    "open_interest_fp": 1117.21,
+    "volume_24h_fp": 704.62,
+    "volume_fp": 1218.2
    },
    "ex_stats_first": {
     "open_interest_fp": 596.61,
@@ -10070,9 +10269,9 @@
     "volume_fp": 114.07
    },
    "ex_stats_close": {
-    "open_interest_fp": 53076.19,
-    "volume_24h_fp": 36878.51,
-    "volume_fp": 55658.66
+    "open_interest_fp": 53746.8,
+    "volume_24h_fp": 42284.01,
+    "volume_fp": 56329.27
    },
    "ex_stats_first": {
     "open_interest_fp": 16428.82,
@@ -10256,9 +10455,9 @@
     "volume_fp": 9.3
    },
    "ex_stats_close": {
-    "open_interest_fp": 20269.13,
-    "volume_24h_fp": 16631.82,
-    "volume_fp": 23448.27
+    "open_interest_fp": 20567.91,
+    "volume_24h_fp": 16656.52,
+    "volume_fp": 23747.05
    },
    "ex_stats_first": {
     "open_interest_fp": 7380.26,
@@ -10707,9 +10906,9 @@
     "volume_fp": 351.77
    },
    "ex_stats_close": {
-    "open_interest_fp": 1037743.14,
-    "volume_24h_fp": 308814.51,
-    "volume_fp": 1084180.8399999999
+    "open_interest_fp": 1056071.3800000001,
+    "volume_24h_fp": 332147.45,
+    "volume_fp": 1102705.76
    },
    "ex_stats_first": {
     "open_interest_fp": 777181.62,
@@ -11704,9 +11903,9 @@
     "volume_fp": 9.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 28286.48,
-    "volume_24h_fp": 6637.08,
-    "volume_fp": 30651.81
+    "open_interest_fp": 28288.27,
+    "volume_24h_fp": 6648.08,
+    "volume_fp": 30653.6
    },
    "ex_stats_first": {
     "open_interest_fp": 22480.97,
@@ -12140,10 +12339,12 @@
     "volume": 21670752.0
    },
    "fade_price": 0.475,
+   "fade_units": 1.11,
    "first_seen_utc": "2026-11-06T19:21:19Z",
    "game": "TCU @ Arizona",
    "game_surge_books": [],
    "game_x": 1.59,
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a19562-1040-7001-8cd5-339af6af77f7\", \"outcome_id\": \"01a19562-1040-7001-8cd5-33a26ebbb1e9\"}",
    "lead_min": 463,
    "league": "NCAAF",
@@ -12258,13 +12459,14 @@
     "market_id": "01a19562-1040-7001-8cd5-339af6af77f7",
     "outcome_id": "01a19562-1040-7001-8cd5-33a26ebbb1e9"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "kalshi"
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-07T07:20:11Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "TCU Horned Frogs +7.5 (-115)"
@@ -12284,7 +12486,7 @@
     "Arizona"
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-06T18:51:43Z",
@@ -12479,9 +12681,9 @@
     "volume_fp": 18.93
    },
    "ex_stats_close": {
-    "open_interest_fp": 91475.54,
-    "volume_24h_fp": 78540.57,
-    "volume_fp": 107351.33
+    "open_interest_fp": 91729.91,
+    "volume_24h_fp": 78960.58,
+    "volume_fp": 107605.7
    },
    "ex_stats_first": {
     "open_interest_fp": 55939.95,
@@ -12674,9 +12876,9 @@
     "volume_fp": 132.68
    },
    "ex_stats_close": {
-    "open_interest_fp": 99484.96,
-    "volume_24h_fp": 66377.26,
-    "volume_fp": 104300.14
+    "open_interest_fp": 104547.66,
+    "volume_24h_fp": 70483.87,
+    "volume_fp": 109362.84
    },
    "ex_stats_first": {
     "open_interest_fp": 40073.79,
@@ -13077,9 +13279,9 @@
     "volume_fp": 197.09
    },
    "ex_stats_close": {
-    "open_interest_fp": 99484.96,
-    "volume_24h_fp": 66377.26,
-    "volume_fp": 104300.14
+    "open_interest_fp": 104547.66,
+    "volume_24h_fp": 70483.87,
+    "volume_fp": 109362.84
    },
    "ex_stats_first": {
     "open_interest_fp": 39663.28,
@@ -13276,9 +13478,9 @@
     "volume_fp": 179.5
    },
    "ex_stats_close": {
-    "open_interest_fp": 209062.82,
-    "volume_24h_fp": 157748.72,
-    "volume_fp": 219432.21
+    "open_interest_fp": 212177.22,
+    "volume_24h_fp": 160871.86,
+    "volume_fp": 222780.61
    },
    "ex_stats_first": {
     "open_interest_fp": 83089.53,
@@ -13473,8 +13675,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 3637150.0,
-    "volume": 3878301.0
+    "openInterest": 3946408.0,
+    "volume": 4187559.0
    },
    "ex_stats_first": {
     "openInterest": 803820.0,
@@ -14912,12 +15114,14 @@
     "volume": 9896864.0
    },
    "fade_price": 0.3,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-06T16:20:12Z",
    "game": "TCU @ Arizona",
    "game_surge_books": [
     "novig"
    ],
    "game_x": 2.18,
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a19576-9fae-7732-bfe3-72ea9d68726e\", \"outcome_id\": \"01a19576-9fae-7732-bfe3-72fd14cf5510\"}",
    "lead_min": 644,
    "league": "NCAAF",
@@ -15040,13 +15244,14 @@
     "market_id": "01a19576-9fae-7732-bfe3-72ea9d68726e",
     "outcome_id": "01a19576-9fae-7732-bfe3-72fd14cf5510"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "kalshi"
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-07T07:20:11Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "TCU Horned Frogs +7.5 (-115)"
@@ -15067,7 +15272,7 @@
     "Arizona"
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": 0.42
   },
   {
    "alerted_utc": "2026-11-06T16:20:12Z",
@@ -16317,9 +16522,9 @@
     "volume_fp": 250.46
    },
    "ex_stats_close": {
-    "open_interest_fp": 14065.25,
-    "volume_24h_fp": 10615.0,
-    "volume_fp": 15060.98
+    "open_interest_fp": 14175.22,
+    "volume_24h_fp": 11055.98,
+    "volume_fp": 15170.95
    },
    "ex_stats_first": {
     "open_interest_fp": 3534.51,
@@ -16786,9 +16991,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 4472.51,
-    "volume_24h_fp": 1214.91,
-    "volume_fp": 4642.96
+    "open_interest_fp": 5420.72,
+    "volume_24h_fp": 1219.72,
+    "volume_fp": 5591.17
    },
    "ex_stats_first": {
     "open_interest_fp": 3722.6,
@@ -20152,9 +20357,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 87323.03,
-    "volume_24h_fp": 41306.84,
-    "volume_fp": 99388.34
+    "open_interest_fp": 88483.77,
+    "volume_24h_fp": 42385.52,
+    "volume_fp": 100549.08
    },
    "ex_stats_first": {
     "open_interest_fp": 65052.22,
@@ -21449,9 +21654,9 @@
     "volume_fp": 2.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1447.79,
-    "volume_24h_fp": 432.95000000000005,
-    "volume_fp": 1552.6599999999999
+    "open_interest_fp": 1484.67,
+    "volume_24h_fp": 469.83000000000004,
+    "volume_fp": 1589.54
    },
    "ex_stats_first": {
     "open_interest_fp": 1069.3700000000001,
@@ -22324,9 +22529,9 @@
     "volume_fp": 6.99
    },
    "ex_stats_close": {
-    "open_interest_fp": 95511.2,
-    "volume_24h_fp": 86371.19,
-    "volume_fp": 102395.54000000001
+    "open_interest_fp": 95825.66,
+    "volume_24h_fp": 87233.15999999999,
+    "volume_fp": 102710.0
    },
    "ex_stats_first": {
     "open_interest_fp": 14922.27,
@@ -23320,6 +23525,7 @@
     "volume_fp": 31222.44
    },
    "fade_price": 0.5,
+   "fade_units": 0.93,
    "first_seen_utc": "2026-11-06T04:16:31Z",
    "game": "TCU vs Arizona: Total Points",
    "game_surge_books": [],
@@ -23438,11 +23644,12 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFTOTAL-26NOV06TCUARIZ-47"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-11-07T07:20:11Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -23457,7 +23664,7 @@
     "Arizona"
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-06T03:40:11Z",
@@ -36055,6 +36262,7 @@
     "volume_fp": 8305.14
    },
    "fade_price": 0.49,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-05T14:00:22Z",
    "game": "TCU vs Arizona: Total Points",
    "game_surge_books": [
@@ -36183,11 +36391,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFTOTAL-26NOV06TCUARIZ-46"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-11-07T07:20:11Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -36202,7 +36411,7 @@
     "Arizona"
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": 0.94
   },
   {
    "alerted_utc": "2026-11-05T13:56:18Z",
@@ -39494,6 +39703,7 @@
     "volume_fp": 16187.170000000002
    },
    "fade_price": 0.27,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-05T10:16:19Z",
    "game": "TCU vs Arizona",
    "game_surge_books": [],
@@ -39621,13 +39831,14 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26NOV06TCUARIZ-ARIZ"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-07T07:20:11Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Arizona",
@@ -39645,7 +39856,7 @@
     "Arizona"
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": 0.37
   },
   {
    "alerted_utc": "2026-11-05T10:10:11Z",
@@ -39954,6 +40165,7 @@
     "volume_fp": 4599.98
    },
    "fade_price": 0.49,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-05T10:06:04Z",
    "game": "TCU vs Arizona: Spread",
    "game_surge_books": [],
@@ -40081,11 +40293,12 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFSPREAD-26NOV06TCUARIZ-ARIZ8"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-11-07T07:20:11Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "TCU",
@@ -40100,7 +40313,7 @@
     "Arizona"
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": 0.92
   },
   {
    "alerted_utc": "2026-11-05T10:10:11Z",
