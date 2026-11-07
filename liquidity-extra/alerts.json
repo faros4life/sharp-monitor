@@ -1,6 +1,440 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-07T06:50:17Z",
+   "base_depth": 820958,
+   "best_price": 0.6561,
+   "best_price_american": -191,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.64,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-07",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -586639,
+     "new_this_side": 585024,
+     "other_side": 120118,
+     "other_side_all_levels": 490507,
+     "ratio": 2.3,
+     "this_side": 273122,
+     "this_side_all_levels": 1472676
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 1220152.8900000001,
+    "volume_24h_fp": 1715568.01,
+    "volume_fp": 1781929.33
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 212115.2,
+    "volume_24h_fp": 415000.32,
+    "volume_fp": 416782.74
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 1008037.69,
+    "volume_24h_fp": 1300567.69,
+    "volume_fp": 1365146.5899999999
+   },
+   "fade_price": 0.37,
+   "first_seen_utc": "2026-11-07T06:40:18Z",
+   "game": "Alexandra Shubladze vs Claire Liu",
+   "game_surge_books": [
+    "kalshi"
+   ],
+   "game_x": 5.76,
+   "key": "kalshi|KXWTAMATCH-26NOV07SHULIU|ml|1",
+   "lead_min": 130,
+   "league": "TENNIS",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 585024,
+   "new_x": 14.46,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 1220152.8900000001,
+      "volume_24h_fp": 1715568.01,
+      "volume_fp": 1781929.33
+     },
+     "game_normal": 255700,
+     "game_x": 5.76,
+     "normal": 40467,
+     "now": 1472676,
+     "type": "ML",
+     "x": 36.39
+    }
+   },
+   "norm_ready_books": 1,
+   "paper_only": true,
+   "price": 0.64,
+   "price_american": -178,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.68,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXWTAMATCH-26NOV07SHULIU-LIU"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Claire Liu",
+   "side_label": "Claire Liu",
+   "size_x": 36.39,
+   "start_source": "kalshi",
+   "start_utc": "2026-11-07T09:00:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "Alexandra Shubladze",
+    "Claire Liu"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-07T06:50:17Z",
+   "base_depth": 26608,
+   "best_price": 0.7147,
+   "best_price_american": -251,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.7,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-07",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 2333,
+     "new_this_side": 29654,
+     "other_side": 1891,
+     "other_side_all_levels": 9325,
+     "ratio": 4.1,
+     "this_side": 7719,
+     "this_side_all_levels": 56641
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "URI (0)",
+     "price": 0.72,
+     "this_side": 1729
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Rhode Island",
+     "price": 0.726,
+     "this_side": 504
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 34.36,
+    "volume_24h_fp": 34.36,
+    "volume_fp": 34.36
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 34.36,
+    "volume_24h_fp": 34.36,
+    "volume_fp": 34.36
+   },
+   "fade_price": 0.3,
+   "first_seen_utc": "2026-11-07T06:40:18Z",
+   "game": "Monmouth vs Rhode Island",
+   "game_surge_books": [
+    "novig",
+    "prophetx"
+   ],
+   "game_x": 1.85,
+   "key": "kalshi|KXNCAAMBGAME-26NOV07MONMURI|ml|1",
+   "lead_min": 850,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 29654,
+   "new_x": 1.73,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 34.36,
+      "volume_24h_fp": 34.36,
+      "volume_fp": 34.36
+     },
+     "game_normal": 30608,
+     "game_x": 1.85,
+     "normal": 17167,
+     "now": 56641,
+     "type": "ML",
+     "x": 3.3
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 27453.0,
+      "volume": 27453.0
+     },
+     "game_normal": 431,
+     "game_x": 4.7,
+     "normal": 1145,
+     "now": 2025,
+     "type": "ML",
+     "x": 1.77
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 191,
+     "game_x": 3.16,
+     "normal": 447,
+     "now": 604,
+     "type": "ML",
+     "x": 1.35
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.7,
+   "price_american": -233,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.71,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -250
+    },
+    "betrivers": {
+     "point": null,
+     "price": -286
+    },
+    "bovada": {
+     "point": null,
+     "price": -250
+    },
+    "draftkings": {
+     "point": null,
+     "price": -250
+    },
+    "fanatics": {
+     "point": null,
+     "price": -260
+    },
+    "kalshi": {
+     "point": null,
+     "price": -233
+    },
+    "novig": {
+     "point": null,
+     "price": -257
+    },
+    "polymarket": {
+     "point": null,
+     "price": -233
+    },
+    "prophetx": {
+     "point": null,
+     "price": -260
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV07MONMURI-URI"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Rhode Island",
+   "side_label": "Rhode Island",
+   "size_x": 3.3,
+   "start_source": "odds",
+   "start_utc": "2026-11-07T21:00:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "Monmouth",
+    "Rhode Island"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-07T06:50:17Z",
+   "base_depth": 12257,
+   "best_price": 0.6855,
+   "best_price_american": -218,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.67,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-07",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 3470,
+     "new_this_side": 26521,
+     "other_side": 2037,
+     "other_side_all_levels": 9667,
+     "ratio": 2.8,
+     "this_side": 5767,
+     "this_side_all_levels": 39611
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 84.64,
+    "volume_24h_fp": 64.64,
+    "volume_fp": 84.64
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 84.64,
+    "volume_24h_fp": 64.64,
+    "volume_fp": 84.64
+   },
+   "fade_price": 0.35,
+   "first_seen_utc": "2026-11-07T06:40:18Z",
+   "game": "LIU vs La Salle",
+   "game_surge_books": [],
+   "game_x": 1.6,
+   "key": "kalshi|KXNCAAMBGAME-26NOV07LIULAS|ml|1",
+   "lead_min": 820,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 26521,
+   "new_x": 1.54,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 84.64,
+      "volume_24h_fp": 64.64,
+      "volume_fp": 84.64
+     },
+     "game_normal": 24716,
+     "game_x": 1.6,
+     "normal": 17167,
+     "now": 39611,
+     "type": "ML",
+     "x": 2.31
+    }
+   },
+   "norm_ready_books": 1,
+   "paper_only": false,
+   "price": 0.67,
+   "price_american": -203,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.67,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -220
+    },
+    "betrivers": {
+     "point": null,
+     "price": -230
+    },
+    "bovada": {
+     "point": null,
+     "price": -220
+    },
+    "draftkings": {
+     "point": null,
+     "price": -218
+    },
+    "fanatics": {
+     "point": null,
+     "price": -215
+    },
+    "fanduel": {
+     "point": null,
+     "price": -210
+    },
+    "kalshi": {
+     "point": null,
+     "price": -203
+    },
+    "novig": {
+     "point": null,
+     "price": -223
+    },
+    "polymarket": {
+     "point": null,
+     "price": -194
+    },
+    "prophetx": {
+     "point": null,
+     "price": -220
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV07LIULAS-LAS"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "La Salle",
+   "side_label": "La Salle",
+   "size_x": 2.31,
+   "start_source": "odds",
+   "start_utc": "2026-11-07T20:30:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "LIU",
+    "La Salle"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-07T05:50:16Z",
    "base_depth": 11489,
    "best_price": 0.7824,
@@ -221,7 +655,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 72.80999999999999,
-    "volume_24h_fp": 72.71,
+    "volume_24h_fp": 72.80999999999999,
     "volume_fp": 72.80999999999999
    },
    "ex_stats_first": {
@@ -855,9 +1289,9 @@
     "volume_fp": 1872.14
    },
    "ex_stats_close": {
-    "open_interest_fp": 211390.13,
-    "volume_24h_fp": 218135.74,
-    "volume_fp": 218764.38
+    "open_interest_fp": 214017.32,
+    "volume_24h_fp": 221036.63,
+    "volume_fp": 221391.57
    },
    "ex_stats_first": {
     "open_interest_fp": 56348.65,
