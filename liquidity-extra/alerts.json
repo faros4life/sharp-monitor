@@ -1,6 +1,155 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-07T05:10:16Z",
+   "base_depth": 6776,
+   "best_price": 0.5971,
+   "best_price_american": -148,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.58,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-07",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 8490,
+     "new_this_side": 27285,
+     "other_side": 978,
+     "other_side_all_levels": 15535,
+     "ratio": 1.7,
+     "this_side": 1691,
+     "this_side_all_levels": 33493
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "ACU (0)",
+     "price": 0.62,
+     "this_side": 54
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 1.73,
+    "volume_24h_fp": 1.73,
+    "volume_fp": 1.73
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 1.73,
+    "volume_24h_fp": 1.73,
+    "volume_fp": 1.73
+   },
+   "fade_price": 0.45,
+   "first_seen_utc": "2026-11-07T05:00:23Z",
+   "game": "Lamar vs Abilene Christian",
+   "game_surge_books": [
+    "kalshi"
+   ],
+   "game_x": 37.11,
+   "key": "kalshi|KXNCAAMBGAME-26NOV07LAMAC|ml|1",
+   "lead_min": 830,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 27285,
+   "new_x": 1.21,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 1.73,
+      "volume_24h_fp": 1.73,
+      "volume_fp": 1.73
+     },
+     "game_normal": 902,
+     "game_x": 37.11,
+     "normal": 22459,
+     "now": 33493,
+     "type": "ML",
+     "x": 1.49
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 3181.0,
+      "volume": 3181.0
+     },
+     "game_normal": null,
+     "game_x": null,
+     "normal": 1323,
+     "now": 349,
+     "type": "ML",
+     "x": 0.26
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.58,
+   "price_american": -138,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.61,
+   "prices_by_book": {
+    "bovada": {
+     "point": null,
+     "price": -145
+    },
+    "draftkings": {
+     "point": null,
+     "price": -148
+    },
+    "fanatics": {
+     "point": null,
+     "price": -145
+    },
+    "kalshi": {
+     "point": null,
+     "price": -138
+    },
+    "novig": {
+     "point": null,
+     "price": -150
+    },
+    "polymarket": {
+     "point": null,
+     "price": -156
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV07LAMAC-AC"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Abilene Christian",
+   "side_label": "Abilene Christian",
+   "size_x": 1.49,
+   "start_source": "odds",
+   "start_utc": "2026-11-07T19:00:00Z",
+   "surge_books": [],
+   "teams": [
+    "Lamar",
+    "Abilene Christian"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-07T03:50:16Z",
    "base_depth": 17577,
    "best_price": 0.8016,
@@ -53,9 +202,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 183.6,
-    "volume_24h_fp": 178.1,
-    "volume_fp": 203.0
+    "open_interest_fp": 183.84,
+    "volume_24h_fp": 203.0,
+    "volume_fp": 203.24
    },
    "ex_stats_first": {
     "open_interest_fp": 31.939999999999998,
@@ -392,9 +541,9 @@
     "volume_fp": 399.38
    },
    "ex_stats_close": {
-    "open_interest_fp": 70604.39,
-    "volume_24h_fp": 75141.79,
-    "volume_fp": 75707.53
+    "open_interest_fp": 76302.73,
+    "volume_24h_fp": 80715.78,
+    "volume_fp": 81539.62
    },
    "ex_stats_first": {
     "open_interest_fp": 51068.409999999996,
@@ -524,9 +673,9 @@
     "volume_fp": 1872.14
    },
    "ex_stats_close": {
-    "open_interest_fp": 79749.79999999999,
-    "volume_24h_fp": 84853.56,
-    "volume_fp": 85000.43
+    "open_interest_fp": 87980.7,
+    "volume_24h_fp": 92742.37,
+    "volume_fp": 93290.35
    },
    "ex_stats_first": {
     "open_interest_fp": 56348.65,
@@ -2839,6 +2988,7 @@
     "volume_fp": 2142.29
    },
    "fade_price": 0.26,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-05T20:10:19Z",
    "game": "North Dakota St. vs San Francisco",
    "game_surge_books": [
@@ -2915,11 +3065,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAMBGAME-26NOV06NDSUSF-SF"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-11-07T05:10:16Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "San Francisco",
@@ -2936,7 +3087,7 @@
     "San Francisco"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.29
   },
   {
    "alerted_utc": "2026-11-05T20:20:20Z",
