@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 7, 10:24 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 20.
+Updated Sat Nov 7, 10:32 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 20.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,14 +10,14 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 7 10:00AM | TENNIS | Casper Ruud vs Carlos Alcaraz | moneyline: Carlos Alcaraz | kalshi | $46k | -426 | ✅ novig |  | +1.0c |  | pending |
+| Nov 7 10:00AM | TENNIS | Casper Ruud vs Carlos Alcaraz | moneyline: Carlos Alcaraz | kalshi | $46k | -426 | ✅ novig |  | +2.0c |  | pending |
 | Nov 7 9:50AM | NCAAB | UNC Wilmington vs East Carolina | moneyline: UNC Wilmington | kalshi | $31k | -186 |  |  | +0.0c |  | pending |
 | Nov 7 9:50AM | NCAAB | SIU Edwardsville vs Lipscomb | moneyline: Lipscomb | kalshi | $41k | -317 |  |  | +0.0c |  | pending |
 | Nov 7 9:50AM | NCAAB | Southeastern Louisiana vs Little Rock | moneyline: Little Rock | kalshi | $40k | -456 |  |  | +0.0c |  | pending |
 | Nov 7 9:50AM | NCAAB | Prairie View A&M vs UT Rio Grande Valley | moneyline: UT Rio Grande Valley | kalshi | $36k | -376 |  |  | +0.0c |  | pending |
 | Nov 7 9:50AM | NCAAB | Old Dominion vs Bucknell | moneyline: Old Dominion | kalshi | $29k | -178 |  |  | +5.0c |  | pending |
 | Nov 7 9:50AM | NCAAB | Houston Christian vs Western Illinois | moneyline: Houston Christian | kalshi | $28k | -400 |  |  | +0.0c |  | pending |
-| Nov 7 9:40AM | TENNIS | Luca Van Assche vs Ben Shelton | moneyline: Luca Van Assche | kalshi | $363k | -104 |  |  | +24.0c |  | pending |
+| Nov 7 9:40AM | TENNIS | Luca Van Assche vs Ben Shelton | moneyline: Luca Van Assche | kalshi | $363k | -104 |  |  | -21.0c |  | pending |
 | Nov 7 9:20AM | NCAAB | Northern Iowa vs Furman | moneyline: Furman | kalshi | $25k | -194 |  |  | +0.0c |  | pending |
 | Nov 7 8:20AM | TENNIS | Damir Dzumhur vs Inaki Montes-de la Torre | moneyline: Inaki Montes | kalshi | $106k | -194 |  |  | +27.0c | yes | W |
 | Nov 7 6:30AM | TENNIS | Viktor Durasovic vs Alexander Shevchenko | moneyline: Alexander Shevchenko | kalshi | $28k | -376 |  |  | +0.0c |  | pending |
