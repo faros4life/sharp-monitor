@@ -1,6 +1,217 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-07T22:20:11Z",
+   "base_depth": 1665527,
+   "best_price": 0.64,
+   "best_price_american": -178,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.65,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 7,
+   "date": "2026-11-07",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -84882,
+     "new_this_side": 121768,
+     "other_side": 1302618,
+     "other_side_all_levels": 1486323,
+     "ratio": 1.1,
+     "this_side": 1461686,
+     "this_side_all_levels": 1800544
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "FLA (0)",
+     "price": 0.64,
+     "this_side": 125634
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Florida",
+     "price": 0.6403,
+     "this_side": 19204
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 138298.18,
+    "volume_24h_fp": 122609.18,
+    "volume_fp": 154491.59
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 1338.73,
+    "volume_24h_fp": 1159.33,
+    "volume_fp": 1338.73
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 136959.45,
+    "volume_24h_fp": 121449.84999999999,
+    "volume_fp": 153152.86
+   },
+   "fade_price": 0.36,
+   "first_seen_utc": "2026-11-07T22:12:58Z",
+   "game": "Oklahoma vs Florida",
+   "game_surge_books": [],
+   "game_x": 1.05,
+   "key": "kalshi|KXNCAAFGAME-26NOV07OKLAFLA|ml|1",
+   "lead_min": 145,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 121768,
+   "new_x": 2.2,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 138298.18,
+      "volume_24h_fp": 122609.18,
+      "volume_fp": 154491.59
+     },
+     "game_normal": 1714758,
+     "game_x": 1.05,
+     "normal": 55332,
+     "now": 1800544,
+     "type": "ML",
+     "x": 32.54
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 6652085.0,
+      "volume": 7870453.0
+     },
+     "game_normal": 73043,
+     "game_x": 1.72,
+     "normal": 7586,
+     "now": 125964,
+     "type": "ML",
+     "x": 16.61
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 13065,
+     "game_x": 1.47,
+     "normal": 1779,
+     "now": 19210,
+     "type": "ML",
+     "x": 10.8
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.65,
+   "price_american": -186,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.65,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -190
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -185
+    },
+    "betopenly": {
+     "point": null,
+     "price": -224
+    },
+    "betrivers": {
+     "point": null,
+     "price": -200
+    },
+    "betus": {
+     "point": null,
+     "price": -185
+    },
+    "bovada": {
+     "point": null,
+     "price": -190
+    },
+    "draftkings": {
+     "point": null,
+     "price": -192
+    },
+    "fanatics": {
+     "point": null,
+     "price": -195
+    },
+    "fanduel": {
+     "point": null,
+     "price": -194
+    },
+    "kalshi": {
+     "point": null,
+     "price": -186
+    },
+    "lowvig": {
+     "point": null,
+     "price": -185
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -194
+    },
+    "novig": {
+     "point": null,
+     "price": -178
+    },
+    "polymarket": {
+     "point": null,
+     "price": -178
+    },
+    "prophetx": {
+     "point": null,
+     "price": -178
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -200
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26NOV07OKLAFLA-FLA"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "prophetx"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [
+    "Oklahoma Sooners +5.5 (-110)"
+   ],
+   "side": "Florida",
+   "side_label": "Florida",
+   "size_x": 32.54,
+   "start_source": "odds",
+   "start_utc": "2026-11-08T00:45:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "teams": [
+    "Oklahoma",
+    "Florida"
+   ],
+   "top25": true,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-07T22:00:17Z",
    "base_depth": 62741,
    "best_price": 0.6449,
@@ -15,8 +226,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.645,
-   "clv_cents": 0.0,
+   "close_price": 0.64,
+   "clv_cents": -0.5,
    "confirmed_after_min": 10,
    "date": "2026-11-07",
    "depth_by_book": {
@@ -109,6 +320,8 @@
    "norm_ready_books": 3,
    "paper_only": false,
    "price": 0.645,
+   "price_after_15m": 0.64,
+   "price_after_15m_book": "novig",
    "price_american": -182,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.645,
@@ -199,6 +412,7 @@
    "size_x": 17.36,
    "start_source": "odds",
    "start_utc": "2026-11-08T00:45:00Z",
+   "still_actionable": true,
    "surge_books": [
     "kalshi",
     "novig",
@@ -1148,17 +1362,17 @@
     "volumeNum": 0.0
    },
    "ex_stats_close": {
-    "volume": 49139.899226,
-    "volume1mo": 49615.099226,
-    "volume1moClob": 49615.099226,
-    "volume1wk": 49615.099226,
-    "volume1wkClob": 49615.099226,
-    "volume1yr": 49615.099226,
-    "volume1yrClob": 49615.099226,
-    "volume24hr": 44341.057457,
-    "volume24hrClob": 44341.057457,
-    "volumeClob": 49139.899226,
-    "volumeNum": 49139.899226
+    "volume": 50407.794140000005,
+    "volume1mo": 50541.692444,
+    "volume1moClob": 50541.692444,
+    "volume1wk": 50541.692444,
+    "volume1wkClob": 50541.692444,
+    "volume1yr": 50541.692444,
+    "volume1yrClob": 50541.692444,
+    "volume24hr": 45267.650675,
+    "volume24hrClob": 45267.650675,
+    "volumeClob": 50407.794140000005,
+    "volumeNum": 50407.794140000005
    },
    "ex_stats_first": {
     "volume": 36368.763634,
@@ -1649,17 +1863,17 @@
     "volumeNum": 26213.96
    },
    "ex_stats_close": {
-    "volume": 30653.776101999996,
-    "volume1mo": 30653.776101999996,
-    "volume1moClob": 30653.776101999996,
-    "volume1wk": 30653.776101999996,
-    "volume1wkClob": 30653.776101999996,
-    "volume1yr": 30653.776101999996,
-    "volume1yrClob": 30653.776101999996,
-    "volume24hr": 30653.776101999996,
-    "volume24hrClob": 30653.776101999996,
-    "volumeClob": 30653.776101999996,
-    "volumeNum": 30653.776101999996
+    "volume": 55200.512769999994,
+    "volume1mo": 55200.512769999994,
+    "volume1moClob": 55200.512769999994,
+    "volume1wk": 55200.512769999994,
+    "volume1wkClob": 55200.512769999994,
+    "volume1yr": 55200.512769999994,
+    "volume1yrClob": 55200.512769999994,
+    "volume24hr": 55200.512769999994,
+    "volume24hrClob": 55200.512769999994,
+    "volumeClob": 55200.512769999994,
+    "volumeNum": 55200.512769999994
    },
    "ex_stats_first": {
     "volume": 4430.89453,
@@ -1852,8 +2066,8 @@
     "volume": 117801.0
    },
    "ex_stats_close": {
-    "openInterest": 5197389.0,
-    "volume": 6985351.0
+    "openInterest": 5208277.0,
+    "volume": 7002732.0
    },
    "ex_stats_first": {
     "openInterest": 4796642.0,
@@ -1963,8 +2177,8 @@
     "volume": 12394.0
    },
    "ex_stats_close": {
-    "openInterest": 3086807.0,
-    "volume": 3590913.0
+    "openInterest": 3089807.0,
+    "volume": 3593913.0
    },
    "ex_stats_first": {
     "openInterest": 2733148.0,
@@ -2141,9 +2355,9 @@
     "volume_fp": 40.4
    },
    "ex_stats_close": {
-    "open_interest_fp": 15354.289999999999,
-    "volume_24h_fp": 13524.3,
-    "volume_fp": 15881.279999999999
+    "open_interest_fp": 15481.69,
+    "volume_24h_fp": 13628.52,
+    "volume_fp": 16008.68
    },
    "ex_stats_first": {
     "open_interest_fp": 14196.69,
@@ -2283,17 +2497,17 @@
     "volumeNum": 0.0
    },
    "ex_stats_close": {
-    "volume": 112778.67613500002,
-    "volume1mo": 112953.21847200001,
-    "volume1moClob": 112953.21847200001,
-    "volume1wk": 112953.21847200001,
-    "volume1wkClob": 112953.21847200001,
-    "volume1yr": 112953.21847200001,
-    "volume1yrClob": 112953.21847200001,
-    "volume24hr": 104121.671823,
-    "volume24hrClob": 104121.671823,
-    "volumeClob": 112778.67613500002,
-    "volumeNum": 112778.67613500002
+    "volume": 113010.443582,
+    "volume1mo": 113111.30791199997,
+    "volume1moClob": 113111.30791199997,
+    "volume1wk": 113111.30791199997,
+    "volume1wkClob": 113111.30791199997,
+    "volume1yr": 113111.30791199997,
+    "volume1yrClob": 113111.30791199997,
+    "volume24hr": 101783.44126299999,
+    "volume24hrClob": 101783.44126299999,
+    "volumeClob": 113010.443582,
+    "volumeNum": 113010.443582
    },
    "ex_stats_first": {
     "volume": 49045.179755,
@@ -2721,17 +2935,17 @@
     "volumeNum": 96.15
    },
    "ex_stats_close": {
-    "volume": 7637.706948,
-    "volume1mo": 7851.1151119999995,
-    "volume1moClob": 7851.1151119999995,
-    "volume1wk": 7851.1151119999995,
-    "volume1wkClob": 7851.1151119999995,
-    "volume1yr": 7851.1151119999995,
-    "volume1yrClob": 7851.1151119999995,
-    "volume24hr": 7851.1151119999995,
-    "volume24hrClob": 7851.1151119999995,
-    "volumeClob": 7637.706948,
-    "volumeNum": 7637.706948
+    "volume": 7990.298787,
+    "volume1mo": 8048.298787,
+    "volume1moClob": 8048.298787,
+    "volume1wk": 8048.298787,
+    "volume1wkClob": 8048.298787,
+    "volume1yr": 8048.298787,
+    "volume1yrClob": 8048.298787,
+    "volume24hr": 8048.298787,
+    "volume24hrClob": 8048.298787,
+    "volumeClob": 7990.298787,
+    "volumeNum": 7990.298787
    },
    "ex_stats_first": {
     "volume": 7464.634733,
@@ -2968,17 +3182,17 @@
     "volumeNum": 0.0
    },
    "ex_stats_close": {
-    "volume": 60715.685348,
-    "volume1mo": 60733.86534799999,
-    "volume1moClob": 60733.86534799999,
-    "volume1wk": 60733.86534799999,
-    "volume1wkClob": 60733.86534799999,
-    "volume1yr": 60733.86534799999,
-    "volume1yrClob": 60733.86534799999,
-    "volume24hr": 60733.86534799999,
-    "volume24hrClob": 60733.86534799999,
-    "volumeClob": 60715.685348,
-    "volumeNum": 60715.685348
+    "volume": 60733.86534799999,
+    "volume1mo": 60733.865348,
+    "volume1moClob": 60733.865348,
+    "volume1wk": 60733.865348,
+    "volume1wkClob": 60733.865348,
+    "volume1yr": 60733.865348,
+    "volume1yrClob": 60733.865348,
+    "volume24hr": 60733.865348,
+    "volume24hrClob": 60733.865348,
+    "volumeClob": 60733.86534799999,
+    "volumeNum": 60733.86534799999
    },
    "ex_stats_first": {
     "volume": 30592.673385,
@@ -3160,8 +3374,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.845,
-   "clv_cents": -0.5,
+   "close_price": 0.85,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-11-07",
    "depth_by_book": {
@@ -3190,8 +3404,8 @@
     "volume": 16469.0
    },
    "ex_stats_close": {
-    "openInterest": 1544074.0,
-    "volume": 3242130.0
+    "openInterest": 1546085.0,
+    "volume": 3244141.0
    },
    "ex_stats_first": {
     "openInterest": 1497605.0,
@@ -3384,8 +3598,8 @@
     "volume": 816097.0
    },
    "ex_stats_close": {
-    "openInterest": 44642368.0,
-    "volume": 57030678.0
+    "openInterest": 45483916.0,
+    "volume": 57882612.0
    },
    "ex_stats_first": {
     "openInterest": 38944633.0,
@@ -4270,9 +4484,9 @@
     "volume_fp": 320.6
    },
    "ex_stats_close": {
-    "open_interest_fp": 22438.120000000003,
-    "volume_24h_fp": 15305.71,
-    "volume_fp": 22854.66
+    "open_interest_fp": 22713.53,
+    "volume_24h_fp": 15727.320000000002,
+    "volume_fp": 23130.07
    },
    "ex_stats_first": {
     "open_interest_fp": 15076.96,
@@ -4448,8 +4662,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.525,
-   "clv_cents": 0.0,
+   "close_price": 0.53,
+   "clv_cents": 0.5,
    "confirmed_after_min": 20,
    "date": "2026-11-07",
    "depth_by_book": {
@@ -4472,8 +4686,8 @@
     "volume": 197454.0
    },
    "ex_stats_close": {
-    "openInterest": 41106679.0,
-    "volume": 43991341.0
+    "openInterest": 41551352.0,
+    "volume": 44457982.0
    },
    "ex_stats_first": {
     "openInterest": 23677627.0,
@@ -5050,9 +5264,9 @@
     "volume_fp": 1881.02
    },
    "ex_stats_close": {
-    "open_interest_fp": 582754.2,
-    "volume_24h_fp": 349376.67000000004,
-    "volume_fp": 661772.98
+    "open_interest_fp": 584895.0700000001,
+    "volume_24h_fp": 354299.73,
+    "volume_fp": 664017.98
    },
    "ex_stats_first": {
     "open_interest_fp": 522978.8,
@@ -8364,17 +8578,17 @@
     "volumeNum": 79.16
    },
    "ex_stats_close": {
-    "volume": 27928.073901000003,
-    "volume1mo": 27941.150823,
-    "volume1moClob": 27941.150823,
-    "volume1wk": 27941.150823,
-    "volume1wkClob": 27941.150823,
-    "volume1yr": 27941.150823,
-    "volume1yrClob": 27941.150823,
-    "volume24hr": 27941.150823,
-    "volume24hrClob": 27941.150823,
-    "volumeClob": 27928.073901000003,
-    "volumeNum": 27928.073901000003
+    "volume": 27962.381593000002,
+    "volume1mo": 28031.381593,
+    "volume1moClob": 28031.381593,
+    "volume1wk": 28031.381593,
+    "volume1wkClob": 28031.381593,
+    "volume1yr": 28031.381593,
+    "volume1yrClob": 28031.381593,
+    "volume24hr": 28031.381593,
+    "volume24hrClob": 28031.381593,
+    "volumeClob": 27962.381593000002,
+    "volumeNum": 27962.381593000002
    },
    "ex_stats_first": {
     "volume": 16358.273382000001,
@@ -8701,17 +8915,17 @@
     "volumeNum": 18564.32
    },
    "ex_stats_close": {
-    "volume": 76708.48400899999,
-    "volume1mo": 76790.802192,
-    "volume1moClob": 76790.802192,
-    "volume1wk": 76790.802192,
-    "volume1wkClob": 76790.802192,
-    "volume1yr": 76790.802192,
-    "volume1yrClob": 76790.802192,
-    "volume24hr": 74135.1616,
-    "volume24hrClob": 74135.1616,
-    "volumeClob": 76708.48400899999,
-    "volumeNum": 76708.48400899999
+    "volume": 76823.66401099999,
+    "volume1mo": 76873.66401099999,
+    "volume1moClob": 76873.66401099999,
+    "volume1wk": 76873.66401099999,
+    "volume1wkClob": 76873.66401099999,
+    "volume1yr": 76873.66401099999,
+    "volume1yrClob": 76873.66401099999,
+    "volume24hr": 74178.003419,
+    "volume24hrClob": 74178.003419,
+    "volumeClob": 76823.66401099999,
+    "volumeNum": 76823.66401099999
    },
    "ex_stats_first": {
     "volume": 9695.580492,
@@ -10153,17 +10367,17 @@
     "volumeNum": 121.0
    },
    "ex_stats_close": {
-    "volume": 84233.71922000001,
-    "volume1mo": 84369.830332,
-    "volume1moClob": 84369.830332,
-    "volume1wk": 84369.830332,
-    "volume1wkClob": 84369.830332,
-    "volume1yr": 84369.830332,
-    "volume1yrClob": 84369.830332,
-    "volume24hr": 82019.770255,
-    "volume24hrClob": 82019.770255,
-    "volumeClob": 84233.71922000001,
-    "volumeNum": 84233.71922000001
+    "volume": 85510.03515199998,
+    "volume1mo": 85678.047201,
+    "volume1moClob": 85678.047201,
+    "volume1wk": 85678.047201,
+    "volume1wkClob": 85678.047201,
+    "volume1yr": 85678.047201,
+    "volume1yrClob": 85678.047201,
+    "volume24hr": 83327.987124,
+    "volume24hrClob": 83327.987124,
+    "volumeClob": 85510.03515199998,
+    "volumeNum": 85510.03515199998
    },
    "ex_stats_first": {
     "volume": 18290.403157,
@@ -10376,17 +10590,17 @@
     "volumeNum": 0.0
    },
    "ex_stats_close": {
-    "volume": 13112.770524,
+    "volume": 13112.770523999998,
     "volume1mo": 13112.770524,
     "volume1moClob": 13112.770524,
     "volume1wk": 13001.214973999999,
     "volume1wkClob": 13001.214973999999,
     "volume1yr": 13112.770524,
     "volume1yrClob": 13112.770524,
-    "volume24hr": 12071.175468999998,
-    "volume24hrClob": 12071.175468999998,
-    "volumeClob": 13112.770524,
-    "volumeNum": 13112.770524
+    "volume24hr": 12071.175468999996,
+    "volume24hrClob": 12071.175468999996,
+    "volumeClob": 13112.770523999998,
+    "volumeNum": 13112.770523999998
    },
    "ex_stats_first": {
     "volume": 11959.763136,
@@ -11468,17 +11682,17 @@
     "volumeNum": 464.09
    },
    "ex_stats_close": {
-    "volume": 27815.706149999998,
-    "volume1mo": 27817.746967,
-    "volume1moClob": 27817.746967,
-    "volume1wk": 27817.746967,
-    "volume1wkClob": 27817.746967,
-    "volume1yr": 27817.746967,
-    "volume1yrClob": 27817.746967,
-    "volume24hr": 25570.758803,
-    "volume24hrClob": 25570.758803,
-    "volumeClob": 27815.706149999998,
-    "volumeNum": 27815.706149999998
+    "volume": 27817.746967,
+    "volume1mo": 27867.746967,
+    "volume1moClob": 27867.746967,
+    "volume1wk": 27867.746967,
+    "volume1wkClob": 27867.746967,
+    "volume1yr": 27867.746967,
+    "volume1yrClob": 27867.746967,
+    "volume24hr": 25620.758803,
+    "volume24hrClob": 25620.758803,
+    "volumeClob": 27817.746967,
+    "volumeNum": 27817.746967
    },
    "ex_stats_first": {
     "volume": 22531.870763,
@@ -11705,17 +11919,17 @@
     "volumeNum": 21557.32
    },
    "ex_stats_close": {
-    "volume": 101893.087599,
-    "volume1mo": 102193.087599,
-    "volume1moClob": 102193.087599,
-    "volume1wk": 102193.087599,
-    "volume1wkClob": 102193.087599,
-    "volume1yr": 102193.087599,
-    "volume1yrClob": 102193.087599,
-    "volume24hr": 101056.54421400001,
-    "volume24hrClob": 101056.54421400001,
-    "volumeClob": 101893.087599,
-    "volumeNum": 101893.087599
+    "volume": 102193.087599,
+    "volume1mo": 102213.818369,
+    "volume1moClob": 102213.818369,
+    "volume1wk": 102213.818369,
+    "volume1wkClob": 102213.818369,
+    "volume1yr": 102213.818369,
+    "volume1yrClob": 102213.818369,
+    "volume24hr": 101077.274984,
+    "volume24hrClob": 101077.274984,
+    "volumeClob": 102193.087599,
+    "volumeNum": 102193.087599
    },
    "ex_stats_first": {
     "volume": 23234.34813,
@@ -11930,17 +12144,17 @@
     "volumeNum": 0.0
    },
    "ex_stats_close": {
-    "volume": 91179.21751599999,
-    "volume1mo": 91179.217516,
-    "volume1moClob": 91179.217516,
-    "volume1wk": 91179.217516,
-    "volume1wkClob": 91179.217516,
-    "volume1yr": 91179.217516,
-    "volume1yrClob": 91179.217516,
-    "volume24hr": 89612.687212,
-    "volume24hrClob": 89612.687212,
-    "volumeClob": 91179.21751599999,
-    "volumeNum": 91179.21751599999
+    "volume": 91194.14288799999,
+    "volume1mo": 91194.142888,
+    "volume1moClob": 91194.142888,
+    "volume1wk": 91194.142888,
+    "volume1wkClob": 91194.142888,
+    "volume1yr": 91194.142888,
+    "volume1yrClob": 91194.142888,
+    "volume24hr": 89627.612584,
+    "volume24hrClob": 89627.612584,
+    "volumeClob": 91194.14288799999,
+    "volumeNum": 91194.14288799999
    },
    "ex_stats_first": {
     "volume": 13942.824116999996,
@@ -12162,17 +12376,17 @@
     "volumeNum": 1376.34
    },
    "ex_stats_close": {
-    "volume": 27815.706149999998,
-    "volume1mo": 27817.746967,
-    "volume1moClob": 27817.746967,
-    "volume1wk": 27817.746967,
-    "volume1wkClob": 27817.746967,
-    "volume1yr": 27817.746967,
-    "volume1yrClob": 27817.746967,
-    "volume24hr": 25570.758803,
-    "volume24hrClob": 25570.758803,
-    "volumeClob": 27815.706149999998,
-    "volumeNum": 27815.706149999998
+    "volume": 27817.746967,
+    "volume1mo": 27867.746967,
+    "volume1moClob": 27867.746967,
+    "volume1wk": 27867.746967,
+    "volume1wkClob": 27867.746967,
+    "volume1yr": 27867.746967,
+    "volume1yrClob": 27867.746967,
+    "volume24hr": 25620.758803,
+    "volume24hrClob": 25620.758803,
+    "volumeClob": 27817.746967,
+    "volumeNum": 27817.746967
    },
    "ex_stats_first": {
     "volume": 21139.90614,
@@ -13315,14 +13529,14 @@
    },
    "ex_stats_close": {
     "volume": 1236.300357,
-    "volume1mo": 1236.300357,
-    "volume1moClob": 1236.300357,
-    "volume1wk": 1236.300357,
-    "volume1wkClob": 1236.300357,
-    "volume1yr": 1236.300357,
-    "volume1yrClob": 1236.300357,
-    "volume24hr": 1236.300357,
-    "volume24hrClob": 1236.300357,
+    "volume1mo": 1236.3003570000003,
+    "volume1moClob": 1236.3003570000003,
+    "volume1wk": 1236.3003570000003,
+    "volume1wkClob": 1236.3003570000003,
+    "volume1yr": 1236.3003570000003,
+    "volume1yrClob": 1236.3003570000003,
+    "volume24hr": 1236.3003570000003,
+    "volume24hrClob": 1236.3003570000003,
     "volumeClob": 1236.300357,
     "volumeNum": 1236.300357
    },
@@ -13537,17 +13751,17 @@
     "volumeNum": 0.0
    },
    "ex_stats_close": {
-    "volume": 30971.521232,
-    "volume1mo": 31060.271231999996,
-    "volume1moClob": 31060.271231999996,
-    "volume1wk": 31060.271231999996,
-    "volume1wkClob": 31060.271231999996,
-    "volume1yr": 31060.271231999996,
-    "volume1yrClob": 31060.271231999996,
-    "volume24hr": 30985.870735999993,
-    "volume24hrClob": 30985.870735999993,
-    "volumeClob": 30971.521232,
-    "volumeNum": 30971.521232
+    "volume": 31126.420578999998,
+    "volume1mo": 31152.394604999998,
+    "volume1moClob": 31152.394604999998,
+    "volume1wk": 31152.394604999998,
+    "volume1wkClob": 31152.394604999998,
+    "volume1yr": 31152.394604999998,
+    "volume1yrClob": 31152.394604999998,
+    "volume24hr": 31077.994108999996,
+    "volume24hrClob": 31077.994108999996,
+    "volumeClob": 31126.420578999998,
+    "volumeNum": 31126.420578999998
    },
    "ex_stats_first": {
     "volume": 10792.488236000001,
@@ -13760,17 +13974,17 @@
     "volumeNum": 0.0
    },
    "ex_stats_close": {
-    "volume": 56812.377045,
-    "volume1mo": 56812.37704500001,
-    "volume1moClob": 56812.37704500001,
-    "volume1wk": 56812.37704500001,
-    "volume1wkClob": 56812.37704500001,
-    "volume1yr": 56812.37704500001,
-    "volume1yrClob": 56812.37704500001,
-    "volume24hr": 56201.35286700001,
-    "volume24hrClob": 56201.35286700001,
-    "volumeClob": 56812.377045,
-    "volumeNum": 56812.377045
+    "volume": 103182.733206,
+    "volume1mo": 105046.515058,
+    "volume1moClob": 105046.515058,
+    "volume1wk": 105046.515058,
+    "volume1wkClob": 105046.515058,
+    "volume1yr": 105046.515058,
+    "volume1yrClob": 105046.515058,
+    "volume24hr": 104435.49088000001,
+    "volume24hrClob": 104435.49088000001,
+    "volumeClob": 103182.733206,
+    "volumeNum": 103182.733206
    },
    "ex_stats_first": {
     "volume": 4546.199602999999,
