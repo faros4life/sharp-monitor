@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 7, 12:30 AM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 43.
+Updated Sat Nov 7, 12:40 AM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 44.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 7 12:40AM | NCAAF | BYU vs Utah: Spread | spread: NOT Utah wins by over 4.5 points | kalshi | $40k | -108 | ✅ novig | ✅ | +0.0c |  | pending |
 | Nov 7 12:30AM | NCAAF | North Carolina vs UConn: Total Points | total: NOT Over 54.5 points | kalshi | $35k | +104 |  |  | +0.0c |  | pending |
 | Nov 7 12:10AM | NCAAF | Richmond vs Villanova | moneyline: Villanova | kalshi | $25k | -335 |  |  | +0.0c |  | pending |
 | Nov 6 11:30PM | NHL | Panthers vs. Capitals | moneyline: Capitals | polymarket | $43k | -117 | ✅ novig |  | +0.0c |  | pending |
@@ -19,7 +20,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 6 9:41PM | NBA | Portland Trail Blazers @ Los Angeles Lakers | moneyline: LAL (0) | novig | $40k | -141 | ✅ kalshi,polymarket,prophetx | ✅ | +0.0c |  | pending |
 | Nov 6 9:41PM | NCAAF | Tulsa vs Tulane: Total Points | total: NOT Over 50.5 points | kalshi | $27k | -104 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 6 9:20PM | NCAAF | TCU vs Arizona: Total Points | total: Over 46.5 points | kalshi | $39k | -108 |  |  | +0.0c | yes | pending |
-| Nov 6 9:10PM | NCAAF | Robert Morris vs Duquesne | moneyline: Duquesne | kalshi | $37k | -335 |  |  | +0.0c | yes | pending |
+| Nov 6 9:10PM | NCAAF | Robert Morris vs Duquesne | moneyline: Duquesne | kalshi | $37k | -335 |  |  | -1.0c | yes | pending |
 | Nov 6 8:41PM | NBA | Trail Blazers vs. Lakers | spread: Lakers (-3.5) | polymarket | $382k | +104 |  | ✅ | +0.0c |  | pending |
 | Nov 6 8:31PM | NCAAF | New Mexico vs Nevada: Spread | spread: NOT New Mexico wins by over 10.5 points | kalshi | $81k | -113 |  |  | +0.0c | yes | L |
 | Nov 6 7:50PM | NBA | Spurs vs. Kings | spread: Kings (+17.5) | polymarket | $30k | -100 |  | ❌ | +0.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 4 7:56PM | NBA | Indiana Pacers @ Memphis Grizzlies | moneyline: MEM (0) | novig | $49k | -213 | ✅ kalshi,polymarket,prophetx | ✅ | +0.0c |  | L |
 | Nov 4 7:45PM | NBA | Portland vs Phoenix: Total Points | total: NOT Over 228.5 points | kalshi | $47k | -108 |  |  | +1.0c | yes | L |
 | Nov 4 7:40PM | NBA | Jazz vs. Pelicans | spread: Jazz (+4.5) | polymarket | $304k | -100 |  | ✅ | +0.0c |  | L |
-| Nov 4 7:40PM | NBA | Jazz vs. Pelicans | moneyline: Jazz | polymarket | $273k | +170 |  | ✅ | +0.0c |  | L |
