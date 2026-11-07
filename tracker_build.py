@@ -319,7 +319,8 @@ def read_prophetx():
         title = str(t.get("line_name") or t.get("selection") or "")
         b = {"id": f"px|{t.get('id')}", "book": "ProphetX", "game": (h or {}).get("game") or str(t.get("event_name") or ""),
              "bet": (h or {}).get("label") or title, "price": pr, "stake": round(stake, 2),
-             "to_pay": round(stake + win * 0.98, 2), "date": (h or {}).get("date"), "placed": str(t.get("created_at") or "")}
+             "to_pay": round(stake + win * 0.98, 2), "date": (h or {}).get("date"), "placed": str(t.get("created_at") or ""),
+             "strike": str(t.get("strike_id") or "")}   # Nov 6: fills of one bet share a strike -> one card
         when = None
         for k in ("settled_at", "settle_time", "settled_time", "updated_at", "update_time", "matched_at", "created_at"):
             when = tparse(t.get(k))
@@ -931,6 +932,68 @@ try{const s=localStorage.getItem('btp');if(s)go(s,false);}catch(e){}
 </script></body></html>"""
 
 
+EXCH_BOOKS = ("ProphetX", "Novig", "Kalshi", "Polymarket US")
+
+
+def mark_manual_dups(bets):
+    """Nov 6 (Peter: "a lot of dupes on the tracker"). A manual note for a bet on an exchange the tracker already reads
+    (ProphetX, Novig, Kalshi, Polymarket US) is the SAME bet as that book's row: same book, same stake (to the cent),
+    placed within 90 minutes. The note is kept in the state but marked dup_of and left off the page and the tiles; its
+    bet name is lent to the book's row (and that row's other fills) when the book gave none."""
+    rows = [(k, b) for k, b in bets.items() if not k.startswith("mn|") and b.get("book") in EXCH_BOOKS]
+    for k, b in bets.items():
+        if not k.startswith("mn|") or b.get("book") not in EXCH_BOOKS:
+            continue
+        t1 = tparse(b.get("placed")) or tparse(b.get("first_seen"))
+        for k2, x in rows:
+            if x.get("book") != b["book"] or not x.get("stake") or not b.get("stake") or abs(x["stake"] - b["stake"]) > 0.015:
+                continue
+            t2 = tparse(x.get("placed")) or tparse(x.get("first_seen"))
+            if t1 and t2 and abs((t1 - t2).total_seconds()) > 90 * 60:
+                continue
+            b["dup_of"] = k2
+            if not x.get("bet"):
+                lab = re.sub(r"\s*\(?[-+]\d{3,}\)?\s*$", "", b.get("bet") or "").strip()
+                for _, y in rows:
+                    if y is x or (x.get("strike") and y.get("strike") == x.get("strike") and not y.get("bet")):
+                        y["bet"] = lab
+                        y["game"] = y.get("game") or b.get("game")
+            break
+
+
+def group_fills(rows):
+    """Nov 6: ProphetX fills one bet in pieces (one trade each). Rows that share a ProphetX strike id show as ONE card:
+    stakes, payouts and profit summed, the final score from whichever fill has it. The state keeps every fill."""
+    out, grp = [], {}
+    for b in rows:
+        k = b.get("strike") if b.get("book") == "ProphetX" and b.get("strike") else None
+        if not k:
+            out.append(b)
+            continue
+        grp.setdefault(k, []).append(b)
+    for k, xs in grp.items():
+        if len(xs) == 1:
+            out.append(xs[0])
+            continue
+        xs = sorted(xs, key=lambda z: (z.get("placed") or z.get("first_seen") or ""))
+        best = next((x for x in xs if x.get("teams_final")), xs[-1])
+        g = {**best}
+        g["id"] = f"pxg|{k}"
+        g["bet"] = next((x.get("bet") for x in xs if x.get("bet")), "")
+        g["game"] = next((x.get("game") for x in xs if x.get("game")), "")
+        for f in ("stake", "to_pay"):
+            g[f] = round(sum(x.get(f) or 0 for x in xs), 2)
+        res = {x.get("result") for x in xs}
+        g["result"] = res.pop() if len(res) == 1 else None
+        g["profit"] = round(sum(x.get("profit") or 0 for x in xs), 2) if g["result"] else None
+        g["open"] = any(x.get("open") for x in xs) and not g["result"]
+        g["fills"] = len(xs)
+        g["first_seen"] = xs[0].get("first_seen")
+        g["settled"] = max((x.get("settled") or "" for x in xs), default="") or None
+        out.append(g)
+    return out
+
+
 def self_check(bets, settled_reads, open_ids, now, state):
     """Nov 3 (Peter: "how do we make sure it doesn't happen"): checks every build; a phone alert once per new issue.
     No amounts in the alert (dollars stay in private email). Returns the list of issue lines (counted in the log)."""
@@ -1077,7 +1140,7 @@ def main():
             continue
         b["source"] = b.get("source") or ("bot" if bot_match(b, keys) or prev.get("source") == "bot" else "Peter")
         b["first_seen"] = prev.get("first_seen") or iso(now)
-        bets[b["id"]] = {**prev, **b, "open": True}
+        bets[b["id"]] = {**prev, **{k: v for k, v in b.items() if v not in (None, "")}, "open": True}
     # Kalshi settlements carry only a ticker: join them to the open row we saw before (game + bet text)
     for s in settled:
         if s["book"] == "Kalshi":
@@ -1087,11 +1150,17 @@ def main():
                 bets.pop(prev["id"], None)
         elif s["book"] == "ProphetX":
             pass
+        elif s["book"] == "Polymarket US":   # Nov 6: the open row (pm|<slug>|<outcome>) stayed beside its settlement
+            m_ = re.search(r"\[([^\]]+)\]", s["id"])
+            if m_:
+                old_ = bets.pop(f"pm|{m_.group(1)}|{s.get('bet')}", None)
+                if old_:
+                    s = {**{k: v for k, v in old_.items() if k not in ("id", "open")}, **s}
         s["open"] = False
         prev_src = (bets.get(s["id"]) or {}).get("source")
         s["source"] = s.get("source") or ("bot" if bot_match(s, keys) or prev_src == "bot" else None) or \
             (prev_src if prev_src and prev_src != "Peter" else None) or "Peter"
-        bets[s["id"]] = {**(bets.get(s["id"]) or {}), **{k: v for k, v in s.items() if v is not None}}   # Nov 2: a settlement row
+        bets[s["id"]] = {**(bets.get(s["id"]) or {}), **{k: v for k, v in s.items() if v not in (None, "")}}   # Nov 2: a settlement row
         # without price / payout (Novig losses) no longer wipes the price the open row already had
     # settled bets from earlier days this week need their own ESPN dates (scores shown on every card)
     have = {g["start"][:10] for g in games if g.get("start")}
@@ -1152,6 +1221,7 @@ def main():
         elif k not in open_ids and b["book"] in ("ProphetX", "Kalshi", "Polymarket US") and not b.get("result"):
             b["open"] = False   # left the book's open list; its site settlement will arrive in a later read
 
+    mark_manual_dups(bets)
     for b in bets.values():
         if b.get("source") == "Peter" and reclass(b):
             b["source"] = "ntfy (Peter manual)"
@@ -1163,10 +1233,10 @@ def main():
     def gdate(b):
         return et_date(b.get("game_start")) or et_date(b.get("settled"))
 
-    sett = [b for b in bets.values() if b.get("result") in ("W", "L", "P")]
+    sett = [b for b in bets.values() if b.get("result") in ("W", "L", "P") and not b.get("dup_of")]
     tile = lambda t0: round(sum(b.get("profit") or 0 for b in sett if gdate(b) and gdate(b) >= t0), 2)
     live, up, unm = [], [], []
-    for b in bets.values():
+    for b in group_fills([b for b in bets.values() if not b.get("dup_of")]):
         if b.get("result") or not b.get("open"):
             continue
         st = et_date(b.get("game_start"))
@@ -1178,7 +1248,7 @@ def main():
         else:
             up.append(b)
     up.sort(key=lambda b: b.get("game_start") or "")
-    week_settled = sorted([b for b in sett if gdate(b) and gdate(b) >= week0], key=lambda b: b.get("settled") or "", reverse=True)
+    week_settled = sorted(group_fills([b for b in sett if gdate(b) and gdate(b) >= week0]), key=lambda b: b.get("settled") or "", reverse=True)
     # keep 45 days of history in the state
     cut = iso(now - timedelta(days=45))
     state["bets"] = {k: v for k, v in bets.items() if not v.get("result") or (v.get("settled") or "") >= cut}
@@ -1192,7 +1262,7 @@ def main():
             "all": [{k: b.get(k) for k in ("bet", "price", "stake", "to_pay", "book", "source", "result", "profit", "teams",
                                            "game", "league", "g_state", "g_detail", "status", "game_start", "settled",
                                            "first_seen", "open", "site", "when")}
-                    for b in state["bets"].values() if b.get("result") or b.get("open")],
+                    for b in group_fills([x for x in state["bets"].values() if not x.get("dup_of")]) if b.get("result") or b.get("open")],
             "graded_note": "Novig and manual bets graded from final scores" if any(b.get("site") is False for b in sett) else "",
             "reads": ", ".join(f"{k} {'ok' if str(v).startswith('ok') else 'failed'}" for k, v in LOG.items())}
     if json.dumps(state, sort_keys=True) != before:   # re-encrypt (new IV) only when the bets changed: fewer commits

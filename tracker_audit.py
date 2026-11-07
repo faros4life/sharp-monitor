@@ -57,6 +57,14 @@ def main():
     for k, v in sorted(cross.items()):
         L.append(f"  {k[0]} :: {k[1]}  ({len(v)} rows)")
         L += [row(b) for b in v]
+    import copy
+    V = copy.deepcopy(st.get("bets") or {})
+    tb.mark_manual_dups(V)
+    page = [b for b in tb.group_fills([b for b in V.values() if not b.get("dup_of")])
+            if (b.get("result") or b.get("open")) and (when(b) or now) >= cut]
+    L += ["", f"PAGE VIEW after the Nov 6 fixes (fills grouped, manual duplicates hidden): {len(page)} cards "
+              f"(was {len(shown)} rows; {sum(1 for b in V.values() if b.get('dup_of'))} manual duplicates hidden)"]
+    L += [row(b) + (f" | fills={b['fills']}" if b.get("fills") else "") for b in sorted(page, key=lambda b: (when(b) or now), reverse=True)]
     L += ["", "ALL SHOWN ROWS (newest first):"]
     L += [row(b) for b in sorted(shown, key=lambda b: (when(b) or now), reverse=True)]
     ex.send("Bets TRACKER AUDIT (read-only)", "\n".join(L))
