@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 7, 4:09 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 38.
+Updated Sat Nov 7, 4:18 AM ET. This run: 0 new, 1 not confirmed, 1 pending. Open alerts: 38.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -11,7 +11,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 7 2:30AM | NCAAF | BYU vs Utah: Total Points | total: NOT Over 49.5 points | kalshi | $31k | -100 | ✅ novig |  | +0.0c |  | pending |
-| Nov 7 2:30AM | NCAAF | Tennessee-Martin vs Charleston Southern | moneyline: Charleston Southern | kalshi | $26k | -223 |  |  | +0.0c |  | pending |
+| Nov 7 2:30AM | NCAAF | Tennessee-Martin vs Charleston Southern | moneyline: Charleston Southern | kalshi | $26k | -223 |  |  | -1.0c |  | pending |
 | Nov 7 2:30AM | NCAAF | South Dakota St. vs Northern Iowa | moneyline: South Dakota St. | kalshi | $29k | -525 |  |  | +0.0c |  | pending |
 | Nov 7 2:30AM | NCAAF | Samford vs East Tennessee St. | moneyline: East Tennessee St. | kalshi | $29k | -488 |  |  | +0.0c |  | pending |
 | Nov 7 2:30AM | NCAAF | Penn vs Cornell | moneyline: Cornell | kalshi | $25k | -257 |  |  | -1.0c |  | pending |
