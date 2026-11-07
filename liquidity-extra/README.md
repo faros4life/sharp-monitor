@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 7, 9:40 AM ET. This run: 1 new, 0 not confirmed, 6 pending. Open alerts: 13.
+Updated Sat Nov 7, 9:50 AM ET. This run: 6 new, 0 not confirmed, 2 pending. Open alerts: 19.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,7 +10,13 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 7 9:40AM | TENNIS | Luca Van Assche vs Ben Shelton | moneyline: Luca Van Assche | kalshi | $363k | -104 |  |  | +0.0c |  | pending |
+| Nov 7 9:50AM | NCAAB | UNC Wilmington vs East Carolina | moneyline: UNC Wilmington | kalshi | $31k | -186 |  |  | +0.0c |  | pending |
+| Nov 7 9:50AM | NCAAB | SIU Edwardsville vs Lipscomb | moneyline: Lipscomb | kalshi | $41k | -317 |  |  | +0.0c |  | pending |
+| Nov 7 9:50AM | NCAAB | Southeastern Louisiana vs Little Rock | moneyline: Little Rock | kalshi | $40k | -456 |  |  | +0.0c |  | pending |
+| Nov 7 9:50AM | NCAAB | Prairie View A&M vs UT Rio Grande Valley | moneyline: UT Rio Grande Valley | kalshi | $36k | -376 |  |  | +0.0c |  | pending |
+| Nov 7 9:50AM | NCAAB | Old Dominion vs Bucknell | moneyline: Old Dominion | kalshi | $29k | -178 |  |  | +0.0c |  | pending |
+| Nov 7 9:50AM | NCAAB | Houston Christian vs Western Illinois | moneyline: Houston Christian | kalshi | $28k | -400 |  |  | +0.0c |  | pending |
+| Nov 7 9:40AM | TENNIS | Luca Van Assche vs Ben Shelton | moneyline: Luca Van Assche | kalshi | $363k | -104 |  |  | +4.0c |  | pending |
 | Nov 7 9:20AM | NCAAB | Northern Iowa vs Furman | moneyline: Furman | kalshi | $25k | -194 |  |  | +0.0c |  | pending |
 | Nov 7 8:20AM | TENNIS | Damir Dzumhur vs Inaki Montes-de la Torre | moneyline: Inaki Montes | kalshi | $106k | -194 |  |  | +27.0c | yes | W |
 | Nov 7 6:30AM | TENNIS | Viktor Durasovic vs Alexander Shevchenko | moneyline: Alexander Shevchenko | kalshi | $28k | -376 |  |  | +0.0c |  | pending |
@@ -20,7 +26,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 7 1:50AM | NCAAB | Monmouth vs Rhode Island | moneyline: Rhode Island | kalshi | $30k | -233 |  |  | +2.0c |  | pending |
 | Nov 7 1:50AM | NCAAB | LIU vs La Salle | moneyline: La Salle | kalshi | $27k | -203 |  |  | -2.0c |  | pending |
 | Nov 7 12:50AM | NCAAB | St. Bonaventure vs Canisius | moneyline: St. Bonaventure | kalshi | $34k | -335 |  |  | +3.0c | yes | pending |
-| Nov 7 12:10AM | NCAAB | Lamar vs Abilene Christian | moneyline: Abilene Christian | kalshi | $27k | -138 |  |  | -6.0c | yes | pending |
+| Nov 7 12:10AM | NCAAB | Lamar vs Abilene Christian | moneyline: Abilene Christian | kalshi | $27k | -138 |  |  | -8.0c | yes | pending |
 | Nov 6 10:50PM | NCAAB | North Dakota vs Winthrop | moneyline: Winthrop | kalshi | $29k | -376 |  |  | +1.0c | yes | pending |
 | Nov 6 10:50PM | NCAAB | Long Beach St. vs Montana St. | moneyline: Montana St. | kalshi | $27k | -426 |  |  | +3.0c | yes | pending |
 | Nov 6 9:40PM | TENNIS | Alexandra Shubladze vs Claire Liu | moneyline: Alexandra Shubladze | kalshi | $30k | +113 |  |  | +0.0c | yes | L |
@@ -204,9 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 26 1:10PM | MLB | Milwaukee Brewers vs. Tampa Bay Rays | total: Under (7.5) | polymarket | $49k | -122 | ✅ kalshi,novig |  | +1.0c |  | L |
 | Oct 26 12:30PM | TENNIS | Mpetshi Perricard vs Fils | moneyline: Fils | kalshi | $50k | -456 |  |  | -4.0c |  | W |
 | Oct 26 12:00PM | TENNIS | Fery vs Fearnley | moneyline: Fery | kalshi | $48k | +104 |  |  | +21.0c | yes | W |
-| Oct 26 11:20AM | MLB | Milwaukee Brewers @ Tampa Bay Rays | moneyline: MIL (0) | novig | $27k | +106 | ✅ polymarket,prophetx |  | +0.0c |  | W |
-| Oct 26 11:00AM | TENNIS | Machac vs de Minaur | moneyline: Machac | kalshi | $441k | -203 |  |  | -66.0c | yes | L |
-| Oct 26 8:10AM | MLB | Milwaukee Brewers vs. Tampa Bay Rays | moneyline: Milwaukee Brewers | polymarket | $213k | +104 |  |  | +0.0c |  | W |
-| Oct 26 7:31AM | TENNIS | Bertola vs Shapovalov | moneyline: Shapovalov | kalshi | $29k | -285 |  |  | -1.0c |  | W |
-| Oct 26 6:50AM | TENNIS | Dart vs Prozorova | moneyline: Prozorova | kalshi | $649k | -213 |  |  | -63.0c | yes | L |
-| Oct 26 6:30AM | TENNIS | Altmaier vs Cerundolo | moneyline: Cerundolo | kalshi | $31k | -127 | ✅ novig |  | -45.0c | yes | L |
