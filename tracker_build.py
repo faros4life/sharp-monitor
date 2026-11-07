@@ -183,6 +183,8 @@ def pin_bad(b, gs=None):
 def match_game(bet, games, near=None):
     """near: a datetime the game must start within 36 h of (settled bets: their settle time), so an old bet is never
     pinned to this week's game between the same teams."""
+    if not bet.get("league") and re.search(r"\b(senate|house|governor|president|election|winner\?)", f"{bet.get('game')} {bet.get('bet')}".lower()):
+        return None   # Nov 6: a politics market ("Michigan Senate winner?") is not a game (it was pinned to C Michigan vs E Michigan)
     bt = (toks(bet.get("game")) | toks(bet.get("bet"))) - WEAK
     best, score, tsc = None, 0, 0
     for g in games:
