@@ -1,26 +1,27 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 7, 10:40 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 20.
+Updated Sat Nov 7, 10:50 AM ET. This run: 1 new, 0 not confirmed, 2 pending. Open alerts: 20.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 159-97 (-12.98u flat) | rule met: 36-31
+**Record:** 160-97 (-12.71u flat) | rule met: 36-31
 
-**Fade (paper, betting against the print):** 72-124 (+8.65u flat, after fees)
+**Fade (paper, betting against the print):** 72-125 (+7.65u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 7 10:00AM | TENNIS | Casper Ruud vs Carlos Alcaraz | moneyline: Carlos Alcaraz | kalshi | $46k | -426 | ✅ novig |  | +2.0c |  | pending |
+| Nov 7 10:50AM | TENNIS | Magda Linette vs Anastasia Zakharova | moneyline: Magda Linette | kalshi | $52k | -400 |  |  | +0.0c |  | pending |
+| Nov 7 10:00AM | TENNIS | Casper Ruud vs Carlos Alcaraz | moneyline: Carlos Alcaraz | kalshi | $46k | -426 | ✅ novig |  | +3.0c |  | pending |
 | Nov 7 9:50AM | NCAAB | UNC Wilmington vs East Carolina | moneyline: UNC Wilmington | kalshi | $31k | -186 |  |  | +0.0c |  | pending |
 | Nov 7 9:50AM | NCAAB | SIU Edwardsville vs Lipscomb | moneyline: Lipscomb | kalshi | $41k | -317 |  |  | +0.0c |  | pending |
 | Nov 7 9:50AM | NCAAB | Southeastern Louisiana vs Little Rock | moneyline: Little Rock | kalshi | $40k | -456 |  |  | +0.0c |  | pending |
 | Nov 7 9:50AM | NCAAB | Prairie View A&M vs UT Rio Grande Valley | moneyline: UT Rio Grande Valley | kalshi | $36k | -376 |  |  | +0.0c |  | pending |
 | Nov 7 9:50AM | NCAAB | Old Dominion vs Bucknell | moneyline: Old Dominion | kalshi | $29k | -178 |  |  | +5.0c |  | pending |
 | Nov 7 9:50AM | NCAAB | Houston Christian vs Western Illinois | moneyline: Houston Christian | kalshi | $28k | -400 |  |  | +0.0c |  | pending |
-| Nov 7 9:40AM | TENNIS | Luca Van Assche vs Ben Shelton | moneyline: Luca Van Assche | kalshi | $363k | -104 |  |  | -34.0c | yes | pending |
+| Nov 7 9:40AM | TENNIS | Luca Van Assche vs Ben Shelton | moneyline: Luca Van Assche | kalshi | $363k | -104 |  |  | -46.0c | yes | pending |
 | Nov 7 9:20AM | NCAAB | Northern Iowa vs Furman | moneyline: Furman | kalshi | $25k | -194 |  |  | +0.0c |  | pending |
 | Nov 7 8:20AM | TENNIS | Damir Dzumhur vs Inaki Montes-de la Torre | moneyline: Inaki Montes | kalshi | $106k | -194 |  |  | +27.0c | yes | W |
-| Nov 7 6:30AM | TENNIS | Viktor Durasovic vs Alexander Shevchenko | moneyline: Alexander Shevchenko | kalshi | $28k | -376 |  |  | +0.0c | yes | pending |
+| Nov 7 6:30AM | TENNIS | Viktor Durasovic vs Alexander Shevchenko | moneyline: Alexander Shevchenko | kalshi | $28k | -376 |  |  | +0.0c | yes | W |
 | Nov 7 4:50AM | NCAAB | Portland St. vs Seattle | moneyline: Seattle | kalshi | $39k | -525 |  |  | +1.0c |  | pending |
 | Nov 7 2:20AM | TENNIS | Luca Van Assche vs Ben Shelton | moneyline: Ben Shelton | kalshi | $29k | -335 | ✅ novig |  | -1.0c |  | pending |
 | Nov 7 1:50AM | TENNIS | Alexandra Shubladze vs Claire Liu | moneyline: Claire Liu | kalshi | $585k | -178 |  |  | +24.0c | yes | W |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 26 2:46PM | MLB | Milwaukee vs Tampa Bay: Total Runs | total: Over 7.5 runs scored | kalshi | $231k | +122 |  |  | -16.0c | yes | W |
 | Oct 26 2:40PM | MLB | Milwaukee Brewers vs. Tampa Bay Rays | moneyline: Tampa Bay Rays | polymarket | $708k | -108 | ✅ kalshi,novig |  | +0.0c |  | L |
 | Oct 26 1:10PM | MLB | Milwaukee Brewers vs. Tampa Bay Rays | total: Under (7.5) | polymarket | $49k | -122 | ✅ kalshi,novig |  | +1.0c |  | L |
-| Oct 26 12:30PM | TENNIS | Mpetshi Perricard vs Fils | moneyline: Fils | kalshi | $50k | -456 |  |  | -4.0c |  | W |
