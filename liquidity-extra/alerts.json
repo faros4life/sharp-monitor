@@ -1,6 +1,185 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-07T16:00:26Z",
+   "base_depth": 34722,
+   "best_price": 0.5683,
+   "best_price_american": -132,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.56,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-07",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 6736,
+     "new_this_side": 27146,
+     "other_side": 16067,
+     "other_side_all_levels": 37602,
+     "ratio": 2.9,
+     "this_side": 46708,
+     "this_side_all_levels": 61868
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "UC Riverside",
+     "price": 0.5633,
+     "this_side": 2661
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 1234.42,
+    "volume_24h_fp": 1209.42,
+    "volume_fp": 1234.42
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 1234.42,
+    "volume_24h_fp": 1209.42,
+    "volume_fp": 1234.42
+   },
+   "fade_price": 0.45,
+   "first_seen_utc": "2026-11-07T15:50:17Z",
+   "game": "Denver vs UC Riverside",
+   "game_surge_books": [],
+   "game_x": 1.78,
+   "key": "kalshi|KXNCAAMBGAME-26NOV07DENUCRV|ml|1",
+   "lead_min": 510,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 27146,
+   "new_x": 2.24,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 1234.42,
+      "volume_24h_fp": 1209.42,
+      "volume_fp": 1234.42
+     },
+     "game_normal": 34849,
+     "game_x": 1.78,
+     "normal": 12105,
+     "now": 61868,
+     "type": "ML",
+     "x": 5.11
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 1602,
+     "game_x": 1.67,
+     "normal": 542,
+     "now": 2674,
+     "type": "ML",
+     "x": 4.94
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.56,
+   "price_american": -127,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.56,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -135
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -140
+    },
+    "betrivers": {
+     "point": null,
+     "price": -139
+    },
+    "betus": {
+     "point": null,
+     "price": -135
+    },
+    "bovada": {
+     "point": null,
+     "price": -135
+    },
+    "draftkings": {
+     "point": null,
+     "price": -130
+    },
+    "fanatics": {
+     "point": null,
+     "price": -140
+    },
+    "fanduel": {
+     "point": null,
+     "price": -134
+    },
+    "kalshi": {
+     "point": null,
+     "price": -127
+    },
+    "lowvig": {
+     "point": null,
+     "price": -140
+    },
+    "novig": {
+     "point": null,
+     "price": -130
+    },
+    "polymarket": {
+     "point": null,
+     "price": -127
+    },
+    "prophetx": {
+     "point": null,
+     "price": -129
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -135
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV07DENUCRV-UCRV"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UC Riverside",
+   "side_label": "UC Riverside",
+   "size_x": 5.11,
+   "start_source": "odds",
+   "start_utc": "2026-11-08T00:30:00Z",
+   "surge_books": [
+    "kalshi",
+    "prophetx"
+   ],
+   "teams": [
+    "Denver",
+    "UC Riverside"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-07T15:50:17Z",
    "base_depth": 247574,
    "best_price": 0.8112,
@@ -15,8 +194,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.8,
-   "clv_cents": 0.0,
+   "close_price": 0.94,
+   "clv_cents": 14.0,
    "confirmed_after_min": 10,
    "date": "2026-11-07",
    "depth_by_book": {
@@ -39,6 +218,11 @@
     "open_interest_fp": 66858.72,
     "volume_24h_fp": 122377.84,
     "volume_fp": 202512.65
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 851817.8899999999,
+    "volume_24h_fp": 1462274.89,
+    "volume_fp": 1621089.42
    },
    "ex_stats_first": {
     "open_interest_fp": 641201.35,
@@ -123,6 +307,7 @@
     "polymarket",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.84,
    "clv_cents": 3.0,
    "confirmed_after_min": 10,
@@ -292,9 +477,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1129.23,
-    "volume_24h_fp": 1141.75,
-    "volume_fp": 1153.9
+    "open_interest_fp": 1136.73,
+    "volume_24h_fp": 1149.25,
+    "volume_fp": 1161.4
    },
    "ex_stats_first": {
     "open_interest_fp": 1084.19,
@@ -2932,9 +3117,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 52343.53,
-    "volume_24h_fp": 52439.56,
-    "volume_fp": 52439.56
+    "open_interest_fp": 52375.04,
+    "volume_24h_fp": 52470.56,
+    "volume_fp": 52471.07
    },
    "ex_stats_first": {
     "open_interest_fp": 1.73,
@@ -3096,9 +3281,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1168.08,
-    "volume_24h_fp": 1334.69,
-    "volume_fp": 1350.6100000000001
+    "open_interest_fp": 1170.31,
+    "volume_24h_fp": 1341.4299999999998,
+    "volume_fp": 1352.8400000000001
    },
    "ex_stats_first": {
     "open_interest_fp": 31.939999999999998,
