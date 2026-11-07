@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 7, 8:20 AM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 12.
+Updated Sat Nov 7, 8:30 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 12.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,7 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 7 8:20AM | TENNIS | Damir Dzumhur vs Inaki Montes-de la Torre | moneyline: Inaki Montes | kalshi | $106k | -194 |  |  | +0.0c |  | pending |
+| Nov 7 8:20AM | TENNIS | Damir Dzumhur vs Inaki Montes-de la Torre | moneyline: Inaki Montes | kalshi | $106k | -194 |  |  | -12.0c | yes | pending |
 | Nov 7 6:30AM | TENNIS | Viktor Durasovic vs Alexander Shevchenko | moneyline: Alexander Shevchenko | kalshi | $28k | -376 |  |  | +0.0c |  | pending |
 | Nov 7 4:50AM | NCAAB | Portland St. vs Seattle | moneyline: Seattle | kalshi | $39k | -525 |  |  | +1.0c |  | pending |
 | Nov 7 2:20AM | TENNIS | Luca Van Assche vs Ben Shelton | moneyline: Ben Shelton | kalshi | $29k | -335 | ✅ novig |  | -1.0c |  | pending |
