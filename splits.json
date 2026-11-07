@@ -33,7 +33,7 @@
    "kill_bar": "none",
    "status": "OPEN",
    "closed_utc": null,
-   "plays": 40,
+   "plays": 41,
    "resulted": 38,
    "W": 16,
    "L": 20,
@@ -54,7 +54,7 @@
    "kill_bar": ">= 30 resulted at <= -0.1u/play -> CLOSED",
    "status": "ELIGIBLE at next review",
    "closed_utc": null,
-   "plays": 68,
+   "plays": 69,
    "resulted": 67,
    "W": 38,
    "L": 29,
@@ -75,7 +75,7 @@
    "kill_bar": ">= 30 resulted at <= -0.1u/play -> CLOSED",
    "status": "CLOSED",
    "closed_utc": "2026-11-01T03:35:12Z",
-   "plays": 68,
+   "plays": 69,
    "resulted": 67,
    "W": 38,
    "L": 29,
@@ -495,7 +495,7 @@
    "kill_bar": ">= 30 resulted at <= -0.1u/play -> CLOSED",
    "status": "OPEN",
    "closed_utc": null,
-   "plays": 359,
+   "plays": 358,
    "resulted": 352,
    "W": 175,
    "L": 177,
@@ -516,7 +516,7 @@
    "kill_bar": ">= 30 resulted at <= -0.1u/play -> CLOSED",
    "status": "CLOSED",
    "closed_utc": "2026-10-30T05:00:15Z",
-   "plays": 260,
+   "plays": 261,
    "resulted": 257,
    "W": 128,
    "L": 129,
@@ -537,7 +537,7 @@
    "kill_bar": ">= 30 resulted at <= -0.1u/play -> CLOSED",
    "status": "CLOSED",
    "closed_utc": "2026-10-27T10:00:00Z",
-   "plays": 614,
+   "plays": 616,
    "resulted": 598,
    "W": 294,
    "L": 304,
@@ -767,16 +767,16 @@
   "status": "PAUSE LIVE"
  },
  "gaps": {
-  "gaps": 149,
-  "per_day": 11.5,
-  "edge_pct_median": 3.31,
+  "gaps": 148,
+  "per_day": 11.4,
+  "edge_pct_median": 3.575,
   "edge_pct_p90": 25.41,
-  "size_est_median_upper_bound": 348,
+  "size_est_median_upper_bound": 371.5,
   "seen_once_share": 0.73,
-  "lifetime_min_median": 0,
+  "lifetime_min_median": 0.0,
   "lived_10min_plus": 39,
   "with_200_both_legs_upper_bound": 85,
-  "scan_sec_median": 296.0
+  "scan_sec_median": 296
  },
  "untimed": {
   "ntfy_evening": 0,
@@ -785,5 +785,5 @@
   "liq_evening": 0
  },
  "resulted_rule": "resulted = result W, L or P with a unit value (pushes count as 0u); liquidity artifacts excluded; pending and ungraded plays do not count",
- "updated_utc": "2026-11-07T13:35:15Z"
+ "updated_utc": "2026-11-07T13:45:15Z"
 }
