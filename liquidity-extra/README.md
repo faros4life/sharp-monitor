@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 7, 2:10 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 11.
+Updated Sat Nov 7, 2:20 AM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 12.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 7 2:20AM | TENNIS | Luca Van Assche vs Ben Shelton | moneyline: Ben Shelton | kalshi | $29k | -335 | ✅ novig |  | +0.0c |  | pending |
 | Nov 7 1:50AM | TENNIS | Alexandra Shubladze vs Claire Liu | moneyline: Claire Liu | kalshi | $585k | -178 |  |  | +17.0c | yes | pending |
 | Nov 7 1:50AM | NCAAB | Monmouth vs Rhode Island | moneyline: Rhode Island | kalshi | $30k | -233 |  |  | +1.0c |  | pending |
 | Nov 7 1:50AM | NCAAB | LIU vs La Salle | moneyline: La Salle | kalshi | $27k | -203 |  |  | -1.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 26 5:40AM | TENNIS | Fery vs Fearnley | moneyline: Fearnley | kalshi | $55k | -113 | ✅ novig |  | -52.0c | yes | L |
 | Oct 26 4:40AM | TENNIS | Badosa vs Lee | moneyline: Badosa | kalshi | $162k | -456 |  |  | +13.0c |  | W |
 | Oct 26 3:30AM | TENNIS | Shi vs Ibragimova | moneyline: Shi | kalshi | $1,035k | -525 |  |  | +10.0c |  | W |
-| Oct 26 3:10AM | TENNIS | Shi vs Ibragimova | moneyline: Ibragimova | kalshi | $709k | +104 |  |  | -42.0c | yes | L |
