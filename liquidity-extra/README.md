@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 6, 10:10 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 9.
+Updated Fri Nov 6, 10:20 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 9.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -11,7 +11,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 6 9:40PM | TENNIS | Alexandra Shubladze vs Claire Liu | moneyline: Alexandra Shubladze | kalshi | $30k | +113 |  |  | +1.0c |  | pending |
-| Nov 6 9:20PM | TENNIS | Maria Sakkari vs Alexandra Eala | moneyline: Alexandra Eala | kalshi | $47k | -117 | ✅ novig |  | +0.0c |  | pending |
+| Nov 6 9:20PM | TENNIS | Maria Sakkari vs Alexandra Eala | moneyline: Alexandra Eala | kalshi | $47k | -117 | ✅ novig |  | +1.0c |  | pending |
 | Nov 6 6:20PM | NCAAB | Missouri vs Saint Louis | moneyline: Missouri | kalshi | $38k | -150 |  |  | +0.0c | yes | L |
 | Nov 6 4:30PM | NCAAB | Michigan vs UConn: Spread | spread: NOT UConn wins by over 7.5 points | kalshi | $26k | -113 |  |  | -1.0c | yes | pending |
 | Nov 6 3:20PM | NCAAB | Massachusetts @ Boston College | moneyline: BC (0) | novig | $28k | -213 |  |  | +0.0c |  | W |
