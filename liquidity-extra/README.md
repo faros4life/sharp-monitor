@@ -1,18 +1,18 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 6, 6:50 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 15.
+Updated Fri Nov 6, 7:00 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 14.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 146-93 (-14.01u flat) | rule met: 35-31
+**Record:** 147-93 (-13.54u flat) | rule met: 35-31
 
-**Fade (paper, betting against the print):** 68-111 (+16.66u flat, after fees)
+**Fade (paper, betting against the print):** 68-112 (+15.66u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 6 6:20PM | NCAAB | Missouri vs Saint Louis | moneyline: Missouri | kalshi | $38k | -150 |  |  | +0.0c |  | pending |
+| Nov 6 6:20PM | NCAAB | Missouri vs Saint Louis | moneyline: Missouri | kalshi | $38k | -150 |  |  | +0.0c | yes | pending |
 | Nov 6 4:30PM | NCAAB | Michigan vs UConn: Spread | spread: NOT UConn wins by over 7.5 points | kalshi | $26k | -113 |  |  | +0.0c |  | pending |
-| Nov 6 3:20PM | NCAAB | Massachusetts @ Boston College | moneyline: BC (0) | novig | $28k | -213 |  |  | +0.0c |  | pending |
+| Nov 6 3:20PM | NCAAB | Massachusetts @ Boston College | moneyline: BC (0) | novig | $28k | -213 |  |  | +0.0c |  | W |
 | Nov 6 1:20AM | NCAAB | Loyola Maryland vs Mount St. Mary's | moneyline: Mount St. Mary's | kalshi | $28k | -245 |  |  | -1.0c |  | pending |
 | Nov 6 1:20AM | NCAAB | Boston University vs Brown | moneyline: Brown | kalshi | $31k | -213 |  |  | -14.0c |  | pending |
 | Nov 6 1:00AM | NCAAB | UNC Greensboro vs Elon | moneyline: Elon | kalshi | $33k | -335 |  |  | +2.0c |  | pending |
