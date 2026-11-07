@@ -1,15 +1,17 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 7, 3:10 PM ET. This run: 0 new, 4 not confirmed, 5 pending. Open alerts: 92.
+Updated Sat Nov 7, 3:20 PM ET. This run: 2 new, 2 not confirmed, 2 pending. Open alerts: 85.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 1012-859 (-81.00u flat) | rule met: 618-554
+**Record:** 1017-863 (-81.87u flat) | rule met: 620-556
 
-**Fade (paper, betting against the print):** 593-739 (-83.03u flat, after fees)
+**Fade (paper, betting against the print):** 597-744 (-84.58u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 7 3:20PM | NBA | Nuggets vs. Pacers | spread: Pacers (+8.5) | polymarket | $253k | -108 |  |  | +0.0c |  | pending |
+| Nov 7 3:20PM | NBA | Nuggets vs. Pacers | moneyline: Pacers | polymarket | $370k | +270 |  |  | +0.0c |  | pending |
 | Nov 7 2:51PM | NCAAF | South Alabama vs Louisiana | moneyline: Louisiana | kalshi | $100k | -245 | ✅ novig | ❌ | +0.0c | yes | pending |
 | Nov 7 2:51PM | NCAAF | Louisville vs Georgia Tech | moneyline: Louisville | kalshi | $521k | -567 | ✅ novig,prophetx |  | +0.0c | yes | pending |
 | Nov 7 2:12PM | NCAAF | Miami Florida @ Notre Dame | spread: MIA +7.5 (-7.5) | novig | $40k | -111 |  |  | +0.0c |  | pending |
@@ -46,9 +48,9 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 7 9:51AM | NBA | Wizards vs. Thunder | moneyline: Thunder | polymarket | $42k | -488 |  |  | +0.0c |  | pending |
 | Nov 7 9:51AM | NHL | Blackhawks vs. Hurricanes | moneyline: Hurricanes | polymarket | $37k | -400 |  |  | +1.0c |  | pending |
 | Nov 7 9:51AM | NCAAF | BYU @ Utah | total: Under 49.5 (49.5) | novig | $25k | -104 | ✅ kalshi |  | -1.0c |  | pending |
-| Nov 7 9:51AM | NHL | Florida vs Washington: Spread | spread: NOT Washington wins by over 1.5 goals | kalshi | $31k | -223 | ✅ novig |  | -1.0c | yes | pending |
+| Nov 7 9:51AM | NHL | Florida vs Washington: Spread | spread: NOT Washington wins by over 1.5 goals | kalshi | $31k | -223 | ✅ novig |  | -1.0c | yes | W |
 | Nov 7 9:51AM | NCAAF | Old Dominion vs Coastal Carolina: Spread | spread: NOT Coastal Carolina wins by over 6.5 points | kalshi | $56k | +104 | ✅ novig,prophetx |  | +0.0c | yes | pending |
-| Nov 7 9:51AM | NHL | Florida vs Washington | moneyline: Florida | kalshi | $67k | +108 | ✅ novig,prophetx |  | -1.0c | yes | pending |
+| Nov 7 9:51AM | NHL | Florida vs Washington | moneyline: Florida | kalshi | $67k | +108 | ✅ novig,prophetx |  | -1.0c | yes | L |
 | Nov 7 9:32AM | NHL | Utah vs. Senators | moneyline: Senators | polymarket | $46k | +108 |  |  | +1.0c |  | pending |
 | Nov 7 9:32AM | NHL | Penguins vs. Kings | moneyline: Penguins | polymarket | $61k | +108 |  |  | +1.0c |  | pending |
 | Nov 7 9:32AM | NHL | Red Wings vs. Avalanche | moneyline: Red Wings | polymarket | $47k | +186 |  |  | +0.0c | yes | pending |
@@ -63,7 +65,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 7 8:10AM | NHL | Sharks vs. Stars | moneyline: Stars | polymarket | $34k | -285 |  |  | +0.0c |  | pending |
 | Nov 7 8:10AM | NCAAF | Arkansas @ Auburn | spread: ARK +10.5 (-10.5) | novig | $25k | -104 | ✅ kalshi,prophetx |  | -1.5c |  | pending |
 | Nov 7 8:10AM | NCAAF | Oklahoma St. vs Kansas St.: Spread | spread: NOT Oklahoma St. wins by over 6.5 points | kalshi | $37k | +108 | ✅ novig | ❌ | -2.0c | yes | pending |
-| Nov 7 7:50AM | NCAAF | Tulsa vs Tulane: Spread | spread: NOT Tulsa wins by over 2.5 points | kalshi | $89k | +108 |  | ❌ | -1.0c | yes | pending |
+| Nov 7 7:50AM | NCAAF | Tulsa vs Tulane: Spread | spread: NOT Tulsa wins by over 2.5 points | kalshi | $89k | +108 |  | ❌ | -1.0c | yes | L |
 | Nov 7 7:20AM | NHL | Panthers vs. Capitals | spread: Panthers (+1.5) | polymarket | $25k | -213 | ✅ novig |  | +0.0c |  | pending |
 | Nov 7 6:40AM | NBA | Nuggets vs. Pacers | moneyline: Nuggets | polymarket | $25k | -285 | ✅ novig |  | +0.0c |  | pending |
 | Nov 7 6:10AM | NCAAF | Maryland vs Purdue: Spread | spread: NOT Purdue wins by over 5.5 points | kalshi | $30k | -104 |  | ✅ | +0.0c |  | pending |
@@ -74,7 +76,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 7 2:30AM | NCAAF | Tennessee-Martin vs Charleston Southern | moneyline: Charleston Southern | kalshi | $26k | -223 |  |  | -5.0c | yes | pending |
 | Nov 7 2:30AM | NCAAF | South Dakota St. vs Northern Iowa | moneyline: South Dakota St. | kalshi | $29k | -525 |  |  | +1.0c | yes | pending |
 | Nov 7 2:30AM | NCAAF | Samford vs East Tennessee St. | moneyline: East Tennessee St. | kalshi | $29k | -488 |  |  | +0.0c | yes | pending |
-| Nov 7 2:30AM | NCAAF | Penn vs Cornell | moneyline: Cornell | kalshi | $25k | -257 |  |  | -1.0c | yes | pending |
+| Nov 7 2:30AM | NCAAF | Penn vs Cornell | moneyline: Cornell | kalshi | $25k | -257 |  |  | -3.0c | yes | pending |
 | Nov 7 2:20AM | NCAAF | BYU vs Utah: Spread | spread: Utah wins by over 4.5 points | kalshi | $55k | -100 | ✅ novig | ❌ | +0.0c |  | pending |
 | Nov 7 2:10AM | NCAAF | Oklahoma St. vs Kansas St.: Total Points | total: NOT Over 62.5 points | kalshi | $27k | -100 |  |  | -4.0c | yes | pending |
 | Nov 7 1:40AM | NCAAF | Arkansas vs Auburn: Spread | spread: NOT Auburn wins by over 10.5 points | kalshi | $25k | -100 | ✅ novig,prophetx |  | +0.0c | yes | pending |
@@ -82,14 +84,14 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 7 1:20AM | NCAAF | Texas @ Missouri | moneyline: MIZ (0) | novig | $40k | +127 |  |  | +0.0c | yes | pending |
 | Nov 7 12:50AM | NCAAF | Illinois St. vs North Dakota | moneyline: North Dakota | kalshi | $27k | -213 |  |  | +0.0c |  | pending |
 | Nov 7 12:40AM | NCAAF | BYU vs Utah: Spread | spread: NOT Utah wins by over 4.5 points | kalshi | $40k | -108 | ✅ novig | ✅ | -1.0c | yes | pending |
-| Nov 7 12:30AM | NCAAF | North Carolina vs UConn: Total Points | total: NOT Over 54.5 points | kalshi | $35k | +104 |  |  | -2.0c | yes | pending |
+| Nov 7 12:30AM | NCAAF | North Carolina vs UConn: Total Points | total: NOT Over 54.5 points | kalshi | $35k | +104 |  |  | -2.0c | yes | L |
 | Nov 7 12:10AM | NCAAF | Richmond vs Villanova | moneyline: Villanova | kalshi | $25k | -335 |  |  | +1.0c | yes | pending |
 | Nov 6 11:30PM | NHL | Panthers vs. Capitals | moneyline: Capitals | polymarket | $43k | -117 | ✅ novig |  | +0.0c |  | pending |
 | Nov 6 10:50PM | NHL | St. Louis vs Nashville | moneyline: Nashville | kalshi | $28k | -100 | ✅ novig,polymarket |  | -1.0c | yes | pending |
 | Nov 6 10:41PM | NCAAF | Mercer vs Chattanooga | moneyline: Chattanooga | kalshi | $26k | +122 |  |  | +1.0c | yes | pending |
 | Nov 6 10:01PM | NCAAF | Florida St. vs Boston College: Spread | spread: NOT Florida St. wins by over 6.5 points | kalshi | $83k | -104 | ✅ novig |  | +2.0c |  | pending |
 | Nov 6 9:41PM | NBA | Portland Trail Blazers @ Los Angeles Lakers | moneyline: LAL (0) | novig | $40k | -141 | ✅ kalshi,polymarket,prophetx | ✅ | +0.0c |  | W |
-| Nov 6 9:41PM | NCAAF | Tulsa vs Tulane: Total Points | total: NOT Over 50.5 points | kalshi | $27k | -104 | ✅ novig |  | +0.0c | yes | pending |
+| Nov 6 9:41PM | NCAAF | Tulsa vs Tulane: Total Points | total: NOT Over 50.5 points | kalshi | $27k | -104 | ✅ novig |  | +0.0c | yes | L |
 | Nov 6 9:20PM | NCAAF | TCU vs Arizona: Total Points | total: Over 46.5 points | kalshi | $39k | -108 |  |  | +0.0c | yes | W |
 | Nov 6 9:10PM | NCAAF | Robert Morris vs Duquesne | moneyline: Duquesne | kalshi | $37k | -335 |  |  | -1.0c | yes | L |
 | Nov 6 8:41PM | NBA | Trail Blazers vs. Lakers | spread: Lakers (-3.5) | polymarket | $382k | +104 |  | ✅ | +0.0c |  | W |
@@ -105,7 +107,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 6 7:00PM | NBA | Philadelphia 76ers at Cleveland Cavaliers | moneyline: Philadelphia 76ers | prophetx | $28k | -144 | ✅ novig,polymarket |  | -0.3c |  | L |
 | Nov 6 7:00PM | NBA | 76ers vs. Cavaliers | moneyline: 76ers | polymarket | $36k | -150 | ✅ novig,prophetx |  | -1.0c |  | L |
 | Nov 6 7:00PM | NBA | Philadelphia 76ers @ Cleveland Cavaliers | moneyline: PHI (0) | novig | $44k | -144 | ✅ polymarket,prophetx |  | -0.5c |  | L |
-| Nov 6 7:00PM | NHL | Florida vs Washington | moneyline: Washington | kalshi | $92k | -113 | ✅ novig |  | +1.0c | yes | pending |
+| Nov 6 7:00PM | NHL | Florida vs Washington | moneyline: Washington | kalshi | $92k | -113 | ✅ novig |  | +1.0c | yes | W |
 | Nov 6 6:51PM | NCAAF | Nebraska vs Illinois: Total Points | total: Over 52.5 points | kalshi | $31k | -100 | ✅ novig | ✅ | +0.0c | yes | L |
 | Nov 6 6:41PM | NHL | Anaheim vs Calgary: Total Goals | total: Over 6.5 goals scored | kalshi | $42k | -113 | ✅ novig,polymarket |  | +1.0c | yes | W |
 | Nov 6 6:30PM | NBA | Washington Wizards @ Atlanta Hawks | moneyline: ATL (0) | novig | $40k | -277 | ✅ kalshi,polymarket,prophetx | ✅ | +0.0c |  | W |
@@ -138,7 +140,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 6 1:10PM | NCAAF | South Florida vs East Carolina | moneyline: East Carolina | kalshi | $159k | -108 | ✅ novig | ❌ | +1.0c | yes | W |
 | Nov 6 1:01PM | NCAAF | UCLA vs Minnesota: Spread | spread: UCLA wins by over 4.5 points | kalshi | $40k | -100 |  |  | -4.0c | yes | pending |
 | Nov 6 12:40PM | NCAAF | Texas vs Missouri: Spread | spread: Texas wins by over 2.5 points | kalshi | $47k | -108 |  |  | -1.0c | yes | pending |
-| Nov 6 12:32PM | NCAAF | North Carolina @ Connecticut | moneyline: UNC (0) | novig | $26k | -270 |  |  | +0.0c | yes | pending |
+| Nov 6 12:32PM | NCAAF | North Carolina @ Connecticut | moneyline: UNC (0) | novig | $26k | -270 |  |  | +0.0c | yes | W |
 | Nov 6 11:50AM | NBA | Utah vs Dallas: Total Points | total: Over 225.5 points | kalshi | $53k | -108 |  |  | +1.0c | yes | L |
 | Nov 6 11:50AM | NCAAF | Virginia Tech vs SMU: Spread | spread: NOT SMU wins by over 6.5 points | kalshi | $70k | -108 | ✅ novig |  | +2.0c | yes | L |
 | Nov 6 11:50AM | NBA | Utah vs Dallas: Spread | spread: NOT Dallas wins by over 7.5 points | kalshi | $27k | -113 | ✅ polymarket | ❌ | +2.0c | yes | L |
@@ -167,7 +169,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 6 8:21AM | NHL | Ducks vs. Flames | moneyline: Flames | polymarket | $51k | -127 | ✅ kalshi,novig |  | +2.0c |  | L |
 | Nov 6 8:21AM | NHL | Anaheim vs Calgary: Spread | spread: Calgary wins by over 1.5 goals | kalshi | $58k | +186 | ✅ polymarket |  | +1.0c | yes | L |
 | Nov 6 8:11AM | NBA | Wizards vs. Hawks | moneyline: Hawks | polymarket | $35k | -245 | ✅ kalshi,novig,prophetx |  | +2.0c |  | W |
-| Nov 6 8:01AM | NCAAF | North Carolina vs UConn: Spread | spread: North Carolina wins by over 7.5 points | kalshi | $158k | +104 |  |  | +3.0c | yes | pending |
+| Nov 6 8:01AM | NCAAF | North Carolina vs UConn: Spread | spread: North Carolina wins by over 7.5 points | kalshi | $158k | +104 |  |  | +3.0c | yes | W |
 | Nov 6 7:00AM | NBA | Portland vs Los Angeles L: Spread | spread: Los Angeles L wins by over 2.5 points | kalshi | $25k | -108 |  |  | +2.0c | yes | W |
 | Nov 6 7:00AM | NBA | Oklahoma City vs Memphis: Spread | spread: Oklahoma City wins by over 3.5 points | kalshi | $33k | +108 |  | ❌ | +4.0c | yes | W |
 | Nov 6 7:00AM | NHL | Anaheim vs Calgary | moneyline: Calgary | kalshi | $73k | -122 | ✅ novig,polymarket |  | +3.0c | yes | L |
@@ -177,7 +179,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 6 2:20AM | NBA | Thunder vs. Grizzlies | moneyline: Grizzlies | polymarket | $26k | +144 |  | ✅ | +0.0c |  | L |
 | Nov 6 1:15AM | NBA | Portland vs Los Angeles L | moneyline: Los Angeles L | kalshi | $90k | -138 |  |  | +1.0c |  | W |
 | Nov 6 12:55AM | NHL | Columbus vs Buffalo | moneyline: Buffalo | kalshi | $54k | -156 | ✅ polymarket |  | +1.0c | yes | W |
-| Nov 6 12:20AM | NCAAF | North Carolina vs UConn | moneyline: North Carolina | kalshi | $162k | -233 |  |  | +4.0c |  | pending |
+| Nov 6 12:20AM | NCAAF | North Carolina vs UConn | moneyline: North Carolina | kalshi | $162k | -233 |  |  | +4.0c |  | W |
 | Nov 6 12:00AM | NBA | Utah vs Dallas: Total Points | total: NOT Over 227.5 points | kalshi | $27k | -104 | ✅ polymarket |  | +3.0c |  | W |
 | Nov 6 12:00AM | NBA | Washington vs Atlanta | moneyline: Atlanta | kalshi | $42k | -223 |  |  | +5.0c | yes | W |
 | Nov 5 11:56PM | NBA | San Antonio vs Sacramento: Total Points | total: Over 228.5 points | kalshi | $26k | -113 |  |  | +4.0c | yes | W |
@@ -208,5 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 5 5:40PM | NCAAF | UTSA @ Florida Atlantic | moneyline: UTSA (0) | novig | $36k | -251 | ✅ kalshi,prophetx | ✅ | +0.5c |  | L |
 | Nov 5 5:33PM | NHL | Utah vs Montreal: Spread | spread: NOT Utah wins by over 1.5 goals | kalshi | $41k | -213 | ✅ novig,polymarket |  | +0.0c | yes | W |
 | Nov 5 5:10PM | NHL | Hurricanes vs. Islanders | moneyline: Hurricanes | polymarket | $29k | -186 | ✅ novig,prophetx |  | +0.0c | yes | W |
-| Nov 5 5:00PM | NHL | Dallas Stars at Columbus Blue Jackets | moneyline: Dallas Stars | prophetx | $35k | -118 |  |  | -0.6c | yes | L |
-| Nov 5 5:00PM | NFL | Jacksonville Jaguars at Baltimore Ravens | moneyline: Jacksonville Jaguars | prophetx | $36k | -405 | ✅ kalshi,novig |  | -2.7c | yes | W |
