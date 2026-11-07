@@ -47,9 +47,9 @@
     "volume_fp": 100.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 24125.88,
-    "volume_24h_fp": 20930.43,
-    "volume_fp": 27359.270000000004
+    "open_interest_fp": 24238.25,
+    "volume_24h_fp": 20968.62,
+    "volume_fp": 27471.64
    },
    "ex_stats_first": {
     "open_interest_fp": 24000.53,
@@ -95,6 +95,8 @@
    "norm_ready_books": 2,
    "paper_only": false,
    "price": 0.58,
+   "price_after_15m": 0.5951,
+   "price_after_15m_book": "prophetx",
    "price_american": -138,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.58,
@@ -160,7 +162,8 @@
      "price": -160
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-07T21:40:18Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAMBGAME-26NOV07MDGTWN-MD"
@@ -177,6 +180,7 @@
    "size_x": 11.83,
    "start_source": "odds",
    "start_utc": "2026-11-08T00:30:00Z",
+   "still_actionable": true,
    "surge_books": [
     "kalshi",
     "prophetx"
@@ -1249,9 +1253,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 2312.32,
-    "volume_24h_fp": 2308.45,
-    "volume_fp": 2312.32
+    "open_interest_fp": 2328.05,
+    "volume_24h_fp": 2328.05,
+    "volume_fp": 2328.05
    },
    "ex_stats_first": {
     "open_interest_fp": 1305.85,
@@ -1402,8 +1406,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.82,
-   "clv_cents": 0.0,
+   "close_price": 0.81,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-07",
    "depth_by_book": {
@@ -1440,9 +1444,9 @@
     "volume_fp": 17.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 5357.06,
-    "volume_24h_fp": 5306.26,
-    "volume_fp": 5358.71
+    "open_interest_fp": 5359.55,
+    "volume_24h_fp": 5358.55,
+    "volume_fp": 5361.200000000001
    },
    "ex_stats_first": {
     "open_interest_fp": 3305.25,
@@ -1632,9 +1636,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 560.78,
-    "volume_24h_fp": 582.3299999999999,
-    "volume_fp": 582.3299999999999
+    "open_interest_fp": 593.0999999999999,
+    "volume_24h_fp": 593.0999999999999,
+    "volume_fp": 614.65
    },
    "ex_stats_first": {
     "open_interest_fp": 164.86,
@@ -1816,9 +1820,9 @@
     "volume_fp": 30.46
    },
    "ex_stats_close": {
-    "open_interest_fp": 7798.6900000000005,
-    "volume_24h_fp": 7798.6900000000005,
-    "volume_fp": 7798.6900000000005
+    "open_interest_fp": 7843.25,
+    "volume_24h_fp": 7828.88,
+    "volume_fp": 7843.25
    },
    "ex_stats_first": {
     "open_interest_fp": 198.69,
@@ -2011,7 +2015,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 364.21000000000004,
-    "volume_24h_fp": 251.64000000000001,
+    "volume_24h_fp": 341.88,
     "volume_fp": 364.21000000000004
    },
    "ex_stats_first": {
@@ -2317,9 +2321,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1201.6299999999999,
-    "volume_24h_fp": 1182.16,
-    "volume_fp": 1201.6299999999999
+    "open_interest_fp": 1232.12,
+    "volume_24h_fp": 1183.26,
+    "volume_fp": 1232.12
    },
    "ex_stats_first": {
     "open_interest_fp": 503.53000000000003,
@@ -3527,9 +3531,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 4850.71,
-    "volume_24h_fp": 5275.4,
-    "volume_fp": 5293.49
+    "open_interest_fp": 4868.91,
+    "volume_24h_fp": 5278.97,
+    "volume_fp": 5311.69
    },
    "ex_stats_first": {
     "open_interest_fp": 4492.63,
@@ -3711,6 +3715,7 @@
     "volume_fp": 1.73
    },
    "fade_price": 0.45,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-07T05:00:23Z",
    "game": "Lamar vs Abilene Christian",
    "game_surge_books": [
@@ -3791,11 +3796,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAMBGAME-26NOV07LAMAC-AC"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-11-07T21:40:18Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Abilene Christian",
@@ -3810,7 +3816,7 @@
     "Abilene Christian"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.67
   },
   {
    "alerted_utc": "2026-11-07T03:50:16Z",
