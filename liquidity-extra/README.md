@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 7, 12:40 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 7.
+Updated Sat Nov 7, 12:50 AM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 8.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 7 12:50AM | NCAAB | St. Bonaventure vs Canisius | moneyline: St. Bonaventure | kalshi | $34k | -335 |  |  | +0.0c |  | pending |
 | Nov 7 12:10AM | NCAAB | Lamar vs Abilene Christian | moneyline: Abilene Christian | kalshi | $27k | -138 |  |  | -1.0c |  | pending |
 | Nov 6 10:50PM | NCAAB | North Dakota vs Winthrop | moneyline: Winthrop | kalshi | $29k | -376 |  |  | +2.0c | yes | pending |
 | Nov 6 10:50PM | NCAAB | Long Beach St. vs Montana St. | moneyline: Montana St. | kalshi | $27k | -426 |  |  | +3.0c | yes | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 26 12:02AM | TENNIS | Machac vs de Minaur | moneyline: de Minaur | kalshi | $34k | -257 |  |  | +25.0c | yes | W |
 | Oct 25 11:40PM | TENNIS | Timofeeva vs Kostovic | moneyline: Timofeeva | kalshi | $120k | -355 |  |  | +2.0c | yes | W |
 | Oct 25 11:30PM | TENNIS | Udvardy vs Kraus | moneyline: Kraus | kalshi | $113k | -335 |  |  | +7.0c |  | W |
-| Oct 25 10:08PM | TENNIS | Wang vs Parks | moneyline: Parks | kalshi | $351k | -317 |  |  | -1.0c |  | W |
