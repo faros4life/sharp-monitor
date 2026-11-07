@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 7, 2:00 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 39.
+Updated Sat Nov 7, 2:10 AM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 40.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,13 +10,14 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 7 2:10AM | NCAAF | Oklahoma St. vs Kansas St.: Total Points | total: NOT Over 62.5 points | kalshi | $27k | -100 |  |  | +0.0c |  | pending |
 | Nov 7 1:40AM | NCAAF | Arkansas vs Auburn: Spread | spread: NOT Auburn wins by over 10.5 points | kalshi | $25k | -100 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Nov 7 1:40AM | NCAAF | Dartmouth vs Princeton | moneyline: Dartmouth | kalshi | $30k | +104 |  |  | +0.0c |  | pending |
 | Nov 7 1:20AM | NCAAF | Texas @ Missouri | moneyline: MIZ (0) | novig | $40k | +127 |  |  | +0.0c |  | pending |
 | Nov 7 12:50AM | NCAAF | Illinois St. vs North Dakota | moneyline: North Dakota | kalshi | $27k | -213 |  |  | +0.0c |  | pending |
-| Nov 7 12:40AM | NCAAF | BYU vs Utah: Spread | spread: NOT Utah wins by over 4.5 points | kalshi | $40k | -108 | ✅ novig | ✅ | +0.0c |  | pending |
+| Nov 7 12:40AM | NCAAF | BYU vs Utah: Spread | spread: NOT Utah wins by over 4.5 points | kalshi | $40k | -108 | ✅ novig | ✅ | +0.0c | yes | pending |
 | Nov 7 12:30AM | NCAAF | North Carolina vs UConn: Total Points | total: NOT Over 54.5 points | kalshi | $35k | +104 |  |  | +0.0c |  | pending |
-| Nov 7 12:10AM | NCAAF | Richmond vs Villanova | moneyline: Villanova | kalshi | $25k | -335 |  |  | +0.0c |  | pending |
+| Nov 7 12:10AM | NCAAF | Richmond vs Villanova | moneyline: Villanova | kalshi | $25k | -335 |  |  | +1.0c |  | pending |
 | Nov 6 11:30PM | NHL | Panthers vs. Capitals | moneyline: Capitals | polymarket | $43k | -117 | ✅ novig |  | +0.0c |  | pending |
 | Nov 6 10:50PM | NHL | St. Louis vs Nashville | moneyline: Nashville | kalshi | $28k | -100 | ✅ novig,polymarket |  | +0.0c | yes | pending |
 | Nov 6 10:41PM | NCAAF | Mercer vs Chattanooga | moneyline: Chattanooga | kalshi | $26k | +122 |  |  | +0.0c |  | pending |
@@ -44,7 +45,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 6 6:30PM | NBA | Washington Wizards @ Atlanta Hawks | moneyline: ATL (0) | novig | $40k | -277 | ✅ kalshi,polymarket,prophetx | ✅ | +0.0c |  | W |
 | Nov 6 6:30PM | NBA | Boston vs Charlotte: Spread | spread: Boston wins by over 10.5 points | kalshi | $33k | -100 | ✅ novig,polymarket | ✅ | +1.0c | yes | W |
 | Nov 6 6:21PM | NBA | 76ers vs. Cavaliers | spread: Cavaliers (+2.5) | polymarket | $29k | -100 |  |  | -1.0c | yes | W |
-| Nov 6 6:00PM | NCAAF | Marshall @ Georgia Southern | spread: MRSH +8.5 (-8.5) | novig | $25k | -100 |  |  | +0.5c |  | pending |
+| Nov 6 6:00PM | NCAAF | Marshall @ Georgia Southern | spread: MRSH +8.5 (-8.5) | novig | $25k | -100 |  |  | +0.0c |  | pending |
 | Nov 6 6:00PM | NBA | Boston vs Charlotte: Spread | spread: NOT Boston wins by over 10.5 points | kalshi | $32k | -104 | ✅ novig | ❌ | +0.0c | yes | L |
 | Nov 6 5:51PM | NCAAF | Virginia Tech vs SMU: Spread | spread: NOT SMU wins by over 5.5 points | kalshi | $130k | +104 | ✅ novig |  | +0.0c | yes | L |
 | Nov 6 5:51PM | NBA | Washington vs Atlanta: Total Points | total: NOT Over 228.5 points | kalshi | $27k | -104 |  | ✅ | -1.0c | yes | L |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 4 9:30PM | NHL | Calgary vs Seattle | moneyline: Seattle | kalshi | $53k | -122 | ✅ novig,polymarket,prophetx |  | +0.0c | yes | W |
 | Nov 4 9:20PM | NBA | Heat vs. Clippers | moneyline: Heat | polymarket | $34k | -194 | ✅ novig,prophetx |  | +2.0c |  | W |
 | Nov 4 9:16PM | NFL | Jacksonville Jaguars @ Baltimore Ravens | spread: JAX -9.5 (9.5) | novig | $51k | -111 |  |  | -3.5c | yes | W |
-| Nov 4 9:00PM | NBA | Mavericks vs. Spurs | spread: Spurs (-12.5) | polymarket | $74k | -100 | ✅ kalshi,prophetx | ✅ | +1.0c | yes | L |
