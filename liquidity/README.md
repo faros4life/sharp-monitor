@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 7, 4:46 AM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 39.
+Updated Sat Nov 7, 4:55 AM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 40.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,7 +10,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 7 4:46AM | NHL | Rangers vs. Kraken | moneyline: Rangers | polymarket | $32k | -127 | ✅ novig |  | +0.0c |  | pending |
+| Nov 7 4:55AM | NHL | Rangers vs. Kraken | moneyline: Rangers | polymarket | $34k | -127 | ✅ novig |  | +0.0c |  | pending |
+| Nov 7 4:36AM | NHL | Red Wings vs. Avalanche | spread: Red Wings (+1.5) | polymarket | $28k | -138 |  |  | +0.0c |  | pending |
 | Nov 7 2:30AM | NCAAF | BYU vs Utah: Total Points | total: NOT Over 49.5 points | kalshi | $31k | -100 | ✅ novig |  | +0.0c |  | pending |
 | Nov 7 2:30AM | NCAAF | Tennessee-Martin vs Charleston Southern | moneyline: Charleston Southern | kalshi | $26k | -223 |  |  | -1.0c |  | pending |
 | Nov 7 2:30AM | NCAAF | South Dakota St. vs Northern Iowa | moneyline: South Dakota St. | kalshi | $29k | -525 |  |  | +0.0c |  | pending |
@@ -18,7 +19,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 7 2:30AM | NCAAF | Penn vs Cornell | moneyline: Cornell | kalshi | $25k | -257 |  |  | -1.0c |  | pending |
 | Nov 7 2:20AM | NCAAF | BYU vs Utah: Spread | spread: Utah wins by over 4.5 points | kalshi | $55k | -100 | ✅ novig | ❌ | +0.0c |  | pending |
 | Nov 7 2:10AM | NCAAF | Oklahoma St. vs Kansas St.: Total Points | total: NOT Over 62.5 points | kalshi | $27k | -100 |  |  | +0.0c |  | pending |
-| Nov 7 1:40AM | NCAAF | Arkansas vs Auburn: Spread | spread: NOT Auburn wins by over 10.5 points | kalshi | $25k | -100 | ✅ novig,prophetx |  | +0.0c |  | pending |
+| Nov 7 1:40AM | NCAAF | Arkansas vs Auburn: Spread | spread: NOT Auburn wins by over 10.5 points | kalshi | $25k | -100 | ✅ novig,prophetx |  | +0.0c | yes | pending |
 | Nov 7 1:40AM | NCAAF | Dartmouth vs Princeton | moneyline: Dartmouth | kalshi | $30k | +104 |  |  | +0.0c |  | pending |
 | Nov 7 1:20AM | NCAAF | Texas @ Missouri | moneyline: MIZ (0) | novig | $40k | +127 |  |  | +0.0c | yes | pending |
 | Nov 7 12:50AM | NCAAF | Illinois St. vs North Dakota | moneyline: North Dakota | kalshi | $27k | -213 |  |  | +0.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 5 1:35AM | NCAAF | James Madison vs Southern Miss: Total Points | total: Over 57.5 points | kalshi | $34k | -104 | ✅ novig |  | +2.0c | yes | W |
 | Nov 5 1:05AM | NHL | Vancouver vs Winnipeg | moneyline: Winnipeg | kalshi | $26k | -194 |  |  | +1.0c | yes | W |
 | Nov 5 12:10AM | NBA | Orlando vs Phoenix | moneyline: Phoenix | kalshi | $69k | -113 |  |  | +0.0c | yes | W |
-| Nov 4 11:56PM | NBA | Miami vs Golden State | moneyline: Golden State | kalshi | $37k | -213 |  |  | -7.0c | yes | W |
