@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 7, 1:30 AM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 37.
+Updated Sat Nov 7, 1:40 AM ET. This run: 2 new, 0 not confirmed, 0 pending. Open alerts: 39.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 7 1:40AM | NCAAF | Arkansas vs Auburn: Spread | spread: NOT Auburn wins by over 10.5 points | kalshi | $25k | -100 | ✅ novig,prophetx |  | +0.0c |  | pending |
+| Nov 7 1:40AM | NCAAF | Dartmouth vs Princeton | moneyline: Dartmouth | kalshi | $30k | +104 |  |  | +0.0c |  | pending |
 | Nov 7 1:20AM | NCAAF | Texas @ Missouri | moneyline: MIZ (0) | novig | $40k | +127 |  |  | +0.0c |  | pending |
 | Nov 7 12:50AM | NCAAF | Illinois St. vs North Dakota | moneyline: North Dakota | kalshi | $27k | -213 |  |  | +0.0c |  | pending |
 | Nov 7 12:40AM | NCAAF | BYU vs Utah: Spread | spread: NOT Utah wins by over 4.5 points | kalshi | $40k | -108 | ✅ novig | ✅ | +0.0c |  | pending |
@@ -208,5 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 4 9:20PM | NBA | Heat vs. Clippers | moneyline: Heat | polymarket | $34k | -194 | ✅ novig,prophetx |  | +2.0c |  | W |
 | Nov 4 9:16PM | NFL | Jacksonville Jaguars @ Baltimore Ravens | spread: JAX -9.5 (9.5) | novig | $51k | -111 |  |  | -3.5c | yes | W |
 | Nov 4 9:00PM | NBA | Mavericks vs. Spurs | spread: Spurs (-12.5) | polymarket | $74k | -100 | ✅ kalshi,prophetx | ✅ | +1.0c | yes | L |
-| Nov 4 8:16PM | NBA | Trail Blazers vs. Suns | moneyline: Suns | polymarket | $284k | +138 |  |  | +0.0c |  | L |
-| Nov 4 7:56PM | NBA | Indiana Pacers @ Memphis Grizzlies | moneyline: MEM (0) | novig | $49k | -213 | ✅ kalshi,polymarket,prophetx | ✅ | +0.0c |  | L |
