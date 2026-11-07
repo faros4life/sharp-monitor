@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 7, 11:50 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 19.
+Updated Sat Nov 7, 12:00 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 19.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -30,7 +30,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 7 1:50AM | NCAAB | Monmouth vs Rhode Island | moneyline: Rhode Island | kalshi | $30k | -233 |  |  | +2.0c |  | pending |
 | Nov 7 1:50AM | NCAAB | LIU vs La Salle | moneyline: La Salle | kalshi | $27k | -203 |  |  | -2.0c |  | pending |
 | Nov 7 12:50AM | NCAAB | St. Bonaventure vs Canisius | moneyline: St. Bonaventure | kalshi | $34k | -335 |  |  | +3.0c | yes | pending |
-| Nov 7 12:10AM | NCAAB | Lamar vs Abilene Christian | moneyline: Abilene Christian | kalshi | $27k | -138 |  |  | -10.0c | yes | pending |
+| Nov 7 12:10AM | NCAAB | Lamar vs Abilene Christian | moneyline: Abilene Christian | kalshi | $27k | -138 |  |  | -11.0c | yes | pending |
 | Nov 6 10:50PM | NCAAB | North Dakota vs Winthrop | moneyline: Winthrop | kalshi | $29k | -376 |  |  | +1.0c | yes | pending |
 | Nov 6 10:50PM | NCAAB | Long Beach St. vs Montana St. | moneyline: Montana St. | kalshi | $27k | -426 |  |  | +3.0c | yes | pending |
 | Nov 6 9:40PM | TENNIS | Alexandra Shubladze vs Claire Liu | moneyline: Alexandra Shubladze | kalshi | $30k | +113 |  |  | +0.0c | yes | L |
