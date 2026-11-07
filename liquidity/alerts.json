@@ -1,6 +1,227 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-07T23:16:10Z",
+   "base_depth": 198432,
+   "best_price": 0.68,
+   "best_price_american": -213,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.68,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 6,
+   "date": "2026-11-07",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 166,
+     "new_this_side": 72566,
+     "other_side": 65826,
+     "other_side_all_levels": 79534,
+     "ratio": 3.7,
+     "this_side": 241890,
+     "this_side_all_levels": 275435
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "TOR +1.5 (1.5)",
+     "price": 0.68,
+     "this_side": 43312
+    },
+    "polymarket": {
+     "heavier_side": true,
+     "label": "Maple Leafs (+1.5)",
+     "price": 0.68,
+     "this_side": 73870
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 2013.28,
+    "volume_24h_fp": 1232.11,
+    "volume_fp": 2174.82
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 798.88,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 942.71
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 1214.4,
+    "volume_24h_fp": 1232.11,
+    "volume_fp": 1232.11
+   },
+   "fade_price": 0.33,
+   "first_seen_utc": "2026-11-07T23:10:12Z",
+   "game": "Montreal vs Toronto: Spread",
+   "game_surge_books": [],
+   "game_x": 1.31,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLSPREAD-26NOV07MTLTOR-MTL2\"}",
+   "lead_min": 44,
+   "league": "NHL",
+   "line": 1.5,
+   "market": "spread",
+   "new_money": 72566,
+   "new_x": 0.89,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 2013.28,
+      "volume_24h_fp": 1232.11,
+      "volume_fp": 2174.82
+     },
+     "game_normal": 209998,
+     "game_x": 1.31,
+     "normal": 81677,
+     "now": 275435,
+     "type": "SPREAD",
+     "x": 3.37
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 1040405.0,
+      "volume": 1330458.0
+     },
+     "game_normal": 35290,
+     "game_x": 1.23,
+     "normal": 12115,
+     "now": 43436,
+     "type": "SPREAD",
+     "x": 3.59
+    },
+    "polymarket": {
+     "ex_stats": {
+      "volume": 46811.126319999996,
+      "volume1mo": 46832.077495,
+      "volume1moClob": 46832.077495,
+      "volume1wk": 46832.077495,
+      "volume1wkClob": 46832.077495,
+      "volume1yr": 46832.077495,
+      "volume1yrClob": 46832.077495,
+      "volume24hr": 46832.077495,
+      "volume24hrClob": 46832.077495,
+      "volumeClob": 46811.126319999996,
+      "volumeNum": 46811.126319999996
+     },
+     "game_normal": 76612,
+     "game_x": 1.09,
+     "normal": 35670,
+     "now": 83231,
+     "type": "SPREAD",
+     "x": 2.33
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.68,
+   "price_american": -213,
+   "price_rule": "fails_cap",
+   "price_when_first_seen": 0.68,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 1.5,
+     "price": -235
+    },
+    "betonlineag": {
+     "point": 1.5,
+     "price": -240
+    },
+    "betopenly": {
+     "point": 1.5,
+     "price": -215
+    },
+    "betrivers": {
+     "point": 1.5,
+     "price": -275
+    },
+    "betus": {
+     "point": 1.5,
+     "price": -235
+    },
+    "bovada": {
+     "point": 1.5,
+     "price": -235
+    },
+    "draftkings": {
+     "point": 1.5,
+     "price": -250
+    },
+    "fanatics": {
+     "point": 1.5,
+     "price": -255
+    },
+    "fanduel": {
+     "point": 1.5,
+     "price": -240
+    },
+    "kalshi": {
+     "point": 1.5,
+     "price": -213
+    },
+    "lowvig": {
+     "point": 1.5,
+     "price": -240
+    },
+    "mybookieag": {
+     "point": 1.5,
+     "price": -246
+    },
+    "novig": {
+     "point": 4.5,
+     "price": -100000
+    },
+    "polymarket": {
+     "point": 1.5,
+     "price": -213
+    },
+    "prophetx": {
+     "point": 1.5,
+     "price": -220
+    },
+    "williamhill_us": {
+     "point": 1.5,
+     "price": -245
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNHLSPREAD-26NOV07MTLTOR-MTL2"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "polymarket"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Toronto",
+   "side_label": "NOT Montreal wins by over 1.5 goals",
+   "size_x": 3.37,
+   "start_source": "odds",
+   "start_utc": "2026-11-08T00:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig",
+    "polymarket"
+   ],
+   "teams": [
+    "Montreal",
+    "Toronto"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-07T23:10:12Z",
    "base_depth": 75538,
    "best_price": 0.515,
@@ -61,6 +282,19 @@
     "volume24hrClob": 112.86,
     "volumeClob": 415.51,
     "volumeNum": 415.51
+   },
+   "ex_stats_close": {
+    "volume": 16600.155738,
+    "volume1mo": 16713.012882,
+    "volume1moClob": 16713.012882,
+    "volume1wk": 16713.012882,
+    "volume1wkClob": 16713.012882,
+    "volume1yr": 16713.012882,
+    "volume1yrClob": 16713.012882,
+    "volume24hr": 16713.012882,
+    "volume24hrClob": 16713.012882,
+    "volumeClob": 16600.155738,
+    "volumeNum": 16600.155738
    },
    "ex_stats_first": {
     "volume": 16184.645531999999,
@@ -295,6 +529,19 @@
     "volume24hrClob": 173.76,
     "volumeClob": 159.68,
     "volumeNum": 159.68
+   },
+   "ex_stats_close": {
+    "volume": 92891.07944100002,
+    "volume1mo": 92905.163949,
+    "volume1moClob": 92905.163949,
+    "volume1wk": 92905.163949,
+    "volume1wkClob": 92905.163949,
+    "volume1yr": 92905.163949,
+    "volume1yrClob": 92905.163949,
+    "volume24hr": 91271.59559699999,
+    "volume24hrClob": 91271.59559699999,
+    "volumeClob": 92891.07944100002,
+    "volumeNum": 92891.07944100002
    },
    "ex_stats_first": {
     "volume": 92731.40099000001,
@@ -775,9 +1022,9 @@
     "volume_fp": 979.47
    },
    "ex_stats_close": {
-    "open_interest_fp": 63366.47,
+    "open_interest_fp": 66648.57,
     "volume_24h_fp": 50561.19,
-    "volume_fp": 63784.72
+    "volume_fp": 67066.82
    },
    "ex_stats_first": {
     "open_interest_fp": 61966.84,
@@ -1156,7 +1403,7 @@
    },
    "ex_stats_close": {
     "openInterest": 10254914.0,
-    "volume": 11990561.0
+    "volume": 12079052.0
    },
    "ex_stats_first": {
     "openInterest": 10085408.0,
@@ -1386,9 +1633,9 @@
     "volume_fp": 12415.47
    },
    "ex_stats_close": {
-    "open_interest_fp": 958634.97,
+    "open_interest_fp": 987950.3,
     "volume_24h_fp": 771680.76,
-    "volume_fp": 1006839.9099999999
+    "volume_fp": 1037071.3599999999
    },
    "ex_stats_first": {
     "open_interest_fp": 902404.0700000001,
@@ -3894,8 +4141,8 @@
     "volume": 117801.0
    },
    "ex_stats_close": {
-    "openInterest": 7907825.0,
-    "volume": 10220066.0
+    "openInterest": 8279742.0,
+    "volume": 10884331.0
    },
    "ex_stats_first": {
     "openInterest": 4796642.0,
@@ -4005,8 +4252,8 @@
     "volume": 12394.0
    },
    "ex_stats_close": {
-    "openInterest": 3141453.0,
-    "volume": 3655755.0
+    "openInterest": 3163453.0,
+    "volume": 3677755.0
    },
    "ex_stats_first": {
     "openInterest": 2733148.0,
@@ -5426,8 +5673,8 @@
     "volume": 816097.0
    },
    "ex_stats_close": {
-    "openInterest": 51550557.0,
-    "volume": 65145090.0
+    "openInterest": 51985104.0,
+    "volume": 65832199.0
    },
    "ex_stats_first": {
     "openInterest": 38944633.0,
@@ -6514,8 +6761,8 @@
     "volume": 197454.0
    },
    "ex_stats_close": {
-    "openInterest": 43706198.0,
-    "volume": 47896887.0
+    "openInterest": 45160664.0,
+    "volume": 49352405.0
    },
    "ex_stats_first": {
     "openInterest": 23677627.0,
@@ -10364,8 +10611,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 1.0,
+   "close_price": 0.51,
+   "clv_cents": 0.0,
    "confirmed_after_min": 19,
    "date": "2026-11-07",
    "depth_by_book": {
@@ -12153,8 +12400,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.83,
-   "clv_cents": 0.0,
+   "close_price": 0.82,
+   "clv_cents": -1.0,
    "confirmed_after_min": 20,
    "date": "2026-11-07",
    "depth_by_book": {
