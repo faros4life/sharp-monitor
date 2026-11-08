@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 8, 2:26 PM ET. This run: 2 new, 0 not confirmed, 0 pending. Open alerts: 112.
+Updated Sun Nov 8, 2:30 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 112.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -24,7 +24,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 8 12:46PM | NFL | Dallas Cowboys @ Indianapolis Colts | moneyline: DAL (0) | novig | $65k | -194 | ✅ kalshi,prophetx | ❌ | -0.5c |  | pending |
 | Nov 8 12:46PM | NFL | Dallas Cowboys @ Indianapolis Colts | spread: IND +3.5 (3.5) | novig | $50k | +104 |  | ✅ | +1.0c |  | pending |
 | Nov 8 12:40PM | NFL | Detroit Lions at Miami Dolphins | moneyline: Detroit Lions | prophetx | $80k | -290 | ✅ kalshi,novig |  | +0.0c |  | pending |
-| Nov 8 12:40PM | NBA | 76ers vs. Bulls | total: Over (238.5) | polymarket | $39k | -104 | ✅ novig | ❌ | -3.0c | yes | pending |
+| Nov 8 12:40PM | NBA | 76ers vs. Bulls | total: Over (238.5) | polymarket | $39k | -104 | ✅ novig | ❌ | -4.0c | yes | pending |
 | Nov 8 12:40PM | NBA | Utah vs Minnesota: Spread | spread: NOT Minnesota wins by over 12.5 points | kalshi | $64k | -117 |  |  | +0.0c | yes | pending |
 | Nov 8 12:40PM | NHL | Vegas vs Buffalo | moneyline: Buffalo | kalshi | $45k | -100 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 8 12:30PM | NFL | Detroit Lions @ Miami Dolphins | spread: DET -6.5 (6.5) | novig | $26k | -106 | ✅ kalshi,prophetx |  | +0.0c |  | pending |
