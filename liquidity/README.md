@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 8, 9:36 AM ET. This run: 2 new, 0 not confirmed, 2 pending. Open alerts: 78.
+Updated Sun Nov 8, 9:40 AM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 79.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 8 9:40AM | NFL | Detroit vs Miami: Spread | spread: Detroit wins by over 6.5 points | kalshi | $229k | -100 |  |  | +0.0c |  | pending |
 | Nov 8 9:36AM | NFL | Dallas vs Indianapolis: Spread | spread: NOT Dallas wins by over 4.5 points | kalshi | $144k | -104 | ✅ novig |  | +0.0c |  | pending |
 | Nov 8 9:36AM | NBA | Utah vs Minnesota: Spread | spread: NOT Minnesota wins by over 11.5 points | kalshi | $26k | -108 | ✅ novig,polymarket |  | +0.0c |  | pending |
 | Nov 8 9:30AM | NBA | Miami vs Sacramento: Spread | spread: Miami wins by over 10.5 points | kalshi | $28k | -100 |  | ✅ | +0.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 7 8:10AM | NHL | Sharks vs. Stars | moneyline: Stars | polymarket | $34k | -285 |  |  | +0.0c |  | W |
 | Nov 7 8:10AM | NCAAF | Arkansas @ Auburn | spread: ARK +10.5 (-10.5) | novig | $25k | -104 | ✅ kalshi,prophetx |  | -1.5c |  | W |
 | Nov 7 8:10AM | NCAAF | Oklahoma St. vs Kansas St.: Spread | spread: NOT Oklahoma St. wins by over 6.5 points | kalshi | $37k | +108 | ✅ novig | ❌ | -2.0c | yes | L |
-| Nov 7 7:50AM | NCAAF | Tulsa vs Tulane: Spread | spread: NOT Tulsa wins by over 2.5 points | kalshi | $89k | +108 |  | ❌ | -1.0c | yes | L |
