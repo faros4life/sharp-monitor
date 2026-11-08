@@ -1,18 +1,18 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 8, 12:00 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 6.
+Updated Sun Nov 8, 12:10 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 5.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 175-103 (-11.89u flat) | rule met: 38-31
+**Record:** 176-103 (-11.60u flat) | rule met: 38-31
 
-**Fade (paper, betting against the print):** 78-140 (+4.65u flat, after fees)
+**Fade (paper, betting against the print):** 78-141 (+3.65u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 7 10:40PM | TENNIS | Claire Liu vs Alexandra Eala | moneyline: Alexandra Eala | kalshi | $31k | -223 |  |  | +0.0c | yes | pending |
-| Nov 7 10:40PM | TENNIS | Ben Shelton vs Carlos Alcaraz | moneyline: Carlos Alcaraz | kalshi | $31k | -355 | ✅ novig |  | +0.0c |  | pending |
-| Nov 7 5:50PM | NCAAB | San Jose St. vs UC Irvine | moneyline: UC Irvine | kalshi | $33k | -335 |  |  | +1.0c | yes | pending |
+| Nov 7 10:40PM | TENNIS | Ben Shelton vs Carlos Alcaraz | moneyline: Carlos Alcaraz | kalshi | $31k | -355 | ✅ novig |  | -1.0c |  | pending |
+| Nov 7 5:50PM | NCAAB | San Jose St. vs UC Irvine | moneyline: UC Irvine | kalshi | $33k | -335 |  |  | +1.0c | yes | W |
 | Nov 7 4:20PM | NCAAB | Maryland vs Georgetown | moneyline: Maryland | kalshi | $29k | -138 |  |  | +1.0c | yes | L |
 | Nov 7 12:10PM | NCAAB | North Carolina A&T @ Ohio | spread: OHIO -14.5 (-14.5) | novig | $33k | -108 |  | ✅ | +0.5c | yes | L |
 | Nov 7 11:40AM | NCAAB | Cal State Fullerton vs South Dakota | moneyline: South Dakota | kalshi | $28k | -108 |  | ❌ | +0.0c |  | L |
