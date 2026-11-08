@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 8, 2:50 PM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 15.
+Updated Sun Nov 8, 3:00 PM ET. This run: 2 new, 0 not confirmed, 0 pending. Open alerts: 17.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 8 3:00PM | NCAAB | Wichita St. vs USC | moneyline: USC | kalshi | $29k | -223 |  |  | +0.0c |  | pending |
+| Nov 8 3:00PM | NCAAB | UT Arlington vs Hawai'i | moneyline: Hawai'i | kalshi | $26k | -355 |  |  | +0.0c |  | pending |
 | Nov 8 1:40PM | TENNIS | Thiago Agustin Tirante vs Jaume Munar | moneyline: Thiago Agustin Tirante | kalshi | $228k | -233 |  |  | +4.0c | yes | W |
 | Nov 8 12:50PM | TENNIS | Thiago Agustin Tirante vs Jaume Munar | moneyline: Jaume Munar | kalshi | $127k | -213 |  |  | -41.0c | yes | L |
 | Nov 8 11:30AM | NCAAB | Quinnipiac @ Vermont | moneyline: UVM (0) | novig | $63k | -355 |  | ❌ | -1.0c | yes | pending |
@@ -25,7 +27,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 8 7:20AM | TENNIS | Adrian Mannarino vs Toby Samuel | moneyline: Adrian Mannarino | kalshi | $44k | -108 |  |  | -47.0c | yes | L |
 | Nov 8 6:30AM | TENNIS | Inaki Montes-de la Torre vs Lorenzo Sonego | moneyline: Inaki Montes-de la Torre | kalshi | $29k | +138 |  |  | -28.0c | yes | L |
 | Nov 8 3:50AM | TENNIS | Claire Liu vs Alexandra Eala | moneyline: Claire Liu | kalshi | $258k | -186 |  |  | +19.0c |  | W |
-| Nov 8 2:40AM | TENNIS | Marta Kostyuk vs Linda Noskova | moneyline: Linda Noskova | kalshi | $286k | -122 |  |  | +4.0c |  | pending |
+| Nov 8 2:40AM | TENNIS | Marta Kostyuk vs Linda Noskova | moneyline: Linda Noskova | kalshi | $286k | -122 |  |  | +4.0c | yes | pending |
 | Nov 8 2:30AM | TENNIS | Elias Ymer vs Juan Manuel Cerundolo | moneyline: Juan Manuel Cerundolo | kalshi | $38k | -335 | ✅ novig |  | -4.0c |  | W |
 | Nov 8 2:30AM | TENNIS | Inaki Montes-de la Torre vs Lorenzo Sonego | moneyline: Lorenzo Sonego | kalshi | $26k | -300 |  |  | +0.0c | yes | W |
 | Nov 8 2:30AM | TENNIS | Jacob Fearnley vs Alexander Shevchenko | moneyline: Jacob Fearnley | kalshi | $25k | -270 |  |  | +0.0c | yes | L |
@@ -208,5 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 28 3:00AM | MLB | Milwaukee Brewers vs. Tampa Bay Rays | moneyline: Milwaukee Brewers | polymarket | $36k | -144 | ✅ kalshi,novig |  | -2.0c |  | W |
 | Oct 28 2:00AM | MLB | Milwaukee vs Tampa Bay: Spread | spread: NOT Milwaukee wins by over 1.5 runs | kalshi | $32k | -144 |  |  | -1.0c |  | L |
 | Oct 27 10:49PM | TENNIS | Rakhimova vs Alexandrova | moneyline: Rakhimova | kalshi | $244k | -186 |  |  | -27.0c | yes | W |
-| Oct 27 10:40PM | TENNIS | Bucsa vs Joint | moneyline: Bucsa | kalshi | $47k | +113 |  |  | +1.0c | yes | L |
-| Oct 27 7:32PM | MLB | Milwaukee Brewers at Tampa Bay Rays | moneyline: Tampa Bay Rays | prophetx | $29k | +108 |  |  | +0.0c |  | W |

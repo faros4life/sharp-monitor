@@ -1,6 +1,371 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-08T20:00:28Z",
+   "base_depth": 88157,
+   "best_price": 0.7,
+   "best_price_american": -233,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.69,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-08",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 1226,
+     "new_this_side": 29233,
+     "other_side": 29800,
+     "other_side_all_levels": 46713,
+     "ratio": 1.2,
+     "this_side": 35840,
+     "this_side_all_levels": 120715
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "USC (0)",
+     "price": 0.7,
+     "this_side": 7223
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "USC",
+     "price": 0.7015,
+     "this_side": 6498
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 4002.9500000000003,
+    "volume_24h_fp": 4022.43,
+    "volume_fp": 4109.59
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 34.15,
+    "volume_24h_fp": 34.12,
+    "volume_fp": 34.15
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 3968.8,
+    "volume_24h_fp": 3988.31,
+    "volume_fp": 4075.44
+   },
+   "fade_price": 0.31,
+   "first_seen_utc": "2026-11-08T19:50:17Z",
+   "game": "Wichita St. vs USC",
+   "game_surge_books": [],
+   "game_x": 1.57,
+   "key": "kalshi|KXNCAAMBGAME-26NOV08WICHUSC|ml|1",
+   "lead_min": 480,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 29233,
+   "new_x": 1.79,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 4002.9500000000003,
+      "volume_24h_fp": 4022.43,
+      "volume_fp": 4109.59
+     },
+     "game_normal": 76903,
+     "game_x": 1.57,
+     "normal": 16331,
+     "now": 120715,
+     "type": "ML",
+     "x": 7.39
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 209073.0,
+      "volume": 238317.0
+     },
+     "game_normal": 10562,
+     "game_x": 1.24,
+     "normal": 3549,
+     "now": 13071,
+     "type": "ML",
+     "x": 3.68
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 4322,
+     "game_x": 1.55,
+     "normal": 1502,
+     "now": 6690,
+     "type": "ML",
+     "x": 4.45
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.69,
+   "price_american": -223,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.69,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -275
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -260
+    },
+    "betopenly": {
+     "point": null,
+     "price": -234
+    },
+    "betrivers": {
+     "point": null,
+     "price": -278
+    },
+    "betus": {
+     "point": null,
+     "price": -250
+    },
+    "bovada": {
+     "point": null,
+     "price": -250
+    },
+    "draftkings": {
+     "point": null,
+     "price": -258
+    },
+    "fanatics": {
+     "point": null,
+     "price": -260
+    },
+    "fanduel": {
+     "point": null,
+     "price": -255
+    },
+    "kalshi": {
+     "point": null,
+     "price": -223
+    },
+    "lowvig": {
+     "point": null,
+     "price": -260
+    },
+    "novig": {
+     "point": null,
+     "price": -233
+    },
+    "polymarket": {
+     "point": null,
+     "price": -233
+    },
+    "prophetx": {
+     "point": null,
+     "price": -235
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -260
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV08WICHUSC-USC"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "USC",
+   "side_label": "USC",
+   "size_x": 7.39,
+   "start_source": "odds",
+   "start_utc": "2026-11-09T04:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "teams": [
+    "Wichita St.",
+    "USC"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-08T20:00:28Z",
+   "base_depth": 129595,
+   "best_price": 0.792,
+   "best_price_american": -381,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.78,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-08",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -288,
+     "new_this_side": 25706,
+     "other_side": 22141,
+     "other_side_all_levels": 29310,
+     "ratio": 2.4,
+     "this_side": 52889,
+     "this_side_all_levels": 158913
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 5224.849999999999,
+    "volume_24h_fp": 5223.74,
+    "volume_fp": 5489.19
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.15,
+    "volume_24h_fp": 0.11,
+    "volume_fp": 0.15
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 5224.7,
+    "volume_24h_fp": 5223.63,
+    "volume_fp": 5489.04
+   },
+   "fade_price": 0.22,
+   "first_seen_utc": "2026-11-08T19:50:17Z",
+   "game": "UT Arlington vs Hawai'i",
+   "game_surge_books": [],
+   "game_x": 1.44,
+   "key": "kalshi|KXNCAAMBGAME-26NOV08UTAHAW|ml|1",
+   "lead_min": 420,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 25706,
+   "new_x": 1.57,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 5224.849999999999,
+      "volume_24h_fp": 5223.74,
+      "volume_fp": 5489.19
+     },
+     "game_normal": 110303,
+     "game_x": 1.44,
+     "normal": 16331,
+     "now": 158913,
+     "type": "ML",
+     "x": 9.73
+    }
+   },
+   "norm_ready_books": 1,
+   "paper_only": false,
+   "price": 0.78,
+   "price_american": -355,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.78,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -375
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -425
+    },
+    "betrivers": {
+     "point": null,
+     "price": -400
+    },
+    "betus": {
+     "point": null,
+     "price": -425
+    },
+    "bovada": {
+     "point": null,
+     "price": -440
+    },
+    "draftkings": {
+     "point": null,
+     "price": -425
+    },
+    "fanatics": {
+     "point": null,
+     "price": -425
+    },
+    "fanduel": {
+     "point": null,
+     "price": -385
+    },
+    "kalshi": {
+     "point": null,
+     "price": -376
+    },
+    "lowvig": {
+     "point": null,
+     "price": -425
+    },
+    "novig": {
+     "point": null,
+     "price": -365
+    },
+    "polymarket": {
+     "point": null,
+     "price": -376
+    },
+    "prophetx": {
+     "point": null,
+     "price": -375
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -420
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV08UTAHAW-HAW"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Hawai'i",
+   "side_label": "Hawai'i",
+   "size_x": 9.73,
+   "start_source": "odds",
+   "start_utc": "2026-11-09T03:00:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "UT Arlington",
+    "Hawai'i"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-08T18:40:18Z",
    "base_depth": 167607,
    "best_price": 0.7147,
@@ -886,9 +1251,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 241.51999999999998,
-    "volume_24h_fp": 220.07,
-    "volume_fp": 241.51999999999998
+    "open_interest_fp": 242.59,
+    "volume_24h_fp": 239.35,
+    "volume_fp": 242.59
    },
    "ex_stats_first": {
     "open_interest_fp": 50.98,
@@ -1261,9 +1626,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 3591.2400000000002,
-    "volume_24h_fp": 3620.71,
-    "volume_fp": 3620.71
+    "open_interest_fp": 3591.4300000000003,
+    "volume_24h_fp": 3620.81,
+    "volume_fp": 3620.9
    },
    "ex_stats_first": {
     "open_interest_fp": 2993.48,
@@ -2316,6 +2681,7 @@
     "polymarket",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.59,
    "clv_cents": 4.0,
    "confirmed_after_min": 10,
@@ -2407,7 +2773,8 @@
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.55,
    "prices_by_book": {},
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-08T20:00:28Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXWTAMATCH-26NOV08KOSNOS-NOS"
