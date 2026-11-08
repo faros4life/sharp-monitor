@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 8, 4:20 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 12.
+Updated Sun Nov 8, 4:30 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 11.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 184-111 (-16.50u flat) | rule met: 40-31
+**Record:** 184-112 (-17.50u flat) | rule met: 40-31
 
-**Fade (paper, betting against the print):** 86-149 (+9.12u flat, after fees)
+**Fade (paper, betting against the print):** 87-149 (+11.41u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -22,7 +22,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 8 10:00AM | NCAAB | Arkansas vs Virginia | moneyline: Virginia | kalshi | $66k | -150 |  | ✅ | +3.0c | yes | W |
 | Nov 8 9:30AM | NCAAB | Norfolk St. vs William & Mary | moneyline: William & Mary | kalshi | $25k | -456 |  |  | +0.0c |  | pending |
 | Nov 8 9:20AM | NCAAB | Quinnipiac vs Vermont | moneyline: Vermont | kalshi | $36k | -317 |  |  | +2.0c |  | L |
-| Nov 8 9:20AM | NCAAB | Central Connecticut St. vs Dartmouth | moneyline: Dartmouth | kalshi | $39k | -233 |  |  | +8.0c |  | pending |
+| Nov 8 9:20AM | NCAAB | Central Connecticut St. vs Dartmouth | moneyline: Dartmouth | kalshi | $39k | -233 |  |  | +8.0c |  | L |
 | Nov 8 9:20AM | NCAAB | Brown vs Lehigh | moneyline: Lehigh | kalshi | $28k | -186 |  |  | +2.0c |  | L |
 | Nov 8 7:20AM | TENNIS | Adrian Mannarino vs Toby Samuel | moneyline: Adrian Mannarino | kalshi | $44k | -108 |  |  | -47.0c | yes | L |
 | Nov 8 6:30AM | TENNIS | Inaki Montes-de la Torre vs Lorenzo Sonego | moneyline: Inaki Montes-de la Torre | kalshi | $29k | +138 |  |  | -28.0c | yes | L |
