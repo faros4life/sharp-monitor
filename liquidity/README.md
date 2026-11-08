@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 8, 1:10 PM ET. This run: 0 new, 0 not confirmed, 3 pending. Open alerts: 108.
+Updated Sun Nov 8, 1:16 PM ET. This run: 0 new, 0 not confirmed, 3 pending. Open alerts: 108.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -34,7 +34,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 8 11:40AM | NFL | Houston Texans @ Los Angeles Chargers | spread: LAC +5.5 (5.5) | novig | $39k | -106 | ✅ kalshi |  | +0.5c |  | pending |
 | Nov 8 11:40AM | NFL | Cleveland Browns @ New Orleans Saints | spread: NO -3.5 (-3.5) | novig | $47k | -108 | ✅ kalshi |  | +0.5c |  | pending |
 | Nov 8 11:36AM | NFL | Los Angeles R vs Washington: Total Points | total: Over 47.5 points | kalshi | $221k | -113 |  |  | +0.0c | yes | pending |
-| Nov 8 11:36AM | NFL | Las Vegas vs San Francisco: Spread | spread: San Francisco wins by over 9.5 points | kalshi | $359k | -104 | ✅ novig |  | +0.0c |  | pending |
+| Nov 8 11:36AM | NFL | Las Vegas vs San Francisco: Spread | spread: San Francisco wins by over 9.5 points | kalshi | $359k | -104 | ✅ novig |  | -1.0c |  | pending |
 | Nov 8 11:00AM | NHL | Lightning vs. Jets | moneyline: Lightning | polymarket | $75k | -138 | ✅ novig,prophetx |  | +1.0c |  | pending |
 | Nov 8 11:00AM | NHL | Vegas vs Buffalo: Total Goals | total: Over 6.5 goals scored | kalshi | $27k | +108 | ✅ novig |  | +0.0c |  | pending |
 | Nov 8 10:55AM | NBA | Jazz vs. Timberwolves | moneyline: Timberwolves | polymarket | $43k | -525 | ✅ kalshi,novig,prophetx |  | +1.0c |  | pending |
@@ -57,7 +57,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 8 8:46AM | NHL | Vegas vs Buffalo | moneyline: Vegas | kalshi | $34k | -104 | ✅ novig,polymarket |  | +0.0c |  | pending |
 | Nov 8 8:26AM | NHL | Flyers vs. Flames | moneyline: Flyers | polymarket | $28k | -113 | ✅ kalshi,novig |  | +0.0c |  | pending |
 | Nov 8 8:26AM | NFL | New York Jets @ Kansas City Chiefs | spread: KC -9.5 (-9.5) | novig | $46k | -100 | ✅ kalshi |  | +0.0c |  | pending |
-| Nov 8 8:10AM | NFL | Houston vs Los Angeles C: Spread | spread: NOT Houston wins by over 5.5 points | kalshi | $308k | -100 | ✅ novig |  | +1.0c |  | pending |
+| Nov 8 8:10AM | NFL | Houston vs Los Angeles C: Spread | spread: NOT Houston wins by over 5.5 points | kalshi | $308k | -100 | ✅ novig |  | +2.0c |  | pending |
 | Nov 8 8:00AM | NFL | Las Vegas Raiders @ San Francisco 49ers | total: Under 51.5 (51.5) | novig | $29k | -102 | ✅ kalshi |  | -0.5c |  | pending |
 | Nov 8 8:00AM | NFL | Las Vegas vs San Francisco: Total Points | total: NOT Over 51.5 points | kalshi | $73k | -104 | ✅ novig |  | +0.0c |  | pending |
 | Nov 8 8:00AM | NBA | Brooklyn vs Dallas: Spread | spread: NOT Dallas wins by over 9.5 points | kalshi | $47k | -113 |  |  | +5.0c | yes | pending |
@@ -75,17 +75,17 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 8 3:10AM | NFL | New York J vs Kansas City: Spread | spread: NOT Kansas City wins by over 9.5 points | kalshi | $99k | -104 |  |  | +0.0c | yes | pending |
 | Nov 8 3:06AM | NHL | Penguins vs. Ducks | moneyline: Penguins | polymarket | $34k | +104 | ✅ kalshi |  | +0.0c |  | pending |
 | Nov 8 3:06AM | NHL | Pittsburgh vs Anaheim: Spread | spread: NOT Anaheim wins by over 1.5 goals | kalshi | $55k | -223 | ✅ novig,polymarket |  | +0.0c |  | pending |
-| Nov 8 3:00AM | NBA | Philadelphia vs Chicago: Spread | spread: NOT Philadelphia wins by over 9.5 points | kalshi | $58k | -108 | ✅ polymarket |  | -1.0c | yes | pending |
+| Nov 8 3:00AM | NBA | Philadelphia vs Chicago: Spread | spread: NOT Philadelphia wins by over 9.5 points | kalshi | $58k | -108 | ✅ polymarket |  | +0.0c | yes | pending |
 | Nov 8 3:00AM | NHL | Philadelphia vs Calgary | moneyline: Philadelphia | kalshi | $50k | -104 | ✅ novig,polymarket |  | +2.0c |  | pending |
 | Nov 8 2:56AM | NFL | Los Angeles R vs Washington: Spread | spread: NOT Los Angeles R wins by over 4.5 points | kalshi | $187k | -104 | ✅ novig |  | +1.0c | yes | pending |
 | Nov 8 2:56AM | NBA | Washington vs Detroit | moneyline: Detroit | kalshi | $203k | -400 |  |  | +4.0c |  | pending |
 | Nov 8 2:56AM | NBA | San Antonio vs Phoenix | moneyline: San Antonio | kalshi | $103k | -285 |  |  | +2.0c |  | pending |
 | Nov 8 2:56AM | NBA | New Orleans vs Golden State | moneyline: Golden State | kalshi | $176k | -317 |  |  | +1.0c |  | pending |
-| Nov 8 2:40AM | NFL | Green Bay vs New England: Total Points | total: Over 44.5 points | kalshi | $73k | -104 | ✅ novig |  | +0.0c | yes | pending |
+| Nov 8 2:40AM | NFL | Green Bay vs New England: Total Points | total: Over 44.5 points | kalshi | $73k | -104 | ✅ novig |  | +1.0c | yes | pending |
 | Nov 8 2:10AM | NFL | Denver vs Carolina: Total Points | total: Over 44.5 points | kalshi | $100k | -100 | ✅ novig,prophetx |  | +1.0c | yes | pending |
 | Nov 8 2:10AM | NFL | Los Angeles R vs Washington: Spread | spread: Los Angeles R wins by over 4.5 points | kalshi | $90k | -100 | ✅ novig |  | -1.0c | yes | pending |
 | Nov 8 2:10AM | NFL | Cleveland vs New Orleans: Spread | spread: New Orleans wins by over 3.5 points | kalshi | $82k | +104 |  |  | +7.0c | yes | pending |
-| Nov 8 2:10AM | NFL | Las Vegas vs San Francisco: Spread | spread: NOT San Francisco wins by over 9.5 points | kalshi | $97k | -104 | ✅ novig,prophetx |  | -1.0c |  | pending |
+| Nov 8 2:10AM | NFL | Las Vegas vs San Francisco: Spread | spread: NOT San Francisco wins by over 9.5 points | kalshi | $97k | -104 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Nov 8 2:10AM | NBA | Philadelphia vs Chicago | moneyline: Philadelphia | kalshi | $109k | -376 | ✅ novig,polymarket |  | +0.0c | yes | pending |
 | Nov 8 2:05AM | NBA | Los Angeles L vs Detroit | moneyline: Detroit | kalshi | $53k | -163 |  |  | +10.0c | yes | pending |
 | Nov 8 1:30AM | NFL | Detroit vs Miami: Total Points | total: Over 49.5 points | kalshi | $53k | -108 |  |  | +2.0c | yes | pending |
