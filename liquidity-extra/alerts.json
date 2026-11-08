@@ -1,6 +1,114 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-08T18:40:18Z",
+   "base_depth": 167607,
+   "best_price": 0.7147,
+   "best_price_american": -251,
+   "best_price_book": "kalshi",
+   "bid_improved": true,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.7,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-08",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -94291,
+     "new_this_side": 227786,
+     "other_side": 100362,
+     "other_side_all_levels": 186224,
+     "ratio": 2.2,
+     "this_side": 218313,
+     "this_side_all_levels": 367741
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 660051.88,
+    "volume_24h_fp": 856396.8999999999,
+    "volume_fp": 905151.45
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 113426.05,
+    "volume_24h_fp": 186773.98,
+    "volume_fp": 198837.98
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 546625.83,
+    "volume_24h_fp": 669622.9199999999,
+    "volume_fp": 706313.47
+   },
+   "fade_price": 0.31,
+   "first_seen_utc": "2026-11-08T18:30:22Z",
+   "game": "Thiago Agustin Tirante vs Jaume Munar",
+   "game_surge_books": [
+    "kalshi"
+   ],
+   "game_x": 3.12,
+   "key": "kalshi|KXATPMATCH-26NOV08TIRMUN|ml|0",
+   "lead_min": 50,
+   "league": "TENNIS",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 227786,
+   "new_x": 3.45,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 660051.88,
+      "volume_24h_fp": 856396.8999999999,
+      "volume_fp": 905151.45
+     },
+     "game_normal": 118016,
+     "game_x": 3.12,
+     "normal": 65989,
+     "now": 367741,
+     "type": "ML",
+     "x": 5.57
+    }
+   },
+   "norm_ready_books": 1,
+   "paper_only": true,
+   "price": 0.7,
+   "price_american": -233,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.65,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXATPMATCH-26NOV08TIRMUN-TIR"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Thiago Agustin Tirante",
+   "side_label": "Thiago Agustin Tirante",
+   "size_x": 5.57,
+   "start_source": "kalshi",
+   "start_utc": "2026-11-08T19:30:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "Thiago Agustin Tirante",
+    "Jaume Munar"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-08T17:50:19Z",
    "base_depth": 107128,
    "best_price": 0.6952,
@@ -15,8 +123,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.36,
-   "clv_cents": -32.0,
+   "close_price": 0.31,
+   "clv_cents": -37.0,
    "confirmed_after_min": 10,
    "date": "2026-11-08",
    "depth_by_book": {
@@ -41,9 +149,9 @@
     "volume_fp": 62952.75
    },
    "ex_stats_close": {
-    "open_interest_fp": 546625.83,
-    "volume_24h_fp": 669622.9199999999,
-    "volume_fp": 706313.47
+    "open_interest_fp": 660051.88,
+    "volume_24h_fp": 856396.8999999999,
+    "volume_fp": 905151.45
    },
    "ex_stats_first": {
     "open_interest_fp": 320373.0,
@@ -469,8 +577,8 @@
     "volume": 8000.0
    },
    "ex_stats_close": {
-    "openInterest": 80568.0,
-    "volume": 80568.0
+    "openInterest": 95580.0,
+    "volume": 95580.0
    },
    "ex_stats_first": {
     "openInterest": 1091.0,
@@ -763,7 +871,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 197.86,
-    "volume_24h_fp": 191.13,
+    "volume_24h_fp": 194.69,
     "volume_fp": 197.86
    },
    "ex_stats_first": {
@@ -863,7 +971,8 @@
      "price": -350
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-08T18:40:18Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAMBGAME-26NOV08RIDBING-BING"
@@ -1136,9 +1245,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 3311.22,
+    "open_interest_fp": 3346.93,
     "volume_24h_fp": 3340.69,
-    "volume_fp": 3340.69
+    "volume_fp": 3376.4
    },
    "ex_stats_first": {
     "open_interest_fp": 2993.48,
@@ -2223,9 +2332,9 @@
     "volume_fp": 205.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 61792.89,
-    "volume_24h_fp": 64997.32000000001,
-    "volume_fp": 65024.579999999994
+    "open_interest_fp": 64201.229999999996,
+    "volume_24h_fp": 67026.53,
+    "volume_fp": 67432.92
    },
    "ex_stats_first": {
     "open_interest_fp": 16837.71,
@@ -2768,9 +2877,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 769.6800000000001,
+    "open_interest_fp": 923.53,
     "volume_24h_fp": 767.23,
-    "volume_fp": 769.6800000000001
+    "volume_fp": 923.53
    },
    "ex_stats_first": {
     "open_interest_fp": 132.55,

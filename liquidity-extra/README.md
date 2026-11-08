@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 8, 1:30 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 16.
+Updated Sun Nov 8, 1:40 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 17.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,12 +10,13 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 8 12:50PM | TENNIS | Thiago Agustin Tirante vs Jaume Munar | moneyline: Jaume Munar | kalshi | $127k | -213 |  |  | -32.0c |  | pending |
+| Nov 8 1:40PM | TENNIS | Thiago Agustin Tirante vs Jaume Munar | moneyline: Thiago Agustin Tirante | kalshi | $228k | -233 |  |  | +0.0c |  | pending |
+| Nov 8 12:50PM | TENNIS | Thiago Agustin Tirante vs Jaume Munar | moneyline: Jaume Munar | kalshi | $127k | -213 |  |  | -37.0c |  | pending |
 | Nov 8 11:30AM | NCAAB | Quinnipiac @ Vermont | moneyline: UVM (0) | novig | $63k | -355 |  | ❌ | -1.0c | yes | pending |
 | Nov 8 11:30AM | NCAAB | Central Connecticut @ Dartmouth | moneyline: DART (0) | novig | $171k | -335 | ✅ kalshi |  | +1.5c | yes | pending |
 | Nov 8 11:30AM | NCAAB | Quinnipiac @ Vermont | spread: Quinnipiac +8.5 (-8.5) | novig | $555k | -100 |  | ❌ | +1.5c | yes | pending |
 | Nov 8 11:30AM | NCAAB | Arkansas @ Virginia | spread: UVA -3.5 (-3.5) | novig | $803k | -104 |  | ❌ | +0.5c | yes | pending |
-| Nov 8 10:50AM | NCAAB | Rider vs Binghamton | moneyline: Binghamton | kalshi | $27k | -317 |  | ✅ | -1.0c |  | pending |
+| Nov 8 10:50AM | NCAAB | Rider vs Binghamton | moneyline: Binghamton | kalshi | $27k | -317 |  | ✅ | -1.0c | yes | pending |
 | Nov 8 10:00AM | NCAAB | Arkansas vs Virginia | moneyline: Virginia | kalshi | $66k | -150 |  | ✅ | +3.0c | yes | pending |
 | Nov 8 9:30AM | NCAAB | Norfolk St. vs William & Mary | moneyline: William & Mary | kalshi | $25k | -456 |  |  | +0.0c |  | pending |
 | Nov 8 9:20AM | NCAAB | Quinnipiac vs Vermont | moneyline: Vermont | kalshi | $36k | -317 |  |  | +2.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 27 10:49PM | TENNIS | Rakhimova vs Alexandrova | moneyline: Rakhimova | kalshi | $244k | -186 |  |  | -27.0c | yes | W |
 | Oct 27 10:40PM | TENNIS | Bucsa vs Joint | moneyline: Bucsa | kalshi | $47k | +113 |  |  | +1.0c | yes | L |
 | Oct 27 7:32PM | MLB | Milwaukee Brewers at Tampa Bay Rays | moneyline: Tampa Bay Rays | prophetx | $29k | +108 |  |  | +0.0c |  | W |
-| Oct 27 7:20PM | TENNIS | Dart vs Tjen | moneyline: Tjen | kalshi | $26k | -194 |  |  | +2.0c |  | L |
