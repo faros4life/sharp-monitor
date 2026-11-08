@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 8, 2:20 AM ET. This run: 0 new, 0 not confirmed, 3 pending. Open alerts: 6.
+Updated Sun Nov 8, 2:30 AM ET. This run: 3 new, 0 not confirmed, 1 pending. Open alerts: 9.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,9 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 8 2:30AM | TENNIS | Elias Ymer vs Juan Manuel Cerundolo | moneyline: Juan Manuel Cerundolo | kalshi | $38k | -335 | ✅ novig |  | +0.0c |  | pending |
+| Nov 8 2:30AM | TENNIS | Inaki Montes-de la Torre vs Lorenzo Sonego | moneyline: Lorenzo Sonego | kalshi | $26k | -300 |  |  | +0.0c |  | pending |
+| Nov 8 2:30AM | TENNIS | Jacob Fearnley vs Alexander Shevchenko | moneyline: Jacob Fearnley | kalshi | $25k | -270 |  |  | +0.0c |  | pending |
 | Nov 8 2:00AM | NCAAB | Idaho St. vs Air Force | moneyline: Air Force | kalshi | $27k | -233 |  |  | +0.0c |  | pending |
 | Nov 8 2:00AM | NCAAB | Campbell vs Western Michigan | moneyline: Western Michigan | kalshi | $28k | -223 |  |  | +0.0c |  | pending |
 | Nov 7 10:40PM | TENNIS | Claire Liu vs Alexandra Eala | moneyline: Alexandra Eala | kalshi | $31k | -223 |  |  | -1.0c | yes | pending |
@@ -207,6 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 27 8:25AM | MLB | Milwaukee Brewers vs. Tampa Bay Rays | moneyline: Tampa Bay Rays | polymarket | $27k | +127 |  |  | +4.0c |  | W |
 | Oct 27 3:50AM | TENNIS | Mannarino vs Buse | moneyline: Mannarino | kalshi | $27k | -170 | ✅ novig |  | -15.0c | yes | W |
 | Oct 27 3:30AM | TENNIS | Eala vs Gibson | moneyline: Eala | kalshi | $26k | -285 |  |  | -2.0c | yes | W |
-| Oct 26 11:30PM | TENNIS | Putintseva vs Sakkari | moneyline: Sakkari | kalshi | $35k | -156 |  |  | -8.0c |  | L |
-| Oct 26 11:10PM | TENNIS | Zakharova vs Linette | moneyline: Linette | kalshi | $27k | -122 |  |  | +5.0c |  | W |
-| Oct 26 10:20PM | MLB | Game 4: Milwaukee vs Tampa Bay | moneyline: Game 4: Milwaukee | kalshi | $80k | -133 |  |  | -9.0c |  | L |
