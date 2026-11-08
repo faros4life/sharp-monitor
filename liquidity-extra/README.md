@@ -1,16 +1,16 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 8, 5:50 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 7.
+Updated Sun Nov 8, 6:00 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 6.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 188-113 (-16.00u flat) | rule met: 40-32
+**Record:** 189-113 (-15.68u flat) | rule met: 40-32
 
-**Fade (paper, betting against the print):** 88-153 (+10.58u flat, after fees)
+**Fade (paper, betting against the print):** 88-154 (+9.58u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 8 5:40PM | TENNIS | Coco Gauff vs Jessica Pegula | moneyline: Coco Gauff | kalshi | $80k | -178 |  |  | +15.0c |  | pending |
+| Nov 8 5:40PM | TENNIS | Coco Gauff vs Jessica Pegula | moneyline: Coco Gauff | kalshi | $80k | -178 |  |  | -10.0c |  | pending |
 | Nov 8 3:00PM | NCAAB | Wichita St. vs USC | moneyline: USC | kalshi | $29k | -223 |  |  | +2.0c |  | pending |
 | Nov 8 3:00PM | NCAAB | UT Arlington vs Hawai'i | moneyline: Hawai'i | kalshi | $26k | -355 |  |  | +0.0c |  | pending |
 | Nov 8 1:40PM | TENNIS | Thiago Agustin Tirante vs Jaume Munar | moneyline: Thiago Agustin Tirante | kalshi | $228k | -233 |  |  | +4.0c | yes | W |
@@ -19,7 +19,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 8 11:30AM | NCAAB | Central Connecticut @ Dartmouth | moneyline: DART (0) | novig | $171k | -335 | ✅ kalshi |  | +1.5c | yes | L |
 | Nov 8 11:30AM | NCAAB | Quinnipiac @ Vermont | spread: Quinnipiac +8.5 (-8.5) | novig | $555k | -100 |  | ❌ | +2.0c | yes | W |
 | Nov 8 11:30AM | NCAAB | Arkansas @ Virginia | spread: UVA -3.5 (-3.5) | novig | $803k | -104 |  | ❌ | +0.5c | yes | L |
-| Nov 8 10:50AM | NCAAB | Rider vs Binghamton | moneyline: Binghamton | kalshi | $27k | -317 |  | ✅ | -4.0c | yes | pending |
+| Nov 8 10:50AM | NCAAB | Rider vs Binghamton | moneyline: Binghamton | kalshi | $27k | -317 |  | ✅ | -4.0c | yes | W |
 | Nov 8 10:00AM | NCAAB | Arkansas vs Virginia | moneyline: Virginia | kalshi | $66k | -150 |  | ✅ | +3.0c | yes | W |
 | Nov 8 9:30AM | NCAAB | Norfolk St. vs William & Mary | moneyline: William & Mary | kalshi | $25k | -456 |  |  | +1.0c |  | pending |
 | Nov 8 9:20AM | NCAAB | Quinnipiac vs Vermont | moneyline: Vermont | kalshi | $36k | -317 |  |  | +2.0c |  | L |

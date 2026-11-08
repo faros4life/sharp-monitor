@@ -15,8 +15,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.79,
-   "clv_cents": 15.0,
+   "close_price": 0.54,
+   "clv_cents": -10.0,
    "confirmed_after_min": 10,
    "date": "2026-11-08",
    "depth_by_book": {
@@ -41,9 +41,9 @@
     "volume_fp": 154086.03
    },
    "ex_stats_close": {
-    "open_interest_fp": 724985.03,
-    "volume_24h_fp": 953557.66,
-    "volume_fp": 1114609.8699999999
+    "open_interest_fp": 880103.72,
+    "volume_24h_fp": 1403404.63,
+    "volume_fp": 1449106.56
    },
    "ex_stats_first": {
     "open_interest_fp": 458699.4,
@@ -82,6 +82,8 @@
    "norm_ready_books": 1,
    "paper_only": true,
    "price": 0.64,
+   "price_after_15m": 0.5574,
+   "price_after_15m_book": "kalshi",
    "price_american": -178,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.62,
@@ -103,6 +105,7 @@
    "size_x": 10.39,
    "start_source": "kalshi",
    "start_utc": "2026-11-09T00:30:00Z",
+   "still_actionable": true,
    "surge_books": [
     "kalshi"
    ],
@@ -166,9 +169,9 @@
     "volume_fp": 34.15
    },
    "ex_stats_close": {
-    "open_interest_fp": 16691.67,
-    "volume_24h_fp": 16907.329999999998,
-    "volume_fp": 17027.370000000003
+    "open_interest_fp": 17812.95,
+    "volume_24h_fp": 18031.61,
+    "volume_fp": 18148.65
    },
    "ex_stats_first": {
     "open_interest_fp": 3968.8,
@@ -364,9 +367,9 @@
     "volume_fp": 0.15
    },
    "ex_stats_close": {
-    "open_interest_fp": 5526.44,
-    "volume_24h_fp": 1205.8899999999999,
-    "volume_fp": 5790.780000000001
+    "open_interest_fp": 5725.09,
+    "volume_24h_fp": 1283.3,
+    "volume_fp": 5989.43
    },
    "ex_stats_first": {
     "open_interest_fp": 5224.7,
@@ -1402,6 +1405,7 @@
     "volume_fp": 50.98
    },
    "fade_price": 0.25,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-08T15:40:17Z",
    "game": "Rider vs Binghamton",
    "game_surge_books": [
@@ -1499,11 +1503,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAMBGAME-26NOV08RIDBING-BING"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-11-08T23:00:26Z",
    "sharp_agree": [
     "Binghamton Bearcats -7.5 (-106)"
    ],
@@ -1523,7 +1528,7 @@
     "Binghamton"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.32
   },
   {
    "alerted_utc": "2026-11-08T15:00:24Z",
