@@ -1,6 +1,161 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-08T03:56:07Z",
+   "base_depth": 206192,
+   "best_price": 0.76,
+   "best_price_american": -317,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.76,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 6,
+   "date": "2026-11-08",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 11656,
+     "new_this_side": 48805,
+     "other_side": 13332,
+     "other_side_all_levels": 119852,
+     "ratio": 0.4,
+     "this_side": 5410,
+     "this_side_all_levels": 268667
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "DAL (0)",
+     "price": 0.76,
+     "this_side": 177
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 5341.04,
+    "volume_24h_fp": 5388.22,
+    "volume_fp": 6167.47
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": -42.18,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 5341.04,
+    "volume_24h_fp": 5430.4,
+    "volume_fp": 6167.47
+   },
+   "fade_price": 0.24,
+   "first_seen_utc": "2026-11-08T03:50:13Z",
+   "game": "Brooklyn vs Dallas",
+   "game_surge_books": [],
+   "game_x": 1.27,
+   "key": "kalshi|KXNBAGAME-26NOV08BKNDAL|ml|1",
+   "lead_min": 1234,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 48805,
+   "new_x": 0.08,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 5341.04,
+      "volume_24h_fp": 5388.22,
+      "volume_fp": 6167.47
+     },
+     "game_normal": 211891,
+     "game_x": 1.27,
+     "normal": 637035,
+     "now": 268667,
+     "type": "ML",
+     "x": 0.42
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 0.0,
+      "volume": 0.0
+     },
+     "game_normal": null,
+     "game_x": null,
+     "normal": 13564,
+     "now": 917,
+     "type": "ML",
+     "x": 0.07
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.76,
+   "price_american": -317,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.76,
+   "prices_by_book": {
+    "draftkings": {
+     "point": null,
+     "price": -327
+    },
+    "fanduel": {
+     "point": null,
+     "price": -330
+    },
+    "kalshi": {
+     "point": null,
+     "price": -317
+    },
+    "limitless": {
+     "point": null,
+     "price": -363
+    },
+    "novig": {
+     "point": null,
+     "price": -317
+    },
+    "polymarket": {
+     "point": null,
+     "price": -300
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -300
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -335
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBAGAME-26NOV08BKNDAL-DAL"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Dallas",
+   "side_label": "Dallas",
+   "size_x": 0.42,
+   "start_source": "odds",
+   "start_utc": "2026-11-09T00:30:00Z",
+   "surge_books": [],
+   "teams": [
+    "Brooklyn",
+    "Dallas"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-08T03:46:43Z",
    "base_depth": 308246,
    "best_price": 0.49,
@@ -54,7 +209,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 10484.08,
-    "volume_24h_fp": 8572.5,
+    "volume_24h_fp": 8611.9,
     "volume_fp": 11033.02
    },
    "ex_stats_first": {
@@ -268,9 +423,9 @@
     "volume_fp": 2819.86
    },
    "ex_stats_close": {
-    "open_interest_fp": 430992.02,
-    "volume_24h_fp": 166998.68,
-    "volume_fp": 468757.67000000004
+    "open_interest_fp": 431465.55000000005,
+    "volume_24h_fp": 167408.04,
+    "volume_fp": 469243.38
    },
    "ex_stats_first": {
     "open_interest_fp": 427384.11,
@@ -328,6 +483,8 @@
    "norm_ready_books": 3,
    "paper_only": false,
    "price": 0.81,
+   "price_after_15m": 0.81,
+   "price_after_15m_book": "novig",
    "price_american": -426,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.81,
@@ -425,6 +582,7 @@
    "size_x": 1.13,
    "start_source": "odds",
    "start_utc": "2026-11-08T18:00:00Z",
+   "still_actionable": true,
    "surge_books": [],
    "teams": [
     "New York J",
@@ -492,9 +650,9 @@
     "volume_fp": 6.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 14601.21,
-    "volume_24h_fp": 15603.48,
-    "volume_fp": 16703.93
+    "open_interest_fp": 14638.29,
+    "volume_24h_fp": 14913.54,
+    "volume_fp": 16741.010000000002
    },
    "ex_stats_first": {
     "open_interest_fp": 14542.46,
@@ -716,9 +874,9 @@
     "volume_fp": 20.46
    },
    "ex_stats_close": {
-    "open_interest_fp": 7884.61,
-    "volume_24h_fp": 2640.97,
-    "volume_fp": 9194.43
+    "open_interest_fp": 8853.61,
+    "volume_24h_fp": 3601.97,
+    "volume_fp": 10163.43
    },
    "ex_stats_first": {
     "open_interest_fp": 7835.37,
@@ -1763,9 +1921,9 @@
     "volume_fp": 1008.35
    },
    "ex_stats_close": {
-    "open_interest_fp": 1442788.05,
-    "volume_24h_fp": 381619.16,
-    "volume_fp": 1774133.58
+    "open_interest_fp": 1443622.5499999998,
+    "volume_24h_fp": 382627.1,
+    "volume_fp": 1774996.81
    },
    "ex_stats_first": {
     "open_interest_fp": 1432090.88,
@@ -2490,9 +2648,9 @@
     "volume_fp": 232.48
    },
    "ex_stats_close": {
-    "open_interest_fp": 255963.41,
-    "volume_24h_fp": 224179.84,
-    "volume_fp": 296628.42
+    "open_interest_fp": 257940.24,
+    "volume_24h_fp": 234228.04,
+    "volume_fp": 298605.25
    },
    "ex_stats_first": {
     "open_interest_fp": 75371.61,
@@ -2687,9 +2845,9 @@
     "volume_fp": 299.08
    },
    "ex_stats_close": {
-    "open_interest_fp": 128300.08,
-    "volume_24h_fp": 49392.84,
-    "volume_fp": 133688.82
+    "open_interest_fp": 129895.2,
+    "volume_24h_fp": 49192.56,
+    "volume_fp": 135283.94
    },
    "ex_stats_first": {
     "open_interest_fp": 120519.76,
@@ -2888,9 +3046,9 @@
     "volume_fp": 34403.96
    },
    "ex_stats_close": {
-    "open_interest_fp": 873021.6200000001,
-    "volume_24h_fp": 248169.16,
-    "volume_fp": 924760.63
+    "open_interest_fp": 877279.53,
+    "volume_24h_fp": 248760.49,
+    "volume_fp": 929273.22
    },
    "ex_stats_first": {
     "open_interest_fp": 819313.29,
@@ -3759,9 +3917,9 @@
     "volume_fp": 115.32
    },
    "ex_stats_close": {
-    "open_interest_fp": 161298.37,
-    "volume_24h_fp": 51951.58,
-    "volume_fp": 177784.33000000002
+    "open_interest_fp": 161895.51,
+    "volume_24h_fp": 52266.89,
+    "volume_fp": 178381.47
    },
    "ex_stats_first": {
     "open_interest_fp": 152105.61,
@@ -5883,8 +6041,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 24456179.0,
-    "volume": 28331918.0
+    "openInterest": 24567993.0,
+    "volume": 28464293.0
    },
    "ex_stats_first": {
     "openInterest": 24209934.0,
@@ -8404,6 +8562,7 @@
     "volume_fp": 5318.55
    },
    "fade_price": 0.35,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-08T00:00:52Z",
    "game": "Tampa Bay vs Minnesota: Spread",
    "game_surge_books": [],
@@ -8543,7 +8702,7 @@
     "kalshi_side": "no",
     "market_ticker": "KXNHLSPREAD-26NOV07TBMIN-TB2"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig",
@@ -8551,6 +8710,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-08T03:56:07Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Minnesota",
@@ -8568,7 +8728,7 @@
     "Minnesota"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.52
   },
   {
    "alerted_utc": "2026-11-08T00:10:33Z",
@@ -9511,6 +9671,7 @@
     "volume_fp": 138587.03
    },
    "fade_price": 0.44,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-07T23:51:00Z",
    "game": "Tampa Bay vs Minnesota",
    "game_surge_books": [],
@@ -9663,7 +9824,7 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNHLGAME-26NOV07TBMIN-TB"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig",
@@ -9671,6 +9832,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-08T03:56:07Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Tampa Bay",
@@ -9689,7 +9851,7 @@
     "Minnesota"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.77
   },
   {
    "alerted_utc": "2026-11-08T00:00:52Z",
@@ -16650,12 +16812,14 @@
     "volume": 3182253.0
    },
    "fade_price": 0.16,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-07T20:40:13Z",
    "game": "Louisville @ Georgia Tech",
    "game_surge_books": [
     "novig"
    ],
    "game_x": 2.26,
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a195e4-e891-7062-b286-bbb295a8db68\", \"outcome_id\": \"01a195e4-e891-7062-b286-bbd6af3e5d55\"}",
    "lead_min": 220,
    "league": "NCAAF",
@@ -16765,13 +16929,14 @@
     "market_id": "01a195e4-e891-7062-b286-bbb295a8db68",
     "outcome_id": "01a195e4-e891-7062-b286-bbd6af3e5d55"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "kalshi"
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-08T03:56:07Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Louisville",
@@ -16789,7 +16954,7 @@
     "Georgia Tech"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.18
   },
   {
    "alerted_utc": "2026-11-07T20:50:11Z",
@@ -17738,6 +17903,7 @@
     "volume_fp": 15489.619999999999
    },
    "fade_price": 0.16,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-07T19:31:36Z",
    "game": "Louisville vs Georgia Tech",
    "game_surge_books": [
@@ -17863,7 +18029,7 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26NOV07LOUGT-LOU"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig",
@@ -17871,6 +18037,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-08T03:56:07Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Louisville",
@@ -17889,7 +18056,7 @@
     "Georgia Tech"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.18
   },
   {
    "alerted_utc": "2026-11-07T19:12:06Z",
