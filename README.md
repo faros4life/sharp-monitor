@@ -1,10 +1,10 @@
 # EV sightings study (paper, measurement only)
 
-Started 2026-10-27T16:06:50Z. Updated 2026-11-08T14:14:32Z. Sightings are a record, never bets. CLV = close fair - sighting after-fee cost, in cents (+ = beat the close). Gate: >= 50 graded, positive average CLV and positive flat record; reviewed only at a scheduled review. A/B gate on consensus CLV; move-watch (A1) gate on Pinnacle CLV. Held = Pinnacle close minus Pinnacle's pre-move fair at the old number (+ = the move held). Rows exclude suspect sightings (best price 10c+ under the other books, or a crossed quote: usually a misread line); Pinnacle CLV only within 3 points of Pinnacle's number.
+Started 2026-10-27T16:06:50Z. Updated 2026-11-08T14:26:30Z. Sightings are a record, never bets. CLV = close fair - sighting after-fee cost, in cents (+ = beat the close). Gate: >= 50 graded, positive average CLV and positive flat record; reviewed only at a scheduled review. A/B gate on consensus CLV; move-watch (A1) gate on Pinnacle CLV. Held = Pinnacle close minus Pinnacle's pre-move fair at the old number (+ = the move held). Rows exclude suspect sightings (best price 10c+ under the other books, or a crossed quote: usually a misread line); Pinnacle CLV only within 3 points of Pinnacle's number.
 
 | Bucket | Sightings | Closed | CLV vs consensus | Beat % | Pin-closed | CLV vs Pinnacle | Graded | Record | Units | ROI | Held | Lag (med) | Gate |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| A cross-book (>= 2c) | 7519 | 7298 | -1.59c | 23.9% | 3192 | -1.01c | 7299 | 3765-3534-0 | -249.43u | -3.4% |  |  | criteria not met (7299/50 graded, CLV not positive, record not positive) |
+| A cross-book (>= 2c) | 7520 | 7298 | -1.59c | 23.9% | 3192 | -1.01c | 7299 | 3765-3534-0 | -249.43u | -3.4% |  |  | criteria not met (7299/50 graded, CLV not positive, record not positive) |
 | A qualifying (>= 3c) | 1712 | 1625 | -3.13c | 18.2% | 360 | -2.61c | 1625 | 835-790-0 | -123.55u | -7.6% |  |  | criteria not met (1625/50 graded, CLV not positive, record not positive) |
 | B Pinnacle (>= 3% EV) | 123 | 123 | -1.01c | 28.5% | 115 | -0.05c | 123 | 54-69-0 | -8.52u | -6.9% |  |  | criteria not met (123/50 graded, CLV not positive, record not positive) |
 | B ref age <60s | 9 | 9 | 0.06c | 33.3% | 9 | 1.06c | 9 | 5-4-0 | +1.39u | 15.5% |  |  |  |
@@ -48,10 +48,11 @@ A and B on the same side/line: 97.
 
 ## Odds API credits (100K/month plan)
 
-Study: 626/day, projected 18773/30 days. All monitors on the key: 2347/day, projected 70419/30 days. Remaining 81260; guard holds 62800 for the sharp monitor; polls skipped by the guard: 0.
+Study: 626/day, projected 18782/30 days. All monitors on the key: 2349/day, projected 70477/30 days. Remaining 81221; guard holds 62800 for the sharp monitor; polls skipped by the guard: 0.
 
 ## Last runs
 
+- 2026-11-08T14:21:28Z: 27 games (26 in 24h), quotes {'prophetx': 2318, 'novig': 712, 'kalshi': 1538, 'polymarket_us': 1766}, 48 unmatched (3 book-games; fuzzy-matched 0), 3974 side/lines, polls [NFL:fast,NHL:fast; NFL:fast,NHL:fast], moves 0, new A 1 B 0, maker posted 0 filled 0, credits used 8 left 81221, 302s
 - 2026-11-08T14:11:30Z: 27 games (26 in 24h), quotes {'prophetx': 2326, 'novig': 712, 'kalshi': 1534, 'polymarket_us': 1446}, 46 unmatched (3 book-games; fuzzy-matched 0), 3792 side/lines, polls [none_due; NFL:fast,NHL:fast], moves 0, new A 8 B 0, maker posted 0 filled 0, credits used 4 left 81260, 182s
 - 2026-11-08T14:01:32Z: 27 games (26 in 24h), quotes {'prophetx': 2360, 'novig': 714, 'kalshi': 1514, 'polymarket_us': 2358}, 32 unmatched (3 book-games; fuzzy-matched 0), 4272 side/lines, polls [NFL:fast,NBA:slow,NHL:fast; NFL:fast,NHL:fast], moves 18, new A 11 B 0, maker posted 96 filled 0, credits used 10 left 81273, 301s
 - 2026-11-08T13:51:30Z: outside read hours: closes/grades only
@@ -61,4 +62,3 @@ Study: 626/day, projected 18773/30 days. All monitors on the key: 2347/day, proj
 - 2026-11-08T13:10:54Z: outside read hours: closes/grades only
 - 2026-11-08T13:01:17Z: outside read hours: closes/grades only
 - 2026-11-08T12:50:59Z: outside read hours: closes/grades only
-- 2026-11-08T12:41:15Z: outside read hours: closes/grades only
