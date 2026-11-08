@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 8, 3:06 PM ET. This run: 3 new, 0 not confirmed, 0 pending. Open alerts: 119.
+Updated Sun Nov 8, 3:10 PM ET. This run: 3 new, 0 not confirmed, 0 pending. Open alerts: 119.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,9 +10,9 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 8 3:06PM | NBA | 76ers vs. Bulls | spread: Bulls (+9.5) | polymarket | $470k | -108 | ✅ kalshi,novig | ✅ | +0.0c |  | pending |
-| Nov 8 3:06PM | NHL | Golden Knights vs. Sabres | moneyline: Sabres | polymarket | $38k | -100 | ✅ kalshi,prophetx |  | +0.0c |  | pending |
-| Nov 8 3:06PM | NHL | Tampa Bay vs Winnipeg: Spread | spread: NOT Tampa Bay wins by over 1.5 goals | kalshi | $36k | -186 | ✅ novig |  | +0.0c |  | pending |
+| Nov 8 3:10PM | NBA | 76ers vs. Bulls | spread: Bulls (+9.5) | polymarket | $470k | -108 | ✅ kalshi,novig | ✅ | +0.0c |  | pending |
+| Nov 8 3:10PM | NHL | Golden Knights vs. Sabres | moneyline: Sabres | polymarket | $38k | -100 | ✅ kalshi |  | +0.0c |  | pending |
+| Nov 8 3:10PM | NHL | Tampa Bay vs Winnipeg: Spread | spread: NOT Tampa Bay wins by over 1.5 goals | kalshi | $36k | -186 | ✅ novig |  | +0.0c |  | pending |
 | Nov 8 3:00PM | NFL | Green Bay Packers @ New England Patriots | moneyline: GB (0) | novig | $41k | +160 | ✅ kalshi |  | +0.0c |  | pending |
 | Nov 8 2:46PM | NFL | Arizona vs Seattle: Spread | spread: Seattle wins by over 9.5 points | kalshi | $576k | +104 |  |  | +0.0c |  | pending |
 | Nov 8 2:40PM | NBA | Philadelphia 76ers at Chicago Bulls | moneyline: Philadelphia 76ers | prophetx | $38k | -395 | ✅ kalshi,novig,polymarket | ❌ | -0.6c |  | pending |
@@ -33,7 +33,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 8 12:40PM | NFL | Detroit Lions at Miami Dolphins | moneyline: Detroit Lions | prophetx | $80k | -290 | ✅ kalshi,novig |  | +0.0c |  | pending |
 | Nov 8 12:40PM | NBA | 76ers vs. Bulls | total: Over (238.5) | polymarket | $39k | -104 | ✅ novig | ❌ | -1.0c | yes | pending |
 | Nov 8 12:40PM | NBA | Utah vs Minnesota: Spread | spread: NOT Minnesota wins by over 12.5 points | kalshi | $64k | -117 |  |  | +0.0c | yes | pending |
-| Nov 8 12:40PM | NHL | Vegas vs Buffalo | moneyline: Buffalo | kalshi | $45k | -100 | ✅ novig |  | +0.0c | yes | pending |
+| Nov 8 12:40PM | NHL | Vegas vs Buffalo | moneyline: Buffalo | kalshi | $45k | -100 | ✅ novig |  | -1.0c | yes | pending |
 | Nov 8 12:30PM | NFL | Detroit Lions @ Miami Dolphins | spread: DET -6.5 (6.5) | novig | $26k | -106 | ✅ kalshi,prophetx |  | +0.0c |  | pending |
 | Nov 8 12:30PM | NFL | New York G vs Philadelphia: Spread | spread: NOT New York G wins by over 2.5 points | kalshi | $314k | +108 |  |  | +0.0c | yes | pending |
 | Nov 8 12:26PM | NFL | Los Angeles Rams @ Washington Commanders | moneyline: LAR (0) | novig | $118k | -203 | ✅ kalshi,prophetx |  | +0.5c |  | pending |
@@ -65,11 +65,11 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 8 8:56AM | NFL | Arizona vs Seattle: Total Points | total: Over 38.5 points | kalshi | $281k | -117 |  |  | +0.0c |  | pending |
 | Nov 8 8:46AM | NBA | Heat vs. Kings | moneyline: Heat | polymarket | $28k | -355 | ✅ novig,prophetx |  | +1.0c |  | pending |
 | Nov 8 8:46AM | NHL | Golden Knights vs. Sabres | moneyline: Golden Knights | polymarket | $43k | -100 | ✅ kalshi,novig |  | +1.0c |  | pending |
-| Nov 8 8:46AM | NHL | Vegas vs Buffalo | moneyline: Vegas | kalshi | $34k | -104 | ✅ novig,polymarket |  | +0.0c | yes | pending |
+| Nov 8 8:46AM | NHL | Vegas vs Buffalo | moneyline: Vegas | kalshi | $34k | -104 | ✅ novig,polymarket |  | +1.0c | yes | pending |
 | Nov 8 8:26AM | NHL | Flyers vs. Flames | moneyline: Flyers | polymarket | $28k | -113 | ✅ kalshi,novig |  | +0.0c |  | pending |
 | Nov 8 8:26AM | NFL | New York Jets @ Kansas City Chiefs | spread: KC -9.5 (-9.5) | novig | $46k | -100 | ✅ kalshi |  | +0.0c |  | pending |
 | Nov 8 8:10AM | NFL | Houston vs Los Angeles C: Spread | spread: NOT Houston wins by over 5.5 points | kalshi | $308k | -100 | ✅ novig |  | +2.0c |  | pending |
-| Nov 8 8:00AM | NFL | Las Vegas Raiders @ San Francisco 49ers | total: Under 51.5 (51.5) | novig | $29k | -102 | ✅ kalshi |  | -1.0c |  | pending |
+| Nov 8 8:00AM | NFL | Las Vegas Raiders @ San Francisco 49ers | total: Under 51.5 (51.5) | novig | $29k | -102 | ✅ kalshi |  | -0.5c |  | pending |
 | Nov 8 8:00AM | NFL | Las Vegas vs San Francisco: Total Points | total: NOT Over 51.5 points | kalshi | $73k | -104 | ✅ novig |  | +0.0c |  | pending |
 | Nov 8 8:00AM | NBA | Brooklyn vs Dallas: Spread | spread: NOT Dallas wins by over 9.5 points | kalshi | $47k | -113 |  |  | +6.0c | yes | pending |
 | Nov 8 7:56AM | NFL | Cincinnati Bengals @ Atlanta Falcons | total: Under 52.5 (52.5) | novig | $32k | -108 | ✅ kalshi |  | -1.0c | yes | W |
@@ -84,7 +84,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 8 3:20AM | NFL | Detroit vs Miami: Spread | spread: NOT Detroit wins by over 6.5 points | kalshi | $105k | -104 | ✅ novig |  | -2.0c | yes | pending |
 | Nov 8 3:10AM | NFL | Buffalo vs Minnesota: Spread | spread: NOT Buffalo wins by over 3.5 points | kalshi | $99k | -122 |  |  | +0.0c | yes | pending |
 | Nov 8 3:10AM | NFL | New York J vs Kansas City: Spread | spread: NOT Kansas City wins by over 9.5 points | kalshi | $99k | -104 |  |  | +0.0c | yes | pending |
-| Nov 8 3:06AM | NHL | Penguins vs. Ducks | moneyline: Penguins | polymarket | $34k | +104 | ✅ kalshi |  | -1.0c |  | pending |
+| Nov 8 3:06AM | NHL | Penguins vs. Ducks | moneyline: Penguins | polymarket | $34k | +104 | ✅ kalshi |  | +0.0c |  | pending |
 | Nov 8 3:06AM | NHL | Pittsburgh vs Anaheim: Spread | spread: NOT Anaheim wins by over 1.5 goals | kalshi | $55k | -223 | ✅ novig,polymarket |  | +0.0c |  | pending |
 | Nov 8 3:00AM | NBA | Philadelphia vs Chicago: Spread | spread: NOT Philadelphia wins by over 9.5 points | kalshi | $58k | -108 | ✅ polymarket |  | +0.0c | yes | pending |
 | Nov 8 3:00AM | NHL | Philadelphia vs Calgary | moneyline: Philadelphia | kalshi | $50k | -104 | ✅ novig,polymarket |  | +2.0c |  | pending |
@@ -118,10 +118,10 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 7 11:36PM | NBA | New Orleans vs Los Angeles C | moneyline: New Orleans | kalshi | $39k | -108 |  |  | +1.0c |  | pending |
 | Nov 7 11:30PM | NFL | Green Bay vs New England | moneyline: New England | kalshi | $356k | -156 | ✅ novig,prophetx |  | +1.0c | yes | pending |
 | Nov 7 11:26PM | NFL | Dallas vs Indianapolis | moneyline: Dallas | kalshi | $114k | -213 | ✅ novig,prophetx |  | -2.0c | yes | pending |
-| Nov 7 11:20PM | NHL | Pittsburgh vs Anaheim | moneyline: Pittsburgh | kalshi | $30k | +113 |  |  | +1.0c |  | pending |
+| Nov 7 11:20PM | NHL | Pittsburgh vs Anaheim | moneyline: Pittsburgh | kalshi | $30k | +113 |  |  | +2.0c |  | pending |
 | Nov 7 11:20PM | NFL | Detroit vs Miami | moneyline: Detroit | kalshi | $151k | -285 | ✅ novig,prophetx |  | +0.0c | yes | pending |
 | Nov 7 11:16PM | NFL | Arizona vs Seattle | moneyline: Seattle | kalshi | $222k | -376 | ✅ novig,prophetx |  | +0.0c | yes | pending |
-| Nov 7 11:06PM | NHL | Pittsburgh vs Anaheim | moneyline: Anaheim | kalshi | $32k | -113 |  |  | +0.0c |  | pending |
+| Nov 7 11:06PM | NHL | Pittsburgh vs Anaheim | moneyline: Anaheim | kalshi | $32k | -113 |  |  | -1.0c |  | pending |
 | Nov 7 11:06PM | NFL | Tampa Bay vs Chicago | moneyline: Chicago | kalshi | $1,133k | -257 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Nov 7 10:56PM | NBA | Brooklyn vs Dallas | moneyline: Dallas | kalshi | $49k | -317 |  |  | -1.0c |  | pending |
 | Nov 7 10:46PM | NBA | New Orleans vs Los Angeles C | moneyline: Los Angeles C | kalshi | $68k | +104 |  |  | -1.0c | yes | pending |
