@@ -1,17 +1,17 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 8, 2:20 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 17.
+Updated Sun Nov 8, 2:30 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 15.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 181-107 (-14.00u flat) | rule met: 40-31
+**Record:** 182-108 (-14.60u flat) | rule met: 40-31
 
-**Fade (paper, betting against the print):** 82-146 (+4.77u flat, after fees)
+**Fade (paper, betting against the print):** 83-147 (+5.66u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 8 1:40PM | TENNIS | Thiago Agustin Tirante vs Jaume Munar | moneyline: Thiago Agustin Tirante | kalshi | $228k | -233 |  |  | +4.0c | yes | pending |
-| Nov 8 12:50PM | TENNIS | Thiago Agustin Tirante vs Jaume Munar | moneyline: Jaume Munar | kalshi | $127k | -213 |  |  | -41.0c | yes | pending |
+| Nov 8 1:40PM | TENNIS | Thiago Agustin Tirante vs Jaume Munar | moneyline: Thiago Agustin Tirante | kalshi | $228k | -233 |  |  | +4.0c | yes | W |
+| Nov 8 12:50PM | TENNIS | Thiago Agustin Tirante vs Jaume Munar | moneyline: Jaume Munar | kalshi | $127k | -213 |  |  | -41.0c | yes | L |
 | Nov 8 11:30AM | NCAAB | Quinnipiac @ Vermont | moneyline: UVM (0) | novig | $63k | -355 |  | ❌ | -1.0c | yes | pending |
 | Nov 8 11:30AM | NCAAB | Central Connecticut @ Dartmouth | moneyline: DART (0) | novig | $171k | -335 | ✅ kalshi |  | +1.5c | yes | pending |
 | Nov 8 11:30AM | NCAAB | Quinnipiac @ Vermont | spread: Quinnipiac +8.5 (-8.5) | novig | $555k | -100 |  | ❌ | +2.0c | yes | pending |
