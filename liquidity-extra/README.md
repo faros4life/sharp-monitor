@@ -1,16 +1,16 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 8, 5:20 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 7.
+Updated Sun Nov 8, 5:30 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 6.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 187-113 (-16.42u flat) | rule met: 40-32
+**Record:** 188-113 (-16.00u flat) | rule met: 40-32
 
-**Fade (paper, betting against the print):** 88-152 (+11.58u flat, after fees)
+**Fade (paper, betting against the print):** 88-153 (+10.58u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 8 3:00PM | NCAAB | Wichita St. vs USC | moneyline: USC | kalshi | $29k | -223 |  |  | +1.0c |  | pending |
+| Nov 8 3:00PM | NCAAB | Wichita St. vs USC | moneyline: USC | kalshi | $29k | -223 |  |  | +2.0c |  | pending |
 | Nov 8 3:00PM | NCAAB | UT Arlington vs Hawai'i | moneyline: Hawai'i | kalshi | $26k | -355 |  |  | +0.0c |  | pending |
 | Nov 8 1:40PM | TENNIS | Thiago Agustin Tirante vs Jaume Munar | moneyline: Thiago Agustin Tirante | kalshi | $228k | -233 |  |  | +4.0c | yes | W |
 | Nov 8 12:50PM | TENNIS | Thiago Agustin Tirante vs Jaume Munar | moneyline: Jaume Munar | kalshi | $127k | -213 |  |  | -41.0c | yes | L |
@@ -31,7 +31,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 8 2:30AM | TENNIS | Elias Ymer vs Juan Manuel Cerundolo | moneyline: Juan Manuel Cerundolo | kalshi | $38k | -335 | ✅ novig |  | -4.0c |  | W |
 | Nov 8 2:30AM | TENNIS | Inaki Montes-de la Torre vs Lorenzo Sonego | moneyline: Lorenzo Sonego | kalshi | $26k | -300 |  |  | +0.0c | yes | W |
 | Nov 8 2:30AM | TENNIS | Jacob Fearnley vs Alexander Shevchenko | moneyline: Jacob Fearnley | kalshi | $25k | -270 |  |  | +0.0c | yes | L |
-| Nov 8 2:00AM | NCAAB | Idaho St. vs Air Force | moneyline: Air Force | kalshi | $27k | -233 |  |  | +0.0c |  | pending |
+| Nov 8 2:00AM | NCAAB | Idaho St. vs Air Force | moneyline: Air Force | kalshi | $27k | -233 |  |  | +0.0c |  | W |
 | Nov 8 2:00AM | NCAAB | Campbell vs Western Michigan | moneyline: Western Michigan | kalshi | $28k | -223 |  |  | -4.0c |  | W |
 | Nov 7 10:40PM | TENNIS | Claire Liu vs Alexandra Eala | moneyline: Alexandra Eala | kalshi | $31k | -223 |  |  | -1.0c | yes | L |
 | Nov 7 10:40PM | TENNIS | Ben Shelton vs Carlos Alcaraz | moneyline: Carlos Alcaraz | kalshi | $31k | -355 | ✅ novig |  | -1.0c |  | W |
