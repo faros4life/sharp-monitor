@@ -1,6 +1,219 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-08T03:40:11Z",
+   "base_depth": 4940983,
+   "best_price": 0.81,
+   "best_price_american": -426,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.81,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 4,
+   "date": "2026-11-08",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -274,
+     "new_this_side": 271078,
+     "other_side": 1347765,
+     "other_side_all_levels": 1459189,
+     "ratio": 3.4,
+     "this_side": 4642844,
+     "this_side_all_levels": 5338335
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "KC (0)",
+     "price": 0.81,
+     "this_side": 123335
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Kansas City Chiefs",
+     "price": 0.8131,
+     "this_side": 41058
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 430203.97000000003,
+    "volume_24h_fp": 163347.66,
+    "volume_fp": 467933.01
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 2819.86,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 2819.86
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 427384.11,
+    "volume_24h_fp": 163347.66,
+    "volume_fp": 465113.15
+   },
+   "fade_price": 0.2,
+   "first_seen_utc": "2026-11-08T03:36:23Z",
+   "game": "New York J vs Kansas City",
+   "game_surge_books": [],
+   "game_x": 1.08,
+   "key": "kalshi|KXNFLGAME-26NOV08NYJKC|ml|1",
+   "lead_min": 860,
+   "league": "NFL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 271078,
+   "new_x": 0.06,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 430203.97000000003,
+      "volume_24h_fp": 163347.66,
+      "volume_fp": 467933.01
+     },
+     "game_normal": 4924031,
+     "game_x": 1.08,
+     "normal": 4709774,
+     "now": 5338335,
+     "type": "ML",
+     "x": 1.13
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 24437229.0,
+      "volume": 28312968.0
+     },
+     "game_normal": 120242,
+     "game_x": 1.03,
+     "normal": 69048,
+     "now": 123391,
+     "type": "ML",
+     "x": 1.79
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 42772,
+     "game_x": 0.96,
+     "normal": 40816,
+     "now": 41058,
+     "type": "ML",
+     "x": 1.01
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.81,
+   "price_american": -426,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.81,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -525
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -545
+    },
+    "betopenly": {
+     "point": null,
+     "price": -462
+    },
+    "betrivers": {
+     "point": null,
+     "price": -500
+    },
+    "betus": {
+     "point": null,
+     "price": -545
+    },
+    "bovada": {
+     "point": null,
+     "price": -540
+    },
+    "draftkings": {
+     "point": null,
+     "price": -535
+    },
+    "fanatics": {
+     "point": null,
+     "price": -550
+    },
+    "fanduel": {
+     "point": null,
+     "price": -500
+    },
+    "kalshi": {
+     "point": null,
+     "price": -426
+    },
+    "limitless": {
+     "point": null,
+     "price": -456
+    },
+    "lowvig": {
+     "point": null,
+     "price": -545
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -480
+    },
+    "novig": {
+     "point": null,
+     "price": -426
+    },
+    "polymarket": {
+     "point": null,
+     "price": -426
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -419
+    },
+    "prophetx": {
+     "point": null,
+     "price": -435
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -500
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNFLGAME-26NOV08NYJKC-KC"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "prophetx"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Kansas City",
+   "side_label": "Kansas City",
+   "size_x": 1.13,
+   "start_source": "odds",
+   "start_utc": "2026-11-08T18:00:00Z",
+   "surge_books": [],
+   "teams": [
+    "New York J",
+    "Kansas City"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-08T03:30:13Z",
    "base_depth": 519748,
    "best_price": 0.8361,
@@ -59,9 +272,9 @@
     "volume_fp": 6.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 14578.26,
+    "open_interest_fp": 14596.51,
     "volume_24h_fp": 15582.38,
-    "volume_fp": 16656.62
+    "volume_fp": 16699.23
    },
    "ex_stats_first": {
     "open_interest_fp": 14542.46,
@@ -280,9 +493,9 @@
     "volume_fp": 20.46
    },
    "ex_stats_close": {
-    "open_interest_fp": 7874.41,
+    "open_interest_fp": 7884.61,
     "volume_24h_fp": 2621.49,
-    "volume_fp": 9184.23
+    "volume_fp": 9194.43
    },
    "ex_stats_first": {
     "open_interest_fp": 7835.37,
@@ -1327,9 +1540,9 @@
     "volume_fp": 1008.35
    },
    "ex_stats_close": {
-    "open_interest_fp": 1440702.02,
+    "open_interest_fp": 1441279.1600000001,
     "volume_24h_fp": 380681.61,
-    "volume_fp": 1771995.8399999999
+    "volume_fp": 1772598.48
    },
    "ex_stats_first": {
     "open_interest_fp": 1432090.88,
@@ -2054,9 +2267,9 @@
     "volume_fp": 232.48
    },
    "ex_stats_close": {
-    "open_interest_fp": 242975.74,
+    "open_interest_fp": 246346.13,
     "volume_24h_fp": 218446.75,
-    "volume_fp": 282314.23
+    "volume_fp": 285684.62
    },
    "ex_stats_first": {
     "open_interest_fp": 75371.61,
@@ -2251,9 +2464,9 @@
     "volume_fp": 299.08
    },
    "ex_stats_close": {
-    "open_interest_fp": 128037.87,
+    "open_interest_fp": 128099.79,
     "volume_24h_fp": 47890.11,
-    "volume_fp": 133417.31
+    "volume_fp": 133479.23
    },
    "ex_stats_first": {
     "open_interest_fp": 120519.76,
@@ -2452,9 +2665,9 @@
     "volume_fp": 34403.96
    },
    "ex_stats_close": {
-    "open_interest_fp": 871730.23,
+    "open_interest_fp": 872062.86,
     "volume_24h_fp": 247518.73,
-    "volume_fp": 923033.74
+    "volume_fp": 923440.21
    },
    "ex_stats_first": {
     "open_interest_fp": 819313.29,
@@ -3323,9 +3536,9 @@
     "volume_fp": 115.32
    },
    "ex_stats_close": {
-    "open_interest_fp": 159828.07,
+    "open_interest_fp": 160581.72,
     "volume_24h_fp": 50762.149999999994,
-    "volume_fp": 176314.03
+    "volume_fp": 177067.68
    },
    "ex_stats_first": {
     "open_interest_fp": 152105.61,
@@ -5447,8 +5660,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 24311209.0,
-    "volume": 28186948.0
+    "openInterest": 24437229.0,
+    "volume": 28312968.0
    },
    "ex_stats_first": {
     "openInterest": 24209934.0,
@@ -6162,6 +6375,7 @@
     "volumeNum": 90586.44832000001
    },
    "fade_price": 0.5,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-08T00:40:28Z",
    "game": "Wizards vs. Thunder",
    "game_surge_books": [
@@ -6303,7 +6517,7 @@
     "outcome_index": 0,
     "pm_market_id": "6768511"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "kalshi",
@@ -6311,6 +6525,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-08T03:40:11Z",
    "sharp_agree": [
     "Oklahoma City Thunder -11.5 (-116)"
    ],
@@ -6332,7 +6547,7 @@
     "Thunder"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.0
   },
   {
    "alerted_utc": "2026-11-08T00:45:58Z",

@@ -1,15 +1,16 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 7, 10:36 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 68.
+Updated Sat Nov 7, 10:40 PM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 68.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 1069-902 (-82.65u flat) | rule met: 651-572
+**Record:** 1070-902 (-81.65u flat) | rule met: 652-572
 
-**Fade (paper, betting against the print):** 636-796 (-89.60u flat, after fees)
+**Fade (paper, betting against the print):** 636-797 (-90.60u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 7 10:40PM | NFL | New York J vs Kansas City | moneyline: Kansas City | kalshi | $271k | -426 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Nov 7 10:30PM | NBA | Utah vs Minnesota | moneyline: Minnesota | kalshi | $81k | -525 | ✅ novig,polymarket |  | +0.0c |  | pending |
 | Nov 7 10:20PM | NFL | New York G vs Philadelphia: Total Points | total: NOT Over 38.5 points | kalshi | $71k | -108 | ✅ novig |  | +0.0c |  | pending |
 | Nov 7 10:06PM | NCAAF | Wyoming vs UNLV: Spread | spread: NOT UNLV wins by over 3.5 points | kalshi | $186k | -117 | ✅ novig | ✅ | +0.0c | yes | pending |
@@ -37,7 +38,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 7 7:56PM | NFL | New York Jets @ Kansas City Chiefs | moneyline: KC (0) | novig | $40k | -426 | ✅ prophetx |  | +0.0c |  | pending |
 | Nov 7 7:56PM | NBA | Orlando vs Golden State | moneyline: Golden State | kalshi | $166k | -270 | ✅ novig,polymarket,prophetx | ✅ | +1.0c | yes | pending |
 | Nov 7 7:50PM | NCAAF | Fresno St. vs Utah St. | moneyline: Fresno St. | kalshi | $115k | -100 | ✅ novig |  | +0.0c | yes | pending |
-| Nov 7 7:45PM | NBA | Wizards vs. Thunder | spread: Thunder (-12.5) | polymarket | $29k | -104 | ✅ kalshi,novig | ✅ | +0.0c | yes | pending |
+| Nov 7 7:45PM | NBA | Wizards vs. Thunder | spread: Thunder (-12.5) | polymarket | $29k | -104 | ✅ kalshi,novig | ✅ | +0.0c | yes | W |
 | Nov 7 7:45PM | NCAAF | Liberty vs New Mexico St.: Spread | spread: Liberty wins by over 14.5 points | kalshi | $26k | +108 | ✅ novig,prophetx | ❌ | +2.0c |  | pending |
 | Nov 7 7:45PM | NBA | New York vs Cleveland: Total Points | total: Over 222.5 points | kalshi | $36k | -108 |  | ❌ | +1.0c | yes | L |
 | Nov 7 7:40PM | NBA | Knicks vs. Cavaliers | spread: Cavaliers (+4.5) | polymarket | $44k | -100 |  | ❌ | -1.0c | yes | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 6 2:51PM | NBA | Utah vs Dallas: Spread | spread: NOT Dallas wins by over 6.5 points | kalshi | $72k | -100 | ✅ novig,polymarket | ❌ | +0.0c |  | L |
 | Nov 6 2:31PM | NCAAF | TCU @ Arizona | spread: ARIZ -6.5 (-6.5) | novig | $28k | -113 | ✅ kalshi | ❌ | -4.0c | yes | L |
 | Nov 6 1:51PM | NCAAF | Colgate vs Lehigh | moneyline: Lehigh | kalshi | $32k | -178 |  |  | -1.0c | yes | W |
-| Nov 6 1:40PM | NCAAF | Iowa St. vs Baylor: Spread | spread: Baylor wins by over 9.5 points | kalshi | $53k | -104 | ✅ novig |  | -1.0c | yes | W |
