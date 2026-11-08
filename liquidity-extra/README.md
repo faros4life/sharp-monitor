@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 8, 3:20 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 10.
+Updated Sun Nov 8, 3:30 AM ET. This run: 0 new, 1 not confirmed, 0 pending. Open alerts: 10.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -11,7 +11,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 8 2:40AM | TENNIS | Marta Kostyuk vs Linda Noskova | moneyline: Linda Noskova | kalshi | $286k | -122 |  |  | +0.0c |  | pending |
-| Nov 8 2:30AM | TENNIS | Elias Ymer vs Juan Manuel Cerundolo | moneyline: Juan Manuel Cerundolo | kalshi | $38k | -335 | ✅ novig |  | +0.0c |  | pending |
+| Nov 8 2:30AM | TENNIS | Elias Ymer vs Juan Manuel Cerundolo | moneyline: Juan Manuel Cerundolo | kalshi | $38k | -335 | ✅ novig |  | -1.0c |  | pending |
 | Nov 8 2:30AM | TENNIS | Inaki Montes-de la Torre vs Lorenzo Sonego | moneyline: Lorenzo Sonego | kalshi | $26k | -300 |  |  | +0.0c |  | pending |
 | Nov 8 2:30AM | TENNIS | Jacob Fearnley vs Alexander Shevchenko | moneyline: Jacob Fearnley | kalshi | $25k | -270 |  |  | +0.0c |  | pending |
 | Nov 8 2:00AM | NCAAB | Idaho St. vs Air Force | moneyline: Air Force | kalshi | $27k | -233 |  |  | +0.0c |  | pending |
