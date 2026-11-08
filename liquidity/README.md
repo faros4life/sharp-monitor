@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 8, 7:30 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 60.
+Updated Sun Nov 8, 7:36 AM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 61.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 8 7:36AM | NFL | New York J vs Kansas City: Total Points | total: Over 47.5 points | kalshi | $54k | -108 | ✅ novig |  | +0.0c |  | pending |
 | Nov 8 7:05AM | NHL | Tampa Bay vs Winnipeg | moneyline: Tampa Bay | kalshi | $26k | -138 | ✅ novig |  | +0.0c |  | pending |
 | Nov 8 6:55AM | NFL | Denver Broncos @ Carolina Panthers | moneyline: DEN (0) | novig | $58k | -138 | ✅ kalshi,prophetx |  | +0.0c |  | pending |
 | Nov 8 6:50AM | NHL | New Jersey vs Toronto: Spread | spread: NOT New Jersey wins by over 1.5 goals | kalshi | $26k | -186 | ✅ novig,polymarket |  | +0.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 7 1:40AM | NCAAF | Dartmouth vs Princeton | moneyline: Dartmouth | kalshi | $30k | +104 |  |  | +1.0c | yes | L |
 | Nov 7 1:20AM | NCAAF | Texas @ Missouri | moneyline: MIZ (0) | novig | $40k | +127 |  |  | +0.0c | yes | W |
 | Nov 7 12:50AM | NCAAF | Illinois St. vs North Dakota | moneyline: North Dakota | kalshi | $27k | -213 |  |  | +0.0c |  | W |
-| Nov 7 12:40AM | NCAAF | BYU vs Utah: Spread | spread: NOT Utah wins by over 4.5 points | kalshi | $40k | -108 | ✅ novig | ✅ | -1.0c | yes | L |
