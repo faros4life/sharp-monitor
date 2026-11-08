@@ -1,6 +1,350 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-08T07:00:23Z",
+   "base_depth": 29283,
+   "best_price": 0.7057,
+   "best_price_american": -240,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.7,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-08",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 3512,
+     "new_this_side": 26696,
+     "other_side": 7659,
+     "other_side_all_levels": 18768,
+     "ratio": 2.9,
+     "this_side": 22458,
+     "this_side_all_levels": 55453
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Air Force",
+     "price": 0.7015,
+     "this_side": 1310
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 132.55,
+    "volume_24h_fp": 130.1,
+    "volume_fp": 132.55
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 132.55,
+    "volume_24h_fp": 130.1,
+    "volume_fp": 132.55
+   },
+   "fade_price": 0.31,
+   "first_seen_utc": "2026-11-08T06:50:18Z",
+   "game": "Idaho St. vs Air Force",
+   "game_surge_books": [],
+   "game_x": 1.91,
+   "key": "kalshi|KXNCAAMBGAME-26NOV08IDSTAFA|ml|1",
+   "lead_min": 780,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 26696,
+   "new_x": 3.68,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 132.55,
+      "volume_24h_fp": 130.1,
+      "volume_fp": 132.55
+     },
+     "game_normal": 29052,
+     "game_x": 1.91,
+     "normal": 7252,
+     "now": 55453,
+     "type": "ML",
+     "x": 7.65
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 1094,
+     "game_x": 1.44,
+     "normal": 1258,
+     "now": 1571,
+     "type": "ML",
+     "x": 1.25
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.7,
+   "price_american": -233,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.7,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -250
+    },
+    "betrivers": {
+     "point": null,
+     "price": -275
+    },
+    "bovada": {
+     "point": null,
+     "price": -250
+    },
+    "draftkings": {
+     "point": null,
+     "price": -258
+    },
+    "fanatics": {
+     "point": null,
+     "price": -245
+    },
+    "fanduel": {
+     "point": null,
+     "price": -245
+    },
+    "kalshi": {
+     "point": null,
+     "price": -233
+    },
+    "novig": {
+     "point": null,
+     "price": -233
+    },
+    "polymarket": {
+     "point": null,
+     "price": -233
+    },
+    "prophetx": {
+     "point": null,
+     "price": -235
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV08IDSTAFA-AFA"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Air Force",
+   "side_label": "Air Force",
+   "size_x": 7.65,
+   "start_source": "odds",
+   "start_utc": "2026-11-08T20:00:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "Idaho St.",
+    "Air Force"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-08T07:00:23Z",
+   "base_depth": 31832,
+   "best_price": 0.685,
+   "best_price_american": -217,
+   "best_price_book": "novig",
+   "bid_improved": true,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.69,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-08",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 3310,
+     "new_this_side": 28098,
+     "other_side": 10827,
+     "other_side_all_levels": 21238,
+     "ratio": 2.5,
+     "this_side": 26740,
+     "this_side_all_levels": 71151
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "WMU (0)",
+     "price": 0.685,
+     "this_side": 3652
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Western Michigan",
+     "price": 0.6875,
+     "this_side": 661
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 294.38,
+    "volume_24h_fp": 288.15,
+    "volume_fp": 294.38
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 294.38,
+    "volume_24h_fp": 288.15,
+    "volume_fp": 294.38
+   },
+   "fade_price": 0.32,
+   "first_seen_utc": "2026-11-08T06:50:18Z",
+   "game": "Campbell vs Western Michigan",
+   "game_surge_books": [
+    "kalshi"
+   ],
+   "game_x": 2.16,
+   "key": "kalshi|KXNCAAMBGAME-26NOV08CAMPWMU|ml|1",
+   "lead_min": 720,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 28098,
+   "new_x": 3.87,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 294.38,
+      "volume_24h_fp": 288.15,
+      "volume_fp": 294.38
+     },
+     "game_normal": 32990,
+     "game_x": 2.16,
+     "normal": 7252,
+     "now": 71151,
+     "type": "ML",
+     "x": 9.81
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 39272.0,
+      "volume": 45675.0
+     },
+     "game_normal": 2532,
+     "game_x": 1.47,
+     "normal": 1889,
+     "now": 3729,
+     "type": "ML",
+     "x": 1.97
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 792,
+     "game_x": 1.15,
+     "normal": 1258,
+     "now": 914,
+     "type": "ML",
+     "x": 0.73
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.69,
+   "price_american": -223,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.69,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -235
+    },
+    "betrivers": {
+     "point": null,
+     "price": -235
+    },
+    "bovada": {
+     "point": null,
+     "price": -235
+    },
+    "draftkings": {
+     "point": null,
+     "price": -238
+    },
+    "fanatics": {
+     "point": null,
+     "price": -235
+    },
+    "fanduel": {
+     "point": null,
+     "price": -230
+    },
+    "kalshi": {
+     "point": null,
+     "price": -223
+    },
+    "novig": {
+     "point": null,
+     "price": -217
+    },
+    "polymarket": {
+     "point": null,
+     "price": -213
+    },
+    "prophetx": {
+     "point": null,
+     "price": -220
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV08CAMPWMU-WMU"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Western Michigan",
+   "side_label": "Western Michigan",
+   "size_x": 9.81,
+   "start_source": "odds",
+   "start_utc": "2026-11-08T19:00:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "Campbell",
+    "Western Michigan"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-08T03:40:16Z",
    "base_depth": 111998,
    "best_price": 0.685,
@@ -47,9 +391,9 @@
     "volume_fp": 1629.3
    },
    "ex_stats_close": {
-    "open_interest_fp": 261588.32,
-    "volume_24h_fp": 263847.58,
-    "volume_fp": 272979.23
+    "open_interest_fp": 274115.55,
+    "volume_24h_fp": 279478.25,
+    "volume_fp": 285812.27999999997
    },
    "ex_stats_first": {
     "open_interest_fp": 44956.619999999995,
@@ -181,9 +525,9 @@
     "volume_fp": 565.66
    },
    "ex_stats_close": {
-    "open_interest_fp": 135762.38,
-    "volume_24h_fp": 140619.05,
-    "volume_fp": 140672.56
+    "open_interest_fp": 138539.26,
+    "volume_24h_fp": 142110.03,
+    "volume_fp": 143449.44
    },
    "ex_stats_first": {
     "open_interest_fp": 42691.100000000006,

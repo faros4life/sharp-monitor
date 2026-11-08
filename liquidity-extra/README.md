@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 8, 1:50 AM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 4.
+Updated Sun Nov 8, 2:00 AM ET. This run: 2 new, 0 not confirmed, 0 pending. Open alerts: 6.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 8 2:00AM | NCAAB | Idaho St. vs Air Force | moneyline: Air Force | kalshi | $27k | -233 |  |  | +0.0c |  | pending |
+| Nov 8 2:00AM | NCAAB | Campbell vs Western Michigan | moneyline: Western Michigan | kalshi | $28k | -223 |  |  | +0.0c |  | pending |
 | Nov 7 10:40PM | TENNIS | Claire Liu vs Alexandra Eala | moneyline: Alexandra Eala | kalshi | $31k | -223 |  |  | -1.0c | yes | pending |
 | Nov 7 10:40PM | TENNIS | Ben Shelton vs Carlos Alcaraz | moneyline: Carlos Alcaraz | kalshi | $31k | -355 | ✅ novig |  | -1.0c |  | pending |
 | Nov 7 5:50PM | NCAAB | San Jose St. vs UC Irvine | moneyline: UC Irvine | kalshi | $33k | -335 |  |  | +1.0c | yes | W |
@@ -208,5 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 26 11:30PM | TENNIS | Putintseva vs Sakkari | moneyline: Sakkari | kalshi | $35k | -156 |  |  | -8.0c |  | L |
 | Oct 26 11:10PM | TENNIS | Zakharova vs Linette | moneyline: Linette | kalshi | $27k | -122 |  |  | +5.0c |  | W |
 | Oct 26 10:20PM | MLB | Game 4: Milwaukee vs Tampa Bay | moneyline: Game 4: Milwaukee | kalshi | $80k | -133 |  |  | -9.0c |  | L |
-| Oct 26 10:10PM | TENNIS | Joint vs Cirstea | moneyline: Joint | kalshi | $791k | -178 |  |  | -16.0c |  | W |
-| Oct 26 9:01PM | MLB | Game 3: Milwaukee vs Tampa Bay | moneyline: Game 3: Milwaukee | kalshi | $136k | -285 |  |  | +7.0c |  | W |
