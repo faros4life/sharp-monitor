@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 7, 9:00 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 9.
+Updated Sat Nov 7, 9:10 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 7.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 172-101 (-11.17u flat) | rule met: 38-31
+**Record:** 174-101 (-10.65u flat) | rule met: 38-31
 
-**Fade (paper, betting against the print):** 76-137 (+2.38u flat, after fees)
+**Fade (paper, betting against the print):** 76-139 (+0.38u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -22,7 +22,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 7 9:50AM | NCAAB | Southeastern Louisiana vs Little Rock | moneyline: Little Rock | kalshi | $40k | -456 |  |  | -2.0c | yes | pending |
 | Nov 7 9:50AM | NCAAB | Prairie View A&M vs UT Rio Grande Valley | moneyline: UT Rio Grande Valley | kalshi | $36k | -376 |  |  | +0.0c | yes | W |
 | Nov 7 9:50AM | NCAAB | Old Dominion vs Bucknell | moneyline: Old Dominion | kalshi | $29k | -178 |  |  | +5.0c | yes | W |
-| Nov 7 9:50AM | NCAAB | Houston Christian vs Western Illinois | moneyline: Houston Christian | kalshi | $28k | -400 |  |  | +1.0c | yes | pending |
+| Nov 7 9:50AM | NCAAB | Houston Christian vs Western Illinois | moneyline: Houston Christian | kalshi | $28k | -400 |  |  | +1.0c | yes | W |
 | Nov 7 9:40AM | TENNIS | Luca Van Assche vs Ben Shelton | moneyline: Luca Van Assche | kalshi | $363k | -104 |  |  | -46.0c | yes | L |
 | Nov 7 9:20AM | NCAAB | Northern Iowa vs Furman | moneyline: Furman | kalshi | $25k | -194 |  |  | +0.0c |  | W |
 | Nov 7 8:20AM | TENNIS | Damir Dzumhur vs Inaki Montes-de la Torre | moneyline: Inaki Montes | kalshi | $106k | -194 |  |  | +27.0c | yes | W |
@@ -32,7 +32,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 7 1:50AM | TENNIS | Alexandra Shubladze vs Claire Liu | moneyline: Claire Liu | kalshi | $585k | -178 |  |  | +24.0c | yes | W |
 | Nov 7 1:50AM | NCAAB | Monmouth vs Rhode Island | moneyline: Rhode Island | kalshi | $30k | -233 |  |  | +2.0c |  | W |
 | Nov 7 1:50AM | NCAAB | LIU vs La Salle | moneyline: La Salle | kalshi | $27k | -203 |  |  | +1.0c |  | W |
-| Nov 7 12:50AM | NCAAB | St. Bonaventure vs Canisius | moneyline: St. Bonaventure | kalshi | $34k | -335 |  |  | +3.0c | yes | pending |
+| Nov 7 12:50AM | NCAAB | St. Bonaventure vs Canisius | moneyline: St. Bonaventure | kalshi | $34k | -335 |  |  | +3.0c | yes | W |
 | Nov 7 12:10AM | NCAAB | Lamar vs Abilene Christian | moneyline: Abilene Christian | kalshi | $27k | -138 |  |  | -12.0c | yes | W |
 | Nov 6 10:50PM | NCAAB | North Dakota vs Winthrop | moneyline: Winthrop | kalshi | $29k | -376 |  |  | +1.0c | yes | L |
 | Nov 6 10:50PM | NCAAB | Long Beach St. vs Montana St. | moneyline: Montana St. | kalshi | $27k | -426 |  |  | +3.0c | yes | W |
