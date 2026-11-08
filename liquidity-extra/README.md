@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 8, 2:30 AM ET. This run: 3 new, 0 not confirmed, 1 pending. Open alerts: 9.
+Updated Sun Nov 8, 2:40 AM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 10.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 8 2:40AM | TENNIS | Marta Kostyuk vs Linda Noskova | moneyline: Linda Noskova | kalshi | $286k | -122 |  |  | +0.0c |  | pending |
 | Nov 8 2:30AM | TENNIS | Elias Ymer vs Juan Manuel Cerundolo | moneyline: Juan Manuel Cerundolo | kalshi | $38k | -335 | ✅ novig |  | +0.0c |  | pending |
 | Nov 8 2:30AM | TENNIS | Inaki Montes-de la Torre vs Lorenzo Sonego | moneyline: Lorenzo Sonego | kalshi | $26k | -300 |  |  | +0.0c |  | pending |
 | Nov 8 2:30AM | TENNIS | Jacob Fearnley vs Alexander Shevchenko | moneyline: Jacob Fearnley | kalshi | $25k | -270 |  |  | +0.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 27 8:30AM | MLB | Milwaukee vs Tampa Bay: Spread | spread: NOT Milwaukee wins by over 1.5 runs | kalshi | $72k | -144 | ✅ novig,polymarket |  | +21.0c | yes | W |
 | Oct 27 8:25AM | MLB | Milwaukee Brewers vs. Tampa Bay Rays | moneyline: Tampa Bay Rays | polymarket | $27k | +127 |  |  | +4.0c |  | W |
 | Oct 27 3:50AM | TENNIS | Mannarino vs Buse | moneyline: Mannarino | kalshi | $27k | -170 | ✅ novig |  | -15.0c | yes | W |
-| Oct 27 3:30AM | TENNIS | Eala vs Gibson | moneyline: Eala | kalshi | $26k | -285 |  |  | -2.0c | yes | W |
