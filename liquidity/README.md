@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 8, 6:36 PM ET. This run: 1 new, 0 not confirmed, 2 pending. Open alerts: 74.
+Updated Sun Nov 8, 6:40 PM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 75.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 8 6:40PM | NBA | Jazz vs. Timberwolves | spread: Timberwolves (-12.5) | polymarket | $47k | -100 |  |  | +0.0c |  | pending |
 | Nov 8 6:36PM | NBA | Pelicans vs. Clippers | moneyline: Pelicans | polymarket | $53k | -117 | ✅ novig |  | +0.0c |  | pending |
 | Nov 8 6:20PM | NBA | Jazz vs. Timberwolves | total: Under (222.5) | polymarket | $30k | -100 | ✅ kalshi | ❌ | +0.0c |  | pending |
 | Nov 8 5:50PM | NBA | Lakers vs. Pistons | total: Over (216.5) | polymarket | $33k | -104 |  | ❌ | +0.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 7 4:40PM | NHL | New York R vs Seattle | moneyline: New York R | kalshi | $67k | -133 | ✅ novig,prophetx |  | +0.0c |  | W |
 | Nov 7 4:30PM | NHL | Devils vs. Islanders | moneyline: Devils | polymarket | $25k | -144 | ✅ novig |  | -1.0c | yes | W |
 | Nov 7 4:30PM | NBA | Denver vs Indiana | moneyline: Denver | kalshi | $260k | -285 | ✅ novig,prophetx |  | -1.0c | yes | W |
-| Nov 7 4:20PM | NHL | Sharks vs. Stars | spread: Sharks (+1.5) | polymarket | $29k | -100 |  |  | +0.0c |  | W |
