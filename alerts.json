@@ -382,7 +382,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+2 pts",
+   "clv": "+3.5 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline",
@@ -631,7 +631,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+0.5 pts",
+   "clv": "+1.5 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline",
@@ -831,13 +831,13 @@
   {
    "alert_utc": "2026-11-08T04:10:18Z",
    "beat_close": true,
-   "beat_true_close": null,
+   "beat_true_close": false,
    "bet": "Under 238.5 (-115)",
    "book": "Hard Rock",
    "book_key": "hardrockbet",
-   "close_fair_prob": null,
-   "close_read_mins_before": null,
-   "close_value_pct": null,
+   "close_fair_prob": 0.4939,
+   "close_read_mins_before": 30,
+   "close_value_pct": -7.7,
    "clv": "+0.5 pts",
    "confirm": "yes",
    "confirmed_by": [
@@ -872,13 +872,13 @@
   {
    "alert_utc": "2026-11-08T13:55:18Z",
    "beat_close": false,
-   "beat_true_close": null,
+   "beat_true_close": false,
    "bet": "Chicago Bulls +9.5 (-116)",
    "book": "ProphetX",
    "book_key": "prophetx",
-   "close_fair_prob": null,
-   "close_read_mins_before": null,
-   "close_value_pct": null,
+   "close_fair_prob": 0.507,
+   "close_read_mins_before": 30,
+   "close_value_pct": -6.5,
    "clv": "+0 pts",
    "confirm": "yes",
    "confirmed_by": [
@@ -39117,6 +39117,79 @@
   }
  ],
  "all_alerts": [
+  {
+   "alert_text": "Under 147.5 (-115) at Hard Rock (also: Kalshi)",
+   "bet": "Under 147.5 (-115)",
+   "bet_result": null,
+   "book": "Hard Rock",
+   "confirmed_by": [
+    "BetOnline"
+   ],
+   "edge_pct": -2.8,
+   "final": null,
+   "game": "UT-Arlington Mavericks @ Hawai'i Rainbow Warriors",
+   "grade": "B",
+   "late": false,
+   "minutes_before_start": 410,
+   "price": -115,
+   "price_after_fee": -115,
+   "pushed_to_phone": false,
+   "repeat": true,
+   "score": 71,
+   "sent_et": "2026-11-08 15:10",
+   "sport": "NCAAB",
+   "start_utc": "2026-11-09T03:00:00Z",
+   "why": "Pinnacle total moved 148.5 -> 147; bet only at 147.5 or better (confirmed by BetOnline)"
+  },
+  {
+   "alert_text": "Over 222.5 (-115) at Hard Rock (also: ProphetX, Novig, Kalshi)",
+   "bet": "Over 222.5 (-115)",
+   "bet_result": null,
+   "book": "Hard Rock",
+   "confirmed_by": [
+    "Matchbook"
+   ],
+   "edge_pct": -1.6,
+   "final": null,
+   "game": "Brooklyn Nets @ Dallas Mavericks",
+   "grade": "B",
+   "late": false,
+   "minutes_before_start": 270,
+   "price": -115,
+   "price_after_fee": -115,
+   "pushed_to_phone": false,
+   "repeat": true,
+   "score": 74,
+   "sent_et": "2026-11-08 15:00",
+   "sport": "NBA",
+   "start_utc": "2026-11-09T00:30:00Z",
+   "why": "Pinnacle total moved 222.5 -> 224; bet only at 223.5 or better (confirmed by Matchbook)"
+  },
+  {
+   "alert_text": "Under 217.5 (-104) at Novig (also: Hard Rock, ProphetX)",
+   "bet": "Under 217.5 (-104)",
+   "bet_result": null,
+   "book": "Novig",
+   "confirmed_by": [
+    "BetOnline",
+    "Matchbook"
+   ],
+   "edge_pct": 1.1,
+   "final": null,
+   "game": "Los Angeles Lakers @ Detroit Pistons",
+   "grade": "A",
+   "late": false,
+   "minutes_before_start": 180,
+   "price": -104,
+   "price_after_fee": -104,
+   "pushed_to_phone": false,
+   "repeat": true,
+   "score": 88,
+   "sent_et": "2026-11-08 15:00",
+   "sport": "NBA",
+   "start_utc": "2026-11-08T23:00:00Z",
+   "why": "Pinnacle total moved 220.5 -> 217; bet only at 217.5 or better (confirmed by BetOnline, Matchbook)"
+  },
   {
    "alert_text": "Under 153.5 (-106) at ProphetX [-108 after ProphetX fee] (also: Kalshi)",
    "bet": "Under 153.5 (-106)",
