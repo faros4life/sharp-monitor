@@ -1,6 +1,539 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-08T14:20:17Z",
+   "base_depth": 34217,
+   "best_price": 0.7627,
+   "best_price_american": -321,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.76,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-08",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 1114,
+     "new_this_side": 35617,
+     "other_side": 8760,
+     "other_side_all_levels": 18009,
+     "ratio": 3.5,
+     "this_side": 30600,
+     "this_side_all_levels": 93306
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Vermont",
+     "price": 0.759,
+     "this_side": 989
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 167.0,
+    "volume_24h_fp": 165.76,
+    "volume_fp": 167.0
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 167.0,
+    "volume_24h_fp": 165.76,
+    "volume_fp": 167.0
+   },
+   "fade_price": 0.25,
+   "first_seen_utc": "2026-11-08T14:10:19Z",
+   "game": "Quinnipiac vs Vermont",
+   "game_surge_books": [
+    "kalshi",
+    "prophetx"
+   ],
+   "game_x": 4.24,
+   "key": "kalshi|KXNCAAMBGAME-26NOV08QUINUVM|ml|1",
+   "lead_min": 280,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 35617,
+   "new_x": 4.74,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 167.0,
+      "volume_24h_fp": 165.76,
+      "volume_fp": 167.0
+     },
+     "game_normal": 21993,
+     "game_x": 4.24,
+     "normal": 7517,
+     "now": 93306,
+     "type": "ML",
+     "x": 12.41
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 219,
+     "game_x": 5.46,
+     "normal": 1134,
+     "now": 1199,
+     "type": "ML",
+     "x": 1.06
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.76,
+   "price_american": -317,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.76,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -325
+    },
+    "betrivers": {
+     "point": null,
+     "price": -375
+    },
+    "draftkings": {
+     "point": null,
+     "price": -340
+    },
+    "fanatics": {
+     "point": null,
+     "price": -330
+    },
+    "fanduel": {
+     "point": null,
+     "price": -345
+    },
+    "kalshi": {
+     "point": null,
+     "price": -317
+    },
+    "novig": {
+     "point": null,
+     "price": -317
+    },
+    "polymarket": {
+     "point": null,
+     "price": -317
+    },
+    "prophetx": {
+     "point": null,
+     "price": -315
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -335
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV08QUINUVM-UVM"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Vermont",
+   "side_label": "Vermont",
+   "size_x": 12.41,
+   "start_source": "odds",
+   "start_utc": "2026-11-08T19:00:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "Quinnipiac",
+    "Vermont"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-08T14:20:17Z",
+   "base_depth": 25385,
+   "best_price": 0.7,
+   "best_price_american": -233,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.7,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-08",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 4236,
+     "new_this_side": 39445,
+     "other_side": 12785,
+     "other_side_all_levels": 25291,
+     "ratio": 1.7,
+     "this_side": 22349,
+     "this_side_all_levels": 84510
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "DART (0)",
+     "price": 0.7,
+     "this_side": 1852
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Dartmouth",
+     "price": 0.7015,
+     "this_side": 951
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 555.1,
+    "volume_24h_fp": 500.77,
+    "volume_fp": 574.08
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 7.3,
+    "volume_24h_fp": 18.19,
+    "volume_fp": 7.3
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 547.8000000000001,
+    "volume_24h_fp": 482.58,
+    "volume_fp": 566.78
+   },
+   "fade_price": 0.29,
+   "first_seen_utc": "2026-11-08T14:10:19Z",
+   "game": "Central Connecticut St. vs Dartmouth",
+   "game_surge_books": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "game_x": 4.05,
+   "key": "kalshi|KXNCAAMBGAME-26NOV08CCSUDART|ml|1",
+   "lead_min": 280,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 39445,
+   "new_x": 5.25,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 555.1,
+      "volume_24h_fp": 500.77,
+      "volume_fp": 574.08
+     },
+     "game_normal": 20877,
+     "game_x": 4.05,
+     "normal": 7517,
+     "now": 84510,
+     "type": "ML",
+     "x": 11.24
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 0.0,
+      "volume": 0.0
+     },
+     "game_normal": 753,
+     "game_x": 2.49,
+     "normal": 2265,
+     "now": 1876,
+     "type": "ML",
+     "x": 0.83
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 219,
+     "game_x": 4.34,
+     "normal": 1134,
+     "now": 951,
+     "type": "ML",
+     "x": 0.84
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.7,
+   "price_american": -233,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.71,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -250
+    },
+    "betrivers": {
+     "point": null,
+     "price": -265
+    },
+    "draftkings": {
+     "point": null,
+     "price": -245
+    },
+    "fanatics": {
+     "point": null,
+     "price": -245
+    },
+    "fanduel": {
+     "point": null,
+     "price": -250
+    },
+    "kalshi": {
+     "point": null,
+     "price": -257
+    },
+    "novig": {
+     "point": null,
+     "price": -233
+    },
+    "polymarket": {
+     "point": null,
+     "price": -245
+    },
+    "prophetx": {
+     "point": null,
+     "price": -235
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -250
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV08CCSUDART-DART"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Dartmouth",
+   "side_label": "Dartmouth",
+   "size_x": 11.24,
+   "start_source": "odds",
+   "start_utc": "2026-11-08T19:00:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "Central Connecticut St.",
+    "Dartmouth"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-08T14:20:17Z",
+   "base_depth": 27043,
+   "best_price": 0.665,
+   "best_price_american": -199,
+   "best_price_book": "novig",
+   "bid_improved": true,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.65,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-08",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 7528,
+     "new_this_side": 27818,
+     "other_side": 6154,
+     "other_side_all_levels": 29041,
+     "ratio": 4.3,
+     "this_side": 26507,
+     "this_side_all_levels": 78500
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "LEH (0)",
+     "price": 0.665,
+     "this_side": 4150
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Lehigh",
+     "price": 0.6622,
+     "this_side": 828
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 444.58000000000004,
+    "volume_24h_fp": 428.55,
+    "volume_fp": 444.58000000000004
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 16.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 16.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 428.58000000000004,
+    "volume_24h_fp": 428.55,
+    "volume_fp": 428.58000000000004
+   },
+   "fade_price": 0.36,
+   "first_seen_utc": "2026-11-08T14:10:19Z",
+   "game": "Brown vs Lehigh",
+   "game_surge_books": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "game_x": 6.51,
+   "key": "kalshi|KXNCAAMBGAME-26NOV08BRWNLEH|ml|1",
+   "lead_min": 280,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 27818,
+   "new_x": 3.7,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 444.58000000000004,
+      "volume_24h_fp": 428.55,
+      "volume_fp": 444.58000000000004
+     },
+     "game_normal": 12055,
+     "game_x": 6.51,
+     "normal": 7517,
+     "now": 78500,
+     "type": "ML",
+     "x": 10.44
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 189839.0,
+      "volume": 190139.0
+     },
+     "game_normal": 184,
+     "game_x": 22.84,
+     "normal": 2265,
+     "now": 4213,
+     "type": "ML",
+     "x": 1.86
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 202,
+     "game_x": 4.82,
+     "normal": 1134,
+     "now": 974,
+     "type": "ML",
+     "x": 0.86
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.65,
+   "price_american": -186,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.64,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -200
+    },
+    "betrivers": {
+     "point": null,
+     "price": -200
+    },
+    "draftkings": {
+     "point": null,
+     "price": -205
+    },
+    "fanatics": {
+     "point": null,
+     "price": -195
+    },
+    "fanduel": {
+     "point": null,
+     "price": -196
+    },
+    "kalshi": {
+     "point": null,
+     "price": -186
+    },
+    "novig": {
+     "point": null,
+     "price": -199
+    },
+    "polymarket": {
+     "point": null,
+     "price": -186
+    },
+    "prophetx": {
+     "point": null,
+     "price": -196
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -210
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV08BRWNLEH-LEH"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Lehigh",
+   "side_label": "Lehigh",
+   "size_x": 10.44,
+   "start_source": "odds",
+   "start_utc": "2026-11-08T19:00:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "Brown",
+    "Lehigh"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-08T12:20:18Z",
    "base_depth": 108274,
    "best_price": 0.5375,
@@ -15,8 +548,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.63,
-   "clv_cents": 11.0,
+   "close_price": 0.61,
+   "clv_cents": 9.0,
    "confirmed_after_min": 10,
    "date": "2026-11-08",
    "depth_by_book": {
@@ -41,9 +574,9 @@
     "volume_fp": 456.77
    },
    "ex_stats_close": {
-    "open_interest_fp": 519113.91000000003,
-    "volume_24h_fp": 710947.8,
-    "volume_fp": 750386.6200000001
+    "open_interest_fp": 541902.33,
+    "volume_24h_fp": 800585.27,
+    "volume_fp": 819521.3400000001
    },
    "ex_stats_first": {
     "open_interest_fp": 16886.35,
@@ -400,9 +933,9 @@
     "volume_fp": 205.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 43917.22,
-    "volume_24h_fp": 45398.409999999996,
-    "volume_fp": 45398.409999999996
+    "open_interest_fp": 43668.68,
+    "volume_24h_fp": 45759.07,
+    "volume_fp": 45842.810000000005
    },
    "ex_stats_first": {
     "open_interest_fp": 16837.71,
@@ -535,9 +1068,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 8774.2,
-    "volume_24h_fp": 9284.689999999999,
-    "volume_fp": 9284.689999999999
+    "open_interest_fp": 8978.2,
+    "volume_24h_fp": 9322.09,
+    "volume_fp": 9488.689999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 1473.76,
@@ -1117,7 +1650,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 446.25,
-    "volume_24h_fp": 425.11,
+    "volume_24h_fp": 440.02,
     "volume_fp": 446.25
    },
    "ex_stats_first": {

@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 8, 9:10 AM ET. This run: 0 new, 0 not confirmed, 3 pending. Open alerts: 9.
+Updated Sun Nov 8, 9:20 AM ET. This run: 3 new, 0 not confirmed, 3 pending. Open alerts: 12.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,7 +10,10 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 8 7:20AM | TENNIS | Adrian Mannarino vs Toby Samuel | moneyline: Adrian Mannarino | kalshi | $44k | -108 |  |  | +11.0c |  | pending |
+| Nov 8 9:20AM | NCAAB | Quinnipiac vs Vermont | moneyline: Vermont | kalshi | $36k | -317 |  |  | +0.0c |  | pending |
+| Nov 8 9:20AM | NCAAB | Central Connecticut St. vs Dartmouth | moneyline: Dartmouth | kalshi | $39k | -233 |  |  | +0.0c |  | pending |
+| Nov 8 9:20AM | NCAAB | Brown vs Lehigh | moneyline: Lehigh | kalshi | $28k | -186 |  |  | +0.0c |  | pending |
+| Nov 8 7:20AM | TENNIS | Adrian Mannarino vs Toby Samuel | moneyline: Adrian Mannarino | kalshi | $44k | -108 |  |  | +9.0c |  | pending |
 | Nov 8 6:30AM | TENNIS | Inaki Montes-de la Torre vs Lorenzo Sonego | moneyline: Inaki Montes-de la Torre | kalshi | $29k | +138 |  |  | -28.0c | yes | L |
 | Nov 8 3:50AM | TENNIS | Claire Liu vs Alexandra Eala | moneyline: Claire Liu | kalshi | $258k | -186 |  |  | +19.0c |  | W |
 | Nov 8 2:40AM | TENNIS | Marta Kostyuk vs Linda Noskova | moneyline: Linda Noskova | kalshi | $286k | -122 |  |  | +3.0c |  | pending |
@@ -207,6 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 27 4:50PM | TENNIS | Bucsa vs Joint | moneyline: Joint | kalshi | $29k | -122 |  |  | -2.0c | yes | W |
 | Oct 27 3:30PM | TENNIS | Mensik vs Mannarino | moneyline: Mensik | kalshi | $44k | -426 |  |  | -32.0c |  | L |
 | Oct 27 1:37PM | MLB | Milwaukee Brewers vs. Tampa Bay Rays | total: Under (7.5) | polymarket | $39k | -127 | ✅ kalshi,novig |  | -2.0c |  | W |
-| Oct 27 10:50AM | TENNIS | Mannarino vs Buse | moneyline: Buse | kalshi | $77k | -335 |  |  | -24.0c |  | L |
-| Oct 27 9:00AM | MLB | Game 4: Milwaukee vs Tampa Bay | moneyline: Tampa Bay | kalshi | $789k | +122 | ✅ polymarket,prophetx |  | +8.0c | yes | W |
-| Oct 27 8:30AM | MLB | Milwaukee Brewers vs. Tampa Bay Rays | spread: Tampa Bay Rays (+1.5) | polymarket | $59k | -144 | ✅ kalshi,novig |  | +3.0c |  | W |
