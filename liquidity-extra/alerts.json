@@ -1,6 +1,573 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-08T16:30:23Z",
+   "base_depth": 7691,
+   "best_price": 0.78,
+   "best_price_american": -355,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.78,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 8,
+   "date": "2026-11-08",
+   "depth_by_book": {
+    "novig": {
+     "new_other_side": 317,
+     "new_this_side": 62808,
+     "other_side": 2715,
+     "other_side_all_levels": 2760,
+     "ratio": 1.6,
+     "this_side": 4316,
+     "this_side_all_levels": 70383
+    }
+   },
+   "ex_stats_alert": {
+    "openInterest": 15917.0,
+    "volume": 17017.0
+   },
+   "ex_stats_change": {
+    "openInterest": 0.0,
+    "volume": 0.0
+   },
+   "ex_stats_first": {
+    "openInterest": 15917.0,
+    "volume": 17017.0
+   },
+   "fade_price": 0.23,
+   "first_seen_utc": "2026-11-08T16:22:46Z",
+   "game": "Quinnipiac @ Vermont",
+   "game_surge_books": [
+    "novig"
+   ],
+   "game_x": 13.77,
+   "key": "novig|{\"market_id\": \"01a1bb54-68f4-79b3-9d79-7c5f509cb258\", \"outcome_id\": \"01a1bb54-68f4-79b3-9d79-7c6e0da8dcca\"}",
+   "lead_min": 150,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 62808,
+   "new_x": 23.71,
+   "norm_by_book": {
+    "novig": {
+     "ex_stats": {
+      "openInterest": 15917.0,
+      "volume": 17017.0
+     },
+     "game_normal": 5112,
+     "game_x": 13.77,
+     "normal": 2649,
+     "now": 70383,
+     "type": "ML",
+     "x": 26.57
+    }
+   },
+   "norm_ready_books": 1,
+   "paper_only": false,
+   "price": 0.78,
+   "price_american": -355,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.78,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "market_id": "01a1bb54-68f4-79b3-9d79-7c5f509cb258",
+    "outcome_id": "01a1bb54-68f4-79b3-9d79-7c6e0da8dcca"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [
+    "Vermont Catamounts -7.5 (-110)"
+   ],
+   "side": "UVM (0)",
+   "side_label": "UVM (0)",
+   "size_x": 26.57,
+   "start_source": "odds",
+   "start_utc": "2026-11-08T19:00:00Z",
+   "surge_books": [
+    "novig"
+   ],
+   "teams": [
+    "Quinnipiac",
+    "Vermont"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-08T16:30:23Z",
+   "base_depth": 9927,
+   "best_price": 0.77,
+   "best_price_american": -335,
+   "best_price_book": "novig",
+   "bid_improved": true,
+   "bid_improved_at_pending": true,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.77,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 8,
+   "date": "2026-11-08",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Dartmouth",
+     "price": 0.77,
+     "this_side": 19262
+    },
+    "novig": {
+     "new_other_side": -1687,
+     "new_this_side": 171367,
+     "other_side": 1225,
+     "other_side_all_levels": 1726,
+     "ratio": 3.1,
+     "this_side": 3849,
+     "this_side_all_levels": 181591
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Dartmouth",
+     "price": 0.7727,
+     "this_side": 2067
+    }
+   },
+   "ex_stats_alert": {
+    "openInterest": 43041.0,
+    "volume": 63386.0
+   },
+   "ex_stats_change": {
+    "openInterest": 0.0,
+    "volume": 6101.0
+   },
+   "ex_stats_first": {
+    "openInterest": 43041.0,
+    "volume": 57285.0
+   },
+   "fade_price": 0.24,
+   "first_seen_utc": "2026-11-08T16:22:46Z",
+   "game": "Central Connecticut @ Dartmouth",
+   "game_surge_books": [
+    "novig",
+    "prophetx"
+   ],
+   "game_x": 32.46,
+   "key": "novig|{\"market_id\": \"01a1bb54-68ad-7fa2-8494-46bfea5c1b3b\", \"outcome_id\": \"01a1bb54-68ad-7fa2-8494-46c9a2cfdffc\"}",
+   "lead_min": 150,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 171367,
+   "new_x": 64.69,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 3223.99,
+      "volume_24h_fp": 3160.38,
+      "volume_fp": 3246.97
+     },
+     "game_normal": 79698,
+     "game_x": 1.44,
+     "normal": 10827,
+     "now": 114795,
+     "type": "ML",
+     "x": 10.6
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 43041.0,
+      "volume": 63386.0
+     },
+     "game_normal": 5594,
+     "game_x": 32.46,
+     "normal": 2649,
+     "now": 181591,
+     "type": "ML",
+     "x": 68.56
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 1022,
+     "game_x": 2.3,
+     "normal": 1167,
+     "now": 2351,
+     "type": "ML",
+     "x": 2.01
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.77,
+   "price_american": -335,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.77,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -375
+    },
+    "betopenly": {
+     "point": null,
+     "price": -332
+    },
+    "betrivers": {
+     "point": null,
+     "price": -455
+    },
+    "bovada": {
+     "point": null,
+     "price": -370
+    },
+    "draftkings": {
+     "point": null,
+     "price": -355
+    },
+    "fanatics": {
+     "point": null,
+     "price": -375
+    },
+    "fanduel": {
+     "point": null,
+     "price": -410
+    },
+    "kalshi": {
+     "point": null,
+     "price": -335
+    },
+    "novig": {
+     "point": null,
+     "price": -335
+    },
+    "polymarket": {
+     "point": null,
+     "price": -355
+    },
+    "prophetx": {
+     "point": null,
+     "price": -340
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -400
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a1bb54-68ad-7fa2-8494-46bfea5c1b3b",
+    "outcome_id": "01a1bb54-68ad-7fa2-8494-46c9a2cfdffc"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Dartmouth",
+   "side_label": "DART (0)",
+   "size_x": 68.56,
+   "start_source": "odds",
+   "start_utc": "2026-11-08T19:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "teams": [
+    "Central Connecticut",
+    "Dartmouth"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-08T16:30:23Z",
+   "base_depth": 4925,
+   "best_price": 0.5,
+   "best_price_american": -100,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 8,
+   "date": "2026-11-08",
+   "depth_by_book": {
+    "novig": {
+     "new_other_side": 0,
+     "new_this_side": 554847,
+     "other_side": 1072,
+     "other_side_all_levels": 5062,
+     "ratio": 521.6,
+     "this_side": 559123,
+     "this_side_all_levels": 559772
+    }
+   },
+   "ex_stats_alert": {
+    "openInterest": 9091.0,
+    "volume": 9091.0
+   },
+   "ex_stats_change": {
+    "openInterest": 8000.0,
+    "volume": 8000.0
+   },
+   "ex_stats_first": {
+    "openInterest": 1091.0,
+    "volume": 1091.0
+   },
+   "fade_price": 0.505,
+   "first_seen_utc": "2026-11-08T16:22:46Z",
+   "game": "Quinnipiac @ Vermont",
+   "game_surge_books": [
+    "novig"
+   ],
+   "game_x": 78.46,
+   "key": "novig|{\"market_id\": \"01a1bb26-04dd-76d0-a218-ecedfd2a77cb\", \"outcome_id\": \"01a1bb26-04dd-76d0-a218-ed09813399b3\"}",
+   "lead_min": 150,
+   "league": "NCAAB",
+   "line": 8.5,
+   "market": "spread",
+   "new_money": 554847,
+   "new_x": 394.07,
+   "norm_by_book": {
+    "novig": {
+     "ex_stats": {
+      "openInterest": 9091.0,
+      "volume": 9091.0
+     },
+     "game_normal": 7135,
+     "game_x": 78.46,
+     "normal": 1408,
+     "now": 559772,
+     "type": "SPREAD",
+     "x": 397.47
+    }
+   },
+   "norm_ready_books": 1,
+   "paper_only": false,
+   "price": 0.5,
+   "price_american": -100,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.5,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 8.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 9.0,
+     "price": -115
+    },
+    "betopenly": {
+     "point": 9.0,
+     "price": -106
+    },
+    "betrivers": {
+     "point": 7.5,
+     "price": 108
+    },
+    "bovada": {
+     "point": 8.5,
+     "price": -105
+    },
+    "draftkings": {
+     "point": 8.5,
+     "price": -108
+    },
+    "fanatics": {
+     "point": 9.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 8.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": 7.5,
+     "price": 117
+    },
+    "lowvig": {
+     "point": 9.0,
+     "price": -111
+    },
+    "novig": {
+     "point": 8.5,
+     "price": 100
+    },
+    "polymarket": {
+     "point": 8.5,
+     "price": 100
+    },
+    "prophetx": {
+     "point": 8.5,
+     "price": -107
+    },
+    "williamhill_us": {
+     "point": 8.5,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a1bb26-04dd-76d0-a218-ecedfd2a77cb",
+    "outcome_id": "01a1bb26-04dd-76d0-a218-ed09813399b3"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [
+    "Vermont Catamounts -7.5 (-110)"
+   ],
+   "side": "Quinnipiac",
+   "side_label": "Quinnipiac +8.5 (-8.5)",
+   "size_x": 397.47,
+   "start_source": "odds",
+   "start_utc": "2026-11-08T19:00:00Z",
+   "surge_books": [
+    "novig"
+   ],
+   "teams": [
+    "Quinnipiac",
+    "Vermont"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-08T16:30:23Z",
+   "base_depth": 16718,
+   "best_price": 0.51,
+   "best_price_american": -104,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 8,
+   "date": "2026-11-08",
+   "depth_by_book": {
+    "novig": {
+     "new_other_side": -1642,
+     "new_this_side": 802769,
+     "other_side": 5278,
+     "other_side_all_levels": 6513,
+     "ratio": 155.1,
+     "this_side": 818915,
+     "this_side_all_levels": 819140
+    }
+   },
+   "ex_stats_alert": {
+    "openInterest": 3969771.0,
+    "volume": 4550481.0
+   },
+   "ex_stats_change": {
+    "openInterest": 13478.0,
+    "volume": 91413.0
+   },
+   "ex_stats_first": {
+    "openInterest": 3956293.0,
+    "volume": 4459068.0
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-11-08T16:22:46Z",
+   "game": "Arkansas @ Virginia",
+   "game_surge_books": [
+    "novig"
+   ],
+   "game_x": 82.6,
+   "key": "novig|{\"market_id\": \"01a1b741-9e0b-78c0-9f1d-3f5b502882e5\", \"outcome_id\": \"01a1b741-9e0b-78c0-9f1d-3f686541ef0c\"}",
+   "lead_min": 90,
+   "league": "NCAAB",
+   "line": -3.5,
+   "market": "spread",
+   "new_money": 802769,
+   "new_x": 570.15,
+   "norm_by_book": {
+    "novig": {
+     "ex_stats": {
+      "openInterest": 3969771.0,
+      "volume": 4550481.0
+     },
+     "game_normal": 9917,
+     "game_x": 82.6,
+     "normal": 1408,
+     "now": 819140,
+     "type": "SPREAD",
+     "x": 581.64
+    }
+   },
+   "norm_ready_books": 1,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "market_id": "01a1b741-9e0b-78c0-9f1d-3f5b502882e5",
+    "outcome_id": "01a1b741-9e0b-78c0-9f1d-3f686541ef0c"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [
+    "Virginia Cavaliers -1.5 (-120)"
+   ],
+   "side": "UVA -3.5 (-3.5)",
+   "side_label": "UVA -3.5 (-3.5)",
+   "size_x": 581.64,
+   "start_source": "odds",
+   "start_utc": "2026-11-08T18:00:00Z",
+   "surge_books": [
+    "novig"
+   ],
+   "teams": [
+    "Arkansas",
+    "Virginia"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-08T15:50:18Z",
    "base_depth": 60778,
    "best_price": 0.76,
@@ -47,9 +614,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 50.98,
+    "open_interest_fp": 57.529999999999994,
     "volume_24h_fp": 47.81,
-    "volume_fp": 50.98
+    "volume_fp": 57.529999999999994
    },
    "ex_stats_first": {
     "open_interest_fp": 50.98,
@@ -226,9 +793,9 @@
     "volume_fp": 1268.59
    },
    "ex_stats_close": {
-    "open_interest_fp": 85877.54000000001,
-    "volume_24h_fp": 80254.56,
-    "volume_fp": 90369.22
+    "open_interest_fp": 86346.4,
+    "volume_24h_fp": 82701.34,
+    "volume_fp": 90842.24
    },
    "ex_stats_first": {
     "open_interest_fp": 67284.66,
@@ -733,8 +1300,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.76,
-   "clv_cents": 6.0,
+   "close_price": 0.77,
+   "clv_cents": 7.0,
    "confirmed_after_min": 10,
    "date": "2026-11-08",
    "depth_by_book": {
@@ -771,9 +1338,9 @@
     "volume_fp": 7.3
    },
    "ex_stats_close": {
-    "open_interest_fp": 3207.71,
-    "volume_24h_fp": 2231.78,
-    "volume_fp": 3230.6899999999996
+    "open_interest_fp": 3223.99,
+    "volume_24h_fp": 3160.38,
+    "volume_fp": 3246.97
    },
    "ex_stats_first": {
     "open_interest_fp": 547.8000000000001,
@@ -925,8 +1492,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.67,
-   "clv_cents": 2.0,
+   "close_price": 0.68,
+   "clv_cents": 3.0,
    "confirmed_after_min": 10,
    "date": "2026-11-08",
    "depth_by_book": {
@@ -1506,9 +2073,9 @@
     "volume_fp": 205.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 51437.03,
-    "volume_24h_fp": 51311.12,
-    "volume_fp": 53611.16
+    "open_interest_fp": 51866.69,
+    "volume_24h_fp": 53974.670000000006,
+    "volume_fp": 54040.82
    },
    "ex_stats_first": {
     "open_interest_fp": 16837.71,
@@ -2049,9 +2616,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 566.0699999999999,
+    "open_interest_fp": 573.06,
     "volume_24h_fp": 563.62,
-    "volume_fp": 566.0699999999999
+    "volume_fp": 573.06
    },
    "ex_stats_first": {
     "open_interest_fp": 132.55,
@@ -2187,8 +2754,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.66,
-   "clv_cents": -3.0,
+   "close_price": 0.65,
+   "clv_cents": -4.0,
    "confirmed_after_min": 10,
    "date": "2026-11-08",
    "depth_by_book": {
@@ -2226,7 +2793,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 970.02,
-    "volume_24h_fp": 694.64,
+    "volume_24h_fp": 971.3699999999999,
     "volume_fp": 977.5999999999999
    },
    "ex_stats_first": {
