@@ -1,6 +1,92 @@
 {
  "moves": [
   {
+   "alerted_utc": "2026-11-08T01:26:38Z",
+   "bar": true,
+   "best_price": 0.5377,
+   "best_price_book": "prophetx",
+   "book": "prophetx",
+   "close_price": 0.5327,
+   "clv_cents": 0.0,
+   "date": "2026-11-08",
+   "dir": "RAISE",
+   "ex_stats": null,
+   "first_play": true,
+   "game": "Houston Texans at Los Angeles Chargers",
+   "key": "prophetx|{\"line\": 40.0, \"px_event\": 1700008781, \"px_market\": 225, \"side\": \"OVER\"}",
+   "lead_min": 1178,
+   "league": "NFL",
+   "league_x": 0.67,
+   "line": 40.0,
+   "market": "total",
+   "normal_4h": 1240,
+   "now": 5677,
+   "other_side_now": 8802,
+   "paper_only": true,
+   "price": 0.5327,
+   "price_american": -114,
+   "ref": {
+    "line": 40.0,
+    "px_event": 1700008781,
+    "px_market": 225,
+    "side": "OVER"
+   },
+   "result": null,
+   "side": "OVER",
+   "side_label": "over 40 (40)",
+   "side_raw": "OVER",
+   "start_utc": "2026-11-08T21:05:00Z",
+   "teams": [
+    "Houston Texans",
+    "Los Angeles Chargers"
+   ],
+   "units_flat": null,
+   "x": 4.58
+  },
+  {
+   "alerted_utc": "2026-11-08T01:26:38Z",
+   "bar": false,
+   "best_price": 0.5001,
+   "best_price_book": "prophetx",
+   "book": "prophetx",
+   "close_price": 0.495,
+   "clv_cents": 0.0,
+   "date": "2026-11-08",
+   "dir": "RAISE",
+   "ex_stats": null,
+   "first_play": false,
+   "game": "Houston Texans at Los Angeles Chargers",
+   "key": "prophetx|{\"line\": 40.0, \"px_event\": 1700008781, \"px_market\": 225, \"side\": \"UNDER\"}",
+   "lead_min": 1178,
+   "league": "NFL",
+   "league_x": 1.16,
+   "line": 40.0,
+   "market": "total",
+   "normal_4h": 3805,
+   "now": 8802,
+   "other_side_now": 5677,
+   "paper_only": true,
+   "price": 0.495,
+   "price_american": 102,
+   "ref": {
+    "line": 40.0,
+    "px_event": 1700008781,
+    "px_market": 225,
+    "side": "UNDER"
+   },
+   "result": null,
+   "side": "UNDER",
+   "side_label": "under 40 (40)",
+   "side_raw": "UNDER",
+   "start_utc": "2026-11-08T21:05:00Z",
+   "teams": [
+    "Houston Texans",
+    "Los Angeles Chargers"
+   ],
+   "units_flat": null,
+   "x": 2.31
+  },
+  {
    "alerted_utc": "2026-11-08T01:16:35Z",
    "bar": false,
    "best_price": 0.5311,
@@ -197,8 +283,8 @@
     "volume": 389031.0
    },
    "ex_stats_close": {
-    "openInterest": 373529.0,
-    "volume": 408441.0
+    "openInterest": 376060.0,
+    "volume": 410972.0
    },
    "first_play": false,
    "game": "Los Angeles Lakers @ Detroit Pistons",
@@ -261,6 +347,8 @@
    "other_side_now": 848,
    "paper_only": true,
    "price": 0.52,
+   "price_after_15m": 0.52,
+   "price_after_15m_book": "novig",
    "price_american": -108,
    "ref": {
     "market_id": "01a1b70f-1618-71a3-a844-d4852c2f1986",
@@ -271,6 +359,7 @@
    "side_label": "Over 220.5 (220.5)",
    "side_raw": "OVER",
    "start_utc": "2026-11-09T00:35:00Z",
+   "still_actionable": true,
    "teams": [
     "Brooklyn Nets",
     "Dallas Mavericks"
@@ -309,6 +398,8 @@
    "other_side_now": 1629,
    "paper_only": true,
    "price": 0.49,
+   "price_after_15m": 0.49,
+   "price_after_15m_book": "novig",
    "price_american": 104,
    "ref": {
     "market_id": "01a1b7ca-c4a4-7f93-93ec-9b145ab05875",
@@ -319,6 +410,7 @@
    "side_label": "Over 6.5 (6.5)",
    "side_raw": "OVER",
    "start_utc": "2026-11-09T00:00:00Z",
+   "still_actionable": true,
    "teams": [
     "New Jersey Devils",
     "Toronto Maple Leafs"
@@ -357,6 +449,8 @@
    "other_side_now": 1791,
    "paper_only": true,
    "price": 0.49,
+   "price_after_15m": 0.4881,
+   "price_after_15m_book": "prophetx",
    "price_american": 104,
    "ref": {
     "market_id": "01a1b7ca-c323-70e3-a300-b8615eafdef0",
@@ -367,6 +461,7 @@
    "side_label": "Over 6.5 (6.5)",
    "side_raw": "OVER",
    "start_utc": "2026-11-08T23:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Tampa Bay Lightning",
     "Winnipeg Jets"
@@ -388,6 +483,10 @@
     "openInterest": 12300.0,
     "volume": 14826.0
    },
+   "ex_stats_close": {
+    "openInterest": 12684.0,
+    "volume": 15210.0
+   },
    "first_play": false,
    "game": "Philadelphia 76ers @ Chicago Bulls",
    "key": "novig|{\"market_id\": \"01a1b70f-1619-7b61-93e0-6b691366b71f\", \"outcome_id\": \"01a1b70f-1619-7b61-93e0-6b7250149697\"}",
@@ -401,6 +500,8 @@
    "other_side_now": 1203,
    "paper_only": true,
    "price": 0.505,
+   "price_after_15m": 0.5001,
+   "price_after_15m_book": "prophetx",
    "price_american": -102,
    "ref": {
     "market_id": "01a1b70f-1619-7b61-93e0-6b691366b71f",
@@ -411,6 +512,7 @@
    "side_label": "CHI +8.5 (8.5)",
    "side_raw": 1,
    "start_utc": "2026-11-08T20:30:00Z",
+   "still_actionable": true,
    "teams": [
     "Philadelphia 76ers",
     "Chicago Bulls"
@@ -449,6 +551,8 @@
    "other_side_now": 45396,
    "paper_only": true,
    "price": 0.5,
+   "price_after_15m": 0.5,
+   "price_after_15m_book": "novig",
    "price_american": -100,
    "ref": {
     "market_id": "01a17f1a-ec71-7d71-a451-ce1d46990653",
@@ -459,6 +563,7 @@
    "side_label": "Under 44.5 (44.5)",
    "side_raw": "UNDER",
    "start_utc": "2026-11-08T18:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Denver Broncos",
     "Carolina Panthers"
@@ -497,6 +602,8 @@
    "other_side_now": 12385,
    "paper_only": true,
    "price": 0.34,
+   "price_after_15m": 0.34,
+   "price_after_15m_book": "novig",
    "price_american": 194,
    "ref": {
     "market_id": "01a1b741-6af7-71b1-bf77-7ac7c3b06994",
@@ -507,6 +614,7 @@
    "side_label": "BOS -1.5 (-1.5)",
    "side_raw": 1,
    "start_utc": "2026-11-08T18:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Florida Panthers",
     "Boston Bruins"
@@ -545,6 +653,8 @@
    "other_side_now": 10926,
    "paper_only": true,
    "price": 0.505,
+   "price_after_15m": 0.505,
+   "price_after_15m_book": "novig",
    "price_american": -102,
    "ref": {
     "market_id": "01a1b7ca-c3bd-75d1-9bcc-192944f910ec",
@@ -555,6 +665,7 @@
    "side_label": "PHI (0)",
    "side_raw": 0,
    "start_utc": "2026-11-09T00:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Philadelphia Flyers",
     "Calgary Flames"
@@ -593,6 +704,8 @@
    "other_side_now": 7803,
    "paper_only": true,
    "price": 0.5,
+   "price_after_15m": 0.5,
+   "price_after_15m_book": "novig",
    "price_american": -100,
    "ref": {
     "market_id": "01a1b7ca-c3bd-75d1-9bcc-192944f910ec",
@@ -603,6 +716,7 @@
    "side_label": "CGY (0)",
    "side_raw": 1,
    "start_utc": "2026-11-09T00:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Philadelphia Flyers",
     "Calgary Flames"
@@ -641,6 +755,8 @@
    "other_side_now": 1499,
    "paper_only": true,
    "price": 0.585,
+   "price_after_15m": 0.585,
+   "price_after_15m_book": "novig",
    "price_american": -141,
    "ref": {
     "market_id": "01a1b7ca-c4a5-7fe1-9a7c-03c9a041129d",
@@ -651,6 +767,7 @@
    "side_label": "NJD (0)",
    "side_raw": 0,
    "start_utc": "2026-11-09T00:00:00Z",
+   "still_actionable": true,
    "teams": [
     "New Jersey Devils",
     "Toronto Maple Leafs"
@@ -673,8 +790,8 @@
     "volume": 29196.0
    },
    "ex_stats_close": {
-    "openInterest": 26230.0,
-    "volume": 29196.0
+    "openInterest": 28610.0,
+    "volume": 31576.0
    },
    "first_play": true,
    "game": "Tampa Bay Lightning @ Winnipeg Jets",
@@ -689,6 +806,8 @@
    "other_side_now": 5330,
    "paper_only": true,
    "price": 0.585,
+   "price_after_15m": 0.585,
+   "price_after_15m_book": "novig",
    "price_american": -141,
    "ref": {
     "market_id": "01a1b7ca-c323-70e3-a300-c2be23bff736",
@@ -699,6 +818,7 @@
    "side_label": "TBL (0)",
    "side_raw": 0,
    "start_utc": "2026-11-08T23:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Tampa Bay Lightning",
     "Winnipeg Jets"
@@ -737,6 +857,8 @@
    "other_side_now": 11154,
    "paper_only": true,
    "price": 0.505,
+   "price_after_15m": 0.505,
+   "price_after_15m_book": "novig",
    "price_american": -102,
    "ref": {
     "market_id": "01a1b7ca-c28f-71b2-9e61-4be43d93b456",
@@ -747,6 +869,7 @@
    "side_label": "VGK (0)",
    "side_raw": 0,
    "start_utc": "2026-11-08T20:30:00Z",
+   "still_actionable": true,
    "teams": [
     "Vegas Golden Knights",
     "Buffalo Sabres"
@@ -785,6 +908,8 @@
    "other_side_now": 15264,
    "paper_only": true,
    "price": 0.44,
+   "price_after_15m": 0.44,
+   "price_after_15m_book": "novig",
    "price_american": 127,
    "ref": {
     "market_id": "01a1b741-6af8-7ad0-b9b2-6620bd22477a",
@@ -795,6 +920,7 @@
    "side_label": "FLA (0)",
    "side_raw": 0,
    "start_utc": "2026-11-08T18:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Florida Panthers",
     "Boston Bruins"
@@ -833,6 +959,8 @@
    "other_side_now": 1278,
    "paper_only": true,
    "price": 0.765,
+   "price_after_15m": 0.765,
+   "price_after_15m_book": "novig",
    "price_american": -326,
    "ref": {
     "market_id": "01a1b801-9df1-7922-94e5-db8bf69b1bfa",
@@ -843,6 +971,7 @@
    "side_label": "PHI (0)",
    "side_raw": 0,
    "start_utc": "2026-11-08T20:30:00Z",
+   "still_actionable": true,
    "teams": [
     "Philadelphia 76ers",
     "Chicago Bulls"
@@ -1055,8 +1184,8 @@
    "best_price": 0.39,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.3968,
-   "clv_cents": 0.6,
+   "close_price": 0.3937,
+   "clv_cents": 0.3,
    "date": "2026-11-08",
    "dir": "RAISE",
    "ex_stats": null,
@@ -1584,8 +1713,8 @@
    "best_price": 0.51,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.5146,
-   "clv_cents": 0.2,
+   "close_price": 0.5122,
+   "clv_cents": 0.0,
    "date": "2026-11-08",
    "dir": "RAISE",
    "ex_stats": null,
@@ -1909,8 +2038,8 @@
    "best_price": 0.51,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.5074,
-   "clv_cents": -0.2,
+   "close_price": 0.505,
+   "clv_cents": -0.5,
    "date": "2026-11-08",
    "dir": "RAISE",
    "ex_stats": null,
@@ -2001,8 +2130,8 @@
    "best_price": 0.5076,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5025,
-   "clv_cents": 0.0,
+   "close_price": 0.505,
+   "clv_cents": 0.3,
    "date": "2026-11-08",
    "dir": "RAISE",
    "ex_stats": null,
@@ -3078,8 +3207,8 @@
     "volume": 7006805.0
    },
    "ex_stats_close": {
-    "openInterest": 6239194.0,
-    "volume": 7662799.0
+    "openInterest": 6248184.0,
+    "volume": 7671789.0
    },
    "first_play": true,
    "game": "Detroit Lions @ Miami Dolphins",
@@ -3129,8 +3258,8 @@
     "volume": 7006805.0
    },
    "ex_stats_close": {
-    "openInterest": 6239194.0,
-    "volume": 7662799.0
+    "openInterest": 6248184.0,
+    "volume": 7671789.0
    },
    "first_play": false,
    "game": "Detroit Lions @ Miami Dolphins",
@@ -3180,8 +3309,8 @@
     "volume": 4621963.0
    },
    "ex_stats_close": {
-    "openInterest": 4955311.0,
-    "volume": 6286668.0
+    "openInterest": 4957943.0,
+    "volume": 6289300.0
    },
    "first_play": false,
    "game": "Los Angeles Rams @ Washington Commanders",
@@ -3600,8 +3729,8 @@
    "best_price": 0.5442,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.537,
-   "clv_cents": -0.2,
+   "close_price": 0.5392,
+   "clv_cents": 0.0,
    "date": "2026-11-08",
    "dir": "RAISE",
    "ex_stats": null,
@@ -3947,7 +4076,7 @@
    },
    "ex_stats_close": {
     "openInterest": 8721338.0,
-    "volume": 11906637.0
+    "volume": 11950590.0
    },
    "first_play": false,
    "game": "San Antonio Spurs @ Portland Trail Blazers",
@@ -3998,7 +4127,7 @@
    },
    "ex_stats_close": {
     "openInterest": 8721338.0,
-    "volume": 11906637.0
+    "volume": 11950590.0
    },
    "first_play": false,
    "game": "San Antonio Spurs @ Portland Trail Blazers",
@@ -4049,7 +4178,7 @@
    },
    "ex_stats_close": {
     "openInterest": 942308.0,
-    "volume": 1220521.0
+    "volume": 1222521.0
    },
    "first_play": true,
    "game": "Texas State @ Oregon State",
@@ -4196,8 +4325,8 @@
     "volume": 2154068.0
    },
    "ex_stats_close": {
-    "openInterest": 6502265.0,
-    "volume": 7098019.0
+    "openInterest": 6503165.0,
+    "volume": 7102151.0
    },
    "first_play": true,
    "game": "Wyoming @ UNLV",
@@ -4451,8 +4580,8 @@
     "volume": 6716710.0
    },
    "ex_stats_close": {
-    "openInterest": 4601177.0,
-    "volume": 6797985.0
+    "openInterest": 4607002.0,
+    "volume": 6803810.0
    },
    "first_play": false,
    "game": "Cleveland Browns @ New Orleans Saints",
@@ -4554,7 +4683,7 @@
    },
    "ex_stats_close": {
     "openInterest": 3485036.0,
-    "volume": 3864977.0
+    "volume": 3881106.0
    },
    "first_play": true,
    "game": "Houston Texans @ Los Angeles Chargers",
@@ -4605,7 +4734,7 @@
    },
    "ex_stats_close": {
     "openInterest": 3485036.0,
-    "volume": 3864977.0
+    "volume": 3881106.0
    },
    "first_play": true,
    "game": "Houston Texans @ Los Angeles Chargers",
@@ -4757,8 +4886,8 @@
     "volume": 2385483.0
    },
    "ex_stats_close": {
-    "openInterest": 3217253.0,
-    "volume": 3476545.0
+    "openInterest": 3299728.0,
+    "volume": 3559020.0
    },
    "first_play": false,
    "game": "San Antonio Spurs @ Portland Trail Blazers",
@@ -4947,8 +5076,8 @@
    "best_price": 0.495,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.5098,
-   "clv_cents": 1.2,
+   "close_price": 0.5074,
+   "clv_cents": 1.0,
    "date": "2026-11-07",
    "dir": "DROP",
    "ex_stats": null,
@@ -4993,8 +5122,8 @@
    "best_price": 0.51,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.5025,
-   "clv_cents": -1.4,
+   "close_price": 0.505,
+   "clv_cents": -1.2,
    "date": "2026-11-07",
    "dir": "DROP",
    "ex_stats": null,
@@ -5412,17 +5541,17 @@
     "volumeNum": 27497.977276
    },
    "ex_stats_close": {
-    "volume": 66089.700669,
-    "volume1mo": 66149.700669,
-    "volume1moClob": 66149.700669,
-    "volume1wk": 66149.700669,
-    "volume1wkClob": 66149.700669,
-    "volume1yr": 66149.700669,
-    "volume1yrClob": 66149.700669,
-    "volume24hr": 66149.700669,
-    "volume24hrClob": 66149.700669,
-    "volumeClob": 66089.700669,
-    "volumeNum": 66089.700669
+    "volume": 66569.69243400001,
+    "volume1mo": 66681.69243399998,
+    "volume1moClob": 66681.69243399998,
+    "volume1wk": 66681.69243399998,
+    "volume1wkClob": 66681.69243399998,
+    "volume1yr": 66681.69243399998,
+    "volume1yrClob": 66681.69243399998,
+    "volume24hr": 66681.692434,
+    "volume24hrClob": 66681.692434,
+    "volumeClob": 66569.69243400001,
+    "volumeNum": 66569.69243400001
    },
    "first_play": true,
    "game": "Spurs vs. Trail Blazers",
@@ -5481,17 +5610,17 @@
     "volumeNum": 7464.634733
    },
    "ex_stats_close": {
-    "volume": 25069.202719,
-    "volume1mo": 25137.862719,
-    "volume1moClob": 25137.862719,
-    "volume1wk": 25137.862719,
-    "volume1wkClob": 25137.862719,
-    "volume1yr": 25137.862719,
-    "volume1yrClob": 25137.862719,
-    "volume24hr": 25137.862719,
-    "volume24hrClob": 25137.862719,
-    "volumeClob": 25069.202719,
-    "volumeNum": 25069.202719
+    "volume": 25206.470563,
+    "volume1mo": 25435.410563,
+    "volume1moClob": 25435.410563,
+    "volume1wk": 25435.410563,
+    "volume1wkClob": 25435.410563,
+    "volume1yr": 25435.410563,
+    "volume1yrClob": 25435.410563,
+    "volume24hr": 25435.410563,
+    "volume24hrClob": 25435.410563,
+    "volumeClob": 25206.470563,
+    "volumeNum": 25206.470563
    },
    "first_play": false,
    "game": "Rockets vs. Suns",
@@ -5592,8 +5721,8 @@
     "volume": 608636.0
    },
    "ex_stats_close": {
-    "openInterest": 1053146.0,
-    "volume": 1173697.0
+    "openInterest": 1080107.0,
+    "volume": 1203754.0
    },
    "first_play": false,
    "game": "Pittsburgh Penguins @ Los Angeles Kings",
@@ -5889,8 +6018,8 @@
    "best_price": 0.74,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.725,
-   "clv_cents": -1.5,
+   "close_price": 0.72,
+   "clv_cents": -2.0,
    "date": "2026-11-07",
    "dir": "RAISE",
    "ex_stats": {
@@ -6272,8 +6401,8 @@
    "best_price": 0.5333,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5238,
-   "clv_cents": -0.4,
+   "close_price": 0.5192,
+   "clv_cents": -0.9,
    "date": "2026-11-07",
    "dir": "RAISE",
    "ex_stats": null,
@@ -6594,8 +6723,8 @@
    "best_price": 0.2418,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.2326,
-   "clv_cents": -0.6,
+   "close_price": 0.2273,
+   "clv_cents": -1.1,
    "date": "2026-11-07",
    "dir": "DROP",
    "ex_stats": null,
@@ -6640,8 +6769,8 @@
    "best_price": 0.5124,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5025,
-   "clv_cents": -0.5,
+   "close_price": 0.5074,
+   "clv_cents": 0.0,
    "date": "2026-11-07",
    "dir": "DROP",
    "ex_stats": null,
@@ -6686,8 +6815,8 @@
    "best_price": 0.6667,
    "best_price_book": "polymarket",
    "book": "prophetx",
-   "close_price": 0.6721,
-   "clv_cents": 0.5,
+   "close_price": 0.6667,
+   "clv_cents": 0.0,
    "date": "2026-11-07",
    "dir": "DROP",
    "ex_stats": null,
@@ -6732,8 +6861,8 @@
    "best_price": 0.7101,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.7183,
-   "clv_cents": 1.2,
+   "close_price": 0.7143,
+   "clv_cents": 0.8,
    "date": "2026-11-07",
    "dir": "DROP",
    "ex_stats": null,
@@ -6778,8 +6907,8 @@
    "best_price": 0.3063,
    "best_price_book": "polymarket",
    "book": "prophetx",
-   "close_price": 0.2899,
-   "clv_cents": -1.3,
+   "close_price": 0.2941,
+   "clv_cents": -0.9,
    "date": "2026-11-07",
    "dir": "DROP",
    "ex_stats": null,
@@ -7639,17 +7768,17 @@
     "volumeNum": 17768.660201
    },
    "ex_stats_close": {
-    "volume": 51476.099387,
-    "volume1mo": 51476.099386999995,
-    "volume1moClob": 51476.099386999995,
-    "volume1wk": 51476.099386999995,
-    "volume1wkClob": 51476.099386999995,
-    "volume1yr": 51476.099386999995,
-    "volume1yrClob": 51476.099386999995,
-    "volume24hr": 51476.099386999995,
-    "volume24hrClob": 51476.099386999995,
-    "volumeClob": 51476.099387,
-    "volumeNum": 51476.099387
+    "volume": 51483.424969,
+    "volume1mo": 51483.42496899999,
+    "volume1moClob": 51483.42496899999,
+    "volume1wk": 51483.42496899999,
+    "volume1wkClob": 51483.42496899999,
+    "volume1yr": 51483.42496899999,
+    "volume1yrClob": 51483.42496899999,
+    "volume24hr": 51483.42496899999,
+    "volume24hrClob": 51483.42496899999,
+    "volumeClob": 51483.424969,
+    "volumeNum": 51483.424969
    },
    "first_play": true,
    "game": "Magic vs. Warriors",
@@ -7800,17 +7929,17 @@
     "volumeNum": 83463.57112900002
    },
    "ex_stats_close": {
-    "volume": 253579.427214,
-    "volume1mo": 373475.8729029999,
-    "volume1moClob": 373475.8729029999,
-    "volume1wk": 373475.8729029999,
-    "volume1wkClob": 373475.8729029999,
-    "volume1yr": 373475.8729029999,
-    "volume1yrClob": 373475.8729029999,
-    "volume24hr": 361542.52619799995,
-    "volume24hrClob": 361542.52619799995,
-    "volumeClob": 253579.427214,
-    "volumeNum": 253579.427214
+    "volume": 485551.9950509999,
+    "volume1mo": 485907.697754,
+    "volume1moClob": 485907.697754,
+    "volume1wk": 485907.697754,
+    "volume1wkClob": 485907.697754,
+    "volume1yr": 485907.697754,
+    "volume1yrClob": 485907.697754,
+    "volume24hr": 473887.35104899993,
+    "volume24hrClob": 473887.35104899993,
+    "volumeClob": 485551.9950509999,
+    "volumeNum": 485551.9950509999
    },
    "first_play": true,
    "game": "Magic vs. Warriors",
@@ -9354,14 +9483,14 @@
    },
    "ex_stats_close": {
     "volume": 26734.133248,
-    "volume1mo": 26734.133248000002,
-    "volume1moClob": 26734.133248000002,
-    "volume1wk": 26734.133248000002,
-    "volume1wkClob": 26734.133248000002,
-    "volume1yr": 26734.133248000002,
-    "volume1yrClob": 26734.133248000002,
-    "volume24hr": 26734.133248000002,
-    "volume24hrClob": 26734.133248000002,
+    "volume1mo": 26734.133247999995,
+    "volume1moClob": 26734.133247999995,
+    "volume1wk": 26734.133247999995,
+    "volume1wkClob": 26734.133247999995,
+    "volume1yr": 26734.133247999995,
+    "volume1yrClob": 26734.133247999995,
+    "volume24hr": 26734.133247999995,
+    "volume24hrClob": 26734.133247999995,
     "volumeClob": 26734.133248,
     "volumeNum": 26734.133248
    },
@@ -9587,17 +9716,17 @@
     "volumeNum": 15737.189612
    },
    "ex_stats_close": {
-    "volume": 51476.099387,
-    "volume1mo": 51476.099386999995,
-    "volume1moClob": 51476.099386999995,
-    "volume1wk": 51476.099386999995,
-    "volume1wkClob": 51476.099386999995,
-    "volume1yr": 51476.099386999995,
-    "volume1yrClob": 51476.099386999995,
-    "volume24hr": 51476.099386999995,
-    "volume24hrClob": 51476.099386999995,
-    "volumeClob": 51476.099387,
-    "volumeNum": 51476.099387
+    "volume": 51483.424969,
+    "volume1mo": 51483.42496899999,
+    "volume1moClob": 51483.42496899999,
+    "volume1wk": 51483.42496899999,
+    "volume1wkClob": 51483.42496899999,
+    "volume1yr": 51483.42496899999,
+    "volume1yrClob": 51483.42496899999,
+    "volume24hr": 51483.42496899999,
+    "volume24hrClob": 51483.42496899999,
+    "volumeClob": 51483.424969,
+    "volumeNum": 51483.424969
    },
    "first_play": true,
    "game": "Magic vs. Warriors",
@@ -9910,6 +10039,7 @@
    },
    "first_play": true,
    "game": "Eastern Washington @ Idaho",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1a90e-8e72-7083-94e2-e587d88c5a51\", \"outcome_id\": \"01a1a90e-8e72-7083-94e2-e5acba11d1a2\"}",
    "lead_min": 267,
    "league": "NCAAF",
@@ -9928,7 +10058,8 @@
     "market_id": "01a1a90e-8e72-7083-94e2-e587d88c5a51",
     "outcome_id": "01a1a90e-8e72-7083-94e2-e5acba11d1a2"
    },
-   "result": null,
+   "result": "L",
+   "settled_utc": "2026-11-08T01:26:38Z",
    "side": "Eastern Washington",
    "side_label": "EWU +9.5 (-9.5)",
    "side_raw": 0,
@@ -9938,7 +10069,7 @@
     "Eastern Washington",
     "Idaho"
    ],
-   "units_flat": null,
+   "units_flat": -1.0,
    "x": 0.19
   },
   {
@@ -9961,6 +10092,7 @@
    },
    "first_play": true,
    "game": "Eastern Washington @ Idaho",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1a90e-8e72-7083-94e2-e587d88c5a51\", \"outcome_id\": \"01a1a90e-8e72-7083-94e2-e59d674c1058\"}",
    "lead_min": 267,
    "league": "NCAAF",
@@ -9979,7 +10111,8 @@
     "market_id": "01a1a90e-8e72-7083-94e2-e587d88c5a51",
     "outcome_id": "01a1a90e-8e72-7083-94e2-e59d674c1058"
    },
-   "result": null,
+   "result": "L",
+   "settled_utc": "2026-11-08T01:26:38Z",
    "side": "IDHO -9.5 (-9.5)",
    "side_label": "IDHO -9.5 (-9.5)",
    "side_raw": null,
@@ -9989,7 +10122,7 @@
     "Eastern Washington",
     "Idaho"
    ],
-   "units_flat": null,
+   "units_flat": -1.0,
    "x": 0.46
   },
   {
@@ -10005,6 +10138,7 @@
    "ex_stats": null,
    "first_play": true,
    "game": "South Alabama at Louisiana",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 7.0, \"px_event\": 1704706082, \"px_market\": 223, \"side\": \"0\"}",
    "lead_min": 287,
    "league": "NCAAF",
@@ -10025,7 +10159,8 @@
     "px_market": 223,
     "side": "0"
    },
-   "result": null,
+   "result": "W",
+   "settled_utc": "2026-11-08T01:26:38Z",
    "side": "South Alabama",
    "side_label": "South Alabama +7 (+7)",
    "side_raw": 0,
@@ -10035,7 +10170,7 @@
     "South Alabama",
     "Louisiana"
    ],
-   "units_flat": null,
+   "units_flat": 0.99,
    "x": 0.32
   },
   {
@@ -10051,6 +10186,7 @@
    "ex_stats": null,
    "first_play": true,
    "game": "South Alabama at Louisiana",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 7.0, \"px_event\": 1704706082, \"px_market\": 223, \"side\": \"1\"}",
    "lead_min": 287,
    "league": "NCAAF",
@@ -10071,7 +10207,8 @@
     "px_market": 223,
     "side": "1"
    },
-   "result": null,
+   "result": "L",
+   "settled_utc": "2026-11-08T01:26:38Z",
    "side": "Louisiana",
    "side_label": "Louisiana -7 (-7)",
    "side_raw": 1,
@@ -10081,7 +10218,7 @@
     "South Alabama",
     "Louisiana"
    ],
-   "units_flat": null,
+   "units_flat": -1.0,
    "x": 0.32
   },
   {
@@ -10108,17 +10245,17 @@
     "volumeNum": 16443.191815000002
    },
    "ex_stats_close": {
-    "volume": 66089.700669,
-    "volume1mo": 66149.700669,
-    "volume1moClob": 66149.700669,
-    "volume1wk": 66149.700669,
-    "volume1wkClob": 66149.700669,
-    "volume1yr": 66149.700669,
-    "volume1yrClob": 66149.700669,
-    "volume24hr": 66149.700669,
-    "volume24hrClob": 66149.700669,
-    "volumeClob": 66089.700669,
-    "volumeNum": 66089.700669
+    "volume": 66569.69243400001,
+    "volume1mo": 66681.69243399998,
+    "volume1moClob": 66681.69243399998,
+    "volume1wk": 66681.69243399998,
+    "volume1wkClob": 66681.69243399998,
+    "volume1yr": 66681.69243399998,
+    "volume1yrClob": 66681.69243399998,
+    "volume24hr": 66681.692434,
+    "volume24hrClob": 66681.692434,
+    "volumeClob": 66569.69243400001,
+    "volumeNum": 66569.69243400001
    },
    "first_play": true,
    "game": "Spurs vs. Trail Blazers",
@@ -10177,17 +10314,17 @@
     "volumeNum": 4988.7470379999995
    },
    "ex_stats_close": {
-    "volume": 25069.202719,
-    "volume1mo": 25137.862719,
-    "volume1moClob": 25137.862719,
-    "volume1wk": 25137.862719,
-    "volume1wkClob": 25137.862719,
-    "volume1yr": 25137.862719,
-    "volume1yrClob": 25137.862719,
-    "volume24hr": 25137.862719,
-    "volume24hrClob": 25137.862719,
-    "volumeClob": 25069.202719,
-    "volumeNum": 25069.202719
+    "volume": 25206.470563,
+    "volume1mo": 25435.410563,
+    "volume1moClob": 25435.410563,
+    "volume1wk": 25435.410563,
+    "volume1wkClob": 25435.410563,
+    "volume1yr": 25435.410563,
+    "volume1yrClob": 25435.410563,
+    "volume24hr": 25435.410563,
+    "volume24hrClob": 25435.410563,
+    "volumeClob": 25206.470563,
+    "volumeNum": 25206.470563
    },
    "first_play": false,
    "game": "Rockets vs. Suns",
@@ -10385,17 +10522,17 @@
     "volumeNum": 49038.159630999995
    },
    "ex_stats_close": {
-    "volume": 110333.08491,
-    "volume1mo": 163171.14713,
-    "volume1moClob": 163171.14713,
-    "volume1wk": 163171.14713,
-    "volume1wkClob": 163171.14713,
-    "volume1yr": 163171.14713,
-    "volume1yrClob": 163171.14713,
-    "volume24hr": 161229.61962500002,
-    "volume24hrClob": 161229.61962500002,
-    "volumeClob": 110333.08491,
-    "volumeNum": 110333.08491
+    "volume": 163187.897129,
+    "volume1mo": 164291.700461,
+    "volume1moClob": 164291.700461,
+    "volume1wk": 164291.700461,
+    "volume1wkClob": 164291.700461,
+    "volume1yr": 164291.700461,
+    "volume1yrClob": 164291.700461,
+    "volume24hr": 162347.356056,
+    "volume24hrClob": 162347.356056,
+    "volumeClob": 163187.897129,
+    "volumeNum": 163187.897129
    },
    "first_play": true,
    "game": "Rockets vs. Suns",
@@ -10716,6 +10853,7 @@
    },
    "first_play": true,
    "game": "South Alabama @ Louisiana",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a197da-aaea-7133-94a2-bc48d946e431\", \"outcome_id\": \"01a197da-aaea-7133-94a2-bc64c175db54\"}",
    "lead_min": 306,
    "league": "NCAAF",
@@ -10734,7 +10872,8 @@
     "market_id": "01a197da-aaea-7133-94a2-bc48d946e431",
     "outcome_id": "01a197da-aaea-7133-94a2-bc64c175db54"
    },
-   "result": null,
+   "result": "W",
+   "settled_utc": "2026-11-08T01:26:38Z",
    "side": "UNDER",
    "side_label": "Under 56.5 (56.5)",
    "side_raw": "UNDER",
@@ -10744,7 +10883,7 @@
     "South Alabama",
     "Louisiana"
    ],
-   "units_flat": null,
+   "units_flat": 0.96,
    "x": 0.46
   },
   {
@@ -12222,6 +12361,7 @@
    "ex_stats": null,
    "first_play": true,
    "game": "South Alabama at Louisiana",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 56.5, \"px_event\": 1704706082, \"px_market\": 225, \"side\": \"OVER\"}",
    "lead_min": 369,
    "league": "NCAAF",
@@ -12242,7 +12382,8 @@
     "px_market": 225,
     "side": "OVER"
    },
-   "result": null,
+   "result": "L",
+   "settled_utc": "2026-11-08T01:26:38Z",
    "side": "OVER",
    "side_label": "over 56.5 (56.5)",
    "side_raw": "OVER",
@@ -12252,7 +12393,7 @@
     "South Alabama",
     "Louisiana"
    ],
-   "units_flat": null,
+   "units_flat": -1.0,
    "x": 5.23
   },
   {
@@ -12268,6 +12409,7 @@
    "ex_stats": null,
    "first_play": true,
    "game": "South Alabama at Louisiana",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 56.5, \"px_event\": 1704706082, \"px_market\": 225, \"side\": \"UNDER\"}",
    "lead_min": 369,
    "league": "NCAAF",
@@ -12288,7 +12430,8 @@
     "px_market": 225,
     "side": "UNDER"
    },
-   "result": null,
+   "result": "W",
+   "settled_utc": "2026-11-08T01:26:38Z",
    "side": "UNDER",
    "side_label": "under 56.5 (56.5)",
    "side_raw": "UNDER",
@@ -12298,7 +12441,7 @@
     "South Alabama",
     "Louisiana"
    ],
-   "units_flat": null,
+   "units_flat": 1.0,
    "x": 5.7
   },
   {
@@ -12774,6 +12917,7 @@
    "ex_stats": null,
    "first_play": false,
    "game": "Eastern Washington at Idaho",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 9.5, \"px_event\": 1704709437, \"px_market\": 223, \"side\": \"0\"}",
    "lead_min": 388,
    "league": "NCAAF",
@@ -12794,7 +12938,8 @@
     "px_market": 223,
     "side": "0"
    },
-   "result": null,
+   "result": "L",
+   "settled_utc": "2026-11-08T01:26:38Z",
    "side": "Eastern Washington",
    "side_label": "Eastern Washington +9.5 (+9.5)",
    "side_raw": 0,
@@ -12804,7 +12949,7 @@
     "Eastern Washington",
     "Idaho"
    ],
-   "units_flat": null,
+   "units_flat": -1.0,
    "x": 2.04
   },
   {
@@ -12820,6 +12965,7 @@
    "ex_stats": null,
    "first_play": true,
    "game": "Eastern Washington at Idaho",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 9.5, \"px_event\": 1704709437, \"px_market\": 223, \"side\": \"1\"}",
    "lead_min": 388,
    "league": "NCAAF",
@@ -12840,7 +12986,8 @@
     "px_market": 223,
     "side": "1"
    },
-   "result": null,
+   "result": "W",
+   "settled_utc": "2026-11-08T01:26:38Z",
    "side": "Idaho",
    "side_label": "Idaho -9.5 (-9.5)",
    "side_raw": 1,
@@ -12850,7 +12997,7 @@
     "Eastern Washington",
     "Idaho"
    ],
-   "units_flat": null,
+   "units_flat": 1.0,
    "x": 2.75
   },
   {
@@ -14602,6 +14749,7 @@
    "ex_stats": null,
    "first_play": true,
    "game": "South Alabama at Louisiana",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 63.5, \"px_event\": 1704706082, \"px_market\": 225, \"side\": \"OVER\"}",
    "lead_min": 448,
    "league": "NCAAF",
@@ -14622,7 +14770,8 @@
     "px_market": 225,
     "side": "OVER"
    },
-   "result": null,
+   "result": "L",
+   "settled_utc": "2026-11-08T01:26:38Z",
    "side": "OVER",
    "side_label": "over 63.5 (63.5)",
    "side_raw": "OVER",
@@ -14632,7 +14781,7 @@
     "South Alabama",
     "Louisiana"
    ],
-   "units_flat": null,
+   "units_flat": -1.0,
    "x": 0.01
   },
   {
@@ -16171,6 +16320,7 @@
    "ex_stats": null,
    "first_play": true,
    "game": "Eastern Washington at Idaho",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 63.5, \"px_event\": 1704709437, \"px_market\": 225, \"side\": \"UNDER\"}",
    "lead_min": 469,
    "league": "NCAAF",
@@ -16191,7 +16341,8 @@
     "px_market": 225,
     "side": "UNDER"
    },
-   "result": null,
+   "result": "L",
+   "settled_utc": "2026-11-08T01:26:38Z",
    "side": "UNDER",
    "side_label": "under 63.5 (63.5)",
    "side_raw": "UNDER",
@@ -16201,7 +16352,7 @@
     "Eastern Washington",
     "Idaho"
    ],
-   "units_flat": null,
+   "units_flat": -1.0,
    "x": 2.01
   },
   {
@@ -18474,17 +18625,17 @@
     "volumeNum": 31856.780633999995
    },
    "ex_stats_close": {
-    "volume": 110333.08491,
-    "volume1mo": 163171.14713,
-    "volume1moClob": 163171.14713,
-    "volume1wk": 163171.14713,
-    "volume1wkClob": 163171.14713,
-    "volume1yr": 163171.14713,
-    "volume1yrClob": 163171.14713,
-    "volume24hr": 161229.61962500002,
-    "volume24hrClob": 161229.61962500002,
-    "volumeClob": 110333.08491,
-    "volumeNum": 110333.08491
+    "volume": 163187.897129,
+    "volume1mo": 164291.700461,
+    "volume1moClob": 164291.700461,
+    "volume1wk": 164291.700461,
+    "volume1wkClob": 164291.700461,
+    "volume1yr": 164291.700461,
+    "volume1yrClob": 164291.700461,
+    "volume24hr": 162347.356056,
+    "volume24hrClob": 162347.356056,
+    "volumeClob": 163187.897129,
+    "volumeNum": 163187.897129
    },
    "first_play": false,
    "game": "Rockets vs. Suns",
@@ -20125,17 +20276,17 @@
     "volumeNum": 121.38797
    },
    "ex_stats_close": {
-    "volume": 576.2293060000001,
-    "volume1mo": 583.3721620000002,
-    "volume1moClob": 583.3721620000002,
-    "volume1wk": 583.3721620000002,
-    "volume1wkClob": 583.3721620000002,
-    "volume1yr": 583.3721620000002,
-    "volume1yrClob": 583.3721620000002,
-    "volume24hr": 583.3721620000002,
-    "volume24hrClob": 583.3721620000002,
-    "volumeClob": 576.2293060000001,
-    "volumeNum": 576.2293060000001
+    "volume": 604.157874,
+    "volume1mo": 604.1578740000001,
+    "volume1moClob": 604.1578740000001,
+    "volume1wk": 604.1578740000001,
+    "volume1wkClob": 604.1578740000001,
+    "volume1yr": 604.1578740000001,
+    "volume1yrClob": 604.1578740000001,
+    "volume24hr": 604.1578740000001,
+    "volume24hrClob": 604.1578740000001,
+    "volumeClob": 604.157874,
+    "volumeNum": 604.157874
    },
    "first_play": false,
    "game": "Penguins vs. Kings",
@@ -20194,17 +20345,17 @@
     "volumeNum": 121.38797
    },
    "ex_stats_close": {
-    "volume": 576.2293060000001,
-    "volume1mo": 583.3721620000002,
-    "volume1moClob": 583.3721620000002,
-    "volume1wk": 583.3721620000002,
-    "volume1wkClob": 583.3721620000002,
-    "volume1yr": 583.3721620000002,
-    "volume1yrClob": 583.3721620000002,
-    "volume24hr": 583.3721620000002,
-    "volume24hrClob": 583.3721620000002,
-    "volumeClob": 576.2293060000001,
-    "volumeNum": 576.2293060000001
+    "volume": 604.157874,
+    "volume1mo": 604.1578740000001,
+    "volume1moClob": 604.1578740000001,
+    "volume1wk": 604.1578740000001,
+    "volume1wkClob": 604.1578740000001,
+    "volume1yr": 604.1578740000001,
+    "volume1yrClob": 604.1578740000001,
+    "volume24hr": 604.1578740000001,
+    "volume24hrClob": 604.1578740000001,
+    "volumeClob": 604.157874,
+    "volumeNum": 604.157874
    },
    "first_play": false,
    "game": "Penguins vs. Kings",
@@ -22272,17 +22423,17 @@
     "volumeNum": 5712.384494
    },
    "ex_stats_close": {
-    "volume": 106535.835628,
-    "volume1mo": 106632.55305600002,
-    "volume1moClob": 106632.55305600002,
-    "volume1wk": 106632.55305600002,
-    "volume1wkClob": 106632.55305600002,
-    "volume1yr": 106632.55305600002,
-    "volume1yrClob": 106632.55305600002,
-    "volume24hr": 105491.00967100002,
-    "volume24hrClob": 105491.00967100002,
-    "volumeClob": 106535.835628,
-    "volumeNum": 106535.835628
+    "volume": 110515.55148699999,
+    "volume1mo": 131180.30659,
+    "volume1moClob": 131180.30659,
+    "volume1wk": 131180.30659,
+    "volume1wkClob": 131180.30659,
+    "volume1yr": 131180.30659,
+    "volume1yrClob": 131180.30659,
+    "volume24hr": 130038.763205,
+    "volume24hrClob": 130038.763205,
+    "volumeClob": 110515.55148699999,
+    "volumeNum": 110515.55148699999
    },
    "first_play": true,
    "game": "Penguins vs. Kings",
@@ -22341,17 +22492,17 @@
     "volumeNum": 22792.290246999997
    },
    "ex_stats_close": {
-    "volume": 110333.08491,
-    "volume1mo": 163171.14713,
-    "volume1moClob": 163171.14713,
-    "volume1wk": 163171.14713,
-    "volume1wkClob": 163171.14713,
-    "volume1yr": 163171.14713,
-    "volume1yrClob": 163171.14713,
-    "volume24hr": 161229.61962500002,
-    "volume24hrClob": 161229.61962500002,
-    "volumeClob": 110333.08491,
-    "volumeNum": 110333.08491
+    "volume": 163187.897129,
+    "volume1mo": 164291.700461,
+    "volume1moClob": 164291.700461,
+    "volume1wk": 164291.700461,
+    "volume1wkClob": 164291.700461,
+    "volume1yr": 164291.700461,
+    "volume1yrClob": 164291.700461,
+    "volume24hr": 162347.356056,
+    "volume24hrClob": 162347.356056,
+    "volumeClob": 163187.897129,
+    "volumeNum": 163187.897129
    },
    "first_play": false,
    "game": "Rockets vs. Suns",
@@ -23562,17 +23713,17 @@
     "volumeNum": 2341.983
    },
    "ex_stats_close": {
-    "volume": 27578.867281,
-    "volume1mo": 27578.867281000003,
-    "volume1moClob": 27578.867281000003,
-    "volume1wk": 27578.867281000003,
-    "volume1wkClob": 27578.867281000003,
-    "volume1yr": 27578.867281000003,
-    "volume1yrClob": 27578.867281000003,
-    "volume24hr": 27578.867281000003,
-    "volume24hrClob": 27578.867281000003,
-    "volumeClob": 27578.867281,
-    "volumeNum": 27578.867281
+    "volume": 27895.097281,
+    "volume1mo": 27895.097281,
+    "volume1moClob": 27895.097281,
+    "volume1wk": 27895.097281,
+    "volume1wkClob": 27895.097281,
+    "volume1yr": 27895.097281,
+    "volume1yrClob": 27895.097281,
+    "volume24hr": 27895.097281,
+    "volume24hrClob": 27895.097281,
+    "volumeClob": 27895.097281,
+    "volumeNum": 27895.097281
    },
    "first_play": true,
    "game": "Magic vs. Warriors",
@@ -24219,6 +24370,7 @@
    },
    "first_play": false,
    "game": "Eastern Washington @ Idaho",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1a90e-8e71-71b1-bb8f-33a8413b9160\", \"outcome_id\": \"01a1a90e-8e71-71b1-bb8f-33c7532988f0\"}",
    "lead_min": 590,
    "league": "NCAAF",
@@ -24235,7 +24387,8 @@
     "market_id": "01a1a90e-8e71-71b1-bb8f-33a8413b9160",
     "outcome_id": "01a1a90e-8e71-71b1-bb8f-33c7532988f0"
    },
-   "result": null,
+   "result": "L",
+   "settled_utc": "2026-11-08T01:26:38Z",
    "side": "UNDER",
    "side_label": "Under 62.5 (62.5)",
    "side_raw": "UNDER",
@@ -24244,7 +24397,7 @@
     "Eastern Washington",
     "Idaho"
    ],
-   "units_flat": null,
+   "units_flat": -1.0,
    "x": 0.11
   },
   {
@@ -25232,14 +25385,14 @@
    },
    "ex_stats_close": {
     "volume": 25591.97833,
-    "volume1mo": 25591.97833000001,
-    "volume1moClob": 25591.97833000001,
-    "volume1wk": 25591.97833000001,
-    "volume1wkClob": 25591.97833000001,
-    "volume1yr": 25591.97833000001,
-    "volume1yrClob": 25591.97833000001,
-    "volume24hr": 25591.97833000001,
-    "volume24hrClob": 25591.97833000001,
+    "volume1mo": 25691.978330000005,
+    "volume1moClob": 25691.978330000005,
+    "volume1wk": 25691.978330000005,
+    "volume1wkClob": 25691.978330000005,
+    "volume1yr": 25691.978330000005,
+    "volume1yrClob": 25691.978330000005,
+    "volume24hr": 25691.978330000005,
+    "volume24hrClob": 25691.978330000005,
     "volumeClob": 25591.97833,
     "volumeNum": 25591.97833
    },
@@ -25301,14 +25454,14 @@
    },
    "ex_stats_close": {
     "volume": 25591.97833,
-    "volume1mo": 25591.97833000001,
-    "volume1moClob": 25591.97833000001,
-    "volume1wk": 25591.97833000001,
-    "volume1wkClob": 25591.97833000001,
-    "volume1yr": 25591.97833000001,
-    "volume1yrClob": 25591.97833000001,
-    "volume24hr": 25591.97833000001,
-    "volume24hrClob": 25591.97833000001,
+    "volume1mo": 25691.978330000005,
+    "volume1moClob": 25691.978330000005,
+    "volume1wk": 25691.978330000005,
+    "volume1wkClob": 25691.978330000005,
+    "volume1yr": 25691.978330000005,
+    "volume1yrClob": 25691.978330000005,
+    "volume24hr": 25691.978330000005,
+    "volume24hrClob": 25691.978330000005,
     "volumeClob": 25591.97833,
     "volumeNum": 25591.97833
    },
@@ -25369,17 +25522,17 @@
     "volumeNum": 3766.605815
    },
    "ex_stats_close": {
-    "volume": 52770.526411,
-    "volume1mo": 52812.273078000006,
-    "volume1moClob": 52812.273078000006,
-    "volume1wk": 52812.273078000006,
-    "volume1wkClob": 52812.273078000006,
-    "volume1yr": 52812.273078000006,
-    "volume1yrClob": 52812.273078000006,
-    "volume24hr": 52812.273078000006,
-    "volume24hrClob": 52812.273078000006,
-    "volumeClob": 52770.526411,
-    "volumeNum": 52770.526411
+    "volume": 53300.503078,
+    "volume1mo": 53398.14612200001,
+    "volume1moClob": 53398.14612200001,
+    "volume1wk": 53398.14612200001,
+    "volume1wkClob": 53398.14612200001,
+    "volume1yr": 53398.14612200001,
+    "volume1yrClob": 53398.14612200001,
+    "volume24hr": 53398.14612200001,
+    "volume24hrClob": 53398.14612200001,
+    "volumeClob": 53300.503078,
+    "volumeNum": 53300.503078
    },
    "first_play": true,
    "game": "Magic vs. Warriors",
@@ -25438,17 +25591,17 @@
     "volumeNum": 3766.605815
    },
    "ex_stats_close": {
-    "volume": 52770.526411,
-    "volume1mo": 52812.273078000006,
-    "volume1moClob": 52812.273078000006,
-    "volume1wk": 52812.273078000006,
-    "volume1wkClob": 52812.273078000006,
-    "volume1yr": 52812.273078000006,
-    "volume1yrClob": 52812.273078000006,
-    "volume24hr": 52812.273078000006,
-    "volume24hrClob": 52812.273078000006,
-    "volumeClob": 52770.526411,
-    "volumeNum": 52770.526411
+    "volume": 53300.503078,
+    "volume1mo": 53398.14612200001,
+    "volume1moClob": 53398.14612200001,
+    "volume1wk": 53398.14612200001,
+    "volume1wkClob": 53398.14612200001,
+    "volume1yr": 53398.14612200001,
+    "volume1yrClob": 53398.14612200001,
+    "volume24hr": 53398.14612200001,
+    "volume24hrClob": 53398.14612200001,
+    "volumeClob": 53300.503078,
+    "volumeNum": 53300.503078
    },
    "first_play": true,
    "game": "Magic vs. Warriors",
@@ -27664,17 +27817,17 @@
     "volumeNum": 62953.46053399999
    },
    "ex_stats_close": {
-    "volume": 101045.69515899998,
-    "volume1mo": 101968.93996300001,
-    "volume1moClob": 101968.93996300001,
-    "volume1wk": 101968.93996300001,
-    "volume1wkClob": 101968.93996300001,
-    "volume1yr": 101968.93996300001,
-    "volume1yrClob": 101968.93996300001,
-    "volume24hr": 99941.409119,
-    "volume24hrClob": 99941.409119,
-    "volumeClob": 101045.69515899998,
-    "volumeNum": 101045.69515899998
+    "volume": 102473.530568,
+    "volume1mo": 102586.071173,
+    "volume1moClob": 102586.071173,
+    "volume1wk": 102586.071173,
+    "volume1wkClob": 102586.071173,
+    "volume1yr": 102586.071173,
+    "volume1yrClob": 102586.071173,
+    "volume24hr": 100558.54032900001,
+    "volume24hrClob": 100558.54032900001,
+    "volumeClob": 102473.530568,
+    "volumeNum": 102473.530568
    },
    "first_play": true,
    "game": "Spurs vs. Trail Blazers",
@@ -27722,6 +27875,7 @@
    "ex_stats": null,
    "first_play": true,
    "game": "Eastern Washington at Idaho",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 63.5, \"px_event\": 1704709437, \"px_market\": 225, \"side\": \"UNDER\"}",
    "lead_min": 698,
    "league": "NCAAF",
@@ -27742,7 +27896,8 @@
     "px_market": 225,
     "side": "UNDER"
    },
-   "result": null,
+   "result": "L",
+   "settled_utc": "2026-11-08T01:26:38Z",
    "side": "UNDER",
    "side_label": "under 63.5 (63.5)",
    "side_raw": "UNDER",
@@ -27752,7 +27907,7 @@
     "Eastern Washington",
     "Idaho"
    ],
-   "units_flat": null,
+   "units_flat": -1.0,
    "x": 0.23
   },
   {
@@ -29362,8 +29517,8 @@
    "best_price": 0.2556,
    "best_price_book": "polymarket",
    "book": "polymarket",
-   "close_price": 0.24,
-   "clv_cents": -1.0,
+   "close_price": 0.23,
+   "clv_cents": -2.0,
    "date": "2026-11-07",
    "dir": "RAISE",
    "ex_stats": {
@@ -29380,17 +29535,17 @@
     "volumeNum": 349.03035000000006
    },
    "ex_stats_close": {
-    "volume": 31427.039576000003,
-    "volume1mo": 31459.664576,
-    "volume1moClob": 31459.664576,
-    "volume1wk": 31459.664576,
-    "volume1wkClob": 31459.664576,
-    "volume1yr": 31459.664576,
-    "volume1yrClob": 31459.664576,
-    "volume24hr": 31381.448293,
-    "volume24hrClob": 31381.448293,
-    "volumeClob": 31427.039576000003,
-    "volumeNum": 31427.039576000003
+    "volume": 33778.66457600001,
+    "volume1mo": 33788.664575999996,
+    "volume1moClob": 33788.664575999996,
+    "volume1wk": 33788.664575999996,
+    "volume1wkClob": 33788.664575999996,
+    "volume1yr": 33788.664575999996,
+    "volume1yrClob": 33788.664575999996,
+    "volume24hr": 33710.448292999994,
+    "volume24hrClob": 33710.448292999994,
+    "volumeClob": 33778.66457600001,
+    "volumeNum": 33778.66457600001
    },
    "first_play": true,
    "game": "Canucks vs. Oilers",
@@ -29584,6 +29739,7 @@
    },
    "first_play": false,
    "game": "Eastern Washington @ Idaho",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1a90e-8e71-71b1-bb8f-33a8413b9160\", \"outcome_id\": \"01a1a90e-8e71-71b1-bb8f-33ba99e6cc59\"}",
    "lead_min": 771,
    "league": "NCAAF",
@@ -29602,7 +29758,8 @@
     "market_id": "01a1a90e-8e71-71b1-bb8f-33a8413b9160",
     "outcome_id": "01a1a90e-8e71-71b1-bb8f-33ba99e6cc59"
    },
-   "result": null,
+   "result": "W",
+   "settled_utc": "2026-11-08T01:26:38Z",
    "side": "OVER",
    "side_label": "Over 62.5 (62.5)",
    "side_raw": "OVER",
@@ -29612,7 +29769,7 @@
     "Eastern Washington",
     "Idaho"
    ],
-   "units_flat": null,
+   "units_flat": 0.57,
    "x": 0.4
   },
   {
@@ -35810,6 +35967,7 @@
    "ex_stats": null,
    "first_play": true,
    "game": "South Alabama at Louisiana",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 0, \"px_event\": 1704706082, \"px_market\": 219, \"side\": \"1\"}",
    "lead_min": 920,
    "league": "NCAAF",
@@ -35830,7 +35988,8 @@
     "px_market": 219,
     "side": "1"
    },
-   "result": null,
+   "result": "W",
+   "settled_utc": "2026-11-08T01:26:38Z",
    "side": "Louisiana",
    "side_label": "Louisiana",
    "side_raw": 1,
@@ -35840,7 +35999,7 @@
     "South Alabama",
     "Louisiana"
    ],
-   "units_flat": null,
+   "units_flat": 0.41,
    "x": 2.06
   },
   {
@@ -36486,6 +36645,7 @@
    "ex_stats": null,
    "first_play": true,
    "game": "South Alabama at Louisiana",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 0, \"px_event\": 1704706082, \"px_market\": 219, \"side\": \"0\"}",
    "lead_min": 930,
    "league": "NCAAF",
@@ -36506,7 +36666,8 @@
     "px_market": 219,
     "side": "0"
    },
-   "result": null,
+   "result": "L",
+   "settled_utc": "2026-11-08T01:26:38Z",
    "side": "South Alabama",
    "side_label": "South Alabama",
    "side_raw": 0,
@@ -36516,7 +36677,7 @@
     "South Alabama",
     "Louisiana"
    ],
-   "units_flat": null,
+   "units_flat": -1.0,
    "x": 2.49
   },
   {
@@ -42493,6 +42654,7 @@
    },
    "first_play": true,
    "game": "Eastern Washington @ Idaho",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1a8fe-5577-73e3-9651-bc8fa58105f5\", \"outcome_id\": \"01a1a8fe-5577-73e3-9651-bc90df21950d\"}",
    "lead_min": 1070,
    "league": "NCAAF",
@@ -42511,7 +42673,8 @@
     "market_id": "01a1a8fe-5577-73e3-9651-bc8fa58105f5",
     "outcome_id": "01a1a8fe-5577-73e3-9651-bc90df21950d"
    },
-   "result": null,
+   "result": "L",
+   "settled_utc": "2026-11-08T01:26:38Z",
    "side": "IDHO (0)",
    "side_label": "IDHO (0)",
    "side_raw": null,
@@ -42521,7 +42684,7 @@
     "Eastern Washington",
     "Idaho"
    ],
-   "units_flat": null,
+   "units_flat": -1.0,
    "x": 2.03
   },
   {
@@ -44114,8 +44277,8 @@
    "best_price": 0.7753,
    "best_price_book": "polymarket",
    "book": "polymarket",
-   "close_price": 0.77,
-   "clv_cents": 0.0,
+   "close_price": 0.78,
+   "clv_cents": 1.0,
    "date": "2026-11-07",
    "dir": "RAISE",
    "ex_stats": {
@@ -44132,17 +44295,17 @@
     "volumeNum": 241.26628300000004
    },
    "ex_stats_close": {
-    "volume": 31427.039576000003,
-    "volume1mo": 31459.664576,
-    "volume1moClob": 31459.664576,
-    "volume1wk": 31459.664576,
-    "volume1wkClob": 31459.664576,
-    "volume1yr": 31459.664576,
-    "volume1yrClob": 31459.664576,
-    "volume24hr": 31381.448293,
-    "volume24hrClob": 31381.448293,
-    "volumeClob": 31427.039576000003,
-    "volumeNum": 31427.039576000003
+    "volume": 33778.66457600001,
+    "volume1mo": 33788.664575999996,
+    "volume1moClob": 33788.664575999996,
+    "volume1wk": 33788.664575999996,
+    "volume1wkClob": 33788.664575999996,
+    "volume1yr": 33788.664575999996,
+    "volume1yrClob": 33788.664575999996,
+    "volume24hr": 33710.448292999994,
+    "volume24hrClob": 33710.448292999994,
+    "volumeClob": 33778.66457600001,
+    "volumeNum": 33778.66457600001
    },
    "first_play": true,
    "game": "Canucks vs. Oilers",
@@ -45479,17 +45642,17 @@
     "volumeNum": 2082.593385
    },
    "ex_stats_close": {
-    "volume": 106535.835628,
-    "volume1mo": 106632.55305600002,
-    "volume1moClob": 106632.55305600002,
-    "volume1wk": 106632.55305600002,
-    "volume1wkClob": 106632.55305600002,
-    "volume1yr": 106632.55305600002,
-    "volume1yrClob": 106632.55305600002,
-    "volume24hr": 105491.00967100002,
-    "volume24hrClob": 105491.00967100002,
-    "volumeClob": 106535.835628,
-    "volumeNum": 106535.835628
+    "volume": 110515.55148699999,
+    "volume1mo": 131180.30659,
+    "volume1moClob": 131180.30659,
+    "volume1wk": 131180.30659,
+    "volume1wkClob": 131180.30659,
+    "volume1yr": 131180.30659,
+    "volume1yrClob": 131180.30659,
+    "volume24hr": 130038.763205,
+    "volume24hrClob": 130038.763205,
+    "volumeClob": 110515.55148699999,
+    "volumeNum": 110515.55148699999
    },
    "first_play": true,
    "game": "Penguins vs. Kings",
@@ -46681,17 +46844,17 @@
     "volumeNum": 1729.5303040000001
    },
    "ex_stats_close": {
-    "volume": 91520.61741899999,
-    "volume1mo": 91544.080106,
-    "volume1moClob": 91544.080106,
-    "volume1wk": 91544.080106,
-    "volume1wkClob": 91544.080106,
-    "volume1yr": 91544.080106,
-    "volume1yrClob": 91544.080106,
-    "volume24hr": 89814.549802,
-    "volume24hrClob": 89814.549802,
-    "volumeClob": 91520.61741899999,
-    "volumeNum": 91520.61741899999
+    "volume": 91562.57264199998,
+    "volume1mo": 91567.572642,
+    "volume1moClob": 91567.572642,
+    "volume1wk": 91567.572642,
+    "volume1wkClob": 91567.572642,
+    "volume1yr": 91567.572642,
+    "volume1yrClob": 91567.572642,
+    "volume24hr": 89838.042338,
+    "volume24hrClob": 89838.042338,
+    "volumeClob": 91562.57264199998,
+    "volumeNum": 91562.57264199998
    },
    "first_play": true,
    "game": "Red Wings vs. Avalanche",
@@ -50398,6 +50561,7 @@
    },
    "first_play": true,
    "game": "Eastern Washington @ Idaho",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1a90e-8e72-7083-94e2-e4c22b7c4536\", \"outcome_id\": \"01a1a90e-8e72-7083-94e2-e4d3d7a64b2f\"}",
    "lead_min": 1309,
    "league": "NCAAF",
@@ -50416,7 +50580,8 @@
     "market_id": "01a1a90e-8e72-7083-94e2-e4c22b7c4536",
     "outcome_id": "01a1a90e-8e72-7083-94e2-e4d3d7a64b2f"
    },
-   "result": null,
+   "result": "W",
+   "settled_utc": "2026-11-08T01:26:38Z",
    "side": "OVER",
    "side_label": "Over 68.5 (68.5)",
    "side_raw": "OVER",
@@ -50426,7 +50591,7 @@
     "Eastern Washington",
     "Idaho"
    ],
-   "units_flat": null,
+   "units_flat": 0.96,
    "x": 2.04
   },
   {
@@ -68326,6 +68491,7 @@
    "ex_stats": null,
    "first_play": true,
    "game": "Eastern Washington at Idaho",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 63.5, \"px_event\": 1704709437, \"px_market\": 225, \"side\": \"OVER\"}",
    "lead_min": 1718,
    "league": "NCAAF",
@@ -68346,7 +68512,8 @@
     "px_market": 225,
     "side": "OVER"
    },
-   "result": null,
+   "result": "W",
+   "settled_utc": "2026-11-08T01:26:38Z",
    "side": "OVER",
    "side_label": "over 63.5 (63.5)",
    "side_raw": "OVER",
@@ -68356,7 +68523,7 @@
     "Eastern Washington",
     "Idaho"
    ],
-   "units_flat": null,
+   "units_flat": 0.7,
    "x": 0.01
   },
   {
@@ -83315,6 +83482,7 @@
    "ex_stats": null,
    "first_play": true,
    "game": "Eastern Washington at Idaho",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 0, \"px_event\": 1704709437, \"px_market\": 219, \"side\": \"0\"}",
    "lead_min": 1950,
    "league": "NCAAF",
@@ -83335,7 +83503,8 @@
     "px_market": 219,
     "side": "0"
    },
-   "result": null,
+   "result": "L",
+   "settled_utc": "2026-11-08T01:26:38Z",
    "side": "Eastern Washington",
    "side_label": "Eastern Washington",
    "side_raw": 0,
@@ -83345,7 +83514,7 @@
     "Eastern Washington",
     "Idaho"
    ],
-   "units_flat": null,
+   "units_flat": -1.0,
    "x": 2.0
   },
   {
