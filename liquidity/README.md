@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 8, 1:26 PM ET. This run: 0 new, 0 not confirmed, 3 pending. Open alerts: 108.
+Updated Sun Nov 8, 1:30 PM ET. This run: 0 new, 3 not confirmed, 0 pending. Open alerts: 108.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -87,7 +87,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 8 2:10AM | NFL | Cleveland vs New Orleans: Spread | spread: New Orleans wins by over 3.5 points | kalshi | $82k | +104 |  |  | +7.0c | yes | pending |
 | Nov 8 2:10AM | NFL | Las Vegas vs San Francisco: Spread | spread: NOT San Francisco wins by over 9.5 points | kalshi | $97k | -104 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Nov 8 2:10AM | NBA | Philadelphia vs Chicago | moneyline: Philadelphia | kalshi | $109k | -376 | ✅ novig,polymarket |  | +0.0c | yes | pending |
-| Nov 8 2:05AM | NBA | Los Angeles L vs Detroit | moneyline: Detroit | kalshi | $53k | -163 |  |  | +10.0c | yes | pending |
+| Nov 8 2:05AM | NBA | Los Angeles L vs Detroit | moneyline: Detroit | kalshi | $53k | -163 |  |  | +9.0c | yes | pending |
 | Nov 8 1:30AM | NFL | Detroit vs Miami: Total Points | total: Over 49.5 points | kalshi | $53k | -108 |  |  | +2.0c | yes | pending |
 | Nov 8 1:10AM | NFL | Cincinnati vs Atlanta: Total Points | total: NOT Over 52.5 points | kalshi | $77k | -100 |  |  | +1.0c | yes | W |
 | Nov 8 1:06AM | NFL | New York G vs Philadelphia: Spread | spread: NOT New York G wins by over 3.5 points | kalshi | $186k | -122 |  |  | +2.0c | yes | pending |
@@ -98,7 +98,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 8 12:40AM | NHL | Florida vs Boston | moneyline: Boston | kalshi | $39k | -127 | ✅ novig |  | +3.0c |  | pending |
 | Nov 8 12:40AM | NFL | Cleveland vs New Orleans | moneyline: New Orleans | kalshi | $188k | -163 | ✅ novig,prophetx |  | +7.0c | yes | pending |
 | Nov 8 12:15AM | NFL | Houston vs Los Angeles C | moneyline: Houston | kalshi | $114k | -233 | ✅ novig,prophetx |  | -2.0c | yes | pending |
-| Nov 8 12:10AM | NFL | Las Vegas Raiders @ San Francisco 49ers | moneyline: SF (0) | novig | $57k | -400 | ✅ kalshi,prophetx |  | +0.5c |  | pending |
+| Nov 8 12:10AM | NFL | Las Vegas Raiders @ San Francisco 49ers | moneyline: SF (0) | novig | $57k | -400 | ✅ kalshi,prophetx |  | +0.0c |  | pending |
 | Nov 8 12:10AM | NFL | Arizona Cardinals @ Seattle Seahawks | moneyline: SEA (0) | novig | $57k | -376 | ✅ kalshi,prophetx |  | +0.0c |  | pending |
 | Nov 8 12:10AM | NFL | Detroit Lions @ Miami Dolphins | moneyline: DET (0) | novig | $57k | -277 | ✅ kalshi,prophetx |  | +0.5c |  | pending |
 | Nov 8 12:10AM | NFL | Las Vegas vs San Francisco | moneyline: San Francisco | kalshi | $139k | -400 | ✅ novig,prophetx |  | +0.0c | yes | pending |
