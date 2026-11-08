@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 8, 12:10 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 16.
+Updated Sun Nov 8, 12:20 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 16.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,12 +10,12 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 8 11:30AM | NCAAB | Quinnipiac @ Vermont | moneyline: UVM (0) | novig | $63k | -355 |  | ❌ | -1.0c |  | pending |
-| Nov 8 11:30AM | NCAAB | Central Connecticut @ Dartmouth | moneyline: DART (0) | novig | $171k | -335 | ✅ kalshi |  | +0.0c |  | pending |
-| Nov 8 11:30AM | NCAAB | Quinnipiac @ Vermont | spread: Quinnipiac +8.5 (-8.5) | novig | $555k | -100 |  | ❌ | +0.5c |  | pending |
-| Nov 8 11:30AM | NCAAB | Arkansas @ Virginia | spread: UVA -3.5 (-3.5) | novig | $803k | -104 |  | ❌ | +0.5c |  | pending |
+| Nov 8 11:30AM | NCAAB | Quinnipiac @ Vermont | moneyline: UVM (0) | novig | $63k | -355 |  | ❌ | -1.0c | yes | pending |
+| Nov 8 11:30AM | NCAAB | Central Connecticut @ Dartmouth | moneyline: DART (0) | novig | $171k | -335 | ✅ kalshi |  | +0.0c | yes | pending |
+| Nov 8 11:30AM | NCAAB | Quinnipiac @ Vermont | spread: Quinnipiac +8.5 (-8.5) | novig | $555k | -100 |  | ❌ | +0.5c | yes | pending |
+| Nov 8 11:30AM | NCAAB | Arkansas @ Virginia | spread: UVA -3.5 (-3.5) | novig | $803k | -104 |  | ❌ | +1.0c | yes | pending |
 | Nov 8 10:50AM | NCAAB | Rider vs Binghamton | moneyline: Binghamton | kalshi | $27k | -317 |  | ✅ | -1.0c |  | pending |
-| Nov 8 10:00AM | NCAAB | Arkansas vs Virginia | moneyline: Virginia | kalshi | $66k | -150 |  | ✅ | +0.0c |  | pending |
+| Nov 8 10:00AM | NCAAB | Arkansas vs Virginia | moneyline: Virginia | kalshi | $66k | -150 |  | ✅ | +1.0c |  | pending |
 | Nov 8 9:30AM | NCAAB | Norfolk St. vs William & Mary | moneyline: William & Mary | kalshi | $25k | -456 |  |  | +0.0c |  | pending |
 | Nov 8 9:20AM | NCAAB | Quinnipiac vs Vermont | moneyline: Vermont | kalshi | $36k | -317 |  |  | +2.0c |  | pending |
 | Nov 8 9:20AM | NCAAB | Central Connecticut St. vs Dartmouth | moneyline: Dartmouth | kalshi | $39k | -233 |  |  | +8.0c |  | pending |
