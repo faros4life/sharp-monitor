@@ -1,6 +1,191 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-08T15:00:24Z",
+   "base_depth": 99134,
+   "best_price": 0.6111,
+   "best_price_american": -157,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.6,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-08",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 15377,
+     "new_this_side": 66127,
+     "other_side": 41266,
+     "other_side_all_levels": 92274,
+     "ratio": 2.1,
+     "this_side": 85131,
+     "this_side_all_levels": 155951
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Virginia",
+     "price": 0.6063,
+     "this_side": 4094
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 68435.5,
+    "volume_24h_fp": 65571.7,
+    "volume_fp": 72514.72
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 1150.84,
+    "volume_24h_fp": 1248.4,
+    "volume_fp": 1268.59
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 67284.66,
+    "volume_24h_fp": 64323.3,
+    "volume_fp": 71246.13
+   },
+   "fade_price": 0.41,
+   "first_seen_utc": "2026-11-08T14:50:17Z",
+   "game": "Arkansas vs Virginia",
+   "game_surge_books": [],
+   "game_x": 1.47,
+   "key": "kalshi|KXNCAAMBGAME-26NOV08ARKUVA|ml|1",
+   "lead_min": 180,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 66127,
+   "new_x": 7.76,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 68435.5,
+      "volume_24h_fp": 65571.7,
+      "volume_fp": 72514.72
+     },
+     "game_normal": 105731,
+     "game_x": 1.47,
+     "normal": 8517,
+     "now": 155951,
+     "type": "ML",
+     "x": 18.31
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 2656,
+     "game_x": 1.55,
+     "normal": 1126,
+     "now": 4108,
+     "type": "ML",
+     "x": 3.65
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.6,
+   "price_american": -150,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.6,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -160
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -158
+    },
+    "betopenly": {
+     "point": null,
+     "price": -150
+    },
+    "betrivers": {
+     "point": null,
+     "price": -175
+    },
+    "betus": {
+     "point": null,
+     "price": -160
+    },
+    "bovada": {
+     "point": null,
+     "price": -160
+    },
+    "draftkings": {
+     "point": null,
+     "price": -166
+    },
+    "fanatics": {
+     "point": null,
+     "price": -165
+    },
+    "fanduel": {
+     "point": null,
+     "price": -164
+    },
+    "kalshi": {
+     "point": null,
+     "price": -150
+    },
+    "lowvig": {
+     "point": null,
+     "price": -158
+    },
+    "novig": {
+     "point": null,
+     "price": -150
+    },
+    "polymarket": {
+     "point": null,
+     "price": -150
+    },
+    "prophetx": {
+     "point": null,
+     "price": -154
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -165
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV08ARKUVA-UVA"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [
+    "Virginia Cavaliers -1.5 (-120)"
+   ],
+   "sharp_oppose": [],
+   "side": "Virginia",
+   "side_label": "Virginia",
+   "size_x": 18.31,
+   "start_source": "odds",
+   "start_utc": "2026-11-08T18:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "prophetx"
+   ],
+   "teams": [
+    "Arkansas",
+    "Virginia"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-08T14:30:21Z",
    "base_depth": 31481,
    "best_price": 0.8212,
@@ -47,9 +232,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 3196.6,
-    "volume_24h_fp": 3226.0699999999997,
-    "volume_fp": 3226.0699999999997
+    "open_interest_fp": 3199.6,
+    "volume_24h_fp": 3229.0699999999997,
+    "volume_fp": 3229.0699999999997
    },
    "ex_stats_first": {
     "open_interest_fp": 2993.48,
@@ -400,7 +585,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 608.73,
-    "volume_24h_fp": 514.4,
+    "volume_24h_fp": 558.4,
     "volume_fp": 631.71
    },
    "ex_stats_first": {
@@ -553,8 +738,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.69,
-   "clv_cents": 4.0,
+   "close_price": 0.68,
+   "clv_cents": 3.0,
    "confirmed_after_min": 10,
    "date": "2026-11-08",
    "depth_by_book": {
@@ -745,8 +930,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.42,
-   "clv_cents": -10.0,
+   "close_price": 0.05,
+   "clv_cents": -47.0,
    "confirmed_after_min": 10,
    "date": "2026-11-08",
    "depth_by_book": {
@@ -771,9 +956,9 @@
     "volume_fp": 456.77
    },
    "ex_stats_close": {
-    "open_interest_fp": 726765.6699999999,
-    "volume_24h_fp": 1117693.26,
-    "volume_fp": 1182056.28
+    "open_interest_fp": 800613.13,
+    "volume_24h_fp": 1322633.28,
+    "volume_fp": 1425368.7
    },
    "ex_stats_first": {
     "open_interest_fp": 16886.35,
@@ -816,7 +1001,8 @@
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.52,
    "prices_by_book": {},
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-08T15:00:24Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXATPMATCH-26NOV08MANSAM-MAN"
@@ -1130,9 +1316,9 @@
     "volume_fp": 205.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 43696.439999999995,
-    "volume_24h_fp": 45870.57,
-    "volume_fp": 45870.57
+    "open_interest_fp": 43744.49,
+    "volume_24h_fp": 45918.62,
+    "volume_fp": 45918.62
    },
    "ex_stats_first": {
     "open_interest_fp": 16837.71,
@@ -1233,6 +1419,7 @@
     "polymarket",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.73,
    "clv_cents": -4.0,
    "confirmed_after_min": 10,
@@ -1672,9 +1859,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 534.18,
-    "volume_24h_fp": 526.81,
-    "volume_fp": 534.18
+    "open_interest_fp": 544.41,
+    "volume_24h_fp": 538.73,
+    "volume_fp": 544.41
    },
    "ex_stats_first": {
     "open_interest_fp": 132.55,
@@ -1810,8 +1997,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.69,
-   "clv_cents": 0.0,
+   "close_price": 0.68,
+   "clv_cents": -1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-08",
    "depth_by_book": {
@@ -1848,9 +2035,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 461.15,
-    "volume_24h_fp": 454.92,
-    "volume_fp": 461.15
+    "open_interest_fp": 661.1500000000001,
+    "volume_24h_fp": 654.9200000000001,
+    "volume_fp": 661.1500000000001
    },
    "ex_stats_first": {
     "open_interest_fp": 294.38,
