@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 8, 6:50 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 10.
+Updated Sun Nov 8, 7:00 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 10.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,7 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 8 6:30AM | TENNIS | Inaki Montes-de la Torre vs Lorenzo Sonego | moneyline: Inaki Montes-de la Torre | kalshi | $29k | +138 |  |  | -13.0c | yes | pending |
+| Nov 8 6:30AM | TENNIS | Inaki Montes-de la Torre vs Lorenzo Sonego | moneyline: Inaki Montes-de la Torre | kalshi | $29k | +138 |  |  | -18.0c | yes | pending |
 | Nov 8 3:50AM | TENNIS | Claire Liu vs Alexandra Eala | moneyline: Claire Liu | kalshi | $258k | -186 |  |  | +19.0c |  | W |
 | Nov 8 2:40AM | TENNIS | Marta Kostyuk vs Linda Noskova | moneyline: Linda Noskova | kalshi | $286k | -122 |  |  | +2.0c |  | pending |
 | Nov 8 2:30AM | TENNIS | Elias Ymer vs Juan Manuel Cerundolo | moneyline: Juan Manuel Cerundolo | kalshi | $38k | -335 | ✅ novig |  | -3.0c |  | pending |
