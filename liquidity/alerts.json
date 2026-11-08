@@ -58,6 +58,11 @@
     "volume_24h_fp": 0.0,
     "volume_fp": 6.0
    },
+   "ex_stats_close": {
+    "open_interest_fp": 14578.26,
+    "volume_24h_fp": 15582.38,
+    "volume_fp": 16656.62
+   },
    "ex_stats_first": {
     "open_interest_fp": 14542.46,
     "volume_24h_fp": 15727.76,
@@ -275,9 +280,9 @@
     "volume_fp": 20.46
    },
    "ex_stats_close": {
-    "open_interest_fp": 7855.83,
-    "volume_24h_fp": 2612.19,
-    "volume_fp": 9165.65
+    "open_interest_fp": 7874.41,
+    "volume_24h_fp": 2621.49,
+    "volume_fp": 9184.23
    },
    "ex_stats_first": {
     "open_interest_fp": 7835.37,
@@ -326,6 +331,8 @@
    "norm_ready_books": 2,
    "paper_only": false,
    "price": 0.52,
+   "price_after_15m": 0.5172,
+   "price_after_15m_book": "prophetx",
    "price_american": -108,
    "price_rule": "ok",
    "price_when_first_seen": 0.52,
@@ -414,6 +421,7 @@
    "size_x": 0.89,
    "start_source": "odds",
    "start_utc": "2026-11-08T18:00:00Z",
+   "still_actionable": true,
    "surge_books": [],
    "teams": [
     "New York G",
@@ -1319,9 +1327,9 @@
     "volume_fp": 1008.35
    },
    "ex_stats_close": {
-    "open_interest_fp": 1439719.6099999999,
-    "volume_24h_fp": 379380.03,
-    "volume_fp": 1770977.16
+    "open_interest_fp": 1440702.02,
+    "volume_24h_fp": 380681.61,
+    "volume_fp": 1771995.8399999999
    },
    "ex_stats_first": {
     "open_interest_fp": 1432090.88,
@@ -2046,9 +2054,9 @@
     "volume_fp": 232.48
    },
    "ex_stats_close": {
-    "open_interest_fp": 241226.09,
-    "volume_24h_fp": 217834.13,
-    "volume_fp": 280564.58
+    "open_interest_fp": 242975.74,
+    "volume_24h_fp": 218446.75,
+    "volume_fp": 282314.23
    },
    "ex_stats_first": {
     "open_interest_fp": 75371.61,
@@ -2243,9 +2251,9 @@
     "volume_fp": 299.08
    },
    "ex_stats_close": {
-    "open_interest_fp": 126552.57,
-    "volume_24h_fp": 46882.62,
-    "volume_fp": 131932.01
+    "open_interest_fp": 128037.87,
+    "volume_24h_fp": 47890.11,
+    "volume_fp": 133417.31
    },
    "ex_stats_first": {
     "open_interest_fp": 120519.76,
@@ -2444,9 +2452,9 @@
     "volume_fp": 34403.96
    },
    "ex_stats_close": {
-    "open_interest_fp": 871019.86,
-    "volume_24h_fp": 246474.19999999998,
-    "volume_fp": 922222.91
+    "open_interest_fp": 871730.23,
+    "volume_24h_fp": 247518.73,
+    "volume_fp": 923033.74
    },
    "ex_stats_first": {
     "open_interest_fp": 819313.29,
@@ -3315,9 +3323,9 @@
     "volume_fp": 115.32
    },
    "ex_stats_close": {
-    "open_interest_fp": 158487.57,
-    "volume_24h_fp": 49391.28999999999,
-    "volume_fp": 174973.53
+    "open_interest_fp": 159828.07,
+    "volume_24h_fp": 50762.149999999994,
+    "volume_fp": 176314.03
    },
    "ex_stats_first": {
     "open_interest_fp": 152105.61,
@@ -9312,6 +9320,7 @@
     "volume_fp": 34044.67
    },
    "fade_price": 0.2,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-07T23:51:00Z",
    "game": "Chicago vs Carolina",
    "game_surge_books": [],
@@ -9464,7 +9473,7 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNHLGAME-26NOV07CHICAR-CAR"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig",
@@ -9473,6 +9482,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-08T03:36:23Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Carolina",
@@ -9490,7 +9500,7 @@
     "Carolina"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.24
   },
   {
    "alerted_utc": "2026-11-07T23:51:00Z",
@@ -23210,6 +23220,7 @@
     "volumeNum": 18290.403157
    },
    "fade_price": 0.18,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-07T14:32:01Z",
    "game": "Wizards vs. Thunder",
    "game_surge_books": [
@@ -23329,11 +23340,12 @@
     "outcome_index": 1,
     "pm_market_id": "6428609"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settled_utc": "2026-11-08T03:36:23Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Thunder",
@@ -23348,7 +23360,7 @@
     "Thunder"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.2
   },
   {
    "alerted_utc": "2026-11-07T14:51:56Z",
