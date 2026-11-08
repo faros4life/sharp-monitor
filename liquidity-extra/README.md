@@ -1,28 +1,28 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 7, 7:00 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 12.
+Updated Sat Nov 7, 7:10 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 11.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 169-101 (-12.26u flat) | rule met: 38-31
+**Record:** 170-101 (-11.94u flat) | rule met: 38-31
 
-**Fade (paper, betting against the print):** 76-134 (+5.38u flat, after fees)
+**Fade (paper, betting against the print):** 76-135 (+4.38u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 7 5:50PM | NCAAB | San Jose St. vs UC Irvine | moneyline: UC Irvine | kalshi | $33k | -335 |  |  | +0.0c | yes | pending |
-| Nov 7 4:20PM | NCAAB | Maryland vs Georgetown | moneyline: Maryland | kalshi | $29k | -138 |  |  | +0.0c | yes | pending |
+| Nov 7 4:20PM | NCAAB | Maryland vs Georgetown | moneyline: Maryland | kalshi | $29k | -138 |  |  | +1.0c | yes | pending |
 | Nov 7 12:10PM | NCAAB | North Carolina A&T @ Ohio | spread: OHIO -14.5 (-14.5) | novig | $33k | -108 |  | ✅ | +0.5c | yes | L |
 | Nov 7 11:40AM | NCAAB | Cal State Fullerton vs South Dakota | moneyline: South Dakota | kalshi | $28k | -108 |  | ❌ | +0.0c |  | L |
 | Nov 7 11:00AM | NCAAB | Denver vs UC Riverside | moneyline: UC Riverside | kalshi | $27k | -127 |  |  | +0.0c |  | pending |
 | Nov 7 10:50AM | TENNIS | Magda Linette vs Anastasia Zakharova | moneyline: Magda Linette | kalshi | $52k | -400 |  |  | +13.0c |  | W |
 | Nov 7 10:00AM | TENNIS | Casper Ruud vs Carlos Alcaraz | moneyline: Carlos Alcaraz | kalshi | $46k | -426 | ✅ novig |  | +3.0c | yes | W |
 | Nov 7 9:50AM | NCAAB | UNC Wilmington vs East Carolina | moneyline: UNC Wilmington | kalshi | $31k | -186 |  |  | +0.0c |  | W |
-| Nov 7 9:50AM | NCAAB | SIU Edwardsville vs Lipscomb | moneyline: Lipscomb | kalshi | $41k | -317 |  |  | +0.0c | yes | pending |
+| Nov 7 9:50AM | NCAAB | SIU Edwardsville vs Lipscomb | moneyline: Lipscomb | kalshi | $41k | -317 |  |  | +0.0c | yes | W |
 | Nov 7 9:50AM | NCAAB | Southeastern Louisiana vs Little Rock | moneyline: Little Rock | kalshi | $40k | -456 |  |  | -2.0c |  | pending |
 | Nov 7 9:50AM | NCAAB | Prairie View A&M vs UT Rio Grande Valley | moneyline: UT Rio Grande Valley | kalshi | $36k | -376 |  |  | +0.0c | yes | pending |
 | Nov 7 9:50AM | NCAAB | Old Dominion vs Bucknell | moneyline: Old Dominion | kalshi | $29k | -178 |  |  | +5.0c | yes | W |
-| Nov 7 9:50AM | NCAAB | Houston Christian vs Western Illinois | moneyline: Houston Christian | kalshi | $28k | -400 |  |  | +1.0c |  | pending |
+| Nov 7 9:50AM | NCAAB | Houston Christian vs Western Illinois | moneyline: Houston Christian | kalshi | $28k | -400 |  |  | +1.0c | yes | pending |
 | Nov 7 9:40AM | TENNIS | Luca Van Assche vs Ben Shelton | moneyline: Luca Van Assche | kalshi | $363k | -104 |  |  | -46.0c | yes | L |
 | Nov 7 9:20AM | NCAAB | Northern Iowa vs Furman | moneyline: Furman | kalshi | $25k | -194 |  |  | +0.0c |  | pending |
 | Nov 7 8:20AM | TENNIS | Damir Dzumhur vs Inaki Montes-de la Torre | moneyline: Inaki Montes | kalshi | $106k | -194 |  |  | +27.0c | yes | W |
