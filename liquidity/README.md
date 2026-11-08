@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 7, 10:56 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 60.
+Updated Sat Nov 7, 11:00 PM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 55.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 1078-904 (-79.59u flat) | rule met: 659-573
+**Record:** 1083-904 (-76.84u flat) | rule met: 661-573
 
-**Fade (paper, betting against the print):** 638-805 (-96.81u flat, after fees)
+**Fade (paper, betting against the print):** 638-810 (-101.81u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -51,7 +51,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 7 7:10PM | NHL | Tampa Bay vs Minnesota: Spread | spread: NOT Tampa Bay wins by over 1.5 goals | kalshi | $47k | -194 | ✅ novig,polymarket |  | +0.0c | yes | W |
 | Nov 7 7:10PM | NCAAF | Miami (FL) vs Notre Dame | moneyline: Notre Dame | kalshi | $158k | -245 | ✅ novig,prophetx | ✅ | +0.0c | yes | pending |
 | Nov 7 7:00PM | NBA | Nets vs. Hawks | spread: Hawks (-6.5) | polymarket | $60k | -104 | ✅ novig | ✅ | +0.0c |  | L |
-| Nov 7 7:00PM | NBA | Washington Wizards @ Oklahoma City Thunder | moneyline: OKC (0) | novig | $100k | -525 | ✅ kalshi,polymarket,prophetx | ✅ | +0.0c |  | pending |
+| Nov 7 7:00PM | NBA | Washington Wizards @ Oklahoma City Thunder | moneyline: OKC (0) | novig | $100k | -525 | ✅ kalshi,polymarket,prophetx | ✅ | +0.0c |  | W |
 | Nov 7 7:00PM | NCAAF | Georgia @ Ole Miss | spread: UGA -3.5 (3.5) | novig | $48k | -108 |  |  | -2.0c |  | pending |
 | Nov 7 7:00PM | NHL | Tampa Bay vs Minnesota | moneyline: Tampa Bay | kalshi | $127k | -133 | ✅ novig,polymarket |  | +0.0c | yes | W |
 | Nov 7 7:00PM | NHL | Chicago vs Carolina | moneyline: Carolina | kalshi | $43k | -426 | ✅ novig,polymarket,prophetx |  | +0.0c | yes | W |
@@ -66,7 +66,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 7 6:03PM | NHL | Red Wings vs. Avalanche | moneyline: Avalanche | polymarket | $39k | -203 | ✅ novig |  | +0.0c |  | pending |
 | Nov 7 6:03PM | NCAAF | Michigan St. vs Michigan | moneyline: NOT Michigan St. | kalshi | $60k | -567 |  |  | -1.0c | yes | pending |
 | Nov 7 5:51PM | NBA | Magic vs. Warriors | spread: Warriors (-7.5) | polymarket | $56k | -100 |  | ✅ | +2.0c |  | pending |
-| Nov 7 5:51PM | NBA | New York Knicks @ Cleveland Cavaliers | moneyline: NYK (0) | novig | $32k | -186 | ✅ polymarket,prophetx | ✅ | -1.0c | yes | pending |
+| Nov 7 5:51PM | NBA | New York Knicks @ Cleveland Cavaliers | moneyline: NYK (0) | novig | $32k | -186 | ✅ polymarket,prophetx | ✅ | -1.0c | yes | W |
 | Nov 7 5:51PM | NCAAF | Georgia vs Ole Miss | moneyline: Georgia | kalshi | $367k | -163 | ✅ prophetx |  | +0.0c | yes | pending |
 | Nov 7 5:40PM | NBA | Nets vs. Hawks | moneyline: Hawks | polymarket | $30k | -257 | ✅ kalshi,novig,prophetx | ✅ | -2.0c | yes | W |
 | Nov 7 5:20PM | NCAAF | Oklahoma vs Florida | moneyline: Florida | kalshi | $122k | -186 | ✅ novig,prophetx | ❌ | +0.0c | yes | pending |
@@ -77,7 +77,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 7 4:40PM | NHL | New York R vs Seattle | moneyline: New York R | kalshi | $67k | -133 | ✅ novig,prophetx |  | +0.0c |  | W |
 | Nov 7 4:30PM | NHL | Devils vs. Islanders | moneyline: Devils | polymarket | $25k | -144 | ✅ novig |  | -1.0c | yes | W |
 | Nov 7 4:30PM | NBA | Denver vs Indiana | moneyline: Denver | kalshi | $260k | -285 | ✅ novig,prophetx |  | -1.0c | yes | W |
-| Nov 7 4:20PM | NHL | Sharks vs. Stars | spread: Sharks (+1.5) | polymarket | $29k | -100 |  |  | +0.0c |  | pending |
+| Nov 7 4:20PM | NHL | Sharks vs. Stars | spread: Sharks (+1.5) | polymarket | $29k | -100 |  |  | +0.0c |  | W |
 | Nov 7 4:20PM | NCAAF | Georgia @ Ole Miss | moneyline: UGA (0) | novig | $75k | -163 |  |  | +0.5c |  | pending |
 | Nov 7 4:10PM | NCAAF | Texas State @ Oregon State | total: Under 71.5 (71.5) | novig | $28k | -102 |  |  | -1.0c |  | pending |
 | Nov 7 4:10PM | NCAAF | Hawai'i vs UTEP | moneyline: Hawai'i | kalshi | $70k | -285 |  |  | -1.0c |  | pending |
@@ -115,7 +115,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 7 11:12AM | NCAAF | South Dakota State @ Northern Iowa | moneyline: SDKST (0) | novig | $26k | -525 |  |  | +1.5c | yes | W |
 | Nov 7 10:51AM | NBA | Spurs vs. Trail Blazers | spread: Trail Blazers (+5.5) | polymarket | $26k | -104 |  | ✅ | +0.0c | yes | pending |
 | Nov 7 10:51AM | NCAAF | Oklahoma State @ Kansas State | moneyline: OKST (0) | novig | $50k | -223 |  | ❌ | +2.0c | yes | W |
-| Nov 7 10:32AM | NHL | Lightning vs. Wild | moneyline: Lightning | polymarket | $39k | -138 |  |  | -1.0c | yes | pending |
+| Nov 7 10:32AM | NHL | Lightning vs. Wild | moneyline: Lightning | polymarket | $39k | -138 |  |  | -1.0c | yes | W |
 | Nov 7 10:32AM | NCAAF | UCLA @ Minnesota | spread: MINN +3.5 (3.5) | novig | $40k | +102 | ✅ kalshi |  | +1.5c |  | L |
 | Nov 7 10:32AM | NCAAF | UCLA @ Minnesota | moneyline: MINN (0) | novig | $67k | +163 |  |  | +0.5c | yes | L |
 | Nov 7 10:32AM | NCAAF | Texas vs Missouri: Spread | spread: NOT Texas wins by over 2.5 points | kalshi | $214k | +104 |  |  | +1.0c | yes | L |
@@ -139,7 +139,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 7 8:30AM | NHL | Canucks vs. Oilers | spread: Canucks (+1.5) | polymarket | $30k | +122 |  |  | -1.0c | yes | pending |
 | Nov 7 8:30AM | NHL | Sharks vs. Stars | total: Under (6.5) | polymarket | $33k | -122 |  | ✅ | +1.0c |  | L |
 | Nov 7 8:10AM | NHL | Canucks vs. Oilers | moneyline: Oilers | polymarket | $29k | -317 |  |  | +2.0c |  | pending |
-| Nov 7 8:10AM | NHL | Sharks vs. Stars | moneyline: Stars | polymarket | $34k | -285 |  |  | +0.0c |  | pending |
+| Nov 7 8:10AM | NHL | Sharks vs. Stars | moneyline: Stars | polymarket | $34k | -285 |  |  | +0.0c |  | W |
 | Nov 7 8:10AM | NCAAF | Arkansas @ Auburn | spread: ARK +10.5 (-10.5) | novig | $25k | -104 | ✅ kalshi,prophetx |  | -1.5c |  | W |
 | Nov 7 8:10AM | NCAAF | Oklahoma St. vs Kansas St.: Spread | spread: NOT Oklahoma St. wins by over 6.5 points | kalshi | $37k | +108 | ✅ novig | ❌ | -2.0c | yes | L |
 | Nov 7 7:50AM | NCAAF | Tulsa vs Tulane: Spread | spread: NOT Tulsa wins by over 2.5 points | kalshi | $89k | +108 |  | ❌ | -1.0c | yes | L |
