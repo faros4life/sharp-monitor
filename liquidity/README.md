@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 8, 1:25 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 39.
+Updated Sun Nov 8, 1:30 AM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 40.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,7 +10,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 8 1:10AM | NFL | Cincinnati vs Atlanta: Total Points | total: NOT Over 52.5 points | kalshi | $77k | -100 |  |  | +0.0c | yes | pending |
+| Nov 8 1:30AM | NFL | Detroit vs Miami: Total Points | total: Over 49.5 points | kalshi | $53k | -108 |  |  | +0.0c |  | pending |
+| Nov 8 1:10AM | NFL | Cincinnati vs Atlanta: Total Points | total: NOT Over 52.5 points | kalshi | $77k | -100 |  |  | +1.0c | yes | pending |
 | Nov 8 1:06AM | NFL | New York G vs Philadelphia: Spread | spread: NOT New York G wins by over 3.5 points | kalshi | $186k | -122 |  |  | +0.0c |  | pending |
 | Nov 8 1:06AM | NFL | Cleveland vs New Orleans: Spread | spread: NOT New Orleans wins by over 3.5 points | kalshi | $194k | -108 | ✅ novig |  | +0.0c |  | pending |
 | Nov 8 1:06AM | NFL | New York G vs Philadelphia | moneyline: Philadelphia | kalshi | $184k | +150 | ✅ prophetx |  | +0.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 6 7:00PM | NBA | Philadelphia 76ers @ Cleveland Cavaliers | moneyline: PHI (0) | novig | $44k | -144 | ✅ polymarket,prophetx |  | -0.5c |  | L |
 | Nov 6 7:00PM | NHL | Florida vs Washington | moneyline: Washington | kalshi | $92k | -113 | ✅ novig |  | +1.0c | yes | W |
 | Nov 6 6:51PM | NCAAF | Nebraska vs Illinois: Total Points | total: Over 52.5 points | kalshi | $31k | -100 | ✅ novig | ✅ | +0.0c | yes | L |
-| Nov 6 6:41PM | NHL | Anaheim vs Calgary: Total Goals | total: Over 6.5 goals scored | kalshi | $42k | -113 | ✅ novig,polymarket |  | +1.0c | yes | W |
