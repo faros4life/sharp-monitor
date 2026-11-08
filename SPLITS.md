@@ -1,19 +1,19 @@
-# Paper splits (updated 2026-11-08T21:30:23Z)
+# Paper splits (updated 2026-11-08T21:35:13Z)
 
 Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kill bar: 30+ resulted at -0.10u/play or worse closes a split.
 
 | Split | Type | Start | W-L-P | Units | u/play | True close % | Status |
 |---|---|---|---|---|---|---|---|
 | Phase-1 live filter (paper view) | a-priori | 2026-10-26 | 21-18-0 | +0.06 | +0.002 | -0.84 | ELIGIBLE at next review |
-| Phase-1 control group | control | 2026-10-26 | 19-24-2 | -7.67 | -0.170 | -2.59 | OPEN |
-| Hard Rock-priced, routed | a-priori | 2026-10-26 | 44-32-0 | +6.98 | +0.092 | -1.03 | ELIGIBLE at next review |
-| Fade Hard Rock-priced | scan | 2026-10-26 | 44-32-0 | -11.81 | -0.155 | -1.03 | CLOSED |
+| Phase-1 control group | control | 2026-10-26 | 20-24-2 | -6.82 | -0.148 | -2.50 | OPEN |
+| Hard Rock-priced, routed | a-priori | 2026-10-26 | 45-32-0 | +7.93 | +0.103 | -1.04 | ELIGIBLE at next review |
+| Fade Hard Rock-priced | scan | 2026-10-26 | 45-32-0 | -12.81 | -0.166 | -1.04 | CLOSED |
 | PM-global-priced, routed | a-priori | 2026-10-26 | 0-0-0 | +0.00 |  |  | OPEN |
-| Unders only | scan | 2026-10-26 | 43-33-0 | +4.96 | +0.065 | -0.73 | OPEN |
-| Combined filter | scan | 2026-10-26 | 59-53-0 | -0.59 | -0.005 | -1.94 | OPEN |
+| Unders only | scan | 2026-10-26 | 44-33-0 | +5.91 | +0.077 | -0.73 | OPEN |
+| Combined filter | scan | 2026-10-26 | 60-53-0 | +0.26 | +0.002 | -1.91 | OPEN |
 | Priced -125 or worse | scan | 2026-10-26 | 12-10-0 | -0.46 | -0.021 | -2.52 | OPEN |
 | College basketball | scan | 2026-10-26 | 126-101-0 | +8.95 | +0.039 | -1.54 | OPEN |
-| Fade alerts sent 12-24h out | scan | 2026-10-26 | 33-27-0 | -5.09 | -0.085 | -0.90 | CLOSED |
+| Fade alerts sent 12-24h out | scan | 2026-10-26 | 34-27-0 | -6.09 | -0.100 | -0.90 | CLOSED |
 | Tier 2 core (paper) | tier | 2026-10-27 | 12-13-0 | -2.78 | -0.111 | -1.00 | CLOSED |
 | Evening sends, ex-Hard Rock | scan | 2026-10-26 | 12-12-0 | -1.40 | -0.058 | -3.56 | OPEN |
 | Muted midday (11 AM-2 PM ET) | scan | 2026-10-26 | 27-24-0 | +0.24 | +0.005 | -0.51 | OPEN |
