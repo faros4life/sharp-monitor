@@ -51,7 +51,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+1 pts",
+   "clv": "+2.5 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline"
@@ -258,7 +258,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "-1 pts",
+   "clv": "+0 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline",
@@ -292,7 +292,7 @@
   },
   {
    "alert_utc": "2026-11-08T15:30:18Z",
-   "beat_close": true,
+   "beat_close": false,
    "beat_true_close": null,
    "bet": "Over 221.5 (-115)",
    "book": "Hard Rock",
@@ -300,7 +300,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+1 pts",
+   "clv": "+0 pts",
    "confirm": "yes",
    "confirmed_by": [
     "Matchbook"
@@ -623,6 +623,47 @@
    "units_flat": null
   },
   {
+   "alert_utc": "2026-11-08T19:00:18Z",
+   "beat_close": true,
+   "beat_true_close": null,
+   "bet": "Under 151.5 (-111)",
+   "book": "ProphetX",
+   "book_key": "prophetx",
+   "close_fair_prob": null,
+   "close_read_mins_before": null,
+   "close_value_pct": null,
+   "clv": "+0.5 pts",
+   "confirm": "yes",
+   "confirmed_by": [
+    "BetOnline"
+   ],
+   "edge_pct": -3.8,
+   "executable_book": true,
+   "fade_book": "prophetx",
+   "fade_point": 151.5,
+   "fade_price": 107,
+   "fade_price_after_fee": 105,
+   "fade_units": null,
+   "final": null,
+   "floor_line": 151.5,
+   "game": "Richmond Spiders @ Temple Owls",
+   "grade": "B",
+   "kind": "tot",
+   "late": false,
+   "minutes_before_start": 180,
+   "point": 151.5,
+   "price": -111,
+   "price_after_fee": -113,
+   "pricing_bettable": true,
+   "result": null,
+   "score": 69,
+   "sent_to_phone": false,
+   "sport": "NCAAB",
+   "start_utc": "2026-11-08T22:00:00Z",
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alert_utc": "2026-11-08T15:20:16Z",
    "beat_close": true,
    "beat_true_close": null,
@@ -747,7 +788,7 @@
   },
   {
    "alert_utc": "2026-11-08T13:55:18Z",
-   "beat_close": false,
+   "beat_close": true,
    "beat_true_close": null,
    "bet": "Chicago Bulls +9.5 (-116)",
    "book": "ProphetX",
@@ -755,7 +796,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+0 pts",
+   "clv": "+0.5 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline",
@@ -38993,6 +39034,30 @@
   }
  ],
  "all_alerts": [
+  {
+   "alert_text": "Under 151.5 (-111) at ProphetX [-113 after ProphetX fee] (also: Kalshi)",
+   "bet": "Under 151.5 (-111)",
+   "bet_result": null,
+   "book": "ProphetX",
+   "confirmed_by": [
+    "BetOnline"
+   ],
+   "edge_pct": -3.8,
+   "final": null,
+   "game": "Richmond Spiders @ Temple Owls",
+   "grade": "B",
+   "late": false,
+   "minutes_before_start": 180,
+   "price": -111,
+   "price_after_fee": -113,
+   "pushed_to_phone": false,
+   "repeat": false,
+   "score": 69,
+   "sent_et": "2026-11-08 14:00",
+   "sport": "NCAAB",
+   "start_utc": "2026-11-08T22:00:00Z",
+   "why": "Pinnacle total moved 152.5 -> 151; bet only at 151.5 or better (confirmed by BetOnline)"
+  },
   {
    "alert_text": "Campbell Fighting Camels +4.5 (-108) at Novig (also: ProphetX, Kalshi)",
    "bet": "Campbell Fighting Camels +4.5 (-108)",
