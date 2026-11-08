@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 7, 9:30 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 7.
+Updated Sat Nov 7, 9:40 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 6.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 174-101 (-10.65u flat) | rule met: 38-31
+**Record:** 175-101 (-9.89u flat) | rule met: 38-31
 
-**Fade (paper, betting against the print):** 76-139 (+0.38u flat, after fees)
+**Fade (paper, betting against the print):** 76-140 (-0.62u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -14,7 +14,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 7 4:20PM | NCAAB | Maryland vs Georgetown | moneyline: Maryland | kalshi | $29k | -138 |  |  | +1.0c | yes | pending |
 | Nov 7 12:10PM | NCAAB | North Carolina A&T @ Ohio | spread: OHIO -14.5 (-14.5) | novig | $33k | -108 |  | ✅ | +0.5c | yes | L |
 | Nov 7 11:40AM | NCAAB | Cal State Fullerton vs South Dakota | moneyline: South Dakota | kalshi | $28k | -108 |  | ❌ | +0.0c |  | L |
-| Nov 7 11:00AM | NCAAB | Denver vs UC Riverside | moneyline: UC Riverside | kalshi | $27k | -127 |  |  | +0.0c |  | pending |
+| Nov 7 11:00AM | NCAAB | Denver vs UC Riverside | moneyline: UC Riverside | kalshi | $27k | -127 |  |  | +0.0c |  | W |
 | Nov 7 10:50AM | TENNIS | Magda Linette vs Anastasia Zakharova | moneyline: Magda Linette | kalshi | $52k | -400 |  |  | +13.0c |  | W |
 | Nov 7 10:00AM | TENNIS | Casper Ruud vs Carlos Alcaraz | moneyline: Carlos Alcaraz | kalshi | $46k | -426 | ✅ novig |  | +3.0c | yes | W |
 | Nov 7 9:50AM | NCAAB | UNC Wilmington vs East Carolina | moneyline: UNC Wilmington | kalshi | $31k | -186 |  |  | +0.0c |  | W |
