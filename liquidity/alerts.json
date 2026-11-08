@@ -1,6 +1,195 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-08T02:00:16Z",
+   "base_depth": 1239181,
+   "best_price": 0.525,
+   "best_price_american": -111,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.54,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 4,
+   "date": "2026-11-08",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 3157,
+     "new_this_side": 210036,
+     "other_side": 691710,
+     "other_side_all_levels": 848875,
+     "ratio": 1.8,
+     "this_side": 1247107,
+     "this_side_all_levels": 1452294
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "ATL +3.5 (3.5)",
+     "price": 0.525,
+     "this_side": 60074
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 75525.18,
+    "volume_24h_fp": 42462.16,
+    "volume_fp": 104955.08
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 153.57,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 232.48
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 75371.61,
+    "volume_24h_fp": 42462.16,
+    "volume_fp": 104722.6
+   },
+   "fade_price": 0.47,
+   "first_seen_utc": "2026-11-08T01:56:18Z",
+   "game": "Cincinnati vs Atlanta: Spread",
+   "game_surge_books": [],
+   "game_x": 1.1,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNFLSPREAD-26NOV08CINATL-CIN4\"}",
+   "lead_min": 750,
+   "league": "NFL",
+   "line": 3.5,
+   "market": "spread",
+   "new_money": 210036,
+   "new_x": 0.1,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 75525.18,
+      "volume_24h_fp": 42462.16,
+      "volume_fp": 104955.08
+     },
+     "game_normal": 1321876,
+     "game_x": 1.1,
+     "normal": 2069836,
+     "now": 1452294,
+     "type": "SPREAD",
+     "x": 0.7
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 16899715.0,
+      "volume": 18775221.0
+     },
+     "game_normal": 58439,
+     "game_x": 1.03,
+     "normal": 72941,
+     "now": 60199,
+     "type": "SPREAD",
+     "x": 0.83
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.54,
+   "price_american": -117,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.54,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 3.5,
+     "price": -118
+    },
+    "betonlineag": {
+     "point": 3.0,
+     "price": -102
+    },
+    "betopenly": {
+     "point": 3.5,
+     "price": -114
+    },
+    "betrivers": {
+     "point": 3.0,
+     "price": -105
+    },
+    "betus": {
+     "point": 3.0,
+     "price": 100
+    },
+    "bovada": {
+     "point": 3.0,
+     "price": 100
+    },
+    "draftkings": {
+     "point": 3.0,
+     "price": 100
+    },
+    "fanatics": {
+     "point": 3.5,
+     "price": -120
+    },
+    "fanduel": {
+     "point": 3.0,
+     "price": 100
+    },
+    "kalshi": {
+     "point": 3.5,
+     "price": -117
+    },
+    "lowvig": {
+     "point": 3.0,
+     "price": 103
+    },
+    "mybookieag": {
+     "point": 3.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 3.5,
+     "price": -111
+    },
+    "polymarket": {
+     "point": 3.5,
+     "price": -117
+    },
+    "prophetx": {
+     "point": 3.0,
+     "price": 108
+    },
+    "williamhill_us": {
+     "point": 3.0,
+     "price": -105
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNFLSPREAD-26NOV08CINATL-CIN4"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Atlanta",
+   "side_label": "NOT Cincinnati wins by over 3.5 points",
+   "size_x": 0.7,
+   "start_source": "odds",
+   "start_utc": "2026-11-08T14:30:00Z",
+   "surge_books": [],
+   "teams": [
+    "Cincinnati",
+    "Atlanta"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-08T01:56:18Z",
    "base_depth": 1018312,
    "best_price": 0.535,
@@ -45,6 +234,11 @@
     "open_interest_fp": 299.08,
     "volume_24h_fp": 0.0,
     "volume_fp": 299.08
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 121563.06,
+    "volume_24h_fp": 37856.24,
+    "volume_fp": 126831.4
    },
    "ex_stats_first": {
     "open_interest_fp": 120519.76,
@@ -238,6 +432,11 @@
     "open_interest_fp": 34401.73,
     "volume_24h_fp": 0.0,
     "volume_fp": 34403.96
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 854320.89,
+    "volume_24h_fp": 204538.77000000002,
+    "volume_fp": 904565.28
    },
    "ex_stats_first": {
     "open_interest_fp": 819313.29,
@@ -850,9 +1049,9 @@
     "volume_fp": 484.58
    },
    "ex_stats_close": {
-    "open_interest_fp": 48204.28999999999,
+    "open_interest_fp": 49152.240000000005,
     "volume_24h_fp": 41158.42,
-    "volume_fp": 49604.4
+    "volume_fp": 50552.35
    },
    "ex_stats_first": {
     "open_interest_fp": 41095.71,
@@ -1093,9 +1292,9 @@
     "volume_fp": 115.32
    },
    "ex_stats_close": {
-    "open_interest_fp": 153119.15,
+    "open_interest_fp": 153494.46000000002,
     "volume_24h_fp": 45853.630000000005,
-    "volume_fp": 169508.90000000002
+    "volume_fp": 169889.46
    },
    "ex_stats_first": {
     "open_interest_fp": 152105.61,
@@ -1312,8 +1511,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 6617290.0,
-    "volume": 7317183.0
+    "openInterest": 6686040.0,
+    "volume": 7385933.0
    },
    "ex_stats_first": {
     "openInterest": 5237100.0,
@@ -2461,8 +2660,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": 0.0,
+   "close_price": 0.5,
+   "clv_cents": -1.0,
    "confirmed_after_min": 6,
    "date": "2026-11-07",
    "depth_by_book": {
@@ -2505,9 +2704,9 @@
     "volume_fp": 287.15
    },
    "ex_stats_close": {
-    "open_interest_fp": 45909.25,
+    "open_interest_fp": 46036.4,
     "volume_24h_fp": 46875.47,
-    "volume_fp": 48529.13
+    "volume_fp": 48742.33
    },
    "ex_stats_first": {
     "open_interest_fp": 41702.57,
@@ -2657,7 +2856,8 @@
      "price": -115
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-08T02:00:16Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNBASPREAD-26NOV07SASPOR-SAS6"
@@ -3674,9 +3874,9 @@
     "volume_fp": 349.91
    },
    "ex_stats_close": {
-    "open_interest_fp": 99856.88,
+    "open_interest_fp": 103400.28,
     "volume_24h_fp": 85633.88,
-    "volume_fp": 108322.07999999999
+    "volume_fp": 111865.48
    },
    "ex_stats_first": {
     "open_interest_fp": 64923.78999999999,
@@ -4777,9 +4977,9 @@
     "volume_fp": 90.45
    },
    "ex_stats_close": {
-    "open_interest_fp": 31860.26,
+    "open_interest_fp": 31948.47,
     "volume_24h_fp": 24238.38,
-    "volume_fp": 33789.07
+    "volume_fp": 33877.28
    },
    "ex_stats_first": {
     "open_interest_fp": 21643.22,
@@ -12702,8 +12902,8 @@
     "volume": 12394.0
    },
    "ex_stats_close": {
-    "openInterest": 3381457.0,
-    "volume": 4269329.0
+    "openInterest": 3612533.0,
+    "volume": 5298739.0
    },
    "ex_stats_first": {
     "openInterest": 2733148.0,
