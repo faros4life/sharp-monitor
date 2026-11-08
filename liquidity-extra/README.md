@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 7, 6:50 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 13.
+Updated Sat Nov 7, 7:00 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 12.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 168-101 (-12.81u flat) | rule met: 38-31
+**Record:** 169-101 (-12.26u flat) | rule met: 38-31
 
-**Fade (paper, betting against the print):** 76-133 (+6.38u flat, after fees)
+**Fade (paper, betting against the print):** 76-134 (+5.38u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -21,7 +21,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 7 9:50AM | NCAAB | SIU Edwardsville vs Lipscomb | moneyline: Lipscomb | kalshi | $41k | -317 |  |  | +0.0c | yes | pending |
 | Nov 7 9:50AM | NCAAB | Southeastern Louisiana vs Little Rock | moneyline: Little Rock | kalshi | $40k | -456 |  |  | -2.0c |  | pending |
 | Nov 7 9:50AM | NCAAB | Prairie View A&M vs UT Rio Grande Valley | moneyline: UT Rio Grande Valley | kalshi | $36k | -376 |  |  | +0.0c | yes | pending |
-| Nov 7 9:50AM | NCAAB | Old Dominion vs Bucknell | moneyline: Old Dominion | kalshi | $29k | -178 |  |  | +5.0c | yes | pending |
+| Nov 7 9:50AM | NCAAB | Old Dominion vs Bucknell | moneyline: Old Dominion | kalshi | $29k | -178 |  |  | +5.0c | yes | W |
 | Nov 7 9:50AM | NCAAB | Houston Christian vs Western Illinois | moneyline: Houston Christian | kalshi | $28k | -400 |  |  | +1.0c |  | pending |
 | Nov 7 9:40AM | TENNIS | Luca Van Assche vs Ben Shelton | moneyline: Luca Van Assche | kalshi | $363k | -104 |  |  | -46.0c | yes | L |
 | Nov 7 9:20AM | NCAAB | Northern Iowa vs Furman | moneyline: Furman | kalshi | $25k | -194 |  |  | +0.0c |  | pending |
