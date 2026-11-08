@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 8, 7:10 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 10.
+Updated Sun Nov 8, 7:20 AM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 11.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,7 +10,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 8 6:30AM | TENNIS | Inaki Montes-de la Torre vs Lorenzo Sonego | moneyline: Inaki Montes-de la Torre | kalshi | $29k | +138 |  |  | -15.0c | yes | pending |
+| Nov 8 7:20AM | TENNIS | Adrian Mannarino vs Toby Samuel | moneyline: Adrian Mannarino | kalshi | $44k | -108 |  |  | +0.0c |  | pending |
+| Nov 8 6:30AM | TENNIS | Inaki Montes-de la Torre vs Lorenzo Sonego | moneyline: Inaki Montes-de la Torre | kalshi | $29k | +138 |  |  | -28.0c | yes | pending |
 | Nov 8 3:50AM | TENNIS | Claire Liu vs Alexandra Eala | moneyline: Claire Liu | kalshi | $258k | -186 |  |  | +19.0c |  | W |
 | Nov 8 2:40AM | TENNIS | Marta Kostyuk vs Linda Noskova | moneyline: Linda Noskova | kalshi | $286k | -122 |  |  | +2.0c |  | pending |
 | Nov 8 2:30AM | TENNIS | Elias Ymer vs Juan Manuel Cerundolo | moneyline: Juan Manuel Cerundolo | kalshi | $38k | -335 | ✅ novig |  | -3.0c |  | pending |
@@ -19,7 +20,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 8 2:00AM | NCAAB | Idaho St. vs Air Force | moneyline: Air Force | kalshi | $27k | -233 |  |  | +0.0c |  | pending |
 | Nov 8 2:00AM | NCAAB | Campbell vs Western Michigan | moneyline: Western Michigan | kalshi | $28k | -223 |  |  | +0.0c |  | pending |
 | Nov 7 10:40PM | TENNIS | Claire Liu vs Alexandra Eala | moneyline: Alexandra Eala | kalshi | $31k | -223 |  |  | -1.0c | yes | L |
-| Nov 7 10:40PM | TENNIS | Ben Shelton vs Carlos Alcaraz | moneyline: Carlos Alcaraz | kalshi | $31k | -355 | ✅ novig |  | +0.0c |  | pending |
+| Nov 7 10:40PM | TENNIS | Ben Shelton vs Carlos Alcaraz | moneyline: Carlos Alcaraz | kalshi | $31k | -355 | ✅ novig |  | -1.0c |  | pending |
 | Nov 7 5:50PM | NCAAB | San Jose St. vs UC Irvine | moneyline: UC Irvine | kalshi | $33k | -335 |  |  | +1.0c | yes | W |
 | Nov 7 4:20PM | NCAAB | Maryland vs Georgetown | moneyline: Maryland | kalshi | $29k | -138 |  |  | +1.0c | yes | L |
 | Nov 7 12:10PM | NCAAB | North Carolina A&T @ Ohio | spread: OHIO -14.5 (-14.5) | novig | $33k | -108 |  | ✅ | +0.5c | yes | L |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 27 10:50AM | TENNIS | Mannarino vs Buse | moneyline: Buse | kalshi | $77k | -335 |  |  | -24.0c |  | L |
 | Oct 27 9:00AM | MLB | Game 4: Milwaukee vs Tampa Bay | moneyline: Tampa Bay | kalshi | $789k | +122 | ✅ polymarket,prophetx |  | +8.0c | yes | W |
 | Oct 27 8:30AM | MLB | Milwaukee Brewers vs. Tampa Bay Rays | spread: Tampa Bay Rays (+1.5) | polymarket | $59k | -144 | ✅ kalshi,novig |  | +3.0c |  | W |
-| Oct 27 8:30AM | MLB | Milwaukee vs Tampa Bay: Spread | spread: NOT Milwaukee wins by over 1.5 runs | kalshi | $72k | -144 | ✅ novig,polymarket |  | +21.0c | yes | W |
