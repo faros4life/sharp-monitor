@@ -1,4 +1,4 @@
-# Paper splits (updated 2026-11-08T21:35:13Z)
+# Paper splits (updated 2026-11-08T22:35:16Z)
 
 Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kill bar: 30+ resulted at -0.10u/play or worse closes a split.
 
@@ -12,15 +12,15 @@ Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kil
 | Unders only | scan | 2026-10-26 | 44-33-0 | +5.91 | +0.077 | -0.73 | OPEN |
 | Combined filter | scan | 2026-10-26 | 60-53-0 | +0.26 | +0.002 | -1.91 | OPEN |
 | Priced -125 or worse | scan | 2026-10-26 | 12-10-0 | -0.46 | -0.021 | -2.52 | OPEN |
-| College basketball | scan | 2026-10-26 | 126-101-0 | +8.95 | +0.039 | -1.54 | OPEN |
+| College basketball | scan | 2026-10-26 | 127-104-0 | +6.86 | +0.030 | -1.53 | OPEN |
 | Fade alerts sent 12-24h out | scan | 2026-10-26 | 34-27-0 | -6.09 | -0.100 | -0.90 | CLOSED |
 | Tier 2 core (paper) | tier | 2026-10-27 | 12-13-0 | -2.78 | -0.111 | -1.00 | CLOSED |
 | Evening sends, ex-Hard Rock | scan | 2026-10-26 | 12-12-0 | -1.40 | -0.058 | -3.56 | OPEN |
-| Muted midday (11 AM-2 PM ET) | scan | 2026-10-26 | 27-24-0 | +0.24 | +0.005 | -0.51 | OPEN |
-| Liquidity totals, no sharp agree | scan | 2026-10-22 | 190-188-0 | -3.21 | -0.008 |  | OPEN |
-| Liquidity vs sharp (oppose) | scan | 2026-10-22 | 142-143-0 | -20.58 | -0.072 |  | CLOSED |
-| Liquidity spreads | scan | 2026-10-22 | 330-338-0 | -48.92 | -0.073 |  | CLOSED (by decision, 2026-10-27) |
-| Liquidity overnight (12-5 AM ET) | scan | 2026-10-26 | 88-57-0 | +1.32 | +0.009 |  | CLOSED |
+| Muted midday (11 AM-2 PM ET) | scan | 2026-10-26 | 28-26-0 | -0.85 | -0.016 | -0.57 | OPEN |
+| Liquidity totals, no sharp agree | scan | 2026-10-22 | 191-188-0 | -2.27 | -0.006 |  | OPEN |
+| Liquidity vs sharp (oppose) | scan | 2026-10-22 | 143-143-0 | -20.06 | -0.070 |  | CLOSED |
+| Liquidity spreads | scan | 2026-10-22 | 332-341-0 | -50.02 | -0.074 |  | CLOSED (by decision, 2026-10-27) |
+| Liquidity overnight (12-5 AM ET) | scan | 2026-10-26 | 90-58-0 | +1.87 | +0.013 |  | CLOSED |
 | Liquidity evening (5-8 PM ET) | scan | 2026-10-26 | 157-145-0 | -25.51 | -0.084 |  | CLOSED |
 | NBA liquidity totals (lane) | scan | 2026-10-28 | 65-61-0 | +1.76 | +0.014 |  | OPEN |
 | NBA liquidity totals - unders | scan | 2026-10-28 | 42-36-0 | +4.97 | +0.064 |  | OPEN |
@@ -30,19 +30,19 @@ Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kil
 | NBA liquidity totals - evacuation | scan | 2026-10-28 | 20-24-0 | -4.54 | -0.103 |  | CLOSED |
 | NBA liquidity, price -129..-105 | scan | 2026-10-28 | 63-51-0 | +6.58 | +0.058 |  | OPEN |
 
-**All-history reference (every resulted play in the feed, not forward; read only):** Tier 2 core (paper) 19-16-0, +0.09u (+0.003/play); Evening sends, ex-Hard Rock 20-23-1, -5.72u (-0.130/play); Muted midday (11 AM-2 PM ET) 51-32-0, +12.84u (+0.155/play); Liquidity overnight (12-5 AM ET) 123-78-0, +5.93u (+0.030/play); Liquidity evening (5-8 PM ET) 205-202-0, -49.86u (-0.123/play)
+**All-history reference (every resulted play in the feed, not forward; read only):** Tier 2 core (paper) 19-16-0, +0.09u (+0.003/play); Evening sends, ex-Hard Rock 20-23-1, -5.72u (-0.130/play); Muted midday (11 AM-2 PM ET) 52-34-0, +11.75u (+0.137/play); Liquidity overnight (12-5 AM ET) 125-79-0, +6.48u (+0.032/play); Liquidity evening (5-8 PM ET) 205-202-0, -49.86u (-0.123/play)
 
 **Muted midday (11 AM-2 PM ET): breakdowns** (resulted plays only)
 
 | Cut | Group | Forward | All history |
 |---|---|---|---|
 | Book | prophetx | 6-4-0, +1.22u (+0.122/play), n=10 | 22-5-0, +13.89u (+0.514/play), n=27 |
-| Book | novig | 8-3-0, +4.41u (+0.401/play), n=11 | 9-4-0, +4.37u (+0.336/play), n=13 |
+| Book | novig | 8-4-0, +3.41u (+0.284/play), n=12 | 9-5-0, +3.37u (+0.241/play), n=14 |
 | Book | kalshi | 1-2-0, -1.20u (-0.400/play), n=3 | 7-5-0, +0.90u (+0.075/play), n=12 |
 | Book | fanduel | - | 1-0-0, +0.87u (+0.870/play), n=1 |
-| Book | hardrockbet | 12-15-0, -4.19u (-0.155/play), n=27 | 12-18-0, -7.19u (-0.240/play), n=30 |
-| Market | spread | 16-10-0, +4.63u (+0.178/play), n=26 | 32-15-0, +13.37u (+0.284/play), n=47 |
-| Market | total under | 5-4-0, +0.39u (+0.043/play), n=9 | 7-4-0, +2.20u (+0.200/play), n=11 |
+| Book | hardrockbet | 13-16-0, -4.28u (-0.148/play), n=29 | 13-19-0, -7.28u (-0.227/play), n=32 |
+| Market | spread | 16-12-0, +2.63u (+0.094/play), n=28 | 32-17-0, +11.37u (+0.232/play), n=49 |
+| Market | total under | 6-4-0, +1.30u (+0.130/play), n=10 | 8-4-0, +3.11u (+0.259/play), n=12 |
 | Market | total over | 6-10-0, -4.78u (-0.299/play), n=16 | 12-13-0, -2.73u (-0.109/play), n=25 |
 
 **Closed by decision:** Liquidity spreads: Closed by Peter, Oct 27, on Muse's complete-log read: 191 resulted, -32.15u (-0.17/play), negative in every time block and every lead window.
