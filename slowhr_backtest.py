@@ -60,6 +60,22 @@ def enrich(x, lg, pin, hr, h, mkmap, start):
     # side class
     if typ == "totals":
         x["sclass"] = "under" if side == "Under" else "over"
+    elif typ == "moneyline":
+        # Nov 9: a MONEYLINE play is a favourite or a dog by its own PRICE, not by a points line.
+        # This block used to fall through to the spreads lookup below and class a moneyline by the
+        # best-limit spread handicap - for NHL, the PUCK LINE. A team at +1.5 on the puck line is a
+        # dog by points and can be -140 on the moneyline, so three NHL moneyline FAVOURITES were
+        # classed "dog" and sat inside the Type P ML-underdog cell:
+        #     2026-10-13 Pittsburgh Penguins HR -140 (L), Boston Bruins HR -110 (W),
+        #     2026-10-13 St. Louis Blues HR -105 (W)
+        # Removing them takes the cell from 21-43 +21.56u to 19-42 +20.70u, which reproduces
+        # Peter's independent correction to the cent.
+        #
+        # The registry's definition is "Type P ML underdogs" and the rule is "true moneyline
+        # underdog at Hard Rock - positive American odds", so the price sign IS the class. +100 is
+        # a dog (DOG BAND starts at +100).
+        am = x.get("hr_am")
+        x["sclass"] = "pick" if am is None else ("dog" if am > 0 else "fav")
     else:
         if typ == "spreads":
             mine = line if side == "1" else -line
