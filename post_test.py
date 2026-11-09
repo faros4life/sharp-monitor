@@ -1,6 +1,13 @@
 #!/usr/bin/env python3
 """
-LANE 3: POST AND WAIT, AT THE FEE-EQUIVALENT PRICE (paper; Peter, Nov 6).
+POST AND WAIT, AT THE FEE-EQUIVALENT PRICE (paper; Peter, Nov 6).
+
+NAME, corrected Nov 9: this used to call itself "LANE 3", which is already taken. Lane 3 in the
+rulebook (v5) is the BOARD SHADOW in executor.py:239, which stamps its rows "board v3 PLAY
+(Lane 3)". Two unrelated things under one name made the shadow's record and this test's record
+indistinguishable in email and in conversation - the same class of mistake as row["screen"] below.
+This test is POST AND WAIT, and it claims no lane number. Nothing searched the old subject line,
+so nothing downstream breaks.
 
 Peter's rule: "use the alert price and if it's not there we post it" ... "post it on novig, so no fee,
 so whatever that equal price would be" ... "or post anyplace no fee with the best liquidity".
@@ -144,7 +151,7 @@ def main():
                 row[basis] = {"fill": False}
         R.append(row)
 
-    L = ["LANE 3 - POST AND WAIT AT THE FEE-EQUIVALENT PRICE (paper; no billable OddsPapi call)",
+    L = ["POST AND WAIT AT THE FEE-EQUIVALENT PRICE (paper; no billable OddsPapi call)",
          "",
          "Rule: post at the alert price NET OF THE TRIGGER BOOK'S FEE, on a venue that charges us",
          "nothing. A Kalshi screen -104 nets -112, so we post -112 - a worse raw price, therefore",
@@ -206,7 +213,7 @@ def main():
     print("post test: measured %d | " % len(R) + ", ".join(
         f"{bz} fills {sum(1 for r in R if r[bz]['fill'])}" for bz, _v, _t in BASES))
     try:
-        ex.send("Bets LANE 3 - post and wait at the fee-equivalent price (paper)", body)
+        ex.send("Bets POST AND WAIT - at the fee-equivalent price (paper)", body)
     except Exception as e:
         print(f"email failed ({type(e).__name__})")
     return 0

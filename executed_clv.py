@@ -85,6 +85,48 @@ L = []
 
 MONEY = re.compile(r"\$\s*[+-]?[\d,]+(?:\.\d+)?")
 
+# CLV-WORKS per-row export (Muse's runner is built and idle waiting on this). One row per GRADED
+# BOT FILL, including the excluded ones with their reason, so the population is auditable rather
+# than taken on trust - the same principle sent_export.py uses.
+#
+# NO STAKES, NO DOLLARS, NO BALANCES, NO ACCOUNT DATA, NO KEYS. Peter's export rule, and it is why
+# stake/profit are deliberately absent from these columns even though the rows carry them: an
+# export leaves here and the figures that matter for grading are prices and closes, not size.
+XCOLS = ["day", "league", "game", "bet", "venue", "fee_basis", "in_headline",
+         "fill_american", "fill_net_decimal", "pin_close_novig_prob",
+         "executed_clv_pct", "executed_clv_pct_alt_basis", "beat_close", "result",
+         "included", "exclusion_reason", "fee_model"]
+
+
+def send_csv(subject, body, rows, filename):
+    """The per-row export, as a CSV attachment on the private email - the same channel
+    sent_export.py uses. A local copy of the sender because COLS there is module-level; there is
+    no shared model here to drift, unlike a fee schedule."""
+    import csv
+    import io
+    import smtplib
+    from email import encoders
+    from email.mime.base import MIMEBase
+    from email.mime.multipart import MIMEMultipart
+    from email.mime.text import MIMEText
+    user, pw, to = ex.gmail()
+    buf = io.StringIO()
+    w = csv.DictWriter(buf, fieldnames=XCOLS, extrasaction="ignore")
+    w.writeheader()
+    for r in rows:
+        w.writerow(r)
+    m = MIMEMultipart()
+    m["Subject"], m["From"], m["To"] = subject, user, to
+    m.attach(MIMEText(body, "plain", "utf-8"))
+    part = MIMEBase("text", "csv")
+    part.set_payload(buf.getvalue().encode("utf-8"))
+    encoders.encode_base64(part)
+    part.add_header("Content-Disposition", "attachment", filename=filename)
+    m.attach(part)
+    with smtplib.SMTP_SSL("smtp.gmail.com", 465, timeout=60) as sv:
+        sv.login(user, pw)
+        sv.sendmail(user, [to], m.as_string())
+
 
 def say(t=""):
     """Email body AND the public log. Only for lines that carry no money.
@@ -272,6 +314,7 @@ def main():
 
     miss = Counter()
     unmatched = []
+    excl = []
     R = []
     for b in F:
         lg = b.get("league")
@@ -283,29 +326,38 @@ def main():
         # population, and this was my caller's fault, not the matcher's.
         q = {"bet": b.get("bet"), "league": lg, "game": b.get("game"), "teams": b.get("teams"),
              "game_start": b.get("game_start"), "book": b.get("book")}
+        def drop(reason):
+            # one place for both, so the Guard 2 counts and the exported rows can never disagree
+            miss[reason] += 1
+            excl.append({"day": str(b.get("game_start") or "")[:10], "league": lg,
+                         "game": b.get("game"), "bet": b.get("bet"),
+                         "venue": cs.canon(b.get("book")) if b.get("book") else "",
+                         "fee_basis": BASIS.get(cs.canon(b.get("book")) if b.get("book") else "", ""),
+                         "fill_american": num(b.get("price")), "result": b.get("result"),
+                         "included": 0, "exclusion_reason": reason, "fee_model": cs.FEE_MODEL})
         fid = cl.find_fixture(st, q)
         if not fid:
-            miss["no fixture matched"] += 1
+            drop("no fixture matched")
             unmatched.append(why_no_fixture(st, q, lg))
             continue
         f = st["fixtures"][fid]
         start = cl.tp(f.get("start")) or cl.tp(b.get("game_start"))
         if not start:
-            miss["no game start"] += 1
+            drop("no game start")
             continue
         if now - start < hc.FINAL_AFTER:
-            miss["game not final yet"] += 1
+            drop("game not final yet")
             continue
         if CACHE_ONLY and not os.path.exists(hc._path(fid, "pinnacle")):
-            miss["Pinnacle close not in cache (not bought)"] += 1
+            drop("Pinnacle close not in cache (not bought)")
             continue
         h = hc.get_hist(fid, ["pinnacle"], start)
         if isinstance(h, dict) and h.get("_error"):
-            miss["history error"] += 1
+            drop("history error")
             continue
         c, why = cl.close_for(q, f, cl.book_markets(h, "pinnacle"), mkmap, start, lg)
         if not c:
-            miss[f"no verified same-line close ({str(why)[:28]})"] += 1
+            drop(f"no verified same-line close ({str(why)[:28]})")
             continue
 
         bk = cs.canon(b.get("book"))
@@ -314,7 +366,7 @@ def main():
         try:
             nd = net_of(bk, raw, lg, False)
         except cs.UnknownVenue:
-            miss["venue not in the registry"] += 1
+            drop("venue not in the registry")
             continue
         R.append({
             "day": start.astimezone(ET).strftime("%Y-%m-%d"),
@@ -324,6 +376,7 @@ def main():
             # the other side of the bracket, for the two venues whose basis is not established
             "clv_alt": (100 * (c["p"] * cs.net_dec(bk, raw, league=lg) - 1)
                         if bk in AMBIG else None),
+            "pin_p": c["p"],            # the verified close itself, so the export can be re-graded
             "beat": c["p"] * nd > 1 + TOL,
             "stake": num(b.get("stake")), "profit": num(b.get("profit")), "res": b.get("result"),
         })
@@ -450,10 +503,36 @@ def main():
     say("Actual filled-bet profitability remains the ultimate measure. Positive CLV is evidence of")
     say("pricing value, not proof of realised profitability.")
 
+    # CLV-WORKS per-row export: one row per graded bot fill, INCLUDING the excluded ones with their
+    # reason, so the population can be audited rather than trusted. No stakes, no dollars, no
+    # account data, no keys - Peter's export rule.
+    xrows = [{
+        "day": r["day"], "league": r["lg"], "game": r["game"], "bet": r["bet"],
+        "venue": r["book"], "fee_basis": BASIS.get(r["book"], ""),
+        "in_headline": 0 if r["book"] in AMBIG else 1,
+        "fill_american": r["am"], "fill_net_decimal": round(r["net_dec"], 6),
+        "pin_close_novig_prob": round(r["pin_p"], 6),
+        "executed_clv_pct": round(r["clv"], 4),
+        "executed_clv_pct_alt_basis": (round(r["clv_alt"], 4) if r["clv_alt"] is not None else ""),
+        "beat_close": int(bool(r["beat"])), "result": r["res"],
+        "included": 1, "exclusion_reason": "", "fee_model": cs.FEE_MODEL,
+    } for r in sorted(R, key=lambda r: (r["day"], str(r["game"])))] + excl
+    note = ("\n\nAttached: one row per graded bot fill, the excluded ones included with their\n"
+            "reason, so the population is auditable rather than trusted. No stakes, dollars,\n"
+            "balances or keys. fill_net_decimal is net of fees by that venue's basis - see\n"
+            "fee_basis: 'money' means the stored price is already dollars-in over dollars-out,\n"
+            "'quote' means the venue's fee is applied. in_headline=0 rows are the Kalshi /\n"
+            "Polymarket US bracket, where executed_clv_pct_alt_basis is the other reading.")
     try:
-        ex.send("Bets EXECUTED CLV - Lane 1 fills at the books' own prices", "\n".join(L))
-    except Exception as e:
-        print(f"email failed ({type(e).__name__})")
+        send_csv("Bets EXECUTED CLV - per-row export for CLV-WORKS", "\n".join(L) + note,
+                 xrows, f"executed_clv_perrow_{now.astimezone(ET):%Y%m%d_%H%M}.csv")
+        print(f"per-row export sent: {len(xrows)} rows ({len(R)} included, {len(excl)} excluded)")
+    except Exception as exn:
+        print(f"per-row export failed ({type(exn).__name__}) - sending the report as text")
+        try:
+            ex.send("Bets EXECUTED CLV - Lane 1 fills at the books' own prices", "\n".join(L))
+        except Exception as e:
+            print(f"email failed ({type(e).__name__})")
     # counts only to the public log
     print(f"executed clv: graded bot fills {len(F)}, verified {len(R)}, "
           f"headline {len(clean)}, bracketed {len(amb)}, excluded {sum(miss.values())}")
