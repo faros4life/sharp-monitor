@@ -1,6 +1,94 @@
 {
  "moves": [
   {
+   "alerted_utc": "2026-11-09T03:30:21Z",
+   "bar": false,
+   "best_price": 0.495,
+   "best_price_book": "novig",
+   "book": "novig",
+   "close_price": 0.495,
+   "clv_cents": 0.0,
+   "date": "2026-11-09",
+   "dir": "RAISE",
+   "ex_stats": {
+    "openInterest": 492182.0,
+    "volume": 514868.0
+   },
+   "first_play": false,
+   "game": "Syracuse @ Indiana",
+   "key": "novig|{\"market_id\": \"01a1bd94-dd4e-7a52-82c5-f9a434d6f087\", \"outcome_id\": \"01a1bd94-dd4e-7a52-82c5-f9c58c057016\"}",
+   "lead_min": 1200,
+   "league": "NCAAB",
+   "league_x": 0.49,
+   "line": 4.5,
+   "market": "spread",
+   "normal_4h": 246,
+   "now": 580,
+   "other_side_now": 2213,
+   "paper_only": true,
+   "price": 0.495,
+   "price_american": 102,
+   "ref": {
+    "market_id": "01a1bd94-dd4e-7a52-82c5-f9a434d6f087",
+    "outcome_id": "01a1bd94-dd4e-7a52-82c5-f9c58c057016"
+   },
+   "result": null,
+   "side": "Syracuse",
+   "side_label": "SYR +4.5 (-4.5)",
+   "side_raw": 0,
+   "start_utc": "2026-11-09T23:30:00Z",
+   "teams": [
+    "Syracuse",
+    "Indiana"
+   ],
+   "units_flat": null,
+   "x": 2.35
+  },
+  {
+   "alerted_utc": "2026-11-09T03:30:21Z",
+   "bar": false,
+   "best_price": 0.725,
+   "best_price_book": "novig",
+   "book": "novig",
+   "close_price": 0.725,
+   "clv_cents": 0.0,
+   "date": "2026-11-09",
+   "dir": "RAISE",
+   "ex_stats": {
+    "openInterest": 0.0,
+    "volume": 0.0
+   },
+   "first_play": true,
+   "game": "Pedro Vives Marcos @ Yannik Kelm Qualification",
+   "key": "novig|{\"market_id\": \"01a1bc4a-eee4-7193-88ac-a73474038401\", \"outcome_id\": \"01a1bc4a-eee4-7193-88ac-a75360cc1337\"}",
+   "lead_min": 510,
+   "league": "TENNIS",
+   "league_x": 3.49,
+   "line": null,
+   "market": "moneyline",
+   "normal_4h": 1093,
+   "now": 2491,
+   "other_side_now": 873,
+   "paper_only": true,
+   "price": 0.725,
+   "price_american": -264,
+   "ref": {
+    "market_id": "01a1bc4a-eee4-7193-88ac-a73474038401",
+    "outcome_id": "01a1bc4a-eee4-7193-88ac-a75360cc1337"
+   },
+   "result": null,
+   "side": "Pedro Vives Marcos",
+   "side_label": "P. Marcos (0)",
+   "side_raw": 0,
+   "start_utc": "2026-11-09T12:00:00Z",
+   "teams": [
+    "Pedro Vives Marcos",
+    "Yannik Kelm Qualification"
+   ],
+   "units_flat": null,
+   "x": 2.28
+  },
+  {
    "alerted_utc": "2026-11-09T03:20:16Z",
    "bar": false,
    "best_price": 0.51,
@@ -13,6 +101,10 @@
    "ex_stats": {
     "openInterest": 462612.0,
     "volume": 485298.0
+   },
+   "ex_stats_close": {
+    "openInterest": 492182.0,
+    "volume": 514868.0
    },
    "first_play": false,
    "game": "Syracuse @ Indiana",
@@ -100,6 +192,10 @@
    "ex_stats": {
     "openInterest": 62549.0,
     "volume": 74260.0
+   },
+   "ex_stats_close": {
+    "openInterest": 89942.0,
+    "volume": 106653.0
    },
    "first_play": false,
    "game": "Syracuse @ Indiana",
@@ -198,6 +294,8 @@
    "other_side_now": 161,
    "paper_only": true,
    "price": 0.5122,
+   "price_after_15m": 0.5076,
+   "price_after_15m_book": "prophetx",
    "price_american": -105,
    "ref": {
     "line": 25.5,
@@ -210,6 +308,7 @@
    "side_label": "Marshall +25.5 (+25.5)",
    "side_raw": 0,
    "start_utc": "2026-11-09T23:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Marshall",
     "Ohio State"
@@ -241,6 +340,8 @@
    "other_side_now": 107,
    "paper_only": true,
    "price": 0.5413,
+   "price_after_15m": 0.52,
+   "price_after_15m_book": "novig",
    "price_american": -118,
    "ref": {
     "line": 25.5,
@@ -253,6 +354,7 @@
    "side_label": "Ohio State -25.5 (-25.5)",
    "side_raw": 1,
    "start_utc": "2026-11-09T23:00:00Z",
+   "still_actionable": false,
    "teams": [
     "Marshall",
     "Ohio State"
@@ -293,6 +395,8 @@
    "other_side_now": 3986,
    "paper_only": true,
    "price": 0.51,
+   "price_after_15m": 0.5172,
+   "price_after_15m_book": "prophetx",
    "price_american": -104,
    "ref": {
     "kalshi_side": "no",
@@ -303,6 +407,7 @@
    "side_label": "NOT Over 145.5 points",
    "side_raw": "UNDER",
    "start_utc": "2026-11-10T03:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Rice",
     "Stanford"
@@ -343,6 +448,8 @@
    "other_side_now": 4249,
    "paper_only": true,
    "price": 0.5,
+   "price_after_15m": 0.5175,
+   "price_after_15m_book": "kalshi",
    "price_american": -100,
    "ref": {
     "kalshi_side": "yes",
@@ -353,6 +460,7 @@
    "side_label": "Over 145.5 points",
    "side_raw": "OVER",
    "start_utc": "2026-11-10T03:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Rice",
     "Stanford"
@@ -393,6 +501,8 @@
    "other_side_now": 3765,
    "paper_only": true,
    "price": 0.51,
+   "price_after_15m": 0.5196,
+   "price_after_15m_book": "prophetx",
    "price_american": -104,
    "ref": {
     "kalshi_side": "no",
@@ -403,6 +513,7 @@
    "side_label": "NOT Stanford wins by over 17.5 points",
    "side_raw": 0,
    "start_utc": "2026-11-10T03:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Rice",
     "Stanford"
@@ -443,6 +554,8 @@
    "other_side_now": 4462,
    "paper_only": true,
    "price": 0.51,
+   "price_after_15m": 0.5,
+   "price_after_15m_book": "novig",
    "price_american": -104,
    "ref": {
     "kalshi_side": "yes",
@@ -453,6 +566,7 @@
    "side_label": "Stanford wins by over 17.5 points",
    "side_raw": 1,
    "start_utc": "2026-11-10T03:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Rice",
     "Stanford"
@@ -493,6 +607,8 @@
    "other_side_now": 2639,
    "paper_only": true,
    "price": 0.49,
+   "price_after_15m": 0.5075,
+   "price_after_15m_book": "kalshi",
    "price_american": 104,
    "ref": {
     "kalshi_side": "no",
@@ -503,6 +619,7 @@
    "side_label": "NOT Over 147.5 points",
    "side_raw": "UNDER",
    "start_utc": "2026-11-09T23:30:00Z",
+   "still_actionable": true,
    "teams": [
     "Syracuse",
     "Indiana"
@@ -534,6 +651,8 @@
    "other_side_now": 217,
    "paper_only": true,
    "price": 0.6403,
+   "price_after_15m": 0.655,
+   "price_after_15m_book": "novig",
    "price_american": -178,
    "ref": {
     "line": 0,
@@ -546,6 +665,7 @@
    "side_label": "Indiana",
    "side_raw": 1,
    "start_utc": "2026-11-09T23:30:00Z",
+   "still_actionable": false,
    "teams": [
     "Syracuse",
     "Indiana"
@@ -622,9 +742,9 @@
     "volume_fp": 119.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 119.0,
+    "open_interest_fp": 161.57,
     "volume_24h_fp": 119.0,
-    "volume_fp": 119.0
+    "volume_fp": 161.57
    },
    "first_play": false,
    "game": "Eastern Washington vs Oregon St.: Spread",
@@ -780,8 +900,8 @@
     "volume": 70794.0
    },
    "ex_stats_close": {
-    "openInterest": 62549.0,
-    "volume": 74260.0
+    "openInterest": 89942.0,
+    "volume": 106653.0
    },
    "first_play": false,
    "game": "Syracuse @ Indiana",
@@ -938,9 +1058,9 @@
     "volume_fp": 119.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 119.0,
+    "open_interest_fp": 161.57,
     "volume_24h_fp": 119.0,
-    "volume_fp": 119.0
+    "volume_fp": 161.57
    },
    "first_play": true,
    "game": "Eastern Washington vs Oregon St.: Spread",
@@ -1306,8 +1426,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 0.0,
-    "volume": 0.0
+    "openInterest": 178.0,
+    "volume": 178.0
    },
    "first_play": true,
    "game": "Cosme Rolland De Ravel @ Edas Butvilas",
@@ -1461,8 +1581,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 0.0,
-    "volume": 0.0
+    "openInterest": 176.0,
+    "volume": 176.0
    },
    "first_play": true,
    "game": "Alexander Ritschard @ Luca Nardi Qualification",
@@ -1718,8 +1838,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 0.0,
-    "volume": 0.0
+    "openInterest": 536.0,
+    "volume": 536.0
    },
    "first_play": true,
    "game": "Henry Searle @ Ryan Peniston Round of 32",
@@ -1760,8 +1880,8 @@
    "best_price": 0.6,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.575,
-   "clv_cents": -2.5,
+   "close_price": 0.57,
+   "clv_cents": -3.0,
    "date": "2026-11-09",
    "dir": "RAISE",
    "ex_stats": {
@@ -1811,8 +1931,8 @@
    "best_price": 0.36,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.46,
-   "clv_cents": -2.0,
+   "close_price": 0.445,
+   "clv_cents": -3.5,
    "date": "2026-11-09",
    "dir": "RAISE",
    "ex_stats": {
@@ -2025,9 +2145,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 21566.69,
-    "volume_24h_fp": 26269.43,
-    "volume_fp": 26649.42
+    "open_interest_fp": 22887.8,
+    "volume_24h_fp": 27970.53,
+    "volume_fp": 27970.53
    },
    "first_play": false,
    "game": "Wichita St. vs USC: Point Total",
@@ -2078,9 +2198,9 @@
     "volume_fp": 6.260000000000001
    },
    "ex_stats_close": {
-    "open_interest_fp": 15.77,
+    "open_interest_fp": 16.77,
     "volume_24h_fp": 15.71,
-    "volume_fp": 15.77
+    "volume_fp": 16.77
    },
    "first_play": true,
    "game": "USC Upstate vs Coastal Carolina",
@@ -2131,9 +2251,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 21566.69,
-    "volume_24h_fp": 26269.43,
-    "volume_fp": 26649.42
+    "open_interest_fp": 22887.8,
+    "volume_24h_fp": 27970.53,
+    "volume_fp": 27970.53
    },
    "first_play": false,
    "game": "Wichita St. vs USC: Point Total",
@@ -2208,7 +2328,8 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAMBTOTAL-26NOV08PITTPSU-153"
    },
-   "result": null,
+   "result": "W",
+   "settled_utc": "2026-11-09T03:30:21Z",
    "side": "OVER",
    "side_label": "Over 152.5 points",
    "side_raw": "OVER",
@@ -2218,7 +2339,7 @@
     "Pittsburgh",
     "Penn St."
    ],
-   "units_flat": null,
+   "units_flat": 0.88,
    "x": 2.2
   },
   {
@@ -3368,8 +3489,8 @@
    "best_price": 0.4067,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.31,
-   "clv_cents": -8.0,
+   "close_price": 0.33,
+   "clv_cents": -6.0,
    "date": "2026-11-09",
    "dir": "RAISE",
    "ex_stats": {
@@ -3590,9 +3711,9 @@
     "volume_fp": 4.260000000000001
    },
    "ex_stats_close": {
-    "open_interest_fp": 15.77,
+    "open_interest_fp": 16.77,
     "volume_24h_fp": 15.71,
-    "volume_fp": 15.77
+    "volume_fp": 16.77
    },
    "first_play": true,
    "game": "USC Upstate vs Coastal Carolina",
@@ -3855,9 +3976,9 @@
     "volume_fp": 15.79
    },
    "ex_stats_close": {
-    "open_interest_fp": 779.54,
+    "open_interest_fp": 783.54,
     "volume_24h_fp": 768.54,
-    "volume_fp": 779.54
+    "volume_fp": 783.54
    },
    "first_play": true,
    "game": "LIU vs Towson",
@@ -3908,9 +4029,9 @@
     "volume_fp": 15.79
    },
    "ex_stats_close": {
-    "open_interest_fp": 779.54,
+    "open_interest_fp": 783.54,
     "volume_24h_fp": 768.54,
-    "volume_fp": 779.54
+    "volume_fp": 783.54
    },
    "first_play": true,
    "game": "LIU vs Towson",
@@ -4014,9 +4135,9 @@
     "volume_fp": 796.06
    },
    "ex_stats_close": {
-    "open_interest_fp": 10568.599999999999,
-    "volume_24h_fp": 10421.57,
-    "volume_fp": 10698.0
+    "open_interest_fp": 10683.599999999999,
+    "volume_24h_fp": 10536.57,
+    "volume_fp": 10813.0
    },
    "first_play": true,
    "game": "Syracuse vs Indiana",
@@ -4067,9 +4188,9 @@
     "volume_fp": 796.06
    },
    "ex_stats_close": {
-    "open_interest_fp": 10568.599999999999,
-    "volume_24h_fp": 10421.57,
-    "volume_fp": 10698.0
+    "open_interest_fp": 10683.599999999999,
+    "volume_24h_fp": 10536.57,
+    "volume_fp": 10813.0
    },
    "first_play": true,
    "game": "Syracuse vs Indiana",
@@ -4120,9 +4241,9 @@
     "volume_fp": 11.35
    },
    "ex_stats_close": {
-    "open_interest_fp": 437.68,
+    "open_interest_fp": 442.68,
     "volume_24h_fp": 452.15000000000003,
-    "volume_fp": 453.15000000000003
+    "volume_fp": 458.15000000000003
    },
    "first_play": true,
    "game": "Howard vs Penn",
@@ -4173,9 +4294,9 @@
     "volume_fp": 11.35
    },
    "ex_stats_close": {
-    "open_interest_fp": 437.68,
+    "open_interest_fp": 442.68,
     "volume_24h_fp": 452.15000000000003,
-    "volume_fp": 453.15000000000003
+    "volume_fp": 458.15000000000003
    },
    "first_play": true,
    "game": "Howard vs Penn",
@@ -4309,8 +4430,8 @@
    "best_price": 0.505,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.5,
-   "clv_cents": -0.7,
+   "close_price": 0.495,
+   "clv_cents": -1.2,
    "date": "2026-11-08",
    "dir": "RAISE",
    "ex_stats": null,
@@ -5000,8 +5121,8 @@
    "best_price": 0.7,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.68,
-   "clv_cents": -2.0,
+   "close_price": 0.675,
+   "clv_cents": -2.5,
    "date": "2026-11-09",
    "dir": "RAISE",
    "ex_stats": {
@@ -5950,9 +6071,9 @@
     "volume_fp": 2154.34
    },
    "ex_stats_close": {
-    "open_interest_fp": 67382.12,
-    "volume_24h_fp": 78456.27,
-    "volume_fp": 78977.66
+    "open_interest_fp": 70266.41,
+    "volume_24h_fp": 81161.56999999999,
+    "volume_fp": 82564.87
    },
    "first_play": true,
    "game": "Wichita St. vs USC",
@@ -6284,7 +6405,8 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAMBGAME-26NOV08PITTPSU-PSU"
    },
-   "result": null,
+   "result": "L",
+   "settled_utc": "2026-11-09T03:30:21Z",
    "side": "Penn St.",
    "side_label": "Penn St.",
    "side_raw": 1,
@@ -6294,7 +6416,7 @@
     "Pittsburgh",
     "Penn St."
    ],
-   "units_flat": null,
+   "units_flat": -1.0,
    "x": 0.49
   },
   {
@@ -8469,8 +8591,8 @@
    "best_price": 0.535,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.5,
-   "clv_cents": -3.5,
+   "close_price": 0.505,
+   "clv_cents": -3.0,
    "date": "2026-11-08",
    "dir": "RAISE",
    "ex_stats": {
@@ -8478,8 +8600,8 @@
     "volume": 203293.0
    },
    "ex_stats_close": {
-    "openInterest": 7774471.0,
-    "volume": 8887185.0
+    "openInterest": 7849836.0,
+    "volume": 8984168.0
    },
    "first_play": false,
    "game": "Wichita State @ USC",
@@ -9655,8 +9777,8 @@
    "best_price": 0.4269,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.31,
-   "clv_cents": -10.0,
+   "close_price": 0.33,
+   "clv_cents": -8.0,
    "date": "2026-11-09",
    "dir": "DROP",
    "ex_stats": {
@@ -9824,9 +9946,9 @@
     "volume_fp": 4.260000000000001
    },
    "ex_stats_close": {
-    "open_interest_fp": 15.77,
+    "open_interest_fp": 16.77,
     "volume_24h_fp": 15.71,
-    "volume_fp": 15.77
+    "volume_fp": 16.77
    },
    "first_play": true,
    "game": "USC Upstate vs Coastal Carolina",
@@ -9877,9 +9999,9 @@
     "volume_fp": 4.260000000000001
    },
    "ex_stats_close": {
-    "open_interest_fp": 15.77,
+    "open_interest_fp": 16.77,
     "volume_24h_fp": 15.71,
-    "volume_fp": 15.77
+    "volume_fp": 16.77
    },
    "first_play": true,
    "game": "USC Upstate vs Coastal Carolina",
@@ -9930,9 +10052,9 @@
     "volume_fp": 15.79
    },
    "ex_stats_close": {
-    "open_interest_fp": 779.54,
+    "open_interest_fp": 783.54,
     "volume_24h_fp": 768.54,
-    "volume_fp": 779.54
+    "volume_fp": 783.54
    },
    "first_play": true,
    "game": "LIU vs Towson",
@@ -9983,9 +10105,9 @@
     "volume_fp": 15.79
    },
    "ex_stats_close": {
-    "open_interest_fp": 779.54,
+    "open_interest_fp": 783.54,
     "volume_24h_fp": 768.54,
-    "volume_fp": 779.54
+    "volume_fp": 783.54
    },
    "first_play": true,
    "game": "LIU vs Towson",
@@ -10036,9 +10158,9 @@
     "volume_fp": 743.34
    },
    "ex_stats_close": {
-    "open_interest_fp": 10568.599999999999,
-    "volume_24h_fp": 10421.57,
-    "volume_fp": 10698.0
+    "open_interest_fp": 10683.599999999999,
+    "volume_24h_fp": 10536.57,
+    "volume_fp": 10813.0
    },
    "first_play": true,
    "game": "Syracuse vs Indiana",
@@ -10089,9 +10211,9 @@
     "volume_fp": 743.34
    },
    "ex_stats_close": {
-    "open_interest_fp": 10568.599999999999,
-    "volume_24h_fp": 10421.57,
-    "volume_fp": 10698.0
+    "open_interest_fp": 10683.599999999999,
+    "volume_24h_fp": 10536.57,
+    "volume_fp": 10813.0
    },
    "first_play": true,
    "game": "Syracuse vs Indiana",
@@ -10142,9 +10264,9 @@
     "volume_fp": 6.2
    },
    "ex_stats_close": {
-    "open_interest_fp": 437.68,
+    "open_interest_fp": 442.68,
     "volume_24h_fp": 452.15000000000003,
-    "volume_fp": 453.15000000000003
+    "volume_fp": 458.15000000000003
    },
    "first_play": true,
    "game": "Howard vs Penn",
@@ -10195,9 +10317,9 @@
     "volume_fp": 6.2
    },
    "ex_stats_close": {
-    "open_interest_fp": 437.68,
+    "open_interest_fp": 442.68,
     "volume_24h_fp": 452.15000000000003,
-    "volume_fp": 453.15000000000003
+    "volume_fp": 458.15000000000003
    },
    "first_play": true,
    "game": "Howard vs Penn",
@@ -11906,8 +12028,8 @@
    "best_price": 0.5075,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.46,
-   "clv_cents": -3.0,
+   "close_price": 0.45,
+   "clv_cents": -4.0,
    "date": "2026-11-08",
    "dir": "RAISE",
    "ex_stats": {
@@ -11916,9 +12038,9 @@
     "volume_fp": 2287.7
    },
    "ex_stats_close": {
-    "open_interest_fp": 63740.06,
-    "volume_24h_fp": 69915.78,
-    "volume_fp": 70243.42
+    "open_interest_fp": 69132.09,
+    "volume_24h_fp": 86816.77,
+    "volume_fp": 88437.96
    },
    "first_play": false,
    "game": "Wichita St. vs USC: Spread",
@@ -11969,9 +12091,9 @@
     "volume_fp": 2287.7
    },
    "ex_stats_close": {
-    "open_interest_fp": 63740.06,
-    "volume_24h_fp": 69915.78,
-    "volume_fp": 70243.42
+    "open_interest_fp": 69132.09,
+    "volume_24h_fp": 86816.77,
+    "volume_fp": 88437.96
    },
    "first_play": false,
    "game": "Wichita St. vs USC: Spread",
@@ -12183,8 +12305,8 @@
     "volume": 845.0
    },
    "ex_stats_close": {
-    "openInterest": 119770.0,
-    "volume": 119770.0
+    "openInterest": 119913.0,
+    "volume": 119913.0
    },
    "first_play": true,
    "game": "Cameron Norrie @ James Duckworth Round of 32",
@@ -13066,8 +13188,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 0.0,
-    "volume": 0.0
+    "openInterest": 333.0,
+    "volume": 333.0
    },
    "first_play": true,
    "game": "Luka Mikrut @ Sandro Kopp Round of 32",
@@ -14416,8 +14538,8 @@
    "best_price": 0.35,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.335,
-   "clv_cents": -1.5,
+   "close_price": 0.33,
+   "clv_cents": -2.0,
    "date": "2026-11-09",
    "dir": "RAISE",
    "ex_stats": {
@@ -14425,8 +14547,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 139214.0,
-    "volume": 139274.0
+    "openInterest": 139363.0,
+    "volume": 139423.0
    },
    "first_play": true,
    "game": "Ugo Humbert @ Adolfo Daniel Vallejo Round of 32",
@@ -16320,8 +16442,8 @@
    "best_price": 0.74,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.67,
-   "clv_cents": -7.0,
+   "close_price": 0.675,
+   "clv_cents": -6.5,
    "date": "2026-11-09",
    "dir": "RAISE",
    "ex_stats": {
@@ -16329,8 +16451,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 139214.0,
-    "volume": 139274.0
+    "openInterest": 139363.0,
+    "volume": 139423.0
    },
    "first_play": true,
    "game": "Ugo Humbert @ Adolfo Daniel Vallejo Round of 32",
@@ -16632,8 +16754,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 221104.0,
-    "volume": 297737.0
+    "openInterest": 245167.0,
+    "volume": 321800.0
    },
    "first_play": true,
    "game": "Yannick Hanfmann @ Alex Michelsen Round of 32",
@@ -16683,8 +16805,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 221104.0,
-    "volume": 297737.0
+    "openInterest": 245167.0,
+    "volume": 321800.0
    },
    "first_play": true,
    "game": "Yannick Hanfmann @ Alex Michelsen Round of 32",
@@ -18103,8 +18225,8 @@
     "volume": 845.0
    },
    "ex_stats_close": {
-    "openInterest": 119770.0,
-    "volume": 119770.0
+    "openInterest": 119913.0,
+    "volume": 119913.0
    },
    "first_play": true,
    "game": "Cameron Norrie @ James Duckworth Round of 32",
@@ -21637,8 +21759,8 @@
    "best_price": 0.515,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.5283,
-   "clv_cents": 0.7,
+   "close_price": 0.5238,
+   "clv_cents": 0.2,
    "date": "2026-11-08",
    "dir": "RAISE",
    "ex_stats": null,
@@ -22804,8 +22926,8 @@
    "best_price": 0.515,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.51,
-   "clv_cents": -0.5,
+   "close_price": 0.515,
+   "clv_cents": 0.0,
    "date": "2026-11-08",
    "dir": "RAISE",
    "ex_stats": {
@@ -22813,8 +22935,8 @@
     "volume": 14746.0
    },
    "ex_stats_close": {
-    "openInterest": 50634.0,
-    "volume": 51403.0
+    "openInterest": 198479.0,
+    "volume": 267679.0
    },
    "first_play": false,
    "game": "Wichita State @ USC",
@@ -22994,7 +23116,8 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAMBSPREAD-26NOV08PITTPSU-PITT3"
    },
-   "result": null,
+   "result": "L",
+   "settled_utc": "2026-11-09T03:30:21Z",
    "side": "Penn St.",
    "side_label": "NOT Pittsburgh wins by over 2.5 points",
    "side_raw": 1,
@@ -23004,7 +23127,7 @@
     "Pittsburgh",
     "Penn St."
    ],
-   "units_flat": null,
+   "units_flat": -1.0,
    "x": 2.56
   },
   {
@@ -23047,7 +23170,8 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAMBSPREAD-26NOV08PITTPSU-PITT3"
    },
-   "result": null,
+   "result": "W",
+   "settled_utc": "2026-11-09T03:30:21Z",
    "side": "Pittsburgh",
    "side_label": "Pittsburgh wins by over 2.5 points",
    "side_raw": 0,
@@ -23057,7 +23181,7 @@
     "Pittsburgh",
     "Penn St."
    ],
-   "units_flat": null,
+   "units_flat": 1.06,
    "x": 2.03
   },
   {
@@ -23066,8 +23190,8 @@
    "best_price": 0.52,
    "best_price_book": "novig",
    "book": "kalshi",
-   "close_price": 0.53,
-   "clv_cents": 2.0,
+   "close_price": 0.52,
+   "clv_cents": 1.0,
    "date": "2026-11-08",
    "dir": "RAISE",
    "ex_stats": {
@@ -23076,9 +23200,9 @@
     "volume_fp": 50.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 5030.4,
-    "volume_24h_fp": 3241.87,
-    "volume_fp": 5127.83
+    "open_interest_fp": 40783.39,
+    "volume_24h_fp": 41973.62,
+    "volume_fp": 42732.24
    },
    "first_play": true,
    "game": "Wichita St. vs USC: Point Total",
@@ -23119,8 +23243,8 @@
    "best_price": 0.505,
    "best_price_book": "novig",
    "book": "kalshi",
-   "close_price": 0.48,
-   "clv_cents": -2.0,
+   "close_price": 0.49,
+   "clv_cents": -1.0,
    "date": "2026-11-08",
    "dir": "RAISE",
    "ex_stats": {
@@ -23129,9 +23253,9 @@
     "volume_fp": 50.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 5030.4,
-    "volume_24h_fp": 3241.87,
-    "volume_fp": 5127.83
+    "open_interest_fp": 40783.39,
+    "volume_24h_fp": 41973.62,
+    "volume_fp": 42732.24
    },
    "first_play": true,
    "game": "Wichita St. vs USC: Point Total",
@@ -23631,7 +23755,8 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAMBTOTAL-26NOV08PITTPSU-155"
    },
-   "result": null,
+   "result": "L",
+   "settled_utc": "2026-11-09T03:30:21Z",
    "side": "UNDER",
    "side_label": "NOT Over 154.5 points",
    "side_raw": "UNDER",
@@ -23641,7 +23766,7 @@
     "Pittsburgh",
     "Penn St."
    ],
-   "units_flat": null,
+   "units_flat": -1.0,
    "x": 2.02
   },
   {
@@ -24209,7 +24334,8 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAMBTOTAL-26NOV08PITTPSU-155"
    },
-   "result": null,
+   "result": "W",
+   "settled_utc": "2026-11-09T03:30:21Z",
    "side": "OVER",
    "side_label": "Over 154.5 points",
    "side_raw": "OVER",
@@ -24219,7 +24345,7 @@
     "Pittsburgh",
     "Penn St."
    ],
-   "units_flat": null,
+   "units_flat": 0.83,
    "x": 3.45
   },
   {
@@ -25945,8 +26071,8 @@
     "volume": 22198.0
    },
    "ex_stats_close": {
-    "openInterest": 7774471.0,
-    "volume": 8887185.0
+    "openInterest": 7849836.0,
+    "volume": 8984168.0
    },
    "first_play": false,
    "game": "Wichita State @ USC",
@@ -26792,8 +26918,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 2578885.0,
-    "volume": 2796347.0
+    "openInterest": 2642219.0,
+    "volume": 2859681.0
    },
    "first_play": false,
    "game": "Wichita State @ USC",
@@ -26834,8 +26960,8 @@
    "best_price": 0.7341,
    "best_price_book": "kalshi",
    "book": "novig",
-   "close_price": 0.72,
-   "clv_cents": -2.0,
+   "close_price": 0.715,
+   "clv_cents": -2.5,
    "date": "2026-11-08",
    "dir": "RAISE",
    "ex_stats": {
@@ -26843,8 +26969,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 2578885.0,
-    "volume": 2796347.0
+    "openInterest": 2642219.0,
+    "volume": 2859681.0
    },
    "first_play": false,
    "game": "Wichita State @ USC",
@@ -32062,9 +32188,9 @@
     "volume_fp": 87.13
    },
    "ex_stats_close": {
-    "open_interest_fp": 67382.12,
-    "volume_24h_fp": 78456.27,
-    "volume_fp": 78977.66
+    "open_interest_fp": 70266.41,
+    "volume_24h_fp": 81161.56999999999,
+    "volume_fp": 82564.87
    },
    "first_play": true,
    "game": "Wichita St. vs USC",
@@ -32115,9 +32241,9 @@
     "volume_fp": 87.13
    },
    "ex_stats_close": {
-    "open_interest_fp": 67382.12,
-    "volume_24h_fp": 78456.27,
-    "volume_fp": 78977.66
+    "open_interest_fp": 70266.41,
+    "volume_24h_fp": 81161.56999999999,
+    "volume_fp": 82564.87
    },
    "first_play": true,
    "game": "Wichita St. vs USC",
@@ -32245,7 +32371,8 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAMBGAME-26NOV08PITTPSU-PITT"
    },
-   "result": null,
+   "result": "W",
+   "settled_utc": "2026-11-09T03:30:21Z",
    "side": "Pittsburgh",
    "side_label": "Pittsburgh",
    "side_raw": 0,
@@ -32255,7 +32382,7 @@
     "Pittsburgh",
     "Penn St."
    ],
-   "units_flat": null,
+   "units_flat": 0.55,
    "x": 3.45
   },
   {
@@ -32298,7 +32425,8 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAMBGAME-26NOV08PITTPSU-PSU"
    },
-   "result": null,
+   "result": "L",
+   "settled_utc": "2026-11-09T03:30:21Z",
    "side": "Penn St.",
    "side_label": "Penn St.",
    "side_raw": 1,
@@ -32308,7 +32436,7 @@
     "Pittsburgh",
     "Penn St."
    ],
-   "units_flat": null,
+   "units_flat": -1.0,
    "x": 5.35
   },
   {
