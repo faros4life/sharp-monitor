@@ -1,6 +1,114 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-09T14:10:19Z",
+   "base_depth": 150464,
+   "best_price": 0.5175,
+   "best_price_american": -107,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-09",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -119914,
+     "new_this_side": 34543,
+     "other_side": 60839,
+     "other_side_all_levels": 216414,
+     "ratio": 1.5,
+     "this_side": 93749,
+     "this_side_all_levels": 248536
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 552825.26,
+    "volume_24h_fp": 731689.19,
+    "volume_fp": 821042.06
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 78605.7,
+    "volume_24h_fp": 116082.21,
+    "volume_fp": 131876.9
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 474219.56,
+    "volume_24h_fp": 615606.98,
+    "volume_fp": 689165.16
+   },
+   "fade_price": 0.51,
+   "first_seen_utc": "2026-11-09T14:00:26Z",
+   "game": "Tomas Machac vs Borna Gojo",
+   "game_surge_books": [
+    "kalshi"
+   ],
+   "game_x": 6.02,
+   "key": "kalshi|KXATPMATCH-26NOV09MACGOJ|ml|1",
+   "lead_min": 70,
+   "league": "TENNIS",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 34543,
+   "new_x": 0.55,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 552825.26,
+      "volume_24h_fp": 731689.19,
+      "volume_fp": 821042.06
+     },
+     "game_normal": 41287,
+     "game_x": 6.02,
+     "normal": 62688,
+     "now": 248536,
+     "type": "ML",
+     "x": 3.96
+    }
+   },
+   "norm_ready_books": 1,
+   "paper_only": true,
+   "price": 0.5,
+   "price_american": -100,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.55,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXATPMATCH-26NOV09MACGOJ-GOJ"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Borna Gojo",
+   "side_label": "Borna Gojo",
+   "size_x": 3.96,
+   "start_source": "kalshi",
+   "start_utc": "2026-11-09T15:20:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "Tomas Machac",
+    "Borna Gojo"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-09T11:40:19Z",
    "base_depth": 64057,
    "best_price": 0.6757,
@@ -160,9 +268,9 @@
     "volume_fp": 21.87
    },
    "ex_stats_close": {
-    "open_interest_fp": 10727.72,
-    "volume_24h_fp": 10890.21,
-    "volume_fp": 10927.72
+    "open_interest_fp": 11431.08,
+    "volume_24h_fp": 11199.89,
+    "volume_fp": 11899.65
    },
    "ex_stats_first": {
     "open_interest_fp": 5080.85,
@@ -439,9 +547,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 902.96,
+    "open_interest_fp": 904.3900000000001,
     "volume_24h_fp": 833.75,
-    "volume_fp": 903.96
+    "volume_fp": 905.3900000000001
    },
    "ex_stats_first": {
     "open_interest_fp": 475.84000000000003,
@@ -587,8 +695,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.68,
-   "clv_cents": -1.0,
+   "close_price": 0.66,
+   "clv_cents": -3.0,
    "confirmed_after_min": 16,
    "date": "2026-11-09",
    "depth_by_book": {
@@ -625,9 +733,9 @@
     "volume_fp": 21.7
    },
    "ex_stats_close": {
-    "open_interest_fp": 777.8599999999999,
+    "open_interest_fp": 3360.83,
     "volume_24h_fp": 802.86,
-    "volume_fp": 802.86
+    "volume_fp": 3556.9
    },
    "ex_stats_first": {
     "open_interest_fp": 640.28,
@@ -1131,9 +1239,9 @@
     "volume_fp": 216.31
    },
    "ex_stats_close": {
-    "open_interest_fp": 2291.21,
-    "volume_24h_fp": 2302.24,
-    "volume_fp": 2365.73
+    "open_interest_fp": 2336.8199999999997,
+    "volume_24h_fp": 2315.51,
+    "volume_fp": 2411.34
    },
    "ex_stats_first": {
     "open_interest_fp": 1440.02,
@@ -1283,8 +1391,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.68,
-   "clv_cents": -2.0,
+   "close_price": 0.69,
+   "clv_cents": -1.0,
    "confirmed_after_min": 16,
    "date": "2026-11-09",
    "depth_by_book": {
@@ -1309,9 +1417,9 @@
     "volume_fp": 147.03
    },
    "ex_stats_close": {
-    "open_interest_fp": 1136.51,
-    "volume_24h_fp": 1092.36,
-    "volume_fp": 1136.51
+    "open_interest_fp": 2869.77,
+    "volume_24h_fp": 2853.98,
+    "volume_fp": 2869.77
    },
    "ex_stats_first": {
     "open_interest_fp": 794.3,
@@ -1474,9 +1582,9 @@
     "volume_fp": 21.55
    },
    "ex_stats_close": {
-    "open_interest_fp": 24524.37,
-    "volume_24h_fp": 24655.04,
-    "volume_fp": 25242.73
+    "open_interest_fp": 24572.059999999998,
+    "volume_24h_fp": 24657.22,
+    "volume_fp": 25290.42
    },
    "ex_stats_first": {
     "open_interest_fp": 11762.960000000001,
@@ -1650,9 +1758,9 @@
     "volume_fp": 146.26
    },
    "ex_stats_close": {
-    "open_interest_fp": 1996.8600000000001,
-    "volume_24h_fp": 2142.89,
-    "volume_fp": 2150.09
+    "open_interest_fp": 2024.13,
+    "volume_24h_fp": 2143.89,
+    "volume_fp": 2177.3599999999997
    },
    "ex_stats_first": {
     "open_interest_fp": 846.98,
