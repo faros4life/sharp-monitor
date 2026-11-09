@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 9, 10:20 AM ET. This run: 0 new, 1 not confirmed, 0 pending. Open alerts: 12.
+Updated Mon Nov 9, 11:19 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 12.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -14,13 +14,13 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 9 6:40AM | TENNIS | Arthur Rinderknech vs Miomir Kecmanovic | moneyline: Arthur Rinderknech | kalshi | $29k | -194 |  |  | +1.0c | yes | pending |
 | Nov 9 6:10AM | TENNIS | Tomas Martin Etcheverry vs Max Dahlin | moneyline: Tomas Martin Etcheverry | kalshi | $55k | -376 | ✅ novig |  | +3.0c | yes | pending |
 | Nov 9 2:20AM | TENNIS | Alex Michelsen vs Yannick Hanfmann | moneyline: Alex Michelsen | kalshi | $26k | -300 |  |  | +1.0c | yes | W |
-| Nov 9 1:40AM | NCAAB | Charlotte vs Seton Hall | moneyline: Seton Hall | kalshi | $31k | -213 |  |  | +0.0c |  | pending |
+| Nov 9 1:40AM | NCAAB | Charlotte vs Seton Hall | moneyline: Seton Hall | kalshi | $31k | -213 |  |  | -2.0c |  | pending |
 | Nov 9 1:31AM | NCAAB | Kansas City vs Jacksonville | moneyline: Jacksonville | kalshi | $29k | -223 |  |  | -5.0c |  | pending |
 | Nov 9 1:31AM | NCAAB | Stonehill vs Columbia | moneyline: Columbia | kalshi | $44k | -567 |  |  | +4.0c |  | pending |
-| Nov 9 1:31AM | NCAAB | USC Upstate vs Coastal Carolina | moneyline: Coastal Carolina | kalshi | $46k | -426 |  |  | +2.0c |  | pending |
+| Nov 9 1:31AM | NCAAB | USC Upstate vs Coastal Carolina | moneyline: Coastal Carolina | kalshi | $46k | -426 |  |  | +3.0c |  | pending |
 | Nov 9 1:31AM | NCAAB | Minnesota vs Cincinnati | moneyline: Cincinnati | kalshi | $44k | -270 |  |  | +1.0c |  | pending |
 | Nov 9 1:31AM | NCAAB | LIU vs Towson | moneyline: Towson | kalshi | $32k | -233 |  |  | +3.0c |  | pending |
-| Nov 9 1:15AM | NCAAB | Syracuse vs Indiana | moneyline: Indiana | kalshi | $41k | -213 |  |  | +0.0c |  | pending |
+| Nov 9 1:15AM | NCAAB | Syracuse vs Indiana | moneyline: Indiana | kalshi | $41k | -213 |  |  | +1.0c |  | pending |
 | Nov 9 1:15AM | NCAAB | Howard vs Penn | moneyline: Penn | kalshi | $31k | -223 |  |  | +1.0c |  | pending |
 | Nov 8 5:40PM | TENNIS | Coco Gauff vs Jessica Pegula | moneyline: Coco Gauff | kalshi | $80k | -178 |  |  | +21.0c | yes | W |
 | Nov 8 3:00PM | NCAAB | Wichita St. vs USC | moneyline: USC | kalshi | $29k | -223 |  |  | +4.0c |  | W |
