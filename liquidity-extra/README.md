@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 9, 5:10 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 11.
+Updated Mon Nov 9, 5:20 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 11.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -18,7 +18,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 9 1:31AM | NCAAB | Minnesota vs Cincinnati | moneyline: Cincinnati | kalshi | $44k | -270 |  |  | +0.0c |  | pending |
 | Nov 9 1:31AM | NCAAB | LIU vs Towson | moneyline: Towson | kalshi | $32k | -233 |  |  | -1.0c |  | pending |
 | Nov 9 1:15AM | NCAAB | Syracuse vs Indiana | moneyline: Indiana | kalshi | $41k | -213 |  |  | +0.0c |  | pending |
-| Nov 9 1:15AM | NCAAB | Howard vs Penn | moneyline: Penn | kalshi | $31k | -223 |  |  | +0.0c |  | pending |
+| Nov 9 1:15AM | NCAAB | Howard vs Penn | moneyline: Penn | kalshi | $31k | -223 |  |  | +1.0c |  | pending |
 | Nov 8 5:40PM | TENNIS | Coco Gauff vs Jessica Pegula | moneyline: Coco Gauff | kalshi | $80k | -178 |  |  | +21.0c | yes | W |
 | Nov 8 3:00PM | NCAAB | Wichita St. vs USC | moneyline: USC | kalshi | $29k | -223 |  |  | +4.0c |  | W |
 | Nov 8 3:00PM | NCAAB | UT Arlington vs Hawai'i | moneyline: Hawai'i | kalshi | $26k | -355 |  |  | +0.0c | yes | W |
