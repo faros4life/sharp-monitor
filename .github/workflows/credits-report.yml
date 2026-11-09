@@ -35,3 +35,11 @@ jobs:
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
           EMAIL_TO: ${{ secrets.EMAIL_TO }}
         run: python -u credits.py
+
+      # Stage 3 of the credit gate: report what the gate sees. Read-only - status() only reads the
+      # shared ledger and /account (a free call), takes no reservation and pushes nothing, so it
+      # works under contents: read and spends no credits.
+      - name: Credit gate status (read-only, takes no reservation)
+        env:
+          ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
+        run: python -u credit_gate.py

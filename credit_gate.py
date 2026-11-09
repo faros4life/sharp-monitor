@@ -403,6 +403,49 @@ def release(res):
         time.sleep(0.4 * (attempt + 1))
 
 
+# ------------------------------------------------------------- in-process blocks
+# Reserving one credit per call would mean a git fetch and a push per API call, which for
+# hist_cache's hundreds of calls is far more expensive than the calls themselves. So a process
+# reserves a BLOCK once and draws it down in memory, confirming what it used and releasing the
+# rest at exit. A crashed process leaks at most one block for RESERVE_TTL, never the budget.
+BLOCK = int(os.environ.get("GATE_BLOCK", "") or "25")
+_HELD = {"res": None, "left": 0, "used": 0, "purpose": None}
+
+
+def take(n=1, purpose="api", path=None):
+    """True when n paid calls may be made. FAIL CLOSED: False means do not call."""
+    if path is not None and is_free(path):
+        return True
+    if _HELD["left"] >= n:
+        _HELD["left"] -= n
+        _HELD["used"] += n
+        return True
+    flush()                                     # settle the old block before taking a new one
+    res = reserve(max(BLOCK, n), purpose)
+    if res is None:
+        return False
+    _HELD.update(res=res, left=max(BLOCK, n) - n, used=n, purpose=purpose)
+    return True
+
+
+def flush():
+    """Confirm the calls actually made and give back the rest of the block."""
+    res = _HELD["res"]
+    if not res:
+        _HELD.update(res=None, left=0, used=0)
+        return
+    used_n = _HELD["used"]
+    _HELD.update(res=None, left=0, used=0)
+    if used_n > 0:
+        confirm(dict(res, n=used_n))            # bill only what was used
+    else:
+        release(res)
+
+
+import atexit                                    # noqa: E402  - flush even on an unclean exit
+atexit.register(flush)
+
+
 def status():
     now = _now()
     d, ok, base = _read(now)

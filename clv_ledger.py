@@ -24,6 +24,7 @@ import urllib.parse
 import urllib.request
 from datetime import datetime, timedelta, timezone
 
+import credit_gate as cg       # leaf module, stdlib only - safe to import here
 import executor as ex
 import sharp_monitor as sm
 import tracker_build as tb
@@ -68,6 +69,11 @@ HIST_MIN = float(os.environ.get("HIST_GAP_MIN", "") or "5.2")   # Nov 2: spacing
 _KEY_LOCKS, _GAPS = {}, {}   # Nov 4: history spacing is per key (each key has its own OddsPapi cooldown)
 
 
+class GateRefused(RuntimeError):
+    """The shared credit gate refused a paid request. Distinct from a network or provider error so
+    callers can tell 'we chose not to spend' from 'the provider failed'."""
+
+
 def api(path, billable, apikey=None, **params):
     # Nov 3 21:30: the paid plan answers 403 RESTRICTED_ACCESS "Restricted bookmakers: pinnacle" on /historical-odds (it sells
     # "Pinnacle +30 sec", a different product), so ALL history goes through the free-account key when it is set; the paid
@@ -77,6 +83,12 @@ def api(path, billable, apikey=None, **params):
     if apikey is None and path == "/historical-odds" and FREE_KEY:
         apikey = FREE_KEY
     k = apikey or KEY
+    # THE CREDIT GATE. One chokepoint: every paid OddsPapi request in the system arrives here with
+    # billable=True, and free ones (/account, /historical-odds) bypass it untouched. In shadow mode
+    # take() always returns True and only records what it would have refused, so this blocks
+    # nothing until ODDSPAPI_GATE=enforce. Fail closed: a False is a refusal, not a retry.
+    if billable and not cg.take(1, purpose=path.lstrip("/"), path=path):
+        raise GateRefused(f"credit gate refused {path}: no budget left this period")
     if path != "/historical-odds":
         return _api(path, billable, k, params)
     import threading

@@ -349,10 +349,48 @@ print(json.dumps({"spent": sum(int(s["n"]) for s in d.get("spent") or []),
     shutil.rmtree(root, ignore_errors=True)
 
 
+def t_wiring():
+    print("\n8. WIRING - the gate sits on the one paid chokepoint")
+    sys.path.insert(0, os.getcwd())
+    import credit_gate as g
+    import clv_ledger as cl
+
+    calls = []
+    real_take, real_api = g.take, cl._api
+    cl._api = lambda path, b, k, p: calls.append(path) or {"stub": True}
+    try:
+        # a refusal must stop the request before it is made
+        g.take = lambda n=1, purpose="api", path=None: False
+        try:
+            cl.api("/odds-by-tournaments", True, tournamentIds="1")
+            ck("a refused paid call raises instead of spending", False, "no exception raised")
+        except cl.GateRefused:
+            ck("a refused paid call raises instead of spending", True)
+        ck("a refused paid call never reaches the network", not calls, f"calls={calls}")
+
+        # free endpoints must not be gated even when the gate refuses everything
+        calls.clear()
+        cl.api("/account", False)
+        ck("/account is not gated", calls == ["/account"], f"calls={calls}")
+
+        # and a grant lets the call through
+        calls.clear()
+        g.take = lambda n=1, purpose="api", path=None: True
+        cl.api("/fixtures", True)
+        ck("a granted paid call proceeds", calls == ["/fixtures"], f"calls={calls}")
+
+        # every paid endpoint we actually use is covered by the one chokepoint
+        src = open("clv_ledger.py").read()
+        ck("the gate is checked in api(), before the request is built",
+           "cg.take(1, purpose=path.lstrip" in src and src.index("cg.take") < src.index("def _api"))
+    finally:
+        g.take, cl._api = real_take, real_api
+
+
 if __name__ == "__main__":
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
     print("CREDIT GATE TESTS - no network, no credits spent (/account is stubbed throughout)")
-    for t in (t_concurrency, t_stress, t_cap, t_fail_closed, t_free, t_reconcile, t_shadow, t_idempotent):
+    for t in (t_concurrency, t_stress, t_cap, t_fail_closed, t_free, t_reconcile, t_shadow, t_idempotent, t_wiring):
         try:
             t()
         except Exception as e:
