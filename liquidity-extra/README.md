@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 9, 6:00 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 11.
+Updated Mon Nov 9, 6:10 AM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 12.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 9 6:10AM | TENNIS | Tomas Martin Etcheverry vs Max Dahlin | moneyline: Tomas Martin Etcheverry | kalshi | $55k | -376 | ✅ novig |  | +0.0c |  | pending |
 | Nov 9 2:20AM | TENNIS | Alex Michelsen vs Yannick Hanfmann | moneyline: Alex Michelsen | kalshi | $26k | -300 |  |  | +1.0c | yes | pending |
 | Nov 9 1:40AM | NCAAB | Charlotte vs Seton Hall | moneyline: Seton Hall | kalshi | $31k | -213 |  |  | +0.0c |  | pending |
 | Nov 9 1:31AM | NCAAB | Kansas City vs Jacksonville | moneyline: Jacksonville | kalshi | $29k | -223 |  |  | -1.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 28 1:50PM | TENNIS | Zverev vs Griekspoor | moneyline: Zverev | kalshi | $49k | -400 |  |  | -3.0c |  | W |
 | Oct 28 1:50PM | TENNIS | Norrie vs Medvedev | moneyline: Medvedev | kalshi | $75k | -456 |  |  | -1.0c |  | W |
 | Oct 28 1:10PM | MLB | Game 5: Milwaukee vs Tampa Bay | moneyline: Game 5: Milwaukee | kalshi | $110k | -150 | ✅ novig,polymarket,prophetx |  | -3.0c | yes | W |
-| Oct 28 9:40AM | MLB | Milwaukee Brewers @ Tampa Bay Rays | moneyline: MIL (0) | novig | $25k | -144 | ✅ polymarket |  | -2.0c | yes | W |
