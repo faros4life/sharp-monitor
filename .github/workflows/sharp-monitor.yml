@@ -69,7 +69,10 @@ jobs:
             git config user.email "sharp-monitor@users.noreply.github.com"
             git add alerts.json splits.json SPLITS.md hrscan.json odds_screen.json 2>/dev/null || git add alerts.json
             git commit -m "Update alerts.json"
-            git pull --rebase -q || true
+            # Nov 9: tracked __pycache__ files get rewritten by the run and blocked the rebase, so every push was rejected
+            git checkout -q -- __pycache__ 2>/dev/null || true
+            git clean -fdq __pycache__ 2>/dev/null || true
+            git pull --rebase -X theirs -q || true
             git push || true
           fi
       - name: Wake the executor (new alert sent)
