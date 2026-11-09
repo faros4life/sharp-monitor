@@ -117,8 +117,8 @@ function render(){
     html+=`<tr class="fair"><td>${N[sharp]||sharp} fair</td>${sd.map(s=>{const f=fair&&fair[s];return f==null?`<td class="na">—</td>`:`<td>${MK==="m"?fmt(f):pt(f[0],MK)+" "+fmt(f[1])}</td>`}).join("")}</tr>`;
     html+=`</table></div>`;
   }
-  out.innerHTML=html||`<div class="empty">No games${q?` matching “${Q.replace(/[<>&]/g,"")}”`:""} in the next 24 hours.</div>`;
-  out.innerHTML+=`<div class="note">Green = best price on that side across your books. Underlined prices open that game on the book. % = edge vs ${N[sharp]||"Pinnacle"} no-vig (same number only). Games within the next 24 hours; each sport refreshes on the monitor's poll.</div>`;
+  out.innerHTML=html||`<div class="empty">No games${q?` matching “${Q.replace(/[<>&]/g,"")}”`:""} in view.</div>`;
+  out.innerHTML+=`<div class="note">Green = best price on that side across your books. Underlined prices open that game on the book. % = edge vs ${N[sharp]||"Pinnacle"} no-vig (same number only). NFL and college football: next 7 days; other sports: next 24 hours; each sport refreshes on the monitor's poll.</div>`;
 }
 function chips(){
   const lgs=["All",...[...new Set(D.games.map(g=>g.lg))]];
@@ -176,11 +176,11 @@ async function refreshNow(){
     ss.set("os_key",v);key=v;kb.style.display="none";ki.value=""}
   if(!D){msg.textContent="Screen not loaded yet";return}
   const lgs=(LG==="All"?[...new Set(D.games.map(g=>g.lg))]:[LG]).filter(l=>KEYS[l]);
-  const now=new Date(),to=new Date(now.getTime()+24*3600e3),iso=d=>d.toISOString().replace(/\.\d+Z$/,"Z");
+  const now=new Date(),iso=d=>d.toISOString().replace(/\.\d+Z$/,"Z");
   msg.textContent="Refreshing "+lgs.join(", ")+"…";let left=null,cost=0;
   try{
     for(const lg of lgs){
-      const u=`https://api.the-odds-api.com/v4/sports/${KEYS[lg]}/odds?apiKey=${encodeURIComponent(key)}&bookmakers=${[...D.books,D.sharp].join(",")}&markets=${MKTS[lg]||"spreads,totals"}&oddsFormat=american&includeLinks=true&commenceTimeFrom=${iso(now)}&commenceTimeTo=${iso(to)}`;
+      const u=`https://api.the-odds-api.com/v4/sports/${KEYS[lg]}/odds?apiKey=${encodeURIComponent(key)}&bookmakers=${[...D.books,D.sharp].join(",")}&markets=${MKTS[lg]||"spreads,totals"}&oddsFormat=american&includeLinks=true&commenceTimeFrom=${iso(now)}&commenceTimeTo=${iso(new Date(now.getTime()+(lg==="NFL"||lg==="NCAAF"?7*24:24)*3600e3))}`;
       const r=await fetch(u);
       if(r.status===401){ss.set("os_key","");msg.textContent="Key not accepted — tap Refresh to enter it again";return}
       if(!r.ok)throw new Error(lg+" "+r.status);

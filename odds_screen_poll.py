@@ -60,5 +60,45 @@ def main():
     print(f"odds screen poll: {polled or 'nothing due'}; ~{spent} credits; remaining {rem}")
 
 
+WEEK_EVERY_S = 2 * 3600   # Nov 9: NFL + CFB through the next 7 days, every 2h (9 AM-midnight ET), ~4 credits a pull
+
+
+def week():
+    n = datetime.now(timezone.utc)
+    if not 9 <= n.astimezone(sm.ET).hour <= 23:
+        return print("odds screen week pull: outside 9 AM-midnight ET")
+    try:
+        old = json.load(open(odds_screen.FILE))
+    except Exception:
+        return print("odds screen week pull: no screen file yet")
+    if time.time() - old.get("week_poll", 0) < WEEK_EVERY_S - 60:
+        return print("odds screen week pull: not due")
+    t25 = {g["id"]: g.get("t25", []) for g in old.get("games", [])}
+    books = ",".join(dict.fromkeys(sm.RETAIL + [sm.SHARP]))
+    rem, spent = None, 0
+    for key in ("americanfootball_nfl", "americanfootball_ncaaf"):
+        cfg = sm.SPORTS.get(key)
+        if not cfg:
+            continue
+        try:
+            events, rem = sm.http_get(f"/sports/{key}/odds", {
+                "bookmakers": books, "markets": ",".join(cfg["markets"]), "oddsFormat": "american",
+                "includeLinks": "true", "commenceTimeFrom": sm.iso(n), "commenceTimeTo": sm.iso(n + timedelta(days=7))})
+        except Exception as x:
+            print(f"odds screen week pull: {cfg['label']} failed ({str(x)[:60]})")
+            continue
+        spent += len(cfg["markets"])
+        for ev in events:
+            ev["commence_time"] = sm.listed_start(cfg["label"], ev["commence_time"])
+            odds_screen.add(cfg["label"], ev, sm.book_lines(ev), [tuple(x) for x in t25.get(ev["id"], [])], sm.RETAIL, sm.SHARP)
+    odds_screen.save(sm.RETAIL, sm.SHARP, sm.NAMES, rem)
+    d = json.load(open(odds_screen.FILE))
+    d["week_poll"] = round(time.time())
+    with open(odds_screen.FILE, "w") as f:
+        json.dump(d, f, separators=(",", ":"))
+    print(f"odds screen week pull: ~{spent} credits; remaining {rem}")
+
+
 if __name__ == "__main__":
     main()
+    week()

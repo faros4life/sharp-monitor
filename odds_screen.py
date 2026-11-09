@@ -13,6 +13,7 @@ import time
 from datetime import datetime, timezone
 
 FILE = os.environ.get("ODDS_SCREEN_FILE", "") or "odds_screen.json"
+WEEK_LG = ("NFL", "NCAAF")   # Nov 9: shown all week on the screen
 _new = {}   # sport label -> list of games from this run
 
 
@@ -101,7 +102,12 @@ def save(retail, sharp, names, remaining=None):
     for lg, gs in _new.items():
         for g in gs:
             g["upd"] = round(now)
-        by[lg] = gs
+        # Nov 9 (Peter: "show cfb and nfl all week"): a 24h monitor pull must not wipe the week-ahead games
+        # from the weekly screen pull - keep old games that start after this pull's last game.
+        ids = {g["id"] for g in gs}
+        last = max((g["start"] for g in gs), default="")
+        keep = [g for g in by.get(lg, []) if g["id"] not in ids and g["start"] > last and lg in WEEK_LG]
+        by[lg] = gs + keep
     games = []
     for lg, gs in by.items():
         for g in gs:
@@ -120,6 +126,9 @@ def save(retail, sharp, names, remaining=None):
            "names": {b: names.get(b, b) for b in list(retail) + [sharp]},
            "sports": sports, "games": games,
            "credits_left": remaining if remaining is not None else old.get("credits_left")}
+    for k in ("fast_poll", "week_poll"):   # Nov 9: keep poll timers across monitor saves
+        if k in old:
+            out[k] = old[k]
     tmp = FILE + ".tmp"
     with open(tmp, "w") as f:
         json.dump(out, f, separators=(",", ":"))
