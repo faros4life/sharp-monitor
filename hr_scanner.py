@@ -36,7 +36,10 @@ LEAGUES = ("NBA", "NFL", "NCAAF", "NHL", "NCAAB", "MLB")   # Nov 4 12:29 (Peter)
 # adjust. Show me all HR lag." All six sports flag on both paths; the NCAAF Top-25 ping gate is lifted FOR HR FLAGS
 # ONLY (ntfy rules elsewhere unchanged). Volume is COUNTED by league x conversion bucket instead of being gated, so
 # any later adjustment is made on real numbers. NCAAB maxes at Hard Rock are small - noted in reporting, not gated.
-FLAG_LEAGUES = ("NBA", "NFL", "NCAAF", "NHL", "NCAAB", "MLB")
+# Nov 9 (Peter, 10:18 AM: "IM LIMITED CBB"): flags go only to leagues he can actually bet at Hard Rock. NCAAB and
+# NBA are limited there, so their sightings are LOGGED exactly as before and simply never ping - the same rule
+# applied to the board this morning: a push you cannot act on is noise. Widen this list to restore a league.
+FLAG_LEAGUES = ("NFL", "NCAAF", "NHL", "MLB")
 NO_FLAG_MIN = 30          # inside the final 30 minutes: logged, not flagged
 RECHECK_S = 300
 KEEP_DAYS = 30
