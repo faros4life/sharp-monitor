@@ -1,0 +1,43 @@
+name: freekey-sharps
+
+# Which sharp books does the FREE OddsPapi key carry, and what is the real free budget?
+# (Peter, Nov 9: "Are you going to use circa and other sharp books free api")
+#
+# FREE METER ONLY. The paid ODDSPAPI_KEY is deliberately NOT in this job's env, so it cannot spend
+# a paid credit even by mistake. Hard-capped call count, printed at the end.
+#
+# It also measures the free tier's rate-limit headers rather than repeating the "250/month" figure
+# that only ever existed in a docstring I wrote. A feed's cadence cannot be planned on a number
+# nobody verified.
+#
+# Read-only, dispatch only, no cron, no commit step. CONFIRM_BOOK is Peter's flip.
+on:
+  workflow_dispatch:
+    inputs:
+      cap:
+        description: "hard cap on free-key calls (default 12)"
+        required: false
+        type: string
+        default: "12"
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Free-key sharp book check (free meter only, zero paid credits)
+        env:
+          # NOTE: ODDSPAPI_KEY is intentionally absent. This job must not be able to bill.
+          ODDSPAPI_FREE_KEY: ${{ secrets.ODDSPAPI_FREE_KEY }}
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          FK_CAP: ${{ inputs.cap }}
+        run: python -u freekey_sharps.py
