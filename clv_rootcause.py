@@ -192,7 +192,25 @@ def main():
         # gets better input. Passing the RAW short teams would make coverage worse, not better.
         # teams_of returns [] for non-NBA, so NFL/NCAAF/NHL rows keep their old behaviour and
         # their short names remain a known, separate gap.
-        b = {"bet": x.get("bet") or f"{x.get('side')} {x.get('line') or ''}".strip(),
+        # THE BET TEXT MUST CARRY A SIGN ON SPREADS. cl.parsed() reads an UNSIGNED spread as a
+        # MONEYLINE on a team whose name includes the number:
+        #     parsed('Kings 11.5')  -> ('ml', 'Kings 11.5', None, None)     WRONG
+        #     parsed('Kings +11.5') -> ('spread', 'Kings', 11.5, None)      right
+        # The liquidity line IS signed (279 negative, 427 positive of 706 graded spreads), so the
+        # 427 positive ones were graded as moneylines on a nonexistent team - and they matched
+        # SOMETHING, which produced a confidently wrong spread CLV of -16.60% against totals'
+        # -0.83%. A confidently wrong CLV is worse than no CLV, which is the whole reason Peter
+        # tightened the matcher on 5 Nov; this was my caller reintroducing it.
+        _mk, _side, _ln = x.get("market"), x.get("side"), x.get("line")
+        if x.get("bet"):
+            _bet = x["bet"]
+        elif _mk == "spread" and _ln is not None:
+            _bet = f"{_side} {float(_ln):+g}"
+        elif _ln is not None:
+            _bet = f"{_side} {_ln:g}" if isinstance(_ln, (int, float)) else f"{_side} {_ln}"
+        else:
+            _bet = str(_side or "")
+        b = {"bet": _bet,
              "league": lg, "game": x.get("game"),
              "teams": nn.teams_of(dict(x, league=lg)),
              "game_start": (x.get("start_utc") or x.get("alerted_utc")), "book": x.get("book")}
