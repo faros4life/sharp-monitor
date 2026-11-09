@@ -144,6 +144,48 @@ def fill_rows():
     return out, len(rows)
 
 
+def why_no_fixture(st, q, lg):
+    """Which GATE did this fill fail? Measured per gate, so the fix is aimed rather than guessed.
+
+    find_fixture returns a bare None whether the league was wrong, the clock was wrong, the names
+    did not overlap, or two fixtures tied. Those need different fixes, and "no fixture matched" at
+    24% of the population is too big a hole to attack blind."""
+    words = (tb.toks(" ".join(t.get("name", "") for t in q.get("teams") or []))
+             or tb.toks(q.get("game"))) - tb.WEAK
+    gs = cl.tp(q.get("game_start"))
+    fx = (st.get("fixtures") or {})
+    if not words:
+        return ("no usable team words", q.get("game"), "")
+    same_lg = [f for f in fx.values() if f.get("lg") == lg]
+    if not same_lg:
+        return (f"no fixture at all in league {lg!r}", q.get("game"), "")
+    in_win = [f for f in same_lg
+              if not (gs and cl.tp(f.get("start"))
+                      and abs((cl.tp(f.get("start")) - gs).total_seconds()) > 36 * 3600)]
+    if not in_win:
+        return (f"league {lg} has fixtures but none within 36h", q.get("game"), "")
+    qual = [f for f in in_win if cl._qualifies(f, lg, gs, words)]
+    if len(qual) > 1:
+        return ("AMBIGUOUS - several fixtures qualified", q.get("game"),
+                " | ".join(f"{f.get('p1')} v {f.get('p2')}" for f in qual[:3]))
+    # none qualified: show the closest near-miss and what the token test actually saw
+    best, bs = None, -1
+    for f in in_win:
+        a = (tb.toks(f.get("p1") or "") - tb.WEAK) & words
+        c = (tb.toks(f.get("p2") or "") - tb.WEAK) & words
+        s = len(a) + len(c)
+        if s > bs:
+            best, bs = (f, a, c), s
+    if not best or bs <= 0:
+        return ("no token overlap with any fixture in the window", q.get("game"), "")
+    f, a, c = best
+    gate = ("one side matched nothing" if not (a and c) else
+            "a side was carried only by words the other side also matched" if not ((a - c) and (c - a)) else
+            "neither side reached the two-distinctive-token floor")
+    return (gate, q.get("game"),
+            f"closest: {f.get('p1')} v {f.get('p2')}  p1 hit {sorted(a)}  p2 hit {sorted(c)}")
+
+
 def net_of(book, raw_dec, league, live):
     """The NET decimal for a stored fill price, by that venue's basis."""
     if BASIS.get(book) == "money":
@@ -229,14 +271,22 @@ def main():
         mkmap = cl.load_markets(st, now)
 
     miss = Counter()
+    unmatched = []
     R = []
     for b in F:
         lg = b.get("league")
-        q = {"bet": b.get("bet"), "league": lg, "game": b.get("game"),
+        # Nov 9: "teams" was missing from this dict, and find_fixture PREFERS it over "game" -
+        # words = toks(teams names) or toks(game). tracker_build.read_status stores ESPN's full
+        # team names there whenever the bet matched a game, which is exactly the canonical naming
+        # the matcher wants, while b["game"] is the BOOK's own terse string. Omitting it made every
+        # fill match on the weaker source. "no fixture matched" was 10 of 41 fills, 24% of the
+        # population, and this was my caller's fault, not the matcher's.
+        q = {"bet": b.get("bet"), "league": lg, "game": b.get("game"), "teams": b.get("teams"),
              "game_start": b.get("game_start"), "book": b.get("book")}
         fid = cl.find_fixture(st, q)
         if not fid:
             miss["no fixture matched"] += 1
+            unmatched.append(why_no_fixture(st, q, lg))
             continue
         f = st["fixtures"][fid]
         start = cl.tp(f.get("start")) or cl.tp(b.get("game_start"))
@@ -288,6 +338,20 @@ def main():
     say(f"  verified same-line sample          {len(R)}")
     if F:
         say(f"  coverage                           {100 * len(R) / len(F):.1f}% of graded bot fills")
+
+    if unmatched:
+        # "no fixture matched" is the biggest single hole in this measurement, so it is broken down
+        # by GATE rather than left as one number. Each gate needs a different fix.
+        say()
+        say("  WHY the unmatched fills failed, by gate:")
+        for g, n in Counter(g for g, _, _ in unmatched).most_common():
+            say(f"    {n:3d}  {g}")
+        priv("")
+        priv("  the unmatched fills, with the closest fixture and what the token test saw:")
+        for g, game, detail in unmatched:
+            priv(f"    [{g}] {game}")
+            if detail:
+                priv(f"        {detail}")
     if not R:
         say()
         say("  No fill cleared the standard's requirements, so there is no Executed CLV to report.")
