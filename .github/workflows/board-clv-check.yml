@@ -30,6 +30,16 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install -q cryptography
+      # MY BUG, 9 Nov: the first version of this workflow omitted this step, so the run started
+      # with an empty hcache and reported 0 of 54 verified closes. I read that as evidence the
+      # history cache never persists and told Peter so; it was my own omission. Every other
+      # history-reading workflow restores the shared cache first - this one now does too.
+      - name: Restore shared OddsPapi history cache (read only)
+        uses: actions/cache/restore@v4
+        with:
+          path: hcache
+          key: hcache-${{ github.run_id }}
+          restore-keys: hcache-
       - name: BETS BOARD PLAYS CLV and obtainability (read-only, 0 credits)
         env:
           ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
