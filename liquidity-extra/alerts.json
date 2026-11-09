@@ -1,6 +1,184 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-09T06:40:16Z",
+   "base_depth": 28289,
+   "best_price": 0.675,
+   "best_price_american": -208,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.68,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 9,
+   "date": "2026-11-09",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 4349,
+     "new_this_side": 30540,
+     "other_side": 12447,
+     "other_side_all_levels": 22358,
+     "ratio": 1.4,
+     "this_side": 17397,
+     "this_side_all_levels": 59113
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "Seton Hall (0)",
+     "price": 0.675,
+     "this_side": 1633
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "Seton Hall",
+     "price": 0.6825,
+     "this_side": 562
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 475.84000000000003,
+    "volume_24h_fp": 415.63,
+    "volume_fp": 476.84000000000003
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 475.84000000000003,
+    "volume_24h_fp": 415.63,
+    "volume_fp": 476.84000000000003
+   },
+   "fade_price": 0.33,
+   "first_seen_utc": "2026-11-09T06:31:20Z",
+   "game": "Charlotte vs Seton Hall",
+   "game_surge_books": [
+    "kalshi"
+   ],
+   "game_x": 2.19,
+   "key": "kalshi|KXNCAAMBGAME-26NOV09CHARHALL|ml|1",
+   "lead_min": 1160,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 30540,
+   "new_x": 3.24,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 475.84000000000003,
+      "volume_24h_fp": 415.63,
+      "volume_fp": 476.84000000000003
+     },
+     "game_normal": 27018,
+     "game_x": 2.19,
+     "normal": 9421,
+     "now": 59113,
+     "type": "ML",
+     "x": 6.27
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 77084.0,
+      "volume": 77084.0
+     },
+     "game_normal": 1570,
+     "game_x": 1.44,
+     "normal": 2157,
+     "now": 2254,
+     "type": "ML",
+     "x": 1.05
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 718,
+     "game_x": 0.86,
+     "normal": 985,
+     "now": 617,
+     "type": "ML",
+     "x": 0.63
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.68,
+   "price_american": -213,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.68,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -220
+    },
+    "betrivers": {
+     "point": null,
+     "price": -240
+    },
+    "bovada": {
+     "point": null,
+     "price": -225
+    },
+    "draftkings": {
+     "point": null,
+     "price": -225
+    },
+    "fanduel": {
+     "point": null,
+     "price": -210
+    },
+    "kalshi": {
+     "point": null,
+     "price": -213
+    },
+    "novig": {
+     "point": null,
+     "price": -208
+    },
+    "polymarket": {
+     "point": null,
+     "price": -213
+    },
+    "prophetx": {
+     "point": null,
+     "price": -215
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV09CHARHALL-HALL"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Seton Hall",
+   "side_label": "Seton Hall",
+   "size_x": 6.27,
+   "start_source": "odds",
+   "start_utc": "2026-11-10T02:00:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "Charlotte",
+    "Seton Hall"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-09T06:31:20Z",
    "base_depth": 24163,
    "best_price": 0.695,
@@ -51,6 +229,11 @@
     "open_interest_fp": 21.7,
     "volume_24h_fp": 21.7,
     "volume_fp": 21.7
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 666.23,
+    "volume_24h_fp": 691.23,
+    "volume_fp": 691.23
    },
    "ex_stats_first": {
     "open_interest_fp": 640.28,
@@ -186,6 +369,11 @@
     "open_interest_fp": 2.32,
     "volume_24h_fp": 0.0,
     "volume_fp": 2.32
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 11.040000000000001,
+    "volume_24h_fp": 11.040000000000001,
+    "volume_fp": 11.040000000000001
    },
    "ex_stats_first": {
     "open_interest_fp": 8.72,
@@ -355,6 +543,11 @@
     "open_interest_fp": 29.76,
     "volume_24h_fp": 29.77,
     "volume_fp": 29.76
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 53.81,
+    "volume_24h_fp": 49.550000000000004,
+    "volume_fp": 53.81
    },
    "ex_stats_first": {
     "open_interest_fp": 24.049999999999997,
@@ -534,6 +727,11 @@
     "volume_24h_fp": 206.36,
     "volume_fp": 216.31
    },
+   "ex_stats_close": {
+    "open_interest_fp": 1679.3899999999999,
+    "volume_24h_fp": 1712.69,
+    "volume_fp": 1729.91
+   },
    "ex_stats_first": {
     "open_interest_fp": 1440.02,
     "volume_24h_fp": 1454.26,
@@ -704,6 +902,11 @@
     "volume_24h_fp": 157.03,
     "volume_fp": 147.03
    },
+   "ex_stats_close": {
+    "open_interest_fp": 953.92,
+    "volume_24h_fp": 941.65,
+    "volume_fp": 953.92
+   },
    "ex_stats_first": {
     "open_interest_fp": 794.3,
     "volume_24h_fp": 772.03,
@@ -862,9 +1065,9 @@
     "volume_fp": 21.55
    },
    "ex_stats_close": {
-    "open_interest_fp": 15679.25,
-    "volume_24h_fp": 11725.36,
-    "volume_fp": 15853.79
+    "open_interest_fp": 15790.7,
+    "volume_24h_fp": 15541.24,
+    "volume_fp": 15971.02
    },
    "ex_stats_first": {
     "open_interest_fp": 11762.960000000001,
@@ -1038,9 +1241,9 @@
     "volume_fp": 146.26
    },
    "ex_stats_close": {
-    "open_interest_fp": 1003.4,
-    "volume_24h_fp": 1016.81,
-    "volume_fp": 1021.63
+    "open_interest_fp": 1006.22,
+    "volume_24h_fp": 1018.22,
+    "volume_fp": 1024.45
    },
    "ex_stats_first": {
     "open_interest_fp": 846.98,
