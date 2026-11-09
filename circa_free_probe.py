@@ -62,34 +62,51 @@ def main():
         return
 
     now = datetime.now(timezone.utc)
-    st = {"billable": {}}
-    for lg in ("NBA", "NHL", "NCAAB"):
-        try:
-            cl.refresh_fixtures(st, now, lg, (now - timedelta(days=5)).astimezone(cl.ET),
-                                (now + timedelta(days=1)).astimezone(cl.ET))
-        except Exception as e:
-            say(f"  fixtures {lg}: {type(e).__name__}")
-    fx = list((st.get("fixtures") or {}).items())
-    say(f"fixtures on hand: {len(fx)}")
 
     say("")
-    say("1) /historical-odds on the FREE key")
-    hits = 0
-    for fid, f in fx[:6]:
-        code, d = get("/historical-odds", FREE, fixtureId=fid, bookmakers="circasports")
-        bk = books_in(d)
-        say(f"   {str(f.get('lg','?')):6} {str(f.get('start'))[:16]}  HTTP {code}  books back: {bk or '-'}"
-            + (f"   {str(d.get('_body'))[:90]}" if code != 200 else ""))
-        if code == 200 and "circasports" in bk:
-            hits += 1
-    say(f"   -> circasports returned data on {hits} of {min(6, len(fx))} fixtures")
-
-    say("")
-    say("2) /odds-by-tournaments live on the FREE key (does the slug resolve at all)")
+    say("1) does the slug resolve LIVE on the free key (a real tournamentId, not a bare sportId)")
     code, d = get("/sports", FREE)
     say(f"   /sports HTTP {code}")
-    code, d = get("/odds-by-tournaments", FREE, sportId=11, bookmakers="circasports")
-    say(f"   odds-by-tournaments circasports HTTP {code} {str(d.get('_body'))[:120] if code != 200 else 'OK'}")
+    tids = []
+    for sid in (11, 17):   # basketball, ice hockey
+        code, d = get("/tournaments", FREE, sportId=sid)
+        got = []
+        def walk(o):
+            if isinstance(o, dict):
+                if o.get("id") and (o.get("name") or o.get("title")):
+                    got.append((o["id"], str(o.get("name") or o.get("title"))[:26]))
+                for v in o.values():
+                    walk(v)
+            elif isinstance(o, list):
+                for v in o:
+                    walk(v)
+        walk(d)
+        say(f"   /tournaments sportId={sid} HTTP {code}, {len(got)} found: {[g[1] for g in got[:4]]}")
+        tids += [g[0] for g in got[:2]]
+    for tid in tids[:3]:
+        code, d = get("/odds-by-tournaments", FREE, tournamentIds=tid, bookmakers="circasports")
+        say(f"   odds-by-tournaments tid={tid} circasports  HTTP {code}  books: {books_in(d) or '-'}"
+            + (f"  {str(d.get('_body'))[:110]}" if code != 200 else ""))
+        code, d = get("/odds-by-tournaments", FREE, tournamentIds=tid, bookmakers="pinnacle")
+        say(f"   ... same tid with pinnacle (control)   HTTP {code}  books: {books_in(d) or '-'}")
+
+    say("")
+    say("2) /historical-odds on the free key, on fixtures already in the shared cache")
+    try:
+        import hist_cache as hc
+        import glob
+        paths = sorted(glob.glob(os.path.join(hc.DIR if hasattr(hc, "DIR") else "hcache", "**", "*pinnacle*"), recursive=True))[:5]
+        say(f"   cached pinnacle files found: {len(paths)}")
+        fids = []
+        for pth in paths:
+            base = os.path.basename(os.path.dirname(pth)) or os.path.basename(pth)
+            fids.append(base.split(".")[0])
+        for fid in fids[:4]:
+            code, d = get("/historical-odds", FREE, fixtureId=fid, bookmakers="circasports")
+            say(f"   fixture {fid}  HTTP {code}  books: {books_in(d) or '-'}"
+                + (f"  {str(d.get('_body'))[:110]}" if code != 200 else ""))
+    except Exception as e:
+        say(f"   cache walk failed: {type(e).__name__}: {str(e)[:70]}")
 
     say("")
     say("3) same two calls on the PAID key, for the contrast the Nov 9 probe already showed")
