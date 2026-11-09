@@ -27,6 +27,12 @@ jobs:
           GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
           EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          # Step 1 (Peter, 9 Nov): READ-ONLY access to the shared credit counter in clv/state.enc,
+          # so the 1,000-call cap can actually restrain Lane 2. Without it tb.PASS is empty, the
+          # AES-GCM key derives from nothing, and the seed failed with InvalidTag - which is why
+          # the 08:40 run reported "SEED UNAVAILABLE - cap not enforced". Nothing is written or
+          # committed by this job; it only reads the counter.
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
           NOVIG_READ_KEY_ID: ${{ secrets.NOVIG_READ_KEY_ID }}       # read-only: positions for duplicate/conflict checks
           NOVIG_READ_KEY_PEM: ${{ secrets.NOVIG_READ_KEY_PEM }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}       # fill texts to Peter's Telegram (live orders only)
