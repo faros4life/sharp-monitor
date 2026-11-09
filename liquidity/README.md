@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 9, 3:10 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 18.
+Updated Mon Nov 9, 3:15 AM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 19.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 9 3:15AM | NBA | Los Angeles L vs Atlanta | moneyline: Atlanta | kalshi | $98k | +108 |  |  | +0.0c |  | pending |
 | Nov 9 12:35AM | NHL | Philadelphia vs Vancouver | moneyline: Vancouver | kalshi | $34k | +117 | ✅ polymarket |  | +0.0c |  | pending |
 | Nov 9 12:35AM | NCAAF | Ohio vs Miami (OH) | moneyline: Ohio | kalshi | $81k | -108 |  |  | -1.0c | yes | pending |
 | Nov 8 11:40PM | NHL | Philadelphia vs Vancouver: Spread | spread: NOT Philadelphia wins by over 1.5 goals | kalshi | $30k | -213 |  |  | +0.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 7 7:10PM | NCAAF | Miami (FL) vs Notre Dame | moneyline: Notre Dame | kalshi | $158k | -245 | ✅ novig,prophetx | ✅ | +0.0c | yes | W |
 | Nov 7 7:00PM | NBA | Nets vs. Hawks | spread: Hawks (-6.5) | polymarket | $60k | -104 | ✅ novig | ✅ | +0.0c |  | L |
 | Nov 7 7:00PM | NBA | Washington Wizards @ Oklahoma City Thunder | moneyline: OKC (0) | novig | $100k | -525 | ✅ kalshi,polymarket,prophetx | ✅ | +0.0c |  | W |
-| Nov 7 7:00PM | NCAAF | Georgia @ Ole Miss | spread: UGA -3.5 (3.5) | novig | $48k | -108 |  |  | -2.0c |  | W |
