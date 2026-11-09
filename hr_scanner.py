@@ -40,7 +40,9 @@ LEAGUES = ("NBA", "NFL", "NCAAF", "NHL", "NCAAB", "MLB")   # Nov 4 12:29 (Peter)
 # NCAAB stays in this list because the non-Top-25 notification gate below already does that job - it suppresses
 # the push on an ESTABLISHED non-Top-25 college game while still logging, counting and grading the sighting,
 # and it fails open when the AP poll cannot be read. Same gate NCAAF uses, one definition for both.
-FLAG_LEAGUES = ("NBA", "NFL", "NCAAF", "NHL", "NCAAB", "MLB")
+# NBA is out entirely (Peter, 10:19 AM: "NBA LIMITED ALSO") - he is limited at Hard Rock there and a push he
+# cannot act on is noise. NBA sightings are still LOGGED, counted and graded exactly as before.
+FLAG_LEAGUES = ("NFL", "NCAAF", "NHL", "NCAAB", "MLB")
 NO_FLAG_MIN = 30          # inside the final 30 minutes: logged, not flagged
 RECHECK_S = 300
 KEEP_DAYS = 30
