@@ -85,8 +85,10 @@ def main():
     say("CONFIRM-BOOK PROBE - read-only, nothing changed")
 
     # ---------------------------------------------------------------- 1. the catalog
+    # Nov 8: the first run already answered this and the answer does not change hour to hour,
+    # so SKIP_CATALOG=1 spends that credit on the market check instead.
     cat = None
-    for path in ("/bookmakers", "/bookmaker", "/sports/bookmakers"):
+    for path in (() if os.environ.get("SKIP_CATALOG") else ("/bookmakers", "/bookmaker", "/sports/bookmakers")):
         d = get(path)
         if isinstance(d, dict) and d.get("_error"):
             say(f"  {path}: HTTP {d['_error']}")
@@ -106,17 +108,24 @@ def main():
 
     # ---------------------------------------------------------------- 2/3. slug resolution
     say("\nSLUG CHECK  (does the slug resolve, and does it return our markets?)")
+    # Nov 8: the first run guessed sportId=1 and got HTTP 400. The real shape, lifted from
+    # plimit_probe: /sports gives slug -> sportId, and a tournament row carries tournamentId /
+    # tournamentName / categorySlug. Guessing twice would have cost credits for nothing.
     tids = None
     s = get("/sports")
-    if not (isinstance(s, dict) and s.get("_error")):
-        t = get("/tournaments", sportId=1)          # basketball; NBA is where our volume is
-        if not (isinstance(t, dict) and t.get("_error")):
-            rows = t if isinstance(t, list) else (t.get("data") or [])
-            for r in rows if isinstance(rows, list) else []:
-                nm = str((r or {}).get("name") or "")
-                if "NBA" in nm.upper():
-                    tids = str((r or {}).get("id"))
-                    break
+    rows = s if isinstance(s, list) else ((s or {}).get("data") or [])
+    sid = {r.get("slug"): r.get("sportId") for r in rows if isinstance(r, dict)}
+    say(f"  basketball sportId: {sid.get('basketball')}")
+    if sid.get("basketball"):
+        ts = get("/tournaments", sportId=sid["basketball"])
+        for t in ts if isinstance(ts, list) else []:
+            nm = (t.get("tournamentName") or "").lower()
+            cat = (t.get("categorySlug") or "").lower()
+            if nm == "nba" or (nm.startswith("nba") and "usa" in cat):
+                tids = str(t.get("tournamentId"))
+                say(f"  NBA tournamentId: {tids} ({t.get('tournamentName')}, "
+                    f"{t.get('upcomingFixtures')} upcoming)")
+                break
     if tids is None:
         say("  could not resolve an NBA tournament id - slug check skipped rather than guessed at")
     else:

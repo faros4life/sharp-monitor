@@ -8,6 +8,12 @@ name: book-probe
 # bookmaker/betcris resolve, and whether betfair_ex_eu is genuinely absent or silently dead.
 on:
   workflow_dispatch:
+    inputs:
+      skip_catalog:
+        description: "1 = skip the bookmaker catalog (already known) and spend that credit on the market check"
+        required: false
+        type: string
+        default: ""
 
 permissions:
   contents: read
@@ -24,6 +30,7 @@ jobs:
       - name: Confirm-book probe (read-only, ~6 billable calls)
         env:
           ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
+          SKIP_CATALOG: ${{ inputs.skip_catalog }}
           GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
           EMAIL_TO: ${{ secrets.EMAIL_TO }}
