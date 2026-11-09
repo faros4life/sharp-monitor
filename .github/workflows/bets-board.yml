@@ -37,10 +37,16 @@ jobs:
           python-version: "3.12"
       - name: Paper lanes (LIQ-ML-STAY, LIQ-PULL-FADE)
         run: python -u lanes.py
-      - name: Phone alert on new PLAY calls (Peter Nov 2)
+      - name: Phone alert on new PLAY calls (Peter Nov 2; Telegram added Nov 8)
         continue-on-error: true
         env:
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+          # Nov 8 (Peter): board PLAY calls also go to Telegram. Without these two the push is a
+          # SILENT no-op - the same failure mode that cost 5 unapproved OddsPapi credits on Nov 6 -
+          # so the secrets and the code ship together.
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          BOARD_TG: ${{ vars.BOARD_TG }}
         run: python -u board_alerts.py
       - run: pip install -q cryptography
       - name: Private bet tracker (encrypted; counts only in this log)

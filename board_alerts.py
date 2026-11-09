@@ -22,6 +22,7 @@ import json
 import os
 import urllib.request
 from datetime import datetime, timedelta, timezone
+import urllib.request
 
 import board_build as bb
 
@@ -31,6 +32,46 @@ TAGS = [t.strip().upper() for t in (os.environ.get("BOARD_ALERT_TAGS") or "PLAY"
 # Nov 4 (Peter via Muse, 7:42 AM): board PLAY pushes OFF - Lane 3 is off, so every board call is paper. Rows are still
 # recorded as sent (so turning it back on never floods old calls). BOARD_PUSH=on brings the push back.
 PUSH = (os.environ.get("BOARD_PUSH") or "off").strip().lower() == "on"
+# Nov 8 (Peter, via Muse): board PLAY calls also go to TELEGRAM. Scope is deliberately narrow -
+# a NEW PLAY, and a PLAY that is dropped BEFORE THE GAME STARTS. LEAN and DEAD first sightings
+# stay silent, as do flips after tip-off, which are history rather than something to act on.
+# This is a NOTIFICATION path only. Lane 3 remains paper: no order path exists here and none is
+# added. BOARD_PUSH (ntfy) is untouched and still off.
+TG = (os.environ.get("BOARD_TG") or "on").strip().lower() == "on"
+
+
+def tg(text):
+    """One-line push to @sharp_fills_bot. A local sender on purpose: the three existing
+    tg_mirror() twins live in sharp_monitor, liquidity_monitor and px_live, which all do
+    live-trading setup at import time, and this is a small paper-lane script. Silent on failure,
+    nothing sensitive in the public log."""
+    tok = (os.environ.get("TELEGRAM_BOT_TOKEN") or "").strip()
+    chat = (os.environ.get("TELEGRAM_CHAT_ID") or "").strip()
+    if not (TG and tok and chat):
+        return False
+    try:
+        req = urllib.request.Request(f"https://api.telegram.org/bot{tok}/sendMessage",
+                                     data=json.dumps({"chat_id": chat, "text": text[:3500]}).encode(),
+                                     method="POST", headers={"Content-Type": "application/json"})
+        urllib.request.urlopen(req, timeout=15).read()
+        return True
+    except Exception:
+        print("board telegram failed")
+        return False
+
+
+def one_line(r, x, dropped=False):
+    """The chat one-liner. Price is the board's own best after-fee quote where it has one."""
+    am = x.get("best_price_american") or x.get("price_american")
+    bk = x.get("best_price_book") or x.get("book") or r.get("book") or ""
+    side, ln = r.get("side") or x.get("side_label") or "", x.get("line")
+    bet = f"{side} {ln:g}" if isinstance(ln, (int, float)) else str(side)
+    px = f" {am:+d}" if isinstance(am, int) else ""
+    if dropped:
+        return (f"\u26aa BOARD PLAY DROPPED  {r.get('league','')} {r.get('game','')}  {bet}"
+                f"  -  {(r.get('why') or 'no longer on the board')[:70]}")
+    return (f"\U0001F7E2 BOARD PLAY  {r.get('league','')} {r.get('game','')}  {bet}{px} {bk}"
+            f"  {bb.money(r.get('new') or 0)} new  -  paper signal, check the price")
 
 
 def when_of(v):
@@ -54,7 +95,7 @@ def record(when, r, x):
             "line": x.get("line"), "price": x.get("price"), "price_american": x.get("price_american"),
             "best_price": x.get("best_price"), "best_price_american": x.get("best_price_american"),
             "best_price_book": x.get("best_price_book"), "book": x.get("book") or r.get("book"),
-            "alerted_utc": x.get("alerted_utc"), "market_id": mid}
+            "alerted_utc": x.get("alerted_utc"), "start_utc": x.get("start_utc"), "market_id": mid}
 
 
 def migrate(sent, rows):
@@ -101,7 +142,7 @@ def restatus(sent, rows, now):
         x = r["x"]
         if x.get("key") and x.get("alerted_utc"):
             by[(x["key"], x["alerted_utc"])] = r
-    n = 0
+    n, flips = 0, []
     for k, v in sent.items():
         if not isinstance(v, dict):
             continue
@@ -116,7 +157,9 @@ def restatus(sent, rows, now):
             v["flipped_at"] = now.isoformat()
             v["flip_reason"] = (r.get("why") or "")[:160] or f"status {st}, tag {tg}"
             n += 1
-    return n
+            if v.get("tag") == "PLAY":
+                flips.append((v, r))        # the caller decides whether it is pre-start
+    return n, flips
 
 
 def main():
@@ -126,7 +169,7 @@ def main():
     except Exception:
         st = {"sent": {}}
     sent = st.setdefault("sent", {})
-    new = 0
+    new = pushed = dropped_sent = 0
     for r in rows:
         if r.get("tag") not in TAGS or r["status"] != "still there":
             continue
@@ -148,13 +191,27 @@ def main():
                 continue   # not marked sent: retried next run
         sent[k] = record(now.isoformat(), r, x)
         new += 1
+        if r["tag"] == "PLAY" and tg(one_line(r, x)):
+            pushed += 1
     migrated = migrate(sent, rows)
-    flipped = restatus(sent, rows, now)
+    flipped, flips = restatus(sent, rows, now)
+    # a PLAY that dies BEFORE tip is actionable - Peter can stand down. After tip it is history.
+    for v, r in flips:
+        st = v.get("start_utc") or (r["x"].get("start_utc") if isinstance(r.get("x"), dict) else None)
+        try:
+            pre = bool(st) and now < datetime.fromisoformat(str(st).replace("Z", "+00:00"))
+        except Exception:
+            pre = False
+        if pre and tg(one_line(r, r["x"], dropped=True)):
+            pushed += 1
+            dropped_sent += 1
     cut = (now - timedelta(days=3)).isoformat()
     st["sent"] = {k: v for k, v in sent.items() if when_of(v) >= cut}
     os.makedirs("lanes", exist_ok=True)
     json.dump(st, open(FILE, "w"), indent=1)
-    print(f"board alerts: {new} sent, {migrated} migrated, {flipped} newly flipped from PLAY ({', '.join(TAGS)})")   # counts only
+    print(f"board alerts: {new} sent, {migrated} migrated, {flipped} newly flipped from PLAY "
+          f"({', '.join(TAGS)}); telegram {pushed} pushed ({dropped_sent} pre-start drops), "
+          f"BOARD_TG={'on' if TG else 'off'}, BOARD_PUSH={'on' if PUSH else 'off'}")   # counts only
 
 
 if __name__ == "__main__":
