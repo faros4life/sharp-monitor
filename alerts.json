@@ -134,7 +134,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+1.5 pts",
+   "clv": "+2.5 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline",
@@ -169,13 +169,13 @@
   {
    "alert_utc": "2026-11-08T16:30:17Z",
    "beat_close": true,
-   "beat_true_close": null,
+   "beat_true_close": true,
    "bet": "Under 143.5 (-105)",
    "book": "Hard Rock",
    "book_key": "hardrockbet",
-   "close_fair_prob": null,
-   "close_read_mins_before": null,
-   "close_value_pct": null,
+   "close_fair_prob": 0.5175,
+   "close_read_mins_before": 30,
+   "close_value_pct": 1.0,
    "clv": "+0.5 pts",
    "confirm": "yes",
    "confirmed_by": [
@@ -210,13 +210,13 @@
   {
    "alert_utc": "2026-11-08T03:10:16Z",
    "beat_close": false,
-   "beat_true_close": null,
+   "beat_true_close": false,
    "bet": "Over 47.5 (-106)",
    "book": "Novig",
    "book_key": "novig",
-   "close_fair_prob": null,
-   "close_read_mins_before": null,
-   "close_value_pct": null,
+   "close_fair_prob": 0.4908,
+   "close_read_mins_before": 30,
+   "close_value_pct": -4.6,
    "clv": "+0 pts",
    "confirm": "yes",
    "confirmed_by": [
@@ -258,7 +258,7 @@
    "close_fair_prob": 0.4954,
    "close_read_mins_before": 30,
    "close_value_pct": -8.2,
-   "clv": "+0 pts",
+   "clv": "-1.5 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline",
@@ -292,7 +292,7 @@
   },
   {
    "alert_utc": "2026-11-08T15:30:18Z",
-   "beat_close": false,
+   "beat_close": true,
    "beat_true_close": false,
    "bet": "Over 221.5 (-115)",
    "book": "Hard Rock",
@@ -300,7 +300,7 @@
    "close_fair_prob": 0.5046,
    "close_read_mins_before": 30,
    "close_value_pct": -5.7,
-   "clv": "+0 pts",
+   "clv": "+1.5 pts",
    "confirm": "yes",
    "confirmed_by": [
     "Matchbook"
@@ -767,8 +767,8 @@
    "fade_point": 151.5,
    "fade_price": 107,
    "fade_price_after_fee": 105,
-   "fade_units": null,
-   "final": null,
+   "fade_units": -1.0,
+   "final": "RICH 79, TEM 53",
    "floor_line": 151.5,
    "game": "Richmond Spiders @ Temple Owls",
    "grade": "B",
@@ -779,13 +779,13 @@
    "price": -111,
    "price_after_fee": -113,
    "pricing_bettable": true,
-   "result": null,
+   "result": "W",
    "score": 69,
    "sent_to_phone": false,
    "sport": "NCAAB",
    "start_utc": "2026-11-08T22:00:00Z",
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.88
   },
   {
    "alert_utc": "2026-11-08T15:20:16Z",
@@ -39200,6 +39200,31 @@
  ],
  "all_alerts": [
   {
+   "alert_text": "Miami Heat -11.5 (-106) at Novig (also: Hard Rock, ProphetX, Kalshi)",
+   "bet": "Miami Heat -11.5 (-106)",
+   "bet_result": null,
+   "book": "Novig",
+   "confirmed_by": [
+    "BetOnline",
+    "Matchbook"
+   ],
+   "edge_pct": -0.8,
+   "final": null,
+   "game": "Miami Heat @ Sacramento Kings",
+   "grade": "B",
+   "late": true,
+   "minutes_before_start": 45,
+   "price": -106,
+   "price_after_fee": -106,
+   "pushed_to_phone": false,
+   "repeat": true,
+   "score": 74,
+   "sent_et": "2026-11-08 20:15",
+   "sport": "NBA",
+   "start_utc": "2026-11-09T02:00:00Z",
+   "why": "Pinnacle moved -11 -> -12; bet only at -11.5 or better (confirmed by BetOnline, Matchbook)"
+  },
+  {
    "alert_text": "UTEP Miners -12.5 (-121) at ProphetX [-123 after ProphetX fee]",
    "bet": "UTEP Miners -12.5 (-121)",
    "bet_result": null,
@@ -39397,13 +39422,13 @@
   {
    "alert_text": "Under 151.5 (-111) at ProphetX [-113 after ProphetX fee] (also: Kalshi)",
    "bet": "Under 151.5 (-111)",
-   "bet_result": null,
+   "bet_result": "W",
    "book": "ProphetX",
    "confirmed_by": [
     "BetOnline"
    ],
    "edge_pct": -3.8,
-   "final": null,
+   "final": "RICH 79, TEM 53",
    "game": "Richmond Spiders @ Temple Owls",
    "grade": "B",
    "late": false,
