@@ -751,7 +751,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+1 pts",
+   "clv": "+1.5 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline"
@@ -868,7 +868,7 @@
   },
   {
    "alert_utc": "2026-11-09T14:10:15Z",
-   "beat_close": true,
+   "beat_close": false,
    "beat_true_close": null,
    "bet": "Under 171.5 (-115)",
    "book": "Hard Rock",
@@ -876,7 +876,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+1.5 pts",
+   "clv": "+0 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline"
@@ -1314,6 +1314,47 @@
    "sport": "NCAAB",
    "start_utc": "2026-11-10T00:00:00Z",
    "top25": false,
+   "units_flat": null
+  },
+  {
+   "alert_utc": "2026-11-09T18:00:27Z",
+   "beat_close": true,
+   "beat_true_close": null,
+   "bet": "Texas Longhorns -37.5 (-110)",
+   "book": "Hard Rock",
+   "book_key": "hardrockbet",
+   "close_fair_prob": null,
+   "close_read_mins_before": null,
+   "close_value_pct": null,
+   "clv": "+0.5 pts",
+   "confirm": "yes",
+   "confirmed_by": [
+    "BetOnline"
+   ],
+   "edge_pct": -3.6,
+   "executable_book": true,
+   "fade_book": "novig",
+   "fade_point": 37.5,
+   "fade_price": 102,
+   "fade_price_after_fee": 102,
+   "fade_units": null,
+   "final": null,
+   "floor_line": -37.5,
+   "game": "Grambling St Tigers @ Texas Longhorns",
+   "grade": "A",
+   "kind": "spr",
+   "late": false,
+   "minutes_before_start": 360,
+   "point": -37.5,
+   "price": -110,
+   "price_after_fee": -110,
+   "pricing_bettable": true,
+   "result": null,
+   "score": 81,
+   "sent_to_phone": true,
+   "sport": "NCAAB",
+   "start_utc": "2026-11-10T00:00:00Z",
+   "top25": true,
    "units_flat": null
   },
   {
@@ -40597,6 +40638,54 @@
   }
  ],
  "all_alerts": [
+  {
+   "alert_text": "Boston Univ. Terriers +15.5 (-123) at ProphetX [-126 after ProphetX fee]",
+   "bet": "Boston Univ. Terriers +15.5 (-123)",
+   "bet_result": null,
+   "book": "ProphetX",
+   "confirmed_by": [
+    "BetOnline"
+   ],
+   "edge_pct": -6.7,
+   "final": null,
+   "game": "Boston Univ. Terriers @ Northwestern Wildcats",
+   "grade": "B",
+   "late": false,
+   "minutes_before_start": 420,
+   "price": -123,
+   "price_after_fee": -126,
+   "pushed_to_phone": false,
+   "repeat": true,
+   "score": 65,
+   "sent_et": "2026-11-09 13:00",
+   "sport": "NCAAB",
+   "start_utc": "2026-11-10T01:00:00Z",
+   "why": "Pinnacle moved +16.5 -> +15; bet only at +15.5 or better (confirmed by BetOnline)"
+  },
+  {
+   "alert_text": "Texas Longhorns -37.5 (-110) at Hard Rock (also: ProphetX, Novig)",
+   "bet": "Texas Longhorns -37.5 (-110)",
+   "bet_result": null,
+   "book": "Hard Rock",
+   "confirmed_by": [
+    "BetOnline"
+   ],
+   "edge_pct": -3.6,
+   "final": null,
+   "game": "Grambling St Tigers @ Texas Longhorns",
+   "grade": "A",
+   "late": false,
+   "minutes_before_start": 360,
+   "price": -110,
+   "price_after_fee": -110,
+   "pushed_to_phone": true,
+   "repeat": false,
+   "score": 81,
+   "sent_et": "2026-11-09 13:00",
+   "sport": "NCAAB",
+   "start_utc": "2026-11-10T00:00:00Z",
+   "why": "Pinnacle moved -37 -> -38; bet only at -37.5 or better (confirmed by BetOnline)"
+  },
   {
    "alert_text": "Under 145.5 (-115) at Hard Rock",
    "bet": "Under 145.5 (-115)",
