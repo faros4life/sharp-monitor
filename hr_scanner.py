@@ -36,10 +36,11 @@ LEAGUES = ("NBA", "NFL", "NCAAF", "NHL", "NCAAB", "MLB")   # Nov 4 12:29 (Peter)
 # adjust. Show me all HR lag." All six sports flag on both paths; the NCAAF Top-25 ping gate is lifted FOR HR FLAGS
 # ONLY (ntfy rules elsewhere unchanged). Volume is COUNTED by league x conversion bucket instead of being gated, so
 # any later adjustment is made on real numbers. NCAAB maxes at Hard Rock are small - noted in reporting, not gated.
-# Nov 9 (Peter, 10:18 AM: "IM LIMITED CBB"): flags go only to leagues he can actually bet at Hard Rock. NCAAB and
-# NBA are limited there, so their sightings are LOGGED exactly as before and simply never ping - the same rule
-# applied to the board this morning: a push you cannot act on is noise. Widen this list to restore a league.
-FLAG_LEAGUES = ("NFL", "NCAAF", "NHL", "MLB")
+# Nov 9 (Peter, 10:18 AM: "IM LIMITED CBB" / "UNLESS TOP 25"): college basketball pings only for Top-25 games.
+# NCAAB stays in this list because the non-Top-25 notification gate below already does that job - it suppresses
+# the push on an ESTABLISHED non-Top-25 college game while still logging, counting and grading the sighting,
+# and it fails open when the AP poll cannot be read. Same gate NCAAF uses, one definition for both.
+FLAG_LEAGUES = ("NBA", "NFL", "NCAAF", "NHL", "NCAAB", "MLB")
 NO_FLAG_MIN = 30          # inside the final 30 minutes: logged, not flagged
 RECHECK_S = 300
 KEEP_DAYS = 30
