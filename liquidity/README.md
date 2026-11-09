@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 8, 10:26 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 39.
+Updated Sun Nov 8, 10:30 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 38.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 1187-966 (-65.08u flat) | rule met: 738-614
+**Record:** 1188-966 (-64.70u flat) | rule met: 739-614
 
-**Fade (paper, betting against the print):** 700-914 (-133.93u flat, after fees)
+**Fade (paper, betting against the print):** 700-915 (-134.93u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -25,7 +25,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 8 7:20PM | NFL | Tampa Bay Buccaneers at Chicago Bears | moneyline: Chicago Bears | prophetx | $114k | -255 | ✅ kalshi,novig |  | +0.0c |  | pending |
 | Nov 8 7:20PM | NFL | Tampa Bay Buccaneers @ Chicago Bears | spread: TB +6.5 (-6.5) | novig | $118k | -106 | ✅ kalshi |  | -0.5c | yes | pending |
 | Nov 8 7:20PM | NBA | Brooklyn vs Dallas: Spread | spread: NOT Dallas wins by over 7.5 points | kalshi | $41k | -108 | ✅ novig,polymarket | ✅ | +0.0c | yes | L |
-| Nov 8 7:16PM | NBA | Brooklyn Nets @ Dallas Mavericks | moneyline: DAL (0) | novig | $29k | -264 | ✅ kalshi,polymarket | ❌ | +0.5c |  | pending |
+| Nov 8 7:16PM | NBA | Brooklyn Nets @ Dallas Mavericks | moneyline: DAL (0) | novig | $29k | -264 | ✅ kalshi,polymarket | ❌ | +0.5c |  | W |
 | Nov 8 7:06PM | NBA | Nets vs. Mavericks | spread: Nets (+7.5) | polymarket | $39k | -108 | ✅ kalshi,novig | ✅ | +0.0c |  | L |
 | Nov 8 6:40PM | NBA | Jazz vs. Timberwolves | spread: Timberwolves (-12.5) | polymarket | $47k | -100 |  |  | +0.0c |  | W |
 | Nov 8 6:36PM | NBA | Pelicans vs. Clippers | moneyline: Pelicans | polymarket | $53k | -117 | ✅ novig |  | -1.0c |  | pending |
