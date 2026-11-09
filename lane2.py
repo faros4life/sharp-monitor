@@ -169,6 +169,16 @@ def _names(f):
 
 def _fixture(a, lg, now, live):
     """(fixtureId, fixture record) for the alert's game: names from the live response when present, else /fixtures."""
+    # A PAUSED LANE 2 MUST NOT BUY FIXTURES (Nov 9, caught by the new billable-call logging).
+    # The Item 1 pause makes _live() return {}, so `live` is always empty here and this fell straight
+    # through to the BILLABLE refresh_fixtures below - turning an occasional paid call into a
+    # guaranteed one, 4 leagues per run. executor-dry-run is contents: read, so fx_last never
+    # persisted either and every run re-bought all four: ~120 credits/day, the largest single
+    # consumer, and a regression introduced by the pause itself.
+    # With polling paused there is no live quote to price (bo is empty whatever this returns), so the
+    # lookup cannot produce anything usable. decide() already handles a None fid.
+    if not PAID:
+        return None, None
     b = {"bet": a.get("bet"), "league": lg, "game": a.get("game"), "game_start": a.get("start_utc")}
     fx = {}
     for fid, f in live.items():
