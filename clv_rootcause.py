@@ -171,16 +171,20 @@ def main():
         if lg not in LEAGUES:
             exc["league out of scope"] += 1
             continue
+        # Coverage fix, ported from executed_clv: find_fixture PREFERS b["teams"] over b["game"],
+        # and _qualifies only applies its 36h window when a start time is present - with none, every
+        # meeting of those two teams qualifies and the match goes ambiguous. The first run of this
+        # script omitted both and lost 1,678 of 2,120 rows to "no fixture matched" (17.8% coverage).
         b = {"bet": x.get("bet") or f"{x.get('side')} {x.get('line') or ''}".strip(),
-             "league": lg, "game": x.get("game"),
-             "game_start": x.get("start_utc"), "book": x.get("book")}
+             "league": lg, "game": x.get("game"), "teams": x.get("teams"),
+             "game_start": (x.get("start_utc") or x.get("alerted_utc")), "book": x.get("book")}
         am = x.get("price_american")
         rec = {"day": str(x.get("alerted_utc") or "")[:10], "game": x.get("game"), "lg": lg,
                "mk": x.get("market"), "side": x.get("side"), "book": x.get("book"),
                "am": am, "res": x.get("result"),
                "lead": x.get("lead_min"), "depth": x.get("base_depth"),
                "new_money": x.get("new_money"), "rule_met": x.get("rule_met"),
-               "self": x.get("clv_cents"), "pin": None, "circa": None, "ps3838": None}
+               "self": x.get("clv_cents"), "pin": None, "auto": None, "auto_src": None, "trig": None, "circa": None, "ps3838": None}
         fid = cl.find_fixture(st_, b)
         if not fid:
             exc["no fixture matched"] += 1
@@ -210,13 +214,44 @@ def main():
             exc["no entry price / venue"] += 1
             rows.append(rec)
             continue
+        # THE BASIS. clv_report's AUTO Opportunity CLV is best_net across the auto-eligible
+        # exchanges, and that is the standard's registered category (CLV_STANDARD.md s2). My first
+        # run used the TRIGGER VENUE'S own alert price instead - which on a liquidity print is
+        # often the price that just got bought up, so it is systematically worse and is not a
+        # registered category at all. It gave -8.10% against clv_report's -0.37% on the same
+        # population, and the gap was the basis, not a finding. AUTO is used here so the figure is
+        # directly comparable to that baseline; the trigger-venue price is kept as a labelled
+        # secondary diagnostic because "the triggering price is bad" is itself informative.
+        pb = x.get("prices_by_book") or {}
+        ln = x.get("line")
+        quotes = {}
+        for k, canon_k in (("novig", "novig.us"), ("prophetx", "prophetx"),
+                           ("kalshi", "kalshi"), ("polymarket_us", "polymarket.us")):
+            v = pb.get(k)
+            if not isinstance(v, dict) or v.get("price") is None:
+                continue
+            # same-line only: a quote at another number is not this bet
+            if ln is not None and v.get("point") is not None and abs(float(v["point"]) - float(ln)) > 1e-9:
+                continue
+            if ln is not None and v.get("point") is None and x.get("market") != "moneyline":
+                continue
+            quotes[canon_k] = cl.am_to_dec(v["price"])
+        if quotes:
+            try:
+                _bk, bnd, _src = cs.best_net(quotes, "auto", league=lg)
+                if bnd:
+                    rec["auto"] = 100 * (c["p"] * bnd - 1)
+                    rec["auto_src"] = _bk
+            except Exception:
+                pass
+        else:
+            exc["no auto-venue quote at this line"] += 1
         try:
             nd = cs.net_dec(cs.canon(rec["book"]), cl.am_to_dec(am))
+            rec["trig"] = 100 * (c["p"] * nd - 1)
         except Exception:
-            exc["venue not tradeable for us"] += 1
-            rows.append(rec)
-            continue
-        rec["pin"] = 100 * (c["p"] * nd - 1)
+            pass
+        rec["pin"] = rec.get("auto")
         # Peter, 9 Nov: "look at circa net fees compare". Same net entry decimal, a DIFFERENT
         # closing anchor - so this isolates the anchor, which is the whole point. Circa and ps3838
         # carry their vig in the price and take no commission, so there is no fee on the CLOSE;
@@ -259,7 +294,13 @@ def main():
         bp = sum(1 for r in sv if r["pin"] > 0)
         bs = sum(1 for r in sv if r["self"] > 0)
         say(f"  on the SAME {len(sv)} rows:")
-        say(f"    Pinnacle verified same-line CLV   {pin:+.2f}%   beat {bp}/{len(sv)} = {100 * bp / len(sv):.1f}%")
+        say(f"    AUTO Opportunity CLV (standard)   {pin:+.2f}%   beat {bp}/{len(sv)} = {100 * bp / len(sv):.1f}%")
+        tg = [r["trig"] for r in sv if r.get("trig") is not None]
+        if tg:
+            bt = sum(1 for r in sv if r.get("trig") is not None and r["trig"] > 0)
+            say(f"    the TRIGGER venue's own price     {st.mean(tg):+.2f}%   beat {bt}/{len(tg)} = {100 * bt / len(tg):.1f}%")
+            say(f"      ^ not a registered category. The gap between these two IS a root cause: the")
+            say(f"        price that fires a liquidity alert is worse than the best price available.")
         say(f"    trigger venue's own close move    {slf:+.2f}c   'beat' {bs}/{len(sv)} = {100 * bs / len(sv):.1f}%")
         say("  If the venue's own close flatters these groups and Pinnacle's does not, the groups are")
         say("  not beating the market - they are being graded against a price that moved with them.")
