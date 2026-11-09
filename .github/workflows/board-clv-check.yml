@@ -1,0 +1,38 @@
+name: board-clv-check
+
+# ONE TARGETED CHECK (Peter, 2026-11-09): the verified standardized Pinnacle CLV of the exact
+# graded BETS BOARD PLAYS calls, and whether a resting price was obtainable at the decision time.
+#
+# Read-only and manual only. contents: read, no commit step, no state file written, no bet, no
+# order, no switch. Spends NO OddsPapi credits: Pinnacle closes come from the already-bought
+# history cache, /historical-odds is free and bypasses the credit gate, and any paid lookup the
+# gate refuses degrades to "no verified close" instead of buying.
+#
+# Prints units and percentages only - no dollars, stakes, balances or account data - so it is safe
+# in a public Actions log.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: clv-ledger
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: BETS BOARD PLAYS CLV and obtainability (read-only, 0 credits)
+        env:
+          ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
+          ODDSPAPI_FREE_KEY: ${{ secrets.ODDSPAPI_FREE_KEY }}
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+        run: python -u board_clv_check.py
