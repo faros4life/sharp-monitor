@@ -1,26 +1,26 @@
-# Paper splits (updated 2026-11-09T03:55:18Z)
+# Paper splits (updated 2026-11-09T04:05:13Z)
 
 Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kill bar: 30+ resulted at -0.10u/play or worse closes a split.
 
 | Split | Type | Start | W-L-P | Units | u/play | True close % | Status |
 |---|---|---|---|---|---|---|---|
-| Phase-1 live filter (paper view) | a-priori | 2026-10-26 | 22-20-0 | -1.10 | -0.026 | -0.98 | OPEN |
+| Phase-1 live filter (paper view) | a-priori | 2026-10-26 | 23-20-0 | -0.25 | -0.006 | -1.15 | OPEN |
 | Phase-1 control group | control | 2026-10-26 | 21-25-2 | -6.92 | -0.144 | -2.43 | OPEN |
-| Hard Rock-priced, routed | a-priori | 2026-10-26 | 45-34-0 | +5.93 | +0.075 | -1.07 | ELIGIBLE at next review |
-| Fade Hard Rock-priced | scan | 2026-10-26 | 45-34-0 | -10.71 | -0.136 | -1.07 | CLOSED |
+| Hard Rock-priced, routed | a-priori | 2026-10-26 | 45-35-0 | +4.93 | +0.062 | -1.13 | ELIGIBLE at next review |
+| Fade Hard Rock-priced | scan | 2026-10-26 | 45-35-0 | -9.76 | -0.122 | -1.13 | CLOSED |
 | PM-global-priced, routed | a-priori | 2026-10-26 | 0-0-0 | +0.00 |  |  | OPEN |
-| Unders only | scan | 2026-10-26 | 44-35-0 | +3.91 | +0.049 | -0.78 | OPEN |
-| Combined filter | scan | 2026-10-26 | 61-55-0 | -0.90 | -0.008 | -1.94 | OPEN |
+| Unders only | scan | 2026-10-26 | 45-35-0 | +4.76 | +0.059 | -0.87 | OPEN |
+| Combined filter | scan | 2026-10-26 | 62-55-0 | -0.05 | -0.000 | -1.99 | OPEN |
 | Priced -125 or worse | scan | 2026-10-26 | 12-10-0 | -0.46 | -0.021 | -2.52 | OPEN |
-| College basketball | scan | 2026-10-26 | 133-107-0 | +9.02 | +0.038 | -1.56 | OPEN |
+| College basketball | scan | 2026-10-26 | 133-108-0 | +8.02 | +0.033 | -1.56 | OPEN |
 | Fade alerts sent 12-24h out | scan | 2026-10-26 | 35-29-0 | -4.99 | -0.078 | -1.01 | CLOSED |
-| Tier 2 core (paper) | tier | 2026-10-27 | 13-15-0 | -3.94 | -0.141 | -1.20 | CLOSED |
+| Tier 2 core (paper) | tier | 2026-10-27 | 14-15-0 | -3.09 | -0.107 | -1.44 | CLOSED |
 | Evening sends, ex-Hard Rock | scan | 2026-10-26 | 12-13-0 | -2.40 | -0.096 | -3.95 | OPEN |
 | Muted midday (11 AM-2 PM ET) | scan | 2026-10-26 | 29-26-0 | -0.05 | -0.001 | -0.66 | OPEN |
 | Liquidity totals, no sharp agree | scan | 2026-10-22 | 199-195-0 | -1.54 | -0.004 |  | OPEN |
 | Liquidity vs sharp (oppose) | scan | 2026-10-22 | 157-143-0 | -9.85 | -0.033 |  | CLOSED |
 | Liquidity spreads | scan | 2026-10-22 | 345-354-0 | -51.39 | -0.074 |  | CLOSED (by decision, 2026-10-27) |
-| Liquidity overnight (12-5 AM ET) | scan | 2026-10-26 | 97-63-0 | +0.27 | +0.002 |  | CLOSED |
+| Liquidity overnight (12-5 AM ET) | scan | 2026-10-26 | 97-64-0 | -0.73 | -0.005 |  | CLOSED |
 | Liquidity evening (5-8 PM ET) | scan | 2026-10-26 | 163-150-0 | -25.58 | -0.082 |  | CLOSED |
 | NBA liquidity totals (lane) | scan | 2026-10-28 | 72-62-0 | +7.51 | +0.056 |  | OPEN |
 | NBA liquidity totals - unders | scan | 2026-10-28 | 43-36-0 | +5.97 | +0.076 |  | OPEN |
@@ -30,7 +30,7 @@ Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kil
 | NBA liquidity totals - evacuation | scan | 2026-10-28 | 21-25-0 | -4.58 | -0.100 |  | CLOSED |
 | NBA liquidity, price -129..-105 | scan | 2026-10-28 | 65-56-0 | +3.46 | +0.029 |  | OPEN |
 
-**All-history reference (every resulted play in the feed, not forward; read only):** Tier 2 core (paper) 20-18-0, -1.07u (-0.028/play); Evening sends, ex-Hard Rock 20-24-1, -6.72u (-0.149/play); Muted midday (11 AM-2 PM ET) 53-34-0, +12.55u (+0.144/play); Liquidity overnight (12-5 AM ET) 132-84-0, +4.88u (+0.023/play); Liquidity evening (5-8 PM ET) 211-207-0, -49.93u (-0.119/play)
+**All-history reference (every resulted play in the feed, not forward; read only):** Tier 2 core (paper) 21-18-0, -0.22u (-0.006/play); Evening sends, ex-Hard Rock 20-24-1, -6.72u (-0.149/play); Muted midday (11 AM-2 PM ET) 53-34-0, +12.55u (+0.144/play); Liquidity overnight (12-5 AM ET) 132-85-0, +3.88u (+0.018/play); Liquidity evening (5-8 PM ET) 211-207-0, -49.93u (-0.119/play)
 
 **Muted midday (11 AM-2 PM ET): breakdowns** (resulted plays only)
 
