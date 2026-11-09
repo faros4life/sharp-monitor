@@ -37,7 +37,10 @@ PUSH = (os.environ.get("BOARD_PUSH") or "off").strip().lower() == "on"
 # stay silent, as do flips after tip-off, which are history rather than something to act on.
 # This is a NOTIFICATION path only. Lane 3 remains paper: no order path exists here and none is
 # added. BOARD_PUSH (ntfy) is untouched and still off.
-TG = (os.environ.get("BOARD_TG") or "on").strip().lower() == "on"
+# Nov 9 (Peter, 9:55 AM): "FOR NOW TURN OFF PUSH NOTIFICATIONS TO TELEGRAM BETS BOARD WE WILL REVISIT HOW WE PLAY".
+# Default is OFF, and bets-board.yml no longer passes BOARD_TG at all, so the repo variable cannot switch it
+# back on by itself. Rows are still recorded as sent, so turning it back on never floods the backlog.
+TG = (os.environ.get("BOARD_TG") or "off").strip().lower() == "on"
 
 
 def tg(text):
