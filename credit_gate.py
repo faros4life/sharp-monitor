@@ -88,6 +88,7 @@ BASE_REF = f"origin/{BRANCH}"
 ENFORCE = MODE == "enforce"
 PUSH_TRIES = 5
 REFUSAL_LOG = 50          # the refusal log is bounded; it is a diagnostic, not an archive
+NOTE_LOG = 20             # likewise the notes: unbounded, they grew a line per failed refresh
 
 # OddsPapi bills everything EXCEPT these. They bypass the gate completely and can never be blocked.
 FREE_PATHS = ("/account", "/historical-odds")
@@ -248,7 +249,9 @@ def _authority(d, now, force=False):
         else:
             raise RuntimeError("no usage field in /account")
     except Exception as e:
-        d.setdefault("notes", []).append(f"authority refresh failed ({type(e).__name__}: {str(e)[:60]})")
+        n = d.setdefault("notes", [])
+        n.append(f"{_iso(now)} authority refresh failed ({type(e).__name__}: {str(e)[:60]})")
+        del n[:-NOTE_LOG]            # bounded, like the refusal log: a diagnostic, not an archive
     return d
 
 

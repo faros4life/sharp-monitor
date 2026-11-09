@@ -243,6 +243,12 @@ def t_free():
     print("\n4. FREE ENDPOINTS - never gated, even with the budget exhausted")
     sys.path.insert(0, os.getcwd())
     import credit_gate as g
+    # ISOLATE FIRST. reserve() on a paid path records a refusal and PUSHES it, and an earlier
+    # version of this test ran that in the live checkout - it put nine junk ledger commits on the
+    # real repo's main, one per run. Detach the remote and the ledger path before calling anything
+    # that can write. Every test that touches reserve() must do this or use a sandbox clone.
+    g._fetch = lambda: False
+    g.LEDGER = os.path.join(tempfile.mkdtemp(prefix="gate-free-"), "gate.json")
     # the gate is a leaf module (clv_ledger pulls executor and its credentials), so it carries its
     # own copy of the period rule. That copy must not drift from the one the ledger bills on.
     import clv_ledger as cl
