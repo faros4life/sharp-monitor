@@ -1,0 +1,28 @@
+name: oddsapi-books
+
+# Which bookmakers The Odds API returns for us (Peter, Nov 8). READ-ONLY, dispatch only, no cron.
+# ONE request, hard-capped in the script. Bills the ODDS API meter, not OddsPapi - ceiling 2
+# credits (one market x two US regions). x-requests-remaining is printed, so the spend is shown
+# rather than asserted. Changes nothing: CONFIRM_BOOK is a repo variable and only Peter flips it.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Odds API book availability (ONE request)
+        env:
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+        run: python -u oddsapi_books.py
