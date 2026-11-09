@@ -20,7 +20,7 @@ one billable /odds-by-tournaments call per league per run that has a new Lane 2 
 odds response carries no team names. Dollar limits go to the private dry-run email; the public log prints counts only.
 """
 import os
-from datetime import timedelta
+from datetime import datetime, timedelta, timezone
 
 import agree_rules as ar
 import clv_ledger as cl
@@ -32,11 +32,56 @@ LEAGUES = ("NBA", "NCAAF", "NFL")
 EDGE_MAX = 4.0
 LOOKBACK_H = 6
 _ODDS = {}      # this run: league -> {fixtureId: fixture with bookmakerOdds}
-_ST = {"billable": {}}   # throwaway OddsPapi state for this run (tournament / fixtures lookups)
-STATS = {"calls": 0, "candidates": 0, "low": 0, "high": 0, "no_limit": 0, "no_fixture": 0, "notes": []}
+# STEP 1 (Peter, 9 Nov). This WAS a throwaway: {"billable": {}} rebuilt every run, so
+# cl.can_bill() always saw zero used and the 1,000 cap could never restrain Lane 2, while
+# cl.bill() wrote into a dict that was discarded - Lane 2 spent on every executor pass and
+# recorded nothing. That is the best single explanation for the provider reading 3,345 against an
+# internal count of ~32.
+#
+# The meter is now seeded by READING the shared, committed clv/state.enc counter, so the cap binds
+# immediately with no workflow change. Recording is deliberately NOT done by writing a state file
+# here: executor-dry-run is contents:read and runs every 10 minutes, so adding a commit step would
+# race the ten other committing workflows. Lane 2's spend is instead durably recorded where this
+# codebase already keeps cross-run facts - the "Bets LIVE" email, whose summary_line() carries
+# "OddsPapi calls N" - and credits.py attributes it from there. Gmail is the existing durable store
+# (clv_ledger and tracker_build both read from it), so this adds no new persistence mechanism.
+def _seed_state():
+    """Month-to-date billable, read from the SHARED committed counter. Read-only, and LAZY.
+
+    Lazy on purpose: lane2 -> clv_ledger -> executor -> lane2 is a circular import, so cl.STATE is
+    not bound while this module is still loading. Seeding on first use sidesteps that entirely.
+
+    It does NOT reset or invent a figure. On any failure the seed is empty and _seeded is False,
+    and the run SAYS the cap is not enforceable rather than silently behaving as if zero were
+    spent - which is exactly the failure the throwaway meter had."""
+    if _ST["_seeded"] is not None:
+        return _ST
+    try:
+        import json as _j
+        st = tb.dec(_j.load(open(cl.STATE)))
+        _ST["billable"] = dict((st or {}).get("billable") or {})
+        _ST["_seeded"] = True
+    except Exception as e:
+        _ST["billable"] = {}
+        _ST["_seeded"] = False
+        STATS["notes"].append(f"credit seed unavailable ({type(e).__name__}): cap NOT enforced this run")
+    return _ST
+
+
+_ST = {"billable": {}, "_seeded": None}   # seeded lazily by _seed_state() on the first billable door
+STATS = {"calls": 0, "capped": 0, "candidates": 0, "low": 0, "high": 0, "no_limit": 0, "no_fixture": 0, "notes": []}
 # Nov 4: the paid plan answers 403 RESTRICTED_ACCESS "Restricted bookmakers: pinnacle" on the history endpoint and sells
 # "Pinnacle +30 sec" instead, so the live odds call may need the same slug. Try the plain name, then the paid slug.
-SLUGS = ("pinnacle", "pinnacle+30")
+# STEP 2 (Peter, 9 Nov). The paid plan answers 403 RESTRICTED_ACCESS for plain "pinnacle" - this
+# file has said so since 4 Nov - so starting the loop there spent one billable call per league per
+# run on a documented failure, then succeeded on "pinnacle+30". Observed in the 9 Nov 06:10 run:
+# "NBA pinnacle: HTTP 403" then a good read, "OddsPapi calls 2".
+#
+# NO FEED CHANGE. "pinnacle+30" is already the feed EVERY successful call has used, because the
+# first slug has never once worked on this plan. Reordering removes the wasted call and leaves the
+# data identical - it does not switch us onto a different feed. Plain "pinnacle" is retained as a
+# fallback in case the plan ever starts serving it.
+SLUGS = ("pinnacle+30", "pinnacle")
 _BOOK = {"slug": None}
 
 
@@ -48,8 +93,19 @@ def _live(lg, now):
     if not tid:
         STATS["notes"].append(f"{lg}: no tournament id")
     for slug in (SLUGS if tid else ()):
+        # STEP 1: the cap now actually gates Lane 2. A refusal skips the PAPER measurement for this
+        # league and says why - it never places, changes or suppresses a bet, because Lane 2 has no
+        # live order path at all (registry 8: paper + dry-run).
+        _seed_state()
+        if _ST.get("_seeded") and not cl.can_bill(_ST, now):
+            STATS["capped"] += 1
+            STATS["notes"].append(f"{lg}: SKIPPED - monthly cap {cl.CAP} reached "
+                                  f"({(_ST.get('billable') or {}).get(cl.month_key(now), 0)} used); "
+                                  f"paper measurement skipped, nothing placed")
+            break
         d = cl.api("/odds-by-tournaments", True, tournamentIds=str(tid), bookmaker=slug, verbosity=3)
         STATS["calls"] += 1
+        cl.bill(_ST, now)   # counts against the seeded shared total for the rest of THIS run
         if isinstance(d, dict) and d.get("_error"):
             STATS["notes"].append(f"{lg} {slug}: HTTP {d['_error']}")
             continue
@@ -219,4 +275,7 @@ def plays(now, feed, mkmap):
 def summary_line():
     return (f"Lane 2 (dry run only): {STATS['candidates']} candidate(s); LOW {STATS['low']}, HIGH {STATS['high']}, "
             f"no limit {STATS['no_limit']} (no fixture match {STATS['no_fixture']}); OddsPapi calls {STATS['calls']}; "
-            f"Pinnacle slug {_BOOK['slug'] or '-'}" + ("; " + "; ".join(STATS["notes"][:6]) if STATS["notes"] else ""))
+            f"Pinnacle slug {_BOOK['slug'] or '-'}; "
+            f"month-to-date billable {(_ST.get('billable') or {}).get(cl.month_key(datetime.now(timezone.utc)), 0)}"
+            f"/{cl.CAP}{'' if _ST.get('_seeded') else ' (SEED UNAVAILABLE - cap not enforced)'}"
+            + (f"; CAPPED {STATS['capped']} league(s)" if STATS.get('capped') else "") + ("; " + "; ".join(STATS["notes"][:6]) if STATS["notes"] else ""))
