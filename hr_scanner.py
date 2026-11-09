@@ -42,7 +42,9 @@ LEAGUES = ("NBA", "NFL", "NCAAF", "NHL", "NCAAB", "MLB")   # Nov 4 12:29 (Peter)
 # and it fails open when the AP poll cannot be read. Same gate NCAAF uses, one definition for both.
 # NBA is out entirely (Peter, 10:19 AM: "NBA LIMITED ALSO") - he is limited at Hard Rock there and a push he
 # cannot act on is noise. NBA sightings are still LOGGED, counted and graded exactly as before.
-FLAG_LEAGUES = ("NFL", "NCAAF", "NHL", "NCAAB", "MLB")
+# Nov 9 10:21 (Peter: "IM LIMITED ALL CBB HR") - ALL college basketball is out, Top 25 included; the earlier
+# "unless Top 25" line applies to NCAAF football, which keeps its gate below. NBA is out too (10:19, limited).
+FLAG_LEAGUES = ("NFL", "NCAAF", "NHL", "MLB")
 NO_FLAG_MIN = 30          # inside the final 30 minutes: logged, not flagged
 RECHECK_S = 300
 KEEP_DAYS = 30
