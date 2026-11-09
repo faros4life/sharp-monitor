@@ -58,18 +58,26 @@ def main():
     say("CLV = close win chance x the Hard Rock decimal - 1. No fee either side (HR takes none).")
     say("")
 
-    st = {"billable": {}}
-    mkmap = cl.load_markets(st, now)
-    lgs = sorted({s.get("lg") for s in S if s.get("lg")})
-    for lg in lgs:
+    # Fixtures come off disk, the way clv_rootcause reads them - refresh_fixtures bought nothing here
+    # and left the run with zero fixtures, which looked like "Circa has no data" when it was plumbing.
+    st = {"billable": {}, "fixtures": {}, "fx_last": {}}
+    try:
+        prev = tb.dec(json.load(open(cl.STATE)))
+        st["fixtures"] = dict(prev.get("fixtures") or {})
+        say(f"fixture cache: {len(st['fixtures'])} fixtures read from disk - nothing purchased")
+    except Exception as e:
+        say(f"fixture cache unavailable ({type(e).__name__}) - cannot verify closes, stopping")
+        ex.send("Bets HR vs PINNACLE and CIRCA", "\n".join(L))
+        return
+    try:
+        _mk = json.load(open(cl.MKFILE))
+        mkmap = _mk.get("m") or {}
+        say(f"market map: {len(mkmap)} entries read off disk")
+    except Exception:
+        mkmap = cl.load_markets(st, now)
+    for lg in sorted({s.get("lg") for s in S if s.get("lg")}):
         if lg not in cl.SPORT:
             say(f"  {lg}: not a league this grader covers - its sightings are skipped")
-            continue
-        try:
-            cl.refresh_fixtures(st, now, lg, (now - timedelta(days=8)).astimezone(ET), (now + timedelta(days=1)).astimezone(ET))
-        except Exception as e:
-            say(f"  fixtures {lg}: {type(e).__name__} {str(e)[:60]}")
-    say(f"fixtures on hand: {len((st.get('fixtures') or {}))}")
     say("")
 
     hdr = f"{'league':6} {'bet':34} {'HR':>6} {'PIN CLV':>9} {'CIRCA CLV':>10} {'res':>4}"
