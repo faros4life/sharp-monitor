@@ -1,0 +1,22 @@
+name: freekey-books
+# Can the FREE OddsPapi key see Circa / BetCRIS? (Peter, Nov 8). READ-ONLY, dispatch only.
+# Hard-capped at 4 calls on the FREE key's 250/month meter. ZERO paid credits.
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - name: Free-key book check (0 paid credits)
+        env:
+          ODDSPAPI_FREE_KEY: ${{ secrets.ODDSPAPI_FREE_KEY }}
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+        run: python -u freekey_books.py
