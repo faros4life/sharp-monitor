@@ -1,0 +1,48 @@
+name: clv-rootcause
+
+# PRIORITY 6 - root-cause audit of negative CLV (Peter, 9 Nov). READ-ONLY.
+#
+# Recomputes the registered liquidity candidates against PINNACLE VERIFIED SAME-LINE closes, net of
+# fees under clv_std.FEE_MODEL, because the stored liquidity close_price is the TRIGGER VENUE'S own
+# last pregame price - Exchange Self-Close Price Movement, which CLV_STANDARD.md s4 says is never
+# labelled Pinnacle CLV. The two are printed side by side so they are never confused again.
+#
+# Also compares Pinnacle's close against Circa and ps3838 as second anchors, holding the entry and
+# the fee constant, to test whether Pinnacle's close is itself trustworthy.
+#
+# ZERO CREDITS: cache-only. An uncached fixture is excluded, never bought, and clv/markets.json is
+# read off disk rather than through load_markets(), which BILLS once that file is 7 days old.
+#
+# Dispatch only, no cron, no commit step. Flat 1u throughout, so there are no dollar figures; the
+# log carries units and percentages only.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Restore shared OddsPapi history cache (read only)
+        uses: actions/cache/restore@v4
+        with:
+          path: hcache
+          key: hcache-${{ github.run_id }}
+          restore-keys: hcache-
+      - name: Root-cause audit (cache only, zero credits)
+        env:
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
+          ODDSPAPI_FREE_KEY: ${{ secrets.ODDSPAPI_FREE_KEY }}
+        run: python -u clv_rootcause.py
