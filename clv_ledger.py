@@ -129,17 +129,51 @@ def _api(path, billable, k, params):
             return {"_error": type(e).__name__, "_body": str(e)[:200]}
 
 
+PERIOD_DAY = int(os.environ.get("ODDSPAPI_PERIOD_DAY", "") or "3")
+
+
 def month_key(now):
-    return now.strftime("%Y-%m")
+    """The PROVIDER'S SUBSCRIPTION PERIOD, not the calendar month (Peter, item 3, 9 Nov).
+
+    The OddsPapi period runs the 3rd to the 3rd - Nov 3 to Dec 3 - so the provider's usage resets
+    on the 3rd while every counter here used to reset on the 1st. credits.py has documented that
+    mismatch since 5 Nov: for two days each period a fresh local counter read zero against usage
+    the provider was still counting, and the last two days of a period were charged to the next
+    one. Keyed by the period's START date so local and provider figures line up directly."""
+    y, m = now.year, now.month
+    if now.day < PERIOD_DAY:
+        m -= 1
+        if m == 0:
+            y, m = y - 1, 12
+    return f"{y:04d}-{m:02d}-{PERIOD_DAY:02d}"
+
+
+def used_this_period(st, now):
+    """Recorded usage for the current period, carrying the LEGACY calendar-month figure forward.
+
+    Without this fallback, changing the key would make every existing counter read zero and
+    silently RESET month-to-date usage - exactly what Peter said not to do. The legacy value is
+    read, never deleted or rewritten."""
+    b = st.setdefault("billable", {})
+    k = month_key(now)
+    if k in b:
+        return b[k]
+    legacy = b.get(now.strftime("%Y-%m"))
+    return legacy if legacy is not None else 0
 
 
 def can_bill(st, now, n=1):
-    used = st.setdefault("billable", {}).get(month_key(now), 0)
-    return used + n <= CAP
+    return used_this_period(st, now) + n <= CAP
 
 
 def bill(st, now, n=1):
-    st["billable"][month_key(now)] = st["billable"].get(month_key(now), 0) + n
+    """Counts into the PERIOD key, seeded once from the legacy calendar-month figure so the
+    carried-forward usage is preserved rather than restarting at n."""
+    b = st.setdefault("billable", {})
+    k = month_key(now)
+    if k not in b:
+        b[k] = b.get(now.strftime("%Y-%m"), 0)
+    b[k] = b[k] + n
 
 
 # ------------------------------------------------------------------ helpers

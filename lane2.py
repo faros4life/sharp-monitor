@@ -28,6 +28,22 @@ import tracker_build as tb
 
 MEDIAN = {("NBA", "totals"): 1808.0, ("NBA", "spreads"): 4464.0, ("NCAAF", "spreads"): 10992.0,
           ("NCAAF", "totals"): 3101.0, ("NFL", "totals"): 16892.0}   # frozen (Item 56 FIT medians, raw OddsPapi dollars)
+# ITEM 1 (Peter, 9 Nov): PAUSE PAID LANE 2 POLLING. Default OFF, so the pause is in effect without
+# a repo-variable flip; set EXEC_LANE2_PAID=on to resume.
+#
+# Lane 2 is registry 8 - PAPER + DRY-RUN, no live order path - and it was the only OddsPapi
+# consumer running on the executor's 10-minute cadence, which made it the dominant paid consumer
+# at a measured 509/day against a sustainable 70/day.
+#
+# WHAT IS PRESERVED: the registered strategy, every threshold, the frozen medians, all historical
+# data, and the whole module. Nothing is renamed, merged or retired - the registry is untouched.
+# Lane 2 still runs each pass and still reports; it simply does not BUY a live Pinnacle limit, so
+# candidates needing one are counted as "no limit (paid polling paused)" instead of being bought.
+#
+# WHAT IS NOT TOUCHED: the executor itself, LANE 1 and RESTING BIDS. None of them use OddsPapi at
+# all - sharp_monitor runs on api.the-odds-api.com and the venue clients on their own APIs - so
+# this cannot affect live money.
+PAID = (os.environ.get("EXEC_LANE2_PAID") or "off").strip().lower() == "on"
 LEAGUES = ("NBA", "NCAAF", "NFL")
 EDGE_MAX = 4.0
 LOOKBACK_H = 6
@@ -69,7 +85,7 @@ def _seed_state():
 
 
 _ST = {"billable": {}, "_seeded": None}   # seeded lazily by _seed_state() on the first billable door
-STATS = {"calls": 0, "capped": 0, "candidates": 0, "low": 0, "high": 0, "no_limit": 0, "no_fixture": 0, "notes": []}
+STATS = {"calls": 0, "capped": 0, "paused": 0, "candidates": 0, "low": 0, "high": 0, "no_limit": 0, "no_fixture": 0, "notes": []}
 # Nov 4: the paid plan answers 403 RESTRICTED_ACCESS "Restricted bookmakers: pinnacle" on the history endpoint and sells
 # "Pinnacle +30 sec" instead, so the live odds call may need the same slug. Try the plain name, then the paid slug.
 # STEP 2 (Peter, 9 Nov). The paid plan answers 403 RESTRICTED_ACCESS for plain "pinnacle" - this
@@ -85,10 +101,34 @@ SLUGS = ("pinnacle+30", "pinnacle")
 _BOOK = {"slug": None}
 
 
+def markets(cl_mod, now):
+    """Market ids for Lane 2 WITHOUT a billable call while paid polling is paused.
+
+    ITEM 2 / urgent: clv_ledger.load_markets() BILLS once clv/markets.json is 7 days old, and
+    executor.py calls it on EVERY run. executor-dry-run is contents:read with no commit step, so
+    the refreshed file is DISCARDED each time - meaning from the moment that file goes stale this
+    becomes a permanent billable call per run, 144+/day, for a file that never persists. The file
+    was fetched 2 Nov, so that leak would have opened on 10 Nov.
+
+    Paused: read the committed file off disk, which is free and good enough for market ids -
+    reference data that barely changes. Resumed: the normal path, cooldown and cap intact."""
+    if PAID:
+        return cl_mod.load_markets(_ST, now)
+    try:
+        import json as _j
+        return _j.load(open(cl_mod.MKFILE)).get("m") or {}
+    except Exception as e:
+        STATS["notes"].append(f"market ids unreadable ({type(e).__name__})")
+        return {}
+
+
 def _live(lg, now):
     if lg in _ODDS:
         return _ODDS[lg]
     out = {}
+    if not PAID:
+        STATS["paused"] += 1
+        return {}      # no billable call; the strategy, medians and history are untouched
     tid = cl.tournament(_ST, now, lg) if cl.KEY else None
     if not tid:
         STATS["notes"].append(f"{lg}: no tournament id")
@@ -276,6 +316,8 @@ def summary_line():
     return (f"Lane 2 (dry run only): {STATS['candidates']} candidate(s); LOW {STATS['low']}, HIGH {STATS['high']}, "
             f"no limit {STATS['no_limit']} (no fixture match {STATS['no_fixture']}); OddsPapi calls {STATS['calls']}; "
             f"Pinnacle slug {_BOOK['slug'] or '-'}; "
-            f"month-to-date billable {(_ST.get('billable') or {}).get(cl.month_key(datetime.now(timezone.utc)), 0)}"
+            + ("PAID POLLING PAUSED (EXEC_LANE2_PAID=off) - no billable call; "
+               f"{STATS['paused']} league(s) skipped; strategy and history intact; " if not PAID else "")
+            + f"month-to-date billable {(_ST.get('billable') or {}).get(cl.month_key(datetime.now(timezone.utc)), 0)}"
             f"/{cl.CAP}{'' if _ST.get('_seeded') else ' (SEED UNAVAILABLE - cap not enforced)'}"
             + (f"; CAPPED {STATS['capped']} league(s)" if STATS.get('capped') else "") + ("; " + "; ".join(STATS["notes"][:6]) if STATS["notes"] else ""))

@@ -1936,7 +1936,7 @@ def main():
     try:   # Nov 4: Lane 2 (Muse registration 3:48 PM) - dry run only, no live path exists for these plays
         import clv_ledger as _cl
         l2plays = [dict(p, play_key="lane2|" + (derive_key(p) or ""))   # Nov 4 fix: Lane 2 rows need their own play_key
-                   for p in lane2.plays(now, load_feed(), _cl.load_markets(lane2._ST, now)) if derive_key(p)]
+                   for p in lane2.plays(now, load_feed(), lane2.markets(_cl, now)) if derive_key(p)]
     except Exception as ex:
         LOG.append(f"lane 2 unavailable: {str(ex)[:60]}")
         l2plays = []
