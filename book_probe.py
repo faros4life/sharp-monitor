@@ -38,6 +38,14 @@ def say(line):
 
 
 def get(path, billable=True, **params):
+    # CREDIT GATE (Nov 9). This script has its own OddsPapi client and never passes through
+    # clv_ledger.api, so the gate could not see or refuse its calls - it held the paid key and
+    # would have spent ungated on every dispatch. credit_gate is a leaf module (stdlib only), so
+    # importing it here costs nothing and cannot create an import cycle. Free endpoints
+    # (/account, /historical-odds) bypass it untouched; a refusal raises rather than spending.
+    import credit_gate as cg
+    if billable and not cg.take(1, purpose="book_probe" + path, path=path):
+        raise RuntimeError(f"credit gate refused {path}: no budget left this period")
     params["apiKey"] = KEY
     q = urllib.parse.urlencode({k: v for k, v in params.items() if v is not None})
     req = urllib.request.Request(f"{BASE}{path}?{q}",

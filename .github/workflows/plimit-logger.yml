@@ -3,8 +3,13 @@ name: plimit-logger
 # PLIMIT logger (paper): Pinnacle + BookMaker.eu limit moves and Pinnacle prop limit cuts from OddsPapi free history,
 # once a day for games that have started. Encrypted state; private email; the log prints counts only.
 on:
-  schedule:
-    - cron: "41 14 * * *"
+  # PAUSED Nov 9 (Peter, credit stretch) until the Dec 4 OddsPapi reset. ~10 billable credits a
+  # day. This does leave a gap in the P-LIMIT test halves - accepted deliberately. It also closes
+  # a credit-gate bypass as a side effect: plimit_logger.py has its OWN api() on the paid key and
+  # never passes through clv_ledger.api, so the gate cannot see or refuse its calls.
+  # Restore by uncommenting. workflow_dispatch still works for a manual run.
+  # schedule:
+  #   - cron: "41 14 * * *"
   workflow_dispatch:
     inputs:
       email_now: {required: false, type: string, default: "1"}

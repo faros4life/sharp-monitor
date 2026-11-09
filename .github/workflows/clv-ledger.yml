@@ -4,7 +4,10 @@ name: clv-ledger
 # day (and a kill-switch alert line when due). The log prints counts only.
 on:
   schedule:
-    - cron: "23 */2 * * *"
+    # Nov 9 (Peter, credit stretch): every 2h -> every 6h. This grades FINISHED games, so grading
+    # later gives an identical answer - no data is lost and no H1/H2 gap is created. 39 -> 12
+    # billable credits a day. Restore "23 */2 * * *" after the Dec 4 reset if wanted.
+    - cron: "23 */6 * * *"
   workflow_dispatch:
     inputs:
       email_now: {required: false, type: string, default: "1"}

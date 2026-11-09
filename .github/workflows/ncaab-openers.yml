@@ -3,8 +3,13 @@ name: ncaab-openers
 # PAPER ONLY (item 28; Muse registered Nov 2, Peter yes Nov 3): NCAAB openers freezer. Never places orders, never
 # alerts, never writes main: data lives on the ncaab-openers branch. Reads ESPN (public, free) only. Counts-only log.
 on:
-  schedule:
-    - cron: "19,49 * * * *"
+  # PAUSED Nov 9 (Peter, credit stretch) until the Dec 4 OddsPapi reset. ~17 billable credits a
+  # day, the second largest consumer, and NCAAB is not in LANE 1 scope - it cannot affect a live
+  # decision before the reset. Paused rather than halved on purpose: openers are time-sensitive,
+  # so a half-rate capture would miss the actual open and degrade the data for little saving.
+  # Restore by uncommenting. workflow_dispatch still works for a manual run.
+  # schedule:
+  #   - cron: "19,49 * * * *"
   workflow_dispatch:
 
 concurrency:
