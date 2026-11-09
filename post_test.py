@@ -111,8 +111,11 @@ def main():
             continue
         pin = cl.book_markets(h, "pinnacle")
         pa, _ = cl.close_for(b, f, pin, mkmap, t0, lg)
+        # Nov 8: this was "screen", the same name as the SCREEN BASIS below, so the basis loop
+        # overwrote the alert's American price with its own results dict and the report's scr
+        # column printed that dict. The two are different things; they now have different names.
         row = {"game": a.get("game"), "side": side, "line": line, "trig": trig,
-               "screen": a.get("price_american"),
+               "screen_am": a.get("price_american"),
                "lead_h": round((tip - t0).total_seconds() / 3600, 1), "res": a.get("result"),
                "pin_alert": (round(pa["p"], 4) if pa else None)}
         pc, _ = cl.close_for(b, f, pin, mkmap, cl.tp(f.get("start")) or tip, lg)   # Pinnacle's CLOSE
@@ -193,7 +196,7 @@ def main():
     for r in sorted(R, key=lambda r: (not r["screen"]["fill"], str(r["game"]))):
         n = r["screen"]
         L.append(f"{str(r['game'])[:24]:24s} {str(r['side'])[:5]:5s} {str(r['line']):>6s} {r['trig'][:13]:13s} "
-                 f"{str(r['screen']):>5s} {r['screen_post']:>5d} {r['lead_h']:>5.1f} "
+                 f"{str(r['screen_am']):>5s} {r['screen_post']:>5d} {r['lead_h']:>5.1f} "
                  f"{'yes' if n['fill'] else 'no':>4s} "
                  f"{(format(n['wait_h'], '.1f') if n.get('wait_h') is not None else '-'):>5s} "
                  f"{str(n.get('venue') or '-')[:11]:11s} {str(r['res']):>4s} "

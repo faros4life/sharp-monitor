@@ -191,10 +191,25 @@ def pin_bad(b, gs=None):
     return bool(gs and fs and gs < fs - timedelta(hours=8))
 
 
+POLITICS = re.compile(r"\b(senate|house|governor|president|election|winner\?)")
+
+
+def is_politics(bet):
+    """A politics market is not a game, whatever league string got attached to it.
+
+    Nov 8: this test used to be guarded by `not bet.get("league")`, so it only protected a row with
+    NO league. lg_of() substring-matches a Kalshi TICKER, which is one glued string, so a politics
+    ticker can come out of read_kalshi() already carrying a sports league - and then the guard was
+    skipped, match_game's `bet["league"] != g["league"]` filter narrowed to that league, and a Senate
+    bet got pinned to a college football game and shown as NCAAF on the tracker. The text decides
+    whether something is a game; the league field does not get a vote."""
+    return bool(POLITICS.search(f"{bet.get('game')} {bet.get('bet')}".lower()))
+
+
 def match_game(bet, games, near=None):
     """near: a datetime the game must start within 36 h of (settled bets: their settle time), so an old bet is never
     pinned to this week's game between the same teams."""
-    if not bet.get("league") and re.search(r"\b(senate|house|governor|president|election|winner\?)", f"{bet.get('game')} {bet.get('bet')}".lower()):
+    if is_politics(bet):
         return None   # Nov 6: a politics market ("Michigan Senate winner?") is not a game (it was pinned to C Michigan vs E Michigan)
     bt = (toks(bet.get("game")) | toks(bet.get("bet"))) - WEAK
     best, score, tsc = None, 0, 0
@@ -409,8 +424,13 @@ def read_kalshi(since):
                 title = ""
             label = mk.get("yes_sub_title") or mk.get("subtitle") or mk.get("title") or tk
             pr = (cost / abs(q)) if q else None
-            op.append({"id": f"ks|{tk}|{'no' if q < 0 else 'yes'}", "book": "Kalshi", "game": title, "league": lg_of(tk),
-                       "bet": ("NOT " if q < 0 else "") + label, "flip": False, "stake": round(cost, 2),
+            _bet = ("NOT " if q < 0 else "") + label
+            # Nov 8: lg_of() reads the TICKER, one glued string, so a politics market could come back
+            # with a sports league and show on the tracker as NCAAF. The market text is the authority
+            # on whether this is a game at all; where it says politics, carry no league.
+            _lg = None if is_politics({"game": title, "bet": _bet}) else lg_of(tk)
+            op.append({"id": f"ks|{tk}|{'no' if q < 0 else 'yes'}", "book": "Kalshi", "game": title, "league": _lg,
+                       "bet": _bet, "flip": False, "stake": round(cost, 2),
                        "to_pay": round(abs(q), 2), "price": p_to_american(pr), "date": ps._date(tk), "ticker": tk})
         cur = d.get("cursor")
         if not cur:
@@ -470,9 +490,13 @@ def read_pmus(since):
         if not q:
             continue
         cost = num(p.get("cost")) or (abs(q) * (num(p.get("avgPx")) or 0))
-        op.append({"id": f"pm|{md.get('slug') or slug}|{md.get('outcome')}", "book": "Polymarket US", "game": md.get("title") or "",
-                   "league": lg_of((md.get("eventSlug") or md.get("slug") or slug or "").split("-")[0]),
-                   "bet": md.get("outcome") or "", "flip": q < 0, "stake": round(cost, 2), "to_pay": round(abs(q), 2),
+        _ttl, _out = md.get("title") or "", md.get("outcome") or ""
+        # Nov 8: same guard as the Kalshi path above - Polymarket carries plenty of politics markets,
+        # and a slug fragment must not hand one a sports league.
+        op.append({"id": f"pm|{md.get('slug') or slug}|{md.get('outcome')}", "book": "Polymarket US", "game": _ttl,
+                   "league": None if is_politics({"game": _ttl, "bet": _out}) else
+                   lg_of((md.get("eventSlug") or md.get("slug") or slug or "").split("-")[0]),
+                   "bet": _out, "flip": q < 0, "stake": round(cost, 2), "to_pay": round(abs(q), 2),
                    "price": p_to_american(cost / abs(q)) if cost else None, "date": ps._date(md.get("eventSlug") or md.get("slug") or slug)})
     acts, params = [], {"limit": 100}
     for _ in range(30):
