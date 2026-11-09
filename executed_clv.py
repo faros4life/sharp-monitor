@@ -55,6 +55,7 @@ email; the Actions log gets counts only.
 import json
 import math
 import os
+import re
 from collections import Counter
 from datetime import datetime, timedelta, timezone
 
@@ -67,6 +68,7 @@ import tracker_build as tb
 ET = tb.ET
 TSTATE = "tracker/state.enc"
 DAYS = int(os.environ.get("XC_DAYS", "") or "30")
+UNIT = float(os.environ.get("EXEC_UNIT", "") or "200")
 CACHE_ONLY = (os.environ.get("XC_CACHE_ONLY", "") or "1") != "0"
 TOL = 1e-9
 
@@ -81,9 +83,30 @@ AMBIG = ("kalshi", "polymarket.us")
 L = []
 
 
+MONEY = re.compile(r"\$\s*[+-]?[\d,]+(?:\.\d+)?")
+
+
 def say(t=""):
+    """Email body AND the public log. Only for lines that carry no money.
+
+    The money check is not decoration: it is the guard that makes the rule hold even if someone
+    later edits a line here without remembering that this repo is public. A dollar amount routes
+    itself to the email instead of the log rather than relying on whoever is editing to notice."""
     L.append(t)
+    if MONEY.search(str(t)):
+        print("  [line withheld from the public log: carries a dollar amount]")
+        return
     print(t)
+
+
+def priv(t=""):
+    """Email body ONLY - never the Actions log.
+
+    Nov 9: run 42564956308 put 28 dollar figures into a PUBLIC Actions log, including the
+    staked/P&L total, because say() printed everything and the report carries money. The repo is
+    public and the rule is that the log gets counts only. Every line with a dollar amount, a stake,
+    a P&L or an ROI goes through priv(); say() is for counts, percentages and field names."""
+    L.append(t)
 
 
 def num(x):
@@ -307,7 +330,11 @@ def main():
         p_ = sum(1 for r in rows if r["res"] == "P")
         say(f"    record               {w}-{l_}" + (f"-{p_}" if p_ else ""))
         if st_:
-            say(f"    staked / P&L         ${st_:,.2f} / ${pf:+,.2f}   ROI {100 * pf / st_:+.1f}%")
+            # money: private email only. The log gets the unit-denominated version, which is
+            # what Peter wants in chat anyway and carries no account size.
+            priv(f"    staked / P&L         ${st_:,.2f} / ${pf:+,.2f}   ROI {100 * pf / st_:+.1f}%")
+            say(f"    P&L in units         {pf / UNIT:+.2f}u on {st_ / UNIT:.2f}u staked"
+                f"   ROI {100 * pf / st_:+.1f}%")
 
     block(clean, "HEADLINE - venues whose fee basis is established (Novig, ProphetX, Hard Rock)",
           "Novig: price is already net. ProphetX: 2% of net gains applied here.")
@@ -346,14 +373,14 @@ def main():
 
     say()
     say("=" * 74)
-    say("THE FILLS")
+    say("THE FILLS   (per-bet money is in the private email only, never this log)")
     say("=" * 74)
-    say(f"  {'day':10s} {'venue':12s} {'lg':6s} {'bet':26s} {'fill':>6s} {'CLV':>8s} {'res':>4s} {'P&L':>10s}")
+    priv(f"  {'day':10s} {'venue':12s} {'lg':6s} {'bet':26s} {'fill':>6s} {'CLV':>8s} {'res':>4s} {'P&L':>10s}")
     for r in sorted(R, key=lambda r: (r["day"], str(r["game"]))):
-        say(f"  {r['day']:10s} {r['book'][:12]:12s} {str(r['lg'] or '')[:6]:6s} "
-            f"{str(r['bet'])[:26]:26s} {cl.dec_to_am(cl.am_to_dec(r['am'])):+6.0f} "
-            f"{r['clv']:+7.2f}% {str(r['res']):>4s} "
-            f"{('$%+.2f' % r['profit']) if r['profit'] is not None else '-':>10s}")
+        priv(f"  {r['day']:10s} {r['book'][:12]:12s} {str(r['lg'] or '')[:6]:6s} "
+             f"{str(r['bet'])[:26]:26s} {cl.dec_to_am(cl.am_to_dec(r['am'])):+6.0f} "
+             f"{r['clv']:+7.2f}% {str(r['res']):>4s} "
+             f"{('$%+.2f' % r['profit']) if r['profit'] is not None else '-':>10s}")
 
     say()
     say("Actual filled-bet profitability remains the ultimate measure. Positive CLV is evidence of")
