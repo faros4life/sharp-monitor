@@ -1,0 +1,34 @@
+name: credit-sample
+
+# Hourly sampling of the provider's own credit counter, for the 24-hour burn measurement Peter
+# asked for (item 6). Deliberately separate from credits-report, which emails a full
+# reconciliation: that is right once a day and would be 24 emails here.
+#
+# Costs nothing and changes nothing. /account is a FREE OddsPapi endpoint, and credit_gate.status()
+# only reads - it takes no reservation and pushes nothing, so contents: read is enough. It gates
+# no betting signal, threshold, alert or execution path.
+#
+# Why hourly: the daily reading is too coarse to separate a burn rate from one noisy afternoon. The
+# Lane 2 pause landed 2026-11-09 14:13 UTC and the first post-pause reading was 23 minutes later,
+# which is not a measurement. Hourly readings bracket the rate to within an hour.
+on:
+  schedule:
+    - cron: "9 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Sample the provider's credit counter (free, read-only)
+        env:
+          ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
+        run: python -u credit_gate.py
