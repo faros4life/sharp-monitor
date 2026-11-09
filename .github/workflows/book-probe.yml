@@ -1,0 +1,30 @@
+name: book-probe
+
+# Confirm-book probe (Peter, Nov 8). READ-ONLY, dispatch only, no cron, no commit step.
+# Budget ~6 billable OddsPapi calls, counted and reported in the log. It changes nothing:
+# CONFIRM_BOOK is a repo variable and only Peter flips it.
+#
+# Answers three things in one run: what bookmakers this plan carries, whether circasports and
+# bookmaker/betcris resolve, and whether betfair_ex_eu is genuinely absent or silently dead.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Confirm-book probe (read-only, ~6 billable calls)
+        env:
+          ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+        run: python -u book_probe.py
