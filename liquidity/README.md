@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 9, 12:16 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 45.
+Updated Mon Nov 9, 12:20 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 45.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -11,7 +11,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 9 12:10PM | NBA | Grizzlies vs. Raptors | moneyline: Grizzlies | polymarket | $49k | +127 | ✅ kalshi |  | +0.0c |  | pending |
-| Nov 9 11:36AM | NFL | Buffalo Bills @ Minnesota Vikings | spread: BUF -3.5 (3.5) | novig | $37k | +111 | ✅ kalshi |  | +0.0c |  | pending |
+| Nov 9 11:36AM | NFL | Buffalo Bills @ Minnesota Vikings | spread: BUF -3.5 (3.5) | novig | $37k | +111 | ✅ kalshi |  | +0.5c |  | pending |
 | Nov 9 11:20AM | NFL | Buffalo Bills @ Minnesota Vikings | spread: MIN +3.5 (3.5) | novig | $78k | -113 |  |  | +0.0c | yes | pending |
 | Nov 9 10:50AM | NBA | Denver vs Houston: Spread | spread: NOT Houston wins by over 8.5 points | kalshi | $41k | +104 | ✅ polymarket |  | +0.0c | yes | pending |
 | Nov 9 10:36AM | NBA | Indiana vs Dallas: Total Points | total: Over 223.5 points | kalshi | $27k | -100 |  |  | +7.0c |  | pending |
@@ -41,7 +41,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 9 12:35AM | NCAAF | Ohio vs Miami (OH) | moneyline: Ohio | kalshi | $81k | -108 |  |  | +0.0c | yes | pending |
 | Nov 8 11:40PM | NHL | Philadelphia vs Vancouver: Spread | spread: NOT Philadelphia wins by over 1.5 goals | kalshi | $30k | -213 |  |  | -2.0c |  | pending |
 | Nov 8 11:16PM | NHL | New York I vs San Jose | moneyline: New York I | kalshi | $28k | -127 |  |  | +1.0c | yes | pending |
-| Nov 8 11:16PM | NBA | Indiana vs Dallas | moneyline: Dallas | kalshi | $61k | -156 |  |  | -2.0c | yes | pending |
+| Nov 8 11:16PM | NBA | Indiana vs Dallas | moneyline: Dallas | kalshi | $61k | -156 |  |  | -1.0c | yes | pending |
 | Nov 8 11:06PM | NBA | Los Angeles L vs Atlanta | moneyline: Los Angeles L | kalshi | $54k | -138 |  |  | -9.0c | yes | pending |
 | Nov 8 10:40PM | NHL | New York I vs San Jose: Spread | spread: NOT New York I wins by over 1.5 goals | kalshi | $41k | -213 |  |  | -2.0c | yes | pending |
 | Nov 8 9:50PM | NHL | Philadelphia vs Vancouver | moneyline: Philadelphia | kalshi | $38k | -122 |  |  | +0.0c | yes | pending |
