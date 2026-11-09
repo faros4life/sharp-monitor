@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 8, 11:10 PM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 36.
+Updated Sun Nov 8, 11:16 PM ET. This run: 2 new, 0 not confirmed, 0 pending. Open alerts: 38.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 8 11:16PM | NHL | New York I vs San Jose | moneyline: New York I | kalshi | $28k | -127 |  |  | +0.0c |  | pending |
+| Nov 8 11:16PM | NBA | Indiana vs Dallas | moneyline: Dallas | kalshi | $61k | -156 |  |  | +0.0c |  | pending |
 | Nov 8 11:06PM | NBA | Los Angeles L vs Atlanta | moneyline: Los Angeles L | kalshi | $54k | -138 |  |  | +1.0c |  | pending |
 | Nov 8 10:40PM | NHL | New York I vs San Jose: Spread | spread: NOT New York I wins by over 1.5 goals | kalshi | $41k | -213 |  |  | +0.0c | yes | pending |
 | Nov 8 9:50PM | NHL | Philadelphia vs Vancouver | moneyline: Philadelphia | kalshi | $38k | -122 |  |  | +0.0c |  | pending |
@@ -208,5 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 7 7:00PM | NHL | Tampa Bay vs Minnesota | moneyline: Tampa Bay | kalshi | $127k | -133 | ✅ novig,polymarket |  | +0.0c | yes | W |
 | Nov 7 7:00PM | NHL | Chicago vs Carolina | moneyline: Carolina | kalshi | $43k | -426 | ✅ novig,polymarket,prophetx |  | +0.0c | yes | W |
 | Nov 7 6:51PM | NHL | Utah vs Ottawa: Total Goals | total: Over 6.5 goals scored | kalshi | $29k | -108 | ✅ novig,polymarket |  | +0.0c | yes | L |
-| Nov 7 6:30PM | NHL | Canadiens vs. Maple Leafs | moneyline: Canadiens | polymarket | $60k | -117 | ✅ kalshi,novig |  | +0.0c |  | W |
-| Nov 7 6:30PM | NCAAF | Air Force vs Army: Spread | spread: Army wins by over 4.5 points | kalshi | $98k | +104 | ✅ novig |  | -1.0c | yes | L |
