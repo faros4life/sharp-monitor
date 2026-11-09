@@ -1,19 +1,24 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 9, 1:23 AM ET. This run: 2 new, 0 not confirmed, 4 pending. Open alerts: 5.
+Updated Mon Nov 9, 1:31 AM ET. This run: 5 new, 0 not confirmed, 1 pending. Open alerts: 9.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 192-113 (-14.68u flat) | rule met: 40-32
+**Record:** 193-113 (-14.25u flat) | rule met: 40-32
 
-**Fade (paper, betting against the print):** 88-157 (+6.58u flat, after fees)
+**Fade (paper, betting against the print):** 88-158 (+5.58u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 9 1:23AM | NCAAB | Syracuse vs Indiana | moneyline: Indiana | kalshi | $41k | -213 |  |  | +0.0c |  | pending |
-| Nov 9 1:23AM | NCAAB | Howard vs Penn | moneyline: Penn | kalshi | $31k | -223 |  |  | +0.0c |  | pending |
+| Nov 9 1:31AM | NCAAB | Kansas City vs Jacksonville | moneyline: Jacksonville | kalshi | $29k | -223 |  |  | +0.0c |  | pending |
+| Nov 9 1:31AM | NCAAB | Stonehill vs Columbia | moneyline: Columbia | kalshi | $44k | -567 |  |  | +0.0c |  | pending |
+| Nov 9 1:31AM | NCAAB | USC Upstate vs Coastal Carolina | moneyline: Coastal Carolina | kalshi | $46k | -426 |  |  | +0.0c |  | pending |
+| Nov 9 1:31AM | NCAAB | Minnesota vs Cincinnati | moneyline: Cincinnati | kalshi | $44k | -270 |  |  | +0.0c |  | pending |
+| Nov 9 1:31AM | NCAAB | LIU vs Towson | moneyline: Towson | kalshi | $32k | -233 |  |  | +0.0c |  | pending |
+| Nov 9 1:15AM | NCAAB | Syracuse vs Indiana | moneyline: Indiana | kalshi | $41k | -213 |  |  | +0.0c |  | pending |
+| Nov 9 1:15AM | NCAAB | Howard vs Penn | moneyline: Penn | kalshi | $31k | -223 |  |  | +0.0c |  | pending |
 | Nov 8 5:40PM | TENNIS | Coco Gauff vs Jessica Pegula | moneyline: Coco Gauff | kalshi | $80k | -178 |  |  | +21.0c | yes | W |
-| Nov 8 3:00PM | NCAAB | Wichita St. vs USC | moneyline: USC | kalshi | $29k | -223 |  |  | +4.0c |  | pending |
+| Nov 8 3:00PM | NCAAB | Wichita St. vs USC | moneyline: USC | kalshi | $29k | -223 |  |  | +4.0c |  | W |
 | Nov 8 3:00PM | NCAAB | UT Arlington vs Hawai'i | moneyline: Hawai'i | kalshi | $26k | -355 |  |  | +0.0c | yes | W |
 | Nov 8 1:40PM | TENNIS | Thiago Agustin Tirante vs Jaume Munar | moneyline: Thiago Agustin Tirante | kalshi | $228k | -233 |  |  | +4.0c | yes | W |
 | Nov 8 12:50PM | TENNIS | Thiago Agustin Tirante vs Jaume Munar | moneyline: Jaume Munar | kalshi | $127k | -213 |  |  | -41.0c | yes | L |
@@ -205,8 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 28 9:40AM | MLB | Milwaukee Brewers @ Tampa Bay Rays | moneyline: MIL (0) | novig | $25k | -144 | ✅ polymarket |  | -2.0c | yes | W |
 | Oct 28 9:40AM | MLB | Milwaukee vs Tampa Bay: Total Runs | total: NOT Over 6.5 runs scored | kalshi | $108k | +108 |  |  | +5.0c |  | W |
 | Oct 28 9:30AM | TENNIS | Borges vs Ruud | moneyline: Ruud | kalshi | $50k | -426 |  |  | +5.0c |  | L |
-| Oct 28 9:20AM | MLB | Milwaukee Brewers vs. Tampa Bay Rays | spread: Tampa Bay Rays (+1.5) | polymarket | $47k | -127 | ✅ kalshi,novig |  | +3.0c |  | L |
-| Oct 28 8:30AM | TENNIS | Paul vs Darderi | moneyline: Paul | kalshi | $44k | -400 |  |  | -2.0c |  | W |
-| Oct 28 7:30AM | TENNIS | Altmaier vs Lehecka | moneyline: Lehecka | kalshi | $62k | -567 |  |  | +0.0c |  | W |
-| Oct 28 6:30AM | TENNIS | Vacherot vs Jodar | moneyline: Jodar | kalshi | $55k | -285 |  |  | -1.0c | yes | L |
-| Oct 28 5:30AM | TENNIS | Tien vs de Minaur | moneyline: de Minaur | kalshi | $33k | -104 |  |  | +1.0c | yes | W |
