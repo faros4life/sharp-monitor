@@ -418,13 +418,17 @@ def release(res):
 # reserves a BLOCK once and draws it down in memory, confirming what it used and releasing the
 # rest at exit. A crashed process leaks at most one block for RESERVE_TTL, never the budget.
 BLOCK = int(os.environ.get("GATE_BLOCK", "") or "25")
+SPEND = __import__("collections").Counter()   # billable calls this process, by purpose
 _HELD = {"res": None, "left": 0, "used": 0, "purpose": None}
 
 
 def take(n=1, purpose="api", path=None):
-    """True when n paid calls may be made. FAIL CLOSED: False means do not call."""
+    """True when n paid calls may be made. FAIL CLOSED: False means do not call.
+
+    Also counts what was spent, by purpose, for the attribution summary printed at exit."""
     if path is not None and is_free(path):
         return True
+    SPEND[str(purpose)] += n
     if _HELD["left"] >= n:
         _HELD["left"] -= n
         _HELD["used"] += n
@@ -451,8 +455,25 @@ def flush():
         release(res)
 
 
+def spend_summary():
+    """One line naming what this process spent, by endpoint. Counts only - no prices, money or
+    account data - so it is safe in a public Actions log.
+
+    WHY THIS EXISTS (Nov 9). The gate's shared ledger cannot do attribution: a contents: read
+    workflow cannot push its spend record, so the ledger logged 1 credit over a window in which
+    the provider counted 23. The cap was never at risk - it is driven by /account, which is
+    authoritative - but we could not see WHICH caller was spending, and ~52 credits/day of the
+    burn stayed untraced. stdout needs no permissions, so every caller can report its own spend
+    whatever its workflow can or cannot write."""
+    if not SPEND:
+        return
+    parts = " ".join(f"{k}={v}" for k, v in sorted(SPEND.items(), key=lambda kv: -kv[1]))
+    print(f"ODDSPAPI BILLABLE this run: total={sum(SPEND.values())}  {parts}")
+
+
 import atexit                                    # noqa: E402  - flush even on an unclean exit
 atexit.register(flush)
+atexit.register(spend_summary)
 
 
 def status():
