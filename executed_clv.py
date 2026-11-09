@@ -208,8 +208,14 @@ def why_no_fixture(st, q, lg):
         return (f"league {lg} has fixtures but none within 36h", q.get("game"), "")
     qual = [f for f in in_win if cl._qualifies(f, lg, gs, words)]
     if len(qual) > 1:
-        return ("AMBIGUOUS - several fixtures qualified", q.get("game"),
-                " | ".join(f"{f.get('p1')} v {f.get('p2')}" for f in qual[:3]))
+        # whether a start time was present decides what fixes this: with one, the window already
+        # applied and the fixture cache really does hold two candidates (likely duplicates); with
+        # none, the window was skipped and the fallback date is the fix.
+        tag = ("AMBIGUOUS even WITH a start time - duplicate fixtures in the cache"
+               if q.get("_start_was_given") else
+               "AMBIGUOUS because no start time was on the row - window skipped")
+        return (tag, q.get("game"),
+                " | ".join(f"{f.get('p1')} v {f.get('p2')} @ {f.get('start')}" for f in qual[:3]))
     # none qualified: show the closest near-miss and what the token test actually saw
     best, bs = None, -1
     for f in in_win:
@@ -324,8 +330,20 @@ def main():
         # the matcher wants, while b["game"] is the BOOK's own terse string. Omitting it made every
         # fill match on the weaker source. "no fixture matched" was 10 of 41 fills, 24% of the
         # population, and this was my caller's fault, not the matcher's.
+        # Nov 9, second finding: 8 of the 10 unmatched fills failed as AMBIGUOUS, not on names.
+        # _qualifies only applies its 36h window when a start time is present -
+        #     if gs and fs and abs(fs - gs) > 36h: return False
+        # - so a fill with NO game_start skips the window, every meeting of those two teams all
+        # season qualifies, and find_fixture rightly returns None rather than pick one. Two teams
+        # playing twice is enough to do it. So supply a date when game_start is absent: a graded
+        # fill's settle time is within 36h of its own game for any normal market. This can only
+        # help or stay neutral - a fallback more than 36h out excludes the right fixture and the
+        # fill stays unmatched, which is the safe outcome, never a confidently wrong one.
+        gstart = (b.get("game_start") or b.get("settled") or b.get("placed")
+                  or b.get("first_seen"))
         q = {"bet": b.get("bet"), "league": lg, "game": b.get("game"), "teams": b.get("teams"),
-             "game_start": b.get("game_start"), "book": b.get("book")}
+             "game_start": gstart, "book": b.get("book"),
+             "_start_was_given": bool(b.get("game_start"))}
         def drop(reason):
             # one place for both, so the Guard 2 counts and the exported rows can never disagree
             miss[reason] += 1
