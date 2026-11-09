@@ -1,16 +1,65 @@
 {
  "moves": [
   {
+   "alerted_utc": "2026-11-09T02:10:17Z",
+   "bar": false,
+   "best_price": 0.5375,
+   "best_price_book": "kalshi",
+   "book": "kalshi",
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "date": "2026-11-09",
+   "dir": "RAISE",
+   "ex_stats": {
+    "open_interest_fp": 78.58,
+    "volume_24h_fp": 277.16,
+    "volume_fp": 277.16
+   },
+   "first_play": true,
+   "game": "Syracuse vs Indiana: Point Total",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAMBTOTAL-26NOV09SYRIND-148\"}",
+   "lead_min": 1280,
+   "league": "NCAAB",
+   "league_x": 0.25,
+   "line": 147.5,
+   "market": "total",
+   "normal_4h": 834,
+   "now": 1696,
+   "other_side_now": 1376,
+   "paper_only": true,
+   "price": 0.52,
+   "price_american": -108,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBTOTAL-26NOV09SYRIND-148"
+   },
+   "result": null,
+   "side": "OVER",
+   "side_label": "Over 147.5 points",
+   "side_raw": "OVER",
+   "start_utc": "2026-11-09T23:30:00Z",
+   "teams": [
+    "Syracuse",
+    "Indiana"
+   ],
+   "units_flat": null,
+   "x": 2.03
+  },
+  {
    "alerted_utc": "2026-11-09T02:00:23Z",
    "bar": false,
    "best_price": 0.315,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.315,
-   "clv_cents": 0.0,
+   "close_price": 0.325,
+   "clv_cents": 1.0,
    "date": "2026-11-09",
    "dir": "RAISE",
    "ex_stats": {
+    "openInterest": 0.0,
+    "volume": 0.0
+   },
+   "ex_stats_close": {
     "openInterest": 0.0,
     "volume": 0.0
    },
@@ -75,6 +124,8 @@
    "other_side_now": 759,
    "paper_only": true,
    "price": 0.565,
+   "price_after_15m": 0.565,
+   "price_after_15m_book": "novig",
    "price_american": -130,
    "ref": {
     "market_id": "01a1bd26-d123-7202-80fc-a566b5bac8a5",
@@ -85,6 +136,7 @@
    "side_label": "L. Nardi (0)",
    "side_raw": 1,
    "start_utc": "2026-11-09T08:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Alexander Ritschard",
     "Luca Nardi Qualification"
@@ -620,9 +672,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 3215.02,
-    "volume_24h_fp": 3338.46,
-    "volume_fp": 3338.46
+    "open_interest_fp": 3270.02,
+    "volume_24h_fp": 3393.46,
+    "volume_fp": 3393.46
    },
    "first_play": false,
    "game": "Wichita St. vs USC: Point Total",
@@ -663,8 +715,8 @@
    "best_price": 0.8589,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.86,
-   "clv_cents": 1.0,
+   "close_price": 0.82,
+   "clv_cents": -3.0,
    "date": "2026-11-09",
    "dir": "RAISE",
    "ex_stats": {
@@ -726,9 +778,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 3215.02,
-    "volume_24h_fp": 3338.46,
-    "volume_fp": 3338.46
+    "open_interest_fp": 3270.02,
+    "volume_24h_fp": 3393.46,
+    "volume_fp": 3393.46
    },
    "first_play": false,
    "game": "Wichita St. vs USC: Point Total",
@@ -1212,8 +1264,8 @@
    "best_price": 0.5463,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5261,
-   "clv_cents": -1.5,
+   "close_price": 0.5238,
+   "clv_cents": -1.7,
    "date": "2026-11-08",
    "dir": "RAISE",
    "ex_stats": null,
@@ -1720,7 +1772,8 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAMBTOTAL-26NOV08IWUTEP-142"
    },
-   "result": null,
+   "result": "W",
+   "settled_utc": "2026-11-09T02:10:17Z",
    "side": "UNDER",
    "side_label": "NOT Over 141.5 points",
    "side_raw": "UNDER",
@@ -1730,7 +1783,7 @@
     "Incarnate Word",
     "UTEP"
    ],
-   "units_flat": null,
+   "units_flat": 1.04,
    "x": 5.28
   },
   {
@@ -1773,7 +1826,8 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAMBTOTAL-26NOV08IWUTEP-142"
    },
-   "result": null,
+   "result": "L",
+   "settled_utc": "2026-11-09T02:10:17Z",
    "side": "OVER",
    "side_label": "Over 141.5 points",
    "side_raw": "OVER",
@@ -1783,7 +1837,7 @@
     "Incarnate Word",
     "UTEP"
    ],
-   "units_flat": null,
+   "units_flat": -1.0,
    "x": 4.85
   },
   {
@@ -1845,8 +1899,8 @@
    "best_price": 0.3147,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.33,
-   "clv_cents": 3.0,
+   "close_price": 0.32,
+   "clv_cents": 2.0,
    "date": "2026-11-09",
    "dir": "RAISE",
    "ex_stats": {
@@ -1855,9 +1909,9 @@
     "volume_fp": 113.21
    },
    "ex_stats_close": {
-    "open_interest_fp": 266.05,
+    "open_interest_fp": 295.22,
     "volume_24h_fp": 209.75,
-    "volume_fp": 266.05
+    "volume_fp": 295.22
    },
    "first_play": true,
    "game": "Charlotte vs Seton Hall",
@@ -1898,8 +1952,8 @@
    "best_price": 0.7147,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.67,
-   "clv_cents": -3.0,
+   "close_price": 0.69,
+   "clv_cents": -1.0,
    "date": "2026-11-09",
    "dir": "RAISE",
    "ex_stats": {
@@ -1908,9 +1962,9 @@
     "volume_fp": 113.21
    },
    "ex_stats_close": {
-    "open_interest_fp": 266.05,
+    "open_interest_fp": 295.22,
     "volume_24h_fp": 209.75,
-    "volume_fp": 266.05
+    "volume_fp": 295.22
    },
    "first_play": true,
    "game": "Charlotte vs Seton Hall",
@@ -1951,8 +2005,8 @@
    "best_price": 0.4067,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.3,
-   "clv_cents": -9.0,
+   "close_price": 0.36,
+   "clv_cents": -3.0,
    "date": "2026-11-09",
    "dir": "RAISE",
    "ex_stats": {
@@ -1961,9 +2015,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 55.21,
-    "volume_24h_fp": 55.21,
-    "volume_fp": 55.21
+    "open_interest_fp": 264.57,
+    "volume_24h_fp": 264.57,
+    "volume_fp": 264.57
    },
    "first_play": true,
    "game": "Kansas City vs Jacksonville",
@@ -2004,8 +2058,8 @@
    "best_price": 0.7244,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.7,
-   "clv_cents": -1.0,
+   "close_price": 0.66,
+   "clv_cents": -5.0,
    "date": "2026-11-09",
    "dir": "RAISE",
    "ex_stats": {
@@ -2014,9 +2068,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 55.21,
-    "volume_24h_fp": 55.21,
-    "volume_fp": 55.21
+    "open_interest_fp": 264.57,
+    "volume_24h_fp": 264.57,
+    "volume_fp": 264.57
    },
    "first_play": true,
    "game": "Kansas City vs Jacksonville",
@@ -2332,9 +2386,9 @@
     "volume_fp": 952.36
    },
    "ex_stats_close": {
-    "open_interest_fp": 1092.84,
-    "volume_24h_fp": 1112.09,
-    "volume_fp": 1125.62
+    "open_interest_fp": 1121.38,
+    "volume_24h_fp": 1114.09,
+    "volume_fp": 1154.16
    },
    "first_play": true,
    "game": "Minnesota vs Cincinnati",
@@ -2385,9 +2439,9 @@
     "volume_fp": 952.36
    },
    "ex_stats_close": {
-    "open_interest_fp": 1092.84,
-    "volume_24h_fp": 1112.09,
-    "volume_fp": 1125.62
+    "open_interest_fp": 1121.38,
+    "volume_24h_fp": 1114.09,
+    "volume_fp": 1154.16
    },
    "first_play": true,
    "game": "Minnesota vs Cincinnati",
@@ -2597,9 +2651,9 @@
     "volume_fp": 796.06
    },
    "ex_stats_close": {
-    "open_interest_fp": 10430.65,
-    "volume_24h_fp": 10280.73,
-    "volume_fp": 10560.05
+    "open_interest_fp": 10459.279999999999,
+    "volume_24h_fp": 10330.7,
+    "volume_fp": 10588.68
    },
    "first_play": true,
    "game": "Syracuse vs Indiana",
@@ -2650,9 +2704,9 @@
     "volume_fp": 796.06
    },
    "ex_stats_close": {
-    "open_interest_fp": 10430.65,
-    "volume_24h_fp": 10280.73,
-    "volume_fp": 10560.05
+    "open_interest_fp": 10459.279999999999,
+    "volume_24h_fp": 10330.7,
+    "volume_fp": 10588.68
    },
    "first_play": true,
    "game": "Syracuse vs Indiana",
@@ -2703,9 +2757,9 @@
     "volume_fp": 11.35
    },
    "ex_stats_close": {
-    "open_interest_fp": 156.5,
-    "volume_24h_fp": 155.04000000000002,
-    "volume_fp": 156.5
+    "open_interest_fp": 183.73999999999998,
+    "volume_24h_fp": 183.73999999999998,
+    "volume_fp": 183.73999999999998
    },
    "first_play": true,
    "game": "Howard vs Penn",
@@ -2756,9 +2810,9 @@
     "volume_fp": 11.35
    },
    "ex_stats_close": {
-    "open_interest_fp": 156.5,
-    "volume_24h_fp": 155.04000000000002,
-    "volume_fp": 156.5
+    "open_interest_fp": 183.73999999999998,
+    "volume_24h_fp": 183.73999999999998,
+    "volume_fp": 183.73999999999998
    },
    "first_play": true,
    "game": "Howard vs Penn",
@@ -3255,7 +3309,8 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAMBSPREAD-26NOV08IWUTEP-UTEP14"
    },
-   "result": null,
+   "result": "L",
+   "settled_utc": "2026-11-09T02:10:17Z",
    "side": "Incarnate Word",
    "side_label": "NOT UTEP wins by over 13.5 points",
    "side_raw": 0,
@@ -3265,7 +3320,7 @@
     "Incarnate Word",
     "UTEP"
    ],
-   "units_flat": null,
+   "units_flat": -1.0,
    "x": 2.29
   },
   {
@@ -3308,7 +3363,8 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAMBSPREAD-26NOV08IWUTEP-UTEP14"
    },
-   "result": null,
+   "result": "W",
+   "settled_utc": "2026-11-09T02:10:17Z",
    "side": "UTEP",
    "side_label": "UTEP wins by over 13.5 points",
    "side_raw": 1,
@@ -3318,7 +3374,7 @@
     "Incarnate Word",
     "UTEP"
    ],
-   "units_flat": null,
+   "units_flat": 1.16,
    "x": 2.76
   },
   {
@@ -4517,9 +4573,9 @@
     "volume_fp": 2154.34
    },
    "ex_stats_close": {
-    "open_interest_fp": 43109.51,
-    "volume_24h_fp": 47884.0,
-    "volume_fp": 48276.67
+    "open_interest_fp": 46552.48,
+    "volume_24h_fp": 51002.67,
+    "volume_fp": 51719.96
    },
    "first_play": true,
    "game": "Wichita St. vs USC",
@@ -4560,8 +4616,8 @@
    "best_price": 0.805,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.85,
-   "clv_cents": 4.5,
+   "close_price": 0.845,
+   "clv_cents": 4.0,
    "date": "2026-11-09",
    "dir": "RAISE",
    "ex_stats": {
@@ -4774,9 +4830,9 @@
     "volume_fp": 5361.65
    },
    "ex_stats_close": {
-    "open_interest_fp": 18252.53,
-    "volume_24h_fp": 13377.77,
-    "volume_fp": 18814.28
+    "open_interest_fp": 23835.58,
+    "volume_24h_fp": 18411.68,
+    "volume_fp": 24397.33
    },
    "first_play": false,
    "game": "UT Arlington vs Hawai'i",
@@ -5178,8 +5234,8 @@
    "best_price": 0.7,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.7183,
-   "clv_cents": 1.2,
+   "close_price": 0.7222,
+   "clv_cents": 1.6,
    "date": "2026-11-08",
    "dir": "DROP",
    "ex_stats": null,
@@ -6794,8 +6850,8 @@
    "best_price": 0.8399,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.9,
-   "clv_cents": 7.0,
+   "close_price": 0.89,
+   "clv_cents": 6.0,
    "date": "2026-11-09",
    "dir": "DROP",
    "ex_stats": {
@@ -6847,8 +6903,8 @@
    "best_price": 0.7,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.7183,
-   "clv_cents": 1.2,
+   "close_price": 0.7222,
+   "clv_cents": 1.6,
    "date": "2026-11-08",
    "dir": "RAISE",
    "ex_stats": null,
@@ -7033,8 +7089,8 @@
    "best_price": 0.535,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.505,
-   "clv_cents": -3.0,
+   "close_price": 0.5,
+   "clv_cents": -3.5,
    "date": "2026-11-08",
    "dir": "RAISE",
    "ex_stats": {
@@ -7043,7 +7099,7 @@
    },
    "ex_stats_close": {
     "openInterest": 1335100.0,
-    "volume": 1586716.0
+    "volume": 1610707.0
    },
    "first_play": false,
    "game": "Wichita State @ USC",
@@ -7863,9 +7919,9 @@
     "volume_fp": 948.36
    },
    "ex_stats_close": {
-    "open_interest_fp": 1092.84,
-    "volume_24h_fp": 1112.09,
-    "volume_fp": 1125.62
+    "open_interest_fp": 1121.38,
+    "volume_24h_fp": 1114.09,
+    "volume_fp": 1154.16
    },
    "first_play": true,
    "game": "Minnesota vs Cincinnati",
@@ -7916,9 +7972,9 @@
     "volume_fp": 948.36
    },
    "ex_stats_close": {
-    "open_interest_fp": 1092.84,
-    "volume_24h_fp": 1112.09,
-    "volume_fp": 1125.62
+    "open_interest_fp": 1121.38,
+    "volume_24h_fp": 1114.09,
+    "volume_fp": 1154.16
    },
    "first_play": true,
    "game": "Minnesota vs Cincinnati",
@@ -8113,8 +8169,8 @@
    "best_price": 0.3761,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.33,
-   "clv_cents": -3.0,
+   "close_price": 0.32,
+   "clv_cents": -4.0,
    "date": "2026-11-09",
    "dir": "DROP",
    "ex_stats": {
@@ -8123,9 +8179,9 @@
     "volume_fp": 70.21000000000001
    },
    "ex_stats_close": {
-    "open_interest_fp": 266.05,
+    "open_interest_fp": 295.22,
     "volume_24h_fp": 209.75,
-    "volume_fp": 266.05
+    "volume_fp": 295.22
    },
    "first_play": true,
    "game": "Charlotte vs Seton Hall",
@@ -8166,8 +8222,8 @@
    "best_price": 0.7147,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.67,
-   "clv_cents": -3.0,
+   "close_price": 0.69,
+   "clv_cents": -1.0,
    "date": "2026-11-09",
    "dir": "DROP",
    "ex_stats": {
@@ -8176,9 +8232,9 @@
     "volume_fp": 70.21000000000001
    },
    "ex_stats_close": {
-    "open_interest_fp": 266.05,
+    "open_interest_fp": 295.22,
     "volume_24h_fp": 209.75,
-    "volume_fp": 266.05
+    "volume_fp": 295.22
    },
    "first_play": true,
    "game": "Charlotte vs Seton Hall",
@@ -8219,8 +8275,8 @@
    "best_price": 0.4269,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.3,
-   "clv_cents": -11.0,
+   "close_price": 0.36,
+   "clv_cents": -5.0,
    "date": "2026-11-09",
    "dir": "DROP",
    "ex_stats": {
@@ -8229,9 +8285,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 55.21,
-    "volume_24h_fp": 55.21,
-    "volume_fp": 55.21
+    "open_interest_fp": 264.57,
+    "volume_24h_fp": 264.57,
+    "volume_fp": 264.57
    },
    "first_play": true,
    "game": "Kansas City vs Jacksonville",
@@ -8272,8 +8328,8 @@
    "best_price": 0.7341,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.7,
-   "clv_cents": -2.0,
+   "close_price": 0.66,
+   "clv_cents": -6.0,
    "date": "2026-11-09",
    "dir": "DROP",
    "ex_stats": {
@@ -8282,9 +8338,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 55.21,
-    "volume_24h_fp": 55.21,
-    "volume_fp": 55.21
+    "open_interest_fp": 264.57,
+    "volume_24h_fp": 264.57,
+    "volume_fp": 264.57
    },
    "first_play": true,
    "game": "Kansas City vs Jacksonville",
@@ -8431,8 +8487,8 @@
    "best_price": 0.8589,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.86,
-   "clv_cents": 1.0,
+   "close_price": 0.82,
+   "clv_cents": -3.0,
    "date": "2026-11-09",
    "dir": "DROP",
    "ex_stats": {
@@ -8600,9 +8656,9 @@
     "volume_fp": 743.34
    },
    "ex_stats_close": {
-    "open_interest_fp": 10430.65,
-    "volume_24h_fp": 10280.73,
-    "volume_fp": 10560.05
+    "open_interest_fp": 10459.279999999999,
+    "volume_24h_fp": 10330.7,
+    "volume_fp": 10588.68
    },
    "first_play": true,
    "game": "Syracuse vs Indiana",
@@ -8653,9 +8709,9 @@
     "volume_fp": 743.34
    },
    "ex_stats_close": {
-    "open_interest_fp": 10430.65,
-    "volume_24h_fp": 10280.73,
-    "volume_fp": 10560.05
+    "open_interest_fp": 10459.279999999999,
+    "volume_24h_fp": 10330.7,
+    "volume_fp": 10588.68
    },
    "first_play": true,
    "game": "Syracuse vs Indiana",
@@ -8706,9 +8762,9 @@
     "volume_fp": 6.2
    },
    "ex_stats_close": {
-    "open_interest_fp": 156.5,
-    "volume_24h_fp": 155.04000000000002,
-    "volume_fp": 156.5
+    "open_interest_fp": 183.73999999999998,
+    "volume_24h_fp": 183.73999999999998,
+    "volume_fp": 183.73999999999998
    },
    "first_play": true,
    "game": "Howard vs Penn",
@@ -8759,9 +8815,9 @@
     "volume_fp": 6.2
    },
    "ex_stats_close": {
-    "open_interest_fp": 156.5,
-    "volume_24h_fp": 155.04000000000002,
-    "volume_fp": 156.5
+    "open_interest_fp": 183.73999999999998,
+    "volume_24h_fp": 183.73999999999998,
+    "volume_fp": 183.73999999999998
    },
    "first_play": true,
    "game": "Howard vs Penn",
@@ -10475,9 +10531,9 @@
     "volume_fp": 2287.7
    },
    "ex_stats_close": {
-    "open_interest_fp": 51310.28,
-    "volume_24h_fp": 55244.23,
-    "volume_fp": 55396.32
+    "open_interest_fp": 51493.79,
+    "volume_24h_fp": 55758.5,
+    "volume_fp": 55776.44
    },
    "first_play": false,
    "game": "Wichita St. vs USC: Spread",
@@ -10528,9 +10584,9 @@
     "volume_fp": 2287.7
    },
    "ex_stats_close": {
-    "open_interest_fp": 51310.28,
-    "volume_24h_fp": 55244.23,
-    "volume_fp": 55396.32
+    "open_interest_fp": 51493.79,
+    "volume_24h_fp": 55758.5,
+    "volume_fp": 55776.44
    },
    "first_play": false,
    "game": "Wichita St. vs USC: Spread",
@@ -11382,8 +11438,8 @@
     "volume": 12950.0
    },
    "ex_stats_close": {
-    "openInterest": 835609.0,
-    "volume": 862900.0
+    "openInterest": 856900.0,
+    "volume": 884191.0
    },
    "first_play": true,
    "game": "UT Arlington @ Hawaii",
@@ -11472,8 +11528,8 @@
    "best_price": 0.305,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.2899,
-   "clv_cents": -2.3,
+   "close_price": 0.2941,
+   "clv_cents": -1.8,
    "date": "2026-11-08",
    "dir": "RAISE",
    "ex_stats": null,
@@ -11944,7 +12000,8 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAMBGAME-26NOV08IWUTEP-IW"
    },
-   "result": null,
+   "result": "L",
+   "settled_utc": "2026-11-09T02:10:17Z",
    "side": "Incarnate Word",
    "side_label": "Incarnate Word",
    "side_raw": 0,
@@ -11954,7 +12011,7 @@
     "Incarnate Word",
     "UTEP"
    ],
-   "units_flat": null,
+   "units_flat": -1.0,
    "x": 3.24
   },
   {
@@ -15188,8 +15245,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 158390.0,
-    "volume": 158390.0
+    "openInterest": 215468.0,
+    "volume": 292101.0
    },
    "first_play": true,
    "game": "Yannick Hanfmann @ Alex Michelsen Round of 32",
@@ -15239,8 +15296,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 158390.0,
-    "volume": 158390.0
+    "openInterest": 215468.0,
+    "volume": 292101.0
    },
    "first_play": true,
    "game": "Yannick Hanfmann @ Alex Michelsen Round of 32",
@@ -16300,8 +16357,8 @@
    "best_price": 0.84,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.7895,
-   "clv_cents": -5.2,
+   "close_price": 0.7849,
+   "clv_cents": -5.6,
    "date": "2026-11-08",
    "dir": "RAISE",
    "ex_stats": null,
@@ -21630,9 +21687,9 @@
     "volume_fp": 50.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 2544.17,
-    "volume_24h_fp": 2504.34,
-    "volume_fp": 2554.34
+    "open_interest_fp": 2831.32,
+    "volume_24h_fp": 2787.47,
+    "volume_fp": 2841.49
    },
    "first_play": true,
    "game": "Wichita St. vs USC: Point Total",
@@ -21683,9 +21740,9 @@
     "volume_fp": 50.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 2544.17,
-    "volume_24h_fp": 2504.34,
-    "volume_fp": 2554.34
+    "open_interest_fp": 2831.32,
+    "volume_24h_fp": 2787.47,
+    "volume_fp": 2841.49
    },
    "first_play": true,
    "game": "Wichita St. vs USC: Point Total",
@@ -22422,9 +22479,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 11109.48,
-    "volume_24h_fp": 11234.52,
-    "volume_fp": 11241.08
+    "open_interest_fp": 12189.36,
+    "volume_24h_fp": 11480.39,
+    "volume_fp": 12337.99
    },
    "first_play": false,
    "game": "UT Arlington vs Hawai'i: Spread",
@@ -22475,9 +22532,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 11109.48,
-    "volume_24h_fp": 11234.52,
-    "volume_fp": 11241.08
+    "open_interest_fp": 12189.36,
+    "volume_24h_fp": 11480.39,
+    "volume_fp": 12337.99
    },
    "first_play": false,
    "game": "UT Arlington vs Hawai'i: Spread",
@@ -22954,9 +23011,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 11109.48,
-    "volume_24h_fp": 11234.52,
-    "volume_fp": 11241.08
+    "open_interest_fp": 12189.36,
+    "volume_24h_fp": 11480.39,
+    "volume_fp": 12337.99
    },
    "first_play": true,
    "game": "UT Arlington vs Hawai'i: Spread",
@@ -23007,9 +23064,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 11109.48,
-    "volume_24h_fp": 11234.52,
-    "volume_fp": 11241.08
+    "open_interest_fp": 12189.36,
+    "volume_24h_fp": 11480.39,
+    "volume_fp": 12337.99
    },
    "first_play": true,
    "game": "UT Arlington vs Hawai'i: Spread",
@@ -24342,8 +24399,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 835609.0,
-    "volume": 862900.0
+    "openInterest": 856900.0,
+    "volume": 884191.0
    },
    "first_play": true,
    "game": "UT Arlington @ Hawaii",
@@ -24393,8 +24450,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 835609.0,
-    "volume": 862900.0
+    "openInterest": 856900.0,
+    "volume": 884191.0
    },
    "first_play": true,
    "game": "UT Arlington @ Hawaii",
@@ -24498,7 +24555,7 @@
    },
    "ex_stats_close": {
     "openInterest": 1335100.0,
-    "volume": 1586716.0
+    "volume": 1610707.0
    },
    "first_play": false,
    "game": "Wichita State @ USC",
@@ -25344,8 +25401,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 2450122.0,
-    "volume": 2607342.0
+    "openInterest": 2493241.0,
+    "volume": 2650461.0
    },
    "first_play": false,
    "game": "Wichita State @ USC",
@@ -25395,8 +25452,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 2450122.0,
-    "volume": 2607342.0
+    "openInterest": 2493241.0,
+    "volume": 2650461.0
    },
    "first_play": false,
    "game": "Wichita State @ USC",
@@ -29219,9 +29276,9 @@
     "volume_fp": 4584.889999999999
    },
    "ex_stats_close": {
-    "open_interest_fp": 18252.53,
-    "volume_24h_fp": 13377.77,
-    "volume_fp": 18814.28
+    "open_interest_fp": 23835.58,
+    "volume_24h_fp": 18411.68,
+    "volume_fp": 24397.33
    },
    "first_play": true,
    "game": "UT Arlington vs Hawai'i",
@@ -30614,9 +30671,9 @@
     "volume_fp": 87.13
    },
    "ex_stats_close": {
-    "open_interest_fp": 43109.51,
-    "volume_24h_fp": 47884.0,
-    "volume_fp": 48276.67
+    "open_interest_fp": 46552.48,
+    "volume_24h_fp": 51002.67,
+    "volume_fp": 51719.96
    },
    "first_play": true,
    "game": "Wichita St. vs USC",
@@ -30667,9 +30724,9 @@
     "volume_fp": 87.13
    },
    "ex_stats_close": {
-    "open_interest_fp": 43109.51,
-    "volume_24h_fp": 47884.0,
-    "volume_fp": 48276.67
+    "open_interest_fp": 46552.48,
+    "volume_24h_fp": 51002.67,
+    "volume_fp": 51719.96
    },
    "first_play": true,
    "game": "Wichita St. vs USC",
@@ -30720,9 +30777,9 @@
     "volume_fp": 265.41
    },
    "ex_stats_close": {
-    "open_interest_fp": 18252.53,
-    "volume_24h_fp": 13377.77,
-    "volume_fp": 18814.28
+    "open_interest_fp": 23835.58,
+    "volume_24h_fp": 18411.68,
+    "volume_fp": 24397.33
    },
    "first_play": true,
    "game": "UT Arlington vs Hawai'i",
