@@ -1,15 +1,16 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 8, 8:46 PM ET. This run: 1 new, 2 not confirmed, 1 pending. Open alerts: 61.
+Updated Sun Nov 8, 8:50 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 60.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 1176-952 (-58.23u flat) | rule met: 731-602
+**Record:** 1178-952 (-56.30u flat) | rule met: 731-602
 
-**Fade (paper, betting against the print):** 686-903 (-138.66u flat, after fees)
+**Fade (paper, betting against the print):** 686-905 (-140.66u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 8 8:50PM | NBA | Heat vs. Kings | spread: Kings (+11.5) | polymarket | $79k | -100 | ✅ prophetx | ❌ | +0.0c |  | pending |
 | Nov 8 8:46PM | NBA | Denver vs Houston | moneyline: Houston | kalshi | $49k | -300 | ✅ novig,polymarket |  | +0.0c |  | pending |
 | Nov 8 8:16PM | NHL | New York R vs Edmonton | moneyline: Edmonton | kalshi | $33k | -138 |  |  | +0.0c |  | pending |
 | Nov 8 8:10PM | NFL | Tampa Bay Buccaneers at Chicago Bears | total: over 47.5 (47.5) | prophetx | $32k | +101 | ✅ novig | ✅ | +0.0c |  | pending |
@@ -27,9 +28,9 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 8 6:40PM | NBA | Jazz vs. Timberwolves | spread: Timberwolves (-12.5) | polymarket | $47k | -100 |  |  | +0.0c |  | pending |
 | Nov 8 6:36PM | NBA | Pelicans vs. Clippers | moneyline: Pelicans | polymarket | $53k | -117 | ✅ novig |  | -1.0c |  | pending |
 | Nov 8 6:20PM | NBA | Jazz vs. Timberwolves | total: Under (222.5) | polymarket | $30k | -100 | ✅ kalshi | ❌ | +2.0c |  | pending |
-| Nov 8 5:50PM | NBA | Lakers vs. Pistons | total: Over (216.5) | polymarket | $33k | -104 |  | ❌ | +0.0c |  | pending |
+| Nov 8 5:50PM | NBA | Lakers vs. Pistons | total: Over (216.5) | polymarket | $33k | -104 |  | ❌ | +0.0c |  | W |
 | Nov 8 5:40PM | NBA | Los Angeles L vs Detroit: Spread | spread: Detroit wins by over 7.5 points | kalshi | $68k | -100 |  | ✅ | +0.0c | yes | L |
-| Nov 8 5:20PM | NBA | Heat vs. Kings | spread: Kings (+9.5) | polymarket | $45k | +104 |  | ❌ | -7.0c | yes | pending |
+| Nov 8 5:20PM | NBA | Heat vs. Kings | spread: Kings (+9.5) | polymarket | $45k | +104 |  | ❌ | -6.0c | yes | pending |
 | Nov 8 5:16PM | NBA | Utah vs Minnesota: Total Points | total: Over 222.5 points | kalshi | $27k | -104 | ✅ novig,polymarket | ✅ | -2.0c | yes | pending |
 | Nov 8 5:10PM | NBA | Los Angeles L vs Detroit: Total Points | total: Over 216.5 points | kalshi | $29k | -104 |  | ❌ | -1.0c | yes | W |
 | Nov 8 5:00PM | NBA | Pelicans vs. Clippers | total: Over (226.5) | polymarket | $54k | -104 | ✅ novig,prophetx | ❌ | -1.0c | yes | pending |
@@ -50,7 +51,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 8 3:00PM | NFL | Green Bay Packers @ New England Patriots | moneyline: GB (0) | novig | $41k | +160 | ✅ kalshi |  | +0.5c |  | W |
 | Nov 8 2:46PM | NFL | Arizona vs Seattle: Spread | spread: Seattle wins by over 9.5 points | kalshi | $576k | +104 |  |  | +2.0c | yes | W |
 | Nov 8 2:40PM | NBA | Philadelphia 76ers at Chicago Bulls | moneyline: Philadelphia 76ers | prophetx | $38k | -395 | ✅ kalshi,novig,polymarket | ❌ | -0.9c |  | W |
-| Nov 8 2:40PM | NBA | Lakers vs. Pistons | total: Over (217.5) | polymarket | $33k | -104 |  | ❌ | -3.0c | yes | pending |
+| Nov 8 2:40PM | NBA | Lakers vs. Pistons | total: Over (217.5) | polymarket | $33k | -104 |  | ❌ | -3.0c | yes | W |
 | Nov 8 2:26PM | NBA | Nets vs. Mavericks | moneyline: Mavericks | polymarket | $42k | -285 | ✅ kalshi,novig,prophetx | ❌ | -2.0c |  | pending |
 | Nov 8 2:26PM | NBA | Philadelphia 76ers @ Chicago Bulls | moneyline: PHI (0) | novig | $31k | -400 | ✅ kalshi,polymarket,prophetx | ❌ | -1.0c |  | W |
 | Nov 8 2:20PM | NFL | Green Bay Packers @ New England Patriots | spread: GB +3.5 (-3.5) | novig | $34k | -113 | ✅ kalshi |  | +0.5c |  | W |
@@ -94,7 +95,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 8 9:36AM | NBA | Utah vs Minnesota: Spread | spread: NOT Minnesota wins by over 11.5 points | kalshi | $26k | -108 | ✅ novig,polymarket |  | -5.0c | yes | pending |
 | Nov 8 9:30AM | NBA | Miami vs Sacramento: Spread | spread: Miami wins by over 10.5 points | kalshi | $28k | -100 |  | ✅ | +6.0c | yes | pending |
 | Nov 8 9:16AM | NBA | Philadelphia vs Chicago: Total Points | total: Over 237.5 points | kalshi | $33k | -100 | ✅ novig,polymarket | ❌ | +3.0c | yes | W |
-| Nov 8 9:16AM | NBA | Miami vs Sacramento: Total Points | total: NOT Over 238.5 points | kalshi | $33k | -104 | ✅ novig |  | +6.0c |  | pending |
+| Nov 8 9:16AM | NBA | Miami vs Sacramento: Total Points | total: NOT Over 238.5 points | kalshi | $33k | -104 | ✅ novig |  | +7.0c |  | pending |
 | Nov 8 8:56AM | NFL | Buffalo vs Minnesota: Total Points | total: Over 44.5 points | kalshi | $124k | -100 | ✅ novig |  | -1.0c | yes | pending |
 | Nov 8 8:56AM | NFL | Arizona vs Seattle: Total Points | total: Over 38.5 points | kalshi | $281k | -117 |  |  | +0.0c |  | L |
 | Nov 8 8:46AM | NBA | Heat vs. Kings | moneyline: Heat | polymarket | $28k | -355 | ✅ novig,prophetx |  | +6.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 7 6:30PM | NHL | New Jersey vs New York I: Spread | spread: NOT New Jersey wins by over 1.5 goals | kalshi | $39k | -186 | ✅ novig |  | +0.0c | yes | W |
 | Nov 7 6:21PM | NHL | Montreal vs Toronto: Spread | spread: NOT Montreal wins by over 1.5 goals | kalshi | $73k | -213 | ✅ novig,polymarket |  | +0.0c | yes | L |
 | Nov 7 6:10PM | NBA | Knicks vs. Cavaliers | spread: Knicks (-4.5) | polymarket | $47k | -104 | ✅ novig | ✅ | +1.0c | yes | W |
-| Nov 7 6:10PM | NBA | Rockets vs. Suns | moneyline: Rockets | polymarket | $26k | -245 | ✅ novig,prophetx | ❌ | +1.0c |  | L |
