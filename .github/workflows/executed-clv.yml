@@ -1,0 +1,67 @@
+name: executed-clv
+
+# EXECUTED CLV - Lane 1 fills at the price the books actually filled (Peter, item 2: "Books fill").
+#
+# Fills the gap clv_report.py names out loud: "Actual Executed CLV UNAVAILABLE - no executed-fill
+# record is wired to this population. Needs the venues' own fill histories." The alert emails cannot
+# supply it, because a "Bets LIVE" email is written when the order is SENT and a resting bid fills
+# after that ("[PLACED: $0.00 filled, asked $91.80]"). The books' own records are the only
+# authoritative fill prices, and tracker/state.enc already holds them.
+#
+# READ-ONLY and CACHE-ONLY by default. It buys no OddsPapi history: an uncached fixture is excluded
+# with a reason, and the script reads clv/markets.json off disk rather than calling load_markets,
+# which BILLS once that file is 7 days old. A silent fall-through like that is how plimit-level spent
+# 5 unapproved credits on 6 Nov, so the guard is in the code, not in the schedule.
+#
+# TRACKER_PASSPHRASE is required to decrypt the fill records; without it the run reports that and
+# stops rather than producing a partial number.
+#
+# Dispatch only, no cron, no commit step. The repo is public, so the Actions log gets counts only -
+# every dollar figure goes to the private address.
+on:
+  workflow_dispatch:
+    inputs:
+      days:
+        description: "how far back to look at fills, in days"
+        required: false
+        type: string
+        default: "30"
+      cache_only:
+        description: "1 = buy nothing (default). 0 = allow OddsPapi purchases - needs Peter's OK on the count first"
+        required: false
+        type: string
+        default: "1"
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      # The Pinnacle history cache is a GitHub ACTIONS cache, not a committed directory. Omitting
+      # this step is what made clv-report return n=0 twice on 6 Nov: the report was correct, it
+      # simply had nothing to read. Restore-only - this job never writes the cache back.
+      - name: Restore shared OddsPapi history cache (read only)
+        uses: actions/cache/restore@v4
+        with:
+          path: hcache
+          key: hcache-${{ github.run_id }}
+          restore-keys: hcache-
+      - name: Executed CLV (cache only, zero credits; dollars by private email)
+        env:
+          # required: the fill records and the fixture cache are both encrypted
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
+          XC_DAYS: ${{ inputs.days }}
+          XC_CACHE_ONLY: ${{ inputs.cache_only }}
+        run: python -u executed_clv.py
