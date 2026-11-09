@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 8, 10:20 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 43.
+Updated Sun Nov 8, 10:26 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 39.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 1185-964 (-64.45u flat) | rule met: 736-612
+**Record:** 1187-966 (-65.08u flat) | rule met: 738-614
 
-**Fade (paper, betting against the print):** 698-912 (-133.87u flat, after fees)
+**Fade (paper, betting against the print):** 700-914 (-133.93u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -19,14 +19,14 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 8 8:10PM | NFL | Tampa Bay Buccaneers @ Chicago Bears | spread: CHI -6.5 (-6.5) | novig | $322k | +102 | ✅ kalshi |  | +0.0c |  | pending |
 | Nov 8 8:05PM | NFL | Tampa Bay Buccaneers @ Chicago Bears | total: Over 47.5 (47.5) | novig | $55k | +102 | ✅ prophetx | ✅ | +0.0c |  | pending |
 | Nov 8 8:05PM | NFL | Tampa Bay vs Chicago: Total Points | total: NOT Over 47.5 points | kalshi | $139k | -104 |  | ❌ | +0.0c | yes | pending |
-| Nov 8 7:56PM | NBA | Boston vs Milwaukee: Spread | spread: NOT Boston wins by over 13.5 points | kalshi | $125k | -104 | ✅ novig,polymarket |  | +0.0c | yes | pending |
+| Nov 8 7:56PM | NBA | Boston vs Milwaukee: Spread | spread: NOT Boston wins by over 13.5 points | kalshi | $125k | -104 | ✅ novig,polymarket |  | +0.0c | yes | L |
 | Nov 8 7:50PM | NFL | Buffalo vs Minnesota | moneyline: Minnesota | kalshi | $1,046k | +156 |  |  | +0.0c |  | pending |
 | Nov 8 7:46PM | NFL | Tampa Bay Buccaneers @ Chicago Bears | total: Under 47.5 (47.5) | novig | $53k | -108 | ✅ kalshi | ❌ | -1.0c | yes | pending |
 | Nov 8 7:20PM | NFL | Tampa Bay Buccaneers at Chicago Bears | moneyline: Chicago Bears | prophetx | $114k | -255 | ✅ kalshi,novig |  | +0.0c |  | pending |
 | Nov 8 7:20PM | NFL | Tampa Bay Buccaneers @ Chicago Bears | spread: TB +6.5 (-6.5) | novig | $118k | -106 | ✅ kalshi |  | -0.5c | yes | pending |
 | Nov 8 7:20PM | NBA | Brooklyn vs Dallas: Spread | spread: NOT Dallas wins by over 7.5 points | kalshi | $41k | -108 | ✅ novig,polymarket | ✅ | +0.0c | yes | L |
 | Nov 8 7:16PM | NBA | Brooklyn Nets @ Dallas Mavericks | moneyline: DAL (0) | novig | $29k | -264 | ✅ kalshi,polymarket | ❌ | +0.5c |  | pending |
-| Nov 8 7:06PM | NBA | Nets vs. Mavericks | spread: Nets (+7.5) | polymarket | $39k | -108 | ✅ kalshi,novig | ✅ | +0.0c |  | pending |
+| Nov 8 7:06PM | NBA | Nets vs. Mavericks | spread: Nets (+7.5) | polymarket | $39k | -108 | ✅ kalshi,novig | ✅ | +0.0c |  | L |
 | Nov 8 6:40PM | NBA | Jazz vs. Timberwolves | spread: Timberwolves (-12.5) | polymarket | $47k | -100 |  |  | +0.0c |  | W |
 | Nov 8 6:36PM | NBA | Pelicans vs. Clippers | moneyline: Pelicans | polymarket | $53k | -117 | ✅ novig |  | -1.0c |  | pending |
 | Nov 8 6:20PM | NBA | Jazz vs. Timberwolves | total: Under (222.5) | polymarket | $30k | -100 | ✅ kalshi | ❌ | +2.0c |  | W |
@@ -41,7 +41,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 8 4:50PM | NHL | Tampa Bay vs Winnipeg: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $93k | -113 | ✅ novig |  | +0.0c |  | L |
 | Nov 8 4:50PM | NBA | Los Angeles L vs Detroit: Spread | spread: NOT Detroit wins by over 7.5 points | kalshi | $51k | -104 | ✅ novig | ❌ | +0.0c | yes | W |
 | Nov 8 4:16PM | NBA | Pelicans vs. Clippers | moneyline: Clippers | polymarket | $40k | +108 | ✅ novig,prophetx |  | +0.0c |  | pending |
-| Nov 8 4:06PM | NBA | Nets vs. Mavericks | spread: Mavericks (-7.5) | polymarket | $90k | -104 | ✅ novig,prophetx | ❌ | -2.0c |  | pending |
+| Nov 8 4:06PM | NBA | Nets vs. Mavericks | spread: Mavericks (-7.5) | polymarket | $90k | -104 | ✅ novig,prophetx | ❌ | -2.0c |  | W |
 | Nov 8 4:06PM | NHL | Philadelphia vs Calgary: Spread | spread: NOT Philadelphia wins by over 1.5 goals | kalshi | $61k | -233 | ✅ novig,polymarket |  | +0.0c | yes | W |
 | Nov 8 4:00PM | NBA | Lakers vs. Pistons | moneyline: Pistons | polymarket | $513k | -223 | ✅ novig,prophetx | ✅ | +1.0c |  | L |
 | Nov 8 3:50PM | NFL | Arizona Cardinals @ Seattle Seahawks | spread: SEA -8.5 (-8.5) | novig | $99k | -104 |  |  | +0.0c |  | W |
@@ -54,7 +54,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 8 2:46PM | NFL | Arizona vs Seattle: Spread | spread: Seattle wins by over 9.5 points | kalshi | $576k | +104 |  |  | +2.0c | yes | W |
 | Nov 8 2:40PM | NBA | Philadelphia 76ers at Chicago Bulls | moneyline: Philadelphia 76ers | prophetx | $38k | -395 | ✅ kalshi,novig,polymarket | ❌ | -0.9c |  | W |
 | Nov 8 2:40PM | NBA | Lakers vs. Pistons | total: Over (217.5) | polymarket | $33k | -104 |  | ❌ | -3.0c | yes | W |
-| Nov 8 2:26PM | NBA | Nets vs. Mavericks | moneyline: Mavericks | polymarket | $42k | -285 | ✅ kalshi,novig,prophetx | ❌ | -2.0c |  | pending |
+| Nov 8 2:26PM | NBA | Nets vs. Mavericks | moneyline: Mavericks | polymarket | $42k | -285 | ✅ kalshi,novig,prophetx | ❌ | -2.0c |  | W |
 | Nov 8 2:26PM | NBA | Philadelphia 76ers @ Chicago Bulls | moneyline: PHI (0) | novig | $31k | -400 | ✅ kalshi,polymarket,prophetx | ❌ | -1.0c |  | W |
 | Nov 8 2:20PM | NFL | Green Bay Packers @ New England Patriots | spread: GB +3.5 (-3.5) | novig | $34k | -113 | ✅ kalshi |  | +0.5c |  | W |
 | Nov 8 2:10PM | NFL | Houston Texans @ Los Angeles Chargers | moneyline: HOU (0) | novig | $33k | -208 | ✅ kalshi,prophetx |  | -1.0c | yes | W |
