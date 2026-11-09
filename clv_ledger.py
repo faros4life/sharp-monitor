@@ -243,7 +243,11 @@ def load_markets(st, now):
         mk = None
     if not can_bill(st, now):
         return (mk or {}).get("m") or {}
-    d = api("/markets", True)
+    try:
+        d = api("/markets", True)
+    except GateRefused:
+        return (mk or {}).get("m") or {}      # same fallback as "cannot bill": the stale list
+
     bill(st, now)
     if not isinstance(d, list):
         return (mk or {}).get("m") or {}
@@ -268,7 +272,10 @@ def tournament(st, now, lg):
             return st["ncaab_tid"]
         if not can_bill(st, now):
             return None
-        ts = api("/tournaments", True, sportId=11)
+        try:
+            ts = api("/tournaments", True, sportId=11)
+        except GateRefused:
+            return None                       # same as "cannot bill": no tournament id this run
         bill(st, now)
         best = None
         for t in ts if isinstance(ts, list) else []:
@@ -315,7 +322,15 @@ def refresh_fixtures(st, now, lg, lo, hi):
     tid = tournament(st, now, lg)
     if not tid or not can_bill(st, now):
         return False
-    d = api("/fixtures", True, tournamentId=tid, **{"from": lo.strftime("%Y-%m-%d"), "to": hi.strftime("%Y-%m-%d")})
+    try:
+        d = api("/fixtures", True, tournamentId=tid, **{"from": lo.strftime("%Y-%m-%d"), "to": hi.strftime("%Y-%m-%d")})
+    except GateRefused as e:
+        # A gate refusal is exactly the existing "we never looked" case, so it takes the same
+        # return. This matters for the seven contents: read research jobs: under enforcement they
+        # cannot take a reservation, so every paid call is refused - the intended state - and they
+        # must still complete their FREE historical work instead of aborting on the first refusal.
+        st.setdefault("errors", []).append(f"{iso(now)} fixtures {lg}: {e}")
+        return False
     bill(st, now)
     st.setdefault("fx_last", {})[lg] = iso(now)
     if isinstance(d, dict) and d.get("_error"):

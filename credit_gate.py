@@ -12,7 +12,8 @@ Peter approved the gate on 9 Nov with these requirements, each mapped to the cod
   no double-count when /account catches up     -> see RECONCILIATION
   staged: enforce only after tests pass        -> ENFORCE defaults off; this is shadow mode
 
-ENFORCEMENT IS OFF UNTIL ODDSPAPI_GATE=enforce. In shadow mode reserve() NEVER refuses; it records
+ENFORCEMENT IS ON BY DEFAULT since 2026-11-09 (Peter: close the OddsPapi work, protect what is
+left). ODDSPAPI_GATE=shadow turns it off for one run; in shadow reserve() never refuses and records
 what it WOULD have refused so the gate can be reconciled against the provider before it can block
 anything. That is Peter's stage 3.
 
@@ -82,7 +83,12 @@ PLAN = int(os.environ.get("ODDSPAPI_PLAN", "") or "5000")
 RESERVE_FLOOR = int(os.environ.get("ODDSPAPI_RESERVE", "") or "500")
 RESERVE_TTL = timedelta(minutes=int(os.environ.get("GATE_TTL_MIN", "") or "10"))
 AUTH_TTL = timedelta(minutes=int(os.environ.get("GATE_AUTH_TTL_MIN", "") or "15"))
-MODE = (os.environ.get("ODDSPAPI_GATE") or "shadow").strip().lower()
+# ENFORCING BY DEFAULT since 2026-11-09, on Peter's instruction to close the OddsPapi work and
+# protect what is left. The default is "enforce", not "shadow", deliberately: enforcement has to
+# cover EVERY paid caller, and setting it per workflow means one missed env block is a silent hole
+# in the cap. Defaulting on makes a miss impossible. ODDSPAPI_GATE=shadow turns it off for a single
+# run if that is ever needed.
+MODE = (os.environ.get("ODDSPAPI_GATE") or "enforce").strip().lower()
 BRANCH = os.environ.get("GATE_BRANCH", "") or "main"
 BASE_REF = f"origin/{BRANCH}"
 ENFORCE = MODE == "enforce"

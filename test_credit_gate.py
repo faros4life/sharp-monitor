@@ -385,6 +385,32 @@ def t_wiring():
         cl.api("/fixtures", True)
         ck("a granted paid call proceeds", calls == ["/fixtures"], f"calls={calls}")
 
+        # ENFORCEMENT MUST BE THE DEFAULT. Setting it per workflow would make one missed env block
+        # a silent hole in the cap, so an unset ODDSPAPI_GATE has to mean "on".
+        p = subprocess.run([sys.executable, "-c",
+                            "import credit_gate as g; print(g.MODE, g.ENFORCE)"],
+                           cwd=os.getcwd(), capture_output=True, text=True,
+                           env={k: v for k, v in os.environ.items() if k != "ODDSPAPI_GATE"})
+        ck("the gate enforces by default, with no env var set",
+           p.stdout.strip() == "enforce True", p.stdout.strip() or p.stderr[-200:])
+
+        # A refusal must not abort a job's FREE work. The seven contents: read research jobs cannot
+        # reserve under enforcement, so every paid call is refused - by design - and they still have
+        # free historical research to finish.
+        g.take = lambda n=1, purpose="api", path=None: False
+        st = {"billable": {}}
+        now = datetime.now(timezone.utc)
+        try:
+            got = cl.refresh_fixtures(st, now, "NBA", now, now)
+            ck("a refused /fixtures degrades instead of raising", got is False, f"returned {got}")
+        except cl.GateRefused:
+            ck("a refused /fixtures degrades instead of raising", False, "it raised")
+        try:
+            m = cl.load_markets({"billable": {}}, now)
+            ck("a refused /markets falls back to the cached list", isinstance(m, dict))
+        except cl.GateRefused:
+            ck("a refused /markets falls back to the cached list", False, "it raised")
+
         # every paid endpoint we actually use is covered by the one chokepoint
         src = open("clv_ledger.py").read()
         ck("the gate is checked in api(), before the request is built",
