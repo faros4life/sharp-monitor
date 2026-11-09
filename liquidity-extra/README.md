@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 9, 1:07 AM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 3.
+Updated Mon Nov 9, 1:15 AM ET. This run: 2 new, 0 not confirmed, 5 pending. Open alerts: 5.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 9 1:15AM | NCAAB | Syracuse vs Indiana | moneyline: Indiana | kalshi | $41k | -213 |  |  | +0.0c |  | pending |
+| Nov 9 1:15AM | NCAAB | Howard vs Penn | moneyline: Penn | kalshi | $31k | -223 |  |  | +0.0c |  | pending |
 | Nov 8 5:40PM | TENNIS | Coco Gauff vs Jessica Pegula | moneyline: Coco Gauff | kalshi | $80k | -178 |  |  | +21.0c | yes | W |
 | Nov 8 3:00PM | NCAAB | Wichita St. vs USC | moneyline: USC | kalshi | $29k | -223 |  |  | +4.0c |  | pending |
 | Nov 8 3:00PM | NCAAB | UT Arlington vs Hawai'i | moneyline: Hawai'i | kalshi | $26k | -355 |  |  | +0.0c | yes | W |
@@ -208,5 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 28 7:30AM | TENNIS | Altmaier vs Lehecka | moneyline: Lehecka | kalshi | $62k | -567 |  |  | +0.0c |  | W |
 | Oct 28 6:30AM | TENNIS | Vacherot vs Jodar | moneyline: Jodar | kalshi | $55k | -285 |  |  | -1.0c | yes | L |
 | Oct 28 5:30AM | TENNIS | Tien vs de Minaur | moneyline: de Minaur | kalshi | $33k | -104 |  |  | +1.0c | yes | W |
-| Oct 28 3:00AM | MLB | Milwaukee Brewers vs. Tampa Bay Rays | moneyline: Milwaukee Brewers | polymarket | $36k | -144 | ✅ kalshi,novig |  | -2.0c |  | W |
-| Oct 28 2:00AM | MLB | Milwaukee vs Tampa Bay: Spread | spread: NOT Milwaukee wins by over 1.5 runs | kalshi | $32k | -144 |  |  | -1.0c |  | L |
