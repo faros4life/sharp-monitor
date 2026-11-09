@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 9, 1:40 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 49.
+Updated Mon Nov 9, 1:46 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 50.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,9 +10,10 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 9 1:46PM | NFL | Buffalo Bills @ Minnesota Vikings | total: Over 45.5 (45.5) | novig | $30k | -102 | ✅ kalshi | ✅ | +0.0c |  | pending |
 | Nov 9 1:36PM | NBA | Los Angeles L vs Atlanta: Spread | spread: NOT Atlanta wins by over 2.5 points | kalshi | $43k | -113 | ✅ novig |  | +0.0c |  | pending |
 | Nov 9 1:07PM | NBA | Grizzlies vs. Raptors | spread: Grizzlies (+2.5) | polymarket | $50k | +104 | ✅ kalshi |  | +0.0c |  | pending |
-| Nov 9 1:07PM | NBA | Washington vs Detroit: Total Points | total: Over 218.5 points | kalshi | $27k | -108 | ✅ polymarket |  | +1.0c |  | pending |
+| Nov 9 1:07PM | NBA | Washington vs Detroit: Total Points | total: Over 218.5 points | kalshi | $27k | -108 | ✅ polymarket |  | +1.0c | yes | pending |
 | Nov 9 1:00PM | NBA | Pacers vs. Mavericks | spread: Mavericks (-3.5) | polymarket | $47k | -104 | ✅ novig | ✅ | +0.0c |  | pending |
 | Nov 9 12:10PM | NBA | Grizzlies vs. Raptors | moneyline: Grizzlies | polymarket | $49k | +127 | ✅ kalshi |  | +0.0c | yes | pending |
 | Nov 9 11:36AM | NFL | Buffalo Bills @ Minnesota Vikings | spread: BUF -3.5 (3.5) | novig | $37k | +111 | ✅ kalshi |  | +1.0c |  | pending |
@@ -22,9 +23,9 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 9 10:00AM | NBA | Grizzlies vs. Raptors | moneyline: Raptors | polymarket | $30k | -138 | ✅ kalshi,novig,prophetx |  | -1.0c | yes | pending |
 | Nov 9 9:20AM | NBA | Pelicans vs. Warriors | moneyline: Warriors | polymarket | $26k | -376 | ✅ kalshi,novig,prophetx |  | -1.0c | yes | pending |
 | Nov 9 9:10AM | NBA | Pacers vs. Mavericks | spread: Pacers (+3.5) | polymarket | $34k | -108 | ✅ novig |  | -2.0c | yes | pending |
-| Nov 9 9:00AM | NFL | Buffalo Bills @ Minnesota Vikings | moneyline: BUF (0) | novig | $40k | -163 | ✅ kalshi,prophetx |  | +1.0c |  | pending |
+| Nov 9 9:00AM | NFL | Buffalo Bills @ Minnesota Vikings | moneyline: BUF (0) | novig | $40k | -163 | ✅ kalshi,prophetx |  | +1.5c |  | pending |
 | Nov 9 8:20AM | NBA | Pacers vs. Mavericks | moneyline: Mavericks | polymarket | $59k | -144 | ✅ kalshi,novig |  | +1.0c |  | pending |
-| Nov 9 8:20AM | NBA | Denver vs Houston: Total Points | total: Over 218.5 points | kalshi | $29k | +104 | ✅ polymarket |  | +5.0c | yes | pending |
+| Nov 9 8:20AM | NBA | Denver vs Houston: Total Points | total: Over 218.5 points | kalshi | $29k | +104 | ✅ polymarket |  | +6.0c | yes | pending |
 | Nov 9 8:16AM | NBA | Lakers vs. Hawks | spread: Hawks (+1.5) | polymarket | $37k | -104 | ✅ novig |  | +7.0c | yes | pending |
 | Nov 9 8:16AM | NBA | Memphis vs Toronto: Total Points | total: NOT Over 230.5 points | kalshi | $75k | -108 |  | ❌ | +4.0c | yes | pending |
 | Nov 9 8:16AM | NBA | Los Angeles L vs Atlanta: Spread | spread: NOT Los Angeles L wins by over 1.5 points | kalshi | $86k | -104 | ✅ novig |  | +6.0c | yes | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 7 9:40PM | NBA | Spurs vs. Trail Blazers | spread: Spurs (-5.5) | polymarket | $49k | -100 |  | ✅ | +0.0c | yes | W |
 | Nov 7 9:36PM | NFL | New York G vs Philadelphia | moneyline: New York G | kalshi | $100k | -156 | ✅ novig |  | -2.0c | yes | W |
 | Nov 7 9:10PM | NBA | San Antonio Spurs @ Portland Trail Blazers | moneyline: SAS (0) | novig | $28k | -194 | ✅ kalshi,polymarket,prophetx | ✅ | +0.5c |  | W |
-| Nov 7 9:06PM | NBA | San Antonio vs Portland | moneyline: San Antonio | kalshi | $117k | -194 | ✅ novig,polymarket,prophetx | ✅ | +1.0c | yes | W |
