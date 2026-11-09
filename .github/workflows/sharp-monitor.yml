@@ -33,6 +33,7 @@ jobs:
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           SPORTS: ${{ vars.SPORTS }}
           RETAIL_BOOKS: ${{ vars.RETAIL_BOOKS }}
+          CONFIRM_BOOK: ${{ vars.CONFIRM_BOOK }}
           SHARP_BOOK: ${{ vars.SHARP_BOOK }}
           MAX_JUICE: ${{ vars.MAX_JUICE }}
           NCAAF_TOP25: ${{ vars.NCAAF_TOP25 }}
@@ -48,6 +49,7 @@ jobs:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
           SPORTS: ${{ vars.SPORTS }}
           RETAIL_BOOKS: ${{ vars.RETAIL_BOOKS }}
+          CONFIRM_BOOK: ${{ vars.CONFIRM_BOOK }}
           SHARP_BOOK: ${{ vars.SHARP_BOOK }}
           ODDS_SCREEN_MIN: ${{ vars.ODDS_SCREEN_MIN }}
         run: python odds_screen_poll.py

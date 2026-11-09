@@ -1561,7 +1561,12 @@ def run():
         if evs:
             active.append(key)
     interval = poll_interval_min(st, active)
-    print(f"Books: {SHARP} (sharp)" + (f" + {CONFIRM} (confirm)" if CONFIRM else "") + f" vs {RETAIL}")
+    # Nov 9: this printed CONFIRM only - CONFIRMS[0] - so three of the four confirm books never
+    # appeared in the log and nobody could see from a run what the confirm set actually was. That
+    # is part of why CONFIRM_BOOK went unpassed for so long: the log looked like one book.
+    print(f"Books: {SHARP} (sharp)"
+          + (f" + {','.join(CONFIRMS)} (confirm, {len(CONFIRMS)})" if CONFIRMS else " + no confirm book")
+          + f" vs {RETAIL}  [{len(BOOKS)} books, {math.ceil(len(BOOKS) / 10)} credit(s) per market]")
     print(f"Active sports: {active}; credits left: {st.get('remaining')}; interval: {interval:.0f} min")
 
     books = ",".join(BOOKS)
