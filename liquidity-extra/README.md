@@ -1,18 +1,18 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 9, 12:20 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 4.
+Updated Mon Nov 9, 12:30 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 3.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 191-113 (-14.94u flat) | rule met: 40-32
+**Record:** 192-113 (-14.68u flat) | rule met: 40-32
 
-**Fade (paper, betting against the print):** 88-156 (+7.58u flat, after fees)
+**Fade (paper, betting against the print):** 88-157 (+6.58u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 8 5:40PM | TENNIS | Coco Gauff vs Jessica Pegula | moneyline: Coco Gauff | kalshi | $80k | -178 |  |  | +21.0c | yes | W |
 | Nov 8 3:00PM | NCAAB | Wichita St. vs USC | moneyline: USC | kalshi | $29k | -223 |  |  | +4.0c |  | pending |
-| Nov 8 3:00PM | NCAAB | UT Arlington vs Hawai'i | moneyline: Hawai'i | kalshi | $26k | -355 |  |  | +0.0c | yes | pending |
+| Nov 8 3:00PM | NCAAB | UT Arlington vs Hawai'i | moneyline: Hawai'i | kalshi | $26k | -355 |  |  | +0.0c | yes | W |
 | Nov 8 1:40PM | TENNIS | Thiago Agustin Tirante vs Jaume Munar | moneyline: Thiago Agustin Tirante | kalshi | $228k | -233 |  |  | +4.0c | yes | W |
 | Nov 8 12:50PM | TENNIS | Thiago Agustin Tirante vs Jaume Munar | moneyline: Jaume Munar | kalshi | $127k | -213 |  |  | -41.0c | yes | L |
 | Nov 8 11:30AM | NCAAB | Quinnipiac @ Vermont | moneyline: UVM (0) | novig | $63k | -355 |  | ❌ | -1.0c | yes | W |
