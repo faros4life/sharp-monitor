@@ -45,6 +45,7 @@ from datetime import datetime, timedelta, timezone
 import clv_ledger as cl
 import clv_std as cs
 import hist_cache as hc
+import nba_names as nn
 import tracker_build as tb
 
 ET = tb.ET
@@ -175,8 +176,25 @@ def main():
         # and _qualifies only applies its 36h window when a start time is present - with none, every
         # meeting of those two teams qualifies and the match goes ambiguous. The first run of this
         # script omitted both and lost 1,678 of 2,120 rows to "no fixture matched" (17.8% coverage).
+        # THE COVERAGE FIX. find_fixture wants [{"name": full}, ...] and PREFERS it over "game".
+        # The liquidity feed stores SHORT names - ["Lakers", "Hawks"], "Memphis vs Toronto" - one
+        # distinctive token per side, and _qualifies needs TWO or more on at least one side, so
+        # those rows fail BY CONSTRUCTION: "Lakers" against the fixture's "Los Angeles Lakers"
+        # scores 1. That is the 1,678 misses in this script's first run (17.8% coverage) and almost
+        # certainly the 776-of-803 "no fixture matched" exclusions recorded in CLV_STANDARD.md.
+        #
+        # nba_names.teams_of() already exists for exactly this - its docstring says "for the
+        # history grader's fixture matcher" - and returns the right shape, canonicalised:
+        # ["Lakers","Hawks"] -> ["Los Angeles Lakers","Atlanta Hawks"], 3 and 2 tokens.
+        #
+        # This does NOT loosen the matcher. Peter tightened it on 5 Nov so a coincidental token
+        # could not produce a confidently wrong CLV, and that floor is untouched; the matcher just
+        # gets better input. Passing the RAW short teams would make coverage worse, not better.
+        # teams_of returns [] for non-NBA, so NFL/NCAAF/NHL rows keep their old behaviour and
+        # their short names remain a known, separate gap.
         b = {"bet": x.get("bet") or f"{x.get('side')} {x.get('line') or ''}".strip(),
-             "league": lg, "game": x.get("game"), "teams": x.get("teams"),
+             "league": lg, "game": x.get("game"),
+             "teams": nn.teams_of(dict(x, league=lg)),
              "game_start": (x.get("start_utc") or x.get("alerted_utc")), "book": x.get("book")}
         am = x.get("price_american")
         rec = {"day": str(x.get("alerted_utc") or "")[:10], "game": x.get("game"), "lg": lg,
