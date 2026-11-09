@@ -168,8 +168,14 @@ def main():
     pos = [p for p in ((r.get("market_positions") or []) if isinstance(r, dict) else []) if p.get("ticker") == mk["ticker"]]
     print(f"   position in that market: {[{k: p.get(k) for k in ('position', 'position_fp')} for p in pos]} (negative = NO)")
     b1 = balance()
-    print(f"5) Balance change: {('-$%.4f' % ((b0 - b1) / 100)) if b1 is not None else 'unreadable'} "
-          f"(expected about {no_cost + exp_fee:.4f} = NO cost + fee)")
+    # Nov 9: a balance change is account data and this log is PUBLIC. Report whether it matched the
+    # expectation, never the amount. The expectation is a test constant, not account data.
+    _moved = None if b1 is None else (b0 - b1) / 100
+    print("5) Balance change: "
+          + ("unreadable" if _moved is None
+             else "matches expectation" if abs(_moved - (no_cost + exp_fee)) < 0.01
+             else "DIFFERS from expectation")
+          + f" (expected about {no_cost + exp_fee:.4f} = NO cost + fee; actual withheld from this public log)")
     print(f"Done. ONE real NO order via the {route}, about $1, fill-or-kill: nothing left resting.")
 
 

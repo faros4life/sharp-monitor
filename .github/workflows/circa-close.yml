@@ -1,0 +1,79 @@
+name: circa-close
+
+# Circa + ps3838 close capture - a second sharp close, on the FREE key (Peter, Nov 9).
+#
+# Asked "do we have circa to compare clv now", the answer was no: Circa was reachable but nothing
+# stored it. Closing lines are perishable, so this starts accumulating them now at zero paid cost.
+#
+# ZERO PAID CREDITS, BY CONSTRUCTION: ODDSPAPI_KEY is deliberately absent from this job's env, so it
+# cannot bill even by mistake, and the script refuses to run if either book would route to the paid
+# key. History is free on both keys; fixtures come from the ledger's existing cache, so no
+# /fixtures purchase either.
+#
+# HARD CAPPED because the free budget is UNKNOWN - the probe found no rate-limit header, and the
+# "250/month" in freekey_books.py is an unverified figure. The reported batch count IS the
+# measurement. This is kept separate from hcache-fill for the same reason: two extra books over
+# that job's 700 games would be ~1,400 extra free calls a run and could exhaust the free key,
+# taking the EXCHANGE history down with it - and Executed CLV depends on that.
+#
+# It writes only the shared history cache. No bet, no rule, no threshold, no venue permission.
+on:
+  workflow_dispatch:
+    inputs:
+      max_games:
+        description: "hard cap on games per run (default 25)"
+        required: false
+        type: string
+        default: "25"
+      back_hours:
+        description: "how far back to look for finished games (default 36)"
+        required: false
+        type: string
+        default: "36"
+  schedule:
+    # 09:20 UTC = 4:20 AM ET, after the night's games are final and well clear of the 6-9 AM
+    # Pacific window where runs get delayed.
+    - cron: "20 9 * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: circa-close
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Restore shared OddsPapi history cache
+        id: restore
+        uses: actions/cache/restore@v4
+        with:
+          path: hcache
+          key: hcache-${{ github.run_id }}
+          restore-keys: hcache-
+      - name: Capture Circa + ps3838 closes (free key only)
+        env:
+          # NOTE: ODDSPAPI_KEY is intentionally absent. This job must not be able to bill.
+          ODDSPAPI_FREE_KEY: ${{ secrets.ODDSPAPI_FREE_KEY }}
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          CC_MAX: ${{ inputs.max_games }}
+          CC_BACK_HOURS: ${{ inputs.back_hours }}
+        run: python -u circa_close.py
+      - name: Save the cache so the captured closes persist
+        # Only when the shared cache really restored: a failed restore once saved an EMPTY cache.
+        if: always() && steps.restore.outputs.cache-matched-key != ''
+        uses: actions/cache/save@v4
+        with:
+          path: hcache
+          key: hcache-${{ github.run_id }}

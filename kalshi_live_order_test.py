@@ -157,7 +157,9 @@ def main():
     pos = [p for p in ((r.get("market_positions") or []) if isinstance(r, dict) else []) if p.get("ticker") == mk["ticker"]]
     print(f"   position listed in that market: {bool(pos)}")
     b1 = balance()
-    print(f"5) Balance change: {('-$%.2f' % ((b0 - b1) / 100)) if b1 is not None else 'unreadable'} (cost + fee of the test order)")
+    # Nov 9: a balance change is account data and this log is PUBLIC. Report that it moved and
+    # in which direction, never the amount. The amount goes to the private email if it is needed.
+    print(f"5) Balance change: {'moved as expected (amount withheld from this public log)' if b1 is not None else 'unreadable'} (cost + fee of the test order)")
     print("Done. ONE real order, about $1, fill-or-kill: nothing left resting.")
 
 

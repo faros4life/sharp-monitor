@@ -90,7 +90,8 @@ def main():
             sd = sum(float(x["price"]) * int(x["qty"]) / 100 for x in so)
             pd = sum(float(x["price"]) * int(x["qty"]) / 100 for x in po)
             same = [(x["price"], x["qty"]) for x in so] == [(x["price"], x["qty"]) for x in po]
-            print(f"   {o.get('name')}: signed {len(so)} orders ${sd:,.0f} | public {len(po)} orders ${pd:,.0f} | "
+            # Nov 9: order TOTALS are position size - account data in a PUBLIC log. Counts only.
+            print(f"   {o.get('name')}: signed {len(so)} orders | public {len(po)} orders | "
                   f"identical: {same}")
         print(f"   seq signed {s.get('seq')} vs public {p.get('seq')} | signed fields {fields(s)}")
 
