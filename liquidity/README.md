@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 9, 8:26 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 36.
+Updated Mon Nov 9, 8:30 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 36.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -12,7 +12,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 9 8:20AM | NBA | Pacers vs. Mavericks | moneyline: Mavericks | polymarket | $59k | -144 | ✅ kalshi,novig |  | +0.0c |  | pending |
 | Nov 9 8:20AM | NBA | Denver vs Houston: Total Points | total: Over 218.5 points | kalshi | $29k | +104 | ✅ polymarket |  | +0.0c |  | pending |
-| Nov 9 8:16AM | NBA | Lakers vs. Hawks | spread: Hawks (+1.5) | polymarket | $37k | -104 | ✅ novig |  | +0.0c |  | pending |
+| Nov 9 8:16AM | NBA | Lakers vs. Hawks | spread: Hawks (+1.5) | polymarket | $37k | -104 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 9 8:16AM | NBA | Memphis vs Toronto: Total Points | total: NOT Over 230.5 points | kalshi | $75k | -108 |  | ❌ | +3.0c |  | pending |
 | Nov 9 8:16AM | NBA | Los Angeles L vs Atlanta: Spread | spread: NOT Los Angeles L wins by over 1.5 points | kalshi | $86k | -104 | ✅ novig |  | +0.0c |  | pending |
 | Nov 9 8:10AM | NHL | New York I vs San Jose: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $31k | -113 | ✅ novig |  | +0.0c |  | pending |
