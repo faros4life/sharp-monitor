@@ -285,17 +285,48 @@ def to_american(d):
 
 # Nov 6 (Peter, "where is the price?"): the call says "the alert price or better", so the board has to show that price.
 # Fees are kept here rather than imported, so the board never pulls the executor's credentials at import time.
-# Kalshi 0.07 x p x (1-p) and Polymarket 0.0695 x p x (1-p) per contract (~3.4% of stake at even money);
-# ProphetX 2% of winnings (~1%); Novig none.
-def after_fee_dec(book, p):
+# (exchange_lag imports executor, so importing the shared model here would do exactly that - the copy stays.)
+#
+# Nov 9: this copy had gone STALE. It charged Polymarket 0.0695, the figure Peter corrected to 0.06
+# on 6 Nov from Polymarket's own published schedule, so the board has been showing Polymarket
+# after-fee prices WORSE than they really are. It also missed ProphetX's NHL schedule (0.035 taker,
+# not the flat 2% of net gains) and Novig's live/futures 0.06 taker. This is the staleness
+# clv_audit warns about: "a script holding its own copy cannot follow a schedule change".
+#
+# Because the copy cannot be removed, clv_dryrun.py now ASSERTS that this function equals
+# clv_std.net_dec across a price grid, so the next divergence fails a regression run instead of
+# sitting on the board unnoticed. Keep the two in step, or that test fails.
+#
+# DISPLAY ONLY: called from price_cell(), which renders an HTML span. It feeds no selection, no
+# threshold, no registered criterion and no order, so correcting it changes a number shown on the
+# board and nothing the board, alerts or the executor act on.
+PMUS_FEE = 0.06       # Polymarket US taker, corrected 6 Nov
+KALSHI_FEE = 0.07     # Kalshi taker
+NOVIG_LIVE = 0.06     # Novig charges nothing pre-game; 0.06 taker on live and futures
+PX_WIN_FEE = 0.02     # ProphetX: 2% of net gains per market, EXCEPT NHL
+PX_NHL_TAKER = 0.035  # ProphetX NHL runs on a taker schedule instead
+
+
+def after_fee_dec(book, p, league=None, live=False):
     if not p or not 0 < p < 1:
         return None
     b = (book or "").lower()
-    if b in ("kalshi", "polymarket", "polymarket_us", "polymarket.us"):
-        return 1 / (p * (1 + (0.07 if b == "kalshi" else 0.0695) * (1 - p)))
+    nhl = str(league or "").upper() in ("NHL", "ICEHOCKEY_NHL")
     if b == "prophetx":
-        return 1 + (1 / p - 1) * 0.98
-    return 1 / p
+        if not nhl:
+            return 1 + (1 / p - 1) * (1 - PX_WIN_FEE)
+        f = PX_NHL_TAKER
+    elif b == "kalshi":
+        f = KALSHI_FEE
+    elif b in ("polymarket", "polymarket_us", "polymarket.us"):
+        f = PMUS_FEE
+    elif b in ("novig", "novig.us"):
+        if not live:
+            return 1 / p          # free pre-game
+        f = NOVIG_LIVE
+    else:
+        return 1 / p              # Hard Rock and anything unknown: vig is in the price
+    return 1 / (p * (1 + f * (1 - p)))
 
 
 def price_cell(r):

@@ -130,12 +130,40 @@ def math_identical():
           f"largest divergence across 24 price/venue pairs: {worst:.3f} American cents")
 
 
+def board_copy_in_step():
+    """board_build keeps its OWN copy of the fee schedule and cannot import the shared model:
+    exchange_lag imports executor, so importing it there would pull the executor's credentials at
+    board-build time. The copy therefore stays - and on 9 Nov it was found STALE, still charging
+    Polymarket 0.0695 after Peter corrected it to 0.06 on 6 Nov, so the board showed Polymarket
+    after-fee prices worse than they really were.
+
+    A duplicate that cannot be deleted has to be WATCHED instead. This fails the moment the two
+    diverge, which is the only thing that makes keeping a copy acceptable."""
+    print("\nDUPLICATE FEE MODEL - board_build's own copy must equal the shared model")
+    import board_build as bb
+    worst, where, n = 0.0, "", 0
+    for bk, slug in (("kalshi", "kalshi"), ("polymarket_us", "polymarket.us"),
+                     ("prophetx", "prophetx"), ("novig", "novig.us"), ("hardrockbet", "hardrockbet")):
+        for lg in ("NBA", "NFL", "NHL", "NCAAF"):
+            for a in (-400, -200, -130, -110, 100, 150, 400):
+                n += 1
+                board = bb.after_fee_dec(bk, 1 / am2dec(a), league=lg)
+                std = cs.net_dec(slug, am2dec(a), league=lg)
+                if board and abs(board - std) > worst:
+                    worst, where = abs(board - std), f"{bk} {lg} {a:+d}"
+    guard("board_build.after_fee_dec equals clv_std.net_dec", worst < 1e-9,
+          f"largest divergence across {n} cases: {worst:.12f}" + (f" at {where}" if where else ""))
+    guard("the board no longer charges Polymarket the superseded 0.0695",
+          abs(bb.PMUS_FEE - 0.06) < 1e-12, f"PMUS_FEE={bb.PMUS_FEE}")
+
+
 def main():
     print("LIVE PRICING DRY RUN - nothing live is changed by this file")
     print(cs.stamp())
     rules_unchanged()
     eligibility_frozen()
     math_identical()
+    board_copy_in_step()
 
     try:
         pop = json.load(open("liquidity/alerts.json"))

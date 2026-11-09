@@ -4,7 +4,7 @@ FEE MODEL AUDIT against the LIVE accounts (Peter, Nov 6: "YOU HAVE THE API").
 
 Derives each venue's actual fee coefficient from our own fills instead of trusting a constant or a
 website. clv_std.FEE_NOTES carries the model; two of five coefficients were verified from account
-exports (Novig 0, Hard Rock 0) and three were not (ProphetX 2%, Kalshi 0.07, Polymarket US 0.0695).
+exports (Novig 0, Hard Rock 0) and three were not (ProphetX 2%, Kalshi 0.07, Polymarket US 0.06 - 0.0695 until Peter's 6 Nov correction).
 This closes the three.
 
 READ-ONLY. GET requests only, through the same authenticated callers the executor already uses. It
@@ -22,7 +22,7 @@ THE ARITHMETIC
             100 were manually_settled, which may be a fee-exempt path. /v3/account/transactions is
             the wallet ledger and settles it: a 2% commission must appear there as a debit.
   Kalshi    model: 0.07 x contracts x p x (1-p). Invert it: rate = fee / (contracts x p x (1-p)).
-  Polymkt   model: 0.0695, same shape. Polymarket's own docs say SPORTS taker 0.05 and MAKER 0.00,
+  Polymkt   model: 0.06 (was 0.0695 until Peter's 6 Nov correction), same shape. Polymarket's own docs say SPORTS taker 0.05 and MAKER 0.00,
             but describe the global venue rather than the CFTC-regulated US entity.
 """
 import json
@@ -175,7 +175,7 @@ def kalshi():
 
 # ------------------------------------------------------------------ Polymarket US
 def pmus():
-    say("\n=== Polymarket US (model: 0.0695 x p x (1-p) taker; docs say 0.05 sports / 0.00 maker) ===")
+    say("\n=== Polymarket US (model: 0.06 x p x (1-p) taker, corrected 6 Nov; docs say 0.05 sports / 0.00 maker) ===")
     try:
         import book_live as bl
         # Nov 6: /v1/portfolio/activities at limit 200 returned only positionResolution events -
@@ -230,7 +230,7 @@ def pmus():
             rates.sort()
             med = rates[len(rates) // 2]
             say(f"  implied coefficient: median {med:.4f} | min {rates[0]:.4f} | max {rates[-1]:.4f}"
-                f"   (model 0.0695, docs 0.05 sports taker)")
+                f"   (model 0.06 since the 6 Nov correction, docs 0.05 sports taker)")
         elif nofee:
             say("  VERDICT: every row reports fee 0. If these were MAKER fills that agrees with the "
                 "docs (maker 0.00) and posting here is free - which would put Polymarket beside "

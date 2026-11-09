@@ -170,7 +170,100 @@ def main():
     print("                           rather than guessed at; no figure is restated from memory.")
     print("\n  Nothing in this audit changes a pass/fail verdict. Where a different basis would")
     print("  move one, that is reported and the recorded verdict stands.")
+
+    discovered()
     return 0
+
+
+# the published coefficients as of fee model cs.FEE_MODEL
+LIVE_COEF = {"0.06", "0.07", "0.02", "0.035", "0.01", "0.0175", "0.0125"}
+SUPERSEDED = {"0.0695": "Polymarket US taker, superseded by 0.06 on 6 Nov"}
+SHARED = {"clv_std.py", "exchange_lag.py", "clv_audit.py", "clv_dryrun.py"}
+# 0.0695 that is DELIBERATE, not stale. Peter approved freezing every eligibility gate on the old,
+# stricter fee so the correction to 0.06 can never create a newly eligible bet. Reporting this as
+# something to fix would push someone into breaking an approved safety property, which is worse
+# than not reporting it at all - so it is named here, with its reason, rather than flagged.
+INTENTIONAL = {"PMUS_QUAL_FEE": "eligibility freeze: gates stay on the old, stricter 0.0695"}
+
+
+def code_only(src):
+    """Source with comments and string literals removed, so a constant QUOTED in a comment or a
+    docstring is not mistaken for one the code uses. The first version of this detector flagged
+    four files, and all four were prose - including executor's approved eligibility freeze."""
+    import io
+    import tokenize
+    # FSTRING_MIDDLE is the literal text inside an f-string on Python 3.12+, and it is NOT a
+    # STRING token - fee_audit.py's "model 0.0695" display text leaked straight through the first
+    # version of this because of exactly that.
+    drop = {tokenize.COMMENT, tokenize.STRING}
+    for nm in ("FSTRING_START", "FSTRING_MIDDLE", "FSTRING_END"):
+        t = getattr(tokenize, nm, None)
+        if t is not None:
+            drop.add(t)
+    out = []
+    try:
+        for tok in tokenize.generate_tokens(io.StringIO(src).readline):
+            if tok.type in drop:
+                continue
+            out.append(tok.string)
+    except Exception:
+        return src          # unparseable: fall back rather than claim a clean file
+    return "\n".join(out)
+
+
+def discovered():
+    """Every file holding its own fee coefficient, FOUND rather than listed.
+
+    Nov 9: SCRIPTS above is hand-written and board_build.py was never in it - so when its local
+    copy of the schedule went on charging Polymarket 0.0695 after Peter corrected it to 0.06, the
+    board showed Polymarket after-fee prices worse than reality and THIS AUDIT could not see it.
+    An instrument whose coverage is a hand-kept list only finds what someone remembered to add, so
+    it now discovers the files, and names any holding a superseded number."""
+    import glob
+    print(f"\n{'=' * 74}\nDISCOVERED FEE COEFFICIENTS - every file, not a hand-kept list\n{'=' * 74}")
+    stale, own, deliberate = {}, {}, {}
+    for f in sorted(glob.glob("*.py")):
+        if f in SHARED:
+            continue
+        raw = read(f)
+        if not raw:
+            continue
+        src = code_only(raw)
+        for k, v in SUPERSEDED.items():
+            if not re.search(r"(?<![\d.])" + re.escape(k), src):
+                continue
+            # is every occurrence attached to a name we have already approved?
+            named = [nm for nm in INTENTIONAL
+                     if re.search(re.escape(nm) + r"\s*=\s*" + re.escape(k), src)]
+            uses = len(re.findall(r"(?<![\d.])" + re.escape(k), src))
+            if named and uses == len(named):
+                deliberate.setdefault(f, []).append((k, named[0]))
+            else:
+                stale.setdefault(f, {})[k] = v
+        hits = sorted({m for m in re.findall(r"(?<![\d.])0\.0\d{1,4}(?![\d])", src)} & LIVE_COEF)
+        if hits and "import clv_std" not in raw:
+            own[f] = hits
+    if stale:
+        print(f"\n  SUPERSEDED COEFFICIENT STILL IN CODE ({len(stale)}) - fix these:")
+        for f, bad in stale.items():
+            for k, v in bad.items():
+                print(f"    {f:26s} holds {k}  ({v})")
+    else:
+        print(f"\n  No file holds a superseded coefficient in CODE."
+              f" (Checked: {', '.join(sorted(SUPERSEDED))}; comments and docstrings ignored.)")
+    if deliberate:
+        print(f"\n  DELIBERATE, NOT STALE ({len(deliberate)}) - do not 'fix' these:")
+        for f, items in deliberate.items():
+            for k, nm in items:
+                print(f"    {f:26s} {nm} = {k}  ({INTENTIONAL[nm]})")
+    print(f"\n  Files carrying their own fee coefficients without importing clv_std ({len(own)}):")
+    for f, hits in sorted(own.items(), key=lambda x: -len(x[1])):
+        print(f"    {f:26s} {hits}")
+    print("\n  A copy is only acceptable when something WATCHES it. board_build.py cannot import")
+    print("  the shared model - exchange_lag imports executor, which would pull the executor's")
+    print("  credentials at board-build time - so clv_dryrun.py now asserts its copy equals")
+    print("  clv_std.net_dec across a price grid and fails when they drift. Any other file on")
+    print("  this list has no such guard yet.")
 
 
 if __name__ == "__main__":
