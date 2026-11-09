@@ -16,6 +16,7 @@ import re
 import sys
 import time
 import unicodedata
+import urllib.error
 import urllib.parse
 import urllib.request
 from datetime import datetime, timedelta, timezone
@@ -123,13 +124,34 @@ def prob_to_am(p):
     return (100 * (1 - p) / p) if p < 0.5 else (-100 * p / (1 - p))
 
 
+# Nov 8: three live scans died on the provider's 502 (runs 42386669206, 42399045380, 42406502864,
+# all 7 Nov) - one transient gateway error and a whole 5-minute scan is lost. Retry ONLY what is
+# genuinely transient. 429 is NOT in this list on purpose: that is rate limit or quota, where a
+# retry spends another credit and makes it worse, and nor is any 4xx. Two retries, short backoff,
+# because the workflow has a 5-minute cadence to keep.
+HTTP_RETRY = (500, 502, 503, 504)
+HTTP_TRIES = 3
+
+
 def http_get(path, params):
     params = dict(params, apiKey=KEY)
     url = f"{API}{path}?{urllib.parse.urlencode(params)}"
-    with urllib.request.urlopen(url, timeout=30) as r:
-        body = json.loads(r.read().decode())
-        rem = r.headers.get("x-requests-remaining")
-        return body, (int(float(rem)) if rem is not None else None)
+    for attempt in range(HTTP_TRIES):
+        try:
+            with urllib.request.urlopen(url, timeout=30) as r:
+                body = json.loads(r.read().decode())
+                rem = r.headers.get("x-requests-remaining")
+                return body, (int(float(rem)) if rem is not None else None)
+        except urllib.error.HTTPError as e:
+            if e.code not in HTTP_RETRY or attempt == HTTP_TRIES - 1:
+                raise
+            # path only, never the url: the url carries the API key
+            print(f"  http {e.code} on {path} - retry {attempt + 1}/{HTTP_TRIES - 1}", flush=True)
+        except (urllib.error.URLError, TimeoutError, OSError) as e:
+            if attempt == HTTP_TRIES - 1:
+                raise
+            print(f"  {type(e).__name__} on {path} - retry {attempt + 1}/{HTTP_TRIES - 1}", flush=True)
+        time.sleep(2 + 3 * attempt)
 
 
 def tg_mirror(text, html=False):

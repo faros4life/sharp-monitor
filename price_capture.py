@@ -53,7 +53,7 @@ def main():
                 seen.add(k)
                 rows.append(r)
     finally:
-        M.logout()
+        ex.imap_close(M)
 
     rows.sort(key=lambda r: r.get("decided_utc") or "")
     L = [f"PRICE-CAPTURE REPORT (queue #7), phase-1 decisions from executor ledgers since Oct 26, built "

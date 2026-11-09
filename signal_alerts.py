@@ -246,7 +246,7 @@ def main():
                 pass
             sent += 1
     finally:
-        M.logout()
+        ex.imap_close(M)
     print(f"Signal alerts: {len(found)} candidates, {sent} new pushed")   # counts only
 
 

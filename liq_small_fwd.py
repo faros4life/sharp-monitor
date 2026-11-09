@@ -62,7 +62,7 @@ def ledger_rows():
                 continue
             out += [r for r in led if r.get("source") == "board" and (r.get("decided_utc") or "") >= FWD_START]
     finally:
-        M.logout()
+        ex.imap_close(M)
     return out
 
 

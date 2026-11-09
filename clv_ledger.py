@@ -540,7 +540,7 @@ def bot_novig_orders(days=45):
                                 "line": r.get("live_px_line"), "price": r.get("live_px_price_after_fee"),
                                 "nv_at_decision": ((r.get("books_at_decision") or {}).get("novig") or {})})
     finally:
-        M.logout()
+        ex.imap_close(M)
     return out
 
 
@@ -669,7 +669,7 @@ def sv_registry(days=150):
                     except Exception:
                         pass
     finally:
-        M.logout()
+        ex.imap_close(M)
     return out
 
 

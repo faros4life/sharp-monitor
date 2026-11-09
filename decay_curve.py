@@ -58,7 +58,7 @@ def main():
                 seen.add(k)   # first decision per play (catch-up reruns of the same play are not new decisions)
                 rows.append(r)
     finally:
-        M.logout()
+        ex.imap_close(M)
 
     feed = json.load(open("alerts.json"))
     feed = feed if isinstance(feed, list) else feed.get("alerts")

@@ -87,6 +87,18 @@ def imap_open():
     return M
 
 
+def imap_close(M):
+    """Logout is a courtesy, never a result. Nov 8: Gmail dropped the socket on imap_close(M) and
+    failed signal-alerts run 42510394524 AFTER every piece of its work was done - a completed run
+    reported as a failure. A send on a half-closed TLS socket raises SSLEOFError/IMAP4.abort, and
+    there is nothing to recover: the mailbox was opened readonly and the server reaps the session
+    anyway. So never let the close fail the caller. Use this everywhere instead of imap_close(M)."""
+    try:
+        M.logout()
+    except Exception:
+        pass
+
+
 def gsearch(M, query):
     typ, data = M.uid("SEARCH", "X-GM-RAW", '"' + query.replace('"', '') + '"')
     return (data[0].split() if typ == "OK" and data and data[0] else [])
@@ -417,7 +429,7 @@ def muse_watchdog(now, muse_plays, rplays, feed):
                 if now - start >= timedelta(minutes=WATCH_MIN):
                     late.append((p, ent, tok, round((now - start).total_seconds() / 60)))
         finally:
-            M.logout()
+            imap_close(M)
     except Exception as ex:
         print(f"watchdog check failed: {str(ex)[:60]}")
         return 0
@@ -490,11 +502,17 @@ def opposite_key(p):
 
 
 def already_handled(M, p):
-    """Handled before under its own key OR under the play's game+side key (so a re-sent play never runs twice)."""
+    """Handled before under its own key OR under the play's game+side key (so a re-sent play never runs twice).
+
+    Nov 8: gsearch_strict, NOT gsearch. This is the duplicate-bet guard, and lenient gsearch returns
+    [] on a failed Gmail search - which this function then reads as "never placed before" and the bot
+    places the bet a second time. A guard that answers "no" when it cannot see is fail-open on money.
+    Strict raises instead, which aborts the run and places nothing. Run 42351892592 (7 Nov) proved the
+    search layer really does drop mid-call: SSLEOFError inside this very function."""
     if p.get("source") in ("rules", "lane2"):   # separate namespace, so Muse's verdict on the same play is still evaluated (Lane 2 too: it never blocks or is blocked by another lane's record)
-        return bool(gsearch(M, pid(p["play_key"])))
+        return bool(gsearch_strict(M, pid(p["play_key"])))
     keys = {p["play_key"], derive_key(p) or p["play_key"]}
-    return any(gsearch(M, pid(k)) for k in keys)
+    return any(gsearch_strict(M, pid(k)) for k in keys)
 
 
 # ---------------------------------------------------------------- Polymarket US (public gateway, no key)
@@ -1315,7 +1333,7 @@ def live_guards():
         try:
             ids = bot_orders(M)
         finally:
-            M.logout()
+            imap_close(M)
         px_live.set_bot_orders(None if ids is None else list(ids))
         book_live.set_exposure(NONPX["today"])
         if ids is None:
@@ -1628,7 +1646,7 @@ def novig_reports():
                 pass
             n += 1
     finally:
-        M.logout()
+        imap_close(M)
     print(f"Novig order reports sent: {n}")
     return n
 
@@ -1684,7 +1702,7 @@ def kalshi_rest_reports():
                 pass
             n += 1
     finally:
-        M.logout()
+        imap_close(M)
     print(f"Kalshi resting-fill reports sent: {n}")
     return n
 
@@ -1923,7 +1941,7 @@ def main():
         LOG.append(f"lane 2 unavailable: {str(ex)[:60]}")
         l2plays = []
     new = [p for p in plays + rplays + bplays + l2plays if not already_handled(M, p)]
-    M.logout()
+    imap_close(M)
     feed = load_feed()
     # wake time: this run's start vs the newest SENT alert (Oct 26; counts/seconds only in the public log)
     sent_ts = [iso_t(a.get("alert_utc")) for a in feed if a.get("sent_to_phone") and iso_t(a.get("alert_utc"))]
@@ -2008,7 +2026,10 @@ def main():
     M2 = imap_open()
 
     def taken(k):   # this run, or any earlier WOULD PLACE / PLACED entry
-        return k in taken_now or bool(gsearch(M2, wp(k)))
+        # Nov 8: strict, for the same reason as already_handled. This is "first side stays": a
+        # failed search returning [] reads as "the side is free" and the bot takes the opposite
+        # side of a position it already holds. Raise rather than guess.
+        return k in taken_now or bool(gsearch_strict(M2, wp(k)))
     for p in new:
         try:
             ent = feed_entry(p, feed) or {}
@@ -2105,7 +2126,7 @@ def main():
         except Exception as ex:
             results.append({"play": p, "pid": pid(p["play_key"]), "verdict": "SKIP", "reason": f"error: {str(ex)[:100]}"})
         results[-1]["decided_utc"] = datetime.now(timezone.utc)
-    M2.logout()
+    imap_close(M2)
     nw = sum(1 for r in results if r["verdict"] == "WOULD PLACE")
     when = now.astimezone(lm.ET).strftime('%a %b %d %I:%M %p ET')
     body = [(f"LIVE ON for phase 1 (${LIVE_UNIT:.0f} to win, best price on {', '.join(BOOK_NAME.get(b, b) for b in LIVE_BOOKS)}); everything else is a dry run ({when})" if px_live.LIVE

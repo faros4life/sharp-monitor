@@ -675,7 +675,7 @@ def read_manual_and_bot():
                             "source": "Peter (Hard Rock note" + (", est. stake)" if est else ")")})
         IMAP_T["manual"] = round(_t.time() - t0)
     finally:
-        M.logout()
+        ex.imap_close(M)
     LOG["manual"] = f"ok {len(man)}"
     LOG["bot_keys"] = f"ok {len(keys)}"
     return man, keys

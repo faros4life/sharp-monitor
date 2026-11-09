@@ -173,7 +173,7 @@ def baseline(now):
             return when, vals
     finally:
         try:
-            M.logout()
+            ex.imap_close(M)
         except Exception:
             pass
     return None, {}
@@ -201,7 +201,7 @@ def hardrock_manual():
                 return parsedate_to_datetime(m.get("Date")), v
     finally:
         try:
-            M.logout()
+            ex.imap_close(M)
         except Exception:
             pass
     return None, {}
@@ -301,7 +301,7 @@ def new_positions():
             if not ex.gsearch(M, tok):
                 fresh.append((tok, line))
     finally:
-        M.logout()
+        ex.imap_close(M)
     fresh = [(t, l() if callable(l) else l) for t, l in fresh]
     cur = [(k, (l() if callable(l) else l) if not seeded else "") for k, l in cur]
     if not seeded:
