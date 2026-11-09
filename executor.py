@@ -2,8 +2,8 @@
 """
 Auto-placement executor (Oct 23 spec; LIVE phase 1 added Oct 26). Real orders happen ONLY when the repo variable
 EXEC_LIVE is "on": phase-1 plays on the coded rules AGREE (Oct 30; Muse is a veto, EXEC_RULES_LIVE=0 restores the gate),
-$200 to win, best after-fee price on ProphetX / Kalshi / Polymarket US / Novig, resting bids Novig then Kalshi; refused on
-STOP, the $275 per-order cap and the $1,500 daily stop. Everything else stays a dry run. It reads Muse's AUTO-PLACE VERDICTS emails, runs every skip check, prices all 4
+$300 to win, best after-fee price on ProphetX / Kalshi / Polymarket US / Novig, resting bids Novig then Kalshi; refused on
+STOP, the $415 per-order cap and the $2,250 daily stop. Everything else stays a dry run. It reads Muse's AUTO-PLACE VERDICTS emails, runs every skip check, prices all 4
 books after fees, sizes the stake, and emails what it WOULD have placed.
 
 Verdict email (from Muse, to the Bets address): subject contains "AUTO-PLACE VERDICTS"; body holds a JSON array of
@@ -39,7 +39,7 @@ import positions
 import px_live
 import book_live
 
-UNIT = float(os.environ.get("EXEC_UNIT", "") or "200")          # + money: risk UNIT; - money: risk to win UNIT
+UNIT = float(os.environ.get("EXEC_UNIT", "") or "300")          # + money: risk UNIT; - money: risk to win UNIT
 SOURCE = (os.environ.get("EXEC_SOURCE", "") or "both").lower()  # muse | rules | both (dry run: both, side by side)
 RULES_LOOKBACK_H = 6                                             # coded rules look at alerts first sent in the last 6 h
 MIN_LEAD_MIN = float(os.environ.get("EXEC_MIN_LEAD_MIN", "") or "60")
@@ -368,7 +368,9 @@ def iso_t(x):
         return None
 
 
-LIVE_UNIT = 200.0   # phase-1 live unit, to win (Oct 28, Peter: $50 -> $200; same basis: to-win on minus, risk on plus)
+LIVE_UNIT = 300.0   # phase-1 live unit, to win (Oct 28, Peter: $50 -> $200; Nov 9, Peter: $200 -> $300. Same basis:
+                    # to-win on minus, risk on plus. The $415 per-order cap and $2,250 daily stop moved with it - at
+                    # $300 to win, -130 risks $390, which the old $275 cap would have refused on every minus-money order.
 MIN_ORDER = 50.0    # Oct 28: smallest order / routing remainder worth placing (was $5)
 
 
@@ -1749,11 +1751,14 @@ def old_rule_block(r):
 
 
 def _cap_units(asked, am):
-    """Spec #4 unit: to-win $200. Plus money counts risk/200; minus money counts to-win/200."""
+    """Spec #4 unit: to-win $300 (Nov 9; was $200). Plus money counts risk/300; minus money counts to-win/300.
+
+    This divisor IS the unit. Left at 200 while LIVE_UNIT moved to 300, a full-size play would score 1.5 units and
+    trip the 1.0-unit stacking cap on every order."""
     asked, am = float(asked or 0), float(am or 0)
     if asked <= 0 or am == 0:
         return 0.0
-    return asked / 200.0 if am > 0 else asked * 100.0 / abs(am) / 200.0
+    return asked / 300.0 if am > 0 else asked * 100.0 / abs(am) / 300.0
 
 
 def stack_cap_report(r):

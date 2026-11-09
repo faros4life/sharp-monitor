@@ -123,7 +123,7 @@ PHASE1 = ("ProphetX-priced at alert time (Hard Rock-priced never); coded-rules A
           "NBA + NCAAF + NFL totals unders, NCAAF totals overs (Peter Nov 4 3:58 PM) - college needs AP Top 25 (decide() gate 5); "
           "spreads/MLs/other overs paper; no grade gate (Nov 3); not Matchbook-only confirmations (Nov 4); "
           "not sent 12-24h before start; not late; non-ProphetX -119..-110 after fee = deadband; -130 after-fee cap; "
-          "$200 unit (to win on minus, risk on plus), $275 per-order cap, $1,500 daily stop; "
+          "$300 unit (to win on minus, risk on plus), $415 per-order cap, $2,250 daily stop; "
           "best after-fee price on ProphetX, Kalshi, Polymarket US, Novig (EXEC_LIVE_BOOKS)")
 
 

@@ -34,5 +34,5 @@ jobs:
           KALSHI_PRIVATE_KEY: ${{ secrets.KALSHI_PRIVATE_KEY }}
           PMUS_KEY_ID: ${{ secrets.PMUS_KEY_ID }}                   # positions only (GET)
           PMUS_SECRET_KEY: ${{ secrets.PMUS_SECRET_KEY }}
-          EXEC_UNIT: "200"
+          EXEC_UNIT: "300"
         run: python -u positions_check.py

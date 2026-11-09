@@ -105,9 +105,10 @@ def rules_unchanged():
     import executor as ex
     import book_live as bl
     import px_live
-    guard("unit is $200", ex.UNIT == 200.0, f"UNIT={ex.UNIT}")
-    guard("per-order cap is $275", px_live.MAX_ORDER == 275.0, f"MAX_ORDER={px_live.MAX_ORDER}")
-    guard("daily stop is $1,500", px_live.DAILY_STOP == 1500.0, f"DAILY_STOP={px_live.DAILY_STOP}")
+    guard("unit is $300", ex.UNIT == 300.0, f"UNIT={ex.UNIT}")
+    guard("LIVE unit is $300", ex.LIVE_UNIT == 300.0, f"LIVE_UNIT={ex.LIVE_UNIT}")
+    guard("per-order cap is $415", px_live.MAX_ORDER == 415.0, f"MAX_ORDER={px_live.MAX_ORDER}")
+    guard("daily stop is $2,250", px_live.DAILY_STOP == 2250.0, f"DAILY_STOP={px_live.DAILY_STOP}")
     guard("spreads/totals never worse than -130", ex.CAP_LINE == -130, f"CAP_LINE={ex.CAP_LINE}")
     guard("minimum lead time 60 min", ex.MIN_LEAD_MIN == 60.0, f"MIN_LEAD_MIN={ex.MIN_LEAD_MIN}")
     guard("the four auto venues are unchanged", tuple(ex.BOOKS) == AUTO, f"{tuple(ex.BOOKS)}")

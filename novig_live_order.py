@@ -6,7 +6,7 @@ phase-1 Novig order here through workflow_dispatch. This script:
   place  : re-checks the inputs, places ONE order with the trading key, reads it back, records the result
   refresh: (every 5 min) re-reads the bot's still-open Novig orders and records any fill/close changes
 Results go to snapshot/novig_orders.json in THIS private repo; the executor reads that file and texts Peter.
-Hard limits here too (fail closed): price 2c-98c, cost <= $275, tif FOK or GTT, GTT ttl <= 24 h.
+Hard limits here too (fail closed): price 2c-98c, cost <= $415, tif FOK or GTT, GTT ttl <= 24 h.
 Log: counts and statuses only; never balances.
 """
 import base64
@@ -22,7 +22,8 @@ from datetime import datetime, timezone
 
 HOST = "https://api.novig.com"
 PATH = "snapshot/novig_orders.json"
-MAX_COST = 275.0   # Oct 28: $200 to-win unit (risk up to $260 at -130)
+MAX_COST = 415.0   # Nov 9: $300 to-win unit (risk up to $390 at -130). Novig takes 40 of 41 fills, so this
+                   # constant - not px_live's - is what actually binds the live book.
 KEY_ID = (os.environ.get("NOVIG_TRADE_KEY_ID") or "").strip()
 PEM = (os.environ.get("NOVIG_TRADE_KEY_PEM") or "").strip()
 UNRESERVED = set("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~")

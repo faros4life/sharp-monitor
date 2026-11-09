@@ -49,7 +49,7 @@ jobs:
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}                     # phone alert when a bet is held (positions unreadable)
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}                 # Nov 3: Pinnacle price check at each live order (read only)
           ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}               # Nov 4: Lane 2 reads Pinnacle's LIMIT at decision time (dry run only)
-          EXEC_UNIT: "200"
+          EXEC_UNIT: "300"
           # LIVE phase 1 (Oct 26): real ProphetX orders only when the repo VARIABLE EXEC_LIVE is "on"
           EXEC_LIVE: ${{ vars.EXEC_LIVE }}
           # Nov 3 (Peter "ok build"): Lane 3 board NBA totals places money only when this is "on" (and EXEC_LIVE is on)
