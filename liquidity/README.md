@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 9, 8:06 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 87.
+Updated Mon Nov 9, 8:10 PM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 88.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,10 +10,11 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 9 8:10PM | NBA | San Antonio vs Phoenix: Spread | spread: NOT San Antonio wins by over 9.5 points | kalshi | $35k | -108 | ✅ novig |  | +0.0c |  | pending |
 | Nov 9 8:00PM | NHL | Flyers vs. Canucks | total: Under (6.5) | polymarket | $42k | -113 | ✅ kalshi,novig |  | +0.0c |  | pending |
 | Nov 9 7:40PM | NBA | Miami vs Utah | moneyline: Miami | kalshi | $34k | -376 |  |  | +0.0c | yes | pending |
-| Nov 9 7:30PM | NBA | Denver Nuggets @ Houston Rockets | spread: HOU -4.5 (-4.5) | novig | $39k | -108 | ✅ kalshi,polymarket | ❌ | +0.0c |  | pending |
-| Nov 9 7:26PM | NFL | Buffalo Bills at Minnesota Vikings | moneyline: Buffalo Bills | prophetx | $93k | -176 | ✅ kalshi |  | +0.0c |  | pending |
+| Nov 9 7:30PM | NBA | Denver Nuggets @ Houston Rockets | spread: HOU -4.5 (-4.5) | novig | $39k | -108 | ✅ kalshi,polymarket | ❌ | -0.5c |  | pending |
+| Nov 9 7:26PM | NFL | Buffalo Bills at Minnesota Vikings | moneyline: Buffalo Bills | prophetx | $93k | -176 | ✅ kalshi |  | -0.3c |  | pending |
 | Nov 9 7:26PM | NBA | Denver vs Houston: Spread | spread: Houston wins by over 4.5 points | kalshi | $60k | -108 | ✅ polymarket | ❌ | +0.0c |  | pending |
 | Nov 9 7:10PM | NBA | Pacers vs. Mavericks | total: Over (226.5) | polymarket | $31k | -104 |  | ✅ | +2.0c |  | pending |
 | Nov 9 7:00PM | NBA | Pacers vs. Mavericks | moneyline: Pacers | polymarket | $276k | +163 |  | ❌ | +0.0c |  | pending |
@@ -22,7 +23,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 9 6:35PM | NBA | Spurs vs. Suns | moneyline: Suns | polymarket | $317k | +317 |  |  | +0.0c |  | pending |
 | Nov 9 6:35PM | NBA | Nuggets vs. Rockets | moneyline: Rockets | polymarket | $423k | -163 | ✅ kalshi,novig,prophetx | ❌ | +3.0c |  | pending |
 | Nov 9 6:35PM | NBA | Grizzlies vs. Raptors | spread: Grizzlies (-1.5) | polymarket | $312k | -104 | ✅ novig | ✅ | +0.0c |  | pending |
-| Nov 9 6:35PM | NBA | Nuggets vs. Rockets | spread: Rockets (-4.5) | polymarket | $338k | -104 | ✅ novig | ❌ | +2.0c |  | pending |
+| Nov 9 6:35PM | NBA | Nuggets vs. Rockets | spread: Rockets (-4.5) | polymarket | $338k | -104 | ✅ novig | ❌ | +1.0c |  | pending |
 | Nov 9 6:35PM | NBA | Memphis Grizzlies @ Toronto Raptors | moneyline: TOR (0) | novig | $37k | +113 | ✅ kalshi,prophetx | ❌ | +0.5c |  | pending |
 | Nov 9 6:26PM | NBA | Cavaliers vs. Hornets | spread: Hornets (+8.5) | polymarket | $347k | -100 | ✅ kalshi,novig,prophetx |  | +3.0c |  | pending |
 | Nov 9 6:26PM | NBA | Cavaliers vs. Hornets | moneyline: Hornets | polymarket | $300k | +285 |  |  | +0.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 8 2:10AM | NFL | Denver vs Carolina: Total Points | total: Over 44.5 points | kalshi | $100k | -100 | ✅ novig,prophetx |  | +1.0c | yes | W |
 | Nov 8 2:10AM | NFL | Los Angeles R vs Washington: Spread | spread: Los Angeles R wins by over 4.5 points | kalshi | $90k | -100 | ✅ novig |  | -1.0c | yes | W |
 | Nov 8 2:10AM | NFL | Cleveland vs New Orleans: Spread | spread: New Orleans wins by over 3.5 points | kalshi | $82k | +104 |  |  | +7.0c | yes | L |
-| Nov 8 2:10AM | NFL | Las Vegas vs San Francisco: Spread | spread: NOT San Francisco wins by over 9.5 points | kalshi | $97k | -104 | ✅ novig,prophetx |  | +0.0c |  | L |
