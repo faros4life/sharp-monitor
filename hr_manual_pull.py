@@ -33,9 +33,9 @@ def num(x):
 
 
 def is_hr(b):
-    """Book is Hard Rock, OR the row came from a Hard Rock note (the book can be relabelled after dup-matching)."""
-    s = str(b.get("book") or "").lower().replace(" ", "")
-    return "hardrock" in s or "hard rock note" in str(b.get("source") or "").lower()
+    """Book is Hard Rock. NOT the source: the tracker labels EVERY 'Bets manual' note 'Peter (Hard Rock note)'
+    whatever its book (Nov 10: two ProphetX notes carried that label and were wrongly pulled into the HR total)."""
+    return "hardrock" in str(b.get("book") or "").lower().replace(" ", "")
 
 
 def price_of(b):
@@ -123,16 +123,16 @@ def build(R):
     L += [f"  field names: {keys}", ""]
 
     hr = [b for b in R if is_hr(b)]
-    mism = [b for b in hr if "hardrock" not in str(b.get("book") or "").lower().replace(" ", "")]
+    mism = [b for b in R if not is_hr(b) and "hard rock note" in str(b.get("source") or "").lower()]
     noprice = [b for b in hr if price_of(b)[1]]
     est = [b for b in hr if "est. stake" in str(b.get("source"))]
     def when(b):
         return str(b.get("game_start") or b.get("placed") or b.get("settled") or b.get("first_seen") or "")[:10]
     days = sorted(d for d in (when(b) for b in hr) if d)
     open_ = [b for b in hr if b.get("result") not in ("W", "L", "P")]
-    L += ["=" * 74, f"HARD ROCK ROWS: {len(hr)}  (selected on book; {len(open_)} ungraded/open, "
+    L += ["=" * 74, f"HARD ROCK ROWS: {len(hr)}  (selected on BOOK; {len(open_)} ungraded/open, "
           f"{len(est)} with an ESTIMATED stake)", "=" * 74,
-          f"  rows selected by SOURCE but with a different book label: {len(mism)} "
+          f"  'Hard Rock note'-labelled rows whose BOOK is not Hard Rock (EXCLUDED): {len(mism)} "
           f"{[str(b.get('book')) for b in mism]}",
           f"  rows whose price was missing on the row and read from the bet text: {len(noprice)}",
           f"  date coverage of these rows: {days[0] if days else '-'} to {days[-1] if days else '-'}",
@@ -152,6 +152,29 @@ def build(R):
     real = [b for b in hr if "est. stake" not in str(b.get("source"))]
     if est and real:
         L += tot(real, "EXCLUDING estimated stakes")
+    def f(b, *ks):
+        return "  ".join(f"{k}={str(b.get(k))[:70]}" for k in ks if b.get(k) not in (None, ""))
+    L += ["", "=" * 74, "DIAGNOSTIC: per-row grading evidence for the Hard Rock rows", "=" * 74]
+    for b in sorted(hr, key=when):
+        L.append(f"  {when(b)} {str(b.get('bet'))[:30]}")
+        L.append("      " + f(b, "id", "game", "score", "g_state", "status", "placed", "settled", "site", "dup_of", "to_pay"))
+    L += ["", "=" * 74, "DIAGNOSTIC: 'Hard Rock note'-labelled rows that are NOT Hard Rock, and the state rows for the same games", "=" * 74]
+    key = lambda b: str(b.get("game") or "").lower()
+    for m in mism:
+        L.append(f"  NOT HR: {m.get('book')} | {m.get('bet')} | " + f(m, "id", "stake", "price", "to_pay", "result", "placed", "open", "dup_of", "game_start"))
+        toks = [w for w in re.findall(r"[a-z]{4,}", key(m)) if w not in ("hawks", "wizards") or True][:6]
+        for x in R:
+            if x is m:
+                continue
+            kx = (str(x.get("game") or "") + " " + str(x.get("bet") or "")).lower()
+            if any(t in kx for t in toks) and when(x) >= when(m)[:8] + "00":
+                L.append("      same-game row: " + f(x, "book", "source", "bet", "stake", "price", "result", "profit", "placed", "strike", "dup_of", "open", "id"))
+    L += ["", "=" * 74, "DIAGNOSTIC: any state row on the three Hard Rock bets that have notes but no row above", "=" * 74]
+    for kw in ("celtics", "buccaneers", "tampa bay"):
+        for x in R:
+            kx = (str(x.get("game") or "") + " " + str(x.get("bet") or "")).lower()
+            if kw in kx and when(x) >= "2026-11-07":
+                L.append(f"  [{kw}] " + f(x, "book", "source", "bet", "stake", "price", "result", "profit", "placed", "id", "dup_of"))
     L += ["", "Stake and price are the tracker's (the note's price, the note's stake or Peter's sizing).",
           "Read-only: no file written, no bet placed, no rule changed. Dollars are in this email only."]
     graded = [b for b in hr if b.get("result") in ("W", "L", "P")]
