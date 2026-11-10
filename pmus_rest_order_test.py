@@ -2,8 +2,9 @@
 """
 Polymarket US RESTING MAKER BID test (Nov 9, Peter: "build it for test").
 
-THE QUESTION. Peter wants Polymarket US ahead of Kalshi for resting bids. Our fee model says its maker nets about
-8.6c better than its taker (-114.6 vs -123.2 on a -116 screen), which would justify the ranking. But
+THE QUESTION. Peter wants Polymarket US ahead of Kalshi for resting bids. Polymarket's published schedule makes
+the case stronger than that: its MAKER is a -0.0125 REBATE, so posting here beats BOTH other venues at every price
+(at a -110 screen: -108.6 here, -110.0 Novig, -111.9 Kalshi). But
 book_live.pmus_place hardcoded FILL_OR_KILL, so the venue could never rest: putting it in REST_BOOKS would have
 sent a FOK order that crosses at the TAKER price or dies - about 5c WORSE than Kalshi's maker - while eating a
 resting slot. That is why the request was refused twice before. The venue was never the problem; our code was.
@@ -15,8 +16,9 @@ WHAT THIS PROVES, three separate things:
      until an order is accepted.
   2. Does it actually REST rather than fill? The bid is priced DELIBERATELY 15c below the best offer so it cannot
      cross. If it fills anyway, postOnly is not doing what we think and the premise is wrong.
-  3. What is the REAL maker fee? The 8.6c figure is ours, not Polymarket's. Reading the order back is the only way
-     to see what the venue says about fees on a maker order.
+  3. Does the venue's own payload agree with the published schedule? The fee itself is NOT in question:
+     clv_std.FEE_NOTES carries Polymarket's schedule - TAKER 0.06 x C x p x (1-p), MAKER -0.0125, a REBATE - with a
+     worked example that checks exactly. Reading the order back is a cross-check, not the discovery.
 
 A BAD PRICE IS THE SAFE PRICE HERE. Every other order test in this repo wants a fill; this one wants the opposite.
 A resting order that does NOT fill is the success case, and 15c away from the market is very unlikely to trade.
@@ -141,7 +143,7 @@ def main():
         say(f"   Q2 ANSWER: state is {state} - RESTING, not filled. postOnly works.")
     else:
         say("   Q2 ANSWER: could not read the state. Check the app before concluding anything.")
-    say("   Q3: any fee fields above are the venue's own word on maker fees - compare with our -114.6 model.")
+    say("   Q3: cross-check any fee fields above against the published -0.0125 maker rebate.")
 
     say("")
     say(f"4) NO CANCEL ENDPOINT IS KNOWN. This order's only guaranteed exit is its GOOD_TILL_DATE")

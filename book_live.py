@@ -207,9 +207,12 @@ def pmus_place(slug, long_side, limit_cost, qty, label="", expire_ts=None):
     post_only is the point. It refuses to cross rather than paying the taker fee, which is what makes a resting bid
     actually earn the maker price instead of quietly becoming a taker. Kalshi and Novig have no equivalent.
 
-    STILL UNKNOWN: the real maker fee. Our model says this venue's maker nets ~8.6c better than its taker, and that
-    is the whole case for ranking it above Kalshi - but that number is ours, not Polymarket's. The test order is
-    what settles it."""
+    THE FEE IS NOT IN DOUBT - only whether we can REACH it. clv_std.FEE_NOTES carries Polymarket's own published
+    schedule: TAKER 0.06 x C x p x (1-p), MAKER -0.0125, a REBATE - the venue pays us to post, and their worked
+    example checks exactly. That makes this venue's maker the best of the three at every price (at a -110 screen:
+    -108.6 here, -110.0 Novig, -111.9 Kalshi), while the fill-or-kill we have always sent gets its TAKER price of
+    -116.8, the worst of the three. An 8.2c swing on the venue with the best posting economics.
+    Fees are charged only on execution, so an order that rests and expires unfilled costs nothing."""
     risk = round(qty * limit_cost, 2)
     ok, why = preflight("polymarket_us", risk)
     if not ok:
