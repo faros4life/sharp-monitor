@@ -106,14 +106,28 @@ def main():
     except Exception as e:
         say(f"  market map unavailable ({type(e).__name__}) - continuing; close_for may still read")
 
-    toks = tb.toks
+    def fixture_for(a, lg):
+        """clv_ledger.find_fixture, NOT a matcher of my own.
 
-    def fixture_for(game):
-        g = toks(game or "")
-        for fid, f in (st.get("fixtures") or {}).items():
-            if len(g & (toks(f.get("p1") or "") | toks(f.get("p2") or ""))) >= 2:
-                return fid, f
-        return None, None
+        My first version matched >=2 shared tokens against p1/p2 across all 1,862 fixtures, with no
+        league filter, and returned the first hit. It produced a verified CLV of -7.30% that diverged
+        from the feed by 12.91 points on average and 31.59 at worst, and close_for's own reason text
+        said "wrong league" - the fixtures were from other sports. find_fixture's docstring describes
+        exactly that failure: a "New Orleans" bet matching a "New York" fixture on the shared word
+        "new" is "a wrong fixture, and so a confidently wrong CLV, which is worse than no CLV".
+        It filters on league, demands a distinctive token on BOTH participants with a two-token floor
+        on at least one, and returns None unless the winner is unique. An unmatched alert is reported
+        missing, which is the correct outcome.
+        """
+        try:
+            fid = cl.find_fixture(st, {"bet": a.get("bet") or "", "league": lg,
+                                       "game": a.get("game"), "game_start": a.get("start_utc"),
+                                       "teams": None})
+        except Exception:
+            return None, None
+        if not fid:
+            return None, None
+        return fid, (st.get("fixtures") or {}).get(fid) or {}
 
     out = collections.defaultdict(lambda: {"ver": [], "mod": [], "miss": collections.Counter()})
     reads = 0
@@ -124,9 +138,9 @@ def main():
         if not bet.strip():
             b["miss"]["alert carries no bet text"] += 1
             continue
-        fid, f = fixture_for(a.get("game"))
+        fid, f = fixture_for(a, lg)
         if not fid:
-            b["miss"]["no fixture matched the game text"] += 1
+            b["miss"]["find_fixture: no unique same-league fixture (left unscored)"] += 1
             continue
         p = hc._path(fid, "pinnacle")
         if not os.path.exists(p):
