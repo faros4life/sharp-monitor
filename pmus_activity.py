@@ -123,7 +123,41 @@ def row(a):
             "fee": num(find(a, "fee", "fees", "commission")), "pnl": None, "cost": None}
 
 
+def order_lookup(oid):
+    """Read ONE order back by id. Added Nov 9 after a truncated 160-char log line showed an
+    "executions" entry on a fill-or-kill order and I told Peter he held a position. The portfolio
+    said otherwise (0 activities). An order's own record is the thing that settles it, so this
+    reads it rather than inferring from a string. Status only in the log - no amounts."""
+    for path in (f"/v1/order/{oid}", f"/v1/orders/{oid}"):
+        try:
+            d = signed_get(path, {})
+        except Exception as e:
+            print(f"  {path}: {str(e)[:100]}", flush=True)
+            continue
+        if not isinstance(d, dict) or not d:
+            print(f"  {path}: empty", flush=True)
+            continue
+        o = d.get("order") if isinstance(d.get("order"), dict) else d
+        print(f"  {path}: status={o.get('status') or o.get('state')} "
+              f"filled={o.get('filledQuantity') or o.get('filled_quantity')} "
+              f"qty={o.get('quantity')} tif={o.get('tif')}", flush=True)
+        ex = o.get("executions") or d.get("executions") or []
+        print(f"  executions: {len(ex) if isinstance(ex, list) else ex}", flush=True)
+        if isinstance(ex, list) and ex:
+            for e in ex[:3]:
+                q = (e.get("quantity") if isinstance(e, dict) else None)
+                print(f"    execution qty={q} status={(e or {}).get('status')}", flush=True)
+        return
+    print("  order not found on either path", flush=True)
+
+
 def main():
+    oid = (os.environ.get("PMUS_ORDER_ID") or "").strip()
+    if oid:
+        print(f"ORDER LOOKUP {oid} (read-only, status only)", flush=True)
+        order_lookup(oid)
+        return
+
     if not os.environ.get("PMUS_KEY_ID") or not os.environ.get("PMUS_SECRET_KEY"):
         sys.exit("Missing PMUS_KEY_ID / PMUS_SECRET_KEY.")
     since = datetime.now(timezone.utc) - timedelta(days=DAYS)

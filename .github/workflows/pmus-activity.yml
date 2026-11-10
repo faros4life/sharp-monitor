@@ -5,6 +5,10 @@ on:
     - cron: "41 12 * * 1"   # Mondays ~8:41 AM ET, right after the Novig weekly
   workflow_dispatch:
     inputs:
+      order_id:
+        description: "Optional: look up ONE order by id (status only, no email)"
+        required: false
+        type: string
       days:
         description: "How many days back"
         default: "30"
@@ -30,4 +34,5 @@ jobs:
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
           EMAIL_TO: ${{ secrets.EMAIL_TO }}
           DAYS: ${{ github.event.inputs.days || '30' }}
+          PMUS_ORDER_ID: ${{ github.event.inputs.order_id }}
         run: python -u pmus_activity.py
