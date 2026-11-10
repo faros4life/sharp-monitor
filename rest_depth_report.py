@@ -102,6 +102,14 @@ def audit(rows):
     say("REJECTED vs ACCEPTED - Lane 1 qualification audit (READ-ONLY, 0 paid credits)")
     say("=" * 100)
 
+    # FROZEN WINDOW (Peter): Nov 4-10 2026 ET, explicit, so the count stops drifting with a
+    # trailing 7-day read. Earlier runs reported 167, then 172, then 175 for exactly this reason.
+    W0, W1 = "2026-11-04T05:00:00Z", "2026-11-11T04:59:59Z"   # ET days, as the system uses
+    before = len(rows)
+    rows = [r for r in rows if r.get("decided_utc") and W0 <= str(r["decided_utc"]) <= W1]
+    say(f"  window {W0} .. {W1} (Nov 4-10 ET)")
+    say(f"  rows in window {len(rows)} of {before} read")
+
     acc = [r for r in rows if r.get("live")]
     rej = [r for r in rows if not r.get("live")]
     say(f"  unique opportunities {len(rows)}   accepted {len(acc)}   rejected {len(rej)}")
@@ -169,25 +177,50 @@ def audit(rows):
             return None, None
         return pct, (pct is not None and pct > 0)
 
-    # OUTCOMES come from the FEED, not the ledger. executor.py:1297 reads e.get("result") off the
-    # alerts feed; the ledger row never carries it, which is why every units cell was n/a. Join by
-    # the same key the rows are de-duplicated on.
+    # OUTCOMES come from the FEED, and the KEYS DO NOT MATCH, which is why the previous attempt
+    # loaded 2,303 graded results and joined zero of them. The feed's key is
+    # 'kalshi|{"market_ticker": ...}' - a book/market identifier - while a ledger key is
+    # derive_key()'s sport|game|market|side. Different namespaces; they can never meet.
+    #
+    # derive_key() cannot bridge them either: it needs p["bet"] and p["sport"], and a feed alert
+    # carries neither. But BOTH sides carry league, market, side and game, so the join is built
+    # from those directly - no parse_bet, no key lookup. Game names are reduced to a token set so
+    # "Boston Celtics @ Milwaukee Bucks" matches "Celtics @ Bucks".
+    def jkey(x):
+        g = str(x.get("game") or "").lower()
+        for ch in "@/-,.":
+            g = g.replace(ch, " ")
+        toks = frozenset(t for t in g.split() if len(t) > 2)
+        return (str(x.get("league") or "").upper(), str(x.get("market") or "").lower(),
+                str(x.get("side") or x.get("side_label") or "").upper(), toks)
+
     graded = {}
     try:
-        import clv_ledger as _cl2  # noqa: F401
         for a in (json.load(open("liquidity/alerts.json")).get("alerts") or []):
-            k = a.get("key") or a.get("play_key")
-            if k and a.get("result") in ("W", "L", "P"):
-                graded[k] = a["result"]
-        say(f"  graded outcomes joined from the feed: {len(graded)}")
+            if a.get("result") in ("W", "L", "P"):
+                graded[jkey(a)] = a["result"]
+        say(f"  graded outcomes in the feed: {len(graded)}")
     except Exception as e:
         say(f"  feed outcomes UNAVAILABLE ({type(e).__name__}) - the units column cannot compute")
+
+    # VALIDATE THE JOIN BEFORE TRUSTING ANY AGGREGATE. A match rate near zero means the join is
+    # broken, not that the games are ungraded - which is exactly the failure this report has
+    # already produced twice.
+    hit = [r for r in rows if jkey(r) in graded]
+    say(f"  JOIN CHECK: {len(hit)} of {len(rows)} ledger rows matched a graded feed outcome "
+        f"({100.0 * len(hit) / max(len(rows), 1):.0f}%)")
+    for r in hit[:3]:
+        say(f"     e.g. {str(r.get('game'))[:40]:<40} {r.get('market')} {r.get('side')} "
+            f"-> {graded[jkey(r)]}")
+    if not hit:
+        say("     JOIN FAILED. Units and beat-close cannot be computed; reported as unavailable")
+        say("     rather than as zero.")
 
     def units_at_exec(r):
         """Hypothetical net units ONLY where a price was demonstrably executable AND the play is
         graded. Flat 1u risked at that executable price."""
         am = r.get("fill_price_after_fee")
-        res = r.get("result") or graded.get(r.get("key") or r.get("play_key"))
+        res = r.get("result") or graded.get(jkey(r))
         if am is None or res not in ("W", "L", "P"):
             return None
         if res == "P":

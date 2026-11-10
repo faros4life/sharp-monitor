@@ -46,3 +46,17 @@ jobs:
           ODDSPAPI_FREE_KEY: ${{ secrets.ODDSPAPI_FREE_KEY }}
           TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
         run: python -u board_clv_check.py
+      # Nov 10: the rejected-vs-accepted Lane 1 audit runs HERE, not in rest-depth-report, because
+      # this job already restores the hcache and holds TRACKER_PASSPHRASE - without both, the
+      # Pinnacle CLV column cannot compute at all, which is what blocked two earlier attempts.
+      # Read-only, cached data only, 0 paid credits. This workflow is dispatch-only, so adding a
+      # step creates no recurring report and no extra email (the audit prints; it does not send).
+      - name: Rejected-vs-accepted Lane 1 audit (read-only, 0 credits)
+        env:
+          ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
+          ODDSPAPI_FREE_KEY: ${{ secrets.ODDSPAPI_FREE_KEY }}
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+        run: python -u rest_depth_report.py
