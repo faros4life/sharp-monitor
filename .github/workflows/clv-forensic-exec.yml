@@ -1,0 +1,15 @@
+name: clv-forensic-exec
+
+# INERT STUB (10 Nov 2026, approved by Peter). Exists on main only so GitHub registers this workflow name
+# for workflow_dispatch. It does nothing. The real audit lives on branch audit/clv-forensic-2026-11-10 and is
+# run by dispatching with that ref. No secrets, no cache, no network, read-only token.
+on:
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  stub:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "inert stub - dispatch with ref audit/clv-forensic-2026-11-10 to run the audit"
