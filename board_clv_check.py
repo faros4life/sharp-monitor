@@ -154,8 +154,20 @@ def main():
         # ever ran - which was today, because the close_verified bug above rejected 100% of closes
         # and this line was unreachable. Two bugs stacked, the second hidden by the first: fixing
         # one exposed the other immediately, and nothing downstream of here has ever executed.
-        rec["pin"] = cs.net_clv(c["p"], dec, v, maker=True, league="NBA")
-        rec["pin_taker"] = cs.net_clv(c["p"], dec, v, maker=False, league="NBA")
+        # NotTradeable is a RULE, not a failure. net_dec raises it for venues whose quotes are
+        # visible but that have no fee model - Polymarket Global - and clv_std is explicit that
+        # such a venue must not enter AUTO or MANUAL opportunity. The board has calls on one, so
+        # they are EXCLUDED with their own reason rather than crashing the report or, worse, being
+        # silently priced with some other venue's fee model. Third issue in this chain, and the
+        # only one that is not a bug: it was simply never reached before today.
+        try:
+            rec["pin"] = cs.net_clv(c["p"], dec, v, maker=True, league="NBA")
+            rec["pin_taker"] = cs.net_clv(c["p"], dec, v, maker=False, league="NBA")
+        except cs.NotTradeable as ex:
+            exc[f"book not tradeable ({v}): no fee model"] += 1
+            rec["not_tradeable"] = str(ex)[:80]
+            out.append(rec)
+            continue
         out.append(rec)
 
     ver = [r for r in out if r["pin"] is not None]
