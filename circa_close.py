@@ -72,6 +72,14 @@ def compare(st):
     #
     # Free either way: /historical-odds is a FREE path (credit_gate.FREE_PATHS), and both files are
     # confirmed present on disk before either is read, so this spends nothing on either key.
+    # The market map comes from the cached MKFILE, as board_clv_check does it. Passing {} let
+    # close_for fall back to inventing outcome ids ({"1": mid, "2": mid+1}), which need not match
+    # what is actually stored - the likely cause of the other 5 failures.
+    try:
+        mkmap = cl.load_markets(st, datetime.now(timezone.utc))
+    except Exception as ex0:
+        say(f"  market map unavailable ({type(ex0).__name__}) - comparison cannot run")
+        return
     diffs, pairs, skipped = [], 0, {}
     both = [(cl.tp(f.get("start")), fid, f) for fid, f in st["fixtures"].items()
             if os.path.exists(hc._path(fid, "pinnacle")) and os.path.exists(hc._path(fid, "circasports"))]
@@ -94,11 +102,21 @@ def compare(st):
         # Moneyline only, and only where BOTH books priced the same side. A spread or total would
         # need the lines to match too, and a mismatched line is a different bet - comparing those
         # would manufacture a difference that is really just two different markets.
+        # The bet must be real TEXT, not None. close_for's first guard is parsed(b), which returns
+        # "bet text not parsed" on None - that was 20 of the 25 failures on the first run, my bug
+        # and not a data problem. A bare participant name is a moneyline bet on that side, and
+        # which_team() matches it against the fixture's own p1/p2, so pricing p1 prices the SAME
+        # side at both books, which is the whole requirement for a comparison.
         for mt in ("moneyline",):
-            b = {"bet": None, "league": lg, "market": mt}
+            b = {"bet": f.get("p1"), "league": lg, "market": mt,
+                 "game": f.get("game"), "game_start": f.get("start")}
+            if not b["bet"]:
+                skipped["fixture has no participant name"] = skipped.get(
+                    "fixture has no participant name", 0) + 1
+                continue
             try:
-                pc, _ = cl.close_for(b, f, pmk, {}, s_, lg)
-                cc, _ = cl.close_for(b, f, cmk, {}, s_, lg)
+                pc, _ = cl.close_for(b, f, pmk, mkmap, s_, lg)
+                cc, _ = cl.close_for(b, f, cmk, mkmap, s_, lg)
             except Exception:
                 continue
             if not pc or not cc:
