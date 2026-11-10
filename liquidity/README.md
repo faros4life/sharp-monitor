@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 9, 9:30 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 85.
+Updated Mon Nov 9, 9:36 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 84.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 1209-978 (-59.41u flat) | rule met: 754-621
+**Record:** 1210-978 (-58.41u flat) | rule met: 755-621
 
-**Fade (paper, betting against the print):** 712-936 (-142.19u flat, after fees)
+**Fade (paper, betting against the print):** 712-937 (-143.19u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -28,7 +28,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 9 6:35PM | NBA | Grizzlies vs. Raptors | spread: Grizzlies (-1.5) | polymarket | $312k | -104 | ✅ novig | ✅ | +0.0c |  | pending |
 | Nov 9 6:35PM | NBA | Nuggets vs. Rockets | spread: Rockets (-4.5) | polymarket | $338k | -104 | ✅ novig | ❌ | +1.0c |  | pending |
 | Nov 9 6:35PM | NBA | Memphis Grizzlies @ Toronto Raptors | moneyline: TOR (0) | novig | $37k | +113 | ✅ kalshi,prophetx | ❌ | +0.5c |  | pending |
-| Nov 9 6:26PM | NBA | Cavaliers vs. Hornets | spread: Hornets (+8.5) | polymarket | $347k | -100 | ✅ kalshi,novig,prophetx |  | +3.0c |  | pending |
+| Nov 9 6:26PM | NBA | Cavaliers vs. Hornets | spread: Hornets (+8.5) | polymarket | $347k | -100 | ✅ kalshi,novig,prophetx |  | +3.0c |  | W |
 | Nov 9 6:26PM | NBA | Cavaliers vs. Hornets | moneyline: Hornets | polymarket | $300k | +285 |  |  | +0.0c |  | pending |
 | Nov 9 6:26PM | NBA | San Antonio Spurs @ Phoenix Suns | moneyline: SAS (0) | novig | $38k | -326 | ✅ kalshi,prophetx |  | +0.5c | yes | pending |
 | Nov 9 6:20PM | NBA | Cleveland Cavaliers @ Charlotte Hornets | total: Over 215.5 (215.5) | novig | $28k | -106 | ✅ kalshi,polymarket,prophetx | ❌ | +0.5c |  | pending |
@@ -37,7 +37,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 9 6:16PM | NBA | Pelicans vs. Warriors | spread: Pelicans (+11.5) | polymarket | $35k | -104 | ✅ kalshi,novig,prophetx |  | +1.0c |  | pending |
 | Nov 9 6:16PM | NBA | Washington Wizards @ Detroit Pistons | moneyline: DET (0) | novig | $101k | -365 | ✅ kalshi,polymarket,prophetx |  | +0.5c |  | pending |
 | Nov 9 6:16PM | NBA | Memphis vs Toronto: Total Points | total: Over 224.5 points | kalshi | $54k | -108 | ✅ polymarket | ✅ | +2.0c | yes | pending |
-| Nov 9 6:11PM | NBA | New Orleans vs Golden State: Spread | spread: NOT Golden State wins by over 11.5 points | kalshi | $30k | -104 | ✅ novig,prophetx |  | +0.0c | yes | pending |
+| Nov 9 6:11PM | NBA | New Orleans vs Golden State: Spread | spread: NOT Golden State wins by over 11.5 points | kalshi | $30k | -104 | ✅ novig,prophetx |  | +1.0c | yes | pending |
 | Nov 9 5:50PM | NBA | Lakers vs. Hawks | spread: Lakers (+2.5) | polymarket | $638k | -100 |  |  | +0.0c |  | pending |
 | Nov 9 5:50PM | NBA | Pacers vs. Mavericks | spread: Pacers (+4.5) | polymarket | $26k | -108 | ✅ kalshi | ❌ | -2.0c |  | pending |
 | Nov 9 5:50PM | NBA | Indiana vs Dallas: Spread | spread: NOT Dallas wins by over 4.5 points | kalshi | $25k | -108 | ✅ polymarket | ❌ | -3.0c | yes | pending |
