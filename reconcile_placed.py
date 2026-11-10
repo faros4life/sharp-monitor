@@ -144,6 +144,33 @@ def main():
         say("  Every placed play is visible to the live_order test, so the 3-versus-8 gap is NOT")
         say("  the container bug. Look below at B and C before blaming the ledger.")
 
+    # WHEN those placements happened. My per-day supply figures came from the same broken reader,
+    # so "no automated plays since Nov 9" rests on a count that was wrong by more than half. This
+    # dates every placement instead of inferring the drought from an aggregate.
+    if Ap:
+        from zoneinfo import ZoneInfo as _Z
+        et = _Z("America/New_York")
+        per = collections.Counter()
+        undated = 0
+        for r in Ap:
+            v = str(r.get("decided_utc") or r.get("sent_utc") or "")
+            try:
+                d = datetime.fromisoformat(v.replace("Z", "+00:00"))
+                if d.tzinfo is None:
+                    d = d.replace(tzinfo=timezone.utc)
+                per[d.astimezone(et).strftime("%Y-%m-%d")] += 1
+            except Exception:
+                undated += 1
+        say("")
+        say("  WHEN the placements happened (ET day of the decision):")
+        for d in sorted(per):
+            say(f"      {d}  {per[d]:3}  {'#' * min(per[d], 40)}")
+        if undated:
+            say(f"      {undated} placement(s) carry no readable date")
+        say("")
+        say("  A day missing from that list had NO placement. A day present had one, whatever an")
+        say("  aggregate built on the old reader said.")
+
     multi = [r for r in seen.values() if sum(1 for lo in legs(r) if placed(lo)) > 1]
     if multi:
         say("")
