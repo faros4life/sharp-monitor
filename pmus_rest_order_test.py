@@ -147,71 +147,83 @@ def read_back(oid):
 
 
 def probe(slug, price, expire_ts):
-    """Isolate WHICH resting element the venue rejects, one variable at a time.
+    """Isolate the resting order, using the DOCUMENTED field names this time.
 
-    Run 42743942821 got HTTP 400 code 3 with empty details - the venue named no field. Four things
-    changed at once from a known-good taker order: the tif value, the postOnly flag, the expiresAt
-    field name, and a 0.030 price. Testing them together answers none of them.
+    The first probe sent a body with four things wrong at once, which is why HTTP 400 with empty
+    details was the only possible answer - and why I wrongly called it a venue limitation:
+        tif TIME_IN_FORCE_GOOD_TILL_DATE   does not exist; the enum is GOOD_TILL_TIME
+        expiresAt / expires_at             the field is good_till_time / goodTillTime
+        an epoch integer                   it is a date-time STRING, "2026-11-10T02:55:00Z"
+        postOnly                           the maker-only flag is participate_dont_initiate
+    Source: Polymarket's own order-entry reference. I had earlier reported the docs as
+    access-gated after hitting a login wall on apidocs.polymarketexchange.com, without trying
+    docs.polymarket.us - the site matching the host we actually call. That single miss is what
+    made "Polymarket cannot rest" look settled when nothing of the sort had been tested.
 
-    Order matters and is deliberate:
-      A  FOK, nothing else      - the BASELINE. A known-good shape at THIS price. If A is rejected
-                                  the problem is the price or the market, not the resting fields,
-                                  and every later variant would be noise. FOK at a non-crossing
-                                  price simply kills; nothing rests.
-      B  GTD + expiresAt        - adds the resting tif and the camelCase field name only.
-      C  GTD + expires_at       - same, snake_case. The client library spells it this way while
-                                  our body uses camelCase elsewhere, so the spelling is a guess.
-      D  GTD + expiresAt + postOnly  - the full resting order.
+    Our endpoint is camelCase (marketSlug, manualOrderIndicator) while the reference is
+    snake_case, so both spellings are probed rather than assumed.
 
-    Stops at the first resting variant the venue ACCEPTS, so at most one live order can rest.
-    Bare GTC is deliberately NOT probed: with no cancel endpoint known, an order with no expiry
-    could sit indefinitely. Every variant here carries the 3-minute expiry."""
+    A is the baseline, unchanged and known good. B-E add ONE documented correction at a time.
+    Stops at the first acceptance, so at most one order can rest. GOOD_TILL_CANCEL is still NOT
+    probed: no cancel path is documented yet, and an order with no expiry could sit indefinitely.
+    Every resting variant carries a short good-till-time instead."""
+    iso = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime(int(expire_ts)))
     base = {"marketSlug": slug, "intent": "ORDER_INTENT_BUY_LONG", "type": "ORDER_TYPE_LIMIT",
             "price": {"value": f"{price:.3f}", "currency": "USD"}, "quantity": 1,
             "manualOrderIndicator": "MANUAL_ORDER_INDICATOR_AUTOMATIC"}
     variants = [
-        ("A  FOK baseline (is the PRICE ok?)", dict(base, tif="TIME_IN_FORCE_FILL_OR_KILL",
-                                                    synchronousExecution=True, maxBlockTime="5")),
-        ("B  GTD + expiresAt", dict(base, tif="TIME_IN_FORCE_GOOD_TILL_DATE", expiresAt=int(expire_ts))),
-        ("C  GTD + expires_at", dict(base, tif="TIME_IN_FORCE_GOOD_TILL_DATE", expires_at=int(expire_ts))),
-        ("D  GTD + expiresAt + postOnly", dict(base, tif="TIME_IN_FORCE_GOOD_TILL_DATE",
-                                               expiresAt=int(expire_ts), postOnly=True)),
+        ("A  FOK baseline (known good)", dict(base, tif="TIME_IN_FORCE_FILL_OR_KILL",
+                                              synchronousExecution=True, maxBlockTime="5")),
+        ("B  GTT + goodTillTime (camel)", dict(base, tif="TIME_IN_FORCE_GOOD_TILL_TIME",
+                                               goodTillTime=iso)),
+        ("C  GTT + good_till_time (snake)", dict(base, time_in_force="TIME_IN_FORCE_GOOD_TILL_TIME",
+                                                 good_till_time=iso)),
+        ("D  B + participateDontInitiate", dict(base, tif="TIME_IN_FORCE_GOOD_TILL_TIME",
+                                                goodTillTime=iso, participateDontInitiate=True)),
+        ("E  C + participate_dont_initiate", dict(base, time_in_force="TIME_IN_FORCE_GOOD_TILL_TIME",
+                                                  good_till_time=iso, participate_dont_initiate=True)),
     ]
+    say(f"  good-till-time: {iso}\n")
     results, resting = [], None
     for name, body in variants:
         st, resp = call("POST", "/v1/orders", body)
         ok = isinstance(st, int) and 200 <= st < 300
-        txt = json.dumps(resp)[:160] if isinstance(resp, (dict, list)) else str(resp)[:160]
-        say(f"  {name:36} HTTP {st}  {'ACCEPTED' if ok else 'rejected'}  {txt}")
+        # 600 chars, not 160: a truncated order response is how a non-fill got read as a fill.
+        txt = json.dumps(resp)[:600] if isinstance(resp, (dict, list)) else str(resp)[:600]
+        say(f"  {name:34} HTTP {st}  {'ACCEPTED' if ok else 'rejected'}")
+        say(f"      {txt}")
         results.append((name, st, ok))
-        if ok and name.startswith(("B", "C", "D")):
+        if ok and not name.startswith("A"):
             resting = (name, resp if isinstance(resp, dict) else {})
-            say("     -> a resting variant was ACCEPTED; stopping here so only one order can rest.")
+            say("      -> a resting variant was ACCEPTED; stopping so only one order can rest.")
             break
         time.sleep(1)
 
     say("")
-    a_ok = next((ok for n, _, ok in results if n.startswith("A")), False)
-    if not a_ok:
-        say("VERDICT: the FOK baseline was rejected at this price too.")
-        say("  The problem is the PRICE or the MARKET, not the resting fields. Retry on a market")
-        say("  whose offer leaves the bid in the 0.30-0.70 band before concluding anything about")
-        say("  GOOD_TILL_DATE or postOnly.")
-    elif resting is None:
-        say("VERDICT: FOK is accepted at this price, every GOOD_TILL_DATE variant is not.")
-        say("  The price is fine; this API version does not take GOOD_TILL_DATE as we send it.")
-        say("  Polymarket US cannot rest for us today. Do NOT add it to REST_BOOKS.")
-    else:
-        name, resp = resting
-        oid = resp.get("orderId") or resp.get("id") or (resp.get("order") or {}).get("id")
-        say(f"VERDICT: {name.strip()} is ACCEPTED. order id: {oid}")
-        say("  The venue CAN rest for us. Next: confirm it did not fill (postOnly held) and read")
-        say("  the fee fields, then the Novig -> Polymarket US -> Kalshi reorder is unblocked.")
-        if oid:
-            time.sleep(5)
-            back = read_back(oid)
-            say(f"  read back -> {json.dumps(back)[:500] if back else 'unavailable'}")
-        say(f"  This order rests until its {EXPIRE_S}s expiry. CHECK THE APP - no cancel endpoint is known.")
+    if resting is None:
+        say("VERDICT: every documented resting variant was rejected at a price FOK accepts.")
+        say("  The body names are now the documented ones, so this is no longer a naming guess.")
+        say("  Next: the support reply, or a cancel path that would make GOOD_TILL_CANCEL safe.")
+        return results
+    name, resp = resting
+    oid = resp.get("orderId") or resp.get("id") or (resp.get("order") or {}).get("id")
+    say(f"VERDICT: {name.strip()} ACCEPTED. order id: {oid}")
+    say("  Polymarket US CAN rest. Confirm below that it did NOT fill, then the")
+    say("  Novig -> Polymarket US -> Kalshi reorder is unblocked.")
+    if oid:
+        time.sleep(5)
+        back = read_back(oid)
+        say(f"  read back -> {json.dumps(back)[:700] if back else 'unavailable'}")
+        st_ = str((back or {}).get("status") or (back or {}).get("state") or "").upper()
+        ex_ = (back or {}).get("executions") or []
+        say(f"  status {st_ or '?'} | executions {len(ex_) if isinstance(ex_, list) else ex_}")
+        if "EXPIRED" in st_ or "CANCEL" in st_:
+            say("  It did not rest to its expiry as hoped - read the status above.")
+        elif ex_:
+            say("  IT FILLED - participate_dont_initiate did not hold it on the book.")
+        else:
+            say("  RESTING, unfilled. That is the result we wanted.")
+    say(f"  CHECK THE APP: no cancel path is documented; it expires in {EXPIRE_S}s.")
     return results
 
 
