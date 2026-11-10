@@ -1,6 +1,198 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-10T03:00:18Z",
+   "base_depth": 696429,
+   "best_price": 0.85,
+   "best_price_american": -567,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "polymarket",
+    "prophetx"
+   ],
+   "close_price": 0.85,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 4,
+   "date": "2026-11-10",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 6065,
+     "new_this_side": 83003,
+     "other_side": 72703,
+     "other_side_all_levels": 100862,
+     "ratio": 5.7,
+     "this_side": 414147,
+     "this_side_all_levels": 780244
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "WMU (0)",
+     "price": 0.85,
+     "this_side": 36545
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 38947.31,
+    "volume_24h_fp": 38782.3,
+    "volume_fp": 47014.36
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 130.22,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 130.22
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 38817.090000000004,
+    "volume_24h_fp": 38782.3,
+    "volume_fp": 46884.14
+   },
+   "fade_price": 0.16,
+   "first_seen_utc": "2026-11-10T02:56:20Z",
+   "game": "Western Michigan vs Akron",
+   "game_surge_books": [],
+   "game_x": 1.08,
+   "key": "kalshi|KXNCAAFGAME-26NOV10WMUAKR|ml|0",
+   "lead_min": 1260,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 83003,
+   "new_x": 0.29,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 38947.31,
+      "volume_24h_fp": 38782.3,
+      "volume_fp": 47014.36
+     },
+     "game_normal": 724244,
+     "game_x": 1.08,
+     "normal": 284181,
+     "now": 780244,
+     "type": "ML",
+     "x": 2.75
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 1326867.0,
+      "volume": 1477124.0
+     },
+     "game_normal": 32494,
+     "game_x": 1.16,
+     "normal": 9509,
+     "now": 37719,
+     "type": "ML",
+     "x": 3.97
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.85,
+   "price_american": -567,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.85,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -625
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -625
+    },
+    "betopenly": {
+     "point": null,
+     "price": -644
+    },
+    "betrivers": {
+     "point": null,
+     "price": -670
+    },
+    "betus": {
+     "point": null,
+     "price": -625
+    },
+    "bovada": {
+     "point": null,
+     "price": -650
+    },
+    "draftkings": {
+     "point": null,
+     "price": -600
+    },
+    "fanatics": {
+     "point": null,
+     "price": -650
+    },
+    "fanduel": {
+     "point": null,
+     "price": -720
+    },
+    "kalshi": {
+     "point": null,
+     "price": -567
+    },
+    "lowvig": {
+     "point": null,
+     "price": -625
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -699
+    },
+    "novig": {
+     "point": null,
+     "price": -567
+    },
+    "polymarket": {
+     "point": null,
+     "price": -567
+    },
+    "prophetx": {
+     "point": null,
+     "price": -570
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -625
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26NOV10WMUAKR-WMU"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Western Michigan",
+   "side_label": "Western Michigan",
+   "size_x": 2.75,
+   "start_source": "odds",
+   "start_utc": "2026-11-11T00:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig"
+   ],
+   "teams": [
+    "Western Michigan",
+    "Akron"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-10T02:56:20Z",
    "base_depth": 216510,
    "best_price": 0.52,
@@ -1483,9 +1675,9 @@
     "volume_fp": 62.37
    },
    "ex_stats_close": {
-    "open_interest_fp": 16823.1,
+    "open_interest_fp": 17038.47,
     "volume_24h_fp": 17457.32,
-    "volume_fp": 18237.59
+    "volume_fp": 18463.2
    },
    "ex_stats_first": {
     "open_interest_fp": 10945.8,
@@ -5422,6 +5614,7 @@
     "volume": 4099266.0
    },
    "fade_price": 0.495,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-09T23:16:03Z",
    "game": "Cleveland Cavaliers @ Charlotte Hornets",
    "game_surge_books": [
@@ -5429,6 +5622,7 @@
     "prophetx"
    ],
    "game_x": 2.36,
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1bdf5-d2b1-79c2-8728-997033ab78f9\", \"outcome_id\": \"01a1bdf5-d2b1-79c2-8728-998cb2da839e\"}",
    "lead_min": 40,
    "league": "NBA",
@@ -5570,7 +5764,7 @@
     "market_id": "01a1bdf5-d2b1-79c2-8728-997033ab78f9",
     "outcome_id": "01a1bdf5-d2b1-79c2-8728-998cb2da839e"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "kalshi",
@@ -5579,6 +5773,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-10T03:00:18Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "Under 215.5 (-112)"
@@ -5598,7 +5793,7 @@
     "Charlotte Hornets"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.96
   },
   {
    "alerted_utc": "2026-11-09T23:20:14Z",
@@ -5906,6 +6101,7 @@
    "ex_stats_change": null,
    "ex_stats_first": null,
    "fade_price": 0.2222,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-09T23:11:17Z",
    "game": "Washington Wizards at Detroit Pistons",
    "game_surge_books": [
@@ -5914,6 +6110,7 @@
     "prophetx"
    ],
    "game_x": 3.0,
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 0, \"px_event\": 1704711360, \"px_market\": 219, \"side\": \"1\"}",
    "lead_min": 44,
    "league": "NBA",
@@ -6067,7 +6264,7 @@
     "px_market": 219,
     "side": "1"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "kalshi",
@@ -6076,6 +6273,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-10T03:00:18Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Detroit Pistons",
@@ -6095,7 +6293,7 @@
     "Detroit Pistons"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.27
   },
   {
    "alerted_utc": "2026-11-09T23:16:03Z",
@@ -6439,6 +6637,7 @@
     "volume": 8218350.0
    },
    "fade_price": 0.22,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-09T23:11:17Z",
    "game": "Washington Wizards @ Detroit Pistons",
    "game_surge_books": [
@@ -6447,6 +6646,7 @@
     "prophetx"
    ],
    "game_x": 2.62,
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1be02-afc9-7933-8a43-0aef29d6e828\", \"outcome_id\": \"01a1be02-afc9-7933-8a43-0afb9cbd4d92\"}",
    "lead_min": 44,
    "league": "NBA",
@@ -6598,7 +6798,7 @@
     "market_id": "01a1be02-afc9-7933-8a43-0aef29d6e828",
     "outcome_id": "01a1be02-afc9-7933-8a43-0afb9cbd4d92"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "kalshi",
@@ -6607,6 +6807,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-10T03:00:18Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Detroit Pistons",
@@ -6626,7 +6827,7 @@
     "Detroit Pistons"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.27
   },
   {
    "alerted_utc": "2026-11-09T23:16:03Z",
@@ -6686,6 +6887,7 @@
     "volume_fp": 4414.65
    },
    "fade_price": 0.49,
+   "fade_units": 0.97,
    "first_seen_utc": "2026-11-09T23:11:17Z",
    "game": "Memphis vs Toronto: Total Points",
    "game_surge_books": [
@@ -6815,13 +7017,14 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBATOTAL-26NOV09MEMTOR-225"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "polymarket"
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-10T03:00:18Z",
    "sharp_agree": [
     "Over 229.5 (-115)"
    ],
@@ -6843,7 +7046,7 @@
     "Toronto"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-09T23:11:17Z",
@@ -14153,6 +14356,7 @@
     "volume_fp": 9088.59
    },
    "fade_price": 0.49,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-09T13:10:25Z",
    "game": "Memphis vs Toronto: Total Points",
    "game_surge_books": [
@@ -14261,11 +14465,12 @@
     "kalshi_side": "no",
     "market_ticker": "KXNBATOTAL-26NOV09MEMTOR-231"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settled_utc": "2026-11-10T03:00:18Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "Over 229.5 (-115)"
@@ -14284,7 +14489,7 @@
     "Toronto"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.9
   },
   {
    "alerted_utc": "2026-11-09T13:16:15Z",
@@ -15487,9 +15692,9 @@
     "volume_fp": 19.34
    },
    "ex_stats_close": {
-    "open_interest_fp": 7137.97,
+    "open_interest_fp": 7274.610000000001,
     "volume_24h_fp": 5354.17,
-    "volume_fp": 7903.15
+    "volume_fp": 8039.79
    },
    "ex_stats_first": {
     "open_interest_fp": 2970.47,
@@ -15959,6 +16164,7 @@
     "volume_fp": 3126.08
    },
    "fade_price": 0.51,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-09T11:40:15Z",
    "game": "Memphis vs Toronto: Spread",
    "game_surge_books": [
@@ -16100,13 +16306,14 @@
     "kalshi_side": "no",
     "market_ticker": "KXNBASPREAD-26NOV09MEMTOR-TOR4"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "polymarket"
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-10T03:00:18Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Memphis",
@@ -16124,7 +16331,7 @@
     "Toronto"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.96
   },
   {
    "alerted_utc": "2026-11-09T11:40:15Z",
@@ -16506,10 +16713,12 @@
     "volumeNum": 8414.261343999999
    },
    "fade_price": 0.19,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-09T11:20:12Z",
    "game": "Wizards vs. Pistons",
    "game_surge_books": [],
    "game_x": 1.84,
+   "graded_by": "espn",
    "key": "polymarket|{\"outcome_index\": 1, \"pm_market_id\": \"6428645\"}",
    "lead_min": 756,
    "league": "NBA",
@@ -16654,7 +16863,7 @@
     "outcome_index": 1,
     "pm_market_id": "6428645"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "kalshi",
@@ -16662,6 +16871,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-10T03:00:18Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Pistons",
@@ -16681,7 +16891,7 @@
     "Pistons"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.22
   },
   {
    "alerted_utc": "2026-11-09T11:20:12Z",
@@ -17196,9 +17406,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 12260.07,
+    "open_interest_fp": 12305.73,
     "volume_24h_fp": 8414.64,
-    "volume_fp": 15658.740000000002
+    "volume_fp": 15704.400000000001
    },
    "ex_stats_first": {
     "open_interest_fp": 6541.31,
@@ -17818,9 +18028,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 12260.07,
+    "open_interest_fp": 12305.73,
     "volume_24h_fp": 8414.64,
-    "volume_fp": 15658.740000000002
+    "volume_fp": 15704.400000000001
    },
    "ex_stats_first": {
     "open_interest_fp": 6153.42,
