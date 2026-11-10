@@ -15,7 +15,24 @@ permissions:
 jobs:
   run:
     runs-on: ubuntu-latest
-    timeout-minutes: 20   # Oct 29: held-retry loop; Nov 1: up to 3 catch-up passes
+    # 20 -> 30 (Nov 10, Peter's go). The run at 12:45:12Z was KILLED MID-PASS: the log ends at
+    # "newer alerts.json landed during the run: pass 2" with "Terminate orphan process: pid
+    # (python)". Passes take 6-15 minutes each and up to 3 can fire, so 20 minutes does not fit
+    # the work this workflow is allowed to do.
+    #
+    # WHY THIS MATTERS MORE THAN A LOST RUN. Gmail is the bot-order registry, and it is now
+    # MEASURED that it cannot be replaced: a ProphetX trade carries fee, id, matched_at, order_id,
+    # price, profit, quantity, status, strike, strike_id, winning_status - and NOT external_id, so
+    # nothing at the venue identifies a bot order. A kill between placing an order and sending the
+    # ledger email therefore strands that order outside the only registry that can attribute it,
+    # and today_result silently excludes it - the daily stop undercounts, on the one guard that
+    # caps a losing day. The 12:45 run had placed nothing, which was luck, not design.
+    #
+    # Raising it is the safe direction HERE, and was the wrong move for liquidity-extra. This
+    # workflow has concurrency cancel-in-progress: false, so a longer run only drops more QUEUED
+    # runs - harmless, because the schedule overlaps and a dropped run is followed by another
+    # within minutes. Never kill a half-finished order pass so a newer one can start.
+    timeout-minutes: 30   # Oct 29: held-retry loop; Nov 1: up to 3 catch-up passes
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
