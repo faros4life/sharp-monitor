@@ -88,6 +88,8 @@ def call(method, path, body=None):
 
 MAX_COST = 1.50
 BELOW = 0.15        # how far under the best offer to sit, so it cannot cross
+MIN_PRICE = 0.30    # never bid below this - see PRICE BAND below
+MAX_PRICE = 0.70
 EXPIRE_S = 180      # the ONLY guaranteed exit - there is no known cancel endpoint
 
 
@@ -144,6 +146,75 @@ def read_back(oid):
     return None
 
 
+def probe(slug, price, expire_ts):
+    """Isolate WHICH resting element the venue rejects, one variable at a time.
+
+    Run 42743942821 got HTTP 400 code 3 with empty details - the venue named no field. Four things
+    changed at once from a known-good taker order: the tif value, the postOnly flag, the expiresAt
+    field name, and a 0.030 price. Testing them together answers none of them.
+
+    Order matters and is deliberate:
+      A  FOK, nothing else      - the BASELINE. A known-good shape at THIS price. If A is rejected
+                                  the problem is the price or the market, not the resting fields,
+                                  and every later variant would be noise. FOK at a non-crossing
+                                  price simply kills; nothing rests.
+      B  GTD + expiresAt        - adds the resting tif and the camelCase field name only.
+      C  GTD + expires_at       - same, snake_case. The client library spells it this way while
+                                  our body uses camelCase elsewhere, so the spelling is a guess.
+      D  GTD + expiresAt + postOnly  - the full resting order.
+
+    Stops at the first resting variant the venue ACCEPTS, so at most one live order can rest.
+    Bare GTC is deliberately NOT probed: with no cancel endpoint known, an order with no expiry
+    could sit indefinitely. Every variant here carries the 3-minute expiry."""
+    base = {"marketSlug": slug, "intent": "ORDER_INTENT_BUY_LONG", "type": "ORDER_TYPE_LIMIT",
+            "price": {"value": f"{price:.3f}", "currency": "USD"}, "quantity": 1,
+            "manualOrderIndicator": "MANUAL_ORDER_INDICATOR_AUTOMATIC"}
+    variants = [
+        ("A  FOK baseline (is the PRICE ok?)", dict(base, tif="TIME_IN_FORCE_FILL_OR_KILL",
+                                                    synchronousExecution=True, maxBlockTime="5")),
+        ("B  GTD + expiresAt", dict(base, tif="TIME_IN_FORCE_GOOD_TILL_DATE", expiresAt=int(expire_ts))),
+        ("C  GTD + expires_at", dict(base, tif="TIME_IN_FORCE_GOOD_TILL_DATE", expires_at=int(expire_ts))),
+        ("D  GTD + expiresAt + postOnly", dict(base, tif="TIME_IN_FORCE_GOOD_TILL_DATE",
+                                               expiresAt=int(expire_ts), postOnly=True)),
+    ]
+    results, resting = [], None
+    for name, body in variants:
+        st, resp = call("POST", "/v1/orders", body)
+        ok = isinstance(st, int) and 200 <= st < 300
+        txt = json.dumps(resp)[:160] if isinstance(resp, (dict, list)) else str(resp)[:160]
+        say(f"  {name:36} HTTP {st}  {'ACCEPTED' if ok else 'rejected'}  {txt}")
+        results.append((name, st, ok))
+        if ok and name.startswith(("B", "C", "D")):
+            resting = (name, resp if isinstance(resp, dict) else {})
+            say("     -> a resting variant was ACCEPTED; stopping here so only one order can rest.")
+            break
+        time.sleep(1)
+
+    say("")
+    a_ok = next((ok for n, _, ok in results if n.startswith("A")), False)
+    if not a_ok:
+        say("VERDICT: the FOK baseline was rejected at this price too.")
+        say("  The problem is the PRICE or the MARKET, not the resting fields. Retry on a market")
+        say("  whose offer leaves the bid in the 0.30-0.70 band before concluding anything about")
+        say("  GOOD_TILL_DATE or postOnly.")
+    elif resting is None:
+        say("VERDICT: FOK is accepted at this price, every GOOD_TILL_DATE variant is not.")
+        say("  The price is fine; this API version does not take GOOD_TILL_DATE as we send it.")
+        say("  Polymarket US cannot rest for us today. Do NOT add it to REST_BOOKS.")
+    else:
+        name, resp = resting
+        oid = resp.get("orderId") or resp.get("id") or (resp.get("order") or {}).get("id")
+        say(f"VERDICT: {name.strip()} is ACCEPTED. order id: {oid}")
+        say("  The venue CAN rest for us. Next: confirm it did not fill (postOnly held) and read")
+        say("  the fee fields, then the Novig -> Polymarket US -> Kalshi reorder is unblocked.")
+        if oid:
+            time.sleep(5)
+            back = read_back(oid)
+            say(f"  read back -> {json.dumps(back)[:500] if back else 'unavailable'}")
+        say(f"  This order rests until its {EXPIRE_S}s expiry. CHECK THE APP - no cancel endpoint is known.")
+    return results
+
+
 def main():
     slug = (os.environ.get("PMUS_TEST_SLUG") or "").strip()
     if not slug:
@@ -157,12 +228,27 @@ def main():
         sys.exit(f"No best offer found for {slug} - refusing to guess a price.")
 
     price = round(best - BELOW, 3)
+    # PRICE BAND. The first real attempt was rejected HTTP 400 code 3 (generic invalid argument)
+    # on a 0.030 bid - 15c below an 0.180 offer. Three cents is far outside anything this venue
+    # has been proven to accept: pmus_order_test and pmus_short_order_test both restrict
+    # themselves to markets priced 35-65c. So an extreme price is at least as likely a cause as
+    # the tif/postOnly fields, and testing both at once answers neither. Refuse outside the band
+    # and pick a market whose offer leaves the bid inside it.
+    if not (MIN_PRICE <= price <= MAX_PRICE):
+        sys.exit(f"REFUSING: bid {price:.3f} (offer {best:.3f} - {BELOW}) is outside the proven "
+                 f"{MIN_PRICE}-{MAX_PRICE} band. Pick a market with an offer between "
+                 f"{MIN_PRICE + BELOW:.2f} and {MAX_PRICE + BELOW:.2f}.")
     if not (0.01 < price < 0.99):
         sys.exit(f"REFUSING: resting price {price} outside 1-99c (best offer {best:.3f}).")
     if price > MAX_COST:
         sys.exit(f"REFUSING: one contract at {price} exceeds the ${MAX_COST} cap.")
 
     expire_ts = int(time.time()) + EXPIRE_S
+    if (os.environ.get("PMUS_PROBE") or "").strip() == "1":
+        say("POLYMARKET US RESTING PROBE - isolating which field the venue rejects")
+        say(f"  slug {slug} | offer {best:.3f} | bid {price:.3f} | one contract per variant\n")
+        probe(slug, price, expire_ts)
+        return
     say("POLYMARKET US RESTING MAKER BID TEST")
     say(f"  slug        {slug}")
     say(f"  best offer  {best:.3f}")

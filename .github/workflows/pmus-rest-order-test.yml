@@ -17,8 +17,12 @@ on:
   workflow_dispatch:
     inputs:
       slug:
-        description: "Polymarket US market slug (a live full-game moneyline is fine)"
+        description: "Polymarket US market slug - pick one whose offer is 0.45-0.85 so the bid lands in the proven 0.30-0.70 band"
         required: true
+        type: string
+      probe:
+        description: "1 = isolate which resting field the venue rejects (sends FOK baseline, then GTD variants, stops at the first accepted)"
+        required: false
         type: string
 
 permissions:
@@ -40,6 +44,7 @@ jobs:
           PMUS_KEY_ID: ${{ secrets.PMUS_KEY_ID }}
           PMUS_SECRET_KEY: ${{ secrets.PMUS_SECRET_KEY }}
           PMUS_TEST_SLUG: ${{ inputs.slug }}
+          PMUS_PROBE: ${{ inputs.probe }}
         run: |
           set -o pipefail
           python -u pmus_rest_order_test.py 2>&1 | tee out.txt
