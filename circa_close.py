@@ -137,9 +137,21 @@ def compare(st):
         say(f"\n  comparable pairs: {pairs}")
         say(f"  Circa minus Pinnacle, in points of win probability:")
         say(f"     mean {mean:+.2f}   median {med:+.2f}   Circa higher on {harder}/{len(diffs)}")
+        # The spread, so the verdict can be BOUNDED instead of asserted. Saying "no material
+        # difference" from a mean alone is an overcall: at n=20 a null result means a difference
+        # was not DETECTED, never that none exists. Printing the standard error says how big a
+        # difference this sample could still be hiding, which is the number that actually decides
+        # whether "beat either" is a loophole.
+        import math as _m
+        sd = (sum((d - mean) ** 2 for d in diffs) / (len(diffs) - 1)) ** 0.5 if len(diffs) > 1 else 0.0
+        se = sd / _m.sqrt(len(diffs)) if diffs else 0.0
+        say(f"     spread: sd {sd:.2f}, standard error {se:.2f}  ->  95% range roughly "
+            f"{mean - 1.96 * se:+.2f} to {mean + 1.96 * se:+.2f}")
         if abs(mean) < 0.5:
-            say("  VERDICT: no material difference at this sample. Neither is systematically the")
-            say("  harder close, so 'beat either' is not a materially softer bar than 'beat both'.")
+            say(f"  VERDICT: no difference DETECTED at n={len(diffs)}. That is not the same as no")
+            say(f"  difference: this sample could still hide anything inside the range above. What it")
+            say(f"  does rule out is a LARGE systematic gap - so 'beat either' is not an obvious")
+            say(f"  loophole, but it is not yet proven safe either. More pairs are the only fix.")
         elif mean > 0:
             say("  VERDICT: Circa reads HIGHER on these sides - the HARDER close. Beating Circa is")
             say("  then the stronger of the two claims, and beating Pinnacle alone is the easier.")
