@@ -1,0 +1,46 @@
+name: pmus-rest-order-test
+
+# MANUAL ONLY. Places ONE real 1-contract Polymarket US order to prove the venue can hold a
+# RESTING, MAKER-ONLY bid (tif GOOD_TILL_DATE + postOnly) rather than the fill-or-kill our code
+# has always sent. Peter runs this; Claude does not.
+#
+# Success here is an order that does NOT fill: the bid is priced 15c below the best offer, so if
+# postOnly works it sits on the book and expires on its own after 3 minutes.
+#
+# THERE IS NO KNOWN CANCEL ENDPOINT for this venue in the repo, and guessing one in real-money
+# order code is not acceptable. The GOOD_TILL_DATE expiry is the only guaranteed exit, so CHECK
+# THE POLYMARKET US APP afterwards and confirm the order is gone.
+#
+# Nothing routes to the resting path until this passes: pmus_place still defaults to fill-or-kill
+# and Polymarket US is NOT in REST_BOOKS.
+on:
+  workflow_dispatch:
+    inputs:
+      slug:
+        description: "Polymarket US market slug (a live full-game moneyline is fine)"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Polymarket US resting maker bid test (ONE real contract)
+        env:
+          CONFIRM_REAL_ORDER: "ONE_DOLLAR"
+          PMUS_KEY_ID: ${{ secrets.PMUS_KEY_ID }}
+          PMUS_SECRET_KEY: ${{ secrets.PMUS_SECRET_KEY }}
+          PMUS_TEST_SLUG: ${{ inputs.slug }}
+        run: |
+          set -o pipefail
+          python -u pmus_rest_order_test.py 2>&1 | tee out.txt
+          { echo '```'; cat out.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"

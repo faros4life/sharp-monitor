@@ -185,9 +185,31 @@ def kalshi_place(ticker, buy, limit_cost, count, label="", expire_ts=None):
 
 
 # ---------------------------------------------------------------- Polymarket US
-def pmus_place(slug, long_side, limit_cost, qty, label=""):
+def pmus_place(slug, long_side, limit_cost, qty, label="", expire_ts=None):
     """Buy `qty` contracts on market `slug`: long_side True = BUY_LONG at `limit_cost`; False = BUY_SHORT, whose order
-    price is the LONG-side price (1 - short cost; proven by the Oct 27 short test). Fill-or-kill, synchronous."""
+    price is the LONG-side price (1 - short cost; proven by the Oct 27 short test). Fill-or-kill, synchronous.
+
+    expire_ts (Nov 9, Peter: "build it for test") = a RESTING, MAKER-ONLY bid until that unix second, mirroring
+    kalshi_place's expire_ts. None keeps the fill-or-kill behaviour this venue has always had, so every existing
+    caller is unchanged.
+
+    WHY THIS DID NOT EXIST. Peter asked twice before to rank Polymarket US ahead of Kalshi for resting bids. It was
+    refused both times because this function hardcoded FILL_OR_KILL: putting the venue in REST_BOOKS would have sent
+    a FOK order that crosses at the TAKER price or dies - about 5c worse than Kalshi's maker - while consuming a
+    resting slot. The venue was never the problem; our integration was.
+
+    UNVERIFIED AGAINST THE OFFICIAL API. Polymarket's own docs are access-gated. The tif values and post_only below
+    come from a third-party client library, and our integration already differs from it (we send
+    synchronousExecution and maxBlockTime, which it does not define). So this path is OFF unless a caller passes
+    expire_ts, and it must be proven with ONE minimum-size order before anything routes to it. If the venue rejects
+    the enum, the order is refused and nothing is placed - it cannot silently fall back to a taker fill.
+
+    post_only is the point. It refuses to cross rather than paying the taker fee, which is what makes a resting bid
+    actually earn the maker price instead of quietly becoming a taker. Kalshi and Novig have no equivalent.
+
+    STILL UNKNOWN: the real maker fee. Our model says this venue's maker nets ~8.6c better than its taker, and that
+    is the whole case for ranking it above Kalshi - but that number is ours, not Polymarket's. The test order is
+    what settles it."""
     risk = round(qty * limit_cost, 2)
     ok, why = preflight("polymarket_us", risk)
     if not ok:
@@ -199,6 +221,14 @@ def pmus_place(slug, long_side, limit_cost, qty, label=""):
              "type": "ORDER_TYPE_LIMIT", "price": {"value": f"{price:.3f}", "currency": "USD"}, "quantity": int(qty),
              "tif": "TIME_IN_FORCE_FILL_OR_KILL", "manualOrderIndicator": "MANUAL_ORDER_INDICATOR_AUTOMATIC",
              "synchronousExecution": True, "maxBlockTime": "5"}
+    if expire_ts:
+        # Same floor as Kalshi: a bid resting into the last 5 minutes before the start is refused.
+        if int(expire_ts) <= int(time.time()) + 300:
+            return {"status": "refused", "reason": "too close to the start to rest a bid"}
+        order.update(tif="TIME_IN_FORCE_GOOD_TILL_DATE", expiresAt=int(expire_ts), postOnly=True)
+        # synchronousExecution waits for a fill; a resting bid has nothing to wait for.
+        order.pop("synchronousExecution", None)
+        order.pop("maxBlockTime", None)
     try:
         st, resp = _pm_call("POST", "/v1/orders", order)
     except urllib.error.HTTPError as ex:
