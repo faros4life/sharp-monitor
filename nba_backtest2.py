@@ -213,7 +213,7 @@ def report(rows, why, n_games):
                 S = [r["sig"][key] for r in rows if key in r["sig"] and abs(r["sig"][key]["gap"]) >= 3.0]
                 F = [r["sig"][key] for r in rows if key in r["sig"] and abs(r["sig"][key]["gap"]) >= 3.0 and r["day"] <= SPLIT]
                 C = [r["sig"][key] for r in rows if key in r["sig"] and abs(r["sig"][key]["gap"]) >= 3.0 and r["day"] > SPLIT]
-                ok = len(rows) >= 100 and passes(F) and passes(C)
+                ok = len([s for s in S if s['clv'] is not None]) >= 100 and passes(F) and passes(C)   # qualifying unique games, not all graded games
                 L += [f"  {v:<5} {k:<4} {px:<5}: {stats(S)} | {'MEETS BAR' if ok else 'does not meet bar'}",
                       f"        FIT {stats(F)}", f"        CHECK {stats(C)}"]
     L += ["", "ALL THRESHOLDS:"]

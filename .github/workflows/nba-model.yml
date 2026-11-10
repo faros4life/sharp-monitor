@@ -33,6 +33,10 @@ jobs:
             git show origin/ev-study:ev_sightings.json > ev-study/ev_sightings.json 2>/dev/null || true
           fi
       - name: Model run (paper)
+        env:
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
         run: python -u nba_totals_model.py
       - name: Save to the nba-model branch (never main)
         if: always()

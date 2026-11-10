@@ -282,15 +282,17 @@ def report(rows, why, n_games):
     # registered bar (Muse 12:19): >= 100 games AND avg CLV > 0 AND beat-close >= 53%, holding in BOTH halves
     L += ["", "REGISTERED BAR (REG, gap >= 3.0): >= 100 games graded, avg CLV > 0 and beat-close >= 53% in FIT and in CHECK"]
     for k in TIMES:
-        ok = len(rows) >= 100
-        parts = []
+        ok = True
+        parts, nq = [], 0
         for lab, sel in (("FIT", lambda r: r["day"] <= SPLIT), ("CHECK", lambda r: r["day"] > SPLIT)):
             c = [r["sig"][f"REG|{k}"]["clv"] for r in rows if sel(r) and f"REG|{k}" in r.get("sig", {})
                  and abs(r["sig"][f"REG|{k}"]["gap"]) >= 3.0 and r["sig"][f"REG|{k}"]["clv"] is not None]
             good = bool(c) and stt.mean(c) > 0 and sum(x > 0 for x in c) / len(c) >= 0.53
             ok = ok and good
+            nq += len(c)
             parts.append(f"{lab} n {len(c)} {'pass' if good else 'fail'}")
-        L.append(f"  {k:<5}: {'MEETS BAR' if ok else 'does not meet bar'} (games {len(rows)}; " + "; ".join(parts) + ")")
+        ok = ok and nq >= 100     # qualifying unique games (one sighting per game), not all graded games
+        L.append(f"  {k:<5}: {'MEETS BAR' if ok else 'does not meet bar'} (qualifying games {nq} of 100 needed; graded {len(rows)}; " + "; ".join(parts) + ")")
     L += ["", "REG T-6h SIGHTINGS (gap >= 3.0):"]
     for r in rows:
         s = r.get("sig", {}).get("REG|T-6h")
