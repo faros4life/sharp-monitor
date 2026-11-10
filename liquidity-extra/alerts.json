@@ -1,6 +1,204 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-10T14:42:15Z",
+   "base_depth": 86865,
+   "best_price": 0.8089,
+   "best_price_american": -423,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.8,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 19,
+   "date": "2026-11-10",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 3203,
+     "new_this_side": 31133,
+     "other_side": 8243,
+     "other_side_all_levels": 13405,
+     "ratio": 4.2,
+     "this_side": 34298,
+     "this_side_all_levels": 113936
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "MTS (0)",
+     "price": 0.81,
+     "this_side": 2278
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Middle Tennessee",
+     "price": 0.8058,
+     "this_side": 180
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 2139.24,
+    "volume_24h_fp": 1965.02,
+    "volume_fp": 2213.02
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 1.0,
+    "volume_24h_fp": 937.0,
+    "volume_fp": 1.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 2138.24,
+    "volume_24h_fp": 1028.02,
+    "volume_fp": 2212.02
+   },
+   "fade_price": 0.21,
+   "first_seen_utc": "2026-11-10T14:23:06Z",
+   "game": "Evansville vs Middle Tennessee",
+   "game_surge_books": [
+    "kalshi",
+    "novig"
+   ],
+   "game_x": 8.22,
+   "key": "kalshi|KXNCAAMBGAME-26NOV10EVANMTU|ml|1",
+   "lead_min": 588,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 31133,
+   "new_x": 5.23,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 2139.24,
+      "volume_24h_fp": 1965.02,
+      "volume_fp": 2213.02
+     },
+     "game_normal": 13867,
+     "game_x": 8.22,
+     "normal": 5951,
+     "now": 113936,
+     "type": "ML",
+     "x": 19.15
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 225474.0,
+      "volume": 226584.0
+     },
+     "game_normal": 265,
+     "game_x": 9.14,
+     "normal": 2278,
+     "now": 2425,
+     "type": "ML",
+     "x": 1.06
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 1222,
+     "game_x": 0.16,
+     "normal": 662,
+     "now": 196,
+     "type": "ML",
+     "x": 0.3
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.8,
+   "price_american": -400,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.8,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -475
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -450
+    },
+    "betopenly": {
+     "point": null,
+     "price": -395
+    },
+    "betrivers": {
+     "point": null,
+     "price": -435
+    },
+    "betus": {
+     "point": null,
+     "price": -450
+    },
+    "bovada": {
+     "point": null,
+     "price": -450
+    },
+    "draftkings": {
+     "point": null,
+     "price": -440
+    },
+    "fanatics": {
+     "point": null,
+     "price": -475
+    },
+    "fanduel": {
+     "point": null,
+     "price": -550
+    },
+    "kalshi": {
+     "point": null,
+     "price": -400
+    },
+    "lowvig": {
+     "point": null,
+     "price": -450
+    },
+    "novig": {
+     "point": null,
+     "price": -426
+    },
+    "polymarket": {
+     "point": null,
+     "price": -400
+    },
+    "prophetx": {
+     "point": null,
+     "price": -415
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV10EVANMTU-MTU"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Middle Tennessee",
+   "side_label": "Middle Tennessee",
+   "size_x": 19.15,
+   "start_source": "odds",
+   "start_utc": "2026-11-11T00:30:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "Evansville",
+    "Middle Tennessee"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-09T14:10:19Z",
    "base_depth": 150464,
    "best_price": 0.5175,
@@ -674,7 +872,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settled_utc": "2026-11-10T13:51:26Z",
+   "settled_utc": "2026-11-10T13:39:41Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Seton Hall",
@@ -826,7 +1024,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settled_utc": "2026-11-10T13:51:26Z",
+   "settled_utc": "2026-11-10T13:39:41Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Jacksonville",
@@ -999,7 +1197,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settled_utc": "2026-11-10T13:51:26Z",
+   "settled_utc": "2026-11-10T13:39:41Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Columbia",
@@ -1187,7 +1385,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settled_utc": "2026-11-10T13:51:26Z",
+   "settled_utc": "2026-11-10T13:39:41Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Coastal Carolina",
@@ -1379,7 +1577,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settled_utc": "2026-11-10T13:51:26Z",
+   "settled_utc": "2026-11-10T13:39:41Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Cincinnati",
@@ -1534,7 +1732,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settled_utc": "2026-11-10T13:51:26Z",
+   "settled_utc": "2026-11-10T13:39:41Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Towson",
