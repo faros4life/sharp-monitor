@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 10, 9:32 AM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 27.
+Updated Tue Nov 10, 9:37 AM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 28.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 10 9:37AM | NHL | Florida vs Columbus: Spread | spread: NOT Florida wins by over 1.5 goals | kalshi | $43k | -233 |  |  | +0.0c |  | pending |
 | Nov 10 9:32AM | NBA | Milwaukee vs New York: Spread | spread: New York wins by over 15.5 points | kalshi | $32k | -104 |  | ❌ | +0.0c |  | pending |
 | Nov 10 9:16AM | NBA | Boston vs Philadelphia | moneyline: Boston | kalshi | $315k | -104 | ✅ novig,prophetx |  | +1.0c |  | pending |
 | Nov 10 8:46AM | NHL | Detroit vs St. Louis: Spread | spread: NOT St. Louis wins by over 1.5 goals | kalshi | $26k | -203 | ✅ novig |  | +0.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 8 8:46AM | NHL | Vegas vs Buffalo | moneyline: Vegas | kalshi | $34k | -104 | ✅ novig,polymarket |  | +1.0c | yes | W |
 | Nov 8 8:26AM | NHL | Flyers vs. Flames | moneyline: Flyers | polymarket | $28k | -113 | ✅ kalshi,novig |  | +1.0c |  | L |
 | Nov 8 8:26AM | NFL | New York Jets @ Kansas City Chiefs | spread: KC -9.5 (-9.5) | novig | $46k | -100 | ✅ kalshi |  | +0.0c |  | W |
-| Nov 8 8:10AM | NFL | Houston vs Los Angeles C: Spread | spread: NOT Houston wins by over 5.5 points | kalshi | $308k | -100 | ✅ novig |  | +2.0c |  | L |
