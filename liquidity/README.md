@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 9, 8:16 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 88.
+Updated Mon Nov 9, 8:20 PM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 88.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,7 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 9 8:10PM | NBA | San Antonio vs Phoenix: Spread | spread: NOT San Antonio wins by over 9.5 points | kalshi | $35k | -108 | ✅ novig |  | +0.0c | yes | pending |
+| Nov 9 8:10PM | NBA | San Antonio vs Phoenix: Spread | spread: NOT San Antonio wins by over 9.5 points | kalshi | $35k | -108 | ✅ novig |  | +1.0c | yes | pending |
 | Nov 9 8:00PM | NHL | Flyers vs. Canucks | total: Under (6.5) | polymarket | $42k | -113 | ✅ kalshi,novig |  | +0.0c |  | pending |
 | Nov 9 7:40PM | NBA | Miami vs Utah | moneyline: Miami | kalshi | $34k | -376 |  |  | +0.0c | yes | pending |
 | Nov 9 7:30PM | NBA | Denver Nuggets @ Houston Rockets | spread: HOU -4.5 (-4.5) | novig | $39k | -108 | ✅ kalshi,polymarket | ❌ | +0.0c |  | pending |
