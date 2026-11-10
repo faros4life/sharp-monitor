@@ -20,6 +20,10 @@ on:
         description: "Polymarket US market slug - pick one whose offer is 0.45-0.85 so the bid lands in the proven 0.30-0.70 band"
         required: true
         type: string
+      cancel_probe:
+        description: "1 = place one resting order and find the cancel endpoint (the last blocker)"
+        required: false
+        type: string
       probe:
         description: "1 = isolate which resting field the venue rejects (sends FOK baseline, then GTD variants, stops at the first accepted)"
         required: false
@@ -45,6 +49,7 @@ jobs:
           PMUS_SECRET_KEY: ${{ secrets.PMUS_SECRET_KEY }}
           PMUS_TEST_SLUG: ${{ inputs.slug }}
           PMUS_PROBE: ${{ inputs.probe }}
+          PMUS_CANCEL_PROBE: ${{ inputs.cancel_probe }}
         run: |
           set -o pipefail
           python -u pmus_rest_order_test.py 2>&1 | tee out.txt

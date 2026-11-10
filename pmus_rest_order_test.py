@@ -146,6 +146,76 @@ def read_back(oid):
     return None
 
 
+def cancel_probe(slug, price, expire_ts):
+    """Place ONE resting order (variant B, now proven) and find the cancel path.
+
+    WHY THIS IS A BLOCKER, not a nicety. The accepted resting order came back as
+        submitted  tif=TIME_IN_FORCE_GOOD_TILL_TIME  goodTillTime="2026-11-10T03:00:54Z"
+        stored     tif=TIME_IN_FORCE_DAY             goodTillTime=null
+    The venue SILENTLY rewrote the time-in-force and dropped the expiry: what we sent as a
+    3-minute order was stored as a DAY order. It does the same to FILL_OR_KILL, which it stores
+    as IMMEDIATE_OR_CANCEL, so this is consistent behaviour rather than a one-off. A resting bid
+    we cannot cancel therefore lives until end of day, and Peter's spec requires cancelling at
+    T-30 and whenever a signal dies, is pulled or flipped. Without a cancel path the resting
+    design cannot be deployed at all.
+
+    The docs I can reach for cancellation are docs.polymarket.com - the global crypto CLOB, a
+    different API from this one - so the path is probed rather than guessed. The app has a cancel
+    button, so an endpoint exists; this finds which one our key can call.
+
+    One contract, non-crossing, and it tries to cancel what it placed. If every path fails it
+    says so loudly: that order is then a DAY order and must be cancelled in the app."""
+    iso = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime(int(expire_ts)))
+    body = {"marketSlug": slug, "intent": "ORDER_INTENT_BUY_LONG", "type": "ORDER_TYPE_LIMIT",
+            "price": {"value": f"{price:.3f}", "currency": "USD"}, "quantity": 1,
+            "manualOrderIndicator": "MANUAL_ORDER_INDICATOR_AUTOMATIC",
+            "tif": "TIME_IN_FORCE_GOOD_TILL_TIME", "goodTillTime": iso}
+    st, resp = call("POST", "/v1/orders", body)
+    say(f"1) place resting (variant B) -> HTTP {st}")
+    if not (isinstance(st, int) and 200 <= st < 300):
+        say(f"   {json.dumps(resp)[:400] if isinstance(resp,(dict,list)) else str(resp)[:400]}")
+        say("   Could not place; nothing to cancel. Nothing rests.")
+        return
+    resp = resp if isinstance(resp, dict) else {}
+    oid = resp.get("orderId") or resp.get("id") or (resp.get("order") or {}).get("id")
+    say(f"   resting order id: {oid}")
+    if not oid:
+        say("   No order id in the reply - CANCEL IN THE APP.")
+        return
+
+    say("\n2) cancel paths, in order, stopping at the first that works:")
+    attempts = [("DELETE", f"/v1/orders/{oid}", None),
+                ("DELETE", f"/v1/order/{oid}", None),
+                ("POST", f"/v1/orders/{oid}/cancel", {}),
+                ("POST", "/v1/orders/cancel", {"orderId": oid}),
+                ("POST", "/v1/orders/cancel", {"orderIds": [oid]})]
+    won = None
+    for method, path, b in attempts:
+        cst, cresp = call(method, path, b)
+        ok = isinstance(cst, int) and 200 <= cst < 300
+        say(f"   {method:6} {path:34} HTTP {cst}  {'OK' if ok else 'no'}")
+        if ok:
+            won = (method, path, b)
+            break
+        time.sleep(1)
+
+    say("")
+    time.sleep(3)
+    back = read_back(oid)
+    state = str(((back or {}).get("order") or back or {}).get("status")
+                or ((back or {}).get("order") or back or {}).get("state") or "?").upper()
+    say(f"3) order state now: {state}")
+    if won:
+        say(f"\nVERDICT: cancel works -> {won[0]} {won[1]}")
+        say("  That was the last blocker. The resting design can be built:")
+        say("  place with tif GOOD_TILL_TIME + goodTillTime, cancel on this path at T-30.")
+    else:
+        say("\nVERDICT: NO cancel path found. The order above is stored as a DAY order.")
+        say("  *** CANCEL IT IN THE POLYMARKET US APP NOW. ***")
+        say("  Resting bids must NOT be deployed until a cancel path exists - a bid we cannot")
+        say("  pull cannot honour the T-30 rule.")
+
+
 def probe(slug, price, expire_ts):
     """Isolate the resting order, using the DOCUMENTED field names this time.
 
@@ -256,6 +326,11 @@ def main():
         sys.exit(f"REFUSING: one contract at {price} exceeds the ${MAX_COST} cap.")
 
     expire_ts = int(time.time()) + EXPIRE_S
+    if (os.environ.get("PMUS_CANCEL_PROBE") or "").strip() == "1":
+        say("POLYMARKET US CANCEL-PATH PROBE")
+        say(f"  slug {slug} | offer {best:.3f} | bid {price:.3f}\n")
+        cancel_probe(slug, price, expire_ts)
+        return
     if (os.environ.get("PMUS_PROBE") or "").strip() == "1":
         say("POLYMARKET US RESTING PROBE - isolating which field the venue rejects")
         say(f"  slug {slug} | offer {best:.3f} | bid {price:.3f} | one contract per variant\n")
