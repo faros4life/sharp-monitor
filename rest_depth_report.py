@@ -281,15 +281,30 @@ def lane1_scope(rows):
     say("LANE 1 SCOPE: is the drought SUPPLY, PRICE or a GATE?")
     say("=" * 100)
 
+    # The vocabulary is PRINTED, not assumed. An exact-match filter on market == "total" returned
+    # 0 of 178 here, which was my filter and not the supply - so the real field values are shown
+    # first and the test below is a substring test against them.
+    vocab = _c.Counter()
+    for r in rows:
+        vocab[(str(r.get("league") or "-").upper(),
+               str(r.get("market") or "-").lower(),
+               str(r.get("side") or "-")[:18])] += 1
+    say("  field vocabulary actually present on the ledger rows (league / market / side):")
+    for (lg, mk, sd), n in vocab.most_common(14):
+        say(f"      {n:4}  {lg:<8} {mk:<14} {sd}")
+    if len(vocab) > 14:
+        say(f"      ... and {len(vocab) - 14} more combination(s)")
+    say("")
+
     def in_scope(r):
         lg = str(r.get("league") or "").upper()
         mk = str(r.get("market") or "").lower()
-        sd = str(r.get("side") or "").upper()
-        if mk != "total":
+        sd = str(r.get("side") or "").lower()
+        if "total" not in mk:
             return False
-        if sd == "UNDER" and lg in ("NBA", "NFL", "NCAAF"):
+        if "under" in sd and lg in ("NBA", "NFL", "NCAAF"):
             return True
-        return sd == "OVER" and lg == "NCAAF"
+        return "over" in sd and lg == "NCAAF"
 
     scope = [r for r in rows if in_scope(r)]
     say(f"  in Lane 1 scope {len(scope)} of {len(rows)} opportunities "
