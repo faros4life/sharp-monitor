@@ -58,9 +58,15 @@ def say(line):
 
 
 def best_offer(slug):
-    """Best offer from the known market-book path (the same one executor.py uses)."""
-    _, r = bl._pm_call("GET", f"/v1/markets/{slug}/book")
-    md = (r or {}).get("marketData") or {}
+    """Best offer, read the way executor.py actually reads it.
+
+    TWO DIFFERENT HOSTS, and getting this wrong is why the first version of this file was broken.
+    Market and book reads go through the GATEWAY (executor.PMUS = gateway.polymarket.us) via
+    liquidity_monitor.get; ORDERS go through book_live.PM_API = api.polymarket.us via _pm_call.
+    My first draft read the book with _pm_call, i.e. asked the order host for market data."""
+    import executor as _ex
+    import liquidity_monitor as _lm
+    md = (_lm.get(f"{_ex.PMUS}/v1/markets/{slug}/book") or {}).get("marketData") or {}
     for k in ("bestAsk", "best_ask", "ask", "bestOffer"):
         v = md.get(k)
         if isinstance(v, (int, float)) and 0 < float(v) < 1:

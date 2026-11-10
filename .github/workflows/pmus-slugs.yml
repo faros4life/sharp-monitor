@@ -1,0 +1,40 @@
+name: pmus-slugs
+
+# READ-ONLY slug lookup for Polymarket US. No order code - GETs only, nothing is placed.
+#
+# Why it exists: the resting-bid test needs a market SLUG string. Muse can pull numeric game ids
+# from the monitor feed but has no verified slug source and would not guess at the format. This
+# turns an id into slugs using the same endpoints executor.py already relies on.
+#
+# Typical use: run this with the game id, copy a full-game moneyline slug that shows a best
+# offer, then run pmus-rest-order-test with that slug. Peter runs that one; Claude does not.
+on:
+  workflow_dispatch:
+    inputs:
+      game_id:
+        description: "Polymarket US game/market id(s), comma-separated (e.g. 5651101,5651104)"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Polymarket US slug lookup (read-only)
+        env:
+          PMUS_KEY_ID: ${{ secrets.PMUS_KEY_ID }}
+          PMUS_SECRET_KEY: ${{ secrets.PMUS_SECRET_KEY }}
+          PMUS_GAME_ID: ${{ inputs.game_id }}
+        run: |
+          set -o pipefail
+          python -u pmus_slugs.py 2>&1 | tee out.txt
+          { echo '```'; cat out.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
