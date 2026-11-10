@@ -1,6 +1,208 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-10T16:27:41Z",
+   "base_depth": 67736,
+   "best_price": 0.615,
+   "best_price_american": -160,
+   "best_price_book": "novig",
+   "bid_improved": true,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.62,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 19,
+   "date": "2026-11-10",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 9618,
+     "new_this_side": 38690,
+     "other_side": 16123,
+     "other_side_all_levels": 45925,
+     "ratio": 3.8,
+     "this_side": 61313,
+     "this_side_all_levels": 104842
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "UNI (0)",
+     "price": 0.615,
+     "this_side": 11845
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Northern Iowa",
+     "price": 0.6124,
+     "this_side": 2207
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 1461.5300000000002,
+    "volume_24h_fp": 1361.5300000000002,
+    "volume_fp": 1461.5300000000002
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 47.87,
+    "volume_24h_fp": 47.87,
+    "volume_fp": 47.87
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 1413.66,
+    "volume_24h_fp": 1313.66,
+    "volume_fp": 1413.66
+   },
+   "fade_price": 0.39,
+   "first_seen_utc": "2026-11-10T16:08:39Z",
+   "game": "Green Bay vs Northern Iowa",
+   "game_surge_books": [
+    "kalshi",
+    "novig"
+   ],
+   "game_x": 4.15,
+   "key": "kalshi|KXNCAAMBGAME-26NOV10GBUNI|ml|1",
+   "lead_min": 512,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 38690,
+   "new_x": 4.8,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 1461.5300000000002,
+      "volume_24h_fp": 1361.5300000000002,
+      "volume_fp": 1461.5300000000002
+     },
+     "game_normal": 25253,
+     "game_x": 4.15,
+     "normal": 8060,
+     "now": 104842,
+     "type": "ML",
+     "x": 13.01
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 164479.0,
+      "volume": 315522.0
+     },
+     "game_normal": 3827,
+     "game_x": 3.16,
+     "normal": 2355,
+     "now": 12100,
+     "type": "ML",
+     "x": 5.14
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 1429,
+     "game_x": 1.8,
+     "normal": 708,
+     "now": 2571,
+     "type": "ML",
+     "x": 3.63
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.62,
+   "price_american": -163,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.61,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -170
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -160
+    },
+    "betrivers": {
+     "point": null,
+     "price": -175
+    },
+    "betus": {
+     "point": null,
+     "price": -160
+    },
+    "bovada": {
+     "point": null,
+     "price": -170
+    },
+    "draftkings": {
+     "point": null,
+     "price": -166
+    },
+    "fanatics": {
+     "point": null,
+     "price": -165
+    },
+    "fanduel": {
+     "point": null,
+     "price": -170
+    },
+    "kalshi": {
+     "point": null,
+     "price": -163
+    },
+    "lowvig": {
+     "point": null,
+     "price": -160
+    },
+    "novig": {
+     "point": null,
+     "price": -160
+    },
+    "polymarket": {
+     "point": null,
+     "price": -156
+    },
+    "prophetx": {
+     "point": null,
+     "price": -158
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -165
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV10GBUNI-UNI"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Northern Iowa",
+   "side_label": "Northern Iowa",
+   "size_x": 13.01,
+   "start_source": "odds",
+   "start_utc": "2026-11-11T01:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "teams": [
+    "Green Bay",
+    "Northern Iowa"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-09T14:10:19Z",
    "base_depth": 150464,
    "best_price": 0.5175,
