@@ -118,7 +118,7 @@ function render(){
     html+=`</table></div>`;
   }
   out.innerHTML=html||`<div class="empty">No games${q?` matching “${Q.replace(/[<>&]/g,"")}”`:""} in view.</div>`;
-  out.innerHTML+=`<div class="note">Green = best price on that side across your books. Underlined prices open that game on the book. % = edge vs ${N[sharp]||"Pinnacle"} no-vig (same number only). NFL and college football: next 7 days; other sports: next 24 hours; each sport refreshes on the monitor's poll.</div>`;
+  out.innerHTML+=`<div class="note">Prices are after each book's fee. Green = best price on that side across your books. Underlined prices open that game on the book. % = edge vs ${N[sharp]||"Pinnacle"} no-vig (same number only). NFL and college football: next 7 days; other sports: next 24 hours; each sport refreshes on the monitor's poll.</div>`;
 }
 function chips(){
   const lgs=["All",...[...new Set(D.games.map(g=>g.lg))]];
@@ -135,13 +135,22 @@ document.addEventListener("click",e=>{
   chips();render();
 });
 document.getElementById("q").addEventListener("input",e=>{Q=e.target.value;render()});
+// Nov 9 (Peter: "quote including fees"): every price is shown AFTER the book's fee, same math as the bot (sharp_monitor.net):
+// ProphetX 2% of winnings (NHL: 0.035 taker); Kalshi 0.07 and Polymarket US 0.06 taker on the contract cost; Hard Rock/Novig pre-game: none.
+const WINFEE={prophetx:0.02},TAKER={kalshi:0.07,polymarket_us:0.06};
+const am2p=a=>a>0?100/(a+100):-a/(-a+100),p2am=p=>{p=Math.min(Math.max(p,1e-6),1-1e-6);return p<0.5?100*(1-p)/p:-100*p/(1-p)};
+function netPx(b,lg,px){if(px==null)return px;let k=b==="prophetx"&&lg==="NHL"?0.035:null;
+  if(k==null){const f=WINFEE[b];if(f){const w=(px<0?100/-px:px/100)*(1-f);return Math.round(w<1?-100/w:w*100)}k=TAKER[b]||0}
+  if(k){const c=am2p(px);return Math.round(p2am(c+k*c*(1-c)))}return px}
+function feeAdj(gs){for(const g of gs){if(g.fx)continue;g.fx=1;for(const b in g.books){if(b===D.sharp)continue;const B=g.books[b];
+  for(const mk in B)for(const sd in B[mk]){const v=B[mk][sd];if(Array.isArray(v))v[1]=netPx(b,g.lg,v[1]);else B[mk][sd]=netPx(b,g.lg,v)}}}}
 async function load(){
   try{
     const r=await fetch(SRC+"?t="+Date.now(),{cache:"no-store"});
     if(!r.ok)throw new Error(r.status);
     const nd=await r.json();
     if(D)for(const lg in LIVE){if(!(nd.sports&&nd.sports[lg]>LIVE[lg])){nd.games=nd.games.filter(g=>g.lg!==lg).concat(D.games.filter(g=>g.lg===lg))}else delete LIVE[lg]}
-    D=nd;
+    D=nd;feeAdj(D.games);
     document.getElementById("upd").textContent="updated "+new Date(D.updated_utc).toLocaleTimeString("en-US",{timeZone:"America/New_York",hour:"numeric",minute:"2-digit"})+" ET"+(D.credits_left!=null?" · "+Number(D.credits_left).toLocaleString()+" credits":"");
     chips();render();
   }catch(err){
@@ -189,6 +198,7 @@ async function refreshNow(){
       D.games=D.games.filter(g=>g.lg!==lg).concat(evs.map(ev=>toGame(lg,ev,old[ev.id])).filter(g=>Object.keys(g.books).length));
       LIVE[lg]=Date.now()/1000;
     }
+    feeAdj(D.games);
     D.games.sort((a,b)=>a.start<b.start?-1:a.start>b.start?1:0);
     if(left!=null)D.credits_left=left;
     msg.textContent="Live as of "+new Date().toLocaleTimeString("en-US",{timeZone:"America/New_York",hour:"numeric",minute:"2-digit"})+(cost?` · used ${cost} credits`:"")+(left!=null?` · ${left.toLocaleString()} left`:"");
