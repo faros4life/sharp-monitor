@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 10, 12:34 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 3.
+Updated Tue Nov 10, 12:45 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 4.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,7 +10,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 10 11:37AM | NCAAB | Washington St. vs Duquesne | moneyline: Duquesne | kalshi | $39k | -156 | ✅ novig | ❌ | +1.0c |  | pending |
+| Nov 10 12:45PM | NCAAB | Michigan St. vs Duke | moneyline: Duke | kalshi | $89k | -300 | ✅ novig |  | +0.0c |  | pending |
+| Nov 10 11:27AM | NCAAB | Green Bay vs Northern Iowa | moneyline: Northern Iowa | kalshi | $39k | -163 | ✅ novig |  | +0.0c |  | pending |
 | Nov 9 9:10AM | TENNIS | Tomas Machac vs Borna Gojo | moneyline: Borna Gojo | kalshi | $35k | -100 |  |  | +46.0c |  | W |
 | Nov 9 6:40AM | TENNIS | Arthur Rinderknech vs Miomir Kecmanovic | moneyline: Arthur Rinderknech | kalshi | $29k | -194 |  |  | +1.0c | yes | L |
 | Nov 9 6:10AM | TENNIS | Tomas Martin Etcheverry vs Max Dahlin | moneyline: Tomas Martin Etcheverry | kalshi | $55k | -376 | ✅ novig |  | +3.0c | yes | W |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 28 4:18PM | TENNIS | Fery vs Musetti | moneyline: Musetti | kalshi | $71k | -285 |  |  | -1.0c |  | L |
 | Oct 28 4:18PM | TENNIS | Djokovic vs Struff | moneyline: Djokovic | kalshi | $63k | -335 |  |  | -1.0c | yes | L |
 | Oct 28 4:00PM | MLB | Milwaukee Brewers vs. Tampa Bay Rays | total: Under (6.5) | polymarket | $27k | -104 | ✅ kalshi,novig,prophetx |  | +2.0c |  | W |
-| Oct 28 3:40PM | MLB | Milwaukee Brewers @ Tampa Bay Rays | moneyline: TB (0) | novig | $201k | +133 | ✅ prophetx |  | +0.5c |  | L |
