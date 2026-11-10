@@ -1,18 +1,18 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 10, 12:05 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 4.
+Updated Tue Nov 10, 12:14 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 3.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 203-114 (-11.12u flat) | rule met: 41-32
+**Record:** 203-115 (-12.12u flat) | rule met: 41-32
 
-**Fade (paper, betting against the print):** 89-168 (-1.90u flat, after fees)
+**Fade (paper, betting against the print):** 90-168 (-0.17u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 10 11:27AM | NCAAB | Green Bay vs Northern Iowa | moneyline: Northern Iowa | kalshi | $39k | -163 | ✅ novig |  | +0.0c |  | pending |
+| Nov 10 11:37AM | NCAAB | Washington St. vs Duquesne | moneyline: Duquesne | kalshi | $39k | -156 | ✅ novig | ❌ | +0.0c |  | pending |
 | Nov 9 9:10AM | TENNIS | Tomas Machac vs Borna Gojo | moneyline: Borna Gojo | kalshi | $35k | -100 |  |  | +46.0c |  | W |
-| Nov 9 6:40AM | TENNIS | Arthur Rinderknech vs Miomir Kecmanovic | moneyline: Arthur Rinderknech | kalshi | $29k | -194 |  |  | +1.0c | yes | pending |
+| Nov 9 6:40AM | TENNIS | Arthur Rinderknech vs Miomir Kecmanovic | moneyline: Arthur Rinderknech | kalshi | $29k | -194 |  |  | +1.0c | yes | L |
 | Nov 9 6:10AM | TENNIS | Tomas Martin Etcheverry vs Max Dahlin | moneyline: Tomas Martin Etcheverry | kalshi | $55k | -376 | ✅ novig |  | +3.0c | yes | W |
 | Nov 9 2:20AM | TENNIS | Alex Michelsen vs Yannick Hanfmann | moneyline: Alex Michelsen | kalshi | $26k | -300 |  |  | +1.0c | yes | W |
 | Nov 9 1:40AM | NCAAB | Charlotte vs Seton Hall | moneyline: Seton Hall | kalshi | $31k | -213 |  |  | -3.0c | yes | W |
