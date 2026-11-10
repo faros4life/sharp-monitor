@@ -1158,7 +1158,7 @@
   },
   {
    "alert_utc": "2026-11-10T13:40:14Z",
-   "beat_close": true,
+   "beat_close": false,
    "beat_true_close": null,
    "bet": "Under 146.5 (-115)",
    "book": "Hard Rock",
@@ -1166,7 +1166,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+0.5 pts",
+   "clv": "-1 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline"
@@ -2068,7 +2068,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+0 pts",
+   "clv": "-1 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline"
@@ -2109,7 +2109,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+0.5 pts",
+   "clv": "+1.5 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline"
@@ -2138,6 +2138,47 @@
    "sport": "NCAAB",
    "start_utc": "2026-11-11T00:00:00Z",
    "top25": false,
+   "units_flat": null
+  },
+  {
+   "alert_utc": "2026-11-10T20:10:17Z",
+   "beat_close": true,
+   "beat_true_close": null,
+   "bet": "Over 146.5 (-110)",
+   "book": "Hard Rock",
+   "book_key": "hardrockbet",
+   "close_fair_prob": null,
+   "close_read_mins_before": null,
+   "close_value_pct": null,
+   "clv": "+1 pts",
+   "confirm": "yes",
+   "confirmed_by": [
+    "BetOnline"
+   ],
+   "edge_pct": -2.4,
+   "executable_book": true,
+   "fade_book": "prophetx",
+   "fade_point": 146.5,
+   "fade_price": 105,
+   "fade_price_after_fee": 103,
+   "fade_units": null,
+   "final": null,
+   "floor_line": 147.0,
+   "game": "Michigan St Spartans @ Duke Blue Devils",
+   "grade": "A",
+   "kind": "tot",
+   "late": false,
+   "minutes_before_start": 230,
+   "point": 146.5,
+   "price": -110,
+   "price_after_fee": -110,
+   "pricing_bettable": true,
+   "result": null,
+   "score": 78,
+   "sent_to_phone": true,
+   "sport": "NCAAB",
+   "start_utc": "2026-11-11T00:00:00Z",
+   "top25": true,
    "units_flat": null
   },
   {
@@ -44095,6 +44136,54 @@
   }
  ],
  "all_alerts": [
+  {
+   "alert_text": "Over 140.5 (-121) at ProphetX [-123 after ProphetX fee] (also: Hard Rock, Novig)",
+   "bet": "Over 140.5 (-121)",
+   "bet_result": null,
+   "book": "ProphetX",
+   "confirmed_by": [
+    "BetOnline"
+   ],
+   "edge_pct": -4.3,
+   "final": null,
+   "game": "Iona Gaels @ Fordham Rams",
+   "grade": "A",
+   "late": false,
+   "minutes_before_start": 230,
+   "price": -121,
+   "price_after_fee": -123,
+   "pushed_to_phone": false,
+   "repeat": true,
+   "score": 76,
+   "sent_et": "2026-11-10 15:10",
+   "sport": "NCAAB",
+   "start_utc": "2026-11-11T00:00:00Z",
+   "why": "Pinnacle total moved 139.5 -> 142; bet only at 141.5 or better (confirmed by BetOnline)"
+  },
+  {
+   "alert_text": "Over 146.5 (-110) at Hard Rock (also: ProphetX)",
+   "bet": "Over 146.5 (-110)",
+   "bet_result": null,
+   "book": "Hard Rock",
+   "confirmed_by": [
+    "BetOnline"
+   ],
+   "edge_pct": -2.4,
+   "final": null,
+   "game": "Michigan St Spartans @ Duke Blue Devils",
+   "grade": "A",
+   "late": false,
+   "minutes_before_start": 230,
+   "price": -110,
+   "price_after_fee": -110,
+   "pushed_to_phone": true,
+   "repeat": false,
+   "score": 78,
+   "sent_et": "2026-11-10 15:10",
+   "sport": "NCAAB",
+   "start_utc": "2026-11-11T00:00:00Z",
+   "why": "Pinnacle total moved 145.5 -> 147.5; bet only at 147 or better (confirmed by BetOnline)"
+  },
   {
    "alert_text": "Over 225.5 (-110) at Hard Rock (also: ProphetX)",
    "bet": "Over 225.5 (-110)",
