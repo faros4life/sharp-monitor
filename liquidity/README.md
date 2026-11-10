@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 10, 7:20 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 18.
+Updated Tue Nov 10, 7:26 AM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 19.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 10 7:26AM | NHL | Washington vs Ottawa | moneyline: Washington | kalshi | $38k | +117 |  |  | +0.0c |  | pending |
 | Nov 10 7:10AM | NBA | Oklahoma City vs Portland | moneyline: Portland | kalshi | $163k | +122 |  | ❌ | +0.0c |  | pending |
 | Nov 10 7:00AM | NBA | Boston vs Philadelphia: Spread | spread: Boston wins by over 1.5 points | kalshi | $39k | +104 |  |  | +0.0c |  | pending |
 | Nov 10 6:46AM | NHL | Washington vs Ottawa: Spread | spread: NOT Ottawa wins by over 1.5 goals | kalshi | $51k | -223 | ✅ novig |  | +0.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 8 7:05AM | NHL | Tampa Bay vs Winnipeg | moneyline: Tampa Bay | kalshi | $26k | -138 | ✅ novig |  | +1.0c | yes | L |
 | Nov 8 6:55AM | NFL | Denver Broncos @ Carolina Panthers | moneyline: DEN (0) | novig | $58k | -138 | ✅ kalshi,prophetx |  | +3.0c |  | W |
 | Nov 8 6:50AM | NHL | New Jersey vs Toronto: Spread | spread: NOT New Jersey wins by over 1.5 goals | kalshi | $26k | -186 | ✅ novig,polymarket |  | -1.0c |  | L |
-| Nov 8 6:40AM | NBA | Miami vs Sacramento | moneyline: Miami | kalshi | $58k | -300 | ✅ novig,prophetx |  | +9.0c | yes | W |
