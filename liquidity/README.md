@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 10, 6:37 PM ET. This run: 2 new, 0 not confirmed, 4 pending. Open alerts: 63.
+Updated Tue Nov 10, 6:41 PM ET. This run: 2 new, 0 not confirmed, 5 pending. Open alerts: 63.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,8 +10,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 10 6:37PM | NCAAF | Kent State @ Bowling Green | moneyline: BGSU (0) | novig | $26k | -174 | ✅ kalshi | ❌ | +0.0c |  | pending |
-| Nov 10 6:37PM | NBA | Washington vs Indiana | moneyline: Indiana | kalshi | $44k | -163 |  |  | +0.0c |  | pending |
+| Nov 10 6:41PM | NCAAF | Kent State @ Bowling Green | moneyline: BGSU (0) | novig | $26k | -174 | ✅ kalshi,prophetx | ❌ | +0.0c |  | pending |
+| Nov 10 6:41PM | NBA | Washington vs Indiana | moneyline: Indiana | kalshi | $44k | -163 |  |  | +0.0c |  | pending |
 | Nov 10 6:20PM | NBA | Golden State vs Houston | moneyline: Houston | kalshi | $89k | -178 |  |  | +0.0c |  | pending |
 | Nov 10 5:31PM | NHL | New Jersey vs Winnipeg: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $46k | -104 | ✅ novig,prophetx | ❌ | +0.0c | yes | pending |
 | Nov 10 4:51PM | NBA | Miami vs Utah: Total Points | total: NOT Over 228.5 points | kalshi | $33k | -108 |  |  | +0.0c | yes | pending |
@@ -51,7 +51,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 10 8:46AM | NHL | Detroit vs St. Louis: Spread | spread: NOT St. Louis wins by over 1.5 goals | kalshi | $26k | -203 | ✅ novig |  | -1.0c |  | pending |
 | Nov 10 8:41AM | NHL | Nashville vs Los Angeles | moneyline: Nashville | kalshi | $31k | +117 | ✅ prophetx |  | +0.0c |  | pending |
 | Nov 10 8:26AM | NBA | Orlando vs Sacramento | moneyline: Orlando | kalshi | $311k | -223 | ✅ novig,prophetx |  | -2.0c | yes | pending |
-| Nov 10 8:20AM | NBA | Orlando vs Sacramento: Spread | spread: Orlando wins by over 6.5 points | kalshi | $30k | +104 |  |  | -1.0c | yes | pending |
+| Nov 10 8:20AM | NBA | Orlando vs Sacramento: Spread | spread: Orlando wins by over 6.5 points | kalshi | $30k | +104 |  |  | -2.0c | yes | pending |
 | Nov 10 8:10AM | NHL | Colorado vs Toronto | moneyline: Colorado | kalshi | $30k | -150 | ✅ novig |  | +2.0c |  | pending |
 | Nov 10 7:40AM | NCAAF | Kent St. vs Bowling Green: Spread | spread: Bowling Green wins by over 5.5 points | kalshi | $41k | -100 | ✅ novig,prophetx |  | -3.0c |  | pending |
 | Nov 10 7:26AM | NHL | Washington vs Ottawa | moneyline: Washington | kalshi | $38k | +117 |  |  | +5.0c | yes | pending |
