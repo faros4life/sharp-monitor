@@ -35,6 +35,7 @@ import sys
 from datetime import datetime, timedelta, timezone
 
 import clv_ledger as cl
+import clv_std as cs
 import hist_cache as hc
 import tracker_build as tb
 
@@ -139,9 +140,90 @@ def main():
     say("  The free tier returns no quota header, so this count IS the measurement. If it climbs")
     say("  toward whatever the real monthly limit turns out to be, lower CC_MAX or the cadence.")
     say()
-    say("  NOT YET A CLV COMPARISON. This only builds the history. Grading a bet against a Circa")
-    say("  close is a separate, approved-in-advance change to the reporters, and it needs enough")
-    say("  stored closes to be worth running - which is what this is accumulating.")
+    say()
+    say("=" * 70)
+    say("IS CIRCA A HARDER CLOSE THAN PINNACLE?  (Peter, Nov 10)")
+    say("=" * 70)
+    say("  Same fixture, same market, same side: Circa's no-vig close win probability minus")
+    say("  Pinnacle's. POSITIVE means Circa's number is HIGHER, i.e. Circa makes the side look")
+    say("  more likely - so betting that side has to clear a HARDER bar against Circa. Negative")
+    say("  means Circa is the WEAKER close and easier to beat. This matters directly: Peter's rule")
+    say("  is that an edge qualifies by beating EITHER benchmark in both halves, so a systematically")
+    say("  weaker Circa would make 'beat either' easier than it sounds, and a harder Circa would")
+    say("  make beating it the stronger claim of the two.")
+    say("  Cache only - every close compared here was already stored. 0 calls, 0 paid credits.")
+    # EVERY fixture that holds BOTH closes, not just tonight's batch. My first version looped over
+    # `due`, which is only the games that were MISSING a Circa close before this run - so the
+    # comparison would have covered one night's captures and then reset every night, never
+    # accumulating. The whole point is that the number becomes meaningful as it grows.
+    #
+    # Free either way: /historical-odds is a FREE path (credit_gate.FREE_PATHS), and both files are
+    # confirmed present on disk before either is read, so this spends nothing on either key.
+    diffs, pairs, skipped = [], 0, {}
+    both = [(cl.tp(f.get("start")), fid, f) for fid, f in st["fixtures"].items()
+            if os.path.exists(hc._path(fid, "pinnacle")) and os.path.exists(hc._path(fid, "circasports"))]
+    both = [(s2, fid, f) for s2, fid, f in both if s2]
+    both.sort(reverse=True)
+    say(f"  fixtures holding BOTH a Pinnacle and a Circa close: {len(both)}")
+    for s_, fid, f in both:
+        lg = f.get("league") or f.get("lg")
+        try:
+            hp = hc.get_hist(fid, ["pinnacle"], s_)
+            hcc = hc.get_hist(fid, ["circasports"], s_)
+        except Exception as ex2:
+            skipped[type(ex2).__name__] = skipped.get(type(ex2).__name__, 0) + 1
+            continue
+        pmk, cmk = cl.book_markets(hp, "pinnacle"), cl.book_markets(hcc, "circasports")
+        if not pmk or not cmk:
+            skipped["one book had no market in its stored close"] = skipped.get(
+                "one book had no market in its stored close", 0) + 1
+            continue
+        # Moneyline only, and only where BOTH books priced the same side. A spread or total would
+        # need the lines to match too, and a mismatched line is a different bet - comparing those
+        # would manufacture a difference that is really just two different markets.
+        for mt in ("moneyline",):
+            b = {"bet": None, "league": lg, "market": mt}
+            try:
+                pc, _ = cl.close_for(b, f, pmk, {}, s_, lg)
+                cc, _ = cl.close_for(b, f, cmk, {}, s_, lg)
+            except Exception:
+                continue
+            if not pc or not cc:
+                skipped["close_for could not read one of the two"] = skipped.get(
+                    "close_for could not read one of the two", 0) + 1
+                continue
+            if not (cs.close_verified(pc.get("how")) and cs.close_verified(cc.get("how"))):
+                skipped["one close was not same-line verified"] = skipped.get(
+                    "one close was not same-line verified", 0) + 1
+                continue
+            pairs += 1
+            diffs.append(round(100.0 * (cc["p"] - pc["p"]), 2))
+    if pairs:
+        diffs.sort()
+        mean = sum(diffs) / len(diffs)
+        med = diffs[len(diffs) // 2]
+        harder = sum(1 for d in diffs if d > 0)
+        say(f"\n  comparable pairs: {pairs}")
+        say(f"  Circa minus Pinnacle, in points of win probability:")
+        say(f"     mean {mean:+.2f}   median {med:+.2f}   Circa higher on {harder}/{len(diffs)}")
+        if abs(mean) < 0.5:
+            say("  VERDICT: no material difference at this sample. Neither is systematically the")
+            say("  harder close, so 'beat either' is not a materially softer bar than 'beat both'.")
+        elif mean > 0:
+            say("  VERDICT: Circa reads HIGHER on these sides - the HARDER close. Beating Circa is")
+            say("  then the stronger of the two claims, and beating Pinnacle alone is the easier.")
+        else:
+            say("  VERDICT: Circa reads LOWER - the WEAKER close, easier to beat. Under 'beat")
+            say("  either', a candidate could qualify on the softer benchmark. Worth knowing before")
+            say("  any lane is promoted on a Circa-only pass.")
+        say(f"\n  SAMPLE IS TINY. {pairs} pair(s) settles nothing on its own; this prints every")
+        say("  night and the number only becomes meaningful as it accumulates.")
+    else:
+        say("\n  No comparable pair yet.")
+        for k, n in sorted(skipped.items(), key=lambda x: -x[1]):
+            say(f"      {n:3}  {k}")
+        say("  Expected this early: a pair needs the SAME game to have both a stored Pinnacle close")
+        say("  and a stored Circa close, and Circa capture only began Nov 9.")
 
     try:
         import executor as ex
