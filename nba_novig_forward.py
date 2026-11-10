@@ -14,6 +14,8 @@ import json
 import os
 import smtplib
 import statistics as st
+import time
+import urllib.error
 import urllib.parse
 import urllib.request
 from datetime import datetime, timedelta, timezone
@@ -28,8 +30,14 @@ _cache = {"t": 0, "ev": None, "mk": None}
 def _get(path, params=None):
     url = NOVIG + path + ("?" + urllib.parse.urlencode(params) if params else "")
     req = urllib.request.Request(url, headers={"User-Agent": "nba-forward-paper/1.0", "Accept": "application/json"})
-    with urllib.request.urlopen(req, timeout=20) as r:
-        return json.loads(r.read().decode())
+    for i in range(3):          # the live probe saw an isolated HTTP error on a book read: retry 429/5xx, then give up (-> excluded)
+        try:
+            with urllib.request.urlopen(req, timeout=20) as r:
+                return json.loads(r.read().decode())
+        except urllib.error.HTTPError as e:
+            if i == 2 or e.code not in (429, 500, 502, 503, 504):
+                raise
+            time.sleep(2 * (i + 1))
 
 
 def _paged(path, params):
