@@ -101,9 +101,9 @@ def by_league(sport):
         inline = bool(mks)
         if not mks:
             mks = markets_for_event(ev)
-        if n_ev <= 2:
-            say(f"    [{title[:40]}] {len(mks)} market(s) ({'inline' if inline else 'fetched'});"
-                f" keys: {sorted(list(mks[0].keys()))[:10] if mks else '-'}")
+        if n_ev <= 1 and mks:
+            say(f"    RAW bestAskQuote: {json.dumps(mks[0].get('bestAskQuote'))[:200]}")
+            say(f"    RAW bestBidQuote: {json.dumps(mks[0].get('bestBidQuote'))[:200]}")
         shown = 0
         for m in mks:
             n_mk += 1
