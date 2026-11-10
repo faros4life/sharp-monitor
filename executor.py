@@ -1503,6 +1503,14 @@ RULES_LIVE = (os.environ.get("EXEC_RULES_LIVE") or "1").strip() != "0"
 LIVEKEYS = set()   # play keys the bot already sent a live order or resting bid for (ledger registry + this run)
 REST_BOOKS = tuple(b.strip() for b in (os.environ.get("EXEC_REST_BOOKS") or "novig,kalshi").split(",") if b.strip())
 REST_BEFORE_MIN = 30   # resting bids expire this long before the listed start
+# Polymarket US resting: priced as a TAKER until the maker flag is PROVEN. participateDontInitiate
+# is what earns the rebate, and this venue has already been caught accepting a field
+# (goodTillTime) and silently discarding it - so until pmus_rest_order_test's pdi_test shows the
+# flag surviving a read-back, pricing a bid on the rebate would be claiming money we may not get.
+# Taker pricing is strictly conservative: it can only make us bid LESS aggressively. Peter flips
+# EXEC_PMUS_REST_MAKER=1 once the verdict is in.
+PMUS_REST_MAKER = (os.environ.get("EXEC_PMUS_REST_MAKER") or "").strip() == "1"
+PMUS_MAKER_REBATE = -0.0125   # Polymarket's published maker rebate: the venue pays us to post
 
 
 def rest_wanted(r):
@@ -1539,6 +1547,97 @@ def novig_grid_floor(p, levels):
     on = lambda v, st: abs(v / st - round(v / st)) < 1e-6
     step = 0.005 if pr and all(on(v, 0.005) for v in pr) and any(not on(v, 0.01) for v in pr) else 0.01
     return round(math.floor(p / step + 1e-9) * step, 3)
+
+
+def pmus_rest_note(order_id, slug, expire, p):
+    """Record ONE Polymarket US resting bid so a later run can cancel it. Returns True if recorded.
+
+    WHY A RECORD IS NEEDED AT ALL, when Kalshi and Novig need none: their expiries work. This
+    venue accepts goodTillTime and then stores the order as TIME_IN_FORCE_DAY with goodTillTime
+    null, so a bid left alone rests until the end of the day - straight through the start of the
+    game. Peter's rule is that a resting bid comes off at T-30. Only an explicit cancel can do
+    that here, and a cancel needs BOTH the order id and the marketSlug: the id-only route is
+    rejected with code 3 (proven on a live order, run 42750863769).
+
+    GMAIL IS THE REGISTRY, exactly as it is for bot_orders() and the watchdog. Nothing financial
+    goes in the public repo, and a repo file would also race the workflows that push it. The
+    subject prefix is matched exactly so nothing else is ever read as a resting record."""
+    if not order_id or not slug:
+        return False
+    try:
+        send(f"Bets PMUS REST: {(p.get('bet') or '')[:40]}",
+             f"{p.get('sport')} {p.get('game')} | {p.get('bet')}\n"
+             f"Resting on Polymarket US until T-30. This venue discards the expiry, so this bid is "
+             f"cancelled explicitly by a later executor run.\n\n"
+             f"PMUSREST {order_id} {slug} {int(expire.timestamp())}")
+        return True
+    except Exception as ex:
+        print(f"PM US resting record FAILED ({str(ex)[:60]}) - the bid is unmanaged")
+        return False
+
+
+def pmus_rest_sweep(now):
+    """Cancel every Polymarket US resting bid that has reached T-30. Counts only in the public log.
+
+    Runs once per executor run. Reads the PMUSREST records out of Gmail, skips any already
+    cancelled (a second token, so a cancel is never attempted twice), and for the rest cancels
+    only those whose recorded expiry has passed.
+
+    FAIL LOUD, NOT QUIET. A resting bid we cannot cancel is live money past the point Peter said
+    it must be off the book, so a failed cancel sends a phone push rather than only printing. The
+    cancel itself is verified by book_live.pmus_cancel, which reads the order back - a 2xx from
+    this venue is not proof, as goodTillTime already showed.
+
+    Inert while Polymarket US is not in REST_BOOKS: nothing writes PMUSREST records, so there is
+    nothing to find."""
+    if "polymarket_us" not in REST_BOOKS:
+        return 0
+    done = 0
+    try:
+        M = imap_open()
+        try:
+            since = (now - timedelta(days=2)).strftime("%d-%b-%Y")
+            typ, data = M.uid("SEARCH", None, "SUBJECT", '"Bets PMUS REST:"', "SINCE", since)
+            if typ != "OK":
+                print("PM US sweep: could not read the resting records")
+                return 0
+            for uid in (data[0].split() if data and data[0] else []):
+                typ, d = M.uid("FETCH", uid, "(RFC822)")
+                if typ != "OK" or not d or not d[0]:
+                    continue
+                raw = d[0][1]
+                # IMAP SUBJECT is a SUBSTRING match - that was the Oct 27 bug which read dry-run
+                # mail as live. Re-check the prefix on the real header before trusting the body.
+                subj = str(email.header.make_header(email.header.decode_header(
+                    email.message_from_bytes(raw).get("Subject") or "")))
+                if not subj.startswith("Bets PMUS REST:"):
+                    continue
+                body = body_text(raw)
+                m = re.search(r"PMUSREST (\S+) (\S+) (\d+)", body or "")
+                if not m:
+                    continue
+                oid, slug, exp = m.group(1), m.group(2), int(m.group(3))
+                if gsearch_strict(M, "pmusdone" + oid):
+                    continue                      # already cancelled on an earlier run
+                if now.timestamp() < exp:
+                    continue                      # not yet at T-30
+                res = book_live.pmus_cancel(oid, slug)
+                ok = res.get("status") == "cancelled"
+                send(f"Bets PMUS {'CANCELLED' if ok else 'CANCEL FAILED'}: {slug[:40]}",
+                     f"Resting bid {oid} on {slug} reached T-30.\n"
+                     f"{res.get('status')}: {res.get('state') or res.get('reason') or ''}\n\n"
+                     f"pmusdone{oid}")
+                if not ok:
+                    push("PM US cancel FAILED", f"{slug}\n{oid}\n{str(res.get('reason'))[:120]}\n"
+                                                f"Cancel it in the app - it rests until end of day.", mirror=False)
+                done += 1
+        finally:
+            imap_close(M)
+    except Exception as ex:
+        print(f"PM US sweep failed: {str(ex)[:60]}")
+        return 0
+    print(f"PM US resting sweep: {done} bid(s) at T-30 handled")   # counts only
+    return done
 
 
 def rest_bid(r):
@@ -1590,6 +1689,38 @@ def rest_bid(r):
             q = int(risk // c * 100)
             res = book_live.novig_place(x["outcome_id"], c, q, f"{p.get('sport')} {p.get('game')} | {p.get('bet')}",
                                         int(secs * 1000), derive_key(p) or "")
+        elif b == "polymarket_us":
+            # Nov 10. Until now this fell through to the `else: continue` below, which meant
+            # putting polymarket_us in REST_BOOKS placed NOTHING and said nothing - the worst
+            # failure available, because it looks like success. Resting and cancelling are both
+            # proven on this venue now (variant B rests; POST /v1/order/{id}/cancel + marketSlug
+            # cancels and reads back ORDER_STATE_CANCELED), so the branch can exist.
+            if not x.get("market_slug") or x.get("long_side") is None:
+                why_not.append("Polymarket US: market unknown")
+                continue
+            # The fee coefficient comes from the BOOKS ENTRY, not a constant. book_check.TAKER_COEF
+            # carries 'polymarket': 0.03 while the entry is built with the corrected 0.06, and
+            # picking the wrong one silently mis-prices every bid. taker_fee_coef is whatever this
+            # entry was actually scored with.
+            coef = PMUS_MAKER_REBATE if PMUS_REST_MAKER else (x.get("taker_fee_coef") or 0.06)
+            c = book_live.kalshi_cost_for(p_star, coef)   # same solver; verified for a negative coef
+            if not c:
+                why_not.append("Polymarket US: no price clears the alert number")
+                continue
+            n = int(risk // c)
+            if n * c < MIN_ORDER - 0.01:
+                why_not.append(f"Polymarket US: under ${MIN_ORDER:.0f}")
+                continue
+            res = book_live.pmus_place(x["market_slug"], bool(x["long_side"]), c, n,
+                                       f"{p.get('sport')} {p.get('game')} | {p.get('bet')}",
+                                       int(expire.timestamp()))
+            # THE EXPIRY IS NOT AN EXIT HERE. The venue stores the order as TIME_IN_FORCE_DAY with
+            # goodTillTime null, so this bid does NOT come off by itself at T-30 the way Kalshi's
+            # and Novig's do. pmus_rest_note below records the id AND the slug (cancelling by id
+            # alone is rejected with code 3), and pmus_rest_sweep cancels it on a later run. If
+            # that record is not written the bid is unmanaged, so a failure to record is reported.
+            if isinstance(res, dict) and res.get("status") == "placed":
+                res["rest_recorded"] = pmus_rest_note(res.get("order_id"), x["market_slug"], expire, p)
         else:
             continue
         res = dict(res, book=b, limit=lm.american(c), asked_stake=round(risk, 2), expires_utc=expire.strftime("%Y-%m-%dT%H:%M:%SZ"))
@@ -1965,6 +2096,14 @@ def main():
     trig = os.environ.get("GITHUB_EVENT_NAME", "local")
     if SOURCE in ("both",):
         muse_watchdog(now, plays, rplays, feed)
+    # Before anything else this run: pull any Polymarket US resting bid that has reached T-30.
+    # It goes here, ahead of the new-order work, because a bid past T-30 is live money sitting on
+    # the book after the point Peter said it must be off - that takes priority over placing more.
+    # Its own try/except is inside the function; a sweep failure must not stop the run.
+    try:
+        pmus_rest_sweep(now)
+    except Exception as ex:
+        print(f"PM US sweep call failed: {str(ex)[:60]}")
     try:
         novig_reports()
     except Exception as ex:
