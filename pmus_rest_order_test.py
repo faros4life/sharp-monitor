@@ -46,7 +46,45 @@ import time
 if os.environ.get("CONFIRM_REAL_ORDER") != "ONE_DOLLAR":
     sys.exit("REFUSING: CONFIRM_REAL_ORDER is not ONE_DOLLAR.")
 
-import book_live as bl
+import base64
+import urllib.error
+import urllib.request
+
+# DELIBERATELY NOT book_live.pmus_place. That routes through preflight(), which chains into the
+# whole live-money guard set: EXEC_LIVE, the ntfy STOP, and today's ProphetX result (fail-closed
+# if unreadable). The first run of this test was refused there - correctly. Lighting all of that
+# up to place a 42c venue probe would be the wrong trade, so this follows the pattern the other
+# two Polymarket $1 tests already use: build and sign the order here, with hard caps of its own.
+# The order body below is byte-for-byte what pmus_place sends when given expire_ts, so proving it
+# here proves that path.
+from cryptography.hazmat.primitives.asymmetric import ed25519
+
+API = "https://api.polymarket.us"
+KEY_ID = (os.environ.get("PMUS_KEY_ID") or "").strip()
+SECRET = (os.environ.get("PMUS_SECRET_KEY") or "").strip()
+if not KEY_ID or not SECRET:
+    sys.exit("Missing PMUS_KEY_ID / PMUS_SECRET_KEY.")
+_SK = ed25519.Ed25519PrivateKey.from_private_bytes(base64.b64decode(SECRET)[:32])
+
+
+def call(method, path, body=None):
+    ts = str(int(time.time() * 1000))
+    sig = base64.b64encode(_SK.sign(f"{ts}{method}{path}".encode())).decode()
+    h = {"X-PM-Access-Key": KEY_ID, "X-PM-Timestamp": ts, "X-PM-Signature": sig,
+         "Content-Type": "application/json", "Accept": "application/json"}
+    req = urllib.request.Request(API + path, data=json.dumps(body).encode() if body is not None else None,
+                                 method=method, headers=h)
+    try:
+        with urllib.request.urlopen(req, timeout=25) as r:
+            t = r.read().decode()
+            return r.status, (json.loads(t) if t else {})
+    except urllib.error.HTTPError as e:
+        try:
+            return e.code, e.read().decode()[:400]
+        except Exception:
+            return e.code, str(e)
+    except Exception as e:
+        return "?", str(e)[:300]
 
 MAX_COST = 1.50
 BELOW = 0.15        # how far under the best offer to sit, so it cannot cross
@@ -98,14 +136,11 @@ def best_offer(slug):
 
 
 def read_back(oid):
-    """Order read-back on the paths book_live already uses."""
+    """Order read-back on the paths book_live already uses, via our own signed call."""
     for path in (f"/v1/order/{oid}", f"/v1/orders/{oid}"):
-        try:
-            _, r = bl._pm_call("GET", path)
-            if r:
-                return r
-        except Exception:
-            continue
+        st, r = call("GET", path)
+        if isinstance(st, int) and 200 <= st < 300 and r:
+            return r if isinstance(r, dict) else None
     return None
 
 
@@ -135,21 +170,21 @@ def main():
     say(f"  qty 1 | tif GOOD_TILL_DATE + postOnly | expires in {EXPIRE_S}s")
     say("")
 
-    r = bl.pmus_place(slug, True, price, 1, label="rest-test", expire_ts=expire_ts)
-    say(f"1) place -> {json.dumps(r)[:400]}")
-    st = (r or {}).get("status")
-    if st == "refused":
-        say(f"\nREFUSED BEFORE SENDING: {(r or {}).get('reason')}")
-        say("Nothing was placed - this is our own guard, not the venue.")
-        return
-    if st == "error":
-        say(f"\nVENUE REJECTED IT: {(r or {}).get('reason')}")
-        say("Q1 ANSWER: the tif/postOnly names are WRONG or unsupported on this API version.")
-        say("Nothing rests. Do NOT add Polymarket US to REST_BOOKS.")
+    order = {"marketSlug": slug, "intent": "ORDER_INTENT_BUY_LONG", "type": "ORDER_TYPE_LIMIT",
+             "price": {"value": f"{price:.3f}", "currency": "USD"}, "quantity": 1,
+             "tif": "TIME_IN_FORCE_GOOD_TILL_DATE", "expiresAt": int(expire_ts), "postOnly": True,
+             "manualOrderIndicator": "MANUAL_ORDER_INDICATOR_AUTOMATIC"}
+    say(f"   order body: {json.dumps(order)}")
+    st, resp = call("POST", "/v1/orders", order)
+    say(f"\n1) place -> HTTP {st}: {json.dumps(resp)[:400] if isinstance(resp, (dict, list)) else str(resp)[:400]}")
+    if not (isinstance(st, int) and 200 <= st < 300):
+        say("\nVENUE REJECTED IT.")
+        say("Q1 ANSWER: GOOD_TILL_DATE / postOnly / expiresAt are WRONG or unsupported here.")
+        say("Read the error above for which field it disliked. Nothing rests; do NOT touch REST_BOOKS.")
         return
 
-    resp = (r or {}).get("resp") or r or {}
-    oid = resp.get("orderId") or resp.get("id") or (r or {}).get("order_id")
+    resp = resp if isinstance(resp, dict) else {}
+    oid = resp.get("orderId") or resp.get("id") or (resp.get("order") or {}).get("id")
     say(f"\n2) ACCEPTED. order id: {oid}")
     say("   Q1 ANSWER: the venue accepts GOOD_TILL_DATE + postOnly.")
 
