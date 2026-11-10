@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 9, 11:36 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 31.
+Updated Mon Nov 9, 11:40 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 29.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 1246-1002 (-51.70u flat) | rule met: 782-637
+**Record:** 1247-1003 (-52.40u flat) | rule met: 783-637
 
-**Fade (paper, betting against the print):** 736-973 (-154.17u flat, after fees)
+**Fade (paper, betting against the print):** 737-974 (-154.88u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -15,7 +15,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 9 11:06PM | NHL | New Jersey vs Winnipeg | moneyline: New Jersey | kalshi | $27k | -144 |  |  | +0.0c |  | pending |
 | Nov 9 11:06PM | NBA | Oklahoma City vs Portland | moneyline: Oklahoma City | kalshi | $38k | -117 | ✅ novig,polymarket |  | +0.0c |  | pending |
 | Nov 9 10:26PM | NBA | Los Angeles C vs Phoenix | moneyline: Phoenix | kalshi | $45k | -163 |  |  | +0.0c |  | pending |
-| Nov 9 10:00PM | NCAAF | Western Michigan vs Akron | moneyline: Western Michigan | kalshi | $83k | -567 | ✅ novig |  | +1.0c | yes | pending |
+| Nov 9 10:00PM | NCAAF | Western Michigan vs Akron | moneyline: Western Michigan | kalshi | $83k | -567 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 9 9:56PM | NBA | New Orleans vs Golden State: Spread | spread: Golden State wins by over 10.5 points | kalshi | $26k | -113 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 9 8:56PM | NBA | Pelicans vs. Warriors | spread: Warriors (-11.5) | polymarket | $573k | +104 |  |  | +0.0c |  | pending |
 | Nov 9 8:30PM | NHL | Flyers vs. Canucks | moneyline: Flyers | polymarket | $105k | -127 | ✅ kalshi,novig,prophetx |  | +1.0c |  | pending |
@@ -30,7 +30,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 9 7:00PM | NBA | Pacers vs. Mavericks | moneyline: Pacers | polymarket | $276k | +163 |  | ❌ | +0.0c |  | L |
 | Nov 9 6:40PM | NBA | Denver vs Houston: Spread | spread: NOT Houston wins by over 4.5 points | kalshi | $29k | -100 |  | ✅ | -1.0c | yes | L |
 | Nov 9 6:35PM | NBA | Spurs vs. Suns | spread: Suns (+8.5) | polymarket | $269k | +108 | ✅ kalshi |  | +1.0c |  | pending |
-| Nov 9 6:35PM | NBA | Spurs vs. Suns | moneyline: Suns | polymarket | $317k | +317 |  |  | +0.0c |  | pending |
+| Nov 9 6:35PM | NBA | Spurs vs. Suns | moneyline: Suns | polymarket | $317k | +317 |  |  | +0.0c |  | L |
 | Nov 9 6:35PM | NBA | Nuggets vs. Rockets | moneyline: Rockets | polymarket | $423k | -163 | ✅ kalshi,novig,prophetx | ❌ | +3.0c |  | W |
 | Nov 9 6:35PM | NBA | Grizzlies vs. Raptors | spread: Grizzlies (-1.5) | polymarket | $312k | -104 | ✅ novig | ✅ | +0.0c |  | W |
 | Nov 9 6:35PM | NBA | Nuggets vs. Rockets | spread: Rockets (-4.5) | polymarket | $338k | -104 | ✅ novig | ❌ | +1.0c |  | W |
@@ -86,7 +86,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 9 6:46AM | NBA | Memphis vs Toronto: Spread | spread: NOT Toronto wins by over 3.5 points | kalshi | $26k | -104 | ✅ polymarket |  | +12.0c | yes | W |
 | Nov 9 6:40AM | NBA | Cavaliers vs. Hornets | moneyline: Cavaliers | polymarket | $33k | -335 | ✅ kalshi,novig |  | -2.0c |  | L |
 | Nov 9 6:23AM | NBA | Wizards vs. Pistons | moneyline: Pistons | polymarket | $43k | -456 | ✅ kalshi,novig |  | -3.0c | yes | W |
-| Nov 9 6:20AM | NBA | Spurs vs. Suns | moneyline: Spurs | polymarket | $38k | -355 | ✅ kalshi,novig |  | -1.0c | yes | pending |
+| Nov 9 6:20AM | NBA | Spurs vs. Suns | moneyline: Spurs | polymarket | $38k | -355 | ✅ kalshi,novig |  | -1.0c | yes | W |
 | Nov 9 4:40AM | NFL | Buffalo vs Minnesota: Spread | spread: Buffalo wins by over 3.5 points | kalshi | $349k | +117 | ✅ novig |  | +3.0c | yes | W |
 | Nov 9 3:30AM | NCAAF | Ohio vs Miami (OH) | moneyline: Miami | kalshi | $68k | -100 |  |  | -2.0c | yes | pending |
 | Nov 9 3:15AM | NBA | Los Angeles L vs Atlanta | moneyline: Atlanta | kalshi | $98k | +108 |  |  | +8.0c | yes | L |
