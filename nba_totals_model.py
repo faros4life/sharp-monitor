@@ -216,6 +216,11 @@ def main():
                             side = "Over" if gap > 0 else "Under"
                             p["sighting"] = {"side": side, "line": pin["line"], "price": pin[side.lower()],
                                              "gap": round(gap, 1), "band": "4.0+" if abs(gap) >= 4 else "3.0-3.9"}
+                            try:   # forward paper candidate (Novig price + depth); isolated: never affects the record above
+                                import nba_novig_forward as nnf
+                                p["sighting"]["novig"] = nnf.novig_quote(g["home"], g["away"], pin["line"], side, now)
+                            except Exception as _e:
+                                p["sighting"]["novig"] = {"excluded": f"candidate logger error ({type(_e).__name__})"}
                     else:
                         p["pin_line"] = None   # no Pinnacle reference at posting: logged, never a sighting
                     rec["post"] = p
@@ -236,6 +241,12 @@ def main():
             cp = close_prob(sg["side"], sg["line"], c)
             if cp is not None:
                 sg["clv_c"] = round(100 * (cp - prob(sg["price"])), 2)
+        try:
+            import nba_novig_forward as nnf
+            if sg:
+                nnf.grade(sg, c)
+        except Exception:
+            pass
         if sg and fin is not None and "result" not in sg:
             d = (fin - sg["line"]) if sg["side"] == "Over" else (sg["line"] - fin)
             sg["result"] = "P" if abs(d) < 1e-9 else ("W" if d > 0 else "L")
@@ -244,6 +255,13 @@ def main():
     state["ratings"] = r
     state["updated_utc"] = iso(now)
     state["summary"] = summary(state)
+    try:
+        import nba_novig_forward as nnf
+        _cl, _ev = nnf.report(state)
+        state["summary"] += _cl
+        nnf.maybe_notify(state, _ev)
+    except Exception as _e:
+        print(f"candidate report failed ({type(_e).__name__})")
     json.dump(state, open(OUT, "w"), indent=1)
     if "--report" in sys.argv:
         print("\n".join(state["summary"]))
