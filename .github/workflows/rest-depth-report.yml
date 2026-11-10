@@ -30,7 +30,17 @@ permissions:
 jobs:
   run:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    # 30, not 10. The first run read 120 emails in under 4 minutes; the second hit a 10-minute
+    # timeout, because IMAP FETCH time scales with how much mail is in the window and the volume
+    # grows through the day. Raising it is right HERE and would have been wrong for
+    # liquidity-extra: that one is on a 10-minute schedule, so a longer run just collides with the
+    # next firing - the fix there was removing work (MLB). This is manual, read-only and
+    # unscheduled, so nothing collides and the only cost of a long run is waiting.
+    #
+    # Noting the irony rather than hiding it: I diagnosed this exact failure mode in
+    # liquidity-extra an hour before shipping a tool with the same flaw - a timed-out job reports
+    # as "cancelled", which reads as benign.
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
