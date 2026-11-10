@@ -145,13 +145,25 @@ def units_of(rs):
     re-graded here - this reads results that already exist."""
     u, n = 0.0, 0
     for a in rs:
-        res, am = a.get("result"), a.get("price") or a.get("american")
-        if res not in ("W", "L", "P") or am is None:
+        res = a.get("result")
+        if res not in ("W", "L", "P"):
+            continue
+        # alerts.json stores "price" as a PROBABILITY (0.51, 0.515, 0.5) and leaves "american"
+        # null. My first version read it as American odds, so a 0.51 win paid +0.005u instead of
+        # +0.96u and the section reported -61.55u over 151 plays - a number produced entirely by
+        # the reader. A probability pays (1-p)/p per 1u risked; American is kept for any row that
+        # really carries it.
+        p, am = a.get("price"), a.get("american")
+        if p is not None and 0.0 < float(p) < 1.0:
+            win = (1.0 - float(p)) / float(p)
+        elif am:
+            win = (am / 100.0) if am > 0 else (100.0 / abs(am))
+        else:
             continue
         n += 1
         if res == "P":
             continue
-        u += (am / 100.0 if am > 0 else 100.0 / abs(am)) if res == "W" else -1.0
+        u += win if res == "W" else -1.0
     return round(u, 2), n
 
 
@@ -223,7 +235,11 @@ def main():
     sim = [r for r in board if r.get("fill_avail") is not None
            and not ((r.get("live_order") or {}).get("filled_stake") or 0) > 0]
     say(f"\n  CONFIRMED executions (a real fill in the ledger)   {len(conf)}")
-    say(f"  SIMULATED executable entries (depth at a real price) {len(sim)}")
+    say(f"  SIMULATED entries, LANE 3 rows carrying depth        {len(sim)}")
+    say("  (This is Lane 3's count. LIQ-SMALL's own forward entry count is reported by")
+    say("   liq_small_fwd and is deliberately NOT restated here - LIQ-SMALL is a subset of these")
+    say("   same rows, so printing both side by side invites exactly the double count this")
+    say("   report exists to prevent.)")
     say("")
     say("  LIQ-SMALL's executable entries are SIMULATED. They are depth checks against a live book")
     say("  price at decision time - not orders, not fills. They are also Lane 3 rows read a second")
@@ -275,7 +291,11 @@ def main():
     say(gate("BOARD v3 PLAY", 4.75, -0.73, 4.73, -0.09))
     say(gate("Lane 3 shadow", None, None, None, None))
     say(gate("LIQ-SMALL", None, None, None, None))
-    say(gate("98-game first-alert (supplied)", None, -1.05, None, -1.10))
+    say("  98-game first-alert (supplied)     FAIL   CLV H1 -1.05% / H2 -1.10% (both halves")
+    say("                                     negative); units not supplied. Fails on the CLV leg")
+    say("                                     alone, so the missing units leg cannot rescue it -")
+    say("                                     which is why this reads FAIL here and in Section 5,")
+    say("                                     not INSUFFICIENT.")
     say("")
     say("  BOARD v3 PLAY fails on CLV in both halves while units are positive in both - the exact")
     say("  shape the gate exists to catch. The other three cannot be judged: registry 9 has no")
