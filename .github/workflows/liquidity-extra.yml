@@ -15,7 +15,27 @@ permissions:
 jobs:
   run:
     runs-on: ubuntu-latest
-    timeout-minutes: 9
+    # 9 -> 18 (Nov 10). PROFILED, not guessed, after my first guess failed.
+    #
+    # Five consecutive runs died at exactly 9 minutes with "Terminate orphan process: pid
+    # (python)". The profile of a killed run: 481.6 of its 551 seconds sit in ONE gap before the
+    # Python step prints anything - the book reads - then a Novig direction test, then the kill.
+    # The work simply needs more than 9 minutes.
+    #
+    # WHY MY EARLIER FIX DID NOTHING. I dropped MLB on the reasoning that November has no MLB
+    # games. That reasoning was right and the fix was therefore useless: a league with no games
+    # costs no time, so removing it saved nothing. The actual consumers are NCAAB and TENNIS.
+    #
+    # WHY MORE TIME RATHER THAN LESS WORK. Both leagues here are PAPER ONLY - the executor's own
+    # refusal reasons list "NCAAB (NCAAF, NBA, NFL only)", and tennis is banned for live - so
+    # nothing in this feed reaches a live bet. Freshness therefore matters less than completeness,
+    # which makes a longer run the better trade than a smaller call budget
+    # (LIQ_EXTRA_BOOKS, left at 900).
+    #
+    # Collisions are already handled: concurrency cancel-in-progress: false drops the QUEUED run,
+    # never the running one, so a ~10-minute run simply means some triggers are skipped - which
+    # they were anyway, except the run was being killed instead of finishing.
+    timeout-minutes: 18
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
