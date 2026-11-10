@@ -35,6 +35,14 @@ import tracker_build as tb
 ET = tb.ET
 FWD_START = os.environ.get("LSF_START", "") or "2026-11-06T11:00:00Z"
 LO, HI = 25_000, 50_000
+# LIVE_UNIT 200 -> 300, commit 901dbd9b6, 2026-11-09T15:52:34Z (verified from git, not assumed).
+UNIT_CHANGE = datetime(2026, 11, 9, 15, 52, 34, tzinfo=timezone.utc)
+
+
+def unit_for(decided_utc):
+    """The unit that was actually live when this row was decided. 200 before the change, 300 after."""
+    t = cl.tp(decided_utc) if decided_utc else None
+    return 300.0 if (t and t >= UNIT_CHANGE) else 200.0
 SLUG = {"novig": "novig.us", "prophetx": "prophetx", "kalshi": "kalshi", "polymarket_us": "polymarket.us"}
 
 
@@ -126,10 +134,20 @@ def result_at_fill(a, r):
 
 
 def row_view(r, a, clv):
+    # PER-ROW STAKE, not a hardcoded 200 (Peter, Nov 10). LIVE_UNIT went 200 -> 300 in commit
+    # 901dbd9b6 at 2026-11-09T15:52:34Z, and FWD_START is Nov 6 - so this forward cohort SPANS the
+    # change. The old code printed "$200 unit" for every row, which mislabelled every decision made
+    # after Nov 9.
+    #
+    # WHAT IS NOT TOUCHED: the fill classification. fill_avail / fill_partial come from the LEDGER
+    # (executor.py:1058 computes fillable=min(avail, risk) and partial=avail<risk against the stake
+    # that was actually live at that decision), so each row's full/partial/none is already correct
+    # for its own era. This only labels the stake honestly; it does not recompute anything.
     unit_risk = None
     fa = r.get("fill_price_after_fee")
     if fa is not None:
-        unit_risk = 200.0 if fa > 0 else round(200.0 * abs(fa) / 100, 2)
+        u = unit_for(r.get("decided_utc"))
+        unit_risk = u if fa > 0 else round(u * abs(fa) / 100, 2)
     filled = bool((r.get("live_order") or {}).get("filled_stake"))
     placed = r.get("verdict") == "WOULD PLACE" and fa is not None
     depth = r.get("fill_avail")
@@ -156,7 +174,7 @@ def summarise(V):
     cv = [v["clv"] for v in sim if v["clv"] is not None]
     sl = [v["slip_c"] for v in sim if v["slip_c"] is not None]
     u = sum(v["u"] for v in g)
-    return (f"opportunities {n} | executable at decision {len(sim)} ({len(full)} full $200-unit fills) | no fill {n - len(sim)}\n"
+    return (f"opportunities {n} | executable at decision {len(sim)} ({len(full)} full-unit fills) | no fill {n - len(sim)}\n"
             f"  confirmed executions {sum(v['status'] == 'CONFIRMED' for v in V)} | simulated {sum(v['status'] == 'SIMULATED' for v in V)}\n"
             f"  graded {len(g)}: {sum(v['u'] > 0 for v in g)}-{sum(v['u'] < 0 for v in g)} {u:+.2f}u"
             + (f" ({u / len(g):+.3f}/play)" if g else "") + " at the real fill price\n"

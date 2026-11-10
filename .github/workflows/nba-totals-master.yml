@@ -1,0 +1,53 @@
+name: nba-totals-master
+
+# MANUAL ONLY, NOT SCHEDULED, READ-ONLY, ZERO PAID ODDSPAPI CREDITS.
+#
+# One consolidated NBA totals scorecard over four NESTED populations - registry 9, BOARD v3 PLAY,
+# Lane 3 shadow and LIQ-SMALL - which were being read as four independent strategies. It reports
+# them separately and never sums them, because the inner sets are the outer sets filtered.
+#
+# It eliminates duplicate PRESENTATION only. Every collector keeps running unchanged: board_build,
+# executor, lanes, liq_small_fwd, post_test, liq_history_test, clv_rootcause, clv_scorecard,
+# board_clv_check and clv_report are all untouched by this.
+#
+# No schedule and no recurring email, by instruction: this fires only when dispatched, so it
+# cannot become another nightly report.
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: nba-totals-master
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      # Pinnacle and Circa closes come from the history cache that is already bought, so the
+      # report spends nothing. Restore is read-only; this job never saves the cache back.
+      - name: Restore shared OddsPapi history cache (read only)
+        uses: actions/cache/restore@v4
+        with:
+          path: hcache
+          key: hcache-${{ github.run_id }}
+          restore-keys: hcache-
+      - name: NBA totals master scorecard (read-only, 0 credits)
+        env:
+          ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
+          ODDSPAPI_FREE_KEY: ${{ secrets.ODDSPAPI_FREE_KEY }}
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+        run: |
+          set -o pipefail
+          python -u nba_totals_master.py 2>&1 | tee out.txt
+          { echo '```'; cat out.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
