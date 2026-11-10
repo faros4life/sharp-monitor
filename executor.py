@@ -375,24 +375,23 @@ MIN_ORDER = 50.0    # Oct 28: smallest order / routing remainder worth placing (
 
 
 def live_stake(am):
-    """(risk, to_win) for one unit. TO_WIN IS ALWAYS LIVE_UNIT - that is what "$300 to win" means.
+    """(risk, to_win) for one unit, per PETER'S RULE, Nov 10: "If + money we bet 300. That's the rule."
 
-    THE BUG THIS FIXES (Nov 10, Peter's finding). The unit silently changed meaning at the odds
-    sign. At minus money it sized to win LIVE_UNIT, correctly: -110 risked $330 to win $300. At
-    PLUS money it risked LIVE_UNIT instead, so +150 risked $300 to win $450 - which is $300 AT
-    RISK, not $300 to win. The error direction was always more exposure than the name implied: a
-    true $300-to-win at +150 risks $200, so the old sizing put 50% more on the table, and every
-    guard downstream (per-order cap, daily stop, stacking cap) was being handed that inflated
-    number as if it were one unit.
+    Minus money sizes to WIN the unit: -110 risks $330 to win $300.
+    Plus money RISKS the unit: +150 risks $300 to win $450.
 
-    Now both branches solve for the same payout, so a unit is a unit at any price.
+    This asymmetry is DELIBERATE and is not to be "corrected". I changed it on Nov 10 after a
+    review called the unit inconsistent - the mechanics I described were right (plus money does
+    risk $300 rather than win $300) but the intent was not mine to infer, and Peter's rule is the
+    rule. Reverted within minutes; no order was placed in the window. The lesson is that verifying
+    a finding's arithmetic is not the same as verifying that the behaviour is unintended, and a
+    live-money default is exactly where that distinction matters.
 
-    NOT CHANGED, and it needs its own decision: ProphetX takes 2% of winnings
-    (liquidity_monitor.PX_FEE), so $300 gross wins about $294 net there. Grossing the stake up to
-    net $300 would INCREASE risk, which is the opposite direction from this fix and a different
-    question - "$300 gross" or "$300 net" - so it is flagged rather than assumed."""
-    risk = (LIVE_UNIT * 100.0 / am) if am > 0 else (LIVE_UNIT * abs(am) / 100.0)
-    return round(risk, 2), round(float(LIVE_UNIT), 2)
+    ProphetX takes 2% of winnings (liquidity_monitor.PX_FEE), so the minus-money $300 nets about
+    $294 there. Left as gross, per the same rule.
+    """
+    risk = LIVE_UNIT if am > 0 else LIVE_UNIT * abs(am) / 100
+    return round(risk, 2), round(LIVE_UNIT * am / 100 if am > 0 else LIVE_UNIT, 2)
 
 
 WATCH_MIN = 10   # Oct 27 (Muse): a phase-1-qualifying alert with no Muse verdict 10 min after the executor saw it -> push
@@ -1915,13 +1914,10 @@ def _cap_units(asked, am):
     asked, am = float(asked or 0), float(am or 0)
     if asked <= 0 or am == 0:
         return 0.0
-    # ONE unit = to-win LIVE_UNIT, at either sign. This had to move with live_stake: the plus-money
-    # branch was asked/300, which scored 1.0 only because plus-money sizing used to RISK $300. With
-    # sizing corrected to risk $200 at +150, asked/300 would have scored that full-size play as
-    # 0.67 units and quietly let two of them stack under a 1.0-unit cap. Both branches now convert
-    # the stake to its payout first, so the divisor measures the same thing it always claimed to.
-    to_win = asked * am / 100.0 if am > 0 else asked * 100.0 / abs(am)
-    return to_win / 300.0
+    # Matches Peter's rule exactly: plus money counts RISK/300 because a plus-money unit IS $300
+    # risked; minus money counts TO-WIN/300 because a minus-money unit is $300 to win. I briefly
+    # changed both branches to payout/300 on Nov 10 when I changed live_stake; reverted with it.
+    return asked / 300.0 if am > 0 else asked * 100.0 / abs(am) / 300.0
 
 
 def stack_cap_report(r):
