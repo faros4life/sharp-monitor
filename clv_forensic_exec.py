@@ -39,6 +39,8 @@ import clv_std as cs
 import executed_clv as xc
 import executor as ex
 import hist_cache as hc
+import slow_hr as sh
+import tracker_build as tb
 
 
 class _NoNetwork(RuntimeError):
@@ -103,6 +105,37 @@ def summarize(rows):
             "se": round(sd / len(v) ** 0.5, 3), "big": sum(1 for x in v if abs(x) > 10)}
 
 
+def wilson(k, n, z=1.96):
+    if not n:
+        return (0.0, 0.0)
+    p = k / n
+    d = 1 + z * z / n
+    c = (p + z * z / (2 * n)) / d
+    h = z * ((p * (1 - p) / n + z * z / (4 * n * n)) ** 0.5) / d
+    return (c - h, c + h)
+
+
+def tcrit(df):
+    tab = {1: 12.71, 2: 4.30, 3: 3.18, 4: 2.78, 5: 2.57, 6: 2.45, 7: 2.36, 8: 2.31, 9: 2.26, 10: 2.23,
+           15: 2.13, 20: 2.09, 30: 2.04, 60: 2.00}
+    for k in sorted(tab):
+        if df <= k:
+            return tab[k]
+    return 1.98
+
+
+def ci_line(label, vals):
+    n = len(vals)
+    if n < 2:
+        return f"  {label:46s} n {n}"
+    m, sd = st.mean(vals), st.stdev(vals)
+    h = tcrit(n - 1) * sd / n ** 0.5
+    k = sum(1 for v in vals if v > 0)
+    lo, hi = wilson(k, n)
+    return (f"  {label:46s} n {n:3d} | CLV {m:+.2f}% (95% CI {m - h:+.2f}..{m + h:+.2f}) | beat close {k}/{n} "
+            f"= {100 * k / n:.0f}% (Wilson {100 * lo:.0f}-{100 * hi:.0f}%)")
+
+
 def line(label, s):
     if not s.get("n"):
         return f"  {label:46s} n 0"
@@ -110,10 +143,10 @@ def line(label, s):
             f"{s['median']:+6.2f}% | beat {s['beat']}/{s['n']} | |CLV|>10: {s['big']}")
 
 
-def send_csv(subject, body, rows, filename):
+def send_csv(subject, body, rows, filename, cols=None, extra=()):
     user, pw, to = ex.gmail()
     buf = io.StringIO()
-    w = csv.DictWriter(buf, fieldnames=COLS, extrasaction="ignore")
+    w = csv.DictWriter(buf, fieldnames=cols or COLS, extrasaction="ignore")
     w.writeheader()
     for r in rows:
         w.writerow(r)
@@ -125,9 +158,116 @@ def send_csv(subject, body, rows, filename):
     encoders.encode_base64(part)
     part.add_header("Content-Disposition", "attachment", filename=filename)
     m.attach(part)
+    for (fn, c2, r2) in extra:
+        b2 = io.StringIO()
+        w2 = csv.DictWriter(b2, fieldnames=c2, extrasaction="ignore")
+        w2.writeheader()
+        for r in r2:
+            w2.writerow(r)
+        p2 = MIMEBase("text", "csv")
+        p2.set_payload(b2.getvalue().encode("utf-8"))
+        encoders.encode_base64(p2)
+        p2.add_header("Content-Disposition", "attachment", filename=fn)
+        m.attach(p2)
     with smtplib.SMTP_SSL("smtp.gmail.com", 465) as s:
         s.login(user, pw)
         s.send_message(m)
+
+
+L2COLS = ["day", "league", "game", "kind", "type", "side", "team", "hr_american", "hr_decimal", "late", "mins_before",
+          "stored_close_fair", "recomputed_close_fair", "close_tick_age_min", "close_verified", "clv_pct", "excluded_reason"]
+
+
+def _ml_close(pin, mkmap, lg, start):
+    """Independent Pinnacle MONEYLINE no-vig close at game start from the cached ticks: (p_side1, age_min) or None."""
+    sid = cl.SPORT[lg]
+    best = None
+    for mid, (s, typ, hcap, outs) in mkmap.items():
+        if s != sid or typ != "moneyline" or mid not in pin:
+            continue
+        names = {v: k for k, v in outs.items()}
+        o1, o2 = names.get("1"), names.get("2")
+        oo = pin[mid].get("outcomes") or {}
+        if not o1 or not o2 or o1 not in oo or o2 not in oo:
+            continue
+        t1, t2 = sh.at(sh.ticks(oo[o1]), start), sh.at(sh.ticks(oo[o2]), start)
+        if not t1 or not t2:
+            continue
+        i1, i2 = 1 / t1[1], 1 / t2[1]
+        age = (start - min(t1[0], t2[0])).total_seconds() / 60
+        cand = (i1 / (i1 + i2), age)
+        if best is None or cand[1] < best[1]:
+            best = cand
+    return best
+
+
+def lane2(now, mkmap):
+    """Lane 2 = SLOW-HR Type P moneyline sightings. Hard Rock shows the price (no fee). Close = Pinnacle's OWN moneyline
+    no-vig at game start, recomputed here from the cached ticks (never the logger's stored value, only compared to it).
+    Underdog = Hard Rock American price > 0. Rows without a verified own-market close are excluded and counted."""
+    say("")
+    say("LANE 2 (SLOW-HR Type P moneyline) - independent recalculation")
+    try:
+        sstate = tb.dec(json.load(open(sh.STATE)))
+    except Exception as e:
+        say(f"STOP-LANE2: cannot read slowhr/state.enc ({type(e).__name__})")
+        return []
+    S = sstate.get("sightings") or []
+    say(f"sighting record field inventory: " + ", ".join(f"{k}:{n}" for k, n in sorted(Counter(k for x in S for k in x).items())))
+    say(f"sightings stored {len(S)}; by kind/type: {dict(Counter((x.get('kind'), x.get('type')) for x in S))}")
+    P = [x for x in S if x.get("kind") == "P" and x.get("type") == "moneyline"]
+    rows, why = [], Counter()
+    for x in P:
+        r = {"day": str(x.get("start"))[:10], "league": x.get("league"), "game": x.get("game"), "kind": "P",
+             "type": "moneyline", "side": x.get("side"), "team": x.get("team"), "hr_american": x.get("hr_am"),
+             "hr_decimal": x.get("hr_price"), "late": x.get("late"), "mins_before": x.get("mins_before"),
+             "stored_close_fair": x.get("close_fair")}
+        rows.append(r)
+        start = cl.tp(x.get("start"))
+        fid = x.get("fixture")
+        try:
+            if not start or not fid or not x.get("hr_price"):
+                raise KeyError("missing field")
+            if not os.path.exists(hc._path(fid, "pinnacle")):
+                raise _NoNetwork("Pinnacle close not in cache")
+            h = hc.get_hist(fid, ["pinnacle"], start)
+            pin = cl.book_markets(h, "pinnacle")
+            c = _ml_close(pin, mkmap, x["league"], start)
+            if not c:
+                raise KeyError("no own-market moneyline close")
+            p1, age = c
+            pc = p1 if x.get("side") == "1" else 1 - p1
+            r.update({"recomputed_close_fair": round(pc, 5), "close_tick_age_min": round(age, 1), "close_verified": 1,
+                      "clv_pct": round(100 * (pc * x["hr_price"] - 1), 3)})
+            if x.get("close_fair") is not None and abs(x["close_fair"] - pc) > 0.01:
+                r["excluded_reason"] = "stored vs recomputed close differ >1pt (kept, flagged)"
+                why["close differs from logger"] += 1
+        except (KeyError, _NoNetwork) as e:
+            r["excluded_reason"] = str(e)[:50]
+            why[str(e)[:50]] += 1
+    ok = [r for r in rows if r.get("clv_pct") is not None]
+    say(f"Type P moneyline sightings {len(P)}; scored with verified own close {len(ok)}; exclusions {dict(why)}")
+
+    def block(label, xs):
+        by = {}
+        for r in xs:
+            by.setdefault((r["league"], r["game"]), []).append(r)
+        first = [sorted(v, key=lambda r: -(r.get("mins_before") or 0))[0]["clv_pct"] for v in by.values()]
+        say(ci_line(f"{label}: sightings", [r["clv_pct"] for r in xs]))
+        say(ci_line(f"{label}: one per game (earliest)", first))
+        return first
+    J = [r for r in ok if not r["late"]]
+    block("ALL not-late", J)
+    D = [r for r in J if (r["hr_american"] or 0) > 0]
+    first = block("UNDERDOGS (HR price > +100) not-late", D)
+    block("underdogs, close tick <= 60 min old", [r for r in D if r["close_tick_age_min"] <= 60])
+    days = sorted({r["day"] for r in D})
+    if days:
+        mid = days[(len(days) - 1) // 2]
+        block(f"underdogs FIT (<= {mid})", [r for r in D if r["day"] <= mid])
+        block(f"underdogs CHECK (> {mid})", [r for r in D if r["day"] > mid])
+    say(f"  registered bar: >=100 distinct games, CLV>0 and beat-close>=53% in both halves; distinct underdog games here: {len({(r['league'], r['game']) for r in D})}")
+    return rows
 
 
 def main():
@@ -151,6 +291,8 @@ def main():
         return 3
     F, total = xc.fill_rows()
     say(f"tracker rows {total}; graded bot fills {len(F)}")
+    inv = Counter(k for b in F for k, v in b.items() if v not in (None, ""))
+    say("fill field inventory (name: rows present): " + ", ".join(f"{k}:{n}" for k, n in sorted(inv.items())))
 
     stt = {"fixtures": {}, "fx_last": {}}
     prev = cl.tb.dec(json.load(open(cl.STATE)))
@@ -243,6 +385,23 @@ def main():
     say(line("VERIFIED same-line closes only", summarize(ver)))
     say(line("MODELLED closes only (diagnostic, not CLV headline)", summarize(mod)))
     say(line("as executed_clv.py reports it (all of the above)", summarize(scored)))
+    # split fills: one decision (league, game, bet, venue) can be filled in several pieces; each decision counts once
+    # (equal-weight mean of its fills - no stakes are read or exported)
+    grp = {}
+    for r in ver:
+        grp.setdefault((r["league"], r["game"], r["bet"], r["venue"]), []).append(r["net_clv_pct"])
+    dec = [st.mean(v) for v in grp.values()]
+    games = {(k[0], k[1]) for k in grp}
+    say("")
+    say(f"LANE 1 CORRECTED (verified same-line closes, fees once, split fills collapsed to one decision)")
+    say(f"  verified fills {len(ver)} -> decisions {len(grp)} -> unique games {len(games)}; "
+        f"fills with >1 piece: {sum(1 for v in grp.values() if len(v) > 1)}")
+    say(ci_line("Lane 1 decisions, verified", dec))
+    say(ci_line("Lane 1 decisions, verified, close <= 60 min old",
+                [st.mean(x["net_clv_pct"] for x in ver if (x["league"], x["game"], x["bet"], x["venue"]) == k and (x["close_age_min"] or 0) <= 60)
+                 for k in grp if any((x["league"], x["game"], x["bet"], x["venue"]) == k and (x["close_age_min"] or 0) <= 60 for x in ver)]))
+    for r in ver:
+        r["decision_key"] = "|".join(str(x) for x in (r["league"], r["game"], r["bet"], r["venue"]))
     say("")
     say("FRESHNESS SENSITIVITY (verified closes; registered rule unchanged at 24h)")
     for m in FRESH_STEPS:
@@ -255,6 +414,7 @@ def main():
         say(f"  A. entry edge (net fill vs Pinnacle fair at entry)     mean {st.mean(r['entry_edge_pct'] for r in sp):+.2f}%")
         say(f"  B. Pinnacle fair-probability movement entry->close      mean {st.mean(r['pin_movement_pct'] for r in sp):+.2f}%")
         say(f"  C. net CLV on the same rows                             mean {st.mean(r['net_clv_pct'] for r in sp):+.2f}%")
+    l2rows = lane2(now, mkmap)
     big = [r for r in scored if abs(r["net_clv_pct"]) > 10]
     say("")
     say(f"|CLV| > 10%: {len(big)} row(s), listed in the private CSV for manual classification")
@@ -262,7 +422,8 @@ def main():
     print(f"clv forensic exec: fills {len(F)}, scored {len(scored)}, verified {len(ver)}, modelled {len(mod)}")
     try:
         send_csv("Bets CLV FORENSIC - executed fills (audit)", "\n".join(L), out,
-                 f"clv_forensic_exec_{now:%Y%m%d_%H%M}.csv")
+                 f"clv_forensic_exec_{now:%Y%m%d_%H%M}.csv",
+                 extra=[(f"lane2_{now:%Y%m%d_%H%M}.csv", L2COLS, l2rows)])
         print(f"per-row CSV sent: {len(out)} rows")
     except Exception as e:
         print(f"email failed ({type(e).__name__})")
