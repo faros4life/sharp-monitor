@@ -17,6 +17,7 @@ prints COUNTS only.
 import json
 import math
 import os
+import re
 from collections import Counter
 from datetime import datetime, timezone
 
@@ -32,8 +33,19 @@ def num(x):
 
 
 def is_hr(b):
+    """Book is Hard Rock, OR the row came from a Hard Rock note (the book can be relabelled after dup-matching)."""
     s = str(b.get("book") or "").lower().replace(" ", "")
-    return "hardrock" in s
+    return "hardrock" in s or "hard rock note" in str(b.get("source") or "").lower()
+
+
+def price_of(b):
+    """The row's price; if None, a trailing/bare American price in the bet text ('Under 230.5 -120').
+    tracker_build only parses '(-120)' in parentheses, so un-parenthesised notes come through with price None."""
+    pr = num(b.get("price"))
+    if pr:
+        return pr, False
+    m = re.search(r"(?<![\d.])([+-]\d{3})(?!\d)\s*$", str(b.get("bet") or ""))
+    return (float(m.group(1)), True) if m else (None, False)
 
 
 def stake_of(b):
@@ -43,9 +55,10 @@ def stake_of(b):
 def profit_of(b):
     """(profit, derived?) - the row's own profit when present, else from result + stake + price."""
     p = num(b.get("profit"))
-    if p is not None:
-        return p, False
-    st, pr, res = stake_of(b), num(b.get("price")), b.get("result")
+    pr, pr_derived = price_of(b)
+    if p is not None and not (pr_derived and b.get("result") == "W" and p == 0):
+        return p, False   # (a W with profit 0 and no stored price is the unparsed-price bug: recompute below)
+    st, res = stake_of(b), b.get("result")
     if st is None or res not in ("W", "L", "P"):
         return None, False
     if res == "P":
@@ -110,6 +123,8 @@ def build(R):
     L += [f"  field names: {keys}", ""]
 
     hr = [b for b in R if is_hr(b)]
+    mism = [b for b in hr if "hardrock" not in str(b.get("book") or "").lower().replace(" ", "")]
+    noprice = [b for b in hr if price_of(b)[1]]
     est = [b for b in hr if "est. stake" in str(b.get("source"))]
     def when(b):
         return str(b.get("game_start") or b.get("placed") or b.get("settled") or b.get("first_seen") or "")[:10]
@@ -117,13 +132,16 @@ def build(R):
     open_ = [b for b in hr if b.get("result") not in ("W", "L", "P")]
     L += ["=" * 74, f"HARD ROCK ROWS: {len(hr)}  (selected on book; {len(open_)} ungraded/open, "
           f"{len(est)} with an ESTIMATED stake)", "=" * 74,
+          f"  rows selected by SOURCE but with a different book label: {len(mism)} "
+          f"{[str(b.get('book')) for b in mism]}",
+          f"  rows whose price was missing on the row and read from the bet text: {len(noprice)}",
           f"  date coverage of these rows: {days[0] if days else '-'} to {days[-1] if days else '-'}",
           "  The tracker only re-reads 'Bets manual' notes from the last 10 days; older rows are what the stored",
           "  state kept. Check this coverage before comparing with the Oct 8 - Nov 10 alert window.", ""]
     for b in sorted(hr, key=when):
         st = stake_of(b)
         p, d = profit_of(b)
-        L.append(f"  {when(b)}  {str(b.get('bet'))[:34]:<34} price {str(b.get('price')):>5}  "
+        L.append(f"  {when(b)}  {str(b.get('bet'))[:34]:<34} price {str(price_of(b)[0]):>6}  "
                  f"stake {('$%.2f' % st) if st is not None else '?':>9}  {str(b.get('result') or 'OPEN'):<4} "
                  f"P&L {('$%+.2f' % p) if p is not None else '?':>10}{'*' if d else ' '} "
                  f"{str(b.get('source'))[:32]}")
