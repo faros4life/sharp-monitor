@@ -160,9 +160,50 @@ def main():
         # they are EXCLUDED with their own reason rather than crashing the report or, worse, being
         # silently priced with some other venue's fee model. Third issue in this chain, and the
         # only one that is not a bug: it was simply never reached before today.
+        # SECOND BENCHMARK: CIRCA (Peter, Nov 10: "We using circa and pinical clv always taking
+        # into account fees" / "From now on future").
+        #
+        # Circa closes are captured by circa_close.py into the SAME hist_cache as Pinnacle, as
+        # hc._path(fid, "circasports"), so grading against them reuses this exact machinery - the
+        # same close_for, the same close_verified same-line rule, the same net_clv with the same
+        # fee model on OUR entry price. Nothing about the fee treatment changes: the fee has
+        # always applied to the entry, not to the benchmark close, which is why the figures split
+        # into maker and taker.
+        #
+        # FORWARD-ONLY FALLS OUT FOR FREE. Capture began Nov 9, so no cache file exists for any
+        # earlier game and the exists() check below simply reports "pre-capture". No date logic,
+        # and no risk of back-filling a benchmark that was never recorded.
+        #
+        # Circa is a BENCHMARK, not an entry venue - which is why cs.canon("circa") correctly
+        # raises UnknownVenue and is not being "fixed". It needs a no-vig close, not a fee model.
+        #
+        # A missing Circa close NEVER drops the row: the Pinnacle leg stands on its own and the
+        # Circa leg is reported as coverage. Making Circa mandatory today would zero the report,
+        # because at 25 games/night the history is about a day and a half deep.
+        rec["circa"] = rec["circa_taker"] = None
+        rec["circa_why"] = "pre-capture (Circa capture began Nov 9)"
+        if os.path.exists(hc._path(fid, "circasports")):
+            try:
+                hcc = hc.get_hist(fid, ["circasports"], start)
+                if isinstance(hcc, dict) and hcc.get("_error"):
+                    rec["circa_why"] = "history error"
+                else:
+                    cc, cwhy = cl.close_for(b, f, cl.book_markets(hcc, "circasports"), mkmap, start, "NBA")
+                    if not cc:
+                        rec["circa_why"] = f"no Circa close found ({cwhy})" if cwhy else "no Circa close found"
+                    elif not cs.close_verified(cc.get("how")):
+                        rec["circa_why"] = f"Circa close not same-line ({cc.get('how')})"
+                    else:
+                        rec["circa_p"] = round(cc["p"], 5)
+                        rec["circa_why"] = None
+            except Exception as ex2:
+                rec["circa_why"] = f"{type(ex2).__name__}"
         try:
             rec["pin"] = cs.net_clv(c["p"], dec, v, maker=True, league="NBA")
             rec["pin_taker"] = cs.net_clv(c["p"], dec, v, maker=False, league="NBA")
+            if rec.get("circa_p") is not None:
+                rec["circa"] = cs.net_clv(rec["circa_p"], dec, v, maker=True, league="NBA")
+                rec["circa_taker"] = cs.net_clv(rec["circa_p"], dec, v, maker=False, league="NBA")
         except cs.NotTradeable as ex:
             exc[f"book not tradeable ({v}): no fee model"] += 1
             rec["not_tradeable"] = str(ex)[:80]
@@ -171,6 +212,27 @@ def main():
         out.append(rec)
 
     ver = [r for r in out if r["pin"] is not None]
+    # CIRCA COVERAGE, reported separately and never mixed into the Pinnacle figure. At 25
+    # games/night the history is about a day and a half deep, so this will read mostly
+    # "pre-capture" for a while - which is the honest state, not a failure.
+    cver = [r for r in ver if r.get("circa") is not None]
+    say(f"\nCIRCA (second benchmark, forward-only from Nov 9): {len(cver)} of {len(ver)} verified "
+        f"rows also have a verified same-line CIRCA close")
+    if cver:
+        cm = [r["circa"] for r in cver]
+        ct = [r["circa_taker"] for r in cver]
+        pm = [r["pin"] for r in cver]
+        cb = sum(1 for x in cm if x > 0)
+        say(f"  on those {len(cver)} rows: Circa CLV maker {sum(cm)/len(cm):+.2f}%  taker "
+            f"{sum(ct)/len(ct):+.2f}%  beat Circa close {cb}/{len(cver)}")
+        say(f"  same rows vs Pinnacle:      maker {sum(pm)/len(pm):+.2f}%   (the two benchmarks "
+            f"are reported side by side, never averaged together)")
+    else:
+        from collections import Counter as _C
+        wc = _C(r.get("circa_why") or "?" for r in ver)
+        for k, n in wc.most_common(4):
+            say(f"      {n:3}  {k}")
+        say("  No Circa-graded row yet, so no candidate can be judged on the Circa leg today.")
     print(f"\nCLOSE COVERAGE: {len(ver)} of {len(rows)} calls have a VERIFIED same-line Pinnacle "
           f"close ({100.0 * len(ver) / max(len(rows), 1):.1f}%)")
     print(f"  {len(rows) - len(ver)} do NOT. Why:")
