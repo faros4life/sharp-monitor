@@ -190,6 +190,41 @@ def read_back(oid):
     return None
 
 
+def _classify(st, body):
+    """Is this status a real route, an unimplemented stub, or nothing?
+
+    WRITTEN BECAUSE THE FIRST VERSION OVERCALLED. It tagged anything that was not a 404 as
+    "ROUTE EXISTS", so DELETE /v1/orders answering 501 with gRPC status code 12 came back as a
+    REAL cancel route. It is not one: code 12 is UNIMPLEMENTED, the gateway's generic stub for a
+    method it does not serve. Muse caught it. A stub is a dialect, not a cancel.
+
+    So the three cases are separated explicitly:
+      live  2xx, or 400/403/409/422 - the handler RAN and rejected our arguments. For a dead
+            order id that is the signature of a real cancel route: it found the route, found the
+            order, and refused because the order is already finished.
+      stub  501/502/503, or any body carrying gRPC code 12 - routed to nothing.
+      none  404 - no such route.
+    A 405 is ambiguous enough to report as live-ish: the path resolves but the verb does not, so
+    it is worth a human look rather than a silent discard."""
+    txt = str(body)
+    unimpl = '"code":12' in txt.replace(" ", "") or "UNIMPLEMENTED" in txt.upper()
+    if not isinstance(st, int):
+        return "error", None
+    # 2xx is checked BEFORE the body sniff: a success whose payload merely happens to contain
+    # "code": 12 somewhere (an order field, a nested value) is a working route, not a stub.
+    if 200 <= st < 300:
+        return "HANDLER RAN - route is real", "live"
+    if st == 404:
+        return "no route", None
+    if st in (501, 502, 503) or unimpl:
+        return "unimplemented stub - NOT a route", "stub"
+    if st in (400, 403, 409, 422):
+        return "HANDLER RAN - route is real", "live"
+    if st == 405:
+        return "path resolves, verb does not - look at this", "live"
+    return f"unexpected {st}", "live"
+
+
 def discover_cancel():
     """Find the cancel route WITHOUT PLACING ANYTHING. Reads an order id from PMUS_ORDER_ID.
 
@@ -223,8 +258,30 @@ def discover_cancel():
     say("POLYMARKET US CANCEL-ROUTE DISCOVERY - places NOTHING")
     say(f"  probing with order {oid} (expected already dead)\n")
 
-    say("1) does the order resource exist, and what verbs does it admit?")
-    for method, path in (("GET", f"/v1/orders/{oid}"), ("OPTIONS", f"/v1/orders/{oid}"),
+    # STEP 0. Which spelling does this API actually use? This was the miss that cost a round:
+    # read_back() in THIS FILE tries /v1/order/{id} - SINGULAR - as its first path, so the
+    # singular convention was already sitting in the code, and the first candidate list was
+    # built entirely plural anyway. Muse found it in the official docs: the documented cancel is
+    # POST /v1/order/{orderId}/cancel. One GET on each spelling settles the namespace for free,
+    # before anything is guessed on top of it.
+    say("0) which spelling does this API use? (the miss that cost the last round)")
+    singular = None
+    for path in (f"/v1/order/{oid}", f"/v1/orders/{oid}"):
+        st, _, _ = call_h("GET", path)
+        ok = isinstance(st, int) and 200 <= st < 300
+        say(f"   GET    {path:34} HTTP {st}  {'OK - this is the convention' if ok else ''}")
+        if ok and singular is None:
+            singular = "/v1/order" in path and "/v1/orders" not in path
+        time.sleep(1)
+    if singular is True:
+        say("   -> SINGULAR /v1/order/{id}. The plural candidates could never have matched.")
+    elif singular is False:
+        say("   -> plural /v1/orders/{id} reads fine; singular may still own the actions.")
+    else:
+        say("   -> neither spelling read back. Probing both families below.")
+
+    say("\n1) does the order resource exist, and what verbs does it admit?")
+    for method, path in (("OPTIONS", f"/v1/order/{oid}"), ("OPTIONS", f"/v1/orders/{oid}"),
                          ("OPTIONS", "/v1/orders"), ("PUT", f"/v1/orders/{oid}")):
         st, body, hdrs = call_h(method, path, {} if method == "PUT" else None)
         allow = hdrs.get("Allow") or hdrs.get("allow") or ""
@@ -242,7 +299,15 @@ def discover_cancel():
         time.sleep(1)
 
     say("\n2) candidate cancel routes. 404 = no such route; ANYTHING ELSE = the route is real.")
-    cands = [("POST", f"/v1/orders/{oid}:cancel", {}),
+    # THE DOCUMENTED ROUTE FIRST. Muse read it off the official docs: singular "order", slash
+    # suffix. Tried against the DEAD id, so this still places nothing - a real route answers a
+    # finished order with 400/409 ("not cancellable"), while a route that does not exist 404s.
+    # Only if this shows a live handler is a fresh order worth placing to confirm end to end.
+    cands = [("POST", f"/v1/order/{oid}/cancel", {}),
+             ("DELETE", f"/v1/order/{oid}", None),
+             ("POST", "/v1/orders/open/cancel", {}),
+             ("POST", "/v1/orders/batched/cancel", {"orderIds": [oid]}),
+             ("POST", f"/v1/orders/{oid}:cancel", {}),
              ("POST", "/v1/orders:cancel", {"orderId": oid}),
              ("POST", "/v1/orders:batchCancel", {"orderIds": [oid]}),
              ("POST", f"/v1/orders/{oid}:close", {}),
@@ -250,16 +315,23 @@ def discover_cancel():
              ("POST", "/v1/orderCancellations", {"orderId": oid}),
              ("PATCH", f"/v1/orders/{oid}", {"state": "ORDER_STATE_CANCELED"}),
              ("DELETE", "/v1/orders", {"orderId": oid})]
-    live = []
+    live, stubs = [], []
     for method, path, b in cands:
         st, body, _ = call_h(method, path, b)
-        tag = "no route" if st == 404 else ("ROUTE EXISTS" if isinstance(st, int) else "error")
+        tag, where = _classify(st, body)
         say(f"   {method:6} {path:36} HTTP {st}  {tag}")
-        if isinstance(st, int) and st != 404:
-            live.append((method, path, st, str(body)[:200]))
+        where = live if where == "live" else (stubs if where == "stub" else None)
+        if where is not None:
+            where.append((method, path, st, str(body)[:200]))
         time.sleep(1)
 
     say("")
+    if stubs and not live:
+        say("UNIMPLEMENTED stubs (NOT usable routes - see _classify):")
+        for method, path, st, body in stubs:
+            say(f"  {method} {path} -> {st}")
+            say(f"     {body}")
+        say("")
     if live:
         say("VERDICT: at least one cancel route is REAL. Candidates, with what each said:")
         for method, path, st, body in live:
