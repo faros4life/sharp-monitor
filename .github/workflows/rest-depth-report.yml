@@ -1,0 +1,48 @@
+name: rest-depth-report
+
+# MANUAL ONLY, read-only, 0 OddsPapi credits. Answers one question and registers nothing:
+# how often did BOTH Novig and Kalshi lack the exact alert line, so a third resting venue
+# would have been the only way to rest at all?
+#
+# Why: the maker case for adding Polymarket US to REST_BOOKS died with the PDI test (the venue
+# drops participateDontInitiate, so it is a taker there at -116.8 on a -110 screen - worst of the
+# three). Depth on the plays neither of the first two can rest is the only argument left, and
+# against it sits the fact that Polymarket is the only venue whose expiry does not work, so every
+# bid needs an active cancel. Claude and Muse both concluded "leave it at novig,kalshi" and both
+# said the flip should never happen on a read when it can happen on a measurement. This is it.
+#
+# NOT SCHEDULED, on purpose: a one-off diagnostic for a pending decision, not a new scan or lens.
+# The idea freeze stands.
+#
+# Reads the executor's own LEDGER rows out of Gmail - the answer was already being recorded there
+# and nobody had read it. Counts only; no prices, stakes, balances or order ids.
+on:
+  workflow_dispatch:
+    inputs:
+      days:
+        description: "How many days of executor emails to read (default 7)"
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Resting-depth measurement (read-only, 0 credits)
+        env:
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          DEPTH_DAYS: ${{ inputs.days }}
+        run: |
+          set -o pipefail
+          python -u rest_depth_report.py 2>&1 | tee out.txt
+          { echo '```'; cat out.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
