@@ -58,27 +58,42 @@ def say(line):
 
 
 def best_offer(slug):
-    """Best offer, read the way executor.py actually reads it.
+    """Best offer for a slug, read the way the league listing actually serves it.
 
-    TWO DIFFERENT HOSTS, and getting this wrong is why the first version of this file was broken.
-    Market and book reads go through the GATEWAY (executor.PMUS = gateway.polymarket.us) via
-    liquidity_monitor.get; ORDERS go through book_live.PM_API = api.polymarket.us via _pm_call.
-    My first draft read the book with _pm_call, i.e. asked the order host for market data."""
+    TWO BUGS LIVED HERE, both found before this ever ran. First it called book_live._pm_call,
+    which talks to the ORDER host (api.polymarket.us) rather than the GATEWAY
+    (executor.PMUS = gateway.polymarket.us) that serves market data. Then, pointed at the right
+    host, it looked for fields named bestAsk / ask on a /book payload - but the quote lives on the
+    MARKET OBJECT as bestAskQuote, shaped {"value": "0.2400", "currency": "USD"}, a STRING inside
+    a dict. All 29 live NHL markets reported "no book" because of it, and this test would have
+    exited without placing anything and looked like a venue failure.
+
+    So this reuses the one path proven to work: list the league's events (the same call
+    executor.pmus_events makes), find the market whose slug matches, read its inline quote."""
     import executor as _ex
     import liquidity_monitor as _lm
-    md = (_lm.get(f"{_ex.PMUS}/v1/markets/{slug}/book") or {}).get("marketData") or {}
-    for k in ("bestAsk", "best_ask", "ask", "bestOffer"):
-        v = md.get(k)
-        if isinstance(v, (int, float)) and 0 < float(v) < 1:
-            return float(v)
+
+    def q(m):
+        v = (m or {}).get("bestAskQuote")
         if isinstance(v, dict):
-            for kk in ("value", "price"):
-                try:
-                    f = float(v.get(kk))
-                    if 0 < f < 1:
-                        return f
-                except (TypeError, ValueError):
-                    pass
+            v = v.get("value")
+        try:
+            f = float(v)
+        except (TypeError, ValueError):
+            return None
+        return f if 0 < f < 1 else None
+
+    sports = [os.environ.get("PMUS_SPORT")] if os.environ.get("PMUS_SPORT") else list(_ex.PMUS_LEAGUES)
+    for sport in sports:
+        for lg in _ex.PMUS_LEAGUES.get((sport or "").upper(), []):
+            try:
+                d = _lm.get(f"{_ex.PMUS}/v2/leagues/{lg}/events", {"limit": 200})
+            except Exception:
+                continue
+            for ev in (d or {}).get("events") or []:
+                for m in ev.get("markets") or []:
+                    if isinstance(m, dict) and (m.get("slug") or m.get("marketSlug")) == slug:
+                        return q(m)
     return None
 
 

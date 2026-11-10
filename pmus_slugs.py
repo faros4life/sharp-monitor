@@ -54,24 +54,21 @@ def markets_for(gid):
     return []
 
 
-def best_offer(slug):
+def quote_of(m, key="bestAskQuote"):
+    """Best offer straight off the MARKET OBJECT.
+
+    The /book round trip was never needed and never worked: the league listing already carries
+    bestAskQuote / bestBidQuote inline, shaped {"value": "0.2400", "currency": "USD"} - a STRING
+    inside a dict. My first version asked /v1/markets/<slug>/book for fields named bestAsk / ask,
+    which do not exist there, so all 29 live markets reported 'no book'."""
+    v = (m or {}).get(key)
+    if isinstance(v, dict):
+        v = v.get("value")
     try:
-        md = (lm.get(f"{PMUS}/v1/markets/{slug}/book") or {}).get("marketData") or {}
-    except Exception:
+        f = float(v)
+    except (TypeError, ValueError):
         return None
-    for k in ("bestAsk", "best_ask", "ask", "bestOffer"):
-        v = md.get(k)
-        if isinstance(v, (int, float)) and 0 < float(v) < 1:
-            return float(v)
-        if isinstance(v, dict):
-            for kk in ("value", "price"):
-                try:
-                    f = float(v.get(kk))
-                    if 0 < f < 1:
-                        return f
-                except (TypeError, ValueError):
-                    pass
-    return None
+    return f if 0 < f < 1 else None
 
 
 def by_league(sport):
@@ -101,9 +98,6 @@ def by_league(sport):
         inline = bool(mks)
         if not mks:
             mks = markets_for_event(ev)
-        if n_ev <= 1 and mks:
-            say(f"    RAW bestAskQuote: {json.dumps(mks[0].get('bestAskQuote'))[:200]}")
-            say(f"    RAW bestBidQuote: {json.dumps(mks[0].get('bestBidQuote'))[:200]}")
         shown = 0
         for m in mks:
             n_mk += 1
@@ -117,10 +111,8 @@ def by_league(sport):
             if not full:
                 continue
             n_full += 1
-            bo = best_offer(slug)
+            bo = quote_of(m)
             if bo is None:
-                if n_full <= 3:
-                    say(f"    (no book) {slug}")
                 continue
             n_book += 1
             if not shown:
@@ -171,7 +163,7 @@ def main():
             if not slug:
                 continue
             title = (m.get("question") or m.get("title") or m.get("name") or "")[:66]
-            bo = best_offer(slug)
+            bo = quote_of(m)
             flag = ""
             if bo is None:
                 flag = "   [no best offer - the test would refuse to price this one]"
