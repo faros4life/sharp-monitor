@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 10, 1:37 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 45.
+Updated Tue Nov 10, 1:40 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 45.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -31,7 +31,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 10 9:32AM | NBA | Milwaukee vs New York: Spread | spread: New York wins by over 15.5 points | kalshi | $32k | -104 |  | ❌ | -1.0c |  | pending |
 | Nov 10 9:16AM | NBA | Boston vs Philadelphia | moneyline: Boston | kalshi | $315k | -104 | ✅ novig,prophetx |  | +2.0c |  | pending |
 | Nov 10 8:46AM | NHL | Detroit vs St. Louis: Spread | spread: NOT St. Louis wins by over 1.5 goals | kalshi | $26k | -203 | ✅ novig |  | -2.0c |  | pending |
-| Nov 10 8:41AM | NHL | Nashville vs Los Angeles | moneyline: Nashville | kalshi | $31k | +117 | ✅ prophetx |  | +0.0c |  | pending |
+| Nov 10 8:41AM | NHL | Nashville vs Los Angeles | moneyline: Nashville | kalshi | $31k | +117 | ✅ prophetx |  | -1.0c |  | pending |
 | Nov 10 8:26AM | NBA | Orlando vs Sacramento | moneyline: Orlando | kalshi | $311k | -223 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Nov 10 8:20AM | NBA | Orlando vs Sacramento: Spread | spread: Orlando wins by over 6.5 points | kalshi | $30k | +104 |  |  | +1.0c |  | pending |
 | Nov 10 8:10AM | NHL | Colorado vs Toronto | moneyline: Colorado | kalshi | $30k | -150 | ✅ novig |  | +2.0c |  | pending |
