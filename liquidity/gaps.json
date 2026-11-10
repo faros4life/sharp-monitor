@@ -2,36 +2,6 @@
  "note": "PAPER ONLY (Oct 25; persistence added Oct 26): opposite sides of the same game/market/line on two different exchanges whose combined cost after fees is under $1 (Kalshi/Novig/ProphetX; Polymarket here is the global book, excluded). edge_pct = locked profit per $ staked at first sight; max/last_edge_pct while open. size_est = smaller leg's near-price depth (UPPER BOUND). first/last_seen_utc, scans_seen, lifetime_min = how long the gap stayed open (scan-interval resolution; a 1-scan gap may be a feed artifact). scan_sec = seconds from run start to this save, the most the two legs' reads can be apart. Measurement only: never alerted, never bet.",
  "gaps": [
   {
-   "seen_utc": "2026-10-27T12:30:18Z",
-   "league": "NBA",
-   "game": "Portland vs Los Angeles L: Total Points",
-   "market": "total",
-   "line": 233.5,
-   "edge_pct": 0.74,
-   "total_cost": 0.9927,
-   "size_est": 4324,
-   "legs": [
-    {
-     "book": "kalshi",
-     "side": "NOT Over 233.5 points",
-     "price": 0.44,
-     "cost_after_fee": 0.4572
-    },
-    {
-     "book": "prophetx",
-     "side": "over 233.5 (233.5)",
-     "price": 0.5305,
-     "cost_after_fee": 0.5355
-    }
-   ],
-   "first_seen_utc": "2026-10-27T12:30:18Z",
-   "last_seen_utc": "2026-10-27T12:30:18Z",
-   "scans_seen": 1,
-   "max_edge_pct": 0.74,
-   "scan_sec": 174,
-   "lifetime_min": 0
-  },
-  {
    "seen_utc": "2026-10-27T21:10:10Z",
    "league": "NHL",
    "game": "New York Islanders @ Nashville Predators",
