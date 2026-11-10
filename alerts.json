@@ -1200,14 +1200,14 @@
   {
    "alert_utc": "2026-11-10T15:20:19Z",
    "beat_close": true,
-   "beat_true_close": null,
+   "beat_true_close": false,
    "bet": "Memphis Tigers +14.5 (-110)",
    "book": "Hard Rock",
    "book_key": "hardrockbet",
-   "close_fair_prob": null,
-   "close_read_mins_before": null,
-   "close_value_pct": null,
-   "clv": "+0.5 pts",
+   "close_fair_prob": 0.5183,
+   "close_read_mins_before": 30,
+   "close_value_pct": -1.0,
+   "clv": "+1 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline"
@@ -1248,7 +1248,7 @@
    "close_fair_prob": 0.544,
    "close_read_mins_before": 26,
    "close_value_pct": 7.7,
-   "clv": "+1 pts",
+   "clv": "+2 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline"
@@ -2110,7 +2110,7 @@
    "close_fair_prob": 0.544,
    "close_read_mins_before": 30,
    "close_value_pct": 3.9,
-   "clv": "+2 pts",
+   "clv": "+3 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline"
@@ -2520,7 +2520,7 @@
    "close_fair_prob": 0.5301,
    "close_read_mins_before": 30,
    "close_value_pct": 1.2,
-   "clv": "+0.5 pts",
+   "clv": "+1.5 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline"
@@ -44670,6 +44670,54 @@
   }
  ],
  "all_alerts": [
+  {
+   "alert_text": "Over 149.5 (-111) at ProphetX [-113 after ProphetX fee] (also: Hard Rock, Novig)",
+   "bet": "Over 149.5 (-111)",
+   "bet_result": null,
+   "book": "ProphetX",
+   "confirmed_by": [
+    "BetOnline"
+   ],
+   "edge_pct": 3.2,
+   "final": null,
+   "game": "Presbyterian Blue Hose @ NC State Wolfpack",
+   "grade": "B",
+   "late": true,
+   "minutes_before_start": 20,
+   "price": -111,
+   "price_after_fee": -113,
+   "pushed_to_phone": false,
+   "repeat": true,
+   "score": 73,
+   "sent_et": "2026-11-10 18:40",
+   "sport": "NCAAB",
+   "start_utc": "2026-11-11T00:00:00Z",
+   "why": "Pinnacle total moved 149.5 -> 151.5; bet only at 151 or better (confirmed by BetOnline)"
+  },
+  {
+   "alert_text": "Over 50.5 (-105) at Hard Rock (also: ProphetX, Kalshi)",
+   "bet": "Over 50.5 (-105)",
+   "bet_result": null,
+   "book": "Hard Rock",
+   "confirmed_by": [
+    "BetOnline"
+   ],
+   "edge_pct": -1.7,
+   "final": null,
+   "game": "Western Michigan Broncos @ Akron Zips",
+   "grade": "A",
+   "late": true,
+   "minutes_before_start": 20,
+   "price": -105,
+   "price_after_fee": -105,
+   "pushed_to_phone": false,
+   "repeat": true,
+   "score": 85,
+   "sent_et": "2026-11-10 18:40",
+   "sport": "NCAAF",
+   "start_utc": "2026-11-11T00:00:00Z",
+   "why": "Pinnacle total moved 49 -> 51; bet only at 50.5 or better (confirmed by BetOnline)"
+  },
   {
    "alert_text": "Murray St Racers -30.5 (-120) at Hard Rock (also: ProphetX)",
    "bet": "Murray St Racers -30.5 (-120)",
