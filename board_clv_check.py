@@ -148,8 +148,14 @@ def main():
         # price at all, whatever its screen showed.
         rec["rest"] = v in tuple(x.strip() for x in
                                  (os.environ.get("EXEC_REST_BOOKS") or "novig,kalshi").split(","))
-        rec["pin"] = cs.net_clv(c, dec, v, maker=True, league="NBA")
-        rec["pin_taker"] = cs.net_clv(c, dec, v, maker=False, league="NBA")
+        # net_clv wants the close PROBABILITY, not the close dict. close_for returns
+        # {"p": <prob>, "how": ..., "age_min": ...}; every other caller passes a float. This
+        # passed `c` and crashed with "float() argument must be ... not 'dict'" the first time it
+        # ever ran - which was today, because the close_verified bug above rejected 100% of closes
+        # and this line was unreachable. Two bugs stacked, the second hidden by the first: fixing
+        # one exposed the other immediately, and nothing downstream of here has ever executed.
+        rec["pin"] = cs.net_clv(c["p"], dec, v, maker=True, league="NBA")
+        rec["pin_taker"] = cs.net_clv(c["p"], dec, v, maker=False, league="NBA")
         out.append(rec)
 
     ver = [r for r in out if r["pin"] is not None]
