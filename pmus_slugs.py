@@ -91,30 +91,45 @@ def by_league(sport):
         say(f"    leagues/{slug}/events: {len(evs)} event(s)")
         if evs:
             break
+    # Counted at every stage: the first run printed nothing from 29 events and gave no clue which
+    # filter dropped them. Silence is the one answer a lookup must never give.
+    n_ev = n_mk = n_full = n_book = 0
     for ev in evs:
+        n_ev += 1
         title = ev.get("title") or ev.get("name") or ev.get("slug") or "?"
         mks = [m for m in (ev.get("markets") or []) if isinstance(m, dict)]
+        inline = bool(mks)
         if not mks:
             mks = markets_for_event(ev)
+        if n_ev <= 2:
+            say(f"    [{title[:40]}] {len(mks)} market(s) ({'inline' if inline else 'fetched'});"
+                f" keys: {sorted(list(mks[0].keys()))[:10] if mks else '-'}")
         shown = 0
         for m in mks:
+            n_mk += 1
             slug = m.get("slug") or m.get("marketSlug")
             if not slug:
                 continue
             try:
-                if not ex.pmus_type(m):
-                    continue            # full-game markets only, the executor's own filter
+                full = bool(ex.pmus_type(m))
             except Exception:
-                pass
+                full = True
+            if not full:
+                continue
+            n_full += 1
             bo = best_offer(slug)
             if bo is None:
-                continue                 # no book = the test would refuse it anyway
+                if n_full <= 3:
+                    say(f"    (no book) {slug}")
+                continue
+            n_book += 1
             if not shown:
                 say(f"\n  {title}")
             shown += 1
             say(f"    slug: {slug}")
             say(f"          {(m.get('question') or m.get('title') or '')[:66]}")
             say(f"          best offer: {bo:.3f}")
+    say(f"\n    funnel: {n_ev} events -> {n_mk} markets -> {n_full} full-game -> {n_book} with a book")
 
 
 def markets_for_event(ev):
