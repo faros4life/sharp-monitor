@@ -32,6 +32,24 @@ SECRET = (os.environ.get("PROPHETX_TRADE_SECRET_KEY") or "").strip()
 LIVE = (os.environ.get("EXEC_LIVE") or "off").strip().lower() == "on"
 MAX_ORDER = float(os.environ.get("EXEC_MAX_ORDER", "") or "415")   # Nov 9: $300 to win at the -130 cap risks $390
 DAILY_STOP = float(os.environ.get("EXEC_DAILY_STOP", "") or "2250")
+# NON-PROPHETX MONEY AT RISK TODAY, and the daily stop's single source of truth.
+#
+# THE BUG THIS FIXES (Nov 10, Peter's finding). There were two preflights applying the same stop
+# to different numbers. book_live.preflight() computed res - EXPO - risk, so a Kalshi, Novig or
+# Polymarket US order counted ProphetX's result PLUS every other book's risk PLUS itself. But
+# px_live.preflight() tested res alone, so a PROPHETX order saw only ProphetX. With $2,000 at risk
+# elsewhere and ProphetX at -$500, a Kalshi order was refused at a -$2,500 worst case while a
+# ProphetX order saw -$500 and was ALLOWED - ProphetX could bet straight through the aggregate
+# stop.
+#
+# book_live binds its EXPO to THIS dict (EXPO = px_live.OTHER), so every place that already
+# increments exposure writes here and both preflights read the same number with no call sites
+# rewritten. The store lives in px_live because book_live imports px_live, not the reverse.
+OTHER = {"today": 0.0}
+
+
+def set_other_exposure(d):
+    OTHER["today"] = float(d or 0)
 QTY_MEANS = (os.environ.get("PX_QTY_MEANS") or "stake").strip().lower()
 TOPIC = os.environ.get("NTFY_TOPIC", "")
 _T = {"token": None}
@@ -194,8 +212,12 @@ def preflight():
         return False, f"couldn't read today's ProphetX result ({str(ex)[:60]})"
     if res is None:
         return False, "today's result unreadable (bot-order registry unknown)"
-    if res <= -DAILY_STOP:
-        return False, f"daily stop hit (today {res:+,.2f} <= -{DAILY_STOP:,.0f})"
+    # The aggregate stop: ProphetX's result AND the money at risk on every other book. Testing
+    # res alone is what let ProphetX bet through a stop the other books were already refusing.
+    worst = res - OTHER["today"]
+    if worst <= -DAILY_STOP:
+        return False, (f"daily stop hit (ProphetX today {res:+,.2f}, other books risked "
+                       f"${OTHER['today']:,.2f} -> {worst:+,.2f} <= -{DAILY_STOP:,.0f})")
     LAST["res"] = res
     return True, f"ok (today {res:+,.2f})"
 

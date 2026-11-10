@@ -30,7 +30,11 @@ import px_live
 K_BASE = os.environ.get("KALSHI_API", "") or "https://api.elections.kalshi.com/trade-api/v2"
 K_PREFIX = urllib.parse.urlparse(K_BASE).path.rstrip("/")
 PM_API = "https://api.polymarket.us"
-EXPO = {"today": 0.0}   # dollars risked today on Kalshi/PM US by the bot (registry + this run's fills)
+# Bound to px_live.OTHER so there is ONE at-risk number, not two. Every "EXPO[\"today\"] += ..."
+# below therefore updates the same store px_live.preflight() reads - which is what makes the
+# daily stop apply equally to a ProphetX order and to every other book. Do not rebind this to a
+# fresh dict: that would silently restore the split accounting it exists to prevent.
+EXPO = px_live.OTHER
 
 
 def set_exposure(dollars):
