@@ -649,6 +649,15 @@ def bot_keys(M, days=2):
     return keys
 
 
+def note_price(bet):
+    """American price from a manual note's bet text. Nov 10: only "(-110)" in parentheses used to parse, so a note
+    written "Under 230.5 -120" came through with price None, no to_pay, and a WIN graded at profit 0.0 (4 of 17
+    Hard Rock / ProphetX notes since Nov 6). Falls back to a bare trailing signed price of 3+ digits, which cannot be
+    a line (lines carry a decimal or are 1-2 digits: "-7.5", "+18.5", "-10")."""
+    m = re.search(r"\(([+-]\d+)\)", bet or "") or re.search(r"(?<![\d.])([+-]\d{3,})\s*$", bet or "")
+    return int(m.group(1)) if m else None
+
+
 def read_manual_and_bot():
     """Peter's 'Bets manual' notes (Hard Rock etc.) + the bot's own live keys (to tag sources)."""
     import executor as ex
@@ -686,8 +695,7 @@ def read_manual_and_bot():
                     d = json.loads(m.group(1))
                 except Exception:
                     continue
-                mp = re.search(r"\(([+-]\d+)\)", d.get("bet") or "")
-                pr = int(mp.group(1)) if mp else None
+                pr = note_price(d.get("bet"))
                 stake = num(d.get("stake"))
                 est = False
                 if not stake and pr:   # Peter's sizing (Oct 20): minus price risks to win $200, plus price risks $200
@@ -1175,6 +1183,12 @@ def main():
                 r = prev["result"]
                 prev.update(stake=b["stake"], to_pay=b.get("to_pay"), source=b.get("source"),
                             profit=round((b["to_pay"] - b["stake"]) if r == "W" and b.get("to_pay") else (-b["stake"] if r == "L" else 0.0), 2))
+            elif b["id"].startswith("mn|") and b.get("to_pay") and not prev.get("to_pay") and prev.get("stake") == b.get("stake"):
+                # Nov 10: the note's price was unparsed (bare "-120"), so the row was graded without a payout. Same stake,
+                # same VERIFIED result (never touched here): only the price, payout and the profit that follows from them.
+                r = prev["result"]
+                prev.update(price=b.get("price"), to_pay=b["to_pay"],
+                            profit=round((b["to_pay"] - b["stake"]) if r == "W" else (-b["stake"] if r == "L" else 0.0), 2))
             continue
         b["source"] = b.get("source") or ("bot" if bot_match(b, keys) or prev.get("source") == "bot" else "Peter")
         b["first_seen"] = prev.get("first_seen") or iso(now)
