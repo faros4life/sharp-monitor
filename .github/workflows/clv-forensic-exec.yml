@@ -1,0 +1,47 @@
+name: clv-forensic-exec
+
+# CLV FORENSIC AUDIT (Peter, 10 Nov 2026) - executed Lane 1 fills, every close kept auditable.
+# READ-ONLY, CACHE-ONLY, ZERO OddsPapi credits. Dispatch only, no cron, no commit step.
+# It never calls load_markets (which bills when the market map is 7+ days old) and never fetches a
+# Pinnacle history that is not already cached. It changes no live rule, threshold or stored report.
+# The repo is public: the log carries counts and percentages only; the per-row CSV goes by private email.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Restore shared OddsPapi history cache (read only)
+        uses: actions/cache/restore@v4
+        with:
+          path: hcache
+          key: hcache-${{ github.run_id }}
+          restore-keys: hcache-
+      - name: Verify the cache restored (counts only; an empty cache stops the run)
+        run: |
+          n=$(find hcache -name '*__pinnacle.json.gz' 2>/dev/null | wc -l)
+          echo "Pinnacle history files restored: $n"
+          test "$n" -gt 0 || { echo "cache did not restore - stopping, nothing will be fetched"; exit 1; }
+      - name: Self-test
+        run: python -u clv_forensic_exec.py --selftest
+      - name: CLV forensic, executed fills (cache only, zero credits)
+        env:
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          # NO ODDSPAPI_KEY / ODDSPAPI_FREE_KEY here, deliberately: no credential, no spend.
+          XC_CACHE_ONLY: "1"
+          CLV_MONTH_CAP: "0"
+          ODDSPAPI_GATE: "enforce"
+        run: python -u clv_forensic_exec.py

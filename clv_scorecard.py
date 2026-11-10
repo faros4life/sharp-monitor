@@ -41,6 +41,7 @@ from datetime import datetime, timezone
 
 import clv_ledger as cl
 import clv_std as cs
+import price_basis as pb
 
 SHARP = os.environ.get("SC_SHARP", "") or "alerts.json"
 LIQ = os.environ.get("SC_LIQ", "") or "liquidity/alerts.json"
@@ -72,12 +73,16 @@ def toks(s):
     return set(re.findall(r"[a-z]{3,}", str(s or "").lower()))
 
 
-def std_clv(close_prob, american, book):
-    """The one basis. Returns None when it cannot be computed - never a substitute."""
-    if close_prob is None or american is None or not book:
+def std_clv(close_prob, price):
+    """The one basis, over a price_basis.Price (explicitly RAW or NET). None when it cannot be computed.
+
+    Nov 10 audit fix. This used to take a bare American number and ALWAYS apply the venue fee, so a stored
+    price_after_fee (already net) was charged twice: Kalshi -2.98 pt, ProphetX -0.91 pt. The caller now
+    states which kind of price it holds, and price_basis takes the fee off at most once."""
+    if close_prob is None or price is None:
         return None
     try:
-        return 100 * (float(close_prob) * cs.net_dec(cs.canon(book), cl.am_to_dec(american)) - 1)
+        return pb.pin_clv(close_prob, price)
     except Exception:
         return None
 
@@ -132,6 +137,27 @@ def table(name, rows, excluded, note=""):
         + (f"; excluded: {dict(excluded.most_common())}" if excluded else ""))
 
 
+def table_self(name, rows, note=""):
+    """Liquidity candidates: record, units and EXCHANGE SELF-CLOSE MOVEMENT. Deliberately no CLV column:
+    this file holds no Pinnacle close, and an exchange's own close is never labelled Pinnacle CLV."""
+    say("")
+    say(f"  {name}")
+    if note:
+        say(f"    {note}")
+    use = sorted(rows, key=lambda r: r["day"])
+    if not use:
+        say("    n 0")
+        return
+    mv = [r["self_move_c"] for r in use if r.get("self_move_c") is not None]
+    w = sum(1 for r in use if r["res"] == "W")
+    l_ = sum(1 for r in use if r["res"] == "L")
+    u = units(use)
+    risk = sum(1.0 for r in use if r["res"] in ("W", "L"))
+    say(f"    n {len(use):4d} | games {games(use):4d} | {w}-{l_} | {u:+7.2f}u | ROI {(100 * u / risk if risk else 0):+6.1f}%"
+        + (f" | Exchange Self-Close Movement {st.mean(mv):+.2f}c over {len(mv)} rows (NOT CLV)" if mv else "")
+        + " | Pinnacle CLV: not computed here (clv_report.py)")
+
+
 def main():
     say("STANDARDIZED CLV SCORECARD - one basis for every candidate (Priority 4)")
     say(cs.stamp())
@@ -146,8 +172,12 @@ def main():
     for x in S:
         if x.get("result") not in ("W", "L", "P"):
             continue
-        am = x.get("price_after_fee") if x.get("price_after_fee") is not None else x.get("price")
-        c = std_clv(x.get("close_fair_prob"), am, x.get("book_key"))
+        try:
+            pr = pb.best_price(x, x.get("book_key"), "price_after_fee", "price") if x.get("book_key") else None
+        except cs.UnknownVenue:
+            pr = None                       # unregistered retail venue: excluded and counted, never priced as free
+        am = pr.american if pr else None
+        c = std_clv(x.get("close_fair_prob"), pr)
         if c is None:
             sexc["no close prob / price / known venue"] += 1
         srows.append({"day": str(x.get("alert_utc") or "")[:10], "game": x.get("game"),
@@ -173,11 +203,17 @@ def main():
         if x.get("result") not in ("W", "L", "P") or x.get("artifact") or x.get("close_suspect"):
             continue
         am = x.get("price_american")
-        c = std_clv(x.get("close_price"), am, x.get("book"))
-        if c is None:
-            qexc["no close / price / known venue"] += 1
+        # Nov 10 audit fix (defect A). close_price is the TRIGGER EXCHANGE'S OWN last pregame price
+        # (liquidity_monitor.py:2013), never Pinnacle's close, so it can not produce Pinnacle CLV and the
+        # old close_price x net_dec figure was mostly fee drag. This file carries no Pinnacle close, so
+        # CLV is None here and the exchange's own movement is reported, in cents, under its own name.
+        # Pinnacle CLV for this population is clv_report.py's, on its own verified-close sample.
+        mv = (None if x.get("close_price") is None or x.get("price") is None
+              else 100.0 * (x["close_price"] - x["price"]))
+        c = None
+        qexc["no Pinnacle close in this file (see clv_report.py)"] += 1
         qrows.append({"day": str(x.get("alerted_utc") or "")[:10], "game": x.get("game"),
-                      "am": am, "res": x.get("result"), "clv": c, "line_beat": None,
+                      "am": am, "res": x.get("result"), "clv": c, "self_move_c": mv, "line_beat": None,
                       "lg": x.get("league") or x.get("sport"), "mk": x.get("market"),
                       "side": x.get("side"), "book": x.get("book"),
                       "lead": x.get("lead_min"), "new_money": x.get("new_money")})
@@ -195,19 +231,17 @@ def main():
     # that silently drops 38 of 123 rows is really a Kalshi-only line wearing a wider label.
     pm = [r for r in nbau if str(r["book"] or "").startswith("polymarket")]
     ks = [r for r in nbau if r["book"] == "kalshi"]
-    table("NBA UNDER signal - BETTABLE venues only", ks, Counter(),
+    table_self("NBA UNDER signal - BETTABLE venues only", ks,
           f"Kalshi-triggered. The {len(pm)} Polymarket-triggered rows are Polymarket GLOBAL, "
           f"which we cannot bet, so they carry no net price and are excluded by venue, not dropped.")
-    table("  - Polymarket GLOBAL triggers (NOT BETTABLE, shown for completeness)", pm,
-          Counter({"venue not tradeable for us (Polymarket global)": len(pm)}),
-          "Units and record are real; there is no net-of-fee CLV because we have no fee basis on a "
-          "venue we do not trade. Never pool these with the bettable line above.")
+    table_self("  - Polymarket GLOBAL triggers (NOT BETTABLE, shown for completeness)", pm,
+               "Units and record are real; never pool these with the bettable line above.")
     t4 = [r for r in qrows if r["lg"] == "NBA" and r["mk"] == "total"
           and r["lead"] is not None and r["lead"] >= 240]
-    table("NBA totals, 4h+ lead", t4, Counter(), "LIQ-BOT's population (registry 9)")
+    table_self("NBA totals, 4h+ lead", t4, "LIQ-BOT's population (registry 9)")
     pr = [r for r in qrows if r["lg"] == "NBA" and r["mk"] == "total"
           and r["new_money"] is not None and 25000 <= r["new_money"] <= 50000]
-    table("NBA totals, $25-50k prints", pr, Counter(), "LIQ-SMALL (registry 13)")
+    table_self("NBA totals, $25-50k prints", pr, "LIQ-SMALL (registry 13)")
 
     # ---------------------------------------------------------------- quoted by reference
     say("")
