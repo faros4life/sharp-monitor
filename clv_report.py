@@ -41,6 +41,13 @@ through to a fetch, because that silence is how plimit-level spent 5 unapproved 
 WHAT IS PRINTED WHERE. The repo is public, so the Actions log gets counts, percentages and field
 names only. Per-bet detail goes to the private address.
 """
+import csv
+import io
+import smtplib
+from email import encoders
+from email.mime.base import MIMEBase
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 import json
 import os
 import sys
@@ -94,6 +101,58 @@ def fmt(x, s="%"):
 # first and the drift shows up as an empty report, not as an error.
 bet_text = lh.bet_text
 EXCH = lh.EXCH                       # ("prophetx", "novig.us", "kalshi", "polymarket.us")
+
+
+ROW_COLS = ["game", "league", "market", "side", "line", "alert_utc", "result", "trigger_book",
+            "auto_venue", "auto_source_venue", "auto_net_dec", "auto_clv", "auto_quote_age_s",
+            "auto_quote_size", "manual_venue", "manual_source_venue", "manual_net_dec",
+            "manual_clv", "pin_close_p", "close_how", "close_age_min", "close_same_line",
+            "quotes_unqualified", "fee_model", "in_play", "books_held", "books_missing"]
+
+
+def send_rows_csv(subject, body, rows, filename):
+    """Email the per-row detail as an ATTACHED CSV, modelled on sent_export.send_csv.
+
+    WHY THIS REPLACED THE JSON BLOB. The detail was already being sent, as
+    json.dumps(head, indent=1)[:900000] inside the message body. At n=910 rows x 27 fields,
+    indent=1 JSON lands around or past that 900,000-character cap - so it was cut MID-OBJECT and
+    arrived as unparseable JSON. Nothing warned: the email looked full, and the truncation is
+    silent by construction. That is why the rows behind the -0.37% / n=910 AUTO headline could not
+    be run on, and it is the same failure shape as the other silent ones found today - a cap or a
+    default that degrades without saying so.
+
+    CSV instead of raising the cap: 910 rows of flat scalars is roughly 150-200KB, it cannot be
+    half-valid the way truncated JSON can, and it is what CLV-WORKS wants to read anyway. The one
+    nested field (books_missing, a list) is joined with ';' so every cell stays scalar.
+
+    CONTAINS NO STAKES, BALANCES, ACCOUNT INFORMATION OR KEYS - prices, closes, CLV percentages
+    and venue names only, per the standing export rule."""
+    user, pw, to = _ex().gmail()
+    buf = io.StringIO()
+    w = csv.DictWriter(buf, fieldnames=ROW_COLS, extrasaction="ignore")
+    w.writeheader()
+    for r in rows:
+        flat = dict(r)
+        bm = flat.get("books_missing")
+        if isinstance(bm, (list, tuple)):
+            flat["books_missing"] = ";".join(str(x) for x in bm)
+        w.writerow(flat)
+    m = MIMEMultipart()
+    m["Subject"], m["From"], m["To"] = subject, user, to
+    m.attach(MIMEText(body, "plain", "utf-8"))
+    part = MIMEBase("text", "csv")
+    part.set_payload(buf.getvalue().encode("utf-8"))
+    encoders.encode_base64(part)
+    part.add_header("Content-Disposition", "attachment", filename=filename)
+    m.attach(part)
+    with smtplib.SMTP_SSL("smtp.gmail.com", 465, timeout=120) as sv:
+        sv.login(user, pw)
+        sv.sendmail(user, [to], m.as_string())
+
+
+def _ex():
+    import executor as ex
+    return ex
 
 
 def main():
@@ -314,11 +373,15 @@ def main():
     say(f"\nfee model {cs.FEE_MODEL}. Cache only - zero OddsPapi credits spent.")
 
     try:
-        import executor as ex
-        ex.send("Bets VALUE LAB CLV REPORT (liquidity alerts only)",
-                "\n".join(L) + "\n\nPER-BET DETAIL\n" + json.dumps(head, indent=1)[:900000])
+        send_rows_csv("Bets VALUE LAB CLV REPORT (liquidity alerts only)",
+                      "\n".join(L) + f"\n\nPER-BET DETAIL: attached as clv_rows.csv "
+                                     f"({len(head)} row(s), one per headline bet). The detail used "
+                                     f"to be inlined as JSON truncated at 900,000 characters, which "
+                                     f"silently cut it mid-object at this sample size.",
+                      head, "clv_rows.csv")
+        print(f"CLV report emailed with {len(head)} per-row CSV row(s)")   # counts only
     except Exception as e:
-        print(f"email failed ({type(e).__name__})")
+        print(f"email failed ({type(e).__name__}: {str(e)[:80]})")
     return 0
 
 
