@@ -1,6 +1,390 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-10T11:46:17Z",
+   "base_depth": 107344,
+   "best_price": 0.69,
+   "best_price_american": -223,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.69,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 6,
+   "date": "2026-11-10",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 4691,
+     "new_this_side": 50961,
+     "other_side": 14981,
+     "other_side_all_levels": 27901,
+     "ratio": 4.9,
+     "this_side": 73405,
+     "this_side_all_levels": 154912
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "WSH +1.5 (-1.5)",
+     "price": 0.69,
+     "this_side": 16503
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 215.63,
+    "volume_24h_fp": 212.78,
+    "volume_fp": 215.63
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 215.63,
+    "volume_24h_fp": 212.78,
+    "volume_fp": 215.63
+   },
+   "fade_price": 0.32,
+   "first_seen_utc": "2026-11-10T11:40:12Z",
+   "game": "Washington vs Ottawa: Spread",
+   "game_surge_books": [
+    "novig"
+   ],
+   "game_x": 1.41,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLSPREAD-26NOV10WSHOTT-OTT2\"}",
+   "lead_min": 734,
+   "league": "NHL",
+   "line": 1.5,
+   "market": "spread",
+   "new_money": 50961,
+   "new_x": 2.41,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 215.63,
+      "volume_24h_fp": 212.78,
+      "volume_fp": 215.63
+     },
+     "game_normal": 109536,
+     "game_x": 1.41,
+     "normal": 21152,
+     "now": 154912,
+     "type": "SPREAD",
+     "x": 7.32
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 157430.0,
+      "volume": 158753.0
+     },
+     "game_normal": 7987,
+     "game_x": 2.09,
+     "normal": 4287,
+     "now": 16723,
+     "type": "SPREAD",
+     "x": 3.9
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.69,
+   "price_american": -223,
+   "price_rule": "fails_cap",
+   "price_when_first_seen": 0.69,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 1.5,
+     "price": -220
+    },
+    "betonlineag": {
+     "point": 1.5,
+     "price": -215
+    },
+    "betopenly": {
+     "point": 1.5,
+     "price": -228
+    },
+    "betrivers": {
+     "point": 1.5,
+     "price": -250
+    },
+    "betus": {
+     "point": 1.5,
+     "price": -215
+    },
+    "bovada": {
+     "point": 1.5,
+     "price": -250
+    },
+    "draftkings": {
+     "point": 1.5,
+     "price": -225
+    },
+    "fanatics": {
+     "point": 1.5,
+     "price": -225
+    },
+    "fanduel": {
+     "point": 1.5,
+     "price": -225
+    },
+    "kalshi": {
+     "point": 1.5,
+     "price": -223
+    },
+    "lowvig": {
+     "point": 1.5,
+     "price": -215
+    },
+    "mybookieag": {
+     "point": 1.5,
+     "price": -234
+    },
+    "novig": {
+     "point": 1.5,
+     "price": -223
+    },
+    "polymarket": {
+     "point": 1.5,
+     "price": -223
+    },
+    "prophetx": {
+     "point": 1.5,
+     "price": -225
+    },
+    "williamhill_us": {
+     "point": 1.5,
+     "price": -225
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNHLSPREAD-26NOV10WSHOTT-OTT2"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Washington",
+   "side_label": "NOT Ottawa wins by over 1.5 goals",
+   "size_x": 7.32,
+   "start_source": "odds",
+   "start_utc": "2026-11-11T00:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig"
+   ],
+   "teams": [
+    "Washington",
+    "Ottawa"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-10T11:46:17Z",
+   "base_depth": 81064,
+   "best_price": 0.645,
+   "best_price_american": -182,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.65,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 6,
+   "date": "2026-11-10",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 10011,
+     "new_this_side": 39025,
+     "other_side": 46988,
+     "other_side_all_levels": 69759,
+     "ratio": 1.3,
+     "this_side": 61001,
+     "this_side_all_levels": 117175
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "WPG +1.5 (1.5)",
+     "price": 0.645,
+     "this_side": 10861
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 1224.62,
+    "volume_24h_fp": 1135.24,
+    "volume_fp": 1266.38
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 25.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 1224.62,
+    "volume_24h_fp": 1110.24,
+    "volume_fp": 1266.38
+   },
+   "fade_price": 0.36,
+   "first_seen_utc": "2026-11-10T11:40:12Z",
+   "game": "New Jersey vs Winnipeg: Spread",
+   "game_surge_books": [],
+   "game_x": 1.36,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNHLSPREAD-26NOV10NJWPG-NJ2\"}",
+   "lead_min": 734,
+   "league": "NHL",
+   "line": 1.5,
+   "market": "spread",
+   "new_money": 39025,
+   "new_x": 1.84,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 1224.62,
+      "volume_24h_fp": 1135.24,
+      "volume_fp": 1266.38
+     },
+     "game_normal": 86009,
+     "game_x": 1.36,
+     "normal": 21152,
+     "now": 117175,
+     "type": "SPREAD",
+     "x": 5.54
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 86153.0,
+      "volume": 95690.0
+     },
+     "game_normal": 6372,
+     "game_x": 1.72,
+     "normal": 4287,
+     "now": 10989,
+     "type": "SPREAD",
+     "x": 2.56
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.65,
+   "price_american": -186,
+   "price_rule": "fails_cap",
+   "price_when_first_seen": 0.65,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 1.5,
+     "price": -190
+    },
+    "betonlineag": {
+     "point": 1.5,
+     "price": -190
+    },
+    "betopenly": {
+     "point": 1.5,
+     "price": -172
+    },
+    "betrivers": {
+     "point": 1.5,
+     "price": -200
+    },
+    "betus": {
+     "point": 1.5,
+     "price": -190
+    },
+    "bovada": {
+     "point": 1.5,
+     "price": -198
+    },
+    "draftkings": {
+     "point": 1.5,
+     "price": -198
+    },
+    "fanatics": {
+     "point": 1.5,
+     "price": -200
+    },
+    "fanduel": {
+     "point": 1.5,
+     "price": -200
+    },
+    "kalshi": {
+     "point": 1.5,
+     "price": -186
+    },
+    "lowvig": {
+     "point": 1.5,
+     "price": -190
+    },
+    "mybookieag": {
+     "point": 1.5,
+     "price": -196
+    },
+    "novig": {
+     "point": 1.5,
+     "price": -182
+    },
+    "polymarket": {
+     "point": 1.5,
+     "price": -186
+    },
+    "prophetx": {
+     "point": 1.5,
+     "price": -182
+    },
+    "williamhill_us": {
+     "point": 1.5,
+     "price": -197
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNHLSPREAD-26NOV10NJWPG-NJ2"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Winnipeg",
+   "side_label": "NOT New Jersey wins by over 1.5 goals",
+   "size_x": 5.54,
+   "start_source": "odds",
+   "start_utc": "2026-11-11T00:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig"
+   ],
+   "teams": [
+    "New Jersey",
+    "Winnipeg"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-10T09:35:27Z",
    "base_depth": 54755,
    "best_price": 0.6,
@@ -552,9 +936,9 @@
     "volume_fp": 3.2
    },
    "ex_stats_close": {
-    "open_interest_fp": 10284.43,
-    "volume_24h_fp": 8596.189999999999,
-    "volume_fp": 10930.75
+    "open_interest_fp": 10363.59,
+    "volume_24h_fp": 8651.08,
+    "volume_fp": 11009.91
    },
    "ex_stats_first": {
     "open_interest_fp": 9978.0,
@@ -766,7 +1150,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 3543.1,
-    "volume_24h_fp": 1323.87,
+    "volume_24h_fp": 1495.25,
     "volume_fp": 3927.34
    },
    "ex_stats_first": {
@@ -978,9 +1362,9 @@
     "volume_fp": 17815.45
    },
    "ex_stats_close": {
-    "open_interest_fp": 437761.33,
-    "volume_24h_fp": 423219.53,
-    "volume_fp": 450958.79
+    "open_interest_fp": 440748.54000000004,
+    "volume_24h_fp": 427417.16,
+    "volume_fp": 454109.36
    },
    "ex_stats_first": {
     "open_interest_fp": 94314.64,
@@ -1207,9 +1591,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 575.7,
+    "open_interest_fp": 689.7,
     "volume_24h_fp": 638.54,
-    "volume_fp": 638.54
+    "volume_fp": 752.54
    },
    "ex_stats_first": {
     "open_interest_fp": 136.33,
@@ -1414,9 +1798,9 @@
     "volume_fp": 5.1
    },
    "ex_stats_close": {
-    "open_interest_fp": 18592.12,
-    "volume_24h_fp": 18733.56,
-    "volume_fp": 20016.37
+    "open_interest_fp": 18603.559999999998,
+    "volume_24h_fp": 18819.13,
+    "volume_fp": 20027.809999999998
    },
    "ex_stats_first": {
     "open_interest_fp": 8651.119999999999,
@@ -1637,9 +2021,9 @@
     "volume_fp": 2515.86
    },
    "ex_stats_close": {
-    "open_interest_fp": 153346.18,
-    "volume_24h_fp": 140056.63,
-    "volume_fp": 157775.07
+    "open_interest_fp": 153590.88,
+    "volume_24h_fp": 142229.93,
+    "volume_fp": 158019.77000000002
    },
    "ex_stats_first": {
     "open_interest_fp": 38710.45,
@@ -1853,9 +2237,9 @@
     "volume_fp": 33.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 75816.55,
-    "volume_24h_fp": 74501.02,
-    "volume_fp": 78596.27
+    "open_interest_fp": 76058.27,
+    "volume_24h_fp": 75022.5,
+    "volume_fp": 78837.98999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 5987.16,
@@ -1971,9 +2355,9 @@
     "volume_fp": 130.22
    },
    "ex_stats_close": {
-    "open_interest_fp": 67016.01999999999,
-    "volume_24h_fp": 68835.68,
-    "volume_fp": 79009.70999999999
+    "open_interest_fp": 67073.57,
+    "volume_24h_fp": 69715.36,
+    "volume_fp": 79073.01000000001
    },
    "ex_stats_first": {
     "open_interest_fp": 38817.090000000004,
@@ -3625,9 +4009,9 @@
     "volume_fp": 62.37
    },
    "ex_stats_close": {
-    "open_interest_fp": 43853.72,
-    "volume_24h_fp": 39831.22,
-    "volume_fp": 48049.58
+    "open_interest_fp": 43974.93,
+    "volume_24h_fp": 40736.21,
+    "volume_fp": 48170.79
    },
    "ex_stats_first": {
     "open_interest_fp": 10945.8,
@@ -17743,9 +18127,9 @@
     "volume_fp": 19.34
    },
    "ex_stats_close": {
-    "open_interest_fp": 13824.27,
-    "volume_24h_fp": 11402.810000000001,
-    "volume_fp": 14936.45
+    "open_interest_fp": 13978.75,
+    "volume_24h_fp": 11412.7,
+    "volume_fp": 15090.93
    },
    "ex_stats_first": {
     "open_interest_fp": 2970.47,
@@ -19464,9 +19848,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 30615.69,
-    "volume_24h_fp": 25707.59,
-    "volume_fp": 36322.17
+    "open_interest_fp": 30690.09,
+    "volume_24h_fp": 26607.01,
+    "volume_fp": 36396.57
    },
    "ex_stats_first": {
     "open_interest_fp": 6541.31,
@@ -20056,8 +20440,8 @@
     "polymarket",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 0.0,
+   "close_price": 0.53,
+   "clv_cents": 1.0,
    "confirmed_after_min": 5,
    "date": "2026-11-10",
    "depth_by_book": {
@@ -20088,9 +20472,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 30615.69,
-    "volume_24h_fp": 25707.59,
-    "volume_fp": 36322.17
+    "open_interest_fp": 30690.09,
+    "volume_24h_fp": 26607.01,
+    "volume_fp": 36396.57
    },
    "ex_stats_first": {
     "open_interest_fp": 6153.42,
