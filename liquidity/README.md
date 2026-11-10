@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 9, 11:55 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 28.
+Updated Tue Nov 10, 12:00 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 27.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 1247-1004 (-53.40u flat) | rule met: 783-638
+**Record:** 1248-1004 (-53.09u flat) | rule met: 784-638
 
-**Fade (paper, betting against the print):** 738-974 (-154.02u flat, after fees)
+**Fade (paper, betting against the print):** 738-975 (-155.02u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -37,7 +37,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 9 6:35PM | NBA | Memphis Grizzlies @ Toronto Raptors | moneyline: TOR (0) | novig | $37k | +113 | ✅ kalshi,prophetx | ❌ | +0.5c |  | L |
 | Nov 9 6:26PM | NBA | Cavaliers vs. Hornets | spread: Hornets (+8.5) | polymarket | $347k | -100 | ✅ kalshi,novig,prophetx |  | +3.0c |  | W |
 | Nov 9 6:26PM | NBA | Cavaliers vs. Hornets | moneyline: Hornets | polymarket | $300k | +285 |  |  | +0.0c |  | W |
-| Nov 9 6:26PM | NBA | San Antonio Spurs @ Phoenix Suns | moneyline: SAS (0) | novig | $38k | -326 | ✅ kalshi,prophetx |  | +0.5c | yes | pending |
+| Nov 9 6:26PM | NBA | San Antonio Spurs @ Phoenix Suns | moneyline: SAS (0) | novig | $38k | -326 | ✅ kalshi,prophetx |  | +0.5c | yes | W |
 | Nov 9 6:20PM | NBA | Cleveland Cavaliers @ Charlotte Hornets | total: Over 215.5 (215.5) | novig | $28k | -106 | ✅ kalshi,polymarket,prophetx | ❌ | +0.5c |  | W |
 | Nov 9 6:20PM | NBA | Cleveland vs Charlotte: Total Points | total: Over 215.5 points | kalshi | $27k | -100 | ✅ novig,polymarket,prophetx | ❌ | +3.0c | yes | W |
 | Nov 9 6:16PM | NBA | Washington Wizards at Detroit Pistons | moneyline: Detroit Pistons | prophetx | $69k | -360 | ✅ kalshi,novig,polymarket |  | +0.2c |  | W |
