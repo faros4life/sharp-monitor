@@ -1,0 +1,34 @@
+name: novig-only-clv
+
+# MANUAL ONLY, read-only, 0 OddsPapi credits. Novig-only vs ProphetX-qualified executable-basis CLV
+# (Peter's Nov 10 audit). Reads alerts.json and the shared hcache; no paid endpoint is reachable
+# (markets come from clv/markets.json). Registers nothing; Lane 1 untouched.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Restore shared OddsPapi history cache (read only)
+        uses: actions/cache/restore@v4
+        with:
+          path: hcache
+          key: hcache-${{ github.run_id }}
+          restore-keys: hcache-
+      - name: Novig-only CLV (read-only, 0 credits)
+        env:
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+        run: |
+          set -o pipefail
+          python -u novig_only_clv.py 2>&1 | tee out.txt
+          { echo '```'; cat out.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"

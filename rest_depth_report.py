@@ -140,17 +140,39 @@ def audit(rows):
     except Exception:
         pass
 
+    def clv_fields(r):
+        """league / market / bet text for close_for, derived from what a ledger row ACTUALLY carries.
+        Ledger rows have no league/market/side fields - they are inside r["key"] (SPORT|game|market|side)
+        and the exact line is r["alert_line"]. The previous reader passed r.get("league"/"market"/"side"),
+        i.e. None x3, so close_for returned "bet text not parsed" for every row (the 0% join).
+        EXACT LINE ONLY: totals need a side AND a line; a row whose executable fill is on a different
+        line than the alert is NOT scored (no converted line without a validated equivalent price).
+        Returns None (UNKNOWN) for anything it cannot pin down - never a guess."""
+        k = str(r.get("key") or "").split("|")
+        if len(k) < 4:
+            return None
+        lg, mk, sd = k[0].upper(), k[2].lower(), k[3]
+        ln = r.get("alert_line")
+        if mk != "total" or sd.upper() not in ("OVER", "UNDER") or ln is None:
+            return None   # spreads/MLs: team-text parse is not covered here -> UNKNOWN, not zero
+        if r.get("fill_line") is not None and float(r["fill_line"]) != float(ln):
+            return None   # executable price is on another line: not comparable to this close
+        return lg, "total", f"{sd.capitalize()} {float(ln):g}"
+
     def clv_of(r):
         """(clv_pct, beat) at the EXECUTABLE price against a verified same-line Pinnacle close.
         None where any leg is missing - never estimated, never substituted."""
         am = r.get("fill_price_after_fee")
         if am is None:
             return None, None
+        cf = clv_fields(r)
+        if cf is None:
+            return None, None
+        _lg, _mk, _bet = cf
+        game = r.get("game") or str(r.get("key") or "").split("|")[1]
         try:
-            fid = _cl.find_fixture(st, {"bet": r.get("side") or r.get("game"),
-                                        "league": r.get("league"), "game": r.get("game"),
-                                        "teams": _nn.teams_of({"league": r.get("league"),
-                                                               "teams": None}),
+            fid = _cl.find_fixture(st, {"bet": _bet, "league": _lg, "game": game,
+                                        "teams": _nn.teams_of({"league": _lg, "teams": None}),
                                         "game_start": r.get("start_utc")})
         except Exception:
             fid = None
@@ -162,9 +184,8 @@ def audit(rows):
             return None, None
         try:
             h = _hc.get_hist(fid, ["pinnacle"], start)
-            c, _why = _cl.close_for({"bet": r.get("side"), "league": r.get("league"),
-                                     "market": r.get("market")}, f,
-                                    _cl.book_markets(h, "pinnacle"), mkmap, start, r.get("league"))
+            c, _why = _cl.close_for({"bet": _bet, "league": _lg, "market": _mk}, f,
+                                    _cl.book_markets(h, "pinnacle"), mkmap, start, _lg)
         except Exception:
             return None, None
         if not c or not _cs.close_verified(c.get("how")):
@@ -172,7 +193,7 @@ def audit(rows):
         dec = 1 + (am / 100.0 if am > 0 else 100.0 / abs(am))
         try:
             v = _cs.canon(r.get("fill_book"))
-            pct = _cs.net_clv(c["p"], dec, v, maker=False, league=r.get("league"))
+            pct = _cs.net_clv(c["p"], dec, v, maker=False, league=_lg)
         except Exception:
             return None, None
         return pct, (pct is not None and pct > 0)
