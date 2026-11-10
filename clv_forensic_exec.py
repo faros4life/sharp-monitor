@@ -264,8 +264,13 @@ def lane2(now, mkmap):
     days = sorted({r["day"] for r in D})
     if days:
         mid = days[(len(days) - 1) // 2]
-        block(f"underdogs FIT (<= {mid})", [r for r in D if r["day"] <= mid])
-        block(f"underdogs CHECK (> {mid})", [r for r in D if r["day"] > mid])
+        for lab, xs in ((f"FIT (<= {mid})", [r for r in D if r["day"] <= mid]), (f"CHECK (> {mid})", [r for r in D if r["day"] > mid])):
+            g = {}
+            for r in xs:          # unique games only: earliest sighting per game, never repeated sightings
+                k = (r["league"], r["game"])
+                if k not in g or (r.get("mins_before") or 0) > (g[k].get("mins_before") or 0):
+                    g[k] = r
+            say(ci_line(f"underdogs {lab}: UNIQUE GAMES", [r["clv_pct"] for r in g.values()]))
     say(f"  registered bar: >=100 distinct games, CLV>0 and beat-close>=53% in both halves; distinct underdog games here: {len({(r['league'], r['game']) for r in D})}")
     return rows
 
