@@ -190,6 +190,167 @@ def read_back(oid):
     return None
 
 
+def cancel_targeted(oid, slug):
+    """Cancel ONE order by id. Returns (ok, how, log-lines).
+
+    THREE TARGETED SHAPES, IN ORDER, AND NEVER CANCEL-ALL. Discovery found three live handlers,
+    but one of them - POST /v1/orders/open/cancel - is cancel-ALL: it answered 200 with
+    canceledOrderIds [] only because nothing was open at the time. Fired while anything of
+    Peter's rests, it kills his orders too, not just the test's. It is therefore excluded here
+    even as a last-resort cleanup: a test that tidies up after itself by cancelling the account
+    is not tidying up. If all three targeted shapes fail, this says so and Peter kills the one
+    order in the app, exactly as before.
+
+    Shape 2 exists because of Muse's caveat: the dead-id rejection carried the generic code-3
+    body, so if a LIVE cancel 400s identically the docs' optional marketSlug field is the first
+    suspect. Shape 3 is the batched route with a single id - targeted, and it proved it validates
+    its input ("At least one order is required")."""
+    lines = []
+    tries = [("POST", f"/v1/order/{oid}/cancel", {}, "documented singular"),
+             ("POST", f"/v1/order/{oid}/cancel", {"marketSlug": slug}, "singular + marketSlug"),
+             ("POST", "/v1/orders/batched/cancel", {"orderIds": [oid]}, "batched, one id")]
+    for method, path, body, label in tries:
+        st, resp, _ = call_h(method, path, body)
+        tag, kind = _classify(st, resp)
+        lines.append(f"   {label:22} {method} {path}  HTTP {st}  {tag}")
+        if isinstance(st, int) and 200 <= st < 300:
+            return True, label, lines
+        lines.append(f"      {str(resp)[:200]}")
+        time.sleep(1)
+    return False, None, lines
+
+
+def confirm_cancel(slug, price, expire_ts):
+    """END-TO-END: place a resting variant-B bid, cancel it by its own id, prove it is CANCELED.
+
+    This is the last blocker on resting bids. Variant B rests but the venue silently stores it as
+    TIME_IN_FORCE_DAY with goodTillTime null, so the expiry is not an exit and an explicit cancel
+    at T-30 is the only way the resting design can honour Peter's rule. Discovery found the
+    documented route; this proves it works on an order that is actually on the book.
+
+    Unlike both earlier probes, this one cleans up after itself - and it verifies the cleanup
+    rather than assuming it, by reading the order back and requiring CANCELED. If the cancel
+    fails it says so in one unmissable line and names the id to kill in the app."""
+    iso = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime(int(expire_ts)))
+    body = {"marketSlug": slug, "intent": "ORDER_INTENT_BUY_LONG", "type": "ORDER_TYPE_LIMIT",
+            "price": {"value": f"{price:.3f}", "currency": "USD"}, "quantity": 1,
+            "manualOrderIndicator": "MANUAL_ORDER_INDICATOR_AUTOMATIC",
+            "tif": "TIME_IN_FORCE_GOOD_TILL_TIME", "goodTillTime": iso}
+    say("1) place a resting variant-B bid (1 contract, 15c below the offer)")
+    st, resp = call("POST", "/v1/orders", body)
+    say(f"   HTTP {st}")
+    if not (isinstance(st, int) and 200 <= st < 300):
+        say(f"   {str(resp)[:400]}")
+        say("   Nothing placed, so nothing to cancel. Cancel route still unconfirmed.")
+        return
+    resp = resp if isinstance(resp, dict) else {}
+    oid = resp.get("orderId") or resp.get("id") or (resp.get("order") or {}).get("id")
+    say(f"   order {oid}")
+    if not oid:
+        say("   NO ORDER ID IN THE REPLY - CANCEL IN THE APP. Cannot cancel what is not named.")
+        return
+
+    say("\n2) cancel it by id (targeted shapes only - never cancel-all)")
+    ok, how, lines = cancel_targeted(oid, slug)
+    for ln in lines:
+        say(ln)
+
+    say("\n3) read it back - acceptance is not proof, the stored state is")
+    time.sleep(3)
+    back = read_back(oid)
+    o = ((back or {}).get("order") or back or {}) if back else {}
+    state = str(o.get("status") or o.get("state") or "?").upper()
+    say(f"   state: {state}")
+    say(f"   leaves: {o.get('leavesQuantity')}   filled: {o.get('cumQuantity')}")
+
+    say("")
+    cancelled = "CANCEL" in state
+    if ok and cancelled:
+        say(f"CONFIRMED: cancel works via {how}, and the order reads back {state}.")
+        say("  Nothing is resting. That was the last blocker on the resting design:")
+        say("  place with tif GOOD_TILL_TIME, and cancel explicitly at T-30 rather than")
+        say("  trusting an expiry the venue discards.")
+        say("  Still outstanding before Polymarket joins REST_BOOKS: the participateDontInitiate")
+        say("  test, since the maker rebate is what justifies ranking it above Kalshi.")
+    elif ok and not cancelled:
+        say(f"MIXED: the cancel call succeeded but the order reads {state}, not cancelled.")
+        say(f"  *** CHECK THE APP AND CANCEL {oid} IF IT IS STILL THERE. ***")
+        say("  A cancel we cannot verify is not a cancel. Do not deploy on this.")
+    else:
+        say("FAILED: no targeted cancel shape worked on a live order.")
+        say(f"  *** CANCEL {oid} IN THE POLYMARKET US APP NOW. ***")
+        say("  Cancel-all was deliberately not tried as a fallback: it would have killed every")
+        say("  open order on the account, not this one.")
+
+
+def pdi_test(slug, price, expire_ts):
+    """Does participateDontInitiate SURVIVE, or does the venue drop it like it dropped the expiry?
+
+    WHY ACCEPTANCE IS NOT THE TEST. The venue took variant B's goodTillTime without complaint and
+    then stored tif DAY with goodTillTime null. So an accepted order carrying
+    participateDontInitiate proves nothing: the question is whether the flag is still there on
+    the read-back. That flag is what makes us maker, and the maker rebate - roughly -0.0125, the
+    venue paying us to post, against a 0.06 taker charge - is the entire reason for ranking
+    Polymarket above Kalshi. If it silently drops, we are a taker and the ranking collapses.
+
+    Cancels itself afterwards via the proven route."""
+    iso = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime(int(expire_ts)))
+    body = {"marketSlug": slug, "intent": "ORDER_INTENT_BUY_LONG", "type": "ORDER_TYPE_LIMIT",
+            "price": {"value": f"{price:.3f}", "currency": "USD"}, "quantity": 1,
+            "manualOrderIndicator": "MANUAL_ORDER_INDICATOR_AUTOMATIC",
+            "tif": "TIME_IN_FORCE_GOOD_TILL_TIME", "goodTillTime": iso,
+            "participateDontInitiate": True}
+    say("1) place variant B WITH participateDontInitiate")
+    st, resp = call("POST", "/v1/orders", body)
+    say(f"   HTTP {st}")
+    if not (isinstance(st, int) and 200 <= st < 300):
+        say(f"   {str(resp)[:400]}")
+        say("   REJECTED with the flag. Either the field name is wrong or the venue refuses it;")
+        say("   nothing placed. Maker status is unproven, so the Polymarket ranking is unproven.")
+        return
+    resp = resp if isinstance(resp, dict) else {}
+    oid = resp.get("orderId") or resp.get("id") or (resp.get("order") or {}).get("id")
+    say(f"   accepted as {oid} - which proves only that it was not rejected")
+    if not oid:
+        say("   NO ORDER ID - CANCEL IN THE APP.")
+        return
+
+    say("\n2) read back: is the flag still on the order?")
+    time.sleep(3)
+    back = read_back(oid)
+    o = ((back or {}).get("order") or back or {}) if back else {}
+    kept = None
+    for k in ("participateDontInitiate", "participate_dont_initiate"):
+        if k in o:
+            kept = o.get(k)
+            say(f"   {k} = {kept}")
+    if kept is None:
+        say("   the flag is ABSENT from the read-back")
+    say(f"   tif = {o.get('tif')}   goodTillTime = {o.get('goodTillTime')}")
+
+    say("\n3) cancel it")
+    ok, how, lines = cancel_targeted(oid, slug)
+    for ln in lines:
+        say(ln)
+    time.sleep(3)
+    b2 = read_back(oid)
+    o2 = ((b2 or {}).get("order") or b2 or {}) if b2 else {}
+    st2 = str(o2.get("status") or o2.get("state") or "?").upper()
+    say(f"   state now: {st2}")
+
+    say("")
+    if kept is True:
+        say("MAKER FLAG HOLDS: participateDontInitiate survives the read-back.")
+        say("  The maker-rebate economics stand, and with them the case for ranking Polymarket")
+        say("  above Kalshi at a -110 screen.")
+    else:
+        say("MAKER FLAG DOES NOT HOLD: the venue dropped it, exactly as it dropped goodTillTime.")
+        say("  Then we cannot assume maker pricing, the rebate cannot be counted, and the reason")
+        say("  for putting Polymarket ahead of Kalshi is gone. Do not reorder REST_BOOKS on it.")
+    if not (ok and "CANCEL" in st2):
+        say(f"  *** CANCEL {oid} IN THE APP - cleanup not verified. ***")
+
+
 def _classify(st, body):
     """Is this status a real route, an unimplemented stub, or nothing?
 
@@ -305,7 +466,11 @@ def discover_cancel():
     # Only if this shows a live handler is a fresh order worth placing to confirm end to end.
     cands = [("POST", f"/v1/order/{oid}/cancel", {}),
              ("DELETE", f"/v1/order/{oid}", None),
-             ("POST", "/v1/orders/open/cancel", {}),
+             # /v1/orders/open/cancel IS NOT PROBED ANY MORE. The Nov 9 run fired it and it
+             # answered 200 with canceledOrderIds [] - harmless only because nothing was open at
+             # that moment. It is cancel-ALL: run again while any order of Peter's rests, it
+             # kills those too. Its existence is established and discovery is re-runnable, so
+             # there is no reason to ever fire it again. Cancellation is by explicit id.
              ("POST", "/v1/orders/batched/cancel", {"orderIds": [oid]}),
              ("POST", f"/v1/orders/{oid}:cancel", {}),
              ("POST", "/v1/orders:cancel", {"orderId": oid}),
@@ -535,6 +700,16 @@ def main():
         sys.exit(f"REFUSING: one contract at {price} exceeds the ${MAX_COST} cap.")
 
     expire_ts = int(time.time()) + EXPIRE_S
+    if (os.environ.get("PMUS_CONFIRM_CANCEL") or "").strip() == "1":
+        say("POLYMARKET US END-TO-END CANCEL CONFIRMATION")
+        say(f"  slug {slug} | offer {best:.3f} | bid {price:.3f}\n")
+        confirm_cancel(slug, price, expire_ts)
+        return
+    if (os.environ.get("PMUS_PDI_TEST") or "").strip() == "1":
+        say("POLYMARKET US participateDontInitiate TEST (does the maker flag survive?)")
+        say(f"  slug {slug} | offer {best:.3f} | bid {price:.3f}\n")
+        pdi_test(slug, price, expire_ts)
+        return
     if (os.environ.get("PMUS_CANCEL_PROBE") or "").strip() == "1":
         say("POLYMARKET US CANCEL-PATH PROBE")
         say(f"  slug {slug} | offer {best:.3f} | bid {price:.3f}\n")

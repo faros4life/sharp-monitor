@@ -12,16 +12,28 @@ name: pmus-rest-order-test
 # goodTillTime null. A 3-minute order became a day order. Both probe runs had to be cancelled by
 # hand in the app. So after ANY mode that places an order, CHECK THE APP AND CANCEL.
 #
-# No cancel route has been found: 5 REST shapes failed (404s, and one 501 that says the resource
-# path is right but DELETE is the wrong verb). The discover mode below hunts the remaining
-# gRPC-transcoding shapes and PLACES NOTHING - it probes an already-dead order id, because a
-# route that exists answers a dead id with 400/409 while a route that does not answers 404.
+# CANCEL IS SOLVED (Nov 9, run 42748697823). The namespace is SINGULAR - GET /v1/order/{id}
+# returns 200 where GET /v1/orders/{id} 404s - and the documented route is
+# POST /v1/order/{orderId}/cancel. Every plural and colon shape tried before it was dead.
+# So confirm_cancel below cleans up after itself instead of leaving an order for the app.
+#
+# NEVER /v1/orders/open/cancel. It is cancel-ALL: it answered 200 only because nothing was open
+# at the time. Fired while anything of Peter's rests, it kills his orders too. Cancellation here
+# is always by explicit order id.
 #
 # Nothing routes to the resting path until this passes: pmus_place still defaults to fill-or-kill
 # and Polymarket US is NOT in REST_BOOKS.
 on:
   workflow_dispatch:
     inputs:
+      confirm_cancel:
+        description: "1 = END-TO-END: place variant B, cancel it by id, prove CANCELED. Cleans up after itself. Needs slug."
+        required: false
+        type: string
+      pdi_test:
+        description: "1 = does participateDontInitiate survive the read-back? (the maker flag). Needs slug."
+        required: false
+        type: string
       discover:
         description: "1 = find the cancel route WITHOUT PLACING ANYTHING (needs order_id; leave slug blank)"
         required: false
@@ -64,6 +76,8 @@ jobs:
           PMUS_TEST_SLUG: ${{ inputs.slug }}
           PMUS_PROBE: ${{ inputs.probe }}
           PMUS_DISCOVER: ${{ inputs.discover }}
+          PMUS_CONFIRM_CANCEL: ${{ inputs.confirm_cancel }}
+          PMUS_PDI_TEST: ${{ inputs.pdi_test }}
           PMUS_ORDER_ID: ${{ inputs.order_id }}
           PMUS_CANCEL_PROBE: ${{ inputs.cancel_probe }}
         run: |
