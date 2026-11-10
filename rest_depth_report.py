@@ -534,6 +534,192 @@ def stake_vs_depth(rows):
     say("=" * 118)
 
 
+def _qof(r):
+    """(league, game, market, side, line) for a ledger row, from the KEY plus the stored line.
+
+    The row carries no league/market/side field - that was the defect behind the 0% CLV join. The
+    key is executor.derive_key: SPORT|game|market|side. The line is on the row as fill_line (the
+    line actually taken) or alert_line. close_for's first guard is parsed(bet), so the bet must be
+    real TEXT with its number - passing None is what produced 'bet text not parsed' before.
+    """
+    p = str(r.get("key") or r.get("play_key") or "").split("|")
+    if len(p) < 4:
+        return None
+    lg, game, mk, sd = p[0].upper(), p[1], p[2].lower(), p[3]
+    ln = r.get("fill_line")
+    if ln is None:
+        ln = r.get("alert_line")
+    if mk != "total" or ln is None:
+        return None          # totals only: the key collapses spread and moneyline into "side"
+    try:
+        bet = f"{sd.title()} {float(ln):g}"
+    except Exception:
+        return None
+    return lg, game, mk, bet, float(ln)
+
+
+def novig_restriction_clv(rows):
+    """Does 'priced on Novig, not ProphetX' reject profitable opportunities? (Peter, Nov 10.)
+
+    The only authorized question. Read-only, frozen decision records, no paid call, no live change.
+
+    WHAT IS BEING PRICED. These opportunities were never placed, so there is no fill to price. The
+    executable price is the one that was actually on the book at the decision, after fee
+    (fill_price_after_fee) - the same basis every other executable number in this system uses. CLV
+    is that price against a VERIFIED same-line Pinnacle close; an unverified or different-line
+    close is dropped, never substituted.
+    """
+    import collections as _c
+    import statistics as _st
+    import clv_ledger as _cl
+    import clv_std as _cs
+    import hist_cache as _hc
+    from datetime import datetime as _dtd, timezone as _tzd
+    say("")
+    say("=" * 100)
+    say("NOVIG-NOT-PROPHETX: does the restriction reject profitable opportunities?")
+    say("=" * 100)
+
+    def blocked(r):
+        w = r.get("live_why_not")
+        lst = [str(x) for x in (w if isinstance(w, list) else [w] if w else [])]
+        hit = [x for x in lst if "Novig, not ProphetX" in x]
+        return (bool(hit), len(lst))
+
+    pop = []
+    only = 0
+    for r in rows:
+        hit, n = blocked(r)
+        if not hit:
+            continue
+        q = _qof(r)
+        if q is None:
+            continue
+        if n == 1:
+            only += 1
+        pop.append((r, q))
+    say(f"  {len(pop)} totals opportunity(ies) blocked by the restriction "
+        f"({only} with NO other blocking reason)")
+    if not pop:
+        say("  Nothing to price. Not a verdict on the restriction - an empty population.")
+        return
+
+    st = {"fixtures": {}}
+    try:
+        import tracker_build as _tb
+        st["fixtures"] = dict((_tb.dec(json.load(open(_cl.STATE))).get("fixtures") or {}))
+    except Exception as e:
+        say(f"  fixture cache UNAVAILABLE ({type(e).__name__}) - cannot price. STOP.")
+        return
+    try:
+        import tracker_build as _tb2
+        toks = _tb2.toks
+    except Exception:
+        say("  tracker_build.toks unavailable - cannot match fixtures. STOP.")
+        return
+    mkmap = {}
+    try:
+        mkmap = _cl.load_markets(st, _dtd.now(_tzd.utc))
+    except Exception:
+        pass
+
+    def fixture_for(game):
+        """Same token test bot_match uses in production: >=2 shared words with the fixture sides."""
+        g = toks(game)
+        for fid, f in (st.get("fixtures") or {}).items():
+            if len(g & (toks(f.get("p1") or "") | toks(f.get("p2") or ""))) >= 2:
+                return fid, f
+        return None, None
+
+    out, lost = [], _c.Counter()
+    for r, (lg, game, mk, bet, ln) in pop:
+        am = r.get("fill_price_after_fee")
+        if am is None:
+            lost["no executable price recorded at the decision"] += 1
+            continue
+        fid, f = fixture_for(game)
+        if not fid:
+            lost["no fixture matched the game text"] += 1
+            continue
+        if not os.path.exists(_hc._path(fid, "pinnacle")):
+            lost["no stored Pinnacle history for the fixture"] += 1
+            continue
+        start = _cl.tp(f.get("start"))
+        if not start:
+            lost["fixture has no start time"] += 1
+            continue
+        try:
+            h = _hc.get_hist(fid, ["pinnacle"], start)
+            c, why = _cl.close_for({"bet": bet, "league": lg, "market": mk,
+                                    "game": f.get("game"), "game_start": f.get("start")},
+                                   f, _cl.book_markets(h, "pinnacle"), mkmap, start, lg)
+        except Exception as e:
+            lost[f"close_for raised {type(e).__name__}"] += 1
+            continue
+        if not c:
+            lost[f"no close: {str(why)[:44]}"] += 1
+            continue
+        if not _cs.close_verified(c.get("how")):
+            lost["close present but NOT verified (dropped, never substituted)"] += 1
+            continue
+        dec = 1 + (am / 100.0 if am > 0 else 100.0 / abs(am))
+        try:
+            pct = _cs.net_clv(c["p"], dec, _cs.canon(r.get("fill_book")), maker=False, league=lg)
+        except Exception as e:
+            lost[f"net_clv raised {type(e).__name__}"] += 1
+            continue
+        if pct is None:
+            lost["net_clv returned None"] += 1
+            continue
+        out.append((str(r.get("decided_utc") or ""), pct))
+
+    say("")
+    if lost:
+        say("  could not be priced (reported, not counted as zero):")
+        for k, n in lost.most_common(8):
+            say(f"      {n:4}  {k}")
+    say("")
+    if not out:
+        say(f"  PRICED: 0 of {len(pop)}. NO VERDICT. The restriction is neither cleared nor")
+        say("  convicted - there is no measurement here, and the reasons above say why.")
+        say("  Per Peter Nov 10, nothing gets built on this until it shows positive executable CLV,")
+        say("  and it cannot show anything until the missing leg above is fixed.")
+        return
+
+    out.sort()
+    v = [p for _, p in out]
+    n = len(v)
+    mean = sum(v) / n
+    sd = _st.stdev(v) if n > 1 else 0.0
+    se = sd / (n ** 0.5) if n > 1 else 0.0
+    beat = sum(1 for x in v if x > 0) / n * 100
+    say(f"  PRICED {n} of {len(pop)} - executable price at the decision vs verified Pinnacle close")
+    say(f"      mean net CLV   {mean:+.2f}%")
+    say(f"      sd {sd:.2f}%   SE {se:.2f}%   95% range "
+        f"{mean - 1.96 * se:+.2f}% .. {mean + 1.96 * se:+.2f}%")
+    say(f"      beat the close {beat:.0f}%  ({sum(1 for x in v if x > 0)} of {n})")
+    if n >= 4:
+        h = n // 2
+        a, b = v[:h], v[h:]
+        say(f"      first half  n={len(a)}  mean {sum(a) / len(a):+.2f}%")
+        say(f"      second half n={len(b)}  mean {sum(b) / len(b):+.2f}%")
+    say("")
+    lo = mean - 1.96 * se
+    if n < 30:
+        say(f"  VERDICT: n={n} is too small to decide. The 95% range above spans "
+            f"{lo:+.2f}% to {mean + 1.96 * se:+.2f}%,")
+        say("  so this neither clears nor convicts the restriction. No change on this.")
+    elif lo > 0:
+        say("  VERDICT: positive executable CLV with the 95% range entirely above zero. This is the")
+        say("  evidence Peter named as the precondition. It still needs a both-halves check and his")
+        say("  yes before any live change.")
+    else:
+        say("  VERDICT: not positive. The 95% range includes zero or sits below it, so the")
+        say("  restriction is not demonstrably rejecting profitable opportunities. Keep it, and")
+        say("  per Peter Nov 10 nothing further gets built on this.")
+    say("=" * 100)
+
+
 def main():
     since = (__import__("datetime").datetime.now(__import__("datetime").timezone.utc)
              - __import__("datetime").timedelta(days=DAYS)).strftime("%d-%b-%Y")
@@ -609,6 +795,7 @@ def main():
     audit(list(seen.values()))
     lane1_scope(list(seen.values()))
     stake_vs_depth(list(seen.values()))
+    novig_restriction_clv(list(seen.values()))
 
     attempted = [r for r in seen.values() if (r.get("live_rest") or {}).get("status")]
     placed = [r for r in attempted if (r.get("live_rest") or {}).get("status") == "placed"]
