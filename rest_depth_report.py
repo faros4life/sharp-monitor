@@ -151,10 +151,28 @@ def main():
             say("third resting venue would change nothing, and neither would changing the chain -")
             say("the binding constraint is upstream. Do not 'fix' resting on the strength of this.")
         else:
-            say(f"Zero resting attempts, but {len(live_ok)} play(s) DID reach live eligibility. So the")
-            say("resting lane itself is what is not firing - rest_wanted's conditions are never met")
-            say("(nothing filled at the number, or a partial above the minimum). That IS a fact about")
-            say("resting and is worth a look.")
+            # THE FILL CHECK, missing from the first version and the reason its verdict was wrong.
+            # It concluded "the resting lane is not firing, worth a look" from live-eligibility
+            # alone. But resting is meant to fire only when nothing filled AT the number - so if
+            # every live order filled, rest_wanted correctly never fires and there is nothing to
+            # look at. On the Nov 10 run that was exactly the case: 3 plays reached live, all 3
+            # placed, so a zero here is the design working, not a lane that is broken. Reporting it
+            # as suspicious would have sent someone hunting a bug that does not exist.
+            filled = [r for r in ordered
+                      if (r.get("live_order") or {}).get("status") == "placed"
+                      and ((r.get("live_order") or {}).get("filled_stake") or 0) > 0]
+            say(f"Zero resting attempts, and {len(live_ok)} play(s) reached live eligibility:")
+            say(f"  {len(ordered)} reached an order attempt, {len(placed_o)} placed, "
+                f"{len(filled)} with a recorded fill.")
+            if len(placed_o) and len(placed_o) == len(ordered):
+                say("")
+                say("Every live order that was attempted was PLACED. Resting exists for the case where")
+                say("nothing filled at the number, so it correctly never fired. This zero is the design")
+                say("working - not a resting bug, and not an argument about REST_BOOKS either way.")
+            else:
+                say("")
+                say("Some live attempts did NOT place, yet resting still never fired. THAT is a fact")
+                say("about the resting lane and is worth a look at rest_wanted's conditions.")
         return
 
     # The question: among refusals, how many were BOTH books lacking the exact line - the only
