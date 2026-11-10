@@ -81,10 +81,18 @@ def main():
             r, n = rd.ledger_rows(M, s, since)
             rows += r
             mails += n
+        # De-duplicate by key PREFERRING the row that records a placement. The previous rule was
+        # seen[k] = r, last row wins - so a play alerted again on a later run had its placement
+        # overwritten by the later candidate row, which carries no order at all. That is why 15
+        # plays the bot's own mail reports as placed read back here as "None, None".
         seen = {}
         for r in rows:
             k = r.get("key") or r.get("play_key")
-            if k:
+            if not k:
+                continue
+            cur = seen.get(k)
+            if cur is None or (any(placed(lo) for lo in legs(r))
+                               and not any(placed(lo) for lo in legs(cur))):
                 seen[k] = r
         say(f"  {mails} ledger email(s), {len(rows)} row(s), {len(seen)} distinct play(s)")
 

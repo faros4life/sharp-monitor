@@ -405,10 +405,23 @@ def main():
     # One row per play KEY, newest wins: the executor re-reports a play every run until it is
     # decided, so counting raw rows would weight a long-lived play dozens of times and the
     # frequency would be meaningless.
+    # Keep the row that records a PLACEMENT, not merely the last row for the key. Last-wins let a
+    # later candidate row for the same play overwrite the one holding the order, which is how this
+    # report came to show 12 placements against 28 in the bot's own mail. A placement is also
+    # recorded in live_rest or live_more, not live_order alone - tracker_build.bot_keys has always
+    # read all three.
+    def _placed_any(r):
+        los = [r.get("live_order") or {}, r.get("live_rest") or {}]
+        los += [x or {} for x in (r.get("live_more") or [])]
+        return any(lo.get("status") == "placed" and lo.get("order_id") for lo in los)
+
     seen = {}
     for r in rows:
         k = r.get("key") or r.get("play_key")
-        if k:
+        if not k:
+            continue
+        cur = seen.get(k)
+        if cur is None or (_placed_any(r) and not _placed_any(cur)):
             seen[k] = r
     say(f"{len(seen)} distinct play(s) after de-duplicating by key\n")
 
