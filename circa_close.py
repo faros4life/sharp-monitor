@@ -85,7 +85,12 @@ def compare(st):
             if os.path.exists(hc._path(fid, "pinnacle")) and os.path.exists(hc._path(fid, "circasports"))]
     both = [(s2, fid, f) for s2, fid, f in both if s2]
     both.sort(reverse=True)
-    say(f"  fixtures holding BOTH a Pinnacle and a Circa close: {len(both)}")
+    # LABELLED HONESTLY. This counts cache FILES, and an empty answer from the provider still
+    # writes one - so it badly overcounts. Batch 2 reported 275 "holding both" while only 44
+    # produced a comparable pair: the other 231 are mostly empty placeholders, not closes we
+    # could read. The pair count below is the real number; this one is an upper bound.
+    say(f"  fixtures with both cache files: {len(both)}  (upper bound - an empty provider answer")
+    say(f"    still writes a file, so this overcounts; the comparable-pair count is the real one)")
     for s_, fid, f in both:
         lg = f.get("league") or f.get("lg")
         try:
