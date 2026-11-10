@@ -34,8 +34,20 @@ printing the answer. Prefer the explanation that is closest to the code you just
 
 ## `cancelled` in a GitHub Actions run list means nothing on its own
 
-Two conditions produce it and they need opposite fixes. Compare the run's **duration against its
-`timeout-minutes`**:
+Two conditions produce it and they need opposite fixes.
+
+**Do not judge it by `updatedAt - createdAt`.** That is WALL time and includes QUEUE time, so a
+queued-then-dropped run and a long-executing one look alike - a *successful* executor run showed 23
+minutes against a 20-minute timeout purely from queueing. I wrote this section with that wrong test
+in it and caught it an hour later.
+
+**The reliable tell is whether Python was killed mid-work:** `Terminate orphan process: pid (python)`
+in the log. Combined with the concurrency setting it is decisive - under `cancel-in-progress: false`
+concurrency cancels the QUEUED run and never the running one, so a job that dies while Python is
+executing can only be the timeout. No orphan-process line and a short run means it was dropped from
+the queue, which is the safe path working.
+
+Then, with that established:
 
 - Duration ≈ timeout → the job was **killed mid-work**. `liquidity-extra` had not completed a run
   for nine hours this way, and the tell is `Terminate orphan process: pid (python)` in the log.
@@ -48,6 +60,17 @@ Two conditions produce it and they need opposite fixes. Compare the run's **dura
 A timed-out job reports as `cancelled`, not `failure`, which is why nine hours of a dead feed looked
 benign. I then set a 10-minute timeout on my own report an hour after diagnosing this, and read its
 `cancelled` as a result.
+
+**Known live instance (Nov 10):** `executor-dry-run` has `timeout-minutes: 20` and re-runs up to 3
+catch-up passes when a newer `alerts.json` lands mid-run. Passes take 6-15 minutes each, so when
+several fire the run exceeds 20 minutes and is killed. One was killed during pass 2. That run had
+placed nothing, but a kill can land anywhere - including AFTER an order is placed and BEFORE the
+ledger email that is the bot-order registry. An order missing from that registry means the daily
+stop undercounts, so this is a correctness risk and not merely a lost run.
+
+**Dropping MLB did NOT fix `liquidity-extra`** - five consecutive runs still die at exactly 9
+minutes. The work genuinely does not fit; the league list was a guess and it was wrong. Diagnose
+where the time actually goes before changing anything else there.
 
 ## Verifying a finding's arithmetic is not verifying that the behaviour is unintended
 
