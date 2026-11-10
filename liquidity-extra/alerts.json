@@ -1,8 +1,8 @@
 {
  "alerts": [
   {
-   "alerted_utc": "2026-11-10T19:52:33Z",
-   "base_depth": 60608,
+   "alerted_utc": "2026-11-10T19:41:51Z",
+   "base_depth": 62472,
    "best_price": 0.8032,
    "best_price_american": -408,
    "best_price_book": "prophetx",
@@ -16,17 +16,17 @@
    ],
    "close_price": 0.8,
    "clv_cents": 0.0,
-   "confirmed_after_min": 22,
+   "confirmed_after_min": 21,
    "date": "2026-11-10",
    "depth_by_book": {
     "kalshi": {
-     "new_other_side": 639,
-     "new_this_side": 34490,
-     "other_side": 9323,
-     "other_side_all_levels": 14599,
-     "ratio": 7.0,
-     "this_side": 65097,
-     "this_side_all_levels": 94172
+     "new_other_side": 492,
+     "new_this_side": 42781,
+     "other_side": 9891,
+     "other_side_all_levels": 15166,
+     "ratio": 6.7,
+     "this_side": 66281,
+     "this_side_all_levels": 96857
     },
     "prophetx": {
      "heavier_side": false,
@@ -47,7 +47,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 1470.67,
-    "volume_24h_fp": 1466.16,
+    "volume_24h_fp": 1470.67,
     "volume_fp": 1470.67
    },
    "ex_stats_first": {
@@ -56,19 +56,19 @@
     "volume_fp": 1466.16
    },
    "fade_price": 0.21,
-   "first_seen_utc": "2026-11-10T19:30:56Z",
+   "first_seen_utc": "2026-11-10T19:20:36Z",
    "game": "Nicholls St. vs Tulane",
    "game_surge_books": [
     "kalshi"
    ],
-   "game_x": 2.17,
+   "game_x": 2.31,
    "key": "kalshi|KXNCAAMBGAME-26NOV10NICHTULN|ml|1",
-   "lead_min": 277,
+   "lead_min": 288,
    "league": "NCAAB",
    "line": null,
    "market": "moneyline",
-   "new_money": 34490,
-   "new_x": 2.9,
+   "new_money": 42781,
+   "new_x": 3.71,
    "norm_by_book": {
     "kalshi": {
      "ex_stats": {
@@ -76,27 +76,27 @@
       "volume_24h_fp": 1466.16,
       "volume_fp": 1466.16
      },
-     "game_normal": 43345,
-     "game_x": 2.17,
-     "normal": 11913,
-     "now": 94172,
+     "game_normal": 41895,
+     "game_x": 2.31,
+     "normal": 11528,
+     "now": 96857,
      "type": "ML",
-     "x": 7.91
+     "x": 8.4
     },
     "prophetx": {
      "ex_stats": null,
-     "game_normal": 1011,
-     "game_x": 0.6,
-     "normal": 851,
+     "game_normal": 1153,
+     "game_x": 0.53,
+     "normal": 838,
      "now": 610,
      "type": "ML",
-     "x": 0.72
+     "x": 0.73
     }
    },
    "norm_ready_books": 2,
    "paper_only": false,
    "price": 0.8,
-   "price_after_15m": 0.7992,
+   "price_after_15m": 0.8032,
    "price_after_15m_book": "prophetx",
    "price_american": -400,
    "price_rule": "ml_edge_fail",
@@ -167,7 +167,7 @@
    "sharp_oppose": [],
    "side": "Tulane",
    "side_label": "Tulane",
-   "size_x": 7.91,
+   "size_x": 8.4,
    "start_source": "odds",
    "start_utc": "2026-11-11T00:30:00Z",
    "still_actionable": true,
@@ -182,227 +182,13 @@
    "units_flat": null
   },
   {
-   "alerted_utc": "2026-11-10T17:45:11Z",
-   "base_depth": 381402,
-   "best_price": 0.75,
-   "best_price_american": -300,
-   "best_price_book": "novig",
-   "bid_improved": false,
-   "bid_improved_at_pending": false,
-   "book": "kalshi",
-   "books_live": [
-    "kalshi",
-    "novig",
-    "prophetx"
-   ],
-   "close_price": 0.75,
-   "clv_cents": 0.0,
-   "confirmed_after_min": 21,
-   "date": "2026-11-10",
-   "depth_by_book": {
-    "kalshi": {
-     "new_other_side": 9218,
-     "new_this_side": 88537,
-     "other_side": 65926,
-     "other_side_all_levels": 146633,
-     "ratio": 3.3,
-     "this_side": 218827,
-     "this_side_all_levels": 483830
-    },
-    "novig": {
-     "heavier_side": true,
-     "label": "DUKE (0)",
-     "price": 0.75,
-     "this_side": 50385
-    },
-    "prophetx": {
-     "heavier_side": true,
-     "label": "Duke",
-     "price": 0.7561,
-     "this_side": 6396
-    }
-   },
-   "ex_stats_alert": {
-    "open_interest_fp": 73177.39,
-    "volume_24h_fp": 66457.57,
-    "volume_fp": 77405.85
-   },
-   "ex_stats_change": {
-    "open_interest_fp": 3017.51,
-    "volume_24h_fp": 1736.81,
-    "volume_fp": 3047.47
-   },
-   "ex_stats_close": {
-    "open_interest_fp": 94345.72,
-    "volume_24h_fp": 86452.9,
-    "volume_fp": 98814.02
-   },
-   "ex_stats_first": {
-    "open_interest_fp": 70159.88,
-    "volume_24h_fp": 64720.759999999995,
-    "volume_fp": 74358.38
-   },
-   "fade_price": 0.26,
-   "first_seen_utc": "2026-11-10T17:24:38Z",
-   "game": "Michigan St. vs Duke",
-   "game_surge_books": [
-    "novig",
-    "prophetx"
-   ],
-   "game_x": 1.55,
-   "key": "kalshi|KXNCAAMBGAME-26NOV10MSUDUKE|ml|1",
-   "lead_min": 375,
-   "league": "NCAAB",
-   "line": null,
-   "market": "moneyline",
-   "new_money": 88537,
-   "new_x": 9.29,
-   "norm_by_book": {
-    "kalshi": {
-     "ex_stats": {
-      "open_interest_fp": 73177.39,
-      "volume_24h_fp": 66457.57,
-      "volume_fp": 77405.85
-     },
-     "game_normal": 312121,
-     "game_x": 1.55,
-     "normal": 9535,
-     "now": 483830,
-     "type": "ML",
-     "x": 50.74
-    },
-    "novig": {
-     "ex_stats": {
-      "openInterest": 3374279.0,
-      "volume": 4057634.0
-     },
-     "game_normal": 9429,
-     "game_x": 6.58,
-     "normal": 2483,
-     "now": 62056,
-     "type": "ML",
-     "x": 25.0
-    },
-    "prophetx": {
-     "ex_stats": null,
-     "game_normal": 2161,
-     "game_x": 3.16,
-     "normal": 757,
-     "now": 6823,
-     "type": "ML",
-     "x": 9.01
-    }
-   },
-   "norm_ready_books": 3,
-   "paper_only": false,
-   "price": 0.75,
-   "price_after_15m": 0.75,
-   "price_after_15m_book": "novig",
-   "price_american": -300,
-   "price_rule": "ml_edge_fail",
-   "price_when_first_seen": 0.75,
-   "prices_by_book": {
-    "betmgm": {
-     "point": null,
-     "price": -350
-    },
-    "betonlineag": {
-     "point": null,
-     "price": -350
-    },
-    "betopenly": {
-     "point": null,
-     "price": -305
-    },
-    "betrivers": {
-     "point": null,
-     "price": -360
-    },
-    "betus": {
-     "point": null,
-     "price": -350
-    },
-    "bovada": {
-     "point": null,
-     "price": -340
-    },
-    "draftkings": {
-     "point": null,
-     "price": -340
-    },
-    "fanatics": {
-     "point": null,
-     "price": -340
-    },
-    "fanduel": {
-     "point": null,
-     "price": -350
-    },
-    "kalshi": {
-     "point": null,
-     "price": -300
-    },
-    "lowvig": {
-     "point": null,
-     "price": -350
-    },
-    "novig": {
-     "point": null,
-     "price": -300
-    },
-    "polymarket": {
-     "point": null,
-     "price": -300
-    },
-    "prophetx": {
-     "point": null,
-     "price": -310
-    },
-    "williamhill_us": {
-     "point": null,
-     "price": -350
-    }
-   },
-   "pulled": false,
-   "ref": {
-    "kalshi_side": "yes",
-    "market_ticker": "KXNCAAMBGAME-26NOV10MSUDUKE-DUKE"
-   },
-   "result": null,
-   "rule_met": true,
-   "second_book": [
-    "novig"
-   ],
-   "second_book_fresh": false,
-   "second_book_status": "ok",
-   "sharp_agree": [],
-   "sharp_oppose": [],
-   "side": "Duke",
-   "side_label": "Duke",
-   "size_x": 50.74,
-   "start_source": "odds",
-   "start_utc": "2026-11-11T00:00:00Z",
-   "still_actionable": true,
-   "surge_books": [
-    "kalshi",
-    "novig",
-    "prophetx"
-   ],
-   "teams": [
-    "Michigan St.",
-    "Duke"
-   ],
-   "top25": null,
-   "units_flat": null
-  },
-  {
-   "alerted_utc": "2026-11-10T16:27:41Z",
-   "base_depth": 67736,
-   "best_price": 0.615,
-   "best_price_american": -160,
+   "alerted_utc": "2026-11-10T16:37:40Z",
+   "base_depth": 87621,
+   "best_price": 0.605,
+   "best_price_american": -153,
    "best_price_book": "novig",
    "bid_improved": true,
-   "bid_improved_at_pending": false,
+   "bid_improved_at_pending": true,
    "book": "kalshi",
    "books_live": [
     "kalshi",
@@ -410,115 +196,115 @@
     "prophetx"
    ],
    "close_price": 0.62,
-   "clv_cents": 0.0,
-   "confirmed_after_min": 19,
+   "clv_cents": 1.0,
+   "confirmed_after_min": 20,
    "date": "2026-11-10",
    "depth_by_book": {
     "kalshi": {
-     "new_other_side": 9618,
-     "new_this_side": 38690,
-     "other_side": 16123,
-     "other_side_all_levels": 45925,
-     "ratio": 3.8,
-     "this_side": 61313,
-     "this_side_all_levels": 104842
+     "new_other_side": 12002,
+     "new_this_side": 39215,
+     "other_side": 24026,
+     "other_side_all_levels": 57196,
+     "ratio": 3.7,
+     "this_side": 87909,
+     "this_side_all_levels": 147980
     },
     "novig": {
      "heavier_side": true,
-     "label": "UNI (0)",
-     "price": 0.615,
-     "this_side": 11845
+     "label": "DUQ (0)",
+     "price": 0.605,
+     "this_side": 13190
     },
     "prophetx": {
      "heavier_side": true,
-     "label": "Northern Iowa",
-     "price": 0.6124,
-     "this_side": 2207
+     "label": "Duquesne",
+     "price": 0.6154,
+     "this_side": 2751
     }
    },
    "ex_stats_alert": {
-    "open_interest_fp": 1461.5300000000002,
-    "volume_24h_fp": 1361.5300000000002,
-    "volume_fp": 1461.5300000000002
+    "open_interest_fp": 1137.97,
+    "volume_24h_fp": 1130.97,
+    "volume_fp": 1139.97
    },
    "ex_stats_change": {
-    "open_interest_fp": 47.87,
-    "volume_24h_fp": 47.87,
-    "volume_fp": 47.87
+    "open_interest_fp": 459.02,
+    "volume_24h_fp": 459.02,
+    "volume_fp": 459.02
    },
    "ex_stats_close": {
-    "open_interest_fp": 1872.9899999999998,
-    "volume_24h_fp": 1796.87,
-    "volume_fp": 1899.32
+    "open_interest_fp": 2412.12,
+    "volume_24h_fp": 2399.12,
+    "volume_fp": 2414.12
    },
    "ex_stats_first": {
-    "open_interest_fp": 1413.66,
-    "volume_24h_fp": 1313.66,
-    "volume_fp": 1413.66
+    "open_interest_fp": 678.95,
+    "volume_24h_fp": 671.95,
+    "volume_fp": 680.95
    },
    "fade_price": 0.39,
-   "first_seen_utc": "2026-11-10T16:08:39Z",
-   "game": "Green Bay vs Northern Iowa",
+   "first_seen_utc": "2026-11-10T16:18:05Z",
+   "game": "Washington St. vs Duquesne",
    "game_surge_books": [
     "kalshi",
     "novig"
    ],
-   "game_x": 4.15,
-   "key": "kalshi|KXNCAAMBGAME-26NOV10GBUNI|ml|1",
-   "lead_min": 512,
+   "game_x": 4.85,
+   "key": "kalshi|KXNCAAMBGAME-26NOV10WSUDUQ|ml|1",
+   "lead_min": 442,
    "league": "NCAAB",
    "line": null,
    "market": "moneyline",
-   "new_money": 38690,
-   "new_x": 4.8,
+   "new_money": 39215,
+   "new_x": 4.85,
    "norm_by_book": {
     "kalshi": {
      "ex_stats": {
-      "open_interest_fp": 1461.5300000000002,
-      "volume_24h_fp": 1361.5300000000002,
-      "volume_fp": 1461.5300000000002
+      "open_interest_fp": 1137.97,
+      "volume_24h_fp": 1130.97,
+      "volume_fp": 1139.97
      },
-     "game_normal": 25253,
-     "game_x": 4.15,
-     "normal": 8060,
-     "now": 104842,
+     "game_normal": 30542,
+     "game_x": 4.85,
+     "normal": 8080,
+     "now": 147980,
      "type": "ML",
-     "x": 13.01
+     "x": 18.31
     },
     "novig": {
      "ex_stats": {
-      "openInterest": 164479.0,
-      "volume": 315522.0
+      "openInterest": 903667.0,
+      "volume": 1019747.0
      },
-     "game_normal": 3827,
-     "game_x": 3.16,
-     "normal": 2355,
-     "now": 12100,
+     "game_normal": 1832,
+     "game_x": 7.43,
+     "normal": 2366,
+     "now": 13620,
      "type": "ML",
-     "x": 5.14
+     "x": 5.76
     },
     "prophetx": {
      "ex_stats": null,
-     "game_normal": 1429,
-     "game_x": 1.8,
-     "normal": 708,
-     "now": 2571,
+     "game_normal": 1675,
+     "game_x": 1.68,
+     "normal": 714,
+     "now": 2811,
      "type": "ML",
-     "x": 3.63
+     "x": 3.94
     }
    },
    "norm_ready_books": 3,
    "paper_only": false,
-   "price": 0.62,
-   "price_after_15m": 0.61,
+   "price": 0.61,
+   "price_after_15m": 0.615,
    "price_after_15m_book": "novig",
-   "price_american": -163,
+   "price_american": -156,
    "price_rule": "ml_edge_fail",
-   "price_when_first_seen": 0.61,
+   "price_when_first_seen": 0.6,
    "prices_by_book": {
     "betmgm": {
      "point": null,
-     "price": -170
+     "price": -160
     },
     "betonlineag": {
      "point": null,
@@ -530,27 +316,27 @@
     },
     "betus": {
      "point": null,
-     "price": -160
+     "price": -170
     },
     "bovada": {
      "point": null,
-     "price": -170
+     "price": -160
     },
     "draftkings": {
      "point": null,
-     "price": -166
+     "price": -162
     },
     "fanatics": {
      "point": null,
-     "price": -165
+     "price": -170
     },
     "fanduel": {
      "point": null,
-     "price": -170
+     "price": -162
     },
     "kalshi": {
      "point": null,
-     "price": -163
+     "price": -156
     },
     "lowvig": {
      "point": null,
@@ -558,7 +344,7 @@
     },
     "novig": {
      "point": null,
-     "price": -160
+     "price": -156
     },
     "polymarket": {
      "point": null,
@@ -566,7 +352,7 @@
     },
     "prophetx": {
      "point": null,
-     "price": -158
+     "price": -160
     },
     "williamhill_us": {
      "point": null,
@@ -576,7 +362,7 @@
    "pulled": false,
    "ref": {
     "kalshi_side": "yes",
-    "market_ticker": "KXNCAAMBGAME-26NOV10GBUNI-UNI"
+    "market_ticker": "KXNCAAMBGAME-26NOV10WSUDUQ-DUQ"
    },
    "result": null,
    "rule_met": true,
@@ -586,21 +372,23 @@
    "second_book_fresh": false,
    "second_book_status": "ok",
    "sharp_agree": [],
-   "sharp_oppose": [],
-   "side": "Northern Iowa",
-   "side_label": "Northern Iowa",
-   "size_x": 13.01,
+   "sharp_oppose": [
+    "Washington St Cougars +4.5 (-130)"
+   ],
+   "side": "Duquesne",
+   "side_label": "Duquesne",
+   "size_x": 18.31,
    "start_source": "odds",
-   "start_utc": "2026-11-11T01:00:00Z",
-   "still_actionable": true,
+   "start_utc": "2026-11-11T00:00:00Z",
+   "still_actionable": false,
    "surge_books": [
     "kalshi",
     "novig",
     "prophetx"
    ],
    "teams": [
-    "Green Bay",
-    "Northern Iowa"
+    "Washington St.",
+    "Duquesne"
    ],
    "top25": null,
    "units_flat": null
@@ -818,7 +606,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settled_utc": "2026-11-10T17:24:38Z",
+   "settled_utc": "2026-11-10T17:14:23Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Arthur Rinderknech",
