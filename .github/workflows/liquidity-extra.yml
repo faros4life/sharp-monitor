@@ -25,7 +25,11 @@ jobs:
         env:
           LIQ_LEAGUES: "MLB,NCAAB,TENNIS"    # separate from the main record (liquidity/)
           LIQ_DIR: "liquidity-extra"
-          LIQ_BOOKS: "kalshi,novig,polymarket,prophetx"   # ProphetX: MLB only (confirming book)
+          # Nov 10 (Peter: "I want global out and pmus in. We can't use pm global"): global
+          # Polymarket dropped. This OVERRIDE is why removing it from liquidity_monitor.BOOKS was
+          # not enough on its own - an explicit LIQ_BOOKS here beats the code default, so this
+          # workflow kept generating global-priced alerts after the default was changed.
+          LIQ_BOOKS: "kalshi,novig,prophetx"   # ProphetX: MLB only (confirming book)
           LIQ_EXTRA_BOOKS: "900"             # this run has only these leagues: give them the normal read limits
           LIQ_EXTRA_SEC: "150"
           LIQ_PRIMARY_MIN: ${{ vars.LIQ_PRIMARY_MIN }}

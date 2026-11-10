@@ -678,7 +678,16 @@ def run():
                 entry[f"{bname}_first"] = (prev.get(key) or {}).get(f"{bname}_first") or dict(extra[bname], checked_utc=now_iso)
             # best gettable price across all four books right now (American, higher = better for you)
             allb = {"novig": res, **extra}
-            okb = {b: r_ for b, r_ in allb.items() if b != "hardrock" and r_.get("status") == "ok"
+            # NOT_BETTABLE is excluded from best_now and from the all-books dollar total. This
+            # filter used to exclude only "hardrock", so global Polymarket - which cannot be bet
+            # from the US at all - could be named the best available price. It was not theoretical:
+            # on Nov 10 two of the 36 live entries in novig-books.json had best_now.book
+            # "polymarket" at -131, both marked exact_line true (Celtics/76ers Over 215.5 and
+            # Heat/Jazz +10.5). A price we cannot take is not a best price, and its liquidity is not
+            # liquidity. Its quote is still RECORDED as polymarket_latest for reference; it just
+            # cannot win. Hard Rock keeps its own separate path below (manual-only, never auto).
+            NOT_BETTABLE = ("hardrock", "polymarket")
+            okb = {b: r_ for b, r_ in allb.items() if b not in NOT_BETTABLE and r_.get("status") == "ok"
                    and r_.get("best_price_american") is not None}
             if okb:
                 bb = max(okb, key=lambda b: okb[b]["best_price_american"])

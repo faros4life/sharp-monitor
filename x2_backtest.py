@@ -186,8 +186,14 @@ def main():
             return 100 * (1 / (1 + (1 / p - 1) * 0.98) - p)
         if bk == "kalshi":
             return 100 * 0.07 * p * (1 - p)
-        if bk.startswith("polymarket"):
+        # startswith("polymarket") matched GLOBAL Polymarket too and priced it with the US venue's
+        # taker fee. They are different venues: PMUS_FEE is 0.06 for Polymarket US, while global
+        # is 0.03 (book_check.TAKER_COEF) and in truth is not tradeable from the US at all. Found
+        # Nov 10 while enumerating every place global still appears.
+        if bk in ("polymarket_us", "polymarket.us"):
             return 100 * ex.PMUS_FEE * p * (1 - p)
+        if bk.startswith("polymarket"):   # global: its own fee, and it is not bettable anyway
+            return 100 * 0.03 * p * (1 - p)
         return 0.0
 
     def cell(xs):
