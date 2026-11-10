@@ -297,6 +297,21 @@ def report(st, games, now):
 MKMAP = {}
 
 
+def pending_counts(st, games, now):
+    """Reporting only: frozen games past the 4h mark and inside the 12-day window that have no grade yet, split by why.
+    (no fixture = no OddsPapi fixture matched; history unread = fixture matched but the history was not graded.)"""
+    nofix = hist = 0
+    for gid, g in games.items():
+        s = cl.tp(g.get("start"))
+        if gid in st["graded"] or not s or now - s < timedelta(hours=4) or now - s > timedelta(days=12):
+            continue
+        if st["fix"].get(gid) or match(st, g):
+            hist += 1
+        else:
+            nofix += 1
+    return nofix, hist
+
+
 def main():
     global MKMAP
     now = datetime.now(timezone.utc)
@@ -353,8 +368,11 @@ def main():
         except Exception as e:
             print(f"NCAAB grader: email failed ({type(e).__name__})")
     json.dump(tb.enc(st), open(OUT, "w"))
+    nofix, hist = pending_counts(st, games, now)
+    finals = sum(1 for g in games.values() if g.get("final") is not None)
     print(f"NCAAB grader: {'waited (another OddsPapi download running)' if busy else 'ran'}; graded +{read}, "
-          f"total {len(st['graded'])}, sightings {n_sg}, calls {len(cl.CALLS)}")   # counts only
+          f"cumulative graded {len(st['graded'])}, pending {nofix + hist} (no fixture {nofix}, history unread {hist}), "
+          f"sightings {n_sg}, finals {finals}, calls {len(cl.CALLS)}")   # counts only
 
 
 if __name__ == "__main__":
