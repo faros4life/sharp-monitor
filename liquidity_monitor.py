@@ -53,7 +53,17 @@ ML_ONLY = {"TENNIS"}   # tennis: match winner only (no set/game handicaps or tot
 EXTRA_CALLS = int(os.environ.get("LIQ_EXTRA_BOOKS", "") or "150")      # added leagues: at most this many book reads per exchange
 EXTRA_S = float(os.environ.get("LIQ_EXTRA_SEC", "") or "25")           # ...and at most this many seconds, AFTER the original leagues
 PX_LEAGUES = {"NFL", "NCAAF", "NBA", "NHL", "MLB", "NCAAB"}   # ProphetX (confirm-only book); tennis IDs change weekly
-BOOKS = [x.strip().lower() for x in (os.environ.get("LIQ_BOOKS", "") or "kalshi,novig,polymarket,prophetx").split(",") if x.strip()]
+# Nov 10 (Peter: "we are pmus only ... take global out of everything"). "polymarket" here was the
+# GLOBAL crypto book, which we do not trade - a different venue from Polymarket US. The board CLV
+# check proved the cost: 20 of 58 graded board PLAY calls (34%) were called on global prices that
+# were never obtainable by us, and clv_std refuses to price them at all (NotTradeable: no fee
+# model). We were monitoring a book we cannot bet and not monitoring the one we do.
+#
+# Removing it from BOOKS stops GENERATION only. Grading is keyed off each alert's own "book"
+# field, not this list, so global alerts already in flight still grade out normally and
+# polymarket.global stays in clv_std's registry so historical rows keep resolving instead of
+# raising UnknownVenue. Taking it out of the registry too would break the past, not clean it.
+BOOKS = [x.strip().lower() for x in (os.environ.get("LIQ_BOOKS", "") or "kalshi,novig,prophetx").split(",") if x.strip()]
 CONFIRM_ONLY_BOOKS = set()   # Oct 24: ProphetX now starts alerts too (same trigger); graded from ESPN finals at the after-fee best price
 MAX_CALLS = int(os.environ.get("LIQ_MAX_BOOKS", "") or "900")          # order-book calls per book per run
 SLEEP = float(os.environ.get("LIQ_SLEEP", "") or "0.06")
@@ -1429,7 +1439,7 @@ def fill_starts(rows, extra=()):
                 x["start_min"] = earliest
 
 
-GAP_BOOKS = ("kalshi", "novig", "prophetx")   # executable exchanges this monitor reads (Polymarket here is the global book)
+GAP_BOOKS = ("kalshi", "novig", "prophetx")   # executable exchanges this monitor reads (global Polymarket was dropped Nov 10)
 GAP_MIN = float(os.environ.get("LIQ_GAP_MIN", "") or "0.005")   # log when both sides cost < $1 - 0.5c after fees
 
 
