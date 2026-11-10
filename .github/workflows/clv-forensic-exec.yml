@@ -7,6 +7,14 @@ name: clv-forensic-exec
 # The repo is public: the log carries counts and percentages only; the per-row CSV goes by private email.
 on:
   workflow_dispatch:
+    inputs:
+      script:
+        description: audit script to run
+        type: choice
+        default: clv_forensic_exec.py
+        options:
+          - clv_forensic_exec.py
+          - regrade_candidates.py
 
 permissions:
   contents: read
@@ -44,4 +52,4 @@ jobs:
           XC_CACHE_ONLY: "1"
           CLV_MONTH_CAP: "0"
           ODDSPAPI_GATE: "enforce"
-        run: python -u clv_forensic_exec.py
+        run: python -u "${{ inputs.script }}"
