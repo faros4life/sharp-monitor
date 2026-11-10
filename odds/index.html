@@ -109,8 +109,11 @@ function render(){
         // Nov 6 (Peter): Hard Rock must open the APP on the phone. Use Hard Rock's own share-link format (opens the app with the bet on the slip).
         const hm=lk&&b.startsWith("hardrock")&&lk.match(/deep_link_value=betslip\/(\d+)/);
         if(hm)lk="https://share.hardrock.bet/Pt0T/bet?deep_link_value=hardrock://betslip/"+hm[1];
+        // Nov 9 (Peter): Novig - fill the bet link's {wager} with $200 and try the Novig app first (novigapp://), website after 1.5s if the app doesn't open.
+        let app=null;
+        if(b==="novig"&&l1&&/\{wager\}/.test(l1)){lk=l1.replace("{wager}","200");app=lk.replace(/^https:\/\/(www\.)?novig\.com\//,"novigapp://")}
         const safe=lk&&/^https:\/\//.test(lk)?lk.replace(/"/g,"%22"):null;
-        html+=`<td class="${best[i]===b?"b":""}">${safe?`<a href="${safe}">${txt}</a>`:txt}${ev}</td>`;
+        html+=`<td class="${best[i]===b?"b":""}">${safe?(app?`<a href="${app.replace(/"/g,"%22")}" data-web="${safe}" class="appl">${txt}</a>`:`<a href="${safe}">${txt}</a>`):txt}${ev}</td>`;
       });
       html+=`</tr>`;
     }
@@ -206,6 +209,7 @@ async function refreshNow(){
   }catch(e){msg.textContent="Refresh failed ("+e.message+")"}
 }
 document.getElementById("rf").addEventListener("click",refreshNow);
+document.addEventListener("click",e=>{const a=e.target.closest("a.appl");if(!a)return;const w=a.dataset.web;setTimeout(()=>{if(document.visibilityState==="visible")location.href=w},1500)});
 document.getElementById("kin").addEventListener("keydown",e=>{if(e.key==="Enter")refreshNow()});
 load();setInterval(load,60000);
 </script>
