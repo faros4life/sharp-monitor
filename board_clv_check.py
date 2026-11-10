@@ -113,8 +113,24 @@ def main():
             out.append(rec)
             continue
         c, why = cl.close_for(b, f, cl.book_markets(h, "pinnacle"), mkmap, start, "NBA")
-        if not c or not cs.close_verified(why):
-            exc["no VERIFIED same-line close"] += 1
+        # close_for returns (close, ERROR REASON). On SUCCESS the error is None and the "how" lives
+        # INSIDE the close dict. This passed `why` to close_verified, so every successful lookup was
+        # tested as close_verified(None) - which is False by design, asserted in clv_std's own test.
+        # The result: 100% of good closes rejected, 50 of 54 calls landing in one bucket with
+        # identical text, and the board reporting 0 of 54 verified closes since it was written.
+        # Every other caller in the repo (clv_report, lane2_search x3) already used c.get("how").
+        # I previously blamed the empty history cache for this 0/54 and told Peter so; the cache was
+        # a real second problem, but THIS is why the number was zero.
+        #
+        # The counter is split too, because merging `not c` with `not verified` is what made the bug
+        # invisible: one bucket cannot distinguish "no close found" from "close found but not
+        # same-line", and those have opposite remedies.
+        if not c:
+            exc["no Pinnacle close found" + (f" ({why})" if why else "")] += 1
+            out.append(rec)
+            continue
+        if not cs.close_verified(c.get("how")):
+            exc[f"close found but not same-line ({c.get('how')})"] += 1
             out.append(rec)
             continue
         if rec["am"] is None:
