@@ -44,7 +44,7 @@
   },
   {
    "alert_utc": "2026-11-10T11:00:25Z",
-   "beat_close": false,
+   "beat_close": true,
    "beat_true_close": null,
    "bet": "Under 226.5 (-108)",
    "book": "Novig",
@@ -52,7 +52,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "-1 pts",
+   "clv": "+1 pts",
    "confirm": "yes",
    "confirmed_by": [
     "Matchbook"
@@ -85,7 +85,7 @@
   },
   {
    "alert_utc": "2026-11-10T13:45:16Z",
-   "beat_close": true,
+   "beat_close": false,
    "beat_true_close": null,
    "bet": "Over 226.5 (+102)",
    "book": "Novig",
@@ -93,7 +93,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+1 pts",
+   "clv": "-1 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline",
@@ -290,6 +290,47 @@
    "sport": "NBA",
    "start_utc": "2026-11-11T00:30:00Z",
    "top25": null,
+   "units_flat": null
+  },
+  {
+   "alert_utc": "2026-11-10T14:00:22Z",
+   "beat_close": true,
+   "beat_true_close": null,
+   "bet": "Tulane Green Wave -8.5 (-110)",
+   "book": "Hard Rock",
+   "book_key": "hardrockbet",
+   "close_fair_prob": null,
+   "close_read_mins_before": null,
+   "close_value_pct": null,
+   "clv": "+1.5 pts",
+   "confirm": "yes",
+   "confirmed_by": [
+    "BetOnline"
+   ],
+   "edge_pct": 0.1,
+   "executable_book": true,
+   "fade_book": "hardrockbet",
+   "fade_point": 8.5,
+   "fade_price": -110,
+   "fade_price_after_fee": -110,
+   "fade_units": null,
+   "final": null,
+   "floor_line": -9.5,
+   "game": "Nicholls St Colonels @ Tulane Green Wave",
+   "grade": "A",
+   "kind": "spr",
+   "late": false,
+   "minutes_before_start": 630,
+   "point": -8.5,
+   "price": -110,
+   "price_after_fee": -110,
+   "pricing_bettable": true,
+   "result": null,
+   "score": 89,
+   "sent_to_phone": false,
+   "sport": "NCAAB",
+   "start_utc": "2026-11-11T00:30:00Z",
+   "top25": false,
    "units_flat": null
   },
   {
@@ -42207,6 +42248,30 @@
   }
  ],
  "all_alerts": [
+  {
+   "alert_text": "Tulane Green Wave -8.5 (-110) at Hard Rock (also: ProphetX, Novig, Kalshi)",
+   "bet": "Tulane Green Wave -8.5 (-110)",
+   "bet_result": null,
+   "book": "Hard Rock",
+   "confirmed_by": [
+    "BetOnline"
+   ],
+   "edge_pct": 0.1,
+   "final": null,
+   "game": "Nicholls St Colonels @ Tulane Green Wave",
+   "grade": "A",
+   "late": false,
+   "minutes_before_start": 630,
+   "price": -110,
+   "price_after_fee": -110,
+   "pushed_to_phone": false,
+   "repeat": false,
+   "score": 89,
+   "sent_et": "2026-11-10 09:00",
+   "sport": "NCAAB",
+   "start_utc": "2026-11-11T00:30:00Z",
+   "why": "Pinnacle moved -8 -> -10; bet only at -9.5 or better (confirmed by BetOnline)"
+  },
   {
    "alert_text": "Tenn-Martin Skyhawks +6.5 (-125) at Hard Rock",
    "bet": "Tenn-Martin Skyhawks +6.5 (-125)",
