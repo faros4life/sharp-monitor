@@ -44,7 +44,7 @@
   },
   {
    "alert_utc": "2026-11-10T11:00:25Z",
-   "beat_close": true,
+   "beat_close": false,
    "beat_true_close": null,
    "bet": "Under 226.5 (-108)",
    "book": "Novig",
@@ -52,7 +52,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+1.5 pts",
+   "clv": "+0 pts",
    "confirm": "yes",
    "confirmed_by": [
     "Matchbook"
@@ -93,7 +93,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "-1.5 pts",
+   "clv": "+0 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline",
@@ -786,7 +786,7 @@
   },
   {
    "alert_utc": "2026-11-10T13:30:18Z",
-   "beat_close": true,
+   "beat_close": false,
    "beat_true_close": null,
    "bet": "Milwaukee Bucks +15.5 (-106)",
    "book": "Novig",
@@ -794,7 +794,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+0.5 pts",
+   "clv": "-0.5 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline",
@@ -988,6 +988,48 @@
    "sport": "NCAAB",
    "start_utc": "2026-11-11T00:30:00Z",
    "top25": false,
+   "units_flat": null
+  },
+  {
+   "alert_utc": "2026-11-10T20:00:23Z",
+   "beat_close": true,
+   "beat_true_close": null,
+   "bet": "New York Knicks -15.5 (-104)",
+   "book": "Novig",
+   "book_key": "novig",
+   "close_fair_prob": null,
+   "close_read_mins_before": null,
+   "close_value_pct": null,
+   "clv": "+0.5 pts",
+   "confirm": "yes",
+   "confirmed_by": [
+    "BetOnline",
+    "Matchbook"
+   ],
+   "edge_pct": -1.3,
+   "executable_book": true,
+   "fade_book": "novig",
+   "fade_point": 15.5,
+   "fade_price": 102,
+   "fade_price_after_fee": 102,
+   "fade_units": null,
+   "final": null,
+   "floor_line": -15.5,
+   "game": "Milwaukee Bucks @ New York Knicks",
+   "grade": "A",
+   "kind": "spr",
+   "late": false,
+   "minutes_before_start": 270,
+   "point": -15.5,
+   "price": -104,
+   "price_after_fee": -104,
+   "pricing_bettable": true,
+   "result": null,
+   "score": 79,
+   "sent_to_phone": true,
+   "sport": "NBA",
+   "start_utc": "2026-11-11T00:30:00Z",
+   "top25": null,
    "units_flat": null
   },
   {
@@ -44053,6 +44095,56 @@
   }
  ],
  "all_alerts": [
+  {
+   "alert_text": "Over 225.5 (-110) at Hard Rock (also: ProphetX)",
+   "bet": "Over 225.5 (-110)",
+   "bet_result": null,
+   "book": "Hard Rock",
+   "confirmed_by": [
+    "BetOnline",
+    "Matchbook"
+   ],
+   "edge_pct": -1.7,
+   "final": null,
+   "game": "Oklahoma City Thunder @ Portland Trail Blazers",
+   "grade": "A",
+   "late": false,
+   "minutes_before_start": 480,
+   "price": -110,
+   "price_after_fee": -110,
+   "pushed_to_phone": false,
+   "repeat": true,
+   "score": 77,
+   "sent_et": "2026-11-10 15:00",
+   "sport": "NBA",
+   "start_utc": "2026-11-11T04:00:00Z",
+   "why": "Pinnacle total moved 224.5 -> 226.5; bet only at 226 or better (confirmed by BetOnline, Matchbook)"
+  },
+  {
+   "alert_text": "New York Knicks -15.5 (-104) at Novig (also: Hard Rock, ProphetX, Kalshi)",
+   "bet": "New York Knicks -15.5 (-104)",
+   "bet_result": null,
+   "book": "Novig",
+   "confirmed_by": [
+    "BetOnline",
+    "Matchbook"
+   ],
+   "edge_pct": -1.3,
+   "final": null,
+   "game": "Milwaukee Bucks @ New York Knicks",
+   "grade": "A",
+   "late": false,
+   "minutes_before_start": 270,
+   "price": -104,
+   "price_after_fee": -104,
+   "pushed_to_phone": true,
+   "repeat": false,
+   "score": 79,
+   "sent_et": "2026-11-10 15:00",
+   "sport": "NBA",
+   "start_utc": "2026-11-11T00:30:00Z",
+   "why": "Pinnacle moved -15 -> -16; bet only at -15.5 or better (confirmed by BetOnline, Matchbook)"
+  },
   {
    "alert_text": "Over 140.5 (-110) at Hard Rock (also: ProphetX, Kalshi)",
    "bet": "Over 140.5 (-110)",
