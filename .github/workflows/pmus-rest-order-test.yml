@@ -7,18 +7,32 @@ name: pmus-rest-order-test
 # Success here is an order that does NOT fill: the bid is priced 15c below the best offer, so if
 # postOnly works it sits on the book and expires on its own after 3 minutes.
 #
-# THERE IS NO KNOWN CANCEL ENDPOINT for this venue in the repo, and guessing one in real-money
-# order code is not acceptable. The GOOD_TILL_DATE expiry is the only guaranteed exit, so CHECK
-# THE POLYMARKET US APP afterwards and confirm the order is gone.
+# THE EXPIRY IS NOT AN EXIT. Nov 9: the venue ACCEPTS tif GOOD_TILL_TIME + goodTillTime and the
+# bid rests - but the read-back shows it silently stored the order as TIME_IN_FORCE_DAY with
+# goodTillTime null. A 3-minute order became a day order. Both probe runs had to be cancelled by
+# hand in the app. So after ANY mode that places an order, CHECK THE APP AND CANCEL.
+#
+# No cancel route has been found: 5 REST shapes failed (404s, and one 501 that says the resource
+# path is right but DELETE is the wrong verb). The discover mode below hunts the remaining
+# gRPC-transcoding shapes and PLACES NOTHING - it probes an already-dead order id, because a
+# route that exists answers a dead id with 400/409 while a route that does not answers 404.
 #
 # Nothing routes to the resting path until this passes: pmus_place still defaults to fill-or-kill
 # and Polymarket US is NOT in REST_BOOKS.
 on:
   workflow_dispatch:
     inputs:
+      discover:
+        description: "1 = find the cancel route WITHOUT PLACING ANYTHING (needs order_id; leave slug blank)"
+        required: false
+        type: string
+      order_id:
+        description: "For discover: an order id that is ALREADY cancelled or expired. Nothing is placed or cancelled."
+        required: false
+        type: string
       slug:
-        description: "Polymarket US market slug - pick one whose offer is 0.45-0.85 so the bid lands in the proven 0.30-0.70 band"
-        required: true
+        description: "Polymarket US market slug - pick one whose offer is 0.45-0.85 so the bid lands in the proven 0.30-0.70 band. NOT needed for discover."
+        required: false
         type: string
       cancel_probe:
         description: "1 = place one resting order and find the cancel endpoint (the last blocker)"
@@ -49,6 +63,8 @@ jobs:
           PMUS_SECRET_KEY: ${{ secrets.PMUS_SECRET_KEY }}
           PMUS_TEST_SLUG: ${{ inputs.slug }}
           PMUS_PROBE: ${{ inputs.probe }}
+          PMUS_DISCOVER: ${{ inputs.discover }}
+          PMUS_ORDER_ID: ${{ inputs.order_id }}
           PMUS_CANCEL_PROBE: ${{ inputs.cancel_probe }}
         run: |
           set -o pipefail

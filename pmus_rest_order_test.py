@@ -43,8 +43,14 @@ import os
 import sys
 import time
 
-if os.environ.get("CONFIRM_REAL_ORDER") != "ONE_DOLLAR":
+_DISCOVER_ONLY = (os.environ.get("PMUS_DISCOVER") or "").strip() == "1"
+if os.environ.get("CONFIRM_REAL_ORDER") != "ONE_DOLLAR" and not _DISCOVER_ONLY:
     sys.exit("REFUSING: CONFIRM_REAL_ORDER is not ONE_DOLLAR.")
+# The discovery mode is exempt because it places nothing: it probes an order id that is already
+# dead. The exemption is enforced, not promised - every call it makes goes through _no_placing()
+# below, which refuses a bare POST /v1/orders (the one shape that creates an order). So if this
+# mode is ever edited into something that could trade, it fails closed instead of trading
+# without the confirmation gate.
 
 import base64
 import urllib.error
@@ -68,6 +74,8 @@ _SK = ed25519.Ed25519PrivateKey.from_private_bytes(base64.b64decode(SECRET)[:32]
 
 
 def call(method, path, body=None):
+    if _DISCOVER_ONLY:
+        _no_placing(method, path)   # see _no_placing: discovery runs without the confirm gate
     ts = str(int(time.time() * 1000))
     sig = base64.b64encode(_SK.sign(f"{ts}{method}{path}".encode())).decode()
     h = {"X-PM-Access-Key": KEY_ID, "X-PM-Timestamp": ts, "X-PM-Signature": sig,
@@ -85,6 +93,42 @@ def call(method, path, body=None):
             return e.code, str(e)
     except Exception as e:
         return "?", str(e)[:300]
+
+def _no_placing(method, path):
+    """Hard stop on the one request shape that creates an order.
+
+    Placement is POST /v1/orders with an order body. Discovery runs without the
+    CONFIRM_REAL_ORDER gate, so this is what makes that safe: it is a code-level guarantee that
+    the mode cannot place, rather than a comment saying it does not. A cancel shape that merely
+    looks similar - POST /v1/orders:cancel, DELETE /v1/orders - is not placement and passes."""
+    if method.upper() == "POST" and path.split("?")[0].rstrip("/") == "/v1/orders":
+        raise RuntimeError(f"BLOCKED: {method} {path} is order placement, not discovery.")
+
+
+def call_h(method, path, body=None):
+    """Same signed call, but hands back the response HEADERS too.
+
+    Needed because method discovery lives in headers: a route that exists but does not map the
+    verb answers 405/501 and usually names the verbs it does map in Allow."""
+    if _DISCOVER_ONLY:
+        _no_placing(method, path)
+    ts = str(int(time.time() * 1000))
+    sig = base64.b64encode(_SK.sign(f"{ts}{method}{path}".encode())).decode()
+    h = {"X-PM-Access-Key": KEY_ID, "X-PM-Timestamp": ts, "X-PM-Signature": sig,
+         "Content-Type": "application/json", "Accept": "application/json"}
+    req = urllib.request.Request(API + path, data=json.dumps(body).encode() if body is not None else None,
+                                 method=method, headers=h)
+    try:
+        with urllib.request.urlopen(req, timeout=25) as r:
+            return r.status, (r.read().decode()[:300]), dict(r.headers)
+    except urllib.error.HTTPError as e:
+        try:
+            return e.code, e.read().decode()[:300], dict(e.headers)
+        except Exception:
+            return e.code, str(e), {}
+    except Exception as e:
+        return "?", str(e)[:200], {}
+
 
 MAX_COST = 1.50
 BELOW = 0.15        # how far under the best offer to sit, so it cannot cross
@@ -144,6 +188,92 @@ def read_back(oid):
         if isinstance(st, int) and 200 <= st < 300 and r:
             return r if isinstance(r, dict) else None
     return None
+
+
+def discover_cancel():
+    """Find the cancel route WITHOUT PLACING ANYTHING. Reads an order id from PMUS_ORDER_ID.
+
+    WHY THIS NEEDS NO LIVE ORDER. The first probe placed a real bid to cancel, and when all five
+    routes failed it left that bid resting as a DAY order for Peter to kill by hand. It never
+    needed to. A cancel route that EXISTS but is handed an order it cannot cancel - already
+    cancelled, already expired - answers 400 or 409 and says so. A route that does not exist
+    answers 404. That difference is the whole question, and a dead order id settles it as well as
+    a live one. So this probes a cancelled id and places no order at all.
+
+    WHY THESE CANDIDATES. The five REST shapes already tried all failed, but one status code in
+    that run carries information the other four do not: DELETE /v1/orders/{id} returned 501 while
+    DELETE /v1/order/{id} returned 404. A 404 is 'no such route'; a 501 is 'route matched, that
+    verb has no handler'. So the resource path was most likely right and DELETE is the wrong verb.
+    The request shape we already have working says what the right one probably looks like:
+    ORDER_INTENT_BUY_LONG, TIME_IN_FORCE_GOOD_TILL_TIME, manualOrderIndicator, goodTillTime in
+    camelCase is protobuf behind a gRPC-gateway, not a hand-rolled REST API. Google's own API
+    conventions put an action that is not plain CRUD on a colon-suffixed custom method -
+    POST /v1/orders/{id}:cancel - which no REST-shaped guess reaches. None of the five tried a
+    colon. This does, along with the other transcoding shapes, and it asks OPTIONS first because
+    an Allow header would answer the question outright.
+
+    DELIBERATELY NOT PROBED: anything cancel-ALL shaped. A route like /v1/orders:cancelAll would,
+    if it exists and works, cancel every open order on the account rather than one dead id. That
+    is not a thing to discover by firing it."""
+    oid = (os.environ.get("PMUS_ORDER_ID") or "").strip()
+    if not oid:
+        say("Set PMUS_ORDER_ID to an order that is already cancelled or expired.")
+        say("Nothing is placed by this mode - it only needs an id that exists.")
+        return
+    say("POLYMARKET US CANCEL-ROUTE DISCOVERY - places NOTHING")
+    say(f"  probing with order {oid} (expected already dead)\n")
+
+    say("1) does the order resource exist, and what verbs does it admit?")
+    for method, path in (("GET", f"/v1/orders/{oid}"), ("OPTIONS", f"/v1/orders/{oid}"),
+                         ("OPTIONS", "/v1/orders"), ("PUT", f"/v1/orders/{oid}")):
+        st, body, hdrs = call_h(method, path, {} if method == "PUT" else None)
+        allow = hdrs.get("Allow") or hdrs.get("allow") or ""
+        say(f"   {method:7} {path:30} HTTP {st}" + (f"   Allow: {allow}" if allow else ""))
+        if method == "GET" and isinstance(st, int) and 200 <= st < 300:
+            state = ""
+            try:
+                d = json.loads(body) if isinstance(body, str) else body
+                state = str(((d or {}).get("order") or d or {}).get("status")
+                            or ((d or {}).get("order") or d or {}).get("state") or "")
+            except Exception:
+                pass
+            if state:
+                say(f"           order state: {state.upper()}")
+        time.sleep(1)
+
+    say("\n2) candidate cancel routes. 404 = no such route; ANYTHING ELSE = the route is real.")
+    cands = [("POST", f"/v1/orders/{oid}:cancel", {}),
+             ("POST", "/v1/orders:cancel", {"orderId": oid}),
+             ("POST", "/v1/orders:batchCancel", {"orderIds": [oid]}),
+             ("POST", f"/v1/orders/{oid}:close", {}),
+             ("POST", f"/v1/orders/{oid}/cancellation", {}),
+             ("POST", "/v1/orderCancellations", {"orderId": oid}),
+             ("PATCH", f"/v1/orders/{oid}", {"state": "ORDER_STATE_CANCELED"}),
+             ("DELETE", "/v1/orders", {"orderId": oid})]
+    live = []
+    for method, path, b in cands:
+        st, body, _ = call_h(method, path, b)
+        tag = "no route" if st == 404 else ("ROUTE EXISTS" if isinstance(st, int) else "error")
+        say(f"   {method:6} {path:36} HTTP {st}  {tag}")
+        if isinstance(st, int) and st != 404:
+            live.append((method, path, st, str(body)[:200]))
+        time.sleep(1)
+
+    say("")
+    if live:
+        say("VERDICT: at least one cancel route is REAL. Candidates, with what each said:")
+        for method, path, st, body in live:
+            say(f"  {method} {path}  -> {st}")
+            say(f"     {body}")
+        say("")
+        say("Next: confirm one against a genuinely resting order, then wire it into pmus_place")
+        say("and the T-30 rule. Until that confirmation REST_BOOKS stays (novig, kalshi).")
+    else:
+        say("VERDICT: every candidate 404s. Combined with the first probe that is 13 shapes,")
+        say("including the gRPC-transcoding ones, with no cancel route found.")
+        say("That is strong enough to stop guessing and ASK SUPPORT: 'how does an API client")
+        say("cancel an open order?' Polymarket stays out of REST_BOOKS until there is an answer.")
+    say("\nNothing was placed and nothing was cancelled by this run.")
 
 
 def cancel_probe(slug, price, expire_ts):
@@ -298,6 +428,13 @@ def probe(slug, price, expire_ts):
 
 
 def main():
+    # Discovery first, and before the slug check: it places nothing, so it needs no market, no
+    # best offer and no price band. Requiring a live slug for it would be asking Peter to find a
+    # tradeable market in order to run a probe that never trades.
+    if (os.environ.get("PMUS_DISCOVER") or "").strip() == "1":
+        discover_cancel()
+        return
+
     slug = (os.environ.get("PMUS_TEST_SLUG") or "").strip()
     if not slug:
         sys.exit("Set PMUS_TEST_SLUG to a live Polymarket US market slug (a full-game moneyline is fine).")
