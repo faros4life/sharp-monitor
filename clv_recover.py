@@ -179,8 +179,26 @@ def main():
                 pct = cs.net_clv(c["p"], rd, cs.canon(a.get("book_key")), maker=False, league=lg)
             except Exception:
                 pct = None
-        rec = {"a": a, "how": how, "pct": pct, "p": c.get("p"),
-               "feed": a.get("close_value_pct")}
+        # ITEM 1: the inputs behind the standard-vs-feed gap, kept per observation so the 2.52-pt
+        # average can be DECOMPOSED rather than attributed. Two inputs differ between the paths:
+        #   the FEE model  - clv_std.net_dec(book, raw_dec) vs sharp_monitor.net(price, book),
+        #                    the latter being what price_after_fee was rounded from
+        #   the CLOSE PROB - the feed reads live at 20-30 min out; the standard reads the stored
+        #                    historical close. Different instants, so different p.
+        # Holding one fixed while the other varies splits the gap additively, and whatever is left
+        # over is named as residual instead of being folded into one of the two.
+        nd = None
+        try:
+            nd = cs.net_dec(cs.canon(a.get("book_key")), rd, False, lg, False) if rd else None
+        except Exception:
+            nd = None
+        feed_am = a.get("price_after_fee")
+        feed_dec = raw_dec(feed_am)
+        p_std, p_feed = c.get("p"), a.get("close_fair_prob")
+        rec = {"a": a, "how": how, "pct": pct, "p": p_std,
+               "feed": a.get("close_value_pct"),
+               "nd": nd, "feed_dec": feed_dec, "p_feed": p_feed,
+               "mins": a.get("close_read_mins_before")}
         if cs.close_verified(how):
             b["ver"].append(rec)
         else:
@@ -223,6 +241,47 @@ def main():
     if allm:
         say(f"           modeled  CLV   {stats(allm)}")
 
+    # ---------------- ITEM 1: per-observation reconciliation of the overlap ----------------
+    ov = [r for r in allv + allm
+          if r["pct"] is not None and r["feed"] is not None
+          and r["nd"] and r["feed_dec"] and r["p_feed"] is not None and r["p"] is not None]
+    say("")
+    say("  ITEM 1 - RECONCILIATION OF THE OVERLAP, one observation at a time")
+    say("  " + "-" * 104)
+    if not ov:
+        say("    no observation carries both figures plus both inputs, so the gap cannot be split here")
+    else:
+        say(f"    {'date':<11}{'lg':<6}{'p_std':>7}{'p_feed':>7}{'dp':>7}{'net_std':>8}{'net_fd':>7}"
+            f"{'std':>8}{'feed':>8}{'gap':>7}{'fee':>7}{'time':>7}{'resid':>7}{'age':>5}")
+        fees, times, resids = [], [], []
+        for r in sorted(ov, key=lambda x: str(x["a"].get("alert_utc") or "")):
+            a = r["a"]
+            std, feed = r["pct"], r["feed"]
+            gap = std - feed
+            # fee-only: same close prob (the feed's), swap the fee model
+            fee_only = 100.0 * (r["p_feed"] * r["nd"] - 1.0) - 100.0 * (r["p_feed"] * r["feed_dec"] - 1.0)
+            # prob-only: same fee model (the standard's), swap the close probability
+            time_only = 100.0 * (r["p"] * r["nd"] - 1.0) - 100.0 * (r["p_feed"] * r["nd"] - 1.0)
+            resid = gap - fee_only - time_only
+            fees.append(fee_only); times.append(time_only); resids.append(resid)
+            say(f"    {str(a.get('alert_utc'))[:10]:<11}{str(a.get('sport')):<6}"
+                f"{r['p']:>7.4f}{r['p_feed']:>7.4f}{r['p'] - r['p_feed']:>+7.4f}"
+                f"{r['nd']:>8.4f}{r['feed_dec']:>7.4f}{std:>+8.2f}{feed:>+8.2f}{gap:>+7.2f}"
+                f"{fee_only:>+7.2f}{time_only:>+7.2f}{resid:>+7.2f}"
+                f"{(r['mins'] if r['mins'] is not None else -1):>5.0f}")
+        def mabs(v):
+            return sum(abs(x) for x in v) / len(v)
+        say("  " + "-" * 104)
+        say(f"    n={len(ov)}   mean |gap| {mabs([r['pct'] - r['feed'] for r in ov]):.2f} pt")
+        say(f"      attributable to the FEE MODEL        mean |{mabs(fees):.2f}| pt   "
+            f"(signed mean {sum(fees)/len(fees):+.2f})")
+        say(f"      attributable to the CLOSE INSTANT    mean |{mabs(times):.2f}| pt   "
+            f"(signed mean {sum(times)/len(times):+.2f})")
+        say(f"      RESIDUAL, neither of the above       mean |{mabs(resids):.2f}| pt   "
+            f"max |{max(abs(x) for x in resids):.2f}|")
+        say("    The split is exact by construction, so a non-trivial residual would mean a third")
+        say("    input differs and has not been found. Read the residual column before the means.")
+
     # the standard's number vs the feed's, on the same observations
     pair = [(r["pct"], r["feed"]) for r in allv + allm
             if r["pct"] is not None and r["feed"] is not None]
@@ -234,6 +293,20 @@ def main():
         say("  (different fee models: clv_std.net_dec on the raw price vs sharp_monitor.net - not an error by itself)")
     else:
         say("  no observation has both a standard and a feed figure, so the two models cannot be compared here")
+    say("")
+    say("")
+    say("  ITEM 4 - the missing cached histories, and what a backfill would cost")
+    say("  " + "-" * 104)
+    nocache = sum(b["miss"]["no CACHED Pinnacle history (not fetched, by design)"] for b in out.values())
+    nouniq = sum(b["miss"]["find_fixture: no unique same-league fixture (left unscored)"] for b in out.values())
+    say(f"    {nocache} alert(s) matched a fixture but hold no Pinnacle cache file. These are absent")
+    say("    DOWNLOADS, not absent fixtures - the fixture is known, only its history is not stored.")
+    say(f"    {nouniq} alert(s) have no unique same-league fixture and stay UNSCORED (item 5).")
+    say("    Endpoint: hist_cache downloads /historical-odds, which credit_gate lists in FREE_PATHS,")
+    say("    so our gate does not bill it. But the free tier returns NO quota header, so the call")
+    say("    count is the only meter and 'free' is our accounting, not a provider guarantee. The safe")
+    say("    confirmation is one single-fixture download with /account read before and after - and")
+    say("    /account is itself a FREE_PATH. That test is NOT run here; this pass downloads nothing.")
     say("")
     say(f"  CREDITS: 0 paid. Cached-history reads: {reads}. No download was requested: a fixture with")
     say("  no cache file on disk is reported as missing, never fetched. /historical-odds is in")
