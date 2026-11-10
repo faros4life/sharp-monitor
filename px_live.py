@@ -39,12 +39,25 @@ DAILY_STOP = float(os.environ.get("EXEC_DAILY_STOP", "") or "2250")
 # placed whose ledger email never sent is silently excluded from today_result, so the stop
 # undercounts. A kill mid-run (the executor's 20-minute timeout does exactly this) is enough.
 #
-# A prefix makes the venue self-describing instead. UNTESTED AGAINST THE VENUE: ProphetX's
-# constraints on external_id are not documented here, so if it rejects a 40-character prefixed id
-# the order is REFUSED - fail-safe, no bet placed, not a silent wrong bet. The env var is the
-# escape hatch: set PX_EXT_PREFIX to an empty string and it reverts to bare uuid4 with no code
-# change or deploy.
-EXT_PREFIX = os.environ.get("PX_EXT_PREFIX", "bot-")
+# A prefix WOULD make the venue self-describing - except it does not work here, so it defaults OFF.
+#
+# MEASURED, Nov 10, via positions.py's field probe over 100 real trades. A ProphetX trade carries:
+#     fee, id, matched_at, order_id, price, profit, quantity, status, strike, strike_id,
+#     winning_status
+# external_id is NOT among them. So a prefixed external_id is invisible at the point attribution
+# actually happens - matching a SETTLED TRADE back to "the bot placed this" - and the only field
+# linking a trade to an order is order_id, which is the venue's id and not ours.
+#
+# Therefore the Gmail registry CANNOT be retired, and this prefix cannot replace it. Defaulting to
+# "" keeps what is sent today byte-for-byte unchanged, rather than carrying an untested change to a
+# live order field for no benefit: if ProphetX were to reject a longer external_id the order is
+# refused, which costs a real play to buy nothing.
+#
+# The code path stays because it costs nothing and the prefix becomes useful the moment an orders
+# endpoint (as opposed to get_trades) is confirmed to return external_id - then order_id could be
+# mapped back without Gmail. I am not guessing at such an endpoint; guessing at an undocumented
+# route is the mistake that cost hours on Polymarket's cancel path.
+EXT_PREFIX = os.environ.get("PX_EXT_PREFIX", "")
 # NON-PROPHETX MONEY AT RISK TODAY, and the daily stop's single source of truth.
 #
 # THE BUG THIS FIXES (Nov 10, Peter's finding). There were two preflights applying the same stop
