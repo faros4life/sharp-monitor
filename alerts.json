@@ -1774,7 +1774,7 @@
   },
   {
    "alert_utc": "2026-11-10T15:00:23Z",
-   "beat_close": true,
+   "beat_close": false,
    "beat_true_close": null,
    "bet": "Under 145.5 (-113)",
    "book": "Kalshi",
@@ -1782,7 +1782,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+1 pts",
+   "clv": "+0 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline"
@@ -1897,7 +1897,7 @@
   },
   {
    "alert_utc": "2026-11-10T15:30:22Z",
-   "beat_close": false,
+   "beat_close": true,
    "beat_true_close": null,
    "bet": "Over 164.5 (-115)",
    "book": "Hard Rock",
@@ -1905,7 +1905,7 @@
    "close_fair_prob": null,
    "close_read_mins_before": null,
    "close_value_pct": null,
-   "clv": "+0 pts",
+   "clv": "+1 pts",
    "confirm": "yes",
    "confirmed_by": [
     "BetOnline"
@@ -2419,6 +2419,47 @@
    "point": 159.5,
    "price": -110,
    "price_after_fee": -110,
+   "pricing_bettable": true,
+   "result": null,
+   "score": 69,
+   "sent_to_phone": false,
+   "sport": "NCAAB",
+   "start_utc": "2026-11-11T00:00:00Z",
+   "top25": false,
+   "units_flat": null
+  },
+  {
+   "alert_utc": "2026-11-10T22:20:18Z",
+   "beat_close": true,
+   "beat_true_close": null,
+   "bet": "Dayton Flyers -12.5 (-125)",
+   "book": "ProphetX",
+   "book_key": "prophetx",
+   "close_fair_prob": null,
+   "close_read_mins_before": null,
+   "close_value_pct": null,
+   "clv": "+1.5 pts",
+   "confirm": "yes",
+   "confirmed_by": [
+    "BetOnline"
+   ],
+   "edge_pct": -4.9,
+   "executable_book": true,
+   "fade_book": "kalshi",
+   "fade_point": 12.5,
+   "fade_price": 122,
+   "fade_price_after_fee": 114,
+   "fade_units": null,
+   "final": null,
+   "floor_line": -13.5,
+   "game": "Siena Saints @ Dayton Flyers",
+   "grade": "B",
+   "kind": "spr",
+   "late": false,
+   "minutes_before_start": 100,
+   "point": -12.5,
+   "price": -125,
+   "price_after_fee": -128,
    "pricing_bettable": true,
    "result": null,
    "score": 69,
@@ -44383,6 +44424,30 @@
   }
  ],
  "all_alerts": [
+  {
+   "alert_text": "Dayton Flyers -12.5 (-125) at ProphetX [-128 after ProphetX fee] (also: Hard Rock, Kalshi)",
+   "bet": "Dayton Flyers -12.5 (-125)",
+   "bet_result": null,
+   "book": "ProphetX",
+   "confirmed_by": [
+    "BetOnline"
+   ],
+   "edge_pct": -4.9,
+   "final": null,
+   "game": "Siena Saints @ Dayton Flyers",
+   "grade": "B",
+   "late": false,
+   "minutes_before_start": 100,
+   "price": -125,
+   "price_after_fee": -128,
+   "pushed_to_phone": false,
+   "repeat": false,
+   "score": 69,
+   "sent_et": "2026-11-10 17:20",
+   "sport": "NCAAB",
+   "start_utc": "2026-11-11T00:00:00Z",
+   "why": "Pinnacle moved -13 -> -14; bet only at -13.5 or better (confirmed by BetOnline)"
+  },
   {
    "alert_text": "Sacramento Kings +6.5 (-115) at Hard Rock (also: Kalshi)",
    "bet": "Sacramento Kings +6.5 (-115)",
