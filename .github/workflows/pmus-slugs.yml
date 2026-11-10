@@ -11,9 +11,13 @@ name: pmus-slugs
 on:
   workflow_dispatch:
     inputs:
+      sport:
+        description: "League to list live markets for (NHL, NBA, NFL, NCAAB...). Leave game_id blank."
+        required: false
+        type: string
       game_id:
-        description: "Polymarket US game/market id(s), comma-separated (e.g. 5651101,5651104)"
-        required: true
+        description: "Optional: specific Polymarket US id(s), comma-separated"
+        required: false
         type: string
 
 permissions:
@@ -33,6 +37,7 @@ jobs:
         env:
           PMUS_KEY_ID: ${{ secrets.PMUS_KEY_ID }}
           PMUS_SECRET_KEY: ${{ secrets.PMUS_SECRET_KEY }}
+          PMUS_SPORT: ${{ inputs.sport }}
           PMUS_GAME_ID: ${{ inputs.game_id }}
         run: |
           set -o pipefail
