@@ -61,3 +61,12 @@ jobs:
           EMAIL_TO: ${{ secrets.EMAIL_TO }}
           DEPTH_DAYS: "10"
         run: python -u rest_depth_report.py
+      # Step 1 of the CLV remediation plan (Peter, Nov 10: "GO - Step 1 only"). Read-only, cached
+      # history only, 0 paid credits: it reads a fixture's Pinnacle history only when the cache
+      # file already exists and reports a missing one rather than fetching it. No Gmail or IMAP -
+      # the population comes from alerts.json in the repo - so this step is fast.
+      - name: CLV recovery audit (read-only, cached only, 0 credits)
+        if: always()
+        env:
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+        run: python -u clv_recover.py
