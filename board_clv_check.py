@@ -216,23 +216,23 @@ def main():
     # games/night the history is about a day and a half deep, so this will read mostly
     # "pre-capture" for a while - which is the honest state, not a failure.
     cver = [r for r in ver if r.get("circa") is not None]
-    say(f"\nCIRCA (second benchmark, forward-only from Nov 9): {len(cver)} of {len(ver)} verified "
+    print(f"\nCIRCA (second benchmark, forward-only from Nov 9): {len(cver)} of {len(ver)} verified "
         f"rows also have a verified same-line CIRCA close")
     if cver:
         cm = [r["circa"] for r in cver]
         ct = [r["circa_taker"] for r in cver]
         pm = [r["pin"] for r in cver]
         cb = sum(1 for x in cm if x > 0)
-        say(f"  on those {len(cver)} rows: Circa CLV maker {sum(cm)/len(cm):+.2f}%  taker "
+        print(f"  on those {len(cver)} rows: Circa CLV maker {sum(cm)/len(cm):+.2f}%  taker "
             f"{sum(ct)/len(ct):+.2f}%  beat Circa close {cb}/{len(cver)}")
-        say(f"  same rows vs Pinnacle:      maker {sum(pm)/len(pm):+.2f}%   (the two benchmarks "
+        print(f"  same rows vs Pinnacle:      maker {sum(pm)/len(pm):+.2f}%   (the two benchmarks "
             f"are reported side by side, never averaged together)")
     else:
         from collections import Counter as _C
         wc = _C(r.get("circa_why") or "?" for r in ver)
         for k, n in wc.most_common(4):
-            say(f"      {n:3}  {k}")
-        say("  No Circa-graded row yet, so no candidate can be judged on the Circa leg today.")
+            print(f"      {n:3}  {k}")
+        print("  No Circa-graded row yet, so no candidate can be judged on the Circa leg today.")
     print(f"\nCLOSE COVERAGE: {len(ver)} of {len(rows)} calls have a VERIFIED same-line Pinnacle "
           f"close ({100.0 * len(ver) / max(len(rows), 1):.1f}%)")
     print(f"  {len(rows) - len(ver)} do NOT. Why:")
