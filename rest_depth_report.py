@@ -385,6 +385,155 @@ def lane1_scope(rows):
         say("      no latency recorded")
 
 
+def stake_vs_depth(rows):
+    """Nov 9-10 in-scope candidates, before and after the 10:52 ET unit change (Peter, Nov 10).
+
+    Frozen decision-time records only. No hindsight, no paid call, no live change.
+
+    THE ONE TRAP, named because it decides what can and cannot be concluded. The ledger's
+    'fill_avail' is NOT raw book depth - executor.py:2057 stores r['fillable'], which is
+    min(avail, risk) at the stake live at that moment. So:
+      fill_partial True   avail was BELOW the stake -> fill_avail IS the exact depth
+      fill_partial False  avail was AT OR ABOVE the stake -> depth is known only as '>= stake'
+    A full fill at the $200 unit therefore does NOT tell us whether $300 would have filled, and
+    no arithmetic here can recover it. Those rows are reported as UNKNOWN rather than assumed.
+
+    Sizing is also not a yes/no gate. MIN_ORDER is $50 and a partial fill rests the remainder
+    (executor.py:1546), so a candidate is placeable whenever min(avail, need) >= $50. A larger
+    unit against thin depth produces a SMALLER FILL, not a rejection.
+    """
+    import collections as _cc
+    import datetime as _ddt
+    from zoneinfo import ZoneInfo as _Z
+    et = _Z("America/New_York")
+    CUT = _ddt.datetime(2026, 11, 9, 15, 52, 34, tzinfo=_ddt.timezone.utc)   # commit 901dbd9b6
+    MIN_ORDER = 50.0
+
+    def need(am, unit):
+        return round(unit if am > 0 else unit * abs(am) / 100.0, 2)
+
+    def when(r):
+        v = str(r.get("decided_utc") or "")
+        try:
+            d = _ddt.datetime.fromisoformat(v.replace("Z", "+00:00"))
+            return d if d.tzinfo else d.replace(tzinfo=_ddt.timezone.utc)
+        except Exception:
+            return None
+
+    def parts(r):
+        p = str(r.get("key") or r.get("play_key") or "").split("|")
+        return (p[0].upper(), p[2].lower(), p[3]) if len(p) >= 4 else ("-", "-", "-")
+
+    def in_scope(r):
+        lg, mk, sd = parts(r)
+        sd = sd.lower()
+        if mk != "total":
+            return False
+        return (sd.startswith("under") and lg in ("NBA", "NFL", "NCAAF")) or \
+               (sd.startswith("over") and lg == "NCAAF")
+
+    say("")
+    say("=" * 118)
+    say("STAKE vs DEPTH | Nov 9-10 in-scope candidates | frozen decision records | 0 paid credits")
+    say("=" * 118)
+
+    cand = []
+    for r in rows:
+        t = when(r)
+        if not t or t < _ddt.datetime(2026, 11, 9, 5, 0, tzinfo=_ddt.timezone.utc) or not in_scope(r):
+            continue
+        cand.append((t, r))
+    cand.sort()
+    if not cand:
+        say("  No in-scope candidate recorded on Nov 9-10. Nothing to size against.")
+        return
+
+    say(f"  {len(cand)} in-scope candidate(s) on Nov 9-10 "
+        f"({sum(1 for t, _ in cand if t < CUT)} before the change, "
+        f"{sum(1 for t, _ in cand if t >= CUT)} after)")
+    say("")
+    hdr = (f"  {'ET time':<12} {'U':<1} {'game':<30} {'odds':>6} {'need200':>8} {'need300':>8} "
+           f"{'depth':>11} {'q200':>5} {'q300':>5} {'sizing?':<8} verdict / reason")
+    say(hdr)
+    say("  " + "-" * 114)
+    sizing_blocked = 0
+    unknown = 0
+    for t, r in cand:
+        lg, mk, sd = parts(r)
+        am = r.get("fill_price_after_fee")
+        av = r.get("fill_avail")
+        par = r.get("fill_partial")
+        n200 = need(am, 200.0) if am is not None else None
+        n300 = need(am, 300.0) if am is not None else None
+        game = str(str(r.get("key") or "").split("|")[1] if "|" in str(r.get("key") or "") else "")[:30]
+        u = "3" if t >= CUT else "2"
+        if am is None or av is None:
+            q2 = q3 = "?"
+            dep = "no record"
+            unknown += 1
+        elif par:
+            dep = f"${av:,.0f} exact"
+            q2 = "Y" if min(av, n200) >= MIN_ORDER else "N"
+            q3 = "Y" if min(av, n300) >= MIN_ORDER else "N"
+        else:
+            dep = f">=${av:,.0f}"
+            # avail >= the then-stake, and the then-stake exceeds MIN_ORDER, so min(avail, need)
+            # clears $50 at EITHER unit. Decidable despite the censoring.
+            q2 = "Y" if av >= MIN_ORDER else "?"
+            q3 = "Y" if av >= MIN_ORDER else "?"
+        blocked = (q2 == "Y" and q3 == "N")
+        if blocked:
+            sizing_blocked += 1
+        why = str(r.get("reason") or "")
+        if not why:
+            w = r.get("live_why_not")
+            why = "; ".join(str(x) for x in (w if isinstance(w, list) else [w] if w else []))
+        say(f"  {t.astimezone(et).strftime('%m-%d %H:%M'):<12} {u:<1} {game:<30} "
+            f"{(f'{am:+.0f}' if am is not None else '-'):>6} "
+            f"{(f'${n200:,.0f}' if n200 else '-'):>8} {(f'${n300:,.0f}' if n300 else '-'):>8} "
+            f"{dep:>11} {q2:>5} {q3:>5} {('YES' if blocked else 'no'):<8} "
+            f"{str(r.get('verdict') or '')} {why[:46]}")
+
+    say("")
+    say(f"  candidates where the $300 unit alone caused the rejection: {sizing_blocked}")
+    if unknown:
+        say(f"  candidates with no frozen price or depth record: {unknown} (reported, not inferred)")
+    say("")
+    if sizing_blocked == 0:
+        say("  VERDICT ON SIZING: not the cause. Under MIN_ORDER $50 with the remainder rested, a")
+        say("  bigger unit against the same depth yields a smaller fill, never a refusal, and no")
+        say("  candidate above flips from placeable at $200 to unplaceable at $300.")
+
+    # ---- item 5: the Nov 2-8 decline, from the same frozen rows ----
+    say("")
+    say("  Nov 2-8 decline - in-scope supply, placements and the leading block, by ET day:")
+    say(f"    {'day':<12} {'in scope':>8} {'placed':>7}  leading reason among the rest")
+    def pl(r):
+        los = [r.get("live_order") or {}, r.get("live_rest") or {}]
+        los += [x or {} for x in (r.get("live_more") or [])]
+        return any(l.get("status") == "placed" and l.get("order_id") for l in los)
+    byday = {}
+    for r in rows:
+        t = when(r)
+        if not t or not in_scope(r):
+            continue
+        byday.setdefault(t.astimezone(et).strftime("%Y-%m-%d"), []).append(r)
+    for d in sorted(byday):
+        rs = byday[d]
+        c = _cc.Counter()
+        for r in rs:
+            if pl(r):
+                continue
+            w = r.get("live_why_not")
+            lst = [str(x) for x in (w if isinstance(w, list) else [w] if w else [])]
+            c[(lst[0] if lst else str(r.get("reason") or "(none)"))[:52]] += 1
+        top = c.most_common(1)
+        say(f"    {d:<12} {len(rs):>8} {sum(1 for r in rs if pl(r)):>7}  "
+            f"{(top[0][0] + f' x{top[0][1]}') if top else '-'}")
+    say("")
+    say("=" * 118)
+
+
 def main():
     since = (__import__("datetime").datetime.now(__import__("datetime").timezone.utc)
              - __import__("datetime").timedelta(days=DAYS)).strftime("%d-%b-%Y")
@@ -459,6 +608,7 @@ def main():
 
     audit(list(seen.values()))
     lane1_scope(list(seen.values()))
+    stake_vs_depth(list(seen.values()))
 
     attempted = [r for r in seen.values() if (r.get("live_rest") or {}).get("status")]
     placed = [r for r in attempted if (r.get("live_rest") or {}).get("status") == "placed"]
