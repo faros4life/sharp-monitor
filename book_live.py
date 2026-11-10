@@ -198,14 +198,21 @@ def pmus_place(slug, long_side, limit_cost, qty, label="", expire_ts=None):
     a FOK order that crosses at the TAKER price or dies - about 5c worse than Kalshi's maker - while consuming a
     resting slot. The venue was never the problem; our integration was.
 
-    UNVERIFIED AGAINST THE OFFICIAL API. Polymarket's own docs are access-gated. The tif values and post_only below
-    come from a third-party client library, and our integration already differs from it (we send
-    synchronousExecution and maxBlockTime, which it does not define). So this path is OFF unless a caller passes
-    expire_ts, and it must be proven with ONE minimum-size order before anything routes to it. If the venue rejects
-    the enum, the order is refused and nothing is placed - it cannot silently fall back to a taker fill.
+    PROVEN AGAINST THE VENUE, Nov 9. This docstring previously said Polymarket's docs were access-gated and the
+    field names came from a third-party library. The first claim was my error - I checked
+    apidocs.polymarketexchange.com and never tried docs.polymarket.us - and it made "Polymarket cannot rest" look
+    settled when it had never been tested. The second was true, and the names were wrong: see the expire_ts block.
+    A resting order is now sent with the one variant the venue accepted, and the enum it rejects is refused outright
+    rather than silently falling back to a taker fill.
 
-    post_only is the point. It refuses to cross rather than paying the taker fee, which is what makes a resting bid
-    actually earn the maker price instead of quietly becoming a taker. Kalshi and Novig have no equivalent.
+    STILL UNPROVEN: participateDontInitiate. It is sent because it is what makes us maker, but this venue accepted
+    goodTillTime and then dropped it, so acceptance proves nothing and the flag may not survive the read-back
+    either. Until pmus_rest_order_test's pdi_test shows it holding, maker pricing here is an assumption - and the
+    maker rebate is the whole reason for ranking this venue above Kalshi. Do not reorder REST_BOOKS on it.
+
+    participateDontInitiate is the point. It refuses to cross rather than paying the taker fee, which is what makes a
+    resting bid actually earn the maker price instead of quietly becoming a taker. Kalshi and Novig have no
+    equivalent.
 
     THE FEE IS NOT IN DOUBT - only whether we can REACH it. clv_std.FEE_NOTES carries Polymarket's own published
     schedule: TAKER 0.06 x C x p x (1-p), MAKER -0.0125, a REBATE - the venue pays us to post, and their worked
@@ -228,7 +235,22 @@ def pmus_place(slug, long_side, limit_cost, qty, label="", expire_ts=None):
         # Same floor as Kalshi: a bid resting into the last 5 minutes before the start is refused.
         if int(expire_ts) <= int(time.time()) + 300:
             return {"status": "refused", "reason": "too close to the start to rest a bid"}
-        order.update(tif="TIME_IN_FORCE_GOOD_TILL_DATE", expiresAt=int(expire_ts), postOnly=True)
+        # FIELD NAMES PROVEN AGAINST THE VENUE, Nov 9 (run 42746257288). The three names that were
+        # here before - GOOD_TILL_DATE, expiresAt, postOnly - are all wrong; none is in the enum
+        # or the schema, and they came from a third-party client library rather than the API. The
+        # probe sent five variants one field at a time and the venue accepted exactly this one:
+        #   tif TIME_IN_FORCE_GOOD_TILL_TIME + goodTillTime as an ISO-8601 STRING, not an int.
+        # Order DMGX8V5G13ZD rested unfilled on it: executions [], cumQuantity 0, leaves 1.
+        #
+        # THE EXPIRY IS NOT AN EXIT. The same read-back showed the venue SILENTLY rewriting what
+        # it had just accepted: stored tif TIME_IN_FORCE_DAY, goodTillTime null. A 3-minute order
+        # became a day order, and it does the same to FILL_OR_KILL (stored IMMEDIATE_OR_CANCEL),
+        # so this is consistent normalisation. goodTillTime is therefore sent as a best effort and
+        # NOTHING may depend on it: the caller must cancel explicitly at T-30 via pmus_cancel.
+        # Both probe orders had to be killed by hand before that route was found.
+        order.update(tif="TIME_IN_FORCE_GOOD_TILL_TIME",
+                     goodTillTime=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime(int(expire_ts))),
+                     participateDontInitiate=True)
         # synchronousExecution waits for a fill; a resting bid has nothing to wait for.
         order.pop("synchronousExecution", None)
         order.pop("maxBlockTime", None)
@@ -243,7 +265,16 @@ def pmus_place(slug, long_side, limit_cost, qty, label="", expire_ts=None):
     except Exception as ex:
         return {"status": "error", "reason": f"Polymarket US order unclear ({str(ex)[:80]}); check the app before any retry",
                 "order": order}
-    oid = resp.get("id") if isinstance(resp, dict) else None
+    # resp.get("id") FIRST, so wherever this already works the value is byte-for-byte what it was.
+    # The two fallbacks only run when that returns nothing. Nov 9: the resting probes could not
+    # find the order id under "id" alone and had to try all three shapes, and an oid of None here
+    # is not harmless - the read-back below GETs /v1/order/None, fails, sets fills_read False, and
+    # reports contracts 0 for an order that may genuinely have filled. Exposure stays conservative
+    # (it adds full risk, not the filled amount), but the fill would be mis-recorded. Strictly
+    # additive: it can only find an id where there was none.
+    oid = None
+    if isinstance(resp, dict):
+        oid = resp.get("id") or resp.get("orderId") or (resp.get("order") or {}).get("id")
     time.sleep(3)
     n, avg_cost, read = 0.0, None, True
     try:
@@ -272,6 +303,83 @@ def pmus_place(slug, long_side, limit_cost, qty, label="", expire_ts=None):
     if _too_big(filled, label, "Polymarket US"):
         out["paused"] = True
     return out
+
+
+def pmus_cancel(order_id, slug=None, label=""):
+    """Cancel ONE resting Polymarket US order by id. Returns {"status": "cancelled"|"refused"|"error", ...}.
+
+    THIS IS WHAT MAKES RESTING ON THIS VENUE LEGITIMATE AT ALL. pmus_place sends goodTillTime, the venue accepts it
+    and then stores the order as TIME_IN_FORCE_DAY with goodTillTime null - so the expiry is not an exit and a bid
+    left alone rests until end of day. Peter's rule is that a resting bid comes off at T-30 and whenever the signal
+    dies, is pulled or flips. Without this function that rule cannot be honoured, which is why Polymarket stayed out
+    of REST_BOOKS even after resting was proven to work.
+
+    THE ROUTE IS THE DOCUMENTED ONE, and the namespace is SINGULAR: GET /v1/order/{id} returns 200 where
+    GET /v1/orders/{id} 404s. Every plural shape and the whole gRPC-style colon family (/v1/orders/{id}:cancel and
+    relatives) returned 404 across two probe runs; one 501 that looked like a near miss was the gateway's generic
+    code-12 UNIMPLEMENTED stub, not a route. Discovery found this one answering a dead order id with a real
+    handler's 400.
+
+    marketSlug is the documented optional field, tried on the second attempt: the dead-id rejection carried the
+    generic code-3 body, so if a live cancel fails identically that field is the first suspect. Third attempt is the
+    batched route with a single id.
+
+    NEVER /v1/orders/open/cancel. It is cancel-ALL. It answered 200 with canceledOrderIds [] during discovery only
+    because nothing was open at that moment; fired while any other order rests - Peter's own included - it kills
+    those too. Cancellation here is always by explicit order id, and this function has no cancel-all fallback by
+    design. A cancel that cannot be targeted is reported as a failure, because the caller must then alert rather
+    than quietly cancel something else.
+
+    VERIFIED, NOT ASSUMED. The cancel call succeeding is not enough on this venue - it accepted goodTillTime and
+    discarded it. So the order is read back and the status must actually say cancelled."""
+    if not order_id:
+        return {"status": "refused", "reason": "no order id to cancel"}
+    tries = [("POST", f"/v1/order/{order_id}/cancel", {}),
+             ("POST", f"/v1/order/{order_id}/cancel", {"marketSlug": slug} if slug else None),
+             ("POST", "/v1/orders/batched/cancel", {"orderIds": [order_id]})]
+    last = None
+    for method, path, body in tries:
+        if body is None:
+            continue
+        try:
+            st, resp = _pm_call(method, path, body)
+        except urllib.error.HTTPError as ex:
+            try:
+                last = f"HTTP {ex.code}: {ex.read().decode()[:200]}"
+            except Exception:
+                last = f"HTTP {ex.code}"
+            continue
+        except Exception as ex:
+            last = str(ex)[:120]
+            continue
+        if isinstance(st, int) and 200 <= st < 300:
+            # Read it back: this venue has already been caught accepting a field and discarding it.
+            state = ""
+            time.sleep(2)
+            try:
+                for p in (f"/v1/order/{order_id}", f"/v1/orders/{order_id}"):
+                    try:
+                        _, r = _pm_call("GET", p)
+                    except urllib.error.HTTPError:
+                        continue
+                    o = (r.get("order") or r or {}) if isinstance(r, dict) else {}
+                    state = str(o.get("status") or o.get("state") or "").upper()
+                    if state:
+                        break
+            except Exception:
+                state = ""
+            if "CANCEL" in state:
+                # The id stays in px_live's bot-order registry. That registry exists to tell the bot's fills
+                # apart from Peter's manual bets, and a cancelled order has no fill to match, so it simply
+                # never matches - no new teardown API needed for it.
+                return {"status": "cancelled", "order_id": order_id, "state": state, "via": path}
+            # Succeeded but unverified: say so rather than reporting a cancel we cannot see.
+            return {"status": "error", "order_id": order_id, "state": state or "unknown",
+                    "reason": f"cancel call returned {st} but the order reads {state or 'unreadable'}; "
+                              f"check the app for {order_id}", "via": path}
+    return {"status": "error", "order_id": order_id,
+            "reason": f"no targeted cancel route worked for {order_id} ({last}); check the app. "
+                      f"Cancel-all was deliberately not attempted - it would hit every open order."}
 
 
 def plan(levels, thr_american, stake):
