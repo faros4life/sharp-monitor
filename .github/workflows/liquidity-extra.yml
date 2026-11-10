@@ -23,7 +23,12 @@ jobs:
           python-version: "3.12"
       - name: Check MLB, NCAAB and tennis books (paper)
         env:
-          LIQ_LEAGUES: "MLB,NCAAB,TENNIS"    # separate from the main record (liquidity/)
+          # Nov 10 (Peter: "drop mlb, leave tennis"). MLB is out of season in November, and this
+          # workflow had not completed a run since 02:01Z - every firing hit the 9-minute timeout,
+          # which GitHub reports as "cancelled", so nine hours of a dead feed looked benign in the
+          # run list. It was spending part of that budget enumerating a league with no games.
+          # Tennis stays by Peter's instruction (paper only - it is banned for live).
+          LIQ_LEAGUES: "NCAAB,TENNIS"        # separate from the main record (liquidity/)
           LIQ_DIR: "liquidity-extra"
           # Nov 10 (Peter: "I want global out and pmus in. We can't use pm global"): global
           # Polymarket dropped. This OVERRIDE is why removing it from liquidity_monitor.BOOKS was
