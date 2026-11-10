@@ -436,8 +436,18 @@ def muse_watchdog(now, muse_plays, rplays, feed):
         print(f"watchdog check failed: {str(ex)[:60]}")
         return 0
     for p, ent, tok, mins in late:
-        msg = (f"{p.get('sport')} {p.get('game')} | {p.get('bet')}\nQualifies for LIVE, but no Muse verdict after {mins} min. "
-               "Live won't bet it without Muse AGREE. Ping Muse.")
+        head = f"{p.get('sport')} {p.get('game')} | {p.get('bet')}\nQualifies for LIVE, no Muse verdict after {mins} min. "
+        # THE TEXT HAS TO MATCH THE GATE, and for ten days it did not. Since Oct 30 Muse is a VETO:
+        # RULES_LIVE defaults on, so a missing verdict blocks nothing and only a DISAGREE stops a
+        # play. The phone push below was correctly silenced then, but this message still said "Live
+        # won't bet it without Muse AGREE. Ping Muse." and the EMAIL sent it unconditionally. On
+        # Nov 9 I read that line in the watchdog mail and told Peter the reason there were no plays
+        # was Muse's silence. It was not - Lane 1 is totals-unders-only and the day's candidates
+        # were overs and spreads. A stale sentence in an alert cost a wrong answer, so the text now
+        # follows RULES_LIVE instead of restating a gate that is off.
+        msg = head + ("This blocks nothing - Muse is a veto, so only a DISAGREE stops a play. "
+                      "Note only, no action needed." if RULES_LIVE else
+                      "Live won't bet it without Muse AGREE. Ping Muse.")
         if not RULES_LIVE:   # Oct 30: with coded-AGREE live, a missing Muse verdict blocks nothing -> no phone message
             push("No Muse verdict: " + (p.get("bet") or "")[:50], msg, mirror=False)
             tg("NO MUSE VERDICT\n" + msg)
