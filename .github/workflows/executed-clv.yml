@@ -65,3 +65,15 @@ jobs:
           XC_DAYS: ${{ inputs.days }}
           XC_CACHE_ONLY: ${{ inputs.cache_only }}
         run: python -u executed_clv.py
+      # Placement reconciliation (Peter, Nov 10). Runs even when the step above fails, because the
+      # question it answers - does our record of what we placed match the books' - is exactly the
+      # kind of thing that should not depend on another report succeeding. No ODDSPAPI_KEY is
+      # passed, so this step provably cannot spend a paid credit.
+      - name: Placement reconciliation (read-only, 0 credits, counts only)
+        if: always()
+        env:
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          RECON_DAYS: "14"
+        run: python -u reconcile_placed.py
