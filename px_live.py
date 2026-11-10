@@ -32,6 +32,19 @@ SECRET = (os.environ.get("PROPHETX_TRADE_SECRET_KEY") or "").strip()
 LIVE = (os.environ.get("EXEC_LIVE") or "off").strip().lower() == "on"
 MAX_ORDER = float(os.environ.get("EXEC_MAX_ORDER", "") or "415")   # Nov 9: $300 to win at the -130 cap risks $390
 DAILY_STOP = float(os.environ.get("EXEC_DAILY_STOP", "") or "2250")
+# external_id PREFIX (Peter, Nov 10: "make the cleaner fix"). Orders were submitted with a BARE
+# uuid4, which carries no mark - so nothing in ProphetX's own order list says "bot", and the only
+# way to tell a bot trade from one of Peter's is the Gmail ledger that bot_orders() reads. That
+# makes Gmail load-bearing for attribution, and the daily stop depends on attribution: an order
+# placed whose ledger email never sent is silently excluded from today_result, so the stop
+# undercounts. A kill mid-run (the executor's 20-minute timeout does exactly this) is enough.
+#
+# A prefix makes the venue self-describing instead. UNTESTED AGAINST THE VENUE: ProphetX's
+# constraints on external_id are not documented here, so if it rejects a 40-character prefixed id
+# the order is REFUSED - fail-safe, no bet placed, not a silent wrong bet. The env var is the
+# escape hatch: set PX_EXT_PREFIX to an empty string and it reverts to bare uuid4 with no code
+# change or deploy.
+EXT_PREFIX = os.environ.get("PX_EXT_PREFIX", "bot-")
 # NON-PROPHETX MONEY AT RISK TODAY, and the daily stop's single source of truth.
 #
 # THE BUG THIS FIXES (Nov 10, Peter's finding). There were two preflights applying the same stop
@@ -155,6 +168,25 @@ def push(title, body, tags="moneybag"):
         tg_mirror(f"{title}\n{body}")
 
 
+def trade_fields(tr):
+    """The FIELD NAMES present on the venue's trade objects. Names only - never values.
+
+    This settles the one unknown blocking removal of the Gmail order registry. Attribution could
+    move to the external_id prefix ONLY if the venue returns external_id on a TRADE; today _mine()
+    matches on order_id against ids read from Gmail, and nothing in this file ever reads
+    external_id back off a trade, so whether it comes back at all is unverified.
+
+    Printing values would put money in a public log, so this returns the key names and the count.
+    If "external_id" appears here, attribution can move to the prefix and Gmail stops being
+    load-bearing. If it does not, the Gmail registry must stay and the prefix is only useful for
+    reading ProphetX's own UI."""
+    keys = set()
+    for t in (tr or [])[:40]:
+        if isinstance(t, dict):
+            keys |= set(t.keys())
+    return sorted(keys)
+
+
 def today_result(tr):
     """Result of the BOT's ProphetX trades matched today (ET): settled profit/loss after the 2% fee; open = 0.
     None if the bot-order registry is unknown (fail closed)."""
@@ -231,7 +263,7 @@ def place(strike_id, limit_price, stake, label=""):
         return {"status": "refused", "reason": f"stake {stake:.2f} outside 0-{MAX_ORDER:.0f}"}
     if not strike_id or not limit_price:
         return {"status": "refused", "reason": "missing strike or price"}
-    ext = str(uuid.uuid4())
+    ext = EXT_PREFIX + str(uuid.uuid4())
     order = {"external_id": ext, "strike_id": strike_id, "price": int(limit_price), "quantity": qty_for(stake, int(limit_price)),
              "order_strategy": "fillOrKill"}
     try:

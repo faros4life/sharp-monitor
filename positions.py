@@ -182,6 +182,19 @@ def px_positions():
             trades = None
         if trades is None:
             trades = ((bc.px_call("/v4/mm/get_trades").get("data") or {}).get("trades")) or []
+        # ONE-LINE DIAGNOSTIC, names only, no values (Nov 10). Settles whether attribution can move
+        # off the Gmail order registry: that is only possible if the venue returns external_id on a
+        # TRADE. Nothing in px_live ever reads external_id back off a trade, so it was unverified,
+        # and removing the Gmail registry on the assumption would have broken the daily stop rather
+        # than improved it. This piggybacks on a read this job already makes - no extra call.
+        try:
+            import px_live as _pl
+            _f = _pl.trade_fields(trades)
+            print(f"trade fields ({len(trades)} trade(s)): {_f}")
+            print(f"  external_id present on a trade: {'external_id' in _f}"
+                  f"   <- if True, the Gmail order registry can be retired")
+        except Exception as _e:
+            print(f"trade-field probe skipped ({type(_e).__name__})")
         DONE = ("profit", "loss", "win", "won", "lose", "lost", "push", "void", "refund", "cancel")
         open_ = [t for t in trades if not any(w in str(t.get("winning_status") or "").lower() for w in DONE)
                  and not any(w in str(t.get("status") or "").lower() for w in ("settled", "cancel", "void"))]
