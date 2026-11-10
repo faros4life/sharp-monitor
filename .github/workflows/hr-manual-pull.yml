@@ -1,0 +1,28 @@
+name: hr-manual-pull
+
+# Hard Rock manual P&L pull (Peter, Nov 10 2026): read-only. Reads tracker/state.enc, reports every Hard Rock
+# row with real stake, price, result and profit. Writes nothing, places nothing, commits nothing. Dispatch-only.
+# No OddsPapi key: it makes no provider call. Dollars by private email; the log carries counts only.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Hard Rock manual P&L (read-only; dollars by private email, log counts only)
+        env:
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+        run: python -u hr_manual_pull.py
