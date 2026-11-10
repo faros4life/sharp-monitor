@@ -103,13 +103,58 @@ def main():
             seen[k] = r
     say(f"{len(seen)} distinct play(s) after de-duplicating by key\n")
 
+    # THE FUNNEL, which is the question underneath the depth question. On Nov 10 the executor's
+    # own subject lines read "0 placed, 0 would go live, 2 would bet" - plays were being FOUND and
+    # none were reaching live. Resting is strictly downstream of phase-1 live eligibility
+    # (rest_wanted returns False unless the play is live-eligible or was skipped on price), so a
+    # zero in the depth count below may say nothing about resting and everything about the gate
+    # above it. Measuring one without the other invites the wrong fix.
+    say("=" * 78)
+    say("FUNNEL: how far does a play actually get?")
+    say("=" * 78)
+    verdicts = collections.Counter(r.get("verdict") or "(none)" for r in seen.values())
+    for k, n in verdicts.most_common():
+        say(f"  verdict {k:<14} {n:4}")
+    live_ok = [r for r in seen.values() if r.get("live")]
+    say(f"\n  live-eligible (live=true)      {len(live_ok):4}  of {len(seen)}")
+    ordered = [r for r in seen.values() if (r.get("live_order") or {}).get("status")]
+    placed_o = [r for r in ordered if (r.get("live_order") or {}).get("status") == "placed"]
+    say(f"  reached a live ORDER attempt   {len(ordered):4}")
+    say(f"  order status 'placed'          {len(placed_o):4}")
+    if not live_ok:
+        say("\n  NOTHING reached live eligibility in this window. Whatever blocks it sits ABOVE")
+        say("  resting, so the resting count below cannot be read as a fact about resting.")
+    whys = collections.Counter()
+    for r in seen.values():
+        w = r.get("live_why_not")
+        for item in (w if isinstance(w, list) else [w] if w else []):
+            whys[str(item)[:72]] += 1
+    if whys:
+        say("\n  why not live (top reasons):")
+        for k, n in whys.most_common(10):
+            say(f"      {n:4}  {k}")
+    say("")
+
     attempted = [r for r in seen.values() if (r.get("live_rest") or {}).get("status")]
     placed = [r for r in attempted if (r.get("live_rest") or {}).get("status") == "placed"]
     refused = [r for r in attempted if (r.get("live_rest") or {}).get("status") == "refused"]
 
+    say("=" * 78)
+    say("RESTING")
+    say("=" * 78)
     say(f"resting ATTEMPTED on {len(attempted)} play(s): {len(placed)} placed, {len(refused)} refused")
     if not attempted:
-        say("\nNo resting attempts in the window - nothing to measure. Widen DEPTH_DAYS.")
+        say("")
+        if not live_ok:
+            say("Zero resting attempts, AND zero plays reached live eligibility. So this zero is")
+            say("explained by the funnel above, not by the resting lane or by REST_BOOKS. Adding a")
+            say("third resting venue would change nothing, and neither would changing the chain -")
+            say("the binding constraint is upstream. Do not 'fix' resting on the strength of this.")
+        else:
+            say(f"Zero resting attempts, but {len(live_ok)} play(s) DID reach live eligibility. So the")
+            say("resting lane itself is what is not firing - rest_wanted's conditions are never met")
+            say("(nothing filled at the number, or a partial above the minimum). That IS a fact about")
+            say("resting and is worth a look.")
         return
 
     # The question: among refusals, how many were BOTH books lacking the exact line - the only
