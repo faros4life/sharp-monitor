@@ -334,8 +334,22 @@ def pmus_cancel(order_id, slug=None, label=""):
     discarded it. So the order is read back and the status must actually say cancelled."""
     if not order_id:
         return {"status": "refused", "reason": "no order id to cancel"}
-    tries = [("POST", f"/v1/order/{order_id}/cancel", {}),
-             ("POST", f"/v1/order/{order_id}/cancel", {"marketSlug": slug} if slug else None),
+    # marketSlug IS REQUIRED, not optional - proven on a live order, run 42750863769:
+    #   POST /v1/order/{id}/cancel              -> 400 {"code":3, "The server was unable..."}
+    #   POST /v1/order/{id}/cancel + marketSlug -> 200, reads back ORDER_STATE_CANCELED
+    # The bare route fails on a LIVE order with the same generic code-3 body it gave the dead one,
+    # so the docs' "optional" is wrong in practice. Muse flagged code 3 as the suspect and it was.
+    #
+    # THE ORDER OF THESE TWO WAS A BUG I SHIPPED AN HOUR BEFORE THIS WAS PROVEN. The slug form was
+    # second, and worse, it was skipped entirely when slug was None - so a caller that cancels by
+    # id alone would have fallen through to the batched route with no working primary. The T-30
+    # caller must therefore carry the slug alongside the order id, and this refuses up front if it
+    # does not, rather than half-trying and reporting a confusing failure.
+    if not slug:
+        return {"status": "refused", "reason": f"cannot cancel {order_id} without its marketSlug "
+                                               f"(the venue rejects the id-only route with code 3)"}
+    tries = [("POST", f"/v1/order/{order_id}/cancel", {"marketSlug": slug}),
+             ("POST", f"/v1/order/{order_id}/cancel", {}),
              ("POST", "/v1/orders/batched/cancel", {"orderIds": [order_id]})]
     last = None
     for method, path, body in tries:

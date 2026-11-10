@@ -206,8 +206,12 @@ def cancel_targeted(oid, slug):
     suspect. Shape 3 is the batched route with a single id - targeted, and it proved it validates
     its input ("At least one order is required")."""
     lines = []
-    tries = [("POST", f"/v1/order/{oid}/cancel", {}, "documented singular"),
-             ("POST", f"/v1/order/{oid}/cancel", {"marketSlug": slug}, "singular + marketSlug"),
+    # PROVEN ORDER, run 42750863769: the slug form first. The bare documented route answers a
+    # LIVE order with 400 code 3, the same generic body it gave the dead id - so marketSlug is
+    # required in practice whatever the docs call it. The bare form stays as a second attempt only
+    # to catch the venue changing its mind.
+    tries = [("POST", f"/v1/order/{oid}/cancel", {"marketSlug": slug}, "singular + marketSlug"),
+             ("POST", f"/v1/order/{oid}/cancel", {}, "documented singular, no slug"),
              ("POST", "/v1/orders/batched/cancel", {"orderIds": [oid]}, "batched, one id")]
     for method, path, body, label in tries:
         st, resp, _ = call_h(method, path, body)
