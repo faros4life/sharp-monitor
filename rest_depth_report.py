@@ -281,30 +281,43 @@ def lane1_scope(rows):
     say("LANE 1 SCOPE: is the drought SUPPLY, PRICE or a GATE?")
     say("=" * 100)
 
-    # The vocabulary is PRINTED, not assumed. An exact-match filter on market == "total" returned
-    # 0 of 178 here, which was my filter and not the supply - so the real field values are shown
-    # first and the test below is a substring test against them.
+    # These rows carry league/market/side INSIDE the key, not as fields. r.get("league") is empty
+    # on every one of them - a filter on those fields matched 0 of 179 and I read that zero as a
+    # supply drought, which it was not. The key is executor.derive_key: SPORT|game|market|side,
+    # where market is "total" or "side" (spread and moneyline both collapse to "side") and side is
+    # "Under"/"Over" or a team name. So parse the key, and print the vocabulary it yields so the
+    # scope count below is checkable against it rather than asserted.
+    #
+    # NOTE for the CLV column: audit() reads the same absent r.get("league"/"market"/"side") and
+    # passes them into close_for, so its 0% join is this same defect and not a namespace mismatch.
+    # Not fixed in this pass - flagged, because it changes what that 0% meant.
+    def parts(r):
+        k = str(r.get("key") or r.get("play_key") or "")
+        p = k.split("|")
+        if len(p) >= 4:
+            return p[0].upper(), p[2].lower(), p[3]
+        return (str(r.get("league") or "-").upper(), str(r.get("market") or "-").lower(),
+                str(r.get("side") or "-"))
+
     vocab = _c.Counter()
     for r in rows:
-        vocab[(str(r.get("league") or "-").upper(),
-               str(r.get("market") or "-").lower(),
-               str(r.get("side") or "-")[:18])] += 1
-    say("  field vocabulary actually present on the ledger rows (league / market / side):")
-    for (lg, mk, sd), n in vocab.most_common(14):
-        say(f"      {n:4}  {lg:<8} {mk:<14} {sd}")
-    if len(vocab) > 14:
-        say(f"      ... and {len(vocab) - 14} more combination(s)")
+        lg, mk, sd = parts(r)
+        vocab[(lg, mk, sd[:20])] += 1
+    say("  what the ledger keys actually contain (sport / market / side):")
+    for (lg, mk, sd), n in vocab.most_common(16):
+        say(f"      {n:4}  {lg:<8} {mk:<8} {sd}")
+    if len(vocab) > 16:
+        say(f"      ... and {len(vocab) - 16} more combination(s)")
     say("")
 
     def in_scope(r):
-        lg = str(r.get("league") or "").upper()
-        mk = str(r.get("market") or "").lower()
-        sd = str(r.get("side") or "").lower()
-        if "total" not in mk:
+        lg, mk, sd = parts(r)
+        sd = sd.lower()
+        if mk != "total":
             return False
-        if "under" in sd and lg in ("NBA", "NFL", "NCAAF"):
+        if sd.startswith("under") and lg in ("NBA", "NFL", "NCAAF"):
             return True
-        return "over" in sd and lg == "NCAAF"
+        return sd.startswith("over") and lg == "NCAAF"
 
     scope = [r for r in rows if in_scope(r)]
     say(f"  in Lane 1 scope {len(scope)} of {len(rows)} opportunities "
