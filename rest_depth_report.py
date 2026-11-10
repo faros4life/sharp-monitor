@@ -115,11 +115,17 @@ def audit(rows):
         f"(grouped below by the FIRST reason, so groups are mutually exclusive)")
 
     # ---- Pinnacle close per row, from the cache only. No fetch, no estimate. ----
+    # FIXTURES. The first version called _cl.load_state() behind a hasattr guard - and that
+    # function DOES NOT EXIST, so the guard silently left an empty fixture map and every
+    # find_fixture() failed, which is why the whole CLV column came back n=0. A missing leg read
+    # exactly like missing data. Read the way circa_close.py does it: the encrypted state file.
     st = {"fixtures": {}}
     try:
-        st = _cl.load_state() if hasattr(_cl, "load_state") else st
-    except Exception:
-        pass
+        import tracker_build as _tb
+        st["fixtures"] = dict((_tb.dec(json.load(open(_cl.STATE))).get("fixtures") or {}))
+        say(f"  fixture cache: {len(st['fixtures'])} fixture(s) read from disk")
+    except Exception as e:
+        say(f"  fixture cache UNAVAILABLE ({type(e).__name__}) - the CLV column cannot compute")
     mkmap = {}
     try:
         mkmap = _cl.load_markets(st, now)
@@ -163,10 +169,25 @@ def audit(rows):
             return None, None
         return pct, (pct is not None and pct > 0)
 
+    # OUTCOMES come from the FEED, not the ledger. executor.py:1297 reads e.get("result") off the
+    # alerts feed; the ledger row never carries it, which is why every units cell was n/a. Join by
+    # the same key the rows are de-duplicated on.
+    graded = {}
+    try:
+        import clv_ledger as _cl2  # noqa: F401
+        for a in (json.load(open("liquidity/alerts.json")).get("alerts") or []):
+            k = a.get("key") or a.get("play_key")
+            if k and a.get("result") in ("W", "L", "P"):
+                graded[k] = a["result"]
+        say(f"  graded outcomes joined from the feed: {len(graded)}")
+    except Exception as e:
+        say(f"  feed outcomes UNAVAILABLE ({type(e).__name__}) - the units column cannot compute")
+
     def units_at_exec(r):
         """Hypothetical net units ONLY where a price was demonstrably executable AND the play is
         graded. Flat 1u risked at that executable price."""
-        am, res = r.get("fill_price_after_fee"), r.get("result")
+        am = r.get("fill_price_after_fee")
+        res = r.get("result") or graded.get(r.get("key") or r.get("play_key"))
         if am is None or res not in ("W", "L", "P"):
             return None
         if res == "P":
