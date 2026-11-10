@@ -262,6 +262,101 @@ def audit(rows):
     say("  graded result, or no verified same-line Pinnacle close in the cache.")
 
 
+def lane1_scope(rows):
+    """SUPPLY vs PRICE vs GATE, inside Lane 1's actual scope only.
+
+    The question this answers: the bot placed 9 times in the week to Nov 8 and nothing since
+    Nov 9. Is that because in-scope candidates stopped arriving (supply), because they arrive and
+    the price is gone by the time we decide (speed), or because they arrive at a good price and a
+    gate stops them (policy)? Those have completely different answers, and the aggregate funnel
+    cannot tell them apart.
+
+    SCOPE is Lane 1's real rule, not every alert: totals UNDERS in NBA/NFL/NCAAF, plus NCAAF
+    OVERS. Everything else is out of scope by design and is counted separately so it cannot
+    inflate the picture.
+    """
+    import collections as _c
+    say("")
+    say("=" * 100)
+    say("LANE 1 SCOPE: is the drought SUPPLY, PRICE or a GATE?")
+    say("=" * 100)
+
+    def in_scope(r):
+        lg = str(r.get("league") or "").upper()
+        mk = str(r.get("market") or "").lower()
+        sd = str(r.get("side") or "").upper()
+        if mk != "total":
+            return False
+        if sd == "UNDER" and lg in ("NBA", "NFL", "NCAAF"):
+            return True
+        return sd == "OVER" and lg == "NCAAF"
+
+    scope = [r for r in rows if in_scope(r)]
+    say(f"  in Lane 1 scope {len(scope)} of {len(rows)} opportunities "
+        f"(totals unders NBA/NFL/NCAAF, plus NCAAF overs)")
+    if not scope:
+        say("  NO in-scope candidate at all in this window. That is a SUPPLY answer: the lane is")
+        say("  quiet because nothing it is allowed to bet was alerted, not because of a gate.")
+        return
+
+    # SUPPLY: in-scope candidates per ET day, so a stop shows as a date and not an average.
+    per_day = _c.Counter()
+    for r in scope:
+        d = str(r.get("decided_utc") or "")[:10]
+        if d:
+            per_day[d] += 1
+    say("")
+    say("  SUPPLY - in-scope candidates by day (decided, UTC date):")
+    for d in sorted(per_day):
+        say(f"      {d}  {per_day[d]:3}  {'#' * min(per_day[d], 40)}")
+
+    # PRICE vs GATE vs PLACED
+    placed = [r for r in scope if (r.get("live_order") or {}).get("status") == "placed"]
+    live_ok = [r for r in scope if r.get("live")]
+    skip_price = [r for r in scope if str(r.get("verdict")) == "SKIP"
+                  and str(r.get("reason") or "").startswith("price:")]
+    skip_other = [r for r in scope if str(r.get("verdict")) == "SKIP"
+                  and not str(r.get("reason") or "").startswith("price:")]
+    gated = [r for r in scope if str(r.get("verdict")) == "WOULD PLACE" and not r.get("live")]
+    say("")
+    say(f"  PLACED (a real order in the ledger)        {len(placed):4}")
+    say(f"  live-eligible                             {len(live_ok):4}")
+    say(f"  SKIP on PRICE (nothing at the number)     {len(skip_price):4}   <- speed / the market")
+    say(f"  SKIP for another reason                   {len(skip_other):4}")
+    say(f"  WOULD PLACE but a GATE stopped it         {len(gated):4}   <- policy")
+    if gated:
+        g = _c.Counter()
+        for r in gated:
+            w = r.get("live_why_not")
+            for x in (w if isinstance(w, list) else [w] if w else []):
+                g[str(x)[:62]] += 1
+        say("      gates that stopped an in-scope, priced candidate:")
+        for k, n in g.most_common(8):
+            say(f"        {n:4}  {k}")
+
+    say("")
+    n = len(scope)
+    if skip_price and len(skip_price) >= max(1, n // 3):
+        say("  READ: a large share of in-scope candidates died on PRICE. The signal is arriving and")
+        say("  the number is gone by the time the bot decides - that is a speed/market problem, not")
+        say("  a gate. Check decision latency before touching any rule.")
+    elif gated and len(gated) >= max(1, n // 3):
+        say("  READ: in-scope candidates are arriving AT a gettable price and a GATE is stopping")
+        say("  them. That is a policy choice, and the gate names itself above.")
+    else:
+        say("  READ: neither price nor a gate dominates. The lane is mostly quiet because few")
+        say("  in-scope candidates exist - a SUPPLY answer. Look at the per-day counts above.")
+    say("")
+    say("  Decision latency on in-scope rows (alert -> decision), which bounds how often the price")
+    say("  can still be there:")
+    lat = sorted(r.get("latency_s") for r in scope if r.get("latency_s") is not None)
+    if lat:
+        say(f"      n={len(lat)}  median {lat[len(lat)//2]/60:.1f} min  "
+            f"min {lat[0]/60:.1f}  max {lat[-1]/60:.1f}")
+    else:
+        say("      no latency recorded")
+
+
 def main():
     since = (__import__("datetime").datetime.now(__import__("datetime").timezone.utc)
              - __import__("datetime").timedelta(days=DAYS)).strftime("%d-%b-%Y")
@@ -322,6 +417,7 @@ def main():
     say("")
 
     audit(list(seen.values()))
+    lane1_scope(list(seen.values()))
 
     attempted = [r for r in seen.values() if (r.get("live_rest") or {}).get("status")]
     placed = [r for r in attempted if (r.get("live_rest") or {}).get("status") == "placed"]
