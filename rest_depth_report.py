@@ -76,6 +76,138 @@ def ledger_rows(M, subject, since):
     return rows, mails
 
 
+def audit(rows):
+    """REJECTED vs ACCEPTED, read-only (Peter, Nov 10). Cached ledger + cached Pinnacle only.
+
+    Every column is computed from what was knowable AT THE DECISION. fill_price_after_fee is the
+    real best book price after that venue's fee at the moment the executor decided, so it is an
+    EXECUTABLE TAKER price - a price that was actually up. A resting bid is NOT modelled anywhere
+    here: nothing in the ledger says whether an unfilled post would have been crossed to, so
+    assuming one would have filled is the one inference this audit refuses to make.
+
+    Categories are the executor's OWN live_why_not strings - the original blocking rules, not
+    buckets invented afterwards. A play can carry MORE THAN ONE reason, so the category counts sum
+    above the number of rejected plays; the primary (first) reason is used for the exclusive
+    grouping and the overlap is reported rather than hidden.
+    """
+    import clv_ledger as _cl
+    import clv_std as _cs
+    import hist_cache as _hc
+    import nba_names as _nn
+    from datetime import datetime as _dt, timezone as _tz
+
+    now = _dt.now(_tz.utc)
+    say("")
+    say("=" * 100)
+    say("REJECTED vs ACCEPTED - Lane 1 qualification audit (READ-ONLY, 0 paid credits)")
+    say("=" * 100)
+
+    acc = [r for r in rows if r.get("live")]
+    rej = [r for r in rows if not r.get("live")]
+    say(f"  unique opportunities {len(rows)}   accepted {len(acc)}   rejected {len(rej)}")
+
+    def reasons(r):
+        w = r.get("live_why_not")
+        return [str(x) for x in (w if isinstance(w, list) else [w] if w else [])]
+
+    multi = sum(1 for r in rej if len(reasons(r)) > 1)
+    say(f"  rejected plays carrying MORE THAN ONE blocking rule: {multi} "
+        f"(grouped below by the FIRST reason, so groups are mutually exclusive)")
+
+    # ---- Pinnacle close per row, from the cache only. No fetch, no estimate. ----
+    st = {"fixtures": {}}
+    try:
+        st = _cl.load_state() if hasattr(_cl, "load_state") else st
+    except Exception:
+        pass
+    mkmap = {}
+    try:
+        mkmap = _cl.load_markets(st, now)
+    except Exception:
+        pass
+
+    def clv_of(r):
+        """(clv_pct, beat) at the EXECUTABLE price against a verified same-line Pinnacle close.
+        None where any leg is missing - never estimated, never substituted."""
+        am = r.get("fill_price_after_fee")
+        if am is None:
+            return None, None
+        try:
+            fid = _cl.find_fixture(st, {"bet": r.get("side") or r.get("game"),
+                                        "league": r.get("league"), "game": r.get("game"),
+                                        "teams": _nn.teams_of({"league": r.get("league"),
+                                                               "teams": None}),
+                                        "game_start": r.get("start_utc")})
+        except Exception:
+            fid = None
+        if not fid or not os.path.exists(_hc._path(fid, "pinnacle")):
+            return None, None
+        f = (st.get("fixtures") or {}).get(fid) or {}
+        start = _cl.tp(f.get("start"))
+        if not start:
+            return None, None
+        try:
+            h = _hc.get_hist(fid, ["pinnacle"], start)
+            c, _why = _cl.close_for({"bet": r.get("side"), "league": r.get("league"),
+                                     "market": r.get("market")}, f,
+                                    _cl.book_markets(h, "pinnacle"), mkmap, start, r.get("league"))
+        except Exception:
+            return None, None
+        if not c or not _cs.close_verified(c.get("how")):
+            return None, None
+        dec = 1 + (am / 100.0 if am > 0 else 100.0 / abs(am))
+        try:
+            v = _cs.canon(r.get("fill_book"))
+            pct = _cs.net_clv(c["p"], dec, v, maker=False, league=r.get("league"))
+        except Exception:
+            return None, None
+        return pct, (pct is not None and pct > 0)
+
+    def units_at_exec(r):
+        """Hypothetical net units ONLY where a price was demonstrably executable AND the play is
+        graded. Flat 1u risked at that executable price."""
+        am, res = r.get("fill_price_after_fee"), r.get("result")
+        if am is None or res not in ("W", "L", "P"):
+            return None
+        if res == "P":
+            return 0.0
+        return round((am / 100.0 if am > 0 else 100.0 / abs(am)) if res == "W" else -1.0, 3)
+
+    def block(name, rs):
+        exe = [r for r in rs if r.get("fill_price_after_fee") is not None]
+        u = [units_at_exec(r) for r in exe]
+        u = [x for x in u if x is not None]
+        cl_ = [clv_of(r) for r in exe]
+        pct = [p for p, _b in cl_ if p is not None]
+        beat = [b for _p, b in cl_ if b is not None]
+        dep = [r.get("fill_avail") for r in exe if r.get("fill_avail") is not None]
+        say(f"  {name[:56]:<56} {len(rs):4}  exec {len(exe):3}  "
+            f"units {(f'{sum(u):+.2f}' if u else '   n/a'):>7} (n={len(u)})  "
+            f"CLV {(f'{sum(pct)/len(pct):+.2f}%' if pct else '  n/a'):>8} (n={len(pct)})  "
+            f"beat {(f'{sum(beat)}/{len(beat)}' if beat else 'n/a'):>7}  "
+            f"depth med {(f'${sorted(dep)[len(dep)//2]:,.0f}' if dep else 'n/a')}")
+
+    say("")
+    say("  category                                                  opps  exec  units          "
+        "CLV              beat     depth")
+    say("  " + "-" * 96)
+    block("ACCEPTED (reached live)", acc)
+    say("  " + "-" * 96)
+    groups = collections.Counter()
+    for r in rej:
+        rs_ = reasons(r)
+        groups[(rs_[0][:56] if rs_ else "(no reason recorded)")] += 1
+    for name, _n in groups.most_common():
+        block(name, [r for r in rej if (reasons(r)[0][:56] if reasons(r) else "(no reason recorded)") == name])
+
+    say("")
+    say("  RESTING BIDS ARE NOT MODELLED. Every 'units' figure above is a TAKER price that was")
+    say("  actually on the book at the decision. Nothing in the ledger records whether an unfilled")
+    say("  resting post would have been crossed to, so no resting fill is assumed anywhere.")
+    say("  'n/a' means a required leg is MISSING, not zero: no executable price recorded, no")
+    say("  graded result, or no verified same-line Pinnacle close in the cache.")
+
+
 def main():
     since = (__import__("datetime").datetime.now(__import__("datetime").timezone.utc)
              - __import__("datetime").timedelta(days=DAYS)).strftime("%d-%b-%Y")
@@ -134,6 +266,8 @@ def main():
         for k, n in whys.most_common(10):
             say(f"      {n:4}  {k}")
     say("")
+
+    audit(list(seen.values()))
 
     attempted = [r for r in seen.values() if (r.get("live_rest") or {}).get("status")]
     placed = [r for r in attempted if (r.get("live_rest") or {}).get("status") == "placed"]
