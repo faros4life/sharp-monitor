@@ -109,11 +109,11 @@ function render(){
         // Nov 6 (Peter): Hard Rock must open the APP on the phone. Use Hard Rock's own share-link format (opens the app with the bet on the slip).
         const hm=lk&&b.startsWith("hardrock")&&lk.match(/deep_link_value=betslip\/(\d+)/);
         if(hm)lk="https://share.hardrock.bet/Pt0T/bet?deep_link_value=hardrock://betslip/"+hm[1];
-        // Nov 9 (Peter): Novig - fill the bet link's {wager} with $200 and try the Novig app first (novigapp://), website after 1.5s if the app doesn't open.
-        let app=null;
-        if(b==="novig"&&l1&&/\{wager\}/.test(l1)){lk=l1.replace("{wager}","200");app=lk.replace(/^https:\/\/(www\.)?novig\.com\//,"novigapp://")}
+        // Nov 9 (Peter): open the Novig / ProphetX apps through their own AppsFlyer OneLinks (same mechanism as Hard Rock's share link).
+        if(b==="novig"&&lk){const nm=lk.match(/novig\.com\/(?:events|event-markets)\/([0-9a-f-]{20,})/i);if(nm)lk="https://novig.onelink.me/JHQQ/?deep_link_value="+encodeURIComponent("event-markets/"+nm[1])}
+        if(b==="prophetx"&&lk){const pm=lk.match(/lineID=([0-9a-f]+)/i);if(pm)lk="https://app.prophetx.co/E5Yi/?deep_link_value=addtobetslip&action=addtobetslip&lineID="+pm[1]+"&deep_link_sub2="+pm[1]+"&partner_id=theoddsapi&deep_link_sub1=theoddsapi&currency=cash"}
         const safe=lk&&/^https:\/\//.test(lk)?lk.replace(/"/g,"%22"):null;
-        html+=`<td class="${best[i]===b?"b":""}">${safe?(app?`<a href="${app.replace(/"/g,"%22")}" data-web="${safe}" class="appl">${txt}</a>`:`<a href="${safe}">${txt}</a>`):txt}${ev}</td>`;
+        html+=`<td class="${best[i]===b?"b":""}">${safe?`<a href="${safe}">${txt}</a>`:txt}${ev}</td>`;
       });
       html+=`</tr>`;
     }
