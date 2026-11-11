@@ -258,10 +258,30 @@ def read_manual(M):
     inbox (last 3 days). Body lines: MANUAL: {"sport": "NBA", "game": "Away @ Home", "bet": "Under 225.5 (-110)", "book": "Hard Rock"}
     (bet text in the feed's format WITH the price: "Team +3.5 (-110)", "Team ML (+130)", "Under 225.5 (-110)")
     Same side -> duplicate, other side -> conflict: no live order or resting bid on either."""
-    for uid in gsearch(M, 'subject:"Bets manual" newer_than:3d'):
+    # Nov 11: this was gsearch(M, 'subject:"Bets manual" newer_than:3d') and it cost 202.0s - 50.7%
+    # of the whole run, the single largest item in PERF - to read about eight tiny notes.
+    #
+    # gsearch() does query.replace('"', ''), which STRIPS THE PHRASE QUOTES. Gmail then read
+    # `subject:Bets manual newer_than:3d` as "subject contains Bets" AND "the message contains
+    # manual anywhere" - so it matched every Bets LIVE:/signal:/watchdog: email of the last three
+    # days that happens to use the word (the run emails say "MANUAL ONLY" and "manual bets"), and
+    # then fetched each one whole, 38KB ledgers included. Megabytes, to find eight one-line notes.
+    #
+    # Now an IMAP SUBJECT + SINCE search with a real header re-check, which is the pattern
+    # bot_orders() already uses for exactly this reason: IMAP SUBJECT is a substring match, so the
+    # header prefix is confirmed before the body is trusted (reading dry-run mail as live was a real
+    # bug on Oct 27).
+    since = (datetime.now(timezone.utc) - timedelta(days=3)).strftime("%d-%b-%Y")
+    typ, data = M.uid("SEARCH", None, "SUBJECT", '"Bets manual"', "SINCE", since)
+    uids = (data[0].split() if typ == "OK" and data and data[0] else [])
+    for uid in uids:
         typ, data = M.uid("FETCH", uid, "(RFC822)")
         if typ != "OK" or not data or not data[0]:
             continue
+        subj = str(email.header.make_header(email.header.decode_header(
+            email.message_from_bytes(data[0][1]).get("Subject") or "")))
+        if not subj.startswith("Bets manual"):
+            continue   # substring match: only Peter's own manual-bet notes count
         for line in body_text(data[0][1]).splitlines():
             m = re.match(r"\s*MANUAL:\s*(\{.*\})\s*$", line)
             if not m:
