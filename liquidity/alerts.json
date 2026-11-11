@@ -1,6 +1,337 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-11T03:08:18Z",
+   "base_depth": 147454,
+   "best_price": 0.45,
+   "best_price_american": 122,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.45,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 8,
+   "date": "2026-11-11",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 4331,
+     "new_this_side": 28616,
+     "other_side": 6293,
+     "other_side_all_levels": 160153,
+     "ratio": 1.3,
+     "this_side": 8205,
+     "this_side_all_levels": 176499
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "POR (0)",
+     "price": 0.45,
+     "this_side": 857
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "Portland Trail Blazers",
+     "price": 0.4608,
+     "this_side": 155
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 8612.99,
+    "volume_24h_fp": 9984.22,
+    "volume_fp": 10486.86
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 7.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 10.52
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 8605.99,
+    "volume_24h_fp": 9984.22,
+    "volume_fp": 10476.34
+   },
+   "fade_price": 0.55,
+   "first_seen_utc": "2026-11-11T03:00:18Z",
+   "game": "Oklahoma City vs Portland",
+   "game_surge_books": [
+    "novig"
+   ],
+   "game_x": 1.16,
+   "key": "kalshi|KXNBAGAME-26NOV11OKCPOR|ml|1",
+   "lead_min": 1432,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 28616,
+   "new_x": 0.14,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 8612.99,
+      "volume_24h_fp": 9984.22,
+      "volume_fp": 10486.86
+     },
+     "game_normal": 152208,
+     "game_x": 1.16,
+     "normal": 208033,
+     "now": 176499,
+     "type": "ML",
+     "x": 0.85
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 1688.0,
+      "volume": 13822.0
+     },
+     "game_normal": 50,
+     "game_x": 17.55,
+     "normal": 19339,
+     "now": 882,
+     "type": "ML",
+     "x": 0.05
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 283,
+     "game_x": 0.55,
+     "normal": 11027,
+     "now": 155,
+     "type": "ML",
+     "x": 0.01
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.45,
+   "price_american": 122,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.45,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBAGAME-26NOV11OKCPOR-POR"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Portland",
+   "side_label": "Portland",
+   "size_x": 0.85,
+   "start_source": "prophetx",
+   "start_utc": "2026-11-12T03:00:00Z",
+   "surge_books": [],
+   "teams": [
+    "Oklahoma City",
+    "Portland"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-11T03:08:18Z",
+   "base_depth": 278842,
+   "best_price": 0.595,
+   "best_price_american": -147,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.6,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 8,
+   "date": "2026-11-11",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 623,
+     "new_this_side": 149444,
+     "other_side": 135252,
+     "other_side_all_levels": 300792,
+     "ratio": 1.4,
+     "this_side": 182712,
+     "this_side_all_levels": 424233
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "DEN (0)",
+     "price": 0.595,
+     "this_side": 6191
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Denver Nuggets",
+     "price": 0.6032,
+     "this_side": 1009
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 10225.99,
+    "volume_24h_fp": 6379.549999999999,
+    "volume_fp": 10999.64
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 23.53,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 26.16
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 10202.46,
+    "volume_24h_fp": 6379.549999999999,
+    "volume_fp": 10973.48
+   },
+   "fade_price": 0.41,
+   "first_seen_utc": "2026-11-11T03:00:18Z",
+   "game": "Denver vs Memphis",
+   "game_surge_books": [
+    "prophetx"
+   ],
+   "game_x": 1.56,
+   "key": "kalshi|KXNBAGAME-26NOV11DENMEM|ml|0",
+   "lead_min": 1312,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 149444,
+   "new_x": 0.72,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 10225.99,
+      "volume_24h_fp": 6379.549999999999,
+      "volume_fp": 10999.64
+     },
+     "game_normal": 271410,
+     "game_x": 1.56,
+     "normal": 208033,
+     "now": 424233,
+     "type": "ML",
+     "x": 2.04
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 27655.0,
+      "volume": 27655.0
+     },
+     "game_normal": 3761,
+     "game_x": 1.85,
+     "normal": 19339,
+     "now": 6963,
+     "type": "ML",
+     "x": 0.36
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 475,
+     "game_x": 2.29,
+     "normal": 11027,
+     "now": 1086,
+     "type": "ML",
+     "x": 0.1
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.6,
+   "price_american": -150,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.6,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -165
+    },
+    "betopenly": {
+     "point": null,
+     "price": -142
+    },
+    "betrivers": {
+     "point": null,
+     "price": -175
+    },
+    "draftkings": {
+     "point": null,
+     "price": -156
+    },
+    "fanatics": {
+     "point": null,
+     "price": -155
+    },
+    "fanduel": {
+     "point": null,
+     "price": -162
+    },
+    "kalshi": {
+     "point": null,
+     "price": -150
+    },
+    "limitless": {
+     "point": null,
+     "price": -163
+    },
+    "novig": {
+     "point": null,
+     "price": -147
+    },
+    "polymarket": {
+     "point": null,
+     "price": -144
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -150
+    },
+    "prophetx": {
+     "point": null,
+     "price": -152
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -160
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBAGAME-26NOV11DENMEM-DEN"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Denver",
+   "side_label": "Denver",
+   "size_x": 2.04,
+   "start_source": "odds",
+   "start_utc": "2026-11-12T01:00:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "Denver",
+    "Memphis"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-11T02:50:20Z",
    "base_depth": 209647,
    "best_price": 0.515,
@@ -40,9 +371,9 @@
     "volume_fp": 1372.91
    },
    "ex_stats_close": {
-    "open_interest_fp": 71722.9,
+    "open_interest_fp": 76391.1,
     "volume_24h_fp": 73643.97,
-    "volume_fp": 73898.75
+    "volume_fp": 79614.31
    },
    "ex_stats_first": {
     "open_interest_fp": 62848.55,
@@ -79,6 +410,8 @@
    "norm_ready_books": 1,
    "paper_only": false,
    "price": 0.52,
+   "price_after_15m": 0.515,
+   "price_after_15m_book": "novig",
    "price_american": -108,
    "price_rule": "ok",
    "price_when_first_seen": 0.52,
@@ -170,6 +503,7 @@
    "size_x": 2.43,
    "start_source": "odds",
    "start_utc": "2026-11-11T04:00:00Z",
+   "still_actionable": true,
    "surge_books": [
     "kalshi"
    ],
@@ -220,9 +554,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 3228.88,
+    "open_interest_fp": 3245.1099999999997,
     "volume_24h_fp": 3113.88,
-    "volume_fp": 3324.15
+    "volume_fp": 3342.7200000000003
    },
    "ex_stats_first": {
     "open_interest_fp": 3228.49,
@@ -259,6 +593,8 @@
    "norm_ready_books": 1,
    "paper_only": false,
    "price": 0.61,
+   "price_after_15m": 0.6267,
+   "price_after_15m_book": "kalshi",
    "price_american": -156,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.61,
@@ -280,6 +616,7 @@
    "size_x": 1.02,
    "start_source": "kalshi",
    "start_utc": "2026-11-12T05:00:00Z",
+   "still_actionable": true,
    "surge_books": [],
    "teams": [
     "Orlando",
@@ -328,9 +665,9 @@
     "volume_fp": 115.17
    },
    "ex_stats_close": {
-    "open_interest_fp": 15841.39,
+    "open_interest_fp": 16340.189999999999,
     "volume_24h_fp": 17791.64,
-    "volume_fp": 21318.32
+    "volume_fp": 21827.83
    },
    "ex_stats_first": {
     "open_interest_fp": 15240.18,
@@ -367,6 +704,8 @@
    "norm_ready_books": 1,
    "paper_only": false,
    "price": 0.6,
+   "price_after_15m": 0.605,
+   "price_after_15m_book": "novig",
    "price_american": -150,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.6,
@@ -417,6 +756,7 @@
    "size_x": 1.36,
    "start_source": "odds",
    "start_utc": "2026-11-12T00:00:00Z",
+   "still_actionable": true,
    "surge_books": [],
    "teams": [
     "Cleveland",
@@ -477,9 +817,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 6912.98,
+    "open_interest_fp": 6978.9400000000005,
     "volume_24h_fp": 6596.16,
-    "volume_fp": 6951.49
+    "volume_fp": 7020.03
    },
    "ex_stats_first": {
     "open_interest_fp": 6912.83,
@@ -847,9 +1187,9 @@
     "volume_fp": 229.38
    },
    "ex_stats_close": {
-    "open_interest_fp": 4259.74,
+    "open_interest_fp": 4341.12,
     "volume_24h_fp": 4252.27,
-    "volume_fp": 5057.16
+    "volume_fp": 5138.54
    },
    "ex_stats_first": {
     "open_interest_fp": 3340.28,
@@ -1799,6 +2139,7 @@
     "novig",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.49,
    "clv_cents": 0.0,
    "confirmed_after_min": 11,
@@ -2031,10 +2372,12 @@
     "volume_fp": 349945.43
    },
    "fade_price": 0.48,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-10T23:41:13Z",
    "game": "Western Michigan vs Akron: Total Points",
    "game_surge_books": [],
    "game_x": 1.27,
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFTOTAL-26NOV10WMUAKR-51\"}",
    "lead_min": 9,
    "league": "NCAAF",
@@ -2134,11 +2477,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFTOTAL-26NOV10WMUAKR-51"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settled_utc": "2026-11-11T03:08:18Z",
    "sharp_agree": [
     "Over 50.5 (-105)",
     "Over 49.5 (-110)"
@@ -2155,7 +2499,7 @@
     "Akron"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.88
   },
   {
    "alerted_utc": "2026-11-10T23:51:23Z",
@@ -2794,9 +3138,9 @@
     "volume_fp": 91.89
    },
    "ex_stats_close": {
-    "open_interest_fp": 68881.64,
+    "open_interest_fp": 68973.25,
     "volume_24h_fp": 68204.79,
-    "volume_fp": 69342.87
+    "volume_fp": 69447.14
    },
    "ex_stats_first": {
     "open_interest_fp": 7335.33,
@@ -2973,9 +3317,9 @@
     "volume_fp": 344.06
    },
    "ex_stats_close": {
-    "open_interest_fp": 118991.35999999999,
+    "open_interest_fp": 119722.53,
     "volume_24h_fp": 110450.79000000001,
-    "volume_fp": 129780.53
+    "volume_fp": 130717.84
    },
    "ex_stats_first": {
     "open_interest_fp": 89973.97,
@@ -3514,6 +3858,7 @@
     "novig",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.55,
    "clv_cents": 0.0,
    "confirmed_after_min": 9,
@@ -4325,6 +4670,7 @@
     "novig",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.51,
    "clv_cents": 3.0,
    "confirmed_after_min": 9,
@@ -4553,9 +4899,9 @@
     "volume_fp": 940.96
    },
    "ex_stats_close": {
-    "open_interest_fp": 115576.98,
+    "open_interest_fp": 142413.2,
     "volume_24h_fp": 124200.76,
-    "volume_fp": 127546.93
+    "volume_fp": 158064.05
    },
    "ex_stats_first": {
     "open_interest_fp": 33546.85,
@@ -5142,6 +5488,7 @@
     "novig",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.51,
    "clv_cents": -2.0,
    "confirmed_after_min": 10,
@@ -6148,9 +6495,9 @@
     "volume_fp": 2109.36
    },
    "ex_stats_close": {
-    "open_interest_fp": 20886.6,
+    "open_interest_fp": 21089.42,
     "volume_24h_fp": 24185.99,
-    "volume_fp": 24185.99
+    "volume_fp": 24466.2
    },
    "ex_stats_first": {
     "open_interest_fp": 8872.3,
@@ -7143,9 +7490,9 @@
     "volume_fp": 191.81
    },
    "ex_stats_close": {
-    "open_interest_fp": 12001.490000000002,
+    "open_interest_fp": 12062.320000000002,
     "volume_24h_fp": 9812.029999999999,
-    "volume_fp": 13191.92
+    "volume_fp": 13252.75
    },
    "ex_stats_first": {
     "open_interest_fp": 4963.54,
@@ -8130,6 +8477,7 @@
     "novig",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.68,
    "clv_cents": 0.0,
    "confirmed_after_min": 10,
@@ -9648,10 +9996,12 @@
     "volume_fp": 20277.86
    },
    "fade_price": 0.52,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-10T14:41:02Z",
    "game": "Western Michigan vs Akron: Spread",
    "game_surge_books": [],
    "game_x": 1.39,
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFSPREAD-26NOV10WMUAKR-WMU15\"}",
    "lead_min": 549,
    "league": "NCAAF",
@@ -9761,13 +10111,14 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFSPREAD-26NOV10WMUAKR-WMU15"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-11T03:08:18Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Western Michigan",
@@ -9785,7 +10136,7 @@
     "Akron"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.98
   },
   {
    "alerted_utc": "2026-11-10T14:32:16Z",
@@ -10436,6 +10787,7 @@
     "novig",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.47,
    "clv_cents": 1.0,
    "confirmed_after_min": 11,
@@ -10609,7 +10961,8 @@
      "price": 115
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-11T03:08:18Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNHLGAME-26NOV10NSHLA-NSH"
@@ -10654,6 +11007,7 @@
     "novig",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.66,
    "clv_cents": -3.0,
    "confirmed_after_min": 6,
@@ -10879,6 +11233,7 @@
     "novig",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.47,
    "clv_cents": -2.0,
    "confirmed_after_min": 4,
@@ -11771,9 +12126,9 @@
     "volume_fp": 409.5
    },
    "ex_stats_close": {
-    "open_interest_fp": 1627992.9100000001,
+    "open_interest_fp": 1876751.77,
     "volume_24h_fp": 1668480.08,
-    "volume_fp": 1709033.4300000002
+    "volume_fp": 1959419.79
    },
    "ex_stats_first": {
     "open_interest_fp": 249552.7,
@@ -13058,6 +13413,7 @@
     "polymarket",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.54,
    "clv_cents": -2.0,
    "confirmed_after_min": 5,
@@ -13309,9 +13665,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 12001.490000000002,
+    "open_interest_fp": 12062.320000000002,
     "volume_24h_fp": 9812.029999999999,
-    "volume_fp": 13191.92
+    "volume_fp": 13252.75
    },
    "ex_stats_first": {
     "open_interest_fp": 3317.11,
@@ -14186,9 +14542,9 @@
     "volume_fp": 2515.86
    },
    "ex_stats_close": {
-    "open_interest_fp": 1627992.9100000001,
+    "open_interest_fp": 1876751.77,
     "volume_24h_fp": 1668480.08,
-    "volume_fp": 1709033.4300000002
+    "volume_fp": 1959419.79
    },
    "ex_stats_first": {
     "open_interest_fp": 38710.45,
@@ -14530,10 +14886,12 @@
     "volume_fp": 46884.14
    },
    "fade_price": 0.16,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-10T02:56:20Z",
    "game": "Western Michigan vs Akron",
    "game_surge_books": [],
    "game_x": 1.08,
+   "graded_by": "espn",
    "key": "kalshi|KXNCAAFGAME-26NOV10WMUAKR|ml|0",
    "lead_min": 1260,
    "league": "NCAAF",
@@ -14648,13 +15006,14 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26NOV10WMUAKR-WMU"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-11T03:08:18Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Western Michigan",
@@ -14672,7 +15031,7 @@
     "Akron"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.18
   },
   {
    "alerted_utc": "2026-11-10T02:56:20Z",
