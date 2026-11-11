@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 11, 1:38 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 53.
+Updated Wed Nov 11, 1:41 PM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 53.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,7 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 11 1:38PM | NBA | San Antonio vs Chicago: Total Points | total: NOT Over 237.5 points | kalshi | $27k | -100 |  |  | +0.0c |  | pending |
+| Nov 11 1:41PM | NBA | San Antonio vs Chicago: Total Points | total: NOT Over 237.5 points | kalshi | $27k | -100 |  |  | +0.0c |  | pending |
 | Nov 11 1:22PM | NBA | Cleveland vs New York: Spread | spread: NOT New York wins by over 3.5 points | kalshi | $61k | -100 |  |  | -1.0c |  | pending |
 | Nov 11 1:22PM | NHL | Utah vs Vegas | moneyline: Utah | kalshi | $99k | +117 |  |  | +1.0c |  | pending |
 | Nov 11 1:01PM | NHL | Utah vs Vegas | moneyline: Vegas | kalshi | $32k | -122 |  |  | -1.0c |  | pending |
