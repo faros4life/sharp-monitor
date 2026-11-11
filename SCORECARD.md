@@ -133,6 +133,34 @@ Two findings worth keeping:
 
 ---
 
+## B2. Feed-level populations (read 11 Nov, deduped one play per game+market+side)
+
+Units are 1u flat after fees at the alert price. CIs are day-clustered. **No fills in any of these.**
+
+| Population | Graded | Units | ROI | Day-clustered 95% CI | Pinnacle CLV available |
+| --- | --- | --- | --- | --- | --- |
+| Steam feed, NBA+NFL+NCAAF+NHL | 708 | −0.26u | −0.0% | [−6.4, +5.7]% | none certified; provisional −0.80% on 373 |
+| Steam feed, NCAAB (split: OPEN) | 285 | +10.92u | +3.8% | [−5.0, +12.0]% | none certified; provisional −1.40% on 279 |
+| Liquidity board, all leagues | 2,665 | −29.04u | −1.1% | [−4.4, +2.5]% | **none of any kind** — only the trigger exchange's own close, which `CLV_STANDARD.md` §4 bars as a gate |
+
+## B3. Paper splits — the five standing at ELIGIBLE at next review
+
+Full table and bars live in `SPLITS.md`; this is the promotion queue only.
+
+| Split | W-L-P | Units | u/play |
+| --- | --- | --- | --- |
+| Hard Rock-priced, routed | 50-41-0 | +3.28u | +0.036 |
+| NBA liquidity totals — unders | 46-36-0 | +8.79u | +0.107 |
+| NBA liquidity totals — lead 4-12h | 44-32-0 | +10.78u | +0.142 |
+| NBA liquidity totals — $25-50k prints | 56-40-0 | +13.78u | +0.144 |
+| *(parent)* NBA liquidity totals (lane) | 81-65-0 | +13.06u | +0.089 |
+
+**Four of these are the same population.** The parent lane plus its unders, lead-4-12h and
+$25–50k-print slices are cuts of one NBA-totals liquidity record — which is also v3 PLAY and
+LIQ-BOT (entry 9). They are not four independent findings, and promoting on the best slice would be
+promoting a searched cut of a lane that is already approved-but-held. Hard Rock-priced routed is the
+only one of the five from a different population.
+
 ## C. Research runs with no registry entry (11 Nov session)
 
 All read-only, zero paid credits, nothing registered.
