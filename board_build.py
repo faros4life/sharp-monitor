@@ -569,7 +569,13 @@ def live_plays_card():
                 M.logout()
             except Exception:
                 pass
-    except Exception as ex:
+    except SystemExit as ex:
+        # executor.gmail() raises SystemExit("Email not configured.") when the credentials are
+        # missing, and `except Exception` does NOT catch that - so without this the whole board
+        # build would exit here and the page would stop being rebuilt. A display card must never
+        # be able to take down the board. Caught locally, with no credentials, before shipping.
+        err = f"credentials: {str(ex)[:70]}"
+    except BaseException as ex:            # IMAP can also raise KeyboardInterrupt-like socket aborts
         err = f"{type(ex).__name__}: {str(ex)[:70]}"
 
     board = [r for r in rows if str(r.get("source") or "") == "board"]
