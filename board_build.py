@@ -441,6 +441,7 @@ def page(now, rows, flips):
                 f'<td><span class="tag {r["tag"]}">{r["tag"] or "—"}{res}</span><div class="why">{e(r["why"])}</div></td>'
                 f'<td class="r money">{money(r["new"])}<span class="bar" style="width:{max(2, 100 * r["new"] / nmax):.0f}%"></span></td>'
                 f'<td class="hide-m">{e(r["league"])}</td><td>{e(r["game"])}</td><td>{e(r["side"])}</td>'
+                f'<td class="r"><b>{e(str(r["x"].get("line")) if r["x"].get("line") not in (None, "") else "—")}</b></td>'
                 f'<td class="r">{price_cell(r)}</td>'
                 f'<td class="ex">{bars}</td>'
                 f'<td class="r">{plim(r)}</td>'
@@ -448,10 +449,10 @@ def page(now, rows, flips):
                 f'<td><span class="pill {"yes" if live else "gone"}">{r["status"]}</span></td>'
                 f'<td class="hide-m"><span class="pill {"yes" if r["conf"] else ""}">{"yes" if r["conf"] else "no"}</span></td>'
                 f'<td class="hide-m muted">{r["first"]}</td></tr>')
-        head = ('<tr><th>Call</th><th class="r">New money</th><th class="hide-m">League</th><th>Game</th><th>Money on</th>'
+        head = ('<tr><th>Call</th><th class="r">New money</th><th class="hide-m">League</th><th>Game</th><th>Money on</th><th class="r" title="The alert line on the trigger book">Line</th>'
                 '<th class="r" title="The alert price on the trigger book, and what it pays after that book\'s fee">Price</th><th>Bids by exchange</th><th class="r" title="Pinnacle limit on OddsJam scale: at the alert, and now">P limit</th><th class="r">Sitting</th><th>Status</th><th class="hide-m">Confirmed</th>'
                 '<th class="hide-m">First seen ET</th></tr>')
-        return f'<div class="scroll"><table><thead>{head}</thead><tbody>{"".join(out) or "<tr><td colspan=12 class=muted>Nothing yet today.</td></tr>"}</tbody></table></div>'
+        return f'<div class="scroll"><table><thead>{head}</thead><tbody>{"".join(out) or "<tr><td colspan=13 class=muted>Nothing yet today.</td></tr>"}</tbody></table></div>'
 
     fl = "".join(
         f'<tr data-league="{e(a["league"])}"><td>{e(a["game"])}</td><td>{mk}</td><td>{e(a["side"])}</td><td class="r">{money(a["new"])}</td>'

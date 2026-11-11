@@ -604,6 +604,9 @@ def _uidvalidity(M):
         return None
 
 
+KEY_LANE = {}
+
+
 def bot_keys(M, days=2):
     """The bot's own bet keys (rows with a placed order) from its 'Bets LIVE:' emails - for tagging sources only.
     Uses Gmail's indexed search (X-GM-RAW); the executor's IMAP SUBJECT scan of All Mail took ~6 minutes per build."""
@@ -643,6 +646,10 @@ def bot_keys(M, days=2):
                 los = [row.get("live_order") or {}, row.get("live_rest") or {}] + [x or {} for x in (row.get("live_more") or [])]
                 if row.get("key") and any(lo.get("status") == "placed" and lo.get("order_id") for lo in los):
                     got.add(row["key"])
+                    try:   # Nov 11 (Peter): which lane placed it (Phase 1 / Board v3 / R1), shown on the tracker
+                        KEY_LANE[row["key"]] = ex.LANE_NAME.get(ex.lane_of(row), "PHASE 1")
+                    except Exception:
+                        pass
         IMAP_CACHE["b"][u] = sorted(got)
         keys |= got
     IMAP_T[f"bot fetch ({n} new of {len(uids)})"] = round(_t.time() - t0)
@@ -893,7 +900,7 @@ const pt=await crypto.subtle.decrypt({name:'AES-GCM',iv:b64(BLOB.i)},key,b64(BLO
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const $=v=>v==null?'—':(v<0?'-$':'$')+Math.abs(v).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2});
 const sg=v=>v==null?'—':(v>0?'+':v<0?'':'')+$(v);const pr=p=>p==null?'':(p>0?'+'+p:String(p));
-const src=b=>b.source==='bot'?'Bot fill':(b.source==='ntfy (Peter manual)'?'ntfy (manual)':'Peter');
+const src=b=>b.source==='bot'?('Bot'+(b.lane?' · '+b.lane:'')+' fill'):(b.source==='ntfy (Peter manual)'?'ntfy (manual)':(b.source==='Street Value'?'Street Value':'Peter'));
 function teams(b){if(b.teams&&b.teams.length===2){const [a,h]=b.teams;const live=b.g_state==='in'||b.g_state==='post';
 return b.teams.map((t,i)=>{const o=b.teams[1-i];const cl=live?(t.score>=o.score?'lead':'trail'):'';return `<div class="team ${cl}"><span>${esc(t.name)}</span><b>${live?t.score:'—'}</b></div>`}).join('');}
 const g=String(b.game||'').split(/\\s+(?:@|at|vs\\.?)\\s+/i);return g.length===2?g.map(n=>`<div class="team"><span>${esc(n)}</span><b>—</b></div>`).join(''):`<div class="team"><span>${esc(b.game||'')}</span></div>`;}
@@ -1278,6 +1285,32 @@ def main():
         if b.get("source") == "Peter" and reclass(b):
             b["source"] = "ntfy (Peter manual)"
 
+    # Nov 11 (Peter: "feed of the bet - lane, Street Value, etc."): label each bet's lane. Display only.
+    try:
+        import clv_ledger as _cl
+        _sv = _cl.sv_registry(days=10)
+    except Exception:
+        _sv = []
+    for b in bets.values():
+        try:
+            if b.get("source") == "bot":
+                if not b.get("lane"):
+                    b["lane"] = next((KEY_LANE[k] for k in KEY_LANE if bot_match(b, {k})), None)
+            elif _sv and b.get("source") != "Street Value":
+                gs = tparse(b.get("game_start"))
+                pb = parse_bet(b.get("bet"), b.get("flip"))
+                bt = toks(b.get("game")) | toks(b.get("bet"))
+                for p in _sv:
+                    d = tparse(p["date"] + "T12:00:00Z") if p.get("date") else None
+                    pp = parse_bet(p.get("bet"))
+                    if (d and gs and abs((gs - d).total_seconds()) > 4 * 86400) or not pb or not pp or pb[0] != pp[0]:
+                        continue
+                    if toks(p.get("game")) & bt and (pb[0] == "total" and pb[1] == pp[1] or toks(str(pb[1])) & toks(str(pp[1]))):
+                        b["source"] = "Street Value"
+                        break
+        except Exception:
+            pass
+
     def et_date(s):
         t = tparse(s)
         return t.astimezone(ET) if t else None
@@ -1313,7 +1346,7 @@ def main():
             "live": live, "upcoming": up, "settled": week_settled, "unmatched": unm,
             "all": [{k: b.get(k) for k in ("bet", "price", "stake", "to_pay", "book", "source", "result", "profit", "teams",
                                            "game", "league", "g_state", "g_detail", "status", "game_start", "settled",
-                                           "first_seen", "open", "site", "when")}
+                                           "first_seen", "open", "site", "when", "lane")}
                     for b in group_fills([x for x in state["bets"].values() if not x.get("dup_of")]) if b.get("result") or b.get("open")],
             "graded_note": "Novig and manual bets graded from final scores" if any(b.get("site") is False for b in sett) else "",
             "reads": ", ".join(f"{k} {'ok' if str(v).startswith('ok') else 'failed'}" for k, v in LOG.items())}
