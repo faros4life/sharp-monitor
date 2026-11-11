@@ -592,6 +592,40 @@ def lane_tag(r):
     return f"[{LANE_NAME.get(lane_of(r), 'PHASE 1')}] "
 
 
+def live_play_alert(r):
+    """Nov 11 (Peter): R1 is a LIVE BOT LANE, so its qualifying plays must reach the phone like
+    Phase 1's do. R1's own signal alerts are MUTED upstream by the non-Top-25 filter
+    (NCAAF_TOP25=filter), so without this the only R1 notification was the fill - Peter would see
+    money move before he saw the play.
+
+    Fires once per play, at the moment the lane has decided to bet and the order is about to go in.
+    Deduped across runs for free: already_handled() greps Gmail for the play's pid, every run email
+    carries it, so a play is never processed - or alerted - twice. Non-qualifying signals are
+    untouched and stay muted; this is not a paper-alert firehose.
+
+    Carries game, bet, line, after-fee alert odds, exchange and the PROPOSED stake. push() sends
+    ntfy and mirrors to Telegram once, so there is exactly one message per channel."""
+    p, lv = r.get("play") or {}, (r.get("live") or {})
+    e = r.get("entry") or {}
+    af = e.get("price_after_fee")
+    bk = lv.get("book") or "?"
+    body = "\n".join(x for x in [
+        f"{p.get('sport') or ''} {p.get('game') or ''}".strip(),
+        p.get("bet") or "",
+        (f"alert {int(af):+d} after fees" if af is not None else ""),
+        (f"routing to {BOOK_NAME.get(bk, bk)} at {int(lv['shown']):+d}"
+         f" ({int(lv['am']):+d} after fees)" if lv.get("shown") is not None and lv.get("am") is not None
+         else f"routing to {BOOK_NAME.get(bk, bk)}"),
+        (f"line {fmt_line('total' if ' Over ' in f" {p.get('bet') or ''} " or ' Under ' in f" {p.get('bet') or ''} " else 'spread', lv['line'])}"
+         if lv.get("line") is not None else ""),
+        (f"proposed stake ${float(lv['risk']):,.2f}"
+         + (f" to win ${float(lv['to_win']):,.2f}" if lv.get("to_win") else "") if lv.get("risk") else ""),
+        ("PARTIAL expected: depth is short of the full stake" if lv.get("partial") else ""),
+        "Send STOP on ntfy to pause.",
+    ] if x)
+    push(f"{lane_tag(r)}LIVE PLAY: {(p.get('bet') or '')[:50]}", body)   # mirror=True: one ntfy, one Telegram
+
+
 def lane_note(r, head, res=None, book=None, limit=None, extra=""):
     """ONE notification body for every lane and every order state, so no lane can drift into
     reporting less than another (Peter, Nov 11). Carries lane, state, game, bet and line, the
@@ -3017,6 +3051,10 @@ def main():
                     r["live"] = {"go": False, "lane": r["live"].get("lane"), "pin": pc,
                                  "why": [f"price check: {pc['why']} - live order skipped (Peter Nov 3)"]}
             if r["verdict"] == "WOULD PLACE" and (r.get("live") or {}).get("go"):
+                try:   # Nov 11 (Peter): EVERY live play alerts, all three lanes, before the order
+                    live_play_alert(r)
+                except Exception as ex:
+                    print(f"live play alert failed: {str(ex)[:60]}")   # never block the order
                 r["live"]["order"] = live_order(r)
                 r["live"]["more"] = live_remainder(r)   # Oct 28: $200 total per play across venues
                 LIVEKEYS.add(derive_key(p) or p["play_key"])
