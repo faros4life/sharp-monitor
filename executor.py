@@ -51,6 +51,9 @@ SOURCE = (os.environ.get("EXEC_SOURCE", "") or "both").lower()  # muse | rules |
 RULES_LOOKBACK_H = 6                                             # coded rules look at alerts first sent in the last 6 h
 MIN_LEAD_MIN = float(os.environ.get("EXEC_MIN_LEAD_MIN", "") or "60")
 CAP_LINE = -130                                                  # spreads/totals: never worse than -130
+BLIND_STREAK_AT = 5   # Nov 11 (Peter): consecutive blind runs before the POSITIONS UNREADABLE push.
+                      # Notification cadence ONLY - it does not change when the bot goes blind, and
+                      # a blind run still places nothing on any venue, exactly as before.
 PMUS = "https://gateway.polymarket.us"
 PMUS_FEE = 0.06                                                  # Polymarket US taker, their published schedule
 # ELIGIBILITY FREEZE (Peter, Nov 6): correcting the taker fee DOWN makes every Polymarket US net
@@ -3699,17 +3702,39 @@ def main():
             e1 = feed_entry(p, load_feed()) if p.get("source") != "rules" else None
             if e1 and agree_rules.phase1(e1, True)[0]:
                 p1.append(p)
-        push(f"POSITIONS UNREADABLE: {', '.join(blind)}",
-             f"Can't read your open bets on {', '.join(blind)} ({why[:160]}).\n"
-             f"Exposure cannot be verified, so NO new live orders this run on ANY venue"
-             + (f"; {len(p1)} live-eligible play(s) held - place by hand if you want them now."
-                if p1 else ". No live-eligible play is waiting.")
-             + "\nThe next scheduled run rechecks normally.")
+        # Nov 11 (Peter: "if it happens 5 times in a row then telegram me"): a venue that blips for
+        # one run and recovers is noise - the run placed nothing, which is the safe outcome, and
+        # the next run rechecks minutes later. A venue that stays blind IS worth a message. So the
+        # summary is held until BLIND_STREAK_AT consecutive runs, then repeats every that many.
+        #
+        # This silences NOTHING that matters on its own: when a live-eligible play is held, the
+        # per-play HELD path below pushes it immediately, deduped on held_tok, and this summary is
+        # sent too. Quiet only ever means "blind, and nothing was waiting to place".
+        #
+        # Fail-safe: an uncountable streak (store unwritable) NOTIFIES. Going quiet because the
+        # bookkeeping broke is the one outcome worth avoiding.
+        streak = None
+        try:
+            streak = registry.bump_streak("positions_blind") if registry.enabled() else None
+        except Exception as ex:
+            LOG.append(f"blind streak uncountable, notifying: {str(ex)[:40]}")
+        if p1 or streak is None or streak % BLIND_STREAK_AT == 0:
+            push(f"POSITIONS UNREADABLE: {', '.join(blind)}",
+                 f"Can't read your open bets on {', '.join(blind)} ({why[:160]}).\n"
+                 + (f"{streak} runs in a row.\n" if streak and streak >= BLIND_STREAK_AT else "")
+                 + f"Exposure cannot be verified, so NO new live orders this run on ANY venue"
+                 + (f"; {len(p1)} live-eligible play(s) held - place by hand if you want them now."
+                    if p1 else ". No live-eligible play is waiting.")
+                 + "\nThe next scheduled run rechecks normally.")
+        else:
+            print(f"positions blind, run {streak} of {BLIND_STREAK_AT} - no push yet, nothing held")
         # No per-play push here: the per-play HELD path further down already sends one, deduped on
         # held_tok so it cannot repeat every run. Pushing again from here would double-notify, and
         # "prevent duplicate phone notifications for the same event" is a standing rule.
         print(f"positions blind: {', '.join(blind)} - exposure unverifiable, no live orders this run; "
               f"{len(p1)} live-eligible play(s) held")   # counts only
+    elif registry.enabled():
+        registry.reset_streak("positions_blind")   # every venue readable: the streak is over
     if px_live.LIVE and new:
         live_guards()   # Oct 30: load the ledger registry FIRST, so LIVEKEYS blocks a second live order on a play
     # Nov 11 (Peter, "finish this"): PARALLEL PROBE PREFETCH. probe alert line measured 107.2s

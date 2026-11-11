@@ -436,6 +436,39 @@ def release_token(tok):
         return False
 
 
+def bump_streak(name):
+    """Count consecutive occurrences of a recurring condition. Returns the new count.
+
+    Nov 11 (Peter: "if it happens 5 times in a row then telegram me"): a venue that blips and
+    recovers is not worth a message, a venue that stays blind is. The count has to outlive the
+    run, so it lives here.
+
+    RAISES when the store cannot be written, so the caller treats an uncountable streak as
+    noteworthy and notifies rather than going quiet on a failure."""
+    out = {"n": 0}
+    ts = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+    def merge(d):
+        s = d.setdefault("streaks", {})
+        cur = int((s.get(str(name)) or {}).get("n") or 0) + 1
+        s[str(name)] = {"n": cur, "ts": ts}
+        out["n"] = cur
+
+    if not _commit(merge):
+        raise RuntimeError("streak write failed")
+    return out["n"]
+
+
+def reset_streak(name):
+    """Clear a streak once the condition clears. Best-effort: a miss only delays the next count."""
+    def merge(d):
+        (d.setdefault("streaks", {})).pop(str(name), None)
+    try:
+        return _commit(merge)
+    except Exception:
+        return False
+
+
 def put_order(rec):
     """Record a PLACED order. client_id is the money identity, so a repeat is an update."""
     return _commit(lambda d: _upsert(d.setdefault("orders", []), dict(rec)))

@@ -57,14 +57,21 @@ for narrowing in ('source") == "rules"', 'phase1(', 'lane ==', '"board"', '"r1"'
     assert narrowing not in gate, f"the blind hold must not be narrowed by {narrowing!r}"
 CHECKS.append(("the hold is not narrowed to a lane or source", True, True))
 
-# ---------------------------------------------------------------- immediate venue-named alert
+# ---------------------------------------------------------------- venue-named alert
+# Nov 11 (Peter: "if it happens 5 times in a row then telegram me"): the summary is no longer
+# unconditional. A one-run blip is silent - the run placed nothing, which is the safe outcome -
+# and the push fires at BLIND_STREAK_AT consecutive runs. What must NOT change: a HELD play still
+# pushes immediately, and the alert still names the venue and states the global block.
 i = src.index("if blind:")
-blk = src[i:i + 2200]
-assert "POSITIONS UNREADABLE" in blk, "an immediate venue-named alert must be sent"
+blk = src[i:src.index("px_live.LIVE", i)]
+assert "POSITIONS UNREADABLE" in blk, "a venue-named alert must still be sent"
 assert "', '.join(blind)" in blk, "the alert must name the affected venue(s)"
 assert "NO new live orders this run on ANY venue" in blk, \
     "the alert must say orders are blocked on every venue, not just the blind one"
-CHECKS.append(("immediate alert names the venue and states the global block", True, True))
+CHECKS.append(("alert names the venue and states the global block", True, True))
+assert "if p1 or streak is None or streak % BLIND_STREAK_AT == 0:" in blk, \
+    "the summary must push on a held play, an uncountable streak, or the streak threshold"
+CHECKS.append(("a held play and an uncountable streak both still push immediately", True, True))
 
 # exactly one push from the blind block itself: the per-play HELD path sends its own, deduped
 ck("one push from the blind block (no per-play duplicate)", blk.count("push("), 1)
