@@ -122,13 +122,13 @@ ck("R1 respects the -130 cap", ex.CAP_LINE == -130)
 
 # ---------------------------------------------------------------- notifications and reporting
 ck("phone alerts name the lane", ex.lane_tag({"live": {"lane": "r1"}}) == "[R1] "
-   and ex.lane_tag({"live": {"lane": "board"}}) == "[Board v3] "
-   and ex.lane_tag({"live": {}}) == "")
+   and ex.lane_tag({"live": {"lane": "board"}}) == "[BOARD V3] "
+   and ex.lane_tag({"live": {}}) == "[PHASE 1] ")
 for fn, nm in ((ex.live_order, "live_order"), (ex.live_order_other, "live_order_other")):
     s = inspect.getsource(fn)
-    ck(f"{nm} tags fills with the lane", "lane_tag(r)}FILLED" in s)
-    ck(f"{nm} tags errors with the lane", "lane_tag(r)}LIVE ORDER ERROR" in s)
-    ck(f"{nm} tags no-fills with the lane", "lane_tag(r)}NO FILL" in s)
+    ck(f"{nm} tags fills with the lane", 'lane_note(r, "FILLED"' in s)
+    ck(f"{nm} tags errors with the lane", 'lane_note(r, "ORDER ERROR"' in s)
+    ck(f"{nm} tags no-fills with the lane", 'lane_note(r, "NO FILL"' in s)
 ex.R1.update(risk=220.0, keys={"k1"}, known=True)
 ex.BOARD.update(risk=0.0, keys=set(), known=True)
 rep = ex.lane_report([{"play": {"source": "r1"}, "live": {"lane": "r1", "order": {"status": "placed"}}}])

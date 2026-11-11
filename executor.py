@@ -552,7 +552,7 @@ def unit_for(lane):
     return BOARD_UNIT if str(lane or "") == "board" else R1_UNIT if str(lane or "") == "r1" else LIVE_UNIT
 
 
-LANE_NAME = {"board": "Board v3", "r1": "R1", "lane2": "Lane 2"}
+LANE_NAME = {"board": "BOARD V3", "r1": "R1", "lane2": "LANE 2", "rules": "PHASE 1"}
 
 
 def lane_report(results):
@@ -580,10 +580,51 @@ def lane_report(results):
     return "\n".join(out)
 
 
+def lane_of(r):
+    """The lane a result belongs to. Phase 1 is the default: its plays carry no lane marker, and an
+    UNLABELLED notification is exactly what Peter asked to stop seeing (Nov 11)."""
+    lv, src = (r.get("live") or {}), str((r.get("play") or {}).get("source") or "")
+    return str(lv.get("lane") or "") or (src if src in LANE_NAME else "rules")
+
+
 def lane_tag(r):
-    """'[R1] ' / '[Board v3] ' / '' - so a three-lane system's phone alerts say WHICH lane fired."""
-    n = LANE_NAME.get(str((r.get("live") or {}).get("lane") or ""))
-    return f"[{n}] " if n else ""
+    """'[R1] ' / '[BOARD V3] ' / '[PHASE 1] ' - which lane fired, on EVERY notification."""
+    return f"[{LANE_NAME.get(lane_of(r), 'PHASE 1')}] "
+
+
+def lane_note(r, head, res=None, book=None, limit=None, extra=""):
+    """ONE notification body for every lane and every order state, so no lane can drift into
+    reporting less than another (Peter, Nov 11). Carries lane, state, game, bet and line, the
+    execution odds AFTER FEES, the exchange, the stake, the fill status and the order id."""
+    p, lv, res = r.get("play") or {}, (r.get("live") or {}), (res or {})
+    bk = book or res.get("book") or lv.get("book") or "?"
+    shown = res.get("avg_price") if res.get("avg_price") is not None else (
+        limit if limit is not None else lv.get("am"))
+    asked = res.get("asked_stake") if res.get("asked_stake") is not None else lv.get("risk")
+    fs, oid = res.get("filled_stake"), res.get("order_id")
+    out = [f"{lane_tag(r)}{head}", f"{p.get('sport') or ''} {p.get('game') or ''}".strip()]
+    out.append(p.get("bet") or "")          # the alert, as Peter saw it
+    took = bet_text(r, lv.get("line"), shown) if shown is not None else ""
+    if took and "?" not in took:             # the line actually taken, when it differs
+        out.append(f"took: {took}")
+    elif lv.get("line") is not None and shown is not None:
+        out.append(f"took: {fmt_line((r.get('reval') or {}).get('mtype'), lv['line'])} at {int(shown):+d}")
+    out.append(f"{BOOK_NAME.get(bk, bk)}" + (f" at {int(shown):+d} after fees" if shown is not None else ""))
+    if asked:
+        out.append(f"stake ${float(asked):,.2f}"
+                   + (f" to win ${float(lv['to_win']):,.2f}" if lv.get("to_win") else ""))
+    if fs is None:
+        out.append("fill: UNKNOWN - counted in full until a read confirms it")
+    elif float(fs) <= 0:
+        out.append("fill: NONE")
+    elif asked and float(fs) < float(asked) - 0.01:
+        out.append(f"fill: PARTIAL ${float(fs):,.2f} of ${float(asked):,.2f}")
+    else:
+        out.append(f"fill: FULL ${float(fs):,.2f}")
+    out.append(f"order {oid}" if oid else "order id: none")
+    if extra:
+        out.append(extra)
+    return "\n".join(x for x in out if x)
 
 
 def live_stake(am, unit=None):
@@ -1862,22 +1903,25 @@ def live_order(r):
         return {"status": "refused", "reason": f"ProphetX ladder can't cover ${MIN_ORDER:.0f}+ at the alert number (have ${stake:.2f})"}
     label = f"{p.get('sport')} {p.get('game')} | {bet_text(r, lv['line'], limit)}"
     res = px_live.place(strike, limit, stake, label)
+    if res.get("status") == "refused":   # Nov 11: a refusal is a lane event too
+        tg(lane_note(r, "ORDER REFUSED", res, "prophetx", limit, extra=str(res.get("reason"))[:200]))
     if res["status"] == "placed":
         fs, ap = res.get("filled_stake") or 0, res.get("avg_price")
         if fs and ap:
             win = (fs * 100 / abs(ap) if ap < 0 else fs * ap / 100) * 0.98
-            tg(f"{lane_tag(r)}FILLED ProphetX: {bet_text(r, lv['line'], ap)}\n${fs:,.2f} at {ap:+d} -> wins ${win:,.2f} after the 2% fee"
-               f"{'' if fs >= stake - 0.01 else f' (partial: asked ${stake:,.2f})'}\n{p.get('sport')} {p.get('game')}\n"
-               "Send STOP on ntfy to pause.")
+            tg(lane_note(r, "FILLED", res, "prophetx", limit,
+               extra="Send STOP on ntfy to pause."))
         else:
-            tg(f"{lane_tag(r)}NO FILL ProphetX: {bet_text(r, lv['line'], limit)}\nFill-or-kill got nothing at {limit:+d} or better"
-               + ("" if res.get("fills_read") else " (fill read failed: check My Trades)") + ".")
+            tg(lane_note(r, "NO FILL", res, "prophetx", limit,
+               extra="Fill-or-kill got nothing at this price or better."
+                     + ("" if res.get("fills_read") else " Fill read failed: check My Trades.")))
         push("PLACED: " + bet_text(r, lv["line"], limit)[:60],
              f"{label}\nProphetX fill-or-kill: ${res.get('filled_stake') or 0:,.2f} filled"
              + (f" at {res['avg_price']:+d}" if res.get("avg_price") else "") + f" (asked ${stake:,.2f}, limit {limit:+d})."
              + ("" if res.get("fills_read") else " Fill read failed: check My Trades."), mirror=False)
     elif res["status"] == "error":
-        tg(f"{lane_tag(r)}LIVE ORDER ERROR ProphetX: {(p.get('bet') or '')[:60]}\n{res['reason'][:200]}\nCheck My Trades before retrying.")
+        tg(lane_note(r, "ORDER ERROR", res, "prophetx", limit,
+                      extra=f"{res['reason'][:200]}\nCheck My Trades before retrying."))
         push("LIVE ORDER ERROR: " + (p.get("bet") or "")[:50], f"{label}\n{res['reason']}\nCheck ProphetX My Trades before retrying.", mirror=False)
     out = dict(res, asked_stake=stake, limit=limit, book="prophetx")
     if out.get("status") == "placed":   # Nov 11: durable registry row NOW, before anything can kill the run
@@ -1954,8 +1998,8 @@ def live_order_other(r):
         return {"status": "refused", "book": book, "reason": f"no live order code for {name}"}
     res = dict(res, book=book)
     if res["status"] == "placed" and res.get("sent_to_runner"):
-        tg(f"{lane_tag(r)}SENT TO NOVIG (home PC): {bet_text(r, lv['line'], limit_am)}\nfill-or-kill, ${stake:,.2f} at {limit_am:+d} or better. "
-           f"The fill result follows in the next run.\n{p.get('sport')} {p.get('game')}")
+        tg(lane_note(r, "SENT TO NOVIG (home PC)", res, book, limit_am,
+               extra="Fill-or-kill at this price or better; the fill result follows next run."))
         out = dict(res, asked_stake=stake, limit=limit_am)
         out["journaled"] = journal_order(r, out, cid=lv.get("client_id"))   # Nov 11: durable row now
         return out
@@ -1965,18 +2009,18 @@ def live_order_other(r):
         res["avg_price"] = ap
         if fs and ac:
             win = res.get("contracts", 0) * (1 - ac)
-            tg(f"{lane_tag(r)}FILLED {name}: {bet_text(r, lv['line'], ap)}\n${fs:,.2f} at {ap:+d} (before the {name} fee) -> wins about "
-               f"${win:,.2f}{'' if fs >= stake - 0.5 else f' (partial: asked ${stake:,.2f})'}\n{p.get('sport')} {p.get('game')}\n"
-               "Send STOP on ntfy to pause.")
+            tg(lane_note(r, "FILLED", res, book, limit_am,
+               extra="Send STOP on ntfy to pause."))
         else:
-            tg(f"{lane_tag(r)}NO FILL {name}: {bet_text(r, lv['line'], limit_am)}\nFill-or-kill got nothing at {limit_am:+d} or better"
-               + ("" if res.get("fills_read") else f" (fill read failed: check {name})") + ".")
+            tg(lane_note(r, "NO FILL", res, book, limit_am,
+               extra="Fill-or-kill got nothing at this price or better."))
         push("PLACED: " + bet_text(r, lv["line"], limit_am)[:60],
              f"{label}\n{name} fill-or-kill: ${fs:,.2f} filled" + (f" at {ap:+d}" if ap else "")
              + f" (asked ${stake:,.2f}, limit {limit_am:+d})." + ("" if res.get("fills_read") else f" Fill read failed: check {name}."),
              mirror=False)
     elif res["status"] == "error":
-        tg(f"{lane_tag(r)}LIVE ORDER ERROR {name}: {(p.get('bet') or '')[:60]}\n{res['reason'][:200]}\nCheck {name} before retrying.")
+        tg(lane_note(r, "ORDER ERROR", res, book, limit_am,
+                      extra=f"{res['reason'][:200]}\nCheck {name} before retrying."))
         push("LIVE ORDER ERROR: " + (p.get("bet") or "")[:50], f"{label}\n{res['reason']}\nCheck {name} before retrying.", mirror=False)
     if res.get("status") == "placed" and not res.get("fills_read"):
         res["filled_stake"] = None   # unknown fill: the daily stop counts everything asked
@@ -2038,7 +2082,7 @@ def novig_grid_floor(p, levels):
     return round(math.floor(p / step + 1e-9) * step, 3)
 
 
-def pmus_rest_note(order_id, slug, expire, p):
+def pmus_rest_note(order_id, slug, expire, p, lane="rules"):
     """Record ONE Polymarket US resting bid so a later run can cancel it. Returns True if recorded.
 
     WHY A RECORD IS NEEDED AT ALL, when Kalshi and Novig need none: their expiries work. This
@@ -2058,7 +2102,7 @@ def pmus_rest_note(order_id, slug, expire, p):
              f"{p.get('sport')} {p.get('game')} | {p.get('bet')}\n"
              f"Resting on Polymarket US until T-30. This venue discards the expiry, so this bid is "
              f"cancelled explicitly by a later executor run.\n\n"
-             f"PMUSREST {order_id} {slug} {int(expire.timestamp())}")
+             f"PMUSREST {order_id} {slug} {int(expire.timestamp())} {lane or 'rules'}")
         return True
     except Exception as ex:
         print(f"PM US resting record FAILED ({str(ex)[:60]}) - the bid is unmanaged")
@@ -2102,10 +2146,11 @@ def pmus_rest_sweep(now):
                 if not subj.startswith("Bets PMUS REST:"):
                     continue
                 body = body_text(raw)
-                m = re.search(r"PMUSREST (\S+) (\S+) (\d+)", body or "")
+                m = re.search(r"PMUSREST (\S+) (\S+) (\d+)(?:\s+(\S+))?", body or "")   # 4th group: lane (Nov 11; older records have none)
                 if not m:
                     continue
                 oid, slug, exp = m.group(1), m.group(2), int(m.group(3))
+                rest_lane = m.group(4) or ""   # "" -> written before lanes were recorded
                 if gsearch_strict(M, "pmusdone" + oid):
                     continue                      # already cancelled on an earlier run
                 if now.timestamp() < exp:
@@ -2120,7 +2165,8 @@ def pmus_rest_sweep(now):
                 # resting all reach Telegram already; a CANCEL only went to email, so the one order
                 # state that silently frees exposure was the one Peter could not see on his phone.
                 try:
-                    tg(f"{'CANCELLED' if ok else 'CANCEL FAILED'} Polymarket US: resting bid on {slug[:40]} "
+                    tg(f"[{LANE_NAME.get(rest_lane, 'PHASE 1' if rest_lane in ('', 'rules') else rest_lane.upper())}] "
+                       f"{'CANCELLED' if ok else 'CANCEL FAILED'} Polymarket US: resting bid on {slug[:40]} "
                        f"reached T-30.\n{res.get('status')}: {res.get('state') or res.get('reason') or ''}"
                        + ("" if ok else "\nIt rests until end of day - cancel it in the app."))
                 except Exception:
@@ -2222,7 +2268,8 @@ def rest_bid(r):
             # alone is rejected with code 3), and pmus_rest_sweep cancels it on a later run. If
             # that record is not written the bid is unmanaged, so a failure to record is reported.
             if isinstance(res, dict) and res.get("status") == "placed":
-                res["rest_recorded"] = pmus_rest_note(res.get("order_id"), x["market_slug"], expire, p)
+                res["rest_recorded"] = pmus_rest_note(res.get("order_id"), x["market_slug"], expire, p,
+                                                      lane_of(r))
         else:
             continue
         res = dict(res, book=b, limit=lm.american(c), asked_stake=round(risk, 2), expires_utc=expire.strftime("%Y-%m-%dT%H:%M:%SZ"))
@@ -2232,11 +2279,11 @@ def rest_bid(r):
         when = expire.astimezone(lm.ET).strftime("%I:%M %p ET")
         if res["status"] == "placed":
             got = res.get("filled_stake") or 0
-            tg(f"RESTING BID {name}: {p.get('bet')} at {lm.american(c):+d} (= the alert's {int(af):+d} after fees), "
+            tg(f"{lane_tag(r)}RESTING BID {name}: {p.get('bet')} at {lm.american(c):+d} (= the alert's {int(af):+d} after fees), "
                f"${risk:,.2f}" + (f"; ${got:,.2f} filled right away" if got else "") + f". Cancels itself at {when}.\n"
                f"{p.get('sport')} {p.get('game')}\nSTOP on ntfy does NOT cancel it: cancel in the {name} app if needed.")
         elif res["status"] == "error":
-            tg(f"RESTING BID ERROR {name}: {(p.get('bet') or '')[:60]}\n{res['reason'][:200]}\nCheck {name} before retrying.")
+            tg(f"{lane_tag(r)}RESTING BID ERROR {name}: {(p.get('bet') or '')[:60]}\n{res['reason'][:200]}\nCheck {name} before retrying.")
         if res["status"] == "refused":   # Oct 30: a clean refusal falls through to the next book (Novig first, else Kalshi)
             why_not.append(f"{name}: {res.get('reason')}")
             continue
