@@ -143,6 +143,40 @@ def graded():
     return rows
 
 
+def _ci_mean(vals, z=1.96):
+    """Normal-approx 95% CI for a mean. None when the sample cannot support one."""
+    v = [x for x in vals if x is not None]
+    if len(v) < 2:
+        return None
+    m = sum(v) / len(v)
+    var = sum((x - m) ** 2 for x in v) / len(v)
+    se = (var ** 0.5) / (len(v) ** 0.5)
+    return m, m - z * se, m + z * se
+
+
+def _day_ci(rows, key, B=20000, seed=11):
+    """Day-clustered bootstrap 95% CI for a per-play mean. A slate is one correlated bet, so days
+    are resampled, not plays."""
+    import random as _r
+    g = collections.defaultdict(list)
+    for r in rows:
+        if r.get(key) is not None:
+            g[str(r.get("at") or "")[:10]].append(r[key])
+    buckets = [v for v in g.values() if v]
+    if len(buckets) < 2:
+        return None
+    rnd = _r.Random(seed)
+    out = []
+    for _ in range(B):
+        tot = n = 0
+        for _ in range(len(buckets)):
+            b = rnd.choice(buckets)
+            tot += sum(b); n += len(b)
+        out.append(tot / n)
+    out.sort()
+    return out[int(0.025 * B)], out[int(0.975 * B)]
+
+
 def main():
     now = datetime.now(timezone.utc)
     rows = graded()
@@ -169,6 +203,7 @@ def main():
         gm = str(r.get("game") or "").split(":")[0]
         parts = re.split(r"\s+vs\.?\s+", gm)
         rec = {"at": r.get("at"), "game": gm, "book": r.get("book"), "am": r.get("price"),
+               "recon": bool(r.get("recon")),
                "res": r.get("result"), "units": r.get("units"), "line": r.get("line"),
                "bet": None, "pin": None, "canon": None, "auto": None, "rest": None}
         if not b_ or len(parts) != 2:
@@ -406,6 +441,72 @@ def main():
         print()
         agg(h[:mid], "  bettable, first half")
         agg(h[mid:], "  bettable, second half")
+
+    # ---- O6 items 3-5 (Peter, 11 Nov) -------------------------------------------------
+    print("\n" + "=" * 112)
+    print("1b. CONFIDENCE INTERVALS, HALVES, BEAT-CLOSE  (verified rows only)")
+    print("=" * 112)
+
+    def _blk(label, rs):
+        if not rs:
+            print(f"  {label:<42} n=0")
+            return
+        mk = _ci_mean([r["pin"] for r in rs])
+        tk = _ci_mean([r["pin_taker"] for r in rs])
+        beat = sum(1 for r in rs if (r["pin"] or 0) > 0)
+        n = len(rs)
+        p = beat / n
+        # Wilson interval on the beat-close rate
+        z, d = 1.96, 1 + 1.96 ** 2 / n
+        ctr = (p + 1.96 ** 2 / (2 * n)) / d
+        half = z * ((p * (1 - p) / n + 1.96 ** 2 / (4 * n * n)) ** 0.5) / d
+        u = sum(r["units"] or 0 for r in rs)
+        dci = _day_ci(rs, "units")
+        print(f"  {label:<42} n={n:3}")
+        if mk:
+            print(f"      maker CLV {mk[0]:+6.2f}%  95% CI [{mk[1]:+6.2f}, {mk[2]:+6.2f}]")
+        if tk:
+            print(f"      taker CLV {tk[0]:+6.2f}%  95% CI [{tk[1]:+6.2f}, {tk[2]:+6.2f}]")
+        print(f"      beat close {beat}/{n} = {100*p:.1f}%  Wilson [{100*(ctr-half):.1f}, {100*(ctr+half):.1f}]%"
+              f"  excludes 50%: {'YES' if (ctr - half) > 0.5 else 'no'}")
+        print(f"      units {u:+.2f}  per play {u/n:+.3f}u"
+              + (f"  day-clustered CI [{dci[0]*100:+.1f}, {dci[1]*100:+.1f}]%" if dci else "  day CI n/a"))
+
+    _blk("ALL verified", ver)
+    if len(ver) >= 4:
+        hv = sorted(ver, key=lambda r: str(r["at"]))
+        mid = len(hv) // 2
+        _blk("  first half", hv[:mid])
+        _blk("  second half", hv[mid:])
+
+    print("\n" + "=" * 112)
+    print("1c. FORWARD vs RECONSTRUCTED  (board recon flag; never pooled in a verdict)")
+    print("=" * 112)
+    _blk("forward-logged (recon false)", [r for r in ver if not r.get("recon")])
+    _blk("reconstructed (recon true)", [r for r in ver if r.get("recon")])
+    print(f"  all graded calls: forward {sum(1 for r in out if not r.get('recon'))}"
+          f"  reconstructed {sum(1 for r in out if r.get('recon'))}")
+
+    print("\n" + "=" * 112)
+    print("1d. BASIS DISCREPANCY: corrected execution price vs the recorded alert price")
+    print("=" * 112)
+    moved = [r for r in out if r.get("taker_venue") and r.get("taker_venue") != r.get("trigger_venue")]
+    print(f"  calls whose execution venue differs from the trigger venue: {len(moved)}")
+    gaps = []
+    for r in out:
+        a, b = r.get("taker_trigger_net"), r.get("taker_net")
+        if a and b:
+            gaps.append((1.0 / a - 1.0 / b) * 100.0)   # probability cents saved on entry
+    if gaps:
+        gaps.sort()
+        mean = sum(gaps) / len(gaps)
+        print(f"  entry cost saved by using the best bettable venue: mean {mean:+.2f} probability cents, "
+              f"median {gaps[len(gaps)//2]:+.2f}, max {gaps[-1]:+.2f}  (n={len(gaps)})")
+        print(f"  calls where the best bettable price beat the trigger price: "
+              f"{sum(1 for g in gaps if g > 1e-9)} of {len(gaps)}")
+        print("  NOTE: the recorded units are 1u flat at the TRIGGER price. They are a hypothetical")
+        print("  taker return on a basis this report does not endorse; the CLV above is on the")
+        print("  corrected bettable-venue basis. The two are reported side by side, never merged.")
 
     print("\n" + "=" * 112)
     print("2. OBTAINABLE RESTING PRICE AT THE DECISION TIME")
