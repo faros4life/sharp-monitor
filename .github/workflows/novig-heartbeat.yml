@@ -1,0 +1,71 @@
+name: novig-heartbeat
+
+# Peter, Nov 11 (item 3). Is the home PC's Novig positions snapshot still advancing?
+#
+# The Windows Scheduled Task restarts a DEAD runner. It cannot see a runner that is alive and
+# silently not reporting - a wedged job, a revoked token, a network that is up but cannot reach
+# GitHub. From here that is visible: snapshot_utc stops moving.
+#
+# Read-only for trading: no bet, no order, no rule change, no Novig API call, no OddsPapi credit.
+# It reads the same snapshot by the same route the executor uses, so a read that fails here would
+# fail there too. Pushes ONCE on going stale and ONCE on recovery - never on every run - using a
+# one-line state file kept on an orphan 'heartbeat' branch, the same pattern ncaab-openers uses.
+# Prints minutes and counts only: no positions, no dollars, nothing account-identifying.
+
+on:
+  schedule:
+    - cron: "17 * * * *"      # hourly, off the hour so it does not queue behind the :00 crowd
+  workflow_dispatch:
+    inputs:
+      stale_min:
+        description: "Minutes before the snapshot counts as stale (default 35)"
+        default: "35"
+        required: false
+
+permissions:
+  contents: write             # only to keep heartbeat/novig_state.json on the heartbeat branch
+
+concurrency:
+  group: novig-heartbeat
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # Previous state, if the branch exists yet. A missing branch is the normal first run.
+      - name: Load previous state
+        run: |
+          mkdir -p heartbeat
+          git fetch -q --depth=1 origin heartbeat 2>/dev/null || exit 0
+          git show FETCH_HEAD:heartbeat/novig_state.json > heartbeat/novig_state.json 2>/dev/null || true
+
+      - name: Novig snapshot heartbeat
+        env:
+          NOVIG_SNAPSHOT_TOKEN: ${{ secrets.NOVIG_SNAPSHOT_TOKEN }}
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+          NOVIG_STALE_MIN: ${{ inputs.stale_min || '35' }}
+        run: python -u novig_heartbeat.py
+
+      # Orphan branch holding ONLY the state file, so main is never touched by this job.
+      - name: Remember whether it was already alerted
+        if: always()
+        run: |
+          [ -f heartbeat/novig_state.json ] || exit 0
+          cp heartbeat/novig_state.json "$RUNNER_TEMP/novig_state.json"
+          git config user.name "novig-heartbeat"
+          git config user.email "novig-heartbeat@users.noreply.github.com"
+          git checkout -q --orphan hb-tmp
+          git rm -rq --cached . >/dev/null 2>&1 || true
+          find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
+          mkdir -p heartbeat
+          cp "$RUNNER_TEMP/novig_state.json" heartbeat/novig_state.json
+          git add -A heartbeat
+          git commit -q -m "novig heartbeat state"
+          git push -q -f origin hb-tmp:heartbeat
