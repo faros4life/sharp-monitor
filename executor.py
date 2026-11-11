@@ -896,6 +896,10 @@ def handled_keys(p):
     return {p["play_key"], derive_key(p) or p["play_key"]}
 
 
+LEDGER_ROWS = []   # Nov 11: the ledger rows bot_orders() parsed THIS RUN, from whichever store it
+# read. kalshi_rest_reports() reuses them instead of running a second full "Bets LIVE:" scan with
+# its own RFC822 fetches - the same work, done twice, measured at 68.6s. Empty means bot_orders()
+# has not run or could not read, and the reporter then falls back to its own scan.
 SEEN = {"tok": {}}   # this run's token map from handled_pids(): xpid -> handled, xrty -> already alerted
 HANDLED_DAYS = 4   # Nov 11 (Peter, "why are you looking back so far"): the dedupe search had NO date
 # bound at all - X-GM-RAW "xpid..." scanned the whole mailbox history, for every pid, every run, which
@@ -2049,7 +2053,9 @@ def bot_orders(M, days=4):
             except Exception:
                 rdata = None
         if rdata is not None:
-            _account_rows(rdata.get("orders") or [], graded, ids, seen_oids, _intents, _confirmed)
+            store_rows = rdata.get("orders") or []
+            LEDGER_ROWS[:] = store_rows
+            _account_rows(store_rows, graded, ids, seen_oids, _intents, _confirmed)
             # re-assert completeness so the claim cannot outlive the ability to write it: a run that
             # cannot refresh the stamp lets it go stale, and the next run returns to Gmail by itself
             try:
@@ -2090,6 +2096,7 @@ def bot_orders(M, days=4):
                         registry.invalidate()
             except Exception as ex:
                 LOG.append(f"registry backfill failed: {str(ex)[:60]}")
+        LEDGER_ROWS[:] = all_rows
         return _bot_orders_finish(M, ids, _intents, _confirmed)
     except Exception:
         return None
@@ -2711,6 +2718,41 @@ def rest_bid(r):
     return {"status": "refused", "reason": "; ".join(why_not) or "no resting book"}
 
 
+def sent_tokens(M, toks, days=None):
+    """Which of these record tokens already appear in a sent report, in ONE bounded search per 20.
+
+    The "token email is the record" pattern is how both fill reporters avoid reporting the same fill
+    twice. Each of them used to run one UNBOUNDED gsearch_strict PER RECORD - up to 30 serial
+    X-GM-RAW scans of the whole mailbox in novig_reports (67.4s) and one per resting order in
+    kalshi_rest_reports. Same defect as read_manual and already_handled.
+
+    FAILS CLOSED like gsearch_strict: a failed search or fetch RAISES, because a reporter that
+    answers "not yet reported" when it cannot see would message Peter about the same fill again."""
+    toks = sorted({t for t in toks if t})
+    if not toks:
+        return set()
+    out, seen_uids = set(), set()
+    for i in range(0, len(toks), 20):
+        q = f"newer_than:{days or HANDLED_DAYS}d (" + " OR ".join(toks[i:i + 20]) + ")"
+        typ, data = M.uid("SEARCH", "X-GM-RAW", '"' + q + '"')
+        if typ != "OK":
+            raise RuntimeError("Gmail search failed")
+        for uid in (data[0].split() if data and data[0] else []):
+            if uid in seen_uids:
+                continue
+            seen_uids.add(uid)
+            typ, d = M.uid("FETCH", uid, "(RFC822)")
+            if typ != "OK" or not d or not d[0]:
+                raise RuntimeError("Gmail fetch failed")
+            raw = d[0][1] if isinstance(d[0], tuple) and len(d[0]) > 1 else b""
+            txt = raw.decode("utf-8", "replace") if isinstance(raw, bytes) else str(raw)
+            # not a bare substring test: a token must not be followed by another hex digit, so a
+            # shorter token can never match inside a longer one. Real tokens are fixed-length
+            # sha1 prefixes so this cannot bite today, but it is one line and removes the class.
+            out.update(t for t in toks if re.search(re.escape(t) + r"(?![0-9a-fA-F])", txt))
+    return out
+
+
 def novig_reports():
     """Oct 28: the home runner writes each Novig order's result to snapshot/novig_orders.json; report each new or
     changed result to Telegram once (token email = the record, the same pattern as the watchdog). Counts only in the log."""
@@ -2726,27 +2768,10 @@ def novig_reports():
         # record are now resolved in one bounded OR search before the loop, which then only looks
         # the answer up. Report-or-not decisions are unchanged; a token already sent still suppresses.
         # FAILS CLOSED as before: the search raises on failure rather than reporting a fill twice.
-        want = {}
-        for x in recs[-30:]:
-            want[x.get("client_id")] = ("xnvr" + hashlib.sha1(
-                f"{x.get('client_id')}|{str(x.get('status') or '?').upper()}|"
-                f"{int(x.get('filled_qty') or 0)}|{x.get('filled_cost')}".encode()).hexdigest()[:12])
-        sent_toks = set()
-        toks = sorted(set(want.values()))
-        for i in range(0, len(toks), 20):
-            q = f"newer_than:{HANDLED_DAYS}d (" + " OR ".join(toks[i:i + 20]) + ")"
-            typ, data = M.uid("SEARCH", "X-GM-RAW", '"' + q + '"')
-            if typ != "OK":
-                raise RuntimeError("Gmail search failed")
-            for uid in (data[0].split() if data and data[0] else []):
-                typ, d = M.uid("FETCH", uid, "(RFC822)")
-                if typ != "OK" or not d or not d[0]:
-                    raise RuntimeError("Gmail fetch failed")
-                raw = d[0][1] if isinstance(d[0], tuple) and len(d[0]) > 1 else b""
-                txt = raw.decode("utf-8", "replace") if isinstance(raw, bytes) else str(raw)
-                for t in toks:
-                    if t in txt:
-                        sent_toks.add(t)
+        sent_toks = sent_tokens(M, ["xnvr" + hashlib.sha1(
+            f"{x.get('client_id')}|{str(x.get('status') or '?').upper()}|"
+            f"{int(x.get('filled_qty') or 0)}|{x.get('filled_cost')}".encode()).hexdigest()[:12]
+            for x in recs[-30:]])
         for x in recs[-30:]:
             st = str(x.get("status") or "?").upper()
             if st in ("PENDING", "SENT", "UNKNOWN") and not int(x.get("filled_qty") or 0):
@@ -2799,28 +2824,56 @@ def kalshi_rest_reports():
     M = imap_open()
     n = 0
     try:
-        since = (datetime.now(timezone.utc) - timedelta(days=2)).strftime("%d-%b-%Y")
-        typ, data = M.uid("SEARCH", None, "SUBJECT", '"Bets LIVE:"', "SINCE", since)
+        # Nov 11: this re-scanned "Bets LIVE:" with its own RFC822 fetch per email - the identical
+        # work bot_orders() had already done moments earlier in the same run, measured at 68.6s.
+        # It now reuses those parsed rows. The 2-day window is preserved by filtering on
+        # decided_utc, so the set of resting orders checked is the same as before even though
+        # bot_orders() reads a 4-day window. An empty cache (bot_orders not run, or unreadable)
+        # falls back to the original scan, so this can only be faster, never blinder.
+        cut = (datetime.now(timezone.utc) - timedelta(days=2)).strftime("%Y-%m-%d")
         rests = {}
-        for uid in (data[0].split() if typ == "OK" and data and data[0] else []):
-            typ, d = M.uid("FETCH", uid, "(RFC822)")
-            if typ != "OK" or not d or not d[0]:
-                continue
-            txt = body_text(d[0][1])
-            i = txt.rfind("LEDGER (machine-readable")
-            if i < 0:
-                continue
+        src_rows, reused = list(LEDGER_ROWS), bool(LEDGER_ROWS)
+        if not reused:
+            since = (datetime.now(timezone.utc) - timedelta(days=2)).strftime("%d-%b-%Y")
+            typ, data = M.uid("SEARCH", None, "SUBJECT", '"Bets LIVE:"', "SINCE", since)
+            for uid in (data[0].split() if typ == "OK" and data and data[0] else []):
+                typ, d = M.uid("FETCH", uid, "(RFC822)")
+                if typ != "OK" or not d or not d[0]:
+                    continue
+                txt = body_text(d[0][1])
+                i = txt.rfind("LEDGER (machine-readable")
+                if i < 0:
+                    continue
+                try:
+                    rows, _ = json.JSONDecoder().raw_decode(txt[txt.index("[", i):])
+                except Exception:
+                    continue
+                src_rows.extend(rows)
+        for row in src_rows:
+            lo = row.get("live_rest") or {}
+            if lo.get("book") == "kalshi" and lo.get("status") == "placed" and lo.get("order_id"):
+                if reused and str(row.get("decided_utc") or "")[:10] < cut:
+                    continue   # keep the original 2-day window
+                rests[str(lo["order_id"])] = (row, lo)
+        print(f"kalshi resting check: {len(rests)} order(s), rows {'reused' if reused else 'rescanned'}")
+        k_res = {}
+        for oid in rests:
             try:
-                rows, _ = json.JSONDecoder().raw_decode(txt[txt.index("[", i):])
+                k_res[oid] = (book_live._k_call("GET", f"/portfolio/orders/{oid}")[1].get("order") or {})
             except Exception:
+                k_res[oid] = None
+        k_toks = {}
+        for oid, o in k_res.items():
+            if not o:
                 continue
-            for row in rows:
-                lo = row.get("live_rest") or {}
-                if lo.get("book") == "kalshi" and lo.get("status") == "placed" and lo.get("order_id"):
-                    rests[str(lo["order_id"])] = (row, lo)
+            fc = lm.num(o.get("fill_count_fp")) or lm.num(o.get("fill_count")) or \
+                ((lm.num(o.get("taker_fill_count")) or 0) + (lm.num(o.get("maker_fill_count")) or 0))
+            if fc:
+                k_toks[oid] = "xkrf" + hashlib.sha1(f"{oid}|{fc}".encode()).hexdigest()[:12]
+        already = sent_tokens(M, list(k_toks.values()), days=2)
         for oid, (row, lo) in rests.items():
             try:
-                st, d = book_live._k_call("GET", f"/portfolio/orders/{oid}")
+                st, d = (0, {"order": k_res.get(oid) or {}})
             except Exception:
                 continue
             o = d.get("order") or {}
@@ -2828,9 +2881,9 @@ def kalshi_rest_reports():
                 ((lm.num(o.get("taker_fill_count")) or 0) + (lm.num(o.get("maker_fill_count")) or 0))
             if not fc:
                 continue
-            tok = "xkrf" + hashlib.sha1(f"{oid}|{fc}".encode()).hexdigest()[:12]
-            if gsearch_strict(M, tok):
-                continue
+            tok = k_toks.get(oid) or ("xkrf" + hashlib.sha1(f"{oid}|{fc}".encode()).hexdigest()[:12])
+            if tok in already:
+                continue   # already reported for this fill amount (one batched search above)
             rem = lm.num(o.get("remaining_count_fp")) or lm.num(o.get("remaining_count")) or 0
             head = "KALSHI RESTING BID FILLED" if not rem else "KALSHI RESTING BID PARTIAL FILL"
             msg = (f"{head}: {row.get('key', '').replace('|', ' ')}\n{fc:g} contracts at the {lo.get('limit')} limit"
