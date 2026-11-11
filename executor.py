@@ -1735,10 +1735,31 @@ def revalidate(r, stake=None):
     if am_q is None:
         return False, f"{book} has no frozen qualification price at order time - fail closed", None
     tol = rv.get("px_tol", 0.0) if book in TOL_BOOKS else 0.0
-    if american_to_prob(am_q) > rv["alert_cost"] + tol + 1e-9:
-        allowed = cents_worse(rv["alert_af"], PX_TOL_CENTS) if book in TOL_BOOKS else rv["alert_af"]
+    # Nov 11 FIX: compare the EQUIVALENT price at the alert line, exactly as evaluate()'s gate does
+    # (c_eq_q = american_to_prob(am_q) - hb * hp). Before this the raw price at the CHOSEN line was
+    # compared against the bar for the ALERT line, with the half-point credit dropped. A better line
+    # always carries a worse raw price - that is why it is worth taking - so this refused EVERY play
+    # that routed to a better line whenever the improvement outran the 2c allowance. PROVEN on the
+    # Nov 11 Denver vs Memphis play from its own ledger row: "now -111, allowed -102" was -111 at
+    # 231.5 judged against the 230.5 bar, when its own threshold was -118 and its equivalent at the
+    # alert line was +104 against an alert of -100. (The Lakers refusal that day is NOT this bug:
+    # -130 against a -121 alert sat inside the 2c allowance even raw. Its reason was never
+    # recovered - the run logs had expired - so it stays an open item rather than a second example.)
+    # hp is the stored evaluate-time value, so the bar stays the IDENTICAL one the play qualified
+    # under; hb is recomputed from the alert line to the re-read line, which book_line() has just
+    # confirmed is still the chosen line.
+    hb = 0.0 if mtype == "moneyline" else better_halfpoints(mtype, rv.get("side"), rv["line"], ln)
+    c_eq_q = american_to_prob(am_q) - hb * (rv.get("hp") or 0.0)
+    if c_eq_q > rv["alert_cost"] + tol + 1e-9:
+        # the worst acceptable RAW price at this line - the same number evaluate() stored as thr,
+        # so the message can never again quote a bar from a different line than the price it refused
+        allowed = (lv.get("px") or {}).get("thr")
+        at_alert = lm.american(min(max(c_eq_q, 0.01), 0.99))
         return False, (f"{book} moved worse than the alert gate before the order "
-                       f"(now {am_q:+d}, allowed {allowed:+d}) - fail closed"), None
+                       f"(now {am_q:+d} at {fmt_line(mtype, ln)} = {at_alert:+d} at "
+                       f"{fmt_line(mtype, rv['line'])}"
+                       + (f", allowed {allowed:+d}" if allowed is not None else "")
+                       + ") - fail closed"), None
     if mtype in ("spread", "total") and am_q < CAP_LINE:
         return False, f"{book} is now below the {CAP_LINE} cap ({am_q:+d}) - fail closed", None
     thr = (lv.get("px") or {}).get("thr")
