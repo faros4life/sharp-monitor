@@ -400,15 +400,30 @@ def pmus_cancel(order_id, slug=None, label=""):
                       f"Cancel-all was deliberately not attempted - it would hit every open order."}
 
 
-def plan(levels, thr_american, stake):
+def plan(levels, thr_american, stake, min_order=0.0, slip=0.0):
     """From a book's ladder [{price (pre-fee cost), american (after-fee), dollars}], keep the levels at or better than
     the after-fee threshold, cheapest first, until `stake` dollars are covered. Returns (limit_cost, contracts) where
     limit_cost is the worst pre-fee cost used (the order's limit) and contracts = floor(dollars / limit_cost);
-    (None, 0) if nothing qualifies."""
+    (None, 0) if nothing qualifies.
+
+    Nov 11 (Peter, "BEST PRICE FIRST, NOT MAXIMUM DOLLARS FILLED"): the walk stops at the BEST
+    AVAILABLE price. Levels worse than the best qualifying one by more than `slip` (probability) are
+    not taken merely to reach `stake` - the stake shrinks to the best-priced depth instead, and the
+    caller's live_remainder() takes what is left to the next VENUE at its own threshold. Before this
+    the walk descended to worse levels to widen the fill and then priced EVERY contract at the worst
+    level reached, so `thr_american` (built as alert_cost + tolerance) acted as a target rather than
+    the ceiling it is meant to be. It remains the outer eligibility bound, unchanged.
+
+    `min_order` is the one exception: a sub-minimum order is refused outright and the play is lost, so
+    while the walk has not yet gathered `min_order` it may still extend past the slip bound."""
     lv = sorted((x for x in levels or [] if x.get("american") is not None and thr_american is not None
                  and x["american"] >= thr_american and x.get("price") and x.get("dollars")), key=lambda x: x["price"])
     got, limit = 0.0, None
+    best = lv[0]["price"] if lv else None
     for x in lv:
+        # price-first: a worse level is taken only while the fill is still short of min_order
+        if best is not None and x["price"] > best + slip + 1e-9 and got >= min_order - 0.01:
+            break
         got += x["dollars"]
         limit = x["price"]
         if got >= stake:

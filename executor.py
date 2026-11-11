@@ -540,6 +540,12 @@ LIVE_UNIT = 300.0   # phase-1 live unit, to win (Oct 28, Peter: $50 -> $200; Nov
                     # to-win on minus, risk on plus. The $415 per-order cap and $2,250 daily stop moved with it - at
                     # $300 to win, -130 risks $390, which the old $275 cap would have refused on every minus-money order.
 MIN_ORDER = 50.0    # Oct 28: smallest order / routing remainder worth placing (was $5)
+# Nov 11 (Peter): "BEST PRICE FIRST, NOT MAXIMUM DOLLARS FILLED." How much worse than the BEST
+# available qualifying level the size walk may go, in probability cents. 0 = best-priced depth only;
+# the stake shrinks to what is there rather than paying up to fill the unit. This is a ceiling on
+# slippage WITHIN a venue's ladder - it does not touch eligibility (PX_TOL_CENTS), the -130 cap, the
+# bet-only-at floor or the venue ranking. Repo VARIABLE EXEC_BEST_SLIP_CENTS if it ever needs loosening.
+BEST_SLIP = max(0.0, float(os.environ.get("EXEC_BEST_SLIP_CENTS") or 0)) / 100.0
 
 # BOARD v3 / LIQ-BOT CONTROLLED PILOT UNIT (Peter, 11 Nov, written approval). Its own unit, so Lane 1
 # is untouched at $300. Same to-win/risk asymmetry as Lane 1: minus money sizes to WIN the unit,
@@ -1745,14 +1751,34 @@ def revalidate(r, stake=None):
     return True, f"re-read {book} at order time: {am:+d}, depth ${avail:,.0f}{short}", fresh
 
 
-def px_limit(pxd, stake):
+def px_limit(pxd, stake, slip=None):
     """(strike_id, limit price, stake) for a ProphetX fill-or-kill: walk the ladder best price first, only levels at
-    or better than the alert-equivalent threshold, until the stake is covered. Stake shrinks to what's there."""
+    or better than the alert-equivalent threshold, until the stake is covered. Stake shrinks to what's there.
+
+    Nov 11 (Peter, "BEST PRICE FIRST, NOT MAXIMUM DOLLARS FILLED"): the walk now stops at the BEST
+    AVAILABLE price. Before this it kept descending to worse levels purely to reach `stake`, set the
+    order's limit to the worst level it reached, and sized every contract at that worst price - so the
+    bot paid up to widen the fill, and the 2c tolerance behaved as a target rather than a ceiling
+    (`thr` is built as alert_cost + tol, so nothing anchored the walk to what was actually on offer).
+    `thr` stays the OUTER eligibility bound. Levels worse than the best qualifying one by more than
+    `slip` are no longer taken to reach the unit; the stake shrinks to the best-priced depth and
+    live_remainder() takes what is left to the next VENUE at its own threshold.
+
+    The one exception is MIN_ORDER: a sub-minimum order is refused outright and the play is lost, so
+    while the walk has not yet gathered MIN_ORDER it may still extend past the slip bound (Peter,
+    Nov 11: guard kept). It never extends past `thr` or the -130 cap, which are unchanged."""
     thr = pxd.get("thr")
+    if slip is None:
+        slip = BEST_SLIP
     lv = sorted((x for x in pxd.get("buy") or [] if x.get("american_after_fee") is not None and thr is not None
                  and x["american_after_fee"] >= thr and x.get("strike_id")), key=lambda x: -x["american"])
     got, limit = 0.0, None
+    best = american_to_prob(lv[0]["american_after_fee"]) if lv else None
     for x in lv:
+        # price-first: a worse level is taken only while the fill is still short of MIN_ORDER
+        if (best is not None and american_to_prob(x["american_after_fee"]) > best + slip + 1e-9
+                and got >= MIN_ORDER - 0.01):
+            break
         got += x.get("dollars") or 0
         limit = x["american"]
         if got >= stake:
@@ -1985,31 +2011,52 @@ def live_guards():
     return ok, why
 
 
+def refuse(r, reason, book=None, **extra):
+    """A refused order is a lane event. Nov 11 (Peter): live_play_alert() fires IMMEDIATELY before
+    live_order(), and every early refusal here used to return silently - so Peter was told a bet was
+    coming and never told it was not. On Nov 11 (Lakers @ Bucks, Under 231.5 at Novig) that silence
+    read as a dead bot and he placed the bet by hand, creating a position the registry did not know
+    about. A missing refusal message is therefore a correctness risk, not a cosmetic one.
+
+    One message per refusal, lane-tagged, with the reason. Notification only: it changes no decision,
+    no price and no size."""
+    out = {"status": "refused", "reason": reason}
+    if book:
+        out["book"] = book
+    out.update(extra)
+    try:
+        tg(lane_note(r, "ORDER REFUSED", out, out.get("book") or (r.get("live") or {}).get("book"),
+                     None, extra=str(reason)[:200]))
+    except Exception as e:
+        LOG.append(f"refusal notify failed: {e}")   # never let the notifier change the refusal
+    return out
+
+
 def live_order(r):
     """Phase-1 live order (only when EXEC_LIVE is on): ProphetX here, Kalshi / Polymarket US via live_order_other (Oct 28).
     Returns the order record for the email/ledger."""
     lv, p = r["live"], r["play"]
     if journal_latch_why():   # Nov 11: a lost durable row means unknown exposure - place nothing more.
-        return {"status": "refused",          # First gate, so no other refusal reason can mask it.
-                "reason": f"order journal failed earlier this run ({journal_latch_why()}) - no further "
-                          f"orders until the next run's registry read reconciles exposure"}
+        return refuse(r,                      # First gate, so no other refusal reason can mask it.
+                      f"order journal failed earlier this run ({journal_latch_why()}) - no further "
+                      f"orders until the next run's registry read reconciles exposure")
     hr = agree_rules.hr_priced(r.get("entry") or {})   # Oct 27: re-check the PRICING book at placement; unknown = refuse
     if hr is not False:
-        return {"status": "refused", "reason": "Hard Rock-priced alert: never live" if hr else "pricing book unknown (fail closed)"}
+        return refuse(r, "Hard Rock-priced alert: never live" if hr else "pricing book unknown (fail closed)")
     db = agree_rules.deadband(dict(r.get("entry") or {}, sent_to_phone=True))   # Oct 27 retail deadband re-check
     if db is not False:
-        return {"status": "refused", "reason": "retail deadband: non-ProphetX at -119 to -110 after fee" if db
-                else "after-fee price unknown (fail closed)"}
+        return refuse(r, "retail deadband: non-ProphetX at -119 to -110 after fee" if db
+                      else "after-fee price unknown (fail closed)")
     if not px_live.LIVE:
         return {"status": "dry", "reason": "live is off"}
     g_ok, g_why = live_guards()
     if not g_ok:
-        return {"status": "refused", "reason": g_why}
+        return refuse(r, g_why)
     # Nov 11 (Peter, check 8): the venue's own price/depth/status, re-read NOW. Covers every book,
     # so it sits before the dispatch. On success the order is sized from the FRESH levels.
     rv_ok, rv_why, fresh = revalidate(r, lv.get("risk"))
     if not rv_ok:
-        return {"status": "refused", "reason": rv_why, "revalidated": False}
+        return refuse(r, rv_why, revalidated=False)
     if isinstance(lv.get("px"), dict):
         lv["px"] = dict(lv["px"], buy=fresh.get("buy_levels") or [],
                         am=fresh.get("best_price_american"),
@@ -2020,14 +2067,13 @@ def live_order(r):
     # never mean untracked exposure. Both lanes pass through here, before the book dispatch.
     i_ok, cid = journal_intent(r, lv.get("book", "prophetx"), lv.get("risk"))
     if not i_ok:
-        return {"status": "refused",
-                "reason": "could not store the pre-order record - nothing was submitted (fail closed)"}
+        return refuse(r, "could not store the pre-order record - nothing was submitted (fail closed)")
     lv["client_id"] = cid
     if lv.get("book", "prophetx") != "prophetx":
         return live_order_other(r)
     strike, limit, stake = px_limit(lv["px"], lv["risk"])
     if not strike or stake < MIN_ORDER - 0.01:
-        return {"status": "refused", "reason": f"ProphetX ladder can't cover ${MIN_ORDER:.0f}+ at the alert number (have ${stake:.2f})"}
+        return refuse(r, f"ProphetX ladder can't cover ${MIN_ORDER:.0f}+ at the alert number (have ${stake:.2f})", book="prophetx")
     label = f"{p.get('sport')} {p.get('game')} | {bet_text(r, lv['line'], limit)}"
     res = px_live.place(strike, limit, stake, label)
     if res.get("status") == "refused":   # Nov 11: a refusal is a lane event too
@@ -2102,27 +2148,28 @@ def live_order_other(r):
     lv, p = r["live"], r["play"]
     book, ids = lv["book"], lv.get("ids") or {}
     name = BOOK_NAME.get(book, book)
-    limit_cost, count = book_live.plan(lv["px"].get("buy"), lv["px"].get("thr"), lv["risk"])
+    limit_cost, count = book_live.plan(lv["px"].get("buy"), lv["px"].get("thr"), lv["risk"],
+                                       min_order=MIN_ORDER, slip=BEST_SLIP)   # Nov 11: price-first
     stake = round(count * limit_cost, 2) if limit_cost else 0.0
     if not limit_cost or stake < MIN_ORDER - 0.01:
-        return {"status": "refused", "book": book, "reason": f"{name} ladder can't cover ${MIN_ORDER:.0f}+ at the alert number (have ${stake:.2f})"}
+        return refuse(r, f"{name} ladder can't cover ${MIN_ORDER:.0f}+ at the alert number (have ${stake:.2f})", book=book)
     limit_am = lm.american(limit_cost)
     label = f"{p.get('sport')} {p.get('game')} | {bet_text(r, lv['line'], limit_am)}"
     if book == "kalshi":
         kb = ids.get("kalshi_buy") or []
         if len(kb) != 1:
-            return {"status": "refused", "book": book, "reason": "Kalshi market ambiguous (not exactly one market) - fail closed"}
+            return refuse(r, "Kalshi market ambiguous (not exactly one market) - fail closed", book=book)
         res = book_live.kalshi_place(kb[0]["ticker"], kb[0]["buy"], limit_cost, count, label)
     elif book == "polymarket_us":
         if not ids.get("market_slug") or ids.get("long_side") is None:
-            return {"status": "refused", "book": book, "reason": "Polymarket US market unknown - fail closed"}
+            return refuse(r, "Polymarket US market unknown - fail closed", book=book)
         res = book_live.pmus_place(ids["market_slug"], bool(ids["long_side"]), limit_cost, count, label)
     elif book == "novig":   # Novig contracts pay 1c: plan() counted $1 contracts, so x100
         if not ids.get("outcome_id"):
-            return {"status": "refused", "book": book, "reason": "Novig outcome unknown - fail closed"}
+            return refuse(r, "Novig outcome unknown - fail closed", book=book)
         res = book_live.novig_place(ids["outcome_id"], limit_cost, count * 100, label, None, derive_key(p) or "")
     else:
-        return {"status": "refused", "book": book, "reason": f"no live order code for {name}"}
+        return refuse(r, f"no live order code for {name}", book=book)
     res = dict(res, book=book)
     if res["status"] == "placed" and res.get("sent_to_runner"):
         tg(lane_note(r, "SENT TO NOVIG (home PC)", res, book, limit_am,
