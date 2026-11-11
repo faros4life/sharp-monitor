@@ -71,8 +71,25 @@ CHECKS.append(("an unknown token is checked, never assumed unsent", True, True))
 assert 'put_tokens(found, outcome="reported")' in body, \
     "what Gmail confirms must be written back so the store converges"
 CHECKS.append(("Gmail's answer converges into the store", True, True))
-ck("both reporters use it", src.count("= already_reported(M"), 2)   # the def line is not a call
-ck("and the token is stored when a report is sent",
-   src.count('registry.put_tokens([tok], outcome="reported")'), 2)
+# Nov 11 (Peter: "fix duplicate Novig fill notifications"): the Novig reporter no longer decides
+# from a Gmail search at all. It takes an atomic registry claim BEFORE sending, because Gmail does
+# not index a just-sent token email before the next catch-up pass looks - which is what sent 27
+# fills 70+ times. Kalshi is unchanged and still uses the batched lookup directly.
+ck("kalshi still uses the batched lookup", src.count("= already_reported(M"), 1)
+ck("kalshi still stores its token on send",
+   src.count('registry.put_tokens([tok], outcome="reported")'), 1)
+ck("novig claims through the registry instead", "if not claimer.claim(tok):" in src, True)
+ck("the claim is still Gmail-backed when the store cannot answer",
+   "return tok not in self._gmail_set()" in src, True)
+
+nb = src[src.index("def novig_reports("):src.index("def kalshi_rest_reports(")]
+# ORDER IS THE FIX: the send is recorded as soon as Telegram delivers, BEFORE the backup email.
+# The old code wrote the record only if send() succeeded, so one mail failure re-sent that fill
+# on every later pass. Compare positions in the Novig body only.
+ck("the claim is promoted before the backup email",
+   nb.index("claimer.sent(tok)") < nb.index('send(f"Bets Novig order:'), True)
+ck("a send that never went out releases its claim", "claimer.failed(tok)" in nb, True)
+ck("no per-item Gmail search crept back into the novig loop",
+   "already_reported(" in nb, False)
 
 print(f"PASS  test_novig_wait.py  {len(CHECKS)} checks")

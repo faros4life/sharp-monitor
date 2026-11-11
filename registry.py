@@ -369,6 +369,73 @@ def put_tokens(toks, outcome="seen"):
     return _commit(merge)
 
 
+NOTIFY_STALE_MIN = 15   # a 'pending' claim older than this is an interrupted send, not a live one
+
+
+def _age_min(ts, now):
+    """Minutes since an ISO stamp, or None when it cannot be read. None means 'treat as stale':
+    an unreadable stamp must not pin a notification shut forever."""
+    try:
+        t = datetime.strptime(str(ts)[:19], "%Y-%m-%dT%H:%M:%S").replace(tzinfo=timezone.utc)
+    except Exception:
+        return None
+    return (now - t).total_seconds() / 60.0
+
+
+def claim_token(tok, stale_min=NOTIFY_STALE_MIN):
+    """Atomically claim a notification token. True means THIS caller owns the send.
+
+    Nov 11: Novig fill reports were deduped against a Gmail token email, and Gmail does not index
+    a just-sent message in time for the next catch-up pass. 27 fills went out 70+ times in one
+    afternoon that way. The claim has to be a WRITE, not a search: the store is read-modify-write
+    under a sha lock, so two overlapping passes cannot both win the same token.
+
+    False when another pass holds it ('pending' and fresh) or it has already been sent
+    ('reported'). A 'pending' claim older than stale_min is a send that died mid-flight and is
+    re-claimed - one repeat beats silently losing a fill notice, which is money information.
+
+    RAISES when the store cannot be read or written, so the caller falls back to the Gmail record
+    rather than sending blind. Never returns False on a failure: that would drop the notice."""
+    tok = str(tok or "")
+    if not tok:
+        raise ValueError("claim_token: empty token")
+    now = datetime.now(timezone.utc)
+    ts = now.strftime("%Y-%m-%dT%H:%M:%SZ")
+    won = {"v": False}
+
+    def merge(d):
+        h = d.setdefault("handled", {})
+        cur = h.get(tok) or {}
+        out = str(cur.get("outcome") or "")
+        if out == "reported":
+            won["v"] = False            # already told him
+            return
+        if out == "pending":
+            age = _age_min(cur.get("ts"), now)
+            if age is not None and age < stale_min:
+                won["v"] = False        # another pass is mid-send right now
+                return
+        h[tok] = {"outcome": "pending", "ts": ts}
+        won["v"] = True
+
+    if not _commit(merge):
+        raise RuntimeError("registry claim write failed")
+    return won["v"]
+
+
+def release_token(tok):
+    """Drop a claim whose send failed, so the next pass retries at once instead of waiting out
+    stale_min. Best-effort: a failure here only costs the stale window."""
+    def merge(d):
+        h = d.setdefault("handled", {})
+        if str((h.get(str(tok)) or {}).get("outcome") or "") == "pending":
+            h.pop(str(tok), None)
+    try:
+        return _commit(merge)
+    except Exception:
+        return False
+
+
 def put_order(rec):
     """Record a PLACED order. client_id is the money identity, so a repeat is an update."""
     return _commit(lambda d: _upsert(d.setdefault("orders", []), dict(rec)))

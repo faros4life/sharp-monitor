@@ -2910,6 +2910,58 @@ def already_reported(M, toks, days=None):
     return hit | found
 
 
+class ReportClaim:
+    """Owns the "have I already told Peter about this fill" decision for one reporting pass.
+
+    Nov 11 (Peter: "fix duplicate Novig fill notifications"): the old test was a Gmail search for
+    the token email written AFTER the message went out. Gmail does not index a just-sent message
+    before the next catch-up pass looks, so pass 2 saw nothing and re-sent everything - 27 fills
+    delivered 70+ times in one afternoon, every repeat byte-identical.
+
+    The claim is now an atomic registry WRITE taken BEFORE the send, so two overlapping passes
+    cannot both win the same token. Gmail stays as the fallback for a store that cannot answer,
+    searched once and lazily rather than per item.
+
+    PARTIAL -> FULL is preserved untouched: the token carries status, filled_qty and filled_cost,
+    so a 13,186-contract partial and the 44,000-contract fill that follows are different tokens
+    and both report. Only a byte-identical repeat collides."""
+
+    def __init__(self, M, toks, days=None):
+        self.M, self.toks, self.days = M, list(toks), days
+        self.reg = registry.enabled()
+        self._gmail = None
+
+    def _gmail_set(self):
+        # fail-closed is unchanged: already_reported raises on a failed search rather than
+        # answering "not yet reported", because that answer messages Peter about a fill twice.
+        if self._gmail is None:
+            self._gmail = already_reported(self.M, self.toks, days=self.days)
+        return self._gmail
+
+    def claim(self, tok):
+        """True when THIS pass owns the send."""
+        if self.reg:
+            try:
+                return registry.claim_token(tok)
+            except Exception as ex:
+                LOG.append(f"notify claim unavailable, using Gmail: {str(ex)[:50]}")
+                self.reg = False   # one fallback for the rest of the pass, not one per item
+        return tok not in self._gmail_set()
+
+    def sent(self, tok):
+        """Promote the claim to a completed send. The email remains the backup record."""
+        if self.reg:
+            try:
+                registry.mark_handled([tok], "reported")
+            except Exception as ex:
+                LOG.append(f"notify mark failed: {str(ex)[:40]}")
+
+    def failed(self, tok):
+        """Drop the claim when the send did not go out, so the next pass retries immediately."""
+        if self.reg:
+            registry.release_token(tok)
+
+
 def novig_reports():
     """Oct 28: the home runner writes each Novig order's result to snapshot/novig_orders.json; report each new or
     changed result to Telegram once (token email = the record, the same pattern as the watchdog). Counts only in the log."""
@@ -2943,7 +2995,7 @@ def novig_reports():
         # record are now resolved in one bounded OR search before the loop, which then only looks
         # the answer up. Report-or-not decisions are unchanged; a token already sent still suppresses.
         # FAILS CLOSED as before: the search raises on failure rather than reporting a fill twice.
-        sent_toks = already_reported(M, ["xnvr" + hashlib.sha1(
+        claimer = ReportClaim(M, ["xnvr" + hashlib.sha1(
             f"{x.get('client_id')}|{str(x.get('status') or '?').upper()}|"
             f"{int(x.get('filled_qty') or 0)}|{x.get('filled_cost')}".encode()).hexdigest()[:12]
             for x in recs[-30:]])
@@ -2956,8 +3008,8 @@ def novig_reports():
             c, q, fq = lm.num(x.get("price")) or 0, int(x.get("qty") or 0), int(x.get("filled_qty") or 0)
             cost = x.get("filled_cost")
             tok = "xnvr" + hashlib.sha1(f"{x.get('client_id')}|{st}|{fq}|{cost}".encode()).hexdigest()[:12]
-            if tok in sent_toks:
-                continue   # already reported: answered from the one batched search above
+            if not claimer.claim(tok):
+                continue   # already sent, or another overlapping pass is sending it right now
             ap = lm.num(x.get("avg_price"))
             if st in ("REFUSED", "REJECTED"):
                 head = f"NOVIG {st}"
@@ -2980,16 +3032,28 @@ def novig_reports():
                 msg += "\nResting until 30 min before the start (cancel in the Novig app if needed)."
             if x.get("error"):
                 msg += f"\n{str(x['error'])[:160]}"
-            tg(msg)
-            push(head.title(), msg, mirror=False)   # Nov 11: same report on ntfy (Kalshi already does this)
+            try:
+                tg(msg)
+            except Exception as ex:
+                # nothing reached him: drop the claim so the next pass retries at once instead
+                # of waiting out the stale window.
+                claimer.failed(tok)
+                LOG.append(f"novig report send failed: {str(ex)[:50]}")
+                continue
+            # Delivered. Promote the claim BEFORE the two best-effort copies below: the old code
+            # wrote the record only when send() succeeded, so a single mail failure re-sent that
+            # fill on every pass. Telegram delivery is the criterion; a failed ntfy or email copy
+            # must never re-send BOTH.
+            claimer.sent(tok)
+            try:
+                # Nov 11: same report on ntfy (Kalshi already does this), one claim covers both.
+                push(head.title(), msg, mirror=False)
+            except Exception as ex:
+                LOG.append(f"novig report ntfy copy failed: {str(ex)[:40]}")
             try:
                 send(f"Bets Novig order: {head.replace('NOVIG ', '')}", msg + f"\n\n{tok}")
-                # Nov 11: the token ALSO goes to the store, so the next run answers "already
-                # reported" without a Gmail search. The email stays the backup record.
-                if registry.enabled():
-                    registry.put_tokens([tok], outcome="reported")
             except Exception:
-                pass
+                pass   # backup record only; the registry claim above is the authority
             n += 1
     finally:
         imap_close(M)
