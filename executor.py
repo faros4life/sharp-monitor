@@ -2543,8 +2543,10 @@ def live_order_other(r):
         return refuse(r, f"no live order code for {name}", book=book)
     res = dict(res, book=book)
     if res["status"] == "placed" and res.get("sent_to_runner"):
-        tg(lane_note(r, "SENT TO NOVIG (home PC)", res, book, limit_am,
-               extra="Fill-or-kill at this price or better; the fill result follows next run."))
+        _sn = lane_note(r, "SENT TO NOVIG (home PC)", res, book, limit_am,
+                        extra="Fill-or-kill at this price or better; the fill result follows next run.")
+        tg(_sn)
+        push("Novig order sent", _sn, mirror=False)   # Nov 11: Novig sent/fill notices were Telegram-only; ntfy too
         out = dict(res, asked_stake=stake, limit=limit_am)
         out["journaled"] = journal_order(r, out, cid=lv.get("client_id"))   # Nov 11: durable row now
         return out
@@ -2979,6 +2981,7 @@ def novig_reports():
             if x.get("error"):
                 msg += f"\n{str(x['error'])[:160]}"
             tg(msg)
+            push(head.title(), msg, mirror=False)   # Nov 11: same report on ntfy (Kalshi already does this)
             try:
                 send(f"Bets Novig order: {head.replace('NOVIG ', '')}", msg + f"\n\n{tok}")
                 # Nov 11: the token ALSO goes to the store, so the next run answers "already
