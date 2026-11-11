@@ -61,17 +61,35 @@ def start_of(f):
 
 
 def _acct_used():
-    """The PROVIDER's own used figure. /account is free, so this costs nothing. None when it cannot
-    be read - never 0, which would read as 'nothing used' and wave a paid download through."""
+    """The PROVIDER's own used figure, and WHY if it cannot be had. /account is free, so this costs
+    nothing. None is never turned into 0 - zero would read as "nothing used" and wave a paid
+    download through.
+
+    The field is request_count, inside subscriptions[0]. My first version guessed at "used",
+    "requestsUsed", "requests_used" and "usage" and missed it, so _pick returned None, the bracket
+    could not be read, and recovery halted on 15 fixtures for no real reason. These are the exact
+    names credits.py's own report() uses - taken from it rather than guessed again. The error is
+    returned instead of swallowed, because a bare None told me nothing about which of four things
+    had gone wrong."""
     try:
         import credits as cr
+    except Exception as e:
+        return None, f"credits module unimportable ({type(e).__name__}: {str(e)[:60]})"
+    try:
         d = cr.account()
-        if not isinstance(d, dict) or d.get("_error"):
-            return None
-        v = cr._pick(d, "used", "requestsUsed", "requests_used", "usage")
-        return int(v) if v is not None else None
+    except Exception as e:
+        return None, f"/account call raised ({type(e).__name__}: {str(e)[:60]})"
+    if not isinstance(d, dict):
+        return None, f"/account returned {type(d).__name__}, not a dict"
+    if d.get("_error"):
+        return None, f"/account error: {str(d['_error'])[:70]}"
+    v = cr._pick(d, "request_count", "requestsUsed", "used")
+    if v is None:
+        return None, "/account answered but carries no request_count field"
+    try:
+        return int(v), None
     except Exception:
-        return None
+        return None, f"request_count is not a number ({type(v).__name__})"
 
 
 def phase1_ok(a):
@@ -177,10 +195,14 @@ def main():
             # the FIRST download is bracketed by two reads of it: if the provider's used figure
             # moves at all, recovery stops right there and the remaining fixtures are left alone.
             if FETCH["stopped"]:
-                b["miss"]["recovery halted after the provider's counter moved"] += 1
+                # Nov 10: this line used to read "halted after the provider's counter moved" on
+                # every later fixture, whatever had actually stopped it - and the real cause that
+                # run was an unreadable /account. A message must not assert a cause it did not
+                # observe, so it now carries the recorded reason.
+                b["miss"]["recovery halted: " + str(FETCH["why"])[:60]] += 1
                 continue
             first = not FETCH["any"]
-            before = _acct_used() if first else None
+            before, berr = _acct_used() if first else (None, None)
             try:
                 hc.get_hist(fid, ["pinnacle"], start_of(f))
                 FETCH["any"] = True
@@ -189,17 +211,17 @@ def main():
                 b["miss"][f"history download failed ({type(e).__name__})"] += 1
                 continue
             if first:
-                after = _acct_used()
+                after, aerr = _acct_used()
                 FETCH["before"], FETCH["after"] = before, after
                 if before is None or after is None:
                     FETCH["stopped"] = True
-                    FETCH["why"] = "could not read /account either side, so cost is unproven"
-                    b["miss"]["recovery halted: /account unreadable, cost unproven"] += 1
+                    FETCH["why"] = f"/account unreadable, so cost is unproven ({berr or aerr})"
+                    b["miss"]["recovery halted: " + FETCH["why"][:60]] += 1
                     continue
                 if after > before:
                     FETCH["stopped"] = True
-                    FETCH["why"] = f"provider used went {before} -> {after} on ONE download"
-                    b["miss"]["recovery halted: the provider billed the download"] += 1
+                    FETCH["why"] = f"the provider billed it: used {before} -> {after} on ONE download"
+                    b["miss"]["recovery halted: " + FETCH["why"][:60]] += 1
                     continue
             if not os.path.exists(p):
                 b["miss"]["download returned no Pinnacle history for this fixture"] += 1
