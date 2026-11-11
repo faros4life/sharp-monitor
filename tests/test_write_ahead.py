@@ -25,9 +25,10 @@ def ck(name, cond, detail=""):
 SENT = []
 
 
-def stub(send=None):
+def stub(send=None, readable=True):
     ex.send = send or (lambda s, b: SENT.append((s, b)))
     ex.tg = lambda *a, **k: None
+    ex.intent_readable = lambda cid, **k: readable   # read-back stubbed; its own suite covers it
 
 
 def rowof(body):
@@ -35,7 +36,7 @@ def rowof(body):
     return json.JSONDecoder().raw_decode(body[body.index("[", i):])[0][0]
 
 
-_send, _tg = ex.send, ex.tg
+_send, _tg, _rb = ex.send, ex.tg, ex.intent_readable
 
 # ---------------------------------------------------------------- the intent row itself
 SENT.clear(); stub()
@@ -53,7 +54,10 @@ ck("row carries the asked stake (the daily stop counts it)", lo["asked_stake"] =
 ck("status is 'placed' so bot_orders COUNTS it (conservative)", lo["status"] == "placed")
 ck("filled_stake is unknown, not assumed", lo["filled_stake"] is None)
 ck("order_id is unique and marked", lo["order_id"] == "intent-" + cid)
-ck("the body carries its own clear marker", ("intentdone" + cid) in body)
+# This assertion previously REQUIRED the clearing token in the intent's own body - which was
+# the self-clearing bug. The body must NOT be able to clear the intent it describes.
+ck("the body cannot clear the intent it describes",
+   (ex.INTENT_CLEAR_PREFIX + " " + cid) not in body and "intentdone" not in body)
 ck("two intents get different client ids",
    ex.journal_intent({"play": {}}, "prophetx", 1.0)[1] != cid)
 
@@ -106,8 +110,8 @@ ck("1. intents are resolved after the loop, not inside it", bo.index("_intents["
 # ---------------------------------------------------------------- 2. retries cannot duplicate
 lg = inspect.getsource(ex.live_guards)
 ck("2. an open intent makes live_guards REFUSE", 'INTENT["open"]' in lg)
-ck("2. the refusal names the client id and the clear marker",
-   "intentdone" in lg and "asked" in lg)
+ck("2. the refusal names the client id and the SUBJECT-based clearance",
+   "INTENT_CLEAR_PREFIX" in lg and "asked" in lg)
 ck("2. an unconfirmed intent puts its play key in LIVEKEYS",
    "LIVEKEYS.add" in bo and bo.index("LIVEKEYS.add") < bo.index("if str(cid or oid) in seen_oids"))
 _io, _ic, _bo, _sbo, _sx = ex.imap_open, ex.imap_close, ex.bot_orders, ex.px_live.set_bot_orders, ex.book_live.set_exposure
@@ -122,8 +126,8 @@ ex.imap_open, ex.imap_close, ex.bot_orders = _io, _ic, _bo
 ex.px_live.set_bot_orders, ex.book_live.set_exposure = _sbo, _sx
 ck("2. live_guards refuses while an intent is open", g_ok is False, str(g_why)[:120])
 ck("2.   and says no live order will be placed", "fail closed" in (g_why or ""), str(g_why)[:160])
-ck("2.   and tells Peter how to clear it", "intentdone C9".replace(" ", "") in (g_why or "").replace(" ", ""),
-   str(g_why)[:200])
+ck("2.   and tells Peter how to clear it",
+   (ex.INTENT_CLEAR_PREFIX + " C9") in (g_why or ""), str(g_why)[:220])
 ex.INTENT["open"] = {}
 ex.GUARD.update(ok=None, why="")
 
@@ -174,10 +178,11 @@ ji_code = _ast.unparse(_t)
 for bad in ("the-odds-api", "oddspapi", "ODDSPAPI", "credit", "historical-odds"):
     ck(f"5. the write-ahead makes no {bad} call", bad not in ji_code)
 ck("5. the write-ahead uses Gmail SMTP only", "send(" in ji)
-ck("5. the intent resolution uses an IMAP search, not a paid API", "gsearch_strict" in bo)
+ck("5. the intent resolution uses a subject-only IMAP search, not a paid API",
+   "intent_cleared(M, k)" in bo and "SUBJECT" in inspect.getsource(ex.subject_hits))
 
 # ---------------------------------------------------------------- unchanged rules and sizing
-ex.send, ex.tg = _send, _tg
+ex.send, ex.tg, ex.intent_readable = _send, _tg, _rb
 ck("unit still $200 board / $300 lane 1", ex.BOARD_UNIT == 200.0 and ex.LIVE_UNIT == 300.0)
 ck("10 plays, $1,500, 15 min", ex.BOARD_MAX_PLAYS == 10 and ex.BOARD_DAILY_RISK == 1500.0
    and ex.BOARD_CONFIRM_MIN == 15)

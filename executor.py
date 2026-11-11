@@ -117,6 +117,68 @@ def gsearch_strict(M, query):
     return data[0].split() if data and data[0] else []
 
 
+INTENT_SUBJECT_PREFIX = "Bets LIVE: order intent"   # what journal_intent sends
+INTENT_CLEAR_PREFIX = "INTENT CLEARED"              # Peter's manual authorization. THE BOT NEVER SENDS THIS.
+
+
+def subject_hits(M, needle, prefix, days=4):
+    """UIDs whose SUBJECT contains `needle` AND whose real Subject header starts with `prefix`.
+
+    Nov 11. Subject-only, never the body: the first version of the intent clearance searched
+    X-GM-RAW for a token that the intent email's OWN BODY contained, so every intent cleared
+    itself the moment it was written and the fail-closed guard could never fire. Searching
+    subjects with a prefix the bot never emits removes that whole class of self-match.
+
+    IMAP SUBJECT is a substring match (the Oct 27 bug: dry-run mail read as live), so the real
+    header is always re-checked. Raises on any failed search or fetch, so callers fail closed."""
+    since = (datetime.now(timezone.utc) - timedelta(days=days)).strftime("%d-%b-%Y")
+    typ, data = M.uid("SEARCH", None, "SUBJECT", '"' + str(needle).replace('"', '') + '"', "SINCE", since)
+    if typ != "OK":
+        raise RuntimeError("Gmail subject search failed")
+    out = []
+    for uid in (data[0].split() if data and data[0] else []):
+        typ, d = M.uid("FETCH", uid, "(BODY.PEEK[HEADER.FIELDS (SUBJECT)])")
+        if typ != "OK" or not d or not d[0]:
+            raise RuntimeError("Gmail header fetch failed")
+        subj = str(email.header.make_header(email.header.decode_header(
+            email.message_from_bytes(d[0][1]).get("Subject") or "")))
+        if subj.startswith(prefix) and str(needle) in subj:
+            out.append(uid)
+    return out
+
+
+def intent_cleared(M, cid):
+    """True only when a DISTINCT MANUAL authorization exists: an email whose SUBJECT starts with
+    'INTENT CLEARED' and names this client_id. No automated email of this system ever carries that
+    subject, so the bot cannot clear its own intent. Raises on a failed search -> caller keeps
+    refusing."""
+    return bool(subject_hits(M, cid, INTENT_CLEAR_PREFIX))
+
+
+def intent_readable(cid, tries=3, wait=5):
+    """Nov 11 (Peter): SMTP success is NOT storage. Confirm the intent row can actually be READ
+    BACK from the registry before any order is submitted - the same discipline the Polymarket
+    order path already follows ('acceptance is never proof - read the order back').
+
+    Retries for Gmail's indexing delay. Returns False if it still cannot be read, and the caller
+    then submits NOTHING. Note the deliberate asymmetry: a stored-but-not-yet-indexed intent will
+    later show as unconfirmed and lock live orders until cleared, even though no order was placed.
+    That is the safe direction - a refused play costs a play, an untracked order costs money."""
+    for i in range(tries):
+        if i:
+            time.sleep(wait)
+        try:
+            M = imap_open()
+            try:
+                if subject_hits(M, cid, INTENT_SUBJECT_PREFIX):
+                    return True
+            finally:
+                imap_close(M)
+        except Exception:
+            pass
+    return False
+
+
 def body_text(raw):
     msg = email.message_from_bytes(raw)
     parts = msg.walk() if msg.is_multipart() else [msg]
@@ -1489,14 +1551,15 @@ def bot_orders(M, days=4):
         # Nov 11: an intent with no confirmed order means an order MAY exist at the venue and the
         # bot cannot tell (ProphetX trades carry no external_id). Attribution is uncertain, so
         # live_guards() refuses every further live order until Peter clears it with an email whose
-        # body contains intentdone<client_id>, after checking My Trades.
+        # SUBJECT begins "INTENT CLEARED <client_id>", after checking My Trades. Subject-only and
+        # manual: the bot never emits that subject, so it cannot clear its own intent.
         INTENT["open"] = {}
         for k, row in _intents.items():
             if k in _confirmed:
                 continue
             try:
-                if gsearch_strict(M, "intentdone" + k):
-                    continue   # Peter reconciled this one
+                if intent_cleared(M, k):
+                    continue   # Peter's distinct, manual, subject-only authorization
             except Exception:
                 pass           # cannot confirm it was cleared -> keep refusing (fail closed)
             INTENT["open"][k] = row
@@ -1579,7 +1642,7 @@ def live_guards():
             why = (f"unreconciled order intent {k} ({lo0.get('book')}, asked "
                    f"${float(lo0.get('asked_stake') or 0):,.2f}, {row.get('decided_utc')}): an order may "
                    f"exist at the venue with no confirmed record. Check My Trades, then clear it with an "
-                   f"email containing intentdone{k}. "
+                   f"email whose SUBJECT begins {INTENT_CLEAR_PREFIX} {k}. "
                    + (f"{len(INTENT['open']) - 1} more also open. " if len(INTENT["open"]) > 1 else "")
                    + "No live order will be placed until then (fail closed)")
         else:
@@ -2403,15 +2466,28 @@ def journal_intent(r, book, asked):
                "live_order": {"status": "placed", "order_id": "intent-" + cid, "book": book,
                               "asked_stake": round(float(asked or 0), 2), "filled_stake": None,
                               "client_id": cid, "intent": True}}
-        send(f"Bets LIVE: order intent {book} {cid}",
-             "ORDER INTENT - written BEFORE the order is submitted. The order is only submitted if this\n"
-             "row was stored, so a failure here means NO order was placed and nothing is untracked.\n"
-             "If no confirmed row follows this client_id, an order MAY exist at the venue: the daily stop\n"
+        send(f"{INTENT_SUBJECT_PREFIX} {book} {cid}",
+             "ORDER INTENT - written BEFORE the order is submitted. The order is submitted only if this\n"
+             "row can be READ BACK from the registry, so a failure here means NO order was placed.\n"
+             "If no confirmed row follows this client id, an order MAY exist at the venue: the daily stop\n"
              "counts this row, duplicate blocking holds this play, and live orders refuse until it is\n"
-             "reconciled. Clear it with an email whose body contains intentdone" + cid + "\n"
-             "once ProphetX My Trades shows whether the order exists. Counts only.\n\n"
+             "reconciled.\n\n"
+             "TO CLEAR IT, once ProphetX My Trades shows whether the order exists, send an email to this\n"
+             "address whose SUBJECT LINE begins with the two words INTENT / CLEARED (no slash) followed by\n"
+             "the client id shown in this subject. Nothing this system sends ever carries that subject, so\n"
+             "it cannot clear itself - which an earlier version could, because the clearing token sat in\n"
+             "this very body and the search read bodies. The clearance is subject-only and manual.\n"
+             "Counts only.\n\n"
              "LEDGER (machine-readable, one row per play; latency = decision time minus first alert time)\n"
              + json.dumps([row]))
+        if not intent_readable(cid):   # SMTP success is not storage - read it back or place nothing
+            try:
+                tg(f"ORDER INTENT UNREADABLE: the pre-order record for {book} was sent but could not be "
+                   f"read back from the registry (client id {cid}).\nNO ORDER WAS PLACED. If that row did "
+                   f"store, it will hold live orders until you clear it - subject INTENT CLEARED {cid}.")
+            except Exception:
+                pass
+            return False, None
         return True, cid
     except Exception as ex:
         try:
