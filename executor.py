@@ -1003,6 +1003,14 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None, held=None):
     alert_cost = american_to_prob(alert_af)
     px_tol = american_to_prob(cents_worse(alert_af, PX_TOL_CENTS)) - alert_cost   # Oct 27 ProphetX, Nov 11 Novig: may be 2c worse
     floor = p.get("floor_line") if mtype in ("spread", "total") else None
+    # Nov 11 (Peter, "original alert line or strictly better"): board v3 plays carry NO floor_line -
+    # the board producer never writes one (0 of 1045 rows in board/calls.json), so the Oct 31
+    # bet-only-at floor never bound on Lane 3. Without it, better_halfpoints could convert to a
+    # WORSE line whenever an estimated half-point value (half_point(), HP_FALLBACK when the ladders
+    # cannot say) appeared to compensate, with only the -130 cap behind it. A board play's floor is
+    # its OWN alert line. Lane 1 is untouched: it keeps the floor its producer supplies.
+    if floor is None and mtype in ("spread", "total") and p.get("source") == "board":
+        floor = line
     cands, floor_blocked, no_qual_basis = [], 0, 0
     for (b, bl), r in ladders.items():
         if floor is not None and better_halfpoints(mtype, side, floor, bl) < -1e-9:
@@ -1077,7 +1085,13 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None, held=None):
                       "thr": c["thr"], "buy": c["buy"], "ids": c["ids"]} for c in lcs],
                 equiv=pick["eq"], hp=hp, hp_src=hp_src, risk=risk, to_win=win, nets=nets,
                 fillable=round(min(pick["avail"], risk), 2), partial=pick["avail"] < risk,
-                others=[c for c in capped if c is not pick][:5])
+                others=[c for c in capped if c is not pick][:5],
+                # Nov 11 (Peter, check 8): what revalidate() needs to RE-READ the chosen venue at
+                # order time. probe() is a closure inside evaluate, so the inputs are stashed here
+                # rather than reconstructed at the order site - reparsing is where drift creeps in.
+                reval={"al": al, "mtype": mtype, "side": side, "price": price, "teams": teams,
+                       "line": line, "alert_af": alert_af, "alert_cost": alert_cost,
+                       "px_tol": px_tol, "hp": hp})
 
 
 def fmt_line(mtype, ln):
@@ -1286,6 +1300,82 @@ def book_lines(r):
     return out
 
 
+MKT = {"evs": None, "mks": None}   # the market map main() built this run; revalidate() needs it for Novig
+
+
+def reread_book(book, ln, rv):
+    """One venue's CURRENT ladder at one line, using the same readers probe() uses.
+    probe() is a closure inside evaluate(), so this mirrors its `one(b)` rather than reparsing."""
+    al, mtype, side, price, teams = rv["al"], rv["mtype"], rv["side"], rv["price"], rv["teams"]
+    if book == "novig":
+        if MKT["evs"] is None or MKT["mks"] is None:
+            return None
+        return bc.check_alert(dict(al, bet=bet_at(al["bet"], mtype, rv["line"], ln)), MKT["evs"], MKT["mks"])
+    fn = {"prophetx": bc.px_check, "kalshi": bc.kalshi_check, "polymarket_us": pmus_check}.get(book)
+    return fn(al, mtype, side, ln, price, teams) if fn else None
+
+
+def revalidate(r, stake=None):
+    """Nov 11 (Peter, check 8): re-read the CHOSEN venue's own book immediately before submitting.
+
+    Before this the only order-time re-read was Pinnacle fair (the Nov 3 price check). The venue's
+    own price, depth and market status came from evaluate(), which on a 30-minute workflow running
+    up to 3 catch-up passes can be many minutes stale - the order could be sent against a book that
+    had moved, thinned, or closed.
+
+    Returns (ok, why, fresh). `fresh` is the re-read ladder row, so the order is sized from CURRENT
+    levels, not the stale ones. The bar is the IDENTICAL gate the play qualified under: the frozen
+    qualification price, the stored px_tol (so ProphetX and Novig keep their 2c and nobody else
+    gets any), the same line, and the -130 cap.
+
+    FAILS CLOSED everywhere: unreadable venue, closed or missing market, a move to another line, a
+    price worse than the gate, no frozen basis, or no depth at the threshold all mean NO ORDER.
+    Depth short of the full stake is NOT a refusal - it flows to the existing partial-fill shrink,
+    so a full fill is still never assumed."""
+    lv, rv = r.get("live") or {}, r.get("reval") or {}
+    book, ln = lv.get("book"), lv.get("line")
+    if not rv or not book:
+        return False, "no revalidation basis recorded - fail closed", None
+    mtype = rv.get("mtype")
+    if mtype != "moneyline" and ln is None:
+        return False, "no line to revalidate against - fail closed", None
+    try:
+        fresh = reread_book(book, ln, rv)
+    except Exception as ex:
+        return False, f"{book} could not be re-read before the order ({str(ex)[:60]}) - fail closed", None
+    if not fresh or fresh.get("status") != "ok":
+        return False, (f"{book} is not quoting this market at order time "
+                       f"({(fresh or {}).get('status', 'unreadable')}) - fail closed"), None
+    am = fresh.get("best_price_american")
+    if am is None:
+        return False, f"{book} has no price at order time - fail closed", None
+    if mtype != "moneyline":
+        bl = book_line(fresh)
+        if bl is None or abs(bl - ln) > 1e-9:
+            return False, (f"{book} moved off {fmt_line(mtype, ln)} before the order "
+                           f"(now {fmt_line(mtype, bl)}) - fail closed"), None
+    am_q = fresh.get("best_price_american_qual")
+    if am_q is None:
+        am_q = qual_price(am, book)
+    if am_q is None:
+        return False, f"{book} has no frozen qualification price at order time - fail closed", None
+    tol = rv.get("px_tol", 0.0) if book in TOL_BOOKS else 0.0
+    if american_to_prob(am_q) > rv["alert_cost"] + tol + 1e-9:
+        allowed = cents_worse(rv["alert_af"], PX_TOL_CENTS) if book in TOL_BOOKS else rv["alert_af"]
+        return False, (f"{book} moved worse than the alert gate before the order "
+                       f"(now {am_q:+d}, allowed {allowed:+d}) - fail closed"), None
+    if mtype in ("spread", "total") and am_q < CAP_LINE:
+        return False, f"{book} is now below the {CAP_LINE} cap ({am_q:+d}) - fail closed", None
+    thr = (lv.get("px") or {}).get("thr")
+    avail = sum(d for a, d in levels(book, fresh, qual=True)
+                if a is not None and thr is not None and a >= thr)
+    if avail <= 0:
+        return False, f"{book} has no depth at or better than the alert number at order time - fail closed", None
+    short = (f"; depth ${avail:,.0f} short of ${stake:,.0f} - partial rules apply"
+             if stake and avail < float(stake) else "")
+    return True, f"re-read {book} at order time: {am:+d}, depth ${avail:,.0f}{short}", fresh
+
+
 def px_limit(pxd, stake):
     """(strike_id, limit price, stake) for a ProphetX fill-or-kill: walk the ladder best price first, only levels at
     or better than the alert-equivalent threshold, until the stake is covered. Stake shrinks to what's there."""
@@ -1324,7 +1414,7 @@ def bot_orders(M, days=4):
         typ, data = M.uid("SEARCH", None, "SUBJECT", '"Bets LIVE:"', "SINCE", since)
         if typ != "OK":
             return None
-        ids = {}
+        ids, seen_oids = {}, set()   # seen_oids: one order's money is counted once (Nov 11)
         for uid in (data[0].split() if data and data[0] else []):
             typ, d = M.uid("FETCH", uid, "(RFC822)")
             if typ != "OK" or not d or not d[0]:
@@ -1343,9 +1433,22 @@ def bot_orders(M, days=4):
                                     + [(False, x or {}) for x in (row.get("live_more") or [])]):
                     if lo.get("status") != "placed" or not lo.get("order_id"):
                         continue
-                    ids[str(lo["order_id"])] = lo.get("book") or "prophetx"
+                    oid = str(lo["order_id"])
+                    ids[oid] = lo.get("book") or "prophetx"
                     if row.get("key"):
                         LIVEKEYS.add(row["key"])
+                    # Nov 11: ONE ORDER IS COUNTED ONCE. ids is a dict and BOARD["keys"] is a set, so
+                    # both already dedupe - but BOARD["risk"] and NONPX["today"] are running sums, so
+                    # the same order described in two 'Bets LIVE:' emails used to add its money twice.
+                    # That now happens by design (journal_order writes a row the moment an order is
+                    # placed, and the end-of-run ledger writes the same order again) and could already
+                    # happen when a catch-up pass re-sent a ledger. Identity is the ORDER ID: the money
+                    # below is accumulated on first sight only. Over-counting is the safe direction but
+                    # it is still wrong - it would silently shrink the $1,500 board limit and the daily
+                    # stop. ids and LIVEKEYS are set above, so dedupe never weakens duplicate blocking.
+                    if oid in seen_oids:
+                        continue
+                    seen_oids.add(oid)
                     try:   # Oct 28: Kalshi / PM US / Novig dollars risked TODAY (ET) count as lost in the daily stop
                         d_et = datetime.fromisoformat(str(row.get("decided_utc")).replace("Z", "+00:00")).astimezone(lm.ET).date()
                     except Exception:
@@ -1462,6 +1565,16 @@ def live_order(r):
     g_ok, g_why = live_guards()
     if not g_ok:
         return {"status": "refused", "reason": g_why}
+    # Nov 11 (Peter, check 8): the venue's own price/depth/status, re-read NOW. Covers every book,
+    # so it sits before the dispatch. On success the order is sized from the FRESH levels.
+    rv_ok, rv_why, fresh = revalidate(r, lv.get("risk"))
+    if not rv_ok:
+        return {"status": "refused", "reason": rv_why, "revalidated": False}
+    if isinstance(lv.get("px"), dict):
+        lv["px"] = dict(lv["px"], buy=fresh.get("buy_levels") or [],
+                        am=fresh.get("best_price_american"),
+                        shown=fresh.get("best_price_american_displayed") or fresh.get("best_price_american"))
+    lv["reval"] = rv_why
     if lv.get("book", "prophetx") != "prophetx":
         return live_order_other(r)
     strike, limit, stake = px_limit(lv["px"], lv["risk"])
@@ -1486,7 +1599,10 @@ def live_order(r):
     elif res["status"] == "error":
         tg(f"LIVE ORDER ERROR ProphetX: {(p.get('bet') or '')[:60]}\n{res['reason'][:200]}\nCheck My Trades before retrying.")
         push("LIVE ORDER ERROR: " + (p.get("bet") or "")[:50], f"{label}\n{res['reason']}\nCheck ProphetX My Trades before retrying.", mirror=False)
-    return dict(res, asked_stake=stake, limit=limit, book="prophetx")
+    out = dict(res, asked_stake=stake, limit=limit, book="prophetx")
+    if out.get("status") == "placed":   # Nov 11: durable registry row NOW, before anything can kill the run
+        out["journaled"] = journal_order(r, out)
+    return out
 
 
 def _got(o):
@@ -1560,7 +1676,9 @@ def live_order_other(r):
     if res["status"] == "placed" and res.get("sent_to_runner"):
         tg(f"SENT TO NOVIG (home PC): {bet_text(r, lv['line'], limit_am)}\nfill-or-kill, ${stake:,.2f} at {limit_am:+d} or better. "
            f"The fill result follows in the next run.\n{p.get('sport')} {p.get('game')}")
-        return dict(res, asked_stake=stake, limit=limit_am)
+        out = dict(res, asked_stake=stake, limit=limit_am)
+        out["journaled"] = journal_order(r, out)   # Nov 11: durable row now (the fill lands next run)
+        return out
     if res["status"] == "placed":
         fs, ac = res.get("filled_stake") or 0, res.get("avg_cost")
         ap = lm.american(ac) if ac else None
@@ -1582,7 +1700,10 @@ def live_order_other(r):
         push("LIVE ORDER ERROR: " + (p.get("bet") or "")[:50], f"{label}\n{res['reason']}\nCheck {name} before retrying.", mirror=False)
     if res.get("status") == "placed" and not res.get("fills_read"):
         res["filled_stake"] = None   # unknown fill: the daily stop counts everything asked
-    return dict(res, asked_stake=stake, limit=limit_am)
+    out = dict(res, asked_stake=stake, limit=limit_am)
+    if out.get("status") == "placed":   # Nov 11: durable registry row NOW
+        out["journaled"] = journal_order(r, out)
+    return out
 
 
 # Oct 30 (Peter, after Muse's (a)/(b) answers): phase-1 goes live on the CODED rules AGREE, no wait for Muse.
@@ -1812,6 +1933,8 @@ def rest_bid(r):
         else:
             continue
         res = dict(res, book=b, limit=lm.american(c), asked_stake=round(risk, 2), expires_utc=expire.strftime("%Y-%m-%dT%H:%M:%SZ"))
+        if res.get("status") == "placed":   # Nov 11: durable row NOW; a resting bid outlives the run
+            res["journaled"] = journal_order(r, res, is_rest=True)
         name = BOOK_NAME.get(b, b)
         when = expire.astimezone(lm.ET).strftime("%I:%M %p ET")
         if res["status"] == "placed":
@@ -2164,6 +2287,61 @@ def send(subject, body):
         s.sendmail(user, [to], msg.as_string())
 
 
+JOURNAL = {"sent": 0, "failed": 0}
+
+
+def journal_order(r, lo, is_rest=False):
+    """Nov 11 (Peter, crash-safe order logging). Write ONE durable registry row the moment an order
+    is placed, instead of only at the end of the run.
+
+    The bot-order registry is the LEDGER block inside the run's 'Bets LIVE:' email, and that email
+    is sent when the run finishes. An order placed at minute 8 of a 30-minute run that is then
+    killed - which the Nov 10 timeout did, mid-pass - never reaches the registry at all. Two
+    consequences, both real money: today_result() cannot attribute the order, so the DAILY STOP
+    UNDERCOUNTS; and the play key never reaches LIVEKEYS, so the next run can place the SAME bet
+    again. CLAUDE.md records this as a correctness risk rather than a lost run.
+
+    The row is written in the EXACT shape bot_orders() already parses - subject prefixed
+    'Bets LIVE:' plus a 'LEDGER (machine-readable' JSON array - so there is no second registry and
+    no second parser (the ledger is extracted with rfind + raw_decode; do not invent another way).
+    bot_orders() now counts each order id once, so this row and the end-of-run row for the same
+    order cannot double-count its money.
+
+    Best-effort by design: an order that ALREADY EXISTS at the venue must never be undone or
+    retried because logging failed, so this never raises into the order path. A failure is LOUD -
+    silence would restore exactly the defect this closes."""
+    oid, book = lo.get("order_id"), (lo.get("book") or "prophetx")
+    try:
+        p = r.get("play") or {}
+        row = {"key": p.get("play_key") or derive_key(p) or "",
+               "source": p.get("source"), "journal": True,
+               "decided_utc": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+               ("live_rest" if is_rest else "live_order"): {
+                   "status": "placed", "order_id": oid, "book": book,
+                   "asked_stake": lo.get("asked_stake") if lo.get("asked_stake") is not None else lo.get("asked"),
+                   "filled_stake": lo.get("filled_stake"), "avg_price": lo.get("avg_price"),
+                   "limit": lo.get("limit"), "resting": bool(is_rest or lo.get("resting"))}}
+        send(f"Bets LIVE: order journal {book} {oid}",
+             "ORDER JOURNAL - one durable registry row, written the moment this order was placed, so a run\n"
+             "killed before its end-of-run ledger cannot lose this order from the registry (daily-stop\n"
+             "attribution and duplicate blocking both read that registry). The end-of-run ledger repeats\n"
+             "this order; bot_orders() counts each order id once. Counts only - no amounts beyond the stake\n"
+             "the registry already needs.\n\n"
+             "LEDGER (machine-readable, one row per play; latency = decision time minus first alert time)\n"
+             + json.dumps([row]))
+        JOURNAL["sent"] += 1
+        return True
+    except Exception as ex:
+        JOURNAL["failed"] += 1
+        try:   # LOUD: without this row a kill loses the order from the registry
+            tg(f"ORDER JOURNAL FAILED: {book} order {oid} is PLACED but its durable registry row did not "
+               f"send ({str(ex)[:120]}).\nIf this run is killed before its ledger email, the daily stop will "
+               f"undercount this order and another lane could repeat the bet. Check the ledger email.")
+        except Exception:
+            pass
+        return False
+
+
 def main():
     now = datetime.now(timezone.utc)
     M = imap_open()
@@ -2222,6 +2400,7 @@ def main():
     mks_by_event = {}
     for mk in mks:
         mks_by_event.setdefault(mk.get("eventId"), []).append(mk)
+    MKT["evs"], MKT["mks"] = evs_by, mks_by_event   # Nov 11: revalidate() re-reads Novig through this map
     with ThreadPoolExecutor(max_workers=4) as tp:   # Oct 31: all 4 position reads at the same time
         f_nv = tp.submit(novig_positions)
         f_h = {b: tp.submit(fn) for b, fn in (("kalshi", positions.kalshi_positions), ("prophetx", positions.px_positions),
