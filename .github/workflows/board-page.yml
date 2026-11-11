@@ -47,6 +47,8 @@ jobs:
           GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
         run: python -u board_build.py
+      - name: Private tracker page (encrypted; built and committed by bets-board)
+        run: if [ -f tracker/index.html ]; then mkdir -p site/tracker && cp tracker/index.html site/tracker/index.html; else echo 'tracker page not built yet'; fi
       - name: Odds screen page
         run: mkdir -p site/odds && cp odds/index.html site/odds/index.html
       - uses: actions/configure-pages@v5

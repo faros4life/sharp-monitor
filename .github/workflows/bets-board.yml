@@ -53,6 +53,7 @@ jobs:
       - name: Private bet tracker (encrypted; counts only in this log)
         continue-on-error: true   # a book read failing never stops the board
         env:
+          TRACKER_OUT: tracker   # Nov 11: page is committed (encrypted) so board-page.yml can publish it
           TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}   # Nov 3: tracker self-check alerts (no amounts)
           GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
