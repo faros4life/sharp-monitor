@@ -641,6 +641,7 @@ def main():
     say("NBA TOTALS UNDERS - does the registered trigger separate? PASS vs FAIL")
     say("=" * 108)
     import exchange_lag as el
+    from datetime import timedelta as _td
     SEEN_BOOKS = {"prophetx": "ProphetX", "novig.us": "Novig", "kalshi": "Kalshi",
                   "polymarket.us": "Polymarket US"}
     ALERT_BOOK = {"ProphetX": "prophetx", "Kalshi": "kalshi", "Novig": "novig.us"}
@@ -752,6 +753,120 @@ def main():
     say("  verdict on its own; what is reportable is whether the gap points the way the rules")
     say("  intend, and how far from zero it is.")
     say("=" * 108)
+    say("")
+
+    # ===== WHY ONLY 43% SEEN ON THE 24 PASS NBA UNDERS (Peter, Nov 10, priority) =====
+    # The PASS group's alert price was visible on its own venue in 10 of 23 testable cases. Since
+    # every units figure in this system assumes 1u AT the alert price, that number decides whether
+    # those figures are measured at prices we could actually have had.
+    #
+    # The separation is possible because clv_ledger.novig_at returns (price, AGE IN SECONDS) - the
+    # age of the last tick at or before the alert instant. So a worse price can be told apart from
+    # a stale snapshot:
+    #   SEEN               the book's own after-fee price met or beat the alert price at t0
+    #   NOT SEEN (fresh)   a FRESH tick showed worse - genuine unavailability at that moment
+    #   NOT SEEN (stale)   the only tick was old, so the quote describes an earlier moment and
+    #                      says nothing about the alert instant - missing evidence, not a verdict
+    #   SEEN LATER         not at t0 but met at +1 or +5 min - a timing question, not availability
+    #   UNTESTABLE         no fixture, no stored history, or no quote at that line at all
+    # A stale miss is never counted as unavailability. That is the whole point of the split.
+    #
+    # LIQUIDITY: novig_at returns price and age only, no size. Depth at the alert is NOT in this
+    # path - the ledger's fill_avail is the only depth record and it exists only for plays that
+    # reached the executor. So no depth claim is made here, and the absence is reported.
+    say("")
+    say("=" * 118)
+    say("THE 43%: per-alert availability on the 24 PASS NBA unders")
+    say("=" * 118)
+    FRESH = 300.0   # seconds; a tick older than this describes a different moment
+
+    def px_quote(a, lg, offset_min=0):
+        own = ALERT_BOOK.get(str(a.get("book")))
+        if not own:
+            return None, "alerted book has no stored history"
+        fid, f = fixture_for(a, lg)
+        if not fid:
+            return None, "no unique fixture"
+        start, t0 = start_of(f), cl.tp(a.get("alert_utc"))
+        if not start or not t0:
+            return None, "no timestamps"
+        try:
+            bk = cl.book_markets(hc.get_hist(fid, [own], start), own)
+        except Exception as e:
+            return None, f"history unreadable ({type(e).__name__})"
+        if not bk:
+            return None, "no stored history for that book"
+        when = min(t0 + _td(minutes=offset_min), start)
+        try:
+            x = cl.novig_at({"bet": a.get("bet") or "", "league": lg, "market": "total",
+                             "game": f.get("game"), "game_start": f.get("start")},
+                            f, bk, mkmap, when, lg)
+        except Exception as e:
+            return None, f"novig_at raised ({type(e).__name__})"
+        if not x:
+            return None, "no quote at that line"
+        return (el.eff(own, x[0]), x[1]), None
+
+    pas = groups.get("PASS", [])
+    say(f"  {len(pas)} PASS alert(s). Every row is an OBSERVED QUOTE, never a fill.")
+    say("")
+    say(f"  {'date/time':<17}{'line':>7}{'alert':>7}{'want':>7}{'px@t0':>8}{'age_s':>7}"
+        f"{'+1m':>7}{'+5m':>7}  class / reason")
+    tally = collections.Counter()
+    seen_rows = []
+    for a in pas:
+        want = cl.am_to_dec(a.get("price_after_fee") or a.get("price"))
+        q0, e0 = px_quote(a, "NBA", 0)
+        q1, _ = px_quote(a, "NBA", 1)
+        q5, _ = px_quote(a, "NBA", 5)
+        d0 = f"{q0[0]:.4f}" if q0 and q0[0] is not None else "-"
+        ag = f"{q0[1]:.0f}" if q0 and q0[1] is not None else "-"
+        d1 = f"{q1[0]:.4f}" if q1 and q1[0] is not None else "-"
+        d5 = f"{q5[0]:.4f}" if q5 and q5[0] is not None else "-"
+        if q0 is None or q0[0] is None or want is None:
+            cls = f"UNTESTABLE: {e0 or 'price unreadable'}"
+        elif q0[0] >= want - TOL:
+            cls = "SEEN at t0"
+            seen_rows.append(a)
+        else:
+            later = [lab for lab, q in (("+1m", q1), ("+5m", q5))
+                     if q and q[0] is not None and q[0] >= want - TOL]
+            if later:
+                cls = f"SEEN LATER ({', '.join(later)}) - timing, not availability"
+            elif q0[1] is not None and q0[1] <= FRESH:
+                cls = (f"NOT SEEN (fresh tick, {q0[1]:.0f}s old) - genuinely worse at t0, "
+                       f"short by {want - q0[0]:.4f}")
+            else:
+                cls = (f"NOT SEEN (STALE tick, {q0[1]:.0f}s old) - no evidence either way")
+        tally[cls.split(" -")[0].split(":")[0]] += 1
+        say(f"  {str(a.get('alert_utc'))[:16]:<17}"
+            f"{(a.get('point') if a.get('point') is not None else float('nan')):>7.1f}"
+            f"{(a.get('price') if a.get('price') is not None else 0):>7}"
+            f"{(want if want else float('nan')):>7.4f}{d0:>8}{ag:>7}{d1:>7}{d5:>7}  {cls}")
+    say("")
+    say("  CLASSIFICATION TOTALS")
+    for k, n in tally.most_common():
+        say(f"     {n:3}  {k}")
+    say("")
+    g = [x for x in seen_rows if x.get("result") in ("W", "L", "P")]
+    u = sum(x.get("units_flat") or 0 for x in g)
+    risk = len([x for x in g if x["result"] != "P"])
+    allg = [x for x in pas if x.get("result") in ("W", "L", "P")]
+    ua = sum(x.get("units_flat") or 0 for x in allg)
+    riska = len([x for x in allg if x["result"] != "P"])
+    say("  UNITS ON EVIDENCE-SUPPORTED PRICES ONLY (the SEEN-at-t0 subset)")
+    say(f"     SEEN subset   n{len(seen_rows):3} graded {len(g):3} {u:+7.2f}u  "
+        f"ROI {(100 * u / risk) if risk else float('nan'):+7.1f}%")
+    say(f"     all PASS      n{len(pas):3} graded {len(allg):3} {ua:+7.2f}u  "
+        f"ROI {(100 * ua / riska) if riska else float('nan'):+7.1f}%")
+    say("     The SEEN figure is the only one supported by a quote we can point to. It is still")
+    say("     NOT a fill: a displayed quote is not an execution, no size is recorded anywhere in")
+    say("     this path, and nothing here says the price would have survived an order.")
+    say("")
+    say("  LIQUIDITY: not available. novig_at returns price and age only. Depth at the alert lives")
+    say("  solely in the ledger's fill_avail, which exists only for plays that reached the")
+    say("  executor, and is itself min(avail, risk) rather than raw depth. No depth claim is made.")
+    say("=" * 118)
     say("")
 
     say("  ITEM 4 - the missing cached histories, and what a backfill would cost")
