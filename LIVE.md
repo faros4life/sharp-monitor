@@ -108,10 +108,27 @@ mean a push was delivered.
 | Alert-based daily/weekly recaps | **NO** | `PUSH_ALERT_RECAP` — not set, defaults off (Nov 3) |
 | Real-plays recap | Yes | `plays_recap.py` in the bets-board job |
 | R1 signal alerts | **MUTED at source** | `NCAAF_TOP25 = filter` silences non-Top-25 college. This is why R1 needs its own executor path — and why its LIVE PLAY alert matters, or the fill would be the first Peter hears of it |
-| HR MISPRICE / HARD ROCK EDGE | **Never yet fired** | `hrscan`, `min_ev_pct = 2.0`. `pinged: 0` since 4 Nov — across ~26,000 same-line comparisons nothing has reached 2% EV. The scanner works; the bar is not met |
+| HR EDGE / HR MISPRICE (manual-bet pings) | **ON** (`HRSCAN_FLAG` defaults on) but almost everything is gated — see below |
 | Balances | Email | hourly, and right after any live bot order |
 
 Every push goes out once and mirrors to Telegram once, so one message per channel per event.
+
+### Hard Rock manual-bet pings (`hr_scanner.py`) — the five gates
+A sighting is any Hard Rock price **≥ +2% EV** vs Pinnacle's no-vig fair **at the same line**.
+Everything is logged and graded; the PING is what these gates control. All five must pass:
+
+1. **Not a repeat** of a sighting already recorded for that game+market+side
+2. **League in `FLAG_LEAGUES` = NFL, NCAAF, NHL, MLB.** NBA and **all** NCAAB are out (Peter,
+   9 Nov: "NBA LIMITED ALSO", "IM LIMITED ALL CBB HR") — still logged and graded, never pinged
+3. **Lead ≥ 30 min** — nothing pings inside T-30
+4. **Not already pinged** — one ping per game+market+side, shared with the alert path
+5. **Not a Hard Rock spread underdog** (`sm.hr_dog`, Peter 3 Nov: "8-19, −11.9u, lost every week")
+
+Then, separately: an **established non-Top-25 college** game is notification-gated (logged,
+counted and graded identically; only the push is suppressed). An unreadable AP poll fails open.
+
+`HRSCAN_FLAG=off` silences the pings and keeps the log running. `pinged` in `hrscan.json` is
+pruned on a 2-day rolling window, so an empty `pinged` is **not** evidence that nothing ever pinged.
 
 ---
 
