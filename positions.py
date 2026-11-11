@@ -200,7 +200,39 @@ def px_positions():
                  and not any(w in str(t.get("status") or "").lower() for w in ("settled", "cancel", "void"))]
         want = {str(t.get("strike_id")) for t in open_ if t.get("strike_id")}
         found, now = {}, datetime.now().astimezone()
-        for lg in bc.PX_TOURNAMENTS:
+        # Nov 11: the strike->game walk is wrapped SEPARATELY from the trades fetch above.
+        #
+        # Measured on run 43079165131: ProphetX answered at 3.94s per call (vs 0.14s in the other
+        # pass of the same job) and ONE of 45 calls came back unusable. That single failure
+        # propagated to the outer handler, returned None, and made the venue "blind" - which
+        # blocked every live order for the run, on all four venues.
+        #
+        # That is the wrong blast radius. get_trades SUCCEEDED: all 100 open trades are known, so
+        # exposure IS known. The walk only resolves each trade's strike_id to a game and market for
+        # the conflict check, and an unresolved strike is ALREADY tolerated and reported as
+        # prophetx_partial ("usually games already underway"). A failure here therefore degrades
+        # to the existing partial case, not to blindness.
+        #
+        # A failure to read the TRADES still returns None and still blinds the venue, because that
+        # is the case where exposure genuinely cannot be verified. Exposure is never assumed zero.
+        try:
+            _walk(bc, want, found, now, open_, e_err=None)
+        except Exception as ex:
+            WHY["prophetx_walk"] = f"strike lookup incomplete: {str(ex)[:80]}"
+        STATS["prophetx"] = {"trades": len(trades), "open_fills": len(open_), "open_strikes": len(want),
+                             "matched_strikes": len(found)}
+        if want - set(found):   # usually games already underway (their markets close) - those can't conflict with a pregame bet
+            WHY["prophetx_partial"] = f"{len(want - set(found))} of {len(want)} open bets not matched to a game (likely started)"
+        return list(found.values())
+    except Exception as ex:
+        WHY["prophetx"] = str(ex)[:100]
+        return None
+
+
+def _walk(bc, want, found, now, open_, e_err=None):
+    """Resolve open strike_ids to their game/market. Extracted Nov 11 so a failure in here cannot
+    blind the venue - see px_positions. Pure lookup: it only fills `found`."""
+    for lg in bc.PX_TOURNAMENTS:
             if not want - set(found):
                 break
             for e in bc.px_events(lg):
@@ -224,14 +256,6 @@ def px_positions():
                             if sid in want and sid not in found:
                                 found[sid] = {"book": "prophetx", "strike_id": sid, "game": e.get("name") or "", "date": (e.get("scheduled") or "")[:10],
                                               "mtype": mtype, "label": x.get("name") or "", "flip": False}
-        STATS["prophetx"] = {"trades": len(trades), "open_fills": len(open_), "open_strikes": len(want),
-                             "matched_strikes": len(found)}
-        if want - set(found):   # usually games already underway (their markets close) - those can't conflict with a pregame bet
-            WHY["prophetx_partial"] = f"{len(want - set(found))} of {len(want)} open bets not matched to a game (likely started)"
-        return list(found.values())
-    except Exception as ex:
-        WHY["prophetx"] = str(ex)[:100]
-        return None
 
 
 # ---------------------------------------------------------------- matching

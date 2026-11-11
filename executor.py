@@ -2348,7 +2348,7 @@ def fill_reports():
             novig_reports()
         except Exception as ex:
             print(f"novig report check failed: {str(ex)[:60]}")
-    with perf("kalshi resting-fill reports (Gmail)"):
+    with perf("kalshi resting-fill reports (Gmail)", rollup=True):   # encloses sent_tokens
         try:
             kalshi_rest_reports()
         except Exception as ex:
@@ -2804,14 +2804,20 @@ def sent_tokens(M, toks, days=None):
     out, seen_uids = set(), set()
     for i in range(0, len(toks), 20):
         q = f"newer_than:{days or HANDLED_DAYS}d (" + " OR ".join(toks[i:i + 20]) + ")"
-        typ, data = M.uid("SEARCH", "X-GM-RAW", '"' + q + '"')
+        with perf("sent_tokens: search"):
+            typ, data = M.uid("SEARCH", "X-GM-RAW", '"' + q + '"')
         if typ != "OK":
             raise RuntimeError("Gmail search failed")
+        # Nov 11: novig fill reports measured 160.8s with a 0.2s snapshot read, so the cost is here
+        # - but whether it is the SEARCH or the per-message FETCH was unknown, and the two have
+        # different fixes. Split and counted rather than guessed at; the message count says whether
+        # the OR search is matching far more mail than the few small token emails it should.
         for uid in (data[0].split() if data and data[0] else []):
             if uid in seen_uids:
                 continue
             seen_uids.add(uid)
-            typ, d = M.uid("FETCH", uid, "(RFC822)")
+            with perf("sent_tokens: fetch matched message", n=1):
+                typ, d = M.uid("FETCH", uid, "(RFC822)")
             if typ != "OK" or not d or not d[0]:
                 raise RuntimeError("Gmail fetch failed")
             raw = d[0][1] if isinstance(d[0], tuple) and len(d[0]) > 1 else b""
@@ -3592,7 +3598,7 @@ def main():
     # inside the period that can still matter is found, and games here start within hours of an
     # alert.
     _wp_ask = {wp(ok) for p in new if (ok := opposite_key(p))}
-    with perf("taken(): opposite-side check (one batched search)", n=len(_wp_ask)):
+    with perf("taken(): opposite-side check (one batched search)", n=len(_wp_ask), rollup=True):
         _wp_hit = sent_tokens(M2, sorted(_wp_ask), days=HANDLED_DAYS) if _wp_ask else set()
 
     def taken(k):   # this run, or any earlier WOULD PLACE / PLACED entry
