@@ -453,12 +453,7 @@ def plays_card(now, rows):
 
     return (f'<div class="card"><h2>Live now — {len(live)} PLAY standing</h2>'
             f'<p class="note">The call is the alert line at the alert price or better, after fees. '
-            f'Check the price before betting.</p><div class="scroll">{lt}</div></div>'
-            f'<div class="card"><h2>Called, not bet — {tot}</h2>'
-            f'<p class="note">Every PLAY the board has called, newest first. The board lane\'s money switch is off, so '
-            f'none of these went in. A call is frozen when it posts and never rewritten, '
-            f'so one whose money was pulled afterwards still grades as the PLAY it was.</p>'
-            f'<div class="scroll">{dt}</div></div>')
+            f'Check the price before betting.</p><div class="scroll">{lt}</div></div>')
 
 
 def page(now, rows, flips):
@@ -547,10 +542,6 @@ td{{padding:5px 6px;border-bottom:1px solid var(--line);vertical-align:top}}.r{{
 </style></head><body><div class="wrap">
 <h1>Bets Board</h1><p class="sub"><b>Last updated {stamp}</b> <span id="ago" data-t="{now.isoformat()}"></span> · <span id="ld"></span>. Rebuilds itself after every liquidity run; this page reloads every 5 minutes.</p>
 <div class="tiles"><div class="tile"><div class="l">PLAY calls open now</div><div class="n">{sum(1 for r in plays if r["status"] == "still there")}</div></div>
-<div class="tile"><div class="l">Today's PLAY calls graded</div><div class="n">{rec_log(today_log)}</div></div>
-<div class="tile"><div class="l">PLAY record since Oct 22 (frozen calls)</div><div class="n">{rec_log(all_log)}</div></div>
-<div class="tile"><div class="l">Today's LEAN calls graded</div><div class="n">{rec([r for r in rows if r["tag"] == "LEAN"])}</div></div>
-<div class="tile"><div class="l">v2 PLAY calls graded (old rule, still tracked)</div><div class="n">{rec([r for r in rows if r.get("v2") == "PLAY"])}</div></div>
 <div class="tile"><div class="l">Big-money moves today</div><div class="n">{len(rows)}</div></div></div>
 {plays_card(now, rows)}\n{live_plays_card()}
 <div class="card"><h2>Big money today, by bet type</h2>
@@ -590,10 +581,10 @@ def live_plays_card():
     try:
         import executor as _ex
         import rest_depth_report as _rd
-        since = (_d.datetime.now(_d.timezone.utc) - _d.timedelta(days=3)).strftime("%d-%b-%Y")
+        since = (_d.datetime.now(_d.timezone.utc) - _d.timedelta(days=2)).strftime("%d-%b-%Y")
         M = _ex.imap_open()
         try:
-            for subj in ('"Bets LIVE:"', '"Bets dry run:"'):
+            for subj in ('"Bets LIVE:"',):   # Nov 11 (Peter): live only, no paper (dry-run) rows
                 got, _n = _rd.ledger_rows(M, subj, since)
                 rows += got
         finally:
@@ -610,7 +601,13 @@ def live_plays_card():
     except BaseException as ex:            # IMAP can also raise KeyboardInterrupt-like socket aborts
         err = f"{type(ex).__name__}: {str(ex)[:70]}"
 
-    board = [r for r in rows if str(r.get("source") or "") == "board"]
+    _today = _d.datetime.now(ET).strftime("%Y-%m-%d")
+    def _is_today(r):
+        try:
+            return _d.datetime.fromisoformat(str(r.get("decided_utc")).replace("Z", "+00:00")).astimezone(ET).strftime("%Y-%m-%d") == _today
+        except Exception:
+            return False
+    board = [r for r in rows if _is_today(r)]   # Nov 11 (Peter): today's plays, every lane
     # one row per play, keeping the one that records a PLACEMENT over one that does not
     def _placed(r):
         los = [r.get("live_order") or {}, r.get("live_rest") or {}]
@@ -652,25 +649,32 @@ def live_plays_card():
         game = key[1] if len(key) > 3 else str(r.get("key") or "")
         side = f"{key[3]} {r.get('fill_line') if r.get('fill_line') is not None else ''}" if len(key) > 3 else ""
         px = r.get("fill_price_after_fee")
-        t = str(r.get("decided_utc") or "")[11:16]
+        try:
+            t = _d.datetime.fromisoformat(str(r.get("decided_utc")).replace("Z", "+00:00")).astimezone(ET).strftime("%-I:%M %p")
+        except Exception:
+            t = str(r.get("decided_utc") or "")[11:16]
+        try:
+            lane = _ex.LANE_NAME.get(_ex.lane_of(r), str(r.get("source") or "").upper())
+        except Exception:
+            lane = str(r.get("source") or "").upper()
         out.append(
-            f'<tr><td class=muted>{t}</td><td>{game}</td><td>{side}</td>'
+            f'<tr><td class=muted>{t}</td><td>{lane}</td><td>{game}</td><td>{side}</td>'
             f'<td>{r.get("fill_book") or ""}</td>'
             f'<td class=r>{(f"{px:+d}" if isinstance(px, int) else "")}</td>'
             f'<td class="{cls}">{st.upper()}</td><td class=muted>{why}</td></tr>')
 
     if err:
-        body = f'<tr><td colspan=7 class=muted>Ledger unreadable ({err}) - this card cannot say what the bot did.</td></tr>'
+        body = f'<tr><td colspan=8 class=muted>Ledger unreadable ({err}) - this card cannot say what the bot did.</td></tr>'
     elif not board:
-        body = '<tr><td colspan=7 class=muted>No board-lane plays in the executor ledger for the last 3 days.</td></tr>'
+        body = '<tr><td colspan=8 class=muted>No bot plays today yet.</td></tr>'
     else:
         body = "".join(out)
-    return ('<div class="card"><h2>Live plays - what the bot actually did</h2>'
-            '<p class="note">The board lane only. Straight from the executor ledger, last 3 days, newest first. '
+    return ('<div class="card"><h2>Today&#39;s plays - what the bot did</h2>'
+            '<p class="note">Every lane (Phase 1, Board v3, R1), today ET, newest first, from the executor ledger. Live orders only, no paper. '
             'PLACED = an order went in. REFUSED = a gate fired at order time. SKIPPED = never reached an '
             'order, usually the price was gone. BLOCKED = qualified but a switch stopped it. Every reason is '
             'the executor\'s own words, not a summary. A quote is not a fill.</p>'
-            '<div class="scroll"><table><thead><tr><th>ET</th><th>Game</th><th>Bet</th><th>Book</th>'
+            '<div class="scroll"><table><thead><tr><th>ET</th><th>Lane</th><th>Game</th><th>Bet</th><th>Book</th>'
             '<th class=r>Price</th><th>Outcome</th><th>Why</th></tr></thead>'
             f'<tbody>{body}</tbody></table></div></div>')
 
