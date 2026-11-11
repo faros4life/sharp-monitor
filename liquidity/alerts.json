@@ -1,6 +1,221 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-11T03:17:49Z",
+   "base_depth": 49616,
+   "best_price": 0.475,
+   "best_price_american": 111,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.475,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 6,
+   "date": "2026-11-10",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Portland",
+     "price": 0.48,
+     "this_side": 1008036
+    },
+    "novig": {
+     "new_other_side": 2427,
+     "new_this_side": 41530,
+     "other_side": 58043,
+     "other_side_all_levels": 64346,
+     "ratio": 1.7,
+     "this_side": 95859,
+     "this_side_all_levels": 96140
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Portland Trail Blazers",
+     "price": 0.4785,
+     "this_side": 49712
+    }
+   },
+   "ex_stats_alert": {
+    "openInterest": 22358307.0,
+    "volume": 33429018.0
+   },
+   "ex_stats_change": {
+    "openInterest": 537840.0,
+    "volume": 1397080.0
+   },
+   "ex_stats_first": {
+    "openInterest": 21820467.0,
+    "volume": 32031938.0
+   },
+   "fade_price": 0.53,
+   "first_seen_utc": "2026-11-11T03:11:40Z",
+   "game": "Oklahoma City Thunder @ Portland Trail Blazers",
+   "game_surge_books": [],
+   "game_x": 1.87,
+   "key": "novig|{\"market_id\": \"01a1c2c0-f06a-7903-bcc3-0384c7ecc1f9\", \"outcome_id\": \"01a1c2c0-f06a-7903-bcc3-039b48f29f39\"}",
+   "lead_min": 42,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 41530,
+   "new_x": 2.19,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 2101645.74,
+      "volume_24h_fp": 1978446.81,
+      "volume_fp": 2198806.33
+     },
+     "game_normal": 1246779,
+     "game_x": 1.04,
+     "normal": 209486,
+     "now": 1293449,
+     "type": "ML",
+     "x": 6.17
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 22358307.0,
+      "volume": 33429018.0
+     },
+     "game_normal": 51439,
+     "game_x": 1.87,
+     "normal": 18950,
+     "now": 96140,
+     "type": "ML",
+     "x": 5.07
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 52037,
+     "game_x": 0.96,
+     "normal": 10731,
+     "now": 49824,
+     "type": "ML",
+     "x": 4.64
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.475,
+   "price_american": 111,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.475,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": 105
+    },
+    "betonlineag": {
+     "point": null,
+     "price": 111
+    },
+    "betopenly": {
+     "point": null,
+     "price": 112
+    },
+    "betrivers": {
+     "point": null,
+     "price": -103
+    },
+    "betus": {
+     "point": null,
+     "price": 110
+    },
+    "bovada": {
+     "point": null,
+     "price": 100
+    },
+    "draftkings": {
+     "point": null,
+     "price": 105
+    },
+    "fanatics": {
+     "point": null,
+     "price": 105
+    },
+    "fanduel": {
+     "point": null,
+     "price": 108
+    },
+    "kalshi": {
+     "point": null,
+     "price": 108
+    },
+    "limitless": {
+     "point": null,
+     "price": 100
+    },
+    "lowvig": {
+     "point": null,
+     "price": 113
+    },
+    "mybookieag": {
+     "point": null,
+     "price": 109
+    },
+    "novig": {
+     "point": null,
+     "price": 111
+    },
+    "polymarket": {
+     "point": null,
+     "price": 108
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": 108
+    },
+    "prophetx": {
+     "point": null,
+     "price": 108
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": 105
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a1c2c0-f06a-7903-bcc3-0384c7ecc1f9",
+    "outcome_id": "01a1c2c0-f06a-7903-bcc3-039b48f29f39"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi",
+    "prophetx"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [
+    "Oklahoma City Thunder -1.5 (-116)"
+   ],
+   "side": "Portland Trail Blazers",
+   "side_label": "POR (0)",
+   "size_x": 5.07,
+   "start_source": "odds",
+   "start_utc": "2026-11-11T04:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "teams": [
+    "Oklahoma City Thunder",
+    "Portland Trail Blazers"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-11T03:11:40Z",
    "base_depth": 147454,
    "best_price": 0.45,
@@ -50,6 +265,11 @@
     "open_interest_fp": 7.0,
     "volume_24h_fp": 16.52,
     "volume_fp": 16.52
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 8844.15,
+    "volume_24h_fp": 10000.74,
+    "volume_fp": 10742.66
    },
    "ex_stats_first": {
     "open_interest_fp": 8605.99,
@@ -188,6 +408,11 @@
     "open_interest_fp": 472.38,
     "volume_24h_fp": 386.46,
     "volume_fp": 475.01
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 10677.9,
+    "volume_24h_fp": 6766.01,
+    "volume_fp": 11451.55
    },
    "ex_stats_first": {
     "open_interest_fp": 10202.46,
@@ -371,9 +596,9 @@
     "volume_fp": 1372.91
    },
    "ex_stats_close": {
-    "open_interest_fp": 80713.89,
+    "open_interest_fp": 83090.84,
     "volume_24h_fp": 79826.42,
-    "volume_fp": 83937.1
+    "volume_fp": 86314.05
    },
    "ex_stats_first": {
     "open_interest_fp": 62848.55,
@@ -554,9 +779,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 3246.1099999999997,
+    "open_interest_fp": 3249.2999999999997,
     "volume_24h_fp": 3132.4500000000003,
-    "volume_fp": 3343.7200000000003
+    "volume_fp": 3346.91
    },
    "ex_stats_first": {
     "open_interest_fp": 3228.49,
@@ -639,8 +864,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.6,
-   "clv_cents": 0.0,
+   "close_price": 0.61,
+   "clv_cents": 1.0,
    "confirmed_after_min": 8,
    "date": "2026-11-11",
    "depth_by_book": {
@@ -665,9 +890,9 @@
     "volume_fp": 115.17
    },
    "ex_stats_close": {
-    "open_interest_fp": 16451.95,
+    "open_interest_fp": 18434.97,
     "volume_24h_fp": 18582.51,
-    "volume_fp": 21939.59
+    "volume_fp": 23922.609999999997
    },
    "ex_stats_first": {
     "open_interest_fp": 15240.18,
@@ -1187,9 +1412,9 @@
     "volume_fp": 229.38
    },
    "ex_stats_close": {
-    "open_interest_fp": 4383.0,
+    "open_interest_fp": 4604.31,
     "volume_24h_fp": 4369.6,
-    "volume_fp": 5180.42
+    "volume_fp": 5401.73
    },
    "ex_stats_first": {
     "open_interest_fp": 3340.28,
@@ -1376,9 +1601,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 17416.440000000002,
+    "open_interest_fp": 17421.31,
     "volume_24h_fp": 13132.560000000001,
-    "volume_fp": 18862.45
+    "volume_fp": 18870.800000000003
    },
    "ex_stats_first": {
     "open_interest_fp": 12866.14,
@@ -3137,9 +3362,9 @@
     "volume_fp": 91.89
    },
    "ex_stats_close": {
-    "open_interest_fp": 69364.69,
+    "open_interest_fp": 69439.79000000001,
     "volume_24h_fp": 68699.31,
-    "volume_fp": 69838.58
+    "volume_fp": 69913.68
    },
    "ex_stats_first": {
     "open_interest_fp": 7335.33,
@@ -3316,9 +3541,9 @@
     "volume_fp": 344.06
    },
    "ex_stats_close": {
-    "open_interest_fp": 120556.7,
+    "open_interest_fp": 120797.76999999999,
     "volume_24h_fp": 111477.13,
-    "volume_fp": 131552.01
+    "volume_fp": 131793.08
    },
    "ex_stats_first": {
     "open_interest_fp": 89973.97,
@@ -4099,6 +4324,7 @@
     "volume_fp": 7361.42
    },
    "fade_price": 0.56,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-10T21:21:44Z",
    "game": "Florida vs Columbus: Total Goals",
    "game_surge_books": [],
@@ -4217,11 +4443,12 @@
     "kalshi_side": "no",
     "market_ticker": "KXNHLTOTAL-26NOV10FLACBJ-6"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-11-11T03:17:49Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -4238,7 +4465,7 @@
     "Columbus"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.25
   },
   {
    "alerted_utc": "2026-11-10T21:31:00Z",
@@ -4296,6 +4523,7 @@
     "volume_fp": 2674.74
    },
    "fade_price": 0.31,
+   "fade_units": 2.08,
    "first_seen_utc": "2026-11-10T21:21:44Z",
    "game": "Florida vs Columbus: Spread",
    "game_surge_books": [],
@@ -4413,13 +4641,14 @@
     "kalshi_side": "no",
     "market_ticker": "KXNHLSPREAD-26NOV10FLACBJ-FLA2"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-11T03:17:49Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Columbus",
@@ -4437,7 +4666,7 @@
     "Columbus"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-10T21:31:00Z",
@@ -4896,9 +5125,9 @@
     "volume_fp": 940.96
    },
    "ex_stats_close": {
-    "open_interest_fp": 158434.43,
+    "open_interest_fp": 168711.45,
     "volume_24h_fp": 163788.82,
-    "volume_fp": 177687.54
+    "volume_fp": 190294.74
    },
    "ex_stats_first": {
     "open_interest_fp": 33546.85,
@@ -6491,9 +6720,9 @@
     "volume_fp": 2109.36
    },
    "ex_stats_close": {
-    "open_interest_fp": 21859.31,
+    "open_interest_fp": 22520.95,
     "volume_24h_fp": 24783.09,
-    "volume_fp": 25236.09
+    "volume_fp": 25897.73
    },
    "ex_stats_first": {
     "open_interest_fp": 8872.3,
@@ -7486,9 +7715,9 @@
     "volume_fp": 191.81
    },
    "ex_stats_close": {
-    "open_interest_fp": 12062.320000000002,
+    "open_interest_fp": 14698.83,
     "volume_24h_fp": 9872.859999999999,
-    "volume_fp": 13252.75
+    "volume_fp": 15891.26
    },
    "ex_stats_first": {
     "open_interest_fp": 4963.54,
@@ -7879,6 +8108,7 @@
     "volume_fp": 24073.83
    },
    "fade_price": 0.53,
+   "fade_units": 0.83,
    "first_seen_utc": "2026-11-10T16:52:07Z",
    "game": "Florida vs Columbus",
    "game_surge_books": [],
@@ -8010,11 +8240,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNHLGAME-26NOV10FLACBJ-CBJ"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-11-11T03:17:49Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Columbus",
@@ -8032,7 +8263,7 @@
     "Columbus"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-10T16:52:07Z",
@@ -9575,6 +9806,7 @@
     "volume_fp": 19739.48
    },
    "fade_price": 0.48,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-10T15:21:07Z",
    "game": "Florida vs Columbus",
    "game_surge_books": [],
@@ -9697,7 +9929,7 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNHLGAME-26NOV10FLACBJ-FLA"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig",
@@ -9705,6 +9937,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-11T03:17:49Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Florida",
@@ -9723,7 +9956,7 @@
     "Columbus"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.89
   },
   {
    "alerted_utc": "2026-11-10T15:01:51Z",
@@ -12117,9 +12350,9 @@
     "volume_fp": 409.5
    },
    "ex_stats_close": {
-    "open_interest_fp": 1970930.16,
+    "open_interest_fp": 2101645.74,
     "volume_24h_fp": 1978446.81,
-    "volume_fp": 2065307.76
+    "volume_fp": 2198806.33
    },
    "ex_stats_first": {
     "open_interest_fp": 249552.7,
@@ -13655,9 +13888,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 12062.320000000002,
+    "open_interest_fp": 14698.83,
     "volume_24h_fp": 9872.859999999999,
-    "volume_fp": 13252.75
+    "volume_fp": 15891.26
    },
    "ex_stats_first": {
     "open_interest_fp": 3317.11,
@@ -14109,6 +14342,7 @@
     "volume_fp": 136.33
    },
    "fade_price": 0.46,
+   "fade_units": 1.09,
    "first_seen_utc": "2026-11-10T04:26:01Z",
    "game": "Florida vs Columbus: Total Goals",
    "game_surge_books": [
@@ -14229,11 +14463,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNHLTOTAL-26NOV10FLACBJ-6"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-11-11T03:17:49Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -14251,7 +14486,7 @@
     "Columbus"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-10T04:06:31Z",
@@ -14532,9 +14767,9 @@
     "volume_fp": 2515.86
    },
    "ex_stats_close": {
-    "open_interest_fp": 1970930.16,
+    "open_interest_fp": 2101645.74,
     "volume_24h_fp": 1978446.81,
-    "volume_fp": 2065307.76
+    "volume_fp": 2198806.33
    },
    "ex_stats_first": {
     "open_interest_fp": 38710.45,
