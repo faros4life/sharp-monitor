@@ -46,7 +46,7 @@ paper test today is CONTINUE. The binding constraint is fills, not CLV.
 
 | # | Name | Latest numbers | Fills | Last read | Status |
 | --- | --- | --- | --- | --- | --- |
-| 1 | LANE 1 | — | live money | — | KEPT UNCHANGED |
+| 1 | LANE 1 | **ACTUAL FILLS — the only realized record in the system.** 41 graded bot fills → **33 verified same-line (80.5% coverage)**. Executed CLV **+0.37%** [−1.46, +2.19], beat the close **24/33 = 72.7%** Wilson [55.8, 84.9] — **excludes a coin flip**. Record 20-13, **+3.70u on 35.77u staked, ROI +10.3%**. Halves: H1 +1.38% / **H2 −0.59%**. Venue: Novig 40, PM-US 1 (bracketed, out of headline). Taker basis (conservative; maker would read better) | **33 real fills** | 11 Nov (`executed_clv`) | **CONTINUE TESTING** — strongest evidence anywhere, but certified n=33 is below the n≥100 precision bar and H2 CLV is negative |
 | 2 | RESTING BIDS | — | live money | — | KEPT, graded separately |
 
 ### MANUAL — Peter bets by hand
@@ -64,11 +64,11 @@ paper test today is CONTINUE. The binding constraint is fills, not CLV.
 | # | Name | Latest numbers | Fills | Last read | Status |
 | --- | --- | --- | --- | --- | --- |
 | 8 | LANE 2 | — | none | — | paper + dry-run; go-live package owed |
-| 9 | LIQ-BOT | — | none | — | approved as a bot, HELD OFF |
-| 10 | POST & WAIT | — | none | — | paper |
-| 11 | SLOW-HR | diagnostic at 64 of 100 | none | — | KEPT |
+| 9 | LIQ-BOT | **registry-9 definition (NBA total, lead ≥240 min): n=151, +23.81u — at the recorded ALERT price, which is NOT executable.** `liq_history_test` measured **3.42% fee drag** between the alert basis and the executable one, which is the whole sign difference. No verified-CLV leg of its own | none | 11 Nov (NBA totals master scorecard) | **INSUFFICIENT EVIDENCE** — approved as a bot, HELD OFF |
+| 10 | POST & WAIT | — (own report not read this session) | none | — | paper |
+| 11 | SLOW-HR | **508 sightings, all with a close. Avg CLV −1.73c, beat close 135/508 = 26.6%.** Judged (not LATE) 465, −1.70c, 129/465. LATE 43, −2.07c. Type P 500, −1.71c; Type L 8, −3.15c. NFL −2.63c (160) · NCAAF −1.35c (301) · NHL −1.12c (47). Deviation on record: graded vs Pinnacle close, consensus close not wired | none | 11 Nov (`slow_hr`) | **CLEAR FAIL on pricing** — negative in every league and both types |
 | 12 | DOG BAND | — | none | — | paper, forward from 7 Nov |
-| 13 | LIQ-SMALL | — | none | — | paper |
+| 13 | LIQ-SMALL | $25–50k-print subset **priced from Lane 3 rows — not an independent population**. Its executable entries are SIMULATED depth checks, not orders. Lane 3 shadow: 27 rows in window, **0 confirmed fills**, 7 simulated | **0 confirmed** | 11 Nov | **INSUFFICIENT EVIDENCE** |
 | 14 | BOARD v2 | — | none | — | parallel grading |
 | 15 | P-NHL-DOGS | — | none | — | checkpoint 50, judged 100 |
 | 16 | P-CFB-OVER / P-NFL-OVER | — | none | — | same bars as 15 |
@@ -142,6 +142,54 @@ Units are 1u flat after fees at the alert price. CIs are day-clustered. **No fil
 | Steam feed, NBA+NFL+NCAAF+NHL | 708 | −0.26u | −0.0% | [−6.4, +5.7]% | none certified; provisional −0.80% on 373 |
 | Steam feed, NCAAB (split: OPEN) | 285 | +10.92u | +3.8% | [−5.0, +12.0]% | none certified; provisional −1.40% on 279 |
 | Liquidity board, all leagues | 2,665 | −29.04u | −1.1% | [−4.4, +2.5]% | **none of any kind** — only the trigger exchange's own close, which `CLV_STANDARD.md` §4 bars as a gate |
+
+## B2b. The NBA-totals family — ONE nested strategy, four reports
+
+Per the NBA totals master scorecard (10 Nov), narrowest last. **Nothing is summed across them,
+because each inner set is the outer set filtered:**
+
+```
+registry 9   NBA total, lead >= 240 min                            (clv_rootcause:351)
+BOARD v3     + money still there, one per game total, cap 5        (board_build:191)
+Lane 3       + survives 15 min, not pulled, price not moved        (executor.board_plays)
+LIQ-SMALL    + new money $25-50k, PRICED FROM Lane 3 rows          (liq_small_fwd)
+```
+
+**v3 PLAY and LIQ-BOT are the same strategy, not two findings.** The four NBA liquidity splits
+sitting at ELIGIBLE are cuts of this one record.
+
+### Board v3 PLAY investigated (11 Nov) — profitability survives dedupe and price, fails on CLV
+
+| Basis | n | Games | Days | Record | Units | ROI | Day-clustered 95% CI |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| As published | 62 | 61 | 19 | 42-20 | +20.43u | +33.0% | [+11.3, +54.9]% |
+| One play per game | 61 | 61 | 19 | — | +19.52u | +32.0% | [+11.0, +55.2]% |
+| **Kalshi only = executable** | **41** | **40** | **15** | **28-13** | **+14.05u** | **+34.3%** | **[+11.3, +58.4]%** |
+| Kalshi, one per game | 40 | 40 | 15 | 27-13 | +13.14u | +32.9% | [+8.7, +57.4]% |
+| Polymarket GLOBAL | 21 | 21 | 13 | 14-7 | +6.38u | +30.4% | [−16.7, +75.1]% |
+
+- **Dedupe:** survives. 62 calls sit on 61 distinct games; v3 already enforces one play per game total.
+- **Executable price:** median −104, **none worse than −130**, 6 plus-money — all in range. But
+  **21 of 62 (34%) were priced on Polymarket GLOBAL, which cannot be bet from the US** and which
+  `clv_std` refuses to price (`NotTradeable`). `board_build.after_fee_dec` maps `"polymarket"` to
+  `PMUS_FEE`, i.e. it prices the global book at the US fee. Independently confirmed by
+  `board_clv_check`: 20 of 58 excluded for the same reason. The executable record is Kalshi only.
+- **Certified CLV (`board_clv_check`, last run):** **30 of 58 verified — maker −0.41%, taker −2.90%,
+  beat close 12/30 = 40.0%, and negative in BOTH halves (H1 −0.73%, H2 −0.09%)** while units are
+  positive in both (+4.75u, +4.73u). Peter's gate: **FAIL**.
+- **Selection-bias controls:** the rule was rewritten twice while outcomes were visible and each
+  rewrite improved the record — v1 PLAY +17.3% (n=6) → v2 +29.0% (n=32) → **v3 +33.0% (n=62)**.
+  v3 was authored 4 Nov with 22 Oct–3 Nov results in view. Forward-only since the 6 Nov rebuild:
+  12 Kalshi plays, +5.62u, +46.8%, CI [+12.3, +97.0] — out-of-sample but n=12 on 4 days.
+- **Multiplicity:** the Kalshi CI stops excluding zero once the family is priced —
+  m=1 [+10.0, +58.3] · m=3 (rule versions) [+4.9, +62.8] · m=5 (ELIGIBLE candidates) [+2.7, +65.5] ·
+  **m=8 [−1.2, +67.6] contains zero** · m=12 [−1.6, +68.7].
+- **Nightly cap, reported not tuned:** play #1 +37.8% (20) · #2 +21.8% (16) · #3 +56.8% (10) ·
+  #4 +54.6% (9) · **#5 −17.0% (7)**. Cutting #5 would be threshold tuning and is not proposed.
+- **Fills: zero.** `EXEC_BOARD_LIVE` is off; the board is paper for live money since 4 Nov.
+
+Also preserved (never overwritten): the externally supplied **98-game NBA totals first-alert study**
+— 91 verified closes, maker CLV **H1 −1.05% / H2 −1.10%, FAILED**, not reproducible in this repo.
 
 ## B3. Paper splits — the five standing at ELIGIBLE at next review
 
@@ -262,3 +310,20 @@ Stated in one place because the rule differs by lane and the differences are del
    is not comparable to any figure under `CLV_STANDARD.md`.
 5. **No script imports `clv_std`.** `ncaab_grade.eff()` is a fifth parallel fee implementation and
    returns the raw price for any venue key it does not recognise.
+
+## OPEN ITEMS — carried forward until answered or closed with Peter's approval
+
+Numbers unavailable here are marked with what is needed.
+
+| # | Item | Status | What is needed |
+| --- | --- | --- | --- |
+| O1 | Registry 23 says "first read early December"; it happened 7 Nov at 61 sightings and STOPped | open | registry edit (Peter/Muse) |
+| O2 | `ncaab_openers.py` calls itself "item 28"; registry says 23 | open | registry or code correction |
+| O3 | Registry 21 has no recorded final verdict; the report due 10 Nov was never sent | open | Peter/Muse to record the verdict |
+| O4 | `ncaab_grade.py` CLV is `close/open − 1` — no entry price, no fees; not comparable to CLV_STANDARD | open | decision on whether to restate or retire the metric |
+| O5 | No script imports `clv_std`; `ncaab_grade.eff()` is a fifth parallel fee copy returning raw prices for unknown venue keys | open | migration is approved-per-change work, not started |
+| O6 | `board_build.after_fee_dec` prices Polymarket GLOBAL at the US fee | open | affects 21 of 62 v3 PLAY rows; global is already out of `LIQ_BOOKS` for generation |
+| O7 | Registry entries with no numbers on this scorecard | open | their own report emails: Resting Bids (2), Peter Feed Plays (3), HR Scanner Flags (4), Street Value (5), Lane 2 (8), POST & WAIT (10), DOG BAND (12), P-NHL-DOGS (15), P-CFB/NFL-OVER (16), HR-A (17), PLIMIT-CUT (19), EX-B (20), plus lenses 24-26 and research 27-32 |
+| O8 | Zero confirmed fills outside Lane 1 | open | structural: nothing else is live |
+| O9 | Certified CLV coverage is low and non-representative (NHL 56% vs NBA 7%) | open | fixture-matching quality is a standing objective |
+| O10 | Lane 1's certified CLV is positive overall (+0.37%) but negative in H2 (−0.59%) on n=33 | open | more verified fills; n≥100 for the precision bar |
