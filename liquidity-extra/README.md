@@ -1,21 +1,21 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 10, 9:16 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 7.
+Updated Tue Nov 10, 9:26 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 5.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 203-116 (-13.12u flat) | rule met: 41-32
+**Record:** 206-115 (-11.07u flat) | rule met: 42-32
 
-**Fade (paper, betting against the print):** 91-168 (+0.76u flat, after fees)
+**Fade (paper, betting against the print):** 90-171 (-3.17u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 10 6:29PM | NCAAB | Evansville vs Middle Tennessee | moneyline: Middle Tennessee | kalshi | $29k | -400 | ✅ novig | ✅ | +1.0c | yes | pending |
-| Nov 10 6:08PM | NCAAB | Winthrop vs Kennesaw St. | moneyline: Kennesaw St. | kalshi | $37k | -525 |  | ✅ | -2.0c | yes | pending |
-| Nov 10 5:47PM | NCAAB | Florida vs Florida St.: Point Total | total: Over 164.5 points | kalshi | $85k | -104 |  | ✅ | +0.0c |  | L |
-| Nov 10 2:52PM | NCAAB | Nicholls St. vs Tulane | moneyline: Tulane | kalshi | $34k | -400 |  | ✅ | +0.0c |  | pending |
-| Nov 10 12:45PM | NCAAB | Michigan St. vs Duke | moneyline: Duke | kalshi | $89k | -300 | ✅ novig |  | +0.0c | yes | pending |
-| Nov 10 11:27AM | NCAAB | Green Bay vs Northern Iowa | moneyline: Northern Iowa | kalshi | $39k | -163 | ✅ novig |  | +0.0c | yes | pending |
+| Nov 10 9:05PM | NCAAB | Kansas vs Kentucky | moneyline: Kansas | kalshi | $54k | -194 | ✅ prophetx |  | +0.0c | yes | pending |
+| Nov 10 6:19PM | NCAAB | Winthrop vs Kennesaw St. | moneyline: Kennesaw St. | kalshi | $29k | -525 |  | ✅ | -2.0c |  | W |
+| Nov 10 3:46PM | NCAAB | Evansville vs Middle Tennessee | moneyline: Middle Tennessee | kalshi | $40k | -400 |  | ✅ | +2.0c | yes | pending |
+| Nov 10 3:46PM | NCAAB | Bradley vs Davidson | moneyline: Davidson | kalshi | $44k | -525 |  |  | -1.0c | yes | W |
+| Nov 10 2:41PM | NCAAB | Nicholls St. vs Tulane | moneyline: Tulane | kalshi | $43k | -400 |  | ✅ | +0.0c | yes | pending |
+| Nov 10 11:37AM | NCAAB | Washington St. vs Duquesne | moneyline: Duquesne | kalshi | $39k | -156 | ✅ novig | ❌ | +1.0c | yes | W |
 | Nov 9 9:10AM | TENNIS | Tomas Machac vs Borna Gojo | moneyline: Borna Gojo | kalshi | $35k | -100 |  |  | +46.0c |  | W |
 | Nov 9 6:40AM | TENNIS | Arthur Rinderknech vs Miomir Kecmanovic | moneyline: Arthur Rinderknech | kalshi | $29k | -194 |  |  | +1.0c | yes | L |
 | Nov 9 6:10AM | TENNIS | Tomas Martin Etcheverry vs Max Dahlin | moneyline: Tomas Martin Etcheverry | kalshi | $55k | -376 | ✅ novig |  | +3.0c | yes | W |
