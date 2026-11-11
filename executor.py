@@ -3161,6 +3161,17 @@ def main():
     if wake_s is not None:
         print(f"Wake: run started {wake_s:.0f}s after the newest sent alert (trigger: {trig})")
     if not new:
+        # Nov 11: this early return skipped the whole report block, so a run with nothing to do
+        # printed NO PERF and NO registry line - and those are exactly the cheap, frequent runs
+        # whose timings are most readable, since nothing else happens in them. The 15:50 run took
+        # 4.5 minutes to conclude "new: 0" and said nothing about where that went. Counts and
+        # seconds only, safe for the public log.
+        print(perf_report())
+        try:
+            import registry as _rg
+            print(_rg.selftest())
+        except Exception as _ex:
+            print(f"registry selftest unavailable: {str(_ex)[:60]}")
         return
     lo = int(now.timestamp() * 1000)
     hi = int((now + timedelta(days=3)).timestamp() * 1000)
