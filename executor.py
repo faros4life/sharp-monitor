@@ -2545,8 +2545,7 @@ def live_order_other(r):
     if res["status"] == "placed" and res.get("sent_to_runner"):
         _sn = lane_note(r, "SENT TO NOVIG (home PC)", res, book, limit_am,
                         extra="Fill-or-kill at this price or better; the fill result follows next run.")
-        tg(_sn)
-        push("Novig order sent", _sn, mirror=False)   # Nov 11: Novig sent/fill notices were Telegram-only; ntfy too
+        push("Novig order sent", _sn, mirror=False)   # Nov 11 (Peter): ntfy only, off Telegram
         out = dict(res, asked_stake=stake, limit=limit_am)
         out["journaled"] = journal_order(r, out, cid=lv.get("client_id"))   # Nov 11: durable row now
         return out
