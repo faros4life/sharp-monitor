@@ -826,18 +826,77 @@ def opposite_key(p):
     return f"{sport}|{game}|side|{other[0]}" if other else None
 
 
-def already_handled(M, p):
+def handled_keys(p):
+    """The pid namespace(s) this play is deduped under - the ONLY place that rule lives.
+
+    source rules/lane2 get their own namespace, so Muse's verdict on the same play is still
+    evaluated (Lane 2 too: it never blocks or is blocked by another lane's record)."""
+    if p.get("source") in ("rules", "lane2"):
+        return {p["play_key"]}
+    return {p["play_key"], derive_key(p) or p["play_key"]}
+
+
+HANDLED_DAYS = 4   # Nov 11 (Peter, "why are you looking back so far"): the dedupe search had NO date
+# bound at all - X-GM-RAW "xpid..." scanned the whole mailbox history, for every pid, every run, which
+# is why one search cost ~30s. Bounded to the same 4-day window bot_orders() already uses for the
+# order registry, so the two stores cover the same period and a play cannot be "forgotten" by one
+# while the other still counts its money. Games here start within hours of the alert, so a pid older
+# than four days cannot belong to a live play.
+
+
+def handled_pids(M, cands, chunk=20, days=HANDLED_DAYS):
+    """{pid: True/False} for every candidate's pids, in ONE Gmail search instead of two per play.
+
+    Nov 11 (Peter, "we need to get rid of checking emails"): already_handled() ran up to two
+    X-GM-RAW searches per candidate. Measured on run 43052291191: 9 candidates, 15:50:46 -> 15:55:16
+    = 4.5 minutes of serial Gmail round-trips to conclude "new: 0" - about 30s per candidate, and
+    the single largest cost in the run, larger than the 79s registry read.
+
+    Gmail's raw search takes OR, and a message matching `a OR b` is a superset of the messages any
+    single-term search would return. So: one OR search per chunk finds the few run emails carrying
+    ANY of the pids, those messages are fetched once, and each pid is then checked against that text
+    in memory. Per-pid answers are identical; the round trips go from 2N to roughly 1.
+
+    FAILS CLOSED exactly as gsearch_strict does. Nov 8's rule still governs: this is the
+    duplicate-bet guard, and a guard that answers "no" when it cannot see is fail-open on money, so
+    every failure raises and aborts the run rather than reporting "never placed before". Run
+    42351892592 (7 Nov) proved the search layer really does drop mid-call (SSLEOFError inside this
+    very function), which is why nothing here is wrapped in a forgiving try."""
+    want = sorted({pid(k) for p in cands for k in handled_keys(p)})
+    if not want:
+        return {}
+    uids, seen = [], set()
+    for i in range(0, len(want), chunk):
+        q = f"newer_than:{days}d (" + " OR ".join(want[i:i + chunk]) + ")"
+        typ, data = M.uid("SEARCH", "X-GM-RAW", '"' + q + '"')
+        if typ != "OK":
+            raise RuntimeError("Gmail search failed")   # same contract as gsearch_strict
+        for u in (data[0].split() if data and data[0] else []):
+            if u not in seen:
+                seen.add(u)
+                uids.append(u)
+    blob = []
+    for u in uids:
+        typ, d = M.uid("FETCH", u, "(RFC822)")   # RFC822: the same surface X-GM-RAW searched
+        if typ != "OK" or not d or not d[0]:
+            raise RuntimeError("Gmail fetch failed")
+        raw = d[0][1] if isinstance(d[0], tuple) and len(d[0]) > 1 else b""
+        blob.append(raw.decode("utf-8", "replace") if isinstance(raw, bytes) else str(raw))
+    text = "\n".join(blob)
+    return {x: (x in text) for x in want}
+
+
+def already_handled(M, p, seen=None):
     """Handled before under its own key OR under the play's game+side key (so a re-sent play never runs twice).
 
-    Nov 8: gsearch_strict, NOT gsearch. This is the duplicate-bet guard, and lenient gsearch returns
-    [] on a failed Gmail search - which this function then reads as "never placed before" and the bot
-    places the bet a second time. A guard that answers "no" when it cannot see is fail-open on money.
-    Strict raises instead, which aborts the run and places nothing. Run 42351892592 (7 Nov) proved the
-    search layer really does drop mid-call: SSLEOFError inside this very function."""
-    if p.get("source") in ("rules", "lane2"):   # separate namespace, so Muse's verdict on the same play is still evaluated (Lane 2 too: it never blocks or is blocked by another lane's record)
-        return bool(gsearch_strict(M, pid(p["play_key"])))
-    keys = {p["play_key"], derive_key(p) or p["play_key"]}
-    return any(gsearch_strict(M, pid(k)) for k in keys)
+    `seen` is the handled_pids() map for this run. Passed, this is a dict lookup and touches no
+    network; omitted, it falls back to the original per-pid strict searches so every existing caller
+    and test keeps working unchanged."""
+    keys = handled_keys(p)
+    if seen is not None:
+        return any(seen.get(pid(k), False) for k in keys)
+    # same date bound as the batched path, so the two agree and neither scans the whole mailbox
+    return any(gsearch_strict(M, f"newer_than:{HANDLED_DAYS}d {pid(k)}") for k in keys)
 
 
 # ---------------------------------------------------------------- Polymarket US (public gateway, no key)
@@ -3019,8 +3078,9 @@ def main():
     # one Gmail search PER CANDIDATE play - with dozens of candidates across five lanes this is the
     # prime suspect for the unmeasured time, so it is counted and the call count is printed
     _cand = plays + rplays + bplays + r1plays + l2plays
-    with perf("already_handled (Gmail, per candidate)", n=len(_cand)):
-        new = [p for p in _cand if not already_handled(M, p)]
+    with perf("handled_pids (one Gmail search)", n=len(_cand)):
+        _seen = handled_pids(M, _cand)
+    new = [p for p in _cand if not already_handled(M, p, _seen)]
     with perf("imap close"):
         imap_close(M)
     feed = load_feed()
