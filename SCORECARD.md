@@ -341,3 +341,43 @@ Numbers unavailable here are marked with what is needed.
 | O8 | Zero confirmed fills outside Lane 1 | open | structural: nothing else is live |
 | O9 | Certified CLV coverage is low and non-representative (NHL 56% vs NBA 7%) | open | fixture-matching quality is a standing objective |
 | O10 | Lane 1's certified CLV is positive overall (+0.37%) but negative in H2 (−0.59%) on n=33 | open | more verified fills; n≥100 for the precision bar |
+
+## O6 AUDIT RESULT (11 Nov) — entry basis recomputed, close leg still blocked
+
+**All 62 v3 PLAY calls reconciled.** Entry priced at the best bettable exchange (Kalshi, Novig,
+ProphetX) quoting the same line at the alert price or better, after each venue's own fee —
+decision-time information only.
+
+| | n |
+| --- | --- |
+| Gettable at the alert price or better, bettable venue | **53** |
+| Not gettable — no bettable quote on that exact line | 4 |
+| Not gettable — quoted but worse after fees | 5 |
+
+**Size of the basis error.** On the 53, the best bettable price beat the trigger-venue price on
+**43 of 53** rows, by a mean **1.47 probability cents** (median 1.50, max 3.81), i.e. a mean
+after-fee decimal improvement of +0.0549. By trigger venue: Kalshi-triggered 1.46c (execution would
+have moved to Novig on 25 of 38), global-triggered 1.50c (Novig on 14 of 15).
+
+**Direction and magnitude of the correction.** `board_clv_check` reported taker CLV **−2.90%** on the
+30 rows it kept. CLV in these units is close fair minus entry cost, so a 1.47c cheaper entry raises
+it by about the same amount — roughly **−1.4%** on those rows — and **15 rows it dropped entirely
+gain a valid entry basis for the first time**, moving the mean by an amount that cannot be signed in
+advance. The maker figure (−0.41%) is on a resting basis and does not take the same adjustment.
+
+**Still blocked, and why.** `net_clv = (Pinnacle no-vig CLOSE × net entry decimal) − 1`. The entry
+leg is now computed for 53 of 62. The **close leg cannot be recomputed read-only**:
+`clv/state.enc` (the verified-close ledger) needs `TRACKER_PASSPHRASE`; the liquidity feed's
+`close_price` / `clv_cents` is the *trigger exchange's own* close, which §4 bars; `prices_by_book` is
+an alert-time snapshot. **Needed:** a `board_clv_check` run whose venue selection prices each call at
+the best bettable exchange instead of excluding it — free `/historical-odds` only, zero paid credits.
+
+Until then the certified-CLV leg for this population is **MISSING, not negative**, and under the
+adopted policy it neither vetoes nor supports.
+
+**Related, already done on 10 Nov:** global Polymarket was removed from `LIQ_BOOKS` so future board
+calls are not generated off an unbettable venue. That fixes generation, not the pricing of the 62
+calls already recorded.
+
+**Five-candidate brief (10 Nov), for the record:** NO PROVEN NEW EDGE — NO BUILD, under Peter's rule
+that both halves must be positive on units and CLV. That verdict stands over the ELIGIBLE queue.
