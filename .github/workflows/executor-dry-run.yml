@@ -81,13 +81,45 @@ jobs:
           PROPHETX_TRADE_SECRET_KEY: ${{ secrets.PROPHETX_TRADE_SECRET_KEY }}
         # Nov 1: a wake that arrives while another executor run is busy can be dropped by GitHub's queue (the 6:00 AM
         # Celtics/Magic alert waited 10 min for the timer). So after each pass, if alerts.json got a newer commit
-        # than this pass started with, pull it and run again (up to 3 extra passes, same job = never two at once).
+        # than this pass started with, pull it and run again (same job = never two at once).
+        #
+        # Nov 11 (Peter "GO"): 3 catch-up passes -> 1. MEASURED: a 9:32 ET sharp alert (Lakers @ Bucks Under 230.5)
+        # waited because the 9:20 run was still doing catch-up passes at 9:38, and the wakes it fired at 9:25, 9:27
+        # and 9:30 were all dropped by the concurrency queue. Passes take 6-15 min, so 1 + 3 passes reaches the
+        # 30-minute ceiling and swallows every wake that lands inside it.
+        #
+        # The catch-up loop and the wake do the SAME JOB, and at 3 passes they fight: the loop exists to catch
+        # alerts that arrive mid-run, but it makes the run long enough to drop the wake that would have caught
+        # them sooner. One catch-up pass halves the worst case while keeping a net for the case the wake dispatch
+        # itself fails - which sharp-monitor.yml already falls back on the 10-minute timer for.
+        #
+        # Concurrency is UNCHANGED: cancel-in-progress stays false, so no run is ever cut off mid-order.
+        #
+        # Nov 11 (Peter "MAKE SURE IF IT FAILS IT RUNS AGAIN"): a failed pass now retries ONCE in the
+        # same job instead of waiting up to 10 minutes for the next timer.
+        #
+        # The 90-SECOND WAIT IS LOAD-BEARING, not politeness. A pass can fail AFTER placing an order,
+        # and the duplicate guards all read Gmail: already_handled() greps the play's pid, LIVEKEYS
+        # comes from the ledger, and the write-ahead intent row is what proves an order may exist.
+        # Gmail needs a moment to index those, so an instant retry could read "never placed" and
+        # place the same bet twice. 90s gives the registry time to be readable; if the intent row is
+        # there the retry is blocked by LIVEKEYS, and if the journal failed the latch refuses outright.
+        #
+        # BOUNDED AT TWO EXECUTIONS either way - a catch-up pass OR a retry, never both - so the job
+        # cannot walk into the 30-minute ceiling and be killed mid-order, which is the failure this
+        # repo already learned the hard way.
         run: |
-          python -u executor.py
-          for i in 1 2 3; do
-            git fetch -q origin main || break
-            if git diff --quiet HEAD origin/main -- alerts.json; then break; fi
-            echo "newer alerts.json landed during the run: pass $((i + 1))"
-            git reset -q --hard origin/main
+          if python -u executor.py; then
+            for i in 1; do
+              git fetch -q origin main || break
+              if git diff --quiet HEAD origin/main -- alerts.json; then break; fi
+              echo "newer alerts.json landed during the run: pass $((i + 1))"
+              git reset -q --hard origin/main
+              python -u executor.py
+            done
+          else
+            echo "pass 1 FAILED - waiting 90s for the Gmail registry to be readable, then retrying once"
+            sleep 90
+            git fetch -q origin main && git reset -q --hard origin/main || true
             python -u executor.py
-          done
+          fi
