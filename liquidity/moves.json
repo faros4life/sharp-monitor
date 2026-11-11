@@ -1,6 +1,51 @@
 {
  "moves": [
   {
+   "alerted_utc": "2026-11-11T16:21:57Z",
+   "bar": true,
+   "best_price": 0.3352,
+   "best_price_book": "kalshi",
+   "book": "kalshi",
+   "close_price": 0.32,
+   "clv_cents": 0.0,
+   "date": "2026-11-12",
+   "dir": "RAISE",
+   "ex_stats": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "first_play": false,
+   "game": "New York I vs Los Angeles: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNHLSPREAD-26NOV12NYILA-LA2\"}",
+   "lead_min": 2078,
+   "league": "NHL",
+   "league_x": 0.19,
+   "line": -1.5,
+   "market": "spread",
+   "normal_4h": 162,
+   "now": 1158,
+   "other_side_now": 4583,
+   "paper_only": true,
+   "price": 0.32,
+   "price_american": 212,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNHLSPREAD-26NOV12NYILA-LA2"
+   },
+   "result": null,
+   "side": "Los Angeles",
+   "side_label": "Los Angeles wins by over 1.5 goals",
+   "side_raw": 1,
+   "start_utc": "2026-11-13T03:00:00Z",
+   "teams": [
+    "New York I",
+    "Los Angeles"
+   ],
+   "units_flat": null,
+   "x": 7.15
+  },
+  {
    "alerted_utc": "2026-11-11T16:17:09Z",
    "bar": false,
    "best_price": 0.54,
@@ -49,8 +94,8 @@
    "best_price": 0.5,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.5,
-   "clv_cents": 0.0,
+   "close_price": 0.5025,
+   "clv_cents": 0.2,
    "date": "2026-11-11",
    "dir": "DROP",
    "ex_stats": null,
@@ -92,13 +137,17 @@
    "best_price": 0.51,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.51,
-   "clv_cents": 0.0,
+   "close_price": 0.505,
+   "clv_cents": -0.5,
    "date": "2026-11-11",
    "dir": "DROP",
    "ex_stats": {
     "openInterest": 830746.0,
     "volume": 1333156.0
+   },
+   "ex_stats_close": {
+    "openInterest": 830746.0,
+    "volume": 1355704.0
    },
    "first_play": false,
    "game": "Brooklyn Nets @ New Orleans Pelicans",
@@ -136,13 +185,17 @@
    "best_price": 0.5,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.5,
-   "clv_cents": 0.0,
+   "close_price": 0.505,
+   "clv_cents": 0.5,
    "date": "2026-11-11",
    "dir": "DROP",
    "ex_stats": {
     "openInterest": 830746.0,
     "volume": 1333156.0
+   },
+   "ex_stats_close": {
+    "openInterest": 830746.0,
+    "volume": 1355704.0
    },
    "first_play": false,
    "game": "Brooklyn Nets @ New Orleans Pelicans",
@@ -189,6 +242,11 @@
     "volume_24h_fp": 2596.72,
     "volume_fp": 2602.72
    },
+   "ex_stats_close": {
+    "open_interest_fp": 2482.72,
+    "volume_24h_fp": 2602.72,
+    "volume_fp": 2611.72
+   },
    "first_play": false,
    "game": "Brooklyn vs New Orleans: Total Points",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBATOTAL-26NOV11BKNNOP-229\"}",
@@ -233,6 +291,11 @@
     "open_interest_fp": 2473.72,
     "volume_24h_fp": 2596.72,
     "volume_fp": 2602.72
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 2482.72,
+    "volume_24h_fp": 2602.72,
+    "volume_fp": 2611.72
    },
    "first_play": false,
    "game": "Brooklyn vs New Orleans: Total Points",
@@ -279,6 +342,11 @@
     "volume_24h_fp": 332.38,
     "volume_fp": 721.72
    },
+   "ex_stats_close": {
+    "open_interest_fp": 619.4499999999999,
+    "volume_24h_fp": 332.38,
+    "volume_fp": 723.45
+   },
    "first_play": true,
    "game": "St. Louis vs Utah",
    "key": "kalshi|KXNHLGAME-26NOV12STLUTA|ml|0",
@@ -324,6 +392,11 @@
     "volume_24h_fp": 2329.73,
     "volume_fp": 4644.47
    },
+   "ex_stats_close": {
+    "open_interest_fp": 4242.54,
+    "volume_24h_fp": 2329.73,
+    "volume_fp": 4645.99
+   },
    "first_play": false,
    "game": "Winnipeg vs Dallas",
    "key": "kalshi|KXNHLGAME-26NOV12WPGDAL|ml|1",
@@ -365,6 +438,11 @@
    "date": "2026-11-12",
    "dir": "RAISE",
    "ex_stats": {
+    "open_interest_fp": 1228.28,
+    "volume_24h_fp": 873.56,
+    "volume_fp": 1505.26
+   },
+   "ex_stats_close": {
     "open_interest_fp": 1228.28,
     "volume_24h_fp": 873.56,
     "volume_fp": 1505.26
@@ -414,6 +492,11 @@
     "volume_24h_fp": 361.66999999999996,
     "volume_fp": 793.88
    },
+   "ex_stats_close": {
+    "open_interest_fp": 795.5,
+    "volume_24h_fp": 361.66999999999996,
+    "volume_fp": 795.5
+   },
    "first_play": false,
    "game": "Washington vs New Jersey",
    "key": "kalshi|KXNHLGAME-26NOV12WSHNJ|ml|0",
@@ -455,6 +538,11 @@
    "date": "2026-11-12",
    "dir": "RAISE",
    "ex_stats": {
+    "open_interest_fp": 6441.09,
+    "volume_24h_fp": 6706.58,
+    "volume_fp": 11440.36
+   },
+   "ex_stats_close": {
     "open_interest_fp": 6441.09,
     "volume_24h_fp": 6706.58,
     "volume_fp": 11440.36
@@ -504,6 +592,11 @@
     "volume_24h_fp": 3956.1800000000003,
     "volume_fp": 6249.219999999999
    },
+   "ex_stats_close": {
+    "open_interest_fp": 3737.91,
+    "volume_24h_fp": 3975.5600000000004,
+    "volume_fp": 6268.599999999999
+   },
    "first_play": true,
    "game": "Colorado vs Ottawa",
    "key": "kalshi|KXNHLGAME-26NOV12COLOTT|ml|1",
@@ -549,6 +642,11 @@
     "volume_24h_fp": 3579.5299999999997,
     "volume_fp": 6836.700000000001
    },
+   "ex_stats_close": {
+    "open_interest_fp": 5862.85,
+    "volume_24h_fp": 3602.01,
+    "volume_fp": 6836.700000000001
+   },
    "first_play": false,
    "game": "Carolina vs Seattle",
    "key": "kalshi|KXNHLGAME-26NOV12CARSEA|ml|1",
@@ -585,8 +683,8 @@
    "best_price": 0.395,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.4,
-   "clv_cents": 0.0,
+   "close_price": 0.4065,
+   "clv_cents": 0.6,
    "date": "2026-11-11",
    "dir": "DROP",
    "ex_stats": null,
@@ -628,13 +726,17 @@
    "best_price": 0.61,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.61,
-   "clv_cents": 0.0,
+   "close_price": 0.6,
+   "clv_cents": -1.0,
    "date": "2026-11-11",
    "dir": "DROP",
    "ex_stats": {
     "openInterest": 13839668.0,
     "volume": 18344526.0
+   },
+   "ex_stats_close": {
+    "openInterest": 13782715.0,
+    "volume": 19264817.0
    },
    "first_play": false,
    "game": "Brooklyn Nets @ New Orleans Pelicans",
@@ -887,8 +989,8 @@
    "best_price": 0.49,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.49,
-   "clv_cents": 0.0,
+   "close_price": 0.485,
+   "clv_cents": -0.5,
    "date": "2026-11-11",
    "dir": "DROP",
    "ex_stats": {
@@ -897,7 +999,7 @@
    },
    "ex_stats_close": {
     "openInterest": 799453.0,
-    "volume": 1239740.0
+    "volume": 1241780.0
    },
    "first_play": false,
    "game": "Orlando Magic @ Utah Jazz",
@@ -1146,7 +1248,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 5862.85,
-    "volume_24h_fp": 3579.5299999999997,
+    "volume_24h_fp": 3602.01,
     "volume_fp": 6836.700000000001
    },
    "first_play": true,
@@ -1320,8 +1422,8 @@
    "best_price": 0.5399,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5074,
-   "clv_cents": -2.8,
+   "close_price": 0.4975,
+   "clv_cents": -3.7,
    "date": "2026-11-11",
    "dir": "DROP",
    "ex_stats": null,
@@ -1366,8 +1468,8 @@
    "best_price": 0.5076,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5305,
-   "clv_cents": 2.8,
+   "close_price": 0.5261,
+   "clv_cents": 2.4,
    "date": "2026-11-11",
    "dir": "DROP",
    "ex_stats": null,
@@ -1529,7 +1631,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 603.45,
-    "volume_24h_fp": 587.37,
+    "volume_24h_fp": 617.63,
     "volume_fp": 617.63
    },
    "first_play": false,
@@ -1571,8 +1673,8 @@
    "best_price": 0.635,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.6063,
-   "clv_cents": -3.1,
+   "close_price": 0.6,
+   "clv_cents": -3.8,
    "date": "2026-11-11",
    "dir": "DROP",
    "ex_stats": null,
@@ -2196,9 +2298,9 @@
     "volume_fp": 2869.69
    },
    "ex_stats_close": {
-    "open_interest_fp": 2726.62,
-    "volume_24h_fp": 798.4399999999999,
-    "volume_fp": 2929.58
+    "open_interest_fp": 2728.38,
+    "volume_24h_fp": 877.7099999999999,
+    "volume_fp": 2948.96
    },
    "first_play": true,
    "game": "Montreal vs Boston",
@@ -2249,9 +2351,9 @@
     "volume_fp": 2869.69
    },
    "ex_stats_close": {
-    "open_interest_fp": 2726.62,
-    "volume_24h_fp": 798.4399999999999,
-    "volume_fp": 2929.58
+    "open_interest_fp": 2728.38,
+    "volume_24h_fp": 877.7099999999999,
+    "volume_fp": 2948.96
    },
    "first_play": true,
    "game": "Montreal vs Boston",
@@ -2395,7 +2497,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 77.12,
-    "volume_24h_fp": 47.15,
+    "volume_24h_fp": 77.12,
     "volume_fp": 77.12
    },
    "first_play": false,
@@ -2543,8 +2645,8 @@
    "best_price": 0.4168,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.39,
-   "clv_cents": -1.0,
+   "close_price": 0.38,
+   "clv_cents": -2.0,
    "date": "2026-11-12",
    "dir": "RAISE",
    "ex_stats": {
@@ -2554,7 +2656,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 95.12,
-    "volume_24h_fp": 57.53,
+    "volume_24h_fp": 95.12,
     "volume_fp": 95.12
    },
    "first_play": false,
@@ -2656,8 +2758,8 @@
     "volume": 3000239.0
    },
    "ex_stats_close": {
-    "openInterest": 2945519.0,
-    "volume": 3016758.0
+    "openInterest": 2948549.0,
+    "volume": 3019788.0
    },
    "first_play": true,
    "game": "Buffalo @ Ball State",
@@ -2761,9 +2863,9 @@
     "volume_fp": 2294.3999999999996
    },
    "ex_stats_close": {
-    "open_interest_fp": 2260.12,
+    "open_interest_fp": 2263.7099999999996,
     "volume_24h_fp": 1749.37,
-    "volume_fp": 2294.3999999999996
+    "volume_fp": 2297.99
    },
    "first_play": true,
    "game": "Minnesota vs Toronto",
@@ -2942,8 +3044,8 @@
    "best_price": 0.5196,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5413,
-   "clv_cents": 2.7,
+   "close_price": 0.5434,
+   "clv_cents": 2.9,
    "date": "2026-11-11",
    "dir": "RAISE",
    "ex_stats": null,
@@ -3170,8 +3272,8 @@
    "best_price": 0.495,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.505,
-   "clv_cents": 1.0,
+   "close_price": 0.5,
+   "clv_cents": 0.5,
    "date": "2026-11-12",
    "dir": "RAISE",
    "ex_stats": {
@@ -3180,7 +3282,7 @@
    },
    "ex_stats_close": {
     "openInterest": 1556556.0,
-    "volume": 2026123.0
+    "volume": 2030410.0
    },
    "first_play": true,
    "game": "Washington Commanders @ New York Giants",
@@ -3231,7 +3333,7 @@
    },
    "ex_stats_close": {
     "openInterest": 1556556.0,
-    "volume": 2026123.0
+    "volume": 2030410.0
    },
    "first_play": true,
    "game": "Washington Commanders @ New York Giants",
@@ -3282,9 +3384,9 @@
     "volume_fp": 400.79
    },
    "ex_stats_close": {
-    "open_interest_fp": 391.78000000000003,
+    "open_interest_fp": 393.37,
     "volume_24h_fp": 356.41,
-    "volume_fp": 400.79
+    "volume_fp": 402.38
    },
    "first_play": true,
    "game": "Detroit vs Florida",
@@ -3334,8 +3436,8 @@
     "volume": 682044.0
    },
    "ex_stats_close": {
-    "openInterest": 1627808.0,
-    "volume": 1729914.0
+    "openInterest": 1628956.0,
+    "volume": 1731062.0
    },
    "first_play": false,
    "game": "Pittsburgh Penguins @ San Jose Sharks",
@@ -3805,9 +3907,9 @@
     "volume_fp": 721.72
    },
    "ex_stats_close": {
-    "open_interest_fp": 617.72,
+    "open_interest_fp": 619.4499999999999,
     "volume_24h_fp": 332.38,
-    "volume_fp": 721.72
+    "volume_fp": 723.45
    },
    "first_play": true,
    "game": "St. Louis vs Utah",
@@ -3858,9 +3960,9 @@
     "volume_fp": 392.82
    },
    "ex_stats_close": {
-    "open_interest_fp": 391.78000000000003,
+    "open_interest_fp": 393.37,
     "volume_24h_fp": 356.41,
-    "volume_fp": 400.79
+    "volume_fp": 402.38
    },
    "first_play": false,
    "game": "Detroit vs Florida",
@@ -3911,9 +4013,9 @@
     "volume_fp": 793.88
    },
    "ex_stats_close": {
-    "open_interest_fp": 793.88,
+    "open_interest_fp": 795.5,
     "volume_24h_fp": 361.66999999999996,
-    "volume_fp": 793.88
+    "volume_fp": 795.5
    },
    "first_play": true,
    "game": "Washington vs New Jersey",
@@ -3964,9 +4066,9 @@
     "volume_fp": 2268.3599999999997
    },
    "ex_stats_close": {
-    "open_interest_fp": 2260.12,
+    "open_interest_fp": 2263.7099999999996,
     "volume_24h_fp": 1749.37,
-    "volume_fp": 2294.3999999999996
+    "volume_fp": 2297.99
    },
    "first_play": true,
    "game": "Minnesota vs Toronto",
@@ -4017,9 +4119,9 @@
     "volume_fp": 6160.7699999999995
    },
    "ex_stats_close": {
-    "open_interest_fp": 3718.5299999999997,
-    "volume_24h_fp": 3956.1800000000003,
-    "volume_fp": 6249.219999999999
+    "open_interest_fp": 3737.91,
+    "volume_24h_fp": 3975.5600000000004,
+    "volume_fp": 6268.599999999999
    },
    "first_play": true,
    "game": "Colorado vs Ottawa",
@@ -4115,8 +4217,8 @@
     "volume": 668512.0
    },
    "ex_stats_close": {
-    "openInterest": 1627808.0,
-    "volume": 1729914.0
+    "openInterest": 1628956.0,
+    "volume": 1731062.0
    },
    "first_play": true,
    "game": "Pittsburgh Penguins @ San Jose Sharks",
@@ -4220,9 +4322,9 @@
     "volume_fp": 4637.93
    },
    "ex_stats_close": {
-    "open_interest_fp": 4241.0199999999995,
+    "open_interest_fp": 4242.54,
     "volume_24h_fp": 2329.73,
-    "volume_fp": 4644.47
+    "volume_fp": 4645.99
    },
    "first_play": false,
    "game": "Winnipeg vs Dallas",
@@ -4516,8 +4618,8 @@
    "best_price": 0.5148,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5122,
-   "clv_cents": 0.2,
+   "close_price": 0.5169,
+   "clv_cents": 0.7,
    "date": "2026-11-11",
    "dir": "RAISE",
    "ex_stats": null,
@@ -4571,8 +4673,8 @@
     "volume": 1480722.0
    },
    "ex_stats_close": {
-    "openInterest": 1237529.0,
-    "volume": 1858027.0
+    "openInterest": 1256974.0,
+    "volume": 1877472.0
    },
    "first_play": true,
    "game": "Cleveland Cavaliers @ New York Knicks",
@@ -4622,8 +4724,8 @@
     "volume": 423902.0
    },
    "ex_stats_close": {
-    "openInterest": 395729.0,
-    "volume": 546384.0
+    "openInterest": 397813.0,
+    "volume": 548468.0
    },
    "first_play": false,
    "game": "Boston Celtics @ Toronto Raptors",
@@ -4674,9 +4776,9 @@
     "volume_fp": 5235.52
    },
    "ex_stats_close": {
-    "open_interest_fp": 5822.74,
-    "volume_24h_fp": 7356.96,
-    "volume_fp": 7366.96
+    "open_interest_fp": 5921.52,
+    "volume_24h_fp": 7385.96,
+    "volume_fp": 7465.74
    },
    "first_play": false,
    "game": "Oklahoma City vs Portland: Spread",
@@ -4962,7 +5064,7 @@
    },
    "ex_stats_close": {
     "openInterest": 2928365.0,
-    "volume": 3098756.0
+    "volume": 3100796.0
    },
    "first_play": false,
    "game": "Oklahoma City Thunder @ Portland Trail Blazers",
@@ -5118,7 +5220,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 95.12,
-    "volume_24h_fp": 57.53,
+    "volume_24h_fp": 95.12,
     "volume_fp": 95.12
    },
    "first_play": true,
@@ -5268,8 +5370,8 @@
     "volume": 1452948.0
    },
    "ex_stats_close": {
-    "openInterest": 1954031.0,
-    "volume": 2225469.0
+    "openInterest": 1963894.0,
+    "volume": 2235332.0
    },
    "first_play": false,
    "game": "Tampa Bay Lightning @ Buffalo Sabres",
@@ -5356,8 +5458,8 @@
    "best_price": 0.5265,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5192,
-   "clv_cents": -0.2,
+   "close_price": 0.5169,
+   "clv_cents": -0.5,
    "date": "2026-11-11",
    "dir": "RAISE",
    "ex_stats": null,
@@ -5448,8 +5550,8 @@
    "best_price": 0.505,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.5074,
-   "clv_cents": 0.2,
+   "close_price": 0.5,
+   "clv_cents": -0.5,
    "date": "2026-11-11",
    "dir": "RAISE",
    "ex_stats": null,
@@ -5494,8 +5596,8 @@
    "best_price": 0.505,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.5074,
-   "clv_cents": -0.2,
+   "close_price": 0.5098,
+   "clv_cents": 0.0,
    "date": "2026-11-11",
    "dir": "RAISE",
    "ex_stats": null,
@@ -5550,7 +5652,7 @@
    },
    "ex_stats_close": {
     "openInterest": 1481557.0,
-    "volume": 2251688.0
+    "volume": 2253688.0
    },
    "first_play": false,
    "game": "Golden State Warriors @ Houston Rockets",
@@ -5886,8 +5988,8 @@
    "best_price": 0.5355,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5327,
-   "clv_cents": 0.2,
+   "close_price": 0.5215,
+   "clv_cents": -0.9,
    "date": "2026-11-11",
    "dir": "RAISE",
    "ex_stats": null,
@@ -5932,8 +6034,8 @@
    "best_price": 0.5076,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.505,
-   "clv_cents": 0.3,
+   "close_price": 0.4975,
+   "clv_cents": -0.5,
    "date": "2026-11-11",
    "dir": "RAISE",
    "ex_stats": null,
@@ -5978,8 +6080,8 @@
    "best_price": 0.5051,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5413,
-   "clv_cents": 4.1,
+   "close_price": 0.5392,
+   "clv_cents": 3.9,
    "date": "2026-11-11",
    "dir": "RAISE",
    "ex_stats": null,
@@ -6024,8 +6126,8 @@
    "best_price": 0.5377,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.495,
-   "clv_cents": -3.8,
+   "close_price": 0.4975,
+   "clv_cents": -3.5,
    "date": "2026-11-11",
    "dir": "RAISE",
    "ex_stats": null,
@@ -6079,8 +6181,8 @@
     "volume": 894976.0
    },
    "ex_stats_close": {
-    "openInterest": 1428892.0,
-    "volume": 1515833.0
+    "openInterest": 1436777.0,
+    "volume": 1523718.0
    },
    "first_play": false,
    "game": "Denver Nuggets @ Memphis Grizzlies",
@@ -6322,8 +6424,8 @@
    "best_price": 0.495,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.525,
-   "clv_cents": 3.0,
+   "close_price": 0.52,
+   "clv_cents": 2.5,
    "date": "2026-11-11",
    "dir": "RAISE",
    "ex_stats": {
@@ -6332,7 +6434,7 @@
    },
    "ex_stats_close": {
     "openInterest": 2928365.0,
-    "volume": 3098756.0
+    "volume": 3100796.0
    },
    "first_play": false,
    "game": "Oklahoma City Thunder @ Portland Trail Blazers",
@@ -6484,8 +6586,8 @@
     "volume": 1274512.0
    },
    "ex_stats_close": {
-    "openInterest": 2070410.0,
-    "volume": 2501693.0
+    "openInterest": 2071115.0,
+    "volume": 2504983.0
    },
    "first_play": false,
    "game": "New York Rangers @ Calgary Flames",
@@ -6629,7 +6731,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 17230.15,
-    "volume_24h_fp": 17241.03,
+    "volume_24h_fp": 17288.46,
     "volume_fp": 17288.46
    },
    "first_play": false,
@@ -6681,9 +6783,9 @@
     "volume_fp": 61107.91
    },
    "ex_stats_close": {
-    "open_interest_fp": 82540.42,
-    "volume_24h_fp": 84473.72,
-    "volume_fp": 84512.72
+    "open_interest_fp": 82558.68,
+    "volume_24h_fp": 84530.98,
+    "volume_fp": 84530.98
    },
    "first_play": false,
    "game": "San Antonio vs Chicago: Spread",
@@ -7015,8 +7117,8 @@
    "best_price": 0.5051,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.4785,
-   "clv_cents": -2.2,
+   "close_price": 0.4739,
+   "clv_cents": -2.6,
    "date": "2026-11-11",
    "dir": "RAISE",
    "ex_stats": null,
@@ -7061,8 +7163,8 @@
    "best_price": 0.515,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.505,
-   "clv_cents": -1.0,
+   "close_price": 0.5,
+   "clv_cents": -1.5,
    "date": "2026-11-11",
    "dir": "RAISE",
    "ex_stats": {
@@ -7633,8 +7735,8 @@
    "best_price": 0.5333,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5192,
-   "clv_cents": -0.9,
+   "close_price": 0.5215,
+   "clv_cents": -0.7,
    "date": "2026-11-11",
    "dir": "RAISE",
    "ex_stats": null,
@@ -7725,8 +7827,8 @@
    "best_price": 0.515,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.525,
-   "clv_cents": 1.0,
+   "close_price": 0.52,
+   "clv_cents": 0.5,
    "date": "2026-11-11",
    "dir": "DROP",
    "ex_stats": {
@@ -7735,7 +7837,7 @@
    },
    "ex_stats_close": {
     "openInterest": 2928365.0,
-    "volume": 3098756.0
+    "volume": 3100796.0
    },
    "first_play": false,
    "game": "Oklahoma City Thunder @ Portland Trail Blazers",
@@ -8164,8 +8266,8 @@
    "best_price": 0.43,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.44,
-   "clv_cents": 1.0,
+   "close_price": 0.445,
+   "clv_cents": 1.5,
    "date": "2026-11-11",
    "dir": "RAISE",
    "ex_stats": {
@@ -8173,8 +8275,8 @@
     "volume": 718217.0
    },
    "ex_stats_close": {
-    "openInterest": 3515732.0,
-    "volume": 3972338.0
+    "openInterest": 3566410.0,
+    "volume": 4036125.0
    },
    "first_play": false,
    "game": "Nashville Predators @ Anaheim Ducks",
@@ -8307,8 +8409,8 @@
    "best_price": 0.5148,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.4762,
-   "clv_cents": -3.4,
+   "close_price": 0.4785,
+   "clv_cents": -3.1,
    "date": "2026-11-11",
    "dir": "RAISE",
    "ex_stats": null,
@@ -8353,8 +8455,8 @@
    "best_price": 0.5051,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5327,
-   "clv_cents": 3.3,
+   "close_price": 0.5305,
+   "clv_cents": 3.0,
    "date": "2026-11-11",
    "dir": "RAISE",
    "ex_stats": null,
@@ -8399,8 +8501,8 @@
    "best_price": 0.5333,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5614,
-   "clv_cents": 3.3,
+   "close_price": 0.5595,
+   "clv_cents": 3.1,
    "date": "2026-11-11",
    "dir": "RAISE",
    "ex_stats": null,
@@ -8445,8 +8547,8 @@
    "best_price": 0.5051,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.4762,
-   "clv_cents": -2.4,
+   "close_price": 0.4785,
+   "clv_cents": -2.2,
    "date": "2026-11-11",
    "dir": "RAISE",
    "ex_stats": null,
@@ -8491,8 +8593,8 @@
    "best_price": 0.4114,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.3906,
-   "clv_cents": -1.6,
+   "close_price": 0.3876,
+   "clv_cents": -1.9,
    "date": "2026-11-11",
    "dir": "DROP",
    "ex_stats": null,
@@ -9308,8 +9410,8 @@
    "best_price": 0.51,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5074,
-   "clv_cents": 0.2,
+   "close_price": 0.4975,
+   "clv_cents": -0.8,
    "date": "2026-11-11",
    "dir": "RAISE",
    "ex_stats": null,
@@ -9354,8 +9456,8 @@
    "best_price": 0.5219,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5305,
-   "clv_cents": 1.4,
+   "close_price": 0.5261,
+   "clv_cents": 0.9,
    "date": "2026-11-11",
    "dir": "RAISE",
    "ex_stats": null,
@@ -9400,8 +9502,8 @@
    "best_price": 0.5355,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5633,
-   "clv_cents": 3.3,
+   "close_price": 0.5614,
+   "clv_cents": 3.1,
    "date": "2026-11-11",
    "dir": "DROP",
    "ex_stats": null,
@@ -9446,8 +9548,8 @@
    "best_price": 0.5051,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.4762,
-   "clv_cents": -2.4,
+   "close_price": 0.4785,
+   "clv_cents": -2.2,
    "date": "2026-11-11",
    "dir": "DROP",
    "ex_stats": null,
@@ -9492,8 +9594,8 @@
    "best_price": 0.505,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.5327,
-   "clv_cents": 2.8,
+   "close_price": 0.5238,
+   "clv_cents": 1.9,
    "date": "2026-11-11",
    "dir": "RAISE",
    "ex_stats": null,
@@ -9584,8 +9686,8 @@
    "best_price": 0.495,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.51,
-   "clv_cents": 1.5,
+   "close_price": 0.505,
+   "clv_cents": 1.0,
    "date": "2026-11-11",
    "dir": "RAISE",
    "ex_stats": {
@@ -9594,7 +9696,7 @@
    },
    "ex_stats_close": {
     "openInterest": 830746.0,
-    "volume": 1333156.0
+    "volume": 1355704.0
    },
    "first_play": false,
    "game": "Brooklyn Nets @ New Orleans Pelicans",
@@ -9962,8 +10064,8 @@
    "best_price": 0.5265,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5122,
-   "clv_cents": -0.9,
+   "close_price": 0.5169,
+   "clv_cents": -0.5,
    "date": "2026-11-11",
    "dir": "DROP",
    "ex_stats": null,
@@ -10110,8 +10212,8 @@
    "best_price": 0.542,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5833,
-   "clv_cents": 4.6,
+   "close_price": 0.5798,
+   "clv_cents": 4.3,
    "date": "2026-11-11",
    "dir": "RAISE",
    "ex_stats": null,
@@ -10156,8 +10258,8 @@
    "best_price": 0.5076,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.4545,
-   "clv_cents": -4.8,
+   "close_price": 0.4566,
+   "clv_cents": -4.6,
    "date": "2026-11-11",
    "dir": "RAISE",
    "ex_stats": null,
@@ -10580,8 +10682,8 @@
    "best_price": 0.515,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.569,
-   "clv_cents": 4.7,
+   "close_price": 0.5633,
+   "clv_cents": 4.2,
    "date": "2026-11-11",
    "dir": "RAISE",
    "ex_stats": null,
@@ -11004,8 +11106,8 @@
    "best_price": 0.58,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.565,
-   "clv_cents": -1.5,
+   "close_price": 0.56,
+   "clv_cents": -2.0,
    "date": "2026-11-11",
    "dir": "RAISE",
    "ex_stats": {
@@ -11013,8 +11115,8 @@
     "volume": 533292.0
    },
    "ex_stats_close": {
-    "openInterest": 3515732.0,
-    "volume": 3972338.0
+    "openInterest": 3566410.0,
+    "volume": 4036125.0
    },
    "first_play": false,
    "game": "Nashville Predators @ Anaheim Ducks",
@@ -11397,8 +11499,8 @@
    "best_price": 0.5026,
    "best_price_book": "prophetx",
    "book": "novig",
-   "close_price": 0.505,
-   "clv_cents": 0.0,
+   "close_price": 0.51,
+   "clv_cents": 0.5,
    "date": "2026-11-11",
    "dir": "RAISE",
    "ex_stats": {
@@ -11639,8 +11741,8 @@
    "best_price": 0.5051,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.4545,
-   "clv_cents": -4.5,
+   "close_price": 0.4566,
+   "clv_cents": -4.3,
    "date": "2026-11-11",
    "dir": "RAISE",
    "ex_stats": null,
@@ -11685,8 +11787,8 @@
    "best_price": 0.4081,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.3906,
-   "clv_cents": -1.3,
+   "close_price": 0.3876,
+   "clv_cents": -1.6,
    "date": "2026-11-11",
    "dir": "RAISE",
    "ex_stats": null,
@@ -11742,7 +11844,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 77.12,
-    "volume_24h_fp": 47.15,
+    "volume_24h_fp": 77.12,
     "volume_fp": 77.12
    },
    "first_play": true,
@@ -11795,7 +11897,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 95.12,
-    "volume_24h_fp": 57.53,
+    "volume_24h_fp": 95.12,
     "volume_fp": 95.12
    },
    "first_play": true,
@@ -11890,8 +11992,8 @@
    "best_price": 0.5076,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5633,
-   "clv_cents": 6.1,
+   "close_price": 0.5614,
+   "clv_cents": 5.9,
    "date": "2026-11-11",
    "dir": "RAISE",
    "ex_stats": null,
@@ -11936,8 +12038,8 @@
    "best_price": 0.5265,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.4762,
-   "clv_cents": -4.5,
+   "close_price": 0.4785,
+   "clv_cents": -4.3,
    "date": "2026-11-11",
    "dir": "RAISE",
    "ex_stats": null,
@@ -12074,8 +12176,8 @@
    "best_price": 0.51,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.5652,
-   "clv_cents": 5.1,
+   "close_price": 0.569,
+   "clv_cents": 5.4,
    "date": "2026-11-11",
    "dir": "RAISE",
    "ex_stats": null,
@@ -12365,8 +12467,8 @@
    "best_price": 0.5148,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.4902,
-   "clv_cents": -2.0,
+   "close_price": 0.4926,
+   "clv_cents": -1.7,
    "date": "2026-11-11",
    "dir": "RAISE",
    "ex_stats": null,
@@ -12692,8 +12794,8 @@
    "best_price": 0.4767,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.4902,
-   "clv_cents": 1.9,
+   "close_price": 0.4926,
+   "clv_cents": 2.1,
    "date": "2026-11-11",
    "dir": "RAISE",
    "ex_stats": null,
@@ -12749,8 +12851,8 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 25679.86,
-    "volume_24h_fp": 26409.24,
-    "volume_fp": 27283.74
+    "volume_24h_fp": 26860.98,
+    "volume_fp": 27403.87
    },
    "first_play": true,
    "game": "Orlando vs Utah",
@@ -12801,9 +12903,9 @@
     "volume_fp": 171791.61
    },
    "ex_stats_close": {
-    "open_interest_fp": 216781.46,
-    "volume_24h_fp": 269672.78,
-    "volume_fp": 275772.17
+    "open_interest_fp": 217126.97999999998,
+    "volume_24h_fp": 270117.44,
+    "volume_fp": 276129.54000000004
    },
    "first_play": false,
    "game": "Oklahoma City vs Portland",
@@ -12945,8 +13047,8 @@
     "volume": 515110.0
    },
    "ex_stats_close": {
-    "openInterest": 1930583.0,
-    "volume": 3489297.0
+    "openInterest": 1943808.0,
+    "volume": 3504695.0
    },
    "first_play": false,
    "game": "Boston Celtics @ Toronto Raptors",
@@ -12996,8 +13098,8 @@
     "volume": 515110.0
    },
    "ex_stats_close": {
-    "openInterest": 1930583.0,
-    "volume": 3489297.0
+    "openInterest": 1943808.0,
+    "volume": 3504695.0
    },
    "first_play": true,
    "game": "Boston Celtics @ Toronto Raptors",
@@ -13190,8 +13292,8 @@
     "volume": 493622.0
    },
    "ex_stats_close": {
-    "openInterest": 1237529.0,
-    "volume": 1858027.0
+    "openInterest": 1256974.0,
+    "volume": 1877472.0
    },
    "first_play": true,
    "game": "Cleveland Cavaliers @ New York Knicks",
@@ -13232,8 +13334,8 @@
    "best_price": 0.49,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.505,
-   "clv_cents": 1.5,
+   "close_price": 0.5,
+   "clv_cents": 1.0,
    "date": "2026-11-11",
    "dir": "RAISE",
    "ex_stats": {
@@ -13241,8 +13343,8 @@
     "volume": 493622.0
    },
    "ex_stats_close": {
-    "openInterest": 1237529.0,
-    "volume": 1858027.0
+    "openInterest": 1256974.0,
+    "volume": 1877472.0
    },
    "first_play": false,
    "game": "Cleveland Cavaliers @ New York Knicks",
@@ -13293,9 +13395,9 @@
     "volume_fp": 887.45
    },
    "ex_stats_close": {
-    "open_interest_fp": 5480.13,
-    "volume_24h_fp": 6282.95,
-    "volume_fp": 6498.52
+    "open_interest_fp": 5480.14,
+    "volume_24h_fp": 6498.53,
+    "volume_fp": 6498.53
    },
    "first_play": true,
    "game": "Cleveland vs New York: Total Points",
@@ -13346,9 +13448,9 @@
     "volume_fp": 887.45
    },
    "ex_stats_close": {
-    "open_interest_fp": 5480.13,
-    "volume_24h_fp": 6282.95,
-    "volume_fp": 6498.52
+    "open_interest_fp": 5480.14,
+    "volume_24h_fp": 6498.53,
+    "volume_fp": 6498.53
    },
    "first_play": true,
    "game": "Cleveland vs New York: Total Points",
@@ -13619,8 +13721,8 @@
    "best_price": 0.5311,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5,
-   "clv_cents": -2.6,
+   "close_price": 0.4975,
+   "clv_cents": -2.9,
    "date": "2026-11-11",
    "dir": "RAISE",
    "ex_stats": null,
@@ -13803,8 +13905,8 @@
    "best_price": 0.51,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.5,
-   "clv_cents": -1.0,
+   "close_price": 0.5025,
+   "clv_cents": -0.7,
    "date": "2026-11-11",
    "dir": "RAISE",
    "ex_stats": null,
@@ -13998,8 +14100,8 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 25679.86,
-    "volume_24h_fp": 26409.24,
-    "volume_fp": 27283.74
+    "volume_24h_fp": 26860.98,
+    "volume_fp": 27403.87
    },
    "first_play": true,
    "game": "Orlando vs Utah",
@@ -14198,7 +14300,7 @@
    },
    "ex_stats_close": {
     "openInterest": 3122632.0,
-    "volume": 3748171.0
+    "volume": 3752761.0
    },
    "first_play": false,
    "game": "Denver Nuggets @ Memphis Grizzlies",
@@ -14249,9 +14351,9 @@
     "volume_fp": 170.45
    },
    "ex_stats_close": {
-    "open_interest_fp": 5708.69,
-    "volume_24h_fp": 6194.08,
-    "volume_fp": 6203.08
+    "open_interest_fp": 5717.66,
+    "volume_24h_fp": 6203.08,
+    "volume_fp": 6212.05
    },
    "first_play": false,
    "game": "Denver vs Memphis: Spread",
@@ -14441,9 +14543,9 @@
     "volume_fp": 9.36
    },
    "ex_stats_close": {
-    "open_interest_fp": 8347.71,
-    "volume_24h_fp": 9912.14,
-    "volume_fp": 10156.72
+    "open_interest_fp": 8370.97,
+    "volume_24h_fp": 10168.11,
+    "volume_fp": 10201.22
    },
    "first_play": false,
    "game": "Golden State vs Houston: Spread",
@@ -14547,9 +14649,9 @@
     "volume_fp": 41234.630000000005
    },
    "ex_stats_close": {
-    "open_interest_fp": 185186.94,
-    "volume_24h_fp": 179415.21000000002,
-    "volume_fp": 202438.97999999998
+    "open_interest_fp": 196945.87,
+    "volume_24h_fp": 193763.22,
+    "volume_fp": 214315.83
    },
    "first_play": true,
    "game": "Boston vs Toronto",
@@ -14637,8 +14739,8 @@
    "best_price": 0.5075,
    "best_price_book": "kalshi",
    "book": "prophetx",
-   "close_price": 0.5238,
-   "clv_cents": 2.1,
+   "close_price": 0.5215,
+   "clv_cents": 1.9,
    "date": "2026-11-11",
    "dir": "DROP",
    "ex_stats": null,
@@ -14971,8 +15073,8 @@
    "best_price": 0.5075,
    "best_price_book": "kalshi",
    "book": "novig",
-   "close_price": 0.515,
-   "clv_cents": 0.0,
+   "close_price": 0.52,
+   "clv_cents": 0.5,
    "date": "2026-11-11",
    "dir": "DROP",
    "ex_stats": {
@@ -14980,8 +15082,8 @@
     "volume": 373813.0
    },
    "ex_stats_close": {
-    "openInterest": 3457829.0,
-    "volume": 5167499.0
+    "openInterest": 3512252.0,
+    "volume": 5231922.0
    },
    "first_play": false,
    "game": "Oklahoma City Thunder @ Portland Trail Blazers",
@@ -15032,9 +15134,9 @@
     "volume_fp": 26424.809999999998
    },
    "ex_stats_close": {
-    "open_interest_fp": 99392.22,
-    "volume_24h_fp": 101189.04999999999,
-    "volume_fp": 110839.0
+    "open_interest_fp": 99964.06999999999,
+    "volume_24h_fp": 102226.25,
+    "volume_fp": 111410.85
    },
    "first_play": true,
    "game": "Cleveland vs New York",
@@ -15119,8 +15221,8 @@
    "best_price": 0.515,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.51,
-   "clv_cents": -0.5,
+   "close_price": 0.505,
+   "clv_cents": -1.0,
    "date": "2026-11-11",
    "dir": "RAISE",
    "ex_stats": {
@@ -15128,8 +15230,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 1428892.0,
-    "volume": 1515833.0
+    "openInterest": 1436777.0,
+    "volume": 1523718.0
    },
    "first_play": false,
    "game": "Denver Nuggets @ Memphis Grizzlies",
@@ -15421,9 +15523,9 @@
     "volume_fp": 6836.95
    },
    "ex_stats_close": {
-    "open_interest_fp": 203262.36000000002,
-    "volume_24h_fp": 203429.44999999998,
-    "volume_fp": 204763.46
+    "open_interest_fp": 203484.7,
+    "volume_24h_fp": 203774.67,
+    "volume_fp": 204985.8
    },
    "first_play": false,
    "game": "Nashville vs Anaheim",
@@ -15510,8 +15612,8 @@
    "best_price": 0.51,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.4545,
-   "clv_cents": -5.0,
+   "close_price": 0.4566,
+   "clv_cents": -4.8,
    "date": "2026-11-11",
    "dir": "DROP",
    "ex_stats": null,
@@ -15612,9 +15714,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 5708.69,
-    "volume_24h_fp": 6194.08,
-    "volume_fp": 6203.08
+    "open_interest_fp": 5717.66,
+    "volume_24h_fp": 6203.08,
+    "volume_fp": 6212.05
    },
    "first_play": false,
    "game": "Denver vs Memphis: Spread",
@@ -15655,8 +15757,8 @@
    "best_price": 0.51,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.505,
-   "clv_cents": -0.5,
+   "close_price": 0.52,
+   "clv_cents": 1.0,
    "date": "2026-11-11",
    "dir": "RAISE",
    "ex_stats": {
@@ -15664,8 +15766,8 @@
     "volume": 114201.0
    },
    "ex_stats_close": {
-    "openInterest": 962441.0,
-    "volume": 1659572.0
+    "openInterest": 1585577.0,
+    "volume": 2641041.0
    },
    "first_play": true,
    "game": "San Antonio Spurs @ Chicago Bulls",
@@ -15706,8 +15808,8 @@
    "best_price": 0.495,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.5,
-   "clv_cents": 0.5,
+   "close_price": 0.49,
+   "clv_cents": -0.5,
    "date": "2026-11-11",
    "dir": "RAISE",
    "ex_stats": {
@@ -15715,8 +15817,8 @@
     "volume": 114201.0
    },
    "ex_stats_close": {
-    "openInterest": 962441.0,
-    "volume": 1659572.0
+    "openInterest": 1585577.0,
+    "volume": 2641041.0
    },
    "first_play": true,
    "game": "San Antonio Spurs @ Chicago Bulls",
@@ -15767,9 +15869,9 @@
     "volume_fp": 438.96
    },
    "ex_stats_close": {
-    "open_interest_fp": 3100.85,
-    "volume_24h_fp": 3438.57,
-    "volume_fp": 3438.57
+    "open_interest_fp": 3109.66,
+    "volume_24h_fp": 3447.38,
+    "volume_fp": 3447.38
    },
    "first_play": true,
    "game": "Denver vs Memphis: Total Points",
@@ -15820,9 +15922,9 @@
     "volume_fp": 438.96
    },
    "ex_stats_close": {
-    "open_interest_fp": 3100.85,
-    "volume_24h_fp": 3438.57,
-    "volume_fp": 3438.57
+    "open_interest_fp": 3109.66,
+    "volume_24h_fp": 3447.38,
+    "volume_fp": 3447.38
    },
    "first_play": true,
    "game": "Denver vs Memphis: Total Points",
@@ -15873,9 +15975,9 @@
     "volume_fp": 6749.3
    },
    "ex_stats_close": {
-    "open_interest_fp": 203262.36000000002,
-    "volume_24h_fp": 203429.44999999998,
-    "volume_fp": 204763.46
+    "open_interest_fp": 203484.7,
+    "volume_24h_fp": 203774.67,
+    "volume_fp": 204985.8
    },
    "first_play": false,
    "game": "Nashville vs Anaheim",
@@ -15972,7 +16074,7 @@
    },
    "ex_stats_close": {
     "openInterest": 3122632.0,
-    "volume": 3748171.0
+    "volume": 3752761.0
    },
    "first_play": false,
    "game": "Denver Nuggets @ Memphis Grizzlies",
@@ -16151,8 +16253,8 @@
    "best_price": 0.45,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.4902,
-   "clv_cents": 2.9,
+   "close_price": 0.4926,
+   "clv_cents": 3.2,
    "date": "2026-11-11",
    "dir": "DROP",
    "ex_stats": null,
@@ -16206,8 +16308,8 @@
     "volume": 1639.0
    },
    "ex_stats_close": {
-    "openInterest": 3457829.0,
-    "volume": 5167499.0
+    "openInterest": 3512252.0,
+    "volume": 5231922.0
    },
    "first_play": true,
    "game": "Oklahoma City Thunder @ Portland Trail Blazers",
@@ -16309,9 +16411,9 @@
     "volume_fp": 128312.59999999999
    },
    "ex_stats_close": {
-    "open_interest_fp": 477085.07,
-    "volume_24h_fp": 449533.05,
-    "volume_fp": 523515.97000000003
+    "open_interest_fp": 481263.16000000003,
+    "volume_24h_fp": 455220.86,
+    "volume_fp": 527778.73
    },
    "first_play": false,
    "game": "Golden State vs Houston",
@@ -16453,8 +16555,8 @@
     "volume": 167007.0
    },
    "ex_stats_close": {
-    "openInterest": 4354846.0,
-    "volume": 6077727.0
+    "openInterest": 4374270.0,
+    "volume": 6097151.0
    },
    "first_play": false,
    "game": "Golden State Warriors @ Houston Rockets",
@@ -16504,8 +16606,8 @@
     "volume": 167007.0
    },
    "ex_stats_close": {
-    "openInterest": 4354846.0,
-    "volume": 6077727.0
+    "openInterest": 4374270.0,
+    "volume": 6097151.0
    },
    "first_play": false,
    "game": "Golden State Warriors @ Houston Rockets",
@@ -16750,8 +16852,8 @@
    "best_price": 0.63,
    "best_price_book": "novig",
    "book": "kalshi",
-   "close_price": 0.62,
-   "clv_cents": -1.0,
+   "close_price": 0.61,
+   "clv_cents": -2.0,
    "date": "2026-11-11",
    "dir": "RAISE",
    "ex_stats": {
@@ -16760,9 +16862,9 @@
     "volume_fp": 6949.8
    },
    "ex_stats_close": {
-    "open_interest_fp": 335886.46,
-    "volume_24h_fp": 21711.64,
-    "volume_fp": 337563.98
+    "open_interest_fp": 336199.0,
+    "volume_24h_fp": 333983.83999999997,
+    "volume_fp": 337877.52
    },
    "first_play": false,
    "game": "Brooklyn vs New Orleans",
@@ -16803,8 +16905,8 @@
    "best_price": 0.3778,
    "best_price_book": "prophetx",
    "book": "kalshi",
-   "close_price": 0.39,
-   "clv_cents": 2.0,
+   "close_price": 0.4,
+   "clv_cents": 3.0,
    "date": "2026-11-11",
    "dir": "RAISE",
    "ex_stats": {
@@ -16813,9 +16915,9 @@
     "volume_fp": 6949.8
    },
    "ex_stats_close": {
-    "open_interest_fp": 335886.46,
-    "volume_24h_fp": 21711.64,
-    "volume_fp": 337563.98
+    "open_interest_fp": 336199.0,
+    "volume_24h_fp": 333983.83999999997,
+    "volume_fp": 337877.52
    },
    "first_play": false,
    "game": "Brooklyn vs New Orleans",
@@ -16856,8 +16958,8 @@
    "best_price": 0.3778,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.4,
-   "clv_cents": 2.7,
+   "close_price": 0.4065,
+   "clv_cents": 3.3,
    "date": "2026-11-11",
    "dir": "RAISE",
    "ex_stats": null,
@@ -16902,8 +17004,8 @@
    "best_price": 0.63,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.6063,
-   "clv_cents": -2.9,
+   "close_price": 0.6,
+   "clv_cents": -3.5,
    "date": "2026-11-11",
    "dir": "RAISE",
    "ex_stats": null,
@@ -16948,8 +17050,8 @@
    "best_price": 0.38,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.431,
-   "clv_cents": 5.2,
+   "close_price": 0.4348,
+   "clv_cents": 5.6,
    "date": "2026-11-11",
    "dir": "RAISE",
    "ex_stats": null,
@@ -17040,8 +17142,8 @@
    "best_price": 0.3778,
    "best_price_book": "prophetx",
    "book": "novig",
-   "close_price": 0.395,
-   "clv_cents": 1.5,
+   "close_price": 0.405,
+   "clv_cents": 2.5,
    "date": "2026-11-11",
    "dir": "RAISE",
    "ex_stats": {
@@ -17049,8 +17151,8 @@
     "volume": 21536.0
    },
    "ex_stats_close": {
-    "openInterest": 13839668.0,
-    "volume": 18344526.0
+    "openInterest": 13782715.0,
+    "volume": 19264817.0
    },
    "first_play": false,
    "game": "Brooklyn Nets @ New Orleans Pelicans",
@@ -17091,8 +17193,8 @@
    "best_price": 0.38,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.425,
-   "clv_cents": 4.5,
+   "close_price": 0.43,
+   "clv_cents": 5.0,
    "date": "2026-11-11",
    "dir": "RAISE",
    "ex_stats": {
@@ -17100,8 +17202,8 @@
     "volume": 332023.0
    },
    "ex_stats_close": {
-    "openInterest": 12499737.0,
-    "volume": 16909229.0
+    "openInterest": 12931909.0,
+    "volume": 17341401.0
    },
    "first_play": false,
    "game": "Washington Wizards @ Indiana Pacers",
@@ -17142,8 +17244,8 @@
    "best_price": 0.625,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.58,
-   "clv_cents": -4.5,
+   "close_price": 0.575,
+   "clv_cents": -5.0,
    "date": "2026-11-11",
    "dir": "RAISE",
    "ex_stats": {
@@ -17151,8 +17253,8 @@
     "volume": 332023.0
    },
    "ex_stats_close": {
-    "openInterest": 12499737.0,
-    "volume": 16909229.0
+    "openInterest": 12931909.0,
+    "volume": 17341401.0
    },
    "first_play": true,
    "game": "Washington Wizards @ Indiana Pacers",
@@ -17328,8 +17430,8 @@
    "best_price": 0.5026,
    "best_price_book": "prophetx",
    "book": "kalshi",
-   "close_price": 0.52,
-   "clv_cents": 2.0,
+   "close_price": 0.53,
+   "clv_cents": 3.0,
    "date": "2026-11-11",
    "dir": "RAISE",
    "ex_stats": {
@@ -17339,8 +17441,8 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 79932.2,
-    "volume_24h_fp": 6281.54,
-    "volume_fp": 80419.87
+    "volume_24h_fp": 80554.89,
+    "volume_fp": 80554.89
    },
    "first_play": true,
    "game": "Brooklyn vs New Orleans: Spread",
@@ -17381,8 +17483,8 @@
    "best_price": 0.5442,
    "best_price_book": "prophetx",
    "book": "kalshi",
-   "close_price": 0.49,
-   "clv_cents": -5.0,
+   "close_price": 0.48,
+   "clv_cents": -6.0,
    "date": "2026-11-11",
    "dir": "RAISE",
    "ex_stats": {
@@ -17392,8 +17494,8 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 79932.2,
-    "volume_24h_fp": 6281.54,
-    "volume_fp": 80419.87
+    "volume_24h_fp": 80554.89,
+    "volume_fp": 80554.89
    },
    "first_play": false,
    "game": "Brooklyn vs New Orleans: Spread",
@@ -17434,8 +17536,8 @@
    "best_price": 0.5333,
    "best_price_book": "prophetx",
    "book": "novig",
-   "close_price": 0.515,
-   "clv_cents": -5.5,
+   "close_price": 0.52,
+   "clv_cents": -5.0,
    "date": "2026-11-11",
    "dir": "RAISE",
    "ex_stats": {
@@ -17443,8 +17545,8 @@
     "volume": 1639.0
    },
    "ex_stats_close": {
-    "openInterest": 3457829.0,
-    "volume": 5167499.0
+    "openInterest": 3512252.0,
+    "volume": 5231922.0
    },
    "first_play": true,
    "game": "Oklahoma City Thunder @ Portland Trail Blazers",
@@ -17495,9 +17597,9 @@
     "volume_fp": 335.97
    },
    "ex_stats_close": {
-    "open_interest_fp": 7600.26,
-    "volume_24h_fp": 7675.85,
-    "volume_fp": 8022.19
+    "open_interest_fp": 7622.26,
+    "volume_24h_fp": 7899.48,
+    "volume_fp": 8044.19
    },
    "first_play": false,
    "game": "Philadelphia vs Edmonton: Spread",
@@ -17584,8 +17686,8 @@
    "best_price": 0.5242,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5495,
-   "clv_cents": 3.0,
+   "close_price": 0.5475,
+   "clv_cents": 2.8,
    "date": "2026-11-11",
    "dir": "RAISE",
    "ex_stats": null,
@@ -17640,9 +17742,9 @@
     "volume_fp": 4730.6
    },
    "ex_stats_close": {
-    "open_interest_fp": 22289.19,
-    "volume_24h_fp": 21118.71,
-    "volume_fp": 23561.54
+    "open_interest_fp": 22605.55,
+    "volume_24h_fp": 21418.07,
+    "volume_fp": 23877.9
    },
    "first_play": true,
    "game": "Pittsburgh vs San Jose",
@@ -17693,9 +17795,9 @@
     "volume_fp": 2949.81
    },
    "ex_stats_close": {
-    "open_interest_fp": 17540.58,
-    "volume_24h_fp": 16159.35,
-    "volume_fp": 17968.04
+    "open_interest_fp": 17844.58,
+    "volume_24h_fp": 16819.14,
+    "volume_fp": 18272.04
    },
    "first_play": true,
    "game": "Utah vs Vegas",
@@ -17746,9 +17848,9 @@
     "volume_fp": 4111.09
    },
    "ex_stats_close": {
-    "open_interest_fp": 67655.65,
-    "volume_24h_fp": 65675.5,
-    "volume_fp": 69171.1
+    "open_interest_fp": 68200.29999999999,
+    "volume_24h_fp": 67483.87,
+    "volume_fp": 69715.75
    },
    "first_play": true,
    "game": "Philadelphia vs Edmonton",
@@ -17799,9 +17901,9 @@
     "volume_fp": 4111.09
    },
    "ex_stats_close": {
-    "open_interest_fp": 67655.65,
-    "volume_24h_fp": 65675.5,
-    "volume_fp": 69171.1
+    "open_interest_fp": 68200.29999999999,
+    "volume_24h_fp": 67483.87,
+    "volume_fp": 69715.75
    },
    "first_play": true,
    "game": "Philadelphia vs Edmonton",
@@ -17842,8 +17944,8 @@
    "best_price": 0.63,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.61,
-   "clv_cents": -2.0,
+   "close_price": 0.6,
+   "clv_cents": -3.0,
    "date": "2026-11-11",
    "dir": "RAISE",
    "ex_stats": {
@@ -17851,8 +17953,8 @@
     "volume": 18506.0
    },
    "ex_stats_close": {
-    "openInterest": 13839668.0,
-    "volume": 18344526.0
+    "openInterest": 13782715.0,
+    "volume": 19264817.0
    },
    "first_play": true,
    "game": "Brooklyn Nets @ New Orleans Pelicans",
@@ -17903,9 +18005,9 @@
     "volume_fp": 2829.63
    },
    "ex_stats_close": {
-    "open_interest_fp": 17540.58,
-    "volume_24h_fp": 16159.35,
-    "volume_fp": 17968.04
+    "open_interest_fp": 17844.58,
+    "volume_24h_fp": 16819.14,
+    "volume_fp": 18272.04
    },
    "first_play": true,
    "game": "Utah vs Vegas",
@@ -17956,9 +18058,9 @@
     "volume_fp": 10468.26
    },
    "ex_stats_close": {
-    "open_interest_fp": 96573.86,
-    "volume_24h_fp": 89691.5,
-    "volume_fp": 98342.29000000001
+    "open_interest_fp": 97256.67,
+    "volume_24h_fp": 90943.07,
+    "volume_fp": 99025.1
    },
    "first_play": true,
    "game": "Denver vs Memphis",
@@ -18009,9 +18111,9 @@
     "volume_fp": 4596.18
    },
    "ex_stats_close": {
-    "open_interest_fp": 203262.36000000002,
-    "volume_24h_fp": 203429.44999999998,
-    "volume_fp": 204763.46
+    "open_interest_fp": 203484.7,
+    "volume_24h_fp": 203774.67,
+    "volume_fp": 204985.8
    },
    "first_play": true,
    "game": "Nashville vs Anaheim",
@@ -18062,9 +18164,9 @@
     "volume_fp": 4596.18
    },
    "ex_stats_close": {
-    "open_interest_fp": 203262.36000000002,
-    "volume_24h_fp": 203429.44999999998,
-    "volume_fp": 204763.46
+    "open_interest_fp": 203484.7,
+    "volume_24h_fp": 203774.67,
+    "volume_fp": 204985.8
    },
    "first_play": true,
    "game": "Nashville vs Anaheim",
@@ -18115,9 +18217,9 @@
     "volume_fp": 8162.88
    },
    "ex_stats_close": {
-    "open_interest_fp": 169038.39,
-    "volume_24h_fp": 167328.01,
-    "volume_fp": 174077.33
+    "open_interest_fp": 170173.15,
+    "volume_24h_fp": 169034.26,
+    "volume_fp": 175212.09
    },
    "first_play": true,
    "game": "Washington vs Indiana",
@@ -18803,9 +18905,9 @@
     "volume_fp": 3250.63
    },
    "ex_stats_close": {
-    "open_interest_fp": 22289.19,
-    "volume_24h_fp": 21118.71,
-    "volume_fp": 23561.54
+    "open_interest_fp": 22605.55,
+    "volume_24h_fp": 21418.07,
+    "volume_fp": 23877.9
    },
    "first_play": false,
    "game": "Pittsburgh vs San Jose",
@@ -20183,9 +20285,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1434.41,
+    "open_interest_fp": 1479.46,
     "volume_24h_fp": 1620.81,
-    "volume_fp": 1620.81
+    "volume_fp": 1665.86
    },
    "first_play": true,
    "game": "Nashville vs Anaheim: Spread",
@@ -20226,8 +20328,8 @@
    "best_price": 0.3557,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.32,
-   "clv_cents": -2.0,
+   "close_price": 0.33,
+   "clv_cents": -1.0,
    "date": "2026-11-11",
    "dir": "RAISE",
    "ex_stats": {
@@ -20236,9 +20338,9 @@
     "volume_fp": 102.24
    },
    "ex_stats_close": {
-    "open_interest_fp": 1037.64,
-    "volume_24h_fp": 1099.4,
-    "volume_fp": 1219.64
+    "open_interest_fp": 1109.23,
+    "volume_24h_fp": 1117.4,
+    "volume_fp": 1291.23
    },
    "first_play": false,
    "game": "Utah vs Vegas: Spread",
@@ -20289,9 +20391,9 @@
     "volume_fp": 1357.06
    },
    "ex_stats_close": {
-    "open_interest_fp": 17540.58,
-    "volume_24h_fp": 16159.35,
-    "volume_fp": 17968.04
+    "open_interest_fp": 17844.58,
+    "volume_24h_fp": 16819.14,
+    "volume_fp": 18272.04
    },
    "first_play": false,
    "game": "Utah vs Vegas",
@@ -20342,9 +20444,9 @@
     "volume_fp": 1357.06
    },
    "ex_stats_close": {
-    "open_interest_fp": 17540.58,
-    "volume_24h_fp": 16159.35,
-    "volume_fp": 17968.04
+    "open_interest_fp": 17844.58,
+    "volume_24h_fp": 16819.14,
+    "volume_fp": 18272.04
    },
    "first_play": true,
    "game": "Utah vs Vegas",
@@ -20395,9 +20497,9 @@
     "volume_fp": 391.21
    },
    "ex_stats_close": {
-    "open_interest_fp": 13942.470000000001,
-    "volume_24h_fp": 14322.31,
-    "volume_fp": 14802.04
+    "open_interest_fp": 14071.79,
+    "volume_24h_fp": 14445.11,
+    "volume_fp": 14956.36
    },
    "first_play": false,
    "game": "New York R vs Calgary",
@@ -20448,9 +20550,9 @@
     "volume_fp": 391.21
    },
    "ex_stats_close": {
-    "open_interest_fp": 13942.470000000001,
-    "volume_24h_fp": 14322.31,
-    "volume_fp": 14802.04
+    "open_interest_fp": 14071.79,
+    "volume_24h_fp": 14445.11,
+    "volume_fp": 14956.36
    },
    "first_play": false,
    "game": "New York R vs Calgary",
@@ -20585,8 +20687,8 @@
    "best_price": 0.5124,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5413,
-   "clv_cents": 3.4,
+   "close_price": 0.5434,
+   "clv_cents": 3.6,
    "date": "2026-11-11",
    "dir": "DROP",
    "ex_stats": null,
@@ -20839,9 +20941,9 @@
     "volume_fp": 2859.21
    },
    "ex_stats_close": {
-    "open_interest_fp": 22289.19,
-    "volume_24h_fp": 21118.71,
-    "volume_fp": 23561.54
+    "open_interest_fp": 22605.55,
+    "volume_24h_fp": 21418.07,
+    "volume_fp": 23877.9
    },
    "first_play": true,
    "game": "Pittsburgh vs San Jose",
@@ -21290,9 +21392,9 @@
     "volume_fp": 126.71
    },
    "ex_stats_close": {
-    "open_interest_fp": 7600.26,
-    "volume_24h_fp": 7675.85,
-    "volume_fp": 8022.19
+    "open_interest_fp": 7622.26,
+    "volume_24h_fp": 7899.48,
+    "volume_fp": 8044.19
    },
    "first_play": false,
    "game": "Philadelphia vs Edmonton: Spread",
@@ -21343,9 +21445,9 @@
     "volume_fp": 819.16
    },
    "ex_stats_close": {
-    "open_interest_fp": 12261.05,
-    "volume_24h_fp": 11872.45,
-    "volume_fp": 12889.1
+    "open_interest_fp": 12261.14,
+    "volume_24h_fp": 12069.94,
+    "volume_fp": 12889.19
    },
    "first_play": true,
    "game": "UMass vs Toledo: Spread",
@@ -21396,9 +21498,9 @@
     "volume_fp": 2254.72
    },
    "ex_stats_close": {
-    "open_interest_fp": 25022.33,
-    "volume_24h_fp": 23739.78,
-    "volume_fp": 26024.5
+    "open_interest_fp": 25217.58,
+    "volume_24h_fp": 23769.78,
+    "volume_fp": 26434.8
    },
    "first_play": false,
    "game": "Buffalo vs Ball St.: Spread",
@@ -21449,9 +21551,9 @@
     "volume_fp": 2211.98
    },
    "ex_stats_close": {
-    "open_interest_fp": 67655.65,
-    "volume_24h_fp": 65675.5,
-    "volume_fp": 69171.1
+    "open_interest_fp": 68200.29999999999,
+    "volume_24h_fp": 67483.87,
+    "volume_fp": 69715.75
    },
    "first_play": true,
    "game": "Philadelphia vs Edmonton",
@@ -21502,9 +21604,9 @@
     "volume_fp": 2211.98
    },
    "ex_stats_close": {
-    "open_interest_fp": 67655.65,
-    "volume_24h_fp": 65675.5,
-    "volume_fp": 69171.1
+    "open_interest_fp": 68200.29999999999,
+    "volume_24h_fp": 67483.87,
+    "volume_fp": 69715.75
    },
    "first_play": false,
    "game": "Philadelphia vs Edmonton",
@@ -21555,9 +21657,9 @@
     "volume_fp": 1575.8
    },
    "ex_stats_close": {
-    "open_interest_fp": 15669.68,
-    "volume_24h_fp": 15540.79,
-    "volume_fp": 17242.72
+    "open_interest_fp": 15750.31,
+    "volume_24h_fp": 16006.46,
+    "volume_fp": 17326.87
    },
    "first_play": true,
    "game": "Tampa Bay vs Buffalo",
@@ -21608,9 +21710,9 @@
     "volume_fp": 1575.8
    },
    "ex_stats_close": {
-    "open_interest_fp": 15669.68,
-    "volume_24h_fp": 15540.79,
-    "volume_fp": 17242.72
+    "open_interest_fp": 15750.31,
+    "volume_24h_fp": 16006.46,
+    "volume_fp": 17326.87
    },
    "first_play": true,
    "game": "Tampa Bay vs Buffalo",
@@ -21752,8 +21854,8 @@
     "volume": 420725.0
    },
    "ex_stats_close": {
-    "openInterest": 8787764.0,
-    "volume": 11832187.0
+    "openInterest": 8808618.0,
+    "volume": 11853041.0
    },
    "first_play": false,
    "game": "Buffalo @ Ball State",
@@ -21803,8 +21905,8 @@
     "volume": 420725.0
    },
    "ex_stats_close": {
-    "openInterest": 8787764.0,
-    "volume": 11832187.0
+    "openInterest": 8808618.0,
+    "volume": 11853041.0
    },
    "first_play": false,
    "game": "Buffalo @ Ball State",
@@ -21997,9 +22099,9 @@
     "volume_fp": 18.69
    },
    "ex_stats_close": {
-    "open_interest_fp": 2781.47,
-    "volume_24h_fp": 2904.73,
-    "volume_fp": 2923.42
+    "open_interest_fp": 2888.46,
+    "volume_24h_fp": 3011.72,
+    "volume_fp": 3030.41
    },
    "first_play": true,
    "game": "Pittsburgh vs San Jose: Total Goals",
@@ -22040,8 +22142,8 @@
    "best_price": 0.705,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.69,
-   "clv_cents": 0.0,
+   "close_price": 0.68,
+   "clv_cents": -1.0,
    "date": "2026-11-11",
    "dir": "RAISE",
    "ex_stats": {
@@ -22050,9 +22152,9 @@
     "volume_fp": 102.24
    },
    "ex_stats_close": {
-    "open_interest_fp": 1037.64,
-    "volume_24h_fp": 1099.4,
-    "volume_fp": 1219.64
+    "open_interest_fp": 1109.23,
+    "volume_24h_fp": 1117.4,
+    "volume_fp": 1291.23
    },
    "first_play": true,
    "game": "Utah vs Vegas: Spread",
@@ -22504,9 +22606,9 @@
     "volume_fp": 18.69
    },
    "ex_stats_close": {
-    "open_interest_fp": 2781.47,
-    "volume_24h_fp": 2904.73,
-    "volume_fp": 2923.42
+    "open_interest_fp": 2888.46,
+    "volume_24h_fp": 3011.72,
+    "volume_fp": 3030.41
    },
    "first_play": true,
    "game": "Pittsburgh vs San Jose: Total Goals",
@@ -22558,7 +22660,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 1992.74,
-    "volume_24h_fp": 1860.15,
+    "volume_24h_fp": 1947.06,
     "volume_fp": 2046.17
    },
    "first_play": true,
@@ -22611,7 +22713,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 1992.74,
-    "volume_24h_fp": 1860.15,
+    "volume_24h_fp": 1947.06,
     "volume_fp": 2046.17
    },
    "first_play": true,
@@ -22663,9 +22765,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1434.41,
+    "open_interest_fp": 1479.46,
     "volume_24h_fp": 1620.81,
-    "volume_fp": 1620.81
+    "volume_fp": 1665.86
    },
    "first_play": true,
    "game": "Nashville vs Anaheim: Spread",
@@ -22716,9 +22818,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 449.22,
-    "volume_24h_fp": 449.22,
-    "volume_fp": 449.22
+    "open_interest_fp": 528.25,
+    "volume_24h_fp": 500.35,
+    "volume_fp": 528.25
    },
    "first_play": true,
    "game": "Utah vs Vegas: Total Goals",
@@ -22770,7 +22872,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 3752.17,
-    "volume_24h_fp": 3543.47,
+    "volume_24h_fp": 3757.45,
     "volume_fp": 3757.45
    },
    "first_play": true,
@@ -22823,7 +22925,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 3752.17,
-    "volume_24h_fp": 3543.47,
+    "volume_24h_fp": 3757.45,
     "volume_fp": 3757.45
    },
    "first_play": true,
@@ -22875,9 +22977,9 @@
     "volume_fp": 126.71
    },
    "ex_stats_close": {
-    "open_interest_fp": 7600.26,
-    "volume_24h_fp": 7675.85,
-    "volume_fp": 8022.19
+    "open_interest_fp": 7622.26,
+    "volume_24h_fp": 7899.48,
+    "volume_fp": 8044.19
    },
    "first_play": true,
    "game": "Philadelphia vs Edmonton: Spread",
@@ -22929,7 +23031,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 942.26,
-    "volume_24h_fp": 923.66,
+    "volume_24h_fp": 942.26,
     "volume_fp": 942.26
    },
    "first_play": true,
@@ -24395,9 +24497,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 449.22,
-    "volume_24h_fp": 449.22,
-    "volume_fp": 449.22
+    "open_interest_fp": 528.25,
+    "volume_24h_fp": 500.35,
+    "volume_fp": 528.25
    },
    "first_play": true,
    "game": "Utah vs Vegas: Total Goals",
@@ -24502,7 +24604,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 942.26,
-    "volume_24h_fp": 923.66,
+    "volume_24h_fp": 942.26,
     "volume_fp": 942.26
    },
    "first_play": true,
