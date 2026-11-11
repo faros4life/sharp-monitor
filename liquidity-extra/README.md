@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 11, 5:30 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 21.
+Updated Wed Nov 11, 5:41 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 25.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,24 +10,28 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 11 4:01AM | TENNIS | Sabalenka vs Andreeva | moneyline: Sabalenka | kalshi | $31k | -104 |  |  | +0.0c |  | pending |
-| Nov 11 2:54AM | NCAAB | Southern Indiana vs IU Indy | moneyline: IU Indy | kalshi | $150k | -285 |  |  | +0.0c |  | pending |
-| Nov 11 2:54AM | NCAAB | USC vs California | moneyline: USC | kalshi | $221k | -335 |  |  | +0.0c |  | pending |
-| Nov 11 2:54AM | NCAAB | Pacific vs Long Beach St. | moneyline: Pacific | kalshi | $173k | -233 |  |  | +0.0c |  | pending |
-| Nov 11 2:54AM | NCAAB | UMass Lowell vs UMass | moneyline: UMass | kalshi | $103k | -567 |  |  | +1.0c |  | pending |
-| Nov 11 2:54AM | NCAAB | Kent St. vs UNC Wilmington | moneyline: UNC Wilmington | kalshi | $155k | -270 |  |  | +0.0c |  | pending |
-| Nov 11 2:54AM | NCAAB | Cornell vs St. Bonaventure | moneyline: St. Bonaventure | kalshi | $167k | -355 |  |  | +0.0c |  | pending |
-| Nov 11 2:54AM | NCAAB | Chicago St. vs California Baptist | moneyline: California Baptist | kalshi | $217k | -525 |  |  | +0.0c |  | pending |
-| Nov 11 2:54AM | TENNIS | Shevchenko vs Ruud | moneyline: Ruud | kalshi | $30k | -355 | ✅ novig |  | +4.0c |  | pending |
-| Nov 11 2:33AM | NCAAB | Stephen F. Austin vs Abilene Christian | moneyline: Stephen F. Austin | kalshi | $26k | -170 |  |  | +1.0c |  | pending |
-| Nov 11 2:33AM | NCAAB | Jackson St. vs Southern Miss | moneyline: Southern Miss | kalshi | $42k | -456 |  |  | -2.0c |  | pending |
-| Nov 11 2:11AM | NCAAB | South Florida vs Saint Joseph's | moneyline: South Florida | kalshi | $39k | -285 |  |  | +0.0c |  | pending |
-| Nov 11 2:11AM | NCAAB | Kansas City vs Florida A&M | moneyline: Kansas City | kalshi | $30k | -233 |  |  | +0.0c |  | pending |
-| Nov 11 2:11AM | NCAAB | Penn vs Navy | moneyline: Penn | kalshi | $44k | -456 |  |  | -1.0c |  | pending |
-| Nov 11 2:11AM | NCAAB | North Carolina Central vs VMI | moneyline: VMI | kalshi | $36k | -270 |  |  | +0.0c |  | pending |
-| Nov 11 2:11AM | NCAAB | North Carolina A&T vs East Carolina | moneyline: East Carolina | kalshi | $62k | -525 |  |  | +0.0c |  | pending |
-| Nov 11 2:11AM | NCAAB | Loyola Chicago vs Air Force | moneyline: Loyola Chicago | kalshi | $63k | -456 |  | ✅ | +0.0c |  | pending |
-| Nov 11 2:11AM | NCAAB | FDU vs East Texas A&M | moneyline: East Texas A&M | kalshi | $54k | -525 |  |  | +0.0c |  | pending |
+| Nov 11 4:56AM | TENNIS | Sabalenka vs Andreeva | moneyline: Sabalenka | kalshi | $160k | -104 |  |  | +0.0c |  | pending |
+| Nov 11 4:34AM | TENNIS | Sonego vs Tabilo | moneyline: Sonego | kalshi | $30k | -144 | ✅ novig |  | +0.0c | yes | pending |
+| Nov 11 4:11AM | TENNIS | Kecmanovic vs Rune | moneyline: Rune | kalshi | $53k | -245 |  |  | +0.0c |  | pending |
+| Nov 11 2:43AM | NCAAB | Southern Indiana vs IU Indy | moneyline: IU Indy | kalshi | $148k | -270 |  |  | +1.0c |  | pending |
+| Nov 11 2:43AM | NCAAB | USC vs California | moneyline: USC | kalshi | $220k | -335 |  |  | +0.0c |  | pending |
+| Nov 11 2:43AM | NCAAB | Pacific vs Long Beach St. | moneyline: Pacific | kalshi | $177k | -233 |  |  | +0.0c |  | pending |
+| Nov 11 2:43AM | NCAAB | UMass Lowell vs UMass | moneyline: UMass | kalshi | $89k | -567 |  |  | +1.0c |  | pending |
+| Nov 11 2:43AM | NCAAB | Chicago St. vs California Baptist | moneyline: California Baptist | kalshi | $222k | -525 |  |  | +0.0c |  | pending |
+| Nov 11 2:43AM | TENNIS | Gojo vs Humbert | moneyline: Humbert | kalshi | $30k | -203 |  |  | +0.0c |  | pending |
+| Nov 11 2:22AM | NCAAB | Stony Brook vs Princeton | moneyline: Princeton | kalshi | $25k | -203 |  |  | +0.0c |  | pending |
+| Nov 11 2:22AM | NCAAB | Marquette vs Michigan | moneyline: Michigan | kalshi | $29k | -163 |  |  | -1.0c |  | pending |
+| Nov 11 2:22AM | NCAAB | Kent St. vs UNC Wilmington | moneyline: UNC Wilmington | kalshi | $31k | -270 |  |  | +0.0c |  | pending |
+| Nov 11 2:22AM | NCAAB | Jackson St. vs Southern Miss | moneyline: Southern Miss | kalshi | $27k | -456 |  |  | -2.0c |  | pending |
+| Nov 11 2:22AM | NCAAB | Cornell vs St. Bonaventure | moneyline: St. Bonaventure | kalshi | $34k | -335 |  |  | +1.0c |  | pending |
+| Nov 11 2:22AM | NCAAB | Campbell vs East Tennessee St. | moneyline: East Tennessee St. | kalshi | $25k | -203 |  | ❌ | +0.0c |  | pending |
+| Nov 11 2:00AM | NCAAB | South Florida vs Saint Joseph's | moneyline: South Florida | kalshi | $50k | -285 |  |  | +0.0c |  | pending |
+| Nov 11 2:00AM | NCAAB | Kansas City vs Florida A&M | moneyline: Kansas City | kalshi | $38k | -233 |  |  | +0.0c |  | pending |
+| Nov 11 2:00AM | NCAAB | Penn vs Navy | moneyline: Penn | kalshi | $49k | -456 |  |  | -1.0c |  | pending |
+| Nov 11 2:00AM | NCAAB | North Carolina Central vs VMI | moneyline: VMI | kalshi | $36k | -270 |  |  | +0.0c |  | pending |
+| Nov 11 2:00AM | NCAAB | North Carolina A&T vs East Carolina | moneyline: East Carolina | kalshi | $66k | -525 |  |  | +0.0c |  | pending |
+| Nov 11 2:00AM | NCAAB | Loyola Chicago vs Air Force | moneyline: Loyola Chicago | kalshi | $64k | -456 |  | ✅ | +0.0c |  | pending |
+| Nov 11 2:00AM | NCAAB | FDU vs East Texas A&M | moneyline: East Texas A&M | kalshi | $64k | -525 |  |  | +0.0c |  | pending |
 | Nov 10 11:13PM | TENNIS | Fritz vs Norrie | moneyline: Fritz | kalshi | $43k | -300 | ✅ novig |  | +0.0c |  | pending |
 | Nov 10 6:29PM | NCAAB | Evansville vs Middle Tennessee | moneyline: Middle Tennessee | kalshi | $29k | -400 | ✅ novig | ✅ | +1.0c | yes | W |
 | Nov 10 6:08PM | NCAAB | Winthrop vs Kennesaw St. | moneyline: Kennesaw St. | kalshi | $37k | -525 |  | ✅ | -2.0c | yes | W |
@@ -206,7 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 30 10:40PM | TENNIS | Stojsavljevic vs Ibragimova | moneyline: Ibragimova | kalshi | $49k | -426 |  |  | -77.0c | yes | L |
 | Oct 30 8:00PM | TENNIS | Quevedo vs Tagger | moneyline: Tagger | kalshi | $54k | -203 |  |  | +0.0c |  | W |
 | Oct 30 7:10PM | TENNIS | Sakatsume vs Wong | moneyline: Sakatsume | kalshi | $36k | -488 |  |  | +0.0c | yes | W |
-| Oct 30 6:00PM | TENNIS | Fernandez vs Rakhimova | moneyline: Fernandez | kalshi | $29k | -285 |  |  | +0.0c |  | W |
-| Oct 30 5:26PM | TENNIS | Medvedev vs Alcaraz | moneyline: Alcaraz | kalshi | $32k | -233 |  |  | -1.0c |  | W |
-| Oct 30 4:10PM | TENNIS | Berrettini vs de Minaur | moneyline: Berrettini | kalshi | $466k | +138 |  |  | -37.0c | yes | L |
-| Oct 30 11:30AM | TENNIS | Berrettini vs de Minaur | moneyline: de Minaur | kalshi | $30k | -213 | ✅ novig |  | +0.0c | yes | W |
