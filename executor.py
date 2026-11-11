@@ -599,6 +599,10 @@ MIN_ORDER = 50.0    # Oct 28: smallest order / routing remainder worth placing (
 # slippage WITHIN a venue's ladder - it does not touch eligibility (PX_TOL_CENTS), the -130 cap, the
 # bet-only-at floor or the venue ranking. Repo VARIABLE EXEC_BEST_SLIP_CENTS if it ever needs loosening.
 BEST_SLIP = max(0.0, float(os.environ.get("EXEC_BEST_SLIP_CENTS") or 0)) / 100.0
+# Nov 11: how many plays are probed at once to warm the cache. Bounded because ProphetX serialises
+# behind _PX_PACE (1 request/1.1s) whatever the concurrency, so more workers buy nothing on that
+# venue and only add load to the other three. Repo VARIABLE EXEC_PREFETCH_WORKERS.
+PREFETCH_WORKERS = max(1, min(8, int(os.environ.get("EXEC_PREFETCH_WORKERS") or 4)))
 
 # BOARD v3 / LIQ-BOT CONTROLLED PILOT UNIT (Peter, 11 Nov, written approval). Its own unit, so Lane 1
 # is untouched at $300. Same to-win/risk asymmetry as Lane 1: minus money sizes to WIN the unit,
@@ -2301,6 +2305,24 @@ def refuse(r, reason, book=None, **extra):
     return out
 
 
+def watchdog_once(now, plays, rplays, feed):
+    """The Muse no-verdict watchdog, called from both of main()'s exit paths.
+
+    Nov 11: moved OFF the pre-order path (measured 4.8-24.1s there). Its own email says "This
+    blocks nothing - Muse is a veto, so only a DISAGREE stops a play", and read_verdicts() has
+    already loaded those vetoes before any evaluation, so nothing downstream waits on it.
+
+    It is a FUNCTION rather than two inline brackets because a perf label used in two places sums
+    the same work under one name - the defect that made bot_orders look like it ran twice."""
+    if SOURCE not in ("both",):
+        return
+    with perf("muse watchdog (Gmail)"):
+        try:
+            muse_watchdog(now, plays, rplays, feed)
+        except Exception as ex:
+            print(f"muse watchdog failed: {str(ex)[:60]}")
+
+
 def fill_reports():
     """Novig + Kalshi fill reporting, moved OFF the critical path (Peter, Nov 11: "stop reading
     emails till we fix this" / "we got to fix this").
@@ -3421,9 +3443,6 @@ def main():
     newest = max(sent_ts) if sent_ts else None
     wake_s = (now - newest).total_seconds() if newest and now - newest < timedelta(minutes=30) else None
     trig = os.environ.get("GITHUB_EVENT_NAME", "local")
-    if SOURCE in ("both",):
-        with perf("muse watchdog (Gmail)"):
-            muse_watchdog(now, plays, rplays, feed)
     # Before anything else this run: pull any Polymarket US resting bid that has reached T-30.
     # It goes here, ahead of the new-order work, because a bid past T-30 is live money sitting on
     # the book after the point Peter said it must be off - that takes priority over placing more.
@@ -3442,7 +3461,12 @@ def main():
         # whose timings are most readable, since nothing else happens in them. The 15:50 run took
         # 4.5 minutes to conclude "new: 0" and said nothing about where that went. Counts and
         # seconds only, safe for the public log.
-        fill_reports()   # nothing is waiting on this run, so cost here delays no order
+        # nothing is waiting on this run, so cost here delays no order. The watchdog MUST still run
+        # on this path: it flags a qualifying play with no Muse verdict, and that is precisely the
+        # case where the play was already handled and `new` is empty. Moving it off the pre-order
+        # path must not mean skipping it on the common run.
+        watchdog_once(now, plays, rplays, feed)
+        fill_reports()
         print(perf_report())
         try:
             import registry as _rg
@@ -3529,6 +3553,33 @@ def main():
               f"{len(p1)} live-eligible play(s) held")   # counts only
     if px_live.LIVE and new:
         live_guards()   # Oct 30: load the ledger registry FIRST, so LIVEKEYS blocks a second live order on a play
+    # Nov 11 (Peter, "finish this"): PARALLEL PROBE PREFETCH. probe alert line measured 107.2s
+    # across 21 plays - 5.1s each - and is the largest item left on the critical path now that the
+    # registry read is 6s and the blind positions loop is gone.
+    #
+    # Pruning probes was proven UNSAFE earlier today (half_point 0.01427 -> 0.01526 flips the pick
+    # from 226.5 to 227.5), so nothing is removed and no price is recomputed. Instead evaluate() is
+    # run once per play CONCURRENTLY, purely to warm the per-run MD cache, and the real serial loop
+    # below then runs unchanged against cache hits.
+    #
+    # WHY A PREFETCH AND NOT A PARALLEL MAIN LOOP: the serial loop's ORDER carries "first side
+    # stays" (taken_now) and LIVEKEYS sequencing, so reordering it would change which side of a
+    # game wins a conflict. The loop is left exactly as it was.
+    #
+    # SAFE BECAUSE: evaluate() has no side effects beyond MD and PERF (asserted by test); taken is
+    # passed as None so not one Gmail conflict search runs here; every result is DISCARDED and only
+    # the cache survives; and MD is already bypassed at order time, so order pricing still comes
+    # from a fresh venue read. ProphetX is unaffected either way - _PX_PACE holds a global lock at
+    # 1 request/1.1s across parallel checks, which also makes PX the floor this cannot beat.
+    if len(new) > 1:
+        def _warm(p):
+            try:
+                evaluate(p, now, evs_by, mks_by_event, pos, None, held)
+            except Exception:
+                pass   # the serial pass handles real failures; this only warms the cache
+        with perf("probe prefetch (parallel, cache warm)", n=len(new)), \
+                ThreadPoolExecutor(max_workers=PREFETCH_WORKERS) as tp:
+            list(tp.map(_warm, new))
     results, taken_now = [], set()
     M2 = imap_open()
 
@@ -3731,7 +3782,11 @@ def main():
     body += [lane2.summary_line(), ""]   # Nov 4: Lane 2 counts (private email; dollars never in the public log)
     body += [lane_report(results), ""]   # Nov 11: per-lane counts and exposure, Board v3 and R1 separate
     try:
-        # AFTER every order, never before: these two cost ~76s and gate nothing (Nov 11)
+        # AFTER every order, never before: these gate nothing (Nov 11). The watchdog moved here
+        # from the pre-order path for the same reason - its own email says "This blocks nothing -
+        # Muse is a veto, so only a DISAGREE stops a play", and read_verdicts() already loaded
+        # those vetoes before any evaluation. Measured at 4.8-24.1s.
+        watchdog_once(now, plays, rplays, feed)
         fill_reports()
         body += [perf_report(), ""]   # Nov 11: where the run's time actually went
         print(perf_report())          # and in the public log, counts/seconds only
