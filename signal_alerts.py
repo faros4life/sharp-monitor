@@ -19,6 +19,7 @@ import hashlib
 import json
 import os
 import re
+import time as _time
 from datetime import datetime, timedelta, timezone
 
 import executor as ex
@@ -173,9 +174,20 @@ def held_sides(M):
     return out
 
 
+# Nov 11: this job takes about 7m40s against a 10-minute schedule and was being killed by an 8-minute timeout, with
+# no way to tell which part cost the time. Seconds per step, counts only - nothing financial, same as every other log.
+_T0 = _time.time()
+_MARKS = []
+
+
+def _mark(what):
+    _MARKS.append((what, _time.time() - _T0))
+
+
 def main():
     now = datetime.now(timezone.utc)
     rows = [x for x in load_liq() if x.get("alerted_utc") and t(x["alerted_utc"]) > now - timedelta(hours=30)]
+    _mark("feeds read")
     pre = lambda x: x.get("start_utc") and t(x["start_utc"]) > now and not x.get("pulled")
     fresh = [x for x in rows if t(x["alerted_utc"]) > now - timedelta(minutes=45) and pre(x)]
     found = []   # (token, title, body)
@@ -219,9 +231,12 @@ def main():
                           f"{f0.get('side_label')} ({t(f0['alerted_utc']).astimezone(ET).strftime('%-I:%M %p')})\n"
                           f"Later: {money(later.get('new_money') or 0)} on {later.get('side_label')} "
                           f"({t(later['alerted_utc']).astimezone(ET).strftime('%-I:%M %p')})\n{hist}"))
+    _mark("candidates built")
     M = ex.imap_open()
+    _mark("gmail open")
     try:
         held = held_sides(M)
+        _mark("held sides read (gmail + exchange positions)")
         for x in fresh:
             nm = x.get("new_money") or 0
             if not (x.get("rule_met") and nm >= AGAINST_MIN):
@@ -247,7 +262,12 @@ def main():
             sent += 1
     finally:
         ex.imap_close(M)
+    _mark("done")
     print(f"Signal alerts: {len(found)} candidates, {sent} new pushed")   # counts only
+    prev = 0.0
+    for what, at in _MARKS:
+        print(f"  timing: {at:6.1f}s total, {at - prev:6.1f}s for {what}")
+        prev = at
 
 
 if __name__ == "__main__":

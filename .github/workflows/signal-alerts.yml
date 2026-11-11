@@ -15,7 +15,11 @@ concurrency:
 jobs:
   run:
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    # Nov 11: the successful run takes 7m40s, so an 8-minute timeout killed every run for 2.5 hours and no
+    # phone alert fired. 9 still fits inside the 10-minute schedule; cancel-in-progress: false drops a queued
+    # run rather than cutting a live one. This is a stopgap - signal_alerts.py now prints its own step timings
+    # so the real cost can be found and removed instead of accommodated.
+    timeout-minutes: 9
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5

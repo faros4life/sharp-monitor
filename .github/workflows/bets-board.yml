@@ -7,11 +7,11 @@ name: bets-board
 # minutes without a rebuild. This job still runs board_build.py so board/calls.json keeps being frozen
 # and committed - it simply no longer publishes.
 on:
-  workflow_run:
-    # Nov 1 (Peter): also rebuild right after every executor run (orders / fills) and the hourly balances run
-    # (new-position report), so a fill shows on the private tracker within a minute or two.
-    workflows: ["liquidity-monitor", "liquidity-extra", "executor-dry-run", "balances-email"]
-    types: [completed]
+  # Nov 11: the four workflow_run triggers were dropped. They existed so the PAGE would rebuild straight after a
+  # liquidity or executor run - the page is now its own workflow and rebuilds every 5 minutes, so they bought
+  # nothing here and cost everything: each one queued a job behind an 8-minute tracker step, and with
+  # cancel-in-progress: false the queued runs were dropped. bets-board last completed at 19:48 and it was 21:30.
+  # The 10-minute timer is unchanged, so the frozen call log is still written on the same cadence as before.
   schedule:
     - cron: "8-59/10 * * * *"
   workflow_dispatch:
