@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 10, 8:00 PM ET. This run: 0 new, 0 not confirmed, 3 pending. Open alerts: 70.
+Updated Tue Nov 10, 8:07 PM ET. This run: 0 new, 1 not confirmed, 2 pending. Open alerts: 70.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -21,7 +21,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 10 6:41PM | NBA | Washington vs Indiana | moneyline: Indiana | kalshi | $44k | -163 |  |  | +1.0c |  | pending |
 | Nov 10 6:20PM | NBA | Golden State vs Houston | moneyline: Houston | kalshi | $89k | -178 |  |  | +2.0c | yes | pending |
 | Nov 10 5:31PM | NHL | New Jersey vs Winnipeg: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $46k | -104 | ✅ novig,prophetx | ❌ | +0.0c | yes | pending |
-| Nov 10 4:51PM | NBA | Miami vs Utah: Total Points | total: NOT Over 228.5 points | kalshi | $33k | -108 |  |  | +2.0c | yes | pending |
+| Nov 10 4:51PM | NBA | Miami vs Utah: Total Points | total: NOT Over 228.5 points | kalshi | $33k | -108 |  |  | +1.0c | yes | pending |
 | Nov 10 4:31PM | NHL | Nashville vs Los Angeles: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $26k | -122 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 10 4:31PM | NHL | Florida vs Columbus: Total Goals | total: NOT Over 5.5 goals scored | kalshi | $25k | +122 |  |  | +0.0c | yes | pending |
 | Nov 10 4:31PM | NHL | Florida vs Columbus: Spread | spread: NOT Florida wins by over 1.5 goals | kalshi | $35k | -233 | ✅ novig |  | +0.0c |  | pending |
@@ -49,9 +49,9 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 10 11:31AM | NHL | Minnesota vs Montreal | moneyline: Minnesota | kalshi | $80k | -117 |  |  | +1.0c | yes | pending |
 | Nov 10 11:31AM | NHL | Detroit vs St. Louis | moneyline: St. Louis | kalshi | $34k | -138 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Nov 10 11:01AM | NBA | Milwaukee vs New York: Total Points | total: NOT Over 222.5 points | kalshi | $86k | -108 |  |  | -1.0c |  | pending |
-| Nov 10 10:42AM | NBA | Boston vs Philadelphia: Total Points | total: Over 217.5 points | kalshi | $28k | -104 |  | ✅ | +0.0c |  | pending |
+| Nov 10 10:42AM | NBA | Boston vs Philadelphia: Total Points | total: Over 217.5 points | kalshi | $28k | -104 |  | ✅ | +0.0c | yes | pending |
 | Nov 10 10:31AM | NHL | Florida vs Columbus | moneyline: Florida | kalshi | $47k | -113 | ✅ novig,prophetx |  | +0.0c |  | pending |
-| Nov 10 10:01AM | NBA | Miami vs Utah: Total Points | total: Over 228.5 points | kalshi | $27k | -104 |  |  | -4.0c | yes | pending |
+| Nov 10 10:01AM | NBA | Miami vs Utah: Total Points | total: Over 228.5 points | kalshi | $27k | -104 |  |  | -3.0c | yes | pending |
 | Nov 10 9:50AM | NCAAF | Western Michigan vs Akron: Spread | spread: Western Michigan wins by over 14.5 points | kalshi | $142k | +104 | ✅ novig |  | +2.0c |  | pending |
 | Nov 10 9:32AM | NBA | Milwaukee vs New York: Spread | spread: New York wins by over 15.5 points | kalshi | $32k | -104 |  | ❌ | +0.0c |  | pending |
 | Nov 10 9:16AM | NBA | Boston vs Philadelphia | moneyline: Boston | kalshi | $315k | -104 | ✅ novig,prophetx |  | +4.0c |  | pending |
