@@ -321,6 +321,104 @@ def main():
     if allm:
         say(f"           modeled  CLV   {stats(allm)}")
 
+    # ---------------- NCAAF overs vs unders, on the certified observations ----------------
+    # Peter, Nov 10: the aggregate -3.54% hides which side it comes from, and only the OVERS are in
+    # the live lane. Every alert here already passed phase 1 - that is how the population was built
+    # - so nothing excluded is mixed in. Duplicates are checked rather than assumed away: the feed
+    # is one entry per game/market/side, so two rows can share a game legitimately, and a per-game
+    # view is reported beside the per-alert one.
+    nc = out.get("NCAAF", {}).get("ver", [])
+    say("")
+    say("  NCAAF CERTIFIED OBSERVATIONS - OVERS vs UNDERS")
+    say("  " + "-" * 104)
+
+    def side_of(a):
+        b = str(a.get("bet") or "").strip().lower()
+        return "OVER" if b.startswith("over") else "UNDER" if b.startswith("under") else "?"
+
+    def sstats(recs, label):
+        g = [r for r in recs if r["a"].get("result") in ("W", "L", "P")]
+        w = sum(1 for r in g if r["a"]["result"] == "W")
+        l = sum(1 for r in g if r["a"]["result"] == "L")
+        p_ = sum(1 for r in g if r["a"]["result"] == "P")
+        u = sum(r["a"].get("units_flat") or 0 for r in g)
+        risk = len([r for r in g if r["a"]["result"] != "P"])
+        v = [r["pct"] for r in recs if r["pct"] is not None]
+        line = (f"    {label:<22} alerts {len(recs):3}  graded {len(g):3}  {w}-{l}"
+                + (f"-{p_}" if p_ else "") + f"  {u:+7.2f}u")
+        line += f"  ROI {100 * u / risk:+7.1f}%" if risk else "  ROI     n/a"
+        if v:
+            m = sum(v) / len(v)
+            sd = sts.stdev(v) if len(v) > 1 else 0.0
+            se = sd / len(v) ** 0.5 if len(v) > 1 else 0.0
+            beat = 100.0 * sum(1 for x in v if x > 0) / len(v)
+            line += (f"  | CLV n{len(v):3} {m:+6.2f}% sd {sd:5.2f} SE {se:5.2f} "
+                     f"95% {m - 1.96 * se:+6.2f}..{m + 1.96 * se:+6.2f}  beat {beat:3.0f}%")
+        else:
+            line += "  | CLV n/a"
+        say(line)
+
+    ov = [r for r in nc if side_of(r["a"]) == "OVER"]
+    un = [r for r in nc if side_of(r["a"]) == "UNDER"]
+    other = [r for r in nc if side_of(r["a"]) == "?"]
+    sstats(nc, "ALL NCAAF certified")
+    sstats(ov, "OVERS (in the lane)")
+    sstats(un, "UNDERS")
+    if other:
+        sstats(other, "side unparsed")
+
+    say("")
+    say("    chronological halves (certified CLV only):")
+    for label, grp in (("OVERS", ov), ("UNDERS", un)):
+        g2 = sorted([r for r in grp if r["pct"] is not None],
+                    key=lambda r: str(r["a"].get("alert_utc") or ""))
+        if len(g2) >= 2:
+            h = len(g2) // 2
+            a1 = [r["pct"] for r in g2[:h]]
+            a2 = [r["pct"] for r in g2[h:]]
+            say(f"      {label:<8} first half n{len(a1):3} {sum(a1)/len(a1):+6.2f}%   "
+                f"second half n{len(a2):3} {sum(a2)/len(a2):+6.2f}%")
+        else:
+            say(f"      {label:<8} too few certified readings to halve (n={len(g2)})")
+
+    say("")
+    say("    DUPLICATES - is one game carrying more than one observation?")
+    for label, grp in (("OVERS", ov), ("UNDERS", un), ("ALL", nc)):
+        games = _c.Counter(str(r["a"].get("game")) for r in grp)
+        rep = {g: n for g, n in games.items() if n > 1}
+        say(f"      {label:<8} {len(grp):3} alert(s) across {len(games):3} unique game(s); "
+            f"{len(rep)} game(s) carry more than one")
+        for g, n in sorted(rep.items(), key=lambda kv: -kv[1])[:6]:
+            sides = ", ".join(sorted(f"{side_of(r['a'])} {r['a'].get('point')}"
+                                     for r in grp if str(r["a"].get("game")) == g))
+            say(f"          {str(g)[:44]:<44} x{n}  [{sides}]")
+    # one observation per game, keeping the EARLIEST alert, so a repeated game cannot double-weight
+    say("")
+    say("    per-game view (earliest alert per game, so no game is counted twice):")
+    for label, grp in (("OVERS", ov), ("UNDERS", un)):
+        seen_g, uniq = set(), []
+        for r in sorted(grp, key=lambda r: str(r["a"].get("alert_utc") or "")):
+            g = str(r["a"].get("game"))
+            if g not in seen_g:
+                seen_g.add(g)
+                uniq.append(r)
+        sstats(uniq, f"{label} unique games")
+
+    say("")
+    say("    EVERY CERTIFIED NCAAF OBSERVATION (no selection, ordered by date):")
+    say(f"      {'date':<11}{'side':<6}{'line':>7}{'raw':>6}{'net':>6}{'res':>5}{'units':>7}"
+        f"{'CLV':>8}  game")
+    for r in sorted(nc, key=lambda r: str(r["a"].get("alert_utc") or "")):
+        a = r["a"]
+        say(f"      {str(a.get('alert_utc'))[:10]:<11}{side_of(a):<6}"
+            f"{(a.get('point') if a.get('point') is not None else float('nan')):>7.1f}"
+            f"{(a.get('price') if a.get('price') is not None else 0):>6}"
+            f"{(a.get('price_after_fee') if a.get('price_after_fee') is not None else 0):>6}"
+            f"{str(a.get('result') or '-'):>5}"
+            f"{(a.get('units_flat') if a.get('units_flat') is not None else 0):>7.2f}"
+            f"{(r['pct'] if r['pct'] is not None else float('nan')):>+8.2f}  {str(a.get('game'))[:40]}")
+    say("  " + "-" * 104)
+
     # ---------------- ITEM 1: per-observation reconciliation of the overlap ----------------
     ov = [r for r in allv + allm
           if r["pct"] is not None and r["feed"] is not None
