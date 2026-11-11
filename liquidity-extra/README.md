@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 11, 5:06 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 23.
+Updated Wed Nov 11, 5:19 PM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 22.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 213-120 (-12.74u flat) | rule met: 44-35
+**Record:** 213-121 (-13.74u flat) | rule met: 44-35
 
-**Fade (paper, betting against the print):** 95-178 (+3.59u flat, after fees)
+**Fade (paper, betting against the print):** 96-178 (+7.57u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -34,10 +34,10 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 11 2:22AM | NCAAB | Campbell vs East Tennessee St. | moneyline: East Tennessee St. | kalshi | $25k | -203 |  | ❌ | +0.0c |  | pending |
 | Nov 11 2:00AM | NCAAB | South Florida vs Saint Joseph's | moneyline: South Florida | kalshi | $50k | -285 |  |  | -1.0c |  | pending |
 | Nov 11 2:00AM | NCAAB | Kansas City vs Florida A&M | moneyline: Kansas City | kalshi | $38k | -233 |  |  | +5.0c |  | W |
-| Nov 11 2:00AM | NCAAB | Penn vs Navy | moneyline: Penn | kalshi | $49k | -456 |  |  | -7.0c |  | pending |
+| Nov 11 2:00AM | NCAAB | Penn vs Navy | moneyline: Penn | kalshi | $49k | -456 |  |  | -8.0c |  | pending |
 | Nov 11 2:00AM | NCAAB | North Carolina Central vs VMI | moneyline: VMI | kalshi | $36k | -270 |  |  | +4.0c |  | pending |
-| Nov 11 2:00AM | NCAAB | North Carolina A&T vs East Carolina | moneyline: East Carolina | kalshi | $66k | -525 |  |  | +1.0c |  | pending |
-| Nov 11 2:00AM | NCAAB | Loyola Chicago vs Air Force | moneyline: Loyola Chicago | kalshi | $64k | -456 |  | ✅ | +1.0c |  | pending |
+| Nov 11 2:00AM | NCAAB | North Carolina A&T vs East Carolina | moneyline: East Carolina | kalshi | $66k | -525 |  |  | +6.0c |  | pending |
+| Nov 11 2:00AM | NCAAB | Loyola Chicago vs Air Force | moneyline: Loyola Chicago | kalshi | $64k | -456 |  | ✅ | +1.0c |  | L |
 | Nov 11 2:00AM | NCAAB | FDU vs East Texas A&M | moneyline: East Texas A&M | kalshi | $64k | -525 |  |  | -38.0c | yes | L |
 | Nov 10 11:13PM | TENNIS | Fritz vs Norrie | moneyline: Fritz | kalshi | $43k | -300 | ✅ novig |  | +1.0c |  | W |
 | Nov 10 6:29PM | NCAAB | Evansville vs Middle Tennessee | moneyline: Middle Tennessee | kalshi | $29k | -400 | ✅ novig | ✅ | +1.0c | yes | W |
