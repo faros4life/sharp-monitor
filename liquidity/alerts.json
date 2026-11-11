@@ -1,6 +1,347 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-11T06:35:30Z",
+   "base_depth": 74349,
+   "best_price": 0.51,
+   "best_price_american": -104,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-11",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -907,
+     "new_this_side": 33652,
+     "other_side": 35873,
+     "other_side_all_levels": 79594,
+     "ratio": 1.2,
+     "this_side": 42401,
+     "this_side_all_levels": 99674
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "Over 221.5 (221.5)",
+     "price": 0.51,
+     "this_side": 6013
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "over 221.5 (221.5)",
+     "price": 0.5146,
+     "this_side": 185
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 604.39,
+    "volume_24h_fp": 896.88,
+    "volume_fp": 896.88
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 604.39,
+    "volume_24h_fp": 896.88,
+    "volume_fp": 896.88
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-11-11T06:30:53Z",
+   "game": "Cleveland vs New York: Total Points",
+   "game_surge_books": [
+    "kalshi"
+   ],
+   "game_x": 2.05,
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNBATOTAL-26NOV11CLENYK-222\"}",
+   "lead_min": 1044,
+   "league": "NBA",
+   "line": 221.5,
+   "market": "total",
+   "new_money": 33652,
+   "new_x": 0.41,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 604.39,
+      "volume_24h_fp": 896.88,
+      "volume_fp": 896.88
+     },
+     "game_normal": 48592,
+     "game_x": 2.05,
+     "normal": 81643,
+     "now": 99674,
+     "type": "OVER",
+     "x": 1.22
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 697489.0,
+      "volume": 772640.0
+     },
+     "game_normal": 5114,
+     "game_x": 1.46,
+     "normal": 4795,
+     "now": 7453,
+     "type": "OVER",
+     "x": 1.55
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": null,
+     "game_x": null,
+     "normal": 592,
+     "now": 1199,
+     "type": "OVER",
+     "x": 2.03
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 221.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 221.5,
+     "price": -110
+    },
+    "betrivers": {
+     "point": 221.5,
+     "price": -110
+    },
+    "betus": {
+     "point": 221.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 221.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 221.5,
+     "price": -110
+    },
+    "fanatics": {
+     "point": 221.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 221.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": 221.5,
+     "price": -104
+    },
+    "lowvig": {
+     "point": 221.5,
+     "price": -107
+    },
+    "mybookieag": {
+     "point": 221.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 221.5,
+     "price": -104
+    },
+    "polymarket": {
+     "point": 221.5,
+     "price": -104
+    },
+    "prophetx": {
+     "point": 221.5,
+     "price": -106
+    },
+    "williamhill_us": {
+     "point": 221.5,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBATOTAL-26NOV11CLENYK-222"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "OVER",
+   "side_label": "Over 221.5 points",
+   "size_x": 1.22,
+   "start_source": "odds",
+   "start_utc": "2026-11-12T00:00:00Z",
+   "surge_books": [
+    "prophetx"
+   ],
+   "teams": [
+    "Cleveland",
+    "New York"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-11T06:35:30Z",
+   "base_depth": 205998,
+   "best_price": 0.51,
+   "best_price_american": -104,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-11",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 3898,
+     "new_this_side": 188340,
+     "other_side": 9769,
+     "other_side_all_levels": 185250,
+     "ratio": 0.2,
+     "this_side": 1525,
+     "this_side_all_levels": 395812
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "OKC (0)",
+     "price": 0.51,
+     "this_side": 244
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Oklahoma City Thunder",
+     "price": 0.5146,
+     "this_side": 226
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 125951.76,
+    "volume_24h_fp": 169065.28,
+    "volume_fp": 173086.64
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 569.55,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 1295.03
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 125382.20999999999,
+    "volume_24h_fp": 169065.28,
+    "volume_fp": 171791.61
+   },
+   "fade_price": 0.51,
+   "first_seen_utc": "2026-11-11T06:30:53Z",
+   "game": "Oklahoma City vs Portland",
+   "game_surge_books": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "game_x": 2.05,
+   "key": "kalshi|KXNBAGAME-26NOV11OKCPOR|ml|0",
+   "lead_min": 1224,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 188340,
+   "new_x": 0.82,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 125951.76,
+      "volume_24h_fp": 169065.28,
+      "volume_fp": 173086.64
+     },
+     "game_normal": 193112,
+     "game_x": 2.05,
+     "normal": 230842,
+     "now": 395812,
+     "type": "ML",
+     "x": 1.71
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 498504.0,
+      "volume": 899303.0
+     },
+     "game_normal": 335,
+     "game_x": 3.28,
+     "normal": 12475,
+     "now": 1101,
+     "type": "ML",
+     "x": 0.09
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 144,
+     "game_x": 2.03,
+     "normal": 5909,
+     "now": 293,
+     "type": "ML",
+     "x": 0.05
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.5,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBAGAME-26NOV11OKCPOR-OKC"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Oklahoma City",
+   "side_label": "Oklahoma City",
+   "size_x": 1.71,
+   "start_source": "prophetx",
+   "start_utc": "2026-11-12T03:00:00Z",
+   "surge_books": [],
+   "teams": [
+    "Oklahoma City",
+    "Portland"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-11T06:21:05Z",
    "base_depth": 258502,
    "best_price": 0.51,
@@ -430,9 +771,9 @@
     "volume_fp": 13.21
    },
    "ex_stats_close": {
-    "open_interest_fp": 5211.0,
+    "open_interest_fp": 5461.57,
     "volume_24h_fp": 4984.59,
-    "volume_fp": 5717.66
+    "volume_fp": 5968.23
    },
    "ex_stats_first": {
     "open_interest_fp": 3291.5699999999997,
@@ -645,9 +986,9 @@
     "volume_fp": 5785.11
    },
    "ex_stats_close": {
-    "open_interest_fp": 111688.95999999999,
+    "open_interest_fp": 114401.11,
     "volume_24h_fp": 125858.27,
-    "volume_fp": 136346.83000000002
+    "volume_fp": 139062.08
    },
    "ex_stats_first": {
     "open_interest_fp": 89132.96,
@@ -837,9 +1178,9 @@
     "volume_fp": 426.38
    },
    "ex_stats_close": {
-    "open_interest_fp": 92384.15,
+    "open_interest_fp": 94085.09,
     "volume_24h_fp": 92207.95,
-    "volume_fp": 94530.62
+    "volume_fp": 96337.12
    },
    "ex_stats_first": {
     "open_interest_fp": 72451.85,
@@ -1202,8 +1543,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.72,
-   "clv_cents": 4.0,
+   "close_price": 0.73,
+   "clv_cents": 5.0,
    "confirmed_after_min": 10,
    "date": "2026-11-11",
    "depth_by_book": {
@@ -1240,9 +1581,9 @@
     "volume_fp": 406.14
    },
    "ex_stats_close": {
-    "open_interest_fp": 53665.13,
+    "open_interest_fp": 54627.14,
     "volume_24h_fp": 57264.63,
-    "volume_fp": 65528.67
+    "volume_fp": 66659.34
    },
    "ex_stats_first": {
     "open_interest_fp": 26795.5,
@@ -1645,9 +1986,9 @@
     "volume_fp": 16.52
    },
    "ex_stats_close": {
-    "open_interest_fp": 125382.20999999999,
+    "open_interest_fp": 125951.76,
     "volume_24h_fp": 169065.28,
-    "volume_fp": 171791.61
+    "volume_fp": 173086.64
    },
    "ex_stats_first": {
     "open_interest_fp": 8605.99,
@@ -1792,9 +2133,9 @@
     "volume_fp": 475.01
    },
    "ex_stats_close": {
-    "open_interest_fp": 34443.58,
+    "open_interest_fp": 35678.53,
     "volume_24h_fp": 29473.93,
-    "volume_fp": 35438.15
+    "volume_fp": 36675.100000000006
    },
    "ex_stats_first": {
     "open_interest_fp": 10202.46,
@@ -1993,6 +2334,7 @@
     "volume_fp": 65024.4
    },
    "fade_price": 0.49,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-11T02:42:49Z",
    "game": "Oklahoma City vs Portland: Total Points",
    "game_surge_books": [],
@@ -2099,11 +2441,12 @@
     "kalshi_side": "no",
     "market_ticker": "KXNBATOTAL-26NOV10OKCPOR-227"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settled_utc": "2026-11-11T06:35:30Z",
    "sharp_agree": [
     "Under 226.5 (-108)"
    ],
@@ -2125,7 +2468,7 @@
     "Portland"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.94
   },
   {
    "alerted_utc": "2026-11-11T02:50:20Z",
@@ -2141,8 +2484,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.61,
-   "clv_cents": 0.0,
+   "close_price": 0.62,
+   "clv_cents": 1.0,
    "confirmed_after_min": 8,
    "date": "2026-11-11",
    "depth_by_book": {
@@ -2167,9 +2510,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 6727.929999999999,
+    "open_interest_fp": 7387.73,
     "volume_24h_fp": 6670.349999999999,
-    "volume_fp": 7017.450000000001
+    "volume_fp": 7677.25
    },
    "ex_stats_first": {
     "open_interest_fp": 3228.49,
@@ -2278,9 +2621,9 @@
     "volume_fp": 115.17
    },
    "ex_stats_close": {
-    "open_interest_fp": 30159.91,
+    "open_interest_fp": 32632.81,
     "volume_24h_fp": 29930.61,
-    "volume_fp": 36586.75
+    "volume_fp": 39067.62
    },
    "ex_stats_first": {
     "open_interest_fp": 15240.18,
@@ -2430,9 +2773,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 10094.98,
+    "open_interest_fp": 10341.77,
     "volume_24h_fp": 9528.3,
-    "volume_fp": 10450.130000000001
+    "volume_fp": 10696.919999999998
    },
    "ex_stats_first": {
     "open_interest_fp": 6912.83,
@@ -2801,9 +3144,9 @@
     "volume_fp": 229.38
    },
    "ex_stats_close": {
-    "open_interest_fp": 10279.76,
+    "open_interest_fp": 10536.76,
     "volume_24h_fp": 9864.82,
-    "volume_fp": 11215.810000000001
+    "volume_fp": 11472.810000000001
    },
    "ex_stats_first": {
     "open_interest_fp": 3340.28,
@@ -2990,9 +3333,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 49852.56,
+    "open_interest_fp": 50372.0,
     "volume_24h_fp": 45561.53,
-    "volume_fp": 51989.81
+    "volume_fp": 52509.25
    },
    "ex_stats_first": {
     "open_interest_fp": 12866.14,
@@ -4766,9 +5109,9 @@
     "volume_fp": 91.89
    },
    "ex_stats_close": {
-    "open_interest_fp": 92384.15,
+    "open_interest_fp": 94085.09,
     "volume_24h_fp": 92207.95,
-    "volume_fp": 94530.62
+    "volume_fp": 96337.12
    },
    "ex_stats_first": {
     "open_interest_fp": 7335.33,
@@ -4945,9 +5288,9 @@
     "volume_fp": 344.06
    },
    "ex_stats_close": {
-    "open_interest_fp": 212058.06,
+    "open_interest_fp": 226335.27,
     "volume_24h_fp": 191706.98,
-    "volume_fp": 228408.40999999997
+    "volume_fp": 244049.12
    },
    "ex_stats_first": {
     "open_interest_fp": 89973.97,
@@ -6548,6 +6891,7 @@
     "volume_fp": 34785.05
    },
    "fade_price": 0.52,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-10T21:21:44Z",
    "game": "Oklahoma City vs Portland: Spread",
    "game_surge_books": [],
@@ -6666,11 +7010,12 @@
     "kalshi_side": "no",
     "market_ticker": "KXNBASPREAD-26NOV10OKCPOR-OKC2"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-11-11T06:35:30Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "Oklahoma City Thunder -1.5 (-116)"
@@ -6689,7 +7034,7 @@
     "Portland"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.04
   },
   {
    "alerted_utc": "2026-11-10T21:31:00Z",
@@ -8154,6 +8499,7 @@
     "volume_fp": 9515.75
    },
    "fade_price": 0.51,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-10T18:20:43Z",
    "game": "Oklahoma City vs Portland: Total Points",
    "game_surge_books": [],
@@ -8272,11 +8618,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBATOTAL-26NOV10OKCPOR-225"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-11-11T06:35:30Z",
    "sharp_agree": [
     "Over 226.5 (+102)"
    ],
@@ -8297,7 +8644,7 @@
     "Portland"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.02
   },
   {
    "alerted_utc": "2026-11-10T17:20:39Z",
@@ -9139,9 +9486,9 @@
     "volume_fp": 191.81
    },
    "ex_stats_close": {
-    "open_interest_fp": 37697.4,
+    "open_interest_fp": 37808.04,
     "volume_24h_fp": 37845.27,
-    "volume_fp": 41497.920000000006
+    "volume_fp": 41608.560000000005
    },
    "ex_stats_first": {
     "open_interest_fp": 4963.54,
@@ -13807,6 +14154,7 @@
     "volume_fp": 254109.5
    },
    "fade_price": 0.56,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-10T12:06:43Z",
    "game": "Oklahoma City vs Portland",
    "game_surge_books": [],
@@ -13937,11 +14285,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBAGAME-26NOV10OKCPOR-POR"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settled_utc": "2026-11-11T06:35:30Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "Oklahoma City Thunder -1.5 (-116)"
@@ -13961,7 +14310,7 @@
     "Portland"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.23
   },
   {
    "alerted_utc": "2026-11-10T12:00:20Z",
@@ -15339,9 +15688,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 37697.4,
+    "open_interest_fp": 37808.04,
     "volume_24h_fp": 37845.27,
-    "volume_fp": 41497.920000000006
+    "volume_fp": 41608.560000000005
    },
    "ex_stats_first": {
     "open_interest_fp": 3317.11,
@@ -16231,6 +16580,7 @@
     "volume_fp": 41067.2
    },
    "fade_price": 0.47,
+   "fade_units": 1.05,
    "first_seen_utc": "2026-11-10T04:00:17Z",
    "game": "Oklahoma City vs Portland",
    "game_surge_books": [
@@ -16372,7 +16722,7 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBAGAME-26NOV10OKCPOR-OKC"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig",
@@ -16380,6 +16730,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-11T06:35:30Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Oklahoma City",
@@ -16394,7 +16745,7 @@
     "Portland"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-10T03:26:33Z",
