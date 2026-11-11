@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 11, 2:33 AM ET. This run: 2 new, 0 not confirmed, 8 pending. Open alerts: 12.
+Updated Wed Nov 11, 2:43 AM ET. This run: 6 new, 0 not confirmed, 0 pending. Open alerts: 22.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,15 +10,25 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 11 2:33AM | NCAAB | Stephen F. Austin vs Abilene Christian | moneyline: Stephen F. Austin | kalshi | $26k | -170 |  |  | +0.0c |  | pending |
-| Nov 11 2:33AM | NCAAB | Jackson St. vs Southern Miss | moneyline: Southern Miss | kalshi | $42k | -456 |  |  | +0.0c |  | pending |
-| Nov 11 2:11AM | NCAAB | South Florida vs Saint Joseph's | moneyline: South Florida | kalshi | $39k | -285 |  |  | +0.0c |  | pending |
-| Nov 11 2:11AM | NCAAB | Kansas City vs Florida A&M | moneyline: Kansas City | kalshi | $30k | -233 |  |  | +0.0c |  | pending |
-| Nov 11 2:11AM | NCAAB | Penn vs Navy | moneyline: Penn | kalshi | $44k | -456 |  |  | +0.0c |  | pending |
-| Nov 11 2:11AM | NCAAB | North Carolina Central vs VMI | moneyline: VMI | kalshi | $36k | -270 |  |  | +0.0c |  | pending |
-| Nov 11 2:11AM | NCAAB | North Carolina A&T vs East Carolina | moneyline: East Carolina | kalshi | $62k | -525 |  |  | +0.0c |  | pending |
-| Nov 11 2:11AM | NCAAB | Loyola Chicago vs Air Force | moneyline: Loyola Chicago | kalshi | $63k | -456 |  | ✅ | +0.0c |  | pending |
-| Nov 11 2:11AM | NCAAB | FDU vs East Texas A&M | moneyline: East Texas A&M | kalshi | $54k | -525 |  |  | +0.0c |  | pending |
+| Nov 11 2:43AM | NCAAB | Southern Indiana vs IU Indy | moneyline: IU Indy | kalshi | $148k | -270 |  |  | +0.0c |  | pending |
+| Nov 11 2:43AM | NCAAB | USC vs California | moneyline: USC | kalshi | $220k | -335 |  |  | +0.0c |  | pending |
+| Nov 11 2:43AM | NCAAB | Pacific vs Long Beach St. | moneyline: Pacific | kalshi | $177k | -233 |  |  | +0.0c |  | pending |
+| Nov 11 2:43AM | NCAAB | UMass Lowell vs UMass | moneyline: UMass | kalshi | $89k | -567 |  |  | +0.0c |  | pending |
+| Nov 11 2:43AM | NCAAB | Chicago St. vs California Baptist | moneyline: California Baptist | kalshi | $222k | -525 |  |  | +0.0c |  | pending |
+| Nov 11 2:43AM | TENNIS | Gojo vs Humbert | moneyline: Humbert | kalshi | $30k | -203 |  |  | +0.0c |  | pending |
+| Nov 11 2:22AM | NCAAB | Stony Brook vs Princeton | moneyline: Princeton | kalshi | $25k | -203 |  |  | +0.0c |  | pending |
+| Nov 11 2:22AM | NCAAB | Marquette vs Michigan | moneyline: Michigan | kalshi | $29k | -163 |  |  | +0.0c |  | pending |
+| Nov 11 2:22AM | NCAAB | Kent St. vs UNC Wilmington | moneyline: UNC Wilmington | kalshi | $31k | -270 |  |  | +0.0c |  | pending |
+| Nov 11 2:22AM | NCAAB | Jackson St. vs Southern Miss | moneyline: Southern Miss | kalshi | $27k | -456 |  |  | +0.0c |  | pending |
+| Nov 11 2:22AM | NCAAB | Cornell vs St. Bonaventure | moneyline: St. Bonaventure | kalshi | $34k | -335 |  |  | +0.0c |  | pending |
+| Nov 11 2:22AM | NCAAB | Campbell vs East Tennessee St. | moneyline: East Tennessee St. | kalshi | $25k | -203 |  | ❌ | +0.0c |  | pending |
+| Nov 11 2:00AM | NCAAB | South Florida vs Saint Joseph's | moneyline: South Florida | kalshi | $50k | -285 |  |  | +0.0c |  | pending |
+| Nov 11 2:00AM | NCAAB | Kansas City vs Florida A&M | moneyline: Kansas City | kalshi | $38k | -233 |  |  | +0.0c |  | pending |
+| Nov 11 2:00AM | NCAAB | Penn vs Navy | moneyline: Penn | kalshi | $49k | -456 |  |  | +0.0c |  | pending |
+| Nov 11 2:00AM | NCAAB | North Carolina Central vs VMI | moneyline: VMI | kalshi | $36k | -270 |  |  | +0.0c |  | pending |
+| Nov 11 2:00AM | NCAAB | North Carolina A&T vs East Carolina | moneyline: East Carolina | kalshi | $66k | -525 |  |  | +0.0c |  | pending |
+| Nov 11 2:00AM | NCAAB | Loyola Chicago vs Air Force | moneyline: Loyola Chicago | kalshi | $64k | -456 |  | ✅ | +0.0c |  | pending |
+| Nov 11 2:00AM | NCAAB | FDU vs East Texas A&M | moneyline: East Texas A&M | kalshi | $64k | -525 |  |  | +0.0c |  | pending |
 | Nov 10 11:13PM | TENNIS | Fritz vs Norrie | moneyline: Fritz | kalshi | $43k | -300 | ✅ novig |  | +0.0c |  | pending |
 | Nov 10 6:29PM | NCAAB | Evansville vs Middle Tennessee | moneyline: Middle Tennessee | kalshi | $29k | -400 | ✅ novig | ✅ | +1.0c | yes | W |
 | Nov 10 6:08PM | NCAAB | Winthrop vs Kennesaw St. | moneyline: Kennesaw St. | kalshi | $37k | -525 |  | ✅ | -2.0c | yes | W |
@@ -200,13 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 30 6:00PM | TENNIS | Fernandez vs Rakhimova | moneyline: Fernandez | kalshi | $29k | -285 |  |  | +0.0c |  | W |
 | Oct 30 5:26PM | TENNIS | Medvedev vs Alcaraz | moneyline: Alcaraz | kalshi | $32k | -233 |  |  | -1.0c |  | W |
 | Oct 30 4:10PM | TENNIS | Berrettini vs de Minaur | moneyline: Berrettini | kalshi | $466k | +138 |  |  | -37.0c | yes | L |
-| Oct 30 11:30AM | TENNIS | Berrettini vs de Minaur | moneyline: de Minaur | kalshi | $30k | -213 | ✅ novig |  | +0.0c | yes | W |
-| Oct 30 11:10AM | TENNIS | Prozorova vs Kinoshita | moneyline: Prozorova | kalshi | $30k | -525 |  |  | +1.0c |  | W |
-| Oct 30 10:00AM | TENNIS | Fritz vs Fils | moneyline: Fils | kalshi | $44k | -108 |  |  | +0.0c | yes | L |
-| Oct 30 9:28AM | TENNIS | Kym vs Lehecka | moneyline: Lehecka | kalshi | $63k | -270 | ✅ novig |  | +0.0c | yes | W |
-| Oct 30 6:40AM | TENNIS | Tagger vs Shi | moneyline: Tagger | kalshi | $26k | -285 | ✅ novig |  | +0.0c |  | W |
-| Oct 30 4:50AM | TENNIS | Struff vs Borges | moneyline: Struff | kalshi | $34k | -113 |  |  | +43.0c | yes | W |
-| Oct 30 3:30AM | TENNIS | Mannarino vs Medvedev | moneyline: Medvedev | kalshi | $28k | -376 | ✅ novig |  | +0.0c | yes | W |
-| Oct 30 3:00AM | TENNIS | Badosa vs Dart | moneyline: Dart | kalshi | $151k | -150 |  |  | +19.0c |  | W |
-| Oct 30 1:30AM | TENNIS | Badosa vs Dart | moneyline: Badosa | kalshi | $141k | -245 |  |  | -49.0c | yes | L |
-| Oct 29 11:10PM | TENNIS | Rune vs Vacherot | moneyline: Rune | kalshi | $27k | -133 | ✅ novig |  | -1.0c | yes | L |
