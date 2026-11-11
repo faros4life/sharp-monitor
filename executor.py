@@ -2321,7 +2321,7 @@ def fill_reports():
     if (os.environ.get("EXEC_FILL_REPORTS") or "on").strip().lower() != "on":
         print("fill reports: skipped (EXEC_FILL_REPORTS=off)")
         return
-    with perf("novig fill reports (Gmail)"):
+    with perf("novig fill reports (Gmail)", rollup=True):   # encloses the snapshot read bracket
         try:
             novig_reports()
         except Exception as ex:
@@ -2804,8 +2804,26 @@ def sent_tokens(M, toks, days=None):
 def novig_reports():
     """Oct 28: the home runner writes each Novig order's result to snapshot/novig_orders.json; report each new or
     changed result to Telegram once (token email = the record, the same pattern as the watchdog). Counts only in the log."""
-    recs = book_live.novig_results() if (os.environ.get("NOVIG_SNAPSHOT_TOKEN") or "").strip() else []
+    with perf("novig snapshot read (private repo)"):
+        recs = book_live.novig_results() if (os.environ.get("NOVIG_SNAPSHOT_TOKEN") or "").strip() else []
     if not recs:
+        return 0
+    # Nov 11: decide WHICH records are even reportable before touching Gmail. The status filters
+    # below are pure arithmetic on the snapshot, so running them first means a run with nothing
+    # final to report opens no IMAP connection and issues no search at all - and that is the
+    # common case, because the home runner re-reads every 5 minutes while most orders sit
+    # unchanged. Measured at 73s and 119s in the two passes of run 43070374073, AFTER the search
+    # batching, so the remaining cost was the connection and the search themselves.
+    def _final(x):
+        st = str(x.get("status") or "?").upper()
+        fq = int(x.get("filled_qty") or 0)
+        if st in ("PENDING", "SENT", "UNKNOWN") and not fq:
+            return False
+        if st == "FILLED" and not fq:
+            return False
+        return True
+    if not any(_final(x) for x in recs[-30:]):
+        print("novig fill reports: nothing final to report (no Gmail connection opened)")
         return 0
     n = 0
     M = imap_open()
@@ -3445,26 +3463,43 @@ def main():
         mks_by_event.setdefault(mk.get("eventId"), []).append(mk)
     MD["c"].clear(); MD["hit"] = MD["miss"] = 0   # one cache per run, never across runs
     MKT["evs"], MKT["mks"] = evs_by, mks_by_event   # Nov 11: revalidate() re-reads Novig through this map
-    with perf("positions read (4 venues)"), ThreadPoolExecutor(max_workers=4) as tp:   # Oct 31: all 4 position reads at the same time
+    with perf("positions read (first attempt)"), ThreadPoolExecutor(max_workers=4) as tp:   # Oct 31: all 4 position reads at the same time
         f_nv = tp.submit(novig_positions)
         f_h = {b: tp.submit(fn) for b, fn in (("kalshi", positions.kalshi_positions), ("prophetx", positions.px_positions),
                                               ("polymarket_us", positions.pmus_positions))}
         pos = f_nv.result()
         held = {b: f.result() for b, f in f_h.items()}   # Kalshi / ProphetX / Polymarket US open positions (read-only)
     if pos is None or any(v is None for v in held.values()):   # one immediate retry before holding anything
-        time.sleep(5)
-        if pos is None:
-            pos = novig_positions()
-        retry = {"kalshi": positions.kalshi_positions, "prophetx": positions.px_positions,
-                 "polymarket_us": positions.pmus_positions}
-        for b in [b for b, v in held.items() if v is None]:
-            held[b] = retry[b]()
+        # Nov 11: the retry used to re-read each failed venue SERIALLY, so three unreadable books
+        # cost the sum of their latencies on top of the 5s settle. The first attempt has always
+        # been parallel; the retry now matches it. Same reads, same fail-closed outcome - a venue
+        # still unreadable after this is still "blind" and still places nothing.
+        with perf("positions retry (after 5s)"):
+            time.sleep(5)
+            retry = {"kalshi": positions.kalshi_positions, "prophetx": positions.px_positions,
+                     "polymarket_us": positions.pmus_positions}
+            need = [b for b, v in held.items() if v is None]
+            with ThreadPoolExecutor(max_workers=4) as tp:
+                f_nv2 = tp.submit(novig_positions) if pos is None else None
+                f_r = {b: tp.submit(retry[b]) for b in need}
+                if f_nv2 is not None:
+                    pos = f_nv2.result()
+                for b, f in f_r.items():
+                    held[b] = f.result()
     blind = (["Novig"] if pos is None else []) + [BOOK_NAME[b] for b, v in held.items() if v is None]
     # Oct 29 (Muse): when a book's positions can't be read and a LIVE-eligible play (phase-1, Muse AGREE) is waiting,
     # re-read every 60 s inside this run (up to 4 min - the runs queue behind each other, so not longer), and push an
     # escalation at ~3 min naming the play and the book so it can be placed by hand while the number is live.
     # Unreadable still means no order (fail closed).
     if blind:
+        # Nov 11: this loop re-reads a blind venue every 60s for up to 4 MINUTES, so it alone can
+        # account for the 138s/175s measured in run 43070374073. Bracketed separately from the
+        # first attempt and the retry, because the three have completely different fixes: a slow
+        # first read is a venue problem, a slow retry was the serial bug above, and this loop is a
+        # deliberate fail-closed safeguard that exists so Peter can place by hand while the number
+        # is live. Knowing WHICH of the three is burning the time has to come before touching any
+        # of them - the league-list guess on liquidity-extra cost five dead runs.
+        print(f"positions blind: {', '.join(blind)} - entering the up-to-4-minute re-read")
         p1 = []
         for p in new:
             e1 = feed_entry(p, load_feed()) if p.get("source") != "rules" else None
