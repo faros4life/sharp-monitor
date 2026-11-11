@@ -625,6 +625,135 @@ def main():
     say("  here and no claim about obtainability is made.")
     say("=" * 108)
     say("")
+    # ============ NBA UNDER TRIGGER: PASS vs FAIL (Peter, Nov 10) ============
+    # "The trigger" here is phase 1 itself - the registered live-qualification rules, thresholds
+    # untouched. PASS = agree_rules.phase1 admits the alert; FAIL = it does not, and the reasons are
+    # printed so what is actually separating the groups is visible rather than assumed. If Peter
+    # meant the detection trigger instead, that cannot be tested from this data at all: an alert
+    # only exists because detection fired, so there is no un-triggered comparison group on disk.
+    #
+    # SELECTION BIAS, stated before the numbers: the FAIL group is not a random control. It differs
+    # from PASS by the very properties the gates select on - venue above all - so any gap between
+    # them measures the gates PLUS everything correlated with them, and cannot be read as the
+    # gates' own contribution.
+    say("")
+    say("=" * 108)
+    say("NBA TOTALS UNDERS - does the registered trigger separate? PASS vs FAIL")
+    say("=" * 108)
+    import exchange_lag as el
+    SEEN_BOOKS = {"prophetx": "ProphetX", "novig.us": "Novig", "kalshi": "Kalshi",
+                  "polymarket.us": "Polymarket US"}
+    ALERT_BOOK = {"ProphetX": "prophetx", "Kalshi": "kalshi", "Novig": "novig.us"}
+    TOL = 0.002
+
+    def seen_at_alert(a, lg):
+        """fill_audit's SEEN test: did the ALERTED book's own stored history show the alert price or
+        better, at the alert line, at the alert time? None when we hold no history for that book -
+        never False, because 'we cannot see' is not 'it was not there'."""
+        own = ALERT_BOOK.get(str(a.get("book")))
+        if not own:
+            return None, "alerted book has no stored history"
+        bet = a.get("bet") or ""
+        fid, f = fixture_for(a, lg)
+        if not fid:
+            return None, "no unique fixture"
+        start = start_of(f)
+        t0 = cl.tp(a.get("alert_utc"))
+        if not start or not t0:
+            return None, "no timestamps"
+        try:
+            h = hc.get_hist(fid, [own], start)
+            bk = cl.book_markets(h, own)
+        except Exception as e:
+            return None, f"history unreadable ({type(e).__name__})"
+        if not bk:
+            return None, "no stored history for that book"
+        b = {"bet": bet, "league": lg, "market": "total",
+             "game": f.get("game"), "game_start": f.get("start")}
+        try:
+            x = cl.novig_at(b, f, bk, mkmap, min(t0, start), lg)
+        except Exception as e:
+            return None, f"novig_at raised ({type(e).__name__})"
+        if not x:
+            return None, "book had no quote at the alert line"
+        got = el.eff(own, x[0])
+        want = cl.am_to_dec(a.get("price_after_fee") or a.get("price"))
+        if got is None or want is None:
+            return None, "price unreadable"
+        return (got >= want - TOL), None
+
+    nbau = sorted([x for x in bot if str(x.get("sport")) == "NBA" and sidecls(x) == "tot UNDER"],
+                  key=lambda x: str(x.get("alert_utc") or ""))
+    groups = {"PASS": [], "FAIL": []}
+    whyfail = collections.Counter()
+    for a in nbau:
+        try:
+            ok, w = agree_rules.phase1({"book_key": a.get("book_key"), "book": a.get("book"),
+                                        "grade": a.get("grade"), "sport": a.get("sport"),
+                                        "kind": a.get("kind"), "bet": a.get("bet") or "",
+                                        "price_after_fee": a.get("price_after_fee"),
+                                        "confirmed_by": a.get("confirmed_by") or [],
+                                        "start_utc": a.get("start_utc"),
+                                        "alert_utc": a.get("alert_utc"),
+                                        "late": bool(a.get("late"))}, True)
+            w = [x for x in w if x != "no Muse AGREE"]
+        except Exception:
+            continue
+        groups["PASS" if not w else "FAIL"].append(a)
+        for r in w:
+            whyfail[r[:58]] += 1
+
+    say(f"  {len(nbau)} NBA under alert(s) in the bot universe -> "
+        f"PASS {len(groups['PASS'])}, FAIL {len(groups['FAIL'])}")
+    say("")
+    for gname in ("PASS", "FAIL"):
+        rows = groups[gname]
+        if not rows:
+            say(f"  {gname}: empty")
+            continue
+        cert, cfail = {}, collections.Counter()
+        sn = {"yes": 0, "no": 0}
+        sfail = collections.Counter()
+        for a in rows:
+            pct, why = certify(a, "NBA")
+            if pct is None:
+                cfail[why] += 1
+            else:
+                cert[id(a)] = pct
+            sv, serr = seen_at_alert(a, "NBA")
+            if sv is None:
+                sfail[serr] += 1
+            else:
+                sn["yes" if sv else "no"] += 1
+        say(f"  {gname}")
+        say("  " + "-" * 104)
+        blk(rows, cert, "ALL")
+        h = len(rows) // 2
+        blk(rows[:h], cert, "first half")
+        blk(rows[h:], cert, "second half")
+        tot_seen = sn["yes"] + sn["no"]
+        say(f"    SEEN at the alert price: {sn['yes']}/{tot_seen} testable "
+            f"({(100.0 * sn['yes'] / tot_seen) if tot_seen else float('nan'):.0f}%)"
+            f"   untestable {sum(sfail.values())}")
+        for k, n in sfail.most_common(4):
+            say(f"       untestable: {n:3}  {k}")
+        if cfail:
+            for k, n in cfail.most_common(4):
+                say(f"       no certified close: {n:3}  {k}")
+        say(f"    alerted books: {dict(collections.Counter(str(a.get('book')) for a in rows).most_common(5))}")
+        say("")
+    say("  why the FAIL group failed (first reasons, all alerts):")
+    for k, n in whyfail.most_common(8):
+        say(f"     {n:3}  {k}")
+    say("")
+    say("  READING THIS: the two groups differ by what the gates select on, so a gap between them")
+    say("  is the gates PLUS everything correlated with them - venue, price band, timing - and is")
+    say("  not the gates' own contribution. With these sample sizes neither group can carry a")
+    say("  verdict on its own; what is reportable is whether the gap points the way the rules")
+    say("  intend, and how far from zero it is.")
+    say("=" * 108)
+    say("")
+
     say("  ITEM 4 - the missing cached histories, and what a backfill would cost")
     say("  " + "-" * 104)
     nocache = sum(b["miss"]["no CACHED Pinnacle history (not fetched, by design)"] for b in out.values())
