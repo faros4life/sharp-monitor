@@ -2166,6 +2166,38 @@ def refuse(r, reason, book=None, **extra):
     return out
 
 
+def fill_reports():
+    """Novig + Kalshi fill reporting, moved OFF the critical path (Peter, Nov 11: "stop reading
+    emails till we fix this" / "we got to fix this").
+
+    Measured on run 43052291191 from the log's own timestamps: 30s in novig_reports() and 46s in
+    kalshi_rest_reports(), both running BEFORE any order work. kalshi_rest_reports() opens its own
+    IMAP connection and repeats the SAME scan bot_orders() does - SEARCH "Bets LIVE:" then a full
+    RFC822 fetch per email - so a single run was making three or four separate Gmail connections,
+    each re-scanning the mailbox from scratch.
+
+    Neither gates an order: both only report fills that already happened, and both dedupe on their
+    own token emails, so a run that dies before reaching them simply reports next run. Running them
+    after the orders therefore takes ~76s off every play's time-to-order and loses nothing.
+
+    EXEC_FILL_REPORTS=off skips them entirely, for when Peter wants the mailbox left alone. Default
+    on, because these are the only notice of a Novig or Kalshi resting fill and that is money
+    information - speed is not worth going blind to a fill."""
+    if (os.environ.get("EXEC_FILL_REPORTS") or "on").strip().lower() != "on":
+        print("fill reports: skipped (EXEC_FILL_REPORTS=off)")
+        return
+    with perf("novig fill reports (Gmail)"):
+        try:
+            novig_reports()
+        except Exception as ex:
+            print(f"novig report check failed: {str(ex)[:60]}")
+    with perf("kalshi resting-fill reports (Gmail)"):
+        try:
+            kalshi_rest_reports()
+        except Exception as ex:
+            print(f"kalshi resting-fill check failed: {str(ex)[:60]}")
+
+
 def live_order(r):
     """Phase-1 live order (only when EXEC_LIVE is on): ProphetX here, Kalshi / Polymarket US via live_order_other (Oct 28).
     Returns the order record for the email/ledger."""
@@ -3140,23 +3172,17 @@ def main():
     wake_s = (now - newest).total_seconds() if newest and now - newest < timedelta(minutes=30) else None
     trig = os.environ.get("GITHUB_EVENT_NAME", "local")
     if SOURCE in ("both",):
-        muse_watchdog(now, plays, rplays, feed)
+        with perf("muse watchdog (Gmail)"):
+            muse_watchdog(now, plays, rplays, feed)
     # Before anything else this run: pull any Polymarket US resting bid that has reached T-30.
     # It goes here, ahead of the new-order work, because a bid past T-30 is live money sitting on
     # the book after the point Peter said it must be off - that takes priority over placing more.
     # Its own try/except is inside the function; a sweep failure must not stop the run.
     try:
-        pmus_rest_sweep(now)
+        with perf("pmus rest sweep (T-30 money off the book)"):
+            pmus_rest_sweep(now)
     except Exception as ex:
         print(f"PM US sweep call failed: {str(ex)[:60]}")
-    try:
-        novig_reports()
-    except Exception as ex:
-        print(f"novig report check failed: {str(ex)[:60]}")
-    try:
-        kalshi_rest_reports()
-    except Exception as ex:
-        print(f"kalshi resting-fill check failed: {str(ex)[:60]}")
     print(f"Verdict plays seen (2 days): {len(plays)}; coded-rule alerts: {len(rplays)}; new: {len(new)}")
     if wake_s is not None:
         print(f"Wake: run started {wake_s:.0f}s after the newest sent alert (trigger: {trig})")
@@ -3166,6 +3192,7 @@ def main():
         # whose timings are most readable, since nothing else happens in them. The 15:50 run took
         # 4.5 minutes to conclude "new: 0" and said nothing about where that went. Counts and
         # seconds only, safe for the public log.
+        fill_reports()   # nothing is waiting on this run, so cost here delays no order
         print(perf_report())
         try:
             import registry as _rg
@@ -3434,6 +3461,8 @@ def main():
     body += [lane2.summary_line(), ""]   # Nov 4: Lane 2 counts (private email; dollars never in the public log)
     body += [lane_report(results), ""]   # Nov 11: per-lane counts and exposure, Board v3 and R1 separate
     try:
+        # AFTER every order, never before: these two cost ~76s and gate nothing (Nov 11)
+        fill_reports()
         body += [perf_report(), ""]   # Nov 11: where the run's time actually went
         print(perf_report())          # and in the public log, counts/seconds only
         # Nov 11 (Peter, "b2"): the private-GitHub store proves itself against the real API while
