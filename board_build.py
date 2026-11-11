@@ -409,6 +409,58 @@ def rec(rs):
     return f"{w}-{len(g) - w} ({u:+.2f}u)"
 
 
+def plays_card(now, rows):
+    """Nov 11 (Peter: "I STILL DONT SEE PLAYS LIVE AND ONES WE DIDNT PLAY"): the two things worth acting on, at the
+    top, instead of buried in a 70-row table. LEFT: PLAY calls still standing, with the price the call refers to.
+    RIGHT: every PLAY call already made, newest first, and what it did - none of them were bet, because Lane 3's
+    money switch (EXEC_BOARD_LIVE) is off, so this is the paper record of what the board would have played."""
+    e = html.escape
+    live = sorted([r for r in rows if r["tag"] == "PLAY" and r["status"] == "still there"], key=lambda r: r["at"])
+    lr = []
+    for r in live:
+        x = r["x"]
+        st = t(x.get("start_utc"))
+        mins = (st - now).total_seconds() / 60 if st else None
+        tip = (f"{int(mins // 60)}h {int(mins % 60)}m" if mins and mins >= 60 else
+               (f"{int(mins)}m" if mins and mins > 0 else "—"))
+        lr.append(f'<tr><td>{e(r["league"])}</td><td>{e(r["game"])}</td><td><b>{e(r["side"])}</b></td>'
+                  f'<td class="r">{price_cell(r)}</td><td class="r">{tip}</td>'
+                  f'<td class="r money">{money(r.get("new") or 0)}</td></tr>')
+    lt = ('<table><thead><tr><th>League</th><th>Game</th><th>Bet</th><th class="r">Price</th>'
+          '<th class="r">Tips in</th><th class="r">New money</th></tr></thead><tbody>'
+          + ("".join(lr) or '<tr><td colspan=6 class=muted>No PLAY standing right now.</td></tr>')
+          + '</tbody></table>')
+
+    done = sorted([v for v in CALLS_LOG.values() if v.get("call") == "PLAY"],
+                  key=lambda v: v.get("at") or "", reverse=True)
+    dr = []
+    for v in done[:20]:
+        res = (v.get("result") or "").upper()
+        u = v.get("units")
+        pill = ("yes" if res == "W" else "gone" if res == "L" else "")
+        lab = {"W": "WON", "L": "LOST", "P": "PUSH"}.get(res, "pending")
+        ln = v.get("line")
+        bet = f"{(v.get('side') or '')}" + (f" {ln:g}" if isinstance(ln, (int, float)) else "")
+        dr.append(f'<tr><td class="muted">{e(str(v.get("day") or ""))}</td><td>{e(str(v.get("game") or "")[:34])}</td>'
+                  f'<td>{e(bet)}</td><td class="r">{(f"{int(v['price']):+d}" if isinstance(v.get("price"), (int, float)) else "—")}</td>'
+                  f'<td><span class="pill {pill}">{lab}</span></td>'
+                  f'<td class="r">{(f"{u:+.2f}u" if isinstance(u, (int, float)) else "")}</td></tr>')
+    dt = ('<table><thead><tr><th>Day</th><th>Game</th><th>Bet</th><th class="r">Alert price</th>'
+          '<th>Result</th><th class="r">Units</th></tr></thead><tbody>'
+          + ("".join(dr) or '<tr><td colspan=6 class=muted>Nothing called yet.</td></tr>')
+          + '</tbody></table>')
+    tot = rec_log([v for v in CALLS_LOG.values() if v.get("call") == "PLAY"])
+
+    return (f'<div class="card"><h2>Live now — {len(live)} PLAY standing</h2>'
+            f'<p class="note">The call is the alert line at the alert price or better, after fees. '
+            f'Check the price before betting.</p><div class="scroll">{lt}</div></div>'
+            f'<div class="card"><h2>Called, not bet — the paper record ({tot})</h2>'
+            f'<p class="note">Every PLAY the board has called, newest first. None were bet: the board lane\'s money '
+            f'switch is off, so this is what it would have played. A call is frozen when it posts and never rewritten, '
+            f'so one whose money was pulled afterwards still grades as the PLAY it was.</p>'
+            f'<div class="scroll">{dt}</div></div>')
+
+
 def page(now, rows, flips):
     e = html.escape
     rank = {"PLAY": 0, "LEAN": 1, "DEAD": 2, "": 3}
@@ -500,6 +552,7 @@ td{{padding:5px 6px;border-bottom:1px solid var(--line);vertical-align:top}}.r{{
 <div class="tile"><div class="l">Today's LEAN calls graded</div><div class="n">{rec([r for r in rows if r["tag"] == "LEAN"])}</div></div>
 <div class="tile"><div class="l">v2 PLAY calls graded (old rule, still tracked)</div><div class="n">{rec([r for r in rows if r.get("v2") == "PLAY"])}</div></div>
 <div class="tile"><div class="l">Big-money moves today</div><div class="n">{len(rows)}</div></div></div>
+{plays_card(now, rows)}
 <div class="card"><h2>Big money today, by bet type</h2>
 <p class="note"><b>Call (v3, from Nov 4):</b> PLAY = an NBA total alerted 4 hours or more before tip, money still there, one play per game total (the first alert; first side stays), at most 5 a night (first 5 by alert time). Bet the alert line at the alert price or better. LEAN = anything else still there, including later alerts on a game already played and NBA totals inside 4 hours. DEAD = pulled, flipped, late money, or any spread. Started games keep their kickoff call and grade W/L when final. The v2 call (NBA total, money still there, price not moved) keeps grading in its own tile. Paper signal. Every call is written down when it posts and never rewritten, so a PLAY whose money is pulled afterwards still grades as the PLAY it was.</p>
 <div class="legend"><span><i class="sw kalshi"></i>Kalshi</span><span><i class="sw novig"></i>Novig</span><span><i class="sw prophetx"></i>ProphetX</span><span><i class="sw polymarket"></i>Polymarket</span></div>
