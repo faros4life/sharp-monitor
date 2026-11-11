@@ -230,7 +230,8 @@ def intent_readable(cid, tries=3, wait=5):
         if i:
             time.sleep(wait)
         try:
-            M = imap_open()
+            with perf("intent read-back (Gmail login per try)"):
+                M = imap_open()
             try:
                 if subject_hits(M, cid, INTENT_SUBJECT_PREFIX):
                     return True
@@ -2719,6 +2720,33 @@ def novig_reports():
     n = 0
     M = imap_open()
     try:
+        # Nov 11: this ran ONE UNBOUNDED gsearch_strict PER RECORD - up to 30 serial X-GM-RAW
+        # searches over the whole mailbox, measured at 67.4s. Same shape as the read_manual and
+        # already_handled defects: a per-item Gmail search with no date bound. The tokens for every
+        # record are now resolved in one bounded OR search before the loop, which then only looks
+        # the answer up. Report-or-not decisions are unchanged; a token already sent still suppresses.
+        # FAILS CLOSED as before: the search raises on failure rather than reporting a fill twice.
+        want = {}
+        for x in recs[-30:]:
+            want[x.get("client_id")] = ("xnvr" + hashlib.sha1(
+                f"{x.get('client_id')}|{str(x.get('status') or '?').upper()}|"
+                f"{int(x.get('filled_qty') or 0)}|{x.get('filled_cost')}".encode()).hexdigest()[:12])
+        sent_toks = set()
+        toks = sorted(set(want.values()))
+        for i in range(0, len(toks), 20):
+            q = f"newer_than:{HANDLED_DAYS}d (" + " OR ".join(toks[i:i + 20]) + ")"
+            typ, data = M.uid("SEARCH", "X-GM-RAW", '"' + q + '"')
+            if typ != "OK":
+                raise RuntimeError("Gmail search failed")
+            for uid in (data[0].split() if data and data[0] else []):
+                typ, d = M.uid("FETCH", uid, "(RFC822)")
+                if typ != "OK" or not d or not d[0]:
+                    raise RuntimeError("Gmail fetch failed")
+                raw = d[0][1] if isinstance(d[0], tuple) and len(d[0]) > 1 else b""
+                txt = raw.decode("utf-8", "replace") if isinstance(raw, bytes) else str(raw)
+                for t in toks:
+                    if t in txt:
+                        sent_toks.add(t)
         for x in recs[-30:]:
             st = str(x.get("status") or "?").upper()
             if st in ("PENDING", "SENT", "UNKNOWN") and not int(x.get("filled_qty") or 0):
@@ -2728,8 +2756,8 @@ def novig_reports():
             c, q, fq = lm.num(x.get("price")) or 0, int(x.get("qty") or 0), int(x.get("filled_qty") or 0)
             cost = x.get("filled_cost")
             tok = "xnvr" + hashlib.sha1(f"{x.get('client_id')}|{st}|{fq}|{cost}".encode()).hexdigest()[:12]
-            if gsearch_strict(M, tok):
-                continue
+            if tok in sent_toks:
+                continue   # already reported: answered from the one batched search above
             ap = lm.num(x.get("avg_price"))
             if st in ("REFUSED", "REJECTED"):
                 head = f"NOVIG {st}"
@@ -3321,7 +3349,7 @@ def main():
         mks_by_event.setdefault(mk.get("eventId"), []).append(mk)
     MD["c"].clear(); MD["hit"] = MD["miss"] = 0   # one cache per run, never across runs
     MKT["evs"], MKT["mks"] = evs_by, mks_by_event   # Nov 11: revalidate() re-reads Novig through this map
-    with ThreadPoolExecutor(max_workers=4) as tp:   # Oct 31: all 4 position reads at the same time
+    with perf("positions read (4 venues)"), ThreadPoolExecutor(max_workers=4) as tp:   # Oct 31: all 4 position reads at the same time
         f_nv = tp.submit(novig_positions)
         f_h = {b: tp.submit(fn) for b, fn in (("kalshi", positions.kalshi_positions), ("prophetx", positions.px_positions),
                                               ("polymarket_us", positions.pmus_positions))}
@@ -3495,11 +3523,14 @@ def main():
                     live_play_alert(r)
                 except Exception as ex:
                     print(f"live play alert failed: {str(ex)[:60]}")   # never block the order
-                r["live"]["order"] = live_order(r)
-                r["live"]["more"] = live_remainder(r)   # Oct 28: $200 total per play across venues
+                with perf("live_order (revalidate + intent + submit)"):
+                    r["live"]["order"] = live_order(r)
+                with perf("live_remainder (next venue)"):
+                    r["live"]["more"] = live_remainder(r)   # Oct 28: $200 total per play across venues
                 LIVEKEYS.add(derive_key(p) or p["play_key"])
             if rest_wanted(r):   # Oct 28 (Peter): nothing filled at the number -> rest a bid until 30 min before the start
-                r["live"]["rest"] = rest_bid(r)
+                with perf("rest_bid"):
+                    r["live"]["rest"] = rest_bid(r)
                 LIVEKEYS.add(derive_key(p) or p["play_key"])
             results.append(r)
             if (r["verdict"] == "WOULD PLACE" or ((r.get("live") or {}).get("rest") or {}).get("status") == "placed") \

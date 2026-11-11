@@ -116,17 +116,35 @@ jobs:
         # cannot walk into the 30-minute ceiling and be killed mid-order, which is the failure this
         # repo already learned the hard way.
         run: |
-          if python -u executor.py; then
+          # Nov 11 (Peter): every pass is timestamped and its duration printed, so wall time is
+          # attributable to passes without inferring it. The 17:10 run was 17m52s with only ~392s
+          # in PERF; counting "Verdict plays seen" showed ONE pass, which ruled out the catch-up
+          # loop as the explanation and sent the instrumentation into the per-play path instead.
+          # Seconds only - safe for the public log.
+          pass_n=0
+          run_pass() {
+            pass_n=$((pass_n + 1))
+            local t0=$(date -u +%s)
+            echo "PASS $pass_n START $(date -u +%H:%M:%SZ)"
+            local rc=0
+            python -u executor.py || rc=$?
+            local t1=$(date -u +%s)
+            echo "PASS $pass_n END $(date -u +%H:%M:%SZ) duration $((t1 - t0))s exit $rc"
+            return $rc
+          }
+          job_t0=$(date -u +%s)
+          if run_pass; then
             for i in 1; do
               git fetch -q origin main || break
               if git diff --quiet HEAD origin/main -- alerts.json; then break; fi
               echo "newer alerts.json landed during the run: pass $((i + 1))"
               git reset -q --hard origin/main
-              python -u executor.py
+              run_pass || true
             done
           else
             echo "pass 1 FAILED - waiting 90s for the Gmail registry to be readable, then retrying once"
             sleep 90
             git fetch -q origin main && git reset -q --hard origin/main || true
-            python -u executor.py
+            run_pass || true
           fi
+          echo "JOB TOTAL $(( $(date -u +%s) - job_t0 ))s across $pass_n pass(es)"
