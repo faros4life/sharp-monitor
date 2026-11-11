@@ -20,7 +20,13 @@ import os
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# forced, not setdefault: an inherited GMAIL_ADDRESS would change who is authorized
+os.environ["GMAIL_ADDRESS"] = "owner@example.com"
+os.environ["GMAIL_APP_PASSWORD"] = "x"
+os.environ["EMAIL_TO"] = "owner+bets@example.com"
 import executor as ex  # noqa: E402
+
+OWNER, OUTSIDER = "owner@example.com", "stranger@evil.test"
 
 OK, BAD = [], []
 
@@ -36,8 +42,10 @@ class FakeIMAP:
     """Minimal IMAP double: holds (subject,) messages and answers UID SEARCH/FETCH like Gmail,
     including SUBJECT's substring behaviour, so the header re-check is actually exercised."""
 
-    def __init__(self, subjects, fail=False):
-        self.subjects, self.fail = list(subjects), fail
+    def __init__(self, subjects, fail=False, sender=None):
+        # subjects may be a plain string or (subject, from_addr)
+        self.subjects = [(x if isinstance(x, tuple) else (x, sender or OWNER)) for x in subjects]
+        self.fail = fail
 
     def uid(self, cmd, *a):
         if self.fail:
@@ -45,12 +53,13 @@ class FakeIMAP:
         if cmd == "SEARCH":
             needle = [x for x in a if isinstance(x, str) and x.startswith('"')]
             n = needle[0].strip('"') if needle else ""
-            hits = [str(i).encode() for i, s in enumerate(self.subjects) if n in s]   # substring, like IMAP
+            hits = [str(i).encode() for i, (s, _f) in enumerate(self.subjects) if n in s]   # substring, like IMAP
             return "OK", [b" ".join(hits)]
         if cmd == "FETCH":
             i = int(a[0])
+            subj, frm = self.subjects[i]
             msg = _email.message.Message()
-            msg["Subject"] = self.subjects[i]
+            msg["Subject"], msg["From"] = subj, frm
             return "OK", [(b"", msg.as_bytes())]
         return "NO", [None]
 
@@ -105,6 +114,33 @@ ck("A. bot_orders uses intent_cleared, not a raw token search", "intent_cleared(
 src = inspect.getsource(ex)
 sent_subjects = [l for l in src.splitlines() if "send(" in l and ex.INTENT_CLEAR_PREFIX in l]
 ck("A. no send() call carries the clearing subject", not sent_subjects, str(sent_subjects))
+
+# ======================================================== A2. only an authorized SENDER clears
+ck("A2. authorized senders are the account and EMAIL_TO",
+   ex.authorized_senders() == {"owner@example.com", "owner+bets@example.com"},
+   str(ex.authorized_senders()))
+M = FakeIMAP([(f"{ex.INTENT_CLEAR_PREFIX} {cid}", OWNER)])
+ck("A2. a clearance from the account owner DOES clear", ex.intent_cleared(M, cid) is True)
+M = FakeIMAP([(f"{ex.INTENT_CLEAR_PREFIX} {cid}", "owner+bets@example.com")])
+ck("A2. a clearance from EMAIL_TO DOES clear", ex.intent_cleared(M, cid) is True)
+M = FakeIMAP([(f"{ex.INTENT_CLEAR_PREFIX} {cid}", OUTSIDER)])
+ck("A2. the SAME subject from an OUTSIDER does NOT clear", ex.intent_cleared(M, cid) is False)
+M = FakeIMAP([(f"{ex.INTENT_CLEAR_PREFIX} {cid}", "Peter <%s>" % OUTSIDER)])
+ck("A2. a display-name spoof does not clear", ex.intent_cleared(M, cid) is False)
+M = FakeIMAP([(f"{ex.INTENT_CLEAR_PREFIX} {cid}", f"Owner <{OWNER}>")])
+ck("A2. a decorated but authorized From does clear", ex.intent_cleared(M, cid) is True)
+M = FakeIMAP([(f"{ex.INTENT_CLEAR_PREFIX} {cid}", "")])
+ck("A2. a missing From does not clear", ex.intent_cleared(M, cid) is False)
+ck("A2. the read-back path verifies the subject prefix (sender check is for clearance)",
+   "senders=authorized_senders()" in inspect.getsource(ex.intent_cleared))
+_ga = os.environ.pop("GMAIL_ADDRESS")
+try:
+    ex.intent_cleared(FakeIMAP([(f"{ex.INTENT_CLEAR_PREFIX} {cid}", OWNER)]), cid)
+    ck("A2. an unconfigured account cannot clear (raises)", False, "did not raise")
+except BaseException:
+    ck("A2. an unconfigured account cannot clear (raises)", True)
+finally:
+    os.environ["GMAIL_ADDRESS"] = _ga
 
 # ======================================================== B. read-back before submitting
 ex.intent_readable = _rb

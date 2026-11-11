@@ -121,7 +121,20 @@ INTENT_SUBJECT_PREFIX = "Bets LIVE: order intent"   # what journal_intent sends
 INTENT_CLEAR_PREFIX = "INTENT CLEARED"              # Peter's manual authorization. THE BOT NEVER SENDS THIS.
 
 
-def subject_hits(M, needle, prefix, days=4):
+def _addr(header):
+    """The bare address out of a From/Sender header ('Peter G <a@b.com>' -> 'a@b.com'), lowercased."""
+    return (email.utils.parseaddr(header or "")[1] or "").strip().lower()
+
+
+def authorized_senders():
+    """Addresses allowed to clear an order intent: the account itself and EMAIL_TO. Nothing else.
+    Nov 11 (Peter): "only an authorized sender can clear an unresolved order intent."
+    Raises if the account is not configured, so an unconfigured run cannot clear anything."""
+    user, _pw, to = gmail()
+    return {a for a in (_addr(user), _addr(to)) if a}
+
+
+def subject_hits(M, needle, prefix, days=4, senders=None):
     """UIDs whose SUBJECT contains `needle` AND whose real Subject header starts with `prefix`.
 
     Nov 11. Subject-only, never the body: the first version of the intent clearance searched
@@ -137,22 +150,28 @@ def subject_hits(M, needle, prefix, days=4):
         raise RuntimeError("Gmail subject search failed")
     out = []
     for uid in (data[0].split() if data and data[0] else []):
-        typ, d = M.uid("FETCH", uid, "(BODY.PEEK[HEADER.FIELDS (SUBJECT)])")
+        typ, d = M.uid("FETCH", uid, "(BODY.PEEK[HEADER.FIELDS (SUBJECT FROM SENDER)])")
         if typ != "OK" or not d or not d[0]:
             raise RuntimeError("Gmail header fetch failed")
-        subj = str(email.header.make_header(email.header.decode_header(
-            email.message_from_bytes(d[0][1]).get("Subject") or "")))
-        if subj.startswith(prefix) and str(needle) in subj:
-            out.append(uid)
+        msg = email.message_from_bytes(d[0][1])
+        subj = str(email.header.make_header(email.header.decode_header(msg.get("Subject") or "")))
+        if not (subj.startswith(prefix) and str(needle) in subj):
+            continue
+        if senders is not None:   # sender-verified: a matching subject alone is not authorization
+            frm, snd = _addr(msg.get("From")), _addr(msg.get("Sender"))
+            if frm not in senders or (snd and snd not in senders):
+                continue
+        out.append(uid)
     return out
 
 
 def intent_cleared(M, cid):
-    """True only when a DISTINCT MANUAL authorization exists: an email whose SUBJECT starts with
-    'INTENT CLEARED' and names this client_id. No automated email of this system ever carries that
-    subject, so the bot cannot clear its own intent. Raises on a failed search -> caller keeps
-    refusing."""
-    return bool(subject_hits(M, cid, INTENT_CLEAR_PREFIX))
+    """True only for a DISTINCT, SENDER-VERIFIED, MANUAL authorization: an email whose SUBJECT
+    starts with 'INTENT CLEARED', names this client_id, AND comes from an authorized sender
+    (Nov 11, Peter). No automated email of this system carries that subject, so the bot cannot
+    clear its own intent; and a matching subject from anyone else is not authorization either.
+    Raises on a failed search or an unconfigured account -> the caller keeps refusing."""
+    return bool(subject_hits(M, cid, INTENT_CLEAR_PREFIX, senders=authorized_senders()))
 
 
 def intent_readable(cid, tries=3, wait=5):
