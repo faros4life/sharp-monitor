@@ -171,6 +171,42 @@ backlog that clears.
 
 ---
 
+## Rule changes, and where a record splices
+
+Read any pooled number below against this list. Where a record spans a change, the figure mixes two
+regimes and the post-change window is the one to read.
+
+| Date | What changed | Which record it splices |
+| --- | --- | --- |
+| 2 Oct | Alert timing: same-day only → games today or tomorrow | Steam feed, all leagues |
+| 14 Oct | Non-Top-25 college no longer graded or counted | Steam feed, NCAAF/NCAAB |
+| 16 Oct | Alert liquidity minimum $10k → $25k; NCAAF odds range set to −170/+130 | Steam feed |
+| 17 Oct | Claude's picks became paper-only | Steam feed — nothing after this is a real bet |
+| **20 Oct** | **Grading begins.** Alerts from 8–17 Oct carry no grade | **Any grade-based cut exists only from 20 Oct.** The NCAAF dog cell was +38.2% on the 29 pre-grading alerts and +0.9u on the 50 after |
+| 23 Oct | MLB and NCAAB added to the liquidity board | Liquidity board |
+| 24 Oct | ProphetX became a liquidity trigger book | Liquidity board |
+| 25 Oct | Regrade: `no_pregame_close` artifacts excluded from every record | Liquidity board |
+| 27 Oct | Liquidity spreads closed by decision; steam renamed, evening runs added | Splits, steam feed |
+| **31 Oct 14:35Z** | **EV study pre-registration cutoff.** J/D buckets judged only after this | A, B and M headlines pool pre- and post-cutoff; the J-buckets do not |
+| 1 / 3 / 4 Nov | Bets Board v1 → v2 → v3. All three still grade in parallel tiles | See the board table below — v3 is applied consistently across the whole window, so it does not splice |
+| 4 Nov | Polymarket US team totals were being read as game totals; fixed. Earlier PM-US football-total sightings flagged suspect | EV study |
+| **6 Nov** | **`CLV_STANDARD.md` adopted.** Every CLV report published before run `42241855328` contains look-ahead bias and is void | Every CLV figure dated before 6 Nov |
+| 6 Nov | Fee model `2026-11-06.11` → `.12` (Novig is not flat zero: 0 pre-game straights, 0.06·C·p(1−p) live/futures) | Any after-fee figure spanning it |
+| 6 Nov | NCAAB openers freeze lookahead `AHEAD_DAYS` 2 → 3 | Entry 23 — before this, ~45% of Pinnacle-posted games were disqualified as "frozen after the open". The 7 Nov checkpoint straddles the change |
+| 9 Nov | Lane 2 paid polling paused (`EXEC_LANE2_PAID` default off) | Entry 8 stops buying live Pinnacle limits |
+
+### Bets Board, all three rule versions (graded, from `board/calls.json`)
+
+| Version | PLAY | LEAN | DEAD |
+| --- | --- | --- | --- |
+| **v3** (4 Nov, ratified 6 Nov) | **62 graded, 42-20, +20.43u, +33.0%** | 308, +20.65u, +6.7% | 228, −9.36u, −4.1% |
+| v2 (3 Nov) | 32 graded, 21-11, +9.28u, +29.0% | 283, +18.16u, +6.4% | 235, −8.56u, −3.6% |
+| v1 (1 Nov) | 6 graded, 4-2, +1.04u, +17.3% | 501, +22.10u, +4.4% | 43, −4.26u, −9.9% |
+
+v3 PLAY by week: 41.4% (n=25) · 30.9% (n=9) · 20.3% (n=18) · 36.4% (n=10). Halves +45.5% then
++20.4%. v3 applies no money threshold, no confirmation test, no sharp-agreement test and no fights
+test — Peter's own note (6 Nov): a liquidity-flow heuristic, not a demonstrated +EV model, paper only.
+
 ## Backtest windows that stay out of a record
 
 Stated in one place because the rule differs by lane and the differences are deliberate:
