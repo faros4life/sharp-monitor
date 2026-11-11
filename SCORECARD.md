@@ -57,7 +57,7 @@ paper test today is CONTINUE. The binding constraint is fills, not CLV.
 | 4 | HR SCANNER FLAGS | — | real money | — | KEPT |
 | 5 | STREET VALUE | — | real money | — | KEPT |
 | 6 | STEAM | feed-wide 708 graded, −0.26u, −0.0%, day-CI [−6.4, +5.7]% | none (paper since 17 Oct) | 11 Nov | KEPT + ON · **CLEAR FAIL** feed-wide |
-| 7 | BETS BOARD PLAYS | **PLAY 62 graded, +20.43u, +33.0%** — but 48 of those are `recon: true`, reconstructed retrospectively (22 Oct–5 Nov, +12.84u, +26.8%). **Forward-logged only: 14 graded, +7.59u, +54.2%** (6–10 Nov). All 62 are NBA totals. **LEAN 308 graded, +20.65u, +6.7%**, all forward, from 5 Nov. DEAD 228, −9.36u, −4.1% | board paper for live money since 4 Nov; PLAY calls hand-bet | 11 Nov | **CONTINUE TESTING** — forward n=14; recon rows are hindsight and must not be pooled |
+| 7 | BETS BOARD PLAYS | **v3 rule (from 4 Nov, ratified 6 Nov as the rule the historical record ran on). PLAY: 62 graded, 42-20, +20.43u, +33.0%**, 22 Oct–10 Nov, all NBA totals. **LEAN: 308 graded, +20.65u, +6.7%**, from 5 Nov. **DEAD: 228 graded, −9.36u, −4.1%** | board paper for live money since 4 Nov; PLAY calls hand-bet | 11 Nov | **CONTINUE TESTING.** v3 PLAY *is* the LIQ-BOT rule (entry 9), so this is that lane's paper record — not a second strategy |
 
 ### PAPER TESTS
 
@@ -171,17 +171,17 @@ backlog that clears.
 
 ---
 
-## Hindsight rows: never pooled with forward rows
+## Backtest windows that stay out of a record
 
-`board/calls.json` carries a `recon` flag. **48 of the 62 graded Bets Board PLAY calls are
-`recon: true`** — reconstructed retrospectively on 6 Nov from alerts that had already resulted,
-covering 22 Oct–5 Nov. They are hindsight, not observations, and the headline +33.0% is not a
-forward record. Forward-logged PLAY calls stand at 14 graded (6–10 Nov). LEAN is 308 graded and
-entirely forward. Any future report on entry 7 states the two counts separately.
+Stated in one place because the rule differs by lane and the differences are deliberate:
 
-The same rule already applies elsewhere and is restated here so it is in one place: the liquidity
-lanes' 22–31 Oct backtest is never part of their record (`lanes.py`), and the EV study's
-pre-registered buckets are judged only on sightings after 31 Oct 14:35Z.
+- **Bets Board (entry 7): the whole v3 record counts.** v3 dates from 4 Nov and Peter ratified it on
+  6 Nov as the rule the historical record ran on, so the 22 Oct–5 Nov rows carry `recon: true`
+  (48 of the 62 PLAY calls) and are part of the record, not a separate backtest. Calls are written
+  when they post and never rewritten, so a PLAY whose money is later pulled still grades as the PLAY
+  it was. `v3_n` caps the night at 5 plays by alert time.
+- **Liquidity lanes:** the 22–31 Oct backtest is never part of their record (`lanes.py`).
+- **EV study:** pre-registered buckets are judged only on sightings after 31 Oct 14:35Z.
 
 ## Open discrepancies to settle (not changed here)
 
