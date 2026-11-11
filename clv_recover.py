@@ -647,6 +647,29 @@ def main():
     ALERT_BOOK = {"ProphetX": "prophetx", "Kalshi": "kalshi", "Novig": "novig.us"}
     TOL = 0.002
 
+    def round_tol(a):
+        """The decimal slack that price_after_fee's own rounding can introduce.
+
+        Nov 10: the availability test compared a target built from price_after_fee - which is
+        round()ed to a WHOLE American point - against an unrounded book quote, under a flat
+        TOL of 0.002. Seven of eight fresh-tick misses were short by a quarter to a half of one
+        American point, i.e. by less than the rounding in the test's own input, and I read them as
+        the market not showing the price. round() moves the target by at most HALF a point, so that
+        is the allowance: it absorbs the rounding exactly and nothing wider. The one real miss in
+        that sample was short by 2.4 points and is still a miss.
+        """
+        am = a.get("price_after_fee")
+        if am is None:
+            am = a.get("price")
+        try:
+            am = float(am)
+        except Exception:
+            return TOL
+        d0 = 1 + (100.0 / abs(am) if am < 0 else am / 100.0)
+        am1 = am - 1 if am < 0 else am + 1
+        d1 = 1 + (100.0 / abs(am1) if am1 < 0 else am1 / 100.0)
+        return max(TOL, abs(d0 - d1) / 2.0)
+
     def seen_at_alert(a, lg):
         """fill_audit's SEEN test: did the ALERTED book's own stored history show the alert price or
         better, at the alert line, at the alert time? None when we hold no history for that book -
@@ -681,7 +704,7 @@ def main():
         want = cl.am_to_dec(a.get("price_after_fee") or a.get("price"))
         if got is None or want is None:
             return None, "price unreadable"
-        return (got >= want - TOL), None
+        return (got >= want - round_tol(a)), None
 
     nbau = sorted([x for x in bot if str(x.get("sport")) == "NBA" and sidecls(x) == "tot UNDER"],
                   key=lambda x: str(x.get("alert_utc") or ""))
@@ -825,17 +848,18 @@ def main():
         d5 = f"{q5[0]:.4f}" if q5 and q5[0] is not None else "-"
         if q0 is None or q0[0] is None or want is None:
             cls = f"UNTESTABLE: {e0 or 'price unreadable'}"
-        elif q0[0] >= want - TOL:
-            cls = "SEEN at t0"
+        elif q0[0] >= want - round_tol(a):
+            cls = ("SEEN at t0" if q0[0] >= want - TOL
+                   else f"SEEN at t0 (within rounding, {want - q0[0]:.4f})")
             seen_rows.append(a)
         else:
             later = [lab for lab, q in (("+1m", q1), ("+5m", q5))
-                     if q and q[0] is not None and q[0] >= want - TOL]
+                     if q and q[0] is not None and q[0] >= want - round_tol(a)]
             if later:
                 cls = f"SEEN LATER ({', '.join(later)}) - timing, not availability"
             elif q0[1] is not None and q0[1] <= FRESH:
-                cls = (f"NOT SEEN (fresh tick, {q0[1]:.0f}s old) - genuinely worse at t0, "
-                       f"short by {want - q0[0]:.4f}")
+                cls = (f"NOT SEEN (fresh tick, {q0[1]:.0f}s old) - genuinely worse at t0, short by "
+                       f"{want - q0[0]:.4f} = {(want - q0[0]) / round_tol(a):.1f}x the rounding slack")
             else:
                 cls = (f"NOT SEEN (STALE tick, {q0[1]:.0f}s old) - no evidence either way")
         tally[cls.split(" -")[0].split(":")[0]] += 1
