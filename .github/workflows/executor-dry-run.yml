@@ -71,6 +71,11 @@ jobs:
           EXEC_LIVE: ${{ vars.EXEC_LIVE }}
           # Nov 3 (Peter "ok build"): Lane 3 board NBA totals places money only when this is "on" (and EXEC_LIVE is on)
           EXEC_BOARD_LIVE: ${{ vars.EXEC_BOARD_LIVE || 'off' }}   # Nov 4 7:41 AM (Peter): LANE 3 OFF for live money - board plays are paper only
+          # Nov 11 (Peter "NO MORE PAPER"): R1 live lane (non-Top-25 college, ProphetX-priced spreads + unders). Places money only
+          # when this repo VARIABLE is "on" (and EXEC_LIVE is on). Own $200 unit; own daily risk limit and play cap below.
+          EXEC_R1_LIVE: ${{ vars.EXEC_R1_LIVE || 'off' }}
+          EXEC_R1_DAILY_RISK: ${{ vars.EXEC_R1_DAILY_RISK || '1000' }}
+          EXEC_R1_MAX_PLAYS: ${{ vars.EXEC_R1_MAX_PLAYS || '6' }}
           PX_QTY_MEANS: ${{ vars.PX_QTY_MEANS }}                   # "stake" (default) or "to_win" - set from the $1 test
           PROPHETX_TRADE_ACCESS_KEY: ${{ secrets.PROPHETX_TRADE_ACCESS_KEY }}
           PROPHETX_TRADE_SECRET_KEY: ${{ secrets.PROPHETX_TRADE_SECRET_KEY }}

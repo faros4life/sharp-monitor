@@ -354,6 +354,46 @@ def board_plays(now):
     return out
 
 
+# ---------------------------------------------------------------- R1 live lane (Peter, 11 Nov)
+R1_LIVE = (os.environ.get("EXEC_R1_LIVE") or "off").strip().lower() == "on"   # R1 money switch (repo variable; Peter flips it)
+R1_UNIT = 200.0   # Peter, 11 Nov: own $200 unit, Lane 1 stays at $300. Same to-win (minus) / risk (plus) rule.
+R1_DAILY_RISK = float(os.environ.get("EXEC_R1_DAILY_RISK", "") or "1000")   # its own daily limit ON TOP of the global stop
+R1_MAX_PLAYS = int(os.environ.get("EXEC_R1_MAX_PLAYS", "") or "6")
+R1 = {"risk": 0.0, "keys": set(), "known": False}
+
+
+def r1_plays(now):
+    """R1 (non-Top-25 college, ProphetX-priced, spreads + totals unders, 4h+, not late, -119 or better, not
+    Matchbook-only): read straight from alerts.json, because these alerts are MUTED on the phone (sent_to_phone is
+    False) and rule_plays skips muted alerts. FIRST alert per game+market+side only: a repeat never bets. Same
+    downstream path as every play: books checked, line floor (the alert's own line), caps, stacking, positions,
+    live guards. Places money only when EXEC_R1_LIVE is "on" AND live is on; otherwise a dry-run WOULD PLACE."""
+    try:
+        with open("alerts.json") as f:
+            feed = json.load(f).get("alerts") or []
+    except Exception as ex:
+        LOG.append(f"alerts.json unreadable (r1): {str(ex)[:60]}")
+        return []
+    out, seen = [], set()
+    for a in sorted(feed, key=lambda a: a.get("alert_utc") or ""):
+        ok, _ = agree_rules.r1(a)
+        if not ok:
+            continue
+        t, st = iso_t(a.get("alert_utc")), iso_t(a.get("start_utc"))
+        if not t or not st or t < now - timedelta(hours=RULES_LOOKBACK_H) or st <= now:
+            continue
+        p = {"sport": a.get("sport"), "game": a.get("game"), "bet": a.get("bet"), "start_utc": a.get("start_utc"),
+             "late": False, "source": "r1", "alert_utc": a.get("alert_utc"),
+             "rules": {"verdict": "AGREE", "gate": None, "reason": "R1 (non-Top-25 college, ProphetX-priced)"},
+             "r1_entry": a}
+        k = derive_key(p)
+        if not k or k in seen:
+            continue   # first alert only
+        seen.add(k)
+        out.append(dict(p, play_key="r1|" + k))
+    return out
+
+
 def same_bet(k1, k2):
     """Same bet from two lanes despite different game spellings ('Hawks vs. Hornets' / 'Atlanta Hawks @ Charlotte Hornets'):
     same league, market and side, and each team of one shares a name word with a team of the other."""
@@ -448,8 +488,8 @@ BOARD_UNIT = 200.0
 
 
 def unit_for(lane):
-    """The live unit for a lane. Only the board pilot differs; everything else is Lane 1's unit."""
-    return BOARD_UNIT if str(lane or "") == "board" else LIVE_UNIT
+    """The live unit for a lane. The board pilot ($200) and R1 ($200) differ; everything else is Lane 1's unit."""
+    return BOARD_UNIT if str(lane or "") == "board" else R1_UNIT if str(lane or "") == "r1" else LIVE_UNIT
 
 
 def live_stake(am, unit=None):
@@ -1076,7 +1116,7 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None, held=None):
     # WORSE line whenever an estimated half-point value (half_point(), HP_FALLBACK when the ladders
     # cannot say) appeared to compensate, with only the -130 cap behind it. A board play's floor is
     # its OWN alert line. Lane 1 is untouched: it keeps the floor its producer supplies.
-    if floor is None and mtype in ("spread", "total") and p.get("source") == "board":
+    if floor is None and mtype in ("spread", "total") and (p.get("source") == "board" or p.get("source") == "r1"):   # R1 too: its own alert line or strictly better
         floor = line
     cands, floor_blocked, no_qual_basis = [], 0, 0
     for (b, bl), r in ladders.items():
@@ -1140,7 +1180,7 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None, held=None):
     # Oct 28 (Peter): phase-1 live fills on the best after-fee price among the LIVE books
     # (ProphetX keeps its 2c; Novig gets the same 2c from Nov 11 - see TOL_BOOKS)
     lcs = [c for c in capped if c["book"] in LIVE_BOOKS]
-    _u = unit_for("board" if p.get("source") == "board" else None)
+    _u = unit_for(p.get("source") if p.get("source") in ("board", "r1") else None)
     lfull = [c for c in lcs if c["avail"] >= live_stake(c["shown"], _u)[0]]
     lc = (lfull or lcs)[0] if lcs else None
     return dict(out, verdict="WOULD PLACE", book=pick["book"], american=pick["am"], shown=pick["shown"], take_line=pick["line"],
@@ -1263,6 +1303,7 @@ BOOK_NAME = {"novig": "Novig", "prophetx": "ProphetX", "kalshi": "Kalshi", "poly
 
 def src_tag(p):
     return ("[coded rules] " if p.get("source") == "rules" else "[board Lane 3] " if p.get("source") == "board"
+            else "[R1] " if p.get("source") == "r1"
             else "[Lane 2 dry run] " if p.get("source") == "lane2"
             else ("[Muse] " if SOURCE == "both" else ""))
 
@@ -1542,6 +1583,13 @@ def bot_orders(M, days=4):
                             fs_b = lo.get("filled_stake")
                             BOARD["risk"] += (max(float(fs_b or 0), float(lo.get("asked_stake") or 0))
                                               if (is_rest or fs_b is None) else float(fs_b))
+                    if row.get("source") == "r1" and d_et in (None, datetime.now(lm.ET).date()):   # same rules as the board block above
+                        if row.get("key"):
+                            R1["keys"].add(row["key"])
+                        if graded.get(row.get("key")) not in ("W", "P"):
+                            fs_r = lo.get("filled_stake")
+                            R1["risk"] += (max(float(fs_r or 0), float(lo.get("asked_stake") or 0))
+                                           if (is_rest or fs_r is None) else float(fs_r))
                     if graded.get(row.get("key")) in ("W", "P"):
                         continue   # settled win/push: not a loss toward the daily stop
                     if (lo.get("book") or "prophetx") != "prophetx" and d_et in (None, datetime.now(lm.ET).date()):
@@ -1564,6 +1612,7 @@ def bot_orders(M, days=4):
                 pass           # cannot confirm it was cleared -> keep refusing (fail closed)
             INTENT["open"][k] = row
         BOARD["known"] = True   # the ledger parsed, so today's board exposure above is real
+        R1["known"] = True      # ...and today's R1 exposure
         return ids
     except Exception:
         return None
@@ -1613,6 +1662,27 @@ def board_gate(risk, key=None):
                        f"${risk:,.2f} would exceed ${BOARD_DAILY_RISK:,.0f}")
     return True, (f"ok (board today: {len(BOARD['keys'])}/{BOARD_MAX_PLAYS} plays, "
                   f"${BOARD['risk']:,.2f}/${BOARD_DAILY_RISK:,.0f} at risk)")
+
+
+def r1_gate(risk, key=None):
+    """(ok, why) for ONE R1 order of `risk` dollars. Fail closed. Mirrors board_gate: counts submitted AND resting
+    orders; a retry, top-up or partial fill of the same key never counts as an extra play. The play cap cannot
+    override the risk limit, and neither overrides the global daily stop."""
+    if not R1["known"]:
+        return False, "R1 exposure unknown this run (ledger unreadable) - fail closed"
+    n = len(R1["keys"]) + (0 if (key and key in R1["keys"]) else 1)
+    if n > R1_MAX_PLAYS:
+        return False, f"R1 play cap: {len(R1['keys'])} already submitted or resting today (ET), cap {R1_MAX_PLAYS}"
+    try:
+        risk = float(risk or 0)
+    except Exception:
+        return False, "R1 order risk unreadable - fail closed"
+    if risk <= 0:
+        return False, "R1 order risk is zero - fail closed"
+    if R1["risk"] + risk > R1_DAILY_RISK + 1e-9:
+        return False, (f"R1 daily risk limit: ${R1['risk']:,.2f} already at risk today (ET) + "
+                       f"${risk:,.2f} would exceed ${R1_DAILY_RISK:,.0f}")
+    return True, f"ok (R1 today: {len(R1['keys'])}/{R1_MAX_PLAYS} plays, ${R1['risk']:,.2f}/${R1_DAILY_RISK:,.0f} at risk)"
 
 
 def live_guards():
@@ -2583,6 +2653,11 @@ def main():
         LOG.append("manual-bet notes unreadable")
     rplays = rule_plays(now) if SOURCE in ("rules", "both") else []
     bplays = board_plays(now)   # Nov 3: Lane 3 (board NBA totals)
+    try:   # Nov 11: R1 live lane (non-Top-25 college, read from alerts.json; muted alerts included). Never lets R1 stop a run.
+        r1plays = r1_plays(now)
+    except Exception as ex:
+        LOG.append(f"r1 unavailable: {str(ex)[:60]}")
+        r1plays = []
     try:   # Nov 4: Lane 2 (Muse registration 3:48 PM) - dry run only, no live path exists for these plays
         import clv_ledger as _cl
         l2plays = [dict(p, play_key="lane2|" + (derive_key(p) or ""))   # Nov 4 fix: Lane 2 rows need their own play_key
@@ -2590,7 +2665,7 @@ def main():
     except Exception as ex:
         LOG.append(f"lane 2 unavailable: {str(ex)[:60]}")
         l2plays = []
-    new = [p for p in plays + rplays + bplays + l2plays if not already_handled(M, p)]
+    new = [p for p in plays + rplays + bplays + r1plays + l2plays if not already_handled(M, p)]
     imap_close(M)
     feed = load_feed()
     # wake time: this run's start vs the newest SENT alert (Oct 26; counts/seconds only in the public log)
@@ -2737,6 +2812,31 @@ def main():
                                                                         if r["verdict"] == "WOULD PLACE" else (r.get("reason") or "skipped")]}
                 else:
                     r["live"] = {"go": False, "lane": "board", "why": why}
+            elif p.get("source") == "r1":   # R1 lane: its own live decision (never the phase-1 filter), own $200 unit and daily limit
+                r["entry"] = ent = p.get("r1_entry") or {}
+                lk = derive_key(p) or p["play_key"]
+                why = [] if R1_LIVE else ["R1 lane not switched on (EXEC_R1_LIVE)"]
+                if lk in MANUAL_HELD:
+                    why.append(f"{MANUAL_HELD[lk]} with Peter's manual bet (Bets manual note)")
+                if lk in LIVEKEYS or any(same_bet(lk, k) for k in LIVEKEYS):
+                    why.append("a live order or resting bid was already sent for this bet (another lane)")
+                if any(opp_bet(lk, k) for k in LIVEKEYS):
+                    why.append("CONFLICT: the other side of this game was already bet (first side stays)")
+                if not why and r["verdict"] == "WOULD PLACE" and r.get("lc"):
+                    lc = r["lc"]
+                    lr, lw = live_stake(lc["shown"], R1_UNIT)   # $200 to win, never Lane 1's $300
+                    g_ok, g_why = r1_gate(lr, lk)
+                    if not g_ok:
+                        why.append(g_why)
+                if not why and r["verdict"] == "WOULD PLACE" and r.get("lc"):
+                    r["live"] = {"go": True, "book": lc["book"], "risk": lr, "to_win": lw, "am": lc["am"], "shown": lc["shown"],
+                                 "line": lc["line"], "partial": lc["avail"] < lr, "px": lc, "ids": lc.get("ids") or {},
+                                 "nfl": False, "lane": "r1", "unit": R1_UNIT}
+                elif not why:
+                    r["live"] = {"go": False, "lane": "r1", "why": ["no live book has the alert number or better"
+                                                                    if r["verdict"] == "WOULD PLACE" else (r.get("reason") or "skipped")]}
+                else:
+                    r["live"] = {"go": False, "lane": "r1", "why": why}
             elif ent and (p.get("source") != "rules" or RULES_LIVE):   # phase-1 live tag (Oct 30: coded AGREE goes live too)
                 ok, why = agree_rules.phase1(ent, True)   # totals unders NBA/NCAAF/NFL + NCAAF overs (Nov 3/Nov 4); spreads paper. See agree_rules.PHASE1
                 lk = derive_key(p) or p["play_key"]
@@ -2784,7 +2884,7 @@ def main():
                 LIVEKEYS.add(derive_key(p) or p["play_key"])
             results.append(r)
             if (r["verdict"] == "WOULD PLACE" or ((r.get("live") or {}).get("rest") or {}).get("status") == "placed") \
-                    and derive_key(p) and p.get("source") not in ("rules", "board", "lane2"):
+                    and derive_key(p) and p.get("source") not in ("rules", "board", "r1", "lane2"):
                 taken_now.add(derive_key(p))
         except Exception as ex:
             results.append({"play": p, "pid": pid(p["play_key"]), "verdict": "SKIP", "reason": f"error: {str(ex)[:100]}"})

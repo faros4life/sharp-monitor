@@ -152,6 +152,43 @@ def deadband(a):
     return DEADBAND[0] <= int(round(float(p))) <= DEADBAND[1]
 
 
+R1_MIN_LEAD = 240      # minutes: 4h+ before start (lead_min, the one lead definition)
+R1_PRICE_FLOOR = -119  # after-fee price must be -119 or better
+
+
+def r1(a):
+    """R1 live lane (Peter, 11 Nov: "NO MORE PAPER WE HAVE ENOUGH DATA"; scope "R1 exactly as specified").
+    Returns (eligible, [reasons it is not]). NON-Top-25 college (NCAAF + NCAAB), priced on ProphetX at alert time,
+    spreads plus totals UNDERS (no overs, no moneylines), not late, 4h+ lead, after-fee price -119 or better, not
+    a Matchbook-only confirmation. Deliberately does NOT look at sent_to_phone: these alerts stay muted on the
+    phone (non-Top-25 filter), and the executor reads them straight from alerts.json. The 12-24h paper window of
+    Lane 1 does not apply (R1's data included those plays). One play per game+market+side is enforced by the caller
+    (first alert only)."""
+    why = []
+    if (a.get("book_key") or "").strip().lower() != "prophetx":
+        why.append("not ProphetX-priced")
+    sp = (a.get("sport") or "").upper()
+    if sp not in COLLEGE:
+        why.append("not college")
+    if a.get("top25") is not False:   # explicit non-Top-25 only; untagged/Top-25 belong to Lane 1
+        why.append("not tagged non-Top-25")
+    k = a.get("kind")
+    if not (k == "spr" or (k == "tot" and side_of(a) == "UNDER")):
+        why.append("R1 is spreads and totals unders only")
+    if a.get("late"):
+        why.append("late")
+    cb = [str(x).strip().lower() for x in (a.get("confirmed_by") or [])]
+    if cb == ["matchbook"]:
+        why.append("Matchbook-only confirmation")
+    ld = lead_min(a)
+    if ld is None or ld < R1_MIN_LEAD:
+        why.append("under 4h lead")
+    p = a.get("price_after_fee")
+    if p is None or float(p) < R1_PRICE_FLOOR:
+        why.append(f"after-fee price {p} worse than {R1_PRICE_FLOOR}")
+    return (not why), why
+
+
 def phase1(a, muse_agree, tag_nfl=False):
     """Phase-1 LIVE filter (Muse + Peter, Oct 25). Returns (eligible, [reasons it is not]).
     tag_nfl=True (Peter's amendment, Oct 26): the DRY RUN also tags NFL plays; NFL in/out is decided at the pre-live
