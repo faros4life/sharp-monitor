@@ -207,6 +207,47 @@ def main():
     if not m:
         L.append("  none")
 
+    L += ["", "=" * 74, "9. EXPOSURE OF THE TWO SELECTION PATHS (measured, not asserted)", "=" * 74]
+    # plays_kelly counts a row when it has a W/L/P result and a usable price; it uses snap stake for ACTUAL dollars
+    # and never filters by source. A stale row keeps the snapshot it had when it was retired - including, for the two
+    # NCAAB notes, the INVENTED stake the old sizing rule guessed before Peter's real stakes arrived.
+    pk_live = pk_stale = 0
+    inj = 0.0
+    bad_stake = []
+    for k, r in bets.items():
+        s = r.get("snap") or {}
+        if s.get("result") not in ("W", "L", "P"):
+            continue
+        d = cl.eff_dec(s)
+        if not d or d <= 1:
+            continue
+        stale = cls[k][0] == "orphan-proven"
+        if stale:
+            pk_stale += 1
+        else:
+            pk_live += 1
+        st_amt = num(s.get("stake"))
+        if stale and st_amt:
+            inj += st_amt * (d - 1) if s["result"] == "W" else (-st_amt if s["result"] == "L" else 0.0)
+            tgt = cls[k][1]
+            live_amt = num(((bets.get(tgt) or {}).get("snap") or {}).get("stake")) if tgt else None
+            if live_amt is not None and abs(live_amt - st_amt) > 0.01:
+                bad_stake.append((str(s.get("bet")), st_amt, live_amt))
+    L += [f"plays_kelly population: {pk_live + pk_stale} rows counted, of which PROVEN STALE {pk_stale}",
+          f"  dollars those stale rows inject into the ACTUAL column: {inj:+,.2f} (double-counted, on top of the live row)"]
+    if bad_stake:
+        L.append("  stale rows whose stake DISAGREES with the live row (the pre-fix invented stake, preserved):")
+        for b, sa, la in bad_stake:
+            L.append(f"    {b}: stale row carries {sa:g}, live tracker row carries {la:g}")
+    L += ["  -> plays_kelly filters on result and price only, never on source or tracker presence (lines 43-64),",
+          "     so each of these is counted a second time, at a stake that in some rows was later corrected.",
+          ""]
+    led = [k for k, r in scored.items() if cls[k][0] == "orphan-proven"]
+    L += [f"bucket_report ledger_rows(): draws from the same clv rows; proven-stale scored rows reaching it: {len(led)}",
+          "  Buckets split FIT (first half of dates) vs CHECK (second half) and call HOLDS at >= 15 per half.",
+          f"  Hard Rock scored rows fall from 19 to 11 once the stale rows go, so any Hard Rock cell sits further",
+          "  below that 15-per-half floor than the report currently shows.", ""]
+
     ex.send("Bets CLV INTEGRITY AUDIT (read-only)", "\n".join(L))
     print(f"clv integrity audit: clv rows {len(bets)}, tracker rows {len(trk)}, "
           f"live {kinds.get('live', 0)}, proven-dup {kinds.get('orphan-proven', 0)}, "
