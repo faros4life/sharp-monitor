@@ -1804,9 +1804,14 @@ class perf:
     candidate play, say). The report then shows the real call count instead of x1, which is what
     makes a per-item cost readable."""
 
-    def __init__(self, label, n=1):
+    def __init__(self, label, n=1, rollup=False):
         self.label = label
         self.n = n
+        # rollup: this bracket ENCLOSES other brackets, so its seconds are a superset of theirs.
+        # Reported, but excluded from the percentage denominator - otherwise the same seconds are
+        # counted twice and every other row's share is understated (Nov 11: evaluate encloses the
+        # probes, and a duplicated label on the registry read read as "bot_orders runs twice").
+        self.rollup = rollup
 
     def __enter__(self):
         self.t0 = time.time()
@@ -1816,6 +1821,8 @@ class perf:
         d = time.time() - self.t0
         PERF["t"][self.label] = PERF["t"].get(self.label, 0.0) + d
         PERF["n"][self.label] += self.n
+        if self.rollup:
+            PERF.setdefault("roll", set()).add(self.label)
         return False
 
 
@@ -1830,9 +1837,14 @@ def perf_venue(book, secs, ok=True):
 def perf_report():
     """One block at the end of the run. Slowest operation first."""
     out = ["PERF (seconds and call counts only; measurement, never a gate)"]
-    tot = sum(PERF["t"].values()) or 1.0
+    roll = PERF.get("roll") or set()
+    tot = sum(v for k, v in PERF["t"].items() if k not in roll) or 1.0
     for lab, sec in sorted(PERF["t"].items(), key=lambda kv: -kv[1]):
-        out.append(f"  {lab:<34} {sec:8.1f}s  {100 * sec / tot:5.1f}%  x{PERF['n'][lab]}")
+        if lab in roll:   # a superset of the brackets inside it: shown, not counted
+            out.append(f"  {lab:<34} {sec:8.1f}s  (rollup)  x{PERF['n'][lab]}")
+        else:
+            out.append(f"  {lab:<34} {sec:8.1f}s  {100 * sec / tot:5.1f}%  x{PERF['n'][lab]}")
+    out.append(f"  {'MEASURED TOTAL (excl. rollups)':<34} {tot:8.1f}s")
     if MD["hit"] or MD["miss"]:
         tot = MD["hit"] + MD["miss"]
         out.append(f"  market-data cache: {MD['hit']} hit / {MD['miss']} fetched "
@@ -2232,12 +2244,17 @@ def live_guards():
         return GUARD["ok"], GUARD["why"]
     ok, why = False, ""
     try:
-        with perf("registry read (Gmail IMAP)"):
-            M = imap_open()
-            try:
-                ids = bot_orders(M)
-            finally:
-                imap_close(M)
+        # Nov 11: NO perf bracket here. This one wrapped bot_orders(), which has its own brackets
+        # for the Gmail scan, the private-store read and the backfill - and one of them reused this
+        # exact label. PERF sums per label, so the same seconds were counted twice and n showed x2,
+        # which read as "bot_orders runs twice per run". It does not: GUARD caches it, once per run.
+        # The inflated label also inflated the denominator every other percentage was computed
+        # against. Brackets must not nest; the inner three are the accurate, non-overlapping ones.
+        M = imap_open()
+        try:
+            ids = bot_orders(M)
+        finally:
+            imap_close(M)
         px_live.set_bot_orders(None if ids is None else list(ids))
         book_live.set_exposure(NONPX["today"])
         if ids is None:
@@ -3503,7 +3520,7 @@ def main():
                 continue
             if ent.get("floor_line") is not None and p.get("floor_line") is None:
                 p = dict(p, floor_line=ent["floor_line"])   # Oct 31: the alert's bet-only-at line (hard floor)
-            with perf("evaluate (per play)"):
+            with perf("evaluate (per play)", rollup=True):
                 r = evaluate(p, now, evs_by, mks_by_event, pos, None if p.get("source") in ("rules", "lane2") else taken, held)
             r["entry"] = ent
             if p.get("source") == "lane2":   # Nov 4: Lane 2 - priced and logged like any dry-run play; NEVER live (Peter "no live play")
