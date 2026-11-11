@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 10, 9:17 PM ET. This run: 2 new, 1 not confirmed, 0 pending. Open alerts: 73.
+Updated Tue Nov 10, 9:20 PM ET. This run: 2 new, 1 not confirmed, 0 pending. Open alerts: 73.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,8 +10,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 10 9:17PM | NCAAF | UMass vs Toledo: Spread | spread: Toledo wins by over 14.5 points | kalshi | $95k | +104 |  |  | +0.0c |  | pending |
-| Nov 10 9:17PM | NHL | Philadelphia vs Edmonton | moneyline: Edmonton | kalshi | $43k | -186 |  |  | +0.0c |  | pending |
+| Nov 10 9:20PM | NCAAF | UMass vs Toledo: Spread | spread: Toledo wins by over 14.5 points | kalshi | $95k | +104 |  |  | +0.0c |  | pending |
+| Nov 10 9:20PM | NHL | Philadelphia vs Edmonton | moneyline: Edmonton | kalshi | $43k | -186 |  |  | +0.0c |  | pending |
 | Nov 10 8:30PM | NCAAF | UMass vs Toledo | moneyline: Toledo | kalshi | $137k | -567 |  |  | +0.0c | yes | pending |
 | Nov 10 7:52PM | NBA | Miami Heat @ Utah Jazz | moneyline: MIA (0) | novig | $106k | -233 | ✅ kalshi,prophetx | ❌ | +7.0c | yes | pending |
 | Nov 10 7:41PM | NBA | Boston Celtics @ Philadelphia 76ers | spread: BOS -1.5 (1.5) | novig | $63k | -108 |  | ✅ | +0.0c |  | pending |
