@@ -937,37 +937,65 @@ EXEC_BOOKS = ("novig", "kalshi", "prophetx", "polymarket_us")   # books the exec
 
 
 def close_prob(e, pin):
-    """Pinnacle no-vig closing win chance for the play at its own number, or None."""
+    """Pinnacle no-vig closing win chance for the play at its own number, or None.
+
+    Kept as a thin wrapper so the three external callers (nba_totals_model, ev_sightings and the
+    monitor itself) are unchanged. The arithmetic lives once, in close_prob_detail - two copies of
+    this math is exactly how a reader and a writer come to disagree."""
+    d = close_prob_detail(e, pin)
+    return None if d is None else d["p"]
+
+
+def close_prob_detail(e, pin):
+    """As close_prob, but it RETURNS what it did instead of discarding it: the Pinnacle line it
+    read, our line, the conversion applied in points, and whether the clamp bound the result.
+
+    Nov 10 (Peter): the old function applied half_point_value() when Pinnacle's number differed
+    from ours and recorded nothing, so no reading could afterwards be told apart from a true
+    same-line close. Every branch and every `return None` below is byte-for-byte the old behaviour;
+    test_close_prob_identical.py proves it over 10,231 generated cases with exact float equality.
+    """
     k, side, pt, lab = e["kind"], e["side"], e.get("pt"), e.get("sport", "")
     if k == "ml":
         h = pin.get("h2h", {})
         if len(h) != 2 or side not in h:
             return None
         pr = {t: am_to_prob(p) for t, p in h.items()}
-        return pr[side] / sum(pr.values())
+        return {"p": pr[side] / sum(pr.values()), "market": "moneyline",
+                "pin_line": None, "our_line": None, "conv_pts": None, "clamped": False}
     if k in ("spr", "rl"):
         sp = pin.get("spreads", {})
         if len(sp) != 2 or side not in sp:
             return None
         (ppt, ppr), (_, opr) = sp[side], [v for t, v in sp.items() if t != side][0]
         p = am_to_prob(ppr) / (am_to_prob(ppr) + am_to_prob(opr))
+        conv = 0.0
         if abs(ppt - pt) > 1e-9:
             if k == "rl":
                 return None   # run/puck line at a different point: not comparable
             v = half_point_value(lab, "spr", ppt, pt, ppt)
             p += v if pt > ppt else -v
-        return min(max(p, .01), .99)
+            conv = round(abs(pt - ppt), 2)
+        raw = p
+        p = min(max(p, .01), .99)
+        return {"p": p, "market": "spread", "pin_line": ppt, "our_line": pt,
+                "conv_pts": conv, "clamped": p != raw}
     if k == "tot":
         tt = pin.get("totals", {})
         if "Over" not in tt or "Under" not in tt:
             return None
         ppt = tt["Over"][0]
         p = am_to_prob(tt[side][1]) / (am_to_prob(tt["Over"][1]) + am_to_prob(tt["Under"][1]))
+        conv = 0.0
         if abs(ppt - pt) > 1e-9:
             v = half_point_value(lab, "tot", ppt, pt, ppt)
             better = (pt < ppt) if side == "Over" else (pt > ppt)
             p += v if better else -v
-        return min(max(p, .01), .99)
+            conv = round(abs(pt - ppt), 2)
+        raw = p
+        p = min(max(p, .01), .99)
+        return {"p": p, "market": "total", "pin_line": ppt, "our_line": pt,
+                "conv_pts": conv, "clamped": p != raw}
     return None
 
 
@@ -980,10 +1008,16 @@ def closing_reads(st, n):
         mins = (parse_iso(e["start"]) - n).total_seconds() / 60
         if CLOSE_MIN_LEAD <= mins <= CLOSE_WINDOW or (0 < mins < CLOSE_MIN_LEAD and not e.get("cl")):
             due.setdefault((LABEL_KEY[e["sport"]], e["ev"]), []).append(e)
+    done = set()
     for (key, ev), es in due.items():
         if st.get("remaining") is not None and st["remaining"] <= RESERVE:
-            print("Closing reads skipped: credit reserve reached.")
-            return
+            # Nov 10 (Peter): this used to `return`, abandoning every remaining event with one log
+            # line and no per-play record - and `due` is a dict, so WHICH events had already been
+            # read was effectively arbitrary. The coverage gap was real and invisible. Same zero
+            # spend, but each unread play now says so on its own row.
+            for e in es:
+                e["cl_skip"] = "credit reserve reached"
+            continue
         mk = sorted({"h2h" if e["kind"] == "ml" else "totals" if e["kind"] == "tot" else "spreads" for e in es})
         try:
             body, rem = http_get(f"/sports/{key}/events/{ev}/odds",
@@ -995,12 +1029,21 @@ def closing_reads(st, n):
             st["remaining"] = rem
         pin = book_lines(body).get(SHARP, {})
         for e in es:
-            p = close_prob(e, pin)
-            if p is None:
+            d = close_prob_detail(e, pin)
+            if d is None:
+                e["cl_skip"] = "Pinnacle had no comparable number for this play"
                 continue
+            p = d["p"]
             ev_close = ev_pct(p, net(e["price"], e.get("book")))
+            # PROVISIONAL by construction: this is a read 20-30 minutes before start, not the
+            # close. Measured against the certified historical close it runs 0.61 pt optimistic on
+            # average and up to 6.4 pt out on a single play, so conv_pts == 0 here means "same
+            # line", never "verified". Only the clv_recover path certifies.
             e["cl"] = {"p": round(p, 4), "ev": round(100 * ev_close, 1),
-                       "mins_before": round((parse_iso(e["start"]) - n).total_seconds() / 60)}
+                       "mins_before": round((parse_iso(e["start"]) - n).total_seconds() / 60),
+                       "pin_line": d["pin_line"], "conv_pts": d["conv_pts"],
+                       "clamped": d["clamped"], "source": "live read",
+                       "read_utc": n.strftime("%Y-%m-%dT%H:%M:%SZ")}
             print(f"Closing read: {describe(e)} {e['game']}: close fair {p:.3f}, value {100 * ev_close:+.1f}%")
 
 
@@ -1312,6 +1355,16 @@ def write_alerts_file(st, n):
         cl = e.get("cl") or {}
         row.update({"close_fair_prob": cl.get("p"), "close_value_pct": cl.get("ev"),
                     "beat_true_close": (cl["ev"] > 0) if cl else None, "close_read_mins_before": cl.get("mins_before"),
+                    # Nov 10 (Peter): a live feed read is PROVISIONAL even when conv_pts == 0 - a
+                    # same-line read 20-30 min out is still not the close. clv_verified is True
+                    # ONLY on a certified historical Pinnacle close from the clv_recover path, so
+                    # it is False here whenever a reading exists and None where none does. A
+                    # historical row has no conversion record at all, and absent evidence stays
+                    # absent rather than being backfilled as same-line.
+                    "clv_source": ("live read (provisional)" if cl else None),
+                    "clv_verified": (False if cl else None),
+                    "clv_pin_line": cl.get("pin_line"), "clv_conv_pts": cl.get("conv_pts"),
+                    "clv_read_utc": cl.get("read_utc"), "clv_skipped": e.get("cl_skip"),
                     "executable_book": executable(e, first_text.get((e["ev"], e["kind"], e["side"]))),
                     # Oct 28 (Muse fix list): global Polymarket is not bettable from the US; tag it so every split can
                     # exclude it. The feed stopped pricing on it Oct 25 (last such alert Oct 26 02:10Z).
@@ -1341,7 +1394,15 @@ def write_alerts_file(st, n):
                                 "fade_* (from Oct 26) = best retail price on the OTHER side at the mirrored number when the alert fired; fade_units = 1u on that side, after fees. "
                                 "close_value_pct = TRUE closing value (from Oct 25): expected profit per 1u of price_after_fee at Pinnacle's "
                                 "no-vig win chance from one final read just before start, at the play's own number; beat_true_close = "
-                                "close_value_pct > 0. The older beat_close/clv fields beat the close almost by construction (ignore). "
+                                "close_value_pct > 0. close_value_pct is PROVISIONAL, not certified: it comes from a read 20-30 "
+                                "min before start (clv_source, clv_read_utc, close_read_mins_before), and against the certified "
+                                "historical Pinnacle close it runs about 0.61 pt optimistic on average, up to 6.4 pt on one play. "
+                                "clv_verified is True only for a certified historical close; it is False on every live read, "
+                                "including clv_conv_pts == 0, and None where no reading exists. clv_pin_line is Pinnacle's own "
+                                "number and clv_conv_pts the half-point conversion applied (0 = our line); both are null on rows "
+                                "written before Nov 10, where no conversion record was kept. clv_skipped says why a play has no "
+                                "reading. CERTIFIED, MODELED and PROVISIONAL CLV are never combined in one figure. "
+                                "The older beat_close/clv fields beat the close almost by construction (ignore). "
                                 "executable_book = the alert book or an 'also' book is Novig/Kalshi/ProphetX/Polymarket. pushed_to_phone/sent_to_phone = not muted "
                                 "(delivery to the phone is not confirmed)."),
                        "alerts": out, "all_alerts": every}, f, indent=1, sort_keys=True)
