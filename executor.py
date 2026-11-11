@@ -28,6 +28,7 @@ import re
 import smtplib
 import time
 import urllib.request
+import uuid   # Nov 11: client-side id for the write-ahead order intent
 from datetime import datetime, timedelta, timezone
 from email.mime.text import MIMEText
 
@@ -1419,6 +1420,7 @@ def bot_orders(M, days=4):
         if typ != "OK":
             return None
         ids, seen_oids = {}, set()   # seen_oids: one order's money is counted once (Nov 11)
+        _intents, _confirmed = {}, {}   # write-ahead intents vs confirmed orders, by client_id
         for uid in (data[0].split() if data and data[0] else []):
             typ, d = M.uid("FETCH", uid, "(RFC822)")
             if typ != "OK" or not d or not d[0]:
@@ -1450,9 +1452,17 @@ def bot_orders(M, days=4):
                     # below is accumulated on first sight only. Over-counting is the safe direction but
                     # it is still wrong - it would silently shrink the $1,500 board limit and the daily
                     # stop. ids and LIVEKEYS are set above, so dedupe never weakens duplicate blocking.
-                    if oid in seen_oids:
+                    # Nov 11: the money identity is the CLIENT ID when there is one, so the
+                    # write-ahead intent row and the confirmed row for the SAME order count once -
+                    # while ids above still carries the venue's real order_id, which is the only
+                    # field linking a ProphetX TRADE back to an order.
+                    cid = lo.get("client_id")
+                    if cid:   # resolved AFTER the loop: IMAP order is not chronological, so a
+                        # confirmed row may be read before its own intent row.
+                        (_intents if lo.get("intent") else _confirmed)[str(cid)] = row
+                    if str(cid or oid) in seen_oids:
                         continue
-                    seen_oids.add(oid)
+                    seen_oids.add(str(cid or oid))
                     try:   # Oct 28: Kalshi / PM US / Novig dollars risked TODAY (ET) count as lost in the daily stop
                         d_et = datetime.fromisoformat(str(row.get("decided_utc")).replace("Z", "+00:00")).astimezone(lm.ET).date()
                     except Exception:
@@ -1476,6 +1486,20 @@ def bot_orders(M, days=4):
                         fs = lo.get("filled_stake")   # fill-or-kill: what filled (unknown = all asked); resting: all asked
                         NONPX["today"] += (max(float(fs or 0), float(lo.get("asked_stake") or 0)) if (is_rest or fs is None)
                                            else float(fs))
+        # Nov 11: an intent with no confirmed order means an order MAY exist at the venue and the
+        # bot cannot tell (ProphetX trades carry no external_id). Attribution is uncertain, so
+        # live_guards() refuses every further live order until Peter clears it with an email whose
+        # body contains intentdone<client_id>, after checking My Trades.
+        INTENT["open"] = {}
+        for k, row in _intents.items():
+            if k in _confirmed:
+                continue
+            try:
+                if gsearch_strict(M, "intentdone" + k):
+                    continue   # Peter reconciled this one
+            except Exception:
+                pass           # cannot confirm it was cleared -> keep refusing (fail closed)
+            INTENT["open"][k] = row
         BOARD["known"] = True   # the ledger parsed, so today's board exposure above is real
         return ids
     except Exception:
@@ -1545,6 +1569,19 @@ def live_guards():
         book_live.set_exposure(NONPX["today"])
         if ids is None:
             why = "couldn't read the bot's order registry in Gmail (fail closed)"
+        elif INTENT["open"]:
+            # Nov 11: a write-ahead intent with no confirmed order. An order of that size may exist
+            # at the venue and ProphetX cannot tell us (trades carry no external_id), so the bot's
+            # own exposure is uncertain - and uncertain exposure never places. This is what keeps a
+            # lost order from accumulating across runs: the SECOND incident cannot happen.
+            k, row = next(iter(INTENT["open"].items()))
+            lo0 = row.get("live_order") or {}
+            why = (f"unreconciled order intent {k} ({lo0.get('book')}, asked "
+                   f"${float(lo0.get('asked_stake') or 0):,.2f}, {row.get('decided_utc')}): an order may "
+                   f"exist at the venue with no confirmed record. Check My Trades, then clear it with an "
+                   f"email containing intentdone{k}. "
+                   + (f"{len(INTENT['open']) - 1} more also open. " if len(INTENT["open"]) > 1 else "")
+                   + "No live order will be placed until then (fail closed)")
         else:
             ok = True
     except Exception as ex:
@@ -1583,6 +1620,14 @@ def live_order(r):
                         am=fresh.get("best_price_american"),
                         shown=fresh.get("best_price_american_displayed") or fresh.get("best_price_american"))
     lv["reval"] = rv_why
+    # Nov 11 (Peter): WRITE-AHEAD. The durable record is a precondition of the order, not a
+    # consequence of it. If this cannot be stored, nothing is submitted - so a lost record can
+    # never mean untracked exposure. Both lanes pass through here, before the book dispatch.
+    i_ok, cid = journal_intent(r, lv.get("book", "prophetx"), lv.get("risk"))
+    if not i_ok:
+        return {"status": "refused",
+                "reason": "could not store the pre-order record - nothing was submitted (fail closed)"}
+    lv["client_id"] = cid
     if lv.get("book", "prophetx") != "prophetx":
         return live_order_other(r)
     strike, limit, stake = px_limit(lv["px"], lv["risk"])
@@ -1609,7 +1654,7 @@ def live_order(r):
         push("LIVE ORDER ERROR: " + (p.get("bet") or "")[:50], f"{label}\n{res['reason']}\nCheck ProphetX My Trades before retrying.", mirror=False)
     out = dict(res, asked_stake=stake, limit=limit, book="prophetx")
     if out.get("status") == "placed":   # Nov 11: durable registry row NOW, before anything can kill the run
-        out["journaled"] = journal_order(r, out)
+        out["journaled"] = journal_order(r, out, cid=lv.get("client_id"))
     return out
 
 
@@ -1685,7 +1730,7 @@ def live_order_other(r):
         tg(f"SENT TO NOVIG (home PC): {bet_text(r, lv['line'], limit_am)}\nfill-or-kill, ${stake:,.2f} at {limit_am:+d} or better. "
            f"The fill result follows in the next run.\n{p.get('sport')} {p.get('game')}")
         out = dict(res, asked_stake=stake, limit=limit_am)
-        out["journaled"] = journal_order(r, out)   # Nov 11: durable row now (the fill lands next run)
+        out["journaled"] = journal_order(r, out, cid=lv.get("client_id"))   # Nov 11: durable row now
         return out
     if res["status"] == "placed":
         fs, ac = res.get("filled_stake") or 0, res.get("avg_cost")
@@ -1710,7 +1755,7 @@ def live_order_other(r):
         res["filled_stake"] = None   # unknown fill: the daily stop counts everything asked
     out = dict(res, asked_stake=stake, limit=limit_am)
     if out.get("status") == "placed":   # Nov 11: durable registry row NOW
-        out["journaled"] = journal_order(r, out)
+        out["journaled"] = journal_order(r, out, cid=lv.get("client_id"))
     return out
 
 
@@ -1955,7 +2000,7 @@ def rest_bid(r):
             continue
         res = dict(res, book=b, limit=lm.american(c), asked_stake=round(risk, 2), expires_utc=expire.strftime("%Y-%m-%dT%H:%M:%SZ"))
         if res.get("status") == "placed":   # Nov 11: durable row NOW; a resting bid outlives the run
-            res["journaled"] = journal_order(r, res, is_rest=True)
+            res["journaled"] = journal_order(r, res, is_rest=True, cid=(r.get("live") or {}).get("client_id"))
         name = BOOK_NAME.get(b, b)
         when = expire.astimezone(lm.ET).strftime("%I:%M %p ET")
         if res["status"] == "placed":
@@ -2324,6 +2369,58 @@ def send(subject, body):
 
 
 JOURNAL = {"sent": 0, "failed": 0, "latch": None}
+INTENT = {"open": {}}   # client_id -> row, for intents with no confirmed order. Non-empty = refuse.
+
+
+def journal_intent(r, book, asked):
+    """WRITE-AHEAD order record (Peter, Nov 11). The smallest fix that gives ProphetX durable
+    attribution, given that the venue cannot provide it.
+
+    MEASURED (px_live, Nov 10, 100 real trades): a ProphetX trade carries fee, id, matched_at,
+    order_id, price, profit, quantity, status, strike, strike_id, winning_status. external_id is
+    NOT among them, so a prefixed external_id is invisible at the point attribution happens -
+    matching a settled trade back to "the bot placed this". A venue-recoverable bot id is therefore
+    not available, and guessing at an undocumented orders endpoint is the Polymarket cancel mistake.
+
+    So the record stops being a CONSEQUENCE of the order and becomes a PRECONDITION of it: this row
+    is written BEFORE submitting, and the order is only submitted if the write succeeded. The
+    failure mode inverts. Before: order placed, record lost, exposure untracked and unbounded across
+    runs. Now: record fails -> no order at all -> nothing to track.
+
+    If the run dies between this write and the submit, the registry already holds a row saying an
+    order of this size MAY exist. bot_orders() counts it, so the next run cannot exceed its limits;
+    its play key reaches LIVEKEYS, so the next run cannot repeat the bet; and because no confirmed
+    row ever follows, the client_id stays in INTENT["open"] and live_guards() refuses every further
+    live order until it is reconciled. Uncertain placement fails closed rather than being estimated.
+
+    Returns (ok, client_id). Zero paid credits: Gmail SMTP only."""
+    cid = uuid.uuid4().hex[:16]
+    try:
+        p = r.get("play") or {}
+        row = {"key": p.get("play_key") or derive_key(p) or "", "source": p.get("source"),
+               "intent": True, "client_id": cid,
+               "decided_utc": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+               "live_order": {"status": "placed", "order_id": "intent-" + cid, "book": book,
+                              "asked_stake": round(float(asked or 0), 2), "filled_stake": None,
+                              "client_id": cid, "intent": True}}
+        send(f"Bets LIVE: order intent {book} {cid}",
+             "ORDER INTENT - written BEFORE the order is submitted. The order is only submitted if this\n"
+             "row was stored, so a failure here means NO order was placed and nothing is untracked.\n"
+             "If no confirmed row follows this client_id, an order MAY exist at the venue: the daily stop\n"
+             "counts this row, duplicate blocking holds this play, and live orders refuse until it is\n"
+             "reconciled. Clear it with an email whose body contains intentdone" + cid + "\n"
+             "once ProphetX My Trades shows whether the order exists. Counts only.\n\n"
+             "LEDGER (machine-readable, one row per play; latency = decision time minus first alert time)\n"
+             + json.dumps([row]))
+        return True, cid
+    except Exception as ex:
+        try:
+            tg(f"ORDER INTENT FAILED: could not store the pre-order record for {book} "
+               f"({str(ex)[:120]}).\nNO ORDER WAS PLACED - the run refused rather than bet without a "
+               f"durable record. Nothing is untracked.")
+        except Exception:
+            pass
+        return False, None
 
 
 def journal_latch_why():
@@ -2343,7 +2440,7 @@ def journal_latch_why():
     return JOURNAL["latch"]
 
 
-def journal_order(r, lo, is_rest=False):
+def journal_order(r, lo, is_rest=False, cid=None):
     """Nov 11 (Peter, crash-safe order logging). Write ONE durable registry row the moment an order
     is placed, instead of only at the end of the run.
 
@@ -2373,7 +2470,9 @@ def journal_order(r, lo, is_rest=False):
                    "status": "placed", "order_id": oid, "book": book,
                    "asked_stake": lo.get("asked_stake") if lo.get("asked_stake") is not None else lo.get("asked"),
                    "filled_stake": lo.get("filled_stake"), "avg_price": lo.get("avg_price"),
-                   "limit": lo.get("limit"), "resting": bool(is_rest or lo.get("resting"))}}
+                   "limit": lo.get("limit"), "resting": bool(is_rest or lo.get("resting")),
+                   # Nov 11: resolves the write-ahead intent row and makes the money count once
+                   "client_id": cid or (r.get("live") or {}).get("client_id"), "intent": False}}
         send(f"Bets LIVE: order journal {book} {oid}",
              "ORDER JOURNAL - one durable registry row, written the moment this order was placed, so a run\n"
              "killed before its end-of-run ledger cannot lose this order from the registry (daily-stop\n"

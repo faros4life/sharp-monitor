@@ -126,9 +126,9 @@ bo = inspect.getsource(ex.bot_orders)
 ck("bot_orders tracks order ids it has already counted", "seen_oids" in bo)
 ck("the dedupe skips the MONEY sums", bo.index("seen_oids.add") < bo.index('NONPX["today"] +='))
 ck("ids are recorded BEFORE the dedupe (duplicate blocking never weakened)",
-   bo.index("ids[oid]") < bo.index("if oid in seen_oids"))
+   bo.index("ids[oid]") < bo.index("in seen_oids"))
 ck("LIVEKEYS is populated BEFORE the dedupe",
-   bo.index("LIVEKEYS.add") < bo.index("if oid in seen_oids"))
+   bo.index("LIVEKEYS.add") < bo.index("in seen_oids"))
 ck("board keys still dedupe by play key", 'BOARD["keys"].add' in bo)
 
 # arithmetic: the same order seen twice must add its money once
