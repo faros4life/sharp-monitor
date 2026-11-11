@@ -77,7 +77,11 @@ jobs:
           # LIVE phase 1 (Oct 26): real ProphetX orders only when the repo VARIABLE EXEC_LIVE is "on"
           EXEC_LIVE: ${{ vars.EXEC_LIVE }}
           # Nov 3 (Peter "ok build"): Lane 3 board NBA totals places money only when this is "on" (and EXEC_LIVE is on)
-          EXEC_BOARD_LIVE: ${{ vars.EXEC_BOARD_LIVE || 'off' }}   # Nov 4 7:41 AM (Peter): LANE 3 OFF for live money - board plays are paper only
+          # The `|| 'off'` is the default for an ABSENT variable, never a statement of the lane's state - the repo
+          # variable decides and Peter flips it. The code reads .strip().lower() == "on", so "true"/"yes"/"1" read
+          # as off. Do not record a lane's live state in a comment here: a Nov 4 note saying Lane 3 was paper-only
+          # outlived the switch being turned on and was read as current fact on Nov 11. Read the variable instead.
+          EXEC_BOARD_LIVE: ${{ vars.EXEC_BOARD_LIVE || 'off' }}
           # Nov 11 (Peter "NO MORE PAPER"): R1 live lane (non-Top-25 college, ProphetX-priced spreads + unders). Places money only
           # when this repo VARIABLE is "on" (and EXEC_LIVE is on). Own $200 unit; own daily risk limit and play cap below.
           EXEC_R1_LIVE: ${{ vars.EXEC_R1_LIVE || 'off' }}
