@@ -3583,11 +3583,30 @@ def main():
     results, taken_now = [], set()
     M2 = imap_open()
 
+    # Nov 11: taken() ran ONE UNBOUNDED X-GM-RAW search PER PLAY - the fourth instance of the
+    # pattern already fixed in read_manual, already_handled and both fill reporters. evaluate()
+    # calls it exactly once per play, with opposite_key(p), so every token it will ever ask for is
+    # known up front and is resolved in ONE bounded batched search here.
+    #
+    # Bounded to HANDLED_DAYS, the same window the dedupe and the order registry use: a side taken
+    # inside the period that can still matter is found, and games here start within hours of an
+    # alert.
+    _wp_ask = {wp(ok) for p in new if (ok := opposite_key(p))}
+    with perf("taken(): opposite-side check (one batched search)", n=len(_wp_ask)):
+        _wp_hit = sent_tokens(M2, sorted(_wp_ask), days=HANDLED_DAYS) if _wp_ask else set()
+
     def taken(k):   # this run, or any earlier WOULD PLACE / PLACED entry
         # Nov 8: strict, for the same reason as already_handled. This is "first side stays": a
         # failed search returning [] reads as "the side is free" and the bot takes the opposite
-        # side of a position it already holds. Raise rather than guess.
-        return k in taken_now or bool(gsearch_strict(M2, wp(k)))
+        # side of a position it already holds. Raise rather than guess - sent_tokens() raises on a
+        # failed search or fetch, exactly as gsearch_strict did.
+        if k in taken_now:
+            return True
+        tok = wp(k)
+        if tok in _wp_ask:
+            return tok in _wp_hit      # answered by the batched search above
+        # a key the precompute did not cover must NEVER fall through as "free": ask for it.
+        return bool(gsearch_strict(M2, f"newer_than:{HANDLED_DAYS}d {tok}"))
     for p in new:
         try:
             ent = feed_entry(p, feed) or {}
