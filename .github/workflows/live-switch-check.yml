@@ -9,7 +9,12 @@ permissions:
 jobs:
   run:
     runs-on: ubuntu-latest
-    timeout-minutes: 3
+    # 3 -> 10 (Nov 11, Peter). Run 43024024660 was KILLED MID-WORK at 3m18s against the 3-minute
+    # ceiling - "Terminate orphan process: pid (python)" - and reported as `cancelled` with no
+    # verdict printed. At a glance that is indistinguishable from the BRAKE having failed, which is
+    # the one thing this job exists to report truthfully. The job places nothing (no order code), so
+    # a higher ceiling costs nothing; what varies is the Gmail IMAP read in live_guards().
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
