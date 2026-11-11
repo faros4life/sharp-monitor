@@ -342,38 +342,64 @@ Numbers unavailable here are marked with what is needed.
 | O9 | Certified CLV coverage is low and non-representative (NHL 56% vs NBA 7%) | open | fixture-matching quality is a standing objective |
 | O10 | Lane 1's certified CLV is positive overall (+0.37%) but negative in H2 (−0.59%) on n=33 | open | more verified fills; n≥100 for the precision bar |
 
-## O6 AUDIT RESULT (11 Nov) — entry basis recomputed, close leg still blocked
+## O6 AUDIT RESULT (11 Nov) — entry basis corrected in code; close leg blocked
 
-**All 62 v3 PLAY calls reconciled.** Entry priced at the best bettable exchange (Kalshi, Novig,
-ProphetX) quoting the same line at the alert price or better, after each venue's own fee —
-decision-time information only.
+`board_clv_check.py` now prices each historical call at the **best BETTABLE venue quoting the same
+line at the alert price or better**, from the decision-time liquidity snapshot joined on the call's
+own key and `alerted_utc`. Measurement and reporting only — no production rule, execution, alert or
+scanner path touched, no state written, `board/calls.json` read without mutation.
+
+**Bettable set: Novig, Kalshi, ProphetX and POLYMARKET US.** PM US was missing from the first
+version (Peter caught it). The snapshot carries both `polymarket` (the GLOBAL crypto book — not
+bettable from the US, `clv_std` refuses to price it) and `polymarket_us` (ours, 817 snapshot rows);
+only the latter maps through. On PM US the maker side is a **rebate** (−0.0125), so it can be the
+best resting venue even where its taker price is not best — which is why maker and taker are
+resolved separately.
+
+**The comparison is RAW and LIKE-FOR-LIKE against the alert's own american price**, because the
+standard is "the alert price or nothing". Two earlier versions were wrong and both are recorded:
+comparing after-fee values against a target computed at the *trigger* venue priced global
+Polymarket at the US fee (wrong, gave 53), and doing the same through `clv_std` produced no target
+at all because `clv_std` refuses to price global — disqualifying all 21 globally-triggered calls for
+a property of a venue we were never going to bet (gave 38). **An unpriceable trigger venue must not
+disqualify a play.** Fees still apply to the chosen quote, which is what ranks the candidates.
+
+### Reconciliation of all 62 calls, corrected basis
 
 | | n |
 | --- | --- |
-| Gettable at the alert price or better, bettable venue | **53** |
+| **GETTABLE at the alert price or better, bettable venue** | **51** |
 | Not gettable — no bettable quote on that exact line | 4 |
-| Not gettable — quoted but worse after fees | 5 |
+| Not gettable — quoted on the line but worse than the alert price | 7 |
 
-**Size of the basis error.** On the 53, the best bettable price beat the trigger-venue price on
-**43 of 53** rows, by a mean **1.47 probability cents** (median 1.50, max 3.81), i.e. a mean
-after-fee decimal improvement of +0.0549. By trigger venue: Kalshi-triggered 1.46c (execution would
-have moved to Novig on 25 of 38), global-triggered 1.50c (Novig on 14 of 15).
+On the 51: **50 games, 18 days, +19.77u, +38.8%, day-clustered 95% CI [+16.5, +59.6]%**;
+H1 +49.7% / H2 +28.3%. Execution venue — taker: Novig 28 · Kalshi 20 · ProphetX 3; maker:
+Novig 27 · Kalshi 22 · ProphetX 2. By trigger: Kalshi-triggered 38 of 41 gettable,
+globally-triggered **13 of 21**. **Polymarket US is the best venue on 0 of 62 — no board snapshot
+carries a PM US quote at all**, so including it changes nothing here and is correct going forward.
 
-**Direction and magnitude of the correction.** `board_clv_check` reported taker CLV **−2.90%** on the
-30 rows it kept. CLV in these units is close fair minus entry cost, so a 1.47c cheaper entry raises
-it by about the same amount — roughly **−1.4%** on those rows — and **15 rows it dropped entirely
-gain a valid entry basis for the first time**, moving the mean by an amount that cannot be signed in
-advance. The maker figure (−0.41%) is on a resting basis and does not take the same adjustment.
+**STILL BLOCKED — certified CLV cannot be recomputed in this session.** Running the corrected file
+stops at `board_clv_check.py:143`:
 
-**Still blocked, and why.** `net_clv = (Pinnacle no-vig CLOSE × net entry decimal) − 1`. The entry
-leg is now computed for 53 of 62. The **close leg cannot be recomputed read-only**:
-`clv/state.enc` (the verified-close ledger) needs `TRACKER_PASSPHRASE`; the liquidity feed's
-`close_price` / `clv_cents` is the *trigger exchange's own* close, which §4 bars; `prices_by_book` is
-an alert-time snapshot. **Needed:** a `board_clv_check` run whose venue selection prices each call at
-the best bettable exchange instead of excluding it — free `/historical-odds` only, zero paid credits.
+```
+st_ = tb.dec(json.load(open(cl.STATE)))
+cryptography.exceptions.InvalidTag
+```
 
-Until then the certified-CLV leg for this population is **MISSING, not negative**, and under the
-adopted policy it neither vetoes nor supports.
+`clv/state.enc` — the fixture and verified-close state — cannot be decrypted without
+`TRACKER_PASSPHRASE`, which was not requested and must not be exposed. The decision-time snapshots
+load fine (2,397 of them), so **only the close join is blocked**. Certified same-line Pinnacle CLV,
+modelled CLV, coverage, confidence intervals and chronological halves for this population are
+therefore **MISSING, not negative**, and under the adopted policy neither veto nor support.
+**To obtain them:** run `board-clv-check` in Actions, where the secret and the history cache live.
+It reads only free `/historical-odds`, spends zero paid credits — but it emails its report, so it
+needs Peter's go.
+
+**Tests:** `tests/test_board_clv_venue.py`, 36 checks, all passing — no-hindsight selection (the
+function's executable code references no close, result or later price), fee treatment (delegation to
+`clv_std` only, per-venue ordering, maker vs taker, PM US rebate, global unselectable, same-line
+only, alert-price-or-better boundary, unpriceable trigger non-disqualifying), and no mutation of
+historical calls or any live path.
 
 **Related, already done on 10 Nov:** global Polymarket was removed from `LIQ_BOOKS` so future board
 calls are not generated off an unbettable venue. That fixes generation, not the pricing of the 62

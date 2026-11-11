@@ -65,8 +65,16 @@ def bet_of(side):
 # arithmetic of its own, and a venue clv_std refuses to price (Polymarket Global: NotTradeable)
 # can never be selected.
 LIQ = os.environ.get("LIQ_ALERTS", "") or "liquidity/alerts.json"
-BETTABLE = ("novig.us", "kalshi", "prophetx")   # venues Peter can bet; canonical clv_std names
-SRC_NAME = {"novig": "novig.us", "kalshi": "kalshi", "prophetx": "prophetx"}
+# Peter's bettable exchanges, canonical clv_std names. POLYMARKET US IS ONE OF THEM and was
+# missing from the first version of this list (Peter caught it, 11 Nov): the liquidity snapshot
+# carries BOTH "polymarket" (the GLOBAL crypto book, not bettable from the US, clv_std refuses to
+# price it) and "polymarket_us" (ours, 817 snapshot rows). Only the latter maps through.
+# On Polymarket US the MAKER side is a REBATE (-0.0125), so it can be the best resting venue even
+# where its screen price is not the best taker price - which is precisely why maker and taker are
+# resolved separately below.
+BETTABLE = ("novig.us", "kalshi", "prophetx", "polymarket.us")
+SRC_NAME = {"novig": "novig.us", "kalshi": "kalshi", "prophetx": "prophetx",
+            "polymarket_us": "polymarket.us"}      # "polymarket" (global) deliberately absent
 
 
 def liq_quotes(path=None):
@@ -90,11 +98,23 @@ def _net(book, american, maker, league="NBA"):
         return None          # NotTradeable / UnknownVenue: never selectable
 
 
-def best_bettable(pbb, line, target_net, maker, league="NBA"):
-    """(canonical venue, american, net decimal) for the best BETTABLE quote on the SAME line whose
-    after-fee price is at least as good as target_net. None when no such quote exists.
+def best_bettable(pbb, line, alert_am, maker, league="NBA"):
+    """(canonical venue, american, net decimal) for the best BETTABLE quote on the SAME line at the
+    ALERT PRICE OR BETTER. None when no such quote exists.
+
+    THE COMPARISON IS RAW AND LIKE-FOR-LIKE, against the alert's own american price. Peter's
+    standard is "we get the alert price or nothing", and the alert price is that american number.
+    An earlier version compared AFTER-FEE values against a target computed at the TRIGGER venue,
+    which broke twice: with a local fee helper it priced global Polymarket at the US fee (wrong),
+    and with clv_std it got no target at all because clv_std refuses to price global
+    (NotTradeable) - disqualifying all 21 globally-triggered calls for a property of the venue we
+    were never going to bet. An unpriceable trigger venue must not disqualify a play.
+    Fees still apply to the CHOSEN quote, which is what the returned net decimal carries, and the
+    best candidate is ranked by that after-fee value.
 
     pbb is a decision-time snapshot only. Nothing here reads a close, a result or a later price."""
+    if alert_am is None:
+        return None
     best = None
     for src, q in (pbb or {}).items():
         v = SRC_NAME.get(str(src).lower())
@@ -103,13 +123,13 @@ def best_bettable(pbb, line, target_net, maker, league="NBA"):
         pt, am = q.get("point"), q.get("price")
         if pt is None or am is None or abs(float(pt) - float(line)) > 1e-9:
             continue                      # same line only - never a different number
+        if am < alert_am:
+            continue                      # alert price or better, raw, like-for-like
         nd = _net(v, am, maker, league)
         if nd is None:
-            continue
+            continue                      # venue clv_std will not price: never selectable
         if best is None or nd > best[2]:
             best = (v, am, nd)
-    if best is None or target_net is None or best[2] < target_net - 1e-12:
-        return None
     return best
 
 
@@ -219,12 +239,11 @@ def main():
         pbb = QUOTES.get((kk[0], kk[1])) if len(kk) == 2 else None
         rec["snapshot"] = pbb is not None
         for basis, mk_ in (("maker", True), ("taker", False)):
-            tgt = _net(trig, rec["am"], mk_)
-            pick = best_bettable(pbb, rec["line"], tgt, mk_) if (pbb and tgt) else None
+            pick = best_bettable(pbb, rec["line"], rec["am"], mk_) if pbb else None
             rec[f"{basis}_venue"] = pick[0] if pick else None
             rec[f"{basis}_am"] = pick[1] if pick else None
             rec[f"{basis}_net"] = pick[2] if pick else None
-            rec[f"{basis}_trigger_net"] = tgt
+            rec[f"{basis}_trigger_net"] = _net(trig, rec["am"], mk_)   # reported, never a gate
         rec["gettable"] = rec["maker_venue"] is not None or rec["taker_venue"] is not None
         if not rec["gettable"]:
             exc["not gettable: no bettable venue at the alert price on that line"] += 1

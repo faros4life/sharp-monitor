@@ -35,7 +35,8 @@ print("1. NO HINDSIGHT VENUE SELECTION")
 # parameter through which a close, a result or a later price could reach it.
 import inspect
 sig = set(inspect.signature(b.best_bettable).parameters)
-ck("best_bettable takes only snapshot/line/target/basis", sig == {"pbb", "line", "target_net", "maker", "league"}, str(sig))
+ck("best_bettable takes only snapshot/line/alert-price/basis",
+   sig == {"pbb", "line", "alert_am", "maker", "league"}, str(sig))
 # Check EXECUTABLE CODE only: the docstring and comments legitimately use these words to say the
 # function does not read them, so matching raw source would match its own prose. Strip the
 # docstring and every comment first.
@@ -50,7 +51,7 @@ for banned in ("close", "result", "units", "res", "after_15", "price_after", "ci
 # a snapshot carrying extra post-decision keys is ignored rather than used
 snap = {"novig": {"point": 220.5, "price": -104, "close_price": 0.9, "result": "W"},
         "kalshi": {"point": 220.5, "price": -104}}
-pick = b.best_bettable(snap, 220.5, 1.0, False)
+pick = b.best_bettable(snap, 220.5, -110, False)
 ck("post-decision keys in a snapshot do not change the pick", pick is not None and pick[0] == "novig.us",
    str(pick))
 # the join is by the call's OWN key and alerted_utc, so a later alert on the same game cannot leak in
@@ -71,17 +72,29 @@ ck("maker never prices worse than taker at the same venue",
    b._net("kalshi", -104, True) >= b._net("kalshi", -104, False))
 # a venue clv_std refuses to price is unselectable, whatever its screen showed
 ck("polymarket.global is not in BETTABLE", "polymarket.global" not in b.BETTABLE)
+ck("polymarket.us IS in BETTABLE (Peter's venue)", "polymarket.us" in b.BETTABLE)
+ck("'polymarket' (global) does not map through SRC_NAME", "polymarket" not in b.SRC_NAME)
+ck("'polymarket_us' maps to polymarket.us", b.SRC_NAME.get("polymarket_us") == "polymarket.us")
+ck("PM US maker is a rebate, so maker beats taker there",
+   b._net("polymarket.us", -104, True) > b._net("polymarket.us", -104, False))
+ck("a PM-US-only snapshot is selectable",
+   b.best_bettable({"polymarket_us": {"point": 220.5, "price": -104}}, 220.5, -110, False) is not None)
+ck("a snapshot with global AND PM US never picks global",
+   (b.best_bettable({"polymarket": {"point": 220.5, "price": +500},
+                     "polymarket_us": {"point": 220.5, "price": -104}}, 220.5, -110, False) or ("",))[0]
+   == "polymarket.us")
 ck("_net returns None for an unpriceable venue", b._net("polymarket.global", -104, False) is None)
-gl = b.best_bettable({"polymarket": {"point": 220.5, "price": +200}}, 220.5, 1.0, False)
+gl = b.best_bettable({"polymarket": {"point": 220.5, "price": +200}}, 220.5, -110, False)
 ck("a global-only snapshot yields no pick", gl is None, str(gl))
 # the target must actually be beaten, and only on the same line
-ck("a worse-after-fees quote is rejected",
-   b.best_bettable({"kalshi": {"point": 220.5, "price": -130}}, 220.5, dec(-104), False) is None)
+ck("a quote worse than the alert price is rejected",
+   b.best_bettable({"kalshi": {"point": 220.5, "price": -130}}, 220.5, -104, False) is None)
 ck("a different line is never selected",
-   b.best_bettable({"novig": {"point": 221.5, "price": +200}}, 220.5, 1.0, False) is None)
-ck("an equal-after-fees quote is accepted (alert price OR BETTER)",
-   b.best_bettable({"novig": {"point": 220.5, "price": -104}}, 220.5, b._net("novig.us", -104, False), False)
-   is not None)
+   b.best_bettable({"novig": {"point": 221.5, "price": +200}}, 220.5, -110, False) is None)
+ck("the alert price itself is accepted (OR BETTER, not strictly better)",
+   b.best_bettable({"novig": {"point": 220.5, "price": -104}}, 220.5, -104, False) is not None)
+ck("an unpriceable TRIGGER venue does not disqualify a play",
+   b.best_bettable({"novig": {"point": 220.5, "price": -104}}, 220.5, -108, False) is not None)
 
 print("\n3. NO CHANGE TO HISTORICAL CALLS OR LIVE EXECUTION")
 mod = open(b.__file__).read()
