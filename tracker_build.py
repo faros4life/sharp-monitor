@@ -900,7 +900,7 @@ const pt=await crypto.subtle.decrypt({name:'AES-GCM',iv:b64(BLOB.i)},key,b64(BLO
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const $=v=>v==null?'—':(v<0?'-$':'$')+Math.abs(v).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2});
 const sg=v=>v==null?'—':(v>0?'+':v<0?'':'')+$(v);const pr=p=>p==null?'':(p>0?'+'+p:String(p));
-const src=b=>b.source==='bot'?'Bot fill':'Peter';   // Nov 11 (Peter): only Bot and Peter
+const src=b=>b.source==='bot'?('Bot'+(b.lane?' · '+b.lane:'')+' fill'):(b.source==='ntfy (Peter manual)'?'ntfy (manual)':(b.source==='Street Value'?'Street Value':'Peter'));   // Nov 11 (Peter): wants the detail, not only Bot/Peter
 function teams(b){if(b.teams&&b.teams.length===2){const [a,h]=b.teams;const live=b.g_state==='in'||b.g_state==='post';
 return b.teams.map((t,i)=>{const o=b.teams[1-i];const cl=live?(t.score>=o.score?'lead':'trail'):'';return `<div class="team ${cl}"><span>${esc(t.name)}</span><b>${live?t.score:'—'}</b></div>`}).join('');}
 const g=String(b.game||'').split(/\\s+(?:@|at|vs\\.?)\\s+/i);return g.length===2?g.map(n=>`<div class="team"><span>${esc(n)}</span><b>—</b></div>`).join(''):`<div class="team"><span>${esc(b.game||'')}</span></div>`;}
