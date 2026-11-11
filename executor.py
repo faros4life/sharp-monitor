@@ -376,8 +376,8 @@ def board_plays(now):
 # ---------------------------------------------------------------- R1 live lane (Peter, 11 Nov)
 R1_LIVE = (os.environ.get("EXEC_R1_LIVE") or "off").strip().lower() == "on"   # R1 money switch (repo variable; Peter flips it)
 R1_UNIT = 200.0   # Peter, 11 Nov: own $200 unit, Lane 1 stays at $300. Same to-win (minus) / risk (plus) rule.
-R1_DAILY_RISK = float(os.environ.get("EXEC_R1_DAILY_RISK", "") or "1000")   # its own daily limit ON TOP of the global stop
-R1_MAX_PLAYS = int(os.environ.get("EXEC_R1_MAX_PLAYS", "") or "6")
+R1_DAILY_RISK = float(os.environ.get("EXEC_R1_DAILY_RISK", "") or "1500")   # its own daily limit ON TOP of the global stop
+R1_MAX_PLAYS = int(os.environ.get("EXEC_R1_MAX_PLAYS", "") or "10")
 R1 = {"risk": 0.0, "keys": set(), "known": False}
 
 
