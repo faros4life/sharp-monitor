@@ -1,0 +1,30 @@
+name: test-clv-stale
+
+# Regression tests for the Nov 10 duplicate-counting / stale-stake defect (Peter, Option 2).
+# No secrets, no network, no cache: they test the rule, not the data. Dispatch-only, and also on a
+# push that touches the filter or any of its three readers, so the guard cannot rot unnoticed.
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - clv_stale.py
+      - test_clv_stale.py
+      - clv_ledger.py
+      - plays_kelly.py
+      - bucket_report.py
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Stale-row regression tests (no secrets, no network)
+        run: python -u test_clv_stale.py

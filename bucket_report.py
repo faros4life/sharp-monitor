@@ -22,6 +22,7 @@ import statistics as stt
 from datetime import datetime, timezone
 
 import clv_ledger as cl
+import clv_stale as cstale
 import buckets as bkt
 import finals as fin
 import executor as ex
@@ -165,9 +166,14 @@ def ledger_rows():
         sv = cl.sv_registry()
     except Exception:
         sv = []
+    # Nov 10 (Peter, Option 2): skip rows proven stale - old-scheme manual ids retired in the tracker but still
+    # held in clv/state.enc, which put the same wager in a bucket twice and pushed Hard Rock cells over the
+    # 15-per-half HOLDS floor on duplicated evidence. Read-time only; nothing written or deleted. Unproven
+    # orphans stay in: an aged-out tracker row is not evidence of a duplicate.
+    stale = cstale.stale_map((st.get("bets") or {}), cstale.load_tracker())
     out = []
     for k, rec in (st.get("bets") or {}).items():
-        if rec.get("clv") is None:
+        if rec.get("clv") is None or k in stale:
             continue
         s = rec.get("snap") or {}
         pz = cl.parsed(s)

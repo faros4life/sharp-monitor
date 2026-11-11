@@ -24,6 +24,7 @@ import urllib.parse
 import urllib.request
 from datetime import datetime, timedelta, timezone
 
+import clv_stale as cstale     # leaf module, tracker_build only - safe to import here
 import credit_gate as cg       # leaf module, stdlib only - safe to import here
 import executor as ex
 import sharp_monitor as sm
@@ -1054,7 +1055,16 @@ def main():
             # the cache rolls - that is the "durable record of prior validation" Peter asked for.
             if (rec.get("fixture_ok") or {}).get("fixture") != rec.get("fixture"):
                 rec["fixture_ok"] = {"at": iso(now), "fixture": rec.get("fixture")}
-    all_scored = sorted([dict(r, id=k) for k, r in st["bets"].items() if r.get("clv") is not None],
+    # Nov 10 (Peter, Option 2): EXCLUDE AT READ TIME, preserve the stored state. man_id changed on Nov 5 and
+    # man_migrate retires the old key in the TRACKER, but this file only setdefault()s keys into st["bets"] and
+    # prunes by age, so a retired key survived here for 60 days with the snapshot it froze with - including, in
+    # some rows, the invented stake the old sizing rule guessed. Those rows were counted a SECOND time beside the
+    # live row. The test is tracker presence plus man_id resolution, never game/line/price identity; an orphan that
+    # does not resolve is left in and flagged. Nothing is written or deleted: st["bets"] is untouched and the rows
+    # return by themselves if a tracker key ever comes back.
+    stale, stale_unproven = cstale.stale_map(st["bets"], tracker), cstale.orphans_unproven(st["bets"], tracker)
+    all_scored = sorted([dict(r, id=k) for k, r in st["bets"].items()
+                         if r.get("clv") is not None and k not in stale],
                         key=lambda r: r.get("scored") or "")
     held = [r for r in all_scored if r.get("fixture_doubt")]        # sticky - out of every figure
     hid = {r["id"] for r in held}
@@ -1085,6 +1095,20 @@ def main():
         L.append(f"ALL scored: {lane_stats(scored)}")
         L.append(f"  bot: {lane_stats(bot)} | rolling 50: {lane_stats(bot[-50:])}")
         L.append(f"  Peter/other: {lane_stats(man)} | rolling 50: {lane_stats(man[-50:])}")
+        if stale or stale_unproven:
+            L += ["", "STALE ROWS EXCLUDED AT READ TIME (Peter, Nov 10 - stored state preserved, nothing deleted):",
+                  f"  {cstale.note(stale, stale_unproven)}"]
+            for k, tgt in sorted(stale.items()):
+                s = (st["bets"][k].get("snap") or {})
+                L.append(f"  {s.get('book') or '?'} {(s.get('bet') or '')[:30]} | stale id {str(k)[:14]}.. duplicates "
+                         f"live tracker id {str(tgt)[:14]}.. | its frozen stake {s.get('stake')}")
+            if stale_unproven:
+                L.append("  UNPROVEN orphans (absent from the tracker but nothing resolves to them): KEPT in every")
+                L.append("  figure above, because an aged-out tracker row is not evidence of a duplicate.")
+                for k in stale_unproven:
+                    s = (st["bets"][k].get("snap") or {})
+                    L.append(f"    {s.get('book') or '?'} {(s.get('bet') or '')[:30]} | id {str(k)[:18]}.. | "
+                             f"first_seen {(st['bets'][k].get('first_seen') or '')[:16]}")
         if held:
             L += ["", f"HELD OUT of every figure above ({len(held)}) - the stored fixture no longer passes the",
                   "matcher, so the game assignment is doubtful. Nothing was changed: the row keeps its CLV, its",

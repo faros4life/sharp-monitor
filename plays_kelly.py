@@ -17,11 +17,13 @@ from datetime import datetime, timedelta, timezone
 
 import buckets as bkt
 import clv_ledger as cl
+import clv_stale as cstale
 import executor as ex
 import tracker_build as tb
 
 ET = tb.ET
 WINDOWS = (("last month (Oct 5 on)", "2026-10-05"), ("last 3 weeks (Oct 12 on)", "2026-10-12"), ("last 2 weeks (Oct 19 on)", "2026-10-19"))
+STALE = {}   # {stale clv key: live tracker key} excluded by plays() this run - reported, never written
 
 
 def plays():
@@ -30,6 +32,16 @@ def plays():
         trk = tb.dec(json.load(open(tb.STATE))).get("bets") or {}
     except Exception:
         trk = {}
+    # Nov 10 (Peter, Option 2): drop rows proven stale BEFORE seeding, and before any play is built. These are
+    # old-scheme manual ids that man_migrate retired in the tracker; clv/state.enc kept them, so each was counted a
+    # second time here beside its live row - and at the stake it froze with, which for the two NCAAB notes was the
+    # invented pre-fix guess rather than Peter's real stake. ACTUAL dollars were wrong, not merely doubled.
+    # Read-time only: the stored state is not written. If the tracker could not be read, trk is empty and
+    # stale_map returns nothing, so nothing is excluded.
+    STALE.clear()
+    STALE.update(cstale.stale_map((st.get("bets") or {}), trk))
+    for k in STALE:
+        (st.get("bets") or {}).pop(k, None)
     for k, b in trk.items():
         s = st.setdefault("bets", {}).setdefault(k, {}).setdefault("snap", {})
         for f in ("book", "game", "bet", "flip", "league", "source", "game_start", "placed", "settled", "result", "stake", "to_pay", "price"):
@@ -108,6 +120,10 @@ def main():
          "FLAT = 1u at the bet's own after-fee price. ACTUAL = real dollars. KELLY now = quarter Kelly on the edge known at the time",
          "(running ROI of earlier plays, >= 20), cap 2%. Hindsight = Kelly on the bet's own CLV vs Pinnacle close (upper bound; not",
          "knowable when betting). Kelly bankroll starts at 100 units. Small cells are noise: under ~50 bets, read nothing into it.", ""]
+    if STALE:
+        L += [f"EXCLUDED AT READ TIME: {len(STALE)} stale clv row(s) - old-scheme manual ids that man_migrate retired in the",
+              "tracker and clv/state.enc kept. Each was previously counted twice here, at the stake it froze with.",
+              "Stored state preserved; nothing deleted. Unproven orphans are NOT excluded.", ""]
     for wl, d0 in WINDOWS:
         xs = [x for x in P if x["day"] >= d0]
         L += [f"===== {wl} =====", "  ALL: " + sims(xs, P)]
