@@ -1,0 +1,58 @@
+name: board-page
+
+# Nov 11 (Peter: "We need to fix anything else"): the public Bets Board page, on its own.
+#
+# WHY IT IS SEPARATE. bets-board runs the private tracker, which reads every book and takes about
+# EIGHT MINUTES of that job's nine-minute timeout. Building the page takes ONE SECOND. Sharing a job
+# meant any drift in the tracker killed the run, and while it ran the board's other triggers queued
+# and were dropped by cancel-in-progress: false - the page went 90 minutes without rebuilding on
+# Nov 11 while its own build step was never the problem. Splitting them is the fix; raising the
+# timeout is not, because this is on a short schedule and a longer run collides with the next firing.
+#
+# This job writes NOTHING to the repo (contents: read). It reads the feeds and the committed frozen
+# call log and publishes the page. bets-board still owns every commit, the tracker and the alerts.
+on:
+  workflow_run:
+    workflows: ["liquidity-monitor", "liquidity-extra", "executor-dry-run"]
+    types: [completed]
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: board-page
+  cancel-in-progress: true   # the page is a snapshot: a newer build always supersedes an older one
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  page:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build the board
+        env:
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+        run: python -u board_build.py
+      - name: Odds screen page
+        run: mkdir -p site/odds && cp odds/index.html site/odds/index.html
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - id: deploy
+        continue-on-error: true
+        uses: actions/deploy-pages@v4
