@@ -27,10 +27,11 @@ def ck(name, got, want):
 TRADE = {"strike_id": "S1", "status": "matched", "winning_status": "open"}
 
 
-def fake_bc(trades=None, trades_raises=False, walk_raises=False):
+def fake_bc(trades=None, trades_raises=False, walk_raises=False, raise_league=None,
+            resolve_in=("NBA",)):
     m = types.ModuleType("book_check")
     m.PX_ACCESS, m.PX_SECRET = "a", "b"
-    m.PX_TOURNAMENTS = {"NBA": 132}
+    m.PX_TOURNAMENTS = {"NBA": 132, "NHL": 234}
     m.px_login = lambda: True
 
     def px_call(path):
@@ -42,8 +43,10 @@ def fake_bc(trades=None, trades_raises=False, walk_raises=False):
     m.px_call = px_call
 
     def px_events(lg):
-        if walk_raises:
+        if walk_raises or lg == raise_league:
             raise RuntimeError("HTTP Error 429: rate limited")
+        if lg not in resolve_in:
+            return []
         return [{"event_id": 1, "name": "A @ B", "scheduled": "2026-11-11T23:00:00Z"}]
     m.px_events = px_events
     m.px_markets = lambda eid: [{"type": "total"}]
@@ -58,15 +61,35 @@ def run(**kw):
     return positions.px_positions()
 
 
-# ---------------------------------------------------------------- a walk failure is PARTIAL
+# ---------------------------------------------------------------- INCOMPLETE + UNRESOLVED = BLIND
+# Correcting d40453e: a walk failure used to degrade to "partial", and partial means the
+# unresolved positions are invisible to the conflict check - so the bot could take the opposite
+# side of a position it holds. The tolerance for unresolved strikes rests on "its game has already
+# started", which only holds when the walk COMPLETED and did not find it.
 got = run(walk_raises=True)
-ck("a walk failure does NOT blind the venue", got is None, False)
-ck("it returns a list (possibly empty) instead", isinstance(got, list), True)
-assert "prophetx_walk" in positions.WHY, f"the incomplete lookup must be recorded: {positions.WHY}"
-CHECKS.append(("the incomplete strike lookup is recorded", True, True))
-assert "prophetx" not in positions.WHY, \
-    "a walk failure must not set the blind reason - that is reserved for an unknown trades list"
-CHECKS.append(("a walk failure does not set the blind reason", True, True))
+ck("walk failed AND strikes unresolved -> blind", got, None)
+assert "conflict status cannot be established" in positions.WHY.get("prophetx", ""), positions.WHY
+CHECKS.append(("the blind reason names the cause", True, True))
+assert "prophetx_partial" not in positions.WHY, \
+    "an incomplete walk must NEVER be reported as the benign partial case"
+CHECKS.append(("incomplete is never mislabelled partial", True, True))
+
+# ---------------------------------------------------------------- incomplete but ALL resolved = OK
+# One league unreadable, but the strike was found in another: the failures cost nothing, so there
+# is no reason to blind. A single bad call must not abort the whole walk.
+got = run(raise_league="NHL", resolve_in=("NBA",))
+ck("failures that resolved everything anyway do not blind", isinstance(got, list), True)
+ck("and the position is still returned", len(got), 1)
+assert "prophetx" not in positions.WHY, f"must not blind when every strike was identified: {positions.WHY}"
+CHECKS.append(("a survivable failure is recorded, not escalated", True, True))
+
+# ---------------------------------------------------------------- complete but unresolved = PARTIAL
+# The walk read everything and simply did not find the strike: its game has started, and a started
+# game cannot conflict with a pregame bet. This is the pre-existing, documented tolerance.
+got = run(resolve_in=())
+ck("complete walk, strike not found -> partial, not blind", isinstance(got, list), True)
+assert "prophetx_partial" in positions.WHY, positions.WHY
+CHECKS.append(("the documented partial tolerance is preserved", True, True))
 
 # ---------------------------------------------------------------- a trades failure is BLIND
 ck("a trades-read failure still returns None (blind)", run(trades_raises=True), None)

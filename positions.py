@@ -215,27 +215,58 @@ def px_positions():
         #
         # A failure to read the TRADES still returns None and still blinds the venue, because that
         # is the case where exposure genuinely cannot be verified. Exposure is never assumed zero.
-        try:
-            _walk(bc, want, found, now, open_, e_err=None)
-        except Exception as ex:
-            WHY["prophetx_walk"] = f"strike lookup incomplete: {str(ex)[:80]}"
+        t0 = time.time()
+        complete, skipped = _walk(bc, want, found, now)
+        WHY["prophetx_walk_s"] = f"{time.time() - t0:.1f}s, {len(found)}/{len(want)} strikes resolved"
         STATS["prophetx"] = {"trades": len(trades), "open_fills": len(open_), "open_strikes": len(want),
-                             "matched_strikes": len(found)}
-        if want - set(found):   # usually games already underway (their markets close) - those can't conflict with a pregame bet
-            WHY["prophetx_partial"] = f"{len(want - set(found))} of {len(want)} open bets not matched to a game (likely started)"
+                             "matched_strikes": len(found), "walk_complete": complete}
+        unresolved = want - set(found)
+        if unresolved and not complete:
+            # Nov 11, CORRECTING d40453e. That commit let ANY walk failure degrade to "partial",
+            # and partial means the unresolved positions are invisible to the conflict check - so
+            # the bot could take the opposite side of a position it holds. Fail-OPEN on
+            # first-side-stays, introduced by me while fixing the blast radius of a single bad call.
+            #
+            # The existing tolerance for unresolved strikes rests on a specific rationale: a strike
+            # absent from every CURRENT market belongs to a game already underway, and a started
+            # game cannot conflict with a pregame bet. That holds only when the walk COMPLETED and
+            # genuinely did not find it. When calls failed, the strike may sit in a market we never
+            # managed to read, and the rationale does not apply.
+            #
+            # So: unresolved AND incomplete -> blind. Exposure cannot be verified, nothing is
+            # placed on any venue, and Peter is told which venue and why.
+            WHY["prophetx"] = (f"strike lookup incomplete ({skipped} read(s) failed) with "
+                               f"{len(unresolved)} of {len(want)} open bets unidentified - "
+                               f"conflict status cannot be established")
+            return None
+        if unresolved:   # walk COMPLETED: usually games already underway (their markets close) - those can't conflict with a pregame bet
+            WHY["prophetx_partial"] = f"{len(unresolved)} of {len(want)} open bets not matched to a game (likely started)"
+        if skipped:      # every strike resolved anyway, so the failures cost nothing
+            WHY["prophetx_walk"] = f"{skipped} read(s) failed but all {len(want)} open bets were identified"
         return list(found.values())
     except Exception as ex:
         WHY["prophetx"] = str(ex)[:100]
         return None
 
 
-def _walk(bc, want, found, now, open_, e_err=None):
-    """Resolve open strike_ids to their game/market. Extracted Nov 11 so a failure in here cannot
-    blind the venue - see px_positions. Pure lookup: it only fills `found`."""
+def _walk(bc, want, found, now):
+    """Resolve open strike_ids to their game/market. Returns (complete, skipped).
+
+    complete is False if ANY read failed, because an unresolved strike then has two possible
+    explanations - its game has started, or we never read the market it sits in - and only the
+    first is safe to tolerate. The caller blinds the venue when unresolved strikes remain and
+    complete is False. A single bad read no longer aborts the whole walk, so one failure among
+    dozens costs only the events it could not cover."""
+    skipped = 0
     for lg in bc.PX_TOURNAMENTS:
             if not want - set(found):
                 break
-            for e in bc.px_events(lg):
+            try:
+                evs = bc.px_events(lg)
+            except Exception:
+                skipped += 1      # this league is unread: completeness is lost, the walk continues
+                continue
+            for e in evs:
                 if not want - set(found):
                     break
                 try:
@@ -244,7 +275,12 @@ def _walk(bc, want, found, now, open_, e_err=None):
                     continue
                 if not (now - timedelta(hours=12) <= st <= now + timedelta(days=8)):   # Oct 25: wider (was -8h/+3d)
                     continue
-                for mk in bc.px_markets(e["event_id"]):
+                try:
+                    mks = bc.px_markets(e["event_id"])
+                except Exception:
+                    skipped += 1   # this event is unread: one bad call no longer aborts the walk
+                    continue
+                for mk in mks:
                     ty = (mk.get("type") or "").lower()
                     mtype = "moneyline" if "money" in ty else "spread" if ("spread" in ty or "handicap" in ty) else \
                         "total" if "total" in ty else None
@@ -256,6 +292,7 @@ def _walk(bc, want, found, now, open_, e_err=None):
                             if sid in want and sid not in found:
                                 found[sid] = {"book": "prophetx", "strike_id": sid, "game": e.get("name") or "", "date": (e.get("scheduled") or "")[:10],
                                               "mtype": mtype, "label": x.get("name") or "", "flip": False}
+    return skipped == 0, skipped
 
 
 # ---------------------------------------------------------------- matching
