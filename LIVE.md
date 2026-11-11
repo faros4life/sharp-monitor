@@ -44,6 +44,7 @@ Live scope (`agree_rules.phase1`):
 - The **12–24h** lead window is paper
 - Late alerts excluded
 - Monitor grade is **not** a gate (dropped Nov 3); it stays a label only
+- **Muse AGREE is required** (`muse_agree`), and a Muse DISAGREE is a veto
 
 ### Lane 3 — BOARD V3 / LIQ-BOT · unit $200
 - **NBA totals only**, overs and unders
@@ -56,13 +57,14 @@ Live scope (`agree_rules.phase1`):
 Live scope (`agree_rules.r1`):
 - **Non-Top-25 college only** — NCAAF + NCAAB, explicitly tagged non-Top-25
 - **Spreads plus totals UNDERS** — no overs, no moneylines
-- Must be **ProphetX-priced** at alert time
-- **4h+** lead, not late
-- After-fee price **−119 or better**
+- Must be **ProphetX-priced** at alert time (`book_key == "prophetx"`)
+- Lead **≥ 240 min (4h)**, not late
+- After-fee price **−119 or better** (`R1_PRICE_FLOOR`)
 - **Matchbook-only confirmations excluded**
 - **First alert per game+market+side only** — a repeat never bets
 - Max **10 plays/day**, **$1,500** daily risk
-- Lane 1's 12–24h paper window does **not** apply here
+- Lane 1's 12–24h paper window does **not** apply here (verified: not in `agree_rules.r1`)
+- **No Muse AGREE required** — unlike Phase 1, R1 qualifies on its own rules
 - R1's negative provisional CLV is **unverified** and was not used to alter these rules
 
 ---
@@ -92,16 +94,24 @@ Live scope (`agree_rules.r1`):
 
 ## 4. PUSH (reaches Peter's phone)
 
-| Stream | Phone | Notes |
+**The governing rule, Peter Oct 30: the phone gets BOT ORDERS AND FILLS ONLY.** Sharp alert pushes
+were deliberately silenced. `sent_to_phone` in an alert record means *not muted* — it does **not**
+mean a push was delivered.
+
+| Stream | Phone | Controlled by |
 |---|---|---|
-| Lane 1 sharp alerts | **Yes** | ntfy, mirrored to Telegram |
-| R1 alerts | **MUTED** | Non-Top-25 filter silences them; the bot reads them straight from `alerts.json` |
-| Board v3 / liquidity signals | **Yes** | separate signal emails |
-| Bot fills, no-fills, partials, refusals, errors, resting bids, cancellations | **Yes** | Telegram, labelled `[PHASE 1]` / `[BOARD V3]` / `[R1]`, with game, bet, line, after-fee execution odds, exchange, stake, fill status and order id. One message per event |
+| **Live play, every lane** | **YES** | `[PHASE 1]`/`[BOARD V3]`/`[R1] LIVE PLAY` — fires before the order with game, bet, line, after-fee alert odds, routing venue and price, proposed stake, and a PARTIAL warning when depth is short |
+| **Bot fills, no-fills, partials, refusals, errors** | **YES** | lane-labelled, with after-fee execution odds, exchange, stake, fill status and order id |
+| **Resting bids and their cancellations** | **YES** | lane-labelled |
+| Order-journal failures | **YES** | loud by design — a silent failure would restore the defect it closes |
+| Sharp alerts (Lane 1 signals, **Hard Rock included**) | **NO** | `PUSH_SHARP_ALERTS` — **not set, defaults off** (Oct 30). Set it to `on` to bring them back |
+| Alert-based daily/weekly recaps | **NO** | `PUSH_ALERT_RECAP` — not set, defaults off (Nov 3) |
+| Real-plays recap | Yes | `plays_recap.py` in the bets-board job |
+| R1 signal alerts | **MUTED at source** | `NCAAF_TOP25 = filter` silences non-Top-25 college. This is why R1 needs its own executor path — and why its LIVE PLAY alert matters, or the fill would be the first Peter hears of it |
+| HR MISPRICE / HARD ROCK EDGE | **Never yet fired** | `hrscan`, `min_ev_pct = 2.0`. `pinged: 0` since 4 Nov — across ~26,000 same-line comparisons nothing has reached 2% EV. The scanner works; the bar is not met |
 | Balances | Email | hourly, and right after any live bot order |
 
-`NCAAF_TOP25 = filter` — non-Top-25 college alerts are scored silently rather than pushed. That is
-why R1's alerts are muted and why R1 needs its own executor path.
+Every push goes out once and mirrors to Telegram once, so one message per channel per event.
 
 ---
 
