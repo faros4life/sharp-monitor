@@ -96,11 +96,25 @@ def _cutoff():
     return (datetime.now(timezone.utc) - timedelta(days=KEEP_DAYS)).strftime("%Y-%m-%d")
 
 
+def _row_day(r):
+    """The day a stored row belongs to. Ledger rows carry decided_utc (an ISO timestamp); the
+    narrower order and intent records carry et_day. Accepting both matters: pruning on et_day alone
+    silently dropped every backfilled ledger row the moment it was written."""
+    for k in ("et_day", "decided_utc"):
+        v = str((r or {}).get(k) or "")
+        if v:
+            return v[:10]
+    return ""
+
+
 def _prune(data):
-    """Drop rows outside the window. Small and bounded: ~10 orders a day keeps this a few KB."""
+    """Drop rows outside the window. Small and bounded: ~10 orders a day keeps this a few KB.
+
+    A row with NO usable date is KEPT, not dropped: losing a row under-counts exposure, and
+    over-keeping only costs a few bytes."""
     cut = _cutoff()
-    data["orders"] = [o for o in data.get("orders") or [] if str(o.get("et_day") or "") >= cut]
-    data["intents"] = [i for i in data.get("intents") or [] if str(i.get("et_day") or "") >= cut]
+    data["orders"] = [o for o in data.get("orders") or [] if _row_day(o) == "" or _row_day(o) >= cut]
+    data["intents"] = [i for i in data.get("intents") or [] if _row_day(i) == "" or _row_day(i) >= cut]
     data["handled"] = {k: v for k, v in (data.get("handled") or {}).items()
                        if str((v or {}).get("ts") or "")[:10] >= cut}
     return data
@@ -150,6 +164,100 @@ def _upsert(rows, row, key="client_id"):
             rows[i] = {**existing, **row}
             return
     rows.append(row)
+
+
+def _rid(row):
+    """Stable identity of a ledger row: the money identity (client_id) when there is one, else the
+    venue order id. Matches bot_orders()'s own `cid or oid` rule, so dedupe agrees across stores."""
+    for key in ("live_order", "live_rest"):
+        lo = row.get(key) or {}
+        if lo.get("order_id") or lo.get("client_id"):
+            return str(lo.get("client_id") or lo.get("order_id"))
+    for x in row.get("live_more") or []:
+        x = x or {}
+        if x.get("order_id") or x.get("client_id"):
+            return str(x.get("client_id") or x.get("order_id"))
+    return None
+
+
+def put_rows(rows):
+    """Store LEDGER ROWS verbatim - the same shape bot_orders() already parses out of Gmail.
+
+    Stored rather than a narrower schema on purpose: no translation layer means no second place for
+    the accounting rules to drift. A row carries exactly what the daily stop and duplicate blocking
+    need (key, source, decided_utc and the live_order / live_rest / live_more records with their
+    status, book, stakes, order_id and client_id) and nothing else."""
+    keep = [r for r in rows if _rid(r)]
+    if not keep:
+        return True
+
+    def merge(d):
+        cur = d.setdefault("orders", [])
+        for r in keep:
+            _upsert(cur, dict(r, _rid=_rid(r)), key="_rid")
+    return _commit(merge)
+
+
+def rows():
+    """The stored ledger rows, or None if the store cannot be read."""
+    d = load()
+    return None if d is None else (d.get("orders") or [])
+
+
+FRESH_MIN = 12   # a completeness claim older than this is not trusted (schedule fires every ~5 min)
+
+
+def complete_through():
+    """The date through which this store is known to hold EVERY row Gmail holds, or '' if unknown."""
+    d = load()
+    return "" if d is None else str((d.get("meta") or {}).get("complete_through") or "")
+
+
+def is_complete(cut, now=None):
+    """True only if the store claims completeness for `cut` AND that claim was refreshed recently.
+
+    The freshness half exists because invalidate() is itself a WRITE. When writes are failing - the
+    exact situation in which a newly placed order is missing from the store - invalidate() fails too
+    and a stale marker would survive, sending the next run down the fast path on an incomplete store
+    and UNDER-COUNTING exposure. A claim that must be re-asserted every run cannot outlive the
+    ability to write it: one failed refresh and the next run is back on Gmail, which is always
+    complete. Worst case is a single run on a store that is at most one run behind, and that run's
+    own read happened before it placed anything."""
+    d = load()
+    if d is None:
+        return False
+    meta = d.get("meta") or {}
+    if str(meta.get("complete_through") or "") < cut:
+        return False
+    stamp = str(meta.get("complete_at") or "")
+    if not stamp:
+        return False
+    try:
+        at = datetime.fromisoformat(stamp.replace("Z", "+00:00"))
+    except Exception:
+        return False
+    age = ((now or datetime.now(timezone.utc)) - at).total_seconds()
+    return 0 <= age <= FRESH_MIN * 60
+
+
+def set_complete_through(day):
+    """Assert completeness through `day`, stamped now. Must be re-asserted by every run that uses
+    the fast path, or is_complete() stops trusting it."""
+    stamp = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+    def merge(d):
+        d.setdefault("meta", {}).update({"complete_through": day, "complete_at": stamp})
+    return _commit(merge)
+
+
+def invalidate():
+    """Clear the completeness marker, forcing the next run back onto Gmail.
+
+    Called whenever a write to this store fails. Without it a failed write would leave an order
+    missing from a store that still claimed to be complete, and the daily stop would UNDERCOUNT -
+    fail-open on the one guard that caps a losing day. Falling back to a slow, complete Gmail read
+    is always the right trade against that."""
+    return _commit(lambda d: d.setdefault("meta", {}).update({"complete_through": ""}))
 
 
 def put_order(rec):

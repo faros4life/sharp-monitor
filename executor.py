@@ -44,6 +44,7 @@ import lane2   # Nov 4: Lane 2 LOW-limit sharp alerts, DRY RUN ONLY (Peter 4:01 
 import positions
 import px_live
 import book_live
+import registry
 
 UNIT = float(os.environ.get("EXEC_UNIT", "") or "300")          # + money: risk UNIT; - money: risk to win UNIT
 SOURCE = (os.environ.get("EXEC_SOURCE", "") or "both").lower()  # muse | rules | both (dry run: both, side by side)
@@ -1942,6 +1943,74 @@ def px_limit(pxd, stake, slip=None):
     return lv[0]["strike_id"], limit, round(min(stake, got), 2)
 
 
+def _account_rows(rows, graded, ids, seen_oids, _intents, _confirmed):
+    """The ledger-row accounting, lifted out of bot_orders() UNCHANGED so that both the Gmail
+    registry and the private store feed the identical rules (Nov 11).
+
+    Extracted rather than reimplemented on purpose: one copy of the daily-stop, board/R1 lane and
+    dedupe arithmetic means the two stores cannot drift apart. Mutates ids, seen_oids, _intents,
+    _confirmed, LIVEKEYS, BOARD, R1 and NONPX exactly as the inline loop did."""
+    for row in rows:
+        for is_rest, lo in ([(False, row.get("live_order") or {}), (True, row.get("live_rest") or {})]
+                            + [(False, x or {}) for x in (row.get("live_more") or [])]):
+            if lo.get("status") != "placed" or not lo.get("order_id"):
+                continue
+            oid = str(lo["order_id"])
+            ids[oid] = lo.get("book") or "prophetx"
+            if row.get("key"):
+                LIVEKEYS.add(row["key"])
+            # Nov 11: ONE ORDER IS COUNTED ONCE. ids is a dict and BOARD["keys"] is a set, so
+            # both already dedupe - but BOARD["risk"] and NONPX["today"] are running sums, so
+            # the same order described in two 'Bets LIVE:' emails used to add its money twice.
+            # That now happens by design (journal_order writes a row the moment an order is
+            # placed, and the end-of-run ledger writes the same order again) and could already
+            # happen when a catch-up pass re-sent a ledger. Identity is the ORDER ID: the money
+            # below is accumulated on first sight only. Over-counting is the safe direction but
+            # it is still wrong - it would silently shrink the $1,500 board limit and the daily
+            # stop. ids and LIVEKEYS are set above, so dedupe never weakens duplicate blocking.
+            # Nov 11: the money identity is the CLIENT ID when there is one, so the
+            # write-ahead intent row and the confirmed row for the SAME order count once -
+            # while ids above still carries the venue's real order_id, which is the only
+            # field linking a ProphetX TRADE back to an order.
+            cid = lo.get("client_id")
+            if cid:   # resolved AFTER the loop: IMAP order is not chronological, so a
+                # confirmed row may be read before its own intent row.
+                (_intents if lo.get("intent") else _confirmed)[str(cid)] = row
+            if str(cid or oid) in seen_oids:
+                continue
+            seen_oids.add(str(cid or oid))
+            try:   # Oct 28: Kalshi / PM US / Novig dollars risked TODAY (ET) count as lost in the daily stop
+                d_et = datetime.fromisoformat(str(row.get("decided_utc")).replace("Z", "+00:00")).astimezone(lm.ET).date()
+            except Exception:
+                d_et = None
+            # BOARD v3 PILOT ACCOUNTING (Peter, 11 Nov). Same ledger pass, same ET day. The
+            # ledger row already carries "source", so the board lane is separable without a
+            # new registry. The PLAY COUNT is taken BEFORE the settled-win skip, because a
+            # won play still used one of the 10 slots; the RISK figure is taken after, so a
+            # settled win or push stops consuming the $1,500.
+            if row.get("source") == "board" and d_et in (None, datetime.now(lm.ET).date()):
+                if row.get("key"):
+                    BOARD["keys"].add(row["key"])      # one intended bet = one play, so a
+                    # retry, a top-up or a partial fill of the same key never counts twice
+                if graded.get(row.get("key")) not in ("W", "P"):
+                    fs_b = lo.get("filled_stake")
+                    BOARD["risk"] += (max(float(fs_b or 0), float(lo.get("asked_stake") or 0))
+                                      if (is_rest or fs_b is None) else float(fs_b))
+            if row.get("source") == "r1" and d_et in (None, datetime.now(lm.ET).date()):   # same rules as the board block above
+                if row.get("key"):
+                    R1["keys"].add(row["key"])
+                if graded.get(row.get("key")) not in ("W", "P"):
+                    fs_r = lo.get("filled_stake")
+                    R1["risk"] += (max(float(fs_r or 0), float(lo.get("asked_stake") or 0))
+                                   if (is_rest or fs_r is None) else float(fs_r))
+            if graded.get(row.get("key")) in ("W", "P"):
+                continue   # settled win/push: not a loss toward the daily stop
+            if (lo.get("book") or "prophetx") != "prophetx" and d_et in (None, datetime.now(lm.ET).date()):
+                fs = lo.get("filled_stake")   # fill-or-kill: what filled (unknown = all asked); resting: all asked
+                NONPX["today"] += (max(float(fs or 0), float(lo.get("asked_stake") or 0)) if (is_rest or fs is None)
+                                   else float(fs))
+
+
 def bot_orders(M, days=4):
     """{order_id: book} the bot PLACED in the last few days, read from its own 'Bets LIVE:' emails' LEDGER rows.
     Gmail is the registry (nothing financial in the public repo). None if unreadable -> live refuses (fail closed).
@@ -1959,12 +2028,40 @@ def bot_orders(M, days=4):
     except Exception:
         graded = {}
     try:
-        since = (datetime.now(timezone.utc) - timedelta(days=days)).strftime("%d-%b-%Y")
-        typ, data = M.uid("SEARCH", None, "SUBJECT", '"Bets LIVE:"', "SINCE", since)
-        if typ != "OK":
-            return None
         ids, seen_oids = {}, set()   # seen_oids: one order's money is counted once (Nov 11)
         _intents, _confirmed = {}, {}   # write-ahead intents vs confirmed orders, by client_id
+        all_rows = []
+        # ---- Nov 11 (Peter, "b2"): the private store, when it is KNOWN COMPLETE for this window.
+        # Measured: this Gmail read is 81.4s (~200 serial full-message IMAP fetches); one contents
+        # GET of the store is ~0.25s. The switch is registry.complete_through(): until a backfill
+        # proves the store holds every row Gmail holds for the window, Gmail is read instead, because
+        # a store missing history would UNDERCOUNT exposure - fail-open on the one guard that caps a
+        # losing day. Any failed write to the store clears that marker, so a dropped write sends the
+        # next run back to the slow, complete path on its own.
+        cut = (datetime.now(timezone.utc) - timedelta(days=days)).strftime("%Y-%m-%d")
+        rdata = None
+        if registry.enabled():
+            try:
+                with perf("registry read (private store)"):
+                    if registry.is_complete(cut):
+                        rdata = registry.load()
+            except Exception:
+                rdata = None
+        if rdata is not None:
+            _account_rows(rdata.get("orders") or [], graded, ids, seen_oids, _intents, _confirmed)
+            # re-assert completeness so the claim cannot outlive the ability to write it: a run that
+            # cannot refresh the stamp lets it go stale, and the next run returns to Gmail by itself
+            try:
+                registry.set_complete_through(datetime.now(timezone.utc).strftime("%Y-%m-%d"))
+            except Exception:
+                pass
+            return _bot_orders_finish(M, ids, _intents, _confirmed)
+        # ---- otherwise Gmail, which is always complete, and backfill the store from it
+        since = (datetime.now(timezone.utc) - timedelta(days=days)).strftime("%d-%b-%Y")
+        with perf("registry read (Gmail IMAP)"):
+            typ, data = M.uid("SEARCH", None, "SUBJECT", '"Bets LIVE:"', "SINCE", since)
+        if typ != "OK":
+            return None
         for uid in (data[0].split() if data and data[0] else []):
             typ, d = M.uid("FETCH", uid, "(RFC822)")
             if typ != "OK" or not d or not d[0]:
@@ -1978,85 +2075,47 @@ def bot_orders(M, days=4):
             if i < 0:
                 return None   # a live email without its ledger: can't trust the registry
             rows, _ = json.JSONDecoder().raw_decode(txt[txt.index("[", i):])
-            for row in rows:
-                for is_rest, lo in ([(False, row.get("live_order") or {}), (True, row.get("live_rest") or {})]
-                                    + [(False, x or {}) for x in (row.get("live_more") or [])]):
-                    if lo.get("status") != "placed" or not lo.get("order_id"):
-                        continue
-                    oid = str(lo["order_id"])
-                    ids[oid] = lo.get("book") or "prophetx"
-                    if row.get("key"):
-                        LIVEKEYS.add(row["key"])
-                    # Nov 11: ONE ORDER IS COUNTED ONCE. ids is a dict and BOARD["keys"] is a set, so
-                    # both already dedupe - but BOARD["risk"] and NONPX["today"] are running sums, so
-                    # the same order described in two 'Bets LIVE:' emails used to add its money twice.
-                    # That now happens by design (journal_order writes a row the moment an order is
-                    # placed, and the end-of-run ledger writes the same order again) and could already
-                    # happen when a catch-up pass re-sent a ledger. Identity is the ORDER ID: the money
-                    # below is accumulated on first sight only. Over-counting is the safe direction but
-                    # it is still wrong - it would silently shrink the $1,500 board limit and the daily
-                    # stop. ids and LIVEKEYS are set above, so dedupe never weakens duplicate blocking.
-                    # Nov 11: the money identity is the CLIENT ID when there is one, so the
-                    # write-ahead intent row and the confirmed row for the SAME order count once -
-                    # while ids above still carries the venue's real order_id, which is the only
-                    # field linking a ProphetX TRADE back to an order.
-                    cid = lo.get("client_id")
-                    if cid:   # resolved AFTER the loop: IMAP order is not chronological, so a
-                        # confirmed row may be read before its own intent row.
-                        (_intents if lo.get("intent") else _confirmed)[str(cid)] = row
-                    if str(cid or oid) in seen_oids:
-                        continue
-                    seen_oids.add(str(cid or oid))
-                    try:   # Oct 28: Kalshi / PM US / Novig dollars risked TODAY (ET) count as lost in the daily stop
-                        d_et = datetime.fromisoformat(str(row.get("decided_utc")).replace("Z", "+00:00")).astimezone(lm.ET).date()
-                    except Exception:
-                        d_et = None
-                    # BOARD v3 PILOT ACCOUNTING (Peter, 11 Nov). Same ledger pass, same ET day. The
-                    # ledger row already carries "source", so the board lane is separable without a
-                    # new registry. The PLAY COUNT is taken BEFORE the settled-win skip, because a
-                    # won play still used one of the 10 slots; the RISK figure is taken after, so a
-                    # settled win or push stops consuming the $1,500.
-                    if row.get("source") == "board" and d_et in (None, datetime.now(lm.ET).date()):
-                        if row.get("key"):
-                            BOARD["keys"].add(row["key"])      # one intended bet = one play, so a
-                            # retry, a top-up or a partial fill of the same key never counts twice
-                        if graded.get(row.get("key")) not in ("W", "P"):
-                            fs_b = lo.get("filled_stake")
-                            BOARD["risk"] += (max(float(fs_b or 0), float(lo.get("asked_stake") or 0))
-                                              if (is_rest or fs_b is None) else float(fs_b))
-                    if row.get("source") == "r1" and d_et in (None, datetime.now(lm.ET).date()):   # same rules as the board block above
-                        if row.get("key"):
-                            R1["keys"].add(row["key"])
-                        if graded.get(row.get("key")) not in ("W", "P"):
-                            fs_r = lo.get("filled_stake")
-                            R1["risk"] += (max(float(fs_r or 0), float(lo.get("asked_stake") or 0))
-                                           if (is_rest or fs_r is None) else float(fs_r))
-                    if graded.get(row.get("key")) in ("W", "P"):
-                        continue   # settled win/push: not a loss toward the daily stop
-                    if (lo.get("book") or "prophetx") != "prophetx" and d_et in (None, datetime.now(lm.ET).date()):
-                        fs = lo.get("filled_stake")   # fill-or-kill: what filled (unknown = all asked); resting: all asked
-                        NONPX["today"] += (max(float(fs or 0), float(lo.get("asked_stake") or 0)) if (is_rest or fs is None)
-                                           else float(fs))
-        # Nov 11: an intent with no confirmed order means an order MAY exist at the venue and the
-        # bot cannot tell (ProphetX trades carry no external_id). Attribution is uncertain, so
-        # live_guards() refuses every further live order until Peter clears it with an email whose
-        # SUBJECT begins "INTENT CLEARED <client_id>", after checking My Trades. Subject-only and
-        # manual: the bot never emits that subject, so it cannot clear its own intent.
-        INTENT["open"] = {}
-        for k, row in _intents.items():
-            if k in _confirmed:
-                continue
+            all_rows.extend(rows)
+            _account_rows(rows, graded, ids, seen_oids, _intents, _confirmed)
+        # BACKFILL: Gmail was complete for this window, so copying its rows in makes the store
+        # complete too - and only then is the marker set. Both must succeed; if either fails the
+        # marker is left unset and the next run simply reads Gmail again.
+        if registry.enabled():
             try:
-                if intent_cleared(M, k):
-                    continue   # Peter's distinct, manual, subject-only authorization
-            except Exception:
-                pass           # cannot confirm it was cleared -> keep refusing (fail closed)
-            INTENT["open"][k] = row
-        BOARD["known"] = True   # the ledger parsed, so today's board exposure above is real
-        R1["known"] = True      # ...and today's R1 exposure
-        return ids
+                with perf("registry backfill (private store)"):
+                    if registry.put_rows(all_rows):
+                        registry.set_complete_through(datetime.now(timezone.utc).strftime("%Y-%m-%d"))
+                    else:
+                        registry.invalidate()
+            except Exception as ex:
+                LOG.append(f"registry backfill failed: {str(ex)[:60]}")
+        return _bot_orders_finish(M, ids, _intents, _confirmed)
     except Exception:
         return None
+
+
+def _bot_orders_finish(M, ids, _intents, _confirmed):
+    """Shared tail of bot_orders(): unresolved write-ahead intents, then the result.
+
+    Nov 11: an intent with no confirmed order means an order MAY exist at the venue and the bot
+    cannot tell (ProphetX trades carry no external_id). Attribution is uncertain, so live_guards()
+    refuses every further live order until Peter clears it with an email whose SUBJECT begins
+    "INTENT CLEARED <client_id>", after checking My Trades. Subject-only and manual: the bot never
+    emits that subject, so it cannot clear its own intent. Unchanged by the store migration - the
+    clearance is Peter's email either way."""
+    INTENT["open"] = {}
+    for k, row in _intents.items():
+        if k in _confirmed:
+            continue
+        try:
+            if intent_cleared(M, k):
+                continue   # Peter's distinct, manual, subject-only authorization
+        except Exception:
+            pass           # cannot confirm it was cleared -> keep refusing (fail closed)
+        INTENT["open"][k] = row
+    BOARD["known"] = True   # the ledger parsed, so today's board exposure above is real
+    R1["known"] = True      # ...and today's R1 exposure
+    return ids
 
 
 def _h(x):
@@ -3059,6 +3118,21 @@ def journal_intent(r, book, asked):
             except Exception:
                 pass
             return False, None
+        # Nov 11: the intent row also goes into the private store, so the fast-path read sees
+        # unresolved intents exactly as the Gmail read does. A failed write clears the store's
+        # completeness marker, sending the next run back to Gmail - which already holds this row
+        # from the send() above - so the open-intent latch can never be weakened by a lost write.
+        # Gmail read-back above remains the precondition for the order; this does not gate it.
+        if registry.enabled():
+            try:
+                if not registry.put_rows([row]):
+                    registry.invalidate()
+            except Exception as ex2:
+                LOG.append(f"registry intent write failed: {str(ex2)[:50]}")
+                try:
+                    registry.invalidate()
+                except Exception:
+                    pass
         return True, cid
     except Exception as ex:
         try:
@@ -3128,6 +3202,20 @@ def journal_order(r, lo, is_rest=False, cid=None):
              "the registry already needs.\n\n"
              "LEDGER (machine-readable, one row per play; latency = decision time minus first alert time)\n"
              + json.dumps([row]))
+        # Nov 11: the same row into the private store. If that write fails the store is no longer
+        # known-complete, so its completeness marker is cleared and the next run reads Gmail, which
+        # still has this row from the send() above. A dropped store write therefore costs speed, not
+        # correctness. Never raises into the order path: the order already exists at the venue.
+        if registry.enabled():
+            try:
+                if not registry.put_rows([row]):
+                    registry.invalidate()
+            except Exception as ex2:
+                LOG.append(f"registry order write failed: {str(ex2)[:50]}")
+                try:
+                    registry.invalidate()
+                except Exception:
+                    pass
         JOURNAL["sent"] += 1
         return True
     except Exception as ex:

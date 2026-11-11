@@ -189,8 +189,12 @@ assert all(o["client_id"] != "stale" for o in d["orders"]), "a row outside the w
 
 # ---------------------------------------------------------------- the store cannot bet
 src = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "registry.py")).read()
-for bad in ("place(", "novig_place", "kalshi_place", "pmus_place", "px_live", "order/"):
-    assert bad not in src, f"registry.py must be a store, not an order path - found {bad!r}"
+# Word-boundary matching, so `stamp.replace(...)` is not mistaken for an order `place(` call -
+# the first version of this check flagged exactly that and cost a debugging round trip.
+import re as _re
+for bad in (r"\bplace\(", r"\bnovig_place\b", r"\bkalshi_place\b", r"\bpmus_place\b",
+            r"\bpx_live\b", r"\bbook_live\b"):
+    assert not _re.search(bad, src), f"registry.py must be a store, not an order path - found {bad}"
 CHECKS.append(("registry.py contains no order path", True, True))
 
 # selftest reports rather than raising, whatever the store does.
