@@ -135,8 +135,9 @@ ck("no candidates issues no round trips", len(FakeIMAP(corpus).searches), 0)
 many = [play(f"rules|p{i}", source="rules") for i in range(45)]
 M4 = FakeIMAP({"1": f"... {ex.pid('rules|p7')} {ex.pid('rules|p44')} ..."})
 seen4 = ex.handled_pids(M4, many, chunk=20)
-ck("45 pids chunk into 3 searches", len(M4.searches), 3)
-ck("every pid gets an answer", len(seen4), 45)
+# 45 plays -> 45 xpid + 45 xrty = 90 tokens, chunked at 20 = 5 searches (still 5, not 90).
+ck("90 tokens chunk into 5 searches", len(M4.searches), 5)
+ck("every token gets an answer", len(seen4), 90)
 ck("p7 handled", seen4[ex.pid("rules|p7")], True)
 ck("p44 handled", seen4[ex.pid("rules|p44")], True)
 ck("p8 not handled", seen4[ex.pid("rules|p8")], False)

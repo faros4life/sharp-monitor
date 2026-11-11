@@ -613,6 +613,14 @@ def live_play_alert(r):
     Carries game, bet, line, after-fee alert odds, exchange and the PROPOSED stake. push() sends
     ntfy and mirrors to Telegram once, so there is exactly one message per channel."""
     p, lv = r.get("play") or {}, (r.get("live") or {})
+    # Nov 11 (Peter, "retry"): a retried play must not re-alert. A refusal now leaves the play new
+    # so the next run re-evaluates it, which without this would send an identical LIVE PLAY message
+    # every few minutes until tip-off - around a hundred for an evening game. The xrty token written
+    # by the refusing run is looked up in the SAME batched search as the xpid tokens, so suppression
+    # costs no extra round trip. If the map is unavailable the alert still goes out: being told
+    # twice is the right failure, being told nothing is not.
+    if p.get("play_key") and any(SEEN["tok"].get(retry_tok(k)) for k in handled_keys(p)):
+        return
     e = r.get("entry") or {}
     af = e.get("price_after_fee")
     bk = lv.get("book") or "?"
@@ -814,6 +822,36 @@ def wp(key):
     return "xwp" + hashlib.sha1(key.encode()).hexdigest()[:12]
 
 
+def retry_tok(key):
+    """Token on a play whose order was REFUSED with nothing placed (Peter, Nov 11: "retry").
+
+    Deliberately NOT an xpid: already_handled() must keep answering "not handled" so the next run
+    re-evaluates the play from scratch. Its only job is to stop the LIVE PLAY phone alert repeating
+    on every retry - the same division of labour as held_tok(). Nine candidates were permanently
+    skipped on Nov 11 because a refusal wrote a real xpid, which read as a completed decision."""
+    return "xrty" + hashlib.sha1(key.encode()).hexdigest()[:12]
+
+
+def order_retryable(r):
+    """True only when this run placed NOTHING for this play and the refusal can change by next run.
+
+    Defaults to NOT retryable in every uncertain case, because the two mistakes are not symmetric:
+    wrongly retrying a PLACED order risks a double bet, while wrongly not retrying a refused one
+    costs an opportunity. So this demands positive proof that nothing went out - a refused status,
+    no order id, no resting bid, and no placed remainder on any other venue. A "dry" status (live
+    switch off) is NOT retryable either: nothing is ever placed in that mode, so retrying would
+    re-alert the same play every run forever."""
+    lv = (r.get("live") or {})
+    o = lv.get("order") or {}
+    if r.get("verdict") != "WOULD PLACE" or o.get("status") != "refused":
+        return False
+    if o.get("order_id") or o.get("filled_stake"):
+        return False                                   # something exists at a venue - never retry
+    if (lv.get("rest") or {}).get("status") == "placed":
+        return False
+    return not any((m or {}).get("status") == "placed" for m in (lv.get("more") or []))
+
+
 def opposite_key(p):
     k = derive_key(p)
     if not k:
@@ -836,6 +874,7 @@ def handled_keys(p):
     return {p["play_key"], derive_key(p) or p["play_key"]}
 
 
+SEEN = {"tok": {}}   # this run's token map from handled_pids(): xpid -> handled, xrty -> already alerted
 HANDLED_DAYS = 4   # Nov 11 (Peter, "why are you looking back so far"): the dedupe search had NO date
 # bound at all - X-GM-RAW "xpid..." scanned the whole mailbox history, for every pid, every run, which
 # is why one search cost ~30s. Bounded to the same 4-day window bot_orders() already uses for the
@@ -862,7 +901,11 @@ def handled_pids(M, cands, chunk=20, days=HANDLED_DAYS):
     every failure raises and aborts the run rather than reporting "never placed before". Run
     42351892592 (7 Nov) proved the search layer really does drop mid-call (SSLEOFError inside this
     very function), which is why nothing here is wrapped in a forgiving try."""
-    want = sorted({pid(k) for p in cands for k in handled_keys(p)})
+    # Both token families in the SAME search: xpid answers "handled, never touch again" and xrty
+    # answers "refused before, retry but do not re-alert". Asking for them together costs nothing
+    # extra - same round trips, same fetched messages.
+    want = sorted({pid(k) for p in cands for k in handled_keys(p)}
+                  | {retry_tok(k) for p in cands for k in handled_keys(p)})
     if not want:
         return {}
     uids, seen = [], set()
@@ -1626,7 +1669,13 @@ def fmt(r):
     if r["verdict"] == "HELD":   # no xpid token: the play stays new and is retried next run
         return f"HELD  [{held_tok(dk or p['play_key'])}] {p.get('sport')} {p.get('game')} | {p.get('bet')}\n      reason: {r['reason']}"
     rested = ((r.get("live") or {}).get("rest") or {}).get("status") == "placed"   # Oct 28: a resting bid takes the side too
-    tag = r["pid"] + (f" {wp(dk)}" if ((r["verdict"] == "WOULD PLACE" or rested) and dk and p.get("source") not in ("rules", "lane2")) else "")   # Nov 4: a Lane 2 dry-run row never marks a side as taken
+    if order_retryable(r):
+        # Nov 11 (Peter, "retry"): refused with nothing placed, so NO xpid and NO xwp - the play
+        # stays new for the next run and the opposite side stays free, because neither a bet nor a
+        # side was actually taken. Only the alert-suppressing token is written.
+        tag = retry_tok(dk or p["play_key"])
+    else:
+        tag = r["pid"] + (f" {wp(dk)}" if ((r["verdict"] == "WOULD PLACE" or rested) and dk and p.get("source") not in ("rules", "lane2")) else "")   # Nov 4: a Lane 2 dry-run row never marks a side as taken
     head = f"{src_tag(p)}[{tag}] {p.get('sport')} {p.get('game')} | {p.get('bet')}"
     if p.get("source") == "rules":
         head += f"\n      decided {lag_text(p)}; flags (never veto): {'; '.join(p['rules'].get('flags') or []) or '-'}"
@@ -3080,6 +3129,7 @@ def main():
     _cand = plays + rplays + bplays + r1plays + l2plays
     with perf("handled_pids (one Gmail search)", n=len(_cand)):
         _seen = handled_pids(M, _cand)
+    SEEN["tok"] = _seen   # live_play_alert() reads the xrty tokens from here to suppress re-alerts
     new = [p for p in _cand if not already_handled(M, p, _seen)]
     with perf("imap close"):
         imap_close(M)
