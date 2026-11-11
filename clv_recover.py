@@ -46,10 +46,32 @@ import tracker_build as tb
 
 ALERTS = "alerts.json"
 LEAGUES = ("NBA", "NFL", "NCAAF")
+RECOVER = (os.environ.get("CLV_RECOVER_FETCH") or "").strip() == "1"
+
+
+FETCH = {"any": False, "n": 0, "stopped": False, "why": "", "before": None, "after": None}
 
 
 def say(s=""):
     print(s, flush=True)
+
+
+def start_of(f):
+    return cl.tp(f.get("start"))
+
+
+def _acct_used():
+    """The PROVIDER's own used figure. /account is free, so this costs nothing. None when it cannot
+    be read - never 0, which would read as 'nothing used' and wave a paid download through."""
+    try:
+        import credits as cr
+        d = cr.account()
+        if not isinstance(d, dict) or d.get("_error"):
+            return None
+        v = cr._pick(d, "used", "requestsUsed", "requests_used", "usage")
+        return int(v) if v is not None else None
+    except Exception:
+        return None
 
 
 def phase1_ok(a):
@@ -144,8 +166,44 @@ def main():
             continue
         p = hc._path(fid, "pinnacle")
         if not os.path.exists(p):
-            b["miss"]["no CACHED Pinnacle history (not fetched, by design)"] += 1
-            continue
+            if not RECOVER:
+                b["miss"]["no CACHED Pinnacle history (not fetched, by design)"] += 1
+                continue
+            # RECOVERY, and it polices itself with the PROVIDER's own counter rather than ours.
+            # Peter, Nov 10: nothing is downloaded until history is confirmed free. Four hcache
+            # fills recorded 11-145 history downloads for 0-2 billable calls, and credits.py states
+            # outright that OddsPapi bills everything except /account and /historical-odds - but
+            # that is OUR classifier, so it does not get the last word. /account is itself free, so
+            # the FIRST download is bracketed by two reads of it: if the provider's used figure
+            # moves at all, recovery stops right there and the remaining fixtures are left alone.
+            if FETCH["stopped"]:
+                b["miss"]["recovery halted after the provider's counter moved"] += 1
+                continue
+            first = not FETCH["any"]
+            before = _acct_used() if first else None
+            try:
+                hc.get_hist(fid, ["pinnacle"], start_of(f))
+                FETCH["any"] = True
+                FETCH["n"] += 1
+            except Exception as e:
+                b["miss"][f"history download failed ({type(e).__name__})"] += 1
+                continue
+            if first:
+                after = _acct_used()
+                FETCH["before"], FETCH["after"] = before, after
+                if before is None or after is None:
+                    FETCH["stopped"] = True
+                    FETCH["why"] = "could not read /account either side, so cost is unproven"
+                    b["miss"]["recovery halted: /account unreadable, cost unproven"] += 1
+                    continue
+                if after > before:
+                    FETCH["stopped"] = True
+                    FETCH["why"] = f"provider used went {before} -> {after} on ONE download"
+                    b["miss"]["recovery halted: the provider billed the download"] += 1
+                    continue
+            if not os.path.exists(p):
+                b["miss"]["download returned no Pinnacle history for this fixture"] += 1
+                continue
         start = cl.tp(f.get("start"))
         if not start:
             b["miss"]["fixture has no start time"] += 1
@@ -308,8 +366,22 @@ def main():
     say("    confirmation is one single-fixture download with /account read before and after - and")
     say("    /account is itself a FREE_PATH. That test is NOT run here; this pass downloads nothing.")
     say("")
-    say(f"  CREDITS: 0 paid. Cached-history reads: {reads}. No download was requested: a fixture with")
-    say("  no cache file on disk is reported as missing, never fetched. /historical-odds is in")
+    if RECOVER:
+        say("")
+        say("  RECOVERY FETCH - policed by the provider's own counter")
+        say("  " + "-" * 104)
+        say(f"    downloads attempted           {FETCH['n']}")
+        say(f"    provider used, before/after   {FETCH['before']} -> {FETCH['after']}"
+            f"   (first download only; /account is free)")
+        if FETCH["stopped"]:
+            say(f"    HALTED: {FETCH['why']}")
+            say("    Remaining fixtures were left untouched. No approval is assumed for a paid call.")
+        elif FETCH["any"]:
+            say("    the provider's counter did not move on the bracketed download, so history is")
+            say("    free by the provider's own accounting and not only by ours")
+        say("")
+    say(f"  CREDITS: 0 paid. Cached-history reads: {reads}. Downloads: {FETCH['n']}. A fixture with")
+    say("  no cache file on disk is reported as missing unless recovery is on. /historical-odds is in")
     say("  credit_gate.FREE_PATHS in any case.")
     say("=" * 108)
     return 0

@@ -12,6 +12,11 @@ name: board-clv-check
 # in a public Actions log.
 on:
   workflow_dispatch:
+    inputs:
+      clv_recover:
+        description: "1 = let the CLV recovery audit DOWNLOAD missing Pinnacle history (free path; it stops itself if the provider's own /account counter moves on the first download). 0 = cached only."
+        default: "0"
+        required: false
 
 permissions:
   contents: read
@@ -65,8 +70,14 @@ jobs:
       # history only, 0 paid credits: it reads a fixture's Pinnacle history only when the cache
       # file already exists and reports a missing one rather than fetching it. No Gmail or IMAP -
       # the population comes from alerts.json in the repo - so this step is fast.
-      - name: CLV recovery audit (read-only, cached only, 0 credits)
+      - name: CLV recovery audit (read-only; cached unless clv_recover=1)
         if: always()
         env:
           TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+          # Needed for /account, which is FREE and is what polices the download, and for the
+          # /historical-odds fetch itself. With clv_recover=0 (the default) nothing is downloaded
+          # and the key is unused.
+          ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
+          ODDSPAPI_FREE_KEY: ${{ secrets.ODDSPAPI_FREE_KEY }}
+          CLV_RECOVER_FETCH: ${{ inputs.clv_recover }}
         run: python -u clv_recover.py
