@@ -384,7 +384,7 @@ def main():
     say("")
     say("    DUPLICATES - is one game carrying more than one observation?")
     for label, grp in (("OVERS", ov), ("UNDERS", un), ("ALL", nc)):
-        games = _c.Counter(str(r["a"].get("game")) for r in grp)
+        games = collections.Counter(str(r["a"].get("game")) for r in grp)
         rep = {g: n for g, n in games.items() if n > 1}
         say(f"      {label:<8} {len(grp):3} alert(s) across {len(games):3} unique game(s); "
             f"{len(rep)} game(s) carry more than one")
