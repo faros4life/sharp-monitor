@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 11, 12:18 AM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 33.
+Updated Wed Nov 11, 12:21 AM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 33.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,7 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 11 12:18AM | NBA | Los Angeles L vs Milwaukee | moneyline: Los Angeles L | kalshi | $52k | -567 |  |  | +0.0c |  | pending |
+| Nov 11 12:21AM | NBA | Los Angeles L vs Milwaukee | moneyline: Los Angeles L | kalshi | $52k | -567 |  |  | +0.0c |  | pending |
 | Nov 11 12:00AM | NBA | Washington vs Indiana | moneyline: Washington | kalshi | $36k | +144 | ✅ novig | ✅ | +0.0c |  | pending |
 | Nov 10 10:51PM | NBA | Oklahoma City Thunder @ Portland Trail Blazers | spread: POR +1.5 (1.5) | novig | $83k | -104 | ✅ kalshi | ❌ | +0.0c |  | pending |
 | Nov 10 10:51PM | NBA | Boston vs Toronto | moneyline: Boston | kalshi | $62k | -213 |  |  | +3.0c |  | pending |
