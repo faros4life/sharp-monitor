@@ -373,8 +373,19 @@ LIVE_UNIT = 300.0   # phase-1 live unit, to win (Oct 28, Peter: $50 -> $200; Nov
                     # $300 to win, -130 risks $390, which the old $275 cap would have refused on every minus-money order.
 MIN_ORDER = 50.0    # Oct 28: smallest order / routing remainder worth placing (was $5)
 
+# BOARD v3 / LIQ-BOT CONTROLLED PILOT UNIT (Peter, 11 Nov, written approval). Its own unit, so Lane 1
+# is untouched at $300. Same to-win/risk asymmetry as Lane 1: minus money sizes to WIN the unit,
+# plus money RISKS it. Every sizing helper below takes `unit` and DEFAULTS TO LIVE_UNIT, so every
+# pre-existing Lane 1 call site is byte-for-byte unchanged in behaviour.
+BOARD_UNIT = 200.0
 
-def live_stake(am):
+
+def unit_for(lane):
+    """The live unit for a lane. Only the board pilot differs; everything else is Lane 1's unit."""
+    return BOARD_UNIT if str(lane or "") == "board" else LIVE_UNIT
+
+
+def live_stake(am, unit=None):
     """(risk, to_win) for one unit, per PETER'S RULE, Nov 10: "If + money we bet 300. That's the rule."
 
     Minus money sizes to WIN the unit: -110 risks $330 to win $300.
@@ -389,9 +400,13 @@ def live_stake(am):
 
     ProphetX takes 2% of winnings (liquidity_monitor.PX_FEE), so the minus-money $300 nets about
     $294 there. Left as gross, per the same rule.
+
+    `unit` overrides the lane's stake and defaults to LIVE_UNIT, so Lane 1 call sites are unchanged.
+    The board pilot passes BOARD_UNIT ($200 to win).
     """
-    risk = LIVE_UNIT if am > 0 else LIVE_UNIT * abs(am) / 100
-    return round(risk, 2), round(LIVE_UNIT * am / 100 if am > 0 else LIVE_UNIT, 2)
+    u = float(unit if unit else LIVE_UNIT)
+    risk = u if am > 0 else u * abs(am) / 100
+    return round(risk, 2), round(u * am / 100 if am > 0 else u, 2)
 
 
 WATCH_MIN = 10   # Oct 27 (Muse): a phase-1-qualifying alert with no Muse verdict 10 min after the executor saw it -> push
@@ -1045,7 +1060,8 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None, held=None):
     pxc = next((c for c in capped if c["book"] == "prophetx"), None)
     # Oct 28 (Peter): phase-1 live fills on the best after-fee price among the LIVE books (ProphetX keeps its 2c)
     lcs = [c for c in capped if c["book"] in LIVE_BOOKS]
-    lfull = [c for c in lcs if c["avail"] >= live_stake(c["shown"])[0]]
+    _u = unit_for("board" if p.get("source") == "board" else None)
+    lfull = [c for c in lcs if c["avail"] >= live_stake(c["shown"], _u)[0]]
     lc = (lfull or lcs)[0] if lcs else None
     return dict(out, verdict="WOULD PLACE", book=pick["book"], american=pick["am"], shown=pick["shown"], take_line=pick["line"],
                 px=({"am": pxc["am"], "shown": pxc["shown"], "line": pxc["line"], "avail": pxc["avail"], "thr": pxc["thr"],
@@ -1672,7 +1688,7 @@ def rest_bid(r):
     if af is None:
         return {"status": "refused", "reason": "alert after-fee price unknown (fail closed)"}
     p_star = american_to_prob(int(af))
-    risk, _ = live_stake(int(af))
+    risk, _ = live_stake(int(af), unit_for((r.get("live") or {}).get("lane")))
     if (r.get("live") or {}).get("rest_risk"):   # Oct 31: only the unfilled part of a partial fill
         risk = min(risk, float(r["live"]["rest_risk"]))
     g_ok, g_why = live_guards()
@@ -1906,18 +1922,21 @@ def old_rule_block(r):
         return None
 
 
-def _cap_units(asked, am):
-    """Spec #4 unit: to-win $300 (Nov 9; was $200). Plus money counts risk/300; minus money counts to-win/300.
+def _cap_units(asked, am, unit=None):
+    """Spec #4 unit: to-win $300 (Nov 9; was $200). Plus money counts risk/unit; minus money counts to-win/unit.
 
-    This divisor IS the unit. Left at 200 while LIVE_UNIT moved to 300, a full-size play would score 1.5 units and
-    trip the 1.0-unit stacking cap on every order."""
-    asked, am = float(asked or 0), float(am or 0)
+    THE DIVISOR IS THE LANE'S UNIT, not a constant. Left at 200 while LIVE_UNIT moved to 300, a full-size Lane 1
+    play scored 1.5 units and tripped the 1.0-unit stacking cap on every order. The board pilot reintroduces exactly
+    that hazard in the other direction: a $200-to-win board play divided by 300 would score 0.67 units and under-count
+    its own exposure. So the unit travels with the play (Peter, 11 Nov: "correct the existing $200/$300
+    accounting-divisor mismatch"). Defaults to LIVE_UNIT, so Lane 1 is unchanged."""
+    asked, am, u = float(asked or 0), float(am or 0), float(unit if unit else LIVE_UNIT)
     if asked <= 0 or am == 0:
         return 0.0
     # Matches Peter's rule exactly: plus money counts RISK/300 because a plus-money unit IS $300
     # risked; minus money counts TO-WIN/300 because a minus-money unit is $300 to win. I briefly
     # changed both branches to payout/300 on Nov 10 when I changed live_stake; reverted with it.
-    return asked / 300.0 if am > 0 else asked * 100.0 / abs(am) / 300.0
+    return asked / u if am > 0 else asked * 100.0 / abs(am) / u
 
 
 def stack_cap_report(r):
@@ -1933,7 +1952,8 @@ def stack_cap_report(r):
         for o in orders:
             if not o or any(w in str(o.get("status") or "").lower() for w in bad):
                 continue
-            units += _cap_units(o.get("asked_stake"), o.get("limit") or o.get("avg_price"))
+            units += _cap_units(o.get("asked_stake"), o.get("limit") or o.get("avg_price"),
+                                unit_for((r.get("live") or {}).get("lane")))
         if units <= 0:
             return None
         return {"order_units": round(units, 3), "held_units_before": 0.0,
@@ -2237,10 +2257,10 @@ def main():
                     why.append("CONFLICT: the other side of this game was already bet (first side stays)")
                 if not why and r["verdict"] == "WOULD PLACE" and r.get("lc"):
                     lc = r["lc"]
-                    lr, lw = live_stake(lc["shown"])
+                    lr, lw = live_stake(lc["shown"], BOARD_UNIT)   # $200 to win (board pilot), never Lane 1's $300
                     r["live"] = {"go": True, "book": lc["book"], "risk": lr, "to_win": lw, "am": lc["am"], "shown": lc["shown"],
                                  "line": lc["line"], "partial": lc["avail"] < lr, "px": lc, "ids": lc.get("ids") or {},
-                                 "nfl": False, "lane": "board"}
+                                 "nfl": False, "lane": "board", "unit": BOARD_UNIT}
                 elif not why:
                     r["live"] = {"go": False, "lane": "board", "why": ["no live book has the alert number or better"
                                                                         if r["verdict"] == "WOULD PLACE" else (r.get("reason") or "skipped")]}
