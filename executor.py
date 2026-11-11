@@ -552,6 +552,40 @@ def unit_for(lane):
     return BOARD_UNIT if str(lane or "") == "board" else R1_UNIT if str(lane or "") == "r1" else LIVE_UNIT
 
 
+LANE_NAME = {"board": "Board v3", "r1": "R1", "lane2": "Lane 2"}
+
+
+def lane_report(results):
+    """Nov 11 (Peter): separate performance reporting per lane. Each live lane has its OWN unit,
+    play cap and daily risk limit, so one combined number hides which lane is near its ceiling.
+    Report only - nothing here feeds a decision. Private email, so dollars are fine; the public
+    Actions log still prints counts only."""
+    out = ["LANES (this run; today's exposure is ET-day, from the ledger registry)"]
+    for lane, name, unit, cap, lim, store, on in (
+            ("rules", "Phase 1", LIVE_UNIT, None, None, None, px_live.LIVE),
+            ("board", "Board v3", BOARD_UNIT, BOARD_MAX_PLAYS, BOARD_DAILY_RISK, BOARD, BOARD_LIVE),
+            ("r1", "R1", R1_UNIT, R1_MAX_PLAYS, R1_DAILY_RISK, R1, R1_LIVE)):
+        rs = [r for r in results if (r.get("play") or {}).get("source") == lane
+              or (lane == "rules" and (r.get("play") or {}).get("source") in (None, "muse", "rules"))]
+        placed = [r for r in rs if ((r.get("live") or {}).get("order") or {}).get("status") == "placed"]
+        rested = [r for r in rs if ((r.get("live") or {}).get("rest") or {}).get("status") == "placed"]
+        line = (f"  {name}: {'LIVE' if on else 'OFF'} | unit ${unit:,.0f} | {len(rs)} play(s) this run, "
+                f"{len(placed)} placed, {len(rested)} rested")
+        if store is not None:
+            line += ("  |  today: " + (f"{len(store['keys'])}/{cap} plays, ${store['risk']:,.2f}/${lim:,.0f}"
+                                       if store["known"] else "exposure UNKNOWN (fail closed)"))
+        out.append(line)
+    out.append(f"  Global stop (all lanes together): ${px_live.DAILY_STOP:,.0f}; per-order guard "
+               f"${px_live.MAX_ORDER:,.0f}. Each lane's own limit applies ON TOP of it.")
+    return "\n".join(out)
+
+
+def lane_tag(r):
+    """'[R1] ' / '[Board v3] ' / '' - so a three-lane system's phone alerts say WHICH lane fired."""
+    n = LANE_NAME.get(str((r.get("live") or {}).get("lane") or ""))
+    return f"[{n}] " if n else ""
+
+
 def live_stake(am, unit=None):
     """(risk, to_win) for one unit, per PETER'S RULE, Nov 10: "If + money we bet 300. That's the rule."
 
@@ -1832,18 +1866,18 @@ def live_order(r):
         fs, ap = res.get("filled_stake") or 0, res.get("avg_price")
         if fs and ap:
             win = (fs * 100 / abs(ap) if ap < 0 else fs * ap / 100) * 0.98
-            tg(f"FILLED ProphetX: {bet_text(r, lv['line'], ap)}\n${fs:,.2f} at {ap:+d} -> wins ${win:,.2f} after the 2% fee"
+            tg(f"{lane_tag(r)}FILLED ProphetX: {bet_text(r, lv['line'], ap)}\n${fs:,.2f} at {ap:+d} -> wins ${win:,.2f} after the 2% fee"
                f"{'' if fs >= stake - 0.01 else f' (partial: asked ${stake:,.2f})'}\n{p.get('sport')} {p.get('game')}\n"
                "Send STOP on ntfy to pause.")
         else:
-            tg(f"NO FILL ProphetX: {bet_text(r, lv['line'], limit)}\nFill-or-kill got nothing at {limit:+d} or better"
+            tg(f"{lane_tag(r)}NO FILL ProphetX: {bet_text(r, lv['line'], limit)}\nFill-or-kill got nothing at {limit:+d} or better"
                + ("" if res.get("fills_read") else " (fill read failed: check My Trades)") + ".")
         push("PLACED: " + bet_text(r, lv["line"], limit)[:60],
              f"{label}\nProphetX fill-or-kill: ${res.get('filled_stake') or 0:,.2f} filled"
              + (f" at {res['avg_price']:+d}" if res.get("avg_price") else "") + f" (asked ${stake:,.2f}, limit {limit:+d})."
              + ("" if res.get("fills_read") else " Fill read failed: check My Trades."), mirror=False)
     elif res["status"] == "error":
-        tg(f"LIVE ORDER ERROR ProphetX: {(p.get('bet') or '')[:60]}\n{res['reason'][:200]}\nCheck My Trades before retrying.")
+        tg(f"{lane_tag(r)}LIVE ORDER ERROR ProphetX: {(p.get('bet') or '')[:60]}\n{res['reason'][:200]}\nCheck My Trades before retrying.")
         push("LIVE ORDER ERROR: " + (p.get("bet") or "")[:50], f"{label}\n{res['reason']}\nCheck ProphetX My Trades before retrying.", mirror=False)
     out = dict(res, asked_stake=stake, limit=limit, book="prophetx")
     if out.get("status") == "placed":   # Nov 11: durable registry row NOW, before anything can kill the run
@@ -1920,7 +1954,7 @@ def live_order_other(r):
         return {"status": "refused", "book": book, "reason": f"no live order code for {name}"}
     res = dict(res, book=book)
     if res["status"] == "placed" and res.get("sent_to_runner"):
-        tg(f"SENT TO NOVIG (home PC): {bet_text(r, lv['line'], limit_am)}\nfill-or-kill, ${stake:,.2f} at {limit_am:+d} or better. "
+        tg(f"{lane_tag(r)}SENT TO NOVIG (home PC): {bet_text(r, lv['line'], limit_am)}\nfill-or-kill, ${stake:,.2f} at {limit_am:+d} or better. "
            f"The fill result follows in the next run.\n{p.get('sport')} {p.get('game')}")
         out = dict(res, asked_stake=stake, limit=limit_am)
         out["journaled"] = journal_order(r, out, cid=lv.get("client_id"))   # Nov 11: durable row now
@@ -1931,18 +1965,18 @@ def live_order_other(r):
         res["avg_price"] = ap
         if fs and ac:
             win = res.get("contracts", 0) * (1 - ac)
-            tg(f"FILLED {name}: {bet_text(r, lv['line'], ap)}\n${fs:,.2f} at {ap:+d} (before the {name} fee) -> wins about "
+            tg(f"{lane_tag(r)}FILLED {name}: {bet_text(r, lv['line'], ap)}\n${fs:,.2f} at {ap:+d} (before the {name} fee) -> wins about "
                f"${win:,.2f}{'' if fs >= stake - 0.5 else f' (partial: asked ${stake:,.2f})'}\n{p.get('sport')} {p.get('game')}\n"
                "Send STOP on ntfy to pause.")
         else:
-            tg(f"NO FILL {name}: {bet_text(r, lv['line'], limit_am)}\nFill-or-kill got nothing at {limit_am:+d} or better"
+            tg(f"{lane_tag(r)}NO FILL {name}: {bet_text(r, lv['line'], limit_am)}\nFill-or-kill got nothing at {limit_am:+d} or better"
                + ("" if res.get("fills_read") else f" (fill read failed: check {name})") + ".")
         push("PLACED: " + bet_text(r, lv["line"], limit_am)[:60],
              f"{label}\n{name} fill-or-kill: ${fs:,.2f} filled" + (f" at {ap:+d}" if ap else "")
              + f" (asked ${stake:,.2f}, limit {limit_am:+d})." + ("" if res.get("fills_read") else f" Fill read failed: check {name}."),
              mirror=False)
     elif res["status"] == "error":
-        tg(f"LIVE ORDER ERROR {name}: {(p.get('bet') or '')[:60]}\n{res['reason'][:200]}\nCheck {name} before retrying.")
+        tg(f"{lane_tag(r)}LIVE ORDER ERROR {name}: {(p.get('bet') or '')[:60]}\n{res['reason'][:200]}\nCheck {name} before retrying.")
         push("LIVE ORDER ERROR: " + (p.get("bet") or "")[:50], f"{label}\n{res['reason']}\nCheck {name} before retrying.", mirror=False)
     if res.get("status") == "placed" and not res.get("fills_read"):
         res["filled_stake"] = None   # unknown fill: the daily stop counts everything asked
@@ -3008,6 +3042,7 @@ def main():
         body += [f"Gettable check (phase-1 qualifying this run, coded view): {len(q)} qualifying; ProphetX at the alert price "
                  f"or better at check: {len(g)}; not gettable: {sum(1 for r in q if r.get('books') and r.get('px') is None)}.", ""]
     body += [lane2.summary_line(), ""]   # Nov 4: Lane 2 counts (private email; dollars never in the public log)
+    body += [lane_report(results), ""]   # Nov 11: per-lane counts and exposure, Board v3 and R1 separate
     if GUARD["ok"] is not None:
         body += [f"Live guards: {'OK' if GUARD['ok'] else 'REFUSED'}" + (f" - {GUARD['why']}" if GUARD["why"] else "")
                  + " (the daily stop counts only the bot's own orders).", ""]
