@@ -6,7 +6,7 @@ Every order goes through place(), which refuses unless ALL of these hold (fail c
   1. EXEC_LIVE == "on" (GitHub repo variable; the permanent off switch)
   2. no "STOP" on Peter's ntfy topic newer than the last "GO" (quick pause from the phone; ntfy keeps ~12 h)
   3. stake <= MAX_ORDER ($415 hard guard against a bad price/unit; Nov 9, $300 unit: -130 risks $390)
-  4. today's ProphetX result for orders placed today is above -DAILY_STOP ($2,250); unreadable = refuse
+  4. today's ProphetX result for orders placed today is above -DAILY_STOP ($3,000; Peter Nov 11); unreadable = refuse
   5. fillOrKill at a limit price: it fills now at that price or better, or nothing happens; nothing rests
 Oct 27: the daily stop counts ONLY the bot's own orders (registry = order ids in the executor's
 'Bets LIVE' email ledgers, set by the executor via set_bot_orders); Peter's manual ProphetX bets are ignored. Registry
@@ -31,7 +31,7 @@ ACCESS = (os.environ.get("PROPHETX_TRADE_ACCESS_KEY") or "").strip()
 SECRET = (os.environ.get("PROPHETX_TRADE_SECRET_KEY") or "").strip()
 LIVE = (os.environ.get("EXEC_LIVE") or "off").strip().lower() == "on"
 MAX_ORDER = float(os.environ.get("EXEC_MAX_ORDER", "") or "415")   # Nov 9: $300 to win at the -130 cap risks $390
-DAILY_STOP = float(os.environ.get("EXEC_DAILY_STOP", "") or "2250")
+DAILY_STOP = float(os.environ.get("EXEC_DAILY_STOP", "") or "3000")   # Nov 11 (Peter): 2250 -> 3000
 # external_id PREFIX (Peter, Nov 10: "make the cleaner fix"). Orders were submitted with a BARE
 # uuid4, which carries no mark - so nothing in ProphetX's own order list says "bot", and the only
 # way to tell a bot trade from one of Peter's is the Gmail ledger that bot_orders() reads. That

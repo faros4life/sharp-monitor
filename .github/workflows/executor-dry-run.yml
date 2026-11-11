@@ -87,6 +87,14 @@ jobs:
           EXEC_R1_LIVE: ${{ vars.EXEC_R1_LIVE || 'off' }}
           EXEC_R1_DAILY_RISK: ${{ vars.EXEC_R1_DAILY_RISK || '1500' }}
           EXEC_R1_MAX_PLAYS: ${{ vars.EXEC_R1_MAX_PLAYS || '10' }}
+          # Nov 11 (Peter: "Make it 2000", "And global 3000"). Neither of these was passed here before,
+          # so both ran on their code default and there was no repo variable to flip. Now both are
+          # explicit AND the code defaults match, so the two can never disagree.
+          # EXEC_BOARD_DAILY_RISK: Lane 3's own risk cap, ON TOP of the global stop.
+          # EXEC_DAILY_STOP: the GLOBAL worst-case LOSS stop, not an exposure cap - px_live tests
+          # (today's ProphetX result - money at risk on every other book) <= -EXEC_DAILY_STOP.
+          EXEC_BOARD_DAILY_RISK: ${{ vars.EXEC_BOARD_DAILY_RISK || '2000' }}
+          EXEC_DAILY_STOP: ${{ vars.EXEC_DAILY_STOP || '3000' }}
           PX_QTY_MEANS: ${{ vars.PX_QTY_MEANS }}                   # "stake" (default) or "to_win" - set from the $1 test
           PROPHETX_TRADE_ACCESS_KEY: ${{ secrets.PROPHETX_TRADE_ACCESS_KEY }}
           PROPHETX_TRADE_SECRET_KEY: ${{ secrets.PROPHETX_TRADE_SECRET_KEY }}

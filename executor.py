@@ -2218,7 +2218,7 @@ NONPX = {"today": 0.0}   # Oct 28: bot dollars risked today on books other than 
 # ---------------------------------------------------------------- Board v3 pilot limits (Peter, 11 Nov)
 # Lane-specific and ADDITIONAL to the global stop, which is untouched: px_live.preflight() still runs
 # first and still refuses on the aggregate $2,250. These limits can only ever REFUSE a board order.
-BOARD_DAILY_RISK = float(os.environ.get("EXEC_BOARD_DAILY_RISK", "") or "1500")
+BOARD_DAILY_RISK = float(os.environ.get("EXEC_BOARD_DAILY_RISK", "") or "2000")   # Nov 11 (Peter): 1500 -> 2000
 BOARD_MAX_PLAYS = int(os.environ.get("EXEC_BOARD_MAX_PLAYS", "") or "10")   # was 5 on the board; 10 for the pilot
 # DAY BOUNDARY: America/New_York (lm.ET), the same boundary the global daily stop uses. A play is
 # counted on the ET date of its decided_utc, so a 1 AM ET order belongs to that ET day, not UTC's.
