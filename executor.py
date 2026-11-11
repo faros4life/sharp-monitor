@@ -1237,9 +1237,23 @@ def novig_snapshot():
     if not tok:
         _NVERR["why"] += " | no snapshot token"
         return None
+    # Nov 11 (Peter, "fail closed quickly"): the refresh wait runs ONCE PER RUN.
+    #
+    # Measured on run 43083072268: positions first attempt 80.0s, retry 239.4s, and Novig ended
+    # blind anyway. novig_positions() is called twice per run - the parallel read and then the
+    # parallel retry - and each call that found a stale snapshot asked the home PC for a fresh one
+    # and slept up to 90s waiting. Waiting a second time cannot help: nothing between the two
+    # attempts makes a home PC that did not answer in 90 seconds answer in the next 90.
+    #
+    # Fails closed exactly as before - a stale snapshot still returns None, Novig is still blind,
+    # and no live order goes out on any venue. It just reaches that answer in seconds.
+    if _NVERR.get("waited"):
+        _NVERR["why"] += " | snapshot still stale (refresh already awaited this run)"
+        return None
     try:
         snap, age = _snap_read(tok)
         if (age > SNAP_MAX_MIN or not snap.get("ok")) and _snap_refresh(tok):
+            _NVERR["waited"] = True   # one refresh wait per run, however many callers ask
             for _ in range(9):
                 time.sleep(10)
                 try:
@@ -2863,6 +2877,37 @@ def sent_tokens(M, toks, days=None):
     return out
 
 
+def already_reported(M, toks, days=None):
+    """Which fill-report tokens have already been sent. Registry first, Gmail for the rest.
+
+    Nov 11: novig_reports measured 201.5s with a 0.4s snapshot read, so the cost is this lookup.
+    The tokens are pure bookkeeping - "did I already tell Peter about this fill" - and belong in
+    the store, not in a mailbox search.
+
+    A token the store does not know is still checked in GMAIL rather than assumed unsent, because
+    assuming unsent means messaging Peter about the same fill twice. Whatever Gmail then confirms
+    is written back, so the store converges in a single run and later runs need no search at all.
+    Fail-closed is unchanged: sent_tokens() still raises on a failed search or fetch."""
+    toks = sorted({t for t in toks if t})
+    if not toks:
+        return set()
+    hit = set()
+    if registry.enabled():
+        try:
+            have = registry.token_set()
+            hit = {t for t in toks if t in have}
+        except Exception as ex:
+            LOG.append(f"report-token store unreadable, using Gmail: {str(ex)[:50]}")
+    rest = [t for t in toks if t not in hit]
+    found = sent_tokens(M, rest, days=days) if rest else set()
+    if found and registry.enabled():
+        try:
+            registry.put_tokens(found, outcome="reported")   # converge: next run needs no search
+        except Exception:
+            pass
+    return hit | found
+
+
 def novig_reports():
     """Oct 28: the home runner writes each Novig order's result to snapshot/novig_orders.json; report each new or
     changed result to Telegram once (token email = the record, the same pattern as the watchdog). Counts only in the log."""
@@ -2896,7 +2941,7 @@ def novig_reports():
         # record are now resolved in one bounded OR search before the loop, which then only looks
         # the answer up. Report-or-not decisions are unchanged; a token already sent still suppresses.
         # FAILS CLOSED as before: the search raises on failure rather than reporting a fill twice.
-        sent_toks = sent_tokens(M, ["xnvr" + hashlib.sha1(
+        sent_toks = already_reported(M, ["xnvr" + hashlib.sha1(
             f"{x.get('client_id')}|{str(x.get('status') or '?').upper()}|"
             f"{int(x.get('filled_qty') or 0)}|{x.get('filled_cost')}".encode()).hexdigest()[:12]
             for x in recs[-30:]])
@@ -2936,6 +2981,10 @@ def novig_reports():
             tg(msg)
             try:
                 send(f"Bets Novig order: {head.replace('NOVIG ', '')}", msg + f"\n\n{tok}")
+                # Nov 11: the token ALSO goes to the store, so the next run answers "already
+                # reported" without a Gmail search. The email stays the backup record.
+                if registry.enabled():
+                    registry.put_tokens([tok], outcome="reported")
             except Exception:
                 pass
             n += 1
@@ -2998,7 +3047,7 @@ def kalshi_rest_reports():
                 ((lm.num(o.get("taker_fill_count")) or 0) + (lm.num(o.get("maker_fill_count")) or 0))
             if fc:
                 k_toks[oid] = "xkrf" + hashlib.sha1(f"{oid}|{fc}".encode()).hexdigest()[:12]
-        already = sent_tokens(M, list(k_toks.values()), days=2)
+        already = already_reported(M, list(k_toks.values()), days=2)
         for oid, (row, lo) in rests.items():
             try:
                 st, d = (0, {"order": k_res.get(oid) or {}})
@@ -3020,6 +3069,10 @@ def kalshi_rest_reports():
             tg(msg)
             try:
                 send(f"Bets Kalshi order: {head.replace('KALSHI ', '')}", msg + f"\n\n{tok}")
+                # Nov 11: the token ALSO goes to the store, so the next run answers "already
+                # reported" without a Gmail search. The email stays the backup record.
+                if registry.enabled():
+                    registry.put_tokens([tok], outcome="reported")
             except Exception:
                 pass
             n += 1
