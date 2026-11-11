@@ -164,8 +164,40 @@ M = FakeIMAP([(f"{ex.INTENT_CLEAR_PREFIX} {cid}", OUTSIDER, r"\\Sent")])
 ck("A3. Sent but an unauthorized From does NOT clear", ex.intent_cleared(M, cid) is False)
 M = FakeIMAP([(f"{ex.INTENT_CLEAR_PREFIX} {cid}", OWNER, r"\\Sent \\Important")])
 ck("A3. Sent alongside other labels still clears", ex.intent_cleared(M, cid) is True)
+# ---- FORGED SUBJECT (Peter, Nov 11): the label must come from FETCH METADATA, never from the
+# fetched header bytes. Before this, the whole response was scanned for the text \\Sent, so an
+# inbound message whose SUBJECT merely contained it passed as authorized.
+M = FakeIMAP([(ex.INTENT_CLEAR_PREFIX + " " + cid + r" \\Sent", OWNER, r"\\Inbox")])
+ck("A3. a forged SUBJECT containing the Sent token does NOT clear",
+   ex.intent_cleared(M, cid) is False)
+M = FakeIMAP([(ex.INTENT_CLEAR_PREFIX + " " + cid, r'"\\Sent" <%s>' % OUTSIDER, r"\\Inbox")])
+ck("A3. a forged FROM display-name containing the Sent token does NOT clear",
+   ex.intent_cleared(M, cid) is False)
+# the parser itself, against real Gmail FETCH metadata shapes
+ck("A3. parser accepts a wire-escaped label",
+   "\\Sent" in ex._gm_labels(rb"1 (X-GM-LABELS (\\Sent) BODY[HEADER.FIELDS (SUBJECT)] {9}"))
+ck("A3. parser accepts a bare atom label",
+   "\\Sent" in ex._gm_labels(rb"1 (X-GM-LABELS (\Sent \Important) BODY[HEADER.FIELDS (SUBJECT)] {9}"))
+ck("A3. parser rejects inbox-only",
+   "\\Sent" not in ex._gm_labels(rb"1 (X-GM-LABELS (\Inbox) BODY[HEADER.FIELDS (SUBJECT)] {9}"))
+ck("A3. parser rejects empty label list",
+   ex._gm_labels(rb"1 (X-GM-LABELS () BODY[HEADER.FIELDS (SUBJECT)] {9}") == set())
+ck("A3. parser rejects a response with no X-GM-LABELS at all",
+   ex._gm_labels(rb"1 (BODY[HEADER.FIELDS (SUBJECT)] {9}") == set())
+ck("A3. parser does not confuse a USER label named 'Sent reports' with \\Sent",
+   "\\Sent" not in ex._gm_labels(rb'1 (X-GM-LABELS ("Sent reports") BODY[HEADER.FIELDS (SUBJECT)] {9}'))
+ck("A3. parser ignores anything after the label list (header bytes cannot reach it)",
+   "\\Sent" not in ex._gm_labels(
+       rb"1 (X-GM-LABELS (\Inbox) BODY[...] {9}" + b"\r\n" + rb"Subject: \Sent"))
+_sh = inspect.getsource(ex.subject_hits)
+ck("A3. the label comes from the FETCH metadata element, not the payload",
+   "meta = d[0][0]" in _sh and "_gm_labels(meta)" in _sh)
+ck("A3. _gm_labels is called on nothing but meta",
+   _sh.count("_gm_labels(") == 1 and "_gm_labels(meta)" in _sh)
+ck("A3. the payload is used only for the secondary From check, after the label",
+   _sh.index("_gm_labels(meta)") < _sh.index('_addr(msg.get("From"))'))
 ck("A3. the label check sits BEFORE the From check in the code",
-   inspect.getsource(ex.subject_hits).index("\\\\Sent")
+   inspect.getsource(ex.subject_hits).index("_gm_labels(meta)")
    < inspect.getsource(ex.subject_hits).index('_addr(msg.get("From"))'))
 ck("A3. the code records WHY a header is not authentication",
    "forged" in inspect.getsource(ex.subject_hits).lower())

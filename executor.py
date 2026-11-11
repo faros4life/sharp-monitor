@@ -121,6 +121,30 @@ INTENT_SUBJECT_PREFIX = "Bets LIVE: order intent"   # what journal_intent sends
 INTENT_CLEAR_PREFIX = "INTENT CLEARED"              # Peter's manual authorization. THE BOT NEVER SENDS THIS.
 
 
+_GM_LABELS = re.compile(rb"X-GM-LABELS\s*\(([^)]*)\)", re.I)
+
+
+def _gm_labels(meta):
+    """Exact Gmail label tokens from an IMAP FETCH METADATA line only - never header or body bytes.
+
+    Nov 11 (Peter): the previous version joined every byte of the FETCH response and looked for the
+    text \\Sent anywhere in it. The response includes the fetched headers, so an INBOUND message
+    whose SUBJECT merely contained \\Sent would have been read as carrying the \\Sent label and
+    would have cleared an order intent. Authorization must never read attacker-supplied bytes.
+
+    Returns a set of normalised tokens (quotes stripped, a wire-escaped \\\\Sent folded to \\Sent)."""
+    m = _GM_LABELS.search(meta or b"")
+    if not m:
+        return set()
+    out = set()
+    for tok in re.findall(rb'"[^"]*"|\S+', m.group(1)):
+        t = tok.decode("utf-8", "ignore").strip('"')
+        if t.startswith("\\\\"):
+            t = t[1:]
+        out.add(t)
+    return out
+
+
 def _addr(header):
     """The bare address out of a From/Sender header ('Peter G <a@b.com>' -> 'a@b.com'), lowercased."""
     return (email.utils.parseaddr(header or "")[1] or "").strip().lower()
@@ -162,9 +186,10 @@ def subject_hits(M, needle, prefix, days=4, senders=None):
             # [Gmail]/All Mail, which includes RECEIVED mail. So authorization is the \Sent
             # label: a message reaches Sent only by being sent THROUGH the authenticated
             # account, which no forged inbound message can do. Credentials, not a header.
-            blob = b" ".join(x for part in d for x in (part if isinstance(part, tuple) else (part,))
-                             if isinstance(x, bytes))
-            if b"\\Sent" not in blob:
+            # METADATA ONLY. d[0][0] is the FETCH metadata line; d[0][1] is the fetched header
+            # payload, which is attacker-supplied and is never consulted for authorization.
+            meta = d[0][0] if (isinstance(d[0], tuple) and len(d[0]) > 1) else b""
+            if "\\Sent" not in _gm_labels(meta):
                 continue
             # Belt and braces, after the label: the address must still be an authorized one.
             frm, snd = _addr(msg.get("From")), _addr(msg.get("Sender"))
