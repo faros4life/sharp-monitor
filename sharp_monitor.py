@@ -204,6 +204,9 @@ PUSH_SHARP = (os.environ.get("PUSH_SHARP_ALERTS") or "off").strip().lower() == "
 # Nov 3 (Peter): the phone recap is now REAL PLAYS only (plays_recap.py in the bets-board job). The alert-based daily and
 # weekly recaps still run and mark alerts reported, but only push when PUSH_ALERT_RECAP=on.
 PUSH_ALERT_RECAP = (os.environ.get("PUSH_ALERT_RECAP") or "off").strip().lower() == "on"
+# Nov 11 (Peter): Telegram carries BOT PLAYS ONLY. Signal alerts stay on ntfy. TG_SHARP_ALERTS=on
+# puts them back on Telegram as well.
+TG_SHARP = (os.environ.get("TG_SHARP_ALERTS") or "off").strip().lower() == "on"
 
 
 def notify(title, body, red=False, yellow=False, extra_tags=(), headline=None):
@@ -221,10 +224,24 @@ def notify(title, body, red=False, yellow=False, extra_tags=(), headline=None):
                                  method="POST", headers=hdr)
     urllib.request.urlopen(req, timeout=15).read()
     tags = list(extra_tags) + [t for t, on in (("red_circle", red), ("yellow_circle", yellow), ("moneybag", True)) if on]
-    if headline:
-        tg_mirror(f"<b>{_esc(headline)}</b>\n{_esc((_tg_prefix(tags) + ' ' + title).strip())}\n{_esc(body)}", html=True)
-    else:
-        tg_mirror(f"{_tg_prefix(tags)} {title}\n{body}".strip())
+    # Nov 11 (Peter: "ONLY LIVE PLAY ALERTS GO TO MY TELEGRAM"). Telegram is now reserved for the
+    # BOT's own play and order messages, which the executor sends: [PHASE 1]/[BOARD V3]/[R1] LIVE
+    # PLAY, FILLED, PARTIAL, NO FILL, REFUSED, ERROR, resting and cancellations.
+    #
+    # A SIGNAL alert is not a bot play. sharp_monitor fires the instant it sees the move; the
+    # executor runs separately every ~10 min and decides on its own (a venue at the number or
+    # better, pin_check, live guards, revalidation), so "LIVE" on an alert means "coded phase-1
+    # CANDIDATE", never "bet placed". Peter was getting those on Telegram because p1_ok bypasses
+    # the PUSH_SHARP mute, and an alert with no bot play behind it is exactly the noise he asked
+    # to stop. ntfy is UNCHANGED - every alert still reaches the phone there, and the ntfy STOP/GO
+    # brake, the HR manual-bet pings and the recaps are all untouched.
+    #
+    # TG_SHARP_ALERTS=on restores mirroring if he wants it back.
+    if TG_SHARP:
+        if headline:
+            tg_mirror(f"<b>{_esc(headline)}</b>\n{_esc((_tg_prefix(tags) + ' ' + title).strip())}\n{_esc(body)}", html=True)
+        else:
+            tg_mirror(f"{_tg_prefix(tags)} {title}\n{body}".strip())
 
 
 def load_state():
