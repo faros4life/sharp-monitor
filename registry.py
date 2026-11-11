@@ -16,7 +16,8 @@ WHAT IS STORED - only what must survive a run, nothing else:
 No prices, no fee models, no ledger detail, no run reports. Those stay in email, where Peter reads
 them and no machine depends on them.
 
-WINDOW: KEEP_DAYS = 4, the same window bot_orders() uses on Gmail. Peter asked for a week and then
+WINDOW: KEEP_DAYS = 4
+STRIKE_KEEP_DAYS = 30   # identities are immutable; this only bounds the file size, the same window bot_orders() uses on Gmail. Peter asked for a week and then
 chose to keep it at four so the before/after speed comparison stays apples to apples; in this store
 the window costs nothing, so widening it later is a one-line change with no performance effect.
 
@@ -41,8 +42,9 @@ from datetime import datetime, timedelta, timezone
 REPO = os.environ.get("REGISTRY_REPO") or "faros4life/novig-runner"
 PATH = os.environ.get("REGISTRY_PATH") or "registry/bot_registry.json"
 KEEP_DAYS = 4
+STRIKE_KEEP_DAYS = 30   # identities are immutable; this only bounds the file size
 API = "https://api.github.com"
-EMPTY = {"orders": [], "intents": [], "handled": {}}
+EMPTY = {"orders": [], "intents": [], "handled": {}, "strikes": {}}
 
 
 def token():
@@ -117,6 +119,11 @@ def _prune(data):
     data["intents"] = [i for i in data.get("intents") or [] if _row_day(i) == "" or _row_day(i) >= cut]
     data["handled"] = {k: v for k, v in (data.get("handled") or {}).items()
                        if str((v or {}).get("ts") or "")[:10] >= cut}
+    # Strike identities never go stale - a strike_id means one selection in one market forever - so
+    # they are kept far longer than the order window; the cap exists only to bound the file.
+    scut = (datetime.now(timezone.utc) - timedelta(days=STRIKE_KEEP_DAYS)).strftime("%Y-%m-%d")
+    data["strikes"] = {k: v for k, v in (data.get("strikes") or {}).items()
+                       if str((v or {}).get("ts") or "")[:10] >= scut}
     return data
 
 
@@ -258,6 +265,49 @@ def invalidate():
     fail-open on the one guard that caps a losing day. Falling back to a slow, complete Gmail read
     is always the right trade against that."""
     return _commit(lambda d: d.setdefault("meta", {}).update({"complete_through": ""}))
+
+
+STRIKE_FIELDS = ("book", "game", "date", "mtype", "label")
+
+
+def strike_map():
+    """{strike_id: {book, game, date, mtype, label, ...}} previously resolved, or {} if unreadable.
+
+    Nov 11 (Peter): px_positions resolved every open strike_id on EVERY run by walking the whole
+    ProphetX catalogue - one px_markets call per event across six leagues. Measured at 177.4s for
+    45 calls when ProphetX was answering at 3.94s each, and it is pure repeated work: a strike_id
+    names one selection in one market and never changes meaning.
+
+    An ENTITY MAP ONLY. It answers "what IS this strike", never "what do you hold" or "what is it
+    worth" - open trades and prices are always read live. A malformed entry is treated as a miss,
+    so a corrupt cache degrades to the walk rather than to a wrong identity.
+
+    Unreadable returns {} rather than None on purpose: here a miss costs a lookup, not safety, and
+    the caller still blinds the venue if a strike ends up unresolved by an incomplete walk."""
+    d = load()
+    if d is None:
+        return {}
+    out = {}
+    for sid, rec in (d.get("strikes") or {}).items():
+        if isinstance(rec, dict) and all(rec.get(f) is not None for f in STRIKE_FIELDS):
+            out[str(sid)] = rec
+    return out
+
+
+def put_strikes(newly):
+    """Store newly resolved strike identities. Only complete records are written."""
+    keep = {str(k): {f: v.get(f) for f in STRIKE_FIELDS}
+            for k, v in (newly or {}).items()
+            if isinstance(v, dict) and all(v.get(f) is not None for f in STRIKE_FIELDS)}
+    if not keep:
+        return True
+    ts = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    for v in keep.values():
+        v["ts"] = ts
+
+    def merge(d):
+        d.setdefault("strikes", {}).update(keep)
+    return _commit(merge)
 
 
 def put_order(rec):

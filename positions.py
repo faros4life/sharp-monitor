@@ -215,9 +215,41 @@ def px_positions():
         #
         # A failure to read the TRADES still returns None and still blinds the venue, because that
         # is the case where exposure genuinely cannot be verified. Exposure is never assumed zero.
+        # Nov 11 (Peter): PERSISTENT STRIKE IDENTITY CACHE. Resolving every open strike on every
+        # run meant walking the whole ProphetX catalogue each time - 45 calls / 177.4s when the
+        # venue was answering at 3.94s each. A strike_id names one selection in one market and
+        # never changes meaning, so it is resolved ONCE and remembered.
+        #
+        # ENTITY DATA ONLY. The cache answers "what IS this strike". It never answers what is held
+        # or what it is worth: the trades list above is always read live, and prices are never
+        # taken from here. A malformed entry is ignored, so a corrupt cache degrades to the walk.
         t0 = time.time()
-        complete, skipped = _walk(bc, want, found, now)
-        WHY["prophetx_walk_s"] = f"{time.time() - t0:.1f}s, {len(found)}/{len(want)} strikes resolved"
+        cached = {}
+        try:
+            import registry as _rg
+            cached = _rg.strike_map()
+        except Exception as ex:
+            WHY["prophetx_cache"] = f"strike cache unavailable: {str(ex)[:60]}"
+        hits = 0
+        _need = ("game", "date", "mtype", "label")
+        for sid in list(want):
+            rec = cached.get(sid)
+            # validated HERE as well as in strike_map(): a wrong identity is worse than a miss, and
+            # a miss only costs a lookup. Anything incomplete falls through to the walk.
+            if isinstance(rec, dict) and all(rec.get(f) for f in _need):
+                found[sid] = dict(rec, book="prophetx", strike_id=sid, flip=False)
+                hits += 1
+        # only the MISSES are walked, and the walk still breaks as soon as nothing is outstanding
+        complete, skipped = (True, 0) if not (want - set(found)) else _walk(bc, want, found, now)
+        try:
+            fresh = {sid: r for sid, r in found.items() if sid not in cached}
+            if fresh:
+                import registry as _rg2
+                _rg2.put_strikes(fresh)
+        except Exception as ex:
+            WHY["prophetx_cache_write"] = str(ex)[:60]
+        WHY["prophetx_walk_s"] = (f"{time.time() - t0:.1f}s, {len(found)}/{len(want)} strikes resolved "
+                                  f"({hits} from cache, {skipped} read(s) failed)")
         STATS["prophetx"] = {"trades": len(trades), "open_fills": len(open_), "open_strikes": len(want),
                              "matched_strikes": len(found), "walk_complete": complete}
         unresolved = want - set(found)
