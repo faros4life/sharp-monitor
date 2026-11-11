@@ -1633,10 +1633,15 @@ PERF = {"t": collections.OrderedDict(), "n": collections.Counter(), "venue": col
 
 
 class perf:
-    """with perf('label'): ... - accumulates elapsed seconds and a count under that label."""
+    """with perf('label'): ... - accumulates elapsed seconds and a count under that label.
 
-    def __init__(self, label):
+    Nov 11: optional n, for a block that does n units of work in one bracket (one Gmail search per
+    candidate play, say). The report then shows the real call count instead of x1, which is what
+    makes a per-item cost readable."""
+
+    def __init__(self, label, n=1):
         self.label = label
+        self.n = n
 
     def __enter__(self):
         self.t0 = time.time()
@@ -1645,7 +1650,7 @@ class perf:
     def __exit__(self, *a):
         d = time.time() - self.t0
         PERF["t"][self.label] = PERF["t"].get(self.label, 0.0) + d
-        PERF["n"][self.label] += 1
+        PERF["n"][self.label] += self.n
         return False
 
 
@@ -2981,28 +2986,43 @@ def journal_order(r, lo, is_rest=False, cid=None):
 
 def main():
     now = datetime.now(timezone.utc)
-    M = imap_open()
-    plays = read_verdicts(M) if SOURCE in ("muse", "both") else []
+    # Nov 11: the PERF block accounted for 88s of a 982s run - 894 seconds were outside all seven
+    # instrumentation points, which is 11x the largest thing being measured. These brackets cover
+    # main()'s own phases so the dark time has somewhere to land. Measurement only, never a gate.
+    with perf("imap open"):
+        M = imap_open()
+    with perf("read verdicts (Gmail)"):
+        plays = read_verdicts(M) if SOURCE in ("muse", "both") else []
     try:
-        read_manual(M)
+        with perf("read manual notes (Gmail)"):
+            read_manual(M)
     except Exception:
         LOG.append("manual-bet notes unreadable")
-    rplays = rule_plays(now) if SOURCE in ("rules", "both") else []
-    bplays = board_plays(now)   # Nov 3: Lane 3 (board NBA totals)
+    with perf("rule_plays"):
+        rplays = rule_plays(now) if SOURCE in ("rules", "both") else []
+    with perf("board_plays"):
+        bplays = board_plays(now)   # Nov 3: Lane 3 (board NBA totals)
     try:   # Nov 11: R1 live lane (non-Top-25 college, read from alerts.json; muted alerts included). Never lets R1 stop a run.
-        r1plays = r1_plays(now)
+        with perf("r1_plays"):
+            r1plays = r1_plays(now)
     except Exception as ex:
         LOG.append(f"r1 unavailable: {str(ex)[:60]}")
         r1plays = []
     try:   # Nov 4: Lane 2 (Muse registration 3:48 PM) - dry run only, no live path exists for these plays
-        import clv_ledger as _cl
-        l2plays = [dict(p, play_key="lane2|" + (derive_key(p) or ""))   # Nov 4 fix: Lane 2 rows need their own play_key
-                   for p in lane2.plays(now, load_feed(), lane2.markets(_cl, now)) if derive_key(p)]
+        with perf("lane 2 candidates"):
+            import clv_ledger as _cl
+            l2plays = [dict(p, play_key="lane2|" + (derive_key(p) or ""))   # Nov 4 fix: Lane 2 rows need their own play_key
+                       for p in lane2.plays(now, load_feed(), lane2.markets(_cl, now)) if derive_key(p)]
     except Exception as ex:
         LOG.append(f"lane 2 unavailable: {str(ex)[:60]}")
         l2plays = []
-    new = [p for p in plays + rplays + bplays + r1plays + l2plays if not already_handled(M, p)]
-    imap_close(M)
+    # one Gmail search PER CANDIDATE play - with dozens of candidates across five lanes this is the
+    # prime suspect for the unmeasured time, so it is counted and the call count is printed
+    _cand = plays + rplays + bplays + r1plays + l2plays
+    with perf("already_handled (Gmail, per candidate)", n=len(_cand)):
+        new = [p for p in _cand if not already_handled(M, p)]
+    with perf("imap close"):
+        imap_close(M)
     feed = load_feed()
     # wake time: this run's start vs the newest SENT alert (Oct 26; counts/seconds only in the public log)
     sent_ts = [iso_t(a.get("alert_utc")) for a in feed if a.get("sent_to_phone") and iso_t(a.get("alert_utc"))]
