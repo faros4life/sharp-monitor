@@ -1345,12 +1345,26 @@ def bot_orders(M, days=4):
                         d_et = datetime.fromisoformat(str(row.get("decided_utc")).replace("Z", "+00:00")).astimezone(lm.ET).date()
                     except Exception:
                         d_et = None
+                    # BOARD v3 PILOT ACCOUNTING (Peter, 11 Nov). Same ledger pass, same ET day. The
+                    # ledger row already carries "source", so the board lane is separable without a
+                    # new registry. The PLAY COUNT is taken BEFORE the settled-win skip, because a
+                    # won play still used one of the 10 slots; the RISK figure is taken after, so a
+                    # settled win or push stops consuming the $1,500.
+                    if row.get("source") == "board" and d_et in (None, datetime.now(lm.ET).date()):
+                        if row.get("key"):
+                            BOARD["keys"].add(row["key"])      # one intended bet = one play, so a
+                            # retry, a top-up or a partial fill of the same key never counts twice
+                        if graded.get(row.get("key")) not in ("W", "P"):
+                            fs_b = lo.get("filled_stake")
+                            BOARD["risk"] += (max(float(fs_b or 0), float(lo.get("asked_stake") or 0))
+                                              if (is_rest or fs_b is None) else float(fs_b))
                     if graded.get(row.get("key")) in ("W", "P"):
                         continue   # settled win/push: not a loss toward the daily stop
                     if (lo.get("book") or "prophetx") != "prophetx" and d_et in (None, datetime.now(lm.ET).date()):
                         fs = lo.get("filled_stake")   # fill-or-kill: what filled (unknown = all asked); resting: all asked
                         NONPX["today"] += (max(float(fs or 0), float(lo.get("asked_stake") or 0)) if (is_rest or fs is None)
                                            else float(fs))
+        BOARD["known"] = True   # the ledger parsed, so today's board exposure above is real
         return ids
     except Exception:
         return None
@@ -1362,6 +1376,44 @@ def _h(x):
 
 GUARD = {"ok": None, "why": ""}
 NONPX = {"today": 0.0}   # Oct 28: bot dollars risked today on books other than ProphetX (from the ledger registry)
+
+# ---------------------------------------------------------------- Board v3 pilot limits (Peter, 11 Nov)
+# Lane-specific and ADDITIONAL to the global stop, which is untouched: px_live.preflight() still runs
+# first and still refuses on the aggregate $2,250. These limits can only ever REFUSE a board order.
+BOARD_DAILY_RISK = float(os.environ.get("EXEC_BOARD_DAILY_RISK", "") or "1500")
+BOARD_MAX_PLAYS = int(os.environ.get("EXEC_BOARD_MAX_PLAYS", "") or "10")   # was 5 on the board; 10 for the pilot
+# DAY BOUNDARY: America/New_York (lm.ET), the same boundary the global daily stop uses. A play is
+# counted on the ET date of its decided_utc, so a 1 AM ET order belongs to that ET day, not UTC's.
+BOARD = {"risk": 0.0, "keys": set(), "known": False}
+
+
+def board_gate(risk, key=None):
+    """(ok, why) for ONE board v3 order of `risk` dollars. Fail closed.
+
+    Enforced HERE, in the executor, not on the board page - the board only tags calls, it cannot
+    know what was submitted or is resting. Counts submitted AND resting orders; a retry, top-up or
+    partial fill of the same intended bet shares its key and never counts as an extra play.
+
+    The 10-play cap CANNOT override the risk limit: both are checked, and either one refuses."""
+    if not BOARD["known"]:
+        # The board ledger was not readable this run, so today's board exposure is unknown. An
+        # unknown exposure can never be allowed to place money - same rule as the global registry.
+        return False, "board exposure unknown this run (ledger unreadable) - fail closed"
+    n = len(BOARD["keys"]) + (0 if (key and key in BOARD["keys"]) else 1)
+    if n > BOARD_MAX_PLAYS:
+        return False, (f"board play cap: {len(BOARD['keys'])} already submitted or resting today (ET), "
+                       f"cap {BOARD_MAX_PLAYS}")
+    try:
+        risk = float(risk or 0)
+    except Exception:
+        return False, "board order risk unreadable - fail closed"
+    if risk <= 0:
+        return False, "board order risk is zero - fail closed"
+    if BOARD["risk"] + risk > BOARD_DAILY_RISK + 1e-9:
+        return False, (f"board daily risk limit: ${BOARD['risk']:,.2f} already at risk today (ET) + "
+                       f"${risk:,.2f} would exceed ${BOARD_DAILY_RISK:,.0f}")
+    return True, (f"ok (board today: {len(BOARD['keys'])}/{BOARD_MAX_PLAYS} plays, "
+                  f"${BOARD['risk']:,.2f}/${BOARD_DAILY_RISK:,.0f} at risk)")
 
 
 def live_guards():
@@ -2258,6 +2310,10 @@ def main():
                 if not why and r["verdict"] == "WOULD PLACE" and r.get("lc"):
                     lc = r["lc"]
                     lr, lw = live_stake(lc["shown"], BOARD_UNIT)   # $200 to win (board pilot), never Lane 1's $300
+                    g_ok, g_why = board_gate(lr, lk)   # board-only cap and daily risk limit; fail closed
+                    if not g_ok:
+                        why.append(g_why)
+                if not why and r["verdict"] == "WOULD PLACE" and r.get("lc"):
                     r["live"] = {"go": True, "book": lc["book"], "risk": lr, "to_win": lw, "am": lc["am"], "shown": lc["shown"],
                                  "line": lc["line"], "partial": lc["avail"] < lr, "px": lc, "ids": lc.get("ids") or {},
                                  "nfl": False, "lane": "board", "unit": BOARD_UNIT}

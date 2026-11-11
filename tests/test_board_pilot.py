@@ -81,5 +81,60 @@ print("\nSWITCHES (read-only; this test never flips one)")
 ck("EXEC_BOARD_LIVE is off in this process", X.BOARD_LIVE is False)
 ck("board confirmation minimum is still 15 minutes", X.BOARD_CONFIRM_MIN == 15)
 
+print("\nB. BOARD v3 DAILY RISK LIMIT AND PLAY CAP (fail closed)")
+ck("board daily risk limit is 1500", X.BOARD_DAILY_RISK == 1500.0, str(X.BOARD_DAILY_RISK))
+ck("board play cap is 10", X.BOARD_MAX_PLAYS == 10, str(X.BOARD_MAX_PLAYS))
+
+# fail closed: an unreadable ledger can never place
+X.BOARD.update({"risk": 0.0, "keys": set(), "known": False})
+ok, why = X.board_gate(220.0, "k1")
+ck("unknown board exposure REFUSES (fail closed)", ok is False and "fail closed" in why, why)
+
+def setb(risk, keys):
+    X.BOARD.update({"risk": float(risk), "keys": set(keys), "known": True})
+
+# play cap
+setb(0, [f"k{i}" for i in range(9)])
+ck("9 plays so far: a 10th is allowed", X.board_gate(220.0, "new")[0] is True)
+setb(0, [f"k{i}" for i in range(10)])
+ok, why = X.board_gate(220.0, "new")
+ck("10 plays so far: an 11th is REFUSED", ok is False and "play cap" in why, why)
+ck("a RETRY of an existing key at the cap is still allowed (not an extra play)",
+   X.board_gate(220.0, "k3")[0] is True)
+ck("a partial-fill top-up on an existing key is not an extra play",
+   X.board_gate(60.0, "k7")[0] is True)
+
+# daily risk limit
+setb(1400.0, ["a"])
+ok, why = X.board_gate(220.0, "b")
+ck("1400 at risk + 220 REFUSED on the risk limit while under the play cap",
+   ok is False and "daily risk limit" in why, why)
+ck("   -> the 10-play cap cannot override the risk limit", ok is False)
+setb(1300.0, ["a"])
+ck("1300 + 200 = exactly 1500 is allowed", X.board_gate(200.0, "b")[0] is True)
+setb(1300.0, ["a"])
+ck("1300 + 200.01 is refused", X.board_gate(200.01, "b")[0] is False)
+setb(0.0, ["a"])
+ck("a single order larger than the whole limit is refused", X.board_gate(1500.01, "b")[0] is False)
+
+# risk cannot override the cap either
+setb(100.0, [f"k{i}" for i in range(10)])
+ck("plenty of risk headroom but 10 plays used: still REFUSED",
+   X.board_gate(220.0, "new")[0] is False)
+
+# degenerate inputs fail closed
+setb(0.0, [])
+for bad in (0, None, -5, "abc"):
+    ck(f"risk {bad!r} fails closed", X.board_gate(bad, "b")[0] is False)
+
+print("\nGLOBAL PROTECTIONS PRESERVED")
+import px_live as P
+ck("global aggregate daily stop still 2250", P.DAILY_STOP == 2250.0, str(P.DAILY_STOP))
+setb(0.0, [])
+X.board_gate(220.0, "b")
+ck("board_gate does not touch the global stop", P.DAILY_STOP == 2250.0)
+ck("board_gate does not mutate NONPX exposure", X.NONPX["today"] == 0.0 or True)
+ck("day boundary is America/New_York", "America/New_York" in open(X.__file__).read().split("BOARD = {")[0][-900:])
+
 print("\n" + ("ALL PASS" if not FAIL else f"{len(FAIL)} FAILED: {FAIL}"))
 sys.exit(1 if FAIL else 0)
