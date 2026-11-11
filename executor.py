@@ -15,6 +15,7 @@ watchdog only. An email may carry an empty array [] plus DISAGREE lines.
 
 Public repo: the Actions log prints counts only. Everything else goes by email.
 """
+import collections
 import email
 import email.utils
 import email.header
@@ -1213,18 +1214,24 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None, held=None):
         """Each book's ladder at one line (the books pick their nearest strike; kept only if it IS this line).
         Oct 31: the 4 books are read at the same time (ProphetX keeps its own 1/sec pace)."""
         def one(b):
+            t0 = time.time()   # Nov 11: per-venue call count and elapsed (PERF; measurement only)
             try:
                 if b == "novig":
-                    return bc.check_alert(dict(al, bet=bet_at(al["bet"], mtype, line, ln)), evs_by, mks_by_event)
-                fn = {"prophetx": bc.px_check, "kalshi": bc.kalshi_check, "polymarket_us": pmus_check}[b]
-                return fn(al, mtype, side, ln, price, teams)
+                    r = bc.check_alert(dict(al, bet=bet_at(al["bet"], mtype, line, ln)), evs_by, mks_by_event)
+                else:
+                    fn = {"prophetx": bc.px_check, "kalshi": bc.kalshi_check, "polymarket_us": pmus_check}[b]
+                    r = fn(al, mtype, side, ln, price, teams)
+                perf_venue(b, time.time() - t0, (r or {}).get("status") == "ok")
+                return r
             except Exception as ex:
+                perf_venue(b, time.time() - t0, False)
                 return {"status": f"error: {str(ex)[:80]}"}
         books = ("novig", "prophetx", "kalshi", "polymarket_us")
         with ThreadPoolExecutor(max_workers=4) as tp:
             return dict(zip(books, tp.map(one, books)))
 
-    res = probe(line)   # the alert line (also what the report's book table shows)
+    with perf("probe alert line"):
+        res = probe(line)   # the alert line (also what the report's book table shows)
     if res["novig"].get("status") == "game_not_on_novig":   # show what Novig lists that day (names only)
         day = datetime.fromisoformat(al["start_utc"].replace("Z", "+00:00")).astimezone(lm.ET).date()
         res["novig"]["seen"] = sorted({e.get("description") for e in evs_by.values()
@@ -1257,8 +1264,9 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None, held=None):
     # --- every nearby line on every book, converted to its EQUIVALENT price at the alert line (Peter, Oct 23)
     ladders = {}   # (book, line) -> result
     lines = [line] if (mtype == "moneyline" or line is None) else [line + d for d in (0, -0.5, 0.5, -1.0, 1.0)]
-    with ThreadPoolExecutor(max_workers=4) as tp:   # Oct 31: the nearby lines are probed at the same time
-        probed = dict(zip(lines[1:], tp.map(probe, lines[1:])))
+    with perf("probe nearby lines"):
+        with ThreadPoolExecutor(max_workers=4) as tp:   # Oct 31: the nearby lines are probed at the same time
+            probed = dict(zip(lines[1:], tp.map(probe, lines[1:])))
     for ln in lines:
         got = res if ln == line else probed[ln]
         for b, r in got.items():
@@ -1577,6 +1585,54 @@ def book_lines(r):
     return out
 
 
+# ---------------------------------------------------------------- PERF (Nov 11, Peter: instrument
+# the silent block). A run's own log showed 465 of 596 seconds inside ONE gap with no output, so
+# where the time goes was a guess. This records elapsed seconds per operation and CALL COUNTS per
+# venue, and prints them at the end of the run. Counts and seconds only - no amounts, so it is safe
+# in the public Actions log. Pure measurement: nothing here feeds a decision.
+PERF = {"t": collections.OrderedDict(), "n": collections.Counter(), "venue": collections.Counter(),
+        "venue_s": collections.Counter(), "err": collections.Counter()}
+
+
+class perf:
+    """with perf('label'): ... - accumulates elapsed seconds and a count under that label."""
+
+    def __init__(self, label):
+        self.label = label
+
+    def __enter__(self):
+        self.t0 = time.time()
+        return self
+
+    def __exit__(self, *a):
+        d = time.time() - self.t0
+        PERF["t"][self.label] = PERF["t"].get(self.label, 0.0) + d
+        PERF["n"][self.label] += 1
+        return False
+
+
+def perf_venue(book, secs, ok=True):
+    """One venue read: its elapsed seconds and whether it came back usable."""
+    PERF["venue"][book] += 1
+    PERF["venue_s"][book] += secs
+    if not ok:
+        PERF["err"][book] += 1
+
+
+def perf_report():
+    """One block at the end of the run. Slowest operation first."""
+    out = ["PERF (seconds and call counts only; measurement, never a gate)"]
+    tot = sum(PERF["t"].values()) or 1.0
+    for lab, sec in sorted(PERF["t"].items(), key=lambda kv: -kv[1]):
+        out.append(f"  {lab:<34} {sec:8.1f}s  {100 * sec / tot:5.1f}%  x{PERF['n'][lab]}")
+    if PERF["venue"]:
+        out.append("  venue reads (calls / seconds / unusable):")
+        for b, n in PERF["venue"].most_common():
+            out.append(f"    {b:<16} {n:5d} calls  {PERF['venue_s'][b]:7.1f}s  "
+                       f"{PERF['venue_s'][b] / max(n, 1):5.2f}s each  {PERF['err'][b]} unusable")
+    return "\n".join(out)
+
+
 MKT = {"evs": None, "mks": None}   # the market map main() built this run; revalidate() needs it for Novig
 
 
@@ -1862,11 +1918,12 @@ def live_guards():
         return GUARD["ok"], GUARD["why"]
     ok, why = False, ""
     try:
-        M = imap_open()
-        try:
-            ids = bot_orders(M)
-        finally:
-            imap_close(M)
+        with perf("registry read (Gmail IMAP)"):
+            M = imap_open()
+            try:
+                ids = bot_orders(M)
+            finally:
+                imap_close(M)
         px_live.set_bot_orders(None if ids is None else list(ids))
         book_live.set_exposure(NONPX["today"])
         if ids is None:
@@ -2874,7 +2931,8 @@ def main():
     lo = int(now.timestamp() * 1000)
     hi = int((now + timedelta(days=3)).timestamp() * 1000)
     try:
-        evs, mks = bc.novig_catalog(lo, hi)
+        with perf("novig catalog"):
+            evs, mks = bc.novig_catalog(lo, hi)
     except Exception:
         evs, mks = [], []
     evs_by = {e["eventId"]: e for e in evs}
@@ -2957,7 +3015,8 @@ def main():
                 continue
             if ent.get("floor_line") is not None and p.get("floor_line") is None:
                 p = dict(p, floor_line=ent["floor_line"])   # Oct 31: the alert's bet-only-at line (hard floor)
-            r = evaluate(p, now, evs_by, mks_by_event, pos, None if p.get("source") in ("rules", "lane2") else taken, held)
+            with perf("evaluate (per play)"):
+                r = evaluate(p, now, evs_by, mks_by_event, pos, None if p.get("source") in ("rules", "lane2") else taken, held)
             r["entry"] = ent
             if p.get("source") == "lane2":   # Nov 4: Lane 2 - priced and logged like any dry-run play; NEVER live (Peter "no live play")
                 r["entry"] = ent = p.get("lane2_entry") or {}
@@ -3128,6 +3187,11 @@ def main():
                  f"or better at check: {len(g)}; not gettable: {sum(1 for r in q if r.get('books') and r.get('px') is None)}.", ""]
     body += [lane2.summary_line(), ""]   # Nov 4: Lane 2 counts (private email; dollars never in the public log)
     body += [lane_report(results), ""]   # Nov 11: per-lane counts and exposure, Board v3 and R1 separate
+    try:
+        body += [perf_report(), ""]   # Nov 11: where the run's time actually went
+        print(perf_report())          # and in the public log, counts/seconds only
+    except Exception:
+        pass
     if GUARD["ok"] is not None:
         body += [f"Live guards: {'OK' if GUARD['ok'] else 'REFUSED'}" + (f" - {GUARD['why']}" if GUARD["why"] else "")
                  + " (the daily stop counts only the bot's own orders).", ""]
