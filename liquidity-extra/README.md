@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 11, 1:50 AM ET. This run: 0 new, 0 not confirmed, 7 pending. Open alerts: 3.
+Updated Wed Nov 11, 2:00 AM ET. This run: 7 new, 0 not confirmed, 6 pending. Open alerts: 10.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,13 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 11 2:00AM | NCAAB | South Florida vs Saint Joseph's | moneyline: South Florida | kalshi | $50k | -285 |  |  | +0.0c |  | pending |
+| Nov 11 2:00AM | NCAAB | Kansas City vs Florida A&M | moneyline: Kansas City | kalshi | $38k | -233 |  |  | +0.0c |  | pending |
+| Nov 11 2:00AM | NCAAB | Penn vs Navy | moneyline: Penn | kalshi | $49k | -456 |  |  | +0.0c |  | pending |
+| Nov 11 2:00AM | NCAAB | North Carolina Central vs VMI | moneyline: VMI | kalshi | $36k | -270 |  |  | +0.0c |  | pending |
+| Nov 11 2:00AM | NCAAB | North Carolina A&T vs East Carolina | moneyline: East Carolina | kalshi | $66k | -525 |  |  | +0.0c |  | pending |
+| Nov 11 2:00AM | NCAAB | Loyola Chicago vs Air Force | moneyline: Loyola Chicago | kalshi | $64k | -456 |  | ✅ | +0.0c |  | pending |
+| Nov 11 2:00AM | NCAAB | FDU vs East Texas A&M | moneyline: East Texas A&M | kalshi | $64k | -525 |  |  | +0.0c |  | pending |
 | Nov 10 11:13PM | TENNIS | Fritz vs Norrie | moneyline: Fritz | kalshi | $43k | -300 | ✅ novig |  | +0.0c |  | pending |
 | Nov 10 6:29PM | NCAAB | Evansville vs Middle Tennessee | moneyline: Middle Tennessee | kalshi | $29k | -400 | ✅ novig | ✅ | +1.0c | yes | W |
 | Nov 10 6:08PM | NCAAB | Winthrop vs Kennesaw St. | moneyline: Kennesaw St. | kalshi | $37k | -525 |  | ✅ | -2.0c | yes | W |
@@ -203,10 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 29 11:10PM | TENNIS | Rune vs Vacherot | moneyline: Rune | kalshi | $27k | -133 | ✅ novig |  | -1.0c | yes | L |
 | Oct 29 10:30PM | TENNIS | Rakhimova vs Joint | moneyline: Rakhimova | kalshi | $355k | -270 |  |  | +18.0c |  | W |
 | Oct 29 10:10PM | TENNIS | Rakhimova vs Joint | moneyline: Joint | kalshi | $347k | -335 |  |  | -67.0c | yes | L |
-| Oct 29 10:00PM | TENNIS | Rybakina vs Fernandez | moneyline: Rybakina | kalshi | $56k | -335 | ✅ novig |  | +0.0c | yes | pending |
-| Oct 29 4:10PM | TENNIS | Paul vs Alcaraz | moneyline: Alcaraz | kalshi | $64k | -400 |  |  | -1.0c |  | W |
-| Oct 29 9:00AM | TENNIS | Norrie vs Medvedev | moneyline: Norrie | kalshi | $200k | +122 |  |  | -20.0c |  | L |
-| Oct 29 8:05AM | TENNIS | Michelsen vs Fils | moneyline: Fils | kalshi | $29k | -203 | ✅ novig |  | -1.0c |  | W |
-| Oct 29 5:20AM | TENNIS | Shelton vs Kym | moneyline: Shelton | kalshi | $42k | -317 |  |  | +0.0c |  | L |
-| Oct 29 5:10AM | TENNIS | Fritz vs Shapovalov | moneyline: Fritz | kalshi | $48k | -223 |  |  | -3.0c |  | W |
-| Oct 28 6:50PM | MLB | Milwaukee Brewers @ Tampa Bay Rays | spread: TB +1.5 (1.5) | novig | $51k | -138 | ✅ kalshi,polymarket |  | +0.0c |  | L |
