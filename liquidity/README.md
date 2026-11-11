@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 11, 2:50 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 24.
+Updated Wed Nov 11, 2:55 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 24.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -13,7 +13,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 11 1:55AM | NBA | San Antonio vs Chicago: Spread | spread: San Antonio wins by over 15.5 points | kalshi | $35k | -104 |  |  | +0.0c |  | pending |
 | Nov 11 1:55AM | NFL | Washington vs New York G | moneyline: New York G | kalshi | $253k | -133 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Nov 11 1:35AM | NBA | Cleveland vs New York: Total Points | total: Over 221.5 points | kalshi | $34k | -104 |  |  | +1.0c |  | pending |
-| Nov 11 1:35AM | NBA | Oklahoma City vs Portland | moneyline: Oklahoma City | kalshi | $188k | -104 |  |  | +2.0c |  | pending |
+| Nov 11 1:35AM | NBA | Oklahoma City vs Portland | moneyline: Oklahoma City | kalshi | $188k | -104 |  |  | +1.0c |  | pending |
 | Nov 11 1:21AM | NCAAF | Buffalo vs Ball St.: Spread | spread: NOT Buffalo wins by over 1.5 points | kalshi | $35k | -104 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 11 1:04AM | NBA | Los Angeles L vs Milwaukee: Total Points | total: NOT Over 232.5 points | kalshi | $29k | -104 |  |  | +3.0c |  | pending |
 | Nov 11 12:45AM | NHL | Tampa Bay vs Buffalo | moneyline: Tampa Bay | kalshi | $27k | -122 | ✅ novig |  | +0.0c |  | pending |
@@ -90,7 +90,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 10 4:35AM | NHL | Avalanche vs. Maple Leafs | moneyline: Avalanche | polymarket | $30k | -150 | ✅ kalshi |  | +0.0c |  | W |
 | Nov 10 4:05AM | NHL | Minnesota vs Montreal: Spread | spread: NOT Minnesota wins by over 1.5 goals | kalshi | $28k | -223 | ✅ novig,polymarket |  | -1.0c | yes | W |
 | Nov 10 4:05AM | NHL | Nashville vs Los Angeles | moneyline: Los Angeles | kalshi | $47k | -127 | ✅ novig |  | -2.0c | yes | L |
-| Nov 10 1:45AM | NCAAF | Buffalo vs Ball St. | moneyline: Buffalo | kalshi | $75k | -127 |  |  | -3.0c | yes | pending |
+| Nov 10 1:45AM | NCAAF | Buffalo vs Ball St. | moneyline: Buffalo | kalshi | $75k | -127 |  |  | -4.0c | yes | pending |
 | Nov 9 11:36PM | NBA | Boston vs Philadelphia | moneyline: Philadelphia | kalshi | $143k | +108 |  |  | -2.0c | yes | L |
 | Nov 9 11:30PM | NHL | Florida vs Columbus: Total Goals | total: Over 5.5 goals scored | kalshi | $34k | -127 |  |  | +0.0c |  | L |
 | Nov 9 11:06PM | NHL | New Jersey vs Winnipeg | moneyline: New Jersey | kalshi | $27k | -144 |  |  | -1.0c | yes | L |
