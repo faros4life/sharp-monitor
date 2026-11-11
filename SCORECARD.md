@@ -84,9 +84,9 @@ paper test today is CONTINUE. The binding constraint is fills, not CLV.
 
 | # | Name | Status |
 | --- | --- | --- |
-| 24 | ML_STAY | lens inside the liquidity lanes |
-| 25 | PULL_FADE | Muse recommends retiring, unadopted |
-| 26 | SOLO | lens |
+| 24 | ML_STAY | **609 logged, 22 graded, 16-6, +5.33u, +24.2%**, CLV mean +0.009 (n=22). H1 +27.5% / H2 +20.9%. NBA 9 · NCAAF 7 · NFL 5 · NHL 1. Forward from 2 Nov. Source: `lanes/lanes.json`, read 11 Nov. Limitation: 22 of 609 graded, so 96% is still pending |
+| 25 | PULL_FADE | **74 logged, 42 graded, −6.02u, −14.3%.** H1 −0.7% / H2 −28.0%. No CLV recorded. Source: `lanes/lanes.json`, 11 Nov. **Kill bar met** (readout 40, ≤0.00u/play) — Muse recommends retiring, unadopted |
+| 26 | SOLO | **819 logged, 35 graded, 22-13, +0.56u, +1.6%**, CLV mean −0.008 (n=35). H1 +29.8% / **H2 −25.0%**. NBA 16 · TENNIS 10 · NCAAF 6 · NFL 3. Source: `lanes/lanes.json`, 11 Nov. Limitation: 35 of 819 graded; promotion needs ≥+0.08u/play |
 
 ### RESEARCH / MEASUREMENT — not betting lanes
 
@@ -381,3 +381,57 @@ calls already recorded.
 
 **Five-candidate brief (10 Nov), for the record:** NO PROVEN NEW EDGE — NO BUILD, under Peter's rule
 that both halves must be positive on units and CLV. That verdict stands over the ELIGIBLE queue.
+
+## O7 — what is filled, what is unavailable, and why
+
+Filled from their own reports or from committed data (source and date on each row above):
+Lane 1 · LIQ-BOT/registry 9 · SLOW-HR · LIQ-SMALL + Lane 3 shadow · Bets Board v1/v2/v3 ·
+EV Trigger B and the EV study's other triggers · ML_STAY · PULL_FADE · SOLO · the feed-level
+populations · the ELIGIBLE queue.
+
+**Unavailable in this session, with the exact reason.** These entries publish no discrete report;
+their numbers sit inside two consolidated emails, and an email body cannot be parsed locally — the
+mail tool returns it into context, so there is no way to extract a section without loading the
+whole message. The BUCKET REPORT is **430 KB** and the PAPER RULES TRACKER **55 KB**.
+
+| Entry | Where its numbers live | Status |
+| --- | --- | --- |
+| 2 RESTING BIDS | executor ledger emails | unavailable here |
+| 3 PETER — FEED PLAYS | BUCKET REPORT (430 KB) | unavailable here |
+| 4 HR SCANNER FLAGS | HR phone ledger / HR push emails | unavailable here |
+| 5 STREET VALUE | manual-bet emails, one per fill | unavailable here |
+| 8 LANE 2 | Lane 2 dry-run email | unavailable here |
+| 10 POST & WAIT | `post_test` email | unavailable here |
+| 12 DOG BAND | BUCKET REPORT | unavailable here |
+| 15 P-NHL-DOGS | BUCKET REPORT | unavailable here |
+| 16 P-CFB-OVER / P-NFL-OVER | BUCKET REPORT | unavailable here |
+| 17 HR-A | BUCKET REPORT | unavailable here |
+| 19 PLIMIT-CUT MISPRICE | `PLIMIT LOG`, its own 25 KB daily email | retrievable on request |
+| 20 EX-B | BUCKET REPORT | unavailable here |
+| 27-32 research tracks | MODEL LAB / BOARD LAB / CLV-WORKS emails | unavailable here |
+
+Marked unavailable rather than guessed. **Entry 18's** broad build EDGE2 reports inside the PAPER
+RULES TRACKER (item 61) and is likewise unavailable here.
+
+### Naming, provisional
+
+- **"Liquidity Test" → the liquidity board plus registry 9, kept as two separate populations**
+  (board: 2,665 graded, −29.04u, −1.1%; registry 9: n=151, +23.81u at the non-executable alert
+  price). **UNCONFIRMED.**
+- **"Beta Board" → BOARD v2** (PLAY 32 graded, 21-11, +9.28u, +29.0%). **UNCONFIRMED — no entry of
+  that name exists in REGISTRY.md.**
+
+## O1-O3 — proposed corrections, NOT applied (REGISTRY.md untouched)
+
+**O1.** REGISTRY.md entry 23, replace:
+> `| 23 | **NCAAB OPENERS** | Our frozen openers vs Pinnacle's open. First read early December. |`
+
+with:
+> `| 23 | **NCAAB OPENERS** | Our frozen openers vs Pinnacle's open. First read taken 7 Nov 2026 at 61 sightings: CLV −0.66%, beat close 26/61. Registered STOP rule (CLV ≤ 0) triggered. **CLOSED.** Out-of-sample since: 66 further sightings at −1.25%; all 127 at −0.97%, beat close 44.1%; MAE ours 14.28 vs open 13.58. |`
+
+**O2.** `ncaab_openers.py` and `ncaab_grade.py` headers both read "item 28". Registry numbering is
+authoritative, so the proposed edit is to those two docstrings: "item 28" → "registry 23". No code
+behaviour changes. Needs separate authorization.
+
+**O3.** Proposed final-verdict wording for entry 21:
+> `| 21 | **EV TRIGGER B / B-TOTALS** | EV study sightings. **FINAL READ 11 Nov 2026: FAIL.** B Pinnacle ≥3% EV: 144 graded, 65-79, −6.23u, −4.3%; consensus CLV −0.87%; certified same-line Pinnacle CLV +1.06% on 33% coverage; both halves negative on units. Pre-registered J1-J4 all negative. A, A-qualifying and M also fail their gate. B-TOTALS was never added to the study's locked judged list (locked 31 Oct, before the 3 Nov proposal), so totals and unders remain descriptive. **No promotion.** |`
