@@ -217,6 +217,37 @@ def intent_cleared(M, cid):
     return bool(subject_hits(M, cid, INTENT_CLEAR_PREFIX, senders=authorized_senders()))
 
 
+def intent_verified(cid, row):
+    """Durable read-back of a pre-order record. Returns (ok, where).
+
+    Nov 11 (Peter): intent_readable() opened a FRESH IMAP connection per try and slept 5s between
+    up to 3 tries, PER ORDER, because Gmail's index lags its own SMTP. The private store has no such
+    lag: a contents PUT returns only on a confirmed commit, and a GET then reads the row straight
+    back - measured at 0.33s against 114.2s for the Gmail registry read. So the store is tried
+    first and the Gmail poll becomes the fallback.
+
+    The RULE IS UNWEAKENED: no order is submitted until its pre-order record has been read back out
+    of a durable store. What changes is which store answers, not whether one has to.
+
+    Both stores still receive the row - send() already put it in Gmail before this is called - so
+    crash recovery works whichever path bot_orders() takes on the next run: the Gmail ledger scan
+    and the store read both see the intent and both latch live orders until Peter clears it.
+    Fail-closed is preserved end to end: if neither store can confirm the row, this returns False
+    and the caller submits nothing."""
+    if registry.enabled():
+        try:
+            if registry.put_rows([row]):
+                d = registry.load()
+                if d is not None:
+                    for r in d.get("orders") or []:
+                        lo = r.get("live_order") or r.get("live_rest") or {}
+                        if str(lo.get("client_id") or "") == str(cid) and lo.get("intent"):
+                            return True, "private store"
+        except Exception as ex:
+            LOG.append(f"registry intent verify failed: {str(ex)[:50]}")
+    return bool(intent_readable(cid)), "Gmail"
+
+
 def intent_readable(cid, tries=3, wait=5):
     """Nov 11 (Peter): SMTP success is NOT storage. Confirm the intent row can actually be READ
     BACK from the registry before any order is submitted - the same discipline the Polymarket
@@ -3191,7 +3222,8 @@ def journal_intent(r, book, asked):
              "Counts only.\n\n"
              "LEDGER (machine-readable, one row per play; latency = decision time minus first alert time)\n"
              + json.dumps([row]))
-        if not intent_readable(cid):   # SMTP success is not storage - read it back or place nothing
+        _ok, _where = intent_verified(cid, row)   # SMTP success is not storage - read it back or place nothing
+        if not _ok:
             try:
                 tg(f"ORDER INTENT UNREADABLE: the pre-order record for {book} was sent but could not be "
                    f"read back from the registry (client id {cid}).\nNO ORDER WAS PLACED. If that row did "
@@ -3199,21 +3231,15 @@ def journal_intent(r, book, asked):
             except Exception:
                 pass
             return False, None
-        # Nov 11: the intent row also goes into the private store, so the fast-path read sees
-        # unresolved intents exactly as the Gmail read does. A failed write clears the store's
-        # completeness marker, sending the next run back to Gmail - which already holds this row
-        # from the send() above - so the open-intent latch can never be weakened by a lost write.
-        # Gmail read-back above remains the precondition for the order; this does not gate it.
-        if registry.enabled():
+        # intent_verified() wrote the row to the store and read it back; if it had to fall back to
+        # Gmail the store may be missing this intent, so its completeness claim is dropped and the
+        # next run reads Gmail, which has the row from the send() above.
+        if registry.enabled() and _where != "private store":
             try:
-                if not registry.put_rows([row]):
-                    registry.invalidate()
-            except Exception as ex2:
-                LOG.append(f"registry intent write failed: {str(ex2)[:50]}")
-                try:
-                    registry.invalidate()
-                except Exception:
-                    pass
+                registry.invalidate()
+            except Exception:
+                pass
+        LOG.append(f"intent {cid} verified from {_where}")
         return True, cid
     except Exception as ex:
         try:
