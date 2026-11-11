@@ -454,9 +454,9 @@ def plays_card(now, rows):
     return (f'<div class="card"><h2>Live now — {len(live)} PLAY standing</h2>'
             f'<p class="note">The call is the alert line at the alert price or better, after fees. '
             f'Check the price before betting.</p><div class="scroll">{lt}</div></div>'
-            f'<div class="card"><h2>Called, not bet — the paper record ({tot})</h2>'
-            f'<p class="note">Every PLAY the board has called, newest first. None were bet: the board lane\'s money '
-            f'switch is off, so this is what it would have played. A call is frozen when it posts and never rewritten, '
+            f'<div class="card"><h2>Called, not bet — {tot}</h2>'
+            f'<p class="note">Every PLAY the board has called, newest first. The board lane\'s money switch is off, so '
+            f'none of these went in. A call is frozen when it posts and never rewritten, '
             f'so one whose money was pulled afterwards still grades as the PLAY it was.</p>'
             f'<div class="scroll">{dt}</div></div>')
 
@@ -552,7 +552,7 @@ td{{padding:5px 6px;border-bottom:1px solid var(--line);vertical-align:top}}.r{{
 <div class="tile"><div class="l">Today's LEAN calls graded</div><div class="n">{rec([r for r in rows if r["tag"] == "LEAN"])}</div></div>
 <div class="tile"><div class="l">v2 PLAY calls graded (old rule, still tracked)</div><div class="n">{rec([r for r in rows if r.get("v2") == "PLAY"])}</div></div>
 <div class="tile"><div class="l">Big-money moves today</div><div class="n">{len(rows)}</div></div></div>
-{plays_card(now, rows)}
+{plays_card(now, rows)}\n{live_plays_card()}
 <div class="card"><h2>Big money today, by bet type</h2>
 <p class="note"><b>Call (v3, from Nov 4):</b> PLAY = an NBA total alerted 4 hours or more before tip, money still there, one play per game total (the first alert; first side stays), at most 5 a night (first 5 by alert time). Bet the alert line at the alert price or better. LEAN = anything else still there, including later alerts on a game already played and NBA totals inside 4 hours. DEAD = pulled, flipped, late money, or any spread. Started games keep their kickoff call and grade W/L when final. The v2 call (NBA total, money still there, price not moved) keeps grading in its own tile. Paper signal. Every call is written down when it posts and never rewritten, so a PLAY whose money is pulled afterwards still grades as the PLAY it was.</p>
 <div class="legend"><span><i class="sw kalshi"></i>Kalshi</span><span><i class="sw novig"></i>Novig</span><span><i class="sw prophetx"></i>ProphetX</span><span><i class="sw polymarket"></i>Polymarket</span></div>
@@ -568,28 +568,6 @@ document.querySelectorAll('.filters button').forEach(b=>b.onclick=()=>{{
 document.querySelectorAll('.filters button').forEach(x=>x.classList.toggle('on',x===b));const f=b.dataset.f;
 document.querySelectorAll('tbody tr[data-league]').forEach(tr=>{{tr.style.display=!f||(f==='live'?(tr.dataset.tag==='PLAY'||tr.dataset.tag==='LEAN'):tr.dataset.league===f)?'':'none';}});}});
 </script></body></html>"""
-
-
-def lanes_card():
-    try:
-        L = json.load(open("lanes/lanes.json"))
-    except Exception:
-        return ""
-    out = []
-    for name, lab, bar in (("ml_stay", "LIQ-ML-STAY", "readout at 50 resulted; kill at 40 if <= 0.00u/play"),
-                           ("pull_fade", "LIQ-PULL-FADE", "readout at 40 resulted; kill at 30 if <= 0.00u/play"),
-                           ("solo", "LIQ-SOLO", "readout at 50; promote >= +0.08/play, ML >= +0.05, CLV >= 0; kill at 40 if <= 0.00u/play")):
-        es = [e for e in (L.get(name) or {}).values() if e.get("entered")]
-        g = [e for e in es if e.get("result") in ("W", "L", "P")]
-        w = sum(e["result"] == "W" for e in g)
-        l_ = sum(e["result"] == "L" for e in g)
-        u = sum(e.get("units") or 0 for e in g)
-        out.append(f"<tr><td>{lab}</td><td class=r>{len(es)}</td><td class=r>{w}-{l_}</td><td class=r>{u:+.2f}u</td>"
-                   f"<td class=r>{(u / len(g)) if g else 0:+.3f}</td><td class=muted>{bar}</td></tr>")
-    return ('<div class="card"><h2>Paper lanes (forward from Nov 2)</h2><p class="note">Pre-registered by Muse. Paper only; '
-            'entries at decision time, monitor prices. Full log: lanes/lanes.json in the repo.</p><table><thead><tr><th>Lane</th>'
-            '<th class=r>Entries</th><th class=r>Record</th><th class=r>Units</th><th class=r>Per play</th><th>Bar</th></tr></thead>'
-            f'<tbody>{"".join(out)}</tbody></table></div>')
 
 
 def live_plays_card():
@@ -701,7 +679,7 @@ def main():
     now, rows, flips = build()
     os.makedirs(OUT, exist_ok=True)
     with open(os.path.join(OUT, "index.html"), "w") as f:
-        f.write(page(now, rows, flips).replace("</div><script>", live_plays_card() + "</div><script>", 1))
+        f.write(page(now, rows, flips))
     print(f"Bets board: {len(rows)} rows, {sum(r['tag'] == 'PLAY' for r in rows)} PLAY, {len(flips)} flips; "
           f"frozen calls {len(CALLS_LOG)}, frozen PLAY {sum(1 for e in CALLS_LOG.values() if e.get('call') == 'PLAY')}")   # counts only
 
