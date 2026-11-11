@@ -150,14 +150,23 @@ def subject_hits(M, needle, prefix, days=4, senders=None):
         raise RuntimeError("Gmail subject search failed")
     out = []
     for uid in (data[0].split() if data and data[0] else []):
-        typ, d = M.uid("FETCH", uid, "(BODY.PEEK[HEADER.FIELDS (SUBJECT FROM SENDER)])")
+        typ, d = M.uid("FETCH", uid, "(X-GM-LABELS BODY.PEEK[HEADER.FIELDS (SUBJECT FROM SENDER)])")
         if typ != "OK" or not d or not d[0]:
             raise RuntimeError("Gmail header fetch failed")
-        msg = email.message_from_bytes(d[0][1])
+        msg = email.message_from_bytes(d[0][1] if isinstance(d[0], tuple) else d[0])
         subj = str(email.header.make_header(email.header.decode_header(msg.get("Subject") or "")))
         if not (subj.startswith(prefix) and str(needle) in subj):
             continue
-        if senders is not None:   # sender-verified: a matching subject alone is not authorization
+        if senders is not None:
+            # A From header PROVES NOTHING - anyone can forge it, and this mailbox is
+            # [Gmail]/All Mail, which includes RECEIVED mail. So authorization is the \Sent
+            # label: a message reaches Sent only by being sent THROUGH the authenticated
+            # account, which no forged inbound message can do. Credentials, not a header.
+            blob = b" ".join(x for part in d for x in (part if isinstance(part, tuple) else (part,))
+                             if isinstance(x, bytes))
+            if b"\\Sent" not in blob:
+                continue
+            # Belt and braces, after the label: the address must still be an authorized one.
             frm, snd = _addr(msg.get("From")), _addr(msg.get("Sender"))
             if frm not in senders or (snd and snd not in senders):
                 continue
@@ -166,10 +175,17 @@ def subject_hits(M, needle, prefix, days=4, senders=None):
 
 
 def intent_cleared(M, cid):
-    """True only for a DISTINCT, SENDER-VERIFIED, MANUAL authorization: an email whose SUBJECT
-    starts with 'INTENT CLEARED', names this client_id, AND comes from an authorized sender
-    (Nov 11, Peter). No automated email of this system carries that subject, so the bot cannot
-    clear its own intent; and a matching subject from anyone else is not authorization either.
+    """True only for a DISTINCT, AUTHENTICATED, MANUAL authorization: an email whose SUBJECT starts
+    with 'INTENT CLEARED', names this client_id, carries Gmail's \\Sent label, AND whose From is an
+    authorized address.
+
+    Why the label and not the header (Muse's question, Nov 11): a From header is trivially forged,
+    and this mailbox is [Gmail]/All Mail, which includes RECEIVED mail - so a forged inbound message
+    claiming to be Peter would otherwise have cleared an intent. The \\Sent label cannot be forged
+    from outside: a message only reaches Sent by being sent THROUGH the authenticated account, so
+    clearance now rests on account credentials rather than on a header anyone can type.
+
+    No automated email of this system carries that subject, so the bot cannot clear its own intent.
     Raises on a failed search or an unconfigured account -> the caller keeps refusing."""
     return bool(subject_hits(M, cid, INTENT_CLEAR_PREFIX, senders=authorized_senders()))
 

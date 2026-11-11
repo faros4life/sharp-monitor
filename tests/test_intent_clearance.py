@@ -42,10 +42,15 @@ class FakeIMAP:
     """Minimal IMAP double: holds (subject,) messages and answers UID SEARCH/FETCH like Gmail,
     including SUBJECT's substring behaviour, so the header re-check is actually exercised."""
 
-    def __init__(self, subjects, fail=False, sender=None):
-        # subjects may be a plain string or (subject, from_addr)
-        self.subjects = [(x if isinstance(x, tuple) else (x, sender or OWNER)) for x in subjects]
-        self.fail = fail
+    def __init__(self, subjects, fail=False, sender=None, labels=r"\\Sent"):
+        # subjects may be a plain string, (subject, from_addr) or (subject, from_addr, labels)
+        norm = []
+        for x in subjects:
+            if isinstance(x, tuple):
+                norm.append(x if len(x) == 3 else (x[0], x[1], labels))
+            else:
+                norm.append((x, sender or OWNER, labels))
+        self.subjects, self.fail = norm, fail
 
     def uid(self, cmd, *a):
         if self.fail:
@@ -53,14 +58,15 @@ class FakeIMAP:
         if cmd == "SEARCH":
             needle = [x for x in a if isinstance(x, str) and x.startswith('"')]
             n = needle[0].strip('"') if needle else ""
-            hits = [str(i).encode() for i, (s, _f) in enumerate(self.subjects) if n in s]   # substring, like IMAP
+            hits = [str(i).encode() for i, (s, _f, _l) in enumerate(self.subjects) if n in s]   # substring, like IMAP
             return "OK", [b" ".join(hits)]
         if cmd == "FETCH":
             i = int(a[0])
-            subj, frm = self.subjects[i]
+            subj, frm, labels = self.subjects[i]
             msg = _email.message.Message()
             msg["Subject"], msg["From"] = subj, frm
-            return "OK", [(b"", msg.as_bytes())]
+            pre = ("%s (X-GM-LABELS (%s) BODY[HEADER.FIELDS (SUBJECT FROM SENDER)] " % (i, labels)).encode()
+            return "OK", [(pre, msg.as_bytes())]
         return "NO", [None]
 
 
@@ -141,6 +147,28 @@ except BaseException:
     ck("A2. an unconfigured account cannot clear (raises)", True)
 finally:
     os.environ["GMAIL_ADDRESS"] = _ga
+
+# ================================================= A3. a FORGED sender cannot clear (Muse's question)
+# [Gmail]/All Mail includes RECEIVED mail, and a From header is trivially forged, so authorization
+# rests on the \\Sent label: only a message sent THROUGH the authenticated account carries it.
+M = FakeIMAP([(f"{ex.INTENT_CLEAR_PREFIX} {cid}", OWNER, r"\\Sent")])
+ck("A3. a genuinely SENT clearance clears", ex.intent_cleared(M, cid) is True)
+M = FakeIMAP([(f"{ex.INTENT_CLEAR_PREFIX} {cid}", OWNER, r"\\Inbox")])
+ck("A3. a FORGED inbound message with Peter's From does NOT clear",
+   ex.intent_cleared(M, cid) is False)
+M = FakeIMAP([(f"{ex.INTENT_CLEAR_PREFIX} {cid}", OWNER, "")])
+ck("A3. no labels at all does NOT clear (fail closed)", ex.intent_cleared(M, cid) is False)
+M = FakeIMAP([(f"{ex.INTENT_CLEAR_PREFIX} {cid}", OWNER, r"\\Important \\Inbox")])
+ck("A3. other labels without Sent do NOT clear", ex.intent_cleared(M, cid) is False)
+M = FakeIMAP([(f"{ex.INTENT_CLEAR_PREFIX} {cid}", OUTSIDER, r"\\Sent")])
+ck("A3. Sent but an unauthorized From does NOT clear", ex.intent_cleared(M, cid) is False)
+M = FakeIMAP([(f"{ex.INTENT_CLEAR_PREFIX} {cid}", OWNER, r"\\Sent \\Important")])
+ck("A3. Sent alongside other labels still clears", ex.intent_cleared(M, cid) is True)
+ck("A3. the label check sits BEFORE the From check in the code",
+   inspect.getsource(ex.subject_hits).index("\\\\Sent")
+   < inspect.getsource(ex.subject_hits).index('_addr(msg.get("From"))'))
+ck("A3. the code records WHY a header is not authentication",
+   "forged" in inspect.getsource(ex.subject_hits).lower())
 
 # ======================================================== B. read-back before submitting
 ex.intent_readable = _rb
