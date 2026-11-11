@@ -94,6 +94,11 @@ jobs:
             done
           fi
       - name: Build the board
+        env:
+          # Nov 11 (Peter): the board now shows the bot's own board-lane plays and why each one was
+          # or was not taken, which means reading the executor's ledger emails. Read-only.
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
         run: python -u board_build.py
       - name: Commit the frozen call log (Nov 5; the call each row had when it posted)
         run: |

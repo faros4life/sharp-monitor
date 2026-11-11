@@ -538,11 +538,110 @@ def lanes_card():
             f'<tbody>{"".join(out)}</tbody></table></div>')
 
 
+def live_plays_card():
+    """The bot's OWN board-lane plays, with the reason each one did or did not get placed.
+
+    Peter, Nov 11: the board shows its PLAY calls, but not what the bot actually did with them -
+    so a live play and a refused one looked identical from here. This reads the executor's own
+    ledger rows (its "Bets LIVE" emails, source == "board") and shows the outcome and the WHY.
+
+    The reason text is the executor's own, verbatim. It is not re-worded or summarised: when a play
+    is refused, the exact sentence that refused it is the useful thing, and a paraphrase of it is
+    how a reader comes to believe something slightly different from what happened.
+
+    Degrades to a stated message rather than an empty card: no Gmail credentials, an IMAP failure
+    or simply no board plays yet each print their own line, because a blank table and "nothing was
+    placed" look the same and mean very different things.
+    """
+    import datetime as _d
+    rows, err = [], None
+    try:
+        import executor as _ex
+        import rest_depth_report as _rd
+        since = (_d.datetime.now(_d.timezone.utc) - _d.timedelta(days=3)).strftime("%d-%b-%Y")
+        M = _ex.imap_open()
+        try:
+            for subj in ('"Bets LIVE:"', '"Bets dry run:"'):
+                got, _n = _rd.ledger_rows(M, subj, since)
+                rows += got
+        finally:
+            try:
+                M.logout()
+            except Exception:
+                pass
+    except Exception as ex:
+        err = f"{type(ex).__name__}: {str(ex)[:70]}"
+
+    board = [r for r in rows if str(r.get("source") or "") == "board"]
+    # one row per play, keeping the one that records a PLACEMENT over one that does not
+    def _placed(r):
+        los = [r.get("live_order") or {}, r.get("live_rest") or {}]
+        los += [x or {} for x in (r.get("live_more") or [])]
+        return any(l.get("status") == "placed" and l.get("order_id") for l in los)
+    seen = {}
+    for r in sorted(board, key=lambda r: str(r.get("decided_utc") or "")):
+        k = r.get("key") or r.get("play_key")
+        if not k:
+            continue
+        if k not in seen or (_placed(r) and not _placed(seen[k])):
+            seen[k] = r
+    board = sorted(seen.values(), key=lambda r: str(r.get("decided_utc") or ""), reverse=True)
+
+    out = []
+    for r in board[:40]:
+        # Peter, Nov 11: a play that CAME and was not taken matters as much as one that was, so the
+        # ways of not taking it are kept apart instead of collapsing into one label.
+        #   PLACED   an order went in
+        #   REFUSED  a safety gate fired at order time, after the play qualified
+        #   SKIPPED  the executor never reached an order - usually the price was gone
+        #   BLOCKED  it qualified but a lane or rule switch stopped it
+        lo = r.get("live_order") or {}
+        raw = str(lo.get("status") or "")
+        if raw in ("placed", "refused"):
+            st = raw
+        elif str(r.get("verdict") or "").upper() == "SKIP":
+            st = "skipped"
+        elif r.get("live"):
+            st = "would place"
+        else:
+            st = "blocked"
+        why = (lo.get("reason")
+               or "; ".join(str(x) for x in (r.get("live_why_not") or []))
+               or r.get("reason") or "")
+        cls = {"placed": "ok", "refused": "bad", "skipped": "muted",
+               "blocked": "bad", "would place": "muted"}.get(st, "muted")
+        key = str(r.get("key") or "").split("|")
+        game = key[1] if len(key) > 3 else str(r.get("key") or "")
+        side = f"{key[3]} {r.get('fill_line') if r.get('fill_line') is not None else ''}" if len(key) > 3 else ""
+        px = r.get("fill_price_after_fee")
+        t = str(r.get("decided_utc") or "")[11:16]
+        out.append(
+            f'<tr><td class=muted>{t}</td><td>{game}</td><td>{side}</td>'
+            f'<td>{r.get("fill_book") or ""}</td>'
+            f'<td class=r>{(f"{px:+d}" if isinstance(px, int) else "")}</td>'
+            f'<td class="{cls}">{st.upper()}</td><td class=muted>{why}</td></tr>')
+
+    if err:
+        body = f'<tr><td colspan=7 class=muted>Ledger unreadable ({err}) - this card cannot say what the bot did.</td></tr>'
+    elif not board:
+        body = '<tr><td colspan=7 class=muted>No board-lane plays in the executor ledger for the last 3 days.</td></tr>'
+    else:
+        body = "".join(out)
+    return ('<div class="card"><h2>Live plays - what the bot actually did</h2>'
+            '<p class="note">The board lane only. Straight from the executor ledger, last 3 days, newest first. '
+            'PLACED = an order went in. REFUSED = a gate fired at order time. SKIPPED = never reached an '
+            'order, usually the price was gone. BLOCKED = qualified but a switch stopped it. Every reason is '
+            'the executor\'s own words, not a summary. A quote is not a fill.</p>'
+            '<div class="scroll"><table><thead><tr><th>ET</th><th>Game</th><th>Bet</th><th>Book</th>'
+            '<th class=r>Price</th><th>Outcome</th><th>Why</th></tr></thead>'
+            f'<tbody>{body}</tbody></table></div></div>')
+
+
 def main():
     now, rows, flips = build()
     os.makedirs(OUT, exist_ok=True)
     with open(os.path.join(OUT, "index.html"), "w") as f:
-        f.write(page(now, rows, flips).replace("</div><script>", lanes_card() + "</div><script>", 1))
+        f.write(page(now, rows, flips).replace("</div><script>", live_plays_card() + "</div><script>", 1))
     print(f"Bets board: {len(rows)} rows, {sum(r['tag'] == 'PLAY' for r in rows)} PLAY, {len(flips)} flips; "
           f"frozen calls {len(CALLS_LOG)}, frozen PLAY {sum(1 for e in CALLS_LOG.values() if e.get('call') == 'PLAY')}")   # counts only
 
