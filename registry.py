@@ -310,6 +310,65 @@ def put_strikes(newly):
     return _commit(merge)
 
 
+def tokens_complete(now=None):
+    """True when the token store (xpid dedupe, xrty retry, xwp side-taken) is known to hold
+    everything Gmail holds for the window AND that claim was refreshed recently.
+
+    Same two-part rule as is_complete() for orders, and for the same reason: invalidate() is itself
+    a write, so a claim that must be re-asserted every run cannot outlive the ability to write it.
+    One failed refresh and the next run reads Gmail, which is always complete."""
+    d = load()
+    if d is None:
+        return False
+    meta = d.get("meta") or {}
+    cut = (datetime.now(timezone.utc) - timedelta(days=KEEP_DAYS)).strftime("%Y-%m-%d")
+    if str(meta.get("tok_complete_through") or "") < cut:
+        return False
+    stamp = str(meta.get("tok_complete_at") or "")
+    if not stamp:
+        return False
+    try:
+        at = datetime.fromisoformat(stamp.replace("Z", "+00:00"))
+    except Exception:
+        return False
+    age = ((now or datetime.now(timezone.utc)) - at).total_seconds()
+    return 0 <= age <= FRESH_MIN * 60
+
+
+def set_tokens_complete():
+    stamp = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    day = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+
+    def merge(d):
+        d.setdefault("meta", {}).update({"tok_complete_through": day, "tok_complete_at": stamp})
+    return _commit(merge)
+
+
+def invalidate_tokens():
+    return _commit(lambda d: d.setdefault("meta", {}).update({"tok_complete_through": ""}))
+
+
+def token_set():
+    """Every stored token. {} if unreadable - the caller then falls back to Gmail."""
+    d = load()
+    return set() if d is None else set((d.get("handled") or {}).keys())
+
+
+def put_tokens(toks, outcome="seen"):
+    """Record tokens (xpid / xrty / xwp). Additive; an existing token keeps its first outcome."""
+    keep = sorted({str(t) for t in toks if t})
+    if not keep:
+        return True
+    ts = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+    def merge(d):
+        h = d.setdefault("handled", {})
+        for t in keep:
+            if t not in h:
+                h[t] = {"outcome": outcome, "ts": ts}
+    return _commit(merge)
+
+
 def put_order(rec):
     """Record a PLACED order. client_id is the money identity, so a repeat is an update."""
     return _commit(lambda d: _upsert(d.setdefault("orders", []), dict(rec)))

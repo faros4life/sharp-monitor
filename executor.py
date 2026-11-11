@@ -935,6 +935,9 @@ LEDGER_ROWS = []   # Nov 11: the ledger rows bot_orders() parsed THIS RUN, from 
 # read. kalshi_rest_reports() reuses them instead of running a second full "Bets LIVE:" scan with
 # its own RFC822 fetches - the same work, done twice, measured at 68.6s. Empty means bot_orders()
 # has not run or could not read, and the reporter then falls back to its own scan.
+TOKRE = re.compile(r"\b(?:xpid|xrty|xwp)[0-9a-f]{12}\b")
+TOKENS_SEEN = set()   # Nov 11: every dedupe/side token found while bot_orders already had the
+# "Bets LIVE:" emails open. Collected there so the token backfill costs NO extra Gmail scan.
 SEEN = {"tok": {}}   # this run's token map from handled_pids(): xpid -> handled, xrty -> already alerted
 HANDLED_DAYS = 4   # Nov 11 (Peter, "why are you looking back so far"): the dedupe search had NO date
 # bound at all - X-GM-RAW "xpid..." scanned the whole mailbox history, for every pid, every run, which
@@ -969,6 +972,18 @@ def handled_pids(M, cands, chunk=20, days=HANDLED_DAYS):
                   | {retry_tok(k) for p in cands for k in handled_keys(p)})
     if not want:
         return {}
+    # Nov 11 (Peter): the private registry answers this when it is known complete AND the claim is
+    # fresh - no Gmail at all. Measured 13.6s on Gmail for 21 candidates against ~0.3s for one
+    # contents GET. Until the token backfill has run, or if the store cannot be read, Gmail is used
+    # exactly as before: a store that might be missing a token must never answer "not handled",
+    # because that is how a play gets processed - or bet - twice.
+    if registry.enabled():
+        try:
+            if registry.tokens_complete():
+                have = registry.token_set()
+                return {x: (x in have) for x in want}
+        except Exception as ex:
+            LOG.append(f"token store unreadable, using Gmail: {str(ex)[:50]}")
     uids, seen = [], set()
     for i in range(0, len(want), chunk):
         q = f"newer_than:{days}d (" + " OR ".join(want[i:i + chunk]) + ")"
@@ -2128,6 +2143,7 @@ def bot_orders(M, days=4):
             i = txt.rfind("LEDGER (machine-readable")
             if i < 0:
                 return None   # a live email without its ledger: can't trust the registry
+            TOKENS_SEEN.update(TOKRE.findall(txt))   # free: this text is already in hand
             rows, _ = json.JSONDecoder().raw_decode(txt[txt.index("[", i):])
             all_rows.extend(rows)
             _account_rows(rows, graded, ids, seen_oids, _intents, _confirmed)
@@ -2137,10 +2153,12 @@ def bot_orders(M, days=4):
         if registry.enabled():
             try:
                 with perf("registry backfill (private store)"):
-                    if registry.put_rows(all_rows):
+                    if registry.put_rows(all_rows) and registry.put_tokens(TOKENS_SEEN):
                         registry.set_complete_through(datetime.now(timezone.utc).strftime("%Y-%m-%d"))
+                        registry.set_tokens_complete()   # the same emails carried both
                     else:
                         registry.invalidate()
+                        registry.invalidate_tokens()
             except Exception as ex:
                 LOG.append(f"registry backfill failed: {str(ex)[:60]}")
         LEDGER_ROWS[:] = all_rows
@@ -2321,6 +2339,22 @@ def watchdog_once(now, plays, rplays, feed):
             muse_watchdog(now, plays, rplays, feed)
         except Exception as ex:
             print(f"muse watchdog failed: {str(ex)[:60]}")
+
+
+def run_tokens(results):
+    """The dedupe / retry / side-taken tokens this run produced, in the SAME shape fmt() writes
+    into the run email. Nov 11: the registry has to learn them or it would answer from an
+    ever-staler snapshot while Gmail quietly stayed the only current source.
+
+    Derived from the rendered tag rather than re-deriving the rules, so the two cannot disagree:
+    whatever the email records as handled is exactly what the store records as handled."""
+    toks = set()
+    for r in results or []:
+        try:
+            toks.update(TOKRE.findall(fmt(r)))
+        except Exception:
+            continue
+    return toks
 
 
 def fill_reports():
@@ -3598,8 +3632,17 @@ def main():
     # inside the period that can still matter is found, and games here start within hours of an
     # alert.
     _wp_ask = {wp(ok) for p in new if (ok := opposite_key(p))}
-    with perf("taken(): opposite-side check (one batched search)", n=len(_wp_ask), rollup=True):
-        _wp_hit = sent_tokens(M2, sorted(_wp_ask), days=HANDLED_DAYS) if _wp_ask else set()
+    _wp_from_store = False
+    if registry.enabled() and _wp_ask:
+        try:
+            if registry.tokens_complete():
+                _have = registry.token_set()
+                _wp_hit, _wp_from_store = {t for t in _wp_ask if t in _have}, True
+        except Exception as ex:
+            LOG.append(f"token store unreadable for taken(), using Gmail: {str(ex)[:50]}")
+    if not _wp_from_store:
+        with perf("taken(): opposite-side check (one batched search)", n=len(_wp_ask), rollup=True):
+            _wp_hit = sent_tokens(M2, sorted(_wp_ask), days=HANDLED_DAYS) if _wp_ask else set()
 
     def taken(k):   # this run, or any earlier WOULD PLACE / PLACED entry
         # Nov 8: strict, for the same reason as already_handled. This is "first side stays": a
@@ -3807,6 +3850,19 @@ def main():
     body += [lane2.summary_line(), ""]   # Nov 4: Lane 2 counts (private email; dollars never in the public log)
     body += [lane_report(results), ""]   # Nov 11: per-lane counts and exposure, Board v3 and R1 separate
     try:
+        # Nov 11: teach the store this run's tokens BEFORE the email goes out, so a crash between
+        # the two cannot leave the registry claiming completeness while missing them. A failed
+        # write clears the token marker, and the next run reads Gmail - which has them from the
+        # email below - rather than trusting an incomplete store.
+        try:
+            if registry.enabled() and not registry.put_tokens(run_tokens(results)):
+                registry.invalidate_tokens()
+        except Exception as _ex:
+            LOG.append(f"token write failed: {str(_ex)[:50]}")
+            try:
+                registry.invalidate_tokens()
+            except Exception:
+                pass
         # AFTER every order, never before: these gate nothing (Nov 11). The watchdog moved here
         # from the pre-order path for the same reason - its own email says "This blocks nothing -
         # Muse is a veto, so only a DISAGREE stops a play", and read_verdicts() already loaded
