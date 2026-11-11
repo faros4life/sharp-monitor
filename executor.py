@@ -33,6 +33,10 @@ from email.mime.text import MIMEText
 
 import book_check as bc
 import liquidity_monitor as lm
+try:   # Nov 11: fee-model stamp for the ledger's fee_basis (logging only; never a gate)
+    from clv_std import FEE_MODEL
+except Exception:
+    FEE_MODEL = None
 import agree_rules
 import lane2   # Nov 4: Lane 2 LOW-limit sharp alerts, DRY RUN ONLY (Peter 4:01 PM "no live play")
 import positions
@@ -1836,6 +1840,15 @@ def pmus_rest_sweep(now):
                      f"Resting bid {oid} on {slug} reached T-30.\n"
                      f"{res.get('status')}: {res.get('state') or res.get('reason') or ''}\n\n"
                      f"pmusdone{oid}")
+                # Nov 11 (Peter, notification reliability): submitted, partial, filled, rejected and
+                # resting all reach Telegram already; a CANCEL only went to email, so the one order
+                # state that silently frees exposure was the one Peter could not see on his phone.
+                try:
+                    tg(f"{'CANCELLED' if ok else 'CANCEL FAILED'} Polymarket US: resting bid on {slug[:40]} "
+                       f"reached T-30.\n{res.get('status')}: {res.get('state') or res.get('reason') or ''}"
+                       + ("" if ok else "\nIt rests until end of day - cancel it in the app."))
+                except Exception:
+                    pass   # notification must never change the cancel outcome
                 if not ok:
                     push("PM US cancel FAILED", f"{slug}\n{oid}\n{str(res.get('reason'))[:120]}\n"
                                                 f"Cancel it in the app - it rests until end of day.", mirror=False)
@@ -2264,6 +2277,21 @@ def ledger_row(r, run_start):
             "px_best_after_fee": ((r.get("books") or {}).get("prophetx") or {}).get("best_price_american"),
             "px_best_line": ((r.get("books") or {}).get("prophetx") or {}).get("line"),
             "books_at_decision": books_snapshot(r),
+            # Nov 11 (Peter, check 10): every venue CONSIDERED for the live order, with its raw and
+            # after-fee price, the line, the depth at the threshold, and the fee basis actually
+            # applied - so the routing decision can be audited after the fact rather than inferred
+            # from the winner alone. Logging only; nothing here feeds a decision.
+            "venues_considered": [{"book": c.get("book"), "after_fee": c.get("am"), "screen": c.get("shown"),
+                                   "line": c.get("line"), "depth_at_thr": c.get("avail"), "thr": c.get("thr"),
+                                   "tolerance_cents": (PX_TOL_CENTS if c.get("book") in TOL_BOOKS else 0),
+                                   "maker": False}
+                                  for c in (r.get("lcs") or [])],
+            "fee_basis": {"model": FEE_MODEL, "taker": True,
+                          "win_fee": WIN_FEE.get(lv.get("book") or r.get("book")),
+                          "tol_books": list(TOL_BOOKS), "tol_cents": PX_TOL_CENTS},
+            # Nov 11 (check 8): what the order-time re-read of the chosen venue found, or why it refused
+            "revalidated": lv.get("reval"),
+            "journaled": (lv.get("order") or {}).get("journaled"),
             "old_rule_would_block": old_rule_block(r),
             "stack_cap": stack_cap_report(r),
             "lane2": ({k: e.get(k) for k in ("label", "limit", "limit_how", "median", "market", "book_key", "hr_priced", "edge_pct",
