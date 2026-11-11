@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Tue Nov 10, 11:50 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 36.
+Updated Tue Nov 10, 11:57 PM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 37.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,10 +10,11 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 10 11:57PM | NBA | Washington vs Indiana | moneyline: Washington | kalshi | $36k | +144 | ✅ novig | ✅ | +0.0c |  | pending |
 | Nov 10 10:51PM | NBA | Oklahoma City Thunder @ Portland Trail Blazers | spread: POR +1.5 (1.5) | novig | $83k | -104 | ✅ kalshi | ❌ | +0.0c |  | pending |
-| Nov 10 10:51PM | NBA | Boston vs Toronto | moneyline: Boston | kalshi | $62k | -213 |  |  | +2.0c |  | pending |
+| Nov 10 10:51PM | NBA | Boston vs Toronto | moneyline: Boston | kalshi | $62k | -213 |  |  | +3.0c |  | pending |
 | Nov 10 10:20PM | NBA | Oklahoma City Thunder @ Portland Trail Blazers | moneyline: POR (0) | novig | $42k | +111 | ✅ kalshi,prophetx | ❌ | +0.5c |  | pending |
-| Nov 10 10:11PM | NBA | Oklahoma City vs Portland | moneyline: Portland | kalshi | $29k | +122 |  |  | +3.0c | yes | pending |
+| Nov 10 10:11PM | NBA | Oklahoma City vs Portland | moneyline: Portland | kalshi | $29k | +122 |  |  | +1.0c | yes | pending |
 | Nov 10 10:11PM | NBA | Denver vs Memphis | moneyline: Denver | kalshi | $149k | -150 |  |  | +0.0c |  | pending |
 | Nov 10 9:50PM | NBA | Oklahoma City vs Portland: Total Points | total: NOT Over 226.5 points | kalshi | $53k | -108 |  | ✅ | -1.0c | yes | pending |
 | Nov 10 9:50PM | NBA | Orlando vs Utah | moneyline: Orlando | kalshi | $46k | -156 |  |  | +0.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 8 3:10PM | NBA | 76ers vs. Bulls | spread: Bulls (+9.5) | polymarket | $470k | -108 | ✅ kalshi,novig | ✅ | +0.0c |  | W |
 | Nov 8 3:10PM | NHL | Golden Knights vs. Sabres | moneyline: Sabres | polymarket | $38k | -100 | ✅ kalshi |  | -1.0c | yes | L |
 | Nov 8 3:10PM | NHL | Tampa Bay vs Winnipeg: Spread | spread: NOT Tampa Bay wins by over 1.5 goals | kalshi | $36k | -186 | ✅ novig |  | -1.0c |  | W |
-| Nov 8 3:00PM | NFL | Green Bay Packers @ New England Patriots | moneyline: GB (0) | novig | $41k | +160 | ✅ kalshi |  | +0.5c |  | W |
