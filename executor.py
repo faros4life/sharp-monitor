@@ -1557,6 +1557,10 @@ def live_order(r):
     """Phase-1 live order (only when EXEC_LIVE is on): ProphetX here, Kalshi / Polymarket US via live_order_other (Oct 28).
     Returns the order record for the email/ledger."""
     lv, p = r["live"], r["play"]
+    if journal_latch_why():   # Nov 11: a lost durable row means unknown exposure - place nothing more.
+        return {"status": "refused",          # First gate, so no other refusal reason can mask it.
+                "reason": f"order journal failed earlier this run ({journal_latch_why()}) - no further "
+                          f"orders until the next run's registry read reconciles exposure"}
     hr = agree_rules.hr_priced(r.get("entry") or {})   # Oct 27: re-check the PRICING book at placement; unknown = refuse
     if hr is not False:
         return {"status": "refused", "reason": "Hard Rock-priced alert: never live" if hr else "pricing book unknown (fail closed)"}
@@ -1867,6 +1871,10 @@ def rest_bid(r):
     alert line: Kalshi (good-till-cancelled with an expiry) or Novig (GTT on the home PC). Same unit, cap, STOP and
     daily stop as live fills; the whole amount counts as risked until it expires or settles."""
     p, e, books = r["play"], r.get("entry") or {}, r.get("books") or {}
+    if journal_latch_why():   # Nov 11: unknown exposure places nothing, resting bids included
+        return {"status": "refused",
+                "reason": f"order journal failed earlier this run ({journal_latch_why()}) - no further "
+                          f"orders until the next run's registry read reconciles exposure"}
     try:
         st = datetime.fromisoformat(str(p.get("start_utc")).replace("Z", "+00:00"))
     except Exception:
@@ -2315,7 +2323,24 @@ def send(subject, body):
         s.sendmail(user, [to], msg.as_string())
 
 
-JOURNAL = {"sent": 0, "failed": 0}
+JOURNAL = {"sent": 0, "failed": 0, "latch": None}
+
+
+def journal_latch_why():
+    """Nov 11 (Peter): "if journal persistence fails, prevent further orders until reconciliation
+    establishes the actual exposure."
+
+    A failed durable row means this run holds an order the registry may not know about, so the
+    bot's own exposure is UNKNOWN - and unknown exposure is the one condition this system never
+    places money under (the same rule as an unreadable registry or unreadable board exposure).
+    The latch blocks every further order and resting bid for the rest of the run.
+
+    Scope, stated plainly: the latch is per-run, which is the whole window it can act in. It is
+    cleared by the next run, whose bot_orders() re-reads the Gmail registry and rebuilds exposure
+    from the venue ledgers - that read IS the reconciliation. If the end-of-run ledger did send,
+    the order is in the registry and nothing was lost; if the run was killed first, the order is
+    missing and the latch is what stopped the run adding more to an exposure it could not count."""
+    return JOURNAL["latch"]
 
 
 def journal_order(r, lo, is_rest=False):
@@ -2361,6 +2386,9 @@ def journal_order(r, lo, is_rest=False):
         return True
     except Exception as ex:
         JOURNAL["failed"] += 1
+        # LATCH: no further orders this run. Exposure is now unknown, and unknown exposure never places.
+        JOURNAL["latch"] = (f"{book} order {oid} is placed but its durable registry row did not send "
+                            f"({str(ex)[:80]})")
         try:   # LOUD: without this row a kill loses the order from the registry
             tg(f"ORDER JOURNAL FAILED: {book} order {oid} is PLACED but its durable registry row did not "
                f"send ({str(ex)[:120]}).\nIf this run is killed before its ledger email, the daily stop will "
