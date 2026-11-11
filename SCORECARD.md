@@ -57,7 +57,7 @@ paper test today is CONTINUE. The binding constraint is fills, not CLV.
 | 4 | HR SCANNER FLAGS | — | real money | — | KEPT |
 | 5 | STREET VALUE | — | real money | — | KEPT |
 | 6 | STEAM | feed-wide 708 graded, −0.26u, −0.0%, day-CI [−6.4, +5.7]% | none (paper since 17 Oct) | 11 Nov | KEPT + ON · **CLEAR FAIL** feed-wide |
-| 7 | BETS BOARD PLAYS | — | real money | — | keep/delete open as a lane |
+| 7 | BETS BOARD PLAYS | **PLAY 62 graded, +20.43u, +33.0%** — but 48 of those are `recon: true`, reconstructed retrospectively (22 Oct–5 Nov, +12.84u, +26.8%). **Forward-logged only: 14 graded, +7.59u, +54.2%** (6–10 Nov). All 62 are NBA totals. **LEAN 308 graded, +20.65u, +6.7%**, all forward, from 5 Nov. DEAD 228, −9.36u, −4.1% | board paper for live money since 4 Nov; PLAY calls hand-bet | 11 Nov | **CONTINUE TESTING** — forward n=14; recon rows are hindsight and must not be pooled |
 
 ### PAPER TESTS
 
@@ -170,6 +170,18 @@ Daily certification runs 7–23% with no trend — a structural property of same
 backlog that clears.
 
 ---
+
+## Hindsight rows: never pooled with forward rows
+
+`board/calls.json` carries a `recon` flag. **48 of the 62 graded Bets Board PLAY calls are
+`recon: true`** — reconstructed retrospectively on 6 Nov from alerts that had already resulted,
+covering 22 Oct–5 Nov. They are hindsight, not observations, and the headline +33.0% is not a
+forward record. Forward-logged PLAY calls stand at 14 graded (6–10 Nov). LEAN is 308 graded and
+entirely forward. Any future report on entry 7 states the two counts separately.
+
+The same rule already applies elsewhere and is restated here so it is in one place: the liquidity
+lanes' 22–31 Oct backtest is never part of their record (`lanes.py`), and the EV study's
+pre-registered buckets are judged only on sightings after 31 Oct 14:35Z.
 
 ## Open discrepancies to settle (not changed here)
 
