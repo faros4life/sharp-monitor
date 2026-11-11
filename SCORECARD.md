@@ -162,28 +162,42 @@ sitting at ELIGIBLE are cuts of this one record.
 
 | Basis | n | Games | Days | Record | Units | ROI | Day-clustered 95% CI |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| As published | 62 | 61 | 19 | 42-20 | +20.43u | +33.0% | [+11.3, +54.9]% |
+| As published (trigger book) | 62 | 61 | 19 | 42-20 | +20.43u | +33.0% | [+11.3, +54.9]% |
 | One play per game | 61 | 61 | 19 | — | +19.52u | +32.0% | [+11.0, +55.2]% |
-| **Kalshi only = executable** | **41** | **40** | **15** | **28-13** | **+14.05u** | **+34.3%** | **[+11.3, +58.4]%** |
-| Kalshi, one per game | 40 | 40 | 15 | 27-13 | +13.14u | +32.9% | [+8.7, +57.4]% |
-| Polymarket GLOBAL | 21 | 21 | 13 | 14-7 | +6.38u | +30.4% | [−16.7, +75.1]% |
+| **EXECUTABLE: gettable at the alert price or better at any bettable exchange** | **53** | **52** | **17** | **36-17** | **+17.81u** | **+33.6%** | **[+10.7, +56.0]%** |
+| Executable, one per game | 52 | 52 | 17 | 35-17 | +16.90u | +32.5% | [+8.8, +55.7]% |
+| Not gettable | 9 | — | — | — | +2.62u | +29.1% | — |
 
-- **Dedupe:** survives. 62 calls sit on 61 distinct games; v3 already enforces one play per game total.
-- **Executable price:** median −104, **none worse than −130**, 6 plus-money — all in range. But
-  **21 of 62 (34%) were priced on Polymarket GLOBAL, which cannot be bet from the US** and which
-  `clv_std` refuses to price (`NotTradeable`). `board_build.after_fee_dec` maps `"polymarket"` to
-  `PMUS_FEE`, i.e. it prices the global book at the US fee. Independently confirmed by
-  `board_clv_check`: 20 of 58 excluded for the same reason. The executable record is Kalshi only.
-- **Certified CLV (`board_clv_check`, last run):** **30 of 58 verified — maker −0.41%, taker −2.90%,
-  beat close 12/30 = 40.0%, and negative in BOTH halves (H1 −0.73%, H2 −0.09%)** while units are
-  positive in both (+4.75u, +4.73u). Peter's gate: **FAIL**.
-- **Selection-bias controls:** the rule was rewritten twice while outcomes were visible and each
-  rewrite improved the record — v1 PLAY +17.3% (n=6) → v2 +29.0% (n=32) → **v3 +33.0% (n=62)**.
-  v3 was authored 4 Nov with 22 Oct–3 Nov results in view. Forward-only since the 6 Nov rebuild:
-  12 Kalshi plays, +5.62u, +46.8%, CI [+12.3, +97.0] — out-of-sample but n=12 on 4 days.
-- **Multiplicity:** the Kalshi CI stops excluding zero once the family is priced —
-  m=1 [+10.0, +58.3] · m=3 (rule versions) [+4.9, +62.8] · m=5 (ELIGIBLE candidates) [+2.7, +65.5] ·
-  **m=8 [−1.2, +67.6] contains zero** · m=12 [−1.6, +68.7].
+**Execution standard applied: the alert price or nothing** (with resting bids we get our price or no
+fill), same line, at a venue Peter can bet — Kalshi, Novig or ProphetX, after each venue's own fee.
+The trigger venue is irrelevant to whether a play was executable.
+
+- **Dedupe: survives.** 53 executable calls sit on 52 distinct games; v3 already enforces one play
+  per game total. Deduped: +32.5%.
+- **Executable price: survives.** **53 of 62 (85%) were gettable.** Execution venue would have been
+  **Novig 39 · Kalshi 10 · ProphetX 4** — the same venue profile as Lane 1's real fills (40 of 41
+  at Novig). Of the 9 that were not gettable, 4 had no bettable exchange on that exact line and 5
+  were quoted worse than the alert price after fees.
+  **Correction, 11 Nov:** an earlier version of this row screened on the *trigger* book and reported
+  only 41 Kalshi plays as executable, haircutting 34% as unbettable Polymarket GLOBAL. That was
+  wrong. **15 of the 21 globally-triggered plays (71%) were available at the alert price or better
+  on Novig, Kalshi or ProphetX.** A global trigger means the trigger venue was unbettable, not the
+  play.
+- **Multiplicity: survives.** Bonferroni on the day-clustered CI — m=1 [+11.0, +56.2] · m=3
+  [+5.8, +61.1] · m=5 [+3.8, +63.6] · m=8 [+1.8, +64.1] · **m=12 [+0.3, +66.9], still excludes
+  zero.**
+- **Chronological stability: decaying.** H1 +51.3% [+27.7, +73.7] · **H2 +16.6% [−14.7, +55.5]
+  (contains zero)**. Weeks +43.5% · +47.2% · +18.2% · +21.7% — all positive, trending down.
+  Forward only, since the 6 Nov rebuild: 12 plays, +5.69u, +47.4%, CI [+5.4, +98.0].
+- **Selection bias: present.** The rule was rewritten twice with outcomes visible and each rewrite
+  improved the record — v1 PLAY +17.3% (n=6) → v2 +29.0% (n=32) → **v3 +33.0% (n=62)**. v3 was
+  authored 4 Nov with 22 Oct–3 Nov results in view.
+- **Certified CLV: negative, but computed on a mis-specified population.** `board_clv_check`'s last
+  run: 30 of 58 verified, maker −0.41%, taker −2.90%, beat close 12/30, negative in both halves
+  (−0.73%, −0.09%). **It excluded 20 rows for being priced on global Polymarket** — and 15 of those
+  were gettable at a bettable venue, so they should have been priced there rather than dropped.
+  Under the adopted policy a CLV figure on the wrong population cannot veto; it also cannot support.
+  **This is open item O6 and it is now the blocking measurement defect, not a strategy verdict.**
 - **Nightly cap, reported not tuned:** play #1 +37.8% (20) · #2 +21.8% (16) · #3 +56.8% (10) ·
   #4 +54.6% (9) · **#5 −17.0% (7)**. Cutting #5 would be threshold tuning and is not proposed.
 - **Fills: zero.** `EXEC_BOARD_LIVE` is off; the board is paper for live money since 4 Nov.
@@ -322,7 +336,7 @@ Numbers unavailable here are marked with what is needed.
 | O3 | Registry 21 has no recorded final verdict; the report due 10 Nov was never sent | open | Peter/Muse to record the verdict |
 | O4 | `ncaab_grade.py` CLV is `close/open − 1` — no entry price, no fees; not comparable to CLV_STANDARD | open | decision on whether to restate or retire the metric |
 | O5 | No script imports `clv_std`; `ncaab_grade.eff()` is a fifth parallel fee copy returning raw prices for unknown venue keys | open | migration is approved-per-change work, not started |
-| O6 | `board_build.after_fee_dec` prices Polymarket GLOBAL at the US fee | open | affects 21 of 62 v3 PLAY rows; global is already out of `LIQ_BOOKS` for generation |
+| O6 | **Board calls are priced at the TRIGGER venue, not the best bettable venue.** `board_build.after_fee_dec` also prices Polymarket GLOBAL at the US fee. Consequence: `board_clv_check` drops 20 of 58 rows as unbettable when 15 of them were gettable on Novig/Kalshi/ProphetX, so the −0.41% certified CLV is computed on the wrong population | **open — now the blocking defect for the NBA-totals family** | price each call at the best bettable exchange quoting that line, then recompute certified CLV |
 | O7 | Registry entries with no numbers on this scorecard | open | their own report emails: Resting Bids (2), Peter Feed Plays (3), HR Scanner Flags (4), Street Value (5), Lane 2 (8), POST & WAIT (10), DOG BAND (12), P-NHL-DOGS (15), P-CFB/NFL-OVER (16), HR-A (17), PLIMIT-CUT (19), EX-B (20), plus lenses 24-26 and research 27-32 |
 | O8 | Zero confirmed fills outside Lane 1 | open | structural: nothing else is live |
 | O9 | Certified CLV coverage is low and non-representative (NHL 56% vs NBA 7%) | open | fixture-matching quality is a standing objective |
