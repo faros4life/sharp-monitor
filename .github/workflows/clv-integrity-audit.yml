@@ -1,0 +1,28 @@
+name: clv-integrity-audit
+
+# CLV integrity audit (Peter, Nov 10 2026, authorised): read-only. Reads clv/state.enc + tracker/state.enc.
+# Deletes nothing, recalculates nothing, changes no rule. Dispatch-only.
+# No OddsPapi key is passed, so it cannot make a provider call. Dollars by private email; log counts only.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: CLV integrity audit (read-only; dollars by private email, log counts only)
+        env:
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+        run: python -u clv_integrity_audit.py
