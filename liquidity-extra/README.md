@@ -1,19 +1,21 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 11, 9:57 AM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 27.
+Updated Wed Nov 11, 10:10 AM ET. This run: 2 new, 0 not confirmed, 0 pending. Open alerts: 27.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 207-117 (-12.81u flat) | rule met: 43-33
+**Record:** 208-118 (-13.33u flat) | rule met: 43-34
 
-**Fade (paper, betting against the print):** 92-172 (-0.58u flat, after fees)
+**Fade (paper, betting against the print):** 93-173 (-0.29u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 11 8:21AM | TENNIS | Sonego vs Tabilo | moneyline: Tabilo | kalshi | $223k | -194 |  |  | -13.0c |  | pending |
+| Nov 11 10:10AM | NCAAB | William & Mary vs Florida Atlantic | moneyline: Florida Atlantic | kalshi | $26k | -203 | ✅ novig |  | +0.0c |  | pending |
+| Nov 11 10:10AM | NCAAB | Nevada vs UC Santa Barbara | moneyline: Nevada | kalshi | $32k | -100 | ✅ novig |  | +0.0c |  | pending |
+| Nov 11 8:21AM | TENNIS | Sonego vs Tabilo | moneyline: Tabilo | kalshi | $223k | -194 |  |  | -13.0c |  | W |
 | Nov 11 7:59AM | TENNIS | Shevchenko vs Ruud | moneyline: Ruud | kalshi | $26k | -456 | ✅ novig |  | -1.0c |  | pending |
 | Nov 11 4:56AM | TENNIS | Sabalenka vs Andreeva | moneyline: Sabalenka | kalshi | $160k | -104 |  |  | +1.0c | yes | pending |
-| Nov 11 4:34AM | TENNIS | Sonego vs Tabilo | moneyline: Sonego | kalshi | $30k | -144 | ✅ novig |  | +1.0c | yes | pending |
+| Nov 11 4:34AM | TENNIS | Sonego vs Tabilo | moneyline: Sonego | kalshi | $30k | -144 | ✅ novig |  | +1.0c | yes | L |
 | Nov 11 4:11AM | TENNIS | Kecmanovic vs Rune | moneyline: Rune | kalshi | $53k | -245 |  |  | +0.0c |  | pending |
 | Nov 11 2:43AM | NCAAB | Southern Indiana vs IU Indy | moneyline: IU Indy | kalshi | $148k | -270 |  |  | +4.0c |  | pending |
 | Nov 11 2:43AM | NCAAB | USC vs California | moneyline: USC | kalshi | $220k | -335 |  |  | +0.0c |  | pending |
@@ -208,5 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 31 1:43AM | TENNIS | Carreno Busta vs Bellucci | moneyline: Bellucci | kalshi | $47k | -133 |  |  | +4.0c | yes | W |
 | Oct 30 11:40PM | TENNIS | Jones vs Watson | moneyline: Jones | kalshi | $127k | -426 |  |  | +9.0c |  | W |
 | Oct 30 11:28PM | TENNIS | Sun vs Dart | moneyline: Dart | kalshi | $49k | +104 |  |  | -2.0c | yes | W |
-| Oct 30 11:28PM | TENNIS | Stojsavljevic vs Ibragimova | moneyline: Stojsavljevic | kalshi | $31k | -170 |  |  | +27.0c | yes | W |
-| Oct 30 10:40PM | TENNIS | Stojsavljevic vs Ibragimova | moneyline: Ibragimova | kalshi | $49k | -426 |  |  | -77.0c | yes | L |
