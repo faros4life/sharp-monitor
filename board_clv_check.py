@@ -187,6 +187,26 @@ def main():
           f"from any uncapped configuration)")
     print("=" * 112)
 
+    # DUPLICATE CHECK (Peter, 11 Nov). v3 allows one play per game total, so the sample should hold
+    # no repeats - but the identity must be the GAME, and board "game" strings carry no date. The
+    # same matchup can recur within the window: Orlando vs Toronto appears on 28 Oct and 30 Oct and
+    # is TWO games, not a duplicate. Counting distinct "game" strings collapses them and undercounts
+    # the sample by one. The venue's market ticker carries the date, so it is the identity here.
+    def _gid(r):
+        try:
+            ref = json.loads(str(r.get("_k") or "").split("|", 1)[1].rsplit("|", 1)[0])
+            t = ref.get("market_ticker") or ref.get("marketSlug") or ref.get("market_id")
+            if t:
+                return str(t)
+        except Exception:
+            pass
+        return f"{r.get('game')}|{r.get('day')}"
+    ids = collections.Counter(_gid(r) for r in rows)
+    dups = {k: n for k, n in ids.items() if n > 1}
+    print(f"identity check: {len(rows)} graded calls on {len(ids)} distinct games"
+          f"  (game-string-only count would be {len(set(str(r.get('game')) for r in rows))})")
+    print(f"  duplicates on the true identity: {len(dups)}" + (f"  {list(dups)[:4]}" if dups else ""))
+
     # push safety, asserted not assumed
     ints = [r for r in rows if float(r["line"]) == int(float(r["line"]))]
     assert not ints, f"{len(ints)} integer lines: NOT Over is not Under where a push is possible"

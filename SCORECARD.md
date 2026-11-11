@@ -162,8 +162,7 @@ sitting at ELIGIBLE are cuts of this one record.
 
 | Basis | n | Games | Days | Record | Units | ROI | Day-clustered 95% CI |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| As published (trigger book) | 62 | 61 | 19 | 42-20 | +20.43u | +33.0% | [+11.3, +54.9]% |
-| One play per game | 61 | 61 | 19 | — | +19.52u | +32.0% | [+11.0, +55.2]% |
+| As published (trigger book) | 62 | **62** | 19 | 42-20 | +20.43u | +33.0% | [+11.3, +54.9]% |
 | **EXECUTABLE: gettable at the alert price or better at any bettable exchange** | **53** | **52** | **17** | **36-17** | **+17.81u** | **+33.6%** | **[+10.7, +56.0]%** |
 | Executable, one per game | 52 | 52 | 17 | 35-17 | +16.90u | +32.5% | [+8.8, +55.7]% |
 | Not gettable | 9 | — | — | — | +2.62u | +29.1% | — |
@@ -368,11 +367,11 @@ disqualify a play.** Fees still apply to the chosen quote, which is what ranks t
 
 | | n |
 | --- | --- |
-| **GETTABLE at the alert price or better, bettable venue** | **51** |
+| **GETTABLE at the alert price or better, bettable venue** | **51** (on 51 distinct games — no duplicates) |
 | Not gettable — no bettable quote on that exact line | 4 |
 | Not gettable — quoted on the line but worse than the alert price | 7 |
 
-On the 51: **50 games, 18 days, +19.77u, +38.8%, day-clustered 95% CI [+16.5, +59.6]%**;
+On the 51: **51 games, 18 days, +19.77u, +38.8%, day-clustered 95% CI [+16.5, +59.6]%**;
 H1 +49.7% / H2 +28.3%. Execution venue — taker: Novig 28 · Kalshi 20 · ProphetX 3; maker:
 Novig 27 · Kalshi 22 · ProphetX 2. By trigger: Kalshi-triggered 38 of 41 gettable,
 globally-triggered **13 of 21**. **Polymarket US is the best venue on 0 of 62 — no board snapshot
