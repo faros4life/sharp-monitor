@@ -200,9 +200,11 @@ def main():
     flipped, flips = restatus(sent, rows, now)
     # a PLAY that dies BEFORE tip is actionable - Peter can stand down. After tip it is history.
     for v, r in flips:
-        st = v.get("start_utc") or (r["x"].get("start_utc") if isinstance(r.get("x"), dict) else None)
+        # Nov 11: this used to bind `st`, which is the STATE dict a few lines below - so the first pre-start drop
+        # of any day turned st into a string and the run died on st["sent"] before the state was ever written.
+        start = v.get("start_utc") or (r["x"].get("start_utc") if isinstance(r.get("x"), dict) else None)
         try:
-            pre = bool(st) and now < datetime.fromisoformat(str(st).replace("Z", "+00:00"))
+            pre = bool(start) and now < datetime.fromisoformat(str(start).replace("Z", "+00:00"))
         except Exception:
             pre = False
         if pre and tg(one_line(r, r["x"], dropped=True)):
