@@ -1214,6 +1214,11 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None, held=None):
         """Each book's ladder at one line (the books pick their nearest strike; kept only if it IS this line).
         Oct 31: the 4 books are read at the same time (ProphetX keeps its own 1/sec pace)."""
         def one(b):
+            ck = md_key(b, al, mtype, side, ln, price, teams)
+            if ck in MD["c"]:          # same game, same market, same side, same line, same alert
+                MD["hit"] += 1         # -> the identical call; serve it instead of refetching
+                return MD["c"][ck]
+            MD["miss"] += 1
             t0 = time.time()   # Nov 11: per-venue call count and elapsed (PERF; measurement only)
             try:
                 if b == "novig":
@@ -1222,10 +1227,13 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None, held=None):
                     fn = {"prophetx": bc.px_check, "kalshi": bc.kalshi_check, "polymarket_us": pmus_check}[b]
                     r = fn(al, mtype, side, ln, price, teams)
                 perf_venue(b, time.time() - t0, (r or {}).get("status") == "ok")
+                MD["c"][ck] = r
                 return r
             except Exception as ex:
                 perf_venue(b, time.time() - t0, False)
-                return {"status": f"error: {str(ex)[:80]}"}
+                e = {"status": f"error: {str(ex)[:80]}"}
+                MD["c"][ck] = e   # an error is a result too: do not hammer a failing venue per play
+                return e
         books = ("novig", "prophetx", "kalshi", "polymarket_us")
         with ThreadPoolExecutor(max_workers=4) as tp:
             return dict(zip(books, tp.map(one, books)))
@@ -1590,6 +1598,30 @@ def book_lines(r):
 # where the time goes was a guess. This records elapsed seconds per operation and CALL COUNTS per
 # venue, and prints them at the end of the run. Counts and seconds only - no amounts, so it is safe
 # in the public Actions log. Pure measurement: nothing here feeds a decision.
+# ---------------------------------------------------------------- per-run market-data cache
+# Nov 11 (Peter): "avoid repeatedly fetching the same game across Phase 1, Board v3 and R1" and
+# "cache reusable market data within each run without using stale quotes for order submission".
+#
+# evaluate() probes 5 lines x 4 books PER PLAY. When one game qualifies in more than one lane - an
+# NBA total under can be a Phase 1 play AND a Board v3 play - every one of those reads is repeated.
+#
+# SOUNDNESS. The key is every input the readers actually use. bc.px_check / kalshi_check /
+# pmus_check read al["sport"], al["start_utc"], al["bet"], teams, mtype, side, line AND price -
+# price matters because ladder_result() derives dollars_at_alert_price_or_better from it. Equal keys
+# therefore mean equal arguments, so a cached value is the value the call would have returned.
+#
+# ORDER TIME IS NEVER CACHED. revalidate() goes through reread_book(), which calls the readers
+# directly and never consults this cache, so the price, depth and market status behind an actual
+# order are always read fresh. The cache serves EVALUATION only, which is exactly the line Peter
+# drew.
+MD = {"c": {}, "hit": 0, "miss": 0}
+
+
+def md_key(b, al, mtype, side, ln, price, teams):
+    return (b, al.get("sport"), al.get("start_utc"), al.get("bet"), mtype, side,
+            None if ln is None else round(float(ln), 2), price, tuple(teams or ()))
+
+
 PERF = {"t": collections.OrderedDict(), "n": collections.Counter(), "venue": collections.Counter(),
         "venue_s": collections.Counter(), "err": collections.Counter()}
 
@@ -1625,6 +1657,10 @@ def perf_report():
     tot = sum(PERF["t"].values()) or 1.0
     for lab, sec in sorted(PERF["t"].items(), key=lambda kv: -kv[1]):
         out.append(f"  {lab:<34} {sec:8.1f}s  {100 * sec / tot:5.1f}%  x{PERF['n'][lab]}")
+    if MD["hit"] or MD["miss"]:
+        tot = MD["hit"] + MD["miss"]
+        out.append(f"  market-data cache: {MD['hit']} hit / {MD['miss']} fetched "
+                   f"({100 * MD['hit'] / max(tot, 1):.0f}% of {tot} reads served from cache)")
     if PERF["venue"]:
         out.append("  venue reads (calls / seconds / unusable):")
         for b, n in PERF["venue"].most_common():
@@ -2939,6 +2975,7 @@ def main():
     mks_by_event = {}
     for mk in mks:
         mks_by_event.setdefault(mk.get("eventId"), []).append(mk)
+    MD["c"].clear(); MD["hit"] = MD["miss"] = 0   # one cache per run, never across runs
     MKT["evs"], MKT["mks"] = evs_by, mks_by_event   # Nov 11: revalidate() re-reads Novig through this map
     with ThreadPoolExecutor(max_workers=4) as tp:   # Oct 31: all 4 position reads at the same time
         f_nv = tp.submit(novig_positions)
