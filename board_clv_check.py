@@ -37,6 +37,7 @@ import nba_names as nn
 import tracker_build as tb
 
 CALLS = "board/calls.json"
+QUOTES = {}
 OU = re.compile(r"^(NOT\s+Over|Over|Under)\s*\(?\s*([0-9]+(?:\.[0-9]+)?)\s*\)?\s*(?:points)?$", re.I)
 
 
@@ -49,9 +50,74 @@ def bet_of(side):
     return ("Under" if head.startswith("not") else head.title()), ln
 
 
+# ---------------------------------------------------------------- O6 (Peter, 11 Nov): BEST BETTABLE VENUE
+# The call's recorded price is the TRIGGER venue's. That is not the execution basis: with resting
+# bids we get the alert price or nothing, at whichever venue we can actually bet. Pricing at the
+# trigger venue understated the entry on 43 of 53 gettable calls by a mean 1.47 probability cents,
+# and dropped every globally-triggered call as NotTradeable even where the same line was available
+# on Novig at the alert price or better.
+#
+# DECISION-TIME ONLY. The quotes come from the liquidity row whose key AND alerted_utc are the
+# board call's own, i.e. the snapshot taken when the call was made. No later read, no close, no
+# result is consulted when choosing the venue - asserted in tests/test_board_clv_venue.py.
+#
+# FEES VIA clv_std ONLY. net_dec is the single fee model (cs.FEE_MODEL); this file adds no fee
+# arithmetic of its own, and a venue clv_std refuses to price (Polymarket Global: NotTradeable)
+# can never be selected.
+LIQ = os.environ.get("LIQ_ALERTS", "") or "liquidity/alerts.json"
+BETTABLE = ("novig.us", "kalshi", "prophetx")   # venues Peter can bet; canonical clv_std names
+SRC_NAME = {"novig": "novig.us", "kalshi": "kalshi", "prophetx": "prophetx"}
+
+
+def liq_quotes(path=None):
+    """{(key, alerted_utc): prices_by_book} - the decision-time cross-book snapshot per alert."""
+    try:
+        rows = json.load(open(path or LIQ)).get("alerts") or []
+    except Exception:
+        return {}
+    return {(r.get("key"), r.get("alerted_utc")): (r.get("prices_by_book") or {})
+            for r in rows if r.get("key")}
+
+
+def _net(book, american, maker, league="NBA"):
+    """After-fee decimal for an american price at a venue, via clv_std's one fee model."""
+    if american is None:
+        return None
+    d = 1 + (american / 100.0 if american > 0 else 100.0 / -american)
+    try:
+        return cs.net_dec(book, d, maker=maker, league=league)
+    except Exception:
+        return None          # NotTradeable / UnknownVenue: never selectable
+
+
+def best_bettable(pbb, line, target_net, maker, league="NBA"):
+    """(canonical venue, american, net decimal) for the best BETTABLE quote on the SAME line whose
+    after-fee price is at least as good as target_net. None when no such quote exists.
+
+    pbb is a decision-time snapshot only. Nothing here reads a close, a result or a later price."""
+    best = None
+    for src, q in (pbb or {}).items():
+        v = SRC_NAME.get(str(src).lower())
+        if v not in BETTABLE or not isinstance(q, dict):
+            continue
+        pt, am = q.get("point"), q.get("price")
+        if pt is None or am is None or abs(float(pt) - float(line)) > 1e-9:
+            continue                      # same line only - never a different number
+        nd = _net(v, am, maker, league)
+        if nd is None:
+            continue
+        if best is None or nd > best[2]:
+            best = (v, am, nd)
+    if best is None or target_net is None or best[2] < target_net - 1e-12:
+        return None
+    return best
+
+
 def graded():
+    """PLAY calls, each carrying its own registry key under _k so the decision-time liquidity
+    snapshot can be joined. The stored call is never mutated: _k is added to a shallow copy."""
     d = json.load(open(CALLS))
-    rows = [r for r in (d.get("calls") or {}).values()
+    rows = [dict(r, _k=k) for k, r in (d.get("calls") or {}).items()
             if r.get("call") == "PLAY" and r.get("result") in ("W", "L", "P")]
     rows.sort(key=lambda r: str(r.get("at") or ""))
     return rows
@@ -71,6 +137,9 @@ def main():
     ints = [r for r in rows if float(r["line"]) == int(float(r["line"]))]
     assert not ints, f"{len(ints)} integer lines: NOT Over is not Under where a push is possible"
 
+    global QUOTES
+    QUOTES = liq_quotes()
+    print(f"decision-time cross-book snapshots loaded: {len(QUOTES)}")
     st_ = tb.dec(json.load(open(cl.STATE)))
     mkmap = cl.load_markets(st_, now)      # gate-refusal safe: falls back to the cached list
 
@@ -139,9 +208,29 @@ def main():
             continue
         dec = 1 + (rec["am"] / 100.0 if rec["am"] > 0 else 100.0 / -rec["am"])
         try:
-            v = cs.canon(rec["book"])
+            trig = cs.canon(rec["book"])
         except Exception:
-            v = rec["book"]
+            trig = rec["book"]
+        rec["trigger_venue"] = trig
+        # O6: price at the best BETTABLE venue offering the SAME line at the alert price or better,
+        # after fees, from the decision-time snapshot. Maker and taker are resolved separately
+        # because the target to beat differs by basis.
+        kk = str(r.get("_k") or "").rsplit("|", 1)
+        pbb = QUOTES.get((kk[0], kk[1])) if len(kk) == 2 else None
+        rec["snapshot"] = pbb is not None
+        for basis, mk_ in (("maker", True), ("taker", False)):
+            tgt = _net(trig, rec["am"], mk_)
+            pick = best_bettable(pbb, rec["line"], tgt, mk_) if (pbb and tgt) else None
+            rec[f"{basis}_venue"] = pick[0] if pick else None
+            rec[f"{basis}_am"] = pick[1] if pick else None
+            rec[f"{basis}_net"] = pick[2] if pick else None
+            rec[f"{basis}_trigger_net"] = tgt
+        rec["gettable"] = rec["maker_venue"] is not None or rec["taker_venue"] is not None
+        if not rec["gettable"]:
+            exc["not gettable: no bettable venue at the alert price on that line"] += 1
+            out.append(rec)
+            continue
+        v = rec["taker_venue"] or rec["maker_venue"]
         rec["canon"] = v
         rec["auto"] = v in cs.AUTO
         # RESTING, not taking: the maker leg. A venue that cannot rest an order cannot produce this
@@ -199,8 +288,17 @@ def main():
             except Exception as ex2:
                 rec["circa_why"] = f"{type(ex2).__name__}"
         try:
-            rec["pin"] = cs.net_clv(c["p"], dec, v, maker=True, league="NBA")
-            rec["pin_taker"] = cs.net_clv(c["p"], dec, v, maker=False, league="NBA")
+            # The entry decimal is the SELECTED venue's after-fee price, not the trigger's.
+            # net_clv applies the fee itself, so it is handed the venue's RAW american converted
+            # to decimal; _net is used only to compare candidates.
+            def _raw(am):
+                return 1 + (am / 100.0 if am > 0 else 100.0 / -am)
+            rec["pin"] = (cs.net_clv(c["p"], _raw(rec["maker_am"]), rec["maker_venue"],
+                                     maker=True, league="NBA")
+                          if rec["maker_venue"] else None)
+            rec["pin_taker"] = (cs.net_clv(c["p"], _raw(rec["taker_am"]), rec["taker_venue"],
+                                           maker=False, league="NBA")
+                                if rec["taker_venue"] else None)
             if rec.get("circa_p") is not None:
                 rec["circa"] = cs.net_clv(rec["circa_p"], dec, v, maker=True, league="NBA")
                 rec["circa_taker"] = cs.net_clv(rec["circa_p"], dec, v, maker=False, league="NBA")
@@ -233,6 +331,23 @@ def main():
         for k, n in wc.most_common(4):
             print(f"      {n:3}  {k}")
         print("  No Circa-graded row yet, so no candidate can be judged on the Circa leg today.")
+    # O6 reconciliation: every call accounted for, gettable or not, before any CLV is shown.
+    got = [r for r in out if r.get("gettable")]
+    nog = [r for r in out if r.get("snapshot") and not r.get("gettable")]
+    nosnap = [r for r in out if not r.get("snapshot")]
+    print("\n" + "=" * 112)
+    print("0. EXECUTABILITY RECONCILIATION (decision-time quotes, same line, alert price or better)")
+    print("=" * 112)
+    print(f"  graded PLAY calls                                  {len(rows)}")
+    print(f"  with a decision-time cross-book snapshot           {len(rows) - len(nosnap)}")
+    print(f"  GETTABLE at a bettable venue                       {len(got)}")
+    print(f"  NOT gettable                                       {len(nog)}")
+    print(f"  no snapshot joined (cannot be judged)              {len(nosnap)}")
+    mig = collections.Counter((r.get("trigger_venue"), r.get("taker_venue") or r.get("maker_venue"))
+                              for r in got)
+    print("  trigger venue -> venue actually priced:")
+    for (a, b), n in mig.most_common():
+        print(f"      {n:3}  {a or '?':<20} -> {b or '?'}")
     print(f"\nCLOSE COVERAGE: {len(ver)} of {len(rows)} calls have a VERIFIED same-line Pinnacle "
           f"close ({100.0 * len(ver) / max(len(rows), 1):.1f}%)")
     print(f"  {len(rows) - len(ver)} do NOT. Why:")
@@ -243,10 +358,12 @@ def main():
         if not rs:
             print(f"  {label:<46} n=0")
             return None
-        mk = sum(r["pin"] for r in rs) / len(rs)
-        tk = sum(r["pin_taker"] for r in rs) / len(rs)
+        mks = [r["pin"] for r in rs if r["pin"] is not None]
+        tks = [r["pin_taker"] for r in rs if r["pin_taker"] is not None]
+        mk = (sum(mks) / len(mks)) if mks else float("nan")
+        tk = (sum(tks) / len(tks)) if tks else float("nan")
         u = sum(r["units"] or 0 for r in rs)
-        beat = sum(1 for r in rs if r["pin"] > 0)
+        beat = sum(1 for r in rs if (r["pin"] or 0) > 0)
         print(f"  {label:<46} n={len(rs):3}  CLV maker {mk:+6.2f}%  taker {tk:+6.2f}%  "
               f"beat close {beat}/{len(rs)} ({100.0 * beat / len(rs):4.1f}%)  units {u:+6.2f}")
         return mk
