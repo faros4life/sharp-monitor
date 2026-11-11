@@ -853,6 +853,10 @@ def american_to_prob(a):
 LIVE_BOOKS = tuple(b.strip() for b in (os.environ.get("EXEC_LIVE_BOOKS") or "prophetx,kalshi,polymarket_us,novig").split(",")
                    if b.strip())   # Oct 28 (Peter): books the bot may fill phase-1 plays on; repo VARIABLE EXEC_LIVE_BOOKS
 PX_TOL_CENTS = 2   # Peter, Oct 27: ProphetX (the live book) may fill up to 2 cents worse than the alert's after-fee price
+# Peter, Nov 11: Novig gets the SAME 2-cent allowance as ProphetX, on BOTH lanes (phase 1 and board v3).
+# Kalshi and Polymarket US keep zero tolerance - their fee-adjusted pricing rules are unchanged.
+# Eligibility only: the allowance widens the gate and the depth threshold, never the ranking key (c_eq).
+TOL_BOOKS = tuple(x.strip() for x in (os.environ.get("EXEC_TOL_BOOKS", "") or "prophetx,novig").split(",") if x.strip())
 
 # Peter, Nov 6: on an EXACT net-price tie, a fixed documented venue order, applied identically in
 # selection and in reporting, so the choice is deliberate and reproducible rather than whatever
@@ -997,7 +1001,7 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None, held=None):
     except Exception:
         alert_af = price
     alert_cost = american_to_prob(alert_af)
-    px_tol = american_to_prob(cents_worse(alert_af, PX_TOL_CENTS)) - alert_cost   # Peter, Oct 27: ProphetX may be 2c worse
+    px_tol = american_to_prob(cents_worse(alert_af, PX_TOL_CENTS)) - alert_cost   # Oct 27 ProphetX, Nov 11 Novig: may be 2c worse
     floor = p.get("floor_line") if mtype in ("spread", "total") else None
     cands, floor_blocked, no_qual_basis = [], 0, 0
     for (b, bl), r in ladders.items():
@@ -1016,7 +1020,7 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None, held=None):
             continue
         c_eq = american_to_prob(am) - hb * hp
         c_eq_q = american_to_prob(am_q) - hb * hp     # what the eligibility gates compare
-        tol = px_tol if b == "prophetx" else 0.0
+        tol = px_tol if b in TOL_BOOKS else 0.0
         if c_eq_q > alert_cost + tol + 1e-9:          # gate on the frozen price, never the improved one
             continue
         thr = lm.american(min(max(alert_cost + tol + hb * hp, 0.01), 0.99))   # worst acceptable real price at this line
@@ -1039,8 +1043,8 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None, held=None):
             return dict(out, verdict="SKIP", reason="no book lists this market near the alert line")
         if floor_blocked and floor_blocked == len(ladders):
             return dict(out, verdict="SKIP", reason=f"no fill - blocked by bet-only-at floor ({fmt_line(mtype, floor)})")
-        return dict(out, verdict="SKIP", reason=f"price: nothing at or better than {alert_af:+d} after fees (ProphetX: "
-                                                f"{cents_worse(alert_af, PX_TOL_CENTS):+d}) at {fmt_line(mtype, line)} "
+        return dict(out, verdict="SKIP", reason=f"price: nothing at or better than {alert_af:+d} after fees "
+                                                f"({'/'.join(TOL_BOOKS)}: {cents_worse(alert_af, PX_TOL_CENTS):+d}) at {fmt_line(mtype, line)} "
                                                 f"(equivalent, after fees; half point = {hp * 100:.1f}c {hp_src})"
                                                 + (f"; {floor_blocked} line(s) blocked by bet-only-at floor "
                                                    f"({fmt_line(mtype, floor)})" if floor_blocked else ""))
@@ -1058,7 +1062,8 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None, held=None):
     risk, win = stake_for(pick["shown"])
     nets = round(win * (1 - WIN_FEE.get(pick["book"], 0)), 2)
     pxc = next((c for c in capped if c["book"] == "prophetx"), None)
-    # Oct 28 (Peter): phase-1 live fills on the best after-fee price among the LIVE books (ProphetX keeps its 2c)
+    # Oct 28 (Peter): phase-1 live fills on the best after-fee price among the LIVE books
+    # (ProphetX keeps its 2c; Novig gets the same 2c from Nov 11 - see TOL_BOOKS)
     lcs = [c for c in capped if c["book"] in LIVE_BOOKS]
     _u = unit_for("board" if p.get("source") == "board" else None)
     lfull = [c for c in lcs if c["avail"] >= live_stake(c["shown"], _u)[0]]
