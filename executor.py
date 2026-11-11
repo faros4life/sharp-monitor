@@ -3492,41 +3492,41 @@ def main():
     # escalation at ~3 min naming the play and the book so it can be placed by hand while the number is live.
     # Unreadable still means no order (fail closed).
     if blind:
-        # Nov 11: this loop re-reads a blind venue every 60s for up to 4 MINUTES, so it alone can
-        # account for the 138s/175s measured in run 43070374073. Bracketed separately from the
-        # first attempt and the retry, because the three have completely different fixes: a slow
-        # first read is a venue problem, a slow retry was the serial bug above, and this loop is a
-        # deliberate fail-closed safeguard that exists so Peter can place by hand while the number
-        # is live. Knowing WHICH of the three is burning the time has to come before touching any
-        # of them - the league-list guess on liquidity-extra cost five dead runs.
-        print(f"positions blind: {', '.join(blind)} - entering the up-to-4-minute re-read")
+        # Nov 11 (Peter, "GO. Implement the blind-loop replacement"): the 4-minute in-run polling
+        # loop is GONE. It slept 60s up to four times hoping a venue recovered, and only pushed the
+        # escalation at the ~3-minute mark - so it cost up to 240s PER PASS (measured at 138s/175s
+        # in run 43070374073) and told Peter last.
+        #
+        # Replaced by: one parallel first attempt, one parallel retry after 5s (both above), then
+        # stop. Healthy venues keep being evaluated, every play is still routed and alerted, and the
+        # escalation fires IMMEDIATELY - three minutes earlier than before, which is three more
+        # minutes to place by hand while the number is live.
+        #
+        # EXPOSURE IS NEVER ASSUMED ZERO. An unreadable venue means total exposure is unverifiable,
+        # and unverifiable exposure blocks EVERY new live order for the run (live_guards + the
+        # px_live/book_live exposure setters below), whatever the other three venues say. The
+        # trade, accepted knowingly: a venue that blips and recovers within 60-240s used to let
+        # this run place its play and now does not - it waits for the next scheduled run, which is
+        # minutes away. Nothing is placed blind either way.
+        why = "; ".join(f"{BOOK_NAME[b]}: {positions.WHY.get(b, '?')}" for b, v in held.items() if v is None)
+        if pos is None:
+            why += ("; " if why else "") + f"Novig: {(_NVERR.get('why') or '?').strip(' |')[:80]}"
         p1 = []
         for p in new:
             e1 = feed_entry(p, load_feed()) if p.get("source") != "rules" else None
             if e1 and agree_rules.phase1(e1, True)[0]:
                 p1.append(p)
-        retry = {"kalshi": positions.kalshi_positions, "prophetx": positions.px_positions,
-                 "polymarket_us": positions.pmus_positions}
-        pushed = False
-        for i in range(4 if p1 else 0):
-            time.sleep(60)
-            if pos is None:
-                pos = novig_positions()
-            for b in [b for b, v in held.items() if v is None]:
-                held[b] = retry[b]()
-            blind = (["Novig"] if pos is None else []) + [BOOK_NAME[b] for b, v in held.items() if v is None]
-            if not blind:
-                break
-            if i == 2 and not pushed:
-                why = "; ".join(f"{BOOK_NAME[b]}: {positions.WHY.get(b, '?')}" for b, v in held.items() if v is None)
-                if pos is None:
-                    why += ("; " if why else "") + f"Novig: {(_NVERR.get('why') or '?').strip(' |')[:80]}"
-                for p in p1:
-                    push("LIVE play held: " + (p.get("bet") or "")[:50],
-                         f"{p.get('sport')} {p.get('game')}\n{p.get('bet')}\nCan't read your open bets on {', '.join(blind)} "
-                         f"for 3 min ({why[:160]}). The bot won't bet it blind. Place it by hand if you want it now.")
-                pushed = True
-        print(f"Held-retry: {len(p1)} live-eligible play(s); still unreadable: {len(blind)} book(s)")   # counts only
+        push(f"POSITIONS UNREADABLE: {', '.join(blind)}",
+             f"Can't read your open bets on {', '.join(blind)} ({why[:160]}).\n"
+             f"Exposure cannot be verified, so NO new live orders this run on ANY venue"
+             + (f"; {len(p1)} live-eligible play(s) held - place by hand if you want them now."
+                if p1 else ". No live-eligible play is waiting.")
+             + "\nThe next scheduled run rechecks normally.")
+        # No per-play push here: the per-play HELD path further down already sends one, deduped on
+        # held_tok so it cannot repeat every run. Pushing again from here would double-notify, and
+        # "prevent duplicate phone notifications for the same event" is a standing rule.
+        print(f"positions blind: {', '.join(blind)} - exposure unverifiable, no live orders this run; "
+              f"{len(p1)} live-eligible play(s) held")   # counts only
     if px_live.LIVE and new:
         live_guards()   # Oct 30: load the ledger registry FIRST, so LIVEKEYS blocks a second live order on a play
     results, taken_now = [], set()
