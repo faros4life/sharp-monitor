@@ -55,6 +55,13 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}       # fill texts to Peter's Telegram (live orders only)
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           NOVIG_SNAPSHOT_TOKEN: ${{ secrets.NOVIG_SNAPSHOT_TOKEN }}   # read-only token for the home runner's Novig positions snapshot (private repo)
+          # Nov 11 (Peter, "b2"): Contents read+write on ONE private repo, for the bot's own
+          # registry - placed orders, write-ahead intents, dedupe tokens. Replaces Gmail, which
+          # cost 79.3s a run (90% of measured time) because sharp-monitor is public and money
+          # cannot go in it. Deliberately a SEPARATE token from NOVIG_SNAPSHOT_TOKEN so that one
+          # stays read-only. Until this secret exists registry.enabled() is False and every path
+          # stays on Gmail, unchanged.
+          REGISTRY_TOKEN: ${{ secrets.REGISTRY_TOKEN }}
           KAY_HARDROCK: ${{ secrets.KAY_HARDROCK }}                   # Kay's Hard Rock bucket (manual figure) for the balances email
           PROPHETX_ACCESS_KEY: ${{ secrets.PROPHETX_ACCESS_KEY }}   # used only to read ProphetX prices
           PROPHETX_SECRET_KEY: ${{ secrets.PROPHETX_SECRET_KEY }}

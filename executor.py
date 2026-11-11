@@ -3425,6 +3425,17 @@ def main():
     try:
         body += [perf_report(), ""]   # Nov 11: where the run's time actually went
         print(perf_report())          # and in the public log, counts/seconds only
+        # Nov 11 (Peter, "b2"): the private-GitHub store proves itself against the real API while
+        # bot_orders() is still reading Gmail, so a broken transport cannot stop him betting. Its
+        # read time is the number to compare with the 79s Gmail registry read. Counts only, no
+        # amounts: safe for the public log. Never allowed to affect the run.
+        try:
+            import registry as _rg
+            _st = _rg.selftest()
+            body += [_st, ""]
+            print(_st)
+        except Exception as _ex:
+            LOG.append(f"registry selftest unavailable: {str(_ex)[:60]}")
     except Exception:
         pass
     if GUARD["ok"] is not None:
