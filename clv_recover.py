@@ -473,6 +473,158 @@ def main():
         say("  no observation has both a standard and a feed figure, so the two models cannot be compared here")
     say("")
     say("")
+    # ================= THREE BOT-ONLY STRATEGIES (Peter, Nov 10) =================
+    # NBA totals unders (the existing lane), NCAAF spread dogs, NHL totals unders. Two of the three
+    # are OUTSIDE phase 1, so this is its own population rather than a slice of the 53 above.
+    #
+    # Multiple comparisons are reported, not hidden: 12 cells were screened to arrive at these
+    # three, and a both-halves-positive filter on 12 cells yields about 3 by chance alone. These
+    # three were chosen AFTER seeing that screen, so they are not independent tests and nothing
+    # below is a fresh discovery. Treating them as confirmations would be the cherry-pick.
+    say("")
+    say("=" * 108)
+    say("THREE BOT-ONLY STRATEGIES - certified closes, free history only")
+    say("=" * 108)
+
+    def sidecls(a):
+        k = str(a.get("kind"))
+        b = str(a.get("bet") or "").lower()
+        pt = a.get("point")
+        if k == "tot":
+            return "tot UNDER" if b.startswith("under") else "tot OVER" if b.startswith("over") else "tot ?"
+        if k == "spr":
+            if isinstance(pt, (int, float)):
+                return "spr FAV" if pt < 0 else "spr DOG" if pt > 0 else "spr PK"
+            return "spr ?"
+        return k
+
+    bot = [x for x in A
+           if str(x.get("book_key") or "") not in ("hardrockbet", "hardrockbet_fl")
+           and x.get("pricing_bettable") is not False]
+    STRATS = (("NBA", "tot UNDER", "NBA totals UNDERS (live lane)"),
+              ("NCAAF", "spr DOG", "NCAAF spread DOGS"),
+              ("NHL", "tot UNDER", "NHL totals UNDERS"))
+
+    def certify(a, lg):
+        """A verified same-line Pinnacle close for one alert, or (None, why). Same path, same guard
+        and the same free-history rule as the phase-1 pass above."""
+        bet = a.get("bet") or ""
+        if not bet.strip():
+            return None, "no bet text"
+        fid, f = fixture_for(a, lg)
+        if not fid:
+            return None, "no unique same-league fixture"
+        pth = hc._path(fid, "pinnacle")
+        if not os.path.exists(pth):
+            if not RECOVER:
+                return None, "no cached Pinnacle history"
+            if FETCH["stopped"]:
+                return None, "recovery halted: " + str(FETCH["why"])[:40]
+            try:
+                hc.get_hist(fid, ["pinnacle"], start_of(f))
+                FETCH["any"] = True
+                FETCH["n"] += 1
+            except Exception as e:
+                return None, f"download failed ({type(e).__name__})"
+            if not os.path.exists(pth):
+                return None, "download returned no Pinnacle history"
+        start = start_of(f)
+        if not start:
+            return None, "fixture has no start"
+        try:
+            h = hc.get_hist(fid, ["pinnacle"], start)
+            pmk = cl.book_markets(h, "pinnacle")
+        except Exception as e:
+            return None, f"history unreadable ({type(e).__name__})"
+        if not pmk:
+            return None, "no Pinnacle market in history"
+        mt = "total" if str(a.get("kind")) == "tot" else "spread" if str(a.get("kind")) == "spr" else "moneyline"
+        try:
+            c, why = cl.close_for({"bet": bet, "league": lg, "market": mt,
+                                   "game": f.get("game"), "game_start": f.get("start")},
+                                  f, pmk, mkmap, start, lg)
+        except Exception as e:
+            return None, f"close_for raised {type(e).__name__}"
+        if not c:
+            return None, f"no close: {str(why)[:40]}"
+        if not cs.close_verified(c.get("how")):
+            return None, f"close not verified ({c.get('how')})"
+        rd = raw_dec(a.get("price"))
+        if rd is None:
+            return None, "no entry price"
+        try:
+            pct = cs.net_clv(c["p"], rd, cs.canon(a.get("book_key")), maker=False, league=lg)
+        except Exception as e:
+            return None, f"net_clv raised {type(e).__name__}"
+        if pct is None:
+            return None, "net_clv returned None"
+        return pct, None
+
+    def blk(rows, cert, label, ind="    "):
+        g = [x for x in rows if x.get("result") in ("W", "L", "P")]
+        w = sum(1 for x in g if x["result"] == "W")
+        l = sum(1 for x in g if x["result"] == "L")
+        p_ = sum(1 for x in g if x["result"] == "P")
+        u = sum(x.get("units_flat") or 0 for x in g)
+        risk = len([x for x in g if x["result"] != "P"])
+        v = [cert[id(x)] for x in rows if id(x) in cert]
+        out_ = (f"{ind}{label:<26} n{len(rows):3} games {len({str(x.get('game')) for x in rows}):3} "
+                f"{w}-{l}" + (f"-{p_}" if p_ else "") + f" {u:+7.2f}u")
+        out_ += f" ROI {100 * u / risk:+7.1f}%" if risk else " ROI     n/a"
+        if v:
+            m = sum(v) / len(v)
+            sd = sts.stdev(v) if len(v) > 1 else 0.0
+            se = sd / len(v) ** 0.5 if len(v) > 1 else 0.0
+            beat = 100.0 * sum(1 for x in v if x > 0) / len(v)
+            out_ += (f" | CERT n{len(v):3} {m:+6.2f}% SE {se:5.2f} "
+                     f"95% {m - 1.96 * se:+6.2f}..{m + 1.96 * se:+6.2f} beat {beat:3.0f}% "
+                     f"cov {100.0 * len(v) / len(rows):3.0f}%")
+        else:
+            out_ += " | CERT none"
+        say(out_)
+
+    for lg, mk, name in STRATS:
+        rows = sorted([x for x in bot if str(x.get("sport")) == lg and sidecls(x) == mk],
+                      key=lambda x: str(x.get("alert_utc") or ""))
+        say("")
+        say(f"  {name}   ({len(rows)} bot alert(s))")
+        say("  " + "-" * 104)
+        cert, fails = {}, collections.Counter()
+        for a in rows:
+            pct, why = certify(a, lg)
+            if pct is None:
+                fails[why] += 1
+            else:
+                cert[id(a)] = pct
+        blk(rows, cert, "ALL")
+        h = len(rows) // 2
+        blk(rows[:h], cert, "first half")
+        blk(rows[h:], cert, "second half")
+        # fees actually paid, in units, on the winners - the fee is already inside units_flat
+        fee_u = 0.0
+        for a in rows:
+            if a.get("result") != "W":
+                continue
+            rawd, netd = raw_dec(a.get("price")), raw_dec(a.get("price_after_fee"))
+            if rawd and netd:
+                fee_u += (rawd - 1) - (netd - 1)
+        say(f"    fees paid on winners: {fee_u:+.2f}u of gross profit "
+            f"(already deducted from the units above)")
+        bk = collections.Counter(str(a.get("book")) for a in rows)
+        say(f"    alerted books: {dict(bk.most_common(5))}")
+        say(f"    median lead: {sts.median([a.get('minutes_before_start') for a in rows if isinstance(a.get('minutes_before_start'), (int, float))] or [float('nan')]):.0f} min")
+        if fails:
+            say("    could not certify:")
+            for k, n in fails.most_common(6):
+                say(f"       {n:3}  {k}")
+    say("")
+    say("  AVAILABILITY: every unit above is 1u at the alert's own price after fee - the price the")
+    say("  alert carried, never a better one, and no fill is assumed anywhere. Whether that price")
+    say("  was actually standing on the alerted book is a DIFFERENT question, answered by")
+    say("  fill_audit.py's SEEN test against the exchange's own stored history; it is not answered")
+    say("  here and no claim about obtainability is made.")
+    say("=" * 108)
+    say("")
     say("  ITEM 4 - the missing cached histories, and what a backfill would cost")
     say("  " + "-" * 104)
     nocache = sum(b["miss"]["no CACHED Pinnacle history (not fetched, by design)"] for b in out.values())
