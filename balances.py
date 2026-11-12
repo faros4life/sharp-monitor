@@ -310,8 +310,11 @@ def new_positions():
         return ["", f"New positions: baseline recorded ({len(cur)} open)."]
     if fresh:
         msg = "NEW POSITIONS (last hour, manual or bot):\n" + "\n".join(l for _, l in fresh)
-        # Nov 12 (Peter: "only actionable and live notifications"): no phone message. A bot fill already has its own
-        # FILLED message; the rest is a record, kept in the email (which is also the dedupe token).
+        # Nov 12 (Peter: "i want if something gets filled"): a fill must reach the phone. This is the only notice for
+        # fills the bot does not report itself (manual exchange bets, a Polymarket US resting bid that fills later);
+        # a bot fill also has its own FILLED message. Same text on ntfy and Telegram.
+        ex.tg(msg)
+        ex.push("New positions: " + str(len(fresh)), msg, mirror=False)
         ex.send(f"Bets new positions: {len(fresh)}", msg + "\n\n" + " ".join(t for t, _ in fresh))
         out = ["", msg]
     return out
