@@ -1,6 +1,96 @@
 {
  "moves": [
   {
+   "alerted_utc": "2026-11-12T08:35:33Z",
+   "bar": false,
+   "best_price": 0.5175,
+   "best_price_book": "kalshi",
+   "book": "kalshi",
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "date": "2026-11-12",
+   "dir": "DROP",
+   "ex_stats": {
+    "open_interest_fp": 3055.56,
+    "volume_24h_fp": 2871.37,
+    "volume_fp": 3317.76
+   },
+   "first_play": true,
+   "game": "Louisiana vs Louisiana-Monroe: Spread",
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFSPREAD-26NOV12ULLULM-ULL11\"}",
+   "lead_min": 1224,
+   "league": "NCAAF",
+   "league_x": 0.73,
+   "line": -10.5,
+   "market": "spread",
+   "normal_4h": 356944,
+   "now": 164085,
+   "other_side_now": 86178,
+   "paper_only": true,
+   "price": 0.5,
+   "price_american": -100,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFSPREAD-26NOV12ULLULM-ULL11"
+   },
+   "result": null,
+   "side": "Louisiana wins by over 10.5 points",
+   "side_label": "Louisiana wins by over 10.5 points",
+   "side_raw": null,
+   "start_utc": "2026-11-13T05:00:00Z",
+   "teams": [
+    "Louisiana",
+    "Louisiana"
+   ],
+   "units_flat": null,
+   "x": 0.46
+  },
+  {
+   "alerted_utc": "2026-11-12T08:35:33Z",
+   "bar": false,
+   "best_price": 0.3865,
+   "best_price_book": "prophetx",
+   "book": "kalshi",
+   "close_price": 0.39,
+   "clv_cents": 0.0,
+   "date": "2026-11-12",
+   "dir": "DROP",
+   "ex_stats": {
+    "open_interest_fp": 7217.78,
+    "volume_24h_fp": 5504.72,
+    "volume_fp": 7379.76
+   },
+   "first_play": true,
+   "game": "Minnesota vs Toronto",
+   "key": "kalshi|KXNHLGAME-26NOV12MINTOR|ml|1",
+   "lead_min": 924,
+   "league": "NHL",
+   "league_x": 0.63,
+   "line": null,
+   "market": "moneyline",
+   "normal_4h": 70955,
+   "now": 34255,
+   "other_side_now": 123195,
+   "paper_only": true,
+   "price": 0.39,
+   "price_american": 156,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNHLGAME-26NOV12MINTOR-TOR"
+   },
+   "result": null,
+   "side": "Toronto",
+   "side_label": "Toronto",
+   "side_raw": 1,
+   "start_utc": "2026-11-13T00:00:00Z",
+   "teams": [
+    "Minnesota",
+    "Toronto"
+   ],
+   "units_flat": null,
+   "x": 0.48
+  },
+  {
    "alerted_utc": "2026-11-12T08:25:33Z",
    "bar": false,
    "best_price": 0.455,
@@ -17,7 +107,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 1319622.13,
-    "volume_24h_fp": 800033.28,
+    "volume_24h_fp": 797230.41,
     "volume_fp": 1703118.47
    },
    "first_play": false,
@@ -74,6 +164,8 @@
    "other_side_now": 1411,
    "paper_only": true,
    "price": 0.4975,
+   "price_after_15m": 0.5026,
+   "price_after_15m_book": "prophetx",
    "price_american": 101,
    "ref": {
     "line": 5.0,
@@ -86,6 +178,7 @@
    "side_label": "Dallas Mavericks +5 (+5)",
    "side_raw": 0,
    "start_utc": "2026-11-13T01:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Dallas Mavericks",
     "Minnesota Timberwolves"
@@ -117,6 +210,8 @@
    "other_side_now": 1329,
    "paper_only": true,
    "price": 0.5349,
+   "price_after_15m": 0.5377,
+   "price_after_15m_book": "prophetx",
    "price_american": -115,
    "ref": {
     "line": 5.0,
@@ -129,6 +224,7 @@
    "side_label": "Minnesota Timberwolves -5 (-5)",
    "side_raw": 1,
    "start_utc": "2026-11-13T01:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Dallas Mavericks",
     "Minnesota Timberwolves"
@@ -169,6 +265,8 @@
    "other_side_now": 178656,
    "paper_only": true,
    "price": 0.5,
+   "price_after_15m": 0.5,
+   "price_after_15m_book": "novig",
    "price_american": -100,
    "ref": {
     "kalshi_side": "yes",
@@ -179,6 +277,7 @@
    "side_label": "Houston wins by over 9.5 points",
    "side_raw": 0,
    "start_utc": "2026-11-14T03:15:00Z",
+   "still_actionable": true,
    "teams": [
     "Houston",
     "Colorado"
@@ -219,6 +318,8 @@
    "other_side_now": 12528,
    "paper_only": true,
    "price": 0.24,
+   "price_after_15m": 0.2528,
+   "price_after_15m_book": "kalshi",
    "price_american": 317,
    "ref": {
     "kalshi_side": "yes",
@@ -229,6 +330,7 @@
    "side_label": "Portland St.",
    "side_raw": 1,
    "start_utc": "2026-11-14T03:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Southern Utah",
     "Portland St."
@@ -269,6 +371,8 @@
    "other_side_now": 3360,
    "paper_only": true,
    "price": 0.67,
+   "price_after_15m": 0.6855,
+   "price_after_15m_book": "kalshi",
    "price_american": -203,
    "ref": {
     "kalshi_side": "yes",
@@ -279,6 +383,7 @@
    "side_label": "New York R",
    "side_raw": 0,
    "start_utc": "2026-11-14T05:00:00Z",
+   "still_actionable": true,
    "teams": [
     "New York R",
     "Vancouver"
@@ -319,6 +424,8 @@
    "other_side_now": 6017,
    "paper_only": true,
    "price": 0.35,
+   "price_after_15m": 0.3659,
+   "price_after_15m_book": "kalshi",
    "price_american": 186,
    "ref": {
     "kalshi_side": "yes",
@@ -329,6 +436,7 @@
    "side_label": "Vancouver",
    "side_raw": 1,
    "start_utc": "2026-11-14T05:00:00Z",
+   "still_actionable": true,
    "teams": [
     "New York R",
     "Vancouver"
@@ -360,6 +468,8 @@
    "other_side_now": 267,
    "paper_only": true,
    "price": 0.4975,
+   "price_after_15m": 0.5026,
+   "price_after_15m_book": "prophetx",
    "price_american": 101,
    "ref": {
     "line": 48.0,
@@ -372,6 +482,7 @@
    "side_label": "under 48 (48)",
    "side_raw": "UNDER",
    "start_utc": "2026-11-13T02:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Louisiana",
     "UL Monroe"
@@ -403,6 +514,8 @@
    "other_side_now": 2927,
    "paper_only": true,
    "price": 0.5169,
+   "price_after_15m": 0.515,
+   "price_after_15m_book": "novig",
    "price_american": -107,
    "ref": {
     "line": 220.5,
@@ -415,6 +528,7 @@
    "side_label": "over 220.5 (220.5)",
    "side_raw": "OVER",
    "start_utc": "2026-11-13T00:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Toronto Raptors",
     "Philadelphia 76ers"
@@ -446,6 +560,8 @@
    "other_side_now": 3002,
    "paper_only": true,
    "price": 0.5,
+   "price_after_15m": 0.495,
+   "price_after_15m_book": "novig",
    "price_american": -100,
    "ref": {
     "line": 220.5,
@@ -458,6 +574,7 @@
    "side_label": "under 220.5 (220.5)",
    "side_raw": "UNDER",
    "start_utc": "2026-11-13T00:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Toronto Raptors",
     "Philadelphia 76ers"
@@ -496,6 +613,8 @@
    "other_side_now": 3844,
    "paper_only": true,
    "price": 0.495,
+   "price_after_15m": 0.495,
+   "price_after_15m_book": "novig",
    "price_american": 102,
    "ref": {
     "market_id": "01a1cbd7-30f7-7ab3-8f83-466d484ba6e3",
@@ -506,6 +625,7 @@
    "side_label": "Under 220.5 (220.5)",
    "side_raw": "UNDER",
    "start_utc": "2026-11-13T00:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Toronto Raptors",
     "Philadelphia 76ers"
@@ -544,6 +664,8 @@
    "other_side_now": 2791,
    "paper_only": true,
    "price": 0.515,
+   "price_after_15m": 0.515,
+   "price_after_15m_book": "novig",
    "price_american": -106,
    "ref": {
     "market_id": "01a1cbd7-30f7-7ab3-8f83-466d484ba6e3",
@@ -554,6 +676,7 @@
    "side_label": "Over 220.5 (220.5)",
    "side_raw": "OVER",
    "start_utc": "2026-11-13T00:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Toronto Raptors",
     "Philadelphia 76ers"
@@ -594,6 +717,8 @@
    "other_side_now": 10566,
    "paper_only": true,
    "price": 0.55,
+   "price_after_15m": 0.55,
+   "price_after_15m_book": "novig",
    "price_american": -122,
    "ref": {
     "kalshi_side": "yes",
@@ -604,6 +729,7 @@
    "side_label": "Over 5.5 goals scored",
    "side_raw": "OVER",
    "start_utc": "2026-11-13T03:00:00Z",
+   "still_actionable": true,
    "teams": [
     "New York I",
     "Los Angeles"
@@ -644,6 +770,8 @@
    "other_side_now": 11039,
    "paper_only": true,
    "price": 0.7,
+   "price_after_15m": 0.705,
+   "price_after_15m_book": "novig",
    "price_american": -233,
    "ref": {
     "kalshi_side": "no",
@@ -654,6 +782,7 @@
    "side_label": "NOT Colorado wins by over 1.5 goals",
    "side_raw": 1,
    "start_utc": "2026-11-13T00:08:00Z",
+   "still_actionable": true,
    "teams": [
     "Colorado",
     "Ottawa"
@@ -694,6 +823,8 @@
    "other_side_now": 41390,
    "paper_only": true,
    "price": 0.53,
+   "price_after_15m": 0.53,
+   "price_after_15m_book": "novig",
    "price_american": -113,
    "ref": {
     "kalshi_side": "yes",
@@ -704,6 +835,7 @@
    "side_label": "Colorado",
    "side_raw": 0,
    "start_utc": "2026-11-13T00:08:00Z",
+   "still_actionable": true,
    "teams": [
     "Colorado",
     "Ottawa"
@@ -809,8 +941,8 @@
    "best_price": 0.505,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.5098,
-   "clv_cents": 0.7,
+   "close_price": 0.5074,
+   "clv_cents": 0.5,
    "date": "2026-11-12",
    "dir": "RAISE",
    "ex_stats": null,
@@ -1170,7 +1302,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 29246.92,
-    "volume_24h_fp": 24460.23,
+    "volume_24h_fp": 24459.68,
     "volume_fp": 30380.440000000002
    },
    "first_play": false,
@@ -2988,7 +3120,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 85082.97,
-    "volume_24h_fp": 78519.25,
+    "volume_24h_fp": 78493.25,
     "volume_fp": 99683.25
    },
    "first_play": false,
@@ -3041,7 +3173,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 85082.97,
-    "volume_24h_fp": 78519.25,
+    "volume_24h_fp": 78493.25,
     "volume_fp": 99683.25
    },
    "first_play": false,
@@ -3722,8 +3854,8 @@
     "volume": 168866.0
    },
    "ex_stats_close": {
-    "openInterest": 168586.0,
-    "volume": 168866.0
+    "openInterest": 201106.0,
+    "volume": 201386.0
    },
    "first_play": false,
    "game": "Minnesota Wild @ Toronto Maple Leafs",
@@ -4147,8 +4279,8 @@
    "best_price": 0.505,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.5025,
-   "clv_cents": -0.7,
+   "close_price": 0.5074,
+   "clv_cents": -0.2,
    "date": "2026-11-12",
    "dir": "DROP",
    "ex_stats": null,
@@ -4792,8 +4924,8 @@
    "best_price": 0.2117,
    "best_price_book": "prophetx",
    "book": "novig",
-   "close_price": 0.22,
-   "clv_cents": 0.5,
+   "close_price": 0.215,
+   "clv_cents": 0.0,
    "date": "2026-11-12",
    "dir": "RAISE",
    "ex_stats": {
@@ -5578,8 +5710,8 @@
    "best_price": 0.51,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.505,
-   "clv_cents": -0.5,
+   "close_price": 0.5025,
+   "clv_cents": -0.7,
    "date": "2026-11-12",
    "dir": "DROP",
    "ex_stats": null,
@@ -5924,8 +6056,8 @@
     "volume": 888828.0
    },
    "ex_stats_close": {
-    "openInterest": 823926.0,
-    "volume": 1130313.0
+    "openInterest": 825926.0,
+    "volume": 1132313.0
    },
    "first_play": false,
    "game": "Dallas Mavericks @ Minnesota Timberwolves",
@@ -6132,8 +6264,8 @@
     "volume": 872334.0
    },
    "ex_stats_close": {
-    "openInterest": 823926.0,
-    "volume": 1130313.0
+    "openInterest": 825926.0,
+    "volume": 1132313.0
    },
    "first_play": false,
    "game": "Dallas Mavericks @ Minnesota Timberwolves",
@@ -6531,8 +6663,8 @@
     "volume": 100279.0
    },
    "ex_stats_close": {
-    "openInterest": 494803.0,
-    "volume": 520288.0
+    "openInterest": 574538.0,
+    "volume": 600023.0
    },
    "first_play": false,
    "game": "Tampa Bay Lightning @ Columbus Blue Jackets",
@@ -6582,8 +6714,8 @@
     "volume": 22201.0
    },
    "ex_stats_close": {
-    "openInterest": 168586.0,
-    "volume": 168866.0
+    "openInterest": 201106.0,
+    "volume": 201386.0
    },
    "first_play": true,
    "game": "Minnesota Wild @ Toronto Maple Leafs",
@@ -7002,7 +7134,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 88905.83,
-    "volume_24h_fp": 91283.88,
+    "volume_24h_fp": 91277.65,
     "volume_fp": 110273.63
    },
    "first_play": true,
@@ -7734,8 +7866,8 @@
    "best_price": 0.47,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.4762,
-   "clv_cents": 0.5,
+   "close_price": 0.4695,
+   "clv_cents": -0.2,
    "date": "2026-11-12",
    "dir": "RAISE",
    "ex_stats": null,
@@ -8001,7 +8133,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 85082.97,
-    "volume_24h_fp": 78519.25,
+    "volume_24h_fp": 78493.25,
     "volume_fp": 99683.25
    },
    "first_play": true,
@@ -8105,7 +8237,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 85082.97,
-    "volume_24h_fp": 78519.25,
+    "volume_24h_fp": 78493.25,
     "volume_fp": 99683.25
    },
    "first_play": true,
@@ -8355,8 +8487,8 @@
     "volume": 130248.0
    },
    "ex_stats_close": {
-    "openInterest": 851224.0,
-    "volume": 851224.0
+    "openInterest": 882118.0,
+    "volume": 882118.0
    },
    "first_play": false,
    "game": "Winnipeg Jets @ Dallas Stars",
@@ -9099,8 +9231,8 @@
    "best_price": 0.505,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.51,
-   "clv_cents": 0.5,
+   "close_price": 0.505,
+   "clv_cents": 0.0,
    "date": "2026-11-12",
    "dir": "RAISE",
    "ex_stats": {
@@ -9108,8 +9240,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 350559.0,
-    "volume": 375356.0
+    "openInterest": 352539.0,
+    "volume": 379296.0
    },
    "first_play": false,
    "game": "Carolina Hurricanes @ Seattle Kraken",
@@ -9159,8 +9291,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 350559.0,
-    "volume": 375356.0
+    "openInterest": 352539.0,
+    "volume": 379296.0
    },
    "first_play": false,
    "game": "Carolina Hurricanes @ Seattle Kraken",
@@ -9356,8 +9488,8 @@
    "best_price": 0.515,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.505,
-   "clv_cents": -1.4,
+   "close_price": 0.5025,
+   "clv_cents": -1.7,
    "date": "2026-11-12",
    "dir": "RAISE",
    "ex_stats": null,
@@ -9402,8 +9534,8 @@
    "best_price": 0.505,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.5025,
-   "clv_cents": -0.3,
+   "close_price": 0.5074,
+   "clv_cents": 0.2,
    "date": "2026-11-12",
    "dir": "RAISE",
    "ex_stats": null,
@@ -9654,8 +9786,8 @@
     "volume": 15628838.0
    },
    "ex_stats_close": {
-    "openInterest": 37882757.0,
-    "volume": 47397160.0
+    "openInterest": 37950212.0,
+    "volume": 47464615.0
    },
    "first_play": false,
    "game": "Washington Commanders @ New York Giants",
@@ -17627,8 +17759,8 @@
    "best_price": 0.6952,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.7,
-   "clv_cents": 2.0,
+   "close_price": 0.72,
+   "clv_cents": 4.0,
    "date": "2026-11-12",
    "dir": "DROP",
    "ex_stats": {
@@ -19953,8 +20085,8 @@
    "best_price": 0.4534,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.365,
-   "clv_cents": -8.3,
+   "close_price": 0.3597,
+   "clv_cents": -8.9,
    "date": "2026-11-12",
    "dir": "RAISE",
    "ex_stats": null,
@@ -22468,8 +22600,8 @@
    "best_price": 0.62,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.6212,
-   "clv_cents": 0.3,
+   "close_price": 0.6183,
+   "clv_cents": 0.0,
    "date": "2026-11-12",
    "dir": "DROP",
    "ex_stats": null,
@@ -22514,8 +22646,8 @@
    "best_price": 0.3924,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.3846,
-   "clv_cents": -0.3,
+   "close_price": 0.3876,
+   "clv_cents": 0.0,
    "date": "2026-11-12",
    "dir": "DROP",
    "ex_stats": null,
@@ -24551,8 +24683,8 @@
    "best_price": 0.6952,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.7,
-   "clv_cents": 2.0,
+   "close_price": 0.72,
+   "clv_cents": 4.0,
    "date": "2026-11-12",
    "dir": "RAISE",
    "ex_stats": {
