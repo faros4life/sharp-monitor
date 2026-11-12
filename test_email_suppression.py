@@ -44,6 +44,12 @@ ex.tg = lambda *a, **k: None
 ex.push = lambda *a, **k: None
 registry.enabled = lambda: True
 registry.set_gmail_incomplete = lambda: (MARKED.append(1), True)[1]
+# Nov 12: journal_intent() now takes an ATOMIC SUBMISSION CLAIM before writing the intent, and
+# refuses outright if it cannot win one. That precondition is tested on its own in
+# test_submission_claim.py; here it is granted so these assertions stay about the EMAIL rule.
+CLAIMS = []
+registry.claim_submission = lambda key, cid: (CLAIMS.append((key, cid)), True)[1]
+registry.release_submission = lambda key, cid: True
 
 
 def play(cid="cidbeef0000000001", book="novig"):

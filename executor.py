@@ -2755,8 +2755,10 @@ def refuse_untransmitted(r, reason, book=None, **extra):
 
     Deliberately a separate name rather than folding the void into refuse(): refuse() is also
     reached after an order exists, and a void there would clear a latch that is doing its job."""
+    _p = r.get("play") or {}
     void_intent((r.get("live") or {}).get("client_id"),
-                book or (r.get("live") or {}).get("book") or "?", reason)
+                book or (r.get("live") or {}).get("book") or "?", reason,
+                key=_p.get("play_key") or derive_key(_p) or "")
     return refuse(r, reason, book=book, **extra)
 
 
@@ -2885,7 +2887,8 @@ def live_order(r):
         # Nov 12 (Peter/Muse): px_live.place() returns "refused" before its own submit call, so the
         # write-ahead intent must be voided or it latches every later live order. Unconditional:
         # the notification is deduped per play and reason, the latch release must not be.
-        void_intent(lv.get("client_id"), "prophetx", res.get("reason"))
+        void_intent(lv.get("client_id"), "prophetx", res.get("reason"),
+                    key=p.get("play_key") or derive_key(p) or "")
         if refusal_first(r, res.get("reason")):
             tg_push("ORDER REFUSED", lane_note(r, "ORDER REFUSED", res, "prophetx", limit, extra=str(res.get("reason"))[:200]))
     if res["status"] == "placed":
@@ -2989,7 +2992,8 @@ def live_order_other(r):
         # pmus_place() each return "refused" strictly BEFORE their own POST - the EXEC_NOVIG_SUBMIT
         # hold is the first branch of novig_place() - so nothing reached the venue and the
         # write-ahead intent must not latch. "error" is deliberately NOT voided: it may have landed.
-        void_intent(lv.get("client_id"), book, res.get("reason"))
+        void_intent(lv.get("client_id"), book, res.get("reason"),
+                    key=p.get("play_key") or derive_key(p) or "")
     if res.get("status") == "refused" and refusal_first(r, res.get("reason")):
         # Nov 12 (Peter, Telegram audit): a refusal from the venue layer (Novig paused, preflight, thin depth)
         # used to be silent on every venue except ProphetX. One message per play and reason.
@@ -4057,6 +4061,52 @@ def journal_intent(r, book, asked):
                "live_order": {"status": "placed", "order_id": "intent-" + cid, "book": book,
                               "asked_stake": round(float(asked or 0), 2), "filled_stake": None,
                               "client_id": cid, "intent": True}}
+        # ------------------------------------------------------------------ ATOMIC CLAIM
+        # Nov 12 (Peter/Muse, acceptance bar: "two simultaneous runs on the same play key produce
+        # exactly one submission"). The lane-key fix closed the SEQUENTIAL duplicate - two runs five
+        # minutes apart, which is what placed the same NCAAF under three times (ebe82a72, 510a30b6,
+        # adade61d). It does NOT close the concurrent one: LIVEKEYS is a READ, so two overlapping
+        # runs can both pass it before either writes an intent, and runs do overlap here - the
+        # Nov 11 zombie run ran past its 30-minute timeout.
+        #
+        # registry.claim_submission() is a WRITE under the store's sha lock, so exactly one caller
+        # can win a key. It existed and was never called; the only release_submission() call passed
+        # an undefined `_key` and raised NameError into a bare except. Both are fixed here.
+        #
+        # The claim is on the LANE-STRIPPED key, so Phase 1, R1 and Board cannot each claim the same
+        # underlying bet - that is the cross-lane half of the requirement, and lane_strip() is the
+        # one definition every other key comparison already uses.
+        #
+        # FAIL CLOSED, deliberately and in both directions:
+        #   - claim lost        -> another run owns this bet; submit nothing.
+        #   - store unusable    -> claim_submission() RAISES ("no durable claim, no submission").
+        #     Without an atomic store a concurrent duplicate cannot be prevented, so an unknown
+        #     answer must block. This stops live orders when the registry is unreachable; that is
+        #     the intended trade and it is loud, not silent.
+        _ckey = lane_strip(row["key"]) or row["key"]
+        if not _ckey:
+            LOG.append(f"intent {cid}: no play key to claim - refusing")
+            return False, None
+        try:
+            if not registry.claim_submission(_ckey, cid):
+                LOG.append(f"intent {cid}: play key already claimed by another run - refusing")
+                try:
+                    tg_push("DUPLICATE BLOCKED",
+                            f"DUPLICATE BLOCKED: another run already holds this bet.\n{_ckey}\n"
+                            f"No order was submitted by this run.")
+                except Exception:
+                    pass
+                return False, None
+        except Exception as ex:
+            LOG.append(f"intent {cid}: submission claim unavailable ({str(ex)[:60]}) - refusing")
+            try:
+                tg_push("CLAIM UNAVAILABLE",
+                        f"NO ORDER PLACED: the duplicate-submission claim could not be written "
+                        f"({str(ex)[:120]}).\nWithout it a concurrent duplicate cannot be prevented, "
+                        f"so the run refused.")
+            except Exception:
+                pass
+            return False, None
         # Nov 12 (Peter, "remove routine execution emails"): the STORE IS TRIED FIRST, and the
         # email is sent only if the store could not confirm the row. The rule is unweakened - no
         # order is submitted until its pre-order record has been READ BACK out of a durable store -
@@ -4092,7 +4142,10 @@ def journal_intent(r, book, asked):
             _ok, _where = intent_verified(cid, row)   # SMTP success is not storage - read it back or place nothing
         if not _ok and registry.enabled():
             try:
-                registry.release_submission(_key, cid)   # nothing was submitted: give the key back
+                # Nov 12: was release_submission(_key, cid) with _key undefined in this
+                # function - a NameError swallowed by the except below, so the key was never
+                # given back. The row's key is row["key"]; the claim is on its lane-stripped form.
+                registry.release_submission(_ckey, cid)   # nothing was submitted: give the key back
             except Exception:
                 pass
         if not _ok:
@@ -4123,7 +4176,30 @@ def journal_intent(r, book, asked):
         return False, None
 
 
-def void_intent(cid, book, why):
+def _release_claim(key, cid, why):
+    """Give a claimed play key back, for a refusal that never reached the venue.
+
+    Nov 12 (Peter/Muse). release_submission()'s own rule: the claim is cleared ONLY on a refusal
+    that never reached the venue, or by Peter. So this is called from void_intent() - which is
+    itself only reachable from a provably pre-submission refusal - and never from an error path,
+    where the request may have landed and the claim must keep blocking retries.
+
+    Best-effort: a failed release leaves the key claimed, which blocks a retry of this bet until
+    it is reconciled. That is the safe direction, and no worse than the latch already does."""
+    k = lane_strip(str(key or "")) or str(key or "")
+    if not k or not cid:
+        return False
+    try:
+        if registry.enabled():
+            registry.release_submission(k, cid)
+            LOG.append(f"claim released for {k} ({why})")
+            return True
+    except Exception as ex:
+        LOG.append(f"claim release failed for {k}: {str(ex)[:50]} - it stays claimed (safe)")
+    return False
+
+
+def void_intent(cid, book, why, key=None):
     """Resolve a write-ahead intent whose order was NEVER TRANSMITTED (Peter/Muse, Nov 12).
 
     THE BUG THIS FIXES. journal_intent() runs at live_order()'s top - "before the book dispatch" -
@@ -4165,6 +4241,7 @@ def void_intent(cid, book, why):
         except Exception as ex:
             LOG.append(f"gmail-incomplete marker failed {cid}: {str(ex)[:50]}")
         LOG.append(f"intent {cid} VOIDED in the store (no email): {str(why)[:60]}")
+        _release_claim(key, cid, "voided - never transmitted")
         return ok
     try:   # store write failed, so the Gmail copy IS the record of this resolution
         send(f"{INTENT_VOID_PREFIX} {book} {cid}",
@@ -4179,6 +4256,7 @@ def void_intent(cid, book, why):
     except Exception as ex:
         LOG.append(f"intent void email failed {cid}: {str(ex)[:50]}")
     LOG.append(f"intent {cid} VOIDED (never transmitted): {str(why)[:80]}")
+    _release_claim(key, cid, "voided - never transmitted")
     return ok
 
 

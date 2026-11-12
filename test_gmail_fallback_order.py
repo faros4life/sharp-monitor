@@ -85,7 +85,9 @@ print("=" * 86)
 src = inspect.getsource(ex.kalshi_rest_reports)
 i_cache = src.find("list(LEDGER_ROWS)")
 i_store = src.find("registry.rows()")
-i_imap = src.find('M.uid("SEARCH"')
+# Nov 12: Muse made the IMAP connection lazy, so the call is M_().uid(...) now.
+# Match the method, not the receiver, or this silently stops testing anything.
+i_imap = max(src.find('uid("SEARCH"'), src.find("uid('SEARCH'"))
 ck("the cache is consulted first", 0 <= i_cache < i_store, True)
 ck("the store is consulted before Gmail", 0 <= i_store < i_imap, True)
 ck("Gmail is still reachable as the last resort", i_imap > 0, True)
