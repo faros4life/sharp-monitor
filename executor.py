@@ -3584,7 +3584,22 @@ def kalshi_rest_reports():
     """Oct 30 (Muse): a Kalshi resting bid that fills must message Peter at fill time (the next run, within ~10 min),
     not ride a later summary. Reads the bot's placed Kalshi resting bids (last 2 days) from its own 'Bets LIVE:' ledger
     rows, checks each order, and messages once per new fill amount (token email = the record). Counts only in the log."""
-    M = imap_open()
+    # Nov 12 (Peter, "eliminate the remaining Kalshi Gmail dependency"). The connection was opened
+    # UNCONDITIONALLY, so a cycle with nothing to report still paid ~4s of IMAP to do nothing - and
+    # on the 15-minute fill-reports schedule that is every cycle with no open resting bid, which is
+    # most of them (this run: 0 order(s) of 21 ledger rows).
+    #
+    # Gmail is still reached for exactly what it was before, and never less: the ledger RESCAN when
+    # the private store gave no rows, and already_reported()/ReportClaim() for any token the store
+    # does not already know. Those are the fallbacks that stop a fill being reported twice, and
+    # removing them would turn "unknown" into "not reported" - so they stay. This only declines to
+    # DIAL when no caller needs it.
+    _M = {"c": None}
+
+    def M_():
+        if _M["c"] is None:
+            _M["c"] = imap_open()
+        return _M["c"]
     n = 0
     try:
         # Nov 11: this re-scanned "Bets LIVE:" with its own RFC822 fetch per email - the identical
@@ -3618,9 +3633,9 @@ def kalshi_rest_reports():
                 LOG.append(f"kalshi rest: store read failed, using Gmail: {str(ex)[:50]}")
         if not reused:
             since = (datetime.now(timezone.utc) - timedelta(days=2)).strftime("%d-%b-%Y")
-            typ, data = M.uid("SEARCH", None, "SUBJECT", '"Bets LIVE:"', "SINCE", since)
+            typ, data = M_().uid("SEARCH", None, "SUBJECT", '"Bets LIVE:"', "SINCE", since)
             for uid in (data[0].split() if typ == "OK" and data and data[0] else []):
-                typ, d = M.uid("FETCH", uid, "(RFC822)")
+                typ, d = M_().uid("FETCH", uid, "(RFC822)")
                 if typ != "OK" or not d or not d[0]:
                     continue
                 txt = body_text(d[0][1])
@@ -3653,7 +3668,7 @@ def kalshi_rest_reports():
                 ((lm.num(o.get("taker_fill_count")) or 0) + (lm.num(o.get("maker_fill_count")) or 0))
             if fc:
                 k_toks[oid] = "xkrf" + hashlib.sha1(f"{oid}|{fc}".encode()).hexdigest()[:12]
-        already = already_reported(M, list(k_toks.values()), days=2)
+        already = already_reported(M_(), list(k_toks.values()), days=2) if k_toks else set()
         for oid, (row, lo) in rests.items():
             try:
                 st, d = (0, {"order": k_res.get(oid) or {}})
@@ -3670,7 +3685,7 @@ def kalshi_rest_reports():
                 _rem0 = lm.num(o.get("remaining_count_fp")) or lm.num(o.get("remaining_count")) or 0
                 _init = lm.num(o.get("initial_count_fp")) or lm.num(o.get("initial_count")) or ((fc or 0) + _rem0)
                 _etok = "xkex" + hashlib.sha1(str(oid).encode()).hexdigest()[:12]
-                _cl = ReportClaim(M, [_etok], days=2)
+                _cl = ReportClaim(M_(), [_etok], days=2)
                 try:
                     _won = _cl.claim(_etok)
                 except Exception as ex:
@@ -3720,7 +3735,8 @@ def kalshi_rest_reports():
                 pass
             n += 1
     finally:
-        imap_close(M)
+        if _M["c"] is not None:
+            imap_close(_M["c"])
     print(f"Kalshi resting-fill reports sent: {n}")
     return n
 
