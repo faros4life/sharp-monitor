@@ -4169,6 +4169,10 @@ def main():
          + f", {len(skips)} skipped",
          "\n".join(body))
     print(f"Dry-run email sent: {len(golive)} would go live, {nw} would place, {len(helds)} held, {len(skips)} skipped.")   # counts only
+    # Nov 12: which rule set the line-conversion prices in THIS run, printed once so activation is verifiable from the log
+    print(f"line-value mode: {lv_mode()} ({'REPLACEMENT maximum' if lv_mode() == 'live' else 'legacy half-point credit'}) "
+          f"for selection, order limit and recheck; capture {'on' if os.environ.get('LINE_VALUE_SHADOW', '1') != '0' else 'off'}; "
+          f"Pinnacle reference read {'on' if os.environ.get('LINE_VALUE_PIN_READ') == '1' else 'off'} (optional).")
     if _PIN_USAGE:   # Nov 12: bounded Pinnacle diagnostic - report actual credit usage (counts only)
         print(f"Pinnacle reads this run: {_PIN_USAGE.get('calls_this_run', 0)}; The Odds API used {_PIN_USAGE.get('x-requests-used')}, "
               f"remaining {_PIN_USAGE.get('x-requests-remaining')}, last call cost {_PIN_USAGE.get('x-requests-last')}.")

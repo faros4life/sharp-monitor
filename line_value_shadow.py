@@ -100,17 +100,18 @@ def ledger_fields(r):
     """Keys merged into the EXISTING ledger row (no extra email). Always returns lvs_capture, so a failed or skipped
     capture is a recorded fact and not silence: 'ok' | 'off' | 'not_evaluated' | 'error: <why>'. Never raises."""
     try:
+        mode = {"lv_mode": ("live" if (os.environ.get("LINE_VALUE_MODE") or "shadow").strip().lower() == "live" else "shadow")}
         if os.environ.get("LINE_VALUE_SHADOW", "1") == "0":
-            return {"lvs_capture": "off"}
+            return dict(mode, lvs_capture="off")
         lvs = r.get("lvs")
         pk = (r.get("play") or {}).get("play_key")
         rcs = [x for x in RECHECKS if x.get("play_key") == pk] if pk else []
         if lvs is None:
-            return {"lvs_capture": "not_evaluated", "lvs_rechecks": rcs}
+            return dict(mode, lvs_capture="not_evaluated", lvs_rechecks=rcs)
         if "error" in lvs:
-            return {"lvs_capture": "error: " + str(lvs["error"])[:100], "lvs_rechecks": rcs}
+            return dict(mode, lvs_capture="error: " + str(lvs["error"])[:100], lvs_rechecks=rcs)
         slim = dict(lvs, ladder=[{k: v for k, v in row.items() if k != "levels"} for row in (lvs.get("ladder") or [])])
-        return {"lvs_capture": "ok", "lvs": slim, "lvs_rechecks": rcs}
+        return dict(mode, lvs_capture="ok", lvs=slim, lvs_rechecks=rcs)
     except Exception as ex:
         return {"lvs_capture": "error: " + str(ex)[:100]}
 

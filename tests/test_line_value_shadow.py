@@ -243,7 +243,13 @@ ck("6. a play that never reached the hook says not_evaluated", lvsh.ledger_field
 ck("6. a failed capture says error and why", lvsh.ledger_fields({"lvs": {"error": "KeyError: x"}})["lvs_capture"].startswith("error: KeyError"), "")
 ck("6. a garbage result never raises", lvsh.ledger_fields(None)["lvs_capture"].startswith("error"), "")
 os.environ["LINE_VALUE_SHADOW"] = "0"
-ck("6. off is recorded as off", lvsh.ledger_fields(res) == {"lvs_capture": "off"}, "")
+ck("6. off is recorded as off, and the ledger still records WHICH RULE decided",
+   lvsh.ledger_fields(res) == {"lvs_capture": "off", "lv_mode": "shadow"}, str(lvsh.ledger_fields(res)))
+os.environ["LINE_VALUE_MODE"] = "live"
+ck("6. a live run is stamped lv_mode=live in every ledger row", lvsh.ledger_fields(res)["lv_mode"] == "live"
+   and lvsh.ledger_fields({"verdict": "SKIP"})["lv_mode"] == "live", str(lvsh.ledger_fields(res).get("lv_mode")))
+os.environ.pop("LINE_VALUE_MODE", None)
+ck("6. the run log states the mode once", "line-value mode:" in inspect.getsource(ex.main))
 os.environ["LINE_VALUE_SHADOW"] = "1"
 msrc = inspect.getsource(ex.main)
 ck("6. there is no second email: executor never calls send_run and the shadow module has none",
