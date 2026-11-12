@@ -19,6 +19,7 @@ readings, nothing else.
 """
 import json
 import os
+import re
 import statistics
 import sys
 import urllib.error
@@ -46,6 +47,33 @@ def gh(path):
         return None, f"HTTP {ex.code}"
     except Exception as ex:
         return None, type(ex).__name__
+
+
+def _declares_auto(path):
+    """True when the workflow's own `on:` block declares schedule or workflow_run.
+
+    Read from the checkout, text-only: a real YAML parse is not worth a dependency here, and the
+    question is only whether either key appears inside `on:` before the next top-level key.
+    Unreadable file -> False, so an unknown workflow is reported ON DEMAND rather than judged on a
+    guess.
+    """
+    try:
+        lines = open(str(path or ""), encoding="utf-8").read().splitlines()
+    except Exception:
+        return False
+    inside = False
+    for ln in lines:
+        if re.match(r"^on\s*:", ln):
+            inside = True
+            if re.search(r"\bschedule\b|\bworkflow_run\b", ln):
+                return True
+            continue
+        if inside:
+            if ln.strip() and not ln.startswith((" ", "\t", "#")):
+                break            # next top-level key: the on: block has ended
+            if re.match(r"^\s+(schedule|workflow_run)\s*:", ln):
+                return True
+    return False
 
 
 def ts(s):
@@ -95,7 +123,19 @@ def main():
         # are reported as ON DEMAND and kept out of the headline entirely. Read off the runs'
         # own event field rather than parsing workflow files, so it stays true if a trigger
         # changes.
-        auto = any(str(r.get("event")) in ("schedule", "workflow_run") for r in rl)
+        # Nov 12, final: classify by what the workflow DECLARES, not by its run history.
+        #
+        # Two heuristics failed first. Testing the event alone labelled the executor and nearly
+        # every live job ON DEMAND, because cron-job.org fires them and an external caller arrives
+        # as workflow_dispatch. Adding "many runs, closely spaced" then swept in one-off probes -
+        # nba-backtest2, hist-probe, pnl-pull - because a debugging burst also looks regular.
+        # Run history simply cannot tell "automated but broken" from "manual and idle".
+        #
+        # The workflow file can. A `schedule:` or `workflow_run:` trigger in its own `on:` block
+        # says it is meant to fire by itself, whether or not GitHub's timer is the thing firing it,
+        # and that stays true while it is broken - which is exactly when the answer matters. The
+        # repo is checked out in this job, so this is a free local read, not an API call.
+        auto = _declares_auto(w.get("path"))
         starts = sorted([t for t in (ts(r.get("created_at")) for r in rl) if t], reverse=True)
         gaps = [(starts[i] - starts[i + 1]).total_seconds() / 60 for i in range(len(starts) - 1)]
         cadence = statistics.median(gaps) if gaps else None
