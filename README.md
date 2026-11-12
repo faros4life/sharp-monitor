@@ -1,6 +1,6 @@
 # EV sightings study (paper, measurement only)
 
-Started 2026-10-27T16:06:50Z. Updated 2026-11-12T20:45:51Z. Sightings are a record, never bets. CLV = close fair - sighting after-fee cost, in cents (+ = beat the close). Gate: >= 50 graded, positive average CLV and positive flat record; reviewed only at a scheduled review. A/B gate on consensus CLV; move-watch (A1) gate on Pinnacle CLV. Held = Pinnacle close minus Pinnacle's pre-move fair at the old number (+ = the move held). Rows exclude suspect sightings (best price 10c+ under the other books, or a crossed quote: usually a misread line); Pinnacle CLV only within 3 points of Pinnacle's number.
+Started 2026-10-27T16:06:50Z. Updated 2026-11-12T20:57:20Z. Sightings are a record, never bets. CLV = close fair - sighting after-fee cost, in cents (+ = beat the close). Gate: >= 50 graded, positive average CLV and positive flat record; reviewed only at a scheduled review. A/B gate on consensus CLV; move-watch (A1) gate on Pinnacle CLV. Held = Pinnacle close minus Pinnacle's pre-move fair at the old number (+ = the move held). Rows exclude suspect sightings (best price 10c+ under the other books, or a crossed quote: usually a misread line); Pinnacle CLV only within 3 points of Pinnacle's number.
 
 | Bucket | Sightings | Closed | CLV vs consensus | Beat % | Pin-closed | CLV vs Pinnacle | Graded | Record | Units | ROI | Held | Lag (med) | Gate |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
@@ -13,8 +13,8 @@ Started 2026-10-27T16:06:50Z. Updated 2026-11-12T20:45:51Z. Sightings are a reco
 | M move-watch: gettable (sightings) | 452 | 435 | -0.63c | 34.7% | 433 | -0.54c | 439 | 223-211-5 | -7.21u | -1.6% | 0.2c | 28s | criteria not met (439/50 graded, CLV not positive, record not positive) |
 | M gettable, line moves | 233 | 224 | -0.79c | 34.8% | 223 | -0.82c | 226 | 108-114-4 | -15.80u | -7.0% | -0.19c | 28s |  |
 | M gettable, price moves | 219 | 211 | -0.46c | 34.6% | 210 | -0.24c | 213 | 115-97-1 | +8.59u | 4.0% | 0.61c | 26s |  |
-| M control: not gettable | 1831 | 1445 | -0.83c | 35.5% | 1413 | -1.25c | 1484 | 740-720-24 | -64.98u | -4.4% | 1.87c | 184s |  |
-| M all moves | 2283 | 1880 | -0.78c | 35.3% | 1846 | -1.08c | 1923 | 963-931-29 | -72.19u | -3.8% | 1.54c | 183s |  |
+| M control: not gettable | 1832 | 1445 | -0.83c | 35.5% | 1413 | -1.25c | 1484 | 740-720-24 | -64.98u | -4.4% | 1.87c | 184s |  |
+| M all moves | 2284 | 1880 | -0.78c | 35.3% | 1846 | -1.08c | 1923 | 963-931-29 | -72.19u | -3.8% | 1.54c | 183s |  |
 | Suspect (10c+ gap / crossed), all legs - excluded above | 1105 | 1083 | 2.45c | 27.1% | 232 | 2.44c | 1084 | 488-596-0 | +293.23u | 27.1% | 0.62c | 22s |  |
 
 ## Pre-registered buckets (locked Oct 31, amended 2026-10-31T14:45:00Z before any forward data was read; judged only on sightings after 2026-10-31T14:35:00Z; J = judged, D = descriptive)
@@ -48,10 +48,11 @@ A and B on the same side/line: 142.
 
 ## Odds API credits (100K/month plan)
 
-Study: 638/day, projected 19137/30 days. All monitors on the key: 2417/day, projected 72523/30 days. Remaining 70108; guard holds 52400 for the sharp monitor; polls skipped by the guard: 0.
+Study: 639/day, projected 19159/30 days. All monitors on the key: 2419/day, projected 72563/30 days. Remaining 70071; guard holds 52400 for the sharp monitor; polls skipped by the guard: 0.
 
 ## Last runs
 
+- 2026-11-12T20:52:18Z: 22 games (17 in 24h), quotes {'prophetx': 1102, 'novig': 716, 'kalshi': 922, 'polymarket_us': 1206}, 28 unmatched (1 book-games; fuzzy-matched 4), 2186 side/lines, polls [NFL:fast,NCAAF:fast,NBA:fast,NHL:fast; NFL:fast,NCAAF:fast,NBA:fast,NHL:fast], moves 1, new A 0 B 0, maker posted 0 filled 0, credits used 16 left 70071, 302s
 - 2026-11-12T20:42:47Z: 22 games (17 in 24h), quotes {'prophetx': 1102, 'novig': 721, 'kalshi': 922, 'polymarket_us': 1206}, 28 unmatched (1 book-games; fuzzy-matched 2), 2189 side/lines, polls [none_due; NFL:fast,NCAAF:fast,NBA:fast,NHL:fast], moves 0, new A 0 B 0, maker posted 0 filled 0, credits used 8 left 70108, 184s
 - 2026-11-12T20:35:37Z: 22 games (17 in 24h), quotes {'prophetx': 1102, 'novig': 720, 'kalshi': 924, 'polymarket_us': 1206}, 28 unmatched (1 book-games; fuzzy-matched 2), 2188 side/lines, polls [none_due; NFL:fast,NCAAF:fast,NBA:fast,NHL:fast], moves 0, new A 2 B 0, maker posted 0 filled 0, credits used 8 left 70127, 183s
 - 2026-11-12T20:29:42Z: 22 games (17 in 24h), quotes {'prophetx': 1102, 'novig': 721, 'kalshi': 924, 'polymarket_us': 1204}, 28 unmatched (1 book-games; fuzzy-matched 2), 2187 side/lines, polls [none_due; NFL:fast,NCAAF:fast,NBA:fast,NHL:fast], moves 0, new A 1 B 0, maker posted 90 filled 0, credits used 8 left 70150, 184s
@@ -61,4 +62,3 @@ Study: 638/day, projected 19137/30 days. All monitors on the key: 2417/day, proj
 - 2026-11-12T19:52:49Z: 22 games (17 in 24h), quotes {'prophetx': 1102, 'novig': 720, 'kalshi': 924, 'polymarket_us': 1204}, 28 unmatched (1 book-games; fuzzy-matched 4), 2192 side/lines, polls [NFL:fast,NCAAF:fast,NBA:fast,NHL:fast; NFL:fast,NCAAF:fast,NBA:fast,NHL:fast], moves 2, new A 0 B 0, maker posted 9 filled 0, credits used 16 left 70280, 301s
 - 2026-11-12T19:41:45Z: 22 games (17 in 24h), quotes {'prophetx': 1102, 'novig': 721, 'kalshi': 928, 'polymarket_us': 1204}, 32 unmatched (2 book-games; fuzzy-matched 2), 2187 side/lines, polls [none_due; NFL:fast,NCAAF:fast,NBA:fast,NHL:fast], moves 0, new A 1 B 0, maker posted 0 filled 0, credits used 8 left 70309, 187s
 - 2026-11-12T19:36:48Z: 22 games (17 in 24h), quotes {'prophetx': 1102, 'novig': 723, 'kalshi': 930, 'polymarket_us': 1204}, 34 unmatched (2 book-games; fuzzy-matched 2), 2192 side/lines, polls [none_due; NFL:fast,NCAAF:fast,NBA:fast,NHL:fast], moves 0, new A 2 B 1, maker posted 0 filled 1, credits used 8 left 70328, 183s
-- 2026-11-12T19:30:41Z: 22 games (17 in 24h), quotes {'prophetx': 1102, 'novig': 721, 'kalshi': 934, 'polymarket_us': 1204}, 36 unmatched (2 book-games; fuzzy-matched 2), 2192 side/lines, polls [none_due; NFL:fast,NCAAF:fast,NBA:fast,NHL:fast], moves 0, new A 1 B 1, maker posted 0 filled 0, credits used 8 left 70336, 182s
