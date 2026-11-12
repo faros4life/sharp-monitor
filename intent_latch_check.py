@@ -113,7 +113,7 @@ def main():
     print("LIVEKEYS CENSUS - which order rows actually block a repeat?")
     print("=" * 92)
     try:
-        in_lk, gap = 0, []
+        in_lk, refused, gap = 0, 0, []
         for row in rows:
             key = row.get("key") or ""
             for lo in ([row.get("live_order") or {}, row.get("live_rest") or {}]
@@ -127,9 +127,17 @@ def main():
                 placed = lo.get("status") == "placed" and bool(lo.get("order_id"))
                 if placed:
                     in_lk += 1
+                elif lo.get("status") == "refused":
+                    # CORRECTLY excluded, not a gap. Every "refused" return in novig_place,
+                    # kalshi_place, pmus_place and px_live.place sits strictly BEFORE that
+                    # function's POST, so the order provably never reached a venue. A
+                    # never-transmitted order must NOT hold its play key - that would retire a
+                    # bet nobody made. Counting these as gap rows cried wolf on the first run.
+                    refused += 1
                 elif lo.get("status"):
                     gap.append((str(lo.get("book") or "?"), str(lo.get("status")), key))
         print(f"  {in_lk} order row(s) reach LIVEKEYS -> a repeat of those plays is blocked")
+        print(f"  {refused} row(s) excluded as provably never transmitted (status=refused) - correct")
         nov_gap = [g for g in gap if "novig" in g[0].lower()]
         print(f"  {len(gap)} row(s) do NOT reach LIVEKEYS ({len(nov_gap)} of them Novig)")
         if not gap:
@@ -139,7 +147,8 @@ def main():
             print("  claim (concurrent) that is both duplicate paths closed for existing orders.")
         else:
             print()
-            print("  THESE ARE THE GAP ROWS. Each may exist at the venue while blocking nothing:")
+            print("  THESE ARE THE GAP ROWS. Each may exist at the venue while blocking nothing.")
+            print("  A 'refused' row is NOT here: it provably never reached a venue.")
             for book, st, key in gap[:20]:
                 print(f"    book={book:<10} status={st:<12} key={key[:52]}")
             print()
