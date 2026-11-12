@@ -33,12 +33,19 @@ jobs:
           # position and a per-key COUNT, so a duplicate is visible here instead of only in a
           # private email. Counts and names only: no stake, no price, no balance (CLAUDE.md).
           import collections
+          print("fields present on a position row:", sorted({k for p in pos for k in p}))
+          named = sum(1 for p in pos if (p.get("game") or "").strip())
+          print(f"rows with a readable game name: {named}/{len(pos)}"
+                + ("   <- names did not resolve; identity below is marketId/outcomeId" if named < len(pos) else ""))
           keys = collections.Counter()
+          qty = collections.Counter()
           for p in pos:
-              k = f"{p.get('league') or '?'} | {p.get('game') or '?'} | {p.get('label') or '?'}"
+              k = (f"{p.get('league') or ''} {p.get('game') or ''} {p.get('label') or ''}".strip()
+                   or f"market {p.get('marketId')} outcome {p.get('outcomeId')}")
               keys[k] += 1
+              qty[k] += int(p.get("qty") or 0)
           for k, n in keys.most_common():
-              print(f"  {'DUPLICATE x' + str(n) if n > 1 else 'x1'}  {k}")
+              print(f"  {('DUPLICATE x' + str(n)) if n > 1 else 'x1':<13} {qty[k]:>9,} contracts  {k}")
           dup = sum(n for n in keys.values() if n > 1)
-          print(f"DISTINCT keys: {len(keys)} | positions on a duplicated key: {dup}")
+          print(f"DISTINCT bets: {len(keys)} | positions sitting on a duplicated bet: {dup}")
           PY
