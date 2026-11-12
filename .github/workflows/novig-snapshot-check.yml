@@ -27,4 +27,18 @@ jobs:
               print("SNAPSHOT: FAILED ->", (e._NVERR.get("why") or "").strip(" |")[:200])
               raise SystemExit(1)
           print(f"SNAPSHOT: OK - {len(pos)} open Novig position(s); source: {e._NVERR.get('src')}")
+          # Nov 12 (Peter, "use the api not emails"): the count alone cannot answer "did the bot
+          # place this bet more than once", which is a MONEY question - three R1 orders went out on
+          # one NCAAF under this morning and only one fill was reported. Print one line per open
+          # position and a per-key COUNT, so a duplicate is visible here instead of only in a
+          # private email. Counts and names only: no stake, no price, no balance (CLAUDE.md).
+          import collections
+          keys = collections.Counter()
+          for p in pos:
+              k = f"{p.get('league') or '?'} | {p.get('game') or '?'} | {p.get('label') or '?'}"
+              keys[k] += 1
+          for k, n in keys.most_common():
+              print(f"  {'DUPLICATE x' + str(n) if n > 1 else 'x1'}  {k}")
+          dup = sum(n for n in keys.values() if n > 1)
+          print(f"DISTINCT keys: {len(keys)} | positions on a duplicated key: {dup}")
           PY
