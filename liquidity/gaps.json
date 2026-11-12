@@ -2,36 +2,6 @@
  "note": "PAPER ONLY (Oct 25; persistence added Oct 26): opposite sides of the same game/market/line on two different exchanges whose combined cost after fees is under $1 (Kalshi/Novig/ProphetX; Polymarket here is the global book, excluded). edge_pct = locked profit per $ staked at first sight; max/last_edge_pct while open. size_est = smaller leg's near-price depth (UPPER BOUND). first/last_seen_utc, scans_seen, lifetime_min = how long the gap stayed open (scan-interval resolution; a 1-scan gap may be a feed artifact). scan_sec = seconds from run start to this save, the most the two legs' reads can be apart. Measurement only: never alerted, never bet.",
  "gaps": [
   {
-   "seen_utc": "2026-10-29T00:10:10Z",
-   "league": "NBA",
-   "game": "San Antonio Spurs @ Utah Jazz",
-   "market": "total",
-   "line": 233.5,
-   "edge_pct": 1.0,
-   "total_cost": 0.9901,
-   "size_est": 5388,
-   "legs": [
-    {
-     "book": "novig",
-     "side": "Under 233.5 (233.5)",
-     "price": 0.49,
-     "cost_after_fee": 0.49
-    },
-    {
-     "book": "prophetx",
-     "side": "over 233.5 (233.5)",
-     "price": 0.495,
-     "cost_after_fee": 0.5001
-    }
-   ],
-   "first_seen_utc": "2026-10-29T00:10:10Z",
-   "last_seen_utc": "2026-10-29T00:10:10Z",
-   "scans_seen": 1,
-   "max_edge_pct": 1.0,
-   "scan_sec": 246,
-   "lifetime_min": 0
-  },
-  {
    "seen_utc": "2026-10-29T22:20:28Z",
    "league": "NBA",
    "game": "Charlotte Hornets @ Washington Wizards",
