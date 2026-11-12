@@ -70,8 +70,13 @@ ck("the alert fires in the dispatch block", "live_play_alert(r)" in mb)
 ck("it is NOT gated to one lane",
    'lane_of(r) == "r1"' not in mb.split("live_play_alert(r)")[0][-400:])
 ck("it fires BEFORE the order", mb.index("live_play_alert(r)") < mb.index('r["live"]["order"] = live_order(r)'))
+# Nov 12: the guard is unchanged but the static_refusal() branch now sits between it and the
+# alert, pushing get("go") past a 400-character window. The condition is strictly STRONGER than
+# before: the alert fires only on a play that is going live AND has passed the entry-only gates,
+# so a play that could never be attempted is no longer announced as a LIVE PLAY.
+_before = mb.split("live_play_alert(r)")[0]
 ck("it only fires on a play that is actually going live",
-   'get("go")' in mb.split("live_play_alert(r)")[0][-400:])
+   'get("go")' in _before[-1600:] and "static_refusal(r)" in _before[-1600:])
 ck("an alert failure can never block the order", "never block the order" in mb)
 ck("the failure is printed, not raised", "live play alert failed" in mb)
 
@@ -85,10 +90,16 @@ for _n in _ast.walk(_t):
 _code = _ast.unparse(_t)
 ck("one push per play (push mirrors once to Telegram)", _code.count("push(") == 1, str(_code.count("push(")))
 ck("the play alert does not also call tg() directly", "tg(" not in _code)
-ck("cross-run dedupe: a play is processed once (already_handled greps the pid)",
-   "gsearch_strict(M, pid(" in inspect.getsource(ex.already_handled))
+# Nov 12: already_handled is registry-first (a dict lookup against handled_pids()) and falls back
+# to a DATE-BOUNDED pid search, so the call reads gsearch_strict(M, f"newer_than:...{pid(k)}").
+# Still one search per pid; the literal spelling changed.
+_ah = inspect.getsource(ex.already_handled)
+ck("cross-run dedupe: a play is processed once (by pid, registry first then Gmail)",
+   "pid(k)" in _ah and "gsearch_strict(M," in _ah and "seen.get(pid(k)" in _ah)
+# The namespace rule now lives in handled_keys(), which calls itself "the ONLY place that rule
+# lives" - rules/lane2 keep their own namespace, every other lane also dedupes on derive_key.
 ck("R1 plays use the game+side key namespace, so a re-sent alert never re-alerts",
-   '("rules", "lane2")' in inspect.getsource(ex.already_handled))
+   '("rules", "lane2")' in inspect.getsource(ex.handled_keys))
 ck("the outcome notes are separate events, still sent",
    'lane_note(r, "FILLED"' in inspect.getsource(ex.live_order))
 

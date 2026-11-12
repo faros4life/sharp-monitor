@@ -63,8 +63,11 @@ ck("revalidation runs BEFORE the book dispatch",
    lo.index("revalidate(r") < lo.index("live_order_other(r)"))
 ck("revalidation runs AFTER the policy guards (STOP, registry, daily stop)",
    lo.index("live_guards()") < lo.index("revalidate(r"))
+# Nov 12: live_order's refusals are unified through refuse(), which itself returns
+# {"status": "refused", "reason": ...} AND sends the ORDER REFUSED notification. The inline dict
+# literal is gone; the refusal is not.
 ck("a failed revalidation refuses the order",
-   "if not rv_ok" in lo and 'return {"status": "refused"' in lo)
+   "if not rv_ok" in lo and "refuse(r," in lo[lo.index("if not rv_ok"):])
 ck("the order is re-sized from the fresh levels", 'buy=fresh.get("buy_levels")' in lo)
 rs = inspect.getsource(ex.revalidate)
 ck("revalidate never places anything", not any(w in rs for w in ("place(", "submit_order", "_place")))
