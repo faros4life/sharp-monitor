@@ -2,6 +2,11 @@ name: novig-snapshot-check
 
 on:
   workflow_dispatch:   # manual: can the executor read the home PC's Novig positions snapshot? Prints counts only.
+    inputs:
+      orders:
+        description: "Comma-separated Novig order ids or client ids to reconcile against actual fills"
+        required: false
+        default: ""
 
 permissions:
   contents: read
@@ -19,8 +24,10 @@ jobs:
       - name: Read the snapshot exactly as the executor does
         env:
           NOVIG_SNAPSHOT_TOKEN: ${{ secrets.NOVIG_SNAPSHOT_TOKEN }}
+          RECONCILE_ORDERS: ${{ inputs.orders }}
         run: |
           python -u - <<'PY'
+          import os
           import executor as e
           pos = e.novig_snapshot()
           if pos is None:
@@ -48,4 +55,32 @@ jobs:
               print(f"  {('DUPLICATE x' + str(n)) if n > 1 else 'x1':<13} {qty[k]:>9,} contracts  {k}")
           dup = sum(n for n in keys.values() if n > 1)
           print(f"DISTINCT bets: {len(keys)} | positions sitting on a duplicated bet: {dup}")
+          # Nov 12 (Peter): "Reconcile each of the three order IDs against actual fills and final
+          # order status. Don't infer 'killed' from the position count or liquidity." The home
+          # runner's own order results are the record of what the venue did with each submission.
+          import book_live as bl
+          recs = bl.novig_results()
+          if recs is None:
+              print("ORDERS: UNREADABLE - home runner results could not be read. Outcome UNKNOWN.")
+          else:
+              want = [w for w in (os.environ.get("RECONCILE_ORDERS") or "").split(",") if w.strip()]
+              print(f"ORDERS: {len(recs)} result row(s) from the home runner")
+              by = {}
+              for x in recs:
+                  for ident in (x.get("order_id"), x.get("client_id")):
+                      if ident:
+                          by[str(ident)] = x
+              for w in want:
+                  w = w.strip()
+                  x = by.get(w)
+                  if not x:
+                      print(f"  {w[:8]}  NO RESULT ROW -> outcome UNKNOWN, treat as possibly live")
+                      continue
+                  st = str(x.get("status") or "?").upper()
+                  fq = int(x.get("filled_qty") or 0)
+                  q = int(x.get("qty") or 0)
+                  tag = ("FILLED" if q and fq >= q else "PARTIAL" if fq > 0 else
+                         "NO FILL / KILLED" if st in ("CANCELED", "CANCELLED", "KILLED", "EXPIRED", "REJECTED", "REFUSED")
+                         else "STILL OPEN" if st == "OPEN" else f"UNRESOLVED ({st})")
+                  print(f"  {w[:8]}  status {st:<10} {fq:>7,}/{q:<7,} contracts  -> {tag}")
           PY
