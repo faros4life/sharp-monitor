@@ -1,6 +1,6 @@
 # EV sightings study (paper, measurement only)
 
-Started 2026-10-27T16:06:50Z. Updated 2026-11-12T15:25:17Z. Sightings are a record, never bets. CLV = close fair - sighting after-fee cost, in cents (+ = beat the close). Gate: >= 50 graded, positive average CLV and positive flat record; reviewed only at a scheduled review. A/B gate on consensus CLV; move-watch (A1) gate on Pinnacle CLV. Held = Pinnacle close minus Pinnacle's pre-move fair at the old number (+ = the move held). Rows exclude suspect sightings (best price 10c+ under the other books, or a crossed quote: usually a misread line); Pinnacle CLV only within 3 points of Pinnacle's number.
+Started 2026-10-27T16:06:50Z. Updated 2026-11-12T15:35:38Z. Sightings are a record, never bets. CLV = close fair - sighting after-fee cost, in cents (+ = beat the close). Gate: >= 50 graded, positive average CLV and positive flat record; reviewed only at a scheduled review. A/B gate on consensus CLV; move-watch (A1) gate on Pinnacle CLV. Held = Pinnacle close minus Pinnacle's pre-move fair at the old number (+ = the move held). Rows exclude suspect sightings (best price 10c+ under the other books, or a crossed quote: usually a misread line); Pinnacle CLV only within 3 points of Pinnacle's number.
 
 | Bucket | Sightings | Closed | CLV vs consensus | Beat % | Pin-closed | CLV vs Pinnacle | Graded | Record | Units | ROI | Held | Lag (med) | Gate |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
@@ -48,10 +48,11 @@ A and B on the same side/line: 136.
 
 ## Odds API credits (100K/month plan)
 
-Study: 630/day, projected 18894/30 days. All monitors on the key: 2399/day, projected 71983/30 days. Remaining 70931; guard holds 52400 for the sharp monitor; polls skipped by the guard: 0.
+Study: 630/day, projected 18895/30 days. All monitors on the key: 2400/day, projected 72013/30 days. Remaining 70901; guard holds 52400 for the sharp monitor; polls skipped by the guard: 0.
 
 ## Last runs
 
+- 2026-11-12T15:30:37Z: 21 games (18 in 24h), quotes {'prophetx': 1146, 'novig': 698, 'kalshi': 936, 'polymarket_us': 1230}, 64 unmatched (3 book-games; fuzzy-matched 2), 2205 side/lines, polls [NHL:fast; NHL:fast], moves 0, new A 0 B 0, maker posted 0 filled 0, credits used 4 left 70901, 301s
 - 2026-11-12T15:22:15Z: 21 games (18 in 24h), quotes {'prophetx': 1006, 'novig': 697, 'kalshi': 936, 'polymarket_us': 1230}, 64 unmatched (3 book-games; fuzzy-matched 2), 2133 side/lines, polls [none_due; NHL:fast], moves 0, new A 1 B 0, maker posted 0 filled 0, credits used 2 left 70931, 182s
 - 2026-11-12T15:12:42Z: 21 games (18 in 24h), quotes {'prophetx': 1146, 'novig': 700, 'kalshi': 938, 'polymarket_us': 1230}, 64 unmatched (3 book-games; fuzzy-matched 4), 2207 side/lines, polls [NFL:slow,NCAAF:slow,NBA:slow,NHL:fast; NHL:fast], moves 1, new A 1 B 0, maker posted 12 filled 0, credits used 10 left 70933, 301s
 - 2026-11-12T15:01:56Z: 21 games (18 in 24h), quotes {'prophetx': 1146, 'novig': 702, 'kalshi': 938, 'polymarket_us': 1230}, 64 unmatched (3 book-games; fuzzy-matched 2), 2211 side/lines, polls [none_due; NHL:fast], moves 1, new A 4 B 1, maker posted 0 filled 0, credits used 2 left 70982, 191s
@@ -61,4 +62,3 @@ Study: 630/day, projected 18894/30 days. All monitors on the key: 2399/day, proj
 - 2026-11-12T14:22:28Z: 21 games (18 in 24h), quotes {'prophetx': 1150, 'novig': 700, 'kalshi': 938, 'polymarket_us': 1230}, 64 unmatched (3 book-games; fuzzy-matched 2), 2215 side/lines, polls [NHL:fast; NHL:fast], moves 0, new A 4 B 2, maker posted 0 filled 0, credits used 4 left 71083, 301s
 - 2026-11-12T14:11:45Z: 21 games (18 in 24h), quotes {'prophetx': 1150, 'novig': 705, 'kalshi': 936, 'polymarket_us': 1230}, 64 unmatched (3 book-games; fuzzy-matched 2), 2216 side/lines, polls [none_due; NHL:fast], moves 0, new A 1 B 0, maker posted 4 filled 0, credits used 2 left 71130, 184s
 - 2026-11-12T14:02:47Z: 21 games (18 in 24h), quotes {'prophetx': 816, 'novig': 703, 'kalshi': 936, 'polymarket_us': 1230}, 64 unmatched (3 book-games; fuzzy-matched 4), 2037 side/lines, polls [NFL:slow,NCAAF:slow,NBA:slow,NHL:fast; NHL:fast], moves 10, new A 9 B 0, maker posted 8 filled 0, credits used 10 left 71147, 303s
-- 2026-11-12T13:52:37Z: outside read hours: closes/grades only
