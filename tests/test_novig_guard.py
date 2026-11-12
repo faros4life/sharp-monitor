@@ -22,23 +22,22 @@ def ck(n, c, d=""):
     (OK if c else BAD).append(n + (f"  [{d}]" if d and not c else ""))
 
 
-# ---------------------------------------------------------------- 1. submissions paused by default
-for val, on in (("", False), ("off", False), ("no", False), ("0", False), ("shadow", False),
-                ("on", True), ("1", True), ("true", True), ("ON", True), (" on ", True)):
-    if val:
-        os.environ["NOVIG_SUBMIT"] = val
-    else:
-        os.environ.pop("NOVIG_SUBMIT", None)
-    ck(f"1 NOVIG_SUBMIT={val!r} -> submissions {'on' if on else 'PAUSED'}", ex.novig_submit_on() is on, str(ex.novig_submit_on()))
-os.environ.pop("NOVIG_SUBMIT", None)
-ck("1 the DEFAULT (variable absent) is paused", ex.novig_submit_on() is False)
-src = inspect.getsource(ex.live_order_other)
-ck("1 the pause sits at the Novig submission site, before book_live.novig_place",
-   src.index("novig_submit_on()") < src.index("novig_place("), "")
-ck("1 the refusal is recorded as a Novig refusal (so it reaches the ledger and the email)",
-   'refuse(r, f"Novig submissions paused' in src and 'book="novig"' in src)
-ck("1 no other venue is gated by it", src.count("novig_submit_on()") == 1
-   and "novig_submit_on" not in inspect.getsource(ex.live_order).replace("live_order_other", ""))
+# ---------------------------------------------------------------- 1. submissions paused at ONE chokepoint
+import book_live as bl  # noqa: E402
+
+ck("1 the pause lives in book_live.novig_place, the single chokepoint for the live order AND the resting bid",
+   "if not NOVIG_SUBMIT:" in inspect.getsource(bl.novig_place))
+ck("1 it is read from the repo variable EXEC_NOVIG_SUBMIT and defaults to OFF",
+   'os.environ.get("EXEC_NOVIG_SUBMIT") or "off"' in open(bl.__file__).read())
+ck("1 with the variable unset, novig_place refuses and submits nothing",
+   bl.NOVIG_SUBMIT is False and "paused" in bl.NOVIG_PAUSE_WHY.lower())
+ck("1 the refusal is the FIRST gate, so no later check can mask it",
+   inspect.getsource(bl.novig_place).index("NOVIG_SUBMIT") < inspect.getsource(bl.novig_place).index("preflight("))
+ck("1 the executor adds NO second switch with a different name (one venue, one switch)",
+   "NOVIG_SUBMIT" not in inspect.getsource(ex.live_order_other) and "novig_submit_on" not in open(ex.__file__).read())
+ck("1 reads, fills and cancellation are not gated by it",
+   "NOVIG_SUBMIT" not in inspect.getsource(bl.novig_results) and "NOVIG_SUBMIT" not in inspect.getsource(bl.novig_cancel)
+   if hasattr(bl, "novig_cancel") else "NOVIG_SUBMIT" not in inspect.getsource(bl.novig_results))
 
 # ---------------------------------------------------------------- 2. the side of a position is read by outcomeId
 TEAMS = ("Charlotte Hornets", "Phoenix Suns")

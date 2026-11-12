@@ -32,8 +32,7 @@ jobs:
       - run: pip install -q cryptography
       - name: Reconcile the named orders (read only)
         env:
-          NOVIG_TRADE_KEY_ID: ${{ secrets.NOVIG_TRADE_KEY_ID }}
-          NOVIG_TRADE_KEY_PEM: ${{ secrets.NOVIG_TRADE_KEY_PEM }}
+          NOVIG_SNAPSHOT_TOKEN: ${{ secrets.NOVIG_SNAPSHOT_TOKEN }}   # read-only, scoped to novig-runner
           NOVIG_ORDER_IDS: ${{ github.event.inputs.order_ids }}
           EMAIL: ${{ github.event.inputs.email }}
           GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
@@ -54,5 +53,6 @@ jobs:
           print("source:", ex._NVERR.get("src") or "(none)")
           print("why/errors:", (ex._NVERR.get("why") or "(none)").strip() or "(none)")
           print("snapshot max age (min):", ex.SNAP_MAX_MIN)
-          print("novig submissions:", "ON" if ex.novig_submit_on() else f"PAUSED ({ex.NOVIG_PAUSE_WHY})")
+          import book_live as bl
+          print("novig submissions:", "ON" if bl.NOVIG_SUBMIT else "PAUSED -> " + bl.NOVIG_PAUSE_WHY)
           PY

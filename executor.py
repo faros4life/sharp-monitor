@@ -1389,6 +1389,11 @@ def american_to_prob(a):
     return 100 / (a + 100) if a > 0 else -a / (-a + 100)
 
 
+# Novig submissions are paused in book_live.novig_place (repo variable EXEC_NOVIG_SUBMIT, default off) - the ONE
+# chokepoint covering BOTH the live order and the resting bid. Nothing here adds a second switch: two switches with
+# two names is how a venue ends up believed-paused while one path still submits.
+
+
 LIVE_BOOKS = tuple(b.strip() for b in (os.environ.get("EXEC_LIVE_BOOKS") or "prophetx,kalshi,polymarket_us,novig").split(",")
                    if b.strip())   # Oct 28 (Peter): books the bot may fill phase-1 plays on; repo VARIABLE EXEC_LIVE_BOOKS
 PX_TOL_CENTS = 2   # Peter, Oct 27: ProphetX (the live book) may fill up to 2 cents worse than the alert's after-fee price
