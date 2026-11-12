@@ -94,8 +94,15 @@ else:
         if isinstance(r, dict):
             st[str(r.get("status") or "?")] = st.get(str(r.get("status") or "?"), 0) + 1
     print(f"    statuses                   : {st or '(none)'}")
-    say("every runner row carries a venue order id", not no_id,
-        f"{len(no_id)} without one - reconcile before activation" if no_id else "")
+    # A row the venue never ACCEPTED has no venue order id and should not: "refused" and
+    # "rejected" never reached Novig. Flagging those as unreconciled collapsed two states with
+    # opposite meanings - the first reading of this probe reported 33 unresolved rows and then 2,
+    # and both numbers were the measurement, not the data.
+    NEVER_SENT = ("refused", "rejected")
+    unexplained = [r for r in no_id if str(r.get("status") or "").lower() not in NEVER_SENT]
+    say("every ACCEPTED runner row carries a venue order id", not unexplained,
+        f"{len(unexplained)} unexplained - reconcile before activation" if unexplained
+        else f"{len(no_id)} without one, all {NEVER_SENT} (never reached the venue)")
     say("every runner row carries a client_id (joinable to our claim)", not no_cid,
         f"{len(no_cid)} unjoinable" if no_cid else "")
 
