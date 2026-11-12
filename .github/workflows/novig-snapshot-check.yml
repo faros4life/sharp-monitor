@@ -32,6 +32,13 @@ jobs:
           NOVIG_READ_KEY_ID: ${{ secrets.NOVIG_READ_KEY_ID }}
           NOVIG_READ_KEY_PEM: ${{ secrets.NOVIG_READ_KEY_PEM }}
           NOVIG_TRADE_KEY_ID: ${{ secrets.NOVIG_TRADE_KEY_ID }}
+          # Nov 12 (Peter): "Confirm my STOP is actually active in production" and "Verify the
+          # Novig submission setting rather than assuming it is off." Both are read here from the
+          # SAME env the executor sees, so the answer is production state, not my assumption.
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+          EXEC_NOVIG_SUBMIT: ${{ vars.EXEC_NOVIG_SUBMIT }}
+          EXEC_LIVE: ${{ vars.EXEC_LIVE }}
+          REGISTRY_TOKEN: ${{ secrets.REGISTRY_TOKEN }}
         run: |
           python -u - <<'PY'
           import os
@@ -134,4 +141,32 @@ jobs:
                   print("AUTH READ: fills FAILED ->", str(ex)[:160])
           except Exception as ex:
               print("AUTH READ: unavailable ->", str(ex)[:160])
+          # --- verified pause status, read from production env ---
+          import book_live as _bl, px_live as _px
+          print("PAUSE: EXEC_NOVIG_SUBMIT raw =", repr(os.environ.get("EXEC_NOVIG_SUBMIT")),
+                "-> novig submissions allowed:", _bl.NOVIG_SUBMIT)
+          print("PAUSE: EXEC_LIVE raw =", repr(os.environ.get("EXEC_LIVE")), "-> px_live.LIVE:", _px.LIVE)
+          try:
+              w, when = _px.stop_state()
+              print(f"PAUSE: ntfy/latched switch = {w!r} (when={when})")
+          except Exception as ex:
+              print("PAUSE: switch unreadable ->", str(ex)[:120])
+          try:
+              ok, why = _bl.preflight("novig", 10.0)
+              print(f"PAUSE: preflight(novig) -> allowed={ok}  reason={str(why)[:110]}")
+              ok2, why2 = _bl.preflight("kalshi", 10.0)
+              print(f"PAUSE: preflight(kalshi) -> allowed={ok2}  reason={str(why2)[:110]}")
+          except Exception as ex:
+              print("PAUSE: preflight raised ->", str(ex)[:120])
+          # --- are there ANY resting/open orders? Peter says none; check, do not assume ---
+          if recs is not None:
+              openish = [x for x in recs if str(x.get("status") or "").upper() in ("OPEN", "PENDING", "SENT", "UNKNOWN")
+                         or (x.get("tif") == "GTT" and str(x.get("status") or "").upper() == "OPEN")]
+              print(f"OPEN ORDERS: {len(openish)} row(s) not in a final state")
+              for x in openish[-8:]:
+                  print(f"  status {str(x.get('status') or '?').upper():<9} tif {str(x.get('tif') or '-'):<4} "
+                        f"{int(x.get('filled_qty') or 0):>7,}/{int(x.get('qty') or 0):<7,}  {str(x.get('label') or '')[:52]}")
+              gtt = [x for x in recs if str(x.get("tif") or "") == "GTT"]
+              print(f"RESTING (GTT) rows ever: {len(gtt)}; of those still OPEN: "
+                    f"{len([x for x in gtt if str(x.get('status') or '').upper() == 'OPEN'])}")
           PY
