@@ -1,25 +1,27 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 11, 10:40 PM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 48.
+Updated Wed Nov 11, 10:47 PM ET. This run: 2 new, 0 not confirmed, 1 pending. Open alerts: 44.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 1329-1041 (-23.85u flat) | rule met: 828-656
+**Record:** 1332-1044 (-23.40u flat) | rule met: 829-658
 
-**Fade (paper, betting against the print):** 775-1056 (-197.83u flat, after fees)
+**Fade (paper, betting against the print):** 778-1059 (-197.37u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 11 10:47PM | NHL | Winnipeg vs Dallas | moneyline: Dallas | kalshi | $26k | -170 |  |  | +0.0c |  | pending |
+| Nov 11 10:47PM | NHL | Minnesota vs Toronto | moneyline: Minnesota | kalshi | $25k | -163 |  |  | +0.0c |  | pending |
 | Nov 11 10:01PM | NFL | Washington Commanders @ New York Giants | moneyline: NYG (0) | novig | $37k | -125 | ✅ kalshi,prophetx |  | +0.0c |  | pending |
 | Nov 11 9:40PM | NBA | Oklahoma City vs Portland: Spread | spread: Portland wins by over 3.5 points | kalshi | $33k | +104 |  |  | -1.0c | yes | pending |
 | Nov 11 9:21PM | NBA | Detroit vs Washington | moneyline: Detroit | kalshi | $50k | -376 |  |  | +1.0c | yes | pending |
 | Nov 11 9:00PM | NBA | Dallas vs Minnesota | moneyline: Minnesota | kalshi | $223k | -178 |  |  | +2.0c |  | pending |
 | Nov 11 9:00PM | NBA | Charlotte vs Phoenix | moneyline: Phoenix | kalshi | $84k | -223 |  |  | +0.0c |  | pending |
 | Nov 11 8:51PM | NHL | Nashville vs Anaheim: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $26k | +122 | ✅ novig |  | -1.0c | yes | pending |
-| Nov 11 7:42PM | NBA | Brooklyn vs New Orleans: Spread | spread: NOT New Orleans wins by over 2.5 points | kalshi | $41k | -100 | ✅ novig | ✅ | +0.0c |  | pending |
+| Nov 11 7:42PM | NBA | Brooklyn vs New Orleans: Spread | spread: NOT New Orleans wins by over 2.5 points | kalshi | $41k | -100 | ✅ novig | ✅ | +0.0c |  | W |
 | Nov 11 7:32PM | NBA | Orlando vs Utah: Total Points | total: Over 213.5 points | kalshi | $27k | -113 |  |  | +5.0c |  | pending |
 | Nov 11 7:32PM | NBA | Oklahoma City vs Portland: Total Points | total: Over 224.5 points | kalshi | $27k | -104 | ✅ novig,prophetx | ❌ | +0.0c | yes | pending |
-| Nov 11 7:32PM | NBA | Brooklyn vs New Orleans: Total Points | total: Over 228.5 points | kalshi | $32k | +108 |  | ❌ | +0.0c |  | pending |
+| Nov 11 7:32PM | NBA | Brooklyn vs New Orleans: Total Points | total: Over 228.5 points | kalshi | $32k | +108 |  | ❌ | +0.0c |  | W |
 | Nov 11 6:50PM | NBA | Cleveland vs New York: Spread | spread: New York wins by over 4.5 points | kalshi | $59k | -108 |  | ✅ | +0.0c | yes | L |
 | Nov 11 6:40PM | NBA | Oklahoma City Thunder @ Portland Trail Blazers | moneyline: POR (0) | novig | $36k | -135 | ✅ kalshi,prophetx |  | +0.5c |  | pending |
 | Nov 11 6:40PM | NBA | Denver vs Memphis: Spread | spread: NOT Denver wins by over 3.5 points | kalshi | $40k | +104 |  |  | +0.0c |  | L |
@@ -43,9 +45,9 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 11 1:22PM | NBA | Cleveland vs New York: Spread | spread: NOT New York wins by over 3.5 points | kalshi | $61k | -100 |  |  | -6.0c | yes | W |
 | Nov 11 1:22PM | NHL | Utah vs Vegas | moneyline: Utah | kalshi | $99k | +117 |  |  | -1.0c | yes | pending |
 | Nov 11 1:01PM | NHL | Utah vs Vegas | moneyline: Vegas | kalshi | $32k | -122 |  |  | +1.0c | yes | pending |
-| Nov 11 12:47PM | NBA | Brooklyn vs New Orleans | moneyline: Brooklyn | kalshi | $74k | +144 |  |  | +3.0c |  | pending |
+| Nov 11 12:47PM | NBA | Brooklyn vs New Orleans | moneyline: Brooklyn | kalshi | $74k | +144 |  |  | +3.0c |  | W |
 | Nov 11 12:31PM | NBA | Washington vs Indiana: Total Points | total: Over 228.5 points | kalshi | $65k | -100 | ✅ novig | ✅ | +1.0c | yes | L |
-| Nov 11 12:01PM | NBA | Brooklyn vs New Orleans: Total Points | total: NOT Over 228.5 points | kalshi | $30k | -108 |  |  | +1.0c |  | pending |
+| Nov 11 12:01PM | NBA | Brooklyn vs New Orleans: Total Points | total: NOT Over 228.5 points | kalshi | $30k | -108 |  |  | +1.0c |  | L |
 | Nov 11 11:17AM | NHL | Carolina vs Seattle | moneyline: Carolina | kalshi | $32k | -257 |  |  | +1.0c |  | pending |
 | Nov 11 11:01AM | NBA | Orlando vs Utah: Spread | spread: NOT Orlando wins by over 3.5 points | kalshi | $33k | -104 | ✅ novig | ✅ | -4.0c | yes | pending |
 | Nov 11 10:51AM | NCAAF | Louisiana vs Louisiana-Monroe: Spread | spread: NOT Louisiana wins by over 10.5 points | kalshi | $25k | -108 |  |  | -1.0c |  | pending |
@@ -56,7 +58,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 11 9:02AM | NHL | Pittsburgh vs San Jose | moneyline: Pittsburgh | kalshi | $42k | -127 | ✅ novig,prophetx |  | +2.0c |  | pending |
 | Nov 11 8:41AM | NHL | Philadelphia vs Edmonton: Spread | spread: NOT Edmonton wins by over 1.5 goals | kalshi | $66k | -138 | ✅ novig |  | +1.0c | yes | pending |
 | Nov 11 8:21AM | NBA | Washington vs Indiana: Spread | spread: Indiana wins by over 2.5 points | kalshi | $44k | -108 | ✅ novig | ❌ | +1.0c | yes | W |
-| Nov 11 7:57AM | NBA | Brooklyn vs New Orleans: Spread | spread: New Orleans wins by over 4.5 points | kalshi | $25k | -100 | ✅ novig |  | -7.0c | yes | pending |
+| Nov 11 7:57AM | NBA | Brooklyn vs New Orleans: Spread | spread: New Orleans wins by over 4.5 points | kalshi | $25k | -100 | ✅ novig |  | -7.0c | yes | L |
 | Nov 11 7:57AM | NBA | Los Angeles L vs Milwaukee: Total Points | total: NOT Over 230.5 points | kalshi | $40k | -100 | ✅ novig |  | +2.0c | yes | L |
 | Nov 11 7:51AM | NHL | Nashville vs Anaheim | moneyline: Nashville | kalshi | $126k | +127 |  |  | -1.0c | yes | pending |
 | Nov 11 7:40AM | NBA | San Antonio vs Chicago: Total Points | total: NOT Over 239.5 points | kalshi | $36k | -100 |  |  | +11.0c | yes | L |
@@ -85,7 +87,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 10 9:50PM | NBA | Oklahoma City vs Portland: Total Points | total: NOT Over 226.5 points | kalshi | $53k | -108 |  | ✅ | -1.0c | yes | W |
 | Nov 10 9:50PM | NBA | Orlando vs Utah | moneyline: Orlando | kalshi | $46k | -156 |  |  | +2.0c |  | pending |
 | Nov 10 9:50PM | NBA | Cleveland vs New York | moneyline: New York | kalshi | $71k | -150 |  |  | +6.0c |  | L |
-| Nov 10 9:42PM | NBA | Brooklyn vs New Orleans | moneyline: New Orleans | kalshi | $74k | -170 | ✅ novig |  | -6.0c | yes | pending |
+| Nov 10 9:42PM | NBA | Brooklyn vs New Orleans | moneyline: New Orleans | kalshi | $74k | -170 | ✅ novig |  | -6.0c | yes | L |
 | Nov 10 9:20PM | NCAAF | UMass vs Toledo: Spread | spread: Toledo wins by over 14.5 points | kalshi | $95k | +104 |  |  | -1.0c |  | pending |
 | Nov 10 9:20PM | NHL | Philadelphia vs Edmonton | moneyline: Edmonton | kalshi | $43k | -186 |  |  | -1.0c |  | pending |
 | Nov 10 8:30PM | NCAAF | UMass vs Toledo | moneyline: Toledo | kalshi | $137k | -567 |  |  | -1.0c | yes | pending |
@@ -208,5 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 9 10:50AM | NBA | Denver vs Houston: Spread | spread: NOT Houston wins by over 8.5 points | kalshi | $41k | +104 | ✅ polymarket |  | +13.0c | yes | L |
 | Nov 9 10:36AM | NBA | Indiana vs Dallas: Total Points | total: Over 223.5 points | kalshi | $27k | -100 |  |  | +9.0c | yes | W |
 | Nov 9 10:00AM | NBA | Grizzlies vs. Raptors | moneyline: Raptors | polymarket | $30k | -138 | ✅ kalshi,novig,prophetx |  | -10.0c | yes | L |
-| Nov 9 9:20AM | NBA | Pelicans vs. Warriors | moneyline: Warriors | polymarket | $26k | -376 | ✅ kalshi,novig,prophetx |  | +4.0c | yes | W |
-| Nov 9 9:10AM | NBA | Pacers vs. Mavericks | spread: Pacers (+3.5) | polymarket | $34k | -108 | ✅ novig |  | -7.0c | yes | W |
