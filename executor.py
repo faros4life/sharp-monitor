@@ -103,9 +103,30 @@ def pid(play_key):
     return "xpid" + hashlib.sha1((RULES + "|" + play_key).encode()).hexdigest()[:12]
 
 
+# Nov 12 (Peter: "eliminate the 832-second live_guards delay"). MEASURED on run 43311690235:
+# live_guards took 832.2s of a 1012-second pass while bot_orders' own brackets INSIDE it read 2.6s
+# (Gmail) and 0.2s (private store). The registry work was never the cost - the connection around it
+# was. Pass 2 of that same run then died with imaplib.IMAP4.abort: socket error: EOF.
+#
+# IMAP4_SSL was constructed with NO timeout, so its socket blocks indefinitely: a stalled connect,
+# login or select waits on the TCP stack rather than failing. That is how one run spends fourteen
+# minutes before reaching an order decision that itself takes five seconds.
+#
+# A timeout is the FAIL-CLOSED direction, not a weakening. Every caller already treats an IMAP
+# failure as "could not verify": live_guards catches it and refuses ("live guard check failed -
+# fail closed"), bot_orders returns None which refuses live orders, read_manual marks the window
+# partial and asserts no completeness. A hang, by contrast, is strictly worse than an error - it
+# blocks every lane AND risks the run being killed mid-work, which CLAUDE.md records as able to
+# strand an order outside the registry.
+#
+# 60s is well clear of every measured operation (batched dedupe searches 0.5s, the registry read
+# 2.6s, the slowest single fetch a few seconds), so it bounds a hang without touching normal work.
+IMAP_TIMEOUT_S = float(os.environ.get("IMAP_TIMEOUT_S") or "60")
+
+
 def imap_open():
     user, pw, _ = gmail()
-    M = imaplib.IMAP4_SSL("imap.gmail.com")
+    M = imaplib.IMAP4_SSL("imap.gmail.com", timeout=IMAP_TIMEOUT_S)
     M.login(user, pw)
     M.select('"[Gmail]/All Mail"', readonly=True)
     return M
@@ -2732,13 +2753,30 @@ def live_guards():
         # which read as "bot_orders runs twice per run". It does not: GUARD caches it, once per run.
         # The inflated label also inflated the denominator every other percentage was computed
         # against. Brackets must not nest; the inner three are the accurate, non-overlapping ones.
+        # Nov 12 (Peter): live_guards measured 832.2s of a 1012-second pass - 82% - while
+        # bot_orders' OWN brackets inside it read 2.6s (Gmail) and 0.2s (private store). So the time
+        # is not the registry work; it is the connection around it. Pass 2 of that same run then died
+        # with imaplib.IMAP4.abort: socket error: EOF, which points the same way.
+        #
+        # Timed in four parts and printed LIVE, not accumulated, so a run killed mid-guard still
+        # shows how far it got. Measurement only: same calls, same order, same fail-closed outcome.
+        _g0 = time.time()
         M = imap_open()
+        _g1 = time.time()
+        print(f"  guard: {_g1 - _g0:7.1f}s for imap_open", flush=True)
         try:
             ids = bot_orders(M)
+            _g2 = time.time()
+            print(f"  guard: {_g2 - _g1:7.1f}s for bot_orders (registry read)", flush=True)
         finally:
+            _g2b = time.time()
             imap_close(M)
+            print(f"  guard: {time.time() - _g2b:7.1f}s for imap_close", flush=True)
+        _g3 = time.time()
         px_live.set_bot_orders(None if ids is None else list(ids))
         book_live.set_exposure(NONPX["today"])
+        print(f"  guard: {time.time() - _g3:7.1f}s for exposure calculation"
+              f"   |  live_guards total {time.time() - _g0:.1f}s", flush=True)
         if ids is None:
             why = "couldn't read the bot's order registry in Gmail (fail closed)"
         elif INTENT["open"]:
