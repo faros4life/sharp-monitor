@@ -1,0 +1,51 @@
+name: positions-probe
+
+# READ-ONLY diagnostic for the four position readers (Peter, Nov 12).
+#
+# DISPATCH ONLY - deliberately no schedule. It exists to measure on demand, because the executor
+# only performs the position read when it has a play to evaluate, and "positions read (first
+# attempt)" was 378.6s of a 599-second run with no per-venue attribution.
+#
+# It places, cancels, modifies and prices nothing. See positions_probe.py for the single write it
+# does make: the strike-identity cache the executor already warms on every such read.
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: positions-probe
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25   # the thing being measured took 378.6s inside the executor; room to see it whole
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Time the four position readers (counts and seconds only)
+        env:
+          # Read-only venue credentials: the same ones the executor's position read uses.
+          NOVIG_READ_KEY_ID: ${{ secrets.NOVIG_READ_KEY_ID }}
+          NOVIG_READ_KEY_PEM: ${{ secrets.NOVIG_READ_KEY_PEM }}
+          NOVIG_SNAPSHOT_TOKEN: ${{ secrets.NOVIG_SNAPSHOT_TOKEN }}
+          NOVIG_READ_TOKEN: ${{ secrets.NOVIG_READ_TOKEN }}
+          NOVIG_TRADE_KEY_ID: ${{ secrets.NOVIG_TRADE_KEY_ID }}
+          KALSHI_KEY_ID: ${{ secrets.KALSHI_KEY_ID }}
+          KALSHI_PRIVATE_KEY: ${{ secrets.KALSHI_PRIVATE_KEY }}
+          PMUS_KEY_ID: ${{ secrets.PMUS_KEY_ID }}
+          PMUS_SECRET_KEY: ${{ secrets.PMUS_SECRET_KEY }}
+          PROPHETX_ACCESS_KEY: ${{ secrets.PROPHETX_ACCESS_KEY }}
+          PROPHETX_SECRET_KEY: ${{ secrets.PROPHETX_SECRET_KEY }}
+          PROPHETX_TRADE_ACCESS_KEY: ${{ secrets.PROPHETX_TRADE_ACCESS_KEY }}
+          PROPHETX_TRADE_SECRET_KEY: ${{ secrets.PROPHETX_TRADE_SECRET_KEY }}
+          # Needed for the strike-identity cache, so the probe measures the REAL path with its
+          # cache hits rather than an artificially cold walk.
+          REGISTRY_TOKEN: ${{ secrets.REGISTRY_TOKEN }}
+        run: python -u positions_probe.py
