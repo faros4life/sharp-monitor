@@ -1191,6 +1191,21 @@ def main():
 
     import time as _t
     T = {}   # seconds per read (log only), to find what slows the tracker
+    # Nov 12 (Peter, "fix board"). These timings were collected here and printed only at the END of
+    # main(), which is useless for the failure that is actually happening: the bets-board job has
+    # timeout-minutes: 9 and this step was CANCELLED at 9m15s on three separate runs, skipping
+    # "Build the board" entirely, so the board has not published since 2026-11-11T22:42Z. A
+    # cancelled step prints nothing, so every one of those runs told us nothing about where the
+    # nine minutes went. Each phase now reports as it finishes, flushed, with a running total - so
+    # even a killed run leaves the evidence behind. Log only: counts and clock readings, no
+    # amounts, and it changes no read, no decision and no result.
+    _t_start = _t.time()
+
+    def _phase(label, secs):
+        T[label] = round(secs)
+        print(f"tracker phase: {label:<22} {secs:6.1f}s   (total {_t.time() - _t_start:6.1f}s "
+              f"of a 9m00s step budget)", flush=True)
+
     opened, settled = [], []
     for name, fn in (("prophetx", read_prophetx), ("kalshi", lambda: read_kalshi(since)), ("polymarket_us", lambda: read_pmus(since)),
                      ("novig", read_novig)):
@@ -1201,7 +1216,7 @@ def main():
             settled += s
         except (Exception, SystemExit) as e:
             LOG[name] = f"failed ({type(e).__name__})"
-        T[name] = round(_t.time() - t0)
+        _phase(name, _t.time() - t0)
     t0 = _t.time()
     IMAP_CACHE.update(state.get("imap_cache") or {})
     try:
@@ -1209,8 +1224,10 @@ def main():
     except (Exception, SystemExit) as e:
         man, keys = [], set()
         LOG["manual"] = f"failed ({type(e).__name__})"
-    T["manual+bot"] = round(_t.time() - t0)
+    _phase("manual+bot (gmail)", _t.time() - t0)
     T.update(IMAP_T)
+    for _k, _v in sorted(IMAP_T.items(), key=lambda kv: -float(kv[1] or 0)):
+        print(f"tracker imap:  {_k:<22} {float(_v or 0):6.1f}s", flush=True)
     IMAP_CACHE["b"] = dict(list(IMAP_CACHE["b"].items())[-400:])
     IMAP_CACHE["m"] = dict(list(IMAP_CACHE["m"].items())[-200:])
     state["imap_cache"] = IMAP_CACHE
