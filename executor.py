@@ -2385,6 +2385,9 @@ def bot_orders(M, days=4):
         # losing day. Any failed write to the store clears that marker, so a dropped write sends the
         # next run back to the slow, complete path on its own.
         cut = (datetime.now(timezone.utc) - timedelta(days=days)).strftime("%Y-%m-%d")
+        # Nov 12: the completeness marker is always tested against registry.KEEP_DAYS, so only a
+        # caller that actually covers that window may assert or refresh it. See the backfill below.
+        full_window = days >= registry.KEEP_DAYS
         rdata = None
         if registry.enabled():
             try:
@@ -2398,11 +2401,17 @@ def bot_orders(M, days=4):
             LEDGER_ROWS[:] = store_rows
             _account_rows(store_rows, graded, ids, seen_oids, _intents, _confirmed)
             # re-assert completeness so the claim cannot outlive the ability to write it: a run that
-            # cannot refresh the stamp lets it go stale, and the next run returns to Gmail by itself
-            try:
-                registry.set_complete_through(datetime.now(timezone.utc).strftime("%Y-%m-%d"))
-            except Exception:
-                pass
+            # cannot refresh the stamp lets it go stale, and the next run returns to Gmail by itself.
+            # Only the full-window caller may do this. The executor writes every order it places into
+            # the store, so its re-assertion is backed by it being the authority for the window; a
+            # short-window READER (signal_alerts, days=2) has verified nothing - refreshing the stamp
+            # from it would extend a claim's life without re-confirming it, which is the one thing
+            # the 12-minute freshness bound exists to prevent.
+            if full_window:
+                try:
+                    registry.set_complete_through(datetime.now(timezone.utc).strftime("%Y-%m-%d"))
+                except Exception:
+                    pass
             return _bot_orders_finish(M, ids, _intents, _confirmed)
         # ---- otherwise Gmail, which is always complete, and backfill the store from it
         since = (datetime.now(timezone.utc) - timedelta(days=days)).strftime("%d-%b-%Y")
@@ -2429,12 +2438,26 @@ def bot_orders(M, days=4):
         # BACKFILL: Gmail was complete for this window, so copying its rows in makes the store
         # complete too - and only then is the marker set. Both must succeed; if either fails the
         # marker is left unset and the next run simply reads Gmail again.
+        #
+        # Nov 12: the marker means "complete for registry.KEEP_DAYS", which is what is_complete()
+        # tests it against - NOT "complete for this caller's window". A caller reading a SHORTER
+        # window (signal_alerts passes days=2) scanned only part of that window, so asserting the
+        # marker from it would let the next 4-day reader trust a store missing days 3-4 and
+        # UNDERCOUNT exposure against the daily stop. Rows and tokens are upserts and always safe
+        # to write; only the claim is withheld. Reading a short window stays safe for the opposite
+        # reason: its cut is nearer, so a valid 4-day claim satisfies it and the reader gets a
+        # superset of its own window.
+        full_window = days >= registry.KEEP_DAYS
         if registry.enabled():
             try:
                 with perf("registry backfill (private store)"):
                     if registry.put_rows(all_rows) and registry.put_tokens(TOKENS_SEEN):
-                        registry.set_complete_through(datetime.now(timezone.utc).strftime("%Y-%m-%d"))
-                        registry.set_tokens_complete()   # the same emails carried both
+                        if full_window:
+                            registry.set_complete_through(datetime.now(timezone.utc).strftime("%Y-%m-%d"))
+                            registry.set_tokens_complete()   # the same emails carried both
+                        else:
+                            LOG.append(f"registry rows stored but completeness NOT asserted: "
+                                       f"scanned {days}d < KEEP_DAYS {registry.KEEP_DAYS}")
                     else:
                         registry.invalidate()
                         registry.invalidate_tokens()

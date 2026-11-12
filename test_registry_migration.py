@@ -231,5 +231,44 @@ reset()
 ex.bot_orders(FakeIMAP(GMAIL))
 ck("the same order twice adds its money once", round(ex.R1["risk"], 2), 222.0)
 
+# ------------------------------------------------- a SHORT-window caller never asserts the claim
+# Nov 12 (Peter): signal_alerts calls bot_orders(M, days=2) so that AGAINST YOUR BET can use the
+# fast store read instead of the 240s Gmail scan. The marker is always TESTED against KEEP_DAYS,
+# so a 2-day scan asserting it would let the next 4-day reader trust a store missing days 3-4 and
+# UNDERCOUNT exposure against the daily stop. Rows may still be written; only the claim is withheld.
+api = FakeAPI(dict(rg.EMPTY))
+use(api)
+reset()
+M7 = FakeIMAP(GMAIL)
+ex.bot_orders(M7, days=2)
+ck("a short-window scan does read Gmail", M7.fetches > 0, True)
+ck("a short-window scan still stores its rows", bool(api.data.get("orders")), True)
+meta7 = api.data.get("meta") or {}
+ck("a short-window scan asserts NO orders claim", meta7.get("complete_through"), None)
+ck("a short-window scan asserts NO tokens claim", meta7.get("tok_complete_through"), None)
+ck("so the store is still not trusted for the real window", rg.is_complete(TODAY), False)
+
+# The full-window caller, unchanged, still does assert it.
+api = FakeAPI(dict(rg.EMPTY))
+use(api)
+reset()
+ex.bot_orders(FakeIMAP(GMAIL))
+ck("the full-window scan still asserts the claim",
+   (api.data.get("meta") or {}).get("complete_through"), TODAY)
+
+# ------------------------------------- a short-window READER does not refresh the freshness stamp
+# It verified nothing about completeness, so extending the claim's life from it would defeat the
+# 12-minute bound. It may still READ: its cut is nearer, so a valid 4-day claim satisfies it.
+OLD = (datetime.now(timezone.utc) - timedelta(minutes=5)).strftime("%Y-%m-%dT%H:%M:%SZ")
+api = FakeAPI({"orders": [row("o9", stake=222.0)], "intents": [], "handled": {},
+               "meta": {"complete_through": TODAY, "complete_at": OLD}})
+use(api)
+reset()
+M8 = FakeIMAP(GMAIL)
+ex.bot_orders(M8, days=2)
+ck("the short-window reader took the fast path", M8.fetches, 0)
+ck("...and counted the stored row", round(ex.R1["risk"], 2), 222.0)
+ck("...and left the freshness stamp alone", (api.data.get("meta") or {}).get("complete_at"), OLD)
+
 os.environ["REGISTRY_TOKEN"] = ""
 print(f"PASS  test_registry_migration.py  {len(CHECKS)} checks")
