@@ -4607,8 +4607,10 @@ def main():
               f"{len(p1)} live-eligible play(s) held")   # counts only
     elif registry.enabled():
         registry.reset_streak("positions_blind")   # every venue readable: the streak is over
+    _phase("blind handling")
     if px_live.LIVE and new:
         live_guards()   # Oct 30: load the ledger registry FIRST, so LIVEKEYS blocks a second live order on a play
+    _phase("live guards (exposure)")
     # Nov 11 (Peter, "finish this"): PARALLEL PROBE PREFETCH. probe alert line measured 107.2s
     # across 21 plays - 5.1s each - and is the largest item left on the critical path now that the
     # registry read is 6s and the blind positions loop is gone.
@@ -4637,7 +4639,7 @@ def main():
                 ThreadPoolExecutor(max_workers=PREFETCH_WORKERS) as tp:
             list(tp.map(_warm, new))
     results, taken_now = [], set()
-    _phase("blind handling + live guards (exposure) + probe prefetch")
+    _phase("probe prefetch (parallel)")
     M2 = imap_open()
     _phase("imap2 open")
 
@@ -4827,6 +4829,10 @@ def main():
             results.append({"play": p, "pid": pid(p["play_key"]), "verdict": "SKIP", "reason": f"error: {str(ex)[:100]}"})
         results[-1]["decided_utc"] = datetime.now(timezone.utc)
     _phase("evaluate + order work (all lanes)")
+    if wake_s is not None:
+        print(f"  ALERT -> DECISION: {wake_s + (time.time() - _PHT0):.1f}s total "
+              f"({wake_s:.0f}s alert-to-run-start + {time.time() - _PHT0:.1f}s in-run to the order decision)",
+              flush=True)
     imap_close(M2)
     _phase("imap2 close")
     nw = sum(1 for r in results if r["verdict"] == "WOULD PLACE")
