@@ -49,6 +49,62 @@ def gh(path):
         return None, type(ex).__name__
 
 
+def _pretty_gap(m):
+    """A gap in minutes, said the way a person would."""
+    if m is None:
+        return "?"
+    if m < 90:
+        return f" {m:.0f}m"
+    if m < 60 * 36:
+        return f" {m / 60:.0f}h"
+    return f" {m / 1440:.0f}d"
+
+
+def _cron_gap_min(path):
+    """Minutes between firings, from the workflow's DECLARED cron. None when it has none.
+
+    Nov 12, third correction. Cadence was measured from observed run GAPS, which is wrong for any
+    workflow that does not run often: a weekly job with a burst of hand runs shows a tiny median
+    gap, so the staleness test demanded a success within minutes and reported it late. That put
+    three false alarms on this page at once - novig-weekly and pmus-activity are Monday-only and
+    had run on their Monday, credits-report is daily and was mid-run.
+
+    So the cadence comes from the schedule itself. Coarsest constrained field wins, which covers
+    every shape this repo uses; several crons take the shortest. Unparseable -> None, and the
+    caller then falls back to observed gaps rather than guessing.
+    """
+    try:
+        text = open(str(path or ""), encoding="utf-8").read()
+    except Exception:
+        return None
+    best = None
+    for expr in re.findall(r"cron:\s*[\"']([^\"']+)[\"']", text):
+        f = expr.split()
+        if len(f) != 5:
+            continue
+        minute, hour, dom, mon, dow = f
+        if "/" in minute:                       # */5, 3-59/15 -> that many minutes
+            try:
+                gap = int(minute.split("/")[1])
+            except ValueError:
+                continue
+        elif "/" in hour:                       # fixed minute, every N hours
+            try:
+                gap = 60 * int(hour.split("/")[1])
+            except ValueError:
+                continue
+        elif hour in ("*",) or "-" in hour or "," in hour:
+            gap = 60                            # fixed minute, several hours -> hourly
+        elif dow not in ("*", "?"):
+            gap = 7 * 24 * 60                   # a named weekday -> weekly
+        elif dom not in ("*", "?"):
+            gap = 30 * 24 * 60                  # a named day of the month -> monthly
+        else:
+            gap = 24 * 60                       # fixed minute and hour -> daily
+        best = gap if best is None else min(best, gap)
+    return best
+
+
 def _declares_auto(path):
     """True when the workflow's own `on:` block declares schedule or workflow_run.
 
@@ -155,7 +211,10 @@ def main():
         auto = _declares_auto(w.get("path"))
         starts = sorted([t for t in (ts(r.get("created_at")) for r in rl) if t], reverse=True)
         gaps = [(starts[i] - starts[i + 1]).total_seconds() / 60 for i in range(len(starts) - 1)]
-        cadence = statistics.median(gaps) if gaps else None
+        # Declared schedule first; observed gaps only when there is no cron to read.
+        declared = _cron_gap_min(w.get("path"))
+        observed = statistics.median(gaps) if gaps else None
+        cadence = declared if declared is not None else observed
         succ = [ts(r.get("created_at")) for r in rl
                 if r.get("status") == "completed" and r.get("conclusion") == "success"]
         succ = sorted([t for t in succ if t], reverse=True)
@@ -172,7 +231,8 @@ def main():
         elif last_ok is None:
             state, why = "FAIL", "no successful run in the last %d runs" % len(rl)
         elif limit and ok_min > limit:
-            state, why = "STALE", f"last success {ok_txt}, its own cadence is ~{cadence:.0f}m"
+            _src = "its schedule is every" if declared is not None else "its own cadence is ~"
+            state, why = "STALE", f"last success {ok_txt}, {_src}{_pretty_gap(cadence)}"
         elif str(newest.get("conclusion")) == "failure":
             state, why = "WARN", "succeeding, but the most recent run FAILED"
         else:
@@ -237,7 +297,7 @@ def main():
         dot = {"OK": "ok", "WARN": "warn", "STALE": "bad", "FAIL": "bad",
                "ON DEMAND": "idle"}[r["state"]]
         run = '<span class=run>running</span>' if r["running"] else ""
-        cad = f"~{r['cadence']:.0f}m" if r["cadence"] else "-"
+        cad = _pretty_gap(r["cadence"]).strip() if r["cadence"] else "-"
         return (f"<tr><td><span class='dot {dot}'>{MARK.get(r['state'], '?')}</span>{r['state']}</td>"
                 f"<td>{r['name']}{run}</td><td class=r>{r['last_ok']}</td>"
                 f"<td class='r muted'>{cad}</td><td class='r muted'>{r['cancel_pct']}%</td>"
