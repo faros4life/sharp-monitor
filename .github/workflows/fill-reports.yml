@@ -13,6 +13,10 @@ on:
   schedule:
     - cron: "3-59/15 * * * *"   # every 15 min, offset off the hour so it does not pile onto :00
   workflow_dispatch:
+    inputs:
+      mode:
+        description: "report = the usual Kalshi fill reporting. reconcile = one READ-ONLY historical check of stored Kalshi order ids against the venue (places nothing, reports nothing to Peter)."
+        default: "report"
 
 concurrency:
   group: fill-reports
@@ -47,4 +51,9 @@ jobs:
           # Read for the stored ledger rows, written for the notification claim and the
           # "reported" token - exactly the writes this reporter already made inside the executor.
           REGISTRY_TOKEN: ${{ secrets.REGISTRY_TOKEN }}
-        run: python -u fill_reports_run.py
+        run: |
+          if [ "${{ inputs.mode }}" = "reconcile" ]; then
+            python -u kalshi_reconcile.py
+          else
+            python -u fill_reports_run.py
+          fi
