@@ -4536,6 +4536,11 @@ def main():
                 for b, f in f_r.items():
                     held[b] = f.result()
     blind = (["Novig"] if pos is None else []) + [BOOK_NAME[b] for b, v in held.items() if v is None]
+    # Nov 12: the next mark down was labelled "positions read (venues) + settle" but spanned 175
+    # lines - the Novig catalogue, this read, the retry, live_guards and the probe prefetch - so its
+    # 440.1s was read as the position read when only the 378.6s PERF bracket was. Split here, so the
+    # four venue reads own their number and the guards own theirs.
+    _phase("venue positions read (4 in parallel) + retry")
     # Oct 29 (Muse): when a book's positions can't be read and a LIVE-eligible play (phase-1, Muse AGREE) is waiting,
     # re-read every 60 s inside this run (up to 4 min - the runs queue behind each other, so not longer), and push an
     # escalation at ~3 min naming the play and the book so it can be placed by hand while the number is live.
@@ -4632,7 +4637,7 @@ def main():
                 ThreadPoolExecutor(max_workers=PREFETCH_WORKERS) as tp:
             list(tp.map(_warm, new))
     results, taken_now = [], set()
-    _phase("positions read (venues) + settle")
+    _phase("blind handling + live guards (exposure) + probe prefetch")
     M2 = imap_open()
     _phase("imap2 open")
 
