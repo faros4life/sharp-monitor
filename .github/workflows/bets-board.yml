@@ -68,6 +68,12 @@ jobs:
           PMUS_KEY_ID: ${{ secrets.PMUS_KEY_ID }}
           PMUS_SECRET_KEY: ${{ secrets.PMUS_SECRET_KEY }}
           NOVIG_SNAPSHOT_TOKEN: ${{ secrets.NOVIG_SNAPSHOT_TOKEN }}
+          # Nov 12 (Peter: "why is the live bets board still missing the plays"). The plays card
+          # now reads the private store before Gmail, but this job had no REGISTRY_TOKEN, so
+          # registry.enabled() was False, the store path was skipped entirely, and the card fell
+          # straight back to the IMAP read that was failing - showing "Ledger unreadable".
+          # Read-only use: the card renders rows, it never writes to the store.
+          REGISTRY_TOKEN: ${{ secrets.REGISTRY_TOKEN }}
           NOVIG_READ_TOKEN: ${{ secrets.NOVIG_READ_TOKEN }}   # narrow read credential; preferred over the broad one once it exists
         run: python -u tracker_build.py
       - name: Real plays recap by email (Peter Nov 3; Nov 12 moved off the phone; once a day after 8 AM ET; counts only in this log)

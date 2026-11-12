@@ -660,7 +660,18 @@ def live_plays_card():
         #   BLOCKED  it qualified but a lane or rule switch stopped it
         lo = r.get("live_order") or {}
         raw = str(lo.get("status") or "")
-        if raw in ("placed", "refused"):
+        # Nov 12 (Peter): a WRITE-AHEAD INTENT row carries status "placed" and an order_id of
+        # "intent-<client_id>", because journal_intent() writes it before the venue is asked. Read
+        # off the private store that row would render as PLACED - the card claiming a bet exists
+        # when nothing was transmitted. That is the exact false confidence that led Peter to
+        # hand-place a duplicate on Nov 11, so the intent state is shown as itself:
+        #   INTENT   a pre-order record exists; whether the venue has it is NOT yet established
+        #   VOID     refused before submission, never transmitted, nothing at the venue
+        if lo.get("voided") or r.get("voided"):
+            st = "void"
+        elif lo.get("intent"):
+            st = "intent"
+        elif raw in ("placed", "refused"):
             st = raw
         elif str(r.get("verdict") or "").upper() == "SKIP":
             st = "skipped"
@@ -672,7 +683,12 @@ def live_plays_card():
                or "; ".join(str(x) for x in (r.get("live_why_not") or []))
                or r.get("reason") or "")
         cls = {"placed": "ok", "refused": "bad", "skipped": "muted",
-               "blocked": "bad", "would place": "muted"}.get(st, "muted")
+               "blocked": "bad", "would place": "muted",
+               "intent": "bad", "void": "muted"}.get(st, "muted")
+        if st == "intent" and not why:
+            why = "pre-order record only - NOT confirmed at the venue"
+        elif st == "void" and not why:
+            why = lo.get("void_why") or "refused before submission - never sent to the venue"
         key = str(r.get("key") or "").split("|")
         game = key[1] if len(key) > 3 else str(r.get("key") or "")
         side = f"{key[3]} {r.get('fill_line') if r.get('fill_line') is not None else ''}" if len(key) > 3 else ""

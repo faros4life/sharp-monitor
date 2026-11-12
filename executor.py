@@ -3489,6 +3489,26 @@ def kalshi_rest_reports():
         rests = {}
         src_rows, reused = list(LEDGER_ROWS), bool(LEDGER_ROWS)
         if not reused:
+            # Nov 12 (Peter, "can you get rid of gmail dependency"). MEASURED on run 43277872370:
+            # this fallback cost 611.3s - over ten minutes, the single largest cost in the run and
+            # the reason run times crept from 6 to 15 minutes - and it found ZERO resting orders.
+            # The log line was "kalshi resting check: 0 order(s), rows rescanned".
+            #
+            # The Nov 11 fix reused bot_orders()'s parsed rows, but when that cache is empty - a
+            # failed first pass, or a run where bot_orders could not populate it - the fallback was
+            # the ORIGINAL full IMAP scan: a SEARCH plus one RFC822 fetch per email, ~200 serial
+            # round trips. The private store holds the same ledger rows verbatim and answers in
+            # 0.46s, so it is tried BEFORE Gmail. Gmail remains the last resort, so this can only
+            # be faster, never blinder - the same guarantee the Nov 11 comment makes.
+            try:
+                if registry.enabled():
+                    _sr = registry.rows()
+                    if _sr:
+                        src_rows, reused = list(_sr), True
+                        print(f"kalshi resting check: {len(_sr)} ledger row(s) from the private store")
+            except Exception as ex:
+                LOG.append(f"kalshi rest: store read failed, using Gmail: {str(ex)[:50]}")
+        if not reused:
             since = (datetime.now(timezone.utc) - timedelta(days=2)).strftime("%d-%b-%Y")
             typ, data = M.uid("SEARCH", None, "SUBJECT", '"Bets LIVE:"', "SINCE", since)
             for uid in (data[0].split() if typ == "OK" and data and data[0] else []):
