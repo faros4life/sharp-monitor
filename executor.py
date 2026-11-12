@@ -138,6 +138,14 @@ def gsearch_strict(M, query):
 
 INTENT_SUBJECT_PREFIX = "Bets LIVE: order intent"   # what journal_intent sends
 INTENT_CLEAR_PREFIX = "INTENT CLEARED"              # Peter's manual authorization. THE BOT NEVER SENDS THIS.
+# Nov 12 (Peter/Muse): the bot's OWN resolution of an intent whose order was NEVER TRANSMITTED.
+# NOT a substitute for INTENT CLEARED, and never emitted where a venue call happened. It is sound
+# only because every "refused" return in book_live.novig_place, kalshi_place and pmus_place sits
+# strictly BEFORE that function's POST, and every refuse() site voided below runs before any
+# *_place() call at all. A never-transmitted order cannot exist at the venue, so there is nothing to
+# reconcile and nothing for Peter to confirm by hand. status == "error" is the opposite case - the
+# request MAY have reached the venue - and is deliberately NOT voided: it still latches.
+INTENT_VOID_PREFIX = "Bets LIVE: order intent VOID"
 
 
 _GM_LABELS = re.compile(rb"X-GM-LABELS\s*\(([^)]*)\)", re.I)
@@ -2309,7 +2317,11 @@ def _account_rows(rows, graded, ids, seen_oids, _intents, _confirmed):
             cid = lo.get("client_id")
             if cid:   # resolved AFTER the loop: IMAP order is not chronological, so a
                 # confirmed row may be read before its own intent row.
-                (_intents if lo.get("intent") else _confirmed)[str(cid)] = row
+                # Nov 12: a VOIDED intent is RESOLVED, not open - its order was refused before
+                # submission and never reached the venue. Routing it to _confirmed is what stops
+                # _bot_orders_finish() latching live orders on an order that does not exist.
+                _resolved = lo.get("intent") and not (lo.get("voided") or row.get("voided"))
+                (_intents if _resolved else _confirmed)[str(cid)] = row
             if str(cid or oid) in seen_oids:
                 continue
             seen_oids.add(str(cid or oid))
@@ -2447,11 +2459,19 @@ def _bot_orders_finish(M, ids, _intents, _confirmed):
     for k, row in _intents.items():
         if k in _confirmed:
             continue
+        if (row.get("voided") or ((row.get("live_order") or {}).get("voided"))):
+            continue       # Nov 12: refused before submission, never transmitted - nothing to reconcile
         try:
             if intent_cleared(M, k):
                 continue   # Peter's distinct, manual, subject-only authorization
         except Exception:
             pass           # cannot confirm it was cleared -> keep refusing (fail closed)
+        try:   # Nov 12: the bot's own VOID, for a run that read the mailbox rather than the store.
+            # Same sender restriction as intent_cleared: the \\Sent label cannot be forged inbound.
+            if subject_hits(M, k, INTENT_VOID_PREFIX, senders=authorized_senders()):
+                continue
+        except Exception:
+            pass           # cannot confirm the void -> keep refusing (fail closed)
         INTENT["open"][k] = row
     BOARD["known"] = True   # the ledger parsed, so today's board exposure above is real
     R1["known"] = True      # ...and today's R1 exposure
@@ -2591,6 +2611,20 @@ def refuse(r, reason, book=None, **extra):
     return out
 
 
+def refuse_untransmitted(r, reason, book=None, **extra):
+    """refuse(), plus VOID the write-ahead intent - for refusals that happen BEFORE any venue call.
+
+    Nov 12 (Peter/Muse): "an intent whose order is refused BEFORE submission must not latch." Only
+    for sites where no *_place() has run, or where a *_place() returned "refused", which every one
+    of them does strictly before its own POST. Never for "error": that request may have landed.
+
+    Deliberately a separate name rather than folding the void into refuse(): refuse() is also
+    reached after an order exists, and a void there would clear a latch that is doing its job."""
+    void_intent((r.get("live") or {}).get("client_id"),
+                book or (r.get("live") or {}).get("book") or "?", reason)
+    return refuse(r, reason, book=book, **extra)
+
+
 def watchdog_once(now, plays, rplays, feed):
     """The Muse no-verdict watchdog, called from both of main()'s exit paths.
 
@@ -2698,10 +2732,14 @@ def live_order(r):
         return live_order_other(r)
     strike, limit, stake = px_limit(lv["px"], lv["risk"])
     if not strike or stake < MIN_ORDER - 0.01:
-        return refuse(r, f"ProphetX ladder can't cover ${MIN_ORDER:.0f}+ at the alert number (have ${stake:.2f})", book="prophetx")
+        return refuse_untransmitted(r, f"ProphetX ladder can't cover ${MIN_ORDER:.0f}+ at the alert number (have ${stake:.2f})", book="prophetx")
     label = f"{p.get('sport')} {p.get('game')} | {bet_text(r, lv['line'], limit)}"
     res = px_live.place(strike, limit, stake, label)
     if res.get("status") == "refused":   # Nov 11: a refusal is a lane event too
+        # Nov 12 (Peter/Muse): px_live.place() returns "refused" before its own submit call, so the
+        # write-ahead intent must be voided or it latches every later live order. Unconditional:
+        # the notification is deduped per play and reason, the latch release must not be.
+        void_intent(lv.get("client_id"), "prophetx", res.get("reason"))
         if refusal_first(r, res.get("reason")):
             tg_push("ORDER REFUSED", lane_note(r, "ORDER REFUSED", res, "prophetx", limit, extra=str(res.get("reason"))[:200]))
     if res["status"] == "placed":
@@ -2781,25 +2819,31 @@ def live_order_other(r):
                                        min_order=MIN_ORDER, slip=BEST_SLIP)   # Nov 11: price-first
     stake = round(count * limit_cost, 2) if limit_cost else 0.0
     if not limit_cost or stake < MIN_ORDER - 0.01:
-        return refuse(r, f"{name} ladder can't cover ${MIN_ORDER:.0f}+ at the alert number (have ${stake:.2f})", book=book)
+        return refuse_untransmitted(r, f"{name} ladder can't cover ${MIN_ORDER:.0f}+ at the alert number (have ${stake:.2f})", book=book)
     limit_am = lm.american(limit_cost)
     label = f"{p.get('sport')} {p.get('game')} | {bet_text(r, lv['line'], limit_am)}"
     if book == "kalshi":
         kb = ids.get("kalshi_buy") or []
         if len(kb) != 1:
-            return refuse(r, "Kalshi market ambiguous (not exactly one market) - fail closed", book=book)
+            return refuse_untransmitted(r, "Kalshi market ambiguous (not exactly one market) - fail closed", book=book)
         res = book_live.kalshi_place(kb[0]["ticker"], kb[0]["buy"], limit_cost, count, label)
     elif book == "polymarket_us":
         if not ids.get("market_slug") or ids.get("long_side") is None:
-            return refuse(r, "Polymarket US market unknown - fail closed", book=book)
+            return refuse_untransmitted(r, "Polymarket US market unknown - fail closed", book=book)
         res = book_live.pmus_place(ids["market_slug"], bool(ids["long_side"]), limit_cost, count, label)
     elif book == "novig":   # Novig contracts pay 1c: plan() counted $1 contracts, so x100
         if not ids.get("outcome_id"):
-            return refuse(r, "Novig outcome unknown - fail closed", book=book)
+            return refuse_untransmitted(r, "Novig outcome unknown - fail closed", book=book)
         res = book_live.novig_place(ids["outcome_id"], limit_cost, count * 100, label, None, derive_key(p) or "")
     else:
-        return refuse(r, f"no live order code for {name}", book=book)
+        return refuse_untransmitted(r, f"no live order code for {name}", book=book)
     res = dict(res, book=book)
+    if res.get("status") == "refused":
+        # Nov 12 (Peter/Muse): THE CASE THAT COST TWO PLAYS TODAY. novig_place(), kalshi_place() and
+        # pmus_place() each return "refused" strictly BEFORE their own POST - the EXEC_NOVIG_SUBMIT
+        # hold is the first branch of novig_place() - so nothing reached the venue and the
+        # write-ahead intent must not latch. "error" is deliberately NOT voided: it may have landed.
+        void_intent(lv.get("client_id"), book, res.get("reason"))
     if res.get("status") == "refused" and refusal_first(r, res.get("reason")):
         # Nov 12 (Peter, Telegram audit): a refusal from the venue layer (Novig paused, preflight, thin depth)
         # used to be silent on every venue except ProphetX. One message per play and reason.
@@ -3897,6 +3941,55 @@ def journal_intent(r, book, asked):
         except Exception:
             pass
         return False, None
+
+
+def void_intent(cid, book, why):
+    """Resolve a write-ahead intent whose order was NEVER TRANSMITTED (Peter/Muse, Nov 12).
+
+    THE BUG THIS FIXES. journal_intent() runs at live_order()'s top - "before the book dispatch" -
+    so the intent row exists before anything knows whether the venue will even be asked. When the
+    dispatch then refuses PRE-SUBMISSION (EXEC_NOVIG_SUBMIT off, ladder short of MIN_ORDER, outcome
+    or market unknown, no live order code), nothing was sent, but the intent row stays unconfirmed.
+    bot_orders() reads it next run, _bot_orders_finish() puts it in INTENT["open"], and live_guards()
+    then refuses EVERY further live order until Peter clears it by hand. Nov 12 cost two plays that
+    way (Charlotte/Phoenix UNDER, Dallas/Minnesota OVER): both intents verified into the private
+    store in 0.3s, novig_place() refused them both because EXEC_NOVIG_SUBMIT defaults off, and the
+    12:42 run went to "0 would go live" with the plays still in the would-bet list.
+
+    A refused order never reached the venue, so there is nothing at the venue to reconcile - the
+    ONLY case where the bot may resolve its own intent. The caller must have proof of that; see
+    INTENT_VOID_PREFIX for why each voided site qualifies. status == "error" never comes here.
+
+    Writes to BOTH stores for the same reason journal_intent does: whichever store the next run
+    reads must see the resolution. Best-effort by design - a failed void leaves the latch exactly
+    as it is today, which is the safe direction and no worse than before this function existed."""
+    if not cid:
+        return False
+    ok = False
+    row = {"client_id": cid, "voided": True,
+           "live_order": {"status": "void", "order_id": "intent-" + str(cid), "book": book,
+                          "client_id": cid, "intent": True, "voided": True,
+                          "void_why": str(why)[:200], "asked_stake": 0.0, "filled_stake": 0.0}}
+    try:
+        if registry.enabled():
+            ok = bool(registry.put_rows([dict(row, decided_utc=datetime.now(timezone.utc)
+                                              .strftime("%Y-%m-%dT%H:%M:%SZ"))]))
+    except Exception as ex:
+        LOG.append(f"intent void store failed {cid}: {str(ex)[:50]}")
+    try:   # the Gmail copy, so a run that falls back to the mailbox sees the same resolution
+        send(f"{INTENT_VOID_PREFIX} {book} {cid}",
+             "ORDER INTENT VOID - the order was REFUSED BEFORE SUBMISSION, so it was never sent to\n"
+             "the venue and cannot exist there. Nothing to reconcile; no action needed.\n\n"
+             f"client id: {cid}\nbook: {book}\nrefusal: {str(why)[:300]}\n\n"
+             "This is the bot resolving its own write-ahead record, which is permitted ONLY because\n"
+             "the refusal happened before any venue call. An order that WAS or MAY HAVE BEEN sent is\n"
+             "never voided this way - it still latches live orders until you clear it by hand.\n"
+             "Counts only.\n\n"
+             "LEDGER (machine-readable, one row per play)\n" + json.dumps([row]))
+    except Exception as ex:
+        LOG.append(f"intent void email failed {cid}: {str(ex)[:50]}")
+    LOG.append(f"intent {cid} VOIDED (never transmitted): {str(why)[:80]}")
+    return ok
 
 
 def journal_latch_why():
