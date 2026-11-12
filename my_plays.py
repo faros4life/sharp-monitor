@@ -313,10 +313,25 @@ def main():
         say(f"  {k:<24} {n:4d}")
     cert = [r for r in out if r["clv_status"] == "CERTIFIED" and r["clv_pct"] is not None]
     if cert:
-        m = sum(r["clv_pct"] for r in cert) / len(cert)
-        beat = sum(1 for r in cert if r["clv_pct"] > 0)
+        # PARTIAL FILLS MUST NOT BE COUNTED AS SEPARATE PLAYS. Nov 11 showed one Lakers under as
+        # 11 fills of one resting ProphetX order, each with its own stake. A mean over fills would
+        # weight that single decision 11x against a play that filled once - the average would be
+        # reporting the venue's fill behaviour, not the quality of the bets. So the headline
+        # collapses fills of the same (game, bet, venue, price) to ONE play, and the per-fill
+        # figure is shown beside it rather than instead of it.
+        byplay = {}
+        for r in cert:
+            byplay.setdefault((r["game"], r["bet"], r["venue"], r["american"]), []).append(r)
+        pl = [sum(x["clv_pct"] for x in v) / len(v) for v in byplay.values()]
+        m = sum(pl) / len(pl)
+        beat = sum(1 for v in pl if v > 0)
         say("")
-        say(f"  certified plays {len(cert)} | mean CLV {m:+.2f}% | beat the close {beat}/{len(cert)}")
+        say(f"  certified PLAYS {len(pl)} (from {len(cert)} fill(s)) | mean CLV {m:+.2f}% "
+            f"| beat the close {beat}/{len(pl)}")
+        if len(cert) != len(pl):
+            mf = sum(r["clv_pct"] for r in cert) / len(cert)
+            say(f"  per-fill mean would be {mf:+.2f}% - shown only for comparison; fills of one")
+            say("  resting order are one decision, so the per-PLAY figure is the headline.")
         say("  This is a same-day figure on a handful of plays, not a verdict on any strategy.")
     if stat.get("PENDING"):
         say("")
