@@ -161,6 +161,9 @@ def main():
     trades, how = [], ""
     try:
         import book_check as bc
+        # px_call sends no Authorization header until _PX["token"] is set, so the first run got a
+        # 401 for want of a login, not for want of a permission. positions.py logs in first.
+        bc.px_login()
         d = bc.px_call("/v4/mm/get_trades") or {}
         trades = ((d.get("data") or {}).get("trades")) or []
         how = "bc.px_call, data key (read-only)"
@@ -234,12 +237,30 @@ def main():
                                       (os.environ.get("NOVIG_TRADE_KEY_ID") or "").strip()]):
                 if not kid:
                     continue
-                d = nv.get("/v3/portfolio/fills", {"limit": 100, "keyId": kid})
-                for v in (d.values() if isinstance(d, dict) else [d]):
-                    if isinstance(v, list):
-                        fills += v
-                    elif isinstance(v, dict):
-                        fills += v.get("items") or v.get("fills") or v.get("data") or []
+                # PAGINATE. One page is 100 rows; 2 wallets gave 130 fills and every one of the
+                # 35 order ids missed, which is what a 30-day order window against a few days of
+                # fills looks like. The executor stores Novig's own orderId (novig_live_order:
+                # rec["order_id"] = resp.get("orderId")), so the namespace was never the problem.
+                after, pages = None, 0
+                while pages < 40:
+                    pages += 1
+                    prm = {"limit": 100, "keyId": kid}
+                    if after:
+                        prm["after"] = after
+                    d = nv.get("/v3/portfolio/fills", prm)
+                    got, nxt = [], None
+                    for v in (d.values() if isinstance(d, dict) else [d]):
+                        if isinstance(v, list):
+                            got += v
+                        elif isinstance(v, dict):
+                            got += v.get("items") or v.get("fills") or v.get("data") or []
+                            nxt = nxt or v.get("next")
+                    if isinstance(d, dict):
+                        nxt = nxt or d.get("next")
+                    fills += got
+                    if not got or not nxt:
+                        break
+                    after = nxt
             say(f"  fills read: {len(fills)}  (GET /v3/portfolio/fills)")
             say(f"  FILL FIELDS: {', '.join(fields_of(fills))}")
     except Exception as e:
@@ -263,6 +284,17 @@ def main():
                 oid = str(f.get("orderId") or f.get("order_id") or "")
                 if oid:
                     byo[oid].append(f)
+            # A fill carries THREE ids: orderId, clientId and fillId. The executor stores orderId,
+            # but proving a miss means showing the id is absent from all three, not just the one we
+            # expect - otherwise a namespace mix-up reads as a missing fill.
+            alt = {k: collections.Counter() for k in ("orderId", "clientId", "fillId")}
+            for f in fills:
+                for k in alt:
+                    if f.get(k) is not None:
+                        alt[k][str(f[k])] += 1
+            for k in ("orderId", "clientId", "fillId"):
+                hit = sum(1 for o in nv_oids if o in alt[k])
+                say(f"  executor order ids present as fill.{k:<9}: {hit} of {len(nv_oids)}")
             for oid in sorted(nv_oids):
                 fs = byo.get(oid) or []
                 if not fs:
