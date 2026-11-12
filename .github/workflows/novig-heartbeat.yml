@@ -49,6 +49,7 @@ jobs:
       - name: Novig snapshot heartbeat
         env:
           NOVIG_SNAPSHOT_TOKEN: ${{ secrets.NOVIG_SNAPSHOT_TOKEN }}
+          NOVIG_READ_TOKEN: ${{ secrets.NOVIG_READ_TOKEN }}   # narrow read credential; preferred over the broad one once it exists
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
           NOVIG_STALE_MIN: ${{ inputs.stale_min || '35' }}
         run: python -u novig_heartbeat.py

@@ -59,6 +59,7 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}       # fill texts to Peter's Telegram (live orders only)
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           NOVIG_SNAPSHOT_TOKEN: ${{ secrets.NOVIG_SNAPSHOT_TOKEN }}   # read-only token for the home runner's Novig positions snapshot (private repo)
+          NOVIG_READ_TOKEN: ${{ secrets.NOVIG_READ_TOKEN }}   # narrow read credential; preferred over the broad one once it exists
           # Nov 11 (Peter, "b2"): Contents read+write on ONE private repo, for the bot's own
           # registry - placed orders, write-ahead intents, dedupe tokens. Replaces Gmail, which
           # cost 79.3s a run (90% of measured time) because sharp-monitor is public and money

@@ -33,6 +33,7 @@ jobs:
       - name: Reconcile the named orders (read only)
         env:
           NOVIG_SNAPSHOT_TOKEN: ${{ secrets.NOVIG_SNAPSHOT_TOKEN }}   # read-only, scoped to novig-runner
+          NOVIG_READ_TOKEN: ${{ secrets.NOVIG_READ_TOKEN }}   # narrow read credential; preferred over the broad one once it exists
           NOVIG_ORDER_IDS: ${{ github.event.inputs.order_ids }}
           EMAIL: ${{ github.event.inputs.email }}
           GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
@@ -44,6 +45,7 @@ jobs:
           NOVIG_READ_KEY_ID: ${{ secrets.NOVIG_READ_KEY_ID }}
           NOVIG_READ_KEY_PEM: ${{ secrets.NOVIG_READ_KEY_PEM }}
           NOVIG_SNAPSHOT_TOKEN: ${{ secrets.NOVIG_SNAPSHOT_TOKEN }}
+          NOVIG_READ_TOKEN: ${{ secrets.NOVIG_READ_TOKEN }}   # narrow read credential; preferred over the broad one once it exists
         run: |
           python3 -u - <<'PY'
           import os

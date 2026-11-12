@@ -24,6 +24,7 @@ jobs:
       - name: Read the snapshot exactly as the executor does
         env:
           NOVIG_SNAPSHOT_TOKEN: ${{ secrets.NOVIG_SNAPSHOT_TOKEN }}
+          NOVIG_READ_TOKEN: ${{ secrets.NOVIG_READ_TOKEN }}   # narrow read credential; preferred over the broad one once it exists
           RECONCILE_ORDERS: ${{ inputs.orders }}
           # Nov 12: the fills probe needs the READ-ONLY key. Without these two the probe reported
           # "key ready -> False, scope None", which was this workflow's missing env and NOT

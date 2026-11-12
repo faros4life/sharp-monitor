@@ -34,5 +34,6 @@ jobs:
       - name: Probe the runner repo (read-only)
         env:
           NOVIG_SNAPSHOT_TOKEN: ${{ secrets.NOVIG_SNAPSHOT_TOKEN }}
+          NOVIG_READ_TOKEN: ${{ secrets.NOVIG_READ_TOKEN }}   # narrow read credential; preferred over the broad one once it exists
           PROBE_DISPATCH: ${{ inputs.dispatch || '0' }}
         run: python -u novig_runner_probe.py

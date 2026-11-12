@@ -1,7 +1,21 @@
 name: novig-dispatch-check
 
+# Nov 12 (Peter, Novig authorization audit): THE BYPASS IS REMOVED.
+#
+# This workflow used to build runner inputs itself and POST them with book_live._gh(), skipping
+# novig_place() entirely - and with it the EXEC_NOVIG_SUBMIT hold, preflight() (the ntfy STOP
+# switch, the daily stop, the per-order cap), duplicate protection, and the write-ahead intent.
+# Its inputs were hardcoded to an order the runner's hard limits refuse (price 0.990, outcome_id
+# all zeros), so it could not move money as written. One edit to those literals was all that
+# separated it from an unauthorized live order - exactly the class of path the audit looked for.
+#
+# It now goes through novig_place() like every other order, so it inherits every check, and it
+# asserts the refusal rather than printing an HTTP code. Three independent reasons it cannot reach
+# the runner: EXEC_NOVIG_SUBMIT is pinned off here, no dispatch credential is provided, and the
+# price is still one the runner's own hard limits refuse. Removing any one of them is not enough.
+
 on:
-  workflow_dispatch:   # manual: proves the cloud -> home PC Novig path with an order the runner MUST refuse (price 0.990)
+  workflow_dispatch:   # manual only
 
 permissions:
   contents: read
@@ -16,15 +30,26 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install -q cryptography
-      - name: Send a deliberately invalid order to the home runner (no money can move)
+      - name: Prove the Novig chokepoint refuses, through novig_place (no direct dispatch)
         env:
+          # READ credentials only. NOVIG_DISPATCH_TOKEN is deliberately absent, so this job cannot
+          # send an order even if the submit hold were lifted.
+          NOVIG_READ_TOKEN: ${{ secrets.NOVIG_READ_TOKEN }}
           NOVIG_SNAPSHOT_TOKEN: ${{ secrets.NOVIG_SNAPSHOT_TOKEN }}
+          EXEC_NOVIG_SUBMIT: "off"
         run: |
           python -u - <<'PY'
-          import uuid, book_live as b
-          inputs = {"outcome_id": "00000000-0000-0000-0000-000000000000", "price": "0.990", "qty": "1", "tif": "FOK",
-                    "ttl_ms": "0", "client_id": str(uuid.uuid4()), "label": "TEST dispatch check (must be refused)", "play_key": "TEST"}
-          st, _ = b._gh("POST", f"https://api.github.com/repos/{b.NV_REPO}/actions/workflows/{b.NV_WORKFLOW}/dispatches",
-                        {"ref": "main", "inputs": inputs})
-          print(f"DISPATCH: HTTP {st} ({'OK - the home PC should now run novig-live-order and REFUSE it' if st == 204 else 'FAILED'})")
+          import book_live as b
+          print(f"NOVIG_SUBMIT={b.NOVIG_SUBMIT}   dispatch credential present={bool(b._dispatch_token())}")
+          assert b.NOVIG_SUBMIT is False, "EXEC_NOVIG_SUBMIT must be off in this check"
+          assert not b._dispatch_token(), "this check must run without a dispatch credential"
+          # price 0.990 stays outside the runner's own 0.02-0.98 limit: defence in depth, so even a
+          # transmitted order could not fill if both authorization layers were somehow removed.
+          res = b.novig_place("00000000-0000-0000-0000-000000000000", 0.990, 1,
+                              "TEST chokepoint check (must be refused)", None, "TEST")
+          print(f"RESULT: {res.get('status')} - {res.get('reason')}")
+          assert res.get("status") == "refused", f"EXPECTED a refusal, got {res!r}"
+          assert not res.get("sent_to_runner"), "nothing may have been sent to the runner"
+          assert res.get("order_id") is None, "no order id may exist for a refused order"
+          print("PASS: the Novig submit chokepoint refused; nothing reached the home runner.")
           PY

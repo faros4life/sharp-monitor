@@ -458,8 +458,31 @@ NV_WORKFLOW = "novig-live-order.yml"
 NV_RESULTS = f"https://api.github.com/repos/{NV_REPO}/contents/snapshot/novig_orders.json?ref=main"
 
 
-def _gh(method, url, body=None):
-    tok = (os.environ.get("NOVIG_SNAPSHOT_TOKEN") or "").strip()
+# Nov 12 (Peter, Novig authorization audit). MEASURED: NOVIG_SNAPSHOT_TOKEN reports
+# {admin, maintain, push, triage, pull} on faros4life/novig-runner - it is NOT the "read-only
+# token" this repo's comments claim twice, and it sits in TEN workflows of a PUBLIC repo, nine of
+# which only ever read one snapshot file. Each therefore carried the ability to dispatch a live
+# Novig order and to rewrite the runner repo.
+#
+# The split below is the migration, staged so nothing breaks before the new secrets exist:
+#   reads     prefer NOVIG_READ_TOKEN, FALL BACK to NOVIG_SNAPSHOT_TOKEN. Add the narrow read
+#             secret, confirm the read paths still work, then remove the broad one. No flag day.
+#   dispatch  requires NOVIG_DISPATCH_TOKEN with NO fallback. A credential that can only read must
+#             never authorize an order, so the broad token stops being a dispatch key the moment
+#             this lands. Today that changes nothing live: novig_place() already refuses on
+#             NOVIG_SUBMIT before reaching here, and EXEC_NOVIG_SUBMIT stays off.
+def _read_token():
+    return ((os.environ.get("NOVIG_READ_TOKEN") or "").strip()
+            or (os.environ.get("NOVIG_SNAPSHOT_TOKEN") or "").strip())
+
+
+def _dispatch_token():
+    """Dispatch credential. Deliberately NO fallback to the read token - that fallback IS the hole."""
+    return (os.environ.get("NOVIG_DISPATCH_TOKEN") or "").strip()
+
+
+def _gh(method, url, body=None, tok=None):
+    tok = (tok or _read_token())
     req = urllib.request.Request(url, data=json.dumps(body).encode() if body is not None else None, method=method, headers={
         "Authorization": f"Bearer {tok}", "Accept": "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28",
         "User-Agent": "sharp-monitor", **({"Content-Type": "application/json"} if body is not None else {})})
@@ -484,8 +507,11 @@ def novig_place(outcome_id, limit_cost, qty, label="", ttl_ms=None, key=""):
     ok, why = preflight("novig", risk)
     if not ok:
         return {"status": "refused", "reason": why}
-    if not (os.environ.get("NOVIG_SNAPSHOT_TOKEN") or "").strip():
-        return {"status": "refused", "reason": "no token to reach the home runner (NOVIG_SNAPSHOT_TOKEN)"}
+    if not _dispatch_token():
+        # Nov 12: fails closed on the NARROW credential, not the read one. A read token present is
+        # no longer sufficient to send an order. Refused before any venue call, so the write-ahead
+        # intent is voided by live_order_other()'s refused branch and nothing latches.
+        return {"status": "refused", "reason": "no dispatch credential for the home runner (NOVIG_DISPATCH_TOKEN)"}
     if not outcome_id or qty < 1 or not (0.02 <= limit_cost <= 0.98):
         return {"status": "refused", "reason": "bad Novig order inputs"}
     if ttl_ms is not None and ttl_ms < 300000:
@@ -496,7 +522,7 @@ def novig_place(outcome_id, limit_cost, qty, label="", ttl_ms=None, key=""):
               "label": label[:120], "play_key": key[:120]}
     try:
         st, _ = _gh("POST", f"https://api.github.com/repos/{NV_REPO}/actions/workflows/{NV_WORKFLOW}/dispatches",
-                    {"ref": "main", "inputs": inputs})
+                    {"ref": "main", "inputs": inputs}, tok=_dispatch_token())
     except urllib.error.HTTPError as ex:
         return {"status": "error", "reason": f"couldn't reach the home runner (HTTP {ex.code}); nothing was sent to Novig"}
     except Exception as ex:

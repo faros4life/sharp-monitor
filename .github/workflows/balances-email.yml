@@ -34,6 +34,7 @@ jobs:
           PMUS_KEY_ID: ${{ secrets.PMUS_KEY_ID }}
           PMUS_SECRET_KEY: ${{ secrets.PMUS_SECRET_KEY }}
           NOVIG_SNAPSHOT_TOKEN: ${{ secrets.NOVIG_SNAPSHOT_TOKEN }}
+          NOVIG_READ_TOKEN: ${{ secrets.NOVIG_READ_TOKEN }}   # narrow read credential; preferred over the broad one once it exists
           PROPHETX_ACCESS_KEY: ${{ secrets.PROPHETX_ACCESS_KEY }}   # Oct 30: ProphetX positions read (new-position report)
           PROPHETX_SECRET_KEY: ${{ secrets.PROPHETX_SECRET_KEY }}
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}                     # new-position push
