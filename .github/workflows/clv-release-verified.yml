@@ -1,0 +1,73 @@
+name: clv-release-verified
+
+# ONE-TIME recovery (Peter, Nov 12, explicit GO): reopen the rows retired by the pre-fix fixture
+# matcher. Dry run by default - apply requires BOTH apply=1 AND the explicit id allowlist the dry
+# run printed, so nothing can be reopened that was not first named and verified.
+#
+# Does not change MAX_TRIES or the retirement logic; clv_ledger is untouched. Does not reset tries,
+# so each row gets exactly ONE attempt before the existing guard retires it again. Never overwrites
+# a CLV score, a terminal exclusion or a verified historical result.
+#
+# No live betting change, no Pinnacle gate, no order. Zero OddsPapi credits: the matcher runs
+# against the fixture cache already on disk.
+
+on:
+  workflow_dispatch:
+    inputs:
+      apply:
+        description: "1 = write the change. Anything else = dry run."
+        default: "0"
+        required: false
+      ids:
+        description: "Comma-separated allowlist of tracker row ids (required to apply)"
+        default: ""
+        required: false
+      expect:
+        description: "Exact number of eligible rows required before applying"
+        default: "25"
+        required: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: clv-ledger          # never run while the ledger is writing the same state
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Release independently verified held-out rows
+        env:
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          REL_APPLY: ${{ inputs.apply }}
+          REL_IDS: ${{ inputs.ids }}
+          REL_EXPECT: ${{ inputs.expect || '25' }}
+        run: python -u clv_release_verified.py
+      - name: Commit the reopened state and its audit record
+        if: inputs.apply == '1'
+        run: |
+          if [ -n "$(git status --porcelain clv)" ]; then
+            git config user.name "clv-release"
+            git config user.email "clv-release@users.noreply.github.com"
+            rm -rf "$RUNNER_TEMP/out" && mkdir -p "$RUNNER_TEMP/out" && cp -r clv "$RUNNER_TEMP/out/"
+            for i in 1 2 3 4 5; do
+              git fetch -q origin main && git reset -q --hard origin/main
+              rm -rf clv && cp -r "$RUNNER_TEMP/out/clv" .
+              git add -A clv
+              git diff --cached --quiet && break
+              git commit -q -m "Release independently verified held-out CLV rows"
+              git push -q origin HEAD:main && break
+              sleep 5
+            done
+          fi
