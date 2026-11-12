@@ -209,7 +209,7 @@ PUSH_ALERT_RECAP = (os.environ.get("PUSH_ALERT_RECAP") or "off").strip().lower()
 TG_SHARP = (os.environ.get("TG_SHARP_ALERTS") or "off").strip().lower() == "on"
 
 
-def notify(title, body, red=False, yellow=False, extra_tags=(), headline=None):
+def notify(title, body, red=False, yellow=False, extra_tags=(), headline=None, live=False):
     """red = late alert; yellow = an earlier alert already came in on this game (the first alert is the play).
     extra_tags: ntfy emoji tags (Oct 26: white_check_mark = phase-1 candidate, page_facing_up = paper only)."""
     if not NTFY_TOPIC:
@@ -236,8 +236,8 @@ def notify(title, body, red=False, yellow=False, extra_tags=(), headline=None):
     # to stop. ntfy is UNCHANGED - every alert still reaches the phone there, and the ntfy STOP/GO
     # brake, the HR manual-bet pings and the recaps are all untouched.
     #
-    # TG_SHARP_ALERTS=on restores mirroring if he wants it back.
-    if TG_SHARP:
+    # TG_SHARP_ALERTS=on restores mirroring for every alert. Nov 12 (Peter): live=True (a phase-1 trigger) mirrors always.
+    if TG_SHARP or live:   # Nov 12 (Peter): the trigger for anything that goes live reaches Telegram too, same text
         if headline:
             tg_mirror(f"<b>{_esc(headline)}</b>\n{_esc((_tg_prefix(tags) + ' ' + title).strip())}\n{_esc(body)}", html=True)
         else:
@@ -1780,18 +1780,17 @@ def run():
                                      + (" | No line conversion - run/puck-line price comparison." if _cv is None
                                         else " | same line as Pinnacle, no conversion" if _cv == 0
                                         else f" | EV CONVERTED {_cv:g} pt from Pinnacle's number - treat the % as UNVERIFIED"))
-                        # Nov 12 (Peter: "only actionable and live notifications"): the phone gets the executor's LIVE PLAY,
-                        # then the fill / resting-bid message, plus Hard Rock manual-bet pings. A sharp ALERT is a candidate,
-                        # not a bet, so it is muted for phase-1 too (logged, graded, still wakes the executor).
-                        # PUSH_SHARP_ALERTS=on unmutes every alert.
-                        (notify if (PUSH_SHARP or hr_ev) else (lambda *x, **y: print("push muted: alert logged only")))(
+                        # Nov 12 (Peter: "only actionable and live notifications", then "triggers ... on anything that
+                        # goes live"): the phone gets the TRIGGER for every live (phase-1) play on ntfy AND Telegram, then
+                        # the executor's LIVE PLAY and the fill. PAPER alerts stay muted (PUSH_SHARP_ALERTS=on unmutes them).
+                        (notify if (PUSH_SHARP or p1_ok or hr_ev) else (lambda *x, **y: print("push muted: paper alert logged only")))(
                                ("LIVE " if p1_ok else "HR MISPRICE " if hr_ev else "PAPER ") + f"Sharp alert {cfg['label']}" + (" LATE" if late else ""),
                                f"{label}\n{a['text']}\n{bet_size(a['price'], a['book'])}{prior_note}\n{a['game']}{tag}, {a['start']}\n{a['why']}\n"
                                f"Grade {grade} ({score}/100) | "
                                + (f"LATE: starts in {lead_text(lead)}" if late else f"starts in {lead_text(lead)}"),
                                red=late, yellow=(not late) and bool(prior or (repeat and REPEAT_MODE != "mute")),   # late = red only
                                extra_tags=("white_check_mark",) if p1_ok else (("mag",) if hr_ev else ("page_facing_up",)),
-                               headline=f"{a['game']} \u2014 {a['text'].split(' at ')[0]} @ {nm(a['book'])}")
+                               headline=f"{a['game']} \u2014 {a['text'].split(' at ')[0]} @ {nm(a['book'])}", live=p1_ok)
                     st["alerted"][a["id"]] = time.time()
                     e = {k: a[k] for k in ("id", "ev", "game", "kind", "side", "pt", "price", "book", "conf", "nconf", "cby", "evp", "fade")}
                     e.update(sport=cfg["label"], start=a["commence"], t=time.time(), lead=round(lead), late=late,
