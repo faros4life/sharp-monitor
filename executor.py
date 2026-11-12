@@ -702,6 +702,37 @@ def lane_tag(r):
     return f"[{LANE_NAME.get(lane_of(r), 'PHASE 1')}] "
 
 
+def prior_hold(p):
+    """None when the journal shows no live order for this play; else the ET time of the first one
+    ("10:01 AM"), or "" when it is known to be held but the time is not. Nov 12 (Peter): a HELD message
+    for a play already filled read like a fresh play to place by hand. Reads the ledger rows this run
+    parsed, else the private registry; best-effort, never raises."""
+    try:
+        key = derive_key(p) or p.get("play_key") or ""
+        rows = list(LEDGER_ROWS)
+        if not rows and registry.enabled():
+            rows = registry.rows() or []
+        best = None
+        for row in rows:
+            k = row.get("key") or ""
+            if not k or not (lane_strip(k) == lane_strip(key) or same_bet(k, key)):
+                continue
+            los = [row.get("live_order") or {}, row.get("live_rest") or {}] + [x or {} for x in (row.get("live_more") or [])]
+            if any(l.get("status") == "placed" and l.get("order_id") for l in los):
+                t = str(row.get("decided_utc") or "")
+                if t and (best is None or t < best):
+                    best = t
+                elif best is None:
+                    best = ""
+        if best is None and (key in LIVEKEYS or any(same_bet(key, k) for k in LIVEKEYS)):
+            best = ""
+        if best:
+            best = datetime.fromisoformat(best.replace("Z", "+00:00")).astimezone(lm.ET).strftime("%-I:%M %p")
+        return best
+    except Exception:
+        return None
+
+
 def live_play_alert(r):
     """Nov 11 (Peter): R1 is a LIVE BOT LANE, so its qualifying plays must reach the phone like
     Phase 1's do. R1's own signal alerts are MUTED upstream by the non-Top-25 filter
@@ -724,10 +755,21 @@ def live_play_alert(r):
     # twice is the right failure, being told nothing is not.
     if p.get("play_key") and any(SEEN["tok"].get(retry_tok(k)) for k in handled_keys(p)):
         return
+    # Nov 12 (Peter): a re-alert of the SAME play must say so. Louisiana Under 48.5 sent the identical
+    # LIVE PLAY three times (one play, three attempts) and read as three plays. The count lives in the
+    # private store (bump_streak outlives the run); no store = no label, never a blocked alert.
+    attempt = None
+    try:
+        if registry.enabled():
+            attempt = registry.bump_streak("att:" + hashlib.sha1((derive_key(p) or p.get("play_key") or "").encode()).hexdigest()[:12])
+    except Exception:
+        attempt = None
+    again = attempt is not None and attempt >= 2
     e = r.get("entry") or {}
     af = e.get("price_after_fee")
     bk = lv.get("book") or "?"
     body = "\n".join(x for x in [
+        (f"SAME PLAY \u2014 attempt {attempt}, previous attempt did not fill." if again else ""),
         f"{p.get('sport') or ''} {p.get('game') or ''}".strip(),
         p.get("bet") or "",
         (f"alert {int(af):+d} after fees" if af is not None else ""),
@@ -741,7 +783,7 @@ def live_play_alert(r):
         ("PARTIAL expected: depth is short of the full stake" if lv.get("partial") else ""),
         "Send STOP on ntfy to pause.",
     ] if x)
-    push(f"{lane_tag(r)}LIVE PLAY: {(p.get('bet') or '')[:50]}", body)   # mirror=True: one ntfy, one Telegram
+    push(f"{lane_tag(r)}{f'SAME PLAY - attempt {attempt}: ' if again else ''}LIVE PLAY: {(p.get('bet') or '')[:50]}", body)   # mirror=True: one ntfy, one Telegram
 
 
 def lane_note(r, head, res=None, book=None, limit=None, extra=""):
@@ -3170,10 +3212,19 @@ def novig_reports():
         # record are now resolved in one bounded OR search before the loop, which then only looks
         # the answer up. Report-or-not decisions are unchanged; a token already sent still suppresses.
         # FAILS CLOSED as before: the search raises on failure rather than reporting a fill twice.
-        claimer = ReportClaim(M, ["xnvr" + hashlib.sha1(
-            f"{x.get('client_id')}|{str(x.get('status') or '?').upper()}|"
-            f"{int(x.get('filled_qty') or 0)}|{x.get('filled_cost')}".encode()).hexdigest()[:12]
-            for x in recs[-30:]])
+        def _st(x):
+            """Status for the report token. Nov 12 (Peter): a resting bid that expires unfilled can read
+            EXPIRED, then CANCELED, then CANCELLED. Same outcome, different token = the same NO FILL sent
+            twice (11:13 and 11:21). Every final nothing-filled state is one outcome."""
+            st = str(x.get("status") or "?").upper()
+            if not int(x.get("filled_qty") or 0) and st not in ("OPEN", "PENDING", "SENT", "UNKNOWN", "REFUSED", "REJECTED", "FILLED"):
+                return "NOFILL"
+            return st
+        def _tk(x, canon=True):
+            return "xnvr" + hashlib.sha1(
+                f"{x.get('client_id')}|{_st(x) if canon else str(x.get('status') or '?').upper()}|"
+                f"{int(x.get('filled_qty') or 0)}|{x.get('filled_cost')}".encode()).hexdigest()[:12]
+        claimer = ReportClaim(M, [_tk(x, c) for x in recs[-30:] for c in (True, False)])
         for x in recs[-30:]:
             st = str(x.get("status") or "?").upper()
             if st in ("PENDING", "SENT", "UNKNOWN") and not int(x.get("filled_qty") or 0):
@@ -3182,9 +3233,15 @@ def novig_reports():
                 continue   # status says filled but the amount isn't confirmed yet (old-format record): never say "no fill"
             c, q, fq = lm.num(x.get("price")) or 0, int(x.get("qty") or 0), int(x.get("filled_qty") or 0)
             cost = x.get("filled_cost")
-            tok = "xnvr" + hashlib.sha1(f"{x.get('client_id')}|{st}|{fq}|{cost}".encode()).hexdigest()[:12]
+            tok = _tk(x)
             if not claimer.claim(tok):
                 continue   # already sent, or another overlapping pass is sending it right now
+            if _tk(x, False) != tok:
+                # a report sent under the OLD (raw status) token already told him this outcome
+                if not claimer.claim(_tk(x, False)):
+                    claimer.sent(tok)
+                    continue
+                claimer.sent(_tk(x, False))
             ap = lm.num(x.get("avg_price"))
             if st in ("REFUSED", "REJECTED"):
                 head = f"NOVIG {st}"
@@ -3931,6 +3988,8 @@ def main():
             streak = registry.bump_streak("positions_blind") if registry.enabled() else None
         except Exception as ex:
             LOG.append(f"blind streak uncountable, notifying: {str(ex)[:40]}")
+        _held_already = [p for p in p1 if prior_hold(p) is not None]   # Nov 12 (Peter): not waiting to be placed
+        p1 = [p for p in p1 if p not in _held_already]
         if p1 or streak is None or streak % BLIND_STREAK_AT == 0:
             push(f"POSITIONS UNREADABLE: {', '.join(blind)}",
                  f"Can't read your open bets on {', '.join(blind)} ({why[:160]}).\n"
@@ -3938,6 +3997,8 @@ def main():
                  + f"Exposure cannot be verified, so NO new live orders this run on ANY venue"
                  + (f"; {len(p1)} live-eligible play(s) held - place by hand if you want them now."
                     if p1 else ". No live-eligible play is waiting.")
+                 + (f" {len(_held_already)} other play(s) already held from your earlier order(s) - nothing to place."
+                    if _held_already else "")
                  + "\nThe next scheduled run rechecks normally.")
         else:
             print(f"positions blind, run {streak} of {BLIND_STREAK_AT} - no push yet, nothing held")
@@ -4115,10 +4176,17 @@ def main():
                 r = dict(r, verdict="HELD", reason="positions unreadable on " + ", ".join(blind))
                 dk = derive_key(p) or p["play_key"]
                 if not gsearch(M2, held_tok(dk)):
-                    push("Bet held: " + (p.get("bet") or "")[:60],
-                         f"{p.get('sport')} {p.get('game')}\nCouldn't check your open bets on {', '.join(blind)}. "
-                         "Retrying every 10 min while the price is there. If you know you don't hold the other side, "
-                         "you can place it by hand.")
+                    _ph = prior_hold(p)   # Nov 12 (Peter): say so when the journal already shows this play
+                    if _ph is not None:
+                        push("Held - you already hold this: " + (p.get("bet") or "")[:50],
+                             f"{p.get('sport')} {p.get('game')}\nCouldn't check your open bets on {', '.join(blind)}, "
+                             f"so no new orders. You already hold this play from your {_ph + ' ' if _ph else ''}order - "
+                             "nothing to place by hand.")
+                    else:
+                        push("Bet held: " + (p.get("bet") or "")[:60],
+                             f"{p.get('sport')} {p.get('game')}\nCouldn't check your open bets on {', '.join(blind)}. "
+                             "No in-run retry loop (removed Nov 11): the next scheduled run, about 5 min, re-reads and retries "
+                             "while the price is there. If you know you don't hold the other side, you can place it by hand.")
             if r["verdict"] == "WOULD PLACE" and (r.get("live") or {}).get("go"):   # Nov 3: price check at the order
                 pc = pin_check(p, r["live"], datetime.now(timezone.utc))
                 r["live"]["pin"] = pc
