@@ -5,7 +5,11 @@ name: ev-sightings
 # Amendment A1 (Oct 27): adds the Pinnacle move-watch leg inside the same run (no extra workflow).
 on:
   schedule:
-    - cron: "37 * * * *"   # hourly backup only; cron-job.org is the real 10-minute timer (Oct 31)
+    # Nov 12: ev-sightings_2 was this same file with a different cron - same script, same ev-study branch, same
+    # concurrency group - so every 10 minutes two Actions runs competed for a runner to do one job. Its timer
+    # moved here and that file was deleted. Coverage is unchanged: the 10-minute cron covers what the hourly
+    # backup covered, and cron-job.org still fires independently.
+    - cron: "7-59/10 * * * *"   # every 10 min, offset from the liquidity monitor / book check
   workflow_dispatch:
 
 concurrency:
