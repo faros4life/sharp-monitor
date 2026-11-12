@@ -99,6 +99,42 @@ check("and Gmail was not touched again", calls["n"] == 0)
 ex.imap_open, ex.bot_orders = _orig_open, _orig_bo
 ex.GUARD.update(**_orig_guard)
 
+
+# ---------------------------------------------------------------------------- lazy connection
+print("\nThe guard does not DIAL Gmail when the private store answers")
+_dials = {"n": 0}
+_real_open = ex.imap_open
+
+
+class _FakeM:
+    def uid(self, *a, **k):
+        return "OK", [b""]
+
+
+ex.imap_open = lambda: (_dials.__setitem__("n", _dials["n"] + 1), _FakeM())[1]
+L = ex._LazyIMAP()
+L.close()
+check("an unused connection never dials", _dials["n"] == 0)
+L2 = ex._LazyIMAP()
+L2.uid("SEARCH")
+check("the first caller that needs Gmail still gets it", _dials["n"] == 1)
+check("and the proxy reports it opened", L2.opened is True)
+L2.close()
+
+
+def _boom():
+    raise RuntimeError("gmail down")
+
+
+ex.imap_open = _boom
+raised = False
+try:
+    ex._LazyIMAP().uid("SEARCH")
+except RuntimeError:
+    raised = True
+check("a failed open propagates on first use (fail-closed intact)", raised)
+ex.imap_open = _real_open
+
 print()
 if fails:
     print(f"FAIL  test_gmail_failure_modes.py  {len(fails)} failed: {fails}")

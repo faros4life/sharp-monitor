@@ -132,6 +132,41 @@ def imap_open():
     return M
 
 
+class _LazyIMAP:
+    """A Gmail connection that is opened on FIRST USE, not on principle.
+
+    Nov 12 (Peter: "not just a timeout masking the problem"). live_guards() opened IMAP before
+    every bot_orders() call, but bot_orders only TOUCHES Gmail when the private store cannot answer
+    - and _bot_orders_finish() only touches it inside its loop over UNRESOLVED INTENTS, of which
+    production currently has zero. So on the common path the connection was opened, authenticated,
+    a mailbox selected and then closed again without a single command being sent.
+
+    That connect is where the 832 seconds went. The timeout bounds a hang; this removes the dial.
+
+    Forwards every attribute to the real connection, so bot_orders, subject_hits, intent_cleared and
+    gsearch_strict use it unchanged. If imap_open() fails, the error propagates on first use exactly
+    as it did when the open was eager - live_guards catches it and refuses, so fail-closed is
+    untouched. Nothing is skipped: the FIRST caller that needs Gmail still gets Gmail."""
+
+    def __init__(self):
+        self._m = None
+        self.opened = False
+
+    def _conn(self):
+        if self._m is None:
+            self._m = imap_open()
+            self.opened = True
+        return self._m
+
+    def __getattr__(self, name):          # only reached for attributes we do not define
+        return getattr(self._conn(), name)
+
+    def close(self):
+        if self._m is not None:
+            imap_close(self._m)
+            self._m = None
+
+
 def imap_close(M):
     """Logout is a courtesy, never a result. Nov 8: Gmail dropped the socket on imap_close(M) and
     failed signal-alerts run 42510394524 AFTER every piece of its work was done - a completed run
@@ -2761,16 +2796,16 @@ def live_guards():
         # Timed in four parts and printed LIVE, not accumulated, so a run killed mid-guard still
         # shows how far it got. Measurement only: same calls, same order, same fail-closed outcome.
         _g0 = time.time()
-        M = imap_open()
+        M = _LazyIMAP()          # dials only if something actually needs Gmail
         _g1 = time.time()
-        print(f"  guard: {_g1 - _g0:7.1f}s for imap_open", flush=True)
         try:
             ids = bot_orders(M)
             _g2 = time.time()
-            print(f"  guard: {_g2 - _g1:7.1f}s for bot_orders (registry read)", flush=True)
+            print(f"  guard: {_g2 - _g1:7.1f}s for bot_orders (registry read)"
+                  f"  [gmail {'OPENED' if M.opened else 'NOT needed'}]", flush=True)
         finally:
             _g2b = time.time()
-            imap_close(M)
+            M.close()
             print(f"  guard: {time.time() - _g2b:7.1f}s for imap_close", flush=True)
         _g3 = time.time()
         px_live.set_bot_orders(None if ids is None else list(ids))
