@@ -100,8 +100,14 @@ def main():
             rejected.append((k, f"bet text supports {(1 if h1 else 0) + (1 if h2 else 0)} of 2 "
                                 "participants - identity not independently confirmed"))
             continue
+        # Nov 12 correction: a stray token only condemns a row whose identity is NOT otherwise
+        # confirmed. With BOTH participants independently matched, leftover words are alternate
+        # namings, not a different game: "Los Angeles Clippers @ Oklahoma City" against a fixture
+        # of "Oklahoma City Thunder v LA Clippers" leaves los/angeles matching neither side purely
+        # because the fixture writes LA. The first version vetoed that correct row outright. This
+        # now agrees with the verifier, where stray only decides when support is short of 2.
         stray = own - ((tb.toks(p1) | tb.toks(p2)) - tb.WEAK) - tb.toks(str(s.get("bet") or ""))
-        if stray:
+        if stray and not (h1 and h2):
             rejected.append((k, f"bet names {sorted(stray)[:3]}, absent from both participants - "
                                 "WRONG MATCH, stays excluded"))
             continue
