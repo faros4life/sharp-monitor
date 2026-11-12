@@ -227,13 +227,18 @@ def main():
 
     SDOT = {"OK": "ok", "WARN": "warn", "STALE": "bad", "FAIL": "bad",
             "UNKNOWN": "warn", "PAUSED": "warn", "NOT CHECKED": "warn", "ON DEMAND": "idle"}
+    # Nov 12 (Peter): a mark per state rather than a coloured dot, so a row reads without
+    # relying on colour - a tick is running, a cross is not - and the states that are
+    # NEITHER get their own mark instead of being dressed up as one or the other.
+    MARK = {"OK": "\u2713", "WARN": "!", "STALE": "\u2717", "FAIL": "\u2717",
+            "UNKNOWN": "?", "PAUSED": "\u2016", "NOT CHECKED": "\u2013", "ON DEMAND": "\u2013"}
 
     def tr(r):
         dot = {"OK": "ok", "WARN": "warn", "STALE": "bad", "FAIL": "bad",
                "ON DEMAND": "idle"}[r["state"]]
         run = '<span class=run>running</span>' if r["running"] else ""
         cad = f"~{r['cadence']:.0f}m" if r["cadence"] else "-"
-        return (f"<tr><td><span class='dot {dot}'></span>{r['state']}</td>"
+        return (f"<tr><td><span class='dot {dot}'>{MARK.get(r['state'], '?')}</span>{r['state']}</td>"
                 f"<td>{r['name']}{run}</td><td class=r>{r['last_ok']}</td>"
                 f"<td class='r muted'>{cad}</td><td class='r muted'>{r['cancel_pct']}%</td>"
                 f"<td class=muted>{r['why']}</td></tr>")
@@ -270,10 +275,10 @@ white-space:nowrap}}
 td{{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}}
 tr:last-child td{{border-bottom:0}}
 .r{{text-align:right;white-space:nowrap}}.muted{{color:var(--mut)}}
-.dot{{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:7px;
-vertical-align:1px}}
-.dot.ok{{background:var(--ok)}}.dot.warn{{background:var(--warn)}}.dot.bad{{background:var(--bad)}}
-.dot.idle{{background:var(--mut);opacity:.45}}
+.dot{{display:inline-block;width:1.1em;margin-right:6px;text-align:center;
+font-weight:700;font-variant-numeric:normal}}
+.dot.ok{{color:var(--ok)}}.dot.warn{{color:var(--warn)}}.dot.bad{{color:var(--bad)}}
+.dot.idle{{color:var(--mut);opacity:.6}}
 .run{{margin-left:8px;font-size:10px;color:var(--mut);border:1px solid var(--line);
 border-radius:4px;padding:1px 5px}}
 .note{{color:var(--mut);font-size:12px;margin-top:14px}}
@@ -284,7 +289,7 @@ border-radius:4px;padding:1px 5px}}
 <span id=age>checking snapshot age</span></p>
 <div class=card style="margin-bottom:16px"><table>
 <tr><th>System</th><th>State</th><th>Detail</th></tr>
-{''.join(f"<tr><td>{n}</td><td><span class='dot {SDOT.get(st,'warn')}'></span>{st}</td>"
+{''.join(f"<tr><td>{n}</td><td><span class='dot {SDOT.get(st,'warn')}'>{MARK.get(st,'?')}</span>{st}</td>"
          f"<td class=muted>{d}</td></tr>" for n, st, d in sysrows)}
 </table></div>
 <div class=card><table>
