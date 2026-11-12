@@ -47,6 +47,7 @@ from datetime import datetime, timedelta, timezone
 
 import clv_ledger as cl
 import clv_std as cs
+import executed_clv as xc
 import executor as ex
 import rest_depth_report as rd
 import tracker_build as tb
@@ -149,8 +150,11 @@ def main():
         tbets = raw if isinstance(raw, dict) else {str(i): b for i, b in enumerate(raw or [])}
     except Exception as e:
         say(f"  tracker unreadable ({type(e).__name__}) - hop 3/4 cannot be measured")
+    fxst = {"fixtures": {}, "fx_last": {}}
     try:
         cst = cl.tb.dec(json.load(open(cl.STATE)))
+        fxst["fixtures"] = dict(cst.get("fixtures") or {})
+        fxst["fx_last"] = dict(cst.get("fx_last") or {})
         call_ = (cst.get("bets") or {})
         cbets = {k: v for k, v in call_.items() if v.get("clv") is not None}
     except Exception as e:
@@ -425,6 +429,24 @@ def main():
                     gs2 = ((rec2 or {}).get("snap") or {}).get("game_start") or tr2.get("game_start")
                     say(f"    {tid[:30]:<30} result {str(tr2.get('result') or '-'):<3} "
                         f"game_start {str(gs2)[:16]:<16} {why2}")
+                    # PRIORITY 2: "no OddsPapi fixture matched" is the matcher's generic answer and
+                    # says nothing about WHICH gate failed. why_no_fixture replays the same test
+                    # per gate, so a real matching defect is told apart from a fixture that is
+                    # simply absent - and from the 6 h cooldown, which is a FETCH limit, not a
+                    # match failure. No API call: this reads the fixture cache already on disk.
+                    if "fixture" in str(why2).lower():
+                        snap2 = (rec2 or {}).get("snap") or tr2
+                        q2 = {"bet": snap2.get("bet"), "league": snap2.get("league"),
+                              "game": snap2.get("game"), "teams": snap2.get("teams"),
+                              "game_start": gs2, "book": snap2.get("book"),
+                              "_start_was_given": bool(gs2)}
+                        try:
+                            g2, _, d2 = xc.why_no_fixture(fxst, q2, snap2.get("league"))
+                            say(f"        gate: {g2}")
+                            if d2:
+                                say(f"        {str(d2)[:92]}")
+                        except Exception as e2:
+                            say(f"        gate undetermined ({type(e2).__name__})")
             for oid, tid in nv_nt[:8]:
                 say(f"    no tracker row: {oid[:24]:<24} {str(tid)[:40]}")
             if nv_nf:
