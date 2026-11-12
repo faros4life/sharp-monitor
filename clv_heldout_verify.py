@@ -106,9 +106,19 @@ def main():
         same_line = how in ("own line", "moneyline")
         bases["same-line/moneyline" if same_line else f"CONVERTED ({how[:26]})"] += 1
 
+        # Nov 12 correction: STRAY TOKENS OUTRANK a low support count. A bet naming a team that
+        # appears in NEITHER participant is not merely unconfirmable - it is evidence the stored
+        # fixture is the wrong game. The first version tested supports == 1 first and under-called
+        # a row whose bet read "Houston Rockets @ Dallas Mavericks" against a stored fixture of
+        # Houston vs Oklahoma City: "dallas"/"mavericks" match neither side. Ordering the checks
+        # the other way round is the difference between "cannot confirm" and "demonstrably wrong".
         if date_bad:
             v = "WRONG MATCH"
             note = "tracker date disagrees with the assigned game by more than 36h"
+        elif stray and supports < 2:
+            v = "WRONG MATCH"
+            note = (f"the bet names {sorted(stray)[:3]}, which appear in NEITHER participant - "
+                    "the stored fixture is a different game")
         elif supports == 2 and not date_bad:
             v = "VERIFIED" if same_line else "VERIFIED (converted close)"
             note = "the bet's own text names BOTH participants of the stored fixture"
@@ -122,7 +132,9 @@ def main():
             note = "the bet's own text names neither participant - identity unverifiable"
         verdicts[v] += 1
 
-        rows.append({"k": k, "v": v, "clv": clv, "same_line": same_line, "how": how})
+        src = str(s.get("source") or tr.get("source") or "?")
+        rows.append({"k": k, "v": v, "clv": clv, "same_line": same_line, "how": how,
+                     "src": src, "bot": src.lower().startswith("bot")})
         say("")
         say(f"  {v:<26} CLV {('%+.2f%%' % (100 * clv)) if clv is not None else 'n/a':>9}  {str(lg):<6} "
             f"{str(s.get('bet'))[:22]:<22}")
@@ -154,13 +166,30 @@ def main():
     oks = [r for r in ok if r["same_line"]]
     say("")
     say("  HYPOTHETICAL - not applied, not official, nothing released:")
-    for label, grp in (("verified (any close basis)", ok), ("verified AND same-line only", oks)):
+    bot_ok = [r for r in ok if r["bot"]]
+    for label, grp in (("verified (any close basis)", ok), ("verified AND same-line only", oks),
+                       ("verified BOT rows only", bot_ok)):
         if grp:
             m = 100 * sum(r["clv"] for r in grp) / len(grp)
             beat = sum(1 for r in grp if r["clv"] > 0)
             say(f"    {label:<32} n {len(grp):3d}  mean CLV {m:+.2f}%  beat close {beat}/{len(grp)}")
         else:
             say(f"    {label:<32} none")
+    say("")
+    say("  by source among the held-out rows:")
+    bysrc = collections.Counter(r["src"] for r in rows)
+    for a, b in bysrc.most_common():
+        say(f"    {a:<28} {b:3d}")
+    say("")
+    say("  HYPOTHETICAL BOT HEADLINE (current official bot figures + verified bot rows only):")
+    say("    current official: n 28, avg CLV -0.30%, beat close 17/28")
+    if bot_ok:
+        n2 = 28 + len(bot_ok)
+        tot = (-0.30 * 28) + 100 * sum(r["clv"] for r in bot_ok)
+        say(f"    with {len(bot_ok)} verified bot row(s) added: n {n2}, avg CLV {tot / n2:+.2f}%")
+        say("    NOT APPLIED. Shown for comparison only; the official figure is the line above it.")
+    else:
+        say("    no verified row carries a bot source, so the bot headline would be unchanged.")
     say("")
     say("  The official headline is unchanged and still excludes every row above.")
     say("=" * 104)
