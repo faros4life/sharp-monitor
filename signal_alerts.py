@@ -234,7 +234,32 @@ def main():
     _mark("candidates built")
     M = ex.imap_open()
     _mark("gmail open")
+
+    sent = 0
+
+    def flush(items):
+        """Send what is ready. Nov 12: everything used to be pushed AFTER held_sides(), which costs ~350s - so when
+        the job was killed on its timeout NOTHING went out, including the three alert types that need no position
+        read at all. TWO SIGNALS, NBA UNDER and FLIP come from the feeds alone and now go first, in about a second.
+        AGAINST YOUR BET still needs held sides and still runs after; if that read dies, it no longer takes the
+        other three with it. The sent-token check is unchanged, so an alert is still pushed exactly once."""
+        nonlocal sent
+        for key, title, body in items:
+            tokn = "xsig" + hashlib.sha1(key.encode()).hexdigest()[:12]
+            if ex.gsearch(M, tokn):
+                continue
+            if PUSH_SIGNALS and (PUSH_NBA_UNDER or not key.startswith("nbau|")):
+                ex.push(title[:80], body)
+            try:
+                ex.send(f"Bets signal: {title[:60]}", body + f"\n\n{tokn}")
+            except Exception:
+                pass
+            sent += 1
+
     try:
+        flush(found)                      # the feed-only alerts, before anything expensive
+        _mark(f"feed alerts pushed ({sent})")
+        found = []
         held = held_sides(M)
         _mark("held sides read (gmail + exchange positions)")
         for x in fresh:
@@ -248,18 +273,7 @@ def main():
             if any(h[1] == tk and h[2] == mt and h[3] == opp and h[0] in (None, lg) for h in held):
                 found.append(("vs|" + str(x.get("key")) + str(x.get("alerted_utc")), "AGAINST YOUR BET: " + str(x.get("game")),
                               line(x) + "\nThis money is on the OTHER side of a bet you or the bot hold. Heads-up only."))
-        sent = 0
-        for key, title, body in found:
-            tokn = "xsig" + hashlib.sha1(key.encode()).hexdigest()[:12]
-            if ex.gsearch(M, tokn):
-                continue
-            if PUSH_SIGNALS and (PUSH_NBA_UNDER or not key.startswith("nbau|")):
-                ex.push(title[:80], body)
-            try:
-                ex.send(f"Bets signal: {title[:60]}", body + f"\n\n{tokn}")
-            except Exception:
-                pass
-            sent += 1
+        flush(found)                      # AGAINST YOUR BET, which needed the held sides
     finally:
         ex.imap_close(M)
     _mark("done")
