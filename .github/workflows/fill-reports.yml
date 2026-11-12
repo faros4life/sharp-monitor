@@ -10,8 +10,30 @@ name: fill-reports
 # venue reconciliation.
 
 on:
+  # Nov 12 (Peter, "lets fix fill reports"). MEASURED: this workflow declares the 15-minute cron
+  # below and has NEVER run on it - four runs, all workflow_dispatch, none since 19:45 - so Kalshi
+  # resting-fill reporting simply stopped when it was split out of the executor. Minutes 3, 18, 33
+  # and 48 all passed without firing.
+  #
+  # GitHub's scheduler is not broken here: bets-board ran on schedule at 20:47:50Z and succeeded.
+  # It is UNRELIABLE here. Of the last 100 runs in this repo, 87 are workflow_dispatch (cron-job.org
+  # is the real timer, as executor-dry-run's own comment says) and only 5 are schedule - GitHub
+  # drops scheduled events under that kind of load. The repo already treats its crons as backup
+  # timers for exactly this reason; this one had no primary.
+  #
+  # So it now follows the executor, which runs every ~5 minutes and reliably. workflow_run fires
+  # whatever triggered the upstream run, so a cron-job.org dispatch of the executor carries this
+  # along with it. The 15-minute cron stays as the backup it always was.
+  #
+  # Firing more often than every 15 minutes is safe BY ITS OWN DESIGN: the concurrency group below
+  # is cancel-in-progress: false, so a firing while one is already running is DROPPED rather than
+  # queued - never two at once, which its comment calls the only way this could double-notify. The
+  # reporter also dedupes on its own token emails, so a dropped firing loses nothing.
+  workflow_run:
+    workflows: ["executor-dry-run"]
+    types: [completed]
   schedule:
-    - cron: "3-59/15 * * * *"   # every 15 min, offset off the hour so it does not pile onto :00
+    - cron: "3-59/15 * * * *"   # backup timer; the executor above is the real one
   workflow_dispatch:
     inputs:
       mode:
