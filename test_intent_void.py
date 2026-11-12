@@ -102,8 +102,19 @@ ck("void row written to the store", len(PUT), 1)
 ck("void row carries voided=True", bool(PUT and PUT[0]["live_order"].get("voided")), True)
 ck("void row keeps the client_id", PUT and PUT[0]["live_order"].get("client_id"), "cid0000000000beef")
 ck("void row is not counted as money", PUT and PUT[0]["live_order"].get("asked_stake"), 0.0)
-ck("one VOID email sent", sum(1 for s, _ in SENT if s.startswith(ex.INTENT_VOID_PREFIX)), 1)
-ck("VOID subject names the client_id", bool(SENT and "cid0000000000beef" in SENT[0][0]), True)
+# Nov 12 (Peter, "remove routine execution emails"): the VOID email is sent ONLY when the store
+# write failed, because then the mailbox copy is the only record of the resolution. With the store
+# confirming - the case above - there is nothing for an email to add.
+ck("NO void email when the store confirmed the write",
+   sum(1 for s, _ in SENT if s.startswith(ex.INTENT_VOID_PREFIX)), 0)
+_put_ok, PUT2 = registry.put_rows, []
+registry.put_rows = lambda rows: False          # store write fails
+SENT.clear()
+ex.void_intent("cid00000000store1", "novig", "EXEC_NOVIG_SUBMIT is not on")
+_vs = [s for s, _ in SENT if s.startswith(ex.INTENT_VOID_PREFIX)]
+ck("void email IS sent when the store failed", len(_vs), 1)
+ck("VOID subject names the client_id", bool(_vs and "cid00000000store1" in _vs[0]), True)
+registry.put_rows = _put_ok
 ck("VOID is not the manual clearance subject",
    any(s.startswith(ex.INTENT_CLEAR_PREFIX) for s, _ in SENT), False)
 

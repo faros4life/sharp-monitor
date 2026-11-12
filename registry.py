@@ -253,6 +253,31 @@ def is_complete(cut, now=None):
     return 0 <= age <= FRESH_MIN * 60
 
 
+# ---------------------------------------------------------------------------------------------
+# Nov 12 (Peter, "remove routine execution emails"). is_complete() rests on an invariant stated in
+# its own docstring: "the next run is back on Gmail, which is always complete." That held only
+# because every durable row was ALSO emailed. Suppressing the intent and void emails breaks it, so
+# the inverse marker has to exist before those emails can go: once any row lives only in this
+# store, Gmail is no longer a safe fallback, and a run that cannot read this store must FAIL CLOSED
+# rather than answer from an incomplete mailbox. Default True, so behaviour is unchanged until a
+# registry-only row is actually written.
+def gmail_authoritative():
+    """False once any durable row exists ONLY here. Unreadable store -> False (fail closed)."""
+    d = load()
+    if d is None:
+        return False
+    return bool((d.get("meta") or {}).get("gmail_complete", True))
+
+
+def set_gmail_incomplete():
+    """Record that Gmail no longer holds every row. Called when an email copy is deliberately
+    skipped because this store confirmed the row. Irreversible by design: a mailbox cannot regain
+    rows it was never sent, so nothing in this module ever sets it back to True."""
+    def merge(d):
+        d.setdefault("meta", {})["gmail_complete"] = False
+    return _commit(merge)
+
+
 def set_complete_through(day):
     """Assert completeness through `day`, stamped now. Must be re-asserted by every run that uses
     the fast path, or is_complete() stops trusting it."""
