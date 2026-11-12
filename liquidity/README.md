@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Wed Nov 11, 9:12 PM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 79.
+Updated Wed Nov 11, 9:17 PM ET. This run: 1 new, 1 not confirmed, 1 pending. Open alerts: 80.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 11 9:17PM | NBA | Detroit vs Washington | moneyline: Detroit | kalshi | $50k | -376 |  |  | +0.0c |  | pending |
 | Nov 11 9:00PM | NBA | Dallas vs Minnesota | moneyline: Minnesota | kalshi | $223k | -178 |  |  | +0.0c |  | pending |
 | Nov 11 9:00PM | NBA | Charlotte vs Phoenix | moneyline: Phoenix | kalshi | $84k | -223 |  |  | +0.0c |  | pending |
 | Nov 11 8:51PM | NHL | Nashville vs Anaheim: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $26k | +122 | ✅ novig |  | -1.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 9 9:10AM | NBA | Pacers vs. Mavericks | spread: Pacers (+3.5) | polymarket | $34k | -108 | ✅ novig |  | -7.0c | yes | W |
 | Nov 9 9:00AM | NFL | Buffalo Bills @ Minnesota Vikings | moneyline: BUF (0) | novig | $40k | -163 | ✅ kalshi,prophetx |  | +2.0c |  | W |
 | Nov 9 8:20AM | NBA | Pacers vs. Mavericks | moneyline: Mavericks | polymarket | $59k | -144 | ✅ kalshi,novig |  | +4.0c |  | W |
-| Nov 9 8:20AM | NBA | Denver vs Houston: Total Points | total: Over 218.5 points | kalshi | $29k | +104 | ✅ polymarket |  | +15.0c | yes | L |
