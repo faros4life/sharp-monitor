@@ -299,14 +299,28 @@ def main():
         th = _threading.Thread(target=_read, daemon=True)
         th.start()
         th.join(HELD_BUDGET_S)
+        # Nov 12 (Peter): an unreadable position list is UNAVAILABLE, not "no conflict". The two look identical
+        # downstream - both produce an empty held set and therefore zero AGAINST YOUR BET alerts - so the state is
+        # named here and emailed, rather than being inferred from silence. This alert only ADDS a heads-up; it gates
+        # no bet, so an unavailable cycle costs a notification and never authorises anything.
+        unavailable = ""
         if th.is_alive():
-            _mark(f"held sides ABANDONED after {HELD_BUDGET_S}s - AGAINST YOUR BET skipped this cycle")
+            unavailable = f"abandoned after {HELD_BUDGET_S}s"
         elif "err" in box:
-            _mark(f"held sides failed ({box['err']}) - AGAINST YOUR BET skipped this cycle")
+            unavailable = f"failed ({box['err']})"
+        if unavailable:
+            _mark(f"held sides {unavailable} - AGAINST YOUR BET UNAVAILABLE this cycle")
+            try:
+                ex.send("Bets signal: AGAINST YOUR BET unavailable",
+                        f"The position read {unavailable}, so this cycle could not say whether big money hit the "
+                        f"other side of anything you hold.\n\nThis is NOT 'no conflict found' - it is 'not "
+                        f"checked'. TWO SIGNALS, NBA UNDER and FLIP were unaffected and went out normally.")
+            except Exception:
+                pass
         else:
             held = box.get("v") or []
             _mark("held sides read (gmail + exchange positions)")
-        for x in fresh:
+        for x in ([] if unavailable else fresh):
             nm = x.get("new_money") or 0
             if not (x.get("rule_met") and nm >= AGAINST_MIN):
                 continue

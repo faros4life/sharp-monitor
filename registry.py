@@ -350,6 +350,40 @@ def set_tokens_complete():
     return _commit(merge)
 
 
+def touch_complete(now=None):
+    """ORDERS twin of touch_tokens_complete(): refresh an ALREADY VALID claim, never create one.
+
+    Nov 12 (Peter). bot_orders() re-asserts completeness at the end of its FAST path, so the claim
+    stays alive while it is being used - but nothing refreshes it once it has gone stale, and only
+    the Gmail backfill can set it again. That backfill lives in the run that is being killed for
+    taking too long, so a single stale minute put the system on Gmail indefinitely: 495.6s inside
+    held_sides(), ~79s in the executor.
+
+    SAFETY. This is the claim the $2,000 per-lane daily risk and the global stop read through, so a
+    falsely complete store is fail-OPEN on exposure, not merely slow. Three things make that
+    impossible here: it refuses when no valid claim exists (which is exactly what invalidate()
+    leaves behind after ANY failed order write), it re-checks under the optimistic lock in case
+    another run invalidated in between, and it never touches complete_through - so it cannot widen
+    the window the claim covers. An incomplete store still answers "not complete" and the caller
+    still reads Gmail.
+    """
+    d = load()
+    if d is None:
+        return False                      # unreadable: assert nothing about it
+    meta = d.get("meta") or {}
+    cut = ((now or datetime.now(timezone.utc)) - timedelta(days=KEEP_DAYS)).strftime("%Y-%m-%d")
+    if str(meta.get("complete_through") or "") < cut:
+        return False                      # no valid claim - a refresh must never create one
+    stamp = (now or datetime.now(timezone.utc)).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+    def merge(d2):
+        m2 = d2.setdefault("meta", {})
+        if str(m2.get("complete_through") or "") < cut:
+            return False                  # invalidated since the pre-check
+        m2["complete_at"] = stamp
+    return _commit(merge)
+
+
 def touch_tokens_complete(now=None):
     """Refresh the freshness stamp on an ALREADY VALID completeness claim. Never creates one.
 

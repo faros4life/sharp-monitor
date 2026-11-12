@@ -4447,6 +4447,16 @@ def main():
                         LOG.append("token completeness not re-stamped (no valid claim)")
                 except Exception as _tex:
                     LOG.append(f"token touch failed: {str(_tex)[:40]}")
+                # Nov 12 (Peter): the ORDERS claim too. Every order placed this run was written to the store as it
+                # happened (put_rows([row]) at the send site), and ANY failed write there calls invalidate() - which
+                # leaves no valid claim, so this refuses and the next run reads Gmail. It therefore only ever says
+                # "the claim that was already true is still true". complete_through is never widened. The $2,000
+                # per-lane daily risk and the global stop read exposure through this claim, so it stays refresh-only.
+                try:
+                    if not registry.touch_complete():
+                        LOG.append("order completeness not re-stamped (no valid claim)")
+                except Exception as _oex:
+                    LOG.append(f"order touch failed: {str(_oex)[:40]}")
         except Exception as _ex:
             LOG.append(f"token write failed: {str(_ex)[:50]}")
             try:

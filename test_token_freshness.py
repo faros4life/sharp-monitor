@@ -128,6 +128,52 @@ R.touch_tokens_complete(now=NOW)
 check("killed AFTER the touch, before the ledger email: tokens were a CONFIRMED put, so the store "
       "that answers dedupe has them", R.tokens_complete(now=NOW))
 
+print("\nORDERS claim (touch_complete) - the one the $2,000 daily risk reads through")
+s = Store({"meta": {"complete_through": TODAY, "complete_at": "old"}}).install()
+check("valid claim is re-stamped", R.touch_complete(now=NOW) is True)
+check("stamp moved", s.data["meta"]["complete_at"] == NOW.strftime("%Y-%m-%dT%H:%M:%SZ"))
+check("window never widened", s.data["meta"]["complete_through"] == TODAY)
+
+s = Store({"meta": {"complete_through": "", "complete_at": "x"}}).install()
+check("INVALIDATED orders claim is never recreated", R.touch_complete(now=NOW) is False)
+check("nothing written", s.writes == 0)
+check("exposure still reads as unproven", not R.is_complete(TODAY, now=NOW))
+
+s = Store({"meta": {"complete_through": OLD, "complete_at": "x"}}).install()
+check("aged-out orders claim not revived", R.touch_complete(now=NOW) is False)
+
+s = Store({}, readable=False).install()
+check("unreadable store asserts no orders completeness", R.touch_complete(now=NOW) is False)
+
+s = Store({"meta": {"complete_through": TODAY, "complete_at": "old"}}, writable=False).install()
+check("failed write reports False, stamp unchanged",
+      R.touch_complete(now=NOW) is False and s.data["meta"]["complete_at"] == "old")
+
+s = Store({"meta": {"complete_through": TODAY, "complete_at": "old"}}).install()
+_real2 = R._commit
+
+
+def racing2(merge, tries=4):
+    s.data["meta"]["complete_through"] = ""     # a failed order write invalidates mid-flight
+    return _real2(merge, tries)
+
+
+R._commit = racing2
+R.touch_complete(now=NOW)
+check("invalidated under the lock: orders stamp NOT moved", s.data["meta"]["complete_at"] == "old")
+
+s = Store({"meta": {"complete_through": TODAY,
+                    "complete_at": (NOW - timedelta(minutes=R.FRESH_MIN + 1)).strftime("%Y-%m-%dT%H:%M:%SZ")}}).install()
+check("stale orders claim still not trusted -> Gmail, never zero exposure",
+      not R.is_complete(TODAY, now=NOW))
+
+print("\nThe two claims are independent")
+s = Store({"meta": {"complete_through": "", "tok_complete_through": TODAY,
+                    "tok_complete_at": "old"}}).install()
+R.touch_tokens_complete(now=NOW)
+check("refreshing tokens does not touch the orders claim",
+      str(s.data["meta"].get("complete_through") or "") == "")
+
 R.load, R._commit, R.enabled = _orig
 print("\n" + ("ALL PASS" if not fails else f"FAILURES: {fails}"))
 raise SystemExit(1 if fails else 0)
