@@ -1,0 +1,38 @@
+name: line-value-pin-probe
+
+# Manual-only BOUNDED diagnostic (Nov 12 2026): at most one Pinnacle read per league in today's alerts, to exercise the
+# independent-reference path on live data. No order code, no email, no repo write. Output: counts in the log + one
+# summary artifact. Its own job because executor-dry-run's concurrency group drops manually dispatched queued runs.
+on:
+  workflow_dispatch:
+    inputs:
+      max_leagues:
+        description: "Hard cap on Pinnacle reads (one per league)"
+        default: "6"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: line-value-pin-probe
+  cancel-in-progress: false
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Probe
+        env:
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}       # read-only Pinnacle prices
+          PROBE_MAX_LEAGUES: ${{ github.event.inputs.max_leagues }}
+        run: python3 -u line_value_pin_probe.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: line-value-pin-probe
+          path: summary/line_value_pin_probe.json
+          retention-days: 14

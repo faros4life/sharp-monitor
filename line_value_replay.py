@@ -90,7 +90,7 @@ def replay_play(pl):
     """B-exact replay of one SHADOW play record. Returns the per-candidate comparison with reasons."""
     ref = pl.get("reference")
     out = {"play_key": pl.get("play_key"), "has_reference": bool(ref), "cands": 0, "supported": 0, "unsupported": 0,
-           "no_reference": 0, "agree": 0, "would_reject": [], "would_admit": [], "reasons": Counter()}
+           "no_reference": 0, "other_gate": 0, "agree": 0, "would_reject": [], "would_admit": [], "reasons": Counter()}
     for c in pl.get("cands") or []:
         out["cands"] += 1
         sh = c.get("shadow") or {}
@@ -103,6 +103,9 @@ def replay_play(pl):
             out["reasons"][sh.get("reason") or st or "unknown"] += 1
             continue
         out["supported"] += 1
+        if c.get("legacy") not in ("qualified", "price_gate"):      # floor / depth / basis gates apply under BOTH rules
+            out["other_gate"] += 1
+            continue
         legacy = c.get("legacy") == "qualified"
         new = bool(sh.get("qualifies"))
         mx = sh.get("max_am_after_fee")
@@ -154,6 +157,7 @@ def report(texts):
     rep["shadow_unsupported"] = sum(r["unsupported"] for r in rp)
     rep["shadow_no_reference"] = sum(r["no_reference"] for r in rp)
     rep["shadow_agree"] = sum(r["agree"] for r in rp)
+    rep["shadow_other_gate"] = sum(r["other_gate"] for r in rp)
     rep["would_reject"] = [x for r in rp for x in r["would_reject"]]
     rep["would_admit"] = [x for r in rp for x in r["would_admit"]]
     rep["shadow_unsupported_reasons"] = Counter(k for r in rp for k in r["reasons"].elements())
@@ -175,7 +179,8 @@ def render(rep, detail=True):
          "  gaps found where evaluated (absent mass row / unverified settlement, NOT 'none'): " + (", ".join(f"{k} {v}" for k, v in sorted(rep["structure_gaps"].items())) or "none"),
          f"  shadow records: {rep['shadow_plays']} plays ({rep['shadow_with_reference']} with a reference), {rep['rechecks_recorded']} rechecks",
          f"  shadow candidates: {rep['shadow_candidates']} = supported {rep['shadow_supported']} + unsupported "
-         f"{rep['shadow_unsupported']} + no reference {rep['shadow_no_reference']}; agree with legacy {rep['shadow_agree']}",
+         f"{rep['shadow_unsupported']} + no reference {rep['shadow_no_reference']}; of the supported: price-agree {rep['shadow_agree']}, "
+         f"floor/depth-gated under both rules {rep['shadow_other_gate']}, price disagreements {len(rep['would_reject']) + len(rep['would_admit'])}",
          "  unsupported reasons: " + (", ".join(f"{k} {v}" for k, v in sorted(rep["shadow_unsupported_reasons"].items())) or "none"),
          f"  C. DECISIONS THAT CHANGE: would reject {len(rep['would_reject'])}, would admit {len(rep['would_admit'])}"]
     for tag, key in (("REJECT", "would_reject"), ("ADMIT", "would_admit")):
