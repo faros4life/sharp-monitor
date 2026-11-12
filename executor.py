@@ -415,10 +415,21 @@ def read_manual(M):
         if typ != "OK" or not data or not data[0]:
             partial = True
             continue
-        subj = str(email.header.make_header(email.header.decode_header(
-            email.message_from_bytes(data[0][1]).get("Subject") or "")))
+        _msg = email.message_from_bytes(data[0][1])
+        subj = str(email.header.make_header(email.header.decode_header(_msg.get("Subject") or "")))
         if not subj.startswith("Bets manual"):
             continue   # substring match: only Peter's own manual-bet notes count
+        # Nov 12 (Peter, "move anything you need away from gmail"): capture WHEN the note was sent
+        # and carry it on the note itself. tracker_build uses it as the manual row's `placed` date -
+        # "when the note was sent = when the bet was placed (bounds which game it can be on)" - and
+        # the registry mirror stored only the raw MANUAL: json, so a tracker reading the store
+        # instead of Gmail would have silently dropped that date from every manual row. The message
+        # is already fetched whole here for the Subject re-check, so this costs nothing.
+        try:
+            _sent_iso = email.utils.parsedate_to_datetime(_msg.get("Date")).astimezone(
+                timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+        except Exception:
+            _sent_iso = ""
         for line in body_text(data[0][1]).splitlines():
             m = re.match(r"\s*MANUAL:\s*(\{.*\})\s*$", line)
             if not m:
@@ -429,6 +440,8 @@ def read_manual(M):
                 LOG.append("unreadable MANUAL line")
                 partial = True   # a note that did not parse is a note not accounted for
                 continue
+            if _sent_iso:
+                d = dict(d, _sent=_sent_iso)   # inert for _apply_manual; read by tracker_build
             notes.append(d)
             _apply_manual(d, MANUAL_HELD)
     _mirror_manual(notes, partial)

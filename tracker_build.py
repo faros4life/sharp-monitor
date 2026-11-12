@@ -719,6 +719,56 @@ def read_manual_and_bot():
     import executor as ex
     import time as _t
     man, keys = [], set()
+
+    def _row(d, sent):
+        """One manual row from a parsed MANUAL: note. ONE definition, so the store path and the
+        Gmail path cannot drift apart in how a note becomes a row."""
+        pr = note_price(d.get("bet"))
+        stake = num(d.get("stake"))
+        est = False
+        if not stake and pr:   # Peter's sizing (Oct 20): minus price risks to win $200, plus price risks $200
+            stake, est = (round(200 * abs(pr) / 100, 2) if pr < 0 else 200.0), True
+        win = (stake * 100 / abs(pr) if pr and pr < 0 else stake * pr / 100 if pr else None) if stake else None
+        return {"id": man_id(d.get("book"), d.get("game"), d.get("bet")), "book": d.get("book") or "manual",
+                "game": d.get("game") or "", "bet": d.get("bet") or "", "league": (d.get("sport") or "").upper() or None,
+                "price": pr, "stake": stake, "to_pay": round(stake + win, 2) if win else None, "placed": sent,
+                "source": "Peter (Hard Rock note" + (", est. stake)" if est else ")")}
+
+    # Nov 12 (Peter, "move anything you need away from gmail"). MEASURED: the four venue reads in
+    # this step take 5.9s together, and this Gmail scan took the REST of the step's nine-minute
+    # budget and was killed - three times - which skipped "Build the board" and left the board 20
+    # hours stale. The executor pays the same cost: "read manual notes (Gmail) 73.4s, 73.2%".
+    #
+    # The private store already mirrors this window, and the mirror's own shadow-compare has been
+    # reporting AGREE on three consecutive runs (13 notes, 14 keys, store read 0.33-0.52s against
+    # 73-82s on Gmail). So the store is read when it claims the window AND every note carries the
+    # sent date the rows need; otherwise Gmail, unchanged.
+    #
+    # The _sent guard matters: the mirror stored only the raw MANUAL: json until today, so a
+    # snapshot written before that change has no date, and `placed` bounds which game a bet can be
+    # on. Requiring it on EVERY note means this path engages only once the mirror actually carries
+    # it - it sequences itself, and a missing date sends the run back to Gmail rather than quietly
+    # dropping the field.
+    try:
+        import registry           # same local-import style bot_keys() uses
+        # Both halves must come from the store, or neither: bot_keys() falls back to an IMAP scan
+        # when the store has no rows, and it would be handed M=None here. Checking rows() first
+        # means the call below is guaranteed to return from the store without touching Gmail.
+        if registry.enabled() and registry.manual_complete() and (registry.rows() or None):
+            _st = registry.manual_notes()
+            if _st is not None and _st and all(str((n or {}).get("_sent") or "") for n in _st):
+                man = [_row(n, n.get("_sent")) for n in _st]
+                keys = bot_keys(None, days=2)   # store-first; rows() above proves it needs no IMAP
+                IMAP_T["manual (private store)"] = 0
+                print(f"manual notes: {len(man)} row(s) from the private store - no Gmail scan", flush=True)
+                LOG["manual"] = f"ok {len(man)} (store)"
+                LOG["bot_keys"] = f"ok {len(keys)}"
+                return man, keys
+            print("manual notes: store not usable (no claim, empty, or a note without its sent "
+                  "date) - reading Gmail", flush=True)
+    except Exception as _e:
+        print(f"manual notes: store read failed ({type(_e).__name__}) - reading Gmail", flush=True)
+
     t0 = _t.time()
     M = ex.imap_open()
     IMAP_T["login+select"] = round(_t.time() - t0)
@@ -751,16 +801,7 @@ def read_manual_and_bot():
                     d = json.loads(m.group(1))
                 except Exception:
                     continue
-                pr = note_price(d.get("bet"))
-                stake = num(d.get("stake"))
-                est = False
-                if not stake and pr:   # Peter's sizing (Oct 20): minus price risks to win $200, plus price risks $200
-                    stake, est = (round(200 * abs(pr) / 100, 2) if pr < 0 else 200.0), True
-                win = (stake * 100 / abs(pr) if pr and pr < 0 else stake * pr / 100 if pr else None) if stake else None
-                man.append({"id": man_id(d.get("book"), d.get("game"), d.get("bet")), "book": d.get("book") or "manual",
-                            "game": d.get("game") or "", "bet": d.get("bet") or "", "league": (d.get("sport") or "").upper() or None,
-                            "price": pr, "stake": stake, "to_pay": round(stake + win, 2) if win else None, "placed": sent,
-                            "source": "Peter (Hard Rock note" + (", est. stake)" if est else ")")})
+                man.append(_row(d, sent))
         IMAP_T["manual"] = round(_t.time() - t0)
     finally:
         ex.imap_close(M)
