@@ -1,0 +1,58 @@
+name: novig-recon
+
+# Manual-only, READ ONLY (Nov 12 2026): GETs the status and fills of named Novig order ids, the resting/open orders and
+# the open positions, then reports the position read's own health (cloud API vs home snapshot, and its freshness).
+# No order is created, cancelled or amended. Statuses, contracts and UNITS in the log; dollars by private email only.
+on:
+  workflow_dispatch:
+    inputs:
+      order_ids:
+        description: "Novig order ids, comma separated"
+        default: ""
+      email:
+        description: "1 = email the dollar detail privately"
+        default: "0"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: novig-recon
+  cancel-in-progress: false
+
+jobs:
+  recon:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Reconcile the named orders (read only)
+        env:
+          NOVIG_TRADE_KEY_ID: ${{ secrets.NOVIG_TRADE_KEY_ID }}
+          NOVIG_TRADE_KEY_PEM: ${{ secrets.NOVIG_TRADE_KEY_PEM }}
+          NOVIG_ORDER_IDS: ${{ github.event.inputs.order_ids }}
+          EMAIL: ${{ github.event.inputs.email }}
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+        run: python3 -u novig_recon.py
+      - name: Position read health (cloud API, home snapshot, staleness)
+        env:
+          NOVIG_READ_KEY_ID: ${{ secrets.NOVIG_READ_KEY_ID }}
+          NOVIG_READ_KEY_PEM: ${{ secrets.NOVIG_READ_KEY_PEM }}
+          NOVIG_SNAPSHOT_TOKEN: ${{ secrets.NOVIG_SNAPSHOT_TOKEN }}
+        run: |
+          python3 -u - <<'PY'
+          import os
+          import executor as ex
+          pos = ex.novig_positions()
+          print("novig_positions():", "None (BLOCKED - nothing goes live on any venue)" if pos is None else f"{len(pos)} open position(s)")
+          print("source:", ex._NVERR.get("src") or "(none)")
+          print("why/errors:", (ex._NVERR.get("why") or "(none)").strip() or "(none)")
+          print("snapshot max age (min):", ex.SNAP_MAX_MIN)
+          print("novig submissions:", "ON" if ex.novig_submit_on() else f"PAUSED ({ex.NOVIG_PAUSE_WHY})")
+          PY
