@@ -1,4 +1,4 @@
-# Paper splits (updated 2026-11-12T19:15:18Z)
+# Paper splits (updated 2026-11-12T19:55:16Z)
 
 Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kill bar: 30+ resulted at -0.10u/play or worse closes a split.
 
@@ -17,9 +17,9 @@ Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kil
 | Tier 2 core (paper) | tier | 2026-10-27 | 15-18-0 | -5.21 | -0.158 | -1.62 | CLOSED |
 | Evening sends, ex-Hard Rock | scan | 2026-10-26 | 17-15-0 | -0.05 | -0.002 | -2.94 | OPEN |
 | Muted midday (11 AM-2 PM ET) | scan | 2026-10-26 | 43-42-0 | -3.98 | -0.047 | +0.10 | OPEN |
-| Liquidity totals, no sharp agree | scan | 2026-10-22 | 230-211-0 | +12.14 | +0.028 |  | OPEN |
+| Liquidity totals, no sharp agree | scan | 2026-10-22 | 231-211-0 | +13.12 | +0.030 |  | OPEN |
 | Liquidity vs sharp (oppose) | scan | 2026-10-22 | 192-153-0 | +12.00 | +0.035 |  | CLOSED |
-| Liquidity spreads | scan | 2026-10-22 | 397-392-0 | -41.13 | -0.052 |  | CLOSED (by decision, 2026-10-27) |
+| Liquidity spreads | scan | 2026-10-22 | 397-393-0 | -42.13 | -0.053 |  | CLOSED (by decision, 2026-10-27) |
 | Liquidity overnight (12-5 AM ET) | scan | 2026-10-26 | 111-75-0 | -2.65 | -0.014 |  | CLOSED |
 | Liquidity evening (5-8 PM ET) | scan | 2026-10-26 | 208-167-0 | -5.14 | -0.014 |  | CLOSED |
 | NBA liquidity totals (lane) | scan | 2026-10-28 | 94-76-0 | +14.54 | +0.086 |  | OPEN |
