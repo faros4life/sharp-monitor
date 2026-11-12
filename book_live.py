@@ -33,7 +33,8 @@ import px_live
 NOVIG_SUBMIT = (os.environ.get("EXEC_NOVIG_SUBMIT") or "off").strip().lower() == "on"
 NOVIG_PAUSE_WHY = ("Novig submissions are paused (EXEC_NOVIG_SUBMIT is not on) while duplicate "
                    "prevention is repaired - Nov 12. Monitoring and cancellation still run; "
-                   "place by hand if you want this bet now.")
+                   "If you place it by hand, log it as a 'Bets manual' note or the bot cannot see "
+                   "it and may bet the same or the opposite side.")
 
 K_BASE = os.environ.get("KALSHI_API", "") or "https://api.elections.kalshi.com/trade-api/v2"
 K_PREFIX = urllib.parse.urlparse(K_BASE).path.rstrip("/")

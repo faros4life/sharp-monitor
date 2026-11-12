@@ -104,8 +104,14 @@ CHECKS.append(("backfill costs no extra Gmail scan", True, True))
 
 # ------------------------------------------------------- completeness is set only on success
 i = src.index("registry.put_rows(all_rows) and registry.put_tokens(TOKENS_SEEN)")
-blk = src[i:i + 500]
+# Nov 12: widened from 500 to 900 characters. The Nov 12 full_window guard - a short-window caller
+# (signal_alerts, days=2) must not assert a claim tested against KEEP_DAYS - nests these two calls
+# one level deeper and pushed set_tokens_complete() past a 500-character slice. The property being
+# tested is unchanged and still holds; only the window was too narrow to see it.
+blk = src[i:i + 900]
 assert "set_tokens_complete()" in blk and "invalidate_tokens()" in blk, blk[:200]
+# and the guard itself: the claim is reachable ONLY when the scan covered the full window
+assert "if full_window:" in blk, "the short-window caller must not be able to assert completeness"
 CHECKS.append(("tokens are marked complete only when BOTH writes succeed", True, True))
 
 # ------------------------------------------------------- the run teaches the store its own tokens

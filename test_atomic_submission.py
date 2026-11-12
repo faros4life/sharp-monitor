@@ -136,11 +136,18 @@ body = src[src.index("def journal_intent("):src.index("def journal_latch_why(")]
 ck("claim_submission is called in journal_intent", "registry.claim_submission(" in body, True)
 ck("the claim comes BEFORE the intent read-back",
    body.index("claim_submission(") < body.index("intent_verified("), True)
+# Nov 12: these two matched literal MESSAGE TEXT, which was reworded, so they failed while the
+# behaviour they guard was intact. Asserting the CONTROL FLOW instead - a lost or unavailable claim
+# must return the no-order tuple - because that is the property that stops a duplicate order, and it
+# does not change when someone rewrites a log line.
 ck("a lost claim returns no client id (no order)",
-   "another run owns it" in body, True)
+   "refusing" in body and "return False, None" in body, True)
 ck("a failed intent releases the key", "release_submission(" in body, True)
+# Three distinct refusal exits before anything is submitted: no play key to claim, the key already
+# claimed by another run, and the claim unavailable because the store could not be written. Each
+# one must return the no-order tuple rather than fall through.
 ck("a claim it cannot take refuses the order, not proceeds",
-   "NO ORDER WAS PLACED" in body.split("claim_submission(")[1][:900], True)
+   body.count("return False, None") >= 3, True)
 
 print("\n8. STOP LATCHES: ntfy expiry must not resume trading")
 reset()

@@ -763,6 +763,14 @@ def unit_for(lane):
 
 LANE_NAME = {"board": "BOARD V3", "r1": "R1", "lane2": "LANE 2", "rules": "PHASE 1"}
 
+# Nov 12 (Peter): "Remove suggestions to place held bot orders manually unless there is an explicit
+# safe handoff that prevents automated retries." The handoff EXISTS - a "Bets manual" note, which
+# read_manual() ingests and which then blocks the bot from betting that side OR the opposite one.
+# The messages just never said so, which is how the Nov 11 Lakers/Bucks Under became a position the
+# registry did not know about: placed by hand, never logged, so the bot kept treating the play as
+# open. Every invitation to place by hand now carries the handoff that makes it safe.
+MANUAL_HANDOFF = ('If you place it by hand, log it as a \'Bets manual\' note (MANUAL: {"sport": .., "game": "Away @ Home", "bet": "Under 225.5 (-110)", "book": ..}) or the bot cannot see it and may bet the same or the opposite side.')
+
 
 def lane_report(results):
     """Nov 11 (Peter): separate performance reporting per lane. Each live lane has its OWN unit,
@@ -4593,7 +4601,7 @@ def main():
                  f"Can't read your open bets on {', '.join(blind)} ({why[:160]}).\n"
                  + (f"{streak} runs in a row.\n" if streak and streak >= BLIND_STREAK_AT else "")
                  + f"Exposure cannot be verified, so NO new live orders this run on ANY venue"
-                 + (f"; {len(p1)} live-eligible play(s) held - place by hand if you want them now."
+                 + (f"; {len(p1)} live-eligible play(s) held. " + MANUAL_HANDOFF
                     if p1 else ". No live-eligible play is waiting.")
                  + (f" {len(_held_already)} other play(s) already held from your earlier order(s) - nothing to place."
                     if _held_already else "")
@@ -4788,7 +4796,7 @@ def main():
                         push("Bet held: " + (p.get("bet") or "")[:60],
                              f"{p.get('sport')} {p.get('game')}\nCouldn't check your open bets on {', '.join(blind)}. "
                              "No in-run retry loop (removed Nov 11): the next scheduled run, about 5 min, re-reads and retries "
-                             "while the price is there. If you know you don't hold the other side, you can place it by hand.")
+                             "while the price is there. " + MANUAL_HANDOFF)
             if r["verdict"] == "WOULD PLACE" and (r.get("live") or {}).get("go"):   # Nov 3: price check at the order
                 pc = pin_check(p, r["live"], datetime.now(timezone.utc))
                 r["live"]["pin"] = pc
