@@ -146,6 +146,71 @@ ck("4 a whole-number candidate stays unsupported on an unverified venue, so it i
    and any(c["line"] == -3.0 and str(c["legacy"]).startswith("lv_unsupported:settlement_rule_unverified") for c in run()["lvs"]["cands"]), str(mx_half.get("reason")))
 ck("4 ...and the UNCHANGED line is still evaluated normally in the same run",
    any(c["line"] == -3.5 and c["shadow"]["status"] == "ok" for c in run()["lvs"]["cands"]))
+
+# ---------------------------------------------------------------- 5. LINE_VALUE_SHADOW=0 cannot disable price enforcement
+# The two switches are independent by construction: LINE_VALUE_MODE decides WHO SETS THE PRICE; LINE_VALUE_SHADOW decides
+# only whether the record is written. Turning recording off must never loosen a live limit.
+import ast as _ast
+import inspect as _inspect
+
+_src = _inspect.getsource(ex.evaluate)
+_mode_src = _inspect.getsource(ex.lv_mode)
+ck("5 lv_mode() reads LINE_VALUE_MODE and nothing else", "LINE_VALUE_MODE" in _mode_src and "LINE_VALUE_SHADOW" not in _mode_src)
+_tree = _ast.parse(__import__("textwrap").dedent(_src))
+_live_gates = []
+for node in _ast.walk(_tree):
+    if isinstance(node, _ast.If):
+        txt = _ast.dump(node.test)
+        if "lv_mode" in txt:
+            _live_gates.append(txt)
+ck("5 the live price gate's condition never mentions LINE_VALUE_SHADOW",
+   _live_gates and all("LINE_VALUE_SHADOW" not in g for g in _live_gates), str(_live_gates))
+_rv_src = _inspect.getsource(ex.revalidate)
+ck("5 the recheck's replacement branch is keyed on the stored lv_mode, not on the capture switch",
+   'rv.get("lv_mode") == "live"' in _rv_src and "LINE_VALUE_SHADOW" not in _rv_src)
+
+# behavioural proof: live mode with recording OFF gives the same decision as live with recording ON, and both differ
+# from legacy where the values differ.
+# A REAL case from the 30-day audit: NBA under 228.5 @-109 was filled at 229.5 @-130 (the legacy rule took it; the
+# replacement's maximum there is about -120, so it refuses). It is the cleanest proof that the enforcement binds.
+PLAY5 = {"play_key": "NBA|CHA@PHX|total|UNDER", "sport": "NBA", "source": "rules", "game": "Charlotte Hornets @ Phoenix Suns",
+         "bet": "Under 228.5 (-109)", "start_utc": (NOW + timedelta(hours=6)).strftime("%Y-%m-%dT%H:%M:%SZ")}
+BOOK5 = {228.5: -109, 229.5: CAP}
+
+
+def run5(mode, shadow):
+    ex.MD["c"].clear()
+    os.environ["LINE_VALUE_MODE"] = mode
+    os.environ["LINE_VALUE_SHADOW"] = shadow
+    os.environ.pop("LINE_VALUE_PIN_READ", None)
+    try:
+        return ex.evaluate(copy.deepcopy(PLAY5), NOW, {}, {}, [], None, {})
+    finally:
+        os.environ.pop("LINE_VALUE_MODE", None)
+        os.environ.pop("LINE_VALUE_SHADOW", None)
+
+
+def decision(r):
+    return (r.get("verdict"), r.get("reason"), r.get("book"), r.get("take_line"), r.get("american"),
+            sorted((c["book"], c["line"], c["am"], c["thr"]) for c in cands(r)))
+
+
+stub(BOOK5)
+live_on, live_off, legacy = run5("live", "1"), run5("live", "0"), run5("shadow", "1")
+ck("5 live decisions are IDENTICAL with recording on and off", decision(live_on) == decision(live_off),
+   f"{decision(live_on)} vs {decision(live_off)}")
+ck("5 recording off really did stop recording (so the test is meaningful)", "lvs" in live_on and "lvs" not in live_off)
+ck("5 the live limit still binds with recording OFF: -130 is past the ~-120 maximum and is refused",
+   not any(c["line"] == 229.5 for c in cands(live_off)), str([(c["line"], c["am"], c["thr"]) for c in cands(live_off)]))
+ck("5 the legacy rule WOULD have taken that same price, so the enforcement is doing the work",
+   any(c["line"] == 229.5 for c in cands(legacy)), str([(c["line"], c["am"], c["thr"]) for c in cands(legacy)]))
+_mx5 = lv.convert("NBA", "total", "UNDER", 228.5, live_off["lvs_alert_af"] if "lvs_alert_af" in live_off else -109, 229.5, None,
+                  "kalshi", 0, W, None, CAP)
+stub({**BOOK5, 229.5: at_max(_mx5["effective_max_am_after_fee"])})
+live_off_ok = run5("live", "0")
+ck("5 ...and with recording off a price AT the maximum is still accepted",
+   any(c["line"] == 229.5 for c in cands(live_off_ok)), str([(c["line"], c["am"], c["thr"]) for c in cands(live_off_ok)]))
+
 print(f"{len(OK)} pass, {len(BAD)} fail")
 for b in BAD:
     print("FAIL", b)
