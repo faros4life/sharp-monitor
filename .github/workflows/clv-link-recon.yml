@@ -1,0 +1,54 @@
+name: clv-link-recon
+
+# Bet-to-CLV linkage, step 5 of Muse's GO (relayed by Peter, Nov 12): READ-ONLY reconciliation
+# reporting exact matched/unmatched counts per venue, BEFORE any tracker change is written.
+#
+# This job writes nothing. Every venue call is a GET - no order is created, amended or cancelled.
+# No tracker row, CLV record or historical value is modified. No change to live execution, pricing,
+# sizing, routing, notifications or risk controls. No fuzzy matching: every edge is an equality on
+# an identifier the venue itself returned.
+#
+# Venue keys are the same READ keys positions-check uses. The trade keys are deliberately NOT
+# passed: nothing here needs to place, so nothing here is given the ability to.
+#
+# No paid OddsPapi call: the executor's own ledger mail carries the order ids.
+# Dollars go to the private email; the Actions log carries counts and field names only.
+
+on:
+  workflow_dispatch:
+    inputs:
+      days:
+        description: "Ledger window in days"
+        default: "30"
+        required: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: clv-link-recon
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Bet-to-CLV linkage reconciliation (read-only, GET only, no orders)
+        env:
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          NOVIG_READ_KEY_ID: ${{ secrets.NOVIG_READ_KEY_ID }}       # read-only
+          NOVIG_READ_KEY_PEM: ${{ secrets.NOVIG_READ_KEY_PEM }}
+          NOVIG_TRADE_KEY_ID: ${{ secrets.NOVIG_TRADE_KEY_ID }}     # ID only, to read the sub-wallet
+          PROPHETX_ACCESS_KEY: ${{ secrets.PROPHETX_ACCESS_KEY }}   # read-only
+          PROPHETX_SECRET_KEY: ${{ secrets.PROPHETX_SECRET_KEY }}
+          LINK_DAYS: ${{ inputs.days || '30' }}
+        run: python -u clv_link_recon.py
