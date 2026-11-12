@@ -181,7 +181,12 @@ _MARKS = []
 
 
 def _mark(what):
-    _MARKS.append((what, _time.time() - _T0))
+    """Nov 12: prints IMMEDIATELY. The first version accumulated and printed at the end, so the one case the timing
+    was written for - a run killed on its timeout - produced no output at all. Counts and seconds only."""
+    at = _time.time() - _T0
+    prev = _MARKS[-1][1] if _MARKS else 0.0
+    _MARKS.append((what, at))
+    print(f"  timing: {at:6.1f}s total, {at - prev:6.1f}s for {what}", flush=True)
 
 
 def main():
@@ -244,6 +249,8 @@ def main():
         AGAINST YOUR BET still needs held sides and still runs after; if that read dies, it no longer takes the
         other three with it. The sent-token check is unchanged, so an alert is still pushed exactly once."""
         nonlocal sent
+        if items:
+            _mark(f"flush start, {len(items)} candidates to check against gmail")
         for key, title, body in items:
             tokn = "xsig" + hashlib.sha1(key.encode()).hexdigest()[:12]
             if ex.gsearch(M, tokn):
@@ -278,10 +285,7 @@ def main():
         ex.imap_close(M)
     _mark("done")
     print(f"Signal alerts: {len(found)} candidates, {sent} new pushed")   # counts only
-    prev = 0.0
-    for what, at in _MARKS:
-        print(f"  timing: {at:6.1f}s total, {at - prev:6.1f}s for {what}")
-        prev = at
+
 
 
 if __name__ == "__main__":
