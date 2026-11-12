@@ -66,6 +66,14 @@ def say(t=""):
     print(t)
 
 
+def priv(t=""):
+    """Email body ONLY - never the public Actions log. This file used say() for everything and had
+    no priv(), so the first stake comparison that carried a dollar amount raised NameError and took
+    the rest of the report with it: the orders probe, the unfilled ids and the Kalshi/PM section all
+    never printed. Amounts belong in the private email; the log gets counts and verdicts."""
+    L.append(t)
+
+
 def legs(r):
     """Every placed order leg on a ledger row, with its container. All three are real orders at a
     venue, so all three are candidates for the join - not only live_order."""
