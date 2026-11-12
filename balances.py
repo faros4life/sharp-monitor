@@ -310,8 +310,8 @@ def new_positions():
         return ["", f"New positions: baseline recorded ({len(cur)} open)."]
     if fresh:
         msg = "NEW POSITIONS (last hour, manual or bot):\n" + "\n".join(l for _, l in fresh)
-        ex.tg(msg)
-        ex.push("New positions: " + str(len(fresh)), "\n".join(l for _, l in fresh)[:900], mirror=False)
+        # Nov 12 (Peter: "only actionable and live notifications"): no phone message. A bot fill already has its own
+        # FILLED message; the rest is a record, kept in the email (which is also the dedupe token).
         ex.send(f"Bets new positions: {len(fresh)}", msg + "\n\n" + " ".join(t for t, _ in fresh))
         out = ["", msg]
     return out

@@ -2693,20 +2693,21 @@ def live_order(r):
         fs, ap = res.get("filled_stake") or 0, res.get("avg_price")
         if fs and ap:
             win = (fs * 100 / abs(ap) if ap < 0 else fs * ap / 100) * 0.98
-            tg(lane_note(r, "FILLED", res, "prophetx", limit,
-               extra="Send STOP on ntfy to pause."))
+            _n, _h = lane_note(r, "FILLED", res, "prophetx", limit,
+                               extra="Send STOP on ntfy to pause."), "FILLED"
         else:
-            tg(lane_note(r, "NO FILL", res, "prophetx", limit,
-               extra="Fill-or-kill got nothing at this price or better."
-                     + ("" if res.get("fills_read") else " Fill read failed: check My Trades.")))
-        push("PLACED: " + bet_text(r, lv["line"], limit)[:60],
-             f"{label}\nProphetX fill-or-kill: ${res.get('filled_stake') or 0:,.2f} filled"
-             + (f" at {res['avg_price']:+d}" if res.get("avg_price") else "") + f" (asked ${stake:,.2f}, limit {limit:+d})."
-             + ("" if res.get("fills_read") else " Fill read failed: check My Trades."), mirror=False)
+            _n, _h = lane_note(r, "NO FILL", res, "prophetx", limit,
+                               extra="Fill-or-kill got nothing at this price or better."
+                                     + ("" if res.get("fills_read") else " Fill read failed: check My Trades.")), "NO FILL"
+        tg(_n)
+        # Nov 12 (Peter, only live + actionable): ntfy says exactly what Telegram says (it used to be a shorter
+        # "PLACED:" restatement, even when nothing filled).
+        push(f"{_h}: " + bet_text(r, lv["line"], limit)[:60], _n, mirror=False)
     elif res["status"] == "error":
-        tg(lane_note(r, "ORDER ERROR", res, "prophetx", limit,
-                      extra=f"{res['reason'][:200]}\nRESULT UNKNOWN: the order may or may not exist at the venue. Check My Trades before retrying."))
-        push("LIVE ORDER ERROR: " + (p.get("bet") or "")[:50], f"{label}\n{res['reason']}\nCheck ProphetX My Trades before retrying.", mirror=False)
+        _n = lane_note(r, "ORDER ERROR", res, "prophetx", limit,
+                       extra=f"{res['reason'][:200]}\nRESULT UNKNOWN: the order may or may not exist at the venue. Check My Trades before retrying.")
+        tg(_n)
+        push("LIVE ORDER ERROR: " + (p.get("bet") or "")[:50], _n, mirror=False)
     out = dict(res, asked_stake=stake, limit=limit, book="prophetx")
     if out.get("status") == "placed":   # Nov 11: durable registry row NOW, before anything can kill the run
         out["journaled"] = journal_order(r, out, cid=lv.get("client_id"))
@@ -2802,19 +2803,18 @@ def live_order_other(r):
         res["avg_price"] = ap
         if fs and ac:
             win = res.get("contracts", 0) * (1 - ac)
-            tg(lane_note(r, "FILLED", res, book, limit_am,
-               extra="Send STOP on ntfy to pause."))
+            _n, _h = lane_note(r, "FILLED", res, book, limit_am,
+                               extra="Send STOP on ntfy to pause."), "FILLED"
         else:
-            tg(lane_note(r, "NO FILL", res, book, limit_am,
-               extra="Fill-or-kill got nothing at this price or better."))
-        push("PLACED: " + bet_text(r, lv["line"], limit_am)[:60],
-             f"{label}\n{name} fill-or-kill: ${fs:,.2f} filled" + (f" at {ap:+d}" if ap else "")
-             + f" (asked ${stake:,.2f}, limit {limit_am:+d})." + ("" if res.get("fills_read") else f" Fill read failed: check {name}."),
-             mirror=False)
+            _n, _h = lane_note(r, "NO FILL", res, book, limit_am,
+                               extra="Fill-or-kill got nothing at this price or better."), "NO FILL"
+        tg(_n)
+        push(f"{_h}: " + bet_text(r, lv["line"], limit_am)[:60], _n, mirror=False)   # Nov 12: same text as Telegram
     elif res["status"] == "error":
-        tg(lane_note(r, "ORDER ERROR", res, book, limit_am,
-                      extra=f"{res['reason'][:200]}\nRESULT UNKNOWN: the order may or may not exist at the venue. Check {name} before retrying."))
-        push("LIVE ORDER ERROR: " + (p.get("bet") or "")[:50], f"{label}\n{res['reason']}\nCheck {name} before retrying.", mirror=False)
+        _n = lane_note(r, "ORDER ERROR", res, book, limit_am,
+                       extra=f"{res['reason'][:200]}\nRESULT UNKNOWN: the order may or may not exist at the venue. Check {name} before retrying.")
+        tg(_n)
+        push("LIVE ORDER ERROR: " + (p.get("bet") or "")[:50], _n, mirror=False)
     if res.get("status") == "placed" and not res.get("fills_read"):
         res["filled_stake"] = None   # unknown fill: the daily stop counts everything asked
     out = dict(res, asked_stake=stake, limit=limit_am)

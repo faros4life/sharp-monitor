@@ -1780,9 +1780,11 @@ def run():
                                      + (" | No line conversion - run/puck-line price comparison." if _cv is None
                                         else " | same line as Pinnacle, no conversion" if _cv == 0
                                         else f" | EV CONVERTED {_cv:g} pt from Pinnacle's number - treat the % as UNVERIFIED"))
-                        # Nov 1 (Peter): the phone gets the play alert for LIVE (phase-1) plays, then the bot's fill or
-                        # resting-bid message; PAPER alerts stay muted (PUSH_SHARP_ALERTS=on unmutes them too)
-                        (notify if (PUSH_SHARP or p1_ok or hr_ev) else (lambda *x, **y: print("push muted: paper alert logged only")))(
+                        # Nov 12 (Peter: "only actionable and live notifications"): the phone gets the executor's LIVE PLAY,
+                        # then the fill / resting-bid message, plus Hard Rock manual-bet pings. A sharp ALERT is a candidate,
+                        # not a bet, so it is muted for phase-1 too (logged, graded, still wakes the executor).
+                        # PUSH_SHARP_ALERTS=on unmutes every alert.
+                        (notify if (PUSH_SHARP or hr_ev) else (lambda *x, **y: print("push muted: alert logged only")))(
                                ("LIVE " if p1_ok else "HR MISPRICE " if hr_ev else "PAPER ") + f"Sharp alert {cfg['label']}" + (" LATE" if late else ""),
                                f"{label}\n{a['text']}\n{bet_size(a['price'], a['book'])}{prior_note}\n{a['game']}{tag}, {a['start']}\n{a['why']}\n"
                                f"Grade {grade} ({score}/100) | "
