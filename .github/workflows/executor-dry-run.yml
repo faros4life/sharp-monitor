@@ -97,6 +97,14 @@ jobs:
           # Activation is: set the repo VARIABLE to "on". Verify in a completed run's env block,
           # which prints variables in the clear.
           EXEC_NOVIG_SUBMIT: ${{ vars.EXEC_NOVIG_SUBMIT || 'off' }}
+          # Nov 12 (Peter approved the WIRING, not activation). The home runner dispatch credential.
+          # It has NO fallback by design: novig_place() refuses with "no dispatch credential for the
+          # home runner" when it is absent, so a missing or revoked secret holds submissions rather
+          # than failing some other way. Needs Actions: write on faros4life/novig-runner ONLY.
+          #
+          # This on its own activates nothing. Submission still requires EXEC_NOVIG_SUBMIT to be
+          # "on", which is the gate above and is off.
+          NOVIG_DISPATCH_TOKEN: ${{ secrets.NOVIG_DISPATCH_TOKEN }}
           # Nov 3 (Peter "ok build"): Lane 3 board NBA totals places money only when this is "on" (and EXEC_LIVE is on)
           # The `|| 'off'` is the default for an ABSENT variable, never a statement of the lane's state - the repo
           # variable decides and Peter flips it. The code reads .strip().lower() == "on", so "true"/"yes"/"1" read
