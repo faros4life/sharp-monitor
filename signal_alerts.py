@@ -20,6 +20,7 @@ import json
 import os
 import re
 import time as _time
+from concurrent.futures import ThreadPoolExecutor, TimeoutError as _FTimeout
 from datetime import datetime, timedelta, timezone
 
 import executor as ex
@@ -176,6 +177,9 @@ def held_sides(M):
 
 # Nov 11: this job takes about 7m40s against a 10-minute schedule and was being killed by an 8-minute timeout, with
 # no way to tell which part cost the time. Seconds per step, counts only - nothing financial, same as every other log.
+# Seconds held_sides() may take before AGAINST YOUR BET is skipped for the cycle. Must leave room inside the
+# workflow's timeout for the rest of the run; the rest is about 4 seconds.
+HELD_BUDGET_S = float(os.environ.get("SIGNAL_HELD_BUDGET_S", "") or "240")
 _T0 = _time.time()
 _MARKS = []
 
@@ -267,8 +271,24 @@ def main():
         flush(found)                      # the feed-only alerts, before anything expensive
         _mark(f"feed alerts pushed ({sent})")
         found = []
-        held = held_sides(M)
-        _mark("held sides read (gmail + exchange positions)")
+        # Nov 12: held_sides() reads Gmail plus four venues' positions. It was 352s on Nov 11 and has since grown past
+        # the job's whole timeout, so every run was killed inside it - 3.5s of useful work and then nine minutes of
+        # dying, with nothing delivered. It now gets a budget. Over budget: AGAINST YOUR BET is skipped for this
+        # cycle and SAID so, the other three alerts have already gone out, and the job ends cleanly instead of being
+        # killed. A skipped cycle costs one heads-up; a killed job costs every alert.
+        held, over = [], False
+        try:
+            with ThreadPoolExecutor(max_workers=1) as _tp:
+                held = _tp.submit(held_sides, M).result(timeout=HELD_BUDGET_S)
+            _mark("held sides read (gmail + exchange positions)")
+        except _FTimeout:
+            over = True
+            _mark(f"held sides ABANDONED after {HELD_BUDGET_S}s - AGAINST YOUR BET skipped this cycle")
+        except Exception as _e:
+            over = True
+            _mark(f"held sides failed ({type(_e).__name__}) - AGAINST YOUR BET skipped this cycle")
+        if over:
+            held = []
         for x in fresh:
             nm = x.get("new_money") or 0
             if not (x.get("rule_met") and nm >= AGAINST_MIN):
