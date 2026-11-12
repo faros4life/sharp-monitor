@@ -3,7 +3,7 @@
 Auto-placement executor (Oct 23 spec; LIVE phase 1 added Oct 26). Real orders happen ONLY when the repo variable
 EXEC_LIVE is "on": phase-1 plays on the coded rules AGREE (Oct 30; Muse is a veto, EXEC_RULES_LIVE=0 restores the gate),
 $300 to win, best after-fee price on ProphetX / Kalshi / Polymarket US / Novig, resting bids Novig then Kalshi; refused on
-STOP, the $415 per-order cap and the $2,250 daily stop. Everything else stays a dry run. It reads Muse's AUTO-PLACE VERDICTS emails, runs every skip check, prices all 4
+STOP, the $415 per-order cap and the $3,000 global daily stop (plus $2,000 per lane on R1 and Board). Everything else stays a dry run. It reads Muse's AUTO-PLACE VERDICTS emails, runs every skip check, prices all 4
 books after fees, sizes the stake, and emails what it WOULD have placed.
 
 Verdict email (from Muse, to the Bets address): subject contains "AUTO-PLACE VERDICTS"; body holds a JSON array of
@@ -2520,7 +2520,7 @@ def r1_gate(risk, key=None):
 
 
 def live_guards():
-    """Once per run, before any live order (Oct 27): load the bot-order registry so the $1,500 daily stop counts only
+    """Once per run, before any live order (Oct 27): load the bot-order registry so the $3,000 global daily stop counts only
     the bot's own orders, not Peter's manual bets. Unreadable registry = refuse (fail closed). No loss-streak pause
     (Peter, Oct 27: no 3-loss rule)."""
     if GUARD["ok"] is not None:
