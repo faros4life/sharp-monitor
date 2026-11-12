@@ -208,23 +208,24 @@ rq = lv.requirements("NFL", "total", "UNDER", 44.5, 45.5, "novig")
 ck("under 44.5 -> 45.5 crosses total 45 (event integer is the TOTAL)", rq["crossed"] == [45] and rq["mass_ok"], str(rq))
 
 # ---- settlement evidence is evidence, not activation (Nov 12)
-ck("S1 no settlement rule is ACTIVE on any real venue", lv.SETTLEMENT == {} or set(lv.SETTLEMENT) <= {"testbook"}, str(lv.SETTLEMENT))
+ck("S1 the only ACTIVE real-venue rule is ProphetX NCAAB spreads (primary text quoted)", {k for k in lv.SETTLEMENT if k != "testbook"} == {("prophetx", "NCAAB", "spread")}, str(lv.SETTLEMENT))
 ck("S2 every evidence row names venue, rule, status, finding and a source or says not read",
    all(e["book"] and e["rule"] and e["status"] and e["finding"] and (e["source"] or e["status"] == "not_read") for e in lv.SETTLEMENT_EVIDENCE))
-ck("S3 no evidence row is marked verified beyond 'summary_read' (no original-text confirmation yet)",
-   all(e["status"] in ("summary_read", "unconfirmed_for_mainline", "not_read", "not_found") for e in lv.SETTLEMENT_EVIDENCE))
+ck("S3 every evidence status is one of the named levels, and every ACTIVE rule has primary text quoted",
+   all(e["status"] in ("primary_text_quoted", "summary_read", "unconfirmed_for_mainline", "not_read", "not_found") for e in lv.SETTLEMENT_EVIDENCE)
+   and all(any(e["book"] == k[0] and e["sport"] == k[1] and e["mtype"] == k[2] and e["status"] == "primary_text_quoted" and e.get("active")
+               for e in lv.SETTLEMENT_EVIDENCE) for k in lv.SETTLEMENT if k != "testbook"))
 ck("S4 Novig is never assumed to refund (voids settle at fair value)", not any(e["book"] == "novig" and e["rule"] == "refund" for e in lv.SETTLEMENT_EVIDENCE))
 for bk in ("novig", "kalshi", "polymarket_us", "prophetx"):
     try:
-        lv.push_ok(bk, 3.0, "NFL", "spread"); ok_ = False
+        lv.push_ok(bk, 3.0, "NFL", "spread"); ok_ = False   # NFL: no venue has an active rule
     except lv.Unsupported as u:
         ok_ = u.code == "settlement_rule_unverified"
     ck(f"S5 a whole-number line on {bk} is unsupported until a refund rule is ACTIVATED", ok_)
 ck("S6 half lines never need a rule", lv.push_ok("novig", 214.5, "NBA", "total") is True)
-lv.SETTLEMENT[("prophetx", "NCAAB", "spread")] = "refund"
-ck("S7 a sport-specific activation applies to that class only",
-   lv.push_ok("prophetx", 5.0, "NCAAB", "spread") is True and lv.requirements("NFL", "spread", 0, -2.5, -3.0, "prophetx")["settlement"] == "unverified")
-del lv.SETTLEMENT[("prophetx", "NCAAB", "spread")]
+ck("S7 the sport-specific ProphetX NCAAB activation applies to that class only (NFL and NCAAB totals stay unverified)",
+   lv.push_ok("prophetx", 5.0, "NCAAB", "spread") is True and lv.requirements("NFL", "spread", 0, -2.5, -3.0, "prophetx")["settlement"] == "unverified"
+   and lv.requirements("NCAAB", "total", "OVER", 140.5, 140.0, "prophetx")["settlement"] == "unverified")
 # ---- per-total rows, no pooled fallback, line-distance guard (Nov 12)
 ck("T1 the pooled whole-total fallback is gone", ("NFL", "total", "*") not in lv.MASS and lv.mass_row("NFL", "total", 37) is None)
 ck("T2 supported NFL totals are exactly those with n >= 200 of their own", sorted(k[2] for k in lv.MASS if k[:2] == ("NFL", "total")) == [41, 42, 43, 44, 45, 46, 47])

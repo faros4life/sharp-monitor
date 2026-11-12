@@ -45,7 +45,20 @@ import positions
 import px_live
 import book_live
 import registry
+import line_value as lvcalc        # Nov 12: the replacement conversion. Decides ONLY when LINE_VALUE_MODE == "live" (Peter flips it)
 import line_value_shadow as lvsh   # Nov 12: line-value SHADOW capture - records, never decides
+
+
+def lv_mode():
+    """'shadow' (default: legacy decides, replacement records) or 'live' (replacement decides line conversions).
+    The switch is the repo variable LINE_VALUE_MODE; nothing in code sets it."""
+    return "live" if (os.environ.get("LINE_VALUE_MODE") or "shadow").strip().lower() == "live" else "shadow"
+
+
+def lv_credit(cv, alert_cost, tol):
+    """Express a convert() result as the probability credit the legacy gate shape understands, so c_eq/thr stay
+    comparable in logs: c_eq_q = prob(am_q) - credit  <=>  prob(am_q) <= max_prob."""
+    return cv["max_prob"] - (alert_cost + tol)
 
 UNIT = float(os.environ.get("EXEC_UNIT", "") or "300")          # + money: risk UNIT; - money: risk to win UNIT
 SOURCE = (os.environ.get("EXEC_SOURCE", "") or "both").lower()  # muse | rules | both (dry run: both, side by side)
@@ -1513,6 +1526,13 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None, held=None):
             lvs_notes.append(dict(book=b, line=bl, am_after_fee=r.get("best_price_american"), legacy=why, **kw))
         except Exception:
             pass
+    lv_ref = None
+    if lv_mode() == "live" and mtype in ("spread", "total"):
+        try:
+            import line_value_ref as lvr
+            lv_ref, _lvrec = lvr.pinnacle_reference(lv_pin_input(al, now, mtype, side, teams), mtype, side, al["start_utc"], now, al["sport"])
+        except Exception:
+            lv_ref = None
     for (b, bl), r in ladders.items():
         if floor is not None and better_halfpoints(mtype, side, floor, bl) < -1e-9:
             floor_blocked += 1   # Oct 31 (Muse): the alert's bet-only-at LINE is a hard floor, whatever the converted price
@@ -1529,13 +1549,25 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None, held=None):
             no_qual_basis += 1
             _note(b, bl, r, "no_frozen_basis")
             continue
-        c_eq = american_to_prob(am) - hb * hp
-        c_eq_q = american_to_prob(am_q) - hb * hp     # what the eligibility gates compare
         tol = px_tol if b in TOL_BOOKS else 0.0
+        if lv_mode() == "live" and mtype in ("spread", "total"):
+            # REPLACEMENT PATH (Peter's switch). One shared convert() supplies the credit for this gate, the order threshold
+            # below and the recheck in revalidate(). Unsupported conversions are skipped with their named reason - never the
+            # old constant. The credit is expressed in the legacy gate's units so c_eq / thr keep ONE formula below.
+            cv = lvcalc.convert(al["sport"], mtype, side, line, alert_af, bl, am_q, b, PX_TOL_CENTS if b in TOL_BOOKS else 0,
+                                cents_worse, lv_ref)
+            if cv["status"] != "ok":
+                _note(b, bl, r, "lv_unsupported:" + str(cv.get("reason")), hb=hb)
+                continue
+            credit = lv_credit(cv, alert_cost, tol)
+        else:
+            credit = hb * hp                              # legacy: half-points better times the half-point value
+        c_eq = american_to_prob(am) - credit
+        c_eq_q = american_to_prob(am_q) - credit      # what the eligibility gates compare
         if c_eq_q > alert_cost + tol + 1e-9:          # gate on the frozen price, never the improved one
             _note(b, bl, r, "price_gate", hb=hb, c_eq_q=round(c_eq_q, 6))
             continue
-        thr = lm.american(min(max(alert_cost + tol + hb * hp, 0.01), 0.99))   # worst acceptable real price at this line
+        thr = lm.american(min(max(alert_cost + tol + credit, 0.01), 0.99))   # worst acceptable real price at this line
         if mtype in ("spread", "total") and thr is not None:
             thr = max(thr, CAP_LINE)   # Oct 28: never fill below the -130 after-fee cap, whatever the line conversion says
         # the liquidity gate reads the FROZEN per-level price, never the corrected one
@@ -1613,7 +1645,8 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None, held=None):
                 # rather than reconstructed at the order site - reparsing is where drift creeps in.
                 reval={"al": al, "mtype": mtype, "side": side, "price": price, "teams": teams,
                        "line": line, "alert_af": alert_af, "alert_cost": alert_cost,
-                       "px_tol": px_tol, "hp": hp})
+                       "px_tol": px_tol, "hp": hp, "lv_mode": lv_mode(),
+                       "lv_ref": (dict(lv_ref.__dict__) if lv_ref is not None else None)})   # plain dict: JSON-safe
 
 
 def fmt_line(mtype, ln):
@@ -1996,7 +2029,16 @@ def revalidate(r, stake=None):
     # under; hb is recomputed from the alert line to the re-read line, which book_line() has just
     # confirmed is still the chosen line.
     hb = 0.0 if mtype == "moneyline" else better_halfpoints(mtype, rv.get("side"), rv["line"], ln)
-    c_eq_q = american_to_prob(am_q) - hb * (rv.get("hp") or 0.0)
+    if rv.get("lv_mode") == "live" and mtype in ("spread", "total"):
+        # REPLACEMENT PATH: the SAME convert() with the SAME stored reference the play qualified under
+        cv = lvcalc.convert((rv.get("al") or {}).get("sport"), mtype, rv.get("side"), rv["line"], rv["alert_af"], ln, am_q, book,
+                            PX_TOL_CENTS if book in TOL_BOOKS else 0, cents_worse,
+                            lvcalc.Reference(**rv["lv_ref"]) if rv.get("lv_ref") else None)
+        if cv["status"] != "ok":
+            return False, f"{book}: line conversion unsupported at order time ({cv.get('reason')}) - fail closed", None
+        c_eq_q = american_to_prob(am_q) - lv_credit(cv, rv["alert_cost"], tol)
+    else:
+        c_eq_q = american_to_prob(am_q) - hb * (rv.get("hp") or 0.0)
     try:   # Nov 12 SHADOW: records only; a failure to record can never change the verdict below
         lvsh.note_recheck(rv, book, ln, am, hb, c_eq_q, c_eq_q <= rv["alert_cost"] + tol + 1e-9)
     except Exception:
@@ -3272,7 +3314,7 @@ def stack_cap_report(r):
 PIN_MAX_AGE_S = int(os.environ.get("PIN_MAX_AGE_S", "") or "300")
 PIN_SPORT = {"NFL": "americanfootball_nfl", "NCAAF": "americanfootball_ncaaf", "NBA": "basketball_nba",
              "NCAAB": "basketball_ncaab", "NHL": "icehockey_nhl", "MLB": "baseball_mlb"}
-_PIN, _PIN_AT = {}, {}
+_PIN, _PIN_AT, _PIN_USAGE = {}, {}, {}   # usage: The Odds API quota headers from the last read (counts only, printed at run end)
 
 
 def _pin_events(sk):
@@ -3286,6 +3328,8 @@ def _pin_events(sk):
                        f"&oddsFormat=american&dateFormat=iso&apiKey={key}")
                 with urllib.request.urlopen(url, timeout=20) as resp:
                     _PIN[sk] = json.loads(resp.read().decode())
+                    _PIN_USAGE.update({k: resp.headers.get(k) for k in ("x-requests-used", "x-requests-remaining", "x-requests-last")})
+                    _PIN_USAGE["calls_this_run"] = _PIN_USAGE.get("calls_this_run", 0) + 1
                 _PIN_AT[sk] = datetime.now(timezone.utc)
             except Exception:
                 _PIN[sk] = None
@@ -4123,6 +4167,9 @@ def main():
          + f", {len(skips)} skipped",
          "\n".join(body))
     print(f"Dry-run email sent: {len(golive)} would go live, {nw} would place, {len(helds)} held, {len(skips)} skipped.")   # counts only
+    if _PIN_USAGE:   # Nov 12: bounded Pinnacle diagnostic - report actual credit usage (counts only)
+        print(f"Pinnacle reads this run: {_PIN_USAGE.get('calls_this_run', 0)}; The Odds API used {_PIN_USAGE.get('x-requests-used')}, "
+              f"remaining {_PIN_USAGE.get('x-requests-remaining')}, last call cost {_PIN_USAGE.get('x-requests-last')}.")
     rested = sum(1 for r in results if ((r.get("live") or {}).get("rest") or {}).get("status") == "placed")
     if nplaced or rested:   # Oct 29 (Muse): a private balances email right after any live order or resting bid
         try:

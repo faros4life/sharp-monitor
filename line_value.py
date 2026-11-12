@@ -267,20 +267,34 @@ def outcomes_at(ref, sport, line):
 # ---------------------------------------------------------------- settlement
 # How each venue settles a whole-number line. EMPTY until verified from the venue's own rules: a whole-number
 # candidate on a venue with no entry is Unsupported, because the refund assumption is exactly what is unproven.
-SETTLEMENT = {}    # ACTIVE rules: {"book": "refund"} or {(book, sport, mtype): "refund"}. Only "refund" is modelled. EMPTY on purpose.
+SETTLEMENT = {     # ACTIVE rules: {"book": "refund"} or {(book, sport, mtype): "refund"}. Only "refund" is modelled.
+    # Nov 12: ProphetX NCAA D1 men's basketball spreads - Appendix A sec. H: an exact-strike margin voids the contract and
+    # "collateral shall be returned to the applicable accounts"; whole-point strikes are listed. Read via a fetch of the
+    # CFTC PDF (https://www.cftc.gov/filings/ptc/ptc10162634287.pdf). Everything else stays unsupported (see evidence).
+    ("prophetx", "NCAAB", "spread"): "refund",
+}
 
 # EVIDENCE gathered Nov 12, 2026 from venue filings. Evidence is NOT activation: an entry here changes nothing until
 # someone moves a confirmed "refund" into SETTLEMENT. status 'summary_read' = read through a summarising fetch of the
 # CFTC PDF (the shell cannot reach cftc.gov), so the wording has NOT been re-read in the original text.
 SETTLEMENT_EVIDENCE = [
-    {"book": "prophetx", "sport": "NCAAB", "mtype": "spread", "rule": "refund", "status": "summary_read",
+    {"book": "prophetx", "sport": "NCAAB", "mtype": "spread", "rule": "refund", "status": "primary_text_quoted", "active": True,
      "finding": "exact-strike margin voids the contract; collateral returned; whole-point strikes are allowed",
      "source": "https://www.cftc.gov/filings/ptc/ptc10162634287.pdf (Appendix A section H)"},
     {"book": "prophetx", "sport": "NFL", "mtype": "spread/total", "rule": "refund", "status": "unconfirmed_for_mainline",
      "finding": "void and collateral returned, but the document read is the NFL player-statistic amendment",
      "source": "https://www.cftc.gov/filings/orgrules/rules08042613795.pdf"},
     {"book": "prophetx", "sport": "NBA/MLB/NHL", "mtype": "any", "rule": "unverified", "status": "not_read",
-     "finding": "no filing read for these classes", "source": None},
+     "finding": "the NBA/NFL/NHL Mainline filings themselves were not located; every OTHER ProphetX sports filing read "
+                "(soccer, CFL, FIBA, EuroLeague, NCAAB) voids an exact-strike SPREAD with collateral returned, and voids an "
+                "exact-strike TOTAL without stating the collateral - a consistent pattern, not a read rule", "source": None},
+    {"book": "prophetx", "sport": "any", "mtype": "total", "rule": "void_collateral_unstated", "status": "primary_text_quoted",
+     "finding": "'void if the total exactly equals the Strike' - no sentence returns collateral for totals; ambiguous, unsupported",
+     "source": "https://www.cftc.gov/filings/ptc/ptc0614266311.pdf (sec. E) ; ptc09222629066.pdf (sec. E)"},
+    {"book": "polymarket_us", "sport": "any", "mtype": "total", "rule": "half_point_only", "status": "primary_text_quoted",
+     "finding": "'All {total} thresholds are specified in half-point increments to avoid ties' - but the same document's "
+                "example uses a whole number; a whole-number PMUS total should not exist and stays unsupported if seen",
+     "source": "https://www.cftc.gov/sites/default/files/filings/orgrules/26/03/rules03272642617.pdf"},
     {"book": "novig", "sport": "NFL", "mtype": "total", "rule": "no_push_possible", "status": "summary_read",
      "finding": "line is always a half-integer so the total can never equal it; a void settles at a Fair Value Price "
                "(30-minute time-weighted composite), NOT a refund at the price paid",
@@ -288,7 +302,7 @@ SETTLEMENT_EVIDENCE = [
     {"book": "novig", "sport": "other", "mtype": "any", "rule": "unverified", "status": "not_read",
      "finding": "voids use the Fair Value Settlement Rule, so 'refund' must not be assumed on any Novig void",
      "source": "https://www.cftc.gov/filings/ptc/ptc07232611507.pdf"},
-    {"book": "kalshi", "sport": "NBA/NFL", "mtype": "total/spread", "rule": "not_refund", "status": "summary_read",
+    {"book": "kalshi", "sport": "NBA/NFL", "mtype": "total/spread", "rule": "no_push_operator_decides", "status": "summary_read",
      "finding": "whole-number strikes may be listed; no push or void provision for an exact tie; the payout follows "
                "the contract's comparison operator ('above' is not met at equality)",
      "source": "https://kalshi-public-docs.s3.amazonaws.com/contract_terms/NBATOTAL.pdf ; NFLSPREAD.pdf"},

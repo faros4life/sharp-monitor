@@ -1,5 +1,6 @@
 """Nov 12: the audit is read-only, counts-only and imports no execution code."""
 import ast, json, os, sys, types
+os.environ["AUDIT_PREFIXES"] = "Bets LIVE:|Bets dry run:"
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import line_value_audit as au  # noqa: E402
 import line_value_replay as rp  # noqa: E402

@@ -283,9 +283,9 @@ _reads = [n for n in ast.walk(_tree)
           or (isinstance(n, ast.Call) and isinstance(n.func, ast.Attribute) and n.func.attr == "get"
               and n.args and isinstance(n.args[0], ast.Constant) and n.args[0].value == "lvs")]
 ck("7. evaluate() only WRITES the lvs record - there is no read of it anywhere in the function", not _reads, str(_reads))
-ck("7. the legacy half-point arithmetic is unchanged", "c_eq = american_to_prob(am) - hb * hp" in esrc
-   and "c_eq_q = american_to_prob(am_q) - hb * hp" in esrc, "")
-ck("7. the legacy threshold arithmetic is unchanged", "thr = lm.american(min(max(alert_cost + tol + hb * hp, 0.01), 0.99))" in esrc, "")
+ck("7. the legacy half-point arithmetic is unchanged (credit = hb * hp feeds the one c_eq / thr formula)", "credit = hb * hp" in esrc
+   and "c_eq = american_to_prob(am) - credit" in esrc and "c_eq_q = american_to_prob(am_q) - credit" in esrc, "")
+ck("7. the legacy threshold arithmetic is unchanged", "thr = lm.american(min(max(alert_cost + tol + credit, 0.01), 0.99))" in esrc, "")
 
 print(f"{len(OK)} passed, {len(BAD)} failed")
 for b in BAD:

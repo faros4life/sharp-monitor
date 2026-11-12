@@ -4,6 +4,10 @@ on:
   schedule:
     - cron: "7-59/10 * * * *"   # backup timer; cron-job.org is the real one
   workflow_dispatch:
+    inputs:
+      pin_read:
+        description: "1 = read Pinnacle for the line-value SHADOW reference this run (bounded diagnostic; spends The Odds API credits). Scheduled runs never read."
+        default: "0"
 
 concurrency:
   group: executor
@@ -72,6 +76,8 @@ jobs:
           PMUS_SECRET_KEY: ${{ secrets.PMUS_SECRET_KEY }}
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}                     # phone alert when a bet is held (positions unreadable)
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}                 # Nov 3: Pinnacle price check at each live order (read only)
+          LINE_VALUE_PIN_READ: ${{ github.event.inputs.pin_read }}  # Nov 12: manual dispatch only; empty on schedule
+          LINE_VALUE_MODE: ${{ vars.LINE_VALUE_MODE }}              # Nov 12: 'live' activates the replacement; unset/'shadow' = legacy decides
           ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}               # Nov 4: Lane 2 reads Pinnacle's LIMIT at decision time (dry run only)
           EXEC_UNIT: "300"
           # LIVE phase 1 (Oct 26): real ProphetX orders only when the repo VARIABLE EXEC_LIVE is "on"

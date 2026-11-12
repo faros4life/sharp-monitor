@@ -67,7 +67,8 @@ def build(ctx, ladder, cand_notes, worse):
                 "tol_books": list(ctx["tol_books"]), "hp": _r(ctx["hp"], 9), "hp_src": ctx["hp_src"],
                 "floor": ctx.get("floor"), "now_utc": ctx.get("now_utc"),
                 "reference": ({"line": ref.line, "q": _r(ref.q, 6), "ts": ref.ts, "source": ref.source} if ref else None),
-                "reference_status": why, "reference_detail": rdet, "settlement_rules": dict(lv.SETTLEMENT),
+                "reference_status": why, "reference_detail": rdet,
+                "settlement_rules": {("/".join(k) if isinstance(k, tuple) else k): v for k, v in lv.SETTLEMENT.items()},
                 "mass_rows": sorted(f"{k[0]}/{k[1]}/{k[2]}" for k in lv.MASS),
                 "ladder": ladder, "cands": cands}
     except Exception as ex:     # recording must never touch a decision

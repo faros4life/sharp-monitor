@@ -17,7 +17,7 @@ from datetime import datetime, timedelta, timezone
 
 import line_value_replay as rp
 
-PREFIXES = ("Bets LIVE:", "Bets dry run:")
+PREFIXES = tuple(x for x in (os.environ.get("AUDIT_PREFIXES") or "Bets LIVE:").split("|") if x)   # fills live only in "Bets LIVE:" mail
 
 
 def body_text(raw):
@@ -38,7 +38,7 @@ def fetch_texts(days):
     M.select('"[Gmail]/All Mail"', readonly=True)
     since = (datetime.now(timezone.utc) - timedelta(days=days)).strftime("%d-%b-%Y")
     texts, seen, skipped = [], 0, 0
-    for pre in ("Bets LIVE:", "Bets dry run:"):
+    for pre in PREFIXES:
         typ, data = M.uid("SEARCH", None, "SUBJECT", f'"{pre}"', "SINCE", since)
         if typ != "OK":
             raise SystemExit("search failed")

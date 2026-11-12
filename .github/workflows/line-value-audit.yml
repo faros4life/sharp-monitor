@@ -8,7 +8,10 @@ on:
     inputs:
       days:
         description: "How many days of executor emails to read"
-        default: "14"
+        default: "30"
+      prefixes:
+        description: "Subject prefixes, | separated (Bets LIVE: holds the real fills; add Bets dry run: for would-fills)"
+        default: "Bets LIVE:"
 
 permissions:
   contents: read
@@ -20,7 +23,7 @@ concurrency:
 jobs:
   audit:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -31,6 +34,7 @@ jobs:
           GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
           AUDIT_DAYS: ${{ github.event.inputs.days }}
+          AUDIT_PREFIXES: ${{ github.event.inputs.prefixes }}
         run: python3 line_value_audit.py
       - uses: actions/upload-artifact@v4
         with:
