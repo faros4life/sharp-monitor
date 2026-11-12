@@ -1,0 +1,29 @@
+name: intent-latch-check
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      # READ-ONLY. Calls the executor's own latch functions and reads one run email by IMAP.
+      # Prints the tally only - never plays, prices or stakes. Nothing written, nothing cleared,
+      # no email sent, no live setting touched. No dispatch credential is present.
+      - name: Report whether any write-ahead intent still refuses live orders
+        env:
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          REGISTRY_TOKEN: ${{ secrets.REGISTRY_TOKEN }}
+          EXEC_LIVE: "off"
+        run: python -u intent_latch_check.py
