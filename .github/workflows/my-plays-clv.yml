@@ -1,0 +1,63 @@
+name: my-plays-clv
+
+# Peter, Nov 11: "record my plays today and confirm the CLV" / "go to GitHub, it has all my plays".
+#
+# His bets live in tracker/state.enc, encrypted, so they can only be read inside Actions. This runs
+# executed_clv.py - the same machinery, same fee basis - with its source and grade filters widened,
+# so MANUAL bets and today's not-yet-settled rows are included. That script's defaults are
+# unchanged, so the regular Executed CLV report is unaffected.
+#
+# Cache-only: 0 paid OddsPapi credits. Read-only: no bet, no order, no rule or switch change.
+# Dollars go to the private email; the Actions log carries counts, prices and percentages only.
+
+on:
+  workflow_dispatch:
+    inputs:
+      since:
+        description: "Earliest ET day to include, YYYY-MM-DD (blank = all)"
+        default: ""
+        required: false
+      sources:
+        description: "Bet sources: all | manual | bot (comma-separated)"
+        default: "all"
+        required: false
+      ungraded:
+        description: "1 = include bets with no result yet (today's games)"
+        default: "1"
+        required: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: clv-ledger
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Restore shared OddsPapi history cache (read only)
+        uses: actions/cache/restore@v4
+        with:
+          path: hcache
+          key: hcache-${{ github.run_id }}
+          restore-keys: hcache-
+      - name: CLV on my plays (cache only, zero credits)
+        env:
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
+          XC_CACHE_ONLY: "1"
+          XC_SOURCES: ${{ inputs.sources || 'all' }}
+          XC_UNGRADED: ${{ inputs.ungraded || '1' }}
+          XC_SINCE: ${{ inputs.since }}
+        run: python -u executed_clv.py

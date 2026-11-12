@@ -169,19 +169,35 @@ def wilson(k, n):
     return 100 * (c - h), 100 * (c + h)
 
 
+# Nov 11 (Peter, "go to GitHub, it has all my plays"): the same machinery, pointed at HIS bets as
+# well as the bot's. Defaults are unchanged - bot only, graded only - so the existing Executed CLV
+# report is byte-identical unless one of these is set. The fee basis is the whole reason to extend
+# this file rather than write a new one: net_of() already knows which venues store money (fee
+# inside) and which store a quote (fee still to apply), and getting that wrong is how the
+# Polymarket fee came to be set wrong on 25 Oct.
+SOURCES = tuple(x.strip().lower() for x in (os.environ.get("XC_SOURCES") or "bot").split(",") if x.strip())
+UNGRADED = (os.environ.get("XC_UNGRADED") or "") == "1"
+SINCE_ET = (os.environ.get("XC_SINCE") or "").strip()      # YYYY-MM-DD, ET day, inclusive
+
+
 def fill_rows():
-    """Every graded bot fill the books themselves recorded, newest first."""
+    """Bot fills by default. With XC_SOURCES / XC_UNGRADED / XC_SINCE, any source and any grade."""
     st = tb.dec(json.load(open(TSTATE)))
     raw = (st or {}).get("bets")
     rows = list(raw.values()) if isinstance(raw, dict) else (raw if isinstance(raw, list) else [])
     out = []
     for b in rows:
-        if str(b.get("source") or "") != "bot":
+        src = str(b.get("source") or "").lower()
+        if "all" not in SOURCES and src not in SOURCES:
             continue
-        if b.get("result") not in ("W", "L", "P"):
+        if not UNGRADED and b.get("result") not in ("W", "L", "P"):
             continue
         if num(b.get("price")) is None:
             continue
+        if SINCE_ET:
+            d = str(b.get("date") or b.get("settled") or b.get("first_seen") or "")[:10]
+            if d and d < SINCE_ET:
+                continue
         out.append(b)
     return out, len(rows)
 
