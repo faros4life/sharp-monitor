@@ -2835,6 +2835,43 @@ def fill_reports():
                 print(f"kalshi resting-fill check failed: {str(ex)[:60]}")
 
 
+def static_refusal(r):
+    """The refusals decidable from the ALERT ENTRY ALONE - no venue read, no exposure, no run state.
+
+    Nov 12 (Peter). These were checked INSIDE live_order(), which runs AFTER live_play_alert(), so a
+    play disqualified only by one of them was announced as a LIVE PLAY with a proposed stake and
+    then immediately refused. Both are pure reads of r["entry"] and cannot change between the alert
+    and the attempt, so they belong in FRONT of the alert. Returns a reason, or None.
+
+    This decides nothing else. Every other gate in live_order() - the journal latch, EXEC_LIVE,
+    live_guards (the daily stop and lane risk), the venue's own price/depth/status re-read - depends
+    on run state or the venue and MUST stay exactly where it is.
+
+    Three scopes, deliberately different:
+
+    1. HARD ROCK stays GLOBAL. Peter is limited there, on every lane, so a Hard Rock-priced alert is
+       never live whatever lane it came from.
+    2. An UNKNOWN after-fee price stays GLOBAL and fail-closed. Not knowing the price is not the
+       same as the price being acceptable, and that holds for every lane.
+    3. The Oct 27 RETAIL DEADBAND (-119..-110 after fee, non-ProphetX) is now PHASE 1 ONLY (Peter,
+       Nov 12: "Board V3 should use its own approved eligibility, line-value, pricing, liquidity and
+       risk rules"). It was refusing board plays that had already cleared all of those - including
+       the Nov 12 Toronto/Philadelphia Under 224.5, which passed the line-value REPLACEMENT maximum
+       (Under 225.5 at -117 against a -113 alert) and was then blocked by a filter from another
+       lane. lane_of() defaults to "rules", so an unlabelled play keeps the band.
+    """
+    e = r.get("entry") or {}
+    hr = agree_rules.hr_priced(e)   # Oct 27: re-check the PRICING book; unknown = refuse
+    if hr is not False:
+        return "Hard Rock-priced alert: never live" if hr else "pricing book unknown (fail closed)"
+    db = agree_rules.deadband(dict(e, sent_to_phone=True))
+    if db is None:
+        return "after-fee price unknown (fail closed)"   # GLOBAL: never guess a price, any lane
+    if db and lane_of(r) == "rules":
+        return "retail deadband: non-ProphetX at -119 to -110 after fee (phase 1 only)"
+    return None
+
+
 def live_order(r):
     """Phase-1 live order (only when EXEC_LIVE is on): ProphetX here, Kalshi / Polymarket US via live_order_other (Oct 28).
     Returns the order record for the email/ledger."""
@@ -2843,13 +2880,12 @@ def live_order(r):
         return refuse(r,                      # First gate, so no other refusal reason can mask it.
                       f"order journal failed earlier this run ({journal_latch_why()}) - no further "
                       f"orders until the next run's registry read reconciles exposure")
-    hr = agree_rules.hr_priced(r.get("entry") or {})   # Oct 27: re-check the PRICING book at placement; unknown = refuse
-    if hr is not False:
-        return refuse(r, "Hard Rock-priced alert: never live" if hr else "pricing book unknown (fail closed)")
-    db = agree_rules.deadband(dict(r.get("entry") or {}, sent_to_phone=True))   # Oct 27 retail deadband re-check
-    if db is not False:
-        return refuse(r, "retail deadband: non-ProphetX at -119 to -110 after fee" if db
-                      else "after-fee price unknown (fail closed)")
+    # Oct 27: the pricing book and the band are RE-CHECKED at placement, not trusted from the
+    # pre-alert pass. Same shared function, so the two checks can never drift apart - a play that
+    # the caller let through still cannot be placed if the entry says no.
+    _sr = static_refusal(r)
+    if _sr:
+        return refuse(r, _sr)
     if not px_live.LIVE:
         return {"status": "dry", "reason": "live is off"}
     g_ok, g_why = live_guards()
@@ -4702,12 +4738,24 @@ def main():
                     r["live"] = {"go": False, "lane": r["live"].get("lane"), "pin": pc,
                                  "why": [f"price check: {pc['why']} - live order skipped (Peter Nov 3)"]}
             if r["verdict"] == "WOULD PLACE" and (r.get("live") or {}).get("go"):
-                try:   # Nov 11 (Peter): EVERY live play alerts, all three lanes, before the order
-                    live_play_alert(r)
-                except Exception as ex:
-                    print(f"live play alert failed: {str(ex)[:60]}")   # never block the order
-                with perf("live_order (revalidate + intent + submit)"):
-                    r["live"]["order"] = live_order(r)
+                # Nov 12 (Peter): a play that fails a STATIC gate is never announced as a LIVE PLAY.
+                # Those gates are decidable from the alert entry alone, so announcing a stake and
+                # retracting it one message later was telling him about a bet that was never
+                # placeable. The ORDER OUTCOME notification is unchanged and still mandatory -
+                # refuse() sends it - because silence after an alert is what made him place the
+                # Nov 11 Lakers/Bucks Under by hand. live_order() re-checks the same function, so
+                # skipping the alert never skips the gate.
+                _sr = static_refusal(r)
+                if _sr:
+                    with perf("live_order (static refusal, no alert)"):
+                        r["live"]["order"] = refuse(r, _sr)
+                else:
+                    try:   # Nov 11 (Peter): EVERY live play alerts, all three lanes, before the order
+                        live_play_alert(r)
+                    except Exception as ex:
+                        print(f"live play alert failed: {str(ex)[:60]}")   # never block the order
+                    with perf("live_order (revalidate + intent + submit)"):
+                        r["live"]["order"] = live_order(r)
                 with perf("live_remainder (next venue)"):
                     r["live"]["more"] = live_remainder(r)   # Oct 28: $200 total per play across venues
                 LIVEKEYS.add(derive_key(p) or p["play_key"])

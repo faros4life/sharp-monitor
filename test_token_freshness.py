@@ -18,6 +18,8 @@ UTC = timezone.utc
 NOW = datetime(2026, 11, 12, 18, 0, 0, tzinfo=UTC)
 TODAY = NOW.strftime("%Y-%m-%d")
 OLD = (NOW - timedelta(days=R.KEEP_DAYS + 1)).strftime("%Y-%m-%d")
+FRESH_STAMP = (NOW - timedelta(minutes=5)).strftime("%Y-%m-%dT%H:%M:%SZ")
+DEAD_STAMP = (NOW - timedelta(minutes=R.FRESH_MIN + 1)).strftime("%Y-%m-%dT%H:%M:%SZ")
 
 fails = []
 
@@ -59,8 +61,10 @@ class Store:
 _orig = (R.load, R._commit, R.enabled)
 
 print("A valid, fresh-enough claim is re-stamped")
-s = Store({"meta": {"tok_complete_through": TODAY,
-                    "tok_complete_at": (NOW - timedelta(minutes=30)).strftime("%Y-%m-%dT%H:%M:%SZ")}}).install()
+# Nov 12: Muse's 34c20c2f tightened this - a refresh may only re-stamp a claim whose stamp is STILL
+# inside FRESH_MIN, never resurrect one that has already expired. Strictly safer. This block said
+# "fresh-enough" while using a 30-minute-old stamp, which the new rule correctly refuses.
+s = Store({"meta": {"tok_complete_through": TODAY, "tok_complete_at": FRESH_STAMP}}).install()
 ok = R.touch_tokens_complete(now=NOW)
 check("returns True", ok)
 check("stamp moved forward", s.data["meta"]["tok_complete_at"] == NOW.strftime("%Y-%m-%dT%H:%M:%SZ"))
@@ -123,13 +127,20 @@ check("killed DURING the write: put_tokens False -> executor invalidates; touch 
 s = Store({"meta": {"tok_complete_through": TODAY, "tok_complete_at": "old"}}).install()
 check("killed AFTER the write but before the touch: claim simply stale, next run reads Gmail",
       not R.tokens_complete(now=NOW))
-s = Store({"meta": {"tok_complete_through": TODAY, "tok_complete_at": "old"}}).install()
+s = Store({"meta": {"tok_complete_through": TODAY, "tok_complete_at": FRESH_STAMP}}).install()
 R.touch_tokens_complete(now=NOW)
 check("killed AFTER the touch, before the ledger email: tokens were a CONFIRMED put, so the store "
       "that answers dedupe has them", R.tokens_complete(now=NOW))
 
+# The guarantee 34c20c2f added, which deserves its own check: an EXPIRED stamp is not revived by a
+# refresh. The claim has to be re-earned by a full scan, because nothing refreshed it in time.
+s = Store({"meta": {"tok_complete_through": TODAY, "tok_complete_at": DEAD_STAMP}}).install()
+check("an expired stamp is NOT resurrected by a refresh", R.touch_tokens_complete(now=NOW) is False)
+check("and the dead stamp was left alone", s.data["meta"]["tok_complete_at"] == DEAD_STAMP)
+check("so dedupe still goes to Gmail", not R.tokens_complete(now=NOW))
+
 print("\nORDERS claim (touch_complete) - the one the $2,000 daily risk reads through")
-s = Store({"meta": {"complete_through": TODAY, "complete_at": "old"}}).install()
+s = Store({"meta": {"complete_through": TODAY, "complete_at": FRESH_STAMP}}).install()
 check("valid claim is re-stamped", R.touch_complete(now=NOW) is True)
 check("stamp moved", s.data["meta"]["complete_at"] == NOW.strftime("%Y-%m-%dT%H:%M:%SZ"))
 check("window never widened", s.data["meta"]["complete_through"] == TODAY)
