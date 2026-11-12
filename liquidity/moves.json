@@ -1,6 +1,50 @@
 {
  "moves": [
   {
+   "alerted_utc": "2026-11-12T05:31:11Z",
+   "bar": false,
+   "best_price": 0.79,
+   "best_price_book": "novig",
+   "book": "novig",
+   "close_price": 0.79,
+   "clv_cents": 0.0,
+   "date": "2026-11-12",
+   "dir": "RAISE",
+   "ex_stats": {
+    "openInterest": 647797.0,
+    "volume": 777728.0
+   },
+   "first_play": false,
+   "game": "Detroit Pistons @ Washington Wizards",
+   "key": "novig|{\"market_id\": \"01a1cd91-6777-7a03-8bf3-26a26c7b2a15\", \"outcome_id\": \"01a1cd91-6777-7a03-8bf3-26cfbe4be72b\"}",
+   "lead_min": 1109,
+   "league": "NBA",
+   "league_x": 1.18,
+   "line": null,
+   "market": "moneyline",
+   "normal_4h": 5493,
+   "now": 15652,
+   "other_side_now": 1863,
+   "paper_only": true,
+   "price": 0.79,
+   "price_american": -376,
+   "ref": {
+    "market_id": "01a1cd91-6777-7a03-8bf3-26a26c7b2a15",
+    "outcome_id": "01a1cd91-6777-7a03-8bf3-26cfbe4be72b"
+   },
+   "result": null,
+   "side": "Detroit Pistons",
+   "side_label": "DET (0)",
+   "side_raw": 0,
+   "start_utc": "2026-11-13T00:00:00Z",
+   "teams": [
+    "Detroit Pistons",
+    "Washington Wizards"
+   ],
+   "units_flat": null,
+   "x": 2.85
+  },
+  {
    "alerted_utc": "2026-11-12T05:20:11Z",
    "bar": true,
    "best_price": 0.5242,
@@ -158,6 +202,8 @@
    "other_side_now": 4539,
    "paper_only": true,
    "price": 0.5098,
+   "price_after_15m": 0.51,
+   "price_after_15m_book": "novig",
    "price_american": -104,
    "ref": {
     "line": 6.5,
@@ -170,6 +216,7 @@
    "side_label": "over 6.5 (6.5)",
    "side_raw": "OVER",
    "start_utc": "2026-11-12T17:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Carolina Hurricanes",
     "Seattle Kraken"
@@ -201,6 +248,8 @@
    "other_side_now": 2138,
    "paper_only": true,
    "price": 0.4608,
+   "price_after_15m": 0.46,
+   "price_after_15m_book": "novig",
    "price_american": 117,
    "ref": {
     "line": 0,
@@ -213,6 +262,7 @@
    "side_label": "St. Louis Blues",
    "side_raw": 0,
    "start_utc": "2026-11-13T02:00:00Z",
+   "still_actionable": true,
    "teams": [
     "St. Louis Blues",
     "Utah Mammoth"
@@ -244,6 +294,8 @@
    "other_side_now": 1785,
    "paper_only": true,
    "price": 0.5475,
+   "price_after_15m": 0.545,
+   "price_after_15m_book": "novig",
    "price_american": -121,
    "ref": {
     "line": 0,
@@ -256,6 +308,7 @@
    "side_label": "Utah Mammoth",
    "side_raw": 1,
    "start_utc": "2026-11-13T02:00:00Z",
+   "still_actionable": true,
    "teams": [
     "St. Louis Blues",
     "Utah Mammoth"
@@ -287,6 +340,8 @@
    "other_side_now": 4720,
    "paper_only": true,
    "price": 0.3226,
+   "price_after_15m": 0.32,
+   "price_after_15m_book": "novig",
    "price_american": 210,
    "ref": {
     "line": 0,
@@ -299,6 +354,7 @@
    "side_label": "Charlotte Hornets",
    "side_raw": 0,
    "start_utc": "2026-11-13T02:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Charlotte Hornets",
     "Phoenix Suns"
@@ -337,6 +393,8 @@
    "other_side_now": 8803,
    "paper_only": true,
    "price": 0.73,
+   "price_after_15m": 0.73,
+   "price_after_15m_book": "novig",
    "price_american": -270,
    "ref": {
     "market_id": "01a1cba2-f314-7381-bc87-2927f90869ac",
@@ -347,6 +405,7 @@
    "side_label": "CAR (0)",
    "side_raw": 0,
    "start_utc": "2026-11-12T17:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Carolina Hurricanes",
     "Seattle Kraken"
@@ -385,6 +444,8 @@
    "other_side_now": 35071,
    "paper_only": true,
    "price": 0.275,
+   "price_after_15m": 0.2743,
+   "price_after_15m_book": "prophetx",
    "price_american": 264,
    "ref": {
     "market_id": "01a1cba2-f314-7381-bc87-2927f90869ac",
@@ -395,6 +456,7 @@
    "side_label": "SEA (0)",
    "side_raw": 1,
    "start_utc": "2026-11-12T17:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Carolina Hurricanes",
     "Seattle Kraken"
@@ -520,9 +582,9 @@
     "volume_fp": 54.8
    },
    "ex_stats_close": {
-    "open_interest_fp": 104.27,
-    "volume_24h_fp": 67.27,
-    "volume_fp": 104.27
+    "open_interest_fp": 113.68,
+    "volume_24h_fp": 104.27,
+    "volume_fp": 113.68
    },
    "first_play": true,
    "game": "Charlotte vs Phoenix: Total Points",
@@ -573,9 +635,9 @@
     "volume_fp": 54.8
    },
    "ex_stats_close": {
-    "open_interest_fp": 104.27,
-    "volume_24h_fp": 67.27,
-    "volume_fp": 104.27
+    "open_interest_fp": 113.68,
+    "volume_24h_fp": 104.27,
+    "volume_fp": 113.68
    },
    "first_play": true,
    "game": "Charlotte vs Phoenix: Total Points",
@@ -590,7 +652,7 @@
    "other_side_now": 45736,
    "paper_only": true,
    "price": 0.51,
-   "price_after_15m": 0.5,
+   "price_after_15m": 0.505,
    "price_after_15m_book": "novig",
    "price_american": -104,
    "ref": {
@@ -602,7 +664,7 @@
    "side_label": "Over 214.5 points",
    "side_raw": "OVER",
    "start_utc": "2026-11-13T02:00:00Z",
-   "still_actionable": true,
+   "still_actionable": false,
    "teams": [
     "Charlotte",
     "Phoenix"
@@ -728,9 +790,9 @@
     "volume_fp": 38.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 71.6,
-    "volume_24h_fp": 53.0,
-    "volume_fp": 71.6
+    "open_interest_fp": 81.26,
+    "volume_24h_fp": 81.26,
+    "volume_fp": 81.26
    },
    "first_play": true,
    "game": "Charlotte vs Phoenix: Spread",
@@ -781,9 +843,9 @@
     "volume_fp": 38.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 71.6,
-    "volume_24h_fp": 53.0,
-    "volume_fp": 71.6
+    "open_interest_fp": 81.26,
+    "volume_24h_fp": 81.26,
+    "volume_fp": 81.26
    },
    "first_play": false,
    "game": "Charlotte vs Phoenix: Spread",
@@ -870,8 +932,8 @@
    "best_price": 0.5505,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5495,
-   "clv_cents": 0.4,
+   "close_price": 0.5475,
+   "clv_cents": 0.2,
    "date": "2026-11-12",
    "dir": "RAISE",
    "ex_stats": null,
@@ -1020,8 +1082,8 @@
    "best_price": 0.35,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.3472,
-   "clv_cents": -0.5,
+   "close_price": 0.3448,
+   "clv_cents": -0.7,
    "date": "2026-11-12",
    "dir": "DROP",
    "ex_stats": null,
@@ -1334,7 +1396,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 295.95,
-    "volume_24h_fp": 148.31,
+    "volume_24h_fp": 396.95,
     "volume_fp": 396.95
    },
    "first_play": true,
@@ -1387,7 +1449,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 295.95,
-    "volume_24h_fp": 148.31,
+    "volume_24h_fp": 396.95,
     "volume_fp": 396.95
    },
    "first_play": true,
@@ -1440,8 +1502,8 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 1179.04,
-    "volume_24h_fp": 1145.72,
-    "volume_fp": 1198.04
+    "volume_24h_fp": 1201.98,
+    "volume_fp": 1201.98
    },
    "first_play": false,
    "game": "Dallas vs Minnesota: Spread",
@@ -1493,8 +1555,8 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 1179.04,
-    "volume_24h_fp": 1145.72,
-    "volume_fp": 1198.04
+    "volume_24h_fp": 1201.98,
+    "volume_fp": 1201.98
    },
    "first_play": false,
    "game": "Dallas vs Minnesota: Spread",
@@ -1545,9 +1607,9 @@
     "volume_fp": 47123.44
    },
    "ex_stats_close": {
-    "open_interest_fp": 62413.15,
-    "volume_24h_fp": 51581.09,
-    "volume_fp": 78339.75
+    "open_interest_fp": 62969.69,
+    "volume_24h_fp": 69789.21,
+    "volume_fp": 78953.04000000001
    },
    "first_play": true,
    "game": "Toronto vs Philadelphia",
@@ -1699,8 +1761,8 @@
     "volume": 88753.0
    },
    "ex_stats_close": {
-    "openInterest": 71350.0,
-    "volume": 91350.0
+    "openInterest": 99921.0,
+    "volume": 119921.0
    },
    "first_play": false,
    "game": "Winnipeg Jets @ Dallas Stars",
@@ -1752,7 +1814,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 12507.31,
-    "volume_24h_fp": 13385.75,
+    "volume_24h_fp": 13584.75,
     "volume_fp": 13839.35
    },
    "first_play": false,
@@ -1896,9 +1958,9 @@
     "volume_fp": 20903.15
    },
    "ex_stats_close": {
-    "open_interest_fp": 64852.22,
-    "volume_24h_fp": 60907.5,
-    "volume_fp": 71147.85
+    "open_interest_fp": 65762.20999999999,
+    "volume_24h_fp": 66813.66,
+    "volume_fp": 72074.61
    },
    "first_play": true,
    "game": "Detroit vs Washington",
@@ -2051,9 +2113,9 @@
     "volume_fp": 20886.37
    },
    "ex_stats_close": {
-    "open_interest_fp": 64852.22,
-    "volume_24h_fp": 60907.5,
-    "volume_fp": 71147.85
+    "open_interest_fp": 65762.20999999999,
+    "volume_24h_fp": 66813.66,
+    "volume_fp": 72074.61
    },
    "first_play": true,
    "game": "Detroit vs Washington",
@@ -2491,9 +2553,9 @@
     "volume_fp": 5777.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 10009.470000000001,
-    "volume_24h_fp": 8499.68,
-    "volume_fp": 11328.83
+    "open_interest_fp": 10125.779999999999,
+    "volume_24h_fp": 10055.119999999999,
+    "volume_fp": 11445.14
    },
    "first_play": true,
    "game": "Charlotte vs Phoenix",
@@ -2544,9 +2606,9 @@
     "volume_fp": 42973.25
    },
    "ex_stats_close": {
-    "open_interest_fp": 52448.78,
-    "volume_24h_fp": 40088.21,
-    "volume_fp": 66596.9
+    "open_interest_fp": 53520.82,
+    "volume_24h_fp": 47580.04,
+    "volume_fp": 67668.94
    },
    "first_play": true,
    "game": "Dallas vs Minnesota",
@@ -2648,9 +2710,9 @@
     "volume_fp": 42881.67
    },
    "ex_stats_close": {
-    "open_interest_fp": 52448.78,
-    "volume_24h_fp": 40088.21,
-    "volume_fp": 66596.9
+    "open_interest_fp": 53520.82,
+    "volume_24h_fp": 47580.04,
+    "volume_fp": 67668.94
    },
    "first_play": true,
    "game": "Dallas vs Minnesota",
@@ -2899,8 +2961,8 @@
     "volume": 130248.0
    },
    "ex_stats_close": {
-    "openInterest": 788212.0,
-    "volume": 788212.0
+    "openInterest": 788312.0,
+    "volume": 788312.0
    },
    "first_play": false,
    "game": "Winnipeg Jets @ Dallas Stars",
@@ -2950,8 +3012,8 @@
     "volume": 40273.0
    },
    "ex_stats_close": {
-    "openInterest": 272799.0,
-    "volume": 272799.0
+    "openInterest": 281799.0,
+    "volume": 281799.0
    },
    "first_play": false,
    "game": "Washington Capitals @ New Jersey Devils",
@@ -3003,7 +3065,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 12507.31,
-    "volume_24h_fp": 13385.75,
+    "volume_24h_fp": 13584.75,
     "volume_fp": 13839.35
    },
    "first_play": false,
@@ -4191,8 +4253,8 @@
     "volume": 15628838.0
    },
    "ex_stats_close": {
-    "openInterest": 34028994.0,
-    "volume": 42984076.0
+    "openInterest": 34036305.0,
+    "volume": 42991387.0
    },
    "first_play": false,
    "game": "Washington Commanders @ New York Giants",
@@ -4642,6 +4704,7 @@
    "ex_stats": null,
    "first_play": false,
    "game": "Golden State Warriors at Houston Rockets",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 221.0, \"px_event\": 1704712707, \"px_market\": 225, \"side\": \"OVER\"}",
    "lead_min": 449,
    "league": "NBA",
@@ -4662,7 +4725,8 @@
     "px_market": 225,
     "side": "OVER"
    },
-   "result": null,
+   "result": "W",
+   "settled_utc": "2026-11-12T05:31:11Z",
    "side": "OVER",
    "side_label": "over 221 (221)",
    "side_raw": "OVER",
@@ -4672,7 +4736,7 @@
     "Golden State Warriors",
     "Houston Rockets"
    ],
-   "units_flat": null,
+   "units_flat": 0.99,
    "x": 7.9
   },
   {
@@ -4688,6 +4752,7 @@
    "ex_stats": null,
    "first_play": false,
    "game": "Golden State Warriors at Houston Rockets",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 221.0, \"px_event\": 1704712707, \"px_market\": 225, \"side\": \"UNDER\"}",
    "lead_min": 449,
    "league": "NBA",
@@ -4708,7 +4773,8 @@
     "px_market": 225,
     "side": "UNDER"
    },
-   "result": null,
+   "result": "L",
+   "settled_utc": "2026-11-12T05:31:11Z",
    "side": "UNDER",
    "side_label": "under 221 (221)",
    "side_raw": "UNDER",
@@ -4718,7 +4784,7 @@
     "Golden State Warriors",
     "Houston Rockets"
    ],
-   "units_flat": null,
+   "units_flat": -1.0,
    "x": 12.79
   },
   {
@@ -5662,6 +5728,7 @@
    },
    "first_play": false,
    "game": "Utah Mammoth @ Vegas Golden Knights",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1c886-c0bb-71d0-b293-91eb4d6ba05f\", \"outcome_id\": \"01a1c886-c0bb-71d0-b293-91f70b98abd8\"}",
    "lead_min": 520,
    "league": "NHL",
@@ -5680,7 +5747,8 @@
     "market_id": "01a1c886-c0bb-71d0-b293-91eb4d6ba05f",
     "outcome_id": "01a1c886-c0bb-71d0-b293-91f70b98abd8"
    },
-   "result": null,
+   "result": "W",
+   "settled_utc": "2026-11-12T05:31:11Z",
    "side": "Vegas Golden Knights",
    "side_label": "VGK -1.5 (-1.5)",
    "side_raw": 1,
@@ -5690,7 +5758,7 @@
     "Utah Mammoth",
     "Vegas Golden Knights"
    ],
-   "units_flat": null,
+   "units_flat": 2.08,
    "x": 0.44
   },
   {
@@ -6291,8 +6359,8 @@
    "best_price": 0.3044,
    "best_price_book": "kalshi",
    "book": "prophetx",
-   "close_price": 0.274,
-   "clv_cents": -2.9,
+   "close_price": 0.2703,
+   "clv_cents": -3.3,
    "date": "2026-11-12",
    "dir": "RAISE",
    "ex_stats": null,
@@ -6604,9 +6672,9 @@
     "volume_fp": 10.32
    },
    "ex_stats_close": {
-    "open_interest_fp": 14.42,
-    "volume_24h_fp": 14.42,
-    "volume_fp": 14.42
+    "open_interest_fp": 32.36,
+    "volume_24h_fp": 32.36,
+    "volume_fp": 32.36
    },
    "first_play": true,
    "game": "Detroit vs Florida: Total Goals",
@@ -7072,7 +7140,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 1364.6799999999998,
-    "volume_24h_fp": 820.1500000000001,
+    "volume_24h_fp": 1060.6200000000001,
     "volume_fp": 1691.26
    },
    "first_play": true,
@@ -7124,9 +7192,9 @@
     "volume_fp": 4644.47
    },
    "ex_stats_close": {
-    "open_interest_fp": 9739.05,
+    "open_interest_fp": 9740.62,
     "volume_24h_fp": 5956.66,
-    "volume_fp": 10483.57
+    "volume_fp": 10485.14
    },
    "first_play": false,
    "game": "Winnipeg vs Dallas",
@@ -7177,9 +7245,9 @@
     "volume_fp": 1505.26
    },
    "ex_stats_close": {
-    "open_interest_fp": 2119.14,
-    "volume_24h_fp": 825.79,
-    "volume_fp": 2464.09
+    "open_interest_fp": 2160.33,
+    "volume_24h_fp": 1008.02,
+    "volume_fp": 2505.28
    },
    "first_play": true,
    "game": "Buffalo vs Chicago",
@@ -7231,7 +7299,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 1970.77,
-    "volume_24h_fp": 1179.75,
+    "volume_24h_fp": 1379.8899999999999,
     "volume_fp": 2015.49
    },
    "first_play": false,
@@ -7284,7 +7352,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 8496.74,
-    "volume_24h_fp": 3971.2200000000003,
+    "volume_24h_fp": 4208.85,
     "volume_fp": 13621.740000000002
    },
    "first_play": false,
@@ -7337,7 +7405,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 4842.74,
-    "volume_24h_fp": 4367.4400000000005,
+    "volume_24h_fp": 4588.46,
     "volume_fp": 10510.85
    },
    "first_play": true,
@@ -7389,9 +7457,9 @@
     "volume_fp": 6836.700000000001
    },
    "ex_stats_close": {
-    "open_interest_fp": 12729.74,
-    "volume_24h_fp": 9089.83,
-    "volume_fp": 16914.09
+    "open_interest_fp": 12823.650000000001,
+    "volume_24h_fp": 11858.119999999999,
+    "volume_fp": 17008.0
    },
    "first_play": false,
    "game": "Carolina vs Seattle",
@@ -7586,6 +7654,7 @@
    "ex_stats": null,
    "first_play": true,
    "game": "Utah Mammoth at Vegas Golden Knights",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 6.5, \"px_event\": 1704712463, \"px_market\": 412, \"side\": \"OVER\"}",
    "lead_min": 619,
    "league": "NHL",
@@ -7606,7 +7675,8 @@
     "px_market": 412,
     "side": "OVER"
    },
-   "result": null,
+   "result": "W",
+   "settled_utc": "2026-11-12T05:31:11Z",
    "side": "OVER",
    "side_label": "over 6.5 (6.5)",
    "side_raw": "OVER",
@@ -7616,7 +7686,7 @@
     "Utah Mammoth",
     "Vegas Golden Knights"
    ],
-   "units_flat": null,
+   "units_flat": 1.04,
    "x": 0.3
   },
   {
@@ -7939,7 +8009,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 1105.02,
-    "volume_24h_fp": 1078.07,
+    "volume_24h_fp": 1087.37,
     "volume_fp": 1748.4
    },
    "first_play": true,
@@ -7992,7 +8062,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 1105.02,
-    "volume_24h_fp": 1078.07,
+    "volume_24h_fp": 1087.37,
     "volume_fp": 1748.4
    },
    "first_play": false,
@@ -8044,9 +8114,9 @@
     "volume_fp": 6802.65
    },
    "ex_stats_close": {
-    "open_interest_fp": 12729.74,
-    "volume_24h_fp": 9089.83,
-    "volume_fp": 16914.09
+    "open_interest_fp": 12823.650000000001,
+    "volume_24h_fp": 11858.119999999999,
+    "volume_fp": 17008.0
    },
    "first_play": true,
    "game": "Carolina vs Seattle",
@@ -8333,9 +8403,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 0.0,
+    "open_interest_fp": 8.81,
     "volume_24h_fp": 0.0,
-    "volume_fp": 0.0
+    "volume_fp": 8.81
    },
    "first_play": true,
    "game": "New York I vs Los Angeles: Total Goals",
@@ -8386,9 +8456,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 0.0,
+    "open_interest_fp": 8.81,
     "volume_24h_fp": 0.0,
-    "volume_fp": 0.0
+    "volume_fp": 8.81
    },
    "first_play": true,
    "game": "New York I vs Los Angeles: Total Goals",
@@ -8440,7 +8510,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 1003.78,
-    "volume_24h_fp": 887.92,
+    "volume_24h_fp": 949.39,
     "volume_fp": 1056.39
    },
    "first_play": false,
@@ -8632,9 +8702,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 0.0,
+    "open_interest_fp": 17.96,
     "volume_24h_fp": 0.0,
-    "volume_fp": 0.0
+    "volume_fp": 17.96
    },
    "first_play": true,
    "game": "Winnipeg vs Dallas: Total Goals",
@@ -8898,7 +8968,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 176.34,
-    "volume_24h_fp": 176.34,
+    "volume_24h_fp": 130.39,
     "volume_fp": 176.34
    },
    "first_play": true,
@@ -9004,7 +9074,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 709.44,
-    "volume_24h_fp": 727.06,
+    "volume_24h_fp": 742.44,
     "volume_fp": 742.44
    },
    "first_play": false,
@@ -9057,7 +9127,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 2950.6000000000004,
-    "volume_24h_fp": 864.09,
+    "volume_24h_fp": 874.34,
     "volume_fp": 3089.2700000000004
    },
    "first_play": true,
@@ -9110,7 +9180,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 4469.15,
-    "volume_24h_fp": 1802.71,
+    "volume_24h_fp": 2129.6,
     "volume_fp": 4715.82
    },
    "first_play": true,
@@ -9152,8 +9222,8 @@
    "best_price": 0.5673,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.55,
-   "clv_cents": 0.0,
+   "close_price": 0.54,
+   "clv_cents": -1.0,
    "date": "2026-11-12",
    "dir": "RAISE",
    "ex_stats": {
@@ -9163,7 +9233,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 4469.15,
-    "volume_24h_fp": 1802.71,
+    "volume_24h_fp": 2129.6,
     "volume_fp": 4715.82
    },
    "first_play": true,
@@ -9312,7 +9382,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 703.6,
-    "volume_24h_fp": 652.13,
+    "volume_24h_fp": 666.45,
     "volume_fp": 713.6
    },
    "first_play": false,
@@ -9681,7 +9751,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 5966.84,
-    "volume_24h_fp": 3921.99,
+    "volume_24h_fp": 4241.71,
     "volume_fp": 6092.82
    },
    "first_play": true,
@@ -10116,7 +10186,7 @@
    },
    "ex_stats_close": {
     "openInterest": 8205619.0,
-    "volume": 9181457.0
+    "volume": 9186969.0
    },
    "first_play": true,
    "game": "Washington Commanders @ New York Giants",
@@ -10167,7 +10237,7 @@
    },
    "ex_stats_close": {
     "openInterest": 8205619.0,
-    "volume": 9181457.0
+    "volume": 9186969.0
    },
    "first_play": true,
    "game": "Washington Commanders @ New York Giants",
@@ -10219,7 +10289,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 2193.37,
-    "volume_24h_fp": 1589.06,
+    "volume_24h_fp": 2028.96,
     "volume_fp": 2207.72
    },
    "first_play": true,
@@ -10608,9 +10678,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 0.0,
+    "open_interest_fp": 17.96,
     "volume_24h_fp": 0.0,
-    "volume_fp": 0.0
+    "volume_fp": 17.96
    },
    "first_play": true,
    "game": "Winnipeg vs Dallas: Total Goals",
@@ -10758,7 +10828,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 1364.6799999999998,
-    "volume_24h_fp": 820.1500000000001,
+    "volume_24h_fp": 1060.6200000000001,
     "volume_fp": 1691.26
    },
    "first_play": true,
@@ -10811,7 +10881,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 2193.37,
-    "volume_24h_fp": 1589.06,
+    "volume_24h_fp": 2028.96,
     "volume_fp": 2207.72
    },
    "first_play": false,
@@ -10864,7 +10934,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 1970.77,
-    "volume_24h_fp": 1179.75,
+    "volume_24h_fp": 1379.8899999999999,
     "volume_fp": 2015.49
    },
    "first_play": true,
@@ -10917,7 +10987,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 5966.84,
-    "volume_24h_fp": 3921.99,
+    "volume_24h_fp": 4241.71,
     "volume_fp": 6092.82
    },
    "first_play": true,
@@ -10970,7 +11040,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 4842.74,
-    "volume_24h_fp": 4367.4400000000005,
+    "volume_24h_fp": 4588.46,
     "volume_fp": 10510.85
    },
    "first_play": true,
@@ -11122,7 +11192,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 2950.6000000000004,
-    "volume_24h_fp": 864.09,
+    "volume_24h_fp": 874.34,
     "volume_fp": 3089.2700000000004
    },
    "first_play": true,
@@ -11174,9 +11244,9 @@
     "volume_fp": 4637.93
    },
    "ex_stats_close": {
-    "open_interest_fp": 9739.05,
+    "open_interest_fp": 9740.62,
     "volume_24h_fp": 5956.66,
-    "volume_fp": 10483.57
+    "volume_fp": 10485.14
    },
    "first_play": false,
    "game": "Winnipeg vs Dallas",
@@ -11227,9 +11297,9 @@
     "volume_fp": 1497.03
    },
    "ex_stats_close": {
-    "open_interest_fp": 2119.14,
-    "volume_24h_fp": 825.79,
-    "volume_fp": 2464.09
+    "open_interest_fp": 2160.33,
+    "volume_24h_fp": 1008.02,
+    "volume_fp": 2505.28
    },
    "first_play": true,
    "game": "Buffalo vs Chicago",
@@ -11281,7 +11351,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 8496.74,
-    "volume_24h_fp": 3971.2200000000003,
+    "volume_24h_fp": 4208.85,
     "volume_fp": 13621.740000000002
    },
    "first_play": false,
@@ -11388,6 +11458,7 @@
    },
    "first_play": false,
    "game": "Golden State Warriors @ Houston Rockets",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1c70e-e85e-7f40-9be6-6c73a09fd3cb\", \"outcome_id\": \"01a1c70e-e85e-7f40-9be6-6c9e2d5f9244\"}",
    "lead_min": 719,
    "league": "NBA",
@@ -11404,7 +11475,8 @@
     "market_id": "01a1c70e-e85e-7f40-9be6-6c73a09fd3cb",
     "outcome_id": "01a1c70e-e85e-7f40-9be6-6c9e2d5f9244"
    },
-   "result": null,
+   "result": "L",
+   "settled_utc": "2026-11-12T05:31:11Z",
    "side": "UNDER",
    "side_label": "Under 221.5 (221.5)",
    "side_raw": "UNDER",
@@ -11413,7 +11485,7 @@
     "Golden State Warriors",
     "Houston Rockets"
    ],
-   "units_flat": null,
+   "units_flat": -1.0,
    "x": 2.18
   },
   {
@@ -11436,6 +11508,7 @@
    },
    "first_play": false,
    "game": "Golden State Warriors @ Houston Rockets",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1c70e-e85e-7f40-9be6-6c73a09fd3cb\", \"outcome_id\": \"01a1c70e-e85e-7f40-9be6-6c8e7103a637\"}",
    "lead_min": 719,
    "league": "NBA",
@@ -11452,7 +11525,8 @@
     "market_id": "01a1c70e-e85e-7f40-9be6-6c73a09fd3cb",
     "outcome_id": "01a1c70e-e85e-7f40-9be6-6c8e7103a637"
    },
-   "result": null,
+   "result": "W",
+   "settled_utc": "2026-11-12T05:31:11Z",
    "side": "OVER",
    "side_label": "Over 221.5 (221.5)",
    "side_raw": "OVER",
@@ -11461,7 +11535,7 @@
     "Golden State Warriors",
     "Houston Rockets"
    ],
-   "units_flat": null,
+   "units_flat": 1.02,
    "x": 2.37
   },
   {
@@ -12035,9 +12109,9 @@
     "volume_fp": 10.32
    },
    "ex_stats_close": {
-    "open_interest_fp": 14.42,
-    "volume_24h_fp": 14.42,
-    "volume_fp": 14.42
+    "open_interest_fp": 32.36,
+    "volume_24h_fp": 32.36,
+    "volume_fp": 32.36
    },
    "first_play": true,
    "game": "Detroit vs Florida: Total Goals",
@@ -12142,7 +12216,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 176.34,
-    "volume_24h_fp": 176.34,
+    "volume_24h_fp": 130.39,
     "volume_fp": 176.34
    },
    "first_play": true,
@@ -12534,6 +12608,7 @@
    },
    "first_play": false,
    "game": "Golden State Warriors @ Houston Rockets",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1c70e-e85d-7f43-b2ff-62732115fa0c\", \"outcome_id\": \"01a1c70e-e85d-7f43-b2ff-628f5ab0e405\"}",
    "lead_min": 769,
    "league": "NBA",
@@ -12552,7 +12627,8 @@
     "market_id": "01a1c70e-e85d-7f43-b2ff-62732115fa0c",
     "outcome_id": "01a1c70e-e85d-7f43-b2ff-628f5ab0e405"
    },
-   "result": null,
+   "result": "W",
+   "settled_utc": "2026-11-12T05:31:11Z",
    "side": "Houston Rockets",
    "side_label": "HOU -6.5 (-6.5)",
    "side_raw": 1,
@@ -12562,7 +12638,7 @@
     "Golden State Warriors",
     "Houston Rockets"
    ],
-   "units_flat": null,
+   "units_flat": 1.06,
    "x": 2.12
   },
   {
@@ -12582,7 +12658,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 511.83,
-    "volume_24h_fp": 297.43,
+    "volume_24h_fp": 447.43,
     "volume_fp": 539.27
    },
    "first_play": true,
@@ -12677,8 +12753,8 @@
    "best_price": 0.5574,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.53,
-   "clv_cents": -1.0,
+   "close_price": 0.54,
+   "clv_cents": 0.0,
    "date": "2026-11-12",
    "dir": "RAISE",
    "ex_stats": {
@@ -12687,9 +12763,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 0.0,
+    "open_interest_fp": 17.96,
     "volume_24h_fp": 0.0,
-    "volume_fp": 0.0
+    "volume_fp": 17.96
    },
    "first_play": true,
    "game": "Winnipeg vs Dallas: Total Goals",
@@ -13183,6 +13259,7 @@
    },
    "first_play": false,
    "game": "Utah Mammoth @ Vegas Golden Knights",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1c886-c0bb-71d0-b293-91bc87c73273\", \"outcome_id\": \"01a1c886-c0bb-71d0-b293-91d53ccc5588\"}",
    "lead_min": 810,
    "league": "NHL",
@@ -13201,7 +13278,8 @@
     "market_id": "01a1c886-c0bb-71d0-b293-91bc87c73273",
     "outcome_id": "01a1c886-c0bb-71d0-b293-91d53ccc5588"
    },
-   "result": null,
+   "result": "L",
+   "settled_utc": "2026-11-12T05:31:11Z",
    "side": "UNDER",
    "side_label": "Under 6.5 (6.5)",
    "side_raw": "UNDER",
@@ -13211,7 +13289,7 @@
     "Utah Mammoth",
     "Vegas Golden Knights"
    ],
-   "units_flat": null,
+   "units_flat": -1.0,
    "x": 2.33
   },
   {
@@ -13234,6 +13312,7 @@
    },
    "first_play": false,
    "game": "Utah Mammoth @ Vegas Golden Knights",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1c886-c0bb-71d0-b293-91bc87c73273\", \"outcome_id\": \"01a1c886-c0bb-71d0-b293-91c9d5017b4c\"}",
    "lead_min": 810,
    "league": "NHL",
@@ -13252,7 +13331,8 @@
     "market_id": "01a1c886-c0bb-71d0-b293-91bc87c73273",
     "outcome_id": "01a1c886-c0bb-71d0-b293-91c9d5017b4c"
    },
-   "result": null,
+   "result": "W",
+   "settled_utc": "2026-11-12T05:31:11Z",
    "side": "OVER",
    "side_label": "Over 6.5 (6.5)",
    "side_raw": "OVER",
@@ -13262,7 +13342,7 @@
     "Utah Mammoth",
     "Vegas Golden Knights"
    ],
-   "units_flat": null,
+   "units_flat": 1.02,
    "x": 2.1
   },
   {
@@ -14239,6 +14319,7 @@
    "ex_stats": null,
    "first_play": false,
    "game": "Golden State Warriors at Houston Rockets",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 222.0, \"px_event\": 1704712707, \"px_market\": 225, \"side\": \"OVER\"}",
    "lead_min": 868,
    "league": "NBA",
@@ -14259,7 +14340,8 @@
     "px_market": 225,
     "side": "OVER"
    },
-   "result": null,
+   "result": "W",
+   "settled_utc": "2026-11-12T05:31:11Z",
    "side": "OVER",
    "side_label": "over 222 (222)",
    "side_raw": "OVER",
@@ -14269,7 +14351,7 @@
     "Golden State Warriors",
     "Houston Rockets"
    ],
-   "units_flat": null,
+   "units_flat": 0.95,
    "x": 0.43
   },
   {
@@ -14285,6 +14367,7 @@
    "ex_stats": null,
    "first_play": false,
    "game": "Golden State Warriors at Houston Rockets",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 222.0, \"px_event\": 1704712707, \"px_market\": 225, \"side\": \"UNDER\"}",
    "lead_min": 868,
    "league": "NBA",
@@ -14305,7 +14388,8 @@
     "px_market": 225,
     "side": "UNDER"
    },
-   "result": null,
+   "result": "L",
+   "settled_utc": "2026-11-12T05:31:11Z",
    "side": "UNDER",
    "side_label": "under 222 (222)",
    "side_raw": "UNDER",
@@ -14315,7 +14399,7 @@
     "Golden State Warriors",
     "Houston Rockets"
    ],
-   "units_flat": null,
+   "units_flat": -1.0,
    "x": 0.47
   },
   {
@@ -14570,6 +14654,7 @@
    "ex_stats": null,
    "first_play": false,
    "game": "Utah Mammoth at Vegas Golden Knights",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 6.5, \"px_event\": 1704712463, \"px_market\": 412, \"side\": \"OVER\"}",
    "lead_min": 879,
    "league": "NHL",
@@ -14590,7 +14675,8 @@
     "px_market": 412,
     "side": "OVER"
    },
-   "result": null,
+   "result": "W",
+   "settled_utc": "2026-11-12T05:31:11Z",
    "side": "OVER",
    "side_label": "over 6.5 (6.5)",
    "side_raw": "OVER",
@@ -14600,7 +14686,7 @@
     "Utah Mammoth",
     "Vegas Golden Knights"
    ],
-   "units_flat": null,
+   "units_flat": 1.04,
    "x": 2.92
   },
   {
@@ -14616,6 +14702,7 @@
    "ex_stats": null,
    "first_play": false,
    "game": "Utah Mammoth at Vegas Golden Knights",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 6.5, \"px_event\": 1704712463, \"px_market\": 412, \"side\": \"UNDER\"}",
    "lead_min": 879,
    "league": "NHL",
@@ -14636,7 +14723,8 @@
     "px_market": 412,
     "side": "UNDER"
    },
-   "result": null,
+   "result": "L",
+   "settled_utc": "2026-11-12T05:31:11Z",
    "side": "UNDER",
    "side_label": "under 6.5 (6.5)",
    "side_raw": "UNDER",
@@ -14646,7 +14734,7 @@
     "Utah Mammoth",
     "Vegas Golden Knights"
    ],
-   "units_flat": null,
+   "units_flat": -1.0,
    "x": 3.02
   },
   {
@@ -14867,6 +14955,7 @@
    },
    "first_play": false,
    "game": "Utah Mammoth @ Vegas Golden Knights",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1c886-c0bb-71d0-b293-91eb4d6ba05f\", \"outcome_id\": \"01a1c886-c0bb-71d0-b293-91f70b98abd8\"}",
    "lead_min": 879,
    "league": "NHL",
@@ -14885,7 +14974,8 @@
     "market_id": "01a1c886-c0bb-71d0-b293-91eb4d6ba05f",
     "outcome_id": "01a1c886-c0bb-71d0-b293-91f70b98abd8"
    },
-   "result": null,
+   "result": "W",
+   "settled_utc": "2026-11-12T05:31:11Z",
    "side": "Vegas Golden Knights",
    "side_label": "VGK -1.5 (-1.5)",
    "side_raw": 1,
@@ -14895,7 +14985,7 @@
     "Utah Mammoth",
     "Vegas Golden Knights"
    ],
-   "units_flat": null,
+   "units_flat": 2.03,
    "x": 2.87
   },
   {
@@ -15017,6 +15107,7 @@
    "ex_stats": null,
    "first_play": false,
    "game": "Utah Mammoth at Vegas Golden Knights",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 0, \"px_event\": 1704712463, \"px_market\": 406, \"side\": \"0\"}",
    "lead_min": 879,
    "league": "NHL",
@@ -15037,7 +15128,8 @@
     "px_market": 406,
     "side": "0"
    },
-   "result": null,
+   "result": "L",
+   "settled_utc": "2026-11-12T05:31:11Z",
    "side": "Utah Mammoth",
    "side_label": "Utah Mammoth",
    "side_raw": 0,
@@ -15047,7 +15139,7 @@
     "Utah Mammoth",
     "Vegas Golden Knights"
    ],
-   "units_flat": null,
+   "units_flat": -1.0,
    "x": 2.34
   },
   {
@@ -15063,6 +15155,7 @@
    "ex_stats": null,
    "first_play": false,
    "game": "Utah Mammoth at Vegas Golden Knights",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 0, \"px_event\": 1704712463, \"px_market\": 406, \"side\": \"1\"}",
    "lead_min": 879,
    "league": "NHL",
@@ -15083,7 +15176,8 @@
     "px_market": 406,
     "side": "1"
    },
-   "result": null,
+   "result": "W",
+   "settled_utc": "2026-11-12T05:31:11Z",
    "side": "Vegas Golden Knights",
    "side_label": "Vegas Golden Knights",
    "side_raw": 1,
@@ -15093,7 +15187,7 @@
     "Utah Mammoth",
     "Vegas Golden Knights"
    ],
-   "units_flat": null,
+   "units_flat": 0.83,
    "x": 2.65
   },
   {
@@ -15256,6 +15350,7 @@
    "ex_stats": null,
    "first_play": false,
    "game": "Golden State Warriors at Houston Rockets",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 222.0, \"px_event\": 1704712707, \"px_market\": 225, \"side\": \"OVER\"}",
    "lead_min": 889,
    "league": "NBA",
@@ -15276,7 +15371,8 @@
     "px_market": 225,
     "side": "OVER"
    },
-   "result": null,
+   "result": "W",
+   "settled_utc": "2026-11-12T05:31:11Z",
    "side": "OVER",
    "side_label": "over 222 (222)",
    "side_raw": "OVER",
@@ -15286,7 +15382,7 @@
     "Golden State Warriors",
     "Houston Rockets"
    ],
-   "units_flat": null,
+   "units_flat": 0.97,
    "x": 2.48
   },
   {
@@ -15302,6 +15398,7 @@
    "ex_stats": null,
    "first_play": false,
    "game": "Golden State Warriors at Houston Rockets",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 222.0, \"px_event\": 1704712707, \"px_market\": 225, \"side\": \"UNDER\"}",
    "lead_min": 889,
    "league": "NBA",
@@ -15322,7 +15419,8 @@
     "px_market": 225,
     "side": "UNDER"
    },
-   "result": null,
+   "result": "L",
+   "settled_utc": "2026-11-12T05:31:11Z",
    "side": "UNDER",
    "side_label": "under 222 (222)",
    "side_raw": "UNDER",
@@ -15332,7 +15430,7 @@
     "Golden State Warriors",
     "Houston Rockets"
    ],
-   "units_flat": null,
+   "units_flat": -1.0,
    "x": 2.29
   },
   {
@@ -16870,8 +16968,8 @@
    "best_price": 0.57,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.5516,
-   "clv_cents": -1.4,
+   "close_price": 0.5536,
+   "clv_cents": -1.2,
    "date": "2026-11-12",
    "dir": "DROP",
    "ex_stats": null,
@@ -17403,8 +17501,8 @@
    "best_price": 0.5474,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.53,
-   "clv_cents": 0.0,
+   "close_price": 0.54,
+   "clv_cents": 1.0,
    "date": "2026-11-12",
    "dir": "DROP",
    "ex_stats": {
@@ -17413,9 +17511,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 0.0,
+    "open_interest_fp": 17.96,
     "volume_24h_fp": 0.0,
-    "volume_fp": 0.0
+    "volume_fp": 17.96
    },
    "first_play": true,
    "game": "Winnipeg vs Dallas: Total Goals",
@@ -18036,6 +18134,7 @@
    },
    "first_play": false,
    "game": "Utah Mammoth @ Vegas Golden Knights",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1c886-c0bb-71d0-b293-91eb4d6ba05f\", \"outcome_id\": \"01a1c886-c0bb-71d0-b293-92096dce97be\"}",
    "lead_min": 1004,
    "league": "NHL",
@@ -18054,7 +18153,8 @@
     "market_id": "01a1c886-c0bb-71d0-b293-91eb4d6ba05f",
     "outcome_id": "01a1c886-c0bb-71d0-b293-92096dce97be"
    },
-   "result": null,
+   "result": "L",
+   "settled_utc": "2026-11-12T05:31:11Z",
    "side": "Utah Mammoth",
    "side_label": "UTA +1.5 (-1.5)",
    "side_raw": 0,
@@ -18064,7 +18164,7 @@
     "Utah Mammoth",
     "Vegas Golden Knights"
    ],
-   "units_flat": null,
+   "units_flat": -1.0,
    "x": 2.11
   },
   {
@@ -18737,7 +18837,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 511.83,
-    "volume_24h_fp": 297.43,
+    "volume_24h_fp": 447.43,
     "volume_fp": 539.27
    },
    "first_play": true,
@@ -18786,6 +18886,7 @@
    "ex_stats": null,
    "first_play": false,
    "game": "Golden State Warriors at Houston Rockets",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 222.5, \"px_event\": 1704712707, \"px_market\": 225, \"side\": \"OVER\"}",
    "lead_min": 1104,
    "league": "NBA",
@@ -18806,7 +18907,8 @@
     "px_market": 225,
     "side": "OVER"
    },
-   "result": null,
+   "result": "W",
+   "settled_utc": "2026-11-12T05:31:11Z",
    "side": "OVER",
    "side_label": "over 222.5 (222.5)",
    "side_raw": "OVER",
@@ -18816,7 +18918,7 @@
     "Golden State Warriors",
     "Houston Rockets"
    ],
-   "units_flat": null,
+   "units_flat": 0.98,
    "x": 7.51
   },
   {
@@ -18884,7 +18986,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 703.6,
-    "volume_24h_fp": 652.13,
+    "volume_24h_fp": 666.45,
     "volume_fp": 713.6
    },
    "first_play": true,
@@ -18990,7 +19092,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 176.34,
-    "volume_24h_fp": 176.34,
+    "volume_24h_fp": 130.39,
     "volume_fp": 176.34
    },
    "first_play": true,
@@ -19380,6 +19482,7 @@
    "ex_stats": null,
    "first_play": false,
    "game": "Golden State Warriors at Houston Rockets",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 222.5, \"px_event\": 1704712707, \"px_market\": 225, \"side\": \"UNDER\"}",
    "lead_min": 1134,
    "league": "NBA",
@@ -19400,7 +19503,8 @@
     "px_market": 225,
     "side": "UNDER"
    },
-   "result": null,
+   "result": "L",
+   "settled_utc": "2026-11-12T05:31:11Z",
    "side": "UNDER",
    "side_label": "under 222.5 (222.5)",
    "side_raw": "UNDER",
@@ -19410,7 +19514,7 @@
     "Golden State Warriors",
     "Houston Rockets"
    ],
-   "units_flat": null,
+   "units_flat": -1.0,
    "x": 2.07
   },
   {
@@ -19530,6 +19634,7 @@
    "ex_stats": null,
    "first_play": false,
    "game": "Golden State Warriors at Houston Rockets",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 6.0, \"px_event\": 1704712707, \"px_market\": 223, \"side\": \"0\"}",
    "lead_min": 1149,
    "league": "NBA",
@@ -19550,7 +19655,8 @@
     "px_market": 223,
     "side": "0"
    },
-   "result": null,
+   "result": "L",
+   "settled_utc": "2026-11-12T05:31:11Z",
    "side": "Golden State Warriors",
    "side_label": "Golden State Warriors +6 (+6)",
    "side_raw": 0,
@@ -19560,7 +19666,7 @@
     "Golden State Warriors",
     "Houston Rockets"
    ],
-   "units_flat": null,
+   "units_flat": -1.0,
    "x": 2.14
   },
   {
@@ -19576,6 +19682,7 @@
    "ex_stats": null,
    "first_play": false,
    "game": "Golden State Warriors at Houston Rockets",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 6.0, \"px_event\": 1704712707, \"px_market\": 223, \"side\": \"1\"}",
    "lead_min": 1149,
    "league": "NBA",
@@ -19596,7 +19703,8 @@
     "px_market": 223,
     "side": "1"
    },
-   "result": null,
+   "result": "W",
+   "settled_utc": "2026-11-12T05:31:11Z",
    "side": "Houston Rockets",
    "side_label": "Houston Rockets -6 (-6)",
    "side_raw": 1,
@@ -19606,7 +19714,7 @@
     "Golden State Warriors",
     "Houston Rockets"
    ],
-   "units_flat": null,
+   "units_flat": 0.88,
    "x": 2.44
   },
   {
@@ -19675,6 +19783,7 @@
    "ex_stats": null,
    "first_play": false,
    "game": "Golden State Warriors at Houston Rockets",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 223.0, \"px_event\": 1704712707, \"px_market\": 225, \"side\": \"OVER\"}",
    "lead_min": 1162,
    "league": "NBA",
@@ -19695,7 +19804,8 @@
     "px_market": 225,
     "side": "OVER"
    },
-   "result": null,
+   "result": "P",
+   "settled_utc": "2026-11-12T05:31:11Z",
    "side": "OVER",
    "side_label": "over 223 (223)",
    "side_raw": "OVER",
@@ -19705,7 +19815,7 @@
     "Golden State Warriors",
     "Houston Rockets"
    ],
-   "units_flat": null,
+   "units_flat": 0.0,
    "x": 3.08
   },
   {
@@ -19721,6 +19831,7 @@
    "ex_stats": null,
    "first_play": false,
    "game": "Golden State Warriors at Houston Rockets",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 223.0, \"px_event\": 1704712707, \"px_market\": 225, \"side\": \"UNDER\"}",
    "lead_min": 1162,
    "league": "NBA",
@@ -19741,7 +19852,8 @@
     "px_market": 225,
     "side": "UNDER"
    },
-   "result": null,
+   "result": "P",
+   "settled_utc": "2026-11-12T05:31:11Z",
    "side": "UNDER",
    "side_label": "under 223 (223)",
    "side_raw": "UNDER",
@@ -19751,7 +19863,7 @@
     "Golden State Warriors",
     "Houston Rockets"
    ],
-   "units_flat": null,
+   "units_flat": 0.0,
    "x": 5.57
   },
   {
@@ -21258,6 +21370,7 @@
    "ex_stats": null,
    "first_play": true,
    "game": "Golden State Warriors at Houston Rockets",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 6.5, \"px_event\": 1704712707, \"px_market\": 223, \"side\": \"0\"}",
    "lead_min": 1260,
    "league": "NBA",
@@ -21278,7 +21391,8 @@
     "px_market": 223,
     "side": "0"
    },
-   "result": null,
+   "result": "L",
+   "settled_utc": "2026-11-12T05:31:11Z",
    "side": "Golden State Warriors",
    "side_label": "Golden State Warriors +6.5 (+6.5)",
    "side_raw": 0,
@@ -21288,7 +21402,7 @@
     "Golden State Warriors",
     "Houston Rockets"
    ],
-   "units_flat": null,
+   "units_flat": -1.0,
    "x": 0.24
   },
   {
@@ -21564,6 +21678,7 @@
    "ex_stats": null,
    "first_play": false,
    "game": "Golden State Warriors at Houston Rockets",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 6.5, \"px_event\": 1704712707, \"px_market\": 223, \"side\": \"0\"}",
    "lead_min": 1269,
    "league": "NBA",
@@ -21584,7 +21699,8 @@
     "px_market": 223,
     "side": "0"
    },
-   "result": null,
+   "result": "L",
+   "settled_utc": "2026-11-12T05:31:11Z",
    "side": "Golden State Warriors",
    "side_label": "Golden State Warriors +6.5 (+6.5)",
    "side_raw": 0,
@@ -21594,7 +21710,7 @@
     "Golden State Warriors",
     "Houston Rockets"
    ],
-   "units_flat": null,
+   "units_flat": -1.0,
    "x": 6.24
   },
   {
@@ -21610,6 +21726,7 @@
    "ex_stats": null,
    "first_play": false,
    "game": "Golden State Warriors at Houston Rockets",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 6.5, \"px_event\": 1704712707, \"px_market\": 223, \"side\": \"1\"}",
    "lead_min": 1269,
    "league": "NBA",
@@ -21630,7 +21747,8 @@
     "px_market": 223,
     "side": "1"
    },
-   "result": null,
+   "result": "W",
+   "settled_utc": "2026-11-12T05:31:11Z",
    "side": "Houston Rockets",
    "side_label": "Houston Rockets -6.5 (-6.5)",
    "side_raw": 1,
@@ -21640,7 +21758,7 @@
     "Golden State Warriors",
     "Houston Rockets"
    ],
-   "units_flat": null,
+   "units_flat": 1.02,
    "x": 12.33
   },
   {
@@ -22768,6 +22886,7 @@
    "ex_stats": null,
    "first_play": true,
    "game": "Golden State Warriors at Houston Rockets",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 222.5, \"px_event\": 1704712707, \"px_market\": 225, \"side\": \"OVER\"}",
    "lead_min": 1379,
    "league": "NBA",
@@ -22788,7 +22907,8 @@
     "px_market": 225,
     "side": "OVER"
    },
-   "result": null,
+   "result": "W",
+   "settled_utc": "2026-11-12T05:31:11Z",
    "side": "OVER",
    "side_label": "over 222.5 (222.5)",
    "side_raw": "OVER",
@@ -22798,7 +22918,7 @@
     "Golden State Warriors",
     "Houston Rockets"
    ],
-   "units_flat": null,
+   "units_flat": 0.96,
    "x": 0.43
   },
   {
@@ -22814,6 +22934,7 @@
    "ex_stats": null,
    "first_play": true,
    "game": "Golden State Warriors at Houston Rockets",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 222.5, \"px_event\": 1704712707, \"px_market\": 225, \"side\": \"UNDER\"}",
    "lead_min": 1379,
    "league": "NBA",
@@ -22834,7 +22955,8 @@
     "px_market": 225,
     "side": "UNDER"
    },
-   "result": null,
+   "result": "L",
+   "settled_utc": "2026-11-12T05:31:11Z",
    "side": "UNDER",
    "side_label": "under 222.5 (222.5)",
    "side_raw": "UNDER",
@@ -22844,7 +22966,7 @@
     "Golden State Warriors",
     "Houston Rockets"
    ],
-   "units_flat": null,
+   "units_flat": -1.0,
    "x": 0.43
   },
   {
@@ -23529,6 +23651,7 @@
    },
    "first_play": true,
    "game": "Golden State Warriors @ Houston Rockets",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1c70e-e85e-7f40-9be6-6b80f4fa685c\", \"outcome_id\": \"01a1c70e-e85e-7f40-9be6-6b9eec7246ab\"}",
    "lead_min": 1438,
    "league": "NBA",
@@ -23547,7 +23670,8 @@
     "market_id": "01a1c70e-e85e-7f40-9be6-6b80f4fa685c",
     "outcome_id": "01a1c70e-e85e-7f40-9be6-6b9eec7246ab"
    },
-   "result": null,
+   "result": "W",
+   "settled_utc": "2026-11-12T05:31:11Z",
    "side": "OVER",
    "side_label": "Over 222.5 (222.5)",
    "side_raw": "OVER",
@@ -23557,7 +23681,7 @@
     "Golden State Warriors",
     "Houston Rockets"
    ],
-   "units_flat": null,
+   "units_flat": 0.96,
    "x": 6.66
   },
   {
@@ -23628,6 +23752,7 @@
    "ex_stats": null,
    "first_play": false,
    "game": "Golden State Warriors at Houston Rockets",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 0, \"px_event\": 1704712707, \"px_market\": 219, \"side\": \"0\"}",
    "lead_min": 1438,
    "league": "NBA",
@@ -23648,7 +23773,8 @@
     "px_market": 219,
     "side": "0"
    },
-   "result": null,
+   "result": "L",
+   "settled_utc": "2026-11-12T05:31:11Z",
    "side": "Golden State Warriors",
    "side_label": "Golden State Warriors",
    "side_raw": 0,
@@ -23658,7 +23784,7 @@
     "Golden State Warriors",
     "Houston Rockets"
    ],
-   "units_flat": null,
+   "units_flat": -1.0,
    "x": 2.84
   },
   {
@@ -23674,6 +23800,7 @@
    "ex_stats": null,
    "first_play": false,
    "game": "Golden State Warriors at Houston Rockets",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 0, \"px_event\": 1704712707, \"px_market\": 219, \"side\": \"1\"}",
    "lead_min": 1438,
    "league": "NBA",
@@ -23694,7 +23821,8 @@
     "px_market": 219,
     "side": "1"
    },
-   "result": null,
+   "result": "W",
+   "settled_utc": "2026-11-12T05:31:11Z",
    "side": "Houston Rockets",
    "side_label": "Houston Rockets",
    "side_raw": 1,
@@ -23704,7 +23832,7 @@
     "Golden State Warriors",
     "Houston Rockets"
    ],
-   "units_flat": null,
+   "units_flat": 0.52,
    "x": 2.78
   },
   {
@@ -23728,6 +23856,7 @@
    },
    "first_play": false,
    "game": "Golden State Warriors @ Houston Rockets",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1c78f-60be-7592-bb1a-b8d7eac5bb09\", \"outcome_id\": \"01a1c78f-60be-7592-bb1a-b8f2948e03db\"}",
    "lead_min": 1438,
    "league": "NBA",
@@ -23746,7 +23875,8 @@
     "market_id": "01a1c78f-60be-7592-bb1a-b8d7eac5bb09",
     "outcome_id": "01a1c78f-60be-7592-bb1a-b8f2948e03db"
    },
-   "result": null,
+   "result": "L",
+   "settled_utc": "2026-11-12T05:31:11Z",
    "side": "Golden State Warriors",
    "side_label": "GSW (0)",
    "side_raw": 0,
@@ -23756,7 +23886,7 @@
     "Golden State Warriors",
     "Houston Rockets"
    ],
-   "units_flat": null,
+   "units_flat": -1.0,
    "x": 3.72
   },
   {
@@ -23780,6 +23910,7 @@
    },
    "first_play": false,
    "game": "Golden State Warriors @ Houston Rockets",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1c78f-60be-7592-bb1a-b8d7eac5bb09\", \"outcome_id\": \"01a1c78f-60be-7592-bb1a-b8e7c2798774\"}",
    "lead_min": 1438,
    "league": "NBA",
@@ -23798,7 +23929,8 @@
     "market_id": "01a1c78f-60be-7592-bb1a-b8d7eac5bb09",
     "outcome_id": "01a1c78f-60be-7592-bb1a-b8e7c2798774"
    },
-   "result": null,
+   "result": "W",
+   "settled_utc": "2026-11-12T05:31:11Z",
    "side": "Houston Rockets",
    "side_label": "HOU (0)",
    "side_raw": 1,
@@ -23808,7 +23940,7 @@
     "Golden State Warriors",
     "Houston Rockets"
    ],
-   "units_flat": null,
+   "units_flat": 0.52,
    "x": 2.53
   },
   {
@@ -24848,6 +24980,7 @@
    "ex_stats": null,
    "first_play": true,
    "game": "Golden State Warriors at Houston Rockets",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 5.5, \"px_event\": 1704712707, \"px_market\": 223, \"side\": \"0\"}",
    "lead_min": 1488,
    "league": "NBA",
@@ -24868,7 +25001,8 @@
     "px_market": 223,
     "side": "0"
    },
-   "result": null,
+   "result": "L",
+   "settled_utc": "2026-11-12T05:31:11Z",
    "side": "Golden State Warriors",
    "side_label": "Golden State Warriors +5.5 (+5.5)",
    "side_raw": 0,
@@ -24878,7 +25012,7 @@
     "Golden State Warriors",
     "Houston Rockets"
    ],
-   "units_flat": null,
+   "units_flat": -1.0,
    "x": 4.63
   },
   {
@@ -24894,6 +25028,7 @@
    "ex_stats": null,
    "first_play": true,
    "game": "Golden State Warriors at Houston Rockets",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 5.5, \"px_event\": 1704712707, \"px_market\": 223, \"side\": \"1\"}",
    "lead_min": 1488,
    "league": "NBA",
@@ -24914,7 +25049,8 @@
     "px_market": 223,
     "side": "1"
    },
-   "result": null,
+   "result": "W",
+   "settled_utc": "2026-11-12T05:31:11Z",
    "side": "Houston Rockets",
    "side_label": "Houston Rockets -5.5 (-5.5)",
    "side_raw": 1,
@@ -24924,7 +25060,7 @@
     "Golden State Warriors",
     "Houston Rockets"
    ],
-   "units_flat": null,
+   "units_flat": 0.91,
    "x": 9.0
   },
   {
@@ -25022,7 +25158,7 @@
     "market_ticker": "KXNHLGAME-26NOV11UTAVGK-VGK"
    },
    "result": "W",
-   "settled_utc": "2026-11-12T05:28:35Z",
+   "settled_utc": "2026-11-12T05:31:11Z",
    "side": "Vegas",
    "side_label": "Vegas",
    "side_raw": 1,
@@ -25240,7 +25376,7 @@
     "market_ticker": "KXNHLGAME-26NOV11UTAVGK-UTA"
    },
    "result": "L",
-   "settled_utc": "2026-11-12T05:28:35Z",
+   "settled_utc": "2026-11-12T05:31:11Z",
    "side": "Utah",
    "side_label": "Utah",
    "side_raw": 0,
@@ -25542,6 +25678,7 @@
    },
    "first_play": true,
    "game": "Golden State Warriors @ Houston Rockets",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1c70e-e85e-7f40-9be6-6b80f4fa685c\", \"outcome_id\": \"01a1c70e-e85e-7f40-9be6-6ba7692d61c1\"}",
    "lead_min": 1578,
    "league": "NBA",
@@ -25560,7 +25697,8 @@
     "market_id": "01a1c70e-e85e-7f40-9be6-6b80f4fa685c",
     "outcome_id": "01a1c70e-e85e-7f40-9be6-6ba7692d61c1"
    },
-   "result": null,
+   "result": "L",
+   "settled_utc": "2026-11-12T05:31:11Z",
    "side": "UNDER",
    "side_label": "Under 222.5 (222.5)",
    "side_raw": "UNDER",
@@ -25570,7 +25708,7 @@
     "Golden State Warriors",
     "Houston Rockets"
    ],
-   "units_flat": null,
+   "units_flat": -1.0,
    "x": 125.78
   },
   {
@@ -27594,7 +27732,7 @@
     "market_ticker": "KXNHLSPREAD-26NOV11UTAVGK-VGK2"
    },
    "result": "W",
-   "settled_utc": "2026-11-12T05:28:35Z",
+   "settled_utc": "2026-11-12T05:31:11Z",
    "side": "Vegas",
    "side_label": "Vegas wins by over 1.5 goals",
    "side_raw": 1,
@@ -27649,7 +27787,7 @@
     "market_ticker": "KXNHLGAME-26NOV11UTAVGK-UTA"
    },
    "result": "L",
-   "settled_utc": "2026-11-12T05:28:35Z",
+   "settled_utc": "2026-11-12T05:31:11Z",
    "side": "Utah",
    "side_label": "Utah",
    "side_raw": 0,
@@ -27704,7 +27842,7 @@
     "market_ticker": "KXNHLGAME-26NOV11UTAVGK-VGK"
    },
    "result": "W",
-   "settled_utc": "2026-11-12T05:28:35Z",
+   "settled_utc": "2026-11-12T05:31:11Z",
    "side": "Vegas",
    "side_label": "Vegas",
    "side_raw": 1,
@@ -29460,7 +29598,7 @@
     "market_ticker": "KXNHLSPREAD-26NOV11UTAVGK-VGK2"
    },
    "result": "L",
-   "settled_utc": "2026-11-12T05:28:35Z",
+   "settled_utc": "2026-11-12T05:31:11Z",
    "side": "Utah",
    "side_label": "NOT Vegas wins by over 1.5 goals",
    "side_raw": 0,
@@ -30145,7 +30283,7 @@
     "market_ticker": "KXNHLTOTAL-26NOV11UTAVGK-7"
    },
    "result": "L",
-   "settled_utc": "2026-11-12T05:28:35Z",
+   "settled_utc": "2026-11-12T05:31:11Z",
    "side": "UNDER",
    "side_label": "NOT Over 6.5 goals scored",
    "side_raw": "UNDER",
@@ -31842,7 +31980,7 @@
     "market_ticker": "KXNHLTOTAL-26NOV11UTAVGK-7"
    },
    "result": "W",
-   "settled_utc": "2026-11-12T05:28:35Z",
+   "settled_utc": "2026-11-12T05:31:11Z",
    "side": "OVER",
    "side_label": "Over 6.5 goals scored",
    "side_raw": "OVER",
