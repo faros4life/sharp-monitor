@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 12, 12:00 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 7.
+Updated Thu Nov 12, 12:10 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 5.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 225-126 (-13.97u flat) | rule met: 45-36
+**Record:** 225-128 (-15.97u flat) | rule met: 45-36
 
-**Fade (paper, betting against the print):** 101-190 (+5.24u flat, after fees)
+**Fade (paper, betting against the print):** 103-190 (+11.88u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -24,9 +24,9 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 11 4:11AM | TENNIS | Kecmanovic vs Rune | moneyline: Rune | kalshi | $53k | -245 |  |  | +1.0c |  | W |
 | Nov 11 2:43AM | NCAAB | Southern Indiana vs IU Indy | moneyline: IU Indy | kalshi | $148k | -270 |  |  | +4.0c |  | W |
 | Nov 11 2:43AM | NCAAB | USC vs California | moneyline: USC | kalshi | $220k | -335 |  |  | -2.0c |  | pending |
-| Nov 11 2:43AM | NCAAB | Pacific vs Long Beach St. | moneyline: Pacific | kalshi | $177k | -233 |  |  | -2.0c |  | pending |
+| Nov 11 2:43AM | NCAAB | Pacific vs Long Beach St. | moneyline: Pacific | kalshi | $177k | -233 |  |  | -2.0c |  | L |
 | Nov 11 2:43AM | NCAAB | UMass Lowell vs UMass | moneyline: UMass | kalshi | $89k | -567 |  |  | -23.0c | yes | W |
-| Nov 11 2:43AM | NCAAB | Chicago St. vs California Baptist | moneyline: California Baptist | kalshi | $222k | -525 |  |  | +3.0c |  | pending |
+| Nov 11 2:43AM | NCAAB | Chicago St. vs California Baptist | moneyline: California Baptist | kalshi | $222k | -525 |  |  | +3.0c |  | L |
 | Nov 11 2:43AM | TENNIS | Gojo vs Humbert | moneyline: Humbert | kalshi | $30k | -203 |  |  | -3.0c |  | W |
 | Nov 11 2:22AM | NCAAB | Stony Brook vs Princeton | moneyline: Princeton | kalshi | $25k | -203 |  |  | -1.0c |  | W |
 | Nov 11 2:22AM | NCAAB | Marquette vs Michigan | moneyline: Michigan | kalshi | $29k | -163 |  |  | -2.0c |  | W |
