@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 12, 1:31 AM ET. This run: 8 new, 0 not confirmed, 0 pending. Open alerts: 15.
+Updated Thu Nov 12, 1:42 AM ET. This run: 5 new, 0 not confirmed, 0 pending. Open alerts: 14.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,17 +10,16 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 12 1:31AM | NCAAB | Western Michigan vs Purdue Fort Wayne | moneyline: Western Michigan | kalshi | $27k | -144 |  |  | +0.0c |  | pending |
-| Nov 12 1:31AM | NCAAB | West Florida vs Alabama A&M | moneyline: Alabama A&M | kalshi | $51k | -300 |  |  | +0.0c |  | pending |
-| Nov 12 1:31AM | NCAAB | UC Riverside vs San Jose St. | moneyline: San Jose St. | kalshi | $43k | -285 |  |  | +0.0c |  | pending |
-| Nov 12 1:31AM | NCAAB | Richmond vs Southern Illinois | moneyline: Richmond | kalshi | $35k | -156 |  |  | +0.0c |  | pending |
-| Nov 12 1:31AM | NCAAB | Oklahoma St. vs Texas A&M | moneyline: Texas A&M | kalshi | $58k | -285 |  |  | +0.0c |  | pending |
-| Nov 12 1:31AM | NCAAB | New Mexico St. vs UTEP | moneyline: UTEP | kalshi | $40k | -194 |  |  | +0.0c |  | pending |
-| Nov 12 1:31AM | NCAAB | Morgan St. vs UMBC | moneyline: UMBC | kalshi | $39k | -257 |  |  | +0.0c |  | pending |
-| Nov 12 1:31AM | NCAAB | Central Connecticut St. vs Sacred Heart | moneyline: Sacred Heart | kalshi | $31k | -203 |  |  | +0.0c |  | pending |
-| Nov 12 1:11AM | NCAAB | Stetson vs Howard | moneyline: Howard | kalshi | $150k | -525 |  |  | +0.0c |  | pending |
-| Nov 12 1:11AM | NCAAB | Cal State Bakersfield vs Western Illinois | moneyline: Cal State Bakersfield | kalshi | $169k | -376 |  |  | +0.0c |  | pending |
-| Nov 12 1:11AM | NCAAB | Coppin St. vs Bradley | moneyline: Bradley | kalshi | $173k | -426 |  |  | +0.0c |  | pending |
+| Nov 12 1:42AM | NCAAB | West Florida vs Alabama A&M | moneyline: Alabama A&M | kalshi | $34k | -300 |  |  | +0.0c |  | pending |
+| Nov 12 1:42AM | NCAAB | UC Riverside vs San Jose St. | moneyline: San Jose St. | kalshi | $35k | -285 |  |  | +0.0c |  | pending |
+| Nov 12 1:42AM | NCAAB | Richmond vs Southern Illinois | moneyline: Richmond | kalshi | $34k | -156 |  |  | +0.0c |  | pending |
+| Nov 12 1:42AM | NCAAB | Oklahoma St. vs Texas A&M | moneyline: Texas A&M | kalshi | $42k | -285 |  |  | +0.0c |  | pending |
+| Nov 12 1:42AM | NCAAB | New Mexico St. vs UTEP | moneyline: UTEP | kalshi | $39k | -194 |  |  | +0.0c |  | pending |
+| Nov 12 1:21AM | NCAAB | Stetson vs Howard | moneyline: Howard | kalshi | $188k | -525 |  |  | +0.0c |  | pending |
+| Nov 12 1:21AM | NCAAB | Morgan St. vs UMBC | moneyline: UMBC | kalshi | $169k | -257 |  |  | +0.0c |  | pending |
+| Nov 12 1:21AM | NCAAB | Cal State Bakersfield vs Western Illinois | moneyline: Cal State Bakersfield | kalshi | $197k | -376 |  |  | +0.0c |  | pending |
+| Nov 12 1:21AM | NCAAB | Coppin St. vs Bradley | moneyline: Bradley | kalshi | $228k | -426 |  |  | +0.0c |  | pending |
+| Nov 12 1:21AM | NCAAB | Central Connecticut St. vs Sacred Heart | moneyline: Sacred Heart | kalshi | $152k | -203 |  |  | +0.0c |  | pending |
 | Nov 11 10:53PM | TENNIS | Kostyuk vs Gauff | moneyline: Gauff | kalshi | $75k | -270 |  |  | +0.0c |  | pending |
 | Nov 11 5:31PM | NCAAB | Charleston vs Temple | moneyline: Charleston | kalshi | $25k | -117 |  |  | -1.0c | yes | W |
 | Nov 11 2:48PM | TENNIS | Michelsen vs Tabilo | moneyline: Michelsen | kalshi | $60k | -300 |  |  | +3.0c |  | pending |
@@ -210,3 +209,4 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 31 8:30AM | TENNIS | Sonego vs Munar | moneyline: Munar | kalshi | $34k | -150 |  |  | +0.0c |  | L |
 | Oct 31 8:20AM | TENNIS | Gaston vs Kopriva | moneyline: Kopriva | kalshi | $48k | -203 |  |  | -1.0c |  | W |
 | Oct 31 8:16AM | TENNIS | Fernandez vs Shnaider | moneyline: Shnaider | kalshi | $27k | -144 |  |  | +3.0c |  | W |
+| Oct 31 8:16AM | TENNIS | Vallejo vs Dimitrov | moneyline: Vallejo | kalshi | $26k | +108 |  |  | +1.0c |  | W |
