@@ -11,6 +11,10 @@ name: positions-probe
 
 on:
   workflow_dispatch:
+    inputs:
+      mode:
+        description: "positions = time the four position readers. novig = READ-ONLY probe of the Novig home-runner credential, reachability and result file (dispatches nothing)."
+        default: "positions"
 
 concurrency:
   group: positions-probe
@@ -48,4 +52,10 @@ jobs:
           # Needed for the strike-identity cache, so the probe measures the REAL path with its
           # cache hits rather than an artificially cold walk.
           REGISTRY_TOKEN: ${{ secrets.REGISTRY_TOKEN }}
-        run: python -u positions_probe.py
+          NOVIG_DISPATCH_TOKEN: ${{ secrets.NOVIG_DISPATCH_TOKEN }}
+        run: |
+          if [ "${{ inputs.mode }}" = "novig" ]; then
+            python -u novig_runner_probe.py
+          else
+            python -u positions_probe.py
+          fi

@@ -4980,8 +4980,22 @@ def main():
     body += ["LEDGER (machine-readable, one row per play; latency = decision time minus first alert time)",
              json.dumps(_lrows, separators=(",", ":"))]
     first = ", ".join(short(r) for r in places[:3]) + ("..." if len(places) > 3 else "")
-    nplaced = sum(1 for r in golive if (r["live"].get("order") or {}).get("status") == "placed")
-    send((f"Bets LIVE: {nplaced} placed, " if px_live.LIVE else "Bets dry run: ") + f"{len(golive)} would go live, {nw} would bet" + (f" ({first})" if places else "") + (f", {len(helds)} held" if helds else "")
+    # Nov 12 (Peter): DISPATCHED must not be reported as PLACED before the venue confirms. A Novig
+    # order is recorded status "placed" the moment the home runner ACCEPTS the dispatch, with
+    # venue_order_id None and fills_read False - the venue id only arrives later, from a runner
+    # result row. Counting that as "placed" in the subject overstated what the venue had done.
+    #
+    # The STATUS STRING IS DELIBERATELY UNCHANGED. bot_orders(), the daily stop, the lane limits and
+    # the duplicate blocking all key on status == "placed", and a dispatched order's money IS at
+    # risk, so recording it any other way would under-count exposure - fail-OPEN on the one guard
+    # that caps a losing day. This is a REPORTING split only: the same rows, counted separately.
+    _is_placed = lambda r: (r["live"].get("order") or {}).get("status") == "placed"
+    _awaiting = lambda r: ((o_ := (r["live"].get("order") or {})).get("sent_to_runner")
+                           and not o_.get("venue_order_id"))
+    ndispatched = sum(1 for r in golive if _is_placed(r) and _awaiting(r))
+    nplaced = sum(1 for r in golive if _is_placed(r) and not _awaiting(r))
+    send((f"Bets LIVE: {nplaced} placed" + (f", {ndispatched} dispatched (awaiting Novig confirmation)"
+                                            if ndispatched else "") + ", " if px_live.LIVE else "Bets dry run: ") + f"{len(golive)} would go live, {nw} would bet" + (f" ({first})" if places else "") + (f", {len(helds)} held" if helds else "")
          + f", {len(skips)} skipped",
          "\n".join(body))
     print(f"Dry-run email sent: {len(golive)} would go live, {nw} would place, {len(helds)} held, {len(skips)} skipped.")   # counts only
