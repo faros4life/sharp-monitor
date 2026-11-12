@@ -29,6 +29,7 @@ concurrency:
 
 permissions:
   contents: read
+  actions: read     # Nov 12: the live health page reads this repo's own workflow run history
   pages: write
   id-token: write
 
@@ -48,6 +49,11 @@ jobs:
           python-version: "3.12"
       - name: Build the board
         env:
+          # Nov 12: live_plays_card() reads ledger rows from the private store before Gmail. This
+          # is the job that publishes the page every 10 minutes, so without this token
+          # registry.enabled() is False HERE and the card falls back to the IMAP read that printed
+          # "Ledger unreadable". Read-only: the card renders rows, it never writes.
+          REGISTRY_TOKEN: ${{ secrets.REGISTRY_TOKEN }}
           GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
         run: python -u board_build.py
@@ -55,6 +61,15 @@ jobs:
         run: if [ -f tracker/index.html ]; then mkdir -p site/tracker && cp tracker/index.html site/tracker/index.html; else echo 'tracker page not built yet'; fi
       - name: Odds screen page
         run: mkdir -p site/odds && cp odds/index.html site/odds/index.html
+      # Nov 12 (Peter: "i want to see it at alltimes is everything running"). Reads only this
+      # repo's own Actions history - no venue calls, no Gmail, no registry, no orders - so it can
+      # never be the thing that breaks a betting run. continue-on-error so a health page failure
+      # can never stop the board from publishing.
+      - name: Live health page
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python -u health_build.py
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
