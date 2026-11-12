@@ -79,6 +79,8 @@
    "norm_ready_books": 1,
    "paper_only": false,
    "price": 0.5,
+   "price_after_15m": 0.5175,
+   "price_after_15m_book": "kalshi",
    "price_american": -100,
    "price_rule": "ok",
    "price_when_first_seen": 0.5,
@@ -100,6 +102,7 @@
    "size_x": 1.31,
    "start_source": "kalshi",
    "start_utc": "2026-11-13T05:00:00Z",
+   "still_actionable": true,
    "surge_books": [],
    "teams": [
     "Louisiana",
@@ -160,9 +163,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 7507.200000000001,
+    "open_interest_fp": 7957.51,
     "volume_24h_fp": 3177.04,
-    "volume_fp": 12547.58
+    "volume_fp": 12997.89
    },
    "ex_stats_first": {
     "open_interest_fp": 7502.72,
@@ -222,6 +225,8 @@
    "norm_ready_books": 3,
    "paper_only": false,
    "price": 0.53,
+   "price_after_15m": 0.535,
+   "price_after_15m_book": "novig",
    "price_american": -113,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.53,
@@ -308,6 +313,7 @@
    "size_x": 2.17,
    "start_source": "odds",
    "start_utc": "2026-11-13T00:00:00Z",
+   "still_actionable": false,
    "surge_books": [
     "kalshi"
    ],
@@ -370,9 +376,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1601.4699999999998,
+    "open_interest_fp": 1601.69,
     "volume_24h_fp": 673.14,
-    "volume_fp": 1901.42
+    "volume_fp": 1901.6399999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 1561.4699999999998,
@@ -569,9 +575,9 @@
     "volume_fp": 236.79
    },
    "ex_stats_close": {
-    "open_interest_fp": 33525.04,
-    "volume_24h_fp": 39789.84,
-    "volume_fp": 48637.66
+    "open_interest_fp": 33764.58,
+    "volume_24h_fp": 41065.08,
+    "volume_fp": 48877.2
    },
    "ex_stats_first": {
     "open_interest_fp": 28288.33,
@@ -903,9 +909,9 @@
     "volume_fp": 3.14
    },
    "ex_stats_close": {
-    "open_interest_fp": 5259.2,
+    "open_interest_fp": 5268.62,
     "volume_24h_fp": 3632.04,
-    "volume_fp": 5385.18
+    "volume_fp": 5394.6
    },
    "ex_stats_first": {
     "open_interest_fp": 5188.93,
@@ -1116,8 +1122,8 @@
     "volume": 5640.0
    },
    "ex_stats_close": {
-    "openInterest": 32835783.0,
-    "volume": 41724708.0
+    "openInterest": 32957640.0,
+    "volume": 41846841.0
    },
    "ex_stats_first": {
     "openInterest": 24037146.0,
@@ -1509,9 +1515,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 51002.119999999995,
-    "volume_24h_fp": 51126.7,
-    "volume_fp": 56604.6
+    "open_interest_fp": 51182.0,
+    "volume_24h_fp": 51539.21,
+    "volume_fp": 56784.48
    },
    "ex_stats_first": {
     "open_interest_fp": 15041.82,
@@ -1679,9 +1685,9 @@
     "volume_fp": 91.58
    },
    "ex_stats_close": {
-    "open_interest_fp": 39317.41,
-    "volume_24h_fp": 34059.44,
-    "volume_fp": 53302.09
+    "open_interest_fp": 39892.78,
+    "volume_24h_fp": 34245.0,
+    "volume_fp": 53877.46000000001
    },
    "ex_stats_first": {
     "open_interest_fp": 30358.96,
@@ -1876,9 +1882,9 @@
     "volume_fp": 71.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 5820.61,
-    "volume_24h_fp": 5364.0,
-    "volume_fp": 6759.4400000000005
+    "open_interest_fp": 5886.129999999999,
+    "volume_24h_fp": 5613.43,
+    "volume_fp": 6824.96
    },
    "ex_stats_first": {
     "open_interest_fp": 4887.42,
@@ -2466,6 +2472,7 @@
     "volume_fp": 5123.49
    },
    "fade_price": 0.48,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-12T00:22:07Z",
    "game": "Orlando vs Utah: Total Points",
    "game_surge_books": [],
@@ -2571,11 +2578,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBATOTAL-26NOV11ORLUTA-214"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settled_utc": "2026-11-12T04:38:12Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -2590,7 +2598,7 @@
     "Utah"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.84
   },
   {
    "alerted_utc": "2026-11-12T00:32:30Z",
@@ -5265,9 +5273,9 @@
     "volume_fp": 8.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 23698.49,
+    "open_interest_fp": 23858.49,
     "volume_24h_fp": 20460.56,
-    "volume_fp": 28945.44
+    "volume_fp": 29105.44
    },
    "ex_stats_first": {
     "open_interest_fp": 14886.76,
@@ -5666,9 +5674,9 @@
     "volume_fp": 9.83
    },
    "ex_stats_close": {
-    "open_interest_fp": 19268.15,
+    "open_interest_fp": 19772.949999999997,
     "volume_24h_fp": 14868.449999999999,
-    "volume_fp": 20360.4
+    "volume_fp": 20867.65
    },
    "ex_stats_first": {
     "open_interest_fp": 11760.52,
@@ -6081,6 +6089,7 @@
     "volume_fp": 35686.87
    },
    "fade_price": 0.52,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-11T21:12:35Z",
    "game": "Orlando vs Utah: Spread",
    "game_surge_books": [
@@ -6201,13 +6210,14 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBASPREAD-26NOV11ORLUTA-ORL5"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-12T04:38:12Z",
    "sharp_agree": [
     "Orlando Magic -3.5 (-110)"
    ],
@@ -6226,7 +6236,7 @@
     "Utah"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.06
   },
   {
    "alerted_utc": "2026-11-11T20:01:39Z",
@@ -8349,9 +8359,9 @@
     "volume_fp": 34.05
    },
    "ex_stats_close": {
-    "open_interest_fp": 9259.73,
+    "open_interest_fp": 9260.4,
     "volume_24h_fp": 6032.4400000000005,
-    "volume_fp": 11022.08
+    "volume_fp": 11022.75
    },
    "ex_stats_first": {
     "open_interest_fp": 5828.8,
@@ -8523,6 +8533,7 @@
     "volume_fp": 2806.42
    },
    "fade_price": 0.5,
+   "fade_units": 0.93,
    "first_seen_utc": "2026-11-11T15:51:31Z",
    "game": "Orlando vs Utah: Spread",
    "game_surge_books": [],
@@ -8641,13 +8652,14 @@
     "kalshi_side": "no",
     "market_ticker": "KXNBASPREAD-26NOV11ORLUTA-ORL4"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-12T04:38:12Z",
    "sharp_agree": [
     "Utah Jazz +4.5 (-120)"
    ],
@@ -8666,7 +8678,7 @@
     "Utah"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-11T15:51:31Z",
@@ -13009,9 +13021,9 @@
     "volume_fp": 305.48
    },
    "ex_stats_close": {
-    "open_interest_fp": 1078579.59,
-    "volume_24h_fp": 576742.72,
-    "volume_fp": 1445490.59
+    "open_interest_fp": 1081075.1400000001,
+    "volume_24h_fp": 589189.48,
+    "volume_fp": 1448032.42
    },
    "ex_stats_first": {
     "open_interest_fp": 592652.27,
@@ -15744,6 +15756,7 @@
     "volume_fp": 3323.76
    },
    "fade_price": 0.4,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-11T02:42:49Z",
    "game": "Orlando vs Utah",
    "game_surge_books": [],
@@ -15784,11 +15797,12 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBAGAME-26NOV11ORLUTA-ORL"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settled_utc": "2026-11-12T04:38:12Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Orlando",
@@ -15803,7 +15817,7 @@
     "Utah"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.6
   },
   {
    "alerted_utc": "2026-11-11T02:50:20Z",
