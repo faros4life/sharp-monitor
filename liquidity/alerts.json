@@ -1,6 +1,314 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-12T04:20:11Z",
+   "base_depth": 295261,
+   "best_price": 0.5175,
+   "best_price_american": -107,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 3,
+   "date": "2026-11-12",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 10383,
+     "new_this_side": 33482,
+     "other_side": 253968,
+     "other_side_all_levels": 324562,
+     "ratio": 1.0,
+     "this_side": 253296,
+     "this_side_all_levels": 329724
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 2358.85,
+    "volume_24h_fp": 2004.54,
+    "volume_fp": 2573.66
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 94.68,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 94.68
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 2264.17,
+    "volume_24h_fp": 2004.54,
+    "volume_fp": 2478.98
+   },
+   "fade_price": 0.51,
+   "first_seen_utc": "2026-11-12T04:17:35Z",
+   "game": "Louisiana vs Louisiana-Monroe: Spread",
+   "game_surge_books": [],
+   "game_x": 1.68,
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFSPREAD-26NOV12ULLULM-ULL11\"}",
+   "lead_min": 1480,
+   "league": "NCAAF",
+   "line": -10.5,
+   "market": "spread",
+   "new_money": 33482,
+   "new_x": 0.13,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 2358.85,
+      "volume_24h_fp": 2004.54,
+      "volume_fp": 2573.66
+     },
+     "game_normal": 196616,
+     "game_x": 1.68,
+     "normal": 251941,
+     "now": 329724,
+     "type": "SPREAD",
+     "x": 1.31
+    }
+   },
+   "norm_ready_books": 1,
+   "paper_only": false,
+   "price": 0.5,
+   "price_american": -100,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.5,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFSPREAD-26NOV12ULLULM-ULL11"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Louisiana wins by over 10.5 points",
+   "side_label": "Louisiana wins by over 10.5 points",
+   "size_x": 1.31,
+   "start_source": "kalshi",
+   "start_utc": "2026-11-13T05:00:00Z",
+   "surge_books": [],
+   "teams": [
+    "Louisiana",
+    "Louisiana"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-12T04:20:11Z",
+   "base_depth": 35975,
+   "best_price": 0.53,
+   "best_price_american": -113,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.53,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 3,
+   "date": "2026-11-12",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -345,
+     "new_this_side": 46360,
+     "other_side": 67019,
+     "other_side_all_levels": 75735,
+     "ratio": 1.1,
+     "this_side": 70685,
+     "this_side_all_levels": 85183
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "TBL (0)",
+     "price": 0.53,
+     "this_side": 4115
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Tampa Bay Lightning",
+     "price": 0.5413,
+     "this_side": 1147
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 7502.72,
+    "volume_24h_fp": 3170.77,
+    "volume_fp": 12543.1
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 7502.72,
+    "volume_24h_fp": 3170.77,
+    "volume_fp": 12543.1
+   },
+   "fade_price": 0.48,
+   "first_seen_utc": "2026-11-12T04:17:35Z",
+   "game": "Tampa Bay vs Columbus",
+   "game_surge_books": [
+    "kalshi"
+   ],
+   "game_x": 2.19,
+   "key": "kalshi|KXNHLGAME-26NOV12TBCBJ|ml|0",
+   "lead_min": 1180,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 46360,
+   "new_x": 1.18,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 7502.72,
+      "volume_24h_fp": 3170.77,
+      "volume_fp": 12543.1
+     },
+     "game_normal": 38880,
+     "game_x": 2.19,
+     "normal": 39212,
+     "now": 85183,
+     "type": "ML",
+     "x": 2.17
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 81419.0,
+      "volume": 90649.0
+     },
+     "game_normal": 3160,
+     "game_x": 1.77,
+     "normal": 7073,
+     "now": 5605,
+     "type": "ML",
+     "x": 0.79
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 1895,
+     "game_x": 1.19,
+     "normal": 4770,
+     "now": 2250,
+     "type": "ML",
+     "x": 0.47
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.53,
+   "price_american": -113,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.53,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -118
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -120
+    },
+    "betrivers": {
+     "point": null,
+     "price": -114
+    },
+    "betus": {
+     "point": null,
+     "price": -120
+    },
+    "bovada": {
+     "point": null,
+     "price": -117
+    },
+    "draftkings": {
+     "point": null,
+     "price": -118
+    },
+    "fanatics": {
+     "point": null,
+     "price": -120
+    },
+    "fanduel": {
+     "point": null,
+     "price": -114
+    },
+    "kalshi": {
+     "point": null,
+     "price": -117
+    },
+    "lowvig": {
+     "point": null,
+     "price": -120
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -119
+    },
+    "novig": {
+     "point": null,
+     "price": -113
+    },
+    "polymarket": {
+     "point": null,
+     "price": -117
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -113
+    },
+    "prophetx": {
+     "point": null,
+     "price": -118
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -115
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNHLGAME-26NOV12TBCBJ-TB"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Tampa Bay",
+   "side_label": "Tampa Bay",
+   "size_x": 2.17,
+   "start_source": "odds",
+   "start_utc": "2026-11-13T00:00:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "Tampa Bay",
+    "Columbus"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-12T04:13:19Z",
    "base_depth": 51276,
    "best_price": 0.58,
@@ -248,9 +556,9 @@
     "volume_fp": 236.79
    },
    "ex_stats_close": {
-    "open_interest_fp": 32481.57,
+    "open_interest_fp": 32547.34,
     "volume_24h_fp": 39570.369999999995,
-    "volume_fp": 47267.14
+    "volume_fp": 47332.91
    },
    "ex_stats_first": {
     "open_interest_fp": 28288.33,
@@ -371,9 +679,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 7103.07,
+    "open_interest_fp": 7118.540000000001,
     "volume_24h_fp": 3285.27,
-    "volume_fp": 7726.59
+    "volume_fp": 7742.0599999999995
    },
    "ex_stats_first": {
     "open_interest_fp": 7089.780000000001,
@@ -795,8 +1103,8 @@
     "volume": 5640.0
    },
    "ex_stats_close": {
-    "openInterest": 26410624.0,
-    "volume": 35263179.0
+    "openInterest": 26412425.0,
+    "volume": 35264980.0
    },
    "ex_stats_first": {
     "openInterest": 24037146.0,
@@ -1187,9 +1495,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 25801.08,
+    "open_interest_fp": 50679.479999999996,
     "volume_24h_fp": 20946.25,
-    "volume_fp": 31310.0
+    "volume_fp": 56188.399999999994
    },
    "ex_stats_first": {
     "open_interest_fp": 15041.82,
@@ -1357,9 +1665,9 @@
     "volume_fp": 91.58
    },
    "ex_stats_close": {
-    "open_interest_fp": 39099.92,
+    "open_interest_fp": 39129.67,
     "volume_24h_fp": 33681.729999999996,
-    "volume_fp": 53084.6
+    "volume_fp": 53114.350000000006
    },
    "ex_stats_first": {
     "open_interest_fp": 30358.96,
@@ -1554,9 +1862,9 @@
     "volume_fp": 71.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 5658.459999999999,
+    "open_interest_fp": 5681.58,
     "volume_24h_fp": 5332.74,
-    "volume_fp": 6489.87
+    "volume_fp": 6512.99
    },
    "ex_stats_first": {
     "open_interest_fp": 4887.42,
@@ -5111,8 +5419,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.51,
-   "clv_cents": 1.0,
+   "close_price": 0.52,
+   "clv_cents": 2.0,
    "confirmed_after_min": 5,
    "date": "2026-11-12",
    "depth_by_book": {
@@ -5143,9 +5451,9 @@
     "volume_fp": 293.13
    },
    "ex_stats_close": {
-    "open_interest_fp": 10475.3,
+    "open_interest_fp": 11669.26,
     "volume_24h_fp": 11282.14,
-    "volume_fp": 11707.34
+    "volume_fp": 12901.3
    },
    "ex_stats_first": {
     "open_interest_fp": 7733.97,
@@ -5344,9 +5652,9 @@
     "volume_fp": 9.83
    },
    "ex_stats_close": {
-    "open_interest_fp": 17322.91,
+    "open_interest_fp": 17349.21,
     "volume_24h_fp": 12238.64,
-    "volume_fp": 18390.57
+    "volume_fp": 18416.87
    },
    "ex_stats_first": {
     "open_interest_fp": 11760.52,
@@ -8386,9 +8694,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 2264.17,
+    "open_interest_fp": 2358.85,
     "volume_24h_fp": 2004.54,
-    "volume_fp": 2478.98
+    "volume_fp": 2573.66
    },
    "ex_stats_first": {
     "open_interest_fp": 467.05,
@@ -12687,9 +12995,9 @@
     "volume_fp": 305.48
    },
    "ex_stats_close": {
-    "open_interest_fp": 1064135.8800000001,
+    "open_interest_fp": 1064913.3,
     "volume_24h_fp": 573349.3,
-    "volume_fp": 1430643.63
+    "volume_fp": 1431474.74
    },
    "ex_stats_first": {
     "open_interest_fp": 592652.27,
