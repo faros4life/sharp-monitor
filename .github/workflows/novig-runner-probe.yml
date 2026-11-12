@@ -13,6 +13,11 @@ name: novig-runner-probe
 
 on:
   workflow_dispatch:
+    inputs:
+      dispatch:
+        description: "1 = also trigger ONE novig-positions run to verify the fix"
+        default: "0"
+        required: false
 
 permissions:
   contents: read
@@ -20,7 +25,7 @@ permissions:
 jobs:
   run:
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -29,4 +34,5 @@ jobs:
       - name: Probe the runner repo (read-only)
         env:
           NOVIG_SNAPSHOT_TOKEN: ${{ secrets.NOVIG_SNAPSHOT_TOKEN }}
+          PROBE_DISPATCH: ${{ inputs.dispatch || '0' }}
         run: python -u novig_runner_probe.py

@@ -141,8 +141,70 @@ def main():
             print(f"    {len(q)} run(s) QUEUED and not picked up -> the runner is not taking work,")
             print("       which with an alive process means it is not connected.")
 
+    # ---------------------------------------------------------------- optional: verify the fix
+    # Peter, Nov 12 ("you can do that"): trigger ONE novig-positions run to verify the Machine-PATH
+    # fix, instead of waiting for the schedule. This is the job's own normal work - it reads
+    # positions and writes a snapshot. It places no order and changes no live setting. It fires
+    # only when PROBE_DISPATCH=1, so it can never go off as a side effect of a read.
+    if (os.environ.get("PROBE_DISPATCH") or "") == "1":
+        print("")
+        print("  VERIFY: dispatching ONE novig-positions run")
+        wf, err = gh(f"/repos/{REPO}/actions/workflows")
+        wid = None
+        if err:
+            print(f"    workflow list unreadable ({err})")
+        else:
+            for w in (wf or {}).get("workflows") or []:
+                if "novig-positions" in str(w.get("name")) or "novig-positions" in str(w.get("path")):
+                    wid = w.get("id")
+                    print(f"    found: {w.get('name')}  ({w.get('path')})  state {w.get('state')}")
+                    break
+        if wid is None:
+            print("    novig-positions workflow not found - nothing dispatched")
+        else:
+            body = json.dumps({"ref": "main"}).encode()
+            req = urllib.request.Request(
+                f"{API}/repos/{REPO}/actions/workflows/{wid}/dispatches", data=body, method="POST",
+                headers={"Authorization": f"Bearer {TOK}", "Accept": "application/vnd.github+json",
+                         "X-GitHub-Api-Version": "2022-11-28", "Content-Type": "application/json",
+                         "User-Agent": "novig-runner-probe"})
+            try:
+                urllib.request.urlopen(req, timeout=25).read()
+                print("    dispatched. Waiting for it to finish...")
+                import time
+                seen = None
+                for _ in range(30):
+                    time.sleep(20)
+                    rr2, e2 = gh(f"/repos/{REPO}/actions/runs?per_page=5")
+                    if e2:
+                        continue
+                    for w in (rr2 or {}).get("workflow_runs") or []:
+                        if w.get("workflow_id") == wid and w.get("event") == "workflow_dispatch":
+                            seen = w
+                            break
+                    if seen and seen.get("status") == "completed":
+                        break
+                if seen:
+                    print(f"    RESULT: {seen.get('status')}/{seen.get('conclusion')} "
+                          f"({seen.get('html_url')})")
+                    if seen.get("conclusion") == "success":
+                        print("    -> the PATH fix worked: the job ran to completion.")
+                    else:
+                        print("    -> still failing. The step log is needed again; a different")
+                        print("       error than 'python is not recognized' means a different fault.")
+                else:
+                    print("    no matching run observed within the wait window")
+            except urllib.error.HTTPError as ex:
+                print(f"    dispatch refused (HTTP {ex.code})")
+                if ex.code in (403, 404):
+                    print("    -> the snapshot token cannot dispatch (needs actions:write).")
+                    print("       Trigger it from the browser instead: Actions -> novig-positions")
+                    print("       -> Run workflow.")
+            except Exception as ex:
+                print(f"    dispatch failed ({type(ex).__name__})")
+
     print("=" * 92)
-    print("Read-only: nothing dispatched, cancelled, re-run or restarted; no live setting changed.")
+    print("No live setting changed; no order placed; nothing restarted.")
     return 0
 
 
