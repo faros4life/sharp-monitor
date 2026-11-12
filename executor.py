@@ -45,6 +45,7 @@ import positions
 import px_live
 import book_live
 import registry
+import line_value_shadow as lvsh   # Nov 12: line-value SHADOW capture - records, never decides
 
 UNIT = float(os.environ.get("EXEC_UNIT", "") or "300")          # + money: risk UNIT; - money: risk to win UNIT
 SOURCE = (os.environ.get("EXEC_SOURCE", "") or "both").lower()  # muse | rules | both (dry run: both, side by side)
@@ -1505,9 +1506,17 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None, held=None):
     if floor is None and mtype in ("spread", "total") and (p.get("source") == "board" or p.get("source") == "r1"):   # R1 too: its own alert line or strictly better
         floor = line
     cands, floor_blocked, no_qual_basis = [], 0, 0
+    lvs_notes = []   # Nov 12: SHADOW capture of EVERY candidate and why it was rejected. Records only; no decision reads it.
+
+    def _note(b, bl, r, why, **kw):
+        try:
+            lvs_notes.append(dict(book=b, line=bl, am_after_fee=r.get("best_price_american"), legacy=why, **kw))
+        except Exception:
+            pass
     for (b, bl), r in ladders.items():
         if floor is not None and better_halfpoints(mtype, side, floor, bl) < -1e-9:
             floor_blocked += 1   # Oct 31 (Muse): the alert's bet-only-at LINE is a hard floor, whatever the converted price
+            _note(b, bl, r, "floor_blocked")
             continue
         hb = 0.0 if mtype == "moneyline" else better_halfpoints(mtype, side, line, bl)
         am = r["best_price_american"]
@@ -1518,11 +1527,13 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None, held=None):
             am_q = qual_price(am, b)
         if am_q is None:                              # FAILS CLOSED: no frozen basis -> no candidate
             no_qual_basis += 1
+            _note(b, bl, r, "no_frozen_basis")
             continue
         c_eq = american_to_prob(am) - hb * hp
         c_eq_q = american_to_prob(am_q) - hb * hp     # what the eligibility gates compare
         tol = px_tol if b in TOL_BOOKS else 0.0
         if c_eq_q > alert_cost + tol + 1e-9:          # gate on the frozen price, never the improved one
+            _note(b, bl, r, "price_gate", hb=hb, c_eq_q=round(c_eq_q, 6))
             continue
         thr = lm.american(min(max(alert_cost + tol + hb * hp, 0.01), 0.99))   # worst acceptable real price at this line
         if mtype in ("spread", "total") and thr is not None:
@@ -1530,12 +1541,30 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None, held=None):
         # the liquidity gate reads the FROZEN per-level price, never the corrected one
         avail = sum(d for a, d in levels(b, r, qual=True) if a is not None and thr is not None and a >= thr)
         if avail <= 0:
+            _note(b, bl, r, "no_depth_at_thr", hb=hb, c_eq_q=round(c_eq_q, 6), thr=thr)
             continue
+        _note(b, bl, r, "qualified", hb=hb, c_eq_q=round(c_eq_q, 6), thr=thr, avail=round(avail, 2))
         shown = r.get("best_price_american_displayed")
         cands.append({"book": b, "line": bl, "am": am, "shown": int(shown) if shown is not None else am, "eq": lm.american(min(max(c_eq, 0.01), 0.99)), "c_eq": c_eq,
                       "am_q": am_q,
                       "hb": hb, "avail": avail, "thr": thr, "buy": r.get("buy_levels") or [],
                       "ids": {k: r.get(k) for k in ("kalshi_buy", "market_slug", "long_side", "outcome_id") if r.get(k) is not None}})
+    try:   # Nov 12: line-value SHADOW record (inputs a replay needs). Observation only: swallowed on any failure.
+        if os.environ.get("LINE_VALUE_SHADOW", "1") != "0":
+            out["lvs"] = lvsh.build(
+                {"play_key": p.get("play_key"), "source": p.get("source"), "sport": al["sport"], "mtype": mtype,
+                 "side": side, "alert_line": line, "alert_af": alert_af, "tol_cents": PX_TOL_CENTS,
+                 "tol_books": TOL_BOOKS, "hp": hp, "hp_src": hp_src, "floor": floor,
+                 "now_utc": now.strftime("%Y-%m-%dT%H:%M:%SZ"), "now_dt": now, "start_utc": al["start_utc"],
+                 "pin": lv_pin_input(al, now, mtype, side, teams)},
+                [{"book": b, "line": bl, "am_after_fee": r.get("best_price_american"),
+                  "shown": r.get("best_price_american_displayed"), "am_q": r.get("best_price_american_qual"),
+                  "levels": [[a, d] for a, d in levels(b, r)][:4],
+                  "opp_am_after_fee": r.get("opp_am_after_fee"), "read_utc": r.get("read_utc")}   # None until a checker supplies the other side
+                 for (b, bl), r in ladders.items()],
+                lvs_notes, cents_worse)
+    except Exception as _lx:   # recorded, not hidden: the ledger row says capture failed and why (still never raises)
+        out["lvs"] = {"error": f"{type(_lx).__name__}: {str(_lx)[:80]}"}
     if not cands:
         if no_qual_basis:
             return dict(out, verdict="SKIP", reason=f"no frozen qualification price on "
@@ -1968,6 +1997,10 @@ def revalidate(r, stake=None):
     # confirmed is still the chosen line.
     hb = 0.0 if mtype == "moneyline" else better_halfpoints(mtype, rv.get("side"), rv["line"], ln)
     c_eq_q = american_to_prob(am_q) - hb * (rv.get("hp") or 0.0)
+    try:   # Nov 12 SHADOW: records only; a failure to record can never change the verdict below
+        lvsh.note_recheck(rv, book, ln, am, hb, c_eq_q, c_eq_q <= rv["alert_cost"] + tol + 1e-9)
+    except Exception:
+        pass
     if c_eq_q > rv["alert_cost"] + tol + 1e-9:
         # the worst acceptable RAW price at this line - the same number evaluate() stored as thr,
         # so the message can never again quote a bar from a different line than the price it refused
@@ -3316,6 +3349,43 @@ def pin_check(p, lc, now):
         return out
 
 
+def lv_pin_input(al, now, mtype, side, teams):
+    """SHADOW ONLY (Nov 12). The Pinnacle two-sided market for this play, normalised for line_value_ref, or {"why": ...}.
+    It reads the SAME cache pin_check fills; it makes NO new network call unless LINE_VALUE_PIN_READ=1 (that flag spends
+    The Odds API credits on dry runs, so it is Peter's decision). Never raises, never touches a decision."""
+    try:
+        lg = al["sport"]
+        sk = PIN_SPORT.get(lg)
+        if not sk:
+            return {"why": "sport_not_on_pinnacle_feed"}
+        evs = _pin_events(sk) if os.environ.get("LINE_VALUE_PIN_READ") == "1" else _PIN.get(sk)
+        if not evs:
+            return {"why": "pinnacle_not_cached" if os.environ.get("LINE_VALUE_PIN_READ") != "1" else "pinnacle_read_failed"}
+        tt = [lm.toks(x, lg) for x in teams]
+        cands_ev = [e for e in evs if all(any(t & lm.toks(n, lg) for n in (e.get("home_team"), e.get("away_team"))) for t in tt)]
+        if not cands_ev:
+            return {"why": "game_not_on_pinnacle"}
+        if len(cands_ev) > 1:
+            return {"why": f"game_ambiguous:{len(cands_ev)}"}      # e.g. a doubleheader: never guess which game
+        ev = cands_ev[0]
+        bk = next((b for b in ev.get("bookmakers") or [] if b.get("key") == "pinnacle"), None)
+        mk = next((m for m in (bk or {}).get("markets") or [] if m.get("key") == ("totals" if mtype == "total" else "spreads")), None)
+        if not mk or len(mk.get("outcomes") or []) != 2:
+            return {"why": "pinnacle_market_missing"}
+        oc = mk["outcomes"]
+        if mtype == "total":
+            mine = next((o for o in oc if str(o.get("name", "")).upper() == str(side).upper()), None)
+        else:
+            mine = next((o for o in oc if lm.toks(o.get("name"), lg) & tt[side]), None)
+        at = _PIN_AT.get(sk)
+        return {"market": {"outcomes": [{"name": o.get("name"), "point": o.get("point"), "price": o.get("price")} for o in oc],
+                          "last_update": mk.get("last_update") or (bk or {}).get("last_update")},
+                "mine": (mine or {}).get("name"), "book": "pinnacle",
+                "read_utc": at.strftime("%Y-%m-%dT%H:%M:%SZ") if at else None, "commence_utc": ev.get("commence_time")}
+    except Exception as ex:
+        return {"why": f"pin_input_error:{type(ex).__name__}"}
+
+
 def pin_note(pc):
     if not pc:
         return ""
@@ -3354,6 +3424,7 @@ def ledger_row(r, run_start):
             "px_best_after_fee": ((r.get("books") or {}).get("prophetx") or {}).get("best_price_american"),
             "px_best_line": ((r.get("books") or {}).get("prophetx") or {}).get("line"),
             "books_at_decision": books_snapshot(r),
+            **lvsh.ledger_fields(r),   # Nov 12: shadow record + capture status in the EXISTING ledger (no extra email); never raises
             # Nov 11 (Peter, check 10): every venue CONSIDERED for the live order, with its raw and
             # after-fee price, the line, the depth at the threshold, and the fee basis actually
             # applied - so the routing decision can be audited after the fact rather than inferred
@@ -4037,8 +4108,15 @@ def main():
                  + "".join(f" | {x['order_units']}u" for x in _sc if x["would_cap"]), ""]
     except Exception:
         pass
+    _lrows = [ledger_row(r, now) for r in results]
+    try:   # Nov 12: keep the ledger under the email body limit by shrinking ONLY the shadow fields (never the registry fields)
+        _lrows, _lstage = lvsh.cap_rows(_lrows)
+        if _lstage:
+            print(f"line-value capture capped at stage {_lstage} to fit the ledger email.")   # counts only
+    except Exception:
+        pass
     body += ["LEDGER (machine-readable, one row per play; latency = decision time minus first alert time)",
-             json.dumps([ledger_row(r, now) for r in results], separators=(",", ":"))]
+             json.dumps(_lrows, separators=(",", ":"))]
     first = ", ".join(short(r) for r in places[:3]) + ("..." if len(places) > 3 else "")
     nplaced = sum(1 for r in golive if (r["live"].get("order") or {}).get("status") == "placed")
     send((f"Bets LIVE: {nplaced} placed, " if px_live.LIVE else "Bets dry run: ") + f"{len(golive)} would go live, {nw} would bet" + (f" ({first})" if places else "") + (f", {len(helds)} held" if helds else "")

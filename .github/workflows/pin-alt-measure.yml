@@ -1,0 +1,36 @@
+name: pin-alt-measure
+
+# Manual-only, research-only (Nov 12 2026). Measures Pinnacle's quoted price differences between adjacent lines from the
+# EXISTING history cache. Restore-only cache (nothing saved), no OddsPapi key in the environment (no API call is
+# possible), no executor import, no email, no change to any live rule. Output: one summary artifact (public prices only).
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Restore OddsPapi history cache (restore-only, never saves)
+        uses: actions/cache/restore@v4
+        with:
+          path: hcache
+          key: hcache-restore-pinalt-${{ github.run_id }}
+          restore-keys: hcache-
+      - name: Measure
+        env:
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}   # read-only decrypt of the fixture cache
+        run: python -u pin_alt_measure.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pin-alt-measure
+          path: summary/pin_alt_*
+          retention-days: 14
