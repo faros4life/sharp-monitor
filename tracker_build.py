@@ -349,6 +349,16 @@ def read_prophetx():
              "bet": (h or {}).get("label") or title, "price": pr, "stake": round(stake, 2),
              "to_pay": round(stake + win * 0.98, 2), "date": (h or {}).get("date"), "placed": str(t.get("created_at") or ""),
              "strike": str(t.get("strike_id") or "")}   # Nov 6: fills of one bet share a strike -> one card
+        # Nov 12: carry ProphetX's own scheduled start onto the row. A SETTLED ProphetX row never
+        # goes through attach(), which is what sets game_start for open bets off the live
+        # scoreboard - so settled fills reached clv_ledger with no game_start at all, and its
+        # pending loop ("if not gs: continue") skipped them before recording an attempt. That is
+        # why four graded losses sit at clv None with tries None.
+        # Set ONLY when the venue actually returned a start. Never derived from `date`, which
+        # would be inventing a time of day for a closing-line read.
+        _start = str((h or {}).get("start") or "")
+        if _start:
+            b["game_start"] = _start
         when = None
         for k in ("settled_at", "settle_time", "settled_time", "updated_at", "update_time", "matched_at", "created_at"):
             when = tparse(t.get(k))

@@ -322,7 +322,17 @@ def _walk(bc, want, found, now):
                         for x in (lv if isinstance(lv, list) else [lv]):
                             sid = str(x.get("strike_id"))
                             if sid in want and sid not in found:
+                                # Nov 12: keep the FULL scheduled timestamp, not only its date. ProphetX
+                                # returns the event's exact start in `scheduled` - it is parsed into `st`
+                                # twelve lines above to window the walk - and [:10] threw the time away.
+                                # The tracker row then carried a date but no game_start, and clv_ledger's
+                                # pending loop gates on game_start ("if not gs: continue"), so every
+                                # ProphetX fill was skipped BEFORE a scoring attempt was recorded. That is
+                                # why four graded losses sit at clv None with tries None.
+                                # This is the venue's own scheduled time - a verified source, not a guess.
+                                # Additive only: `date` is unchanged, so every existing reader is unaffected.
                                 found[sid] = {"book": "prophetx", "strike_id": sid, "game": e.get("name") or "", "date": (e.get("scheduled") or "")[:10],
+                                              "start": e.get("scheduled") or "",
                                               "mtype": mtype, "label": x.get("name") or "", "flip": False}
     return skipped == 0, skipped
 

@@ -906,7 +906,17 @@ def main():
         if rec.get("clv") is not None or rec.get("done"):
             continue
         gs = tp(s.get("game_start"))
-        if not gs or now < gs + timedelta(minutes=SCORE_AFTER_MIN):
+        # Nov 12: a row with no game_start used to fall out here silently - no attempt, no try
+        # counted, and no reason stored on the record, which is why four graded ProphetX losses
+        # read "clv None, tries None" with nothing to say why. The skip itself is correct (a
+        # closing line cannot be read without knowing when the game started); what was wrong is
+        # that it left no trace. Recording the reason changes no decision and no stored CLV - it
+        # only makes the row say why it is waiting.
+        if not gs:
+            rec["why"] = "no game_start on the row - never attempted, not failed"
+            continue
+        if now < gs + timedelta(minutes=SCORE_AFTER_MIN):
+            rec["why"] = "game not started"
             continue
         pend.append((k, rec))
     for k, rec in (st.get("novig_checks") or {}).items():
