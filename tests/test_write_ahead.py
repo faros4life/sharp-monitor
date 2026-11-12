@@ -101,7 +101,9 @@ ck("1. a confirmation resolves its intent", open2 == {}, str(open2))
 risk3, _, open3 = account([conf_row, intent_row])   # IMAP order is not chronological
 ck("1. resolution is order-independent", abs(risk3 - 390.0) < 1e-9 and open3 == {}, f"{risk3} {open3}")
 
-bo = inspect.getsource(ex.bot_orders)
+# Nov 12: the ledger-row accounting was extracted from bot_orders() into _account_rows() on Nov 11, so these
+# source checks were silently grepping the wrong function - red, and verifying nothing. Read BOTH.
+bo = inspect.getsource(ex.bot_orders) + inspect.getsource(ex._account_rows)
 ck("1. money identity prefers the client_id", 'str(cid or oid)' in bo)
 ck("1. ids still carry the venue order_id (trade attribution)", "ids[oid]" in bo)
 ck("1. intents are resolved after the loop, not inside it", bo.index("_intents[") < bo.index('INTENT["open"] = {}')

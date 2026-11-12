@@ -111,7 +111,9 @@ try:
     ck("A. a failed clearance search raises (fail closed)", False, "did not raise")
 except Exception:
     ck("A. a failed clearance search raises (fail closed)", True)
-bo = inspect.getsource(ex.bot_orders)
+# Nov 12: the ledger-row accounting was extracted from bot_orders() into _account_rows() on Nov 11, so these
+# source checks were silently grepping the wrong function - red, and verifying nothing. Read BOTH.
+bo = inspect.getsource(ex.bot_orders) + inspect.getsource(ex._account_rows)
 ck("A. bot_orders keeps the intent open when the search fails",
    "except Exception" in bo and "keep refusing" in bo)
 ck("A. bot_orders uses intent_cleared, not a raw token search", "intent_cleared(M, k)" in bo)
@@ -236,7 +238,7 @@ ck("B.   and the shout says no order was placed",
 ck("B.   and tells Peter the clearing subject", shout and ex.INTENT_CLEAR_PREFIX in shout[0])
 ji = inspect.getsource(ex.journal_intent)
 ck("B. the read-back gate sits AFTER send and BEFORE returning ok",
-   ji.index("send(") < ji.index("intent_readable(") < ji.index("return True, cid"))
+   ji.index("send(") < ji.index("intent_verified(") < ji.index("return True, cid"))
 
 lo = inspect.getsource(ex.live_order)
 ck("B. a failed intent means nothing is submitted",

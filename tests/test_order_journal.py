@@ -122,7 +122,9 @@ for fn, label in ((ex.live_order, "live_order (ProphetX)"),
 ck("rest_bid journals as a resting row", "is_rest=True" in inspect.getsource(ex.rest_bid))
 
 # ---------------------------------------------------------------- one order is counted once
-bo = inspect.getsource(ex.bot_orders)
+# Nov 12: the ledger-row accounting was extracted from bot_orders() into _account_rows() on Nov 11, so these
+# source checks were silently grepping the wrong function - red, and verifying nothing. Read BOTH.
+bo = inspect.getsource(ex.bot_orders) + inspect.getsource(ex._account_rows)
 ck("bot_orders tracks order ids it has already counted", "seen_oids" in bo)
 ck("the dedupe skips the MONEY sums", bo.index("seen_oids.add") < bo.index('NONPX["today"] +='))
 ck("ids are recorded BEFORE the dedupe (duplicate blocking never weakened)",
