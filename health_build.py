@@ -101,13 +101,30 @@ def main():
     if not TOK:
         print("health: no GITHUB_TOKEN - cannot read Actions history, page not written")
         return 1
-    wfs, err = gh(f"/repos/{REPO}/actions/workflows?per_page=100")
-    if err:
-        print(f"health: workflow list unreadable ({err}) - page not written")
-        return 1
+    # Nov 12: the list is PAGINATED and this repo has 115 workflows. Reading one page of
+    # 100 silently dropped the last 15 - signal-alerts among them - so the page reported
+    # "Against Your Bet: no workflow of this name is active" when the workflow was simply
+    # on page 2. A truncated list is the worst kind of wrong here: it reads as a finding.
+    wf_all, page = [], 1
+    while page <= 10:
+        wfs, err = gh(f"/repos/{REPO}/actions/workflows?per_page=100&page={page}")
+        if err:
+            if page == 1:
+                print(f"health: workflow list unreadable ({err}) - page not written")
+                return 1
+            print(f"health: workflow list truncated at page {page} ({err}) - FLAGGED")
+            break
+        got = (wfs or {}).get("workflows") or []
+        wf_all += got
+        total = int((wfs or {}).get("total_count") or 0)
+        if len(got) < 100 or (total and len(wf_all) >= total):
+            break
+        page += 1
+    print(f"health: {len(wf_all)} workflow(s) listed"
+          f"{' of ' + str(total) if total else ''}")
 
     rows = []
-    for w in (wfs or {}).get("workflows") or []:
+    for w in wf_all:
         if str(w.get("state")) != "active":
             continue
         name = str(w.get("name") or "")
