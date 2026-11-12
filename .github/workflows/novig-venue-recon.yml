@@ -30,5 +30,12 @@ jobs:
           NOVIG_SNAPSHOT_TOKEN: ${{ secrets.NOVIG_SNAPSHOT_TOKEN }} # fallback during the migration
           NOVIG_READ_KEY_ID: ${{ secrets.NOVIG_READ_KEY_ID }}       # venue reads, GET only
           NOVIG_READ_KEY_PEM: ${{ secrets.NOVIG_READ_KEY_PEM }}
+          # ID ONLY - no PEM, so this cannot sign an order. It scopes the portfolio read to the
+          # auto-place sub-wallet, which is where the board lane's orders live; without it the
+          # first run read 1 wallet of 2 and could not have matched a board order at all. Same
+          # use executor-dry-run.yml already makes of it ("ID only: reads the auto-place
+          # subaccount's positions"), and it keeps Peter's rule that trading credentials stay
+          # out of research jobs - the signing key is NOVIG_TRADE_KEY_PEM, which is not here.
+          NOVIG_TRADE_KEY_ID: ${{ secrets.NOVIG_TRADE_KEY_ID }}
           NOVIG_ORDER_IDS: ${{ github.event.inputs.order_ids }}
         run: python -u novig_venue_recon.py
