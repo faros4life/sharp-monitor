@@ -375,6 +375,24 @@ def set_tokens_complete():
     return _commit(merge)
 
 
+def _stamp_fresh(stamp, now=None):
+    """True when a completeness stamp is present, parseable and still inside FRESH_MIN.
+
+    Nov 12 (Peter): the single freshness test, so touch_complete() and touch_tokens_complete()
+    cannot disagree with is_complete() and tokens_complete() about what "still valid" means. A
+    future stamp (negative age) is rejected too - a clock skew must not extend a claim.
+    """
+    stamp = str(stamp or "")
+    if not stamp:
+        return False
+    try:
+        at = datetime.fromisoformat(stamp.replace("Z", "+00:00"))
+    except Exception:
+        return False
+    age = ((now or datetime.now(timezone.utc)) - at).total_seconds()
+    return 0 <= age <= FRESH_MIN * 60
+
+
 def touch_complete(now=None):
     """ORDERS twin of touch_tokens_complete(): refresh an ALREADY VALID claim, never create one.
 
@@ -392,6 +410,20 @@ def touch_complete(now=None):
     the window the claim covers. An incomplete store still answers "not complete" and the caller
     still reads Gmail.
     """
+    # Nov 12 (Peter, second pass). TWO DEFECTS, both fail-OPEN on exposure.
+    #
+    # 1. This checked only the WINDOW half (complete_through) and never the FRESHNESS half
+    #    (complete_at), so a claim whose stamp had expired hours ago was re-stamped to now -
+    #    resurrecting a claim nothing had re-verified. is_complete()'s own docstring names the
+    #    scenario that makes this dangerous: when writes are failing, a newly placed order is
+    #    missing from the store AND invalidate() fails too, so complete_through survives while the
+    #    stamp goes stale. is_complete() then correctly answers "not complete" - and re-stamping
+    #    undoes exactly that protection, declaring a store complete that is missing an order. The
+    #    $2,000 per-lane risk and the global stop read through this, so that is fail-open, not slow.
+    #
+    # 2. _commit() treats a merge returning False as "nothing to change" and returns True, so the
+    #    concurrent-invalidation branch reported SUCCESS to the caller. An aborted refresh must not
+    #    look like a completed one, so the abort is recorded and returned as False.
     d = load()
     if d is None:
         return False                      # unreadable: assert nothing about it
@@ -399,14 +431,24 @@ def touch_complete(now=None):
     cut = ((now or datetime.now(timezone.utc)) - timedelta(days=KEEP_DAYS)).strftime("%Y-%m-%d")
     if str(meta.get("complete_through") or "") < cut:
         return False                      # no valid claim - a refresh must never create one
+    if not _stamp_fresh(meta.get("complete_at"), now):
+        return False                      # EXPIRED: only the backfill may assert completeness again
     stamp = (now or datetime.now(timezone.utc)).strftime("%Y-%m-%dT%H:%M:%SZ")
+    aborted = []
 
     def merge(d2):
         m2 = d2.setdefault("meta", {})
+        # Re-checked under the optimistic lock: another run may have invalidated the claim, or let
+        # it expire, between the pre-check and this write.
         if str(m2.get("complete_through") or "") < cut:
-            return False                  # invalidated since the pre-check
+            aborted.append("invalidated")
+            return False
+        if not _stamp_fresh(m2.get("complete_at"), now):
+            aborted.append("expired")
+            return False
         m2["complete_at"] = stamp
-    return _commit(merge)
+    ok = _commit(merge)
+    return bool(ok) and not aborted
 
 
 def touch_tokens_complete(now=None):
@@ -426,6 +468,9 @@ def touch_tokens_complete(now=None):
     invalidate_tokens() leaves behind, and what a failed backfill causes), this returns False and
     changes nothing, so the next run reads Gmail exactly as it does today.
     """
+    # Nov 12 (Peter, second pass): same two defects as touch_complete(), same fixes. The freshness
+    # half was never checked, so an expired claim was resurrected; and the concurrent-abort branch
+    # reported success because _commit() reads a False merge as "nothing to change".
     d = load()
     if d is None:
         return False                      # unreadable: never assert anything about it
@@ -433,14 +478,22 @@ def touch_tokens_complete(now=None):
     cut = ((now or datetime.now(timezone.utc)) - timedelta(days=KEEP_DAYS)).strftime("%Y-%m-%d")
     if str(meta.get("tok_complete_through") or "") < cut:
         return False                      # no valid claim to refresh - do not create one
+    if not _stamp_fresh(meta.get("tok_complete_at"), now):
+        return False                      # EXPIRED: only the backfill may assert completeness again
     stamp = (now or datetime.now(timezone.utc)).strftime("%Y-%m-%dT%H:%M:%SZ")
+    aborted = []
 
     def merge(d2):
         m2 = d2.setdefault("meta", {})
         if str(m2.get("tok_complete_through") or "") < cut:
-            return False                  # re-checked under the lock: someone invalidated it since
+            aborted.append("invalidated")
+            return False
+        if not _stamp_fresh(m2.get("tok_complete_at"), now):
+            aborted.append("expired")
+            return False
         m2["tok_complete_at"] = stamp
-    return _commit(merge)
+    ok = _commit(merge)
+    return bool(ok) and not aborted
 
 
 def invalidate_tokens():
