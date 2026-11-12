@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 12, 10:20 AM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 46.
+Updated Thu Nov 12, 10:28 AM ET. This run: 2 new, 0 not confirmed, 1 pending. Open alerts: 48.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,10 +10,12 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 12 10:28AM | NHL | Detroit vs Florida | moneyline: Florida | kalshi | $37k | -163 | ✅ novig,prophetx |  | +0.0c |  | pending |
+| Nov 12 10:28AM | NHL | Colorado vs Ottawa | moneyline: Colorado | kalshi | $61k | -104 | ✅ novig |  | +0.0c |  | pending |
 | Nov 12 10:07AM | NCAAF | Illinois vs UCLA: Spread | spread: NOT UCLA wins by over 9.5 points | kalshi | $39k | +108 | ✅ novig |  | +0.0c |  | pending |
 | Nov 12 10:07AM | NHL | New York I vs Los Angeles | moneyline: New York I | kalshi | $31k | +117 | ✅ prophetx |  | +0.0c |  | pending |
 | Nov 12 10:07AM | NCAAF | Louisiana vs Louisiana-Monroe | moneyline: NOT Louisiana | kalshi | $50k | +355 |  |  | +0.0c |  | pending |
-| Nov 12 10:01AM | NHL | Carolina vs Seattle: Spread | spread: NOT Carolina wins by over 1.5 goals | kalshi | $41k | +108 |  |  | +1.0c |  | pending |
+| Nov 12 10:01AM | NHL | Carolina vs Seattle: Spread | spread: NOT Carolina wins by over 1.5 goals | kalshi | $41k | +108 |  |  | +1.0c | yes | pending |
 | Nov 12 9:51AM | NCAAF | Louisiana vs Louisiana-Monroe: Total Points | total: NOT Over 47.5 points | kalshi | $31k | -100 |  |  | +0.0c |  | pending |
 | Nov 12 9:00AM | NHL | Buffalo vs Chicago: Total Goals | total: Over 6.5 goals scored | kalshi | $26k | -104 |  |  | +0.0c | yes | pending |
 | Nov 12 9:00AM | NCAAF | Florida St. vs Pittsburgh | moneyline: Pittsburgh | kalshi | $132k | -156 | ✅ novig,prophetx |  | +0.0c |  | pending |
@@ -38,7 +40,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 12 2:05AM | NFL | Washington vs New York G: Spread | spread: NOT New York G wins by over 2.5 points | kalshi | $108k | -108 |  |  | +0.0c | yes | pending |
 | Nov 12 1:50AM | NCAAF | Florida St. vs Pittsburgh: Spread | spread: Pittsburgh wins by over 3.5 points | kalshi | $38k | +104 |  |  | +0.0c | yes | pending |
 | Nov 12 1:03AM | NHL | Washington vs New Jersey | moneyline: New Jersey | kalshi | $35k | -138 |  |  | +1.0c | yes | pending |
-| Nov 12 1:03AM | NCAAF | Southern Utah vs Portland St. | moneyline: Southern Utah | kalshi | $50k | -426 |  |  | -2.0c | yes | pending |
+| Nov 12 1:03AM | NCAAF | Southern Utah vs Portland St. | moneyline: Southern Utah | kalshi | $50k | -426 |  |  | -1.0c | yes | pending |
 | Nov 12 12:15AM | NHL | St. Louis vs Utah | moneyline: St. Louis | kalshi | $39k | +117 |  |  | +3.0c |  | pending |
 | Nov 11 11:20PM | NCAAF | Louisiana vs Louisiana-Monroe: Spread | spread: Louisiana wins by over 10.5 points | kalshi | $33k | -100 |  |  | -1.0c | yes | pending |
 | Nov 11 11:20PM | NHL | Tampa Bay vs Columbus | moneyline: Tampa Bay | kalshi | $46k | -113 |  |  | -2.0c | yes | pending |
@@ -208,5 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 9 6:35PM | NBA | Spurs vs. Suns | moneyline: Suns | polymarket | $317k | +317 |  |  | +0.0c |  | L |
 | Nov 9 6:35PM | NBA | Nuggets vs. Rockets | moneyline: Rockets | polymarket | $423k | -163 | ✅ kalshi,novig,prophetx | ❌ | +3.0c |  | W |
 | Nov 9 6:35PM | NBA | Grizzlies vs. Raptors | spread: Grizzlies (-1.5) | polymarket | $312k | -104 | ✅ novig | ✅ | +0.0c |  | W |
-| Nov 9 6:35PM | NBA | Nuggets vs. Rockets | spread: Rockets (-4.5) | polymarket | $338k | -104 | ✅ novig | ❌ | +1.0c |  | W |
-| Nov 9 6:35PM | NBA | Memphis Grizzlies @ Toronto Raptors | moneyline: TOR (0) | novig | $37k | +113 | ✅ kalshi,prophetx | ❌ | +0.5c |  | L |
