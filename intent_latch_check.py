@@ -96,6 +96,58 @@ def main():
             ex.imap_close(M)
         except Exception:
             pass
+    # ---------------------------------------------------------------- LIVEKEYS census
+    # Nov 12, with EXEC_NOVIG_SUBMIT flipped on: the question that decides whether the EIGHT
+    # venue-unconfirmed Novig orders can be bet a second time. The concurrent duplicate is closed
+    # by registry.claim_submission, but a claim row only exists for orders placed since the claim
+    # was wired today. For everything older, the sequential guard is LIVEKEYS - and _account_rows
+    # adds a row's key to LIVEKEYS only when status == "placed" AND order_id is present:
+    #
+    #     if lo.get("status") != "placed" or not lo.get("order_id"): continue
+    #
+    # So a row for an order that MAY exist at the venue but carries no order_id reaches neither
+    # guard, and the next qualifying pass on that play would submit again. That is the gap, and
+    # this prints whether it is occupied. Counts, statuses and key prefixes only - no stake, no
+    # price, no dollars, and the book name is already public in the repo.
+    print()
+    print("LIVEKEYS CENSUS - which order rows actually block a repeat?")
+    print("=" * 92)
+    try:
+        in_lk, gap = 0, []
+        for row in rows:
+            key = row.get("key") or ""
+            for lo in ([row.get("live_order") or {}, row.get("live_rest") or {}]
+                       + [x or {} for x in (row.get("live_more") or [])]):
+                if not lo:
+                    continue
+                if lo.get("intent") and not (lo.get("voided") or row.get("voided")):
+                    continue                      # an open intent latches; counted above, not here
+                if lo.get("voided") or row.get("voided"):
+                    continue                      # provably never transmitted
+                placed = lo.get("status") == "placed" and bool(lo.get("order_id"))
+                if placed:
+                    in_lk += 1
+                elif lo.get("status"):
+                    gap.append((str(lo.get("book") or "?"), str(lo.get("status")), key))
+        print(f"  {in_lk} order row(s) reach LIVEKEYS -> a repeat of those plays is blocked")
+        nov_gap = [g for g in gap if "novig" in g[0].lower()]
+        print(f"  {len(gap)} row(s) do NOT reach LIVEKEYS ({len(nov_gap)} of them Novig)")
+        if not gap:
+            print()
+            print("  NO row is in the gap. Every non-voided order row carries status=placed and an")
+            print("  order_id, so every play already bet is in LIVEKEYS. Together with the atomic")
+            print("  claim (concurrent) that is both duplicate paths closed for existing orders.")
+        else:
+            print()
+            print("  THESE ARE THE GAP ROWS. Each may exist at the venue while blocking nothing:")
+            for book, st, key in gap[:20]:
+                print(f"    book={book:<10} status={st:<12} key={key[:52]}")
+            print()
+            print("  Any of these plays re-qualifying would be submitted AGAIN. This is the reason")
+            print("  to keep EXEC_NOVIG_SUBMIT off until the venue read resolves them.")
+    except Exception as e:
+        print(f"  census unavailable ({type(e).__name__}: {str(e)[:60]}) - treat the gap as OCCUPIED")
+
     # ---------------------------------------------------------------- why 0 would go live?
     # Peter: "separate qualification failures, Novig submission holds, and unresolved-intent
     # blocks." Those three produce the SAME number in the subject line, so the number cannot tell
