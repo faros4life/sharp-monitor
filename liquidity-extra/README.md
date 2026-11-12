@@ -1,18 +1,20 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 12, 1:11 AM ET. This run: 3 new, 0 not confirmed, 8 pending. Open alerts: 8.
+Updated Thu Nov 12, 1:21 AM ET. This run: 5 new, 0 not confirmed, 5 pending. Open alerts: 9.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 225-128 (-15.97u flat) | rule met: 45-36
+**Record:** 226-128 (-15.68u flat) | rule met: 45-36
 
-**Fade (paper, betting against the print):** 103-190 (+11.88u flat, after fees)
+**Fade (paper, betting against the print):** 103-191 (+10.88u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 12 1:11AM | NCAAB | Stetson vs Howard | moneyline: Howard | kalshi | $150k | -525 |  |  | +0.0c |  | pending |
-| Nov 12 1:11AM | NCAAB | Cal State Bakersfield vs Western Illinois | moneyline: Cal State Bakersfield | kalshi | $169k | -376 |  |  | +0.0c |  | pending |
-| Nov 12 1:11AM | NCAAB | Coppin St. vs Bradley | moneyline: Bradley | kalshi | $173k | -426 |  |  | +0.0c |  | pending |
+| Nov 12 1:21AM | NCAAB | Stetson vs Howard | moneyline: Howard | kalshi | $188k | -525 |  |  | +0.0c |  | pending |
+| Nov 12 1:21AM | NCAAB | Morgan St. vs UMBC | moneyline: UMBC | kalshi | $169k | -257 |  |  | +0.0c |  | pending |
+| Nov 12 1:21AM | NCAAB | Cal State Bakersfield vs Western Illinois | moneyline: Cal State Bakersfield | kalshi | $197k | -376 |  |  | +0.0c |  | pending |
+| Nov 12 1:21AM | NCAAB | Coppin St. vs Bradley | moneyline: Bradley | kalshi | $228k | -426 |  |  | +0.0c |  | pending |
+| Nov 12 1:21AM | NCAAB | Central Connecticut St. vs Sacred Heart | moneyline: Sacred Heart | kalshi | $152k | -203 |  |  | +0.0c |  | pending |
 | Nov 11 10:53PM | TENNIS | Kostyuk vs Gauff | moneyline: Gauff | kalshi | $75k | -270 |  |  | +0.0c |  | pending |
 | Nov 11 5:31PM | NCAAB | Charleston vs Temple | moneyline: Charleston | kalshi | $25k | -117 |  |  | -1.0c | yes | W |
 | Nov 11 2:48PM | TENNIS | Michelsen vs Tabilo | moneyline: Michelsen | kalshi | $60k | -300 |  |  | +2.0c |  | pending |
@@ -26,7 +28,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 11 4:34AM | TENNIS | Sonego vs Tabilo | moneyline: Sonego | kalshi | $30k | -144 | ✅ novig |  | +1.0c | yes | L |
 | Nov 11 4:11AM | TENNIS | Kecmanovic vs Rune | moneyline: Rune | kalshi | $53k | -245 |  |  | +1.0c |  | W |
 | Nov 11 2:43AM | NCAAB | Southern Indiana vs IU Indy | moneyline: IU Indy | kalshi | $148k | -270 |  |  | +4.0c |  | W |
-| Nov 11 2:43AM | NCAAB | USC vs California | moneyline: USC | kalshi | $220k | -335 |  |  | -2.0c |  | pending |
+| Nov 11 2:43AM | NCAAB | USC vs California | moneyline: USC | kalshi | $220k | -335 |  |  | -2.0c |  | W |
 | Nov 11 2:43AM | NCAAB | Pacific vs Long Beach St. | moneyline: Pacific | kalshi | $177k | -233 |  |  | -2.0c |  | L |
 | Nov 11 2:43AM | NCAAB | UMass Lowell vs UMass | moneyline: UMass | kalshi | $89k | -567 |  |  | -23.0c | yes | W |
 | Nov 11 2:43AM | NCAAB | Chicago St. vs California Baptist | moneyline: California Baptist | kalshi | $222k | -525 |  |  | +3.0c |  | L |
@@ -208,5 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 31 8:10AM | TENNIS | Duckworth vs Kecmanovic | moneyline: Kecmanovic | kalshi | $43k | -300 |  |  | -30.0c |  | W |
 | Oct 31 6:30AM | TENNIS | Tirante vs Svajda | moneyline: Svajda | kalshi | $42k | -270 |  |  | -69.0c | yes | L |
 | Oct 31 6:20AM | TENNIS | Baez vs Dzumhur | moneyline: Dzumhur | kalshi | $43k | -194 | ✅ novig |  | -1.0c |  | L |
-| Oct 31 5:00AM | TENNIS | Sun vs Dart | moneyline: Sun | kalshi | $169k | -300 |  |  | -61.0c | yes | L |
-| Oct 31 3:20AM | TENNIS | Zverev vs de Minaur | moneyline: Zverev | kalshi | $29k | -233 | ✅ novig |  | +2.0c |  | L |
