@@ -27,6 +27,14 @@ import uuid
 
 import px_live
 
+# Nov 12 (Peter): Novig submissions are HELD while duplicate prevention is being repaired. R1
+# placed one NCAAF under three times (only one filled, and only because the liquidity was gone).
+# Monitoring, fill reporting, position reads and cancellation are all unaffected by this switch.
+NOVIG_SUBMIT = (os.environ.get("EXEC_NOVIG_SUBMIT") or "off").strip().lower() == "on"
+NOVIG_PAUSE_WHY = ("Novig submissions are paused (EXEC_NOVIG_SUBMIT is not on) while duplicate "
+                   "prevention is repaired - Nov 12. Monitoring and cancellation still run; "
+                   "place by hand if you want this bet now.")
+
 K_BASE = os.environ.get("KALSHI_API", "") or "https://api.elections.kalshi.com/trade-api/v2"
 K_PREFIX = urllib.parse.urlparse(K_BASE).path.rstrip("/")
 PM_API = "https://api.polymarket.us"
@@ -465,6 +473,13 @@ def novig_place(outcome_id, limit_cost, qty, label="", ttl_ms=None, key=""):
     novig-live-order) which places it with the trading key and writes the result to snapshot/novig_orders.json.
     ttl_ms None = FOK; else GTT (fills what's there, rests the remainder until ttl_ms). Novig: 1 contract pays 1c, so
     dollars = qty x cost / 100. The full amount counts as risked today until a settled read exists."""
+    # Nov 12 (Peter: "Hold new Novig submissions while the duplicate guard is unreliable"). This is
+    # the ONE chokepoint for both Novig submission paths - the live order and the resting bid - so
+    # the hold cannot be bypassed by a caller. Reads are untouched: novig_results() still reports
+    # fills, the snapshot still answers positions, and cancellation still works. Default OFF: Peter
+    # sets the repo VARIABLE EXEC_NOVIG_SUBMIT to "on" when he is satisfied the guard holds.
+    if not NOVIG_SUBMIT:
+        return {"status": "refused", "reason": NOVIG_PAUSE_WHY}
     risk = round(qty * limit_cost / 100, 2)
     ok, why = preflight("novig", risk)
     if not ok:

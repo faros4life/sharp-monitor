@@ -147,7 +147,13 @@ def _commit(merge, tries=4):
         data, sha = _fetch()
         if data is None:
             return False                   # unreadable: never write over what we cannot see
-        merge(data)
+        # Nov 12 (Peter): a merge may return False to mean "nothing to change" - the PUT is then
+        # skipped and the call still succeeds. claim_token() asks about up to 30 tokens a run and
+        # wrote the file EVERY time, winner or not: ~60 read-modify-writes a run against the one
+        # file duplicate blocking reads, which is contention it does not need. Atomicity is intact
+        # because a claim that does not win has nothing to store.
+        if merge(data) is False:
+            return True
         _prune(data)
         body = {"message": "registry update", "branch": os.environ.get("REGISTRY_BRANCH") or "main",
                 "content": base64.b64encode(json.dumps(data, separators=(",", ":"),
@@ -409,12 +415,12 @@ def claim_token(tok, stale_min=NOTIFY_STALE_MIN):
         out = str(cur.get("outcome") or "")
         if out == "reported":
             won["v"] = False            # already told him
-            return
+            return False                # nothing to store: skip the write entirely
         if out == "pending":
             age = _age_min(cur.get("ts"), now)
             if age is not None and age < stale_min:
                 won["v"] = False        # another pass is mid-send right now
-                return
+                return False
         h[tok] = {"outcome": "pending", "ts": ts}
         won["v"] = True
 

@@ -525,12 +525,41 @@ def r1_plays(now):
     return out
 
 
+LANE_PREFIXES = ("rule|", "board|", "r1|", "lane2|")   # every lane that stamps its own play_key
+
+
+def lane_strip(k):
+    """A play key with its lane prefix removed. ONE definition, used by every key comparison and
+    by LIVEKEYS.
+
+    Nov 12 (Peter, money): R1 placed the SAME NCAAF under three times (ebe82a72, 510a30b6,
+    adade61d). Both duplicate guards were blind to it and for two different reasons.
+
+      1. LIVEKEYS stores row["key"], which is play_key - "r1|NCAAF|...". The guard tests
+         derive_key(p), which has NO lane prefix. Exact match could never hit.
+      2. same_bet and opp_bet stripped only ("board|", "rule|"). An "r1|" key therefore split
+         into 5 fields, failed the len(a) != 4 check and returned False on every comparison.
+
+    R1 went live Nov 11 and the prefix list was never updated; lane2 was missing too. board
+    survived only because its prefix happened to be in that tuple. opp_bet being blind is worse
+    than the duplicate: it would let a lane take the OTHER side of a game it already holds, two
+    vigs for a guaranteed loss.
+
+    test_lane_keys.py reads the source for every play_key="<lane>|" and asserts it is in
+    LANE_PREFIXES, so adding a lane cannot leave a guard blind again."""
+    k = str(k or "")
+    for pre in LANE_PREFIXES:
+        if k.startswith(pre):
+            return k[len(pre):]
+    return k
+
+
 def same_bet(k1, k2):
     """Same bet from two lanes despite different game spellings ('Hawks vs. Hornets' / 'Atlanta Hawks @ Charlotte Hornets'):
     same league, market and side, and each team of one shares a name word with a team of the other."""
     try:
-        a = (k1.split("|", 1)[1] if k1.startswith(("board|", "rule|")) else k1).split("|")
-        b = (k2.split("|", 1)[1] if k2.startswith(("board|", "rule|")) else k2).split("|")
+        a = lane_strip(k1).split("|")
+        b = lane_strip(k2).split("|")
         if len(a) != 4 or len(b) != 4 or a[0] != b[0] or a[2] != b[2]:
             return False
         ta, tb = lm.split_teams(a[1]) or (), lm.split_teams(b[1]) or ()
@@ -550,8 +579,8 @@ def opp_bet(k1, k2):
     """Nov 3 (Peter 2:51 PM: "if a bet is in and the other side comes in, the 2nd bet does not get played"): k2 is the OTHER
     side of k1's game and market (totals: OVER vs UNDER; spreads / moneylines: the other team), across any lane."""
     try:
-        a = (k1.split("|", 1)[1] if k1.startswith(("board|", "rule|")) else k1).split("|")
-        b = (k2.split("|", 1)[1] if k2.startswith(("board|", "rule|")) else k2).split("|")
+        a = lane_strip(k1).split("|")
+        b = lane_strip(k2).split("|")
         if len(a) != 4 or len(b) != 4 or a[0] != b[0] or a[2] != b[2]:
             return False
         ta, tb = lm.split_teams(a[1]) or (), lm.split_teams(b[1]) or ()
@@ -2126,7 +2155,12 @@ def _account_rows(rows, graded, ids, seen_oids, _intents, _confirmed):
             oid = str(lo["order_id"])
             ids[oid] = lo.get("book") or "prophetx"
             if row.get("key"):
+                # Nov 12 (Peter, money): BOTH forms. The row carries the placing lane's play_key
+                # ("r1|NCAAF|..."), the guards test derive_key(p), which has no lane prefix, so
+                # storing only the raw key let a lane repeat its OWN bet - three live orders on one
+                # NCAAF under. Storing both means the exact check hits whichever form the caller has.
                 LIVEKEYS.add(row["key"])
+                LIVEKEYS.add(lane_strip(row["key"]))
             # Nov 11: ONE ORDER IS COUNTED ONCE. ids is a dict and BOARD["keys"] is a set, so
             # both already dedupe - but BOARD["risk"] and NONPX["today"] are running sums, so
             # the same order described in two 'Bets LIVE:' emails used to add its money twice.
