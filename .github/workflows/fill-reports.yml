@@ -1,0 +1,50 @@
+name: fill-reports
+
+# Kalshi resting-fill reporting, split out of executor-dry-run (Peter, Nov 12).
+#
+# It was 518.8s of a 632-second executor pass and gates nothing, so it was holding the executor
+# open past the 12-minute registry freshness window - which is what made AGAINST YOUR BET
+# unavailable. See fill_reports_run.py for the full chain.
+#
+# Novig reporting deliberately STAYS in the executor: 16.8s, and it carries the put_venue_ids()
+# venue reconciliation.
+
+on:
+  schedule:
+    - cron: "3-59/15 * * * *"   # every 15 min, offset off the hour so it does not pile onto :00
+  workflow_dispatch:
+
+concurrency:
+  group: fill-reports
+  cancel-in-progress: false   # never two at once: that is the only way this could double-notify
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    # Under the 15-minute schedule, so a slow run cannot still be going when the next one fires.
+    # The reporter is resumable by design - it dedupes on its own token emails - so a run cut off
+    # here reports next firing rather than losing anything.
+    timeout-minutes: 13
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Kalshi resting-fill reports (counts only in this log)
+        env:
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          KALSHI_KEY_ID: ${{ secrets.KALSHI_KEY_ID }}               # reads the order's fill state (GET)
+          KALSHI_PRIVATE_KEY: ${{ secrets.KALSHI_PRIVATE_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}     # the fill text itself
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+          # Read for the stored ledger rows, written for the notification claim and the
+          # "reported" token - exactly the writes this reporter already made inside the executor.
+          REGISTRY_TOKEN: ${{ secrets.REGISTRY_TOKEN }}
+        run: python -u fill_reports_run.py

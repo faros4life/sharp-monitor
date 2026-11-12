@@ -2150,6 +2150,25 @@ def md_key(b, al, mtype, side, ln, price, teams):
 PERF = {"t": collections.OrderedDict(), "n": collections.Counter(), "venue": collections.Counter(),
         "venue_s": collections.Counter(), "err": collections.Counter()}
 
+_PHT0 = time.time()
+_PH = {"prev": 0.0}
+
+
+def _phase(what):
+    """Wall-clock timeline of main(), printed LIVE. Measurement only - changes and gates nothing.
+
+    Nov 12 (Peter, "measure the missing 617 seconds"): PERF accounted for 309s of a 926-second
+    pass 2. The other 67% had NO bracket at all, so the bottleneck could not be named from the
+    counters - and naming it from the lines that WERE printed is the mistake this repo has four
+    entries about. PERF measures the calls someone thought to wrap; this measures the GAPS between
+    them, which is where the missing time has to be.
+
+    Printed immediately rather than accumulated, for the same reason signal_alerts' _mark() is: a
+    run that dies partway through must still show how far it got. Counts and seconds only."""
+    at = time.time() - _PHT0
+    print(f"  phase: {at:7.1f}s total, {at - _PH['prev']:7.1f}s for {what}", flush=True)
+    _PH["prev"] = at
+
 
 class perf:
     """with perf('label'): ... - accumulates elapsed seconds and a count under that label.
@@ -2800,11 +2819,22 @@ def fill_reports():
             novig_reports()
         except Exception as ex:
             print(f"novig report check failed: {str(ex)[:60]}")
-    with perf("kalshi resting-fill reports (Gmail)", rollup=True):   # encloses sent_tokens
-        try:
-            kalshi_rest_reports()
-        except Exception as ex:
-            print(f"kalshi resting-fill check failed: {str(ex)[:60]}")
+    # Nov 12 (Peter, Step 1): Kalshi reporting moves to the fill-reports workflow. Measured at
+    # 518.8s of a 632-second pass - 82% - while gating nothing, and that is what held the run open
+    # past the 12-minute registry freshness window and made AGAINST YOUR BET unavailable.
+    #
+    # The flag is NARROW on purpose: novig_reports() above stays here, because it is 16.8s and it
+    # carries the put_venue_ids() venue reconciliation. Default is "on", so the code behaves exactly
+    # as before and only the workflow env turns it off - which means this can be reverted by
+    # deleting one line of yml, with no code change, if the split ever misbehaves.
+    if (os.environ.get("EXEC_KALSHI_REPORTS") or "on").strip().lower() != "on":
+        print("kalshi resting-fill reports: handled by the fill-reports workflow (EXEC_KALSHI_REPORTS=off)")
+    else:
+        with perf("kalshi resting-fill reports (Gmail)", rollup=True):   # encloses sent_tokens
+            try:
+                kalshi_rest_reports()
+            except Exception as ex:
+                print(f"kalshi resting-fill check failed: {str(ex)[:60]}")
 
 
 def live_order(r):
@@ -4232,10 +4262,13 @@ def main():
     with perf("imap open"):
         M = imap_open()
     with perf("read verdicts (Gmail)"):
+        _phase("main() start -> imap open")
         plays = read_verdicts(M) if SOURCE in ("muse", "both") else []
+        _phase("verdicts read (Gmail)")
     try:
         with perf("read manual notes (Gmail)"):
             read_manual(M)
+            _phase("manual notes read (Gmail)")
     except Exception:
         LOG.append("manual-bet notes unreadable")
     with perf("rule_plays"):
@@ -4261,6 +4294,7 @@ def main():
     _cand = plays + rplays + bplays + r1plays + l2plays
     with perf("handled_pids (one Gmail search)", n=len(_cand)):
         _seen = handled_pids(M, _cand)
+        _phase("dedupe resolved")
     SEEN["tok"] = _seen   # live_play_alert() reads the xrty tokens from here to suppress re-alerts
     new = [p for p in _cand if not already_handled(M, p, _seen)]
     with perf("imap close"):
@@ -4278,6 +4312,7 @@ def main():
     try:
         with perf("pmus rest sweep (T-30 money off the book)"):
             pmus_rest_sweep(now)
+            _phase("pmus rest sweep")
     except Exception as ex:
         print(f"PM US sweep call failed: {str(ex)[:60]}")
     print(f"Verdict plays seen (2 days): {len(plays)}; coded-rule alerts: {len(rplays)}; new: {len(new)}")
@@ -4435,7 +4470,9 @@ def main():
                 ThreadPoolExecutor(max_workers=PREFETCH_WORKERS) as tp:
             list(tp.map(_warm, new))
     results, taken_now = [], set()
+    _phase("positions read (venues) + settle")
     M2 = imap_open()
+    _phase("imap2 open")
 
     # Nov 11: taken() ran ONE UNBOUNDED X-GM-RAW search PER PLAY - the fourth instance of the
     # pattern already fixed in read_manual, already_handled and both fill reporters. evaluate()
@@ -4610,7 +4647,9 @@ def main():
         except Exception as ex:
             results.append({"play": p, "pid": pid(p["play_key"]), "verdict": "SKIP", "reason": f"error: {str(ex)[:100]}"})
         results[-1]["decided_utc"] = datetime.now(timezone.utc)
+    _phase("evaluate + order work (all lanes)")
     imap_close(M2)
+    _phase("imap2 close")
     nw = sum(1 for r in results if r["verdict"] == "WOULD PLACE")
     when = now.astimezone(lm.ET).strftime('%a %b %d %I:%M %p ET')
     body = [(f"LIVE ON for phase 1 (${LIVE_UNIT:.0f} to win, best price on {', '.join(BOOK_NAME.get(b, b) for b in LIVE_BOOKS)}); everything else is a dry run ({when})" if px_live.LIVE
@@ -4711,7 +4750,9 @@ def main():
         # Muse is a veto, so only a DISAGREE stops a play", and read_verdicts() already loaded
         # those vetoes before any evaluation. Measured at 4.8-24.1s.
         watchdog_once(now, plays, rplays, feed)
+        _phase("watchdog (post-order)")
         fill_reports()
+        _phase("fill reports (post-order, non-gating)")
         body += [perf_report(), ""]   # Nov 11: where the run's time actually went
         print(perf_report())          # and in the public log, counts/seconds only
         # Nov 11 (Peter, "b2"): the private-GitHub store proves itself against the real API while
@@ -4751,6 +4792,7 @@ def main():
          + f", {len(skips)} skipped",
          "\n".join(body))
     print(f"Dry-run email sent: {len(golive)} would go live, {nw} would place, {len(helds)} held, {len(skips)} skipped.")   # counts only
+    _phase("report email built + sent")
     # Nov 12: which rule set the line-conversion prices in THIS run, printed once so activation is verifiable from the log
     print(f"line-value mode: {lv_mode()} ({'REPLACEMENT maximum' if lv_mode() == 'live' else 'legacy half-point credit'}) "
           f"for selection, order limit and recheck; capture {'on' if os.environ.get('LINE_VALUE_SHADOW', '1') != '0' else 'off'}; "
