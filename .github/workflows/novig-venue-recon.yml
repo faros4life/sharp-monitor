@@ -1,0 +1,34 @@
+name: novig-venue-recon
+
+on:
+  workflow_dispatch:
+    inputs:
+      order_ids:
+        description: "extra client_ids / order_ids to reconcile, comma separated (optional)"
+        required: false
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      # READ-ONLY. Every call is a GET: no order placed, amended or cancelled, no registry write,
+      # no live setting touched. No dispatch credential is provided, so this job cannot reach the
+      # home runner's order workflow even in principle.
+      - name: Reconcile Novig orders against the registry, the runner and the venue
+        env:
+          REGISTRY_TOKEN: ${{ secrets.REGISTRY_TOKEN }}             # contents read on the private registry
+          NOVIG_READ_TOKEN: ${{ secrets.NOVIG_READ_TOKEN }}         # narrow read credential, once it exists
+          NOVIG_SNAPSHOT_TOKEN: ${{ secrets.NOVIG_SNAPSHOT_TOKEN }} # fallback during the migration
+          NOVIG_READ_KEY_ID: ${{ secrets.NOVIG_READ_KEY_ID }}       # venue reads, GET only
+          NOVIG_READ_KEY_PEM: ${{ secrets.NOVIG_READ_KEY_PEM }}
+          NOVIG_ORDER_IDS: ${{ github.event.inputs.order_ids }}
+        run: python -u novig_venue_recon.py
