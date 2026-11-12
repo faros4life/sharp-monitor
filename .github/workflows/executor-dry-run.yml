@@ -48,6 +48,13 @@ jobs:
           GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
           EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          # Nov 12 (Peter, Step 1): the Kalshi resting-fill reporter now runs in the fill-reports
+          # workflow every 15 minutes. It was 518.8s of a 632-second pass here - 82% - and gates
+          # nothing, and that is what held this run open past the 12-minute registry freshness
+          # window. Verified working standalone in run 43290413830 before this line went in.
+          # Novig reporting is NOT affected and stays in this job with its venue reconciliation.
+          # To put it back: delete this line. No code change needed; the code default is "on".
+          EXEC_KALSHI_REPORTS: "off"
           # Step 1 (Peter, 9 Nov): READ-ONLY access to the shared credit counter in clv/state.enc,
           # so the 1,000-call cap can actually restrain Lane 2. Without it tb.PASS is empty, the
           # AES-GCM key derives from nothing, and the seed failed with InvalidTag - which is why
