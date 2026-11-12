@@ -1,0 +1,38 @@
+name: fixture-cache-report
+
+# Peter, Nov 12, Priority 2 item 4: do not run another 30-day IMAP scan when the fixture cache
+# already holds the answer. This reads clv/state.enc only - no mail, no OddsPapi call, no credit -
+# and separates a MISSING fixture from a STALE FETCH from a real MATCHING failure.
+#
+# Read-only: nothing written, no order, no change to live execution, pricing, sizing, routing,
+# notifications, risk controls or live switches. Pinnacle veto stays OFF.
+#
+# Its own concurrency group, so it never queues behind the long linkage scan.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: fixture-cache-report
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Fixture cache report (cache only, no IMAP, no API)
+        env:
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+        run: python -u fixture_cache_report.py
