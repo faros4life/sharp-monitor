@@ -1089,7 +1089,9 @@ def handled_pids(M, cands, chunk=20, days=HANDLED_DAYS):
         try:
             if registry.tokens_complete():
                 have = registry.token_set()
+                LOG.append(f"dedupe answered by the private store ({len(want)} tokens, no Gmail)")
                 return {x: (x in have) for x in want}
+            LOG.append("dedupe fell back to Gmail: completeness claim missing or stale")
         except Exception as ex:
             LOG.append(f"token store unreadable, using Gmail: {str(ex)[:50]}")
     uids, seen = [], set()
@@ -4427,6 +4429,18 @@ def main():
         try:
             if registry.enabled() and not registry.put_tokens(run_tokens(results)):
                 registry.invalidate_tokens()
+            elif registry.enabled():
+                # Nov 12 (Peter): the token write above is a CONFIRMED PUT - _commit returns True only on 200/201 -
+                # so at this point this run's tokens are durably stored, independent of the ledger email below.
+                # Re-stamp the completeness claim so the NEXT run's handled_pids() can use the store instead of
+                # Gmail. touch_tokens_complete() only refreshes a claim that is ALREADY valid for the window; it
+                # cannot create one, so a failed backfill or an invalidate still sends the next run to Gmail.
+                # FRESH_MIN is unchanged at 12 minutes.
+                try:
+                    if not registry.touch_tokens_complete():
+                        LOG.append("token completeness not re-stamped (no valid claim)")
+                except Exception as _tex:
+                    LOG.append(f"token touch failed: {str(_tex)[:40]}")
         except Exception as _ex:
             LOG.append(f"token write failed: {str(_ex)[:50]}")
             try:

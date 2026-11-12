@@ -350,6 +350,40 @@ def set_tokens_complete():
     return _commit(merge)
 
 
+def touch_tokens_complete(now=None):
+    """Refresh the freshness stamp on an ALREADY VALID completeness claim. Never creates one.
+
+    Nov 12 (Peter). set_tokens_complete() is only reachable inside bot_orders()' backfill, which
+    main() reaches ~150 lines AFTER handled_pids() - the one caller that would use the claim. So the
+    claim could only ever be consumed by the NEXT run, and FRESH_MIN is 12 minutes while the gap
+    between the two points is the tail of one run plus up to a 10-minute schedule gap plus ~90s of
+    the next. It was reliably stale, so every run fell back to Gmail (110.7s), which made runs slower
+    and likelier to be killed, which meant the backfill never ran to set the claim. A loop that fed
+    itself.
+
+    The fix is NOT a longer window - FRESH_MIN stays 12. This only re-stamps a claim that is already
+    valid for the window, after this run has durably written its own tokens. It cannot manufacture
+    completeness: if tok_complete_through is missing or older than the window (which is what
+    invalidate_tokens() leaves behind, and what a failed backfill causes), this returns False and
+    changes nothing, so the next run reads Gmail exactly as it does today.
+    """
+    d = load()
+    if d is None:
+        return False                      # unreadable: never assert anything about it
+    meta = d.get("meta") or {}
+    cut = ((now or datetime.now(timezone.utc)) - timedelta(days=KEEP_DAYS)).strftime("%Y-%m-%d")
+    if str(meta.get("tok_complete_through") or "") < cut:
+        return False                      # no valid claim to refresh - do not create one
+    stamp = (now or datetime.now(timezone.utc)).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+    def merge(d2):
+        m2 = d2.setdefault("meta", {})
+        if str(m2.get("tok_complete_through") or "") < cut:
+            return False                  # re-checked under the lock: someone invalidated it since
+        m2["tok_complete_at"] = stamp
+    return _commit(merge)
+
+
 def invalidate_tokens():
     return _commit(lambda d: d.setdefault("meta", {}).update({"tok_complete_through": ""}))
 
