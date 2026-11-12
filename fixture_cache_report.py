@@ -121,6 +121,14 @@ def main():
             verdicts["RESOLVES NOW (fix recovered it)"] += 1
             say(f"      RESOLVES NOW -> {str(f_now.get('p1'))[:28]} v {str(f_now.get('p2'))[:28]}")
             say("      (unique winner; a tie would still return None)")
+            # THE BLOCKER. A row that failed find_fixture MAX_TRIES times while its league was
+            # being fetched gets rec["done"] = True, and the pending loop skips done rows before
+            # anything else. So a row the corrected matcher now resolves still never re-enters
+            # scoring - which is why the ledger run reported scored 109 (+0) with 0 calls.
+            if rec.get("done"):
+                verdicts["  ...but BLOCKED by done=True"] += 1
+                say(f"      BLOCKED: done=True, tries={rec.get('tries')} - retired before the fix,")
+                say("      so the pending loop skips it and the recovery never reaches scoring.")
             continue
         try:
             gate, _, detail = xc.why_no_fixture(st, q, lg)
@@ -154,6 +162,14 @@ def main():
             verdicts["in window, matcher found none"] += 1
             say("      VERDICT: MATCHING - fixtures exist around this game and the token test")
             say("               still found no unique winner. This one IS a matching question.")
+
+    # how many unscored rows are retired overall, and why that matters now
+    allun = [(k, r) for k, r in bets.items() if r.get("clv") is None]
+    done_n = sum(1 for _, r in allun if r.get("done"))
+    say("")
+    say(f"  unscored rows in the ledger: {len(allun)} | marked done=True: {done_n}")
+    say("  done=True is checked BEFORE anything else in the pending loop, so a retired row never")
+    say("  re-enters scoring even when the reason it was retired has since been fixed.")
 
     say("")
     say("=" * 100)
