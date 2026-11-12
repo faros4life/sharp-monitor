@@ -116,8 +116,12 @@ def clv_for(st, b, mkmap, now):
 
     fid = cl.find_fixture(st, q)
     if not fid:
+        # BOTH halves are needed. The gate says which test failed; the detail names the closest
+        # fixture and which tokens each side actually hit. The first version of this returned the
+        # gate twice and threw the detail away, so "one side matched nothing" could not be acted
+        # on - it did not say WHICH side, or against what.
         g, _, detail = xc.why_no_fixture(st, q, lg)
-        return "no fixture", None, g
+        return "no fixture", None, (f"{g} | {detail}" if detail else g)
     f = st["fixtures"][fid]
     start = cl.tp(f.get("start")) or cl.tp(gs)
     if not start:
@@ -278,13 +282,25 @@ def main():
             oid = {str(b.get("order_id") or b.get("oid") or "") for b in v} - {""}
             fs = {str(b.get("first_seen") or b.get("placed") or "")[:19] for b in v} - {""}
             key = {str(b.get("key") or b.get("play_key") or "") for b in v} - {""}
+            # DISTINCT STAKES are the decisive evidence the first version lacked. Duplicate rows of
+            # one bet carry the SAME stake; partial fills of one order carry different ones. The
+            # Nov 11 report showed stakes from $7.96 to $233 across 25 plays, which is the shape of
+            # a resting order filled in pieces, not of a row written eleven times. The amounts are
+            # money, so only the COUNT goes to the log and the values go to the private email.
+            stk = {round(num(b.get("stake")), 2) for b in v if num(b.get("stake")) is not None}
             verdict = ("separate legs - distinct order ids" if len(oid) == len(v) and oid else
+                       "PARTIAL FILLS - distinct stakes" if len(stk) == len(v) and len(stk) > 1 else
                        "separate fills - distinct timestamps" if len(fs) == len(v) and fs else
-                       f"UNRESOLVED - {len(oid)} order id(s), {len(fs)} timestamp(s) for {len(v)} rows")
+                       "DUPLICATE ROWS - one identical stake repeated" if len(stk) == 1 and len(v) > 1
+                       and not oid and len(fs) <= 1 else
+                       f"UNRESOLVED - {len(oid)} order id(s), {len(stk)} stake(s), "
+                       f"{len(fs)} timestamp(s) for {len(v)} rows")
             say(f"  {len(v):3d}x  {g[:36]:<36} {bet[:18]:<18} {bk[:10]:<10} "
                 f"{(f'{px:+.0f}' if px is not None else '?'):>6}")
-            say(f"        order ids {len(oid)} | distinct timestamps {len(fs)} | "
-                f"tracker keys {len(key)}  ->  {verdict}")
+            say(f"        order ids {len(oid)} | distinct stakes {len(stk)} | "
+                f"distinct timestamps {len(fs)} | tracker keys {len(key)}  ->  {verdict}")
+            if stk:
+                priv(f"          stakes: {', '.join(f'${s:,.2f}' for s in sorted(stk))}")
         say("")
         say("  Until a group reads 'separate legs' or 'separate fills', no average over these")
         say("  plays is quoted: duplicates would weight one play by its row count.")
