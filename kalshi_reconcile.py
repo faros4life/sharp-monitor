@@ -45,9 +45,15 @@ if rows is None:
 stored = collections.OrderedDict()
 for r in rows:
     for fld in ("live_order", "live_rest", "live_more"):
-        o = r.get(fld) or {}
-        if o.get("book") == "kalshi" and o.get("order_id"):
-            stored.setdefault(str(o["order_id"]), []).append(f"{fld}:{o.get('status') or '?'}")
+        v = r.get(fld)
+        # live_more is a LIST of order records while the other two are single dicts. Normalising
+        # here rather than assuming: the first version of this script assumed all three were dicts
+        # and died on .get() against the list.
+        for o in (v if isinstance(v, list) else [v]):
+            if not isinstance(o, dict):
+                continue
+            if o.get("book") == "kalshi" and o.get("order_id"):
+                stored.setdefault(str(o["order_id"]), []).append(f"{fld}:{o.get('status') or '?'}")
 
 print(f"ledger rows in the registry: {len(rows)}")
 print(f"stored Kalshi order ids:     {len(stored)}")
