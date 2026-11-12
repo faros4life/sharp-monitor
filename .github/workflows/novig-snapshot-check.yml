@@ -25,6 +25,13 @@ jobs:
         env:
           NOVIG_SNAPSHOT_TOKEN: ${{ secrets.NOVIG_SNAPSHOT_TOKEN }}
           RECONCILE_ORDERS: ${{ inputs.orders }}
+          # Nov 12: the fills probe needs the READ-ONLY key. Without these two the probe reported
+          # "key ready -> False, scope None", which was this workflow's missing env and NOT
+          # evidence that Novig blocks Actions. Read-only scope; novig_signed refuses any key
+          # whose scope is not read-only.
+          NOVIG_READ_KEY_ID: ${{ secrets.NOVIG_READ_KEY_ID }}
+          NOVIG_READ_KEY_PEM: ${{ secrets.NOVIG_READ_KEY_PEM }}
+          NOVIG_TRADE_KEY_ID: ${{ secrets.NOVIG_TRADE_KEY_ID }}
         run: |
           python -u - <<'PY'
           import os
