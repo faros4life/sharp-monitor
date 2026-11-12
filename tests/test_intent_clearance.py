@@ -26,6 +26,35 @@ os.environ["GMAIL_APP_PASSWORD"] = "x"
 os.environ["EMAIL_TO"] = "owner+bets@example.com"
 import executor as ex  # noqa: E402
 
+# Nov 12: journal_intent now takes an ATOMIC SUBMISSION CLAIM before it writes anything, and
+# claim_submission() RAISES when the store cannot be written - "without an atomic store a
+# concurrent duplicate cannot be prevented, so an unknown answer must block". With no store at all
+# every call here refused, which is the gate working, not a defect. These tests need a store that
+# can be written so the path past the claim is reachable; the claim's own behaviour is covered by
+# test_one_submission.py and test_atomic_submission.py.
+import registry as _R   # noqa: E402
+
+_R_ORIG = (_R.load, _R._commit, _R.enabled)
+
+
+def store_on(data=None):
+    box = {"d": data or {"orders": [], "intents": [], "handled": {}, "submissions": {}}}
+    _R.load = lambda: json.loads(json.dumps(box["d"]))
+    def _commit(merge, tries=4):
+        d = json.loads(json.dumps(box["d"]))
+        if merge(d) is False:
+            return True
+        box["d"] = d
+        return True
+    _R._commit = _commit
+    _R.enabled = lambda: True
+    return box
+
+
+def store_off():
+    _R.load, _R._commit, _R.enabled = _R_ORIG
+
+
 OWNER, OUTSIDER = "owner@example.com", "stranger@evil.test"
 
 OK, BAD = [], []
@@ -76,6 +105,7 @@ ex.send = lambda s, b: SENT.append((s, b))
 ex.tg = lambda *a, **k: None
 ex.intent_readable = lambda cid, **k: True
 SENT.clear()
+store_on()   # journal_intent takes an atomic submission claim first; it needs a writable store
 ok, cid = ex.journal_intent({"play": {"play_key": "K1", "source": "board"}}, "prophetx", 390.0)
 subj, body = SENT[0]
 

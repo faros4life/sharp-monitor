@@ -90,6 +90,13 @@ jobs:
           EXEC_UNIT: "300"
           # LIVE phase 1 (Oct 26): real ProphetX orders only when the repo VARIABLE EXEC_LIVE is "on"
           EXEC_LIVE: ${{ vars.EXEC_LIVE }}
+          # Nov 12 (Peter): the Novig submission hold was readable by novig-snapshot-check and
+          # novig-dispatch-check but NEVER reached the executor, so setting the variable would have
+          # had no effect here - book_live.NOVIG_SUBMIT would still default off. Wired with an
+          # explicit 'off' default so the hold stays on if the variable is unset or removed.
+          # Activation is: set the repo VARIABLE to "on". Verify in a completed run's env block,
+          # which prints variables in the clear.
+          EXEC_NOVIG_SUBMIT: ${{ vars.EXEC_NOVIG_SUBMIT || 'off' }}
           # Nov 3 (Peter "ok build"): Lane 3 board NBA totals places money only when this is "on" (and EXEC_LIVE is on)
           # The `|| 'off'` is the default for an ABSENT variable, never a statement of the lane's state - the repo
           # variable decides and Peter flips it. The code reads .strip().lower() == "on", so "true"/"yes"/"1" read

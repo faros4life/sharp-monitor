@@ -38,8 +38,37 @@ def rowof(body):
 
 _send, _tg, _rb = ex.send, ex.tg, ex.intent_readable
 
+# Nov 12: journal_intent now takes an ATOMIC SUBMISSION CLAIM before it writes anything, and
+# claim_submission() RAISES when the store cannot be written - "without an atomic store a
+# concurrent duplicate cannot be prevented, so an unknown answer must block". With no store at all
+# every call here refused, which is the gate working, not a defect. These tests need a store that
+# can be written so the path past the claim is reachable; the claim's own behaviour is covered by
+# test_one_submission.py and test_atomic_submission.py.
+import registry as _R   # noqa: E402
+
+_R_ORIG = (_R.load, _R._commit, _R.enabled)
+
+
+def store_on(data=None):
+    box = {"d": data or {"orders": [], "intents": [], "handled": {}, "submissions": {}}}
+    _R.load = lambda: json.loads(json.dumps(box["d"]))
+    def _commit(merge, tries=4):
+        d = json.loads(json.dumps(box["d"]))
+        if merge(d) is False:
+            return True
+        box["d"] = d
+        return True
+    _R._commit = _commit
+    _R.enabled = lambda: True
+    return box
+
+
+def store_off():
+    _R.load, _R._commit, _R.enabled = _R_ORIG
+
+
 # ---------------------------------------------------------------- the intent row itself
-SENT.clear(); stub()
+SENT.clear(); stub(); store_on()
 ok, cid = ex.journal_intent({"play": {"play_key": "K1", "source": "board"}}, "prophetx", 390.0)
 ck("intent is written", ok and bool(cid))
 ck("one email", len(SENT) == 1)
@@ -106,8 +135,16 @@ ck("1. resolution is order-independent", abs(risk3 - 390.0) < 1e-9 and open3 == 
 bo = inspect.getsource(ex.bot_orders) + inspect.getsource(ex._account_rows)
 ck("1. money identity prefers the client_id", 'str(cid or oid)' in bo)
 ck("1. ids still carry the venue order_id (trade attribution)", "ids[oid]" in bo)
-ck("1. intents are resolved after the loop, not inside it", bo.index("_intents[") < bo.index('INTENT["open"] = {}')
-   if "_intents[" in bo else 'INTENT["open"] = {}' in bo)
+# Nov 12: the row accounting moved into _account_rows() and the resolution into
+# _bot_orders_finish(), both called by bot_orders. Same order, same guarantee: rows are accounted
+# first, intents resolved afterwards.
+_bo_all = bo + inspect.getsource(ex._account_rows) + inspect.getsource(ex._bot_orders_finish)
+# The accounting loop lives in _account_rows(); the resolution lives in _bot_orders_finish(),
+# which bot_orders calls AFTER it. So the guarantee is structural now: INTENT["open"] is reset and
+# populated in the finish step and never touched inside the loop.
+ck("1. intents are resolved after the loop, not inside it",
+   'INTENT["open"] = {}' in inspect.getsource(ex._bot_orders_finish)
+   and 'INTENT["open"]' not in inspect.getsource(ex._account_rows))
 
 # ---------------------------------------------------------------- 2. retries cannot duplicate
 lg = inspect.getsource(ex.live_guards)
@@ -181,7 +218,7 @@ for bad in ("the-odds-api", "oddspapi", "ODDSPAPI", "credit", "historical-odds")
     ck(f"5. the write-ahead makes no {bad} call", bad not in ji_code)
 ck("5. the write-ahead uses Gmail SMTP only", "send(" in ji)
 ck("5. the intent resolution uses a subject-only IMAP search, not a paid API",
-   "intent_cleared(M, k)" in bo and "SUBJECT" in inspect.getsource(ex.subject_hits))
+   "intent_cleared(M, k)" in _bo_all and "SUBJECT" in inspect.getsource(ex.subject_hits))
 
 # ---------------------------------------------------------------- unchanged rules and sizing
 ex.send, ex.tg, ex.intent_readable = _send, _tg, _rb
