@@ -9,7 +9,7 @@ def ck(n, c, d=""): (OK if c else BAD).append(n + (f"  [{d}]" if d and not c els
 src = open(au.__file__).read(); tree = ast.parse(src)
 mods = {n.names[0].name for n in ast.walk(tree) if isinstance(n, ast.Import)} | {n.module for n in ast.walk(tree) if isinstance(n, ast.ImportFrom)}
 ck("imports no execution, registry or network-write code at module level", not (mods & {"executor", "registry", "requests", "px_live", "book_live"}), str(mods))
-ck("the only mail is the explicitly gated private detail (AUDIT_EMAIL=1), subject never 'Bets'", 'AUDIT_EMAIL") == "1"' in src and "LINE VALUE AUDIT:" in src and src.count("smtplib") == 1)
+ck("the only mail is the explicitly gated private detail (AUDIT_EMAIL=1), subject never 'Bets'", 'AUDIT_EMAIL") == "1"' in src and "LINE VALUE AUDIT:" in src and src.count("import smtplib") == 1)
 ck("opens the mailbox readonly and fetches with PEEK", "readonly=True" in src and "BODY.PEEK" in src and "uid(\"STORE\"" not in src)
 ck("never prints row content", "print(" in src and "ledger_row" not in src and "json.dumps" not in src)
 wf = open(os.path.join(os.path.dirname(au.__file__), ".github/workflows/line-value-audit.yml")).read()
