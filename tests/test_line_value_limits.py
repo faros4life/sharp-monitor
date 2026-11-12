@@ -211,6 +211,24 @@ live_off_ok = run5("live", "0")
 ck("5 ...and with recording off a price AT the maximum is still accepted",
    any(c["line"] == 229.5 for c in cands(live_off_ok)), str([(c["line"], c["am"], c["thr"]) for c in cands(live_off_ok)]))
 
+# ---------------------------------------------------------------- 6. the stored order limit is never looser than the maximum
+import math as _math
+_grid = [-124.6, -122.4, -102.5, -100.7, -126.4, 100.9, -130.0, -100.5, 100.0, -101.0, 115.3, -160.4]
+ck("6 limit_price() is never looser than the exact maximum", all(lv.cents_of(lv.limit_price(m)) >= lv.cents_of(m) - 1e-9 for m in _grid))
+ck("6 limit_price() is the TIGHTEST such integer (one tick looser would breach the maximum)",
+   all(lv.cents_of(ex.cents_worse(lv.limit_price(m), 1)) < lv.cents_of(m) + 1e-9 for m in _grid))
+ck("6 the real first-live-run maxima round the conservative way", [lv.limit_price(m) for m in (-124.6, -122.4, -102.5, -100.7, -126.4, 100.9)]
+   == [-124, -122, -102, 100, -126, 101], str([lv.limit_price(m) for m in (-124.6, -122.4, -102.5, -100.7, -126.4, 100.9)]))
+stub({228.5: -109, 229.5: -118})
+_r6 = run5("live", "1")
+_c6 = [c for c in cands(_r6) if c["line"] == 229.5]
+_mx6 = lv.convert("NBA", "total", "UNDER", 228.5, _r6["lvs"]["alert_af"], 229.5, None, "kalshi", 0, W, None, CAP)["effective_max_am_after_fee"]
+ck("6 the stored order limit equals limit_price(effective maximum)", _c6 and _c6[0]["thr"] == lv.limit_price(_mx6),
+   f"thr {_c6[0]['thr'] if _c6 else None} vs limit_price {lv.limit_price(_mx6)} of max {round(_mx6, 2)}")
+ck("6 every live candidate record names the rule that decided it",
+   all(c.get("decided_by") == "live" for c in _r6["lvs"]["cands"]), str([(c["line"], c.get("decided_by")) for c in _r6["lvs"]["cands"]][:3]))
+_leg6 = run5("shadow", "1")
+ck("6 and a shadow run is labelled shadow", all(c.get("decided_by") == "shadow" for c in _leg6["lvs"]["cands"]))
 print(f"{len(OK)} pass, {len(BAD)} fail")
 for b in BAD:
     print("FAIL", b)

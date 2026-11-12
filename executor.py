@@ -1522,8 +1522,9 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None, held=None):
     lvs_notes = []   # Nov 12: SHADOW capture of EVERY candidate and why it was rejected. Records only; no decision reads it.
 
     def _note(b, bl, r, why, **kw):
-        try:
-            lvs_notes.append(dict(book=b, line=bl, am_after_fee=r.get("best_price_american"), legacy=why, **kw))
+        try:   # `legacy` is the GATE's reason; decided_by names the rule that produced it, so a live row is never read as legacy
+            lvs_notes.append(dict(book=b, line=bl, am_after_fee=r.get("best_price_american"), legacy=why,
+                                  decided_by=lv_mode(), **kw))
         except Exception:
             pass
     # DIAGNOSTIC ONLY (Peter, Nov 12): a fresh Pinnacle quote is recorded for comparison and is NOT an execution gate.
@@ -1562,14 +1563,20 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None, held=None):
                 _note(b, bl, r, "lv_unsupported:" + str(cv.get("reason")), hb=hb)
                 continue
             credit = lv_credit(cv, alert_cost, tol)
+            lv_cap = cv["effective_max_am_after_fee"]     # the exact maximum, cap included; thr is rounded from it below
         else:
             credit = hb * hp                              # legacy: half-points better times the half-point value
+            lv_cap = None
         c_eq = american_to_prob(am) - credit
         c_eq_q = american_to_prob(am_q) - credit      # what the eligibility gates compare
         if c_eq_q > alert_cost + tol + 1e-9:          # gate on the frozen price, never the improved one
             _note(b, bl, r, "price_gate", hb=hb, c_eq_q=round(c_eq_q, 6))
             continue
         thr = lm.american(min(max(alert_cost + tol + credit, 0.01), 0.99))   # worst acceptable real price at this line
+        if lv_cap is not None:
+            # CONSERVATIVE rounding to the venue's increment: the stored order limit is never LOOSER than the calculated
+            # maximum (lm.american() can round up to a cent the wrong way - measured on the first live run, Nov 12).
+            thr = lvcalc.limit_price(lv_cap)
         if mtype in ("spread", "total") and thr is not None:
             thr = max(thr, CAP_LINE)   # Oct 28: never fill below the -130 after-fee cap, whatever the line conversion says
         # the liquidity gate reads the FROZEN per-level price, never the corrected one

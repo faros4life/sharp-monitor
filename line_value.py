@@ -427,6 +427,18 @@ def am_of_cents(c):
     return c - 100 if c < 0 else c + 100
 
 
+def limit_price(max_am):
+    """The worst INTEGER American price that is still at or better than `max_am` - the venue's permitted increment,
+    rounded CONSERVATIVELY (never looser than the calculated maximum). Peter, Nov 12: "Preserve fractional cents
+    internally and round conservatively to the venue's permitted price increment."
+    e.g. a maximum of -124.6 gives -124, never -125; +100.9 gives +101; -100.7 gives +100 (even money: -100 and +100 are
+    the same point on the ladder, spelled +100)."""
+    if max_am is None:
+        return None
+    c = math.ceil(cents_of(float(max_am)) - EPS)      # ceil = toward the LESS expensive side of the ladder
+    return int(am_of_cents(c))
+
+
 def identical_outcomes(sport, mtype, c0, c1):
     """True when no achievable integer outcome separates the two thresholds (e.g. NHL ML vs -0.5)."""
     lo, hi = min(c0, c1), max(c0, c1)
