@@ -786,6 +786,24 @@ def live_play_alert(r):
     push(f"{lane_tag(r)}{f'SAME PLAY - attempt {attempt}: ' if again else ''}LIVE PLAY: {(p.get('bet') or '')[:50]}", body)   # mirror=True: one ntfy, one Telegram
 
 
+def refusal_first(r, reason):
+    """True the first time this play is refused for this KIND of reason. Nov 12 (Peter, Telegram audit): a
+    refused play is retried every run (about 5 min) and ORDER REFUSED went out every time - the same
+    message dozens of times for one play. Numbers in the reason are masked so a moving price does not
+    count as a new reason; a genuinely different reason still sends. A store failure sends (told twice
+    beats told nothing)."""
+    try:
+        p = r.get("play") or {}
+        k = (derive_key(p) or p.get("play_key") or "") + "|" + re.sub(r"[\d.,$+-]+", "#", str(reason))[:120]
+        tok = "xrfs" + hashlib.sha1(k.encode()).hexdigest()[:12]
+        if registry.enabled() and registry.claim_token(tok):
+            registry.mark_handled([tok], "reported")
+            return True
+        return not registry.enabled()
+    except Exception:
+        return True
+
+
 def lane_note(r, head, res=None, book=None, limit=None, extra=""):
     """ONE notification body for every lane and every order state, so no lane can drift into
     reporting less than another (Peter, Nov 11). Carries lane, state, game, bet and line, the
@@ -807,7 +825,9 @@ def lane_note(r, head, res=None, book=None, limit=None, extra=""):
     if asked:
         out.append(f"stake ${float(asked):,.2f}"
                    + (f" to win ${float(lv['to_win']):,.2f}" if lv.get("to_win") else ""))
-    if fs is None:
+    if "REFUSED" in head:
+        out.append("NOTHING PLACED - no order was sent. The play stays eligible and is retried next run while the price is there.")
+    elif fs is None:
         out.append("fill: UNKNOWN - counted in full until a read confirms it")
     elif float(fs) <= 0:
         out.append("fill: NONE")
@@ -2548,8 +2568,9 @@ def refuse(r, reason, book=None, **extra):
         out["book"] = book
     out.update(extra)
     try:
-        tg(lane_note(r, "ORDER REFUSED", out, out.get("book") or (r.get("live") or {}).get("book"),
-                     None, extra=str(reason)[:200]))
+        if refusal_first(r, reason):
+            tg(lane_note(r, "ORDER REFUSED", out, out.get("book") or (r.get("live") or {}).get("book"),
+                         None, extra=str(reason)[:200]))
     except Exception as e:
         LOG.append(f"refusal notify failed: {e}")   # never let the notifier change the refusal
     return out
@@ -2666,7 +2687,8 @@ def live_order(r):
     label = f"{p.get('sport')} {p.get('game')} | {bet_text(r, lv['line'], limit)}"
     res = px_live.place(strike, limit, stake, label)
     if res.get("status") == "refused":   # Nov 11: a refusal is a lane event too
-        tg(lane_note(r, "ORDER REFUSED", res, "prophetx", limit, extra=str(res.get("reason"))[:200]))
+        if refusal_first(r, res.get("reason")):
+            tg(lane_note(r, "ORDER REFUSED", res, "prophetx", limit, extra=str(res.get("reason"))[:200]))
     if res["status"] == "placed":
         fs, ap = res.get("filled_stake") or 0, res.get("avg_price")
         if fs and ap:
@@ -2683,7 +2705,7 @@ def live_order(r):
              + ("" if res.get("fills_read") else " Fill read failed: check My Trades."), mirror=False)
     elif res["status"] == "error":
         tg(lane_note(r, "ORDER ERROR", res, "prophetx", limit,
-                      extra=f"{res['reason'][:200]}\nCheck My Trades before retrying."))
+                      extra=f"{res['reason'][:200]}\nRESULT UNKNOWN: the order may or may not exist at the venue. Check My Trades before retrying."))
         push("LIVE ORDER ERROR: " + (p.get("bet") or "")[:50], f"{label}\n{res['reason']}\nCheck ProphetX My Trades before retrying.", mirror=False)
     out = dict(res, asked_stake=stake, limit=limit, book="prophetx")
     if out.get("status") == "placed":   # Nov 11: durable registry row NOW, before anything can kill the run
@@ -2760,6 +2782,13 @@ def live_order_other(r):
     else:
         return refuse(r, f"no live order code for {name}", book=book)
     res = dict(res, book=book)
+    if res.get("status") == "refused" and refusal_first(r, res.get("reason")):
+        # Nov 12 (Peter, Telegram audit): a refusal from the venue layer (Novig paused, preflight, thin depth)
+        # used to be silent on every venue except ProphetX. One message per play and reason.
+        try:
+            tg(lane_note(r, "ORDER REFUSED", res, book, limit_am, extra=str(res.get("reason"))[:200]))
+        except Exception as e:
+            LOG.append(f"refusal notify failed: {e}")
     if res["status"] == "placed" and res.get("sent_to_runner"):
         _sn = lane_note(r, "SENT TO NOVIG (home PC)", res, book, limit_am,
                         extra="Fill-or-kill at this price or better; the fill result follows next run.")
@@ -2784,7 +2813,7 @@ def live_order_other(r):
              mirror=False)
     elif res["status"] == "error":
         tg(lane_note(r, "ORDER ERROR", res, book, limit_am,
-                      extra=f"{res['reason'][:200]}\nCheck {name} before retrying."))
+                      extra=f"{res['reason'][:200]}\nRESULT UNKNOWN: the order may or may not exist at the venue. Check {name} before retrying."))
         push("LIVE ORDER ERROR: " + (p.get("bet") or "")[:50], f"{label}\n{res['reason']}\nCheck {name} before retrying.", mirror=False)
     if res.get("status") == "placed" and not res.get("fills_read"):
         res["filled_stake"] = None   # unknown fill: the daily stop counts everything asked
@@ -3186,6 +3215,30 @@ def novig_reports():
         recs = book_live.novig_results() if (os.environ.get("NOVIG_SNAPSHOT_TOKEN") or "").strip() else []
     if not recs:
         return 0
+    # Nov 12 (Peter, "path 2 ok"): a resting bid's outcome is reported ONCE, promptly AT EXPIRY. The home
+    # runner can be late refreshing an expired order (the Spurs and Chicago State NO FILLs landed ~16 h
+    # after expiry), and the cloud cannot read Novig (451). So a GTT bid with nothing filled whose own
+    # placed_utc + ttl_ms has passed is reported as expired, saying exactly what that rests on: nothing
+    # filled AS OF THE LAST READ. A fill the runner finds later still reports as its own FILLED/PARTIAL
+    # (different token); the late NO FILL shares the one canonical token, so it cannot repeat.
+    def _expire(x):
+        try:
+            st0 = str(x.get("status") or "").upper()
+            if str(x.get("tif") or "").upper() != "GTT" or int(x.get("filled_qty") or 0) or st0 not in ("OPEN", "PENDING", "SENT", "UNKNOWN"):
+                return x
+            fmt_ = "%Y-%m-%dT%H:%M:%S"
+            placed = datetime.strptime(str(x["placed_utc"])[:19], fmt_).replace(tzinfo=timezone.utc)
+            exp = placed + timedelta(milliseconds=int(x.get("ttl_ms") or 0))
+            if not int(x.get("ttl_ms") or 0) or datetime.now(timezone.utc) < exp + timedelta(minutes=2):
+                return x
+            last = datetime.strptime(str(x.get("updated_utc") or x["placed_utc"])[:19], fmt_).replace(tzinfo=timezone.utc)
+            gap = (exp - last).total_seconds() / 60
+            note = (f"Resting bid expired {exp.astimezone(lm.ET).strftime('%-I:%M %p')} ET with nothing filled as of the last read "
+                    + (f"({gap:.0f} min before expiry)." if gap >= 0 else "(read after expiry)."))
+            return dict(x, status="EXPIRED", _exp_note=note)
+        except Exception:
+            return x
+    recs = [_expire(x) for x in recs]
     # Nov 11: decide WHICH records are even reportable before touching Gmail. The status filters
     # below are pure arithmetic on the snapshot, so running them first means a run with nothing
     # final to report opens no IMAP connection and issues no search at all - and that is the
@@ -3277,6 +3330,8 @@ def novig_reports():
                 msg += f"\nlimit {lm.american(c):+d}, ${q * c / 100:,.2f} asked; nothing traded"
             if x.get("tif") == "GTT" and st == "OPEN":
                 msg += "\nResting until 30 min before the start (cancel in the Novig app if needed)."
+            if x.get("_exp_note"):
+                msg += "\n" + x["_exp_note"]
             if x.get("error"):
                 msg += f"\n{str(x['error'])[:160]}"
             try:
@@ -3370,6 +3425,43 @@ def kalshi_rest_reports():
             o = d.get("order") or {}
             fc = lm.num(o.get("fill_count_fp")) or lm.num(o.get("fill_count")) or \
                 ((lm.num(o.get("taker_fill_count")) or 0) + (lm.num(o.get("maker_fill_count")) or 0))
+            # Nov 12 (Peter, Telegram audit): a Kalshi resting bid that ENDS must be reported once, promptly.
+            # This loop only ever reported FILLS, so a bid that expired unfilled was silent forever. Unlike
+            # Novig, Kalshi is read directly: the report rests on Kalshi's own order record, read this run.
+            _stt = str(o.get("status") or "").lower()
+            if _stt in ("canceled", "cancelled", "expired"):
+                _rem0 = lm.num(o.get("remaining_count_fp")) or lm.num(o.get("remaining_count")) or 0
+                _init = lm.num(o.get("initial_count_fp")) or lm.num(o.get("initial_count")) or ((fc or 0) + _rem0)
+                _etok = "xkex" + hashlib.sha1(str(oid).encode()).hexdigest()[:12]
+                _cl = ReportClaim(M, [_etok], days=2)
+                try:
+                    _won = _cl.claim(_etok)
+                except Exception as ex:
+                    LOG.append(f"kalshi expiry claim unavailable: {str(ex)[:40]}")
+                    _won = False   # cannot prove it was not already sent: skip, the next run retries
+                if _won:
+                    try:
+                        _exp = datetime.fromisoformat(str(lo.get("expires_utc")).replace("Z", "+00:00"))
+                        _early = datetime.now(timezone.utc) < _exp - timedelta(minutes=5)
+                        _when = _exp.astimezone(lm.ET).strftime("%-I:%M %p") + " ET"
+                    except Exception:
+                        _early, _when = False, "its expiry"
+                    _head = "KALSHI RESTING BID CANCELLED EARLY" if _early else "KALSHI RESTING BID EXPIRED"
+                    _msg = (f"{_head}: {row.get('key', '').replace('|', ' ')}\n"
+                            + (f"Nothing filled. " if not fc else f"{fc:g} of {_init:g} contracts filled; the other {_rem0:g} did not. ")
+                            + (f"Cancelled before its {_when} expiry. " if _early else f"Expired {_when}. ")
+                            + "Source: Kalshi's own order record, read this run (status " + _stt + ").")
+                    try:
+                        push(_head.title(), _msg, mirror=False)
+                        tg(_msg)
+                        _cl.sent(_etok)
+                        try:
+                            send(f"Bets Kalshi order: {_head.replace('KALSHI ', '')}", _msg + f"\n\n{_etok}")
+                        except Exception:
+                            pass
+                        n += 1
+                    except Exception:
+                        _cl.failed(_etok)
             if not fc:
                 continue
             tok = k_toks.get(oid) or ("xkrf" + hashlib.sha1(f"{oid}|{fc}".encode()).hexdigest()[:12])

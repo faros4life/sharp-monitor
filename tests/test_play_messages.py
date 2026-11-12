@@ -80,5 +80,62 @@ check("says nothing filled as of last read", any("nothing filled as of the last 
 rec2 = dict(rec, client_id="c2", placed_utc=iso(now - _dt.timedelta(minutes=10)))
 out2, a, b = _run([rec2])
 check("unexpired bid not reported as expired", not any("expired" in m for _, m in out2))
+
+# ---- REFUSED once, with its meaning; ERROR says result unknown
+class R2:
+    seen = set()
+    @staticmethod
+    def enabled(): return True
+    @staticmethod
+    def claim_token(t):
+        if t in R2.seen: return False
+        R2.seen.add(t); return True
+    @staticmethod
+    def mark_handled(toks, outcome): R2.seen.update(toks)
+ex.registry = R2
+rr = {"play": play, "live": {"book": "novig", "risk": 100.0, "line": 48.5}, "reval": {"mtype": "total"}, "mtype": "total"}
+a1 = ex.refusal_first(rr, "ProphetX ladder can't cover $100+ at the alert number (have $42.10)")
+a2 = ex.refusal_first(rr, "ProphetX ladder can't cover $100+ at the alert number (have $38.55)")
+a3 = ex.refusal_first(rr, "CONFLICT: the other side of this game was already bet")
+check("refusal sent once per play+reason (moving numbers masked)", a1 and not a2)
+check("a different reason still sends", a3)
+body = ex.lane_note(rr, "ORDER REFUSED", {"status": "refused", "reason": "x"}, "novig", -115, extra="x")
+check("refusal says nothing placed, no fill line", "NOTHING PLACED" in body and "fill:" not in body and "order id: none" in body)
+body2 = ex.lane_note(rr, "FILLED", {"status": "placed", "filled_stake": 100.0, "order_id": "o"}, "novig", -115)
+check("normal fill note unchanged", "fill: FULL" in body2 and "order o" in body2)
+
+# ---- Kalshi resting bid ended -> reported once
+import datetime as _d2
+out = []
+ex.push = lambda title, body, mirror=True: out.append(("push", title + "|" + body))
+ex.tg = lambda t: out.append(("tg", t))
+ex.send = lambda *a, **k: None
+ex.imap_open = lambda: type("M", (), {"logout": lambda s: None})()
+ex.imap_close = lambda M: None
+ex.already_reported = lambda M, toks, days=None: set()
+seenk = set()
+class RC2:
+    def __init__(self, M, toks, days=None): pass
+    def claim(self, tok):
+        if tok in seenk: return False
+        seenk.add(tok); return True
+    def sent(self, tok): seenk.add(tok)
+    def failed(self, tok): seenk.discard(tok)
+ex.ReportClaim = RC2
+ex.registry = type("Rg", (), {"enabled": staticmethod(lambda: False), "put_tokens": staticmethod(lambda *a, **k: True)})
+exp = _d2.datetime.now(_d2.timezone.utc) - _d2.timedelta(hours=2)
+ex.LEDGER_ROWS[:] = [{"key": "NBA|Spurs vs Suns|total|UNDER", "decided_utc": (_d2.datetime.now(_d2.timezone.utc) - _d2.timedelta(hours=5)).strftime("%Y-%m-%dT%H:%M:%SZ"),
+                      "live_rest": {"book": "kalshi", "status": "placed", "order_id": "K1", "limit": 0.48,
+                                    "expires_utc": exp.strftime("%Y-%m-%dT%H:%M:%SZ")}}]
+ex.book_live._k_call = lambda m, u, *a, **k: (200, {"order": {"status": "canceled", "fill_count": 0, "initial_count": 500, "remaining_count": 500}})
+ex.kalshi_rest_reports(); n1 = len(out)
+ex.kalshi_rest_reports(); n2 = len(out)
+check("kalshi unfilled expiry reported once (push+telegram)", n1 == 2 and n2 == n1)
+check("expiry text says nothing filled and its source", any("Nothing filled" in m and "Kalshi's own order record" in m for _, m in out))
+out.clear(); seenk.clear()
+ex.book_live._k_call = lambda m, u, *a, **k: (200, {"order": {"status": "resting", "fill_count": 0, "initial_count": 500, "remaining_count": 500}})
+ex.kalshi_rest_reports()
+check("still-resting bid is not reported as expired", not out)
+
 print(f"{'PASS' if not FAIL else 'FAIL'} test_play_messages.py {PASS} checks" + (f", {FAIL} failed" if FAIL else ""))
 sys.exit(1 if FAIL else 0)
