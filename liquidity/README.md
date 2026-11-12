@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 12, 2:40 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 21.
+Updated Thu Nov 12, 2:45 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 21.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -16,7 +16,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 12 1:03AM | NCAAF | Southern Utah vs Portland St. | moneyline: Southern Utah | kalshi | $50k | -426 |  |  | -1.0c |  | pending |
 | Nov 12 12:15AM | NHL | St. Louis vs Utah | moneyline: St. Louis | kalshi | $39k | +117 |  |  | +0.0c |  | pending |
 | Nov 11 11:20PM | NCAAF | Louisiana vs Louisiana-Monroe: Spread | spread: Louisiana wins by over 10.5 points | kalshi | $33k | -100 |  |  | +0.0c |  | pending |
-| Nov 11 11:20PM | NHL | Tampa Bay vs Columbus | moneyline: Tampa Bay | kalshi | $46k | -113 |  |  | +1.0c |  | pending |
+| Nov 11 11:20PM | NHL | Tampa Bay vs Columbus | moneyline: Tampa Bay | kalshi | $46k | -113 |  |  | +0.0c |  | pending |
 | Nov 11 11:13PM | NHL | Buffalo vs Chicago | moneyline: Buffalo | kalshi | $36k | -138 |  |  | +0.0c | yes | pending |
 | Nov 11 10:50PM | NBA | Toronto vs Philadelphia | moneyline: Philadelphia | kalshi | $61k | -300 |  |  | +4.0c |  | pending |
 | Nov 11 10:47PM | NHL | Winnipeg vs Dallas | moneyline: Dallas | kalshi | $26k | -170 |  |  | +0.0c |  | pending |
