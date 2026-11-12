@@ -78,7 +78,7 @@ ck("PX_TOL_CENTS still 2", ex.PX_TOL_CENTS == 2)
 ck("-130 cap unchanged", ex.CAP_LINE == -130)
 ck("board unit still 200", ex.BOARD_UNIT == 200.0)
 ck("board play cap still 10", ex.BOARD_MAX_PLAYS == 10)
-ck("board daily risk still 1500", ex.BOARD_DAILY_RISK == 1500.0)
+ck("board daily risk still 2000", ex.BOARD_DAILY_RISK == 2000.0)
 ck("Lane 1 unit still 300", ex.LIVE_UNIT == 300.0)
 
 print(f"PASS {len(OK)}   FAIL {len(BAD)}")

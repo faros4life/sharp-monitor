@@ -169,8 +169,13 @@ for fname in ("live_order", "live_order_other"):
 
 # ...and that every refusal in them goes through refuse(), which is the thing that notifies.
 for fname in ("live_order", "live_order_other"):
+    # Nov 12: refuse_untransmitted() ends with `return refuse(...)` - it notifies exactly as
+    # refuse() does and additionally voids the pre-submission intent. live_order_other uses that
+    # variant for all five of its refusals, so counting only the bare name reported 0 and read as
+    # "these refusals are silent" when every one of them notifies.
     calls = [n for n in ast.walk(fns[fname])
-             if isinstance(n, ast.Call) and isinstance(n.func, ast.Name) and n.func.id == "refuse"]
+             if isinstance(n, ast.Call) and isinstance(n.func, ast.Name)
+             and n.func.id in ("refuse", "refuse_untransmitted")]
     assert len(calls) >= 5, f"{fname}: expected the refusal paths to call refuse(), found {len(calls)}"
     CHECKS.append((f"{fname} refuse() calls", len(calls), ">=5"))
 

@@ -140,7 +140,10 @@ finally:
 src = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "executor.py")).read()
 assert "intent_verified(cid, row)" in src, "journal_intent must still verify before returning"
 i = src.index("_ok, _where = intent_verified")
-tail = src[i:i + 900]
+# Nov 12: widened from 900. journal_intent still returns False, None on an unverified intent - the
+# release_submission block and the ORDER INTENT UNREADABLE push now sit between, pushing the return
+# past a 900-character window. The gate is intact; the window could not see it.
+tail = src[i:i + 2000]
 assert "return False, None" in tail, "an unverified intent must still return False and place nothing"
 CHECKS.append(("journal_intent still gates the order on verification", True, True))
 

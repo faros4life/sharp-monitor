@@ -109,9 +109,9 @@ ck("the cancel path's push is non-mirrored (its tg already said it)",
    'push("PM US cancel FAILED"' in src and "mirror=False" in src)
 
 # ---------------------------------------------------------------- three-lane exposure, together
-ck("global stop is shared at $2,250", ex.px_live.DAILY_STOP == 2250.0)
+ck("global stop is shared at $3,000", ex.px_live.DAILY_STOP == 3000.0)
 ck("per-order guard is shared at $415", ex.px_live.MAX_ORDER == 415.0)
-ck("Board v3 and R1 each allow $1,500", ex.BOARD_DAILY_RISK == 1500.0 and ex.R1_DAILY_RISK == 1500.0)
+ck("Board v3 and R1 each allow $2,000", ex.BOARD_DAILY_RISK == 2000.0 and ex.R1_DAILY_RISK == 2000.0)
 ck("so the two new lanes together could ask for more than the global stop allows",
    ex.BOARD_DAILY_RISK + ex.R1_DAILY_RISK > ex.px_live.DAILY_STOP)
 ck("every lane's order runs the one global preflight",

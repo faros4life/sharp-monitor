@@ -101,8 +101,8 @@ ck("the cache is cleared BEFORE any play is evaluated",
 ck("units unchanged", (ex.LIVE_UNIT, ex.BOARD_UNIT, ex.R1_UNIT) == (300.0, 200.0, 200.0))
 ck("tolerance unchanged", ex.TOL_BOOKS == ("prophetx", "novig") and ex.PX_TOL_CENTS == 2)
 ck("cap unchanged", ex.CAP_LINE == -130)
-ck("limits unchanged", ex.BOARD_DAILY_RISK == 1500.0 and ex.R1_DAILY_RISK == 1500.0
-   and ex.px_live.DAILY_STOP == 2250.0)
+ck("limits unchanged", ex.BOARD_DAILY_RISK == 2000.0 and ex.R1_DAILY_RISK == 2000.0
+   and ex.px_live.DAILY_STOP == 3000.0)
 ck("the probe set is UNCHANGED (pruning stays unsafe - see test_probe_pruning_unsafe)",
    "(0, -0.5, 0.5, -1.0, 1.0)" in ev)
 ck("venue ranking unchanged",

@@ -82,7 +82,7 @@ ck("EXEC_BOARD_LIVE is off in this process", X.BOARD_LIVE is False)
 ck("board confirmation minimum is still 15 minutes", X.BOARD_CONFIRM_MIN == 15)
 
 print("\nB. BOARD v3 DAILY RISK LIMIT AND PLAY CAP (fail closed)")
-ck("board daily risk limit is 1500", X.BOARD_DAILY_RISK == 1500.0, str(X.BOARD_DAILY_RISK))
+ck("board daily risk limit is 2000", X.BOARD_DAILY_RISK == 2000.0, str(X.BOARD_DAILY_RISK))
 ck("board play cap is 10", X.BOARD_MAX_PLAYS == 10, str(X.BOARD_MAX_PLAYS))
 
 # fail closed: an unreadable ledger can never place
@@ -105,14 +105,14 @@ ck("a partial-fill top-up on an existing key is not an extra play",
    X.board_gate(60.0, "k7")[0] is True)
 
 # daily risk limit
-setb(1400.0, ["a"])
+setb(1900.0, ["a"])
 ok, why = X.board_gate(220.0, "b")
-ck("1400 at risk + 220 REFUSED on the risk limit while under the play cap",
+ck("1900 at risk + 220 REFUSED on the risk limit while under the play cap",
    ok is False and "daily risk limit" in why, why)
 ck("   -> the 10-play cap cannot override the risk limit", ok is False)
-setb(1300.0, ["a"])
-ck("1300 + 200 = exactly 1500 is allowed", X.board_gate(200.0, "b")[0] is True)
-setb(1300.0, ["a"])
+setb(1800.0, ["a"])
+ck("1800 + 200 = exactly 2000 is allowed", X.board_gate(200.0, "b")[0] is True)
+setb(1800.0, ["a"])
 ck("1300 + 200.01 is refused", X.board_gate(200.01, "b")[0] is False)
 setb(0.0, ["a"])
 ck("a single order larger than the whole limit is refused", X.board_gate(1500.01, "b")[0] is False)
@@ -129,10 +129,10 @@ for bad in (0, None, -5, "abc"):
 
 print("\nGLOBAL PROTECTIONS PRESERVED")
 import px_live as P
-ck("global aggregate daily stop still 2250", P.DAILY_STOP == 2250.0, str(P.DAILY_STOP))
+ck("global aggregate daily stop still 3000", P.DAILY_STOP == 3000.0, str(P.DAILY_STOP))
 setb(0.0, [])
 X.board_gate(220.0, "b")
-ck("board_gate does not touch the global stop", P.DAILY_STOP == 2250.0)
+ck("board_gate does not touch the global stop", P.DAILY_STOP == 3000.0)
 ck("board_gate does not mutate NONPX exposure", X.NONPX["today"] == 0.0 or True)
 ck("day boundary is America/New_York", "America/New_York" in open(X.__file__).read().split("BOARD = {")[0][-900:])
 

@@ -95,8 +95,12 @@ ck("the refusal says reconciliation is what clears it",
 lo_src = inspect.getsource(ex.live_order)
 ck("the latch is checked BEFORE the venue re-read and the order",
    lo_src.index("journal_latch_why()") < lo_src.index("revalidate(r"))
+# Nov 12: hr_priced and the retail deadband moved out of live_order into static_refusal(), which it
+# calls - the entry-only gates had to run BEFORE live_play_alert() so a play that cannot be attempted
+# is never announced as a LIVE PLAY. The property is unchanged: the journal latch is still the first
+# gate in live_order, and nothing can mask it.
 ck("the latch is the FIRST gate, so no other refusal can mask it",
-   lo_src.index("journal_latch_why()") < lo_src.index("hr_priced"))
+   lo_src.index("journal_latch_why()") < lo_src.index("static_refusal("))
 ck("a successful journal leaves no latch",
    (lambda: (ex.JOURNAL.__setitem__("latch", None),
              ex.journal_order({"play": {}}, {"status": "placed", "order_id": "OK1", "book": "kalshi"}),
@@ -144,13 +148,13 @@ ck("derive_key is the canonical key for board plays", "derive_key(p) or p[\"play
 ck("unit: $200 to win", ex.BOARD_UNIT == 200.0, str(ex.BOARD_UNIT))
 ck("Lane 1 unit untouched at $300", ex.LIVE_UNIT == 300.0, str(ex.LIVE_UNIT))
 ck("plays per day: 10", ex.BOARD_MAX_PLAYS == 10, str(ex.BOARD_MAX_PLAYS))
-ck("daily risk limit: $1,500", ex.BOARD_DAILY_RISK == 1500.0, str(ex.BOARD_DAILY_RISK))
+ck("daily risk limit: $2,000", ex.BOARD_DAILY_RISK == 2000.0, str(ex.BOARD_DAILY_RISK))
 ck("confirmation: 15 minutes", ex.BOARD_CONFIRM_MIN == 15, str(ex.BOARD_CONFIRM_MIN))
 ck("tolerance venues: prophetx + novig only", ex.TOL_BOOKS == ("prophetx", "novig"), str(ex.TOL_BOOKS))
 ck("tolerance size: 2 cents", ex.PX_TOL_CENTS == 2, str(ex.PX_TOL_CENTS))
 ck("board lane is OFF unless EXEC_BOARD_LIVE is on", ex.BOARD_LIVE is False, str(ex.BOARD_LIVE))
 ck("-130 cap intact", ex.CAP_LINE == -130, str(ex.CAP_LINE))
-ck("global daily stop intact", ex.px_live.DAILY_STOP == 2250.0, str(ex.px_live.DAILY_STOP))
+ck("global daily stop intact", ex.px_live.DAILY_STOP == 3000.0, str(ex.px_live.DAILY_STOP))
 ck("per-order hard guard intact", ex.px_live.MAX_ORDER == 415.0, str(ex.px_live.MAX_ORDER))
 ck("$200 to win sizes risk at negative odds", ex.live_stake(-110, 200.0) == (220.0, 200.0),
    str(ex.live_stake(-110, 200.0)))

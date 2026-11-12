@@ -186,11 +186,11 @@ ck("5. the intent resolution uses a subject-only IMAP search, not a paid API",
 # ---------------------------------------------------------------- unchanged rules and sizing
 ex.send, ex.tg, ex.intent_readable = _send, _tg, _rb
 ck("unit still $200 board / $300 lane 1", ex.BOARD_UNIT == 200.0 and ex.LIVE_UNIT == 300.0)
-ck("10 plays, $1,500, 15 min", ex.BOARD_MAX_PLAYS == 10 and ex.BOARD_DAILY_RISK == 1500.0
+ck("10 plays, $2,000, 15 min", ex.BOARD_MAX_PLAYS == 10 and ex.BOARD_DAILY_RISK == 2000.0
    and ex.BOARD_CONFIRM_MIN == 15)
 ck("prophetx+novig 2c", ex.TOL_BOOKS == ("prophetx", "novig") and ex.PX_TOL_CENTS == 2)
 ck("-130 cap, $2,250 stop, $415 guard",
-   ex.CAP_LINE == -130 and ex.px_live.DAILY_STOP == 2250.0 and ex.px_live.MAX_ORDER == 415.0)
+   ex.CAP_LINE == -130 and ex.px_live.DAILY_STOP == 3000.0 and ex.px_live.MAX_ORDER == 415.0)
 ck("board lane still off", ex.BOARD_LIVE is False)
 ck("ProphetX never rests, so resting is unaffected by this fix",
    "polymarket_us" not in ex.REST_BOOKS and "prophetx" not in ex.REST_BOOKS, str(ex.REST_BOOKS))

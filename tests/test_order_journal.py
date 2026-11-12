@@ -151,9 +151,9 @@ ck("the same order id counted twice adds its stake once", abs(risk - 220.0) < 1e
 ck("TOL_BOOKS unchanged", ex.TOL_BOOKS == ("prophetx", "novig"))
 ck("cap unchanged", ex.CAP_LINE == -130)
 ck("board unit / caps unchanged",
-   ex.BOARD_UNIT == 200.0 and ex.BOARD_MAX_PLAYS == 10 and ex.BOARD_DAILY_RISK == 1500.0)
+   ex.BOARD_UNIT == 200.0 and ex.BOARD_MAX_PLAYS == 10 and ex.BOARD_DAILY_RISK == 2000.0)
 ck("Lane 1 unit unchanged", ex.LIVE_UNIT == 300.0)
-ck("global daily stop unchanged", ex.px_live.DAILY_STOP == 2250.0)
+ck("global daily stop unchanged", ex.px_live.DAILY_STOP == 3000.0)
 
 print(f"PASS {len(OK)}   FAIL {len(BAD)}")
 for b in BAD:

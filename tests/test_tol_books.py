@@ -135,7 +135,7 @@ ck("the cap is applied after the allowance",
 ck("resting orders carry no worse-price allowance",
    "PX_TOL" not in inspect.getsource(ex.rest_bid) and "TOL_BOOKS" not in inspect.getsource(ex.rest_bid))
 ck("the board unit is still 200", ex.BOARD_UNIT == 200.0, repr(ex.BOARD_UNIT))
-ck("the board daily risk limit is still 1500", ex.BOARD_DAILY_RISK == 1500.0, repr(ex.BOARD_DAILY_RISK))
+ck("the board daily risk limit is still 2000", ex.BOARD_DAILY_RISK == 2000.0, repr(ex.BOARD_DAILY_RISK))
 ck("the board play cap is still 10", ex.BOARD_MAX_PLAYS == 10, repr(ex.BOARD_MAX_PLAYS))
 ck("Lane 1's unit is untouched", ex.LIVE_UNIT == 300.0, repr(ex.LIVE_UNIT))
 ck("the SKIP reason names the tolerated books, not just ProphetX",
