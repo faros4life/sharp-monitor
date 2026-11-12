@@ -235,7 +235,9 @@ def main():
                 else:
                     why = (str(rec2.get("why") or rec2.get("reason") or "")[:52]
                            or f"present, clv None, tries {rec2.get('tries')}")
-                say(f"    {tid[:30]:<30} result {str(tr.get('result') or '-'):<3} {why}")
+                gs3 = ((rec2 or {}).get("snap") or {}).get("game_start") or tr.get("game_start")
+                say(f"    {tid[:30]:<30} result {str(tr.get('result') or '-'):<3} "
+                    f"game_start {str(gs3)[:16]:<16} done {(rec2 or {}).get('done')} {why}")
 
     # ================================================ NOVIG
     say("")
@@ -325,9 +327,12 @@ def main():
             # journal_intent's own format. So what the ledger stores in live_order.order_id is the
             # CLIENT id the executor generated, not the venue's order id. The id was on both sides
             # all along; the reader compared the wrong pair. Join on clientId, fall back to orderId.
+            # Muse item 1: clientId ONLY. fill.orderId's namespace is NOT independently verified -
+            # 0 of 35 executor ids appear in it - so it is counted and reported above but never
+            # used as a join. A fallback onto an unverified namespace is how a wrong match gets in.
             byc = collections.defaultdict(list)
             for f in fills:
-                for k in ("clientId", "client_id", "orderId", "order_id"):
+                for k in ("clientId", "client_id"):
                     v = f.get(k)
                     if v is not None:
                         byc[str(v)].append(f)
@@ -335,7 +340,7 @@ def main():
             # below, never counted per fill, so a resting order that filled in pieces is one
             # reconciliation - not N.
             for oid in sorted(nv_oids):
-                fs = byc.get(oid) or byo.get(oid) or []
+                fs = byc.get(oid) or []
                 if not fs:
                     nv_nf.append(oid)
                     continue
@@ -363,7 +368,39 @@ def main():
             # Muse item 5: fills must reconcile to stake, price and quantity with no double-count.
             # Novig cost is qty x price x 1c, so stake = cost; the tracker's stake is the check.
             say("")
-            say("  fills vs the tracker's own stake (partials summed ONCE per order):")
+            # Muse item 3: reconcile at the POSITION level. nv|{marketId}|{outcomeId} is a
+            # position key, so two orders on one outcome share a row and no single order's cost can
+            # equal the row's stake. Summing per ROW is the only comparison that can be right, and
+            # aggregated positions are counted ONCE, not once per order.
+            bypos = collections.defaultdict(list)
+            for oid, tid, key, nf, qty, cost in nv_m:
+                bypos[tid].append((oid, nf, qty, cost))
+            say("")
+            say("  POSITION-LEVEL stake reconciliation (all orders on one row summed once):")
+            agree_n = diff_n = na_n = 0
+            for tid, lst in sorted(bypos.items()):
+                tr2 = tbets.get(tid) or {}
+                ts2 = tr2.get("stake")
+                tot = sum(c for _, _, _, c in lst)
+                if ts2 is None:
+                    na_n += 1
+                    verdict = "no stake on the row"
+                elif abs(float(ts2) - tot) <= 0.02:
+                    agree_n += 1
+                    verdict = "AGREES"
+                else:
+                    diff_n += 1
+                    verdict = "DIFFERS"
+                say(f"    {tid[:34]:<34} orders {len(lst):2d} "
+                    f"qty {sum(q for _, _, q, _ in lst):6d} -> {verdict}")
+                if verdict == "DIFFERS":
+                    priv(f"      summed fill cost ${tot:,.2f} vs tracker stake ${float(ts2):,.2f}")
+            say(f"    positions: {len(bypos)} | AGREES {agree_n} | DIFFERS {diff_n} | "
+                f"no stake {na_n}")
+            say(f"    ({len(nv_m)} matched orders collapse into {len(bypos)} positions - "
+                f"{len(nv_m) - len(bypos)} share a row)")
+            say("")
+            say("  per-ORDER view, for reference only (an aggregated position cannot reconcile here):")
             for oid, tid, key, nf, qty, cost in nv_m[:14]:
                 tr = tbets.get(tid) or {}
                 ts = tr.get("stake")
@@ -372,8 +409,22 @@ def main():
                 say(f"    {oid[:26]:<26} {tid[:30]:<30} fills {nf:2d} qty {qty:5d} -> {agree}")
                 if ts is not None and agree == "DIFFERS":
                     priv(f"      fill cost ${cost:,.2f} vs tracker stake ${float(ts):,.2f}")
-            for oid, tid, nf, qty, cost in nv_nc[:10]:
-                say(f"    not CLV-scored: {oid[:24]:<24} {tid[:30]:<30} fills {nf:2d} qty {qty:5d}")
+            if nv_nc:
+                say("")
+                say("  Muse item 4 - linked to the tracker but NOT CLV-scored. The ledger's own")
+                say("  stored reason per row, plus the field the scoring loop gates on:")
+                for oid, tid, nf, qty, cost in nv_nc[:10]:
+                    rec2 = call_.get(tid)
+                    tr2 = tbets.get(tid) or {}
+                    if rec2 is None:
+                        why2 = "absent from the CLV ledger entirely"
+                    else:
+                        why2 = (str(rec2.get("why") or rec2.get("reason") or "")[:46]
+                                or f"present, clv None, tries {rec2.get('tries')}, "
+                                   f"done {rec2.get('done')}")
+                    gs2 = ((rec2 or {}).get("snap") or {}).get("game_start") or tr2.get("game_start")
+                    say(f"    {tid[:30]:<30} result {str(tr2.get('result') or '-'):<3} "
+                        f"game_start {str(gs2)[:16]:<16} {why2}")
             for oid, tid in nv_nt[:8]:
                 say(f"    no tracker row: {oid[:24]:<24} {str(tid)[:40]}")
             if nv_nf:
