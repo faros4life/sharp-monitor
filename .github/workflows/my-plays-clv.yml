@@ -1,29 +1,40 @@
 name: my-plays-clv
 
-# Peter, Nov 11: "record my plays today and confirm the CLV" / "go to GitHub, it has all my plays".
+# Peter, Nov 11: "record my plays today and confirm the CLV" / "do it right before the game starts
+# on all" / "go to GitHub, it has all my plays".
 #
-# His bets live in tracker/state.enc, encrypted, so they can only be read inside Actions. This runs
-# executed_clv.py - the same machinery, same fee basis - with its source and grade filters widened,
-# so MANUAL bets and today's not-yet-settled rows are included. That script's defaults are
-# unchanged, so the regular Executed CLV report is unaffected.
+# His bets live in tracker/state.enc, encrypted, so they can only be read inside Actions. my_plays.py
+# lists every play on the ET day and gives each one a CLV status: CERTIFIED with a number, or PENDING
+# because its game is not final and Pinnacle has not closed, or the one-line reason it cannot be
+# certified. It reuses clv_ledger's matcher and clv_std's formula rather than re-deriving either.
 #
-# Cache-only: 0 paid OddsPapi credits. Read-only: no bet, no order, no rule or switch change.
-# Dollars go to the private email; the Actions log carries counts, prices and percentages only.
+# CREDITS. No billable call is made: /fixtures and /markets are the billable paths and neither is
+# reached (load_markets is bypassed in cache-only, and fixtures are read from the cache clv-ledger
+# already committed). History goes through the FREE path /historical-odds on ODDSPAPI_FREE_KEY -
+# the paid key returns 403 on pinnacle, which is why both keys are here.
+#
+# Read-only: no bet, no order, no rule change, no switch change, nothing committed.
+# Dollars go to the private email; the Actions log carries counts, lines, prices and percentages.
 
 on:
+  # "Right before the game starts on all": hourly through the afternoon so every play is recorded
+  # at its filled price before its game, then hourly overnight as games go final and certify.
+  schedule:
+    - cron: "17 16-23 * * *"      # 11am-6pm ET - the pre-game record
+    - cron: "17 0-7 * * *"        # 7pm-2am ET - games finishing, closes certifying
   workflow_dispatch:
     inputs:
-      since:
-        description: "Earliest ET day to include, YYYY-MM-DD (blank = all)"
+      day:
+        description: "ET day to report, YYYY-MM-DD (blank = today ET)"
         default: ""
         required: false
-      sources:
-        description: "Bet sources: all | manual | bot (comma-separated)"
-        default: "all"
+      back:
+        description: "Also include this many earlier ET days"
+        default: "0"
         required: false
-      ungraded:
-        description: "1 = include bets with no result yet (today's games)"
-        default: "1"
+      cache_only:
+        description: "1 = never download history. 0 = allow the FREE history path."
+        default: "0"
         required: false
 
 permissions:
@@ -43,21 +54,27 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install -q cryptography
-      - name: Restore shared OddsPapi history cache (read only)
+      - name: Restore shared OddsPapi history cache
         uses: actions/cache/restore@v4
         with:
           path: hcache
           key: hcache-${{ github.run_id }}
           restore-keys: hcache-
-      - name: CLV on my plays (cache only, zero credits)
+      - name: My plays, with CLV status per play
         env:
           TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
           GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
           EMAIL_TO: ${{ secrets.EMAIL_TO }}
           ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
-          XC_CACHE_ONLY: "1"
-          XC_SOURCES: ${{ inputs.sources || 'all' }}
-          XC_UNGRADED: ${{ inputs.ungraded || '1' }}
-          XC_SINCE: ${{ inputs.since }}
-        run: python -u executed_clv.py
+          ODDSPAPI_FREE_KEY: ${{ secrets.ODDSPAPI_FREE_KEY }}   # history: the paid key 403s on pinnacle
+          MP_DAY: ${{ inputs.day }}
+          MP_BACK: ${{ inputs.back || '0' }}
+          MP_CACHE_ONLY: ${{ inputs.cache_only || '0' }}
+        run: python -u my_plays.py
+      - name: Save the history cache for the next run
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: hcache
+          key: hcache-${{ github.run_id }}
