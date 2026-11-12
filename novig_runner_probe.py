@@ -77,8 +77,16 @@ if rows is None:
         "novig_results() returned None = UNREADABLE (fail-closed; never read as 'no orders')")
 else:
     say("the result file is readable", True, f"{len(rows)} runner result row(s)")
-    with_id = [r for r in rows if isinstance(r, dict) and r.get("venue_order_id")]
-    no_id = [r for r in rows if isinstance(r, dict) and not r.get("venue_order_id")]
+    # Nov 12, corrected: the runner's rows carry order_id, which put_venue_ids() maps
+    # client_id -> order_id. The first version of this probe looked for "venue_order_id" - the name
+    # the EXECUTOR's own record uses - and reported 33 unresolved rows that were nothing of the
+    # kind. Checking both, and the client_id that attribution actually joins on.
+    with_id = [r for r in rows if isinstance(r, dict) and (r.get("order_id") or r.get("venue_order_id"))]
+    no_id = [r for r in rows if isinstance(r, dict) and not (r.get("order_id") or r.get("venue_order_id"))]
+    no_cid = [r for r in rows if isinstance(r, dict) and not r.get("client_id")]
+    print(f"    rows WITHOUT a client_id   : {len(no_cid)}  (attribution joins on client_id)")
+    if rows and isinstance(rows[-1], dict):
+        print(f"    fields on the newest row   : {sorted(rows[-1].keys())}")
     print(f"    rows with a venue order id : {len(with_id)}")
     print(f"    rows WITHOUT one           : {len(no_id)}")
     st = {}
@@ -86,8 +94,10 @@ else:
         if isinstance(r, dict):
             st[str(r.get("status") or "?")] = st.get(str(r.get("status") or "?"), 0) + 1
     print(f"    statuses                   : {st or '(none)'}")
-    say("no runner row is left without a venue order id", not no_id,
-        f"{len(no_id)} unresolved - reconcile before activation" if no_id else "")
+    say("every runner row carries a venue order id", not no_id,
+        f"{len(no_id)} without one - reconcile before activation" if no_id else "")
+    say("every runner row carries a client_id (joinable to our claim)", not no_cid,
+        f"{len(no_cid)} unjoinable" if no_cid else "")
 
 print()
 print("ACTIVATION READINESS (this probe only):", "PASS" if ok_all else "FAIL")
