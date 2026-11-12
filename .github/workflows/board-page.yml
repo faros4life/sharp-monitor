@@ -12,11 +12,15 @@ name: board-page
 # This job writes NOTHING to the repo (contents: read). It reads the feeds and the committed frozen
 # call log and publishes the page. bets-board still owns every commit, the tracker and the alerts.
 on:
+  # Nov 12: was a 5-minute cron PLUS three workflow_run triggers - 20 runs an hour, rebuilding an identical page.
+  # The inputs only change every 10 minutes (liquidity-monitor's own cadence), so anything faster is waste, and
+  # the waste was real: 25% of all runs in the repo were being cancelled for want of a runner. One trigger, on the
+  # feed that actually produces new rows, plus a 10-minute backup timer.
   workflow_run:
-    workflows: ["liquidity-monitor", "liquidity-extra", "executor-dry-run"]
+    workflows: ["liquidity-monitor"]
     types: [completed]
   schedule:
-    - cron: "*/5 * * * *"
+    - cron: "4-59/10 * * * *"
   workflow_dispatch:
 
 concurrency:
