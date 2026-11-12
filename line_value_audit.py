@@ -73,6 +73,31 @@ def main():
         w = csv.DictWriter(fh, fieldnames=list(det[0]) if det else ["key"])
         w.writeheader()
         w.writerows(sorted(det, key=lambda d: (not d["is_minus_130"], d["alert_utc"] or "")))
+    if os.environ.get("AUDIT_EMAIL") == "1":   # one-off, explicit: the per-fill CSV to the private inbox (never the public log)
+        email_csv("summary/line_value_audit_fills.csv", rp.fill_counts(det))
+
+
+def email_csv(path, counts):
+    """The detail file as an attachment to EMAIL_TO. Subject prefix 'LINE VALUE AUDIT:' (never 'Bets'), so no ledger
+    reader can mistake it for a registry row. Body: counts only. Explicitly gated by AUDIT_EMAIL=1."""
+    import smtplib
+    from email.mime.base import MIMEBase
+    from email.mime.multipart import MIMEMultipart
+    from email.mime.text import MIMEText
+    from email import encoders
+    user, pw, to = os.environ["GMAIL_ADDRESS"], os.environ["GMAIL_APP_PASSWORD"], os.environ.get("EMAIL_TO") or os.environ["GMAIL_ADDRESS"]
+    msg = MIMEMultipart()
+    msg["Subject"], msg["From"], msg["To"] = "LINE VALUE AUDIT: per-fill detail (" + ", ".join(f"{k} {v}" for k, v in sorted(counts.items())) + ")", user, to
+    msg.attach(MIMEText("Per-fill replay detail attached (lines and prices; no stakes). Counts in the subject.", "plain", "utf-8"))
+    part = MIMEBase("text", "csv")
+    part.set_payload(open(path, "rb").read())
+    encoders.encode_base64(part)
+    part.add_header("Content-Disposition", "attachment", filename=os.path.basename(path))
+    msg.attach(part)
+    with smtplib.SMTP_SSL("smtp.gmail.com", 465, timeout=30) as s:
+        s.login(user, pw)
+        s.sendmail(user, [to], msg.as_string())
+    print("audit detail emailed (private).")
 
 
 if __name__ == "__main__":

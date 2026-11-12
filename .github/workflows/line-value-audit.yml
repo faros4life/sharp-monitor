@@ -9,6 +9,9 @@ on:
       days:
         description: "How many days of executor emails to read"
         default: "30"
+      email:
+        description: "1 = also email the per-fill CSV to the private inbox (never printed in the log)"
+        default: "0"
       prefixes:
         description: "Subject prefixes, | separated (Bets LIVE: holds the real fills; add Bets dry run: for would-fills)"
         default: "Bets LIVE:"
@@ -35,6 +38,8 @@ jobs:
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
           AUDIT_DAYS: ${{ github.event.inputs.days }}
           AUDIT_PREFIXES: ${{ github.event.inputs.prefixes }}
+          AUDIT_EMAIL: ${{ github.event.inputs.email }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
         run: python3 line_value_audit.py
       - uses: actions/upload-artifact@v4
         with:
