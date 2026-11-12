@@ -78,7 +78,13 @@ ck("2 live: the 215.5 candidate's threshold IS convert()'s maximum", ("kalshi", 
 ck("2 live: the whole-number 215.0 candidate is skipped as unsupported (Kalshi tie rule unverified)",
    ("kalshi", 215.0) not in lc and any(c["line"] == 215.0 and str(c["legacy"]).startswith("lv_unsupported:settlement_rule_unverified") for c in r_live["lvs"]["cands"]),
    str([(c["line"], c["legacy"]) for c in r_live["lvs"]["cands"]]))
-ck("2 live: the worse 213.5 line at -100 is judged by the same calculation (credit removed)", ("kalshi", 213.5) in lc or any(c["line"] == 213.5 and c["legacy"] == "price_gate" for c in r_live["lvs"]["cands"]))
+# The worse line (213.5 for an UNDER) has a PLUS-money maximum (about +101), so -100 is worse than the maximum and is
+# refused. With conservative rounding the refusal can land at the depth gate rather than the price gate - thr is the
+# conservative integer, so a price between the exact maximum and that integer has no depth at thr. Either way it is out.
+_c213 = [c for c in r_live["lvs"]["cands"] if c["line"] == 213.5]
+ck("2 live: the worse 213.5 line at -100 is refused by the replacement (price or depth gate), never selected",
+   ("kalshi", 213.5) not in lc and _c213 and _c213[0]["legacy"] in ("price_gate", "no_depth_at_thr"),
+   str([(c["line"], c["legacy"]) for c in r_live["lvs"]["cands"]]))
 # one tick worse than the maximum is refused at selection
 MAX = lv.convert("NBA", "total", "UNDER", 214.5, AF, 215.5, None, "kalshi")["max_am_after_fee"]   # about -122.4
 worse = {**BOOK, 215.5: ex.cents_worse(int(MAX), 1)}   # int() truncates toward zero: -122 -> -123 is past the maximum
