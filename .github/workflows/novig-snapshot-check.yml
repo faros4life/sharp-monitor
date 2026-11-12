@@ -83,4 +83,23 @@ jobs:
                          "NO FILL / KILLED" if st in ("CANCELED", "CANCELLED", "KILLED", "EXPIRED", "REJECTED", "REFUSED")
                          else "STILL OPEN" if st == "OPEN" else f"UNRESOLVED ({st})")
                   print(f"  {w[:8]}  status {st:<10} {fq:>7,}/{q:<7,} contracts  -> {tag}")
+          # Nov 12 (Peter): finish reconciling the two unknown orders through an AUTHENTICATED
+          # read. /v3/portfolio/fills carries orderId, so a fill for either id settles it. This
+          # also records, in the log, WHETHER an authenticated read is possible from Actions at
+          # all - Novig is understood to block datacenter IPs, and that claim should be evidenced
+          # rather than repeated.
+          try:
+              import novig_signed as nv
+              print("AUTH READ: key ready ->", nv.ready(), "| scope:", nv._S.get("scope"))
+              try:
+                  fl = nv.get("/v3/portfolio/fills", {"limit": "200"})
+                  rows = fl if isinstance(fl, list) else (fl.get("items") or fl.get("fills") or [])
+                  print(f"AUTH READ: OK - {len(rows)} fill row(s) readable from Actions")
+                  oids = {str(r.get("orderId") or r.get("order_id") or "") for r in rows}
+                  for w in [x.strip() for x in (os.environ.get("RECONCILE_ORDERS") or "").split(",") if x.strip()]:
+                      print(f"  fills carry {w[:8]}: {w in oids}")
+              except Exception as ex:
+                  print("AUTH READ: fills FAILED ->", str(ex)[:160])
+          except Exception as ex:
+              print("AUTH READ: unavailable ->", str(ex)[:160])
           PY
