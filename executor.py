@@ -1340,9 +1340,39 @@ def novig_snapshot():
         return None
 
 
+def novig_side_of(m, p, teams, sport):
+    """The SIDE a Novig position is on, identified by outcomeId against the market definition: "OVER"/"UNDER", a team
+    index, or None when it cannot be read. Nov 12: the outcome NAME is only a label - an empty or unexpected one used
+    to be read as UNDER for totals and skipped entirely for spreads, and both of those answer "no duplicate" about a
+    position the guard could not actually read."""
+    outs = m.get("outcomes") or []
+    o = next((x for x in outs if x.get("outcomeId") == p.get("outcomeId")), None)
+    if o is None:
+        return None                     # the position's outcome is not in this market definition
+    name = (o.get("name") or "").strip().lower()
+    pt = bc.N_MKT.get((m.get("marketType") or "").upper())
+    if pt == "total":
+        if "over" in name:
+            return "OVER"
+        if "under" in name:
+            return "UNDER"
+        # no name to read: fall back to the ORDER of the two outcomes, which Novig lists over-then-under, and only
+        # when there are exactly two and BOTH are unnamed - otherwise say nothing.
+        if len(outs) == 2 and not any((x.get("name") or "").strip() for x in outs):
+            return "OVER" if outs.index(o) == 0 else "UNDER"
+        return None
+    if pt in ("moneyline", "spread"):
+        return lm.team_side(name, list(teams), sport)
+    return None
+
+
 def novig_conflict(al, mtype, side, teams, nres, pos, mks_by_event):
-    """'duplicate' / 'conflict' / None from Peter's open Novig positions on this game. Spread and moneyline on the same
-    team count as the same play; opposite team = conflict. Totals only against totals."""
+    """'duplicate' / 'conflict' / ('unknown', why) / None from Peter's open Novig positions on this game. Spread and
+    moneyline on the same team count as the same play; opposite team = conflict. Totals only against totals.
+
+    Nov 12 (Peter): FAILS CLOSED. A position on a comparable market whose side cannot be read returns ('unknown', why)
+    and the caller holds the play - previously such a position was skipped (spreads) or guessed as UNDER (totals), so a
+    real duplicate could pass straight through."""
     if not pos or nres.get("status") != "ok":
         return None
     mid = nres.get("market_id")
@@ -1350,20 +1380,20 @@ def novig_conflict(al, mtype, side, teams, nres, pos, mks_by_event):
     if not ev:
         return None
     by_id = {m["marketId"]: m for m in mks_by_event[ev]}
+    unknown = None
     for p in pos:
         m = by_id.get(p.get("marketId"))
         if not m:
             continue
         pt = bc.N_MKT.get((m.get("marketType") or "").upper())
-        name = next((o.get("name") or "" for o in m.get("outcomes") or [] if o.get("outcomeId") == p.get("outcomeId")), "")
-        if mtype == "total" and pt == "total":
-            ps = "OVER" if "over" in name.lower() else "UNDER"
-            return "duplicate" if ps == side else "conflict"
-        if mtype in ("moneyline", "spread") and pt in ("moneyline", "spread"):
-            t = lm.team_side(name, list(teams), al["sport"])
-            if t is not None:
-                return "duplicate" if t == side else "conflict"
-    return None
+        if not ((mtype == "total" and pt == "total") or (mtype in ("moneyline", "spread") and pt in ("moneyline", "spread"))):
+            continue
+        ps = novig_side_of(m, p, teams, al["sport"])
+        if ps is None:
+            unknown = f"a Novig position on this game ({p.get('marketId')}/{p.get('outcomeId')}) has no readable side"
+            continue
+        return "duplicate" if ps == side else "conflict"
+    return ("unknown", unknown) if unknown else None
 
 
 # ---------------------------------------------------------------- one play
@@ -1525,6 +1555,8 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None, held=None):
     if taken and ok_ and taken(ok_):
         return dict(out, verdict="SKIP", reason="CONFLICT: the other side of this game was already taken (first side stays)")
     c = novig_conflict(al, mtype, side, teams, res["novig"], pos, mks_by_event)
+    if isinstance(c, tuple) and c[0] == "unknown":   # Nov 12: cannot read an open position's side -> hold, never guess
+        return dict(out, verdict="SKIP", reason=f"HELD: {c[1]} - cannot rule out a duplicate (fail closed)")
     if c == "conflict":
         return dict(out, verdict="SKIP", reason="CONFLICT: opposite side already held on Novig (first side stays)")
     if c == "duplicate":
