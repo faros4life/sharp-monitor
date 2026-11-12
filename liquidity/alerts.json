@@ -1,6 +1,174 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-12T07:05:37Z",
+   "base_depth": 1401247,
+   "best_price": 0.5375,
+   "best_price_american": -116,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 4,
+   "date": "2026-11-12",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 33809,
+     "new_this_side": 108230,
+     "other_side": 1062881,
+     "other_side_all_levels": 1181224,
+     "ratio": 1.3,
+     "this_side": 1369604,
+     "this_side_all_levels": 1515288
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 465838.81,
+    "volume_24h_fp": 205724.54,
+    "volume_fp": 503346.73
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 364.52,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 364.52
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 465474.29,
+    "volume_24h_fp": 205724.54,
+    "volume_fp": 502982.21
+   },
+   "fade_price": 0.49,
+   "first_seen_utc": "2026-11-12T07:01:18Z",
+   "game": "Washington vs New York G: Spread",
+   "game_surge_books": [],
+   "game_x": 1.05,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNFLSPREAD-26NOV12WASNYG-NYG3\"}",
+   "lead_min": 1089,
+   "league": "NFL",
+   "line": 2.5,
+   "market": "spread",
+   "new_money": 108230,
+   "new_x": 0.08,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 465838.81,
+      "volume_24h_fp": 205724.54,
+      "volume_fp": 503346.73
+     },
+     "game_normal": 1441067,
+     "game_x": 1.05,
+     "normal": 1426602,
+     "now": 1515288,
+     "type": "SPREAD",
+     "x": 1.06
+    }
+   },
+   "norm_ready_books": 1,
+   "paper_only": false,
+   "price": 0.52,
+   "price_american": -108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.52,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 2.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 2.0,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 2.5,
+     "price": -104
+    },
+    "betrivers": {
+     "point": 2.0,
+     "price": -108
+    },
+    "betus": {
+     "point": 1.0,
+     "price": 100
+    },
+    "bovada": {
+     "point": 2.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 2.5,
+     "price": -115
+    },
+    "fanatics": {
+     "point": 2.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 1.5,
+     "price": 100
+    },
+    "kalshi": {
+     "point": 2.5,
+     "price": -108
+    },
+    "lowvig": {
+     "point": 1.5,
+     "price": 102
+    },
+    "mybookieag": {
+     "point": 2.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 1.5,
+     "price": 104
+    },
+    "polymarket": {
+     "point": 1.5,
+     "price": 104
+    },
+    "prophetx": {
+     "point": 1.5,
+     "price": 104
+    },
+    "williamhill_us": {
+     "point": 2.0,
+     "price": -111
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNFLSPREAD-26NOV12WASNYG-NYG3"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Washington",
+   "side_label": "NOT New York G wins by over 2.5 points",
+   "size_x": 1.06,
+   "start_source": "odds",
+   "start_utc": "2026-11-13T01:15:00Z",
+   "surge_books": [],
+   "teams": [
+    "Washington",
+    "New York G"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-12T06:50:11Z",
    "base_depth": 264293,
    "best_price": 0.495,
@@ -97,6 +265,8 @@
    "norm_ready_books": 2,
    "paper_only": false,
    "price": 0.49,
+   "price_after_15m": 0.5075,
+   "price_after_15m_book": "kalshi",
    "price_american": 104,
    "price_rule": "ok",
    "price_when_first_seen": 0.49,
@@ -179,6 +349,7 @@
    "size_x": 1.22,
    "start_source": "odds",
    "start_utc": "2026-11-14T00:00:00Z",
+   "still_actionable": false,
    "surge_books": [],
    "teams": [
     "Florida St.",
@@ -239,9 +410,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 2263.9,
+    "open_interest_fp": 2288.61,
     "volume_24h_fp": 1665.99,
-    "volume_fp": 2308.62
+    "volume_fp": 2333.33
    },
    "ex_stats_first": {
     "open_interest_fp": 2017.46,
@@ -888,8 +1059,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.53,
-   "clv_cents": 0.0,
+   "close_price": 0.54,
+   "clv_cents": 1.0,
    "confirmed_after_min": 3,
    "date": "2026-11-12",
    "depth_by_book": {
@@ -926,9 +1097,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 8679.99,
+    "open_interest_fp": 8706.9,
     "volume_24h_fp": 4427.49,
-    "volume_fp": 13876.279999999999
+    "volume_fp": 13903.189999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 7502.72,
@@ -1339,9 +1510,9 @@
     "volume_fp": 236.79
    },
    "ex_stats_close": {
-    "open_interest_fp": 82997.14,
+    "open_interest_fp": 83278.03,
     "volume_24h_fp": 84476.56,
-    "volume_fp": 103315.53
+    "volume_fp": 103596.42000000001
    },
    "ex_stats_first": {
     "open_interest_fp": 28288.33,
@@ -1462,9 +1633,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 16852.120000000003,
+    "open_interest_fp": 16859.85,
     "volume_24h_fp": 13081.75,
-    "volume_fp": 17621.42
+    "volume_fp": 17629.15
    },
    "ex_stats_first": {
     "open_interest_fp": 7089.780000000001,
@@ -2281,9 +2452,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 87632.35,
+    "open_interest_fp": 88040.4,
     "volume_24h_fp": 89292.48,
-    "volume_fp": 94533.03
+    "volume_fp": 94941.08
    },
    "ex_stats_first": {
     "open_interest_fp": 15041.82,
@@ -2451,9 +2622,9 @@
     "volume_fp": 91.58
    },
    "ex_stats_close": {
-    "open_interest_fp": 77729.2,
+    "open_interest_fp": 78066.11,
     "volume_24h_fp": 72008.64,
-    "volume_fp": 92258.41
+    "volume_fp": 92609.9
    },
    "ex_stats_first": {
     "open_interest_fp": 30358.96,
@@ -2648,9 +2819,9 @@
     "volume_fp": 71.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 17936.69,
+    "open_interest_fp": 17966.670000000002,
     "volume_24h_fp": 17802.28,
-    "volume_fp": 19350.17
+    "volume_fp": 19380.15
    },
    "ex_stats_first": {
     "open_interest_fp": 4887.42,
@@ -6046,9 +6217,9 @@
     "volume_fp": 8.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 44332.37,
+    "open_interest_fp": 44348.37,
     "volume_24h_fp": 52636.58,
-    "volume_fp": 62074.44
+    "volume_fp": 62090.44
    },
    "ex_stats_first": {
     "open_interest_fp": 14886.76,
@@ -6247,9 +6418,9 @@
     "volume_fp": 293.13
    },
    "ex_stats_close": {
-    "open_interest_fp": 50330.12,
+    "open_interest_fp": 51183.21,
     "volume_24h_fp": 51343.76,
-    "volume_fp": 52100.5
+    "volume_fp": 52953.59
    },
    "ex_stats_first": {
     "open_interest_fp": 7733.97,
@@ -6448,9 +6619,9 @@
     "volume_fp": 9.83
    },
    "ex_stats_close": {
-    "open_interest_fp": 27304.87,
+    "open_interest_fp": 27383.42,
     "volume_24h_fp": 22575.18,
-    "volume_fp": 28438.39
+    "volume_fp": 28516.940000000002
    },
    "ex_stats_first": {
     "open_interest_fp": 11760.52,
@@ -9143,9 +9314,9 @@
     "volume_fp": 34.05
    },
    "ex_stats_close": {
-    "open_interest_fp": 30265.71,
+    "open_interest_fp": 30357.83,
     "volume_24h_fp": 31141.120000000003,
-    "volume_fp": 36217.01
+    "volume_fp": 36706.81
    },
    "ex_stats_first": {
     "open_interest_fp": 5828.8,
@@ -13821,9 +13992,9 @@
     "volume_fp": 305.48
    },
    "ex_stats_close": {
-    "open_interest_fp": 1287425.83,
+    "open_interest_fp": 1288852.7,
     "volume_24h_fp": 773250.75,
-    "volume_fp": 1670283.8
+    "volume_fp": 1671710.88
    },
    "ex_stats_first": {
     "open_interest_fp": 592652.27,
