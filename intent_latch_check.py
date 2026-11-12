@@ -131,13 +131,27 @@ def main():
             # Count the stated reasons. Each pattern is the executor's own wording, so a zero here
             # means that cause did not fire - not that the parse failed. A parse that finds NOTHING
             # at all is reported as unverified rather than as three zeros.
+            # The executor's OWN go=False wording, taken from the r["live"]["why"] strings at
+            # executor.py:4397-4447, so each count is the real reason and not a guess.
             pats = {
-                "Novig submission hold (EXEC_NOVIG_SUBMIT off)": r"EXEC_NOVIG_SUBMIT is not on",
-                "no dispatch credential (post-fix)":             r"NOVIG_DISPATCH_TOKEN",
-                "unresolved write-ahead intent (latch)":         r"INTENT CLEARED|unresolved intent|intent .* open",
-                "routed to Novig":                               r"routing to Novig|\bNovig\b",
-                "ORDER REFUSED notices":                         r"ORDER REFUSED",
-                "held (positions unreadable)":                    r"\bHELD\b",
+                "PRICE: no live book has the alert number or better":
+                    r"no live book has the alert number or better",
+                "DUPLICATE: play already has an order/intent today (LIVEKEYS)":
+                    r"already submitted or resting|already sent a live order|duplicate",
+                "LANE CAP: play cap or daily risk reached":
+                    r"play cap|daily risk|daily stop",
+                "LANE 2 is dry-run only":
+                    r"Lane 2 is dry-run only",
+                "INTENT LATCH: unresolved write-ahead intent":
+                    r"INTENT CLEARED [0-9a-f]{12,}|unresolved intent",
+                "NOVIG HOLD: EXEC_NOVIG_SUBMIT off":
+                    r"EXEC_NOVIG_SUBMIT is not on",
+                "NOVIG HOLD: no dispatch credential":
+                    r"NOVIG_DISPATCH_TOKEN",
+                "ORDER REFUSED notices":
+                    r"ORDER REFUSED",
+                "HELD (positions unreadable)":
+                    r"\bHELD\b",
             }
             hits = {k: len(re.findall(v, body, re.I)) for k, v in pats.items()}
             if not any(hits.values()):
