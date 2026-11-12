@@ -32,6 +32,7 @@ OUT = os.environ.get("HEALTH_OUT") or "site/health"
 STALE_FACTOR = 3        # a workflow is stale when its last success is older than 3 of its own gaps
 FLOOR_MIN = 25          # ...but never flag a workflow whose own cadence is slower than this
 LOOKBACK = 30           # runs per workflow to measure cadence from
+STALE_PAGE_MIN = 25     # the page calls ITSELF stale past this, in the browser
 
 
 def gh(path):
@@ -113,12 +114,47 @@ def main():
                      "ok_min": ok_min, "cadence": cadence, "running": running,
                      "cancel_pct": round(100 * cancels / len(rl)), "n": len(rl)})
 
+    # Nov 12 (Muse's review, via Peter): "I want to be able to open Bets Board and see whether my
+    # entire trading operation is healthy - not merely whether GitHub Actions is green." So the
+    # workflows are rolled up into the systems Peter actually names. The worst member decides the
+    # system's state; a system with no matching workflow says so rather than showing green.
+    SYSTEMS = (
+        ("Live executor",        ("executor",)),
+        ("Against Your Bet",     ("signal-alerts",)),
+        ("Fill reports",         ("fill-reports",)),
+        ("Bets Board publishing", ("board-page",)),
+        ("Bets Board build",     ("bets-board",)),
+        ("CLV ledger",           ("clv-ledger",)),
+        ("Novig snapshot",       ("novig-snapshot-check", "novig-positions", "novig-heartbeat")),
+        ("Liquidity feeds",      ("liquidity-monitor", "liquidity-extra")),
+    )
+    worst = {"FAIL": 0, "STALE": 1, "WARN": 2, "OK": 3}
+    sysrows = []
+    for label, pats in SYSTEMS:
+        members = [r for r in rows if any(pt in r["name"].lower().replace(" ", "-") for pt in pats)]
+        if not members:
+            sysrows.append((label, "UNKNOWN", "no workflow of this name is active"))
+            continue
+        m = min(members, key=lambda r: worst[r["state"]])
+        detail = m["why"] or f"last success {m['last_ok']}"
+        if len(members) > 1:
+            detail += f" ({m['name']})"
+        sysrows.append((label, m["state"], detail))
+    # Two things this page cannot establish, stated rather than coloured green.
+    sysrows.append(("Novig submissions", "PAUSED",
+                    "held by EXEC_NOVIG_SUBMIT; no dispatch credential is configured"))
+    sysrows.append(("Phone alert delivery", "NOT CHECKED",
+                    "this page cannot confirm your phone received anything"))
+
     order = {"FAIL": 0, "STALE": 1, "WARN": 2, "OK": 3}
     rows.sort(key=lambda r: (order[r["state"]], -r["ok_min"]))
     bad = [r for r in rows if r["state"] in ("FAIL", "STALE")]
     headline = ("ALL RUNNING" if not bad and not [r for r in rows if r["state"] == "WARN"]
                 else f"{len(bad)} NOT RUNNING" if bad else "RUNNING, WITH WARNINGS")
     hcls = "ok" if headline == "ALL RUNNING" else ("warn" if not bad else "bad")
+
+    SDOT = {"OK": "ok", "WARN": "warn", "STALE": "bad", "FAIL": "bad",
+            "UNKNOWN": "warn", "PAUSED": "warn", "NOT CHECKED": "warn"}
 
     def tr(r):
         dot = {"OK": "ok", "WARN": "warn", "STALE": "bad", "FAIL": "bad"}[r["state"]]
@@ -167,21 +203,70 @@ vertical-align:1px}}
 .run{{margin-left:8px;font-size:10px;color:var(--mut);border:1px solid var(--line);
 border-radius:4px;padding:1px 5px}}
 .note{{color:var(--mut);font-size:12px;margin-top:14px}}
-</style></head><body><div class=wrap>
+</style></head><body data-generated="{now:%Y-%m-%dT%H:%M:%SZ}"><div class=wrap>
 <h1>Live health</h1>
 <p class="big {hcls}">{headline}</p>
 <p class=sub>{len(rows)} active workflows &middot; generated {now:%Y-%m-%d %H:%M}Z &middot;
-refreshes every 2 min</p>
+<span id=age>checking snapshot age</span></p>
+<div class=card style="margin-bottom:16px"><table>
+<tr><th>System</th><th>State</th><th>Detail</th></tr>
+{''.join(f"<tr><td>{n}</td><td><span class='dot {SDOT.get(st,'warn')}'></span>{st}</td>"
+         f"<td class=muted>{d}</td></tr>" for n, st, d in sysrows)}
+</table></div>
 <div class=card><table>
 <tr><th>State</th><th>Workflow</th><th class=r>Last success</th><th class=r>Cadence</th>
 <th class=r>Cancelled</th><th>Note</th></tr>
 {''.join(tr(r) for r in rows) or '<tr><td colspan=6 class=muted>no workflow history readable</td></tr>'}
 </table></div>
+<p class=note id=stalebox hidden></p>
 <p class=note>STALE means the last SUCCESS is older than {STALE_FACTOR}x that workflow's own
 median run gap. Cancelled runs are normal here - queued runs are dropped on purpose - so a high
 cancelled share is not itself a fault. Workflow status only: no stakes, balances, prices or
 switch states appear on this page.</p>
-</div></body></html>"""
+</div>
+<script>
+// Nov 12 (Muse's review, via Peter): "a frozen health page could misleadingly keep displaying ALL
+// RUNNING." A page that cannot report its OWN staleness is worse than no page, because it fails
+// silently in exactly the situation it exists to detect - the publisher stopping. The generation
+// time is baked in at build time and the age is computed HERE, in the viewer's browser, so a page
+// served from cache or from a dead publisher still tells the truth. If the stamp will not parse,
+// it says UNKNOWN rather than assuming the page is fresh.
+(function () {{
+  var MAXMIN = {STALE_PAGE_MIN};
+  var el = document.getElementById('age'), box = document.getElementById('stalebox');
+  var big = document.querySelector('.big');
+  var gen = document.body.getAttribute('data-generated');
+  var t = gen ? Date.parse(gen) : NaN;
+  if (!gen || isNaN(t)) {{
+    if (el) {{ el.textContent = 'snapshot age UNKNOWN'; }}
+    if (big) {{ big.textContent = 'SNAPSHOT AGE UNKNOWN'; big.className = 'big warn'; }}
+    return;
+  }}
+  function paint() {{
+    var min = (Date.now() - t) / 60000;
+    var txt = min < 1 ? 'snapshot just now'
+            : min < 60 ? 'snapshot ' + Math.round(min) + 'm old'
+            : min < 1440 ? 'snapshot ' + (min / 60).toFixed(1) + 'h old'
+            : 'snapshot ' + (min / 1440).toFixed(1) + 'd old';
+    if (el) el.textContent = txt;
+    if (min > MAXMIN) {{
+      if (big) {{
+        big.textContent = 'HEALTH PAGE STALE';
+        big.className = 'big bad';
+      }}
+      if (box) {{
+        box.hidden = false;
+        box.innerHTML = '<strong>This page stopped updating ' + txt.replace('snapshot ', '') +
+          '.</strong> Everything below is a frozen snapshot from ' + gen +
+          ' and may no longer be true. The publisher (board-page) is itself not running.';
+      }}
+    }}
+  }}
+  paint();
+  setInterval(paint, 30000);
+}})();
+</script>
+</body></html>"""
 
     os.makedirs(OUT, exist_ok=True)
     with open(os.path.join(OUT, "index.html"), "w") as f:
