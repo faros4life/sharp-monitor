@@ -277,8 +277,24 @@ def main():
             detail += f" ({m['name']})"
         sysrows.append((label, m["state"], detail))
     # Two things this page cannot establish, stated rather than coloured green.
-    sysrows.append(("Novig submissions", "PAUSED",
-                    "held by EXEC_NOVIG_SUBMIT; no dispatch credential is configured"))
+    # Nov 12, 22:00Z: this row was HARDCODED to PAUSED, written when both holds were on. Peter
+    # then turned EXEC_NOVIG_SUBMIT on, and a board reporting PAUSED while orders can actually
+    # go out is a worse lie than the stale-board one - it is the direction that loses money
+    # quietly. So it reads the switch, and says UNKNOWN rather than guessing when it is not
+    # passed in. Switch state only: no stake, no limit, no dollars.
+    _sub = (os.environ.get("EXEC_NOVIG_SUBMIT") or "").strip().lower()
+    _disp = bool((os.environ.get("NOVIG_DISPATCH_TOKEN") or "").strip())
+    if _sub in ("on", "1", "true", "yes"):
+        sysrows.append(("Novig submissions", "OK" if _disp else "WARN",
+                        "LIVE - EXEC_NOVIG_SUBMIT is on" + ("" if _disp
+                         else "; but NO dispatch credential, so every order would refuse")))
+    elif _sub in ("off", "0", "false", "no", ""):
+        sysrows.append(("Novig submissions", "PAUSED",
+                        "held by EXEC_NOVIG_SUBMIT" + ("" if _disp
+                         else "; no dispatch credential configured either")))
+    else:
+        sysrows.append(("Novig submissions", "UNKNOWN",
+                        f"EXEC_NOVIG_SUBMIT not readable from this job (saw {_sub!r})"))
     sysrows.append(("Phone alert delivery", "NOT CHECKED",
                     "this page cannot confirm your phone received anything"))
 

@@ -69,6 +69,12 @@ jobs:
         continue-on-error: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Nov 12: so the Novig submissions row reports the REAL switch instead of a hardcoded
+          # PAUSED. The dispatch token is passed only to be tested for PRESENCE - health_build.py
+          # takes bool() of it, never prints it and never sends it anywhere, and this job makes
+          # no venue or runner call of any kind.
+          EXEC_NOVIG_SUBMIT: ${{ vars.EXEC_NOVIG_SUBMIT }}
+          NOVIG_DISPATCH_TOKEN: ${{ secrets.NOVIG_DISPATCH_TOKEN }}
         run: python -u health_build.py
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
