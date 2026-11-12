@@ -79,6 +79,13 @@ jobs:
           else:
               want = [w for w in (os.environ.get("RECONCILE_ORDERS") or "").split(",") if w.strip()]
               print(f"ORDERS: {len(recs)} result row(s) from the home runner")
+              # Nov 12 (Peter): the mapping fix needs to know which field, if any, carries NOVIG's
+              # own order id alongside the locally generated client id. Field names first - the
+              # same discipline clv_link_recon.py used - rather than guessing an endpoint.
+              print("ORDER ROW FIELDS:", sorted({k for x in recs for k in x}))
+              for x in recs[-3:]:
+                  print("  sample:", {k: (str(v)[:38] if v is not None else None)
+                                      for k, v in x.items() if k not in ("order", "error")})
               by = {}
               for x in recs:
                   for ident in (x.get("order_id"), x.get("client_id")):
