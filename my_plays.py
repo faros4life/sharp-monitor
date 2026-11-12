@@ -257,6 +257,38 @@ def main():
                     "detail": detail, "stake": num(b.get("stake")),
                     "fee_model": cs.FEE_MODEL})
 
+    # DUPLICATE OR LEGS - this must be settled before any per-play average is quoted.
+    # The Nov 11 record showed one Lakers play as 10 identical rows. Ten legs of one play and ten
+    # copies of one row look the same in a list and mean opposite things: the first is one position
+    # filled in pieces, the second is a measurement fault that would weight that play 10x in any
+    # average. The distinguishing evidence is whether the rows carry DIFFERENT order ids or
+    # different first-seen times. Printed as counts, never as stakes.
+    groups = {}
+    for b in rows:
+        k = (str(b.get("game") or ""), str(b.get("bet") or ""),
+             cs.canon(b.get("book")) if b.get("book") else "", num(b.get("price")))
+        groups.setdefault(k, []).append(b)
+    dup = {k: v for k, v in groups.items() if len(v) > 1}
+    if dup:
+        say("")
+        say("=" * 96)
+        say("REPEATED ROWS - legs of one play, or duplicates?")
+        say("=" * 96)
+        for (g, bet, bk, px), v in sorted(dup.items(), key=lambda x: -len(x[1])):
+            oid = {str(b.get("order_id") or b.get("oid") or "") for b in v} - {""}
+            fs = {str(b.get("first_seen") or b.get("placed") or "")[:19] for b in v} - {""}
+            key = {str(b.get("key") or b.get("play_key") or "") for b in v} - {""}
+            verdict = ("separate legs - distinct order ids" if len(oid) == len(v) and oid else
+                       "separate fills - distinct timestamps" if len(fs) == len(v) and fs else
+                       f"UNRESOLVED - {len(oid)} order id(s), {len(fs)} timestamp(s) for {len(v)} rows")
+            say(f"  {len(v):3d}x  {g[:36]:<36} {bet[:18]:<18} {bk[:10]:<10} "
+                f"{(f'{px:+.0f}' if px is not None else '?'):>6}")
+            say(f"        order ids {len(oid)} | distinct timestamps {len(fs)} | "
+                f"tracker keys {len(key)}  ->  {verdict}")
+        say("")
+        say("  Until a group reads 'separate legs' or 'separate fills', no average over these")
+        say("  plays is quoted: duplicates would weight one play by its row count.")
+
     say("")
     say("=" * 96)
     say("STATUS ROLL-UP")
