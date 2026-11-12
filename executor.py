@@ -3711,7 +3711,32 @@ def journal_intent(r, book, asked):
              "Counts only.\n\n"
              "LEDGER (machine-readable, one row per play; latency = decision time minus first alert time)\n"
              + json.dumps([row]))
+        # Nov 12 (Peter): ATOMIC claim on the play key before anything is submitted. The intent
+        # write below proves the record is durable; this proves only ONE caller may submit this
+        # bet. LIVEKEYS is a read, so two runs that both read before either wrote would both
+        # submit - a write under the store's sha lock is the only thing that makes it exclusive.
+        # No staleness expiry: an unconfirmed claim means the venue outcome is unknown, and an
+        # unknown outcome must keep blocking retries until it is reconciled.
+        _key = row["key"]
+        if registry.enabled():
+            try:
+                if not registry.claim_submission(_key, cid):
+                    LOG.append(f"submission claim lost for {_key[:40]} - another run owns it")
+                    return False, None
+            except Exception as ex:
+                try:
+                    tg(f"ORDER CLAIM UNAVAILABLE: could not take the durable submission claim for "
+                       f"{book} ({str(ex)[:100]}).\nNO ORDER WAS PLACED - without an atomic claim two "
+                       f"runs could submit the same bet.")
+                except Exception:
+                    pass
+                return False, None
         _ok, _where = intent_verified(cid, row)   # SMTP success is not storage - read it back or place nothing
+        if not _ok and registry.enabled():
+            try:
+                registry.release_submission(_key, cid)   # nothing was submitted: give the key back
+            except Exception:
+                pass
         if not _ok:
             try:
                 tg(f"ORDER INTENT UNREADABLE: the pre-order record for {book} was sent but could not be "

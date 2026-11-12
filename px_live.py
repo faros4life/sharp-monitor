@@ -131,8 +131,9 @@ def trades():
     return ((d.get("data") or {}).get("trades")) or []
 
 
-def stop_state():
-    """('STOP'|'GO'|None, when) - the newest STOP/GO message on Peter's ntfy topic (ntfy keeps ~12 h)."""
+def _ntfy_switch():
+    """('STOP'|'GO'|None, when) - the newest STOP/GO message on Peter's ntfy topic. ntfy keeps ~12 h,
+    so this ALONE cannot be the pause: see stop_state()."""
     if not TOPIC:
         return None, None
     try:
@@ -150,6 +151,54 @@ def stop_state():
         if word in ("STOP", "GO"):
             last = (word, m.get("time"))
     return last
+
+
+def stop_state():
+    """('STOP'|'GO'|'UNKNOWN'|None, when) - the pause, which PERSISTS until an explicit GO.
+
+    Nov 12 (Peter): "Make STOP persist until explicit GO; message expiration must not resume
+    trading." The switch used to be only the newest STOP/GO on ntfy, and ntfy keeps about 12 hours.
+    A STOP therefore un-paused the bot by itself once the message aged out - trading resumed with
+    no instruction from Peter, which is the opposite of what a kill switch is for.
+
+    The STOP is now LATCHED in the registry. Once seen it is stored; every later run reads the
+    stored latch whether or not ntfy still carries the message, and ONLY a GO newer than the
+    latched STOP clears it. A GO is also stored, so the two cannot flip back and forth on
+    retention alone.
+
+    FAILS CLOSED throughout: an unreadable ntfy returns UNKNOWN (preflight refuses), and if the
+    registry cannot be read while ntfy shows no switch at all, this returns UNKNOWN rather than
+    None - an unreadable latch must never read as "not paused"."""
+    word, when = _ntfy_switch()
+    try:
+        import registry
+    except Exception:
+        return word, when
+    if not registry.enabled():
+        return word, when          # no store configured: ntfy-only, as before
+
+    stored = None
+    try:
+        stored = registry.switch_state()
+    except Exception:
+        stored = "ERROR"
+
+    # a fresh ntfy word is authoritative and is latched for later runs
+    if word in ("STOP", "GO"):
+        try:
+            registry.put_switch(word, when)
+        except Exception:
+            pass                   # the live word still governs this run
+        return word, when
+    if word == "UNKNOWN":
+        return "UNKNOWN", when     # could not read ntfy: refuse, latch untouched
+    if stored == "ERROR":
+        return "UNKNOWN", None     # ntfy silent AND latch unreadable: refuse
+    if isinstance(stored, dict) and stored.get("word") == "STOP":
+        return "STOP", stored.get("when")
+    if isinstance(stored, dict) and stored.get("word") == "GO":
+        return "GO", stored.get("when")
+    return None, None
 
 
 def tg_mirror(text):

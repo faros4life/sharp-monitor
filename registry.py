@@ -442,6 +442,83 @@ def release_token(tok):
         return False
 
 
+def claim_submission(key, cid):
+    """Atomically claim ONE play key for ONE submission. True only for the caller that wins it.
+
+    Nov 12 (Peter): "Make the claim durable and atomic before submission ... prove two concurrent
+    attempts produce exactly one dispatch." The lane-key fix closed the SEQUENTIAL duplicate - two
+    runs five minutes apart, which is what happened - but two runs that both read LIVEKEYS before
+    either wrote an intent would still both submit. LIVEKEYS is a read; this is a write under the
+    store's sha lock, so exactly one caller can win a key.
+
+    There is deliberately NO staleness expiry. An unclaimed-but-unconfirmed submission means the
+    venue outcome is unknown, and an unknown outcome must keep blocking retries until it is
+    reconciled - so the claim is cleared only by release_submission() on a refusal that never
+    reached the venue, or by Peter clearing it.
+
+    RAISES when the store cannot be read or written: no durable claim, no submission."""
+    k, c = str(key or ""), str(cid or "")
+    if not k or not c:
+        raise ValueError("claim_submission: key and cid are required")
+    won = {"v": False}
+
+    def merge(d):
+        subs = d.setdefault("submissions", {})
+        cur = subs.get(k)
+        if isinstance(cur, dict) and cur.get("cid") and cur.get("cid") != c:
+            won["v"] = False
+            return False            # someone else owns this key: nothing to write
+        subs[k] = {"cid": c, "ts": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")}
+        won["v"] = True
+
+    if not _commit(merge):
+        raise RuntimeError("submission claim write failed")
+    return won["v"]
+
+
+def release_submission(key, cid):
+    """Give a claim back when the submission never reached the venue. Only the owner may release,
+    so a losing caller cannot free the winner's key."""
+    k, c = str(key or ""), str(cid or "")
+
+    def merge(d):
+        subs = d.setdefault("submissions", {})
+        cur = subs.get(k)
+        if not isinstance(cur, dict) or cur.get("cid") != c:
+            return False
+        subs.pop(k, None)
+    try:
+        return _commit(merge)
+    except Exception:
+        return False
+
+
+def switch_state():
+    """The latched STOP/GO, or None. RAISES when the store cannot be read, so a caller can refuse
+    rather than read an unreadable latch as 'not paused'."""
+    d = load()
+    if d is None:
+        raise RuntimeError("registry unreadable - switch latch unknown")
+    s = d.get("switch")
+    return s if isinstance(s, dict) else None
+
+
+def put_switch(word, when=None):
+    """Latch STOP or GO so the pause outlives ntfy's ~12 hour retention (Peter, Nov 12: "message
+    expiration must not resume trading")."""
+    w = str(word or "").strip().upper()
+    if w not in ("STOP", "GO"):
+        return False
+
+    def merge(d):
+        cur = d.get("switch")
+        if isinstance(cur, dict) and cur.get("word") == w:
+            return False            # already latched the same way: no write
+        d["switch"] = {"word": w, "when": when,
+                       "ts": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")}
+    return _commit(merge)
+
+
 def bump_streak(name):
     """Count consecutive occurrences of a recurring condition. Returns the new count.
 
