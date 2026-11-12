@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 12, 1:41 PM ET. This run: 1 new, 1 not confirmed, 1 pending. Open alerts: 58.
+Updated Thu Nov 12, 1:44 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 59.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 12 1:44PM | NHL | Washington vs New Jersey: Spread | spread: NOT New Jersey wins by over 1.5 goals | kalshi | $51k | -178 |  |  | +0.0c |  | pending |
 | Nov 12 1:41PM | NBA | Detroit vs Washington: Spread | spread: NOT Detroit wins by over 10.5 points | kalshi | $29k | -108 | ✅ novig |  | +0.0c |  | pending |
 | Nov 12 1:23PM | NHL | Nashville vs Vegas | moneyline: Vegas | kalshi | $29k | -163 |  |  | +0.0c |  | pending |
 | Nov 12 1:20PM | NBA | Toronto vs Philadelphia: Spread | spread: NOT Philadelphia wins by over 7.5 points | kalshi | $41k | -100 | ✅ novig | ❌ | +2.0c |  | pending |
@@ -38,10 +39,10 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 12 6:52AM | NHL | Montreal vs Boston: Spread | spread: NOT Boston wins by over 1.5 goals | kalshi | $36k | -223 | ✅ novig |  | -1.0c | yes | pending |
 | Nov 12 6:40AM | NHL | New York I vs Los Angeles: Spread | spread: NOT Los Angeles wins by over 1.5 goals | kalshi | $76k | -233 |  |  | -1.0c |  | pending |
 | Nov 12 6:40AM | NHL | Colorado vs Ottawa: Spread | spread: NOT Colorado wins by over 1.5 goals | kalshi | $53k | -233 |  |  | +2.0c |  | pending |
-| Nov 12 6:00AM | NHL | New York I vs Los Angeles: Total Goals | total: Over 5.5 goals scored | kalshi | $50k | -122 |  |  | -1.0c |  | pending |
+| Nov 12 6:00AM | NHL | New York I vs Los Angeles: Total Goals | total: Over 5.5 goals scored | kalshi | $50k | -122 |  |  | +0.0c |  | pending |
 | Nov 12 6:00AM | NHL | Tampa Bay vs Columbus: Spread | spread: NOT Tampa Bay wins by over 1.5 goals | kalshi | $27k | -233 |  |  | +0.0c | yes | pending |
 | Nov 12 5:50AM | NHL | Montreal vs Boston: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $61k | -122 |  |  | +0.0c |  | pending |
-| Nov 12 5:40AM | NHL | Montreal vs Boston | moneyline: Boston | kalshi | $43k | -117 |  |  | +0.0c |  | pending |
+| Nov 12 5:40AM | NHL | Montreal vs Boston | moneyline: Boston | kalshi | $43k | -117 |  |  | +1.0c |  | pending |
 | Nov 12 5:37AM | NHL | St. Louis vs Utah: Spread | spread: NOT Utah wins by over 1.5 goals | kalshi | $35k | -223 |  |  | +2.0c |  | pending |
 | Nov 12 5:30AM | NHL | Buffalo vs Chicago: Spread | spread: NOT Buffalo wins by over 1.5 goals | kalshi | $31k | -178 |  |  | +0.0c |  | pending |
 | Nov 12 5:20AM | NBA | Detroit vs Washington: Spread | spread: Detroit wins by over 9.5 points | kalshi | $25k | -117 |  |  | +1.0c | yes | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 9 8:26PM | NBA | Denver Nuggets at Houston Rockets | moneyline: Houston Rockets | prophetx | $29k | -178 | ✅ kalshi,novig,polymarket | ✅ | +0.0c |  | W |
 | Nov 9 8:10PM | NBA | San Antonio vs Phoenix: Spread | spread: NOT San Antonio wins by over 9.5 points | kalshi | $35k | -108 | ✅ novig |  | +1.0c | yes | L |
 | Nov 9 8:00PM | NHL | Flyers vs. Canucks | total: Under (6.5) | polymarket | $42k | -113 | ✅ kalshi,novig |  | +1.0c |  | W |
-| Nov 9 7:40PM | NBA | Miami vs Utah | moneyline: Miami | kalshi | $34k | -376 |  |  | -2.0c | yes | W |
