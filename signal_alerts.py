@@ -122,7 +122,11 @@ def held_sides(M):
             add(sp, game, market, side)
     except Exception:
         pass
-    _mark("held: bot orders (gmail)")
+    # Nov 12: this label was the hardcoded string "(gmail)", which claimed a path instead of
+    # reporting one - it read as a measurement and said nothing. bot_orders() brackets whichever
+    # path it takes, so the label now comes from that, and "store" vs "gmail" is the real answer to
+    # whether the private-registry fast path was available this cycle.
+    _mark(f"held: bot orders ({'gmail' if 'registry read (Gmail IMAP)' in ex.PERF['t'] else 'store'})")
     # Peter's manual-bet notes
     try:
         ex.read_manual(M)
@@ -190,6 +194,7 @@ HELD_BUDGET_S = float(os.environ.get("SIGNAL_HELD_BUDGET_S", "") or "240")
 _T0 = _time.time()
 _MARKS = []
 _PREV = {}   # per-thread last mark: deltas must never cross threads
+_GAVE_UP = [False]   # set by the MAIN thread when the held-read budget expires; only then is a daemon line abandoned
 
 
 def _mark(what):
@@ -208,7 +213,11 @@ def _mark(what):
     prev = _PREV.get(me, 0.0)
     _PREV[me] = at
     _MARKS.append((me, what, at))
-    tag = "" if me == "MainThread" else f" [{me}, abandoned]"
+    # Nov 12, third correction. This said "[held-read, abandoned]" for EVERY non-main thread, so a
+    # clean 101.8s completion printed as abandoned - two states with opposite meanings under one
+    # label, which is the failure this repo has a rule about. Only the main thread giving up makes a
+    # line abandoned, and it is the main thread that knows: it sets _GAVE_UP when the budget expires.
+    tag = "" if me == "MainThread" else (f" [{me}, abandoned]" if _GAVE_UP[0] else f" [{me}]")
     print(f"  timing: {at:6.1f}s total, {at - prev:6.1f}s for {what}{tag}", flush=True)
 
 
@@ -330,6 +339,7 @@ def main():
         unavailable = ""
         if th.is_alive():
             unavailable = f"abandoned after {HELD_BUDGET_S}s"
+            _GAVE_UP[0] = True   # from here on the orphaned daemon's own lines are correctly tagged abandoned
         elif "err" in box:
             unavailable = f"failed ({box['err']})"
         if unavailable:
