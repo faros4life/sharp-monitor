@@ -3,7 +3,7 @@
 REAL PLAYS RECAP (Nov 3, 2026; Peter 6:35 AM: "I want actual plays and that day's results ... keep the total recap on
 top ... keep track of actual plays"). Replaces the alert-based daily recap on the phone.
 
-Once per ET day (first bets-board run at or after RECAP_HOUR, default 8 AM ET) it pushes ONE ntfy message:
+Once per ET day (first bets-board run at or after RECAP_HOUR, default 8 AM ET) it sends ONE email (Nov 12: no longer an ntfy push):
   - header: yesterday's record and units, then week and month totals (totals only, no old bets listed)
   - one line per bet settled for yesterday's games: result, bet, price, book, who placed it, final score, units
 Reads the encrypted tracker state (tracker/state.enc, the same record the Bet Tracker page shows). Peter 6:40 AM:
@@ -12,14 +12,12 @@ profit/loss in dollars for day, week and month (units beside them, 1u = UNIT, de
 """
 import json
 import os
-import urllib.request
 from datetime import datetime, timedelta, timezone
 
 import tracker_build as tb
 
 ET = tb.ET
 FILE = "lanes/plays_recap.json"
-TOPIC = (os.environ.get("NTFY_TOPIC") or "").strip()
 UNIT = float(os.environ.get("PLAYS_UNIT") or 200)
 HOUR = int(os.environ.get("RECAP_HOUR") or 8)
 ICON = {"W": "✅", "L": "❌", "P": "➖"}
@@ -83,16 +81,15 @@ def main(force=False):
             f"{y.strftime('%B')}: {rec(mo)}",
             f"1u = ${UNIT:,.0f}. Open now: {opn}.", ""]
     body = "\n".join(head + [line(b) for b in yday])
-    if TOPIC:
-        try:
-            req = urllib.request.Request(f"https://ntfy.sh/{TOPIC}", data=body.encode(), method="POST",
-                                         headers={"Title": f"Real plays recap {y.strftime('%b %-d')}", "Tags": "moneybag"})
-            urllib.request.urlopen(req, timeout=20).read()
-        except Exception as ex:
-            print(f"plays recap: push failed ({type(ex).__name__})")
-            return
-    else:
-        print("plays recap: no NTFY_TOPIC (dry run)\n" + body)   # only without a topic, i.e. never in Actions
+    # Nov 12 (Peter): pushes are live or actionable only, and a recap is neither - so no ntfy. The recap is kept as a
+    # private EMAIL (dollar figures belong there, not on a push or in the log). A send failure leaves sent_day unset,
+    # so the next bets-board run retries.
+    try:
+        import executor as ex
+        ex.send(f"Bets real plays recap {y.strftime('%b %-d')}", body)
+    except Exception as e:
+        print(f"plays recap: email failed ({type(e).__name__})")
+        return
     mark["sent_day"] = today
     os.makedirs("lanes", exist_ok=True)
     json.dump(mark, open(FILE, "w"))

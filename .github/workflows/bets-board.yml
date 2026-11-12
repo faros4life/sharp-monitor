@@ -69,11 +69,13 @@ jobs:
           PMUS_SECRET_KEY: ${{ secrets.PMUS_SECRET_KEY }}
           NOVIG_SNAPSHOT_TOKEN: ${{ secrets.NOVIG_SNAPSHOT_TOKEN }}
         run: python -u tracker_build.py
-      - name: Real plays recap to the phone (Peter Nov 3; once a day after 8 AM ET; counts only in this log)
+      - name: Real plays recap by email (Peter Nov 3; Nov 12 moved off the phone; once a day after 8 AM ET; counts only in this log)
         continue-on-error: true
         env:
           TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
-          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
         run: python -u plays_recap.py
       - name: Commit lane log and encrypted tracker state
         run: |

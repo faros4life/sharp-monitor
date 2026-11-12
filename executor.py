@@ -982,6 +982,13 @@ def tg(text):
         print("telegram send failed")
 
 
+def tg_push(title, text):
+    """Nov 12 (Peter): one message, IDENTICAL text, on Telegram and ntfy - so neither channel can be the one that
+    missed an outcome. tg() and push() each swallow their own failures, so one channel failing never blocks the other."""
+    tg(text)
+    push(title, text, mirror=False)
+
+
 def wp(key):
     """Token written ONLY on WOULD PLACE / PLACED entries, so the opposite side can find a side already taken."""
     return "xwp" + hashlib.sha1(key.encode()).hexdigest()[:12]
@@ -2571,7 +2578,7 @@ def refuse(r, reason, book=None, **extra):
     out.update(extra)
     try:
         if refusal_first(r, reason):
-            tg(lane_note(r, "ORDER REFUSED", out, out.get("book") or (r.get("live") or {}).get("book"),
+            tg_push("ORDER REFUSED", lane_note(r, "ORDER REFUSED", out, out.get("book") or (r.get("live") or {}).get("book"),
                          None, extra=str(reason)[:200]))
     except Exception as e:
         LOG.append(f"refusal notify failed: {e}")   # never let the notifier change the refusal
@@ -2690,7 +2697,7 @@ def live_order(r):
     res = px_live.place(strike, limit, stake, label)
     if res.get("status") == "refused":   # Nov 11: a refusal is a lane event too
         if refusal_first(r, res.get("reason")):
-            tg(lane_note(r, "ORDER REFUSED", res, "prophetx", limit, extra=str(res.get("reason"))[:200]))
+            tg_push("ORDER REFUSED", lane_note(r, "ORDER REFUSED", res, "prophetx", limit, extra=str(res.get("reason"))[:200]))
     if res["status"] == "placed":
         fs, ap = res.get("filled_stake") or 0, res.get("avg_price")
         if fs and ap:
@@ -2791,7 +2798,7 @@ def live_order_other(r):
         # Nov 12 (Peter, Telegram audit): a refusal from the venue layer (Novig paused, preflight, thin depth)
         # used to be silent on every venue except ProphetX. One message per play and reason.
         try:
-            tg(lane_note(r, "ORDER REFUSED", res, book, limit_am, extra=str(res.get("reason"))[:200]))
+            tg_push("ORDER REFUSED", lane_note(r, "ORDER REFUSED", res, book, limit_am, extra=str(res.get("reason"))[:200]))
         except Exception as e:
             LOG.append(f"refusal notify failed: {e}")
     if res["status"] == "placed" and res.get("sent_to_runner"):
@@ -2963,15 +2970,14 @@ def pmus_rest_sweep(now):
                 # resting all reach Telegram already; a CANCEL only went to email, so the one order
                 # state that silently frees exposure was the one Peter could not see on his phone.
                 try:
-                    tg(f"[{LANE_NAME.get(rest_lane, 'PHASE 1' if rest_lane in ('', 'rules') else rest_lane.upper())}] "
+                    tg_push(f"PM US {'CANCELLED' if ok else 'CANCEL FAILED'}",
+                       f"[{LANE_NAME.get(rest_lane, 'PHASE 1' if rest_lane in ('', 'rules') else rest_lane.upper())}] "
                        f"{'CANCELLED' if ok else 'CANCEL FAILED'} Polymarket US: resting bid on {slug[:40]} "
                        f"reached T-30.\n{res.get('status')}: {res.get('state') or res.get('reason') or ''}"
                        + ("" if ok else "\nIt rests until end of day - cancel it in the app."))
                 except Exception:
                     pass   # notification must never change the cancel outcome
-                if not ok:
-                    push("PM US cancel FAILED", f"{slug}\n{oid}\n{str(res.get('reason'))[:120]}\n"
-                                                f"Cancel it in the app - it rests until end of day.", mirror=False)
+                # (Nov 12: the separate ntfy "PM US cancel FAILED" push is gone; tg_push above sends this same text to both)
                 done += 1
         finally:
             imap_close(M)
@@ -3847,7 +3853,7 @@ def journal_intent(r, book, asked):
                     return False, None
             except Exception as ex:
                 try:
-                    tg(f"ORDER CLAIM UNAVAILABLE: could not take the durable submission claim for "
+                    tg_push("ORDER CLAIM UNAVAILABLE", f"ORDER CLAIM UNAVAILABLE: could not take the durable submission claim for "
                        f"{book} ({str(ex)[:100]}).\nNO ORDER WAS PLACED - without an atomic claim two "
                        f"runs could submit the same bet.")
                 except Exception:
@@ -3861,7 +3867,7 @@ def journal_intent(r, book, asked):
                 pass
         if not _ok:
             try:
-                tg(f"ORDER INTENT UNREADABLE: the pre-order record for {book} was sent but could not be "
+                tg_push("ORDER INTENT UNREADABLE", f"ORDER INTENT UNREADABLE: the pre-order record for {book} was sent but could not be "
                    f"read back from the registry (client id {cid}).\nNO ORDER WAS PLACED. If that row did "
                    f"store, it will hold live orders until you clear it - subject INTENT CLEARED {cid}.")
             except Exception:
@@ -3879,7 +3885,7 @@ def journal_intent(r, book, asked):
         return True, cid
     except Exception as ex:
         try:
-            tg(f"ORDER INTENT FAILED: could not store the pre-order record for {book} "
+            tg_push("ORDER INTENT FAILED", f"ORDER INTENT FAILED: could not store the pre-order record for {book} "
                f"({str(ex)[:120]}).\nNO ORDER WAS PLACED - the run refused rather than bet without a "
                f"durable record. Nothing is untracked.")
         except Exception:
@@ -3967,7 +3973,7 @@ def journal_order(r, lo, is_rest=False, cid=None):
         JOURNAL["latch"] = (f"{book} order {oid} is placed but its durable registry row did not send "
                             f"({str(ex)[:80]})")
         try:   # LOUD: without this row a kill loses the order from the registry
-            tg(f"ORDER JOURNAL FAILED: {book} order {oid} is PLACED but its durable registry row did not "
+            tg_push("ORDER JOURNAL FAILED", f"ORDER JOURNAL FAILED: {book} order {oid} is PLACED but its durable registry row did not "
                f"send ({str(ex)[:120]}).\nIf this run is killed before its ledger email, the daily stop will "
                f"undercount this order and another lane could repeat the bet. Check the ledger email.")
         except Exception:
