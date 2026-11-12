@@ -8,6 +8,18 @@ on:
         required: false
         default: ""
 
+concurrency:
+  # Nov 12 (Peter): this workflow carries the REAL EXEC_NOVIG_SUBMIT and EXEC_LIVE values and had
+  # no concurrency group, so two overlapping runs were possible. That is the same concurrent vector
+  # that let two executor runs both pass the LIVEKEYS read and submit the same play. It reads
+  # snapshots rather than placing, so this is defence in depth, not a found duplicate.
+  #
+  # cancel-in-progress: false, exactly as the executor has it - an in-flight run is never cut off;
+  # a newer queued one is dropped. Position snapshots are unaffected: a dropped run is followed by
+  # another within minutes, and nothing here is half-written.
+  group: novig-snapshot-check
+  cancel-in-progress: false
+
 permissions:
   contents: read
 

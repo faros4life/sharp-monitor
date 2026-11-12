@@ -525,7 +525,14 @@ def novig_place(outcome_id, limit_cost, qty, label="", ttl_ms=None, key=""):
         st, _ = _gh("POST", f"https://api.github.com/repos/{NV_REPO}/actions/workflows/{NV_WORKFLOW}/dispatches",
                     {"ref": "main", "inputs": inputs}, tok=_dispatch_token())
     except urllib.error.HTTPError as ex:
-        return {"status": "error", "reason": f"couldn't reach the home runner (HTTP {ex.code}); nothing was sent to Novig"}
+        # Nov 12 (Peter): this said "nothing was sent to Novig". An HTTP error on the DISPATCH does
+        # not prove the dispatch was not created - a proxy or gateway can fail after GitHub accepted
+        # it - and a message that asserts non-submission invites a retry of a bet that may be live.
+        # The outcome is UNKNOWN, and an unknown outcome keeps the submission claim held, so no
+        # automatic retry follows either way.
+        return {"status": "error",
+                "reason": f"home runner dispatch UNKNOWN (HTTP {ex.code}): it may or may not have "
+                          f"reached Novig. Check Novig before any retry; the claim stays held."}
     except Exception as ex:
         return {"status": "error", "reason": f"home runner dispatch unclear ({str(ex)[:60]}); check Novig before any retry"}
     EXPO["today"] += risk
