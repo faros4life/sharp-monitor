@@ -208,8 +208,11 @@ def why_no_fixture(st, q, lg):
     find_fixture returns a bare None whether the league was wrong, the clock was wrong, the names
     did not overlap, or two fixtures tied. Those need different fixes, and "no fixture matched" at
     24% of the population is too big a hole to attack blind."""
+    # Nov 12: union, to stay identical to clv_ledger.find_fixture. This function exists to explain
+    # that matcher's refusals, so if it built `words` differently it would report a gate the real
+    # matcher never hit - a diagnostic that lies is worse than none.
     words = (tb.toks(" ".join(t.get("name", "") for t in q.get("teams") or []))
-             or tb.toks(q.get("game"))) - tb.WEAK
+             | tb.toks(q.get("game"))) - tb.WEAK
     gs = cl.tp(q.get("game_start"))
     fx = (st.get("fixtures") or {})
     if not words:

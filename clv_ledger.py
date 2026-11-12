@@ -364,8 +364,18 @@ def find_fixture(st, b):
     mis-scored. This only tightens: it never invalidates a fixture already stored on a row, and a
     scored row is skipped before this is reached."""
     lg, gs = b.get("league"), tp(b.get("game_start"))
+    # Nov 12: UNION, not `or`. The `or` short-circuited: if `teams` yielded any token at all the
+    # game text was never consulted - and a row whose `teams` holds only ONE side could then never
+    # match, because _qualifies requires BOTH p1 and p2 to intersect `words`. Measured: 46 of 54
+    # unscored rows failed on "one side matched nothing", including rows whose closest fixture was
+    # literally the right game ("Atlanta Hawks @ Orlando Magic" vs fixture "Orlando Magic ORL v
+    # Atlanta Hawks ATL", p1 hit []) - Orlando is in the row's own game text, which `or` skipped.
+    # fill_for() at line ~628 in this same file already unions the two; this makes the matcher and
+    # its validator agree with it. No guard is relaxed: both sides must still intersect, each still
+    # needs a distinctive token the other lacks, the two-token floor still applies, and the winner
+    # must still be unique - so this admits the RIGHT fixture without admitting a wrong one.
     words = (tb.toks(" ".join(t.get("name", "") for t in b.get("teams") or []))
-             or tb.toks(b.get("game"))) - tb.WEAK
+             | tb.toks(b.get("game"))) - tb.WEAK
     if not words:
         return None
     # the per-fixture test lives in _qualifies so this and fixture_check() can never diverge - two
@@ -401,8 +411,13 @@ def fixture_check(st, rec):
     if not fid:
         return "ok", ""                     # scored without a fixture id - nothing to validate here
     s = rec.get("snap") or {}
+    # Nov 12: union, matching find_fixture above. The comment there explains why `or` was wrong;
+    # the reason this one must change with it is that _qualifies is deliberately shared so the
+    # matcher and the validator "can never diverge". Leaving the validator on `or` would make it
+    # judge a stored fixture by a narrower word set than the one that chose it, and start calling
+    # correctly-matched rows doubtful.
     words = (tb.toks(" ".join(t.get("name", "") for t in s.get("teams") or []))
-             or tb.toks(s.get("game"))) - tb.WEAK
+             | tb.toks(s.get("game"))) - tb.WEAK
     if not words:
         return "unvalidatable", "no distinctive team words on the row"
     fx = st.get("fixtures") or {}
