@@ -189,15 +189,27 @@ def held_sides(M):
 HELD_BUDGET_S = float(os.environ.get("SIGNAL_HELD_BUDGET_S", "") or "240")
 _T0 = _time.time()
 _MARKS = []
+_PREV = {}   # per-thread last mark: deltas must never cross threads
 
 
 def _mark(what):
-    """Nov 12: prints IMMEDIATELY. The first version accumulated and printed at the end, so the one case the timing
-    was written for - a run killed on its timeout - produced no output at all. Counts and seconds only."""
+    """Prints IMMEDIATELY, and keeps each thread's deltas to ITSELF.
+
+    Nov 12, second correction. The first version accumulated and printed at the end, so a run killed on its timeout
+    - the one case it was written for - produced nothing. The second printed live but kept ONE shared previous-mark,
+    so once the main thread abandoned held_sides() the orphaned daemon kept appending to the same list and the two
+    threads' deltas interleaved: the run showed "1.1s for bot orders (gmail)" for a call that had just blown a
+    240-second budget. A measurement that mixes two timelines is worse than none, because it reads as a result.
+
+    Each thread now has its own previous mark and is labelled, so an abandoned read can still report what it was
+    doing without corrupting the main line."""
     at = _time.time() - _T0
-    prev = _MARKS[-1][1] if _MARKS else 0.0
-    _MARKS.append((what, at))
-    print(f"  timing: {at:6.1f}s total, {at - prev:6.1f}s for {what}", flush=True)
+    me = _threading.current_thread().name
+    prev = _PREV.get(me, 0.0)
+    _PREV[me] = at
+    _MARKS.append((me, what, at))
+    tag = "" if me == "MainThread" else f" [{me}, abandoned]"
+    print(f"  timing: {at:6.1f}s total, {at - prev:6.1f}s for {what}{tag}", flush=True)
 
 
 def main():
@@ -266,12 +278,24 @@ def main():
             tokn = "xsig" + hashlib.sha1(key.encode()).hexdigest()[:12]
             if ex.gsearch(M, tokn):
                 continue
+            # Nov 12 (Peter): report DELIVERY, not that the function was called. ex.push returning falsey, or
+            # raising, is a push that did not reach the phone; the email is the durable copy and its failure is
+            # named too. A silent except here is how "0 new pushed" and "3 pushed but none arrived" come to look
+            # the same in the log.
+            pushed_ok = "not attempted"
             if PUSH_SIGNALS and (PUSH_NBA_UNDER or not key.startswith("nbau|")):
-                ex.push(title[:80], body)
+                try:
+                    pushed_ok = bool(ex.push(title[:80], body))   # ONE call: pushing twice would double-alert
+                except Exception as _pe:
+                    pushed_ok = False
+                    print(f"  alert PUSH FAILED ({type(_pe).__name__}): {title[:50]}", flush=True)
             try:
                 ex.send(f"Bets signal: {title[:60]}", body + f"\n\n{tokn}")
-            except Exception:
-                pass
+                mailed = True
+            except Exception as _se:
+                mailed = False
+                print(f"  alert EMAIL FAILED ({type(_se).__name__}): {title[:50]}", flush=True)
+            print(f"  alert delivered: push={pushed_ok} email={mailed}  {title[:60]}", flush=True)
             sent += 1
 
     try:
@@ -296,7 +320,7 @@ def main():
             except Exception as _e:
                 box["err"] = type(_e).__name__
 
-        th = _threading.Thread(target=_read, daemon=True)
+        th = _threading.Thread(target=_read, daemon=True, name="held-read")
         th.start()
         th.join(HELD_BUDGET_S)
         # Nov 12 (Peter): an unreadable position list is UNAVAILABLE, not "no conflict". The two look identical

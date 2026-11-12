@@ -955,16 +955,22 @@ def push(title, body, mirror=True):
     """Phone alert through the same ntfy topic as the sharp alerts (no amounts)."""
     topic = os.environ.get("NTFY_TOPIC", "")
     if not topic:
-        return
+        return False   # no topic configured: nothing was delivered
     try:
         req = urllib.request.Request(f"https://ntfy.sh/{topic}", data=body.encode(), method="POST",
                                      headers={"Title": title.encode("ascii", "ignore").decode(), "Priority": "high",
                                               "Tags": "warning"})
         urllib.request.urlopen(req, timeout=15).read()
+        ok = True
     except Exception as ex:
+        ok = False
         print(f"push failed: {str(ex)[:60]}")
     if mirror:   # Oct 27 (Peter): every ntfy push also lands in Telegram; mirror=False where a tg() line already says it
         tg(f"{title}\n{body}")
+    # Nov 12 (Peter, "delivered, not merely that the push function was called"): report whether ntfy actually took
+    # it. Purely additive - this function returned None before and every existing caller ignores the result, so no
+    # caller's behaviour changes; it simply becomes possible to tell a delivered alert from a swallowed failure.
+    return ok
 
 
 def tg(text):
