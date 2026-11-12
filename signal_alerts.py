@@ -111,6 +111,9 @@ def held_sides(M):
         # same market only (Muse, Nov 1): a moneyline flow is not "against" a spread bet. Bot/manual keys say "side" for
         # spread-or-moneyline; phase-1 sides are spreads, so "side" counts as spread.
         out.add((league, tk, "spread" if market == "side" else mk.get(market, market), s))
+    # Nov 12: per-source timings. The job was dying inside this function and "held_sides took 350s" does not say
+    # WHICH source. Four independent reads happen here; one of them is the cost and the others are being blamed for it.
+    _mark("held: start")
     # the bot's own live orders (last 2 days)
     try:
         ex.bot_orders(M, days=2)
@@ -119,6 +122,7 @@ def held_sides(M):
             add(sp, game, market, side)
     except Exception:
         pass
+    _mark("held: bot orders (gmail)")
     # Peter's manual-bet notes
     try:
         ex.read_manual(M)
@@ -128,6 +132,7 @@ def held_sides(M):
                 add(sp, game, market, side)
     except Exception:
         pass
+    _mark("held: manual notes (gmail)")
     # open exchange positions
     try:
         import positions as ps
@@ -144,6 +149,7 @@ def held_sides(M):
                     add(None, h.get("game"), mt, re.sub(r"[+-]\d.*$", "", lab).strip())
     except Exception:
         pass
+    _mark("held: exchange positions (kalshi + prophetx + pm us)")
     # Novig (Peter's main wallet + the bot's auto-place), from the home PC's snapshot + the public catalog
     try:
         import book_check as bc
@@ -172,6 +178,7 @@ def held_sides(M):
                         add(league, e.get("description"), mt, teams[i])
     except Exception:
         pass
+    _mark("held: novig snapshot + catalog")
     return out
 
 
