@@ -1,0 +1,32 @@
+name: novig-runner-probe
+
+# Peter, Nov 12: the runner process is alive (restarted 09:24 ET) but the snapshot is 1122 min old.
+# READ-ONLY diagnostic answering his items 1-3: is GitHub assigning jobs, when did the snapshot
+# workflow last succeed, and is the fault dispatch / execution / authentication / publishing.
+#
+# Item 4 honoured: nothing is restarted, dispatched, cancelled or re-run, and no live execution
+# setting is touched. Item 5 is unaffected - Novig stays fail-closed on a stale snapshot by the
+# executor's own rule, which this does not alter.
+#
+# Credential: NOVIG_SNAPSHOT_TOKEN only - the token the executor and heartbeat already use to READ
+# that repo. No new credential, and no trading key anywhere near a research job.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Probe the runner repo (read-only)
+        env:
+          NOVIG_SNAPSHOT_TOKEN: ${{ secrets.NOVIG_SNAPSHOT_TOKEN }}
+        run: python -u novig_runner_probe.py
