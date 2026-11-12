@@ -1,0 +1,33 @@
+name: clv-heldout-verify
+
+# Peter, Nov 12: independently verify the held-out CLV rows. READ-ONLY - nothing is cleared,
+# released, rewritten or recalculated. No flag touched, no historical result modified.
+# No IMAP, no OddsPapi call, no credit: it reads clv/state.enc and tracker/state.enc only.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: clv-heldout-verify
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Verify held-out rows (read-only)
+        env:
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+        run: python -u clv_heldout_verify.py
