@@ -625,6 +625,45 @@ def bot_keys(M, days=2):
     import executor as ex
     import time as _t
     keys = set()
+    # Nov 12 (Peter: "why is the live bets board still missing the plays"). MEASURED: the bets-board
+    # job has timeout-minutes: 9 and this step was cancelled at 9m15s on BOTH runs today, which
+    # skipped step 10 "Build the board" - so the board was never rebuilt and the plays card was
+    # stale from 2026-11-11T22:42Z. The card itself was never the problem; its code never ran.
+    #
+    # The cost is the loop below: one FETCH (RFC822) per email, the same ~200 serial round trips
+    # that cost 611.3s in kalshi_rest_reports. The private store holds the same ledger rows
+    # verbatim and answers in ~0.3-0.5s, so it is read FIRST. Gmail stays the fallback, so this can
+    # only be faster, never blinder.
+    try:
+        import registry as _reg
+        if _reg.enabled():
+            _rows = _reg.rows()
+            if _rows:
+                _cut = (datetime.now(timezone.utc) - timedelta(days=days)).strftime("%Y-%m-%d")
+                for row in _rows:
+                    if str(row.get("decided_utc") or "")[:10] < _cut:
+                        continue
+                    los = ([row.get("live_order") or {}, row.get("live_rest") or {}]
+                           + [x or {} for x in (row.get("live_more") or [])])
+                    # Same test as the Gmail path, plus one addition: a WRITE-AHEAD INTENT row
+                    # carries status "placed" with order_id "intent-<client_id>" before the venue is
+                    # asked, so counting it as a placed bet would tag a play the bot never
+                    # transmitted. Intents and voided rows are excluded here.
+                    if not row.get("key"):
+                        continue
+                    if any(lo.get("status") == "placed" and lo.get("order_id")
+                           and not lo.get("intent") and not lo.get("voided")
+                           for lo in los):
+                        keys.add(row["key"])
+                        try:
+                            KEY_LANE[row["key"]] = ex.LANE_NAME.get(ex.lane_of(row), "PHASE 1")
+                        except Exception:
+                            pass
+                IMAP_T["bot keys (private store)"] = 0
+                print(f"bot keys: {len(keys)} from the private store ({len(_rows)} ledger rows) - no Gmail scan")
+                return keys
+    except Exception as _ex2:
+        print(f"bot keys: store unreadable ({type(_ex2).__name__}) - falling back to Gmail")
     t0 = _t.time()
     uids = ex.gsearch(M, f'subject:(Bets LIVE) newer_than:{days}d')
     IMAP_T["bot search"] = round(_t.time() - t0)

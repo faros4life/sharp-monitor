@@ -106,6 +106,12 @@ jobs:
         env:
           # Nov 11 (Peter): the board now shows the bot's own board-lane plays and why each one was
           # or was not taken, which means reading the executor's ledger emails. Read-only.
+          # Nov 12 (Peter: "fix board"): live_plays_card() now reads those ledger rows from the
+          # private store before Gmail, so one IMAP hiccup can no longer blank the card. Without
+          # this token registry.enabled() is False in THIS step, the store path is skipped, and the
+          # card falls straight back to the IMAP read that printed "Ledger unreadable". Read-only:
+          # the card renders rows, it never writes to the store.
+          REGISTRY_TOKEN: ${{ secrets.REGISTRY_TOKEN }}
           GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
         run: python -u board_build.py
