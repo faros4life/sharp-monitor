@@ -155,14 +155,20 @@ def main():
     say("=" * 100)
     px_oids = {o for o, v in omap.items() if v["book"] == "prophetx"}
     say(f"  executor ProphetX order id(s): {len(px_oids)}")
-    trades = []
+    # px_live.trades() signs with the TRADING key, which this job deliberately is not given - that
+    # returned 401 on the first run, which was my error, not a venue problem. positions.py already
+    # has the right fallback: the same GET through bc.px_call on the DATA key. Trade keys stay out.
+    trades, how = [], ""
     try:
-        import px_live
-        trades = px_live.trades() or []
-        say(f"  venue trades read: {len(trades)}  (GET /v4/mm/get_trades)")
-        say(f"  trade fields: {', '.join(fields_of(trades))}")
+        import book_check as bc
+        d = bc.px_call("/v4/mm/get_trades") or {}
+        trades = ((d.get("data") or {}).get("trades")) or []
+        how = "bc.px_call, data key (read-only)"
     except Exception as e:
-        say(f"  ProphetX trades unreadable ({type(e).__name__}: {str(e)[:60]}) - PX join untested")
+        say(f"  ProphetX trades unreadable ({type(e).__name__}: {str(e)[:70]}) - PX join untested")
+    if trades:
+        say(f"  venue trades read: {len(trades)}  (GET /v4/mm/get_trades via {how})")
+        say(f"  trade fields: {', '.join(fields_of(trades))}")
 
     px_m, px_no_trade, px_no_tracker, px_no_clv = [], [], [], []
     if trades:
@@ -219,10 +225,21 @@ def main():
         if not nv.ready():
             say("  Novig read key not ready - fills unreadable, Novig join untested")
         else:
-            d = nv.get("/v3/portfolio/fills", {"limit": 100})
-            fills = d if isinstance(d, list) else ((d or {}).get("items")
-                                                   or (d or {}).get("fills")
-                                                   or (d or {}).get("data") or [])
+            # nv.get returns a dict KEYED BY WALLET, not a bare list - read_positions() unwraps
+            # it with d.values(). The first run parsed it as items/fills/data and read 0 rows,
+            # which was my error, not an empty account. Both wallets are read, as the executor
+            # does: the main one and the auto-place sub-wallet.
+            fills = []
+            for kid in dict.fromkeys([nv._S["id"],
+                                      (os.environ.get("NOVIG_TRADE_KEY_ID") or "").strip()]):
+                if not kid:
+                    continue
+                d = nv.get("/v3/portfolio/fills", {"limit": 100, "keyId": kid})
+                for v in (d.values() if isinstance(d, dict) else [d]):
+                    if isinstance(v, list):
+                        fills += v
+                    elif isinstance(v, dict):
+                        fills += v.get("items") or v.get("fills") or v.get("data") or []
             say(f"  fills read: {len(fills)}  (GET /v3/portfolio/fills)")
             say(f"  FILL FIELDS: {', '.join(fields_of(fills))}")
     except Exception as e:
