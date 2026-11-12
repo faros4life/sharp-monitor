@@ -250,8 +250,13 @@ def main():
         ("Live executor",        ("executor",)),
         ("Against Your Bet",     ("signal-alerts",)),
         ("Fill reports",         ("fill-reports",)),
-        ("Bets Board publishing", ("board-page",)),
-        ("Bets Board build",     ("bets-board",)),
+        # Nov 12: these two were both called "Bets Board", which read as though the board Peter
+        # opens were stale whenever the tracker build was. They are different jobs: board-page
+        # runs board_build.py and publishes the live board (every ~10m on workflow_run), while
+        # bets-board builds the encrypted private tracker page that board-page then copies in.
+        # A stale tracker build leaves the board itself current, so it is named for what it is.
+        ("Bets Board (live)",    ("board-page",)),
+        ("Private tracker build", ("bets-board",)),
         ("CLV ledger",           ("clv-ledger",)),
         ("Novig snapshot",       ("novig-snapshot-check", "novig-positions", "novig-heartbeat")),
         ("Liquidity feeds",      ("liquidity-monitor", "liquidity-extra")),
@@ -276,6 +281,18 @@ def main():
                     "held by EXEC_NOVIG_SUBMIT; no dispatch credential is configured"))
     sysrows.append(("Phone alert delivery", "NOT CHECKED",
                     "this page cannot confirm your phone received anything"))
+
+    # The side panel reads the same rows this page renders, so the two can never disagree.
+    # Written as a sidecar of this build rather than rebuilt by a separate script: one source.
+    try:
+        os.makedirs("site/health", exist_ok=True)
+        with open("site/health/rows.json", "w") as _f:
+            json.dump({"at": int(datetime.now(timezone.utc).timestamp() * 1000),
+                       "rows": [{"name": a, "state": b, "detail": c} for a, b, c in sysrows]},
+                      _f, indent=1)
+        print(f"health rows.json: {len(sysrows)} system row(s)", flush=True)
+    except Exception as _ex:
+        print(f"health rows.json: not written ({str(_ex)[:80]})", flush=True)
 
     order = {"FAIL": 0, "STALE": 1, "WARN": 2, "OK": 3, "ON DEMAND": 4}
     rows.sort(key=lambda r: (order[r["state"]], -r["ok_min"]))
