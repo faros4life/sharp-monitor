@@ -65,6 +65,23 @@ if tok and repo:
     except Exception as ex:
         say("the dispatch credential can reach the runner repo", False, str(ex)[:70])
 
+# 2b. POSITIONS SNAPSHOT FRESHNESS. This is the file that held every lane when it went stale: a
+# stale read makes novig_positions() return None, the venue counts as blind, and no live order goes
+# out on ANY venue. SNAP_MAX_MIN is the executor's own gate, which is tighter than the 35-minute
+# alert, so the executor starts holding plays well before the warning arrives.
+try:
+    import executor as _ex
+    _snap, _age = _ex._snap_read(snap)
+    print(f"    positions snapshot_utc     : {_snap.get('snapshot_utc')}")
+    print(f"    age                        : {_age:.1f} min   (executor gate SNAP_MAX_MIN = {_ex.SNAP_MAX_MIN})")
+    say("the positions snapshot is FRESH by the executor's own gate", _age <= _ex.SNAP_MAX_MIN,
+        f"{_age:.1f} min > {_ex.SNAP_MAX_MIN} min - every lane holds while this is true"
+        if _age > _ex.SNAP_MAX_MIN else "")
+    say("the snapshot reports itself ok", bool(_snap.get("ok", True)))
+except Exception as ex:
+    say("the positions snapshot is readable", False,
+        f"{str(ex)[:70]} - unreadable means blind, never 'no positions'")
+
 # 3 + 4. The result-reading path and what it currently holds.
 rows = None
 try:
