@@ -137,27 +137,52 @@ def venue_reads():
             got = d
         return got
 
+    # Pagination, as the working reader in clv_link_recon does it and as the venue requires:
+    #   - keyId is MANDATORY per wallet. Without it the API answers HTTP 400 AFTER_NEEDS_KEY_ID,
+    #     which is what my first version got. Both wallets are read, as the executor does: the main
+    #     one and the auto-place sub-wallet.
+    #   - the cursor is the RESPONSE's own "next", not the last row's id.
+    #   - partial pages are KEPT when a later page fails. Discarding them would turn a partial read
+    #     into "venue shows nothing", which is the exact mistake this whole job exists to prevent.
+    wallets = [w for w in dict.fromkeys([nv._S.get("id"),
+                                         (os.environ.get("NOVIG_TRADE_KEY_ID") or "").strip()]) if w]
+    if not wallets:
+        out["errors"]["wallets"] = "no key id available to scope a portfolio read"
+        return out
+    out["wallets"] = len(wallets)
     for name, path in (("fills", "/v3/portfolio/fills"), ("orders", "/v3/portfolio/orders")):
-        rows, after, pages = [], None, 0
-        try:
-            while pages < 40:          # 100 rows a page; 2 wallets gave 130 fills, so paginate
+        rows, failed = [], None
+        for kid in wallets:
+            after, pages = None, 0
+            while pages < 40:
                 pages += 1
-                prm = {"limit": 100}
+                prm = {"limit": 100, "keyId": kid}
                 if after:
                     prm["after"] = after
-                got = unwrap(nv.get(path, prm))
-                if not got:
+                try:
+                    d = nv.get(path, prm)
+                except Exception as ex:
+                    failed = f"{type(ex).__name__}: {str(ex)[:70]}"
                     break
+                got, nxt = [], None
+                for v in (d.values() if isinstance(d, dict) else [d]):
+                    if isinstance(v, list):
+                        got += v
+                    elif isinstance(v, dict):
+                        got += v.get("items") or v.get(name) or v.get("data") or []
+                        nxt = nxt or v.get("next")
+                if isinstance(d, dict):
+                    nxt = nxt or d.get("next")
                 rows += got
-                nxt = got[-1].get("fillId") or got[-1].get("orderId") or got[-1].get("id")
-                if not nxt or nxt == after:
+                if not got or not nxt:
                     break
                 after = nxt
-            out[name] = rows
-            out["ok"][name] = True
-        except Exception as ex:
-            out["errors"][name] = f"{type(ex).__name__}: {str(ex)[:70]}"
-            out["ok"][name] = False
+        out[name] = rows
+        # A read is only "ok" - good enough to rule an order OUT - if NOTHING failed. A partial
+        # read can CONFIRM (a match is a match) but can never rule out.
+        out["ok"][name] = failed is None
+        if failed:
+            out["errors"][name] = failed + (f" (kept {len(rows)} row(s) read before the failure)" if rows else "")
     return out
 
 
@@ -200,11 +225,13 @@ def main():
     say()
     say("3. VENUE - what Novig actually holds (independent second source)")
     say("-" * 100)
+    say(f"  wallets read: {v.get('wallets', 0)}")
     for name in ("fills", "orders"):
         if v["errors"].get(name):
-            say(f"  {name:<7} READ FAILED: {v['errors'][name]}")
+            say(f"  {name:<7} INCOMPLETE: {v['errors'][name]}")
+            say(f"          -> can still CONFIRM a match, can NEVER rule one out")
         else:
-            say(f"  {name:<7} {len(v[name])} row(s) read")
+            say(f"  {name:<7} {len(v[name])} row(s) read, complete")
     for k, e in v["errors"].items():
         if k in ("import", "key"):
             say(f"  venue unreachable ({k}): {e}")
