@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 12, 12:20 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 5.
+Updated Thu Nov 12, 12:30 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 5.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -12,7 +12,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 11 10:53PM | TENNIS | Kostyuk vs Gauff | moneyline: Gauff | kalshi | $75k | -270 |  |  | +0.0c |  | pending |
 | Nov 11 5:31PM | NCAAB | Charleston vs Temple | moneyline: Charleston | kalshi | $25k | -117 |  |  | -1.0c | yes | W |
-| Nov 11 2:48PM | TENNIS | Michelsen vs Tabilo | moneyline: Michelsen | kalshi | $60k | -300 |  |  | +3.0c |  | pending |
+| Nov 11 2:48PM | TENNIS | Michelsen vs Tabilo | moneyline: Michelsen | kalshi | $60k | -300 |  |  | +2.0c |  | pending |
 | Nov 11 12:37PM | NCAAB | Dartmouth vs University at Albany | moneyline: Dartmouth vs University | kalshi | $27k | -100 |  | ❌ | +0.0c |  | W |
 | Nov 11 11:22AM | NCAAB | Milwaukee vs Indiana St. | moneyline: Indiana St. | kalshi | $36k | -170 |  |  | +4.0c |  | L |
 | Nov 11 10:10AM | NCAAB | William & Mary vs Florida Atlantic | moneyline: Florida Atlantic | kalshi | $26k | -203 | ✅ novig |  | +0.0c |  | W |
