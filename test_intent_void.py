@@ -102,11 +102,12 @@ ck("void row written to the store", len(PUT), 1)
 ck("void row carries voided=True", bool(PUT and PUT[0]["live_order"].get("voided")), True)
 ck("void row keeps the client_id", PUT and PUT[0]["live_order"].get("client_id"), "cid0000000000beef")
 ck("void row is not counted as money", PUT and PUT[0]["live_order"].get("asked_stake"), 0.0)
-# Nov 12 (Peter, "remove routine execution emails"): the VOID email is sent ONLY when the store
-# write failed, because then the mailbox copy is the only record of the resolution. With the store
-# confirming - the case above - there is nothing for an email to add.
-ck("NO void email when the store confirmed the write",
-   sum(1 for s, _ in SENT if s.startswith(ex.INTENT_VOID_PREFIX)), 0)
+# Nov 12 (Peter, GO on the revert): the void email is sent again regardless of the store's answer.
+# The suppression that briefly lived here was paid for with a fail-closed guard that stopped live
+# betting on any registry outage, which was a bad trade for ~5 emails a day. Both stores get the
+# row, so whichever one the next run reads sees the resolution.
+ck("the void email is sent even when the store confirmed",
+   sum(1 for s, _ in SENT if s.startswith(ex.INTENT_VOID_PREFIX)), 1)
 _put_ok, PUT2 = registry.put_rows, []
 registry.put_rows = lambda rows: False          # store write fails
 SENT.clear()

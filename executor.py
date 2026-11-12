@@ -2509,23 +2509,13 @@ def bot_orders(M, days=4):
                     registry.set_complete_through(datetime.now(timezone.utc).strftime("%Y-%m-%d"))
                 except Exception:
                     pass
-            return _bot_orders_finish(M, ids, _intents, _confirmed)
-        # ---- otherwise Gmail. Nov 12 (Peter, "remove routine execution emails"): Gmail is no
-        # longer unconditionally complete. Once journal_intent() or void_intent() has stored a row
-        # WITHOUT emailing a copy, the mailbox is missing rows, and answering from it would
-        # UNDERCOUNT exposure and let a play be bet twice - fail-open on the two guards that matter
-        # most. So the fallback is only taken while Gmail is still authoritative. When it is not,
-        # bot_orders() returns None, which its own contract already defines as "live refuses (fail
-        # closed)". An unreadable store also answers False here, which is the same safe direction.
-        try:
-            _gmail_ok = (not registry.enabled()) or registry.gmail_authoritative()
-        except Exception as ex:
-            _gmail_ok = False
-            LOG.append(f"gmail-authoritative check failed: {str(ex)[:50]}")
-        if not _gmail_ok:
-            LOG.append("registry unreadable AND Gmail no longer holds every row "
-                       "(intent/void emails are suppressed) - FAILING CLOSED, live orders refuse")
-            return None
+            return _bot_orders_finish(M, ids, _intents, _confirmed, from_store=True)
+        # ---- otherwise Gmail, which is always complete, and backfill the store from it.
+        # Nov 12 (Peter, GO on the revert): the gmail_authoritative() guard that stood here is
+        # removed with the email suppression that required it. It returned False when the store was
+        # merely UNREADABLE, which made any registry outage stop live betting outright - and with
+        # every durable row emailed again, Gmail genuinely is complete, so the guard protected
+        # against a condition that no longer exists while creating one that did.
         since = (datetime.now(timezone.utc) - timedelta(days=days)).strftime("%d-%b-%Y")
         with perf("registry read (Gmail IMAP)"):
             typ, data = M.uid("SEARCH", None, "SUBJECT", '"Bets LIVE:"', "SINCE", since)
@@ -2581,7 +2571,7 @@ def bot_orders(M, days=4):
         return None
 
 
-def _bot_orders_finish(M, ids, _intents, _confirmed):
+def _bot_orders_finish(M, ids, _intents, _confirmed, from_store=False):
     """Shared tail of bot_orders(): unresolved write-ahead intents, then the result.
 
     Nov 11: an intent with no confirmed order means an order MAY exist at the venue and the bot
@@ -2601,12 +2591,18 @@ def _bot_orders_finish(M, ids, _intents, _confirmed):
                 continue   # Peter's distinct, manual, subject-only authorization
         except Exception:
             pass           # cannot confirm it was cleared -> keep refusing (fail closed)
-        try:   # Nov 12: the bot's own VOID, for a run that read the mailbox rather than the store.
+        if not from_store:
+            # Nov 12: the bot's own VOID, for a run that read the MAILBOX. Skipped entirely on the
+            # store path, where a voided row already carries voided=True and _account_rows() has
+            # routed it to _confirmed - so looking it up again would be a Gmail round trip that
+            # answers a question already answered. Muse's test_registry_migration pins that: the
+            # fast path must read NO mail while still latching an unresolved intent open.
             # Same sender restriction as intent_cleared: the \\Sent label cannot be forged inbound.
-            if subject_hits(M, k, INTENT_VOID_PREFIX, senders=authorized_senders()):
-                continue
-        except Exception:
-            pass           # cannot confirm the void -> keep refusing (fail closed)
+            try:
+                if subject_hits(M, k, INTENT_VOID_PREFIX, senders=authorized_senders()):
+                    continue
+            except Exception:
+                pass       # cannot confirm the void -> keep refusing (fail closed)
         INTENT["open"][k] = row
     BOARD["known"] = True   # the ledger parsed, so today's board exposure above is real
     R1["known"] = True      # ...and today's R1 exposure
@@ -4107,25 +4103,18 @@ def journal_intent(r, book, asked):
             except Exception:
                 pass
             return False, None
-        # Nov 12 (Peter, "remove routine execution emails"): the STORE IS TRIED FIRST, and the
-        # email is sent only if the store could not confirm the row. The rule is unweakened - no
-        # order is submitted until its pre-order record has been READ BACK out of a durable store -
-        # what changes is that a store that already holds the row no longer needs a mailbox copy.
-        # When the copy is skipped, registry.set_gmail_incomplete() records that Gmail is no longer
-        # a safe fallback, and bot_orders() then fails closed rather than answering from a mailbox
-        # that is missing rows. Order matters: this is the only arrangement in which suppressing
-        # the email cannot leave a window where NEITHER store holds the record.
-        _ok, _where = intent_verified(cid, row)
-        if _ok and _where == "private store":
-            try:
-                registry.set_gmail_incomplete()
-            except Exception as ex2:
-                LOG.append(f"gmail-incomplete marker failed {cid}: {str(ex2)[:50]}")
-            LOG.append(f"intent {cid} stored (no email - registry confirmed the read-back)")
-        else:
-            # The store could not confirm it, so the mailbox copy IS the durable record and the
-            # Gmail read-back below is what decides whether an order may be submitted at all.
-            send(f"{INTENT_SUBJECT_PREFIX} {book} {cid}",
+        # Nov 12 (Peter, GO on the revert). The store-first suppression that lived here is GONE.
+        # It sent the intent email ONLY when the private store could not confirm the row, and paid
+        # for that with registry.gmail_authoritative() - a guard that made ANY registry outage stop
+        # live betting, because an unreadable store cannot prove Gmail still holds every row.
+        # Muse's test_registry_migration caught it: "an unreadable store falls back to Gmail".
+        #
+        # The trade was wrong and it was mine. Intent and void emails are ~5 a day; the volume is
+        # the end-of-run ledger email. I spent a fail-closed landmine on a rounding error. Both
+        # stores receive the row again, so the Gmail read-back stays a real fallback and
+        # is_complete()'s invariant - "the next run is back on Gmail, which is always complete" -
+        # holds as written.
+        send(f"{INTENT_SUBJECT_PREFIX} {book} {cid}",
              "ORDER INTENT - written BEFORE the order is submitted. The order is submitted only if this\n"
              "row can be READ BACK from the registry, so a failure here means NO order was placed.\n"
              "If no confirmed row follows this client id, an order MAY exist at the venue: the daily stop\n"
@@ -4139,7 +4128,7 @@ def journal_intent(r, book, asked):
              "Counts only.\n\n"
              "LEDGER (machine-readable, one row per play; latency = decision time minus first alert time)\n"
              + json.dumps([row]))
-            _ok, _where = intent_verified(cid, row)   # SMTP success is not storage - read it back or place nothing
+        _ok, _where = intent_verified(cid, row)   # SMTP success is not storage - read it back or place nothing
         if not _ok and registry.enabled():
             try:
                 # Nov 12: was release_submission(_key, cid) with _key undefined in this
@@ -4232,18 +4221,10 @@ def void_intent(cid, book, why, key=None):
                                               .strftime("%Y-%m-%dT%H:%M:%SZ"))]))
     except Exception as ex:
         LOG.append(f"intent void store failed {cid}: {str(ex)[:50]}")
-    if ok:
-        # Nov 12: the store holds the void, so no mailbox copy is needed. Note the failure
-        # direction if a later run does read Gmail: it finds the intent with no void, latches, and
-        # refuses - annoying but FAIL CLOSED, never a duplicate bet.
-        try:
-            registry.set_gmail_incomplete()
-        except Exception as ex:
-            LOG.append(f"gmail-incomplete marker failed {cid}: {str(ex)[:50]}")
-        LOG.append(f"intent {cid} VOIDED in the store (no email): {str(why)[:60]}")
-        _release_claim(key, cid, "voided - never transmitted")
-        return ok
-    try:   # store write failed, so the Gmail copy IS the record of this resolution
+    # Nov 12 (Peter, GO on the revert): the store-first suppression here is gone too, for the same
+    # reason. BOTH stores get the void, so whichever one the next run reads sees the resolution and
+    # the Gmail fallback stays complete.
+    try:   # the Gmail copy, so a run that reads the mailbox sees the same resolution
         send(f"{INTENT_VOID_PREFIX} {book} {cid}",
              "ORDER INTENT VOID - the order was REFUSED BEFORE SUBMISSION, so it was never sent to\n"
              "the venue and cannot exist there. Nothing to reconcile; no action needed.\n\n"
