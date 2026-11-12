@@ -2699,10 +2699,12 @@ def live_order(r):
             _n, _h = lane_note(r, "NO FILL", res, "prophetx", limit,
                                extra="Fill-or-kill got nothing at this price or better."
                                      + ("" if res.get("fills_read") else " Fill read failed: check My Trades.")), "NO FILL"
-        tg(_n)
         # Nov 12 (Peter, only live + actionable): ntfy says exactly what Telegram says (it used to be a shorter
-        # "PLACED:" restatement, even when nothing filled).
-        push(f"{_h}: " + bet_text(r, lv["line"], limit)[:60], _n, mirror=False)
+        # "PLACED:" restatement, even when nothing filled). Nov 12 (Peter: "no fill i dont need"): a NO FILL is
+        # not sent to either channel; it is still journaled and returned to the run below.
+        if _h == "FILLED" or not res.get("fills_read"):   # fill unreadable = outcome unknown, so say it
+            tg(_n)
+            push(f"{_h}: " + bet_text(r, lv["line"], limit)[:60], _n, mirror=False)
     elif res["status"] == "error":
         _n = lane_note(r, "ORDER ERROR", res, "prophetx", limit,
                        extra=f"{res['reason'][:200]}\nRESULT UNKNOWN: the order may or may not exist at the venue. Check My Trades before retrying.")
@@ -2808,8 +2810,9 @@ def live_order_other(r):
         else:
             _n, _h = lane_note(r, "NO FILL", res, book, limit_am,
                                extra="Fill-or-kill got nothing at this price or better."), "NO FILL"
-        tg(_n)
-        push(f"{_h}: " + bet_text(r, lv["line"], limit_am)[:60], _n, mirror=False)   # Nov 12: same text as Telegram
+        if _h == "FILLED" or not res.get("fills_read"):   # Nov 12 (Peter: "no fill i dont need"): a confirmed NO FILL goes to neither channel; an unreadable fill still does
+            tg(_n)
+            push(f"{_h}: " + bet_text(r, lv["line"], limit_am)[:60], _n, mirror=False)
     elif res["status"] == "error":
         _n = lane_note(r, "ORDER ERROR", res, book, limit_am,
                        extra=f"{res['reason'][:200]}\nRESULT UNKNOWN: the order may or may not exist at the venue. Check {name} before retrying.")
@@ -3072,11 +3075,16 @@ def rest_bid(r):
         when = expire.astimezone(lm.ET).strftime("%I:%M %p ET")
         if res["status"] == "placed":
             got = res.get("filled_stake") or 0
-            tg(f"{lane_tag(r)}RESTING BID {name}: {p.get('bet')} at {lm.american(c):+d} (= the alert's {int(af):+d} after fees), "
-               f"${risk:,.2f}" + (f"; ${got:,.2f} filled right away" if got else "") + f". Cancels itself at {when}.\n"
-               f"{p.get('sport')} {p.get('game')}\nSTOP on ntfy does NOT cancel it: cancel in the {name} app if needed.")
+            _rb = (f"{lane_tag(r)}RESTING BID {name}: {p.get('bet')} at {lm.american(c):+d} (= the alert's {int(af):+d} after fees), "
+                   f"${risk:,.2f}" + (f"; ${got:,.2f} filled right away" if got else "") + f". Cancels itself at {when}.\n"
+                   f"{p.get('sport')} {p.get('game')}\nSTOP on ntfy does NOT cancel it: cancel in the {name} app if needed.")
+            tg(_rb)
+            # Nov 12 (Peter: "just tell me that resting bid went out ... and where"): ntfy too, same text, venue in the head
+            push(f"RESTING BID OUT on {name}: " + (p.get("bet") or "")[:40], _rb, mirror=False)
         elif res["status"] == "error":
-            tg(f"{lane_tag(r)}RESTING BID ERROR {name}: {(p.get('bet') or '')[:60]}\n{res['reason'][:200]}\nCheck {name} before retrying.")
+            _re = f"{lane_tag(r)}RESTING BID ERROR {name}: {(p.get('bet') or '')[:60]}\n{res['reason'][:200]}\nCheck {name} before retrying."
+            tg(_re)
+            push(f"RESTING BID ERROR on {name}", _re, mirror=False)
         if res["status"] == "refused":   # Oct 30: a clean refusal falls through to the next book (Novig first, else Kalshi)
             why_not.append(f"{name}: {res.get('reason')}")
             continue
@@ -3321,6 +3329,9 @@ def novig_reports():
                 head = "NOVIG RESTING (nothing filled yet)"
             else:
                 head = "NOVIG NO FILL"
+            # an immediate fill-or-kill NO FILL is muted; a RESTING (GTT) bid that expires unfilled is still reported
+            # once (its outcome, Nov 12 audit), since that is the end of a bid he was told went out
+            _mute_nofill = head == "NOVIG NO FILL" and x.get("tif") != "GTT"
             msg = f"{head}: {x.get('label') or ''}"
             if fq > 0:
                 pay = fq / 100
@@ -3335,7 +3346,8 @@ def novig_reports():
             if x.get("error"):
                 msg += f"\n{str(x['error'])[:160]}"
             try:
-                tg(msg)
+                if not _mute_nofill:   # Nov 12 (Peter: "no fill i dont need"): claim + email record kept, no phone message
+                    tg(msg)
             except Exception as ex:
                 # nothing reached him: drop the claim so the next pass retries at once instead
                 # of waiting out the stale window.
@@ -3349,7 +3361,8 @@ def novig_reports():
             claimer.sent(tok)
             try:
                 # Nov 11: same report on ntfy (Kalshi already does this), one claim covers both.
-                push(head.title(), msg, mirror=False)
+                if not _mute_nofill:
+                    push(head.title(), msg, mirror=False)
             except Exception as ex:
                 LOG.append(f"novig report ntfy copy failed: {str(ex)[:40]}")
             try:
