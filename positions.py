@@ -168,12 +168,16 @@ def px_positions():
         WHY["prophetx"] = "no key"
         return None
     try:
+        _t = {}
+        _tl = time.time()
         if not bc.px_login():
             WHY["prophetx"] = "login failed"
             return None
+        _t["px_login"] = time.time() - _tl
         # Oct 30: open bets live on the TRADING account (the balance read showed 3 open ProphetX bets this key couldn't
         # see), so read trades with the trading key when it is set; the data key still does the game/market walk.
         trades = None
+        _tt = time.time()
         try:
             import px_live
             if px_live.ACCESS and px_live.SECRET and px_live.login():
@@ -182,6 +186,7 @@ def px_positions():
             trades = None
         if trades is None:
             trades = ((bc.px_call("/v4/mm/get_trades").get("data") or {}).get("trades")) or []
+        _t["get_trades"] = time.time() - _tt
         # ONE-LINE DIAGNOSTIC, names only, no values (Nov 10). Settles whether attribution can move
         # off the Gmail order registry: that is only possible if the venue returns external_id on a
         # TRADE. Nothing in px_live ever reads external_id back off a trade, so it was unverified,
@@ -225,11 +230,13 @@ def px_positions():
         # taken from here. A malformed entry is ignored, so a corrupt cache degrades to the walk.
         t0 = time.time()
         cached = {}
+        _tc = time.time()
         try:
             import registry as _rg
             cached = _rg.strike_map()
         except Exception as ex:
             WHY["prophetx_cache"] = f"strike cache unavailable: {str(ex)[:60]}"
+        _t["strike_map"] = time.time() - _tc
         hits = 0
         _need = ("game", "date", "mtype", "label")
         for sid in list(want):
@@ -240,14 +247,19 @@ def px_positions():
                 found[sid] = dict(rec, book="prophetx", strike_id=sid, flip=False)
                 hits += 1
         # only the MISSES are walked, and the walk still breaks as soon as nothing is outstanding
+        _tw = time.time()
         complete, skipped = (True, 0) if not (want - set(found)) else _walk(bc, want, found, now)
+        _t["_walk"] = time.time() - _tw
         try:
             fresh = {sid: r for sid, r in found.items() if sid not in cached}
+            _tp = time.time()
             if fresh:
                 import registry as _rg2
                 _rg2.put_strikes(fresh)
+            _t["put_strikes"] = time.time() - _tp
         except Exception as ex:
             WHY["prophetx_cache_write"] = str(ex)[:60]
+        WHY["prophetx_timing"] = ", ".join(f"{k}={v:.1f}s" for k, v in sorted(_t.items(), key=lambda kv: -kv[1]))
         WHY["prophetx_walk_s"] = (f"{time.time() - t0:.1f}s, {len(found)}/{len(want)} strikes resolved "
                                   f"({hits} from cache, {skipped} read(s) failed)")
         STATS["prophetx"] = {"trades": len(trades), "open_fills": len(open_), "open_strikes": len(want),

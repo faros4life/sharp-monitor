@@ -2166,6 +2166,27 @@ PERF = {"t": collections.OrderedDict(), "n": collections.Counter(), "venue": col
 _PHT0 = time.time()
 _PH = {"prev": 0.0}
 
+POSW = {}   # per-venue wall time of the WHOLE positions function, entry to exit
+
+
+def _timed_pos(name, fn):
+    """Wrap a position read so its total wall time is recorded, whatever it does inside.
+
+    Nov 12 (Peter): the four reads run in one ThreadPoolExecutor under a single perf bracket, so a
+    venue that takes six minutes and three that take under a second are indistinguishable in the
+    report. Timing the callable itself catches everything the per-call venue counters miss - sleeps,
+    snapshot refresh waits, retry loops, pagination, cache lookups.
+
+    Measurement only. It returns exactly what fn returns and swallows nothing: an exception
+    propagates unchanged, so fail-closed behaviour on an unreadable venue is untouched."""
+    def go():
+        t0 = time.time()
+        try:
+            return fn()
+        finally:
+            POSW[name] = POSW.get(name, 0.0) + (time.time() - t0)
+    return go
+
 
 def _phase(what):
     """Wall-clock timeline of main(), printed LIVE. Measurement only - changes and gates nothing.
@@ -4474,12 +4495,29 @@ def main():
         mks_by_event.setdefault(mk.get("eventId"), []).append(mk)
     MD["c"].clear(); MD["hit"] = MD["miss"] = 0   # one cache per run, never across runs
     MKT["evs"], MKT["mks"] = evs_by, mks_by_event   # Nov 11: revalidate() re-reads Novig through this map
+    # Nov 12 (Peter): time all FOUR reads SEPARATELY, entry to exit - waits, retries, cache access
+    # and network calls included. `positions read (first attempt)` measured 378.6s as ONE number on
+    # run 43298427494 while every per-call venue counter came back under a second, so the bracket
+    # could not say which venue was holding the run open. These four are the whole parallel block,
+    # so the slowest one IS the 378.6s. Measurement only: same calls, same order, same results.
     with perf("positions read (first attempt)"), ThreadPoolExecutor(max_workers=4) as tp:   # Oct 31: all 4 position reads at the same time
-        f_nv = tp.submit(novig_positions)
-        f_h = {b: tp.submit(fn) for b, fn in (("kalshi", positions.kalshi_positions), ("prophetx", positions.px_positions),
+        f_nv = tp.submit(_timed_pos("novig", novig_positions))
+        f_h = {b: tp.submit(_timed_pos(b, fn)) for b, fn in (("kalshi", positions.kalshi_positions), ("prophetx", positions.px_positions),
                                               ("polymarket_us", positions.pmus_positions))}
         pos = f_nv.result()
         held = {b: f.result() for b, f in f_h.items()}   # Kalshi / ProphetX / Polymarket US open positions (read-only)
+    for _b, _s in sorted(POSW.items(), key=lambda kv: -kv[1]):
+        print(f"  positions: {_s:7.1f}s for {_b} (whole function: waits, retries, cache, network)", flush=True)
+    # ProphetX already records its own sub-timings and they have never been PRINTED - the counter
+    # existed and we were blind to it, which is the same way the 378.6s hid inside one bracket.
+    # Only the COUNT/SECOND keys. WHY's own comment reserves it for the private email because its
+    # other entries are free-form exception text; these two are seconds and strike counts, which is
+    # what the public log is allowed to carry.
+    for _k in ("prophetx_walk_s", "prophetx_timing"):
+        if positions.WHY.get(_k):
+            print(f"  positions: prophetx {_k} = {positions.WHY[_k]}", flush=True)
+    if (positions.STATS.get("prophetx") or {}):
+        print(f"  positions: prophetx stats = {positions.STATS['prophetx']}", flush=True)
     if pos is None or any(v is None for v in held.values()):   # one immediate retry before holding anything
         # Nov 11: the retry used to re-read each failed venue SERIALLY, so three unreadable books
         # cost the sum of their latencies on top of the 5s settle. The first attempt has always
