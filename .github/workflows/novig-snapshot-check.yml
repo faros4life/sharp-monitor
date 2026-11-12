@@ -99,8 +99,33 @@ jobs:
               import novig_signed as nv
               print("AUTH READ: key ready ->", nv.ready(), "| scope:", nv._S.get("scope"))
               try:
-                  fl = nv.get("/v3/portfolio/fills", {"limit": "200"})
-                  rows = fl if isinstance(fl, list) else (fl.get("items") or fl.get("fills") or [])
+                  # nv.get returns a dict KEYED BY WALLET, not a bare list, and keyId is required.
+                  # Parsing it as items/fills read 0 rows - the same error clv_link_recon.py
+                  # already documents. Both wallets, paginated, unwrapped via d.values().
+                  rows = []
+                  for kid in dict.fromkeys([nv._S["id"], (os.environ.get("NOVIG_TRADE_KEY_ID") or "").strip()]):
+                      if not kid:
+                          continue
+                      after, pages = None, 0
+                      while pages < 20:
+                          pages += 1
+                          prm = {"limit": 100, "keyId": kid}
+                          if after:
+                              prm["after"] = after
+                          d = nv.get("/v3/portfolio/fills", prm)
+                          got, nxt = [], None
+                          for v in (d.values() if isinstance(d, dict) else [d]):
+                              if isinstance(v, list):
+                                  got += v
+                              elif isinstance(v, dict):
+                                  got += v.get("items") or v.get("fills") or v.get("data") or []
+                                  nxt = nxt or v.get("next")
+                          if isinstance(d, dict):
+                              nxt = nxt or d.get("next")
+                          rows += got
+                          if not got or not nxt:
+                              break
+                          after = nxt
                   print(f"AUTH READ: OK - {len(rows)} fill row(s) readable from Actions")
                   oids = {str(r.get("orderId") or r.get("order_id") or "") for r in rows}
                   for w in [x.strip() for x in (os.environ.get("RECONCILE_ORDERS") or "").split(",") if x.strip()]:
