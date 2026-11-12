@@ -87,6 +87,15 @@ def main():
         rl = (runs or {}).get("workflow_runs") or [] if not e2 else []
         if not rl:
             continue
+        # Nov 12 (first live run): the page reported "56 not running" out of 100 workflows, naming
+        # px-sandbox-order-test, nba-backtest2, clv-reset, pmus-slugs and dozens of other
+        # MANUAL-ONLY probes. They have no schedule, so "late" is meaningless for them, and a
+        # headline of 56 NOT RUNNING is worse than no page - it buries the one workflow that
+        # really is stale. Only a workflow that fires ON ITS OWN gets a cadence verdict; the rest
+        # are reported as ON DEMAND and kept out of the headline entirely. Read off the runs'
+        # own event field rather than parsing workflow files, so it stays true if a trigger
+        # changes.
+        auto = any(str(r.get("event")) in ("schedule", "workflow_run") for r in rl)
         starts = sorted([t for t in (ts(r.get("created_at")) for r in rl) if t], reverse=True)
         gaps = [(starts[i] - starts[i + 1]).total_seconds() / 60 for i in range(len(starts) - 1)]
         cadence = statistics.median(gaps) if gaps else None
@@ -101,7 +110,9 @@ def main():
         # The verdict. Deliberately NOT "is the newest run green": this repo drops queued runs on
         # purpose, so cancellations are routine and say nothing about health.
         limit = max(FLOOR_MIN, STALE_FACTOR * cadence) if cadence else None
-        if last_ok is None:
+        if not auto:
+            state, why = "ON DEMAND", ("manual only" + (f", last success {ok_txt}" if last_ok else ", never succeeded"))
+        elif last_ok is None:
             state, why = "FAIL", "no successful run in the last %d runs" % len(rl)
         elif limit and ok_min > limit:
             state, why = "STALE", f"last success {ok_txt}, its own cadence is ~{cadence:.0f}m"
@@ -146,18 +157,20 @@ def main():
     sysrows.append(("Phone alert delivery", "NOT CHECKED",
                     "this page cannot confirm your phone received anything"))
 
-    order = {"FAIL": 0, "STALE": 1, "WARN": 2, "OK": 3}
+    order = {"FAIL": 0, "STALE": 1, "WARN": 2, "OK": 3, "ON DEMAND": 4}
     rows.sort(key=lambda r: (order[r["state"]], -r["ok_min"]))
-    bad = [r for r in rows if r["state"] in ("FAIL", "STALE")]
-    headline = ("ALL RUNNING" if not bad and not [r for r in rows if r["state"] == "WARN"]
+    sched = [r for r in rows if r["state"] != "ON DEMAND"]
+    bad = [r for r in sched if r["state"] in ("FAIL", "STALE")]
+    headline = ("ALL RUNNING" if not bad and not [r for r in sched if r["state"] == "WARN"]
                 else f"{len(bad)} NOT RUNNING" if bad else "RUNNING, WITH WARNINGS")
     hcls = "ok" if headline == "ALL RUNNING" else ("warn" if not bad else "bad")
 
     SDOT = {"OK": "ok", "WARN": "warn", "STALE": "bad", "FAIL": "bad",
-            "UNKNOWN": "warn", "PAUSED": "warn", "NOT CHECKED": "warn"}
+            "UNKNOWN": "warn", "PAUSED": "warn", "NOT CHECKED": "warn", "ON DEMAND": "idle"}
 
     def tr(r):
-        dot = {"OK": "ok", "WARN": "warn", "STALE": "bad", "FAIL": "bad"}[r["state"]]
+        dot = {"OK": "ok", "WARN": "warn", "STALE": "bad", "FAIL": "bad",
+               "ON DEMAND": "idle"}[r["state"]]
         run = '<span class=run>running</span>' if r["running"] else ""
         cad = f"~{r['cadence']:.0f}m" if r["cadence"] else "-"
         return (f"<tr><td><span class='dot {dot}'></span>{r['state']}</td>"
@@ -200,13 +213,14 @@ tr:last-child td{{border-bottom:0}}
 .dot{{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:7px;
 vertical-align:1px}}
 .dot.ok{{background:var(--ok)}}.dot.warn{{background:var(--warn)}}.dot.bad{{background:var(--bad)}}
+.dot.idle{{background:var(--mut);opacity:.45}}
 .run{{margin-left:8px;font-size:10px;color:var(--mut);border:1px solid var(--line);
 border-radius:4px;padding:1px 5px}}
 .note{{color:var(--mut);font-size:12px;margin-top:14px}}
 </style></head><body data-generated="{now:%Y-%m-%dT%H:%M:%SZ}"><div class=wrap>
 <h1>Live health</h1>
 <p class="big {hcls}">{headline}</p>
-<p class=sub>{len(rows)} active workflows &middot; generated {now:%Y-%m-%d %H:%M}Z &middot;
+<p class=sub>{len(sched)} scheduled &middot; {len(rows) - len(sched)} on demand &middot; generated {now:%Y-%m-%d %H:%M}Z &middot;
 <span id=age>checking snapshot age</span></p>
 <div class=card style="margin-bottom:16px"><table>
 <tr><th>System</th><th>State</th><th>Detail</th></tr>
@@ -272,7 +286,8 @@ switch states appear on this page.</p>
     with open(os.path.join(OUT, "index.html"), "w") as f:
         f.write(html)
     print(f"health page: {len(rows)} workflows, {len(bad)} not running "
-          f"({', '.join(r['name'] for r in bad) or 'none'})")
+          f"({', '.join(r['name'] for r in bad) or 'none'}); "
+          f"{len(rows) - len(sched)} on demand, not judged")
     return 0
 
 
