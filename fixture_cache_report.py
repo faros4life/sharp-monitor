@@ -109,6 +109,19 @@ def main():
         q = {"bet": s.get("bet") or tr.get("bet"), "league": lg, "game": game,
              "teams": s.get("teams") or tr.get("teams"), "game_start": gs,
              "book": s.get("book") or tr.get("book"), "_start_was_given": bool(gs)}
+        # BEFORE/AFTER: does the matcher resolve this row NOW? find_fixture returns a fixture id
+        # only on a UNIQUE winner, so a row that resolves here is one the fix recovered - not one
+        # it force-matched. A tie still returns None and the row stays unmatched.
+        try:
+            fid_now = cl.find_fixture(st, q)
+        except Exception:
+            fid_now = None
+        if fid_now:
+            f_now = (st.get("fixtures") or {}).get(fid_now) or {}
+            verdicts["RESOLVES NOW (fix recovered it)"] += 1
+            say(f"      RESOLVES NOW -> {str(f_now.get('p1'))[:28]} v {str(f_now.get('p2'))[:28]}")
+            say("      (unique winner; a tie would still return None)")
+            continue
         try:
             gate, _, detail = xc.why_no_fixture(st, q, lg)
         except Exception as e:
