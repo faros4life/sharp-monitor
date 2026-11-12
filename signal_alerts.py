@@ -136,6 +136,13 @@ def held_sides(M):
                 add(sp, game, market, side)
     except Exception:
         pass
+    # Nov 12 (Peter, Phase 1): surface read_manual()'s registry-mirror result. This job never read
+    # ex.LOG, so the AGREE/DIVERGE line the mirror writes was invisible here - and this is the job
+    # that runs every few minutes and actually completes, while the executor's queue drops most of
+    # its runs. Counts only, which is all the mirror line carries. Reporting; gates nothing.
+    for _l in ex.LOG:
+        if "manual mirror" in _l:
+            print(f"  {_l}", flush=True)
     _mark("held: manual notes (gmail)")
     # open exchange positions
     try:
