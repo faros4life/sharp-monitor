@@ -12,6 +12,23 @@ on:
   # nothing here and cost everything: each one queued a job behind an 8-minute tracker step, and with
   # cancel-in-progress: false the queued runs were dropped. bets-board last completed at 19:48 and it was 21:30.
   # The 10-minute timer is unchanged, so the frozen call log is still written on the same cadence as before.
+  #
+  # Nov 12: ONE workflow_run trigger is back, and the note above is exactly why that needs justifying.
+  # That note's reason was the 8-minute tracker step - a queued job sat behind it and
+  # cancel-in-progress: false dropped it. That step was the timeout killing this workflow, and it is
+  # fixed: bot keys and manual notes now come from the private store instead of IMAP.
+  # MEASURED, successful runs, newest first: 38s, 48s | 432s, 661s, 642s, 740s, 546s, 538s, 659s,
+  # 474s, 463s, 382s. The two post-fix runs are under a minute; the ten before it are 6.4 to 12.3
+  # minutes. Nothing queues behind a 43-second job, even firing every 5 minutes.
+  #
+  # It is back because the 10-minute cron is not being honoured: GitHub fired it FOUR times in 24h
+  # (20:47:50Z, 13:05:29Z, 04:22:47Z, 23:39:08Z) - every ~8 hours against a declared 10 minutes - so
+  # the private tracker sat hours stale while its runs looked busy. The cron stays as the backup
+  # timer. If the tracker step ever regresses past ~4 minutes, runs queue and are dropped again,
+  # which is no worse than the state this replaces, and the cron still fires.
+  workflow_run:
+    workflows: ["executor-dry-run"]
+    types: [completed]
   schedule:
     - cron: "8-59/10 * * * *"
   workflow_dispatch:

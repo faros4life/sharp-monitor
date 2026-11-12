@@ -13,6 +13,19 @@ name: novig-heartbeat
 # Prints minutes and counts only: no positions, no dollars, nothing account-identifying.
 
 on:
+  # Nov 12 (Peter, "yes" to fixing the other stale workflows). MEASURED: GitHub fired the hourly
+  # cron below THREE times in 24 hours - 18:19:21Z, 09:49:57Z, 01:53:59Z, roughly every 8 hours -
+  # so a heartbeat meant to notice a wedged home runner within 35 minutes was itself checking
+  # every eight. Every firing SUCCEEDED; the job is fine and the timer is not. Of the last 100
+  # runs in this repo 87 are workflow_dispatch and 5 are schedule, as executor-dry-run's own
+  # comment records: cron-job.org is the real timer here, and it drives the executor.
+  #
+  # So this rides the executor's completions, which arrive every ~5 minutes, and the cron stays
+  # on as a backup timer. Same fix as fill-reports (02920d7d2), which went from a 1.4-hour gap
+  # to firing within two minutes of each executor pass.
+  workflow_run:
+    workflows: ["executor-dry-run"]
+    types: [completed]
   schedule:
     - cron: "17 * * * *"      # hourly, off the hour so it does not queue behind the :00 crowd
   workflow_dispatch:
@@ -46,6 +59,16 @@ jobs:
           git fetch -q --depth=1 origin heartbeat 2>/dev/null || exit 0
           git show FETCH_HEAD:heartbeat/novig_state.json > heartbeat/novig_state.json 2>/dev/null || true
 
+      # DELIBERATELY NOT RATE-GATED. A gate that skipped most executor completions would still
+      # conclude the run SUCCESS, and the health page reads last-success - so a skipped run
+      # would report "heartbeat ran 2m ago" when nothing was checked. A monitor that lies about
+      # having looked is worse than one that looks too often.
+      #
+      # Running every pass is cheap: novig_heartbeat.py reads the runner's snapshot FILE from
+      # GitHub (vnd.github.raw, a GitHub token), not the Novig API - no venue call, no OddsPapi
+      # credit - and the state branch is force-pushed as a fresh single-commit orphan, so it
+      # does not grow. And it is strictly better: this check has a 35-minute staleness
+      # threshold, which an hourly cron could never meet and an 8-hourly one made meaningless.
       - name: Novig snapshot heartbeat
         env:
           NOVIG_SNAPSHOT_TOKEN: ${{ secrets.NOVIG_SNAPSHOT_TOKEN }}
