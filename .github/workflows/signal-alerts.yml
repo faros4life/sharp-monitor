@@ -35,7 +35,7 @@ jobs:
           # Nov 12 (Peter): AGAINST YOUR BET was abandoned at the 240s budget EVERY cycle because
           # registry.enabled() is bool(token()) - without this line the private store is invisible
           # here and bot_orders() could only ever take the 240s+ Gmail path. Read-only in this job:
-          # a short-window caller never asserts or refreshes the completeness claim (executor.py).
+          # a short-window caller never asserts or refreshes the completeness claim (see the executor module).
           REGISTRY_TOKEN: ${{ secrets.REGISTRY_TOKEN }}
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}

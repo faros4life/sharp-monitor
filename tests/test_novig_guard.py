@@ -33,8 +33,12 @@ ck("1 with the variable unset, novig_place refuses and submits nothing",
    bl.NOVIG_SUBMIT is False and "paused" in bl.NOVIG_PAUSE_WHY.lower())
 ck("1 the refusal is the FIRST gate, so no later check can mask it",
    inspect.getsource(bl.novig_place).index("NOVIG_SUBMIT") < inspect.getsource(bl.novig_place).index("preflight("))
+# Nov 12: this read the raw source, so a COMMENT in live_order_other that merely explains where the
+# pause lives tripped it - a false positive on a real guard. Comments stripped; the property (no
+# second gate in the executor, one venue one switch) is unchanged and still enforced.
+_lo = "\n".join(l.split("#")[0] for l in inspect.getsource(ex.live_order_other).splitlines())
 ck("1 the executor adds NO second switch with a different name (one venue, one switch)",
-   "NOVIG_SUBMIT" not in inspect.getsource(ex.live_order_other) and "novig_submit_on" not in open(ex.__file__).read())
+   "NOVIG_SUBMIT" not in _lo and "novig_submit_on" not in open(ex.__file__).read())
 ck("1 reads, fills and cancellation are not gated by it",
    "NOVIG_SUBMIT" not in inspect.getsource(bl.novig_results) and "NOVIG_SUBMIT" not in inspect.getsource(bl.novig_cancel)
    if hasattr(bl, "novig_cancel") else "NOVIG_SUBMIT" not in inspect.getsource(bl.novig_results))
