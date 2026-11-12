@@ -139,7 +139,10 @@ def main():
         ("Novig snapshot",       ("novig-snapshot-check", "novig-positions", "novig-heartbeat")),
         ("Liquidity feeds",      ("liquidity-monitor", "liquidity-extra")),
     )
-    worst = {"FAIL": 0, "STALE": 1, "WARN": 2, "OK": 3}
+    # ON DEMAND must be here too, or the systems rollup raises KeyError the moment a system's
+    # members include a manual-only workflow. Ranked last: a manual probe never decides a system's
+    # health, but it must not crash the page either.
+    worst = {"FAIL": 0, "STALE": 1, "WARN": 2, "OK": 3, "ON DEMAND": 4}
     sysrows = []
     for label, pats in SYSTEMS:
         members = [r for r in rows if any(pt in r["name"].lower().replace(" ", "-") for pt in pats)]
