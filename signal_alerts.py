@@ -20,7 +20,7 @@ import json
 import os
 import re
 import time as _time
-from concurrent.futures import ThreadPoolExecutor, TimeoutError as _FTimeout
+import threading as _threading
 from datetime import datetime, timedelta, timezone
 
 import executor as ex
@@ -283,19 +283,29 @@ def main():
         # dying, with nothing delivered. It now gets a budget. Over budget: AGAINST YOUR BET is skipped for this
         # cycle and SAID so, the other three alerts have already gone out, and the job ends cleanly instead of being
         # killed. A skipped cycle costs one heads-up; a killed job costs every alert.
-        held, over = [], False
-        try:
-            with ThreadPoolExecutor(max_workers=1) as _tp:
-                held = _tp.submit(held_sides, M).result(timeout=HELD_BUDGET_S)
-            _mark("held sides read (gmail + exchange positions)")
-        except _FTimeout:
-            over = True
+        # Nov 12: this used ThreadPoolExecutor, and a `with` block on one calls shutdown(wait=True) on exit - so the
+        # 240s timeout fired and the context manager then waited for the very call it had given up on. The run was
+        # killed at 499s anyway. A DAEMON thread is what actually abandons work: join() returns at the deadline and
+        # a daemon does not hold the process open. The orphaned read finishes or dies with the process; either way
+        # it touches nothing but its own locals, and AGAINST YOUR BET is simply skipped for the cycle.
+        held, box = [], {}
+
+        def _read():
+            try:
+                box["v"] = held_sides(M)
+            except Exception as _e:
+                box["err"] = type(_e).__name__
+
+        th = _threading.Thread(target=_read, daemon=True)
+        th.start()
+        th.join(HELD_BUDGET_S)
+        if th.is_alive():
             _mark(f"held sides ABANDONED after {HELD_BUDGET_S}s - AGAINST YOUR BET skipped this cycle")
-        except Exception as _e:
-            over = True
-            _mark(f"held sides failed ({type(_e).__name__}) - AGAINST YOUR BET skipped this cycle")
-        if over:
-            held = []
+        elif "err" in box:
+            _mark(f"held sides failed ({box['err']}) - AGAINST YOUR BET skipped this cycle")
+        else:
+            held = box.get("v") or []
+            _mark("held sides read (gmail + exchange positions)")
         for x in fresh:
             nm = x.get("new_money") or 0
             if not (x.get("rule_met") and nm >= AGAINST_MIN):
