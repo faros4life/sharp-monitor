@@ -577,9 +577,35 @@ def live_plays_card():
     placed" look the same and mean very different things.
     """
     import datetime as _d
-    rows, err = [], None
+    rows, err, src = [], None, ""
+    # Nov 12 (Peter: "i dont see the plays we got alerted on and played"). This card read the
+    # ledger ONLY through Gmail IMAP, so a single IMAP hiccup - "abort: command: UID => System
+    # Error", seen today under connection contention - blanked the one card that says what the bot
+    # did. Gmail allows only a handful of simultaneous IMAP sessions, and the executor opens one
+    # every few minutes, so that is a recurring condition, not a freak event.
+    #
+    # It is also now the WRONG source. Since intent and void emails are sent only when the private
+    # store cannot confirm the row, a Gmail-only card shows less than the truth by design. So the
+    # store is read FIRST - it holds the ledger rows verbatim, in the shape bot_orders() already
+    # parses - and Gmail stays as the fallback. Display only: this changes no decision, no price,
+    # no size, and writes nothing.
     try:
-        import executor as _ex
+        import executor as _ex          # also used below for LANE_NAME / lane_of
+    except Exception:
+        _ex = None
+    try:
+        import registry as _reg
+        if _reg.enabled():
+            _r = _reg.rows()
+            if _r:
+                rows, src = list(_r), "private store"
+    except Exception as ex:
+        src = ""          # fall through to Gmail; a display card must never raise
+    if rows:
+        err = None
+    try:
+        if rows:
+            raise StopIteration      # store answered; skip the IMAP read entirely
         import rest_depth_report as _rd
         since = (_d.datetime.now(_d.timezone.utc) - _d.timedelta(days=2)).strftime("%d-%b-%Y")
         M = _ex.imap_open()
@@ -592,6 +618,8 @@ def live_plays_card():
                 M.logout()
             except Exception:
                 pass
+    except StopIteration:
+        pass                          # the private store already supplied the rows
     except SystemExit as ex:
         # executor.gmail() raises SystemExit("Email not configured.") when the credentials are
         # missing, and `except Exception` does NOT catch that - so without this the whole board
@@ -666,7 +694,8 @@ def live_plays_card():
     if err:
         body = f'<tr><td colspan=8 class=muted>Ledger unreadable ({err}) - this card cannot say what the bot did.</td></tr>'
     elif not board:
-        body = '<tr><td colspan=8 class=muted>No bot plays today yet.</td></tr>'
+        body = (f'<tr><td colspan=8 class=muted>No bot plays today yet.'
+                f'{f" (read from the {src})" if src else ""}</td></tr>')
     else:
         body = "".join(out)
     return ('<div class="card"><h2>Today&#39;s plays - what the bot did</h2>'
