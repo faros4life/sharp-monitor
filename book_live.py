@@ -502,7 +502,13 @@ def novig_place(outcome_id, limit_cost, qty, label="", ttl_ms=None, key=""):
     except Exception as ex:
         return {"status": "error", "reason": f"home runner dispatch unclear ({str(ex)[:60]}); check Novig before any retry"}
     EXPO["today"] += risk
-    return {"status": "placed", "book": "novig", "order_id": cid, "order": inputs, "filled_stake": None, "asked": risk,
+    # Nov 12 (Peter): BOTH ids. order_id here is the locally generated client id - Novig's own id
+    # does not exist yet, because the order is dispatched to the home runner and placed there. It
+    # is returned as client_id too, and venue_order_id is None until a runner result row supplies
+    # it (executor.novig_reports records the mapping). Fills carry Novig's id, so without that
+    # mapping the bot cannot reconcile its own orders against its own fills.
+    return {"status": "placed", "book": "novig", "order_id": cid, "client_id": cid,
+            "venue_order_id": None, "order": inputs, "filled_stake": None, "asked": risk,
             "contracts": 0, "avg_cost": None, "fills_read": False, "sent_to_runner": True, "resting": bool(ttl_ms)}
 
 

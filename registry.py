@@ -442,6 +442,45 @@ def release_token(tok):
         return False
 
 
+def put_venue_ids(pairs):
+    """Store client_id -> venue order id for Novig submissions.
+
+    Nov 12 (Peter): "store both IDs from the submission response and use the venue ID to
+    reconcile fills." A Novig submission is dispatched to the home runner, so at dispatch time the
+    venue's own id does not exist yet and a locally generated uuid4 stands in for it. Fills carry
+    the venue's id. So the bot could not reconcile its own submissions against its own fills -
+    even one known to have filled was absent from 152 fill rows.
+
+    The home runner's result rows carry BOTH (client_id and order_id), so the mapping is recorded
+    the first time a result is read, and is then durable. Additive: a mapping already stored is
+    never overwritten, so a later row cannot repoint a client id at a different venue order."""
+    keep = {str(c): str(v) for c, v in (pairs or {}).items() if c and v}
+    if not keep:
+        return True
+    ts = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+    def merge(d):
+        m = d.setdefault("venue_ids", {})
+        added = False
+        for c, v in keep.items():
+            if c not in m:
+                m[c] = {"venue_order_id": v, "ts": ts}
+                added = True
+        if not added:
+            return False            # nothing new: skip the write
+    return _commit(merge)
+
+
+def venue_ids():
+    """{client_id: venue_order_id}. {} when the store is unreadable or not configured - callers
+    treat a missing mapping as UNRESOLVED, never as 'no fill'."""
+    d = load()
+    if d is None:
+        return {}
+    return {c: (v or {}).get("venue_order_id") for c, v in (d.get("venue_ids") or {}).items()
+            if (v or {}).get("venue_order_id")}
+
+
 def claim_submission(key, cid):
     """Atomically claim ONE play key for ONE submission. True only for the caller that wins it.
 

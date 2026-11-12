@@ -3186,30 +3186,6 @@ def novig_reports():
         recs = book_live.novig_results() if (os.environ.get("NOVIG_SNAPSHOT_TOKEN") or "").strip() else []
     if not recs:
         return 0
-    # Nov 12 (Peter, "path 2 ok"): a resting bid's outcome is reported ONCE, promptly AT EXPIRY. The home
-    # runner can be late refreshing an expired order (the Spurs and Chicago State NO FILLs landed ~16 h
-    # after expiry), and the cloud cannot read Novig (451). So a GTT bid with nothing filled whose own
-    # placed_utc + ttl_ms has passed is reported as expired, saying exactly what that rests on: nothing
-    # filled AS OF THE LAST READ. A fill the runner finds later still reports as its own FILLED/PARTIAL
-    # (different token); the late NO FILL shares the one canonical token, so it cannot repeat.
-    def _expire(x):
-        try:
-            st0 = str(x.get("status") or "").upper()
-            if str(x.get("tif") or "").upper() != "GTT" or int(x.get("filled_qty") or 0) or st0 not in ("OPEN", "PENDING", "SENT", "UNKNOWN"):
-                return x
-            fmt_ = "%Y-%m-%dT%H:%M:%S"
-            placed = datetime.strptime(str(x["placed_utc"])[:19], fmt_).replace(tzinfo=timezone.utc)
-            exp = placed + timedelta(milliseconds=int(x.get("ttl_ms") or 0))
-            if not int(x.get("ttl_ms") or 0) or datetime.now(timezone.utc) < exp + timedelta(minutes=2):
-                return x
-            last = datetime.strptime(str(x.get("updated_utc") or x["placed_utc"])[:19], fmt_).replace(tzinfo=timezone.utc)
-            gap = (exp - last).total_seconds() / 60
-            note = (f"Resting bid expired {exp.astimezone(lm.ET).strftime('%-I:%M %p')} ET with nothing filled as of the last read "
-                    + (f"({gap:.0f} min before expiry)." if gap >= 0 else "(read after expiry)."))
-            return dict(x, status="EXPIRED", _exp_note=note)
-        except Exception:
-            return x
-    recs = [_expire(x) for x in recs]
     # Nov 11: decide WHICH records are even reportable before touching Gmail. The status filters
     # below are pure arithmetic on the snapshot, so running them first means a run with nothing
     # final to report opens no IMAP connection and issues no search at all - and that is the
@@ -3249,6 +3225,21 @@ def novig_reports():
                 f"{x.get('client_id')}|{_st(x) if canon else str(x.get('status') or '?').upper()}|"
                 f"{int(x.get('filled_qty') or 0)}|{x.get('filled_cost')}".encode()).hexdigest()[:12]
         claimer = ReportClaim(M, [_tk(x, c) for x in recs[-30:] for c in (True, False)])
+        # Nov 12 (Peter): record client_id -> Novig order id the first time a result row carries
+        # both. This is the only place the two ids meet: novig_place returns a local uuid4 because
+        # Novig's id does not exist at dispatch time, and fills carry Novig's id. Without the
+        # mapping the bot cannot reconcile its own orders against its own fills. Best-effort and
+        # additive - a failure here costs reconciliation, never an order.
+        if registry.enabled():
+            try:
+                pairs = {str(x.get("client_id")): str(x.get("order_id"))
+                         for x in recs
+                         if x.get("client_id") and x.get("order_id")
+                         and str(x.get("client_id")) != str(x.get("order_id"))}
+                if pairs:
+                    registry.put_venue_ids(pairs)
+            except Exception as ex:
+                LOG.append(f"venue id mapping not stored: {str(ex)[:50]}")
         for x in recs[-30:]:
             st = str(x.get("status") or "?").upper()
             if st in ("PENDING", "SENT", "UNKNOWN") and not int(x.get("filled_qty") or 0):
@@ -3286,8 +3277,6 @@ def novig_reports():
                 msg += f"\nlimit {lm.american(c):+d}, ${q * c / 100:,.2f} asked; nothing traded"
             if x.get("tif") == "GTT" and st == "OPEN":
                 msg += "\nResting until 30 min before the start (cancel in the Novig app if needed)."
-            if x.get("_exp_note"):
-                msg += "\n" + x["_exp_note"]
             if x.get("error"):
                 msg += f"\n{str(x['error'])[:160]}"
             try:
