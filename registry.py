@@ -44,7 +44,7 @@ PATH = os.environ.get("REGISTRY_PATH") or "registry/bot_registry.json"
 KEEP_DAYS = 4
 STRIKE_KEEP_DAYS = 30   # identities are immutable; this only bounds the file size
 API = "https://api.github.com"
-EMPTY = {"orders": [], "intents": [], "handled": {}, "strikes": {}}
+EMPTY = {"orders": [], "intents": [], "handled": {}, "strikes": {}, "manual": []}
 
 
 def token():
@@ -445,6 +445,78 @@ def touch_tokens_complete(now=None):
 
 def invalidate_tokens():
     return _commit(lambda d: d.setdefault("meta", {}).update({"tok_complete_through": ""}))
+
+
+# ------------------------------------------------------- manual notes (Nov 12, Peter: "Phase 1 only")
+# Peter's Hard Rock bets, which the bot has no read path for, arrive as "Bets manual:" notes and are
+# the only thing standing between a manual position and a duplicate or opposite bot bet. Mirrored
+# here so the Gmail read can eventually move off the pre-order path - but Gmail stays AUTHORITATIVE
+# until the two are independently proven to agree. Nothing in this section gates a bet yet.
+MANUAL_DAYS = 3   # read_manual()'s own Gmail window. NOT KEEP_DAYS, and the claim is tested against this.
+
+
+def manual_notes():
+    """The mirrored notes, in the order Gmail returned them.
+
+    None - never [] - when the store cannot be read, because the caller must fall back to Gmail
+    rather than read an empty result as "Peter holds no manual positions"."""
+    d = load()
+    return None if d is None else list(d.get("manual") or [])
+
+
+def put_manual(notes):
+    """Mirror read_manual()'s parsed notes as a WHOLE-WINDOW SNAPSHOT, replacing what was stored.
+
+    Deliberately NOT an upsert like put_rows(). A manual note carries no id, and Peter can correct
+    or DELETE one: an additive mirror would keep a deleted note alive for the length of the window
+    and report a conflict Gmail no longer reports - a phantom position blocking a real bet. The
+    snapshot reproduces corrections and deletions exactly, because it is whatever Gmail's window
+    held at the moment of the scan.
+
+    Order is preserved, and it matters: replay order decides the outcome, since MANUAL_HELD[k]
+    OVERWRITES for the bet's own side while setdefault() does NOT for the opposite side."""
+    keep = [n for n in (notes or []) if isinstance(n, dict)]
+
+    def merge(d):
+        d["manual"] = keep
+    return _commit(merge)
+
+
+def manual_complete(now=None):
+    """Same two-part rule as is_complete() and tokens_complete(), tested against MANUAL_DAYS: the
+    snapshot covers the manual window AND the claim was refreshed inside FRESH_MIN. One failed
+    refresh and the next run reads Gmail, which is always complete."""
+    d = load()
+    if d is None:
+        return False
+    meta = d.get("meta") or {}
+    cut = (datetime.now(timezone.utc) - timedelta(days=MANUAL_DAYS)).strftime("%Y-%m-%d")
+    if str(meta.get("man_complete_through") or "") < cut:
+        return False
+    stamp = str(meta.get("man_complete_at") or "")
+    if not stamp:
+        return False
+    try:
+        at = datetime.fromisoformat(stamp.replace("Z", "+00:00"))
+    except Exception:
+        return False
+    age = ((now or datetime.now(timezone.utc)) - at).total_seconds()
+    return 0 <= age <= FRESH_MIN * 60
+
+
+def set_manual_complete():
+    """Only reachable from a SUCCESSFUL full-window read_manual() scan. A failed Gmail search proves
+    nothing about the window, so that path invalidates instead."""
+    stamp = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    day = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+
+    def merge(d):
+        d.setdefault("meta", {}).update({"man_complete_through": day, "man_complete_at": stamp})
+    return _commit(merge)
+
+
+def invalidate_manual():
+    return _commit(lambda d: d.setdefault("meta", {}).update({"man_complete_through": ""}))
 
 
 def token_set():

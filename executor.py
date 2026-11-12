@@ -311,6 +311,81 @@ MUSE_DISAGREE = set()   # keys Muse killed on purpose: clear the watchdog, never
 MANUAL_HELD = {}   # Oct 30: play key -> "duplicate"/"conflict" from Peter's manual bets on books the bot can't read
 
 
+def _apply_manual(d, held):
+    """The MANUAL_HELD accounting for ONE parsed note: the bet's own side is a duplicate, the other
+    side a conflict, and no live order or resting bid goes on either.
+
+    One shared function rather than two copies, the same reason _account_rows() is: the Gmail path
+    and the registry shadow below must agree BY CONSTRUCTION. Two copies of this rule would drift
+    and the comparison would then be measuring the copies, not the stores.
+
+    The asymmetry is load-bearing. held[k] OVERWRITES, so a later note about the same side wins -
+    that is how a correction takes effect. setdefault() does NOT overwrite, so an existing duplicate
+    is never downgraded to a conflict by a note about the opposite side. Replay order therefore
+    decides the outcome, which is why the mirror preserves Gmail's order."""
+    k, ok_ = derive_key(d), opposite_key(d)
+    if k:
+        held[k] = "duplicate"
+    if ok_:
+        held.setdefault(ok_, "conflict")
+
+
+def _mirror_manual(notes, partial):
+    """Phase 1 (Nov 12, Peter): mirror the manual window into the private store and SHADOW-COMPARE.
+
+    Gmail stays AUTHORITATIVE. This writes nothing to MANUAL_HELD, gates no bet, and swallows every
+    failure - the Gmail result already stands by the time this runs. Its only product is the
+    agreement line in the log, which is the evidence for whether the switch is ever safe to make.
+
+    `partial` is any gap in the scan at all: a failed SEARCH, a failed FETCH, or a note that did not
+    parse. A partial window proves nothing about completeness, so it invalidates the claim rather
+    than asserting one - the same fail-closed rule the orders and token claims follow.
+
+    Counts only in the log. Play keys and bet text stay out of the public Actions log."""
+    if not registry.enabled():
+        return
+    try:
+        if partial:
+            registry.invalidate_manual()
+            LOG.append(f"manual mirror: window partial, claim invalidated ({len(notes)} notes parsed)")
+            return
+        t0 = time.time()
+        wrote = registry.put_manual(notes)
+        if not wrote:
+            registry.invalidate_manual()
+            LOG.append("manual mirror: write failed, claim invalidated")
+            return
+        registry.set_manual_complete()
+        t_write = time.time() - t0
+        t1 = time.time()
+        stored = registry.manual_notes()
+        t_read = time.time() - t1
+        if stored is None:
+            LOG.append("manual mirror: store unreadable on read-back")
+            return
+        # Replay the snapshot through the SAME accounting, from an empty dict, and compare against a
+        # fresh replay of the Gmail notes - not against the MANUAL_HELD global, which may already
+        # carry entries from an earlier call in this process.
+        shadow, fresh = {}, {}
+        for n in stored:
+            _apply_manual(n, shadow)
+        for n in notes:
+            _apply_manual(n, fresh)
+        if shadow == fresh:
+            LOG.append(f"manual mirror: AGREE ({len(notes)} notes, {len(fresh)} keys, "
+                       f"write {t_write:.2f}s, read {t_read:.2f}s)")
+        else:
+            only_g = len(set(fresh) - set(shadow))
+            only_s = len(set(shadow) - set(fresh))
+            differs = len([k for k in set(fresh) & set(shadow) if fresh[k] != shadow[k]])
+            LOG.append(f"manual mirror: DIVERGE (gmail {len(notes)} notes/{len(fresh)} keys, "
+                       f"store {len(stored)} notes/{len(shadow)} keys; gmail-only {only_g}, "
+                       f"store-only {only_s}, state differs {differs})")
+            registry.invalidate_manual()   # a snapshot that does not reproduce Gmail is not complete
+    except Exception as e_:
+        LOG.append(f"manual mirror failed: {str(e_)[:60]}")
+
+
 def read_manual(M):
     """Peter's manual bets on books with no read path (Hard Rock), logged as private 'Bets manual:' notes in the Bets
     inbox (last 3 days). Body lines: MANUAL: {"sport": "NBA", "game": "Away @ Home", "bet": "Under 225.5 (-110)", "book": "Hard Rock"}
@@ -329,12 +404,16 @@ def read_manual(M):
     # bot_orders() already uses for exactly this reason: IMAP SUBJECT is a substring match, so the
     # header prefix is confirmed before the body is trusted (reading dry-run mail as live was a real
     # bug on Oct 27).
-    since = (datetime.now(timezone.utc) - timedelta(days=3)).strftime("%d-%b-%Y")
+    since = (datetime.now(timezone.utc) - timedelta(days=registry.MANUAL_DAYS)).strftime("%d-%b-%Y")
     typ, data = M.uid("SEARCH", None, "SUBJECT", '"Bets manual"', "SINCE", since)
-    uids = (data[0].split() if typ == "OK" and data and data[0] else [])
+    search_ok = (typ == "OK")
+    notes = []   # Nov 12: the parsed notes, in Gmail's order, for the Phase-1 registry mirror below
+    uids = (data[0].split() if search_ok and data and data[0] else [])
+    partial = not search_ok   # any gap means the window was NOT fully read: assert no completeness
     for uid in uids:
         typ, data = M.uid("FETCH", uid, "(RFC822)")
         if typ != "OK" or not data or not data[0]:
+            partial = True
             continue
         subj = str(email.header.make_header(email.header.decode_header(
             email.message_from_bytes(data[0][1]).get("Subject") or "")))
@@ -348,12 +427,11 @@ def read_manual(M):
                 d = json.loads(m.group(1))
             except Exception:
                 LOG.append("unreadable MANUAL line")
+                partial = True   # a note that did not parse is a note not accounted for
                 continue
-            k, ok_ = derive_key(d), opposite_key(d)
-            if k:
-                MANUAL_HELD[k] = "duplicate"
-            if ok_:
-                MANUAL_HELD.setdefault(ok_, "conflict")
+            notes.append(d)
+            _apply_manual(d, MANUAL_HELD)
+    _mirror_manual(notes, partial)
 
 
 def read_verdicts(M):
