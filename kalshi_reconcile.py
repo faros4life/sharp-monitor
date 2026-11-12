@@ -116,7 +116,25 @@ else:
         print("  (no venue fills in range - this says nothing about whether any order exists)")
 
 print()
-blocked = bool(unmatched) or (not ok)
-print("RECONCILE RESULT: " + ("FLAGS RAISED - investigate before retiring any Gmail check"
-                             if blocked else "no unmatched records in either direction"))
+# Nov 12, corrected within the hour: this verdict consulted ONLY the forward list, so the first run
+# printed "no unmatched records in either direction" directly beneath 20 reverse FLAGS. A result
+# line that contradicts the evidence above it is worse than no result line.
+rev_flags = 0 if not ok else len([o for o in (collections.Counter(
+    str(f.get("order_id") or "") for f in (d.get("fills") or [])).keys()) if o and o not in stored])
+if not stored:
+    # The forward direction is VACUOUS, not clean: there is nothing stored to reconcile. Saying
+    # "matched" here would read as proof when no comparison was possible.
+    print("RECONCILE RESULT: NOT POSSIBLE - the registry holds no Kalshi order ids, so there is "
+          "nothing to reconcile forward.")
+    if rev_flags:
+        print(f"  The {rev_flags} venue order id(s) with fills are therefore NOT evidence of missed bot "
+              "fills: with zero stored bot orders they are consistent with Peter's own Kalshi trades, "
+              "and the venue exposes no field that distinguishes the two.")
+    print("  Retiring the Gmail ledger for Kalshi stays BLOCKED - not because anything is broken, "
+          "but because this check cannot be performed.")
+elif unmatched or rev_flags or not ok:
+    print(f"RECONCILE RESULT: FLAGS RAISED ({len(unmatched)} forward, {rev_flags} reverse"
+          + ("" if ok else ", reverse direction unreadable") + ") - investigate before retiring any Gmail check")
+else:
+    print("RECONCILE RESULT: every stored order matched, and every venue fill was attributable")
 print("Read-only: nothing was placed, cancelled or modified.")
