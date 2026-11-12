@@ -1,6 +1,351 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-12T06:03:41Z",
+   "base_depth": 105540,
+   "best_price": 0.585,
+   "best_price_american": -141,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.58,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 3,
+   "date": "2026-11-12",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 7522,
+     "new_this_side": 34705,
+     "other_side": 44464,
+     "other_side_all_levels": 67533,
+     "ratio": 2.3,
+     "this_side": 104026,
+     "this_side_all_levels": 140343
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "NJD (0)",
+     "price": 0.585,
+     "this_side": 9575
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "New Jersey Devils",
+     "price": 0.5902,
+     "this_side": 2974
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 2017.46,
+    "volume_24h_fp": 1419.55,
+    "volume_fp": 2062.18
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 2017.46,
+    "volume_24h_fp": 1419.55,
+    "volume_fp": 2062.18
+   },
+   "fade_price": 0.42,
+   "first_seen_utc": "2026-11-12T06:00:24Z",
+   "game": "Washington vs New Jersey",
+   "game_surge_books": [],
+   "game_x": 1.25,
+   "key": "kalshi|KXNHLGAME-26NOV12WSHNJ|ml|1",
+   "lead_min": 1076,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 34705,
+   "new_x": 0.75,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 2017.46,
+      "volume_24h_fp": 1419.55,
+      "volume_fp": 2062.18
+     },
+     "game_normal": 111938,
+     "game_x": 1.25,
+     "normal": 46226,
+     "now": 140343,
+     "type": "ML",
+     "x": 3.04
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 796630.0,
+      "volume": 807085.0
+     },
+     "game_normal": 7655,
+     "game_x": 1.38,
+     "normal": 6131,
+     "now": 10558,
+     "type": "ML",
+     "x": 1.72
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 2793,
+     "game_x": 1.47,
+     "normal": 3833,
+     "now": 4103,
+     "type": "ML",
+     "x": 1.07
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.58,
+   "price_american": -138,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.58,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -150
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -144
+    },
+    "betopenly": {
+     "point": null,
+     "price": -140
+    },
+    "betrivers": {
+     "point": null,
+     "price": -162
+    },
+    "betus": {
+     "point": null,
+     "price": -145
+    },
+    "bovada": {
+     "point": null,
+     "price": -145
+    },
+    "draftkings": {
+     "point": null,
+     "price": -148
+    },
+    "fanatics": {
+     "point": null,
+     "price": -150
+    },
+    "fanduel": {
+     "point": null,
+     "price": -152
+    },
+    "kalshi": {
+     "point": null,
+     "price": -138
+    },
+    "lowvig": {
+     "point": null,
+     "price": -144
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -147
+    },
+    "novig": {
+     "point": null,
+     "price": -141
+    },
+    "polymarket": {
+     "point": null,
+     "price": -144
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -144
+    },
+    "prophetx": {
+     "point": null,
+     "price": -144
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -150
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNHLGAME-26NOV12WSHNJ-NJ"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "New Jersey",
+   "side_label": "New Jersey",
+   "size_x": 3.04,
+   "start_source": "odds",
+   "start_utc": "2026-11-13T00:00:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "Washington",
+    "New Jersey"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-12T06:03:41Z",
+   "base_depth": 20024,
+   "best_price": 0.81,
+   "best_price_american": -426,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.81,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 3,
+   "date": "2026-11-13",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 6222,
+     "new_this_side": 50018,
+     "other_side": 15799,
+     "other_side_all_levels": 23047,
+     "ratio": 3.5,
+     "this_side": 54796,
+     "this_side_all_levels": 70484
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "SUU (0)",
+     "price": 0.81,
+     "this_side": 1161
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Southern Utah",
+     "price": 0.8148,
+     "this_side": 427
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 2555.12,
+    "volume_24h_fp": 2175.33,
+    "volume_fp": 3036.75
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 2555.12,
+    "volume_24h_fp": 2175.33,
+    "volume_fp": 3036.75
+   },
+   "fade_price": 0.21,
+   "first_seen_utc": "2026-11-12T06:00:24Z",
+   "game": "Southern Utah vs Portland St.",
+   "game_surge_books": [
+    "kalshi"
+   ],
+   "game_x": 2.76,
+   "key": "kalshi|KXNCAAFGAME-26NOV13SUUPRST|ml|0",
+   "lead_min": 2696,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 50018,
+   "new_x": 0.12,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 2555.12,
+      "volume_24h_fp": 2175.33,
+      "volume_fp": 3036.75
+     },
+     "game_normal": 25510,
+     "game_x": 2.76,
+     "normal": 425832,
+     "now": 70484,
+     "type": "ML",
+     "x": 0.17
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 3181.0,
+      "volume": 3181.0
+     },
+     "game_normal": 1579,
+     "game_x": 0.75,
+     "normal": 16770,
+     "now": 1186,
+     "type": "ML",
+     "x": 0.07
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 448,
+     "game_x": 0.95,
+     "normal": 9726,
+     "now": 427,
+     "type": "ML",
+     "x": 0.04
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.81,
+   "price_american": -426,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.81,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26NOV13SUUPRST-SUU"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Southern Utah",
+   "side_label": "Southern Utah",
+   "size_x": 0.17,
+   "start_source": "prophetx",
+   "start_utc": "2026-11-14T03:00:00Z",
+   "surge_books": [],
+   "teams": [
+    "Southern Utah",
+    "Portland St."
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-12T05:15:31Z",
    "base_depth": 40116,
    "best_price": 0.46,
@@ -52,9 +397,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1420.5,
+    "open_interest_fp": 1514.56,
     "volume_24h_fp": 1116.02,
-    "volume_fp": 1747.08
+    "volume_fp": 1841.1399999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 1124.21,
@@ -380,7 +725,7 @@
    "ex_stats_close": {
     "open_interest_fp": 8544.73,
     "volume_24h_fp": 4289.28,
-    "volume_fp": 13738.07
+    "volume_fp": 13741.02
    },
    "ex_stats_first": {
     "open_interest_fp": 7502.72,
@@ -591,9 +936,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 2689.28,
+    "open_interest_fp": 2713.9900000000002,
     "volume_24h_fp": 1577.72,
-    "volume_fp": 3034.23
+    "volume_fp": 3058.94
    },
    "ex_stats_first": {
     "open_interest_fp": 1561.4699999999998,
@@ -791,9 +1136,9 @@
     "volume_fp": 236.79
    },
    "ex_stats_close": {
-    "open_interest_fp": 69488.18,
+    "open_interest_fp": 70179.47,
     "volume_24h_fp": 68247.83,
-    "volume_fp": 85622.64
+    "volume_fp": 86338.58
    },
    "ex_stats_first": {
     "open_interest_fp": 28288.33,
@@ -876,8 +1221,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.62,
-   "clv_cents": -1.0,
+   "close_price": 0.63,
+   "clv_cents": 0.0,
    "confirmed_after_min": 7,
    "date": "2026-11-12",
    "depth_by_book": {
@@ -914,9 +1259,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 10131.240000000002,
+    "open_interest_fp": 10154.630000000001,
     "volume_24h_fp": 6330.37,
-    "volume_fp": 10875.76
+    "volume_fp": 10911.32
    },
    "ex_stats_first": {
     "open_interest_fp": 7089.780000000001,
@@ -1125,9 +1470,9 @@
     "volume_fp": 3.14
    },
    "ex_stats_close": {
-    "open_interest_fp": 6429.599999999999,
+    "open_interest_fp": 6453.16,
     "volume_24h_fp": 4675.6,
-    "volume_fp": 6555.58
+    "volume_fp": 6579.139999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 5188.93,
@@ -1338,8 +1683,8 @@
     "volume": 5640.0
    },
    "ex_stats_close": {
-    "openInterest": 35464514.0,
-    "volume": 44915259.0
+    "openInterest": 35879278.0,
+    "volume": 45330023.0
    },
    "ex_stats_first": {
     "openInterest": 24037146.0,
@@ -1733,9 +2078,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 69384.09,
-    "volume_24h_fp": 69451.31,
-    "volume_fp": 75988.06
+    "open_interest_fp": 69737.54000000001,
+    "volume_24h_fp": 70821.78,
+    "volume_fp": 76349.59
    },
    "ex_stats_first": {
     "open_interest_fp": 15041.82,
@@ -1903,9 +2248,9 @@
     "volume_fp": 91.58
    },
    "ex_stats_close": {
-    "open_interest_fp": 66745.08,
+    "open_interest_fp": 68476.54000000001,
     "volume_24h_fp": 61329.51,
-    "volume_fp": 81032.82
+    "volume_fp": 82764.28
    },
    "ex_stats_first": {
     "open_interest_fp": 30358.96,
@@ -2100,9 +2445,9 @@
     "volume_fp": 71.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 14189.49,
+    "open_interest_fp": 14425.67,
     "volume_24h_fp": 14190.86,
-    "volume_fp": 15543.849999999999
+    "volume_fp": 15780.029999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 4887.42,
@@ -5498,9 +5843,9 @@
     "volume_fp": 8.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 41814.18,
+    "open_interest_fp": 41996.84,
     "volume_24h_fp": 49844.17,
-    "volume_fp": 59024.44
+    "volume_fp": 59207.1
    },
    "ex_stats_first": {
     "open_interest_fp": 14886.76,
@@ -5900,9 +6245,9 @@
     "volume_fp": 9.83
    },
    "ex_stats_close": {
-    "open_interest_fp": 22916.46,
+    "open_interest_fp": 23092.19,
     "volume_24h_fp": 18251.84,
-    "volume_fp": 24040.6
+    "volume_fp": 24225.71
    },
    "ex_stats_first": {
     "open_interest_fp": 11760.52,
@@ -8595,9 +8940,9 @@
     "volume_fp": 34.05
    },
    "ex_stats_close": {
-    "open_interest_fp": 15182.82,
+    "open_interest_fp": 15308.96,
     "volume_24h_fp": 14320.71,
-    "volume_fp": 19381.3
+    "volume_fp": 19547.24
    },
    "ex_stats_first": {
     "open_interest_fp": 5828.8,
@@ -9934,6 +10279,7 @@
     "volume_fp": 11741.86
    },
    "fade_price": 0.44,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-11T13:50:51Z",
    "game": "Pittsburgh vs San Jose",
    "game_surge_books": [],
@@ -10064,7 +10410,7 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNHLGAME-26NOV11PITSJ-PIT"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig",
@@ -10072,6 +10418,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settled_utc": "2026-11-12T06:03:41Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Pittsburgh",
@@ -10089,7 +10436,7 @@
     "San Jose"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.79
   },
   {
    "alerted_utc": "2026-11-11T13:41:28Z",
@@ -13271,9 +13618,9 @@
     "volume_fp": 305.48
    },
    "ex_stats_close": {
-    "open_interest_fp": 1229089.36,
+    "open_interest_fp": 1232222.69,
     "volume_24h_fp": 720553.65,
-    "volume_fp": 1601851.77
+    "volume_fp": 1605002.42
    },
    "ex_stats_first": {
     "open_interest_fp": 592652.27,
