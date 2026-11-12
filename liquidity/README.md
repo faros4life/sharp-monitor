@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 12, 10:51 AM ET. This run: 1 new, 0 not confirmed, 2 pending. Open alerts: 48.
+Updated Thu Nov 12, 10:57 AM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 49.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 12 10:57AM | NHL | Winnipeg vs Dallas: Total Goals | total: Over 5.5 goals scored | kalshi | $28k | -117 | ✅ novig |  | +0.0c |  | pending |
 | Nov 12 10:51AM | NCAAF | Houston vs Colorado | moneyline: Houston | kalshi | $201k | -335 | ✅ novig |  | +0.0c |  | pending |
 | Nov 12 10:31AM | NHL | Detroit vs Florida | moneyline: Florida | kalshi | $37k | -163 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Nov 12 10:07AM | NCAAF | Illinois vs UCLA: Spread | spread: NOT UCLA wins by over 9.5 points | kalshi | $39k | +108 | ✅ novig |  | +0.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 9 6:35PM | NBA | Spurs vs. Suns | spread: Suns (+8.5) | polymarket | $269k | +108 | ✅ kalshi |  | +1.0c |  | L |
 | Nov 9 6:35PM | NBA | Spurs vs. Suns | moneyline: Suns | polymarket | $317k | +317 |  |  | +0.0c |  | L |
 | Nov 9 6:35PM | NBA | Nuggets vs. Rockets | moneyline: Rockets | polymarket | $423k | -163 | ✅ kalshi,novig,prophetx | ❌ | +3.0c |  | W |
-| Nov 9 6:35PM | NBA | Grizzlies vs. Raptors | spread: Grizzlies (-1.5) | polymarket | $312k | -104 | ✅ novig | ✅ | +0.0c |  | W |
