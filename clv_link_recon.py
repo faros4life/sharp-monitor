@@ -134,7 +134,7 @@ def main():
     say(f"    by container: {', '.join(f'{a} {b}' for a, b in bykind.most_common())}")
 
     # ------------------------------------------------ the two state files (hop 4)
-    tbets, cbets = {}, {}
+    tbets, cbets, call_ = {}, {}, {}
     try:
         tst = tb.dec(json.load(open(TSTATE)))
         raw = (tst or {}).get("bets")
@@ -143,7 +143,8 @@ def main():
         say(f"  tracker unreadable ({type(e).__name__}) - hop 3/4 cannot be measured")
     try:
         cst = cl.tb.dec(json.load(open(cl.STATE)))
-        cbets = {k: v for k, v in (cst.get("bets") or {}).items() if v.get("clv") is not None}
+        call_ = (cst.get("bets") or {})
+        cbets = {k: v for k, v in call_.items() if v.get("clv") is not None}
     except Exception as e:
         say(f"  CLV ledger unreadable ({type(e).__name__})")
     say(f"  tracker rows {len(tbets)} | CLV-scored rows {len(cbets)}")
@@ -211,6 +212,22 @@ def main():
         if px_no_tracker:
             for oid, tid in px_no_tracker[:8]:
                 say(f"    trade exists, tracker row absent: {oid} -> {tid}")
+        if px_no_clv:
+            # HOP 4, diagnosed rather than named. These reached the tracker through the approved
+            # chain, so linkage is PROVEN for them; the question is why the CLV ledger has not
+            # scored them. The ledger keeps unscored rows with their own reason, so it is read
+            # rather than guessed.
+            say("")
+            say("  hop 4 - linked but not CLV-scored. The ledger's own reason per row:")
+            for oid, tid in px_no_clv[:10]:
+                tr = tbets.get(tid) or {}
+                rec2 = call_.get(tid)
+                if rec2 is None:
+                    why = "absent from the CLV ledger entirely"
+                else:
+                    why = (str(rec2.get("why") or rec2.get("reason") or "")[:52]
+                           or f"present, clv None, tries {rec2.get('tries')}")
+                say(f"    {tid[:30]:<30} result {str(tr.get('result') or '-'):<3} {why}")
 
     # ================================================ NOVIG
     say("")
@@ -295,28 +312,106 @@ def main():
             for k in ("orderId", "clientId", "fillId"):
                 hit = sum(1 for o in nv_oids if o in alt[k])
                 say(f"  executor order ids present as fill.{k:<9}: {hit} of {len(nv_oids)}")
+            # THE CORRECTION. 0 of 35 executor ids appeared as fill.orderId and 28 of 35 appeared
+            # as fill.clientId, and two of the ProphetX ids are literally "intent-<hex>" -
+            # journal_intent's own format. So what the ledger stores in live_order.order_id is the
+            # CLIENT id the executor generated, not the venue's order id. The id was on both sides
+            # all along; the reader compared the wrong pair. Join on clientId, fall back to orderId.
+            byc = collections.defaultdict(list)
+            for f in fills:
+                for k in ("clientId", "client_id", "orderId", "order_id"):
+                    v = f.get(k)
+                    if v is not None:
+                        byc[str(v)].append(f)
+            # PARTIAL FILLS: one client id can have several fills. They are summed ONCE per order
+            # below, never counted per fill, so a resting order that filled in pieces is one
+            # reconciliation - not N.
             for oid in sorted(nv_oids):
-                fs = byo.get(oid) or []
+                fs = byc.get(oid) or byo.get(oid) or []
                 if not fs:
                     nv_nf.append(oid)
                     continue
-                for f in fs:
-                    mk = f.get("marketId") or f.get("market_id")
-                    oc = f.get("outcomeId") or f.get("outcome_id")
-                    tid = f"nv|{mk}|{oc}"
-                    if tid not in tbets:
-                        nv_nt.append((oid, tid))
-                    elif tid not in cbets:
-                        nv_nc.append((oid, tid))
-                    else:
-                        nv_m.append((oid, tid, omap[oid]["key"]))
+                # every fill of one order must point at the same market+outcome; if it does not,
+                # the id is ambiguous and the order is left unresolved rather than joined
+                tids = {f"nv|{f.get('marketId') or f.get('market_id')}|"
+                        f"{f.get('outcomeId') or f.get('outcome_id')}" for f in fs}
+                if len(tids) != 1:
+                    nv_nt.append((oid, f"AMBIGUOUS: {len(tids)} market/outcome pairs"))
+                    continue
+                tid = tids.pop()
+                qty = sum(int(f.get("qty") or 0) for f in fs)
+                cost = sum(float(f.get("cost") or 0) for f in fs)
+                if tid not in tbets:
+                    nv_nt.append((oid, tid))
+                elif tid not in cbets:
+                    nv_nc.append((oid, tid, len(fs), qty, cost))
+                else:
+                    nv_m.append((oid, tid, omap[oid]["key"], len(fs), qty, cost))
             say("")
             say(f"  MATCHED  order -> fill -> tracker -> CLV   {len(nv_m):4d}")
-            say(f"  UNMATCHED: no fill with that orderId        {len(nv_nf):4d}")
-            say(f"  UNMATCHED: fill found, no tracker row       {len(nv_nt):4d}")
-            say(f"  UNMATCHED: tracker row found, not scored    {len(nv_nc):4d}")
-            for oid, tid, key in nv_m[:10]:
-                say(f"    MATCH {oid} -> {tid} -> {str(key)[:44]}")
+            say(f"  FILLED, no fill row for that id            {len(nv_nf):4d}   <- UNFILLED or UNRESOLVED")
+            say(f"  FILLED, fill found but no tracker row      {len(nv_nt):4d}")
+            say(f"  FILLED, tracker row found but not scored   {len(nv_nc):4d}")
+            # Muse item 5: fills must reconcile to stake, price and quantity with no double-count.
+            # Novig cost is qty x price x 1c, so stake = cost; the tracker's stake is the check.
+            say("")
+            say("  fills vs the tracker's own stake (partials summed ONCE per order):")
+            for oid, tid, key, nf, qty, cost in nv_m[:14]:
+                tr = tbets.get(tid) or {}
+                ts = tr.get("stake")
+                agree = ("n/a" if ts is None else
+                         "AGREES" if abs(float(ts) - cost) <= 0.02 else "DIFFERS")
+                say(f"    {oid[:26]:<26} {tid[:30]:<30} fills {nf:2d} qty {qty:5d} -> {agree}")
+                if ts is not None and agree == "DIFFERS":
+                    priv(f"      fill cost ${cost:,.2f} vs tracker stake ${float(ts):,.2f}")
+            for oid, tid, nf, qty, cost in nv_nc[:10]:
+                say(f"    not CLV-scored: {oid[:24]:<24} {tid[:30]:<30} fills {nf:2d} qty {qty:5d}")
+            for oid, tid in nv_nt[:8]:
+                say(f"    no tracker row: {oid[:24]:<24} {str(tid)[:40]}")
+            if nv_nf:
+                say("")
+                say("  the ids with no fill row at all - UNFILLED vs UNRESOLVED is NOT decided here:")
+                say("  deciding it needs the venue's ORDER status, and order_state() in")
+                say("  novig_live_order signs with the TRADING key, which this job is deliberately")
+                say("  not given. A read-only /v3/portfolio/orders probe is tried below instead.")
+                for oid in nv_nf[:10]:
+                    say(f"    {oid}")
+            # UNFILLED vs UNRESOLVED, without the trading key. If the READ key can list orders,
+            # the order's own status settles it; if the endpoint refuses, that is reported and the
+            # split stays undecided rather than inferred from the absence of a fill.
+            if nv_nf:
+                try:
+                    od = nv.get("/v3/portfolio/orders", {"limit": 100})
+                    orders = []
+                    for v in (od.values() if isinstance(od, dict) else [od]):
+                        if isinstance(v, list):
+                            orders += v
+                        elif isinstance(v, dict):
+                            orders += v.get("items") or v.get("orders") or v.get("data") or []
+                    say("")
+                    say(f"  read-only orders probe: {len(orders)} order(s)")
+                    if orders:
+                        say(f"  ORDER FIELDS: {', '.join(fields_of(orders))}")
+                        idx = {}
+                        for o in orders:
+                            for k in ("clientId", "client_id", "orderId", "order_id", "id"):
+                                if o.get(k) is not None:
+                                    idx.setdefault(str(o[k]), o)
+                        hit = [(o2, idx[o2]) for o2 in nv_nf if o2 in idx]
+                        say(f"  of {len(nv_nf)} unfilled-or-unresolved ids, {len(hit)} found in orders")
+                        for o2, rec2 in hit[:10]:
+                            st2 = rec2.get("status") or rec2.get("state")
+                            fq = rec2.get("filledQty") or rec2.get("filled_qty")
+                            say(f"    {o2[:26]:<26} status {str(st2)[:14]:<14} filledQty {fq}")
+                        if hit:
+                            say("  -> these are now classifiable: a status with no fill and no")
+                            say("     filledQty is UNFILLED; anything else stays UNRESOLVED.")
+                except Exception as e:
+                    say("")
+                    say(f"  orders probe refused ({type(e).__name__}: {str(e)[:50]})")
+                    say("  -> UNFILLED vs UNRESOLVED stays UNDECIDED. Deciding it needs either the")
+                    say("     trading key in a read-only job (Peter's call - it is the key that can")
+                    say("     place) or a read-scoped orders endpoint.")
         elif has_st:
             say("  -> NOT PROVEN. A fill carries strike_id but not marketId/outcomeId, so reaching")
             say("     the tracker key would need strike_id == outcomeId, which no record here")
