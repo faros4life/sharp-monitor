@@ -1,0 +1,32 @@
+name: novig-dispatch-trace
+
+on:
+  workflow_dispatch:
+    inputs:
+      client_id:
+        description: "client_id to trace (blank = the Louisiana order)"
+        required: false
+      days:
+        description: "how many days of runner history to read"
+        required: false
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      # READ-ONLY. Every call in novig_dispatch_trace.py is a GET: no workflow is dispatched,
+      # cancelled or re-run, no order is placed, amended or cancelled, no live setting changes.
+      - name: Trace which run placed a Novig order
+        env:
+          NOVIG_SNAPSHOT_TOKEN: ${{ secrets.NOVIG_SNAPSHOT_TOKEN }}
+          TRACE_CLIENT_ID: ${{ github.event.inputs.client_id }}
+          TRACE_DAYS: ${{ github.event.inputs.days }}
+        run: python -u novig_dispatch_trace.py
