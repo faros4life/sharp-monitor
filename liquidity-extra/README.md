@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 12, 1:01 AM ET. This run: 0 new, 0 not confirmed, 5 pending. Open alerts: 5.
+Updated Thu Nov 12, 1:11 AM ET. This run: 3 new, 0 not confirmed, 8 pending. Open alerts: 8.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,9 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 12 1:11AM | NCAAB | Stetson vs Howard | moneyline: Howard | kalshi | $150k | -525 |  |  | +0.0c |  | pending |
+| Nov 12 1:11AM | NCAAB | Cal State Bakersfield vs Western Illinois | moneyline: Cal State Bakersfield | kalshi | $169k | -376 |  |  | +0.0c |  | pending |
+| Nov 12 1:11AM | NCAAB | Coppin St. vs Bradley | moneyline: Bradley | kalshi | $173k | -426 |  |  | +0.0c |  | pending |
 | Nov 11 10:53PM | TENNIS | Kostyuk vs Gauff | moneyline: Gauff | kalshi | $75k | -270 |  |  | +0.0c |  | pending |
 | Nov 11 5:31PM | NCAAB | Charleston vs Temple | moneyline: Charleston | kalshi | $25k | -117 |  |  | -1.0c | yes | W |
 | Nov 11 2:48PM | TENNIS | Michelsen vs Tabilo | moneyline: Michelsen | kalshi | $60k | -300 |  |  | +2.0c |  | pending |
@@ -207,6 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 31 6:20AM | TENNIS | Baez vs Dzumhur | moneyline: Dzumhur | kalshi | $43k | -194 | ✅ novig |  | -1.0c |  | L |
 | Oct 31 5:00AM | TENNIS | Sun vs Dart | moneyline: Sun | kalshi | $169k | -300 |  |  | -61.0c | yes | L |
 | Oct 31 3:20AM | TENNIS | Zverev vs de Minaur | moneyline: Zverev | kalshi | $29k | -233 | ✅ novig |  | +2.0c |  | L |
-| Oct 31 3:20AM | TENNIS | Vacherot vs Fritz | moneyline: Fritz | kalshi | $26k | -285 | ✅ novig |  | +0.0c | yes | L |
-| Oct 31 3:20AM | TENNIS | Lehecka vs Struff | moneyline: Lehecka | kalshi | $34k | -203 | ✅ novig |  | -1.0c | yes | W |
-| Oct 31 3:20AM | TENNIS | Gaston vs Kopriva | moneyline: Gaston | kalshi | $31k | -203 |  |  | -3.0c | yes | L |
