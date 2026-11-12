@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 12, 4:21 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 65.
+Updated Thu Nov 12, 4:28 PM ET. This run: 0 new, 1 not confirmed, 2 pending. Open alerts: 65.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -16,7 +16,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 12 3:22PM | NFL | Washington Commanders at New York Giants | moneyline: Washington Commanders | prophetx | $25k | +116 | ✅ kalshi,novig |  | +1.1c |  | pending |
 | Nov 12 3:13PM | NHL | Tampa Bay vs Columbus: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $40k | -104 | ✅ novig |  | +0.0c |  | pending |
 | Nov 12 3:13PM | NHL | Minnesota vs Toronto: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $38k | -108 | ✅ novig |  | +0.0c |  | pending |
-| Nov 12 3:00PM | NFL | Washington Commanders @ New York Giants | moneyline: WSH (0) | novig | $35k | +115 | ✅ kalshi |  | +0.5c |  | pending |
+| Nov 12 3:00PM | NFL | Washington Commanders @ New York Giants | moneyline: WSH (0) | novig | $35k | +115 | ✅ kalshi |  | +1.0c |  | pending |
 | Nov 12 3:00PM | NFL | Washington vs New York G | moneyline: Washington | kalshi | $338k | +117 | ✅ novig |  | +1.0c | yes | pending |
 | Nov 12 2:20PM | NBA | Toronto vs Philadelphia: Total Points | total: NOT Over 224.5 points | kalshi | $37k | -113 |  | ❌ | -1.0c |  | pending |
 | Nov 12 1:44PM | NHL | Washington vs New Jersey: Spread | spread: NOT New Jersey wins by over 1.5 goals | kalshi | $51k | -178 |  |  | +0.0c |  | pending |
@@ -54,7 +54,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 12 5:40AM | NHL | Montreal vs Boston | moneyline: Boston | kalshi | $43k | -117 |  |  | +0.0c |  | pending |
 | Nov 12 5:37AM | NHL | St. Louis vs Utah: Spread | spread: NOT Utah wins by over 1.5 goals | kalshi | $35k | -223 |  |  | +5.0c |  | pending |
 | Nov 12 5:30AM | NHL | Buffalo vs Chicago: Spread | spread: NOT Buffalo wins by over 1.5 goals | kalshi | $31k | -178 |  |  | +0.0c |  | pending |
-| Nov 12 5:20AM | NBA | Detroit vs Washington: Spread | spread: Detroit wins by over 9.5 points | kalshi | $25k | -117 |  |  | +0.0c | yes | pending |
+| Nov 12 5:20AM | NBA | Detroit vs Washington: Spread | spread: Detroit wins by over 9.5 points | kalshi | $25k | -117 |  |  | -1.0c | yes | pending |
 | Nov 12 5:10AM | NCAAF | Illinois vs UCLA | moneyline: UCLA | kalshi | $151k | -335 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Nov 12 5:05AM | NHL | Tampa Bay vs Columbus | moneyline: Columbus | kalshi | $61k | +108 |  |  | +2.0c |  | pending |
 | Nov 12 2:05AM | NFL | Washington vs New York G: Spread | spread: NOT New York G wins by over 2.5 points | kalshi | $108k | -108 |  |  | +1.0c | yes | pending |
