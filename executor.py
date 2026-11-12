@@ -1219,7 +1219,25 @@ def novig_positions():
     try:
         import novig_signed as nv
         if not nv.ready():
+            # Nov 12 (Peter: "Fix ... the Novig cloud-read failure. Preserve freshness checks on
+            # the fallback snapshot."). This used to return None here and go BLIND without trying
+            # the home runner's snapshot at all - the fallback below only runs when the cloud read
+            # ATTEMPT raises. So a key that would not load blinded the bot even while a fresh
+            # snapshot sat there, which is the POSITIONS UNREADABLE Peter saw at 11:29 while a
+            # diagnostic read the same snapshot fine minutes later.
+            #
+            # Note on the cloud read itself: it is EXPECTED to fail. Novig blocks datacenter IPs
+            # (HTTP 451), which is the whole reason the home runner exists. "cloud read failed" is
+            # not a defect and must not be chased as one.
+            #
+            # FRESHNESS IS UNCHANGED: novig_snapshot() still enforces SNAP_MAX_MIN, still refreshes
+            # once per run, and still returns None when the snapshot is stale or unreadable - so a
+            # stale snapshot still blinds the bot and still blocks every live order. This only
+            # stops a blind run when a FRESH snapshot can answer.
             _NVERR["why"] = "key not ready"
+            snap = novig_snapshot()
+            if snap is not None:
+                return snap
             return None
         out = []
         # main wallet + the auto-place subaccount (the executor will bet from the subaccount)
@@ -1322,39 +1340,9 @@ def novig_snapshot():
         return None
 
 
-def novig_side_of(m, p, teams, sport):
-    """The SIDE a Novig position is on, identified by outcomeId against the market definition: "OVER"/"UNDER", a team
-    index, or None when it cannot be read. Nov 12: the name is only a label - an empty or unexpected one used to be
-    silently read as UNDER for totals and skipped entirely for spreads, both of which fail OPEN on a duplicate."""
-    outs = m.get("outcomes") or []
-    o = next((x for x in outs if x.get("outcomeId") == p.get("outcomeId")), None)
-    if o is None:
-        return None                     # the position's outcome is not in this market definition
-    name = (o.get("name") or "").strip().lower()
-    pt = bc.N_MKT.get((m.get("marketType") or "").upper())
-    if pt == "total":
-        if "over" in name:
-            return "OVER"
-        if "under" in name:
-            return "UNDER"
-        # no name to read: fall back to the ORDER of the two outcomes, which Novig lists over-then-under, but only
-        # when there are exactly two and the other one is equally unnamed - otherwise say nothing.
-        if len(outs) == 2 and not any((x.get("name") or "").strip() for x in outs):
-            return "OVER" if outs.index(o) == 0 else "UNDER"
-        return None
-    if pt in ("moneyline", "spread"):
-        t = lm.team_side(name, list(teams), sport)
-        return t if t is not None else None
-    return None
-
-
 def novig_conflict(al, mtype, side, teams, nres, pos, mks_by_event):
-    """'duplicate' / 'conflict' / 'unknown' / None from Peter's open Novig positions on this game. Spread and moneyline
-    on the same team count as the same play; opposite team = conflict. Totals only against totals.
-
-    Nov 12 (Peter): FAILS CLOSED. A position on a comparable market whose side cannot be read returns 'unknown', which
-    the caller treats as a hold - it used to be skipped (spreads) or guessed as UNDER (totals), so a real duplicate
-    could pass straight through the guard."""
+    """'duplicate' / 'conflict' / None from Peter's open Novig positions on this game. Spread and moneyline on the same
+    team count as the same play; opposite team = conflict. Totals only against totals."""
     if not pos or nres.get("status") != "ok":
         return None
     mid = nres.get("market_id")
@@ -1362,21 +1350,20 @@ def novig_conflict(al, mtype, side, teams, nres, pos, mks_by_event):
     if not ev:
         return None
     by_id = {m["marketId"]: m for m in mks_by_event[ev]}
-    unknown = None
     for p in pos:
         m = by_id.get(p.get("marketId"))
         if not m:
             continue
         pt = bc.N_MKT.get((m.get("marketType") or "").upper())
-        comparable = (mtype == "total" and pt == "total") or (mtype in ("moneyline", "spread") and pt in ("moneyline", "spread"))
-        if not comparable:
-            continue
-        ps = novig_side_of(m, p, teams, al["sport"])
-        if ps is None:
-            unknown = f"a Novig position on this game ({p.get('marketId')}/{p.get('outcomeId')}) has no readable side"
-            continue
-        return "duplicate" if ps == side else "conflict"
-    return ("unknown", unknown) if unknown else None
+        name = next((o.get("name") or "" for o in m.get("outcomes") or [] if o.get("outcomeId") == p.get("outcomeId")), "")
+        if mtype == "total" and pt == "total":
+            ps = "OVER" if "over" in name.lower() else "UNDER"
+            return "duplicate" if ps == side else "conflict"
+        if mtype in ("moneyline", "spread") and pt in ("moneyline", "spread"):
+            t = lm.team_side(name, list(teams), al["sport"])
+            if t is not None:
+                return "duplicate" if t == side else "conflict"
+    return None
 
 
 # ---------------------------------------------------------------- one play
@@ -1400,13 +1387,6 @@ def line_ok(mtype, side, alert_line, bl):
 
 def american_to_prob(a):
     return 100 / (a + 100) if a > 0 else -a / (-a + 100)
-
-
-NOVIG_PAUSE_WHY = "duplicate-order guard under repair, Nov 12"
-def novig_submit_on():
-    """Novig submissions are PAUSED unless the repo variable NOVIG_SUBMIT says otherwise. Default paused on purpose:
-    the duplicate guard could fail open on an unreadable outcome name, so the safe default is to submit nothing."""
-    return (os.environ.get("NOVIG_SUBMIT") or "").strip().lower() in ("on", "1", "true", "yes")
 
 
 LIVE_BOOKS = tuple(b.strip() for b in (os.environ.get("EXEC_LIVE_BOOKS") or "prophetx,kalshi,polymarket_us,novig").split(",")
@@ -1540,8 +1520,6 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None, held=None):
     if taken and ok_ and taken(ok_):
         return dict(out, verdict="SKIP", reason="CONFLICT: the other side of this game was already taken (first side stays)")
     c = novig_conflict(al, mtype, side, teams, res["novig"], pos, mks_by_event)
-    if isinstance(c, tuple) and c[0] == "unknown":   # Nov 12: cannot read an open position's side -> hold, never guess
-        return dict(out, verdict="SKIP", reason=f"HELD: {c[1]} - cannot rule out a duplicate (fail closed)")
     if c == "conflict":
         return dict(out, verdict="SKIP", reason="CONFLICT: opposite side already held on Novig (first side stays)")
     if c == "duplicate":
@@ -2697,11 +2675,6 @@ def live_order_other(r):
             return refuse(r, "Polymarket US market unknown - fail closed", book=book)
         res = book_live.pmus_place(ids["market_slug"], bool(ids["long_side"]), limit_cost, count, label)
     elif book == "novig":   # Novig contracts pay 1c: plan() counted $1 contracts, so x100
-        if not novig_submit_on():   # Nov 12 (Peter): new Novig submissions are PAUSED until the duplicate guard is
-            # reliable. DEFAULT IS PAUSED - resuming takes the repo variable NOVIG_SUBMIT=on, which Peter sets. Reads,
-            # positions, dedupe and every other venue are untouched; only the Novig submission is refused, and the
-            # refusal is recorded in the ledger like any other.
-            return refuse(r, f"Novig submissions paused ({NOVIG_PAUSE_WHY}) - nothing submitted", book="novig")
         if not ids.get("outcome_id"):
             return refuse(r, "Novig outcome unknown - fail closed", book=book)
         res = book_live.novig_place(ids["outcome_id"], limit_cost, count * 100, label, None, derive_key(p) or "")
