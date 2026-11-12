@@ -30,10 +30,14 @@ ck("1 NHL total half goal: 25 CENTS, -110 -> -135 (not a probability)", r["metho
    and r["allowance"] == 25.0 and r["max_am_after_fee"] == -135, str(r))
 ref = lv.Reference("spread", 0, -3.5, 0.5, "t", "pinnacle")
 r = C("NFL", "spread", 0, -3.5, -110, -2.5, None, "vb", ref=ref)
-ck("1 NFL: landing mass through win/push/loss, needs the reference", r["method"] == "mass" and r["input_type"] == "landing mass"
-   and r["status"] == "ok" and "w" in r and r["reference"]["source"] == "pinnacle", str(r))
-r = C("NFL", "spread", 0, -3.5, -110, -2.5, None, "vb")
-ck("1 NFL without a reference is unsupported/no_reference (never a constant)", r["status"] == "unsupported" and r["reason"] == "no_reference")
+ck("1 NFL: landing mass through win/push/loss, ANCHORED ON THE ALERT (the Pinnacle quote is diagnostic only)",
+   r["method"] == "mass" and r["input_type"] == "landing mass" and r["status"] == "ok" and r["reference"]["anchor"] == "alert"
+   and r["diagnostic_reference"]["source"] == "pinnacle", str(r))
+r2 = C("NFL", "spread", 0, -3.5, -110, -2.5, None, "vb")
+ck("1 NFL WITHOUT any Pinnacle data gives the IDENTICAL maximum (no outside gate)",
+   r2["status"] == "ok" and close(r2["max_am_after_fee"], r["max_am_after_fee"]), f"{r2.get('max_am_after_fee')} vs {r.get('max_am_after_fee')}")
+ck("1 the anchor is labelled as the alert's one-sided price, not a fair probability",
+   any("NOT de-vigged" in a for a in r2["assumptions"]) and close(r2["reference"]["q"], lv.am_to_prob(-110), 1e-5), str(r2["reference"]))
 ck("1 every registry entry records source, input type and status", all(v.get("source") and v.get("input_type") and v.get("status") for v in lv.VALUES.values()))
 ck("1 every record carries method, source, lines, prices, allowance, assumptions and calc",
    all(k in r for k in ("method", "source", "alert_line", "alert_am_after_fee", "cand_line", "allowance", "assumptions", "calc")))
@@ -96,33 +100,34 @@ ck("5 walking a listed pair backwards removes the same credit", close(t["allowan
 
 # ---- 6. NCAAF totals gap, NCAAB totals parity and the ambiguous 161, NCAAB spreads
 rt = lambda ln: lv.Reference("total", "OVER", ln, 0.5, "t", "pinnacle")
-g = C("NCAAF", "total", "OVER", 60.5, -110, 59.5, -120, "vb", ref=rt(60.5))
+g = C("NCAAF", "total", "OVER", 60.5, -110, 59.5, -120, "vb")
 ck("6 NCAAF total crossing 60 (in the 58-68 gap) is unsupported/no_mass_row", g["status"] == "unsupported" and g["reason"] == "no_mass_row", str(g))
-g = C("NCAAF", "total", "OVER", 55.5, -110, 54.5, -120, "vb", ref=rt(55.5))
-ck("6 NCAAF total crossing 55 uses the published 4.5%", g["status"] == "ok" and close(g["w"] - 0.5, .045), str(g))
-b = C("NCAAB", "total", "OVER", 161.5, -110, 160.5, -120, "vb", ref=rt(161.5))
+g = C("NCAAF", "total", "OVER", 55.5, -110, 54.5, -120, "vb")
+ck("6 NCAAF total crossing 55 uses the published 4.5%", g["status"] == "ok" and close(g["w"] - g["reference"]["q"], .045, 1e-5), str(g))
+b = C("NCAAB", "total", "OVER", 161.5, -110, 160.5, -120, "vb")
 ck("6 NCAAB total at 161 returns source_boundary_ambiguous", b["status"] == "unsupported" and b["reason"] == "source_boundary_ambiguous", str(b))
-b = C("NCAAB", "total", "OVER", 140.5, -110, 139.5, -120, "vb", ref=rt(140.5))
-ck("6 NCAAB total crossing 140 (even, 137-152) uses 2.1%", b["status"] == "ok" and close(b["w"] - 0.5, .021), str(b))
-b = C("NCAAB", "total", "OVER", 141.5, -110, 140.5, -120, "vb", ref=rt(141.5))
-ck("6 NCAAB total crossing 141 (odd, 137-152) uses 2.4%", b["status"] == "ok" and close(b["w"] - 0.5, .024), str(b))
-b = C("NCAAB", "total", "OVER", 180.5, -110, 179.5, -120, "vb", ref=rt(180.5))
+b = C("NCAAB", "total", "OVER", 140.5, -110, 139.5, -120, "vb")
+ck("6 NCAAB total crossing 140 (even, 137-152) uses 2.1%", b["status"] == "ok" and close(b["w"] - b["reference"]["q"], .021, 1e-5), str(b))
+b = C("NCAAB", "total", "OVER", 141.5, -110, 140.5, -120, "vb")
+ck("6 NCAAB total crossing 141 (odd, 137-152) uses 2.4%", b["status"] == "ok" and close(b["w"] - b["reference"]["q"], .024, 1e-5), str(b))
+b = C("NCAAB", "total", "OVER", 180.5, -110, 179.5, -120, "vb")
 ck("6 NCAAB total beyond the listed ranges is unsupported", b["status"] == "unsupported" and b["reason"] == "no_mass_row", str(b))
-s = C("NCAAB", "spread", 0, -3.5, -110, -2.5, -125, "vb", ref=lv.Reference("spread", 0, -3.5, 0.5, "t", "pinnacle"))
+s = C("NCAAB", "spread", 0, -3.5, -110, -2.5, -125, "vb")
 ck("6 NCAAB spread crossing 3 uses 87/1563 and is labelled an approximation off the exact closing line",
-   s["status"] == "ok" and close(s["w"] - 0.5, 87 / 1563) and any("approximation" in a for a in s["assumptions"]), str(s))
+   s["status"] == "ok" and close(s["w"] - s["reference"]["q"], 87 / 1563, 1e-5) and any("approximation" in a for a in s["assumptions"]), str(s))
 
 # ---- 7. whole-number settlement and fees once
-w = C("NFL", "spread", 0, -3.5, -110, -3.0, -120, "novig", ref=ref)
+w = C("NFL", "spread", 0, -3.5, -110, -3.0, -120, "novig")
 ck("7 whole-number endpoint on an unverified exchange is unsupported (a sportsbook refund proves nothing)", w["status"] == "unsupported" and w["reason"] == "settlement_rule_unverified")
-w = C("NFL", "spread", 0, -3.5, -110, -3.0, -120, "vb", ref=ref)
+w = C("NFL", "spread", 0, -3.5, -110, -3.0, -120, "vb")
 ck("7 ...and valued on a venue with a verified refund rule, with the push mass of 3 explicit", w["status"] == "ok" and close(w["p"], lv.MASS[("NFL", "spread", 3)].m), str(w))
 src = open(lv.__file__).read()
 ck("7 no fee code in the calculation (prices arrive after fees, once)", "WIN_FEE" not in src and "taker" not in src.lower().replace("taker fee", ""))
 
 # ---- 8. selection, max price and recheck agree (same function, same bar)
 for sport, mt, sd, a, c, bk, rf in (("NBA", "spread", 0, -2.5, -1.5, "vb", None), ("NHL", "total", "OVER", 5.5, 5.0, "vb", None),
-                                     ("NFL", "spread", 0, -3.5, -2.5, "vb", ref), ("NCAAF", "spread", 0, -3.0, -2.5, "vb", None)):
+                                     ("NFL", "spread", 0, -3.5, -2.5, "vb", None), ("NCAAF", "spread", 0, -3.0, -2.5, "vb", None),
+                                     ("NCAAB", "spread", 0, -3.5, -2.5, "vb", None), ("NFL", "total", "UNDER", 41.5, 42.5, "vb", None)):
     for tol in (0, 2):
         mx = C(sport, mt, sd, a, -110, c, None, bk, tol, W, rf)
         at = C(sport, mt, sd, a, -110, c, mx["max_am_after_fee"], bk, tol, W, rf)

@@ -32,6 +32,13 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Restore OddsPapi history cache (restore-only, never saves; closing benchmarks come from cached files only)
+        uses: actions/cache/restore@v4
+        with:
+          path: hcache
+          key: hcache-restore-lvaudit-${{ github.run_id }}
+          restore-keys: hcache-
       - name: Audit (counts only)
         env:
           GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
@@ -40,6 +47,7 @@ jobs:
           AUDIT_PREFIXES: ${{ github.event.inputs.prefixes }}
           AUDIT_EMAIL: ${{ github.event.inputs.email }}
           EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}   # read-only decrypt of the fixture cache (closing benchmarks)
         run: python3 line_value_audit.py
       - uses: actions/upload-artifact@v4
         with:

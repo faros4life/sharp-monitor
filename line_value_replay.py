@@ -18,8 +18,9 @@ rounded figure in an email, or from a default.
 Usage:   python3 -I line_value_replay.py email1.txt [email2.txt ...]
 """
 import json
+import os
 import sys
-from collections import Counter
+from collections import Counter, defaultdict
 
 import line_value as lv
 
@@ -236,7 +237,7 @@ def recover_hp(row, mtype, side):
 def fill_detail(row):
     sport, market, side = split_key(row.get("key"))
     mtype = "total" if market == "total" else ("spread" if row.get("alert_line") is not None else "moneyline")
-    d = {"alert_utc": row.get("alert_utc"), "key": row.get("key"), "lane": "lane1" if (row.get("source") or "rules") == "rules" else row.get("source"),
+    d = {"alert_utc": row.get("alert_utc"), "start_utc": row.get("start_utc"), "mtype": mtype, "key": row.get("key"), "lane": "lane1" if (row.get("source") or "rules") == "rules" else row.get("source"),
          "verdict": row.get("verdict"), "live": row.get("live"), "alert_line": row.get("alert_line"), "alert_af": row.get("alert_price_after_fee"),
          "fill_book": row.get("fill_book") or (row.get("live_order") or {}).get("book"), "fill_line": row.get("fill_line"),
          "fill_af": row.get("fill_price_after_fee"), "is_minus_130": row.get("fill_price_after_fee") == -130,
@@ -286,3 +287,137 @@ def fill_counts(details):
         if d["old_hp"] is not None:
             c["old_hp_recovered"] += 1
     return c
+
+
+# ---------------------------------------------------------------- the converted-fill VERDICT (Peter, Nov 12)
+def _dec(am):
+    am = float(am)
+    return 1 + (am / 100 if am > 0 else 100 / abs(am))
+
+
+def _signed(mtype, side, line):
+    """The line as finals expects it: the side's own handicap for spreads, the total for totals."""
+    return line
+
+
+def join_results(details, want_close=True):
+    """For every CONVERTED fill: the settled result at the FILLED line and at the ALERT line, flat units at each, and
+    (when the private history cache is present) Pinnacle's same-line closing fair probability at each. Results come from
+    ESPN finals (free); closes come from the existing OddsPapi history cache (no API call). Nothing is invented: a row
+    with no final or no verified same-line close says so.
+
+    The ALERT-LINE column is the counterfactual Peter's question needs: taking the original line at the alert's own
+    after-fee price, which is what the replacement's maximum protects."""
+    import finals
+    closes = _close_lookup() if want_close else None
+    out = []
+    for d in details:
+        if d.get("alert_line") is None or d.get("fill_line") is None or d["alert_line"] == d["fill_line"]:
+            continue
+        lg = (d.get("key") or "").split("|")[0]
+        game = (d.get("key") or "").split("|")[1] if "|" in (d.get("key") or "") else ""
+        side = (d.get("key") or "").split("|")[3] if (d.get("key") or "").count("|") >= 3 else ""
+        mt = d.get("mtype") or ("total" if (d.get("key") or "").split("|")[2:3] == ["total"] else "spread")
+        start = d.get("start_utc") or d.get("alert_utc")
+        rf = finals.result_named(lg, game, start, mt, side, _signed(mt, side, float(d["fill_line"])))
+        ra = finals.result_named(lg, game, start, mt, side, _signed(mt, side, float(d["alert_line"])))
+        row = dict(d)
+        row["result_fill"], row["result_alert"] = rf, ra
+        row["units_fill"] = finals.units_wl(rf, _dec(d["fill_af"])) if d.get("fill_af") else None
+        row["units_alert_at_alert_price"] = finals.units_wl(ra, _dec(d["alert_af"])) if d.get("alert_af") else None
+        row["conversion_mattered"] = None if (rf is None or ra is None) else (rf != ra)
+        if closes:
+            row["close_fill"], row["close_fill_how"] = closes(lg, game, start, mt, side, float(d["fill_line"]))
+            row["close_alert"], row["close_alert_how"] = closes(lg, game, start, mt, side, float(d["alert_line"]))
+            for tag, ln, af in (("fill", "close_fill", d.get("fill_af")), ("alert", "close_alert", d.get("alert_af"))):
+                p = row.get(ln)
+                row[f"edge_{tag}_pct"] = None if (p is None or not af) else round((p * _dec(af) - 1) * 100, 2)
+        out.append(row)
+    return out
+
+
+def _close_lookup():
+    """A callable giving (Pinnacle no-vig close at this exact line, how) from the PRIVATE history cache, or None when the
+    cache/state is not present. Reads cached files only - it never calls the odds API."""
+    try:
+        import gzip
+        import clv_ledger as cl
+        import clv_std as cs
+        import hist_cache as hc
+        st = cl.tb.dec(json.load(open(cl.STATE)))
+        mkmap = json.load(open("clv/markets.json"))["m"]
+    except Exception:
+        return None
+
+    def look(lg, game, start, mt, side, line):
+        try:
+            b = {"bet": f"{side} {line:g}" if mt == "total" else f"{side} {line:+g}", "league": lg, "game": game,
+                 "game_start": start}
+            fid = cl.find_fixture(st, b)
+            if not fid or not os.path.exists(hc._path(fid, "pinnacle")):
+                return None, "fixture or Pinnacle history not cached"
+            f = st["fixtures"][fid]
+            pm = (json.load(gzip.open(hc._path(fid, "pinnacle"), "rt")) or {}).get("markets") or {}
+            c, why = cl.close_for(b, f, pm, mkmap, cl.tp(f["start"]), lg)
+            if not c:
+                return None, why or "no close"
+            if not cs.close_verified(c.get("how")):
+                return None, "close not verified at this exact line"
+            return round(c["p"], 6), c.get("how")
+        except Exception as ex:
+            return None, f"error:{type(ex).__name__}"
+    return look
+
+
+def verdict_summary(joined):
+    """Counts by replacement verdict: matched to a final, missing, W/L/P, flat units at the filled line and at the alert
+    line, and how often the conversion changed the outcome. Counts and unit sums only - no stakes."""
+    g = defaultdict(lambda: {"fills": 0, "matched": 0, "missing": 0, "W": 0, "L": 0, "P": 0, "units_fill": 0.0,
+                             "units_alert": 0.0, "conversion_changed": 0, "closes_matched": 0, "closes_missing": 0,
+                             "edge_fill_sum": 0.0, "edge_alert_sum": 0.0, "edge_n": 0})
+    for r in joined:
+        k = r.get("repl_verdict") or "unresolved"
+        c = g[k]
+        c["fills"] += 1
+        if r.get("result_fill") in ("W", "L", "P"):
+            c["matched"] += 1
+            c[r["result_fill"]] += 1
+            if r.get("units_fill") is not None:
+                c["units_fill"] += r["units_fill"]
+            if r.get("units_alert_at_alert_price") is not None:
+                c["units_alert"] += r["units_alert_at_alert_price"]
+            if r.get("conversion_mattered"):
+                c["conversion_changed"] += 1
+        else:
+            c["missing"] += 1
+        if r.get("close_fill") is not None:
+            c["closes_matched"] += 1
+            if r.get("edge_fill_pct") is not None and r.get("edge_alert_pct") is not None:
+                c["edge_fill_sum"] += r["edge_fill_pct"]
+                c["edge_alert_sum"] += r["edge_alert_pct"]
+                c["edge_n"] += 1
+        else:
+            c["closes_missing"] += 1
+    for c in g.values():
+        c["units_fill"] = round(c["units_fill"], 3)
+        c["units_alert"] = round(c["units_alert"], 3)
+        c["mean_edge_fill_pct"] = round(c["edge_fill_sum"] / c["edge_n"], 2) if c["edge_n"] else None
+        c["mean_edge_alert_pct"] = round(c["edge_alert_sum"] / c["edge_n"], 2) if c["edge_n"] else None
+        for k in ("edge_fill_sum", "edge_alert_sum"):
+            c.pop(k)
+    return dict(g)
+
+
+def render_verdict(summ):
+    L = ["CONVERTED-FILL VERDICT (flat 1-unit results at the after-fee price; alert-line column is the counterfactual)",
+         "  verdict        fills  matched  missing   W   L   P  units@fill  units@alert  conv_changed  closes  mean edge fill/alert %"]
+    for k in ("would_accept", "would_reject", "unresolved"):
+        c = summ.get(k)
+        if not c:
+            continue
+        L.append(f"  {k:<14} {c['fills']:<6} {c['matched']:<8} {c['missing']:<9} {c['W']:<3} {c['L']:<3} {c['P']:<3} "
+                 f"{c['units_fill']:<11} {c['units_alert']:<12} {c['conversion_changed']:<13} "
+                 f"{c['closes_matched']}/{c['closes_matched'] + c['closes_missing']:<6} "
+                 f"{c['mean_edge_fill_pct']} / {c['mean_edge_alert_pct']}")
+    L.append("  Missing finals and unverified closes stay UNRESOLVED - no result is inferred from a price.")
+    return "\n".join(L)

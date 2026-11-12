@@ -103,7 +103,7 @@ ck("a floor-blocked scenario is identical with the shadow on", core(f_on) == cor
 
 # ---------------------------------------------------------------- 2. complete capture
 L = r_on["lvs"]
-ck("calc version recorded", L["calc"] == lv.CALC_VERSION and L["calc"] == "line_value/v2", str(L.get("calc")))
+ck("calc version recorded", L["calc"] == lv.CALC_VERSION and L["calc"].startswith("line_value/v3"), str(L.get("calc")))
 ck("exact hp recorded at full precision and equal to the decision's own hp", L["hp"] == round(r_on["hp"], 9) and L["hp_src"] == r_on["hp_src"], f"{L['hp']} {r_on['hp']}")
 ck("the complete pre-filter ladder is recorded (all 5 kalshi lines)", sorted(x["line"] for x in L["ladder"]) == sorted(KALSHI), str([x["line"] for x in L["ladder"]]))
 ck("each ladder row carries after-fee price, screen price and depth levels",
@@ -121,10 +121,17 @@ ck("tolerance and tolerance venues recorded", L["tol_cents"] == ex.PX_TOL_CENTS 
 
 # ---------------------------------------------------------------- 3. honest reference
 ck("with no Pinnacle feed cached there is NO reference, and the reason is named", L["reference"] is None and L["reference_status"] == "pinnacle_not_cached", str(L["reference_status"]))
-ck("NFL (mass method) with no reference: every candidate is unsupported/no_reference, with method and source recorded",
-   all(c["shadow"]["status"] == "unsupported" and c["shadow"]["method"] == "mass" and c["shadow"]["source"] and "needs" in c["shadow"]
-       and c["shadow"]["reason"] == ("settlement_rule_unverified" if float(c["line"]).is_integer() else "no_reference") for c in L["cands"]),
-   str([(c["line"], c["shadow"]["reason"]) for c in L["cands"]]))
+ck("NFL (mass method) with NO Pinnacle data is still valued: alert-anchored, with method, source and both maxima recorded",
+   all(c["shadow"]["method"] in ("mass", "same_line") and c["shadow"]["source"] and "needs" in c["shadow"]
+       and (c["shadow"]["status"] == "ok" if not float(c["line"]).is_integer() else c["shadow"]["reason"] == "settlement_rule_unverified")
+       for c in L["cands"]), str([(c["line"], c["shadow"]["status"], c["shadow"]["reason"]) for c in L["cands"]]))
+_hl = [c["shadow"] for c in L["cands"] if not float(c["line"]).is_integer() and c["line"] != L["alert_line"]]
+ck("every valued candidate reports the calculated maximum, the cap and the effective maximum",
+   _hl and all(s["max_am_after_fee_calc"] is not None and s["cap_am"] == ex.CAP_LINE and s["effective_max_am_after_fee"] is not None
+               and isinstance(s["capped"], bool) for s in _hl), str(_hl[:1]))
+ck("the alert's own line is valued with zero credit (unchanged line, no reference needed)",
+   any(c["line"] == L["alert_line"] and c["shadow"]["status"] == "ok" and c["shadow"]["allowance"] == 0.0 for c in L["cands"]),
+   str([(c["line"], c["shadow"].get("allowance")) for c in L["cands"]]))
 c3 = [c for c in L["cands"] if c["line"] == -2.5][0]["shadow"]["needs"]
 ck("crossing 3 (-3.5 -> -2.5) is reported with its mass row available and no settlement rule needed",
    c3["crossed"] == [3] and c3["mass_ok"] and c3["settlement"] == "n/a", str(c3))

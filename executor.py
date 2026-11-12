@@ -1526,8 +1526,10 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None, held=None):
             lvs_notes.append(dict(book=b, line=bl, am_after_fee=r.get("best_price_american"), legacy=why, **kw))
         except Exception:
             pass
+    # DIAGNOSTIC ONLY (Peter, Nov 12): a fresh Pinnacle quote is recorded for comparison and is NOT an execution gate.
+    # The replacement is ALERT-ANCHORED, so it needs no outside quote; this read happens only when LINE_VALUE_PIN_READ=1.
     lv_ref = None
-    if lv_mode() == "live" and mtype in ("spread", "total"):
+    if mtype in ("spread", "total") and os.environ.get("LINE_VALUE_PIN_READ") == "1":
         try:
             import line_value_ref as lvr
             lv_ref, _lvrec = lvr.pinnacle_reference(lv_pin_input(al, now, mtype, side, teams), mtype, side, al["start_utc"], now, al["sport"])
@@ -1555,7 +1557,7 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None, held=None):
             # below and the recheck in revalidate(). Unsupported conversions are skipped with their named reason - never the
             # old constant. The credit is expressed in the legacy gate's units so c_eq / thr keep ONE formula below.
             cv = lvcalc.convert(al["sport"], mtype, side, line, alert_af, bl, am_q, b, PX_TOL_CENTS if b in TOL_BOOKS else 0,
-                                cents_worse, lv_ref)
+                                cents_worse, lv_ref, CAP_LINE)   # CAP_LINE: the effective maximum is never looser than the cap
             if cv["status"] != "ok":
                 _note(b, bl, r, "lv_unsupported:" + str(cv.get("reason")), hb=hb)
                 continue
@@ -1586,7 +1588,7 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None, held=None):
             out["lvs"] = lvsh.build(
                 {"play_key": p.get("play_key"), "source": p.get("source"), "sport": al["sport"], "mtype": mtype,
                  "side": side, "alert_line": line, "alert_af": alert_af, "tol_cents": PX_TOL_CENTS,
-                 "tol_books": TOL_BOOKS, "hp": hp, "hp_src": hp_src, "floor": floor,
+                 "tol_books": TOL_BOOKS, "hp": hp, "hp_src": hp_src, "floor": floor, "cap_am": CAP_LINE,
                  "now_utc": now.strftime("%Y-%m-%dT%H:%M:%SZ"), "now_dt": now, "start_utc": al["start_utc"],
                  "pin": lv_pin_input(al, now, mtype, side, teams)},
                 [{"book": b, "line": bl, "am_after_fee": r.get("best_price_american"),
@@ -2033,7 +2035,7 @@ def revalidate(r, stake=None):
         # REPLACEMENT PATH: the SAME convert() with the SAME stored reference the play qualified under
         cv = lvcalc.convert((rv.get("al") or {}).get("sport"), mtype, rv.get("side"), rv["line"], rv["alert_af"], ln, am_q, book,
                             PX_TOL_CENTS if book in TOL_BOOKS else 0, cents_worse,
-                            lvcalc.Reference(**rv["lv_ref"]) if rv.get("lv_ref") else None)
+                            lvcalc.Reference(**rv["lv_ref"]) if rv.get("lv_ref") else None, CAP_LINE)
         if cv["status"] != "ok":
             return False, f"{book}: line conversion unsupported at order time ({cv.get('reason')}) - fail closed", None
         c_eq_q = american_to_prob(am_q) - lv_credit(cv, rv["alert_cost"], tol)
@@ -3451,7 +3453,7 @@ def ledger_row(r, run_start):
     lv = r.get("live") or {}
     return {"key": derive_key(p) or p.get("play_key"), "source": p.get("source") or "muse", "verdict": r["verdict"],
             "reason": r.get("reason"), "alert_utc": e.get("alert_utc") or p.get("alert_utc"), "verdict_utc": p.get("verdict_utc"),
-            "run_start_utc": run_start.strftime("%Y-%m-%dT%H:%M:%SZ"), "decided_utc": dec.strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "run_start_utc": run_start.strftime("%Y-%m-%dT%H:%M:%SZ"), "start_utc": p.get("start_utc"),   # Nov 12: the game start, so a later audit can join settled results exactly "decided_utc": dec.strftime("%Y-%m-%dT%H:%M:%SZ"),
             "latency_s": round((dec - at).total_seconds()) if at else None,
             "muse_delay_s": round((vt - at).total_seconds()) if (vt and at) else None,
             "alert_book": e.get("book_key"), "alert_price_after_fee": e.get("price_after_fee"), "alert_line": e.get("point"),

@@ -67,14 +67,25 @@ def main():
     print(rp.render(rp.report(texts), detail=False))
     det = rp.fill_details(texts)
     print("  fills: " + ", ".join(f"{k} {v}" for k, v in sorted(rp.fill_counts(det).items())))   # counts only in the log
+    joined = []
+    if os.environ.get("AUDIT_VERDICT") != "0":
+        joined = rp.join_results(det, want_close=os.environ.get("AUDIT_CLOSES") != "0")
+        print(rp.render_verdict(rp.verdict_summary(joined)))
     os.makedirs("summary", exist_ok=True)
     import csv
     with open("summary/line_value_audit_fills.csv", "w", newline="") as fh:   # lines and prices, never stakes or balances
         w = csv.DictWriter(fh, fieldnames=list(det[0]) if det else ["key"])
         w.writeheader()
         w.writerows(sorted(det, key=lambda d: (not d["is_minus_130"], d["alert_utc"] or "")))
+    if joined:
+        with open("summary/line_value_verdict.csv", "w", newline="") as fh:
+            w = csv.DictWriter(fh, fieldnames=list(joined[0]))
+            w.writeheader()
+            w.writerows(sorted(joined, key=lambda d: (not d["is_minus_130"], d["alert_utc"] or "")))
     if os.environ.get("AUDIT_EMAIL") == "1":   # one-off, explicit: the per-fill CSV to the private inbox (never the public log)
         email_csv("summary/line_value_audit_fills.csv", rp.fill_counts(det))
+        if joined:
+            email_csv("summary/line_value_verdict.csv", rp.verdict_summary(joined))
 
 
 def email_csv(path, counts):

@@ -34,7 +34,7 @@ A better line has a LOWER c.
 import math
 from dataclasses import dataclass
 
-CALC_VERSION = "line_value/v2"
+CALC_VERSION = "line_value/v3"   # v3: alert-anchored (no outside reference gates a decision)
 EPS = 1e-9
 
 
@@ -218,6 +218,7 @@ class Reference:
     ts: str                # UTC timestamp the two-sided quote was read
     source: str            # venue/book the quote came from
     two_sided: bool = True
+    anchor: str = "two_sided"   # "two_sided" = de-vigged outside quote; "alert" = the alert's own after-fee price
 
 
 @dataclass(frozen=True)
@@ -231,9 +232,23 @@ class Outcomes:
         assert abs(self.w + self.p + self.l - 1.0) < 1e-9 and min(self.w, self.p, self.l) >= -1e-12
 
 
+ALERT_ANCHOR_NOTE = ("anchored on the alert's own after-fee price at its own line (one-sided, NOT de-vigged): the same "
+                     "quantity the legacy rule treats as the break-even bar, so the maximum is relative to the alert")
+
+
+def alert_reference(mtype, side, alert_line, alert_am_after_fee):
+    """The ALERT-ANCHORED reference (Peter, Nov 12): q is the alert's own after-fee implied cost, used as P(win | no push)
+    at the alert line. No outside quote, no network, no freshness window - the alert is the anchor. It is not a de-vigged
+    fair probability and is labelled as such everywhere it is used."""
+    q = am_to_prob(alert_am_after_fee)
+    if not (EPS < q < 1 - EPS):
+        raise Unsupported("incoherent_probability", f"alert cost {q:.4f}")
+    return Reference(mtype, side, alert_line, q, "alert", "alert price", two_sided=False, anchor="alert")
+
+
 def outcomes_at(ref, sport, line):
     """(win, push, loss) at `line` for the reference's own side, derived from the reference. Raises Unsupported."""
-    if not ref.two_sided:
+    if not ref.two_sided and ref.anchor != "alert":
         raise Unsupported("reference_not_two_sided")
     if not (0.0 < ref.q < 1.0):
         raise Unsupported("reference_probability_out_of_range", f"q={ref.q}")
@@ -428,7 +443,7 @@ def _steps(c0, c1):
 
 
 def convert(sport, mtype, side, alert_line, alert_am_after_fee, cand_line, cand_am_after_fee, book,
-            tol_cents=0, worse=None, ref=None):
+            tol_cents=0, worse=None, ref=None, cap_am=None):
     """THE shared conversion. Used (in the replacement path only) for candidate selection, maximum acceptable price
     and the order recheck, so the three can never disagree. cand_am_after_fee=None asks only for the maximum price.
     Fees: every price passed in is already after fees (the venue checkers price them); nothing here adds a fee.
@@ -442,23 +457,34 @@ def convert(sport, mtype, side, alert_line, alert_am_after_fee, cand_line, cand_
            "max_am_after_fee": None, "max_prob": None, "qualifies": None}
     try:
         if mtype == "moneyline" and sport in NO_TIE and cand_line is not None and abs(abs(cand_line) - 1.5) < EPS:
-            return _convert_ml15(rec, sport, side, alert_am_after_fee, cand_am_after_fee, book, tol_cents, worse)
+            return _convert_ml15(rec, sport, side, alert_am_after_fee, cand_am_after_fee, book, tol_cents, worse, cap_am)
         v = VALUES.get((sport, mtype))
         if v is None:
             raise Unsupported("market_not_supported", f"{sport} {mtype}")
         rec.update(method=v["method"], input_type=v["input_type"], value_status=v["status"], source=v["source"],
                    assumptions=list(v.get("assumptions") or []))
         c0, c1 = cover_threshold(mtype, side, alert_line), cover_threshold(mtype, side, cand_line)
+        # UNCHANGED LINE (or a differently labelled contract with the same winning outcomes): there is no line to convert,
+        # so no reference, no mass row and no settlement rule is needed - the push risk is the alert's own. Zero credit, and
+        # the offer is judged on price alone, exactly as the legacy rule judges a same-line offer. (Peter, Nov 12: unchanged-
+        # line offers must keep evaluating normally when a CONVERSION is unsupported.)
+        if abs(c0 - c1) < EPS or identical_outcomes(sport, mtype, c0, c1):
+            rec.update(method="same_line" if abs(c0 - c1) < EPS else rec["method"], allowance=0.0,
+                       assumptions=rec["assumptions"] + ["unchanged line" if abs(c0 - c1) < EPS else "identical winning outcomes"] + ["zero credit"])
+            return _finish_prob(rec, alert_am_after_fee, cand_am_after_fee, 0.0, tol_cents, worse, cap_am)
         for c in (c0, c1):
             push_ok(book, c, sport, mtype)       # whole endpoints need the EXECUTION venue's verified rule, whatever the method
-        if identical_outcomes(sport, mtype, c0, c1) and v["method"] != "mass":   # mass: same outcomes give the same w/p/l anyway
-            rec.update(allowance=0.0, assumptions=rec["assumptions"] + ["identical winning outcomes: zero credit"])
-            return _finish_prob(rec, alert_am_after_fee, cand_am_after_fee, 0.0, tol_cents, worse)
         size, fav = _steps(c0, c1)
         if v["method"] == "mass":
-            if ref is None:
-                raise Unsupported("no_reference", "mass method needs an independent two-sided reference")
-            return _convert_mass(rec, ref, sport, book, alert_line, alert_am_after_fee, cand_line, cand_am_after_fee, tol_cents, worse)
+            # ALERT-ANCHORED (Peter, Nov 12): the decision never depends on an outside quote. `ref`, when supplied, is
+            # recorded as DIAGNOSTIC data for comparison and is never the gate.
+            anchor = alert_reference(mtype, side, alert_line, alert_am_after_fee)
+            rec["assumptions"].append(ALERT_ANCHOR_NOTE)
+            if ref is not None:
+                rec["diagnostic_reference"] = {"line": ref.line, "q": round(ref.q, 6), "ts": ref.ts, "source": ref.source,
+                                               "anchor": ref.anchor}
+            return _convert_mass(rec, anchor, sport, book, alert_line, alert_am_after_fee, cand_line, cand_am_after_fee,
+                                 tol_cents, worse, cap_am)
         if v["method"] == "prob_points":
             if mtype == "spread" and (c0 < -EPS < EPS < c1 or c1 < -EPS < EPS < c0) and (c0 * c1 < 0):
                 raise Unsupported("crosses_zero", "NBA spread sample excludes moves across zero")
@@ -466,7 +492,7 @@ def convert(sport, mtype, side, alert_line, alert_am_after_fee, cand_line, cand_
             if credit is None:
                 raise Unsupported("move_size_not_listed", f"{size} points")
             rec["allowance"] = credit if fav else -credit
-            return _finish_prob(rec, alert_am_after_fee, cand_am_after_fee, rec["allowance"], tol_cents, worse)
+            return _finish_prob(rec, alert_am_after_fee, cand_am_after_fee, rec["allowance"], tol_cents, worse, cap_am)
         if v["method"] == "prob_points_table":
             key = (_round_half(alert_line), _round_half(cand_line))
             credit, sign = v["table"].get(key), +1
@@ -476,14 +502,14 @@ def convert(sport, mtype, side, alert_line, alert_am_after_fee, cand_line, cand_
                 raise Unsupported("pair_not_in_table", f"{alert_line} -> {cand_line}")
             rec["allowance"] = sign * credit
             rec["assumptions"].append("reverse of a listed pair" if sign < 0 else "listed pair")
-            return _finish_prob(rec, alert_am_after_fee, cand_am_after_fee, rec["allowance"], tol_cents, worse)
+            return _finish_prob(rec, alert_am_after_fee, cand_am_after_fee, rec["allowance"], tol_cents, worse, cap_am)
         if v["method"] == "cents":
             allow = {0.5: v["half"], 1.0: v["full"]}.get(size)
             if allow is None:
                 raise Unsupported("move_size_not_listed" if size not in (0.5, 1.0) else "generic_full_point_not_supplied",
                                   f"{size} on {sport} {mtype}")
             rec["allowance"] = allow if fav else -allow
-            return _finish_cents(rec, alert_am_after_fee, cand_am_after_fee, rec["allowance"], tol_cents)
+            return _finish_cents(rec, alert_am_after_fee, cand_am_after_fee, rec["allowance"], tol_cents, cap_am)
         raise Unsupported("method_unknown", v["method"])
     except Unsupported as u:
         rec.update(status="unsupported", reason=u.code, detail=u.detail)
@@ -494,7 +520,7 @@ def _round_half(x):
     return round(float(x) * 2) / 2
 
 
-def _convert_ml15(rec, sport, side, alert_am, cand_am, book, tol_cents, worse):
+def _convert_ml15(rec, sport, side, alert_am, cand_am, book, tol_cents, worse, cap_am=None):
     """ML <-> -1.5 on NHL/MLB: a specifically priced conversion (not a generic full-point move, no half-step on top)."""
     v = VALUES[(sport, "spread")]
     rec.update(method="cents", input_type=v["input_type"], value_status=v["status"], source=v["source"],
@@ -502,7 +528,7 @@ def _convert_ml15(rec, sport, side, alert_am, cand_am, book, tol_cents, worse):
     # neither ML nor -1.5/+1.5 can push in a no-tie sport, so no settlement rule is needed here
     fav = (rec["cand_line"] or 0) > 0   # taking +1.5 is the better line; laying -1.5 is the worse line
     rec["allowance"] = v["ml_15"] if fav else -v["ml_15"]
-    return _finish_cents(rec, alert_am, cand_am, rec["allowance"], tol_cents)
+    return _finish_cents(rec, alert_am, cand_am, rec["allowance"], tol_cents, cap_am)
 
 
 def _tol_prob(alert_am, tol_cents, worse):
@@ -513,31 +539,50 @@ def _tol_prob(alert_am, tol_cents, worse):
     return am_to_prob(worse(alert_am, tol_cents)) - am_to_prob(alert_am)
 
 
-def _finish_prob(rec, alert_am, cand_am, credit, tol_cents, worse):
+def _cap(rec, cap_am):
+    """The EFFECTIVE maximum: the calculated maximum, or the venue-wide price cap when the cap is tighter. Both are
+    reported; the cap never loosens a maximum. cap_am is the caller's global cap (executor.CAP_LINE), or None."""
+    calc = rec.get("max_am_after_fee")
+    rec["max_am_after_fee_calc"] = calc
+    rec["cap_am"] = cap_am
+    if cap_am is None or calc is None:
+        rec["effective_max_am_after_fee"], rec["capped"] = calc, False
+        return rec
+    tighter = cents_of(calc) < cents_of(cap_am)      # lower cents = more expensive = beyond the cap
+    rec["effective_max_am_after_fee"] = cap_am if tighter else calc
+    rec["capped"] = bool(tighter)
+    return rec
+
+
+def _finish_prob(rec, alert_am, cand_am, credit, tol_cents, worse, cap_am=None):
     """prob-points: the candidate's implied cost minus the credit must not exceed the alert cost (+ tolerance)."""
     bar = am_to_prob(alert_am) + _tol_prob(alert_am, tol_cents, worse)
     max_c = bar + credit
     if not (EPS < max_c < 1 - EPS):
         raise Unsupported("incoherent_probability", f"max cost {max_c:.4f}")
     rec.update(status="ok", max_prob=max_c, max_am_after_fee=prob_to_am(max_c))
+    _cap(rec, cap_am)
     if cand_am is not None:
         c_eq = am_to_prob(cand_am) - credit
-        rec.update(c_eq=c_eq, qualifies=c_eq <= bar + EPS)
+        eff = rec["effective_max_am_after_fee"]
+        rec.update(c_eq=c_eq, qualifies=(c_eq <= bar + EPS) and (eff is None or cents_of(cand_am) >= cents_of(eff) - EPS))
     return rec
 
 
-def _finish_cents(rec, alert_am, cand_am, allow, tol_cents):
+def _finish_cents(rec, alert_am, cand_am, allow, tol_cents, cap_am=None):
     """cents: the maximum price is the alert price moved `allow` cents down the ladder (+tolerance), rounded
     conservatively to the venue increment; +100 and -100 are the same even-money point."""
     max_c = cents_of(alert_am) - allow - tol_cents
     max_c = math.ceil(max_c / PRICE_INCREMENT) * PRICE_INCREMENT      # ceil = toward the LESS expensive price
     rec.update(status="ok", max_cents=max_c, max_am_after_fee=am_of_cents(max_c), max_prob=am_to_prob(am_of_cents(max_c)))
+    _cap(rec, cap_am)
     if cand_am is not None:
-        rec.update(qualifies=cents_of(cand_am) >= max_c - EPS)
+        eff = rec["effective_max_am_after_fee"]
+        rec.update(qualifies=cents_of(cand_am) >= cents_of(eff if eff is not None else am_of_cents(max_c)) - EPS)
     return rec
 
 
-def _convert_mass(rec, ref, sport, book, alert_line, alert_am, cand_line, cand_am, tol_cents, worse):
+def _convert_mass(rec, ref, sport, book, alert_line, alert_am, cand_line, cand_am, tol_cents, worse, cap_am=None):
     ev_bar, o0 = bar_ev(ref, sport, alert_line, alert_am, tol_cents, worse)
     o1 = outcomes_at(ref, sport, cand_line)
     if o1.w <= EPS:
@@ -552,10 +597,13 @@ def _convert_mass(rec, ref, sport, book, alert_line, alert_am, cand_line, cand_a
     if any(abs(abs(float(alert_line)) - abs(int(k))) > EPS for k in used):
         rec["assumptions"].append("exact-closing-line mass applied to a nearby starting line (approximation)")
     rec.update(status="ok", ev_bar=ev_bar, max_prob=c, max_am_after_fee=prob_to_am(c), w=o1.w, p=o1.p, l=o1.l,
-               w_alert=o0.w, p_alert=o0.p, l_alert=o0.l, reference={"line": ref.line, "q": ref.q, "ts": ref.ts, "source": ref.source})
+               w_alert=o0.w, p_alert=o0.p, l_alert=o0.l,
+               reference={"line": ref.line, "q": round(ref.q, 6), "ts": ref.ts, "source": ref.source, "anchor": ref.anchor})
+    _cap(rec, cap_am)
     if cand_am is not None:
         ev1 = ev_per_dollar(o1, cand_am)
-        rec.update(ev=ev1, qualifies=ev1 >= ev_bar - EPS)
+        eff = rec["effective_max_am_after_fee"]
+        rec.update(ev=ev1, qualifies=(ev1 >= ev_bar - EPS) and (eff is None or cents_of(cand_am) >= cents_of(eff) - EPS))
     return rec
 
 
@@ -583,7 +631,7 @@ def evaluate(ref, sport, book, alert_line, alert_am_after_fee, cand_line, cand_a
     return convert(sport, mtype, side, alert_line, alert_am_after_fee, cand_line, cand_am_after_fee, book, tol_cents, worse, ref)
 
 
-def max_acceptable(ref, sport, book, alert_line, alert_am_after_fee, cand_line, tol_cents=0, worse=None):
+def max_acceptable(ref, sport, book, alert_line, alert_am_after_fee, cand_line, tol_cents=0, worse=None, cap_am=None):
     """The worst after-fee price at cand_line that still qualifies: the SAME convert() as evaluate()."""
     mtype, side = (ref.mtype, ref.side) if ref is not None else (None, None)
-    return convert(sport, mtype, side, alert_line, alert_am_after_fee, cand_line, None, book, tol_cents, worse, ref)
+    return convert(sport, mtype, side, alert_line, alert_am_after_fee, cand_line, None, book, tol_cents, worse, ref, cap_am)

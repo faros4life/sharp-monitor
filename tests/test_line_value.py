@@ -77,9 +77,9 @@ ck("half->half across 3 needs no settlement rule (no push at either end)",
 
 # ---------------------------------------------------------------- 3. fees exactly once
 r0 = ref(-3.5, 0.55)
-e_a = lv.evaluate(r0, "NFL", "kalshi", -3.5, -110, -3.5, -110)
-o = lv.outcomes_at(r0, "NFL", -3.5)
-ck("EV is w*b - l at exactly the price handed in (no fee inside)", close(e_a["ev"], o.w * lv.net_per_dollar(-110) - o.l), "")
+e_a = lv.evaluate(r0, "NFL", "kalshi", -3.5, -110, -2.5, -140)   # a CONVERTED line: the EV path (a same line is price-only)
+o = lv.outcomes_at(lv.alert_reference("spread", 0, -3.5, -110), "NFL", -2.5)
+ck("EV is w*b - l at exactly the price handed in (no fee inside)", close(e_a["ev"], o.w * lv.net_per_dollar(-140) - o.l), str(e_a))
 ck("a screen price and its after-fee price give DIFFERENT EV (callers must pass after-fee, once)",
    abs(lv.ev_per_dollar(o, -110) - lv.ev_per_dollar(o, ex.cents_worse(-110, 2))) > 1e-4, "")
 src = inspect.getsource(lv)
@@ -114,15 +114,16 @@ for q in (0.45, 0.5, 0.6):
                 e_b = lv.evaluate(rr, "NFL", "testbook", alert_line, am0, cand_line, better, tolc, ex.cents_worse)
                 e_w = lv.evaluate(rr, "NFL", "testbook", alert_line, am0, cand_line, worse, tolc, ex.cents_worse)
                 e_e = lv.evaluate(rr, "NFL", "testbook", alert_line, am0, cand_line, am_edge, tolc, ex.cents_worse)
-                if not (e_b["qualifies"] and not e_w["qualifies"] and abs(e_e["ev"] - e_e["ev_bar"]) < 1e-9):
+                if not (e_b["qualifies"] and not e_w["qualifies"] and (e_e.get("ev") is None or abs(e_e["ev"] - e_e["ev_bar"]) < 1e-9)):
                     bad.append((q, alert_line, cand_line, am0, tolc))
 ck("max_acceptable is exactly evaluate()'s boundary (ev == ev_bar at the edge; better passes; worse fails)", not bad, str(bad[:3]))
 
-# a hand-worked case (independent arithmetic): reference q=.5 at -3.5, alert -110 at -3.5; candidate -2.5 (crosses 3)
+# a hand-worked case (independent arithmetic): ALERT-ANCHORED at -3.5 / -110, candidate -2.5 (crosses 3)
 rr = ref(-3.5, 0.5)
-w1 = 0.5 + M3
-l1 = 0.5 - M3          # the margin-3 mass leaves the LOSS column as it enters the WIN column
-ev_bar_hand = 0.5 * (100 / 110) - 0.5
+q_anchor = lv.am_to_prob(-110)          # the anchor is the alert's own after-fee cost
+w1 = q_anchor + M3
+l1 = (1 - q_anchor) - M3   # the margin-3 mass leaves the LOSS column as it enters the WIN column
+ev_bar_hand = q_anchor * (100 / 110) - (1 - q_anchor)
 b_max = (ev_bar_hand + l1) / w1
 c_hand = 1 / (1 + b_max)
 mx = lv.max_acceptable(rr, "NFL", "kalshi", -3.5, -110, -2.5)
@@ -137,11 +138,16 @@ ck("NBA total is a prob-points credit (no mass row used, reference ignored)", e[
 e = lv.evaluate(ref(-3.0, 0.5), "NFL", "unlisted_venue", -3.0, -110, -2.5, -120)
 ck("whole-number line on a venue with no verified settlement rule -> unsupported", e["status"] == "unsupported"
    and e["reason"] == "settlement_rule_unverified", str(e))
-e = lv.evaluate(lv.Reference("spread", 0, -3.5, 0.5, "t", "s", two_sided=False), "NFL", "kalshi", -3.5, -110, -3.5, -110)
-ck("a one-sided reference is refused", e["status"] == "unsupported" and e["reason"] == "reference_not_two_sided", str(e))
-e = lv.evaluate(lv.Reference("spread", 0, -3.5, 1.2, "t", "s"), "NFL", "kalshi", -3.5, -110, -3.5, -110)
-ck("an impossible reference probability is refused", e["status"] == "unsupported", str(e))
-e = lv.evaluate(ref(-3.5), "NFL", "kalshi", -3.5, -110, -9.5, -120)
+e = lv.evaluate(lv.Reference("spread", 0, -3.5, 0.5, "t", "s", two_sided=False), "NFL", "kalshi", -3.5, -110, -2.5, -140)
+ck("a one-sided DIAGNOSTIC reference changes nothing: the decision is alert-anchored", e["status"] == "ok"
+   and e["reference"]["anchor"] == "alert", str(e))
+ck("the anchor q is exactly the alert's after-fee implied cost and stays inside (0,1)",
+   all(0 < lv.alert_reference("spread", 0, -3.5, a).q < 1 and close(lv.alert_reference("spread", 0, -3.5, a).q, lv.am_to_prob(a))
+       for a in (-100000, -500, -130, -110, 100, 150, 5000)))
+e = lv.evaluate(ref(-3.5), "NFL", "vb_", -3.5, -100000, -2.5, -110)
+ck("an extreme alert price that makes the maximum incoherent is refused, not clipped",
+   e["status"] == "unsupported" and e["reason"] in ("negative_probability", "incoherent_probability", "no_price_meets_bar"), str(e))
+e = lv.evaluate(ref(-3.5), "NFL", "kalshi", -3.5, -110, -9.5, -120)   # 6 points from the alert line
 ck("an integer far from the reference line is refused, not extrapolated", e["status"] == "unsupported", str(e))
 e = lv.evaluate(lv.Reference("moneyline", 0, 0.0, 0.5, "t", "s"), "NFL", "kalshi", 0.0, -110, 0.0, -110)
 ck("moneyline is not modelled here -> unsupported", e["status"] == "unsupported" and e["reason"] == "market_not_supported", str(e))
@@ -188,7 +194,7 @@ ru = lv.Reference("total", "UNDER", 44.5, 0.5, "t", "s")
 ow = lv.outcomes_at(ru, "NFL", 43.5)
 ck("under 44.5 -> 43.5 loses exactly the total==44 mass of win probability",
    close(lv.outcomes_at(ru, "NFL", 44.5).w - ow.w, lv.MASS[("NFL", "total", 44)].m), f"{ow}")
-ck("version string is set", lv.CALC_VERSION == "line_value/v2", "")
+ck("version string is set", lv.CALC_VERSION.startswith("line_value/v3"), "")
 ck("prob_to_am / am_to_prob round-trip", all(abs(lv.am_to_prob(lv.prob_to_am(c)) - c) < 1e-9 for c in (0.1, 0.4, 0.5, 0.52, 0.6, 0.9)), "")
 ck("matches executor.american_to_prob", all(close(lv.am_to_prob(a), ex.american_to_prob(a)) for a in (-300, -130, -110, -100, 100, 105, 250)), "")
 

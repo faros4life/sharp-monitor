@@ -27,7 +27,8 @@ def _r(x, n=6):
 
 
 def reference_for(ctx, ladder):
-    """(Reference | None, why, detail). The reference must be INDEPENDENT of the venue being priced: a separate book,
+    """(Reference | None, why, detail). DIAGNOSTIC ONLY since Nov 12: the replacement is alert-anchored, so nothing here
+    gates a decision. When present it must still be INDEPENDENT of the venue being priced: a separate book,
     two-sided, with a line and timestamps (line_value_ref validates game, market, line, period, freshness and the
     reference book's settlement rule). The execution venue's own opposite quote is recorded in the ladder for
     information but is NOT used - it would only restate the venue's price."""
@@ -46,9 +47,11 @@ def _shadow_one(ctx, ref, cand, worse):
     if am is None:
         return dict(out, status="no_price")
     tol = ctx["tol_cents"] if book in ctx["tol_books"] else 0
-    cv = lv.convert(ctx["sport"], ctx["mtype"], ctx["side"], ctx["alert_line"], ctx["alert_af"], line, am, book, tol, worse, ref)
+    cv = lv.convert(ctx["sport"], ctx["mtype"], ctx["side"], ctx["alert_line"], ctx["alert_af"], line, am, book, tol, worse, ref,
+                    ctx.get("cap_am"))
     keep = ("status", "reason", "detail", "qualifies", "ev", "ev_bar", "w", "p", "l", "method", "input_type", "value_status",
-            "source", "allowance", "assumptions", "max_am_after_fee", "max_prob", "c_eq", "max_cents", "calc")
+            "source", "allowance", "assumptions", "max_am_after_fee", "max_am_after_fee_calc", "effective_max_am_after_fee",
+            "capped", "cap_am", "max_prob", "c_eq", "max_cents", "calc", "reference", "diagnostic_reference")
     return dict(out, **{k: cv.get(k) for k in keep})
 
 
