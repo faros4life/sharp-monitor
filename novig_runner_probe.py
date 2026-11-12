@@ -203,6 +203,33 @@ def main():
             except Exception as ex:
                 print(f"    dispatch failed ({type(ex).__name__})")
 
+    # ------------------------------------------------- 4. CAN this token dispatch an order at all?
+    # Nov 12 (Peter, Novig authorization audit): book_live._gh() signs the novig-live-order dispatch
+    # with NOVIG_SNAPSHOT_TOKEN - the SAME token that executor-dry-run.yml documents twice as
+    # "read-only". A workflow_dispatch needs actions:write, so exactly one of those is wrong, and
+    # which one decides whether Novig submission is gated by EXEC_NOVIG_SUBMIT alone or is also
+    # silently impossible. Answered READ-ONLY here: GET /repos/{repo} reports the authenticated
+    # identity's own permissions. Nothing is dispatched to settle this question.
+    print()
+    print("  4. CAN THE DISPATCH CREDENTIAL ACTUALLY WRITE?")
+    meta, err = gh(f"/repos/{REPO}")
+    if err:
+        print(f"    repo metadata unreadable ({err}) - CANNOT VERIFY the token's scope")
+    else:
+        perms = (meta or {}).get("permissions") or {}
+        print(f"    permissions reported for this token: {perms or 'none reported'}")
+        if perms.get("push") or perms.get("admin") or perms.get("maintain"):
+            print("    -> the token CAN write to the runner repo, so it can dispatch novig-live-order.")
+            print("       The 'read-only token' comments in executor-dry-run.yml are therefore WRONG,")
+            print("       and every workflow carrying this secret holds a live-order dispatch capability.")
+        elif perms:
+            print("    -> the token appears READ-ONLY (no push/maintain/admin). A workflow_dispatch needs")
+            print("       actions:write, so book_live.novig_place() could not reach the runner even with")
+            print("       EXEC_NOVIG_SUBMIT on. Novig submission would be doubly closed, not singly.")
+        else:
+            print("    -> no permissions block returned (typical for a fine-grained PAT). Inconclusive:")
+            print("       scope must be read off the token's own settings page, not inferred here.")
+
     print("=" * 92)
     print("No live setting changed; no order placed; nothing restarted.")
     return 0
