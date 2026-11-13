@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 13, 10:50 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 41.
+Updated Fri Nov 13, 10:55 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 41.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -12,22 +12,22 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 13 10:20AM | NHL | New York R vs Vancouver: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $26k | -104 | ✅ novig,prophetx |  | +1.0c |  | pending |
 | Nov 13 10:15AM | NBA | Golden State vs San Antonio: Spread | spread: NOT San Antonio wins by over 11.5 points | kalshi | $30k | +104 |  |  | +0.0c |  | pending |
-| Nov 13 10:05AM | NBA | Atlanta vs Chicago: Spread | spread: NOT Atlanta wins by over 6.5 points | kalshi | $25k | -104 |  | ✅ | -2.0c | yes | pending |
+| Nov 13 10:05AM | NBA | Atlanta vs Chicago: Spread | spread: NOT Atlanta wins by over 6.5 points | kalshi | $25k | -104 |  | ✅ | -3.0c | yes | pending |
 | Nov 13 10:00AM | NCAAF | Northwestern vs Ohio St.: Spread | spread: NOT Ohio St. wins by over 13.5 points | kalshi | $37k | +108 | ✅ novig |  | +1.0c |  | pending |
-| Nov 13 9:50AM | NCAAF | Maine vs University at Albany | moneyline: Albany | kalshi | $30k | -567 |  |  | +0.0c |  | pending |
-| Nov 13 9:40AM | NBA | Oklahoma City vs Los Angeles C: Spread | spread: Oklahoma City wins by over 6.5 points | kalshi | $27k | -108 |  |  | +1.0c | yes | pending |
+| Nov 13 9:50AM | NCAAF | Maine vs University at Albany | moneyline: Albany | kalshi | $30k | -567 |  |  | +0.0c | yes | pending |
+| Nov 13 9:40AM | NBA | Oklahoma City vs Los Angeles C: Spread | spread: Oklahoma City wins by over 6.5 points | kalshi | $27k | -108 |  |  | +2.0c | yes | pending |
 | Nov 13 9:35AM | NBA | Utah vs Houston: Spread | spread: NOT Houston wins by over 15.5 points | kalshi | $81k | -100 | ✅ novig | ✅ | +0.0c |  | pending |
 | Nov 13 9:30AM | NBA | Memphis vs New Orleans: Total Points | total: Over 235.5 points | kalshi | $39k | -108 |  |  | +3.0c |  | pending |
 | Nov 13 9:25AM | NHL | Nashville vs Vegas | moneyline: Nashville | kalshi | $65k | +144 |  |  | +1.0c |  | pending |
 | Nov 13 9:25AM | NBA | Golden State vs San Antonio | moneyline: San Antonio | kalshi | $145k | -567 |  |  | -1.0c | yes | pending |
 | Nov 13 9:20AM | NBA | Oklahoma City vs Los Angeles C: Total Points | total: NOT Over 222.5 points | kalshi | $41k | -100 |  |  | +0.0c |  | pending |
 | Nov 13 9:15AM | NBA | Memphis vs New Orleans: Spread | spread: NOT Memphis wins by over 2.5 points | kalshi | $26k | -104 |  | ✅ | +1.0c | yes | pending |
-| Nov 13 8:50AM | NBA | Utah vs Houston: Total Points | total: Over 218.5 points | kalshi | $34k | -108 | ✅ novig |  | +4.0c |  | pending |
+| Nov 13 8:50AM | NBA | Utah vs Houston: Total Points | total: Over 218.5 points | kalshi | $34k | -108 | ✅ novig |  | +5.0c |  | pending |
 | Nov 13 8:45AM | NHL | New York R vs Vancouver: Spread | spread: NOT New York R wins by over 1.5 goals | kalshi | $36k | -133 | ✅ novig |  | -1.0c |  | pending |
 | Nov 13 7:44AM | NBA | Memphis vs New Orleans | moneyline: New Orleans | kalshi | $127k | +144 |  | ✅ | +4.0c | yes | pending |
 | Nov 13 4:05AM | NHL | Nashville vs Vegas: Spread | spread: NOT Vegas wins by over 1.5 goals | kalshi | $98k | -156 | ✅ novig |  | +2.0c |  | pending |
 | Nov 13 1:00AM | NCAAF | Houston vs Colorado: Total Points | total: Over 51.5 points | kalshi | $30k | -100 | ✅ novig |  | +1.0c | yes | pending |
-| Nov 13 1:00AM | NCAAF | Norfolk St. vs Morgan St. | moneyline: Morgan St. | kalshi | $44k | -138 |  |  | +1.0c | yes | pending |
+| Nov 13 1:00AM | NCAAF | Norfolk St. vs Morgan St. | moneyline: Morgan St. | kalshi | $44k | -138 |  |  | +0.0c | yes | pending |
 | Nov 13 1:00AM | NCAAF | Illinois St. vs Youngstown St. | moneyline: Youngstown St. | kalshi | $49k | -426 |  |  | +1.0c | yes | pending |
 | Nov 13 1:00AM | NCAAF | Georgetown vs Fordham | moneyline: Fordham | kalshi | $47k | -104 |  |  | +1.0c | yes | pending |
 | Nov 13 1:00AM | NCAAF | Columbia vs Brown | moneyline: Brown | kalshi | $55k | -426 |  |  | +0.0c | yes | pending |
