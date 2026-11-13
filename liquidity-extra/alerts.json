@@ -1,6 +1,185 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-13T17:40:19Z",
+   "base_depth": 38404,
+   "best_price": 0.75,
+   "best_price_american": -300,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.75,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-13",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 14842,
+     "new_this_side": 95030,
+     "other_side": 19602,
+     "other_side_all_levels": 45762,
+     "ratio": 2.8,
+     "this_side": 53920,
+     "this_side_all_levels": 133408
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "Portland (0)",
+     "price": 0.75,
+     "this_side": 2687
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Portland",
+     "price": 0.7531,
+     "this_side": 1255
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 382.97,
+    "volume_24h_fp": 364.53999999999996,
+    "volume_fp": 382.97
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 382.97,
+    "volume_24h_fp": 364.53999999999996,
+    "volume_fp": 382.97
+   },
+   "fade_price": 0.26,
+   "first_seen_utc": "2026-11-13T17:30:23Z",
+   "game": "East Texas A&M vs Portland",
+   "game_surge_books": [],
+   "game_x": 1.59,
+   "key": "kalshi|KXNCAAMBGAME-26NOV13ETAMPORT|ml|1",
+   "lead_min": 560,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 95030,
+   "new_x": 2.64,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 382.97,
+      "volume_24h_fp": 364.53999999999996,
+      "volume_fp": 382.97
+     },
+     "game_normal": 83802,
+     "game_x": 1.59,
+     "normal": 36017,
+     "now": 133408,
+     "type": "ML",
+     "x": 3.7
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 26266.0,
+      "volume": 115829.0
+     },
+     "game_normal": 1971,
+     "game_x": 1.4,
+     "normal": 2833,
+     "now": 2756,
+     "type": "ML",
+     "x": 0.97
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 1105,
+     "game_x": 1.32,
+     "normal": 965,
+     "now": 1461,
+     "type": "ML",
+     "x": 1.52
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.75,
+   "price_american": -300,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.75,
+   "prices_by_book": {
+    "betrivers": {
+     "point": null,
+     "price": -385
+    },
+    "bovada": {
+     "point": null,
+     "price": -300
+    },
+    "draftkings": {
+     "point": null,
+     "price": -325
+    },
+    "fanatics": {
+     "point": null,
+     "price": -320
+    },
+    "fanduel": {
+     "point": null,
+     "price": -330
+    },
+    "kalshi": {
+     "point": null,
+     "price": -300
+    },
+    "novig": {
+     "point": null,
+     "price": -300
+    },
+    "polymarket": {
+     "point": null,
+     "price": -317
+    },
+    "prophetx": {
+     "point": null,
+     "price": -305
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -335
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV13ETAMPORT-PORT"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Portland",
+   "side_label": "Portland",
+   "size_x": 3.7,
+   "start_source": "odds",
+   "start_utc": "2026-11-14T03:00:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "East Texas A&M",
+    "Portland"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-13T17:10:22Z",
    "base_depth": 32501,
    "best_price": 0.5375,
@@ -991,9 +1170,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 835.79,
-    "volume_24h_fp": 835.79,
-    "volume_fp": 835.79
+    "open_interest_fp": 840.4300000000001,
+    "volume_24h_fp": 840.4300000000001,
+    "volume_fp": 840.4300000000001
    },
    "ex_stats_first": {
     "open_interest_fp": 398.0,
@@ -1188,9 +1367,9 @@
     "volume_fp": 0.66
    },
    "ex_stats_close": {
-    "open_interest_fp": 9324.740000000002,
-    "volume_24h_fp": 8234.810000000001,
-    "volume_fp": 9324.740000000002
+    "open_interest_fp": 9350.09,
+    "volume_24h_fp": 8889.369999999999,
+    "volume_fp": 9350.09
    },
    "ex_stats_first": {
     "open_interest_fp": 6997.66,
@@ -1580,9 +1759,9 @@
     "volume_fp": 15.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 9929.140000000001,
-    "volume_24h_fp": 9618.52,
-    "volume_fp": 10418.83
+    "open_interest_fp": 10015.73,
+    "volume_24h_fp": 9705.11,
+    "volume_fp": 10505.42
    },
    "ex_stats_first": {
     "open_interest_fp": 3368.01,
@@ -1944,9 +2123,9 @@
     "volume_fp": 11.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 8869.59,
-    "volume_24h_fp": 8792.15,
-    "volume_fp": 9138.05
+    "open_interest_fp": 8938.56,
+    "volume_24h_fp": 8861.12,
+    "volume_fp": 9207.02
    },
    "ex_stats_first": {
     "open_interest_fp": 7963.4400000000005,
@@ -2340,9 +2519,9 @@
     "volume_fp": 6.18
    },
    "ex_stats_close": {
-    "open_interest_fp": 21887.61,
-    "volume_24h_fp": 21795.0,
-    "volume_fp": 22223.31
+    "open_interest_fp": 21917.190000000002,
+    "volume_24h_fp": 21824.58,
+    "volume_fp": 22252.89
    },
    "ex_stats_first": {
     "open_interest_fp": 2135.42,
@@ -3435,7 +3614,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 28,
+   "settle_tries": 29,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Fritz",
