@@ -1,6 +1,170 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-13T17:10:22Z",
+   "base_depth": 32501,
+   "best_price": 0.5375,
+   "best_price_american": -116,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-13",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 9783,
+     "new_this_side": 29545,
+     "other_side": 9928,
+     "other_side_all_levels": 39002,
+     "ratio": 1.8,
+     "this_side": 18082,
+     "this_side_all_levels": 55013
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 37.21,
+    "volume_24h_fp": 37.21,
+    "volume_fp": 37.21
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 37.21,
+    "volume_24h_fp": 37.21,
+    "volume_fp": 37.21
+   },
+   "fade_price": 0.49,
+   "first_seen_utc": "2026-11-13T17:00:24Z",
+   "game": "Mount St. Mary's vs Virginia Tech: Point Total",
+   "game_surge_books": [
+    "kalshi"
+   ],
+   "game_x": 2.44,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAMBTOTAL-26NOV13MSMVT-150\"}",
+   "lead_min": 410,
+   "league": "NCAAB",
+   "line": 149.5,
+   "market": "total",
+   "new_money": 29545,
+   "new_x": 1.94,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 37.21,
+      "volume_24h_fp": 37.21,
+      "volume_fp": 37.21
+     },
+     "game_normal": 22580,
+     "game_x": 2.44,
+     "normal": 15233,
+     "now": 55013,
+     "type": "UNDER",
+     "x": 3.61
+    }
+   },
+   "norm_ready_books": 1,
+   "paper_only": false,
+   "price": 0.52,
+   "price_american": -108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.52,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 149.5,
+     "price": -115
+    },
+    "betonlineag": {
+     "point": 148.5,
+     "price": -110
+    },
+    "betrivers": {
+     "point": 148.5,
+     "price": -106
+    },
+    "betus": {
+     "point": 149.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 149.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 148.5,
+     "price": -102
+    },
+    "fanatics": {
+     "point": 148.5,
+     "price": -105
+    },
+    "fanduel": {
+     "point": 149.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": 149.5,
+     "price": -108
+    },
+    "lowvig": {
+     "point": 148.5,
+     "price": -108
+    },
+    "novig": {
+     "point": 146.5,
+     "price": -4900
+    },
+    "polymarket": {
+     "point": 149.5,
+     "price": -108
+    },
+    "prophetx": {
+     "point": 149.5,
+     "price": -111
+    },
+    "williamhill_us": {
+     "point": 150.0,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAMBTOTAL-26NOV13MSMVT-150"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "NOT Over 149.5 points",
+   "size_x": 3.61,
+   "start_source": "odds",
+   "start_utc": "2026-11-14T00:00:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "Mount St. Mary's",
+    "Virginia Tech"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-13T16:10:20Z",
    "base_depth": 117836,
    "best_price": 0.6069,
@@ -780,8 +944,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.55,
-   "clv_cents": 1.0,
+   "close_price": 0.56,
+   "clv_cents": 2.0,
    "confirmed_after_min": 10,
    "date": "2026-11-13",
    "depth_by_book": {
@@ -1015,9 +1179,9 @@
     "volume_fp": 0.66
    },
    "ex_stats_close": {
-    "open_interest_fp": 8613.58,
-    "volume_24h_fp": 8152.860000000001,
-    "volume_fp": 8613.58
+    "open_interest_fp": 8637.99,
+    "volume_24h_fp": 8177.27,
+    "volume_fp": 8637.99
    },
    "ex_stats_first": {
     "open_interest_fp": 6997.66,
@@ -1407,9 +1571,9 @@
     "volume_fp": 15.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 9847.740000000002,
-    "volume_24h_fp": 9502.150000000001,
-    "volume_fp": 10337.43
+    "open_interest_fp": 9854.730000000001,
+    "volume_24h_fp": 9544.11,
+    "volume_fp": 10344.42
    },
    "ex_stats_first": {
     "open_interest_fp": 3368.01,
@@ -1771,9 +1935,9 @@
     "volume_fp": 11.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 8473.6,
-    "volume_24h_fp": 8396.16,
-    "volume_fp": 8742.06
+    "open_interest_fp": 8475.6,
+    "volume_24h_fp": 8398.16,
+    "volume_fp": 8744.06
    },
    "ex_stats_first": {
     "open_interest_fp": 7963.4400000000005,
@@ -2167,9 +2331,9 @@
     "volume_fp": 6.18
    },
    "ex_stats_close": {
-    "open_interest_fp": 21353.92,
-    "volume_24h_fp": 21215.370000000003,
-    "volume_fp": 21689.62
+    "open_interest_fp": 21504.85,
+    "volume_24h_fp": 21393.69,
+    "volume_fp": 21840.55
    },
    "ex_stats_first": {
     "open_interest_fp": 2135.42,
@@ -2757,9 +2921,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 19137.11,
-    "volume_24h_fp": 19071.010000000002,
-    "volume_fp": 19137.11
+    "open_interest_fp": 19138.06,
+    "volume_24h_fp": 19071.96,
+    "volume_fp": 19138.06
    },
    "ex_stats_first": {
     "open_interest_fp": 475.27,
@@ -3262,7 +3426,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 25,
+   "settle_tries": 26,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Fritz",
