@@ -38,6 +38,7 @@ import sys
 from datetime import datetime, timezone
 
 VERDICT = {}
+SNAPSHOT_MAX_AGE_MIN = 45   # the runner publishes every 10 min; 4 missed cycles is not evidence
 
 
 def say(t=""):
@@ -314,6 +315,13 @@ def main():
         if v["errors"].get(name):
             say(f"  {name:<7} INCOMPLETE: {v['errors'][name]}")
             say(f"          -> can still CONFIRM a match, can NEVER rule one out")
+        elif not v["ok"].get(name):
+            # The read never RAN (no usable key, no wallet): v["errors"] carries the reason under
+            # "key"/"import", not under this name, so the old branch fell through and printed
+            # "complete" for a read that never happened - while the verdict logic correctly treated
+            # it as unreadable. Two opposite states, one message.
+            say(f"  {name:<7} NOT READ: {v['errors'].get('key') or v['errors'].get('import') or 'no wallet to scope the read'}")
+            say(f"          -> treated as UNREADABLE, never as an empty account")
         else:
             say(f"  {name:<7} {len(v[name])} row(s) read, complete")
     for k, e in v["errors"].items():
@@ -326,11 +334,25 @@ def main():
         say("        cloud and from the home PC. Per-order state comes from the runner instead:")
 
     states, snote, states_ok = order_state_snapshot()
+    # A snapshot is only evidence while it is fresh. The runner publishes every 10 minutes; an old
+    # one describes the venue as it WAS, and "resting" or "terminal" from hours ago is not a fact
+    # about now. Past the bound it is dropped entirely, so rows fall back to UNRESOLVED.
+    _age_m = None
+    try:
+        # snote is "<iso>: asked N, answered N, ...". Splitting on ":" cuts inside the timestamp,
+        # so split on the literal that follows it.
+        _t = datetime.strptime(snote.split(": asked")[0].strip(), "%Y-%m-%dT%H:%M:%SZ")
+        _age_m = (datetime.now(timezone.utc) - _t.replace(tzinfo=timezone.utc)).total_seconds() / 60
+    except Exception:
+        _age_m = None
+    if _age_m is not None and _age_m > SNAPSHOT_MAX_AGE_MIN:
+        states, states_ok = {}, False
+        snote += f" | STALE ({_age_m:.0f} min old) - DISCARDED, rows fall back to UNRESOLVED"
     say()
     say("3b. ORDER STATE - the home runner's per-order venue read (GET /v3/orders/{id})")
     say("-" * 100)
     say(f"  {snote}")
-    say(f"  {len(states)} order id(s) with a venue status")
+    say(f"  {len({id(o) for o in states.values()})} order(s) with a venue status")
     say("  Asks only about ids already known. Can rule a KNOWN order out; can never rule out an")
     say("  order whose id was never recorded, so absence from this list proves nothing.")
     live = [o for o in states.values() if o.get("resting")]
