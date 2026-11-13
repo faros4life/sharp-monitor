@@ -14,7 +14,7 @@ for k, r in bets.items():
     if not any(x in s.lower() for x in names):
         continue
     n += 1
-    keep = {a: r.get(a) for a in ("bet", "game", "league", "clv", "how", "fixture_doubt", "released_from") if a in r}
+    keep = {a: v for a, v in r.items() if a != "snap"}
     keep["id"] = k[:40]
     keep["snap"] = {a: v for a, v in (r.get("snap") or {}).items() if not isinstance(v, (dict, list))}
     print(json.dumps(keep, default=str)[:1200])
