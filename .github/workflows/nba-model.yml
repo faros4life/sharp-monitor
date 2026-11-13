@@ -38,6 +38,14 @@ jobs:
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
           EMAIL_TO: ${{ secrets.EMAIL_TO }}
         run: python -u nba_totals_model.py
+      - name: Pinnacle feed health (read-only; never gates the model)
+        # Nov 13 (Peter). The model does not fail when its Pinnacle cache dies - it posts games
+        # with pin_line = None, "logged, never a sighting", which reads as a quiet success. This
+        # step makes that visible. continue-on-error keeps it from failing the model run or
+        # blocking the publish below: it reports, it never gates.
+        if: always()
+        continue-on-error: true
+        run: python -u pin_feed_health.py
       - name: Save to the nba-model branch (never main)
         if: always()
         run: |
