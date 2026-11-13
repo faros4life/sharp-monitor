@@ -67,6 +67,18 @@ for cid in ("060d16319d5b40ec", "e2fa1ea2ed3c4d7d"):
     # The whole point: an absence-of-evidence argument must NOT read as ruled out.
     ck(f"{cid} stays unresolved", bool(h and h["verdict"].startswith("UNRESOLVED")), True)
 
+# --- regression: an id must match whichever field it lands in ---------------------------------
+# The first live run missed both cancelled orders because the registry carried their CLIENT id in
+# the field the order id usually occupies, and the lookup was pinned to one field each way.
+for u in ("6c5b19ad-d05a-423d-aeed-fbd37f212dec", "f35c5788-adec-4346-87cf-945bbeaf33d6"):
+    ck(f"client uuid {u[:8]} in the oid field matches",
+       bool(R.evidence_for(ev, row(oid=u), at_runner=True)), True)
+    ck(f"client uuid {u[:8]} in the cid field matches",
+       bool(R.evidence_for(ev, row(cid=u), at_runner=True)), True)
+# and the venue order id must still match from either field
+ck("order id in the cid field matches",
+   bool(R.evidence_for(ev, row(cid="01a1cb84-4a5c-7113-8e00-8986dce6e13a"), at_runner=True)), True)
+
 # --- an unrelated row is never stamped -------------------------------------------------------
 ck("unrelated row untouched",
    R.evidence_for(ev, row(cid="deadbeefdeadbeef", key="NBA|Lakers vs Suns|total|OVER"), at_runner=False),

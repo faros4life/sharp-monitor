@@ -135,7 +135,15 @@ def order_state_snapshot():
         d = json.loads(base64.b64decode((doc or {}).get("content") or "").decode() or "{}")
     except Exception as ex:
         return {}, f"unparseable ({type(ex).__name__})", False
-    by = {str(o.get("order_id")): o for o in (d.get("orders") or []) if o.get("order_id")}
+    # Index by BOTH ids. The registry does not always carry the venue order id - several rows hold
+    # only the client id, which is what they match the runner on - so an order-id-only index made
+    # the first run miss two orders whose status this file had already read. A row keyed one way
+    # and looked up the other is a reader bug, not an absent order.
+    by = {}
+    for o in (d.get("orders") or []):
+        for k in ("order_id", "client_id"):
+            if o.get(k):
+                by[str(o[k])] = o
     note = (f"{d.get('snapshot_utc', '?')}: asked {d.get('asked', '?')}, answered "
             f"{d.get('answered', '?')}, complete={d.get('complete')}")
     if d.get("errors"):
@@ -166,11 +174,12 @@ def evidence_for(entries, row, at_runner):
     on play key - and a play-key entry may demand that the runner recorded nothing, so it cannot
     reach a sibling attempt on the same play that DID produce a record."""
     cid, key = row.get("cid") or "", row.get("key") or ""
+    # Match EITHER of the row's ids against EITHER list. A registry row may carry the client id in
+    # the field the order id usually occupies, so pinning each list to one field silently misses.
+    mine = {x for x in (cid, row.get("oid") or "") if x}
     for e in entries:
         m = e.get("match") or {}
-        if cid and cid in (m.get("client_ids") or []):
-            return e
-        if m.get("order_ids") and row.get("oid") and row["oid"] in m["order_ids"]:
+        if mine & set((m.get("client_ids") or []) + (m.get("order_ids") or [])):
             return e
     for e in entries:
         m = e.get("match") or {}
