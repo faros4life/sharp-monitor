@@ -1227,21 +1227,55 @@ def espn_result(a, n):
 #
 # Raise LIQ_SETTLE_TRIES / LIQ_SETTLE_STALE_DAYS to re-open the window if something is found to
 # settle legitimately late; the items are still there, still ungraded, and would be picked up.
-SETTLE_TRIES = int(os.environ.get("LIQ_SETTLE_TRIES", "") or "12")
+# CORRECTED same day, by the audit Peter asked for. The first version capped tries at 12 and
+# that was WRONG, for a reason its own data showed: attempts begin when the game's DATE arrives
+# (date <= today), i.e. 00:00 ET on the day of the game, while games do not finish until the
+# evening. At a 10-minute cadence 12 tries are spent by about 02:00 ET - hours before any result
+# exists - so legitimate settlement would have been blocked.
+#
+# The fix is a gate, not a bigger number: start_utc is present on 7756/7756 moves, so attempts
+# wait until the game should have ENDED. That is strictly better than the original code, which
+# spent a lookup on every unresolved item from midnight onward whether or not it had kicked off.
+# settle_tries now counts only genuine post-game attempts, so a small cap is meaningful.
+#
+# Windows, against measured behaviour (5993 settled items: 684 settled on the game date, 5309 the
+# next UTC day, and NONE more than 3 days late):
+#   SETTLE_AFTER_H   4h after start - past the end of basketball and football; tennis can run
+#                    longer, which the try window below absorbs.
+#   SETTLE_TRIES     36 attempts, so start+4h to start+10h at a 10-minute cadence.
+#   SETTLE_STALE_DAYS 3 - the hard backstop that clears the existing backlog, and 3x the longest
+#                    settle lag ever observed.
+SETTLE_TRIES = int(os.environ.get("LIQ_SETTLE_TRIES", "") or "36")
 SETTLE_STALE_DAYS = int(os.environ.get("LIQ_SETTLE_STALE_DAYS", "") or "3")
+SETTLE_AFTER_H = float(os.environ.get("LIQ_SETTLE_AFTER_H", "") or "4")
+
+
+def _settle_ready(a, n):
+    """Has this game plausibly finished? Unknown start time falls back to the date gate alone."""
+    s = a.get("start_utc")
+    if not s:
+        return True
+    try:
+        st = datetime.fromisoformat(str(s).replace("Z", "+00:00"))
+    except Exception:
+        return True
+    return n >= st + timedelta(hours=SETTLE_AFTER_H)
 
 
 def settle(alerts, n):
     today = n.astimezone(ET).date().isoformat()
     stale_before = (n.astimezone(ET).date() - timedelta(days=SETTLE_STALE_DAYS)).isoformat()
-    skipped_old = skipped_tries = 0
+    skipped_old = skipped_tries = skipped_early = 0
     for a in alerts:
         if a.get("result") is not None or (a.get("date") or "9999") > today:
             continue
-        # Bounded retries. Neither branch writes a result - the item stays ungraded exactly as
-        # it is now, we simply stop spending a network round trip on it every single run.
+        # Bounded retries. No branch here writes a result - the item stays ungraded exactly as it
+        # is now, we simply stop spending a network round trip on it.
         if (a.get("date") or "9999") < stale_before:
             skipped_old += 1
+            continue
+        if not _settle_ready(a, n):
+            skipped_early += 1          # not a failed attempt: the game has not finished yet
             continue
         if a.get("settle_tries", 0) >= SETTLE_TRIES:
             skipped_tries += 1
@@ -1270,9 +1304,10 @@ def settle(alerts, n):
     # Say what settlement did. This whole cost was invisible for want of one line: 620s of an
     # 798s run sat between the step banner and the first print, so every profile of this script
     # blamed whatever happened to print next.
-    if skipped_old or skipped_tries:
-        print(f"settle: skipped {skipped_old} older than {SETTLE_STALE_DAYS}d and {skipped_tries} "
-              f"past {SETTLE_TRIES} tries (still ungraded, no longer re-queried)", flush=True)
+    if skipped_old or skipped_tries or skipped_early:
+        print(f"settle: skipped {skipped_old} older than {SETTLE_STALE_DAYS}d, {skipped_tries} past "
+              f"{SETTLE_TRIES} tries, {skipped_early} not finished yet (<{SETTLE_AFTER_H:g}h after "
+              f"start) - all still ungraded, none re-queried", flush=True)
 
 
 def tg_mirror(text, html=False):
