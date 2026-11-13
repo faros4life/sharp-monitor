@@ -61,20 +61,55 @@ jobs:
       - name: Paper splits (units only; splits.json + SPLITS.md)
         if: always()
         run: python splits.py || echo "splits failed (record unchanged)"
+      # Nov 13: THIS STEP WAS SILENTLY LOSING EVERY ALERT FOR NINE HOURS.
+      #
+      # MEASURED: alerts.json last landed on main at 03:35:16Z; at 12:34Z the newest alert in the
+      # committed feed was still 03:30:18Z, and 15 of the last 15 sharp-monitor runs ended with
+      # "! [rejected] main -> main (fetch first)". Each run scanned, built its alerts, failed to
+      # push, and reported SUCCESS - because both git commands below ended in "|| true". The
+      # executor reads alerts.json from the repo, so the bot was working from a nine-hour-old feed
+      # and correctly found nothing new to bet. No workflow went red; nothing was alarmed.
+      #
+      # CAUSE, and it was self-inflicted: chaining bets-board to the executor on Nov 12 took it
+      # from every 10 minutes to every ~3, and commits to main went from ~33/hour to 50-74/hour.
+      # "git pull --rebase" on a DEPTH-1 checkout cannot reconcile under that contention - it is
+      # the one writer here that never adopted the fetch/reset/retry loop every other publisher in
+      # this repo uses, so it was the one that starved.
+      #
+      # The loop below is that proven pattern (bets-board, liquidity-extra, board-page): reset
+      # hard to origin, lay our freshly built files back down, commit, push, retry. A hard reset
+      # also makes the Nov 9 __pycache__ dance unnecessary - rewritten tracked files cannot block
+      # anything, because nothing is being rebased.
+      #
+      # Save-over-upstream is correct here: only sharp-monitor writes these five files, and its
+      # concurrency group is serial, so this run's alerts.json is always a superset of the one on
+      # main. A FAILED push is now LOUD - it fails the step instead of being swallowed.
       - name: Publish alerts.json
         if: always()
         run: |
-          if [ -n "$(git status --porcelain alerts.json splits.json SPLITS.md hrscan.json odds_screen.json)" ]; then
-            git config user.name "sharp-monitor"
-            git config user.email "sharp-monitor@users.noreply.github.com"
-            git add alerts.json splits.json SPLITS.md hrscan.json odds_screen.json 2>/dev/null || git add alerts.json
-            git commit -m "Update alerts.json"
-            # Nov 9: tracked __pycache__ files get rewritten by the run and blocked the rebase, so every push was rejected
-            git checkout -q -- __pycache__ 2>/dev/null || true
-            git clean -fdq __pycache__ 2>/dev/null || true
-            git pull --rebase -X theirs -q || true
-            git push || true
+          set -o pipefail
+          FILES="alerts.json splits.json SPLITS.md hrscan.json odds_screen.json"
+          if [ -z "$(git status --porcelain $FILES)" ]; then
+            echo "publish: nothing changed"; exit 0
           fi
+          git config user.name "sharp-monitor"
+          git config user.email "sharp-monitor@users.noreply.github.com"
+          rm -rf "$RUNNER_TEMP/pub" && mkdir -p "$RUNNER_TEMP/pub"
+          for f in $FILES; do [ -f "$f" ] && cp "$f" "$RUNNER_TEMP/pub/" || true; done
+          for i in 1 2 3 4 5 6; do
+            git fetch -q origin main && git reset -q --hard origin/main
+            for f in $FILES; do [ -f "$RUNNER_TEMP/pub/$f" ] && cp "$RUNNER_TEMP/pub/$f" "$f" || true; done
+            git add $FILES 2>/dev/null || git add alerts.json
+            if git diff --cached --quiet; then echo "publish: already current on main"; exit 0; fi
+            git commit -q -m "Update alerts.json"
+            if git push -q origin HEAD:main; then
+              echo "publish: pushed on attempt $i"; exit 0
+            fi
+            echo "publish: attempt $i lost the race, retrying"
+            sleep $((i * 3))
+          done
+          echo "::error::alerts.json could NOT be published after 6 attempts - the feed is now stale"
+          exit 1
       - name: Wake the executor (new alert sent)
         if: always()
         env:
