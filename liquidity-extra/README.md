@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 13, 4:10 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 26.
+Updated Fri Nov 13, 4:20 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 26.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -12,7 +12,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 13 4:00PM | NCAAB | Northern Iowa vs Michigan St.: Point Total | total: NOT Over 154.5 points | kalshi | $32k | +104 |  | ✅ | +0.0c | yes | pending |
 | Nov 13 4:00PM | NCAAB | Sam Houston vs Illinois: Point Total | total: NOT Over 170.5 points | kalshi | $36k | -108 |  | ✅ | +0.0c | yes | pending |
-| Nov 13 4:00PM | NCAAB | Milwaukee vs TCU: Point Total | total: NOT Over 155.5 points | kalshi | $31k | -104 |  | ✅ | +0.0c |  | pending |
+| Nov 13 4:00PM | NCAAB | Milwaukee vs TCU: Point Total | total: NOT Over 155.5 points | kalshi | $31k | -104 |  | ✅ | +0.0c | yes | pending |
 | Nov 13 3:50PM | NCAAB | Southern Miss vs Texas St.: Point Total | total: NOT Over 138.5 points | kalshi | $38k | +104 |  |  | +0.0c |  | pending |
 | Nov 13 3:30PM | NCAAB | DePaul vs Northwestern | moneyline: DePaul | kalshi | $82k | +104 | ✅ novig |  | +0.0c |  | pending |
 | Nov 13 2:30PM | NCAAB | Cleveland St. vs West Florida | moneyline: West Florida | kalshi | $38k | -100 | ✅ novig |  | +4.0c |  | pending |
