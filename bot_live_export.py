@@ -120,6 +120,10 @@ def main():
     print("trigger games matched:", {k: len(v) for k, v in tp.items()}, "| unmatched:", len(miss),
           [f"{a} {b}-{c}" for a, b, c, d in [(m[0], m[1], m[2], m[3]) for m in miss]][:12])
     print("trigger record (W-L, recomputed):", {k: f"{sum(1 for p in v if p['result']=='W')}-{sum(1 for p in v if p['result']=='L')}" for k, v in tp.items()})
+    print("unmapped bot rows (day | game | result):", sorted(
+        (str(b.get("game_start") or b.get("settled") or b.get("first_seen") or "")[5:10], str(b.get("game")), str(b.get("result")))
+        for b in rows if (b.get("source") or "") == "bot" and id(b) not in used)[:30])
+    print("Toronto/Philadelphia rows:", [(b.get("source"), b.get("result"), bool(b.get("open"))) for b in rows if {"toronto", "philadelphia"} <= tb.toks(b.get("game") or "")])
     keylane = registry_lanes()
     how = {"tracker tag": 0, "registry": 0, "before R1/Board (inferred Lane 1)": 0, "none": 0}
     for b in rows:
