@@ -1,0 +1,90 @@
+{
+ "_doc": [
+  "DURABLE RECONCILIATION EVIDENCE (Peter, Nov 13 2026). Facts established once, from sources that",
+  "EXPIRE, recorded here so a later run can still reach the same verdict. GitHub Actions logs are",
+  "retained for a limited window: the proof below lives in run logs that will be deleted, so without",
+  "this file every one of these rows silently reverts to UNRESOLVED when the logs age out.",
+  "",
+  "THIS FILE NEVER RELEASES ANYTHING. novig_venue_recon.py reads it to LABEL a row and writes",
+  "nothing. Clearing a submission claim or an intent latch remains Peter's manual, subject-only",
+  "INTENT CLEARED email. A verdict here is a statement about evidence, not an instruction to act.",
+  "",
+  "PRECEDENCE: a live venue match always wins. Evidence is applied only to a row the live sources",
+  "cannot already resolve, so a row that is CONFIRMED AT VENUE can never be overwritten by an entry",
+  "here - which is what keeps the Louisiana key safe, since its third attempt DID reach the venue.",
+  "",
+  "Each entry states what KIND of evidence it is. They are not interchangeable:",
+  "  proven_pre_execution - positive proof the order code never ran. The strongest kind: it does not",
+  "                         depend on reading the venue at all.",
+  "  terminal_at_venue    - the venue itself reported a terminal status for a known order id.",
+  "  no_dispatch_evidence - NOT proof. Absence of a dispatch record. Recorded for continuity only;",
+  "                         rows carrying it stay UNRESOLVED and stay blocked."
+ ],
+ "recorded_utc": "2026-11-13T14:30:00Z",
+ "entries": [
+  {
+   "id": "sanantonio-chicago-cancelled",
+   "kind": "terminal_at_venue",
+   "match": {"order_ids": ["01a1cb84-4a5c-7113-8e00-8986dce6e13a"]},
+   "verdict": "RULED OUT - cancelled at venue, nothing filled",
+   "play": "NBA|San Antonio vs Chicago: Total Points|total|UNDER",
+   "evidence": "GET /v3/orders/01a1cb84-4a5c-7113-8e00-8986dce6e13a returned status CANCELED with qty 40000 and remaining 40000, so filled 0. CANCELED is terminal: the order can neither rest nor fill.",
+   "source": "novig-runner run 43441773039, snapshot/novig_open_orders.json 2026-11-13T14:20:26Z (complete=true)",
+   "exposure": "none"
+  },
+  {
+   "id": "chicagost-calbaptist-cancelled",
+   "kind": "terminal_at_venue",
+   "match": {"order_ids": ["01a1cb85-4239-7e33-bc75-9be59bf54f57"]},
+   "verdict": "RULED OUT - cancelled at venue, nothing filled",
+   "play": "NCAAB|Chicago St Cougars @ Cal Baptist Lancers|side|Chicago St Cougars",
+   "evidence": "GET /v3/orders/01a1cb85-4239-7e33-bc75-9be59bf54f57 returned status CANCELED with qty 43700 and remaining 43700, so filled 0. CANCELED is terminal.",
+   "source": "novig-runner run 43441773039, snapshot/novig_open_orders.json 2026-11-13T14:20:26Z (complete=true)",
+   "exposure": "none"
+  },
+  {
+   "id": "louisiana-ulmonroe-interpreter-missing",
+   "kind": "proven_pre_execution",
+   "match": {
+    "client_ids": ["fee2daffea274108", "e238da09866a4efd"],
+    "play_key": "NCAAF|Louisiana Ragin Cajuns @ UL Monroe Warhawks|total|UNDER",
+    "only_when_no_runner_record": true
+   },
+   "verdict": "RULED OUT - proven pre-execution failure, the order code never ran",
+   "play": "r1|NCAAF|Louisiana Ragin Cajuns @ UL Monroe Warhawks|total|UNDER (and its bare-key twin)",
+   "evidence": "Two dispatches of novig-live-order carried this play and BOTH died before Python started: each log ends with \"'python' is not recognized as an internal or external command\" and exit code 1, with no output from novig_live_order.py at all. The interpreter was absent from PATH on the self-hosted runner, so not one line of the script executed and no POST /v3/orders was ever issued. This is positive proof of non-execution and does not rely on any venue read. A third dispatch 4 minutes later succeeded once PATH was fixed - that one is 9876e410d17d45fd, already CONFIRMED AT VENUE (filled 43300), and is excluded here by the live-match precedence rule.",
+   "source": "novig-runner novig-live-order runs 43240769171 (2026-11-12T14:46:59Z, IN_CLIENT ebe82a72-3dd0-4e45-8108-df1d5038ba9f) and 43241642939 (2026-11-12T14:52:00Z, IN_CLIENT 510a30b6-8837-4fee-be01-5b16e79cdcda); both conclusion=failure",
+   "exposure": "none"
+  },
+  {
+   "id": "dallas-minnesota-intent-no-dispatch",
+   "kind": "no_dispatch_evidence",
+   "match": {"client_ids": ["060d16319d5b40ec"]},
+   "verdict": "UNRESOLVED - intent journalled, no dispatch evidence",
+   "play": "board|NBA|Dallas vs Minnesota: Total Points",
+   "evidence": "An intent was journalled but the row never reached 'placed'. Census of every novig-live-order workflow_dispatch since Oct 28: 36 dispatches, of which 34 produced a runner record and 2 are the interpreter-missing failures above - so every dispatch is accounted for and none carried this play. Zero runner records mention it. The cloud reaches Novig only by dispatching to the home runner, so place() was never invoked. NOTE: this is an absence-of-evidence argument, not positive proof, which is why the verdict stays UNRESOLVED and the claim stays blocked.",
+   "source": "novig-runner novig-live-order run census 2026-11-13; snapshot/novig_orders.json (34 rows, exact play match count 0)",
+   "exposure": "not independently proven"
+  },
+  {
+   "id": "charlotte-phoenix-intent-no-dispatch",
+   "kind": "no_dispatch_evidence",
+   "match": {"client_ids": ["e2fa1ea2ed3c4d7d"]},
+   "verdict": "UNRESOLVED - intent journalled, no dispatch evidence",
+   "play": "board|NBA|Charlotte vs Phoenix: Total Points",
+   "evidence": "Same census as the Dallas/Minnesota entry: all 36 dispatches accounted for, none carried this play, zero runner records mention it. Absence-of-evidence, not positive proof; stays blocked.",
+   "source": "novig-runner novig-live-order run census 2026-11-13; snapshot/novig_orders.json (34 rows, exact play match count 0)",
+   "exposure": "not independently proven"
+  }
+ ],
+ "do_not_touch": [
+  {
+   "order_id": "01a1d53a-e54f-7b23-b492-94e6b58d3a62",
+   "noted_utc": "2026-11-13T14:20:26Z",
+   "status": "OPEN",
+   "qty": 41900,
+   "remaining": 41900,
+   "note": "Live resting order placed 2026-11-13T14:06:06Z. Reported so it is visible; never cancelled, amended or acted on by any reconciliation path. Listed here so a future run does not mistake a live resting order for an unresolved one."
+  }
+ ]
+}

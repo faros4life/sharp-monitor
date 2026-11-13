@@ -108,6 +108,81 @@ def runner_rows():
         return None, f"runner results unparseable ({type(ex).__name__})"
 
 
+def order_state_snapshot():
+    """({order_id: row}, note, complete). The home runner's per-order venue read.
+
+    WHY THIS EXISTS. GET /v3/portfolio/orders answers HTTP 401 with the read key AND the trading
+    key, from the cloud AND from the home PC - that list route is not available to us at all, so
+    venue_reads()["orders"] is permanently empty and a RESTING order could never be ruled out.
+    novig_open_orders.py on the runner asks the per-order route instead (GET /v3/orders/{id}),
+    which this repo has used in production since Oct 28.
+
+    ITS LIMIT IS THE POINT. It can only ask about order ids somebody already knows. It can rule a
+    known order OUT (terminal status) and it can confirm one, but it can NEVER rule out an order
+    whose id was never recorded - there is no enumeration. So its completeness flag means "every
+    id we asked about answered", never "we have seen everything Novig holds", and nothing here may
+    read a row's absence from it as evidence.
+    """
+    try:
+        import book_live as b
+        url = NV_ORDER_STATE if "NV_ORDER_STATE" in globals() else (
+            f"https://api.github.com/repos/{b.NV_REPO}/contents/snapshot/novig_open_orders.json?ref=main")
+        st, doc = b._gh("GET", url)
+    except Exception as ex:
+        return {}, f"unreadable ({type(ex).__name__}: {str(ex)[:60]})", False
+    try:
+        import base64
+        d = json.loads(base64.b64decode((doc or {}).get("content") or "").decode() or "{}")
+    except Exception as ex:
+        return {}, f"unparseable ({type(ex).__name__})", False
+    by = {str(o.get("order_id")): o for o in (d.get("orders") or []) if o.get("order_id")}
+    note = (f"{d.get('snapshot_utc', '?')}: asked {d.get('asked', '?')}, answered "
+            f"{d.get('answered', '?')}, complete={d.get('complete')}")
+    if d.get("errors"):
+        note += f" | errors: {str(d['errors'])[:80]}"
+    return by, note, bool(d.get("complete"))
+
+
+def evidence():
+    """(entries, do_not_touch, note). Facts proved once from sources that expire.
+
+    Read-only and advisory: an entry LABELS a row. Nothing here releases a claim, clears a latch
+    or writes to any store - that stays Peter's manual INTENT CLEARED email.
+    """
+    try:
+        with open(os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                               "novig_recon_evidence.json")) as f:
+            d = json.load(f)
+    except FileNotFoundError:
+        return [], [], "no evidence file (novig_recon_evidence.json absent)"
+    except Exception as ex:
+        return [], [], f"evidence file unreadable ({type(ex).__name__})"
+    e = d.get("entries") or []
+    return e, (d.get("do_not_touch") or []), f"{len(e)} entry(ies), recorded {d.get('recorded_utc', '?')}"
+
+
+def evidence_for(entries, row, at_runner):
+    """The entry that covers this registry row, or None. Matches on client id first (exact), then
+    on play key - and a play-key entry may demand that the runner recorded nothing, so it cannot
+    reach a sibling attempt on the same play that DID produce a record."""
+    cid, key = row.get("cid") or "", row.get("key") or ""
+    for e in entries:
+        m = e.get("match") or {}
+        if cid and cid in (m.get("client_ids") or []):
+            return e
+        if m.get("order_ids") and row.get("oid") and row["oid"] in m["order_ids"]:
+            return e
+    for e in entries:
+        m = e.get("match") or {}
+        pk = m.get("play_key")
+        if not pk or pk not in key:
+            continue
+        if m.get("only_when_no_runner_record") and at_runner:
+            continue
+        return e
+    return None
+
+
 # ------------------------------------------------------------------ 3. the venue (ground truth)
 def venue_reads():
     """{'fills': [...], 'orders': [...], 'errors': {...}} - each read reported separately, because
@@ -238,8 +313,34 @@ def main():
     venue_fills_ok = bool(v["ok"].get("fills"))
     venue_orders_ok = bool(v["ok"].get("orders"))
     if not venue_orders_ok:
-        say("  NOTE: open orders could not be read, so a RESTING order cannot be ruled out here.")
-        say("        That limits every RULED OUT verdict below to orders that would have FILLED.")
+        say("  NOTE: the portfolio ORDERS list is unavailable to us on every key tried, from the")
+        say("        cloud and from the home PC. Per-order state comes from the runner instead:")
+
+    states, snote, states_ok = order_state_snapshot()
+    say()
+    say("3b. ORDER STATE - the home runner's per-order venue read (GET /v3/orders/{id})")
+    say("-" * 100)
+    say(f"  {snote}")
+    say(f"  {len(states)} order id(s) with a venue status")
+    say("  Asks only about ids already known. Can rule a KNOWN order out; can never rule out an")
+    say("  order whose id was never recorded, so absence from this list proves nothing.")
+    live = [o for o in states.values() if o.get("resting")]
+    if live:
+        say(f"  {len(live)} order(s) currently RESTING at the venue - reported only, never touched:")
+        for o in live:
+            say(f"    {o['order_id']}  {o.get('status')}  qty {o.get('qty')} remaining {o.get('remaining')}")
+
+    ev, dnt, enote = evidence()
+    say()
+    say("3c. DURABLE EVIDENCE - facts proved once from sources that expire")
+    say("-" * 100)
+    say(f"  {enote}")
+    for e in ev:
+        say(f"    {e.get('kind','?'):<22} {e.get('verdict','?')}")
+    say("  Advisory only: labels a row, releases nothing. Clearing a claim or an intent latch stays")
+    say("  Peter's manual, subject-only INTENT CLEARED email.")
+    for o in dnt:
+        say(f"  DO NOT TOUCH: {o.get('order_id')} {o.get('status')} qty {o.get('qty')} - {str(o.get('note'))[:70]}")
 
     # ------------------------------------------------------------------ the join
     say()
@@ -250,33 +351,65 @@ def main():
         runner_ids |= ident(r)
     for r in v["fills"] + v["orders"]:
         venue_ids |= ident(r)
-    counts = {}
+    counts, why = {}, {}
     for r in reg:
         ids = {x for x in (r["cid"], r["oid"]) if x}
         at_venue = bool(ids & venue_ids)
         at_runner = bool(ids & runner_ids)
+        # Per-order state for an id we actually hold. Terminal (FILLED/CANCELED/REJECTED/EXPIRED)
+        # means the order can neither rest nor fill, which is what rules a RESTING order out.
+        st = next((states[i] for i in ids if i in states), None)
+        ev_hit = None
+        src = ""
         if at_venue:
-            verdict = "CONFIRMED AT VENUE"
-        elif not venue_fills_ok:
-            verdict = "UNRESOLVED - venue unreadable"
-        elif not venue_orders_ok:
-            verdict = "UNRESOLVED - no fill, open orders unreadable"
-        elif at_runner:
-            verdict = "UNRESOLVED - runner recorded it, venue shows nothing"
+            verdict = "CONFIRMED AT VENUE"          # a live match always wins over recorded evidence
+        elif st and st.get("terminal"):
+            verdict = ("RULED OUT - terminal at venue, nothing filled" if not st.get("filled_qty")
+                       else "CONFIRMED AT VENUE")
+            src = f"venue status {st.get('status')}, remaining {st.get('remaining')} of {st.get('qty')}"
+        elif st and st.get("resting"):
+            verdict = "LIVE - resting at venue right now (untouched)"
+            src = f"venue status {st.get('status')}, remaining {st.get('remaining')}"
         else:
-            verdict = "RULED OUT - never reached the venue"
+            ev_hit = evidence_for(ev, r, at_runner)
+            if ev_hit:
+                verdict = ev_hit.get("verdict") or "UNRESOLVED - evidence entry has no verdict"
+                src = f"evidence[{ev_hit.get('id')}] {ev_hit.get('source', '')[:60]}"
+            elif not venue_fills_ok:
+                verdict = "UNRESOLVED - venue unreadable"
+            elif at_runner:
+                verdict = "UNRESOLVED - runner recorded it, no fill and no order state"
+            else:
+                # DELIBERATELY NOT "ruled out". This branch used to read a missing runner record
+                # plus a complete venue read as proof the order never existed. It is not proof:
+                # novig_live_order.place() appends its record AFTER the POST returns, so a crash
+                # in that window leaves a venue order with no runner record and no id anywhere -
+                # and with no list endpoint, an id we never knew cannot be looked up. Absence of a
+                # record is not absence of an order.
+                verdict = "UNRESOLVED - no runner record (absence is not proof; see POST-window note)"
         counts[verdict] = counts.get(verdict, 0) + 1
-        say(f"    {r['cid'][:38]:<38} runner={'Y' if at_runner else 'n'} venue={'Y' if at_venue else 'n'}  {verdict}")
+        why[verdict] = src or why.get(verdict, "")
+        say(f"    {r['cid'][:38]:<38} runner={'Y' if at_runner else 'n'} venue={'Y' if at_venue else 'n'}"
+            f" state={'Y' if st else 'n'} ev={'Y' if ev_hit else 'n'}  {verdict}")
         if r["key"]:
             say(f"        {r['key'][:88]}")
+        if src:
+            say(f"        via {src[:88]}")
     say()
     for k, n in sorted(counts.items()):
         say(f"  {n:>3}  {k}")
     unresolved = sum(n for k, n in counts.items() if k.startswith("UNRESOLVED"))
     say()
     say(f"  {unresolved} id(s) UNRESOLVED -> duplicate submission stays blocked for those plays.")
-    say("  Nothing here clears a latch, resolves an intent, or writes to any store. Clearing an")
-    say("  intent remains Peter's manual, subject-only INTENT CLEARED email.")
+    say("  A RULED OUT verdict does NOT release anything either: every submission claim and every")
+    say("  intent latch stays exactly as it is until Peter sends the manual, subject-only")
+    say("  INTENT CLEARED email. Nothing here clears a latch, resolves an intent, or writes to any")
+    say("  store, and no resting order is ever cancelled or amended.")
+    say()
+    say("  The three ruled-out kinds are not interchangeable:")
+    say("    terminal at venue     - the venue itself reported a terminal status for a known id")
+    say("    pre-execution failure - positive proof the order code never ran; no venue read needed")
+    say("    no dispatch evidence  - NOT proof, only absence of one. Those rows stay UNRESOLVED.")
     say()
     say("=" * 100)
     say("READ-ONLY: no order placed, amended or cancelled; no registry write; no live setting changed.")
