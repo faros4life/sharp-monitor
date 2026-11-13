@@ -13,7 +13,7 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: "positions = time the four position readers. novig = READ-ONLY probe of the Novig home-runner credential, reachability and result file (dispatches nothing). manual = one-time reconciliation of the REAL Gmail manual-hold window against the private registry, deletions included (places/clears nothing)."
+        description: "positions = time the four position readers. novig = READ-ONLY probe of the Novig home-runner credential, reachability and result file (dispatches nothing). manual = one-time reconciliation of the REAL Gmail manual-hold window against the private registry, deletions included (places/clears nothing). handled = one-time reconciliation of the registry handled map against the authoritative Gmail dedupe tokens, both directions (places/clears nothing)."
         default: "positions"
 
 concurrency:
@@ -63,6 +63,8 @@ jobs:
             python -u novig_runner_probe.py
           elif [ "${{ inputs.mode }}" = "manual" ]; then
             python -u manual_reconcile.py
+          elif [ "${{ inputs.mode }}" = "handled" ]; then
+            python -u handled_reconcile.py
           else
             python -u positions_probe.py
           fi
