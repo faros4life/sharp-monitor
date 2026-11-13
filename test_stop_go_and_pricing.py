@@ -101,11 +101,14 @@ st, _ = px.stop_state()
 check("a latched USER stop reports as user", st == "STOP" and px.PAUSE.get("kind") == "user")
 
 print("\n5. Only an explicit human GO clears an automatic pause")
-STORE.update(switch=None, auto_pause={"reason": "x", "source": "novig", "ts": "t"}, switch_seen=[])
-MSGS = [{"id": "g9", "time": 900, "message": "GO"}]
-check("the GO is accepted", px.stop_state()[0] == "GO")
+# Real stamps on both sides: since the Nov 13 second pass a GO clears an automatic pause only when
+# it is strictly NEWER, and an unparseable stamp leaves the pause standing (asserted in 5b).
+PAUSED_EARLY, GO_LATER = "2026-11-13T12:00:00Z", 1794585600   # 16:00:00Z
+STORE.update(switch=None, auto_pause={"reason": "x", "source": "novig", "ts": PAUSED_EARLY}, switch_seen=[])
+MSGS = [{"id": "g9", "time": GO_LATER, "message": "GO"}]
+check("a GO newer than the pause is accepted", px.stop_state()[0] == "GO")
 check("and the automatic pause is cleared", STORE["auto_pause"] is None)
-STORE.update(switch=None, auto_pause={"reason": "x", "source": "novig", "ts": "t"}, switch_seen=[])
+STORE.update(switch=None, auto_pause={"reason": "x", "source": "novig", "ts": PAUSED_EARLY}, switch_seen=[])
 MSGS = []
 check("nothing else clears it", px.stop_state()[0] == "STOP")
 
