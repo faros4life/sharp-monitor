@@ -1202,11 +1202,51 @@ def espn_result(a, n):
     return None
 
 
+# Nov 13: SETTLEMENT WAS AN UNBOUNDED RETRY BACKLOG, and it was the real cost of this script.
+#
+# MEASURED on liquidity-extra run 43424279012: 620 of its 798 seconds sat in one silent gap
+# before the first print. That gap is settle(), which makes a NETWORK LOOKUP per unresolved item
+# - the venue's result endpoint, then an ESPN fallback - and it retried every one of them on
+# every run, forever:
+#
+#   liquidity-extra  moves.json  7782 total, 1766 unsettled, 834 of those dated 2+ days back
+#   liquidity        moves.json  5340 total,  568 unsettled,  74 of those dated 2+ days back
+#
+# The 834 are games that finished a week ago; the venue no longer lists the market and ESPN
+# cannot match them. They will never settle, and we asked about all of them every ten minutes.
+#
+# Two bounds, and NEITHER CHANGES A GRADE. An item that is ungraded today stays exactly as it
+# is - result still None, nothing invented, nothing downgraded. We only stop re-asking:
+#
+#   1. settle_tries - give up after this many attempts. A finished game settles on the first or
+#      second try, so 12 is ~2 hours of attempts at a 10-minute cadence. This stops a NEW
+#      backlog forming.
+#   2. SETTLE_STALE_DAYS - skip anything whose game date is older than this. This clears the
+#      EXISTING backlog, which carries no settle_tries counter and would otherwise take 12 more
+#      runs each to age out.
+#
+# Raise LIQ_SETTLE_TRIES / LIQ_SETTLE_STALE_DAYS to re-open the window if something is found to
+# settle legitimately late; the items are still there, still ungraded, and would be picked up.
+SETTLE_TRIES = int(os.environ.get("LIQ_SETTLE_TRIES", "") or "12")
+SETTLE_STALE_DAYS = int(os.environ.get("LIQ_SETTLE_STALE_DAYS", "") or "3")
+
+
 def settle(alerts, n):
     today = n.astimezone(ET).date().isoformat()
+    stale_before = (n.astimezone(ET).date() - timedelta(days=SETTLE_STALE_DAYS)).isoformat()
+    skipped_old = skipped_tries = 0
     for a in alerts:
         if a.get("result") is not None or (a.get("date") or "9999") > today:
             continue
+        # Bounded retries. Neither branch writes a result - the item stays ungraded exactly as
+        # it is now, we simply stop spending a network round trip on it every single run.
+        if (a.get("date") or "9999") < stale_before:
+            skipped_old += 1
+            continue
+        if a.get("settle_tries", 0) >= SETTLE_TRIES:
+            skipped_tries += 1
+            continue
+        a["settle_tries"] = a.get("settle_tries", 0) + 1
         try:
             r = {"kalshi": kalshi_result, "novig": novig_result, "polymarket": pm_result}.get(a["book"], lambda _r: None)(a["ref"])
         except Exception as ex:
@@ -1227,6 +1267,12 @@ def settle(alerts, n):
             if fp and 0 < fp < 1 and r in ("W", "L", "P"):   # paper: betting AGAINST the print, after the book's fee
                 a["fade_units"] = -1.0 if r == "W" else (round((1 - fp) / fp, 2) if r == "L" else 0.0)
             a["settled_utc"] = n.strftime("%Y-%m-%dT%H:%M:%SZ")
+    # Say what settlement did. This whole cost was invisible for want of one line: 620s of an
+    # 798s run sat between the step banner and the first print, so every profile of this script
+    # blamed whatever happened to print next.
+    if skipped_old or skipped_tries:
+        print(f"settle: skipped {skipped_old} older than {SETTLE_STALE_DAYS}d and {skipped_tries} "
+              f"past {SETTLE_TRIES} tries (still ungraded, no longer re-queried)", flush=True)
 
 
 def tg_mirror(text, html=False):
