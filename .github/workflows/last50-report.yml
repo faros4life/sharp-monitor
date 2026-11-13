@@ -1,0 +1,35 @@
+name: last50-report
+
+# Peter, Nov 13: deterministic daily last-50-per-test report. No model computes any number.
+# READ-ONLY: reads committed files, places nothing, changes no rule, no OddsPapi call, no credit.
+# Cron is UTC: 10:24 UTC = 5:24 AM EST. After the March clock change it fires at 6:24 AM EDT
+# unless this line is moved to 9:24.
+
+on:
+  schedule:
+    - cron: "24 10 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: last50-report
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Last-50 report
+        env:
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+        run: python -u last50_report.py
