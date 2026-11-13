@@ -49,6 +49,54 @@ def gh(path):
         return None, type(ex).__name__
 
 
+def _novig_switch():
+    """(submit_state, dispatch_present). Env first; otherwise read it off the executor's own log.
+
+    board-page passes vars.EXEC_NOVIG_SUBMIT in, so the published page always has it. The PINNED
+    PANEL does not: it is built by a session that cannot read the variables API (blocked through
+    the proxy), which would leave the most important row on the board saying UNKNOWN exactly when
+    Peter wants to know whether Novig is live.
+
+    The executor echoes both values at the top of every run as '***' or blank - presence, never
+    the value - so the newest completed run is an authoritative, already-public source.
+
+    Returns sub=None when it could not be read, which the caller renders as UNKNOWN. That
+    distinction is the whole point: an empty string would fall into the "off" branch and print
+    PAUSED, asserting the switch is off on no evidence. That is the same failure this row already
+    had once as a hardcoded PAUSED, and it is the direction that loses money quietly.
+    """
+    sub = (os.environ.get("EXEC_NOVIG_SUBMIT") or "").strip()
+    disp = bool((os.environ.get("NOVIG_DISPATCH_TOKEN") or "").strip())
+    if sub:
+        return sub, disp
+    # gh() takes a FULL api path - callers supply /repos/{REPO} themselves (API is the bare host).
+    runs, err = gh(f"/repos/{REPO}/actions/workflows/executor-dry-run.yml/runs"
+                   "?per_page=10&status=success")
+    if err or not runs:
+        return None, False
+    for run in (runs.get("workflow_runs") or [])[:3]:
+        jobs, err = gh(f"/repos/{REPO}/actions/runs/{run.get('id')}/jobs")
+        if err or not jobs:
+            continue
+        jid = ((jobs.get("jobs") or [{}])[0] or {}).get("id")
+        if not jid:
+            continue
+        req = urllib.request.Request(f"{API}/repos/{REPO}/actions/jobs/{jid}/logs", headers={
+            "Authorization": f"Bearer {TOK}", "Accept": "application/vnd.github+json",
+            "X-GitHub-Api-Version": "2022-11-28", "User-Agent": "health-build"})
+        try:
+            with urllib.request.urlopen(req, timeout=30) as r:
+                text = r.read().decode("utf-8", "replace")
+        except Exception:
+            continue
+        m = re.search(r"EXEC_NOVIG_SUBMIT:\s*(\S*)", text)
+        d = re.search(r"NOVIG_DISPATCH_TOKEN:\s*(\S*)", text)
+        if m:
+            print(f"health: Novig switch read from executor run {run.get('id')}", flush=True)
+            return (m.group(1) or "").strip(), bool((d.group(1) if d else "").strip())
+    return None, False
+
+
 def _pretty_gap(m):
     """A gap in minutes, said the way a person would."""
     if m is None:
@@ -282,16 +330,20 @@ def main():
     # go out is a worse lie than the stale-board one - it is the direction that loses money
     # quietly. So it reads the switch, and says UNKNOWN rather than guessing when it is not
     # passed in. Switch state only: no stake, no limit, no dollars.
-    _sub = (os.environ.get("EXEC_NOVIG_SUBMIT") or "").strip().lower()
-    _disp = bool((os.environ.get("NOVIG_DISPATCH_TOKEN") or "").strip())
+    _sub, _disp = _novig_switch()
+    _unreadable = _sub is None          # None means COULD NOT READ, never "it is off"
+    _sub = (_sub or "").strip().lower()
     if _sub in ("on", "1", "true", "yes"):
         sysrows.append(("Novig submissions", "OK" if _disp else "WARN",
                         "LIVE - EXEC_NOVIG_SUBMIT is on" + ("" if _disp
                          else "; but NO dispatch credential, so every order would refuse")))
-    elif _sub in ("off", "0", "false", "no", ""):
+    elif not _unreadable and _sub in ("off", "0", "false", "no", ""):
         sysrows.append(("Novig submissions", "PAUSED",
                         "held by EXEC_NOVIG_SUBMIT" + ("" if _disp
                          else "; no dispatch credential configured either")))
+    elif _unreadable:
+        sysrows.append(("Novig submissions", "UNKNOWN",
+                        "could not read EXEC_NOVIG_SUBMIT - this is NOT a claim that it is off"))
     else:
         sysrows.append(("Novig submissions", "UNKNOWN",
                         f"EXEC_NOVIG_SUBMIT not readable from this job (saw {_sub!r})"))
