@@ -1,6 +1,192 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-13T14:40:23Z",
+   "base_depth": 68205,
+   "best_price": 0.68,
+   "best_price_american": -213,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.68,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-13",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 12721,
+     "new_this_side": 40673,
+     "other_side": 5584,
+     "other_side_all_levels": 36779,
+     "ratio": 8.1,
+     "this_side": 45201,
+     "this_side_all_levels": 109794
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "COLU (0)",
+     "price": 0.68,
+     "this_side": 2881
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Columbia",
+     "price": 0.6875,
+     "this_side": 1860
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 1427.87,
+    "volume_24h_fp": 1410.78,
+    "volume_fp": 1427.87
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 8.55,
+    "volume_24h_fp": 8.55,
+    "volume_fp": 8.55
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 1419.3200000000002,
+    "volume_24h_fp": 1402.23,
+    "volume_fp": 1419.3200000000002
+   },
+   "fade_price": 0.33,
+   "first_seen_utc": "2026-11-13T14:30:27Z",
+   "game": "Columbia vs Bucknell",
+   "game_surge_books": [
+    "prophetx"
+   ],
+   "game_x": 1.83,
+   "key": "kalshi|KXNCAAMBGAME-26NOV13CLMBBUCK|ml|0",
+   "lead_min": 560,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 40673,
+   "new_x": 1.83,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 1427.87,
+      "volume_24h_fp": 1410.78,
+      "volume_fp": 1427.87
+     },
+     "game_normal": 59840,
+     "game_x": 1.83,
+     "normal": 22223,
+     "now": 109794,
+     "type": "ML",
+     "x": 4.94
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 118283.0,
+      "volume": 119676.0
+     },
+     "game_normal": 1963,
+     "game_x": 1.81,
+     "normal": 2113,
+     "now": 3556,
+     "type": "ML",
+     "x": 1.68
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 669,
+     "game_x": 3.61,
+     "normal": 771,
+     "now": 2414,
+     "type": "ML",
+     "x": 3.13
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.68,
+   "price_american": -213,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.68,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -225
+    },
+    "betrivers": {
+     "point": null,
+     "price": -265
+    },
+    "bovada": {
+     "point": null,
+     "price": -240
+    },
+    "draftkings": {
+     "point": null,
+     "price": -218
+    },
+    "fanatics": {
+     "point": null,
+     "price": -220
+    },
+    "fanduel": {
+     "point": null,
+     "price": -215
+    },
+    "kalshi": {
+     "point": null,
+     "price": -213
+    },
+    "novig": {
+     "point": null,
+     "price": -212
+    },
+    "polymarket": {
+     "point": null,
+     "price": -223
+    },
+    "prophetx": {
+     "point": null,
+     "price": -220
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -225
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV13CLMBBUCK-CLMB"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Columbia",
+   "side_label": "Columbia",
+   "size_x": 4.94,
+   "start_source": "odds",
+   "start_utc": "2026-11-14T00:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "prophetx"
+   ],
+   "teams": [
+    "Columbia",
+    "Bucknell"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-13T14:30:27Z",
    "base_depth": 98916,
    "best_price": 0.705,
@@ -44,6 +230,11 @@
     "open_interest_fp": 15.0,
     "volume_24h_fp": 15.0,
     "volume_fp": 15.0
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 4363.16,
+    "volume_24h_fp": 2966.5299999999997,
+    "volume_fp": 4604.29
    },
    "ex_stats_first": {
     "open_interest_fp": 3368.01,
@@ -403,7 +594,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 8362.77,
-    "volume_24h_fp": 8247.51,
+    "volume_24h_fp": 8218.6,
     "volume_fp": 8518.5
    },
    "ex_stats_first": {
@@ -798,9 +989,9 @@
     "volume_fp": 6.18
    },
    "ex_stats_close": {
-    "open_interest_fp": 3696.4500000000003,
-    "volume_24h_fp": 3520.4100000000003,
-    "volume_fp": 3940.12
+    "open_interest_fp": 4001.45,
+    "volume_24h_fp": 3566.56,
+    "volume_fp": 4245.12
    },
    "ex_stats_first": {
     "open_interest_fp": 2135.42,
@@ -996,9 +1187,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 4146.0,
-    "volume_24h_fp": 334.65,
-    "volume_fp": 4173.71
+    "open_interest_fp": 4154.55,
+    "volume_24h_fp": 4180.7,
+    "volume_fp": 4182.26
    },
    "ex_stats_first": {
     "open_interest_fp": 226.32,
@@ -1195,9 +1386,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 917.02,
-    "volume_24h_fp": 914.37,
-    "volume_fp": 917.02
+    "open_interest_fp": 941.1999999999999,
+    "volume_24h_fp": 938.55,
+    "volume_fp": 941.1999999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 233.73,
@@ -1893,7 +2084,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Fritz",
