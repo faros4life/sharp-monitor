@@ -3011,6 +3011,48 @@ def watchdog_once(now, plays, rplays, feed):
             print(f"muse watchdog failed: {str(ex)[:60]}")
 
 
+def touch_claims():
+    """Re-stamp the token and order completeness claims. Refresh-only: NEITHER can be created here.
+
+    Nov 12 (Peter, Priority 1). handled_pids() already prefers the store - the branch is right
+    there, gated on registry.tokens_complete() - but the claim it needs was re-stamped ONLY on
+    main()'s busy exit path, after orders. The executor is idle on most runs, so more than
+    FRESH_MIN (12 min) routinely passed between one candidate run and the next, the claim expired,
+    and the next candidate pass fell back to Gmail: 44.7s of dedupe search on the one path where
+    latency decides whether a bet reaches the book before the line moves. The fast path for orders
+    made it permanent, because set_tokens_complete() is reachable only inside bot_orders()' GMAIL
+    backfill, which the store fast path skips. A loop that fed itself, and the LOG line that said
+    so ("dedupe fell back to Gmail: completeness claim missing or stale") was written to a list
+    nothing printed until tonight.
+
+    Safety is unchanged because this cannot manufacture completeness. touch_*_complete() refuse
+    unless the claim is already valid for the window AND ITS STAMP IS STILL FRESH - an EXPIRED
+    stamp is never revived, because only bot_orders()' Gmail backfill may assert completeness
+    again. So this extends a live claim hop by hop; it cannot restart a dead one. An invalidate(),
+    a failed backfill or a failed token write still sends the next run to Gmail. FRESH_MIN stays
+    12. complete_through is never widened. On the idle path this run placed nothing and wrote no
+    tokens, so the claim it re-stamps is the same one that was true when the run began.
+
+    That hop-by-hop property is the whole mechanism: the schedule fires every ~5 minutes and
+    FRESH_MIN is 12, so idle runs carry the claim forward between candidate runs. Busy runs alone
+    are far rarer than 12 minutes apart, which is why the chain broke every time.
+
+    One function, two call sites, for the reason watchdog_once() is one: an inline block repeated
+    in two places drifts, and the repo has already paid for that."""
+    if not registry.enabled():
+        return
+    try:
+        if not registry.touch_tokens_complete():
+            LOG.append("token completeness not re-stamped (no valid claim)")
+    except Exception as _tex:
+        LOG.append(f"token touch failed: {str(_tex)[:40]}")
+    try:
+        if not registry.touch_complete():
+            LOG.append("order completeness not re-stamped (no valid claim)")
+    except Exception as _oex:
+        LOG.append(f"order touch failed: {str(_oex)[:40]}")
+
+
 def run_tokens(results):
     """The dedupe / retry / side-taken tokens this run produced, in the SAME shape fmt() writes
     into the run email. Nov 11: the registry has to learn them or it would answer from an
@@ -4710,6 +4752,10 @@ def main():
         # path must not mean skipping it on the common run.
         watchdog_once(now, plays, rplays, feed)
         fill_reports()
+        # Nov 12 (Peter, Priority 1): the IDLE exit path re-stamps too. This is the path the
+        # executor takes on most runs, and leaving it out is what let the token claim expire
+        # between candidate runs and sent every candidate pass back to Gmail for dedupe.
+        touch_claims()
         print(perf_report())
         log_report()   # Nov 12 (Peter, item 3): LOG had 49 writers and no reader
         try:
@@ -5145,21 +5191,7 @@ def main():
                 # Gmail. touch_tokens_complete() only refreshes a claim that is ALREADY valid for the window; it
                 # cannot create one, so a failed backfill or an invalidate still sends the next run to Gmail.
                 # FRESH_MIN is unchanged at 12 minutes.
-                try:
-                    if not registry.touch_tokens_complete():
-                        LOG.append("token completeness not re-stamped (no valid claim)")
-                except Exception as _tex:
-                    LOG.append(f"token touch failed: {str(_tex)[:40]}")
-                # Nov 12 (Peter): the ORDERS claim too. Every order placed this run was written to the store as it
-                # happened (put_rows([row]) at the send site), and ANY failed write there calls invalidate() - which
-                # leaves no valid claim, so this refuses and the next run reads Gmail. It therefore only ever says
-                # "the claim that was already true is still true". complete_through is never widened. The $2,000
-                # per-lane daily risk and the global stop read exposure through this claim, so it stays refresh-only.
-                try:
-                    if not registry.touch_complete():
-                        LOG.append("order completeness not re-stamped (no valid claim)")
-                except Exception as _oex:
-                    LOG.append(f"order touch failed: {str(_oex)[:40]}")
+                touch_claims()
         except Exception as _ex:
             LOG.append(f"token write failed: {str(_ex)[:50]}")
             try:
