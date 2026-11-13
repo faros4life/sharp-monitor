@@ -122,3 +122,25 @@ later. This is the only item here that touches nothing live.
 Items 1-3 need Peter's approval because they change live order placement or require a venue
 question. Item 4 does not touch placement and can be added to the existing read-only
 reconciliation whenever he wants it.
+
+## Open question for Novig support (not tested here)
+
+Deliberately unanswered: testing it means placing a real order, which will not be done. Suggested
+wording:
+
+> Does `POST /v3/orders` support an idempotency key — a client-supplied value that, when the same
+> request is retried, returns the original order instead of creating a second one? If so, what is
+> the header or body field, and how long is the key honoured? We already send `clientId` on every
+> order; if that value is treated as idempotent on retry, confirming so would answer this.
+
+Why it matters: the write-ahead journal makes a lost order *recoverable*, but recovery is still an
+after-the-fact reconciliation. An idempotency key would make the retry itself safe, which is
+strictly stronger. Until there is an answer, no automatic retry of a POST is performed anywhere —
+a stranded `SENDING` row stays blocked for manual review rather than being re-sent.
+
+## Status, Nov 13
+
+Deployed: the pre-POST journal in `novig_live_order.place()`, with fail-closed behaviour and a
+durable read-back; and `novig-dispatch-census`, an hourly read-only check that every dispatch left
+a record. Not deployed and not requested: any automatic retry, any automatic release of a claim or
+intent, any change to the hard limits.
