@@ -1290,25 +1290,59 @@ def push(title, body, mirror=True):
 
 
 def tg(text):
-    """Fill/error message to Peter's Telegram (Oct 27; Xfinity has no email-to-text). Secrets TELEGRAM_BOT_TOKEN /
-    TELEGRAM_CHAT_ID; missing or failing = silently skipped (ntfy still fires). Nothing printed to the public log."""
+    """Message to Peter's Telegram. Returns True ONLY on a delivery Telegram itself confirmed.
+
+    Nov 13 (Peter): "Telegram API success is verified before marking a notification delivered" and
+    "missing Telegram credentials generate an observable health failure". Three defects, all here:
+
+      1. It returned None unconditionally, so no caller could tell delivered from lost - and
+         novig_reports promoted its claim straight after calling this, marking a report complete
+         without knowing anything had arrived.
+      2. It NEVER INSPECTED `ok`. Telegram answers HTTP 200 with {"ok": false, "description": ...}
+         for "chat not found" and "bot was blocked by the user", so a permanently silent bot read
+         as success on every pass. The repo's own telegram-test workflow checks r.get("ok"); the
+         production path did not.
+      3. Missing credentials returned silently and a failure only reached stdout, so neither was
+         visible in the run LOG that every run now prints.
+
+    Still never raises: a notification must not break an order path. The VERDICT is the product."""
     tok, chat = (os.environ.get("TELEGRAM_BOT_TOKEN") or "").strip(), (os.environ.get("TELEGRAM_CHAT_ID") or "").strip()
     if not tok or not chat:
-        return
+        LOG.append("TELEGRAM NOT CONFIGURED: no bot token or chat id - no Telegram alert was sent")
+        print("telegram NOT CONFIGURED (missing token or chat id)", flush=True)
+        return False
     try:
         req = urllib.request.Request(f"https://api.telegram.org/bot{tok}/sendMessage",
                                      data=json.dumps({"chat_id": chat, "text": text[:3500]}).encode(), method="POST",
                                      headers={"Content-Type": "application/json"})
-        urllib.request.urlopen(req, timeout=15).read()
-    except Exception:
-        print("telegram send failed")
+        body = urllib.request.urlopen(req, timeout=15).read().decode()
+        ok = bool((json.loads(body) or {}).get("ok"))
+        if not ok:
+            # 200 with ok:false - the silent-failure case. Counts only in the public log; the
+            # description can name the chat, so it goes no further than a short reason.
+            LOG.append(f"TELEGRAM REFUSED the message: {str((json.loads(body) or {}).get('description'))[:60]}")
+            print("telegram send refused (ok:false)", flush=True)
+        return ok
+    except Exception as ex:
+        LOG.append(f"TELEGRAM SEND FAILED: {str(ex)[:60]}")
+        print("telegram send failed", flush=True)
+        return False
 
 
 def tg_push(title, text):
-    """Nov 12 (Peter): one message, IDENTICAL text, on Telegram and ntfy - so neither channel can be the one that
-    missed an outcome. tg() and push() each swallow their own failures, so one channel failing never blocks the other."""
-    tg(text)
-    push(title, text, mirror=False)
+    """One message, IDENTICAL text, on Telegram and ntfy, so neither channel can be the one that
+    missed an outcome. Each channel is attempted independently - ntfy still fires when Telegram is
+    down, which is the point of having two.
+
+    Returns (telegram_ok, ntfy_ok) so a caller that must know whether anything arrived can ask.
+    Nov 13 (Peter): the verdict used to be unavailable, so "delivered" was an assumption."""
+    t = tg(text)
+    n = False
+    try:
+        n = bool(push(title, text, mirror=False))
+    except Exception as ex:
+        LOG.append(f"ntfy copy failed: {str(ex)[:50]}")
+    return t, n
 
 
 def wp(key):
@@ -4112,26 +4146,36 @@ def novig_reports():
                 msg += f"\n{str(x['error'])[:160]}"
             if x.get("order_id"):
                 msg += f"\nNovig order id: {x['order_id']}"
+            # Nov 13 (Peter): "Telegram API success is verified before marking a notification
+            # delivered." tg() now returns a verdict Telegram itself confirmed - it used to return
+            # None, so this promoted the claim after a call that could have delivered nothing, and
+            # an ok:false (blocked bot, wrong chat) marked the fill reported forever.
+            _tg_ok = True
+            if not _mute_nofill:   # Nov 12 (Peter: "no fill i dont need"): claim + email record kept, no phone message
+                try:
+                    _tg_ok = bool(tg(msg))
+                except Exception as ex:
+                    _tg_ok = False
+                    LOG.append(f"novig report send failed: {str(ex)[:50]}")
+            # ntfy is INDEPENDENT (Peter: "existing ntfy delivery continues independently") and gets
+            # its OWN one-time token, so a Telegram retry can never duplicate it on his phone. If
+            # the claim store cannot answer, the copy is SENT: a duplicate ntfy beats a missed fill.
             try:
-                if not _mute_nofill:   # Nov 12 (Peter: "no fill i dont need"): claim + email record kept, no phone message
-                    tg(msg)
-            except Exception as ex:
-                # nothing reached him: drop the claim so the next pass retries at once instead
-                # of waiting out the stale window.
-                claimer.failed(tok)
-                LOG.append(f"novig report send failed: {str(ex)[:50]}")
-                continue
-            # Delivered. Promote the claim BEFORE the two best-effort copies below: the old code
-            # wrote the record only when send() succeeded, so a single mail failure re-sent that
-            # fill on every pass. Telegram delivery is the criterion; a failed ntfy or email copy
-            # must never re-send BOTH.
-            claimer.sent(tok)
-            try:
-                # Nov 11: same report on ntfy (Kalshi already does this), one claim covers both.
                 if not _mute_nofill:
-                    push(head.title(), msg, mirror=False)
+                    _nt = tok + "n"
+                    _send_ntfy = (not registry.enabled()) or bool(registry.claim_token(_nt))
+                    if _send_ntfy and not push(head.title(), msg, mirror=False):
+                        if registry.enabled():
+                            registry.release_token(_nt)   # not delivered: let the next pass retry
             except Exception as ex:
                 LOG.append(f"novig report ntfy copy failed: {str(ex)[:40]}")
+            if not _tg_ok:
+                # Nothing CONFIRMED on Telegram: drop the claim so the next pass retries. The ntfy
+                # leg keeps its own token, so the retry re-sends Telegram only - no duplicates.
+                claimer.failed(tok)
+                LOG.append(f"novig report NOT confirmed on Telegram, will retry: {head}")
+                continue
+            claimer.sent(tok)
             try:
                 send(f"Bets Novig order: {head.replace('NOVIG ', '')}", msg + f"\n\n{tok}")
             except Exception:
