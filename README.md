@@ -1,6 +1,6 @@
 # EV sightings study (paper, measurement only)
 
-Started 2026-10-27T16:06:50Z. Updated 2026-11-13T12:12:28Z. Sightings are a record, never bets. CLV = close fair - sighting after-fee cost, in cents (+ = beat the close). Gate: >= 50 graded, positive average CLV and positive flat record; reviewed only at a scheduled review. A/B gate on consensus CLV; move-watch (A1) gate on Pinnacle CLV. Held = Pinnacle close minus Pinnacle's pre-move fair at the old number (+ = the move held). Rows exclude suspect sightings (best price 10c+ under the other books, or a crossed quote: usually a misread line); Pinnacle CLV only within 3 points of Pinnacle's number.
+Started 2026-10-27T16:06:50Z. Updated 2026-11-13T12:22:48Z. Sightings are a record, never bets. CLV = close fair - sighting after-fee cost, in cents (+ = beat the close). Gate: >= 50 graded, positive average CLV and positive flat record; reviewed only at a scheduled review. A/B gate on consensus CLV; move-watch (A1) gate on Pinnacle CLV. Held = Pinnacle close minus Pinnacle's pre-move fair at the old number (+ = the move held). Rows exclude suspect sightings (best price 10c+ under the other books, or a crossed quote: usually a misread line); Pinnacle CLV only within 3 points of Pinnacle's number.
 
 | Bucket | Sightings | Closed | CLV vs consensus | Beat % | Pin-closed | CLV vs Pinnacle | Graded | Record | Units | ROI | Held | Lag (med) | Gate |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
@@ -48,10 +48,11 @@ A and B on the same side/line: 147.
 
 ## Odds API credits (100K/month plan)
 
-Study: 641/day, projected 19235/30 days. All monitors on the key: 2401/day, projected 72028/30 days. Remaining 68823; guard holds 49800 for the sharp monitor; polls skipped by the guard: 0.
+Study: 641/day, projected 19226/30 days. All monitors on the key: 2400/day, projected 71997/30 days. Remaining 68823; guard holds 49800 for the sharp monitor; polls skipped by the guard: 0.
 
 ## Last runs
 
+- 2026-11-13T12:22:47Z: outside read hours: closes/grades only
 - 2026-11-13T12:12:27Z: outside read hours: closes/grades only
 - 2026-11-13T12:04:30Z: outside read hours: closes/grades only
 - 2026-11-13T12:01:08Z: outside read hours: closes/grades only
@@ -61,4 +62,3 @@ Study: 641/day, projected 19235/30 days. All monitors on the key: 2401/day, proj
 - 2026-11-13T11:42:55Z: outside read hours: closes/grades only
 - 2026-11-13T11:33:01Z: outside read hours: closes/grades only
 - 2026-11-13T11:23:45Z: outside read hours: closes/grades only
-- 2026-11-13T11:21:46Z: outside read hours: closes/grades only
