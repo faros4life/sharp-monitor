@@ -3,13 +3,45 @@ name: ev-sightings
 # PAPER STUDY, MEASUREMENT ONLY (Oct 27, 2026): logs EV sightings on the four exchanges and grades them.
 # Never places orders, never sends notifications, never writes main: data lives on the ev-study branch.
 # Amendment A1 (Oct 27): adds the Pinnacle move-watch leg inside the same run (no extra workflow).
+# ============================================================================================
+# STUDY CLOSED 2026-11-13 (Peter: "Approved. Disable ev-sightings now."). COLLECTION STOPPED.
+#
+# It answered both of its questions, negative, with large samples and with pre-registered
+# buckets locked 2026-10-31 BEFORE any forward data was read:
+#
+#   1. Does exchange "EV" predict closing value?  NO.
+#      A cross-book >=2c: 9774 graded, CLV -1.62c, 5085-4689, -300.58u (-3.1% ROI)
+#      A qualifying >=3c: 2197 graded, CLV -3.10c, -173.62u (-7.9%) - the TIGHTER filter did worse
+#      B Pinnacle >=3%EV:  175 graded, CLV -0.80c, 74-101, -17.98u (-10.3%)
+#      Pre-registered J1 J2 J3 J4: all four negative.
+#
+#   2. Do paper resting orders work?  NO - clear adverse selection, every row, both books:
+#      MK novig fair-1c      2742 posted, 117 filled (4.3%)  FILL -0.57c vs UNFILLED +1.58c
+#      MK novig fair-2c      2731 posted,  48 filled (1.8%)  FILL -0.08c vs UNFILLED +2.52c
+#      MK prophetx fair-1c   5922 posted, 281 filled (4.7%)  FILL -1.08c vs UNFILLED +1.10c
+#      MK prophetx fair-2c   5882 posted, 103 filled (1.8%)  FILL -0.57c vs UNFILLED +2.04c
+#      Orders fill precisely when the market has moved against them. The study's own README
+#      names this test: "if fills do much worse than unfilled, that is adverse selection."
+#
+#   Every gate in the study's own README reads "criteria not met".
+#
+# COST IT WAS STILL SPENDING: ~551 GitHub runner-minutes/day (9% of this repo) and 641 OddsPapi
+# credits/day - 27% of the 2401/day total burn on the 100K/month plan.
+#
+# NOTHING IS DELETED. The ev-study branch, ev_sightings.json (38MB of observations), the README
+# carrying every table above, and ev_sightings.py all stay exactly as they are. Only collection
+# stops. No other workflow, and nothing in live execution, is touched by this change.
+#
+# The cron is removed here AND the workflow is disabled through the Actions API, because
+# cron-job.org fires this by workflow_dispatch independently of any cron in this file - removing
+# the cron alone would NOT have stopped it. A disabled workflow rejects workflow_dispatch too, so
+# that external timer can keep firing harmlessly until its entry is removed.
+#
+# TO REOPEN: re-enable the workflow (Actions UI or API) and restore the cron line below. The
+# script and all history are untouched, so it would resume rather than restart.
+# ============================================================================================
 on:
-  schedule:
-    # Nov 12: ev-sightings_2 was this same file with a different cron - same script, same ev-study branch, same
-    # concurrency group - so every 10 minutes two Actions runs competed for a runner to do one job. Its timer
-    # moved here and that file was deleted. Coverage is unchanged: the 10-minute cron covers what the hourly
-    # backup covered, and cron-job.org still fires independently.
-    - cron: "7-59/10 * * * *"   # every 10 min, offset from the liquidity monitor / book check
+  # schedule: REMOVED 2026-11-13, study closed. Was: cron "7-59/10 * * * *" (every 10 minutes).
   workflow_dispatch:
 
 concurrency:
