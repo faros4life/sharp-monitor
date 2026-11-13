@@ -274,13 +274,28 @@ def main():
         # The verdict. Deliberately NOT "is the newest run green": this repo drops queued runs on
         # purpose, so cancellations are routine and say nothing about health.
         limit = max(FLOOR_MIN, STALE_FACTOR * cadence) if cadence else None
+        # Nov 13 (Peter: "why is liquidity feeds stale"). It was not. liquidity-extra runs every
+        # 10 minutes and was succeeding - 11:10, 11:00, 10:50, 10:30, 10:20, 10:10 - but at the
+        # moment of the build its last SUCCESS was 32 minutes old, because 10:40 had been
+        # cancelled and both 10:50 and 11:00 were still in flight. 32 > 30 (3 x a 10-minute
+        # cadence), so a perfectly healthy feed was reported as not running.
+        #
+        # A run in flight is positive evidence the workflow is alive; it just has not produced a
+        # success YET. So an in-flight run buys exactly ONE extra cadence of slack - enough to
+        # cover waiting on the current run, and not enough to hide a workflow wedged in_progress,
+        # which still goes STALE once even that allowance is spent. Tight cadences are the ones
+        # this bit: at 10 minutes the whole margin is 30, so a single cancellation plus one slow
+        # run trips it, while an hourly job has 180 minutes of room.
+        _inflight = bool(running and cadence)
+        _eff = (limit + cadence) if (_inflight and limit) else limit
         if not auto:
             state, why = "ON DEMAND", ("manual only" + (f", last success {ok_txt}" if last_ok else ", never succeeded"))
         elif last_ok is None:
             state, why = "FAIL", "no successful run in the last %d runs" % len(rl)
-        elif limit and ok_min > limit:
+        elif _eff and ok_min > _eff:
             _src = "its schedule is every" if declared is not None else "its own cadence is ~"
-            state, why = "STALE", f"last success {ok_txt}, {_src}{_pretty_gap(cadence)}"
+            state, why = "STALE", (f"last success {ok_txt}, {_src}{_pretty_gap(cadence)}"
+                                   + (" (a run is in flight but has not succeeded)" if _inflight else ""))
         elif str(newest.get("conclusion")) == "failure":
             state, why = "WARN", "succeeding, but the most recent run FAILED"
         else:
