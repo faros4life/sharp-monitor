@@ -30,6 +30,7 @@ from datetime import datetime, timezone
 import clv_ledger as cl
 
 MODEL = os.environ.get("NBA_MODEL_FILE", "") or "nba-model/nba_model.json"
+EV = os.environ.get("EV_FILE", "") or "ev-study/ev_sightings.json"
 LG = "NBA"
 SID = 11          # basketball sport id, as ML_MARKET's key in clv_ledger
 
@@ -124,12 +125,34 @@ def main():
         if not isinstance(g, dict):
             continue
         p = g.get("post") or {}
-        when = tp(p.get("utc"))
+        when = tp(p.get("utc")) or tp(g.get("start"))
         if not when:
             continue
         (hist if p.get("pin_line") is not None else live).append((g, p, when))
     print(f"  postings: {len(hist)} with an existing reference (replay), {len(live)} without (coverage)")
     print()
+
+    # The OLD reference was whatever sat in pin_cache when the model posted - and that entry was
+    # fetched at its own moment, not at the posting moment. So a disagreement at posting time may
+    # mean nothing worse than "the new read is fresher". To tell a METHOD error from a
+    # REFERENCE-TIME difference, each old entry's own fetch time is recovered here and the replay
+    # is run a second time at that instant. Matching there proves the method; the gap between the
+    # two is the staleness the old feed was carrying.
+    oldref = {}
+    try:
+        pc = (json.load(open(EV)) or {}).get("pin_cache") or {}
+        for v in pc.values():
+            teams = list(((v.get("spreads") or {}).get("outcomes") or {}).keys())
+            tot = v.get("totals") or {}
+            f = tot.get("fetched") or tot.get("upd")
+            if len(teams) == 2 and f:
+                try:
+                    oldref[frozenset(teams)] = datetime.fromtimestamp(float(f), tz=timezone.utc)
+                except (TypeError, ValueError):
+                    pass
+        print(f"  old pin_cache: {len(oldref)} entries with a fetch time")
+    except Exception as ex:
+        print(f"  old pin_cache unreadable ({type(ex).__name__}) - reference-time control skipped")
 
     cache = {}
 
@@ -153,7 +176,8 @@ def main():
     # ---- 1. REPLAY against references the old feed already verified ------------------------
     print("1. REPLAY - reproduce references captured by the OLD feed (no look-ahead)")
     print("-" * 94)
-    ok_line = ok_over = ok_under = 0
+    ok_line = ok_over = ok_under = ok_at_ref = 0
+    staleness = []
     miss = {}
     rows = []
     for g, p, when in hist:
@@ -166,6 +190,12 @@ def main():
             miss["no Pinnacle total at or before the posting time"] = \
                 miss.get("no Pinnacle total at or before the posting time", 0) + 1
             continue
+        ref_t = oldref.get(frozenset([g.get("away"), g.get("home")]))
+        if ref_t:
+            at_ref = pin_total_at(pm, mkmap, ref_t)
+            if at_ref and abs(float(at_ref["line"]) - float(p["pin_line"])) < 1e-9:
+                ok_at_ref += 1
+            staleness.append((when - ref_t).total_seconds() / 60)
         same_l = abs(float(got["line"]) - float(p["pin_line"])) < 1e-9
         same_o = got["over"] is not None and abs(got["over"] - float(p["pin_over"])) <= 1
         same_u = got["under"] is not None and abs(got["under"] - float(p["pin_under"])) <= 1
@@ -181,6 +211,14 @@ def main():
         print(f"    line matches : {ok_line}/{n}  ({100*ok_line/n:.1f}%)")
         print(f"    over  matches: {ok_over}/{n}  ({100*ok_over/n:.1f}%)   (+-1 American cent)")
         print(f"    under matches: {ok_under}/{n}  ({100*ok_under/n:.1f}%)")
+    if staleness:
+        staleness.sort()
+        med = staleness[len(staleness) // 2]
+        print(f"    line matches AT THE OLD ENTRY'S OWN FETCH TIME: {ok_at_ref}/{len(staleness)} "
+              f"({100 * ok_at_ref / len(staleness):.1f}%)")
+        print(f"    old reference age at posting: median {med:.0f} min, max {staleness[-1]:.0f} min")
+        print("      -> a high match here with a low match above means the METHOD agrees and the")
+        print("         OLD feed was serving a stale number; the reverse means a method error.")
     for k, v in sorted(miss.items(), key=lambda x: -x[1]):
         print(f"    unresolved: {v:>3}  {k}")
     for r in rows:

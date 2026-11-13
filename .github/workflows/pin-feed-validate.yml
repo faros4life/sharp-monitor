@@ -26,6 +26,8 @@ jobs:
         run: |
           mkdir -p nba-model
           git fetch -q origin nba-model && git show origin/nba-model:nba_model.json > nba-model/nba_model.json
+          mkdir -p ev-study
+          git fetch -q origin ev-study && git show origin/ev-study:ev_sightings.json > ev-study/ev_sightings.json
       - name: Validate (read-only, zero billable calls)
         env:
           # history goes through the FREE key: the paid key answers 403 on pinnacle (Nov 3)
