@@ -994,6 +994,42 @@ def lane_from_key(k):
     return LANE_NAME.get(head, LANE_NAME["rules"])
 
 
+def lane_lookup(play_keys):
+    """{unprefixed key: LANE NAME} resolved from the registry.
+
+    Nov 13 (Peter, "STILL SAYS PHASE 1"). lane_from_key cannot work on a Novig fill report, and my
+    earlier fix that used it was wrong for a reason the key itself hides: book_live.novig_place
+    dispatches derive_key(p), which is sport|game|market|side with NO lane prefix, so the runner's
+    snapshot row never carries a lane and lane_from_key could only ever answer its default,
+    PHASE 1. That is why a refusal - reported cloud-side, where the lane is known - says [R1] while
+    the fill for the same lane says [PHASE 1].
+
+    The registry does store the lane-prefixed key, so the lane is recovered here by matching on
+    lane_strip. A base key that resolves to TWO different lanes is left unresolved rather than
+    guessed: the caller then falls back to the default, which is the honest answer.
+    """
+    want = {lane_strip(str(k)) for k in play_keys if k}
+    if not want or not registry.enabled():
+        return {}
+    try:
+        rs = registry.rows() or []
+    except Exception:
+        return {}
+    found, clash = {}, set()
+    for r in rs:
+        k = str(r.get("key") or "")
+        base = lane_strip(k)
+        if base not in want:
+            continue
+        head = k.split("|")[0].strip().lower()
+        if head not in LANE_NAME:
+            continue                       # an unprefixed twin says nothing about the lane
+        if found.get(base, LANE_NAME[head]) != LANE_NAME[head]:
+            clash.add(base)
+        found[base] = LANE_NAME[head]
+    return {k: v for k, v in found.items() if k not in clash}
+
+
 def lane_of(r):
     """The lane a result belongs to. Phase 1 is the default: its plays carry no lane marker, and an
     UNLABELLED notification is exactly what Peter asked to stop seeing (Nov 11)."""
@@ -4108,6 +4144,7 @@ def novig_reports():
                 f"{x.get('client_id')}|{_st(x) if canon else str(x.get('status') or '?').upper()}|"
                 f"{int(x.get('filled_qty') or 0)}|{x.get('filled_cost')}".encode()).hexdigest()[:12]
         claimer = ReportClaim(M, [_tk(x, c) for x in cand for c in (True, False)])
+        _lanes = lane_lookup([x.get('play_key') for x in cand])
         # Nov 12 (Peter): record client_id -> Novig order id the first time a result row carries
         # both. This is the only place the two ids meet: novig_place returns a local uuid4 because
         # Novig's id does not exist at dispatch time, and fills carry Novig's id. Without the
@@ -4159,7 +4196,9 @@ def novig_reports():
             # not be tied to a lane or looked up in the Novig app. Both are already on the snapshot
             # row (play_key, order_id); only the message omitted them. Kalshi reports have always
             # carried the lane because they print row["key"], which is lane-prefixed.
-            msg = f"[{lane_from_key(x.get('play_key'))}] {head}: {x.get('label') or ''}"
+            # The registry carries the lane; the runner's play_key does not (see lane_lookup).
+            _base = lane_strip(str(x.get('play_key') or ''))
+            msg = f"[{_lanes.get(_base) or lane_from_key(x.get('play_key'))}] {head}: {x.get('label') or ''}"
             if fq > 0:
                 pay = fq / 100
                 msg += (f"\n{fq:,} of {q:,} contracts: ${(cost if cost is not None else fq * c / 100):,.2f} to pay ${pay:,.2f}"
