@@ -1,6 +1,194 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-13T15:41:42Z",
+   "base_depth": 29099,
+   "best_price": 0.51,
+   "best_price_american": -104,
+   "best_price_book": "novig",
+   "bid_improved": true,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 11,
+   "date": "2026-11-13",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 7406,
+     "new_this_side": 32052,
+     "other_side": 13658,
+     "other_side_all_levels": 47555,
+     "ratio": 1.5,
+     "this_side": 20262,
+     "this_side_all_levels": 61832
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "Under 154.5 (154.5)",
+     "price": 0.51,
+     "this_side": 5659
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 228.97,
+    "volume_24h_fp": 487.11,
+    "volume_fp": 487.11
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 228.97,
+    "volume_24h_fp": 487.11,
+    "volume_fp": 487.11
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-11-13T15:30:24Z",
+   "game": "Northern Arizona vs Kentucky: Point Total",
+   "game_surge_books": [
+    "kalshi",
+    "novig"
+   ],
+   "game_x": 2.41,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAMBTOTAL-26NOV13NAUUK-155\"}",
+   "lead_min": 498,
+   "league": "NCAAB",
+   "line": 154.5,
+   "market": "total",
+   "new_money": 32052,
+   "new_x": 2.45,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 228.97,
+      "volume_24h_fp": 487.11,
+      "volume_fp": 487.11
+     },
+     "game_normal": 25647,
+     "game_x": 2.41,
+     "normal": 13071,
+     "now": 61832,
+     "type": "UNDER",
+     "x": 4.73
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 68206.0,
+      "volume": 68206.0
+     },
+     "game_normal": 1204,
+     "game_x": 4.91,
+     "normal": 583,
+     "now": 5917,
+     "type": "UNDER",
+     "x": 10.15
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.5,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 154.5,
+     "price": -115
+    },
+    "betonlineag": {
+     "point": 154.5,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 154.5,
+     "price": -104
+    },
+    "betrivers": {
+     "point": 154.5,
+     "price": -108
+    },
+    "betus": {
+     "point": 154.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 154.0,
+     "price": -105
+    },
+    "draftkings": {
+     "point": 154.5,
+     "price": -110
+    },
+    "fanatics": {
+     "point": 154.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 153.5,
+     "price": -105
+    },
+    "kalshi": {
+     "point": 154.5,
+     "price": -104
+    },
+    "lowvig": {
+     "point": 154.5,
+     "price": -108
+    },
+    "novig": {
+     "point": 154.5,
+     "price": -104
+    },
+    "polymarket": {
+     "point": 155.5,
+     "price": -113
+    },
+    "prophetx": {
+     "point": 154.5,
+     "price": -104
+    },
+    "williamhill_us": {
+     "point": 154.5,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAMBTOTAL-26NOV13NAUUK-155"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "NOT Over 154.5 points",
+   "size_x": 4.73,
+   "start_source": "odds",
+   "start_utc": "2026-11-14T00:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig"
+   ],
+   "teams": [
+    "Northern Arizona",
+    "Kentucky"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-13T15:00:25Z",
    "base_depth": 15440,
    "best_price": 0.495,
@@ -53,8 +241,8 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 19145.52,
-    "volume_24h_fp": 19557.51,
-    "volume_fp": 19604.9
+    "volume_24h_fp": 19604.9,
+    "volume_fp": 19614.37
    },
    "ex_stats_first": {
     "open_interest_fp": 18832.83,
@@ -250,7 +438,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 440.91999999999996,
-    "volume_24h_fp": 437.64,
+    "volume_24h_fp": 440.91999999999996,
     "volume_fp": 440.91999999999996
    },
    "ex_stats_first": {
@@ -637,7 +825,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 8363.27,
-    "volume_24h_fp": 7896.55,
+    "volume_24h_fp": 7902.55,
     "volume_fp": 8363.27
    },
    "ex_stats_first": {
@@ -840,9 +1028,9 @@
     "volume_fp": 8.55
    },
    "ex_stats_close": {
-    "open_interest_fp": 1645.87,
+    "open_interest_fp": 1939.98,
     "volume_24h_fp": 1589.8,
-    "volume_fp": 1645.87
+    "volume_fp": 1939.98
    },
    "ex_stats_first": {
     "open_interest_fp": 1419.3200000000002,
@@ -1028,9 +1216,9 @@
     "volume_fp": 15.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 4761.09,
-    "volume_24h_fp": 4299.58,
-    "volume_fp": 5002.22
+    "open_interest_fp": 4762.5,
+    "volume_24h_fp": 4286.06,
+    "volume_fp": 5003.63
    },
    "ex_stats_first": {
     "open_interest_fp": 3368.01,
@@ -1212,9 +1400,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 220.86,
-    "volume_24h_fp": 219.69,
-    "volume_fp": 220.86
+    "open_interest_fp": 226.41,
+    "volume_24h_fp": 220.86,
+    "volume_fp": 226.41
    },
    "ex_stats_first": {
     "open_interest_fp": 29.990000000000002,
@@ -1392,9 +1580,9 @@
     "volume_fp": 11.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 8381.099999999999,
-    "volume_24h_fp": 8182.96,
-    "volume_fp": 8536.83
+    "open_interest_fp": 8383.49,
+    "volume_24h_fp": 8190.93,
+    "volume_fp": 8539.22
    },
    "ex_stats_first": {
     "open_interest_fp": 7963.4400000000005,
@@ -1788,9 +1976,9 @@
     "volume_fp": 6.18
    },
    "ex_stats_close": {
-    "open_interest_fp": 7373.39,
-    "volume_24h_fp": 4091.16,
-    "volume_fp": 7617.06
+    "open_interest_fp": 7458.34,
+    "volume_24h_fp": 7252.03,
+    "volume_fp": 7702.01
    },
    "ex_stats_first": {
     "open_interest_fp": 2135.42,
@@ -2378,9 +2566,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 868.72,
-    "volume_24h_fp": 802.62,
-    "volume_fp": 868.72
+    "open_interest_fp": 6136.52,
+    "volume_24h_fp": 6070.42,
+    "volume_fp": 6136.52
    },
    "ex_stats_first": {
     "open_interest_fp": 475.27,
@@ -2883,7 +3071,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 16,
+   "settle_tries": 17,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Fritz",
