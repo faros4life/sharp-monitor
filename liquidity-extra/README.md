@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 13, 3:50 PM ET. This run: 1 new, 0 not confirmed, 3 pending. Open alerts: 23.
+Updated Fri Nov 13, 4:00 PM ET. This run: 3 new, 0 not confirmed, 0 pending. Open alerts: 26.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,9 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 13 4:00PM | NCAAB | Northern Iowa vs Michigan St.: Point Total | total: NOT Over 154.5 points | kalshi | $32k | +104 |  | ✅ | +0.0c |  | pending |
+| Nov 13 4:00PM | NCAAB | Sam Houston vs Illinois: Point Total | total: NOT Over 170.5 points | kalshi | $36k | -108 |  | ✅ | +0.0c |  | pending |
+| Nov 13 4:00PM | NCAAB | Milwaukee vs TCU: Point Total | total: NOT Over 155.5 points | kalshi | $31k | -104 |  | ✅ | +0.0c |  | pending |
 | Nov 13 3:50PM | NCAAB | Southern Miss vs Texas St.: Point Total | total: NOT Over 138.5 points | kalshi | $38k | +104 |  |  | +0.0c |  | pending |
 | Nov 13 3:30PM | NCAAB | DePaul vs Northwestern | moneyline: DePaul | kalshi | $82k | +104 | ✅ novig |  | +0.0c |  | pending |
 | Nov 13 2:30PM | NCAAB | Cleveland St. vs West Florida | moneyline: West Florida | kalshi | $38k | -100 | ✅ novig |  | +4.0c |  | pending |
@@ -207,6 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 3 6:30PM | NCAAB | Longwood vs Saint Joseph's | moneyline: Saint Joseph's | kalshi | $58k | -456 |  |  | +3.0c | yes | W |
 | Nov 3 3:20PM | TENNIS | Ruud vs Jodar | moneyline: Ruud | kalshi | $914k | -113 |  |  | +8.0c |  | W |
 | Nov 3 2:40PM | TENNIS | Paul vs Merida | moneyline: Paul | kalshi | $85k | -376 |  |  | +2.0c |  | W |
-| Nov 3 2:40PM | TENNIS | Djokovic vs Hijikata | moneyline: Djokovic | kalshi | $93k | -426 |  |  | +0.0c |  | L |
-| Nov 3 2:30PM | TENNIS | Etcheverry vs de Minaur | moneyline: de Minaur | kalshi | $100k | -426 |  |  | +3.0c |  | L |
-| Nov 3 12:40PM | TENNIS | Shelton vs Norrie | moneyline: Shelton | kalshi | $42k | -257 | ✅ novig |  | +0.0c | yes | W |

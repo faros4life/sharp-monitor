@@ -1,6 +1,564 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-13T21:00:25Z",
+   "base_depth": 72534,
+   "best_price": 0.5075,
+   "best_price_american": -103,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.49,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-13",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 8247,
+     "new_this_side": 32110,
+     "other_side": 7457,
+     "other_side_all_levels": 72886,
+     "ratio": 6.9,
+     "this_side": 51157,
+     "this_side_all_levels": 105630
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "under 154.5 (154.5)",
+     "price": 0.5025,
+     "this_side": 718
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 1240.68,
+    "volume_24h_fp": 1303.68,
+    "volume_fp": 1303.68
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 1240.68,
+    "volume_24h_fp": 1303.68,
+    "volume_fp": 1303.68
+   },
+   "fade_price": 0.52,
+   "first_seen_utc": "2026-11-13T20:50:27Z",
+   "game": "Northern Iowa vs Michigan St.: Point Total",
+   "game_surge_books": [],
+   "game_x": 1.52,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAMBTOTAL-26NOV13UNIMSU-155\"}",
+   "lead_min": 180,
+   "league": "NCAAB",
+   "line": 154.5,
+   "market": "total",
+   "new_money": 32110,
+   "new_x": 1.33,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 1240.68,
+      "volume_24h_fp": 1303.68,
+      "volume_fp": 1303.68
+     },
+     "game_normal": 69285,
+     "game_x": 1.52,
+     "normal": 24180,
+     "now": 105630,
+     "type": "UNDER",
+     "x": 4.37
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 516,
+     "game_x": 1.45,
+     "normal": 243,
+     "now": 750,
+     "type": "UNDER",
+     "x": 3.09
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.49,
+   "price_american": 104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.49,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 154.5,
+     "price": -105
+    },
+    "betonlineag": {
+     "point": 154.5,
+     "price": -105
+    },
+    "betopenly": {
+     "point": 155.0,
+     "price": 102
+    },
+    "betrivers": {
+     "point": 154.5,
+     "price": -113
+    },
+    "betus": {
+     "point": 154.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 155.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 154.5,
+     "price": -108
+    },
+    "fanatics": {
+     "point": 155.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 154.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": 155.5,
+     "price": -108
+    },
+    "lowvig": {
+     "point": 154.5,
+     "price": -103
+    },
+    "novig": {
+     "point": 154.5,
+     "price": 104
+    },
+    "polymarket": {
+     "point": 154.5,
+     "price": 100
+    },
+    "prophetx": {
+     "point": 154.5,
+     "price": -101
+    },
+    "williamhill_us": {
+     "point": 155.0,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAMBTOTAL-26NOV13UNIMSU-155"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [
+    "Under 154.5 (-110)"
+   ],
+   "sharp_oppose": [
+    "Over 153.5 (-117)"
+   ],
+   "side": "UNDER",
+   "side_label": "NOT Over 154.5 points",
+   "size_x": 4.37,
+   "start_source": "odds",
+   "start_utc": "2026-11-14T00:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "prophetx"
+   ],
+   "teams": [
+    "Northern Iowa",
+    "Michigan St."
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-13T21:00:25Z",
+   "base_depth": 68254,
+   "best_price": 0.52,
+   "best_price_american": -108,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-13",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -3136,
+     "new_this_side": 36387,
+     "other_side": 13557,
+     "other_side_all_levels": 55527,
+     "ratio": 3.0,
+     "this_side": 40726,
+     "this_side_all_levels": 110529
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "Under 170.5 (170.5)",
+     "price": 0.52,
+     "this_side": 3414
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 2070.59,
+    "volume_24h_fp": 2767.1,
+    "volume_fp": 2767.1
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 2070.59,
+    "volume_24h_fp": 2767.1,
+    "volume_fp": 2767.1
+   },
+   "fade_price": 0.49,
+   "first_seen_utc": "2026-11-13T20:50:27Z",
+   "game": "Sam Houston vs Illinois: Point Total",
+   "game_surge_books": [
+    "kalshi"
+   ],
+   "game_x": 2.96,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAMBTOTAL-26NOV13SHSUILL-171\"}",
+   "lead_min": 180,
+   "league": "NCAAB",
+   "line": 170.5,
+   "market": "total",
+   "new_money": 36387,
+   "new_x": 1.5,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 2070.59,
+      "volume_24h_fp": 2767.1,
+      "volume_fp": 2767.1
+     },
+     "game_normal": 37346,
+     "game_x": 2.96,
+     "normal": 24180,
+     "now": 110529,
+     "type": "UNDER",
+     "x": 4.57
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 2648580.0,
+      "volume": 2839775.0
+     },
+     "game_normal": 3696,
+     "game_x": 1.16,
+     "normal": 1523,
+     "now": 4287,
+     "type": "UNDER",
+     "x": 2.81
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.52,
+   "price_american": -108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.52,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 170.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 171.0,
+     "price": -114
+    },
+    "betopenly": {
+     "point": 170.5,
+     "price": -102
+    },
+    "betrivers": {
+     "point": 171.5,
+     "price": -117
+    },
+    "betus": {
+     "point": 170.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 170.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 170.5,
+     "price": -108
+    },
+    "fanatics": {
+     "point": 170.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 170.5,
+     "price": -105
+    },
+    "kalshi": {
+     "point": 170.5,
+     "price": -108
+    },
+    "lowvig": {
+     "point": 171.0,
+     "price": -112
+    },
+    "novig": {
+     "point": 149.5,
+     "price": -100000
+    },
+    "polymarket": {
+     "point": 169.5,
+     "price": 100
+    },
+    "prophetx": {
+     "point": 170.5,
+     "price": -107
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAMBTOTAL-26NOV13SHSUILL-171"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [
+    "Under 172.5 (-117)"
+   ],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "NOT Over 170.5 points",
+   "size_x": 4.57,
+   "start_source": "odds",
+   "start_utc": "2026-11-14T00:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig"
+   ],
+   "teams": [
+    "Sam Houston",
+    "Illinois"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-13T21:00:25Z",
+   "base_depth": 69955,
+   "best_price": 0.51,
+   "best_price_american": -104,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-13",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 1662,
+     "new_this_side": 30756,
+     "other_side": 11838,
+     "other_side_all_levels": 42906,
+     "ratio": 2.8,
+     "this_side": 33651,
+     "this_side_all_levels": 101631
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "Under 155.5 (155.5)",
+     "price": 0.51,
+     "this_side": 2321
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 43.76,
+    "volume_24h_fp": 82.4,
+    "volume_fp": 82.4
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 43.76,
+    "volume_24h_fp": 82.4,
+    "volume_fp": 82.4
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-11-13T20:50:27Z",
+   "game": "Milwaukee vs TCU: Point Total",
+   "game_surge_books": [],
+   "game_x": 1.85,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAMBTOTAL-26NOV13MILWTCU-156\"}",
+   "lead_min": 240,
+   "league": "NCAAB",
+   "line": 155.5,
+   "market": "total",
+   "new_money": 30756,
+   "new_x": 1.27,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 43.76,
+      "volume_24h_fp": 82.4,
+      "volume_fp": 82.4
+     },
+     "game_normal": 54968,
+     "game_x": 1.85,
+     "normal": 24180,
+     "now": 101631,
+     "type": "UNDER",
+     "x": 4.2
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 631434.0,
+      "volume": 635834.0
+     },
+     "game_normal": 4867,
+     "game_x": 0.54,
+     "normal": 1523,
+     "now": 2611,
+     "type": "UNDER",
+     "x": 1.71
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 155.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 155.0,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 155.0,
+     "price": 101
+    },
+    "betrivers": {
+     "point": 155.5,
+     "price": -108
+    },
+    "betus": {
+     "point": 155.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 155.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 155.5,
+     "price": -105
+    },
+    "fanatics": {
+     "point": 155.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 155.5,
+     "price": -105
+    },
+    "kalshi": {
+     "point": 155.5,
+     "price": -104
+    },
+    "lowvig": {
+     "point": 155.0,
+     "price": -108
+    },
+    "novig": {
+     "point": 155.5,
+     "price": -104
+    },
+    "polymarket": {
+     "point": 155.5,
+     "price": -104
+    },
+    "prophetx": {
+     "point": 155.5,
+     "price": -108
+    },
+    "williamhill_us": {
+     "point": 156.5,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAMBTOTAL-26NOV13MILWTCU-156"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [
+    "Under 155.5 (-105)",
+    "Under 157.5 (-115)"
+   ],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "NOT Over 155.5 points",
+   "size_x": 4.2,
+   "start_source": "odds",
+   "start_utc": "2026-11-14T01:00:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "Milwaukee",
+    "TCU"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-13T20:50:27Z",
    "base_depth": 55401,
    "best_price": 0.5075,
@@ -44,6 +602,11 @@
     "open_interest_fp": 37.0,
     "volume_24h_fp": 37.0,
     "volume_fp": 37.0
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 282.87,
+    "volume_24h_fp": 282.87,
+    "volume_fp": 282.87
    },
    "ex_stats_first": {
     "open_interest_fp": 245.87,
@@ -232,9 +795,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 26305.27,
+    "open_interest_fp": 26436.86,
     "volume_24h_fp": 45293.94,
-    "volume_fp": 45544.3
+    "volume_fp": 45675.89
    },
    "ex_stats_first": {
     "open_interest_fp": 23237.440000000002,
@@ -628,9 +1191,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 573.5699999999999,
-    "volume_24h_fp": 555.14,
-    "volume_fp": 573.5699999999999
+    "open_interest_fp": 585.48,
+    "volume_24h_fp": 565.74,
+    "volume_fp": 585.48
    },
    "ex_stats_first": {
     "open_interest_fp": 382.97,
@@ -1563,9 +2126,9 @@
     "volume_fp": 223.62
    },
    "ex_stats_close": {
-    "open_interest_fp": 1071.45,
-    "volume_24h_fp": 1071.45,
-    "volume_fp": 1071.45
+    "open_interest_fp": 1172.39,
+    "volume_24h_fp": 1168.31,
+    "volume_fp": 1172.39
    },
    "ex_stats_first": {
     "open_interest_fp": 194.32000000000002,
@@ -1754,9 +2317,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1503.35,
-    "volume_24h_fp": 1707.4099999999999,
-    "volume_fp": 1707.4099999999999
+    "open_interest_fp": 1603.35,
+    "volume_24h_fp": 1807.4099999999999,
+    "volume_fp": 1807.4099999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 398.0,
@@ -1951,9 +2514,9 @@
     "volume_fp": 0.66
    },
    "ex_stats_close": {
-    "open_interest_fp": 14933.57,
-    "volume_24h_fp": 14686.529999999999,
-    "volume_fp": 15199.939999999999
+    "open_interest_fp": 14984.45,
+    "volume_24h_fp": 14740.97,
+    "volume_fp": 15250.82
    },
    "ex_stats_first": {
     "open_interest_fp": 6997.66,
@@ -2343,9 +2906,9 @@
     "volume_fp": 15.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 17857.97,
-    "volume_24h_fp": 17575.120000000003,
-    "volume_fp": 18547.66
+    "open_interest_fp": 17912.96,
+    "volume_24h_fp": 17604.49,
+    "volume_fp": 18602.649999999998
    },
    "ex_stats_first": {
     "open_interest_fp": 3368.01,
@@ -2707,9 +3270,9 @@
     "volume_fp": 11.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 9964.53,
-    "volume_24h_fp": 5165.55,
-    "volume_fp": 10437.24
+    "open_interest_fp": 10307.61,
+    "volume_24h_fp": 5425.46,
+    "volume_fp": 10780.32
    },
    "ex_stats_first": {
     "open_interest_fp": 7963.4400000000005,
@@ -3103,9 +3666,9 @@
     "volume_fp": 6.18
    },
    "ex_stats_close": {
-    "open_interest_fp": 26283.89,
-    "volume_24h_fp": 26027.910000000003,
-    "volume_fp": 26619.59
+    "open_interest_fp": 26703.82,
+    "volume_24h_fp": 26443.67,
+    "volume_fp": 27039.52
    },
    "ex_stats_first": {
     "open_interest_fp": 2135.42,
@@ -3693,9 +4256,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 35490.78,
-    "volume_24h_fp": 35531.08,
-    "volume_fp": 35597.18
+    "open_interest_fp": 35500.81,
+    "volume_24h_fp": 35540.08,
+    "volume_fp": 35607.21
    },
    "ex_stats_first": {
     "open_interest_fp": 475.27,
@@ -4198,7 +4761,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 48,
+   "settle_tries": 49,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Fritz",
