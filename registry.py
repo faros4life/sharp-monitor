@@ -61,6 +61,13 @@ def _call(method, url, body=None, timeout=20):
         url, data=json.dumps(body).encode() if body is not None else None, method=method,
         headers={"Authorization": f"Bearer {token()}", "Accept": "application/vnd.github+json",
                  "X-GitHub-Api-Version": "2022-11-28", "User-Agent": "sharp-monitor",
+                 # Nov 12 (Peter, Priority 1): the contents API is served through a cache, and this
+                 # GET carried no cache directive, so a read taken straight after a PUT could be
+                 # answered with the PRE-WRITE blob. That is a candidate cause of the intermittent
+                 # "read-back FAILED", and it is strictly a STRENGTHENING of the read: it can only
+                 # make the store harder to believe, never easier. The read-back requirement itself
+                 # is untouched - a probe that does not come back still FAILS.
+                 "Cache-Control": "no-cache",
                  **({"Content-Type": "application/json"} if body is not None else {})})
     try:
         with urllib.request.urlopen(req, timeout=timeout) as r:
@@ -830,9 +837,38 @@ def selftest():
     t1 = time.time()
     ok = mark_handled([probe], "selftest")
     write_s = time.time() - t1
+    # Nov 12 (Peter, Priority 1: "determine whether the failure occurs during write, read,
+    # authentication, concurrency or consistency verification").
+    #
+    # This line used to read `seen = bool(back and probe in ...)`, which is the collapse CLAUDE.md
+    # warns about: `back is None` (the store could not be READ AT ALL - auth, 5xx, timeout) printed
+    # the same "read-back FAILED" as a readable store that did not contain the probe (a LOST
+    # UPDATE, or a stale cached blob). Those have opposite remedies, and one bucket cannot tell
+    # them apart - which is why "intermittent read-back failures" had no cause attached to it.
+    #
+    # Four distinct outcomes now, and a second read as the discriminator between the last two:
+    #   WRITE FAILED        - the PUT never confirmed; nothing was stored. Fail closed, as before.
+    #   READ UNREADABLE     - transport or auth. Says nothing about whether the write landed.
+    #   STALE (then seen)   - absent on the first read, present on the second: read-after-write
+    #                         staleness, i.e. consistency, not a lost write.
+    #   MISSING (twice)     - written, confirmed, and genuinely not there: a LOST UPDATE, which is
+    #                         the only one of the four that means the store cannot be trusted.
     back = load()
-    seen = bool(back and probe in (back.get("handled") or {}))
+    if back is None:
+        verdict, detail = "FAILED", "read UNREADABLE (transport/auth) - the write is unconfirmed"
+    elif probe in (back.get("handled") or {}):
+        verdict, detail = "ok", ""
+    else:
+        time.sleep(1.0)
+        back2 = load()
+        if back2 is None:
+            verdict, detail = "FAILED", "absent, then UNREADABLE - unconfirmed"
+        elif probe in (back2.get("handled") or {}):
+            verdict, detail = "FAILED", "STALE READ: absent at once, present 1s later (consistency, not a lost write)"
+        else:
+            verdict, detail = "FAILED", "MISSING on two reads: LOST UPDATE - do not trust the store"
     return (f"registry: read {read_s:.2f}s ({len(data.get('orders') or [])} orders, "
             f"{len(data.get('intents') or [])} intents, {len(data.get('handled') or {})} handled), "
-            f"write {'ok' if ok else 'FAILED'} {write_s:.2f}s, read-back {'ok' if seen else 'FAILED'}"
-            f" - compare with the 79s Gmail registry read")
+            f"write {'ok' if ok else 'FAILED'} {write_s:.2f}s, read-back {verdict}"
+            + (f" [{detail}]" if detail else "")
+            + " - compare with the 79s Gmail registry read")
