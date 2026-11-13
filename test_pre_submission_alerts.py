@@ -118,3 +118,20 @@ if fails:
     print(f"FAIL  test_pre_submission_alerts.py  {len(fails)} failed: {fails}")
     sys.exit(1)
 print("ALL PASS")
+
+# ---------------------------------------------------------------- Nov 13: fill-report contents
+print("\n8. Fill reports name the lane and the venue order id (Peter, requirement 2)")
+check("lane_from_key maps a board key", ex.lane_from_key("board|NBA|A @ B|total|OVER") == "BOARD V3")
+check("...an r1 key", ex.lane_from_key("r1|NCAAB|A @ B|spread|AWAY") == "R1")
+check("...and an unprefixed Phase 1 key defaults to PHASE 1",
+      ex.lane_from_key("NBA|A @ B|total|UNDER") == "PHASE 1" and ex.lane_from_key(None) == "PHASE 1")
+nr = inspect.getsource(ex.novig_reports)
+check("the Novig message leads with the lane", "[{lane_from_key(x.get('play_key'))}]" in nr)
+check("and carries the Novig order id", "Novig order id:" in nr)
+check("a RESTING outcome is still its own head", 'NOVIG RESTING (nothing filled yet)' in nr)
+check("a GTT bid that expires unfilled is NOT muted",
+      '_mute_nofill = head == "NOVIG NO FILL" and x.get("tif") != "GTT"' in nr)
+check("a qty change makes a NEW token, so PARTIAL -> FULL is never suppressed",
+      "int(x.get('filled_qty') or 0)" in nr and "filled_cost" in nr)
+check("ntfy gets the same text as Telegram", 'push(head.title(), msg, mirror=False)' in nr)
+check("a failed send drops the claim so the next pass retries", "claimer.failed(tok)" in nr)

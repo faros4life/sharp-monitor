@@ -943,6 +943,16 @@ def lane_report(results):
     return "\n".join(out)
 
 
+def lane_from_key(k):
+    """Display lane for a stored play_key. Nov 13 (Peter): Novig fill reports carried no lane.
+
+    Board and R1 keys are lane-prefixed ("board|NBA|...", "r1|NCAAB|..."); a Phase 1 key is not, so
+    an unprefixed key is PHASE 1 - the same default lane_of() uses, and an UNLABELLED notification
+    is exactly what Peter asked to stop seeing on Nov 11."""
+    head = str(k or "").split("|")[0].strip().lower()
+    return LANE_NAME.get(head, LANE_NAME["rules"])
+
+
 def lane_of(r):
     """The lane a result belongs to. Phase 1 is the default: its plays carry no lane marker, and an
     UNLABELLED notification is exactly what Peter asked to stop seeing (Nov 11)."""
@@ -4010,7 +4020,12 @@ def novig_reports():
             # an immediate fill-or-kill NO FILL is muted; a RESTING (GTT) bid that expires unfilled is still reported
             # once (its outcome, Nov 12 audit), since that is the end of a bid he was told went out
             _mute_nofill = head == "NOVIG NO FILL" and x.get("tif") != "GTT"
-            msg = f"{head}: {x.get('label') or ''}"
+            # Nov 13 (Peter, requirement 2): the lane and the venue order id were missing from every
+            # Novig fill report - the Utah/Houston RESTING message carried neither, so a report could
+            # not be tied to a lane or looked up in the Novig app. Both are already on the snapshot
+            # row (play_key, order_id); only the message omitted them. Kalshi reports have always
+            # carried the lane because they print row["key"], which is lane-prefixed.
+            msg = f"[{lane_from_key(x.get('play_key'))}] {head}: {x.get('label') or ''}"
             if fq > 0:
                 pay = fq / 100
                 msg += (f"\n{fq:,} of {q:,} contracts: ${(cost if cost is not None else fq * c / 100):,.2f} to pay ${pay:,.2f}"
@@ -4023,6 +4038,8 @@ def novig_reports():
                 msg += "\n" + x["_exp_note"]
             if x.get("error"):
                 msg += f"\n{str(x['error'])[:160]}"
+            if x.get("order_id"):
+                msg += f"\nNovig order id: {x['order_id']}"
             try:
                 if not _mute_nofill:   # Nov 12 (Peter: "no fill i dont need"): claim + email record kept, no phone message
                     tg(msg)
