@@ -1,21 +1,9 @@
-#!/usr/bin/env python3
-"""READ-ONLY per-play CLV lookup for Nov 12 plays (Peter, Nov 13). No IMAP/ESPN/OddsPapi, writes nothing."""
 import json
-import clv_ledger as cl
-import tracker_build as tb
+import clv_ledger as cl, tracker_build as tb
 st = tb.dec(json.load(open(cl.STATE)))
-bets = st.get("bets") or {}
-names = ("louisiana", "dallas", "charlotte", "toronto")
-n = 0
-for k, r in bets.items():
-    s = json.dumps(r, default=str)
-    if "2026-11-12" not in s and "2026-11-13" not in s:
-        continue
-    if not any(x in s.lower() for x in names):
-        continue
-    n += 1
-    keep = {a: v for a, v in r.items() if a != "snap"}
-    keep["id"] = k[:40]
-    keep["snap"] = {a: v for a, v in (r.get("snap") or {}).items() if not isinstance(v, (dict, list))}
-    print(json.dumps(keep, default=str)[:1200])
-print("rows matched", n, "of", len(bets))
+print("fx_last", st.get("fx_last"))
+for fid, f in (st.get("fixtures") or {}).items():
+    t = (f.get("p1","")+" "+f.get("p2","")).lower()
+    if (f.get("lg")=="NCAAF" and "louisiana" in t) or (f.get("lg")=="NBA" and (("dallas" in t and "minnesota" in t) or ("charlotte" in t and "phoenix" in t))):
+        print("FX", fid, f.get("lg"), f.get("start"), "|", f.get("p1"), "|", f.get("p2"))
+print("NBA fixtures", sum(1 for f in st["fixtures"].values() if f.get("lg")=="NBA"), "latest", max((f.get("start") or "") for f in st["fixtures"].values() if f.get("lg")=="NBA"))
