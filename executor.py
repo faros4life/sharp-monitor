@@ -61,7 +61,16 @@ def lv_credit(cv, alert_cost, tol):
     return cv["max_prob"] - (alert_cost + tol)
 
 UNIT = float(os.environ.get("EXEC_UNIT", "") or "300")          # + money: risk UNIT; - money: risk to win UNIT
-SOURCE = (os.environ.get("EXEC_SOURCE", "") or "both").lower()  # muse | rules | both (dry run: both, side by side)
+# Nov 12 (Peter, "no more muse verdicts"): default was "both", and NO workflow sets EXEC_SOURCE, so
+# every run was still dialling Gmail twice for an agent that has been dropped - read_verdicts() on
+# the pre-order path and the no-verdict watchdog after orders. Both are gated on this one name
+# (read_verdicts when SOURCE is muse|both, watchdog_once returns early unless SOURCE == "both"), so
+# "rules" turns off both without deleting the plumbing: set EXEC_SOURCE=both to put Muse back.
+#
+# This REMOVES a veto, which would matter if any veto could still arrive. Muse's verdicts were the
+# only source of one and Muse sends nothing now, so there is no veto to lose. Measured cost removed:
+# 1.3s verdicts + 3.5s watchdog per pass, and the "[Muse] " tag leaves src_tag().
+SOURCE = (os.environ.get("EXEC_SOURCE", "") or "rules").lower()  # muse | rules | both
 RULES_LOOKBACK_H = 6                                             # coded rules look at alerts first sent in the last 6 h
 MIN_LEAD_MIN = float(os.environ.get("EXEC_MIN_LEAD_MIN", "") or "60")
 CAP_LINE = -130                                                  # spreads/totals: never worse than -130
