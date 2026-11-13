@@ -35,7 +35,8 @@ from zoneinfo import ZoneInfo
 ET = ZoneInfo("America/New_York")
 OUT_DIR = os.environ.get("NBA_DIR", "") or "nba-model"
 OUT = os.path.join(OUT_DIR, "nba_model.json")
-EV = os.environ.get("EV_FILE", "") or "ev-study/ev_sightings.json"
+ODDS_SCREEN = os.environ.get("ODDS_SCREEN_FILE", "") or "odds_screen.json"
+MAX_REF_AGE_S = 15 * 60   # sharp-monitor publishes every 5 min; 3 missed cycles is stale
 ESPN = "https://site.api.espn.com/apis/site/v2/sports/basketball/nba"
 THRESH, FORM_N, SHRINK = 3.0, 10, 10.0
 SEASON_FROM = datetime(2026, 10, 20, tzinfo=timezone.utc)
@@ -145,19 +146,55 @@ def number(r, home, away):
 
 
 def pin_lines():
-    """{frozenset(team names): totals dict} from the EV study's Pinnacle cache (no new credits)."""
+    """{frozenset(team names): totals dict} from sharp-monitor's live Pinnacle read. No new credits.
+
+    Nov 13 (Peter). Was the EV study's pin_cache, which died with the study and left the model
+    posting games with pin_line = None - "logged, never a sighting" - so it produced nothing while
+    looking healthy. odds_screen.json carries the same measurement: sharp-monitor's SHARP book IS
+    Pinnacle and it already reads basketball_nba spreads+totals every 5 minutes, publishing the
+    result to main. Same source, same book_lines shape, same AMERICAN odds the old cache stored and
+    close_prob_detail's am_to_prob expects, so historical references stay comparable.
+
+    STALE IS A MISS, NOT A VALUE. A game older than MAX_REF_AGE_S, or a file that old, is dropped
+    rather than served: the caller records a missing reference, which is correct and visible,
+    instead of pricing off a number that has moved.
+
+    AMBIGUITY IS A MISS TOO. The key is the team pair, so if one slate somehow carries the same
+    pair twice the entry is dropped rather than guessed at.
+    """
     try:
-        doc = json.load(open(EV))
+        doc = json.load(open(ODDS_SCREEN))
     except Exception:
         return {}
-    out = {}
-    for ev, v in (doc.get("pin_cache") or {}).items():
-        teams = list(((v.get("spreads") or {}).get("outcomes") or {}).keys())
-        tot = v.get("totals") or {}
-        oc = tot.get("outcomes") or {}
-        if len(teams) == 2 and "Over" in oc and "Under" in oc:
-            out[frozenset(teams)] = {"line": oc["Over"][0], "over": oc["Over"][1], "under": oc["Under"][1],
-                                     "upd": tot.get("upd"), "fetched": tot.get("fetched")}
+    file_upd = pt(doc.get("updated_utc"))
+    now_ts = datetime.now(timezone.utc).timestamp()
+    if not file_upd or now_ts - file_upd.timestamp() > MAX_REF_AGE_S:
+        return {}                      # the whole feed is stale: serve nothing
+    out, seen = {}, set()
+    for g in doc.get("games") or []:
+        if not isinstance(g, dict) or g.get("lg") != "NBA":
+            continue
+        t = ((g.get("books") or {}).get("pinnacle") or {}).get("t") or {}
+        o, u = t.get("Over"), t.get("Under")
+        if not (isinstance(o, list) and isinstance(u, list) and len(o) == 2 and len(u) == 2):
+            continue
+        if abs(float(o[0]) - float(u[0])) > 1e-9:
+            continue                   # Over and Under must be the same number to be one line
+        try:
+            upd = float(g.get("upd") or file_upd.timestamp())
+        except (TypeError, ValueError):
+            upd = file_upd.timestamp()
+        if now_ts - upd > MAX_REF_AGE_S:
+            continue                   # this game's quote is stale even though the file is fresh
+        key = frozenset((g.get("away"), g.get("home")))
+        if len(key) != 2:
+            continue
+        if key in seen:                # same pair twice in one file: ambiguous, so neither is used
+            out.pop(key, None)
+            continue
+        seen.add(key)
+        out[key] = {"line": float(o[0]), "over": o[1], "under": u[1],
+                    "upd": upd, "fetched": upd, "start": g.get("start")}
     return out
 
 
