@@ -28,6 +28,7 @@ jobs:
       - name: Export bot plays by lane
         env:
           TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+          REGISTRY_TOKEN: ${{ secrets.REGISTRY_TOKEN }}   # contents read on the private registry
         run: python -u bot_live_export.py
       - name: Commit the encrypted export
         run: |

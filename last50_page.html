@@ -140,7 +140,7 @@ function showLive(d){LB.innerHTML="";
   [...op,...set].forEach(p=>{const r=el("div","play");
    r.append(el("span","",p.bet+" ("+(p.price>0?"+":"")+(p.price??"n/a")+", "+p.book+")"));
    const tg=p.open?el("span","tag",p.state==="in"?"LIVE":"OPEN"):el("span","tag "+(p.result==="W"?"pos":p.result==="L"?"neg":""),p.result+" "+u(p.units));
-   r.append(tg);r.append(el("span","sc",p.game+" · "+scoreText(p)));body.append(r)})}
+   r.append(tg);r.append(el("span","sc",p.game+" · "+scoreText(p)+(p.how&&p.how.startsWith("before")?" · lane inferred (placed before R1/Board existed)":"")));body.append(r)})}
  names.forEach(n=>{const b=el("button","",n+" ("+d.lanes[n].length+")");b.dataset.n=n;b.type="button";b.onclick=()=>pick(n);tabs.append(b)});
  pick(names[0])}
 (async()=>{let saved=null;try{saved=localStorage.getItem("l50pp")}catch(x){}

@@ -16,6 +16,8 @@ from datetime import datetime, timezone
 
 import tracker_build as tb
 
+FIRST_MULTI_LANE_DAY = "2026-11-11"   # R1 and Board v3 were approved on Nov 11; before it only Lane 1 (PHASE 1) could place
+
 OUT = "tracker/bot_live.enc"
 LANES = {"PHASE 1": "Lane 1", "BOARD V3": "Bets Board v3", "R1": "R1", "LANE 2": "Lane 2"}
 
@@ -34,6 +36,26 @@ def play(b):
             "final": bool(b.get("teams_final"))}
 
 
+def registry_lanes():
+    """key -> lane name from the bot's PRIVATE GitHub registry (the source of truth; Gmail is only the backup).
+    The store keeps about 4 days, so it cannot label older plays. Returns {} when unreadable."""
+    out = {}
+    try:
+        import executor as ex
+        import registry as reg
+        for row in reg.rows() or []:
+            if not row.get("key"):
+                continue
+            los = ([row.get("live_order") or {}, row.get("live_rest") or {}]
+                   + [x or {} for x in (row.get("live_more") or [])])
+            if any(lo.get("status") == "placed" and lo.get("order_id") and not lo.get("intent")
+                   and not lo.get("voided") for lo in los):
+                out[row["key"]] = ex.LANE_NAME.get(ex.lane_of(row), "PHASE 1")
+    except Exception as e:
+        print(f"registry unreadable ({type(e).__name__}); lanes fall back to the tracker's own tags")
+    return out
+
+
 def main():
     st = tb.dec(json.load(open(tb.STATE)))
     raw = copy.deepcopy(st.get("bets") or {})
@@ -41,15 +63,31 @@ def main():
     rows = tb.group_fills([b for b in raw.values() if not b.get("dup_of")])
     out = {k: [] for k in LANES.values()}
     out["Unattributed"] = []
+    keylane = registry_lanes()
+    how = {"tracker tag": 0, "registry": 0, "before R1/Board (inferred Lane 1)": 0, "none": 0}
     for b in rows:
         if (b.get("source") or "") != "bot":
             continue
-        out[LANES.get(b.get("lane"), "Unattributed")].append(play(b))
+        lane, src = b.get("lane"), "tracker tag"
+        if not lane:
+            lane = next((v for k, v in keylane.items() if tb.bot_match(b, {k})), None)
+            src = "registry"
+        if not lane:
+            day = (b.get("game_start") or b.get("settled") or b.get("first_seen") or "")[:10]
+            if day and day < FIRST_MULTI_LANE_DAY:
+                lane, src = "PHASE 1", "before R1/Board (inferred Lane 1)"
+        if not lane:
+            src = "none"
+        how[src] += 1
+        pl = play(b)
+        pl["how"] = src
+        out[LANES.get(lane, "Unattributed")].append(pl)
     for k in out:
         out[k].sort(key=lambda p: p["start"] or p["seen"], reverse=True)
         out[k] = out[k][:80]
     doc = {"at": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"), "lanes": out}
     json.dump(tb.enc(doc), open(OUT, "w"))
+    print("lane source:", how)
     print("exported plays per lane:", {k: len(v) for k, v in out.items()})
     return 0
 
