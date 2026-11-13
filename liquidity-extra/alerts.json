@@ -1,6 +1,202 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-13T14:50:20Z",
+   "base_depth": 89905,
+   "best_price": 0.59,
+   "best_price_american": -144,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.59,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-13",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 7541,
+     "new_this_side": 34727,
+     "other_side": 19133,
+     "other_side_all_levels": 75146,
+     "ratio": 3.0,
+     "this_side": 57554,
+     "this_side_all_levels": 135554
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "BUT (0)",
+     "price": 0.59,
+     "this_side": 3498
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Butler",
+     "price": 0.5968,
+     "this_side": 1626
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 6998.32,
+    "volume_24h_fp": 6537.599999999999,
+    "volume_fp": 6998.32
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.66,
+    "volume_24h_fp": 0.66,
+    "volume_fp": 0.66
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 6997.66,
+    "volume_24h_fp": 6536.94,
+    "volume_fp": 6997.66
+   },
+   "fade_price": 0.42,
+   "first_seen_utc": "2026-11-13T14:40:23Z",
+   "game": "Pittsburgh vs Butler",
+   "game_surge_books": [],
+   "game_x": 1.51,
+   "key": "kalshi|KXNCAAMBGAME-26NOV13PITTBUT|ml|1",
+   "lead_min": 520,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 34727,
+   "new_x": 1.52,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 6998.32,
+      "volume_24h_fp": 6537.599999999999,
+      "volume_fp": 6998.32
+     },
+     "game_normal": 89844,
+     "game_x": 1.51,
+     "normal": 22835,
+     "now": 135554,
+     "type": "ML",
+     "x": 5.94
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 358624.0,
+      "volume": 538737.0
+     },
+     "game_normal": 2979,
+     "game_x": 1.19,
+     "normal": 2128,
+     "now": 3533,
+     "type": "ML",
+     "x": 1.66
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 1314,
+     "game_x": 1.37,
+     "normal": 780,
+     "now": 1796,
+     "type": "ML",
+     "x": 2.3
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.59,
+   "price_american": -144,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.59,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -160
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -160
+    },
+    "betrivers": {
+     "point": null,
+     "price": -167
+    },
+    "betus": {
+     "point": null,
+     "price": -160
+    },
+    "bovada": {
+     "point": null,
+     "price": -160
+    },
+    "draftkings": {
+     "point": null,
+     "price": -162
+    },
+    "fanatics": {
+     "point": null,
+     "price": -165
+    },
+    "fanduel": {
+     "point": null,
+     "price": -154
+    },
+    "kalshi": {
+     "point": null,
+     "price": -144
+    },
+    "lowvig": {
+     "point": null,
+     "price": -160
+    },
+    "novig": {
+     "point": null,
+     "price": -144
+    },
+    "polymarket": {
+     "point": null,
+     "price": -150
+    },
+    "prophetx": {
+     "point": null,
+     "price": -148
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -160
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV13PITTBUT-BUT"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Butler",
+   "side_label": "Butler",
+   "size_x": 5.94,
+   "start_source": "odds",
+   "start_utc": "2026-11-13T23:30:00Z",
+   "surge_books": [
+    "kalshi",
+    "prophetx"
+   ],
+   "teams": [
+    "Pittsburgh",
+    "Butler"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-13T14:40:23Z",
    "base_depth": 68205,
    "best_price": 0.68,
@@ -50,6 +246,11 @@
     "open_interest_fp": 8.55,
     "volume_24h_fp": 8.55,
     "volume_fp": 8.55
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 1427.87,
+    "volume_24h_fp": 1410.78,
+    "volume_fp": 1427.87
    },
    "ex_stats_first": {
     "open_interest_fp": 1419.3200000000002,
@@ -232,9 +433,9 @@
     "volume_fp": 15.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 4363.16,
-    "volume_24h_fp": 2966.5299999999997,
-    "volume_fp": 4604.29
+    "open_interest_fp": 4377.16,
+    "volume_24h_fp": 3935.98,
+    "volume_fp": 4618.29
    },
    "ex_stats_first": {
     "open_interest_fp": 3368.01,
@@ -280,6 +481,8 @@
    "norm_ready_books": 2,
    "paper_only": false,
    "price": 0.69,
+   "price_after_15m": 0.7012,
+   "price_after_15m_book": "prophetx",
    "price_american": -223,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.69,
@@ -362,6 +565,7 @@
    "size_x": 7.7,
    "start_source": "odds",
    "start_utc": "2026-11-14T01:00:00Z",
+   "still_actionable": true,
    "surge_books": [
     "kalshi",
     "prophetx"
@@ -989,9 +1193,9 @@
     "volume_fp": 6.18
    },
    "ex_stats_close": {
-    "open_interest_fp": 4001.45,
-    "volume_24h_fp": 3566.56,
-    "volume_fp": 4245.12
+    "open_interest_fp": 4111.99,
+    "volume_24h_fp": 3935.95,
+    "volume_fp": 4355.66
    },
    "ex_stats_first": {
     "open_interest_fp": 2135.42,
@@ -1187,9 +1391,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 4154.55,
-    "volume_24h_fp": 4180.7,
-    "volume_fp": 4182.26
+    "open_interest_fp": 4162.0,
+    "volume_24h_fp": 4188.15,
+    "volume_fp": 4189.71
    },
    "ex_stats_first": {
     "open_interest_fp": 226.32,
@@ -1348,8 +1552,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.74,
-   "clv_cents": 1.0,
+   "close_price": 0.73,
+   "clv_cents": 0.0,
    "confirmed_after_min": 25,
    "date": "2026-11-13",
    "depth_by_book": {
@@ -1386,9 +1590,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 941.1999999999999,
-    "volume_24h_fp": 938.55,
-    "volume_fp": 941.1999999999999
+    "open_interest_fp": 958.81,
+    "volume_24h_fp": 956.16,
+    "volume_fp": 958.81
    },
    "ex_stats_first": {
     "open_interest_fp": 233.73,
@@ -2084,7 +2288,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Fritz",
