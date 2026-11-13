@@ -16,6 +16,20 @@ from datetime import datetime, timezone
 
 import tracker_build as tb
 
+# Trigger attribution as ruled by Peter and carried in the recap ledger (VALUE LAB email, Nov 13):
+# (ET game date, word in team A, word in team B). Matching is by game, never by tracker row number.
+TRIGGERS = {
+ "Lane 1": [("10-31","notre","navy"),("10-31","portland","utah"),("10-31","sacramento","memphis"),
+  ("11-01","england","miami"),("11-01","oklahoma","dallas"),("11-01","charlotte","detroit"),("11-01","charlotte","washington"),
+  ("11-01","philadelphia","charlotte"),("11-01","toronto","lakers"),("11-01","boston","orlando"),("11-01","indianapolis","jacksonville"),
+  ("11-01","clippers","golden"),("11-02","brooklyn","york"),("11-02","detroit","charlotte"),("11-02","sacramento","dallas"),
+  ("11-02","boston","houston"),("11-02","miami","lakers"),("11-04","cleveland","oklahoma"),("11-05","orlando","phoenix"),
+  ("11-05","miami","golden"),("11-06","boston","charlotte"),("11-06","utah","orleans"),("11-06","toronto","milwaukee"),
+  ("11-07","denver","indiana"),("11-08","boston","milwaukee"),("11-11","lakers","milwaukee")],
+ "R1": [("11-11","furman","cross"),("11-12","louisiana","monroe")],
+ "Bets Board v3": [("11-04","milwaukee","boston"),("11-11","denver","memphis"),("11-11","brooklyn","orleans"),
+  ("11-11","washington","indiana"),("11-12","dallas","minnesota"),("11-12","charlotte","phoenix"),("11-12","toronto","philadelphia")],
+}
 FIRST_MULTI_LANE_DAY = "2026-11-11"   # R1 and Board v3 were approved on Nov 11; before it only Lane 1 (PHASE 1) could place
 
 OUT = "tracker/bot_live.enc"
@@ -59,6 +73,36 @@ def registry_lanes():
     return out
 
 
+def trigger_plays(rows):
+    """One play per ruled game: every tracker row for that game (any source) is merged, net profit decides W/L.
+    Returns ({lane: [plays]}, used row ids, counts). Record is RECOMPUTED from the tracker, not copied."""
+    from datetime import datetime, timedelta
+    out, used, miss = {k: [] for k in TRIGGERS}, set(), []
+    for lane, games in TRIGGERS.items():
+        for md, a, b in games:
+            d0 = datetime.strptime("2026-" + md, "%Y-%m-%d")
+            days = {(d0 + timedelta(days=x)).strftime("%Y-%m-%d") for x in (-1, 0, 1)}
+            hit = [r for r in rows if str(r.get("game_start") or r.get("settled") or r.get("first_seen") or "")[:10] in days
+                   and {a, b} <= tb.toks(r.get("game") or "")]
+            if not hit:
+                miss.append((lane, md, a, b))
+                continue
+            for r in hit:
+                used.add(id(r))
+            st = sum(r.get("stake") or 0 for r in hit)
+            pr = sum(r.get("profit") or 0 for r in hit if r.get("result"))
+            settled = all(r.get("result") for r in hit)
+            top = max(hit, key=lambda r: r.get("stake") or 0)
+            pl = play(top)
+            srcs = {(r.get("source") or "") == "bot" for r in hit}
+            pl.update({"result": ("W" if pr > 0 else "L" if pr < 0 else "P") if settled else None,
+                       "open": not settled, "units": round(pr / st, 2) if settled and st else None,
+                       "how": "recap ledger trigger", "by": "bot" if srcs == {True} else "hand" if srcs == {False} else "mixed",
+                       "rows": len(hit)})
+            out[lane].append(pl)
+    return out, used, miss
+
+
 def main():
     st = tb.dec(json.load(open(tb.STATE)))
     raw = copy.deepcopy(st.get("bets") or {})
@@ -70,10 +114,16 @@ def main():
     print("bot-only vs lane tag:", dict(Counter(str(b.get("lane")) for b in rows if b.get("source") == "bot")))
     out = {k: [] for k in LANES.values()}
     out["Unattributed"] = []
+    tp, used, miss = trigger_plays(rows)
+    for k, v in tp.items():
+        out[k].extend(v)
+    print("trigger games matched:", {k: len(v) for k, v in tp.items()}, "| unmatched:", len(miss),
+          [f"{a} {b}-{c}" for a, b, c, d in [(m[0], m[1], m[2], m[3]) for m in miss]][:12])
+    print("trigger record (W-L, recomputed):", {k: f"{sum(1 for p in v if p['result']=='W')}-{sum(1 for p in v if p['result']=='L')}" for k, v in tp.items()})
     keylane = registry_lanes()
     how = {"tracker tag": 0, "registry": 0, "before R1/Board (inferred Lane 1)": 0, "none": 0}
     for b in rows:
-        if (b.get("source") or "") != "bot":
+        if (b.get("source") or "") != "bot" or id(b) in used:
             continue
         lane, src = b.get("lane"), "tracker tag"
         if not lane:
