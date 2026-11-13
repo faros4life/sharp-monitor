@@ -532,6 +532,65 @@ def read_manual(M):
             notes.append(d)
             _apply_manual(d, MANUAL_HELD)
     _mirror_manual(notes, partial)
+    # Nov 12 (Peter): the caller must be able to tell a fully-read window from a gap. `partial` is
+    # already the honest answer - a failed SEARCH, a failed FETCH or a note that did not parse - and
+    # it was being thrown away, which is how an unreadable window became "no manual holds".
+    return not partial
+
+
+MANUAL = {"ok": None, "src": ""}   # None = not resolved yet. False = NO USABLE WINDOW -> refuse.
+
+
+def manual_holds(M):
+    """Resolve Peter's manual holds, private store FIRST, Gmail as the fallback. Idempotent.
+
+    Nov 12 (Peter: "switch manual holds and duplicate protection to the private registry as the
+    authoritative source" / "if registry state is missing, stale, unreadable or inconsistent, FAIL
+    CLOSED. Never assume there are no manual holds").
+
+    Earned, not assumed: the store was shadow-compared on every pass by _mirror_manual(), and then
+    reconciled against the REAL Gmail window by manual_reconcile.py - 15 notes, 16 holds on both
+    sides, zero gmail-only keys, zero store-only keys, zero differing states, with the store
+    claiming completeness. ADD, EDIT and DELETE are covered by test_manual_crud.py against the real
+    put_manual/_commit/load paths, DELETE because the snapshot is deliberately not an upsert and an
+    upsert would make a cleared hold immortal.
+
+    THE FAILURE THIS CLOSES, which predates the switch: read_manual() swallowed its own `partial`
+    and main() caught the exception with LOG.append("manual-bet notes unreadable"). Either way
+    MANUAL_HELD stayed EMPTY, and an empty MANUAL_HELD is indistinguishable from "Peter has no
+    manual bets" - so a failed Gmail SEARCH silently permitted a duplicate of a bet he had already
+    placed on a book the bot cannot read. MANUAL["ok"] is False until a window is fully read, and
+    live_guards() refuses while it is.
+
+    Order matters: the store answers without dialling Gmail, so the common path costs ~0.3s instead
+    of ~28s. Gmail is still consulted whenever the store cannot prove completeness, and Gmail is
+    always complete - so this is faster in the common case and identical in the uncommon one."""
+    if MANUAL["ok"] is not None:
+        return MANUAL["ok"]
+    MANUAL_HELD.clear()
+    try:
+        if registry.enabled() and registry.manual_complete():
+            stored = registry.manual_notes()
+            if stored is not None:                 # None = unreadable, NEVER an empty window
+                for n in stored:
+                    _apply_manual(n, MANUAL_HELD)
+                MANUAL.update(ok=True, src="store")
+                LOG.append(f"manual holds: store ({len(stored)} notes, {len(MANUAL_HELD)} keys)")
+                return True
+    except Exception as ex:
+        LOG.append(f"manual holds: store unusable ({str(ex)[:40]}) - falling back to Gmail")
+    try:
+        MANUAL_HELD.clear()                        # a half-applied store read must not survive
+        full = read_manual(M)
+        MANUAL.update(ok=bool(full), src="gmail")
+        LOG.append(f"manual holds: gmail ({len(MANUAL_HELD)} keys, "
+                   f"{'complete' if full else 'PARTIAL - refusing'})")
+        return bool(full)
+    except Exception as ex:
+        MANUAL_HELD.clear()
+        MANUAL.update(ok=False, src="none")
+        LOG.append(f"manual holds: UNREADABLE both ways ({str(ex)[:40]}) - refusing")
+        return False
 
 
 def read_verdicts(M):
@@ -2838,6 +2897,14 @@ def live_guards():
         _g1 = time.time()
         try:
             ids = bot_orders(M)
+            # Nov 12 (Peter: "never assume there are no manual holds"). Resolved HERE, inside the
+            # connection's lifetime, because M is closed in the finally below - and resolved in
+            # live_guards rather than trusted from main() because live_guards has three callers
+            # and only one of them reads manual notes first. The resolver is idempotent, so on the
+            # normal path main() has already answered and this costs nothing; when it has not, the
+            # store answers without dialling Gmail.
+            if MANUAL["ok"] is None:
+                manual_holds(M)
             _g2 = time.time()
             print(f"  guard: {_g2 - _g1:7.1f}s for bot_orders (registry read)"
                   f"  [gmail {'OPENED' if M.opened else 'NOT needed'}]", flush=True)
@@ -2850,6 +2917,12 @@ def live_guards():
         book_live.set_exposure(NONPX["today"])
         print(f"  guard: {time.time() - _g3:7.1f}s for exposure calculation"
               f"   |  live_guards total {time.time() - _g0:.1f}s", flush=True)
+        # Nov 12 (Peter: "never assume there are no manual holds"). Resolved HERE rather than
+        # trusted from main(), because live_guards() has three callers and only one of them reads
+        # manual notes first - a flag set elsewhere would be absent on the other two. The resolver
+        # is idempotent, so the normal path has already answered and this costs nothing; it uses
+        # the SAME lazy connection, which still does not dial when the store can prove
+        # completeness.
         if ids is None:
             why = "couldn't read the bot's order registry in Gmail (fail closed)"
         elif INTENT["open"]:
@@ -2865,6 +2938,15 @@ def live_guards():
                    f"email whose SUBJECT begins {INTENT_CLEAR_PREFIX} {k}. "
                    + (f"{len(INTENT['open']) - 1} more also open. " if len(INTENT["open"]) > 1 else "")
                    + "No live order will be placed until then (fail closed)")
+        elif not MANUAL["ok"]:
+            # LAST in the chain on purpose. This blocks as hard as the two above it, but an
+            # unreconciled intent is the one Peter can ACT on - it names the key and the clearance
+            # subject - and when manual notes were checked first they masked it. Two states with
+            # opposite remedies must not collapse into one message; the actionable one wins.
+            why = ("couldn't read Peter's manual bet notes from either the private registry or "
+                   "Gmail (fail closed): an empty hold list is indistinguishable from 'no manual "
+                   "bets', and betting on that assumption duplicates a bet already placed on a "
+                   "book the bot cannot read")
         else:
             ok = True
     except Exception as ex:
@@ -4557,12 +4639,11 @@ def main():
         _phase("main() start -> imap open")
         plays = read_verdicts(M) if SOURCE in ("muse", "both") else []
         _phase("verdicts read (Gmail)")
-    try:
-        with perf("read manual notes (Gmail)"):
-            read_manual(M)
-            _phase("manual notes read (Gmail)")
-    except Exception:
-        LOG.append("manual-bet notes unreadable")
+    # Nov 12 (Peter): store-first. The bracket keeps its name so PERF stays comparable across the
+    # switch, but it no longer implies Gmail was touched - LOG says which source answered.
+    with perf("read manual notes (Gmail)"):
+        manual_holds(M)
+        _phase("manual notes read")
     with perf("rule_plays"):
         rplays = rule_plays(now) if SOURCE in ("rules", "both") else []
     with perf("board_plays"):

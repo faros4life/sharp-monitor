@@ -66,9 +66,21 @@ print("\nA SLOW but successful read still succeeds - the bound must not break no
 ex.GUARD.update(ok=None, why="")
 ex.bot_orders = lambda M: {}            # readable, no bot orders: a legitimate empty answer
 ex.INTENT["open"] = {}
+# Nov 12: live_guards now ALSO requires a complete manual-hold window, because an empty
+# MANUAL_HELD used to be indistinguishable from "Peter has no manual bets". A readable order
+# registry alone is no longer sufficient, so this case states the manual side explicitly.
+ex.MANUAL.update(ok=True, src="store")
 ok, why = ex.live_guards()
 check("a readable registry with no bot orders is allowed", ok is True)
 check("and no refusal reason is set", not why)
+
+print("\nAnd manual holds are a REQUIREMENT, not an optional extra")
+ex.GUARD.update(ok=None, why="")
+ex.MANUAL.update(ok=False, src="none")
+ok, why = ex.live_guards()
+check("an unreadable manual-hold window refuses", ok is False)
+check("even with a perfectly readable order registry", "manual bet notes" in why)
+ex.MANUAL.update(ok=True, src="store")
 
 print("\nAn UNRECONCILED intent still blocks, bound or not")
 ex.GUARD.update(ok=None, why="")
