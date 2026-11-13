@@ -1,6 +1,30 @@
 name: executor-dry-run
 
 on:
+  # Nov 13 (Peter, "Do it"). REACT TO ALERTS INSTEAD OF POLLING FOR THEM.
+  #
+  # sharp-monitor writes and pushes alerts.json every 5 minutes; this executor read it every 5
+  # minutes on an INDEPENDENT timer. Nothing connected them, so an alert committed just after a
+  # pass waited almost a full 5 minutes to be looked at - 2.5 minutes on average, 5 at worst,
+  # added to the decision on a line that is moving, which is the only reason it alerted.
+  #
+  # MEASURED before making the change, 119 samples across the three workflows already chained
+  # this way (fill-reports, novig-heartbeat, bets-board): GitHub's workflow_run dispatch delay is
+  # median 3.0s, p90 4.0s, max 5.0s. With the executor's own median runtime of 28s that turns a
+  # ~3.0 minute average decision latency into ~31s.
+  #
+  # Cost: roughly doubles the runs, 12/hr -> ~24/hr at 28s each. The concurrency group below has
+  # cancel-in-progress: false, so an overlapping run queues rather than piling up.
+  #
+  # NO LOOP: sharp-monitor fires only on schedule and workflow_dispatch, so nothing this workflow
+  # does can trigger it back. The cron below stays as the backup timer, and this changes only HOW
+  # SOON a new alert is looked at - no qualification rule, stake, position limit or live switch.
+  #
+  # What this does NOT fix: sharp-monitor still scans every 5 minutes, so detection lag is
+  # unchanged. End-to-end (line moves -> order) goes from up to ~10 minutes to up to ~5.
+  workflow_run:
+    workflows: ["sharp-monitor"]
+    types: [completed]
   schedule:
     - cron: "7-59/10 * * * *"   # backup timer; cron-job.org is the real one
   workflow_dispatch:
