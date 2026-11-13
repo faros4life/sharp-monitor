@@ -13,7 +13,7 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: "positions = time the four position readers. novig = READ-ONLY probe of the Novig home-runner credential, reachability and result file (dispatches nothing). manual = one-time reconciliation of the REAL Gmail manual-hold window against the private registry, deletions included (places/clears nothing). handled = one-time reconciliation of the registry handled map against the authoritative Gmail dedupe tokens, both directions (places/clears nothing)."
+        description: "positions = time the four position readers. novig = READ-ONLY probe of the Novig home-runner credential, reachability and result file (dispatches nothing). manual = one-time reconciliation of the REAL Gmail manual-hold window against the private registry, deletions included (places/clears nothing). handled = one-time reconciliation of the registry handled map against the authoritative Gmail dedupe tokens, both directions (places/clears nothing). switch = READ-ONLY trace of the STOP/GO switch: what ntfy holds and what the registry has latched (writes nothing, sends no GO)."
         default: "positions"
 
 concurrency:
@@ -56,6 +56,7 @@ jobs:
           # mode=manual only: the ONE-TIME Gmail read that reconciles the real manual-hold window
           # against the store. Counts and 8-char key hashes in the log; no note, hold or order is
           # written, cleared or placed.
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
           GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
         run: |
@@ -65,6 +66,8 @@ jobs:
             python -u manual_reconcile.py
           elif [ "${{ inputs.mode }}" = "handled" ]; then
             python -u handled_reconcile.py
+          elif [ "${{ inputs.mode }}" = "switch" ]; then
+            python -u switch_probe.py
           else
             python -u positions_probe.py
           fi
