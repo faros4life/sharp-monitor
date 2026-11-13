@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 13, 9:00 AM ET. This run: 0 new, 1 not confirmed, 0 pending. Open alerts: 10.
+Updated Fri Nov 13, 9:10 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 10.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,7 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 13 2:24AM | NCAAB | Southern Miss vs Texas St. | moneyline: Texas St. | kalshi | $46k | -567 |  |  | +1.0c |  | pending |
+| Nov 13 2:24AM | NCAAB | Southern Miss vs Texas St. | moneyline: Texas St. | kalshi | $46k | -567 |  |  | +0.0c |  | pending |
 | Nov 13 2:24AM | NCAAB | Mississippi St. vs Xavier | moneyline: Xavier | kalshi | $26k | -156 |  |  | +0.0c |  | pending |
 | Nov 13 2:24AM | NCAAB | Lindenwood vs Omaha | moneyline: Omaha | kalshi | $25k | -178 |  |  | +0.0c |  | pending |
 | Nov 13 1:58AM | NCAAB | Georgia vs North Carolina | moneyline: North Carolina | kalshi | $34k | -170 |  |  | +0.0c |  | pending |
