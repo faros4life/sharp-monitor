@@ -24,6 +24,7 @@ import sys
 from datetime import datetime, timedelta, timezone
 
 EV = os.environ.get("EV_FILE", "") or "ev-study/ev_sightings.json"
+ODDS = os.environ.get("ODDS_SCREEN_FILE", "") or "odds_screen.json"
 MODEL = os.environ.get("NBA_MODEL_FILE", "") or "nba-model/nba_model.json"
 # A posting dated from today onward is "live": it is the model's current output, and a missing
 # reference there is a present-tense defect rather than history.
@@ -50,9 +51,14 @@ def parse(s):
             return datetime.fromtimestamp(v, tz=timezone.utc)
     except (TypeError, ValueError):
         pass
-    for f in ("%Y-%m-%dT%H:%M:%SZ", "%Y-%m-%d"):
+    # Strip the zone marker and parse the naive stamp. The first version sliced to 19 characters
+    # while the format still demanded a trailing Z, so every ISO timestamp fell through to the
+    # date-only format and reported midnight - a 16-hour error that read as a stale feed.
+    txt = str(s).strip().replace("Z", "")
+    for f in ("%Y-%m-%dT%H:%M:%S", "%Y-%m-%d"):
         try:
-            return datetime.strptime(str(s)[:19 if "T" in f else 10], f).replace(tzinfo=timezone.utc)
+            return datetime.strptime(txt[:len("2026-11-13T00:00:00") if "T" in f else 10],
+                                     f).replace(tzinfo=timezone.utc)
         except Exception:
             pass
     return None
@@ -64,28 +70,34 @@ def main():
     print("=" * 88)
     bad = []
 
+    # The LIVE source since Nov 13: sharp-monitor's Pinnacle read, published every 5 minutes.
+    # The old study cache is reported underneath only so a stale one cannot be mistaken for this.
+    od, err = load(ODS := ODDS)
+    if err:
+        print(f"  live feed    UNREADABLE: {err}")
+        bad.append("odds_screen unreadable")
+    else:
+        t = parse((od or {}).get("updated_utc"))
+        age_m = (now - t).total_seconds() / 60 if t else None
+        nba = [g for g in (od.get("games") or [])
+               if isinstance(g, dict) and g.get("lg") == "NBA"]
+        withpin = [g for g in nba
+                   if (((g.get("books") or {}).get("pinnacle") or {}).get("t") or {}).get("Over")]
+        print(f"  live feed    odds_screen.json, updated {t:%Y-%m-%d %H:%M}Z"
+              f" (age {age_m:.1f} min)" if t else "  live feed    odds_screen.json, no timestamp")
+        print(f"  NBA coverage {len(withpin)} of {len(nba)} game(s) carry a Pinnacle total")
+        if age_m is not None and age_m > 15:
+            print(f"               STALE - sharp-monitor publishes every 5 min; this is {age_m:.0f} min old")
+            bad.append(f"live feed stale {age_m:.0f}m")
+        if nba and not withpin:
+            bad.append("no NBA game carries a Pinnacle total")
+
     ev, err = load(EV)
     if err:
-        print(f"  pin_cache     UNREADABLE: {err}")
-        bad.append("pin_cache unreadable")
+        print(f"  old cache     (retired) unreadable")
     else:
         cache = (ev or {}).get("pin_cache") or {}
-        stamps = []
-        for v in cache.values():
-            t = parse(((v or {}).get("totals") or {}).get("fetched") or
-                      ((v or {}).get("totals") or {}).get("upd"))
-            if t:
-                stamps.append(t)
-        newest = max(stamps) if stamps else None
-        age_h = (now - newest).total_seconds() / 3600 if newest else None
-        print(f"  pin_cache     {len(cache)} game(s)")
-        if newest:
-            print(f"  newest entry  {newest:%Y-%m-%d %H:%M}Z  (age {age_h:.1f} h)")
-            if age_h > 12:
-                print(f"                STALE - nothing new in {age_h:.1f} h; the writer is not running")
-                bad.append(f"cache stale {age_h:.0f}h")
-        else:
-            print("  newest entry  unknown (no timestamps in the cache)")
+        print(f"  old cache     (retired Nov 13) {len(cache)} game(s) - no longer read by the model")
 
     md, err = load(MODEL)
     if err:
@@ -101,8 +113,14 @@ def main():
     for g in games:
         if not isinstance(g, dict):
             continue
-        p = g.get("post") or {}
-        d = parse(p.get("utc") or g.get("start"))
+        p = g.get("post")
+        # Only a REAL posting counts. The first version fell back to the game start when "post"
+        # was absent, so games that had not been posted yet were reported as postings with a
+        # missing reference - it called 14 of them unhealthy while the model had simply not
+        # reached tip-6h. A check that invents failures is worse than no check.
+        if not isinstance(p, dict) or not p:
+            continue
+        d = parse(p.get("utc"))
         if not d or d.date() < cut:
             continue
         k = d.date().isoformat()
