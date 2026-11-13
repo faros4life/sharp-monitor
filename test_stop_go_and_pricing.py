@@ -109,6 +109,38 @@ STORE.update(switch=None, auto_pause={"reason": "x", "source": "novig", "ts": "t
 MSGS = []
 check("nothing else clears it", px.stop_state()[0] == "STOP")
 
+print("\n5b. A STALE GO can never clear an automatic pause (Nov 13, second pass)")
+# The cursor alone was not enough: with it lost - one failed best-effort write, or a store restored
+# from an older state - a GO still inside ntfy's 12h window was re-processed and cleared a pause
+# that latched AFTER it. The ordering is now enforced directly, so the cursor is not load-bearing.
+GO_BEFORE, GO_AFTER, PAUSED_AT = 1794576655, 1794585600, "2026-11-13T14:00:00Z"
+
+
+def pause_then_go(go_epoch, cursor):
+    STORE.update(switch=None, switch_seen=list(cursor),
+                 auto_pause={"reason": "fill $900 > $415 max", "source": "novig", "ts": PAUSED_AT})
+    MSGS[:] = [{"id": "g", "time": go_epoch, "message": "GO"}]
+    st, _ = px.stop_state()
+    return st, STORE["auto_pause"] is not None
+
+
+st, held = pause_then_go(GO_BEFORE, [])
+check("a GO older than the pause does NOT clear it, even with the cursor lost", held and st == "STOP")
+st, held = pause_then_go(GO_AFTER, [])
+check("a NEW manual GO after the pause does clear it", (not held) and st == "GO")
+st, held = pause_then_go(GO_BEFORE, ["g"])
+check("the cursor still blocks replay independently", held and st == "STOP")
+STORE.update(switch=None, switch_seen=[],
+             auto_pause={"reason": "x", "source": "novig", "ts": "not-a-date"})
+MSGS[:] = [{"id": "g2", "time": GO_AFTER, "message": "GO"}]
+st, _ = px.stop_state()
+check("an unparseable ordering leaves the pause in place (fail closed)", STORE["auto_pause"] is not None)
+
+print("\n5c. The switch is processed EVERY run, not only when a play exists")
+esrc = open("executor.py").read()
+check("main() processes the switch once per run", 'perf("switch state (ntfy + latch)")' in esrc)
+check("and records which command it saw", 'LOG.append(f"switch:' in esrc)
+
 print("\n6. Fail closed: an unreadable latch is never 'not paused'")
 
 

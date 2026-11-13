@@ -4761,6 +4761,23 @@ def main():
         _phase("main() start -> imap open")
         plays = read_verdicts(M) if SOURCE in ("muse", "both") else []
         _phase("verdicts read (Gmail)")
+    # Nov 13 (Peter, item 1: "verify the GO has been DURABLY processed and that a restart cannot
+    # resurrect the old STOP"). stop_state() is what writes a command into the latch, and it used to
+    # run only at ORDER TIME - inside preflight(), reached only when a play exists. So Peter's GO at
+    # 13:30:55Z sat unprocessed through every candidate-free pass while the latch still read the
+    # Nov 12 STOP. Once that GO aged out of ntfy's ~12h window the latched STOP would have returned
+    # and paused the bot again, hours after he believed he had resumed it.
+    #
+    # Processing it once per run makes the command durable within one schedule tick. It is a READ
+    # plus, at most, one small latch write; it gates nothing here - preflight() remains the only
+    # thing that decides whether an order may go out.
+    try:
+        with perf("switch state (ntfy + latch)"):
+            _sw, _ = px_live.stop_state()
+        LOG.append(f"switch: {_sw or 'no command'}"
+                   + (f" [{px_live.PAUSE.get('kind')}]" if px_live.PAUSE.get("kind") else ""))
+    except Exception as _sx:
+        LOG.append(f"switch state unreadable: {str(_sx)[:50]}")
     # Nov 12 (Peter): store-first. The bracket keeps its name so PERF stays comparable across the
     # switch, but it no longer implies Gmail was touched - LOG says which source answered.
     with perf("read manual notes (Gmail)"):

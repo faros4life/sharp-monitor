@@ -101,5 +101,62 @@ try:
 except Exception as ex:
     print(f"    unreadable: {str(ex)[:60]}")
 
+# ---------------------------------------------------------------- item 3: oversized fills
+# The Nov 12 17:05:06Z STOP has unknown provenance. If it was the AUTOMATIC over-fill pause, a fill
+# exceeded MAX_ORDER around then. COUNTS AND TIMES ONLY - the amount itself never enters a public
+# log (CLAUDE.md), so this reports whether the condition occurred, not the figure.
+try:
+    import px_live as _px
+    cap = float(getattr(_px, "MAX_ORDER", 0) or 0)
+except Exception:
+    cap = 0.0
+print(f"\n  OVERSIZED-FILL CHECK (per-order maximum configured: {'yes' if cap else 'unknown'})")
+over = []
+for o in orders:
+    lo = o.get("live_order") or o.get("live_rest") or {}
+    for k in ("filled_stake", "asked_stake", "stake"):
+        v = lo.get(k) if isinstance(lo, dict) else None
+        try:
+            if cap and v is not None and float(v) > cap + 0.5:
+                ts, _s = row_t(o)
+                over.append((ts, k, lo.get("book") or o.get("book")))
+                break
+        except Exception:
+            pass
+if not cap:
+    print("    cannot evaluate: no per-order maximum visible here")
+elif not over:
+    print("    0 order rows in the window exceed the per-order maximum")
+    print("    => no evidence of an automatic over-fill pause from the rows still retained")
+for ts, k, bk in sorted(over):
+    print(f"    {ts.strftime('%Y-%m-%dT%H:%M:%SZ') if ts else '?'} book={bk} field={k} EXCEEDS the maximum")
+print(f"    rows retained span: {min([t for t,_,_ in sorted(before+after)], default=None)} .. "
+      f"{max([t for t,_,_ in sorted(before+after)], default=None)}")
+
+# ---------------------------------------------------------------- item 4: claims vs real orders
+print("\n  CLAIMS RECONCILED AGAINST ORDER ROWS (a claim is released only by evidence, never by age)")
+cids = {}
+for o in orders:
+    lo = o.get("live_order") or o.get("live_rest") or {}
+    c = str(lo.get("client_id") or o.get("client_id") or "")
+    if c:
+        cids[c] = (lo.get("status") or o.get("status"), lo.get("book") or o.get("book"),
+                   bool(lo.get("order_id") or o.get("order_id")))
+try:
+    for k, v in (subs.items() if isinstance(subs, dict) else []):
+        cid = str((v or {}).get("cid") or (v or {}).get("client_id") or "") if isinstance(v, dict) else ""
+        hit = cids.get(cid)
+        when = (v or {}).get("ts") if isinstance(v, dict) else None
+        if hit:
+            print(f"    claim since={when} -> order found: status={hit[0]} book={hit[1]} venue_id={'yes' if hit[2] else 'NO'}")
+            print("      verdict: " + ("MATCHED a real order - the claim is doing its job, keep it"
+                                        if hit[2] else
+                                        "order row exists but carries NO venue id - unresolved, KEEP the claim"))
+        else:
+            print(f"    claim since={when} cid_known={'yes' if cid else 'no'} -> NO matching order row")
+            print("      verdict: cannot prove the venue never saw it - KEEP the claim (fail closed)")
+except Exception as ex:
+    print(f"    unreadable: {str(ex)[:60]}")
+
 print("\nNothing was written, placed, cancelled or cleared.")
 sys.exit(0)

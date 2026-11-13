@@ -177,6 +177,22 @@ def auto_pause(reason, source):
         return False
 
 
+def _go_after(go_when, pause_ts):
+    """True when a GO is strictly NEWER than the automatic pause it would clear.
+
+    go_when is ntfy's epoch seconds; pause_ts is the ISO stamp written when the pause latched.
+    UNPARSEABLE EITHER SIDE RETURNS FALSE - an unreadable ordering must leave the safety pause in
+    place, because the failure that matters is resuming a bot that paused itself over an oversized
+    fill, never refusing to resume one that is safe. Peter can always send a fresh GO."""
+    try:
+        from datetime import datetime, timezone as _tz
+        g = datetime.fromtimestamp(int(go_when), _tz.utc)
+        p = datetime.fromisoformat(str(pause_ts).replace("Z", "+00:00"))
+        return g > p
+    except Exception:
+        return False
+
+
 PAUSE = {"kind": "", "reason": "", "src": "", "at": ""}   # why the last stop_state() said STOP
 
 
@@ -239,7 +255,22 @@ def stop_state():
             # An explicit human GO is the ONLY thing that clears an automatic safety pause. It is a
             # deliberate decision to resume after seeing the reason, which is why no timer, retry or
             # "condition stopped tripping" path may do it.
+            #
+            # Nov 13, SECOND PASS (Peter: "a new manual GO must be required after the automatic
+            # pause"). The cursor alone was not enough and I had this wrong: with the cursor lost -
+            # one failed best-effort write, or a store restored from an older state - a GO still
+            # inside ntfy's 12h window was re-processed and cleared an automatic pause that had
+            # latched AFTER it. Proven by scenario test before this line existed. The cursor must
+            # not be the only thing standing between an oversized fill and a resumed bot, so the
+            # ORDER OF EVENTS is now enforced directly: a GO clears the pause only if the GO is
+            # strictly NEWER than the pause it would clear. An older GO leaves it latched, and
+            # Peter must send a new one.
             try:
+                _auto = auto if isinstance(auto, dict) else None
+                if _auto and _auto.get("reason") and not _go_after(when, _auto.get("ts")):
+                    PAUSE.update(kind="auto", reason=str(_auto.get("reason")),
+                                 src=str(_auto.get("source") or ""), at=str(_auto.get("ts") or ""))
+                    return "STOP", _auto.get("ts")   # stale GO: the safety pause stands
                 registry.clear_auto_pause()
             except Exception:
                 pass
