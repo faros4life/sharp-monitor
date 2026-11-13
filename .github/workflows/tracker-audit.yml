@@ -3,6 +3,10 @@ name: tracker-audit
 # On demand: read-only tracker audit (duplicates, scores). Private email; counts-only log. Nov 6.
 on:
   workflow_dispatch:
+    inputs:
+      mode:
+        description: "audit = duplicate/score audit. record = bot-only W-L-P, P&L, ROI and open bets (both read-only; dollars by private email, counts in this log)."
+        default: "audit"
 
 permissions:
   contents: read
@@ -23,4 +27,9 @@ jobs:
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
           EMAIL_TO: ${{ secrets.EMAIL_TO }}
           TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
-        run: python -u tracker_audit.py
+        run: |
+          if [ "${{ inputs.mode }}" = "record" ]; then
+            python -u bot_record.py
+          else
+            python -u tracker_audit.py
+          fi
