@@ -12,7 +12,7 @@
    },
    "bet": "New Orleans Pelicans +3.5 (-112)",
    "book": "novig",
-   "checked_utc": "2026-11-13T08:09:32Z",
+   "checked_utc": "2026-11-13T08:10:13Z",
    "first": {
     "alert_line": 3.5,
     "alert_price": -112,
@@ -249,7 +249,7 @@
       "american": -121,
       "american_after_fee_qual": -121,
       "american_displayed": -113,
-      "dollars": 7097,
+      "dollars": 8203,
       "price": 0.53,
       "price_after_fee": 0.5474,
       "price_after_fee_qual": 0.5474
@@ -374,7 +374,7 @@
      },
      {
       "american": -115,
-      "contracts": 85000,
+      "contracts": 85100,
       "dollars": 455,
       "price": 0.535
      },
@@ -392,7 +392,7 @@
     "novig_label": "NOP +3.5",
     "novig_line": 3.5,
     "outcome_id": "01a1d1d7-3688-71b3-b10f-e0365bbe6855",
-    "resting_bids_on_this_side_dollars": 4892,
+    "resting_bids_on_this_side_dollars": 4893,
     "status": "ok"
    },
    "lead_min_now": 1010,
@@ -533,9 +533,9 @@
      {
       "american": -112,
       "american_after_fee": -114,
-      "dollars": 165,
+      "dollars": 40,
       "strike_id": "d1bf1183bb5239ae399e7523869404d6",
-      "to_win": 147
+      "to_win": 36
      },
      {
       "american": -123,
@@ -569,7 +569,7 @@
    },
    "bet": "Alabama Crimson Tide -15.5 (-130)",
    "book": "novig",
-   "checked_utc": "2026-11-13T08:09:32Z",
+   "checked_utc": "2026-11-13T08:10:13Z",
    "first": {
     "alert_line": -15.5,
     "alert_price": -130,
@@ -1001,9 +1001,9 @@
      {
       "american": -146,
       "american_after_fee": -149,
-      "dollars": 161,
+      "dollars": 36,
       "strike_id": "234fb362b45755d8acd8b739feafdae9",
-      "to_win": 110
+      "to_win": 24
      },
      {
       "american": -1100,
@@ -1037,7 +1037,7 @@
    },
    "bet": "Arizona Wildcats -1.5 (-120)",
    "book": "novig",
-   "checked_utc": "2026-11-13T08:09:32Z",
+   "checked_utc": "2026-11-13T08:10:13Z",
    "first": {
     "alert_line": -1.5,
     "alert_price": -120,
@@ -1244,7 +1244,7 @@
       "american": -148,
       "american_after_fee_qual": -148,
       "american_displayed": -138,
-      "dollars": 883,
+      "dollars": 878,
       "price": 0.58,
       "price_after_fee": 0.5971,
       "price_after_fee_qual": 0.5971
@@ -1332,7 +1332,7 @@
      }
     ],
     "dollars_at_alert_price_or_better": 0,
-    "dollars_at_best": 883,
+    "dollars_at_best": 878,
     "exact_line": true,
     "kalshi_buy": [
      {
@@ -1465,13 +1465,6 @@
       "dollars": 10,
       "strike_id": "2d700ec1395e5df28408646a025fd20d",
       "to_win": 7
-     },
-     {
-      "american": -148,
-      "american_after_fee": -151,
-      "dollars": 125,
-      "strike_id": "2d700ec1395e5df28408646a025fd20d",
-      "to_win": 84
      },
      {
       "american": -150,
@@ -18437,5 +18430,5 @@
   }
  ],
  "note": "Exchange book check (FLAG ONLY) for sharp-monitor phone alerts with 2h+ lead. latest/first = Novig (public order books, no key); prophetx_latest/prophetx_first = ProphetX (read-only key; prices are AFTER its 2%% fee on winnings, displayed price kept as best_price_american_displayed): best_price_american, dollars_at_best and dollars_at_alert_price_or_better = amount you could bet at the alert price or better, buy_levels = the ladder. kalshi_latest/_first and polymarket_latest/_first: same fields (public books, no key), prices AFTER taker fees (Kalshi 0.07, Polymarket global 0.03 x P x (1-P) per contract unless gamma marks the market zero-fee; displayed price kept as best_price_american_displayed). Novig pregame: no fee. hardrock_latest/_first: Hard Rock sportsbook price and line via The Odds API (no order book; refreshed every 30 min). best_now = best gettable price across the books, plus total dollars at the alert price or better on books with the exact line. Novig fields: best_price = cheapest cost to BUY the alert side now (0-1, with American); dollars_at_alert_price_or_better = dollars you could buy at the alert's price or better on the same line; exact_line=false means Novig had no market at the alert's line and the nearest line is shown. resting_bids_on_this_side_dollars = others bidding the same side. 'first' = first check after the alert, 'latest' = this run. Novig orders are bids (verified Oct 21).",
- "updated_utc": "2026-11-13T08:09:32Z"
+ "updated_utc": "2026-11-13T08:10:13Z"
 }
