@@ -884,6 +884,29 @@ LIVE_UNIT = 300.0   # phase-1 live unit, to win (Oct 28, Peter: $50 -> $200; Nov
                     # to-win on minus, risk on plus. The $415 per-order cap and $2,250 daily stop moved with it - at
                     # $300 to win, -130 risks $390, which the old $275 cap would have refused on every minus-money order.
 MIN_ORDER = 50.0    # Oct 28: smallest order / routing remainder worth placing (was $5)
+# Nov 13 (Peter): TAKE + POST. "TAKE available liquidity immediately at an acceptable after-fee
+# price, even when less than $50 is available", then POST the unfilled remainder as a resting bid.
+#
+# MIN_ORDER was the ONLY thing stopping that: the take/remainder logic already existed and already
+# sized the remainder from CONFIRMED fills (live_remainder's `rem = target - got - sum(_got(o))`,
+# and rest_wanted's lv["rest_risk"]). A $50 floor refused the whole play instead - Peter's 9:31 R1
+# alert, "ProphetX ladder can't cover $50+ at the alert number (have $37.00)", would have taken $37
+# and rested $187.
+#
+# $5 is Peter's choice (Nov 13) and the documented pre-Oct-28 value: low enough to take that $37,
+# high enough to avoid dust. It does NOT override a VENUE's own minimum - Kalshi and Polymarket US
+# keep their contract-count checks below, and a venue that rejects a small order still reports the
+# rejection rather than silently dropping it.
+#
+# This is an execution-method change only. Which plays qualify is untouched: every price, line-value,
+# cap, liquidity-quality, risk-limit, duplicate and STOP/GO gate runs exactly as before.
+MIN_TAKE = float(os.environ.get("EXEC_MIN_TAKE", "") or "5")
+# DELIBERATELY NOT APPLIED TO THE LADDER WALK. best_level()'s slip bound may be extended while the
+# walk is still short of MIN_ORDER, because a sub-minimum order used to lose the play outright and
+# a worse price was better than nothing. Re-pointing that at MIN_TAKE changed which PRICE is taken -
+# test_price_first caught it immediately: the guard stopped extending at -115 instead of -130 - and
+# Peter's instruction was "preserve existing pricing, line-value, odds caps". So the walk keeps
+# MIN_ORDER and only the REFUSAL floors move. TAKE + POST needs the floors, not the price rule.
 # Nov 11 (Peter): "BEST PRICE FIRST, NOT MAXIMUM DOLLARS FILLED." How much worse than the BEST
 # available qualifying level the size walk may go, in probability cents. 0 = best-priced depth only;
 # the stake shrinks to what is there rather than paying up to fill the unit. This is a ceiling on
@@ -3277,8 +3300,8 @@ def live_order(r):
     if lv.get("book", "prophetx") != "prophetx":
         return live_order_other(r)
     strike, limit, stake = px_limit(lv["px"], lv["risk"])
-    if not strike or stake < MIN_ORDER - 0.01:
-        return refuse_untransmitted(r, f"ProphetX ladder can't cover ${MIN_ORDER:.0f}+ at the alert number (have ${stake:.2f})", book="prophetx")
+    if not strike or stake < MIN_TAKE - 0.01:
+        return refuse_untransmitted(r, f"ProphetX ladder can't cover ${MIN_TAKE:.0f}+ at the alert number (have ${stake:.2f})", book="prophetx")
     label = f"{p.get('sport')} {p.get('game')} | {bet_text(r, lv['line'], limit)}"
     res = px_live.place(strike, limit, stake, label)
     if res.get("status") == "refused":   # Nov 11: a refusal is a lane event too
@@ -3327,7 +3350,7 @@ def _got(o):
 
 def live_remainder(r):
     """Oct 28 (Peter): the unit is $200 total per play across venues. After the best book's fill, take what's left on
-    the next live books at the alert number or better (each its own threshold), skipping remainders under MIN_ORDER.
+    the next live books at the alert number or better (each its own threshold), skipping remainders under MIN_TAKE.
     Stops at the first refusal or error (fail closed)."""
     lv, more = r["live"], []
     first = lv.get("order") or {}
@@ -3338,7 +3361,7 @@ def live_remainder(r):
     got = _got(first)
     for c in (r.get("lcs") or []):
         rem = round(target - got - sum(_got(o) for o in more), 2)
-        if rem < MIN_ORDER - 0.01:
+        if rem < MIN_TAKE - 0.01:
             break
         if c["book"] in used:
             continue
@@ -3365,8 +3388,8 @@ def live_order_other(r):
     limit_cost, count = book_live.plan(lv["px"].get("buy"), lv["px"].get("thr"), lv["risk"],
                                        min_order=MIN_ORDER, slip=BEST_SLIP)   # Nov 11: price-first
     stake = round(count * limit_cost, 2) if limit_cost else 0.0
-    if not limit_cost or stake < MIN_ORDER - 0.01:
-        return refuse_untransmitted(r, f"{name} ladder can't cover ${MIN_ORDER:.0f}+ at the alert number (have ${stake:.2f})", book=book)
+    if not limit_cost or stake < MIN_TAKE - 0.01:
+        return refuse_untransmitted(r, f"{name} ladder can't cover ${MIN_TAKE:.0f}+ at the alert number (have ${stake:.2f})", book=book)
     limit_am = lm.american(limit_cost)
     label = f"{p.get('sport')} {p.get('game')} | {bet_text(r, lv['line'], limit_am)}"
     if book == "kalshi":
@@ -3513,7 +3536,7 @@ def rest_wanted(r):
                 and not any(_got(x) > 0 for x in (lv.get("more") or []))):
             return True   # nothing filled anywhere: rest the full unit
         rem = round(float(lv.get("risk") or 0) - sum(_got(x) for x in allo), 2)
-        if rem >= MIN_ORDER - 0.01:   # Oct 31 (Peter): a partial fill rests a bid for the unfilled part
+        if rem >= MIN_TAKE - 0.01:   # Oct 31 (Peter): a partial fill rests a bid for the unfilled part
             lv["rest_risk"] = rem
             return True
         return False
@@ -3680,8 +3703,8 @@ def rest_bid(r):
                 why_not.append("Kalshi: market ambiguous")
                 continue
             n = int(risk // c)
-            if n * c < MIN_ORDER - 0.01:
-                why_not.append(f"Kalshi: under ${MIN_ORDER:.0f}")
+            if n * c < MIN_TAKE - 0.01:   # Nov 13: the POST floor matches the TAKE floor
+                why_not.append(f"Kalshi: under ${MIN_TAKE:.0f}")
                 continue
             res = book_live.kalshi_place(kb[0]["ticker"], kb[0]["buy"], c, n, f"{p.get('sport')} {p.get('game')} | {p.get('bet')}",
                                          int(expire.timestamp()))
@@ -3712,8 +3735,8 @@ def rest_bid(r):
                 why_not.append("Polymarket US: no price clears the alert number")
                 continue
             n = int(risk // c)
-            if n * c < MIN_ORDER - 0.01:
-                why_not.append(f"Polymarket US: under ${MIN_ORDER:.0f}")
+            if n * c < MIN_TAKE - 0.01:   # Nov 13: the POST floor matches the TAKE floor
+                why_not.append(f"Polymarket US: under ${MIN_TAKE:.0f}")
                 continue
             res = book_live.pmus_place(x["market_slug"], bool(x["long_side"]), c, n,
                                        f"{p.get('sport')} {p.get('game')} | {p.get('bet')}",
@@ -4684,7 +4707,7 @@ def void_intent(cid, book, why, key=None):
 
     THE BUG THIS FIXES. journal_intent() runs at live_order()'s top - "before the book dispatch" -
     so the intent row exists before anything knows whether the venue will even be asked. When the
-    dispatch then refuses PRE-SUBMISSION (EXEC_NOVIG_SUBMIT off, ladder short of MIN_ORDER, outcome
+    dispatch then refuses PRE-SUBMISSION (EXEC_NOVIG_SUBMIT off, ladder short of MIN_TAKE, outcome
     or market unknown, no live order code), nothing was sent, but the intent row stays unconfirmed.
     bot_orders() reads it next run, _bot_orders_finish() puts it in INTENT["open"], and live_guards()
     then refuses EVERY further live order until Peter clears it by hand. Nov 12 cost two plays that
