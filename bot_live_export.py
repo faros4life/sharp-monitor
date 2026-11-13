@@ -82,7 +82,7 @@ def trigger_plays(rows):
         for md, a, b in games:
             d0 = datetime.strptime("2026-" + md, "%Y-%m-%d")
             days = {(d0 + timedelta(days=x)).strftime("%Y-%m-%d") for x in (-1, 0, 1)}
-            hit = [r for r in rows if str(r.get("game_start") or r.get("settled") or r.get("first_seen") or "")[:10] in days
+            hit = [r for r in rows if not str(r.get("source") or "").startswith("Peter (Hard Rock") and str(r.get("game_start") or r.get("settled") or r.get("first_seen") or "")[:10] in days
                    and {a, b} <= tb.toks(r.get("game") or "")]
             if not hit:
                 miss.append((lane, md, a, b))
@@ -125,7 +125,7 @@ def main():
         for b in rows if (b.get("source") or "") == "bot" and id(b) not in used)[:30])
     print("Toronto/Philadelphia rows:", [(b.get("source"), b.get("result"), bool(b.get("open"))) for b in rows if {"toronto", "philadelphia"} <= tb.toks(b.get("game") or "")])
     keylane = registry_lanes()
-    how = {"tracker tag": 0, "registry": 0, "before R1/Board (inferred Lane 1)": 0, "none": 0}
+    how = {"tracker tag": 0, "registry": 0, "none": 0}
     for b in rows:
         if (b.get("source") or "") != "bot" or id(b) in used:
             continue
@@ -133,10 +133,7 @@ def main():
         if not lane:
             lane = next((v for k, v in keylane.items() if tb.bot_match(b, {k})), None)
             src = "registry"
-        if not lane:
-            day = (b.get("game_start") or b.get("settled") or b.get("first_seen") or "")[:10]
-            if day and day < FIRST_MULTI_LANE_DAY:
-                lane, src = "PHASE 1", "before R1/Board (inferred Lane 1)"
+        # No date-based inference any more: bot-tagged rows the recap ledger does not list stay Unattributed.
         if not lane:
             src = "none"
         how[src] += 1
