@@ -57,6 +57,10 @@
     "openInterest": 7264668.0,
     "volume": 7824070.0
    },
+   "ex_stats_close": {
+    "openInterest": 7264668.0,
+    "volume": 7824070.0
+   },
    "first_play": false,
    "game": "Florida State @ Pittsburgh",
    "key": "novig|{\"market_id\": \"01a1b965-1d9d-7890-9390-8e86b44a1092\", \"outcome_id\": \"01a1b965-1d9d-7890-9390-8ea9092b0293\"}",
@@ -111,6 +115,8 @@
    "other_side_now": 1559,
    "paper_only": true,
    "price": 0.505,
+   "price_after_15m": 0.505,
+   "price_after_15m_book": "novig",
    "price_american": -102,
    "ref": {
     "line": 235.5,
@@ -123,6 +129,7 @@
    "side_label": "over 235.5 (235.5)",
    "side_raw": "OVER",
    "start_utc": "2026-11-14T01:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Memphis Grizzlies",
     "New Orleans Pelicans"
@@ -154,6 +161,8 @@
    "other_side_now": 1545,
    "paper_only": true,
    "price": 0.5025,
+   "price_after_15m": 0.5051,
+   "price_after_15m_book": "prophetx",
    "price_american": -101,
    "ref": {
     "line": 235.5,
@@ -166,6 +175,7 @@
    "side_label": "under 235.5 (235.5)",
    "side_raw": "UNDER",
    "start_utc": "2026-11-14T01:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Memphis Grizzlies",
     "New Orleans Pelicans"
@@ -179,8 +189,8 @@
    "best_price": 0.5124,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5074,
-   "clv_cents": 0.0,
+   "close_price": 0.5,
+   "clv_cents": -0.7,
    "date": "2026-11-13",
    "dir": "RAISE",
    "ex_stats": null,
@@ -225,8 +235,8 @@
    "best_price": 0.5076,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5025,
-   "clv_cents": 0.0,
+   "close_price": 0.5122,
+   "clv_cents": 1.0,
    "date": "2026-11-13",
    "dir": "RAISE",
    "ex_stats": null,
@@ -271,8 +281,8 @@
    "best_price": 0.6142,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.6094,
-   "clv_cents": 0.0,
+   "close_price": 0.6063,
+   "clv_cents": -0.3,
    "date": "2026-11-13",
    "dir": "DROP",
    "ex_stats": null,
@@ -327,7 +337,7 @@
    },
    "ex_stats_close": {
     "openInterest": 1257446.0,
-    "volume": 1501483.0
+    "volume": 1504395.0
    },
    "first_play": true,
    "game": "Memphis Grizzlies @ New Orleans Pelicans",
@@ -709,8 +719,8 @@
    "best_price": 0.53,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.51,
-   "clv_cents": -2.0,
+   "close_price": 0.505,
+   "clv_cents": -2.5,
    "date": "2026-11-13",
    "dir": "RAISE",
    "ex_stats": {
@@ -811,8 +821,8 @@
    "best_price": 0.5,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.5215,
-   "clv_cents": 0.9,
+   "close_price": 0.5192,
+   "clv_cents": 0.7,
    "date": "2026-11-13",
    "dir": "RAISE",
    "ex_stats": null,
@@ -968,9 +978,9 @@
     "volume_fp": 36885.78
    },
    "ex_stats_close": {
-    "open_interest_fp": 46059.57,
+    "open_interest_fp": 46296.229999999996,
     "volume_24h_fp": 44586.04,
-    "volume_fp": 50763.66
+    "volume_fp": 51000.31999999999
    },
    "first_play": false,
    "game": "Oklahoma City vs Los Angeles C",
@@ -1011,8 +1021,8 @@
    "best_price": 0.49,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.4651,
-   "clv_cents": -2.3,
+   "close_price": 0.4673,
+   "clv_cents": -2.1,
    "date": "2026-11-13",
    "dir": "DROP",
    "ex_stats": null,
@@ -1057,8 +1067,8 @@
    "best_price": 0.5,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.5,
-   "clv_cents": 0.0,
+   "close_price": 0.4902,
+   "clv_cents": -1.0,
    "date": "2026-11-13",
    "dir": "DROP",
    "ex_stats": null,
@@ -1501,9 +1511,9 @@
     "volume_fp": 14718.88
    },
    "ex_stats_close": {
-    "open_interest_fp": 22713.34,
+    "open_interest_fp": 22815.05,
     "volume_24h_fp": 16980.59,
-    "volume_fp": 23454.8
+    "volume_fp": 23556.510000000002
    },
    "first_play": false,
    "game": "Portland vs Sacramento",
@@ -1595,8 +1605,8 @@
    "best_price": 0.4928,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.4739,
-   "clv_cents": -1.4,
+   "close_price": 0.4673,
+   "clv_cents": -2.1,
    "date": "2026-11-13",
    "dir": "RAISE",
    "ex_stats": null,
@@ -1641,8 +1651,8 @@
    "best_price": 0.5355,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5434,
-   "clv_cents": 1.3,
+   "close_price": 0.5392,
+   "clv_cents": 0.9,
    "date": "2026-11-13",
    "dir": "RAISE",
    "ex_stats": null,
@@ -1696,8 +1706,8 @@
     "volume": 444509.0
    },
    "ex_stats_close": {
-    "openInterest": 584021.0,
-    "volume": 682371.0
+    "openInterest": 1131320.0,
+    "volume": 1279670.0
    },
    "first_play": false,
    "game": "Portland Trail Blazers @ Sacramento Kings",
@@ -1881,8 +1891,8 @@
    "best_price": 0.48,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.4808,
-   "clv_cents": -0.9,
+   "close_price": 0.4831,
+   "clv_cents": -0.7,
    "date": "2026-11-13",
    "dir": "RAISE",
    "ex_stats": null,
@@ -1978,8 +1988,8 @@
    "best_price": 0.34,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.325,
-   "clv_cents": -1.5,
+   "close_price": 0.33,
+   "clv_cents": -1.0,
    "date": "2026-11-13",
    "dir": "RAISE",
    "ex_stats": {
@@ -2227,8 +2237,8 @@
    "best_price": 0.505,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.505,
-   "clv_cents": 0.0,
+   "close_price": 0.5122,
+   "clv_cents": 0.7,
    "date": "2026-11-13",
    "dir": "RAISE",
    "ex_stats": null,
@@ -2273,8 +2283,8 @@
    "best_price": 0.5076,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5,
-   "clv_cents": -0.2,
+   "close_price": 0.4902,
+   "clv_cents": -1.2,
    "date": "2026-11-13",
    "dir": "RAISE",
    "ex_stats": null,
@@ -2533,7 +2543,7 @@
    },
    "ex_stats_close": {
     "openInterest": 138519.0,
-    "volume": 147098.0
+    "volume": 149118.0
    },
    "first_play": true,
    "game": "Oklahoma City Thunder @ Los Angeles Clippers",
@@ -2584,7 +2594,7 @@
    },
    "ex_stats_close": {
     "openInterest": 138519.0,
-    "volume": 147098.0
+    "volume": 149118.0
    },
    "first_play": false,
    "game": "Oklahoma City Thunder @ Los Angeles Clippers",
@@ -2634,8 +2644,8 @@
     "volume": 40062.0
    },
    "ex_stats_close": {
-    "openInterest": 1232602.0,
-    "volume": 1611405.0
+    "openInterest": 1233592.0,
+    "volume": 1612395.0
    },
    "first_play": false,
    "game": "Cleveland Cavaliers @ Miami Heat",
@@ -2685,8 +2695,8 @@
     "volume": 40062.0
    },
    "ex_stats_close": {
-    "openInterest": 1232602.0,
-    "volume": 1611405.0
+    "openInterest": 1233592.0,
+    "volume": 1612395.0
    },
    "first_play": false,
    "game": "Cleveland Cavaliers @ Miami Heat",
@@ -2727,8 +2737,8 @@
    "best_price": 0.6,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.6032,
-   "clv_cents": 0.3,
+   "close_price": 0.6063,
+   "clv_cents": 0.6,
    "date": "2026-11-13",
    "dir": "RAISE",
    "ex_stats": null,
@@ -2782,8 +2792,8 @@
     "volume": 213132.0
    },
    "ex_stats_close": {
-    "openInterest": 584021.0,
-    "volume": 682371.0
+    "openInterest": 1131320.0,
+    "volume": 1279670.0
    },
    "first_play": false,
    "game": "Portland Trail Blazers @ Sacramento Kings",
@@ -2926,8 +2936,8 @@
    "best_price": 0.505,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.51,
-   "clv_cents": 0.5,
+   "close_price": 0.515,
+   "clv_cents": 1.0,
    "date": "2026-11-13",
    "dir": "RAISE",
    "ex_stats": {
@@ -2935,8 +2945,8 @@
     "volume": 132109.0
    },
    "ex_stats_close": {
-    "openInterest": 154879.0,
-    "volume": 175302.0
+    "openInterest": 290724.0,
+    "volume": 349025.0
    },
    "first_play": true,
    "game": "New York Knicks @ Indiana Pacers",
@@ -3081,8 +3091,8 @@
    "best_price": 0.18,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.1869,
-   "clv_cents": 0.3,
+   "close_price": 0.1887,
+   "clv_cents": 0.5,
    "date": "2026-11-13",
    "dir": "RAISE",
    "ex_stats": null,
@@ -3127,8 +3137,8 @@
    "best_price": 0.83,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.8198,
-   "clv_cents": -1.6,
+   "close_price": 0.8214,
+   "clv_cents": -1.5,
    "date": "2026-11-13",
    "dir": "RAISE",
    "ex_stats": null,
@@ -3335,8 +3345,8 @@
     "volume": 287083.0
    },
    "ex_stats_close": {
-    "openInterest": 360760.0,
-    "volume": 609577.0
+    "openInterest": 369234.0,
+    "volume": 618051.0
    },
    "first_play": false,
    "game": "New York Knicks @ Indiana Pacers",
@@ -3465,8 +3475,8 @@
    "best_price": 0.27,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.2817,
-   "clv_cents": 0.8,
+   "close_price": 0.2857,
+   "clv_cents": 1.2,
    "date": "2026-11-13",
    "dir": "RAISE",
    "ex_stats": null,
@@ -3613,7 +3623,7 @@
    },
    "ex_stats_close": {
     "openInterest": 1257446.0,
-    "volume": 1501483.0
+    "volume": 1504395.0
    },
    "first_play": false,
    "game": "Memphis Grizzlies @ New Orleans Pelicans",
@@ -3756,8 +3766,8 @@
    "best_price": 0.5,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.505,
-   "clv_cents": 0.5,
+   "close_price": 0.5,
+   "clv_cents": 0.0,
    "date": "2026-11-13",
    "dir": "RAISE",
    "ex_stats": {
@@ -3765,8 +3775,8 @@
     "volume": 99708.0
    },
    "ex_stats_close": {
-    "openInterest": 154879.0,
-    "volume": 175302.0
+    "openInterest": 290724.0,
+    "volume": 349025.0
    },
    "first_play": true,
    "game": "New York Knicks @ Indiana Pacers",
@@ -3817,9 +3827,9 @@
     "volume_fp": 30241.739999999998
    },
    "ex_stats_close": {
-    "open_interest_fp": 46059.57,
+    "open_interest_fp": 46296.229999999996,
     "volume_24h_fp": 44586.04,
-    "volume_fp": 50763.66
+    "volume_fp": 51000.31999999999
    },
    "first_play": true,
    "game": "Oklahoma City vs Los Angeles C",
@@ -3860,8 +3870,8 @@
    "best_price": 0.705,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.7183,
-   "clv_cents": 1.2,
+   "close_price": 0.7143,
+   "clv_cents": 0.8,
    "date": "2026-11-13",
    "dir": "RAISE",
    "ex_stats": null,
@@ -4044,8 +4054,8 @@
    "best_price": 0.29,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.2899,
-   "clv_cents": -0.9,
+   "close_price": 0.2941,
+   "clv_cents": -0.4,
    "date": "2026-11-13",
    "dir": "RAISE",
    "ex_stats": null,
@@ -4191,8 +4201,8 @@
     "volume": 33780.0
    },
    "ex_stats_close": {
-    "openInterest": 871402.0,
-    "volume": 1114112.0
+    "openInterest": 872918.0,
+    "volume": 1154149.0
    },
    "first_play": true,
    "game": "Cleveland Cavaliers @ Miami Heat",
@@ -4242,8 +4252,8 @@
     "volume": 33780.0
    },
    "ex_stats_close": {
-    "openInterest": 871402.0,
-    "volume": 1114112.0
+    "openInterest": 872918.0,
+    "volume": 1154149.0
    },
    "first_play": true,
    "game": "Cleveland Cavaliers @ Miami Heat",
@@ -4284,8 +4294,8 @@
    "best_price": 0.405,
    "best_price_book": "novig",
    "book": "kalshi",
-   "close_price": 0.41,
-   "clv_cents": 1.0,
+   "close_price": 0.4,
+   "clv_cents": 0.0,
    "date": "2026-11-13",
    "dir": "RAISE",
    "ex_stats": {
@@ -4294,9 +4304,9 @@
     "volume_fp": 14107.289999999999
    },
    "ex_stats_close": {
-    "open_interest_fp": 17831.489999999998,
+    "open_interest_fp": 17853.07,
     "volume_24h_fp": 18209.53,
-    "volume_fp": 20462.0
+    "volume_fp": 20483.58
    },
    "first_play": true,
    "game": "Memphis vs New Orleans",
@@ -4347,9 +4357,9 @@
     "volume_fp": 14107.289999999999
    },
    "ex_stats_close": {
-    "open_interest_fp": 17831.489999999998,
+    "open_interest_fp": 17853.07,
     "volume_24h_fp": 18209.53,
-    "volume_fp": 20462.0
+    "volume_fp": 20483.58
    },
    "first_play": true,
    "game": "Memphis vs New Orleans",
@@ -4492,9 +4502,9 @@
     "volume_fp": 21083.67
    },
    "ex_stats_close": {
-    "open_interest_fp": 47839.17,
+    "open_interest_fp": 47877.25,
     "volume_24h_fp": 47284.119999999995,
-    "volume_fp": 50281.74
+    "volume_fp": 50319.82
    },
    "first_play": true,
    "game": "Atlanta vs Chicago",
@@ -4545,9 +4555,9 @@
     "volume_fp": 21083.67
    },
    "ex_stats_close": {
-    "open_interest_fp": 47839.17,
+    "open_interest_fp": 47877.25,
     "volume_24h_fp": 47284.119999999995,
-    "volume_fp": 50281.74
+    "volume_fp": 50319.82
    },
    "first_play": true,
    "game": "Atlanta vs Chicago",
@@ -4685,8 +4695,8 @@
    "best_price": 0.635,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.645,
-   "clv_cents": 1.0,
+   "close_price": 0.73,
+   "clv_cents": 9.5,
    "date": "2026-11-13",
    "dir": "RAISE",
    "ex_stats": {
@@ -4736,8 +4746,8 @@
    "best_price": 0.5175,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.5,
-   "clv_cents": 0.0,
+   "close_price": 0.49,
+   "clv_cents": -1.0,
    "date": "2026-11-13",
    "dir": "RAISE",
    "ex_stats": {
@@ -4789,8 +4799,8 @@
    "best_price": 0.5673,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.54,
-   "clv_cents": -1.0,
+   "close_price": 0.55,
+   "clv_cents": 0.0,
    "date": "2026-11-13",
    "dir": "RAISE",
    "ex_stats": {
@@ -4958,9 +4968,9 @@
     "volume_fp": 95.97
    },
    "ex_stats_close": {
-    "open_interest_fp": 225.07,
+    "open_interest_fp": 576.41,
     "volume_24h_fp": 113.21,
-    "volume_fp": 273.76
+    "volume_fp": 625.1
    },
    "first_play": true,
    "game": "Nashville vs Vegas: Spread",
@@ -5502,8 +5512,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 44635.0,
-    "volume": 50131.0
+    "openInterest": 46832.0,
+    "volume": 52328.0
    },
    "first_play": false,
    "game": "New York Rangers @ Vancouver Canucks",
@@ -5553,8 +5563,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 44635.0,
-    "volume": 50131.0
+    "openInterest": 46832.0,
+    "volume": 52328.0
    },
    "first_play": false,
    "game": "New York Rangers @ Vancouver Canucks",
@@ -6939,9 +6949,9 @@
     "volume_fp": 3731.17
    },
    "ex_stats_close": {
-    "open_interest_fp": 4669.26,
+    "open_interest_fp": 4985.58,
     "volume_24h_fp": 2295.95,
-    "volume_fp": 5332.7
+    "volume_fp": 5649.0199999999995
    },
    "first_play": false,
    "game": "Southern Utah vs Portland St.",
@@ -7241,9 +7251,9 @@
     "volume_fp": 91.99
    },
    "ex_stats_close": {
-    "open_interest_fp": 225.07,
+    "open_interest_fp": 576.41,
     "volume_24h_fp": 113.21,
-    "volume_fp": 273.76
+    "volume_fp": 625.1
    },
    "first_play": false,
    "game": "Nashville vs Vegas: Spread",
@@ -7393,9 +7403,9 @@
     "volume_fp": 91.99
    },
    "ex_stats_close": {
-    "open_interest_fp": 225.07,
+    "open_interest_fp": 576.41,
     "volume_24h_fp": 113.21,
-    "volume_fp": 273.76
+    "volume_fp": 625.1
    },
    "first_play": false,
    "game": "Nashville vs Vegas: Spread",
@@ -7497,9 +7507,9 @@
     "volume_fp": 21.68
    },
    "ex_stats_close": {
-    "open_interest_fp": 1416.98,
+    "open_interest_fp": 1521.49,
     "volume_24h_fp": 1912.43,
-    "volume_fp": 2039.36
+    "volume_fp": 2143.87
    },
    "first_play": false,
    "game": "New York R vs Vancouver: Spread",
@@ -7550,9 +7560,9 @@
     "volume_fp": 2784.21
    },
    "ex_stats_close": {
-    "open_interest_fp": 8739.74,
+    "open_interest_fp": 8791.3,
     "volume_24h_fp": 9058.16,
-    "volume_fp": 11194.55
+    "volume_fp": 11246.11
    },
    "first_play": true,
    "game": "New York R vs Vancouver",
@@ -7603,9 +7613,9 @@
     "volume_fp": 21.68
    },
    "ex_stats_close": {
-    "open_interest_fp": 1416.98,
+    "open_interest_fp": 1521.49,
     "volume_24h_fp": 1912.43,
-    "volume_fp": 2039.36
+    "volume_fp": 2143.87
    },
    "first_play": false,
    "game": "New York R vs Vancouver: Spread",
@@ -8413,6 +8423,7 @@
    },
    "first_play": false,
    "game": "New York Islanders @ Los Angeles Kings",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1cc10-f8fd-7393-ab83-2cf39854670a\", \"outcome_id\": \"01a1cc10-f8fd-7393-ab83-2d10ce416e26\"}",
    "lead_min": 750,
    "league": "NHL",
@@ -8431,7 +8442,8 @@
     "market_id": "01a1cc10-f8fd-7393-ab83-2cf39854670a",
     "outcome_id": "01a1cc10-f8fd-7393-ab83-2d10ce416e26"
    },
-   "result": null,
+   "result": "L",
+   "settled_utc": "2026-11-13T06:00:18Z",
    "side": "UNDER",
    "side_label": "Under 5.5 (5.5)",
    "side_raw": "UNDER",
@@ -8441,7 +8453,7 @@
     "New York Islanders",
     "Los Angeles Kings"
    ],
-   "units_flat": null,
+   "units_flat": -1.0,
    "x": 0.45
   },
   {
@@ -9937,8 +9949,8 @@
    "best_price": 0.4324,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.4237,
-   "clv_cents": -0.4,
+   "close_price": 0.4202,
+   "clv_cents": -0.7,
    "date": "2026-11-13",
    "dir": "DROP",
    "ex_stats": null,
@@ -10202,6 +10214,7 @@
    "ex_stats": null,
    "first_play": false,
    "game": "New York Islanders at Los Angeles Kings",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 6.0, \"px_event\": 1704738785, \"px_market\": 412, \"side\": \"OVER\"}",
    "lead_min": 849,
    "league": "NHL",
@@ -10222,7 +10235,8 @@
     "px_market": 412,
     "side": "OVER"
    },
-   "result": null,
+   "result": "W",
+   "settled_utc": "2026-11-13T06:00:18Z",
    "side": "OVER",
    "side_label": "over 6 (6)",
    "side_raw": "OVER",
@@ -10232,7 +10246,7 @@
     "New York Islanders",
     "Los Angeles Kings"
    ],
-   "units_flat": null,
+   "units_flat": 0.98,
    "x": 0.42
   },
   {
@@ -10248,6 +10262,7 @@
    "ex_stats": null,
    "first_play": false,
    "game": "New York Islanders at Los Angeles Kings",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 6.0, \"px_event\": 1704738785, \"px_market\": 412, \"side\": \"UNDER\"}",
    "lead_min": 849,
    "league": "NHL",
@@ -10268,7 +10283,8 @@
     "px_market": 412,
     "side": "UNDER"
    },
-   "result": null,
+   "result": "L",
+   "settled_utc": "2026-11-13T06:00:18Z",
    "side": "UNDER",
    "side_label": "under 6 (6)",
    "side_raw": "UNDER",
@@ -10278,7 +10294,7 @@
     "New York Islanders",
     "Los Angeles Kings"
    ],
-   "units_flat": null,
+   "units_flat": -1.0,
    "x": 0.47
   },
   {
@@ -10301,6 +10317,7 @@
    },
    "first_play": false,
    "game": "New York Islanders @ Los Angeles Kings",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1cc10-f8fd-7393-ab83-2c32e5b68e33\", \"outcome_id\": \"01a1cc10-f8fd-7393-ab83-2c54ead19544\"}",
    "lead_min": 849,
    "league": "NHL",
@@ -10319,7 +10336,8 @@
     "market_id": "01a1cc10-f8fd-7393-ab83-2c32e5b68e33",
     "outcome_id": "01a1cc10-f8fd-7393-ab83-2c54ead19544"
    },
-   "result": null,
+   "result": "W",
+   "settled_utc": "2026-11-13T06:00:18Z",
    "side": "New York Islanders",
    "side_label": "NYI +1.5 (-1.5)",
    "side_raw": 0,
@@ -10329,7 +10347,7 @@
     "New York Islanders",
     "Los Angeles Kings"
    ],
-   "units_flat": null,
+   "units_flat": 0.44,
    "x": 2.03
   },
   {
@@ -11235,6 +11253,7 @@
    "ex_stats": null,
    "first_play": false,
    "game": "New York Islanders at Los Angeles Kings",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 6.0, \"px_event\": 1704738785, \"px_market\": 412, \"side\": \"OVER\"}",
    "lead_min": 929,
    "league": "NHL",
@@ -11255,7 +11274,8 @@
     "px_market": 412,
     "side": "OVER"
    },
-   "result": null,
+   "result": "W",
+   "settled_utc": "2026-11-13T06:00:18Z",
    "side": "OVER",
    "side_label": "over 6 (6)",
    "side_raw": "OVER",
@@ -11265,7 +11285,7 @@
     "New York Islanders",
     "Los Angeles Kings"
    ],
-   "units_flat": null,
+   "units_flat": 0.99,
    "x": 3.13
   },
   {
@@ -11867,6 +11887,7 @@
    },
    "first_play": false,
    "game": "New York Islanders @ Los Angeles Kings",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1cc10-f8fd-7393-ab83-2c32e5b68e33\", \"outcome_id\": \"01a1cc10-f8fd-7393-ab83-2c4d2a7c24fb\"}",
    "lead_min": 929,
    "league": "NHL",
@@ -11885,7 +11906,8 @@
     "market_id": "01a1cc10-f8fd-7393-ab83-2c32e5b68e33",
     "outcome_id": "01a1cc10-f8fd-7393-ab83-2c4d2a7c24fb"
    },
-   "result": null,
+   "result": "L",
+   "settled_utc": "2026-11-13T06:00:18Z",
    "side": "Los Angeles Kings",
    "side_label": "LAK -1.5 (-1.5)",
    "side_raw": 1,
@@ -11895,7 +11917,7 @@
     "New York Islanders",
     "Los Angeles Kings"
    ],
-   "units_flat": null,
+   "units_flat": -1.0,
    "x": 3.42
   },
   {
@@ -11918,6 +11940,7 @@
    },
    "first_play": false,
    "game": "New York Islanders @ Los Angeles Kings",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1cc10-f8fd-7393-ab83-2cf39854670a\", \"outcome_id\": \"01a1cc10-f8fd-7393-ab83-2d10ce416e26\"}",
    "lead_min": 929,
    "league": "NHL",
@@ -11936,7 +11959,8 @@
     "market_id": "01a1cc10-f8fd-7393-ab83-2cf39854670a",
     "outcome_id": "01a1cc10-f8fd-7393-ab83-2d10ce416e26"
    },
-   "result": null,
+   "result": "L",
+   "settled_utc": "2026-11-13T06:00:18Z",
    "side": "UNDER",
    "side_label": "Under 5.5 (5.5)",
    "side_raw": "UNDER",
@@ -11946,7 +11970,7 @@
     "New York Islanders",
     "Los Angeles Kings"
    ],
-   "units_flat": null,
+   "units_flat": -1.0,
    "x": 3.09
   },
   {
@@ -12704,6 +12728,7 @@
    "ex_stats": null,
    "first_play": false,
    "game": "New York Islanders at Los Angeles Kings",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 0, \"px_event\": 1704738785, \"px_market\": 406, \"side\": \"0\"}",
    "lead_min": 929,
    "league": "NHL",
@@ -12724,7 +12749,8 @@
     "px_market": 406,
     "side": "0"
    },
-   "result": null,
+   "result": "W",
+   "settled_utc": "2026-11-13T06:00:18Z",
    "side": "New York Islanders",
    "side_label": "New York Islanders",
    "side_raw": 0,
@@ -12734,7 +12760,7 @@
     "New York Islanders",
     "Los Angeles Kings"
    ],
-   "units_flat": null,
+   "units_flat": 1.17,
    "x": 2.15
   },
   {
@@ -12750,6 +12776,7 @@
    "ex_stats": null,
    "first_play": false,
    "game": "New York Islanders at Los Angeles Kings",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 0, \"px_event\": 1704738785, \"px_market\": 406, \"side\": \"1\"}",
    "lead_min": 929,
    "league": "NHL",
@@ -12770,7 +12797,8 @@
     "px_market": 406,
     "side": "1"
    },
-   "result": null,
+   "result": "L",
+   "settled_utc": "2026-11-13T06:00:18Z",
    "side": "Los Angeles Kings",
    "side_label": "Los Angeles Kings",
    "side_raw": 1,
@@ -12780,7 +12808,7 @@
     "New York Islanders",
     "Los Angeles Kings"
    ],
-   "units_flat": null,
+   "units_flat": -1.0,
    "x": 2.09
   },
   {
@@ -13187,6 +13215,7 @@
    },
    "first_play": false,
    "game": "New York Islanders @ Los Angeles Kings",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1cc10-f8fd-7393-ab83-2c98383b52ae\", \"outcome_id\": \"01a1cc10-f8fd-7393-ab83-2cbfba087135\"}",
    "lead_min": 929,
    "league": "NHL",
@@ -13205,7 +13234,8 @@
     "market_id": "01a1cc10-f8fd-7393-ab83-2c98383b52ae",
     "outcome_id": "01a1cc10-f8fd-7393-ab83-2cbfba087135"
    },
-   "result": null,
+   "result": "W",
+   "settled_utc": "2026-11-13T06:00:18Z",
    "side": "New York Islanders",
    "side_label": "NYI (0)",
    "side_raw": 0,
@@ -13215,7 +13245,7 @@
     "New York Islanders",
     "Los Angeles Kings"
    ],
-   "units_flat": null,
+   "units_flat": 1.17,
    "x": 2.39
   },
   {
@@ -14125,9 +14155,9 @@
     "volume_fp": 2316.11
    },
    "ex_stats_close": {
-    "open_interest_fp": 8739.74,
+    "open_interest_fp": 8791.3,
     "volume_24h_fp": 9058.16,
-    "volume_fp": 11194.55
+    "volume_fp": 11246.11
    },
    "first_play": true,
    "game": "New York R vs Vancouver",
@@ -14484,6 +14514,7 @@
    },
    "first_play": false,
    "game": "New York Islanders @ Los Angeles Kings",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1cc10-f8fd-7393-ab83-2cf39854670a\", \"outcome_id\": \"01a1cc10-f8fd-7393-ab83-2d0545d18f28\"}",
    "lead_min": 963,
    "league": "NHL",
@@ -14502,7 +14533,8 @@
     "market_id": "01a1cc10-f8fd-7393-ab83-2cf39854670a",
     "outcome_id": "01a1cc10-f8fd-7393-ab83-2d0545d18f28"
    },
-   "result": null,
+   "result": "W",
+   "settled_utc": "2026-11-13T06:00:18Z",
    "side": "OVER",
    "side_label": "Over 5.5 (5.5)",
    "side_raw": "OVER",
@@ -14512,7 +14544,7 @@
     "New York Islanders",
     "Los Angeles Kings"
    ],
-   "units_flat": null,
+   "units_flat": 0.82,
    "x": 3.4
   },
   {
@@ -14943,9 +14975,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 91.26,
+    "open_interest_fp": 147.26,
     "volume_24h_fp": 81.79,
-    "volume_fp": 91.26
+    "volume_fp": 147.26
    },
    "first_play": true,
    "game": "New York R vs Vancouver: Total Goals",
@@ -15638,9 +15670,9 @@
     "volume_fp": 1522.81
    },
    "ex_stats_close": {
-    "open_interest_fp": 5045.58,
+    "open_interest_fp": 5513.610000000001,
     "volume_24h_fp": 4267.46,
-    "volume_fp": 5215.95
+    "volume_fp": 5683.98
    },
    "first_play": true,
    "game": "Nashville vs Vegas",
@@ -15691,9 +15723,9 @@
     "volume_fp": 1522.81
    },
    "ex_stats_close": {
-    "open_interest_fp": 5045.58,
+    "open_interest_fp": 5513.610000000001,
     "volume_24h_fp": 4267.46,
-    "volume_fp": 5215.95
+    "volume_fp": 5683.98
    },
    "first_play": true,
    "game": "Nashville vs Vegas",
@@ -15850,9 +15882,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 91.26,
+    "open_interest_fp": 147.26,
     "volume_24h_fp": 81.79,
-    "volume_fp": 91.26
+    "volume_fp": 147.26
    },
    "first_play": true,
    "game": "New York R vs Vancouver: Total Goals",
@@ -16769,9 +16801,9 @@
     "volume_fp": 3110.69
    },
    "ex_stats_close": {
-    "open_interest_fp": 4669.26,
+    "open_interest_fp": 4985.58,
     "volume_24h_fp": 2295.95,
-    "volume_fp": 5332.7
+    "volume_fp": 5649.0199999999995
    },
    "first_play": true,
    "game": "Southern Utah vs Portland St.",
@@ -17079,9 +17111,9 @@
     "volume_fp": 36292.86
    },
    "ex_stats_close": {
-    "open_interest_fp": 55076.67,
+    "open_interest_fp": 55095.92,
     "volume_24h_fp": 21737.56,
-    "volume_fp": 58128.98
+    "volume_fp": 58148.23
    },
    "first_play": true,
    "game": "Houston vs Colorado: Spread",
@@ -17348,9 +17380,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 91.26,
+    "open_interest_fp": 147.26,
     "volume_24h_fp": 81.79,
-    "volume_fp": 91.26
+    "volume_fp": 147.26
    },
    "first_play": true,
    "game": "New York R vs Vancouver: Total Goals",
@@ -17401,9 +17433,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 91.26,
+    "open_interest_fp": 147.26,
     "volume_24h_fp": 81.79,
-    "volume_fp": 91.26
+    "volume_fp": 147.26
    },
    "first_play": true,
    "game": "New York R vs Vancouver: Total Goals",
@@ -18089,6 +18121,7 @@
    "ex_stats": null,
    "first_play": false,
    "game": "New York Islanders at Los Angeles Kings",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 6.0, \"px_event\": 1704738785, \"px_market\": 412, \"side\": \"UNDER\"}",
    "lead_min": 1100,
    "league": "NHL",
@@ -18109,7 +18142,8 @@
     "px_market": 412,
     "side": "UNDER"
    },
-   "result": null,
+   "result": "L",
+   "settled_utc": "2026-11-13T06:00:18Z",
    "side": "UNDER",
    "side_label": "under 6 (6)",
    "side_raw": "UNDER",
@@ -18119,7 +18153,7 @@
     "New York Islanders",
     "Los Angeles Kings"
    ],
-   "units_flat": null,
+   "units_flat": -1.0,
    "x": 2.1
   },
   {
@@ -18714,9 +18748,9 @@
     "volume_fp": 36292.86
    },
    "ex_stats_close": {
-    "open_interest_fp": 55076.67,
+    "open_interest_fp": 55095.92,
     "volume_24h_fp": 21737.56,
-    "volume_fp": 58128.98
+    "volume_fp": 58148.23
    },
    "first_play": true,
    "game": "Houston vs Colorado: Spread",
@@ -18767,9 +18801,9 @@
     "volume_fp": 3110.69
    },
    "ex_stats_close": {
-    "open_interest_fp": 4669.26,
+    "open_interest_fp": 4985.58,
     "volume_24h_fp": 2295.95,
-    "volume_fp": 5332.7
+    "volume_fp": 5649.0199999999995
    },
    "first_play": false,
    "game": "Southern Utah vs Portland St.",
@@ -18820,9 +18854,9 @@
     "volume_fp": 2316.11
    },
    "ex_stats_close": {
-    "open_interest_fp": 8739.74,
+    "open_interest_fp": 8791.3,
     "volume_24h_fp": 9058.16,
-    "volume_fp": 11194.55
+    "volume_fp": 11246.11
    },
    "first_play": true,
    "game": "New York R vs Vancouver",
@@ -18873,9 +18907,9 @@
     "volume_fp": 2316.11
    },
    "ex_stats_close": {
-    "open_interest_fp": 8739.74,
+    "open_interest_fp": 8791.3,
     "volume_24h_fp": 9058.16,
-    "volume_fp": 11194.55
+    "volume_fp": 11246.11
    },
    "first_play": true,
    "game": "New York R vs Vancouver",
@@ -21279,9 +21313,9 @@
     "volume_fp": 1522.81
    },
    "ex_stats_close": {
-    "open_interest_fp": 5045.58,
+    "open_interest_fp": 5513.610000000001,
     "volume_24h_fp": 4267.46,
-    "volume_fp": 5215.95
+    "volume_fp": 5683.98
    },
    "first_play": true,
    "game": "Nashville vs Vegas",
@@ -21332,9 +21366,9 @@
     "volume_fp": 3110.69
    },
    "ex_stats_close": {
-    "open_interest_fp": 4669.26,
+    "open_interest_fp": 4985.58,
     "volume_24h_fp": 2295.95,
-    "volume_fp": 5332.7
+    "volume_fp": 5649.0199999999995
    },
    "first_play": false,
    "game": "Southern Utah vs Portland St.",
@@ -23227,6 +23261,7 @@
    },
    "first_play": true,
    "game": "New York Islanders @ Los Angeles Kings",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1cc10-f8fd-7393-ab83-2cf39854670a\", \"outcome_id\": \"01a1cc10-f8fd-7393-ab83-2d0545d18f28\"}",
    "lead_min": 1199,
    "league": "NHL",
@@ -23245,7 +23280,8 @@
     "market_id": "01a1cc10-f8fd-7393-ab83-2cf39854670a",
     "outcome_id": "01a1cc10-f8fd-7393-ab83-2d0545d18f28"
    },
-   "result": null,
+   "result": "W",
+   "settled_utc": "2026-11-13T06:00:18Z",
    "side": "OVER",
    "side_label": "Over 5.5 (5.5)",
    "side_raw": "OVER",
@@ -23255,7 +23291,7 @@
     "New York Islanders",
     "Los Angeles Kings"
    ],
-   "units_flat": null,
+   "units_flat": 0.82,
    "x": 0.48
   },
   {
