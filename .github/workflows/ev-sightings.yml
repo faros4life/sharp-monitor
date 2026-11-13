@@ -33,16 +33,25 @@ name: ev-sightings
 # stops. No other workflow, and nothing in live execution, is touched by this change.
 #
 # The cron is removed here AND the workflow is disabled through the Actions API, because
-# cron-job.org fires this by workflow_dispatch independently of any cron in this file - removing
-# the cron alone would NOT have stopped it. A disabled workflow rejects workflow_dispatch too, so
-# that external timer can keep firing harmlessly until its entry is removed.
+# cron-job.org fires this by workflow_dispatch independently of any cron in this file, so removing
+# the cron alone would NOT have stopped it. Disabling the workflow through the Actions API would
+# have, but that endpoint needs actions=write and this session's token is refused with 403. So the
+# JOB ITSELF is gated instead: it runs only when dispatched with reopen=REOPEN. An ungated
+# dispatch SKIPS the job, and a skipped job starts no runner at all - zero compute, zero OddsPapi
+# credits, nothing written. The external timer can keep firing harmlessly until its entry is
+# removed, which is the one remaining step and is Peter's to do on cron-job.org.
 #
-# TO REOPEN: re-enable the workflow (Actions UI or API) and restore the cron line below. The
-# script and all history are untouched, so it would resume rather than restart.
+# TO REOPEN: dispatch with reopen=REOPEN for a single run, or restore the cron line below for
+# continuous collection. The script and all history are untouched, so it resumes, never restarts.
 # ============================================================================================
 on:
   # schedule: REMOVED 2026-11-13, study closed. Was: cron "7-59/10 * * * *" (every 10 minutes).
   workflow_dispatch:
+    inputs:
+      reopen:
+        description: "Type REOPEN to run the CLOSED study once. Any other value does nothing."
+        required: false
+        default: ""
 
 concurrency:
   group: ev-sightings
@@ -53,6 +62,12 @@ permissions:
 
 jobs:
   run:
+    # STUDY CLOSED 2026-11-13. This gate is what actually stops collection: the cron above is
+    # gone, but cron-job.org dispatches this workflow on its own timer, and that entry still
+    # exists. An ungated dispatch now SKIPS this job - GitHub starts no runner for a skipped job,
+    # so it costs no compute, spends no OddsPapi credits and writes nothing to the ev-study
+    # branch. Only an explicit reopen=REOPEN runs the study.
+    if: ${{ github.event.inputs.reopen == 'REOPEN' }}
     runs-on: ubuntu-latest
     timeout-minutes: 12   # A1: each run keeps polling Pinnacle ~7 min after the full read
     steps:
