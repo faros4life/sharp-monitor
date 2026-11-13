@@ -70,7 +70,25 @@ UNIT = float(os.environ.get("EXEC_UNIT", "") or "300")          # + money: risk 
 # This REMOVES a veto, which would matter if any veto could still arrive. Muse's verdicts were the
 # only source of one and Muse sends nothing now, so there is no veto to lose. Measured cost removed:
 # 1.3s verdicts + 3.5s watchdog per pass, and the "[Muse] " tag leaves src_tag().
-SOURCE = (os.environ.get("EXEC_SOURCE", "") or "rules").lower()  # muse | rules | both
+# Nov 13 (Peter): "Muse is permanently retired. Make sure no configuration setting can
+# accidentally reactivate Muse or its veto." SOURCE is now a CONSTANT and EXEC_SOURCE is no longer
+# read, so no variable, secret or workflow env can bring the verdict reads or the watchdog back.
+#
+# NO BEHAVIOUR CHANGES TODAY. EXEC_SOURCE was unset everywhere, so SOURCE already evaluated to
+# "rules"; every expression that reads it gives the identical answer before and after:
+#     SOURCE == "both"              -> False, both  (the "[Muse] " tag)
+#     SOURCE not in ("both",)       -> True,  both  (watchdog returns early)
+#     SOURCE in ("muse", "both")    -> False, both  (verdict reads skipped)
+#     SOURCE in ("rules", "both")   -> True,  both  (rule_plays still runs)
+#
+# Pinning also closes a worse door than reactivation: EXEC_SOURCE=muse would have made that last
+# line False and SILENTLY SWITCHED OFF the coded rules lane - Phase 1 would have had no plays at
+# all, driven only by verdicts that no longer arrive.
+#
+# The plumbing (read_verdicts, watchdog_once) is left in place deliberately: deleting it is a
+# larger change than retiring it, and unreachable code places no bets. test_no_muse.py asserts it
+# stays unreachable.
+SOURCE = "rules"
 RULES_LOOKBACK_H = 6                                             # coded rules look at alerts first sent in the last 6 h
 MIN_LEAD_MIN = float(os.environ.get("EXEC_MIN_LEAD_MIN", "") or "60")
 CAP_LINE = -130                                                  # spreads/totals: never worse than -130
