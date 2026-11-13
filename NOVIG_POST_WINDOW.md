@@ -51,13 +51,24 @@ What it **can** cause is an order that is invisible to every automated path at o
 3. `GET /v3/portfolio/orders` answers 401 on every key from both the cloud and the home PC, so
    there is no enumeration to fall back on.
 
-One recovery route survives: **fills carry `clientId`**, and `place()` sends
-`"clientId": rec["client_id"]` on the order. The cloud's fills read works and is complete (154 rows
-on the last run). So a lost order that **filled** is still recoverable by client id. A lost order
-that is **resting or cancelled** is not recoverable by any route we currently have.
+**Update, same day: point 3 above is wrong, and the asymmetry it created is now closed.** A
+read-only probe found that an orders collection does exist - it is `GET /v3/orders`, not the
+`/v3/portfolio/orders` that 401s on every key. Three measured properties of it:
 
-That asymmetry is the whole risk: the money-moving case is recoverable, the open-exposure case is
-not.
+- It returns **open orders only**. A known CANCELED order is absent from it. So absence there
+  means "not resting", never "never placed".
+- **`?clientId` is ignored, not honoured.** Asking for one client id returned rows carrying two
+  different ones. Any match on client id must be made client-side; a recovery that trusted that
+  parameter would confirm an unrelated order.
+- `?keyId` answers `403 SCOPE_INSUFFICIENT`, so the listing cannot be scoped per wallet.
+
+Both recovery halves therefore exist now. Fills carry `clientId` and `place()` sends
+`"clientId": rec["client_id"]`, so a lost order that **filled** is recoverable. The open-orders
+listing carries `clientId` too, so a lost order left **resting** is recoverable as well - including
+one whose id was never recorded, which is precisely what the POST window strands.
+
+What remains unrecoverable is narrow: an order that was accepted, then cancelled or expired, with
+its record lost. It is not resting, so it carries no exposure; it only leaves the ledger short.
 
 ## Forensic discriminator that already exists
 
@@ -87,16 +98,18 @@ lengthens each placement by about a second and shrinks the unrecorded window to 
 fix, every order that could possibly exist at the venue has a durable row naming its client id
 before the venue is ever called.
 
-**2. A `recover` mode.** For any row left in `SENDING`, scan `GET /v3/portfolio/fills` for that
-client id. A match resolves it. No match leaves it `SENDING` and therefore blocked - which is the
-correct outcome, and is strictly better than today, where the same situation leaves nothing at all
-to point at.
+**2. A `recover` mode.** Built and tested in `novig-runner/novig_order_journal.py`. For any row
+left in `SENDING`, match its client id against the fills (catches a filled order) and against
+`GET /v3/orders` (catches a resting one), both filtered client-side. A row resolves only on a
+match, and only when the listing actually succeeded: a failed listing proves nothing and the row
+stays `SENDING` and blocked. Even a complete listing with no match does not clear the row, since
+the listing shows open orders only.
 
-**3. Ask Novig two questions.** Whether `GET /v3/orders` accepts a `clientId` filter, and whether
-`POST /v3/orders` honours an idempotency key. Either would close the remaining gap: a clientId
-lookup makes a resting lost order recoverable, and an idempotency key makes a retry return the
-original order instead of placing a second one. Neither can be tested from here without issuing a
-POST, which will not be done.
+**3. One question left for Novig.** The `clientId` half is answered: the filter is ignored, but
+the listing returns `clientId` so client-side matching works. What remains unanswered is whether
+`POST /v3/orders` honours an **idempotency key**. That cannot be probed read-only - testing it
+means placing a real order - so it needs Novig support. It would close the last gap by making a
+retry return the original order instead of placing a second one.
 
 **4. Detection now, with no change to placement.** Compare the count of `novig-live-order`
 workflow_dispatch runs against the count of rows in `snapshot/novig_orders.json` and flag any gap.
