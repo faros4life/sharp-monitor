@@ -3560,8 +3560,18 @@ def rest_pre_alert(r, risk, expire, books):
 
 
 def rest_wanted(r):
-    """A phase-1 play (Muse AGREE) where nothing filled at the alert number: no live book had it (price skip), or the
-    fill-or-kill came back empty. Never for conflicts, duplicates, caps, holds or refusals."""
+    """ANY live lane's play where nothing filled at the alert number: no live book had it (price skip), or the
+    fill-or-kill came back empty. Never for conflicts, duplicates, caps, holds or refusals.
+
+    Nov 13 (Peter, docstring only): this said "a phase-1 play (Muse AGREE)". Both halves were stale.
+    There is ONE call site and it is not lane-gated, and rest_bid() sizes with unit_for(lane), which
+    only means anything if lanes other than Phase 1 reach it - Board v3 and R1 both rest at their
+    own $200 unit. The line was true when Phase 1 was the only live lane and was never updated when
+    the other two went live; Muse is no longer part of this project at all. Nothing about the
+    behaviour changed here - the description was wrong, not the code.
+
+    Naming, since the code uses both words: source "rules" IS Phase 1 IS Lane 1 (LANE_NAME maps it
+    to "PHASE 1"). One lane, two names."""
     lv = r.get("live")
     if not lv or not px_live.LIVE or not REST_BOOKS:
         return False
