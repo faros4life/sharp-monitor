@@ -4633,8 +4633,15 @@ def main():
     # Nov 11: the PERF block accounted for 88s of a 982s run - 894 seconds were outside all seven
     # instrumentation points, which is 11x the largest thing being measured. These brackets cover
     # main()'s own phases so the dark time has somewhere to land. Measurement only, never a gate.
+    # Nov 12 (Peter: "unnecessary authentication"). main() dialled, authenticated and selected a
+    # mailbox unconditionally. With Muse off and manual holds served from the store, the common
+    # pass now needs no Gmail at all, so that login was 1.8s of a 3.5s measured total spent
+    # proving we could reach a mailbox we never read. _LazyIMAP opens on FIRST USE, which is the
+    # same proxy live_guards already uses, so already_handled() and the Gmail fallback still get a
+    # real connection the moment either actually needs one - and a failed open still propagates
+    # there, so fail-closed is unchanged.
     with perf("imap open"):
-        M = imap_open()
+        M = _LazyIMAP()
     with perf("read verdicts (Gmail)"):
         _phase("main() start -> imap open")
         plays = read_verdicts(M) if SOURCE in ("muse", "both") else []
@@ -4671,7 +4678,7 @@ def main():
     SEEN["tok"] = _seen   # live_play_alert() reads the xrty tokens from here to suppress re-alerts
     new = [p for p in _cand if not already_handled(M, p, _seen)]
     with perf("imap close"):
-        imap_close(M)
+        M.close()          # the proxy's own close: a never-opened connection is not dialled to shut it
     feed = load_feed()
     # wake time: this run's start vs the newest SENT alert (Oct 26; counts/seconds only in the public log)
     sent_ts = [iso_t(a.get("alert_utc")) for a in feed if a.get("sent_to_phone") and iso_t(a.get("alert_utc"))]
