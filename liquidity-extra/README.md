@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 13, 10:41 AM ET. This run: 1 new, 1 not confirmed, 0 pending. Open alerts: 17.
+Updated Fri Nov 13, 10:50 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 17.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -11,7 +11,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 13 10:41AM | NCAAB | Northern Arizona vs Kentucky: Point Total | total: NOT Over 154.5 points | kalshi | $32k | -104 |  |  | +0.0c |  | pending |
-| Nov 13 10:00AM | NCAAB | Northern Iowa vs Michigan St.: Spread | spread: NOT Michigan St. wins by over 27.5 points | kalshi | $26k | -100 |  | ✅ | +1.0c |  | pending |
+| Nov 13 10:00AM | NCAAB | Northern Iowa vs Michigan St.: Spread | spread: NOT Michigan St. wins by over 27.5 points | kalshi | $26k | -100 |  | ✅ | +0.0c |  | pending |
 | Nov 13 10:00AM | NCAAB | UIC vs Saint Mary's | moneyline: Saint Mary's | kalshi | $112k | -245 |  |  | +0.0c |  | pending |
 | Nov 13 10:00AM | NCAAB | Marist vs Lehigh | moneyline: Lehigh | kalshi | $69k | -117 |  |  | +0.0c |  | pending |
 | Nov 13 9:50AM | NCAAB | Pittsburgh vs Butler | moneyline: Butler | kalshi | $35k | -144 |  |  | +0.0c |  | pending |
