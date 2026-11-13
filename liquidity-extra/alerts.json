@@ -1,6 +1,566 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-13T15:00:25Z",
+   "base_depth": 15440,
+   "best_price": 0.495,
+   "best_price_american": 102,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-13",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 6454,
+     "new_this_side": 25581,
+     "other_side": 11609,
+     "other_side_all_levels": 35184,
+     "ratio": 0.6,
+     "this_side": 6455,
+     "this_side_all_levels": 41840
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "UNI +27.5 (-27.5)",
+     "price": 0.495,
+     "this_side": 928
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "Northern Iowa +27.5 (+27.5)",
+     "price": 0.505,
+     "this_side": 310
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 18832.83,
+    "volume_24h_fp": 19174.24,
+    "volume_fp": 19174.24
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 24.75,
+    "volume_fp": 24.75
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 18832.83,
+    "volume_24h_fp": 19149.49,
+    "volume_fp": 19149.49
+   },
+   "fade_price": 0.51,
+   "first_seen_utc": "2026-11-13T14:50:20Z",
+   "game": "Northern Iowa vs Michigan St.: Spread",
+   "game_surge_books": [
+    "kalshi"
+   ],
+   "game_x": 2.47,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAMBSPREAD-26NOV13UNIMSU-MSU28\"}",
+   "lead_min": 540,
+   "league": "NCAAB",
+   "line": 27.5,
+   "market": "spread",
+   "new_money": 25581,
+   "new_x": 1.58,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 18832.83,
+      "volume_24h_fp": 19174.24,
+      "volume_fp": 19174.24
+     },
+     "game_normal": 16926,
+     "game_x": 2.47,
+     "normal": 16223,
+     "now": 41840,
+     "type": "SPREAD",
+     "x": 2.58
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 182789.0,
+      "volume": 214568.0
+     },
+     "game_normal": null,
+     "game_x": null,
+     "normal": 857,
+     "now": 1311,
+     "type": "SPREAD",
+     "x": 1.53
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 314,
+     "game_x": 1.0,
+     "normal": 269,
+     "now": 315,
+     "type": "SPREAD",
+     "x": 1.17
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.5,
+   "price_american": -100,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.5,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 27.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 27.0,
+     "price": -105
+    },
+    "betrivers": {
+     "point": 27.5,
+     "price": -118
+    },
+    "betus": {
+     "point": 27.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 27.5,
+     "price": -105
+    },
+    "draftkings": {
+     "point": 27.5,
+     "price": -115
+    },
+    "fanatics": {
+     "point": 27.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 27.5,
+     "price": -110
+    },
+    "lowvig": {
+     "point": 27.0,
+     "price": -101
+    },
+    "novig": {
+     "point": 27.5,
+     "price": 102
+    },
+    "polymarket": {
+     "point": 27.5,
+     "price": -104
+    },
+    "prophetx": {
+     "point": 27.5,
+     "price": -102
+    },
+    "williamhill_us": {
+     "point": 27.5,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAMBSPREAD-26NOV13UNIMSU-MSU28"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [
+    "Northern Iowa Panthers +29.5 (-110)"
+   ],
+   "sharp_oppose": [],
+   "side": "Northern Iowa",
+   "side_label": "NOT Michigan St. wins by over 27.5 points",
+   "size_x": 2.58,
+   "start_source": "odds",
+   "start_utc": "2026-11-14T00:00:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "Northern Iowa",
+    "Michigan St."
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-13T15:00:25Z",
+   "base_depth": 81692,
+   "best_price": 0.7184,
+   "best_price_american": -255,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.71,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-13",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 10034,
+     "new_this_side": 112240,
+     "other_side": 12188,
+     "other_side_all_levels": 40151,
+     "ratio": 9.3,
+     "this_side": 112828,
+     "this_side_all_levels": 216884
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Saint Mary's",
+     "price": 0.7143,
+     "this_side": 2631
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 417.94,
+    "volume_24h_fp": 417.94,
+    "volume_fp": 417.94
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 223.62,
+    "volume_24h_fp": 223.62,
+    "volume_fp": 223.62
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 194.32000000000002,
+    "volume_24h_fp": 194.32000000000002,
+    "volume_fp": 194.32000000000002
+   },
+   "fade_price": 0.3,
+   "first_seen_utc": "2026-11-13T14:50:20Z",
+   "game": "UIC vs Saint Mary's",
+   "game_surge_books": [
+    "kalshi"
+   ],
+   "game_x": 6.03,
+   "key": "kalshi|KXNCAAMBGAME-26NOV13UICSMC|ml|1",
+   "lead_min": 720,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 112240,
+   "new_x": 4.77,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 417.94,
+      "volume_24h_fp": 417.94,
+      "volume_fp": 417.94
+     },
+     "game_normal": 35994,
+     "game_x": 6.03,
+     "normal": 23531,
+     "now": 216884,
+     "type": "ML",
+     "x": 9.22
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 1640,
+     "game_x": 1.61,
+     "normal": 789,
+     "now": 2638,
+     "type": "ML",
+     "x": 3.34
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.71,
+   "price_american": -245,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.71,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -275
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -280
+    },
+    "betrivers": {
+     "point": null,
+     "price": -278
+    },
+    "betus": {
+     "point": null,
+     "price": -275
+    },
+    "bovada": {
+     "point": null,
+     "price": -270
+    },
+    "draftkings": {
+     "point": null,
+     "price": -270
+    },
+    "fanatics": {
+     "point": null,
+     "price": -275
+    },
+    "fanduel": {
+     "point": null,
+     "price": -250
+    },
+    "kalshi": {
+     "point": null,
+     "price": -245
+    },
+    "lowvig": {
+     "point": null,
+     "price": -280
+    },
+    "novig": {
+     "point": null,
+     "price": -245
+    },
+    "polymarket": {
+     "point": null,
+     "price": -257
+    },
+    "prophetx": {
+     "point": null,
+     "price": -250
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV13UICSMC-SMC"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Saint Mary's",
+   "side_label": "Saint Mary's",
+   "size_x": 9.22,
+   "start_source": "odds",
+   "start_utc": "2026-11-14T03:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "prophetx"
+   ],
+   "teams": [
+    "UIC",
+    "Saint Mary's"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-13T15:00:25Z",
+   "base_depth": 88823,
+   "best_price": 0.54,
+   "best_price_american": -117,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.54,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-13",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 11400,
+     "new_this_side": 68532,
+     "other_side": 19757,
+     "other_side_all_levels": 106360,
+     "ratio": 4.1,
+     "this_side": 81154,
+     "this_side_all_levels": 147215
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "LEH (0)",
+     "price": 0.54,
+     "this_side": 9274
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Lehigh",
+     "price": 0.5392,
+     "this_side": 1586
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 398.0,
+    "volume_24h_fp": 398.0,
+    "volume_fp": 398.0
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 398.0,
+    "volume_24h_fp": 398.0,
+    "volume_fp": 398.0
+   },
+   "fade_price": 0.47,
+   "first_seen_utc": "2026-11-13T14:50:20Z",
+   "game": "Marist vs Lehigh",
+   "game_surge_books": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "game_x": 2.63,
+   "key": "kalshi|KXNCAAMBGAME-26NOV13MRSTLEH|ml|1",
+   "lead_min": 540,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 68532,
+   "new_x": 2.91,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 398.0,
+      "volume_24h_fp": 398.0,
+      "volume_fp": 398.0
+     },
+     "game_normal": 55988,
+     "game_x": 2.63,
+     "normal": 23531,
+     "now": 147215,
+     "type": "ML",
+     "x": 6.26
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 75139.0,
+      "volume": 90780.0
+     },
+     "game_normal": 1712,
+     "game_x": 5.59,
+     "normal": 2160,
+     "now": 9577,
+     "type": "ML",
+     "x": 4.43
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 633,
+     "game_x": 2.5,
+     "normal": 789,
+     "now": 1586,
+     "type": "ML",
+     "x": 2.01
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.54,
+   "price_american": -117,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.54,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -135
+    },
+    "betrivers": {
+     "point": null,
+     "price": -134
+    },
+    "bovada": {
+     "point": null,
+     "price": -120
+    },
+    "draftkings": {
+     "point": null,
+     "price": -130
+    },
+    "fanatics": {
+     "point": null,
+     "price": -130
+    },
+    "fanduel": {
+     "point": null,
+     "price": -134
+    },
+    "kalshi": {
+     "point": null,
+     "price": -117
+    },
+    "novig": {
+     "point": null,
+     "price": -117
+    },
+    "polymarket": {
+     "point": null,
+     "price": -117
+    },
+    "prophetx": {
+     "point": null,
+     "price": -117
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -130
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV13MRSTLEH-LEH"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Lehigh",
+   "side_label": "Lehigh",
+   "size_x": 6.26,
+   "start_source": "odds",
+   "start_utc": "2026-11-14T00:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "teams": [
+    "Marist",
+    "Lehigh"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-13T14:50:20Z",
    "base_depth": 89905,
    "best_price": 0.59,
@@ -50,6 +610,11 @@
     "open_interest_fp": 0.66,
     "volume_24h_fp": 0.66,
     "volume_fp": 0.66
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 7013.91,
+    "volume_24h_fp": 6553.19,
+    "volume_fp": 7013.91
    },
    "ex_stats_first": {
     "open_interest_fp": 6997.66,
@@ -310,6 +875,8 @@
    "norm_ready_books": 3,
    "paper_only": false,
    "price": 0.68,
+   "price_after_15m": 0.68,
+   "price_after_15m_book": "novig",
    "price_american": -213,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.68,
@@ -376,6 +943,7 @@
    "size_x": 4.94,
    "start_source": "odds",
    "start_utc": "2026-11-14T00:00:00Z",
+   "still_actionable": true,
    "surge_books": [
     "kalshi",
     "prophetx"
@@ -433,9 +1001,9 @@
     "volume_fp": 15.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 4377.16,
-    "volume_24h_fp": 3935.98,
-    "volume_fp": 4618.29
+    "open_interest_fp": 4393.48,
+    "volume_24h_fp": 3952.3,
+    "volume_fp": 4634.61
    },
    "ex_stats_first": {
     "open_interest_fp": 3368.01,
@@ -995,9 +1563,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 262.05,
-    "volume_24h_fp": 197.21,
-    "volume_fp": 508.43000000000006
+    "open_interest_fp": 274.99,
+    "volume_24h_fp": 210.15,
+    "volume_fp": 521.37
    },
    "ex_stats_first": {
     "open_interest_fp": 139.43,
@@ -1193,9 +1761,9 @@
     "volume_fp": 6.18
    },
    "ex_stats_close": {
-    "open_interest_fp": 4111.99,
-    "volume_24h_fp": 3935.95,
-    "volume_fp": 4355.66
+    "open_interest_fp": 4127.45,
+    "volume_24h_fp": 3951.41,
+    "volume_fp": 4371.12
    },
    "ex_stats_first": {
     "open_interest_fp": 2135.42,
@@ -1391,9 +1959,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 4162.0,
-    "volume_24h_fp": 4188.15,
-    "volume_fp": 4189.71
+    "open_interest_fp": 4191.83,
+    "volume_24h_fp": 4217.98,
+    "volume_fp": 4219.54
    },
    "ex_stats_first": {
     "open_interest_fp": 226.32,
@@ -1783,9 +2351,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 647.7,
-    "volume_24h_fp": 581.6,
-    "volume_fp": 647.7
+    "open_interest_fp": 837.72,
+    "volume_24h_fp": 771.62,
+    "volume_fp": 837.72
    },
    "ex_stats_first": {
     "open_interest_fp": 475.27,
@@ -2288,7 +2856,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 12,
+   "settle_tries": 13,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Fritz",

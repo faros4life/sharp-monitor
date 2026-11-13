@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 13, 9:50 AM ET. This run: 1 new, 0 not confirmed, 3 pending. Open alerts: 13.
+Updated Fri Nov 13, 10:00 AM ET. This run: 3 new, 0 not confirmed, 0 pending. Open alerts: 16.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,9 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 13 10:00AM | NCAAB | Northern Iowa vs Michigan St.: Spread | spread: NOT Michigan St. wins by over 27.5 points | kalshi | $26k | -100 |  | ✅ | +0.0c |  | pending |
+| Nov 13 10:00AM | NCAAB | UIC vs Saint Mary's | moneyline: Saint Mary's | kalshi | $112k | -245 |  |  | +0.0c |  | pending |
+| Nov 13 10:00AM | NCAAB | Marist vs Lehigh | moneyline: Lehigh | kalshi | $69k | -117 |  |  | +0.0c |  | pending |
 | Nov 13 9:50AM | NCAAB | Pittsburgh vs Butler | moneyline: Butler | kalshi | $35k | -144 |  |  | +0.0c |  | pending |
 | Nov 13 9:40AM | NCAAB | Columbia vs Bucknell | moneyline: Columbia | kalshi | $41k | -213 |  |  | +0.0c |  | pending |
 | Nov 13 9:30AM | NCAAB | Virginia vs Maryland | moneyline: Virginia | kalshi | $68k | -223 |  |  | +0.0c |  | pending |
@@ -207,6 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 2 11:00PM | NCAAB | Purdue Fort Wayne vs Duquesne | moneyline: Duquesne | kalshi | $45k | -400 |  |  | +1.0c | yes | W |
 | Nov 2 7:50PM | NCAAB | UMass vs Troy | moneyline: UMass | kalshi | $37k | -400 |  |  | +2.0c |  | W |
 | Nov 2 6:40PM | NCAAB | Buffalo vs Marshall | moneyline: Marshall | kalshi | $41k | -144 |  |  | +0.0c |  | W |
-| Nov 2 3:10PM | NCAAB | Dartmouth vs Marist | moneyline: Marist | kalshi | $39k | -285 |  |  | +1.0c |  | L |
-| Nov 2 3:00PM | NCAAB | Florida vs Miami (FL) | moneyline: Florida | kalshi | $47k | -233 |  |  | +2.0c | yes | W |
-| Nov 2 11:10AM | NCAAB | Tennessee St. vs Murray St. | moneyline: Murray St. | kalshi | $71k | -400 | ✅ novig |  | +0.0c |  | W |
