@@ -95,6 +95,28 @@ BOOKS = ("novig", "prophetx", "kalshi", "polymarket_us")
 LOG = []   # counts only for the public log
 
 
+def log_report():
+    """Print LOG. Nov 12 (Peter, item 3): LOG was APPEND-ONLY - 49 append sites and not one reader.
+
+    Every one of them wrote to a list that was discarded at process exit, so none of it has ever
+    reached the Actions log or the email. The cost of that is specific: _mirror_manual's docstring
+    says "its only product is the agreement line in the log, which is the evidence for whether the
+    switch is ever safe to make", and that line has gone nowhere since the mirror was written. The
+    manual-notes switch could not have been justified on any evidence, because none was being kept.
+
+    This is the same failure as board_clv_check reporting 0 of 54: I went looking for the mirror's
+    verdict in the Actions log, then in the email, and concluded the mirror had not produced one.
+    The instrument was the fault both times.
+
+    Counts only: all 49 entries are status and count strings - no stake, balance, price or bet
+    text - which is what makes them printable in a public repo's log."""
+    if not LOG:
+        return
+    print(f"LOG ({len(LOG)} line(s); counts only)")
+    for _l in LOG:
+        print(f"  {_l}")
+
+
 def gmail():
     user = os.environ.get("GMAIL_ADDRESS", "").strip()
     pw = os.environ.get("GMAIL_APP_PASSWORD", "").replace(" ", "").strip()
@@ -4601,6 +4623,7 @@ def main():
         watchdog_once(now, plays, rplays, feed)
         fill_reports()
         print(perf_report())
+        log_report()   # Nov 12 (Peter, item 3): LOG had 49 writers and no reader
         try:
             import registry as _rg
             print(_rg.selftest())
@@ -5065,6 +5088,7 @@ def main():
         _phase("fill reports (post-order, non-gating)")
         body += [perf_report(), ""]   # Nov 11: where the run's time actually went
         print(perf_report())          # and in the public log, counts/seconds only
+        log_report()                  # Nov 12 (Peter, item 3): LOG had 49 writers and no reader
         # Nov 11 (Peter, "b2"): the private-GitHub store proves itself against the real API while
         # bot_orders() is still reading Gmail, so a broken transport cannot stop him betting. Its
         # read time is the number to compare with the 79s Gmail registry read. Counts only, no
