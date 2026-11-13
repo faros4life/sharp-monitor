@@ -1,0 +1,35 @@
+name: pin-feed-validate
+
+# Nov 13, 2026 (Peter). Proves the zero-cost Pinnacle replacement for nba_totals_model BEFORE any
+# switch. Read-only: no write, no commit, no model change, no order. Every venue read is
+# /historical-odds, which credit_gate lists in FREE_PATHS; the fixture cache and market map are
+# read from cache with an explicit refusal to fall through to a paid fetch.
+# Manual dispatch only - no schedule, so it cannot contend with any live workflow.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Fetch the model output and the encrypted caches
+        run: |
+          mkdir -p nba-model
+          git fetch -q origin nba-model && git show origin/nba-model:nba_model.json > nba-model/nba_model.json
+      - name: Validate (read-only, zero billable calls)
+        env:
+          # history goes through the FREE key: the paid key answers 403 on pinnacle (Nov 3)
+          ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
+          ODDSPAPI_FREE_KEY: ${{ secrets.ODDSPAPI_FREE_KEY }}
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+        run: python -u pin_feed_validate.py
