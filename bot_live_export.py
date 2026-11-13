@@ -64,6 +64,10 @@ def main():
     raw = copy.deepcopy(st.get("bets") or {})
     tb.mark_manual_dups(raw)
     rows = tb.group_fills([b for b in raw.values() if not b.get("dup_of")])
+    from collections import Counter   # counts only: which source labels the tracker really uses
+    print("source labels (all rows):", dict(Counter(str(b.get("source")) for b in rows)))
+    print("lane tags (all rows):", dict(Counter(str(b.get("lane")) for b in rows)))
+    print("bot-only vs lane tag:", dict(Counter(str(b.get("lane")) for b in rows if b.get("source") == "bot")))
     out = {k: [] for k in LANES.values()}
     out["Unattributed"] = []
     keylane = registry_lanes()
