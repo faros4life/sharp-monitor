@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 13, 6:50 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 26.
+Updated Fri Nov 13, 6:55 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 26.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -59,7 +59,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 12 12:11PM | NBA | Charlotte vs Phoenix: Total Points | total: NOT Over 214.5 points | kalshi | $42k | -100 |  | ✅ | -1.0c | yes | W |
 | Nov 12 11:40AM | NHL | Carolina vs Seattle: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $33k | -104 | ✅ novig,prophetx |  | -1.0c | yes | W |
 | Nov 12 11:00AM | NHL | Winnipeg vs Dallas: Total Goals | total: Over 5.5 goals scored | kalshi | $28k | -117 | ✅ novig |  | -1.0c | yes | W |
-| Nov 12 10:51AM | NCAAF | Houston vs Colorado | moneyline: Houston | kalshi | $201k | -335 | ✅ novig |  | -2.0c | yes | pending |
+| Nov 12 10:51AM | NCAAF | Houston vs Colorado | moneyline: Houston | kalshi | $201k | -335 | ✅ novig |  | -1.0c | yes | pending |
 | Nov 12 10:31AM | NHL | Detroit vs Florida | moneyline: Florida | kalshi | $37k | -163 | ✅ novig,prophetx |  | +4.0c |  | W |
 | Nov 12 10:07AM | NCAAF | Illinois vs UCLA: Spread | spread: NOT UCLA wins by over 9.5 points | kalshi | $39k | +108 | ✅ novig |  | -1.0c |  | pending |
 | Nov 12 10:07AM | NHL | New York I vs Los Angeles | moneyline: New York I | kalshi | $31k | +117 | ✅ prophetx |  | +1.0c |  | W |
