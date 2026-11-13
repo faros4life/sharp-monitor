@@ -1489714,8 +1489714,8 @@
     "polymarket_us": null
    },
    "consensus_fair_at_sighting": 0.44182,
-   "result": null,
-   "units_flat": null,
+   "result": "W",
+   "units_flat": 1.2727,
    "close_final": true,
    "close_read_utc": "2026-11-13T03:04:56Z",
    "close_mins_before_start": 5,
@@ -1489737,7 +1489737,8 @@
    "pin_close_same_line": false,
    "pin_close_far": false,
    "clv_pinnacle_c": -8.0,
-   "suspect": false
+   "suspect": false,
+   "graded_utc": "2026-11-13T06:12:49Z"
   },
   {
    "key": "A|1fae7f34ec6035dffa74feb148ee26c7|spread|-20.5|San Antonio Spurs",
@@ -1493596,8 +1493597,8 @@
     "polymarket_us": null
    },
    "consensus_fair_at_sighting": 0.805,
-   "result": null,
-   "units_flat": null,
+   "result": "W",
+   "units_flat": 0.25,
    "close_final": true,
    "close_read_utc": "2026-11-13T03:04:56Z",
    "close_mins_before_start": 5,
@@ -1493611,7 +1493612,8 @@
     "polymarket_us": null
    },
    "clv_consensus_c": 0.5,
-   "suspect": false
+   "suspect": false,
+   "graded_utc": "2026-11-13T06:12:49Z"
   },
   {
    "key": "A|8a40b260e8fa0d67c1f2bc2b39a24982|spread|-5.5|Memphis Grizzlies",
@@ -1494156,8 +1494158,8 @@
     "polymarket_us": null
    },
    "consensus_fair_at_sighting": 0.69,
-   "result": null,
-   "units_flat": null,
+   "result": "W",
+   "units_flat": 0.4493,
    "close_final": true,
    "close_read_utc": "2026-11-13T03:04:56Z",
    "close_mins_before_start": 5,
@@ -1494179,7 +1494181,8 @@
    "pin_close_same_line": true,
    "pin_close_far": false,
    "clv_pinnacle_c": -0.26,
-   "suspect": false
+   "suspect": false,
+   "graded_utc": "2026-11-13T06:12:49Z"
   },
   {
    "key": "A|6669b911691463c669a5c10574742e8e|spread|6.5|Indiana Pacers",
@@ -1495163,8 +1495166,8 @@
     "polymarket_us": null
    },
    "consensus_fair_at_sighting": 0.45125,
-   "result": null,
-   "units_flat": null,
+   "result": "L",
+   "units_flat": -1.0,
    "close_final": true,
    "close_read_utc": "2026-11-13T03:04:56Z",
    "close_mins_before_start": 5,
@@ -1495186,7 +1495189,8 @@
    "pin_close_same_line": true,
    "pin_close_far": false,
    "clv_pinnacle_c": 3.29,
-   "suspect": false
+   "suspect": false,
+   "graded_utc": "2026-11-13T06:12:49Z"
   },
   {
    "key": "A|1fae7f34ec6035dffa74feb148ee26c7|spread|-16.5|San Antonio Spurs",
@@ -1498342,7 +1498346,7 @@
    "sighting_cost": null,
    "sighting_cost_af": null,
    "sighting_american_af": null,
-   "result": null,
+   "result": "L",
    "units_flat": null,
    "close_final": true,
    "pin_after_fair_old_line": 0.56148,
@@ -1498355,7 +1498359,8 @@
    "pin_close_far": false,
    "clv_pinnacle_c": null,
    "move_held_c": 6.38,
-   "suspect": false
+   "suspect": false,
+   "graded_utc": "2026-11-13T06:12:49Z"
   },
   {
    "key": "M|1fae7f34ec6035dffa74feb148ee26c7|spread|13|Golden State Warriors|1794539725",
@@ -1506367,10 +1506372,6 @@
  ],
  "runs": [
   {
-   "utc": "2026-11-11T08:41:24Z",
-   "summary": "outside read hours: closes/grades only"
-  },
-  {
    "utc": "2026-11-11T08:51:53Z",
    "summary": "outside read hours: closes/grades only"
   },
@@ -1507565,6 +1507566,10 @@
   {
    "utc": "2026-11-13T06:02:56Z",
    "summary": "outside read hours: closes/grades only"
+  },
+  {
+   "utc": "2026-11-13T06:12:49Z",
+   "summary": "outside read hours: closes/grades only"
   }
  ],
  "note": "EV SIGHTINGS - PAPER STUDY, MEASUREMENT ONLY. Never bets, never pushed. Triggers: A = best after-fee cost >= 2c under the median after-fee cost of the other books at the same line, >= $250 at the best price (qualifying >= 3c); B = best gettable (>= $250) after-fee cost beats Pinnacle no-vig fair at the same line by >= 3% EV; M (Amendment A1, Oct 27) = Pinnacle move-watch: Pinnacle line moves >= 0.5 pts between consecutive polls (primary) or price moves >= 5 cents on an unchanged line (cents scale: -110=110, +100=100, +105=95); the four exchanges are read the same cycle at the OLD number for the side the market moved toward. gettable = a book's after-fee cost <= Pinnacle's pre-move price on that side (threshold_cost, with vig) AND >= $250 resting at that price or better. Every move is logged; not-gettable moves are the control group (graded at the best available price at the old number when any book lists it). detection_lag_s = detection time - Pinnacle's market last_update. move_held_c = Pinnacle close fair at the old number - pre-move fair. One record per A/B trigger/game/market/line/side (first sighting; last_seen/scans_seen while it persists); one record per move. Costs are 0-1 per $1 payout after fees (Kalshi 0.07 and Polymarket US 0.06 x P x (1-P) taker; ProphetX 2% of winnings; Novig none). depth_usd = $ bettable at that book's best price. ref_age_s = exchange read time - Pinnacle market last_update. Close = last pregame read; close_consensus_fair = median of books' no-vig mids; pin_close_fair = sharp_monitor.close_prob at the sighting's number from the last pregame Pinnacle poll (pin_close_same_line false = half points priced in). clv_*_c = (close fair - sighting_cost_af) x 100. result/units_flat = ESPN final, flat 1u at sighting_cost_af. crossed = that book's two sides cost < 97c total (stale/crossed quote). Pinnacle polls: every 300s per sport while a game starts within 6h, every 1200s otherwise; skipped when the credits left would fall below the sharp monitor's projected need for the rest of the month. A2 maker test: see the maker list (paper resting bids). Oct 28 data-quality rules: suspect = best price 10c+ under the other books' median or a crossed quote (kept, flagged, excluded from headline report rows); clv_pinnacle_c only when the sighting's line is within 3 points of Pinnacle's (pin_close_far).",
@@ -1507605,7 +1507610,7 @@
    },
    "a1_started_utc": "2026-10-27T19:49:51Z"
   },
-  "generated_utc": "2026-11-13T06:02:56Z",
+  "generated_utc": "2026-11-13T06:12:50Z",
   "rows": [
    {
     "name": "A cross-book (>= 2c)",
@@ -1507616,13 +1507621,13 @@
     "n_pin_closed": 4232,
     "clv_pinnacle_avg_c": -1.09,
     "beat_pinnacle_pct": 37.4,
-    "graded": 9770,
-    "record": "5082-4688-0",
-    "units": -301.55,
+    "graded": 9774,
+    "record": "5085-4689-0",
+    "units": -300.58,
     "roi_pct": -3.1,
     "move_held_avg_c": null,
     "detection_lag_median_s": null,
-    "gate": "criteria not met (9770/50 graded, CLV not positive, record not positive)"
+    "gate": "criteria not met (9774/50 graded, CLV not positive, record not positive)"
    },
    {
     "name": "A qualifying (>= 3c)",
@@ -1508163,9 +1508168,9 @@
    "days_observed": 16.43,
    "study_credits_used": 10696,
    "study_per_day": 651,
-   "study_projected_30d": 19535,
-   "all_monitors_per_day": 2438,
-   "all_monitors_projected_30d": 73153,
+   "study_projected_30d": 19527,
+   "all_monitors_per_day": 2437,
+   "all_monitors_projected_30d": 73122,
    "remaining_now": 68823,
    "guard_need_now": 49800,
    "guarded_polls": 0,
@@ -1525840,6 +1525845,12 @@
    ],
    [
     "2026-11-13T06:02:56Z",
+    null,
+    0,
+    0
+   ],
+   [
+    "2026-11-13T06:12:49Z",
     null,
     0,
     0
