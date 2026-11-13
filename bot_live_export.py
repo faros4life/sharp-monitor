@@ -52,7 +52,7 @@ def registry_lanes():
                    and not lo.get("voided") for lo in los):
                 out[row["key"]] = ex.LANE_NAME.get(ex.lane_of(row), "PHASE 1")
     except Exception as e:
-        print(f"registry unreadable ({type(e).__name__}); lanes fall back to the tracker's own tags")
+        print(f"registry unreadable ({type(e).__name__}: {str(e)[:90]}); lanes fall back to the tracker own tags")
     return out
 
 
