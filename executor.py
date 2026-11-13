@@ -3463,6 +3463,10 @@ LIVEKEYS = set()   # play keys the bot already sent a live order or resting bid 
 PRE_ALERTED = set()   # Nov 13 (Peter): plays already PRE-ANNOUNCED this run, so one play never alerts twice
 REST_BOOKS = tuple(b.strip() for b in (os.environ.get("EXEC_REST_BOOKS") or "novig,kalshi").split(",") if b.strip())
 REST_BEFORE_MIN = 30   # resting bids expire this long before the listed start
+# Nov 13 (Peter): this run's identity on a resting submission claim. One per PROCESS, so a retry
+# inside the same run re-claims its own key (claim_submission returns True for the same cid) while
+# a CONCURRENT run loses it.
+REST_CID = "rest-" + hashlib.sha1(f"{os.getpid()}|{time.time()}".encode()).hexdigest()[:12]
 # Polymarket US resting: priced as a TAKER until the maker flag is PROVEN. participateDontInitiate
 # is what earns the rebate, and this venue has already been caught accepting a field
 # (goodTillTime) and silently discarding it - so until pmus_rest_order_test's pdi_test shows the
@@ -3689,6 +3693,43 @@ def rest_bid(r):
     # is decidable without touching a venue (journal latch, start time, the 40-minute floor, unknown
     # price, live guards), so a bid that never goes out is never announced, and before the venue
     # loop below, so one that does go out is always announced first.
+    # ---------------------------------------------------------------- Nov 13 (Peter): ATOMIC CLAIM
+    # PROVEN RACE, before this existed: two overlapping runs on the same resting-only play both
+    # reached here. Neither had written a registry order, so LIVEKEYS was empty in both,
+    # rest_wanted() returned True in both, and rest_bid() made no registry call at all across its
+    # 117 lines - so BOTH posted. One play, two resting bids, double exposure.
+    #
+    # The claim uses a SEPARATE "|rest" key (requirement 2): in the legitimate TAKE + POST sequence
+    # this same run already holds the immediate claim, and reusing that key would make a run block
+    # its own remainder.
+    #
+    # But a separate key ALONE would permit a worse failure (requirement 4): run B posts the full
+    # unit on "<key>|rest" while run A takes part of the stake on "<key>" - two claims, no conflict,
+    # combined exposure ABOVE the intended stake. So the immediate claim is READ first, and a
+    # resting bid refuses while someone else holds it, because that run's fill is unknown and the
+    # remainder cannot be computed from it.
+    _pkey = lane_strip(p.get("play_key") or "") or derive_key(p) or str(p.get("play_key") or "")
+    if not _pkey:
+        return {"status": "refused", "reason": "no play key to claim a resting bid against (fail closed)"}
+    if not registry.enabled():
+        return {"status": "refused",
+                "reason": "no durable store for the resting submission claim - without it two "
+                          "overlapping runs could both post this bid (fail closed)"}
+    _rkey, _ourcid = _pkey + "|rest", str((r.get("live") or {}).get("client_id")
+                                          or ((r.get("live") or {}).get("order") or {}).get("client_id") or "")
+    try:
+        _held = registry.submission_held(_pkey)
+    except Exception as _ex:
+        return {"status": "refused", "reason": f"submission claims unreadable ({str(_ex)[:60]}) - fail closed"}
+    if _held and _held.get("cid") and _held.get("cid") != _ourcid:
+        return {"status": "refused",
+                "reason": "another run holds the immediate submission claim for this play; its fill "
+                          "is unknown, so resting the unit could exceed the intended stake"}
+    try:
+        if not registry.claim_submission(_rkey, REST_CID):
+            return {"status": "refused", "reason": "another run is already posting this resting bid"}
+    except Exception as _ex:
+        return {"status": "refused", "reason": f"no durable resting claim ({str(_ex)[:60]}) - no submission"}
     rest_pre_alert(r, risk, expire, REST_BOOKS)
     why_not = []
     for b in REST_BOOKS:
@@ -3772,6 +3813,14 @@ def rest_bid(r):
             why_not.append(f"{name}: {res.get('reason')}")
             continue
         return res
+    # EVERY book refused, so no venue received an order - a placed or error result returns above and
+    # KEEPS the claim. book_live returns "error" for an unknown dispatch ("it may or may not have
+    # reached Novig ... the claim stays held"), so reaching this line is positive proof of
+    # non-submission, which is the only condition on which requirement 5 permits a release.
+    try:
+        registry.release_submission(_rkey, REST_CID)
+    except Exception as _ex:
+        LOG.append(f"resting claim not released ({str(_ex)[:40]}) - it stays held, next run refuses")
     return {"status": "refused", "reason": "; ".join(why_not) or "no resting book"}
 
 

@@ -715,6 +715,24 @@ def claim_submission(key, cid):
     return won["v"]
 
 
+def submission_held(key):
+    """The submission claim on `key`, or None. A READ - it never creates a claim.
+
+    Nov 13 (Peter, requirement 4): a resting bid needs to know whether ANOTHER run is already
+    mid-submission on the same play, and claim_submission() cannot answer that without taking the
+    key it is asking about. Without this read, giving the resting path its own "|rest" key would
+    let one run TAKE part of the stake while a second run POSTS the whole unit - two claims, no
+    conflict, and combined exposure above the intended stake.
+
+    RAISES when the store cannot be read, exactly as switch_state() does: an unreadable claim table
+    must never read as "nobody is submitting"."""
+    d = load()
+    if d is None:
+        raise RuntimeError("registry unreadable - submission claims unknown")
+    s = (d.get("submissions") or {}).get(str(key or ""))
+    return s if isinstance(s, dict) else None
+
+
 def release_submission(key, cid):
     """Give a claim back when the submission never reached the venue. Only the owner may release,
     so a losing caller cannot free the winner's key."""
