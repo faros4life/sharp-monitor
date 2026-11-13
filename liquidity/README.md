@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 13, 1:33 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 25.
+Updated Fri Nov 13, 1:37 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 25.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -88,7 +88,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 12 2:05AM | NFL | Washington vs New York G: Spread | spread: NOT New York G wins by over 2.5 points | kalshi | $108k | -108 |  |  | +1.0c | yes | W |
 | Nov 12 1:50AM | NCAAF | Florida St. vs Pittsburgh: Spread | spread: Pittsburgh wins by over 3.5 points | kalshi | $38k | +104 |  |  | +1.0c | yes | pending |
 | Nov 12 1:03AM | NHL | Washington vs New Jersey | moneyline: New Jersey | kalshi | $35k | -138 |  |  | +1.0c | yes | W |
-| Nov 12 1:03AM | NCAAF | Southern Utah vs Portland St. | moneyline: Southern Utah | kalshi | $50k | -426 |  |  | -2.0c | yes | pending |
+| Nov 12 1:03AM | NCAAF | Southern Utah vs Portland St. | moneyline: Southern Utah | kalshi | $50k | -426 |  |  | -3.0c | yes | pending |
 | Nov 12 12:15AM | NHL | St. Louis vs Utah | moneyline: St. Louis | kalshi | $39k | +117 |  |  | +9.0c |  | W |
 | Nov 11 11:20PM | NCAAF | Louisiana vs Louisiana-Monroe: Spread | spread: Louisiana wins by over 10.5 points | kalshi | $33k | -100 |  |  | +26.0c | yes | W |
 | Nov 11 11:20PM | NHL | Tampa Bay vs Columbus | moneyline: Tampa Bay | kalshi | $46k | -113 |  |  | -6.0c | yes | W |
