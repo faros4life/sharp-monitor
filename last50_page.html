@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Last 50 Report</title>
+<style>
+/* layout: summary table first, one tappable block per test below */
+:root{--bg:#f6f7f9;--card:#fff;--ink:#14181f;--mute:#5b6573;--line:#dfe3e9;--pos:#0b7a43;--neg:#b3261e;--warn:#8a5a00;--pill:#eef1f5}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1318;--card:#171c23;--ink:#e8ecf1;--mute:#9aa5b3;--line:#2a313b;--pos:#4cc38a;--neg:#ff7b72;--warn:#e3b341;--pill:#222a34;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0f1318;--card:#171c23;--ink:#e8ecf1;--mute:#9aa5b3;--line:#2a313b;--pos:#4cc38a;--neg:#ff7b72;--warn:#e3b341;--pill:#222a34;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;font-variant-numeric:tabular-nums}
+main{max-width:980px;margin:0 auto;padding:16px}
+h1{font-size:20px;margin:4px 0 2px;text-wrap:balance}
+.sub{color:var(--mute);font-size:13px;margin:0 0 14px}
+.note{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-size:13px;color:var(--mute);margin-bottom:14px}
+.wrap{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:8px}
+table{border-collapse:collapse;width:100%;min-width:640px}
+th,td{padding:9px 10px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}
+th:first-child,td:first-child{text-align:left;white-space:normal;min-width:170px}
+th{font-size:12px;color:var(--mute);font-weight:600}
+tr:last-child td{border-bottom:0}
+.pos{color:var(--pos)}.neg{color:var(--neg)}
+.pill{display:inline-block;padding:2px 8px;border-radius:99px;background:var(--pill);font-size:12px;font-weight:600}
+.pill.fail{color:var(--neg)}.pill.pass{color:var(--pos)}.pill.cont{color:var(--warn)}
+h2{font-size:15px;margin:22px 0 8px}
+details{background:var(--card);border:1px solid var(--line);border-radius:8px;margin-bottom:8px}
+summary{cursor:pointer;padding:10px 12px;display:flex;gap:10px;justify-content:space-between;align-items:center;flex-wrap:wrap}
+summary:focus-visible{outline:2px solid var(--ink)}
+.inner{padding:0 12px 12px}
+.halves{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:6px 0 10px}
+.h{border:1px solid var(--line);border-radius:6px;padding:8px}
+.h b{display:block;font-size:12px;color:var(--mute);font-weight:600}
+.h span{display:block;font-size:13px}
+.mini td,.mini th{padding:5px 8px;font-size:13px}
+.mini{min-width:520px}
+.mini td:nth-child(2){text-align:left;white-space:normal}
+ul{margin:6px 0 0;padding-left:18px;color:var(--mute);font-size:13px}
+.small{font-size:12px;color:var(--mute)}
+</style>
+</head>
+<body>
+<main>
+<h1>Last 50 plays per test</h1>
+<p class="sub" id="asof"></p>
+<div class="note">Flat 1u at the logged price, no dollars. CLV is Pinnacle same-line close, net of fees; rows with no usable close are left out and counted. "Pass" needs both halves positive on units and CLV, with the units interval above zero. Nothing here passes. Refreshed when you ask me; Telegram brings the daily copy at 5:24 AM.</div>
+<div class="wrap"><table id="sum"></table></div>
+<h2>Play by play (newest first)</h2>
+<div id="detail"></div>
+<h2>Not in this report yet</h2>
+<p class="small">No per-play source is wired in for these registered tests, so they are unanswered. Lane 1, R1 and Board live fills are also missing.</p>
+<ul id="un"></ul>
+</main>
+<script>
+const D=__DATA__;
+const $=s=>document.querySelector(s);
+const u=x=>x==null?"n/a":(x>=0?"+":"")+x.toFixed(2)+"u";
+const pc=(x,d=1)=>x==null?"n/a":(x>=0?"+":"")+x.toFixed(d)+"%";
+const cls=x=>x==null?"":(x>0?"pos":x<0?"neg":"");
+const vcls=v=>v.startsWith("CLEAR")?"fail":v.startsWith("POTENTIAL")?"pass":"cont";
+const el=(t,c,h)=>{const e=document.createElement(t);if(c)e.className=c;if(h!=null)e.textContent=h;return e};
+$("#asof").textContent="Data as of "+D.asof;
+const sum=$("#sum");
+sum.innerHTML="<tr><th>Test</th><th>Plays</th><th>Older 25</th><th>Newer 25</th><th>Total</th><th>ROI</th><th>CLV</th><th>Verdict</th></tr>";
+D.tests.forEach(t=>{
+ const tr=el("tr");
+ if(!t.n){tr.append(el("td","",t.name));const c=el("td","","no graded plays");c.colSpan=7;tr.append(c);sum.append(tr);return}
+ tr.append(el("td","",t.name));
+ tr.append(el("td","",t.n));
+ [t.h1.units,t.h2.units,t.all.units].forEach(x=>tr.append(el("td",cls(x),u(x))));
+ tr.append(el("td",cls(t.all.roi),pc(t.all.roi)));
+ tr.append(el("td",cls(t.all.clv),t.all.clv==null?"n/a":pc(t.all.clv,2)));
+ const v=el("td");v.append(el("span","pill "+vcls(t.verdict),t.verdict));tr.append(v);
+ sum.append(tr);
+});
+const det=$("#detail");
+D.tests.filter(t=>t.n).forEach(t=>{
+ const d=el("details");const s=el("summary");
+ s.append(el("b","",t.name));
+ const r=el("span","small",t.n+" plays, "+t.from+" to "+t.to+" ("+t.total+" graded in all)");s.append(r);d.append(s);
+ const i=el("div","inner");
+ if(t.note)i.append(el("p","small",t.note));
+ const hv=el("div","halves");
+ [["Older 25",t.h1],["Newer 25",t.h2],["All "+t.n,t.all]].forEach(([l,h])=>{
+  const b=el("div","h");b.append(el("b","",l));
+  b.append(el("span","",h.w+"-"+h.l+"  "+u(h.units)));
+  b.append(el("span","","ROI "+pc(h.roi)));
+  b.append(el("span","","CLV "+(h.clv==null?"n/a":pc(h.clv,2)+" ("+h.clv_n+" rows)")));
+  hv.append(b)});
+ i.append(hv);
+ if(t.ci)i.append(el("p","small","Per-play units, 95% interval: "+t.ci[0].toFixed(2)+" to "+t.ci[1].toFixed(2)+". Wide intervals mean 50 plays cannot separate skill from luck."));
+ const w=el("div","wrap");const tb=el("table","mini");
+ tb.innerHTML="<tr><th>Date</th><th>Game</th><th>Price</th><th>Result</th><th>CLV</th></tr>";
+ t.plays.forEach(p=>{const tr=el("tr");tr.append(el("td","",p.d));tr.append(el("td","",p.g));
+  tr.append(el("td","",p.p==null?"n/a":(p.p>0?"+":"")+p.p));
+  tr.append(el("td",p.r=="W"?"pos":p.r=="L"?"neg":"",p.r));
+  tr.append(el("td",cls(p.c),p.c==null?"n/a":pc(p.c,2)));tb.append(tr)});
+ w.append(tb);i.append(w);d.append(i);det.append(d);
+});
+D.un.forEach(x=>$("#un").append(el("li","",x)));
+</script>
+</body>
+</html>
