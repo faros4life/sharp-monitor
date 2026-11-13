@@ -483,7 +483,49 @@ def k_paged(path, key, params):
     return out
 
 
+# Nov 13 (Peter: "Can we make it faster to finish in 10"). PROFILED on run 43418898131:
+# 605.7s of that run's 778s - 78% - sat in ONE silent gap, and the first line out of it was this
+# function's "series seen but not read". Everything instrumented after it is fast: Novig 161 books
+# in 84s, ProphetX 54 games in 100s, Kalshi 900 books in 118s.
+#
+# What those ten minutes bought: which of K_SERIES Kalshi currently lists. For TENNIS that is TWO
+# tickers (KXATPMATCH, KXWTAMATCH) plus the generated NCAAB ones - and on a failed listing this
+# function falls back to all of K_SERIES anyway, so the enumeration is an optimisation and never a
+# correctness requirement. k_paged walks up to 20 x 1000, and the second pass drops the Sports
+# filter entirely, so a miss walks Kalshi's whole catalogue. That catalogue changes about weekly;
+# this re-derived it 144 times a day.
+#
+# So the answer is cached in OUT_DIR, which this workflow already owns and commits. Only a
+# NON-EMPTY result is cached - a failed or empty listing must not be frozen in - and any error
+# reading it falls through to the live path. Worst case on a stale cache is a newly added series
+# going unread until the TTL expires, which is exactly what the existing failure path already
+# accepts. Same reasoning as the ProphetX strike-identity cache (2ce53ba5a).
+SERIES_TTL_H = float(os.environ.get("LIQ_SERIES_TTL_H", "") or "12")
+
+
+def _k_series_cached():
+    """(tickers, age_hours) from the on-disk cache, or (None, None) to use the live listing."""
+    try:
+        with open(os.path.join(OUT_DIR, "kalshi_series.json")) as f:
+            c = json.load(f)
+        found = [str(t) for t in (c.get("found") or [])]
+        if not found:
+            return None, None
+        age = (datetime.now(timezone.utc)
+               - datetime.fromisoformat(str(c["as_of"]).replace("Z", "+00:00"))).total_seconds() / 3600.0
+        if 0 <= age < SERIES_TTL_H:
+            return sorted(found), age
+    except Exception:
+        pass
+    return None, None
+
+
 def k_series():
+    cached, age = _k_series_cached()
+    if cached:
+        print(f"Kalshi series: {len(cached)} from cache ({age:.1f}h old, TTL {SERIES_TTL_H:g}h) - listing skipped")
+        return cached
+    t0 = time.time()
     found, unwired = set(), set()
     for params in ({"category": "Sports"}, {}):
         try:
@@ -499,6 +541,15 @@ def k_series():
             break
     if unwired:
         print("Kalshi series seen but not read (FYI): " + ", ".join(sorted(unwired)[:25]))
+    print(f"Kalshi series: {len(found)} wired found by listing in {time.time() - t0:.0f}s")
+    if found:
+        try:
+            os.makedirs(OUT_DIR, exist_ok=True)
+            with open(os.path.join(OUT_DIR, "kalshi_series.json"), "w") as f:
+                json.dump({"as_of": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+                           "ttl_hours": SERIES_TTL_H, "found": sorted(found)}, f, indent=1)
+        except Exception as ex:
+            print(f"Kalshi series cache not written ({type(ex).__name__}: {str(ex)[:50]})")
     return sorted(found or set(K_SERIES))
 
 
