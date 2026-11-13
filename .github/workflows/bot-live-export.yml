@@ -1,0 +1,44 @@
+name: bot-live-export
+
+# Peter, Nov 13: live bot plays by lane for the Last 50 page. READ-ONLY on bets: decrypts the tracker
+# state, writes tracker/bot_live.enc (encrypted with TRACKER_PASSPHRASE). No order, no API call, no credit.
+# 10:30 UTC = 5:30 AM EST, ahead of the 5:37 AM page refresh. Dispatch it for a fresh copy any time.
+on:
+  schedule:
+    - cron: "30 10 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: bot-live-export
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Export bot plays by lane
+        env:
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+        run: python -u bot_live_export.py
+      - name: Commit the encrypted export
+        run: |
+          if [ -n "$(git status --porcelain tracker/bot_live.enc)" ]; then
+            git config user.name "bot-live-export"
+            git config user.email "bot-live-export@users.noreply.github.com"
+            git add tracker/bot_live.enc
+            git commit -q -m "Update encrypted bot live plays"
+            for i in 1 2 3 4 5; do
+              git pull -q --rebase origin main && git push -q origin HEAD:main && exit 0
+              sleep $((i * 5))
+            done
+            exit 1
+          fi

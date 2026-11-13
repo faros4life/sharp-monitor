@@ -38,12 +38,20 @@ summary:focus-visible{outline:2px solid var(--ink)}
 .mini td:nth-child(2){text-align:left;white-space:normal}
 ul{margin:6px 0 0;padding-left:18px;color:var(--mute);font-size:13px}
 .small{font-size:12px;color:var(--mute)}
+.live{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px;margin-bottom:16px}
+.live h2{margin:0 0 8px}.live form{display:flex;gap:8px;flex-wrap:wrap}.live input{flex:1;min-width:180px;padding:8px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);font:inherit}
+.live button,.tabs button{padding:8px 12px;border:1px solid var(--line);border-radius:6px;background:var(--pill);color:var(--ink);font:inherit;cursor:pointer}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}.tabs button[aria-pressed="true"]{border-color:var(--ink);font-weight:600}
+.play{display:grid;grid-template-columns:1fr auto;gap:2px 10px;padding:8px 0;border-top:1px solid var(--line)}
+.play .sc{grid-column:1/-1;font-size:13px;color:var(--mute)}.tag{font-size:11px;font-weight:700;padding:1px 6px;border-radius:99px;background:var(--pill)}
+.err{color:var(--neg);font-size:13px;margin-top:6px}
 </style>
 </head>
 <body>
 <main>
 <h1>Last 50 plays per test</h1>
 <p class="sub" id="asof"></p>
+<section class="live" id="live"><h2>Live bot plays</h2><div id="livebody"></div></section>
 <div class="note">Flat 1u at the logged price, no dollars. CLV is Pinnacle same-line close, net of fees; rows with no usable close are left out and counted. "Pass" needs both halves positive on units and CLV, with the units interval above zero. Nothing here passes. Refreshed when you ask me; Telegram brings the daily copy at 5:24 AM.</div>
 <div class="wrap"><table id="sum"></table></div>
 <h2>Play by play (newest first)</h2>
@@ -99,6 +107,45 @@ D.tests.filter(t=>t.n).forEach(t=>{
  w.append(tb);i.append(w);d.append(i);det.append(d);
 });
 D.un.forEach(x=>$("#un").append(el("li","",x)));
+
+const BLOB=__BLOB__;
+const b64=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
+async function unlock(pass){const k=await crypto.subtle.importKey('raw',new TextEncoder().encode(pass),'PBKDF2',false,['deriveKey']);
+ const key=await crypto.subtle.deriveKey({name:'PBKDF2',salt:b64(BLOB.s),iterations:BLOB.n,hash:'SHA-256'},k,{name:'AES-GCM',length:256},false,['decrypt']);
+ const pt=await crypto.subtle.decrypt({name:'AES-GCM',iv:b64(BLOB.i)},key,b64(BLOB.c));return JSON.parse(new TextDecoder().decode(pt));}
+const LB=$("#livebody");
+function showLock(msg){LB.innerHTML="";
+ if(!BLOB){LB.append(el("p","small","No live-plays export has been published yet."));return}
+ LB.append(el("p","small","Private. Enter your tracker passphrase once; this device remembers it."));
+ const f=el("form");const i=el("input");i.type="password";i.id="pp";i.placeholder="Passphrase";i.autocomplete="current-password";
+ const b=el("button","","Unlock");f.append(i,b);
+ f.onsubmit=async e=>{e.preventDefault();try{const d=await unlock(i.value);try{localStorage.setItem("l50pp",i.value)}catch(x){}showLive(d)}catch(x){showLock("Wrong passphrase.")}};
+ LB.append(f);if(msg)LB.append(el("div","err",msg))}
+function scoreText(p){
+ if(p.teams){const [a,h]=p.teams;const s=a.n+" "+a.s+" - "+h.n+" "+h.s;
+  return s+(p.final?" (final)":p.detail?" · "+p.detail:"")}
+ return p.state?p.state:"no score yet"}
+function showLive(d){LB.innerHTML="";
+ const names=Object.keys(d.lanes).filter(k=>d.lanes[k].length||["Lane 1","Bets Board v3","R1"].includes(k));
+ LB.append(el("p","small","Bot plays only, units at flat 1u risked, no dollars. Export as of "+d.at+". Refresh the page for newer."));
+ const tabs=el("div","tabs");const body=el("div");LB.append(tabs,body);
+ function pick(n){
+  [...tabs.children].forEach(c=>c.setAttribute("aria-pressed",c.dataset.n===n?"true":"false"));
+  const ps=d.lanes[n];body.innerHTML="";
+  const set=ps.filter(p=>p.result==="W"||p.result==="L"||p.result==="P"),op=ps.filter(p=>p.open);
+  const w=set.filter(p=>p.result==="W").length,l=set.filter(p=>p.result==="L").length;
+  const un=set.reduce((a,p)=>a+(p.units||0),0);
+  body.append(el("p","",n+": "+w+"-"+l+(set.length-w-l?"-"+(set.length-w-l):"")+" · "+u(un)+" · "+op.length+" open"));
+  if(!ps.length){body.append(el("p","small","No plays recorded for this lane."));return}
+  [...op,...set].forEach(p=>{const r=el("div","play");
+   r.append(el("span","",p.bet+" ("+(p.price>0?"+":"")+(p.price??"n/a")+", "+p.book+")"));
+   const tg=p.open?el("span","tag",p.state==="in"?"LIVE":"OPEN"):el("span","tag "+(p.result==="W"?"pos":p.result==="L"?"neg":""),p.result+" "+u(p.units));
+   r.append(tg);r.append(el("span","sc",p.game+" · "+scoreText(p)));body.append(r)})}
+ names.forEach(n=>{const b=el("button","",n+" ("+d.lanes[n].length+")");b.dataset.n=n;b.type="button";b.onclick=()=>pick(n);tabs.append(b)});
+ pick(names[0])}
+(async()=>{let saved=null;try{saved=localStorage.getItem("l50pp")}catch(x){}
+ if(BLOB&&saved){try{showLive(await unlock(saved));return}catch(x){try{localStorage.removeItem("l50pp")}catch(y){}}}
+ showLock()})();
 </script>
 </body>
 </html>

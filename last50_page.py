@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Builds the Last 50 page (index.html + data.json) into the directory given as argv[1]. Read-only; units only."""
-import sys, json, datetime
+import sys, json, datetime, os
 import last50_report as r
 tests=[]
 def add(name, rows, note=""):
@@ -29,4 +29,5 @@ json.dump({"asof":datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%
 print(len(tests),len(un))
 tpl=open(__file__.replace("last50_page.py","last50_page.html")).read()
 d=open(sys.argv[1]+'/data.json').read().replace('</','<\\/')
-open(sys.argv[1]+'/index.html','w').write(tpl.replace('__DATA__',d))
+blob=open(__file__.replace('last50_page.py','tracker/bot_live.enc')).read() if os.path.exists(__file__.replace('last50_page.py','tracker/bot_live.enc')) else 'null'
+open(sys.argv[1]+'/index.html','w').write(tpl.replace('__DATA__',d).replace('__BLOB__',blob))
