@@ -2628,7 +2628,14 @@ def bot_orders(M, days=4):
             typ, data = M.uid("SEARCH", None, "SUBJECT", '"Bets LIVE:"', "SINCE", since)
         if typ != "OK":
             return None
-        for uid in (data[0].split() if data and data[0] else []):
+        # Nov 12 (Peter, item 6): the bracket above wraps the SEARCH ONLY. This per-uid FETCH loop
+        # was outside every perf bracket, which is why live_guards measured 581.7s while the two
+        # brackets inside it read 2.6s and 0.2s - and why I twice explained that 581.7s with the
+        # IMAP connection. A counter that does not cover the work cannot exonerate it. The whole
+        # fetch is now one bracket with the email count, so the next slow run says where it went.
+        _uids = (data[0].split() if data and data[0] else [])
+        with perf("registry fetch (Gmail, full RFC822 per email)", n=len(_uids)):
+          for uid in _uids:
             typ, d = M.uid("FETCH", uid, "(RFC822)")
             if typ != "OK" or not d or not d[0]:
                 return None
@@ -3625,8 +3632,36 @@ def novig_reports():
         if st == "FILLED" and not fq:
             return False
         return True
-    if not any(_final(x) for x in recs[-30:]):
-        print("novig fill reports: nothing final to report (no Gmail connection opened)")
+    # Nov 12 (Peter, item 5: "eliminate unnecessary Gmail reads from Novig fill reporting without
+    # losing notifications"). The guard below asked "is any record FINAL?" when the question it
+    # needed to ask was "is any record possibly UNREPORTED?". A FILLED row is final forever, and the
+    # snapshot keeps 33 rows of which 28 are FILLED, so once any historical fill existed the
+    # short-circuit could never fire again: every pass opened IMAP and ran a 60-token search to
+    # re-learn that fills from weeks ago had already been reported. Measured 37.5s per pass.
+    #
+    # The bound is on the runner's OWN last-touch time, not on placed_utc, which is what makes it
+    # safe: if the runner changes a row - the late NO FILL that landed ~16 h after expiry is the
+    # real case - updated_utc moves and the row re-enters the window and reports as normal. A row
+    # whose timestamps are missing or unparseable counts as IN the window, so an unknown row is
+    # still reported; the failure direction is a redundant Gmail read, never a lost notification.
+    RPT_WINDOW_H = float(os.environ.get("EXEC_NOVIG_RPT_WINDOW_H") or "48")
+
+    def _recent(x):
+        try:
+            t = str(x.get("updated_utc") or x.get("placed_utc") or "")[:19]
+            if not t:
+                return True
+            age = (datetime.now(timezone.utc) - datetime.strptime(
+                t, "%Y-%m-%dT%H:%M:%S").replace(tzinfo=timezone.utc)).total_seconds() / 3600.0
+            return age <= RPT_WINDOW_H
+        except Exception:
+            return True   # unparseable: treat as reportable rather than risk dropping a fill
+
+    cand = [x for x in recs[-30:] if _recent(x)]
+    _aged = len(recs[-30:]) - len(cand)
+    if not any(_final(x) for x in cand):
+        print(f"novig fill reports: nothing final to report in the last {RPT_WINDOW_H:.0f}h "
+              f"(no Gmail connection opened; {_aged} older row(s) already reported)")
         return 0
     n = 0
     M = imap_open()
@@ -3649,7 +3684,7 @@ def novig_reports():
             return "xnvr" + hashlib.sha1(
                 f"{x.get('client_id')}|{_st(x) if canon else str(x.get('status') or '?').upper()}|"
                 f"{int(x.get('filled_qty') or 0)}|{x.get('filled_cost')}".encode()).hexdigest()[:12]
-        claimer = ReportClaim(M, [_tk(x, c) for x in recs[-30:] for c in (True, False)])
+        claimer = ReportClaim(M, [_tk(x, c) for x in cand for c in (True, False)])
         # Nov 12 (Peter): record client_id -> Novig order id the first time a result row carries
         # both. This is the only place the two ids meet: novig_place returns a local uuid4 because
         # Novig's id does not exist at dispatch time, and fills carry Novig's id. Without the
@@ -3665,7 +3700,7 @@ def novig_reports():
                     registry.put_venue_ids(pairs)
             except Exception as ex:
                 LOG.append(f"venue id mapping not stored: {str(ex)[:50]}")
-        for x in recs[-30:]:
+        for x in cand:
             st = str(x.get("status") or "?").upper()
             if st in ("PENDING", "SENT", "UNKNOWN") and not int(x.get("filled_qty") or 0):
                 continue   # not final yet: report when it settles (the home PC re-reads every 5 min)
