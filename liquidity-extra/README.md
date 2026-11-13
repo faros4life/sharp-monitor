@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 13, 3:40 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 22.
+Updated Fri Nov 13, 3:50 PM ET. This run: 1 new, 0 not confirmed, 3 pending. Open alerts: 23.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 13 3:50PM | NCAAB | Southern Miss vs Texas St.: Point Total | total: NOT Over 138.5 points | kalshi | $38k | +104 |  |  | +0.0c |  | pending |
 | Nov 13 3:30PM | NCAAB | DePaul vs Northwestern | moneyline: DePaul | kalshi | $82k | +104 | ✅ novig |  | +0.0c |  | pending |
 | Nov 13 2:30PM | NCAAB | Cleveland St. vs West Florida | moneyline: West Florida | kalshi | $38k | -100 | ✅ novig |  | +4.0c |  | pending |
 | Nov 13 12:40PM | NCAAB | East Texas A&M vs Portland | moneyline: Portland | kalshi | $95k | -300 |  |  | +0.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 3 2:40PM | TENNIS | Djokovic vs Hijikata | moneyline: Djokovic | kalshi | $93k | -426 |  |  | +0.0c |  | L |
 | Nov 3 2:30PM | TENNIS | Etcheverry vs de Minaur | moneyline: de Minaur | kalshi | $100k | -426 |  |  | +3.0c |  | L |
 | Nov 3 12:40PM | TENNIS | Shelton vs Norrie | moneyline: Shelton | kalshi | $42k | -257 | ✅ novig |  | +0.0c | yes | W |
-| Nov 3 5:20AM | TENNIS | Zverev vs Musetti | moneyline: Zverev | kalshi | $35k | -233 |  |  | +0.0c |  | L |
