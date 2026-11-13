@@ -1,6 +1,8 @@
 name: clv-day
 # Peter, Nov 13: read-only per-play CLV for Nov 12 plays. Reads clv/state.enc only; writes nothing.
 on:
+  push:
+    branches: [clv-day-readout]
   workflow_dispatch:
 permissions:
   contents: read
