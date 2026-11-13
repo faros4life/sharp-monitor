@@ -127,7 +127,7 @@ function scoreText(p){
  return p.state?p.state:"no score yet"}
 function showLive(d){LB.innerHTML="";
  const names=Object.keys(d.lanes).filter(k=>d.lanes[k].length||["Lane 1","Bets Board v3","R1"].includes(k));
- LB.append(el("p","small","Plays by trigger (attribution from your recap ledger, record recomputed from the tracker); placed-by shown per play. Units at flat 1u risked, no dollars. Export as of "+d.at+". Refresh the page for newer."));
+ LB.append(el("p","small","Plays by trigger (list: "+(d.trigger_src||"built-in")+"; record recomputed from the tracker); placed-by shown per play. Units at flat 1u risked, no dollars. Export as of "+d.at+". Refresh the page for newer."));
  const tabs=el("div","tabs");const body=el("div");LB.append(tabs,body);
  function pick(n){
   [...tabs.children].forEach(c=>c.setAttribute("aria-pressed",c.dataset.n===n?"true":"false"));

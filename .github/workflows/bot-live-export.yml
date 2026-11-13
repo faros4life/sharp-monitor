@@ -29,6 +29,9 @@ jobs:
         env:
           TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
           REGISTRY_TOKEN: ${{ secrets.REGISTRY_TOKEN }}   # contents read on the private registry
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}     # READ ONLY: Muse's trigger-list email; nothing is sent
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
         run: python -u bot_live_export.py
       - name: Commit the encrypted export
         run: |

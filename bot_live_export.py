@@ -11,6 +11,7 @@ The log prints counts only.
 """
 import copy
 import json
+import re
 import sys
 from datetime import datetime, timezone
 
@@ -73,17 +74,65 @@ def registry_lanes():
     return out
 
 
-def trigger_plays(rows):
+SEC = [("LANE 1", "Lane 1"), ("R1", "R1"), ("BETS BOARD", "Bets Board v3")]
+ENTRY = re.compile(r"^\((?:ids?)\s[^)]*\)\s+(\d{4})-(\d\d-\d\d)\s+(.+?)\s+@\s+(.+?)(?:\s+(?:Under|Over)\s|,\s|\s+-\s|\s+[-+]\d)")
+
+
+def parse_muse(text):
+    """Trigger list from Muse's 'LIVE BOT RECORD BY TRIGGER' email -> {lane: [(MM-DD, teamA tokens, teamB tokens)]}."""
+    out, lane = {}, None
+    for ln in text.splitlines():
+        t = ln.strip()
+        if t.startswith("="):
+            lane = next((v for k, v in SEC if k in t.upper()), None)
+            if lane:
+                out.setdefault(lane, [])
+            continue
+        m = ENTRY.match(t)
+        if m and lane:
+            a = tb.toks(m.group(3))
+            b = tb.toks(m.group(4))
+            if a and b:
+                out[lane].append((m.group(2), a, b))
+    return out
+
+
+def muse_triggers():
+    """Newest Muse email, read from Gmail (Muse sends it; the export only reads). None when absent or unparsable,
+    so the built-in list is used and the page says so."""
+    try:
+        import executor as ex
+        M = ex.imap_open()
+        ids = ex.gsearch(M, 'newer_than:3d "LIVE BOT RECORD BY TRIGGER"')
+        if not ids:
+            ex.imap_close(M)
+            return None, "no Muse email in the last 3 days"
+        typ, data = M.uid("FETCH", sorted(ids, key=int)[-1], "(RFC822)")
+        ex.imap_close(M)
+        raw = data[0][1]
+        import email as _e
+        msg = _e.message_from_bytes(raw)
+        got = parse_muse(ex.body_text(raw))
+        n = sum(len(v) for v in got.values())
+        if n < 5:
+            return None, f"Muse email unparsed ({n} games)"
+        return got, "Muse email of " + str(msg.get("Date") or "")[:16]
+    except BaseException as e:   # SystemExit when Gmail is not configured
+        return None, f"Muse email unreadable ({type(e).__name__})"
+
+
+def trigger_plays(rows, triggers=None):
     """One play per ruled game: every tracker row for that game (any source) is merged, net profit decides W/L.
     Returns ({lane: [plays]}, used row ids, counts). Record is RECOMPUTED from the tracker, not copied."""
     from datetime import datetime, timedelta
-    out, used, miss = {k: [] for k in TRIGGERS}, set(), []
-    for lane, games in TRIGGERS.items():
+    out, used, miss = {k: [] for k in (triggers or TRIGGERS)}, set(), []
+    for lane, games in (triggers or TRIGGERS).items():
         for md, a, b in games:
+            A, B = (a if isinstance(a, set) else {a}), (b if isinstance(b, set) else {b})
             d0 = datetime.strptime("2026-" + md, "%Y-%m-%d")
             days = {(d0 + timedelta(days=x)).strftime("%Y-%m-%d") for x in (-1, 0, 1)}
             hit = [r for r in rows if not str(r.get("source") or "").startswith("Peter (Hard Rock") and str(r.get("game_start") or r.get("settled") or r.get("first_seen") or "")[:10] in days
-                   and {a, b} <= tb.toks(r.get("game") or "")]
+                   and (A & tb.toks(r.get("game") or "")) and (B & tb.toks(r.get("game") or ""))]
             if not hit:
                 miss.append((lane, md, a, b))
                 continue
@@ -114,11 +163,12 @@ def main():
     print("bot-only vs lane tag:", dict(Counter(str(b.get("lane")) for b in rows if b.get("source") == "bot")))
     out = {k: [] for k in LANES.values()}
     out["Unattributed"] = []
-    tp, used, miss = trigger_plays(rows)
+    mt, msrc = muse_triggers()
+    print("trigger list source:", msrc, {k: len(v) for k, v in (mt or {}).items()})
+    tp, used, miss = trigger_plays(rows, mt)
     for k, v in tp.items():
         out[k].extend(v)
-    print("trigger games matched:", {k: len(v) for k, v in tp.items()}, "| unmatched:", len(miss),
-          [f"{a} {b}-{c}" for a, b, c, d in [(m[0], m[1], m[2], m[3]) for m in miss]][:12])
+    print("trigger games matched:", {k: len(v) for k, v in tp.items()}, "| unmatched:", len(miss))
     print("trigger record (W-L, recomputed):", {k: f"{sum(1 for p in v if p['result']=='W')}-{sum(1 for p in v if p['result']=='L')}" for k, v in tp.items()})
     print("unmapped bot rows (day | game | result):", sorted(
         (str(b.get("game_start") or b.get("settled") or b.get("first_seen") or "")[5:10], str(b.get("game")), str(b.get("result")))
@@ -143,7 +193,8 @@ def main():
     for k in out:
         out[k].sort(key=lambda p: p["start"] or p["seen"], reverse=True)
         out[k] = out[k][:80]
-    doc = {"at": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"), "lanes": out}
+    doc = {"at": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"), "lanes": out,
+           "trigger_src": msrc if mt else "built-in list (" + msrc + ")"}
     json.dump(tb.enc(doc), open(OUT, "w"))
     print("lane source:", how)
     print("exported plays per lane:", {k: len(v) for k, v in out.items()})
