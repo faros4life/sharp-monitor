@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 13, 9:20 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 10.
+Updated Fri Nov 13, 9:30 AM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 11.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,11 +10,12 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 13 2:24AM | NCAAB | Southern Miss vs Texas St. | moneyline: Texas St. | kalshi | $46k | -567 |  |  | +0.0c |  | pending |
+| Nov 13 9:30AM | NCAAB | Virginia vs Maryland | moneyline: Virginia | kalshi | $68k | -223 |  |  | +0.0c |  | pending |
+| Nov 13 2:24AM | NCAAB | Southern Miss vs Texas St. | moneyline: Texas St. | kalshi | $46k | -567 |  |  | -1.0c |  | pending |
 | Nov 13 2:24AM | NCAAB | Mississippi St. vs Xavier | moneyline: Xavier | kalshi | $26k | -156 |  |  | +0.0c |  | pending |
 | Nov 13 2:24AM | NCAAB | Lindenwood vs Omaha | moneyline: Omaha | kalshi | $25k | -178 |  |  | +0.0c |  | pending |
 | Nov 13 1:58AM | NCAAB | Georgia vs North Carolina | moneyline: North Carolina | kalshi | $34k | -170 |  |  | +0.0c |  | pending |
-| Nov 13 1:58AM | NCAAB | Southeast Missouri St. vs Middle Tennessee | moneyline: Middle Tennessee | kalshi | $30k | -203 |  |  | +0.0c |  | pending |
+| Nov 13 1:58AM | NCAAB | Southeast Missouri St. vs Middle Tennessee | moneyline: Middle Tennessee | kalshi | $30k | -203 |  |  | +1.0c |  | pending |
 | Nov 13 1:58AM | NCAAB | Iona vs Hofstra | moneyline: Hofstra | kalshi | $28k | -270 |  |  | +1.0c |  | pending |
 | Nov 13 1:58AM | NCAAB | Appalachian St. vs Charlotte | moneyline: Charlotte | kalshi | $31k | -317 |  |  | +0.0c |  | pending |
 | Nov 12 5:50PM | TENNIS | Pegula vs Noskova | moneyline: Pegula | kalshi | $813k | -138 |  |  | -10.0c |  | W |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 2 11:10AM | NCAAB | Tennessee St. vs Murray St. | moneyline: Murray St. | kalshi | $71k | -400 | ✅ novig |  | +0.0c |  | W |
 | Oct 31 10:50PM | TENNIS | Lehecka vs Vacherot | moneyline: Lehecka | kalshi | $81k | -186 |  |  | -1.0c |  | L |
 | Oct 31 10:50PM | TENNIS | Baez vs Machac | moneyline: Machac | kalshi | $45k | -525 |  |  | +0.0c |  | W |
-| Oct 31 10:20PM | TENNIS | Prozorova vs Stojsavljevic | moneyline: Prozorova | kalshi | $62k | -525 |  |  | +7.0c |  | W |
