@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 12, 8:41 PM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 84.
+Updated Thu Nov 12, 8:48 PM ET. This run: 0 new, 2 not confirmed, 0 pending. Open alerts: 84.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -23,13 +23,13 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 12 6:50PM | NBA | Memphis vs New Orleans | moneyline: Memphis | kalshi | $26k | -150 |  |  | +0.0c |  | pending |
 | Nov 12 6:41PM | NCAAF | Memphis vs South Florida: Spread | spread: Memphis wins by over 4.5 points | kalshi | $48k | -104 | ✅ novig |  | +1.0c |  | pending |
 | Nov 12 6:31PM | NHL | Detroit Red Wings @ Florida Panthers | moneyline: FLA (0) | novig | $33k | -190 | ✅ kalshi,prophetx |  | -0.5c |  | pending |
-| Nov 12 6:21PM | NHL | St. Louis Blues @ Utah Mammoth | spread: UTA +1.5 (1.5) | novig | $26k | -223 |  |  | +0.0c |  | pending |
+| Nov 12 6:21PM | NHL | St. Louis Blues @ Utah Mammoth | spread: UTA +1.5 (1.5) | novig | $26k | -223 |  |  | +0.0c | yes | pending |
 | Nov 12 6:21PM | NHL | Detroit vs Florida: Spread | spread: NOT Florida wins by over 1.5 goals | kalshi | $48k | -144 |  |  | +0.0c |  | pending |
 | Nov 12 6:11PM | NHL | Tampa Bay vs Columbus: Spread | spread: NOT Columbus wins by over 1.5 goals | kalshi | $75k | -233 |  |  | -1.0c |  | pending |
 | Nov 12 6:01PM | NBA | Portland vs Sacramento | moneyline: Portland | kalshi | $78k | -456 |  |  | +0.0c | yes | pending |
 | Nov 12 5:51PM | NHL | Minnesota vs Toronto: Spread | spread: NOT Minnesota wins by over 1.5 goals | kalshi | $37k | -156 | ✅ novig |  | +0.0c |  | pending |
 | Nov 12 4:40PM | NCAAF | Memphis vs South Florida: Spread | spread: NOT Memphis wins by over 4.5 points | kalshi | $30k | -108 | ✅ novig |  | -3.0c |  | pending |
-| Nov 12 3:50PM | NHL | St. Louis vs Utah: Spread | spread: NOT St. Louis wins by over 1.5 goals | kalshi | $28k | -223 | ✅ novig |  | +0.0c | yes | pending |
+| Nov 12 3:50PM | NHL | St. Louis vs Utah: Spread | spread: NOT St. Louis wins by over 1.5 goals | kalshi | $28k | -223 | ✅ novig |  | -1.0c | yes | pending |
 | Nov 12 3:50PM | NFL | Washington vs New York G: Spread | spread: NOT New York G wins by over 1.5 points | kalshi | $107k | -100 |  |  | -1.0c |  | pending |
 | Nov 12 3:50PM | NCAAF | Houston vs Colorado: Spread | spread: NOT Houston wins by over 9.5 points | kalshi | $35k | -104 |  |  | +0.0c | yes | pending |
 | Nov 12 3:22PM | NFL | Washington Commanders at New York Giants | moneyline: Washington Commanders | prophetx | $25k | +116 | ✅ kalshi,novig |  | +0.0c |  | pending |
@@ -60,7 +60,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 12 9:00AM | NCAAF | Florida St. vs Pittsburgh | moneyline: Pittsburgh | kalshi | $132k | -156 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Nov 12 8:31AM | NHL | Colorado vs Ottawa | moneyline: Ottawa | kalshi | $28k | +108 | ✅ prophetx |  | +4.0c | yes | pending |
 | Nov 12 7:57AM | NHL | Winnipeg vs Dallas: Spread | spread: NOT Dallas wins by over 1.5 goals | kalshi | $30k | -170 | ✅ novig |  | +1.0c | yes | pending |
-| Nov 12 7:57AM | NBA | Charlotte vs Phoenix: Spread | spread: NOT Phoenix wins by over 6.5 points | kalshi | $29k | -108 | ✅ novig |  | +0.0c | yes | pending |
+| Nov 12 7:57AM | NBA | Charlotte vs Phoenix: Spread | spread: NOT Phoenix wins by over 6.5 points | kalshi | $29k | -108 | ✅ novig |  | +1.0c | yes | pending |
 | Nov 12 7:50AM | NHL | Washington vs New Jersey: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $33k | -122 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 12 7:50AM | NBA | Detroit vs Washington: Total Points | total: NOT Over 220.5 points | kalshi | $31k | -100 | ✅ novig |  | -5.0c | yes | pending |
 | Nov 12 7:21AM | NBA | Dallas vs Minnesota: Spread | spread: Minnesota wins by over 5.5 points | kalshi | $33k | -104 | ✅ novig |  | +1.0c | yes | pending |
