@@ -101,12 +101,24 @@ pushes = re.findall(r"push\((?:\"|')([^\"']{0,40})[^)]*?\)", src)
 ck("push() mirrors to Telegram by default", "def push(title, body, mirror=True)" in src)
 for fn, nm in ((ex.live_order, "live_order"), (ex.live_order_other, "live_order_other")):
     s = inspect.getsource(fn)
-    for m in re.finditer(r"push\(", s):
+    # Nov 13 (Peter): r"push\(" also matches the TAIL of "tg_push(", so every tg_push() call read as
+    # a bare push() missing mirror=False. These lines moved to tg_push - the single notification
+    # primitive, which calls push(..., mirror=False) itself - so the invariant is satisfied by
+    # construction and the test was failing on its own regex. \b does not match between "_" and "p",
+    # so this now matches only a standalone push(. tg_push's own non-mirroring is asserted below,
+    # which is where the guarantee actually lives.
+    for m in re.finditer(r"\bpush\(", s):
         seg = s[m.start():m.start() + 400]
-        ck(f"{nm}: every push alongside a lane note is mirror=False (no double Telegram)",
+        ck(f"{nm}: every bare push alongside a lane note is mirror=False (no double Telegram)",
            "mirror=False" in seg, seg.splitlines()[0])
-ck("the cancel path's push is non-mirrored (its tg already said it)",
-   'push("PM US cancel FAILED"' in src and "mirror=False" in src)
+    ck(f"{nm}: lane notes go through tg_push, the single primitive",
+       "tg_push(" in s or "push(" not in s)
+ck("tg_push itself never double-mirrors", "mirror=False" in inspect.getsource(ex.tg_push))
+# Nov 12 removed the separate ntfy "PM US cancel FAILED" push deliberately - tg_push sends that
+# same text to both channels - so asserting the old push still exists was asserting a bug that had
+# been fixed. The invariant that matters is that the cancel failure is still REPORTED, once.
+ck("the cancel failure is still reported through the single primitive",
+   "PM US cancel FAILED" in src and 'push("PM US cancel FAILED"' not in src)
 
 # ---------------------------------------------------------------- three-lane exposure, together
 ck("global stop is shared at $3,000", ex.px_live.DAILY_STOP == 3000.0)
@@ -119,11 +131,17 @@ ck("every lane's order runs the one global preflight",
    and "px_live.preflight()" in inspect.getsource(ex.book_live.preflight))
 ck("the global stop refuses on an unreadable registry",
    "registry unknown" in inspect.getsource(ex.px_live.preflight))
-for store, gate, nm in ((ex.BOARD, ex.board_gate, "Board v3"), (ex.R1, ex.r1_gate, "R1")):
+# Nov 13 (Peter): risk=1500 was each lane's limit BEFORE he raised both to $2,000 on Nov 11, so
+# 1500 + 1.0 no longer breaches anything and the gate correctly ALLOWED it. Each lane's own
+# constant is used now, so this cannot rot the next time a limit moves.
+for store, gate, lim, nm in ((ex.BOARD, ex.board_gate, ex.BOARD_DAILY_RISK, "Board v3"),
+                             (ex.R1, ex.r1_gate, ex.R1_DAILY_RISK, "R1")):
     store.update(risk=0.0, keys=set(), known=False)
     ck(f"{nm} refuses when its own exposure is unknown", gate(100.0, "k")[0] is False)
-    store.update(risk=1500.0, keys=set(), known=True)
-    ck(f"{nm} refuses at its own limit", gate(1.0, "k")[0] is False)
+    store.update(risk=lim, keys=set(), known=True)
+    ck(f"{nm} refuses at its own limit", gate(0.01, "k")[0] is False)
+    store.update(risk=lim - 0.01, keys=set(), known=True)
+    ck(f"{nm} allows the last cent of headroom", gate(0.01, "k")[0] is True)
     store.update(risk=0.0, keys=set(), known=False)
 ck("units: Phase 1 $300, Board v3 $200, R1 $200",
    (ex.LIVE_UNIT, ex.BOARD_UNIT, ex.R1_UNIT) == (300.0, 200.0, 200.0))

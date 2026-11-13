@@ -3,6 +3,13 @@
 inference from cached future fixtures, and newly SCHEDULED games are still discovered."""
 import sys, types, json, os
 from datetime import datetime, timezone, timedelta
+# Nov 13: the directory was assumed to exist, so this failed with FileNotFoundError on a
+# fresh container - an environment assumption, never a defect in the code under test.
+os.makedirs("/tmp/t", exist_ok=True)
+# ...and the chdir moves away from the repo, so the module under test stops being importable.
+# Pin the repo root on sys.path BEFORE leaving it: the scratch dir is only meant to isolate the
+# cache files this test writes, never to hide the code it is testing.
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 os.chdir("/tmp/t")
 
 CLOCK = [datetime(2026, 11, 5, 18, 23, tzinfo=timezone.utc)]

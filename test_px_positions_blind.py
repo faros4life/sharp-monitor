@@ -13,6 +13,7 @@ the venue, because that is the case where exposure genuinely cannot be verified.
 """
 import sys
 import types
+from datetime import datetime, timedelta, timezone
 
 import positions
 
@@ -47,7 +48,13 @@ def fake_bc(trades=None, trades_raises=False, walk_raises=False, raise_league=No
             raise RuntimeError("HTTP Error 429: rate limited")
         if lg not in resolve_in:
             return []
-        return [{"event_id": 1, "name": "A @ B", "scheduled": "2026-11-11T23:00:00Z"}]
+        # Nov 13 (Peter): this was hardcoded to "2026-11-11T23:00:00Z". _walk() only considers events
+        # inside now-12h .. now+8d, so the fixture aged out of its own window and the strike became
+        # unreachable - the walk then reported 0/1 resolved and production BLINDED, correctly, for
+        # the state it was actually given. A time-bomb fixture, not a defect: it passed when written
+        # and rotted with the clock. Anchored to now so it cannot rot again.
+        return [{"event_id": 1, "name": "A @ B",
+                 "scheduled": (datetime.now(timezone.utc) + timedelta(days=1)).strftime("%Y-%m-%dT%H:%M:%SZ")}]
     m.px_events = px_events
     m.px_markets = lambda eid: [{"type": "total"}]
     m.px_lines = lambda mk: [([{"strike_id": "S1", "name": "under 212.5"}], 212.5)]

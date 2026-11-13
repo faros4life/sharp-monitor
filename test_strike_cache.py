@@ -12,6 +12,7 @@ that ends up unresolved by an INCOMPLETE walk still blinds the venue, cache or n
 """
 import sys
 import types
+from datetime import datetime, timedelta, timezone
 
 import positions
 import registry as rg
@@ -41,7 +42,10 @@ def fake_bc(strikes=("S1",), raise_all=False):
         CALLS["events"] += 1
         if raise_all:
             raise RuntimeError("429")
-        return [{"event_id": 1, "name": "A @ B", "scheduled": "2026-11-11T23:00:00Z"}]
+        # Nov 13 (Peter): same time-bomb fixture as test_px_positions_blind - _walk() only looks at
+        # events inside now-12h .. now+8d, so a hardcoded date rots and the walk resolves nothing.
+        return [{"event_id": 1, "name": "A @ B",
+                 "scheduled": (datetime.now(timezone.utc) + timedelta(days=1)).strftime("%Y-%m-%dT%H:%M:%SZ")}]
 
     def px_markets(eid):
         CALLS["markets"] += 1

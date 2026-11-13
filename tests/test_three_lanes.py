@@ -53,8 +53,15 @@ ck("R1 gate refuses when exposure is unknown", ex.r1_gate(100.0, "k")[0] is Fals
 ck("  and says so", "unknown" in ex.r1_gate(100.0, "k")[1].lower())
 ex.R1.update(known=True)
 ck("R1 gate allows a first play", ex.r1_gate(220.0, "k1")[0] is True)
-ex.R1.update(risk=1400.0, keys={f"k{i}" for i in range(3)}, known=True)
-ck("R1 refuses a play that would breach $1,500", ex.r1_gate(220.0, "new")[0] is False)
+# The SETUP was stale too, not only the label: 1400 + 220 = 1620 breached the old $1,500 limit but
+# sits comfortably under $2,000, so the gate correctly ALLOWED it and the test read that as a
+# failure. Anchored to the live limit so the play genuinely breaches it.
+ex.R1.update(risk=ex.R1_DAILY_RISK - 100.0, keys={f"k{i}" for i in range(3)}, known=True)
+# Nov 13 (Peter): asserted $1,500 - the R1 limit BEFORE he raised it to $2,000 on Nov 11
+# (EXEC_R1_DAILY_RISK, "1500 -> 2000"). Production verified at the boundary first: 1900+100 allows,
+# 1900+100.01 refuses, a single order AT the limit allows and a cent over refuses. Read from the
+# module so it cannot rot the next time the limit moves.
+ck(f"R1 refuses a play that would breach ${ex.R1_DAILY_RISK:,.0f}", ex.r1_gate(220.0, "new")[0] is False)
 ck("  and names the daily limit", "daily risk" in ex.r1_gate(220.0, "new")[1].lower())
 ex.R1.update(risk=0.0, keys={f"k{i}" for i in range(10)}, known=True)
 ck("R1 refuses an 11th play", ex.r1_gate(220.0, "new")[0] is False)
@@ -113,8 +120,12 @@ ck("the order dispatch is lane-agnostic, so R1 cannot bypass it",
 ck("R1 orders are journalled with their lane",
    '"source": p.get("source")' in inspect.getsource(ex.journal_intent))
 ck("the ledger separates R1 rows", '"source": p.get("source")' in inspect.getsource(ex.ledger_row))
+# Nov 13 (Peter): grepping bot_orders() again, after the ledger accounting moved into
+# _account_rows() on Nov 11 - the same rot that bit test_intent_clearance twice. Production was
+# confirmed first: the R1 branch is in _account_rows at the "same rules as the board block" line.
+# Read BOTH, so a move either way still finds it.
 ck("R1 exposure is rebuilt from the ledger each run",
-   'row.get("source") == "r1"' in inspect.getsource(ex.bot_orders))
+   'row.get("source") == "r1"' in (inspect.getsource(ex.bot_orders) + inspect.getsource(ex._account_rows)))
 ck("R1 best-exchange routing uses the shared ranking (no tolerance in the key)",
    "tol" not in [l for l in ev.splitlines() if l.strip().startswith("c_eq =")][0])
 ck("R1 uses the same 2c tolerance venues", ex.TOL_BOOKS == ("prophetx", "novig"))
@@ -134,8 +145,10 @@ ex.BOARD.update(risk=0.0, keys=set(), known=True)
 rep = ex.lane_report([{"play": {"source": "r1"}, "live": {"lane": "r1", "order": {"status": "placed"}}}])
 ck("the run report has a per-lane section", "LANES" in rep)
 ck("  naming all three lanes", all(n in rep for n in ("Phase 1", "Board v3", "R1")))
-ck("  with each lane's own cap and limit", "/10 plays" in rep and "1,500" in rep)
-ck("  and the global stop stated separately", "2,250" in rep and "ON TOP" in rep)
+ck("  with each lane's own cap and limit", "/10 plays" in rep and f"{ex.R1_DAILY_RISK:,.0f}" in rep)
+# "2,250" was the global stop before Peter set it to $3,000. Read from the module.
+ck("  and the global stop stated separately",
+   f"{__import__('px_live').DAILY_STOP:,.0f}" in rep and "ON TOP" in rep)
 ck("  marking a lane LIVE or OFF", "OFF" in rep)
 ex.R1.update(risk=0.0, keys=set(), known=False)
 ex.BOARD.update(risk=0.0, keys=set(), known=False)

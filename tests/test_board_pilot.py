@@ -113,9 +113,23 @@ ck("   -> the 10-play cap cannot override the risk limit", ok is False)
 setb(1800.0, ["a"])
 ck("1800 + 200 = exactly 2000 is allowed", X.board_gate(200.0, "b")[0] is True)
 setb(1800.0, ["a"])
-ck("1300 + 200.01 is refused", X.board_gate(200.01, "b")[0] is False)
+ck("1800 + 200.01 is refused", X.board_gate(200.01, "b")[0] is False)
+# Nov 13 (Peter): this asserted 1500.01 - the board limit BEFORE he raised it to $2,000 on Nov 11
+# (EXEC_BOARD_DAILY_RISK, "1500 -> 2000" in executor.py). A stale constant, not a defect: production
+# was verified at the boundary first and refuses strictly above the limit, allows at it. The limit
+# is read from the module so this cannot rot again the next time Peter moves it.
+LIMIT = X.BOARD_DAILY_RISK
 setb(0.0, ["a"])
-ck("a single order larger than the whole limit is refused", X.board_gate(1500.01, "b")[0] is False)
+ck("a single order larger than the whole limit is refused", X.board_gate(LIMIT + 0.01, "b")[0] is False)
+ck("   and the refusal names the daily risk limit", "daily risk limit" in X.board_gate(LIMIT + 0.01, "b")[1])
+setb(0.0, ["a"])
+ck("a single order EXACTLY at the limit is allowed", X.board_gate(LIMIT, "b")[0] is True)
+setb(0.0, ["a"])
+ck("a cent under the limit is allowed", X.board_gate(LIMIT - 0.01, "b")[0] is True)
+setb(LIMIT - 0.01, ["a"])
+ck("a cent of headroom takes a one-cent order", X.board_gate(0.01, "b")[0] is True)
+setb(LIMIT, ["a"])
+ck("no headroom refuses even a one-cent order", X.board_gate(0.01, "b")[0] is False)
 
 # risk cannot override the cap either
 setb(100.0, [f"k{i}" for i in range(10)])

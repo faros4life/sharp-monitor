@@ -143,10 +143,31 @@ except Exception:
     ck("A. a failed clearance search raises (fail closed)", True)
 # Nov 12: the ledger-row accounting was extracted from bot_orders() into _account_rows() on Nov 11, so these
 # source checks were silently grepping the wrong function - red, and verifying nothing. Read BOTH.
-bo = inspect.getsource(ex.bot_orders) + inspect.getsource(ex._account_rows)
-ck("A. bot_orders keeps the intent open when the search fails",
+# Nov 13 (Peter): these were STILL grepping the wrong functions. The unresolved-intent logic moved
+# again, into _bot_orders_finish(), so "read BOTH" from Nov 12 had become "read two functions that
+# no longer contain it" - red, and verifying nothing, for the second time. Source greps rot because
+# they track where code lives rather than what it does, so the first assertion is now BEHAVIOURAL:
+# intent_cleared() is made to RAISE and the intent must survive. Production was independently
+# confirmed correct before either line was touched - _bot_orders_finish() wraps the call in
+# try/except with "cannot confirm it was cleared -> keep refusing (fail closed)".
+_real_cleared = ex.intent_cleared
+
+
+def _raiser(M, cid):
+    raise RuntimeError("clearance search failed")
+
+
+bo = inspect.getsource(ex._bot_orders_finish)
+ck("A. the intent survives when the clearance lookup FAILS (behavioural)",
+   (lambda: (
+       ex.INTENT.__setitem__("open", {}),
+       setattr(ex, "intent_cleared", _raiser),
+       ex._bot_orders_finish(object(), {}, {"cid-x": {"live_order": {"book": "novig"}}}, {}, from_store=True),
+       bool(ex.INTENT["open"]))[-1])(), "intent must stay open")
+ex.intent_cleared = _real_cleared
+ck("A. _bot_orders_finish uses intent_cleared, not a raw token search", "intent_cleared(M, k)" in bo)
+ck("A. and it fails closed in words as well as behaviour",
    "except Exception" in bo and "keep refusing" in bo)
-ck("A. bot_orders uses intent_cleared, not a raw token search", "intent_cleared(M, k)" in bo)
 
 # no code path may ever SEND that subject
 src = inspect.getsource(ex)
@@ -259,8 +280,18 @@ SENT.clear()
 shout = []
 ex.send = lambda s, b: SENT.append((s, b))     # SMTP "succeeds"
 ex.tg = lambda m, *a, **k: shout.append(m)
-ex.imap_open = lambda: FakeIMAP([])            # but nothing is readable
+ex.imap_open = lambda: FakeIMAP([])            # Gmail cannot read it back
+# Nov 13 (Peter): this scenario stubbed ONLY Gmail, from when Gmail was the sole durable store.
+# intent_verified() now writes to the private store and reads the row straight back, so with
+# store_on() the read-back legitimately SUCCEEDED and ok2 was True - the test was asserting a
+# world that no longer exists, not catching a defect. Production was confirmed correct first:
+# "if neither store can confirm the row, this returns False and the caller submits nothing."
+# To exercise THAT invariant both stores must fail, so the row write is made to fail while the
+# store stays writable for the submission claim (whose own gate is covered elsewhere).
+_PUT_ROWS = _R.put_rows
+_R.put_rows = lambda rows: False               # the durable row cannot be stored
 ok2, cid2 = ex.journal_intent({"play": {"play_key": "K2"}}, "prophetx", 390.0)
+_R.put_rows = _PUT_ROWS
 ck("B. SMTP success with an unreadable row returns NOT ok", ok2 is False and cid2 is None)
 ck("B.   and it shouts", len(shout) == 1, str(shout)[:120])
 ck("B.   and the shout says no order was placed",
