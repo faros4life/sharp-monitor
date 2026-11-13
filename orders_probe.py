@@ -15,6 +15,7 @@ import os
 import sys
 from datetime import datetime, timezone
 
+import executor as ex
 import registry as rg
 
 GO_UTC = os.environ.get("GO_UTC") or "2026-11-13T13:30:55Z"
@@ -71,8 +72,13 @@ for o in orders:
 print(f"\n  AFTER the GO : {len(after)}   <- the question that matters")
 for ts, src, o in sorted(after):
     lo = o.get("live_order") or o.get("live_rest") or {}
+    # Nov 13: the row's own `lane` field is usually absent, but row["key"] is LANE-PREFIXED
+    # ("r1|NCAAB|...", "board|NBA|..."), which is how _account_rows attributes exposure. Printing
+    # the derived lane answers "which lane placed this" without any money figure.
     print(f"    {ts.strftime('%Y-%m-%dT%H:%M:%SZ')} [{src}] book={lo.get('book') or o.get('book')} "
-          f"status={lo.get('status') or o.get('status')} lane={o.get('lane') or '-'} "
+          f"status={lo.get('status') or o.get('status')} "
+          f"lane={ex.lane_from_key(o.get('key')) if o.get('key') else (o.get('lane') or '-')} "
+          f"rest={'yes' if o.get('live_rest') else 'no'} "
           f"oid={'yes' if (lo.get('order_id') or o.get('order_id')) else 'no'}")
 print(f"  before the GO: {len(before)}")
 print(f"  undated      : {len(undated)}  (kept, never dropped - a row with no date still counts)")
