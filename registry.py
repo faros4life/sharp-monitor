@@ -758,6 +758,70 @@ def put_switch(word, when=None):
     return _commit(merge)
 
 
+def auto_pause_state():
+    """The latched AUTOMATIC safety pause, or None. RAISES when the store cannot be read.
+
+    Nov 13 (Peter): "Separate USER STOP from AUTOMATIC SAFETY PAUSE." Kept in its own key, never in
+    `switch`, because the two answer different questions and have different remedies: a user STOP is
+    a decision, an auto pause is a tripped safety condition that names itself."""
+    d = load()
+    if d is None:
+        raise RuntimeError("registry unreadable - auto-pause latch unknown")
+    s = d.get("auto_pause")
+    return s if isinstance(s, dict) else None
+
+
+def put_auto_pause(reason, source):
+    """Latch an automatic safety pause with the reason that caused it. Additive and idempotent per
+    reason, so a condition that keeps tripping does not rewrite the file every run."""
+    r, src = str(reason or "")[:200], str(source or "")[:60]
+
+    def merge(d):
+        cur = d.get("auto_pause")
+        if isinstance(cur, dict) and cur.get("reason") == r:
+            return False
+        d["auto_pause"] = {"reason": r, "source": src,
+                           "ts": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")}
+    return _commit(merge)
+
+
+def clear_auto_pause():
+    """Cleared ONLY by an explicit human GO, from the switch reader. Never by a timer, a retry or
+    the condition merely not re-tripping - that is what made the old ntfy-retention pause unsafe.
+
+    (Deliberately no module name here: a guard test asserts this file names no order path, and a
+    mention in a comment is enough to trip it - as it did on first run.)"""
+    def merge(d):
+        if not isinstance(d.get("auto_pause"), dict):
+            return False
+        d["auto_pause"] = None
+    return _commit(merge)
+
+
+def switch_cursor():
+    """ids of ntfy command messages already processed. Nov 13 (Peter): "persistent cursor/
+    deduplication for command processing ... old commands must never be replayed as new commands
+    after a restart". _ntfy_switch() polls a trailing window with no memory, so the same message was
+    re-read as current on every run."""
+    d = load()
+    if d is None:
+        raise RuntimeError("registry unreadable - command cursor unknown")
+    c = d.get("switch_seen")
+    return list(c) if isinstance(c, list) else []
+
+
+def put_switch_cursor(ids):
+    """Remember the command ids acted on. Bounded: the newest 200, which is far more than ntfy's
+    retention can present in one window."""
+    keep = [str(x) for x in (ids or []) if x][-200:]
+
+    def merge(d):
+        if list(d.get("switch_seen") or []) == keep:
+            return False
+        d["switch_seen"] = keep
+    return _commit(merge)
+
+
 def bump_streak(name):
     """Count consecutive occurrences of a recurring condition. Returns the new count.
 

@@ -1011,9 +1011,29 @@ def live_play_alert(r):
     # Nov 12 (Peter): a re-alert of the SAME play must say so. Louisiana Under 48.5 sent the identical
     # LIVE PLAY three times (one play, three attempts) and read as three plays. The count lives in the
     # private store (bump_streak outlives the run); no store = no label, never a blocked alert.
+    # Nov 13 (Peter): "qualifying plays found while STOP is active are labeled QUALIFYING PLAY -
+    # BOT PAUSED, not executable LIVE PLAY" and "do not count paused attempts as failed fills".
+    #
+    # A paused pass cannot place anything, so announcing "LIVE PLAY ... proposed stake $312" states
+    # an intention the bot cannot carry out - and bumping the attempt counter turns five refusals
+    # the bot was never allowed to attempt into "attempt 5, previous attempt did not fill". On the
+    # Nov 13 Knicks/Pacers play that produced four such alerts in six minutes. The pause is read
+    # live rather than from the latch alone, so a STOP sent mid-run is still seen.
+    paused, pause_why = False, ""
+    try:
+        _s, _ = px_live.stop_state()
+        if _s in ("STOP", "UNKNOWN"):
+            paused = True
+            _pk = px_live.PAUSE.get("kind")
+            pause_why = ("AUTOMATIC SAFETY PAUSE: " + (px_live.PAUSE.get("reason") or "safety condition tripped")
+                         if _pk == "auto" else
+                         "the STOP switch could not be read (fail closed)" if _s == "UNKNOWN" else
+                         "USER STOP is active")
+    except Exception:
+        paused, pause_why = False, ""
     attempt = None
     try:
-        if registry.enabled():
+        if registry.enabled() and not paused:   # a paused pass is not an attempt
             attempt = registry.bump_streak("att:" + hashlib.sha1((derive_key(p) or p.get("play_key") or "").encode()).hexdigest()[:12])
     except Exception:
         attempt = None
@@ -1034,9 +1054,13 @@ def live_play_alert(r):
         (f"proposed stake ${float(lv['risk']):,.2f}"
          + (f" to win ${float(lv['to_win']):,.2f}" if lv.get("to_win") else "") if lv.get("risk") else ""),
         ("PARTIAL expected: depth is short of the full stake" if lv.get("partial") else ""),
-        "Send STOP on ntfy to pause.",
+        (f"NOTHING WILL BE PLACED - {pause_why}. This is a qualifying opportunity, not an order."
+         if paused else "Send STOP on ntfy to pause."),
     ] if x)
-    push(f"{lane_tag(r)}{f'SAME PLAY - attempt {attempt}: ' if again else ''}LIVE PLAY: {(p.get('bet') or '')[:50]}", body)   # mirror=True: one ntfy, one Telegram
+    push(f"{lane_tag(r)}"
+         + ("QUALIFYING PLAY \u2014 BOT PAUSED: " if paused
+            else f"{'SAME PLAY - attempt ' + str(attempt) + ': ' if again else ''}LIVE PLAY: ")
+         + f"{(p.get('bet') or '')[:50]}", body)   # mirror=True: one ntfy, one Telegram
 
 
 def refusal_first(r, reason):
@@ -1976,6 +2000,42 @@ def evaluate(p, now, evs_by, mks_by_event, pos, taken=None, held=None):
             if cv["status"] != "ok":
                 _note(b, bl, r, "lv_unsupported:" + str(cv.get("reason")), hb=hb)
                 continue
+            # ---------------------------------------------------------------- Nov 13 (Peter)
+            # "Prevent the 2-cent tolerance from overriding a failed line-adjusted value check.
+            #  First evaluate the replacement line and price WITHOUT tolerance. If the replacement
+            #  is worse than the alert's line-adjusted value, REFUSE. Tolerance must not reverse a
+            #  failed eligibility decision."
+            #
+            # Substituting lv_credit() into the gate below, the comparison reduces to
+            #     prob(am_q) <= cv["max_prob"]
+            # with `tol` cancelling out entirely - so tolerance reaches this decision ONLY through
+            # convert(), which was handed PX_TOL_CENTS and widened max_prob. The check is therefore
+            # re-run against a ZERO-tolerance conversion, and a replacement that fails it is refused
+            # before tolerance is ever consulted.
+            #
+            # SCOPE: replacements only. At the ALERT's own line this is identical to the old gate,
+            # so Peter's Oct 27 allowance - ProphetX and Novig may fill up to 2c worse than the
+            # alert - is preserved exactly as it was. What is removed is tolerance STACKING on top
+            # of a line concession: a worse line AND a worse price, each individually inside a
+            # bound, together landing past the alert's value.
+            #
+            # MEASURED on the Nov 13 Knicks/Pacers play: alert Under 219.5 at -115 after fee, Novig
+            # offering Under 218.5 at -104. Price gain +2.508 pts; one full point of line costs
+            # 2.700 pts at half_point()'s own clamp FLOOR, the most favourable value the model
+            # permits. Net -0.192 pts - worse - yet it passed, because the 2c allowance lifted the
+            # ceiling by 0.429 pts. It now fails here. The same play at +102 gains 3.983 pts and
+            # passes on its own merits, with no tolerance needed.
+            _repl = bl is not None and abs(float(bl) - float(line)) > 1e-9
+            if _repl and (PX_TOL_CENTS if b in TOL_BOOKS else 0):
+                cv0 = lvcalc.convert(al["sport"], mtype, side, line, alert_af, bl, am_q, b, 0,
+                                     cents_worse, lv_ref, CAP_LINE)
+                if cv0["status"] != "ok":
+                    _note(b, bl, r, "lv_unsupported_notol:" + str(cv0.get("reason")), hb=hb)
+                    continue          # cannot value it without tolerance -> cannot accept it
+                if american_to_prob(am_q) > cv0["max_prob"] + 1e-9:
+                    _note(b, bl, r, "lv_value_gate_no_tol", hb=hb,
+                          c_eq_q=round(american_to_prob(am_q) - lv_credit(cv0, alert_cost, 0.0), 6))
+                    continue
             credit = lv_credit(cv, alert_cost, tol)
             lv_cap = cv["effective_max_am_after_fee"]     # the exact maximum, cap included; thr is rounded from it below
         else:
@@ -2499,6 +2559,19 @@ def revalidate(r, stake=None):
                             lvcalc.Reference(**rv["lv_ref"]) if rv.get("lv_ref") else None, CAP_LINE)
         if cv["status"] != "ok":
             return False, f"{book}: line conversion unsupported at order time ({cv.get('reason')}) - fail closed", None
+        # Nov 13 (Peter): the SAME no-tolerance value check evaluate() now applies, repeated here so
+        # the order-time bar cannot be looser than the one the play qualified under. Without it a
+        # play could fail the new gate in evaluate(), and a later pass whose price drifted into the
+        # 2c band could still submit - which is the stacking this change exists to stop.
+        if abs(float(ln) - float(rv["line"])) > 1e-9 and (PX_TOL_CENTS if book in TOL_BOOKS else 0):
+            cv0 = lvcalc.convert((rv.get("al") or {}).get("sport"), mtype, rv.get("side"), rv["line"],
+                                 rv["alert_af"], ln, am_q, book, 0, cents_worse,
+                                 lvcalc.Reference(**rv["lv_ref"]) if rv.get("lv_ref") else None, CAP_LINE)
+            if cv0["status"] != "ok":
+                return False, f"{book}: line conversion unsupported without tolerance at order time - fail closed", None
+            if american_to_prob(am_q) > cv0["max_prob"] + 1e-9:
+                return False, (f"{book} at {fmt_line(mtype, ln)} is worse than the alert's line-adjusted value "
+                               f"before the {PX_TOL_CENTS}c allowance - tolerance may not reverse that (fail closed)"), None
         c_eq_q = american_to_prob(am_q) - lv_credit(cv, rv["alert_cost"], tol)
     else:
         c_eq_q = american_to_prob(am_q) - hb * (rv.get("hp") or 0.0)

@@ -120,9 +120,16 @@ def preflight(book, risk):
 
 def _too_big(filled, label, book):
     if filled > px_live.MAX_ORDER + 0.5:
-        px_live.push("STOP", "STOP")
+        # Nov 13 (Peter): "The bot must never publish a manual STOP command to its own command
+        # channel." This published body "STOP" to ntfy, which px_live._ntfy_switch() then read back
+        # as a user-issued STOP - an automatic safety event became indistinguishable from Peter
+        # pressing the kill switch, and since Nov 12 it latched permanently. The pause is now
+        # latched in the registry WITH ITS REASON. It blocks every lane exactly as hard as before:
+        # only the provenance changes, never the protection.
+        px_live.auto_pause(f"{book} fill ${filled:,.2f} exceeded the ${px_live.MAX_ORDER:,.0f} per-order maximum", book)
         px_live.push("Live PAUSED: fill too big", f"{label}\nFilled ${filled:,.2f} > ${px_live.MAX_ORDER:,.0f} max on {book}. "
-                     "Live is paused. Check the book, then send GO to resume.", "rotating_light")
+                     "Live is paused (AUTOMATIC SAFETY PAUSE, not a STOP from you). Check the book, then send GO to resume.",
+                     "rotating_light")
         return True
     return False
 

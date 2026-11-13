@@ -141,16 +141,43 @@ def _ntfy_switch():
             lines = r.read().decode().splitlines()
     except Exception:
         return "UNKNOWN", None
-    last = (None, None)
+    last = (None, None, None)
     for ln in lines:
         try:
             m = json.loads(ln)
         except Exception:
             continue
         word = (m.get("message") or "").strip().upper()
-        if word in ("STOP", "GO"):
-            last = (word, m.get("time"))
+        if word not in ("STOP", "GO"):
+            continue
+        # Nov 13 (Peter): "Never treat an automatic STOP notification as a user-issued STOP."
+        # push() ALWAYS sets a Title header, and the bot used to publish body "STOP" with title
+        # "STOP" from its own over-fill safety branch - so the bot's automatic pause arrived on the
+        # same channel, in the same shape, as Peter typing STOP on his phone, and this reader threw
+        # away the one field that separated them. A command is now only a command when it carries
+        # NO title. The publisher side is fixed too (no bare command word is ever sent), so this is
+        # belt and braces: either alone would close it, and an old bot-published STOP still sitting
+        # in the retention window is rejected by this half.
+        if (m.get("title") or "").strip():
+            continue
+        last = (word, m.get("time"), str(m.get("id") or ""))
     return last
+
+
+def auto_pause(reason, source):
+    """Latch an AUTOMATIC safety pause. Never publishes a command word: the bot does not issue
+    manual commands to itself. Returns True when the latch was written.
+
+    Fail-closed note: if the registry cannot be written the pause is NOT durable, so the caller's
+    own notification is the only record - which is why the push below always goes out regardless."""
+    try:
+        import registry
+        return bool(registry.enabled() and registry.put_auto_pause(reason, source))
+    except Exception:
+        return False
+
+
+PAUSE = {"kind": "", "reason": "", "src": "", "at": ""}   # why the last stop_state() said STOP
 
 
 def stop_state():
@@ -169,7 +196,9 @@ def stop_state():
     FAILS CLOSED throughout: an unreadable ntfy returns UNKNOWN (preflight refuses), and if the
     registry cannot be read while ntfy shows no switch at all, this returns UNKNOWN rather than
     None - an unreadable latch must never read as "not paused"."""
-    word, when = _ntfy_switch()
+    got = _ntfy_switch()
+    word, when = (got[0], got[1]) if isinstance(got, tuple) else (got, None)
+    mid = got[2] if isinstance(got, tuple) and len(got) > 2 else None
     try:
         import registry
     except Exception:
@@ -182,22 +211,65 @@ def stop_state():
         stored = registry.switch_state()
     except Exception:
         stored = "ERROR"
+    try:
+        auto = registry.auto_pause_state()
+    except Exception:
+        auto = "ERROR"
+    try:
+        seen = registry.switch_cursor()
+    except Exception:
+        seen = "ERROR"
+
+    # CURSOR (Nov 13, Peter: "old commands must never be replayed as new commands after a restart").
+    # _ntfy_switch() polls a trailing 12h window with no memory, so the newest command in that
+    # window was re-read as current on EVERY run for as long as ntfy retained it. A command is acted
+    # on once; after that the LATCH carries its effect forward, which is what the latch is for.
+    if word in ("STOP", "GO") and mid and isinstance(seen, list) and mid in seen:
+        word, when = None, None    # already processed: fall through to the latches below
 
     # a fresh ntfy word is authoritative and is latched for later runs
     if word in ("STOP", "GO"):
+        latched = False
         try:
             registry.put_switch(word, when)
+            latched = True
         except Exception:
             pass                   # the live word still governs this run
+        if word == "GO":
+            # An explicit human GO is the ONLY thing that clears an automatic safety pause. It is a
+            # deliberate decision to resume after seeing the reason, which is why no timer, retry or
+            # "condition stopped tripping" path may do it.
+            try:
+                registry.clear_auto_pause()
+            except Exception:
+                pass
+        if latched and mid and isinstance(seen, list):
+            try:    # recorded ONLY after the latch wrote: a lost latch must not lose the command
+                registry.put_switch_cursor(seen + [mid])
+            except Exception:
+                pass
+        PAUSE.update(kind="user" if word == "STOP" else "", reason="")
         return word, when
-    if word == "UNKNOWN":
+    if got and got[0] == "UNKNOWN":
+        PAUSE.update(kind="unknown", reason="")
         return "UNKNOWN", when     # could not read ntfy: refuse, latch untouched
-    if stored == "ERROR":
-        return "UNKNOWN", None     # ntfy silent AND latch unreadable: refuse
+    if stored == "ERROR" or auto == "ERROR":
+        PAUSE.update(kind="unknown", reason="")
+        return "UNKNOWN", None     # ntfy silent AND a latch unreadable: refuse
+    # AUTOMATIC safety pause is checked BEFORE the user latch and reported separately: it blocks
+    # exactly as hard, but "a fill exceeded the per-order maximum" and "Peter pressed STOP" are
+    # different events with different remedies, and one message cannot stand for both.
+    if isinstance(auto, dict) and auto.get("reason"):
+        PAUSE.update(kind="auto", reason=str(auto.get("reason")), src=str(auto.get("source") or ""),
+                     at=str(auto.get("ts") or ""))
+        return "STOP", auto.get("ts")
     if isinstance(stored, dict) and stored.get("word") == "STOP":
+        PAUSE.update(kind="user", reason="", at=str(stored.get("ts") or ""))
         return "STOP", stored.get("when")
     if isinstance(stored, dict) and stored.get("word") == "GO":
+        PAUSE.update(kind="", reason="")
         return "GO", stored.get("when")
+    PAUSE.update(kind="", reason="")
     return None, None
 
 
@@ -295,9 +367,16 @@ def preflight():
         return False, "no ProphetX trading key"
     s, _ = stop_state()
     if s == "STOP":
-        return False, "paused: STOP sent on ntfy (send GO to resume)"
+        # Nov 13 (Peter): the reason must say WHICH kind of pause, because the remedies differ.
+        # A user STOP is cleared by sending GO. An automatic safety pause names the condition that
+        # tripped, and GO still clears it - but only after Peter has seen what tripped.
+        if PAUSE.get("kind") == "auto":
+            return False, (f"AUTOMATIC SAFETY PAUSE ({PAUSE.get('src') or 'safety'}"
+                           f"{', ' + PAUSE['at'] if PAUSE.get('at') else ''}): {PAUSE.get('reason')}"
+                           " - this was NOT a STOP from Peter. Check the venue, then send GO to resume.")
+        return False, "paused: USER STOP (send GO to resume)"
     if s == "UNKNOWN":
-        return False, "couldn't read the ntfy STOP switch"
+        return False, "couldn't read the STOP switch or its latch (fail closed)"
     try:
         if not login():
             return False, "ProphetX trading login failed"
@@ -359,8 +438,12 @@ def place(strike_id, limit_price, stake, label=""):
     out = {"status": "placed", "order_id": oid, "external_id": ext, "order": order, "filled_stake": filled,
            "avg_price": avg, "fills_read": mine is not None, "response": json.dumps(resp)[:400]}
     if filled > MAX_ORDER + 0.5:   # fill bigger than allowed: pause everything
-        push("STOP", "STOP")
-        push("Live PAUSED: fill too big", f"{label}\nFilled ${filled:,.2f} > ${MAX_ORDER:,.0f} max. Live is paused. Check My Trades, "
-             "then send GO to resume.", "rotating_light")
+        # Nov 13 (Peter): this used to publish body "STOP" to the COMMAND channel, which the switch
+        # reader then read back as a user-issued STOP. The bot must never issue a manual command to
+        # itself. The pause is now LATCHED IN THE REGISTRY with its reason, so it still blocks every
+        # lane exactly as hard - the safety behaviour is unchanged, only its provenance is honest.
+        auto_pause(f"ProphetX fill ${filled:,.2f} exceeded the ${MAX_ORDER:,.0f} per-order maximum", "prophetx")
+        push("Live PAUSED: fill too big", f"{label}\nFilled ${filled:,.2f} > ${MAX_ORDER:,.0f} max. Live is paused "
+             "(AUTOMATIC SAFETY PAUSE, not a STOP from you). Check My Trades, then send GO to resume.", "rotating_light")
         out["paused"] = True
     return out
