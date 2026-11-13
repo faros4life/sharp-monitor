@@ -1,33 +1,34 @@
 # Liquidity alerts (paper)
 
-Updated Thu Nov 12, 7:01 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 16.
+Updated Thu Nov 12, 7:13 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 17.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 228-129 (-15.79u flat) | rule met: 46-36
+**Record:** 228-129 (-15.81u flat) | rule met: 45-36
 
 **Fade (paper, betting against the print):** 104-193 (+11.84u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 12 5:50PM | TENNIS | Pegula vs Noskova | moneyline: Pegula | kalshi | $813k | -138 |  |  | -10.0c |  | pending |
-| Nov 12 2:03PM | TENNIS | Pegula vs Noskova | moneyline: Noskova | kalshi | $62k | -117 | ✅ novig |  | +3.0c | yes | pending |
-| Nov 12 10:24AM | TENNIS | Fritz vs Rune | moneyline: Fritz | kalshi | $146k | -203 | ✅ novig |  | +0.0c |  | pending |
-| Nov 12 10:02AM | TENNIS | Musetti vs Humbert | moneyline: Musetti | kalshi | $37k | -186 | ✅ novig |  | -1.0c |  | W |
-| Nov 12 1:31AM | NCAAB | Western Michigan vs Purdue Fort Wayne | moneyline: Western Michigan | kalshi | $27k | -144 |  |  | -5.0c | yes | pending |
-| Nov 12 1:31AM | NCAAB | West Florida vs Alabama A&M | moneyline: Alabama A&M | kalshi | $51k | -300 |  |  | -11.0c | yes | pending |
-| Nov 12 1:31AM | NCAAB | UC Riverside vs San Jose St. | moneyline: San Jose St. | kalshi | $43k | -285 |  |  | +3.0c | yes | pending |
-| Nov 12 1:31AM | NCAAB | Richmond vs Southern Illinois | moneyline: Richmond | kalshi | $35k | -156 |  |  | -4.0c | yes | pending |
-| Nov 12 1:31AM | NCAAB | Oklahoma St. vs Texas A&M | moneyline: Texas A&M | kalshi | $58k | -285 |  |  | +3.0c | yes | pending |
-| Nov 12 1:31AM | NCAAB | New Mexico St. vs UTEP | moneyline: UTEP | kalshi | $40k | -194 |  |  | +0.0c | yes | pending |
-| Nov 12 1:31AM | NCAAB | Morgan St. vs UMBC | moneyline: UMBC | kalshi | $39k | -257 |  |  | +3.0c | yes | pending |
-| Nov 12 1:31AM | NCAAB | Central Connecticut St. vs Sacred Heart | moneyline: Sacred Heart | kalshi | $31k | -203 |  |  | +4.0c | yes | pending |
-| Nov 12 1:11AM | NCAAB | Stetson vs Howard | moneyline: Howard | kalshi | $150k | -525 |  |  | -4.0c |  | pending |
-| Nov 12 1:11AM | NCAAB | Cal State Bakersfield vs Western Illinois | moneyline: Cal State Bakersfield | kalshi | $169k | -376 |  |  | +1.0c |  | pending |
-| Nov 12 1:11AM | NCAAB | Coppin St. vs Bradley | moneyline: Bradley | kalshi | $173k | -426 |  |  | +8.0c |  | pending |
+| Nov 12 6:25PM | TENNIS | Pegula vs Noskova | moneyline: Pegula | kalshi | $191k | -194 |  |  | +10.0c |  | pending |
+| Nov 12 5:39PM | NCAAB | Richmond vs Southern Illinois | moneyline: Southern Illinois | kalshi | $27k | +133 | ✅ novig | ✅ | +1.0c |  | pending |
+| Nov 12 2:58PM | TENNIS | Musetti vs Humbert | moneyline: Musetti | kalshi | $709k | -186 |  |  | -5.0c | yes | W |
+| Nov 12 10:56AM | NCAAB | Montana St. vs BYU: Spread | spread: NOT BYU wins by over 23.5 points | kalshi | $38k | -117 |  |  | +3.0c |  | pending |
+| Nov 12 10:13AM | TENNIS | Fritz vs Rune | moneyline: Fritz | kalshi | $147k | -203 | ✅ novig |  | +0.0c |  | pending |
+| Nov 12 9:51AM | TENNIS | Pegula vs Noskova | moneyline: Noskova | kalshi | $63k | -113 | ✅ novig |  | +4.0c |  | pending |
+| Nov 12 1:42AM | NCAAB | West Florida vs Alabama A&M | moneyline: Alabama A&M | kalshi | $34k | -300 |  |  | -11.0c | yes | pending |
+| Nov 12 1:42AM | NCAAB | UC Riverside vs San Jose St. | moneyline: San Jose St. | kalshi | $35k | -285 |  |  | +3.0c | yes | pending |
+| Nov 12 1:42AM | NCAAB | Richmond vs Southern Illinois | moneyline: Richmond | kalshi | $34k | -156 |  |  | -4.0c | yes | pending |
+| Nov 12 1:42AM | NCAAB | Oklahoma St. vs Texas A&M | moneyline: Texas A&M | kalshi | $42k | -285 |  |  | +3.0c | yes | pending |
+| Nov 12 1:42AM | NCAAB | New Mexico St. vs UTEP | moneyline: UTEP | kalshi | $39k | -194 |  |  | +0.0c | yes | pending |
+| Nov 12 1:21AM | NCAAB | Stetson vs Howard | moneyline: Howard | kalshi | $188k | -525 |  |  | -4.0c |  | pending |
+| Nov 12 1:21AM | NCAAB | Morgan St. vs UMBC | moneyline: UMBC | kalshi | $169k | -257 |  |  | +2.0c |  | pending |
+| Nov 12 1:21AM | NCAAB | Cal State Bakersfield vs Western Illinois | moneyline: Cal State Bakersfield | kalshi | $197k | -376 |  |  | +1.0c |  | pending |
+| Nov 12 1:21AM | NCAAB | Coppin St. vs Bradley | moneyline: Bradley | kalshi | $228k | -426 |  |  | +8.0c |  | pending |
+| Nov 12 1:21AM | NCAAB | Central Connecticut St. vs Sacred Heart | moneyline: Sacred Heart | kalshi | $152k | -203 |  |  | +4.0c |  | pending |
 | Nov 11 10:53PM | TENNIS | Kostyuk vs Gauff | moneyline: Gauff | kalshi | $75k | -270 |  |  | +5.0c | yes | W |
 | Nov 11 5:31PM | NCAAB | Charleston vs Temple | moneyline: Charleston | kalshi | $25k | -117 |  |  | -1.0c | yes | W |
-| Nov 11 2:48PM | TENNIS | Michelsen vs Tabilo | moneyline: Michelsen | kalshi | $60k | -300 |  |  | +3.0c | yes | L |
+| Nov 11 2:48PM | TENNIS | Michelsen vs Tabilo | moneyline: Michelsen | kalshi | $60k | -300 |  |  | +3.0c |  | L |
 | Nov 11 12:37PM | NCAAB | Dartmouth vs University at Albany | moneyline: Dartmouth vs University | kalshi | $27k | -100 |  | ❌ | +0.0c |  | W |
 | Nov 11 11:22AM | NCAAB | Milwaukee vs Indiana St. | moneyline: Indiana St. | kalshi | $36k | -170 |  |  | +4.0c |  | L |
 | Nov 11 10:10AM | NCAAB | William & Mary vs Florida Atlantic | moneyline: Florida Atlantic | kalshi | $26k | -203 | ✅ novig |  | +0.0c |  | W |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Oct 31 12:50PM | TENNIS | Lehecka vs Struff | moneyline: Struff | kalshi | $291k | -203 |  |  | -58.0c | yes | L |
 | Oct 31 12:37PM | TENNIS | Tagger vs Dart | moneyline: Tagger | kalshi | $33k | -355 |  |  | +0.0c |  | L |
 | Oct 31 12:00PM | TENNIS | Zverev vs de Minaur | moneyline: de Minaur | kalshi | $246k | +245 |  |  | +20.0c |  | W |
-| Oct 31 11:15AM | TENNIS | Vacherot vs Fritz | moneyline: Vacherot | kalshi | $247k | -127 |  |  | +5.0c |  | W |
