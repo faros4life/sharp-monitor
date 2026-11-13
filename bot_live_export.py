@@ -46,8 +46,10 @@ def registry_lanes():
         for row in reg.rows() or []:
             if not row.get("key"):
                 continue
-            los = ([row.get("live_order") or {}, row.get("live_rest") or {}]
-                   + [x or {} for x in (row.get("live_more") or [])])
+            d = lambda x: x if isinstance(x, dict) else {}   # some rows carry False/None here
+            more = row.get("live_more")
+            los = ([d(row.get("live_order")), d(row.get("live_rest"))]
+                   + [d(x) for x in (more if isinstance(more, list) else [])])
             if any(lo.get("status") == "placed" and lo.get("order_id") and not lo.get("intent")
                    and not lo.get("voided") for lo in los):
                 out[row["key"]] = ex.LANE_NAME.get(ex.lane_of(row), "PHASE 1")
