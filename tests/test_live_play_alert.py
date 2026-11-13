@@ -77,8 +77,13 @@ ck("it fires BEFORE the order", mb.index("live_play_alert(r)") < mb.index('r["li
 _before = mb.split("live_play_alert(r)")[0]
 ck("it only fires on a play that is actually going live",
    'get("go")' in _before[-1600:] and "static_refusal(r)" in _before[-1600:])
-ck("an alert failure can never block the order", "never block the order" in mb)
-ck("the failure is printed, not raised", "live play alert failed" in mb)
+# Nov 13 (Peter, item 6): these pinned exact comment/print WORDING, so improving the message read
+# as a regression. The invariant is unchanged and now stronger - the failure is caught, the order
+# still proceeds, and it reaches LOG (printed every run) as well as stdout, instead of stdout only.
+ck("an alert failure can never block the order", "never block" in mb.lower())
+ck("the failure is reported, not raised", "live play alert failed" in mb.lower())
+ck("and it is visible in the run LOG, not only on stdout",
+   "PRE-SUBMISSION ALERT FAILED (order still proceeds)" in mb)
 
 # ---------------------------------------------------------------- no duplicates
 # code only: the docstring says "push()" and a substring count reads that as a call

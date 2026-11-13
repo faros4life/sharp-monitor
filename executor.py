@@ -1061,6 +1061,12 @@ def live_play_alert(r):
          + ("QUALIFYING PLAY \u2014 BOT PAUSED: " if paused
             else f"{'SAME PLAY - attempt ' + str(attempt) + ': ' if again else ''}LIVE PLAY: ")
          + f"{(p.get('bet') or '')[:50]}", body)   # mirror=True: one ntfy, one Telegram
+    # Nov 13 (Peter, item 3): remember that THIS play has been pre-announced, so the resting
+    # remainder of the same play does not announce it a second time.
+    try:
+        PRE_ALERTED.add(derive_key(p) or p.get("play_key") or "")
+    except Exception:
+        pass
 
 
 def refusal_first(r, reason):
@@ -3421,6 +3427,7 @@ def live_order_other(r):
 # Muse is a veto: a DISAGREE on the play's key blocks any live order not yet sent. EXEC_RULES_LIVE=0 restores the gate.
 RULES_LIVE = (os.environ.get("EXEC_RULES_LIVE") or "1").strip() != "0"
 LIVEKEYS = set()   # play keys the bot already sent a live order or resting bid for (ledger registry + this run)
+PRE_ALERTED = set()   # Nov 13 (Peter): plays already PRE-ANNOUNCED this run, so one play never alerts twice
 REST_BOOKS = tuple(b.strip() for b in (os.environ.get("EXEC_REST_BOOKS") or "novig,kalshi").split(",") if b.strip())
 REST_BEFORE_MIN = 30   # resting bids expire this long before the listed start
 # Polymarket US resting: priced as a TAKER until the maker flag is PROVEN. participateDontInitiate
@@ -3431,6 +3438,54 @@ REST_BEFORE_MIN = 30   # resting bids expire this long before the listed start
 # EXEC_PMUS_REST_MAKER=1 once the verdict is in.
 PMUS_REST_MAKER = (os.environ.get("EXEC_PMUS_REST_MAKER") or "").strip() == "1"
 PMUS_MAKER_REBATE = -0.0125   # Polymarket's published maker rebate: the venue pays us to post
+
+
+def rest_pre_alert(r, risk, expire, books):
+    """PRE-SUBMISSION alert for a RESTING bid (Peter, Nov 13).
+
+    THE DEFECT THIS CLOSES: live_play_alert() fires only inside
+    `if r["verdict"] == "WOULD PLACE" and r["live"]["go"]`, while `if rest_wanted(r)` sits OUTSIDE
+    that block. A play that never took the live-order branch could therefore place a resting bid
+    with no prior notice - which is what happened at 14:06:01Z on Nov 13: a Board V3 bid of $215.78
+    on Novig (Utah vs Houston, Over 218.5) announced only AFTER it was resting. A resting bid is
+    money at the venue and STOP does not cancel it, so it must be announced before dispatch exactly
+    as an immediate order is.
+
+    ONE alert per play: if live_play_alert() already announced this play, the resting remainder is
+    part of the same decision and is not announced again (item 3). The post-submission RESTING /
+    PLACED / FILLED / REFUSED message is unchanged and still mandatory (item 4).
+
+    A FAILURE IS REPORTED, NOT SWALLOWED (item 6): the send is best-effort because a notification
+    must never block or alter an order, but any failure is written to LOG - which is printed in
+    every run now - and to stdout, so a silent channel is visible rather than invisible."""
+    p = r.get("play") or {}
+    key = derive_key(p) or p.get("play_key") or ""
+    if key and key in PRE_ALERTED:
+        return False          # same play, already announced before the immediate order
+    e, lv = r.get("entry") or {}, r.get("live") or {}
+    af = e.get("price_after_fee")
+    mtype = "total" if (" Over " in f" {p.get('bet') or ''} " or " Under " in f" {p.get('bet') or ''} ") else "spread"
+    body = "\n".join(x for x in [
+        "RESTING BID - about to be submitted (not yet placed).",
+        f"{p.get('sport') or ''} {p.get('game') or ''}".strip(),
+        p.get("bet") or "",
+        (f"alert {int(af):+d} after fees" if af is not None else "alert price unknown"),
+        (f"line {fmt_line(mtype, lv['line'])}" if lv.get("line") is not None else ""),
+        f"venue(s): {', '.join(BOOK_NAME.get(b, b) for b in (books or ()))}" if books else "",
+        (f"proposed stake ${float(risk):,.2f}" if risk else ""),
+        (f"rests until {expire.astimezone(lm.ET).strftime('%-I:%M %p')} ET "
+         f"({REST_BEFORE_MIN} min before the start)" if expire else ""),
+        "STOP on ntfy does NOT cancel a resting bid: cancel in the venue's app.",
+    ] if x)
+    try:
+        tg_push(f"{lane_tag(r)}RESTING BID (pre-submission): {(p.get('bet') or '')[:50]}", body)
+        if key:
+            PRE_ALERTED.add(key)
+        return True
+    except Exception as ex:
+        LOG.append(f"PRE-SUBMISSION ALERT FAILED (resting bid still proceeds): {str(ex)[:60]}")
+        print(f"pre-submission resting alert FAILED: {str(ex)[:80]}", flush=True)
+        return False
 
 
 def rest_wanted(r):
@@ -3597,6 +3652,11 @@ def rest_bid(r):
     g_ok, g_why = live_guards()
     if not g_ok:
         return {"status": "refused", "reason": g_why}
+    # Nov 13 (Peter): announce BEFORE dispatch. Placed here deliberately - after every refusal that
+    # is decidable without touching a venue (journal latch, start time, the 40-minute floor, unknown
+    # price, live guards), so a bid that never goes out is never announced, and before the venue
+    # loop below, so one that does go out is always announced first.
+    rest_pre_alert(r, risk, expire, REST_BOOKS)
     why_not = []
     for b in REST_BOOKS:
         x = books.get(b) or {}
@@ -5183,7 +5243,12 @@ def main():
                     try:   # Nov 11 (Peter): EVERY live play alerts, all three lanes, before the order
                         live_play_alert(r)
                     except Exception as ex:
-                        print(f"live play alert failed: {str(ex)[:60]}")   # never block the order
+                        # Nov 13 (Peter, item 6): a failed pre-submission alert must be VISIBLE.
+                        # It still never blocks the order - an order is money, a notification is
+                        # not - but it now reaches LOG, which every run prints, instead of only
+                        # stdout where it was easy to miss.
+                        LOG.append(f"PRE-SUBMISSION ALERT FAILED (order still proceeds): {str(ex)[:60]}")
+                        print(f"live play alert FAILED: {str(ex)[:80]}", flush=True)
                     with perf("live_order (revalidate + intent + submit)"):
                         r["live"]["order"] = live_order(r)
                 with perf("live_remainder (next venue)"):
