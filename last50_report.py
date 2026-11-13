@@ -37,7 +37,8 @@ L = []
 
 def say(t=""):
     L.append(t)
-    print(t)
+    if os.environ.get("LAST50_PRINT") == "1":   # public Actions log: counts only, so print only when asked locally
+        print(t)
 
 
 def load(p):
@@ -223,35 +224,47 @@ def registry_names():
     return out
 
 
-def send_csv(subject, body, rows):
+def send_telegram(body, rows):
+    """Private Telegram delivery (Peter, 13 Nov: no Gmail). Text in 4000-char chunks, then the CSV as a
+    document - a CSV cannot be half-valid the way truncated text can. Nothing is printed to the public log
+    except a count. Missing secrets or a failed send exits non-zero so a dead report is loud."""
+    import urllib.request
+    tok = (os.environ.get("TELEGRAM_BOT_TOKEN") or "").strip()
+    chat = (os.environ.get("TELEGRAM_CHAT_ID") or "").strip()
+    if not tok or not chat:
+        print("telegram not configured - report NOT delivered")
+        return False
+    base = f"https://api.telegram.org/bot{tok}/"
+    chunks, cur = [], ""
+    for ln in body.split("\n"):
+        if len(cur) + len(ln) + 1 > 3900:
+            chunks.append(cur)
+            cur = ""
+        cur += ln + "\n"
+    chunks.append(cur)
     try:
-        import executor as ex
-        from email import encoders
-        from email.mime.base import MIMEBase
-        from email.mime.multipart import MIMEMultipart
-        from email.mime.text import MIMEText
-        import smtplib
-        user, pw, to = ex.gmail()
+        for c in chunks:
+            data = json.dumps({"chat_id": chat, "text": c}).encode()
+            req = urllib.request.Request(base + "sendMessage", data, {"Content-Type": "application/json"})
+            urllib.request.urlopen(req, timeout=30).read()
+        buf = io.StringIO()
+        w = csv.DictWriter(buf, fieldnames=["test", "half", "ts", "game", "price_am", "result", "std_clv_pct"],
+                           extrasaction="ignore")
+        w.writeheader()
+        for r in rows:
+            w.writerow(r)
+        bd = "----last50"
+        parts = [f'--{bd}\r\nContent-Disposition: form-data; name="chat_id"\r\n\r\n{chat}\r\n',
+                 f'--{bd}\r\nContent-Disposition: form-data; name="document"; filename="last50_plays.csv"\r\n'
+                 f'Content-Type: text/csv\r\n\r\n{buf.getvalue()}\r\n--{bd}--\r\n']
+        req = urllib.request.Request(base + "sendDocument", "".join(parts).encode(),
+                                     {"Content-Type": f"multipart/form-data; boundary={bd}"})
+        urllib.request.urlopen(req, timeout=60).read()
     except Exception as e:
-        print(f"email skipped ({type(e).__name__})")
-        return
-    buf = io.StringIO()
-    cols = ["test", "half", "ts", "game", "price_am", "result", "std_clv_pct"]
-    w = csv.DictWriter(buf, fieldnames=cols, extrasaction="ignore")
-    w.writeheader()
-    for r in rows:
-        w.writerow(r)
-    m = MIMEMultipart()
-    m["Subject"], m["From"], m["To"] = subject, user, to
-    m.attach(MIMEText(body, "plain", "utf-8"))
-    part = MIMEBase("text", "csv")
-    part.set_payload(buf.getvalue().encode("utf-8"))
-    encoders.encode_base64(part)
-    part.add_header("Content-Disposition", "attachment", filename="last50_plays.csv")
-    m.attach(part)
-    with smtplib.SMTP_SSL("smtp.gmail.com", 465, timeout=120) as sv:
-        sv.login(user, pw)
-        sv.sendmail(user, [to], m.as_string())
+        print(f"telegram send failed ({type(e).__name__})")
+        return False
+    print(f"telegram delivered: {len(chunks)} message(s) + CSV")
+    return True
 
 
 def main():
@@ -306,8 +319,7 @@ def main():
     say("  5. Tests with a rule change need their change-point date; none is flagged automatically yet.")
     say("")
     say("SUMMARY: " + ", ".join(f"{k}: {v}" for k, v in Counter(status.values()).items()))
-    send_csv("VALUE LAB last-50 report", "\n".join(L), csv_rows)
-    return 0
+    return 0 if send_telegram("\n".join(L), csv_rows) else 1
 
 
 if __name__ == "__main__":
