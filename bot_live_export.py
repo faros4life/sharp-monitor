@@ -52,7 +52,8 @@ def registry_lanes():
                    + [d(x) for x in (more if isinstance(more, list) else [])])
             if any(lo.get("status") == "placed" and lo.get("order_id") and not lo.get("intent")
                    and not lo.get("voided") for lo in los):
-                out[row["key"]] = ex.LANE_NAME.get(ex.lane_of(row), "PHASE 1")
+                safe = dict(row, live=d(row.get("live")), play=d(row.get("play")))   # lane_of() calls .get on both
+                out[row["key"]] = ex.LANE_NAME.get(ex.lane_of(safe), "PHASE 1")
     except Exception as e:
         print(f"registry unreadable ({type(e).__name__}: {str(e)[:90]}); lanes fall back to the tracker own tags")
     return out
