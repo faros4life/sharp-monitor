@@ -1,35 +1,35 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 13, 4:50 PM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 26.
+Updated Fri Nov 13, 5:00 PM ET. This run: 0 new, 1 not confirmed, 1 pending. Open alerts: 25.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 237-133 (-16.14u flat) | rule met: 46-37
+**Record:** 237-134 (-17.14u flat) | rule met: 46-38
 
-**Fade (paper, betting against the print):** 108-202 (+9.80u flat, after fees)
+**Fade (paper, betting against the print):** 109-202 (+10.73u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 13 4:00PM | NCAAB | Northern Iowa vs Michigan St.: Point Total | total: NOT Over 154.5 points | kalshi | $32k | +104 |  | ✅ | +0.0c | yes | pending |
-| Nov 13 4:00PM | NCAAB | Sam Houston vs Illinois: Point Total | total: NOT Over 170.5 points | kalshi | $36k | -108 |  | ✅ | +0.0c | yes | pending |
+| Nov 13 4:00PM | NCAAB | Sam Houston vs Illinois: Point Total | total: NOT Over 170.5 points | kalshi | $36k | -108 |  | ✅ | -1.0c | yes | pending |
 | Nov 13 4:00PM | NCAAB | Milwaukee vs TCU: Point Total | total: NOT Over 155.5 points | kalshi | $31k | -104 |  | ✅ | +0.0c | yes | pending |
-| Nov 13 3:50PM | NCAAB | Southern Miss vs Texas St.: Point Total | total: NOT Over 138.5 points | kalshi | $38k | +104 |  |  | +1.0c |  | pending |
+| Nov 13 3:50PM | NCAAB | Southern Miss vs Texas St.: Point Total | total: NOT Over 138.5 points | kalshi | $38k | +104 |  |  | +2.0c |  | pending |
 | Nov 13 3:30PM | NCAAB | DePaul vs Northwestern | moneyline: DePaul | kalshi | $82k | +104 | ✅ novig |  | +0.0c |  | pending |
-| Nov 13 2:30PM | NCAAB | Cleveland St. vs West Florida | moneyline: West Florida | kalshi | $38k | -100 | ✅ novig |  | +4.0c |  | pending |
+| Nov 13 2:30PM | NCAAB | Cleveland St. vs West Florida | moneyline: West Florida | kalshi | $38k | -100 | ✅ novig |  | +4.0c |  | L |
 | Nov 13 12:40PM | NCAAB | East Texas A&M vs Portland | moneyline: Portland | kalshi | $95k | -300 |  |  | -1.0c |  | pending |
 | Nov 13 12:10PM | NCAAB | Mount St. Mary's vs Virginia Tech: Point Total | total: NOT Over 149.5 points | kalshi | $30k | -108 |  |  | +4.0c |  | pending |
 | Nov 13 11:10AM | NCAAB | Illinois St. vs North Dakota St. | moneyline: Illinois St. | kalshi | $54k | -144 |  |  | +1.0c | yes | pending |
 | Nov 13 10:41AM | NCAAB | Northern Arizona vs Kentucky: Point Total | total: NOT Over 154.5 points | kalshi | $32k | -104 |  |  | +4.0c |  | pending |
 | Nov 13 10:00AM | NCAAB | Northern Iowa vs Michigan St.: Spread | spread: NOT Michigan St. wins by over 27.5 points | kalshi | $26k | -100 |  | ✅ | +0.0c |  | pending |
 | Nov 13 10:00AM | NCAAB | UIC vs Saint Mary's | moneyline: Saint Mary's | kalshi | $112k | -245 |  |  | +1.0c | yes | pending |
-| Nov 13 10:00AM | NCAAB | Marist vs Lehigh | moneyline: Lehigh | kalshi | $69k | -117 |  |  | +3.0c |  | pending |
-| Nov 13 9:50AM | NCAAB | Pittsburgh vs Butler | moneyline: Butler | kalshi | $35k | -144 |  |  | +0.0c |  | pending |
+| Nov 13 10:00AM | NCAAB | Marist vs Lehigh | moneyline: Lehigh | kalshi | $69k | -117 |  |  | +4.0c |  | pending |
+| Nov 13 9:50AM | NCAAB | Pittsburgh vs Butler | moneyline: Butler | kalshi | $35k | -144 |  |  | +1.0c |  | pending |
 | Nov 13 9:40AM | NCAAB | Columbia vs Bucknell | moneyline: Columbia | kalshi | $41k | -213 |  |  | +1.0c |  | pending |
 | Nov 13 9:30AM | NCAAB | Virginia vs Maryland | moneyline: Virginia | kalshi | $68k | -223 |  |  | +1.0c |  | pending |
 | Nov 13 2:24AM | NCAAB | Southern Miss vs Texas St. | moneyline: Texas St. | kalshi | $46k | -567 |  |  | -1.0c |  | pending |
 | Nov 13 2:24AM | NCAAB | Mississippi St. vs Xavier | moneyline: Xavier | kalshi | $26k | -156 |  |  | +0.0c |  | pending |
 | Nov 13 2:24AM | NCAAB | Lindenwood vs Omaha | moneyline: Omaha | kalshi | $25k | -178 |  |  | +0.0c |  | pending |
-| Nov 13 1:58AM | NCAAB | Georgia vs North Carolina | moneyline: North Carolina | kalshi | $34k | -170 |  |  | +0.0c |  | pending |
+| Nov 13 1:58AM | NCAAB | Georgia vs North Carolina | moneyline: North Carolina | kalshi | $34k | -170 |  |  | +1.0c |  | pending |
 | Nov 13 1:58AM | NCAAB | Southeast Missouri St. vs Middle Tennessee | moneyline: Middle Tennessee | kalshi | $30k | -203 |  |  | +1.0c |  | pending |
 | Nov 13 1:58AM | NCAAB | Iona vs Hofstra | moneyline: Hofstra | kalshi | $28k | -270 |  |  | +0.0c |  | pending |
 | Nov 13 1:58AM | NCAAB | Appalachian St. vs Charlotte | moneyline: Charlotte | kalshi | $31k | -317 |  |  | +0.0c |  | pending |
