@@ -1238,16 +1238,32 @@ def espn_result(a, n):
 # spent a lookup on every unresolved item from midnight onward whether or not it had kicked off.
 # settle_tries now counts only genuine post-game attempts, so a small cap is meaningful.
 #
-# Windows, against measured behaviour (5993 settled items: 684 settled on the game date, 5309 the
-# next UTC day, and NONE more than 3 days late):
-#   SETTLE_AFTER_H   4h after start - past the end of basketball and football; tennis can run
-#                    longer, which the try window below absorbs.
-#   SETTLE_TRIES     36 attempts, so start+4h to start+10h at a 10-minute cadence.
-#   SETTLE_STALE_DAYS 3 - the hard backstop that clears the existing backlog, and 3x the longest
-#                    settle lag ever observed.
-SETTLE_TRIES = int(os.environ.get("LIQ_SETTLE_TRIES", "") or "36")
+# WINDOW RE-TUNED against settled_utc - start_utc across 5989 settled items, because the first
+# numbers were guessed from the game DATE and the date hides the shape completely:
+#
+#   median 3.0h | p90 6.1h | p99 13.9h | max 27.1h (TENNIS)
+#   settled before start+2h:   176 ( 2.9%)      settled before start+4h: 5350 (89.3%)
+#   missed by a window ending at +10h: 587 (9.80%)   <- the 36-try window would have lost these
+#   missed at +14h: 49 (0.82%)   +20h: 1 (0.02%)   +28h: 0 (0.00%)
+#
+# So the first attempt at this was wrong in BOTH directions: the 4h gate delayed 89.3% of
+# settlements that were already available, and the 36-try window would have left 9.8% of
+# legitimate games permanently ungraded - the precise failure this audit was asked to prevent.
+#
+#   SETTLE_AFTER_H   2h - results cannot exist mid-game and only 2.9% land before this, none of
+#                    which are lost; they settle at +2h instead. Still far better than the
+#                    ORIGINAL code, which queried every unresolved item from midnight ET.
+#   SETTLE_TRIES     250 - covers start+2h to roughly start+43h at a 10-minute cadence, past the
+#                    +28h where the miss rate reaches zero, with room for the ~21% of runs this
+#                    workflow has cancelled.
+#   SETTLE_STALE_DAYS 3 (72h) - the hard backstop that clears the existing backlog. The try cap
+#                    binds first, by design; this only catches items with a broken start_utc.
+#
+# Deliberately generous: Peter's instruction is reliability over compute, and an ungradable
+# legitimate game is a worse outcome than some wasted lookups.
+SETTLE_TRIES = int(os.environ.get("LIQ_SETTLE_TRIES", "") or "250")
 SETTLE_STALE_DAYS = int(os.environ.get("LIQ_SETTLE_STALE_DAYS", "") or "3")
-SETTLE_AFTER_H = float(os.environ.get("LIQ_SETTLE_AFTER_H", "") or "4")
+SETTLE_AFTER_H = float(os.environ.get("LIQ_SETTLE_AFTER_H", "") or "2")
 
 
 def _settle_ready(a, n):
