@@ -70,11 +70,18 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           # Nov 12: so the Novig submissions row reports the REAL switch instead of a hardcoded
-          # PAUSED. The dispatch token is passed only to be tested for PRESENCE - health_build.py
-          # takes bool() of it, never prints it and never sends it anywhere, and this job makes
-          # no venue or runner call of any kind.
+          # PAUSED.
+          #
+          # Nov 13: NOVIG_DISPATCH_TOKEN REMOVED from this job. I had bound it here purely so
+          # health_build.py could take bool() of it for that row - but it carries actions:write on
+          # novig-runner, which is the credential that can trigger an order. Binding an
+          # order-capable secret into a job whose only purpose is building a web page widened the
+          # blast radius for a boolean, and test_novig_authz caught it.
+          #
+          # Nothing is lost: _novig_switch() already falls back to reading BOTH values off the
+          # executor's own run log, where they are echoed as "***" or blank - presence, never a
+          # value. That path is tested and was verified reading "on" from run 43354325748.
           EXEC_NOVIG_SUBMIT: ${{ vars.EXEC_NOVIG_SUBMIT }}
-          NOVIG_DISPATCH_TOKEN: ${{ secrets.NOVIG_DISPATCH_TOKEN }}
         run: python -u health_build.py
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3

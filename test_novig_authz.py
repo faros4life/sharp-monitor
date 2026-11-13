@@ -115,9 +115,30 @@ print("=" * 78)
 missing = [f.split("/")[-1] for f in sorted(glob.glob(".github/workflows/*.yml"))
            if "NOVIG_SNAPSHOT_TOKEN:" in open(f).read() and "NOVIG_READ_TOKEN:" not in open(f).read()]
 ck("every workflow holding the broad token also offers the narrow one", missing, [])
-disp = [f.split("/")[-1] for f in sorted(glob.glob(".github/workflows/*.yml"))
-        if re.search(r"^\s*NOVIG_DISPATCH_TOKEN:", open(f).read(), re.M)]
-ck("no workflow yet carries a dispatch credential", disp, [])
+# Nov 13: this asserted "no workflow yet carries a dispatch credential", which was the right
+# invariant while Novig was off. Peter created NOVIG_DISPATCH_TOKEN on Nov 12, so the assertion
+# became permanently red - and a permanently red safety test is one people learn to ignore.
+#
+# It now asserts the invariant that actually matters: the credential carrying actions:write on
+# novig-runner - the one that can trigger an order - appears ONLY where it is needed. This caught
+# a real regression immediately: I had bound it into board-page.yml, a job whose only purpose is
+# building a web page, just so the health row could take bool() of it. Removed; that row reads
+# both values off the executor's own run log instead.
+#
+# Keep this list minimal. Adding a name here should require justifying why that job needs a
+# credential that can place money.
+DISPATCH_ALLOWED = {
+    "executor-dry-run.yml",        # the only thing that places orders
+    "novig-credential-check.yml",  # validates the credential read-only (one GET, never dispatches)
+    "positions-probe.yml",         # manual-only runner probe; OVER-SCOPED - it needs actions:READ
+                                   # on novig-runner and this is the only token that grants it
+                                   # today. Narrow it once NOVIG_READ_TOKEN covers the runner.
+}
+disp = {f.split("/")[-1] for f in sorted(glob.glob(".github/workflows/*.yml"))
+        if re.search(r"^\s*NOVIG_DISPATCH_TOKEN:", open(f).read(), re.M)}
+ck("the dispatch credential appears only where it is needed", sorted(disp - DISPATCH_ALLOWED), [])
+ck("the executor still carries it (orders would otherwise fail closed)",
+   "executor-dry-run.yml" in disp, True)
 
 print()
 print("=" * 78)
