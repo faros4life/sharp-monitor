@@ -95,6 +95,24 @@ ck("the refusal names the client id to clear", k in why, True)
 ck("the clearance is subject-only and manual", ex.INTENT_CLEAR_PREFIX.startswith("INTENT CLEARED"), True)
 
 print()
+print("3b. a RESTART does not free the order: the latch is rebuilt from durable rows")
+print("-" * 90)
+# A fresh process starts with an empty in-memory latch. What refills it is the registry rows, so
+# the block survives process death - this is the "or restart" half of Peter's question.
+ex.INTENT["open"] = {}
+ck("a fresh process starts with an empty latch", ex.INTENT["open"], {})
+_i, _c = {}, {}
+ex._account_rows([row("crash01", confirmed=False)], {}, {}, set(), _i, _c)
+ex._bot_orders_finish(None, {}, _i, _c, from_store=True)
+ck("...and the durable row re-latches it", list(ex.INTENT["open"]), ["crash01"])
+_src = open("executor.py").read()
+_fin = _src[_src.find("def _bot_orders_finish"):]
+_fin = _fin[:_fin.find("\ndef ", 10)]
+ck("the latch is reset then rebuilt each run (never carried in memory)",
+   'INTENT["open"] = {}' in _fin, True)
+ck("an unconfirmable clearance keeps refusing (fail closed)", "keep refusing" in _fin, True)
+
+print()
 print("4. the claim is durable and never expires on its own")
 print("-" * 90)
 src = open("registry.py").read()
