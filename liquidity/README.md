@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 13, 12:32 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 27.
+Updated Fri Nov 13, 12:37 AM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 28.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 13 12:37AM | NCAAF | New Haven vs Wagner | moneyline: New Haven | kalshi | $27k | -113 |  |  | +0.0c |  | pending |
 | Nov 13 12:00AM | NBA | Cleveland vs Miami | moneyline: Miami | kalshi | $38k | -127 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 12 11:30PM | NBA | Portland vs Sacramento: Spread | spread: NOT Portland wins by over 11.5 points | kalshi | $97k | -108 | ✅ novig |  | +3.0c |  | pending |
 | Nov 12 8:12PM | NFL | Washington vs New York G: Spread | spread: New York G wins by over 1.5 points | kalshi | $541k | -108 | ✅ novig |  | +0.0c |  | L |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 10 11:01AM | NBA | Milwaukee vs New York: Total Points | total: NOT Over 222.5 points | kalshi | $86k | -108 |  |  | -1.0c |  | W |
 | Nov 10 10:42AM | NBA | Boston vs Philadelphia: Total Points | total: Over 217.5 points | kalshi | $28k | -104 |  | ✅ | +0.0c | yes | W |
 | Nov 10 10:31AM | NHL | Florida vs Columbus | moneyline: Florida | kalshi | $47k | -113 | ✅ novig,prophetx |  | +0.0c |  | W |
-| Nov 10 10:01AM | NBA | Miami vs Utah: Total Points | total: Over 228.5 points | kalshi | $27k | -104 |  |  | -3.0c | yes | L |
