@@ -13,7 +13,7 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: "positions = time the four position readers. novig = READ-ONLY probe of the Novig home-runner credential, reachability and result file (dispatches nothing)."
+        description: "positions = time the four position readers. novig = READ-ONLY probe of the Novig home-runner credential, reachability and result file (dispatches nothing). manual = one-time reconciliation of the REAL Gmail manual-hold window against the private registry, deletions included (places/clears nothing)."
         default: "positions"
 
 concurrency:
@@ -53,9 +53,16 @@ jobs:
           # cache hits rather than an artificially cold walk.
           REGISTRY_TOKEN: ${{ secrets.REGISTRY_TOKEN }}
           NOVIG_DISPATCH_TOKEN: ${{ secrets.NOVIG_DISPATCH_TOKEN }}
+          # mode=manual only: the ONE-TIME Gmail read that reconciles the real manual-hold window
+          # against the store. Counts and 8-char key hashes in the log; no note, hold or order is
+          # written, cleared or placed.
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
         run: |
           if [ "${{ inputs.mode }}" = "novig" ]; then
             python -u novig_runner_probe.py
+          elif [ "${{ inputs.mode }}" = "manual" ]; then
+            python -u manual_reconcile.py
           else
             python -u positions_probe.py
           fi
