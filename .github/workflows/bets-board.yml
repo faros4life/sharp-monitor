@@ -114,6 +114,12 @@ jobs:
               if [ -d "$RUNNER_TEMP/out/tracker" ]; then rm -rf tracker && cp -r "$RUNNER_TEMP/out/tracker" .; fi
               git add -A lanes tracker
               git diff --cached --quiet && break
+              # Nov 13: suppress the volatile-only churn. mins_to_start, snapshot_utc and the
+              # randomised tracker ciphertext differ on EVERY run, so the guard above could never
+              # fire and this workflow committed ~1320 times a day saying nothing - the contention
+              # that starved sharp-monitor's push and froze the alert feed for nine hours.
+              # COMMIT_HEARTBEAT_MIN keeps main no staler than this workflow's designed cadence.
+              COMMIT_HEARTBEAT_MIN=10 python3 commit_guard.py lanes tracker || break
               git commit -q -m "Update paper lanes / tracker state"
               git push -q origin HEAD:main && break
               sleep 5
@@ -144,6 +150,7 @@ jobs:
               rm -rf board && cp -r "$RUNNER_TEMP/calls/board" .
               git add -A board
               git diff --cached --quiet && break
+              COMMIT_HEARTBEAT_MIN=10 python3 commit_guard.py board || break   # "updated" timestamp only
               git commit -q -m "Update frozen board call log"
               git push -q origin HEAD:main && break
               sleep 5
