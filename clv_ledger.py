@@ -738,14 +738,22 @@ def book_markets(h, bk):
 
 
 
+PROV = collections.Counter()   # P1-B provenance outcomes this run (counts only; printed in the run summary)
+QUOTE_TS_BASIS = "derived: start minus close_for age_min (age of the OLDER side's last tick, rounded to 1 min)"
+
+
 def stamp_entry(rec, s, c, start, now):
-    """P1-B. WRITE-ONCE scoring-time entry provenance. The first scoring stores entry_dec / entry_src /
-    fee_model / basis_version / quote_ts / entry_scored_at; a later re-score that sees a different entry
-    decimal records entry_dec_now and entry_drift_bp beside it and never replaces the original. The CLV
-    figure itself is computed exactly as before - this only records how."""
+    """P1-B. WRITE-ONCE scoring-time entry provenance. Returns the status written to entry_prov_status.
+
+    The first scoring stores entry_dec / entry_src / fee_model / basis_version / entry_scored_at and a DERIVED
+    quote time. A later re-score that sees a different entry decimal records the current value beside it and
+    never replaces the original; the drift evidence is STICKY (review R3): once seen it keeps first-seen,
+    count and largest |drift| even after the entry returns to the original. The CLV figure is computed
+    exactly as before - this only records how."""
     d, src, fee = eff_dec_src(s)
     if d is None:
-        return
+        rec["entry_prov_status"] = "no_entry_price"
+        return "no_entry_price"
     try:
         import clv_basis as _cb
         bv = _cb.BASIS_VERSION
@@ -755,15 +763,58 @@ def stamp_entry(rec, s, c, start, now):
         rec["entry_dec"], rec["entry_src"], rec["fee_model"] = round(d, 6), src, fee
         rec["basis_version"], rec["entry_scored_at"] = bv, iso(now)
         am = c.get("age_min")
-        rec["quote_ts"] = iso(start - timedelta(minutes=am)) if (start and am is not None) else None
-        return
+        # NOT an observed timestamp: close_for reports only minutes before start, rounded (review: quote_ts)
+        rec["quote_ts_derived"] = iso(start - timedelta(minutes=am)) if (start and am is not None) else None
+        rec["quote_ts_basis"] = QUOTE_TS_BASIS if rec["quote_ts_derived"] else "unavailable: no start or no age_min"
+        rec["entry_prov_status"] = "ok"
+        return "ok"
     drift = 1e4 * (d - rec["entry_dec"]) / rec["entry_dec"] if rec["entry_dec"] else None
     if drift is not None and abs(drift) >= 0.5:
         rec["entry_dec_now"], rec["entry_src_now"] = round(d, 6), src
         rec["entry_drift_bp"], rec["entry_drift_seen"] = round(drift, 1), iso(now)
+        rec.setdefault("entry_drift_first_seen", iso(now))
+        rec["entry_drift_count"] = rec.get("entry_drift_count", 0) + 1
+        rec["entry_drift_max_bp"] = max(abs(round(drift, 1)), rec.get("entry_drift_max_bp") or 0)
+        rec["entry_prov_status"] = "ok_drift"
+        return "ok_drift"
+    for x in ("entry_dec_now", "entry_src_now", "entry_drift_bp", "entry_drift_seen"):   # CURRENT drift only;
+        rec.pop(x, None)                                                                  # the sticky record stays
+    rec["entry_prov_status"] = "ok"
+    return "ok"
+
+
+PHASE1_SNAP = ("order_ref", "lane", "lane_src", "strategy_key")
+LANE_RANK = {"none": 0, "manual-source": 1, "fuzzy-join": 1, "registry-order-id": 2}
+
+
+def copy_phase1(snap, b, now_iso):
+    """Carry the tracker's Phase 1 identity onto a ledger snap WITHOUT relabelling history (review R4).
+
+    * A tracker row with no lane_src is legacy: nothing is copied.
+    * A snap that has never held a lane_src takes the four fields once.
+    * After that the lane can only be UPGRADED to an exact registry-order-id match, and every change is
+      appended to snap['lane_history'] with the old and new values. A downgrade or a sideways change is
+      never written. ingest_* first-observation fields are copied once and never overwritten."""
+    if not b.get("lane_src"):
+        return "legacy"
+    if "lane_src" not in snap:
+        for f in PHASE1_SNAP:
+            if b.get(f) not in (None, "", []):
+                snap[f] = b[f]
+        out = "first"
+    elif LANE_RANK.get(b["lane_src"], 0) > LANE_RANK.get(snap.get("lane_src"), 0) and b["lane_src"] == "registry-order-id":
+        snap.setdefault("lane_history", []).append({"from": {f: snap.get(f) for f in PHASE1_SNAP},
+                                                    "to": {f: b.get(f) for f in PHASE1_SNAP}, "at": now_iso})
+        for f in PHASE1_SNAP:
+            if b.get(f) not in (None, "", []):
+                snap[f] = b[f]
+        out = "upgraded"
     else:
-        for x in ("entry_dec_now", "entry_src_now", "entry_drift_bp", "entry_drift_seen"):
-            rec.pop(x, None)
+        out = "kept"
+    for f in ("ingest_missing_first", "ingest_checked"):
+        if f in b and f not in snap:
+            snap[f] = b[f]
+    return out
 
 
 def two_way(pm, mid, before):
@@ -1138,13 +1189,13 @@ def main():
     for k, b in tracker.items():
         rec = st["bets"].setdefault(k, {"first_seen": iso(now)})
         snap = rec.setdefault("snap", {})
-        for f in ("book", "game", "bet", "flip", "league", "source", "teams", "game_start", "placed", "settled", "first_seen",
-                  "order_ref", "lane", "lane_src", "strategy_key"):   # P1-A: carried only when the tracker has them
+        for f in ("book", "game", "bet", "flip", "league", "source", "teams", "game_start", "placed", "settled", "first_seen"):
             if b.get(f) not in (None, "", []):
                 snap[f] = b[f]
-        for f in ("ingest_missing_first", "ingest_checked"):   # P1-C: first observation, never overwritten
-            if f in b and f not in snap:
-                snap[f] = b[f]
+        try:
+            PROV["snap_" + copy_phase1(snap, b, iso(now))] += 1   # P1-A/C: gated, never relabels history
+        except Exception as _ce:
+            PROV["snap_failed"] += 1
         for f in ("price", "stake", "to_pay"):
             if b.get(f) not in (None, "") and snap.get(f) in (None, ""):
                 snap[f] = b[f]
@@ -1397,9 +1448,10 @@ def main():
             rec.pop("why", None)
             new_scored += 1
             try:
-                stamp_entry(rec, s, c, start, now)
-            except Exception:
-                pass   # provenance is bookkeeping: a failure here must never cost the score
+                PROV[stamp_entry(rec, s, c, start, now)] += 1
+            except Exception as _pe:   # never costs the score, but never silent either (review R1)
+                rec["entry_prov_status"] = f"failed: {type(_pe).__name__}"
+                PROV["failed"] += 1
             # Nov 4: bot rows carry no 'placed' (positions have no order time) -> fall back to when the tracker, then
             # this ledger, first saw the bet (<= ~2h after placement; the limit read is the last Pinnacle tick before it)
             when, basis = None, None
@@ -1647,6 +1699,8 @@ def main():
     json.dump(tb.enc(st), open(STATE, "w"))
     print(f"CLV ledger: bets {len(st['bets'])}, scored {len(scored)} (+{new_scored}), "
           f"calls billable {STATS['billable']} free {STATS['free']}")   # counts only
+    print("CLV ledger Phase 1 provenance (counts only): "
+          + (", ".join(f"{k} {v}" for k, v in sorted(PROV.items())) or "none this run"), flush=True)
 
 
 if __name__ == "__main__":

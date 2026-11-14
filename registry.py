@@ -1113,9 +1113,16 @@ def selftest():
 LANE_PREFIX = {"rule": "rules", "rules": "rules", "board": "board", "r1": "r1", "lane2": "lane2"}
 
 
+def _venue(x):
+    """Lower-case venue name with spaces, dots and underscores removed ('ProphetX' == 'prophetx')."""
+    return "".join(ch for ch in str(x or "").lower() if ch.isalnum()) or None
+
+
 def order_lane_index(orders):
-    """{venue order id or client id: (lane, strategy key)} from stored order rows. An id seen under
-    two different lanes maps to None (ambiguous). 'intent-' placeholders are not venue ids and are skipped."""
+    """{order id or client id: [(venue, lane, strategy key), ...]} from stored order rows.
+
+    Every claim on an id is kept, so lane_of can refuse any id that two different (lane, strategy) pairs
+    claim - within one lane as well as across lanes (review R2). 'intent-' placeholders are not venue ids."""
     idx = {}
     for o in orders or []:
         key = str((o or {}).get("key") or "")
@@ -1125,19 +1132,25 @@ def order_lane_index(orders):
             continue
         recs = [o.get("live_order") or {}, o.get("live_rest") or {}] + [x or {} for x in (o.get("live_more") or [])]
         for lo in recs:
+            ven = _venue(lo.get("book") or o.get("fill_book"))
             for fld in ("order_id", "client_id"):
                 v = str(lo.get(fld) or "")
                 if not v or v.startswith("intent-"):
                     continue
-                if v in idx and idx[v] is not None and idx[v][0] != lane:
-                    idx[v] = None
-                elif v not in idx:
-                    idx[v] = (lane, key)
+                ent = (ven, lane, key)
+                if ent not in idx.setdefault(v, []):
+                    idx[v].append(ent)
     return idx
 
 
-def lane_of(order_ref, index):
-    """(lane, strategy key) for an exact order id, or None."""
+def lane_of(order_ref, index, venue=None):
+    """(lane, strategy key) for an exact order id, or None.
+
+    Venue-scoped: when the fill's venue is given, a claim recorded under a DIFFERENT venue is ignored (an
+    id is only unique within its venue); a claim with no recorded venue still counts. The answer must be a
+    single (lane, strategy key); two distinct claims - same lane or not - return None."""
     if not order_ref or not index:
         return None
-    return index.get(str(order_ref))
+    v = _venue(venue)
+    claims = {(ln, k) for ven, ln, k in index.get(str(order_ref)) or [] if v is None or ven is None or ven == v}
+    return next(iter(claims)) if len(claims) == 1 else None

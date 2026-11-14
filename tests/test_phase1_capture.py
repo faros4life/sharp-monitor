@@ -36,6 +36,18 @@ ck("A index: executor prefix 'rule' maps to lane 'rules'", rg.lane_of("PX2", idx
 ck("A index: live_more and live_rest ids resolve", rg.lane_of("PX3", idx)[0] == "rules" and rg.lane_of("PX4", idx)[0] == "lane2")
 ck("A index: 'intent-' placeholder is not a venue id", rg.lane_of("intent-c9", idx) is None)
 ck("A index: id under two lanes is ambiguous -> None", rg.lane_of("DUP", idx) is None)
+o2 = [{"key": "board|NBA|A|total|OVER", "live_order": {"order_id": "Q1", "book": "prophetx"}},
+      {"key": "board|NBA|B|total|UNDER", "live_order": {"order_id": "Q1", "book": "prophetx"}}]
+ck("A R2: same id, same lane, two strategies -> None", rg.lane_of("Q1", rg.order_lane_index(o2)) is None)
+o3 = [{"key": "board|NBA|A|total|OVER", "live_order": {"order_id": "Q2", "book": "ProphetX"}},
+      {"key": "r1|NBA|B|total|UNDER", "live_order": {"order_id": "Q2", "book": "novig"}}]
+i3 = rg.order_lane_index(o3)
+ck("A R2: cross-venue id collision resolves per venue", rg.lane_of("Q2", i3, "ProphetX") == ("board", o3[0]["key"])
+   and rg.lane_of("Q2", i3, "Novig")[0] == "r1")
+ck("A R2: cross-venue collision with no venue given -> None", rg.lane_of("Q2", i3) is None)
+ck("A R2: venue mismatch -> None (never a cross-venue join)", rg.lane_of("Q2", i3, "Kalshi") is None)
+o4 = [{"key": "board|NBA|A|total|OVER", "live_order": {"order_id": "Q3"}}]
+ck("A R2: a claim with no recorded venue still resolves", rg.lane_of("Q3", rg.order_lane_index(o4), "ProphetX")[0] == "board")
 ck("A index: same id twice under one lane stays resolved", rg.lane_of("SAME", idx)[0] == "board")
 ck("A index: unknown key prefix is never a lane", rg.lane_of("PX9", idx) is None)
 ck("A index: absent / empty ref -> None", rg.lane_of("", idx) is None and rg.lane_of(None, idx) is None and rg.lane_of("PX1", {}) is None)
@@ -84,22 +96,76 @@ for sn in ({"stake": 100, "to_pay": 190, "book": "Novig"}, {"price_af": -110}, {
 
 now = datetime(2026, 11, 20, 3, 0, tzinfo=timezone.utc)
 start = datetime(2026, 11, 20, 0, 0, tzinfo=timezone.utc)
+NV = lambda pay: {"stake": 100, "to_pay": pay, "book": "Novig"}
 rec = {}
-cl.stamp_entry(rec, {"stake": 100, "to_pay": 190, "book": "Novig"}, {"age_min": 3}, start, now)
-ck("B first scoring stores entry provenance", rec["entry_dec"] == 1.9 and rec["entry_src"] == "stake_to_pay"
-   and rec["basis_version"] == cb.BASIS_VERSION and rec["entry_scored_at"] and "entry_drift_bp" not in rec, str(rec))
-ck("B quote_ts = start - age_min", rec["quote_ts"] == cl.iso(start - timedelta(minutes=3)))
-cl.stamp_entry(rec, {"stake": 100, "to_pay": 192, "book": "Novig"}, {"age_min": 3}, start, now)
+st0 = cl.stamp_entry(rec, NV(190), {"age_min": 3}, start, now)
+ck("B first scoring stores entry provenance", st0 == "ok" and rec["entry_dec"] == 1.9 and rec["entry_src"] == "stake_to_pay"
+   and rec["basis_version"] == cb.BASIS_VERSION and rec["entry_scored_at"] == cl.iso(now) and "entry_drift_bp" not in rec, str(rec))
+ck("B quote time is labelled DERIVED, never observed", rec["quote_ts_derived"] == cl.iso(start - timedelta(minutes=3))
+   and rec["quote_ts_basis"].startswith("derived") and "quote_ts" not in rec)
+later = now + timedelta(hours=2)
+cl.stamp_entry(rec, NV(192), {"age_min": 3}, start, later)
 ck("B re-score with a different entry: original kept, drift exposed", rec["entry_dec"] == 1.9 and rec["entry_dec_now"] == 1.92
-   and abs(rec["entry_drift_bp"] - 105.3) < 0.1, str(rec))
-cl.stamp_entry(rec, {"stake": 100, "to_pay": 190, "book": "Novig"}, {"age_min": 3}, start, now)
-ck("B drift clears when the entry returns to the original", rec["entry_dec"] == 1.9 and "entry_drift_bp" not in rec)
+   and abs(rec["entry_drift_bp"] - 105.3) < 0.1 and rec["entry_prov_status"] == "ok_drift", str(rec))
+ck("B entry_scored_at is the FIRST scoring, not rewritten", rec["entry_scored_at"] == cl.iso(now))
+cl.stamp_entry(rec, NV(190), {"age_min": 3}, start, later + timedelta(hours=1))
+ck("B R3: return to original clears CURRENT drift only", rec["entry_dec"] == 1.9 and "entry_drift_bp" not in rec and "entry_dec_now" not in rec)
+ck("B R3: sticky drift evidence survives the return", rec["entry_drift_count"] == 1 and rec["entry_drift_first_seen"] == cl.iso(later)
+   and abs(rec["entry_drift_max_bp"] - 105.3) < 0.1, str(rec))
+cl.stamp_entry(rec, NV(188), {"age_min": 3}, start, later + timedelta(hours=2))
+ck("B R3: repeat drift counts again, keeps first-seen and the max |drift|", rec["entry_drift_count"] == 2
+   and rec["entry_drift_first_seen"] == cl.iso(later) and abs(rec["entry_drift_max_bp"] - 105.3) < 0.1)
+cl.stamp_entry(rec, NV(196), {"age_min": 3}, start, later + timedelta(hours=3))
+ck("B R3: max |drift| grows when a larger drift is seen", rec["entry_drift_count"] == 3 and rec["entry_drift_max_bp"] > 300)
 rec2 = {}
-cl.stamp_entry(rec2, {"book": "Novig"}, {"age_min": 3}, start, now)
-ck("B no entry price -> nothing written", rec2 == {})
+ck("B R1: no entry price -> explicit status, nothing else written", cl.stamp_entry(rec2, {"book": "Novig"}, {"age_min": 3}, start, now)
+   == "no_entry_price" and rec2 == {"entry_prov_status": "no_entry_price"})
 rec3 = {}
 cl.stamp_entry(rec3, {"price": -110, "book": "Hard Rock"}, {"age_min": None}, start, now)
-ck("B missing age -> quote_ts None, not invented", rec3["quote_ts"] is None)
+ck("B missing age -> no quote time, labelled unavailable", rec3["quote_ts_derived"] is None and rec3["quote_ts_basis"].startswith("unavailable"))
+
+# R1 through the real call site: an exception inside stamp_entry must leave a durable status and a count
+src_l = open(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "clv_ledger.py")).read()
+site = src_l[src_l.index("PROV[stamp_entry("):src_l.index("PROV[\"failed\"] += 1")]
+ck("B R1: call site records failure status (not a bare pass)", 'rec["entry_prov_status"] = f"failed: {type(_pe).__name__}"' in site
+   and "pass" not in site)
+_orig = cl.eff_dec_src
+cl.eff_dec_src = lambda s_: (_ for _ in ()).throw(KeyError("boom"))
+rec4, P = {}, cl.PROV.copy()
+try:
+    try:
+        cl.PROV[cl.stamp_entry(rec4, NV(190), {"age_min": 3}, start, now)] += 1
+    except Exception as _pe:
+        rec4["entry_prov_status"] = f"failed: {type(_pe).__name__}"
+        cl.PROV["failed"] += 1
+finally:
+    cl.eff_dec_src = _orig
+ck("B R1: injected exception -> 'failed: KeyError' status and a counted failure, no private text",
+   rec4 == {"entry_prov_status": "failed: KeyError"} and cl.PROV["failed"] == P["failed"] + 1)
+
+# ---- R4 the actual ledger snap-copy path
+legacy_snap = {"book": "ProphetX", "game": "A @ B"}
+ck("R4 legacy tracker row (no lane_src) copies nothing", cl.copy_phase1(dict(legacy_snap), {"lane": "board", "order_ref": "X"}, "T")
+   == "legacy")
+ls = dict(legacy_snap)
+cl.copy_phase1(ls, {"lane": "board", "order_ref": "X"}, "T")
+ck("R4 legacy snap left byte-identical", ls == legacy_snap)
+sn = {}
+ck("R4 first Phase 1 copy", cl.copy_phase1(sn, {"lane_src": "fuzzy-join", "lane": "r1", "order_ref": "X"}, "T1") == "first"
+   and sn["lane"] == "r1" and sn["lane_src"] == "fuzzy-join")
+ck("R4 sideways change is NOT written", cl.copy_phase1(sn, {"lane_src": "fuzzy-join", "lane": "board"}, "T2") == "kept" and sn["lane"] == "r1")
+ck("R4 downgrade is NOT written", cl.copy_phase1(sn, {"lane_src": "none"}, "T3") == "kept" and sn["lane_src"] == "fuzzy-join")
+ck("R4 upgrade to exact is written WITH an audit entry",
+   cl.copy_phase1(sn, {"lane_src": "registry-order-id", "lane": "board", "strategy_key": "board|k", "order_ref": "X"}, "T4") == "upgraded"
+   and sn["lane"] == "board" and sn["lane_history"][0]["from"]["lane"] == "r1" and sn["lane_history"][0]["at"] == "T4")
+ck("R4 an exact lane is never replaced", cl.copy_phase1(sn, {"lane_src": "registry-order-id", "lane": "r1"}, "T5") == "kept"
+   and sn["lane"] == "board" and len(sn["lane_history"]) == 1)
+s5 = {"ingest_missing_first": ["league"]}
+cl.copy_phase1(s5, {"lane_src": "none", "ingest_missing_first": [], "ingest_checked": "T"}, "T")
+ck("R4 ingest first-observation is never overwritten", s5["ingest_missing_first"] == ["league"] and s5["ingest_checked"] == "T")
+src_main = src_l[src_l.index("# 1) capture"):src_l.index("# 1b)")]
+ck("R4 the ledger capture loop calls copy_phase1 and copies no Phase 1 field directly",
+   "copy_phase1(snap, b" in src_main and not any(f'"{f}"' in src_main for f in ("order_ref", "lane_src", "strategy_key")))
 
 # ---- legacy rows are read unchanged
 legacy = {"clv": 0.012, "close_p": 0.53, "how": "own line", "snap": {"stake": 100, "to_pay": 190}}

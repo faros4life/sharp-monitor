@@ -1283,7 +1283,7 @@ def stamp_new_row(b, now_iso):
 def assign_lane_src(b, index, lane_of):
     """Exact registry lane when the row's order_ref resolves; otherwise keep any existing (fuzzy) lane but say so.
     Returns the lane_src written. A deterministic lane that disagrees with the fuzzy one is kept beside it."""
-    hit = lane_of(b.get("order_ref"), index) if b.get("order_ref") else None
+    hit = lane_of(b.get("order_ref"), index, b.get("book")) if b.get("order_ref") else None
     if hit:
         if b.get("lane") and b["lane"] != hit[0]:
             b["lane_fuzzy"] = b["lane"]
