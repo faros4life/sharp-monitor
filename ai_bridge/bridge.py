@@ -158,6 +158,10 @@ def gh(method, path, payload=None):
 
 
 def main():
+    if os.environ.get("BRIDGE_MODE") == "check":      # presence only: never prints a value, no network
+        for k in ("ANTHROPIC_API_KEY", "OPENAI_API_KEY"):
+            print(f"{k}: {'set' if os.environ.get(k, '').strip() else 'MISSING'}")
+        return 0
     repo, num = os.environ["GITHUB_REPOSITORY"], int(os.environ["ISSUE_NUMBER"])
     live = os.environ.get("BRIDGE_MODE", "dry") == "live"
     owner = os.environ.get("BRIDGE_OWNER", OWNER_DEFAULT)
