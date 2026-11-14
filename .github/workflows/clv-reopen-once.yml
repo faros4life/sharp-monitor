@@ -26,6 +26,10 @@ on:
         description: "Exact number of eligible rows required before applying"
         default: "27"
         required: false
+      why:
+        description: "Exact stored retirement reason to accept (blank = the Nov 12 matcher failure)"
+        default: ""
+        required: false
 
 permissions:
   contents: write
@@ -53,6 +57,7 @@ jobs:
           REOPEN_APPLY: ${{ inputs.apply }}
           REOPEN_IDS: ${{ inputs.ids }}
           REOPEN_EXPECT: ${{ inputs.expect || '27' }}
+          REOPEN_WHY: ${{ inputs.why }}
         run: python -u clv_reopen_once.py
       - name: Commit the reopened state and its audit record
         if: inputs.apply == '1'

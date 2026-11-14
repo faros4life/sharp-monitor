@@ -44,7 +44,14 @@ import tracker_build as tb
 APPLY = (os.environ.get("REOPEN_APPLY") or "") == "1"
 EXPECT = int(os.environ.get("REOPEN_EXPECT") or "27")
 ALLOW = [x.strip() for x in (os.environ.get("REOPEN_IDS") or "").split(",") if x.strip()]
-WHY_OK = "no OddsPapi fixture matched"
+# Nov 14 (Peter): the accepted retirement reason is now an input, defaulting to the Nov 12
+# matcher failure this script was written for, so nothing changes unless it is named. A
+# SECOND defect has since produced the same situation - 4 rows retired at tries=8 with
+# "team not matched", which the abbreviation fallback in fixture_match.resolve_side now
+# resolves - and this script correctly REFUSED them, because its reason test is exact.
+# That guard is right and is kept exact: the reason must be named in full to be accepted,
+# one reason per run, so a reopen can never widen to "any retired row".
+WHY_OK = (os.environ.get("REOPEN_WHY") or "").strip() or "no OddsPapi fixture matched"
 TRIES_OK = 8
 L = []
 
