@@ -377,6 +377,21 @@ def main():
                     "beat_close": beat, "classes": dict(cc)}
         say(f"  tier {t}: {len(ver)}/{len(us)} units verified ({n_obs_ver} observations)"
             + (f"   mean CLV {mean * 100:+.2f}%   beat close {beat}/{len(ver)}" if ver else ""))
+    # Nov 14: 5 credits bought 79 NBA fixtures and resolved 0 of 7 tier-2 units, while tier 3
+    # gained 19 from the same fixtures. So the fixtures arrived and are being read - which rules
+    # out the cache and the loader, and puts the remaining cause in the row or the matcher. The
+    # artifact cannot be downloaded through the proxy, so the reasons are printed HERE rather than
+    # guessed at from a counter.
+    say("WHY THE UNRESOLVED UNITS IN SCOPE ARE STILL UNRESOLVED (reasons only, no figures)")
+    say("-" * 104)
+    left = [u for u in units.values() if str(u["tier"]) in want
+            and u["cls"] not in ("VERIFIED_PINNACLE", "VENUE_NOT_PRICEABLE")]
+    by_reason = collections.Counter(f"{u['cls']}: {str(u['detail'])[:62]}" for u in left)
+    for r, n in by_reason.most_common(14):
+        say(f"  {n:4d}  {r}")
+    say("")
+    for u in left[:14]:
+        say(f"  {u['lg']:<6} {u['day']}  {u['key'][:46]:<46} {str(u['detail'])[:46]}")
     say("")
     say(f"CREDITS SPENT BY THIS JOB: {SPENT['billable']} billable (ceiling {BUDGET}), "
         f"{SPENT['free']} free calls")
