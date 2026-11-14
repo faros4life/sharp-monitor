@@ -1,6 +1,166 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-14T00:30:31Z",
+   "base_depth": 42212,
+   "best_price": 0.705,
+   "best_price_american": -239,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.7,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-14",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -3693,
+     "new_this_side": 26763,
+     "other_side": 818,
+     "other_side_all_levels": 19267,
+     "ratio": 25.6,
+     "this_side": 20967,
+     "this_side_all_levels": 74675
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "COR (0)",
+     "price": 0.705,
+     "this_side": 14068
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 18878.79,
+    "volume_24h_fp": 18698.95,
+    "volume_fp": 18927.12
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 225.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 225.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 18653.79,
+    "volume_24h_fp": 18698.95,
+    "volume_fp": 18702.12
+   },
+   "fade_price": 0.31,
+   "first_seen_utc": "2026-11-14T00:20:17Z",
+   "game": "UNC Greensboro vs Cornell",
+   "game_surge_books": [
+    "novig"
+   ],
+   "game_x": null,
+   "key": "kalshi|KXNCAAMBGAME-26NOV14UNCGCOR|ml|1",
+   "lead_min": 929,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 26763,
+   "new_x": 0.33,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 18878.79,
+      "volume_24h_fp": 18698.95,
+      "volume_fp": 18927.12
+     },
+     "game_normal": null,
+     "game_x": null,
+     "normal": 81468,
+     "now": 74675,
+     "type": "ML",
+     "x": 0.92
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 420131.0,
+      "volume": 531571.0
+     },
+     "game_normal": 663,
+     "game_x": 30.19,
+     "normal": 3168,
+     "now": 20032,
+     "type": "ML",
+     "x": 6.32
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.7,
+   "price_american": -233,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.7,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -300
+    },
+    "betrivers": {
+     "point": null,
+     "price": -335
+    },
+    "fanatics": {
+     "point": null,
+     "price": -320
+    },
+    "fanduel": {
+     "point": null,
+     "price": -310
+    },
+    "kalshi": {
+     "point": null,
+     "price": -233
+    },
+    "novig": {
+     "point": null,
+     "price": -245
+    },
+    "polymarket": {
+     "point": null,
+     "price": -108
+    },
+    "prophetx": {
+     "point": null,
+     "price": -280
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV14UNCGCOR-COR"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Cornell",
+   "side_label": "Cornell",
+   "size_x": 0.92,
+   "start_source": "odds",
+   "start_utc": "2026-11-14T16:00:00Z",
+   "surge_books": [
+    "novig"
+   ],
+   "teams": [
+    "UNC Greensboro",
+    "Cornell"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-13T22:50:19Z",
    "base_depth": 80980,
    "best_price": 0.515,
@@ -265,9 +425,9 @@
     "volume_fp": 413.98
    },
    "ex_stats_close": {
-    "open_interest_fp": 13591.1,
-    "volume_24h_fp": 13063.880000000001,
-    "volume_fp": 13598.98
+    "open_interest_fp": 14331.59,
+    "volume_24h_fp": 13804.37,
+    "volume_fp": 14339.47
    },
    "ex_stats_first": {
     "open_interest_fp": 9771.68,
@@ -475,9 +635,9 @@
     "volume_fp": 1296.78
    },
    "ex_stats_close": {
-    "open_interest_fp": 120118.41,
-    "volume_24h_fp": 118754.22,
-    "volume_fp": 121660.93
+    "open_interest_fp": 121465.84,
+    "volume_24h_fp": 120735.12,
+    "volume_fp": 123127.48999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 48149.520000000004,
@@ -1479,9 +1639,9 @@
     "volume_fp": 37.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 8797.51,
-    "volume_24h_fp": 8838.58,
-    "volume_fp": 8838.58
+    "open_interest_fp": 9262.65,
+    "volume_24h_fp": 9303.72,
+    "volume_fp": 9303.72
    },
    "ex_stats_first": {
     "open_interest_fp": 245.87,
@@ -1592,7 +1752,8 @@
      "price": -110
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-14T00:30:31Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNCAAMBTOTAL-26NOV13USMTXST-139"
@@ -1673,9 +1834,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 43860.45,
-    "volume_24h_fp": 62505.799999999996,
-    "volume_fp": 63168.63
+    "open_interest_fp": 44111.61,
+    "volume_24h_fp": 62552.31,
+    "volume_fp": 63419.78999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 23237.440000000002,
@@ -2425,9 +2586,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 5836.36,
-    "volume_24h_fp": 5941.530000000001,
-    "volume_fp": 6045.24
+    "open_interest_fp": 5961.15,
+    "volume_24h_fp": 6099.9400000000005,
+    "volume_fp": 6170.03
    },
    "ex_stats_first": {
     "open_interest_fp": 1820.52,
@@ -3787,9 +3948,9 @@
     "volume_fp": 15.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 29833.489999999998,
-    "volume_24h_fp": 29454.73,
-    "volume_fp": 30549.45
+    "open_interest_fp": 33554.81,
+    "volume_24h_fp": 33111.71,
+    "volume_fp": 34270.77
    },
    "ex_stats_first": {
     "open_interest_fp": 3368.01,
@@ -3971,9 +4132,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 3713.1800000000003,
+    "open_interest_fp": 5218.530000000001,
     "volume_24h_fp": 3791.6000000000004,
-    "volume_fp": 3791.6000000000004
+    "volume_fp": 5296.950000000001
    },
    "ex_stats_first": {
     "open_interest_fp": 29.990000000000002,
@@ -4152,8 +4313,8 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 65613.65,
-    "volume_24h_fp": 62542.19,
-    "volume_fp": 68118.43
+    "volume_24h_fp": 62776.380000000005,
+    "volume_fp": 68438.09
    },
    "ex_stats_first": {
     "open_interest_fp": 7963.4400000000005,
@@ -4349,9 +4510,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 745.71,
-    "volume_24h_fp": 685.88,
-    "volume_fp": 997.26
+    "open_interest_fp": 747.21,
+    "volume_24h_fp": 687.38,
+    "volume_fp": 998.76
    },
    "ex_stats_first": {
     "open_interest_fp": 139.43,
@@ -5642,7 +5803,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 69,
+   "settle_tries": 70,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Fritz",
