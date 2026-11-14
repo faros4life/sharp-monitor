@@ -1,6 +1,95 @@
 {
  "moves": [
   {
+   "alerted_utc": "2026-11-14T08:15:36Z",
+   "bar": true,
+   "best_price": 0.5,
+   "best_price_book": "novig",
+   "book": "novig",
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "date": "2026-11-14",
+   "dir": "DROP",
+   "ex_stats": {
+    "openInterest": 0.0,
+    "volume": 0.0
+   },
+   "first_play": false,
+   "game": "Towson @ Rhode Island",
+   "key": "novig|{\"market_id\": \"01a1c905-996a-7702-9292-35d40895a2e0\", \"outcome_id\": \"01a1c905-996a-7702-9292-35eac9e1f02b\"}",
+   "lead_min": 524,
+   "league": "NCAAF",
+   "league_x": 0.03,
+   "line": -6.5,
+   "market": "spread",
+   "normal_4h": 317,
+   "now": 100,
+   "other_side_now": 1605,
+   "paper_only": true,
+   "price": 0.5,
+   "price_american": -100,
+   "ref": {
+    "market_id": "01a1c905-996a-7702-9292-35d40895a2e0",
+    "outcome_id": "01a1c905-996a-7702-9292-35eac9e1f02b"
+   },
+   "result": null,
+   "side": "Rhode Island",
+   "side_label": "URI -6.5 (-6.5)",
+   "side_raw": 1,
+   "start_utc": "2026-11-14T17:00:00Z",
+   "teams": [
+    "Towson",
+    "Rhode Island"
+   ],
+   "units_flat": null,
+   "x": 0.32
+  },
+  {
+   "alerted_utc": "2026-11-14T08:15:36Z",
+   "bar": false,
+   "best_price": 0.829,
+   "best_price_book": "prophetx",
+   "book": "kalshi",
+   "close_price": 0.82,
+   "clv_cents": 0.0,
+   "date": "2026-11-14",
+   "dir": "RAISE",
+   "ex_stats": {
+    "open_interest_fp": 15847.21,
+    "volume_24h_fp": 4505.79,
+    "volume_fp": 15938.44
+   },
+   "first_play": false,
+   "game": "Illinois St. vs Youngstown St.",
+   "key": "kalshi|KXNCAAFGAME-26NOV14ILSTYSU|ml|1",
+   "lead_min": 794,
+   "league": "NCAAF",
+   "league_x": 2.3,
+   "line": null,
+   "market": "moneyline",
+   "normal_4h": 62998,
+   "now": 126453,
+   "other_side_now": 18389,
+   "paper_only": true,
+   "price": 0.82,
+   "price_american": -456,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26NOV14ILSTYSU-YSU"
+   },
+   "result": null,
+   "side": "Youngstown St.",
+   "side_label": "Youngstown St.",
+   "side_raw": 1,
+   "start_utc": "2026-11-14T21:30:00Z",
+   "teams": [
+    "Illinois St.",
+    "Youngstown St."
+   ],
+   "units_flat": null,
+   "x": 2.01
+  },
+  {
    "alerted_utc": "2026-11-14T08:10:13Z",
    "bar": true,
    "best_price": 0.5,
@@ -144,6 +233,10 @@
     "openInterest": 0.0,
     "volume": 0.0
    },
+   "ex_stats_close": {
+    "openInterest": 0.0,
+    "volume": 0.0
+   },
    "first_play": false,
    "game": "Western Carolina @ Samford",
    "key": "novig|{\"market_id\": \"01a1c941-1bd0-73d3-a47f-a9f2388b91a3\", \"outcome_id\": \"01a1c941-1bd0-73d3-a47f-aa092c0bdda5\"}",
@@ -185,6 +278,10 @@
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": {
+    "openInterest": 0.0,
+    "volume": 0.0
+   },
+   "ex_stats_close": {
     "openInterest": 0.0,
     "volume": 0.0
    },
@@ -277,6 +374,11 @@
     "volume_24h_fp": 200.0,
     "volume_fp": 200.0
    },
+   "ex_stats_close": {
+    "open_interest_fp": 200.0,
+    "volume_24h_fp": 200.0,
+    "volume_fp": 200.0
+   },
    "first_play": false,
    "game": "Grambling St. vs Bethune-Cookman: Total Points",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFTOTAL-26NOV14GRAMCOOK-62\"}",
@@ -318,6 +420,11 @@
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": {
+    "open_interest_fp": 30.0,
+    "volume_24h_fp": 30.0,
+    "volume_fp": 30.0
+   },
+   "ex_stats_close": {
     "open_interest_fp": 30.0,
     "volume_24h_fp": 30.0,
     "volume_fp": 30.0
@@ -367,6 +474,11 @@
     "volume_24h_fp": 30.0,
     "volume_fp": 30.0
    },
+   "ex_stats_close": {
+    "open_interest_fp": 30.0,
+    "volume_24h_fp": 30.0,
+    "volume_fp": 30.0
+   },
    "first_play": false,
    "game": "Chattanooga vs Furman: Total Points",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFTOTAL-26NOV14CHATFUR-36\"}",
@@ -408,6 +520,11 @@
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": {
+    "open_interest_fp": 332.03,
+    "volume_24h_fp": 27.409999999999997,
+    "volume_fp": 332.03
+   },
+   "ex_stats_close": {
     "open_interest_fp": 332.03,
     "volume_24h_fp": 27.409999999999997,
     "volume_fp": 332.03
@@ -724,9 +841,9 @@
     "volume_fp": 744.32
    },
    "ex_stats_close": {
-    "open_interest_fp": 729.64,
+    "open_interest_fp": 785.23,
     "volume_24h_fp": 360.94,
-    "volume_fp": 744.32
+    "volume_fp": 799.9100000000001
    },
    "first_play": false,
    "game": "North Alabama vs West Georgia",
@@ -824,9 +941,9 @@
     "volume_fp": 971.31
    },
    "ex_stats_close": {
-    "open_interest_fp": 971.31,
+    "open_interest_fp": 973.0699999999999,
     "volume_24h_fp": 562.97,
-    "volume_fp": 971.31
+    "volume_fp": 973.0699999999999
    },
    "first_play": false,
    "game": "Abilene Christian vs Austin Peay",
@@ -875,7 +992,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 756.6800000000001,
-    "volume_24h_fp": 316.4,
+    "volume_24h_fp": 317.63,
     "volume_fp": 792.2
    },
    "first_play": false,
@@ -1025,6 +1142,8 @@
    "other_side_now": 713,
    "paper_only": true,
    "price": 0.5261,
+   "price_after_15m": 0.5311,
+   "price_after_15m_book": "prophetx",
    "price_american": -111,
    "ref": {
     "line": 11.5,
@@ -1037,6 +1156,7 @@
    "side_label": "Mercyhurst +11.5 (+11.5)",
    "side_raw": 0,
    "start_utc": "2026-11-14T17:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Mercyhurst",
     "Duquesne"
@@ -1068,6 +1188,8 @@
    "other_side_now": 465,
    "paper_only": true,
    "price": 0.5,
+   "price_after_15m": 0.5051,
+   "price_after_15m_book": "prophetx",
    "price_american": -100,
    "ref": {
     "line": 11.5,
@@ -1080,6 +1202,7 @@
    "side_label": "Duquesne -11.5 (-11.5)",
    "side_raw": 1,
    "start_utc": "2026-11-14T17:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Mercyhurst",
     "Duquesne"
@@ -1189,8 +1312,8 @@
    "best_price": 0.6561,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.66,
-   "clv_cents": 2.0,
+   "close_price": 0.64,
+   "clv_cents": 0.0,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": {
@@ -1216,6 +1339,8 @@
    "other_side_now": 995,
    "paper_only": true,
    "price": 0.64,
+   "price_after_15m": 0.6561,
+   "price_after_15m_book": "kalshi",
    "price_american": -178,
    "ref": {
     "kalshi_side": "no",
@@ -1226,6 +1351,7 @@
    "side_label": "NOT Over 47.5 points",
    "side_raw": "UNDER",
    "start_utc": "2026-11-14T17:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Princeton",
     "Yale"
@@ -1257,6 +1383,8 @@
    "other_side_now": 9427,
    "paper_only": true,
    "price": 0.1709,
+   "price_after_15m": 0.1641,
+   "price_after_15m_book": "prophetx",
    "price_american": 485,
    "ref": {
     "line": 0,
@@ -1269,6 +1397,7 @@
    "side_label": "New Orleans Pelicans",
    "side_raw": 1,
    "start_utc": "2026-11-15T00:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Denver Nuggets",
     "New Orleans Pelicans"
@@ -1282,8 +1411,8 @@
    "best_price": 0.5951,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.7895,
-   "clv_cents": 19.9,
+   "close_price": 0.5868,
+   "clv_cents": -0.3,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": null,
@@ -1520,8 +1649,8 @@
    "best_price": 0.515,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.47,
-   "clv_cents": -4.5,
+   "close_price": 0.515,
+   "clv_cents": 0.0,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": {
@@ -1545,6 +1674,8 @@
    "other_side_now": 1152,
    "paper_only": true,
    "price": 0.515,
+   "price_after_15m": 0.515,
+   "price_after_15m_book": "novig",
    "price_american": -106,
    "ref": {
     "market_id": "01a1c925-5ed1-7f41-86be-45bcd755ef69",
@@ -1555,6 +1686,7 @@
    "side_label": "NWST +10.5 (10.5)",
    "side_raw": null,
    "start_utc": "2026-11-14T19:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Houston Christian",
     "Northwestern State"
@@ -1895,7 +2027,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 1213.8600000000001,
-    "volume_24h_fp": 68.03999999999999,
+    "volume_24h_fp": 108.04,
     "volume_fp": 1234.6000000000001
    },
    "first_play": false,
@@ -2498,8 +2630,8 @@
    "best_price": 0.46,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.49,
-   "clv_cents": 3.0,
+   "close_price": 0.51,
+   "clv_cents": 5.0,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": {
@@ -2644,8 +2776,8 @@
    "best_price": 0.5474,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.53,
-   "clv_cents": 0.0,
+   "close_price": 0.52,
+   "clv_cents": -1.0,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": {
@@ -3028,8 +3160,8 @@
    "best_price": 0.5,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.495,
-   "clv_cents": -0.5,
+   "close_price": 0.5,
+   "clv_cents": 0.0,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": {
@@ -3143,7 +3275,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 6568.0,
-    "volume_24h_fp": 532.7,
+    "volume_24h_fp": 535.01,
     "volume_fp": 6788.360000000001
    },
    "first_play": false,
@@ -3756,7 +3888,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 3557.27,
-    "volume_24h_fp": 2557.3500000000004,
+    "volume_24h_fp": 2504.8199999999997,
     "volume_fp": 4612.19
    },
    "first_play": true,
@@ -5057,8 +5189,8 @@
     "volume": 4572170.0
    },
    "ex_stats_close": {
-    "openInterest": 3547476.0,
-    "volume": 4587220.0
+    "openInterest": 3549497.0,
+    "volume": 4589241.0
    },
    "first_play": false,
    "game": "USC @ Indiana",
@@ -5159,8 +5291,8 @@
     "volume": 2275355.0
    },
    "ex_stats_close": {
-    "openInterest": 1958477.0,
-    "volume": 2420843.0
+    "openInterest": 1987888.0,
+    "volume": 2450254.0
    },
    "first_play": false,
    "game": "Tennessee @ Texas A&M",
@@ -5210,8 +5342,8 @@
     "volume": 2275355.0
    },
    "ex_stats_close": {
-    "openInterest": 1958477.0,
-    "volume": 2420843.0
+    "openInterest": 1987888.0,
+    "volume": 2450254.0
    },
    "first_play": false,
    "game": "Tennessee @ Texas A&M",
@@ -5665,8 +5797,8 @@
     "volume": 817298.0
    },
    "ex_stats_close": {
-    "openInterest": 595462.0,
-    "volume": 822443.0
+    "openInterest": 596111.0,
+    "volume": 823092.0
    },
    "first_play": true,
    "game": "Southern Mississippi @ Louisiana Tech",
@@ -6255,8 +6387,8 @@
    "best_price": 0.515,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.53,
-   "clv_cents": 1.5,
+   "close_price": 0.495,
+   "clv_cents": -2.0,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": {
@@ -7034,8 +7166,8 @@
    "best_price": 0.4745,
    "best_price_book": "prophetx",
    "book": "novig",
-   "close_price": 0.48,
-   "clv_cents": 0.0,
+   "close_price": 0.475,
+   "clv_cents": -0.5,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": {
@@ -7478,8 +7610,8 @@
    "best_price": 0.505,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.495,
-   "clv_cents": -1.0,
+   "close_price": 0.5,
+   "clv_cents": -0.5,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": {
@@ -7631,8 +7763,8 @@
    "best_price": 0.505,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.495,
-   "clv_cents": -1.0,
+   "close_price": 0.5,
+   "clv_cents": -0.5,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": {
@@ -8793,8 +8925,8 @@
    "best_price": 0.6855,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.66,
-   "clv_cents": -1.0,
+   "close_price": 0.64,
+   "clv_cents": -3.0,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": {
@@ -9695,8 +9827,8 @@
    "best_price": 0.4928,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.4878,
-   "clv_cents": 0.0,
+   "close_price": 0.4854,
+   "clv_cents": -0.2,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": null,
@@ -9980,8 +10112,8 @@
    "best_price": 0.4975,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.48,
-   "clv_cents": 0.0,
+   "close_price": 0.47,
+   "clv_cents": -1.0,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": {
@@ -9990,9 +10122,9 @@
     "volume_fp": 519.06
    },
    "ex_stats_close": {
-    "open_interest_fp": 719.99,
+    "open_interest_fp": 920.06,
     "volume_24h_fp": 603.06,
-    "volume_fp": 719.99
+    "volume_fp": 920.06
    },
    "first_play": false,
    "game": "Central Connecticut St. vs LIU: Spread",
@@ -10795,8 +10927,8 @@
     "volume": 2384661.0
    },
    "ex_stats_close": {
-    "openInterest": 2286192.0,
-    "volume": 2400788.0
+    "openInterest": 2288274.0,
+    "volume": 2402870.0
    },
    "first_play": false,
    "game": "Arizona State @ UCF",
@@ -10993,8 +11125,8 @@
    "best_price": 0.5474,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.53,
-   "clv_cents": 0.0,
+   "close_price": 0.54,
+   "clv_cents": 1.0,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": {
@@ -11003,9 +11135,9 @@
     "volume_fp": 519.06
    },
    "ex_stats_close": {
-    "open_interest_fp": 719.99,
+    "open_interest_fp": 920.06,
     "volume_24h_fp": 603.06,
-    "volume_fp": 719.99
+    "volume_fp": 920.06
    },
    "first_play": false,
    "game": "Central Connecticut St. vs LIU: Spread",
@@ -11323,8 +11455,8 @@
    "best_price": 0.5574,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.48,
-   "clv_cents": -6.0,
+   "close_price": 0.52,
+   "clv_cents": -2.0,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": {
@@ -12623,8 +12755,8 @@
    "best_price": 0.495,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.495,
-   "clv_cents": 0.0,
+   "close_price": 0.49,
+   "clv_cents": -0.5,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": {
@@ -12820,8 +12952,8 @@
    "best_price": 0.51,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.51,
-   "clv_cents": 0.0,
+   "close_price": 0.505,
+   "clv_cents": -0.5,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": {
@@ -12922,8 +13054,8 @@
    "best_price": 0.525,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.52,
-   "clv_cents": -0.5,
+   "close_price": 0.515,
+   "clv_cents": -1.0,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": {
@@ -12973,8 +13105,8 @@
    "best_price": 0.6757,
    "best_price_book": "kalshi",
    "book": "prophetx",
-   "close_price": 0.6599,
-   "clv_cents": -2.8,
+   "close_price": 0.6622,
+   "clv_cents": -2.5,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": null,
@@ -13111,8 +13243,8 @@
    "best_price": 0.4904,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.4854,
-   "clv_cents": 0.0,
+   "close_price": 0.4785,
+   "clv_cents": -0.7,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": null,
@@ -13870,6 +14002,7 @@
    "best_price": 0.3567,
    "best_price_book": "prophetx",
    "book": "prophetx",
+   "close_frozen": true,
    "close_price": 0.3521,
    "clv_cents": 0.0,
    "date": "2026-11-14",
@@ -14302,8 +14435,8 @@
    "best_price": 0.51,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.515,
-   "clv_cents": 0.5,
+   "close_price": 0.51,
+   "clv_cents": 0.0,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": {
@@ -16404,8 +16537,8 @@
    "best_price": 0.5219,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5146,
-   "clv_cents": -0.2,
+   "close_price": 0.5169,
+   "clv_cents": 0.0,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": null,
@@ -16761,9 +16894,9 @@
     "volume_fp": 483.21
    },
    "ex_stats_close": {
-    "open_interest_fp": 967.6300000000001,
-    "volume_24h_fp": 717.74,
-    "volume_fp": 967.6300000000001
+    "open_interest_fp": 1067.63,
+    "volume_24h_fp": 719.47,
+    "volume_fp": 1067.63
    },
    "first_play": false,
    "game": "Central Connecticut St. vs LIU",
@@ -16951,8 +17084,8 @@
     "volume": 10002976.0
    },
    "ex_stats_close": {
-    "openInterest": 9578629.0,
-    "volume": 10076412.0
+    "openInterest": 9579077.0,
+    "volume": 10076860.0
    },
    "first_play": false,
    "game": "Michigan @ Oregon",
@@ -17437,7 +17570,7 @@
    },
    "ex_stats_close": {
     "openInterest": 2828166.0,
-    "volume": 3579299.0
+    "volume": 3582172.0
    },
    "first_play": false,
    "game": "Cincinnati @ Iowa State",
@@ -18406,8 +18539,8 @@
    "best_price": 0.495,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.4975,
-   "clv_cents": 0.0,
+   "close_price": 0.5,
+   "clv_cents": 0.3,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": null,
@@ -18452,8 +18585,8 @@
    "best_price": 0.52,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.5098,
-   "clv_cents": -0.7,
+   "close_price": 0.5146,
+   "clv_cents": -0.2,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": null,
@@ -19008,8 +19141,8 @@
    "best_price": 0.53,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.56,
-   "clv_cents": 3.0,
+   "close_price": 0.555,
+   "clv_cents": 2.5,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": {
@@ -19728,8 +19861,8 @@
    "best_price": 0.645,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.61,
-   "clv_cents": -3.5,
+   "close_price": 0.615,
+   "clv_cents": -3.0,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": {
@@ -20482,8 +20615,8 @@
     "volume": 1258146.0
    },
    "ex_stats_close": {
-    "openInterest": 1958477.0,
-    "volume": 2420843.0
+    "openInterest": 1987888.0,
+    "volume": 2450254.0
    },
    "first_play": false,
    "game": "Tennessee @ Texas A&M",
@@ -20621,8 +20754,8 @@
    "best_price": 0.5275,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.52,
-   "clv_cents": 1.0,
+   "close_price": 0.51,
+   "clv_cents": 0.0,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": {
@@ -22237,8 +22370,8 @@
    "best_price": 0.62,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.61,
-   "clv_cents": -1.0,
+   "close_price": 0.615,
+   "clv_cents": -0.5,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": {
@@ -22771,8 +22904,8 @@
    "best_price": 0.475,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.47,
-   "clv_cents": -0.5,
+   "close_price": 0.475,
+   "clv_cents": 0.0,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": {
@@ -22822,8 +22955,8 @@
    "best_price": 0.5,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.5,
-   "clv_cents": 0.0,
+   "close_price": 0.495,
+   "clv_cents": -0.5,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": {
@@ -23183,7 +23316,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 6568.0,
-    "volume_24h_fp": 532.7,
+    "volume_24h_fp": 535.01,
     "volume_fp": 6788.360000000001
    },
    "first_play": false,
@@ -23567,8 +23700,8 @@
    "best_price": 0.5,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.5,
-   "clv_cents": 0.0,
+   "close_price": 0.505,
+   "clv_cents": 0.5,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": {
@@ -24626,9 +24759,9 @@
     "volume_fp": 1.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 4607.45,
-    "volume_24h_fp": 4999.71,
-    "volume_fp": 5132.45
+    "open_interest_fp": 4608.45,
+    "volume_24h_fp": 5132.45,
+    "volume_fp": 5133.45
    },
    "first_play": false,
    "game": "Princeton vs Yale: Spread",
@@ -24680,7 +24813,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 13634.74,
-    "volume_24h_fp": 9596.07,
+    "volume_24h_fp": 9597.97,
     "volume_fp": 14022.36
    },
    "first_play": false,
@@ -25527,8 +25660,8 @@
    "best_price": 0.755,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.745,
-   "clv_cents": -1.0,
+   "close_price": 0.75,
+   "clv_cents": -0.5,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": {
@@ -26200,9 +26333,9 @@
     "volume_fp": 3193.06
    },
    "ex_stats_close": {
-    "open_interest_fp": 9573.08,
+    "open_interest_fp": 9605.96,
     "volume_24h_fp": 8715.72,
-    "volume_fp": 9849.27
+    "volume_fp": 9882.15
    },
    "first_play": false,
    "game": "Cincinnati vs Iowa St.: Spread",
@@ -26579,8 +26712,8 @@
    "best_price": 0.515,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.5098,
-   "clv_cents": -0.7,
+   "close_price": 0.5146,
+   "clv_cents": -0.2,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": null,
@@ -26820,8 +26953,8 @@
    "best_price": 0.28,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.2778,
-   "clv_cents": -1.2,
+   "close_price": 0.274,
+   "clv_cents": -1.6,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": null,
@@ -26875,8 +27008,8 @@
     "volume": 8678129.0
    },
    "ex_stats_close": {
-    "openInterest": 5697887.0,
-    "volume": 10747757.0
+    "openInterest": 5703769.0,
+    "volume": 10753639.0
    },
    "first_play": false,
    "game": "Duke @ Miami Florida",
@@ -27437,7 +27570,7 @@
    },
    "ex_stats_close": {
     "openInterest": 2828166.0,
-    "volume": 3579299.0
+    "volume": 3582172.0
    },
    "first_play": false,
    "game": "Cincinnati @ Iowa State",
@@ -27488,7 +27621,7 @@
    },
    "ex_stats_close": {
     "openInterest": 2828166.0,
-    "volume": 3579299.0
+    "volume": 3582172.0
    },
    "first_play": false,
    "game": "Cincinnati @ Iowa State",
@@ -27529,8 +27662,8 @@
    "best_price": 0.5,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.4975,
-   "clv_cents": -0.3,
+   "close_price": 0.5,
+   "clv_cents": 0.0,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": null,
@@ -27686,8 +27819,8 @@
     "volume": 9956616.0
    },
    "ex_stats_close": {
-    "openInterest": 9578629.0,
-    "volume": 10076412.0
+    "openInterest": 9579077.0,
+    "volume": 10076860.0
    },
    "first_play": false,
    "game": "Michigan @ Oregon",
@@ -27830,8 +27963,8 @@
    "best_price": 0.73,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.73,
-   "clv_cents": 0.0,
+   "close_price": 0.725,
+   "clv_cents": -0.5,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": {
@@ -27942,7 +28075,7 @@
    },
    "ex_stats_close": {
     "openInterest": 373511.0,
-    "volume": 541377.0
+    "volume": 576099.0
    },
    "first_play": false,
    "game": "James Madison @ Connecticut",
@@ -28306,8 +28439,8 @@
    "best_price": 0.3401,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.3378,
-   "clv_cents": 0.2,
+   "close_price": 0.3356,
+   "clv_cents": 0.0,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": null,
@@ -28497,8 +28630,8 @@
    "best_price": 0.405,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.4065,
-   "clv_cents": -0.3,
+   "close_price": 0.3906,
+   "clv_cents": -1.9,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": null,
@@ -28977,8 +29110,8 @@
    "best_price": 0.3401,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.3378,
-   "clv_cents": 0.2,
+   "close_price": 0.3356,
+   "clv_cents": 0.0,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": null,
@@ -29032,8 +29165,8 @@
     "volume": 1046932.0
    },
    "ex_stats_close": {
-    "openInterest": 1076475.0,
-    "volume": 1330567.0
+    "openInterest": 1078680.0,
+    "volume": 1335076.0
    },
    "first_play": true,
    "game": "Northwestern @ Ohio State",
@@ -30251,8 +30384,8 @@
    "best_price": 0.5,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.495,
-   "clv_cents": -0.5,
+   "close_price": 0.5,
+   "clv_cents": 0.0,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": {
@@ -31346,8 +31479,8 @@
    "best_price": 0.6,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.6063,
-   "clv_cents": -0.9,
+   "close_price": 0.6269,
+   "clv_cents": 1.2,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": null,
@@ -32048,8 +32181,8 @@
    "best_price": 0.555,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.5475,
-   "clv_cents": -1.6,
+   "close_price": 0.5495,
+   "clv_cents": -1.4,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": null,
@@ -32103,8 +32236,8 @@
     "volume": 9784230.0
    },
    "ex_stats_close": {
-    "openInterest": 9578629.0,
-    "volume": 10076412.0
+    "openInterest": 9579077.0,
+    "volume": 10076860.0
    },
    "first_play": false,
    "game": "Michigan @ Oregon",
@@ -32298,8 +32431,8 @@
     "volume": 526946.0
    },
    "ex_stats_close": {
-    "openInterest": 510124.0,
-    "volume": 535645.0
+    "openInterest": 511134.0,
+    "volume": 536655.0
    },
    "first_play": true,
    "game": "Middle Tennessee @ Liberty",
@@ -32349,8 +32482,8 @@
     "volume": 526946.0
    },
    "ex_stats_close": {
-    "openInterest": 510124.0,
-    "volume": 535645.0
+    "openInterest": 511134.0,
+    "volume": 536655.0
    },
    "first_play": false,
    "game": "Middle Tennessee @ Liberty",
@@ -32604,8 +32737,8 @@
     "volume": 536250.0
    },
    "ex_stats_close": {
-    "openInterest": 817652.0,
-    "volume": 979858.0
+    "openInterest": 816252.0,
+    "volume": 990858.0
    },
    "first_play": true,
    "game": "Missouri @ Georgia",
@@ -32655,8 +32788,8 @@
     "volume": 536250.0
    },
    "ex_stats_close": {
-    "openInterest": 817652.0,
-    "volume": 979858.0
+    "openInterest": 816252.0,
+    "volume": 990858.0
    },
    "first_play": true,
    "game": "Missouri @ Georgia",
@@ -33063,8 +33196,8 @@
     "volume": 917519.0
    },
    "ex_stats_close": {
-    "openInterest": 887322.0,
-    "volume": 936775.0
+    "openInterest": 907730.0,
+    "volume": 957183.0
    },
    "first_play": false,
    "game": "New Mexico State @ Missouri State",
@@ -33114,8 +33247,8 @@
     "volume": 917519.0
    },
    "ex_stats_close": {
-    "openInterest": 887322.0,
-    "volume": 936775.0
+    "openInterest": 907730.0,
+    "volume": 957183.0
    },
    "first_play": true,
    "game": "New Mexico State @ Missouri State",
@@ -33258,8 +33391,8 @@
    "best_price": 0.475,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.47,
-   "clv_cents": -0.5,
+   "close_price": 0.475,
+   "clv_cents": 0.0,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": {
@@ -33471,8 +33604,8 @@
     "volume": 256159.0
    },
    "ex_stats_close": {
-    "openInterest": 333542.0,
-    "volume": 540320.0
+    "openInterest": 335542.0,
+    "volume": 542320.0
    },
    "first_play": true,
    "game": "Arkansas State @ Coastal Carolina",
@@ -33522,8 +33655,8 @@
     "volume": 256159.0
    },
    "ex_stats_close": {
-    "openInterest": 333542.0,
-    "volume": 540320.0
+    "openInterest": 335542.0,
+    "volume": 542320.0
    },
    "first_play": false,
    "game": "Arkansas State @ Coastal Carolina",
@@ -33666,8 +33799,8 @@
    "best_price": 0.4977,
    "best_price_book": "prophetx",
    "book": "novig",
-   "close_price": 0.505,
-   "clv_cents": 0.5,
+   "close_price": 0.5,
+   "clv_cents": 0.0,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": {
@@ -33930,8 +34063,8 @@
     "volume": 7951184.0
    },
    "ex_stats_close": {
-    "openInterest": 9922956.0,
-    "volume": 10714575.0
+    "openInterest": 9923956.0,
+    "volume": 10715575.0
    },
    "first_play": false,
    "game": "James Madison @ Connecticut",
@@ -33981,8 +34114,8 @@
     "volume": 1027131.0
    },
    "ex_stats_close": {
-    "openInterest": 1076475.0,
-    "volume": 1330567.0
+    "openInterest": 1078680.0,
+    "volume": 1335076.0
    },
    "first_play": true,
    "game": "Northwestern @ Ohio State",
@@ -34032,8 +34165,8 @@
     "volume": 2322115.0
    },
    "ex_stats_close": {
-    "openInterest": 2026506.0,
-    "volume": 2332673.0
+    "openInterest": 2026590.0,
+    "volume": 2332757.0
    },
    "first_play": true,
    "game": "Wisconsin @ Maryland",
@@ -34444,8 +34577,8 @@
     "volume": 7489688.0
    },
    "ex_stats_close": {
-    "openInterest": 11441264.0,
-    "volume": 13492929.0
+    "openInterest": 11523325.0,
+    "volume": 13574990.0
    },
    "first_play": false,
    "game": "Tennessee @ Texas A&M",
@@ -34495,8 +34628,8 @@
     "volume": 7489688.0
    },
    "ex_stats_close": {
-    "openInterest": 11441264.0,
-    "volume": 13492929.0
+    "openInterest": 11523325.0,
+    "volume": 13574990.0
    },
    "first_play": true,
    "game": "Tennessee @ Texas A&M",
@@ -34751,7 +34884,7 @@
    },
    "ex_stats_close": {
     "openInterest": 373511.0,
-    "volume": 541377.0
+    "volume": 576099.0
    },
    "first_play": false,
    "game": "James Madison @ Connecticut",
@@ -35171,8 +35304,8 @@
    "best_price": 0.4952,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.4878,
-   "clv_cents": -0.2,
+   "close_price": 0.4854,
+   "clv_cents": -0.5,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": null,
@@ -37741,8 +37874,8 @@
    "best_price": 0.42,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.4167,
-   "clv_cents": -1.1,
+   "close_price": 0.4237,
+   "clv_cents": -0.4,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": null,
@@ -37981,8 +38114,8 @@
    "best_price": 0.82,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.825,
-   "clv_cents": 0.5,
+   "close_price": 0.83,
+   "clv_cents": 1.0,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": {
@@ -37990,8 +38123,8 @@
     "volume": 20028.0
    },
    "ex_stats_close": {
-    "openInterest": 82024.0,
-    "volume": 115642.0
+    "openInterest": 85154.0,
+    "volume": 118772.0
    },
    "first_play": false,
    "game": "Illinois State @ Youngstown State",
@@ -38691,8 +38824,8 @@
    "best_price": 0.59,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.59,
-   "clv_cents": 0.0,
+   "close_price": 0.585,
+   "clv_cents": -0.5,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": {
@@ -39781,7 +39914,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 162.7,
-    "volume_24h_fp": 9.47,
+    "volume_24h_fp": 162.7,
     "volume_fp": 162.7
    },
    "first_play": false,
@@ -39823,8 +39956,8 @@
    "best_price": 0.5265,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.4878,
-   "clv_cents": -3.4,
+   "close_price": 0.4854,
+   "clv_cents": -3.6,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": null,
@@ -40019,8 +40152,8 @@
    "best_price": 0.4952,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.4854,
-   "clv_cents": -0.5,
+   "close_price": 0.4831,
+   "clv_cents": -0.7,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": null,
@@ -40349,8 +40482,8 @@
    "best_price": 0.19,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.18,
-   "clv_cents": -1.0,
+   "close_price": 0.175,
+   "clv_cents": -1.5,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": {
@@ -40358,8 +40491,8 @@
     "volume": 20028.0
    },
    "ex_stats_close": {
-    "openInterest": 82024.0,
-    "volume": 115642.0
+    "openInterest": 85154.0,
+    "volume": 118772.0
    },
    "first_play": true,
    "game": "Illinois State @ Youngstown State",
@@ -42148,8 +42281,8 @@
     "volume": 526421.0
    },
    "ex_stats_close": {
-    "openInterest": 510124.0,
-    "volume": 535645.0
+    "openInterest": 511134.0,
+    "volume": 536655.0
    },
    "first_play": false,
    "game": "Middle Tennessee @ Liberty",
@@ -42424,8 +42557,8 @@
    "best_price": 0.8,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.8165,
-   "clv_cents": 1.6,
+   "close_price": 0.8182,
+   "clv_cents": 1.8,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": null,
@@ -42516,8 +42649,8 @@
    "best_price": 0.5051,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.4878,
-   "clv_cents": -1.2,
+   "close_price": 0.4902,
+   "clv_cents": -1.0,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": null,
@@ -42617,8 +42750,8 @@
     "volume": 917519.0
    },
    "ex_stats_close": {
-    "openInterest": 887322.0,
-    "volume": 936775.0
+    "openInterest": 907730.0,
+    "volume": 957183.0
    },
    "first_play": false,
    "game": "New Mexico State @ Missouri State",
@@ -42668,8 +42801,8 @@
     "volume": 917519.0
    },
    "ex_stats_close": {
-    "openInterest": 887322.0,
-    "volume": 936775.0
+    "openInterest": 907730.0,
+    "volume": 957183.0
    },
    "first_play": true,
    "game": "New Mexico State @ Missouri State",
@@ -43121,7 +43254,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 162.7,
-    "volume_24h_fp": 9.47,
+    "volume_24h_fp": 162.7,
     "volume_fp": 162.7
    },
    "first_play": false,
@@ -43450,8 +43583,8 @@
    "best_price": 0.82,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.8246,
-   "clv_cents": 0.0,
+   "close_price": 0.8261,
+   "clv_cents": 0.1,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": null,
@@ -43889,8 +44022,8 @@
     "volume": 526421.0
    },
    "ex_stats_close": {
-    "openInterest": 510124.0,
-    "volume": 535645.0
+    "openInterest": 511134.0,
+    "volume": 536655.0
    },
    "first_play": true,
    "game": "Middle Tennessee @ Liberty",
@@ -44086,8 +44219,8 @@
     "volume": 475167.0
    },
    "ex_stats_close": {
-    "openInterest": 817652.0,
-    "volume": 979858.0
+    "openInterest": 816252.0,
+    "volume": 990858.0
    },
    "first_play": true,
    "game": "Missouri @ Georgia",
@@ -44137,8 +44270,8 @@
     "volume": 475167.0
    },
    "ex_stats_close": {
-    "openInterest": 817652.0,
-    "volume": 979858.0
+    "openInterest": 816252.0,
+    "volume": 990858.0
    },
    "first_play": true,
    "game": "Missouri @ Georgia",
@@ -44188,8 +44321,8 @@
     "volume": 2635758.0
    },
    "ex_stats_close": {
-    "openInterest": 3547476.0,
-    "volume": 4587220.0
+    "openInterest": 3549497.0,
+    "volume": 4589241.0
    },
    "first_play": true,
    "game": "USC @ Indiana",
@@ -44892,8 +45025,8 @@
     "volume": 2182884.0
    },
    "ex_stats_close": {
-    "openInterest": 11441264.0,
-    "volume": 13492929.0
+    "openInterest": 11523325.0,
+    "volume": 13574990.0
    },
    "first_play": true,
    "game": "Tennessee @ Texas A&M",
@@ -44943,8 +45076,8 @@
     "volume": 2182884.0
    },
    "ex_stats_close": {
-    "openInterest": 11441264.0,
-    "volume": 13492929.0
+    "openInterest": 11523325.0,
+    "volume": 13574990.0
    },
    "first_play": true,
    "game": "Tennessee @ Texas A&M",
@@ -45174,8 +45307,8 @@
    "best_price": 0.5545,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5349,
-   "clv_cents": -1.5,
+   "close_price": 0.537,
+   "clv_cents": -1.2,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": null,
@@ -45653,8 +45786,8 @@
     "volume": 1704513.0
    },
    "ex_stats_close": {
-    "openInterest": 2041531.0,
-    "volume": 2247455.0
+    "openInterest": 2052534.0,
+    "volume": 2267863.0
    },
    "first_play": false,
    "game": "Michigan @ Oregon",
@@ -45704,8 +45837,8 @@
     "volume": 1704513.0
    },
    "ex_stats_close": {
-    "openInterest": 2041531.0,
-    "volume": 2247455.0
+    "openInterest": 2052534.0,
+    "volume": 2267863.0
    },
    "first_play": true,
    "game": "Michigan @ Oregon",
@@ -46246,8 +46379,8 @@
    "best_price": 0.375,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.3704,
-   "clv_cents": -0.3,
+   "close_price": 0.3676,
+   "clv_cents": -0.6,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": null,
@@ -46614,8 +46747,8 @@
    "best_price": 0.575,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.569,
-   "clv_cents": -1.1,
+   "close_price": 0.5652,
+   "clv_cents": -1.5,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": null,
@@ -46715,8 +46848,8 @@
     "volume": 9765730.0
    },
    "ex_stats_close": {
-    "openInterest": 9578629.0,
-    "volume": 10076412.0
+    "openInterest": 9579077.0,
+    "volume": 10076860.0
    },
    "first_play": true,
    "game": "Michigan @ Oregon",
@@ -47057,8 +47190,8 @@
     "volume": 214429.0
    },
    "ex_stats_close": {
-    "openInterest": 333542.0,
-    "volume": 540320.0
+    "openInterest": 335542.0,
+    "volume": 542320.0
    },
    "first_play": false,
    "game": "Arkansas State @ Coastal Carolina",
@@ -47159,8 +47292,8 @@
     "volume": 7936261.0
    },
    "ex_stats_close": {
-    "openInterest": 9922956.0,
-    "volume": 10714575.0
+    "openInterest": 9923956.0,
+    "volume": 10715575.0
    },
    "first_play": false,
    "game": "James Madison @ Connecticut",
@@ -47212,7 +47345,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 163.23,
-    "volume_24h_fp": 159.71,
+    "volume_24h_fp": 163.23,
     "volume_fp": 163.23
    },
    "first_play": false,
@@ -47300,8 +47433,8 @@
    "best_price": 0.6818,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.6875,
-   "clv_cents": 1.0,
+   "close_price": 0.6825,
+   "clv_cents": 0.5,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": null,
@@ -47739,8 +47872,8 @@
     "volume": 399585.0
    },
    "ex_stats_close": {
-    "openInterest": 1076475.0,
-    "volume": 1330567.0
+    "openInterest": 1078680.0,
+    "volume": 1335076.0
    },
    "first_play": true,
    "game": "Northwestern @ Ohio State",
@@ -48587,8 +48720,8 @@
    "best_price": 0.5076,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5392,
-   "clv_cents": 3.7,
+   "close_price": 0.5413,
+   "clv_cents": 3.9,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": null,
@@ -49025,8 +49158,8 @@
    "best_price": 0.7147,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.63,
-   "clv_cents": -7.0,
+   "close_price": 0.68,
+   "clv_cents": -2.0,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": {
@@ -49283,7 +49416,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 26960.55,
-    "volume_24h_fp": 16254.95,
+    "volume_24h_fp": 16194.65,
     "volume_fp": 30231.25
    },
    "first_play": false,
@@ -50811,7 +50944,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 1156.71,
-    "volume_24h_fp": 183.70000000000002,
+    "volume_24h_fp": 186.09,
     "volume_fp": 1206.05
    },
    "first_play": false,
@@ -52624,8 +52757,8 @@
     "volume": 519631.0
    },
    "ex_stats_close": {
-    "openInterest": 1207483.0,
-    "volume": 1508099.0
+    "openInterest": 1227090.0,
+    "volume": 1527706.0
    },
    "first_play": true,
    "game": "UAB @ Temple",
@@ -52871,7 +53004,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 163.23,
-    "volume_24h_fp": 159.71,
+    "volume_24h_fp": 163.23,
     "volume_fp": 163.23
    },
    "first_play": false,
@@ -53199,8 +53332,8 @@
    "best_price": 0.4904,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.4785,
-   "clv_cents": -0.7,
+   "close_price": 0.4808,
+   "clv_cents": -0.5,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": null,
@@ -53699,8 +53832,8 @@
     "volume": 214429.0
    },
    "ex_stats_close": {
-    "openInterest": 333542.0,
-    "volume": 540320.0
+    "openInterest": 335542.0,
+    "volume": 542320.0
    },
    "first_play": true,
    "game": "Arkansas State @ Coastal Carolina",
@@ -53741,8 +53874,8 @@
    "best_price": 0.275,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.2778,
-   "clv_cents": 0.0,
+   "close_price": 0.274,
+   "clv_cents": -0.4,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": null,
@@ -54700,8 +54833,8 @@
    "best_price": 0.4928,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.4926,
-   "clv_cents": 0.5,
+   "close_price": 0.4831,
+   "clv_cents": -0.5,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": null,
@@ -54746,8 +54879,8 @@
    "best_price": 0.5124,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5,
-   "clv_cents": -0.7,
+   "close_price": 0.505,
+   "clv_cents": -0.2,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": null,
@@ -56146,8 +56279,8 @@
     "volume": 517651.0
    },
    "ex_stats_close": {
-    "openInterest": 1207483.0,
-    "volume": 1508099.0
+    "openInterest": 1227090.0,
+    "volume": 1527706.0
    },
    "first_play": true,
    "game": "UAB @ Temple",
@@ -56624,8 +56757,8 @@
    "best_price": 0.4928,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.4926,
-   "clv_cents": 0.5,
+   "close_price": 0.4831,
+   "clv_cents": -0.5,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": null,
@@ -56670,8 +56803,8 @@
    "best_price": 0.44,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.4405,
-   "clv_cents": 0.0,
+   "close_price": 0.4464,
+   "clv_cents": 0.6,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": null,
@@ -56956,8 +57089,8 @@
    "best_price": 0.5333,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.4878,
-   "clv_cents": -4.0,
+   "close_price": 0.4854,
+   "clv_cents": -4.3,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": null,
@@ -57298,8 +57431,8 @@
     "volume": 314955.0
    },
    "ex_stats_close": {
-    "openInterest": 2026506.0,
-    "volume": 2332673.0
+    "openInterest": 2026590.0,
+    "volume": 2332757.0
    },
    "first_play": true,
    "game": "Wisconsin @ Maryland",
@@ -58607,8 +58740,8 @@
    "best_price": 0.26,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.2222,
-   "clv_cents": -4.8,
+   "close_price": 0.2247,
+   "clv_cents": -4.6,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": null,
@@ -59671,8 +59804,8 @@
     "volume": 8358295.0
    },
    "ex_stats_close": {
-    "openInterest": 13781876.0,
-    "volume": 16065699.0
+    "openInterest": 13882045.0,
+    "volume": 16168644.0
    },
    "first_play": true,
    "game": "Wake Forest @ SMU",
@@ -59820,8 +59953,8 @@
     "volume": 263082.0
    },
    "ex_stats_close": {
-    "openInterest": 9922956.0,
-    "volume": 10714575.0
+    "openInterest": 9923956.0,
+    "volume": 10715575.0
    },
    "first_play": true,
    "game": "James Madison @ Connecticut",
@@ -59871,8 +60004,8 @@
     "volume": 263082.0
    },
    "ex_stats_close": {
-    "openInterest": 9922956.0,
-    "volume": 10714575.0
+    "openInterest": 9923956.0,
+    "volume": 10715575.0
    },
    "first_play": false,
    "game": "James Madison @ Connecticut",
@@ -59975,7 +60108,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 1955.4099999999999,
-    "volume_24h_fp": 861.2,
+    "volume_24h_fp": 863.02,
     "volume_fp": 2276.29
    },
    "first_play": false,
@@ -60017,8 +60150,8 @@
    "best_price": 0.425,
    "best_price_book": "novig",
    "book": "kalshi",
-   "close_price": 0.41,
-   "clv_cents": -2.0,
+   "close_price": 0.39,
+   "clv_cents": -4.0,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": {
@@ -60027,9 +60160,9 @@
     "volume_fp": 7757.85
    },
    "ex_stats_close": {
-    "open_interest_fp": 14759.669999999998,
-    "volume_24h_fp": 5382.76,
-    "volume_fp": 15023.439999999999
+    "open_interest_fp": 13423.34,
+    "volume_24h_fp": 7532.5,
+    "volume_fp": 19519.44
    },
    "first_play": false,
    "game": "Princeton vs Yale",
@@ -60497,8 +60630,8 @@
    "best_price": 0.51,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.4926,
-   "clv_cents": -1.2,
+   "close_price": 0.495,
+   "clv_cents": -1.0,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": null,
@@ -60638,8 +60771,8 @@
    "best_price": 0.585,
    "best_price_book": "novig",
    "book": "kalshi",
-   "close_price": 0.6,
-   "clv_cents": 2.0,
+   "close_price": 0.62,
+   "clv_cents": 4.0,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": {
@@ -60648,9 +60781,9 @@
     "volume_fp": 7725.08
    },
    "ex_stats_close": {
-    "open_interest_fp": 14759.669999999998,
-    "volume_24h_fp": 5382.76,
-    "volume_fp": 15023.439999999999
+    "open_interest_fp": 13423.34,
+    "volume_24h_fp": 7532.5,
+    "volume_fp": 19519.44
    },
    "first_play": false,
    "game": "Princeton vs Yale",
@@ -60936,9 +61069,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 4607.45,
-    "volume_24h_fp": 4999.71,
-    "volume_fp": 5132.45
+    "open_interest_fp": 4608.45,
+    "volume_24h_fp": 5132.45,
+    "volume_fp": 5133.45
    },
    "first_play": false,
    "game": "Princeton vs Yale: Spread",
@@ -61132,8 +61265,8 @@
     "volume": 527714.0
    },
    "ex_stats_close": {
-    "openInterest": 980075.0,
-    "volume": 1213467.0
+    "openInterest": 982959.0,
+    "volume": 1216351.0
    },
    "first_play": true,
    "game": "Cincinnati @ Iowa State",
@@ -61183,8 +61316,8 @@
     "volume": 390085.0
    },
    "ex_stats_close": {
-    "openInterest": 1076475.0,
-    "volume": 1330567.0
+    "openInterest": 1078680.0,
+    "volume": 1335076.0
    },
    "first_play": true,
    "game": "Northwestern @ Ohio State",
@@ -61764,8 +61897,8 @@
     "volume": 8100471.0
    },
    "ex_stats_close": {
-    "openInterest": 5697887.0,
-    "volume": 10747757.0
+    "openInterest": 5703769.0,
+    "volume": 10753639.0
    },
    "first_play": false,
    "game": "Duke @ Miami Florida",
@@ -61959,8 +62092,8 @@
     "volume": 527714.0
    },
    "ex_stats_close": {
-    "openInterest": 980075.0,
-    "volume": 1213467.0
+    "openInterest": 982959.0,
+    "volume": 1216351.0
    },
    "first_play": true,
    "game": "Cincinnati @ Iowa State",
@@ -62011,9 +62144,9 @@
     "volume_fp": 2114.19
    },
    "ex_stats_close": {
-    "open_interest_fp": 17353.84,
-    "volume_24h_fp": 15524.38,
-    "volume_fp": 18111.84
+    "open_interest_fp": 17498.76,
+    "volume_24h_fp": 16066.23,
+    "volume_fp": 18256.76
    },
    "first_play": true,
    "game": "James Madison vs UConn: Spread",
@@ -62065,7 +62198,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 4374.63,
-    "volume_24h_fp": 3577.0099999999998,
+    "volume_24h_fp": 3578.68,
     "volume_fp": 4687.89
    },
    "first_play": false,
@@ -62218,8 +62351,8 @@
     "volume": 5146195.0
    },
    "ex_stats_close": {
-    "openInterest": 5697887.0,
-    "volume": 10747757.0
+    "openInterest": 5703769.0,
+    "volume": 10753639.0
    },
    "first_play": true,
    "game": "Duke @ Miami Florida",
@@ -62321,9 +62454,9 @@
     "volume_fp": 275.74
    },
    "ex_stats_close": {
-    "open_interest_fp": 967.6300000000001,
-    "volume_24h_fp": 717.74,
-    "volume_fp": 967.6300000000001
+    "open_interest_fp": 1067.63,
+    "volume_24h_fp": 719.47,
+    "volume_fp": 1067.63
    },
    "first_play": false,
    "game": "Central Connecticut St. vs LIU",
@@ -63088,8 +63221,8 @@
    "best_price": 0.6172,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5652,
-   "clv_cents": -4.7,
+   "close_price": 0.5614,
+   "clv_cents": -5.1,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": null,
@@ -63134,8 +63267,8 @@
    "best_price": 0.44,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.4405,
-   "clv_cents": -2.3,
+   "close_price": 0.4464,
+   "clv_cents": -1.7,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": null,
@@ -64824,8 +64957,8 @@
    "best_price": 0.5525,
    "best_price_book": "prophetx",
    "book": "kalshi",
-   "close_price": 0.59,
-   "clv_cents": 5.0,
+   "close_price": 0.6,
+   "clv_cents": 6.0,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": {
@@ -65510,8 +65643,8 @@
    "best_price": 0.5175,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.46,
-   "clv_cents": -4.0,
+   "close_price": 0.48,
+   "clv_cents": -2.0,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": {
@@ -66881,8 +67014,8 @@
    "best_price": 0.6111,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5652,
-   "clv_cents": -4.1,
+   "close_price": 0.5614,
+   "clv_cents": -4.5,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": null,
@@ -68427,8 +68560,8 @@
    "best_price": 0.465,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.4587,
-   "clv_cents": -3.4,
+   "close_price": 0.4566,
+   "clv_cents": -3.6,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": null,
@@ -68719,8 +68852,8 @@
    "best_price": 0.4977,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.4878,
-   "clv_cents": -0.5,
+   "close_price": 0.4902,
+   "clv_cents": -0.2,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": null,
@@ -68951,8 +69084,8 @@
    "best_price": 0.5739,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5349,
-   "clv_cents": -3.4,
+   "close_price": 0.537,
+   "clv_cents": -3.2,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": null,
@@ -69551,8 +69684,8 @@
    "best_price": 0.5051,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.4785,
-   "clv_cents": -2.2,
+   "close_price": 0.4808,
+   "clv_cents": -1.9,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": null,
@@ -70960,8 +71093,8 @@
    "best_price": 0.36,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.3704,
-   "clv_cents": 0.5,
+   "close_price": 0.3676,
+   "clv_cents": 0.3,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": null,
@@ -71282,8 +71415,8 @@
    "best_price": 0.7971,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.8165,
-   "clv_cents": 2.3,
+   "close_price": 0.8182,
+   "clv_cents": 2.4,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": null,
@@ -72029,8 +72162,8 @@
    "best_price": 0.82,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.825,
-   "clv_cents": 0.5,
+   "close_price": 0.83,
+   "clv_cents": 1.0,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": {
@@ -72038,8 +72171,8 @@
     "volume": 20028.0
    },
    "ex_stats_close": {
-    "openInterest": 82024.0,
-    "volume": 115642.0
+    "openInterest": 85154.0,
+    "volume": 118772.0
    },
    "first_play": true,
    "game": "Illinois State @ Youngstown State",
@@ -72226,8 +72359,8 @@
    "best_price": 0.52,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.51,
-   "clv_cents": -1.0,
+   "close_price": 0.505,
+   "clv_cents": -1.5,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": {
@@ -72341,7 +72474,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 16318.16,
-    "volume_24h_fp": 10122.25,
+    "volume_24h_fp": 10124.82,
     "volume_fp": 16429.16
    },
    "first_play": true,
@@ -73029,9 +73162,9 @@
     "volume_fp": 1795.76
    },
    "ex_stats_close": {
-    "open_interest_fp": 2305.9,
-    "volume_24h_fp": 1677.84,
-    "volume_fp": 3271.01
+    "open_interest_fp": 2361.49,
+    "volume_24h_fp": 1679.4199999999998,
+    "volume_fp": 3326.6000000000004
    },
    "first_play": true,
    "game": "Maine vs University at Albany",
@@ -73261,8 +73394,8 @@
    "best_price": 0.59,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.59,
-   "clv_cents": 0.0,
+   "close_price": 0.585,
+   "clv_cents": -0.5,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": {
@@ -74230,8 +74363,8 @@
    "best_price": 0.44,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.41,
-   "clv_cents": -3.0,
+   "close_price": 0.39,
+   "clv_cents": -5.0,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": {
@@ -74240,7 +74373,7 @@
    },
    "ex_stats_close": {
     "openInterest": 551070.0,
-    "volume": 737268.0
+    "volume": 737429.0
    },
    "first_play": false,
    "game": "Princeton @ Yale",
@@ -74281,8 +74414,8 @@
    "best_price": 0.575,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.6,
-   "clv_cents": 2.5,
+   "close_price": 0.62,
+   "clv_cents": 4.5,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": {
@@ -74291,7 +74424,7 @@
    },
    "ex_stats_close": {
     "openInterest": 551070.0,
-    "volume": 737268.0
+    "volume": 737429.0
    },
    "first_play": true,
    "game": "Princeton @ Yale",
@@ -74536,8 +74669,8 @@
    "best_price": 0.575,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.59,
-   "clv_cents": 1.5,
+   "close_price": 0.585,
+   "clv_cents": 1.0,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": {
@@ -75046,8 +75179,8 @@
    "best_price": 0.495,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.485,
-   "clv_cents": -1.0,
+   "close_price": 0.48,
+   "clv_cents": -1.5,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": {
@@ -75255,8 +75388,8 @@
    "best_price": 0.675,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.67,
-   "clv_cents": -0.5,
+   "close_price": 0.675,
+   "clv_cents": 0.0,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": {
@@ -76296,7 +76429,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 1156.71,
-    "volume_24h_fp": 183.70000000000002,
+    "volume_24h_fp": 186.09,
     "volume_fp": 1206.05
    },
    "first_play": true,
@@ -77473,7 +77606,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 340.96999999999997,
-    "volume_24h_fp": 260.71999999999997,
+    "volume_24h_fp": 263.25,
     "volume_fp": 356.15
    },
    "first_play": false,
@@ -77526,7 +77659,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 4374.63,
-    "volume_24h_fp": 3577.0099999999998,
+    "volume_24h_fp": 3578.68,
     "volume_fp": 4687.89
    },
    "first_play": true,
@@ -77579,7 +77712,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 13634.74,
-    "volume_24h_fp": 9596.07,
+    "volume_24h_fp": 9597.97,
     "volume_fp": 14022.36
    },
    "first_play": false,
@@ -77632,7 +77765,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 16318.16,
-    "volume_24h_fp": 10122.25,
+    "volume_24h_fp": 10124.82,
     "volume_fp": 16429.16
    },
    "first_play": false,
@@ -78068,8 +78201,8 @@
     "volume": 314955.0
    },
    "ex_stats_close": {
-    "openInterest": 2026506.0,
-    "volume": 2332673.0
+    "openInterest": 2026590.0,
+    "volume": 2332757.0
    },
    "first_play": true,
    "game": "Wisconsin @ Maryland",
@@ -78218,8 +78351,8 @@
    "best_price": 0.44,
    "best_price_book": "novig",
    "book": "kalshi",
-   "close_price": 0.41,
-   "clv_cents": -3.0,
+   "close_price": 0.39,
+   "clv_cents": -5.0,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": {
@@ -78228,9 +78361,9 @@
     "volume_fp": 7621.139999999999
    },
    "ex_stats_close": {
-    "open_interest_fp": 14759.669999999998,
-    "volume_24h_fp": 5382.76,
-    "volume_fp": 15023.439999999999
+    "open_interest_fp": 13423.34,
+    "volume_24h_fp": 7532.5,
+    "volume_fp": 19519.44
    },
    "first_play": false,
    "game": "Princeton vs Yale",
@@ -78282,7 +78415,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 1635.7,
-    "volume_24h_fp": 153.95,
+    "volume_24h_fp": 156.26,
     "volume_fp": 1746.1100000000001
    },
    "first_play": true,
@@ -78334,9 +78467,9 @@
     "volume_fp": 647.53
    },
    "ex_stats_close": {
-    "open_interest_fp": 1875.21,
-    "volume_24h_fp": 1248.46,
-    "volume_fp": 1880.99
+    "open_interest_fp": 1877.18,
+    "volume_24h_fp": 1250.99,
+    "volume_fp": 1882.96
    },
    "first_play": false,
    "game": "Georgetown vs Fordham",
@@ -78423,8 +78556,8 @@
    "best_price": 0.1589,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.1389,
-   "clv_cents": -1.7,
+   "close_price": 0.1333,
+   "clv_cents": -2.3,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": null,
@@ -79590,8 +79723,8 @@
    "best_price": 0.44,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.4065,
-   "clv_cents": -4.4,
+   "close_price": 0.3906,
+   "clv_cents": -6.0,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": null,
@@ -80365,7 +80498,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 3230.13,
-    "volume_24h_fp": 1615.6100000000001,
+    "volume_24h_fp": 1619.4899999999998,
     "volume_fp": 3438.3599999999997
    },
    "first_play": false,
@@ -81294,8 +81427,8 @@
    "best_price": 0.5375,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.53,
-   "clv_cents": 1.0,
+   "close_price": 0.54,
+   "clv_cents": 2.0,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": {
@@ -81304,9 +81437,9 @@
     "volume_fp": 116.93
    },
    "ex_stats_close": {
-    "open_interest_fp": 719.99,
+    "open_interest_fp": 920.06,
     "volume_24h_fp": 603.06,
-    "volume_fp": 719.99
+    "volume_fp": 920.06
    },
    "first_play": true,
    "game": "Central Connecticut St. vs LIU: Spread",
@@ -81358,7 +81491,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 15847.21,
-    "volume_24h_fp": 4501.79,
+    "volume_24h_fp": 4505.79,
     "volume_fp": 15938.44
    },
    "first_play": false,
@@ -81558,7 +81691,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 16318.16,
-    "volume_24h_fp": 10122.25,
+    "volume_24h_fp": 10124.82,
     "volume_fp": 16429.16
    },
    "first_play": true,
@@ -82272,9 +82405,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 4607.45,
-    "volume_24h_fp": 4999.71,
-    "volume_fp": 5132.45
+    "open_interest_fp": 4608.45,
+    "volume_24h_fp": 5132.45,
+    "volume_fp": 5133.45
    },
    "first_play": false,
    "game": "Princeton vs Yale: Spread",
@@ -82485,7 +82618,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 3230.13,
-    "volume_24h_fp": 1615.6100000000001,
+    "volume_24h_fp": 1619.4899999999998,
     "volume_fp": 3438.3599999999997
    },
    "first_play": false,
@@ -83010,9 +83143,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 4607.45,
-    "volume_24h_fp": 4999.71,
-    "volume_fp": 5132.45
+    "open_interest_fp": 4608.45,
+    "volume_24h_fp": 5132.45,
+    "volume_fp": 5133.45
    },
    "first_play": false,
    "game": "Princeton vs Yale: Spread",
@@ -84892,7 +85025,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 13634.74,
-    "volume_24h_fp": 9596.07,
+    "volume_24h_fp": 9597.97,
     "volume_fp": 14022.36
    },
    "first_play": false,
@@ -86647,8 +86780,8 @@
    "best_price": 0.425,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.41,
-   "clv_cents": -1.5,
+   "close_price": 0.39,
+   "clv_cents": -3.5,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": {
@@ -86657,7 +86790,7 @@
    },
    "ex_stats_close": {
     "openInterest": 551070.0,
-    "volume": 737268.0
+    "volume": 737429.0
    },
    "first_play": true,
    "game": "Princeton @ Yale",
@@ -86698,8 +86831,8 @@
    "best_price": 0.58,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.6,
-   "clv_cents": 2.0,
+   "close_price": 0.62,
+   "clv_cents": 4.0,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": {
@@ -86708,7 +86841,7 @@
    },
    "ex_stats_close": {
     "openInterest": 551070.0,
-    "volume": 737268.0
+    "volume": 737429.0
    },
    "first_play": true,
    "game": "Princeton @ Yale",
@@ -88904,9 +89037,9 @@
     "volume_fp": 630.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1875.21,
-    "volume_24h_fp": 1248.46,
-    "volume_fp": 1880.99
+    "open_interest_fp": 1877.18,
+    "volume_24h_fp": 1250.99,
+    "volume_fp": 1882.96
    },
    "first_play": true,
    "game": "Georgetown vs Fordham",
@@ -88994,8 +89127,8 @@
    "best_price": 0.47,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.46,
-   "clv_cents": -1.0,
+   "close_price": 0.455,
+   "clv_cents": -1.5,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": {
@@ -91248,8 +91381,8 @@
    "best_price": 0.25,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.2062,
-   "clv_cents": -4.4,
+   "close_price": 0.2083,
+   "clv_cents": -4.2,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": null,
@@ -92724,8 +92857,8 @@
     "volume": 1341247.0
    },
    "ex_stats_close": {
-    "openInterest": 2041531.0,
-    "volume": 2247455.0
+    "openInterest": 2052534.0,
+    "volume": 2267863.0
    },
    "first_play": true,
    "game": "Michigan @ Oregon",
@@ -93132,8 +93265,8 @@
     "volume": 516651.0
    },
    "ex_stats_close": {
-    "openInterest": 1207483.0,
-    "volume": 1508099.0
+    "openInterest": 1227090.0,
+    "volume": 1527706.0
    },
    "first_play": true,
    "game": "UAB @ Temple",
@@ -93387,8 +93520,8 @@
     "volume": 466028.0
    },
    "ex_stats_close": {
-    "openInterest": 980075.0,
-    "volume": 1213467.0
+    "openInterest": 982959.0,
+    "volume": 1216351.0
    },
    "first_play": true,
    "game": "Cincinnati @ Iowa State",
@@ -93438,8 +93571,8 @@
     "volume": 466028.0
    },
    "ex_stats_close": {
-    "openInterest": 980075.0,
-    "volume": 1213467.0
+    "openInterest": 982959.0,
+    "volume": 1216351.0
    },
    "first_play": true,
    "game": "Cincinnati @ Iowa State",
@@ -93591,8 +93724,8 @@
     "volume": 1398112.0
    },
    "ex_stats_close": {
-    "openInterest": 3652162.0,
-    "volume": 4331484.0
+    "openInterest": 3758577.0,
+    "volume": 4437899.0
    },
    "first_play": true,
    "game": "Northwestern @ Ohio State",
@@ -93642,8 +93775,8 @@
     "volume": 1398112.0
    },
    "ex_stats_close": {
-    "openInterest": 3652162.0,
-    "volume": 4331484.0
+    "openInterest": 3758577.0,
+    "volume": 4437899.0
    },
    "first_play": true,
    "game": "Northwestern @ Ohio State",
@@ -94316,8 +94449,8 @@
    "best_price": 0.35,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.3448,
-   "clv_cents": -2.3,
+   "close_price": 0.3425,
+   "clv_cents": -2.5,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": null,
@@ -95448,8 +95581,8 @@
    "best_price": 0.61,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.59,
-   "clv_cents": -2.0,
+   "close_price": 0.585,
+   "clv_cents": -2.5,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": {
@@ -96548,8 +96681,8 @@
    "best_price": 0.665,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.67,
-   "clv_cents": 0.5,
+   "close_price": 0.675,
+   "clv_cents": 1.0,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": {
@@ -97874,8 +98007,8 @@
    "best_price": 0.465,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.46,
-   "clv_cents": -0.5,
+   "close_price": 0.455,
+   "clv_cents": -1.0,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": {
@@ -98027,8 +98160,8 @@
    "best_price": 0.495,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.485,
-   "clv_cents": -1.0,
+   "close_price": 0.48,
+   "clv_cents": -1.5,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": {
