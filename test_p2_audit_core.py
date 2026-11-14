@@ -1,4 +1,5 @@
 import ast
+import io
 import math
 import os
 import sys
@@ -199,6 +200,72 @@ def t_runner_prints_counts_only():
     joined = "\n".join(prints)
     for bad in ("risked", "net", "roi", "profit", "stake", "game", "bet"):
         assert bad not in joined.replace("verified money", ""), bad
+
+
+# ---- private delivery (offline: urlopen is replaced; nothing leaves the machine)
+def t_render_aggregates_only():
+    rows = [R(order_ref="A", game="SECRETGAME @ XYZ", bet="Over 999.5", game_start="2026-11-02T00:00:00Z"),
+            R(lane="R1", game="OTHERGAME", bet="Lakers -3.5", game_start="2026-11-03T00:00:00Z")]
+    text, csvr = c.render(run(rows))
+    for leak in ("SECRETGAME", "XYZ", "999.5", "OTHERGAME", "Lakers"):
+        assert leak not in text and leak not in str(csvr), leak
+    assert "EXACT:R1" in text and "FUZZY:R1" in text and "UNAVAILABLE" in text
+    assert all(set(r) <= set(c.CSV_FIELDS) for r in csvr) and {r["segment"] for r in csvr} >= {"all", "H1", "H2", "last50"}
+
+
+def _runner():
+    import importlib
+    sys.modules.pop("p2_audit", None)
+    return importlib.import_module("p2_audit")   # import must not run the audit (main is guarded)
+
+
+def t_runner_import_runs_nothing():
+    m = _runner()
+    assert hasattr(m, "main") and hasattr(m, "send_private")
+
+
+def t_send_private_without_secrets_is_loud_not_silent():
+    import contextlib
+    m, out = _runner(), io.StringIO()
+    os.environ.pop("TELEGRAM_BOT_TOKEN", None); os.environ.pop("TELEGRAM_CHAT_ID", None)
+    with contextlib.redirect_stdout(out):
+        ok = m.send_private("x", [])
+    assert ok is False and "NOT delivered" in out.getvalue()
+
+
+def t_send_private_public_log_carries_no_figures_or_token():
+    import contextlib, urllib.request
+    m, out, sent = _runner(), io.StringIO(), []
+
+    class Resp:
+        def read(self):
+            return b"{}"
+    orig = urllib.request.urlopen
+    urllib.request.urlopen = lambda req, timeout=0: (sent.append(req.data), Resp())[1]
+    os.environ["TELEGRAM_BOT_TOKEN"], os.environ["TELEGRAM_CHAT_ID"] = "TOKEN123", "CHAT9"
+    try:
+        text, csvr = c.render(run([R(order_ref="A", game_start="2026-11-02T00:00:00Z")]))
+        with contextlib.redirect_stdout(out):
+            ok = m.send_private(text, csvr)
+        urllib.request.urlopen = lambda req, timeout=0: (_ for _ in ()).throw(OSError("TOKEN123 secret detail"))
+        with contextlib.redirect_stdout(out):
+            bad = m.send_private(text, csvr)
+    finally:
+        urllib.request.urlopen = orig
+        os.environ.pop("TELEGRAM_BOT_TOKEN", None); os.environ.pop("TELEGRAM_CHAT_ID", None)
+    log = out.getvalue()
+    assert ok is True and bad is False and len(sent) == 2                        # one message + the CSV document
+    assert b"p2_lane_audit.csv" in sent[1] and b"risked" in sent[1]              # the figures go to Telegram...
+    for leak in ("TOKEN123", "CHAT9", "risked", "net", "+90", "secret detail"):  # ...and never to the public log
+        assert leak not in log, (leak, log)
+    assert "telegram delivered: 1 message(s) + CSV" in log and "telegram send failed (OSError)" in log
+
+
+def t_workflow_secrets_are_exactly_the_needed_four():
+    import re as _re
+    wf = open(os.path.join(HERE, ".github", "workflows", "p2-audit.yml")).read()
+    assert set(_re.findall(r"secrets\.([A-Z_]+)", wf)) == {"TRACKER_PASSPHRASE", "REGISTRY_TOKEN", "TELEGRAM_BOT_TOKEN", "TELEGRAM_CHAT_ID"}
+    assert "contents: read" in wf and "upload-artifact" not in wf and "actions/cache" not in wf and "git push" not in wf and "git commit" not in wf
 
 
 _n = 0

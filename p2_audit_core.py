@@ -192,3 +192,34 @@ def build(rows, index, norm=_norm):
     items, stats, conflicts = classify(rows, index, norm)
     return {"join": stats, "lane_conflicts": conflicts,
             "buckets": {b: bucket_report(ps) for b, ps in sorted(consolidate(items).items())}}
+
+
+CSV_FIELDS = ("bucket", "segment", "book", "plays", "verified_money", "W", "L", "P", "risked", "net", "roi_pct", "first", "last")
+
+
+def render(rep):
+    """(text, csv_rows) for PRIVATE delivery only. Aggregates per bucket and segment; never a game, bet, ticket or row."""
+    L = ["PROJECT 2 - live lane audit (private). Buckets never mix: EXACT = venue order id -> one registry claim;",
+         "FUZZY = the tracker's own lane label (UNVERIFIED); UNATTRIBUTED = no provable lane; CONFLICT = tracker vs registry disagree.",
+         "Units: UNAVAILABLE (no verified unit schedule with effective dates). ROI = net / risked on verified-money plays only.",
+         f"Join: {rep.get('join')} | lane conflicts: {len(rep.get('lane_conflicts') or [])}", ""]
+    rows = []
+    for b, v in (rep.get("buckets") or {}).items():
+        L.append(f"[{b}]  open/ambiguous {v['open_or_ambiguous']}  settled-no-time {v['settled_no_time']}  "
+                 f"time basis {v['time_basis_used']}{'  MIXED' if v['MIXED_TIME_BASIS'] else ''}")
+        rg = v.get("game_start_range") or v.get("settled_range") or [None, None]
+        for seg in ("all", "H1", "H2", "last50"):
+            a = v[seg]
+            roi = "n/a" if a["roi_pct"] is None else f"{a['roi_pct']:+.2f}%"
+            L.append(f"  {seg:<6} plays {a['settled']:>4} verified {a['verified_money']:>4}  W-L-P {a['W']}-{a['L']}-{a['P']}  "
+                     f"risked {a['risked']:.2f} net {a['net']:+.2f} ROI {roi}")
+            rows.append({"bucket": b, "segment": seg, "book": "ALL", "plays": a["settled"], "verified_money": a["verified_money"],
+                         "W": a["W"], "L": a["L"], "P": a["P"], "risked": a["risked"], "net": a["net"], "roi_pct": a["roi_pct"],
+                         "first": rg[0] if seg == "all" else "", "last": rg[1] if seg == "all" else ""})
+            for bk, x in a["by_book"].items():
+                rows.append({"bucket": b, "segment": seg, "book": bk, "plays": x["n"], "verified_money": x["n"], "W": "", "L": "",
+                             "P": "", "risked": x["risked"], "net": x["net"], "roi_pct": x["roi_pct"], "first": "", "last": ""})
+        L.append(f"  multi-row plays {v['multi_row_plays']}, mixed-result plays {v['mixed_result_plays']}, "
+                 f"possible splits flagged (not merged) {v['possible_split_flagged_NOT_MERGED']}")
+        L.append("")
+    return "\n".join(L), rows
