@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 14, 10:35 AM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 64.
+Updated Sat Nov 14, 10:40 AM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 64.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,11 +10,11 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 14 10:35AM | NCAAF | Wake Forest @ SMU | moneyline: SMU (0) | novig | $27k | -117 | ✅ prophetx |  | +0.0c |  | pending |
+| Nov 14 10:35AM | NCAAF | Wake Forest @ SMU | moneyline: SMU (0) | novig | $27k | -117 | ✅ prophetx |  | +0.5c |  | pending |
 | Nov 14 10:30AM | NCAAF | Syracuse vs NC St.: Total Points | total: Over 54.5 points | kalshi | $35k | -100 | ✅ novig |  | +0.0c |  | pending |
 | Nov 14 10:30AM | NCAAF | East Tennessee St. vs Wofford | moneyline: East Tennessee St. | kalshi | $72k | -186 | ✅ novig |  | +0.0c |  | pending |
 | Nov 14 10:15AM | NCAAF | Northwestern vs Ohio St.: Spread | spread: NOT Ohio St. wins by over 14.5 points | kalshi | $83k | -117 |  |  | +0.0c |  | pending |
-| Nov 14 10:10AM | NCAAF | Arkansas St. vs Coastal Carolina: Spread | spread: Coastal Carolina wins by over 1.5 points | kalshi | $53k | -100 | ✅ novig |  | +0.0c |  | pending |
+| Nov 14 10:10AM | NCAAF | Arkansas St. vs Coastal Carolina: Spread | spread: Coastal Carolina wins by over 1.5 points | kalshi | $53k | -100 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 14 10:10AM | NCAAF | Grambling St. vs Bethune-Cookman | moneyline: Grambling St. | kalshi | $31k | -122 |  |  | +0.0c |  | pending |
 | Nov 14 10:04AM | NCAAF | Chattanooga vs Furman | moneyline: Furman | kalshi | $40k | +133 |  |  | -1.0c |  | pending |
 | Nov 14 9:50AM | NCAAF | Syracuse vs NC St.: Total Points | total: NOT Over 53.5 points | kalshi | $60k | +104 |  |  | -1.0c | yes | pending |
@@ -23,8 +23,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 14 9:25AM | NCAAF | Northwestern @ Ohio State | moneyline: OSU (0) | novig | $50k | -488 | ✅ prophetx |  | +0.0c |  | pending |
 | Nov 14 9:25AM | NCAAF | Northwestern vs Ohio St.: Total Points | total: Over 45.5 points | kalshi | $40k | +104 |  | ✅ | +0.0c |  | pending |
 | Nov 14 9:10AM | NCAAF | Syracuse vs NC St.: Spread | spread: Syracuse wins by over 2.5 points | kalshi | $45k | -113 |  |  | +0.0c |  | pending |
-| Nov 14 9:05AM | NCAAF | The Citadel vs VMI: Spread | spread: NOT The Citadel wins by over 16.5 points | kalshi | $27k | -100 |  |  | +0.0c | yes | pending |
-| Nov 14 8:55AM | NCAAF | Central Connecticut St. vs LIU: Total Points | total: NOT Over 52.5 points | kalshi | $28k | -122 |  |  | +1.0c |  | pending |
+| Nov 14 9:05AM | NCAAF | The Citadel vs VMI: Spread | spread: NOT The Citadel wins by over 16.5 points | kalshi | $27k | -100 |  |  | -1.0c | yes | pending |
+| Nov 14 8:55AM | NCAAF | Central Connecticut St. vs LIU: Total Points | total: NOT Over 52.5 points | kalshi | $28k | -122 |  |  | +2.0c |  | pending |
 | Nov 14 8:45AM | NCAAF | Dartmouth vs Cornell | moneyline: Dartmouth | kalshi | $39k | -113 |  |  | +0.0c | yes | pending |
 | Nov 14 8:14AM | NCAAF | East Carolina vs Charlotte: Total Points | total: Over 45.5 points | kalshi | $28k | -100 |  |  | +1.0c |  | pending |
 | Nov 14 8:14AM | NCAAF | Stonehill vs Robert Morris | moneyline: Robert Morris | kalshi | $43k | -122 |  |  | +0.0c |  | pending |
@@ -36,7 +36,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 14 5:10AM | NCAAF | East Carolina vs Charlotte: Total Points | total: NOT Over 45.5 points | kalshi | $43k | -104 |  |  | -1.0c | yes | pending |
 | Nov 14 5:10AM | NCAAF | Bucknell vs William & Mary | moneyline: William & Mary | kalshi | $52k | -223 |  |  | +0.0c | yes | pending |
 | Nov 14 4:15AM | NCAAF | Abilene Christian vs Austin Peay | moneyline: Austin Peay | kalshi | $29k | -257 |  |  | +0.0c | yes | pending |
-| Nov 14 4:10AM | NCAAF | Arkansas St. vs Coastal Carolina: Total Points | total: NOT Over 52.5 points | kalshi | $29k | -104 |  | ❌ | -1.0c | yes | pending |
+| Nov 14 4:10AM | NCAAF | Arkansas St. vs Coastal Carolina: Total Points | total: NOT Over 52.5 points | kalshi | $29k | -104 |  | ❌ | -2.0c | yes | pending |
 | Nov 14 4:05AM | NCAAF | Stony Brook vs New Hampshire | moneyline: Stony Brook | kalshi | $54k | -194 |  |  | +0.0c | yes | pending |
 | Nov 14 4:05AM | NCAAF | Southeast Missouri St. vs Charleston Southern | moneyline: Southeast Missouri St. | kalshi | $31k | -144 |  |  | +0.0c | yes | pending |
 | Nov 14 4:05AM | NCAAF | Drake vs St. Thomas | moneyline: St. Thomas | kalshi | $70k | -488 |  |  | +0.0c | yes | pending |
@@ -62,7 +62,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 13 10:00PM | NBA | Oklahoma City vs Los Angeles C: Spread | spread: NOT Oklahoma City wins by over 6.5 points | kalshi | $46k | -108 | ✅ novig |  | +0.0c |  | W |
 | Nov 13 9:50PM | NCAAF | Houston @ Colorado | moneyline: HOU (0) | novig | $42k | -285 | ✅ kalshi,prophetx | ❌ | +0.5c |  | L |
 | Nov 13 9:45PM | NBA | Oklahoma City Thunder @ Los Angeles Clippers | moneyline: OKC (0) | novig | $29k | -223 | ✅ prophetx |  | -1.5c |  | L |
-| Nov 13 9:05PM | NCAAF | Butler vs Marist | moneyline: Marist | kalshi | $35k | +223 |  |  | +0.0c |  | pending |
+| Nov 13 9:05PM | NCAAF | Butler vs Marist | moneyline: Marist | kalshi | $35k | +223 |  |  | +1.0c |  | pending |
 | Nov 13 8:33PM | NCAAF | Auburn vs Mississippi St.: Total Points | total: Over 51.5 points | kalshi | $45k | -100 |  | ✅ | +0.0c | yes | pending |
 | Nov 13 8:33PM | NBA | Portland vs Sacramento: Total Points | total: Over 230.5 points | kalshi | $29k | +104 |  | ✅ | +0.0c | yes | L |
 | Nov 13 8:25PM | NBA | Golden State vs San Antonio: Total Points | total: Over 215.5 points | kalshi | $28k | -104 |  | ❌ | +3.0c | yes | L |
