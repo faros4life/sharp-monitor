@@ -110,7 +110,7 @@ jobs:
       - name: Guard - no other tracked file was modified
         if: always()
         run: |
-          git status --porcelain -uno -- . ':!oddspapi/fixtures_recovered.json' > "$RUNNER_TEMP/d" || true
+          git status --porcelain -uno -- . ":!oddspapi/fixtures_recovered.json" > "$RUNNER_TEMP/d" || true
           if [ -s "$RUNNER_TEMP/d" ]; then
             echo "FAIL: the recovery modified tracked files it must not touch:"
             cat "$RUNNER_TEMP/d"
