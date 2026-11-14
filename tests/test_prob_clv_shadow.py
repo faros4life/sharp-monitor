@@ -21,6 +21,10 @@ def close(a, b, t=1e-9):
 lv.SETTLEMENT["vb"] = "refund"                 # a venue with a verified refund rule (test only)
 DEC = 1 + 100 / 110                            # -110 after fee
 
+def src_text_for_scan():
+    return open(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "prob_clv_shadow.py")).read()
+
+
 # ---- 1. formulas
 pp, ev, r = ps.ev_and_pp(0.48, 0.04, 0.48, DEC)
 ck("1 r is conditional on no push", close(r, 0.5))
@@ -126,6 +130,19 @@ ck("7 one game -> SE not claimed", se3 is None)
 h1, h2, nos = ps.split_halves([{"start": "2026-11-02"}, {"start": "2026-11-01"}, {"start": "2026-11-04"}, {"start": "2026-11-03"}, {"start": None}])
 ck("7 halves chronological; a row with no start is reported, not dropped", [x["start"] for x in h1] == ["2026-11-01", "2026-11-02"] and len(nos) == 1)
 ck("7 sgn tolerance", ps.sgn(1e-15) == 0 and ps.sgn(-0.01) == -1)
+
+# ---- 7b. public-log safety: free text from fixture_match must never reach the log
+leaky = ["AMBIGUOUS: Lakers v Celtics - both sides", "the bet text is 'Duke Blue De', not a team - the side was never recorded",
+         "the raw team text identifies neither or both participants (Kansas State)", "no two distinguishable sides on the row (Gonzaga @ Baylor)",
+         "2 fixtures survive the prefix test - still ambiguous, not used", "something unforeseen about Villanova"]
+for x in leaky:
+    sr = ps.safe_reason(x)
+    ck(f"7b safe_reason withholds names: {x[:28]}", not any(n in sr for n in ("Lakers", "Celtics", "Duke", "Kansas", "Gonzaga", "Baylor", "Villanova")), sr)
+ck("7b unknown text is withheld, not echoed", ps.safe_reason("something unforeseen about Villanova") == "other (text withheld)")
+# every string main() can print is built from fixed text, counts, league/lane/source labels and numbers - scan the source for risky prints
+_s = src_text_for_scan()
+ck("7b no say()/print of a selection key, game or bet text", not any(f in _s for f in ('say(r["key"]', "say(f\"{r['key']", "r['game'][1]}", 'snap.get("game")}', "snap.get('bet')}")))
+ck("7b crash handler withholds the exception message", "message and traceback withheld" in _s)
 
 # ---- 8. the module touches nothing live
 src = open(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "prob_clv_shadow.py")).read()

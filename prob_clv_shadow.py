@@ -264,6 +264,28 @@ def split_halves(items, key="start"):
 # ------------------------------------------------------------------ the run (needs the encrypted ledger: Actions only)
 OUT = []
 
+# PUBLIC-LOG SAFETY. Reason strings from fixture_match / the ladder can embed team names and bet text
+# ("AMBIGUOUS: <p1> v <p2>", "the bet text is '<text>'"). Nothing free-text is ever printed: every such string is mapped to a
+# FIXED label here, and anything unrecognised is withheld.
+SAFE = (("could not split", "row has no two sides"), ("no raw side", "no side text on row"), ("ambiguous", "ambiguous fixture or side match"),
+        ("too short", "side text too short"), ("neither or both", "side text matches neither or both teams"),
+        ("no venue ticker", "no venue ticker on row"), ("ticker codes", "ticker matches no fixture"),
+        ("no two distinguishable", "no two distinguishable sides"), ("no league on", "no league on row"),
+        ("no fixture in any cache", "no fixture in any cache"), ("none maps onto", "no candidate maps onto the row"),
+        ("names no team", "bet text names no team"), ("not a team", "side never recorded"),
+        ("abbreviation matcher", "abbreviation matcher unavailable"), ("held team not matched", "held team not matched to fixture"),
+        ("no start time", "no start time"), ("politics", "politics market"), ("did not parse", "bet text did not parse"),
+        ("no sport id", "league has no sport id"), ("stale", "closing quote stale"), ("no fresh two-sided", "no fresh two-sided Pinnacle line"),
+        ("no two-sided", "no two-sided Pinnacle moneyline"))
+
+
+def safe_reason(text):
+    t = str(text or "").lower()
+    for sub, lab in SAFE:
+        if sub in t:
+            return lab
+    return "other (text withheld)"
+
 
 def say(t=""):
     OUT.append(t)
@@ -321,7 +343,7 @@ def build_records(st, tracker, reg, mkmap, H, cv, cb, cl, csel, cstale, fxm):
             continue
         fid, _where, note = cb.resolve_fixture(snap, fx_state, alt_f, cl.find_fixture, fxm.ordered_match, cl.tp)
         if not fid:
-            rec.update(status="no_close", why="FIXTURE-CACHE: no fixture matched (" + str(note)[:40] + ")")
+            rec.update(status="no_close", why="FIXTURE-CACHE: no fixture matched (" + safe_reason(note) + ")")
             recs.append(rec)
             continue
         h = cv._cached_pin(fid)
@@ -333,7 +355,7 @@ def build_records(st, tracker, reg, mkmap, H, cv, cb, cl, csel, cstale, fxm):
         info, why = ladder(f, snap, mkmap, cl.book_markets(h, "pinnacle"), H)
         if info is None:
             cls_ = "POLICY" if ("parse" in str(why) or "politics" in str(why)) else "PINNACLE-DATA"
-            rec.update(status="no_close", why=f"{cls_}: {str(why)[:60]}")
+            rec.update(status="no_close", why=f"{cls_}: {safe_reason(why)}")
             recs.append(rec)
             continue
         rec["sc"] = score_selection(snap.get("league"), rec["book"], dec, gross, info)
@@ -521,4 +543,10 @@ def main():
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    try:
+        sys.exit(main())
+    except SystemExit:
+        raise
+    except Exception as e_:        # the message of a KeyError etc. can be a selection key (game names): print the type only
+        print(f"FATAL: {type(e_).__name__} (message and traceback withheld: they can carry row text)", flush=True)
+        sys.exit(1)
