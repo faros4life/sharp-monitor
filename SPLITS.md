@@ -1,4 +1,4 @@
-# Paper splits (updated 2026-11-14T05:15:16Z)
+# Paper splits (updated 2026-11-14T05:30:19Z)
 
 Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kill bar: 30+ resulted at -0.10u/play or worse closes a split.
 
@@ -9,14 +9,14 @@ Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kil
 | Hard Rock-priced, routed | a-priori | 2026-10-26 | 64-51-0 | +5.82 | +0.051 | -1.08 | ELIGIBLE at next review |
 | Fade Hard Rock-priced | scan | 2026-10-26 | 64-51-0 | -12.58 | -0.109 | -1.08 | CLOSED |
 | PM-global-priced, routed | a-priori | 2026-10-26 | 0-0-0 | +0.00 |  |  | OPEN |
-| Unders only | scan | 2026-10-26 | 59-54-0 | -1.73 | -0.015 | -0.85 | OPEN |
-| Combined filter | scan | 2026-10-26 | 75-72-0 | -5.56 | -0.038 | -2.12 | OPEN |
+| Unders only | scan | 2026-10-26 | 60-54-0 | -0.87 | -0.008 | -0.79 | OPEN |
+| Combined filter | scan | 2026-10-26 | 76-72-0 | -4.75 | -0.032 | -2.12 | OPEN |
 | Priced -125 or worse | scan | 2026-10-26 | 13-13-0 | -2.68 | -0.103 | -2.83 | OPEN |
-| College basketball | scan | 2026-10-26 | 260-210-0 | +16.43 | +0.035 | -1.50 | OPEN |
-| Fade alerts sent 12-24h out | scan | 2026-10-26 | 47-43-0 | -2.41 | -0.027 | -2.00 | CLOSED |
+| College basketball | scan | 2026-10-26 | 261-211-0 | +16.30 | +0.035 | -1.46 | OPEN |
+| Fade alerts sent 12-24h out | scan | 2026-10-26 | 48-43-0 | -3.41 | -0.037 | -1.91 | CLOSED |
 | Tier 2 core (paper) | tier | 2026-10-27 | 16-19-0 | -5.34 | -0.153 | -1.83 | CLOSED |
 | Evening sends, ex-Hard Rock | scan | 2026-10-26 | 19-17-0 | -0.41 | -0.011 | -3.94 | OPEN |
-| Muted midday (11 AM-2 PM ET) | scan | 2026-10-26 | 54-48-0 | -0.50 | -0.005 | +0.25 | OPEN |
+| Muted midday (11 AM-2 PM ET) | scan | 2026-10-26 | 55-48-0 | +0.37 | +0.004 | +0.25 | OPEN |
 | Liquidity totals, no sharp agree | scan | 2026-10-22 | 240-221-0 | +11.53 | +0.025 |  | OPEN |
 | Liquidity vs sharp (oppose) | scan | 2026-10-22 | 193-158-0 | +8.05 | +0.023 |  | CLOSED |
 | Liquidity spreads | scan | 2026-10-22 | 420-408-0 | -40.43 | -0.049 |  | CLOSED (by decision, 2026-10-27) |
@@ -30,7 +30,7 @@ Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kil
 | NBA liquidity totals - evacuation | scan | 2026-10-28 | 30-30-0 | -1.08 | -0.018 |  | CLOSED |
 | NBA liquidity, price -129..-105 | scan | 2026-10-28 | 92-72-0 | +12.20 | +0.074 |  | OPEN |
 
-**All-history reference (every resulted play in the feed, not forward; read only):** Tier 2 core (paper) 23-22-0, -2.47u (-0.055/play); Evening sends, ex-Hard Rock 27-28-1, -4.73u (-0.084/play); Muted midday (11 AM-2 PM ET) 78-56-0, +12.10u (+0.090/play); Liquidity overnight (12-5 AM ET) 150-98-0, +3.49u (+0.014/play); Liquidity evening (5-8 PM ET) 274-232-0, -24.20u (-0.048/play)
+**All-history reference (every resulted play in the feed, not forward; read only):** Tier 2 core (paper) 23-22-0, -2.47u (-0.055/play); Evening sends, ex-Hard Rock 27-28-1, -4.73u (-0.084/play); Muted midday (11 AM-2 PM ET) 79-56-0, +12.97u (+0.096/play); Liquidity overnight (12-5 AM ET) 150-98-0, +3.49u (+0.014/play); Liquidity evening (5-8 PM ET) 274-232-0, -24.20u (-0.048/play)
 
 **Muted midday (11 AM-2 PM ET): breakdowns** (resulted plays only)
 
@@ -40,8 +40,8 @@ Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kil
 | Book | kalshi | 4-4-0, -0.78u (-0.097/play), n=8 | 10-7-0, +1.32u (+0.078/play), n=17 |
 | Book | novig | 9-7-0, +1.34u (+0.084/play), n=16 | 10-8-0, +1.30u (+0.072/play), n=18 |
 | Book | fanduel | - | 1-0-0, +0.87u (+0.870/play), n=1 |
-| Book | hardrockbet | 30-32-0, -5.51u (-0.089/play), n=62 | 30-35-0, -8.51u (-0.131/play), n=65 |
-| Market | spread | 29-21-0, +4.73u (+0.095/play), n=50 | 45-26-0, +13.47u (+0.190/play), n=71 |
+| Book | hardrockbet | 31-32-0, -4.64u (-0.074/play), n=63 | 31-35-0, -7.64u (-0.116/play), n=66 |
+| Market | spread | 30-21-0, +5.60u (+0.110/play), n=51 | 46-26-0, +14.34u (+0.199/play), n=72 |
 | Market | total under | 18-12-0, +3.64u (+0.121/play), n=30 | 20-12-0, +5.45u (+0.170/play), n=32 |
 | Market | total over | 7-15-0, -8.87u (-0.403/play), n=22 | 13-18-0, -6.82u (-0.220/play), n=31 |
 
