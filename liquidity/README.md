@@ -1,15 +1,17 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 14, 6:10 PM ET. This run: 0 new, 0 not confirmed, 7 pending. Open alerts: 47.
+Updated Sat Nov 14, 6:20 PM ET. This run: 2 new, 1 not confirmed, 5 pending. Open alerts: 48.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 1484-1138 (-8.06u flat) | rule met: 894-692
+**Record:** 1485-1138 (-7.10u flat) | rule met: 894-692
 
-**Fade (paper, betting against the print):** 872-1211 (-229.78u flat, after fees)
+**Fade (paper, betting against the print):** 872-1212 (-230.78u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 14 6:20PM | NBA | Denver Nuggets @ New Orleans Pelicans | moneyline: DEN (0) | novig | $85k | -525 | ✅ kalshi,prophetx |  | +0.0c |  | pending |
+| Nov 14 6:20PM | NBA | Denver vs New Orleans | moneyline: Denver | kalshi | $374k | -525 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Nov 14 6:00PM | NHL | New Jersey vs Washington | moneyline: New Jersey | kalshi | $61k | -127 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Nov 14 6:00PM | NCAAF | McNeese vs Southeastern Louisiana | moneyline: Southeastern Louisiana | kalshi | $92k | -300 |  |  | +0.0c |  | pending |
 | Nov 14 5:40PM | NCAAF | UC Davis vs Idaho | moneyline: Idaho | kalshi | $51k | -285 |  |  | +0.0c |  | pending |
@@ -63,7 +65,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 14 11:45AM | NCAAF | Wisconsin at Maryland | moneyline: Wisconsin | prophetx | $34k | -295 | ✅ novig |  | +0.0c |  | L |
 | Nov 14 11:45AM | NCAAF | UAB vs Temple: Spread | spread: Temple wins by over 2.5 points | kalshi | $41k | -100 | ✅ novig |  | +2.0c |  | L |
 | Nov 14 11:40AM | NCAAF | Duke at Miami Florida | moneyline: Miami Florida | prophetx | $33k | -530 | ✅ novig |  | -0.9c | yes | W |
-| Nov 14 11:35AM | NCAAF | Tennessee @ Texas A&M | moneyline: TENN (0) | novig | $52k | -104 |  | ❌ | +2.0c | yes | pending |
+| Nov 14 11:35AM | NCAAF | Tennessee @ Texas A&M | moneyline: TENN (0) | novig | $52k | -104 |  | ❌ | +2.0c | yes | W |
 | Nov 14 11:35AM | NCAAF | Arkansas St. vs Coastal Carolina: Spread | spread: NOT Coastal Carolina wins by over 1.5 points | kalshi | $29k | -104 |  |  | +1.0c | yes | L |
 | Nov 14 11:30AM | NCAAF | Wisconsin @ Maryland | moneyline: WIS (0) | novig | $30k | -292 | ✅ prophetx |  | +0.5c |  | L |
 | Nov 14 11:20AM | NCAAF | Lafayette vs Colgate: Total Points | total: NOT Over 46.5 points | kalshi | $35k | -108 |  |  | +0.0c | yes | W |
@@ -208,5 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 12 3:50PM | NCAAF | Houston vs Colorado: Spread | spread: NOT Houston wins by over 9.5 points | kalshi | $35k | -104 |  |  | +3.0c | yes | W |
 | Nov 12 3:22PM | NFL | Washington Commanders at New York Giants | moneyline: Washington Commanders | prophetx | $25k | +116 | ✅ kalshi,novig |  | +0.0c |  | W |
 | Nov 12 3:13PM | NHL | Tampa Bay vs Columbus: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $40k | -104 | ✅ novig |  | +0.0c |  | W |
-| Nov 12 3:13PM | NHL | Minnesota vs Toronto: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $38k | -108 | ✅ novig |  | -1.0c |  | L |
-| Nov 12 3:00PM | NFL | Washington Commanders @ New York Giants | moneyline: WSH (0) | novig | $35k | +115 | ✅ kalshi |  | -1.0c | yes | W |
