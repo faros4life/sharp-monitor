@@ -105,6 +105,77 @@ def prose_stripped(x):
     return x
 ck("no '$' outside the prose fields", "$" not in json.dumps(prose_stripped(view)))
 
+print("9. financial figures: independent recomputation from raw ledger snaps (flags and counts only)")
+fills_all = rg.fills() or {}
+conf_keys = {str(v.get("play_key")) for v in fills_all.values()
+             if v.get("play_key") and str(v.get("state","")).upper() in ("FILLED", "PARTIAL")}
+fill_join = cov.build_lane_resolver({"orders": [{"key": "board|" + k, "decided_utc": None}
+                                                for k in conf_keys]})
+def snaps(o):
+    return [bets[i].get("snap") or {} for i in (o.get("ids") or []) if i in bets]
+RES = {"W": 1, "WIN": 1, "WON": 1, "L": -1, "LOSS": -1, "LOST": -1}
+for L in B["B_lanes"]["lanes"]:
+    unit = cov.LANE_UNIT.get(L["lane"])
+    cum = L["cumulative"]
+    # (a) every published figure obeys the sign / bound invariants, or the block is UNVERIFIED
+    u, r, k_ = cum.get("units"), cum.get("roi_pct"), cum.get("risked_u")
+    ck(f"{L['name']}: units/ROI same sign, or withheld as UNVERIFIED/UNAVAILABLE",
+       (u is None and r is None) or (u is not None and r is not None and
+        (abs(u) < 1e-9 or (u > 0) == (r > 0))), f"status {cum.get('fin_status')}")
+    ck(f"{L['name']}: |P/L| never exceeds settled risked units",
+       u is None or k_ is None or abs(u) <= k_ + 0.011)
+    ck(f"{L['name']}: ROI never below -100%", r is None or r >= -100.0001)
+    # (b) independent recomputation from raw snaps for lane selections that join to a confirmed fill
+    prof = stk = 0.0; nconf = nset = nopen = nbad = 0
+    for k, o in obs.items():
+        if lane_for(k, o) != L["lane"] or not fill_join(k, o):
+            continue
+        nconf += 1
+        ss = snaps(o)
+        stake = sum((x.get("stake") or 0) for x in ss)
+        pr = [x.get("profit") for x in ss]
+        res = {str(x.get("result") or "").upper() for x in ss} - {""}
+        if not res or any(p_ is None for p_ in pr):
+            nopen += 1
+            continue
+        sg = {RES.get(x) for x in res}
+        tp = sum(pr)
+        if len(res) != 1 or None in sg or (sg == {1} and tp <= 0) or (sg == {-1} and tp >= 0):
+            nbad += 1
+            continue
+        nset += 1; prof += tp; stk += stake
+    print(f"     {L['name']}: confirmed selections {nconf}, settled {nset}, open/unsettled {nopen}, "
+          f"contradictory {nbad}")
+    ck(f"{L['name']}: dashboard confirmed-fill count matches",
+       cum.get("fin_n") in (nconf, None) or cum.get("fin_n") == nconf, f"{cum.get('fin_n')} vs {nconf}")
+    if nbad == 0 and nset and unit and stk:
+        ck(f"{L['name']}: P/L units match independent recomputation",
+           u is not None and abs(u - prof / unit) < 0.011, f"flag only; status {cum.get('fin_status')}")
+        ck(f"{L['name']}: ROI matches independent recomputation",
+           r is not None and abs(r - 100 * prof / stk) < 0.011)
+        ck(f"{L['name']}: units and ROI carry the SAME sign",
+           abs(prof) < 1e-9 or ((prof > 0) == (r > 0)))
+    elif nbad:
+        ck(f"{L['name']}: contradictory raw rows -> published figure is withheld",
+           u is None and cum.get("fin_status") == "UNVERIFIED")
+
+print("10. Phase 1 attribution diagnostics (counts only)")
+p1 = next((L for L in B["B_lanes"]["lanes"] if L["lane"] == "rules"), None)
+orders = (reg or {}).get("orders") or []
+ords_by_lane = collections.Counter(str(o.get("lane") or "?") for o in orders)
+print(f"     registry orders by lane: {dict(ords_by_lane)}")
+print(f"     Phase 1 selections attributed: {p1['cumulative'].get('n', 0) if p1 else 'lane missing'}")
+p1_orders = [o for o in orders if str(o.get("lane")) == "rules"]
+joined = sum(1 for o in p1_orders
+             if any(lane_for(k, ob) == "rules" for k, ob in obs.items()
+                    if str(o.get("key", "")).endswith(k.split("|", 1)[-1])))
+print(f"     Phase 1 registry orders {len(p1_orders)}; with a certified CLV selection {joined}")
+conf_p1 = sum(1 for k, ob in obs.items() if lane_for(k, ob) == "rules" and fill_join(k, ob))
+print(f"     Phase 1 certified selections that join a confirmed fill: {conf_p1}")
+print("     reading: orders==0 -> no qualifying orders recorded (history starts "
+      "at the registry window); orders>0 and certified==0 -> join/CLV problem; "
+      "certified>0 -> attribution works")
+
 print()
 print("RECONCILED" if not bad else f"{len(bad)} MISMATCH(ES): {bad}")
 raise SystemExit(1 if bad else 0)

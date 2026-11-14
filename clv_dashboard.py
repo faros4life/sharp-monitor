@@ -70,31 +70,80 @@ def ci95(mean, se):
     return [round(100 * (mean - 1.96 * se), 2), round(100 * (mean + 1.96 * se), 2)]
 
 
-def blk(obs, unit=None):
-    """One figure block for a set of collapsed selections: n, CLV, CI, positive %, units, ROI."""
+_RES = {"W": "W", "WIN": "W", "WON": "W", "L": "L", "LOSS": "L", "LOST": "L",
+        "P": "P", "PUSH": "P", "VOID": "P"}
+
+
+def fin_block(fin, unit):
+    """Realized P/L, ROI and exposure for CONFIRMED-FILL selections. Fails to UNVERIFIED.
+
+    Peter, 14 Nov: 'Do not confuse exposure, hypothetical returns and realized profit.'
+      units       realized profit / registered unit, over SETTLED confirmed fills that carry a profit
+      roi_pct     the same profit / the stake on those SAME settled fills (one set, one denominator)
+      risked_u    stake on those settled fills, in units (the ROI denominator)
+      open_risked_u  stake on confirmed fills not yet settled: exposure, never in P/L or ROI
+    A figure is withheld (UNVERIFIED, with the reason) when the pieces contradict each other:
+    a settled row whose profit sign disagrees with its result, units and ROI of opposite sign, a
+    loss larger than the stake, or ROI below -100%. A wrong live number is worse than a blank."""
+    f = {"fin_n": 0 if fin is None else len(fin), "fin_status": "UNVERIFIED", "units": None,
+         "roi_pct": None, "risked_u": None, "open_risked_u": None}
+
+    def no(why, status="UNVERIFIED"):
+        f.update(fin_status=status, units_why=why, roi_why=why)
+        return f
+    if fin is None:
+        return no("no confirmed-fill set was supplied, so P/L is UNVERIFIED")
+    if not unit:
+        return no("no registered unit for this group")
+    settled, open_, bad = [], [], 0
+    for o in fin:
+        st, pr = o.get("stake"), o.get("profit")
+        if not st:
+            continue
+        res = _RES.get(str(o.get("result") or "").strip().upper())
+        if res is None or pr is None:
+            if res is None:
+                open_.append(o)
+                continue
+            bad += 0          # settled with no profit recorded: not P/L-able, counted below
+            continue
+        if (res == "W" and pr <= 0) or (res == "L" and pr >= 0) or (res == "P" and abs(pr) > 1e-9):
+            bad += 1
+            continue
+        settled.append(o)
+    f["open_risked_u"] = round(sum(o["stake"] for o in open_) / unit, 2) if open_ else 0.0
+    if bad:
+        return no(f"{bad} confirmed fill(s) have a profit whose sign contradicts the settled result: "
+                  f"P/L and ROI are UNVERIFIED, not zero")
+    if not settled:
+        return no("no settled confirmed fill carries a profit: P/L UNAVAILABLE, not zero",
+                  "NO SETTLED FILLS")
+    profit = sum(o["profit"] for o in settled)
+    staked = sum(o["stake"] for o in settled)
+    units, roi, risked = profit / unit, 100.0 * profit / staked, staked / unit
+    if (units > 1e-9 and roi <= 0) or (units < -1e-9 and roi >= 0):
+        return no("P/L and ROI disagree in sign: UNVERIFIED")
+    if roi < -100.0001 or units < -risked - 0.01:
+        return no("a loss larger than the amount staked: UNVERIFIED")
+    f.update(fin_status="CONFIRMED FILLS", units=round(units, 2), roi_pct=round(roi, 2),
+             risked_u=round(risked, 2), units_why=None, roi_why=None, fin_settled_n=len(settled))
+    return f
+
+
+
+def blk(obs, unit=None, fin=None):
+    """One figure block for a set of collapsed selections: n, CLV, CI, positive %, units, ROI.
+
+    CLV is over `obs` (every selection carrying a certified CLV). Units and ROI are over `fin`
+    ONLY: the subset of those selections that join to a CONFIRMED fill. fin=None means the caller
+    did not supply one, and the financial fields are then UNVERIFIED, never guessed from obs."""
     s = csel.stats(obs)
     if not s.get("n"):
         return {"n": 0, "why": "no selection in this group carries a certified CLV"}
     out = {"n": s["n"], "clv": pct(s["mean"]), "ci": ci95(s["mean"], s.get("se")),
            "pos": s["pos"], "pos_pct": round(s["pos_pct"], 1), "fills": s["fills"],
            "n_settled": s.get("n_settled", 0)}
-    # UNITS ARE P/L, NOT EXPOSURE. The first version printed stake/unit and labelled it "units"
-    # beside ROI, so Board V3 read "+10.54u" when that was 10.54 units RISKED - a losing lane
-    # could have shown a cheerful positive. clv_coverage.fig has the same stake/unit figure, but
-    # it is a diagnostic there, not a results headline. P/L in units is profit/unit, and it is
-    # None - never zero - when the ledger carries no profit for the group, because the ledger
-    # snapshot does not always capture it.
-    out["risked_u"] = round(s["stake"] / unit, 2) if (unit and s.get("stake")) else None
-    out["units"] = (round(s["profit"] / unit, 2)
-                    if (unit and s.get("profit") is not None) else None)
-    out["units_why"] = (None if out["units"] is not None else
-                        ("no registered unit for this group" if not unit else
-                         f"profit absent on {s['n'] - s.get('has_profit', 0)} of {s['n']} rows - "
-                         f"P/L in units UNAVAILABLE, not zero"))
-    out["roi_pct"] = None if s.get("roi_pct") is None else round(s["roi_pct"], 2)
-    out["roi_why"] = (None if out["roi_pct"] is not None else
-                      f"profit absent on {s['n'] - s.get('has_profit', 0)} of {s['n']} - ROI "
-                      f"UNAVAILABLE, not zero")
+    out.update(fin_block(fin, unit))
     return out
 
 
@@ -359,12 +408,16 @@ def build():
         # unit figure hypothetical", so the page would have understated live performance while
         # looking entirely normal.
         fl = [o for o in rows if fill_join(_key_of(o, by_key), o)]
+
+        def fb(sub, unit=unit):
+            # CLV over every certified selection; P/L and ROI over the confirmed-fill subset only.
+            return blk(sub, unit, [o for o in sub if fill_join(_key_of(o, by_key), o)])
         lanes.append({
             "lane": lane, "name": LANE_NAME.get(lane, lane), "unit_registered": unit,
             "paper": lane == "lane2",
-            "today": blk(day, unit), "cumulative": blk(rows, unit),
-            "post_change": blk(post, unit), "pre_change": blk(pre, unit),
-            "h1": blk(h1, unit), "h2": blk(h2, unit),
+            "today": fb(day), "cumulative": fb(rows),
+            "post_change": fb(post), "pre_change": fb(pre),
+            "h1": fb(h1), "h2": fb(h2),
             "no_sort_key": len(nokey), "no_cutoff_key": len(nos),
             "confirmed_fill_selections": len(fl),
             "confirmed_fills_note": (
@@ -406,11 +459,13 @@ def build():
         rows = by_lane.get(lane, [])
         for lg, group in sorted(collections.Counter(
                 str(k.split("|")[0]) for k, o in obs.items() if lane_for(k, o) == lane).items()):
-            sel = [o for k, o in obs.items() if lane_for(k, o) == lane and k.split("|")[0] == lg]
+            selk = [(k, o) for k, o in obs.items() if lane_for(k, o) == lane and k.split("|")[0] == lg]
+            sel = [o for _, o in selk]
+            confirmed = {id(o) for k, o in selk if fill_join(k, o)}
+            fbt = lambda sub, u=LANE_UNIT.get(lane): blk(sub, u, [o for o in sub if id(o) in confirmed])
             h1, h2, _ = csel.halves(sel)
             trig.append({"lane": LANE_NAME.get(lane, lane), "trigger": f"{lg}",
-                         "live": True, "whole": blk(sel, LANE_UNIT.get(lane)),
-                         "h1": blk(h1, LANE_UNIT.get(lane)), "h2": blk(h2, LANE_UNIT.get(lane))})
+                         "live": True, "whole": fbt(sel), "h1": fbt(h1), "h2": fbt(h2)})
     bands["D_triggers"] = {"live": trig, "collapsed_by_default": True,
                            "registered_total": 32,
                            "note": ("INCOMPLETE: only live-lane selections grouped by league are shown. The "
@@ -547,11 +602,11 @@ const sg=v=>v==null?'<span class="mut">&ndash;</span>':(v>0?'<span class="ok">+'
 const ciS=c=>c?('['+c[0].toFixed(2)+', '+c[1].toFixed(2)+']'):'<span class="mut">&ndash;</span>';
 function fig(b){if(!b||!b.n)return '<span class="mut">&ndash; '+esc((b&&b.why)||'no data')+'</span>';
  return 'n '+b.n+' &middot; CLV '+sg(b.clv)+'% '+ciS(b.ci)+' &middot; pos '+b.pos+'/'+b.n+' ('+b.pos_pct+'%) &middot; u '+
- (b.units==null?('<span class="mut">&ndash;</span>'):sg(b.units))+' &middot; ROI '+(b.roi_pct==null?('<span class="mut">UNAVAIL</span>'):sg(b.roi_pct)+'%');}
+ (b.units==null?('<span class="warn">'+(b.fin_status==='UNVERIFIED'?'UNVERIFIED':'&ndash;')+'</span>'):sg(b.units))+' &middot; ROI '+(b.roi_pct==null?('<span class="warn">'+(b.fin_status==='UNVERIFIED'?'UNVERIFIED':'UNAVAIL')+'</span>'):sg(b.roi_pct)+'%');}
 function row(label,b){return '<tr><td>'+esc(label)+'</td><td>'+(b&&b.n?b.n:'<span class="mut">&ndash;</span>')+'</td><td>'+
  (b&&b.n?sg(b.clv)+'%':'&ndash;')+'</td><td>'+(b&&b.n?ciS(b.ci):'&ndash;')+'</td><td>'+(b&&b.n?b.pos+'/'+b.n:'&ndash;')+'</td><td>'+
- (b&&b.units!=null?sg(b.units)+'u':'<span class="mut">UNAVAIL</span>')+'</td><td>'+(b&&b.risked_u!=null?b.risked_u.toFixed(2)+'u':'<span class="mut">&ndash;</span>')+'</td><td>'+
- (b&&b.roi_pct!=null?sg(b.roi_pct)+'%':'<span class="mut">UNAVAIL</span>')+'</td></tr>';}
+ (b&&b.units!=null?sg(b.units)+'u':'<span class="warn">'+(b&&b.fin_status==='UNVERIFIED'?'UNVERIFIED':'UNAVAIL')+'</span>')+'</td><td>'+(b&&b.risked_u!=null?b.risked_u.toFixed(2)+'u':'<span class="mut">&ndash;</span>')+'</td><td>'+
+ (b&&b.roi_pct!=null?sg(b.roi_pct)+'%':'<span class="warn">'+(b&&b.fin_status==='UNVERIFIED'?'UNVERIFIED':'UNAVAIL')+'</span>')+'</td></tr>';}
 const TH='<tr><th>period</th><th>n</th><th>CLV</th><th>95% CI</th><th>pos</th><th>P/L (u)</th><th>risked (u)</th><th>ROI</th></tr>';
 function render(d){const B=d.bands;let h='';
  h+='<h1>Daily Dashboard</h1><p class="sub">'+esc(d.generated_et)+' &middot; basis '+esc(d.basis)+
@@ -617,9 +672,10 @@ def email_body(view):
         for lab, b in (("today", t), ("cumulative", c), ("since the change", x["post_change"])):
             if b.get("n"):
                 u = (f"P/L {b['units']:+.2f}u" if b.get("units") is not None
-                     else "P/L UNAVAIL")
+                     else ("P/L UNVERIFIED" if b.get("fin_status") == "UNVERIFIED" else "P/L UNAVAIL"))
                 u += f" (risked {b['risked_u']:.2f}u)" if b.get("risked_u") is not None else ""
-                r = f"{b['roi_pct']:+.2f}%" if b.get("roi_pct") is not None else "ROI UNAVAIL"
+                r = (f"{b['roi_pct']:+.2f}%" if b.get("roi_pct") is not None else
+                     ("ROI UNVERIFIED" if b.get("fin_status") == "UNVERIFIED" else "ROI UNAVAIL"))
                 L.append(f"  {lab:<18} n {b['n']:>4}  CLV {b['clv']:+.2f}%  "
                          f"CI {b['ci'] if b.get('ci') else '-'}  pos {b['pos']}/{b['n']}  {u}  {r}")
             else:

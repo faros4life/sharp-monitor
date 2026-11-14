@@ -72,8 +72,10 @@ check("an empty group reports no data with a reason", b["n"] == 0 and b.get("why
 b2 = dash.blk([{"clv": 0.01, "stake": None, "game_start": "2026-11-12T00:00:00Z"}], unit=None)
 check("units stay None with a reason when no unit is registered",
       b2["units"] is None and b2["units_why"], b2)
+b2c = dash.blk(b2o := [{"clv": 0.01, "stake": 400.0, "result": "W", "game_start": "2026-11-12T00:00:00Z"}],
+               unit=200.0, fin=b2o)
 check("ROI is UNAVAILABLE rather than 0.00 when profit is absent",
-      b2["roi_pct"] is None and "not zero" in (b2["roi_why"] or ""), b2)
+      b2c["roi_pct"] is None and "not zero" in (b2c["roi_why"] or ""), b2c)
 check("the renderer prints UNAVAIL for a null ROI, never 0", "UNAVAIL" in dash.PAGE)
 check("and an en dash for a null figure", "ndash" in dash.PAGE)
 
@@ -173,15 +175,21 @@ check("the fill join's return is documented as a boolean, not a lane claim",
 print("11. units are P/L, exposure is labelled separately")
 # The first summary printed "+10.54u" for Board V3 from stake/unit - 10.54 units RISKED. A losing
 # lane could have shown a cheerful positive beside its ROI.
-b = dash.blk([{"clv": 0.01, "stake": 400.0, "profit": -200.0, "result": "L",
-               "game_start": "2026-11-12T00:00:00Z"}], unit=200.0)
+GS = "2026-11-12T00:00:00Z"
+def R(stake, profit=None, result=None):
+    return {"clv": 0.01, "stake": stake, "profit": profit, "result": result, "game_start": GS}
+loss = R(400.0, -200.0, "L")
+b = dash.blk([loss], unit=200.0, fin=[loss])
 check("units is profit/unit", b["units"] == -1.0, b)
-check("risked is reported separately", b["risked_u"] == 2.0, b)
+check("risked is reported separately (settled stake)", b["risked_u"] == 2.0, b)
 check("a loss cannot read positive", b["units"] < 0)
-b2 = dash.blk([{"clv": 0.01, "stake": 400.0, "game_start": "2026-11-12T00:00:00Z"}], unit=200.0)
-check("no profit -> P/L UNAVAILABLE, never zero",
+check("loss ROI is -50% on a 400 stake with -200 profit", b["roi_pct"] == -50.0, b)
+op = R(400.0)
+b2 = dash.blk([op], unit=200.0, fin=[op])
+check("open fill: P/L UNAVAILABLE, never zero",
       b2["units"] is None and "not zero" in (b2["units_why"] or ""), b2)
-check("but exposure is still shown", b2["risked_u"] == 2.0, b2)
+check("open exposure is labelled open_risked_u, not in ROI denominator",
+      b2["open_risked_u"] == 2.0 and b2["risked_u"] is None and b2["roi_pct"] is None, b2)
 check("the page column says P/L", "P/L (u)" in dash.PAGE and "risked (u)" in dash.PAGE)
 check("the gate clause names P/L", "both halves positive on units (P/L)" in
       json.dumps(dash.gate("x", {"units": 1.0, "clv": 1.0}, {"units": 1.0, "clv": 1.0},
@@ -210,6 +218,38 @@ check("only FILLED and PARTIAL qualify", '("FILLED", "PARTIAL")' in src)
 for st in ("NO_FILL", "RESTING", "PLACED", "REFUSED", "CANCELED", "EXPIRED"):
     check(f"{st} is not treated as a confirmed fill", f'"{st}"' not in src)
 check("a fill with no play_key cannot join", '(v or {}).get("play_key")' in src)
+
+print("14. live financials: confirmed fills only, contradictions -> UNVERIFIED")
+win, lose = R(200.0, 180.0, "W"), R(200.0, -200.0, "L")
+# the R1 shape: one lost selection must never show positive units beside -100%
+b = dash.blk([lose], 200.0, [lose])
+check("R1 shape: -1.00u and -100% together", b["units"] == -1.0 and b["roi_pct"] == -100.0, b)
+check("no confirmed-fill set -> UNVERIFIED, not a number",
+      dash.blk([lose], 200.0)["units"] is None and dash.blk([lose], 200.0)["fin_status"] == "UNVERIFIED")
+b = dash.blk([win, lose, R(200.0)], 200.0, [win, lose])
+check("unconfirmed selections are excluded from P/L and ROI",
+      b["units"] == -0.1 and b["fin_n"] == 2 and b["n"] == 3, b)
+check("ROI uses the same settled set as units",
+      abs(b["roi_pct"] - (100 * -20.0 / 400.0)) < 1e-6 and b["risked_u"] == 2.0, b)
+check("units and ROI never have opposite signs",
+      all((x["units"] is None) or (x["units"] == 0) or (x["units"] > 0) == (x["roi_pct"] > 0)
+          for x in (b, dash.blk([win], 200.0, [win]), dash.blk([lose], 200.0, [lose]))))
+check("W with negative profit -> UNVERIFIED",
+      dash.blk([R(200.0, -5.0, "W")], 200.0, [R(200.0, -5.0, "W")])["fin_status"] == "UNVERIFIED")
+check("L with positive profit -> UNVERIFIED",
+      dash.blk([R(200.0, 5.0, "L")], 200.0, [R(200.0, 5.0, "L")])["units"] is None)
+check("push with profit -> UNVERIFIED",
+      dash.blk([R(200.0, 5.0, "P")], 200.0, [R(200.0, 5.0, "P")])["units"] is None)
+check("loss larger than stake -> UNVERIFIED",
+      dash.blk([R(200.0, -300.0, "L")], 200.0, [R(200.0, -300.0, "L")])["fin_status"] == "UNVERIFIED")
+check("a bad row withholds the whole figure, not just itself",
+      dash.blk([win, R(200.0, 5.0, "L")], 200.0, [win, R(200.0, 5.0, "L")])["units"] is None)
+check("empty confirmed set -> UNAVAILABLE, not zero",
+      dash.blk([lose], 200.0, [])["units"] is None)
+check("page and email render UNVERIFIED", "UNVERIFIED" in dash.PAGE)
+src = open("clv_dashboard.py").read()
+check("no live call site passes a bare unit without a confirmed set",
+      "blk(day, unit)" not in src and "blk(rows, unit)" not in src and "blk(sel, LANE_UNIT" not in src)
 
 print()
 if fails:
