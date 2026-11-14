@@ -177,7 +177,11 @@ def main():
     for k, rec, f, how in eligible:
         # the ONLY mutation: the flag that excludes a scored row from the headline. Its prior
         # value is preserved in the audit file and in released_from below.
-        rec["released_from"] = rec.pop("fixture_doubt")
+        # Stage 1 (Peter, Nov 13): record WHICH FIXTURE the release covered. clv_ledger's
+        # release_covers() keys on fixture AND reason, so a row whose fixture later changes is
+        # flagged normally instead of inheriting a release that no longer describes it. Records
+        # written before this change carry no fixture and are handled as the legacy case there.
+        rec["released_from"] = {**rec.pop("fixture_doubt"), "fixture": rec.get("fixture")}
         rec["released_utc"] = now.strftime("%Y-%m-%dT%H:%M:%SZ")
     say(f"  released {len(eligible)} row(s): fixture_doubt cleared, nothing else touched")
     with open(cl.STATE, "w") as fh:

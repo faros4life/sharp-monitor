@@ -462,6 +462,64 @@ def identity_check(rec):
     return "ok", ""
 
 
+def release_covers(rec, why_now):
+    """Did Peter's manual release already cover EXACTLY this doubt, on THIS fixture?
+
+    Stage 1 (Peter, Nov 13). clv_release_verified clears fixture_doubt correctly, but step 5
+    re-ran identity_check on every pass and re-raised the flag whenever it was merely absent.
+    identity_check reads espn_filled, teams and bet text - none of which a release changes - so
+    all 25 released rows came back held out with the identical reason string on the very next
+    run, and clv_readout's own check has been printing "released rows still carrying
+    fixture_doubt: 25 (must be 0)" ever since. The release was a no-op that looked like success.
+
+    The guard is deliberately narrow on BOTH axes:
+      * the reason string must match exactly. A row that later develops a DIFFERENT doubt - a
+        new ambiguity, a fixture that stops passing the matcher - is flagged normally. A release
+        forgives the doubt Peter looked at, never doubt in general.
+      * the fixture must match. If a row's fixture changes, whatever was validated no longer
+        describes it.
+    The legacy case: released_from written before this change stored only {since, why}, so it
+    carries no fixture. Those are honoured once (the fixture on the row is the one the Nov 12
+    audit recorded against it) and the caller then pins the fixture into the record, after which
+    the strict test applies. No row is released that Peter did not already release by hand.
+    """
+    prev = rec.get("released_from") or {}
+    if not prev or prev.get("why") != why_now:
+        return False
+    fx = prev.get("fixture")
+    return fx is None or fx == rec.get("fixture")
+
+
+def apply_doubt(st, rec, now):
+    """Step 5's per-row decision. Extracted from main() so it is testable without a full run.
+
+    Behaviour is unchanged except for the release_covers() guard: a doubt that a prior release
+    already covered no longer re-excludes the row. Nothing else is written - no CLV, no price,
+    no fixture, no result.
+    """
+    fv, fw = fixture_check(st, rec)
+    iv, iw = identity_check(rec)
+    if (fv == "doubt" or iv == "doubt") and not rec.get("fixture_doubt"):
+        why_now = fw if fv == "doubt" else iw
+        if release_covers(rec, why_now):
+            # Pin a legacy release to the fixture it is covering, once, so later passes use the
+            # strict fixture+reason test instead of the permissive legacy one. This adds a field
+            # to released_from and changes no CLV, price, fixture or result.
+            if not (rec.get("released_from") or {}).get("fixture") and rec.get("fixture"):
+                rec["released_from"]["fixture"] = rec["fixture"]
+            return "released"
+        rec["fixture_doubt"] = {"since": iso(now), "why": why_now}
+        return "flagged"
+    if fv == "ok" and iv == "ok":
+        # Durable record of an independent validation, keyed to the fixture it validated. Keeps
+        # the FIRST date, so a row checked while its fixture was cached is not punished later when
+        # the cache rolls - that is the "durable record of prior validation" Peter asked for.
+        if (rec.get("fixture_ok") or {}).get("fixture") != rec.get("fixture"):
+            rec["fixture_ok"] = {"at": iso(now), "fixture": rec.get("fixture")}
+        return "ok"
+    return "unchanged"
+
+
 def which_team(f, team_text):
     w = tb.toks(team_text)
     a, c = len(tb.toks(f["p1"]) & w), len(tb.toks(f["p2"]) & w)
@@ -1070,16 +1128,7 @@ def main():
     for k, rec in st["bets"].items():
         if rec.get("clv") is None:
             continue
-        fv, fw = fixture_check(st, rec)
-        iv, iw = identity_check(rec)
-        if (fv == "doubt" or iv == "doubt") and not rec.get("fixture_doubt"):
-            rec["fixture_doubt"] = {"since": iso(now), "why": (fw if fv == "doubt" else iw)}
-        elif fv == "ok" and iv == "ok":
-            # Durable record of an independent validation, keyed to the fixture it validated. Keeps
-            # the FIRST date, so a row checked while its fixture was cached is not punished later when
-            # the cache rolls - that is the "durable record of prior validation" Peter asked for.
-            if (rec.get("fixture_ok") or {}).get("fixture") != rec.get("fixture"):
-                rec["fixture_ok"] = {"at": iso(now), "fixture": rec.get("fixture")}
+        apply_doubt(st, rec, now)
     # Nov 10 (Peter, Option 2): EXCLUDE AT READ TIME, preserve the stored state. man_id changed on Nov 5 and
     # man_migrate retires the old key in the TRACKER, but this file only setdefault()s keys into st["bets"] and
     # prunes by age, so a retired key survived here for 60 days with the snapshot it froze with - including, in

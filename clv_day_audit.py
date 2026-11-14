@@ -508,6 +508,51 @@ def day_audit(st, cbets, tracker, mkmap, reg, ev):
     return sel, tot, basis, stc
 
 
+def stage1_dry_run(st, cbets):
+    """Apply the REAL clv_ledger.apply_doubt() to a deep copy and report before/after.
+
+    This is how the Stage 1 claim is checked against production state without writing it and
+    without fetching anything: the rows are copied, the actual step-5 decision function runs over
+    the copy exactly as a ledger pass would, three times, and the held-out count is read back.
+    Running it twice over would catch a fix that only works on the first pass - which is the
+    failure mode Stage 1 exists to kill.
+    """
+    import copy
+    say("")
+    say("B0. STAGE 1 DRY RUN - apply_doubt() over a COPY of production state, nothing written")
+    say("=" * 100)
+    scored = {k: r for k, r in cbets.items() if r.get("clv") is not None}
+    before_held = sum(1 for r in scored.values() if r.get("fixture_doubt"))
+    before_rel_held = sum(1 for r in scored.values() if r.get("released_from") and r.get("fixture_doubt"))
+    work = copy.deepcopy(scored)
+    # Clear the flag the way a release does, then let three ledger passes try to re-raise it.
+    # Before Stage 1 every one of these came back flagged; that is the regression being checked.
+    for r in work.values():
+        if r.get("released_from") and r.get("fixture_doubt"):
+            r.pop("fixture_doubt")
+    counts = []
+    for _ in range(3):
+        c = collections.Counter(cl.apply_doubt(st, r, datetime.now(timezone.utc)) for r in work.values())
+        counts.append(dict(c))
+    after_held = sum(1 for r in work.values() if r.get("fixture_doubt"))
+    after_rel_held = sum(1 for r in work.values() if r.get("released_from") and r.get("fixture_doubt"))
+    say(f"  scored rows                                   {len(scored)}")
+    say(f"  held out BEFORE                               {before_held}")
+    say(f"    of those, carrying released_from            {before_rel_held}")
+    say(f"  three simulated ledger passes:                {counts}")
+    say(f"  held out AFTER                                {after_held}")
+    say(f"    of those, carrying released_from            {after_rel_held}   (target 0)")
+    say(f"  NET MOVED held-out -> certified               {before_held - after_held}")
+    say("  No OddsPapi call was made to produce this: apply_doubt reads the fixture cache that is")
+    say("  already in clv/state.enc and the row's own snapshot. Nothing was written.")
+    still = [k for k, r in work.items() if r.get("released_from") and r.get("fixture_doubt")]
+    for k in still[:5]:
+        say(f"    STILL HELD {k[:38]}: {str((work[k]['fixture_doubt'] or {}).get('why'))[:50]}")
+    if len(still) > 5:
+        say(f"    ... {len(still)} still held in total")
+    return before_held, after_held
+
+
 # =============================================================== PART B
 def reflag_section(cbets):
     say("")
@@ -721,6 +766,7 @@ def main():
         f"registry orders {len((reg or {}).get('orders') or [])} | "
         f"checkpoint rows {len(CK['rows'])}")
 
+    stage1_dry_run(st, cbets)
     sel, tot, basis, stc = day_audit(st, cbets, tracker, mkmap, reg, ev)
     rel, reflag = reflag_section(cbets)
     buckets, rec, left = recovery_inventory(st, cbets, tracker, mkmap, reg)
