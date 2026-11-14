@@ -126,6 +126,16 @@ def main():
     check("undated rows are returned, not silently dropped", len(nod) == 1, nod)
     check("halves split the dated rows", len(h1) + len(h2) == 2, (h1, h2))
 
+    print("13. ROI is never fabricated when profit is absent")
+    rows = [{"clv": 0.01, "stake": 100.0, "result": "L"}]
+    st_ = cs.stats(rows)
+    check("roi_pct is None when no row carries profit", st_["roi_pct"] is None, st_["roi_pct"])
+    check("has_profit counts zero", st_["has_profit"] == 0, st_["has_profit"])
+    check("profit is None, not 0.0", st_["profit"] is None, st_["profit"])
+    rows = [{"clv": 0.01, "stake": 100.0, "result": "W", "profit": 25.0}]
+    st_ = cs.stats(rows)
+    check("roi_pct computed when profit exists", abs(st_["roi_pct"] - 25.0) < 1e-9, st_["roi_pct"])
+
     print()
     if BAD:
         print(f"FAILED {len(BAD)}: {BAD}")

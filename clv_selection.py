@@ -171,15 +171,23 @@ def stats(obs):
     m = sum(v) / len(v)
     sd = (sum((x - m) ** 2 for x in v) / (len(v) - 1)) ** 0.5 if len(v) > 1 else None
     stake = sum(o["stake"] for o in obs if o.get("stake"))
-    profit = sum(o["profit"] for o in obs if o.get("profit") is not None)
+    # ROI needs profit, and clv_ledger's snapshot does NOT capture it: its field list at
+    # clv_ledger.py:915 is book/game/bet/flip/league/source/teams/game_start/placed/settled/
+    # first_seen plus price/stake/to_pay and result - no profit. So profit sums to zero over the
+    # ledger and an ROI computed from it would be a fabricated +0.00%, which is worse than a
+    # blank. has_profit says whether ANY observation carried one; roi_pct stays None otherwise.
+    have_profit = [o for o in obs if o.get("profit") is not None]
+    profit = sum(o["profit"] for o in have_profit)
     settled = [o for o in obs if o.get("result") and o.get("stake")]
+    settled_stake = sum(o["stake"] for o in settled)
     return {"n": len(v), "mean": m, "sd": sd,
             "se": (sd / len(v) ** 0.5) if sd is not None else None,
             "pos": sum(1 for x in v if x > 0),
             "pos_pct": 100.0 * sum(1 for x in v if x > 0) / len(v),
             "stake": round(stake, 2) if stake else 0.0,
-            "profit": round(profit, 2),
-            "roi_pct": (100.0 * profit / sum(o["stake"] for o in settled)) if settled else None,
+            "profit": round(profit, 2) if have_profit else None,
+            "has_profit": len(have_profit),
+            "roi_pct": (100.0 * profit / settled_stake) if (have_profit and settled_stake) else None,
             "n_settled": len(settled),
             "fills": sum(o.get("n_fills", 1) for o in obs)}
 

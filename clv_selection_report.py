@@ -61,10 +61,12 @@ def line(label, s):
         say(f"  {label:<26} n    0")
         return
     se = f" +/-{100 * s['se']:.2f}" if s.get("se") is not None else ""
-    roi = f"{s['roi_pct']:+.2f}%" if s.get("roi_pct") is not None else "n/a"
+    # ROI prints UNAVAIL, never 0.00%, when no observation carried a profit - see
+    # clv_selection.stats(): the ledger snapshot does not capture profit at all.
+    roi = (f"{s['roi_pct']:+.2f}% on {s['n_settled']} settled" if s.get("roi_pct") is not None
+           else f"UNAVAIL ({s.get('has_profit', 0)}/{s['n']} rows carry profit)")
     say(f"  {label:<26} n {s['n']:4d}   mean CLV {100 * s['mean']:+.2f}%{se}   "
-        f"pos {s['pos']}/{s['n']} ({s['pos_pct']:.0f}%)   ROI {roi} on {s['n_settled']} settled   "
-        f"fills {s['fills']}")
+        f"pos {s['pos']}/{s['n']} ({s['pos_pct']:.0f}%)   ROI {roi}   fills {s['fills']}")
 
 
 def main():
@@ -168,7 +170,11 @@ def main():
     say("  any per-row unit figure would be a guess for most of the sample. ROI above needs no")
     say("  unit and is reported. Stage 3 persists the lane with the order, which is what makes a")
     say("  units column honest; it is left blank rather than filled in with an assumption.")
-    say("  Total staked and total profit are in the private email.", money=False)
+    say("  ROI is also blank: clv_ledger's snapshot captures stake and to_pay but NOT profit")
+    say("  (its field list is at clv_ledger.py:915), so profit sums to zero across the ledger and")
+    say("  any ROI computed from it would be a fabricated +0.00%. Capturing profit on the snapshot")
+    say("  is a one-field addition and belongs with Stage 3; it is not assumed here.")
+    say("  Total staked is in the private email.", money=False)
     for label, rows in (("BEFORE", b_obs), ("STAGE 2", rows2)):
         s = csel.stats(rows)
         say(f"  {label}: staked {s['stake']} profit {s['profit']}", money=True)
