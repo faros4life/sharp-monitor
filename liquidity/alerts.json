@@ -1,6 +1,211 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-14T04:05:35Z",
+   "base_depth": 237393,
+   "best_price": 0.765,
+   "best_price_american": -326,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.77,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-14",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -2063,
+     "new_this_side": 40814,
+     "other_side": 25793,
+     "other_side_all_levels": 56712,
+     "ratio": 5.7,
+     "this_side": 147364,
+     "this_side_all_levels": 311759
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "CAR (0)",
+     "price": 0.765,
+     "this_side": 7944
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Carolina Hurricanes",
+     "price": 0.7701,
+     "this_side": 4732
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 6591.42,
+    "volume_24h_fp": 5076.9,
+    "volume_fp": 7114.71
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 25.56,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 25.56
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 6565.86,
+    "volume_24h_fp": 5076.9,
+    "volume_fp": 7089.150000000001
+   },
+   "fade_price": 0.24,
+   "first_seen_utc": "2026-11-14T04:00:25Z",
+   "game": "Seattle vs Carolina",
+   "game_surge_books": [],
+   "game_x": 1.29,
+   "key": "kalshi|KXNHLGAME-26NOV14SEACAR|ml|1",
+   "lead_min": 834,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 40814,
+   "new_x": 0.11,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 6591.42,
+      "volume_24h_fp": 5076.9,
+      "volume_fp": 7114.71
+     },
+     "game_normal": 241532,
+     "game_x": 1.29,
+     "normal": 384318,
+     "now": 311759,
+     "type": "ML",
+     "x": 0.81
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 239505.0,
+      "volume": 239565.0
+     },
+     "game_normal": 8393,
+     "game_x": 0.95,
+     "normal": 16022,
+     "now": 7945,
+     "type": "ML",
+     "x": 0.5
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 5333,
+     "game_x": 0.89,
+     "normal": 8795,
+     "now": 4732,
+     "type": "ML",
+     "x": 0.54
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.77,
+   "price_american": -335,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.77,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -375
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -365
+    },
+    "betopenly": {
+     "point": null,
+     "price": -332
+    },
+    "betrivers": {
+     "point": null,
+     "price": -385
+    },
+    "betus": {
+     "point": null,
+     "price": -365
+    },
+    "bovada": {
+     "point": null,
+     "price": -390
+    },
+    "draftkings": {
+     "point": null,
+     "price": -355
+    },
+    "fanatics": {
+     "point": null,
+     "price": -375
+    },
+    "fanduel": {
+     "point": null,
+     "price": -375
+    },
+    "kalshi": {
+     "point": null,
+     "price": -335
+    },
+    "lowvig": {
+     "point": null,
+     "price": -365
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -380
+    },
+    "novig": {
+     "point": null,
+     "price": -326
+    },
+    "polymarket": {
+     "point": null,
+     "price": -335
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -355
+    },
+    "prophetx": {
+     "point": null,
+     "price": -335
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -380
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNHLGAME-26NOV14SEACAR-CAR"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Carolina",
+   "side_label": "Carolina",
+   "size_x": 0.81,
+   "start_source": "odds",
+   "start_utc": "2026-11-14T18:00:00Z",
+   "surge_books": [],
+   "teams": [
+    "Seattle",
+    "Carolina"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-14T03:50:12Z",
    "base_depth": 11215,
    "best_price": 0.57,
@@ -91,6 +296,8 @@
    "norm_ready_books": 2,
    "paper_only": false,
    "price": 0.57,
+   "price_after_15m": 0.57,
+   "price_after_15m_book": "novig",
    "price_american": -133,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.57,
@@ -177,6 +384,7 @@
    "size_x": 12.38,
    "start_source": "odds",
    "start_utc": "2026-11-14T17:00:00Z",
+   "still_actionable": true,
    "surge_books": [
     "novig",
     "prophetx"
@@ -2836,8 +3044,8 @@
     "volume": 15166.0
    },
    "ex_stats_close": {
-    "openInterest": 8465179.0,
-    "volume": 8779223.0
+    "openInterest": 8469277.0,
+    "volume": 8783321.0
    },
    "ex_stats_first": {
     "openInterest": 2799542.0,
@@ -3608,7 +3816,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 1,
+   "settle_tries": 2,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Illinois",
@@ -4068,7 +4276,7 @@
    },
    "ex_stats_close": {
     "openInterest": 5920714.0,
-    "volume": 6586467.0
+    "volume": 6590170.0
    },
    "ex_stats_first": {
     "openInterest": 3587798.0,
@@ -4868,9 +5076,9 @@
     "volume_fp": 18.6
    },
    "ex_stats_close": {
-    "open_interest_fp": 26022.86,
+    "open_interest_fp": 26052.09,
     "volume_24h_fp": 13884.33,
-    "volume_fp": 27569.6
+    "volume_fp": 27598.83
    },
    "ex_stats_first": {
     "open_interest_fp": 15985.78,
@@ -5216,7 +5424,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 1,
+   "settle_tries": 2,
    "sharp_agree": [],
    "sharp_oppose": [
     "Over 47.5 (-115)"
@@ -5510,9 +5718,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 47676.2,
+    "open_interest_fp": 47886.56,
     "volume_24h_fp": 31515.26,
-    "volume_fp": 50740.46
+    "volume_fp": 50950.82
    },
    "ex_stats_first": {
     "open_interest_fp": 29945.72,
@@ -6259,7 +6467,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 1,
+   "settle_tries": 2,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UCLA",
@@ -7431,7 +7639,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 1,
+   "settle_tries": 2,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -7648,7 +7856,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 1,
+   "settle_tries": 2,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -8126,9 +8334,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 26022.86,
+    "open_interest_fp": 26052.09,
     "volume_24h_fp": 13884.33,
-    "volume_fp": 27569.6
+    "volume_fp": 27598.83
    },
    "ex_stats_first": {
     "open_interest_fp": 13745.85,
@@ -8783,7 +8991,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 6,
+   "settle_tries": 7,
    "sharp_agree": [
     "Utah Jazz +16.5 (-110)"
    ],
@@ -10021,7 +10229,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 6,
+   "settle_tries": 7,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -10223,7 +10431,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 1,
+   "settle_tries": 2,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Vancouver",
@@ -11066,9 +11274,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 15428.199999999999,
+    "open_interest_fp": 15532.789999999999,
     "volume_24h_fp": 13472.26,
-    "volume_fp": 15434.199999999999
+    "volume_fp": 15538.789999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 11423.84,
@@ -11211,9 +11419,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1130.48,
+    "open_interest_fp": 1316.53,
     "volume_24h_fp": 755.63,
-    "volume_fp": 1136.26
+    "volume_fp": 1322.31
    },
    "ex_stats_first": {
     "open_interest_fp": 623.71,
@@ -18568,7 +18776,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "New York R",
@@ -20444,7 +20652,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Illinois",
@@ -25002,7 +25210,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UCLA",
