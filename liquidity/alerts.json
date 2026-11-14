@@ -1,6 +1,188 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-14T07:50:12Z",
+   "base_depth": 44245,
+   "best_price": 0.84,
+   "best_price_american": -525,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.84,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-14",
+   "depth_by_book": {
+    "novig": {
+     "new_other_side": 10,
+     "new_this_side": 29843,
+     "other_side": 4022,
+     "other_side_all_levels": 4992,
+     "ratio": 15.3,
+     "this_side": 61374,
+     "this_side_all_levels": 72883
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Miami Florida",
+     "price": 0.8387,
+     "this_side": 16143
+    }
+   },
+   "ex_stats_alert": {
+    "openInterest": 5646846.0,
+    "volume": 10695526.0
+   },
+   "ex_stats_change": {
+    "openInterest": 14445.0,
+    "volume": 15635.0
+   },
+   "ex_stats_first": {
+    "openInterest": 5632401.0,
+    "volume": 10679891.0
+   },
+   "fade_price": 0.17,
+   "first_seen_utc": "2026-11-14T07:40:12Z",
+   "game": "Duke @ Miami Florida",
+   "game_surge_books": [
+    "novig"
+   ],
+   "game_x": 2.27,
+   "key": "novig|{\"market_id\": \"01a1b9b7-eb71-7283-9e4d-5e65b90780d9\", \"outcome_id\": \"01a1b9b7-eb71-7283-9e4d-5e735494928f\"}",
+   "lead_min": 550,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 29843,
+   "new_x": 8.61,
+   "norm_by_book": {
+    "novig": {
+     "ex_stats": {
+      "openInterest": 5646846.0,
+      "volume": 10695526.0
+     },
+     "game_normal": 32087,
+     "game_x": 2.27,
+     "normal": 3468,
+     "now": 72883,
+     "type": "ML",
+     "x": 21.02
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 18042,
+     "game_x": 0.89,
+     "normal": 925,
+     "now": 16143,
+     "type": "ML",
+     "x": 17.46
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.84,
+   "price_american": -525,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.84,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -600
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -550
+    },
+    "betopenly": {
+     "point": null,
+     "price": -562
+    },
+    "betrivers": {
+     "point": null,
+     "price": -670
+    },
+    "betus": {
+     "point": null,
+     "price": -650
+    },
+    "bovada": {
+     "point": null,
+     "price": -585
+    },
+    "draftkings": {
+     "point": null,
+     "price": -600
+    },
+    "fanatics": {
+     "point": null,
+     "price": -600
+    },
+    "fanduel": {
+     "point": null,
+     "price": -580
+    },
+    "kalshi": {
+     "point": null,
+     "price": -525
+    },
+    "lowvig": {
+     "point": null,
+     "price": -550
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -625
+    },
+    "novig": {
+     "point": null,
+     "price": -525
+    },
+    "prophetx": {
+     "point": null,
+     "price": -520
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -590
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a1b9b7-eb71-7283-9e4d-5e65b90780d9",
+    "outcome_id": "01a1b9b7-eb71-7283-9e4d-5e735494928f"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "prophetx"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Miami Florida",
+   "side_label": "MIA (0)",
+   "size_x": 21.02,
+   "start_source": "odds",
+   "start_utc": "2026-11-14T17:00:00Z",
+   "surge_books": [
+    "novig",
+    "prophetx"
+   ],
+   "teams": [
+    "Duke",
+    "Miami Florida"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-14T07:30:14Z",
    "base_depth": 33537,
    "best_price": 0.79,
@@ -1130,9 +1312,9 @@
     "volume_fp": 25.56
    },
    "ex_stats_close": {
-    "open_interest_fp": 50241.28,
+    "open_interest_fp": 50889.6,
     "volume_24h_fp": 49426.41,
-    "volume_fp": 51820.700000000004
+    "volume_fp": 52469.020000000004
    },
    "ex_stats_first": {
     "open_interest_fp": 6565.86,
@@ -5396,8 +5578,8 @@
     "volume": 520.0
    },
    "ex_stats_close": {
-    "openInterest": 5955260.0,
-    "volume": 6647729.0
+    "openInterest": 5955290.0,
+    "volume": 6647759.0
    },
    "ex_stats_first": {
     "openInterest": 3587798.0,
@@ -6197,9 +6379,9 @@
     "volume_fp": 18.6
    },
    "ex_stats_close": {
-    "open_interest_fp": 36646.57,
+    "open_interest_fp": 36718.17,
     "volume_24h_fp": 23479.46,
-    "volume_fp": 38193.31
+    "volume_fp": 38264.91
    },
    "ex_stats_first": {
     "open_interest_fp": 15985.78,
@@ -6842,9 +7024,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 174506.03,
+    "open_interest_fp": 174549.03,
     "volume_24h_fp": 170998.26,
-    "volume_fp": 192251.51
+    "volume_fp": 192294.51
    },
    "ex_stats_first": {
     "open_interest_fp": 29945.72,
@@ -9475,9 +9657,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 36646.57,
+    "open_interest_fp": 36718.17,
     "volume_24h_fp": 23479.46,
-    "volume_fp": 38193.31
+    "volume_fp": 38264.91
    },
    "ex_stats_first": {
     "open_interest_fp": 13745.85,
@@ -12724,9 +12906,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 14288.810000000001,
+    "open_interest_fp": 14341.34,
     "volume_24h_fp": 6651.1900000000005,
-    "volume_fp": 15723.49
+    "volume_fp": 15776.02
    },
    "ex_stats_first": {
     "open_interest_fp": 8889.74,
