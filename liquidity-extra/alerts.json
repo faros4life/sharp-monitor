@@ -1,6 +1,164 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-14T12:30:22Z",
+   "base_depth": 81123,
+   "best_price": 0.855,
+   "best_price_american": -590,
+   "best_price_book": "novig",
+   "bid_improved": true,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.85,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-14",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -5,
+     "new_this_side": 30115,
+     "other_side": 4714,
+     "other_side_all_levels": 15719,
+     "ratio": 23.4,
+     "this_side": 110235,
+     "this_side_all_levels": 173601
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 3118.35,
+    "volume_24h_fp": 4951.65,
+    "volume_fp": 5177.299999999999
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 27.0,
+    "volume_24h_fp": 27.0,
+    "volume_fp": 27.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 3091.35,
+    "volume_24h_fp": 4924.65,
+    "volume_fp": 5150.299999999999
+   },
+   "fade_price": 0.15,
+   "first_seen_utc": "2026-11-14T12:20:16Z",
+   "game": "Colorado vs Providence",
+   "game_surge_books": [],
+   "game_x": 1.54,
+   "key": "kalshi|KXNCAAMBGAME-26NOV14COLOPROV|ml|1",
+   "lead_min": 630,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 30115,
+   "new_x": 0.76,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 3118.35,
+      "volume_24h_fp": 4951.65,
+      "volume_fp": 5177.299999999999
+     },
+     "game_normal": 112441,
+     "game_x": 1.54,
+     "normal": 39540,
+     "now": 173601,
+     "type": "ML",
+     "x": 4.39
+    }
+   },
+   "norm_ready_books": 1,
+   "paper_only": false,
+   "price": 0.85,
+   "price_american": -567,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.85,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -800
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -800
+    },
+    "betrivers": {
+     "point": null,
+     "price": -835
+    },
+    "betus": {
+     "point": null,
+     "price": -800
+    },
+    "bovada": {
+     "point": null,
+     "price": -750
+    },
+    "draftkings": {
+     "point": null,
+     "price": -800
+    },
+    "fanatics": {
+     "point": null,
+     "price": -750
+    },
+    "fanduel": {
+     "point": null,
+     "price": -900
+    },
+    "kalshi": {
+     "point": null,
+     "price": -614
+    },
+    "lowvig": {
+     "point": null,
+     "price": -800
+    },
+    "novig": {
+     "point": null,
+     "price": -590
+    },
+    "polymarket": {
+     "point": null,
+     "price": -614
+    },
+    "prophetx": {
+     "point": null,
+     "price": -610
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV14COLOPROV-PROV"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Providence",
+   "side_label": "Providence",
+   "size_x": 4.39,
+   "start_source": "odds",
+   "start_utc": "2026-11-14T23:00:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "Colorado",
+    "Providence"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-14T10:40:27Z",
    "base_depth": 55182,
    "best_price": 0.8494,
@@ -40,9 +198,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 13.579999999999998,
-    "volume_24h_fp": 12.579999999999998,
-    "volume_fp": 13.579999999999998
+    "open_interest_fp": 42.58,
+    "volume_24h_fp": 41.58,
+    "volume_fp": 42.58
    },
    "ex_stats_first": {
     "open_interest_fp": 12.559999999999999,
@@ -197,9 +355,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 502.79,
-    "volume_24h_fp": 414.03000000000003,
-    "volume_fp": 503.79
+    "open_interest_fp": 525.79,
+    "volume_24h_fp": 437.03000000000003,
+    "volume_fp": 526.79
    },
    "ex_stats_first": {
     "open_interest_fp": 464.77,
@@ -702,9 +860,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 808.1600000000001,
-    "volume_24h_fp": 808.12,
-    "volume_fp": 810.1600000000001
+    "open_interest_fp": 833.1600000000001,
+    "volume_24h_fp": 833.1199999999999,
+    "volume_fp": 835.1600000000001
    },
    "ex_stats_first": {
     "open_interest_fp": 563.83,
@@ -861,9 +1019,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 213.31,
-    "volume_24h_fp": 116.0,
-    "volume_fp": 213.31
+    "open_interest_fp": 232.31,
+    "volume_24h_fp": 135.0,
+    "volume_fp": 232.31
    },
    "ex_stats_first": {
     "open_interest_fp": 128.51,
@@ -1042,9 +1200,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 36.06,
-    "volume_24h_fp": 33.98,
-    "volume_fp": 37.1
+    "open_interest_fp": 59.06,
+    "volume_24h_fp": 56.980000000000004,
+    "volume_fp": 60.1
    },
    "ex_stats_first": {
     "open_interest_fp": 5.16,
@@ -1382,9 +1540,9 @@
     "volume_fp": 14.58
    },
    "ex_stats_close": {
-    "open_interest_fp": 12706.730000000001,
-    "volume_24h_fp": 11236.960000000001,
-    "volume_fp": 13130.2
+    "open_interest_fp": 12793.730000000001,
+    "volume_24h_fp": 11323.960000000001,
+    "volume_fp": 13217.2
    },
    "ex_stats_first": {
     "open_interest_fp": 8622.69,
@@ -1573,9 +1731,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 881.11,
-    "volume_24h_fp": 881.11,
-    "volume_fp": 881.11
+    "open_interest_fp": 904.11,
+    "volume_24h_fp": 904.11,
+    "volume_fp": 904.11
    },
    "ex_stats_first": {
     "open_interest_fp": 798.02,
@@ -1758,9 +1916,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 632.73,
-    "volume_24h_fp": 605.01,
-    "volume_fp": 637.0999999999999
+    "open_interest_fp": 657.73,
+    "volume_24h_fp": 630.01,
+    "volume_fp": 662.0999999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 120.37,
@@ -1950,9 +2108,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 384.02,
-    "volume_24h_fp": 395.16,
-    "volume_fp": 396.20000000000005
+    "open_interest_fp": 386.48,
+    "volume_24h_fp": 397.62,
+    "volume_fp": 398.65999999999997
    },
    "ex_stats_first": {
     "open_interest_fp": 48.44,
@@ -8574,7 +8732,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 141,
+   "settle_tries": 142,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Fritz",
