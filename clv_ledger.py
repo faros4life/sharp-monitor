@@ -542,15 +542,26 @@ def apply_doubt(st, rec, now):
     """
     fv, fw = fixture_check(st, rec)
     iv, iw = identity_check(rec)
-    if (fv == "doubt" or iv == "doubt") and not rec.get("fixture_doubt"):
-        why_now = fw if fv == "doubt" else iw
-        if release_covers(rec, why_now):
-            # Pin a legacy release to the fixture it is covering, once, so later passes use the
-            # strict fixture+reason test instead of the permissive legacy one. This adds a field
-            # to released_from and changes no CLV, price, fixture or result.
-            if not (rec.get("released_from") or {}).get("fixture") and rec.get("fixture"):
-                rec["released_from"]["fixture"] = rec["fixture"]
-            return "released"
+    doubt = (fv == "doubt" or iv == "doubt")
+    why_now = fw if fv == "doubt" else iw
+    if doubt and release_covers(rec, why_now):
+        # Pin a legacy release to the fixture it is covering, once, so later passes use the
+        # strict fixture+reason test instead of the permissive legacy one. This adds a field
+        # to released_from and changes no CLV, price, fixture or result.
+        if not (rec.get("released_from") or {}).get("fixture") and rec.get("fixture"):
+            rec["released_from"]["fixture"] = rec["fixture"]
+        if rec.get("fixture_doubt"):
+            # The flag is ALREADY set, put there by the pre-Stage-1 step 5 on one of the many runs
+            # since Nov 12. Guarding the re-raise alone was not enough: it stops the next flag but
+            # leaves the existing one in place, so the 25 rows stayed held out and the first real
+            # ledger run after Stage 1 moved none of them. A release that the row still satisfies
+            # has to actually clear the flag, which is what the release did in the first place.
+            # Narrow by the same test as everything else here - fixture AND reason - and
+            # idempotent: released_from keeps the original record, so re-running changes nothing.
+            rec.pop("fixture_doubt")
+            return "re-released"
+        return "released"
+    if doubt and not rec.get("fixture_doubt"):
         rec["fixture_doubt"] = {"since": iso(now), "why": why_now}
         return "flagged"
     if fv == "ok" and iv == "ok":

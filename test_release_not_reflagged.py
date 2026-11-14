@@ -82,6 +82,29 @@ def main():
     check("no fixture_doubt written", "fixture_doubt" not in rec, rec.get("fixture_doubt"))
     check("CLV untouched", rec["clv"] == 0.0204, rec.get("clv"))
 
+    print("2b. a flag ALREADY SET before Stage 1 is cleared when the release still covers it")
+    # This is the production case: step 5 had been re-raising the flag since Nov 12, so by the
+    # time the fix shipped all 25 rows already carried fixture_doubt. Guarding the re-raise alone
+    # left them held out - the first real ledger run after Stage 1 moved none of them.
+    rec = espn_row(released_from={"since": "2026-11-12T16:31:00Z", "why": iw, "fixture": "fx1"},
+                   fixture_doubt={"since": "2026-11-13T02:00:00Z", "why": iw})
+    check("an already-set covered flag is cleared", run(st, rec) == ["re-released"], rec.get("fixture_doubt"))
+    check("the flag is gone", "fixture_doubt" not in rec, rec.get("fixture_doubt"))
+    check("released_from is preserved as the record", rec["released_from"]["why"] == iw)
+    check("CLV untouched by the clear", rec["clv"] == 0.0204, rec.get("clv"))
+    check("idempotent on the next pass", run(st, rec) == ["released"])
+
+    print("2c. an already-set flag the release does NOT cover is left alone")
+    rec = espn_row(released_from={"since": "x", "why": "a different reason", "fixture": "fx1"},
+                   fixture_doubt={"since": "y", "why": iw})
+    check("uncovered flag stays", run(st, rec) == ["unchanged"], rec.get("fixture_doubt"))
+    check("and keeps its own reason", rec["fixture_doubt"]["why"] == iw, rec["fixture_doubt"])
+
+    print("2d. a flag on a row with NO release is never cleared")
+    rec = espn_row(fixture_doubt={"since": "y", "why": iw})
+    check("unreleased flag stays", run(st, rec) == ["unchanged"], rec.get("fixture_doubt"))
+    check("flag still present", bool(rec.get("fixture_doubt")))
+
     print("3. a GENUINELY NEW doubt still excludes a released row")
     # Released for the identity doubt, but the row now also fails the FIXTURE test because its
     # stored fixture is no longer in the cache in a way the matcher accepts.
