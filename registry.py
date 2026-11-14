@@ -281,6 +281,9 @@ def invalidate():
 
 
 STRIKE_FIELDS = ("book", "game", "date", "mtype", "label")
+# Kept when present, never REQUIRED: adding one of these to STRIKE_FIELDS would invalidate every
+# record already cached, because strike_map() rejects a record missing any required field.
+STRIKE_OPTIONAL = ("league", "start")
 
 
 def strike_map():
@@ -310,6 +313,7 @@ def strike_map():
 def put_strikes(newly):
     """Store newly resolved strike identities. Only complete records are written."""
     keep = {str(k): {f: v.get(f) for f in STRIKE_FIELDS}
+                    | {f: v[f] for f in STRIKE_OPTIONAL if v.get(f) is not None}
             for k, v in (newly or {}).items()
             if isinstance(v, dict) and all(v.get(f) is not None for f in STRIKE_FIELDS)}
     if not keep:

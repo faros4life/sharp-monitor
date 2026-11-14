@@ -343,8 +343,16 @@ def _walk(bc, want, found, now):
                                 # why four graded losses sit at clv None with tries None.
                                 # This is the venue's own scheduled time - a verified source, not a guess.
                                 # Additive only: `date` is unchanged, so every existing reader is unaffected.
+                                # Nov 13 (Peter, priority 2): record the LEAGUE. `lg` is the
+                                # loop variable of this walk - the strike was found by reading
+                                # that league's events - so the league is known here as a fact of
+                                # how the record was obtained, not an inference from its name.
+                                # It was simply never written down, and 100 ledger rows carry
+                                # neither a league nor a game as a result, which makes them
+                                # permanently unscoreable: a row with no league can never match a
+                                # fixture. Optional field, so existing cached records stay valid.
                                 found[sid] = {"book": "prophetx", "strike_id": sid, "game": e.get("name") or "", "date": (e.get("scheduled") or "")[:10],
-                                              "start": e.get("scheduled") or "",
+                                              "start": e.get("scheduled") or "", "league": lg,
                                               "mtype": mtype, "label": x.get("name") or "", "flip": False}
     return skipped == 0, skipped
 

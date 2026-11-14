@@ -345,7 +345,12 @@ def read_prophetx():
         win = stake * 100 / abs(pr) if pr < 0 else stake * pr / 100
         h = names.get(str(t.get("strike_id")))
         title = str(t.get("line_name") or t.get("selection") or "")
-        b = {"id": f"px|{t.get('id')}", "book": "ProphetX", "game": (h or {}).get("game") or str(t.get("event_name") or ""),
+        # Nov 13 (Peter, priority 2): the league comes straight off the resolved strike, which
+        # knows it because the strike was found by walking that league's events. Without it a row
+        # can never match a fixture (_qualifies requires f["lg"] == lg) and its CLV is
+        # unreachable forever. attach() still fills it from ESPN when the strike has none.
+        b = {"id": f"px|{t.get('id')}", "book": "ProphetX", "league": (h or {}).get("league"),
+             "game": (h or {}).get("game") or str(t.get("event_name") or ""),
              "bet": (h or {}).get("label") or title, "price": pr, "stake": round(stake, 2),
              "to_pay": round(stake + win * 0.98, 2), "date": (h or {}).get("date"), "placed": str(t.get("created_at") or ""),
              "strike": str(t.get("strike_id") or "")}   # Nov 6: fills of one bet share a strike -> one card
