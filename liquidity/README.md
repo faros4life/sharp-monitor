@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 14, 12:55 PM ET. This run: 0 new, 1 not confirmed, 1 pending. Open alerts: 90.
+Updated Sat Nov 14, 1:00 PM ET. This run: 0 new, 1 not confirmed, 0 pending. Open alerts: 90.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -11,11 +11,11 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 14 12:45PM | NCAAF | Grambling St. vs Bethune-Cookman | moneyline: Bethune | kalshi | $40k | +117 | ✅ novig |  | +0.0c | yes | pending |
-| Nov 14 12:40PM | NCAAF | Michigan @ Oregon | spread: ORE -9.5 (-9.5) | novig | $30k | -111 |  |  | +0.0c |  | pending |
+| Nov 14 12:40PM | NCAAF | Michigan @ Oregon | spread: ORE -9.5 (-9.5) | novig | $30k | -111 |  |  | +0.5c |  | pending |
 | Nov 14 12:25PM | NCAAF | UAB vs Temple: Total Points | total: NOT Over 49.5 points | kalshi | $34k | -117 |  |  | -1.0c |  | pending |
 | Nov 14 12:20PM | NCAAF | California @ Virginia | moneyline: UVA (0) | novig | $26k | -413 |  | ❌ | +0.5c |  | pending |
 | Nov 14 12:20PM | NCAAF | Alabama @ Vanderbilt | spread: ALA -14.5 (14.5) | novig | $27k | -100 | ✅ kalshi,prophetx | ❌ | +1.0c |  | pending |
-| Nov 14 12:20PM | NCAAF | Michigan @ Oregon | moneyline: ORE (0) | novig | $27k | -365 | ✅ prophetx |  | -0.5c |  | pending |
+| Nov 14 12:20PM | NCAAF | Michigan @ Oregon | moneyline: ORE (0) | novig | $27k | -365 | ✅ prophetx |  | +0.0c |  | pending |
 | Nov 14 12:20PM | NCAAF | Grambling St. vs Bethune-Cookman: Total Points | total: Over 61.5 points | kalshi | $45k | +108 |  |  | +0.0c | yes | pending |
 | Nov 14 12:10PM | NCAAF | Kansas State @ TCU | moneyline: TCU (0) | novig | $27k | -456 | ✅ prophetx | ✅ | +0.0c |  | pending |
 | Nov 14 12:05PM | NCAAF | Chattanooga vs Furman | moneyline: Chattanooga | kalshi | $49k | -138 |  |  | +1.0c | yes | pending |
@@ -24,7 +24,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 14 11:45AM | NCAAF | Wisconsin at Maryland | moneyline: Wisconsin | prophetx | $34k | -295 | ✅ novig |  | +0.0c |  | pending |
 | Nov 14 11:45AM | NCAAF | UAB vs Temple: Spread | spread: Temple wins by over 2.5 points | kalshi | $41k | -100 | ✅ novig |  | +2.0c |  | pending |
 | Nov 14 11:40AM | NCAAF | Duke at Miami Florida | moneyline: Miami Florida | prophetx | $33k | -530 | ✅ novig |  | -0.9c | yes | pending |
-| Nov 14 11:35AM | NCAAF | Tennessee @ Texas A&M | moneyline: TENN (0) | novig | $52k | -104 |  | ❌ | +1.5c | yes | pending |
+| Nov 14 11:35AM | NCAAF | Tennessee @ Texas A&M | moneyline: TENN (0) | novig | $52k | -104 |  | ❌ | +2.0c | yes | pending |
 | Nov 14 11:35AM | NCAAF | Arkansas St. vs Coastal Carolina: Spread | spread: NOT Coastal Carolina wins by over 1.5 points | kalshi | $29k | -104 |  |  | +1.0c | yes | pending |
 | Nov 14 11:30AM | NCAAF | Wisconsin @ Maryland | moneyline: WIS (0) | novig | $30k | -292 | ✅ prophetx |  | +0.5c |  | pending |
 | Nov 14 11:20AM | NCAAF | Lafayette vs Colgate: Total Points | total: NOT Over 46.5 points | kalshi | $35k | -108 |  |  | +0.0c | yes | pending |
@@ -75,13 +75,13 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 14 3:55AM | NCAAF | Kennesaw St. vs Sam Houston | moneyline: Kennesaw St. | kalshi | $88k | -270 | ✅ novig |  | +1.0c | yes | pending |
 | Nov 14 2:50AM | NCAAF | Duke @ Miami Florida | moneyline: MIA (0) | novig | $30k | -525 | ✅ prophetx |  | -1.5c |  | pending |
 | Nov 14 2:30AM | NCAAF | Valparaiso vs Stetson | moneyline: Valparaiso | kalshi | $26k | -376 |  |  | -1.0c |  | pending |
-| Nov 14 2:30AM | NCAAF | North Carolina A&T vs Hampton | moneyline: North Carolina A&T | kalshi | $39k | -400 |  |  | +1.0c |  | pending |
+| Nov 14 2:30AM | NCAAF | North Carolina A&T vs Hampton | moneyline: North Carolina A&T | kalshi | $39k | -400 |  |  | +1.0c | yes | pending |
 | Nov 14 2:30AM | NCAAF | Harvard vs Penn | moneyline: Harvard | kalshi | $26k | -525 |  |  | +0.0c |  | pending |
 | Nov 14 2:20AM | NCAAF | Mercyhurst vs Duquesne | moneyline: Duquesne | kalshi | $26k | -426 |  |  | -3.0c | yes | pending |
-| Nov 14 2:20AM | NCAAF | Lafayette vs Colgate | moneyline: Colgate | kalshi | $28k | -400 |  |  | +0.0c |  | pending |
+| Nov 14 2:20AM | NCAAF | Lafayette vs Colgate | moneyline: Colgate | kalshi | $28k | -400 |  |  | +0.0c | yes | pending |
 | Nov 14 2:05AM | NCAAF | Northern Iowa vs South Dakota | moneyline: South Dakota | kalshi | $25k | -456 |  |  | +0.0c |  | pending |
 | Nov 14 1:00AM | NCAAF | Campbell vs Elon | moneyline: Campbell | kalshi | $28k | -203 |  |  | +0.0c |  | pending |
-| Nov 13 11:50PM | NCAAF | Central Connecticut St. vs LIU | moneyline: Central Connecticut St. | kalshi | $38k | -335 |  |  | -7.0c | yes | pending |
+| Nov 13 11:50PM | NCAAF | Central Connecticut St. vs LIU | moneyline: Central Connecticut St. | kalshi | $38k | -335 |  |  | -1.0c | yes | pending |
 | Nov 13 11:05PM | NHL | Seattle vs Carolina | moneyline: Carolina | kalshi | $41k | -335 |  |  | +1.0c | yes | pending |
 | Nov 13 10:50PM | NCAAF | Syracuse @ North Carolina State | moneyline: SYR (0) | novig | $26k | -133 |  |  | -0.5c | yes | pending |
 | Nov 13 10:05PM | NCAAF | Houston @ Colorado | spread: COLO +7.5 (7.5) | novig | $52k | -104 | ✅ kalshi | ✅ | +0.0c |  | W |
