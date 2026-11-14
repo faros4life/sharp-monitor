@@ -130,7 +130,7 @@ def value_at_ticket(sport, mtype, side, bet_line, ref_line, q_ref, dec, book, k=
 
 
 # ------------------------------------------------------------------ the Pinnacle ladder (reads cached history only)
-def ladder(fixture, snap, mkmap, pm, H):
+def ladder(fixture, snap, mkmap, pm, H, at=None):
     """(info, why). info = {mtype, side, bet_line, entries:[(bettor_line, q_bettor, age_min, limit)]}.
 
     H is a namespace of the clv_ledger helpers (parsed, which_team, two_way, novig_p, SPORT, ML_MARKET, FRESH_MIN, tp, fxm,
@@ -139,6 +139,9 @@ def ladder(fixture, snap, mkmap, pm, H):
     start = H.tp(fixture.get("start")) or H.tp(snap.get("game_start"))
     if not start:
         return None, "no start time on the fixture or the row"
+    if at is not None and at > start:
+        return None, "placed after start"
+    cut = at or start            # the last tick at or before this time; the CLOSE when at is None (unchanged)
     try:
         if H.tb.is_politics({"game": snap.get("game"), "bet": snap.get("bet")}):
             return None, "politics market, not a sports bet"
@@ -153,12 +156,12 @@ def ladder(fixture, snap, mkmap, pm, H):
         return None, f"league {lg or 'unknown'} has no sport id"
     if pz[0] == "ml":
         mid = H.ML_MARKET.get(sid)
-        tw = H.two_way(pm, mid, start) if mid else {}
+        tw = H.two_way(pm, mid, cut) if mid else {}
         oc = {v: k for k, v in ((mkmap.get(mid) or [0, 0, 0, {}])[3]).items()}
         o1, o2 = oc.get("1"), oc.get("2")
         if o1 not in tw or o2 not in tw:
             return None, "no two-sided Pinnacle moneyline quote before start"
-        age = (start - min(tw[o1][1], tw[o2][1])).total_seconds() / 60
+        age = (cut - min(tw[o1][1], tw[o2][1])).total_seconds() / 60
         if age > H.FRESH_MIN:
             return None, f"moneyline close {age / 60:.0f}h stale"
         side, why = H.fxm.resolve_side(fixture, pz[1], lg, H.which_team)
@@ -185,12 +188,12 @@ def ladder(fixture, snap, mkmap, pm, H):
     for mid, (sp, t, hcap, outs) in (mkmap or {}).items():
         if sp != sid or t != typ or mid not in pm:
             continue
-        tw = H.two_way(pm, mid, start)
+        tw = H.two_way(pm, mid, cut)
         nm = {v: k for k, v in outs.items()}
         a, b = (nm.get("1"), nm.get("2")) if typ == "spreads" else (nm.get("Over"), nm.get("Under"))
         if a not in tw or b not in tw:
             continue
-        age = (start - min(tw[a][1], tw[b][1])).total_seconds() / 60
+        age = (cut - min(tw[a][1], tw[b][1])).total_seconds() / 60
         if age > H.FRESH_MIN:
             continue
         pa = H.novig_p(tw[a][0], tw[b][0])                  # team 1 covers hcap / over hcap
@@ -203,6 +206,21 @@ def ladder(fixture, snap, mkmap, pm, H):
         return None, f"no fresh two-sided Pinnacle {typ} close"
     return {"mtype": "spread" if typ == "spreads" else "total", "side": side_lab, "bet_line": float(want),
             "entries": entries}, None
+
+
+PLACED_FIELDS = (("placed", "placed"), ("decided_utc", "bot decision"), ("placed_bot", "bot decision"),
+                 ("first_seen", "first seen (tracker)"))
+
+
+def placement_time(snap, ledger_first_seen, tp):
+    """(datetime, basis) for when the ticket was placed, same order of evidence clv_ledger's plimit read uses, or
+    (None, None). 'first seen (ledger)' can be up to ~2 h late and is reported as its own basis, never merged."""
+    for fld, nm in PLACED_FIELDS:
+        t_ = tp(snap.get(fld))
+        if t_:
+            return t_, nm
+    t_ = tp(ledger_first_seen)
+    return (t_, "first seen (ledger, <=2h late)") if t_ else (None, None)
 
 
 def pick_reference(info):
@@ -512,6 +530,12 @@ def build_records(st, tracker, reg, mkmap, H, cv, cb, cl, csel, cstale, fxm):
             continue
         rec["sc"] = score_selection(snap.get("league"), rec["book"], dec, gross, info)
         rec["lb_info"] = {k_: info.get(k_) for k_ in ("mtype", "side", "bet_line", "entries")}   # line-beat scorecard input
+        pt_, rec["lb_basis"] = placement_time(snap, rows[0].get("first_seen"), cl.tp)
+        rec["lb_open"], rec["lb_open_why"] = None, ("no placement time" if pt_ is None else None)
+        if pt_ is not None:
+            oi_, ow_ = ladder(f, snap, mkmap, cl.book_markets(h, "pinnacle"), H, at=pt_)
+            rec["lb_open"] = {k_: oi_.get(k_) for k_ in ("mtype", "side", "bet_line", "entries")} if oi_ else None
+            rec["lb_open_why"] = None if oi_ else ("placed after start" if "after start" in str(ow_) else "no Pinnacle line at placement")
         b = rec["sc"]["base"]
         rec["status"] = b["cls"] if b["status"] == "ok" else "conv_unsupported"
         rec["why"] = b["reason"]
@@ -776,13 +800,15 @@ def main():
     for w_ in sorted(wk):
         say(f"    {w_}  {wk[w_][0]:>4} {wk[w_][1]:>5} {wk[w_][2]:>5}")
     say("=" * 100)
-    say("8. LINE-BEAT SCORECARD (shadow only; points vs Pinnacle's closing MAIN line; NOT CLV, never monetised here)")
-    say("   + = beat the close. Totals: Over close-entry, Under entry-close. Spreads: entry-close in the bettor's team orientation.")
+    say("8. LINE-BEAT SCORECARD (shadow only; did Pinnacle's MAIN line move toward the ticket between placement and close?)")
+    say("   NOT CLV, never monetised. + = market moved our way. Totals: Over close-open, Under open-close; spreads: open-close in the")
+    say("   bettor's team orientation. Open = Pinnacle main line at placement; close = main line at start. The ticket's own line is NOT")
+    say("   compared to the close: an alternate line differs from the main by construction (the run-43636940519 defect).")
     say(f"   Main line = nearest 50/50 among lines with limit >= {int(100 * lb.MAIN_LIMIT_FLOOR)}% of the largest; ambiguous -> excluded.")
     say("   Price beat = same-line CLV > 0 (own line). Union counts a line tie only with a price beat, and never a line loss.")
     for r in recs:
-        r["lb"] = lb.grade(r.get("lb_info"), r["sc"]["old"] if r.get("sc") else None) if r.get("lb_info") is not None else \
-            lb.grade(None, None)
+        r["lb"] = lb.grade(r.get("lb_info"), r["sc"]["old"] if r.get("sc") else None, r.get("lb_open"), r.get("lb_open_why")) \
+            if r.get("lb_info") is not None else lb.grade(None, None)
     graded = [r for r in recs if r.get("lb_info") is not None]
     say(f"   tickets with a Pinnacle close ladder: {len(graded)} selections / {nfill(graded)} fills / {len({r['game'] for r in graded})} games"
         f" (of {len(recs)} eligible selections; the rest have no close and are not counted as losses)")
@@ -826,6 +852,14 @@ def main():
         say(f"  {nm_} n {t['n']} games {len({r['game'] for r in grp})} verified {t['verified']} beat {lb.pct(t['beat'], t['verified'])} "
             f"tie {lb.pct(t['tie'], t['verified'])} loss {lb.pct(t['loss'], t['verified'])} | price beat {lb.pct(t['price_beat'], t['price_n'])} | {roi_units(grp, LU)}")
     say(f"  no start time (in neither half): {len(nos)}; multi-fill selections: {sum(1 for r in graded if r['fills'] > 1)}")
+    say("  -- by placement-time basis (a late basis measures less of the move; never merged) --")
+    bas_ = collections.defaultdict(list)
+    for r in graded:
+        bas_[r.get("lb_basis") or "none"].append(r)
+    for b_ in sorted(bas_):
+        t = lb.tally([r["lb"] for r in bas_[b_]])
+        say(f"  basis {safe_label(b_):<32} n {t['n']} verified {t['verified']} moved-our-way {lb.pct(t['beat'], t['verified'])} "
+            f"against {lb.pct(t['loss'], t['verified'])}")
     t = lb.tally([r["lb"] for r in graded])
     comp = ", ".join(f"{k_[0]} {k_[1]} {len(v_)}" for k_, v_ in sorted(cells.items()))
     say(f"  OVERALL line-beat rate {lb.pct(t['beat'], t['verified'])} (composition: {comp}) - a mix of leagues and markets, not one population")

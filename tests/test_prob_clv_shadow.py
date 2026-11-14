@@ -120,6 +120,36 @@ stale_pm = {"m1": {"o": (1.95, T0 - timedelta(days=3), 5000.0), "u": (1.95, T0 -
 i3, w3 = ps.ladder({"start": T0}, {"league": "NFL", "game": "x", "bet": "Over 44.5"}, {"m1": mk["m1"]}, stale_pm, H)
 ck("6 stale quotes -> no ladder, reason stated", i3 is None and "no fresh" in w3, str(w3))
 
+# ---- 6b. ladder at PLACEMENT time (line-beat input); default behaviour unchanged
+class H2(H):
+    two_way = staticmethod(lambda pm, mid, before: next((v for t, v in sorted(pm[mid].items(), reverse=True) if t <= before), {}))
+
+
+TP, TC = T0 - timedelta(hours=6), T0 - timedelta(minutes=3)
+tk = lambda lim, t: {"o": (1.95, t, lim), "u": (1.95, t, lim)}
+mk4 = {"a": [14, "totals", 44.0, {"o": "Over", "u": "Under"}], "b": [14, "totals", 46.0, {"o": "Over", "u": "Under"}]}
+pm4 = {"a": {TP: tk(5000.0, TP), TC: tk(500.0, TC)}, "b": {TP: tk(500.0, TP), TC: tk(5000.0, TC)}}
+cl4, _ = ps.ladder({"start": T0}, {"league": "NFL", "game": "x", "bet": "Over 44.5"}, mk4, pm4, H2)
+op4, _ = ps.ladder({"start": T0}, {"league": "NFL", "game": "x", "bet": "Over 44.5"}, mk4, pm4, H2, at=TP + timedelta(minutes=1))
+ck("6b default ladder reads the CLOSE (largest limit moved to 46)", max(cl4["entries"], key=lambda e: e[3])[0] == 46.0)
+ck("6b ladder at placement reads the ticks before placement (main 44)", max(op4["entries"], key=lambda e: e[3])[0] == 44.0)
+import line_beat as _lb  # noqa: E402
+gb = _lb.grade(cl4, None, op4)
+ck("6b open->close main move for an Over: 44 -> 46 = +2", gb["status"] == "ok" and gb["open_line"] == 44.0 and gb["close_line"] == 46.0
+   and gb["points"] == 2.0, str(gb))
+pa, pw = ps.ladder({"start": T0}, {"league": "NFL", "game": "x", "bet": "Over 44.5"}, mk4, pm4, H2, at=T0 + timedelta(minutes=5))
+ck("6b placed after start -> no placement ladder, fixed reason", pa is None and pw == "placed after start")
+pe, pew = ps.ladder({"start": T0}, {"league": "NFL", "game": "x", "bet": "Over 44.5"}, mk4, pm4, H2, at=TP - timedelta(hours=1))
+ck("6b no tick before placement -> no ladder", pe is None)
+tpf = lambda x: x if isinstance(x, datetime) else None
+ck("6b placement_time: 'placed' wins", ps.placement_time({"placed": TP, "first_seen": TC}, T0, tpf) == (TP, "placed"))
+ck("6b placement_time: bot decision next", ps.placement_time({"decided_utc": TP}, None, tpf) == (TP, "bot decision")
+   and ps.placement_time({"placed_bot": TP}, None, tpf) == (TP, "bot decision"))
+ck("6b placement_time: tracker first seen, then the late ledger basis labelled as such",
+   ps.placement_time({"first_seen": TP}, None, tpf) == (TP, "first seen (tracker)")
+   and ps.placement_time({}, TP, tpf) == (TP, "first seen (ledger, <=2h late)"))
+ck("6b placement_time: nothing -> (None, None), never invented", ps.placement_time({}, None, tpf) == (None, None))
+
 # ---- 7. statistics
 n, m, se, g = ps.cluster_mean([0.1, 0.1, -0.1, -0.1], ["a", "a", "b", "b"])
 ck("7 clustered: 4 rows in 2 games count as 2 clusters", g == 2 and n == 4 and close(m, 0.0))

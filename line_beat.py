@@ -7,11 +7,13 @@ is pure: no I/O, no network, no import of any execution, grading or registry mod
 monetised here - a line beat is reported in POINTS, and turning points into price needs a validated conversion that
 does not exist for this sample (conv_measured = conv_estimated = 0), so no "line-adjusted CLV" is produced.
 
-DEFINITIONS (positive = we beat the close)
-  total OVER   close_line - entry_line        (we bought Over 44.5, close 46.5 -> +2.0)
-  total UNDER  entry_line - close_line        (we bought Under 46.5, close 44.5 -> +2.0)
-  spread       entry_line - close_line, both in the BETTOR'S team orientation
-               (+3.5 vs close +2.5 -> +1.0;  -2.5 vs close -3.5 -> +1.0)
+DEFINITIONS (positive = Pinnacle's main line moved TOWARD the ticket between placement and close)
+  total OVER   close_main - open_main         (main 44.5 when we bet Over, 46.5 at close -> +2.0)
+  total UNDER  open_main - close_main         (main 46.5 when we bet Under, 44.5 at close -> +2.0)
+  spread       open_main - close_main, both in the BETTOR'S team orientation
+               (our team +3.5 at placement, +2.5 at close -> +1.0;  -2.5 -> -3.5 -> +1.0)
+  The ticket's own line is NOT compared with the close: an alternate line differs from the main by construction,
+  so "entry vs closing main" scores bought points as a beat (the defect found in run 43636940519).
   moneyline    no line: points are N/A, the ticket is counted only in the price columns
 
 CLOSING MAIN LINE. The ladder's entries are every fresh two-sided Pinnacle line at close, already in the bettor's
@@ -70,11 +72,14 @@ def outcome(points):
     return BEAT if points > EPS else (LOSS if points < -EPS else TIE)
 
 
-def grade(info, same_line_clv=None):
-    """One ticket. info = the ladder dict (mtype, side, bet_line, entries) or None.
+def grade(info, same_line_clv=None, open_info=None, open_why=None):
+    """One ticket. info = the CLOSE ladder (mtype, side, bet_line, entries); open_info = the same ladder read at the
+    ticket's placement time. Points = movement of Pinnacle's MAIN line from placement to close, in the ticket's
+    direction. The ticket's own line is not compared to the close (an alternate line differs from the main by design).
 
-    Returns {status, mtype, close_line, points, line, price, any}. status is 'ok' or a fixed exclusion reason."""
-    out = {"status": None, "mtype": None, "close_line": None, "points": None, "line": None, "price": None, "any": None}
+    Returns {status, mtype, open_line, close_line, points, line, price, any}. status 'ok' or a fixed exclusion."""
+    out = {"status": None, "mtype": None, "open_line": None, "close_line": None, "points": None, "line": None,
+           "price": None, "any": None}
     price = None if same_line_clv is None else (same_line_clv > EPS)
     out["price"] = price
     if not info:
@@ -91,18 +96,28 @@ def grade(info, same_line_clv=None):
     if out["mtype"] == "total" and info.get("side") not in ("OVER", "UNDER"):
         out["status"] = "total side unknown"
         return out
+    if not open_info:
+        out["status"] = open_why if open_why in OPEN_REASONS else "no Pinnacle line at placement"
+        return out
+    if open_info.get("mtype") != out["mtype"] or open_info.get("side") != info.get("side"):
+        out["status"] = "placement ladder does not match"
+        return out
     cl_, why = main_line(info.get("entries"))
     if cl_ is None:
         out["status"] = why
         return out
-    pts = signed_points(out["mtype"], info.get("side"), info.get("bet_line"), cl_)
-    if pts is None:
-        out["status"] = "entry line unknown"
+    op_, why = main_line(open_info.get("entries"))
+    if op_ is None:
+        out["status"] = why + " at placement"
         return out
-    out.update(status="ok", close_line=cl_, points=pts, line=outcome(pts))
+    pts = signed_points(out["mtype"], info.get("side"), op_, cl_)
+    out.update(status="ok", open_line=op_, close_line=cl_, points=pts, line=outcome(pts))
     out["any"] = True if out["line"] == BEAT else (bool(price) if out["line"] == TIE and price is not None else
                                                      (None if out["line"] == TIE else False))
     return out
+
+
+OPEN_REASONS = ("no placement time", "placed after start", "no Pinnacle line at placement")
 
 
 def tally(grades):
