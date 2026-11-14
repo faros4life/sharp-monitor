@@ -1,4 +1,4 @@
-# Paper splits (updated 2026-11-14T23:45:20Z)
+# Paper splits (updated 2026-11-14T23:50:18Z)
 
 Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kill bar: 30+ resulted at -0.10u/play or worse closes a split.
 
@@ -18,7 +18,7 @@ Units only, 1u flat after fees. Promotions happen only at scheduled reviews. Kil
 | Evening sends, ex-Hard Rock | scan | 2026-10-26 | 20-17-0 | +0.41 | +0.011 | -3.95 | OPEN |
 | Muted midday (11 AM-2 PM ET) | scan | 2026-10-26 | 60-55-0 | -2.29 | -0.020 | -0.03 | OPEN |
 | Liquidity totals, no sharp agree | scan | 2026-10-22 | 249-229-0 | +11.70 | +0.024 |  | OPEN |
-| Liquidity vs sharp (oppose) | scan | 2026-10-22 | 199-163-0 | +8.37 | +0.023 |  | CLOSED |
+| Liquidity vs sharp (oppose) | scan | 2026-10-22 | 199-164-0 | +7.37 | +0.020 |  | CLOSED |
 | Liquidity spreads | scan | 2026-10-22 | 442-416-0 | -27.70 | -0.032 |  | CLOSED (by decision, 2026-10-27) |
 | Liquidity overnight (12-5 AM ET) | scan | 2026-10-26 | 137-83-0 | +2.25 | +0.010 |  | CLOSED |
 | Liquidity evening (5-8 PM ET) | scan | 2026-10-26 | 230-178-0 | +0.01 | +0.000 |  | CLOSED |
