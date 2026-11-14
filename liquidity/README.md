@@ -1,15 +1,17 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 14, 5:52 PM ET. This run: 0 new, 0 not confirmed, 7 pending. Open alerts: 49.
+Updated Sat Nov 14, 6:00 PM ET. This run: 2 new, 1 not confirmed, 4 pending. Open alerts: 48.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 1481-1137 (-7.79u flat) | rule met: 894-692
+**Record:** 1483-1138 (-8.25u flat) | rule met: 894-692
 
-**Fade (paper, betting against the print):** 871-1208 (-229.07u flat, after fees)
+**Fade (paper, betting against the print):** 872-1210 (-228.78u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 14 6:00PM | NHL | New Jersey vs Washington | moneyline: New Jersey | kalshi | $61k | -127 | ✅ novig,prophetx |  | +0.0c |  | pending |
+| Nov 14 6:00PM | NCAAF | McNeese vs Southeastern Louisiana | moneyline: Southeastern Louisiana | kalshi | $92k | -300 |  |  | +0.0c |  | pending |
 | Nov 14 5:40PM | NCAAF | UC Davis vs Idaho | moneyline: Idaho | kalshi | $51k | -285 |  |  | +0.0c |  | pending |
 | Nov 14 5:40PM | NCAAF | South Carolina vs Arkansas | moneyline: South Carolina | kalshi | $140k | -285 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Nov 14 5:40PM | NCAAF | Florida Atlantic vs Tulsa | moneyline: Tulsa | kalshi | $100k | -213 | ✅ prophetx |  | +0.0c |  | pending |
@@ -36,7 +38,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 14 3:40PM | NCAAF | Washington vs Michigan St. | moneyline: Washington | kalshi | $388k | -133 | ✅ novig,prophetx | ❌ | +3.0c | yes | pending |
 | Nov 14 3:40PM | NCAAF | Troy vs South Alabama | moneyline: Troy | kalshi | $86k | +133 | ✅ novig |  | +0.0c |  | pending |
 | Nov 14 3:20PM | NCAAF | USC at Indiana | moneyline: Indiana | prophetx | $96k | -295 | ✅ kalshi,novig |  | +0.0c |  | pending |
-| Nov 14 3:20PM | NCAAF | Dartmouth vs Cornell | moneyline: Cornell | kalshi | $82k | -257 |  |  | +22.0c |  | pending |
+| Nov 14 3:20PM | NCAAF | Dartmouth vs Cornell | moneyline: Cornell | kalshi | $82k | -257 |  |  | +22.0c |  | W |
 | Nov 14 3:10PM | NCAAF | Tulane vs Rice | moneyline: Rice | kalshi | $93k | -156 | ✅ novig,prophetx | ✅ | +0.0c | yes | pending |
 | Nov 14 3:10PM | NCAAF | Michigan vs Oregon | moneyline: Oregon | kalshi | $252k | -355 | ✅ novig,prophetx |  | +0.0c | yes | pending |
 | Nov 14 3:10PM | NCAAF | Georgia Southern vs Georgia St. | moneyline: NOT Georgia St. | kalshi | $181k | -203 |  | ❌ | -1.0c | yes | pending |
@@ -44,7 +46,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 14 2:50PM | NCAAF | New Mexico St. vs Missouri St. | moneyline: Missouri St. | kalshi | $256k | -104 | ✅ prophetx |  | +0.0c | yes | pending |
 | Nov 14 2:40PM | NCAAF | Arizona St. vs UCF | moneyline: UCF | kalshi | $191k | -163 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Nov 14 1:55PM | NCAAF | Florida vs Kentucky | moneyline: Kentucky | kalshi | $2,072k | -150 | ✅ novig,prophetx |  | -1.0c |  | pending |
-| Nov 14 1:45PM | NCAAF | Mercer vs Tennessee Tech | moneyline: Tennessee Tech | kalshi | $62k | -257 |  |  | +0.0c | yes | pending |
+| Nov 14 1:45PM | NCAAF | Mercer vs Tennessee Tech | moneyline: Tennessee Tech | kalshi | $62k | -257 |  |  | +0.0c | yes | L |
 | Nov 14 1:40PM | NCAAF | Gardner-Webb vs Western Illinois | moneyline: Western Illinois | kalshi | $54k | -213 | ✅ novig |  | +0.0c | yes | W |
 | Nov 14 1:25PM | NFL | Miami Dolphins @ Indianapolis Colts | moneyline: IND (0) | novig | $28k | -194 | ✅ prophetx |  | +0.5c |  | pending |
 | Nov 14 12:45PM | NCAAF | Grambling St. vs Bethune-Cookman | moneyline: Bethune | kalshi | $40k | +117 | ✅ novig |  | +0.0c | yes | L |
@@ -113,7 +115,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 14 2:50AM | NCAAF | Duke @ Miami Florida | moneyline: MIA (0) | novig | $30k | -525 | ✅ prophetx |  | -1.5c |  | W |
 | Nov 14 2:30AM | NCAAF | Valparaiso vs Stetson | moneyline: Valparaiso | kalshi | $26k | -376 |  |  | -1.0c | yes | pending |
 | Nov 14 2:30AM | NCAAF | North Carolina A&T vs Hampton | moneyline: North Carolina A&T | kalshi | $39k | -400 |  |  | +1.0c | yes | W |
-| Nov 14 2:30AM | NCAAF | Harvard vs Penn | moneyline: Harvard | kalshi | $26k | -525 |  |  | +12.0c | yes | pending |
+| Nov 14 2:30AM | NCAAF | Harvard vs Penn | moneyline: Harvard | kalshi | $26k | -525 |  |  | +12.0c | yes | W |
 | Nov 14 2:20AM | NCAAF | Mercyhurst vs Duquesne | moneyline: Duquesne | kalshi | $26k | -426 |  |  | -3.0c | yes | W |
 | Nov 14 2:20AM | NCAAF | Lafayette vs Colgate | moneyline: Colgate | kalshi | $28k | -400 |  |  | +0.0c | yes | W |
 | Nov 14 2:05AM | NCAAF | Northern Iowa vs South Dakota | moneyline: South Dakota | kalshi | $25k | -456 |  |  | +0.0c |  | W |
@@ -208,5 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 12 3:13PM | NHL | Tampa Bay vs Columbus: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $40k | -104 | ✅ novig |  | +0.0c |  | W |
 | Nov 12 3:13PM | NHL | Minnesota vs Toronto: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $38k | -108 | ✅ novig |  | -1.0c |  | L |
 | Nov 12 3:00PM | NFL | Washington Commanders @ New York Giants | moneyline: WSH (0) | novig | $35k | +115 | ✅ kalshi |  | -1.0c | yes | W |
-| Nov 12 3:00PM | NFL | Washington vs New York G | moneyline: Washington | kalshi | $338k | +117 | ✅ novig |  | +0.0c | yes | W |
-| Nov 12 2:20PM | NBA | Toronto vs Philadelphia: Total Points | total: NOT Over 224.5 points | kalshi | $37k | -113 |  | ❌ | +0.0c | yes | L |
