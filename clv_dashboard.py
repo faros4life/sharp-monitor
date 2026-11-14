@@ -90,8 +90,9 @@ def parse_registry_md(path="REGISTRY.md"):
                 cls = h.group(1)
             m = re.match(r"^\|\s*(\d+)\s*\|\s*\*\*(.+?)\*\*\s*\|\s*(.*?)\s*\|\s*$", ln)
             if m:
-                out.append({"num": int(m.group(1)), "name": m.group(2), "class": cls or "?",
-                            "definition": m.group(3)[:160]})
+                # Name and class only. The definition column quotes stake sizes in dollars, and the
+                # payload carries no currency figures.
+                out.append({"num": int(m.group(1)), "name": m.group(2), "class": cls or "?"})
     except OSError:
         return []
     return out

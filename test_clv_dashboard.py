@@ -273,6 +273,9 @@ check("the INCOMPLETE disclaimer is gone only because all 32 are listed",
 check("a missing REGISTRY.md fails to an empty list, not an invented one",
       dash.parse_registry_md("/nonexistent/REGISTRY.md") == [])
 
+check("registry entries carry no currency text (definitions quote dollar stakes)",
+      all("$" not in json.dumps(e) for e in ents))
+
 print()
 if fails:
     print(f"FAILED {len(fails)}: " + "; ".join(fails))
