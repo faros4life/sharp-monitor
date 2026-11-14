@@ -322,7 +322,19 @@ def main():
             if nod:
                 say(f"    {len(nod)} selection(s) excluded from the half split (no game start)")
         if m:
-            say(f"    MISSING CLV: {len(m)} selection(s) - see section 3")
+            # Peter, priority 3: "Investigate the two missing R1 selections and the one missing
+            # Board v3 selection individually." A lane with few selections cannot be read from a
+            # bucket count, so each missing one is named here with its own reason.
+            say(f"    MISSING CLV: {len(m)} selection(s), each named:")
+            for o in m:
+                rid = (o.get("ids") or ["?"])[0]
+                rec = bets.get(rid) or {}
+                cls, reason = classify_missing(rec, st, alt, hc_has) if rec else ("?", "row not found")
+                say(f"      {str(o.get('book')):<12} {str(o.get('game_start'))[:10]}  "
+                    f"{rid[:38]:<38} [{cls}]")
+                say(f"          {reason[:92]}")
+                if rec.get("why"):
+                    say(f"          stored reason: {str(rec['why'])[:84]}")
     n_all = tot_c + tot_m
     say("")
     say(f"  ALL STRATEGIES: unique selections {n_all}, certified {tot_c}, "
