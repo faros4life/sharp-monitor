@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 13, 8:20 PM ET. This run: 0 new, 1 not confirmed, 1 pending. Open alerts: 69.
+Updated Fri Nov 13, 8:25 PM ET. This run: 1 new, 0 not confirmed, 2 pending. Open alerts: 70.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,10 +10,11 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 13 8:25PM | NBA | Golden State vs San Antonio: Total Points | total: Over 215.5 points | kalshi | $28k | -104 |  | ❌ | +0.0c |  | pending |
 | Nov 13 7:20PM | NBA | Cleveland Cavaliers at Miami Heat | moneyline: Miami Heat | prophetx | $45k | -130 | ✅ kalshi,novig |  | +0.4c |  | pending |
 | Nov 13 7:20PM | NBA | Cleveland Cavaliers @ Miami Heat | moneyline: MIA (0) | novig | $35k | -133 | ✅ kalshi,prophetx |  | +0.0c |  | pending |
 | Nov 13 7:10PM | NHL | Nashville vs Vegas: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $29k | -127 |  |  | +0.0c |  | pending |
-| Nov 13 7:10PM | NBA | Oklahoma City vs Los Angeles C: Spread | spread: NOT Oklahoma City wins by over 7.5 points | kalshi | $26k | -108 | ✅ novig |  | +1.0c | yes | pending |
+| Nov 13 7:10PM | NBA | Oklahoma City vs Los Angeles C: Spread | spread: NOT Oklahoma City wins by over 7.5 points | kalshi | $26k | -108 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 13 7:00PM | NBA | Memphis vs New Orleans: Spread | spread: NOT Memphis wins by over 3.5 points | kalshi | $121k | -108 |  | ✅ | -2.0c | yes | pending |
 | Nov 13 6:55PM | NCAAF | Arizona State @ UCF | moneyline: UCF (0) | novig | $26k | -150 | ✅ prophetx |  | +1.0c | yes | pending |
 | Nov 13 6:40PM | NBA | New York Knicks at Indiana Pacers | moneyline: New York Knicks | prophetx | $30k | -275 | ✅ kalshi,novig |  | +0.4c |  | pending |
@@ -37,7 +38,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 13 12:35PM | NBA | New York Knicks @ Indiana Pacers | moneyline: NYK (0) | novig | $31k | -317 | ✅ kalshi,prophetx |  | -2.5c |  | pending |
 | Nov 13 12:05PM | NBA | Portland vs Sacramento: Spread | spread: Portland wins by over 10.5 points | kalshi | $29k | +108 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 13 12:00PM | NCAAF | Princeton vs Yale | moneyline: Yale | kalshi | $26k | -138 |  |  | +2.0c |  | pending |
-| Nov 13 11:15AM | NHL | New York R vs Vancouver: Total Goals | total: Over 6.5 goals scored | kalshi | $38k | +104 | ✅ novig |  | -1.0c | yes | pending |
+| Nov 13 11:15AM | NHL | New York R vs Vancouver: Total Goals | total: Over 6.5 goals scored | kalshi | $38k | +104 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 13 10:20AM | NHL | New York R vs Vancouver: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $26k | -104 | ✅ novig,prophetx |  | +2.0c |  | pending |
 | Nov 13 10:15AM | NBA | Golden State vs San Antonio: Spread | spread: NOT San Antonio wins by over 11.5 points | kalshi | $30k | +104 |  |  | -2.0c | yes | pending |
 | Nov 13 10:05AM | NBA | Atlanta vs Chicago: Spread | spread: NOT Atlanta wins by over 6.5 points | kalshi | $25k | -104 |  | ✅ | -1.0c | yes | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 11 12:00AM | NBA | Washington vs Indiana | moneyline: Washington | kalshi | $36k | +144 | ✅ novig | ✅ | +0.0c |  | L |
 | Nov 10 10:51PM | NBA | Oklahoma City Thunder @ Portland Trail Blazers | spread: POR +1.5 (1.5) | novig | $83k | -104 | ✅ kalshi | ❌ | +0.0c |  | W |
 | Nov 10 10:51PM | NBA | Boston vs Toronto | moneyline: Boston | kalshi | $62k | -213 |  |  | -2.0c |  | W |
-| Nov 10 10:20PM | NBA | Oklahoma City Thunder @ Portland Trail Blazers | moneyline: POR (0) | novig | $42k | +111 | ✅ kalshi,prophetx | ❌ | +0.5c |  | W |
