@@ -53,6 +53,21 @@ ck("A index: unknown key prefix is never a lane", rg.lane_of("PX9", idx) is None
 ck("A index: absent / empty ref -> None", rg.lane_of("", idx) is None and rg.lane_of(None, idx) is None and rg.lane_of("PX1", {}) is None)
 ck("A index: empty input", rg.order_lane_index(None) == {} and rg.order_lane_index([{}]) == {})
 
+# ---- lane from the registry row's SOURCE (executor.ledger_row stores key = derive_key(play), no lane prefix)
+real = [{"key": "NBA|A @ B|total|OVER", "source": "board", "live_order": {"order_id": "S1", "book": "prophetx"}},
+        {"key": "NFL|C @ D|side|C", "source": "r1", "live_order": {"order_id": "S2", "book": "prophetx"}},
+        {"key": "NBA|E @ F|total|UNDER", "source": "rules", "live_order": {"order_id": "S3", "book": "prophetx"}},
+        {"key": "NBA|G @ H|total|UNDER", "source": "muse", "live_order": {"order_id": "S4", "book": "prophetx"}},
+        {"key": "board|NBA|I @ J|total|OVER", "source": "r1", "live_order": {"order_id": "S5", "book": "prophetx"}},
+        {"key": "r1|NBA|K @ L|total|OVER", "source": "", "live_order": {"order_id": "S6", "book": "prophetx"}}]
+ri = rg.order_lane_index(real)
+ck("A source: board / r1 / rules resolve from the row's source field", rg.lane_of("S1", ri, "ProphetX")[0] == "board"
+   and rg.lane_of("S2", ri, "ProphetX")[0] == "r1" and rg.lane_of("S3", ri, "ProphetX")[0] == "rules")
+ck("A source: unknown legacy source is NOT defaulted to a lane", rg.lane_of("S4", ri, "ProphetX") is None)
+ck("A source: key prefix and source that disagree prove nothing", rg.lane_of("S5", ri, "ProphetX") is None)
+ck("A source: key prefix alone still works", rg.lane_of("S6", ri, "ProphetX")[0] == "r1")
+ck("A source: row_lane is case-insensitive on source", rg.row_lane({"key": "x", "source": "Board"}) == "board")
+
 # ---- P1-A lane_src on rows
 b = {"order_ref": "PX1", "source": "bot"}
 ck("A row: exact order id -> registry-order-id", tb.assign_lane_src(b, idx, rg.lane_of) == "registry-order-id"

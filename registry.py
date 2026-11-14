@@ -1118,6 +1118,20 @@ def _venue(x):
     return "".join(ch for ch in str(x or "").lower() if ch.isalnum()) or None
 
 
+def row_lane(o):
+    """The lane of a stored order row, or None. executor.ledger_row stores key = derive_key(play) - normally
+    'SPORT|game|market|side' with NO lane prefix - and the lane in 'source' (rules | board | r1 | lane2, executor.py ~:690,
+    :737, :780). A lane prefix on the key ('rule|', 'board|' ...) is honoured when present. An unknown source (e.g. the
+    legacy 'muse' default) is None - never defaulted to a lane, unlike executor.lane_of's display default."""
+    o = o or {}
+    key = str(o.get("key") or "")
+    pre = LANE_PREFIX.get(key.split("|", 1)[0]) if "|" in key else None
+    src = LANE_PREFIX.get(str(o.get("source") or "").strip().lower())
+    if pre and src and pre != src:
+        return None          # the two records disagree: prove nothing
+    return pre or src
+
+
 def order_lane_index(orders):
     """{order id or client id: [(venue, lane, strategy key), ...]} from stored order rows.
 
@@ -1126,8 +1140,7 @@ def order_lane_index(orders):
     idx = {}
     for o in orders or []:
         key = str((o or {}).get("key") or "")
-        pre = key.split("|", 1)[0] if "|" in key else ""
-        lane = LANE_PREFIX.get(pre)
+        lane = row_lane(o)
         if not lane:
             continue
         recs = [o.get("live_order") or {}, o.get("live_rest") or {}] + [x or {} for x in (o.get("live_more") or [])]
