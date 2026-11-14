@@ -34,6 +34,7 @@ import sys
 from datetime import datetime, timedelta, timezone
 
 import line_value as lv
+import line_beat as lb
 
 CALC = "prob_clv_shadow/v1"
 Z95 = 1.96
@@ -510,6 +511,7 @@ def build_records(st, tracker, reg, mkmap, H, cv, cb, cl, csel, cstale, fxm):
             recs.append(rec)
             continue
         rec["sc"] = score_selection(snap.get("league"), rec["book"], dec, gross, info)
+        rec["lb_info"] = {k_: info.get(k_) for k_ in ("mtype", "side", "bet_line", "entries")}   # line-beat scorecard input
         b = rec["sc"]["base"]
         rec["status"] = b["cls"] if b["status"] == "ok" else "conv_unsupported"
         rec["why"] = b["reason"]
@@ -773,6 +775,60 @@ def main():
     say("  by game-start week (Monday): selections with a resolved fixture | Pinnacle file present | missing AND stored-certified")
     for w_ in sorted(wk):
         say(f"    {w_}  {wk[w_][0]:>4} {wk[w_][1]:>5} {wk[w_][2]:>5}")
+    say("=" * 100)
+    say("8. LINE-BEAT SCORECARD (shadow only; points vs Pinnacle's closing MAIN line; NOT CLV, never monetised here)")
+    say("   + = beat the close. Totals: Over close-entry, Under entry-close. Spreads: entry-close in the bettor's team orientation.")
+    say(f"   Main line = nearest 50/50 among lines with limit >= {int(100 * lb.MAIN_LIMIT_FLOOR)}% of the largest; ambiguous -> excluded.")
+    say("   Price beat = same-line CLV > 0 (own line). Union counts a line tie only with a price beat, and never a line loss.")
+    for r in recs:
+        r["lb"] = lb.grade(r.get("lb_info"), r["sc"]["old"] if r.get("sc") else None) if r.get("lb_info") is not None else \
+            lb.grade(None, None)
+    graded = [r for r in recs if r.get("lb_info") is not None]
+    say(f"   tickets with a Pinnacle close ladder: {len(graded)} selections / {nfill(graded)} fills / {len({r['game'] for r in graded})} games"
+        f" (of {len(recs)} eligible selections; the rest have no close and are not counted as losses)")
+
+    def lb_block(label, grp):
+        t = lb.tally([r["lb"] for r in grp])
+        ok_ = [r for r in grp if r["lb"]["status"] == "ok"]
+        say(f"  {label:<30} n {t['n']} games {len({r['game'] for r in grp})} | verified line {t['verified']}: beat {lb.pct(t['beat'], t['verified'])}"
+            f" tie {lb.pct(t['tie'], t['verified'])} loss {lb.pct(t['loss'], t['verified'])}")
+        if ok_:
+            say(f"      mean signed points: {fmt_mean([r['lb']['points'] for r in ok_], [r['game'] for r in ok_], 1.0, ' pts')}")
+        say(f"      same-line price beat {lb.pct(t['price_beat'], t['price_n'])} | line-or-price beat {lb.pct(t['any_beat'], t['any_n'])}"
+            f" | realized {roi_units(grp, LU)}")
+        if t["excluded"]:
+            say("      excluded: " + ", ".join(f"{safe_label(k_)} {v_}" for k_, v_ in sorted(t["excluded"].items())))
+
+    say("  -- by league x market (points are only averaged WITHIN one league and market) --")
+    cells = collections.defaultdict(list)
+    for r in graded:
+        cells[(r["lg"] or "?", r["lb"]["mtype"] or "?")].append(r)
+    for (lg_, mt_) in sorted(cells):
+        lb_block(f"{lg_} {mt_}", cells[(lg_, mt_)])
+    say("  -- by lane (UNKNOWN shown as UNKNOWN, never folded into a lane; rates only, points pooled across leagues are NOT shown) --")
+    lanes_ = collections.defaultdict(list)
+    for r in graded:
+        lanes_[r["lane"] or "UNKNOWN"].append(r)
+    for ln_ in sorted(lanes_):
+        t = lb.tally([r["lb"] for r in lanes_[ln_]])
+        say(f"  lane {ln_:<10} n {t['n']} verified {t['verified']} beat {lb.pct(t['beat'], t['verified'])} tie {lb.pct(t['tie'], t['verified'])} "
+            f"loss {lb.pct(t['loss'], t['verified'])} | price beat {lb.pct(t['price_beat'], t['price_n'])} | {roi_units(lanes_[ln_], LU)}")
+    say("  -- by source (manual vs bot provenance) and chronological halves --")
+    srcs_ = collections.defaultdict(list)
+    for r in graded:
+        srcs_[r["source"]].append(r)
+    for sr_ in sorted(srcs_):
+        t = lb.tally([r["lb"] for r in srcs_[sr_]])
+        say(f"  source {sr_:<26} n {t['n']} verified {t['verified']} beat {lb.pct(t['beat'], t['verified'])} loss {lb.pct(t['loss'], t['verified'])}")
+    h1, h2, nos = split_halves(graded)
+    for nm_, grp in (("H1", h1), ("H2", h2)):
+        t = lb.tally([r["lb"] for r in grp])
+        say(f"  {nm_} n {t['n']} games {len({r['game'] for r in grp})} verified {t['verified']} beat {lb.pct(t['beat'], t['verified'])} "
+            f"tie {lb.pct(t['tie'], t['verified'])} loss {lb.pct(t['loss'], t['verified'])} | price beat {lb.pct(t['price_beat'], t['price_n'])} | {roi_units(grp, LU)}")
+    say(f"  no start time (in neither half): {len(nos)}; multi-fill selections: {sum(1 for r in graded if r['fills'] > 1)}")
+    t = lb.tally([r["lb"] for r in graded])
+    comp = ", ".join(f"{k_[0]} {k_[1]} {len(v_)}" for k_, v_ in sorted(cells.items()))
+    say(f"  OVERALL line-beat rate {lb.pct(t['beat'], t['verified'])} (composition: {comp}) - a mix of leagues and markets, not one population")
     say("=" * 100)
     say("7. UNCERTAINTY: every mean is a selection mean with a GAME-clustered 95% CI (normal approx.); not a test of edge.")
     say("   Nothing here is promoted; CLV_STANDARD.md, the headline, gates and live settings are untouched.")
