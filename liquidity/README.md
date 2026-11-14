@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 14, 12:20 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 46.
+Updated Sat Nov 14, 12:25 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 46.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -11,7 +11,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 13 11:50PM | NCAAF | Central Connecticut St. vs LIU | moneyline: Central Connecticut St. | kalshi | $38k | -335 |  |  | +0.0c | yes | pending |
-| Nov 13 11:05PM | NHL | Seattle vs Carolina | moneyline: Carolina | kalshi | $41k | -335 |  |  | +0.0c |  | pending |
+| Nov 13 11:05PM | NHL | Seattle vs Carolina | moneyline: Carolina | kalshi | $41k | -335 |  |  | +0.0c | yes | pending |
 | Nov 13 10:50PM | NCAAF | Syracuse @ North Carolina State | moneyline: SYR (0) | novig | $26k | -133 |  |  | +0.0c |  | pending |
 | Nov 13 10:05PM | NCAAF | Houston @ Colorado | spread: COLO +7.5 (7.5) | novig | $52k | -104 | ✅ kalshi | ✅ | +0.0c |  | pending |
 | Nov 13 10:00PM | NBA | Oklahoma City vs Los Angeles C: Spread | spread: NOT Oklahoma City wins by over 6.5 points | kalshi | $46k | -108 | ✅ novig |  | +0.0c |  | pending |
