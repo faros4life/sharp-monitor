@@ -1,6 +1,148 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-14T10:40:27Z",
+   "base_depth": 55182,
+   "best_price": 0.8494,
+   "best_price_american": -564,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.84,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-14",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 2213,
+     "new_this_side": 26047,
+     "other_side": 1118,
+     "other_side_all_levels": 9717,
+     "ratio": 20.5,
+     "this_side": 22899,
+     "this_side_all_levels": 83096
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 12.559999999999999,
+    "volume_24h_fp": 11.559999999999999,
+    "volume_fp": 12.559999999999999
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 12.559999999999999,
+    "volume_24h_fp": 11.559999999999999,
+    "volume_fp": 12.559999999999999
+   },
+   "fade_price": 0.16,
+   "first_seen_utc": "2026-11-14T10:30:21Z",
+   "game": "NJIT vs Fairfield",
+   "game_surge_books": [],
+   "game_x": 1.61,
+   "key": "kalshi|KXNCAAMBGAME-26NOV14NJITFAIR|ml|1",
+   "lead_min": 800,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 26047,
+   "new_x": 0.64,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 12.559999999999999,
+      "volume_24h_fp": 11.559999999999999,
+      "volume_fp": 12.559999999999999
+     },
+     "game_normal": 51620,
+     "game_x": 1.61,
+     "normal": 40419,
+     "now": 83096,
+     "type": "ML",
+     "x": 2.06
+    }
+   },
+   "norm_ready_books": 1,
+   "paper_only": false,
+   "price": 0.84,
+   "price_american": -525,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.84,
+   "prices_by_book": {
+    "betrivers": {
+     "point": null,
+     "price": -770
+    },
+    "bovada": {
+     "point": null,
+     "price": -600
+    },
+    "draftkings": {
+     "point": null,
+     "price": -575
+    },
+    "fanatics": {
+     "point": null,
+     "price": -650
+    },
+    "fanduel": {
+     "point": null,
+     "price": -800
+    },
+    "kalshi": {
+     "point": null,
+     "price": -525
+    },
+    "novig": {
+     "point": null,
+     "price": -590
+    },
+    "polymarket": {
+     "point": null,
+     "price": -614
+    },
+    "prophetx": {
+     "point": null,
+     "price": -660
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV14NJITFAIR-FAIR"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Fairfield",
+   "side_label": "Fairfield",
+   "size_x": 2.06,
+   "start_source": "odds",
+   "start_utc": "2026-11-15T00:00:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "NJIT",
+    "Fairfield"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-14T08:50:19Z",
    "base_depth": 78922,
    "best_price": 0.7631,
@@ -1229,9 +1371,9 @@
     "volume_fp": 14.58
    },
    "ex_stats_close": {
-    "open_interest_fp": 12598.77,
-    "volume_24h_fp": 11298.55,
-    "volume_fp": 13016.5
+    "open_interest_fp": 12604.550000000001,
+    "volume_24h_fp": 11304.33,
+    "volume_fp": 13022.28
    },
    "ex_stats_first": {
     "open_interest_fp": 8622.69,
@@ -1605,9 +1747,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 622.23,
-    "volume_24h_fp": 594.51,
-    "volume_fp": 626.5999999999999
+    "open_interest_fp": 632.73,
+    "volume_24h_fp": 605.01,
+    "volume_fp": 637.0999999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 120.37,
@@ -2544,8 +2686,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.71,
-   "clv_cents": 1.0,
+   "close_price": 0.72,
+   "clv_cents": 2.0,
    "confirmed_after_min": 10,
    "date": "2026-11-14",
    "depth_by_book": {
@@ -8421,7 +8563,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 130,
+   "settle_tries": 131,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Fritz",
