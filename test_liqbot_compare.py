@@ -77,6 +77,43 @@ out = lb.verdict([], [], [], [{"result": "W"}])
 check("INSUFFICIENT EVIDENCE", "INSUFFICIENT EVIDENCE" in out, out[:90])
 check("no sign is implied", "negative" not in out.lower() and "positive" not in out.lower(), out)
 
+print("9. block() runs end to end on a synthetic population")
+# Why this exists: the module shipped with a NameError in block()'s return dict (a renamed
+# variable), which every helper-level test above passed straight over. It only surfaced in
+# Actions, after the recovery step had already run. A report that cannot be exercised locally
+# gets exercised in production instead.
+import clv_obs_audit as oa_
+
+_rows = [{"result": "W" if i % 3 else "L", "price": 0.5, "book": "kalshi", "league": "NBA",
+          "market": "total", "side": "UNDER", "line": 220.5, "lead_min": 300,
+          "alerted_utc": f"2026-11-{i % 28 + 1:02d}T00:00:00Z",
+          "start": f"2026-11-{i % 28 + 1:02d}T05:00:00Z",
+          "game": "Alpha Antelopes @ Beta Bobcats"} for i in range(12)]
+
+_orig = oa_.classify
+try:
+    # half verified with a real CLV, half not: exercises both the covered and uncovered paths
+    def _fake(x, src, *a, **k):
+        if (x.get("line") or 0) and int(str(x.get("alerted_utc"))[8:10]) % 2 == 0:
+            return "VERIFIED_PINNACLE", {"p": 0.52, "entry": 1.94, "clv": 0.0088,
+                                        "how": "own line", "fid": "f1"}
+        return "MISSING_HISTORY", "fixture f1 has no cached Pinnacle history"
+    oa_.classify = _fake
+    before = len(lb.L)
+    out = lb.block("synthetic", _rows, lb.PUBLISHED["registry9"], {}, {}, {}, {},
+                   "synthetic population")
+    body = "\n".join(lb.L[before:])
+    check("block returns a summary dict", isinstance(out, dict) and "n_verified" in out, out)
+    check("it reports both halves", "| H1 |" in body and "| H2 |" in body)
+    check("the frozen published figure is printed unchanged", "+23.81u" in body)
+    check("units are labelled after fees in the halves table", "units (after fees)" in body)
+    check("the entry-price-did-not-move note is present",
+          "does NOT differ between the last two columns" in body)
+    check("a 2u+ miss against the frozen figure is marked UNRECONCILED",
+          "UNRECONCILED" in body, body[-400:])
+finally:
+    oa_.classify = _orig
+
 print()
 if fails:
     print(f"FAILED {len(fails)}: " + "; ".join(fails))

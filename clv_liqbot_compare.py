@@ -204,9 +204,10 @@ def block(title, rows, pub, fxs, alt, allfx, mkmap, defn):
     say(verdict(a1, a2, verified, rows))
     say("")
     return {"n_pop": len(rows), "n_verified": len(verified),
-            "old_units": old_u, "old_n": old_n,
-            "new_units_after_fee": units_exec(verified)[0] if verified else None,
-            "alert_units_after_fee": units_alert_af(rows)[0],
+            "prefee_units": pre_u, "prefee_n": pre_n,
+            "same_basis_units": same_u, "same_basis_n": same_n,
+            "new_units_after_fee": cov_af_u if verified else None,
+            "alert_units_after_fee": af_u, "alert_af_n": af_n,
             "mean_clv": stx.mean(clvs) if clvs else None,
             "ci": ci(clvs), "beat": sum(1 for c in clvs if c > 0),
             "classes": dict(by_class)}
