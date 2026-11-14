@@ -1,6 +1,210 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-14T01:30:33Z",
+   "base_depth": 187871,
+   "best_price": 0.52,
+   "best_price_american": -108,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-13",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 3325,
+     "new_this_side": 29307,
+     "other_side": 61346,
+     "other_side_all_levels": 189668,
+     "ratio": 1.3,
+     "this_side": 80297,
+     "this_side_all_levels": 217450
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "STAN (0)",
+     "price": 0.52,
+     "this_side": 17558
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Stanford",
+     "price": 0.5238,
+     "this_side": 10697
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 15667.23,
+    "volume_24h_fp": 15105.98,
+    "volume_fp": 15675.11
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 411.72,
+    "volume_24h_fp": 710.39,
+    "volume_fp": 411.72
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 15255.509999999998,
+    "volume_24h_fp": 14395.59,
+    "volume_fp": 15263.39
+   },
+   "fade_price": 0.49,
+   "first_seen_utc": "2026-11-14T01:20:17Z",
+   "game": "Stanford vs UNLV",
+   "game_surge_books": [],
+   "game_x": 1.22,
+   "key": "kalshi|KXNCAAMBGAME-26NOV13STANUNLV|ml|0",
+   "lead_min": 29,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 29307,
+   "new_x": 0.39,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 15667.23,
+      "volume_24h_fp": 15105.98,
+      "volume_fp": 15675.11
+     },
+     "game_normal": 177841,
+     "game_x": 1.22,
+     "normal": 75280,
+     "now": 217450,
+     "type": "ML",
+     "x": 2.89
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 2858777.0,
+      "volume": 3615416.0
+     },
+     "game_normal": 14427,
+     "game_x": 1.63,
+     "normal": 2590,
+     "now": 23534,
+     "type": "ML",
+     "x": 9.09
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 6374,
+     "game_x": 1.72,
+     "normal": 1283,
+     "now": 10956,
+     "type": "ML",
+     "x": 8.54
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.52,
+   "price_american": -108,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.52,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -115
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -118
+    },
+    "betopenly": {
+     "point": null,
+     "price": -105
+    },
+    "betrivers": {
+     "point": null,
+     "price": -115
+    },
+    "betus": {
+     "point": null,
+     "price": -120
+    },
+    "bovada": {
+     "point": null,
+     "price": -120
+    },
+    "draftkings": {
+     "point": null,
+     "price": -120
+    },
+    "fanatics": {
+     "point": null,
+     "price": -120
+    },
+    "fanduel": {
+     "point": null,
+     "price": -115
+    },
+    "kalshi": {
+     "point": null,
+     "price": -108
+    },
+    "lowvig": {
+     "point": null,
+     "price": -118
+    },
+    "novig": {
+     "point": null,
+     "price": -108
+    },
+    "polymarket": {
+     "point": null,
+     "price": -113
+    },
+    "prophetx": {
+     "point": null,
+     "price": -110
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV13STANUNLV-STAN"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "prophetx"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Stanford",
+   "side_label": "Stanford",
+   "size_x": 2.89,
+   "start_source": "odds",
+   "start_utc": "2026-11-14T02:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "teams": [
+    "Stanford",
+    "UNLV"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-14T01:20:17Z",
    "base_depth": 248048,
    "best_price": 0.555,
@@ -50,6 +254,11 @@
     "open_interest_fp": 4420.11,
     "volume_24h_fp": 0.0,
     "volume_fp": 5000.11
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 169020.03000000003,
+    "volume_24h_fp": 175952.55,
+    "volume_fp": 179996.05
    },
    "ex_stats_first": {
     "open_interest_fp": 158171.82,
@@ -246,7 +455,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 18571.15,
-    "volume_24h_fp": 18915.64,
+    "volume_24h_fp": 18933.26,
     "volume_fp": 18961.26
    },
    "ex_stats_first": {
@@ -416,9 +625,9 @@
     "volume_fp": 225.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 21573.89,
-    "volume_24h_fp": 19763.510000000002,
-    "volume_fp": 21622.22
+    "open_interest_fp": 21649.89,
+    "volume_24h_fp": 21695.05,
+    "volume_fp": 21698.22
    },
    "ex_stats_first": {
     "open_interest_fp": 18653.79,
@@ -803,9 +1012,9 @@
     "volume_fp": 413.98
    },
    "ex_stats_close": {
-    "open_interest_fp": 15255.509999999998,
-    "volume_24h_fp": 14395.59,
-    "volume_fp": 15263.39
+    "open_interest_fp": 15667.23,
+    "volume_24h_fp": 15105.98,
+    "volume_fp": 15675.11
    },
    "ex_stats_first": {
     "open_interest_fp": 9771.68,
@@ -1013,9 +1222,9 @@
     "volume_fp": 1296.78
    },
    "ex_stats_close": {
-    "open_interest_fp": 162591.93,
-    "volume_24h_fp": 164166.89,
-    "volume_fp": 172796.95
+    "open_interest_fp": 169020.03000000003,
+    "volume_24h_fp": 175952.55,
+    "volume_fp": 179996.05
    },
    "ex_stats_first": {
     "open_interest_fp": 48149.520000000004,
@@ -2216,9 +2425,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 64984.0,
-    "volume_24h_fp": 83889.4,
-    "volume_fp": 86316.92
+    "open_interest_fp": 65886.52,
+    "volume_24h_fp": 86363.6,
+    "volume_fp": 87219.44
    },
    "ex_stats_first": {
     "open_interest_fp": 23237.440000000002,
@@ -2615,9 +2824,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 21537.63,
-    "volume_24h_fp": 21519.93,
-    "volume_fp": 21550.61
+    "open_interest_fp": 22134.86,
+    "volume_24h_fp": 22116.16,
+    "volume_fp": 22147.84
    },
    "ex_stats_first": {
     "open_interest_fp": 382.97,
@@ -4071,6 +4280,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Butler",
@@ -4694,9 +4904,9 @@
     "volume_fp": 11.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 65613.65,
-    "volume_24h_fp": 63279.98,
-    "volume_fp": 69021.2
+    "open_interest_fp": 67019.38,
+    "volume_24h_fp": 63769.03,
+    "volume_fp": 71419.43
    },
    "ex_stats_first": {
     "open_interest_fp": 7963.4400000000005,
@@ -6185,7 +6395,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 75,
+   "settle_tries": 76,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Fritz",
