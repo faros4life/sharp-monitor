@@ -69,7 +69,14 @@ EVIDENCE = "novig_recon_evidence.json"
 
 L, SCREEN = [], []
 _PIN = {}          # fid -> cached history or None, opened at most once per run
-CK = {"v": 3, "rows": {}}
+# Bump CLASSIFIER_VERSION whenever classify(), pin_lines() or cached_pin() changes what a
+# verdict MEANS. It is part of every row's fingerprint, so a code change invalidates the whole
+# checkpoint automatically. This is not optional bookkeeping: the first checkpointed run after
+# the cached_pin envelope fix reported "reused 382 verdict(s), recomputed 0" and silently
+# re-served every verdict the buggy reader had produced. A checkpoint that cannot tell that the
+# classifier moved is worse than no checkpoint, because it looks like a confirmation.
+CLASSIFIER_VERSION = 2
+CK = {"v": 4, "rows": {}}
 CK_HIT = [0, 0]    # [reused, recomputed]
 
 
@@ -222,6 +229,7 @@ def fingerprint(k, r, fid):
     """What a verdict depends on. Unchanged fingerprint -> reuse the checkpointed verdict."""
     s = r.get("snap") or {}
     return hashlib.sha256(json.dumps([
+        CLASSIFIER_VERSION,
         k, fid, s.get("league"), s.get("bet"), s.get("game"), s.get("game_start"),
         s.get("stake"), s.get("to_pay"), s.get("price"), s.get("price_af"), s.get("flip"),
         r.get("clv"), bool(r.get("done")), bool(r.get("fixture_doubt")), bool(r.get("released_from")),
