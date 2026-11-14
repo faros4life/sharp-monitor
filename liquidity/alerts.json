@@ -1,6 +1,142 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-14T06:00:36Z",
+   "base_depth": 24590,
+   "best_price": 0.68,
+   "best_price_american": -213,
+   "best_price_book": "novig",
+   "bid_improved": true,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.67,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-14",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -3774,
+     "new_this_side": 28226,
+     "other_side": 6114,
+     "other_side_all_levels": 43993,
+     "ratio": 5.9,
+     "this_side": 36104,
+     "this_side_all_levels": 48491
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "CAMP (0)",
+     "price": 0.68,
+     "this_side": 2476
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Campbell",
+     "price": 0.6875,
+     "this_side": 213
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 2009.17,
+    "volume_24h_fp": 143.42,
+    "volume_fp": 2009.5900000000001
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 2009.17,
+    "volume_24h_fp": 143.42,
+    "volume_fp": 2009.5900000000001
+   },
+   "fade_price": 0.33,
+   "first_seen_utc": "2026-11-14T05:50:16Z",
+   "game": "Campbell vs Elon",
+   "game_surge_books": [],
+   "game_x": 1.66,
+   "key": "kalshi|KXNCAAFGAME-26NOV14CAMPELON|ml|0",
+   "lead_min": 779,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 28226,
+   "new_x": 0.54,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 2009.17,
+      "volume_24h_fp": 143.42,
+      "volume_fp": 2009.5900000000001
+     },
+     "game_normal": 29285,
+     "game_x": 1.66,
+     "normal": 52633,
+     "now": 48491,
+     "type": "ML",
+     "x": 0.92
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 3703.0,
+      "volume": 3703.0
+     },
+     "game_normal": 3293,
+     "game_x": 0.86,
+     "normal": 3252,
+     "now": 2842,
+     "type": "ML",
+     "x": 0.87
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 353,
+     "game_x": 0.61,
+     "normal": 823,
+     "now": 216,
+     "type": "ML",
+     "x": 0.26
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.67,
+   "price_american": -203,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.67,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26NOV14CAMPELON-CAMP"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Campbell",
+   "side_label": "Campbell",
+   "size_x": 0.92,
+   "start_source": "prophetx",
+   "start_utc": "2026-11-14T19:00:00Z",
+   "surge_books": [],
+   "teams": [
+    "Campbell",
+    "Elon"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-14T04:50:13Z",
    "base_depth": 24539,
    "best_price": 0.7824,
@@ -40,9 +176,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 513.91,
+    "open_interest_fp": 533.07,
     "volume_24h_fp": 269.28000000000003,
-    "volume_fp": 513.91
+    "volume_fp": 533.07
    },
    "ex_stats_first": {
     "open_interest_fp": 511.70000000000005,
@@ -164,9 +300,9 @@
     "volume_fp": 25.56
    },
    "ex_stats_close": {
-    "open_interest_fp": 8875.87,
+    "open_interest_fp": 8958.02,
     "volume_24h_fp": 6379.389999999999,
-    "volume_fp": 9452.54
+    "volume_fp": 9534.69
    },
    "ex_stats_first": {
     "open_interest_fp": 6565.86,
@@ -785,6 +921,7 @@
     "volume_fp": 41527.07
    },
    "fade_price": 0.49,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-14T02:55:52Z",
    "game": "Oklahoma City vs Los Angeles C: Spread",
    "game_surge_books": [
@@ -904,7 +1041,7 @@
     "kalshi_side": "no",
     "market_ticker": "KXNBASPREAD-26NOV13OKCLAC-OKC7"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
@@ -912,6 +1049,7 @@
    "second_book_fresh": false,
    "second_book_status": "ok",
    "settle_tries": 4,
+   "settled_utc": "2026-11-14T06:00:36Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Los Angeles C",
@@ -928,7 +1066,7 @@
     "Los Angeles C"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.92
   },
   {
    "alerted_utc": "2026-11-14T02:50:12Z",
@@ -1545,7 +1683,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 5397.06,
-    "volume_24h_fp": 5130.48,
+    "volume_24h_fp": 5320.05,
     "volume_fp": 5398.06
    },
    "ex_stats_first": {
@@ -2592,6 +2730,7 @@
     "volume_fp": 9481.54
    },
    "fade_price": 0.45,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-14T00:05:38Z",
    "game": "Nashville vs Vegas: Total Goals",
    "game_surge_books": [],
@@ -2710,12 +2849,13 @@
     "kalshi_side": "no",
     "market_ticker": "KXNHLTOTAL-26NOV13NSHVGK-7"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
    "settle_tries": 9,
+   "settled_utc": "2026-11-14T06:00:36Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -2730,7 +2870,7 @@
     "Vegas"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.8
   },
   {
    "alerted_utc": "2026-11-14T00:10:12Z",
@@ -2788,6 +2928,7 @@
     "volume_fp": 30115.5
    },
    "fade_price": 0.49,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-14T00:05:38Z",
    "game": "Oklahoma City vs Los Angeles C: Spread",
    "game_surge_books": [],
@@ -2906,7 +3047,7 @@
     "kalshi_side": "no",
     "market_ticker": "KXNBASPREAD-26NOV13OKCLAC-OKC8"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
@@ -2914,6 +3055,7 @@
    "second_book_fresh": false,
    "second_book_status": "ok",
    "settle_tries": 4,
+   "settled_utc": "2026-11-14T06:00:36Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Los Angeles C",
@@ -2928,7 +3070,7 @@
     "Los Angeles C"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.92
   },
   {
    "alerted_utc": "2026-11-14T00:00:19Z",
@@ -3147,8 +3289,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.61,
-   "clv_cents": 1.0,
+   "close_price": 0.605,
+   "clv_cents": 0.5,
    "confirmed_after_min": 6,
    "date": "2026-11-14",
    "depth_by_book": {
@@ -5215,9 +5357,9 @@
     "volume_fp": 18.6
    },
    "ex_stats_close": {
-    "open_interest_fp": 30118.69,
+    "open_interest_fp": 30529.68,
     "volume_24h_fp": 17650.25,
-    "volume_fp": 31665.43
+    "volume_fp": 32076.42
    },
    "ex_stats_first": {
     "open_interest_fp": 15985.78,
@@ -5860,9 +6002,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 162248.4,
+    "open_interest_fp": 162321.11,
     "volume_24h_fp": 45302.96,
-    "volume_fp": 178981.7
+    "volume_fp": 179091.06
    },
    "ex_stats_first": {
     "open_interest_fp": 29945.72,
@@ -7495,9 +7637,9 @@
     "volume_fp": 32.77
    },
    "ex_stats_close": {
-    "open_interest_fp": 12294.06,
-    "volume_24h_fp": 5188.78,
-    "volume_fp": 12557.83
+    "open_interest_fp": 12318.37,
+    "volume_24h_fp": 5213.09,
+    "volume_fp": 12582.140000000001
    },
    "ex_stats_first": {
     "open_interest_fp": 7487.9,
@@ -8490,9 +8632,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 30118.69,
+    "open_interest_fp": 30529.68,
     "volume_24h_fp": 17650.25,
-    "volume_fp": 31665.43
+    "volume_fp": 32076.42
    },
    "ex_stats_first": {
     "open_interest_fp": 13745.85,
@@ -8820,6 +8962,7 @@
     "volume_fp": 1322.89
    },
    "fade_price": 0.5,
+   "fade_units": 0.93,
    "first_seen_utc": "2026-11-13T14:35:34Z",
    "game": "Oklahoma City vs Los Angeles C: Spread",
    "game_surge_books": [],
@@ -8943,12 +9086,13 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBASPREAD-26NOV13OKCLAC-OKC7"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
    "settle_tries": 4,
+   "settled_utc": "2026-11-14T06:00:36Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Oklahoma City",
@@ -8965,7 +9109,7 @@
     "Los Angeles C"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-13T14:35:34Z",
@@ -9410,6 +9554,7 @@
     "volume_fp": 80905.70999999999
    },
    "fade_price": 0.59,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-13T14:20:13Z",
    "game": "Nashville vs Vegas",
    "game_surge_books": [],
@@ -9540,12 +9685,13 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNHLGAME-26NOV13NSHVGK-NSH"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
    "settle_tries": 9,
+   "settled_utc": "2026-11-14T06:00:36Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Nashville",
@@ -9560,7 +9706,7 @@
     "Vegas"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.41
   },
   {
    "alerted_utc": "2026-11-13T14:25:34Z",
@@ -9844,6 +9990,7 @@
     "volume_fp": 1544.58
    },
    "fade_price": 0.51,
+   "fade_units": 0.9,
    "first_seen_utc": "2026-11-13T14:15:47Z",
    "game": "Oklahoma City vs Los Angeles C: Total Points",
    "game_surge_books": [
@@ -9969,12 +10116,13 @@
     "kalshi_side": "no",
     "market_ticker": "KXNBATOTAL-26NOV13OKCLAC-223"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
    "settle_tries": 4,
+   "settled_utc": "2026-11-14T06:00:36Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -9992,7 +10140,7 @@
     "Los Angeles C"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-13T14:15:47Z",
@@ -10898,6 +11046,7 @@
     "volume_fp": 910.21
    },
    "fade_price": 0.4,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-13T09:00:18Z",
    "game": "Nashville vs Vegas: Spread",
    "game_surge_books": [
@@ -11018,7 +11167,7 @@
     "kalshi_side": "no",
     "market_ticker": "KXNHLSPREAD-26NOV13NSHVGK-VGK2"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
@@ -11026,6 +11175,7 @@
    "second_book_fresh": false,
    "second_book_status": "ok",
    "settle_tries": 11,
+   "settled_utc": "2026-11-14T06:00:36Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Nashville",
@@ -11043,7 +11193,7 @@
     "Vegas"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.64
   },
   {
    "alerted_utc": "2026-11-13T06:00:18Z",
@@ -11295,9 +11445,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1600.5400000000002,
+    "open_interest_fp": 1626.0800000000002,
     "volume_24h_fp": 123.30000000000001,
-    "volume_fp": 1710.95
+    "volume_fp": 1736.4900000000002
    },
    "ex_stats_first": {
     "open_interest_fp": 1477.2399999999998,
@@ -11588,7 +11738,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 1338.93,
-    "volume_24h_fp": 964.03,
+    "volume_24h_fp": 716.62,
     "volume_fp": 1344.71
    },
    "ex_stats_first": {
@@ -11728,9 +11878,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 12162.970000000001,
-    "volume_24h_fp": 4135.28,
-    "volume_fp": 13237.93
+    "open_interest_fp": 12173.470000000001,
+    "volume_24h_fp": 4235.360000000001,
+    "volume_fp": 13298.43
    },
    "ex_stats_first": {
     "open_interest_fp": 8889.74,
@@ -14264,6 +14414,7 @@
     "volume_fp": 25195.7
    },
    "fade_price": 0.25,
+   "fade_units": 2.8,
    "first_seen_utc": "2026-11-12T23:41:12Z",
    "game": "Oklahoma City vs Los Angeles C",
    "game_surge_books": [
@@ -14369,12 +14520,13 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBAGAME-26NOV13OKCLAC-OKC"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
    "settle_tries": 6,
+   "settled_utc": "2026-11-14T06:00:36Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Oklahoma City",
@@ -14389,7 +14541,7 @@
     "Los Angeles C"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-12T23:50:27Z",
@@ -18433,6 +18585,7 @@
     "volume_fp": 2007.98
    },
    "fade_price": 0.38,
+   "fade_units": 1.52,
    "first_seen_utc": "2026-11-12T18:20:14Z",
    "game": "Nashville vs Vegas",
    "game_surge_books": [
@@ -18542,12 +18695,13 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNHLGAME-26NOV13NSHVGK-VGK"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
    "settle_tries": 11,
+   "settled_utc": "2026-11-14T06:00:36Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Vegas",
@@ -18562,7 +18716,7 @@
     "Vegas"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-12T18:20:14Z",
