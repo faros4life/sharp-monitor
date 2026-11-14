@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 14, 3:50 AM ET. This run: 0 new, 0 not confirmed, 6 pending. Open alerts: 27.
+Updated Sat Nov 14, 3:55 AM ET. This run: 6 new, 0 not confirmed, 1 pending. Open alerts: 33.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,12 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 14 3:55AM | NCAAF | Villanova vs Holy Cross | moneyline: Villanova | kalshi | $94k | -257 |  |  | +0.0c |  | pending |
+| Nov 14 3:55AM | NCAAF | North Alabama vs West Georgia | moneyline: North Alabama | kalshi | $35k | -525 |  |  | +0.0c |  | pending |
+| Nov 14 3:55AM | NCAAF | North Carolina Central vs South Carolina St. | moneyline: South Carolina St. | kalshi | $109k | -400 |  |  | +0.0c |  | pending |
+| Nov 14 3:55AM | NCAAF | Murray St. vs Indiana St. | moneyline: Indiana St. | kalshi | $60k | -300 |  |  | +0.0c |  | pending |
+| Nov 14 3:55AM | NCAAF | Lehigh vs Richmond | moneyline: Lehigh | kalshi | $51k | -567 |  |  | +0.0c |  | pending |
+| Nov 14 3:55AM | NCAAF | Kennesaw St. vs Sam Houston | moneyline: Kennesaw St. | kalshi | $88k | -270 | ✅ novig |  | +0.0c |  | pending |
 | Nov 14 2:50AM | NCAAF | Duke @ Miami Florida | moneyline: MIA (0) | novig | $30k | -525 | ✅ prophetx |  | +0.0c |  | pending |
 | Nov 14 2:30AM | NCAAF | Valparaiso vs Stetson | moneyline: Valparaiso | kalshi | $26k | -376 |  |  | +0.0c |  | pending |
 | Nov 14 2:30AM | NCAAF | North Carolina A&T vs Hampton | moneyline: North Carolina A&T | kalshi | $39k | -400 |  |  | +0.0c |  | pending |
@@ -77,7 +83,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 13 1:00AM | NCAAF | Norfolk St. vs Morgan St. | moneyline: Morgan St. | kalshi | $44k | -138 |  |  | -1.0c | yes | pending |
 | Nov 13 1:00AM | NCAAF | Illinois St. vs Youngstown St. | moneyline: Youngstown St. | kalshi | $49k | -426 |  |  | +1.0c | yes | pending |
 | Nov 13 1:00AM | NCAAF | Georgetown vs Fordham | moneyline: Fordham | kalshi | $47k | -104 |  |  | +1.0c | yes | pending |
-| Nov 13 1:00AM | NCAAF | Columbia vs Brown | moneyline: Brown | kalshi | $55k | -426 |  |  | +3.0c | yes | pending |
+| Nov 13 1:00AM | NCAAF | Columbia vs Brown | moneyline: Brown | kalshi | $55k | -426 |  |  | +2.0c | yes | pending |
 | Nov 13 1:00AM | NCAAF | Butler vs Marist | moneyline: Butler | kalshi | $34k | -285 |  |  | -4.0c | yes | pending |
 | Nov 13 12:42AM | NCAAF | New Haven vs Wagner | moneyline: New Haven | kalshi | $27k | -113 |  |  | -1.0c | yes | pending |
 | Nov 13 12:00AM | NBA | Cleveland vs Miami | moneyline: Miami | kalshi | $38k | -127 | ✅ novig |  | +1.0c | yes | W |
@@ -204,9 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 11 9:50AM | NBA | Denver vs Memphis: Total Points | total: NOT Over 230.5 points | kalshi | $65k | -100 | ✅ novig | ❌ | +0.0c |  | L |
 | Nov 11 9:02AM | NHL | Pittsburgh vs San Jose | moneyline: Pittsburgh | kalshi | $42k | -127 | ✅ novig,prophetx |  | +2.0c |  | W |
 | Nov 11 8:41AM | NHL | Philadelphia vs Edmonton: Spread | spread: NOT Edmonton wins by over 1.5 goals | kalshi | $66k | -138 | ✅ novig |  | +1.0c | yes | W |
-| Nov 11 8:21AM | NBA | Washington vs Indiana: Spread | spread: Indiana wins by over 2.5 points | kalshi | $44k | -108 | ✅ novig | ❌ | +1.0c | yes | W |
-| Nov 11 7:57AM | NBA | Brooklyn vs New Orleans: Spread | spread: New Orleans wins by over 4.5 points | kalshi | $25k | -100 | ✅ novig |  | -7.0c | yes | L |
-| Nov 11 7:57AM | NBA | Los Angeles L vs Milwaukee: Total Points | total: NOT Over 230.5 points | kalshi | $40k | -100 | ✅ novig |  | +2.0c | yes | L |
-| Nov 11 7:51AM | NHL | Nashville vs Anaheim | moneyline: Nashville | kalshi | $126k | +127 |  |  | -1.0c | yes | W |
-| Nov 11 7:40AM | NBA | San Antonio vs Chicago: Total Points | total: NOT Over 239.5 points | kalshi | $36k | -100 |  |  | +11.0c | yes | L |
-| Nov 11 6:50AM | NHL | New York R vs Calgary: Spread | spread: NOT New York R wins by over 1.5 goals | kalshi | $33k | -194 | ✅ novig |  | +0.0c | yes | L |
