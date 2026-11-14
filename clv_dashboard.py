@@ -191,8 +191,11 @@ def band_a(now, reg, st, counts):
     add("tracker", age_of("tracker/state.enc"))
     add("liquidity", age_of("liquidity/alerts.json"))
     add("sharp", age_of("alerts.json"))
+    # The registry's own freshness key is complete_at; "updated"/"ts" do not exist, and reading
+    # for them reported the registry UNKNOWN - which rolls the whole status strip to UNKNOWN - on
+    # a store that was in fact minutes old.
     rmeta = ((reg or {}).get("meta") or {})
-    add("registry", cl.tp(rmeta.get("updated") or rmeta.get("ts")),
+    add("registry", cl.tp(rmeta.get("complete_at") or rmeta.get("updated") or rmeta.get("ts")),
         f"{len((reg or {}).get('orders') or [])} order rows" if reg else "registry unreadable")
     hc = os.environ.get("HCACHE_DIR", "") or "hcache"
     add("hcache", now if os.path.isdir(hc) else None,
@@ -287,6 +290,22 @@ def build():
         else:
             miss_unassigned += 1
 
+    # How much of the ledger the registry can even speak to. Without this the page shows a large
+    # exception count with no way to tell a broken join from a store that simply does not go back
+    # that far - two states with opposite remedies.
+    otimes = sorted(str(o.get("run_start_utc") or o.get("decided_utc") or "")
+                    for o in ((reg or {}).get("orders") or []) if o)
+    otimes = [t for t in otimes if t]
+    reg_window = {"orders": len(otimes), "first": otimes[0] if otimes else None,
+                  "last": otimes[-1] if otimes else None}
+    if otimes:
+        lo = cl.tp(otimes[0])
+        inw = [(k, o) for k, o in obs.items()
+               if o.get("game_start") and cl.tp(o["game_start"]) and cl.tp(o["game_start"]) >= lo]
+        reg_window["in_window"] = len(inw)
+        reg_window["in_window_attributed"] = sum(1 for k, o in inw if lane_for(k, o))
+        reg_window["before_window"] = len(obs) - len(inw)
+
     today = now.astimezone(ET).date()
     bands = {}
 
@@ -328,6 +347,17 @@ def build():
                         "unassigned": unassigned[:40], "unassigned_n": len(unassigned),
                         "unassigned_missing_n": miss_unassigned,
                         "missing_total": len(miss_obs),
+                        "registry_window": reg_window,
+                        "window_note": (
+                            "Lane attribution is bounded by the registry's own history, not by the "
+                            "join. The private bot-order registry's earliest order is "
+                            f"{reg_window.get('first') or 'unknown'} and its latest is "
+                            f"{reg_window.get('last') or 'unknown'}, so a selection that settled "
+                            "before that window has no order to be joined to and CANNOT be "
+                            "attributed by verified evidence. Those are reported as exceptions, "
+                            "never attributed on a guess. Within the window: "
+                            f"{reg_window.get('in_window_attributed', 0)} of "
+                            f"{reg_window.get('in_window', 0)} attributed."),
                         "note": ("A selection appears under a lane only where ONE registry order "
                                  "provably joins it (same league, market, side, nesting game "
                                  "tokens, within 7 days). Everything else is an exception above, "
@@ -495,7 +525,7 @@ function render(d){const B=d.bands;let h='';
   (L.exceptions.length?('<details><summary>'+L.exceptions.length+' exception(s): settled with no certified CLV</summary><table>'+
     L.exceptions.map(x=>'<tr><td>'+esc(x.key)+'</td><td>'+esc(x.why)+'</td></tr>').join('')+'</table></details>'):'')+'</div>';});
  h+='<div class="card"><p><b>'+B.B_lanes.unassigned_n+' unassigned selection(s)</b> &mdash; exceptions, not losses</p><p class="sub">'+
-   esc(B.B_lanes.note)+'</p>'+(B.B_lanes.unassigned.length?('<details><summary>show</summary><table>'+
+   esc(B.B_lanes.window_note||'')+'</p><p class="sub">'+esc(B.B_lanes.note)+'</p>'+(B.B_lanes.unassigned.length?('<details><summary>show</summary><table>'+
    B.B_lanes.unassigned.map(x=>'<tr><td>'+esc(x.key)+'</td><td>'+esc(x.why)+'</td></tr>').join('')+'</table></details>'):'')+'</div>';
  const C=B.C_qualification;h+='<h2>C &middot; Qualification</h2><div class="card"><p class="sub">'+esc(C.note)+'</p>';
  C.lanes.forEach(x=>{h+='<details><summary><b>'+esc(x.name)+'</b> &mdash; '+esc(x.gate.verdict)+'</summary><table>'+
@@ -552,6 +582,13 @@ def email_body(view):
                  f"exceptions {len(x['exceptions'])}")
         L.append("")
     L.append(f"UNASSIGNED selections (exceptions, not losses): {B['B_lanes']['unassigned_n']}")
+    rw = B["B_lanes"].get("registry_window") or {}
+    if rw.get("orders"):
+        L.append(f"  lane attribution is bounded by the registry's own history "
+                 f"({rw.get('first', '?')[:16]} to {rw.get('last', '?')[:16]}, {rw['orders']} "
+                 f"orders): {rw.get('in_window_attributed', 0)}/{rw.get('in_window', 0)} "
+                 f"attributed inside that window, {rw.get('before_window', 0)} selections settled "
+                 f"before it and cannot be attributed by verified evidence")
     E = B["E_change"]
     L.append("")
     L.append(f"{E['label']}: before {E['before'].get('n', 0)} / after {E['after'].get('n', 0)} "
