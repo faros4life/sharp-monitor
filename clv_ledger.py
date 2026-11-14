@@ -315,17 +315,52 @@ def tournament(st, now, lg):
     return None
 
 
-def refresh_fixtures(st, now, lg, lo, hi):
+FX_LOG = []        # one line per league per run: what was called, what was refused, and why
+
+
+def refresh_fixtures(st, now, lg, lo, hi, allow_extra=False):
     """One billable /fixtures call for a league over [lo, hi] (dates), at most every 6 h per league.
 
     Returns True only when a FRESH lookup actually reached OddsPapi, so the caller can tell the
     difference between "we looked and the game is not there" and "we never looked". Nov 5 (Peter):
-    a run that made no lookup must not burn a retry - see the tries accounting in main()."""
+    a run that made no lookup must not burn a retry - see the tries accounting in main().
+
+    Stage 4 (Peter, Nov 13): "Allow one additional fixture refresh per league per evening when
+    unresolved games fall beyond the existing cache." allow_extra permits exactly one override of
+    the 6 h cooldown per league per ET DAY, and only when the caller has established that a
+    pending game starts later than anything the cache holds for that league - which is the Nov 12
+    failure: three selections sat unscored with "no fixture yet - no fresh lookup this run (6 h
+    cooldown), retry not counted" while NBA's newest cached fixture started an hour before the
+    games in question and the league had been fetched 2 h earlier.
+
+    NOTE ON THE WINDOW, corrected from my own earlier claim: the window is NOT too narrow. hi
+    comes from the pending rows themselves and main() adds a day to it, so a row whose game starts
+    tonight already widens the window to cover tonight. The cooldown alone was the blocker, so the
+    cooldown alone is overridden here. If an extra call still does not return the fixture, the
+    cause is OddsPapi's own coverage of that window and FX_LOG will say so rather than imply a
+    window bug that the dates do not support.
+
+    COST CONTROL. The allowance is consumed only when a call is actually about to bill, so a
+    credit-gate refusal or a missing tournament id does not waste it; it is recorded per league per
+    ET day in st["fx_extra"]; and every decision - called, refused, overridden - is appended to
+    FX_LOG, which main() prints. Fixtures already downloaded are kept and reused: this only ever
+    adds to st["fixtures"].
+    """
     last = tp((st.get("fx_last") or {}).get(lg))
+    day = now.astimezone(ET).strftime("%Y-%m-%d")
+    extra = False
     if last and now - last < timedelta(hours=6):
-        return False
+        if not allow_extra:
+            FX_LOG.append(f"{lg}: no call - 6h cooldown ({(now - last).total_seconds() / 3600:.1f}h ago), "
+                          f"no pending game past the cache")
+            return False
+        if (st.get("fx_extra") or {}).get(lg) == day:
+            FX_LOG.append(f"{lg}: no call - 6h cooldown and the one extra refresh for {day} is spent")
+            return False
+        extra = True
     tid = tournament(st, now, lg)
     if not tid or not can_bill(st, now):
+        FX_LOG.append(f"{lg}: no call - {'no tournament id' if not tid else 'credit gate would refuse'}")
         return False
     try:
         d = api("/fixtures", True, tournamentId=tid, **{"from": lo.strftime("%Y-%m-%d"), "to": hi.strftime("%Y-%m-%d")})
@@ -338,6 +373,10 @@ def refresh_fixtures(st, now, lg, lo, hi):
         return False
     bill(st, now)
     st.setdefault("fx_last", {})[lg] = iso(now)
+    if extra:   # consumed only now, when the call has actually billed
+        st.setdefault("fx_extra", {})[lg] = day
+    FX_LOG.append(f"{lg}: 1 billable /fixtures {lo:%Y-%m-%d}..{hi:%Y-%m-%d}"
+                  + ("  (EXTRA - cooldown overridden, pending game past the cache)" if extra else ""))
     if isinstance(d, dict) and d.get("_error"):
         st.setdefault("errors", []).append(f"{iso(now)} fixtures {lg}: {d['_error']} {d['_body'][:120]}")
         return False   # the call failed, so the cache is unchanged - that is not the bet's fault
@@ -1008,6 +1047,16 @@ def main():
             continue
         pend.append((k, rec))
     need = {}
+    # Stage 4 (Peter, Nov 13): the newest fixture the cache holds per league. A pending game that
+    # starts after it was never offered to the matcher at all, which is a FETCH question and the
+    # one case allowed to override the 6 h cooldown - once per league per ET day.
+    newest = {}
+    for f in (st.get("fixtures") or {}).values():
+        d = tp(f.get("start"))
+        lgf = f.get("lg")
+        if d and lgf and (lgf not in newest or d > newest[lgf]):
+            newest[lgf] = d
+    beyond = {}
     for k, rec in pend:
         s = rec["snap"]
         lg = s.get("league")
@@ -1018,11 +1067,19 @@ def main():
         d0 = max(tp(s.get("game_start") or s.get("decided_utc")) or now, now - timedelta(days=FETCH_DAYS))   # keep the call small
         lo, hi = need.get(lg, (d0, d0))
         need[lg] = (min(lo, d0), max(hi, d0))
+        gs = tp(s.get("game_start"))
+        if gs and (lg not in newest or gs > newest[lg]):
+            beyond[lg] = beyond.get(lg, 0) + 1
     fetched = set()        # leagues whose fixtures were ACTUALLY re-read from OddsPapi this run
     for lg, (lo, hi) in need.items():
+        if lg in beyond:
+            FX_LOG.append(f"{lg}: {beyond[lg]} pending game(s) start after the newest cached fixture "
+                          f"({newest.get(lg) and newest[lg].astimezone(ET).strftime('%Y-%m-%d %H:%M') or 'none cached'})")
         if refresh_fixtures(st, now, lg, (lo - timedelta(days=1)).astimezone(ET),
-                            (hi + timedelta(days=1)).astimezone(ET)):
+                            (hi + timedelta(days=1)).astimezone(ET), allow_extra=(lg in beyond)):
             fetched.add(lg)
+    for _ln in FX_LOG:
+        print(f"fixtures: {_ln}", flush=True)
     # 4) score: free history calls, one per fixture and book
     hist = {}
     new_scored = 0
