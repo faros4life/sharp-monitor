@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 13, 7:30 PM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 30.
+Updated Fri Nov 13, 7:40 PM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 31.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,10 +10,11 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 13 7:40PM | NCAAB | UIC vs Saint Mary's: Spread | spread: Saint Mary's wins by over 5.5 points | kalshi | $41k | -122 |  |  | +0.0c |  | pending |
 | Nov 13 7:30PM | NCAAB | UNC Greensboro vs Cornell | moneyline: Cornell | kalshi | $27k | -233 | ✅ novig |  | +0.0c |  | pending |
 | Nov 13 5:50PM | NCAAB | Northern Iowa vs Michigan St.: Point Total | total: Over 154.5 points | kalshi | $27k | -108 |  | ✅ | -1.0c |  | pending |
 | Nov 13 5:50PM | NCAAB | Stanford vs UNLV | moneyline: UNLV | kalshi | $27k | +104 |  |  | +0.0c |  | pending |
-| Nov 13 5:50PM | NCAAB | Arizona vs Auburn | moneyline: Auburn | kalshi | $45k | +127 | ✅ novig | ❌ | +1.0c |  | pending |
+| Nov 13 5:50PM | NCAAB | Arizona vs Auburn | moneyline: Auburn | kalshi | $45k | +127 | ✅ novig | ❌ | +1.0c | yes | pending |
 | Nov 13 5:30PM | NCAAB | Georgetown vs Clemson | moneyline: Clemson | kalshi | $37k | -178 | ✅ novig,prophetx |  | +0.0c |  | pending |
 | Nov 13 4:00PM | NCAAB | Northern Iowa vs Michigan St.: Point Total | total: NOT Over 154.5 points | kalshi | $32k | +104 |  | ✅ | +1.0c | yes | pending |
 | Nov 13 4:00PM | NCAAB | Sam Houston vs Illinois: Point Total | total: NOT Over 170.5 points | kalshi | $36k | -108 |  | ✅ | -2.0c | yes | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 4 1:00AM | TENNIS | Fils vs Machac | moneyline: Fils | kalshi | $33k | -170 |  |  | -1.0c |  | W |
 | Nov 4 12:20AM | TENNIS | Michelsen vs Alcaraz | moneyline: Michelsen | kalshi | $263k | +525 |  |  | +0.0c |  | L |
 | Nov 3 11:30PM | TENNIS | Van Assche vs Tien | moneyline: Tien | kalshi | $28k | -186 |  |  | -1.0c | yes | L |
-| Nov 3 10:00PM | TENNIS | Michelsen vs Alcaraz | moneyline: Alcaraz | kalshi | $94k | -525 |  |  | +0.0c |  | W |

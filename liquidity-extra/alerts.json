@@ -1,6 +1,162 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-14T00:40:15Z",
+   "base_depth": 80451,
+   "best_price": 0.5673,
+   "best_price_american": -131,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.55,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-13",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 11940,
+     "new_this_side": 40597,
+     "other_side": 8432,
+     "other_side_all_levels": 58428,
+     "ratio": 5.7,
+     "this_side": 48215,
+     "this_side_all_levels": 124275
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 18243.02,
+    "volume_24h_fp": 18528.9,
+    "volume_fp": 18556.9
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 4406.64,
+    "volume_24h_fp": 4406.64,
+    "volume_fp": 4406.64
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 13836.38,
+    "volume_24h_fp": 14122.26,
+    "volume_fp": 14150.26
+   },
+   "fade_price": 0.46,
+   "first_seen_utc": "2026-11-14T00:30:31Z",
+   "game": "UIC vs Saint Mary's: Spread",
+   "game_surge_books": [
+    "kalshi"
+   ],
+   "game_x": 2.72,
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAMBSPREAD-26NOV13UICSMC-SMC6\"}",
+   "lead_min": 140,
+   "league": "NCAAB",
+   "line": -5.5,
+   "market": "spread",
+   "new_money": 40597,
+   "new_x": 1.14,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 18243.02,
+      "volume_24h_fp": 18528.9,
+      "volume_fp": 18556.9
+     },
+     "game_normal": 45685,
+     "game_x": 2.72,
+     "normal": 35714,
+     "now": 124275,
+     "type": "SPREAD",
+     "x": 3.48
+    }
+   },
+   "norm_ready_books": 1,
+   "paper_only": false,
+   "price": 0.55,
+   "price_american": -122,
+   "price_rule": "fails_cap",
+   "price_when_first_seen": 0.55,
+   "prices_by_book": {
+    "betonlineag": {
+     "point": -6.0,
+     "price": -115
+    },
+    "betrivers": {
+     "point": -6.5,
+     "price": -105
+    },
+    "betus": {
+     "point": -6.0,
+     "price": -115
+    },
+    "bovada": {
+     "point": -6.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": -5.5,
+     "price": -115
+    },
+    "fanatics": {
+     "point": -6.5,
+     "price": -105
+    },
+    "fanduel": {
+     "point": -6.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": -5.5,
+     "price": -122
+    },
+    "lowvig": {
+     "point": -6.0,
+     "price": -111
+    },
+    "novig": {
+     "point": -6.5,
+     "price": 104
+    },
+    "polymarket": {
+     "point": -6.5,
+     "price": 108
+    },
+    "prophetx": {
+     "point": -6.5,
+     "price": 102
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBSPREAD-26NOV13UICSMC-SMC6"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Saint Mary's",
+   "side_label": "Saint Mary's wins by over 5.5 points",
+   "size_x": 3.48,
+   "start_source": "odds",
+   "start_utc": "2026-11-14T03:00:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "UIC",
+    "Saint Mary's"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-14T00:30:31Z",
    "base_depth": 42212,
    "best_price": 0.705,
@@ -44,6 +200,11 @@
     "open_interest_fp": 225.0,
     "volume_24h_fp": 0.0,
     "volume_fp": 225.0
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 19132.3,
+    "volume_24h_fp": 18925.46,
+    "volume_fp": 19180.63
    },
    "ex_stats_first": {
     "open_interest_fp": 18653.79,
@@ -425,9 +586,9 @@
     "volume_fp": 413.98
    },
    "ex_stats_close": {
-    "open_interest_fp": 14331.59,
-    "volume_24h_fp": 13804.37,
-    "volume_fp": 14339.47
+    "open_interest_fp": 14333.43,
+    "volume_24h_fp": 13806.210000000001,
+    "volume_fp": 14341.31
    },
    "ex_stats_first": {
     "open_interest_fp": 9771.68,
@@ -635,9 +796,9 @@
     "volume_fp": 1296.78
    },
    "ex_stats_close": {
-    "open_interest_fp": 121465.84,
-    "volume_24h_fp": 120735.12,
-    "volume_fp": 123127.48999999999
+    "open_interest_fp": 123954.85,
+    "volume_24h_fp": 123202.67,
+    "volume_fp": 125616.5
    },
    "ex_stats_first": {
     "open_interest_fp": 48149.520000000004,
@@ -762,7 +923,8 @@
      "price": 122
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-14T00:40:15Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAMBGAME-26NOV13ARIZAUB-AUB"
@@ -1443,9 +1605,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 350.36,
-    "volume_24h_fp": 389.0,
-    "volume_fp": 389.0
+    "open_interest_fp": 352.63,
+    "volume_24h_fp": 391.27,
+    "volume_fp": 391.27
    },
    "ex_stats_first": {
     "open_interest_fp": 43.76,
@@ -1639,9 +1801,9 @@
     "volume_fp": 37.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 9262.65,
-    "volume_24h_fp": 9303.72,
-    "volume_fp": 9303.72
+    "open_interest_fp": 9266.96,
+    "volume_24h_fp": 9306.08,
+    "volume_fp": 9308.03
    },
    "ex_stats_first": {
     "open_interest_fp": 245.87,
@@ -1834,9 +1996,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 44111.61,
-    "volume_24h_fp": 62552.31,
-    "volume_fp": 63419.78999999999
+    "open_interest_fp": 44699.55,
+    "volume_24h_fp": 63183.06999999999,
+    "volume_fp": 64007.73
    },
    "ex_stats_first": {
     "open_interest_fp": 23237.440000000002,
@@ -2233,9 +2395,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 11095.92,
-    "volume_24h_fp": 11078.220000000001,
-    "volume_fp": 11108.9
+    "open_interest_fp": 16294.310000000001,
+    "volume_24h_fp": 16266.0,
+    "volume_fp": 16307.29
    },
    "ex_stats_first": {
     "open_interest_fp": 382.97,
@@ -2586,9 +2748,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 5961.15,
-    "volume_24h_fp": 6099.9400000000005,
-    "volume_fp": 6170.03
+    "open_interest_fp": 6044.37,
+    "volume_24h_fp": 6141.02,
+    "volume_fp": 6253.25
    },
    "ex_stats_first": {
     "open_interest_fp": 1820.52,
@@ -3948,9 +4110,9 @@
     "volume_fp": 15.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 33554.81,
-    "volume_24h_fp": 33111.71,
-    "volume_fp": 34270.77
+    "open_interest_fp": 33897.93,
+    "volume_24h_fp": 33315.1,
+    "volume_fp": 34613.89
    },
    "ex_stats_first": {
     "open_interest_fp": 3368.01,
@@ -4132,9 +4294,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 5218.530000000001,
-    "volume_24h_fp": 3791.6000000000004,
-    "volume_fp": 5296.950000000001
+    "open_interest_fp": 5236.15,
+    "volume_24h_fp": 5300.450000000001,
+    "volume_fp": 5314.57
    },
    "ex_stats_first": {
     "open_interest_fp": 29.990000000000002,
@@ -4313,8 +4475,8 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 65613.65,
-    "volume_24h_fp": 62776.380000000005,
-    "volume_fp": 68438.09
+    "volume_24h_fp": 63141.78,
+    "volume_fp": 68558.05
    },
    "ex_stats_first": {
     "open_interest_fp": 7963.4400000000005,
@@ -4510,9 +4672,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 747.21,
-    "volume_24h_fp": 687.38,
-    "volume_fp": 998.76
+    "open_interest_fp": 770.07,
+    "volume_24h_fp": 710.24,
+    "volume_fp": 1021.62
    },
    "ex_stats_first": {
     "open_interest_fp": 139.43,
@@ -5803,7 +5965,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 70,
+   "settle_tries": 71,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Fritz",
