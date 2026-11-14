@@ -1,0 +1,43 @@
+name: ai-bridge
+
+# Claude <-> ChatGPT bridge (Peter, Nov 14). ISOLATED: dispatch only, no cron, no checkout of betting
+# state, no commit step, no OddsPapi key, no exchange keys. It only reads/writes comments on ONE issue.
+# Default mode is dry-run (stub replies, no model API called). live needs ANTHROPIC_API_KEY and
+# OPENAI_API_KEY secrets, which Peter adds. Own concurrency group: never queues behind the CLV/ledger work.
+on:
+  workflow_dispatch:
+    inputs:
+      issue_number:
+        description: "Issue that holds the approved task (authored by the owner, labelled bridge-approved by the owner)"
+        required: true
+        type: string
+      mode:
+        description: "dry (stubs, no API cost) or live (calls Anthropic + OpenAI, max 6 short calls)"
+        required: false
+        type: string
+        default: "dry"
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: ai-bridge
+  cancel-in-progress: false
+
+jobs:
+  bridge:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: ai_bridge
+      - name: Run bridge
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          ISSUE_NUMBER: ${{ inputs.issue_number }}
+          BRIDGE_MODE: ${{ inputs.mode }}
+          ANTHROPIC_API_KEY: ${{ inputs.mode == 'live' && secrets.ANTHROPIC_API_KEY || '' }}
+          OPENAI_API_KEY: ${{ inputs.mode == 'live' && secrets.OPENAI_API_KEY || '' }}
+        run: python3 ai_bridge/bridge.py
