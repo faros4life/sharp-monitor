@@ -1,6 +1,192 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-14T09:10:12Z",
+   "base_depth": 115113,
+   "best_price": 0.505,
+   "best_price_american": -102,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 4,
+   "date": "2026-11-14",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 3407,
+     "new_this_side": 28661,
+     "other_side": 46451,
+     "other_side_all_levels": 114809,
+     "ratio": 1.4,
+     "this_side": 64514,
+     "this_side_all_levels": 151147
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "Under 52.5 (52.5)",
+     "price": 0.505,
+     "this_side": 4540
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 2269.73,
+    "volume_24h_fp": 111.48,
+    "volume_fp": 2269.73
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 2269.73,
+    "volume_24h_fp": 111.48,
+    "volume_fp": 2269.73
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-11-14T09:05:46Z",
+   "game": "Arkansas St. vs Coastal Carolina: Total Points",
+   "game_surge_books": [],
+   "game_x": 1.53,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFTOTAL-26NOV14ARSTCCAR-53\"}",
+   "lead_min": 530,
+   "league": "NCAAF",
+   "line": 52.5,
+   "market": "total",
+   "new_money": 28661,
+   "new_x": 4.09,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 2269.73,
+      "volume_24h_fp": 111.48,
+      "volume_fp": 2269.73
+     },
+     "game_normal": 98900,
+     "game_x": 1.53,
+     "normal": 7004,
+     "now": 151147,
+     "type": "UNDER",
+     "x": 21.58
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 44876.0,
+      "volume": 44876.0
+     },
+     "game_normal": 5093,
+     "game_x": 0.94,
+     "normal": 3693,
+     "now": 4773,
+     "type": "UNDER",
+     "x": 1.29
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 52.5,
+     "price": -112
+    },
+    "betonlineag": {
+     "point": 52.5,
+     "price": -110
+    },
+    "betrivers": {
+     "point": 51.5,
+     "price": -110
+    },
+    "betus": {
+     "point": 53.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 52.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 52.5,
+     "price": -115
+    },
+    "fanatics": {
+     "point": 52.0,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 52.5,
+     "price": -115
+    },
+    "kalshi": {
+     "point": 52.5,
+     "price": -104
+    },
+    "lowvig": {
+     "point": 52.5,
+     "price": -108
+    },
+    "mybookieag": {
+     "point": 52.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 52.5,
+     "price": -102
+    },
+    "polymarket": {
+     "point": 51.5,
+     "price": 108
+    },
+    "prophetx": {
+     "point": 52.5,
+     "price": -104
+    },
+    "williamhill_us": {
+     "point": 52.5,
+     "price": -113
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAFTOTAL-26NOV14ARSTCCAR-53"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [
+    "Over 51.5 (-110)"
+   ],
+   "side": "UNDER",
+   "side_label": "NOT Over 52.5 points",
+   "size_x": 21.58,
+   "start_source": "odds",
+   "start_utc": "2026-11-14T18:00:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "Arkansas St.",
+    "Coastal Carolina"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-14T09:05:46Z",
    "base_depth": 84637,
    "best_price": 0.6549,
@@ -44,6 +230,11 @@
     "open_interest_fp": 0.0,
     "volume_24h_fp": 1480.0,
     "volume_fp": 0.0
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 2085.2,
+    "volume_24h_fp": 1538.1799999999998,
+    "volume_fp": 2085.2
    },
    "ex_stats_first": {
     "open_interest_fp": 2085.2,
@@ -161,6 +352,11 @@
     "volume_24h_fp": 0.0,
     "volume_fp": 0.0
    },
+   "ex_stats_close": {
+    "open_interest_fp": 3373.47,
+    "volume_24h_fp": 46.39,
+    "volume_fp": 3373.47
+   },
    "ex_stats_first": {
     "open_interest_fp": 3373.47,
     "volume_24h_fp": 46.39,
@@ -271,6 +467,11 @@
     "open_interest_fp": 0.0,
     "volume_24h_fp": 0.0,
     "volume_fp": 0.0
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 1159.62,
+    "volume_24h_fp": 456.77,
+    "volume_fp": 1190.54
    },
    "ex_stats_first": {
     "open_interest_fp": 1159.62,
@@ -489,8 +690,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.72,
-   "clv_cents": 0.0,
+   "close_price": 0.73,
+   "clv_cents": 1.0,
    "confirmed_after_min": 5,
    "date": "2026-11-14",
    "depth_by_book": {
@@ -811,9 +1012,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 789.6099999999999,
+    "open_interest_fp": 9409.61,
     "volume_24h_fp": 349.33,
-    "volume_fp": 825.1299999999999
+    "volume_fp": 9445.130000000001
    },
    "ex_stats_first": {
     "open_interest_fp": 789.6099999999999,
@@ -1415,8 +1616,8 @@
     "volume": 15635.0
    },
    "ex_stats_close": {
-    "openInterest": 5735562.0,
-    "volume": 10798569.0
+    "openInterest": 5775403.0,
+    "volume": 10838410.0
    },
    "ex_stats_first": {
     "openInterest": 5632401.0,
@@ -2302,9 +2503,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 590.24,
-    "volume_24h_fp": 334.12,
-    "volume_fp": 593.93
+    "open_interest_fp": 9579.58,
+    "volume_24h_fp": 549.66,
+    "volume_fp": 9591.24
    },
    "ex_stats_first": {
     "open_interest_fp": 9569.5,
@@ -6957,7 +7158,7 @@
    },
    "ex_stats_close": {
     "openInterest": 6001493.0,
-    "volume": 6694363.0
+    "volume": 6700613.0
    },
    "ex_stats_first": {
     "openInterest": 3587798.0,
@@ -8402,9 +8603,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 177921.05,
+    "open_interest_fp": 178057.39,
     "volume_24h_fp": 174660.53,
-    "volume_fp": 195675.66
+    "volume_fp": 195812.0
    },
    "ex_stats_first": {
     "open_interest_fp": 29945.72,
@@ -10002,8 +10203,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.62,
-   "clv_cents": 4.0,
+   "close_price": 0.61,
+   "clv_cents": 3.0,
    "confirmed_after_min": 4,
    "date": "2026-11-14",
    "depth_by_book": {

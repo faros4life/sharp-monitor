@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 14, 4:05 AM ET. This run: 3 new, 1 not confirmed, 1 pending. Open alerts: 37.
+Updated Sat Nov 14, 4:10 AM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 38.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,11 +10,12 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 14 4:10AM | NCAAF | Arkansas St. vs Coastal Carolina: Total Points | total: NOT Over 52.5 points | kalshi | $29k | -104 |  | ❌ | +0.0c |  | pending |
 | Nov 14 4:05AM | NCAAF | Stony Brook vs New Hampshire | moneyline: Stony Brook | kalshi | $54k | -194 |  |  | +0.0c |  | pending |
 | Nov 14 4:05AM | NCAAF | Southeast Missouri St. vs Charleston Southern | moneyline: Southeast Missouri St. | kalshi | $31k | -144 |  |  | +0.0c |  | pending |
 | Nov 14 4:05AM | NCAAF | Drake vs St. Thomas | moneyline: St. Thomas | kalshi | $70k | -488 |  |  | +0.0c |  | pending |
 | Nov 14 4:00AM | NCAAF | Stony Brook vs New Hampshire: Spread | spread: NOT Stony Brook wins by over 5.5 points | kalshi | $33k | -108 |  |  | +0.0c |  | pending |
-| Nov 14 3:55AM | NCAAF | Villanova vs Holy Cross | moneyline: Villanova | kalshi | $94k | -257 |  |  | +0.0c |  | pending |
+| Nov 14 3:55AM | NCAAF | Villanova vs Holy Cross | moneyline: Villanova | kalshi | $94k | -257 |  |  | +1.0c |  | pending |
 | Nov 14 3:55AM | NCAAF | North Alabama vs West Georgia | moneyline: North Alabama | kalshi | $35k | -525 |  |  | +0.0c |  | pending |
 | Nov 14 3:55AM | NCAAF | North Carolina Central vs South Carolina St. | moneyline: South Carolina St. | kalshi | $109k | -400 |  |  | -1.0c |  | pending |
 | Nov 14 3:55AM | NCAAF | Murray St. vs Indiana St. | moneyline: Indiana St. | kalshi | $60k | -300 |  |  | +0.0c |  | pending |
@@ -65,7 +66,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 13 12:55PM | NCAAF | Houston vs Colorado: Spread | spread: NOT Houston wins by over 7.5 points | kalshi | $55k | +104 |  | ✅ | +3.0c |  | W |
 | Nov 13 12:35PM | NBA | New York Knicks @ Indiana Pacers | moneyline: NYK (0) | novig | $31k | -317 | ✅ kalshi,prophetx |  | -2.5c |  | L |
 | Nov 13 12:05PM | NBA | Portland vs Sacramento: Spread | spread: Portland wins by over 10.5 points | kalshi | $29k | +108 | ✅ novig |  | +0.0c | yes | W |
-| Nov 13 12:00PM | NCAAF | Princeton vs Yale | moneyline: Yale | kalshi | $26k | -138 |  |  | +4.0c |  | pending |
+| Nov 13 12:00PM | NCAAF | Princeton vs Yale | moneyline: Yale | kalshi | $26k | -138 |  |  | +3.0c |  | pending |
 | Nov 13 11:15AM | NHL | New York R vs Vancouver: Total Goals | total: Over 6.5 goals scored | kalshi | $38k | +104 | ✅ novig |  | +0.0c | yes | L |
 | Nov 13 10:20AM | NHL | New York R vs Vancouver: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $26k | -104 | ✅ novig,prophetx |  | +1.0c | yes | W |
 | Nov 13 10:15AM | NBA | Golden State vs San Antonio: Spread | spread: NOT San Antonio wins by over 11.5 points | kalshi | $30k | +104 |  |  | -5.0c | yes | L |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 11 11:01AM | NBA | Orlando vs Utah: Spread | spread: NOT Orlando wins by over 3.5 points | kalshi | $33k | -104 | ✅ novig | ✅ | -4.0c | yes | L |
 | Nov 11 10:51AM | NCAAF | Louisiana vs Louisiana-Monroe: Spread | spread: NOT Louisiana wins by over 10.5 points | kalshi | $25k | -108 |  |  | -27.0c | yes | L |
 | Nov 11 10:40AM | NBA | Cleveland vs New York: Total Points | total: NOT Over 223.5 points | kalshi | $42k | -113 |  |  | +2.0c | yes | W |
-| Nov 11 10:40AM | NBA | Golden State vs Houston: Spread | spread: NOT Houston wins by over 6.5 points | kalshi | $28k | -108 | ✅ novig | ❌ | -1.0c | yes | L |
