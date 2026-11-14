@@ -131,8 +131,14 @@ def cached_pin(fid):
                 d = json.load(fh)
         except Exception:
             d = None
-    _PIN[fid] = d
-    return d
+    # hist_cache writes the BOOK payload directly ({"markets": {...}}, hist_cache.py:172-173),
+    # NOT a {"bookmakers": {...}} envelope - get_hist builds that envelope when it hands the file
+    # to a caller. clv_ledger.book_markets() expects the envelope, so the file is wrapped here.
+    # The first version of this function passed the bare file and every row came back "no Pinnacle
+    # markets", including 13 rows the ledger had already scored "own line" - the scored rows
+    # disproved the reader, not the data.
+    _PIN[fid] = {"bookmakers": {"pinnacle": d}} if d is not None else None
+    return _PIN[fid]
 
 
 def pin_lines(fid, s, f, mkmap):
@@ -246,6 +252,13 @@ def classify(k, r, st, mkmap):
         CK_HIT[0] += 1
         return state, prev["verdict"], prev["detail"], prev.get("pclv")
     CK_HIT[1] += 1
+    # An already-certified row is not a recovery candidate and its cached-history verdict says
+    # nothing useful: hcache is pruned over time, so a row scored weeks ago can legitimately have
+    # no cached file now. Reporting those as "BLOCKED" would invent a problem that does not exist.
+    if state == "SCORED":
+        v, d = "ALREADY CERTIFIED", f"how={r.get('how')} scored={str(r.get('scored'))[:10]}"
+        CK["rows"][k] = {"fp": fp, "verdict": v, "detail": d, "pclv": r.get("clv")}
+        return state, v, d, r.get("clv")
     # A row that ALREADY has a CLV and is held out does not need re-deriving - it needs its
     # identity established or its release respected. Those are different remedies, so they get
     # different verdicts and are never added together in the coverage arithmetic below.

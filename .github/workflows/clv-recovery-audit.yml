@@ -72,13 +72,16 @@ jobs:
         run: python -u clv_day_audit.py
       - name: Prove nothing in the working tree changed
         run: |
-          # audit/ is this job's own output; anything else dirty means a write escaped.
-          if [ -n "$(git status --porcelain -- . ':!audit')" ]; then
-            echo "FAIL: the audit modified tracked files outside audit/:"
-            git status --porcelain -- . ':!audit'
+          # -uno: TRACKED files only. The restored hcache/ and this job's own audit/ are
+          # untracked by design, and the first version of this guard failed on hcache/ - which
+          # the cache restore creates, not the audit. What actually matters is that no tracked
+          # file moved, because clv/state.enc and tracker/state.enc are tracked.
+          if [ -n "$(git status --porcelain -uno)" ]; then
+            echo "FAIL: the audit modified tracked files:"
+            git status --porcelain -uno
             exit 1
           fi
-          echo "clean: no tracked file outside audit/ was modified"
+          echo "clean: no tracked file was modified (clv/ and tracker/ state untouched)"
       - name: Save audit checkpoint
         uses: actions/cache/save@v4
         if: always()
