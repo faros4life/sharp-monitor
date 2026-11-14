@@ -972,9 +972,60 @@ def reset_streak(name):
         return False
 
 
+META_REQUIRED = ("league", "teams", "lane", "line", "venue", "order_id")
+
+
+def meta_gaps(rec):
+    """Which identity fields a new order record is missing, in CLV terms.
+
+    Peter, Nov 14, priority 4: "Every new live selection must persist league, teams, fixture
+    identity, lane, betting line, venue, order ID and confirmed execution details. Missing
+    metadata must trigger an exception IMMEDIATELY, not after settlement."
+
+    That ordering matters because of what it cost: 100 ledger rows carry neither a league nor a
+    game, so they can never match a fixture and their CLV is unreachable forever. By the time a
+    settlement report noticed, the venue data needed to repair them was long gone. Checked at
+    creation, the same gap is a notification while the information still exists.
+
+    Fixture identity and confirmed execution are NOT in META_REQUIRED on purpose: neither exists
+    yet when an order is recorded - the fixture is resolved when the game is scored and the fill
+    is written back afterwards by put_fills. Requiring them here would fire on every order.
+
+    This REPORTS. It is not a gate: it returns a list and never raises, and put_order stores the
+    order whatever it finds. Peter: "No changes to execution, sizing, routing or strategy
+    eligibility."
+    """
+    key = str(rec.get("key") or "")
+    parts = [p for p in key.split("|") if p]
+    lane = parts[0] if (parts and parts[0] in ("rules", "board", "r1", "lane2")) else rec.get("source")
+    lo = rec.get("live_order") or {}
+    have = {
+        "league": next((p for p in parts if p.isupper() and len(p) <= 6), None),
+        "teams": parts[1] if len(parts) > 1 else None,
+        "lane": lane,
+        "line": rec.get("fill_line") if rec.get("fill_line") is not None else rec.get("alert_line"),
+        "venue": rec.get("fill_book") or lo.get("book"),
+        "order_id": lo.get("order_id") or lo.get("client_id"),
+    }
+    return [f for f in META_REQUIRED if have.get(f) in (None, "", [])]
+
+
 def put_order(rec):
-    """Record a PLACED order. client_id is the money identity, so a repeat is an update."""
-    return _commit(lambda d: _upsert(d.setdefault("orders", []), dict(rec)))
+    """Record a PLACED order. client_id is the money identity, so a repeat is an update.
+
+    The metadata completeness check runs here, at creation, and is stored ON the record as
+    meta_missing so the gap is visible immediately instead of being discovered after settlement.
+    It never blocks the write.
+    """
+    rec = dict(rec)
+    try:
+        gaps = meta_gaps(rec)
+        if gaps:
+            rec["meta_missing"] = gaps
+            rec["meta_checked"] = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    except Exception:
+        pass        # a failure to CHECK must never stop an order being recorded
+    return _commit(lambda d: _upsert(d.setdefault("orders", []), rec))
 
 
 def put_intent(rec):

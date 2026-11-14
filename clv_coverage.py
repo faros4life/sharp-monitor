@@ -42,6 +42,7 @@ import os
 import sys
 from datetime import datetime, timezone
 
+import clv_basis as cb
 import clv_ledger as cl
 import clv_selection as csel
 import clv_stale as cstale
@@ -50,9 +51,28 @@ import tracker_build as tb
 ET = tb.ET
 HC = os.environ.get("HCACHE_DIR", "") or "hcache"
 ALT_FX = ["oddspapi/fixtures.json"]
+MKFILE = "clv/markets.json"
 LANE_UNIT = {"rules": 300.0, "board": 200.0, "r1": 200.0, "lane2": 200.0}
 LANE_NAME = {"rules": "PHASE 1", "board": "BOARD V3", "r1": "R1", "lane2": "LANE 2 (paper)"}
 L, SCREEN = [], []
+_PIN = {}        # fixture id -> wrapped cached Pinnacle history, opened at most once
+_MKMAP = {}      # market ids, loaded once in main()
+
+
+def _cached_pin(fid):
+    """Cached Pinnacle history for a fixture, or None. Never fetches."""
+    if fid in _PIN:
+        return _PIN[fid]
+    p = os.path.join(HC, f"{fid}__pinnacle.json.gz")
+    d = None
+    if os.path.exists(p):
+        try:
+            with gzip.open(p, "rt") as fh:
+                d = json.load(fh)
+        except Exception:
+            d = None
+    _PIN[fid] = {"bookmakers": {"pinnacle": d}} if d is not None else None
+    return _PIN[fid]
 
 
 def say(t="", money=False):
@@ -102,7 +122,24 @@ def classify_missing(r, st, alt, hc_has):
     if fid:
         if not hc_has(fid):
             return "market", "fixture known, no Pinnacle history ever downloaded"
-        return "pipeline", "fixture and history both present - the live scorer did not use them"
+        # "fixture and history both present" is NOT enough to call this our defect. The first
+        # version stopped here and filed all 12 such rows as PIPELINE, but the fallback pass
+        # showed most of them fail for a market reason: Pinnacle never hung OUR number with two
+        # sides before the start. Overstating our own defects is the same error as understating
+        # them - these have opposite remedies, so the close is actually evaluated.
+        try:
+            h = _cached_pin(fid)
+            f = (st.get("fixtures") or {}).get(fid) or {}
+            p, why = cb.pinnacle_no_vig_close(
+                f, s, _MKMAP, cl.book_markets(h or {}, "pinnacle"), cl.parsed, cl.which_team,
+                cl.two_way, cl.novig_p, cl.SPORT, cl.ML_MARKET, cl.FRESH_MIN, cl.tp)
+        except Exception as e_:
+            return "pipeline", f"close evaluation failed ({type(e_).__name__}) - ours to look at"
+        if p is None:
+            return "market", f"fixture and history present but {str(why)[:56]}"
+        if not cl.eff_dec(s):
+            return "pipeline", "close is available but no after-fee execution price was written back"
+        return "pipeline", "close and price both available - the live scorer did not use them"
     # the live matcher found nothing; does ANY cache hold a plausible fixture for it?
     gs = cl.tp(s.get("game_start"))
     near = 0
@@ -225,6 +262,11 @@ def main():
         pass
     if reg is None:
         say("WARNING: registry unreadable - lanes UNKNOWN, so units are unavailable per strategy")
+    global _MKMAP
+    try:
+        _MKMAP = (json.load(open(MKFILE)) or {}).get('m') or {}
+    except Exception:
+        _MKMAP = {}
     alt = all_fixture_ids()
     hc_names = set(os.listdir(HC)) if os.path.isdir(HC) else set()
 
@@ -379,6 +421,29 @@ def main():
         say(f"        {w}")
     if len(ex_mkt) > 12:
         say(f"    ... {len(ex_mkt)} in total")
+
+    # ---------------------------------------------------------------- metadata exceptions
+    say("")
+    say("6. METADATA EXCEPTIONS RAISED AT ORDER CREATION")
+    say("=" * 104)
+    say("  registry.put_order checks completeness when the order is recorded and stamps")
+    say("  meta_missing on it, so a gap surfaces while the venue data still exists rather than")
+    say("  after settlement. It never gates: the order is stored whatever is missing.")
+    orders = ((reg or {}).get("orders") or [])
+    flagged = [o for o in orders if o.get("meta_missing")]
+    say(f"  order records: {len(orders)}   carrying meta_missing: {len(flagged)}")
+    if flagged:
+        miss = collections.Counter(f for o in flagged for f in (o.get("meta_missing") or []))
+        for f_, n in miss.most_common():
+            say(f"    {n:5d}  missing {f_}")
+        for o in flagged[:8]:
+            say(f"    {str(o.get('decided_utc'))[:19]} {str(o.get('key'))[:46]:<46} "
+                f"missing {o.get('meta_missing')}")
+    else:
+        say("  none - every stored order record carries league, teams, lane, line, venue and an")
+        say("  order id. Records written BEFORE this check existed carry no stamp either way, so")
+        say("  an empty list here means 'nothing flagged since the check shipped', not 'audited")
+        say("  clean all the way back'.")
 
     say("")
     say("=" * 104)
