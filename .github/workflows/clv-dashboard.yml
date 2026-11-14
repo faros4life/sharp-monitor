@@ -73,6 +73,11 @@ jobs:
           DASH_EMAIL_FORCE: ${{ inputs.email_force }}
           DASH_URL: https://faros4life.github.io/sharp-monitor/dash/
         run: python -u clv_dashboard.py
+      - name: Reconcile every figure against the source records
+        env:
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+          REGISTRY_TOKEN: ${{ secrets.REGISTRY_TOKEN }}
+        run: python -u clv_dashboard_recon.py
       - name: Commit the page
         run: |
           git config user.name "clv-dashboard"
