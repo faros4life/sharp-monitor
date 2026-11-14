@@ -90,6 +90,40 @@ def main():
     before, stale = ledger_scored(st, bets, tracker)
     say(f"  ledger rows {len(bets)} | excluded stale {len(stale)} | tracker rows {len(tracker)}")
 
+    # ---------------------------------------------------------------- 189 vs 181
+    # Peter, Nov 13: "Explain why production has 189 certified rows but the comparison uses 181
+    # fill rows. I want those eight rows reconciled, not silently excluded."
+    #
+    # Two different questions were being counted. The audit's SCORED is "has a CLV and is not
+    # held out". The comparison uses the LEDGER'S OWN headline set, which drops two more classes
+    # on top of that - proven stale duplicates, and rows that fail the fail-closed fixture test.
+    # Neither number was wrong; they answer different things, and the gap is enumerated here so it
+    # is never again a difference nobody can name.
+    say("")
+    say("RECONCILIATION: certified rows vs the rows the headline counts")
+    say("=" * 100)
+    certified = {k: r for k, r in bets.items() if r.get("clv") is not None and not r.get("fixture_doubt")}
+    gap = {k: r for k, r in certified.items() if k not in before}
+    say(f"  certified (has a CLV, not held out)           {len(certified)}")
+    say(f"  counted in the headline                      {len(before)}")
+    say(f"  difference                                   {len(gap)}")
+    for k, r in sorted(gap.items()):
+        s_ = r.get("snap") or {}
+        if k in stale:
+            why = f"PROVEN STALE DUPLICATE of {stale[k][:34]} (clv_stale.stale_map)"
+        else:
+            fv, fw = cl.fixture_check(st, r)
+            prev = r.get("fixture_ok") or {}
+            why = (f"FAIL-CLOSED: fixture_check={fv} ({fw[:40]}), "
+                   f"durable fixture_ok={'yes' if prev.get('fixture') == r.get('fixture') else 'no'}")
+        say(f"    {k[:42]:<42} clv {100 * r['clv']:+.2f}%  {why}")
+        say(f"        {s_.get('league')} | {str(s_.get('game'))[:42]} | {str(s_.get('bet'))[:24]} | "
+            f"book {s_.get('book')} | {str(s_.get('game_start'))[:10]}")
+    say("  Every row above still exists and keeps its CLV. They are excluded from the HEADLINE")
+    say("  only: a stale duplicate would double-count a play that is already counted under its")
+    say("  live key, and a fail-closed row has no currently validated fixture and no durable")
+    say("  record of a prior validation, which is the rule Peter set on Nov 5.")
+
     # --- Stage 1 applied to a COPY: released rows honoured, nothing written
     s1 = copy.deepcopy(bets)
     for r in s1.values():
@@ -125,6 +159,26 @@ def main():
     say("")
     say(f"  certified UNIQUE SELECTIONS: {len(rows2)}   (from {len(after1)} certified fill rows)")
     say(f"  rows collapsed away: {len(after1) - len(rows2)}")
+
+    # ---------------------------------------------------------------- fills reconciliation
+    say("")
+    say("RECONCILIATION: do the selections account for every fill?")
+    say("=" * 100)
+    fills_in = len(after1)
+    fills_out = sum(o.get("n_fills", 1) for o in rows2)
+    ids = [i for o in rows2 for i in o.get("ids", [])]
+    say(f"  certified fill rows handed to the collapser   {fills_in}")
+    say(f"  fills accounted for inside the selections     {fills_out}")
+    say(f"  distinct row ids inside the selections        {len(set(ids))}")
+    say(f"  any row counted twice                         {len(ids) - len(set(ids))}  (must be 0)")
+    missing = sorted(set(after1) - set(ids))
+    say(f"  certified rows NOT in any selection           {len(missing)}  (must be 0)")
+    for k in missing[:10]:
+        say(f"    unaccounted {k[:46]}")
+    say(f"  selections holding more than one fill         "
+        f"{sum(1 for o in rows2 if o.get('n_fills', 1) > 1)}")
+    say(f"  largest selection                            "
+        f"{max((o.get('n_fills', 1) for o in rows2), default=0)} fills")
 
     say("")
     say("BY SOURCE (Stage 2 basis)")

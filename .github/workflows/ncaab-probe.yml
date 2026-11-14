@@ -1,0 +1,69 @@
+name: ncaab-probe
+
+# Peter, Nov 13 2026: a ONE-OFF ten-fixture probe to establish whether adding NCAAB would
+# actually recover any of the 125 outstanding rows. Stage 5 stays OFF either way.
+#
+# Dispatch only - there is deliberately NO schedule, so this cannot become continuous NCAAB
+# fetching. The script writes no state (it deep-copies and discards), leaves SPORT untouched, and
+# counts every API call it makes. The job proves afterwards that no tracked file moved.
+#
+# Credits: the NCAAB tournament lookup (only if the id is not already cached) plus ONE /fixtures
+# call over the sample's date window. Pinnacle history is read from hcache first and otherwise on
+# the FREE historical-odds path.
+
+on:
+  workflow_dispatch:
+    inputs:
+      probe_n:
+        description: "How many selections to sample"
+        required: false
+        type: string
+        default: "10"
+      email_now:
+        description: "1 to send the report by private email"
+        required: false
+        type: string
+        default: "1"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ncaab-probe
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Restore shared OddsPapi history cache (restore only, never saved)
+        uses: actions/cache/restore@v4
+        with:
+          path: hcache
+          key: hcache-${{ github.run_id }}
+          restore-keys: hcache-
+      - name: NCAAB probe (no state written, SPORT untouched)
+        env:
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+          ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
+          ODDSPAPI_FREE_KEY: ${{ secrets.ODDSPAPI_FREE_KEY }}
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          PROBE_N: ${{ inputs.probe_n }}
+          EMAIL_NOW: ${{ inputs.email_now }}
+        run: python -u ncaab_probe.py
+      - name: Prove nothing in the working tree changed
+        run: |
+          if [ -n "$(git status --porcelain -uno)" ]; then
+            echo "FAIL: the probe modified tracked files:"
+            git status --porcelain -uno
+            exit 1
+          fi
+          echo "clean: no tracked file was modified (clv/ state untouched, SPORT unchanged)"

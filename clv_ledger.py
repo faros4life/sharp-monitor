@@ -1245,26 +1245,47 @@ def main():
              "at the bet's own line when Pinnacle had it). CLV = close win chance x your after-fee payout - 1.", ""]
         if alert:
             L += ["*** KILL-SWITCH ALERT: last 50 scored bot bets average CLV below 0 (alert only; no pause - Peter decides) ***", ""]
-        L.append(f"ALL scored: {lane_stats(scored)}")
-        # Stage 2 (Peter, Nov 13): selection-level figures are ADDITIVE while the flag is off by
-        # default, so turning CLV_SELECTION_MODE=on adds a section and never silently restates
-        # the headline. One strategy selection is one observation however many pieces it filled
-        # in: Nov 12's Toronto Under 223.5 is 13 ProphetX fills and 13 certified rows today.
+        # Stage 2 (Peter, Nov 13, "publish the new selection-level scorecard as the official
+        # measurement basis; preserve the historical per-fill report for audit purposes"). With
+        # CLV_SELECTION_MODE=on the selection-level figures lead and the per-fill figures follow,
+        # explicitly labelled and unchanged, so nothing is lost. One strategy selection is one
+        # observation however many pieces it filled in: Nov 12's Toronto Under 223.5 is one bet
+        # and 13 ProphetX fills. Both halves use the SAME deduplicated basis - splitting a
+        # deduplicated sample with a per-fill split would reintroduce the weighting it removes.
         if SELECTION_MODE:
             try:
                 import clv_selection as csel
-                obs = list(csel.selections({r["id"]: r for r in scored}, tracker).values())
-                s2 = csel.stats(obs)
-                L.append(f"  SELECTION-LEVEL (one bet = one observation): n {s2['n']} from "
-                         f"{s2['fills']} fills, mean CLV {100 * s2['mean']:+.2f}%"
-                         + (f" +/-{100 * s2['se']:.2f} (1 s.e.)" if s2.get("se") is not None else "")
-                         + f", beat close {s2['pos']}/{s2['n']}")
+                _obs = list(csel.selections({r["id"]: r for r in scored}, tracker).values())
+                _h1, _h2, _nod = csel.halves(_obs)
+
+                def _fmt(tag, s_):
+                    if not s_.get("n"):
+                        return f"{tag}: n 0"
+                    _se = f" +/-{100 * s_['se']:.2f} (1 s.e.)" if s_.get("se") is not None else ""
+                    # ROI says UNAVAILABLE rather than 0.00% when no row carries a profit - a
+                    # fabricated zero is worse than a blank (it printed one for every source once).
+                    _roi = (f", ROI {s_['roi_pct']:+.2f}% on {s_['n_settled']} settled"
+                            if s_.get("roi_pct") is not None
+                            else f", ROI UNAVAILABLE ({s_.get('has_profit', 0)}/{s_['n']} rows carry profit)")
+                    return (f"{tag}: n {s_['n']} from {s_['fills']} fills, mean CLV "
+                            f"{100 * s_['mean']:+.2f}%{_se}, beat close {s_['pos']}/{s_['n']}{_roi}")
+
+                L.append("OFFICIAL BASIS - SELECTION LEVEL (one bet = one observation, however many fills):")
+                L.append("  " + _fmt("ALL selections", csel.stats(_obs)))
+                L.append("  " + _fmt("first half ", csel.stats(_h1)))
+                L.append("  " + _fmt("second half", csel.stats(_h2)))
+                if _nod:
+                    L.append(f"  excluded from the half split (no game start): {len(_nod)}")
+                L.append("")
+                L.append("PER-FILL (audit basis, retained unchanged - every fill counted separately):")
             # NOT `as ex`: this module imports executor as ex at line 29, and `except ... as ex`
             # makes ex function-local for the WHOLE of main() and then DELETES it when the block
             # ends, so the later ex.send() died with UnboundLocalError. It cost a run and two
             # billable fixture calls that were then discarded unwritten.
             except Exception as _sel_ex:
-                L.append(f"  SELECTION-LEVEL unavailable ({type(_sel_ex).__name__}) - per-fill figures above stand")
+                L.append(f"SELECTION-LEVEL unavailable ({type(_sel_ex).__name__}) - "
+                         f"the per-fill figures below are the basis for this run")
+        L.append(f"ALL scored: {lane_stats(scored)}")
         L.append(f"  bot: {lane_stats(bot)} | rolling 50: {lane_stats(bot[-50:])}")
         L.append(f"  Peter/other: {lane_stats(man)} | rolling 50: {lane_stats(man[-50:])}")
         if stale or stale_unproven:

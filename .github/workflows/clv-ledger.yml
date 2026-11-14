@@ -44,6 +44,11 @@ jobs:
           ODDSPAPI_FREE_KEY: ${{ secrets.ODDSPAPI_FREE_KEY }}   # Nov 3: history goes through the free key (paid key: 403 on pinnacle)
           TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
           EMAIL_NOW: ${{ inputs.email_now }}
+          # Stage 2 ON (Peter, Nov 13): the selection-level scorecard is the official measurement
+          # basis - one bet is one observation however many fills it took. The per-fill figures
+          # are still printed below it, unchanged, as the audit basis. Set to "off" to revert;
+          # nothing stored changes either way, so the switch is reversible by this line alone.
+          CLV_SELECTION_MODE: "on"
         run: python -u clv_ledger.py
       - name: Commit encrypted CLV state
         run: |
