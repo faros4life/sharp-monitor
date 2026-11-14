@@ -1,0 +1,93 @@
+name: clv-recovery-audit
+
+# Peter, Nov 13 2026: day-scoped audit of Nov 12 plus a full historical recovery inventory.
+#
+# READ-ONLY by construction, not by promise:
+#   * permissions: contents: read - this job cannot push, so it cannot alter clv/ or tracker/.
+#   * ODDSPAPI_KEY and ODDSPAPI_FREE_KEY are DELIBERATELY NOT PASSED. With no key in the
+#     environment the script could not make a billable OddsPapi call even if it tried. Pinnacle
+#     history comes from the restored hcache files only; a game with no cached file is reported
+#     as a gap, never fetched.
+#   * No IMAP read (Peter, Nov 13: "no emails reads"). GMAIL_* are present only so the private
+#     email with the dollar figures can be SENT, which is the repo's own channel for them.
+#   * The hcache cache is RESTORED but never saved, so this run cannot evict or alter it.
+#   * The only files written are audit/recovery_ckpt.json and audit/recovery_inventory.json,
+#     which no production job reads; the script itself refuses to write outside audit/.
+#
+# The checkpoint is cached so a second run re-classifies only records whose inputs moved
+# (Peter: "save checkpoints so work is incremental ... no repeated full scans").
+
+on:
+  workflow_dispatch:
+    inputs:
+      audit_date:
+        description: "ET date for the day-scoped section"
+        required: false
+        type: string
+        default: "2026-11-12"
+      email_now:
+        description: "1 to send the full report (incl. dollar figures) by private email"
+        required: false
+        type: string
+        default: "1"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: clv-recovery-audit
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Restore shared OddsPapi history cache (restore only, never saved)
+        uses: actions/cache/restore@v4
+        with:
+          path: hcache
+          key: hcache-${{ github.run_id }}
+          restore-keys: hcache-
+      - name: Restore audit checkpoint
+        uses: actions/cache/restore@v4
+        with:
+          path: audit
+          key: clv-recovery-ckpt-${{ github.run_id }}
+          restore-keys: clv-recovery-ckpt-
+      - name: Recovery audit (no OddsPapi key present, no IMAP, no production write)
+        env:
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+          REGISTRY_TOKEN: ${{ secrets.REGISTRY_TOKEN }}
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          AUDIT_DATE: ${{ inputs.audit_date }}
+          EMAIL_NOW: ${{ inputs.email_now }}
+        run: python -u clv_day_audit.py
+      - name: Prove nothing in the working tree changed
+        run: |
+          # audit/ is this job's own output; anything else dirty means a write escaped.
+          if [ -n "$(git status --porcelain -- . ':!audit')" ]; then
+            echo "FAIL: the audit modified tracked files outside audit/:"
+            git status --porcelain -- . ':!audit'
+            exit 1
+          fi
+          echo "clean: no tracked file outside audit/ was modified"
+      - name: Save audit checkpoint
+        uses: actions/cache/save@v4
+        if: always()
+        with:
+          path: audit
+          key: clv-recovery-ckpt-${{ github.run_id }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: clv-recovery-inventory
+          path: audit/
+          retention-days: 14
