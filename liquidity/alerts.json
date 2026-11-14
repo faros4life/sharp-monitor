@@ -1,6 +1,195 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-14T21:25:41Z",
+   "base_depth": 494757,
+   "best_price": 0.515,
+   "best_price_american": -106,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-14",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 77530,
+     "new_this_side": 281022,
+     "other_side": 398246,
+     "other_side_all_levels": 574672,
+     "ratio": 1.5,
+     "this_side": 581567,
+     "this_side_all_levels": 775919
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "ASU +3.5 (-3.5)",
+     "price": 0.515,
+     "this_side": 49848
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 31194.98,
+    "volume_24h_fp": 32827.33,
+    "volume_fp": 37641.48
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 1307.72,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 1313.76
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 29887.26,
+    "volume_24h_fp": 32827.33,
+    "volume_fp": 36327.72
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-11-14T21:20:41Z",
+   "game": "Arizona St. vs UCF: Spread",
+   "game_surge_books": [],
+   "game_x": 1.63,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFSPREAD-26NOV14ASUUCF-UCF4\"}",
+   "lead_min": 64,
+   "league": "NCAAF",
+   "line": 3.5,
+   "market": "spread",
+   "new_money": 281022,
+   "new_x": 22.34,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 31194.98,
+      "volume_24h_fp": 32827.33,
+      "volume_fp": 37641.48
+     },
+     "game_normal": 475721,
+     "game_x": 1.63,
+     "normal": 12582,
+     "now": 775919,
+     "type": "SPREAD",
+     "x": 61.67
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 7422222.0,
+      "volume": 9341565.0
+     },
+     "game_normal": 41334,
+     "game_x": 1.35,
+     "normal": 10741,
+     "now": 55756,
+     "type": "SPREAD",
+     "x": 5.19
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.52,
+   "price_american": -108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.52,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 3.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 3.5,
+     "price": -112
+    },
+    "betopenly": {
+     "point": 3.5,
+     "price": -101
+    },
+    "betrivers": {
+     "point": 3.5,
+     "price": -113
+    },
+    "betus": {
+     "point": 3.5,
+     "price": -120
+    },
+    "bovada": {
+     "point": 3.5,
+     "price": -115
+    },
+    "draftkings": {
+     "point": 3.5,
+     "price": -115
+    },
+    "fanatics": {
+     "point": 3.5,
+     "price": -115
+    },
+    "fanduel": {
+     "point": 3.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": 3.5,
+     "price": -108
+    },
+    "lowvig": {
+     "point": 3.5,
+     "price": -108
+    },
+    "mybookieag": {
+     "point": 3.5,
+     "price": -110
+    },
+    "novig": {
+     "point": 3.5,
+     "price": -106
+    },
+    "polymarket": {
+     "point": 3.5,
+     "price": -104
+    },
+    "prophetx": {
+     "point": 3.5,
+     "price": -105
+    },
+    "williamhill_us": {
+     "point": 3.5,
+     "price": -115
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAFSPREAD-26NOV14ASUUCF-UCF4"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Arizona St.",
+   "side_label": "NOT UCF wins by over 3.5 points",
+   "size_x": 61.67,
+   "start_source": "odds",
+   "start_utc": "2026-11-14T22:30:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig"
+   ],
+   "teams": [
+    "Arizona St.",
+    "UCF"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-14T21:00:39Z",
    "base_depth": 120514,
    "best_price": 0.645,
@@ -50,8 +239,8 @@
     "volume": 116797.0
    },
    "ex_stats_close": {
-    "openInterest": 19528553.0,
-    "volume": 28215223.0
+    "openInterest": 19647167.0,
+    "volume": 28372145.0
    },
    "ex_stats_first": {
     "openInterest": 19099961.0,
@@ -454,9 +643,9 @@
     "volume_fp": 878.63
    },
    "ex_stats_close": {
-    "open_interest_fp": 421409.13,
+    "open_interest_fp": 422313.85,
     "volume_24h_fp": 444229.93999999994,
-    "volume_fp": 576824.35
+    "volume_fp": 577729.07
    },
    "ex_stats_first": {
     "open_interest_fp": 408812.11,
@@ -652,9 +841,9 @@
     "volume_fp": 256.52
    },
    "ex_stats_close": {
-    "open_interest_fp": 30871.62,
+    "open_interest_fp": 30946.27,
     "volume_24h_fp": 26635.809999999998,
-    "volume_fp": 33609.05
+    "volume_fp": 33708.549999999996
    },
    "ex_stats_first": {
     "open_interest_fp": 28700.86,
@@ -868,9 +1057,9 @@
     "volume_fp": 612.55
    },
    "ex_stats_close": {
-    "open_interest_fp": 177840.11,
+    "open_interest_fp": 178836.69,
     "volume_24h_fp": 201395.47,
-    "volume_fp": 225255.05
+    "volume_fp": 226251.63
    },
    "ex_stats_first": {
     "open_interest_fp": 167919.75,
@@ -1086,9 +1275,9 @@
     "volume_fp": 55.73
    },
    "ex_stats_close": {
-    "open_interest_fp": 12330.2,
+    "open_interest_fp": 12332.26,
     "volume_24h_fp": 6564.8099999999995,
-    "volume_fp": 12383.92
+    "volume_fp": 12385.98
    },
    "ex_stats_first": {
     "open_interest_fp": 11481.16,
@@ -1284,8 +1473,8 @@
     "volume": 16459.0
    },
    "ex_stats_close": {
-    "openInterest": 2475495.0,
-    "volume": 3203797.0
+    "openInterest": 2588017.0,
+    "volume": 3317616.0
    },
    "ex_stats_first": {
     "openInterest": 2298215.0,
@@ -1465,9 +1654,9 @@
     "volume_fp": 1824.43
    },
    "ex_stats_close": {
-    "open_interest_fp": 82109.34,
+    "open_interest_fp": 82496.36,
     "volume_24h_fp": 48268.79,
-    "volume_fp": 87394.56
+    "volume_fp": 87781.58
    },
    "ex_stats_first": {
     "open_interest_fp": 78262.77,
@@ -1664,9 +1853,9 @@
     "volume_fp": 2891.52
    },
    "ex_stats_close": {
-    "open_interest_fp": 151921.73,
+    "open_interest_fp": 154589.37,
     "volume_24h_fp": 147965.42,
-    "volume_fp": 154564.1
+    "volume_fp": 157362.94
    },
    "ex_stats_first": {
     "open_interest_fp": 133824.87,
@@ -1882,9 +2071,9 @@
     "volume_fp": 8.37
    },
    "ex_stats_close": {
-    "open_interest_fp": 2355.56,
+    "open_interest_fp": 2408.6499999999996,
     "volume_24h_fp": 2024.9099999999999,
-    "volume_fp": 2557.69
+    "volume_fp": 2610.7799999999997
    },
    "ex_stats_first": {
     "open_interest_fp": 2066.91,
@@ -2412,9 +2601,9 @@
     "volume_fp": 657.01
    },
    "ex_stats_close": {
-    "open_interest_fp": 58531.17,
+    "open_interest_fp": 64534.82,
     "volume_24h_fp": 50546.72,
-    "volume_fp": 60789.630000000005
+    "volume_fp": 66793.28
    },
    "ex_stats_first": {
     "open_interest_fp": 42844.69,
@@ -3328,9 +3517,9 @@
     "volume_fp": 471.92
    },
    "ex_stats_close": {
-    "open_interest_fp": 143500.42,
+    "open_interest_fp": 144133.1,
     "volume_24h_fp": 139994.69,
-    "volume_fp": 145440.52
+    "volume_fp": 146073.2
    },
    "ex_stats_first": {
     "open_interest_fp": 123513.08,
@@ -3544,9 +3733,9 @@
     "volume_fp": 1711.69
    },
    "ex_stats_close": {
-    "open_interest_fp": 1285914.79,
+    "open_interest_fp": 1290542.57,
     "volume_24h_fp": 656472.33,
-    "volume_fp": 1301747.8399999999
+    "volume_fp": 1306375.6199999999
    },
    "ex_stats_first": {
     "open_interest_fp": 1238275.47,
@@ -3970,7 +4159,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Western Illinois",
@@ -4033,8 +4222,8 @@
     "volume": 579.0
    },
    "ex_stats_close": {
-    "openInterest": 7347616.0,
-    "volume": 9379849.0
+    "openInterest": 7794087.0,
+    "volume": 9826320.0
    },
    "ex_stats_first": {
     "openInterest": 7329860.0,
@@ -4315,7 +4504,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Bethune",
@@ -5321,7 +5510,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -5508,7 +5697,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [
     "TCU Horned Frogs -12.5 (-115)",
     "TCU Horned Frogs -11.5 (-110)"
@@ -6832,10 +7021,12 @@
     "volume_fp": 24089.64
    },
    "fade_price": 0.5,
+   "fade_units": 0.93,
    "first_seen_utc": "2026-11-14T16:30:19Z",
    "game": "Arkansas St. vs Coastal Carolina: Spread",
    "game_surge_books": [],
    "game_x": 1.02,
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFSPREAD-26NOV14ARSTCCAR-CCAR2\"}",
    "lead_min": 84,
    "league": "NCAAF",
@@ -6934,12 +7125,13 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFSPREAD-26NOV14ARSTCCAR-CCAR2"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 10,
+   "settle_tries": 11,
+   "settled_utc": "2026-11-14T21:25:41Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Arkansas St.",
@@ -6956,7 +7148,7 @@
     "Coastal Carolina"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-14T16:30:19Z",
@@ -7576,7 +7768,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Charlotte",
@@ -9104,7 +9296,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "East Tennessee St.",
@@ -9361,10 +9553,12 @@
     "volume_fp": 22204.01
    },
    "fade_price": 0.51,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-14T15:04:07Z",
    "game": "Arkansas St. vs Coastal Carolina: Spread",
    "game_surge_books": [],
    "game_x": 1.7,
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFSPREAD-26NOV14ARSTCCAR-CCAR2\"}",
    "lead_min": 170,
    "league": "NCAAF",
@@ -9475,14 +9669,15 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFSPREAD-26NOV14ARSTCCAR-CCAR2"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
+   "settled_utc": "2026-11-14T21:25:41Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Coastal Carolina",
@@ -9500,7 +9695,7 @@
     "Coastal Carolina"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.98
   },
   {
    "alerted_utc": "2026-11-14T15:10:13Z",
@@ -9632,7 +9827,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Grambling St.",
@@ -11555,7 +11750,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -12650,7 +12845,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -12933,7 +13128,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Austin Peay",
@@ -13010,10 +13205,12 @@
     "volume_fp": 2269.73
    },
    "fade_price": 0.5,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-14T09:05:46Z",
    "game": "Arkansas St. vs Coastal Carolina: Total Points",
    "game_surge_books": [],
    "game_x": 1.53,
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFTOTAL-26NOV14ARSTCCAR-53\"}",
    "lead_min": 530,
    "league": "NCAAF",
@@ -13124,12 +13321,13 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFTOTAL-26NOV14ARSTCCAR-53"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 10,
+   "settle_tries": 11,
+   "settled_utc": "2026-11-14T21:25:41Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "Over 51.5 (-110)"
@@ -13148,7 +13346,7 @@
     "Coastal Carolina"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.98
   },
   {
    "alerted_utc": "2026-11-14T09:05:46Z",
@@ -13383,7 +13581,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Southeast Missouri St.",
@@ -13514,7 +13712,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "St. Thomas",
@@ -13955,7 +14153,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "North Alabama",
@@ -14089,7 +14287,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "South Carolina St.",
@@ -14374,7 +14572,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Lehigh",
@@ -14587,7 +14785,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Kennesaw St.",
@@ -15084,7 +15282,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "North Carolina A&T",
@@ -15625,7 +15823,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "South Dakota",
@@ -15772,7 +15970,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Campbell",
@@ -17503,7 +17701,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 16,
+   "settle_tries": 17,
    "sharp_agree": [
     "Over 50.5 (-106)"
    ],
@@ -20365,7 +20563,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Rice",
@@ -22031,7 +22229,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 16,
+   "settle_tries": 17,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Auburn",
@@ -27386,7 +27584,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 16,
+   "settle_tries": 17,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Youngstown St.",
