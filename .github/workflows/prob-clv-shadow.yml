@@ -1,0 +1,50 @@
+name: prob-clv-shadow
+
+# Peter, Nov 14 2026 (GitHub issue #5): Probability CLV (converted) as a READ-ONLY SHADOW metric.
+# DRAFT - manual dispatch only, NOT scheduled, NOT triggered by push. Do not dispatch without Peter's approval.
+#
+# READ-ONLY by construction (same pattern as clv-recovery-audit):
+#   * permissions: contents: read - cannot push, so it cannot alter clv/ or tracker/.
+#   * ODDSPAPI_* and GMAIL_* are DELIBERATELY NOT PASSED: no billable call and no email can happen.
+#     Pinnacle history comes from the restored hcache only; a game with no cached file is reported as a gap, never fetched.
+#   * hcache is restored, never saved. The script writes no file. The log carries counts, percentages and units only.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: prob-clv-shadow
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Restore shared OddsPapi history cache (restore only, never saved)
+        uses: actions/cache/restore@v4
+        with:
+          path: hcache
+          key: hcache-${{ github.run_id }}
+          restore-keys: hcache-
+      - name: Offline correctness tests
+        run: python3 -I tests/test_prob_clv_shadow.py
+      - name: Probability CLV shadow report (read-only)
+        env:
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+          REGISTRY_TOKEN: ${{ secrets.REGISTRY_TOKEN }}
+        run: python -u prob_clv_shadow.py
+      - name: Prove nothing tracked changed
+        run: |
+          if [ -n "$(git status --porcelain -uno)" ]; then
+            echo "FAIL: tracked files modified"; git status --porcelain -uno; exit 1
+          fi
+          echo "clean: no tracked file was modified"
