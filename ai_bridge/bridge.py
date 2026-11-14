@@ -121,6 +121,16 @@ def user_prompt(context, transcript):
     return f"SHARED CONTEXT (read first):\n{context}\n\nLOG SO FAR:\n{transcript or '(empty)'}\n\nYour turn."
 
 
+USAGE = {"claude": [0, 0], "chatgpt": [0, 0]}      # [input, output] tokens, as billed
+RATES = {"claude": (2.0, 10.0), "chatgpt": (0.15, 0.60)}  # list $/M tokens: Sonnet 5.5, gpt-4o-mini
+
+
+def usage_line():
+    tot = sum(i * RATES[k][0] + o * RATES[k][1] for k, (i, o) in USAGE.items()) / 1e6
+    return (f"tokens in/out: claude {USAGE['claude'][0]}/{USAGE['claude'][1]}, "
+            f"chatgpt {USAGE['chatgpt'][0]}/{USAGE['chatgpt'][1]}; est. cost at list price ${tot:.4f}")
+
+
 def call_claude(context, transcript):
     r = _post("https://api.anthropic.com/v1/messages",
               {"x-api-key": os.environ["ANTHROPIC_API_KEY"], "anthropic-version": "2023-06-01",
@@ -128,6 +138,8 @@ def call_claude(context, transcript):
               {"model": os.environ.get("BRIDGE_CLAUDE_MODEL", "claude-sonnet-5-5"), "max_tokens": MAX_TOKENS,
                "system": system_prompt("claude"),
                "messages": [{"role": "user", "content": user_prompt(context, transcript)}]})
+    u = r.get("usage") or {}
+    USAGE["claude"][0] += u.get("input_tokens", 0); USAGE["claude"][1] += u.get("output_tokens", 0)
     return r["content"][0]["text"]
 
 
@@ -137,6 +149,8 @@ def call_chatgpt(context, transcript):
               {"model": os.environ.get("BRIDGE_OPENAI_MODEL", "gpt-4o-mini"), "max_completion_tokens": MAX_TOKENS,
                "messages": [{"role": "system", "content": system_prompt("chatgpt")},
                             {"role": "user", "content": user_prompt(context, transcript)}]})
+    u = r.get("usage") or {}
+    USAGE["chatgpt"][0] += u.get("prompt_tokens", 0); USAGE["chatgpt"][1] += u.get("completion_tokens", 0)
     return r["choices"][0]["message"]["content"]
 
 
@@ -195,7 +209,7 @@ def main():
         if done:
             log = parse_log(gh("GET", base + "/comments?per_page=100"))
             summary = (f"@{owner} **Bridge task finished** ({len(log)} messages, {api_calls} model calls, "
-                       f"mode={'live' if live else 'dry-run'}). Conversation stopped. New tasks or any live-betting "
+                       f"mode={'live' if live else 'dry-run'}; {usage_line()}). Conversation stopped. New tasks or any live-betting "
                        f"change need your approval.\n\n> {MANDATORY}")
             gh("POST", base + "/comments", {"body": summary})
             try:
@@ -203,6 +217,7 @@ def main():
             except Exception as e:
                 print("label removal failed:", e)
             break
+    print(usage_line())
     return 0
 
 
