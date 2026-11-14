@@ -68,7 +68,7 @@ def t_different_claims_never_merge():
 
 def t_ambiguous_and_missing_claims():
     rep = run([R(order_ref="X"), R(order_ref="ZZZ"), R()])
-    assert rep["join"] == {"ambiguous_claims": 1, "ref_not_in_registry": 1, "no_order_ref": 1}
+    assert rep["join"] == {"ambiguous_claims:different_lanes": 1, "ref_not_in_registry": 1, "no_order_ref": 1}
     assert set(rep["buckets"]) == {"UNATTRIBUTED(ambiguous_claims)", "UNATTRIBUTED(ref_not_in_registry)", "UNATTRIBUTED(no_order_ref)"}
 
 
@@ -266,6 +266,30 @@ def t_workflow_secrets_are_exactly_the_needed_four():
     wf = open(os.path.join(HERE, ".github", "workflows", "p2-audit.yml")).read()
     assert set(_re.findall(r"secrets\.([A-Z_]+)", wf)) == {"TRACKER_PASSPHRASE", "REGISTRY_TOKEN", "TELEGRAM_BOT_TOKEN", "TELEGRAM_CHAT_ID"}
     assert "contents: read" in wf and "upload-artifact" not in wf and "actions/cache" not in wf and "git push" not in wf and "git commit" not in wf
+
+
+# ---- counts-only diagnosis of ambiguous order ids
+def t_ambiguity_kinds():
+    assert c.ambiguity_kind({("K1", "R1"), ("K2", "PHASE 1")}) == "different_lanes"
+    assert c.ambiguity_kind({("NBA|A|total|OVER", "board"), ("board|NBA|A|total|OVER", "board")}) == "same_lane_prefix_variant"
+    assert c.ambiguity_kind({("NBA|A|total|OVER", "board"), ("NBA|B|total|OVER", "BOARD V3")}) == "same_lane_different_keys"
+    idx = {"Z": [("prophetx", "NBA|A|total|OVER", "board"), ("prophetx", "board|NBA|A|total|OVER", "board")]}
+    rep = c.build([R(order_ref="Z")], idx)
+    assert rep["join"] == {"ambiguous_claims:same_lane_prefix_variant": 1} and "UNATTRIBUTED(ambiguous_claims)" in rep["buckets"]
+
+
+def t_same_order_twice_in_one_row_is_not_ambiguous():
+    idx = {"Y": [("prophetx", "K", "r1"), ("prophetx", "K", "r1")]}      # live_order and live_more carry the same id
+    assert c.resolve(R(order_ref="Y"), idx) == ("exact", "r1", "K")
+
+
+def t_time_diag_counts():
+    from datetime import datetime, timezone
+    now = datetime(2026, 11, 14, 23, 15, tzinfo=timezone.utc)
+    ps = [R(game_start="2026-11-15T00:30:00Z", settled="2026-11-14T00:00:00Z"), R(game_start="2026-11-13T19:00:00-05:00"), R(placed="junk")]
+    d = c.time_diag(ps, now)
+    assert d["game_start"] == {"present": 2, "unparseable": 0, "after_run": 1, "midnight_utc": 1}, d["game_start"]
+    assert d["settled"]["midnight_utc"] == 1 and d["placed"]["unparseable"] == 1
 
 
 _n = 0

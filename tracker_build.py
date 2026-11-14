@@ -651,6 +651,37 @@ def _uidvalidity(M):
 
 
 KEY_LANE = {}
+KEY_LANE_CONFLICT = set()   # keys whose ledger rows name two different lanes: never labelled (fail closed)
+
+
+def bot_row_lane(b):
+    """The lane for a bot fill row from the keys it matches: exactly ONE lane, else None (two lanes, or a conflicted key)."""
+    hits = [k for k in list(KEY_LANE) + list(KEY_LANE_CONFLICT) if bot_match(b, {k})]
+    if any(k in KEY_LANE_CONFLICT for k in hits):
+        return None
+    lanes = {KEY_LANE[k] for k in hits}
+    return next(iter(lanes)) if len(lanes) == 1 else None
+
+
+def key_lane_put(row):
+    """Label a bot key with the lane its REGISTRY / ledger row records (registry.row_lane: 'source' rules|board|r1|lane2 or a
+    lane prefix on the key). executor.lane_of is NOT used here: it reads row['live'] as a dict, but ledger rows store 'live' as a
+    BOOL, so it raised (lane lost) or fell back to PHASE 1. An unknown source labels nothing; two lanes on one key -> conflict.
+    Display / reporting only (tracker lane column, FUZZY bucket): nothing in execution reads KEY_LANE."""
+    import registry as _rgk
+    k = row.get("key")
+    lane = _rgk.row_lane(row)
+    if not k or not lane:
+        return None
+    name = {"rules": "PHASE 1", "board": "BOARD V3", "r1": "R1", "lane2": "LANE 2"}.get(lane)
+    if k in KEY_LANE_CONFLICT:
+        return None
+    if k in KEY_LANE and KEY_LANE[k] != name:
+        KEY_LANE.pop(k, None)
+        KEY_LANE_CONFLICT.add(k)
+        return None
+    KEY_LANE[k] = name
+    return name
 
 
 def bot_keys(M, days=2):
@@ -692,7 +723,7 @@ def bot_keys(M, days=2):
                            for lo in los):
                         keys.add(row["key"])
                         try:
-                            KEY_LANE[row["key"]] = ex.LANE_NAME.get(ex.lane_of(row), "PHASE 1")
+                            key_lane_put(row)
                         except Exception:
                             pass
                 IMAP_T["bot keys (private store)"] = 0
@@ -732,7 +763,7 @@ def bot_keys(M, days=2):
                 if row.get("key") and any(lo.get("status") == "placed" and lo.get("order_id") for lo in los):
                     got.add(row["key"])
                     try:   # Nov 11 (Peter): which lane placed it (Phase 1 / Board v3 / R1), shown on the tracker
-                        KEY_LANE[row["key"]] = ex.LANE_NAME.get(ex.lane_of(row), "PHASE 1")
+                        key_lane_put(row)
                     except Exception:
                         pass
         IMAP_CACHE["b"][u] = sorted(got)
@@ -1487,7 +1518,7 @@ def main():
         try:
             if b.get("source") == "bot":
                 if not b.get("lane"):
-                    b["lane"] = next((KEY_LANE[k] for k in KEY_LANE if bot_match(b, {k})), None)
+                    b["lane"] = bot_row_lane(b)
             elif _sv and b.get("source") != "Street Value":
                 gs = tparse(b.get("game_start"))
                 pb = parse_bet(b.get("bet"), b.get("flip"))

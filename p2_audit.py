@@ -94,6 +94,13 @@ def main():
     rep = build(rows, index, reg._venue)
     print("bot rows:", len(rows), "| with a venue order id (order_ref):", sum(1 for r in rows if r.get("order_ref")),
           "| registry order ids:", len(index), "| registry rows with no provable lane:", no_lane, "| join:", rep["join"])
+    td = {}
+    for v in rep["buckets"].values():
+        for f_, d_ in v["time_diag"].items():
+            t_ = td.setdefault(f_, [0, 0, 0])
+            t_[0] += d_["present"]; t_[1] += d_["after_run"]; t_[2] += d_["midnight_utc"]
+    print("time fields over all buckets (present / after run / exactly 00:00 UTC):",
+          ", ".join(f"{f_} {a_}/{b_}/{c_}" for f_, (a_, b_, c_) in td.items()))
     for b, v in rep["buckets"].items():
         a = v["all"]
         print(f"{b}: settled {a['settled']} (verified money {a['verified_money']}), open/ambiguous {v['open_or_ambiguous']}, "
