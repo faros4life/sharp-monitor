@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 13, 11:30 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 12.
+Updated Fri Nov 13, 11:40 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 11.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 250-146 (-20.06u flat) | rule met: 48-41
+**Record:** 251-146 (-19.49u flat) | rule met: 48-41
 
-**Fade (paper, betting against the print):** 121-215 (+12.53u flat, after fees)
+**Fade (paper, betting against the print):** 121-216 (+11.53u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -40,7 +40,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 13 9:30AM | NCAAB | Virginia vs Maryland | moneyline: Virginia | kalshi | $68k | -223 |  |  | +1.0c |  | W |
 | Nov 13 2:24AM | NCAAB | Southern Miss vs Texas St. | moneyline: Texas St. | kalshi | $46k | -567 |  |  | +0.0c |  | W |
 | Nov 13 2:24AM | NCAAB | Mississippi St. vs Xavier | moneyline: Xavier | kalshi | $26k | -156 |  |  | +1.0c |  | W |
-| Nov 13 2:24AM | NCAAB | Lindenwood vs Omaha | moneyline: Omaha | kalshi | $25k | -178 |  |  | +0.0c |  | pending |
+| Nov 13 2:24AM | NCAAB | Lindenwood vs Omaha | moneyline: Omaha | kalshi | $25k | -178 |  |  | +0.0c |  | W |
 | Nov 13 1:58AM | NCAAB | Georgia vs North Carolina | moneyline: North Carolina | kalshi | $34k | -170 |  |  | +1.0c |  | L |
 | Nov 13 1:58AM | NCAAB | Southeast Missouri St. vs Middle Tennessee | moneyline: Middle Tennessee | kalshi | $30k | -203 |  |  | +0.0c |  | W |
 | Nov 13 1:58AM | NCAAB | Iona vs Hofstra | moneyline: Hofstra | kalshi | $28k | -270 |  |  | +0.0c |  | W |
