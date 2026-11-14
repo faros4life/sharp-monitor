@@ -128,10 +128,42 @@ def provenance(x, src):
                                        if x.get("close_read_mins_before") is not None else ""))
 
 
+def snap_for(x, src):
+    """A scoring snapshot built from each population's OWN fields.
+
+    The liquidity export has NO 'bet' string at all. It is fully structured - market
+    ("moneyline"|"total"|"spread"), side ("Over", "Under", or a team name), line, and teams -
+    and reading x["bet"] from it returns nothing, so 2,054 observations were filed "bet text does
+    not parse" by my reader rather than by any defect in the data. That is the THIRD unit/field
+    mistake I made on this one population (close_price provenance, the 0-1 price unit, and now
+    the missing bet field), which is exactly why CLAUDE.md says to suspect the instrument first.
+
+    The bet text is synthesised from those fields rather than guessed, and teams is handed
+    straight to the matcher, which is stronger than splitting the game string.
+    """
+    lg = x.get("sport") or x.get("league")
+    gs = x.get("start_utc") or x.get("game_start") or x.get("commence_time")
+    if src != "liquidity":
+        return {"league": lg, "game": x.get("game"), "bet": x.get("bet"), "game_start": gs}
+    mkt = str(x.get("market") or "").lower()
+    side = str(x.get("side") or x.get("side_label") or "").strip()
+    line = tb.num(x.get("line"))
+    if mkt.startswith("total") and line is not None:
+        bet = f"{side} {line:g}"
+    elif mkt.startswith("spread") and line is not None:
+        bet = f"{side} {line:+g}"
+    else:
+        bet = side
+    tms = x.get("teams")
+    snap = {"league": lg, "game": x.get("game"), "bet": bet, "game_start": gs}
+    if isinstance(tms, list) and len(tms) >= 2:
+        snap["teams"] = [{"name": t if isinstance(t, str) else (t or {}).get("name")} for t in tms[:2]]
+    return snap
+
+
 def classify(x, src, fxs, alt, allfx, mkmap):
     """Exactly ONE class, by waterfall. Returns (class, detail)."""
     lg = x.get("sport") or x.get("league")
-    bet = x.get("bet")
     book = x.get("book_key") or x.get("book")
     # 1 entry price first: without one, nothing downstream can produce a CLV at all. The two
     # populations quote in DIFFERENT UNITS and conflating them was my own error: the liquidity
@@ -149,8 +181,7 @@ def classify(x, src, fxs, alt, allfx, mkmap):
         if ewhy and ("not tradeable" in ewhy or "not in the venue registry" in ewhy):
             return "VENUE_NOT_PRICEABLE", ewhy
         return "UNVERIFIABLE_ENTRY", f"no executable after-fee entry: {ewhy}"
-    snap = {"league": lg, "game": x.get("game"), "bet": bet,
-            "game_start": x.get("start_utc") or x.get("game_start") or x.get("commence_time")}
+    snap = snap_for(x, src)
     # 2 identity: the bet must parse and the row must name two sides
     if not cl.parsed(snap):
         return "FIXTURE_OR_IDENTITY", "bet text does not parse into a market, side and line"
@@ -357,9 +388,7 @@ def main():
             no_league += 1
             continue
         x, r = items[0]
-        snap = {"league": lg, "game": r["game"], "bet": r["bet"],
-                "game_start": x.get("start_utc") or x.get("game_start") or x.get("commence_time")}
-        fid, _n = fxm.ordered_match(snap, allfx, cl.tp)
+        fid, _n = fxm.ordered_match(snap_for(x, "liquidity"), allfx, cl.tp)
         if not fid:
             need_fx += 1
             fx_windows.add((lg, day))
