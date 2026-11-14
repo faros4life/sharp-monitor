@@ -1,6 +1,278 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-14T07:20:14Z",
+   "base_depth": 48010,
+   "best_price": 0.805,
+   "best_price_american": -413,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.81,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-14",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 1716,
+     "new_this_side": 25853,
+     "other_side": 4393,
+     "other_side_all_levels": 18525,
+     "ratio": 4.0,
+     "this_side": 17535,
+     "this_side_all_levels": 75363
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "DUQ (0)",
+     "price": 0.805,
+     "this_side": 1796
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Duquesne",
+     "price": 0.8077,
+     "this_side": 961
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 1643.71,
+    "volume_24h_fp": 827.01,
+    "volume_fp": 1936.22
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 1643.71,
+    "volume_24h_fp": 827.01,
+    "volume_fp": 1936.22
+   },
+   "fade_price": 0.2,
+   "first_seen_utc": "2026-11-14T07:15:34Z",
+   "game": "Mercyhurst vs Duquesne",
+   "game_surge_books": [],
+   "game_x": 1.51,
+   "key": "kalshi|KXNCAAFGAME-26NOV14MHUDUQ|ml|1",
+   "lead_min": 580,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 25853,
+   "new_x": 0.5,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 1643.71,
+      "volume_24h_fp": 827.01,
+      "volume_fp": 1936.22
+     },
+     "game_normal": 49991,
+     "game_x": 1.51,
+     "normal": 51310,
+     "now": 75363,
+     "type": "ML",
+     "x": 1.47
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 25615.0,
+      "volume": 25801.0
+     },
+     "game_normal": 3069,
+     "game_x": 0.69,
+     "normal": 3225,
+     "now": 2119,
+     "type": "ML",
+     "x": 0.66
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 1138,
+     "game_x": 0.84,
+     "normal": 895,
+     "now": 961,
+     "type": "ML",
+     "x": 1.07
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.81,
+   "price_american": -426,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.81,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26NOV14MHUDUQ-DUQ"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Duquesne",
+   "side_label": "Duquesne",
+   "size_x": 1.47,
+   "start_source": "prophetx",
+   "start_utc": "2026-11-14T17:00:00Z",
+   "surge_books": [],
+   "teams": [
+    "Mercyhurst",
+    "Duquesne"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-14T07:20:14Z",
+   "base_depth": 58682,
+   "best_price": 0.795,
+   "best_price_american": -388,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.8,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-14",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 770,
+     "new_this_side": 27554,
+     "other_side": 5484,
+     "other_side_all_levels": 17841,
+     "ratio": 1.9,
+     "this_side": 10332,
+     "this_side_all_levels": 86275
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "COLG (0)",
+     "price": 0.795,
+     "this_side": 1307
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Colgate",
+     "price": 0.8039,
+     "this_side": 341
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 16791.260000000002,
+    "volume_24h_fp": 6652.4,
+    "volume_fp": 17205.85
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 16791.260000000002,
+    "volume_24h_fp": 6652.4,
+    "volume_fp": 17205.85
+   },
+   "fade_price": 0.21,
+   "first_seen_utc": "2026-11-14T07:15:34Z",
+   "game": "Lafayette vs Colgate",
+   "game_surge_books": [],
+   "game_x": 1.37,
+   "key": "kalshi|KXNCAAFGAME-26NOV14LAFCOLG|ml|1",
+   "lead_min": 640,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 27554,
+   "new_x": 0.54,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 16791.260000000002,
+      "volume_24h_fp": 6652.4,
+      "volume_fp": 17205.85
+     },
+     "game_normal": 62912,
+     "game_x": 1.37,
+     "normal": 51310,
+     "now": 86275,
+     "type": "ML",
+     "x": 1.68
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 223054.0,
+      "volume": 372980.0
+     },
+     "game_normal": 3230,
+     "game_x": 0.49,
+     "normal": 3225,
+     "now": 1591,
+     "type": "ML",
+     "x": 0.49
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 271,
+     "game_x": 1.26,
+     "normal": 895,
+     "now": 341,
+     "type": "ML",
+     "x": 0.38
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.8,
+   "price_american": -400,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.8,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26NOV14LAFCOLG-COLG"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Colgate",
+   "side_label": "Colgate",
+   "size_x": 1.68,
+   "start_source": "prophetx",
+   "start_utc": "2026-11-14T18:00:00Z",
+   "surge_books": [],
+   "teams": [
+    "Lafayette",
+    "Colgate"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-14T07:05:35Z",
    "base_depth": 14189,
    "best_price": 0.8212,
@@ -46,9 +318,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 9569.5,
-    "volume_24h_fp": 539.8100000000001,
-    "volume_fp": 9581.16
+    "open_interest_fp": 590.12,
+    "volume_24h_fp": 335.23,
+    "volume_fp": 593.81
    },
    "ex_stats_first": {
     "open_interest_fp": 9569.5,
@@ -431,9 +703,9 @@
     "volume_fp": 25.56
    },
    "ex_stats_close": {
-    "open_interest_fp": 14050.46,
+    "open_interest_fp": 14127.46,
     "volume_24h_fp": 13155.21,
-    "volume_fp": 15534.24
+    "volume_fp": 15611.24
    },
    "ex_stats_first": {
     "open_interest_fp": 6565.86,
@@ -5498,9 +5770,9 @@
     "volume_fp": 18.6
    },
    "ex_stats_close": {
-    "open_interest_fp": 34263.31,
+    "open_interest_fp": 35109.31,
     "volume_24h_fp": 21171.87,
-    "volume_fp": 35810.05
+    "volume_fp": 36656.05
    },
    "ex_stats_first": {
     "open_interest_fp": 15985.78,
@@ -6143,9 +6415,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 172634.34,
+    "open_interest_fp": 172925.34,
     "volume_24h_fp": 169409.1,
-    "volume_fp": 190352.43
+    "volume_fp": 190670.82
    },
    "ex_stats_first": {
     "open_interest_fp": 29945.72,
@@ -8776,9 +9048,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 34263.31,
+    "open_interest_fp": 35109.31,
     "volume_24h_fp": 21171.87,
-    "volume_fp": 35810.05
+    "volume_fp": 36656.05
    },
    "ex_stats_first": {
     "open_interest_fp": 13745.85,
@@ -11884,9 +12156,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1770.22,
+    "open_interest_fp": 1872.68,
     "volume_24h_fp": 1146.0,
-    "volume_fp": 1776.0
+    "volume_fp": 1878.46
    },
    "ex_stats_first": {
     "open_interest_fp": 623.71,
@@ -11993,8 +12265,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.84,
-   "clv_cents": 3.0,
+   "close_price": 0.83,
+   "clv_cents": 2.0,
    "confirmed_after_min": 6,
    "date": "2026-11-14",
    "depth_by_book": {
@@ -12025,9 +12297,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 13553.27,
+    "open_interest_fp": 13632.07,
     "volume_24h_fp": 5684.93,
-    "volume_fp": 14987.95
+    "volume_fp": 15066.75
    },
    "ex_stats_first": {
     "open_interest_fp": 8889.74,
