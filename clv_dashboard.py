@@ -420,8 +420,8 @@ def build():
         "run": os.environ.get("GITHUB_RUN_ID", ""),
         "cutoff_label": CUTOFF_LABEL,
         "selections_total": len(obs), "bands": bands,
-        "privacy": ("Counts, units and percentages only. No balances, no currency stakes, no "
-                    "account identifiers, no order ids, no secrets."),
+        "privacy": ("Counts, units and percentages only. No currency stakes and no account, "
+                    "order or credential data."),
     }
     return view, None
 
