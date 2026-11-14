@@ -144,6 +144,42 @@ _s = src_text_for_scan()
 ck("7b no say()/print of a selection key, game or bet text", not any(f in _s for f in ('say(r["key"]', "say(f\"{r['key']", "r['game'][1]}", 'snap.get("game")}', "snap.get('bet')}")))
 ck("7b crash handler withholds the exception message", "message and traceback withheld" in _s)
 
+# ---- 9. D1 / D2 / D3 / D5 additions (Nov 14, approved reconciliation update)
+d1 = ps.value_at_ticket("NFL", "spread", None, -3.0, -3.0, 0.52, DEC, "novig")
+ck("9 D1: same-line whole ticket on an unverified venue is its own state, not unsupported",
+   d1["status"] == "ok" and d1["cls"] == "same_line_settlement_unverified", str(d1))
+ck("9 D1: pp AND EV are withheld (both assume a refunded push)", d1["pp"] is None and d1["ev"] is None)
+d1m = ps.value_at_ticket("NFL", "total", "OVER", 44.0, 44.5, 0.5, DEC, "novig")
+ck("9 D1: a MOVED whole ticket on that venue stays unsupported", d1m["status"] == "unsupported" and d1m["reason"].startswith("settlement_rule_unverified"))
+d1ok = ps.value_at_ticket("NFL", "spread", None, -3.0, -3.0, 0.52, DEC, "vb")
+ck("9 D1: the same ticket on a verified venue is still same_line with pp and EV", d1ok["cls"] == "same_line" and d1ok["pp"] is not None and d1ok["ev"] is not None)
+ck("9 D1: a half-point same-line ticket never needs a settlement rule", ps.value_at_ticket("NFL", "spread", None, -3.5, -3.5, 0.52, DEC, "novig")["cls"] == "same_line")
+
+ck("9 stored_kind", ps.stored_kind("own line") == "exact" and ps.stored_kind("moneyline") == "exact"
+   and ps.stored_kind("main 44 moved to 44.5") == "moved" and ps.stored_kind(None) == "none" and ps.stored_kind("x") == "other")
+q, d_ = 0.55, 1.90
+ck("9 compare_fill agree", ps.compare_fill(q * d_ - 1, q, d_, q)["cause"] == "agree")
+cc = ps.compare_fill(0.52 * d_ - 1, 0.52, d_, q)
+ck("9 compare_fill: different stored close probability -> cause 'close'", cc["mismatch"] and cc["cause"] == "close", str(cc))
+cp = ps.compare_fill(q * 1.80 - 1, q, d_, q)
+ck("9 compare_fill: different decimal behind the stored value -> cause 'price'", cp["mismatch"] and cp["cause"] == "price", str(cp))
+cb_ = ps.compare_fill(0.52 * 1.80 - 1, 0.52, d_, q)
+ck("9 compare_fill: both differ -> 'both'", cb_["cause"] == "both", str(cb_))
+ck("9 compare_fill: missing input is n/a, never a mismatch", ps.compare_fill(None, None, d_, q)["mismatch"] is False)
+ck("9 D2: side-resolution failures are ROW-DATA(side)", ps.ours_prefix("side never recorded", "PINNACLE-DATA") == "ROW-DATA(side)"
+   and ps.ours_prefix("held team not matched to fixture", "FIXTURE-CACHE") == "ROW-DATA(side)")
+ck("9 D2: a market-data failure keeps its default", ps.ours_prefix("no fresh two-sided Pinnacle line", "PINNACLE-DATA") == "PINNACLE-DATA")
+ck("9 now_label strips detail", ps.now_label({"status": "no_close", "why": "ROW-DATA(side): x"}) == "no_close:ROW-DATA"
+   and ps.now_label({"status": "same_line", "why": None}) == "same_line")
+ck("9 D5: alternate-line close is flagged with its limit ratio", sc is not None and ps.score_selection("NFL", "vb", DEC, None, info2)["is_main"] is False
+   and abs(ps.score_selection("NFL", "vb", DEC, None, info2)["limit_ratio"] - 100.0 / 5000.0) < 1e-9)
+ck("9 D5: the ladder's largest-limit line is flagged main", ps.score_selection("NFL", "vb", DEC, None, info)["is_main"] is True)
+ck("9 quant", ps.quant([0.1, 0.5, 0.9]) == "0.10 0.30 0.50 0.70 0.90" or ps.quant([0.1, 0.5, 0.9]).startswith("0.10"))
+
+ck("9 safe_label passes ordinary labels", ps.safe_label("Peter (Hard Rock note)") == "Peter (Hard Rock note)" and ps.safe_label("bot") == "bot")
+ck("9 safe_label withholds anything label-shaped but unsafe", ps.safe_label("Duke @ UNC 5000") == "other (label withheld)" and ps.safe_label("a$b") == "other (label withheld)")
+ck("9 safe_label empty -> default", ps.safe_label(None) == "?")
+
 # ---- 8. the module touches nothing live
 src = open(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "prob_clv_shadow.py")).read()
 ck("8 imports no execution module", "import executor" not in src and "import liquidity_monitor" not in src)
