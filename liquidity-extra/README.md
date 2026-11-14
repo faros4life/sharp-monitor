@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 14, 5:30 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 34.
+Updated Sat Nov 14, 5:40 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 33.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 259-151 (-19.70u flat) | rule met: 48-41
+**Record:** 259-152 (-20.70u flat) | rule met: 48-42
 
-**Fade (paper, betting against the print):** 126-224 (+17.59u flat, after fees)
+**Fade (paper, betting against the print):** 127-224 (+19.11u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -16,7 +16,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 14 3:50PM | NCAAB | Southern Utah vs Wake Forest: Spread | spread: NOT Wake Forest wins by over 18.5 points | kalshi | $40k | -104 |  |  | -1.0c | yes | pending |
 | Nov 14 3:40PM | NCAAB | Lipscomb vs Western Carolina | moneyline: Western Carolina | kalshi | $29k | -156 |  | ✅ | +1.0c |  | pending |
 | Nov 14 1:50PM | NCAAB | Coppin St. vs South Florida: Point Total | total: Over 149.5 points | kalshi | $50k | -100 |  |  | +8.0c | yes | L |
-| Nov 14 12:30PM | NCAAB | UC Riverside vs Fresno St. | moneyline: UC Riverside | kalshi | $29k | +156 |  |  | +0.0c |  | pending |
+| Nov 14 12:30PM | NCAAB | UC Riverside vs Fresno St. | moneyline: UC Riverside | kalshi | $29k | +156 |  |  | +1.0c |  | pending |
 | Nov 14 12:10PM | NCAAB | Louisiana Tech vs Nicholls St. | moneyline: Nicholls St. | kalshi | $33k | -104 |  |  | +0.0c | yes | pending |
 | Nov 14 12:00PM | NCAAB | LSU vs Gonzaga: Point Total | total: NOT Over 160.5 points | kalshi | $28k | -100 |  |  | +1.0c | yes | pending |
 | Nov 14 12:00PM | NCAAB | Manhattan vs Le Moyne | moneyline: Le Moyne | kalshi | $73k | -122 |  |  | +0.0c |  | pending |
@@ -28,7 +28,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 14 10:00AM | NCAAB | Brown vs Siena: Spread | spread: NOT Siena wins by over 11.5 points | kalshi | $34k | -122 |  |  | +4.0c |  | pending |
 | Nov 14 9:10AM | NCAAB | St. Thomas vs Army: Spread | spread: NOT St. Thomas wins by over 7.5 points | kalshi | $34k | +104 |  |  | +9.0c |  | W |
 | Nov 14 9:10AM | NCAAB | West Georgia vs Charleston Southern | moneyline: Charleston Southern | kalshi | $40k | -186 |  |  | -2.0c |  | pending |
-| Nov 14 9:10AM | NCAAB | Central Michigan vs Northern Kentucky | moneyline: Northern Kentucky | kalshi | $80k | -163 | ✅ novig |  | -1.0c | yes | pending |
+| Nov 14 9:10AM | NCAAB | Central Michigan vs Northern Kentucky | moneyline: Northern Kentucky | kalshi | $80k | -163 | ✅ novig |  | -1.0c | yes | L |
 | Nov 14 9:00AM | NCAAB | UT Rio Grande Valley vs UT Arlington | moneyline: UT Arlington | kalshi | $42k | -186 |  |  | +1.0c |  | pending |
 | Nov 14 9:00AM | NCAAB | Cincinnati vs Dayton | moneyline: Cincinnati | kalshi | $58k | -257 | ✅ novig |  | +0.0c |  | pending |
 | Nov 14 8:30AM | NCAAB | Northwestern St. vs Little Rock | moneyline: Little Rock | kalshi | $29k | -400 |  |  | +1.0c | yes | pending |
