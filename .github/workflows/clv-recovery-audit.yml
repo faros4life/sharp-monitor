@@ -30,6 +30,15 @@ on:
         required: false
         type: string
         default: "1"
+      select:
+        description: "Close-evidence patterns, one per line, matched against league|game|bet"
+        required: false
+        type: string
+        default: |
+          louisiana|48.5
+          dallas|225.5
+          charlotte|214.5
+          toronto|223.5
 
 permissions:
   contents: read
@@ -70,6 +79,15 @@ jobs:
           AUDIT_DATE: ${{ inputs.audit_date }}
           EMAIL_NOW: ${{ inputs.email_now }}
         run: python -u clv_day_audit.py
+      - name: Close evidence for named selections (cache only, no API call)
+        env:
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          SELECT: ${{ inputs.select }}
+          EMAIL_NOW: ${{ inputs.email_now }}
+        run: python -u clv_close_evidence.py
       - name: Prove nothing in the working tree changed
         run: |
           # -uno: TRACKED files only. The restored hcache/ and this job's own audit/ are
