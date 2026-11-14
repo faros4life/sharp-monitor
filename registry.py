@@ -1104,3 +1104,53 @@ def selftest():
             f"write {'ok' if ok else 'FAILED'} {write_s:.2f}s, read-back {verdict}"
             + (f" [{detail}]" if detail else "")
             + " - compare with the 79s Gmail registry read")
+
+
+# Phase 1 / P1-A (Peter, Nov 14: "Approves"). Deterministic lane attribution for NEW fills: the
+# venue's own order id on a fill row, looked up EXACTLY against the order ids this registry already
+# stores. Read-only: nothing here writes, and nothing in execution reads it. A miss or an id that maps
+# to two different lanes returns None - the caller then records the row as unresolved, never a guess.
+LANE_PREFIX = {"rule": "rules", "rules": "rules", "board": "board", "r1": "r1", "lane2": "lane2"}
+
+
+def _venue(x):
+    """Lower-case venue name with spaces, dots and underscores removed ('ProphetX' == 'prophetx')."""
+    return "".join(ch for ch in str(x or "").lower() if ch.isalnum()) or None
+
+
+def order_lane_index(orders):
+    """{order id or client id: [(venue, lane, strategy key), ...]} from stored order rows.
+
+    Every claim on an id is kept, so lane_of can refuse any id that two different (lane, strategy) pairs
+    claim - within one lane as well as across lanes (review R2). 'intent-' placeholders are not venue ids."""
+    idx = {}
+    for o in orders or []:
+        key = str((o or {}).get("key") or "")
+        pre = key.split("|", 1)[0] if "|" in key else ""
+        lane = LANE_PREFIX.get(pre)
+        if not lane:
+            continue
+        recs = [o.get("live_order") or {}, o.get("live_rest") or {}] + [x or {} for x in (o.get("live_more") or [])]
+        for lo in recs:
+            ven = _venue(lo.get("book") or o.get("fill_book"))
+            for fld in ("order_id", "client_id"):
+                v = str(lo.get(fld) or "")
+                if not v or v.startswith("intent-"):
+                    continue
+                ent = (ven, lane, key)
+                if ent not in idx.setdefault(v, []):
+                    idx[v].append(ent)
+    return idx
+
+
+def lane_of(order_ref, index, venue=None):
+    """(lane, strategy key) for an exact order id, or None.
+
+    Venue-scoped: when the fill's venue is given, a claim recorded under a DIFFERENT venue is ignored (an
+    id is only unique within its venue); a claim with no recorded venue still counts. The answer must be a
+    single (lane, strategy key); two distinct claims - same lane or not - return None."""
+    if not order_ref or not index:
+        return None
+    v = _venue(venue)
+    claims = {(ln, k) for ven, ln, k in index.get(str(order_ref)) or [] if v is None or ven is None or ven == v}
+    return next(iter(claims)) if len(claims) == 1 else None
