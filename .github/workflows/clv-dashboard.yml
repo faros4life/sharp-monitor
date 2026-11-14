@@ -21,6 +21,11 @@ name: clv-dashboard
 on:
   schedule:
     - cron: "12 9 * * *"
+    # TEMPORARY, 14 Nov: a cron firing cannot be proven by dispatching the workflow by hand, and
+    # the daily one is not due until 09:12 UTC tomorrow. This second entry fires once so the
+    # scheduled path is observed working, then it is removed. It runs with email disabled by the
+    # duplicate marker, so it cannot send a second summary.
+    - cron: "25 15 * * *"
   workflow_dispatch:
     inputs:
       email:
