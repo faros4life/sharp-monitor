@@ -180,10 +180,46 @@ ck("9 safe_label passes ordinary labels", ps.safe_label("Peter (Hard Rock note)"
 ck("9 safe_label withholds anything label-shaped but unsafe", ps.safe_label("Duke @ UNC 5000") == "other (label withheld)" and ps.safe_label("a$b") == "other (label withheld)")
 ck("9 safe_label empty -> default", ps.safe_label(None) == "?")
 
+# ---- 10. D6 read-only cache diagnostics
+import gzip, json as _json, tempfile, time
+tmp = tempfile.mkdtemp()
+def _w(name, raw=None, obj=None):
+    with open(os.path.join(tmp, name), "wb") as fh:
+        fh.write(raw if raw is not None else gzip.compress(_json.dumps(obj if obj is not None else {"markets": {}}).encode()))
+_w("F1__pinnacle.json.gz"); _w("F1__novig.us.json.gz"); _w("F1__prophetx.json.gz")
+_w("F2__novig.us.json.gz")
+_w("F3__pinnacle.json.gz", raw=b"not gzip at all")
+_w("F4__pinnacle.json.gz", raw=b"")
+before = sorted(os.listdir(tmp))
+ck("10 pin_state: valid file is present and counts the other books", ps.pin_state(tmp, "F1") == ("present", 2))
+ck("10 pin_state: other books cached but no Pinnacle file -> absent with others", ps.pin_state(tmp, "F2") == ("absent", 1))
+ck("10 pin_state: nothing at all cached -> absent, 0 others", ps.pin_state(tmp, "F9") == ("absent", 0))
+ck("10 pin_state: corrupt file -> unreadable, never a crash", ps.pin_state(tmp, "F3")[0] == "unreadable")
+ck("10 pin_state: zero-byte file -> zero_byte", ps.pin_state(tmp, "F4")[0] == "zero_byte")
+ck("10 pin_state: missing directory is absent, not a crash", ps.pin_state(os.path.join(tmp, "nope"), "F1") == ("absent", 0))
+ck("10 pin_state: a fixture id that prefixes another does not match it", ps.pin_state(tmp, "F") == ("absent", 0))
+inv = ps.cache_inventory(tmp)
+ck("10 cache_inventory counts files by book", inv["files"] == 6 and inv["by_book"].get("pinnacle") == 3 and inv["by_book"].get("novig") == 2, str(inv))
+ck("10 cache_inventory gives UTC dates for the Pinnacle span", inv["pin_first"] and inv["pin_last"] and inv["pin_first"] <= inv["pin_last"])
+ck("10 cache_inventory of a missing dir is empty", ps.cache_inventory(os.path.join(tmp, "nope"))["files"] == 0)
+ck("10 stored_fid_relation: none stored", ps.stored_fid_relation([None, ""], "F1", tmp) == "none")
+ck("10 stored_fid_relation: same", ps.stored_fid_relation(["F1", None], "F1", tmp) == "same")
+ck("10 stored_fid_relation: different reports the STORED id's file state", ps.stored_fid_relation(["F1"], "F9", tmp) == "different:present"
+   and ps.stored_fid_relation(["F9"], "F1", tmp) == "different:absent")
+ck("10 finished_state uses the 4 h rule", ps.finished_state("2026-01-01T00:00:00Z") == "finished"
+   and ps.finished_state((datetime.now(timezone.utc) + timedelta(hours=1)).isoformat()) == "not_finished"
+   and ps.finished_state((datetime.now(timezone.utc) - timedelta(hours=3)).isoformat()) == "not_finished"
+   and ps.finished_state(None) == "unknown" and ps.finished_state("garbage") == "unknown")
+ck("10 week_of gives the Monday", ps.week_of("2026-11-14") == "2026-11-09" and ps.week_of("2026-11-09T18:00:00Z") == "2026-11-09" and ps.week_of(None) is None)
+ck("10 the diagnostics wrote nothing", sorted(os.listdir(tmp)) == before)
+ck("10 diagnostics print no fixture id or key: pin_state returns only fixed labels", ps.pin_state(tmp, "F3")[0] in ("present", "absent", "unreadable", "zero_byte"))
+
 # ---- 8. the module touches nothing live
 src = open(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "prob_clv_shadow.py")).read()
 ck("8 imports no execution module", "import executor" not in src and "import liquidity_monitor" not in src)
-ck("8 writes no file", "open(" not in src.replace("json.load(open(", "").replace("open(cl.STATE", ""))
+import re as _re
+ck("8 writes no file", "open(" not in src.replace("json.load(open(", "").replace("open(cl.STATE", "").replace("gzip.open(", "")
+   and not _re.search(r"open\([^)]*[\"'](w|a|x)b?t?[\"']", src))
 
 print(f"{len(OK)} passed, {len(BAD)} failed")
 for b in BAD:

@@ -26,10 +26,12 @@ and no push is bolted on afterwards). Classes, never merged:
 import collections
 import contextlib
 import dataclasses
+import gzip
+import json
 import math
 import os
 import sys
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 
 import line_value as lv
 
@@ -359,6 +361,81 @@ def venue_id(book):
         return str(book or "").lower().replace(" ", "_").replace(".", "_")
 
 
+def pin_state(dirpath, fid):
+    """READ-ONLY state of one fixture's cached Pinnacle file: (state, other_books).
+    state: present | absent | unreadable | zero_byte. other_books: how many OTHER cached book files exist for the same
+    fixture id (0 = nothing at all was ever stored for it). Never fetches, never writes."""
+    p = os.path.join(dirpath, f"{fid}__pinnacle.json.gz")
+    try:
+        others = sum(1 for n_ in os.listdir(dirpath) if n_.startswith(f"{fid}__") and n_ != f"{fid}__pinnacle.json.gz")
+    except OSError:
+        others = 0
+    if not os.path.exists(p):
+        return "absent", others
+    try:
+        if os.path.getsize(p) == 0:
+            return "zero_byte", others
+        with gzip.open(p, "rt") as fh:
+            json.load(fh)
+    except Exception:
+        return "unreadable", others
+    return "present", others
+
+
+def cache_inventory(dirpath):
+    """Counts only: files by book suffix and the UTC date span of Pinnacle file mtimes (restored mtimes show how old the
+    restored snapshot is; they are not game data)."""
+    by, pin_m = collections.Counter(), []
+    try:
+        names = os.listdir(dirpath)
+    except OSError:
+        return {"files": 0, "by_book": {}, "pin_first": None, "pin_last": None}
+    for n_ in names:
+        if "__" not in n_:
+            continue
+        b_ = safe_label(n_.split("__", 1)[1].split(".", 1)[0], "?")
+        by[b_] += 1
+        if b_ == "pinnacle":
+            try:
+                pin_m.append(os.path.getmtime(os.path.join(dirpath, n_)))
+            except OSError:
+                pass
+    d_ = lambda t_: datetime.fromtimestamp(t_, timezone.utc).date().isoformat()
+    return {"files": sum(by.values()), "by_book": dict(by), "pin_first": d_(min(pin_m)) if pin_m else None,
+            "pin_last": d_(max(pin_m)) if pin_m else None}
+
+
+def stored_fid_relation(stored, resolved, dirpath):
+    """How the fixture id our reader resolved relates to the id the ledger stored on the rows when it scored them:
+    none | same | different:<file state of the STORED id's Pinnacle file>."""
+    stored = {s_ for s_ in stored if s_}
+    if not stored:
+        return "none"
+    if resolved in stored:
+        return "same"
+    return "different:" + ",".join(sorted({pin_state(dirpath, s_)[0] for s_ in stored}))
+
+
+def week_of(day):
+    """ISO date of the Monday of the week of a 'YYYY-MM-DD' string, else None."""
+    try:
+        d_ = datetime.strptime(str(day)[:10], "%Y-%m-%d").date()
+    except ValueError:
+        return None
+    return (d_ - timedelta(days=d_.weekday())).isoformat()
+
+
+def finished_state(start, now=None):
+    """finished | not_finished | unknown, by hist_cache's own rule (a game is final 4 h after its listed start)."""
+    try:
+        t_ = datetime.fromisoformat(str(start).replace("Z", "+00:00"))
+        if t_.tzinfo is None:
+            t_ = t_.replace(tzinfo=timezone.utc)
+    except ValueError:
+        return "unknown"
+    return "finished" if (now or datetime.now(timezone.utc)) - t_ >= timedelta(hours=4) else "not_finished"
+
+
 def build_records(st, tracker, reg, mkmap, H, cv, cb, cl, csel, cstale, fxm):
     bets = st.get("bets") or {}
     try:
@@ -401,7 +478,8 @@ def build_records(st, tracker, reg, mkmap, H, cv, cb, cl, csel, cstale, fxm):
                             for r_ in rows],
                "flags": {"game": bool(snap.get("game")), "bet": bool(snap.get("bet")), "start": bool(snap.get("game_start")),
                          "fixture": any(bool(r_.get("fixture")) for r_ in rows), "tracker_league": any(bool(t_.get("league")) for t_ in trk)},
-               "status": None, "why": None, "sc": None}
+               "status": None, "why": None, "sc": None,
+               "stored_fids": [r_.get("fixture") for r_ in rows], "fid": None, "pin": None, "pin_others": None}
         if not dec:
             rec.update(status="no_close", why="ROW-DATA: no after-fee execution price")
             recs.append(rec)
@@ -416,7 +494,9 @@ def build_records(st, tracker, reg, mkmap, H, cv, cb, cl, csel, cstale, fxm):
             rec.update(status="no_close", why=f"{ours_prefix(lab, 'FIXTURE-CACHE')}: no fixture matched ({lab})")
             recs.append(rec)
             continue
+        rec["fid"] = fid
         h = cv._cached_pin(fid)
+        rec["pin"], rec["pin_others"] = pin_state(cv.HC, fid) if h is None else ("present", None)
         if h is None:
             rec.update(status="no_close", why="PINNACLE-DATA: fixture known, history never downloaded")
             recs.append(rec)
@@ -640,6 +720,17 @@ def main():
                                                 for lg_ in sorted({r['lg'] for r in sa})))
     for nm_, grp in (("main-line", mn), ("alternate-line", al)):
         block(f"D5 {nm_}", grp, LU)
+    # D5 sensitivity cut (Peter-approved Nov 14, sensitivity only: NOT a validated rule). Ratio = this line's Pinnacle limit / the
+    # ladder's largest limit; the main line is 1.00 by construction.
+    hi = [r for r in sa if r["sc"]["limit_ratio"] is not None and r["sc"]["limit_ratio"] >= 0.9]
+    lo = [r for r in sa if r["sc"]["limit_ratio"] is not None and r["sc"]["limit_ratio"] < 0.9]
+    na_ = [r for r in sa if r["sc"]["limit_ratio"] is None]
+    say("  D5 cut by limit ratio (sensitivity only; no main-line superiority claim; n and distinct games shown):")
+    for nm_, grp in (("limit ratio >= 0.90", hi), ("limit ratio <  0.90", lo), ("limit ratio n/a", na_)):
+        block(f"D5 {nm_}", grp, LU)
+        if grp:
+            say(f"      by source: " + ", ".join(f"{k_} {v_}" for k_, v_ in collections.Counter(r['source'] for r in grp).most_common())
+                + f"  | of which alternate (ratio < 1): {sum(1 for r in grp if not r['sc']['is_main'])}")
     rows_nl = [r for r in by.get("no_close", []) if (r["why"] or "").startswith("ROW-DATA: no league")]
     say(f"  MISSING LEAGUE: {len(rows_nl)} selections / {nfill(rows_nl)} fills")
     say("      by source: " + ", ".join(f"{k_} {v_}" for k_, v_ in collections.Counter(r['source'] for r in rows_nl).most_common()))
@@ -648,6 +739,40 @@ def main():
     say(f"      fields present on these rows (of {len(rows_nl)}): " + ", ".join(f"{k_} {fl.get(k_, 0)}" for k_ in ("game", "bet", "start", "fixture", "tracker_league")))
     say(f"      recoverable from an immutable source field with no guessing (tracker row already carries a league): {fl.get('tracker_league', 0)}; "
         f"with a stored fixture id: {fl.get('fixture', 0)}")
+    say("=" * 100)
+    say("6b. D6 - SELECTIONS WITH A KNOWN FIXTURE BUT NO USABLE CACHED PINNACLE FILE (read-only; counts only)")
+    inv = cache_inventory(cv.HC)
+    say(f"  restored cache inventory: {inv['files']} files; by book: " + ", ".join(f"{k_} {v_}" for k_, v_ in sorted(inv["by_book"].items()))
+        + f"; Pinnacle file mtimes span {inv['pin_first']} .. {inv['pin_last']} (UTC dates)")
+    nh = [r for r in recs if (r["why"] or "").startswith("PINNACLE-DATA: fixture known, history never downloaded")]
+    nhc = [r for r in nh if r["fills_cert"]]
+    say(f"  no-history selections: {len(nh)} sel / {nfill(nh)} fills / {len({r.get("fid") for r in nh})} distinct fixtures / {len({r['game'] for r in nh})} distinct games")
+    say(f"  of which STORED-CERTIFIED (legacy clv_coverage definition): {len(nhc)} sel / {sum(r['fills_cert'] for r in nhc)} certified fills / "
+        f"{len({r.get("fid") for r in nhc})} distinct fixtures / {len({r['game'] for r in nhc})} distinct games")
+    for nm_, grp in (("all no-history", nh), ("stored-certified", nhc)):
+        if not grp:
+            continue
+        say(f"  [{nm_}] Pinnacle file state: " + ", ".join(f"{k_} {v_}" for k_, v_ in collections.Counter(r.get("pin") for r in grp).most_common()))
+        say(f"  [{nm_}] other-book files cached for the same fixture id: some {sum(1 for r in grp if r.get("pin_others"))} / none {sum(1 for r in grp if not r.get("pin_others"))}")
+        say(f"  [{nm_}] ledger-stored fixture id vs the id this reader resolved: "
+            + ", ".join(f"{k_} {v_}" for k_, v_ in collections.Counter(stored_fid_relation(r.get("stored_fids") or [], r.get("fid"), cv.HC) for r in grp).most_common()))
+        say(f"  [{nm_}] game final by hist_cache's 4 h rule: "
+            + ", ".join(f"{k_} {v_}" for k_, v_ in collections.Counter(finished_state(r["start"]) for r in grp).most_common()))
+        say(f"  [{nm_}] by league: " + ", ".join(f"{k_} {v_}" for k_, v_ in collections.Counter(r["lg"] for r in grp).most_common()))
+        if inv["pin_last"]:
+            say(f"  [{nm_}] game start after the newest restored Pinnacle file: "
+                f"{sum(1 for r in grp if str(r['start'] or '')[:10] > inv['pin_last'])} of {len(grp)}")
+    wk = collections.defaultdict(lambda: [0, 0, 0])
+    for r in recs:
+        if r.get("fid") is None:
+            continue
+        w_ = week_of(r["start"]) or "unknown"
+        wk[w_][0] += 1
+        wk[w_][1] += 1 if r.get("pin") == "present" else 0
+        wk[w_][2] += 1 if (r.get("pin") != "present" and r["fills_cert"]) else 0
+    say("  by game-start week (Monday): selections with a resolved fixture | Pinnacle file present | missing AND stored-certified")
+    for w_ in sorted(wk):
+        say(f"    {w_}  {wk[w_][0]:>4} {wk[w_][1]:>5} {wk[w_][2]:>5}")
     say("=" * 100)
     say("7. UNCERTAINTY: every mean is a selection mean with a GAME-clustered 95% CI (normal approx.); not a test of edge.")
     say("   Nothing here is promoted; CLV_STANDARD.md, the headline, gates and live settings are untouched.")
