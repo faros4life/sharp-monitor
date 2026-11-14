@@ -46,11 +46,14 @@ import clv_basis as cb
 import clv_ledger as cl
 import clv_selection as csel
 import clv_stale as cstale
+import fixture_match as fxm
 import tracker_build as tb
 
 ET = tb.ET
 HC = os.environ.get("HCACHE_DIR", "") or "hcache"
-ALT_FX = ["oddspapi/fixtures.json"]
+# Nov 14: one list, owned by fixture_match, so a new cache file cannot be seen by one
+# reader and silently missed by another.
+ALT_FX = fxm.ALT_PATHS
 MKFILE = "clv/markets.json"
 LANE_UNIT = {"rules": 300.0, "board": 200.0, "r1": 200.0, "lane2": 200.0}
 LANE_NAME = {"rules": "PHASE 1", "board": "BOARD V3", "r1": "R1", "lane2": "LANE 2 (paper)"}

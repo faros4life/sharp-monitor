@@ -1,929 +1,394 @@
 #!/usr/bin/env python3
 """
-STEP 1 RECOVERY AUDIT (Peter, Nov 10: "GO - Step 1 only"). READ-ONLY. CACHED DATA ONLY.
-No production edit, no rule change, no live change. CFB overs remain eligible - nothing here
-touches phase 1.
+LIQUIDITY-BOARD PINNACLE CLV RECOVERY (Peter, Nov 14 2026: "maximum budget of 39 billable
+credits ... deduplicate by unique game and market, reuse caches, and prioritize live strategies,
+top five potential candidates, then the remainder. Use staged batches and stop on unexpected
+costs or poor recovery.")
 
-THE QUESTION. Phase 1 has 53 qualifying alerts and 22 CLV readings, and the forensic audit showed
-that none of those 22 can be certified: sharp_monitor.close_prob() silently applies
-half_point_value() when Pinnacle's close sits at a different number, and records nothing about it.
-So before any of the remediation is worth building, one number has to be established - how many of
-the 53 can be given a VERIFIED SAME-LINE Pinnacle close from data we already hold.
+WHAT IS BEING RECOVERED. The liquidity board's published CLV was measured against the ALERTING
+VENUE'S OWN closing price, which REGISTRY.md already flags as not executable. This job recomputes
+it against Pinnacle's no-vig close at our actual after-fee entry, using clv_basis - the one
+versioned calculation the ledger uses. 1,369 observations already recompute from cached data at
+zero credits. This job goes after the rest.
 
-WHY THIS PATH CAN CERTIFY AND THE FEED CANNOT. clv_ledger.close_for() reports HOW it read the
-close, and clv_std.close_verified() admits only "own line" or "moneyline". Anything of the form
-"main X moved to Y" is a half-point conversion - a model - and is reported separately here, never
-folded into a headline.
+NOTHING PUBLISHED IS TOUCHED. The job never writes clv/state.enc (the 5-minute ledger owns it and
+a second writer would race it), never writes liquidity/alerts.json, and never writes the published
+scorecard. It writes exactly two things:
+  * hcache/            the shared free history cache every test already reads
+  * oddspapi/fixtures_recovered.json   its OWN fixture cache, so it cannot contend with the
+                       plimit-logger workflow's commits to oddspapi/fixtures.json
+Both are reference data - fixture ids, team names, start times, public market history. No stakes,
+no balances, no account data, no keys.
 
-CREDITS. Zero. Two independent reasons, both checked rather than assumed:
-  1. /historical-odds is in credit_gate.FREE_PATHS, so the gate does not bill it.
-  2. This script never asks for a download at all. It reads a fixture's Pinnacle history ONLY when
-     the cache file already exists on disk (hist_cache._path), and skips the fixture otherwise with
-     that stated as the reason. A missing cache file is reported, never fetched.
-The free tier returns no quota header, so the call count is the only meter - which is why the
-no-download rule above is a file-existence check and not a trust exercise.
+THE BUDGET IS ENFORCED IN CODE, NOT BY INTENTION.
+  * Only /fixtures bills. /historical-odds and /account are free (credit_gate.FREE_PATHS).
+  * Every billable call goes through credit_gate, and BUDGET caps this job's own reservations.
+    The ceiling is checked BEFORE each call, so the cap cannot be passed by one call.
+  * Stages run in order and each stage stops early on its own abort test, so a tier that is not
+    paying for itself does not spend the next tier's credits.
 
-THE FEE BASIS, which is the one decision that can make every number wrong. clv_std.net_clv applies
-the venue fee ITSELF via net_dec, so it takes the RAW decimal price. Passing the already-net
-price_after_fee would charge the fee twice. The feed's own close_value_pct used sharp_monitor.net()
-instead, which is a different fee model - that difference is exactly what produced the four Oct 25
-discrepancies, so this script uses the standard's model and reports both where they disagree.
+WHY THE PRIORITY TIERS LOOK THE WAY THEY DO. REGISTRY.md defines 9/LIQ-BOT as the "NBA totals 4h+
+liquidity lane" and 13/LIQ-SMALL as the "$25-50k-print NBA totals subset". Both are NBA TOTALS.
+The live lanes (Phase 1, R1, Board v3) place through the ledger, not the liquidity board, so the
+liquidity population holds little or nothing for them - that is reported as a number, not assumed.
+Tier 2 is therefore where the registered candidates actually live, and the remainder (NHL, NCAAF,
+NFL, moneylines, spreads) belongs to no registered entry yet.
 
-NO SELECTION ON PROFITABILITY. The population is every phase-1 alert, fixed before any close is
-read. Alerts that cannot be priced are reported by reason and never dropped.
+POLYMARKET GLOBAL IS NOT RECOVERABLE AND IS NOT A GAP. clv_std refuses to price it (NotTradeable,
+and it is not bettable from the US at all), so those observations can never produce an executable
+entry price. They are excluded from the budget rather than counted as missing work.
 """
 import collections
 import json
 import os
-import statistics as sts
 import sys
+from datetime import datetime, timedelta, timezone
 
-import agree_rules
+import clv_basis as cb
 import clv_ledger as cl
-import clv_std as cs
+import clv_obs_audit as oa
+import credit_gate as cg
+import fixture_match as fxm
 import hist_cache as hc
 import tracker_build as tb
 
-ALERTS = "alerts.json"
-LEAGUES = ("NBA", "NFL", "NCAAF")
-RECOVER = (os.environ.get("CLV_RECOVER_FETCH") or "").strip() == "1"
+ET = cl.ET
+BUDGET = int(os.environ.get("RECOVER_BUDGET", "39"))     # billable /fixtures calls, hard ceiling
+APPLY = (os.environ.get("RECOVER_APPLY") or "").strip().lower() in ("1", "yes", "on", "true")
+TIERS = (os.environ.get("RECOVER_TIERS") or "1,2,3").replace(" ", "")
+MAX_FREE = int(os.environ.get("RECOVER_MAX_FREE", "400"))  # free /historical-odds calls per run
+# Abort tests, per stage. A tier that resolves almost nothing is not worth the next tier's money.
+MIN_FIX_RATE = float(os.environ.get("RECOVER_MIN_FIX_RATE", "0.15"))
+FXOUT = "oddspapi/fixtures_recovered.json"
+OUT = "audit/recovery_result.json"
+L = []
+SPENT = {"billable": 0, "free": 0}
 
 
-FETCH = {"any": False, "n": 0, "stopped": False, "why": "", "before": None, "after": None}
+def say(t=""):
+    L.append(t)
+    print(t, flush=True)
 
 
-def say(s=""):
-    print(s, flush=True)
+# ---------------------------------------------------------------------- recovery units
+def unit_key(x):
+    """ONE recovery unit = one unique game AND market (Peter's dedup rule).
+
+    The game is keyed on its distinctive tokens so 'UMass vs UConn' and 'UConn @ UMass' are one
+    unit, and the market carries its line, because a total at 223.5 and the same game's total at
+    224.5 need different closing quotes and are not interchangeable.
+    """
+    lg = str(x.get("league") or x.get("sport") or "?").upper()
+    gt = "+".join(sorted(tb.toks(x.get("game")) - tb.WEAK)) or "?"
+    mkt = str(x.get("market") or "?").lower()
+    line = tb.num(x.get("line"))
+    return f"{lg}|{gt}|{mkt}|{'' if line is None else format(line, 'g')}"
 
 
-def start_of(f):
-    return cl.tp(f.get("start"))
+def tier_of(x, cls):
+    """1 live lane, 2 registered candidate (LIQ-BOT / LIQ-SMALL: NBA totals), 3 remainder.
+
+    Returns (tier, why). Read from the registered definitions in REGISTRY.md, never widened:
+    an NHL moneyline is NOT a LIQ-BOT observation however much we would like more of them.
+    """
+    lg = str(x.get("league") or x.get("sport") or "").upper()
+    mkt = str(x.get("market") or "").lower()
+    if x.get("lane") or x.get("bot_order_id") or x.get("order_id"):
+        return 1, "carries a live-lane order id"
+    if lg == "NBA" and mkt.startswith("total"):
+        return 2, "9/LIQ-BOT + 13/LIQ-SMALL: NBA totals"
+    return 3, f"no registered entry covers {lg or '?'} {mkt or '?'}"
 
 
-def _acct_used():
-    """The PROVIDER's own used figure, and WHY if it cannot be had. /account is free, so this costs
-    nothing. None is never turned into 0 - zero would read as "nothing used" and wave a paid
-    download through.
-
-    The field is request_count, inside subscriptions[0]. My first version guessed at "used",
-    "requestsUsed", "requests_used" and "usage" and missed it, so _pick returned None, the bracket
-    could not be read, and recovery halted on 15 fixtures for no real reason. These are the exact
-    names credits.py's own report() uses - taken from it rather than guessed again. The error is
-    returned instead of swallowed, because a bare None told me nothing about which of four things
-    had gone wrong."""
-    try:
-        import credits as cr
-    except Exception as e:
-        return None, f"credits module unimportable ({type(e).__name__}: {str(e)[:60]})"
-    try:
-        d = cr.account()
-    except Exception as e:
-        return None, f"/account call raised ({type(e).__name__}: {str(e)[:60]})"
-    if not isinstance(d, dict):
-        return None, f"/account returned {type(d).__name__}, not a dict"
-    if d.get("_error"):
-        return None, f"/account error: {str(d['_error'])[:70]}"
-    v = cr._pick(d, "request_count", "requestsUsed", "used")
-    if v is None:
-        return None, "/account answered but carries no request_count field"
-    try:
-        return int(v), None
-    except Exception:
-        return None, f"request_count is not a number ({type(v).__name__})"
+def date_window(x):
+    d = str(x.get("date") or x.get("alerted_utc") or x.get("first_seen_utc") or "")[:10]
+    return d if len(d) == 10 else ""
 
 
-def phase1_ok(a):
-    """The coded phase-1 view, built exactly as sharp_monitor.phase1_label builds it. Muse AGREE is
-    dropped because it is a human verdict, not a property of the alert."""
-    try:
-        ok, why = agree_rules.phase1({"book_key": a.get("book_key"), "book": a.get("book"),
-                                      "grade": a.get("grade"), "sport": a.get("sport"),
-                                      "kind": a.get("kind"), "bet": a.get("bet") or "",
-                                      "price_after_fee": a.get("price_after_fee"),
-                                      "confirmed_by": a.get("confirmed_by") or [],
-                                      "start_utc": a.get("start_utc"),
-                                      "alert_utc": a.get("alert_utc"),
-                                      "late": bool(a.get("late"))}, True)
-    except Exception:
-        return False
-    return not [w for w in why if w != "no Muse AGREE"]
+# ---------------------------------------------------------------------- stages
+def stage_free_history(units, allfx, mkmap, fxs, alt):
+    """Games whose fixture we already hold but whose Pinnacle history was never cached.
 
-
-def raw_dec(am):
-    if am is None:
-        return None
-    try:
-        am = float(am)
-    except Exception:
-        return None
-    return 1 + (100.0 / abs(am) if am < 0 else am / 100.0)
-
-
-def main():
-    try:
-        feed = json.load(open(ALERTS))
-    except Exception as e:
-        say(f"alerts.json unreadable ({type(e).__name__}) - STOP")
-        return 1
-    A = [x for x in (feed.get("alerts") or []) if x.get("sent_to_phone")]
-    pop = [a for a in A if phase1_ok(a)]
-    say("STEP 1 RECOVERY AUDIT | phase-1 alerts | READ-ONLY | cached history only | 0 paid credits")
-    say("=" * 108)
-    say(f"  phase-1 population fixed before any close was read: {len(pop)} alert(s)")
-    say(f"  with a feed CLV reading today: {sum(1 for a in pop if a.get('close_value_pct') is not None)}")
-
-    st = {"fixtures": {}}
-    try:
-        st["fixtures"] = dict((tb.dec(json.load(open(cl.STATE))).get("fixtures") or {}))
-        say(f"  fixture cache: {len(st['fixtures'])} fixture(s)")
-    except Exception as e:
-        say(f"  fixture cache UNAVAILABLE ({type(e).__name__}: {str(e)[:60]}) - cannot certify. STOP")
-        return 1
-    mkmap = {}
-    try:
-        from datetime import datetime as _d, timezone as _tz
-        mkmap = cl.load_markets(st, _d.now(_tz.utc))
-    except Exception as e:
-        say(f"  market map unavailable ({type(e).__name__}) - continuing; close_for may still read")
-
-    def fixture_for(a, lg):
-        """clv_ledger.find_fixture, NOT a matcher of my own.
-
-        My first version matched >=2 shared tokens against p1/p2 across all 1,862 fixtures, with no
-        league filter, and returned the first hit. It produced a verified CLV of -7.30% that diverged
-        from the feed by 12.91 points on average and 31.59 at worst, and close_for's own reason text
-        said "wrong league" - the fixtures were from other sports. find_fixture's docstring describes
-        exactly that failure: a "New Orleans" bet matching a "New York" fixture on the shared word
-        "new" is "a wrong fixture, and so a confidently wrong CLV, which is worse than no CLV".
-        It filters on league, demands a distinctive token on BOTH participants with a two-token floor
-        on at least one, and returns None unless the winner is unique. An unmatched alert is reported
-        missing, which is the correct outcome.
-        """
-        try:
-            fid = cl.find_fixture(st, {"bet": a.get("bet") or "", "league": lg,
-                                       "game": a.get("game"), "game_start": a.get("start_utc"),
-                                       "teams": None})
-        except Exception:
-            return None, None
-        if not fid:
-            return None, None
-        return fid, (st.get("fixtures") or {}).get(fid) or {}
-
-    out = collections.defaultdict(lambda: {"ver": [], "mod": [], "miss": collections.Counter()})
-    reads = 0
-    for a in pop:
-        lg = str(a.get("sport") or "").upper()
-        b = out[lg]
-        bet = a.get("bet") or ""
-        if not bet.strip():
-            b["miss"]["alert carries no bet text"] += 1
+    /historical-odds is FREE (credit_gate.FREE_PATHS), so this stage spends no credits at all. It
+    runs FIRST and unconditionally: paying for fixtures before exhausting the free history would
+    be spending money to reach work that was already reachable.
+    """
+    got, miss, calls = 0, 0, 0
+    for u in units:
+        if u["cls"] != "MISSING_HISTORY" or not u.get("fid"):
             continue
-        fid, f = fixture_for(a, lg)
-        if not fid:
-            b["miss"]["find_fixture: no unique same-league fixture (left unscored)"] += 1
+        if calls >= MAX_FREE:
+            u["stage"] = "free-history: run cap reached, not attempted"
             continue
-        p = hc._path(fid, "pinnacle")
-        if not os.path.exists(p):
-            if not RECOVER:
-                b["miss"]["no CACHED Pinnacle history (not fetched, by design)"] += 1
-                continue
-            # RECOVERY, and it polices itself with the PROVIDER's own counter rather than ours.
-            # Peter, Nov 10: nothing is downloaded until history is confirmed free. Four hcache
-            # fills recorded 11-145 history downloads for 0-2 billable calls, and credits.py states
-            # outright that OddsPapi bills everything except /account and /historical-odds - but
-            # that is OUR classifier, so it does not get the last word. /account is itself free, so
-            # the FIRST download is bracketed by two reads of it: if the provider's used figure
-            # moves at all, recovery stops right there and the remaining fixtures are left alone.
-            if FETCH["stopped"]:
-                # Nov 10: this line used to read "halted after the provider's counter moved" on
-                # every later fixture, whatever had actually stopped it - and the real cause that
-                # run was an unreadable /account. A message must not assert a cause it did not
-                # observe, so it now carries the recorded reason.
-                b["miss"]["recovery halted: " + str(FETCH["why"])[:60]] += 1
-                continue
-            first = not FETCH["any"]
-            before, berr = _acct_used() if first else (None, None)
-            try:
-                hc.get_hist(fid, ["pinnacle"], start_of(f))
-                FETCH["any"] = True
-                FETCH["n"] += 1
-            except Exception as e:
-                b["miss"][f"history download failed ({type(e).__name__})"] += 1
-                continue
-            if first:
-                after, aerr = _acct_used()
-                FETCH["before"], FETCH["after"] = before, after
-                if before is None or after is None:
-                    FETCH["stopped"] = True
-                    FETCH["why"] = f"/account unreadable, so cost is unproven ({berr or aerr})"
-                    b["miss"]["recovery halted: " + FETCH["why"][:60]] += 1
-                    continue
-                if after > before:
-                    FETCH["stopped"] = True
-                    FETCH["why"] = f"the provider billed it: used {before} -> {after} on ONE download"
-                    b["miss"]["recovery halted: " + FETCH["why"][:60]] += 1
-                    continue
-            if not os.path.exists(p):
-                b["miss"]["download returned no Pinnacle history for this fixture"] += 1
-                continue
+        f = allfx.get(u["fid"]) or {}
         start = cl.tp(f.get("start"))
-        if not start:
-            b["miss"]["fixture has no start time"] += 1
-            continue
+        calls += 1
+        SPENT["free"] += 1
         try:
-            h = hc.get_hist(fid, ["pinnacle"], start)
-            reads += 1
+            h = hc.get_hist(u["fid"], ["pinnacle"], start=start)
         except Exception as e:
-            b["miss"][f"cached history unreadable ({type(e).__name__})"] += 1
+            u["stage"] = f"free-history: call failed ({type(e).__name__})"
+            miss += 1
             continue
-        pmk = cl.book_markets(h, "pinnacle")
-        if not pmk:
-            b["miss"]["cached history holds no Pinnacle market"] += 1
+        if isinstance(h, dict) and h.get("_error"):
+            u["stage"] = f"free-history: API {h.get('_error')}"
+            miss += 1
             continue
-        mt = "total" if str(a.get("kind")) == "tot" else "spread" if str(a.get("kind")) == "spr" else "moneyline"
-        try:
-            c, why = cl.close_for({"bet": bet, "league": lg, "market": mt,
-                                   "game": f.get("game"), "game_start": f.get("start")},
-                                  f, pmk, mkmap, start, lg)
-        except Exception as e:
-            b["miss"][f"close_for raised {type(e).__name__}"] += 1
+        oa._PIN.pop(u["fid"], None)
+        if oa.cached_pin(u["fid"]) is None:
+            u["stage"] = "free-history: Pinnacle has no history for this fixture"
+            miss += 1
             continue
-        if not c:
-            b["miss"][f"no close: {str(why)[:50]}"] += 1
+        got += 1
+        u["stage"] = "free-history: downloaded"
+        reclassify(u, fxs, alt, allfx, mkmap)
+    return {"calls": calls, "history_arrived": got, "no_history": miss}
+
+
+def stage_fixtures(units, st, now, allfx, mkmap, fxs, alt, tier):
+    """The only stage that bills. One /fixtures call covers a whole league x date WINDOW, so the
+    units are grouped into windows first and the windows are spent in order of how many unique
+    games each one unblocks - the most games per credit, not the first row encountered.
+    """
+    want = collections.defaultdict(list)
+    for u in units:
+        if u["tier"] != tier or u["cls"] not in ("FIXTURE_OR_IDENTITY",) or not u.get("day"):
             continue
-        how = c.get("how")
-        rd = raw_dec(a.get("price"))
-        pct = None
-        if rd is not None:
-            try:
-                pct = cs.net_clv(c["p"], rd, cs.canon(a.get("book_key")), maker=False, league=lg)
-            except Exception:
-                pct = None
-        # ITEM 1: the inputs behind the standard-vs-feed gap, kept per observation so the 2.52-pt
-        # average can be DECOMPOSED rather than attributed. Two inputs differ between the paths:
-        #   the FEE model  - clv_std.net_dec(book, raw_dec) vs sharp_monitor.net(price, book),
-        #                    the latter being what price_after_fee was rounded from
-        #   the CLOSE PROB - the feed reads live at 20-30 min out; the standard reads the stored
-        #                    historical close. Different instants, so different p.
-        # Holding one fixed while the other varies splits the gap additively, and whatever is left
-        # over is named as residual instead of being folded into one of the two.
-        nd = None
-        try:
-            nd = cs.net_dec(cs.canon(a.get("book_key")), rd, False, lg, False) if rd else None
-        except Exception:
-            nd = None
-        feed_am = a.get("price_after_fee")
-        feed_dec = raw_dec(feed_am)
-        p_std, p_feed = c.get("p"), a.get("close_fair_prob")
-        rec = {"a": a, "how": how, "pct": pct, "p": p_std,
-               "feed": a.get("close_value_pct"),
-               "nd": nd, "feed_dec": feed_dec, "p_feed": p_feed,
-               "mins": a.get("close_read_mins_before")}
-        if cs.close_verified(how):
-            b["ver"].append(rec)
-        else:
-            b["mod"].append(rec)
-
-    def stats(recs):
-        v = [r["pct"] for r in recs if r["pct"] is not None]
-        if not v:
-            return "no CLV computable"
-        m = sum(v) / len(v)
-        sd = sts.stdev(v) if len(v) > 1 else 0.0
-        se = sd / len(v) ** 0.5 if len(v) > 1 else 0.0
-        beat = 100.0 * sum(1 for x in v if x > 0) / len(v)
-        return (f"n{len(v):3} mean {m:+6.2f}% sd {sd:5.2f} SE {se:5.2f} "
-                f"95% {m - 1.96 * se:+6.2f}..{m + 1.96 * se:+6.2f}  beat {beat:3.0f}%")
-
-    say("")
-    say("  " + "-" * 104)
-    tot_v = tot_m = tot_x = 0
-    for lg in LEAGUES + tuple(sorted(set(out) - set(LEAGUES))):
-        if lg not in out:
+        if not u.get("needs_fixture"):
             continue
-        b = out[lg]
-        nv, nm = len(b["ver"]), len(b["mod"])
-        nx = sum(b["miss"].values())
-        tot_v += nv
-        tot_m += nm
-        tot_x += nx
-        say(f"  {lg:<6} total {nv + nm + nx:3}   VERIFIED same-line {nv:3}   modeled/converted {nm:3}   missing {nx:3}")
-        say(f"           verified CLV   {stats(b['ver'])}")
-        if nm:
-            say(f"           modeled  CLV   {stats(b['mod'])}   (reported apart, never in a headline)")
-        for k, n in b["miss"].most_common(6):
-            say(f"             missing: {n:3}  {k}")
-    say("  " + "-" * 104)
-    allv = [r for lg in out for r in out[lg]["ver"]]
-    allm = [r for lg in out for r in out[lg]["mod"]]
-    say(f"  ALL    VERIFIED {tot_v}   modeled {tot_m}   missing {tot_x}   of {len(pop)}")
-    say(f"           verified CLV   {stats(allv)}")
-    if allm:
-        say(f"           modeled  CLV   {stats(allm)}")
+        lg = u["lg"]
+        if lg not in cl.SPORT:
+            continue
+        want[(lg, u["day"])].append(u)
+    order = sorted(want.items(), key=lambda kv: -len(kv[1]))
+    res = {"windows_available": len(order), "windows_called": 0, "credits": 0,
+           "units_resolved": 0, "units_attempted": 0, "aborted": None}
+    for (lg, day), us in order:
+        if SPENT["billable"] >= BUDGET:
+            res["aborted"] = f"budget ceiling {BUDGET} reached"
+            break
+        d = cl.tp(day + "T12:00:00Z")
+        if not d:
+            continue
+        lo, hi = (d - timedelta(days=1)).date(), (d + timedelta(days=1)).date()
+        before = len(st.get("fixtures") or {}) + len(RECOVERED)
+        if not APPLY:
+            res["units_attempted"] += len(us)
+            for u in us:
+                u["stage"] = f"would call /fixtures {lg} {lo}..{hi} (dry run, no credit spent)"
+            continue
+        SPENT["billable"] += 1
+        res["credits"] += 1
+        ok = refresh_into_recovered(st, now, lg, lo, hi)
+        res["windows_called"] += 1
+        res["units_attempted"] += len(us)
+        if not ok:
+            for u in us:
+                u["stage"] = f"/fixtures {lg} {lo}..{hi}: call refused or failed"
+            continue
+        allfx.update(RECOVERED)
+        for u in us:
+            reclassify(u, fxs, alt, allfx, mkmap)
+            if u["cls"] == "VERIFIED_PINNACLE":
+                res["units_resolved"] += 1
+            elif u.get("fid"):
+                u["stage"] = "fixture found; Pinnacle history still needed"
+        say(f"    {lg} {day}: +{len(st.get('fixtures') or {}) + len(RECOVERED) - before} fixtures, "
+            f"{res['units_resolved']}/{res['units_attempted']} units resolved so far, "
+            f"{SPENT['billable']}/{BUDGET} credits")
+        if res["windows_called"] >= 5:
+            rate = res["units_resolved"] / max(1, res["units_attempted"])
+            if rate < MIN_FIX_RATE:
+                res["aborted"] = (f"poor recovery: {res['units_resolved']}/{res['units_attempted']} "
+                                  f"({rate:.0%}) after {res['windows_called']} windows, "
+                                  f"below the {MIN_FIX_RATE:.0%} floor - stopped rather than "
+                                  f"spending the rest of the budget at this rate")
+                break
+    return res
 
-    # ---------------- NCAAF overs vs unders, on the certified observations ----------------
-    # Peter, Nov 10: the aggregate -3.54% hides which side it comes from, and only the OVERS are in
-    # the live lane. Every alert here already passed phase 1 - that is how the population was built
-    # - so nothing excluded is mixed in. Duplicates are checked rather than assumed away: the feed
-    # is one entry per game/market/side, so two rows can share a game legitimately, and a per-game
-    # view is reported beside the per-alert one.
-    nc = out.get("NCAAF", {}).get("ver", [])
+
+RECOVERED = {}
+
+
+def refresh_into_recovered(st, now, lg, lo, hi):
+    """One billable /fixtures call whose result lands in RECOVERED, never in clv/state.enc.
+
+    This is deliberately NOT clv_ledger.refresh_fixtures: that one writes st["fixtures"] and
+    stamps st["fx_last"], and the 5-minute ledger owns that file. Two writers to one encrypted
+    state is a lost-update race, so this job keeps its own cache and the ledger picks it up
+    through fixture_match.ALT_PATHS on its next run.
+    """
+    tid = cl.tournament(st, now, lg)
+    if not tid:
+        return False
+    if not cl.can_bill(st, now):
+        say(f"    {lg}: credit gate would refuse - not called")
+        return False
+    try:
+        d = cl.api("/fixtures", True, tournamentId=tid,
+                   **{"from": lo.strftime("%Y-%m-%d"), "to": hi.strftime("%Y-%m-%d")})
+    except Exception as e:
+        say(f"    {lg}: /fixtures refused ({type(e).__name__})")
+        return False
+    if isinstance(d, dict) and d.get("_error"):
+        say(f"    {lg}: /fixtures error {d.get('_error')}")
+        return False
+    n = 0
+    for f in d if isinstance(d, list) else []:
+        if not f.get("fixtureId"):
+            continue
+        RECOVERED[f["fixtureId"]] = {
+            "lg": lg, "start": f.get("startTime"), "status": f.get("statusId"),
+            "p1": " ".join(str(f.get(k) or "") for k in
+                           ("participant1Name", "participant1ShortName", "participant1Abbr")),
+            "p2": " ".join(str(f.get(k) or "") for k in
+                           ("participant2Name", "participant2ShortName", "participant2Abbr")),
+            "n1": f.get("participant1Name"), "n2": f.get("participant2Name")}
+        n += 1
+    return n > 0
+
+
+def reclassify(u, fxs, alt, allfx, mkmap):
+    cls, detail = oa.classify(u["row"], "liquidity", fxs, alt, allfx, mkmap)
+    u["cls"], u["detail"] = cls, detail
+    if isinstance(detail, dict):
+        u["fid"] = detail.get("fid")
+        u["clv"] = detail.get("clv")
+    u["needs_fixture"] = cls == "FIXTURE_OR_IDENTITY" and "no unique fixture" in str(detail)
+    return cls
+
+
+# ---------------------------------------------------------------------- main
+def main():
+    now = datetime.now(timezone.utc)
+    say("LIQUIDITY PINNACLE CLV RECOVERY" + ("" if APPLY else "   [DRY RUN - no call bills]"))
+    say(f"generated {now.astimezone(ET):%Y-%m-%d %H:%M} ET   basis {cb.BASIS_VERSION}   "
+        f"budget {BUDGET} billable   tiers {TIERS}")
+    say("=" * 104)
+    try:
+        st = tb.dec(json.load(open(cl.STATE)))
+    except Exception as e:
+        say(f"FATAL: clv/state.enc unreadable ({type(e).__name__})")
+        return 1
+    try:
+        mkmap = (json.load(open(oa.MKFILE)) or {}).get("m") or {}
+    except Exception as e:
+        say(f"FATAL: {oa.MKFILE} unreadable ({type(e).__name__})")
+        return 1
+    try:
+        RECOVERED.update((json.load(open(FXOUT)).get("fixtures") or {}))
+        say(f"  carried forward {len(RECOVERED)} fixtures recovered by earlier runs")
+    except Exception:
+        pass
+
+    fxs = st.get("fixtures") or {}
+    alt = {fid: f for fid, (f, _s) in fxm.alt_fixtures().items()}
+    allfx = dict(alt, **fxs)
+    allfx.update(RECOVERED)
+    rows = oa.load(oa.LIQ)
+    say(f"  liquidity observations {len(rows)}   fixtures on hand {len(allfx)}   "
+        f"hcache {len(os.listdir(oa.HC)) if os.path.isdir(oa.HC) else 0}")
+
+    # ---- dedup to units, classify once
+    units = {}
+    for x in rows:
+        k = unit_key(x)
+        u = units.get(k)
+        if u is None:
+            t, twhy = tier_of(x, None)
+            u = units[k] = {"key": k, "row": x, "n_obs": 0, "tier": t, "twhy": twhy,
+                            "lg": str(x.get("league") or x.get("sport") or "").upper(),
+                            "day": date_window(x), "stage": "", "clv": None, "fid": None}
+            reclassify(u, fxs, alt, allfx, mkmap)
+        u["n_obs"] += 1
+    say(f"  {len(rows)} observations -> {len(units)} unique game x market units "
+        f"(dedup factor {len(rows) / max(1, len(units)):.1f}x)")
     say("")
-    say("  NCAAF CERTIFIED OBSERVATIONS - OVERS vs UNDERS")
-    say("  " + "-" * 104)
 
-    def side_of(a):
-        b = str(a.get("bet") or "").strip().lower()
-        return "OVER" if b.startswith("over") else "UNDER" if b.startswith("under") else "?"
-
-    def sstats(recs, label):
-        g = [r for r in recs if r["a"].get("result") in ("W", "L", "P")]
-        w = sum(1 for r in g if r["a"]["result"] == "W")
-        l = sum(1 for r in g if r["a"]["result"] == "L")
-        p_ = sum(1 for r in g if r["a"]["result"] == "P")
-        u = sum(r["a"].get("units_flat") or 0 for r in g)
-        risk = len([r for r in g if r["a"]["result"] != "P"])
-        v = [r["pct"] for r in recs if r["pct"] is not None]
-        line = (f"    {label:<22} alerts {len(recs):3}  graded {len(g):3}  {w}-{l}"
-                + (f"-{p_}" if p_ else "") + f"  {u:+7.2f}u")
-        line += f"  ROI {100 * u / risk:+7.1f}%" if risk else "  ROI     n/a"
-        if v:
-            m = sum(v) / len(v)
-            sd = sts.stdev(v) if len(v) > 1 else 0.0
-            se = sd / len(v) ** 0.5 if len(v) > 1 else 0.0
-            beat = 100.0 * sum(1 for x in v if x > 0) / len(v)
-            line += (f"  | CLV n{len(v):3} {m:+6.2f}% sd {sd:5.2f} SE {se:5.2f} "
-                     f"95% {m - 1.96 * se:+6.2f}..{m + 1.96 * se:+6.2f}  beat {beat:3.0f}%")
-        else:
-            line += "  | CLV n/a"
-        say(line)
-
-    ov = [r for r in nc if side_of(r["a"]) == "OVER"]
-    un = [r for r in nc if side_of(r["a"]) == "UNDER"]
-    other = [r for r in nc if side_of(r["a"]) == "?"]
-    sstats(nc, "ALL NCAAF certified")
-    sstats(ov, "OVERS (in the lane)")
-    sstats(un, "UNDERS")
-    if other:
-        sstats(other, "side unparsed")
-
+    say("TIERS - from the REGISTERED definitions, not widened")
+    say("-" * 104)
+    for t in (1, 2, 3):
+        us = [u for u in units.values() if u["tier"] == t]
+        if not us:
+            say(f"  tier {t}: 0 units")
+            continue
+        say(f"  tier {t}: {len(us):5d} units / {sum(u['n_obs'] for u in us):5d} observations   "
+            f"{us[0]['twhy']}")
+        cc = collections.Counter(u["cls"] for u in us)
+        for c, n in cc.most_common():
+            say(f"           {n:5d}  {c}")
     say("")
-    say("    chronological halves (certified CLV only):")
-    for label, grp in (("OVERS", ov), ("UNDERS", un)):
-        g2 = sorted([r for r in grp if r["pct"] is not None],
-                    key=lambda r: str(r["a"].get("alert_utc") or ""))
-        if len(g2) >= 2:
-            h = len(g2) // 2
-            a1 = [r["pct"] for r in g2[:h]]
-            a2 = [r["pct"] for r in g2[h:]]
-            say(f"      {label:<8} first half n{len(a1):3} {sum(a1)/len(a1):+6.2f}%   "
-                f"second half n{len(a2):3} {sum(a2)/len(a2):+6.2f}%")
-        else:
-            say(f"      {label:<8} too few certified readings to halve (n={len(g2)})")
-
-    say("")
-    say("    DUPLICATES - is one game carrying more than one observation?")
-    for label, grp in (("OVERS", ov), ("UNDERS", un), ("ALL", nc)):
-        games = collections.Counter(str(r["a"].get("game")) for r in grp)
-        rep = {g: n for g, n in games.items() if n > 1}
-        say(f"      {label:<8} {len(grp):3} alert(s) across {len(games):3} unique game(s); "
-            f"{len(rep)} game(s) carry more than one")
-        for g, n in sorted(rep.items(), key=lambda kv: -kv[1])[:6]:
-            sides = ", ".join(sorted(f"{side_of(r['a'])} {r['a'].get('point')}"
-                                     for r in grp if str(r["a"].get("game")) == g))
-            say(f"          {str(g)[:44]:<44} x{n}  [{sides}]")
-    # one observation per game, keeping the EARLIEST alert, so a repeated game cannot double-weight
-    say("")
-    say("    per-game view (earliest alert per game, so no game is counted twice):")
-    for label, grp in (("OVERS", ov), ("UNDERS", un)):
-        seen_g, uniq = set(), []
-        for r in sorted(grp, key=lambda r: str(r["a"].get("alert_utc") or "")):
-            g = str(r["a"].get("game"))
-            if g not in seen_g:
-                seen_g.add(g)
-                uniq.append(r)
-        sstats(uniq, f"{label} unique games")
-
-    say("")
-    say("    EVERY CERTIFIED NCAAF OBSERVATION (no selection, ordered by date):")
-    say(f"      {'date':<11}{'side':<6}{'line':>7}{'raw':>6}{'net':>6}{'res':>5}{'units':>7}"
-        f"{'CLV':>8}  game")
-    for r in sorted(nc, key=lambda r: str(r["a"].get("alert_utc") or "")):
-        a = r["a"]
-        say(f"      {str(a.get('alert_utc'))[:10]:<11}{side_of(a):<6}"
-            f"{(a.get('point') if a.get('point') is not None else float('nan')):>7.1f}"
-            f"{(a.get('price') if a.get('price') is not None else 0):>6}"
-            f"{(a.get('price_after_fee') if a.get('price_after_fee') is not None else 0):>6}"
-            f"{str(a.get('result') or '-'):>5}"
-            f"{(a.get('units_flat') if a.get('units_flat') is not None else 0):>7.2f}"
-            f"{(r['pct'] if r['pct'] is not None else float('nan')):>+8.2f}  {str(a.get('game'))[:40]}")
-    say("  " + "-" * 104)
-
-    # ---------------- ITEM 1: per-observation reconciliation of the overlap ----------------
-    ov = [r for r in allv + allm
-          if r["pct"] is not None and r["feed"] is not None
-          and r["nd"] and r["feed_dec"] and r["p_feed"] is not None and r["p"] is not None]
-    say("")
-    say("  ITEM 1 - RECONCILIATION OF THE OVERLAP, one observation at a time")
-    say("  " + "-" * 104)
-    if not ov:
-        say("    no observation carries both figures plus both inputs, so the gap cannot be split here")
-    else:
-        say(f"    {'date':<11}{'lg':<6}{'p_std':>7}{'p_feed':>7}{'dp':>7}{'net_std':>8}{'net_fd':>7}"
-            f"{'std':>8}{'feed':>8}{'gap':>7}{'fee':>7}{'time':>7}{'resid':>7}{'age':>5}")
-        fees, times, resids = [], [], []
-        for r in sorted(ov, key=lambda x: str(x["a"].get("alert_utc") or "")):
-            a = r["a"]
-            std, feed = r["pct"], r["feed"]
-            gap = std - feed
-            # fee-only: same close prob (the feed's), swap the fee model
-            fee_only = 100.0 * (r["p_feed"] * r["nd"] - 1.0) - 100.0 * (r["p_feed"] * r["feed_dec"] - 1.0)
-            # prob-only: same fee model (the standard's), swap the close probability
-            time_only = 100.0 * (r["p"] * r["nd"] - 1.0) - 100.0 * (r["p_feed"] * r["nd"] - 1.0)
-            resid = gap - fee_only - time_only
-            fees.append(fee_only); times.append(time_only); resids.append(resid)
-            say(f"    {str(a.get('alert_utc'))[:10]:<11}{str(a.get('sport')):<6}"
-                f"{r['p']:>7.4f}{r['p_feed']:>7.4f}{r['p'] - r['p_feed']:>+7.4f}"
-                f"{r['nd']:>8.4f}{r['feed_dec']:>7.4f}{std:>+8.2f}{feed:>+8.2f}{gap:>+7.2f}"
-                f"{fee_only:>+7.2f}{time_only:>+7.2f}{resid:>+7.2f}"
-                f"{(r['mins'] if r['mins'] is not None else -1):>5.0f}")
-        def mabs(v):
-            return sum(abs(x) for x in v) / len(v)
-        say("  " + "-" * 104)
-        say(f"    n={len(ov)}   mean |gap| {mabs([r['pct'] - r['feed'] for r in ov]):.2f} pt")
-        say(f"      attributable to the FEE MODEL        mean |{mabs(fees):.2f}| pt   "
-            f"(signed mean {sum(fees)/len(fees):+.2f})")
-        say(f"      attributable to the CLOSE INSTANT    mean |{mabs(times):.2f}| pt   "
-            f"(signed mean {sum(times)/len(times):+.2f})")
-        say(f"      RESIDUAL, neither of the above       mean |{mabs(resids):.2f}| pt   "
-            f"max |{max(abs(x) for x in resids):.2f}|")
-        say("    The split is exact by construction, so a non-trivial residual would mean a third")
-        say("    input differs and has not been found. Read the residual column before the means.")
-
-    # the standard's number vs the feed's, on the same observations
-    pair = [(r["pct"], r["feed"]) for r in allv + allm
-            if r["pct"] is not None and r["feed"] is not None]
-    say("")
-    if pair:
-        d = [abs(x - y) for x, y in pair]
-        say(f"  standard vs feed on the same {len(pair)} observation(s): mean |diff| {sum(d) / len(d):.2f} pt, "
-            f"max {max(d):.2f} pt, over 1 pt: {sum(1 for x in d if x > 1)}")
-        say("  (different fee models: clv_std.net_dec on the raw price vs sharp_monitor.net - not an error by itself)")
-    else:
-        say("  no observation has both a standard and a feed figure, so the two models cannot be compared here")
-    say("")
-    say("")
-    # ================= THREE BOT-ONLY STRATEGIES (Peter, Nov 10) =================
-    # NBA totals unders (the existing lane), NCAAF spread dogs, NHL totals unders. Two of the three
-    # are OUTSIDE phase 1, so this is its own population rather than a slice of the 53 above.
-    #
-    # Multiple comparisons are reported, not hidden: 12 cells were screened to arrive at these
-    # three, and a both-halves-positive filter on 12 cells yields about 3 by chance alone. These
-    # three were chosen AFTER seeing that screen, so they are not independent tests and nothing
-    # below is a fresh discovery. Treating them as confirmations would be the cherry-pick.
-    say("")
-    say("=" * 108)
-    say("THREE BOT-ONLY STRATEGIES - certified closes, free history only")
-    say("=" * 108)
-
-    def sidecls(a):
-        k = str(a.get("kind"))
-        b = str(a.get("bet") or "").lower()
-        pt = a.get("point")
-        if k == "tot":
-            return "tot UNDER" if b.startswith("under") else "tot OVER" if b.startswith("over") else "tot ?"
-        if k == "spr":
-            if isinstance(pt, (int, float)):
-                return "spr FAV" if pt < 0 else "spr DOG" if pt > 0 else "spr PK"
-            return "spr ?"
-        return k
-
-    bot = [x for x in A
-           if str(x.get("book_key") or "") not in ("hardrockbet", "hardrockbet_fl")
-           and x.get("pricing_bettable") is not False]
-    STRATS = (("NBA", "tot UNDER", "NBA totals UNDERS (live lane)"),
-              ("NCAAF", "spr DOG", "NCAAF spread DOGS"),
-              ("NHL", "tot UNDER", "NHL totals UNDERS"))
-
-    def certify(a, lg):
-        """A verified same-line Pinnacle close for one alert, or (None, why). Same path, same guard
-        and the same free-history rule as the phase-1 pass above."""
-        bet = a.get("bet") or ""
-        if not bet.strip():
-            return None, "no bet text"
-        fid, f = fixture_for(a, lg)
-        if not fid:
-            return None, "no unique same-league fixture"
-        pth = hc._path(fid, "pinnacle")
-        if not os.path.exists(pth):
-            if not RECOVER:
-                return None, "no cached Pinnacle history"
-            if FETCH["stopped"]:
-                return None, "recovery halted: " + str(FETCH["why"])[:40]
-            try:
-                hc.get_hist(fid, ["pinnacle"], start_of(f))
-                FETCH["any"] = True
-                FETCH["n"] += 1
-            except Exception as e:
-                return None, f"download failed ({type(e).__name__})"
-            if not os.path.exists(pth):
-                return None, "download returned no Pinnacle history"
-        start = start_of(f)
-        if not start:
-            return None, "fixture has no start"
-        try:
-            h = hc.get_hist(fid, ["pinnacle"], start)
-            pmk = cl.book_markets(h, "pinnacle")
-        except Exception as e:
-            return None, f"history unreadable ({type(e).__name__})"
-        if not pmk:
-            return None, "no Pinnacle market in history"
-        mt = "total" if str(a.get("kind")) == "tot" else "spread" if str(a.get("kind")) == "spr" else "moneyline"
-        try:
-            c, why = cl.close_for({"bet": bet, "league": lg, "market": mt,
-                                   "game": f.get("game"), "game_start": f.get("start")},
-                                  f, pmk, mkmap, start, lg)
-        except Exception as e:
-            return None, f"close_for raised {type(e).__name__}"
-        if not c:
-            return None, f"no close: {str(why)[:40]}"
-        if not cs.close_verified(c.get("how")):
-            return None, f"close not verified ({c.get('how')})"
-        rd = raw_dec(a.get("price"))
-        if rd is None:
-            return None, "no entry price"
-        try:
-            pct = cs.net_clv(c["p"], rd, cs.canon(a.get("book_key")), maker=False, league=lg)
-        except Exception as e:
-            return None, f"net_clv raised {type(e).__name__}"
-        if pct is None:
-            return None, "net_clv returned None"
-        return pct, None
-
-    def blk(rows, cert, label, ind="    "):
-        g = [x for x in rows if x.get("result") in ("W", "L", "P")]
-        w = sum(1 for x in g if x["result"] == "W")
-        l = sum(1 for x in g if x["result"] == "L")
-        p_ = sum(1 for x in g if x["result"] == "P")
-        u = sum(x.get("units_flat") or 0 for x in g)
-        risk = len([x for x in g if x["result"] != "P"])
-        v = [cert[id(x)] for x in rows if id(x) in cert]
-        out_ = (f"{ind}{label:<26} n{len(rows):3} games {len({str(x.get('game')) for x in rows}):3} "
-                f"{w}-{l}" + (f"-{p_}" if p_ else "") + f" {u:+7.2f}u")
-        out_ += f" ROI {100 * u / risk:+7.1f}%" if risk else " ROI     n/a"
-        if v:
-            m = sum(v) / len(v)
-            sd = sts.stdev(v) if len(v) > 1 else 0.0
-            se = sd / len(v) ** 0.5 if len(v) > 1 else 0.0
-            beat = 100.0 * sum(1 for x in v if x > 0) / len(v)
-            out_ += (f" | CERT n{len(v):3} {m:+6.2f}% SE {se:5.2f} "
-                     f"95% {m - 1.96 * se:+6.2f}..{m + 1.96 * se:+6.2f} beat {beat:3.0f}% "
-                     f"cov {100.0 * len(v) / len(rows):3.0f}%")
-        else:
-            out_ += " | CERT none"
-        say(out_)
-
-    for lg, mk, name in STRATS:
-        rows = sorted([x for x in bot if str(x.get("sport")) == lg and sidecls(x) == mk],
-                      key=lambda x: str(x.get("alert_utc") or ""))
+    if not any(u["tier"] == 1 for u in units.values()):
+        say("  TIER 1 IS EMPTY, and that is the expected shape, not a gap: the live lanes place")
+        say("  through the ledger and their CLV is scored there (coverage is reported by")
+        say("  clv_coverage). No liquidity observation carries a live-lane order id.")
         say("")
-        say(f"  {name}   ({len(rows)} bot alert(s))")
-        say("  " + "-" * 104)
-        cert, fails = {}, collections.Counter()
-        for a in rows:
-            pct, why = certify(a, lg)
-            if pct is None:
-                fails[why] += 1
-            else:
-                cert[id(a)] = pct
-        blk(rows, cert, "ALL")
-        h = len(rows) // 2
-        blk(rows[:h], cert, "first half")
-        blk(rows[h:], cert, "second half")
-        # fees actually paid, in units, on the winners - the fee is already inside units_flat
-        fee_u = 0.0
-        for a in rows:
-            if a.get("result") != "W":
-                continue
-            rawd, netd = raw_dec(a.get("price")), raw_dec(a.get("price_after_fee"))
-            if rawd and netd:
-                fee_u += (rawd - 1) - (netd - 1)
-        say(f"    fees paid on winners: {fee_u:+.2f}u of gross profit "
-            f"(already deducted from the units above)")
-        bk = collections.Counter(str(a.get("book")) for a in rows)
-        say(f"    alerted books: {dict(bk.most_common(5))}")
-        say(f"    median lead: {sts.median([a.get('minutes_before_start') for a in rows if isinstance(a.get('minutes_before_start'), (int, float))] or [float('nan')]):.0f} min")
-        if fails:
-            say("    could not certify:")
-            for k, n in fails.most_common(6):
-                say(f"       {n:3}  {k}")
+
+    want = [t for t in ("1", "2", "3") if t in TIERS.split(",")]
+    say("STAGE A - free history for games whose fixture we already hold (0 credits)")
+    say("-" * 104)
+    pool = [u for u in units.values() if str(u["tier"]) in want]
+    a = stage_free_history(pool, allfx, mkmap, fxs, alt)
+    say(f"  {a['calls']} free /historical-odds calls -> history arrived for {a['history_arrived']}, "
+        f"Pinnacle has none for {a['no_history']}")
     say("")
-    say("  AVAILABILITY: every unit above is 1u at the alert's own price after fee - the price the")
-    say("  alert carried, never a better one, and no fill is assumed anywhere. Whether that price")
-    say("  was actually standing on the alerted book is a DIFFERENT question, answered by")
-    say("  fill_audit.py's SEEN test against the exchange's own stored history; it is not answered")
-    say("  here and no claim about obtainability is made.")
-    say("=" * 108)
-    say("")
-    # ============ NBA UNDER TRIGGER: PASS vs FAIL (Peter, Nov 10) ============
-    # "The trigger" here is phase 1 itself - the registered live-qualification rules, thresholds
-    # untouched. PASS = agree_rules.phase1 admits the alert; FAIL = it does not, and the reasons are
-    # printed so what is actually separating the groups is visible rather than assumed. If Peter
-    # meant the detection trigger instead, that cannot be tested from this data at all: an alert
-    # only exists because detection fired, so there is no un-triggered comparison group on disk.
-    #
-    # SELECTION BIAS, stated before the numbers: the FAIL group is not a random control. It differs
-    # from PASS by the very properties the gates select on - venue above all - so any gap between
-    # them measures the gates PLUS everything correlated with them, and cannot be read as the
-    # gates' own contribution.
-    say("")
-    say("=" * 108)
-    say("NBA TOTALS UNDERS - does the registered trigger separate? PASS vs FAIL")
-    say("=" * 108)
-    import exchange_lag as el
-    from datetime import timedelta as _td
-    SEEN_BOOKS = {"prophetx": "ProphetX", "novig.us": "Novig", "kalshi": "Kalshi",
-                  "polymarket.us": "Polymarket US"}
-    ALERT_BOOK = {"ProphetX": "prophetx", "Kalshi": "kalshi", "Novig": "novig.us"}
-    TOL = 0.002
 
-    def round_tol(a):
-        """The decimal slack that price_after_fee's own rounding can introduce.
-
-        Nov 10: the availability test compared a target built from price_after_fee - which is
-        round()ed to a WHOLE American point - against an unrounded book quote, under a flat
-        TOL of 0.002. Seven of eight fresh-tick misses were short by a quarter to a half of one
-        American point, i.e. by less than the rounding in the test's own input, and I read them as
-        the market not showing the price. round() moves the target by at most HALF a point, so that
-        is the allowance: it absorbs the rounding exactly and nothing wider. The one real miss in
-        that sample was short by 2.4 points and is still a miss.
-        """
-        am = a.get("price_after_fee")
-        if am is None:
-            am = a.get("price")
-        try:
-            am = float(am)
-        except Exception:
-            return TOL
-        d0 = 1 + (100.0 / abs(am) if am < 0 else am / 100.0)
-        am1 = am - 1 if am < 0 else am + 1
-        d1 = 1 + (100.0 / abs(am1) if am1 < 0 else am1 / 100.0)
-        return max(TOL, abs(d0 - d1) / 2.0)
-
-    def seen_at_alert(a, lg):
-        """fill_audit's SEEN test: did the ALERTED book's own stored history show the alert price or
-        better, at the alert line, at the alert time? None when we hold no history for that book -
-        never False, because 'we cannot see' is not 'it was not there'."""
-        own = ALERT_BOOK.get(str(a.get("book")))
-        if not own:
-            return None, "alerted book has no stored history"
-        bet = a.get("bet") or ""
-        fid, f = fixture_for(a, lg)
-        if not fid:
-            return None, "no unique fixture"
-        start = start_of(f)
-        t0 = cl.tp(a.get("alert_utc"))
-        if not start or not t0:
-            return None, "no timestamps"
-        try:
-            h = hc.get_hist(fid, [own], start)
-            bk = cl.book_markets(h, own)
-        except Exception as e:
-            return None, f"history unreadable ({type(e).__name__})"
-        if not bk:
-            return None, "no stored history for that book"
-        b = {"bet": bet, "league": lg, "market": "total",
-             "game": f.get("game"), "game_start": f.get("start")}
-        try:
-            x = cl.novig_at(b, f, bk, mkmap, min(t0, start), lg)
-        except Exception as e:
-            return None, f"novig_at raised ({type(e).__name__})"
-        if not x:
-            return None, "book had no quote at the alert line"
-        got = el.eff(own, x[0])
-        want = cl.am_to_dec(a.get("price_after_fee") or a.get("price"))
-        if got is None or want is None:
-            return None, "price unreadable"
-        return (got >= want - round_tol(a)), None
-
-    nbau = sorted([x for x in bot if str(x.get("sport")) == "NBA" and sidecls(x) == "tot UNDER"],
-                  key=lambda x: str(x.get("alert_utc") or ""))
-    groups = {"PASS": [], "FAIL": []}
-    whyfail = collections.Counter()
-    for a in nbau:
-        try:
-            ok, w = agree_rules.phase1({"book_key": a.get("book_key"), "book": a.get("book"),
-                                        "grade": a.get("grade"), "sport": a.get("sport"),
-                                        "kind": a.get("kind"), "bet": a.get("bet") or "",
-                                        "price_after_fee": a.get("price_after_fee"),
-                                        "confirmed_by": a.get("confirmed_by") or [],
-                                        "start_utc": a.get("start_utc"),
-                                        "alert_utc": a.get("alert_utc"),
-                                        "late": bool(a.get("late"))}, True)
-            w = [x for x in w if x != "no Muse AGREE"]
-        except Exception:
+    say(f"STAGE B - billable /fixtures, ceiling {BUDGET}, by tier")
+    say("-" * 104)
+    bres = {}
+    for t in (1, 2, 3):
+        if str(t) not in want:
             continue
-        groups["PASS" if not w else "FAIL"].append(a)
-        for r in w:
-            whyfail[r[:58]] += 1
-
-    say(f"  {len(nbau)} NBA under alert(s) in the bot universe -> "
-        f"PASS {len(groups['PASS'])}, FAIL {len(groups['FAIL'])}")
+        r = stage_fixtures(pool, st, now, allfx, mkmap, fxs, alt, t)
+        bres[t] = r
+        say(f"  tier {t}: {r['windows_available']} league x date windows available, "
+            f"{r['windows_called']} called, {r['credits']} credits, "
+            f"{r['units_resolved']}/{r['units_attempted']} units resolved")
+        if r["aborted"]:
+            say(f"           STOPPED: {r['aborted']}")
+            break
     say("")
-    for gname in ("PASS", "FAIL"):
-        rows = groups[gname]
-        if not rows:
-            say(f"  {gname}: empty")
+
+    # ---- result
+    say("RESULT - after recovery, by tier")
+    say("=" * 104)
+    final = {}
+    for t in (1, 2, 3):
+        us = [u for u in units.values() if u["tier"] == t]
+        if not us:
             continue
-        cert, cfail = {}, collections.Counter()
-        sn = {"yes": 0, "no": 0}
-        sfail = collections.Counter()
-        for a in rows:
-            pct, why = certify(a, "NBA")
-            if pct is None:
-                cfail[why] += 1
-            else:
-                cert[id(a)] = pct
-            sv, serr = seen_at_alert(a, "NBA")
-            if sv is None:
-                sfail[serr] += 1
-            else:
-                sn["yes" if sv else "no"] += 1
-        say(f"  {gname}")
-        say("  " + "-" * 104)
-        blk(rows, cert, "ALL")
-        h = len(rows) // 2
-        blk(rows[:h], cert, "first half")
-        blk(rows[h:], cert, "second half")
-        tot_seen = sn["yes"] + sn["no"]
-        say(f"    SEEN at the alert price: {sn['yes']}/{tot_seen} testable "
-            f"({(100.0 * sn['yes'] / tot_seen) if tot_seen else float('nan'):.0f}%)"
-            f"   untestable {sum(sfail.values())}")
-        for k, n in sfail.most_common(4):
-            say(f"       untestable: {n:3}  {k}")
-        if cfail:
-            for k, n in cfail.most_common(4):
-                say(f"       no certified close: {n:3}  {k}")
-        say(f"    alerted books: {dict(collections.Counter(str(a.get('book')) for a in rows).most_common(5))}")
-        say("")
-    say("  why the FAIL group failed (first reasons, all alerts):")
-    for k, n in whyfail.most_common(8):
-        say(f"     {n:3}  {k}")
+        cc = collections.Counter(u["cls"] for u in us)
+        ver = [u for u in us if u["cls"] == "VERIFIED_PINNACLE" and u["clv"] is not None]
+        n_obs_ver = sum(u["n_obs"] for u in ver)
+        mean = sum(u["clv"] for u in ver) / len(ver) if ver else None
+        beat = sum(1 for u in ver if u["clv"] > 0)
+        final[t] = {"units": len(us), "obs": sum(u["n_obs"] for u in us),
+                    "verified_units": len(ver), "verified_obs": n_obs_ver,
+                    "mean_clv": None if mean is None else round(mean, 4),
+                    "beat_close": beat, "classes": dict(cc)}
+        say(f"  tier {t}: {len(ver)}/{len(us)} units verified ({n_obs_ver} observations)"
+            + (f"   mean CLV {mean * 100:+.2f}%   beat close {beat}/{len(ver)}" if ver else ""))
     say("")
-    say("  READING THIS: the two groups differ by what the gates select on, so a gap between them")
-    say("  is the gates PLUS everything correlated with them - venue, price band, timing - and is")
-    say("  not the gates' own contribution. With these sample sizes neither group can carry a")
-    say("  verdict on its own; what is reportable is whether the gap points the way the rules")
-    say("  intend, and how far from zero it is.")
-    say("=" * 108)
-    say("")
+    say(f"CREDITS SPENT BY THIS JOB: {SPENT['billable']} billable (ceiling {BUDGET}), "
+        f"{SPENT['free']} free calls")
+    say(f"credit_gate reservations this process: {dict(cg.SPEND)}")
+    if not APPLY:
+        say("DRY RUN: no /fixtures call was made, so the billable count is 0 by construction.")
 
-    # ===== WHY ONLY 43% SEEN ON THE 24 PASS NBA UNDERS (Peter, Nov 10, priority) =====
-    # The PASS group's alert price was visible on its own venue in 10 of 23 testable cases. Since
-    # every units figure in this system assumes 1u AT the alert price, that number decides whether
-    # those figures are measured at prices we could actually have had.
-    #
-    # The separation is possible because clv_ledger.novig_at returns (price, AGE IN SECONDS) - the
-    # age of the last tick at or before the alert instant. So a worse price can be told apart from
-    # a stale snapshot:
-    #   SEEN               the book's own after-fee price met or beat the alert price at t0
-    #   NOT SEEN (fresh)   a FRESH tick showed worse - genuine unavailability at that moment
-    #   NOT SEEN (stale)   the only tick was old, so the quote describes an earlier moment and
-    #                      says nothing about the alert instant - missing evidence, not a verdict
-    #   SEEN LATER         not at t0 but met at +1 or +5 min - a timing question, not availability
-    #   UNTESTABLE         no fixture, no stored history, or no quote at that line at all
-    # A stale miss is never counted as unavailability. That is the whole point of the split.
-    #
-    # LIQUIDITY: novig_at returns price and age only, no size. Depth at the alert is NOT in this
-    # path - the ledger's fill_avail is the only depth record and it exists only for plays that
-    # reached the executor. So no depth claim is made here, and the absence is reported.
-    say("")
-    say("=" * 118)
-    say("THE 43%: per-alert availability on the 24 PASS NBA unders")
-    say("=" * 118)
-    FRESH = 300.0   # seconds; a tick older than this describes a different moment
-
-    def px_quote(a, lg, offset_min=0):
-        own = ALERT_BOOK.get(str(a.get("book")))
-        if not own:
-            return None, "alerted book has no stored history"
-        fid, f = fixture_for(a, lg)
-        if not fid:
-            return None, "no unique fixture"
-        start, t0 = start_of(f), cl.tp(a.get("alert_utc"))
-        if not start or not t0:
-            return None, "no timestamps"
-        try:
-            bk = cl.book_markets(hc.get_hist(fid, [own], start), own)
-        except Exception as e:
-            return None, f"history unreadable ({type(e).__name__})"
-        if not bk:
-            return None, "no stored history for that book"
-        when = min(t0 + _td(minutes=offset_min), start)
-        try:
-            x = cl.novig_at({"bet": a.get("bet") or "", "league": lg, "market": "total",
-                             "game": f.get("game"), "game_start": f.get("start")},
-                            f, bk, mkmap, when, lg)
-        except Exception as e:
-            return None, f"novig_at raised ({type(e).__name__})"
-        if not x:
-            return None, "no quote at that line"
-        return (el.eff(own, x[0]), x[1]), None
-
-    pas = groups.get("PASS", [])
-    say(f"  {len(pas)} PASS alert(s). Every row is an OBSERVED QUOTE, never a fill.")
-    say("")
-    say(f"  {'date/time':<17}{'line':>7}{'alert':>7}{'want':>7}{'px@t0':>8}{'age_s':>7}"
-        f"{'+1m':>7}{'+5m':>7}  class / reason")
-    tally = collections.Counter()
-    seen_rows = []
-    for a in pas:
-        want = cl.am_to_dec(a.get("price_after_fee") or a.get("price"))
-        q0, e0 = px_quote(a, "NBA", 0)
-        q1, _ = px_quote(a, "NBA", 1)
-        q5, _ = px_quote(a, "NBA", 5)
-        d0 = f"{q0[0]:.4f}" if q0 and q0[0] is not None else "-"
-        ag = f"{q0[1]:.0f}" if q0 and q0[1] is not None else "-"
-        d1 = f"{q1[0]:.4f}" if q1 and q1[0] is not None else "-"
-        d5 = f"{q5[0]:.4f}" if q5 and q5[0] is not None else "-"
-        if q0 is None or q0[0] is None or want is None:
-            cls = f"UNTESTABLE: {e0 or 'price unreadable'}"
-        elif q0[0] >= want - round_tol(a):
-            cls = ("SEEN at t0" if q0[0] >= want - TOL
-                   else f"SEEN at t0 (within rounding, {want - q0[0]:.4f})")
-            seen_rows.append(a)
-        else:
-            later = [lab for lab, q in (("+1m", q1), ("+5m", q5))
-                     if q and q[0] is not None and q[0] >= want - round_tol(a)]
-            if later:
-                cls = f"SEEN LATER ({', '.join(later)}) - timing, not availability"
-            elif q0[1] is not None and q0[1] <= FRESH:
-                cls = (f"NOT SEEN (fresh tick, {q0[1]:.0f}s old) - genuinely worse at t0, short by "
-                       f"{want - q0[0]:.4f} = {(want - q0[0]) / round_tol(a):.1f}x the rounding slack")
-            else:
-                cls = (f"NOT SEEN (STALE tick, {q0[1]:.0f}s old) - no evidence either way")
-        tally[cls.split(" -")[0].split(":")[0]] += 1
-        say(f"  {str(a.get('alert_utc'))[:16]:<17}"
-            f"{(a.get('point') if a.get('point') is not None else float('nan')):>7.1f}"
-            f"{(a.get('price') if a.get('price') is not None else 0):>7}"
-            f"{(want if want else float('nan')):>7.4f}{d0:>8}{ag:>7}{d1:>7}{d5:>7}  {cls}")
-    say("")
-    say("  CLASSIFICATION TOTALS")
-    for k, n in tally.most_common():
-        say(f"     {n:3}  {k}")
-    say("")
-    g = [x for x in seen_rows if x.get("result") in ("W", "L", "P")]
-    u = sum(x.get("units_flat") or 0 for x in g)
-    risk = len([x for x in g if x["result"] != "P"])
-    allg = [x for x in pas if x.get("result") in ("W", "L", "P")]
-    ua = sum(x.get("units_flat") or 0 for x in allg)
-    riska = len([x for x in allg if x["result"] != "P"])
-    say("  UNITS ON EVIDENCE-SUPPORTED PRICES ONLY (the SEEN-at-t0 subset)")
-    say(f"     SEEN subset   n{len(seen_rows):3} graded {len(g):3} {u:+7.2f}u  "
-        f"ROI {(100 * u / risk) if risk else float('nan'):+7.1f}%")
-    say(f"     all PASS      n{len(pas):3} graded {len(allg):3} {ua:+7.2f}u  "
-        f"ROI {(100 * ua / riska) if riska else float('nan'):+7.1f}%")
-    say("     The SEEN figure is the only one supported by a quote we can point to. It is still")
-    say("     NOT a fill: a displayed quote is not an execution, no size is recorded anywhere in")
-    say("     this path, and nothing here says the price would have survived an order.")
-    say("")
-    say("  LIQUIDITY: not available. novig_at returns price and age only. Depth at the alert lives")
-    say("  solely in the ledger's fill_avail, which exists only for plays that reached the")
-    say("  executor, and is itself min(avail, risk) rather than raw depth. No depth claim is made.")
-    say("=" * 118)
-    say("")
-
-    say("  ITEM 4 - the missing cached histories, and what a backfill would cost")
-    say("  " + "-" * 104)
-    nocache = sum(b["miss"]["no CACHED Pinnacle history (not fetched, by design)"] for b in out.values())
-    nouniq = sum(b["miss"]["find_fixture: no unique same-league fixture (left unscored)"] for b in out.values())
-    say(f"    {nocache} alert(s) matched a fixture but hold no Pinnacle cache file. These are absent")
-    say("    DOWNLOADS, not absent fixtures - the fixture is known, only its history is not stored.")
-    say(f"    {nouniq} alert(s) have no unique same-league fixture and stay UNSCORED (item 5).")
-    say("    Endpoint: hist_cache downloads /historical-odds, which credit_gate lists in FREE_PATHS,")
-    say("    so our gate does not bill it. But the free tier returns NO quota header, so the call")
-    say("    count is the only meter and 'free' is our accounting, not a provider guarantee. The safe")
-    say("    confirmation is one single-fixture download with /account read before and after - and")
-    say("    /account is itself a FREE_PATH. That test is NOT run here; this pass downloads nothing.")
-    say("")
-    if RECOVER:
-        say("")
-        say("  RECOVERY FETCH - policed by the provider's own counter")
-        say("  " + "-" * 104)
-        say(f"    downloads attempted           {FETCH['n']}")
-        say(f"    provider used, before/after   {FETCH['before']} -> {FETCH['after']}"
-            f"   (first download only; /account is free)")
-        if FETCH["stopped"]:
-            say(f"    HALTED: {FETCH['why']}")
-            say("    Remaining fixtures were left untouched. No approval is assumed for a paid call.")
-        elif FETCH["any"]:
-            say("    the provider's counter did not move on the bracketed download, so history is")
-            say("    free by the provider's own accounting and not only by ours")
-        say("")
-    say(f"  CREDITS: 0 paid. Cached-history reads: {reads}. Downloads: {FETCH['n']}. A fixture with")
-    say("  no cache file on disk is reported as missing unless recovery is on. /historical-odds is in")
-    say("  credit_gate.FREE_PATHS in any case.")
-    say("=" * 108)
+    os.makedirs("audit", exist_ok=True)
+    json.dump({"generated": cl.iso(now), "basis": cb.BASIS_VERSION, "apply": APPLY,
+               "budget": BUDGET, "spent": SPENT, "stage_a": a, "stage_b": bres,
+               "final": final,
+               "units": [{k: v for k, v in u.items() if k != "row"} for u in units.values()]},
+              open(OUT, "w"), indent=1, default=str)
+    if APPLY and RECOVERED:
+        os.makedirs("oddspapi", exist_ok=True)
+        json.dump({"generated": cl.iso(now), "by": "clv_recover",
+                   "note": "fixture reference data only - no stakes, accounts or keys",
+                   "fixtures": RECOVERED}, open(FXOUT, "w"), indent=1)
+        say(f"wrote {FXOUT}: {len(RECOVERED)} fixtures (reference data only)")
+    say(f"wrote {OUT}")
+    cg.flush()
     return 0
 
 

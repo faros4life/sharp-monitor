@@ -86,10 +86,12 @@ def row_key(rid, rec, tracker=None):
         # Nov 12) carries dup_of pointing at nv|01a16b28... (Ohio State @ USC, NCAAF, Oct 31).
         # Following that pointer blindly merges two unrelated selections into one observation and
         # silently moves one bet's CLV onto another's strategy. Verified here rather than trusted.
+        # Nov 14: the same predicate the WRITER now uses (tb.same_event), so the two cannot
+        # drift apart. Kept downstream as well as upstream on purpose: links written before the
+        # writer was fixed are still in the stored tracker and are rejected on read.
         own = (rec.get("snap") or {})
-        tgt_lg, own_lg = (src.get("league") or ""), (own.get("league") or "")
-        shared = toks(src.get("game")) & toks(own.get("game"))
-        if tgt_lg and own_lg and tgt_lg == own_lg and shared:
+        ok, why = tb.same_event(src, own)
+        if ok:
             k = key_of(src.get("league"), src.get("game"), src.get("bet"))
             if k:
                 return k, f"dup_of -> {cur[:28]}"
@@ -97,9 +99,9 @@ def row_key(rid, rec, tracker=None):
         s = own
         k = key_of(s.get("league"), s.get("game"), s.get("bet"))
         if k:
-            return k, (f"dup_of -> {cur[:20]} REJECTED (target is "
-                       f"{tgt_lg or '?'}/{str(src.get('game'))[:18]}, row is "
-                       f"{own_lg or '?'}/{str(own.get('game'))[:18]})")
+            return k, (f"dup_of -> {cur[:20]} REJECTED ({why}; target "
+                       f"{src.get('league') or '?'}/{str(src.get('game'))[:18]}, row "
+                       f"{own.get('league') or '?'}/{str(own.get('game'))[:18]})")
     s = rec.get("snap") or {}
     k = key_of(s.get("league"), s.get("game"), s.get("bet"))
     if k:

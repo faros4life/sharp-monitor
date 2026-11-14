@@ -35,7 +35,14 @@ import json
 
 import tracker_build as tb
 
-ALT_PATHS = ["oddspapi/fixtures.json"]
+# Fixture caches held OUTSIDE clv/state.enc. ONE list: clv_coverage, clv_fallback and
+# clv_obs_audit all import it from here. Nov 14 - it was copied into three modules, so a new
+# cache file added to one of them would have been read by one reader and silently ignored by the
+# other two: a no-op that looks like success.
+#   oddspapi/fixtures.json           written by the plimit-logger workflow (x2_tag / slow_hr)
+#   oddspapi/fixtures_recovered.json written ONLY by clv_recover (the liquidity CLV recovery), so
+#                                    recovery never contends with that workflow's own commits
+ALT_PATHS = ["oddspapi/fixtures.json", "oddspapi/fixtures_recovered.json"]
 
 
 def alt_fixtures():

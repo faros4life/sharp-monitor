@@ -95,6 +95,35 @@ def toks(s):
     return {w for w in WORDS.findall((s or "").lower()) if w not in STOP and not w.replace(".", "").isdigit() and len(w) > 1}
 
 
+def same_event(a, b):
+    """(ok, why) - do these two rows name the SAME GAME? ONE definition, used by the writer
+    (mark_manual_dups) and by the reader (clv_selection.row_key).
+
+    Nov 14. mark_manual_dups linked on book + stake-to-the-cent + 90 minutes with no identity
+    test at all, and mis-linked across leagues: mn|3ed1b8065067 (Charlotte @ Phoenix, NBA,
+    Nov 12) -> nv|01a16b28 (Ohio State @ USC, NCAAF, Oct 31). Two people betting the same
+    round number on the same exchange within the hour is ordinary, so price and time can never
+    establish identity.
+
+    GAME TOKENS MUST OVERLAP - that is the positive evidence, and nothing substitutes for it.
+    A league named on BOTH sides must agree; a league missing on either side cannot confirm the
+    link and does NOT veto it, because manual notes often carry no league and a veto there would
+    silently un-dedupe the page (Peter, Nov 6: "a lot of dupes on the tracker"). WEAK tokens are
+    stripped first: 'state'/'north'/'new' are shared by too many schools to pin a game.
+    """
+    la, lb = str((a or {}).get("league") or "").strip(), str((b or {}).get("league") or "").strip()
+    if la and lb and la.upper() != lb.upper():
+        return False, f"different leagues ({la} vs {lb})"
+    ta, tbk = toks((a or {}).get("game")) - WEAK, toks((b or {}).get("game")) - WEAK
+    if not ta or not tbk:
+        return False, "one side names no game, so identity cannot be verified"
+    shared = ta & tbk
+    if not shared:
+        return False, f"no shared game token ({'/'.join(sorted(ta)[:3])} vs {'/'.join(sorted(tbk)[:3])})"
+    return True, ("same game: " + "+".join(sorted(shared)[:3])
+                  + ("" if (la and lb) else "; league unnamed on one side"))
+
+
 # ------------------------------------------------------------------ bet text -> what has to happen
 def parse_bet(text, flip=False):
     """('total', 'OVER'|'UNDER', line) | ('spread', team_text, line) | ('ml', team_text, None) | None.
@@ -1086,7 +1115,13 @@ def mark_manual_dups(bets):
     """Nov 6 (Peter: "a lot of dupes on the tracker"). A manual note for a bet on an exchange the tracker already reads
     (ProphetX, Novig, Kalshi, Polymarket US) is the SAME bet as that book's row: same book, same stake (to the cent),
     placed within 90 minutes. The note is kept in the state but marked dup_of and left off the page and the tiles; its
-    bet name is lent to the book's row (and that row's other fills) when the book gave none."""
+    bet name is lent to the book's row (and that row's other fills) when the book gave none.
+
+    Nov 14: book + stake + time narrows the CANDIDATES; it never establishes identity. Every
+    candidate must also pass same_event() before dup_of is written. A candidate that matches on
+    price and time but fails identity is recorded on the note as dup_rejected with the reason,
+    never dropped in silence - a bad link and no link need opposite fixes and must not arrive as
+    the same (missing) message."""
     rows = [(k, b) for k, b in bets.items() if not k.startswith("mn|") and b.get("book") in EXCH_BOOKS]
     for k, b in bets.items():
         if not k.startswith("mn|") or b.get("book") not in EXCH_BOOKS:
@@ -1098,7 +1133,12 @@ def mark_manual_dups(bets):
             t2 = tparse(x.get("placed")) or tparse(x.get("first_seen"))
             if t1 and t2 and abs((t1 - t2).total_seconds()) > 90 * 60:
                 continue
+            ok, why = same_event(b, x)
+            if not ok:
+                b.setdefault("dup_rejected", []).append(f"{k2[:20]}: {why}")
+                continue
             b["dup_of"] = k2
+            b["dup_why"] = why
             if not x.get("bet"):
                 lab = re.sub(r"\s*\(?[-+]\d{3,}\)?\s*$", "", b.get("bet") or "").strip()
                 for _, y in rows:

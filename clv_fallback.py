@@ -49,7 +49,9 @@ import tracker_build as tb
 ET = tb.ET
 HC = os.environ.get("HCACHE_DIR", "") or "hcache"
 MKFILE = "clv/markets.json"
-ALT_FX = ["oddspapi/fixtures.json"]
+# Nov 14: one list, owned by fixture_match, so a new cache file cannot be seen by one
+# reader and silently missed by another.
+ALT_FX = fxm.ALT_PATHS
 ONLY = (os.environ.get("ONLY") or "").strip().lower()
 L = []
 

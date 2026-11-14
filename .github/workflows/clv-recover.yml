@@ -1,0 +1,126 @@
+name: clv-recover
+
+# Peter, Nov 14 2026: "Recover historical liquidity Pinnacle CLV using a maximum budget of 39
+# billable credits. Deduplicate by unique game and market, reuse caches, and prioritize live
+# strategies, top five potential candidates, then the remainder. Use staged batches and stop on
+# unexpected costs or poor recovery."
+#
+# COST CONTROL, in this order:
+#   * budget (default 39) is a HARD ceiling checked in clv_recover before each billable call, and
+#     every such call also passes through credit_gate, which refuses past the account's own room.
+#   * apply=0 (the default) makes no /fixtures call at all, so a dry run bills nothing by
+#     construction, not by care. The free /historical-odds stage still runs - it costs nothing and
+#     is the zero-cost half of the recovery.
+#   * tiers lets a run buy only the registered candidates (2) and leave the unregistered
+#     remainder (3) for a later decision.
+#
+# WHAT IT WRITES. hcache (the shared private Actions cache, never committed) and
+# oddspapi/fixtures_recovered.json, which is fixture reference data only - ids, team names, start
+# times. Nothing financial, no account data, no keys; the published scorecard, liquidity/alerts.json
+# and clv/state.enc are never written. A guard at the end fails the run if any other tracked file
+# moved.
+
+on:
+  workflow_dispatch:
+    inputs:
+      apply:
+        description: "1 to make the billable /fixtures calls; 0 = dry run (free history only)"
+        required: false
+        type: string
+        default: "0"
+      budget:
+        description: "Hard ceiling on billable /fixtures calls for this run"
+        required: false
+        type: string
+        default: "39"
+      tiers:
+        description: "Which tiers to buy fixtures for: 1 live lanes, 2 registered candidates, 3 remainder"
+        required: false
+        type: string
+        default: "1,2"
+      max_free:
+        description: "Cap on free /historical-odds calls this run"
+        required: false
+        type: string
+        default: "400"
+
+permissions:
+  contents: write     # only to commit oddspapi/fixtures_recovered.json
+
+concurrency:
+  group: clv-recover
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Restore shared OddsPapi history cache
+        id: restore
+        uses: actions/cache/restore@v4
+        with:
+          path: hcache
+          key: hcache-${{ github.run_id }}
+          restore-keys: hcache-
+      - name: Recover
+        env:
+          ODDSPAPI_KEY: ${{ secrets.ODDSPAPI_KEY }}
+          ODDSPAPI_FREE_KEY: ${{ secrets.ODDSPAPI_FREE_KEY }}
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+          RECOVER_APPLY: ${{ inputs.apply }}
+          RECOVER_BUDGET: ${{ inputs.budget || '39' }}
+          RECOVER_TIERS: ${{ inputs.tiers || '1,2' }}
+          RECOVER_MAX_FREE: ${{ inputs.max_free || '400' }}
+        run: python -u clv_recover.py
+      - name: Recompute the reconciled comparison on the recovered data
+        env:
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+          # No OddsPapi key here on purpose: the comparison must run entirely from what the
+          # recovery already cached. With no key it cannot bill even if a path tried to.
+        run: python -u clv_liqbot_compare.py
+      - name: Save the history cache even if the run was stopped
+        if: always() && steps.restore.outputs.cache-matched-key != ''
+        uses: actions/cache/save@v4
+        with:
+          path: hcache
+          key: hcache-${{ github.run_id }}
+      - name: Commit the recovered fixture cache (reference data only)
+        if: inputs.apply == '1'
+        run: |
+          if [ ! -s oddspapi/fixtures_recovered.json ]; then echo "nothing recovered"; exit 0; fi
+          git config user.name "clv-recover"
+          git config user.email "actions@users.noreply.github.com"
+          for i in 1 2 3 4 5; do
+            git fetch -q origin main
+            cp oddspapi/fixtures_recovered.json "$RUNNER_TEMP/fx.json"
+            git reset -q --hard origin/main
+            mkdir -p oddspapi && cp "$RUNNER_TEMP/fx.json" oddspapi/fixtures_recovered.json
+            git add -A oddspapi/fixtures_recovered.json
+            git diff --cached --quiet && break
+            git commit -q -m "clv-recover: fixture reference cache (run ${{ github.run_id }})"
+            git push -q origin HEAD:main && break
+            sleep 5
+          done
+      - name: Guard - no other tracked file was modified
+        if: always()
+        run: |
+          git status --porcelain -uno -- . ':!oddspapi/fixtures_recovered.json' > "$RUNNER_TEMP/d" || true
+          if [ -s "$RUNNER_TEMP/d" ]; then
+            echo "FAIL: the recovery modified tracked files it must not touch:"
+            cat "$RUNNER_TEMP/d"
+            exit 1
+          fi
+          echo "clean: clv/, tracker/, liquidity/ and the published scorecard untouched"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: clv-recover
+          path: audit/
+          if-no-files-found: ignore
+          retention-days: 30
