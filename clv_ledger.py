@@ -1248,8 +1248,12 @@ def main():
                          f"{s2['fills']} fills, mean CLV {100 * s2['mean']:+.2f}%"
                          + (f" +/-{100 * s2['se']:.2f} (1 s.e.)" if s2.get("se") is not None else "")
                          + f", beat close {s2['pos']}/{s2['n']}")
-            except Exception as ex:
-                L.append(f"  SELECTION-LEVEL unavailable ({type(ex).__name__}) - per-fill figures above stand")
+            # NOT `as ex`: this module imports executor as ex at line 29, and `except ... as ex`
+            # makes ex function-local for the WHOLE of main() and then DELETES it when the block
+            # ends, so the later ex.send() died with UnboundLocalError. It cost a run and two
+            # billable fixture calls that were then discarded unwritten.
+            except Exception as _sel_ex:
+                L.append(f"  SELECTION-LEVEL unavailable ({type(_sel_ex).__name__}) - per-fill figures above stand")
         L.append(f"  bot: {lane_stats(bot)} | rolling 50: {lane_stats(bot[-50:])}")
         L.append(f"  Peter/other: {lane_stats(man)} | rolling 50: {lane_stats(man[-50:])}")
         if stale or stale_unproven:

@@ -136,6 +136,26 @@ def main():
     st_ = cs.stats(rows)
     check("roi_pct computed when profit exists", abs(st_["roi_pct"] - 25.0) < 1e-9, st_["roi_pct"])
 
+    print("14. no except-handler name shadows a module-level import alias")
+    # `except Exception as ex` makes ex function-local for the WHOLE function and DELETES it when
+    # the block ends. In a module that does `import executor as ex` at the top, a later ex.send()
+    # then dies with UnboundLocalError - which is exactly what killed a production ledger run and
+    # discarded two billable fixture calls. This scans for the collision instead of trusting care.
+    import ast as _ast
+    import pathlib as _pl
+    for name in ("clv_ledger.py", "clv_selection.py", "clv_selection_report.py", "registry.py",
+                 "clv_day_audit.py", "clv_release_verified.py"):
+        src = _pl.Path(name).read_text()
+        tree = _ast.parse(src)
+        aliases = set()
+        for node in tree.body:   # module level only
+            if isinstance(node, (_ast.Import, _ast.ImportFrom)):
+                for a in node.names:
+                    aliases.add(a.asname or a.name.split(".")[0])
+        clash = sorted({h.name for h in _ast.walk(tree)
+                        if isinstance(h, _ast.ExceptHandler) and h.name and h.name in aliases})
+        check(f"{name}: no handler shadows an import", not clash, f"shadows {clash}")
+
     print()
     if BAD:
         print(f"FAILED {len(BAD)}: {BAD}")
