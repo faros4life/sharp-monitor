@@ -75,7 +75,7 @@ _PIN = {}          # fid -> cached history or None, opened at most once per run
 # the cached_pin envelope fix reported "reused 382 verdict(s), recomputed 0" and silently
 # re-served every verdict the buggy reader had produced. A checkpoint that cannot tell that the
 # classifier moved is worse than no checkpoint, because it looks like a confirmation.
-CLASSIFIER_VERSION = 2
+CLASSIFIER_VERSION = 3
 CK = {"v": 4, "rows": {}}
 CK_HIT = [0, 0]    # [reused, recomputed]
 
@@ -267,6 +267,18 @@ def classify(k, r, st, mkmap):
         v, d = "ALREADY CERTIFIED", f"how={r.get('how')} scored={str(r.get('scored'))[:10]}"
         CK["rows"][k] = {"fp": fp, "verdict": v, "detail": d, "pclv": r.get("clv")}
         return state, v, d, r.get("clv")
+    # Some rows are retired by a DECISION, not by a missing input: an in-play bet has no
+    # pre-game close to beat, an unparsable bet text has no side to price, a puck line at a
+    # different number is not comparable. A close being available in the cache does not make
+    # any of those recoverable, and calling them recoverable would manufacture coverage - which
+    # is the one thing this audit must not do. They are reported as correctly retired.
+    POLICY = ("placed after start", "not parsed", "not comparable", "far from")
+    why = str(r.get("why") or "").lower()
+    if r.get("done") and any(p in why for p in POLICY):
+        v = "CORRECTLY RETIRED (policy, not a gap)"
+        d = str(r.get("why"))[:70]
+        CK["rows"][k] = {"fp": fp, "verdict": v, "detail": d, "pclv": None}
+        return state, v, d, None
     # A row that ALREADY has a CLV and is held out does not need re-deriving - it needs its
     # identity established or its release respected. Those are different remedies, so they get
     # different verdicts and are never added together in the coverage arithmetic below.
