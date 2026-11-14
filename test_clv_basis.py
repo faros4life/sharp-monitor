@@ -115,6 +115,24 @@ def main():
     check("an ordinary spread row passes the politics guard",
           "politics" not in str(why2_), why2_)
 
+    print("10. a 0-1 exchange COST is priced as a cost, never as American odds")
+    # The liquidity export states its own unit: "price = cost to buy the side when logged (0-1)".
+    # Passing that through an American converter is what filed 616 observations as
+    # UNVERIFIABLE_ENTRY on a unit error rather than on missing data.
+    d, why = cb.after_fee_from_cost(0.51, "novig")
+    check("0.51 becomes ~1/0.51 after fees", d is not None and 1.90 < d < 1.97, (d, why))
+    check("no reason is returned on success", why is None, why)
+    d2, w2 = cb.after_fee_from_cost(0.25, "novig")
+    check("0.25 prices higher than 0.51", d2 is not None and d2 > d, (d2, d))
+    for bad in (-110, 1.5, 0, 1, None, "x"):
+        dx, wx = cb.after_fee_from_cost(bad, "novig")
+        check(f"{bad!r} is refused as not a 0-1 cost", dx is None and "0-1 cost" in str(wx), (bad, wx))
+    dn, wn = cb.after_fee_from_cost(0.51, "polymarket")
+    check("Polymarket GLOBAL is refused as not tradeable", dn is None and "not tradeable" in wn, wn)
+    check("and that is distinguishable from a bad unit", "0-1 cost" not in wn, wn)
+    dus, wus = cb.after_fee_from_cost(0.51, "polymarket_us")
+    check("Polymarket US still prices", dus is not None, (dus, wus))
+
     print()
     if BAD:
         print(f"FAILED {len(BAD)}: {BAD}")

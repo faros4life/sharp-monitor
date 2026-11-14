@@ -94,6 +94,31 @@ def after_fee_from_quote(american, book, am_to_dec, league=None, maker=False):
         return None
 
 
+def after_fee_from_cost(cost, book, league=None, maker=False):
+    """After-fee decimal for an exchange price quoted as a 0-1 COST to buy the side.
+
+    The liquidity export states its own unit: "price = cost to buy the side when logged (0-1)".
+    Passing that through an American-odds converter produces nonsense, which is exactly what the
+    first version of the observation audit did - 616 rows were filed UNVERIFIABLE_ENTRY on a unit
+    error of mine, not on missing data. A cost of 0.51 is decimal 1/0.51.
+
+    Returns (decimal, None) or (None, why). A venue clv_std refuses - Polymarket GLOBAL is
+    NotTradeable from the US - returns None with that reason, which is a real limitation and not
+    the same thing as a bad unit.
+    """
+    c = tb.num(cost)
+    if c is None or not (0 < c < 1):
+        return None, f"price {cost} is not a 0-1 cost"
+    try:
+        return cs.net_dec(cs.canon(book), 1.0 / c, maker=maker, league=league), None
+    except cs.NotTradeable:
+        return None, f"{book} is not tradeable from the US (clv_std refuses to price it)"
+    except cs.UnknownVenue:
+        return None, f"{book} is not in the venue registry"
+    except Exception as ex:
+        return None, f"{book} could not be priced ({type(ex).__name__})"
+
+
 def resolve_fixture(snap, state_fixtures, alt_fixtures, find_fixture, ordered_match, tp):
     """(fid, where, note). The SAME two-step resolution both systems now use.
 

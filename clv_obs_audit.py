@@ -64,6 +64,7 @@ _PIN = {}
 CATEGORY = {
     "VERIFIED_PINNACLE": "1 verified Pinnacle CLV at an executable after-fee entry",
     "UNVERIFIABLE_ENTRY": "5 unverifiable entry price",
+    "VENUE_NOT_PRICEABLE": "5 unverifiable entry price (venue not tradeable from the US)",
     "FIXTURE_OR_IDENTITY": "4 fixture or identity failure",
     "MISSING_HISTORY": "3 missing Pinnacle history",
     "NO_SAME_LINE_QUOTE": "3 missing Pinnacle history (our line was never hung two-sided)",
@@ -132,13 +133,22 @@ def classify(x, src, fxs, alt, allfx, mkmap):
     lg = x.get("sport") or x.get("league")
     bet = x.get("bet")
     book = x.get("book_key") or x.get("book")
-    am = tb.num(x.get("price_after_fee"))
-    if am is None:
-        am = tb.num(x.get("price"))
-    # 1 entry price first: without one, nothing downstream can produce a CLV at all
-    entry = cb.after_fee_from_quote(am, book, cl.am_to_dec, league=lg)
+    # 1 entry price first: without one, nothing downstream can produce a CLV at all. The two
+    # populations quote in DIFFERENT UNITS and conflating them was my own error: the liquidity
+    # export says "price = cost to buy the side when logged (0-1)", while the sharp feed carries
+    # American odds. 616 rows were filed UNVERIFIABLE_ENTRY on that unit mistake.
+    if src == "liquidity":
+        entry, ewhy = cb.after_fee_from_cost(x.get("price"), book, league=lg)
+    else:
+        am = tb.num(x.get("price_after_fee"))
+        if am is None:
+            am = tb.num(x.get("price"))
+        entry = cb.after_fee_from_quote(am, book, cl.am_to_dec, league=lg)
+        ewhy = f"price={am} book={book}" if entry is None else None
     if entry is None:
-        return "UNVERIFIABLE_ENTRY", (f"no executable after-fee entry: price={am} book={book}")
+        if ewhy and ("not tradeable" in ewhy or "not in the venue registry" in ewhy):
+            return "VENUE_NOT_PRICEABLE", ewhy
+        return "UNVERIFIABLE_ENTRY", f"no executable after-fee entry: {ewhy}"
     snap = {"league": lg, "game": x.get("game"), "bet": bet,
             "game_start": x.get("start_utc") or x.get("game_start") or x.get("commence_time")}
     # 2 identity: the bet must parse and the row must name two sides
