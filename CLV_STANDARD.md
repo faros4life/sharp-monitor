@@ -125,3 +125,56 @@ evidence of pricing value, not proof of realised profitability.**
 Every CLV number carries its scope and its exclusion coverage.
 
 No additional changes unless a material calculation error is discovered.
+
+---
+
+## 7. Coverage denominator — definition decision, 14 Nov 2026 (Peter, explicit)
+
+**The operational CLV coverage denominator is the set of ELIGIBLE US-EXECUTABLE observations.**
+An observation whose venue cannot be bet from the US is not a coverage gap, because no price on it
+was ever obtainable; counting it as missing evidence understates coverage with rows that could not
+have been played at any number.
+
+Both figures are reported, always, in this order and both labelled:
+
+1. **coverage, priceable rows** — the operational figure, against eligible US-executable rows.
+2. **coverage, whole population** — the original denominator, kept so the historical record stays readable
+   and so the size of the exclusion is always visible.
+
+**What this decision does NOT do.** It does not restate, revise or replace any verdict that was
+registered before today. Every frozen figure in `SCORECARD.md` and `REGISTRY.md` stands exactly as
+ratified, on the denominator in force when it was ratified, and is labelled frozen. The new
+denominator applies from this record forward.
+
+**Why it needed deciding rather than inferring.** On registry 9 the two denominators give 100% and
+73%, and the registered representativeness test turns on which one it means: CLEAR FAIL on the
+executable basis under the first, CONTINUE TESTING under the second. The CLV sign and interval are
+identical either way — only the label moves. Reading the word "representative" as whichever
+produced a verdict would have been inferring intent from a word, so it was put to Peter and he
+decided it.
+
+### 7a. Registry 9 / LIQ-BOT under this decision
+
+| | value | basis |
+| --- | --- | --- |
+| verified Pinnacle CLV | **−3.01%**, 95% CI [−3.99, −2.03]% | no-vig close vs our after-fee entry |
+| chronological halves | H1 **−3.36%**, H2 **−2.66%** — both NEGATIVE | same |
+| beat close | 32/127 (25%) | same |
+| executable units | **+7.94u**, +6.25% ROI, 1u flat | alert price AFTER fees |
+| coverage | 127/127 priceable (100%); 127/174 whole population (73%) | 47 Polymarket-global rows excluded |
+| **CLV qualification** | **FAILED** | negative CLV CI excluding zero; neither half positive |
+
+**Excluded, by decision 2 of 14 Nov:** the 47 Polymarket-global observations, from the EXECUTABLE
+evaluation only. They are not deleted, not re-priced and not counted as zero; they remain in the
+raw record and in the whole-population denominator above.
+
+**HISTORICAL, NON-EXECUTABLE — unchanged:** registry 9's published **+23.81u at the recorded ALERT
+price, n=151, ratified 11 Nov 2026**. That basis is before fees and was never obtainable. It is
+kept as the historical record and must never be quoted as an executable result.
+
+Fees take the alert-price +22.31u to +7.94u on today's population. They do NOT flip the sign — the
+published entry's "3.42% fee drag is the whole sign difference" holds for the CLV, not the units.
+
+**No promotion, demotion, stake change or switch follows from any of this.** POTENTIAL PASS remains
+structurally unreachable for this lane: the registered rule requires a realized-unit CI from actual
+fills, and the lane is shadow-logged with none.

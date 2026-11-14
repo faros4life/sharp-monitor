@@ -311,19 +311,19 @@ def verdict(a1, a2, verified, rows, unprice=0):
     # The verdict turns on which denominator "representative" uses, and that is a definition
     # question about the registered rule - not something to settle by picking the reading that
     # produces a verdict. Both are stated; neither is applied as if it were decided.
-    rep_all, rep_p = cov >= 0.8, cov_p >= 0.8
+    # DECIDED 14 Nov 2026 (Peter, explicit; recorded in CLV_STANDARD.md section 7): the
+    # operational denominator is the ELIGIBLE US-EXECUTABLE rows. A venue that cannot be bet from
+    # the US is not a coverage gap - no price on it was ever obtainable. Both figures stay on
+    # every report, and no verdict registered before that date is restated: the frozen figures
+    # stand on the denominator in force when they were ratified.
+    rep_p = cov_p >= 0.8
     neg = bool(c and c[1] < 0)
-    if neg and rep_all:
-        head, tail = "**CLEAR FAIL on the executable basis**", ""
-    elif neg and rep_p:
-        head = "**CLEAR FAIL on the executable basis IF coverage is judged on the priceable rows**"
-        tail = (f" On the whole population, coverage is {cov * 100:.0f}% and the registered rule's "
-                f"representativeness test is unmet, which leaves CONTINUE TESTING. The {unprice} "
-                f"uncovered rows are all on a venue that is not bettable from the US, so they "
-                f"could never have been executed at any price - whether they belong in the "
-                f"denominator is a DEFINITION question about this lane, and this report does not "
-                f"settle it. The CLV sign and interval are the same either way; only the label "
-                f"moves.")
+    if neg and rep_p:
+        head = "**CLEAR FAIL on the executable basis**"
+        tail = (f" Coverage is judged on the {len(rows) - unprice} eligible US-executable rows per "
+                f"the 14 Nov definition decision; on the original whole-population denominator it "
+                f"is {cov * 100:.0f}%, which is shown above and is why any verdict registered "
+                f"before 14 Nov stands as frozen rather than restated here.")
     else:
         head = "**CONTINUE TESTING**"
         tail = (" - a statement about ignorance, not profit: it authorises more observation and "

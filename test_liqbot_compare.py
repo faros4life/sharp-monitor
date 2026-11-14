@@ -116,6 +116,23 @@ try:
 finally:
     oa_.classify = _orig
 
+    print("10. the 14 Nov denominator decision is applied, and the frozen record is not restated")
+    # Peter, 14 Nov: operational coverage is the eligible US-executable rows. A negative,
+    # well-covered CLV on that denominator is CLEAR FAIL even when whole-population coverage is
+    # thin - and the reply must still show the original denominator and say the frozen verdicts
+    # stand.
+    v = [{"row": {"result": "L", "price": 0.5, "alerted_utc": f"2026-11-{i + 1:02d}T00:00:00Z"},
+          "clv": -0.03 - (i % 3) * 0.001} for i in range(40)]
+    rows_ = [x["row"] for x in v] + [{"result": "W"}] * 30     # 30 unpriceable rows
+    out = lb.verdict(v[:20], v[20:], v, rows_, unprice=30)
+    check("CLEAR FAIL on the executable denominator", "CLEAR FAIL on the executable basis" in out,
+          out[:160])
+    check("the original denominator is still reported", "whole-population denominator" in out)
+    check("and frozen verdicts are not restated", "stands as frozen" in out)
+    out2 = lb.verdict(v[:20], v[20:], v, rows_ * 4, unprice=30)   # thin even on priceable rows
+    check("thin priceable coverage still only CONTINUE TESTING",
+          "CONTINUE TESTING" in out2 and "CLEAR FAIL" not in out2, out2[:140])
+
 print()
 if fails:
     print(f"FAILED {len(fails)}: " + "; ".join(fails))
