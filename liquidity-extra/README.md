@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 14, 7:50 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 22.
+Updated Sat Nov 14, 8:00 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 22.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -17,7 +17,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 14 7:40AM | NCAAB | Brown vs Siena | moneyline: Siena | kalshi | $62k | -567 |  |  | +0.0c |  | pending |
 | Nov 14 7:30AM | NCAAB | Colorado vs Providence | moneyline: Providence | kalshi | $30k | -567 |  |  | +0.0c |  | pending |
 | Nov 14 5:40AM | NCAAB | NJIT vs Fairfield | moneyline: Fairfield | kalshi | $26k | -525 |  |  | +1.0c | yes | pending |
-| Nov 14 3:50AM | NCAAB | Wofford vs Queens University | moneyline: Queens University | kalshi | $26k | -300 |  |  | -1.0c | yes | pending |
+| Nov 14 3:50AM | NCAAB | Wofford vs Queens University | moneyline: Queens University | kalshi | $26k | -300 |  |  | +0.0c | yes | pending |
 | Nov 14 1:50AM | NCAAB | Northern Colorado vs South Dakota St. | moneyline: South Dakota St. | kalshi | $33k | -163 |  |  | +0.0c | yes | pending |
 | Nov 14 1:50AM | NCAAB | USC Upstate vs Campbell | moneyline: Campbell | kalshi | $33k | -300 |  |  | +4.0c |  | pending |
 | Nov 14 1:50AM | NCAAB | Rice vs Stephen F. Austin | moneyline: Stephen F. Austin | kalshi | $38k | -488 |  |  | +0.0c |  | pending |
@@ -26,7 +26,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 14 1:50AM | NCAAB | Jackson St. vs Winthrop | moneyline: Winthrop | kalshi | $31k | -317 |  |  | +0.0c |  | pending |
 | Nov 13 10:20PM | NCAAB | LSU vs Gonzaga | moneyline: Gonzaga | kalshi | $32k | -213 |  |  | +0.0c |  | pending |
 | Nov 13 10:10PM | NCAAB | Wyoming vs Denver | moneyline: Wyoming | kalshi | $26k | -300 |  |  | +0.0c |  | pending |
-| Nov 13 10:10PM | NCAAB | Toledo vs Detroit Mercy | moneyline: Toledo | kalshi | $33k | -488 |  |  | +0.0c |  | pending |
+| Nov 13 10:10PM | NCAAB | Toledo vs Detroit Mercy | moneyline: Toledo | kalshi | $33k | -488 |  |  | +2.0c |  | pending |
 | Nov 13 10:10PM | NCAAB | Loyola Chicago vs Colorado St. | moneyline: Colorado St. | kalshi | $41k | -426 |  |  | -1.0c |  | pending |
 | Nov 13 8:30PM | NCAAB | Stanford vs UNLV | moneyline: Stanford | kalshi | $29k | -108 | ✅ novig,prophetx |  | +0.0c | yes | L |
 | Nov 13 8:20PM | NCAAB | Arizona vs Auburn | moneyline: Arizona | kalshi | $33k | -122 | ✅ novig | ✅ | +0.0c |  | W |
