@@ -70,7 +70,7 @@ v = [{"row": {"result": "L", "price": 0.5, "alerted_utc": f"2026-11-{i + 1:02d}T
 out = lb.verdict(v[:5], v[5:], v, [x["row"] for x in v] * 10)   # 10% coverage
 check("10% coverage -> CONTINUE TESTING, not CLEAR FAIL",
       "CONTINUE TESTING" in out and "CLEAR FAIL" not in out, out[:140])
-check("and the unrepresentative coverage is named", "not representative" in out)
+check("both coverage denominators are named", "of all rows" in out and "PRICEABLE" in out, out[-200:])
 
 print("8. no verified rows at all -> INSUFFICIENT EVIDENCE, no direction claimed")
 out = lb.verdict([], [], [], [{"result": "W"}])
@@ -109,8 +109,10 @@ try:
     check("units are labelled after fees in the halves table", "units (after fees)" in body)
     check("the entry-price-did-not-move note is present",
           "does NOT differ between the last two columns" in body)
-    check("a 2u+ miss against the frozen figure is marked UNRECONCILED",
-          "UNRECONCILED" in body, body[-400:])
+    check("a population that does not match the frozen one is flagged first",
+          "Population difference" in body, body[-500:])
+    check("and an unexplained drop is not explained away",
+          "NOT explained here" in body or "logged and graded since" in body, body[-500:])
 finally:
     oa_.classify = _orig
 

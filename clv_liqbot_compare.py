@@ -145,8 +145,13 @@ def block(title, rows, pub, fxs, alt, allfx, mkmap, defn):
     say(f"| beat close | - | - | - | "
         + (f"{sum(1 for c in clvs if c > 0)}/{len(clvs)} "
            f"({sum(1 for c in clvs if c > 0) / len(clvs) * 100:.0f}%) |" if clvs else "- |"))
-    say(f"| coverage | - | - | - | {len(verified)}/{len(rows)} "
-        f"({len(verified) / max(1, len(rows)) * 100:.1f}%) of the population |")
+    unprice = by_class.get("VENUE_NOT_PRICEABLE", 0)
+    priceable = max(1, len(rows) - unprice)
+    say(f"| coverage, whole population | - | - | - | {len(verified)}/{len(rows)} "
+        f"({len(verified) / max(1, len(rows)) * 100:.1f}%) |")
+    say(f"| coverage, PRICEABLE rows only | - | - | - | {len(verified)}/{priceable} "
+        f"({len(verified) / priceable * 100:.1f}%) - excludes {unprice} rows on a venue not "
+        f"bettable from the US |")
     say("")
     say(f"The entry price does NOT differ between the last two columns: {af_n} rows are priced at "
         f"the alert cost through the one fee model, and the CLV column re-benchmarks that same "
@@ -155,21 +160,34 @@ def block(title, rows, pub, fxs, alt, allfx, mkmap, defn):
     say("")
     # Reconciliation of the middle column against the frozen figure. A near-miss is reported as a
     # near-miss: CLAUDE.md, do not explain a surprising number with the world before the reader.
+    like_for_like = True
     if pub["n"] != same_n:
         drift = same_n - pub["n"]
-        say(f"**Population drift, stated as a fact and not explained away.** The frozen figure is "
-            f"n={pub['n']}; the same definition today selects n={same_n} ({drift:+d}). "
-            + ("Rows have been logged and graded since the 11 Nov freeze."
-               if drift > 0 else
-               "The count went DOWN, which logging alone cannot do - rows that were graded on "
-               "11 Nov are no longer selected, so either a grade was revised or the stored "
-               "selection fields moved. That is NOT explained here, and the middle column is "
-               "marked UNRECONCILED rather than presented as the published figure recomputed.")
-            + " The separate columns exist so a basis change is never read as a population change "
-              "or the reverse.")
+        note = (f"**Population difference, stated before anything is compared.** The frozen figure "
+                f"is n={pub['n']}; the same definition today selects n={same_n} ({drift:+d}). ")
+        if drift > 0:
+            note += "Rows have been logged and graded since the 11 Nov freeze."
+        elif pub["fees"] and abs(drift) >= unprice > 0:
+            # Found by reading my own output: the after-fee column can only price rows the fee
+            # model handles, so it drops every Polymarket-global row. That is a documented venue
+            # exclusion, not a lost row, and leaving it unexplained would have handed over a
+            # figure that looked like it contradicted the published one.
+            note += (f"The after-fee basis can only price rows the fee model handles, so it "
+                     f"excludes the {unprice} rows on a venue not bettable from the US, which the "
+                     f"published row counted. {abs(drift)} of the difference is that exclusion - "
+                     f"so the two columns are NOT like for like and their units must not be "
+                     f"subtracted from each other.")
+            like_for_like = False
+        else:
+            note += ("The count went DOWN, which logging alone cannot do - rows graded on 11 Nov "
+                     "are no longer selected, so either a grade was revised or the stored "
+                     "selection fields moved. That is NOT explained here.")
+            like_for_like = False
+        say(note + " The separate columns exist so a basis change is never read as a population "
+                   "change or the reverse.")
         say("")
     gap = abs(same_u - pub["units"])
-    if gap > 2.0:
+    if gap > 2.0 and like_for_like:
         say(f"**UNRECONCILED: {gap:.2f}u.** The middle column should reproduce the frozen figure on "
             f"the same selection and the same basis, and it does not. Until that gap is explained "
             f"the frozen figure stands as published and the new CLV column is the only number here "
@@ -201,7 +219,7 @@ def block(title, rows, pub, fxs, alt, allfx, mkmap, defn):
         say(f"| {nm} | {len(g)} | {units_exec(g)[0]:+.2f}u | {stx.mean(cs_) * 100:+.2f}% | "
             f"{fmt_ci(ci(cs_))} | {sum(1 for c in cs_ if c > 0)}/{len(cs_)} |")
     say("")
-    say(verdict(a1, a2, verified, rows))
+    say(verdict(a1, a2, verified, rows, unprice))
     say("")
     return {"n_pop": len(rows), "n_verified": len(verified),
             "prefee_units": pre_u, "prefee_n": pre_n,
@@ -258,7 +276,7 @@ def units_alert_af(rows):
     return round(u, 2), n
 
 
-def verdict(a1, a2, verified, rows):
+def verdict(a1, a2, verified, rows, unprice=0):
     """SCORECARD.md's registered rules, applied and nothing more.
 
     POTENTIAL PASS needs ALL of: realized-unit CI excluding zero on the positive side WITH ACTUAL
@@ -277,6 +295,7 @@ def verdict(a1, a2, verified, rows):
     clvs = [v["clv"] for v in verified]
     c = ci(clvs)
     cov = len(verified) / max(1, len(rows))
+    cov_p = len(verified) / max(1, len(rows) - unprice)
     bits = []
     if c and c[1] < 0:
         bits.append(f"the certified CLV CI {fmt_ci(c)} excludes zero on the NEGATIVE side")
@@ -288,12 +307,27 @@ def verdict(a1, a2, verified, rows):
     h2ok = bool(a2) and stx.mean([v["clv"] for v in a2]) > 0
     bits.append(f"halves {'both positive' if (h1ok and h2ok) else 'NOT both positive'}")
     bits.append("no fills anywhere in this population (shadow logging only)")
-    bits.append(f"coverage {cov * 100:.0f}%" + (" - not representative" if cov < 0.8 else ""))
-    head = ("**CLEAR FAIL on the executable basis**" if (c and c[1] < 0 and cov >= 0.8)
-            else "**CONTINUE TESTING**")
-    tail = ("" if (c and c[1] < 0 and cov >= 0.8) else
-            " - a statement about ignorance, not profit: it authorises more observation and "
-            "nothing else.")
+    bits.append(f"coverage {cov * 100:.0f}% of all rows, {cov_p * 100:.0f}% of the PRICEABLE rows")
+    # The verdict turns on which denominator "representative" uses, and that is a definition
+    # question about the registered rule - not something to settle by picking the reading that
+    # produces a verdict. Both are stated; neither is applied as if it were decided.
+    rep_all, rep_p = cov >= 0.8, cov_p >= 0.8
+    neg = bool(c and c[1] < 0)
+    if neg and rep_all:
+        head, tail = "**CLEAR FAIL on the executable basis**", ""
+    elif neg and rep_p:
+        head = "**CLEAR FAIL on the executable basis IF coverage is judged on the priceable rows**"
+        tail = (f" On the whole population, coverage is {cov * 100:.0f}% and the registered rule's "
+                f"representativeness test is unmet, which leaves CONTINUE TESTING. The {unprice} "
+                f"uncovered rows are all on a venue that is not bettable from the US, so they "
+                f"could never have been executed at any price - whether they belong in the "
+                f"denominator is a DEFINITION question about this lane, and this report does not "
+                f"settle it. The CLV sign and interval are the same either way; only the label "
+                f"moves.")
+    else:
+        head = "**CONTINUE TESTING**"
+        tail = (" - a statement about ignorance, not profit: it authorises more observation and "
+                "nothing else.")
     return (f"{head} under the registered rules: " + "; ".join(bits) + "."
             + tail
             + " POTENTIAL PASS is unreachable here regardless of the CLV sign, because it "
