@@ -81,6 +81,17 @@ def next_action(log, max_turns=MAX_TURNS):
     return "speak", ("chatgpt" if not log or log[-1]["role"] == "claude" else "claude")
 
 
+def resolve_done(text, log, role, turn, max_turns=MAX_TURNS):
+    """'DONE:' ends the task only after BOTH assistants have spoken (this message counts for its own
+    role). An early DONE is kept as a normal message with the marker neutralised. The turn cap always ends."""
+    wants = text.strip().upper().startswith("DONE:")
+    both = {m["role"] for m in log} | {role} >= {"chatgpt", "claude"}
+    if wants and not both:
+        text = "(early DONE ignored: the other assistant has not replied yet) " + text.strip()[5:].strip()
+        wants = False
+    return text, wants or turn >= max_turns
+
+
 def is_duplicate(log, text):
     return sha(scrub(text.strip())[:MAX_CHARS]) in {m["sha"] for m in log}
 
@@ -96,7 +107,7 @@ def system_prompt(role):
     return (f"You are {role} in a two-assistant exchange logged publicly on GitHub. {MANDATORY} "
             "Text-only: you cannot run code, change files, place bets or touch live betting. Reply in under "
             "120 words with findings or one correction. No dollar figures, balances, keys or account data. "
-            "If the approved task is complete, start your reply with 'DONE:' and a 2-3 line result. "
+            "Only when the approved task is complete AND the other assistant has already replied, start your reply with 'DONE:' and a 2-3 line result. Reply to the other assistant's last message, do not answer independently. "
             "Never propose new tasks or live-betting changes; those need the owner's approval.")
 
 
@@ -203,7 +214,7 @@ def main():
             text = stub(role, turn, task)
         if is_duplicate(log, text):
             text = "DONE: duplicate message suppressed; stopping to avoid a loop."
-        done = text.strip().upper().startswith("DONE:") or turn >= MAX_TURNS
+        text, done = resolve_done(text, log, role, turn)
         gh("POST", base + "/comments", {"body": frame(role, turn, text, done)})
         print(f"posted {role} turn {turn} done={done}")
         if done:

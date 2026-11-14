@@ -62,6 +62,28 @@ def test():
     assert a_user == o_user and ctx in a_user
     assert b.MANDATORY in seen[0]["system"] and b.MANDATORY in seen[1]["messages"][0]["content"]
     assert seen[0]["max_tokens"] == b.MAX_TOKENS == seen[1]["max_completion_tokens"]
+    # regression: premature DONE cannot end the conversation (it did on live test #3, turn 1)
+    t, d = b.resolve_done("DONE: all good", [], "chatgpt", 1)
+    assert d is False and not t.upper().startswith("DONE:") and "early DONE ignored" in t
+    one = b.parse_log([cm("chatgpt", 1, "hello")])
+    assert b.resolve_done("DONE: x", one, "chatgpt", 2)[1] is False      # same role twice is not both
+    # correct alternation through a full normal run, driven by next_action + resolve_done
+    comments, order = [], []
+    for turn in range(1, 7):
+        log = b.parse_log(comments)
+        act, role = b.next_action(log)
+        if act == "stop":
+            break
+        text, done = b.resolve_done("DONE: early" if turn == 1 else ("DONE: finished" if turn == 4 else f"msg {turn}"),
+                                    log, role, turn)
+        comments.append(cm(role, turn, text, done)); order.append(role)
+    assert order == ["chatgpt", "claude", "chatgpt", "claude"], order          # alternates, DONE@1 ignored
+    assert b.next_action(b.parse_log(comments)) == ("stop", "already complete")  # normal termination on turn 4
+    # DONE from the second role right after the first speaks is allowed
+    assert b.resolve_done("DONE: ok", one, "claude", 2)[1] is True
+    # six-message cap still terminates without a DONE; duplicates still caught; auth unchanged
+    assert b.resolve_done("msg", [], "chatgpt", b.MAX_TURNS)[1] is True
+    assert b.MAX_TURNS == 6 and b.MAX_CHARS == 1200
     print("ai_bridge tests: all passed")
 
 
