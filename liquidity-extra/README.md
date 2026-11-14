@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 14, 6:30 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 28.
+Updated Sat Nov 14, 6:40 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 28.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -14,7 +14,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 14 6:20PM | NCAAB | Rider vs Villanova: Point Total | total: NOT Over 145.5 points | kalshi | $29k | -104 |  | ✅ | +0.0c |  | pending |
 | Nov 14 4:50PM | NCAAB | Utah Valley vs Nevada | moneyline: Nevada | kalshi | $170k | -525 | ✅ novig |  | +0.0c |  | pending |
 | Nov 14 4:50PM | NCAAB | UAB vs Jacksonville St. | moneyline: UAB | kalshi | $86k | -127 | ✅ novig |  | +0.0c |  | pending |
-| Nov 14 4:40PM | NCAAB | Penn vs Saint Joseph's | moneyline: Saint Joseph's | kalshi | $39k | -170 |  |  | +7.0c | yes | pending |
+| Nov 14 4:40PM | NCAAB | Penn vs Saint Joseph's | moneyline: Saint Joseph's | kalshi | $39k | -170 |  |  | +0.0c | yes | pending |
 | Nov 14 3:50PM | NCAAB | Southern Utah vs Wake Forest: Spread | spread: NOT Wake Forest wins by over 18.5 points | kalshi | $40k | -104 |  |  | -1.0c | yes | L |
 | Nov 14 3:40PM | NCAAB | Lipscomb vs Western Carolina | moneyline: Western Carolina | kalshi | $29k | -156 |  | ✅ | +1.0c |  | pending |
 | Nov 14 1:50PM | NCAAB | Coppin St. vs South Florida: Point Total | total: Over 149.5 points | kalshi | $50k | -100 |  |  | +8.0c | yes | L |
