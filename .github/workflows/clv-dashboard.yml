@@ -60,7 +60,12 @@ jobs:
       - name: Build the dashboard
         env:
           TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
-          PMUS_REGISTRY_TOKEN: ${{ secrets.PMUS_REGISTRY_TOKEN }}
+          # Nov 14: the first run passed PMUS_REGISTRY_TOKEN, which registry.py does not read.
+          # registry.enabled() was therefore False, rg.load() returned None, and lane
+          # attribution resolved 0 of 128 selections - every lane empty, 128 exceptions, on a
+          # page that otherwise looked finished. bets-board.yml carries a note about this exact
+          # mistake from Nov 12. Read-only use here: the dashboard renders, it never writes.
+          REGISTRY_TOKEN: ${{ secrets.REGISTRY_TOKEN }}
           GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
           EMAIL_TO: ${{ secrets.EMAIL_TO }}
@@ -88,17 +93,25 @@ jobs:
           # A readable payload on a PUBLIC repo is the one failure that cannot be walked back once
           # pushed, so it is checked on every run rather than trusted to the code.
           python - <<'PY'
-          import json, re, sys
+          import json, re
           h = open("dash/index.html").read()
           m = re.search(r"let BLOB=(\{.*?\});", h, re.S)
           assert m, "FAIL: no encrypted blob in the page"
           b = json.loads(m.group(1))
           assert set(("s", "i", "c", "n")) <= set(b), f"FAIL: blob is not AES-GCM shaped: {list(b)}"
           assert len(b["c"]) > 200, "FAIL: ciphertext implausibly short"
-          # The page must carry no plaintext data: band values, league names, lane names.
-          for bad in ("PHASE 1", "BOARD V3", "clv\":", "selections_total", "VERIFIED_PINNACLE"):
-              assert bad not in h, f"FAIL: cleartext '{bad}' found in the published page"
-          print(f"guard ok: payload encrypted ({len(b['c'])} b64 chars of ciphertext), no cleartext")
+          # Check the MARKUP, not the renderer. The first version searched the whole file and
+          # tripped on "selections_total" inside the page's own JavaScript - a field NAME the
+          # script reads from the decrypted object, not a value. Flagging that as a leak would
+          # have trained me to loosen a guard that was otherwise working, so the script and the
+          # blob are removed first and the remaining markup is what gets checked.
+          body = re.sub(r"<script.*?</script>", "", h, flags=re.S)
+          for bad in ("PHASE 1", "BOARD V3", "LIQ-BOT", "VERIFIED_PINNACLE", "Hornets", "CLV "):
+              assert bad not in body, f"FAIL: cleartext '{bad}' in the published markup"
+          # and the data really is only in the blob: the markup is a passphrase prompt, nothing more
+          assert len(body) < 4000, f"FAIL: markup is {len(body)} bytes - too large to be a prompt"
+          print(f"guard ok: {len(b['c'])} b64 chars of ciphertext, {len(body)} bytes of markup, "
+                f"no cleartext data")
           PY
           git status --porcelain -uno -- . ':!dash' > "$RUNNER_TEMP/d" || true
           if [ -s "$RUNNER_TEMP/d" ]; then

@@ -628,6 +628,11 @@ def main():
             print(f"email: {mail} - the page still built", flush=True)
     # counts only in the log, per the repo rule
     A = view["bands"]["A_status"]
+    # Warnings go to the LOG as well as the page. The first run built a page with zero lane
+    # attribution and the only record of why was inside the encrypted payload, where no one
+    # reading the run would see it.
+    for w_ in A.get("warnings") or []:
+        print(f"WARNING: {w_}", flush=True)
     print(f"dashboard: {view['selections_total']} selections | data {A['overall']} | "
           f"lanes {len(view['bands']['B_lanes']['lanes'])} | "
           f"unassigned {view['bands']['B_lanes']['unassigned_n']} | "
