@@ -177,6 +177,16 @@ print("     reading: orders==0 -> no qualifying orders recorded (history starts 
       "at the registry window); orders>0 and certified==0 -> join/CLV problem; "
       "certified>0 -> attribution works")
 
+
+print("10b. Phase 1 evidence: key prefix vs the registry's own source / live-order lane (counts only)")
+ev = collections.Counter()
+for o in orders:
+    pre = lane_of(o)
+    pre = pre if pre in ("rule", "rules", "board", "r1", "lane2") else "LEAGUE-KEY"
+    ev[(pre, str(o.get("source")), str((o.get("live_order") or {}).get("lane")))] += 1
+for (pre, src, lo), n in sorted(ev.items()):
+    print(f"     prefix={pre:<10} source={src:<8} live_order.lane={lo:<8} orders={n}")
+
 print()
 print("RECONCILED" if not bad else f"{len(bad)} MISMATCH(ES): {bad}")
 raise SystemExit(1 if bad else 0)
