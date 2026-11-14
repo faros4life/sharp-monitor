@@ -55,14 +55,14 @@
    "status": "ELIGIBLE at next review",
    "closed_utc": null,
    "plays": 128,
-   "resulted": 117,
-   "W": 65,
+   "resulted": 119,
+   "W": 67,
    "L": 52,
    "P": 0,
-   "units": 5.69,
-   "u_per_play": 0.049,
-   "true_close_value_pct": -1.1,
-   "true_close_n": 116
+   "units": 7.47,
+   "u_per_play": 0.063,
+   "true_close_value_pct": -1.03,
+   "true_close_n": 118
   },
   {
    "id": "hr_fade",
@@ -76,14 +76,14 @@
    "status": "CLOSED",
    "closed_utc": "2026-11-01T03:35:12Z",
    "plays": 128,
-   "resulted": 117,
-   "W": 65,
+   "resulted": 119,
+   "W": 67,
    "L": 52,
    "P": 0,
-   "units": -12.63,
-   "u_per_play": -0.108,
-   "true_close_value_pct": -1.1,
-   "true_close_n": 116
+   "units": -14.63,
+   "u_per_play": -0.123,
+   "true_close_value_pct": -1.03,
+   "true_close_n": 118
   },
   {
    "id": "pmg_routed",
@@ -118,14 +118,14 @@
    "status": "OPEN",
    "closed_utc": null,
    "plays": 123,
-   "resulted": 116,
-   "W": 62,
+   "resulted": 117,
+   "W": 63,
    "L": 54,
    "P": 0,
-   "units": 0.99,
-   "u_per_play": 0.009,
-   "true_close_value_pct": -0.82,
-   "true_close_n": 115
+   "units": 1.86,
+   "u_per_play": 0.016,
+   "true_close_value_pct": -0.78,
+   "true_close_n": 116
   },
   {
    "id": "combined",
@@ -201,15 +201,15 @@
    "kill_bar": ">= 30 resulted at <= -0.1u/play -> CLOSED",
    "status": "CLOSED",
    "closed_utc": "2026-11-03T06:00:21Z",
-   "plays": 92,
-   "resulted": 92,
-   "W": 49,
+   "plays": 94,
+   "resulted": 94,
+   "W": 51,
    "L": 43,
    "P": 0,
-   "units": -4.41,
-   "u_per_play": -0.048,
-   "true_close_value_pct": -1.93,
-   "true_close_n": 92
+   "units": -6.41,
+   "u_per_play": -0.068,
+   "true_close_value_pct": -1.75,
+   "true_close_n": 94
   },
   {
    "id": "tier2_core",
@@ -785,5 +785,5 @@
   "liq_evening": 0
  },
  "resulted_rule": "resulted = result W, L or P with a unit value (pushes count as 0u); liquidity artifacts excluded; pending and ungraded plays do not count",
- "updated_utc": "2026-11-14T21:00:27Z"
+ "updated_utc": "2026-11-14T21:05:21Z"
 }
