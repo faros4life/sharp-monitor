@@ -107,6 +107,58 @@ def main():
     check("ALT_SRC exists for provenance", hasattr(cl, "ALT_SRC"))
     check("recover_leagues exists", callable(getattr(cl, "recover_leagues", None)))
 
+    print("TRUNCATED AND RENAMED TEAMS (Nov 14) - five credits proved the cache was fine")
+    # Every unresolved NBA unit in the registered-candidate tier was a Los Angeles game, and five
+    # billable /fixtures calls bought 79 fixtures and resolved none. Two naming facts, not a
+    # missing fixture: Kalshi truncates the title to "Los Angeles C", and OddsPapi spells the team
+    # "LA Clippers" - so the row's {los, angeles} shares NOTHING with {la, clippers, lac} and the
+    # fixture was skipped before the ambiguity test was ever reached.
+    _FX = {"lac": {"lg": "NBA", "start": "2026-11-14T03:30:00Z",
+                   "p1": "LA Clippers LA Clippers LAC",
+                   "p2": "Oklahoma City Thunder Oklahoma City OKC"},
+           "other": {"lg": "NBA", "start": "2026-11-14T01:00:00Z",
+                     "p1": "Miami Heat Miami MIA", "p2": "Cleveland Cavaliers Cleveland CLE"}}
+    _snap = {"league": "NBA", "game_start": "2026-11-14T03:30:00Z",
+             "teams": [{"name": "Oklahoma City"}, {"name": "Los Angeles C"}],
+             "ticker": "KXNBATOTAL-26NOV13OKCLAC-223"}
+    fid, why = fxm.ordered_match(_snap, _FX, cl.tp)
+    check("the venue ticker resolves what the prose cannot", fid == "lac", f"{fid} {why}")
+    check("and the reason names the ticker", "ticker" in why, why)
+
+    print("  the ticker path refuses rather than guessing")
+    nt = dict(_snap); nt.pop("ticker")
+    fid, why = fxm.ordered_match(nt, _FX, cl.tp)
+    check("no ticker and no usable prose -> refused", fid is None, f"{fid} {why}")
+    check("and the message blames the names, not the cache",
+          "none maps onto the row" in why or "identifies neither" in why, why)
+
+    bad = dict(_snap, ticker="KXNBATOTAL-26NOV13MIACLE-223")
+    fid, why = fxm.ordered_match(bad, _FX, cl.tp)
+    check("a ticker naming a DIFFERENT game does not resolve this row", fid != "lac", f"{fid} {why}")
+
+    one = dict(_snap, ticker="KXNBATOTAL-26NOV13LAC-223")   # one code only
+    fid, why = fxm.ordered_match(one, _FX, cl.tp)
+    check("one code alone is never enough", fid is None, f"{fid} {why}")
+
+    print("  a full, consistent name still goes through the ordinary token path")
+    full = {"league": "NBA", "game_start": "2026-11-14T01:00:00Z",
+            "teams": [{"name": "Miami Heat"}, {"name": "Cleveland Cavaliers"}]}
+    fid, why = fxm.ordered_match(full, _FX, cl.tp)
+    check("token match wins and is attributed to itself", fid == "other" and "ticker" not in why,
+          f"{fid} {why}")
+
+    print("  an LA derby with no distinguishing text is refused")
+    derby = {"lg": "NBA", "start": "2026-11-14T03:30:00Z",
+             "p1": "Los Angeles Lakers Los Angeles LAL", "p2": "LA Clippers LA Clippers LAC"}
+    fid, why = fxm.ordered_match({"league": "NBA", "game_start": "2026-11-14T03:30:00Z",
+                                  "teams": [{"name": "Los Angeles"}, {"name": "Los Angeles"}]},
+                                 {"d": derby}, cl.tp)
+    check("'Los Angeles' twice, no ticker -> refused", fid is None, f"{fid} {why}")
+    fid, why = fxm.ordered_match({"league": "NBA", "game_start": "2026-11-14T03:30:00Z",
+                                  "teams": [{"name": "Los Angeles L"}, {"name": "Los Angeles C"}],
+                                  "ticker": "KXNBATOTAL-26NOV13LALLAC-230"}, {"d": derby}, cl.tp)
+    check("but the derby DOES resolve once the ticker carries both codes", fid == "d", f"{fid} {why}")
+
     print()
     if BAD:
         print(f"FAILED {len(BAD)}: {BAD}")

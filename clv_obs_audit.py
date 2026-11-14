@@ -158,6 +158,12 @@ def snap_for(x, src):
     snap = {"league": lg, "game": x.get("game"), "bet": bet, "game_start": gs}
     if isinstance(tms, list) and len(tms) >= 2:
         snap["teams"] = [{"name": t if isinstance(t, str) else (t or {}).get("name")} for t in tms[:2]]
+    # The venue's own market ticker (Kalshi: KXNBATOTAL-26NOV13OKCLAC-223) carries both teams'
+    # abbreviations. It is the only identity signal left on a row whose title was truncated to
+    # "Los Angeles C" and whose fixture OddsPapi calls "LA Clippers" - see fixture_match.name_pick.
+    tk = (x.get("ref") or {}).get("market_ticker") if isinstance(x.get("ref"), dict) else None
+    if tk:
+        snap["ticker"] = tk
     return snap
 
 
