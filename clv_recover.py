@@ -254,6 +254,15 @@ def reclassify(u, fxs, alt, allfx, mkmap):
     if isinstance(detail, dict):
         u["fid"] = detail.get("fid")
         u["clv"] = detail.get("clv")
+    elif cls == "MISSING_HISTORY":
+        # Nov 14, caught by the first dry run: Stage A made ZERO free calls while 84 units sat in
+        # MISSING_HISTORY. classify() returns a dict only for VERIFIED_PINNACLE, so u["fid"] was
+        # never set for the one class that needs it, and the stage's `if not u.get("fid")` skipped
+        # every single one. A stage that silently recovers nothing is the worst failure available,
+        # and the measurement was the instrument again. The fixture id is re-derived through the
+        # SAME matcher classify used, so there is no second definition of a match.
+        fid, _note = fxm.ordered_match(oa.snap_for(u["row"], "liquidity"), allfx, cl.tp)
+        u["fid"] = fid
     u["needs_fixture"] = cls == "FIXTURE_OR_IDENTITY" and "no unique fixture" in str(detail)
     return cls
 

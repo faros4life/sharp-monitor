@@ -1,3 +1,8 @@
 __pycache__/
 *.py[cod]
 *$py.class
+
+# Audit and recovery reports are RUN ARTIFACTS, not repo content (uploaded by the
+# workflow, read from there). One was committed by accident on Nov 14 - a FATAL-path
+# stub from a local run with no passphrase - and the next run read its own stale copy.
+audit/

@@ -48,13 +48,28 @@ ET = cl.ET
 OUT = "audit/liqbot_reconciled.md"
 # Frozen, as ratified 11 Nov. Read, never recomputed, never overwritten.
 PUBLISHED = {
-    "registry9": {"n": 151, "units": 23.81, "basis": "recorded ALERT price (NOT executable)",
+    "registry9": {"n": 151, "units": 23.81, "roi_pct": None, "fees": False,
+                  "basis": "recorded ALERT price, BEFORE fees (NOT executable)",
                   "source": "SCORECARD.md entry 9, ratified 11 Nov 2026",
                   "note": "liq_history_test measured 3.42% fee drag between this basis and the "
                           "executable one, which is the whole sign difference"},
-    "board": {"n": 2665, "units": -29.04, "roi_pct": -1.1, "basis": "board grading",
-              "source": "SCORECARD.md closing section, 11 Nov 2026"},
+    # SCORECARD.md B2, the table's own header: "Units are 1u flat AFTER FEES at the alert price."
+    # The two published figures are therefore on DIFFERENT bases, and a middle column that applies
+    # fees to one and not the other would invent a discrepancy out of my own bookkeeping.
+    "board": {"n": 2665, "units": -29.04, "roi_pct": -1.1, "fees": True,
+              "basis": "alert price, AFTER fees (SCORECARD.md B2 header)",
+              "source": "SCORECARD.md B2, 11 Nov 2026",
+              "note": "the published row records Pinnacle CLV as 'none of any kind - only the "
+                      "trigger exchange's own close', so the CLV column here is new evidence "
+                      "rather than a revision of an existing number"},
 }
+# The fee model is ONE model. clv_std.net_dec delegates to exchange_lag.eff, which is what
+# liq_history_test used for the published after-fee column, so "our executable after-fee entry"
+# and "the alert price after fees" are the SAME number computed by the same code. What changes
+# between the published figures and the new ones is therefore the BENCHMARK (trigger venue's own
+# close -> Pinnacle no-vig close), and for registry 9 also the fees, which its figure omits.
+# Saying it plainly matters: a reader who assumed the entry price also moved would credit the new
+# column with an execution improvement that did not happen.
 L = []
 
 
@@ -95,7 +110,7 @@ def new_basis(rows, fxs, alt, allfx, mkmap):
         by_class[cls] += 1
         if cls == "VERIFIED_PINNACLE" and isinstance(detail, dict) and detail.get("clv") is not None:
             verified.append({"row": a, "clv": detail["clv"], "fid": detail.get("fid"),
-                             "how": detail.get("how")})
+                             "entry": detail.get("entry"), "how": detail.get("how")})
     return verified, by_class
 
 
@@ -106,33 +121,59 @@ def block(title, rows, pub, fxs, alt, allfx, mkmap, defn):
     say(f"Definition: {defn}")
     say("")
     verified, by_class = new_basis(rows, fxs, alt, allfx, mkmap)
-    old_u, old_n = ntm.units_of(rows)
-    say("| | PUBLISHED (frozen) | TODAY, same old basis | NEW verified Pinnacle basis |")
-    say("|---|---|---|---|")
-    say(f"| basis | {pub['basis']} | same | Pinnacle no-vig close vs our executable after-fee entry |")
-    say(f"| version | ratified 11 Nov 2026 | {pub['source'].split(',')[0]} | clv_basis {cb.BASIS_VERSION} |")
-    say(f"| n | {pub['n']} | {old_n} | {len(verified)} |")
-    say(f"| units | {pub['units']:+.2f}u | {old_u:+.2f}u | "
-        + (f"{units_new(verified):+.2f}u |" if verified else "- |"))
-    roi = pub.get("roi_pct")
-    say(f"| ROI | {'-' if roi is None else f'{roi:+.1f}%'} | "
-        f"{(old_u / old_n * 100):+.2f}% | "
-        + (f"{(units_new(verified) / len(verified) * 100):+.2f}% |" if verified else "- |"))
+    pre_u, pre_n = ntm.units_of(rows)                 # alert price, BEFORE fees
+    af_u, af_n = units_alert_af(rows)                 # alert price, AFTER fees - same rows
+    same_u, same_n = (af_u, af_n) if pub["fees"] else (pre_u, pre_n)
+    cov_af_u, cov_af_n = units_exec(verified)         # after fees, CLV-covered rows only
     clvs = [v["clv"] for v in verified]
-    say(f"| mean CLV | not measured on this basis | not measured on this basis | "
-        + (f"{stx.mean(clvs) * 100:+.2f}% |" if clvs else "- |"))
-    say(f"| CLV 95% CI | - | - | {fmt_ci(ci(clvs))} |")
-    say(f"| beat close | - | - | "
+    say("| | PUBLISHED (frozen) | TODAY, the SAME basis | TODAY, after fees | NEW Pinnacle CLV |")
+    say("|---|---|---|---|---|")
+    say(f"| basis | {pub['basis']} | same selection, same basis | alert price after fees "
+        f"(the executable entry) | Pinnacle no-vig close vs that same after-fee entry |")
+    say(f"| version | 11 Nov 2026 | {pub['source'].split(',')[0]} | clv_std fee model | "
+        f"clv_basis {cb.BASIS_VERSION} |")
+    say(f"| n | {pub['n']} | {same_n} | {af_n} | {len(verified)} |")
+    say(f"| units | {pub['units']:+.2f}u | {same_u:+.2f}u | {af_u:+.2f}u | "
+        + (f"{cov_af_u:+.2f}u on the {cov_af_n} covered rows |" if verified else "- |"))
+    roi = pub.get("roi_pct")
+    say(f"| ROI (1u flat) | {'-' if roi is None else f'{roi:+.1f}%'} | "
+        f"{(same_u / max(1, same_n) * 100):+.2f}% | {(af_u / max(1, af_n) * 100):+.2f}% | "
+        + (f"{(cov_af_u / max(1, cov_af_n) * 100):+.2f}% |" if verified else "- |"))
+    say(f"| mean CLV | not measured on this basis | not measured | not measured | "
+        + (f"**{stx.mean(clvs) * 100:+.2f}%** |" if clvs else "- |"))
+    say(f"| CLV 95% CI | - | - | - | {fmt_ci(ci(clvs))} |")
+    say(f"| beat close | - | - | - | "
         + (f"{sum(1 for c in clvs if c > 0)}/{len(clvs)} "
            f"({sum(1 for c in clvs if c > 0) / len(clvs) * 100:.0f}%) |" if clvs else "- |"))
-    say(f"| coverage | - | - | {len(verified)}/{len(rows)} "
+    say(f"| coverage | - | - | - | {len(verified)}/{len(rows)} "
         f"({len(verified) / max(1, len(rows)) * 100:.1f}%) of the population |")
     say("")
-    if pub["n"] != old_n:
-        say(f"**The population moved as well as the basis.** The frozen figure is n={pub['n']}; the "
-            f"same definition today selects n={old_n} ({old_n - pub['n']:+d}), because more rows "
-            f"have been logged and graded since 11 Nov. The middle column exists so the basis "
-            f"change is not read as the population change or the reverse.")
+    say(f"The entry price does NOT differ between the last two columns: {af_n} rows are priced at "
+        f"the alert cost through the one fee model, and the CLV column re-benchmarks that same "
+        f"entry against Pinnacle instead of the trigger venue's own close. Only the benchmark "
+        f"moved, so none of the change below is an execution improvement.")
+    say("")
+    # Reconciliation of the middle column against the frozen figure. A near-miss is reported as a
+    # near-miss: CLAUDE.md, do not explain a surprising number with the world before the reader.
+    if pub["n"] != same_n:
+        drift = same_n - pub["n"]
+        say(f"**Population drift, stated as a fact and not explained away.** The frozen figure is "
+            f"n={pub['n']}; the same definition today selects n={same_n} ({drift:+d}). "
+            + ("Rows have been logged and graded since the 11 Nov freeze."
+               if drift > 0 else
+               "The count went DOWN, which logging alone cannot do - rows that were graded on "
+               "11 Nov are no longer selected, so either a grade was revised or the stored "
+               "selection fields moved. That is NOT explained here, and the middle column is "
+               "marked UNRECONCILED rather than presented as the published figure recomputed.")
+            + " The separate columns exist so a basis change is never read as a population change "
+              "or the reverse.")
+        say("")
+    gap = abs(same_u - pub["units"])
+    if gap > 2.0:
+        say(f"**UNRECONCILED: {gap:.2f}u.** The middle column should reproduce the frozen figure on "
+            f"the same selection and the same basis, and it does not. Until that gap is explained "
+            f"the frozen figure stands as published and the new CLV column is the only number here "
+            f"offered as evidence.")
         say("")
 
     say("Why the rest of the population has no new-basis figure:")
@@ -150,31 +191,70 @@ def block(title, rows, pub, fxs, alt, allfx, mkmap, defn):
     a2 = [v for v in verified if id(v["row"]) not in s1]
     say("Chronological halves, new basis (the registered rule needs BOTH positive):")
     say("")
-    say("| half | n | units | CLV | CLV 95% CI | beat close |")
+    say("| half | n | units (after fees) | CLV | CLV 95% CI | beat close |")
     say("|---|---|---|---|---|---|")
     for nm, g in (("H1", a1), ("H2", a2)):
         if not g:
             say(f"| {nm} | 0 | - | - | - | - |")
             continue
         cs_ = [v["clv"] for v in g]
-        say(f"| {nm} | {len(g)} | {units_new(g):+.2f}u | {stx.mean(cs_) * 100:+.2f}% | "
+        say(f"| {nm} | {len(g)} | {units_exec(g)[0]:+.2f}u | {stx.mean(cs_) * 100:+.2f}% | "
             f"{fmt_ci(ci(cs_))} | {sum(1 for c in cs_ if c > 0)}/{len(cs_)} |")
     say("")
     say(verdict(a1, a2, verified, rows))
     say("")
     return {"n_pop": len(rows), "n_verified": len(verified),
             "old_units": old_u, "old_n": old_n,
-            "new_units": units_new(verified) if verified else None,
+            "new_units_after_fee": units_exec(verified)[0] if verified else None,
+            "alert_units_after_fee": units_alert_af(rows)[0],
             "mean_clv": stx.mean(clvs) if clvs else None,
             "ci": ci(clvs), "beat": sum(1 for c in clvs if c > 0),
             "classes": dict(by_class)}
 
 
-def units_new(verified):
-    """Units on exactly the rows that carry a verified new-basis CLV, using the published unit
-    arithmetic. This is NOT a re-grading: result comes from the feed's own W/L as before."""
-    u, _n = ntm.units_of([v["row"] for v in verified])
-    return u
+def units_exec(verified):
+    """(units, n) at the EXECUTABLE after-fee entry price, 1u risked per row.
+
+    Nov 14, caught reading my own first output: the new-basis column originally printed units from
+    ntm.units_of, which pays the ALERT price. So the cell said "NEW verified Pinnacle basis" above
+    a number that was still the non-executable basis - the exact thing Peter ruled out ("do not
+    present historical alert prices as actual executable prices"), and worse for being under the
+    right heading. Units here come from clv_basis's after-fee decimal: a win pays (dec - 1), a
+    loss is -1, a push is 0. The W/L itself is the feed's own grade and is never re-graded.
+    """
+    u, n = 0.0, 0
+    for v in verified:
+        res, dec = v["row"].get("result"), v.get("entry")
+        if res not in ("W", "L", "P") or not dec or dec <= 1:
+            continue
+        n += 1
+        if res == "P":
+            continue
+        u += (dec - 1) if res == "W" else -1.0
+    return round(u, 2), n
+
+
+def units_alert_af(rows):
+    """(units, n) at the alert price AFTER fees - the published B2 basis, reproduced.
+
+    This is the executable entry for every row the fee model can price, whether or not a Pinnacle
+    close was found: units need a result and a price, CLV needs a close. Keeping the two separate
+    stops a coverage gap in the CLOSE from quietly shrinking the UNITS population as well.
+    """
+    u, n = 0.0, 0
+    for a in rows:
+        res = a.get("result")
+        if res not in ("W", "L", "P"):
+            continue
+        dec, _why = cb.after_fee_from_cost(a.get("price"), a.get("book_key") or a.get("book"),
+                                           league=a.get("league") or a.get("sport"))
+        if not dec or dec <= 1:
+            continue
+        n += 1
+        if res == "P":
+            continue
+        u += (dec - 1) if res == "W" else -1.0
+    return round(u, 2), n
 
 
 def verdict(a1, a2, verified, rows):
