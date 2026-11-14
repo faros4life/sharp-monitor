@@ -153,6 +153,10 @@ def gate(name, h1, h2, whole, fills_ok):
     return {"name": name, "verdict": v, "clauses": cs}
 
 
+def _key_of(o, by_key):
+    return by_key.get(id(o), "")
+
+
 def split_by_cutoff(obs):
     pre = [o for o in obs if o.get("game_start") and cl.tp(o["game_start"]) and cl.tp(o["game_start"]) < CUTOFF]
     post = [o for o in obs if o.get("game_start") and cl.tp(o["game_start"]) and cl.tp(o["game_start"]) >= CUTOFF]
@@ -246,17 +250,37 @@ def build():
     obs = csel.selections(certified, tracker, exclude=set(stale))
     missing = {k: r for k, r in bets.items() if r.get("clv") is None and k not in stale}
     lane_for = cov.build_lane_resolver(reg or {})
+    # CONFIRMED FILLS. Peter: "Use confirmed fills only for live P/L, ROI and units."
+    #
+    # My first version intersected the selection's "ids" - which are LEDGER ROW ids like
+    # nv|01a1... - with the fills dict's keys, which are VENUE ORDER UUIDs. Those two sets can
+    # never intersect, so every lane reported ZERO confirmed fills, which the page renders as
+    # "no confirmed fill, every unit figure hypothetical". It would have understated live
+    # performance on a page that looked complete, and the gate's realized-unit clause would have
+    # read UNMET for a lane that had actually filled.
+    #
+    # The real join is the fill record's own play_key, which carries the same
+    # league|game|market|side shape the order rows use. Rather than write a second matcher, the
+    # confirmed fills are handed to the SAME cov.build_lane_resolver with a "board|" prefix so
+    # its lane test passes; the return value is used only as a boolean - "this selection joins to
+    # a confirmed fill" - and never as a lane claim, which still comes from the orders above.
     fills = rg.fills() if reg is not None else {}
-    confirmed = {k for k, v in (fills or {}).items()
-                 if str((v or {}).get("state") or "").upper() in ("FILLED", "PARTIAL")}
+    confirmed_recs = [v for v in (fills or {}).values()
+                      if str((v or {}).get("state") or "").upper() in ("FILLED", "PARTIAL")
+                      and (v or {}).get("play_key")]
+    fill_join = cov.build_lane_resolver({"orders": [
+        {"key": "board|" + str(v["play_key"]), "decided_utc": v.get("ts")}
+        for v in confirmed_recs]})
 
     # lane attribution - provable only, everything else an exception
     by_lane = collections.defaultdict(list)
+    by_key = {}
     unassigned = []
     for key, o in obs.items():
         lane = lane_for(key, o)
         if lane:
             o = dict(o, lane=lane)
+            by_key[id(o)] = key
             by_lane[lane].append(o)
         else:
             unassigned.append({"key": key[:60], "league": str(key.split("|")[0]),
@@ -323,7 +347,7 @@ def build():
         # confirmed fills for every lane - and a zero here is read as "no confirmed fill, every
         # unit figure hypothetical", so the page would have understated live performance while
         # looking entirely normal.
-        fl = [o for o in rows if set(o.get("ids") or []) & confirmed]
+        fl = [o for o in rows if fill_join(_key_of(o, by_key), o)]
         lanes.append({
             "lane": lane, "name": LANE_NAME.get(lane, lane), "unit_registered": unit,
             "paper": lane == "lane2",
@@ -341,6 +365,7 @@ def build():
             # permanently, silently clean.
             "exceptions": miss_by_lane.get(lane, [])[:25],
         })
+        lanes[-1]["confirmed_fill_records"] = len(confirmed_recs)
         lanes[-1]["gate"] = gate(LANE_NAME.get(lane, lane), lanes[-1]["h1"], lanes[-1]["h2"],
                                  lanes[-1]["cumulative"], bool(fl))
     bands["B_lanes"] = {"lanes": lanes,

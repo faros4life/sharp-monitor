@@ -152,6 +152,23 @@ check("the change is labelled as approved", dash.CUTOFF_LABEL in body)
 check("it states that nothing is promoted", "No promotion" in body)
 check("it is concise", len(body.splitlines()) < 60, len(body.splitlines()))
 
+
+print("10. confirmed fills join on play_key, never on ledger row ids")
+# The first version intersected a selection's "ids" (ledger rows, nv|01a1...) with the fills
+# dict's keys (venue order UUIDs). Those sets cannot intersect, so every lane reported ZERO
+# confirmed fills and the gate's realized-unit clause read UNMET for lanes that had filled.
+src = open("clv_dashboard.py").read()
+check("the builder joins fills through play_key", 'v["play_key"]' in src)
+check("and no longer intersects ids with the fills dict",
+      'set(o.get("ids") or []) & confirmed' not in src)
+check("the join reuses the one resolver rather than a second matcher",
+      src.count("cov.build_lane_resolver") >= 2 and "def _lane_match" not in src,
+      src.count("cov.build_lane_resolver"))
+check("only FILLED and PARTIAL count as confirmed",
+      '("FILLED", "PARTIAL")' in src)
+check("the fill join's return is documented as a boolean, not a lane claim",
+      "never as a lane claim" in src)
+
 print()
 if fails:
     print(f"FAILED {len(fails)}: " + "; ".join(fails))

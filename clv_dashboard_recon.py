@@ -74,9 +74,36 @@ for b in ("A_status","B_lanes","C_qualification","D_triggers","E_change","F_rese
     ck(f"band {b} present", b in B)
 
 print("8. nothing financial in the view")
-blob = json.dumps(view)
-for w in ("balance","account_number","passphrase","apikey","api_key","secret","order_id"):
-    ck(f"no '{w}' in the payload", w not in blob.lower())
+# Search the payload's KEYS and its leaf VALUES, not its prose: the first version matched
+# "balance" inside the view's own privacy note ("no balances, no currency stakes..."), which is
+# the page promising not to carry one. A privacy guard that fires on its own disclaimer trains me
+# to ignore it.
+def walk(x, path=""):
+    if isinstance(x, dict):
+        for k, v in x.items():
+            yield ("key", str(k))
+            yield from walk(v, f"{path}.{k}")
+    elif isinstance(x, list):
+        for v in x:
+            yield from walk(v, path)
+    elif isinstance(x, (int, float)) and not isinstance(x, bool):
+        yield ("num", x)
+NOTE_KEYS = ("note", "why", "detail", "caveat", "evidence", "privacy", "window_note",
+             "confirmed_fills_note", "title", "label", "units_why", "roi_why", "missing")
+keys = {v.lower() for kind, v in walk(view) if kind == "key"}
+for w in ("balance", "account_number", "passphrase", "apikey", "api_key", "secret", "order_id",
+          "stake_usd", "token"):
+    ck(f"no '{w}' FIELD in the payload", not any(w in k for k in keys),
+       sorted(k for k in keys if w in k)[:3])
+# and no currency-looking string anywhere outside the prose fields
+import re as _re
+def prose_stripped(x):
+    if isinstance(x, dict):
+        return {k: prose_stripped(v) for k, v in x.items() if k not in NOTE_KEYS}
+    if isinstance(x, list):
+        return [prose_stripped(v) for v in x]
+    return x
+ck("no '$' outside the prose fields", "$" not in json.dumps(prose_stripped(view)))
 
 print()
 print("RECONCILED" if not bad else f"{len(bad)} MISMATCH(ES): {bad}")
