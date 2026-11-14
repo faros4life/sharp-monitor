@@ -2,36 +2,6 @@
  "note": "PAPER ONLY (Oct 25; persistence added Oct 26): opposite sides of the same game/market/line on two different exchanges whose combined cost after fees is under $1 (Kalshi/Novig/ProphetX; Polymarket here is the global book, excluded). edge_pct = locked profit per $ staked at first sight; max/last_edge_pct while open. size_est = smaller leg's near-price depth (UPPER BOUND). first/last_seen_utc, scans_seen, lifetime_min = how long the gap stayed open (scan-interval resolution; a 1-scan gap may be a feed artifact). scan_sec = seconds from run start to this save, the most the two legs' reads can be apart. Measurement only: never alerted, never bet.",
  "gaps": [
   {
-   "seen_utc": "2026-10-31T15:40:14Z",
-   "league": "NCAAF",
-   "game": "Boston College @ Duke",
-   "market": "total",
-   "line": 49.5,
-   "edge_pct": 0.73,
-   "total_cost": 0.9928,
-   "size_est": 9589,
-   "legs": [
-    {
-     "book": "novig",
-     "side": "Under 49.5 (49.5)",
-     "price": 0.5,
-     "cost_after_fee": 0.5
-    },
-    {
-     "book": "prophetx",
-     "side": "over 49.5 (49.5)",
-     "price": 0.4878,
-     "cost_after_fee": 0.4928
-    }
-   ],
-   "first_seen_utc": "2026-10-31T15:40:14Z",
-   "last_seen_utc": "2026-10-31T15:40:14Z",
-   "scans_seen": 1,
-   "max_edge_pct": 0.73,
-   "scan_sec": 569,
-   "lifetime_min": 0
-  },
-  {
    "seen_utc": "2026-10-31T15:59:05Z",
    "league": "NCAAF",
    "game": "California vs NC St.: Spread",
@@ -6891,13 +6861,13 @@
     }
    ],
    "first_seen_utc": "2026-11-14T13:35:43Z",
-   "last_seen_utc": "2026-11-14T15:15:46Z",
-   "scans_seen": 9,
+   "last_seen_utc": "2026-11-14T15:45:32Z",
+   "scans_seen": 10,
    "max_edge_pct": 20.42,
    "scan_sec": 210,
-   "lifetime_min": 100,
+   "lifetime_min": 130,
    "last_edge_pct": 19.89,
-   "last_size_est": 723
+   "last_size_est": 664
   },
   {
    "seen_utc": "2026-11-14T13:35:43Z",
@@ -6923,13 +6893,13 @@
     }
    ],
    "first_seen_utc": "2026-11-14T13:35:43Z",
-   "last_seen_utc": "2026-11-14T15:15:46Z",
-   "scans_seen": 9,
+   "last_seen_utc": "2026-11-14T15:45:32Z",
+   "scans_seen": 10,
    "max_edge_pct": 21.51,
    "scan_sec": 210,
-   "lifetime_min": 100,
+   "lifetime_min": 130,
    "last_edge_pct": 20.44,
-   "last_size_est": 1021
+   "last_size_est": 1031
   },
   {
    "seen_utc": "2026-11-14T13:35:43Z",
@@ -6955,13 +6925,13 @@
     }
    ],
    "first_seen_utc": "2026-11-14T13:35:43Z",
-   "last_seen_utc": "2026-11-14T15:15:46Z",
-   "scans_seen": 9,
+   "last_seen_utc": "2026-11-14T15:45:32Z",
+   "scans_seen": 10,
    "max_edge_pct": 24.29,
    "scan_sec": 210,
-   "lifetime_min": 100,
-   "last_edge_pct": 22.38,
-   "last_size_est": 1107
+   "lifetime_min": 130,
+   "last_edge_pct": 21.4,
+   "last_size_est": 1155
   },
   {
    "seen_utc": "2026-11-14T13:35:43Z",
@@ -6987,13 +6957,13 @@
     }
    ],
    "first_seen_utc": "2026-11-14T13:35:43Z",
-   "last_seen_utc": "2026-11-14T15:15:46Z",
-   "scans_seen": 9,
+   "last_seen_utc": "2026-11-14T15:45:32Z",
+   "scans_seen": 10,
    "max_edge_pct": 23.92,
    "scan_sec": 210,
-   "lifetime_min": 100,
-   "last_edge_pct": 21.98,
-   "last_size_est": 21487
+   "lifetime_min": 130,
+   "last_edge_pct": 20.9,
+   "last_size_est": 20698
   },
   {
    "seen_utc": "2026-11-14T13:35:43Z",
@@ -7019,13 +6989,13 @@
     }
    ],
    "first_seen_utc": "2026-11-14T13:35:43Z",
-   "last_seen_utc": "2026-11-14T15:15:46Z",
-   "scans_seen": 9,
+   "last_seen_utc": "2026-11-14T15:45:32Z",
+   "scans_seen": 10,
    "max_edge_pct": 27.96,
    "scan_sec": 210,
-   "lifetime_min": 100,
+   "lifetime_min": 130,
    "last_edge_pct": 26.31,
-   "last_size_est": 1099
+   "last_size_est": 1403
   },
   {
    "seen_utc": "2026-11-14T13:35:43Z",
@@ -7051,13 +7021,13 @@
     }
    ],
    "first_seen_utc": "2026-11-14T13:35:43Z",
-   "last_seen_utc": "2026-11-14T15:15:46Z",
-   "scans_seen": 9,
+   "last_seen_utc": "2026-11-14T15:45:32Z",
+   "scans_seen": 10,
    "max_edge_pct": 26.92,
    "scan_sec": 210,
-   "lifetime_min": 100,
+   "lifetime_min": 130,
    "last_edge_pct": 26.39,
-   "last_size_est": 1075
+   "last_size_est": 996
   },
   {
    "seen_utc": "2026-11-14T13:35:43Z",
@@ -7083,13 +7053,13 @@
     }
    ],
    "first_seen_utc": "2026-11-14T13:35:43Z",
-   "last_seen_utc": "2026-11-14T15:15:46Z",
-   "scans_seen": 9,
+   "last_seen_utc": "2026-11-14T15:45:32Z",
+   "scans_seen": 10,
    "max_edge_pct": 25.14,
    "scan_sec": 210,
-   "lifetime_min": 100,
+   "lifetime_min": 130,
    "last_edge_pct": 25.14,
-   "last_size_est": 1166
+   "last_size_est": 971
   },
   {
    "seen_utc": "2026-11-14T13:35:43Z",
@@ -7115,13 +7085,13 @@
     }
    ],
    "first_seen_utc": "2026-11-14T13:35:43Z",
-   "last_seen_utc": "2026-11-14T15:15:46Z",
-   "scans_seen": 9,
-   "max_edge_pct": 26.79,
+   "last_seen_utc": "2026-11-14T15:45:32Z",
+   "scans_seen": 10,
+   "max_edge_pct": 27.21,
    "scan_sec": 210,
-   "lifetime_min": 100,
-   "last_edge_pct": 26.79,
-   "last_size_est": 1120
+   "lifetime_min": 130,
+   "last_edge_pct": 27.21,
+   "last_size_est": 1028
   },
   {
    "seen_utc": "2026-11-14T13:35:43Z",
@@ -7147,13 +7117,13 @@
     }
    ],
    "first_seen_utc": "2026-11-14T13:35:43Z",
-   "last_seen_utc": "2026-11-14T15:15:46Z",
-   "scans_seen": 9,
+   "last_seen_utc": "2026-11-14T15:45:32Z",
+   "scans_seen": 10,
    "max_edge_pct": 24.25,
    "scan_sec": 210,
-   "lifetime_min": 100,
+   "lifetime_min": 130,
    "last_edge_pct": 24.25,
-   "last_size_est": 1314
+   "last_size_est": 1360
   },
   {
    "seen_utc": "2026-11-14T13:35:43Z",
@@ -7179,13 +7149,13 @@
     }
    ],
    "first_seen_utc": "2026-11-14T13:35:43Z",
-   "last_seen_utc": "2026-11-14T15:15:46Z",
-   "scans_seen": 9,
+   "last_seen_utc": "2026-11-14T15:45:32Z",
+   "scans_seen": 10,
    "max_edge_pct": 27.88,
    "scan_sec": 210,
-   "lifetime_min": 100,
+   "lifetime_min": 130,
    "last_edge_pct": 27.06,
-   "last_size_est": 11646
+   "last_size_est": 13127
   },
   {
    "seen_utc": "2026-11-14T14:45:49Z",
