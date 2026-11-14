@@ -162,10 +162,11 @@ for L in B["B_lanes"]["lanes"]:
 print("10. Phase 1 attribution diagnostics (counts only)")
 p1 = next((L for L in B["B_lanes"]["lanes"] if L["lane"] == "rules"), None)
 orders = (reg or {}).get("orders") or []
-ords_by_lane = collections.Counter(str(o.get("lane") or "?") for o in orders)
+lane_of = lambda o: str(o.get("key") or "?").split("|")[0]
+ords_by_lane = collections.Counter(lane_of(o) for o in orders)
 print(f"     registry orders by lane: {dict(ords_by_lane)}")
 print(f"     Phase 1 selections attributed: {p1['cumulative'].get('n', 0) if p1 else 'lane missing'}")
-p1_orders = [o for o in orders if str(o.get("lane")) == "rules"]
+p1_orders = [o for o in orders if lane_of(o) == "rules"]
 joined = sum(1 for o in p1_orders
              if any(lane_for(k, ob) == "rules" for k, ob in obs.items()
                     if str(o.get("key", "")).endswith(k.split("|", 1)[-1])))
