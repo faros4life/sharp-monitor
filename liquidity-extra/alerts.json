@@ -1,6 +1,170 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-14T16:10:18Z",
+   "base_depth": 45398,
+   "best_price": 0.5375,
+   "best_price_american": -116,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-14",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 5987,
+     "new_this_side": 28487,
+     "other_side": 8471,
+     "other_side_all_levels": 49382,
+     "ratio": 1.6,
+     "this_side": 13240,
+     "this_side_all_levels": 72592
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 1735.24,
+    "volume_24h_fp": 2008.61,
+    "volume_fp": 2008.61
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 1735.24,
+    "volume_24h_fp": 2008.61,
+    "volume_fp": 2008.61
+   },
+   "fade_price": 0.49,
+   "first_seen_utc": "2026-11-14T16:00:23Z",
+   "game": "Hampton vs Navy: Spread",
+   "game_surge_books": [
+    "kalshi"
+   ],
+   "game_x": 2.16,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAMBSPREAD-26NOV14HAMPNAVY-NAVY2\"}",
+   "lead_min": 290,
+   "league": "NCAAB",
+   "line": 1.5,
+   "market": "spread",
+   "new_money": 28487,
+   "new_x": 2.31,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 1735.24,
+      "volume_24h_fp": 2008.61,
+      "volume_fp": 2008.61
+     },
+     "game_normal": 33579,
+     "game_x": 2.16,
+     "normal": 12314,
+     "now": 72592,
+     "type": "SPREAD",
+     "x": 5.9
+    }
+   },
+   "norm_ready_books": 1,
+   "paper_only": false,
+   "price": 0.52,
+   "price_american": -108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.52,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 1.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 2.0,
+     "price": -115
+    },
+    "betopenly": {
+     "point": 1.5,
+     "price": -105
+    },
+    "betrivers": {
+     "point": 1.5,
+     "price": -113
+    },
+    "bovada": {
+     "point": 1.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 1.5,
+     "price": -110
+    },
+    "fanatics": {
+     "point": 1.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 1.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": 1.5,
+     "price": -108
+    },
+    "lowvig": {
+     "point": 2.0,
+     "price": -111
+    },
+    "novig": {
+     "point": 1.5,
+     "price": -108
+    },
+    "polymarket": {
+     "point": 1.5,
+     "price": -108
+    },
+    "prophetx": {
+     "point": 1.5,
+     "price": -109
+    },
+    "williamhill_us": {
+     "point": 1.5,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAMBSPREAD-26NOV14HAMPNAVY-NAVY2"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Hampton",
+   "side_label": "NOT Navy wins by over 1.5 points",
+   "size_x": 5.9,
+   "start_source": "odds",
+   "start_utc": "2026-11-14T21:00:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "Hampton",
+    "Navy"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-14T15:50:19Z",
    "base_depth": 77030,
    "best_price": 0.4555,
@@ -46,9 +210,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 3035.1099999999997,
-    "volume_24h_fp": 3034.1099999999997,
-    "volume_fp": 3035.1099999999997
+    "open_interest_fp": 3046.04,
+    "volume_24h_fp": 3045.04,
+    "volume_fp": 3046.04
    },
    "ex_stats_first": {
     "open_interest_fp": 3013.25,
@@ -94,6 +258,8 @@
    "norm_ready_books": 2,
    "paper_only": false,
    "price": 0.44,
+   "price_after_15m": 0.4572,
+   "price_after_15m_book": "kalshi",
    "price_american": 127,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.44,
@@ -172,6 +338,7 @@
    "size_x": 2.15,
    "start_source": "odds",
    "start_utc": "2026-11-15T00:00:00Z",
+   "still_actionable": false,
    "surge_books": [
     "kalshi",
     "prophetx"
@@ -224,7 +391,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 4091.68,
-    "volume_24h_fp": 4217.43,
+    "volume_24h_fp": 4238.21,
     "volume_fp": 4238.21
    },
    "ex_stats_first": {
@@ -402,8 +569,8 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 13699.43,
-    "volume_24h_fp": 15066.21,
-    "volume_fp": 15066.21
+    "volume_24h_fp": 15082.95,
+    "volume_fp": 15082.95
    },
    "ex_stats_first": {
     "open_interest_fp": 3216.67,
@@ -584,9 +751,9 @@
     "volume_fp": 2.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 215.23,
+    "open_interest_fp": 244.4,
     "volume_24h_fp": 205.23,
-    "volume_fp": 215.23
+    "volume_fp": 244.4
    },
    "ex_stats_first": {
     "open_interest_fp": 111.55,
@@ -767,9 +934,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 10356.3,
-    "volume_24h_fp": 10341.44,
-    "volume_fp": 10356.3
+    "open_interest_fp": 10356.93,
+    "volume_24h_fp": 10342.07,
+    "volume_fp": 10356.93
    },
    "ex_stats_first": {
     "open_interest_fp": 10116.96,
@@ -2809,9 +2976,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 2601.2599999999998,
-    "volume_24h_fp": 2528.92,
-    "volume_fp": 2618.68
+    "open_interest_fp": 2842.75,
+    "volume_24h_fp": 2767.2400000000002,
+    "volume_fp": 2860.17
    },
    "ex_stats_first": {
     "open_interest_fp": 464.77,
@@ -2964,7 +3131,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 4975.0,
-    "volume_24h_fp": 4845.56,
+    "volume_24h_fp": 4895.94,
     "volume_fp": 5036.0
    },
    "ex_stats_first": {
@@ -3314,9 +3481,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 2415.23,
-    "volume_24h_fp": 2823.3599999999997,
-    "volume_fp": 2825.4
+    "open_interest_fp": 3458.23,
+    "volume_24h_fp": 3866.3599999999997,
+    "volume_fp": 3868.4
    },
    "ex_stats_first": {
     "open_interest_fp": 563.83,
@@ -3473,9 +3640,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1152.8,
-    "volume_24h_fp": 1054.37,
-    "volume_fp": 1152.8
+    "open_interest_fp": 1157.1,
+    "volume_24h_fp": 1059.79,
+    "volume_fp": 1157.1
    },
    "ex_stats_first": {
     "open_interest_fp": 128.51,
@@ -3994,9 +4161,9 @@
     "volume_fp": 14.58
    },
    "ex_stats_close": {
-    "open_interest_fp": 24603.59,
-    "volume_24h_fp": 22762.97,
-    "volume_fp": 25075.45
+    "open_interest_fp": 25371.23,
+    "volume_24h_fp": 23493.63,
+    "volume_fp": 25843.09
    },
    "ex_stats_first": {
     "open_interest_fp": 8622.69,
@@ -4524,8 +4691,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.79,
-   "clv_cents": -2.0,
+   "close_price": 0.78,
+   "clv_cents": -3.0,
    "confirmed_after_min": 10,
    "date": "2026-11-14",
    "depth_by_book": {
@@ -4562,9 +4729,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1245.21,
-    "volume_24h_fp": 1256.35,
-    "volume_fp": 1257.3899999999999
+    "open_interest_fp": 1340.8600000000001,
+    "volume_24h_fp": 1352.51,
+    "volume_fp": 1353.55
    },
    "ex_stats_first": {
     "open_interest_fp": 48.44,
@@ -11187,7 +11354,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 163,
+   "settle_tries": 164,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Fritz",
