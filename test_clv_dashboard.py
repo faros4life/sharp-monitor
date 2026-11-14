@@ -169,6 +169,24 @@ check("only FILLED and PARTIAL count as confirmed",
 check("the fill join's return is documented as a boolean, not a lane claim",
       "never as a lane claim" in src)
 
+
+print("11. units are P/L, exposure is labelled separately")
+# The first summary printed "+10.54u" for Board V3 from stake/unit - 10.54 units RISKED. A losing
+# lane could have shown a cheerful positive beside its ROI.
+b = dash.blk([{"clv": 0.01, "stake": 400.0, "profit": -200.0, "result": "L",
+               "game_start": "2026-11-12T00:00:00Z"}], unit=200.0)
+check("units is profit/unit", b["units"] == -1.0, b)
+check("risked is reported separately", b["risked_u"] == 2.0, b)
+check("a loss cannot read positive", b["units"] < 0)
+b2 = dash.blk([{"clv": 0.01, "stake": 400.0, "game_start": "2026-11-12T00:00:00Z"}], unit=200.0)
+check("no profit -> P/L UNAVAILABLE, never zero",
+      b2["units"] is None and "not zero" in (b2["units_why"] or ""), b2)
+check("but exposure is still shown", b2["risked_u"] == 2.0, b2)
+check("the page column says P/L", "P/L (u)" in dash.PAGE and "risked (u)" in dash.PAGE)
+check("the gate clause names P/L", "both halves positive on units (P/L)" in
+      json.dumps(dash.gate("x", {"units": 1.0, "clv": 1.0}, {"units": 1.0, "clv": 1.0},
+                           {"n": 30, "clv": 1.0, "ci": [0.5, 1.5], "pos": 20}, True)))
+
 print()
 if fails:
     print(f"FAILED {len(fails)}: " + "; ".join(fails))

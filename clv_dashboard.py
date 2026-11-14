@@ -78,9 +78,19 @@ def blk(obs, unit=None):
     out = {"n": s["n"], "clv": pct(s["mean"]), "ci": ci95(s["mean"], s.get("se")),
            "pos": s["pos"], "pos_pct": round(s["pos_pct"], 1), "fills": s["fills"],
            "n_settled": s.get("n_settled", 0)}
-    # Units only where a lane unit is registered; never a currency figure, never a guess.
-    out["units"] = round(s["stake"] / unit, 2) if (unit and s.get("stake")) else None
-    out["units_why"] = None if out["units"] is not None else "no registered unit for this group"
+    # UNITS ARE P/L, NOT EXPOSURE. The first version printed stake/unit and labelled it "units"
+    # beside ROI, so Board V3 read "+10.54u" when that was 10.54 units RISKED - a losing lane
+    # could have shown a cheerful positive. clv_coverage.fig has the same stake/unit figure, but
+    # it is a diagnostic there, not a results headline. P/L in units is profit/unit, and it is
+    # None - never zero - when the ledger carries no profit for the group, because the ledger
+    # snapshot does not always capture it.
+    out["risked_u"] = round(s["stake"] / unit, 2) if (unit and s.get("stake")) else None
+    out["units"] = (round(s["profit"] / unit, 2)
+                    if (unit and s.get("profit") is not None) else None)
+    out["units_why"] = (None if out["units"] is not None else
+                        ("no registered unit for this group" if not unit else
+                         f"profit absent on {s['n'] - s.get('has_profit', 0)} of {s['n']} rows - "
+                         f"P/L in units UNAVAILABLE, not zero"))
     out["roi_pct"] = None if s.get("roi_pct") is None else round(s["roi_pct"], 2)
     out["roi_why"] = (None if out["roi_pct"] is not None else
                       f"profit absent on {s['n'] - s.get('has_profit', 0)} of {s['n']} - ROI "
@@ -128,9 +138,10 @@ def gate(name, h1, h2, whole, fills_ok):
                f"H1 {h1c:+.2f}%, H2 {h2c:+.2f}%")
     h1u, h2u = (h1 or {}).get("units"), (h2 or {}).get("units")
     if h1u is None or h2u is None:
-        clause("both halves positive on units", "NOT MEASURABLE", "a half has no unit figure")
+        clause("both halves positive on units (P/L)", "NOT MEASURABLE",
+               "a half has no P/L in units")
     else:
-        clause("both halves positive on units", "MET" if (h1u > 0 and h2u > 0) else "UNMET",
+        clause("both halves positive on units (P/L)", "MET" if (h1u > 0 and h2u > 0) else "UNMET",
                f"H1 {h1u:+.2f}u, H2 {h2u:+.2f}u")
     clause("realized-unit CI from CONFIRMED FILLS", "MET" if fills_ok else "UNMET",
            "confirmed fills present" if fills_ok else
@@ -413,6 +424,14 @@ def build():
     bands["E_change"] = {
         "label": CUTOFF_LABEL, "cutoff_utc": cl.iso(CUTOFF),
         "before": blk(pre), "after": blk(post), "no_date": len(nos),
+        "impossible": (
+            "NO BEFORE-SIDE COMPARISON IS POSSIBLE from lane-attributed selections. Lane "
+            "attribution needs a registry order, and the registry's earliest order IS the cutoff, "
+            "so every attributable selection falls after it. The before column is therefore empty "
+            "for a structural reason, not because performance was absent - and the two must never "
+            "be confused. A before/after comparison will become possible only as the registry "
+            "accumulates history, or from an unattributed population, which would not be "
+            "like-for-like."),
         "evidence": ("Cutoff from the private bot-order registry: the first verified production "
                      "execution under commit 7e7c20df is 2026-11-11T16:31:19Z. In that one run "
                      "two rows refused on the new price ceiling and two placed orders under the "
@@ -531,8 +550,9 @@ function fig(b){if(!b||!b.n)return '<span class="mut">&ndash; '+esc((b&&b.why)||
  (b.units==null?('<span class="mut">&ndash;</span>'):sg(b.units))+' &middot; ROI '+(b.roi_pct==null?('<span class="mut">UNAVAIL</span>'):sg(b.roi_pct)+'%');}
 function row(label,b){return '<tr><td>'+esc(label)+'</td><td>'+(b&&b.n?b.n:'<span class="mut">&ndash;</span>')+'</td><td>'+
  (b&&b.n?sg(b.clv)+'%':'&ndash;')+'</td><td>'+(b&&b.n?ciS(b.ci):'&ndash;')+'</td><td>'+(b&&b.n?b.pos+'/'+b.n:'&ndash;')+'</td><td>'+
- (b&&b.units!=null?sg(b.units)+'u':'<span class="mut">&ndash;</span>')+'</td><td>'+(b&&b.roi_pct!=null?sg(b.roi_pct)+'%':'<span class="mut">UNAVAIL</span>')+'</td></tr>';}
-const TH='<tr><th>period</th><th>n</th><th>CLV</th><th>95% CI</th><th>pos</th><th>units</th><th>ROI</th></tr>';
+ (b&&b.units!=null?sg(b.units)+'u':'<span class="mut">UNAVAIL</span>')+'</td><td>'+(b&&b.risked_u!=null?b.risked_u.toFixed(2)+'u':'<span class="mut">&ndash;</span>')+'</td><td>'+
+ (b&&b.roi_pct!=null?sg(b.roi_pct)+'%':'<span class="mut">UNAVAIL</span>')+'</td></tr>';}
+const TH='<tr><th>period</th><th>n</th><th>CLV</th><th>95% CI</th><th>pos</th><th>P/L (u)</th><th>risked (u)</th><th>ROI</th></tr>';
 function render(d){const B=d.bands;let h='';
  h+='<h1>Daily Dashboard</h1><p class="sub">'+esc(d.generated_et)+' &middot; basis '+esc(d.basis)+
    (d.sha?(' &middot; '+esc(d.sha)):'')+' &middot; '+esc(d.selections_total)+' selections &middot; '+esc(d.privacy)+'</p>';
@@ -563,7 +583,7 @@ function render(d){const B=d.bands;let h='';
   D.live.map(t=>'<tr><td>'+esc(t.lane)+'</td><td>'+esc(t.trigger)+'</td><td>'+fig(t.whole)+'</td><td>'+fig(t.h1)+'</td><td>'+fig(t.h2)+'</td></tr>').join('')+
   '</table></details></div>';
  const E=B.E_change;h+='<h2>E &middot; '+esc(E.label)+'</h2><div class="card"><table>'+TH+
-  row('before',E.before)+row('after',E.after)+'</table><p class="sub">'+esc(E.evidence)+'</p><p class="warn">'+esc(E.caveat)+'</p></div>';
+  row('before',E.before)+row('after',E.after)+'</table>'+(E.impossible?('<p class="bad">'+esc(E.impossible)+'</p>'):'')+'<p class="sub">'+esc(E.evidence)+'</p><p class="warn">'+esc(E.caveat)+'</p></div>';
  const F=B.F_research;h+='<div class="research"><h2 style="color:var(--warn)">F &middot; '+esc(F.title)+'</h2><p class="sub">'+esc(F.note)+'</p>'+
   (F.candidates.length?('<table><tr><th>candidate</th><th>whole</th><th>H1</th><th>H2</th><th>missing</th></tr>'+
    F.candidates.map(c=>'<tr><td>'+esc(c.name)+'</td><td>'+fig(c.whole)+'</td><td>'+fig(c.h1)+'</td><td>'+fig(c.h2)+'</td><td>'+
@@ -592,10 +612,13 @@ def email_body(view):
     L.append("")
     for x in B["B_lanes"]["lanes"]:
         t, c = x["today"], x["cumulative"]
-        L.append(f"{x['name']}{' (paper)' if x['paper'] else ''}: {x['gate']['verdict']}")
+        tag = " (paper)" if (x["paper"] and "paper" not in x["name"].lower()) else ""
+        L.append(f"{x['name']}{tag}: {x['gate']['verdict']}")
         for lab, b in (("today", t), ("cumulative", c), ("since the change", x["post_change"])):
             if b.get("n"):
-                u = f"{b['units']:+.2f}u" if b.get("units") is not None else "units -"
+                u = (f"P/L {b['units']:+.2f}u" if b.get("units") is not None
+                     else "P/L UNAVAIL")
+                u += f" (risked {b['risked_u']:.2f}u)" if b.get("risked_u") is not None else ""
                 r = f"{b['roi_pct']:+.2f}%" if b.get("roi_pct") is not None else "ROI UNAVAIL"
                 L.append(f"  {lab:<18} n {b['n']:>4}  CLV {b['clv']:+.2f}%  "
                          f"CI {b['ci'] if b.get('ci') else '-'}  pos {b['pos']}/{b['n']}  {u}  {r}")
