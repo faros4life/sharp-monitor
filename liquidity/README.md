@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 14, 4:30 PM ET. This run: 1 new, 1 not confirmed, 4 pending. Open alerts: 53.
+Updated Sat Nov 14, 4:35 PM ET. This run: 4 new, 0 not confirmed, 0 pending. Open alerts: 57.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,10 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 14 4:35PM | NCAAF | Baylor vs BYU: Total Points | total: Over 49.5 points | kalshi | $47k | -104 | ✅ novig | ✅ | +0.0c |  | pending |
+| Nov 14 4:35PM | NCAAF | Texas vs LSU | moneyline: LSU | kalshi | $202k | -186 | ✅ novig,prophetx |  | +0.0c |  | pending |
+| Nov 14 4:35PM | NCAAF | Mississippi Valley St. vs Florida A&M | moneyline: Florida A&M | kalshi | $42k | -223 |  |  | +0.0c |  | pending |
+| Nov 14 4:35PM | NCAAF | Appalachian St. vs Marshall | moneyline: Marshall | kalshi | $75k | -104 |  | ✅ | +0.0c |  | pending |
 | Nov 14 4:30PM | NCAAF | Arizona St. vs UCF: Spread | spread: NOT UCF wins by over 3.5 points | kalshi | $281k | -108 |  |  | +0.0c |  | pending |
 | Nov 14 4:00PM | NCAAF | Texas @ LSU | moneyline: LSU (0) | novig | $30k | -182 | ✅ kalshi,prophetx |  | +0.5c |  | pending |
 | Nov 14 3:45PM | NFL | New England Patriots @ Detroit Lions | moneyline: DET (0) | novig | $29k | -138 | ✅ prophetx |  | +0.0c |  | pending |
@@ -206,7 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 12 12:11PM | NBA | Dallas vs Minnesota: Total Points | total: Over 225.5 points | kalshi | $43k | -104 |  | ✅ | +2.0c |  | W |
 | Nov 12 12:11PM | NBA | Charlotte vs Phoenix: Total Points | total: NOT Over 214.5 points | kalshi | $42k | -100 |  | ✅ | -1.0c | yes | W |
 | Nov 12 11:40AM | NHL | Carolina vs Seattle: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $33k | -104 | ✅ novig,prophetx |  | -1.0c | yes | W |
-| Nov 12 11:00AM | NHL | Winnipeg vs Dallas: Total Goals | total: Over 5.5 goals scored | kalshi | $28k | -117 | ✅ novig |  | -1.0c | yes | W |
-| Nov 12 10:51AM | NCAAF | Houston vs Colorado | moneyline: Houston | kalshi | $201k | -335 | ✅ novig |  | -3.0c | yes | L |
-| Nov 12 10:31AM | NHL | Detroit vs Florida | moneyline: Florida | kalshi | $37k | -163 | ✅ novig,prophetx |  | +4.0c |  | W |
-| Nov 12 10:07AM | NCAAF | Illinois vs UCLA: Spread | spread: NOT UCLA wins by over 9.5 points | kalshi | $39k | +108 | ✅ novig |  | -2.0c |  | W |

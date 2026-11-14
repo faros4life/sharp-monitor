@@ -1,6 +1,712 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-14T21:35:38Z",
+   "base_depth": 288691,
+   "best_price": 0.515,
+   "best_price_american": -106,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-14",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -20976,
+     "new_this_side": 47219,
+     "other_side": 90443,
+     "other_side_all_levels": 282045,
+     "ratio": 1.1,
+     "this_side": 102387,
+     "this_side_all_levels": 336155
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "Over 49.5 (49.5)",
+     "price": 0.515,
+     "this_side": 32829
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "over 49.5 (49.5)",
+     "price": 0.5169,
+     "this_side": 2721
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 90865.04,
+    "volume_24h_fp": 15738.47,
+    "volume_fp": 92446.32
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 50765.75,
+    "volume_24h_fp": 37.21,
+    "volume_fp": 52013.84
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 40099.29,
+    "volume_24h_fp": 15701.26,
+    "volume_fp": 40432.48
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-11-14T21:30:23Z",
+   "game": "Baylor vs BYU: Total Points",
+   "game_surge_books": [
+    "novig"
+   ],
+   "game_x": 1.19,
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFTOTAL-26NOV14BAYBYU-50\"}",
+   "lead_min": 144,
+   "league": "NCAAF",
+   "line": 49.5,
+   "market": "total",
+   "new_money": 47219,
+   "new_x": 2.67,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 90865.04,
+      "volume_24h_fp": 15738.47,
+      "volume_fp": 92446.32
+     },
+     "game_normal": 281302,
+     "game_x": 1.19,
+     "normal": 17677,
+     "now": 336155,
+     "type": "OVER",
+     "x": 19.02
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 5450872.0,
+      "volume": 7331083.0
+     },
+     "game_normal": 7649,
+     "game_x": 4.36,
+     "normal": 7042,
+     "now": 33365,
+     "type": "OVER",
+     "x": 4.74
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 5226,
+     "game_x": 0.54,
+     "normal": 515,
+     "now": 2821,
+     "type": "OVER",
+     "x": 5.47
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 49.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 50.0,
+     "price": -105
+    },
+    "betopenly": {
+     "point": 49.5,
+     "price": -101
+    },
+    "betrivers": {
+     "point": 49.5,
+     "price": -114
+    },
+    "betus": {
+     "point": 50.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 50.0,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 49.5,
+     "price": -115
+    },
+    "fanatics": {
+     "point": 50.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 49.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": 49.5,
+     "price": -104
+    },
+    "lowvig": {
+     "point": 50.0,
+     "price": -103
+    },
+    "mybookieag": {
+     "point": 50.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 49.5,
+     "price": -106
+    },
+    "polymarket": {
+     "point": 49.5,
+     "price": -108
+    },
+    "prophetx": {
+     "point": 49.5,
+     "price": -107
+    },
+    "williamhill_us": {
+     "point": 49.5,
+     "price": -112
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFTOTAL-26NOV14BAYBYU-50"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [
+    "Over 49.5 (-105)"
+   ],
+   "sharp_oppose": [],
+   "side": "OVER",
+   "side_label": "Over 49.5 points",
+   "size_x": 19.02,
+   "start_source": "odds",
+   "start_utc": "2026-11-15T00:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "teams": [
+    "Baylor",
+    "BYU"
+   ],
+   "top25": true,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-14T21:35:38Z",
+   "base_depth": 4614014,
+   "best_price": 0.65,
+   "best_price_american": -186,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.65,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-14",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 886,
+     "new_this_side": 202483,
+     "other_side": 852249,
+     "other_side_all_levels": 1431335,
+     "ratio": 4.5,
+     "this_side": 3816973,
+     "this_side_all_levels": 4803980
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "LSU (0)",
+     "price": 0.65,
+     "this_side": 189744
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "LSU",
+     "price": 0.6503,
+     "this_side": 24130
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 2476279.07,
+    "volume_24h_fp": 1753590.85,
+    "volume_fp": 2720491.16
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 21501.78,
+    "volume_24h_fp": 69464.58,
+    "volume_fp": 21928.27
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 2454777.29,
+    "volume_24h_fp": 1684126.27,
+    "volume_fp": 2698562.8899999997
+   },
+   "fade_price": 0.36,
+   "first_seen_utc": "2026-11-14T21:30:23Z",
+   "game": "Texas vs LSU",
+   "game_surge_books": [],
+   "game_x": 0.91,
+   "key": "kalshi|KXNCAAFGAME-26NOV14TEXLSU|ml|1",
+   "lead_min": 174,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 202483,
+   "new_x": 2.01,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 2476279.07,
+      "volume_24h_fp": 1753590.85,
+      "volume_fp": 2720491.16
+     },
+     "game_normal": 5290455,
+     "game_x": 0.91,
+     "normal": 100763,
+     "now": 4803980,
+     "type": "ML",
+     "x": 47.68
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 19809041.0,
+      "volume": 28545347.0
+     },
+     "game_normal": 131187,
+     "game_x": 1.51,
+     "normal": 20380,
+     "now": 198391,
+     "type": "ML",
+     "x": 9.73
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 27521,
+     "game_x": 1.06,
+     "normal": 3476,
+     "now": 29247,
+     "type": "ML",
+     "x": 8.41
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.65,
+   "price_american": -186,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.65,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -200
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -200
+    },
+    "betopenly": {
+     "point": null,
+     "price": -178
+    },
+    "betrivers": {
+     "point": null,
+     "price": -200
+    },
+    "betus": {
+     "point": null,
+     "price": -200
+    },
+    "bovada": {
+     "point": null,
+     "price": -200
+    },
+    "draftkings": {
+     "point": null,
+     "price": -205
+    },
+    "fanatics": {
+     "point": null,
+     "price": -205
+    },
+    "fanduel": {
+     "point": null,
+     "price": -194
+    },
+    "kalshi": {
+     "point": null,
+     "price": -186
+    },
+    "lowvig": {
+     "point": null,
+     "price": -200
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -210
+    },
+    "novig": {
+     "point": null,
+     "price": -186
+    },
+    "polymarket": {
+     "point": null,
+     "price": -186
+    },
+    "prophetx": {
+     "point": null,
+     "price": -186
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -200
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26NOV14TEXLSU-LSU"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "prophetx"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "LSU",
+   "side_label": "LSU",
+   "size_x": 47.68,
+   "start_source": "odds",
+   "start_utc": "2026-11-15T00:30:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "teams": [
+    "Texas",
+    "LSU"
+   ],
+   "top25": true,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-14T21:35:38Z",
+   "base_depth": 22352,
+   "best_price": 0.705,
+   "best_price_american": -239,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.69,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-14",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 10513,
+     "new_this_side": 41845,
+     "other_side": 3470,
+     "other_side_all_levels": 17721,
+     "ratio": 2.0,
+     "this_side": 7089,
+     "this_side_all_levels": 63321
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 25496.04,
+    "volume_24h_fp": 16298.4,
+    "volume_fp": 27976.98
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 976.5,
+    "volume_24h_fp": 214.28,
+    "volume_fp": 976.5
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 24519.54,
+    "volume_24h_fp": 16084.12,
+    "volume_fp": 27000.480000000003
+   },
+   "fade_price": 0.33,
+   "first_seen_utc": "2026-11-14T21:30:23Z",
+   "game": "Mississippi Valley St. vs Florida A&M",
+   "game_surge_books": [],
+   "game_x": 1.29,
+   "key": "kalshi|KXNCAAFGAME-26NOV14MVSUFAMU|ml|1",
+   "lead_min": 84,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 41845,
+   "new_x": 0.42,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 25496.04,
+      "volume_24h_fp": 16298.4,
+      "volume_fp": 27976.98
+     },
+     "game_normal": 48987,
+     "game_x": 1.29,
+     "normal": 100763,
+     "now": 63321,
+     "type": "ML",
+     "x": 0.63
+    }
+   },
+   "norm_ready_books": 1,
+   "paper_only": false,
+   "price": 0.69,
+   "price_american": -223,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.69,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26NOV14MVSUFAMU-FAMU"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Florida A&M",
+   "side_label": "Florida A&M",
+   "size_x": 0.63,
+   "start_source": "kalshi",
+   "start_utc": "2026-11-14T23:00:00Z",
+   "surge_books": [],
+   "teams": [
+    "Mississippi Valley St.",
+    "Florida A&M"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-14T21:35:38Z",
+   "base_depth": 554583,
+   "best_price": 0.5172,
+   "best_price_american": -107,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-14",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -305993,
+     "new_this_side": 75061,
+     "other_side": 256823,
+     "other_side_all_levels": 587952,
+     "ratio": 1.5,
+     "this_side": 383238,
+     "this_side_all_levels": 617437
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Marshall",
+     "price": 0.5122,
+     "this_side": 8384
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 39282.35,
+    "volume_24h_fp": 15738.08,
+    "volume_fp": 39444.21
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 4353.24,
+    "volume_24h_fp": 9173.27,
+    "volume_fp": 4353.24
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 34929.11,
+    "volume_24h_fp": 6564.8099999999995,
+    "volume_fp": 35090.97
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-11-14T21:30:23Z",
+   "game": "Appalachian St. vs Marshall",
+   "game_surge_books": [],
+   "game_x": 1.39,
+   "key": "kalshi|KXNCAAFGAME-26NOV14APPMRSH|ml|1",
+   "lead_min": 84,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 75061,
+   "new_x": 0.74,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 39282.35,
+      "volume_24h_fp": 15738.08,
+      "volume_fp": 39444.21
+     },
+     "game_normal": 444129,
+     "game_x": 1.39,
+     "normal": 100763,
+     "now": 617437,
+     "type": "ML",
+     "x": 6.13
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 11277,
+     "game_x": 0.76,
+     "normal": 3476,
+     "now": 8606,
+     "type": "ML",
+     "x": 2.48
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.5,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -112
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -120
+    },
+    "betrivers": {
+     "point": null,
+     "price": -112
+    },
+    "betus": {
+     "point": null,
+     "price": -120
+    },
+    "bovada": {
+     "point": null,
+     "price": -112
+    },
+    "draftkings": {
+     "point": null,
+     "price": -115
+    },
+    "fanatics": {
+     "point": null,
+     "price": -115
+    },
+    "fanduel": {
+     "point": null,
+     "price": -113
+    },
+    "kalshi": {
+     "point": null,
+     "price": -104
+    },
+    "lowvig": {
+     "point": null,
+     "price": -120
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -115
+    },
+    "novig": {
+     "point": null,
+     "price": -106
+    },
+    "polymarket": {
+     "point": null,
+     "price": -104
+    },
+    "prophetx": {
+     "point": null,
+     "price": -107
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -112
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26NOV14APPMRSH-MRSH"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [
+    "Marshall Thundering Herd +1.5 (-106)"
+   ],
+   "sharp_oppose": [],
+   "side": "Marshall",
+   "side_label": "Marshall",
+   "size_x": 6.13,
+   "start_source": "odds",
+   "start_utc": "2026-11-14T23:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "prophetx"
+   ],
+   "teams": [
+    "Appalachian St.",
+    "Marshall"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-14T21:30:23Z",
    "base_depth": 494757,
    "best_price": 0.515,
@@ -44,6 +750,11 @@
     "open_interest_fp": 1675.72,
     "volume_24h_fp": 0.0,
     "volume_fp": 1972.81
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 32477.91,
+    "volume_24h_fp": 34615.14,
+    "volume_fp": 39226.43
    },
    "ex_stats_first": {
     "open_interest_fp": 29887.26,
@@ -239,8 +950,8 @@
     "volume": 116797.0
    },
    "ex_stats_close": {
-    "openInterest": 19756298.0,
-    "volume": 28492604.0
+    "openInterest": 19809041.0,
+    "volume": 28545347.0
    },
    "ex_stats_first": {
     "openInterest": 19099961.0,
@@ -445,8 +1156,8 @@
     "volume": 4310.0
    },
    "ex_stats_close": {
-    "openInterest": 9479048.0,
-    "volume": 11829326.0
+    "openInterest": 9481116.0,
+    "volume": 11831394.0
    },
    "ex_stats_first": {
     "openInterest": 9434659.0,
@@ -643,9 +1354,9 @@
     "volume_fp": 878.63
    },
    "ex_stats_close": {
-    "open_interest_fp": 423076.54,
-    "volume_24h_fp": 444229.93999999994,
-    "volume_fp": 578554.01
+    "open_interest_fp": 424748.32999999996,
+    "volume_24h_fp": 445992.53,
+    "volume_fp": 580370.94
    },
    "ex_stats_first": {
     "open_interest_fp": 408812.11,
@@ -841,9 +1552,9 @@
     "volume_fp": 256.52
    },
    "ex_stats_close": {
-    "open_interest_fp": 31293.21,
-    "volume_24h_fp": 26635.809999999998,
-    "volume_fp": 34096.81
+    "open_interest_fp": 31781.550000000003,
+    "volume_24h_fp": 27046.0,
+    "volume_fp": 34682.68
    },
    "ex_stats_first": {
     "open_interest_fp": 28700.86,
@@ -1057,9 +1768,9 @@
     "volume_fp": 612.55
    },
    "ex_stats_close": {
-    "open_interest_fp": 179374.98,
-    "volume_24h_fp": 201395.47,
-    "volume_fp": 226789.92
+    "open_interest_fp": 179695.66999999998,
+    "volume_24h_fp": 202973.47,
+    "volume_fp": 227155.16
    },
    "ex_stats_first": {
     "open_interest_fp": 167919.75,
@@ -1275,9 +1986,9 @@
     "volume_fp": 55.73
    },
    "ex_stats_close": {
-    "open_interest_fp": 34929.11,
-    "volume_24h_fp": 6564.8099999999995,
-    "volume_fp": 35090.97
+    "open_interest_fp": 39282.35,
+    "volume_24h_fp": 15738.08,
+    "volume_fp": 39444.21
    },
    "ex_stats_first": {
     "open_interest_fp": 11481.16,
@@ -1655,9 +2366,9 @@
     "volume_fp": 1824.43
    },
    "ex_stats_close": {
-    "open_interest_fp": 83187.02,
-    "volume_24h_fp": 48268.79,
-    "volume_fp": 88472.24
+    "open_interest_fp": 83274.98,
+    "volume_24h_fp": 49251.06,
+    "volume_fp": 88560.2
    },
    "ex_stats_first": {
     "open_interest_fp": 78262.77,
@@ -1854,9 +2565,9 @@
     "volume_fp": 2891.52
    },
    "ex_stats_close": {
-    "open_interest_fp": 155922.84,
-    "volume_24h_fp": 147965.42,
-    "volume_fp": 158696.41
+    "open_interest_fp": 323887.61,
+    "volume_24h_fp": 150985.49,
+    "volume_fp": 328250.88
    },
    "ex_stats_first": {
     "open_interest_fp": 133824.87,
@@ -2073,7 +2784,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 2425.39,
-    "volume_24h_fp": 2024.9099999999999,
+    "volume_24h_fp": 2211.98,
     "volume_fp": 2627.52
    },
    "ex_stats_first": {
@@ -3519,9 +4230,9 @@
     "volume_fp": 471.92
    },
    "ex_stats_close": {
-    "open_interest_fp": 144494.57,
-    "volume_24h_fp": 139994.69,
-    "volume_fp": 146434.66999999998
+    "open_interest_fp": 145135.41,
+    "volume_24h_fp": 140738.39,
+    "volume_fp": 147075.51
    },
    "ex_stats_first": {
     "open_interest_fp": 123513.08,
@@ -3735,9 +4446,9 @@
     "volume_fp": 1711.69
    },
    "ex_stats_close": {
-    "open_interest_fp": 1293787.03,
-    "volume_24h_fp": 656472.33,
-    "volume_fp": 1309628.0799999998
+    "open_interest_fp": 1300224.05,
+    "volume_24h_fp": 663876.2300000001,
+    "volume_fp": 1316065.0999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 1238275.47,
@@ -4011,7 +4722,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 1,
+   "settle_tries": 2,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Tennessee Tech",
@@ -4162,7 +4873,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Western Illinois",
@@ -5706,7 +6417,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [
     "TCU Horned Frogs -12.5 (-115)",
     "TCU Horned Frogs -11.5 (-110)"
@@ -7776,7 +8487,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Charlotte",
@@ -9304,7 +10015,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 8,
+   "settle_tries": 9,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "East Tennessee St.",
@@ -11760,7 +12471,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -12855,7 +13566,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -13138,7 +13849,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Austin Peay",
@@ -13590,7 +14301,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Southeast Missouri St.",
@@ -13721,7 +14432,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "St. Thomas",
@@ -14162,7 +14873,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "North Alabama",
@@ -14296,7 +15007,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 8,
+   "settle_tries": 9,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "South Carolina St.",
@@ -14581,7 +15292,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Lehigh",
@@ -14794,7 +15505,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Kennesaw St.",
@@ -15291,7 +16002,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "North Carolina A&T",
@@ -15832,7 +16543,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "South Dakota",
@@ -15979,7 +16690,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Campbell",
@@ -17710,7 +18421,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 17,
+   "settle_tries": 18,
    "sharp_agree": [
     "Over 50.5 (-106)"
    ],
@@ -20572,7 +21283,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Rice",
@@ -22238,7 +22949,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 17,
+   "settle_tries": 18,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Auburn",
@@ -27593,7 +28304,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 17,
+   "settle_tries": 18,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Youngstown St.",
