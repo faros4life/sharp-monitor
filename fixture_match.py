@@ -124,3 +124,39 @@ def ordered_match(s, fixtures, tp):
         return None, (f"AMBIGUOUS: {str(f.get('p1'))[:26]} v {str(f.get('p2'))[:26]} - both sides "
                       f"share {sorted(shared)}, so neither is distinguished. Not used.")
     return None, "no fixture in any cache matches this league and date"
+
+
+NON_TEAM = {"over", "under", "yes", "no", "o", "u"}
+
+
+def resolve_side(fixture, team_text, league, which_team):
+    """('1'|'2'|None, why). Which participant the bet's team text names.
+
+    which_team() compares raw token overlap, so a venue abbreviation that shares no WORD with the
+    participant name defeats it: "LAR -3.5" against "Los Angeles Rams LA Rams LA" has zero
+    overlap, because "lar" is not one of {los, angeles, rams, la}. Eight rows with a fixture AND
+    cached history produced no close for this reason alone.
+
+    The fallback is liquidity_monitor.team_side, which is the repo's OWN team matcher and already
+    handles this exact case ("ECU +6.5", "MEM") through abbr_match. Reusing it beats inventing a
+    second abbreviation rule here, and it returns None on a tie, so an ambiguous abbreviation is
+    still refused rather than forced.
+    """
+    t = str(team_text or "").strip()
+    if not t:
+        return None, "the bet text names no team at all"
+    if t.lower() in NON_TEAM or not any(ch.isalpha() for ch in t):
+        # "Under" with no number, or a bare price like "-108": this is not a team, and trying to
+        # match it to a participant is how a totals row ends up scored as a side.
+        return None, f"the bet text is '{t[:18]}', not a team - the side was never recorded"
+    side = which_team(fixture, t)
+    if side:
+        return side, "token overlap"
+    try:
+        import liquidity_monitor as lm
+        idx = lm.team_side(t, [fixture.get("p1") or "", fixture.get("p2") or ""], league)
+    except Exception as ex:
+        return None, f"abbreviation matcher unavailable ({type(ex).__name__})"
+    if idx is None:
+        return None, "held team not matched to either side of the fixture"
+    return ("1" if idx == 0 else "2"), "abbreviation match (liquidity_monitor.team_side)"

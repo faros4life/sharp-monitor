@@ -89,6 +89,19 @@ def main():
     else:
         print("  skip alt_fixtures content (no alternate store on disk in this checkout)")
 
+    print("7b. resolve_side lives in the LEAF module, so importing it cannot cycle")
+    # clv_basis imports clv_std, which imports exchange_lag -> hist_cache -> clv_ledger. So
+    # clv_ledger CANNOT import clv_basis at module level: the first attempt did and broke 8 test
+    # files with "module 'clv_ledger' has no attribute 'KEY'" mid-import. resolve_side therefore
+    # lives in fixture_match, whose only import is tracker_build, and clv_basis re-exports it.
+    check("fixture_match owns resolve_side", callable(getattr(fxm, "resolve_side", None)))
+    check("clv_basis re-exports the same object", __import__("clv_basis").resolve_side is fxm.resolve_side)
+    check("the ledger uses it", cl.fxm.resolve_side is fxm.resolve_side)
+    fm_src = __import__("pathlib").Path("fixture_match.py").read_text()
+    check("fixture_match imports no heavy module at top level",
+          "import clv_std" not in fm_src and "import clv_ledger" not in fm_src,
+          "fixture_match gained a heavy import")
+
     print("8. the ledger exposes the recovery hooks it needs")
     check("ALT_FX exists", hasattr(cl, "ALT_FX"))
     check("ALT_SRC exists for provenance", hasattr(cl, "ALT_SRC"))

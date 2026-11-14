@@ -32,7 +32,12 @@ NOTHING HERE READS A STORED CLV FIELD, and nothing falls back to a half-point co
 conversion off the main line is a model, not a close, so it returns None with a reason.
 """
 import clv_std as cs
+import fixture_match as fxm
 import tracker_build as tb
+
+# Re-exported so callers can reach it from either module - ONE implementation, in the leaf.
+resolve_side = fxm.resolve_side
+NON_TEAM = fxm.NON_TEAM
 
 # Bump when any input rule changes - the fixture test, the line rule, the freshness limit, the
 # no-vig conversion or the arithmetic. Reports print it so a figure can always be traced to the
@@ -110,6 +115,8 @@ def resolve_fixture(snap, state_fixtures, alt_fixtures, find_fixture, ordered_ma
     return (fid, "alt", note) if fid else (None, None, note)
 
 
+
+
 def pinnacle_no_vig_close(fixture, snap, mkmap, pm, parsed, which_team, two_way, novig_p,
                           sport_map, ml_market, fresh_min, tp):
     """(p_held, evidence) at the bet's OWN line, or (None, why).
@@ -121,6 +128,17 @@ def pinnacle_no_vig_close(fixture, snap, mkmap, pm, parsed, which_team, two_way,
     start = tp(fixture.get("start")) or tp(snap.get("game_start"))
     if not start:
         return None, "no start time on the fixture or the row"
+    # A politics market is not a sports bet and must never be priced against a game's close.
+    # ks|SENATEMI-26-R ("Michigan Senate winner?" / "Mike Rogers") was ESPN-filled onto
+    # Eastern Michigan v Central Michigan on the shared word "Michigan" and reached this
+    # function with league NCAAF. tracker_build.is_politics exists for exactly this and was
+    # never consulted here, so the row was one successful side match away from a confidently
+    # wrong CLV on a live-money record.
+    try:
+        if tb.is_politics({"game": snap.get("game"), "bet": snap.get("bet")}):
+            return None, "politics market, not a sports bet - never scored against a game close"
+    except Exception:
+        pass
     pz = parsed(snap)
     if not pz:
         return None, "bet text did not parse"
@@ -137,9 +155,9 @@ def pinnacle_no_vig_close(fixture, snap, mkmap, pm, parsed, which_team, two_way,
         age = (start - min(tw[o1][1], tw[o2][1])).total_seconds() / 60
         if age > fresh_min:
             return None, f"moneyline close {age / 60:.0f}h stale"
-        side = which_team(fixture, pz[1])
+        side, swhy = resolve_side(fixture, pz[1], snap.get("league"), which_team)
         if not side:
-            return None, "held team not matched to either side of the fixture"
+            return None, swhy
         if pz[3]:
             side = "2" if side == "1" else "1"
         p = novig_p(tw[o1][0], tw[o2][0])
@@ -150,9 +168,9 @@ def pinnacle_no_vig_close(fixture, snap, mkmap, pm, parsed, which_team, two_way,
     want = pz[2]
     side_is_a = (pz[1] == "OVER") if typ == "totals" else None
     if typ == "spreads":
-        sd = which_team(fixture, pz[1])
+        sd, swhy = resolve_side(fixture, pz[1], snap.get("league"), which_team)
         if not sd:
-            return None, "held team not matched to either side of the fixture"
+            return None, swhy
         if pz[3]:
             sd, want = ("2" if sd == "1" else "1"), -want
         want = want if sd == "1" else -want

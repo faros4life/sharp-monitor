@@ -79,6 +79,42 @@ def main():
     check("refused", p2 is None)
     check("reason names the sport map", "sport id" in str(why2), why2)
 
+    print("8. side resolution: abbreviations resolve, non-teams and ambiguity do not")
+    RAMS = {"lg": "NFL", "start": "2026-10-13T00:15:00Z",
+            "p1": "Los Angeles Rams LA Rams LA", "p2": "Buffalo Bills Buffalo BUF"}
+    side, why = cb.resolve_side(RAMS, "LAR", "NFL", cl.which_team)
+    check("LAR resolves to the Rams side", side == "1", (side, why))
+    check("and says it used the abbreviation matcher", "abbreviation" in why, why)
+    check("a full name still resolves by tokens",
+          cb.resolve_side(RAMS, "Buffalo Bills", "NFL", cl.which_team)[0] == "2")
+    for bad in ("Under", "over", "YES", "-108", "", "   "):
+        s_, w_ = cb.resolve_side(RAMS, bad, "NFL", cl.which_team)
+        check(f"'{bad}' is refused as a non-team", s_ is None, (bad, s_, w_))
+    s_, w_ = cb.resolve_side(RAMS, "Under", "NFL", cl.which_team)
+    check("and the reason says the side was never recorded",
+          "never recorded" in w_ or "names no team" in w_, w_)
+    s_, w_ = cb.resolve_side(RAMS, "Chicago Bears", "NFL", cl.which_team)
+    check("an unrelated team is refused", s_ is None, (s_, w_))
+
+    print("9. a politics market is never priced against a game close")
+    POL = {"lg": "NCAAF", "start": "2026-11-05T00:30:00Z",
+           "p1": "Eastern Michigan Eagles Eastern Michigan EMU",
+           "p2": "Central Michigan Chippewas Central Michigan CM"}
+    snap_pol = {"league": "NCAAF", "game": "Michigan Senate winner?", "bet": "Mike Rogers",
+                "game_start": "2026-11-05T00:30:00Z"}
+    p_, why_ = cb.pinnacle_no_vig_close(POL, snap_pol, {}, {}, cl.parsed, cl.which_team,
+                                        cl.two_way, cl.novig_p, cl.SPORT, cl.ML_MARKET,
+                                        cl.FRESH_MIN, cl.tp)
+    check("refused", p_ is None, p_)
+    check("and the reason says politics", "politics" in str(why_), why_)
+    # the guard must not swallow ordinary sports rows
+    p2_, why2_ = cb.pinnacle_no_vig_close(RAMS, {"league": "NFL", "game": "Buffalo Bills @ Los Angeles Rams",
+                                                 "bet": "LAR -3.5", "game_start": "2026-10-13T00:15:00Z"},
+                                          {}, {}, cl.parsed, cl.which_team, cl.two_way, cl.novig_p,
+                                          cl.SPORT, cl.ML_MARKET, cl.FRESH_MIN, cl.tp)
+    check("an ordinary spread row passes the politics guard",
+          "politics" not in str(why2_), why2_)
+
     print()
     if BAD:
         print(f"FAILED {len(BAD)}: {BAD}")

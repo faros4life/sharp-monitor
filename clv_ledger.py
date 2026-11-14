@@ -729,15 +729,23 @@ def novig_p(a, b):
 
 def close_for(b, f, pm, mkmap, start, lg):
     """Pinnacle close fair win chance for the held side, plus how it was read."""
+    # Nov 14 (Peter, priority 1): the same guards the shared basis applies. A politics market is
+    # not a sports bet - ks|SENATEMI-26-R reached scoring with league NCAAF after being
+    # ESPN-filled onto Eastern Michigan v Central Michigan on the shared word "Michigan".
+    try:
+        if tb.is_politics({"game": b.get("game"), "bet": b.get("bet")}):
+            return None, "politics market, not a sports bet - never scored against a game close"
+    except Exception:
+        pass
     pz = parsed(b)
     if not pz:
         return None, "bet text not parsed"
     sid = SPORT[lg]
     lab = lg
     if pz[0] == "ml":
-        side = which_team(f, pz[1])
+        side, _swhy = fxm.resolve_side(f, pz[1], lg, which_team)
         if not side:
-            return None, "team not matched"
+            return None, _swhy
         if pz[3]:
             side = "2" if side == "1" else "1"
         mid = ML_MARKET[sid]
@@ -788,9 +796,9 @@ def close_for(b, f, pm, mkmap, start, lg):
         better = (want < ppt) if over else (want > ppt)
         return {"p": min(max(p + (v if better else -v), .01), .99), "how": f"main {ppt:g} moved to {want:g}",
                 "age_min": round(main[2])}, None
-    side = which_team(f, pz[1])
+    side, _swhy = fxm.resolve_side(f, pz[1], lg, which_team)
     if not side:
-        return None, "team not matched"
+        return None, _swhy
     want = pz[2]
     if pz[3]:   # NO / short side of a 'Team -x' contract: the other team at +x
         side, want = ("2" if side == "1" else "1"), -want
