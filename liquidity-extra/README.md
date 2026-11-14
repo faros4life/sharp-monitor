@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 14, 5:00 PM ET. This run: 0 new, 1 not confirmed, 1 pending. Open alerts: 35.
+Updated Sat Nov 14, 5:10 PM ET. This run: 0 new, 1 not confirmed, 0 pending. Open alerts: 34.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 259-150 (-18.70u flat) | rule met: 48-41
+**Record:** 259-151 (-19.70u flat) | rule met: 48-41
 
-**Fade (paper, betting against the print):** 125-224 (+15.07u flat, after fees)
+**Fade (paper, betting against the print):** 126-224 (+17.59u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -45,7 +45,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 14 1:50AM | NCAAB | Rice vs Stephen F. Austin | moneyline: Stephen F. Austin | kalshi | $38k | -488 |  |  | -1.0c | yes | L |
 | Nov 14 1:50AM | NCAAB | Miami (OH) vs Evansville | moneyline: Miami (OH) | kalshi | $27k | -355 |  |  | +2.0c | yes | W |
 | Nov 14 1:50AM | NCAAB | Longwood vs Old Dominion | moneyline: Old Dominion | kalshi | $38k | -285 |  |  | -1.0c | yes | pending |
-| Nov 14 1:50AM | NCAAB | Jackson St. vs Winthrop | moneyline: Winthrop | kalshi | $31k | -317 |  |  | +3.0c | yes | pending |
+| Nov 14 1:50AM | NCAAB | Jackson St. vs Winthrop | moneyline: Winthrop | kalshi | $31k | -317 |  |  | +3.0c | yes | L |
 | Nov 13 10:20PM | NCAAB | LSU vs Gonzaga | moneyline: Gonzaga | kalshi | $32k | -213 |  |  | -1.0c | yes | pending |
 | Nov 13 10:10PM | NCAAB | Wyoming vs Denver | moneyline: Wyoming | kalshi | $26k | -300 |  |  | -2.0c |  | W |
 | Nov 13 10:10PM | NCAAB | Toledo vs Detroit Mercy | moneyline: Toledo | kalshi | $33k | -488 |  |  | +0.0c | yes | pending |
