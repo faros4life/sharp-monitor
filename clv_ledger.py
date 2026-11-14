@@ -15,6 +15,7 @@ Read-only. Bets come from the encrypted tracker state (tracker/state.enc); this 
 Hard cap CLV_MONTH_CAP billable calls per month. Private email; the Actions log prints counts only.
 Kill-switch (Muse registration, alert-only until Peter decides): rolling 50 scored bot bets, average CLV < 0 -> ALERT.
 """
+import collections
 import json
 import os
 import re
@@ -25,6 +26,7 @@ import urllib.request
 from datetime import datetime, timedelta, timezone
 
 import clv_stale as cstale     # leaf module, tracker_build only - safe to import here
+import fixture_match as fxm   # leaf module, tracker_build only - the SHARED fixture matcher
 import credit_gate as cg       # leaf module, stdlib only - safe to import here
 import executor as ex
 import sharp_monitor as sm
@@ -316,6 +318,8 @@ def tournament(st, now, lg):
 
 
 FX_LOG = []        # one line per league per run: what was called, what was refused, and why
+ALT_FX = {}        # fixtures from the stores other jobs maintain; filled once per run in main()
+ALT_SRC = {}       # fixture id -> which store it came from, for the audit trail
 
 
 def refresh_fixtures(st, now, lg, lo, hi, allow_extra=False):
@@ -572,6 +576,86 @@ def apply_doubt(st, rec, now):
             rec["fixture_ok"] = {"at": iso(now), "fixture": rec.get("fixture")}
         return "ok"
     return "unchanged"
+
+
+LG_LOG = []
+
+
+def recover_leagues(st, now, max_rows=400):
+    """Fill snap['league'] on rows that have none, from AUTHORITATIVE evidence only.
+
+    Peter, Nov 13: "Recover leagues from authoritative order/fixture metadata, never guess from
+    an ambiguous description." 103 of the 166 rows with no CLV carry no league at all - almost
+    all ProphetX - and a row with no league can never match a fixture, because _qualifies
+    requires f['lg'] == lg. It is the single largest cause of missing CLV and it is our own data
+    gap, not a limit of what the market published: read_prophetx builds its rows without a league
+    key, and espn_fill only fills rows that have no GAME, so a ProphetX row with a game and no
+    league was never touched by either.
+
+    THREE SOURCES, ALL AUTHORITATIVE, IN ORDER:
+      1 the fixture already stored on the row - the fixture IS the game, so its league is a fact
+      2 the ESPN scoreboard for the row's own date - a scoreboard is the authority on which
+        league a game belongs to, and tracker_build.match_game already encodes the two-team
+        anti-ambiguity rules. A match must be UNIQUE across leagues or it is refused.
+      3 nothing else. No inference from the bet text, the book, or a tournament-sounding word.
+
+    Every fill records league_src, so any recovered league can be traced to the evidence that
+    produced it. Rows that cannot be resolved are left exactly as they are and counted.
+    """
+    need = [(k, r) for k, r in (st.get("bets") or {}).items()
+            if not (r.get("snap") or {}).get("league") and (r.get("snap") or {}).get("game")]
+    if not need:
+        return 0
+    filled = collections.Counter()
+    # 1) the row's own fixture
+    for k, r in need:
+        fid = r.get("fixture")
+        f = ((st.get("fixtures") or {}).get(fid) or ALT_FX.get(fid)) if fid else None
+        if f and f.get("lg"):
+            r["snap"]["league"] = f["lg"]
+            r["snap"]["league_src"] = {"from": "stored fixture", "fixture": fid, "at": iso(now)}
+            filled["fixture"] += 1
+    need = [(k, r) for k, r in need if not r["snap"].get("league")][:max_rows]
+    if not need:
+        LG_LOG.append(f"leagues recovered from stored fixtures: {filled['fixture']}")
+        return sum(filled.values())
+    # 2) the ESPN scoreboard for each row's own date, across every league the tracker reads
+    days = sorted({(tp(r["snap"].get("game_start")) or tp(r["snap"].get("placed"))
+                    or tp(r.get("first_seen"))).astimezone(ET).date()
+                   for _k, r in need
+                   if (tp(r["snap"].get("game_start")) or tp(r["snap"].get("placed"))
+                       or tp(r.get("first_seen")))})
+    games = []
+    for d in days[-14:]:          # bounded: a free ESPN read per date, newest 14 dates
+        try:
+            games += tb.espn_games([datetime(d.year, d.month, d.day, 12, tzinfo=timezone.utc).astimezone(ET)])
+        except Exception as e_:
+            LG_LOG.append(f"espn scoreboard {d}: {type(e_).__name__}")
+    for k, r in need:
+        s = r["snap"]
+        g = None
+        try:
+            g = tb.match_game({"game": s.get("game"), "bet": s.get("bet")}, games)
+        except Exception:
+            g = None
+        if g and g.get("league"):
+            # UNIQUE across leagues, or refused: match_game returns one game, but a game text
+            # that plausibly matches two leagues' scoreboards must not be resolved by whichever
+            # was read first.
+            others = {x.get("league") for x in games
+                      if x is not g and tb.match_game({"game": s.get("game"), "bet": s.get("bet")}, [x])}
+            if others - {g["league"]}:
+                filled["ambiguous"] += 1
+                continue
+            s["league"] = g["league"]
+            s["league_src"] = {"from": "ESPN scoreboard", "game": g.get("id"), "at": iso(now)}
+            filled["espn"] += 1
+            for fld in ("done", "tries", "why"):
+                r.pop(fld, None)      # it was never given a fair attempt without a league
+        else:
+            filled["unresolved"] += 1
+    LG_LOG.append(f"leagues recovered: {dict(filled)} (from {len(days[-14:])} scoreboard date(s))")
+    return filled["fixture"] + filled["espn"]
 
 
 def which_team(f, team_text):
@@ -1018,6 +1102,25 @@ def main():
                 rec.pop(x, None)
     for o in nvo:
         st.setdefault("novig_checks", {}).setdefault(o["id"], {"snap": o})
+    # The fixture stores other jobs in this repo maintain. Loaded once per run and used ONLY
+    # when the ledger's own matcher has already failed, so nothing about the existing path
+    # changes. Peter, Nov 13: "Make the live scorer read the same fixture and historical-odds
+    # caches as the scorecard, using the verified fallback."
+    global ALT_FX, ALT_SRC
+    _alt = fxm.alt_fixtures()
+    ALT_FX = {fid: f for fid, (f, _src) in _alt.items() if fid not in (st.get("fixtures") or {})}
+    ALT_SRC = {fid: src for fid, (_f, src) in _alt.items()}
+    print(f"fixtures: {len(ALT_FX)} additional fixture(s) available from "
+          f"{sorted(set(ALT_SRC.values()))}", flush=True)
+    # Peter, Nov 13, priority 2: fill the missing leagues BEFORE anything tries to match a
+    # fixture, since a row with no league can never match one.
+    try:
+        _n_lg = recover_leagues(st, now)
+    except Exception as _lg_ex:
+        _n_lg = 0
+        LG_LOG.append(f"league recovery skipped ({type(_lg_ex).__name__}) - no row was changed")
+    for _ln in LG_LOG:
+        print(f"leagues: {_ln}", flush=True)
     mkmap = load_markets(st, now)
     if st.get("rescored_v3") is None:   # v3 (Nov 2): line-distance guard; score everything again once
         st.pop("rescored_v2", None)
@@ -1105,6 +1208,19 @@ def main():
             continue
         fid = rec.get("fixture") or find_fixture(st, s)
         if not fid:
+            # Stage 3 of Peter's Nov 13 list: the live scorer now reads the SAME fixture stores
+            # the scorecard reads, through the SAME matcher, instead of only its own cache. The
+            # Nov 12 Louisiana row sat unscored for a day while the fixture for that exact game
+            # was already on disk in oddspapi/fixtures.json - two caches, one of which the scorer
+            # had never been told about. ALT is loaded once per run, above.
+            _fid, _note = fxm.ordered_match(s, ALT_FX, tp)
+            if _fid:
+                fid = _fid
+                rec["fixture_src"] = {"from": ALT_SRC.get(_fid, "alt cache"), "how": _note,
+                                      "at": iso(now)}       # audit trail: where this came from
+                FX_LOG.append(f"recovered fixture for {k[:28]}: {_fid} from "
+                              f"{ALT_SRC.get(_fid, '?')} ({_note})")
+        if not fid:
             # Nov 5 (Peter): only a run that actually looked fixtures up for this league may burn a
             # retry. The ledger runs every 2 h but refresh_fixtures has a 6 h cooldown, so roughly two
             # runs in three would otherwise exhaust MAX_TRIES against an UNCHANGED cache in about 16
@@ -1118,7 +1234,7 @@ def main():
             else:
                 rec["why"] = "no fixture yet - no fresh lookup this run (6 h cooldown), retry not counted"
             continue
-        f = (st.get("fixtures") or {}).get(fid)
+        f = (st.get("fixtures") or {}).get(fid) or ALT_FX.get(fid)
         if not f:
             rec.pop("fixture", None)
             continue

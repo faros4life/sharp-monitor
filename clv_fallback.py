@@ -43,6 +43,7 @@ import sys
 from datetime import datetime, timedelta, timezone
 
 import clv_ledger as cl
+import fixture_match as fxm
 import tracker_build as tb
 
 ET = tb.ET
@@ -93,53 +94,13 @@ def load_all_fixtures():
     return st, out, src
 
 
-def sides_of(s):
-    """The two sides the row names, as token sets: from snap.teams when present, else game text."""
-    tms = [(t.get("name") or "").strip() for t in (s.get("teams") or []) if (t.get("name") or "").strip()]
-    if len(tms) >= 2:
-        return [tb.toks(tms[0]) - tb.WEAK, tb.toks(tms[1]) - tb.WEAK], "snap.teams"
-    txt = str(s.get("game") or "").replace(" v ", " @ ").replace(" vs ", " @ ")
-    parts = [p for p in txt.split("@") if p.strip()]
-    if len(parts) == 2:
-        return [tb.toks(parts[0]) - tb.WEAK, tb.toks(parts[1]) - tb.WEAK], "game text"
-    return None, "could not split the row into two sides"
-
-
 def strict_match(s, fixtures):
-    """(fid, note) for the ONE fixture that maps one-to-one onto the row, or (None, why)."""
-    sides, how = sides_of(s)
-    if not sides or not all(sides):
-        return None, f"no two distinguishable sides on the row ({how})"
-    gs = cl.tp(s.get("game_start"))
-    lg = s.get("league")
-    ok, amb = [], []
-    for fid, f in fixtures.items():
-        if f.get("lg") != lg:
-            continue
-        fs = cl.tp(f.get("start"))
-        if gs and fs and abs((fs - gs).total_seconds()) > 12 * 3600:
-            continue
-        p1 = tb.toks(f.get("p1") or "") - tb.WEAK
-        p2 = tb.toks(f.get("p2") or "") - tb.WEAK
-        for a, b in ((p1, p2), (p2, p1)):
-            ha, hb = a & sides[0], b & sides[1]
-            if not (ha and hb):
-                continue
-            # one-to-one: each side must be carried by a token the OTHER side does not also hold
-            if (ha - hb) and (hb - ha):
-                ok.append((fid, f))
-            else:
-                amb.append((fid, f, ha & hb))
-            break
-    if len(ok) == 1:
-        return ok[0][0], f"unique one-to-one match ({how})"
-    if len(ok) > 1:
-        return None, f"{len(ok)} fixtures match one-to-one - ambiguous, not used"
-    if amb:
-        fid, f, shared = amb[0]
-        return None, (f"AMBIGUOUS: {str(f.get('p1'))[:26]} v {str(f.get('p2'))[:26]} - both sides "
-                      f"share {sorted(shared)}, so neither is distinguished. Not used.")
-    return None, "no fixture in any cache matches this league and date"
+    """Delegates to the SHARED matcher so the scorecard and the live scorer cannot drift.
+
+    Peter: "Both systems must use the same verified closing-price calculation." One matcher, one
+    arithmetic path; this wrapper exists only to keep the call sites readable.
+    """
+    return fxm.ordered_match(s, fixtures, cl.tp)
 
 
 def cached_pin(fid):
