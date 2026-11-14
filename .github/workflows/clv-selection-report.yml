@@ -1,0 +1,52 @@
+name: clv-selection-report
+
+# Peter, Nov 13 2026, Stage 2: show the before/after of selection-level CLV so the feature flag
+# can be decided on figures rather than after the fact.
+#
+# READ-ONLY by construction: permissions contents: read (cannot push), ODDSPAPI_KEY and
+# ODDSPAPI_FREE_KEY deliberately NOT passed (a billable call is impossible, not merely avoided),
+# no IMAP read, and the job proves afterwards that no tracked file moved. CLV_SELECTION_MODE is
+# not set here - this report exists to decide it, and it reports both columns regardless.
+
+on:
+  workflow_dispatch:
+    inputs:
+      email_now:
+        description: "1 to send the report (incl. dollar figures) by private email"
+        required: false
+        type: string
+        default: "1"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: clv-selection-report
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Stage 2 before/after (no OddsPapi key present, no IMAP, no write)
+        env:
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          EMAIL_NOW: ${{ inputs.email_now }}
+        run: python -u clv_selection_report.py
+      - name: Prove nothing in the working tree changed
+        run: |
+          if [ -n "$(git status --porcelain -uno)" ]; then
+            echo "FAIL: the report modified tracked files:"
+            git status --porcelain -uno
+            exit 1
+          fi
+          echo "clean: no tracked file was modified (clv/ and tracker/ state untouched)"

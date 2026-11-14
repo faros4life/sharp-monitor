@@ -55,6 +55,10 @@ ML_MARKET = {11: "111", 14: "141", 15: "151"}         # Winner incl. overtime (h
 FRESH_MIN = 24 * 60  # history stores CHANGES: a line's last pre-start tick is its price at the start unless it is a day old
 SCORE_AFTER_MIN = 10  # score a bet this long after its listed start
 MAX_TRIES = 8
+# Stage 2 flag (Peter, Nov 13): OFF by default. On, the email gains a selection-level section
+# beside the per-fill headline; it never replaces it, so the switch is reversible by env alone
+# and no stored figure changes either way.
+SELECTION_MODE = (os.environ.get("CLV_SELECTION_MODE", "") or "off").strip().lower() == "on"
 MAX_HIST = 60        # free history calls per run
 CALLS = []
 STATS = {"billable": 0, "free": 0}
@@ -1167,6 +1171,21 @@ def main():
         if alert:
             L += ["*** KILL-SWITCH ALERT: last 50 scored bot bets average CLV below 0 (alert only; no pause - Peter decides) ***", ""]
         L.append(f"ALL scored: {lane_stats(scored)}")
+        # Stage 2 (Peter, Nov 13): selection-level figures are ADDITIVE while the flag is off by
+        # default, so turning CLV_SELECTION_MODE=on adds a section and never silently restates
+        # the headline. One strategy selection is one observation however many pieces it filled
+        # in: Nov 12's Toronto Under 223.5 is 13 ProphetX fills and 13 certified rows today.
+        if SELECTION_MODE:
+            try:
+                import clv_selection as csel
+                obs = list(csel.selections({r["id"]: r for r in scored}, tracker).values())
+                s2 = csel.stats(obs)
+                L.append(f"  SELECTION-LEVEL (one bet = one observation): n {s2['n']} from "
+                         f"{s2['fills']} fills, mean CLV {100 * s2['mean']:+.2f}%"
+                         + (f" +/-{100 * s2['se']:.2f} (1 s.e.)" if s2.get("se") is not None else "")
+                         + f", beat close {s2['pos']}/{s2['n']}")
+            except Exception as ex:
+                L.append(f"  SELECTION-LEVEL unavailable ({type(ex).__name__}) - per-fill figures above stand")
         L.append(f"  bot: {lane_stats(bot)} | rolling 50: {lane_stats(bot[-50:])}")
         L.append(f"  Peter/other: {lane_stats(man)} | rolling 50: {lane_stats(man[-50:])}")
         if stale or stale_unproven:
