@@ -1,0 +1,30 @@
+name: p2-audit
+# Project 2. Dispatch only. READ-ONLY: decrypts tracker/state.enc, reads the private registry with a GET. No Gmail secrets, no odds key,
+# no exchange keys, no commit, no cache, no artifact upload. Public log = counts only. The dollar / ROI report goes only to
+# Peter's private Telegram (Peter approved Nov 14 18:06 ET).
+on:
+  workflow_dispatch: {}
+permissions:
+  contents: read
+concurrency:
+  group: p2-audit
+  cancel-in-progress: false
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Offline checks (no secrets)
+        run: python test_p2_audit_core.py
+      - name: Project 2 audit (read-only)
+        env:
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+          REGISTRY_TOKEN: ${{ secrets.REGISTRY_TOKEN }}   # contents read on the private registry
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}   # private delivery only (same route as last50-report)
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python -u p2_audit.py
