@@ -240,6 +240,18 @@ def main():
             f"book {s.get('book')} | source {s.get('source')}")
         say(f"    stored reason: {str(r.get('why') or '-')[:70]}   tries {r.get('tries')} "
             f"done {bool(r.get('done'))}   result {s.get('result') or 'UNSETTLED'}")
+        # Some rows are retired by a DECISION, not a missing input: an in-play bet has no
+        # pre-game close to beat, an unparsable bet has no side to price, a puck line at another
+        # number is not comparable. A close being findable does not make those recoverable, and
+        # the first run of this pass offered to "recover" mn|c6ab79076ef3 - retired "placed after
+        # start (in-play): not scored" - at +2.47%. That would have been manufactured coverage on
+        # a bet that has no pre-game close by definition.
+        _why = str(r.get("why") or "").lower()
+        if r.get("done") and any(p in _why for p in ("placed after start", "not parsed",
+                                                     "not comparable", "far from")):
+            say("    SKIPPED: correctly retired by policy, not a data gap - no close applies")
+            tally["policy_retired"] += 1
+            continue
         fid, note = strict_match(s, fixtures)
         if not fid:
             say(f"    FIXTURE: {note}")
@@ -288,6 +300,7 @@ def main():
     say("SUMMARY")
     say("=" * 100)
     say(f"  rows examined                 {len(todo)}")
+    say(f"  skipped, retired by policy    {tally['policy_retired']}")
     say(f"  fixture found in a cache      {tally['fixture_found']}")
     say(f"  no fixture / ambiguous        {tally['no_fixture']}")
     say(f"  fixture but no cached history {tally['no_history'] + tally['no_pinnacle']}")
