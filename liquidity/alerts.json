@@ -51,6 +51,11 @@
     "volume_24h_fp": 709.5,
     "volume_fp": 210.51
    },
+   "ex_stats_close": {
+    "open_interest_fp": 37305.81,
+    "volume_24h_fp": 35396.28,
+    "volume_fp": 38437.090000000004
+   },
    "ex_stats_first": {
     "open_interest_fp": 35885.619999999995,
     "volume_24h_fp": 33384.880000000005,
@@ -255,6 +260,11 @@
     "volume_24h_fp": 54.84,
     "volume_fp": 127.56
    },
+   "ex_stats_close": {
+    "open_interest_fp": 12620.720000000001,
+    "volume_24h_fp": 12503.18,
+    "volume_fp": 12627.189999999999
+   },
    "ex_stats_first": {
     "open_interest_fp": 12492.43,
     "volume_24h_fp": 12356.61,
@@ -377,7 +387,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 4064.5,
-    "volume_24h_fp": 2668.48,
+    "volume_24h_fp": 2654.1800000000003,
     "volume_fp": 4095.71
    },
    "ex_stats_first": {
@@ -1097,8 +1107,8 @@
     "volume": 11000.0
    },
    "ex_stats_close": {
-    "openInterest": 2624389.0,
-    "volume": 4289194.0
+    "openInterest": 2631317.0,
+    "volume": 4297501.0
    },
    "ex_stats_first": {
     "openInterest": 2615375.0,
@@ -1295,8 +1305,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 7203754.0,
-    "volume": 8341881.0
+    "openInterest": 7236929.0,
+    "volume": 8375056.0
    },
    "ex_stats_first": {
     "openInterest": 7191104.0,
@@ -5300,7 +5310,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Indiana",
@@ -5855,7 +5865,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Oregon",
@@ -5973,7 +5983,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [
     "Georgia Southern Eagles -5.5 (-104)"
@@ -6152,7 +6162,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [
     "Georgia Southern Eagles -5.5 (-104)"
@@ -6339,7 +6349,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Missouri St.",
@@ -7121,8 +7131,8 @@
     "volume": 579.0
    },
    "ex_stats_close": {
-    "openInterest": 7794087.0,
-    "volume": 9856545.0
+    "openInterest": 7797028.0,
+    "volume": 9860989.0
    },
    "ex_stats_first": {
     "openInterest": 7329860.0,
@@ -7579,7 +7589,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Oregon",
@@ -7870,7 +7880,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [
     "Virginia Cavaliers -10.5 (-110)"
@@ -8281,7 +8291,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Oregon",
@@ -9860,7 +9870,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [
     "Texas A&M Aggies +2.5 (-110)"
@@ -13472,7 +13482,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Indiana",
@@ -16589,10 +16599,12 @@
     "volume_fp": 1190.54
    },
    "fade_price": 0.18,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-14T09:00:17Z",
    "game": "Drake vs St. Thomas",
    "game_surge_books": [],
    "game_x": 1.79,
+   "graded_by": "espn",
    "key": "kalshi|KXNCAAFGAME-26NOV14DRKEUST|ml|1",
    "lead_min": 594,
    "league": "NCAAF",
@@ -16639,12 +16651,13 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26NOV14DRKEUST-UST"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 16,
+   "settle_tries": 17,
+   "settled_utc": "2026-11-14T23:10:12Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "St. Thomas",
@@ -16661,7 +16674,7 @@
     "St. Thomas"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.19
   },
   {
    "alerted_utc": "2026-11-14T09:00:17Z",
@@ -18074,7 +18087,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Valparaiso",
@@ -20658,7 +20671,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 29,
+   "settle_tries": 30,
    "sharp_agree": [
     "Over 50.5 (-106)"
    ],
@@ -22284,7 +22297,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UCF",
@@ -23521,7 +23534,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 16,
+   "settle_tries": 17,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Rice",
@@ -25187,7 +25200,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 29,
+   "settle_tries": 30,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Auburn",
@@ -30545,7 +30558,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 29,
+   "settle_tries": 30,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Youngstown St.",
