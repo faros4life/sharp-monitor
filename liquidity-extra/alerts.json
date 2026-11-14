@@ -1,6 +1,187 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-14T13:30:21Z",
+   "base_depth": 50635,
+   "best_price": 0.81,
+   "best_price_american": -426,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.8,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-14",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 5460,
+     "new_this_side": 28663,
+     "other_side": 2775,
+     "other_side_all_levels": 12327,
+     "ratio": 17.8,
+     "this_side": 49454,
+     "this_side_all_levels": 79449
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "LR (0)",
+     "price": 0.81,
+     "this_side": 535
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Little Rock",
+     "price": 0.8246,
+     "this_side": 252
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 75.23,
+    "volume_24h_fp": 75.23,
+    "volume_fp": 75.23
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 75.23,
+    "volume_24h_fp": 75.23,
+    "volume_fp": 75.23
+   },
+   "fade_price": 0.21,
+   "first_seen_utc": "2026-11-14T13:20:24Z",
+   "game": "Northwestern St. vs Little Rock",
+   "game_surge_books": [
+    "kalshi"
+   ],
+   "game_x": 3.42,
+   "key": "kalshi|KXNCAAMBGAME-26NOV14NWSTUALR|ml|1",
+   "lead_min": 690,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 28663,
+   "new_x": 0.7,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 75.23,
+      "volume_24h_fp": 75.23,
+      "volume_fp": 75.23
+     },
+     "game_normal": 23231,
+     "game_x": 3.42,
+     "normal": 41028,
+     "now": 79449,
+     "type": "ML",
+     "x": 1.94
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 444.0,
+      "volume": 444.0
+     },
+     "game_normal": 10638,
+     "game_x": 1.04,
+     "normal": 2727,
+     "now": 11020,
+     "type": "ML",
+     "x": 4.04
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 149,
+     "game_x": 1.69,
+     "normal": 512,
+     "now": 252,
+     "type": "ML",
+     "x": 0.49
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.8,
+   "price_american": -400,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.8,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -450
+    },
+    "betrivers": {
+     "point": null,
+     "price": -530
+    },
+    "bovada": {
+     "point": null,
+     "price": -420
+    },
+    "draftkings": {
+     "point": null,
+     "price": -410
+    },
+    "fanatics": {
+     "point": null,
+     "price": -425
+    },
+    "fanduel": {
+     "point": null,
+     "price": -480
+    },
+    "kalshi": {
+     "point": null,
+     "price": -400
+    },
+    "novig": {
+     "point": null,
+     "price": -426
+    },
+    "polymarket": {
+     "point": null,
+     "price": -426
+    },
+    "prophetx": {
+     "point": null,
+     "price": -470
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV14NWSTUALR-UALR"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Little Rock",
+   "side_label": "Little Rock",
+   "size_x": 1.94,
+   "start_source": "odds",
+   "start_utc": "2026-11-15T01:00:00Z",
+   "surge_books": [
+    "novig"
+   ],
+   "teams": [
+    "Northwestern St.",
+    "Little Rock"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-14T12:40:20Z",
    "base_depth": 64770,
    "best_price": 0.79,
@@ -53,7 +234,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 2964.35,
-    "volume_24h_fp": 2964.1099999999997,
+    "volume_24h_fp": 2964.35,
     "volume_fp": 2964.35
    },
    "ex_stats_first": {
@@ -583,8 +764,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.8,
-   "clv_cents": -1.0,
+   "close_price": 0.81,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-11-14",
    "depth_by_book": {
@@ -622,7 +803,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 416.63,
-    "volume_24h_fp": 416.39,
+    "volume_24h_fp": 416.63,
     "volume_fp": 416.63
    },
    "ex_stats_first": {
@@ -806,7 +987,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 418.96000000000004,
-    "volume_24h_fp": 481.49,
+    "volume_24h_fp": 481.72,
     "volume_fp": 484.37
    },
    "ex_stats_first": {
@@ -1786,8 +1967,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.84,
-   "clv_cents": 1.0,
+   "close_price": 0.87,
+   "clv_cents": 4.0,
    "confirmed_after_min": 10,
    "date": "2026-11-14",
    "depth_by_book": {
@@ -1818,9 +1999,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 914.96,
-    "volume_24h_fp": 914.92,
-    "volume_fp": 916.96
+    "open_interest_fp": 918.25,
+    "volume_24h_fp": 918.2099999999999,
+    "volume_fp": 920.25
    },
    "ex_stats_first": {
     "open_interest_fp": 563.83,
@@ -1977,9 +2158,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 250.64,
+    "open_interest_fp": 254.38,
     "volume_24h_fp": 153.32999999999998,
-    "volume_fp": 250.64
+    "volume_fp": 254.38
    },
    "ex_stats_first": {
     "open_interest_fp": 128.51,
@@ -2498,9 +2679,9 @@
     "volume_fp": 14.58
    },
    "ex_stats_close": {
-    "open_interest_fp": 13074.8,
-    "volume_24h_fp": 11605.029999999999,
-    "volume_fp": 13498.27
+    "open_interest_fp": 13081.99,
+    "volume_24h_fp": 11595.029999999999,
+    "volume_fp": 13505.46
    },
    "ex_stats_first": {
     "open_interest_fp": 8622.69,
@@ -2689,9 +2870,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 904.3,
-    "volume_24h_fp": 904.3,
-    "volume_fp": 904.3
+    "open_interest_fp": 959.15,
+    "volume_24h_fp": 959.15,
+    "volume_fp": 959.15
    },
    "ex_stats_first": {
     "open_interest_fp": 798.02,
@@ -3845,9 +4026,9 @@
     "volume_fp": 225.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 25073.879999999997,
-    "volume_24h_fp": 25223.73,
-    "volume_fp": 25233.199999999997
+    "open_interest_fp": 25107.879999999997,
+    "volume_24h_fp": 25257.73,
+    "volume_fp": 25267.199999999997
    },
    "ex_stats_first": {
     "open_interest_fp": 18653.79,
@@ -9690,7 +9871,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 147,
+   "settle_tries": 148,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Fritz",
