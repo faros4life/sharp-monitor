@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 13, 10:20 PM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 19.
+Updated Fri Nov 13, 10:30 PM ET. This run: 0 new, 1 not confirmed, 0 pending. Open alerts: 18.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 245-144 (-22.02u flat) | rule met: 46-39
+**Record:** 246-144 (-21.60u flat) | rule met: 46-39
 
-**Fade (paper, betting against the print):** 119-210 (+15.86u flat, after fees)
+**Fade (paper, betting against the print):** 119-211 (+14.86u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -37,7 +37,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 13 10:00AM | NCAAB | Marist vs Lehigh | moneyline: Lehigh | kalshi | $69k | -117 |  |  | +4.0c |  | W |
 | Nov 13 9:50AM | NCAAB | Pittsburgh vs Butler | moneyline: Butler | kalshi | $35k | -144 |  |  | +1.0c |  | L |
 | Nov 13 9:40AM | NCAAB | Columbia vs Bucknell | moneyline: Columbia | kalshi | $41k | -213 |  |  | +0.0c |  | W |
-| Nov 13 9:30AM | NCAAB | Virginia vs Maryland | moneyline: Virginia | kalshi | $68k | -223 |  |  | +1.0c |  | pending |
+| Nov 13 9:30AM | NCAAB | Virginia vs Maryland | moneyline: Virginia | kalshi | $68k | -223 |  |  | +1.0c |  | W |
 | Nov 13 2:24AM | NCAAB | Southern Miss vs Texas St. | moneyline: Texas St. | kalshi | $46k | -567 |  |  | +0.0c |  | W |
 | Nov 13 2:24AM | NCAAB | Mississippi St. vs Xavier | moneyline: Xavier | kalshi | $26k | -156 |  |  | +1.0c |  | pending |
 | Nov 13 2:24AM | NCAAB | Lindenwood vs Omaha | moneyline: Omaha | kalshi | $25k | -178 |  |  | +0.0c |  | pending |
