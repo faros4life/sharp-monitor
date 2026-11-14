@@ -1,6 +1,198 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-14T03:00:18Z",
+   "base_depth": 309564,
+   "best_price": 0.52,
+   "best_price_american": -108,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.52,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 4,
+   "date": "2026-11-13",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -12597,
+     "new_this_side": 45674,
+     "other_side": 132405,
+     "other_side_all_levels": 260046,
+     "ratio": 1.7,
+     "this_side": 220192,
+     "this_side_all_levels": 377796
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "LAC +6.5 (6.5)",
+     "price": 0.52,
+     "this_side": 51953
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 35155.21,
+    "volume_24h_fp": 40641.87,
+    "volume_fp": 45057.03
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 3520.96,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 3529.96
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 31634.25,
+    "volume_24h_fp": 40641.87,
+    "volume_fp": 41527.07
+   },
+   "fade_price": 0.49,
+   "first_seen_utc": "2026-11-14T02:55:52Z",
+   "game": "Oklahoma City vs Los Angeles C: Spread",
+   "game_surge_books": [
+    "novig"
+   ],
+   "game_x": 1.95,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNBASPREAD-26NOV13OKCLAC-OKC7\"}",
+   "lead_min": 30,
+   "league": "NBA",
+   "line": 6.5,
+   "market": "spread",
+   "new_money": 45674,
+   "new_x": 0.2,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 35155.21,
+      "volume_24h_fp": 40641.87,
+      "volume_fp": 45057.03
+     },
+     "game_normal": 193696,
+     "game_x": 1.95,
+     "normal": 230865,
+     "now": 377796,
+     "type": "SPREAD",
+     "x": 1.64
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 4329155.0,
+      "volume": 6064790.0
+     },
+     "game_normal": 14754,
+     "game_x": 3.92,
+     "normal": 28175,
+     "now": 57837,
+     "type": "SPREAD",
+     "x": 2.05
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.52,
+   "price_american": -108,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.52,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 6.5,
+     "price": -115
+    },
+    "betonlineag": {
+     "point": 6.0,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 5.5,
+     "price": 107
+    },
+    "betrivers": {
+     "point": 6.5,
+     "price": -109
+    },
+    "betus": {
+     "point": 6.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 6.0,
+     "price": -105
+    },
+    "draftkings": {
+     "point": 5.5,
+     "price": -103
+    },
+    "fanatics": {
+     "point": 6.5,
+     "price": -115
+    },
+    "fanduel": {
+     "point": 6.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": 6.5,
+     "price": -108
+    },
+    "lowvig": {
+     "point": 6.0,
+     "price": -106
+    },
+    "mybookieag": {
+     "point": 6.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 6.5,
+     "price": -108
+    },
+    "polymarket": {
+     "point": 6.5,
+     "price": -108
+    },
+    "prophetx": {
+     "point": 6.5,
+     "price": -111
+    },
+    "williamhill_us": {
+     "point": 6.0,
+     "price": -105
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNBASPREAD-26NOV13OKCLAC-OKC7"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Los Angeles C",
+   "side_label": "NOT Oklahoma City wins by over 6.5 points",
+   "size_x": 1.64,
+   "start_source": "odds",
+   "start_utc": "2026-11-14T03:30:00Z",
+   "surge_books": [
+    "novig"
+   ],
+   "teams": [
+    "Oklahoma City",
+    "Los Angeles C"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-14T02:50:12Z",
    "base_depth": 128246,
    "best_price": 0.74,
@@ -50,8 +242,8 @@
     "volume": 19550.0
    },
    "ex_stats_close": {
-    "openInterest": 28662056.0,
-    "volume": 34019626.0
+    "openInterest": 28770361.0,
+    "volume": 34322750.0
    },
    "ex_stats_first": {
     "openInterest": 28565656.0,
@@ -226,8 +418,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.68,
-   "clv_cents": -1.0,
+   "close_price": 0.675,
+   "clv_cents": -1.5,
    "confirmed_after_min": 5,
    "date": "2026-11-13",
    "depth_by_book": {
@@ -262,8 +454,8 @@
     "volume": 491583.0
    },
    "ex_stats_close": {
-    "openInterest": 14283714.0,
-    "volume": 21195453.0
+    "openInterest": 14346718.0,
+    "volume": 21263542.0
    },
    "ex_stats_first": {
     "openInterest": 11735419.0,
@@ -1343,6 +1535,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Miami Heat",
@@ -1564,6 +1757,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Miami Heat",
@@ -1824,9 +2018,9 @@
     "volume_fp": 579.51
    },
    "ex_stats_close": {
-    "open_interest_fp": 46110.18,
+    "open_interest_fp": 45917.12,
     "volume_24h_fp": 49263.19,
-    "volume_fp": 49298.65
+    "volume_fp": 49535.01
    },
    "ex_stats_first": {
     "open_interest_fp": 27962.16,
@@ -2155,6 +2349,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settle_tries": 1,
    "sharp_agree": [
     "New Orleans Pelicans +3.5 (-112)"
    ],
@@ -2412,10 +2607,12 @@
    "ex_stats_change": null,
    "ex_stats_first": null,
    "fade_price": 0.274,
+   "fade_units": 2.6,
    "first_seen_utc": "2026-11-13T23:35:33Z",
    "game": "New York Knicks at Indiana Pacers",
    "game_surge_books": [],
    "game_x": 1.57,
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 0, \"px_event\": 1704740183, \"px_market\": 219, \"side\": \"0\"}",
    "lead_min": 20,
    "league": "NBA",
@@ -2548,7 +2745,7 @@
     "px_market": 219,
     "side": "0"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "kalshi",
@@ -2556,7 +2753,8 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 12,
+   "settle_tries": 13,
+   "settled_utc": "2026-11-14T03:00:18Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "New York Knicks",
@@ -2575,7 +2773,7 @@
     "Indiana Pacers"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-13T23:40:18Z",
@@ -2766,7 +2964,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 12,
+   "settle_tries": 13,
    "sharp_agree": [],
    "sharp_oppose": [
     "Florida State Seminoles +3.5 (-111)"
@@ -3165,6 +3363,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -3440,8 +3639,8 @@
     "volume": 520.0
    },
    "ex_stats_close": {
-    "openInterest": 5917381.0,
-    "volume": 6583134.0
+    "openInterest": 5920714.0,
+    "volume": 6586467.0
    },
    "ex_stats_first": {
     "openInterest": 3587798.0,
@@ -3969,6 +4168,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -4167,7 +4367,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 12,
+   "settle_tries": 13,
    "sharp_agree": [
     "Florida State Seminoles +3.5 (-111)"
    ],
@@ -4663,10 +4863,12 @@
     "volume": 3091915.0
    },
    "fade_price": 0.225,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-13T20:55:39Z",
    "game": "Milwaukee Bucks @ Orlando Magic",
    "game_surge_books": [],
    "game_x": 1.59,
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1d1f0-bbaa-71f0-94f1-df1801c14a01\", \"outcome_id\": \"01a1d1f0-bbaa-71f0-94f1-df266727cd27\"}",
    "lead_min": 180,
    "league": "NBA",
@@ -4793,7 +4995,7 @@
     "market_id": "01a1d1f0-bbaa-71f0-94f1-df1801c14a01",
     "outcome_id": "01a1d1f0-bbaa-71f0-94f1-df266727cd27"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "kalshi",
@@ -4801,7 +5003,8 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 12,
+   "settle_tries": 13,
+   "settled_utc": "2026-11-14T03:00:18Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Orlando Magic",
@@ -4819,7 +5022,7 @@
     "Orlando Magic"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.28
   },
   {
    "alerted_utc": "2026-11-13T20:15:42Z",
@@ -5874,9 +6077,9 @@
     "volume_fp": 37.9
    },
    "ex_stats_close": {
-    "open_interest_fp": 1019762.73,
+    "open_interest_fp": 1022847.07,
     "volume_24h_fp": 437236.46,
-    "volume_fp": 1311391.94
+    "volume_fp": 1337275.58
    },
    "ex_stats_first": {
     "open_interest_fp": 2463.16,
@@ -6085,12 +6288,14 @@
     "volume": 7280847.0
    },
    "fade_price": 0.25,
+   "fade_units": 3.0,
    "first_seen_utc": "2026-11-13T17:30:18Z",
    "game": "New York Knicks @ Indiana Pacers",
    "game_surge_books": [
     "novig"
    ],
    "game_x": 2.05,
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1d1f0-bbf7-7a32-8e5a-65b45b6e2ba7\", \"outcome_id\": \"01a1d1f0-bbf7-7a32-8e5a-65dbbcf986e9\"}",
    "lead_min": 384,
    "league": "NBA",
@@ -6221,7 +6426,7 @@
     "market_id": "01a1d1f0-bbf7-7a32-8e5a-65b45b6e2ba7",
     "outcome_id": "01a1d1f0-bbf7-7a32-8e5a-65dbbcf986e9"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "kalshi",
@@ -6229,7 +6434,8 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 12,
+   "settle_tries": 13,
+   "settled_utc": "2026-11-14T03:00:18Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "New York Knicks",
@@ -6248,7 +6454,7 @@
     "Indiana Pacers"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-13T17:05:43Z",
@@ -7411,6 +7617,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settle_tries": 1,
    "sharp_agree": [
     "Chicago Bulls +6.5 (-108)",
     "Chicago Bulls +7.5 (-121)"
@@ -7798,9 +8005,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 31634.25,
+    "open_interest_fp": 35155.21,
     "volume_24h_fp": 40641.87,
-    "volume_fp": 41527.07
+    "volume_fp": 45057.03
    },
    "ex_stats_first": {
     "open_interest_fp": 1222.39,
@@ -8313,6 +8520,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -8811,9 +9019,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 61185.83,
+    "open_interest_fp": 61333.13,
     "volume_24h_fp": 63396.57,
-    "volume_fp": 63554.4
+    "volume_fp": 63701.7
    },
    "ex_stats_first": {
     "open_interest_fp": 1544.58,
@@ -9148,6 +9356,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settle_tries": 1,
    "sharp_agree": [
     "New Orleans Pelicans +3.5 (-112)"
    ],
@@ -9788,7 +9997,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [
     "New Orleans Pelicans +3.5 (-112)"
    ],
@@ -10056,9 +10265,9 @@
     "volume_fp": 233.81
    },
    "ex_stats_close": {
-    "open_interest_fp": 381815.12,
+    "open_interest_fp": 386949.09,
     "volume_24h_fp": 375865.53,
-    "volume_fp": 382976.31
+    "volume_fp": 388110.28
    },
    "ex_stats_first": {
     "open_interest_fp": 5158.78,
@@ -11265,7 +11474,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Miami",
@@ -12949,7 +13158,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Atlanta",
@@ -13012,9 +13221,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 381815.12,
+    "open_interest_fp": 386949.09,
     "volume_24h_fp": 375865.53,
-    "volume_fp": 382976.31
+    "volume_fp": 388110.28
    },
    "ex_stats_first": {
     "open_interest_fp": 3917.06,
@@ -13172,8 +13381,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.69,
-   "clv_cents": -7.0,
+   "close_price": 0.68,
+   "clv_cents": -8.0,
    "confirmed_after_min": 9,
    "date": "2026-11-13",
    "depth_by_book": {
@@ -13210,9 +13419,9 @@
     "volume_fp": 40.07
    },
    "ex_stats_close": {
-    "open_interest_fp": 374781.5,
+    "open_interest_fp": 454045.81999999995,
     "volume_24h_fp": 339683.29000000004,
-    "volume_fp": 390743.61
+    "volume_fp": 470422.4
    },
    "ex_stats_first": {
     "open_interest_fp": 22338.38,
@@ -13524,7 +13733,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Memphis",
@@ -15533,9 +15742,9 @@
     "volume_fp": 19.32
    },
    "ex_stats_close": {
-    "open_interest_fp": 151928.99,
+    "open_interest_fp": 156089.29,
     "volume_24h_fp": 123322.1,
-    "volume_fp": 168398.42
+    "volume_fp": 172909.46
    },
    "ex_stats_first": {
     "open_interest_fp": 37903.89,
@@ -19212,9 +19421,9 @@
     "volume_fp": 72.12
    },
    "ex_stats_close": {
-    "open_interest_fp": 2256767.66,
+    "open_interest_fp": 2294734.8,
     "volume_24h_fp": 2302824.78,
-    "volume_fp": 2348035.87
+    "volume_fp": 2388569.78
    },
    "ex_stats_first": {
     "open_interest_fp": 19082.72,
@@ -20849,7 +21058,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 14,
+   "settle_tries": 15,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Pittsburgh",
@@ -24921,7 +25130,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 14,
+   "settle_tries": 15,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Pittsburgh",
@@ -25171,6 +25380,7 @@
     "novig",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.78,
    "clv_cents": -3.0,
    "confirmed_after_min": 3,
