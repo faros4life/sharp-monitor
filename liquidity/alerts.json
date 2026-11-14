@@ -1,6 +1,390 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-14T07:30:14Z",
+   "base_depth": 33537,
+   "best_price": 0.79,
+   "best_price_american": -376,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.79,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-14",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 4224,
+     "new_this_side": 25899,
+     "other_side": 5111,
+     "other_side_all_levels": 20504,
+     "ratio": 1.7,
+     "this_side": 8435,
+     "this_side_all_levels": 59519
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "VAL (0)",
+     "price": 0.79,
+     "this_side": 2047
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Valparaiso",
+     "price": 0.8276,
+     "this_side": 842
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 251.06,
+    "volume_24h_fp": 60.75,
+    "volume_fp": 251.06
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 251.06,
+    "volume_24h_fp": 60.75,
+    "volume_fp": 251.06
+   },
+   "fade_price": 0.23,
+   "first_seen_utc": "2026-11-14T07:25:36Z",
+   "game": "Valparaiso vs Stetson",
+   "game_surge_books": [
+    "kalshi",
+    "novig"
+   ],
+   "game_x": 2.46,
+   "key": "kalshi|KXNCAAFGAME-26NOV14VALPSTET|ml|0",
+   "lead_min": 780,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 25899,
+   "new_x": 0.5,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 251.06,
+      "volume_24h_fp": 60.75,
+      "volume_fp": 251.06
+     },
+     "game_normal": 24185,
+     "game_x": 2.46,
+     "normal": 51904,
+     "now": 59519,
+     "type": "ML",
+     "x": 1.15
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 6520.0,
+      "volume": 6520.0
+     },
+     "game_normal": 2075,
+     "game_x": 5.17,
+     "normal": 3263,
+     "now": 10733,
+     "type": "ML",
+     "x": 3.29
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 689,
+     "game_x": 1.23,
+     "normal": 905,
+     "now": 845,
+     "type": "ML",
+     "x": 0.93
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.79,
+   "price_american": -376,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.79,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26NOV14VALPSTET-VALP"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Valparaiso",
+   "side_label": "Valparaiso",
+   "size_x": 1.15,
+   "start_source": "prophetx",
+   "start_utc": "2026-11-14T20:30:00Z",
+   "surge_books": [
+    "novig"
+   ],
+   "teams": [
+    "Valparaiso",
+    "Stetson"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-14T07:30:14Z",
+   "base_depth": 61957,
+   "best_price": 0.8,
+   "best_price_american": -400,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.8,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-14",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 2001,
+     "new_this_side": 38569,
+     "other_side": 4862,
+     "other_side_all_levels": 20202,
+     "ratio": 5.5,
+     "this_side": 26881,
+     "this_side_all_levels": 100567
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "NCAT (0)",
+     "price": 0.8,
+     "this_side": 4436
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "North Carolina A&T",
+     "price": 0.8039,
+     "this_side": 444
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 1173.8600000000001,
+    "volume_24h_fp": 68.03999999999999,
+    "volume_fp": 1194.6000000000001
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 1173.8600000000001,
+    "volume_24h_fp": 68.03999999999999,
+    "volume_fp": 1194.6000000000001
+   },
+   "fade_price": 0.21,
+   "first_seen_utc": "2026-11-14T07:25:36Z",
+   "game": "North Carolina A&T vs Hampton",
+   "game_surge_books": [
+    "novig"
+   ],
+   "game_x": 1.87,
+   "key": "kalshi|KXNCAAFGAME-26NOV14NCATHAMP|ml|0",
+   "lead_min": 630,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 38569,
+   "new_x": 0.74,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 1173.8600000000001,
+      "volume_24h_fp": 68.03999999999999,
+      "volume_fp": 1194.6000000000001
+     },
+     "game_normal": 53732,
+     "game_x": 1.87,
+     "normal": 51904,
+     "now": 100567,
+     "type": "ML",
+     "x": 1.94
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 7427.0,
+      "volume": 7427.0
+     },
+     "game_normal": 3469,
+     "game_x": 3.77,
+     "normal": 3263,
+     "now": 13064,
+     "type": "ML",
+     "x": 4.0
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 440,
+     "game_x": 1.01,
+     "normal": 905,
+     "now": 444,
+     "type": "ML",
+     "x": 0.49
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.8,
+   "price_american": -400,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.8,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26NOV14NCATHAMP-NCAT"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "North Carolina A&T",
+   "side_label": "North Carolina A&T",
+   "size_x": 1.94,
+   "start_source": "prophetx",
+   "start_utc": "2026-11-14T18:00:00Z",
+   "surge_books": [
+    "novig"
+   ],
+   "teams": [
+    "North Carolina A&T",
+    "Hampton"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-14T07:30:14Z",
+   "base_depth": 62216,
+   "best_price": 0.8494,
+   "best_price_american": -564,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.84,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-14",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 2155,
+     "new_this_side": 25525,
+     "other_side": 3959,
+     "other_side_all_levels": 19212,
+     "ratio": 2.8,
+     "this_side": 10913,
+     "this_side_all_levels": 88130
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 3546.05,
+    "volume_24h_fp": 2546.13,
+    "volume_fp": 4600.97
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 3546.05,
+    "volume_24h_fp": 2546.13,
+    "volume_fp": 4600.97
+   },
+   "fade_price": 0.17,
+   "first_seen_utc": "2026-11-14T07:25:36Z",
+   "game": "Harvard vs Penn",
+   "game_surge_books": [],
+   "game_x": 1.92,
+   "key": "kalshi|KXNCAAFGAME-26NOV14HARVPENN|ml|0",
+   "lead_min": 810,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 25525,
+   "new_x": 0.49,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 3546.05,
+      "volume_24h_fp": 2546.13,
+      "volume_fp": 4600.97
+     },
+     "game_normal": 45870,
+     "game_x": 1.92,
+     "normal": 51904,
+     "now": 88130,
+     "type": "ML",
+     "x": 1.7
+    }
+   },
+   "norm_ready_books": 1,
+   "paper_only": false,
+   "price": 0.84,
+   "price_american": -525,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.84,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26NOV14HARVPENN-HARV"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Harvard",
+   "side_label": "Harvard",
+   "size_x": 1.7,
+   "start_source": "kalshi",
+   "start_utc": "2026-11-14T21:00:00Z",
+   "surge_books": [],
+   "teams": [
+    "Harvard",
+    "Penn"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-14T07:20:14Z",
    "base_depth": 48010,
    "best_price": 0.805,
@@ -716,9 +1100,9 @@
     "volume_fp": 25.56
    },
    "ex_stats_close": {
-    "open_interest_fp": 14152.83,
+    "open_interest_fp": 14178.08,
     "volume_24h_fp": 13244.1,
-    "volume_fp": 15636.609999999999
+    "volume_fp": 15661.859999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 6565.86,
@@ -922,8 +1306,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 2664985.0,
-    "volume": 2949086.0
+    "openInterest": 2695602.0,
+    "volume": 2979703.0
    },
    "ex_stats_first": {
     "openInterest": 443711.0,
@@ -6428,9 +6812,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 173236.37,
+    "open_interest_fp": 173255.55,
     "volume_24h_fp": 169826.92,
-    "volume_fp": 190981.85
+    "volume_fp": 191001.03
    },
    "ex_stats_first": {
     "open_interest_fp": 29945.72,
