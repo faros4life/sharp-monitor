@@ -1,6 +1,109 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-14T04:50:13Z",
+   "base_depth": 24539,
+   "best_price": 0.7824,
+   "best_price_american": -360,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.77,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-14",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 3523,
+     "new_this_side": 37899,
+     "other_side": 9165,
+     "other_side_all_levels": 25286,
+     "ratio": 4.5,
+     "this_side": 41620,
+     "this_side_all_levels": 57109
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 511.70000000000005,
+    "volume_24h_fp": 271.93,
+    "volume_fp": 511.70000000000005
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 511.70000000000005,
+    "volume_24h_fp": 271.93,
+    "volume_fp": 511.70000000000005
+   },
+   "fade_price": 0.25,
+   "first_seen_utc": "2026-11-14T04:45:42Z",
+   "game": "Central Connecticut St. vs LIU",
+   "game_surge_books": [],
+   "game_x": 1.2,
+   "key": "kalshi|KXNCAAFGAME-26NOV14CCSULIU|ml|0",
+   "lead_min": 910,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 37899,
+   "new_x": 0.71,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 511.70000000000005,
+      "volume_24h_fp": 271.93,
+      "volume_fp": 511.70000000000005
+     },
+     "game_normal": 47626,
+     "game_x": 1.2,
+     "normal": 53741,
+     "now": 57109,
+     "type": "ML",
+     "x": 1.06
+    }
+   },
+   "norm_ready_books": 1,
+   "paper_only": false,
+   "price": 0.77,
+   "price_american": -335,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.76,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26NOV14CCSULIU-CCSU"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Central Connecticut St.",
+   "side_label": "Central Connecticut St.",
+   "size_x": 1.06,
+   "start_source": "kalshi",
+   "start_utc": "2026-11-14T20:00:00Z",
+   "surge_books": [],
+   "teams": [
+    "Central Connecticut St.",
+    "LIU"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-14T04:05:35Z",
    "base_depth": 237393,
    "best_price": 0.765,
@@ -52,9 +155,9 @@
     "volume_fp": 25.56
    },
    "ex_stats_close": {
-    "open_interest_fp": 7227.29,
+    "open_interest_fp": 7294.03,
     "volume_24h_fp": 5414.8,
-    "volume_fp": 7791.34
+    "volume_fp": 7858.08
    },
    "ex_stats_first": {
     "open_interest_fp": 6565.86,
@@ -1955,7 +2058,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [
     "Under 217.5 (-113)",
@@ -3053,8 +3156,8 @@
     "volume": 15166.0
    },
    "ex_stats_close": {
-    "openInterest": 8483160.0,
-    "volume": 8797204.0
+    "openInterest": 8493037.0,
+    "volume": 8807081.0
    },
    "ex_stats_first": {
     "openInterest": 2799542.0,
@@ -3825,7 +3928,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Illinois",
@@ -4222,7 +4325,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [
     "San Antonio Spurs -11.5 (-121)"
@@ -4255,8 +4358,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.6,
-   "clv_cents": 2.5,
+   "close_price": 0.595,
+   "clv_cents": 2.0,
    "confirmed_after_min": 5,
    "date": "2026-11-14",
    "depth_by_book": {
@@ -5086,9 +5189,9 @@
     "volume_fp": 18.6
    },
    "ex_stats_close": {
-    "open_interest_fp": 26305.97,
+    "open_interest_fp": 26342.5,
     "volume_24h_fp": 13974.57,
-    "volume_fp": 27852.71
+    "volume_fp": 27889.24
    },
    "ex_stats_first": {
     "open_interest_fp": 15985.78,
@@ -5434,7 +5537,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [
     "Over 47.5 (-115)"
@@ -5728,9 +5831,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 49142.25,
+    "open_interest_fp": 49185.25,
     "volume_24h_fp": 32320.81,
-    "volume_fp": 52206.51
+    "volume_fp": 52263.4
    },
    "ex_stats_first": {
     "open_interest_fp": 29945.72,
@@ -5933,9 +6036,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 25437.19,
+    "open_interest_fp": 25456.24,
     "volume_24h_fp": 16195.91,
-    "volume_fp": 28618.19
+    "volume_fp": 28637.24
    },
    "ex_stats_first": {
     "open_interest_fp": 17025.36,
@@ -6477,7 +6580,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UCLA",
@@ -7356,9 +7459,9 @@
     "volume_fp": 32.77
    },
    "ex_stats_close": {
-    "open_interest_fp": 9733.56,
+    "open_interest_fp": 9850.67,
     "volume_24h_fp": 6892.28,
-    "volume_fp": 9997.33
+    "volume_fp": 10114.439999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 7487.9,
@@ -8069,7 +8172,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Golden State",
@@ -8349,9 +8452,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 26305.97,
+    "open_interest_fp": 26342.5,
     "volume_24h_fp": 13974.57,
-    "volume_fp": 27852.71
+    "volume_fp": 27889.24
    },
    "ex_stats_first": {
     "open_interest_fp": 13745.85,
@@ -9618,7 +9721,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "San Antonio",
@@ -20676,7 +20779,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 12,
+   "settle_tries": 13,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Illinois",
@@ -25234,7 +25337,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 12,
+   "settle_tries": 13,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UCLA",
