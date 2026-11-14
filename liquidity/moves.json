@@ -57,6 +57,10 @@
     "openInterest": 3820477.0,
     "volume": 4870227.0
    },
+   "ex_stats_close": {
+    "openInterest": 4949502.0,
+    "volume": 5999252.0
+   },
    "first_play": true,
    "game": "New York Islanders @ Anaheim Ducks",
    "key": "novig|{\"market_id\": \"01a1d5b1-dd82-7e70-8c10-01ab5707af5c\", \"outcome_id\": \"01a1d5b1-dd82-7e70-8c10-01cb9031329e\"}",
@@ -111,6 +115,8 @@
    "other_side_now": 7650,
    "paper_only": true,
    "price": 0.5146,
+   "price_after_15m": 0.515,
+   "price_after_15m_book": "novig",
    "price_american": -106,
    "ref": {
     "line": 5.5,
@@ -123,6 +129,7 @@
    "side_label": "over 5.5 (5.5)",
    "side_raw": "OVER",
    "start_utc": "2026-11-15T03:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Calgary Flames",
     "Los Angeles Kings"
@@ -154,6 +161,8 @@
    "other_side_now": 6385,
    "paper_only": true,
    "price": 0.495,
+   "price_after_15m": 0.495,
+   "price_after_15m_book": "novig",
    "price_american": 102,
    "ref": {
     "line": 5.5,
@@ -166,6 +175,7 @@
    "side_label": "under 5.5 (5.5)",
    "side_raw": "UNDER",
    "start_utc": "2026-11-15T03:00:00Z",
+   "still_actionable": true,
    "teams": [
     "Calgary Flames",
     "Los Angeles Kings"
@@ -179,8 +189,8 @@
    "best_price": 0.495,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.495,
-   "clv_cents": 0.0,
+   "close_price": 0.5,
+   "clv_cents": 0.5,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": {
@@ -204,6 +214,8 @@
    "other_side_now": 19950,
    "paper_only": true,
    "price": 0.495,
+   "price_after_15m": 0.5,
+   "price_after_15m_book": "novig",
    "price_american": 102,
    "ref": {
     "market_id": "01a1ba12-6089-72e3-81a6-6fd48b475e31",
@@ -214,6 +226,7 @@
    "side_label": "Over 73.5 (73.5)",
    "side_raw": "OVER",
    "start_utc": "2026-11-15T02:30:00Z",
+   "still_actionable": false,
    "teams": [
     "Texas Tech",
     "Oklahoma State"
@@ -513,8 +526,8 @@
    "best_price": 0.5076,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5025,
-   "clv_cents": 0.0,
+   "close_price": 0.4975,
+   "clv_cents": -0.5,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": null,
@@ -559,8 +572,8 @@
    "best_price": 0.5265,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5192,
-   "clv_cents": -0.2,
+   "close_price": 0.5169,
+   "clv_cents": -0.5,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": null,
@@ -1814,8 +1827,8 @@
    "best_price": 0.58,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.6,
-   "clv_cents": 2.0,
+   "close_price": 0.585,
+   "clv_cents": 0.5,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": {
@@ -1865,8 +1878,8 @@
    "best_price": 0.495,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.505,
-   "clv_cents": 1.0,
+   "close_price": 0.5,
+   "clv_cents": 0.5,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": {
@@ -2008,8 +2021,8 @@
    "best_price": 0.5124,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.4854,
-   "clv_cents": -2.2,
+   "close_price": 0.495,
+   "clv_cents": -1.2,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": null,
@@ -2156,8 +2169,8 @@
    "best_price": 0.58,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.5413,
-   "clv_cents": -4.5,
+   "close_price": 0.5475,
+   "clv_cents": -3.9,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": null,
@@ -3484,8 +3497,8 @@
    "best_price": 0.5051,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.4902,
-   "clv_cents": -1.0,
+   "close_price": 0.4975,
+   "clv_cents": -0.3,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": null,
@@ -3530,8 +3543,8 @@
    "best_price": 0.5265,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5192,
-   "clv_cents": -0.2,
+   "close_price": 0.5169,
+   "clv_cents": -0.5,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": null,
@@ -3714,8 +3727,8 @@
    "best_price": 0.5265,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5122,
-   "clv_cents": -0.9,
+   "close_price": 0.5169,
+   "clv_cents": -0.5,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": null,
@@ -4395,7 +4408,7 @@
    },
    "ex_stats_close": {
     "openInterest": 551348.0,
-    "volume": 598444.0
+    "volume": 600213.0
    },
    "first_play": false,
    "game": "Detroit Red Wings @ Tampa Bay Lightning",
@@ -4487,8 +4500,8 @@
    "best_price": 0.595,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.595,
-   "clv_cents": 0.0,
+   "close_price": 0.59,
+   "clv_cents": -0.5,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": {
@@ -4496,8 +4509,8 @@
     "volume": 24435822.0
    },
    "ex_stats_close": {
-    "openInterest": 24020144.0,
-    "volume": 27344090.0
+    "openInterest": 24188122.0,
+    "volume": 27551975.0
    },
    "first_play": false,
    "game": "Florida @ Kentucky",
@@ -4598,8 +4611,8 @@
     "volume": 10740637.0
    },
    "ex_stats_close": {
-    "openInterest": 8846827.0,
-    "volume": 12730554.0
+    "openInterest": 9249601.0,
+    "volume": 13152488.0
    },
    "first_play": false,
    "game": "Washington @ Michigan State",
@@ -5267,8 +5280,8 @@
     "volume": 2903644.0
    },
    "ex_stats_close": {
-    "openInterest": 2990031.0,
-    "volume": 3304481.0
+    "openInterest": 2997031.0,
+    "volume": 3311481.0
    },
    "first_play": true,
    "game": "Florida @ Kentucky",
@@ -5423,7 +5436,7 @@
    },
    "ex_stats_close": {
     "openInterest": 551348.0,
-    "volume": 598444.0
+    "volume": 600213.0
    },
    "first_play": false,
    "game": "Detroit Red Wings @ Tampa Bay Lightning",
@@ -5515,8 +5528,8 @@
    "best_price": 0.3697,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.3571,
-   "clv_cents": -0.8,
+   "close_price": 0.3623,
+   "clv_cents": -0.3,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": null,
@@ -5811,8 +5824,8 @@
     "volume": 884453.0
    },
    "ex_stats_close": {
-    "openInterest": 630534.0,
-    "volume": 1085164.0
+    "openInterest": 652534.0,
+    "volume": 1107164.0
    },
    "first_play": true,
    "game": "Oregon State @ Boise State",
@@ -5862,8 +5875,8 @@
     "volume": 1742163.0
    },
    "ex_stats_close": {
-    "openInterest": 2314674.0,
-    "volume": 3018700.0
+    "openInterest": 2371744.0,
+    "volume": 3075770.0
    },
    "first_play": true,
    "game": "Oregon State @ Boise State",
@@ -5913,8 +5926,8 @@
     "volume": 1742163.0
    },
    "ex_stats_close": {
-    "openInterest": 2314674.0,
-    "volume": 3018700.0
+    "openInterest": 2371744.0,
+    "volume": 3075770.0
    },
    "first_play": false,
    "game": "Oregon State @ Boise State",
@@ -5964,8 +5977,8 @@
     "volume": 8784202.0
    },
    "ex_stats_close": {
-    "openInterest": 7308629.0,
-    "volume": 9227757.0
+    "openInterest": 7312511.0,
+    "volume": 9231639.0
    },
    "first_play": false,
    "game": "Arizona State @ UCF",
@@ -7793,8 +7806,8 @@
     "volume": 14933.0
    },
    "ex_stats_close": {
-    "openInterest": 106943.0,
-    "volume": 121228.0
+    "openInterest": 107652.0,
+    "volume": 122790.0
    },
    "first_play": false,
    "game": "Edmonton Oilers @ Toronto Maple Leafs",
@@ -8034,8 +8047,8 @@
    "best_price": 0.5001,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5,
-   "clv_cents": 0.5,
+   "close_price": 0.505,
+   "clv_cents": 1.0,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": null,
@@ -8135,8 +8148,8 @@
     "volume": 2899664.0
    },
    "ex_stats_close": {
-    "openInterest": 2990031.0,
-    "volume": 3304481.0
+    "openInterest": 2997031.0,
+    "volume": 3311481.0
    },
    "first_play": true,
    "game": "Florida @ Kentucky",
@@ -8186,8 +8199,8 @@
     "volume": 3642217.0
    },
    "ex_stats_close": {
-    "openInterest": 5443977.0,
-    "volume": 6864397.0
+    "openInterest": 5495631.0,
+    "volume": 6916051.0
    },
    "first_play": false,
    "game": "Washington @ Michigan State",
@@ -8237,8 +8250,8 @@
     "volume": 3642217.0
    },
    "ex_stats_close": {
-    "openInterest": 5443977.0,
-    "volume": 6864397.0
+    "openInterest": 5495631.0,
+    "volume": 6916051.0
    },
    "first_play": false,
    "game": "Washington @ Michigan State",
@@ -8422,8 +8435,8 @@
    "best_price": 0.235,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.22,
-   "clv_cents": -1.5,
+   "close_price": 0.215,
+   "clv_cents": -2.0,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": {
@@ -8892,8 +8905,8 @@
    "best_price": 0.525,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.5238,
-   "clv_cents": -0.4,
+   "close_price": 0.5122,
+   "clv_cents": -1.6,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": null,
@@ -9219,8 +9232,8 @@
    "best_price": 0.515,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.52,
-   "clv_cents": 0.5,
+   "close_price": 0.515,
+   "clv_cents": 0.0,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": {
@@ -9665,8 +9678,8 @@
     "volume": 1129706.0
    },
    "ex_stats_close": {
-    "openInterest": 5888293.0,
-    "volume": 7304821.0
+    "openInterest": 5982934.0,
+    "volume": 7399462.0
    },
    "first_play": true,
    "game": "Colorado Avalanche @ Montreal Canadiens",
@@ -9850,8 +9863,8 @@
    "best_price": 0.48,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.495,
-   "clv_cents": 1.5,
+   "close_price": 0.49,
+   "clv_cents": 1.0,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": {
@@ -9911,7 +9924,7 @@
    },
    "ex_stats_close": {
     "openInterest": 2137226.0,
-    "volume": 2414291.0
+    "volume": 2415168.0
    },
    "first_play": true,
    "game": "Edmonton Oilers @ Toronto Maple Leafs",
@@ -10147,8 +10160,8 @@
    "best_price": 0.42,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.42,
-   "clv_cents": 0.0,
+   "close_price": 0.43,
+   "clv_cents": 1.0,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": {
@@ -10156,8 +10169,8 @@
     "volume": 541571.0
    },
    "ex_stats_close": {
-    "openInterest": 3268882.0,
-    "volume": 3935426.0
+    "openInterest": 3393695.0,
+    "volume": 4224937.0
    },
    "first_play": true,
    "game": "Edmonton Oilers @ Toronto Maple Leafs",
@@ -10207,8 +10220,8 @@
     "volume": 653676.0
    },
    "ex_stats_close": {
-    "openInterest": 2526211.0,
-    "volume": 3019161.0
+    "openInterest": 2531616.0,
+    "volume": 3024566.0
    },
    "first_play": false,
    "game": "Ottawa Senators @ Pittsburgh Penguins",
@@ -11193,7 +11206,7 @@
    },
    "ex_stats_close": {
     "openInterest": 5452178.0,
-    "volume": 7153719.0
+    "volume": 7177961.0
    },
    "first_play": true,
    "game": "Tulane @ Rice",
@@ -11244,7 +11257,7 @@
    },
    "ex_stats_close": {
     "openInterest": 5452178.0,
-    "volume": 7153719.0
+    "volume": 7177961.0
    },
    "first_play": false,
    "game": "Tulane @ Rice",
@@ -11382,8 +11395,8 @@
    "best_price": 0.5148,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.4673,
-   "clv_cents": -4.3,
+   "close_price": 0.463,
+   "clv_cents": -4.7,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": null,
@@ -11428,8 +11441,8 @@
    "best_price": 0.5001,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5392,
-   "clv_cents": 4.4,
+   "close_price": 0.5475,
+   "clv_cents": 5.2,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": null,
@@ -11483,8 +11496,8 @@
     "volume": 1119651.0
    },
    "ex_stats_close": {
-    "openInterest": 1368059.0,
-    "volume": 2158155.0
+    "openInterest": 1777351.0,
+    "volume": 2567447.0
    },
    "first_play": true,
    "game": "Southern Mississippi @ Louisiana Tech",
@@ -11604,7 +11617,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "South Carolina State",
    "side_label": "South Carolina State -10.5 (-10.5)",
    "side_raw": 1,
@@ -12250,8 +12263,8 @@
     "volume": 579954.0
    },
    "ex_stats_close": {
-    "openInterest": 2826027.0,
-    "volume": 3730777.0
+    "openInterest": 2829609.0,
+    "volume": 3734359.0
    },
    "first_play": false,
    "game": "Detroit Red Wings @ Tampa Bay Lightning",
@@ -12568,7 +12581,7 @@
     "outcome_id": "01a1c8d9-31d5-71c3-ad14-90ff063d7e84"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "SCST -16.5 (-16.5)",
    "side_label": "SCST -16.5 (-16.5)",
    "side_raw": null,
@@ -12620,7 +12633,7 @@
     "outcome_id": "01a1c925-b846-7f71-8632-147e88049df6"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "UNDER",
    "side_label": "Under 47.5 (47.5)",
    "side_raw": "UNDER",
@@ -12672,7 +12685,7 @@
     "outcome_id": "01a1c913-68f8-7783-91f4-5d405148d4f3"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UTC -9.5 (9.5)",
    "side_label": "UTC -9.5 (9.5)",
    "side_raw": null,
@@ -12821,7 +12834,7 @@
     "outcome_id": "01a1c913-0c63-7d41-bfc6-24c5e9039305"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Dartmouth",
    "side_label": "DART -1.5 (1.5)",
    "side_raw": 0,
@@ -12873,7 +12886,7 @@
     "outcome_id": "01a1c913-0c63-7d41-bfc6-24b0382e58d7"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Cornell",
    "side_label": "COR +1.5 (1.5)",
    "side_raw": 1,
@@ -12966,7 +12979,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "North Carolina A&T",
    "side_label": "North Carolina A&T",
    "side_raw": 0,
@@ -13013,7 +13026,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Hampton",
    "side_label": "Hampton",
    "side_raw": 1,
@@ -13134,8 +13147,8 @@
    "best_price": 0.6142,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5413,
-   "clv_cents": -6.8,
+   "close_price": 0.5475,
+   "clv_cents": -6.2,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": null,
@@ -13180,8 +13193,8 @@
    "best_price": 0.57,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.5726,
-   "clv_cents": -6.8,
+   "close_price": 0.5652,
+   "clv_cents": -7.5,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": null,
@@ -13361,7 +13374,7 @@
     "outcome_id": "01a1c913-68f8-7783-91f4-5cbe111500a6"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UTC -6.5 (6.5)",
    "side_label": "UTC -6.5 (6.5)",
    "side_raw": null,
@@ -13413,7 +13426,7 @@
     "outcome_id": "01a1c925-a3f6-7f23-a3e2-0ad0ecec1247"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "STBK -8.5 (8.5)",
    "side_label": "STBK -8.5 (8.5)",
    "side_raw": null,
@@ -13516,8 +13529,9 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNHLGAME-26NOV14SEACAR-SEA"
    },
-   "result": null,
-   "settle_tries": 5,
+   "result": "L",
+   "settle_tries": 6,
+   "settled_utc": "2026-11-14T20:45:37Z",
    "side": "Seattle",
    "side_label": "Seattle",
    "side_raw": 0,
@@ -13527,7 +13541,7 @@
     "Seattle",
     "Carolina"
    ],
-   "units_flat": null,
+   "units_flat": -1.0,
    "x": 2.0
   },
   {
@@ -13718,7 +13732,7 @@
     "outcome_id": "01a1c918-d2e6-7053-9781-fc6e7b470cf8"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UNDER",
    "side_label": "Under 56.5 (56.5)",
    "side_raw": "UNDER",
@@ -13770,7 +13784,7 @@
     "outcome_id": "01a1c918-d2e6-7053-9781-fc5ec2995057"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "OVER",
    "side_label": "Over 56.5 (56.5)",
    "side_raw": "OVER",
@@ -13978,7 +13992,7 @@
     "outcome_id": "01a1c913-68f7-7433-8815-18be54fdc677"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UNDER",
    "side_label": "Under 35.5 (35.5)",
    "side_raw": "UNDER",
@@ -14051,8 +14065,8 @@
    "best_price": 0.5442,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.537,
-   "clv_cents": -0.2,
+   "close_price": 0.5349,
+   "clv_cents": -0.4,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": null,
@@ -14324,8 +14338,8 @@
    "best_price": 0.495,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.4878,
-   "clv_cents": -0.7,
+   "close_price": 0.4902,
+   "clv_cents": -0.5,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": null,
@@ -14518,8 +14532,8 @@
    "best_price": 0.3644,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.4673,
-   "clv_cents": 10.8,
+   "close_price": 0.4608,
+   "clv_cents": 10.1,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": null,
@@ -14610,8 +14624,8 @@
    "best_price": 0.515,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.545,
-   "clv_cents": 3.0,
+   "close_price": 0.54,
+   "clv_cents": 2.5,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": {
@@ -14619,8 +14633,8 @@
     "volume": 2004030.0
    },
    "ex_stats_close": {
-    "openInterest": 8837641.0,
-    "volume": 10869042.0
+    "openInterest": 10550085.0,
+    "volume": 12687659.0
    },
    "first_play": false,
    "game": "Minnesota Wild @ Boston Bruins",
@@ -14886,8 +14900,9 @@
     "kalshi_side": "no",
     "market_ticker": "KXNHLTOTAL-26NOV14SEACAR-7"
    },
-   "result": null,
-   "settle_tries": 5,
+   "result": "W",
+   "settle_tries": 6,
+   "settled_utc": "2026-11-14T20:45:37Z",
    "side": "UNDER",
    "side_label": "NOT Over 6.5 goals scored",
    "side_raw": "UNDER",
@@ -14897,7 +14912,7 @@
     "Seattle",
     "Carolina"
    ],
-   "units_flat": null,
+   "units_flat": 0.89,
    "x": 2.02
   },
   {
@@ -14942,7 +14957,7 @@
     "market_ticker": "KXNCAAFTOTAL-26NOV14DSUHOW-47"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UNDER",
    "side_label": "NOT Over 46.5 points",
    "side_raw": "UNDER",
@@ -14997,7 +15012,7 @@
     "market_ticker": "KXNCAAFTOTAL-26NOV14DSUHOW-47"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "OVER",
    "side_label": "Over 46.5 points",
    "side_raw": "OVER",
@@ -15062,8 +15077,8 @@
    "best_price": 0.44,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.435,
-   "clv_cents": -0.5,
+   "close_price": 0.44,
+   "clv_cents": 0.0,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": {
@@ -15071,8 +15086,8 @@
     "volume": 124668.0
    },
    "ex_stats_close": {
-    "openInterest": 6425558.0,
-    "volume": 6818174.0
+    "openInterest": 7308220.0,
+    "volume": 7702774.0
    },
    "first_play": false,
    "game": "Philadelphia Flyers @ Columbus Blue Jackets",
@@ -15113,8 +15128,8 @@
    "best_price": 0.565,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.575,
-   "clv_cents": 1.0,
+   "close_price": 0.565,
+   "clv_cents": 0.0,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": {
@@ -15122,8 +15137,8 @@
     "volume": 124668.0
    },
    "ex_stats_close": {
-    "openInterest": 6425558.0,
-    "volume": 6818174.0
+    "openInterest": 7308220.0,
+    "volume": 7702774.0
    },
    "first_play": false,
    "game": "Philadelphia Flyers @ Columbus Blue Jackets",
@@ -15391,7 +15406,7 @@
     "outcome_id": "01a1c90c-ff8c-7311-99e2-1c3ba08b60e6"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Bucknell",
    "side_label": "BUCK +5.5 (-5.5)",
    "side_raw": 0,
@@ -15443,7 +15458,7 @@
     "outcome_id": "01a1c90c-ff8c-7311-99e2-1c25fb9850d6"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "W&M -5.5 (-5.5)",
    "side_label": "W&M -5.5 (-5.5)",
    "side_raw": null,
@@ -15490,7 +15505,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Grambling",
    "side_label": "Grambling -2.5 (-2.5)",
    "side_raw": 0,
@@ -15542,7 +15557,7 @@
     "outcome_id": "01a1b9db-591f-7870-b16b-5c8231884322"
    },
    "result": null,
-   "settle_tries": 8,
+   "settle_tries": 9,
    "side": "Georgia Tech",
    "side_label": "GT +15.5 (-15.5)",
    "side_raw": 0,
@@ -15597,7 +15612,7 @@
     "market_ticker": "KXNCAAFTOTAL-26NOV14ETSUWOF-51"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "UNDER",
    "side_label": "NOT Over 50.5 points",
    "side_raw": "UNDER",
@@ -15652,7 +15667,7 @@
     "market_ticker": "KXNCAAFSPREAD-26NOV14NCATHAMP-NCAT12"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "North Carolina A&T",
    "side_label": "North Carolina A&T wins by over 11.5 points",
    "side_raw": 0,
@@ -15707,7 +15722,7 @@
     "market_ticker": "KXNCAAFSPREAD-26NOV14DSUHOW-DSU4"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Howard",
    "side_label": "NOT Delaware St. wins by over 3.5 points",
    "side_raw": 1,
@@ -16621,7 +16636,7 @@
     "outcome_id": "01a1bbc9-1fe7-79d0-a90a-025999a7ae19"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "OVER",
    "side_label": "Over 45.5 (45.5)",
    "side_raw": "OVER",
@@ -16722,7 +16737,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "North Carolina Central",
    "side_label": "North Carolina Central",
    "side_raw": 0,
@@ -16774,7 +16789,7 @@
     "outcome_id": "01a1bbdd-8412-7d70-be96-ed85ec7731fb"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "CLT (0)",
    "side_label": "CLT (0)",
    "side_raw": null,
@@ -16926,7 +16941,7 @@
     "outcome_id": "01a1c913-0c61-74e0-981f-71d923d5d54f"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UNDER",
    "side_label": "Under 45.5 (45.5)",
    "side_raw": "UNDER",
@@ -16978,7 +16993,7 @@
     "outcome_id": "01a1c913-0c61-74e0-981f-71cf3b29c0af"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "OVER",
    "side_label": "Over 45.5 (45.5)",
    "side_raw": "OVER",
@@ -17030,7 +17045,7 @@
     "outcome_id": "01a1c8dc-1e46-7480-9c29-b7b94159aa67"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UNDER",
    "side_label": "Under 37.5 (37.5)",
    "side_raw": "UNDER",
@@ -17132,7 +17147,7 @@
     "market_ticker": "KXNCAAFSPREAD-26NOV14ETSUWOF-ETSU6"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "East Tennessee St.",
    "side_label": "East Tennessee St. wins by over 5.5 points",
    "side_raw": 0,
@@ -17184,7 +17199,7 @@
     "outcome_id": "01a1c8f3-d1d0-7dd2-a495-9620c7eefba0"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Pennsylvania",
    "side_label": "PENN (0)",
    "side_raw": 1,
@@ -17426,7 +17441,7 @@
     "outcome_id": "01a1b9a2-7529-7cb2-80d4-d2ff33027b64"
    },
    "result": null,
-   "settle_tries": 6,
+   "settle_tries": 7,
    "side": "Alabama",
    "side_label": "ALA -14.5 (14.5)",
    "side_raw": 0,
@@ -18077,6 +18092,7 @@
    },
    "first_play": false,
    "game": "Duke @ Miami Florida",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1b99d-e0b2-78d3-94e0-8336d9d864d6\", \"outcome_id\": \"01a1b99d-e0b2-78d3-94e0-835b4a48a04e\"}",
    "lead_min": 290,
    "league": "NCAAF",
@@ -18095,8 +18111,9 @@
     "market_id": "01a1b99d-e0b2-78d3-94e0-8336d9d864d6",
     "outcome_id": "01a1b99d-e0b2-78d3-94e0-835b4a48a04e"
    },
-   "result": null,
-   "settle_tries": 11,
+   "result": "W",
+   "settle_tries": 12,
+   "settled_utc": "2026-11-14T20:45:37Z",
    "side": "Duke",
    "side_label": "DUKE +13.5 (-13.5)",
    "side_raw": 0,
@@ -18106,7 +18123,7 @@
     "Duke",
     "Miami Florida"
    ],
-   "units_flat": null,
+   "units_flat": 1.11,
    "x": 2.43
   },
   {
@@ -18658,8 +18675,8 @@
    "best_price": 0.45,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.4367,
-   "clv_cents": -1.2,
+   "close_price": 0.4386,
+   "clv_cents": -1.0,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": null,
@@ -19101,8 +19118,8 @@
     "volume": 5304.0
    },
    "ex_stats_close": {
-    "openInterest": 106943.0,
-    "volume": 121228.0
+    "openInterest": 107652.0,
+    "volume": 122790.0
    },
    "first_play": false,
    "game": "Edmonton Oilers @ Toronto Maple Leafs",
@@ -19152,8 +19169,8 @@
     "volume": 5304.0
    },
    "ex_stats_close": {
-    "openInterest": 106943.0,
-    "volume": 121228.0
+    "openInterest": 107652.0,
+    "volume": 122790.0
    },
    "first_play": false,
    "game": "Edmonton Oilers @ Toronto Maple Leafs",
@@ -19296,8 +19313,8 @@
    "best_price": 0.49,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.495,
-   "clv_cents": 0.5,
+   "close_price": 0.49,
+   "clv_cents": 0.0,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": {
@@ -19408,7 +19425,7 @@
    },
    "ex_stats_close": {
     "openInterest": 2137226.0,
-    "volume": 2414291.0
+    "volume": 2415168.0
    },
    "first_play": false,
    "game": "Edmonton Oilers @ Toronto Maple Leafs",
@@ -19459,7 +19476,7 @@
    },
    "ex_stats_close": {
     "openInterest": 2137226.0,
-    "volume": 2414291.0
+    "volume": 2415168.0
    },
    "first_play": false,
    "game": "Edmonton Oilers @ Toronto Maple Leafs",
@@ -19686,7 +19703,7 @@
     "outcome_id": "01a1c8dc-1e46-7480-9c29-b7b94159aa67"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UNDER",
    "side_label": "Under 37.5 (37.5)",
    "side_raw": "UNDER",
@@ -19903,7 +19920,7 @@
     "market_ticker": "KXNCAAFSPREAD-26NOV14ECUCHAR-ECU11"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Charlotte",
    "side_label": "NOT East Carolina wins by over 10.5 points",
    "side_raw": 1,
@@ -20106,8 +20123,8 @@
    "best_price": 0.5265,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5495,
-   "clv_cents": 2.8,
+   "close_price": 0.5455,
+   "clv_cents": 2.4,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": null,
@@ -20336,8 +20353,8 @@
    "best_price": 0.565,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.569,
-   "clv_cents": 0.4,
+   "close_price": 0.5652,
+   "clv_cents": 0.0,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": null,
@@ -20428,8 +20445,8 @@
    "best_price": 0.585,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.5763,
-   "clv_cents": -1.0,
+   "close_price": 0.5726,
+   "clv_cents": -1.4,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": null,
@@ -20474,8 +20491,8 @@
    "best_price": 0.425,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.431,
-   "clv_cents": 1.1,
+   "close_price": 0.4348,
+   "clv_cents": 1.5,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": null,
@@ -20851,8 +20868,8 @@
     "volume": 458943.0
    },
    "ex_stats_close": {
-    "openInterest": 2826027.0,
-    "volume": 3730777.0
+    "openInterest": 2829609.0,
+    "volume": 3734359.0
    },
    "first_play": false,
    "game": "Detroit Red Wings @ Tampa Bay Lightning",
@@ -20893,8 +20910,8 @@
    "best_price": 0.475,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.46,
-   "clv_cents": -1.5,
+   "close_price": 0.47,
+   "clv_cents": -0.5,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": {
@@ -20902,8 +20919,8 @@
     "volume": 421822.0
    },
    "ex_stats_close": {
-    "openInterest": 8837641.0,
-    "volume": 10869042.0
+    "openInterest": 10550085.0,
+    "volume": 12687659.0
    },
    "first_play": true,
    "game": "Minnesota Wild @ Boston Bruins",
@@ -20944,8 +20961,8 @@
    "best_price": 0.425,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.42,
-   "clv_cents": -0.5,
+   "close_price": 0.43,
+   "clv_cents": 0.5,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": {
@@ -20953,8 +20970,8 @@
     "volume": 233699.0
    },
    "ex_stats_close": {
-    "openInterest": 3268882.0,
-    "volume": 3935426.0
+    "openInterest": 3393695.0,
+    "volume": 4224937.0
    },
    "first_play": true,
    "game": "Edmonton Oilers @ Toronto Maple Leafs",
@@ -21004,8 +21021,8 @@
     "volume": 384299.0
    },
    "ex_stats_close": {
-    "openInterest": 3271178.0,
-    "volume": 3621215.0
+    "openInterest": 3274094.0,
+    "volume": 3624131.0
    },
    "first_play": true,
    "game": "New Jersey Devils @ Washington Capitals",
@@ -21055,8 +21072,8 @@
     "volume": 578515.0
    },
    "ex_stats_close": {
-    "openInterest": 2526211.0,
-    "volume": 3019161.0
+    "openInterest": 2531616.0,
+    "volume": 3024566.0
    },
    "first_play": true,
    "game": "Ottawa Senators @ Pittsburgh Penguins",
@@ -21106,8 +21123,8 @@
     "volume": 697691.0
    },
    "ex_stats_close": {
-    "openInterest": 5888293.0,
-    "volume": 7304821.0
+    "openInterest": 5982934.0,
+    "volume": 7399462.0
    },
    "first_play": true,
    "game": "Colorado Avalanche @ Montreal Canadiens",
@@ -21400,7 +21417,7 @@
     "market_ticker": "KXNCAAFTOTAL-26NOV14LAFCOLG-47"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "OVER",
    "side_label": "Over 46.5 points",
    "side_raw": "OVER",
@@ -21455,7 +21472,7 @@
     "market_ticker": "KXNCAAFGAME-26NOV14DARTCOR-COR"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Cornell",
    "side_label": "Cornell",
    "side_raw": 1,
@@ -21502,7 +21519,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Lafayette",
    "side_label": "Lafayette",
    "side_raw": 0,
@@ -21811,7 +21828,7 @@
     "market_ticker": "KXNCAAFTOTAL-26NOV14CHATFUR-36"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "OVER",
    "side_label": "Over 35.5 points",
    "side_raw": "OVER",
@@ -22367,7 +22384,7 @@
     "side": "UNDER"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UNDER",
    "side_label": "under 6.5 (6.5)",
    "side_raw": "UNDER",
@@ -22414,7 +22431,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "North Carolina A&T",
    "side_label": "North Carolina A&T -11.5 (-11.5)",
    "side_raw": 0,
@@ -22574,7 +22591,7 @@
     "market_ticker": "KXNCAAFTOTAL-26NOV14ETSUWOF-51"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "OVER",
    "side_label": "Over 50.5 points",
    "side_raw": "OVER",
@@ -22629,7 +22646,7 @@
     "market_ticker": "KXNCAAFSPREAD-26NOV14NCCUSCST-SCST11"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "South Carolina St.",
    "side_label": "South Carolina St. wins by over 10.5 points",
    "side_raw": 1,
@@ -22683,7 +22700,7 @@
     "market_ticker": "KXNCAAFTOTAL-26NOV14UABTEM-47"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "OVER",
    "side_label": "Over 46.5 points",
    "side_raw": "OVER",
@@ -22791,7 +22808,7 @@
     "market_ticker": "KXNCAAFTOTAL-26NOV14ECUCHAR-46"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UNDER",
    "side_label": "NOT Over 45.5 points",
    "side_raw": "UNDER",
@@ -22846,7 +22863,7 @@
     "market_ticker": "KXNCAAFTOTAL-26NOV14DARTCOR-46"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UNDER",
    "side_label": "NOT Over 45.5 points",
    "side_raw": "UNDER",
@@ -22901,7 +22918,7 @@
     "market_ticker": "KXNCAAFTOTAL-26NOV14ARSTCCAR-53"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "OVER",
    "side_label": "Over 52.5 points",
    "side_raw": "OVER",
@@ -22956,7 +22973,7 @@
     "market_ticker": "KXNCAAFSPREAD-26NOV14STONUNH-STON6"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Stony Brook",
    "side_label": "Stony Brook wins by over 5.5 points",
    "side_raw": 0,
@@ -23278,7 +23295,7 @@
     "market_ticker": "KXNCAAFTOTAL-26NOV14STONUNH-58"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "OVER",
    "side_label": "Over 57.5 points",
    "side_raw": "OVER",
@@ -23333,7 +23350,7 @@
     "market_ticker": "KXNCAAFTOTAL-26NOV14LAFCOLG-47"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UNDER",
    "side_label": "NOT Over 46.5 points",
    "side_raw": "UNDER",
@@ -23388,7 +23405,7 @@
     "market_ticker": "KXNCAAFTOTAL-26NOV14CHATFUR-36"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UNDER",
    "side_label": "NOT Over 35.5 points",
    "side_raw": "UNDER",
@@ -23443,7 +23460,7 @@
     "market_ticker": "KXNCAAFTOTAL-26NOV14ARSTCCAR-53"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UNDER",
    "side_label": "NOT Over 52.5 points",
    "side_raw": "UNDER",
@@ -23551,7 +23568,7 @@
     "market_ticker": "KXNCAAFSPREAD-26NOV14LAFCOLG-COLG11"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Lafayette",
    "side_label": "NOT Colgate wins by over 10.5 points",
    "side_raw": 0,
@@ -23606,7 +23623,7 @@
     "market_ticker": "KXNCAAFSPREAD-26NOV14LAFCOLG-COLG11"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Colgate",
    "side_label": "Colgate wins by over 10.5 points",
    "side_raw": 1,
@@ -24268,7 +24285,7 @@
     "market_ticker": "KXNCAAFGAME-26NOV14GRAMCOOK-GRAM"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Grambling St.",
    "side_label": "Grambling St.",
    "side_raw": 0,
@@ -24323,7 +24340,7 @@
     "market_ticker": "KXNCAAFGAME-26NOV14DSUHOW-DSU"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Delaware St.",
    "side_label": "Delaware St.",
    "side_raw": 0,
@@ -24378,7 +24395,7 @@
     "market_ticker": "KXNCAAFGAME-26NOV14DSUHOW-HOW"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Howard",
    "side_label": "Howard",
    "side_raw": 1,
@@ -24433,7 +24450,7 @@
     "market_ticker": "KXNCAAFGAME-26NOV14CHATFUR-FUR"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Furman",
    "side_label": "Furman",
    "side_raw": 1,
@@ -25220,8 +25237,8 @@
    "best_price": 0.415,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.41,
-   "clv_cents": -0.5,
+   "close_price": 0.415,
+   "clv_cents": 0.0,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": {
@@ -25229,8 +25246,8 @@
     "volume": 20970434.0
    },
    "ex_stats_close": {
-    "openInterest": 24020144.0,
-    "volume": 27344090.0
+    "openInterest": 24188122.0,
+    "volume": 27551975.0
    },
    "first_play": false,
    "game": "Florida @ Kentucky",
@@ -25326,8 +25343,8 @@
     "volume": 575924.0
    },
    "ex_stats_close": {
-    "openInterest": 2526211.0,
-    "volume": 3019161.0
+    "openInterest": 2531616.0,
+    "volume": 3024566.0
    },
    "first_play": true,
    "game": "Ottawa Senators @ Pittsburgh Penguins",
@@ -25404,7 +25421,7 @@
     "market_ticker": "KXNCAAFTOTAL-26NOV14CITVMI-46"
    },
    "result": null,
-   "settle_tries": 8,
+   "settle_tries": 9,
    "side": "UNDER",
    "side_label": "NOT Over 45.5 points",
    "side_raw": "UNDER",
@@ -25456,7 +25473,7 @@
     "outcome_id": "01a1c925-b845-7f00-b2d6-e1ee1b87b586"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "UNDER",
    "side_label": "Under 50.5 (50.5)",
    "side_raw": "UNDER",
@@ -25508,7 +25525,7 @@
     "outcome_id": "01a1c925-b845-7f00-b2d6-e1d2483571da"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "OVER",
    "side_label": "Over 50.5 (50.5)",
    "side_raw": "OVER",
@@ -25554,7 +25571,7 @@
     "outcome_id": "01a1c913-68f7-7433-8815-1a98d133157a"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UNDER",
    "side_label": "Under 37.5 (37.5)",
    "side_raw": "UNDER",
@@ -26321,7 +26338,7 @@
     "outcome_id": "01a1c913-68f7-7433-8815-1a87de3f0394"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "OVER",
    "side_label": "Over 37.5 (37.5)",
    "side_raw": "OVER",
@@ -26376,7 +26393,7 @@
     "market_ticker": "KXNCAAFTOTAL-26NOV14NCCUSCST-55"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "UNDER",
    "side_label": "NOT Over 54.5 points",
    "side_raw": "UNDER",
@@ -26431,7 +26448,7 @@
     "market_ticker": "KXNCAAFTOTAL-26NOV14NCCUSCST-55"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "OVER",
    "side_label": "Over 54.5 points",
    "side_raw": "OVER",
@@ -26511,6 +26528,7 @@
    "ex_stats": null,
    "first_play": false,
    "game": "Duke at Miami Florida",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 14.0, \"px_event\": 1704710981, \"px_market\": 223, \"side\": \"0\"}",
    "lead_min": 404,
    "league": "NCAAF",
@@ -26531,8 +26549,9 @@
     "px_market": 223,
     "side": "0"
    },
-   "result": null,
-   "settle_tries": 11,
+   "result": "W",
+   "settle_tries": 12,
+   "settled_utc": "2026-11-14T20:45:37Z",
    "side": "Duke",
    "side_label": "Duke +14 (+14)",
    "side_raw": 0,
@@ -26542,7 +26561,7 @@
     "Duke",
     "Miami Florida"
    ],
-   "units_flat": null,
+   "units_flat": 0.89,
    "x": 2.15
   },
   {
@@ -26641,7 +26660,7 @@
     "market_ticker": "KXNCAAFTOTAL-26NOV14NCCUSCST-51"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "UNDER",
    "side_label": "NOT Over 50.5 points",
    "side_raw": "UNDER",
@@ -26669,8 +26688,8 @@
     "volume": 7932696.0
    },
    "ex_stats_close": {
-    "openInterest": 7308629.0,
-    "volume": 9227757.0
+    "openInterest": 7312511.0,
+    "volume": 9231639.0
    },
    "first_play": false,
    "game": "Arizona State @ UCF",
@@ -26744,7 +26763,7 @@
     "outcome_id": "01a1c920-3a06-7cb2-8fd8-96c1cef1474e"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "East Tennessee State",
    "side_label": "ETSU -10.5 (10.5)",
    "side_raw": 0,
@@ -26796,7 +26815,7 @@
     "outcome_id": "01a1c91c-8ef5-7813-a208-b7d12aaaf79a"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "OVER",
    "side_label": "Over 51.5 (51.5)",
    "side_raw": "OVER",
@@ -26900,7 +26919,7 @@
     "market_ticker": "KXNCAAFSPREAD-26NOV14DARTCOR-DART2"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Cornell",
    "side_label": "NOT Dartmouth wins by over 1.5 points",
    "side_raw": 1,
@@ -27109,7 +27128,7 @@
     "market_ticker": "KXNCAAFSPREAD-26NOV14NCCUSCST-SCST11"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "North Carolina Central",
    "side_label": "NOT South Carolina St. wins by over 10.5 points",
    "side_raw": 0,
@@ -27748,7 +27767,7 @@
     "outcome_id": "01a1c913-0c63-7d41-bfc6-23137858c9ae"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Grambling",
    "side_label": "GRAM -6.5 (6.5)",
    "side_raw": 0,
@@ -27800,7 +27819,7 @@
     "outcome_id": "01a1c91c-8ef7-7ba2-b110-3bc08ed6a7c9"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UNDER",
    "side_label": "Under 49.5 (49.5)",
    "side_raw": "UNDER",
@@ -27910,7 +27929,7 @@
     "market_ticker": "KXNCAAFTOTAL-26NOV14NCCUSCST-47"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "UNDER",
    "side_label": "NOT Over 46.5 points",
    "side_raw": "UNDER",
@@ -27965,7 +27984,7 @@
     "market_ticker": "KXNCAAFTOTAL-26NOV14NCCUSCST-47"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "OVER",
    "side_label": "Over 46.5 points",
    "side_raw": "OVER",
@@ -28122,8 +28141,8 @@
    "best_price": 0.495,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.495,
-   "clv_cents": 0.0,
+   "close_price": 0.5,
+   "clv_cents": 0.5,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": {
@@ -28131,8 +28150,8 @@
     "volume": 823680.0
    },
    "ex_stats_close": {
-    "openInterest": 1368059.0,
-    "volume": 2158155.0
+    "openInterest": 1777351.0,
+    "volume": 2567447.0
    },
    "first_play": true,
    "game": "Southern Mississippi @ Louisiana Tech",
@@ -28206,7 +28225,7 @@
     "outcome_id": "01a1c913-54a6-7443-9be2-f3a1c3f913a2"
    },
    "result": null,
-   "settle_tries": 8,
+   "settle_tries": 9,
    "side": "VMI",
    "side_label": "VMI +10.5 (10.5)",
    "side_raw": 1,
@@ -28312,7 +28331,7 @@
     "outcome_id": "01a1c91c-8ef6-7470-b807-3b1e90e1ca3c"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "North Carolina A&T",
    "side_label": "NCAT -8.5 (8.5)",
    "side_raw": 0,
@@ -28364,7 +28383,7 @@
     "outcome_id": "01a1c91c-8ef6-7470-b807-3b016e810f0f"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Hampton",
    "side_label": "HAMP +8.5 (8.5)",
    "side_raw": 1,
@@ -28416,7 +28435,7 @@
     "outcome_id": "01a1c913-68f7-7433-8815-1991d8647eb1"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "OVER",
    "side_label": "Over 31.5 (31.5)",
    "side_raw": "OVER",
@@ -29409,7 +29428,7 @@
     "market_ticker": "KXNCAAFTOTAL-26NOV14NCCUSCST-51"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "UNDER",
    "side_label": "NOT Over 50.5 points",
    "side_raw": "UNDER",
@@ -29464,7 +29483,7 @@
     "market_ticker": "KXNCAAFTOTAL-26NOV14NCCUSCST-51"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "OVER",
    "side_label": "Over 50.5 points",
    "side_raw": "OVER",
@@ -29519,7 +29538,7 @@
     "market_ticker": "KXNCAAFSPREAD-26NOV14DSUHOW-DSU4"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Delaware St.",
    "side_label": "Delaware St. wins by over 3.5 points",
    "side_raw": 0,
@@ -29574,7 +29593,7 @@
     "market_ticker": "KXNCAAFSPREAD-26NOV14DARTCOR-DART2"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Dartmouth",
    "side_label": "Dartmouth wins by over 1.5 points",
    "side_raw": 0,
@@ -29788,7 +29807,7 @@
     "side": "UNDER"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UNDER",
    "side_label": "under 61.5 (61.5)",
    "side_raw": "UNDER",
@@ -30086,8 +30105,8 @@
     "volume": 229692.0
    },
    "ex_stats_close": {
-    "openInterest": 2826027.0,
-    "volume": 3730777.0
+    "openInterest": 2829609.0,
+    "volume": 3734359.0
    },
    "first_play": true,
    "game": "Detroit Red Wings @ Tampa Bay Lightning",
@@ -30256,7 +30275,7 @@
     "market_ticker": "KXNCAAFTOTAL-26NOV14MURRINST-59"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UNDER",
    "side_label": "NOT Over 58.5 points",
    "side_raw": "UNDER",
@@ -30311,7 +30330,7 @@
     "market_ticker": "KXNCAAFTOTAL-26NOV14MURRINST-59"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "OVER",
    "side_label": "Over 58.5 points",
    "side_raw": "OVER",
@@ -30816,7 +30835,7 @@
     "market_ticker": "KXNCAAFGAME-26NOV14BUCKWM-WM"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "William & Mary",
    "side_label": "William & Mary",
    "side_raw": 1,
@@ -31014,7 +31033,7 @@
     "market_ticker": "KXNCAAFTOTAL-26NOV14NCATHAMP-47"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "OVER",
    "side_label": "Over 46.5 points",
    "side_raw": "OVER",
@@ -31069,7 +31088,7 @@
     "market_ticker": "KXNCAAFSPREAD-26NOV14DSUHOW-DSU4"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Howard",
    "side_label": "NOT Delaware St. wins by over 3.5 points",
    "side_raw": 1,
@@ -31617,7 +31636,7 @@
     "market_ticker": "KXNCAAFTOTAL-26NOV14ETSUWOF-51"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "UNDER",
    "side_label": "NOT Over 50.5 points",
    "side_raw": "UNDER",
@@ -31672,7 +31691,7 @@
     "market_ticker": "KXNCAAFTOTAL-26NOV14ETSUWOF-51"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "OVER",
    "side_label": "Over 50.5 points",
    "side_raw": "OVER",
@@ -31727,7 +31746,7 @@
     "market_ticker": "KXNCAAFTOTAL-26NOV14LAFCOLG-47"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "OVER",
    "side_label": "Over 46.5 points",
    "side_raw": "OVER",
@@ -31782,7 +31801,7 @@
     "market_ticker": "KXNCAAFTOTAL-26NOV14DSUHOW-43"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UNDER",
    "side_label": "NOT Over 42.5 points",
    "side_raw": "UNDER",
@@ -31837,7 +31856,7 @@
     "market_ticker": "KXNCAAFTOTAL-26NOV14DSUHOW-43"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "OVER",
    "side_label": "Over 42.5 points",
    "side_raw": "OVER",
@@ -31892,7 +31911,7 @@
     "market_ticker": "KXNCAAFTOTAL-26NOV14DARTCOR-46"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "OVER",
    "side_label": "Over 45.5 points",
    "side_raw": "OVER",
@@ -31947,7 +31966,7 @@
     "market_ticker": "KXNCAAFSPREAD-26NOV14NCATHAMP-NCAT12"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "North Carolina A&T",
    "side_label": "North Carolina A&T wins by over 11.5 points",
    "side_raw": 0,
@@ -32002,7 +32021,7 @@
     "market_ticker": "KXNCAAFSPREAD-26NOV14LAFCOLG-COLG11"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Lafayette",
    "side_label": "NOT Colgate wins by over 10.5 points",
    "side_raw": 0,
@@ -32057,7 +32076,7 @@
     "market_ticker": "KXNCAAFSPREAD-26NOV14LAFCOLG-COLG11"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Colgate",
    "side_label": "Colgate wins by over 10.5 points",
    "side_raw": 1,
@@ -32112,7 +32131,7 @@
     "market_ticker": "KXNCAAFSPREAD-26NOV14CHATFUR-CHAT4"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Chattanooga",
    "side_label": "Chattanooga wins by over 3.5 points",
    "side_raw": 0,
@@ -32167,7 +32186,7 @@
     "market_ticker": "KXNCAAFSPREAD-26NOV14BUCKWM-WM6"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Bucknell",
    "side_label": "NOT William & Mary wins by over 5.5 points",
    "side_raw": 0,
@@ -32222,7 +32241,7 @@
     "market_ticker": "KXNCAAFSPREAD-26NOV14BUCKWM-WM6"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "William & Mary",
    "side_label": "William & Mary wins by over 5.5 points",
    "side_raw": 1,
@@ -32831,7 +32850,7 @@
     "market_ticker": "KXNCAAFGAME-26NOV14NCCUSCST-NCCU"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "North Carolina Central",
    "side_label": "North Carolina Central",
    "side_raw": 0,
@@ -32886,7 +32905,7 @@
     "market_ticker": "KXNCAAFGAME-26NOV14ETSUWOF-WOF"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "Wofford",
    "side_label": "Wofford",
    "side_raw": 1,
@@ -32941,7 +32960,7 @@
     "market_ticker": "KXNCAAFGAME-26NOV14LAFCOLG-LAF"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Lafayette",
    "side_label": "Lafayette",
    "side_raw": 0,
@@ -32996,7 +33015,7 @@
     "market_ticker": "KXNCAAFGAME-26NOV14GRAMCOOK-GRAM"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Grambling St.",
    "side_label": "Grambling St.",
    "side_raw": 0,
@@ -33051,7 +33070,7 @@
     "market_ticker": "KXNCAAFGAME-26NOV14DSUHOW-DSU"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Delaware St.",
    "side_label": "Delaware St.",
    "side_raw": 0,
@@ -33106,7 +33125,7 @@
     "market_ticker": "KXNCAAFGAME-26NOV14DSUHOW-HOW"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Howard",
    "side_label": "Howard",
    "side_raw": 1,
@@ -33161,7 +33180,7 @@
     "market_ticker": "KXNCAAFGAME-26NOV14CHATFUR-CHAT"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Chattanooga",
    "side_label": "Chattanooga",
    "side_raw": 0,
@@ -33265,7 +33284,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Stony Brook",
    "side_label": "Stony Brook",
    "side_raw": 0,
@@ -33312,7 +33331,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "East Carolina",
    "side_label": "East Carolina -11.5 (-11.5)",
    "side_raw": 0,
@@ -33359,7 +33378,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Charlotte",
    "side_label": "Charlotte +11.5 (+11.5)",
    "side_raw": 1,
@@ -33765,7 +33784,7 @@
     "market_ticker": "KXNCAAFTOTAL-26NOV14STONUNH-58"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UNDER",
    "side_label": "NOT Over 57.5 points",
    "side_raw": "UNDER",
@@ -33820,7 +33839,7 @@
     "market_ticker": "KXNCAAFTOTAL-26NOV14STONUNH-58"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "OVER",
    "side_label": "Over 57.5 points",
    "side_raw": "OVER",
@@ -33867,7 +33886,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "New Hampshire",
    "side_label": "New Hampshire",
    "side_raw": 1,
@@ -34168,7 +34187,7 @@
     "market_ticker": "KXNCAAFTOTAL-26NOV14LAFCOLG-47"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UNDER",
    "side_label": "NOT Over 46.5 points",
    "side_raw": "UNDER",
@@ -34223,7 +34242,7 @@
     "market_ticker": "KXNCAAFTOTAL-26NOV14GRAMCOOK-62"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UNDER",
    "side_label": "NOT Over 61.5 points",
    "side_raw": "UNDER",
@@ -34789,7 +34808,7 @@
     "market_ticker": "KXNCAAFTOTAL-26NOV14GRAMCOOK-62"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "OVER",
    "side_label": "Over 61.5 points",
    "side_raw": "OVER",
@@ -34844,7 +34863,7 @@
     "market_ticker": "KXNCAAFTOTAL-26NOV14CHATFUR-36"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UNDER",
    "side_label": "NOT Over 35.5 points",
    "side_raw": "UNDER",
@@ -34899,7 +34918,7 @@
     "market_ticker": "KXNCAAFTOTAL-26NOV14CHATFUR-36"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "OVER",
    "side_label": "Over 35.5 points",
    "side_raw": "OVER",
@@ -35000,7 +35019,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Temple",
    "side_label": "Temple",
    "side_raw": 1,
@@ -35190,7 +35209,7 @@
     "outcome_id": "01a1c90b-8c10-7182-a3a6-6a42189922d1"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Howard",
    "side_label": "HOW +3.5 (3.5)",
    "side_raw": 1,
@@ -35245,7 +35264,7 @@
     "market_ticker": "KXNCAAFTOTAL-26NOV14NCATHAMP-47"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UNDER",
    "side_label": "NOT Over 46.5 points",
    "side_raw": "UNDER",
@@ -35462,7 +35481,7 @@
     "market_ticker": "KXNCAAFGAME-26NOV14NCCUSCST-SCST"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "South Carolina St.",
    "side_label": "South Carolina St.",
    "side_raw": 1,
@@ -35517,7 +35536,7 @@
     "market_ticker": "KXNCAAFGAME-26NOV14ETSUWOF-ETSU"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "East Tennessee St.",
    "side_label": "East Tennessee St.",
    "side_raw": 0,
@@ -36222,7 +36241,7 @@
     "outcome_id": "01a1c913-0c63-7d41-bfc6-248ed30b91c9"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Cornell",
    "side_label": "COR -1.5 (-1.5)",
    "side_raw": 1,
@@ -36277,7 +36296,7 @@
     "market_ticker": "KXNCAAFTOTAL-26NOV14DARTCOR-46"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UNDER",
    "side_label": "NOT Over 45.5 points",
    "side_raw": "UNDER",
@@ -36332,7 +36351,7 @@
     "market_ticker": "KXNCAAFTOTAL-26NOV14BUCKWM-46"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UNDER",
    "side_label": "NOT Over 45.5 points",
    "side_raw": "UNDER",
@@ -36387,7 +36406,7 @@
     "market_ticker": "KXNCAAFTOTAL-26NOV14BUCKWM-46"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "OVER",
    "side_label": "Over 45.5 points",
    "side_raw": "OVER",
@@ -36442,7 +36461,7 @@
     "market_ticker": "KXNCAAFSPREAD-26NOV14STONUNH-STON6"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "New Hampshire",
    "side_label": "NOT Stony Brook wins by over 5.5 points",
    "side_raw": 1,
@@ -36497,7 +36516,7 @@
     "market_ticker": "KXNCAAFSPREAD-26NOV14NCATHAMP-NCAT12"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Hampton",
    "side_label": "NOT North Carolina A&T wins by over 11.5 points",
    "side_raw": 1,
@@ -36552,7 +36571,7 @@
     "market_ticker": "KXNCAAFGAME-26NOV14NCATHAMP-NCAT"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "North Carolina A&T",
    "side_label": "North Carolina A&T",
    "side_raw": 0,
@@ -36797,7 +36816,7 @@
     "market_ticker": "KXNCAAFGAME-26NOV14MURRINST-INST"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Indiana St.",
    "side_label": "Indiana St.",
    "side_raw": 1,
@@ -37142,7 +37161,7 @@
     "outcome_id": "01a1c920-3a06-7cb2-8fd8-966c450d2e36"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "East Tennessee State",
    "side_label": "ETSU -8.5 (8.5)",
    "side_raw": 0,
@@ -37194,7 +37213,7 @@
     "outcome_id": "01a1c913-54a6-7443-9be2-f3a1c3f913a2"
    },
    "result": null,
-   "settle_tries": 8,
+   "settle_tries": 9,
    "side": "VMI",
    "side_label": "VMI +10.5 (10.5)",
    "side_raw": 1,
@@ -37357,7 +37376,7 @@
     "market_ticker": "KXNCAAFSPREAD-26NOV14STONUNH-STON6"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Stony Brook",
    "side_label": "Stony Brook wins by over 5.5 points",
    "side_raw": 0,
@@ -37705,7 +37724,7 @@
     "outcome_id": "01a1c913-0c63-7d41-bfc6-23137858c9ae"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Grambling",
    "side_label": "GRAM -6.5 (6.5)",
    "side_raw": 0,
@@ -38069,7 +38088,7 @@
     "market_ticker": "KXNCAAFSPREAD-26NOV14GRAMCOOK-GRAM3"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Grambling St.",
    "side_label": "Grambling St. wins by over 2.5 points",
    "side_raw": 0,
@@ -38124,7 +38143,7 @@
     "market_ticker": "KXNCAAFTOTAL-26NOV14CITVMI-46"
    },
    "result": null,
-   "settle_tries": 8,
+   "settle_tries": 9,
    "side": "UNDER",
    "side_label": "NOT Over 45.5 points",
    "side_raw": "UNDER",
@@ -38460,7 +38479,7 @@
     "market_ticker": "KXNCAAFGAME-26NOV14STONUNH-STON"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Stony Brook",
    "side_label": "Stony Brook",
    "side_raw": 0,
@@ -38479,8 +38498,8 @@
    "best_price": 0.8494,
    "best_price_book": "kalshi",
    "book": "kalshi",
-   "close_price": 0.87,
-   "clv_cents": 3.0,
+   "close_price": 0.89,
+   "clv_cents": 5.0,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": {
@@ -38489,9 +38508,9 @@
     "volume_fp": 4600.97
    },
    "ex_stats_close": {
-    "open_interest_fp": 80820.11,
+    "open_interest_fp": 85888.61,
     "volume_24h_fp": 135661.94,
-    "volume_fp": 143339.62
+    "volume_fp": 155043.35
    },
    "first_play": true,
    "game": "Harvard vs Penn",
@@ -39126,7 +39145,7 @@
     "outcome_id": "01a1c90f-5ab6-7be2-89e3-dbffddd2fabe"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Bethune Cookman",
    "side_label": "BCU (0)",
    "side_raw": 1,
@@ -39178,7 +39197,7 @@
     "outcome_id": "01a1c90f-5d62-7421-be1f-5ef613eefa8f"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Furman",
    "side_label": "FUR (0)",
    "side_raw": 1,
@@ -39230,7 +39249,7 @@
     "outcome_id": "01a1c92a-e775-7852-bd24-b7cd269f358c"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Murray State",
    "side_label": "MURR (0)",
    "side_raw": 0,
@@ -39323,7 +39342,7 @@
     "side": "OVER"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "OVER",
    "side_label": "over 6.5 (6.5)",
    "side_raw": "OVER",
@@ -39442,8 +39461,8 @@
    "best_price": 0.3,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.285,
-   "clv_cents": -1.5,
+   "close_price": 0.29,
+   "clv_cents": -1.0,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": {
@@ -40081,7 +40100,7 @@
     "outcome_id": "01a1bb6f-81e0-73b3-898d-8cf1fd88d50b"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Temple",
    "side_label": "TEM (0)",
    "side_raw": 1,
@@ -40405,8 +40424,8 @@
    "best_price": 0.495,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.495,
-   "clv_cents": 0.0,
+   "close_price": 0.5,
+   "clv_cents": 0.5,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": {
@@ -40414,8 +40433,8 @@
     "volume": 817298.0
    },
    "ex_stats_close": {
-    "openInterest": 1368059.0,
-    "volume": 2158155.0
+    "openInterest": 1777351.0,
+    "volume": 2567447.0
    },
    "first_play": true,
    "game": "Southern Mississippi @ Louisiana Tech",
@@ -40663,8 +40682,8 @@
    "best_price": 0.415,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.41,
-   "clv_cents": -0.5,
+   "close_price": 0.415,
+   "clv_cents": 0.0,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": {
@@ -40672,8 +40691,8 @@
     "volume": 20876356.0
    },
    "ex_stats_close": {
-    "openInterest": 24020144.0,
-    "volume": 27344090.0
+    "openInterest": 24188122.0,
+    "volume": 27551975.0
    },
    "first_play": true,
    "game": "Florida @ Kentucky",
@@ -40714,8 +40733,8 @@
    "best_price": 0.59,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.595,
-   "clv_cents": 0.5,
+   "close_price": 0.59,
+   "clv_cents": 0.0,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": {
@@ -40723,8 +40742,8 @@
     "volume": 20876356.0
    },
    "ex_stats_close": {
-    "openInterest": 24020144.0,
-    "volume": 27344090.0
+    "openInterest": 24188122.0,
+    "volume": 27551975.0
    },
    "first_play": false,
    "game": "Florida @ Kentucky",
@@ -40992,7 +41011,7 @@
     "side": "UNDER"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UNDER",
    "side_label": "under 46.5 (46.5)",
    "side_raw": "UNDER",
@@ -41146,7 +41165,7 @@
     "outcome_id": "01a1c90c-ff8c-7311-99e2-1c25fb9850d6"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "W&M -5.5 (-5.5)",
    "side_label": "W&M -5.5 (-5.5)",
    "side_raw": null,
@@ -41370,8 +41389,8 @@
    "best_price": 0.27,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.265,
-   "clv_cents": -0.5,
+   "close_price": 0.27,
+   "clv_cents": 0.0,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": {
@@ -41523,8 +41542,8 @@
    "best_price": 0.355,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.385,
-   "clv_cents": 3.0,
+   "close_price": 0.39,
+   "clv_cents": 3.5,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": {
@@ -41745,7 +41764,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "East Tennessee State",
    "side_label": "East Tennessee State",
    "side_raw": 0,
@@ -41792,7 +41811,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Cornell",
    "side_label": "Cornell",
    "side_raw": 1,
@@ -41811,8 +41830,8 @@
    "best_price": 0.4745,
    "best_price_book": "prophetx",
    "book": "novig",
-   "close_price": 0.46,
-   "clv_cents": -2.0,
+   "close_price": 0.47,
+   "clv_cents": -1.0,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": {
@@ -41820,8 +41839,8 @@
     "volume": 202780.0
    },
    "ex_stats_close": {
-    "openInterest": 8837641.0,
-    "volume": 10869042.0
+    "openInterest": 10550085.0,
+    "volume": 12687659.0
    },
    "first_play": true,
    "game": "Minnesota Wild @ Boston Bruins",
@@ -41946,7 +41965,7 @@
     "outcome_id": "01a1c920-3a06-7cb2-8fd8-96c1cef1474e"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "East Tennessee State",
    "side_label": "ETSU -10.5 (10.5)",
    "side_raw": 0,
@@ -42119,8 +42138,8 @@
    "best_price": 0.5606,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5556,
-   "clv_cents": 0.0,
+   "close_price": 0.5475,
+   "clv_cents": -0.8,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": null,
@@ -42516,7 +42535,7 @@
     "market_ticker": "KXNCAAFSPREAD-26NOV14CITVMI-CIT17"
    },
    "result": null,
-   "settle_tries": 8,
+   "settle_tries": 9,
    "side": "The Citadel",
    "side_label": "The Citadel wins by over 16.5 points",
    "side_raw": 0,
@@ -42591,8 +42610,8 @@
    "best_price": 0.5664,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5556,
-   "clv_cents": -0.6,
+   "close_price": 0.5475,
+   "clv_cents": -1.4,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": null,
@@ -43407,7 +43426,7 @@
     "market_ticker": "KXNCAAFSPREAD-26NOV14CITVMI-CIT17"
    },
    "result": null,
-   "settle_tries": 8,
+   "settle_tries": 9,
    "side": "VMI",
    "side_label": "NOT The Citadel wins by over 16.5 points",
    "side_raw": 1,
@@ -43454,7 +43473,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "East Carolina",
    "side_label": "East Carolina -12 (-12)",
    "side_raw": 0,
@@ -43501,7 +43520,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Charlotte",
    "side_label": "Charlotte +12 (+12)",
    "side_raw": 1,
@@ -43754,7 +43773,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UAB",
    "side_label": "UAB +7 (+7)",
    "side_raw": 0,
@@ -43801,7 +43820,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Temple",
    "side_label": "Temple -7 (-7)",
    "side_raw": 1,
@@ -43953,7 +43972,7 @@
     "outcome_id": "01a1c913-54a6-7443-9be2-f35a36f03b1a"
    },
    "result": null,
-   "settle_tries": 8,
+   "settle_tries": 9,
    "side": "The Citadel",
    "side_label": "CIT -16.5 (16.5)",
    "side_raw": 0,
@@ -44108,7 +44127,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Indiana State",
    "side_label": "Indiana State",
    "side_raw": 1,
@@ -44155,7 +44174,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Dartmouth",
    "side_label": "Dartmouth",
    "side_raw": 0,
@@ -44358,8 +44377,8 @@
    "best_price": 0.5377,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5327,
-   "clv_cents": 0.0,
+   "close_price": 0.5305,
+   "clv_cents": -0.2,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": null,
@@ -44404,8 +44423,8 @@
    "best_price": 0.5463,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5305,
-   "clv_cents": -1.1,
+   "close_price": 0.5283,
+   "clv_cents": -1.3,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": null,
@@ -44617,7 +44636,7 @@
     "side": "UNDER"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UNDER",
    "side_label": "under 61.5 (61.5)",
    "side_raw": "UNDER",
@@ -44644,6 +44663,7 @@
    "ex_stats": null,
    "first_play": false,
    "game": "Duke at Miami Florida",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 53.0, \"px_event\": 1704710981, \"px_market\": 225, \"side\": \"OVER\"}",
    "lead_min": 670,
    "league": "NCAAF",
@@ -44664,8 +44684,9 @@
     "px_market": 225,
     "side": "OVER"
    },
-   "result": null,
-   "settle_tries": 11,
+   "result": "W",
+   "settle_tries": 12,
+   "settled_utc": "2026-11-14T20:45:37Z",
    "side": "OVER",
    "side_label": "over 53 (53)",
    "side_raw": "OVER",
@@ -44675,7 +44696,7 @@
     "Duke",
     "Miami Florida"
    ],
-   "units_flat": null,
+   "units_flat": 0.52,
    "x": 21.0
   },
   {
@@ -44929,7 +44950,7 @@
     "market_ticker": "KXNCAAFGAME-26NOV14BUCKWM-WM"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "William & Mary",
    "side_label": "William & Mary",
    "side_raw": 1,
@@ -44957,8 +44978,8 @@
     "volume": 8272498.0
    },
    "ex_stats_close": {
-    "openInterest": 8846827.0,
-    "volume": 12730554.0
+    "openInterest": 9249601.0,
+    "volume": 13152488.0
    },
    "first_play": true,
    "game": "Washington @ Michigan State",
@@ -45349,7 +45370,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "East Tennessee State",
    "side_label": "East Tennessee State -5.5 (-5.5)",
    "side_raw": 0,
@@ -45396,7 +45417,7 @@
     "side": "UNDER"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UNDER",
    "side_label": "under 56.5 (56.5)",
    "side_raw": "UNDER",
@@ -45443,7 +45464,7 @@
     "side": "UNDER"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UNDER",
    "side_label": "under 46.5 (46.5)",
    "side_raw": "UNDER",
@@ -45853,7 +45874,7 @@
     "market_ticker": "KXNCAAFTOTAL-26NOV14CITVMI-46"
    },
    "result": null,
-   "settle_tries": 8,
+   "settle_tries": 9,
    "side": "OVER",
    "side_label": "Over 45.5 points",
    "side_raw": "OVER",
@@ -45953,7 +45974,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Bethune Cookman",
    "side_label": "Bethune Cookman",
    "side_raw": 1,
@@ -46000,7 +46021,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Murray State",
    "side_label": "Murray State +10 (+10)",
    "side_raw": 0,
@@ -46047,7 +46068,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Indiana State",
    "side_label": "Indiana State -10 (-10)",
    "side_raw": 1,
@@ -46701,7 +46722,7 @@
     "outcome_id": "01a1c913-54a6-7443-9be2-f345c0025b87"
    },
    "result": null,
-   "settle_tries": 8,
+   "settle_tries": 9,
    "side": "VMI",
    "side_label": "VMI +16.5 (16.5)",
    "side_raw": 1,
@@ -47609,7 +47630,7 @@
     "outcome_id": "01a1c913-68f7-7433-8815-1ae905df2f19"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "OVER",
    "side_label": "Over 39.5 (39.5)",
    "side_raw": "OVER",
@@ -47660,7 +47681,7 @@
     "outcome_id": "01a1b9a2-7529-7cb2-80d4-d2ff33027b64"
    },
    "result": null,
-   "settle_tries": 6,
+   "settle_tries": 7,
    "side": "Alabama",
    "side_label": "ALA -14.5 (14.5)",
    "side_raw": 0,
@@ -47712,7 +47733,7 @@
     "outcome_id": "01a1b9db-591e-71e3-91e8-b80dcd7401d6"
    },
    "result": null,
-   "settle_tries": 8,
+   "settle_tries": 9,
    "side": "OVER",
    "side_label": "Over 47.5 (47.5)",
    "side_raw": "OVER",
@@ -47921,7 +47942,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Stony Brook",
    "side_label": "Stony Brook",
    "side_raw": 0,
@@ -48214,7 +48235,7 @@
     "outcome_id": "01a1c920-3a06-7cb2-8fd8-957b1a66cb2c"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "East Tennessee State",
    "side_label": "ETSU -2.5 (2.5)",
    "side_raw": 0,
@@ -48353,7 +48374,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Howard",
    "side_label": "Howard",
    "side_raw": 1,
@@ -48499,7 +48520,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 11,
+   "settle_tries": 12,
    "side": "Illinois State",
    "side_label": "Illinois State +12.5 (+12.5)",
    "side_raw": 0,
@@ -48547,7 +48568,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 11,
+   "settle_tries": 12,
    "side": "Youngstown State",
    "side_label": "Youngstown State -12.5 (-12.5)",
    "side_raw": 1,
@@ -49168,8 +49189,8 @@
    "best_price": 0.5172,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5238,
-   "clv_cents": 1.2,
+   "close_price": 0.5215,
+   "clv_cents": 0.9,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": null,
@@ -49298,7 +49319,7 @@
     "outcome_id": "01a1c921-107b-7850-920e-b3a189d1f317"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "INST -8.5 (-8.5)",
    "side_label": "INST -8.5 (-8.5)",
    "side_raw": null,
@@ -49396,7 +49417,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Delaware State",
    "side_label": "Delaware State",
    "side_raw": 0,
@@ -49466,8 +49487,8 @@
    "best_price": 0.5124,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5098,
-   "clv_cents": 0.2,
+   "close_price": 0.5074,
+   "clv_cents": 0.0,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": null,
@@ -49678,7 +49699,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "East Tennessee State",
    "side_label": "East Tennessee State -4.5 (-4.5)",
    "side_raw": 0,
@@ -49932,7 +49953,7 @@
     "side": "UNDER"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UNDER",
    "side_label": "under 59.5 (59.5)",
    "side_raw": "UNDER",
@@ -50154,6 +50175,7 @@
    "ex_stats": null,
    "first_play": false,
    "game": "Duke at Miami Florida",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 13.5, \"px_event\": 1704710981, \"px_market\": 223, \"side\": \"0\"}",
    "lead_min": 744,
    "league": "NCAAF",
@@ -50174,8 +50196,9 @@
     "px_market": 223,
     "side": "0"
    },
-   "result": null,
-   "settle_tries": 11,
+   "result": "W",
+   "settle_tries": 12,
+   "settled_utc": "2026-11-14T20:45:37Z",
    "side": "Duke",
    "side_label": "Duke +13.5 (+13.5)",
    "side_raw": 0,
@@ -50185,7 +50208,7 @@
     "Duke",
     "Miami Florida"
    ],
-   "units_flat": null,
+   "units_flat": 1.06,
    "x": 0.24
   },
   {
@@ -50327,7 +50350,7 @@
     "outcome_id": "01a1c913-68f8-7783-91f4-5c24225047c4"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UTC -2.5 (2.5)",
    "side_label": "UTC -2.5 (2.5)",
    "side_raw": null,
@@ -50438,8 +50461,8 @@
    "best_price": 0.5333,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.4673,
-   "clv_cents": -6.1,
+   "close_price": 0.463,
+   "clv_cents": -6.5,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": null,
@@ -50742,7 +50765,7 @@
     "side": "OVER"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "OVER",
    "side_label": "over 59.5 (59.5)",
    "side_raw": "OVER",
@@ -50789,7 +50812,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 6,
+   "settle_tries": 7,
    "side": "Alabama",
    "side_label": "Alabama -15 (-15)",
    "side_raw": 0,
@@ -50836,7 +50859,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 6,
+   "settle_tries": 7,
    "side": "Vanderbilt",
    "side_label": "Vanderbilt +15 (+15)",
    "side_raw": 1,
@@ -50883,7 +50906,7 @@
     "side": "UNDER"
    },
    "result": null,
-   "settle_tries": 8,
+   "settle_tries": 9,
    "side": "UNDER",
    "side_label": "under 48 (48)",
    "side_raw": "UNDER",
@@ -52073,7 +52096,7 @@
     "outcome_id": "01a1bb6f-81e0-73b3-898d-8d06f694e6e3"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UAB",
    "side_label": "UAB (0)",
    "side_raw": 0,
@@ -52166,7 +52189,7 @@
     "side": "UNDER"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UNDER",
    "side_label": "under 37.5 (37.5)",
    "side_raw": "UNDER",
@@ -52213,7 +52236,7 @@
     "side": "UNDER"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UNDER",
    "side_label": "under 46 (46)",
    "side_raw": "UNDER",
@@ -52314,7 +52337,7 @@
     "outcome_id": "01a1c90f-58be-7ad0-9ec9-bfa692ac9518"
    },
    "result": null,
-   "settle_tries": 8,
+   "settle_tries": 9,
    "side": "UNDER",
    "side_label": "Under 51.5 (51.5)",
    "side_raw": "UNDER",
@@ -52366,7 +52389,7 @@
     "outcome_id": "01a1c90f-58be-7ad0-9ec9-bf96bbd3c098"
    },
    "result": null,
-   "settle_tries": 8,
+   "settle_tries": 9,
    "side": "OVER",
    "side_label": "Over 51.5 (51.5)",
    "side_raw": "OVER",
@@ -53000,8 +53023,8 @@
    "best_price": 0.53,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.5633,
-   "clv_cents": 3.3,
+   "close_price": 0.569,
+   "clv_cents": 3.8,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": null,
@@ -53147,8 +53170,8 @@
     "volume": 8203501.0
    },
    "ex_stats_close": {
-    "openInterest": 8846827.0,
-    "volume": 12730554.0
+    "openInterest": 9249601.0,
+    "volume": 13152488.0
    },
    "first_play": false,
    "game": "Washington @ Michigan State",
@@ -53480,8 +53503,8 @@
    "best_price": 0.495,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.4878,
-   "clv_cents": -1.0,
+   "close_price": 0.4902,
+   "clv_cents": -0.7,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": null,
@@ -53581,8 +53604,8 @@
     "volume": 2906096.0
    },
    "ex_stats_close": {
-    "openInterest": 5443977.0,
-    "volume": 6864397.0
+    "openInterest": 5495631.0,
+    "volume": 6916051.0
    },
    "first_play": false,
    "game": "Washington @ Michigan State",
@@ -53758,7 +53781,7 @@
     "outcome_id": "01a1bbc9-1fe7-79d0-a909-ff5fade0e168"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "CLT +11.5 (11.5)",
    "side_label": "CLT +11.5 (11.5)",
    "side_raw": null,
@@ -53810,7 +53833,7 @@
     "outcome_id": "01a1ce81-c6b8-76f0-9df1-36f57c179c6b"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Seattle Kraken",
    "side_label": "SEA +2.5 (-2.5)",
    "side_raw": 0,
@@ -53897,6 +53920,7 @@
    },
    "first_play": false,
    "game": "Duke @ Miami Florida",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1b99d-e0b2-78d3-94e0-8336d9d864d6\", \"outcome_id\": \"01a1b99d-e0b2-78d3-94e0-834ff6812774\"}",
    "lead_min": 770,
    "league": "NCAAF",
@@ -53915,8 +53939,9 @@
     "market_id": "01a1b99d-e0b2-78d3-94e0-8336d9d864d6",
     "outcome_id": "01a1b99d-e0b2-78d3-94e0-834ff6812774"
    },
-   "result": null,
-   "settle_tries": 11,
+   "result": "L",
+   "settle_tries": 12,
+   "settled_utc": "2026-11-14T20:45:37Z",
    "side": "Miami Florida",
    "side_label": "MIA -13.5 (-13.5)",
    "side_raw": 1,
@@ -53926,7 +53951,7 @@
     "Duke",
     "Miami Florida"
    ],
-   "units_flat": null,
+   "units_flat": -1.0,
    "x": 2.05
   },
   {
@@ -54019,7 +54044,7 @@
     "outcome_id": "01a1d5b1-d7ab-7cb0-a9bd-f30e1460b52a"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Seattle Kraken",
    "side_label": "SEA (0)",
    "side_raw": 0,
@@ -54176,7 +54201,7 @@
     "outcome_id": "01a1c7b3-0ad7-7143-ab65-0056198337ed"
    },
    "result": null,
-   "settle_tries": 11,
+   "settle_tries": 12,
    "side": "OVER",
    "side_label": "Over 63.5 (63.5)",
    "side_raw": "OVER",
@@ -54287,8 +54312,8 @@
    "best_price": 0.495,
    "best_price_book": "novig",
    "book": "prophetx",
-   "close_price": 0.4717,
-   "clv_cents": -2.3,
+   "close_price": 0.4739,
+   "clv_cents": -2.1,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": null,
@@ -54453,7 +54478,7 @@
     "side": "OVER"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "OVER",
    "side_label": "over 52.5 (52.5)",
    "side_raw": "OVER",
@@ -54500,7 +54525,7 @@
     "side": "UNDER"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UNDER",
    "side_label": "under 52.5 (52.5)",
    "side_raw": "UNDER",
@@ -54603,7 +54628,7 @@
     "outcome_id": "01a1c90f-5ab6-7be2-89e3-dc037f6f01e5"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Grambling",
    "side_label": "GRAM (0)",
    "side_raw": 0,
@@ -55056,7 +55081,7 @@
     "outcome_id": "01a1c913-68f8-7783-91f4-5b208227d543"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Furman",
    "side_label": "FUR +3.5 (3.5)",
    "side_raw": 1,
@@ -55265,7 +55290,7 @@
     "outcome_id": "01a1c925-a3f6-7f23-a3e2-09df258d5f04"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "New Hampshire",
    "side_label": "UNH +2.5 (2.5)",
    "side_raw": 1,
@@ -55528,8 +55553,8 @@
    "best_price": 0.505,
    "best_price_book": "novig",
    "book": "novig",
-   "close_price": 0.495,
-   "clv_cents": -1.0,
+   "close_price": 0.49,
+   "clv_cents": -1.5,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": {
@@ -55537,8 +55562,8 @@
     "volume": 7581441.0
    },
    "ex_stats_close": {
-    "openInterest": 7308629.0,
-    "volume": 9227757.0
+    "openInterest": 7312511.0,
+    "volume": 9231639.0
    },
    "first_play": false,
    "game": "Arizona State @ UCF",
@@ -55658,7 +55683,7 @@
     "side": "UNDER"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UNDER",
    "side_label": "under 45.5 (45.5)",
    "side_raw": "UNDER",
@@ -55809,7 +55834,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Grambling",
    "side_label": "Grambling",
    "side_raw": 0,
@@ -55856,7 +55881,7 @@
     "side": "UNDER"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UNDER",
    "side_label": "under 57.5 (57.5)",
    "side_raw": "UNDER",
@@ -56010,7 +56035,7 @@
     "outcome_id": "01a1c91c-8ef5-7813-a208-b562f5494779"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "OVER",
    "side_label": "Over 46.5 (46.5)",
    "side_raw": "OVER",
@@ -56062,7 +56087,7 @@
     "outcome_id": "01a1c7b3-0ad7-7143-ab65-006edebc3d43"
    },
    "result": null,
-   "settle_tries": 11,
+   "settle_tries": 12,
    "side": "UNDER",
    "side_label": "Under 63.5 (63.5)",
    "side_raw": "UNDER",
@@ -56209,7 +56234,7 @@
     "outcome_id": "01a1c921-107b-7850-920e-b40d888299ce"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "INST -14.5 (-14.5)",
    "side_label": "INST -14.5 (-14.5)",
    "side_raw": null,
@@ -56407,7 +56432,7 @@
     "outcome_id": "01a1c913-54d8-7980-835d-5557eb326d34"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "OVER",
    "side_label": "Over 51.5 (51.5)",
    "side_raw": "OVER",
@@ -56459,7 +56484,7 @@
     "outcome_id": "01a1c918-d2e6-7053-9781-fc6e7b470cf8"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UNDER",
    "side_label": "Under 56.5 (56.5)",
    "side_raw": "UNDER",
@@ -56560,7 +56585,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Harvard",
    "side_label": "Harvard",
    "side_raw": 0,
@@ -56587,6 +56612,7 @@
    "ex_stats": null,
    "first_play": false,
    "game": "Duke at Miami Florida",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 12.0, \"px_event\": 1704710981, \"px_market\": 223, \"side\": \"0\"}",
    "lead_min": 854,
    "league": "NCAAF",
@@ -56607,8 +56633,9 @@
     "px_market": 223,
     "side": "0"
    },
-   "result": null,
-   "settle_tries": 11,
+   "result": "W",
+   "settle_tries": 12,
+   "settled_utc": "2026-11-14T20:45:37Z",
    "side": "Duke",
    "side_label": "Duke +12 (+12)",
    "side_raw": 0,
@@ -56618,7 +56645,7 @@
     "Duke",
     "Miami Florida"
    ],
-   "units_flat": null,
+   "units_flat": 1.0,
    "x": 0.07
   },
   {
@@ -56635,6 +56662,7 @@
    "ex_stats": null,
    "first_play": false,
    "game": "Duke at Miami Florida",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 12.0, \"px_event\": 1704710981, \"px_market\": 223, \"side\": \"1\"}",
    "lead_min": 854,
    "league": "NCAAF",
@@ -56655,8 +56683,9 @@
     "px_market": 223,
     "side": "1"
    },
-   "result": null,
-   "settle_tries": 11,
+   "result": "L",
+   "settle_tries": 12,
+   "settled_utc": "2026-11-14T20:45:37Z",
    "side": "Miami Florida",
    "side_label": "Miami Florida -12 (-12)",
    "side_raw": 1,
@@ -56666,7 +56695,7 @@
     "Duke",
     "Miami Florida"
    ],
-   "units_flat": null,
+   "units_flat": -1.0,
    "x": 0.39
   },
   {
@@ -56756,7 +56785,7 @@
     "outcome_id": "01a1c91c-8ef6-7470-b807-3aa3fe788721"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Hampton",
    "side_label": "HAMP +6.5 (6.5)",
    "side_raw": 1,
@@ -56808,7 +56837,7 @@
     "outcome_id": "01a1c913-68f8-7783-91f4-5b208227d543"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Furman",
    "side_label": "FUR +3.5 (3.5)",
    "side_raw": 1,
@@ -56860,7 +56889,7 @@
     "outcome_id": "01a1c925-a3f6-7f23-a3e2-0b31b5a0295c"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "STBK -10.5 (10.5)",
    "side_label": "STBK -10.5 (10.5)",
    "side_raw": null,
@@ -57103,7 +57132,7 @@
     "outcome_id": "01a1c913-0c63-7d41-bfc6-221a54068624"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Bethune Cookman",
    "side_label": "BCU -1.5 (-1.5)",
    "side_raw": 1,
@@ -57204,7 +57233,7 @@
     "side": "OVER"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "OVER",
    "side_label": "over 45.5 (45.5)",
    "side_raw": "OVER",
@@ -57763,7 +57792,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "East Tennessee State",
    "side_label": "East Tennessee State -5.5 (-5.5)",
    "side_raw": 0,
@@ -58056,7 +58085,7 @@
     "outcome_id": "01a1c8dc-1e46-7480-9c29-b7e1471a3944"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UNDER",
    "side_label": "Under 29.5 (29.5)",
    "side_raw": "UNDER",
@@ -58672,7 +58701,7 @@
     "outcome_id": "01a1c913-68f7-7433-8815-18af99f4dcfd"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "OVER",
    "side_label": "Over 35.5 (35.5)",
    "side_raw": "OVER",
@@ -59048,7 +59077,7 @@
     "outcome_id": "01a1c7b3-0ad7-7143-ab65-00915b22b848"
    },
    "result": null,
-   "settle_tries": 11,
+   "settle_tries": 12,
    "side": "UNDER",
    "side_label": "Under 64.5 (64.5)",
    "side_raw": "UNDER",
@@ -59100,7 +59129,7 @@
     "outcome_id": "01a1c7b3-0ad7-7143-ab65-008b039e049d"
    },
    "result": null,
-   "settle_tries": 11,
+   "settle_tries": 12,
    "side": "OVER",
    "side_label": "Over 64.5 (64.5)",
    "side_raw": "OVER",
@@ -59598,7 +59627,7 @@
     "outcome_id": "01a1c913-68f7-7433-8815-1ae905df2f19"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "OVER",
    "side_label": "Over 39.5 (39.5)",
    "side_raw": "OVER",
@@ -60026,7 +60055,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "Wofford",
    "side_label": "Wofford +5.5 (+5.5)",
    "side_raw": 1,
@@ -60531,7 +60560,7 @@
     "outcome_id": "01a1c925-b845-7f00-b2d6-e1ee1b87b586"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "UNDER",
    "side_label": "Under 50.5 (50.5)",
    "side_raw": "UNDER",
@@ -60583,7 +60612,7 @@
     "outcome_id": "01a1c925-b845-7f00-b2d6-e1d2483571da"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "OVER",
    "side_label": "Over 50.5 (50.5)",
    "side_raw": "OVER",
@@ -61155,7 +61184,7 @@
     "outcome_id": "01a1c8f3-db11-7681-93b8-1672634227ad"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "North Carolina Central",
    "side_label": "NCCU (0)",
    "side_raw": 0,
@@ -61207,7 +61236,7 @@
     "outcome_id": "01a1c90f-5ab6-7be2-89e3-dc037f6f01e5"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Grambling",
    "side_label": "GRAM (0)",
    "side_raw": 0,
@@ -61259,7 +61288,7 @@
     "outcome_id": "01a1c90f-5c2e-7ab1-9523-25daf16d02b9"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Howard",
    "side_label": "HOW (0)",
    "side_raw": 1,
@@ -61311,7 +61340,7 @@
     "outcome_id": "01a1c92a-e65b-76f3-bd1c-f2355a203976"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Hampton",
    "side_label": "HAMP (0)",
    "side_raw": 1,
@@ -61363,7 +61392,7 @@
     "outcome_id": "01a1c92a-e7eb-7220-8a35-27cc3c09d005"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Colgate",
    "side_label": "COLG (0)",
    "side_raw": 1,
@@ -61707,7 +61736,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 11,
+   "settle_tries": 12,
    "side": "Youngstown State",
    "side_label": "Youngstown State -12.5 (-12.5)",
    "side_raw": 1,
@@ -62006,7 +62035,7 @@
     "side": "OVER"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "OVER",
    "side_label": "over 46.5 (46.5)",
    "side_raw": "OVER",
@@ -62058,7 +62087,7 @@
     "outcome_id": "01a1bbc9-1fe7-79d0-a90a-025999a7ae19"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "OVER",
    "side_label": "Over 45.5 (45.5)",
    "side_raw": "OVER",
@@ -62140,6 +62169,7 @@
    },
    "first_play": false,
    "game": "Duke @ Miami Florida",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1b9b7-eb71-7283-9e4d-5e65b90780d9\", \"outcome_id\": \"01a1b9b7-eb71-7283-9e4d-5e8670abb5d9\"}",
    "lead_min": 927,
    "league": "NCAAF",
@@ -62158,8 +62188,9 @@
     "market_id": "01a1b9b7-eb71-7283-9e4d-5e65b90780d9",
     "outcome_id": "01a1b9b7-eb71-7283-9e4d-5e8670abb5d9"
    },
-   "result": null,
-   "settle_tries": 11,
+   "result": "L",
+   "settle_tries": 12,
+   "settled_utc": "2026-11-14T20:45:37Z",
    "side": "Duke",
    "side_label": "DUKE (0)",
    "side_raw": 0,
@@ -62169,7 +62200,7 @@
     "Duke",
     "Miami Florida"
    ],
-   "units_flat": null,
+   "units_flat": -1.0,
    "x": 0.48
   },
   {
@@ -62243,6 +62274,7 @@
    },
    "first_play": false,
    "game": "Duke @ Miami Florida",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1b99d-e0b2-78d3-94e0-8336d9d864d6\", \"outcome_id\": \"01a1b99d-e0b2-78d3-94e0-834ff6812774\"}",
    "lead_min": 934,
    "league": "NCAAF",
@@ -62261,8 +62293,9 @@
     "market_id": "01a1b99d-e0b2-78d3-94e0-8336d9d864d6",
     "outcome_id": "01a1b99d-e0b2-78d3-94e0-834ff6812774"
    },
-   "result": null,
-   "settle_tries": 11,
+   "result": "L",
+   "settle_tries": 12,
+   "settled_utc": "2026-11-14T20:45:37Z",
    "side": "Miami Florida",
    "side_label": "MIA -13.5 (-13.5)",
    "side_raw": 1,
@@ -62272,7 +62305,7 @@
     "Duke",
     "Miami Florida"
    ],
-   "units_flat": null,
+   "units_flat": -1.0,
    "x": 0.42
   },
   {
@@ -62929,7 +62962,7 @@
     "outcome_id": "01a1c913-0c62-70d0-8725-673a3686241e"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UNDER",
    "side_label": "Under 42.5 (42.5)",
    "side_raw": "UNDER",
@@ -63661,7 +63694,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Valparaiso",
    "side_label": "Valparaiso",
    "side_raw": 0,
@@ -63856,7 +63889,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Delaware State",
    "side_label": "Delaware State -3.5 (-3.5)",
    "side_raw": 0,
@@ -64160,7 +64193,7 @@
     "outcome_id": "01a1c7b3-0ad7-7143-ab65-006edebc3d43"
    },
    "result": null,
-   "settle_tries": 11,
+   "settle_tries": 12,
    "side": "UNDER",
    "side_label": "Under 63.5 (63.5)",
    "side_raw": "UNDER",
@@ -64261,7 +64294,7 @@
     "side": "OVER"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "OVER",
    "side_label": "over 47 (47)",
    "side_raw": "OVER",
@@ -64898,7 +64931,7 @@
     "outcome_id": "01a1c912-08cf-7312-bc32-f721800e0c6e"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Lafayette",
    "side_label": "LAF +5.5 (-5.5)",
    "side_raw": 0,
@@ -65613,7 +65646,7 @@
     "outcome_id": "01a1c90f-58be-7ad0-9ec9-be820ba7febc"
    },
    "result": null,
-   "settle_tries": 8,
+   "settle_tries": 9,
    "side": "UNDER",
    "side_label": "Under 44.5 (44.5)",
    "side_raw": "UNDER",
@@ -65799,7 +65832,7 @@
     "side": "OVER"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "OVER",
    "side_label": "over 49.5 (49.5)",
    "side_raw": "OVER",
@@ -65846,7 +65879,7 @@
     "side": "UNDER"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "UNDER",
    "side_label": "under 49.5 (49.5)",
    "side_raw": "UNDER",
@@ -66067,6 +66100,7 @@
    "ex_stats": null,
    "first_play": true,
    "game": "Duke at Miami Florida",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 55.0, \"px_event\": 1704710981, \"px_market\": 225, \"side\": \"OVER\"}",
    "lead_min": 1024,
    "league": "NCAAF",
@@ -66087,8 +66121,9 @@
     "px_market": 225,
     "side": "OVER"
    },
-   "result": null,
-   "settle_tries": 11,
+   "result": "W",
+   "settle_tries": 12,
+   "settled_utc": "2026-11-14T20:45:37Z",
    "side": "OVER",
    "side_label": "over 55 (55)",
    "side_raw": "OVER",
@@ -66098,7 +66133,7 @@
     "Duke",
     "Miami Florida"
    ],
-   "units_flat": null,
+   "units_flat": 0.97,
    "x": 2.14
   },
   {
@@ -66114,6 +66149,7 @@
    "ex_stats": null,
    "first_play": false,
    "game": "Duke at Miami Florida",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 55.0, \"px_event\": 1704710981, \"px_market\": 225, \"side\": \"UNDER\"}",
    "lead_min": 1024,
    "league": "NCAAF",
@@ -66134,8 +66170,9 @@
     "px_market": 225,
     "side": "UNDER"
    },
-   "result": null,
-   "settle_tries": 11,
+   "result": "L",
+   "settle_tries": 12,
+   "settled_utc": "2026-11-14T20:45:37Z",
    "side": "UNDER",
    "side_label": "under 55 (55)",
    "side_raw": "UNDER",
@@ -66145,7 +66182,7 @@
     "Duke",
     "Miami Florida"
    ],
-   "units_flat": null,
+   "units_flat": -1.0,
    "x": 2.23
   },
   {
@@ -66425,7 +66462,7 @@
     "side": "UNDER"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UNDER",
    "side_label": "under 57.5 (57.5)",
    "side_raw": "UNDER",
@@ -66531,7 +66568,7 @@
     "market_ticker": "KXNCAAFSPREAD-26NOV14ILSTYSU-YSU14"
    },
    "result": null,
-   "settle_tries": 11,
+   "settle_tries": 12,
    "side": "Illinois St.",
    "side_label": "NOT Youngstown St. wins by over 13.5 points",
    "side_raw": 0,
@@ -66550,8 +66587,8 @@
    "best_price": 0.5242,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5122,
-   "clv_cents": -0.7,
+   "close_price": 0.5098,
+   "clv_cents": -0.9,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": null,
@@ -66671,7 +66708,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Valparaiso",
    "side_label": "Valparaiso -11.5 (-11.5)",
    "side_raw": 0,
@@ -66874,7 +66911,7 @@
     "outcome_id": "01a1c91c-8ef7-7ba2-b110-3c1cf82168b7"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "OVER",
    "side_label": "Over 51.5 (51.5)",
    "side_raw": "OVER",
@@ -67133,7 +67170,7 @@
     "side": "OVER"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "OVER",
    "side_label": "over 50.5 (50.5)",
    "side_raw": "OVER",
@@ -67338,7 +67375,7 @@
     "outcome_id": "01a1c913-54d8-7980-835d-5557eb326d34"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "OVER",
    "side_label": "Over 51.5 (51.5)",
    "side_raw": "OVER",
@@ -67540,7 +67577,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Pennsylvania",
    "side_label": "Pennsylvania +13.5 (+13.5)",
    "side_raw": 1,
@@ -67587,7 +67624,7 @@
     "side": "UNDER"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UNDER",
    "side_label": "under 46.5 (46.5)",
    "side_raw": "UNDER",
@@ -68812,7 +68849,7 @@
     "outcome_id": "01a1bbc9-1fe7-79d0-a909-ff5fade0e168"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "CLT +11.5 (11.5)",
    "side_label": "CLT +11.5 (11.5)",
    "side_raw": null,
@@ -68864,7 +68901,7 @@
     "outcome_id": "01a1bbcf-e454-7270-8ee7-09520c9f8e44"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "ARST +1.5 (-1.5)",
    "side_label": "ARST +1.5 (-1.5)",
    "side_raw": null,
@@ -68916,7 +68953,7 @@
     "outcome_id": "01a1bbcf-e454-7270-8ee7-094095cf4120"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Coastal Carolina",
    "side_label": "CCU -1.5 (-1.5)",
    "side_raw": 1,
@@ -68968,7 +69005,7 @@
     "outcome_id": "01a1d5ac-4228-73c3-a870-2e4b45ebc9cd"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UNDER",
    "side_label": "Under 6.5 (6.5)",
    "side_raw": "UNDER",
@@ -69020,7 +69057,7 @@
     "outcome_id": "01a1d5ac-422a-76c3-9e09-fbb0d6f337ce"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Seattle Kraken",
    "side_label": "SEA +1.5 (-1.5)",
    "side_raw": 0,
@@ -69289,7 +69326,7 @@
     "outcome_id": "01a1b9ad-3617-7f23-b191-d1b806d77900"
    },
    "result": null,
-   "settle_tries": 11,
+   "settle_tries": 12,
    "side": "Auburn",
    "side_label": "AUB -2.5 (2.5)",
    "side_raw": 0,
@@ -69560,7 +69597,7 @@
     "market_ticker": "KXNCAAFSPREAD-26NOV14ILSTYSU-YSU14"
    },
    "result": null,
-   "settle_tries": 11,
+   "settle_tries": 12,
    "side": "Youngstown St.",
    "side_label": "Youngstown St. wins by over 13.5 points",
    "side_raw": 1,
@@ -69975,7 +70012,7 @@
     "outcome_id": "01a1bbdd-7ccb-7710-81e4-0305e9ddc298"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "ARST (0)",
    "side_label": "ARST (0)",
    "side_raw": null,
@@ -70027,7 +70064,7 @@
     "outcome_id": "01a1bbdd-7ccb-7710-81e4-02f989bfa32f"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Coastal Carolina",
    "side_label": "CCU (0)",
    "side_raw": 1,
@@ -70080,7 +70117,7 @@
     "outcome_id": "01a1b9b7-ebe6-7bf3-94d5-defcc1a821fa"
    },
    "result": null,
-   "settle_tries": 11,
+   "settle_tries": 12,
    "side": "Auburn",
    "side_label": "AUB (0)",
    "side_raw": 0,
@@ -70133,7 +70170,7 @@
     "outcome_id": "01a1b9b7-ebe6-7bf3-94d5-dee556fe1ea2"
    },
    "result": null,
-   "settle_tries": 11,
+   "settle_tries": 12,
    "side": "MSST (0)",
    "side_label": "MSST (0)",
    "side_raw": null,
@@ -70681,7 +70718,7 @@
     "outcome_id": "01a1d5ac-422a-76c3-9e09-fbaa4593edc8"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Carolina Hurricanes",
    "side_label": "CAR -1.5 (-1.5)",
    "side_raw": 1,
@@ -70892,7 +70929,7 @@
     "outcome_id": "01a1d5b1-d7ab-7cb0-a9bd-f2ff8b3bda23"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Carolina Hurricanes",
    "side_label": "CAR (0)",
    "side_raw": 1,
@@ -71148,7 +71185,7 @@
     "outcome_id": "01a1bbc9-1fe7-79d0-a90a-026cf07ceff2"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UNDER",
    "side_label": "Under 45.5 (45.5)",
    "side_raw": "UNDER",
@@ -71200,7 +71237,7 @@
     "outcome_id": "01a1bbc9-1fe7-79d0-a909-ff6a9dbef15d"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "East Carolina",
    "side_label": "ECU -11.5 (11.5)",
    "side_raw": 0,
@@ -71503,7 +71540,7 @@
     "side": "OVER"
    },
    "result": null,
-   "settle_tries": 6,
+   "settle_tries": 7,
    "side": "OVER",
    "side_label": "over 48.5 (48.5)",
    "side_raw": "OVER",
@@ -71550,7 +71587,7 @@
     "side": "UNDER"
    },
    "result": null,
-   "settle_tries": 6,
+   "settle_tries": 7,
    "side": "UNDER",
    "side_label": "under 48.5 (48.5)",
    "side_raw": "UNDER",
@@ -71648,7 +71685,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 11,
+   "settle_tries": 12,
    "side": "Illinois State",
    "side_label": "Illinois State +13.5 (+13.5)",
    "side_raw": 0,
@@ -71751,7 +71788,7 @@
     "outcome_id": "01a1c90c-ff8c-7311-99e2-1cb3595109c7"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "W&M -10.5 (-10.5)",
    "side_label": "W&M -10.5 (-10.5)",
    "side_raw": null,
@@ -71803,7 +71840,7 @@
     "outcome_id": "01a1c91c-8ef5-7813-a208-b562f5494779"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "OVER",
    "side_label": "Over 46.5 (46.5)",
    "side_raw": "OVER",
@@ -71956,7 +71993,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "Wofford",
    "side_label": "Wofford +5.5 (+5.5)",
    "side_raw": 1,
@@ -72657,7 +72694,7 @@
     "side": "OVER"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "OVER",
    "side_label": "over 61.5 (61.5)",
    "side_raw": "OVER",
@@ -72860,7 +72897,7 @@
     "outcome_id": "01a1c90f-5f2f-7672-bcee-7fdb6a4dc288"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Bucknell",
    "side_label": "BUCK (0)",
    "side_raw": 0,
@@ -73465,7 +73502,7 @@
     "outcome_id": "01a1c90f-5ab6-7be2-89e3-dbffddd2fabe"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Bethune Cookman",
    "side_label": "BCU (0)",
    "side_raw": 1,
@@ -73518,7 +73555,7 @@
     "outcome_id": "01a1c7aa-1d7a-7592-9bc8-28967aa6e059"
    },
    "result": null,
-   "settle_tries": 11,
+   "settle_tries": 12,
    "side": "Youngstown State",
    "side_label": "YSU (0)",
    "side_raw": 1,
@@ -73983,7 +74020,7 @@
     "outcome_id": "01a1c92a-ea41-7e92-8593-a823deff3b0d"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "Wofford",
    "side_label": "WOF (0)",
    "side_raw": 1,
@@ -74035,7 +74072,7 @@
     "outcome_id": "01a1c90f-5d62-7421-be1f-5ef613eefa8f"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Furman",
    "side_label": "FUR (0)",
    "side_raw": 1,
@@ -74087,7 +74124,7 @@
     "outcome_id": "01a1c92a-e775-7852-bd24-b7cd269f358c"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Murray State",
    "side_label": "MURR (0)",
    "side_raw": 0,
@@ -74139,7 +74176,7 @@
     "outcome_id": "01a1c92a-e7eb-7220-8a35-27d2c2517715"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Lafayette",
    "side_label": "LAF (0)",
    "side_raw": 0,
@@ -74654,7 +74691,7 @@
     "outcome_id": "01a1c913-0c63-7d41-bfc6-255fc986d31f"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Dartmouth",
    "side_label": "DART -5.5 (5.5)",
    "side_raw": 0,
@@ -74920,7 +74957,7 @@
     "outcome_id": "01a1bb6f-81e0-73b3-898d-8cf1fd88d50b"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Temple",
    "side_label": "TEM (0)",
    "side_raw": 1,
@@ -74967,7 +75004,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Cornell",
    "side_label": "Cornell +1.5 (+1.5)",
    "side_raw": 1,
@@ -75084,8 +75121,8 @@
    "best_price": 0.5242,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5122,
-   "clv_cents": -0.7,
+   "close_price": 0.5098,
+   "clv_cents": -0.9,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": null,
@@ -75222,8 +75259,8 @@
    "best_price": 0.4147,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.4386,
-   "clv_cents": 2.9,
+   "close_price": 0.4348,
+   "clv_cents": 2.5,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": null,
@@ -75404,7 +75441,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Bucknell",
    "side_label": "Bucknell +5.5 (+5.5)",
    "side_raw": 0,
@@ -75456,7 +75493,7 @@
     "outcome_id": "01a1cb34-9f7e-7771-a885-9590bb625a76"
    },
    "result": null,
-   "settle_tries": 8,
+   "settle_tries": 9,
    "side": "VMI",
    "side_label": "VMI +8.5 (8.5)",
    "side_raw": 1,
@@ -75511,7 +75548,7 @@
     "market_ticker": "KXNCAAFTOTAL-26NOV14ILSTYSU-65"
    },
    "result": null,
-   "settle_tries": 11,
+   "settle_tries": 12,
    "side": "OVER",
    "side_label": "Over 64.5 points",
    "side_raw": "OVER",
@@ -75946,7 +75983,7 @@
     "outcome_id": "01a1c7aa-1d7a-7592-9bc8-28a2644f2ba4"
    },
    "result": null,
-   "settle_tries": 11,
+   "settle_tries": 12,
    "side": "ILST (0)",
    "side_label": "ILST (0)",
    "side_raw": null,
@@ -75994,7 +76031,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Chattanooga",
    "side_label": "Chattanooga -3.5 (-3.5)",
    "side_raw": 0,
@@ -76191,7 +76228,7 @@
     "side": "OVER"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "OVER",
    "side_label": "over 61.5 (61.5)",
    "side_raw": "OVER",
@@ -76584,7 +76621,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Harvard",
    "side_label": "Harvard -13.5 (-13.5)",
    "side_raw": 0,
@@ -77203,7 +77240,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "Wofford",
    "side_label": "Wofford",
    "side_raw": 1,
@@ -77249,7 +77286,7 @@
     "outcome_id": "01a1c921-2498-78b0-8b6c-e30fb04f423a"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UNDER",
    "side_label": "Under 54.5 (54.5)",
    "side_raw": "UNDER",
@@ -77345,7 +77382,7 @@
     "outcome_id": "01a1b9aa-ec8b-7123-b49c-f85388ab2d86"
    },
    "result": null,
-   "settle_tries": 11,
+   "settle_tries": 12,
    "side": "OVER",
    "side_label": "Over 50.5 (50.5)",
    "side_raw": "OVER",
@@ -77583,7 +77620,7 @@
     "side": "OVER"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "OVER",
    "side_label": "over 57.5 (57.5)",
    "side_raw": "OVER",
@@ -77631,7 +77668,7 @@
     "side": "OVER"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "OVER",
    "side_label": "over 56.5 (56.5)",
    "side_raw": "OVER",
@@ -77877,7 +77914,7 @@
     "outcome_id": "01a1bbcf-e454-7270-8ee7-07f4959db43b"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "OVER",
    "side_label": "Over 52.5 (52.5)",
    "side_raw": "OVER",
@@ -77925,7 +77962,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 11,
+   "settle_tries": 12,
    "side": "Auburn",
    "side_label": "Auburn",
    "side_raw": 0,
@@ -78115,7 +78152,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Charlotte",
    "side_label": "Charlotte",
    "side_raw": 1,
@@ -79105,7 +79142,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 11,
+   "settle_tries": 12,
    "side": "Youngstown State",
    "side_label": "Youngstown State",
    "side_raw": 1,
@@ -80149,7 +80186,7 @@
     "outcome_id": "01a1b9aa-ec8b-7123-b49c-f86b3acd8c9e"
    },
    "result": null,
-   "settle_tries": 11,
+   "settle_tries": 12,
    "side": "UNDER",
    "side_label": "Under 50.5 (50.5)",
    "side_raw": "UNDER",
@@ -82200,7 +82237,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Pennsylvania",
    "side_label": "Pennsylvania",
    "side_raw": 1,
@@ -82744,7 +82781,7 @@
     "outcome_id": "01a1bbcf-e454-7270-8ee7-094095cf4120"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Coastal Carolina",
    "side_label": "CCU -1.5 (-1.5)",
    "side_raw": 1,
@@ -82797,7 +82834,7 @@
     "outcome_id": "01a1b9ad-3617-7f23-b191-d1b806d77900"
    },
    "result": null,
-   "settle_tries": 11,
+   "settle_tries": 12,
    "side": "Auburn",
    "side_label": "AUB -2.5 (2.5)",
    "side_raw": 0,
@@ -83094,7 +83131,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Arkansas State",
    "side_label": "Arkansas State",
    "side_raw": 0,
@@ -83141,7 +83178,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Coastal Carolina",
    "side_label": "Coastal Carolina",
    "side_raw": 1,
@@ -83245,7 +83282,7 @@
     "outcome_id": "01a1bbdd-7ccb-7710-81e4-02f989bfa32f"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Coastal Carolina",
    "side_label": "CCU (0)",
    "side_raw": 1,
@@ -83293,7 +83330,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Hampton",
    "side_label": "Hampton +11.5 (+11.5)",
    "side_raw": 1,
@@ -83494,7 +83531,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Bucknell",
    "side_label": "Bucknell",
    "side_raw": 0,
@@ -83742,7 +83779,7 @@
     "side": "OVER"
    },
    "result": null,
-   "settle_tries": 11,
+   "settle_tries": 12,
    "side": "OVER",
    "side_label": "over 64.5 (64.5)",
    "side_raw": "OVER",
@@ -84167,7 +84204,7 @@
     "side": "OVER"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "OVER",
    "side_label": "over 46.5 (46.5)",
    "side_raw": "OVER",
@@ -84264,7 +84301,7 @@
     "side": "UNDER"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UNDER",
    "side_label": "under 46.5 (46.5)",
    "side_raw": "UNDER",
@@ -84312,7 +84349,7 @@
     "side": "OVER"
    },
    "result": null,
-   "settle_tries": 11,
+   "settle_tries": 12,
    "side": "OVER",
    "side_label": "over 50.5 (50.5)",
    "side_raw": "OVER",
@@ -84360,7 +84397,7 @@
     "side": "UNDER"
    },
    "result": null,
-   "settle_tries": 11,
+   "settle_tries": 12,
    "side": "UNDER",
    "side_label": "under 50.5 (50.5)",
    "side_raw": "UNDER",
@@ -84818,7 +84855,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Bethune Cookman",
    "side_label": "Bethune Cookman",
    "side_raw": 1,
@@ -84968,7 +85005,7 @@
     "outcome_id": "01a1b9ad-3617-7f23-b191-d1a0de80d3d2"
    },
    "result": null,
-   "settle_tries": 11,
+   "settle_tries": 12,
    "side": "MSST +2.5 (2.5)",
    "side_label": "MSST +2.5 (2.5)",
    "side_raw": null,
@@ -85023,7 +85060,7 @@
     "market_ticker": "KXNCAAFSPREAD-26NOV14AUBMSST-AUB3"
    },
    "result": null,
-   "settle_tries": 11,
+   "settle_tries": 12,
    "side": "Auburn",
    "side_label": "Auburn wins by over 2.5 points",
    "side_raw": 0,
@@ -85581,7 +85618,7 @@
     "side": "OVER"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "OVER",
    "side_label": "over 46.5 (46.5)",
    "side_raw": "OVER",
@@ -86130,7 +86167,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Chattanooga",
    "side_label": "Chattanooga -3.5 (-3.5)",
    "side_raw": 0,
@@ -86178,7 +86215,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Furman",
    "side_label": "Furman +3.5 (+3.5)",
    "side_raw": 1,
@@ -86226,7 +86263,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Pennsylvania",
    "side_label": "Pennsylvania +13.5 (+13.5)",
    "side_raw": 1,
@@ -86513,7 +86550,7 @@
     "outcome_id": "01a1b9a2-752a-74d0-ac70-a64cec30075c"
    },
    "result": null,
-   "settle_tries": 6,
+   "settle_tries": 7,
    "side": "UNDER",
    "side_label": "Under 50.5 (50.5)",
    "side_raw": "UNDER",
@@ -86620,7 +86657,7 @@
     "outcome_id": "01a1d5b1-d7ab-7cb0-a9bd-f2ff8b3bda23"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Carolina Hurricanes",
    "side_label": "CAR (0)",
    "side_raw": 1,
@@ -86667,7 +86704,7 @@
     "side": "OVER"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "OVER",
    "side_label": "over 46 (46)",
    "side_raw": "OVER",
@@ -86714,7 +86751,7 @@
     "side": "OVER"
    },
    "result": null,
-   "settle_tries": 6,
+   "settle_tries": 7,
    "side": "OVER",
    "side_label": "over 50.5 (50.5)",
    "side_raw": "OVER",
@@ -86761,7 +86798,7 @@
     "side": "UNDER"
    },
    "result": null,
-   "settle_tries": 6,
+   "settle_tries": 7,
    "side": "UNDER",
    "side_label": "under 50.5 (50.5)",
    "side_raw": "UNDER",
@@ -87444,7 +87481,7 @@
     "outcome_id": "01a1d5ac-4228-73c3-a870-2e4b45ebc9cd"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UNDER",
    "side_label": "Under 6.5 (6.5)",
    "side_raw": "UNDER",
@@ -87496,7 +87533,7 @@
     "outcome_id": "01a1d5ac-4228-73c3-a870-2e3a17c6aa34"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "OVER",
    "side_label": "Over 6.5 (6.5)",
    "side_raw": "OVER",
@@ -87548,7 +87585,7 @@
     "outcome_id": "01a1d5ac-422a-76c3-9e09-fbb0d6f337ce"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Seattle Kraken",
    "side_label": "SEA +1.5 (-1.5)",
    "side_raw": 0,
@@ -87600,7 +87637,7 @@
     "outcome_id": "01a1d5ac-422a-76c3-9e09-fbaa4593edc8"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Carolina Hurricanes",
    "side_label": "CAR -1.5 (-1.5)",
    "side_raw": 1,
@@ -88407,7 +88444,7 @@
     "outcome_id": "01a1bb54-2ff5-7830-8107-1b86ad17bbdc"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UAB",
    "side_label": "UAB +2.5 (-2.5)",
    "side_raw": 0,
@@ -88505,7 +88542,7 @@
     "side": "OVER"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "OVER",
    "side_label": "over 57.5 (57.5)",
    "side_raw": "OVER",
@@ -88606,7 +88643,7 @@
     "outcome_id": "01a1bbc9-1fe7-79d0-a909-ff6a9dbef15d"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "East Carolina",
    "side_label": "ECU -11.5 (11.5)",
    "side_raw": 0,
@@ -88860,7 +88897,7 @@
     "outcome_id": "01a1c92a-e936-7001-b30a-ec9149b7e8d7"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "New Hampshire",
    "side_label": "UNH (0)",
    "side_raw": 1,
@@ -89105,7 +89142,7 @@
     "outcome_id": "01a1bb54-2ff4-75e3-9f5f-8a0c6750cc9b"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UNDER",
    "side_label": "Under 47.5 (47.5)",
    "side_raw": "UNDER",
@@ -89411,7 +89448,7 @@
     "outcome_id": "01a1b9ee-fff1-7c00-b847-96a65265bf4c"
    },
    "result": null,
-   "settle_tries": 8,
+   "settle_tries": 9,
    "side": "Clemson",
    "side_label": "CLEM (0)",
    "side_raw": 1,
@@ -89512,7 +89549,7 @@
     "outcome_id": "01a1bbcf-e454-7270-8ee7-09520c9f8e44"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "ARST +1.5 (-1.5)",
    "side_label": "ARST +1.5 (-1.5)",
    "side_raw": null,
@@ -89700,7 +89737,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "North Carolina Central",
    "side_label": "North Carolina Central +10.5 (+10.5)",
    "side_raw": 0,
@@ -89804,7 +89841,7 @@
     "outcome_id": "01a1c8dc-1e46-7480-9c29-b7ad02810614"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "OVER",
    "side_label": "Over 37.5 (37.5)",
    "side_raw": "OVER",
@@ -89907,7 +89944,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "North Carolina A&T",
    "side_label": "North Carolina A&T",
    "side_raw": 0,
@@ -90160,7 +90197,7 @@
     "outcome_id": "01a1bbc9-1fe7-79d0-a909-ff348876f559"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "East Carolina",
    "side_label": "ECU -10.5 (10.5)",
    "side_raw": 0,
@@ -90212,7 +90249,7 @@
     "outcome_id": "01a1c90f-5d62-7421-be1f-5f01c73df1f3"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UTC (0)",
    "side_label": "UTC (0)",
    "side_raw": null,
@@ -90352,7 +90389,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Stetson",
    "side_label": "Stetson +11.5 (+11.5)",
    "side_raw": 1,
@@ -90371,8 +90408,8 @@
    "best_price": 0.2447,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.2151,
-   "clv_cents": -2.6,
+   "close_price": 0.2105,
+   "clv_cents": -3.0,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": null,
@@ -90417,8 +90454,8 @@
    "best_price": 0.7737,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.7938,
-   "clv_cents": 2.4,
+   "close_price": 0.7917,
+   "clv_cents": 2.2,
    "date": "2026-11-14",
    "dir": "RAISE",
    "ex_stats": null,
@@ -90491,7 +90528,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Valparaiso",
    "side_label": "Valparaiso -11.5 (-11.5)",
    "side_raw": 0,
@@ -90641,7 +90678,7 @@
     "outcome_id": "01a1b9db-591f-7870-b16b-5cba2ac319f2"
    },
    "result": null,
-   "settle_tries": 8,
+   "settle_tries": 9,
    "side": "Georgia Tech",
    "side_label": "GT +14.5 (-14.5)",
    "side_raw": 0,
@@ -90693,7 +90730,7 @@
     "outcome_id": "01a1b9db-591f-7870-b16b-5ca500df4649"
    },
    "result": null,
-   "settle_tries": 8,
+   "settle_tries": 9,
    "side": "Clemson",
    "side_label": "CLEM -14.5 (-14.5)",
    "side_raw": 1,
@@ -90833,7 +90870,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Harvard",
    "side_label": "Harvard -13.5 (-13.5)",
    "side_raw": 0,
@@ -91029,7 +91066,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 11,
+   "settle_tries": 12,
    "side": "Illinois State",
    "side_label": "Illinois State",
    "side_raw": 0,
@@ -91279,7 +91316,7 @@
     "outcome_id": "01a1b9a2-7529-7cb2-80d4-d38eb22a0c3a"
    },
    "result": null,
-   "settle_tries": 6,
+   "settle_tries": 7,
    "side": "Alabama",
    "side_label": "ALA -17.5 (17.5)",
    "side_raw": 0,
@@ -91326,7 +91363,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Dartmouth",
    "side_label": "Dartmouth -1.5 (-1.5)",
    "side_raw": 0,
@@ -91720,7 +91757,7 @@
     "side": "OVER"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "OVER",
    "side_label": "over 45.5 (45.5)",
    "side_raw": "OVER",
@@ -91919,7 +91956,7 @@
     "outcome_id": "01a1bbc9-1fe7-79d0-a90a-026cf07ceff2"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UNDER",
    "side_label": "Under 45.5 (45.5)",
    "side_raw": "UNDER",
@@ -91971,7 +92008,7 @@
     "outcome_id": "01a1bb54-2ff4-75e3-9f5f-89f2f21e8b61"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "OVER",
    "side_label": "Over 47.5 (47.5)",
    "side_raw": "OVER",
@@ -92023,7 +92060,7 @@
     "outcome_id": "01a1bb54-2ff5-7830-8107-1b7a45510c6e"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Temple",
    "side_label": "TEM -2.5 (-2.5)",
    "side_raw": 1,
@@ -92224,7 +92261,7 @@
     "outcome_id": "01a1bbdd-7ccb-7710-81e4-0305e9ddc298"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "ARST (0)",
    "side_label": "ARST (0)",
    "side_raw": null,
@@ -92277,7 +92314,7 @@
     "outcome_id": "01a1b9b7-ebe6-7bf3-94d5-defcc1a821fa"
    },
    "result": null,
-   "settle_tries": 11,
+   "settle_tries": 12,
    "side": "Auburn",
    "side_label": "AUB (0)",
    "side_raw": 0,
@@ -92370,7 +92407,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "North Carolina A&T",
    "side_label": "North Carolina A&T -11.5 (-11.5)",
    "side_raw": 0,
@@ -92418,7 +92455,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 8,
+   "settle_tries": 9,
    "side": "The Citadel",
    "side_label": "The Citadel -16.5 (-16.5)",
    "side_raw": 0,
@@ -92563,7 +92600,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Furman",
    "side_label": "Furman",
    "side_raw": 1,
@@ -92656,7 +92693,7 @@
     "side": "OVER"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "OVER",
    "side_label": "over 6.5 (6.5)",
    "side_raw": "OVER",
@@ -92703,7 +92740,7 @@
     "side": "UNDER"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UNDER",
    "side_label": "under 6.5 (6.5)",
    "side_raw": "UNDER",
@@ -92854,7 +92891,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Bucknell",
    "side_label": "Bucknell +5.5 (+5.5)",
    "side_raw": 0,
@@ -92955,7 +92992,7 @@
     "outcome_id": "01a1b9a2-7529-7cb2-80d4-d373f6f1303a"
    },
    "result": null,
-   "settle_tries": 6,
+   "settle_tries": 7,
    "side": "Vanderbilt",
    "side_label": "VAN +17.5 (17.5)",
    "side_raw": 1,
@@ -93303,7 +93340,7 @@
     "side": "UNDER"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UNDER",
    "side_label": "under 37.5 (37.5)",
    "side_raw": "UNDER",
@@ -93350,7 +93387,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Indiana State",
    "side_label": "Indiana State -8.5 (-8.5)",
    "side_raw": 1,
@@ -93402,7 +93439,7 @@
     "outcome_id": "01a1b9db-591e-71e3-91e8-b875d7a8c580"
    },
    "result": null,
-   "settle_tries": 8,
+   "settle_tries": 9,
    "side": "UNDER",
    "side_label": "Under 49.5 (49.5)",
    "side_raw": "UNDER",
@@ -93454,7 +93491,7 @@
     "outcome_id": "01a1b9db-591e-71e3-91e8-b8611e4ed2a4"
    },
    "result": null,
-   "settle_tries": 8,
+   "settle_tries": 9,
    "side": "OVER",
    "side_label": "Over 49.5 (49.5)",
    "side_raw": "OVER",
@@ -94100,7 +94137,7 @@
     "side": "UNDER"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UNDER",
    "side_label": "under 35.5 (35.5)",
    "side_raw": "UNDER",
@@ -94533,7 +94570,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Seattle Kraken",
    "side_label": "Seattle Kraken",
    "side_raw": 0,
@@ -94580,7 +94617,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Carolina Hurricanes",
    "side_label": "Carolina Hurricanes",
    "side_raw": 1,
@@ -94775,7 +94812,7 @@
     "side": "OVER"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "OVER",
    "side_label": "over 35.5 (35.5)",
    "side_raw": "OVER",
@@ -94822,7 +94859,7 @@
     "side": "OVER"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "OVER",
    "side_label": "over 52.5 (52.5)",
    "side_raw": "OVER",
@@ -94869,7 +94906,7 @@
     "side": "OVER"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "OVER",
    "side_label": "over 46.5 (46.5)",
    "side_raw": "OVER",
@@ -95211,7 +95248,7 @@
     "side": "OVER"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "OVER",
    "side_label": "over 45.5 (45.5)",
    "side_raw": "OVER",
@@ -95312,7 +95349,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Pennsylvania",
    "side_label": "Pennsylvania",
    "side_raw": 1,
@@ -95491,6 +95528,7 @@
    },
    "first_play": true,
    "game": "Duke @ Miami Florida",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1b99d-e080-7650-80ff-bc3bbd934943\", \"outcome_id\": \"01a1b99d-e080-7650-80ff-bc55408decad\"}",
    "lead_min": 1434,
    "league": "NCAAF",
@@ -95509,8 +95547,9 @@
     "market_id": "01a1b99d-e080-7650-80ff-bc3bbd934943",
     "outcome_id": "01a1b99d-e080-7650-80ff-bc55408decad"
    },
-   "result": null,
-   "settle_tries": 11,
+   "result": "L",
+   "settle_tries": 12,
+   "settled_utc": "2026-11-14T20:45:37Z",
    "side": "UNDER",
    "side_label": "Under 55.5 (55.5)",
    "side_raw": "UNDER",
@@ -95520,7 +95559,7 @@
     "Duke",
     "Miami Florida"
    ],
-   "units_flat": null,
+   "units_flat": -1.0,
    "x": 2.64
   },
   {
@@ -96046,7 +96085,7 @@
     "outcome_id": "01a1b9b7-ebe6-7bf3-94d5-dee556fe1ea2"
    },
    "result": null,
-   "settle_tries": 11,
+   "settle_tries": 12,
    "side": "MSST (0)",
    "side_label": "MSST (0)",
    "side_raw": null,
@@ -96241,7 +96280,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Hampton",
    "side_label": "Hampton +11.5 (+11.5)",
    "side_raw": 1,
@@ -96288,7 +96327,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Stony Brook",
    "side_label": "Stony Brook -5.5 (-5.5)",
    "side_raw": 0,
@@ -96336,7 +96375,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "New Hampshire",
    "side_label": "New Hampshire +5.5 (+5.5)",
    "side_raw": 1,
@@ -96383,7 +96422,7 @@
     "side": "OVER"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "OVER",
    "side_label": "over 46.5 (46.5)",
    "side_raw": "OVER",
@@ -96430,7 +96469,7 @@
     "side": "UNDER"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UNDER",
    "side_label": "under 46.5 (46.5)",
    "side_raw": "UNDER",
@@ -96826,7 +96865,7 @@
     "side": "OVER"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "OVER",
    "side_label": "over 50.5 (50.5)",
    "side_raw": "OVER",
@@ -96978,7 +97017,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Colgate",
    "side_label": "Colgate",
    "side_raw": 1,
@@ -97077,7 +97116,7 @@
     "outcome_id": "01a1c8dc-1e46-7480-9c29-b7e1471a3944"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UNDER",
    "side_label": "Under 29.5 (29.5)",
    "side_raw": "UNDER",
@@ -97516,7 +97555,7 @@
     "side": "UNDER"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UNDER",
    "side_label": "under 45.5 (45.5)",
    "side_raw": "UNDER",
@@ -97749,6 +97788,7 @@
    },
    "first_play": false,
    "game": "Duke @ Miami Florida",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1b9b7-eb71-7283-9e4d-5e65b90780d9\", \"outcome_id\": \"01a1b9b7-eb71-7283-9e4d-5e735494928f\"}",
    "lead_min": 1464,
    "league": "NCAAF",
@@ -97767,8 +97807,9 @@
     "market_id": "01a1b9b7-eb71-7283-9e4d-5e65b90780d9",
     "outcome_id": "01a1b9b7-eb71-7283-9e4d-5e735494928f"
    },
-   "result": null,
-   "settle_tries": 11,
+   "result": "W",
+   "settle_tries": 12,
+   "settled_utc": "2026-11-14T20:45:37Z",
    "side": "Miami Florida",
    "side_label": "MIA (0)",
    "side_raw": 1,
@@ -97778,7 +97819,7 @@
     "Duke",
     "Miami Florida"
    ],
-   "units_flat": null,
+   "units_flat": 0.2,
    "x": 0.49
   },
   {
@@ -98181,7 +98222,7 @@
     "outcome_id": "01a1bbdd-8412-7d70-be96-ed85ec7731fb"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "CLT (0)",
    "side_label": "CLT (0)",
    "side_raw": null,
@@ -98214,6 +98255,7 @@
    },
    "first_play": true,
    "game": "Duke @ Miami Florida",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1b9b7-eb71-7283-9e4d-5e65b90780d9\", \"outcome_id\": \"01a1b9b7-eb71-7283-9e4d-5e735494928f\"}",
    "lead_min": 1470,
    "league": "NCAAF",
@@ -98232,8 +98274,9 @@
     "market_id": "01a1b9b7-eb71-7283-9e4d-5e65b90780d9",
     "outcome_id": "01a1b9b7-eb71-7283-9e4d-5e735494928f"
    },
-   "result": null,
-   "settle_tries": 11,
+   "result": "W",
+   "settle_tries": 12,
+   "settled_utc": "2026-11-14T20:45:37Z",
    "side": "Miami Florida",
    "side_label": "MIA (0)",
    "side_raw": 1,
@@ -98243,7 +98286,7 @@
     "Duke",
     "Miami Florida"
    ],
-   "units_flat": null,
+   "units_flat": 0.2,
    "x": 2.1
   },
   {
@@ -98385,7 +98428,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Cornell",
    "side_label": "Cornell",
    "side_raw": 1,
@@ -99073,7 +99116,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Grambling",
    "side_label": "Grambling",
    "side_raw": 0,
@@ -99120,7 +99163,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Chattanooga",
    "side_label": "Chattanooga",
    "side_raw": 0,
@@ -99167,7 +99210,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Furman",
    "side_label": "Furman",
    "side_raw": 1,
@@ -99839,7 +99882,7 @@
     "outcome_id": "01a1c90f-5c2e-7ab1-9523-25e586b6879a"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Delaware State",
    "side_label": "DSU (0)",
    "side_raw": 0,
@@ -100693,7 +100736,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "North Carolina Central",
    "side_label": "North Carolina Central",
    "side_raw": 0,
@@ -100740,7 +100783,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Colgate",
    "side_label": "Colgate",
    "side_raw": 1,
@@ -100905,7 +100948,7 @@
     "market_ticker": "KXNCAAFTOTAL-26NOV14ILSTYSU-65"
    },
    "result": null,
-   "settle_tries": 11,
+   "settle_tries": 12,
    "side": "UNDER",
    "side_label": "NOT Over 64.5 points",
    "side_raw": "UNDER",
@@ -101064,7 +101107,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Murray State",
    "side_label": "Murray State",
    "side_raw": 0,
@@ -101249,7 +101292,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Dartmouth",
    "side_label": "Dartmouth -1.5 (-1.5)",
    "side_raw": 0,
@@ -101297,7 +101340,7 @@
     "side": "OVER"
    },
    "result": null,
-   "settle_tries": 8,
+   "settle_tries": 9,
    "side": "OVER",
    "side_label": "over 52 (52)",
    "side_raw": "OVER",
@@ -102112,7 +102155,7 @@
     "outcome_id": "01a1ce81-c6b8-76f0-9df1-37ea730423c1"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UNDER",
    "side_label": "Under 5.5 (5.5)",
    "side_raw": "UNDER",
@@ -102794,7 +102837,7 @@
     "outcome_id": "01a1ce81-c6b8-76f0-9df1-37d669954bcf"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "OVER",
    "side_label": "Over 5.5 (5.5)",
    "side_raw": "OVER",
@@ -102846,7 +102889,7 @@
     "outcome_id": "01a1c913-68f7-7433-8815-18af99f4dcfd"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "OVER",
    "side_label": "Over 35.5 (35.5)",
    "side_raw": "OVER",
@@ -102955,7 +102998,7 @@
     "market_ticker": "KXNCAAFSPREAD-26NOV14ILSTYSU-YSU18"
    },
    "result": null,
-   "settle_tries": 11,
+   "settle_tries": 12,
    "side": "Youngstown St.",
    "side_label": "Youngstown St. wins by over 17.5 points",
    "side_raw": 1,
@@ -103002,7 +103045,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Chattanooga",
    "side_label": "Chattanooga",
    "side_raw": 0,
@@ -103105,7 +103148,7 @@
     "outcome_id": "01a1bbdd-8412-7d70-be96-ed9b4f29f15c"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "East Carolina",
    "side_label": "ECU (0)",
    "side_raw": 0,
@@ -103346,7 +103389,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Cornell",
    "side_label": "Cornell +1.5 (+1.5)",
    "side_raw": 1,
@@ -103394,7 +103437,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 11,
+   "settle_tries": 12,
    "side": "Youngstown State",
    "side_label": "Youngstown State -13.5 (-13.5)",
    "side_raw": 1,
@@ -103889,7 +103932,7 @@
     "outcome_id": "01a1c8f3-db11-7681-93b8-1672634227ad"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "North Carolina Central",
    "side_label": "NCCU (0)",
    "side_raw": 0,
@@ -103941,7 +103984,7 @@
     "outcome_id": "01a1c90f-5bd4-79a2-abd2-d070a3b5bba2"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Cornell",
    "side_label": "COR (0)",
    "side_raw": 1,
@@ -103993,7 +104036,7 @@
     "outcome_id": "01a1c90f-5c2e-7ab1-9523-25daf16d02b9"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Howard",
    "side_label": "HOW (0)",
    "side_raw": 1,
@@ -104045,7 +104088,7 @@
     "outcome_id": "01a1c92a-e65b-76f3-bd1c-f2355a203976"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Hampton",
    "side_label": "HAMP (0)",
    "side_raw": 1,
@@ -104239,7 +104282,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Stony Brook",
    "side_label": "Stony Brook -5.5 (-5.5)",
    "side_raw": 0,
@@ -104286,7 +104329,7 @@
     "side": "OVER"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "OVER",
    "side_label": "over 37.5 (37.5)",
    "side_raw": "OVER",
@@ -104334,7 +104377,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 8,
+   "settle_tries": 9,
    "side": "The Citadel",
    "side_label": "The Citadel -16.5 (-16.5)",
    "side_raw": 0,
@@ -104435,7 +104478,7 @@
     "outcome_id": "01a1ce81-c6b8-76f0-9df1-36f57c179c6b"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Seattle Kraken",
    "side_label": "SEA +2.5 (-2.5)",
    "side_raw": 0,
@@ -105497,7 +105540,7 @@
     "side": "OVER"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "OVER",
    "side_label": "over 45.5 (45.5)",
    "side_raw": "OVER",
@@ -105544,7 +105587,7 @@
     "side": "OVER"
    },
    "result": null,
-   "settle_tries": 8,
+   "settle_tries": 9,
    "side": "OVER",
    "side_label": "over 49.5 (49.5)",
    "side_raw": "OVER",
@@ -105789,7 +105832,7 @@
     "side": "OVER"
    },
    "result": null,
-   "settle_tries": 11,
+   "settle_tries": 12,
    "side": "OVER",
    "side_label": "over 64.5 (64.5)",
    "side_raw": "OVER",
@@ -106704,7 +106747,7 @@
     "side": "UNDER"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "UNDER",
    "side_label": "under 50.5 (50.5)",
    "side_raw": "UNDER",
@@ -106823,8 +106866,8 @@
    "best_price": 0.2447,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.2151,
-   "clv_cents": -2.6,
+   "close_price": 0.2105,
+   "clv_cents": -3.0,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": null,
@@ -106869,8 +106912,8 @@
    "best_price": 0.7737,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.7938,
-   "clv_cents": 2.4,
+   "close_price": 0.7917,
+   "clv_cents": 2.2,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": null,
@@ -107544,7 +107587,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Arkansas State",
    "side_label": "Arkansas State",
    "side_raw": 0,
@@ -107591,7 +107634,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Coastal Carolina",
    "side_label": "Coastal Carolina",
    "side_raw": 1,
@@ -107638,7 +107681,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UAB",
    "side_label": "UAB",
    "side_raw": 0,
@@ -107685,7 +107728,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "East Carolina",
    "side_label": "East Carolina",
    "side_raw": 0,
@@ -107732,7 +107775,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Charlotte",
    "side_label": "Charlotte",
    "side_raw": 1,
@@ -107779,7 +107822,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 8,
+   "settle_tries": 9,
    "side": "Clemson",
    "side_label": "Clemson",
    "side_raw": 1,
@@ -107805,6 +107848,7 @@
    "ex_stats": null,
    "first_play": true,
    "game": "Duke at Miami Florida",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 0, \"px_event\": 1704710981, \"px_market\": 219, \"side\": \"1\"}",
    "lead_min": 1544,
    "league": "NCAAF",
@@ -107825,8 +107869,9 @@
     "px_market": 219,
     "side": "1"
    },
-   "result": null,
-   "settle_tries": 11,
+   "result": "W",
+   "settle_tries": 12,
+   "settled_utc": "2026-11-14T20:45:37Z",
    "side": "Miami Florida",
    "side_label": "Miami Florida",
    "side_raw": 1,
@@ -107836,7 +107881,7 @@
     "Duke",
     "Miami Florida"
    ],
-   "units_flat": null,
+   "units_flat": 0.21,
    "x": 0.38
   },
   {
@@ -107874,7 +107919,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 11,
+   "settle_tries": 12,
    "side": "Auburn",
    "side_label": "Auburn",
    "side_raw": 0,
@@ -107922,7 +107967,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 11,
+   "settle_tries": 12,
    "side": "Mississippi State",
    "side_label": "Mississippi State",
    "side_raw": 1,
@@ -108277,7 +108322,7 @@
     "outcome_id": "01a1c7aa-1d7a-7592-9bc8-28967aa6e059"
    },
    "result": null,
-   "settle_tries": 11,
+   "settle_tries": 12,
    "side": "Youngstown State",
    "side_label": "YSU (0)",
    "side_raw": 1,
@@ -108324,7 +108369,7 @@
     "side": "UNDER"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UNDER",
    "side_label": "under 46.5 (46.5)",
    "side_raw": "UNDER",
@@ -108638,7 +108683,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "South Carolina State",
    "side_label": "South Carolina State",
    "side_raw": 1,
@@ -108877,7 +108922,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "North Carolina Central",
    "side_label": "North Carolina Central +10.5 (+10.5)",
    "side_raw": 0,
@@ -109134,7 +109179,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 8,
+   "settle_tries": 9,
    "side": "VMI",
    "side_label": "VMI +16.5 (+16.5)",
    "side_raw": 1,
@@ -109578,7 +109623,7 @@
     "outcome_id": "01a1c8f3-db11-7681-93b8-166696412886"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "SCST (0)",
    "side_label": "SCST (0)",
    "side_raw": null,
@@ -109630,7 +109675,7 @@
     "outcome_id": "01a1c8f3-d1d0-7dd2-a495-9637a47d87fb"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Harvard",
    "side_label": "HARV (0)",
    "side_raw": 0,
@@ -109682,7 +109727,7 @@
     "outcome_id": "01a1c90f-5bd4-79a2-abd2-d085917b5446"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Dartmouth",
    "side_label": "DART (0)",
    "side_raw": 0,
@@ -109734,7 +109779,7 @@
     "outcome_id": "01a1c90f-5c2e-7ab1-9523-25e586b6879a"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Delaware State",
    "side_label": "DSU (0)",
    "side_raw": 0,
@@ -109786,7 +109831,7 @@
     "outcome_id": "01a1c90f-5d62-7421-be1f-5f01c73df1f3"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UTC (0)",
    "side_label": "UTC (0)",
    "side_raw": null,
@@ -109838,7 +109883,7 @@
     "outcome_id": "01a1c90f-5f2f-7672-bcee-7fdb6a4dc288"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Bucknell",
    "side_label": "BUCK (0)",
    "side_raw": 0,
@@ -109890,7 +109935,7 @@
     "outcome_id": "01a1c90f-5f2f-7672-bcee-7fc95db95157"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "W&M (0)",
    "side_label": "W&M (0)",
    "side_raw": null,
@@ -109943,7 +109988,7 @@
     "outcome_id": "01a1c92a-e5e4-77e3-829c-55c3646ef3aa"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Valparaiso",
    "side_label": "VAL (0)",
    "side_raw": 0,
@@ -109995,7 +110040,7 @@
     "outcome_id": "01a1c92a-e65b-76f3-bd1c-f2445be44701"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "North Carolina A&T",
    "side_label": "NCAT (0)",
    "side_raw": 0,
@@ -110047,7 +110092,7 @@
     "outcome_id": "01a1c92a-e775-7852-bd24-b7b7c58f6ca4"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "INST (0)",
    "side_label": "INST (0)",
    "side_raw": null,
@@ -110099,7 +110144,7 @@
     "outcome_id": "01a1c92a-e7eb-7220-8a35-27d2c2517715"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Lafayette",
    "side_label": "LAF (0)",
    "side_raw": 0,
@@ -110151,7 +110196,7 @@
     "outcome_id": "01a1c92a-e7eb-7220-8a35-27cc3c09d005"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Colgate",
    "side_label": "COLG (0)",
    "side_raw": 1,
@@ -110203,7 +110248,7 @@
     "outcome_id": "01a1c92a-e936-7001-b30a-ecacc9785487"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "STBK (0)",
    "side_label": "STBK (0)",
    "side_raw": null,
@@ -110255,7 +110300,7 @@
     "outcome_id": "01a1c92a-e936-7001-b30a-ec9149b7e8d7"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "New Hampshire",
    "side_label": "UNH (0)",
    "side_raw": 1,
@@ -112788,7 +112833,7 @@
     "side": "OVER"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "OVER",
    "side_label": "over 45 (45)",
    "side_raw": "OVER",
@@ -112835,7 +112880,7 @@
     "side": "UNDER"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UNDER",
    "side_label": "under 45 (45)",
    "side_raw": "UNDER",
@@ -113276,7 +113321,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Delaware State",
    "side_label": "Delaware State -3.5 (-3.5)",
    "side_raw": 0,
@@ -113323,7 +113368,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Howard",
    "side_label": "Howard +3.5 (+3.5)",
    "side_raw": 1,
@@ -113370,7 +113415,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Lafayette",
    "side_label": "Lafayette +10.5 (+10.5)",
    "side_raw": 0,
@@ -114115,7 +114160,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Bucknell",
    "side_label": "Bucknell",
    "side_raw": 0,
@@ -114267,7 +114312,7 @@
     "outcome_id": "01a1c92a-ea41-7e92-8593-a83d020fdcc2"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "East Tennessee State",
    "side_label": "ETSU (0)",
    "side_raw": 0,
@@ -114767,8 +114812,8 @@
    "best_price": 0.1974,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.1681,
-   "clv_cents": -2.6,
+   "close_price": 0.1639,
+   "clv_cents": -3.0,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": null,
@@ -114997,7 +115042,7 @@
     "outcome_id": "01a1c92a-ea41-7e92-8593-a823deff3b0d"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "Wofford",
    "side_label": "WOF (0)",
    "side_raw": 1,
@@ -115044,7 +115089,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Howard",
    "side_label": "Howard",
    "side_raw": 1,
@@ -115138,7 +115183,7 @@
     "side": "UNDER"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UNDER",
    "side_label": "under 45.5 (45.5)",
    "side_raw": "UNDER",
@@ -116354,7 +116399,7 @@
     "side": "UNDER"
    },
    "result": null,
-   "settle_tries": 11,
+   "settle_tries": 12,
    "side": "UNDER",
    "side_label": "under 64.5 (64.5)",
    "side_raw": "UNDER",
@@ -116853,7 +116898,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Delaware State",
    "side_label": "Delaware State",
    "side_raw": 0,
@@ -117001,7 +117046,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Colgate",
    "side_label": "Colgate -10.5 (-10.5)",
    "side_raw": 1,
@@ -117151,7 +117196,7 @@
     "outcome_id": "01a1c913-68f8-7783-91f4-5ce73816f871"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UTC -7.5 (7.5)",
    "side_label": "UTC -7.5 (7.5)",
    "side_raw": null,
@@ -117199,7 +117244,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Howard",
    "side_label": "Howard +3.5 (+3.5)",
    "side_raw": 1,
@@ -117247,7 +117292,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 8,
+   "settle_tries": 9,
    "side": "VMI",
    "side_label": "VMI +16.5 (+16.5)",
    "side_raw": 1,
@@ -117812,7 +117857,7 @@
     "market_ticker": "KXNCAAFGAME-26NOV14ILSTYSU-YSU"
    },
    "result": null,
-   "settle_tries": 11,
+   "settle_tries": 12,
    "side": "Youngstown St.",
    "side_label": "Youngstown St.",
    "side_raw": 1,
@@ -117860,7 +117905,7 @@
     "side": "UNDER"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "UNDER",
    "side_label": "under 50.5 (50.5)",
    "side_raw": "UNDER",
@@ -118928,7 +118973,7 @@
     "market_ticker": "KXNCAAFSPREAD-26NOV14ILSTYSU-YSU18"
    },
    "result": null,
-   "settle_tries": 11,
+   "settle_tries": 12,
    "side": "Illinois St.",
    "side_label": "NOT Youngstown St. wins by over 17.5 points",
    "side_raw": 0,
@@ -119138,7 +119183,7 @@
     "outcome_id": "01a1c8f3-d1d0-7dd2-a495-9620c7eefba0"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Pennsylvania",
    "side_label": "PENN (0)",
    "side_raw": 1,
@@ -119637,7 +119682,7 @@
     "market_ticker": "KXNCAAFSPREAD-26NOV14ILSTYSU-YSU18"
    },
    "result": null,
-   "settle_tries": 11,
+   "settle_tries": 12,
    "side": "Youngstown St.",
    "side_label": "Youngstown St. wins by over 17.5 points",
    "side_raw": 1,
@@ -119797,7 +119842,7 @@
     "side": "OVER"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "OVER",
    "side_label": "over 37.5 (37.5)",
    "side_raw": "OVER",
@@ -120920,7 +120965,7 @@
     "outcome_id": "01a1cb34-a767-7c61-bea6-b178ca011e57"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "INST -16.5 (-16.5)",
    "side_label": "INST -16.5 (-16.5)",
    "side_raw": null,
@@ -121026,7 +121071,7 @@
     "outcome_id": "01a1ce81-c6b8-76f0-9df1-37ea730423c1"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UNDER",
    "side_label": "Under 5.5 (5.5)",
    "side_raw": "UNDER",
@@ -123352,7 +123397,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Lafayette",
    "side_label": "Lafayette +10.5 (+10.5)",
    "side_raw": 0,
@@ -123400,7 +123445,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Colgate",
    "side_label": "Colgate -10.5 (-10.5)",
    "side_raw": 1,
@@ -123448,7 +123493,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "Wofford",
    "side_label": "Wofford",
    "side_raw": 1,
@@ -125210,7 +125255,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "South Carolina State",
    "side_label": "South Carolina State",
    "side_raw": 1,
@@ -125673,7 +125718,7 @@
     "side": "UNDER"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UNDER",
    "side_label": "under 45.5 (45.5)",
    "side_raw": "UNDER",
@@ -126333,7 +126378,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Murray State",
    "side_label": "Murray State +8.5 (+8.5)",
    "side_raw": 0,
@@ -126436,7 +126481,7 @@
     "outcome_id": "01a1ce81-c6b8-76f0-9df1-37d669954bcf"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "OVER",
    "side_label": "Over 5.5 (5.5)",
    "side_raw": "OVER",
@@ -126738,7 +126783,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Harvard",
    "side_label": "Harvard",
    "side_raw": 0,
@@ -127842,7 +127887,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Lafayette",
    "side_label": "Lafayette",
    "side_raw": 0,
@@ -128648,8 +128693,8 @@
    "best_price": 0.5051,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.4717,
-   "clv_cents": -2.8,
+   "close_price": 0.4739,
+   "clv_cents": -2.6,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": null,
@@ -128740,8 +128785,8 @@
    "best_price": 0.5026,
    "best_price_book": "prophetx",
    "book": "prophetx",
-   "close_price": 0.5392,
-   "clv_cents": 4.2,
+   "close_price": 0.5475,
+   "clv_cents": 5.0,
    "date": "2026-11-14",
    "dir": "DROP",
    "ex_stats": null,
@@ -129739,7 +129784,7 @@
     "outcome_id": "01a1bb54-2ff5-7830-8107-1b7a45510c6e"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Temple",
    "side_label": "TEM -2.5 (-2.5)",
    "side_raw": 1,
@@ -129791,7 +129836,7 @@
     "outcome_id": "01a1b9a2-7529-7cb2-80d4-d38eb22a0c3a"
    },
    "result": null,
-   "settle_tries": 6,
+   "settle_tries": 7,
    "side": "Alabama",
    "side_label": "ALA -17.5 (17.5)",
    "side_raw": 0,
@@ -129843,7 +129888,7 @@
     "outcome_id": "01a1b9a2-7529-7cb2-80d4-d373f6f1303a"
    },
    "result": null,
-   "settle_tries": 6,
+   "settle_tries": 7,
    "side": "Vanderbilt",
    "side_label": "VAN +17.5 (17.5)",
    "side_raw": 1,
@@ -129895,7 +129940,7 @@
     "outcome_id": "01a1b9db-591f-7870-b16b-5ce3a8ff041a"
    },
    "result": null,
-   "settle_tries": 8,
+   "settle_tries": 9,
    "side": "Georgia Tech",
    "side_label": "GT +13.5 (-13.5)",
    "side_raw": 0,
@@ -130110,7 +130155,7 @@
     "outcome_id": "01a1b9ad-3617-7f23-b191-d1a0de80d3d2"
    },
    "result": null,
-   "settle_tries": 11,
+   "settle_tries": 12,
    "side": "MSST +2.5 (2.5)",
    "side_label": "MSST +2.5 (2.5)",
    "side_raw": null,
@@ -130143,6 +130188,7 @@
    },
    "first_play": true,
    "game": "Duke @ Miami Florida",
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1b99d-e0b2-78d3-94e0-8336d9d864d6\", \"outcome_id\": \"01a1b99d-e0b2-78d3-94e0-835b4a48a04e\"}",
    "lead_min": 1950,
    "league": "NCAAF",
@@ -130161,8 +130207,9 @@
     "market_id": "01a1b99d-e0b2-78d3-94e0-8336d9d864d6",
     "outcome_id": "01a1b99d-e0b2-78d3-94e0-835b4a48a04e"
    },
-   "result": null,
-   "settle_tries": 11,
+   "result": "W",
+   "settle_tries": 12,
+   "settled_utc": "2026-11-14T20:45:37Z",
    "side": "Duke",
    "side_label": "DUKE +13.5 (-13.5)",
    "side_raw": 0,
@@ -130172,7 +130219,7 @@
     "Duke",
     "Miami Florida"
    ],
-   "units_flat": null,
+   "units_flat": 1.02,
    "x": 0.44
   },
   {
@@ -130575,7 +130622,7 @@
     "outcome_id": "01a1c90f-5bd4-79a2-abd2-d085917b5446"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Dartmouth",
    "side_label": "DART (0)",
    "side_raw": 0,
@@ -130722,7 +130769,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "William & Mary",
    "side_label": "William & Mary",
    "side_raw": 1,
@@ -130909,7 +130956,7 @@
     "side": "0"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "East Tennessee State",
    "side_label": "East Tennessee State",
    "side_raw": 0,
@@ -130956,7 +131003,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "New Hampshire",
    "side_label": "New Hampshire",
    "side_raw": 1,
@@ -131239,7 +131286,7 @@
     "side": "OVER"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "OVER",
    "side_label": "over 50.5 (50.5)",
    "side_raw": "OVER",
@@ -131287,7 +131334,7 @@
     "side": "UNDER"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "UNDER",
    "side_label": "under 50.5 (50.5)",
    "side_raw": "UNDER",
@@ -131334,7 +131381,7 @@
     "side": "UNDER"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UNDER",
    "side_label": "under 46.5 (46.5)",
    "side_raw": "UNDER",
@@ -131381,7 +131428,7 @@
     "side": "UNDER"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UNDER",
    "side_label": "under 52.5 (52.5)",
    "side_raw": "UNDER",
@@ -131429,7 +131476,7 @@
     "side": "UNDER"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UNDER",
    "side_label": "under 35.5 (35.5)",
    "side_raw": "UNDER",
@@ -131713,7 +131760,7 @@
     "side": "UNDER"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "UNDER",
    "side_label": "under 50.5 (50.5)",
    "side_raw": "UNDER",
@@ -131760,7 +131807,7 @@
     "side": "OVER"
    },
    "result": null,
-   "settle_tries": 8,
+   "settle_tries": 9,
    "side": "OVER",
    "side_label": "over 49.5 (49.5)",
    "side_raw": "OVER",
@@ -131787,6 +131834,7 @@
    "ex_stats": null,
    "first_play": true,
    "game": "Duke at Miami Florida",
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 12.0, \"px_event\": 1704710981, \"px_market\": 223, \"side\": \"0\"}",
    "lead_min": 1974,
    "league": "NCAAF",
@@ -131807,8 +131855,9 @@
     "px_market": 223,
     "side": "0"
    },
-   "result": null,
-   "settle_tries": 11,
+   "result": "W",
+   "settle_tries": 12,
+   "settled_utc": "2026-11-14T20:45:37Z",
    "side": "Duke",
    "side_label": "Duke +12 (+12)",
    "side_raw": 0,
@@ -131818,7 +131867,7 @@
     "Duke",
     "Miami Florida"
    ],
-   "units_flat": null,
+   "units_flat": 0.98,
    "x": 39.31
   },
   {
@@ -132438,7 +132487,7 @@
     "side": "OVER"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "OVER",
    "side_label": "over 50.5 (50.5)",
    "side_raw": "OVER",
@@ -132486,7 +132535,7 @@
     "side": "OVER"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "OVER",
    "side_label": "over 35.5 (35.5)",
    "side_raw": "OVER",
@@ -132534,7 +132583,7 @@
     "side": "OVER"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "OVER",
    "side_label": "over 46.5 (46.5)",
    "side_raw": "OVER",
@@ -132581,7 +132630,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "William & Mary",
    "side_label": "William & Mary -5.5 (-5.5)",
    "side_raw": 1,
@@ -132883,7 +132932,7 @@
     "outcome_id": "01a1c913-68f8-7783-91f4-5d405148d4f3"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "UTC -9.5 (9.5)",
    "side_label": "UTC -9.5 (9.5)",
    "side_raw": null,
@@ -132935,7 +132984,7 @@
     "outcome_id": "01a1ce81-c6b8-76f0-9df1-36e94baad9cb"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Carolina Hurricanes",
    "side_label": "CAR -2.5 (-2.5)",
    "side_raw": 1,
@@ -133167,7 +133216,7 @@
     "side": "1"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "William & Mary",
    "side_label": "William & Mary",
    "side_raw": 1,
@@ -133831,7 +133880,7 @@
     "outcome_id": "01a1c8f3-db11-7681-93b8-166696412886"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "SCST (0)",
    "side_label": "SCST (0)",
    "side_raw": null,
@@ -133883,7 +133932,7 @@
     "outcome_id": "01a1c92a-ea41-7e92-8593-a83d020fdcc2"
    },
    "result": null,
-   "settle_tries": 2,
+   "settle_tries": 3,
    "side": "East Tennessee State",
    "side_label": "ETSU (0)",
    "side_raw": 0,
@@ -133935,7 +133984,7 @@
     "outcome_id": "01a1c8f3-d1d0-7dd2-a495-9637a47d87fb"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Harvard",
    "side_label": "HARV (0)",
    "side_raw": 0,
@@ -133987,7 +134036,7 @@
     "outcome_id": "01a1c90f-5bd4-79a2-abd2-d070a3b5bba2"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Cornell",
    "side_label": "COR (0)",
    "side_raw": 1,
@@ -134039,7 +134088,7 @@
     "outcome_id": "01a1c90f-5f2f-7672-bcee-7fc95db95157"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "W&M (0)",
    "side_label": "W&M (0)",
    "side_raw": null,
@@ -134092,7 +134141,7 @@
     "outcome_id": "01a1c92a-e5e4-77e3-829c-55c3646ef3aa"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "Valparaiso",
    "side_label": "VAL (0)",
    "side_raw": 0,
@@ -134144,7 +134193,7 @@
     "outcome_id": "01a1c92a-e65b-76f3-bd1c-f2445be44701"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "North Carolina A&T",
    "side_label": "NCAT (0)",
    "side_raw": 0,
@@ -134196,7 +134245,7 @@
     "outcome_id": "01a1c92a-e775-7852-bd24-b7b7c58f6ca4"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "INST (0)",
    "side_label": "INST (0)",
    "side_raw": null,
@@ -134248,7 +134297,7 @@
     "outcome_id": "01a1c92a-e936-7001-b30a-ecacc9785487"
    },
    "result": null,
-   "settle_tries": 5,
+   "settle_tries": 6,
    "side": "STBK (0)",
    "side_label": "STBK (0)",
    "side_raw": null,
