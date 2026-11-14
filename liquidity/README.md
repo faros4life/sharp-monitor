@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 14, 4:00 AM ET. This run: 1 new, 0 not confirmed, 4 pending. Open alerts: 34.
+Updated Sat Nov 14, 4:05 AM ET. This run: 3 new, 1 not confirmed, 1 pending. Open alerts: 37.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,10 +10,13 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 14 4:05AM | NCAAF | Stony Brook vs New Hampshire | moneyline: Stony Brook | kalshi | $54k | -194 |  |  | +0.0c |  | pending |
+| Nov 14 4:05AM | NCAAF | Southeast Missouri St. vs Charleston Southern | moneyline: Southeast Missouri St. | kalshi | $31k | -144 |  |  | +0.0c |  | pending |
+| Nov 14 4:05AM | NCAAF | Drake vs St. Thomas | moneyline: St. Thomas | kalshi | $70k | -488 |  |  | +0.0c |  | pending |
 | Nov 14 4:00AM | NCAAF | Stony Brook vs New Hampshire: Spread | spread: NOT Stony Brook wins by over 5.5 points | kalshi | $33k | -108 |  |  | +0.0c |  | pending |
 | Nov 14 3:55AM | NCAAF | Villanova vs Holy Cross | moneyline: Villanova | kalshi | $94k | -257 |  |  | +0.0c |  | pending |
 | Nov 14 3:55AM | NCAAF | North Alabama vs West Georgia | moneyline: North Alabama | kalshi | $35k | -525 |  |  | +0.0c |  | pending |
-| Nov 14 3:55AM | NCAAF | North Carolina Central vs South Carolina St. | moneyline: South Carolina St. | kalshi | $109k | -400 |  |  | +0.0c |  | pending |
+| Nov 14 3:55AM | NCAAF | North Carolina Central vs South Carolina St. | moneyline: South Carolina St. | kalshi | $109k | -400 |  |  | -1.0c |  | pending |
 | Nov 14 3:55AM | NCAAF | Murray St. vs Indiana St. | moneyline: Indiana St. | kalshi | $60k | -300 |  |  | +0.0c |  | pending |
 | Nov 14 3:55AM | NCAAF | Lehigh vs Richmond | moneyline: Lehigh | kalshi | $51k | -567 |  |  | +0.0c |  | pending |
 | Nov 14 3:55AM | NCAAF | Kennesaw St. vs Sam Houston | moneyline: Kennesaw St. | kalshi | $88k | -270 | ✅ novig |  | +0.0c |  | pending |
@@ -86,7 +89,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 13 1:00AM | NCAAF | Georgetown vs Fordham | moneyline: Fordham | kalshi | $47k | -104 |  |  | +1.0c | yes | pending |
 | Nov 13 1:00AM | NCAAF | Columbia vs Brown | moneyline: Brown | kalshi | $55k | -426 |  |  | +3.0c | yes | pending |
 | Nov 13 1:00AM | NCAAF | Butler vs Marist | moneyline: Butler | kalshi | $34k | -285 |  |  | -4.0c | yes | pending |
-| Nov 13 12:42AM | NCAAF | New Haven vs Wagner | moneyline: New Haven | kalshi | $27k | -113 |  |  | -1.0c | yes | pending |
+| Nov 13 12:42AM | NCAAF | New Haven vs Wagner | moneyline: New Haven | kalshi | $27k | -113 |  |  | +0.0c | yes | pending |
 | Nov 13 12:00AM | NBA | Cleveland vs Miami | moneyline: Miami | kalshi | $38k | -127 | ✅ novig |  | +1.0c | yes | W |
 | Nov 12 11:30PM | NBA | Portland vs Sacramento: Spread | spread: NOT Portland wins by over 11.5 points | kalshi | $97k | -108 | ✅ novig |  | +4.0c | yes | L |
 | Nov 12 8:12PM | NFL | Washington vs New York G: Spread | spread: New York G wins by over 1.5 points | kalshi | $541k | -108 | ✅ novig |  | +0.0c |  | L |
@@ -207,6 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 11 10:51AM | NCAAF | Louisiana vs Louisiana-Monroe: Spread | spread: NOT Louisiana wins by over 10.5 points | kalshi | $25k | -108 |  |  | -27.0c | yes | L |
 | Nov 11 10:40AM | NBA | Cleveland vs New York: Total Points | total: NOT Over 223.5 points | kalshi | $42k | -113 |  |  | +2.0c | yes | W |
 | Nov 11 10:40AM | NBA | Golden State vs Houston: Spread | spread: NOT Houston wins by over 6.5 points | kalshi | $28k | -108 | ✅ novig | ❌ | -1.0c | yes | L |
-| Nov 11 10:20AM | NCAAF | Sacramento St. vs Central Michigan: Total Points | total: NOT Over 43.5 points | kalshi | $39k | -104 | ✅ novig | ✅ | +2.0c | yes | W |
-| Nov 11 9:50AM | NBA | Denver vs Memphis: Total Points | total: NOT Over 230.5 points | kalshi | $65k | -100 | ✅ novig | ❌ | +0.0c |  | L |
-| Nov 11 9:02AM | NHL | Pittsburgh vs San Jose | moneyline: Pittsburgh | kalshi | $42k | -127 | ✅ novig,prophetx |  | +2.0c |  | W |

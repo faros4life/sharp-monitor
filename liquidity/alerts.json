@@ -1,6 +1,353 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-14T09:05:46Z",
+   "base_depth": 84637,
+   "best_price": 0.6549,
+   "best_price_american": -190,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.66,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-14",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 7399,
+     "new_this_side": 54307,
+     "other_side": 20468,
+     "other_side_all_levels": 83219,
+     "ratio": 2.2,
+     "this_side": 44171,
+     "this_side_all_levels": 137588
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Stony Brook",
+     "price": 0.6503,
+     "this_side": 554
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 2085.2,
+    "volume_24h_fp": 1538.1799999999998,
+    "volume_fp": 2085.2
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 1480.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 2085.2,
+    "volume_24h_fp": 58.18000000000001,
+    "volume_fp": 2085.2
+   },
+   "fade_price": 0.35,
+   "first_seen_utc": "2026-11-14T09:00:17Z",
+   "game": "Stony Brook vs New Hampshire",
+   "game_surge_books": [
+    "kalshi"
+   ],
+   "game_x": 2.43,
+   "key": "kalshi|KXNCAAFGAME-26NOV14STONUNH|ml|0",
+   "lead_min": 534,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 54307,
+   "new_x": 0.91,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 2085.2,
+      "volume_24h_fp": 1538.1799999999998,
+      "volume_fp": 2085.2
+     },
+     "game_normal": 56673,
+     "game_x": 2.43,
+     "normal": 59946,
+     "now": 137588,
+     "type": "ML",
+     "x": 2.3
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 745,
+     "game_x": 0.91,
+     "normal": 983,
+     "now": 676,
+     "type": "ML",
+     "x": 0.69
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.66,
+   "price_american": -194,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.66,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26NOV14STONUNH-STON"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Stony Brook",
+   "side_label": "Stony Brook",
+   "size_x": 2.3,
+   "start_source": "prophetx",
+   "start_utc": "2026-11-14T18:00:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "Stony Brook",
+    "New Hampshire"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-14T09:05:46Z",
+   "base_depth": 109172,
+   "best_price": 0.6069,
+   "best_price_american": -154,
+   "best_price_book": "kalshi",
+   "bid_improved": true,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.59,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-14",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -11564,
+     "new_this_side": 31341,
+     "other_side": 35609,
+     "other_side_all_levels": 90184,
+     "ratio": 0.3,
+     "this_side": 12079,
+     "this_side_all_levels": 136929
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 3373.47,
+    "volume_24h_fp": 46.39,
+    "volume_fp": 3373.47
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 3373.47,
+    "volume_24h_fp": 46.39,
+    "volume_fp": 3373.47
+   },
+   "fade_price": 0.42,
+   "first_seen_utc": "2026-11-14T09:00:17Z",
+   "game": "Southeast Missouri St. vs Charleston Southern",
+   "game_surge_books": [],
+   "game_x": 1.7,
+   "key": "kalshi|KXNCAAFGAME-26NOV14SEMOCHSO|ml|0",
+   "lead_min": 594,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 31341,
+   "new_x": 0.52,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 3373.47,
+      "volume_24h_fp": 46.39,
+      "volume_fp": 3373.47
+     },
+     "game_normal": 80741,
+     "game_x": 1.7,
+     "normal": 59946,
+     "now": 136929,
+     "type": "ML",
+     "x": 2.28
+    }
+   },
+   "norm_ready_books": 1,
+   "paper_only": false,
+   "price": 0.59,
+   "price_american": -144,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.59,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26NOV14SEMOCHSO-SEMO"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Southeast Missouri St.",
+   "side_label": "Southeast Missouri St.",
+   "size_x": 2.28,
+   "start_source": "novig",
+   "start_utc": "2026-11-14T19:00:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "Southeast Missouri St.",
+    "Charleston Southern"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-14T09:05:46Z",
+   "base_depth": 91180,
+   "best_price": 0.8399,
+   "best_price_american": -525,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.83,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-14",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 2036,
+     "new_this_side": 69668,
+     "other_side": 8809,
+     "other_side_all_levels": 25547,
+     "ratio": 7.0,
+     "this_side": 61405,
+     "this_side_all_levels": 147551
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "St Thomas Minnesota",
+     "price": 0.8413,
+     "this_side": 230
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 1159.62,
+    "volume_24h_fp": 456.77,
+    "volume_fp": 1190.54
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 1159.62,
+    "volume_24h_fp": 456.77,
+    "volume_fp": 1190.54
+   },
+   "fade_price": 0.18,
+   "first_seen_utc": "2026-11-14T09:00:17Z",
+   "game": "Drake vs St. Thomas",
+   "game_surge_books": [],
+   "game_x": 1.79,
+   "key": "kalshi|KXNCAAFGAME-26NOV14DRKEUST|ml|1",
+   "lead_min": 594,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 69668,
+   "new_x": 1.16,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 1159.62,
+      "volume_24h_fp": 456.77,
+      "volume_fp": 1190.54
+     },
+     "game_normal": 82521,
+     "game_x": 1.79,
+     "normal": 59946,
+     "now": 147551,
+     "type": "ML",
+     "x": 2.46
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 226,
+     "game_x": 1.01,
+     "normal": 983,
+     "now": 230,
+     "type": "ML",
+     "x": 0.23
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.83,
+   "price_american": -488,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.83,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26NOV14DRKEUST-UST"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "St. Thomas",
+   "side_label": "St. Thomas",
+   "size_x": 2.46,
+   "start_source": "prophetx",
+   "start_utc": "2026-11-14T19:00:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "Drake",
+    "St. Thomas"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-14T09:00:17Z",
    "base_depth": 38281,
    "best_price": 0.5333,
@@ -44,6 +391,11 @@
     "open_interest_fp": 0.0,
     "volume_24h_fp": 0.0,
     "volume_fp": 0.0
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 181.21,
+    "volume_24h_fp": 181.21,
+    "volume_fp": 181.21
    },
    "ex_stats_first": {
     "open_interest_fp": 181.21,
@@ -176,7 +528,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 8542.22,
-    "volume_24h_fp": 7437.39,
+    "volume_24h_fp": 7450.83,
     "volume_fp": 8864.1
    },
    "ex_stats_first": {
@@ -427,8 +779,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.8,
-   "clv_cents": 0.0,
+   "close_price": 0.79,
+   "clv_cents": -1.0,
    "confirmed_after_min": 5,
    "date": "2026-11-14",
    "depth_by_book": {
@@ -863,9 +1215,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 246468.29,
+    "open_interest_fp": 246469.63,
     "volume_24h_fp": 245895.8,
-    "volume_fp": 246571.51
+    "volume_fp": 246572.85
    },
    "ex_stats_first": {
     "open_interest_fp": 246468.29,
@@ -1063,8 +1415,8 @@
     "volume": 15635.0
    },
    "ex_stats_close": {
-    "openInterest": 5732622.0,
-    "volume": 10795629.0
+    "openInterest": 5735562.0,
+    "volume": 10798569.0
    },
    "ex_stats_first": {
     "openInterest": 5632401.0,
@@ -1668,9 +2020,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 4374.63,
+    "open_interest_fp": 4376.88,
     "volume_24h_fp": 3576.2799999999997,
-    "volume_fp": 4687.89
+    "volume_fp": 4690.14
    },
    "ex_stats_first": {
     "open_interest_fp": 1643.71,
@@ -2214,9 +2566,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1072.74,
+    "open_interest_fp": 1074.71,
     "volume_24h_fp": 823.3199999999999,
-    "volume_fp": 1072.74
+    "volume_fp": 1074.71
    },
    "ex_stats_first": {
     "open_interest_fp": 511.70000000000005,
@@ -2338,9 +2690,9 @@
     "volume_fp": 25.56
    },
    "ex_stats_close": {
-    "open_interest_fp": 59353.38,
-    "volume_24h_fp": 56847.33,
-    "volume_fp": 60932.799999999996
+    "open_interest_fp": 59423.990000000005,
+    "volume_24h_fp": 58347.41,
+    "volume_fp": 61003.41
    },
    "ex_stats_first": {
     "open_interest_fp": 6565.86,
@@ -3596,9 +3948,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 13674.17,
-    "volume_24h_fp": 9630.08,
-    "volume_fp": 14061.79
+    "open_interest_fp": 13675.7,
+    "volume_24h_fp": 9631.61,
+    "volume_fp": 14063.32
    },
    "ex_stats_first": {
     "open_interest_fp": 12245.45,
@@ -3730,9 +4082,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 5579.79,
+    "open_interest_fp": 5598.74,
     "volume_24h_fp": 5502.78,
-    "volume_fp": 5580.79
+    "volume_fp": 5599.74
    },
    "ex_stats_first": {
     "open_interest_fp": 3394.59,
@@ -7405,9 +7757,9 @@
     "volume_fp": 18.6
    },
    "ex_stats_close": {
-    "open_interest_fp": 39027.85,
-    "volume_24h_fp": 26220.91,
-    "volume_fp": 40645.81
+    "open_interest_fp": 39037.9,
+    "volume_24h_fp": 26241.01,
+    "volume_fp": 40816.56
    },
    "ex_stats_first": {
     "open_interest_fp": 15985.78,
@@ -8050,9 +8402,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 177873.55,
-    "volume_24h_fp": 174438.55,
-    "volume_fp": 195628.16
+    "open_interest_fp": 177921.05,
+    "volume_24h_fp": 174660.53,
+    "volume_fp": 195675.66
    },
    "ex_stats_first": {
     "open_interest_fp": 29945.72,
@@ -8255,9 +8607,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 27000.01,
+    "open_interest_fp": 27004.11,
     "volume_24h_fp": 16234.11,
-    "volume_fp": 30270.71
+    "volume_fp": 30274.81
    },
    "ex_stats_first": {
     "open_interest_fp": 17025.36,
@@ -9689,7 +10041,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 13446.68,
-    "volume_24h_fp": 12053.41,
+    "volume_24h_fp": 12019.92,
     "volume_fp": 19544.35
    },
    "ex_stats_first": {
@@ -10683,9 +11035,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 39027.85,
-    "volume_24h_fp": 26220.91,
-    "volume_fp": 40645.81
+    "open_interest_fp": 39037.9,
+    "volume_24h_fp": 26241.01,
+    "volume_fp": 40816.56
    },
    "ex_stats_first": {
     "open_interest_fp": 13745.85,
@@ -10877,9 +11229,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 2369.76,
+    "open_interest_fp": 2372.5299999999997,
     "volume_24h_fp": 1740.9299999999998,
-    "volume_fp": 3334.87
+    "volume_fp": 3337.6400000000003
    },
    "ex_stats_first": {
     "open_interest_fp": 1114.69,
@@ -13647,7 +13999,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 15852.19,
-    "volume_24h_fp": 4456.629999999999,
+    "volume_24h_fp": 4449.87,
     "volume_fp": 15943.42
    },
    "ex_stats_first": {
@@ -13792,7 +14144,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 1942.48,
-    "volume_24h_fp": 1266.09,
+    "volume_24h_fp": 1318.26,
     "volume_fp": 1948.2600000000002
    },
    "ex_stats_first": {
@@ -14065,9 +14417,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 13674.17,
-    "volume_24h_fp": 9630.08,
-    "volume_fp": 14061.79
+    "open_interest_fp": 13675.7,
+    "volume_24h_fp": 9631.61,
+    "volume_fp": 14063.32
    },
    "ex_stats_first": {
     "open_interest_fp": 4407.69,
@@ -14172,8 +14524,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": -1.0,
+   "close_price": 0.53,
+   "clv_cents": 0.0,
    "confirmed_after_min": 9,
    "date": "2026-11-14",
    "depth_by_book": {
@@ -14211,7 +14563,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 415.51,
-    "volume_24h_fp": 268.83,
+    "volume_24h_fp": 337.79,
     "volume_fp": 430.69000000000005
    },
    "ex_stats_first": {
