@@ -111,6 +111,14 @@ jobs:
           EMAIL_TO: ${{ secrets.EMAIL_TO }}
           EMAIL_NOW: ${{ inputs.email_now }}
         run: python -u clv_coverage.py
+      - name: Scorecard basis reconciliation (side by side, nothing switched)
+        env:
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          EMAIL_NOW: ${{ inputs.email_now }}
+        run: python -u clv_basis_compare.py
       - name: Prove nothing in the working tree changed
         run: |
           # -uno: TRACKED files only. The restored hcache/ and this job's own audit/ are
