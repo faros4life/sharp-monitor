@@ -121,6 +121,70 @@ def classify_missing(r, st, alt, hc_has):
     return "market", "no fixture for this game in any cache we hold"
 
 
+
+def build_lane_resolver(reg):
+    """Return lane_for(selection_key, observation) -> the ONE provable lane, or None.
+
+    Lifted to module level so the join can be tested directly; main() just calls the factory.
+    """
+    # Peter, priority 4: "Link selections to R1, Board v3, Phase 1 and other lanes using
+    # authoritative order/registry evidence. Backfill historical lane labels only where the
+    # linkage is provable."
+    #
+    # The first attempt matched the registry key against the selection key verbatim and resolved
+    # ZERO of 280, because the two sides spell the game differently: the registry records the
+    # alert's full name ("Louisiana Ragin Cajuns @ UL Monroe Warhawks") while the ledger row
+    # carries the venue's short form ("Louisiana @ UL Monroe"). Exact-equality on token sets
+    # could never join them.
+    #
+    # The join below is tolerant about SPELLING and strict about everything that decides
+    # identity: same league, same market family, same side, the game token sets must nest (one a
+    # subset of the other) rather than merely overlap, the order must be within 7 days of the
+    # game, and the answer must be a SINGLE lane. Anything else stays UNKNOWN rather than being
+    # attributed to a lane on a guess - a wrong lane label would move a bet's performance onto a
+    # strategy that never placed it.
+    MKT = {"total": "total", "side": "side", "spread": "side", "ml": "side", "moneyline": "side"}
+
+    def _mkt(x):
+        return MKT.get(str(x or "").lower(), str(x or "").lower())
+
+    reg_rows = []
+    for o in ((reg or {}).get("orders") or []):
+        parts = [p for p in str(o.get("key") or "").split("|") if p]
+        lane = parts[0] if (parts and parts[0] in LANE_UNIT) else (o.get("source") or "")
+        rest = parts[1:] if (parts and parts[0] in LANE_UNIT) else parts
+        if lane not in LANE_UNIT or len(rest) < 4:
+            continue
+        reg_rows.append({"lane": lane, "lg": rest[0].upper(),
+                         "toks": tb.toks(rest[1]) - tb.WEAK, "mkt": _mkt(rest[2]),
+                         "side": rest[3], "side_toks": tb.toks(rest[3]) - tb.WEAK,
+                         "when": cl.tp(o.get("decided_utc"))})
+
+    def lane_for(key, o):
+        """The ONE lane this selection provably belongs to, or None."""
+        parts = key.split("|")
+        if len(parts) < 4:
+            return None
+        lg, gt, mkt, side = parts[0], set(parts[1].split("+")), _mkt(parts[2]), parts[3]
+        side_toks = set(side.split("+")) if "+" in side else {side.lower()}
+        gs = cl.tp(o.get("game_start"))
+        hits = set()
+        for r in reg_rows:
+            if r["lg"] != lg or r["mkt"] != mkt:
+                continue
+            if not (gt <= r["toks"] or r["toks"] <= gt):   # nesting, not mere overlap
+                continue
+            if mkt == "total":
+                if r["side"].upper() != side.upper():
+                    continue
+            elif not (r["side_toks"] & side_toks):
+                continue
+            if gs and r["when"] and abs((r["when"] - gs).total_seconds()) > 7 * 86400:
+                continue
+            hits.add(r["lane"])
+        return hits.pop() if len(hits) == 1 else None
+    return lane_for
+
 def fig(label, obs, unit=None):
     s = csel.stats(obs)
     if not s.get("n"):
@@ -172,19 +236,7 @@ def main():
     except Exception:
         stale = {}
 
-    # strategy per selection key, from the registry's own lane where it can be linked
-    lane_by_sel = {}
-    for o in ((reg or {}).get("orders") or []):
-        parts = [p for p in str(o.get("key") or "").split("|") if p]
-        if parts and parts[0] in LANE_UNIT:
-            lane = parts[0]
-            rest = parts[1:]
-        else:
-            lane, rest = (o.get("source") or ""), parts
-        if len(rest) >= 4 and lane in LANE_UNIT:
-            g = "+".join(sorted(tb.toks(rest[1]) - tb.WEAK)) or "?"
-            lane_by_sel.setdefault(f"{rest[0].upper()}|{g}|{rest[2]}|{rest[3]}", lane)
-
+    lane_for = build_lane_resolver(reg)
 
     # ------------------------------------------------------------------ selections
     certified = {k: r for k, r in bets.items()
@@ -193,12 +245,11 @@ def main():
     obs = csel.selections(certified, tracker, exclude=set(stale))
     # attach lane and the row's own source to each observation
     for key, o in obs.items():
-        base = "|".join(key.split("|")[:4])
-        o["_lane"] = lane_by_sel.get(base) or lane_by_sel.get(key)
+        o["_lane"] = lane_for(key, o)
     miss_obs = csel.selections({k: dict(r, clv=-999) for k, r in missing.items()}, tracker,
                                exclude=set(stale))
     for key, o in miss_obs.items():
-        o["_lane"] = lane_by_sel.get("|".join(key.split("|")[:4])) or lane_by_sel.get(key)
+        o["_lane"] = lane_for(key, o)
         o["clv"] = None
 
     say("")
