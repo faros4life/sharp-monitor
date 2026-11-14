@@ -1,0 +1,84 @@
+name: clv-fixture-repair
+
+# Narrowly scoped stale-fixture repair (Peter, Nov 14 2026, explicit GO for three named rows).
+#
+# Dry run by default. Applying requires BOTH apply=1 AND the explicit id allowlist, so nothing
+# can be repaired that was not first named and verified. The script independently establishes the
+# correct fixture against every fixture store we hold and refuses unless it is UNIQUE and
+# demonstrably produces a close at the bet's own line.
+#
+# Does not change MAX_TRIES, the retirement logic or any global retry limit. Does not reset
+# tries, so the reopened row gets exactly ONE attempt before the existing guard retires it again.
+# Writes no CLV, price or result. Preserves the stale id and the stored reason on the record and
+# in a timestamped audit file.
+#
+# Zero OddsPapi credits: fixtures and Pinnacle history both come from what is already on disk.
+# No live betting change, no order, no eligibility change.
+
+on:
+  workflow_dispatch:
+    inputs:
+      apply:
+        description: "1 = write the change. Anything else = dry run."
+        default: "0"
+        required: false
+      ids:
+        description: "Comma-separated allowlist of ledger row ids (required)"
+        default: ""
+        required: false
+      expect:
+        description: "Exact number of eligible rows required before applying (0 = no check)"
+        default: "0"
+        required: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: clv-ledger          # never run while the ledger is writing the same state
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Restore shared OddsPapi history cache (restore only, never saved)
+        uses: actions/cache/restore@v4
+        with:
+          path: hcache
+          key: hcache-${{ github.run_id }}
+          restore-keys: hcache-
+      - name: Stale fixture repair
+        env:
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          REPAIR_APPLY: ${{ inputs.apply }}
+          REPAIR_IDS: ${{ inputs.ids }}
+          REPAIR_EXPECT: ${{ inputs.expect || '0' }}
+          EMAIL_NOW: "1"
+        run: python -u clv_fixture_repair.py
+      - name: Commit the repaired state and its audit record
+        if: ${{ inputs.apply == '1' }}
+        run: |
+          if [ -n "$(git status --porcelain clv)" ]; then
+            git config user.name "clv-fixture-repair"
+            git config user.email "clv-fixture-repair@users.noreply.github.com"
+            rm -rf "$RUNNER_TEMP/out" && mkdir -p "$RUNNER_TEMP/out" && cp -r clv "$RUNNER_TEMP/out/"
+            for i in 1 2 3 4 5; do
+              git fetch -q origin main && git reset -q --hard origin/main
+              rm -rf clv && cp -r "$RUNNER_TEMP/out/clv" .
+              git add -A clv
+              git diff --cached --quiet && break
+              git commit -q -m "Repair stale fixture assignments (audited)"
+              git push -q origin HEAD:main && break
+              sleep 5
+            done
+          fi
