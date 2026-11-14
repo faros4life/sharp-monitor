@@ -251,6 +251,28 @@ src = open("clv_dashboard.py").read()
 check("no live call site passes a bare unit without a confirmed set",
       "blk(day, unit)" not in src and "blk(rows, unit)" not in src and "blk(sel, LANE_UNIT" not in src)
 
+print("15. Phase 1 'rule|' keys attribute only on the registry's own source evidence")
+import clv_coverage as _cov
+def _lf(key, source):
+    reg = {"orders": [{"key": key, "source": source, "decided_utc": "2026-11-12T20:00:00Z"}]}
+    return _cov.build_lane_resolver(reg)("NBA|a+b|total|OVER", {"game_start": "2026-11-13T00:00:00Z"})
+check("rule| with source=rules -> rules (Phase 1)", _lf("rule|NBA|a+b|total|OVER", "rules") == "rules")
+check("rule| with a contradicting source -> UNKNOWN", _lf("rule|NBA|a+b|total|OVER", "board") is None)
+check("rule| with no source -> UNKNOWN, prefix alone is not evidence", _lf("rule|NBA|a+b|total|OVER", None) is None)
+check("board| still resolves to board", _lf("board|NBA|a+b|total|OVER", "board") == "board")
+
+print("16. Band D lists all 32 registered entries; attribution only where evidenced")
+ents = dash.parse_registry_md()
+check("REGISTRY.md parses to exactly 32 entries", len(ents) == 32, len(ents))
+check("numbers 1..32 each appear once", sorted(e["num"] for e in ents) == list(range(1, 33)))
+check("only entries 1 and 8 carry a written lane mapping", sorted(dash.REGISTERED_LANE) == [1, 8])
+check("every mapping cites its evidence", all(len(v[1]) > 40 for v in dash.REGISTERED_LANE.values()))
+check("the page renders UNKNOWN for unmapped entries", "UNKNOWN" in dash.PAGE and "D.registered" in dash.PAGE)
+check("the INCOMPLETE disclaimer is gone only because all 32 are listed",
+      "INCOMPLETE" not in open("clv_dashboard.py").read().split('bands["D_triggers"]')[1][:1200])
+check("a missing REGISTRY.md fails to an empty list, not an invented one",
+      dash.parse_registry_md("/nonexistent/REGISTRY.md") == [])
+
 print()
 if fails:
     print(f"FAILED {len(fails)}: " + "; ".join(fails))

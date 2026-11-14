@@ -70,6 +70,33 @@ def ci95(mean, se):
     return [round(100 * (mean - 1.96 * se), 2), round(100 * (mean + 1.96 * se), 2)]
 
 
+# Registry entry -> (dashboard lane, written evidence). Only entries a written source ties to a lane.
+REGISTERED_LANE = {
+    1: ("rules", "REGISTRY.md #1 is LANE 1; executor.py documents source 'rules' IS Phase 1 IS Lane 1, "
+                 "and the registry's own order source field says 'rules'."),
+    8: ("lane2", "REGISTRY.md: 'Lane 2 (8) is the LOW-limit sharp-alert lane in lane2.py'; "
+                 "orders carry the lane2 key prefix."),
+}
+
+
+def parse_registry_md(path="REGISTRY.md"):
+    """The numbered entries of REGISTRY.md with their class (section heading). Fails to []."""
+    import re
+    out, cls = [], None
+    try:
+        for ln in open(path, encoding="utf-8"):
+            h = re.match(r"^## (\w+)", ln)
+            if h:
+                cls = h.group(1)
+            m = re.match(r"^\|\s*(\d+)\s*\|\s*\*\*(.+?)\*\*\s*\|\s*(.*?)\s*\|\s*$", ln)
+            if m:
+                out.append({"num": int(m.group(1)), "name": m.group(2), "class": cls or "?",
+                            "definition": m.group(3)[:160]})
+    except OSError:
+        return []
+    return out
+
+
 _RES = {"W": "W", "WIN": "W", "WON": "W", "L": "L", "LOSS": "L", "LOST": "L",
         "P": "P", "PUSH": "P", "VOID": "P"}
 
@@ -466,12 +493,32 @@ def build():
             h1, h2, _ = csel.halves(sel)
             trig.append({"lane": LANE_NAME.get(lane, lane), "trigger": f"{lg}",
                          "live": True, "whole": fbt(sel), "h1": fbt(h1), "h2": fbt(h2)})
-    bands["D_triggers"] = {"live": trig, "collapsed_by_default": True,
-                           "registered_total": 32,
-                           "note": ("INCOMPLETE: only live-lane selections grouped by league are shown. The "
-                                    "32 registered entries (REGISTRY.md) are NOT itemized here yet: "
-                                    "that needs each selection mapped to its registered trigger by "
-                                    "verified evidence. Their frozen status is in SCORECARD.md.")}
+    # All 32 REGISTERED entries, parsed from REGISTRY.md (the authority; if the code and the file
+    # disagree the file wins). Attribution is VERIFIED only where a written source ties the entry
+    # to a lane the resolver can prove. Everything else is UNKNOWN: no CLV-ledger selection carries
+    # a trigger field, so nothing in the data says which entry produced it.
+    lane_by = {L["lane"]: L for L in lanes}
+    reg_entries = []
+    for e in parse_registry_md():
+        ln = REGISTERED_LANE.get(e["num"])
+        if ln and ln[0] in lane_by:
+            L = lane_by[ln[0]]
+            e.update(attribution="VERIFIED", lane=L["name"], evidence=ln[1],
+                     whole=L["cumulative"], h1=L["h1"], h2=L["h2"])
+        else:
+            e.update(attribution="UNKNOWN", lane=None,
+                     evidence="No CLV-ledger selection is tagged with this entry; mapping not provable.")
+        reg_entries.append(e)
+    n_ver = sum(1 for e in reg_entries if e["attribution"] == "VERIFIED")
+    bands["D_triggers"] = {"live": trig, "registered": reg_entries, "collapsed_by_default": True,
+                           "registered_total": len(reg_entries), "attributed": n_ver,
+                           "complete": len(reg_entries) == 32,
+                           "note": (f"All {len(reg_entries)} registered entries are listed (REGISTRY.md). "
+                                    f"Figures are attributed for {n_ver} by verified evidence; the other "
+                                    f"{len(reg_entries) - n_ver} show UNKNOWN because the CLV ledger carries "
+                                    "no trigger tag for them. Nothing is attributed on a guess. The "
+                                    "'lanes with no registry entry' rows below are live lanes (R1, Board "
+                                    "v3) that REGISTRY.md does not name. Frozen status: SCORECARD.md.")}
 
     # ---- E: the pricing-model change
     allrows = [o for rows in by_lane.values() for o in rows]
@@ -634,7 +681,9 @@ function render(d){const B=d.bands;let h='';
    return '<tr><td>'+esc(c.clause)+'</td><td class="'+cc+'">'+esc(c.state)+'</td><td>'+esc(c.detail)+'</td></tr>';}).join('')+'</table></details>';});
  h+='</div>';
  const D=B.D_triggers;h+='<h2>D &middot; Triggers</h2><div class="card"><p class="sub">'+esc(D.note)+'</p><details><summary>'+
-  D.live.length+' live trigger row(s) &mdash; expand</summary><table><tr><th>lane</th><th>trigger</th><th>whole</th><th>H1</th><th>H2</th></tr>'+
+  D.registered.length+' registered entries ('+D.attributed+' attributed, rest UNKNOWN) &mdash; expand</summary><table><tr><th>#</th><th>entry</th><th>class</th><th>attribution</th><th>whole</th><th>H1</th><th>H2</th></tr>'+
+  D.registered.map(t=>'<tr><td>'+t.num+'</td><td>'+esc(t.name)+'</td><td>'+esc(t.class)+'</td><td>'+(t.attribution==='VERIFIED'?'<span class="ok">VERIFIED &rarr; '+esc(t.lane)+'</span>':'<span class="warn">UNKNOWN</span>')+'</td><td>'+(t.whole?fig(t.whole):'<span class="mut">&ndash;</span>')+'</td><td>'+(t.h1?fig(t.h1):'<span class="mut">&ndash;</span>')+'</td><td>'+(t.h2?fig(t.h2):'<span class="mut">&ndash;</span>')+'</td></tr>').join('')+
+  '</table></details><details><summary>'+D.live.length+' live lane rows by league (including lanes with no registry entry) &mdash; expand</summary><table><tr><th>lane</th><th>league</th><th>whole</th><th>H1</th><th>H2</th></tr>'+
   D.live.map(t=>'<tr><td>'+esc(t.lane)+'</td><td>'+esc(t.trigger)+'</td><td>'+fig(t.whole)+'</td><td>'+fig(t.h1)+'</td><td>'+fig(t.h2)+'</td></tr>').join('')+
   '</table></details></div>';
  const E=B.E_change;h+='<h2>E &middot; '+esc(E.label)+'</h2><div class="card"><table>'+TH+
@@ -778,7 +827,8 @@ def main():
     print(f"dashboard: {view['selections_total']} selections | data {A['overall']} | "
           f"lanes {len(view['bands']['B_lanes']['lanes'])} | "
           f"unassigned {view['bands']['B_lanes']['unassigned_n']} | "
-          f"triggers {len(view['bands']['D_triggers']['live'])} | "
+          f"registered {view['bands']['D_triggers']['registered_total']} "
+          f"({view['bands']['D_triggers']['attributed']} attributed, rest UNKNOWN) | "
           f"candidates {len(view['bands']['F_research']['candidates'])} | "
           f"page {len(html)} bytes | email {mail}", flush=True)
     return 0

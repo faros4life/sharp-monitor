@@ -191,6 +191,12 @@ def build_lane_resolver(reg):
     reg_rows = []
     for o in ((reg or {}).get("orders") or []):
         parts = [p for p in str(o.get("key") or "").split("|") if p]
+        # Phase 1 plays are stamped "rule|" (executor.py: play_key="rule|"+k) but the lane is
+        # named "rules". 14 Nov: the dashboard found 0 Phase 1 selections because "rule" is not a
+        # LANE_UNIT name. The alias is accepted ONLY when the registry order's own source field
+        # says "rules" - the prefix alone is never evidence (Peter: verify, do not infer).
+        if parts and parts[0] == "rule" and o.get("source") == "rules":
+            parts = ["rules"] + parts[1:]
         lane = parts[0] if (parts and parts[0] in LANE_UNIT) else (o.get("source") or "")
         rest = parts[1:] if (parts and parts[0] in LANE_UNIT) else parts
         if lane not in LANE_UNIT or len(rest) < 4:

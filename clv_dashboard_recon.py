@@ -187,6 +187,17 @@ for o in orders:
 for (pre, src, lo), n in sorted(ev.items()):
     print(f"     prefix={pre:<10} source={src:<8} live_order.lane={lo:<8} orders={n}")
 
+print("11. Band D: all 32 registered entries, attribution only where evidenced")
+D = B["D_triggers"]
+ck("32 registered entries listed", D["registered_total"] == 32 and len(D["registered"]) == 32)
+ck("every UNKNOWN entry carries no figures", all(e["attribution"] == "VERIFIED" or "whole" not in e
+                                                  for e in D["registered"]))
+ck("verified entries are exactly the written mappings",
+   sorted(e["num"] for e in D["registered"] if e["attribution"] == "VERIFIED") ==
+   sorted(n for n in dash.REGISTERED_LANE if dash.REGISTERED_LANE[n][0] in
+          {L["lane"] for L in B["B_lanes"]["lanes"]}))
+print(f"     attributed {D['attributed']} of {D['registered_total']}; the rest UNKNOWN")
+
 print()
 print("RECONCILED" if not bad else f"{len(bad)} MISMATCH(ES): {bad}")
 raise SystemExit(1 if bad else 0)
