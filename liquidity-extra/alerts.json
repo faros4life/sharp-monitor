@@ -52,9 +52,9 @@
     "volume_fp": 411.72
    },
    "ex_stats_close": {
-    "open_interest_fp": 15815.97,
-    "volume_24h_fp": 15257.17,
-    "volume_fp": 15823.849999999999
+    "open_interest_fp": 16345.86,
+    "volume_24h_fp": 15809.38,
+    "volume_fp": 16353.740000000002
    },
    "ex_stats_first": {
     "open_interest_fp": 15255.509999999998,
@@ -112,6 +112,8 @@
    "norm_ready_books": 3,
    "paper_only": false,
    "price": 0.52,
+   "price_after_15m": 0.52,
+   "price_after_15m_book": "novig",
    "price_american": -108,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.52,
@@ -177,7 +179,8 @@
      "price": -110
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-14T01:49:55Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAMBGAME-26NOV13STANUNLV-STAN"
@@ -197,6 +200,7 @@
    "size_x": 2.89,
    "start_source": "odds",
    "start_utc": "2026-11-14T02:00:00Z",
+   "still_actionable": true,
    "surge_books": [
     "kalshi",
     "novig",
@@ -261,9 +265,9 @@
     "volume_fp": 5000.11
    },
    "ex_stats_close": {
-    "open_interest_fp": 175686.61,
-    "volume_24h_fp": 182264.01,
-    "volume_fp": 186671.63
+    "open_interest_fp": 196605.11,
+    "volume_24h_fp": 201940.66,
+    "volume_fp": 208824.83
    },
    "ex_stats_first": {
     "open_interest_fp": 158171.82,
@@ -462,9 +466,9 @@
     "volume_fp": 4406.64
    },
    "ex_stats_close": {
-    "open_interest_fp": 18592.09,
-    "volume_24h_fp": 18954.2,
-    "volume_fp": 18982.2
+    "open_interest_fp": 18866.95,
+    "volume_24h_fp": 19140.93,
+    "volume_fp": 19257.06
    },
    "ex_stats_first": {
     "open_interest_fp": 13836.38,
@@ -1020,9 +1024,9 @@
     "volume_fp": 413.98
    },
    "ex_stats_close": {
-    "open_interest_fp": 15815.97,
-    "volume_24h_fp": 15257.17,
-    "volume_fp": 15823.849999999999
+    "open_interest_fp": 16345.86,
+    "volume_24h_fp": 15809.38,
+    "volume_fp": 16353.740000000002
    },
    "ex_stats_first": {
     "open_interest_fp": 9771.68,
@@ -1230,9 +1234,9 @@
     "volume_fp": 1296.78
    },
    "ex_stats_close": {
-    "open_interest_fp": 175686.61,
-    "volume_24h_fp": 182264.01,
-    "volume_fp": 186671.63
+    "open_interest_fp": 196605.11,
+    "volume_24h_fp": 201940.66,
+    "volume_fp": 208824.83
    },
    "ex_stats_first": {
     "open_interest_fp": 48149.520000000004,
@@ -2433,9 +2437,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 68794.58,
-    "volume_24h_fp": 89294.71,
-    "volume_fp": 90127.5
+    "open_interest_fp": 70138.6,
+    "volume_24h_fp": 90069.25,
+    "volume_fp": 91471.51999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 23237.440000000002,
@@ -3767,9 +3771,9 @@
     "volume_fp": 223.62
    },
    "ex_stats_close": {
-    "open_interest_fp": 2192.59,
-    "volume_24h_fp": 2221.26,
-    "volume_fp": 2240.26
+    "open_interest_fp": 2207.12,
+    "volume_24h_fp": 2222.62,
+    "volume_fp": 2254.79
    },
    "ex_stats_first": {
     "open_interest_fp": 194.32000000000002,
@@ -4165,6 +4169,7 @@
     "volume_fp": 6997.66
    },
    "fade_price": 0.42,
+   "fade_units": 1.29,
    "first_seen_utc": "2026-11-13T14:40:23Z",
    "game": "Pittsburgh vs Butler",
    "game_surge_books": [],
@@ -4283,12 +4288,13 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAMBGAME-26NOV13PITTBUT-BUT"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 2,
+   "settle_tries": 3,
+   "settled_utc": "2026-11-14T01:49:55Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Butler",
@@ -4306,7 +4312,7 @@
     "Butler"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-13T14:40:23Z",
@@ -4874,8 +4880,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.61,
-   "clv_cents": 0.0,
+   "close_price": 0.62,
+   "clv_cents": 1.0,
    "confirmed_after_min": 26,
    "date": "2026-11-13",
    "depth_by_book": {
@@ -4912,9 +4918,9 @@
     "volume_fp": 11.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 68052.01,
-    "volume_24h_fp": 66906.1,
-    "volume_fp": 72522.93
+    "open_interest_fp": 68781.26,
+    "volume_24h_fp": 67199.54000000001,
+    "volume_fp": 73252.18
    },
    "ex_stats_first": {
     "open_interest_fp": 7963.4400000000005,
@@ -6403,7 +6409,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 77,
+   "settle_tries": 78,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Fritz",
