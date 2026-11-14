@@ -1,6 +1,109 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-14T21:45:40Z",
+   "base_depth": 19100,
+   "best_price": 0.6855,
+   "best_price_american": -218,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.67,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-14",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 8870,
+     "new_this_side": 30877,
+     "other_side": 3481,
+     "other_side_all_levels": 23762,
+     "ratio": 0.8,
+     "this_side": 2708,
+     "this_side_all_levels": 47208
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 7757.83,
+    "volume_24h_fp": 11850.24,
+    "volume_fp": 12071.11
+   },
+   "ex_stats_change": {
+    "open_interest_fp": -2.59,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 131.47
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 7760.42,
+    "volume_24h_fp": 11850.24,
+    "volume_fp": 11939.64
+   },
+   "fade_price": 0.34,
+   "first_seen_utc": "2026-11-14T21:40:14Z",
+   "game": "Alcorn St. vs Southern University",
+   "game_surge_books": [],
+   "game_x": 1.41,
+   "key": "kalshi|KXNCAAFGAME-26NOV14ALCNSOU|ml|1",
+   "lead_min": 74,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 30877,
+   "new_x": 0.29,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 7757.83,
+      "volume_24h_fp": 11850.24,
+      "volume_fp": 12071.11
+     },
+     "game_normal": 33377,
+     "game_x": 1.41,
+     "normal": 105029,
+     "now": 47208,
+     "type": "ML",
+     "x": 0.45
+    }
+   },
+   "norm_ready_books": 1,
+   "paper_only": false,
+   "price": 0.67,
+   "price_american": -203,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.67,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26NOV14ALCNSOU-SOU"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Southern University",
+   "side_label": "Southern University",
+   "size_x": 0.45,
+   "start_source": "kalshi",
+   "start_utc": "2026-11-14T23:00:00Z",
+   "surge_books": [],
+   "teams": [
+    "Alcorn St.",
+    "Southern University"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-14T21:35:38Z",
    "base_depth": 288691,
    "best_price": 0.515,
@@ -14,8 +117,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": -1.0,
+   "close_price": 0.49,
+   "clv_cents": -2.0,
    "confirmed_after_min": 5,
    "date": "2026-11-14",
    "depth_by_book": {
@@ -54,7 +157,7 @@
    "ex_stats_close": {
     "open_interest_fp": 152215.24,
     "volume_24h_fp": 67752.31,
-    "volume_fp": 153858.52
+    "volume_fp": 153887.5
    },
    "ex_stats_first": {
     "open_interest_fp": 40099.29,
@@ -183,7 +286,8 @@
      "price": -112
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-14T21:45:40Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFTOTAL-26NOV14BAYBYU-50"
@@ -268,9 +372,9 @@
     "volume_fp": 21928.27
    },
    "ex_stats_close": {
-    "open_interest_fp": 2505070.3,
+    "open_interest_fp": 2531328.3,
     "volume_24h_fp": 1804553.4100000001,
-    "volume_fp": 2749832.91
+    "volume_fp": 2776680.12
    },
    "ex_stats_first": {
     "open_interest_fp": 2454777.29,
@@ -443,8 +547,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.71,
-   "clv_cents": 2.0,
+   "close_price": 0.73,
+   "clv_cents": 4.0,
    "confirmed_after_min": 5,
    "date": "2026-11-14",
    "depth_by_book": {
@@ -469,9 +573,9 @@
     "volume_fp": 976.5
    },
    "ex_stats_close": {
-    "open_interest_fp": 25586.87,
+    "open_interest_fp": 25939.940000000002,
     "volume_24h_fp": 17389.71,
-    "volume_fp": 28074.9
+    "volume_fp": 28578.559999999998
    },
    "ex_stats_first": {
     "open_interest_fp": 24519.54,
@@ -584,9 +688,9 @@
     "volume_fp": 4353.24
    },
    "ex_stats_close": {
-    "open_interest_fp": 44305.12,
+    "open_interest_fp": 44390.240000000005,
     "volume_24h_fp": 38647.87,
-    "volume_fp": 44466.98
+    "volume_fp": 44646.880000000005
    },
    "ex_stats_first": {
     "open_interest_fp": 34929.11,
@@ -773,9 +877,9 @@
     "volume_fp": 1972.81
    },
    "ex_stats_close": {
-    "open_interest_fp": 32574.26,
+    "open_interest_fp": 32728.84,
     "volume_24h_fp": 35822.39,
-    "volume_fp": 42392.7
+    "volume_fp": 42547.28
    },
    "ex_stats_first": {
     "open_interest_fp": 29887.26,
@@ -824,6 +928,8 @@
    "norm_ready_books": 2,
    "paper_only": false,
    "price": 0.52,
+   "price_after_15m": 0.515,
+   "price_after_15m_book": "novig",
    "price_american": -108,
    "price_rule": "ok",
    "price_when_first_seen": 0.52,
@@ -910,6 +1016,7 @@
    "size_x": 64.52,
    "start_source": "odds",
    "start_utc": "2026-11-14T22:30:00Z",
+   "still_actionable": true,
    "surge_books": [
     "kalshi",
     "novig"
@@ -971,8 +1078,8 @@
     "volume": 116797.0
    },
    "ex_stats_close": {
-    "openInterest": 19913165.0,
-    "volume": 28649471.0
+    "openInterest": 20090939.0,
+    "volume": 28847245.0
    },
    "ex_stats_first": {
     "openInterest": 19099961.0,
@@ -1375,9 +1482,9 @@
     "volume_fp": 878.63
    },
    "ex_stats_close": {
-    "open_interest_fp": 426266.45999999996,
+    "open_interest_fp": 428405.63,
     "volume_24h_fp": 448795.89,
-    "volume_fp": 581889.0700000001
+    "volume_fp": 584028.24
    },
    "ex_stats_first": {
     "open_interest_fp": 408812.11,
@@ -1573,9 +1680,9 @@
     "volume_fp": 256.52
    },
    "ex_stats_close": {
-    "open_interest_fp": 32283.73,
+    "open_interest_fp": 32786.96,
     "volume_24h_fp": 27945.17,
-    "volume_fp": 35184.86
+    "volume_fp": 35688.09
    },
    "ex_stats_first": {
     "open_interest_fp": 28700.86,
@@ -1789,9 +1896,9 @@
     "volume_fp": 612.55
    },
    "ex_stats_close": {
-    "open_interest_fp": 181119.42,
+    "open_interest_fp": 183193.5,
     "volume_24h_fp": 204742.14,
-    "volume_fp": 228584.15
+    "volume_fp": 230658.22999999998
    },
    "ex_stats_first": {
     "open_interest_fp": 167919.75,
@@ -2007,9 +2114,9 @@
     "volume_fp": 55.73
    },
    "ex_stats_close": {
-    "open_interest_fp": 44305.12,
+    "open_interest_fp": 44390.240000000005,
     "volume_24h_fp": 38647.87,
-    "volume_fp": 44466.98
+    "volume_fp": 44646.880000000005
    },
    "ex_stats_first": {
     "open_interest_fp": 11481.16,
@@ -2206,8 +2313,8 @@
     "volume": 16459.0
    },
    "ex_stats_close": {
-    "openInterest": 2612301.0,
-    "volume": 3341900.0
+    "openInterest": 2614436.0,
+    "volume": 3344035.0
    },
    "ex_stats_first": {
     "openInterest": 2298215.0,
@@ -2387,9 +2494,9 @@
     "volume_fp": 1824.43
    },
    "ex_stats_close": {
-    "open_interest_fp": 86595.09,
+    "open_interest_fp": 87439.58,
     "volume_24h_fp": 52223.57,
-    "volume_fp": 92105.76
+    "volume_fp": 93006.64
    },
    "ex_stats_first": {
     "open_interest_fp": 78262.77,
@@ -2548,8 +2655,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.57,
-   "clv_cents": 0.0,
+   "close_price": 0.58,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-14",
    "depth_by_book": {
@@ -2586,9 +2693,9 @@
     "volume_fp": 2891.52
    },
    "ex_stats_close": {
-    "open_interest_fp": 326175.35,
+    "open_interest_fp": 460489.73,
     "volume_24h_fp": 323912.03,
-    "volume_fp": 330541.62
+    "volume_fp": 465008.52999999997
    },
    "ex_stats_first": {
     "open_interest_fp": 133824.87,
@@ -2804,9 +2911,9 @@
     "volume_fp": 8.37
    },
    "ex_stats_close": {
-    "open_interest_fp": 2649.01,
+    "open_interest_fp": 2701.48,
     "volume_24h_fp": 2547.41,
-    "volume_fp": 2962.95
+    "volume_fp": 3015.42
    },
    "ex_stats_first": {
     "open_interest_fp": 2066.91,
@@ -4251,9 +4358,9 @@
     "volume_fp": 471.92
    },
    "ex_stats_close": {
-    "open_interest_fp": 145692.69,
+    "open_interest_fp": 148854.17,
     "volume_24h_fp": 142030.11000000002,
-    "volume_fp": 147632.79
+    "volume_fp": 150836.69
    },
    "ex_stats_first": {
     "open_interest_fp": 123513.08,
@@ -4467,9 +4574,9 @@
     "volume_fp": 1711.69
    },
    "ex_stats_close": {
-    "open_interest_fp": 1464567.9000000001,
+    "open_interest_fp": 1468898.41,
     "volume_24h_fp": 673099.79,
-    "volume_fp": 1549948.49
+    "volume_fp": 1554279.0
    },
    "ex_stats_first": {
     "open_interest_fp": 1238275.47,
@@ -4743,7 +4850,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Tennessee Tech",
@@ -4894,7 +5001,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 6,
+   "settle_tries": 7,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Western Illinois",
@@ -6438,7 +6545,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 6,
+   "settle_tries": 7,
    "sharp_agree": [
     "TCU Horned Frogs -12.5 (-115)",
     "TCU Horned Frogs -11.5 (-110)"
@@ -8402,10 +8509,12 @@
     "volume_fp": 106383.25
    },
    "fade_price": 0.5,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-14T16:05:48Z",
    "game": "East Carolina vs Charlotte: Spread",
    "game_surge_books": [],
    "game_x": 1.13,
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFSPREAD-26NOV14ECUCHAR-ECU11\"}",
    "lead_min": 110,
    "league": "NCAAF",
@@ -8503,12 +8612,13 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFSPREAD-26NOV14ECUCHAR-ECU11"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 13,
+   "settle_tries": 14,
+   "settled_utc": "2026-11-14T21:45:40Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Charlotte",
@@ -8525,7 +8635,7 @@
     "Charlotte"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.9
   },
   {
    "alerted_utc": "2026-11-14T16:10:13Z",
@@ -10036,7 +10146,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "East Tennessee St.",
@@ -12374,10 +12484,12 @@
     "volume_fp": 12650.3
    },
    "fade_price": 0.51,
+   "fade_units": 0.9,
    "first_seen_utc": "2026-11-14T13:10:14Z",
    "game": "East Carolina vs Charlotte: Total Points",
    "game_surge_books": [],
    "game_x": 1.47,
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFTOTAL-26NOV14ECUCHAR-46\"}",
    "lead_min": 286,
    "league": "NCAAF",
@@ -12487,12 +12599,13 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFTOTAL-26NOV14ECUCHAR-46"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 13,
+   "settle_tries": 14,
+   "settled_utc": "2026-11-14T21:45:40Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -12510,7 +12623,7 @@
     "Charlotte"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-14T13:14:29Z",
@@ -13468,10 +13581,12 @@
     "volume_fp": 12650.3
    },
    "fade_price": 0.5,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-14T10:05:37Z",
    "game": "East Carolina vs Charlotte: Total Points",
    "game_surge_books": [],
    "game_x": 1.26,
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFTOTAL-26NOV14ECUCHAR-46\"}",
    "lead_min": 470,
    "league": "NCAAF",
@@ -13582,12 +13697,13 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFTOTAL-26NOV14ECUCHAR-46"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 13,
+   "settle_tries": 14,
+   "settled_utc": "2026-11-14T21:45:40Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -13604,7 +13720,7 @@
     "Charlotte"
    ],
    "top25": false,
-   "units_flat": null
+   "units_flat": 0.98
   },
   {
    "alerted_utc": "2026-11-14T10:10:12Z",
@@ -13870,7 +13986,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 6,
+   "settle_tries": 7,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Austin Peay",
@@ -14322,7 +14438,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 6,
+   "settle_tries": 7,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Southeast Missouri St.",
@@ -14453,7 +14569,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 6,
+   "settle_tries": 7,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "St. Thomas",
@@ -14894,7 +15010,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 6,
+   "settle_tries": 7,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "North Alabama",
@@ -15028,7 +15144,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "South Carolina St.",
@@ -15313,7 +15429,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 6,
+   "settle_tries": 7,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Lehigh",
@@ -15526,7 +15642,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 6,
+   "settle_tries": 7,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Kennesaw St.",
@@ -16567,7 +16683,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 6,
+   "settle_tries": 7,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "South Dakota",
@@ -16714,7 +16830,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 6,
+   "settle_tries": 7,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Campbell",
@@ -18445,7 +18561,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 19,
+   "settle_tries": 20,
    "sharp_agree": [
     "Over 50.5 (-106)"
    ],
@@ -21307,7 +21423,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 6,
+   "settle_tries": 7,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Rice",
@@ -22973,7 +23089,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 19,
+   "settle_tries": 20,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Auburn",
@@ -28328,7 +28444,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 19,
+   "settle_tries": 20,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Youngstown St.",
