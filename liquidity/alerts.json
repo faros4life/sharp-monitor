@@ -1,6 +1,211 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-14T20:55:44Z",
+   "base_depth": 120514,
+   "best_price": 0.645,
+   "best_price_american": -182,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.645,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 6,
+   "date": "2026-11-14",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "LSU",
+     "price": 0.65,
+     "this_side": 3742340
+    },
+    "novig": {
+     "new_other_side": -416,
+     "new_this_side": 29951,
+     "other_side": 65524,
+     "other_side_all_levels": 69083,
+     "ratio": 2.2,
+     "this_side": 142361,
+     "this_side_all_levels": 150420
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "LSU",
+     "price": 0.6503,
+     "this_side": 23476
+    }
+   },
+   "ex_stats_alert": {
+    "openInterest": 19099961.0,
+    "volume": 27330204.0
+   },
+   "ex_stats_change": {
+    "openInterest": 0.0,
+    "volume": 8764.0
+   },
+   "ex_stats_first": {
+    "openInterest": 19099961.0,
+    "volume": 27321440.0
+   },
+   "fade_price": 0.365,
+   "first_seen_utc": "2026-11-14T20:50:13Z",
+   "game": "Texas @ LSU",
+   "game_surge_books": [],
+   "game_x": 1.37,
+   "key": "novig|{\"market_id\": \"01a1af50-10a3-7a23-8f17-e361a4ab4620\", \"outcome_id\": \"01a1af50-10a3-7a23-8f17-e377b5797b49\"}",
+   "lead_min": 214,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 29951,
+   "new_x": 1.55,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 2278159.61,
+      "volume_24h_fp": 1545402.17,
+      "volume_fp": 2504828.4
+     },
+     "game_normal": 5626808,
+     "game_x": 0.84,
+     "normal": 90306,
+     "now": 4706237,
+     "type": "ML",
+     "x": 52.11
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 19099961.0,
+      "volume": 27330204.0
+     },
+     "game_normal": 110135,
+     "game_x": 1.37,
+     "normal": 19265,
+     "now": 150420,
+     "type": "ML",
+     "x": 7.81
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 26692,
+     "game_x": 1.07,
+     "normal": 3146,
+     "now": 28693,
+     "type": "ML",
+     "x": 9.12
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.645,
+   "price_american": -182,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.645,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -200
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -200
+    },
+    "betopenly": {
+     "point": null,
+     "price": -187
+    },
+    "betrivers": {
+     "point": null,
+     "price": -195
+    },
+    "betus": {
+     "point": null,
+     "price": -200
+    },
+    "bovada": {
+     "point": null,
+     "price": -205
+    },
+    "draftkings": {
+     "point": null,
+     "price": -205
+    },
+    "fanatics": {
+     "point": null,
+     "price": -205
+    },
+    "fanduel": {
+     "point": null,
+     "price": -192
+    },
+    "kalshi": {
+     "point": null,
+     "price": -186
+    },
+    "lowvig": {
+     "point": null,
+     "price": -200
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -210
+    },
+    "novig": {
+     "point": null,
+     "price": -182
+    },
+    "polymarket": {
+     "point": null,
+     "price": -186
+    },
+    "prophetx": {
+     "point": null,
+     "price": -186
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -200
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a1af50-10a3-7a23-8f17-e361a4ab4620",
+    "outcome_id": "01a1af50-10a3-7a23-8f17-e377b5797b49"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi",
+    "prophetx"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "LSU",
+   "side_label": "LSU (0)",
+   "size_x": 7.81,
+   "start_source": "odds",
+   "start_utc": "2026-11-15T00:30:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "teams": [
+    "Texas",
+    "LSU"
+   ],
+   "top25": true,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-14T20:45:37Z",
    "base_depth": 29081,
    "best_price": 0.58,
@@ -239,9 +444,9 @@
     "volume_fp": 878.63
    },
    "ex_stats_close": {
-    "open_interest_fp": 410671.31,
+    "open_interest_fp": 412903.94999999995,
     "volume_24h_fp": 353837.97,
-    "volume_fp": 485788.96
+    "volume_fp": 528201.57
    },
    "ex_stats_first": {
     "open_interest_fp": 408812.11,
@@ -434,9 +639,9 @@
     "volume_fp": 256.52
    },
    "ex_stats_close": {
-    "open_interest_fp": 28931.86,
+    "open_interest_fp": 29100.85,
     "volume_24h_fp": 24381.49,
-    "volume_fp": 31351.04
+    "volume_fp": 31521.600000000002
    },
    "ex_stats_first": {
     "open_interest_fp": 28700.86,
@@ -647,9 +852,9 @@
     "volume_fp": 612.55
    },
    "ex_stats_close": {
-    "open_interest_fp": 170460.25,
+    "open_interest_fp": 171747.41,
     "volume_24h_fp": 194090.55000000002,
-    "volume_fp": 217690.90000000002
+    "volume_fp": 219076.78999999998
    },
    "ex_stats_first": {
     "open_interest_fp": 167919.75,
@@ -862,9 +1067,9 @@
     "volume_fp": 55.73
    },
    "ex_stats_close": {
-    "open_interest_fp": 11561.9,
+    "open_interest_fp": 11694.32,
     "volume_24h_fp": 5776.81,
-    "volume_fp": 11615.619999999999
+    "volume_fp": 11748.04
    },
    "ex_stats_first": {
     "open_interest_fp": 11481.16,
@@ -1033,8 +1238,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.515,
-   "clv_cents": -0.5,
+   "close_price": 0.52,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-11-14",
    "depth_by_book": {
@@ -1057,8 +1262,8 @@
     "volume": 16459.0
    },
    "ex_stats_close": {
-    "openInterest": 2371744.0,
-    "volume": 3075770.0
+    "openInterest": 2412897.0,
+    "volume": 3116923.0
    },
    "ex_stats_first": {
     "openInterest": 2298215.0,
@@ -1095,6 +1300,8 @@
    "norm_ready_books": 1,
    "paper_only": false,
    "price": 0.52,
+   "price_after_15m": 0.52,
+   "price_after_15m_book": "novig",
    "price_american": -108,
    "price_rule": "ok",
    "price_when_first_seen": 0.52,
@@ -1179,6 +1386,7 @@
    "size_x": 5.56,
    "start_source": "odds",
    "start_utc": "2026-11-14T23:00:00Z",
+   "still_actionable": true,
    "surge_books": [
     "novig"
    ],
@@ -1235,9 +1443,9 @@
     "volume_fp": 1824.43
    },
    "ex_stats_close": {
-    "open_interest_fp": 80887.75,
+    "open_interest_fp": 81112.63,
     "volume_24h_fp": 46766.54,
-    "volume_fp": 86172.97
+    "volume_fp": 86397.85
    },
    "ex_stats_first": {
     "open_interest_fp": 78262.77,
@@ -1286,6 +1494,8 @@
    "norm_ready_books": 2,
    "paper_only": false,
    "price": 0.51,
+   "price_after_15m": 0.5,
+   "price_after_15m_book": "novig",
    "price_american": -104,
    "price_rule": "ok",
    "price_when_first_seen": 0.51,
@@ -1368,6 +1578,7 @@
    "size_x": 26.05,
    "start_source": "odds",
    "start_utc": "2026-11-15T02:30:00Z",
+   "still_actionable": true,
    "surge_books": [
     "kalshi",
     "novig"
@@ -1431,9 +1642,9 @@
     "volume_fp": 2891.52
    },
    "ex_stats_close": {
-    "open_interest_fp": 138579.8,
+    "open_interest_fp": 141582.62,
     "volume_24h_fp": 134458.69,
-    "volume_fp": 141083.34999999998
+    "volume_fp": 144086.17
    },
    "ex_stats_first": {
     "open_interest_fp": 133824.87,
@@ -1491,6 +1702,8 @@
    "norm_ready_books": 3,
    "paper_only": false,
    "price": 0.57,
+   "price_after_15m": 0.575,
+   "price_after_15m_book": "novig",
    "price_american": -133,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.57,
@@ -1582,6 +1795,7 @@
    "size_x": 13.94,
    "start_source": "odds",
    "start_utc": "2026-11-14T22:30:00Z",
+   "still_actionable": false,
    "surge_books": [
     "kalshi",
     "novig",
@@ -1646,9 +1860,9 @@
     "volume_fp": 8.37
    },
    "ex_stats_close": {
-    "open_interest_fp": 2085.69,
+    "open_interest_fp": 2105.24,
     "volume_24h_fp": 1866.8899999999999,
-    "volume_fp": 2287.82
+    "volume_fp": 2307.37
    },
    "ex_stats_first": {
     "open_interest_fp": 2066.91,
@@ -1706,6 +1920,8 @@
    "norm_ready_books": 3,
    "paper_only": false,
    "price": 0.43,
+   "price_after_15m": 0.425,
+   "price_after_15m_book": "novig",
    "price_american": 133,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.43,
@@ -1794,6 +2010,7 @@
    "size_x": 6.05,
    "start_source": "odds",
    "start_utc": "2026-11-15T00:00:00Z",
+   "still_actionable": true,
    "surge_books": [
     "kalshi",
     "novig",
@@ -2173,9 +2390,9 @@
     "volume_fp": 657.01
    },
    "ex_stats_close": {
-    "open_interest_fp": 50844.54,
+    "open_interest_fp": 52529.490000000005,
     "volume_24h_fp": 44450.64,
-    "volume_fp": 53001.74
+    "volume_fp": 54709.399999999994
    },
    "ex_stats_first": {
     "open_interest_fp": 42844.69,
@@ -3089,9 +3306,9 @@
     "volume_fp": 471.92
    },
    "ex_stats_close": {
-    "open_interest_fp": 126974.98000000001,
+    "open_interest_fp": 129118.44,
     "volume_24h_fp": 123760.25,
-    "volume_fp": 128908.20999999999
+    "volume_fp": 131051.67
    },
    "ex_stats_first": {
     "open_interest_fp": 123513.08,
@@ -3305,9 +3522,9 @@
     "volume_fp": 1711.69
    },
    "ex_stats_close": {
-    "open_interest_fp": 1264670.86,
+    "open_interest_fp": 1266292.7000000002,
     "volume_24h_fp": 635182.81,
-    "volume_fp": 1279947.41
+    "volume_fp": 1281576.22
    },
    "ex_stats_first": {
     "open_interest_fp": 1238275.47,
@@ -4075,7 +4292,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Bethune",
@@ -4426,7 +4643,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -4747,7 +4964,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 8,
+   "settle_tries": 9,
    "sharp_agree": [],
    "sharp_oppose": [
     "Vanderbilt Commodores +14.5 (-105)",
@@ -5075,7 +5292,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -5396,7 +5613,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Chattanooga",
@@ -6145,7 +6362,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Temple",
@@ -6686,7 +6903,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Arkansas St.",
@@ -7014,7 +7231,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -7321,7 +7538,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Charlotte",
@@ -7458,7 +7675,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Bucknell",
@@ -8172,7 +8389,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Colgate",
@@ -8288,7 +8505,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Furman",
@@ -8840,7 +9057,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "East Tennessee St.",
@@ -9218,7 +9435,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Coastal Carolina",
@@ -9368,7 +9585,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Grambling St.",
@@ -9515,7 +9732,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Furman",
@@ -9895,7 +10112,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UAB",
@@ -10821,7 +11038,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 10,
+   "settle_tries": 11,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "VMI",
@@ -11086,7 +11303,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Dartmouth",
@@ -11280,7 +11497,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -12375,7 +12592,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -12506,7 +12723,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "William & Mary",
@@ -12850,7 +13067,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [
     "Over 51.5 (-110)"
@@ -12985,7 +13202,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Stony Brook",
@@ -13363,7 +13580,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "New Hampshire",
@@ -13801,7 +14018,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "South Carolina St.",
@@ -13934,7 +14151,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Indiana St.",
@@ -14791,7 +15008,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "North Carolina A&T",
@@ -14824,6 +15041,7 @@
     "novig",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.96,
    "clv_cents": 12.0,
    "confirmed_after_min": 5,
@@ -15201,7 +15419,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Colgate",
@@ -17205,7 +17423,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 13,
+   "settle_tries": 14,
    "sharp_agree": [
     "Over 50.5 (-106)"
    ],
@@ -21732,7 +21950,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 13,
+   "settle_tries": 14,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Auburn",
@@ -27087,7 +27305,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 13,
+   "settle_tries": 14,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Youngstown St.",
