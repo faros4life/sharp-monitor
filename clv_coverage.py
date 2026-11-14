@@ -89,8 +89,15 @@ def classify_missing(r, st, alt, hc_has):
                                                 "not comparable", "far from")):
         return "policy", str(r.get("why"))[:60]
     lg = s.get("league")
+    if not lg:
+        # A row with NO league recorded is our own data gap, not a limit of what the market
+        # published - nothing was ever asked of OddsPapi for it. The first version of this
+        # classifier filed these under "market" and they are the single largest bucket (103 rows,
+        # almost all ProphetX), which made the shortfall look like a coverage problem in leagues
+        # we do not buy. It is a missing field on our side and it is ours to fix.
+        return "pipeline", "no league recorded on the row - nothing was ever looked up for it"
     if lg not in cl.SPORT:
-        return "market", f"league {lg or 'unknown'} not covered by the ledger's sport map"
+        return "market", f"league {lg} not covered by the ledger's sport map"
     fid = r.get("fixture") or cl.find_fixture(st, s)
     if fid:
         if not hc_has(fid):
