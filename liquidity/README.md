@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 14, 2:35 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 26.
+Updated Sat Nov 14, 2:40 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 26.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -39,7 +39,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 13 6:30PM | NCAAF | Illinois vs UCLA: Spread | spread: NOT UCLA wins by over 10.5 points | kalshi | $335k | -108 | ✅ novig,prophetx |  | +1.0c |  | W |
 | Nov 13 6:25PM | NBA | Cleveland vs Miami: Total Points | total: NOT Over 236.5 points | kalshi | $27k | -113 |  |  | +1.0c |  | L |
 | Nov 13 6:15PM | NBA | Golden State vs San Antonio: Spread | spread: NOT San Antonio wins by over 12.5 points | kalshi | $56k | -104 | ✅ novig | ❌ | -2.0c | yes | L |
-| Nov 13 5:50PM | NCAAF | Tulane @ Rice | moneyline: RICE (0) | novig | $25k | -135 | ✅ prophetx |  | +2.5c | yes | pending |
+| Nov 13 5:50PM | NCAAF | Tulane @ Rice | moneyline: RICE (0) | novig | $25k | -135 | ✅ prophetx |  | +3.0c | yes | pending |
 | Nov 13 5:45PM | NBA | New York vs Indiana: Total Points | total: NOT Over 219.5 points | kalshi | $102k | -104 | ✅ prophetx | ✅ | +3.0c | yes | W |
 | Nov 13 5:45PM | NBA | Atlanta vs Chicago: Total Points | total: NOT Over 246.5 points | kalshi | $29k | -108 |  |  | -1.0c |  | W |
 | Nov 13 5:35PM | NCAAF | Florida St. vs Pittsburgh: Spread | spread: NOT Pittsburgh wins by over 3.5 points | kalshi | $87k | -117 | ✅ novig | ✅ | +0.0c | yes | W |
