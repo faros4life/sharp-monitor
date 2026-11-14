@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 14, 9:00 AM ET. This run: 2 new, 0 not confirmed, 3 pending. Open alerts: 25.
+Updated Sat Nov 14, 9:10 AM ET. This run: 3 new, 0 not confirmed, 0 pending. Open alerts: 28.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,7 +10,10 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 14 9:00AM | NCAAB | UT Rio Grande Valley vs UT Arlington | moneyline: UT Arlington | kalshi | $42k | -186 |  |  | +0.0c |  | pending |
+| Nov 14 9:10AM | NCAAB | St. Thomas vs Army: Spread | spread: NOT St. Thomas wins by over 7.5 points | kalshi | $34k | +104 |  |  | +0.0c |  | pending |
+| Nov 14 9:10AM | NCAAB | West Georgia vs Charleston Southern | moneyline: Charleston Southern | kalshi | $40k | -186 |  |  | +0.0c |  | pending |
+| Nov 14 9:10AM | NCAAB | Central Michigan vs Northern Kentucky | moneyline: Northern Kentucky | kalshi | $80k | -163 | ✅ novig |  | +0.0c |  | pending |
+| Nov 14 9:00AM | NCAAB | UT Rio Grande Valley vs UT Arlington | moneyline: UT Arlington | kalshi | $42k | -186 |  |  | +1.0c |  | pending |
 | Nov 14 9:00AM | NCAAB | Cincinnati vs Dayton | moneyline: Cincinnati | kalshi | $58k | -257 | ✅ novig |  | +0.0c |  | pending |
 | Nov 14 8:30AM | NCAAB | Northwestern St. vs Little Rock | moneyline: Little Rock | kalshi | $29k | -400 |  |  | +0.0c | yes | pending |
 | Nov 14 7:40AM | NCAAB | South Alabama vs North Texas | moneyline: North Texas | kalshi | $68k | -376 |  | ✅ | +0.0c |  | pending |
@@ -24,8 +27,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 14 1:50AM | NCAAB | Northern Colorado vs South Dakota St. | moneyline: South Dakota St. | kalshi | $33k | -163 |  |  | +0.0c | yes | pending |
 | Nov 14 1:50AM | NCAAB | USC Upstate vs Campbell | moneyline: Campbell | kalshi | $33k | -300 |  |  | +4.0c |  | pending |
 | Nov 14 1:50AM | NCAAB | Rice vs Stephen F. Austin | moneyline: Stephen F. Austin | kalshi | $38k | -488 |  |  | +3.0c |  | pending |
-| Nov 14 1:50AM | NCAAB | Miami (OH) vs Evansville | moneyline: Miami (OH) | kalshi | $27k | -355 |  |  | +0.0c |  | pending |
-| Nov 14 1:50AM | NCAAB | Longwood vs Old Dominion | moneyline: Old Dominion | kalshi | $38k | -285 |  |  | +3.0c |  | pending |
+| Nov 14 1:50AM | NCAAB | Miami (OH) vs Evansville | moneyline: Miami (OH) | kalshi | $27k | -355 |  |  | +2.0c |  | pending |
+| Nov 14 1:50AM | NCAAB | Longwood vs Old Dominion | moneyline: Old Dominion | kalshi | $38k | -285 |  |  | +2.0c |  | pending |
 | Nov 14 1:50AM | NCAAB | Jackson St. vs Winthrop | moneyline: Winthrop | kalshi | $31k | -317 |  |  | +0.0c |  | pending |
 | Nov 13 10:20PM | NCAAB | LSU vs Gonzaga | moneyline: Gonzaga | kalshi | $32k | -213 |  |  | +0.0c |  | pending |
 | Nov 13 10:10PM | NCAAB | Wyoming vs Denver | moneyline: Wyoming | kalshi | $26k | -300 |  |  | +0.0c |  | pending |
@@ -207,6 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 5 1:20AM | TENNIS | Pridankina vs Shubladze | moneyline: Shubladze | kalshi | $135k | -203 |  |  | +3.0c | yes | W |
 | Nov 5 1:20AM | NCAAB | Michigan vs UConn | moneyline: UConn | kalshi | $42k | -257 |  |  | +1.0c | yes | W |
 | Nov 5 1:10AM | NCAAB | NJIT vs Iona | moneyline: Iona | kalshi | $42k | -456 |  |  | +0.0c | yes | W |
-| Nov 5 1:10AM | NCAAB | Maine vs Sacred Heart | moneyline: Sacred Heart | kalshi | $36k | -245 |  |  | -2.0c | yes | L |
-| Nov 5 1:10AM | NCAAB | UMass Lowell vs Merrimack | moneyline: Merrimack | kalshi | $39k | -300 |  |  | +5.0c | yes | L |
-| Nov 5 1:10AM | NCAAB | Howard vs Alcorn St. | moneyline: Howard | kalshi | $37k | -285 |  |  | +6.0c | yes | W |

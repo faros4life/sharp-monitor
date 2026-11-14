@@ -1,8 +1,183 @@
 {
  "alerts": [
   {
-   "alerted_utc": "2026-11-14T14:00:24Z",
-   "base_depth": 67357,
+   "alerted_utc": "2026-11-14T14:10:24Z",
+   "base_depth": 27740,
+   "best_price": 0.5001,
+   "best_price_american": -100,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.49,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-14",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 7825,
+     "new_this_side": 34050,
+     "other_side": 6072,
+     "other_side_all_levels": 26711,
+     "ratio": 1.7,
+     "this_side": 10364,
+     "this_side_all_levels": 63967
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Army +7.5 (+7.5)",
+     "price": 0.495,
+     "this_side": 371
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 3216.67,
+    "volume_24h_fp": 3323.42,
+    "volume_fp": 3323.42
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 3216.67,
+    "volume_24h_fp": 3323.42,
+    "volume_fp": 3323.42
+   },
+   "fade_price": 0.52,
+   "first_seen_utc": "2026-11-14T14:00:24Z",
+   "game": "St. Thomas vs Army: Spread",
+   "game_surge_books": [
+    "kalshi"
+   ],
+   "game_x": 2.42,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAMBSPREAD-26NOV14USTARMY-UST8\"}",
+   "lead_min": 230,
+   "league": "NCAAB",
+   "line": 7.5,
+   "market": "spread",
+   "new_money": 34050,
+   "new_x": 3.38,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 3216.67,
+      "volume_24h_fp": 3323.42,
+      "volume_fp": 3323.42
+     },
+     "game_normal": 26396,
+     "game_x": 2.42,
+     "normal": 10065,
+     "now": 63967,
+     "type": "SPREAD",
+     "x": 6.36
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 388,
+     "game_x": 1.48,
+     "normal": 340,
+     "now": 576,
+     "type": "SPREAD",
+     "x": 1.7
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.49,
+   "price_american": 104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.49,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 8.5,
+     "price": -118
+    },
+    "betonlineag": {
+     "point": 7.5,
+     "price": -105
+    },
+    "betrivers": {
+     "point": 7.5,
+     "price": -105
+    },
+    "bovada": {
+     "point": 8.5,
+     "price": -115
+    },
+    "draftkings": {
+     "point": 8.5,
+     "price": -115
+    },
+    "fanatics": {
+     "point": 8.0,
+     "price": -105
+    },
+    "fanduel": {
+     "point": 8.5,
+     "price": -114
+    },
+    "kalshi": {
+     "point": 7.5,
+     "price": 104
+    },
+    "lowvig": {
+     "point": 7.5,
+     "price": -101
+    },
+    "novig": {
+     "point": -13.5,
+     "price": -8991
+    },
+    "polymarket": {
+     "point": 8.5,
+     "price": -117
+    },
+    "prophetx": {
+     "point": 8.5,
+     "price": -111
+    },
+    "williamhill_us": {
+     "point": 8.5,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAMBSPREAD-26NOV14USTARMY-UST8"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Army",
+   "side_label": "NOT St. Thomas wins by over 7.5 points",
+   "size_x": 6.36,
+   "start_source": "odds",
+   "start_utc": "2026-11-14T18:00:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "St. Thomas",
+    "Army"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-14T14:10:24Z",
+   "base_depth": 94708,
    "best_price": 0.6659,
    "best_price_american": -199,
    "best_price_book": "kalshi",
@@ -16,6 +191,376 @@
    ],
    "close_price": 0.65,
    "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-14",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 5531,
+     "new_this_side": 39783,
+     "other_side": 9327,
+     "other_side_all_levels": 62522,
+     "ratio": 6.9,
+     "this_side": 64618,
+     "this_side_all_levels": 139128
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Charleston Southern",
+     "price": 0.6622,
+     "this_side": 1094
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 113.55,
+    "volume_24h_fp": 103.55,
+    "volume_fp": 113.55
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 2.0,
+    "volume_24h_fp": 5.5,
+    "volume_fp": 2.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 111.55,
+    "volume_24h_fp": 98.05,
+    "volume_fp": 111.55
+   },
+   "fade_price": 0.35,
+   "first_seen_utc": "2026-11-14T14:00:24Z",
+   "game": "West Georgia vs Charleston Southern",
+   "game_surge_books": [
+    "kalshi",
+    "prophetx"
+   ],
+   "game_x": 2.77,
+   "key": "kalshi|KXNCAAMBGAME-26NOV14UWGACHSO|ml|1",
+   "lead_min": 590,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 39783,
+   "new_x": 0.94,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 113.55,
+      "volume_24h_fp": 103.55,
+      "volume_fp": 113.55
+     },
+     "game_normal": 50189,
+     "game_x": 2.77,
+     "normal": 42445,
+     "now": 139128,
+     "type": "ML",
+     "x": 3.28
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 526,
+     "game_x": 2.1,
+     "normal": 531,
+     "now": 1104,
+     "type": "ML",
+     "x": 2.08
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.65,
+   "price_american": -186,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.65,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -210
+    },
+    "betrivers": {
+     "point": null,
+     "price": -225
+    },
+    "bovada": {
+     "point": null,
+     "price": -195
+    },
+    "draftkings": {
+     "point": null,
+     "price": -198
+    },
+    "fanatics": {
+     "point": null,
+     "price": -195
+    },
+    "fanduel": {
+     "point": null,
+     "price": -205
+    },
+    "kalshi": {
+     "point": null,
+     "price": -194
+    },
+    "novig": {
+     "point": null,
+     "price": -194
+    },
+    "polymarket": {
+     "point": null,
+     "price": -203
+    },
+    "prophetx": {
+     "point": null,
+     "price": -196
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -205
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV14UWGACHSO-CHSO"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Charleston Southern",
+   "side_label": "Charleston Southern",
+   "size_x": 3.28,
+   "start_source": "odds",
+   "start_utc": "2026-11-15T00:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "prophetx"
+   ],
+   "teams": [
+    "West Georgia",
+    "Charleston Southern"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-14T14:10:24Z",
+   "base_depth": 132872,
+   "best_price": 0.63,
+   "best_price_american": -170,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.62,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-14",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 12732,
+     "new_this_side": 80259,
+     "other_side": 33512,
+     "other_side_all_levels": 99690,
+     "ratio": 2.0,
+     "this_side": 66816,
+     "this_side_all_levels": 210236
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "NKU (0)",
+     "price": 0.63,
+     "this_side": 12627
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Northern Kentucky",
+     "price": 0.6324,
+     "this_side": 2069
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 10116.96,
+    "volume_24h_fp": 10102.1,
+    "volume_fp": 10116.96
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 10116.96,
+    "volume_24h_fp": 10102.1,
+    "volume_fp": 10116.96
+   },
+   "fade_price": 0.38,
+   "first_seen_utc": "2026-11-14T14:00:24Z",
+   "game": "Central Michigan vs Northern Kentucky",
+   "game_surge_books": [
+    "novig"
+   ],
+   "game_x": 1.84,
+   "key": "kalshi|KXNCAAMBGAME-26NOV14CMUNKU|ml|1",
+   "lead_min": 380,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 80259,
+   "new_x": 1.89,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 10116.96,
+      "volume_24h_fp": 10102.1,
+      "volume_fp": 10116.96
+     },
+     "game_normal": 114413,
+     "game_x": 1.84,
+     "normal": 42445,
+     "now": 210236,
+     "type": "ML",
+     "x": 4.95
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 770966.0,
+      "volume": 777168.0
+     },
+     "game_normal": 11295,
+     "game_x": 2.41,
+     "normal": 2911,
+     "now": 27249,
+     "type": "ML",
+     "x": 9.36
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 1759,
+     "game_x": 1.39,
+     "normal": 531,
+     "now": 2446,
+     "type": "ML",
+     "x": 4.61
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.62,
+   "price_american": -163,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.62,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -175
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -170
+    },
+    "betrivers": {
+     "point": null,
+     "price": -177
+    },
+    "betus": {
+     "point": null,
+     "price": -170
+    },
+    "bovada": {
+     "point": null,
+     "price": -170
+    },
+    "draftkings": {
+     "point": null,
+     "price": -175
+    },
+    "fanatics": {
+     "point": null,
+     "price": -170
+    },
+    "fanduel": {
+     "point": null,
+     "price": -170
+    },
+    "kalshi": {
+     "point": null,
+     "price": -163
+    },
+    "lowvig": {
+     "point": null,
+     "price": -170
+    },
+    "novig": {
+     "point": null,
+     "price": -170
+    },
+    "polymarket": {
+     "point": null,
+     "price": -178
+    },
+    "prophetx": {
+     "point": null,
+     "price": -172
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -175
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV14CMUNKU-NKU"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Northern Kentucky",
+   "side_label": "Northern Kentucky",
+   "size_x": 4.95,
+   "start_source": "odds",
+   "start_utc": "2026-11-14T20:30:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "teams": [
+    "Central Michigan",
+    "Northern Kentucky"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-14T14:00:24Z",
+   "base_depth": 67357,
+   "best_price": 0.6659,
+   "best_price_american": -199,
+   "best_price_book": "kalshi",
+   "bid_improved": true,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.66,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-14",
    "depth_by_book": {
@@ -44,6 +589,11 @@
     "open_interest_fp": 0.0,
     "volume_24h_fp": 27.0,
     "volume_fp": 0.0
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 189.64,
+    "volume_24h_fp": 189.64,
+    "volume_fp": 189.64
    },
    "ex_stats_first": {
     "open_interest_fp": 89.64,
@@ -217,6 +767,11 @@
     "open_interest_fp": 230.0,
     "volume_24h_fp": 230.0,
     "volume_fp": 230.0
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 749.0400000000001,
+    "volume_24h_fp": 580.84,
+    "volume_fp": 751.0400000000001
    },
    "ex_stats_first": {
     "open_interest_fp": 519.04,
@@ -418,9 +973,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 75.23,
-    "volume_24h_fp": 75.23,
-    "volume_fp": 75.23
+    "open_interest_fp": 76.46,
+    "volume_24h_fp": 76.46,
+    "volume_fp": 76.46
    },
    "ex_stats_first": {
     "open_interest_fp": 75.23,
@@ -2023,9 +2578,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 559.9,
-    "volume_24h_fp": 480.84,
-    "volume_fp": 620.9000000000001
+    "open_interest_fp": 4871.1,
+    "volume_24h_fp": 4792.040000000001,
+    "volume_fp": 4932.1
    },
    "ex_stats_first": {
     "open_interest_fp": 243.03,
@@ -2208,7 +2763,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 87.45,
-    "volume_24h_fp": 31.8,
+    "volume_24h_fp": 36.11,
     "volume_fp": 87.45
    },
    "ex_stats_first": {
@@ -2501,8 +3056,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.78,
-   "clv_cents": 0.0,
+   "close_price": 0.8,
+   "clv_cents": 2.0,
    "confirmed_after_min": 10,
    "date": "2026-11-14",
    "depth_by_book": {
@@ -2676,8 +3231,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.77,
-   "clv_cents": 3.0,
+   "close_price": 0.76,
+   "clv_cents": 2.0,
    "confirmed_after_min": 10,
    "date": "2026-11-14",
    "depth_by_book": {
@@ -3054,9 +3609,9 @@
     "volume_fp": 14.58
    },
    "ex_stats_close": {
-    "open_interest_fp": 13173.89,
-    "volume_24h_fp": 11567.279999999999,
-    "volume_fp": 13597.36
+    "open_interest_fp": 13208.24,
+    "volume_24h_fp": 11581.66,
+    "volume_fp": 13631.71
    },
    "ex_stats_first": {
     "open_interest_fp": 8622.69,
@@ -3623,7 +4178,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 702.11,
-    "volume_24h_fp": 580.73,
+    "volume_24h_fp": 713.25,
     "volume_fp": 714.29
    },
    "ex_stats_first": {
@@ -4401,9 +4956,9 @@
     "volume_fp": 225.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 25998.879999999997,
-    "volume_24h_fp": 26148.73,
-    "volume_fp": 26158.199999999997
+    "open_interest_fp": 26504.2,
+    "volume_24h_fp": 26560.7,
+    "volume_fp": 26663.52
    },
    "ex_stats_first": {
     "open_interest_fp": 18653.79,
@@ -10246,7 +10801,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 151,
+   "settle_tries": 152,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Fritz",
