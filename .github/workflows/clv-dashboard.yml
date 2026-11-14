@@ -1,0 +1,114 @@
+name: clv-dashboard
+
+# Peter, 14 Nov 2026: the approved six-band daily dashboard.
+#
+# ZERO PAID CREDITS, BY CONSTRUCTION, NOT BY CARE: no ODDSPAPI key is passed to this job at all,
+# so no billable OddsPapi call is possible even if a code path tried one. Everything is read from
+# committed artifacts, clv/state.enc, tracker/state.enc and the private registry.
+#
+# PRIVACY: this repo is PUBLIC with Pages enabled, so the page's entire payload is a single
+# AES-GCM ciphertext under the EXISTING TRACKER_PASSPHRASE (no new credential), decrypted in the
+# browser. Counts, units and percentages only - no balances, no currency stakes, no account
+# identifiers, no order ids.
+#
+# SCHEDULE: 09:12 UTC = 04:12 ET, after the night's settlement and after clv-ledger has had the
+# evening to score it. The minute is off the hour deliberately: the repo's own note is that runs
+# on minute 0 queue behind everything else.
+#
+# ONE EMAIL PER ET DAY, enforced in clv_dashboard.send_email by a committed marker checked before
+# the send and written after it, so a retry or a manual dispatch cannot send a second copy.
+
+on:
+  schedule:
+    - cron: "12 9 * * *"
+  workflow_dispatch:
+    inputs:
+      email:
+        description: "1 to send the daily summary (duplicate-protected), 0 to build the page only"
+        required: false
+        type: string
+        default: "1"
+      email_force:
+        description: "1 to send even if today's summary already went out (testing only)"
+        required: false
+        type: string
+        default: ""
+
+permissions:
+  contents: write     # only to commit dash/
+
+concurrency:
+  group: clv-dashboard
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Restore shared OddsPapi history cache (restore only, never saved)
+        uses: actions/cache/restore@v4
+        with:
+          path: hcache
+          key: hcache-${{ github.run_id }}
+          restore-keys: hcache-
+      - name: Build the dashboard
+        env:
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+          PMUS_REGISTRY_TOKEN: ${{ secrets.PMUS_REGISTRY_TOKEN }}
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          DASH_EMAIL: ${{ inputs.email || '1' }}
+          DASH_EMAIL_FORCE: ${{ inputs.email_force }}
+          DASH_URL: https://faros4life.github.io/sharp-monitor/dash/
+        run: python -u clv_dashboard.py
+      - name: Commit the page
+        run: |
+          git config user.name "clv-dashboard"
+          git config user.email "actions@users.noreply.github.com"
+          for i in 1 2 3 4 5; do
+            git fetch -q origin main
+            rm -rf "$RUNNER_TEMP/dash" && cp -r dash "$RUNNER_TEMP/dash"
+            git reset -q --hard origin/main
+            rm -rf dash && cp -r "$RUNNER_TEMP/dash" dash
+            git add -A dash
+            git diff --cached --quiet && break
+            git commit -q -m "dashboard $(date -u +%Y-%m-%d)"
+            git push -q origin HEAD:main && break
+            sleep 5
+          done
+      - name: Guard - the payload is encrypted and nothing else was modified
+        run: |
+          # A readable payload on a PUBLIC repo is the one failure that cannot be walked back once
+          # pushed, so it is checked on every run rather than trusted to the code.
+          python - <<'PY'
+          import json, re, sys
+          h = open("dash/index.html").read()
+          m = re.search(r"let BLOB=(\{.*?\});", h, re.S)
+          assert m, "FAIL: no encrypted blob in the page"
+          b = json.loads(m.group(1))
+          assert set(("s", "i", "c", "n")) <= set(b), f"FAIL: blob is not AES-GCM shaped: {list(b)}"
+          assert len(b["c"]) > 200, "FAIL: ciphertext implausibly short"
+          # The page must carry no plaintext data: band values, league names, lane names.
+          for bad in ("PHASE 1", "BOARD V3", "clv\":", "selections_total", "VERIFIED_PINNACLE"):
+              assert bad not in h, f"FAIL: cleartext '{bad}' found in the published page"
+          print(f"guard ok: payload encrypted ({len(b['c'])} b64 chars of ciphertext), no cleartext")
+          PY
+          git status --porcelain -uno -- . ':!dash' > "$RUNNER_TEMP/d" || true
+          if [ -s "$RUNNER_TEMP/d" ]; then
+            echo "FAIL: the dashboard modified tracked files it must not touch:"; cat "$RUNNER_TEMP/d"; exit 1
+          fi
+          echo "clean: clv/, tracker/, liquidity/ and the published scorecard untouched"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: clv-dashboard
+          path: dash/summary.txt
+          if-no-files-found: ignore
+          retention-days: 30
