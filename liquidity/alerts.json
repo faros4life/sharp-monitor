@@ -1,6 +1,310 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-14T10:10:12Z",
+   "base_depth": 134334,
+   "best_price": 0.505,
+   "best_price_american": -102,
+   "best_price_book": "novig",
+   "bid_improved": true,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.51,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-14",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 9348,
+     "new_this_side": 42780,
+     "other_side": 73653,
+     "other_side_all_levels": 149139,
+     "ratio": 0.9,
+     "this_side": 64899,
+     "this_side_all_levels": 168431
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "Under 45.5 (45.5)",
+     "price": 0.505,
+     "this_side": 4446
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 12600.0,
+    "volume_24h_fp": 2737.07,
+    "volume_fp": 12650.3
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 12600.0,
+    "volume_24h_fp": 2737.07,
+    "volume_fp": 12650.3
+   },
+   "fade_price": 0.5,
+   "first_seen_utc": "2026-11-14T10:05:37Z",
+   "game": "East Carolina vs Charlotte: Total Points",
+   "game_surge_books": [],
+   "game_x": 1.26,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFTOTAL-26NOV14ECUCHAR-46\"}",
+   "lead_min": 470,
+   "league": "NCAAF",
+   "line": 45.5,
+   "market": "total",
+   "new_money": 42780,
+   "new_x": 5.04,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 12600.0,
+      "volume_24h_fp": 2737.07,
+      "volume_fp": 12650.3
+     },
+     "game_normal": 133604,
+     "game_x": 1.26,
+     "normal": 8484,
+     "now": 168431,
+     "type": "UNDER",
+     "x": 19.85
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 3907710.0,
+      "volume": 4167265.0
+     },
+     "game_normal": 4887,
+     "game_x": 0.96,
+     "normal": 3593,
+     "now": 4679,
+     "type": "UNDER",
+     "x": 1.3
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.51,
+   "price_american": -104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.51,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 45.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 46.0,
+     "price": -110
+    },
+    "betrivers": {
+     "point": 45.5,
+     "price": -114
+    },
+    "betus": {
+     "point": 45.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": 45.5,
+     "price": -112
+    },
+    "draftkings": {
+     "point": 45.5,
+     "price": -115
+    },
+    "fanatics": {
+     "point": 45.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 45.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": 45.5,
+     "price": -104
+    },
+    "lowvig": {
+     "point": 46.0,
+     "price": -108
+    },
+    "mybookieag": {
+     "point": 45.0,
+     "price": -110
+    },
+    "novig": {
+     "point": 45.5,
+     "price": -102
+    },
+    "polymarket": {
+     "point": 45.5,
+     "price": 100
+    },
+    "prophetx": {
+     "point": 45.5,
+     "price": -101
+    },
+    "williamhill_us": {
+     "point": 45.5,
+     "price": -112
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAFTOTAL-26NOV14ECUCHAR-46"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "NOT Over 45.5 points",
+   "size_x": 19.85,
+   "start_source": "odds",
+   "start_utc": "2026-11-14T18:00:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "East Carolina",
+    "Charlotte"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-14T10:10:12Z",
+   "base_depth": 98494,
+   "best_price": 0.6918,
+   "best_price_american": -224,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.69,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-14",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 7581,
+     "new_this_side": 52372,
+     "other_side": 21347,
+     "other_side_all_levels": 82519,
+     "ratio": 1.6,
+     "this_side": 34692,
+     "this_side_all_levels": 146698
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "William & Mary",
+     "price": 0.6875,
+     "this_side": 621
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 1585.63,
+    "volume_24h_fp": 337.99,
+    "volume_fp": 1732.51
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 1585.63,
+    "volume_24h_fp": 337.99,
+    "volume_fp": 1732.51
+   },
+   "fade_price": 0.32,
+   "first_seen_utc": "2026-11-14T10:05:37Z",
+   "game": "Bucknell vs William & Mary",
+   "game_surge_books": [],
+   "game_x": 1.4,
+   "key": "kalshi|KXNCAAFGAME-26NOV14BUCKWM|ml|1",
+   "lead_min": 470,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 52372,
+   "new_x": 0.75,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 1585.63,
+      "volume_24h_fp": 337.99,
+      "volume_fp": 1732.51
+     },
+     "game_normal": 104470,
+     "game_x": 1.4,
+     "normal": 69799,
+     "now": 146698,
+     "type": "ML",
+     "x": 2.1
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 1311,
+     "game_x": 0.8,
+     "normal": 1023,
+     "now": 1043,
+     "type": "ML",
+     "x": 1.02
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.69,
+   "price_american": -223,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.69,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26NOV14BUCKWM-WM"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "William & Mary",
+   "side_label": "William & Mary",
+   "size_x": 2.1,
+   "start_source": "prophetx",
+   "start_utc": "2026-11-14T18:00:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "Bucknell",
+    "William & Mary"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-14T09:15:43Z",
    "base_depth": 98066,
    "best_price": 0.72,
@@ -1808,7 +2112,7 @@
    },
    "ex_stats_close": {
     "openInterest": 5810695.0,
-    "volume": 10873702.0
+    "volume": 10873821.0
    },
    "ex_stats_first": {
     "openInterest": 5632401.0,
@@ -2958,9 +3262,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1095.0900000000001,
+    "open_interest_fp": 1101.48,
     "volume_24h_fp": 845.67,
-    "volume_fp": 1095.0900000000001
+    "volume_fp": 1101.48
    },
    "ex_stats_first": {
     "open_interest_fp": 511.70000000000005,
@@ -8794,9 +9098,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 182022.6,
+    "open_interest_fp": 182038.6,
     "volume_24h_fp": 175136.14,
-    "volume_fp": 199777.21
+    "volume_fp": 199793.21
    },
    "ex_stats_first": {
     "open_interest_fp": 29945.72,
@@ -11621,9 +11925,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 2378.9300000000003,
+    "open_interest_fp": 2383.9300000000003,
     "volume_24h_fp": 1750.1000000000001,
-    "volume_fp": 3344.04
+    "volume_fp": 3349.04
    },
    "ex_stats_first": {
     "open_interest_fp": 1114.69,
