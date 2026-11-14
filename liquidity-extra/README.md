@@ -1,50 +1,55 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 14, 3:10 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 37.
+Updated Sat Nov 14, 6:00 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 29.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 255-147 (-17.69u flat) | rule met: 48-41
+**Record:** 261-154 (-21.92u flat) | rule met: 48-42
 
-**Fade (paper, betting against the print):** 122-220 (+10.19u flat, after fees)
+**Fade (paper, betting against the print):** 129-226 (+19.90u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 14 1:50PM | NCAAB | Coppin St. vs South Florida: Point Total | total: Over 149.5 points | kalshi | $50k | -100 |  |  | +8.0c | yes | pending |
-| Nov 14 12:30PM | NCAAB | UC Riverside vs Fresno St. | moneyline: UC Riverside | kalshi | $29k | +156 |  |  | +0.0c |  | pending |
+| Nov 14 4:50PM | NCAAB | Utah Valley vs Nevada | moneyline: Nevada | kalshi | $170k | -525 | ✅ novig |  | +0.0c |  | pending |
+| Nov 14 4:50PM | NCAAB | UAB vs Jacksonville St. | moneyline: UAB | kalshi | $86k | -127 | ✅ novig |  | +0.0c |  | pending |
+| Nov 14 4:40PM | NCAAB | Penn vs Saint Joseph's | moneyline: Saint Joseph's | kalshi | $39k | -170 |  |  | +0.0c |  | pending |
+| Nov 14 3:50PM | NCAAB | Southern Utah vs Wake Forest: Spread | spread: NOT Wake Forest wins by over 18.5 points | kalshi | $40k | -104 |  |  | -1.0c | yes | pending |
+| Nov 14 3:40PM | NCAAB | Lipscomb vs Western Carolina | moneyline: Western Carolina | kalshi | $29k | -156 |  | ✅ | +1.0c |  | pending |
+| Nov 14 1:50PM | NCAAB | Coppin St. vs South Florida: Point Total | total: Over 149.5 points | kalshi | $50k | -100 |  |  | +8.0c | yes | L |
+| Nov 14 12:30PM | NCAAB | UC Riverside vs Fresno St. | moneyline: UC Riverside | kalshi | $29k | +156 |  |  | +1.0c | yes | pending |
 | Nov 14 12:10PM | NCAAB | Louisiana Tech vs Nicholls St. | moneyline: Nicholls St. | kalshi | $33k | -104 |  |  | +0.0c | yes | pending |
-| Nov 14 12:00PM | NCAAB | LSU vs Gonzaga: Point Total | total: NOT Over 160.5 points | kalshi | $28k | -100 |  |  | +1.0c |  | pending |
+| Nov 14 12:00PM | NCAAB | LSU vs Gonzaga: Point Total | total: NOT Over 160.5 points | kalshi | $28k | -100 |  |  | +1.0c | yes | L |
 | Nov 14 12:00PM | NCAAB | Manhattan vs Le Moyne | moneyline: Le Moyne | kalshi | $73k | -122 |  |  | +0.0c |  | pending |
 | Nov 14 12:00PM | NCAAB | Drexel vs Maine | moneyline: Drexel | kalshi | $87k | -156 |  |  | +0.0c | yes | W |
 | Nov 14 11:50AM | NCAAB | Portland St. vs San Francisco: Spread | spread: NOT San Francisco wins by over 9.5 points | kalshi | $25k | -108 |  | ✅ | +3.0c |  | pending |
-| Nov 14 11:20AM | NCAAB | Rice vs Stephen F. Austin: Spread | spread: NOT Stephen F. Austin wins by over 8.5 points | kalshi | $28k | +117 |  | ✅ | +2.0c | yes | pending |
-| Nov 14 11:10AM | NCAAB | Hampton vs Navy: Spread | spread: NOT Navy wins by over 1.5 points | kalshi | $28k | -108 |  |  | +1.0c |  | pending |
+| Nov 14 11:20AM | NCAAB | Rice vs Stephen F. Austin: Spread | spread: NOT Stephen F. Austin wins by over 8.5 points | kalshi | $28k | +117 |  | ✅ | +2.0c | yes | W |
+| Nov 14 11:10AM | NCAAB | Hampton vs Navy: Spread | spread: NOT Navy wins by over 1.5 points | kalshi | $28k | -108 |  |  | +2.0c | yes | pending |
 | Nov 14 10:50AM | NCAAB | UAB vs Jacksonville St. | moneyline: Jacksonville St. | kalshi | $29k | +127 |  |  | +0.0c |  | pending |
-| Nov 14 10:00AM | NCAAB | Brown vs Siena: Spread | spread: NOT Siena wins by over 11.5 points | kalshi | $34k | -122 |  |  | +2.0c |  | pending |
+| Nov 14 10:00AM | NCAAB | Brown vs Siena: Spread | spread: NOT Siena wins by over 11.5 points | kalshi | $34k | -122 |  |  | +4.0c |  | pending |
 | Nov 14 9:10AM | NCAAB | St. Thomas vs Army: Spread | spread: NOT St. Thomas wins by over 7.5 points | kalshi | $34k | +104 |  |  | +9.0c |  | W |
-| Nov 14 9:10AM | NCAAB | West Georgia vs Charleston Southern | moneyline: Charleston Southern | kalshi | $40k | -186 |  |  | +2.0c |  | pending |
-| Nov 14 9:10AM | NCAAB | Central Michigan vs Northern Kentucky | moneyline: Northern Kentucky | kalshi | $80k | -163 | ✅ novig |  | -1.0c |  | pending |
+| Nov 14 9:10AM | NCAAB | West Georgia vs Charleston Southern | moneyline: Charleston Southern | kalshi | $40k | -186 |  |  | -2.0c |  | pending |
+| Nov 14 9:10AM | NCAAB | Central Michigan vs Northern Kentucky | moneyline: Northern Kentucky | kalshi | $80k | -163 | ✅ novig |  | -1.0c | yes | L |
 | Nov 14 9:00AM | NCAAB | UT Rio Grande Valley vs UT Arlington | moneyline: UT Arlington | kalshi | $42k | -186 |  |  | +1.0c |  | pending |
 | Nov 14 9:00AM | NCAAB | Cincinnati vs Dayton | moneyline: Cincinnati | kalshi | $58k | -257 | ✅ novig |  | +0.0c |  | pending |
 | Nov 14 8:30AM | NCAAB | Northwestern St. vs Little Rock | moneyline: Little Rock | kalshi | $29k | -400 |  |  | +1.0c | yes | pending |
-| Nov 14 7:40AM | NCAAB | South Alabama vs North Texas | moneyline: North Texas | kalshi | $68k | -376 |  | ✅ | +0.0c |  | pending |
+| Nov 14 7:40AM | NCAAB | South Alabama vs North Texas | moneyline: North Texas | kalshi | $68k | -376 |  | ✅ | +1.0c |  | pending |
 | Nov 14 7:40AM | NCAAB | UMBC vs Towson | moneyline: Towson | kalshi | $46k | -525 |  |  | -1.0c |  | pending |
 | Nov 14 7:40AM | NCAAB | Portland St. vs San Francisco | moneyline: San Francisco | kalshi | $51k | -567 |  |  | -5.0c |  | pending |
 | Nov 14 7:40AM | NCAAB | Howard vs Davidson | moneyline: Davidson | kalshi | $37k | -426 |  |  | +3.0c |  | pending |
 | Nov 14 7:40AM | NCAAB | Brown vs Siena | moneyline: Siena | kalshi | $62k | -567 |  |  | -2.0c |  | pending |
-| Nov 14 7:30AM | NCAAB | Colorado vs Providence | moneyline: Providence | kalshi | $30k | -567 |  |  | +1.0c |  | pending |
+| Nov 14 7:30AM | NCAAB | Colorado vs Providence | moneyline: Providence | kalshi | $30k | -567 |  |  | +0.0c |  | pending |
 | Nov 14 5:40AM | NCAAB | NJIT vs Fairfield | moneyline: Fairfield | kalshi | $26k | -525 |  |  | +3.0c | yes | pending |
-| Nov 14 3:50AM | NCAAB | Wofford vs Queens University | moneyline: Queens University | kalshi | $26k | -300 |  |  | -4.0c | yes | pending |
-| Nov 14 1:50AM | NCAAB | Northern Colorado vs South Dakota St. | moneyline: South Dakota St. | kalshi | $33k | -163 |  |  | -4.0c | yes | pending |
-| Nov 14 1:50AM | NCAAB | USC Upstate vs Campbell | moneyline: Campbell | kalshi | $33k | -300 |  |  | +6.0c |  | pending |
-| Nov 14 1:50AM | NCAAB | Rice vs Stephen F. Austin | moneyline: Stephen F. Austin | kalshi | $38k | -488 |  |  | -1.0c | yes | pending |
-| Nov 14 1:50AM | NCAAB | Miami (OH) vs Evansville | moneyline: Miami (OH) | kalshi | $27k | -355 |  |  | +2.0c | yes | pending |
-| Nov 14 1:50AM | NCAAB | Longwood vs Old Dominion | moneyline: Old Dominion | kalshi | $38k | -285 |  |  | +0.0c |  | pending |
-| Nov 14 1:50AM | NCAAB | Jackson St. vs Winthrop | moneyline: Winthrop | kalshi | $31k | -317 |  |  | +3.0c | yes | pending |
-| Nov 13 10:20PM | NCAAB | LSU vs Gonzaga | moneyline: Gonzaga | kalshi | $32k | -213 |  |  | -1.0c |  | pending |
-| Nov 13 10:10PM | NCAAB | Wyoming vs Denver | moneyline: Wyoming | kalshi | $26k | -300 |  |  | -2.0c |  | pending |
-| Nov 13 10:10PM | NCAAB | Toledo vs Detroit Mercy | moneyline: Toledo | kalshi | $33k | -488 |  |  | +1.0c |  | pending |
-| Nov 13 10:10PM | NCAAB | Loyola Chicago vs Colorado St. | moneyline: Colorado St. | kalshi | $41k | -426 |  |  | -3.0c | yes | pending |
+| Nov 14 3:50AM | NCAAB | Wofford vs Queens University | moneyline: Queens University | kalshi | $26k | -300 |  |  | -4.0c | yes | W |
+| Nov 14 1:50AM | NCAAB | Northern Colorado vs South Dakota St. | moneyline: South Dakota St. | kalshi | $33k | -163 |  |  | -4.0c | yes | W |
+| Nov 14 1:50AM | NCAAB | USC Upstate vs Campbell | moneyline: Campbell | kalshi | $33k | -300 |  |  | +6.0c | yes | pending |
+| Nov 14 1:50AM | NCAAB | Rice vs Stephen F. Austin | moneyline: Stephen F. Austin | kalshi | $38k | -488 |  |  | -1.0c | yes | L |
+| Nov 14 1:50AM | NCAAB | Miami (OH) vs Evansville | moneyline: Miami (OH) | kalshi | $27k | -355 |  |  | +2.0c | yes | W |
+| Nov 14 1:50AM | NCAAB | Longwood vs Old Dominion | moneyline: Old Dominion | kalshi | $38k | -285 |  |  | -1.0c | yes | pending |
+| Nov 14 1:50AM | NCAAB | Jackson St. vs Winthrop | moneyline: Winthrop | kalshi | $31k | -317 |  |  | +3.0c | yes | L |
+| Nov 13 10:20PM | NCAAB | LSU vs Gonzaga | moneyline: Gonzaga | kalshi | $32k | -213 |  |  | -1.0c | yes | L |
+| Nov 13 10:10PM | NCAAB | Wyoming vs Denver | moneyline: Wyoming | kalshi | $26k | -300 |  |  | -2.0c |  | W |
+| Nov 13 10:10PM | NCAAB | Toledo vs Detroit Mercy | moneyline: Toledo | kalshi | $33k | -488 |  |  | +0.0c | yes | W |
+| Nov 13 10:10PM | NCAAB | Loyola Chicago vs Colorado St. | moneyline: Colorado St. | kalshi | $41k | -426 |  |  | -3.0c | yes | L |
 | Nov 13 8:30PM | NCAAB | Stanford vs UNLV | moneyline: Stanford | kalshi | $29k | -108 | ✅ novig,prophetx |  | +0.0c | yes | L |
 | Nov 13 8:20PM | NCAAB | Arizona vs Auburn | moneyline: Arizona | kalshi | $33k | -122 | ✅ novig | ✅ | +0.0c |  | W |
 | Nov 13 7:40PM | NCAAB | UIC vs Saint Mary's: Spread | spread: Saint Mary's wins by over 5.5 points | kalshi | $41k | -122 |  |  | +1.0c | yes | W |
@@ -205,8 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 6 1:00AM | NCAAB | UMass vs Boston College | moneyline: Boston College | kalshi | $45k | -223 |  |  | +22.0c |  | W |
 | Nov 6 12:40AM | TENNIS | Shelton vs Paul | moneyline: Shelton | kalshi | $440k | +117 |  |  | +0.0c |  | W |
 | Nov 5 10:30PM | TENNIS | Sonmez vs Liu | moneyline: Sonmez | kalshi | $46k | +113 |  |  | +1.0c |  | L |
-| Nov 5 10:30PM | NCAAB | Yale vs UCF | moneyline: UCF | kalshi | $43k | -426 |  |  | +1.0c | yes | W |
-| Nov 5 5:10PM | NCAAB | Mercyhurst @ Notre Dame | spread: Mercyh +21.5 (-21.5) | novig | $67k | +102 |  | ❌ | +0.0c |  | L |
-| Nov 5 3:20PM | NCAAB | Tarleton St. vs San Diego | moneyline: San Diego | kalshi | $31k | -223 |  |  | +5.0c |  | W |
-| Nov 5 3:20PM | NCAAB | Robert Morris vs UIC | moneyline: UIC | kalshi | $40k | -567 |  |  | -1.0c | yes | W |
-| Nov 5 3:20PM | NCAAB | North Dakota St. vs San Francisco | moneyline: San Francisco | kalshi | $41k | -317 |  |  | +2.0c |  | W |
