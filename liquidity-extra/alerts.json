@@ -1,6 +1,151 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-14T08:50:19Z",
+   "base_depth": 78922,
+   "best_price": 0.7631,
+   "best_price_american": -322,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.75,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-14",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 5655,
+     "new_this_side": 25720,
+     "other_side": 4779,
+     "other_side_all_levels": 23436,
+     "ratio": 3.5,
+     "this_side": 16596,
+     "this_side_all_levels": 104380
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Queens University",
+     "price": 0.7802,
+     "this_side": 108
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 464.77,
+    "volume_24h_fp": 376.01,
+    "volume_fp": 465.77
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.4,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 464.77,
+    "volume_24h_fp": 375.61,
+    "volume_fp": 465.77
+   },
+   "fade_price": 0.26,
+   "first_seen_utc": "2026-11-14T08:40:25Z",
+   "game": "Wofford vs Queens University",
+   "game_surge_books": [],
+   "game_x": 1.7,
+   "key": "kalshi|KXNCAAMBGAME-26NOV14WOFQUC|ml|1",
+   "lead_min": 610,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 25720,
+   "new_x": 0.67,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 464.77,
+      "volume_24h_fp": 376.01,
+      "volume_fp": 465.77
+     },
+     "game_normal": 61499,
+     "game_x": 1.7,
+     "normal": 38135,
+     "now": 104380,
+     "type": "ML",
+     "x": 2.74
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 75,
+     "game_x": 1.44,
+     "normal": 522,
+     "now": 108,
+     "type": "ML",
+     "x": 0.21
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.75,
+   "price_american": -300,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.75,
+   "prices_by_book": {
+    "betrivers": {
+     "point": null,
+     "price": -335
+    },
+    "bovada": {
+     "point": null,
+     "price": -340
+    },
+    "fanatics": {
+     "point": null,
+     "price": -320
+    },
+    "kalshi": {
+     "point": null,
+     "price": -300
+    },
+    "polymarket": {
+     "point": null,
+     "price": -376
+    },
+    "prophetx": {
+     "point": null,
+     "price": -355
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV14WOFQUC-QUC"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Queens University",
+   "side_label": "Queens University",
+   "size_x": 2.74,
+   "start_source": "odds",
+   "start_utc": "2026-11-14T19:00:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "Wofford",
+    "Queens University"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-14T06:50:18Z",
    "base_depth": 36924,
    "best_price": 0.6343,
@@ -47,7 +192,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 537.51,
-    "volume_24h_fp": 456.97,
+    "volume_24h_fp": 458.45000000000005,
     "volume_fp": 598.51
    },
    "ex_stats_first": {
@@ -230,7 +375,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 80.63,
-    "volume_24h_fp": 28.54,
+    "volume_24h_fp": 29.29,
     "volume_fp": 80.63
    },
    "ex_stats_first": {
@@ -556,7 +701,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 176.16,
-    "volume_24h_fp": 72.85,
+    "volume_24h_fp": 78.85,
     "volume_fp": 176.16
    },
    "ex_stats_first": {
@@ -737,7 +882,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 5.54,
-    "volume_24h_fp": 3.08,
+    "volume_24h_fp": 3.46,
     "volume_fp": 6.58
    },
    "ex_stats_first": {
@@ -1076,9 +1221,9 @@
     "volume_fp": 14.58
    },
    "ex_stats_close": {
-    "open_interest_fp": 12547.349999999999,
-    "volume_24h_fp": 11067.130000000001,
-    "volume_fp": 12785.08
+    "open_interest_fp": 12648.349999999999,
+    "volume_24h_fp": 11168.130000000001,
+    "volume_fp": 12886.08
    },
    "ex_stats_first": {
     "open_interest_fp": 8622.69,
@@ -1645,7 +1790,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 243.53,
-    "volume_24h_fp": 254.38,
+    "volume_24h_fp": 254.67000000000002,
     "volume_fp": 255.71
    },
    "ex_stats_first": {
@@ -8268,7 +8413,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 119,
+   "settle_tries": 120,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Fritz",

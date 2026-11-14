@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 14, 3:40 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 14.
+Updated Sat Nov 14, 3:50 AM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 15.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 14 3:50AM | NCAAB | Wofford vs Queens University | moneyline: Queens University | kalshi | $26k | -300 |  |  | +0.0c |  | pending |
 | Nov 14 1:50AM | NCAAB | Northern Colorado vs South Dakota St. | moneyline: South Dakota St. | kalshi | $33k | -163 |  |  | +0.0c |  | pending |
 | Nov 14 1:50AM | NCAAB | USC Upstate vs Campbell | moneyline: Campbell | kalshi | $33k | -300 |  |  | +1.0c |  | pending |
 | Nov 14 1:50AM | NCAAB | Rice vs Stephen F. Austin | moneyline: Stephen F. Austin | kalshi | $38k | -488 |  |  | +0.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 4 3:40PM | TENNIS | Valentova vs Eala | moneyline: Eala | kalshi | $41k | -170 | ✅ novig |  | +1.0c | yes | W |
 | Nov 4 1:20PM | NCAAB | Northern Kentucky vs South Dakota | moneyline: Northern Kentucky | kalshi | $28k | -138 |  |  | +0.0c |  | W |
 | Nov 4 11:00AM | TENNIS | Tirante vs Struff | moneyline: Struff | kalshi | $27k | -213 |  |  | +0.0c |  | W |
-| Nov 4 7:10AM | TENNIS | Montgomery vs Vandromme | moneyline: Vandromme | kalshi | $44k | -456 |  |  | +5.0c |  | L |
