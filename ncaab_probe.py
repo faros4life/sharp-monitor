@@ -38,6 +38,7 @@ import sys
 from datetime import datetime, timedelta, timezone
 
 import clv_ledger as cl
+import credit_gate as cg
 import tracker_build as tb
 
 ET = tb.ET
@@ -142,6 +143,7 @@ def main():
     say("STEP 1: NCAAB tournament id")
     say("=" * 100)
     before = dict(cl.STATS)
+    before_spend = sum(cg.SPEND.values())
     tid = st.get("ncaab_tid")
     if tid:
         say(f"  already cached in state: {tid} (no call)")
@@ -151,7 +153,9 @@ def main():
     if not tid:
         say("  NO TOURNAMENT ID - OddsPapi returned no non-women USA NCAA basketball tournament")
         say("  with upcoming fixtures. That alone would block Stage 5; reported, not worked around.")
-        say(f"  credits this run: billable {cl.STATS['billable'] - before['billable']}")
+        say(f"  CREDITS SPENT (credit_gate reservations): {sum(cg.SPEND.values()) - before_spend}"
+            f"  | HTTP calls that went out: {cl.STATS['billable'] - before['billable']}")
+        say(f"  by purpose: {dict(cg.SPEND)}")
         return 0
 
     # ---------------------------------------------------------------- fixtures
@@ -170,7 +174,8 @@ def main():
     say(f"  NCAAB fixtures now in the (discarded) copy: {len(ncaab_fx)}")
     if not ncaab_fx:
         say("  NO NCAAB FIXTURES RETURNED for that window - nothing further can be measured.")
-        say(f"  credits this run: billable {cl.STATS['billable'] - before['billable']}")
+        say(f"  CREDITS SPENT (credit_gate reservations): {sum(cg.SPEND.values()) - before_spend}"
+            f"  | HTTP calls that went out: {cl.STATS['billable'] - before['billable']}")
         return 0
 
     # ---------------------------------------------------------------- the four gates
@@ -279,8 +284,13 @@ def main():
     say("")
     say(f"  failure reasons: {dict(tally)}")
     say(f"  history: {hist_calls[0]} from cache, {hist_calls[1]} fetched on the FREE path")
-    say(f"  ADDITIONAL API CREDITS SPENT (billable): {cl.STATS['billable'] - before['billable']}")
-    say(f"  free calls this run: {cl.STATS['free'] - before['free']}")
+    # Report BOTH counters: credit_gate's reservations are what the plan is charged for, and
+    # STATS counts requests that actually went out. They differ when the gate reserves and the
+    # request is then not made, which is exactly what happened on the first probe run.
+    say(f"  ADDITIONAL API CREDITS SPENT (credit_gate): {sum(cg.SPEND.values()) - before_spend}")
+    say(f"  billable HTTP calls that went out:          {cl.STATS['billable'] - before['billable']}")
+    say(f"  free calls this run:                        {cl.STATS['free'] - before['free']}")
+    say(f"  credit_gate by purpose: {dict(cg.SPEND)}")
     if n:
         p = rec / n
         se = (p * (1 - p) / n) ** 0.5

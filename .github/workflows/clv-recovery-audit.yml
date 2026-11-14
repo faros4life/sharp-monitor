@@ -30,6 +30,11 @@ on:
         required: false
         type: string
         default: "1"
+      fallback_only:
+        description: "Optional substring to limit the fallback pass (blank = every missing row)"
+        required: false
+        type: string
+        default: ""
       select:
         description: "Close-evidence patterns, one per line, matched against league|game|bet"
         required: false
@@ -88,6 +93,15 @@ jobs:
           SELECT: ${{ inputs.select }}
           EMAIL_NOW: ${{ inputs.email_now }}
         run: python -u clv_close_evidence.py
+      - name: CLV fallback recovery (read-only; searches every cache, fetches nothing)
+        env:
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          ONLY: ${{ inputs.fallback_only }}
+          EMAIL_NOW: ${{ inputs.email_now }}
+        run: python -u clv_fallback.py
       - name: Prove nothing in the working tree changed
         run: |
           # -uno: TRACKED files only. The restored hcache/ and this job's own audit/ are
