@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 13, 8:00 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 31.
+Updated Fri Nov 13, 8:10 PM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 30.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 237-134 (-17.14u flat) | rule met: 46-38
+**Record:** 237-135 (-18.14u flat) | rule met: 46-39
 
-**Fade (paper, betting against the print):** 109-202 (+10.73u flat, after fees)
+**Fade (paper, betting against the print):** 110-202 (+12.32u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -15,7 +15,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 13 5:50PM | NCAAB | Northern Iowa vs Michigan St.: Point Total | total: Over 154.5 points | kalshi | $27k | -108 |  | ✅ | -1.0c |  | pending |
 | Nov 13 5:50PM | NCAAB | Stanford vs UNLV | moneyline: UNLV | kalshi | $27k | +104 |  |  | +0.0c |  | pending |
 | Nov 13 5:50PM | NCAAB | Arizona vs Auburn | moneyline: Auburn | kalshi | $45k | +127 | ✅ novig | ❌ | +2.0c | yes | pending |
-| Nov 13 5:30PM | NCAAB | Georgetown vs Clemson | moneyline: Clemson | kalshi | $37k | -178 | ✅ novig,prophetx |  | +0.0c |  | pending |
+| Nov 13 5:30PM | NCAAB | Georgetown vs Clemson | moneyline: Clemson | kalshi | $37k | -178 | ✅ novig,prophetx |  | +0.0c |  | L |
 | Nov 13 4:00PM | NCAAB | Northern Iowa vs Michigan St.: Point Total | total: NOT Over 154.5 points | kalshi | $32k | +104 |  | ✅ | +1.0c | yes | pending |
 | Nov 13 4:00PM | NCAAB | Sam Houston vs Illinois: Point Total | total: NOT Over 170.5 points | kalshi | $36k | -108 |  | ✅ | -2.0c | yes | pending |
 | Nov 13 4:00PM | NCAAB | Milwaukee vs TCU: Point Total | total: NOT Over 155.5 points | kalshi | $31k | -104 |  | ✅ | +1.0c | yes | pending |
