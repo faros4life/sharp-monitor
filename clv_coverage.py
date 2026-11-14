@@ -457,6 +457,89 @@ def main():
         say("  an empty list here means 'nothing flagged since the check shipped', not 'audited")
         say("  clean all the way back'.")
 
+    # ---------------------------------------------------------------- dup_of audit
+    say("")
+    say("7. DUP_OF LINK AUDIT - cross-game and cross-league links")
+    say("=" * 104)
+    say("  mark_manual_dups links a note to a venue row on book + stake-to-the-cent + 90 minutes,")
+    say("  with no game or league test. A link that names a different game silently merges two")
+    say("  unrelated bets into one selection and moves one bet's CLV onto another strategy.")
+    links = [(k, b) for k, b in tracker.items() if b.get("dup_of")]
+    bad = []
+    for k, b in links:
+        tgt = tracker.get(b["dup_of"]) or {}
+        if not tgt:
+            bad.append((k, b, tgt, "target not in the tracker"))
+            continue
+        same_lg = (b.get("league") or "") == (tgt.get("league") or "") and b.get("league")
+        shared = (tb.toks(b.get("game")) - tb.WEAK) & (tb.toks(tgt.get("game")) - tb.WEAK)
+        if not same_lg:
+            bad.append((k, b, tgt, f"CROSS-LEAGUE: {b.get('league')} vs {tgt.get('league')}"))
+        elif not shared:
+            bad.append((k, b, tgt, "CROSS-GAME: no shared game token"))
+    say(f"  dup_of links in the tracker: {len(links)}   bad: {len(bad)}")
+    for k, b, tgt, w in bad:
+        say(f"    {k[:34]:<34} -> {str(b['dup_of'])[:34]}")
+        say(f"        {w}")
+        say(f"        row    : {b.get('league')} | {str(b.get('game'))[:40]} | {str(b.get('bet'))[:18]}")
+        say(f"        target : {tgt.get('league')} | {str(tgt.get('game'))[:40]} | {str(tgt.get('bet'))[:18]}")
+    say("")
+    say("  REPAIR, already live: clv_selection.row_key verifies a pointer (same league AND at")
+    say("  least one shared game token) before honouring it, and otherwise keeps the row's own")
+    say("  identity and records the rejection. Nothing is deleted - the tracker's dup_of value is")
+    say("  untouched, so the original record stands and the page still hides the note as before.")
+    rej = [o for o in list(obs.values()) + list(miss_obs.values())
+           if "REJECTED" in str(o.get("why", ""))]
+    say(f"  selections whose identity was restored by that rejection this run: {len(rej)}")
+    for o in rej[:6]:
+        say(f"    {str(o.get('book')):<12} {str(o.get('game_start'))[:10]}  "
+            f"clv {('%+.2f%%' % (100 * o['clv'])) if o.get('clv') is not None else 'none'}  "
+            f"{str(o.get('why'))[:70]}")
+
+    # ---------------------------------------------------------------- candidates
+    say("")
+    say("8. REGISTRY CANDIDATES - certified data only, INSUFFICIENT EVIDENCE otherwise")
+    say("=" * 104)
+    say("  REGISTRY.md 'THE ONE LIST' has 32 numbered entries. The entries below are the ones")
+    say("  with a live or numeric record; the rest carry no observations in this ledger at all.")
+    say("  A row reads INSUFFICIENT EVIDENCE whenever its certified n is 0 - the old scorecard's")
+    say("  CLV is never substituted, because its benchmark is not a verified Pinnacle close.")
+    say("")
+    say(f"  {'registry entry':<34} {'certified n':>11} {'CLV':>9} {'H1':>8} {'H2':>8} {'beat':>9} {'status':>12}")
+    def _cand(label, rows_):
+        st_ = csel.stats(rows_)
+        if not st_.get("n"):
+            say(f"  {label:<34} {0:11d} {'-':>9} {'-':>8} {'-':>8} {'-':>9} "
+                f"{'INSUFFICIENT':>12}")
+            return
+        h1, h2, _n = csel.halves(rows_)
+        s1 = csel.stats(h1).get("mean")
+        s2 = csel.stats(h2).get("mean")
+        say(f"  {label:<34} {st_['n']:11d} {100 * st_['mean']:+8.2f}% "
+            f"{(('%+.2f' % (100 * s1)) if s1 is not None else '-'):>8} "
+            f"{(('%+.2f' % (100 * s2)) if s2 is not None else '-'):>8} "
+            f"{st_['pos']}/{st_['n']:<7} "
+            f"{('INSUFFICIENT' if st_['n'] < 20 else 'SEE SCORECARD'):>12}")
+    for lane_key, label in (("r1", "1/R1 (live)"), ("board", "7/BOARD v3 (live)"),
+                            ("rules", "1/PHASE 1 (live)"), ("lane2", "8/LANE 2 (paper)")):
+        _cand(label, [o for o in obs.values() if o.get("_lane") == lane_key])
+    _cand("5/STREET VALUE", [o for o in obs.values()
+                             if "street" in str(o.get("source") or "").lower()])
+    _cand("3/PETER - FEED PLAYS", [o for o in obs.values()
+                                    if str(o.get("source") or "").lower() == "peter"])
+    _cand("4/HR SCANNER FLAGS", [o for o in obs.values()
+                                  if "hard rock" in str(o.get("source") or "").lower()])
+    _cand("9/LIQ-BOT", [])
+    _cand("13/LIQ-SMALL", [])
+    say("")
+    say("  9/LIQ-BOT and 13/LIQ-SMALL have ZERO certified observations: the entire")
+    say("  liquidity-board population was benchmarked against the trigger venue's own close and")
+    say("  none of it recomputes from cached data. REGISTRY.md already flags 9 as 'at the")
+    say("  recorded ALERT price, which is NOT executable' and 13 as 'SIMULATED' - so this is")
+    say("  that same limitation measured, not a new one.")
+    say("  'INSUFFICIENT' above means n < 20 certified selections, not a verdict. Acceptance")
+    say("  status stays with SCORECARD.md's registered rules; nothing here promotes or demotes.")
+
     say("")
     say("=" * 104)
     say("No promotion, demotion, stake change or switch flip follows from this report.")

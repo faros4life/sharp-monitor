@@ -325,6 +325,68 @@ def main():
         w = sum(1 for r in sub if r["prov"].startswith("TRIGGER_VENUE"))
         say(f"  {name:<26} {len(sub):6d} {v:9d} {100 * v / len(sub):5.1f}% {w:12d}")
 
+    # ---------------------------------------------------------------- E: recovery cost
+    say("")
+    say("E. LIQUIDITY RECOVERY COST - deduplicated to unique games, no paid call made")
+    say("=" * 108)
+    liq = [(x, r) for (x, _s), r in zip(obs, rows) if r["src"] == "liquidity"]
+    games = {}
+    for x, r in liq:
+        gs = x.get("start_utc") or x.get("game_start") or x.get("commence_time")
+        d = cl.tp(gs)
+        key = (str(r["lg"]), "+".join(sorted(fxm.toks(r["game"]) if hasattr(fxm, "toks")
+                                             else (tb.toks(r["game"]) - tb.WEAK))),
+               d.astimezone(ET).strftime("%Y-%m-%d") if d else (r["day"] or "?"))
+        games.setdefault(key, []).append((x, r))
+    say(f"  liquidity observations {len(liq)}  ->  UNIQUE GAMES {len(games)}"
+        f"  ({len(liq) / max(len(games), 1):.1f} observations per game)")
+    have_fx, need_fx, have_hist, need_hist, no_league = 0, 0, 0, 0, 0
+    fx_windows = set()
+    for (lg, _gt, day), items in games.items():
+        if lg not in cl.SPORT:
+            no_league += 1
+            continue
+        x, r = items[0]
+        snap = {"league": lg, "game": r["game"], "bet": r["bet"],
+                "game_start": x.get("start_utc") or x.get("game_start") or x.get("commence_time")}
+        fid, _n = fxm.ordered_match(snap, allfx, cl.tp)
+        if not fid:
+            need_fx += 1
+            fx_windows.add((lg, day))
+            continue
+        have_fx += 1
+        if cached_pin(fid) is not None:
+            have_hist += 1
+        else:
+            need_hist += 1
+    say(f"  unique games in a league the ledger covers      {len(games) - no_league}")
+    say(f"    league outside the sport map (NCAAB/MLB etc)  {no_league}  - held, not costed")
+    say(f"  fixture already in a cache we hold              {have_fx}")
+    say(f"    of those, Pinnacle history ALREADY cached     {have_hist}  <- free, no call at all")
+    say(f"    of those, history MISSING                     {need_hist}  <- 1 FREE /historical-odds each")
+    say(f"  no fixture in any cache                         {need_fx}  <- needs a billable /fixtures first")
+    say("")
+    say("  CALLS AND CREDITS:")
+    say(f"    free /historical-odds calls needed            {need_hist + need_fx}")
+    say(f"      (the {need_fx} without a fixture need history too, once their fixture exists)")
+    say(f"    billable /fixtures calls                      {len(fx_windows)} league x date window(s)")
+    say("      a window is one league for one ET date; consecutive dates for a league can be")
+    say("      batched into one call, so this is an UPPER bound on credits")
+    say(f"    distinct leagues needing a fetch              {len({lg for lg, _d in fx_windows})}")
+    per_run = cl.MAX_HIST
+    runs = -(-(need_hist + need_fx) // max(per_run, 1))
+    say("")
+    say("  GITHUB RUNS:")
+    say(f"    MAX_HIST caps free history at {per_run} calls a run, ~8s each")
+    say(f"    runs needed for the history backfill          {runs}")
+    say(f"    wall time at {per_run} x 8s                           ~{per_run * 8 / 60:.0f} min a run,"
+        f" ~{runs * per_run * 8 / 3600:.1f} h total")
+    say("")
+    say("  WHAT IT WOULD BUY: recomputing the trigger-venue population on a verified Pinnacle")
+    say(f"  close. Ceiling is the {have_fx} games whose fixture we already hold; the {need_fx} without")
+    say("  one are gated behind the billable fetch and may still fail on fixture ambiguity or on")
+    say("  Pinnacle never hanging the bet's own line - neither is knowable before the call.")
+
     try:
         os.makedirs("audit", exist_ok=True)
         json.dump({"generated": now.strftime("%Y-%m-%dT%H:%M:%SZ"), "basis": cb.BASIS_VERSION,
