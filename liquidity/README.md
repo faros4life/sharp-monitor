@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Fri Nov 13, 9:30 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 73.
+Updated Fri Nov 13, 9:35 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 73.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -17,7 +17,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 13 7:20PM | NBA | Cleveland Cavaliers at Miami Heat | moneyline: Miami Heat | prophetx | $45k | -130 | ✅ kalshi,novig |  | +0.4c |  | pending |
 | Nov 13 7:20PM | NBA | Cleveland Cavaliers @ Miami Heat | moneyline: MIA (0) | novig | $35k | -133 | ✅ kalshi,prophetx |  | +0.0c |  | pending |
 | Nov 13 7:10PM | NHL | Nashville vs Vegas: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $29k | -127 |  |  | +0.0c |  | pending |
-| Nov 13 7:10PM | NBA | Oklahoma City vs Los Angeles C: Spread | spread: NOT Oklahoma City wins by over 7.5 points | kalshi | $26k | -108 | ✅ novig |  | +1.0c | yes | pending |
+| Nov 13 7:10PM | NBA | Oklahoma City vs Los Angeles C: Spread | spread: NOT Oklahoma City wins by over 7.5 points | kalshi | $26k | -108 | ✅ novig |  | +4.0c | yes | pending |
 | Nov 13 7:00PM | NBA | Memphis vs New Orleans: Spread | spread: NOT Memphis wins by over 3.5 points | kalshi | $121k | -108 |  | ✅ | -2.0c | yes | pending |
 | Nov 13 6:55PM | NCAAF | Arizona State @ UCF | moneyline: UCF (0) | novig | $26k | -150 | ✅ prophetx |  | +1.0c | yes | pending |
 | Nov 13 6:40PM | NBA | New York Knicks at Indiana Pacers | moneyline: New York Knicks | prophetx | $30k | -275 | ✅ kalshi,novig |  | +0.4c |  | pending |
@@ -46,8 +46,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 13 10:15AM | NBA | Golden State vs San Antonio: Spread | spread: NOT San Antonio wins by over 11.5 points | kalshi | $30k | +104 |  |  | -5.0c | yes | pending |
 | Nov 13 10:05AM | NBA | Atlanta vs Chicago: Spread | spread: NOT Atlanta wins by over 6.5 points | kalshi | $25k | -104 |  | ✅ | -1.0c | yes | pending |
 | Nov 13 10:00AM | NCAAF | Northwestern vs Ohio St.: Spread | spread: NOT Ohio St. wins by over 13.5 points | kalshi | $37k | +108 | ✅ novig |  | +0.0c | yes | pending |
-| Nov 13 9:50AM | NCAAF | Maine vs University at Albany | moneyline: Albany | kalshi | $30k | -567 |  |  | +0.0c | yes | pending |
-| Nov 13 9:40AM | NBA | Oklahoma City vs Los Angeles C: Spread | spread: Oklahoma City wins by over 6.5 points | kalshi | $27k | -108 |  |  | -1.0c | yes | pending |
+| Nov 13 9:50AM | NCAAF | Maine vs University at Albany | moneyline: Albany | kalshi | $30k | -567 |  |  | -1.0c | yes | pending |
+| Nov 13 9:40AM | NBA | Oklahoma City vs Los Angeles C: Spread | spread: Oklahoma City wins by over 6.5 points | kalshi | $27k | -108 |  |  | -2.0c | yes | pending |
 | Nov 13 9:35AM | NBA | Utah vs Houston: Spread | spread: NOT Houston wins by over 15.5 points | kalshi | $81k | -100 | ✅ novig | ✅ | +1.0c |  | pending |
 | Nov 13 9:30AM | NBA | Memphis vs New Orleans: Total Points | total: Over 235.5 points | kalshi | $39k | -108 |  |  | -2.0c |  | pending |
 | Nov 13 9:25AM | NHL | Nashville vs Vegas | moneyline: Nashville | kalshi | $65k | +144 |  |  | +0.0c |  | pending |
@@ -76,7 +76,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 12 7:06PM | NFL | Washington Commanders @ New York Giants | spread: NYG -1.5 (-1.5) | novig | $37k | -104 |  |  | +1.0c |  | L |
 | Nov 12 7:06PM | NBA | Atlanta vs Chicago | moneyline: Atlanta | kalshi | $31k | -245 |  |  | -2.0c |  | pending |
 | Nov 12 6:50PM | NCAAF | Houston vs Colorado: Total Points | total: NOT Over 51.5 points | kalshi | $37k | -104 |  |  | -4.0c | yes | pending |
-| Nov 12 6:50PM | NBA | Oklahoma City vs Los Angeles C | moneyline: Oklahoma City | kalshi | $33k | -317 |  |  | -5.0c |  | pending |
+| Nov 12 6:50PM | NBA | Oklahoma City vs Los Angeles C | moneyline: Oklahoma City | kalshi | $33k | -317 |  |  | -7.0c |  | pending |
 | Nov 12 6:50PM | NBA | Memphis vs New Orleans | moneyline: Memphis | kalshi | $26k | -150 |  |  | +1.0c |  | pending |
 | Nov 12 6:41PM | NCAAF | Memphis vs South Florida: Spread | spread: Memphis wins by over 4.5 points | kalshi | $48k | -104 | ✅ novig |  | +1.0c |  | W |
 | Nov 12 6:31PM | NHL | Detroit Red Wings @ Florida Panthers | moneyline: FLA (0) | novig | $33k | -190 | ✅ kalshi,prophetx |  | -0.5c |  | W |
