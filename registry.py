@@ -1104,3 +1104,40 @@ def selftest():
             f"write {'ok' if ok else 'FAILED'} {write_s:.2f}s, read-back {verdict}"
             + (f" [{detail}]" if detail else "")
             + " - compare with the 79s Gmail registry read")
+
+
+# Phase 1 / P1-A (Peter, Nov 14: "Approves"). Deterministic lane attribution for NEW fills: the
+# venue's own order id on a fill row, looked up EXACTLY against the order ids this registry already
+# stores. Read-only: nothing here writes, and nothing in execution reads it. A miss or an id that maps
+# to two different lanes returns None - the caller then records the row as unresolved, never a guess.
+LANE_PREFIX = {"rule": "rules", "rules": "rules", "board": "board", "r1": "r1", "lane2": "lane2"}
+
+
+def order_lane_index(orders):
+    """{venue order id or client id: (lane, strategy key)} from stored order rows. An id seen under
+    two different lanes maps to None (ambiguous). 'intent-' placeholders are not venue ids and are skipped."""
+    idx = {}
+    for o in orders or []:
+        key = str((o or {}).get("key") or "")
+        pre = key.split("|", 1)[0] if "|" in key else ""
+        lane = LANE_PREFIX.get(pre)
+        if not lane:
+            continue
+        recs = [o.get("live_order") or {}, o.get("live_rest") or {}] + [x or {} for x in (o.get("live_more") or [])]
+        for lo in recs:
+            for fld in ("order_id", "client_id"):
+                v = str(lo.get(fld) or "")
+                if not v or v.startswith("intent-"):
+                    continue
+                if v in idx and idx[v] is not None and idx[v][0] != lane:
+                    idx[v] = None
+                elif v not in idx:
+                    idx[v] = (lane, key)
+    return idx
+
+
+def lane_of(order_ref, index):
+    """(lane, strategy key) for an exact order id, or None."""
+    if not order_ref or not index:
+        return None
+    return index.get(str(order_ref))

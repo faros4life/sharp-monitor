@@ -15,6 +15,7 @@ Every bet: book, bet, stake, to pay, source (bot when it matches the executor's 
 Not on the page: balances, bankroll, Street Value card, pool picks, executor internals.
 """
 import base64
+import collections
 import hashlib
 import json
 import os
@@ -382,7 +383,8 @@ def read_prophetx():
              "game": (h or {}).get("game") or str(t.get("event_name") or ""),
              "bet": (h or {}).get("label") or title, "price": pr, "stake": round(stake, 2),
              "to_pay": round(stake + win * 0.98, 2), "date": (h or {}).get("date"), "placed": str(t.get("created_at") or ""),
-             "strike": str(t.get("strike_id") or "")}   # Nov 6: fills of one bet share a strike -> one card
+             "strike": str(t.get("strike_id") or ""),   # Nov 6: fills of one bet share a strike -> one card
+             "order_ref": str(t.get("order_id") or "")}   # P1-A: the venue's order id (px_live: a trade carries order_id)
         # Nov 12: carry ProphetX's own scheduled start onto the row. A SETTLED ProphetX row never
         # goes through attach(), which is what sets game_start for open bets off the live
         # scoreboard - so settled fills reached clv_ledger with no game_start at all, and its
@@ -1258,6 +1260,43 @@ def self_check(bets, settled_reads, open_ids, now, state):
     return issues
 
 
+
+# Phase 1 (Peter, Nov 14: "Approves"). P1-C identity at first observation, P1-A exact lane provenance.
+# REPORT-ONLY and ADDITIVE: neither blocks, drops or rewrites a row, and both touch only rows first seen
+# from now on (a legacy row carries no lane_src / ingest_* field and is left exactly as it is).
+INGEST_FIELDS = ("league", "game", "game_start", "bet")
+
+
+def ingest_missing(b):
+    """Identity fields a fill row lacks. Line/side is NOT checked here: parse_bet reads any free text as a
+    moneyline pick, so it cannot tell a missing line from a real moneyline - clv_ledger's close_for reports that."""
+    return [f for f in INGEST_FIELDS if b.get(f) in (None, "", [])]
+
+
+def stamp_new_row(b, now_iso):
+    """First-observation identity record on a NEW row; never overwritten afterwards."""
+    if "ingest_missing_first" not in b:
+        b["ingest_missing_first"] = ingest_missing(b)
+        b["ingest_checked"] = now_iso
+
+
+def assign_lane_src(b, index, lane_of):
+    """Exact registry lane when the row's order_ref resolves; otherwise keep any existing (fuzzy) lane but say so.
+    Returns the lane_src written. A deterministic lane that disagrees with the fuzzy one is kept beside it."""
+    hit = lane_of(b.get("order_ref"), index) if b.get("order_ref") else None
+    if hit:
+        if b.get("lane") and b["lane"] != hit[0]:
+            b["lane_fuzzy"] = b["lane"]
+        b["lane"], b["strategy_key"], b["lane_src"] = hit[0], hit[1], "registry-order-id"
+    elif b.get("source") not in (None, "", "bot") and not b.get("lane"):
+        b["lane_src"] = "manual-source"
+    elif b.get("lane"):
+        b["lane_src"] = "fuzzy-join"
+    else:
+        b["lane_src"] = "none"
+    return b["lane_src"]
+
+
 def main():
     if not PASS:
         print("Tracker: TRACKER_PASSPHRASE not set; skipped")
@@ -1274,6 +1313,7 @@ def main():
         state = {"bets": {}}
     before = json.dumps(state, sort_keys=True)
     bets = state["bets"]
+    prev_ids = set(bets)   # P1-A/C: rows already held before this run are legacy for the Phase 1 stamps
 
     import time as _t
     T = {}   # seconds per read (log only), to find what slows the tracker
@@ -1462,6 +1502,30 @@ def main():
                         break
         except Exception:
             pass
+
+    # P1-A / P1-C: NEW rows only (not held before this run), plus rows that already carry a Phase 1 lane_src
+    # and are still unresolved (the registry can lag the first sighting). Legacy rows are not touched.
+    try:
+        _idx = {}
+        try:
+            import registry as _rg
+            if _rg.enabled():
+                _idx = _rg.order_lane_index(_rg.rows() or [])
+        except Exception:
+            _idx = {}
+        _n = collections.Counter()
+        _nowi = iso(now)
+        for _k, b in bets.items():
+            if _k not in prev_ids:
+                stamp_new_row(b, _nowi)
+                _n["new"] += 1
+                _n["new_missing"] += 1 if b["ingest_missing_first"] else 0
+            if _k not in prev_ids or b.get("lane_src") in ("none", "fuzzy-join", "manual-source"):
+                _n[assign_lane_src(b, _idx, _rg.lane_of if _idx else (lambda *_a: None))] += 1
+        LOG["phase1"] = (f"ok new {_n['new']} missing-identity {_n['new_missing']} lane exact {_n['registry-order-id']} "
+                         f"fuzzy {_n['fuzzy-join']} manual {_n['manual-source']} none {_n['none']}")
+    except Exception as _e:
+        LOG["phase1"] = f"failed ({type(_e).__name__})"
 
     def et_date(s):
         t = tparse(s)

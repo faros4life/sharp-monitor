@@ -216,6 +216,32 @@ def dec_to_am(d):
     return round((d - 1) * 100) if d >= 2 else round(-100 / (d - 1))
 
 
+def eff_dec_src(b):
+    """(after-fee decimal, which input produced it, fee model). Mirrors eff_dec branch for branch - eff_dec is
+    unchanged. Phase 1 / P1-B (Peter, Nov 14: "Approves"): recorded at scoring so the entry price is auditable."""
+    book = b.get("book")
+    st, pay = tb.num(b.get("stake")), tb.num(b.get("to_pay"))
+    if st and pay and pay > st:
+        src = "stake_to_pay"
+    elif b.get("price_af") not in (None, ""):
+        src = "price_af"
+    elif b.get("price") not in (None, ""):
+        src = "price_px_fee" if book == "ProphetX" else "price"
+    else:
+        return None, None, None
+    if book == "Kalshi":
+        fee = "kalshi_unresolved"            # executed_clv: whether Kalshi's cost is gross or net of fee is NOT settled
+    elif book == "ProphetX":
+        fee = "px_settle_2pct"               # 2% of net winnings at settlement, applied in to_pay or here
+    elif src == "price_af":
+        fee = "bot_fill_after_fee"
+    elif book in ("Novig", "Polymarket US") and src == "stake_to_pay":
+        fee = "fee_inclusive_cost_payout"
+    else:
+        fee = "book_payout_as_recorded"
+    return eff_dec(b), src, fee
+
+
 def eff_dec(b):
     """The bet's after-fee decimal price: what it pays back per $1 staked."""
     st, pay = tb.num(b.get("stake")), tb.num(b.get("to_pay"))
@@ -711,6 +737,35 @@ def book_markets(h, bk):
     return ((((h or {}).get("bookmakers") or {}).get(bk) or {}).get("markets") or {}) if isinstance(h, dict) else {}
 
 
+
+def stamp_entry(rec, s, c, start, now):
+    """P1-B. WRITE-ONCE scoring-time entry provenance. The first scoring stores entry_dec / entry_src /
+    fee_model / basis_version / quote_ts / entry_scored_at; a later re-score that sees a different entry
+    decimal records entry_dec_now and entry_drift_bp beside it and never replaces the original. The CLV
+    figure itself is computed exactly as before - this only records how."""
+    d, src, fee = eff_dec_src(s)
+    if d is None:
+        return
+    try:
+        import clv_basis as _cb
+        bv = _cb.BASIS_VERSION
+    except Exception:
+        bv = None
+    if rec.get("entry_dec") is None:
+        rec["entry_dec"], rec["entry_src"], rec["fee_model"] = round(d, 6), src, fee
+        rec["basis_version"], rec["entry_scored_at"] = bv, iso(now)
+        am = c.get("age_min")
+        rec["quote_ts"] = iso(start - timedelta(minutes=am)) if (start and am is not None) else None
+        return
+    drift = 1e4 * (d - rec["entry_dec"]) / rec["entry_dec"] if rec["entry_dec"] else None
+    if drift is not None and abs(drift) >= 0.5:
+        rec["entry_dec_now"], rec["entry_src_now"] = round(d, 6), src
+        rec["entry_drift_bp"], rec["entry_drift_seen"] = round(drift, 1), iso(now)
+    else:
+        for x in ("entry_dec_now", "entry_src_now", "entry_drift_bp", "entry_drift_seen"):
+            rec.pop(x, None)
+
+
 def two_way(pm, mid, before):
     """{outcome_name: (decimal, tick_time)} for a two-way market, last ticks at or before the given time."""
     m = pm.get(str(mid)) or {}
@@ -1083,8 +1138,12 @@ def main():
     for k, b in tracker.items():
         rec = st["bets"].setdefault(k, {"first_seen": iso(now)})
         snap = rec.setdefault("snap", {})
-        for f in ("book", "game", "bet", "flip", "league", "source", "teams", "game_start", "placed", "settled", "first_seen"):
+        for f in ("book", "game", "bet", "flip", "league", "source", "teams", "game_start", "placed", "settled", "first_seen",
+                  "order_ref", "lane", "lane_src", "strategy_key"):   # P1-A: carried only when the tracker has them
             if b.get(f) not in (None, "", []):
+                snap[f] = b[f]
+        for f in ("ingest_missing_first", "ingest_checked"):   # P1-C: first observation, never overwritten
+            if f in b and f not in snap:
                 snap[f] = b[f]
         for f in ("price", "stake", "to_pay"):
             if b.get(f) not in (None, "") and snap.get(f) in (None, ""):
@@ -1337,6 +1396,10 @@ def main():
             rec["how"], rec["age_min"], rec["scored"] = c["how"], c["age_min"], iso(now)
             rec.pop("why", None)
             new_scored += 1
+            try:
+                stamp_entry(rec, s, c, start, now)
+            except Exception:
+                pass   # provenance is bookkeeping: a failure here must never cost the score
             # Nov 4: bot rows carry no 'placed' (positions have no order time) -> fall back to when the tracker, then
             # this ledger, first saw the bet (<= ~2h after placement; the limit read is the last Pinnacle tick before it)
             when, basis = None, None
