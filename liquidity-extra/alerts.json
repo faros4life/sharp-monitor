@@ -1,6 +1,211 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-14T01:20:17Z",
+   "base_depth": 248048,
+   "best_price": 0.555,
+   "best_price_american": -125,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.55,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-13",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -13786,
+     "new_this_side": 33156,
+     "other_side": 79494,
+     "other_side_all_levels": 256088,
+     "ratio": 2.0,
+     "this_side": 160763,
+     "this_side_all_levels": 328006
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "ARIZ (0)",
+     "price": 0.555,
+     "this_side": 28421
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "Arizona",
+     "price": 0.5595,
+     "this_side": 12426
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 162591.93,
+    "volume_24h_fp": 164166.89,
+    "volume_fp": 172796.95
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 4420.11,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 5000.11
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 158171.82,
+    "volume_24h_fp": 164166.89,
+    "volume_fp": 167796.84
+   },
+   "fade_price": 0.46,
+   "first_seen_utc": "2026-11-14T01:10:22Z",
+   "game": "Arizona vs Auburn",
+   "game_surge_books": [],
+   "game_x": 1.47,
+   "key": "kalshi|KXNCAAMBGAME-26NOV13ARIZAUB|ml|0",
+   "lead_min": 40,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 33156,
+   "new_x": 0.42,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 162591.93,
+      "volume_24h_fp": 164166.89,
+      "volume_fp": 172796.95
+     },
+     "game_normal": 223230,
+     "game_x": 1.47,
+     "normal": 78026,
+     "now": 328006,
+     "type": "ML",
+     "x": 4.2
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 7462301.0,
+      "volume": 8515324.0
+     },
+     "game_normal": 23874,
+     "game_x": 1.53,
+     "normal": 2675,
+     "now": 36531,
+     "type": "ML",
+     "x": 13.66
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 7436,
+     "game_x": 1.67,
+     "normal": 1349,
+     "now": 12443,
+     "type": "ML",
+     "x": 9.23
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.55,
+   "price_american": -122,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.55,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -145
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -140
+    },
+    "betopenly": {
+     "point": null,
+     "price": -131
+    },
+    "betrivers": {
+     "point": null,
+     "price": -148
+    },
+    "betus": {
+     "point": null,
+     "price": -140
+    },
+    "bovada": {
+     "point": null,
+     "price": -135
+    },
+    "draftkings": {
+     "point": null,
+     "price": -142
+    },
+    "fanatics": {
+     "point": null,
+     "price": -140
+    },
+    "fanduel": {
+     "point": null,
+     "price": -142
+    },
+    "kalshi": {
+     "point": null,
+     "price": -122
+    },
+    "lowvig": {
+     "point": null,
+     "price": -140
+    },
+    "novig": {
+     "point": null,
+     "price": -125
+    },
+    "polymarket": {
+     "point": null,
+     "price": -122
+    },
+    "prophetx": {
+     "point": null,
+     "price": -127
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -140
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV13ARIZAUB-ARIZ"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [
+    "Arizona Wildcats -1.5 (-120)"
+   ],
+   "sharp_oppose": [],
+   "side": "Arizona",
+   "side_label": "Arizona",
+   "size_x": 4.2,
+   "start_source": "odds",
+   "start_utc": "2026-11-14T02:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "teams": [
+    "Arizona",
+    "Auburn"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-14T00:40:15Z",
    "base_depth": 80451,
    "best_price": 0.5673,
@@ -40,9 +245,9 @@
     "volume_fp": 4406.64
    },
    "ex_stats_close": {
-    "open_interest_fp": 18553.53,
+    "open_interest_fp": 18571.15,
     "volume_24h_fp": 18915.64,
-    "volume_fp": 18943.64
+    "volume_fp": 18961.26
    },
    "ex_stats_first": {
     "open_interest_fp": 13836.38,
@@ -211,9 +416,9 @@
     "volume_fp": 225.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 19731.86,
+    "open_interest_fp": 21573.89,
     "volume_24h_fp": 19763.510000000002,
-    "volume_fp": 19780.190000000002
+    "volume_fp": 21622.22
    },
    "ex_stats_first": {
     "open_interest_fp": 18653.79,
@@ -598,9 +803,9 @@
     "volume_fp": 413.98
    },
    "ex_stats_close": {
-    "open_interest_fp": 14958.71,
+    "open_interest_fp": 15255.509999999998,
     "volume_24h_fp": 14395.59,
-    "volume_fp": 14966.59
+    "volume_fp": 15263.39
    },
    "ex_stats_first": {
     "open_interest_fp": 9771.68,
@@ -808,9 +1013,9 @@
     "volume_fp": 1296.78
    },
    "ex_stats_close": {
-    "open_interest_fp": 158171.82,
+    "open_interest_fp": 162591.93,
     "volume_24h_fp": 164166.89,
-    "volume_fp": 167796.84
+    "volume_fp": 172796.95
    },
    "ex_stats_first": {
     "open_interest_fp": 48149.520000000004,
@@ -2011,9 +2216,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 63285.31,
+    "open_interest_fp": 64984.0,
     "volume_24h_fp": 83889.4,
-    "volume_fp": 84618.23
+    "volume_fp": 86316.92
    },
    "ex_stats_first": {
     "open_interest_fp": 23237.440000000002,
@@ -4491,7 +4696,7 @@
    "ex_stats_close": {
     "open_interest_fp": 65613.65,
     "volume_24h_fp": 63279.98,
-    "volume_fp": 68847.22
+    "volume_fp": 69021.2
    },
    "ex_stats_first": {
     "open_interest_fp": 7963.4400000000005,
@@ -5980,7 +6185,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 74,
+   "settle_tries": 75,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Fritz",
