@@ -1,6 +1,146 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-14T18:40:13Z",
+   "base_depth": 120006,
+   "best_price": 0.67,
+   "best_price_american": -203,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.68,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-14",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 4385,
+     "new_this_side": 53735,
+     "other_side": 39023,
+     "other_side_all_levels": 129332,
+     "ratio": 1.5,
+     "this_side": 59563,
+     "this_side_all_levels": 191349
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "WIU (0)",
+     "price": 0.67,
+     "this_side": 17112
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Western Illinois",
+     "price": 0.6721,
+     "this_side": 1327
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 12416.36,
+    "volume_24h_fp": 5107.68,
+    "volume_fp": 12420.54
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 12416.36,
+    "volume_24h_fp": 5107.68,
+    "volume_fp": 12420.54
+   },
+   "fade_price": 0.33,
+   "first_seen_utc": "2026-11-14T18:35:41Z",
+   "game": "Gardner-Webb vs Western Illinois",
+   "game_surge_books": [],
+   "game_x": 1.41,
+   "key": "kalshi|KXNCAAFGAME-26NOV14WEBBWIU|ml|1",
+   "lead_min": 20,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 53735,
+   "new_x": 0.6,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 12416.36,
+      "volume_24h_fp": 5107.68,
+      "volume_fp": 12420.54
+     },
+     "game_normal": 135512,
+     "game_x": 1.41,
+     "normal": 89614,
+     "now": 191349,
+     "type": "ML",
+     "x": 2.14
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 878486.0,
+      "volume": 878531.0
+     },
+     "game_normal": 24536,
+     "game_x": 1.08,
+     "normal": 16122,
+     "now": 26394,
+     "type": "ML",
+     "x": 1.64
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 1508,
+     "game_x": 1.03,
+     "normal": 2033,
+     "now": 1558,
+     "type": "ML",
+     "x": 0.77
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.68,
+   "price_american": -213,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.68,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26NOV14WEBBWIU-WIU"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Western Illinois",
+   "side_label": "Western Illinois",
+   "size_x": 2.14,
+   "start_source": "prophetx",
+   "start_utc": "2026-11-14T19:00:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "Gardner-Webb",
+    "Western Illinois"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-14T18:25:38Z",
    "base_depth": 36893,
    "best_price": 0.66,
@@ -44,8 +184,8 @@
     "volume": 579.0
    },
    "ex_stats_close": {
-    "openInterest": 7330439.0,
-    "volume": 9330564.0
+    "openInterest": 7333337.0,
+    "volume": 9333462.0
    },
    "ex_stats_first": {
     "openInterest": 7329860.0,
@@ -1381,8 +1521,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 8908292.0,
-    "volume": 9016993.0
+    "openInterest": 8962278.0,
+    "volume": 9115405.0
    },
    "ex_stats_first": {
     "openInterest": 4265696.0,
@@ -2588,8 +2728,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.525,
-   "clv_cents": 1.5,
+   "close_price": 0.53,
+   "clv_cents": 2.0,
    "confirmed_after_min": 5,
    "date": "2026-11-14",
    "depth_by_book": {
@@ -2618,8 +2758,8 @@
     "volume": 252896.0
    },
    "ex_stats_close": {
-    "openInterest": 32201925.0,
-    "volume": 42708524.0
+    "openInterest": 32805424.0,
+    "volume": 43453161.0
    },
    "ex_stats_first": {
     "openInterest": 19105001.0,
@@ -6145,8 +6285,8 @@
     "volume": 539132.0
    },
    "ex_stats_close": {
-    "openInterest": 20122164.0,
-    "volume": 25398190.0
+    "openInterest": 20126084.0,
+    "volume": 25402110.0
    },
    "ex_stats_first": {
     "openInterest": 15260339.0,
@@ -9191,9 +9331,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 3934.99,
+    "open_interest_fp": 3937.99,
     "volume_24h_fp": 569.0600000000001,
-    "volume_fp": 3938.99
+    "volume_fp": 3941.99
    },
    "ex_stats_first": {
     "open_interest_fp": 3373.47,
@@ -9730,9 +9870,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 2301.79,
+    "open_interest_fp": 2307.67,
     "volume_24h_fp": 1982.02,
-    "volume_fp": 2426.4700000000003
+    "volume_fp": 2432.3500000000004
    },
    "ex_stats_first": {
     "open_interest_fp": 786.4000000000001,
@@ -10290,9 +10430,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 341679.48,
+    "open_interest_fp": 341739.19,
     "volume_24h_fp": 213719.57,
-    "volume_fp": 341840.45
+    "volume_fp": 341900.16000000003
    },
    "ex_stats_first": {
     "open_interest_fp": 246468.29,
@@ -10952,8 +11092,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.91,
-   "clv_cents": 7.0,
+   "close_price": 0.9,
+   "clv_cents": 6.0,
    "confirmed_after_min": 5,
    "date": "2026-11-14",
    "depth_by_book": {
@@ -10978,9 +11118,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 13961.08,
+    "open_interest_fp": 13964.35,
     "volume_24h_fp": 13362.310000000001,
-    "volume_fp": 16417.21
+    "volume_fp": 16640.68
    },
    "ex_stats_first": {
     "open_interest_fp": 3546.05,
@@ -11388,9 +11528,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 14142.349999999999,
+    "open_interest_fp": 14327.56,
     "volume_24h_fp": 5083.650000000001,
-    "volume_fp": 14154.009999999998
+    "volume_fp": 14339.22
    },
    "ex_stats_first": {
     "open_interest_fp": 9569.5,
@@ -11520,9 +11660,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 4013.2,
+    "open_interest_fp": 4033.2,
     "volume_24h_fp": 2223.99,
-    "volume_fp": 4132.04
+    "volume_fp": 4152.04
    },
    "ex_stats_first": {
     "open_interest_fp": 2009.17,
@@ -11652,9 +11792,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 14772.23,
+    "open_interest_fp": 15030.99,
     "volume_24h_fp": 19306.02,
-    "volume_fp": 19734.84
+    "volume_fp": 20061.88
    },
    "ex_stats_first": {
     "open_interest_fp": 511.70000000000005,
