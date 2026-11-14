@@ -40,9 +40,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 512.97,
+    "open_interest_fp": 513.91,
     "volume_24h_fp": 268.34000000000003,
-    "volume_fp": 512.97
+    "volume_fp": 513.91
    },
    "ex_stats_first": {
     "open_interest_fp": 511.70000000000005,
@@ -164,9 +164,9 @@
     "volume_fp": 25.56
    },
    "ex_stats_close": {
-    "open_interest_fp": 7435.42,
-    "volume_24h_fp": 5771.71,
-    "volume_fp": 8012.09
+    "open_interest_fp": 7576.469999999999,
+    "volume_24h_fp": 5772.9800000000005,
+    "volume_fp": 8153.139999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 6565.86,
@@ -706,7 +706,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [
     "Colorado Buffaloes +8.5 (-110)",
     "Colorado Buffaloes +9.5 (-113)"
@@ -911,7 +911,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 1,
+   "settle_tries": 2,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Los Angeles C",
@@ -1122,7 +1122,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [
     "Colorado Buffaloes +8.5 (-110)",
@@ -1345,7 +1345,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 1,
+   "settle_tries": 2,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Oklahoma City Thunder",
@@ -1411,7 +1411,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 12787.12,
-    "volume_24h_fp": 12742.05,
+    "volume_24h_fp": 8757.05,
     "volume_fp": 13174.740000000002
    },
    "ex_stats_first": {
@@ -1759,6 +1759,7 @@
     "volume_fp": 4750.4
    },
    "fade_price": 0.52,
+   "fade_units": 0.86,
    "first_seen_utc": "2026-11-14T01:25:41Z",
    "game": "Portland vs Sacramento: Total Points",
    "game_surge_books": [],
@@ -1865,12 +1866,13 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBATOTAL-26NOV13PORSAC-231"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 6,
+   "settle_tries": 7,
+   "settled_utc": "2026-11-14T05:40:12Z",
    "sharp_agree": [
     "Over 229.5 (-104)"
    ],
@@ -1889,7 +1891,7 @@
     "Sacramento"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-14T01:25:41Z",
@@ -2713,7 +2715,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 6,
+   "settle_tries": 7,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -2911,7 +2913,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 1,
+   "settle_tries": 2,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Los Angeles C",
@@ -3175,8 +3177,8 @@
     "volume": 15166.0
    },
    "ex_stats_close": {
-    "openInterest": 8499902.0,
-    "volume": 8886202.0
+    "openInterest": 8516734.0,
+    "volume": 8911202.0
    },
    "ex_stats_first": {
     "openInterest": 2799542.0,
@@ -3813,10 +3815,12 @@
     "volume_fp": 443083.38
    },
    "fade_price": 0.49,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-13T23:25:39Z",
    "game": "Illinois vs UCLA: Spread",
    "game_surge_books": [],
    "game_x": 1.54,
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFSPREAD-26NOV13ILLUCLA-UCLA11\"}",
    "lead_min": 150,
    "league": "NCAAF",
@@ -3939,7 +3943,7 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFSPREAD-26NOV13ILLUCLA-UCLA11"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig",
@@ -3947,7 +3951,8 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 18,
+   "settle_tries": 19,
+   "settled_utc": "2026-11-14T05:40:12Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Illinois",
@@ -3966,7 +3971,7 @@
     "UCLA"
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": 0.94
   },
   {
    "alerted_utc": "2026-11-13T23:25:39Z",
@@ -4409,8 +4414,8 @@
     "volume": 520.0
    },
    "ex_stats_close": {
-    "openInterest": 5923701.0,
-    "volume": 6616170.0
+    "openInterest": 5923780.0,
+    "volume": 6616249.0
    },
    "ex_stats_first": {
     "openInterest": 3587798.0,
@@ -5210,9 +5215,9 @@
     "volume_fp": 18.6
    },
    "ex_stats_close": {
-    "open_interest_fp": 28653.51,
-    "volume_24h_fp": 15204.37,
-    "volume_fp": 30200.25
+    "open_interest_fp": 28703.76,
+    "volume_24h_fp": 16354.66,
+    "volume_fp": 30250.5
    },
    "ex_stats_first": {
     "open_interest_fp": 15985.78,
@@ -5424,10 +5429,12 @@
     "volume_fp": 133106.66
    },
    "fade_price": 0.5,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-13T21:10:25Z",
    "game": "Illinois vs UCLA: Total Points",
    "game_surge_books": [],
    "game_x": 1.43,
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFTOTAL-26NOV13ILLUCLA-49\"}",
    "lead_min": 284,
    "league": "NCAAF",
@@ -5550,7 +5557,7 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFTOTAL-26NOV13ILLUCLA-49"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig",
@@ -5558,7 +5565,8 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 18,
+   "settle_tries": 19,
+   "settled_utc": "2026-11-14T05:40:12Z",
    "sharp_agree": [],
    "sharp_oppose": [
     "Over 47.5 (-115)"
@@ -5579,7 +5587,7 @@
     "UCLA"
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": 0.99
   },
   {
    "alerted_utc": "2026-11-13T21:00:19Z",
@@ -5852,9 +5860,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 59486.28,
-    "volume_24h_fp": 41919.57,
-    "volume_fp": 62564.43
+    "open_interest_fp": 59499.71,
+    "volume_24h_fp": 42278.05,
+    "volume_fp": 62577.86
    },
    "ex_stats_first": {
     "open_interest_fp": 29945.72,
@@ -6057,9 +6065,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 25695.55,
-    "volume_24h_fp": 15165.42,
-    "volume_fp": 28876.55
+    "open_interest_fp": 25961.39,
+    "volume_24h_fp": 15183.42,
+    "volume_fp": 29142.39
    },
    "ex_stats_first": {
     "open_interest_fp": 17025.36,
@@ -6467,10 +6475,12 @@
     "volume": 16819745.0
    },
    "fade_price": 0.21,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-13T19:05:39Z",
    "game": "Illinois @ UCLA",
    "game_surge_books": [],
    "game_x": 1.31,
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1aeab-5fca-7dc1-b82c-e236e7d4a410\", \"outcome_id\": \"01a1aeab-5fca-7dc1-b82c-e249ad008af9\"}",
    "lead_min": 410,
    "league": "NCAAF",
@@ -6593,7 +6603,7 @@
     "market_id": "01a1aeab-5fca-7dc1-b82c-e236e7d4a410",
     "outcome_id": "01a1aeab-5fca-7dc1-b82c-e249ad008af9"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "kalshi",
@@ -6601,7 +6611,8 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 18,
+   "settle_tries": 19,
+   "settled_utc": "2026-11-14T05:40:12Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UCLA",
@@ -6620,7 +6631,7 @@
     "UCLA"
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": 0.26
   },
   {
    "alerted_utc": "2026-11-13T18:50:14Z",
@@ -6987,7 +6998,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [
     "Colorado Buffaloes +9.5 (-113)"
    ],
@@ -7292,6 +7303,7 @@
     "volume_fp": 21603.33
    },
    "fade_price": 0.53,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-13T17:00:20Z",
    "game": "Portland vs Sacramento: Spread",
    "game_surge_books": [],
@@ -7406,14 +7418,15 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBASPREAD-26NOV13PORSAC-POR11"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 6,
+   "settle_tries": 7,
+   "settled_utc": "2026-11-14T05:40:12Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Portland",
@@ -7428,7 +7441,7 @@
     "Sacramento"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.08
   },
   {
    "alerted_utc": "2026-11-13T17:00:20Z",
@@ -7482,9 +7495,9 @@
     "volume_fp": 32.77
    },
    "ex_stats_close": {
-    "open_interest_fp": 9875.519999999999,
-    "volume_24h_fp": 7146.66,
-    "volume_fp": 10139.289999999999
+    "open_interest_fp": 9951.779999999999,
+    "volume_24h_fp": 7156.65,
+    "volume_fp": 10215.55
    },
    "ex_stats_first": {
     "open_interest_fp": 7487.9,
@@ -8477,9 +8490,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 28653.51,
-    "volume_24h_fp": 15204.37,
-    "volume_fp": 30200.25
+    "open_interest_fp": 28703.76,
+    "volume_24h_fp": 16354.66,
+    "volume_fp": 30250.5
    },
    "ex_stats_first": {
     "open_interest_fp": 13745.85,
@@ -8671,9 +8684,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1725.08,
-    "volume_24h_fp": 888.69,
-    "volume_fp": 2465.64
+    "open_interest_fp": 1726.19,
+    "volume_24h_fp": 887.79,
+    "volume_fp": 2466.75
    },
    "ex_stats_first": {
     "open_interest_fp": 1114.69,
@@ -8935,7 +8948,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 1,
+   "settle_tries": 2,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Oklahoma City",
@@ -9532,7 +9545,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 6,
+   "settle_tries": 7,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Nashville",
@@ -9961,7 +9974,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 1,
+   "settle_tries": 2,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -11012,7 +11025,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 8,
+   "settle_tries": 9,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Nashville",
@@ -11210,7 +11223,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -11430,7 +11443,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 15589.619999999999,
-    "volume_24h_fp": 13641.97,
+    "volume_24h_fp": 4187.12,
     "volume_fp": 15610.869999999999
    },
    "ex_stats_first": {
@@ -11715,9 +11728,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 12101.34,
-    "volume_24h_fp": 9459.69,
-    "volume_fp": 13176.3
+    "open_interest_fp": 12107.640000000001,
+    "volume_24h_fp": 4113.32,
+    "volume_fp": 13182.6
    },
    "ex_stats_first": {
     "open_interest_fp": 8889.74,
@@ -11849,7 +11862,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 12787.12,
-    "volume_24h_fp": 12742.05,
+    "volume_24h_fp": 8757.05,
     "volume_fp": 13174.740000000002
    },
    "ex_stats_first": {
@@ -11993,9 +12006,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 272.63,
-    "volume_24h_fp": 195.85999999999999,
-    "volume_fp": 287.81
+    "open_interest_fp": 282.63,
+    "volume_24h_fp": 196.85999999999999,
+    "volume_fp": 297.81
    },
    "ex_stats_first": {
     "open_interest_fp": 75.77,
@@ -12364,6 +12377,7 @@
     "volume_fp": 287.95
    },
    "fade_price": 0.49,
+   "fade_units": 0.97,
    "first_seen_utc": "2026-11-13T04:27:05Z",
    "game": "Portland vs Sacramento: Spread",
    "game_surge_books": [
@@ -12480,14 +12494,15 @@
     "kalshi_side": "no",
     "market_ticker": "KXNBASPREAD-26NOV13PORSAC-POR12"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 8,
+   "settle_tries": 9,
+   "settled_utc": "2026-11-14T05:40:12Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Sacramento",
@@ -12502,7 +12517,7 @@
     "Sacramento"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-13T01:12:00Z",
@@ -14170,7 +14185,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -14359,7 +14374,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 3,
+   "settle_tries": 4,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Oklahoma City",
@@ -16697,7 +16712,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Colorado",
@@ -18532,7 +18547,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 8,
+   "settle_tries": 9,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Vegas",
@@ -20390,7 +20405,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Houston",
@@ -20687,10 +20702,12 @@
     "volume_fp": 20211.78
    },
    "fade_price": 0.53,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-12T15:01:18Z",
    "game": "Illinois vs UCLA: Spread",
    "game_surge_books": [],
    "game_x": 1.29,
+   "graded_by": "espn",
    "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAFSPREAD-26NOV13ILLUCLA-UCLA10\"}",
    "lead_min": 2093,
    "league": "NCAAF",
@@ -20804,14 +20821,15 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAFSPREAD-26NOV13ILLUCLA-UCLA10"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 20,
+   "settle_tries": 21,
+   "settled_utc": "2026-11-14T05:40:12Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Illinois",
@@ -20826,7 +20844,7 @@
     "UCLA"
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": 1.08
   },
   {
    "alerted_utc": "2026-11-12T15:07:14Z",
@@ -25239,10 +25257,12 @@
     "volume_fp": 78250.25
    },
    "fade_price": 0.23,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-12T10:05:37Z",
    "game": "Illinois vs UCLA",
    "game_surge_books": [],
    "game_x": 1.16,
+   "graded_by": "espn",
    "key": "kalshi|KXNCAAFGAME-26NOV13ILLUCLA|ml|1",
    "lead_min": 2390,
    "league": "NCAAF",
@@ -25361,7 +25381,7 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26NOV13ILLUCLA-UCLA"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig",
@@ -25369,7 +25389,8 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 20,
+   "settle_tries": 21,
+   "settled_utc": "2026-11-14T05:40:12Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UCLA",
@@ -25386,7 +25407,7 @@
     "UCLA"
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": 0.29
   },
   {
    "alerted_utc": "2026-11-12T10:05:37Z",
@@ -26333,7 +26354,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 8,
+   "settle_tries": 9,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Southern Utah",
