@@ -148,8 +148,38 @@ def main():
     if tid:
         say(f"  already cached in state: {tid} (no call)")
     else:
-        tid = cl.tournament(st, now, "NCAAB")
-        say(f"  resolved by a billable /tournaments(sportId=11) call: {tid}")
+        # Log the CANDIDATES the lookup saw, not just its answer. Two runs have now returned
+        # None, and the filter requires (upcomingFixtures + futureFixtures) > 0 - which is
+        # plausibly just the hour: both runs were late at night ET with the slate finished. The
+        # answer alone cannot distinguish "OddsPapi has no NCAAB" from "nothing upcoming right
+        # now", and those have completely different costs. Same one credit either way.
+        try:
+            _ts = cl.api("/tournaments", True, sportId=11)
+            cl.bill(st, now)
+            _cands = [t for t in (_ts if isinstance(_ts, list) else [])
+                      if "ncaa" in (t.get("tournamentName") or "").lower()
+                      and "women" not in (t.get("tournamentName") or "").lower()]
+            say(f"  basketball tournaments returned: {len(_ts) if isinstance(_ts, list) else 0}; "
+                f"non-women NCAA among them: {len(_cands)}")
+            for t in _cands[:8]:
+                say(f"    id {t.get('tournamentId')}  {str(t.get('tournamentName'))[:40]:<40} "
+                    f"cat {str(t.get('categorySlug'))[:14]:<14} "
+                    f"upcoming {t.get('upcomingFixtures')} future {t.get('futureFixtures')}")
+            usa = [t for t in _cands if "usa" in (t.get("categorySlug") or "").lower()]
+            say(f"    of those, categorySlug contains 'usa': {len(usa)}")
+            say("    the production filter also needs upcoming+future > 0; a candidate listed")
+            say("    above with 0/0 means the id EXISTS and only the window test failed.")
+            best = max(((t.get("upcomingFixtures") or 0) + (t.get("futureFixtures") or 0),
+                        t.get("tournamentId")) for t in usa) if usa else None
+            tid = best[1] if (best and best[0] > 0) else None
+            if usa and not tid:
+                say("    VERDICT: the NCAAB tournament EXISTS but has 0 upcoming/future fixtures")
+                say("    right now, so the production lookup refuses it. Re-run in-window (NCAAB")
+                say("    afternoon/evening ET) and the same single credit resolves and caches it.")
+        except Exception as _tex:
+            tid = None
+            say(f"  tournament probe failed ({type(_tex).__name__})")
+        say(f"  resolved: {tid}")
     if not tid:
         say("  NO TOURNAMENT ID - OddsPapi returned no non-women USA NCAA basketball tournament")
         say("  with upcoming fixtures. That alone would block Stage 5; reported, not worked around.")

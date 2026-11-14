@@ -77,7 +77,7 @@ def main():
     alt = {fid: f for fid, (f, _s) in fxm.alt_fixtures().items()}
     fxs = st.get("fixtures") or {}
 
-    hits, why_counter = [], collections.Counter()
+    hits, resolves, why_counter = [], [], collections.Counter()
     for k, r in (st.get("bets") or {}).items():
         if r.get("clv") is not None:
             continue
@@ -93,10 +93,14 @@ def main():
                                           cl.which_team, cl.two_way, cl.novig_p, cl.SPORT,
                                           cl.ML_MARKET, cl.FRESH_MIN, cl.tp)
         if p is not None:
+            # It resolves NOW. If the row is retired, the pending loop will never reach it -
+            # done is checked before anything else - so the fix cannot land without a reopen.
+            resolves.append((k, r, f, fid, where, p, cl.eff_dec(s)))
             continue
         why_counter[str(why)[:60]] += 1
-        if "held team not matched" in str(why):
-            hits.append((k, r, f, fid, where))
+        if "held team not matched" in str(why) or "never recorded" in str(why) \
+                or "names no team" in str(why) or "politics" in str(why):
+            hits.append((k, r, f, fid, where, why))
 
     say("")
     say("ROWS WITH A FIXTURE AND CACHED HISTORY BUT NO CLOSE, by reason")
@@ -109,7 +113,7 @@ def main():
     say("For each: what the bet text says, what the parser made of it, the fixture's participants,")
     say("and the authoritative metadata available to resolve the side.")
     shapes = collections.Counter()
-    for k, r, f, fid, where in hits:
+    for k, r, f, fid, where, _why in hits:
         s = r.get("snap") or {}
         pz = cl.parsed(s)
         trk = tracker.get(k) or {}
@@ -150,6 +154,29 @@ def main():
             shape = "no authoritative side anywhere - not recoverable"
         shapes[shape] += 1
         say(f"    -> {shape}")
+
+    say("")
+    say("ROWS THAT RESOLVE NOW BUT CANNOT BE REACHED")
+    say("=" * 104)
+    say("These produce a close under the current code. A row with done=True is skipped by the")
+    say("pending loop before anything else, so the fix cannot land on it without a one-time")
+    say("reopen - which is what clv_reopen_once.py is for, with its allowlist and APPLY gate.")
+    retired = [x for x in resolves if (x[1].get("done") and x[1].get("tries") == cl.MAX_TRIES)]
+    other = [x for x in resolves if x not in retired]
+    say(f"  resolve now: {len(resolves)}   of those retired at tries={cl.MAX_TRIES}: {len(retired)}"
+        f"   reachable without a reopen: {len(other)}")
+    for k, r, f, fid, where, p, dec in resolves:
+        s_ = r.get("snap") or {}
+        clv_ = cb.clv(p, dec)
+        say(f"    {k[:44]:<44} done={bool(r.get('done'))} tries={r.get('tries')}  "
+            f"CLV would be {('%+.2f%%' % (100 * clv_)) if clv_ is not None else 'UNKNOWN (no price)'}")
+        say(f"        {s_.get('league')} | {str(s_.get('game'))[:40]} | {str(s_.get('bet'))[:20]}"
+            f"  stored reason: {str(r.get('why'))[:38]}")
+    if retired:
+        say("")
+        say("  REOPEN_IDS allowlist for the retired ones (copy verbatim):")
+        say("    " + ",".join(k for k, *_ in retired))
+        say(f"    REOPEN_EXPECT={len(retired)}")
 
     say("")
     say("SHAPES")
