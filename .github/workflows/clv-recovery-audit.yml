@@ -119,6 +119,15 @@ jobs:
           EMAIL_TO: ${{ secrets.EMAIL_TO }}
           EMAIL_NOW: ${{ inputs.email_now }}
         run: python -u clv_basis_compare.py
+      - name: Side-match audit (read-only)
+        env:
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+          REGISTRY_TOKEN: ${{ secrets.REGISTRY_TOKEN }}
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          EMAIL_NOW: "0"
+        run: python -u clv_sidematch_audit.py
       - name: Prove nothing in the working tree changed
         run: |
           # -uno: TRACKED files only. The restored hcache/ and this job's own audit/ are
