@@ -80,9 +80,26 @@ def row_key(rid, rec, tracker=None):
         cur = nxt
     src = (tracker.get(cur) or {}) if cur != rid else (rec.get("snap") or {})
     if cur != rid:
-        k = key_of(src.get("league"), src.get("game"), src.get("bet"))
+        # A dup_of pointer is only honoured when it names the SAME GAME. mark_manual_dups links a
+        # note to a venue row on book + stake-to-the-cent + 90 minutes, with no game or league
+        # test, and it has mis-linked across both: mn|3ed1b8065067 (Charlotte @ Phoenix, NBA,
+        # Nov 12) carries dup_of pointing at nv|01a16b28... (Ohio State @ USC, NCAAF, Oct 31).
+        # Following that pointer blindly merges two unrelated selections into one observation and
+        # silently moves one bet's CLV onto another's strategy. Verified here rather than trusted.
+        own = (rec.get("snap") or {})
+        tgt_lg, own_lg = (src.get("league") or ""), (own.get("league") or "")
+        shared = toks(src.get("game")) & toks(own.get("game"))
+        if tgt_lg and own_lg and tgt_lg == own_lg and shared:
+            k = key_of(src.get("league"), src.get("game"), src.get("bet"))
+            if k:
+                return k, f"dup_of -> {cur[:28]}"
+        # pointer rejected: fall through to the row's own identity, and say so
+        s = own
+        k = key_of(s.get("league"), s.get("game"), s.get("bet"))
         if k:
-            return k, f"dup_of -> {cur[:28]}"
+            return k, (f"dup_of -> {cur[:20]} REJECTED (target is "
+                       f"{tgt_lg or '?'}/{str(src.get('game'))[:18]}, row is "
+                       f"{own_lg or '?'}/{str(own.get('game'))[:18]})")
     s = rec.get("snap") or {}
     k = key_of(s.get("league"), s.get("game"), s.get("bet"))
     if k:

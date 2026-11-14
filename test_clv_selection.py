@@ -84,6 +84,25 @@ def main():
           any(str(v.get("why", "")).startswith("dup_of") for v in obs.values()),
           [v.get("why") for v in obs.values()])
 
+    print("6b. a dup_of pointer at a DIFFERENT game is rejected, not followed")
+    # The real mis-link: mn|3ed1b8065067 (Charlotte @ Phoenix, NBA, Nov 12) carries dup_of
+    # pointing at nv|01a16b28 (Ohio State @ USC, NCAAF, Oct 31). mark_manual_dups matches on
+    # book + stake-to-the-cent + 90 minutes with no game or league test. Following it merges two
+    # unrelated selections and moves one bet's CLV onto another strategy.
+    bets = {"nv|usc": fill(200, 380, 0.029, game="Ohio State @ USC", bet="USC +6.5", lg="NCAAF"),
+            "mn|cha": fill(200, 380, -0.018, game="Charlotte Hornets @ Phoenix Suns",
+                           bet="Under 214.5", lg="NBA")}
+    tracker = {"nv|usc": {"league": "NCAAF", "game": "Ohio State @ USC", "bet": "USC +6.5"},
+               "mn|cha": {"dup_of": "nv|usc", "league": "NBA",
+                          "game": "Charlotte Hornets @ Phoenix Suns", "bet": "Under 214.5"}}
+    obs = cs.selections(bets, tracker)
+    check("the two stay SEPARATE selections", len(obs) == 2, list(obs))
+    check("and the rejection is reported",
+          any("REJECTED" in str(v.get("why", "")) for v in obs.values()),
+          [v.get("why") for v in obs.values()])
+    check("no selection claims both fills",
+          all(o["n_fills"] == 1 for o in obs.values()), [o["n_fills"] for o in obs.values()])
+
     print("7. a dup_of chain that does not resolve still keeps its row")
     bets = {"mn|z": fill(50, 95, 0.01)}
     tracker = {"mn|z": {"dup_of": "nv|missing"}}
