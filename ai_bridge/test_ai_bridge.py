@@ -37,6 +37,31 @@ def test():
     assert not b.authorized({**issue, "labels": []}, ev, "faros4life")[0]
     # message length cap
     assert len(b.frame("claude", 1, "z" * 5000)) < b.MAX_CHARS + 600
+    # shared context: committed file fits uncut, carries every required section, is scrubbed and capped
+    std = open(b.CONTEXT_FILE, encoding="utf-8").read().strip()
+    assert len(std) <= b.CONTEXT_MAX, len(std)
+    for key in ("PROHIBITED", "COST LIMITS", "COMPLETE WHEN", "Repo rules", "Reference files"):
+        assert key in std, key
+    body = "OBJECTIVE: x\nSCOPE: y\nFILES: z\nFINDINGS: w\nDONE-WHEN: v\nkey sk-abcdef123456 $900 " + "q" * 5000
+    ctx = b.build_context(body)
+    assert "OBJECTIVE: x" in ctx and "DONE-WHEN: v" in ctx and "PROHIBITED" in ctx
+    assert "sk-abc" not in ctx and "$900" not in ctx
+    assert len(ctx) <= b.CONTEXT_MAX + b.TASK_MAX + 80, len(ctx)
+    # both assistants receive byte-identical context + prompt (same log -> same user message)
+    assert b.user_prompt(ctx, "t") == b.user_prompt(ctx, "t") and ctx in b.user_prompt(ctx, "")
+    # the mandatory line stays in the system prompt of both roles and in every framed message
+    assert all(b.MANDATORY in b.system_prompt(r) for r in ("claude", "chatgpt"))
+    # callers, with the network replaced: both send the same context and keep the mandatory line
+    seen = []
+    b._post = lambda url, h, p: (seen.append(p) or {"content": [{"text": "ok"}],
+                                                     "choices": [{"message": {"content": "ok"}}]})
+    os.environ["ANTHROPIC_API_KEY"] = os.environ["OPENAI_API_KEY"] = "dummy"
+    b.call_claude(ctx, "log"); b.call_chatgpt(ctx, "log")
+    a_user = seen[0]["messages"][0]["content"]
+    o_user = seen[1]["messages"][-1]["content"]
+    assert a_user == o_user and ctx in a_user
+    assert b.MANDATORY in seen[0]["system"] and b.MANDATORY in seen[1]["messages"][0]["content"]
+    assert seen[0]["max_tokens"] == b.MAX_TOKENS == seen[1]["max_completion_tokens"]
     print("ai_bridge tests: all passed")
 
 

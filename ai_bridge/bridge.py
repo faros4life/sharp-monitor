@@ -100,22 +100,43 @@ def system_prompt(role):
             "Never propose new tasks or live-betting changes; those need the owner's approval.")
 
 
-def call_claude(task, transcript):
+CONTEXT_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "CONTEXT.md")
+CONTEXT_MAX, TASK_MAX = 1800, 1500      # chars: ~850 tokens of shared context in total
+
+
+def build_context(issue_body, path=CONTEXT_FILE):
+    """ONE shared context for both assistants: standing rules/limits (CONTEXT.md, committed) plus the
+    owner's issue body (objective, scope, files, findings, done-when). Scrubbed and hard-capped.
+    Issue template:  OBJECTIVE: ... / SCOPE: ... / FILES: ... / FINDINGS: ... / DONE-WHEN: ..."""
+    try:
+        std = open(path, encoding="utf-8").read().strip()
+    except OSError:
+        std = ""
+    return (scrub(std)[:CONTEXT_MAX] + "\n\nAPPROVED TASK (from the owner's issue):\n"
+            + scrub((issue_body or "").strip())[:TASK_MAX])
+
+
+def user_prompt(context, transcript):
+    """Identical for both assistants, so both read the same context before replying."""
+    return f"SHARED CONTEXT (read first):\n{context}\n\nLOG SO FAR:\n{transcript or '(empty)'}\n\nYour turn."
+
+
+def call_claude(context, transcript):
     r = _post("https://api.anthropic.com/v1/messages",
               {"x-api-key": os.environ["ANTHROPIC_API_KEY"], "anthropic-version": "2023-06-01",
                "content-type": "application/json"},
-              {"model": os.environ.get("BRIDGE_CLAUDE_MODEL", "claude-sonnet-4-5"), "max_tokens": MAX_TOKENS,
+              {"model": os.environ.get("BRIDGE_CLAUDE_MODEL", "claude-sonnet-5-5"), "max_tokens": MAX_TOKENS,
                "system": system_prompt("claude"),
-               "messages": [{"role": "user", "content": f"APPROVED TASK:\n{task}\n\nLOG:\n{transcript}\n\nYour turn."}]})
+               "messages": [{"role": "user", "content": user_prompt(context, transcript)}]})
     return r["content"][0]["text"]
 
 
-def call_chatgpt(task, transcript):
+def call_chatgpt(context, transcript):
     r = _post("https://api.openai.com/v1/chat/completions",
               {"Authorization": "Bearer " + os.environ["OPENAI_API_KEY"], "content-type": "application/json"},
               {"model": os.environ.get("BRIDGE_OPENAI_MODEL", "gpt-4o-mini"), "max_completion_tokens": MAX_TOKENS,
                "messages": [{"role": "system", "content": system_prompt("chatgpt")},
-                            {"role": "user", "content": f"APPROVED TASK:\n{task}\n\nLOG:\n{transcript}\n\nYour turn."}]})
+                            {"role": "user", "content": user_prompt(context, transcript)}]})
     return r["choices"][0]["message"]["content"]
 
 
@@ -147,7 +168,9 @@ def main():
     ok, why = authorized(issue, gh("GET", base + "/events?per_page=100"), owner)
     if not ok:
         print("refused:", why); return 0
-    task = scrub(issue.get("body") or "")[:1500]
+    context = build_context(issue.get("body"))
+    task = scrub(issue.get("body") or "")[:TASK_MAX]
+    print(f"shared context: {len(context)} chars, sha={sha(context)}")
     api_calls = 0
     for _ in range(MAX_TURNS):                      # hard bound on this run, independent of the log
         log = parse_log(gh("GET", base + "/comments?per_page=100"))
@@ -157,7 +180,7 @@ def main():
         role, turn = arg, len(log) + 1
         if live:
             transcript = "\n---\n".join(f"{m['role']}: {m['body'].split('> ' + MANDATORY)[-1].split('<!--')[0].strip()}" for m in log)
-            text = (call_claude if role == "claude" else call_chatgpt)(task, transcript); api_calls += 1
+            text = (call_claude if role == "claude" else call_chatgpt)(context, transcript); api_calls += 1
         else:
             text = stub(role, turn, task)
         if is_duplicate(log, text):
