@@ -78,6 +78,14 @@ jobs:
           TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
           REGISTRY_TOKEN: ${{ secrets.REGISTRY_TOKEN }}
         run: python -u clv_dashboard_recon.py
+      - name: Keep the plaintext summary OUT of the public repo
+        run: |
+          # Nov 14: dash/summary.txt was being committed and published beside the encrypted page,
+          # showing per-lane CLV, units and ROI in clear on a PUBLIC repo with Pages on. Encrypting
+          # the page means nothing if a readable copy of its numbers sits next to it. The email is
+          # already sent from memory during the build, so the file is not needed past this point.
+          rm -f dash/summary.txt
+
       - name: Commit the page
         run: |
           git config user.name "clv-dashboard"
@@ -122,11 +130,6 @@ jobs:
           if [ -s "$RUNNER_TEMP/d" ]; then
             echo "FAIL: the dashboard modified tracked files it must not touch:"; cat "$RUNNER_TEMP/d"; exit 1
           fi
+          tracked="$(git ls-files dash | sort | tr '\n' ' ')"
+          [ "$tracked" = "dash/index.html dash/last_email.txt " ] || { echo "FAIL: unexpected tracked files under dash/: $tracked"; exit 1; }
           echo "clean: clv/, tracker/, liquidity/ and the published scorecard untouched"
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: clv-dashboard
-          path: dash/summary.txt
-          if-no-files-found: ignore
-          retention-days: 30
