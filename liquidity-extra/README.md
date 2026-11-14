@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 14, 1:50 PM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 39.
+Updated Sat Nov 14, 2:00 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 39.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,9 +10,9 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 14 1:50PM | NCAAB | Coppin St. vs South Florida: Point Total | total: Over 149.5 points | kalshi | $50k | -100 |  |  | +0.0c |  | pending |
+| Nov 14 1:50PM | NCAAB | Coppin St. vs South Florida: Point Total | total: Over 149.5 points | kalshi | $50k | -100 |  |  | +8.0c | yes | pending |
 | Nov 14 12:30PM | NCAAB | UC Riverside vs Fresno St. | moneyline: UC Riverside | kalshi | $29k | +156 |  |  | +0.0c |  | pending |
-| Nov 14 12:10PM | NCAAB | Louisiana Tech vs Nicholls St. | moneyline: Nicholls St. | kalshi | $33k | -104 |  |  | +0.0c |  | pending |
+| Nov 14 12:10PM | NCAAB | Louisiana Tech vs Nicholls St. | moneyline: Nicholls St. | kalshi | $33k | -104 |  |  | +0.0c | yes | pending |
 | Nov 14 12:00PM | NCAAB | LSU vs Gonzaga: Point Total | total: NOT Over 160.5 points | kalshi | $28k | -100 |  |  | +1.0c |  | pending |
 | Nov 14 12:00PM | NCAAB | Manhattan vs Le Moyne | moneyline: Le Moyne | kalshi | $73k | -122 |  |  | +0.0c |  | pending |
 | Nov 14 12:00PM | NCAAB | Drexel vs Maine | moneyline: Drexel | kalshi | $87k | -156 |  |  | +0.0c | yes | pending |
@@ -30,15 +30,15 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 14 7:40AM | NCAAB | South Alabama vs North Texas | moneyline: North Texas | kalshi | $68k | -376 |  | ✅ | +0.0c |  | pending |
 | Nov 14 7:40AM | NCAAB | UMBC vs Towson | moneyline: Towson | kalshi | $46k | -525 |  |  | -1.0c |  | pending |
 | Nov 14 7:40AM | NCAAB | Portland St. vs San Francisco | moneyline: San Francisco | kalshi | $51k | -567 |  |  | -5.0c |  | pending |
-| Nov 14 7:40AM | NCAAB | Howard vs Davidson | moneyline: Davidson | kalshi | $37k | -426 |  |  | +2.0c |  | pending |
+| Nov 14 7:40AM | NCAAB | Howard vs Davidson | moneyline: Davidson | kalshi | $37k | -426 |  |  | +3.0c |  | pending |
 | Nov 14 7:40AM | NCAAB | Brown vs Siena | moneyline: Siena | kalshi | $62k | -567 |  |  | -2.0c |  | pending |
 | Nov 14 7:30AM | NCAAB | Colorado vs Providence | moneyline: Providence | kalshi | $30k | -567 |  |  | +1.0c |  | pending |
 | Nov 14 5:40AM | NCAAB | NJIT vs Fairfield | moneyline: Fairfield | kalshi | $26k | -525 |  |  | +3.0c | yes | pending |
 | Nov 14 3:50AM | NCAAB | Wofford vs Queens University | moneyline: Queens University | kalshi | $26k | -300 |  |  | -4.0c | yes | pending |
 | Nov 14 1:50AM | NCAAB | Northern Colorado vs South Dakota St. | moneyline: South Dakota St. | kalshi | $33k | -163 |  |  | -3.0c | yes | pending |
 | Nov 14 1:50AM | NCAAB | USC Upstate vs Campbell | moneyline: Campbell | kalshi | $33k | -300 |  |  | +6.0c |  | pending |
-| Nov 14 1:50AM | NCAAB | Rice vs Stephen F. Austin | moneyline: Stephen F. Austin | kalshi | $38k | -488 |  |  | -1.0c |  | pending |
-| Nov 14 1:50AM | NCAAB | Miami (OH) vs Evansville | moneyline: Miami (OH) | kalshi | $27k | -355 |  |  | +2.0c |  | pending |
+| Nov 14 1:50AM | NCAAB | Rice vs Stephen F. Austin | moneyline: Stephen F. Austin | kalshi | $38k | -488 |  |  | -1.0c | yes | pending |
+| Nov 14 1:50AM | NCAAB | Miami (OH) vs Evansville | moneyline: Miami (OH) | kalshi | $27k | -355 |  |  | +2.0c | yes | pending |
 | Nov 14 1:50AM | NCAAB | Longwood vs Old Dominion | moneyline: Old Dominion | kalshi | $38k | -285 |  |  | +0.0c |  | pending |
 | Nov 14 1:50AM | NCAAB | Jackson St. vs Winthrop | moneyline: Winthrop | kalshi | $31k | -317 |  |  | +3.0c |  | pending |
 | Nov 13 10:20PM | NCAAB | LSU vs Gonzaga | moneyline: Gonzaga | kalshi | $32k | -213 |  |  | -1.0c |  | pending |
