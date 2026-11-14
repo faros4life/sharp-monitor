@@ -147,7 +147,8 @@ ck("6b placement_time: bot decision next", ps.placement_time({"decided_utc": TP}
    and ps.placement_time({"placed_bot": TP}, None, tpf) == (TP, "bot decision"))
 ck("6b placement_time: tracker first seen, then the late ledger basis labelled as such",
    ps.placement_time({"first_seen": TP}, None, tpf) == (TP, "first seen (tracker)")
-   and ps.placement_time({}, TP, tpf) == (TP, "first seen (ledger, <=2h late)"))
+   and ps.placement_time({}, TP, tpf) == (TP, ps.LEDGER_FIRST_SEEN))
+ck("6b the late ledger basis label survives the public-log filter", ps.safe_label(ps.LEDGER_FIRST_SEEN) == ps.LEDGER_FIRST_SEEN)
 ck("6b placement_time: nothing -> (None, None), never invented", ps.placement_time({}, None, tpf) == (None, None))
 
 # ---- 7. statistics
@@ -243,6 +244,33 @@ ck("10 finished_state uses the 4 h rule", ps.finished_state("2026-01-01T00:00:00
 ck("10 week_of gives the Monday", ps.week_of("2026-11-14") == "2026-11-09" and ps.week_of("2026-11-09T18:00:00Z") == "2026-11-09" and ps.week_of(None) is None)
 ck("10 the diagnostics wrote nothing", sorted(os.listdir(tmp)) == before)
 ck("10 diagnostics print no fixture id or key: pin_state returns only fixed labels", ps.pin_state(tmp, "F3")[0] in ("present", "absent", "unreadable", "zero_byte"))
+
+# ---- 11. Phase 1 forward acceptance (counts only)
+B_ = {
+    "new1": {"entry_dec": 1.9, "entry_src": "stake_to_pay", "fee_model": "fee_inclusive_cost_payout", "basis_version": "2026-11-14.1",
+             "entry_prov_status": "ok", "quote_ts_derived": "2026-11-20T00:00:00Z", "how": "own line",
+             "snap": {"lane_src": "registry-order-id", "ingest_missing_first": []}},
+    "new2": {"entry_dec": 1.8, "entry_src": "stake_to_pay", "fee_model": "kalshi_unresolved", "basis_version": "2026-11-14.1",
+             "entry_prov_status": "ok_drift", "entry_drift_count": 1, "entry_drift_bp": 12.0, "quote_ts_derived": None, "how": "own line",
+             "snap": {"lane_src": "none", "ingest_missing_first": ["league", "game_start"]}},
+    "old1": {"entry_dec": 1.95, "entry_src": "price_px_fee", "fee_model": "px_settle_2pct", "basis_version": "2026-11-14.1",
+             "entry_prov_status": "ok", "quote_ts_derived": "x", "how": "own line", "snap": {"book": "ProphetX"}},
+    "leg": {"clv": 0.01, "how": "own line", "snap": {}},
+    "bad": {"entry_prov_status": "failed: KeyError", "snap": {}},
+}
+pa = ps.phase1_acceptance(B_)
+ck("11 provenanced rows split into full (new) vs re-graded legacy", pa["provenanced"] == 3 and pa["full"] == 2 and pa["rescored_legacy"] == 1, str(pa))
+ck("11 legacy rows with no provenance are not counted", pa["provenanced"] == 3 and sum(pa["status"].values()) == 3)
+ck("11 a malformed row is skipped, not a crash", ps.phase1_acceptance({"x": 1, "y": None})["provenanced"] == 0)
+ck("11 stamp failures counted separately", pa["prov_failed"] == 1)
+ck("11 lane provenance only for new rows", pa["lane_src"] == {"registry-order-id": 1, "none": 1})
+ck("11 identity gaps tallied by field", pa["ingest_gaps"] == {"league": 1, "game_start": 1})
+ck("11 unresolved: Kalshi fee, missing quote time, non-exact lane", pa["unresolved"] == {"kalshi fee basis": 1, "quote time": 1, "lane not exact": 1})
+ck("11 drift ever/current", pa["drift_ever"] == 1 and pa["drift_now"] == 1)
+ck("11 quote derived vs missing", pa["quote_derived"] == 2 and pa["quote_missing"] == 1)
+ck("11 every tally key is a log-safe label", all(ps.safe_label(k) == k for c in ("status", "entry_src", "fee_model", "lane_src", "ingest_gaps", "unresolved")
+                                                for k in pa[c]))
+ck("11 empty input", ps.phase1_acceptance({})["provenanced"] == 0 and ps.phase1_acceptance(None)["full"] == 0)
 
 # ---- 8. the module touches nothing live
 src = open(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "prob_clv_shadow.py")).read()

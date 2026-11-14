@@ -208,6 +208,7 @@ def ladder(fixture, snap, mkmap, pm, H, at=None):
             "entries": entries}, None
 
 
+LEDGER_FIRST_SEEN = "first seen (ledger) up to 2h late"   # passes safe_label; never merged with another basis
 PLACED_FIELDS = (("placed", "placed"), ("decided_utc", "bot decision"), ("placed_bot", "bot decision"),
                  ("first_seen", "first seen (tracker)"))
 
@@ -220,7 +221,7 @@ def placement_time(snap, ledger_first_seen, tp):
         if t_:
             return t_, nm
     t_ = tp(ledger_first_seen)
-    return (t_, "first seen (ledger, <=2h late)") if t_ else (None, None)
+    return (t_, LEDGER_FIRST_SEEN) if t_ else (None, None)
 
 
 def pick_reference(info):
@@ -455,6 +456,53 @@ def finished_state(start, now=None):
     return "finished" if (now or datetime.now(timezone.utc)) - t_ >= timedelta(hours=4) else "not_finished"
 
 
+
+# Phase 1 forward acceptance (Peter, Nov 14 16:34: "validate the first 20 new Phase 1 graded fills"). COUNTS ONLY: the
+# public log may never carry a per-bet row, so each fill's evidence is reported as field-completeness tallies.
+P1_SNAP = ("order_ref", "lane_src", "strategy_key", "ingest_missing_first")
+
+
+def phase1_acceptance(bets):
+    """Tallies over ledger rows that carry Phase 1 entry provenance (entry_dec written at scoring).
+
+    full = also first seen after the merge (snap has lane_src, i.e. the tracker stamped it as a NEW row);
+    rescored_legacy = provenance only (an existing row re-graded after the merge: no lane / identity stamp by design)."""
+    out = {"provenanced": 0, "full": 0, "rescored_legacy": 0, "status": collections.Counter(), "entry_src": collections.Counter(),
+           "fee_model": collections.Counter(), "basis_version": collections.Counter(), "quote_derived": 0, "quote_missing": 0,
+           "drift_ever": 0, "drift_now": 0, "lane_src": collections.Counter(), "ingest_gaps": collections.Counter(),
+           "close_how": collections.Counter(), "unresolved": collections.Counter(), "prov_failed": 0}
+    for r in (bets or {}).values():
+        if not isinstance(r, dict):
+            continue
+        st_ = r.get("entry_prov_status")
+        if st_ and st_.startswith("failed"):
+            out["prov_failed"] += 1
+        if r.get("entry_dec") is None:
+            continue
+        sn = r.get("snap") or {}
+        out["provenanced"] += 1
+        new_ = "lane_src" in sn
+        out["full" if new_ else "rescored_legacy"] += 1
+        out["status"][safe_label(st_ or "none")] += 1
+        out["entry_src"][safe_label(r.get("entry_src") or "none")] += 1
+        out["fee_model"][safe_label(r.get("fee_model") or "none")] += 1
+        out["basis_version"][safe_label(r.get("basis_version") or "none")] += 1
+        out["quote_derived" if r.get("quote_ts_derived") else "quote_missing"] += 1
+        out["drift_ever"] += 1 if r.get("entry_drift_count") else 0
+        out["drift_now"] += 1 if r.get("entry_drift_bp") is not None else 0
+        out["close_how"][stored_kind(r.get("how"))] += 1
+        if new_:
+            out["lane_src"][safe_label(sn.get("lane_src"))] += 1
+            for g_ in sn.get("ingest_missing_first") or []:
+                out["ingest_gaps"][safe_label(g_)] += 1
+        if r.get("fee_model") == "kalshi_unresolved":
+            out["unresolved"]["kalshi fee basis"] += 1
+        if not r.get("quote_ts_derived"):
+            out["unresolved"]["quote time"] += 1
+        if new_ and sn.get("lane_src") != "registry-order-id":
+            out["unresolved"]["lane not exact"] += 1
+    return out
+
 def build_records(st, tracker, reg, mkmap, H, cv, cb, cl, csel, cstale, fxm):
     bets = st.get("bets") or {}
     try:
@@ -535,7 +583,11 @@ def build_records(st, tracker, reg, mkmap, H, cv, cb, cl, csel, cstale, fxm):
         if pt_ is not None:
             oi_, ow_ = ladder(f, snap, mkmap, cl.book_markets(h, "pinnacle"), H, at=pt_)
             rec["lb_open"] = {k_: oi_.get(k_) for k_ in ("mtype", "side", "bet_line", "entries")} if oi_ else None
-            rec["lb_open_why"] = None if oi_ else ("placed after start" if "after start" in str(ow_) else "no Pinnacle line at placement")
+            # A ledger first-seen time after the start is NOT evidence the bet was placed in-play: for backfilled rows it is when
+            # the ledger first saw the row. Only a real placement field may say "placed after start".
+            late_ = "after start" in str(ow_)
+            rec["lb_open_why"] = None if oi_ else (("no usable placement time" if rec["lb_basis"] == LEDGER_FIRST_SEEN else "placed after start")
+                                                   if late_ else "no Pinnacle line at placement")
         b = rec["sc"]["base"]
         rec["status"] = b["cls"] if b["status"] == "ok" else "conv_unsupported"
         rec["why"] = b["reason"]
@@ -863,6 +915,16 @@ def main():
     t = lb.tally([r["lb"] for r in graded])
     comp = ", ".join(f"{k_[0]} {k_[1]} {len(v_)}" for k_, v_ in sorted(cells.items()))
     say(f"  OVERALL line-beat rate {lb.pct(t['beat'], t['verified'])} (composition: {comp}) - a mix of leagues and markets, not one population")
+    say("=" * 100)
+    say("9. PHASE 1 FORWARD ACCEPTANCE (counts only; target: first 20 NEW graded fills with full provenance)")
+    pa_ = phase1_acceptance(bets)
+    say(f"  rows with entry provenance: {pa_['provenanced']} = full Phase 1 (new rows) {pa_['full']} + re-graded legacy rows {pa_['rescored_legacy']}"
+        f" | provenance stamp failures: {pa_['prov_failed']}")
+    say(f"  checkpoint: {min(pa_['full'], 20)}/20 full Phase 1 fills" + (" - REACHED" if pa_["full"] >= 20 else " - not reached; no audit claimed"))
+    for k_ in ("status", "entry_src", "fee_model", "basis_version", "close_how", "lane_src", "ingest_gaps", "unresolved"):
+        say(f"  {k_:<14}: " + (", ".join(f"{a_} {b_}" for a_, b_ in sorted(pa_[k_].items())) or "none"))
+    say(f"  quote time    : derived {pa_['quote_derived']}, missing {pa_['quote_missing']} (derived = start minus tick age; never an observed timestamp)")
+    say(f"  entry drift   : ever {pa_['drift_ever']}, current {pa_['drift_now']}")
     say("=" * 100)
     say("7. UNCERTAINTY: every mean is a selection mean with a GAME-clustered 95% CI (normal approx.); not a test of edge.")
     say("   Nothing here is promoted; CLV_STANDARD.md, the headline, gates and live settings are untouched.")
