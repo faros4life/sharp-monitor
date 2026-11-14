@@ -101,6 +101,10 @@ jobs:
             git push -q origin HEAD:main && break
             sleep 5
           done
+      - name: Verify the published page (decrypts with the real secret; counts only)
+        env:
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+        run: python -u dash_verify.py
       - name: Guard - the payload is encrypted and nothing else was modified
         run: |
           # A readable payload on a PUBLIC repo is the one failure that cannot be walked back once

@@ -187,6 +187,30 @@ check("the gate clause names P/L", "both halves positive on units (P/L)" in
       json.dumps(dash.gate("x", {"units": 1.0, "clv": 1.0}, {"units": 1.0, "clv": 1.0},
                            {"n": 30, "clv": 1.0, "ci": [0.5, 1.5], "pos": 20}, True)))
 
+
+print("12. the dashboard-output privacy guard, tested from both sides")
+# On 14 Nov I committed dash/summary.txt - per-lane CLV, units and ROI in clear - to this PUBLIC
+# repo, five times. The encryption guard passed every time because it only inspected
+# dash/index.html: it verified the locked door while the window was open. A second Claude session
+# caught it. The whitelist guard that replaced it is tested here in BOTH directions, because a
+# guard that has only ever been seen to pass has not been tested at all.
+wf = open(".github/workflows/clv-dashboard.yml").read()
+check("the guard whitelists exactly the two permitted files",
+      '"dash/index.html dash/last_email.txt "' in wf, "whitelist not found")
+check("it fails the run rather than warning", "exit 1" in wf.split("unexpected tracked files")[1][:60])
+check("the plaintext summary is deleted before the commit step",
+      wf.index("rm -f dash/summary.txt") < wf.index("- name: Commit the page"))
+check("and is not uploaded as an artifact either", "path: dash/summary.txt" not in wf)
+check("the encryption guard still checks the markup", "too large to be a prompt" in wf)
+
+print("13. only authoritative confirmed fills reach live performance")
+src = open("clv_dashboard.py").read()
+check("confirmed fills come from the registry, not the ledger", "rg.fills()" in src)
+check("only FILLED and PARTIAL qualify", '("FILLED", "PARTIAL")' in src)
+for st in ("NO_FILL", "RESTING", "PLACED", "REFUSED", "CANCELED", "EXPIRED"):
+    check(f"{st} is not treated as a confirmed fill", f'"{st}"' not in src)
+check("a fill with no play_key cannot join", '(v or {}).get("play_key")' in src)
+
 print()
 if fails:
     print(f"FAILED {len(fails)}: " + "; ".join(fails))
