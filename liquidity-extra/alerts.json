@@ -1,6 +1,191 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-14T20:40:20Z",
+   "base_depth": 124416,
+   "best_price": 0.62,
+   "best_price_american": -163,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.61,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-14",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -5005,
+     "new_this_side": 29463,
+     "other_side": 5850,
+     "other_side_all_levels": 80211,
+     "ratio": 14.2,
+     "this_side": 82894,
+     "this_side_all_levels": 169754
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "WCU (0)",
+     "price": 0.62,
+     "this_side": 4187
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Western Carolina",
+     "price": 0.6324,
+     "this_side": 1457
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 902.6500000000001,
+    "volume_24h_fp": 901.6500000000001,
+    "volume_fp": 902.6500000000001
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 902.6500000000001,
+    "volume_24h_fp": 901.6500000000001,
+    "volume_fp": 902.6500000000001
+   },
+   "fade_price": 0.4,
+   "first_seen_utc": "2026-11-14T20:30:29Z",
+   "game": "Lipscomb vs Western Carolina",
+   "game_surge_books": [],
+   "game_x": 1.71,
+   "key": "kalshi|KXNCAAMBGAME-26NOV14LIPWCU|ml|1",
+   "lead_min": 200,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 29463,
+   "new_x": 0.43,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 902.6500000000001,
+      "volume_24h_fp": 901.6500000000001,
+      "volume_fp": 902.6500000000001
+     },
+     "game_normal": 99553,
+     "game_x": 1.71,
+     "normal": 67970,
+     "now": 169754,
+     "type": "ML",
+     "x": 2.5
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 122510.0,
+      "volume": 134777.0
+     },
+     "game_normal": 3677,
+     "game_x": 1.31,
+     "normal": 5509,
+     "now": 4815,
+     "type": "ML",
+     "x": 0.87
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 1232,
+     "game_x": 1.27,
+     "normal": 903,
+     "now": 1571,
+     "type": "ML",
+     "x": 1.74
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.61,
+   "price_american": -156,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.61,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -185
+    },
+    "betrivers": {
+     "point": null,
+     "price": -190
+    },
+    "bovada": {
+     "point": null,
+     "price": -180
+    },
+    "draftkings": {
+     "point": null,
+     "price": -175
+    },
+    "fanatics": {
+     "point": null,
+     "price": -180
+    },
+    "fanduel": {
+     "point": null,
+     "price": -184
+    },
+    "kalshi": {
+     "point": null,
+     "price": -156
+    },
+    "novig": {
+     "point": null,
+     "price": -163
+    },
+    "polymarket": {
+     "point": null,
+     "price": -170
+    },
+    "prophetx": {
+     "point": null,
+     "price": -172
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -180
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV14LIPWCU-WCU"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [
+    "Western Carolina Catamounts -3.5 (-104)"
+   ],
+   "sharp_oppose": [],
+   "side": "Western Carolina",
+   "side_label": "Western Carolina",
+   "size_x": 2.5,
+   "start_source": "odds",
+   "start_utc": "2026-11-15T00:00:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "Lipscomb",
+    "Western Carolina"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-14T18:50:17Z",
    "base_depth": 48722,
    "best_price": 0.5,
@@ -1199,7 +1384,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 5667.43,
-    "volume_24h_fp": 5783.68,
+    "volume_24h_fp": 5803.68,
     "volume_fp": 5803.68
    },
    "ex_stats_first": {
@@ -1561,9 +1746,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 3966.13,
+    "open_interest_fp": 4474.13,
     "volume_24h_fp": 4239.5,
-    "volume_fp": 4239.5
+    "volume_fp": 4747.5
    },
    "ex_stats_first": {
     "open_interest_fp": 1735.24,
@@ -2283,9 +2468,9 @@
     "volume_fp": 2.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1216.3400000000001,
-    "volume_24h_fp": 1229.3400000000001,
-    "volume_fp": 1239.3400000000001
+    "open_interest_fp": 1244.9,
+    "volume_24h_fp": 1257.9,
+    "volume_fp": 1267.9
    },
    "ex_stats_first": {
     "open_interest_fp": 111.55,
@@ -2671,9 +2856,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 2274.73,
-    "volume_24h_fp": 2294.08,
-    "volume_fp": 2301.73
+    "open_interest_fp": 2305.13,
+    "volume_24h_fp": 2324.48,
+    "volume_fp": 2332.13
    },
    "ex_stats_first": {
     "open_interest_fp": 89.64,
@@ -3818,9 +4003,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 905.3699999999999,
-    "volume_24h_fp": 904.3699999999999,
-    "volume_fp": 905.3699999999999
+    "open_interest_fp": 918.3699999999999,
+    "volume_24h_fp": 917.3699999999999,
+    "volume_fp": 918.3699999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 416.39,
@@ -4188,7 +4373,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 7530.35,
-    "volume_24h_fp": 7696.06,
+    "volume_24h_fp": 7722.06,
     "volume_fp": 10440.3
    },
    "ex_stats_first": {
@@ -4849,9 +5034,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 6302.26,
-    "volume_24h_fp": 6260.379999999999,
-    "volume_fp": 6311.719999999999
+    "open_interest_fp": 8638.66,
+    "volume_24h_fp": 8431.07,
+    "volume_fp": 8648.119999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 70.38,
@@ -5360,9 +5545,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 12449.19,
-    "volume_24h_fp": 12447.109999999999,
-    "volume_fp": 12450.23
+    "open_interest_fp": 12520.44,
+    "volume_24h_fp": 12518.359999999999,
+    "volume_fp": 12521.48
    },
    "ex_stats_first": {
     "open_interest_fp": 5.16,
@@ -6081,7 +6266,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 6424.379999999999,
-    "volume_24h_fp": 4990.38,
+    "volume_24h_fp": 6478.01,
     "volume_fp": 6538.75
    },
    "ex_stats_first": {
@@ -6391,7 +6576,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 1,
+   "settle_tries": 2,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Colorado St.",
@@ -7160,7 +7345,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 16,
+   "settle_tries": 17,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Cornell",
@@ -12901,7 +13086,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 190,
+   "settle_tries": 191,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Fritz",

@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 14, 3:30 PM ET. This run: 0 new, 2 not confirmed, 1 pending. Open alerts: 37.
+Updated Sat Nov 14, 3:40 PM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 38.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 14 3:40PM | NCAAB | Lipscomb vs Western Carolina | moneyline: Western Carolina | kalshi | $29k | -156 |  | ✅ | +0.0c |  | pending |
 | Nov 14 1:50PM | NCAAB | Coppin St. vs South Florida: Point Total | total: Over 149.5 points | kalshi | $50k | -100 |  |  | +8.0c | yes | pending |
 | Nov 14 12:30PM | NCAAB | UC Riverside vs Fresno St. | moneyline: UC Riverside | kalshi | $29k | +156 |  |  | +0.0c |  | pending |
 | Nov 14 12:10PM | NCAAB | Louisiana Tech vs Nicholls St. | moneyline: Nicholls St. | kalshi | $33k | -104 |  |  | +0.0c | yes | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 5 5:10PM | NCAAB | Mercyhurst @ Notre Dame | spread: Mercyh +21.5 (-21.5) | novig | $67k | +102 |  | ❌ | +0.0c |  | L |
 | Nov 5 3:20PM | NCAAB | Tarleton St. vs San Diego | moneyline: San Diego | kalshi | $31k | -223 |  |  | +5.0c |  | W |
 | Nov 5 3:20PM | NCAAB | Robert Morris vs UIC | moneyline: UIC | kalshi | $40k | -567 |  |  | -1.0c | yes | W |
-| Nov 5 3:20PM | NCAAB | North Dakota St. vs San Francisco | moneyline: San Francisco | kalshi | $41k | -317 |  |  | +2.0c |  | W |
