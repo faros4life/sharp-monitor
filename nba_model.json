@@ -5780,8 +5780,8 @@
     "line": 235.5,
     "over": -105,
     "under": -107,
-    "read_utc": "2026-11-14T18:46:03Z",
-    "mins_before": 314
+    "read_utc": "2026-11-14T19:10:22Z",
+    "mins_before": 290
    },
    "post": {
     "utc": "2026-11-14T18:13:15Z",
@@ -5804,10 +5804,10 @@
    "start": "2026-11-15T00:30Z",
    "close": {
     "line": 228.5,
-    "over": -102,
+    "over": -104,
     "under": -112,
-    "read_utc": "2026-11-14T18:46:03Z",
-    "mins_before": 344
+    "read_utc": "2026-11-14T19:10:22Z",
+    "mins_before": 320
    },
    "post": {
     "utc": "2026-11-14T18:33:21Z",
@@ -5832,8 +5832,22 @@
     "line": 229.0,
     "over": -109,
     "under": -105,
-    "read_utc": "2026-11-14T18:46:03Z",
-    "mins_before": 374
+    "read_utc": "2026-11-14T19:10:22Z",
+    "mins_before": 350
+   },
+   "post": {
+    "utc": "2026-11-14T19:12:14Z",
+    "lead_min": 348,
+    "number": 228.1,
+    "late": false,
+    "gp": {
+     "home": 10,
+     "away": 10
+    },
+    "pin_line": 229.0,
+    "pin_over": -109,
+    "pin_under": -105,
+    "ref_age_s": 112
    }
   },
   "401909983": {
@@ -5844,8 +5858,22 @@
     "line": 228.0,
     "over": -110,
     "under": -102,
-    "read_utc": "2026-11-14T18:46:03Z",
-    "mins_before": 374
+    "read_utc": "2026-11-14T19:10:22Z",
+    "mins_before": 350
+   },
+   "post": {
+    "utc": "2026-11-14T19:12:14Z",
+    "lead_min": 348,
+    "number": 229.2,
+    "late": false,
+    "gp": {
+     "home": 10,
+     "away": 10
+    },
+    "pin_line": 228.0,
+    "pin_over": -110,
+    "pin_under": -102,
+    "ref_age_s": 112
    }
   },
   "401909984": {
@@ -5855,9 +5883,40 @@
    "close": {
     "line": 235.5,
     "over": -101,
-    "under": -112,
-    "read_utc": "2026-11-14T18:46:03Z",
-    "mins_before": 374
+    "under": -111,
+    "read_utc": "2026-11-14T19:10:22Z",
+    "mins_before": 350
+   },
+   "post": {
+    "utc": "2026-11-14T19:12:14Z",
+    "lead_min": 348,
+    "number": 231.5,
+    "late": false,
+    "gp": {
+     "home": 10,
+     "away": 10
+    },
+    "pin_line": 235.5,
+    "pin_over": -101,
+    "pin_under": -111,
+    "ref_age_s": 112,
+    "sighting": {
+     "side": "Under",
+     "line": 235.5,
+     "price": -111,
+     "gap": -4.0,
+     "band": "4.0+",
+     "novig": {
+      "prob": 0.52,
+      "dec": 1.9231,
+      "best_size_usd": 127.55,
+      "depth5c_usd": 7097.27,
+      "t_utc": "2026-11-14T19:12:14Z",
+      "market_id": "01a1d6cf-cc71-7f63-ba38-3fc57253fa77"
+     },
+     "clv_c": -1.46,
+     "clv_v_excl": "close read 350 min before tip (> 60)"
+    }
    }
   },
   "401909985": {
@@ -6093,20 +6152,20 @@
    "drtg": 111.98117400577875
   }
  },
- "updated_utc": "2026-11-14T18:52:55Z",
+ "updated_utc": "2026-11-14T19:12:14Z",
  "summary": [
-  "NBA TOTALS MODEL (paper), forward from 2026-11-02, updated 2026-11-14T18:52:55Z",
-  "Games posted: 93 | with Pinnacle reference: 93 | late posts: 7 | sightings: 44 (first read at 60)",
-  "  ALL      n 44 | Pinnacle CLV -1.53c (n=44) | 20-23 -4.03u",
+  "NBA TOTALS MODEL (paper), forward from 2026-11-02, updated 2026-11-14T19:12:14Z",
+  "Games posted: 96 | with Pinnacle reference: 96 | late posts: 7 | sightings: 45 (first read at 60)",
+  "  ALL      n 45 | Pinnacle CLV -1.53c (n=45) | 20-23 -4.03u",
   "  3.0-3.9  n 12 | Pinnacle CLV -1.53c (n=12) | 3-8 -5.17u",
-  "  4.0+     n 32 | Pinnacle CLV -1.53c (n=32) | 17-15 +1.13u",
+  "  4.0+     n 33 | Pinnacle CLV -1.53c (n=33) | 17-15 +1.13u",
   "  Overs    n 29 | Pinnacle CLV -1.52c (n=29) | 14-15 -1.60u",
-  "  Unders   n 15 | Pinnacle CLV -1.56c (n=15) | 6-8 -2.44u",
+  "  Unders   n 16 | Pinnacle CLV -1.55c (n=16) | 6-8 -2.44u",
   "Calibration (same 91 games): our MAE 13.66 | Pinnacle 6h MAE 12.63 | gap +1.03 (stop if > +1.0 at the read)",
   "FORWARD CANDIDATE: NBA REG T-6h at NOVIG (paper; verified same-line Pinnacle close; unique games)",
-  "  sightings since logging started 15 | with a Novig quote 11 | qualifying (verified CLV) 0 of 100 needed",
+  "  sightings since logging started 16 | with a Novig quote 12 | qualifying (verified CLV) 0 of 100 needed",
   "  ALL n 0 | FIT n 0 | CHECK n 0 | bar: not met",
-  "  Novig size at best level median $1,351; within 5c median $11,955",
-  "  excluded: 2 x close read 363 min before tip (> 60); 2 x close read 365 min before tip (> 60); 2 x close read 350 min before tip (> 60); 1 x no open Novig total at 218; 1 x no open Novig total at 228; 1 x no open Novig total at 216; 1 x close read 364 min before tip (> 60); 1 x close read 375 min before tip (> 60); 1 x close read 359 min before tip (> 60); 1 x close read 362 min before tip (> 60); 1 x no open Novig total at 236; 1 x close read 360 min before tip (> 60)"
+  "  Novig size at best level median $786; within 5c median $11,444",
+  "  excluded: 3 x close read 350 min before tip (> 60); 2 x close read 363 min before tip (> 60); 2 x close read 365 min before tip (> 60); 1 x no open Novig total at 218; 1 x no open Novig total at 228; 1 x no open Novig total at 216; 1 x close read 364 min before tip (> 60); 1 x close read 375 min before tip (> 60); 1 x close read 359 min before tip (> 60); 1 x close read 362 min before tip (> 60); 1 x no open Novig total at 236; 1 x close read 360 min before tip (> 60)"
  ]
 }
