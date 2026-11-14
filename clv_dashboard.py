@@ -402,9 +402,10 @@ def build():
                          "h1": blk(h1, LANE_UNIT.get(lane)), "h2": blk(h2, LANE_UNIT.get(lane))})
     bands["D_triggers"] = {"live": trig, "collapsed_by_default": True,
                            "registered_total": 32,
-                           "note": ("Live lanes and their triggers first. Expand for all 32 "
-                                    "registered entries, whose status is quoted from "
-                                    "SCORECARD.md as frozen and is not recomputed here.")}
+                           "note": ("INCOMPLETE: only live-lane selections grouped by league are shown. The "
+                                    "32 registered entries (REGISTRY.md) are NOT itemized here yet: "
+                                    "that needs each selection mapped to its registered trigger by "
+                                    "verified evidence. Their frozen status is in SCORECARD.md.")}
 
     # ---- E: the pricing-model change
     allrows = [o for rows in by_lane.values() for o in rows]
