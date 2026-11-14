@@ -602,11 +602,40 @@ def recover_leagues(st, now, max_rows=400):
     Every fill records league_src, so any recovered league can be traced to the evidence that
     produced it. Rows that cannot be resolved are left exactly as they are and counted.
     """
-    need = [(k, r) for k, r in (st.get("bets") or {}).items()
-            if not (r.get("snap") or {}).get("league") and (r.get("snap") or {}).get("game")]
+    noleague = [(k, r) for k, r in (st.get("bets") or {}).items()
+                if not (r.get("snap") or {}).get("league")]
+    filled = collections.Counter()
+    # Many rows with no league ALSO have no game text - read_prophetx writes
+    # game = strike-lookup or event_name, and when the strike walk failed at the time both came
+    # out empty. The registry's strike map is the authoritative record of what a strike IS
+    # (book, game, date, mtype, label), so a row whose tracker entry carries a strike id can
+    # have its game restored from there. That is venue metadata, not a guess from a description.
+    nogame = [(k, r) for k, r in noleague if not (r.get("snap") or {}).get("game")]
+    if nogame:
+        smap = {}
+        try:
+            import registry as _reg
+            smap = _reg.strike_map() if _reg.enabled() else {}
+        except Exception as e_:
+            LG_LOG.append(f"registry strike map unavailable ({type(e_).__name__})")
+        trk = {}
+        try:
+            trk = (tb.dec(json.load(open(tb.STATE))) or {}).get("bets") or {}
+        except Exception:
+            pass
+        for k, r in nogame:
+            sid = str((trk.get(k) or {}).get("strike") or "")
+            ent = smap.get(sid) if sid else None
+            if ent and ent.get("game"):
+                r["snap"]["game"] = ent["game"]
+                r["snap"]["game_src"] = {"from": "registry strike map", "strike": sid, "at": iso(now)}
+                filled["game_from_strike"] += 1
+        LG_LOG.append(f"rows with no league AND no game: {len(nogame)}; "
+                      f"games restored from the registry strike map: {filled['game_from_strike']}")
+    need = [(k, r) for k, r in noleague if (r.get("snap") or {}).get("game")]
+    LG_LOG.append(f"rows with no league: {len(noleague)}; of those with a game text: {len(need)}")
     if not need:
         return 0
-    filled = collections.Counter()
     # 1) the row's own fixture
     for k, r in need:
         fid = r.get("fixture")
@@ -1218,6 +1247,14 @@ def main():
                 fid = _fid
                 rec["fixture_src"] = {"from": ALT_SRC.get(_fid, "alt cache"), "how": _note,
                                       "at": iso(now)}       # audit trail: where this came from
+                # Copy the fixture into our own cache. Without this the row scores but is then
+                # UNVALIDATABLE - fixture_check reports "stored fixture is no longer in the
+                # cache" and the Nov 5 fail-closed rule drops it from the headline, so the row
+                # would carry a CLV that no figure ever counts. The Louisiana row did exactly
+                # that on the first run of this change. Fixtures are public reference data and
+                # this only ever ADDS: an id already in st["fixtures"] is never overwritten.
+                if _fid not in (st.get("fixtures") or {}):
+                    st.setdefault("fixtures", {})[_fid] = ALT_FX[_fid]
                 FX_LOG.append(f"recovered fixture for {k[:28]}: {_fid} from "
                               f"{ALT_SRC.get(_fid, '?')} ({_note})")
         if not fid:
