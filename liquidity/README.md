@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 14, 7:35 AM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 43.
+Updated Sat Nov 14, 7:40 AM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 44.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 14 7:40AM | NCAAF | Merrimack vs Monmouth: Spread | spread: NOT Monmouth wins by over 14.5 points | kalshi | $29k | +104 |  |  | +0.0c |  | pending |
 | Nov 14 7:35AM | NCAAF | Bryant vs Sacred Heart | moneyline: Sacred Heart | kalshi | $89k | -104 |  |  | +0.0c |  | pending |
 | Nov 14 5:30AM | NCAAF | Presbyterian vs Morehead St.: Spread | spread: NOT Presbyterian wins by over 2.5 points | kalshi | $30k | -104 |  |  | -1.0c | yes | pending |
 | Nov 14 5:10AM | NCAAF | East Carolina vs Charlotte: Total Points | total: NOT Over 45.5 points | kalshi | $43k | -104 |  |  | +0.0c | yes | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 11 1:22PM | NHL | Utah vs Vegas | moneyline: Utah | kalshi | $99k | +117 |  |  | -1.0c | yes | L |
 | Nov 11 1:01PM | NHL | Utah vs Vegas | moneyline: Vegas | kalshi | $32k | -122 |  |  | +1.0c | yes | W |
 | Nov 11 12:47PM | NBA | Brooklyn vs New Orleans | moneyline: Brooklyn | kalshi | $74k | +144 |  |  | +3.0c |  | W |
-| Nov 11 12:31PM | NBA | Washington vs Indiana: Total Points | total: Over 228.5 points | kalshi | $65k | -100 | ✅ novig | ✅ | +1.0c | yes | L |
