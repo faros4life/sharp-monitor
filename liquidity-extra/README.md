@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 14, 8:50 AM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 23.
+Updated Sat Nov 14, 9:00 AM ET. This run: 2 new, 0 not confirmed, 3 pending. Open alerts: 25.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,7 +10,9 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 14 8:30AM | NCAAB | Northwestern St. vs Little Rock | moneyline: Little Rock | kalshi | $29k | -400 |  |  | +0.0c |  | pending |
+| Nov 14 9:00AM | NCAAB | UT Rio Grande Valley vs UT Arlington | moneyline: UT Arlington | kalshi | $42k | -186 |  |  | +0.0c |  | pending |
+| Nov 14 9:00AM | NCAAB | Cincinnati vs Dayton | moneyline: Cincinnati | kalshi | $58k | -257 | ✅ novig |  | +0.0c |  | pending |
+| Nov 14 8:30AM | NCAAB | Northwestern St. vs Little Rock | moneyline: Little Rock | kalshi | $29k | -400 |  |  | +0.0c | yes | pending |
 | Nov 14 7:40AM | NCAAB | South Alabama vs North Texas | moneyline: North Texas | kalshi | $68k | -376 |  | ✅ | +0.0c |  | pending |
 | Nov 14 7:40AM | NCAAB | UMBC vs Towson | moneyline: Towson | kalshi | $46k | -525 |  |  | -1.0c |  | pending |
 | Nov 14 7:40AM | NCAAB | Portland St. vs San Francisco | moneyline: San Francisco | kalshi | $51k | -567 |  |  | +0.0c |  | pending |
@@ -208,5 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 5 1:10AM | NCAAB | Maine vs Sacred Heart | moneyline: Sacred Heart | kalshi | $36k | -245 |  |  | -2.0c | yes | L |
 | Nov 5 1:10AM | NCAAB | UMass Lowell vs Merrimack | moneyline: Merrimack | kalshi | $39k | -300 |  |  | +5.0c | yes | L |
 | Nov 5 1:10AM | NCAAB | Howard vs Alcorn St. | moneyline: Howard | kalshi | $37k | -285 |  |  | +6.0c | yes | W |
-| Nov 5 1:10AM | NCAAB | East Texas A&M vs Rice | moneyline: Rice | kalshi | $28k | -178 |  |  | -3.0c | yes | L |
-| Nov 5 1:10AM | NCAAB | Delaware St. vs Navy | moneyline: Navy | kalshi | $41k | -426 |  |  | -1.0c | yes | W |

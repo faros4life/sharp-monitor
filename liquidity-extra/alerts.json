@@ -1,6 +1,372 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-14T14:00:24Z",
+   "base_depth": 67357,
+   "best_price": 0.6659,
+   "best_price_american": -199,
+   "best_price_book": "kalshi",
+   "bid_improved": true,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.65,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-14",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 4022,
+     "new_this_side": 41743,
+     "other_side": 9716,
+     "other_side_all_levels": 58558,
+     "ratio": 8.5,
+     "this_side": 82402,
+     "this_side_all_levels": 153698
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "UT Arlington",
+     "price": 0.6667,
+     "this_side": 652
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 89.64,
+    "volume_24h_fp": 89.64,
+    "volume_fp": 89.64
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 27.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 89.64,
+    "volume_24h_fp": 62.64,
+    "volume_fp": 89.64
+   },
+   "fade_price": 0.35,
+   "first_seen_utc": "2026-11-14T13:50:22Z",
+   "game": "UT Rio Grande Valley vs UT Arlington",
+   "game_surge_books": [
+    "kalshi"
+   ],
+   "game_x": 3.36,
+   "key": "kalshi|KXNCAAMBGAME-26NOV14UTRGVUTA|ml|1",
+   "lead_min": 600,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 41743,
+   "new_x": 0.99,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 89.64,
+      "volume_24h_fp": 89.64,
+      "volume_fp": 89.64
+     },
+     "game_normal": 45703,
+     "game_x": 3.36,
+     "normal": 41973,
+     "now": 153698,
+     "type": "ML",
+     "x": 3.66
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 370,
+     "game_x": 1.79,
+     "normal": 526,
+     "now": 662,
+     "type": "ML",
+     "x": 1.26
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.65,
+   "price_american": -186,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.64,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -210
+    },
+    "betrivers": {
+     "point": null,
+     "price": -225
+    },
+    "bovada": {
+     "point": null,
+     "price": -200
+    },
+    "draftkings": {
+     "point": null,
+     "price": -205
+    },
+    "fanatics": {
+     "point": null,
+     "price": -195
+    },
+    "fanduel": {
+     "point": null,
+     "price": -196
+    },
+    "kalshi": {
+     "point": null,
+     "price": -194
+    },
+    "novig": {
+     "point": null,
+     "price": -194
+    },
+    "polymarket": {
+     "point": null,
+     "price": -203
+    },
+    "prophetx": {
+     "point": null,
+     "price": -200
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -195
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV14UTRGVUTA-UTA"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UT Arlington",
+   "side_label": "UT Arlington",
+   "size_x": 3.66,
+   "start_source": "odds",
+   "start_utc": "2026-11-15T00:00:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "UT Rio Grande Valley",
+    "UT Arlington"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-14T14:00:24Z",
+   "base_depth": 115835,
+   "best_price": 0.72,
+   "best_price_american": -257,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.72,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-14",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 7974,
+     "new_this_side": 57680,
+     "other_side": 10913,
+     "other_side_all_levels": 48592,
+     "ratio": 9.7,
+     "this_side": 106002,
+     "this_side_all_levels": 181027
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "CIN (0)",
+     "price": 0.72,
+     "this_side": 10904
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Cincinnati",
+     "price": 0.7183,
+     "this_side": 1376
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 749.0400000000001,
+    "volume_24h_fp": 580.84,
+    "volume_fp": 751.0400000000001
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 230.0,
+    "volume_24h_fp": 230.0,
+    "volume_fp": 230.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 519.04,
+    "volume_24h_fp": 350.84000000000003,
+    "volume_fp": 521.04
+   },
+   "fade_price": 0.29,
+   "first_seen_utc": "2026-11-14T13:50:22Z",
+   "game": "Cincinnati vs Dayton",
+   "game_surge_books": [],
+   "game_x": 1.76,
+   "key": "kalshi|KXNCAAMBGAME-26NOV14CINDAY|ml|0",
+   "lead_min": 630,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 57680,
+   "new_x": 1.37,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 749.0400000000001,
+      "volume_24h_fp": 580.84,
+      "volume_fp": 751.0400000000001
+     },
+     "game_normal": 102949,
+     "game_x": 1.76,
+     "normal": 41973,
+     "now": 181027,
+     "type": "ML",
+     "x": 4.31
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 180910.0,
+      "volume": 193110.0
+     },
+     "game_normal": 12796,
+     "game_x": 1.6,
+     "normal": 2850,
+     "now": 20461,
+     "type": "ML",
+     "x": 7.18
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 1758,
+     "game_x": 0.9,
+     "normal": 526,
+     "now": 1576,
+     "type": "ML",
+     "x": 3.0
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.72,
+   "price_american": -257,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.72,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -285
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -285
+    },
+    "betrivers": {
+     "point": null,
+     "price": -305
+    },
+    "betus": {
+     "point": null,
+     "price": -285
+    },
+    "bovada": {
+     "point": null,
+     "price": -285
+    },
+    "draftkings": {
+     "point": null,
+     "price": -290
+    },
+    "fanatics": {
+     "point": null,
+     "price": -285
+    },
+    "fanduel": {
+     "point": null,
+     "price": -280
+    },
+    "kalshi": {
+     "point": null,
+     "price": -257
+    },
+    "lowvig": {
+     "point": null,
+     "price": -285
+    },
+    "novig": {
+     "point": null,
+     "price": -257
+    },
+    "polymarket": {
+     "point": null,
+     "price": -257
+    },
+    "prophetx": {
+     "point": null,
+     "price": -255
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -285
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV14CINDAY-CIN"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Cincinnati",
+   "side_label": "Cincinnati",
+   "size_x": 4.31,
+   "start_source": "odds",
+   "start_utc": "2026-11-15T00:30:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "teams": [
+    "Cincinnati",
+    "Dayton"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-14T13:30:21Z",
    "base_depth": 50635,
    "best_price": 0.81,
@@ -161,7 +527,8 @@
      "price": -470
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-14T14:00:24Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAMBGAME-26NOV14NWSTUALR-UALR"
@@ -1179,9 +1546,9 @@
     "volume_fp": 27.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 3135.35,
-    "volume_24h_fp": 4968.65,
-    "volume_fp": 5194.299999999999
+    "open_interest_fp": 3194.37,
+    "volume_24h_fp": 5027.67,
+    "volume_fp": 5253.32
    },
    "ex_stats_first": {
     "open_interest_fp": 3091.35,
@@ -1503,7 +1870,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 1759.85,
-    "volume_24h_fp": 1661.09,
+    "volume_24h_fp": 1687.51,
     "volume_fp": 1777.27
    },
    "ex_stats_first": {
@@ -1840,9 +2207,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 83.14,
+    "open_interest_fp": 87.45,
     "volume_24h_fp": 31.8,
-    "volume_fp": 83.14
+    "volume_fp": 87.45
    },
    "ex_stats_first": {
     "open_interest_fp": 70.38,
@@ -2007,9 +2374,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1728.25,
-    "volume_24h_fp": 1718.21,
-    "volume_fp": 1731.25
+    "open_interest_fp": 1759.71,
+    "volume_24h_fp": 1760.67,
+    "volume_fp": 1762.71
    },
    "ex_stats_first": {
     "open_interest_fp": 563.83,
@@ -2166,9 +2533,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 257.14,
-    "volume_24h_fp": 159.82999999999998,
-    "volume_fp": 257.14
+    "open_interest_fp": 547.14,
+    "volume_24h_fp": 449.83000000000004,
+    "volume_fp": 547.14
    },
    "ex_stats_first": {
     "open_interest_fp": 128.51,
@@ -2515,9 +2882,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 80.81,
-    "volume_24h_fp": 50.69,
-    "volume_fp": 80.81
+    "open_interest_fp": 680.8100000000001,
+    "volume_24h_fp": 650.69,
+    "volume_fp": 680.8100000000001
    },
    "ex_stats_first": {
     "open_interest_fp": 41.29,
@@ -2687,9 +3054,9 @@
     "volume_fp": 14.58
    },
    "ex_stats_close": {
-    "open_interest_fp": 13144.949999999999,
-    "volume_24h_fp": 11665.18,
-    "volume_fp": 13568.420000000002
+    "open_interest_fp": 13173.89,
+    "volume_24h_fp": 11567.279999999999,
+    "volume_fp": 13597.36
    },
    "ex_stats_first": {
     "open_interest_fp": 8622.69,
@@ -2878,9 +3245,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 962.08,
-    "volume_24h_fp": 962.08,
-    "volume_fp": 962.08
+    "open_interest_fp": 1220.08,
+    "volume_24h_fp": 1220.08,
+    "volume_fp": 1220.08
    },
    "ex_stats_first": {
     "open_interest_fp": 798.02,
@@ -3063,9 +3430,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1146.21,
-    "volume_24h_fp": 1118.49,
-    "volume_fp": 1150.58
+    "open_interest_fp": 1920.21,
+    "volume_24h_fp": 1892.49,
+    "volume_fp": 1924.58
    },
    "ex_stats_first": {
     "open_interest_fp": 120.37,
@@ -3255,9 +3622,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 569.59,
-    "volume_24h_fp": 532.0,
-    "volume_fp": 581.77
+    "open_interest_fp": 702.11,
+    "volume_24h_fp": 580.73,
+    "volume_fp": 714.29
    },
    "ex_stats_first": {
     "open_interest_fp": 48.44,
@@ -4034,9 +4401,9 @@
     "volume_fp": 225.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 25768.879999999997,
-    "volume_24h_fp": 25918.73,
-    "volume_fp": 25928.199999999997
+    "open_interest_fp": 25998.879999999997,
+    "volume_24h_fp": 26148.73,
+    "volume_fp": 26158.199999999997
    },
    "ex_stats_first": {
     "open_interest_fp": 18653.79,
@@ -9879,7 +10246,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 150,
+   "settle_tries": 151,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Fritz",
