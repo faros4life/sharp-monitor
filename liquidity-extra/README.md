@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 14, 5:20 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 34.
+Updated Sat Nov 14, 5:30 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 34.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -27,7 +27,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 14 10:50AM | NCAAB | UAB vs Jacksonville St. | moneyline: Jacksonville St. | kalshi | $29k | +127 |  |  | +0.0c |  | pending |
 | Nov 14 10:00AM | NCAAB | Brown vs Siena: Spread | spread: NOT Siena wins by over 11.5 points | kalshi | $34k | -122 |  |  | +4.0c |  | pending |
 | Nov 14 9:10AM | NCAAB | St. Thomas vs Army: Spread | spread: NOT St. Thomas wins by over 7.5 points | kalshi | $34k | +104 |  |  | +9.0c |  | W |
-| Nov 14 9:10AM | NCAAB | West Georgia vs Charleston Southern | moneyline: Charleston Southern | kalshi | $40k | -186 |  |  | +0.0c |  | pending |
+| Nov 14 9:10AM | NCAAB | West Georgia vs Charleston Southern | moneyline: Charleston Southern | kalshi | $40k | -186 |  |  | -2.0c |  | pending |
 | Nov 14 9:10AM | NCAAB | Central Michigan vs Northern Kentucky | moneyline: Northern Kentucky | kalshi | $80k | -163 | ✅ novig |  | -1.0c | yes | pending |
 | Nov 14 9:00AM | NCAAB | UT Rio Grande Valley vs UT Arlington | moneyline: UT Arlington | kalshi | $42k | -186 |  |  | +1.0c |  | pending |
 | Nov 14 9:00AM | NCAAB | Cincinnati vs Dayton | moneyline: Cincinnati | kalshi | $58k | -257 | ✅ novig |  | +0.0c |  | pending |
