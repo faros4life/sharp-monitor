@@ -671,6 +671,101 @@ def put_venue_ids(pairs):
     return _commit(merge)
 
 
+FILL_TERMINAL = ("FILLED", "PARTIAL", "CANCELED", "CANCELLED", "EXPIRED", "REFUSED", "REJECTED")
+
+
+def put_fills(rows):
+    """Record each Novig order's CONFIRMED outcome: status, filled stake, average price, fees.
+
+    Stage 3 (Peter, Nov 13): "Persist confirmed venue order IDs, filled stake, average fill price
+    and fees. Distinguish PLACED from FILLED. Never assume a placed order was filled."
+
+    Why this exists. Every Nov 12 order record carried filled_stake: null and avg_price: null with
+    status "placed", because the Novig submit call returns before the home runner has dispatched -
+    there is no fill to report yet - and nothing ever wrote one back. The runner's own result rows
+    have carried status, filled_qty, filled_cost and avg_price all along; executor.novig_reports
+    reads them to SEND a report and then drops them. So the only durable record of what actually
+    filled was the Gmail ledger, and an execution price existed nowhere the ledger could reach.
+
+    PLACED IS NOT FILLED. state is written from the venue's own status and filled quantity, never
+    inferred from a position existing or from an order having been accepted:
+        FILLED    - the venue reported a terminal status and filled_qty >= qty
+        PARTIAL   - terminal status with 0 < filled_qty < qty
+        NO_FILL   - terminal status with filled_qty 0 (cancelled, expired, refused, rejected)
+        RESTING   - open at the venue, nothing filled yet
+        PLACED    - accepted, no terminal status yet. Fill UNKNOWN, and it stays unknown.
+    A row whose status is not yet terminal is written as PLACED/RESTING with filled_stake left
+    None - absent, not zero - so a reader cannot mistake "not reported yet" for "filled nothing".
+
+    ADDITIVE AND NEVER A GATE. This only writes bookkeeping. It is called best-effort from the
+    report path after an order's outcome is known; a failure here costs reconciliation, never an
+    order, and nothing in the execution path reads it to decide anything.
+    """
+    keep = {}
+    for x in rows or []:
+        oid = str(x.get("order_id") or "").strip()
+        cid = str(x.get("client_id") or "").strip()
+        if not (oid or cid):
+            continue
+        st = str(x.get("status") or "").upper().strip()
+        qty, fq = int(x.get("qty") or 0), int(x.get("filled_qty") or 0)
+        # executor.novig_reports already refuses to report "no fill" when the venue says FILLED
+        # but the amount is not confirmed yet (an old-format record): "status says filled but the
+        # amount isn't confirmed yet ... never say 'no fill'". The same rule has to hold here, or
+        # the registry would assert NO_FILL about an order the report path deliberately will not.
+        # Such a row is not terminal: it stays PLACED and its fill stays unknown.
+        terminal = st in FILL_TERMINAL and not (st == "FILLED" and not fq)
+        if terminal and qty and fq >= qty:
+            state = "FILLED"
+        elif terminal and fq > 0:
+            state = "PARTIAL"
+        elif terminal:
+            state = "NO_FILL"
+        elif st == "OPEN":
+            state = "RESTING"
+        else:
+            state = "PLACED"
+        rec = {"state": state, "venue_status": st or None,
+               "qty": qty or None, "filled_qty": fq or None,
+               # filled stake in dollars: the runner reports cost in cents, as Novig does
+               "filled_stake": (round(float(x["filled_cost"]) / 100.0, 2)
+                                if x.get("filled_cost") not in (None, "") else None),
+               "avg_price": x.get("avg_price"),
+               "fee_basis": x.get("fee_basis") or "novig: free pre-game and all maker, 0.06 live/futures taker",
+               "tif": x.get("tif"), "play_key": x.get("play_key"),
+               "ts": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")}
+        if cid:
+            rec["client_id"] = cid
+        keep[oid or cid] = rec
+    if not keep:
+        return True
+
+    def merge(d):
+        m = d.setdefault("fills", {})
+        changed = False
+        for k, rec in keep.items():
+            old = m.get(k) or {}
+            # Only ever move FORWARD: a terminal outcome is never overwritten by a later
+            # non-terminal read (the runner re-reads every 5 minutes and an older row can arrive
+            # after a newer one), and an unchanged state is not rewritten at all.
+            if old.get("state") in ("FILLED", "PARTIAL", "NO_FILL") and rec["state"] not in ("FILLED", "PARTIAL", "NO_FILL"):
+                continue
+            if old.get("state") == rec["state"] and old.get("filled_qty") == rec.get("filled_qty"):
+                continue
+            m[k] = rec
+            changed = True
+        if not changed:
+            return False
+    return _commit(merge)
+
+
+def fills():
+    """{order_id or client_id: fill record}. {} when unreadable - a missing record means the
+    outcome is UNKNOWN, never that nothing filled."""
+    d = load()
+    return (d.get("fills") or {}) if d is not None else {}
+
+
 def venue_ids():
     """{client_id: venue_order_id}. {} when the store is unreadable or not configured - callers
     treat a missing mapping as UNRESOLVED, never as 'no fill'."""

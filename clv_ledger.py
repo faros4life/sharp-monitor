@@ -920,6 +920,13 @@ def main():
                 snap[f] = b[f]
         if b.get("result"):
             snap["result"] = b["result"]
+        # Stage 3 (Peter, Nov 13): capture profit so ROI is computable at all. The snapshot has
+        # always taken stake and to_pay but never profit, so profit summed to zero across the
+        # whole ledger and any ROI figure built from it was a fabricated +0.00% - which is how the
+        # first Stage 2 report printed one for every source. Additive: a new field, no existing
+        # value altered, and it arrives at settlement like result, so it is refreshed not frozen.
+        if b.get("profit") is not None:
+            snap["profit"] = b["profit"]
     # 1b) tracker rows with no game attached (older settled rows): find the game on ESPN (free) near when it settled
     try:
         espn_fill(st, now)

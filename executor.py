@@ -4160,6 +4160,16 @@ def novig_reports():
                     registry.put_venue_ids(pairs)
             except Exception as ex:
                 LOG.append(f"venue id mapping not stored: {str(ex)[:50]}")
+            # Stage 3 (Peter, Nov 13): persist the CONFIRMED outcome of each order - status,
+            # filled stake, average price, fee basis - so an execution price exists somewhere the
+            # CLV ledger can reach. These rows already carry it; until now the report path read
+            # them, sent a message and dropped them, leaving the Gmail ledger as the only record.
+            # Best-effort and additive, exactly like the mapping above: a failure costs
+            # reconciliation, never an order, and nothing in the execution path reads it.
+            try:
+                registry.put_fills(recs)
+            except Exception as ex:
+                LOG.append(f"fill outcomes not stored: {str(ex)[:50]}")
         for x in cand:
             st = str(x.get("status") or "?").upper()
             if st in ("PENDING", "SENT", "UNKNOWN") and not int(x.get("filled_qty") or 0):
