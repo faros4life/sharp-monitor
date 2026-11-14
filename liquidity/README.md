@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 14, 9:50 AM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 57.
+Updated Sat Nov 14, 9:55 AM ET. This run: 0 new, 0 not confirmed, 3 pending. Open alerts: 57.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -14,7 +14,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 14 9:40AM | NCAAF | UAB vs Temple: Spread | spread: NOT Temple wins by over 2.5 points | kalshi | $82k | -104 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 14 9:30AM | NCAAF | USC @ Indiana | moneyline: IND (0) | novig | $41k | -308 | ✅ prophetx |  | +0.5c |  | pending |
 | Nov 14 9:25AM | NCAAF | Northwestern @ Ohio State | moneyline: OSU (0) | novig | $50k | -488 | ✅ prophetx |  | +0.5c |  | pending |
-| Nov 14 9:25AM | NCAAF | Northwestern vs Ohio St.: Total Points | total: Over 45.5 points | kalshi | $40k | +104 |  | ✅ | +0.0c |  | pending |
+| Nov 14 9:25AM | NCAAF | Northwestern vs Ohio St.: Total Points | total: Over 45.5 points | kalshi | $40k | +104 |  | ✅ | +1.0c |  | pending |
 | Nov 14 9:10AM | NCAAF | Syracuse vs NC St.: Spread | spread: Syracuse wins by over 2.5 points | kalshi | $45k | -113 |  |  | +0.0c |  | pending |
 | Nov 14 9:05AM | NCAAF | The Citadel vs VMI: Spread | spread: NOT The Citadel wins by over 16.5 points | kalshi | $27k | -100 |  |  | +0.0c | yes | pending |
 | Nov 14 8:55AM | NCAAF | Central Connecticut St. vs LIU: Total Points | total: NOT Over 52.5 points | kalshi | $28k | -122 |  |  | +0.0c |  | pending |
@@ -77,7 +77,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 13 5:20PM | NCAAF | Northwestern vs Ohio St.: Spread | spread: Ohio St. wins by over 13.5 points | kalshi | $30k | -108 |  |  | +2.0c | yes | pending |
 | Nov 13 4:15PM | NCAAF | Illinois vs UCLA: Total Points | total: NOT Over 48.5 points | kalshi | $73k | -104 | ✅ novig,prophetx | ❌ | -2.0c |  | W |
 | Nov 13 4:00PM | NBA | Milwaukee Bucks @ Orlando Magic | moneyline: ORL (0) | novig | $28k | -355 | ✅ kalshi,prophetx |  | +1.0c |  | W |
-| Nov 13 3:15PM | NCAAF | Duke vs Miami (FL): Spread | spread: Miami (FL) wins by over 13.5 points | kalshi | $43k | -104 | ✅ novig |  | +2.0c |  | pending |
+| Nov 13 3:15PM | NCAAF | Duke vs Miami (FL): Spread | spread: Miami (FL) wins by over 13.5 points | kalshi | $43k | -104 | ✅ novig |  | +3.0c |  | pending |
 | Nov 13 2:55PM | NCAAF | Auburn vs Mississippi St.: Spread | spread: Auburn wins by over 2.5 points | kalshi | $201k | -113 | ✅ novig |  | +1.0c | yes | pending |
 | Nov 13 2:40PM | NBA | New York vs Indiana: Spread | spread: NOT New York wins by over 8.5 points | kalshi | $26k | -104 | ✅ novig |  | +3.0c | yes | W |
 | Nov 13 2:10PM | NCAAF | Illinois @ UCLA | moneyline: UCLA (0) | novig | $37k | -388 | ✅ kalshi,prophetx |  | +0.0c |  | W |
