@@ -1,6 +1,544 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-14T03:10:20Z",
+   "base_depth": 26279,
+   "best_price": 0.75,
+   "best_price_american": -300,
+   "best_price_book": "novig",
+   "bid_improved": true,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.75,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-14",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 7129,
+     "new_this_side": 25615,
+     "other_side": 7452,
+     "other_side_all_levels": 19184,
+     "ratio": 3.0,
+     "this_side": 22593,
+     "this_side_all_levels": 71155
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "WYO (0)",
+     "price": 0.75,
+     "this_side": 1472
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Wyoming",
+     "price": 0.759,
+     "this_side": 722
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 798.02,
+    "volume_24h_fp": 683.02,
+    "volume_fp": 798.02
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 798.02,
+    "volume_24h_fp": 683.02,
+    "volume_fp": 798.02
+   },
+   "fade_price": 0.26,
+   "first_seen_utc": "2026-11-14T03:00:25Z",
+   "game": "Wyoming vs Denver",
+   "game_surge_books": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "game_x": 3.47,
+   "key": "kalshi|KXNCAAMBGAME-26NOV14WYODEN|ml|0",
+   "lead_min": 1010,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 25615,
+   "new_x": 0.49,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 798.02,
+      "volume_24h_fp": 683.02,
+      "volume_fp": 798.02
+     },
+     "game_normal": 20532,
+     "game_x": 3.47,
+     "normal": 52552,
+     "now": 71155,
+     "type": "ML",
+     "x": 1.35
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 18581.0,
+      "volume": 18581.0
+     },
+     "game_normal": 528,
+     "game_x": 3.0,
+     "normal": 1969,
+     "now": 1586,
+     "type": "ML",
+     "x": 0.81
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 109,
+     "game_x": 6.63,
+     "normal": 948,
+     "now": 722,
+     "type": "ML",
+     "x": 0.76
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.75,
+   "price_american": -300,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.75,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -325
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -295
+    },
+    "fanatics": {
+     "point": null,
+     "price": -320
+    },
+    "fanduel": {
+     "point": null,
+     "price": -315
+    },
+    "kalshi": {
+     "point": null,
+     "price": -317
+    },
+    "lowvig": {
+     "point": null,
+     "price": -295
+    },
+    "novig": {
+     "point": null,
+     "price": -308
+    },
+    "polymarket": {
+     "point": null,
+     "price": -317
+    },
+    "prophetx": {
+     "point": null,
+     "price": -315
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV14WYODEN-WYO"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Wyoming",
+   "side_label": "Wyoming",
+   "size_x": 1.35,
+   "start_source": "odds",
+   "start_utc": "2026-11-14T20:00:00Z",
+   "surge_books": [],
+   "teams": [
+    "Wyoming",
+    "Denver"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-14T03:10:20Z",
+   "base_depth": 33997,
+   "best_price": 0.835,
+   "best_price_american": -506,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.83,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-14",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 7693,
+     "new_this_side": 32930,
+     "other_side": 15978,
+     "other_side_all_levels": 18774,
+     "ratio": 1.8,
+     "this_side": 28031,
+     "this_side_all_levels": 67176
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "TOL (0)",
+     "price": 0.835,
+     "this_side": 446
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Toledo",
+     "price": 0.8361,
+     "this_side": 349
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 120.37,
+    "volume_24h_fp": 92.65,
+    "volume_fp": 124.74000000000001
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 120.37,
+    "volume_24h_fp": 92.65,
+    "volume_fp": 124.74000000000001
+   },
+   "fade_price": 0.18,
+   "first_seen_utc": "2026-11-14T03:00:25Z",
+   "game": "Toledo vs Detroit Mercy",
+   "game_surge_books": [
+    "kalshi",
+    "prophetx"
+   ],
+   "game_x": 2.06,
+   "key": "kalshi|KXNCAAMBGAME-26NOV14TOLDET|ml|0",
+   "lead_min": 1070,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 32930,
+   "new_x": 0.63,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 120.37,
+      "volume_24h_fp": 92.65,
+      "volume_fp": 124.74000000000001
+     },
+     "game_normal": 32684,
+     "game_x": 2.06,
+     "normal": 52552,
+     "now": 67176,
+     "type": "ML",
+     "x": 1.28
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 0.0,
+      "volume": 0.0
+     },
+     "game_normal": 494,
+     "game_x": 1.29,
+     "normal": 1969,
+     "now": 637,
+     "type": "ML",
+     "x": 0.32
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 148,
+     "game_x": 2.89,
+     "normal": 948,
+     "now": 427,
+     "type": "ML",
+     "x": 0.45
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.83,
+   "price_american": -488,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.83,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -475
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -430
+    },
+    "bovada": {
+     "point": null,
+     "price": -460
+    },
+    "draftkings": {
+     "point": null,
+     "price": -440
+    },
+    "fanatics": {
+     "point": null,
+     "price": -475
+    },
+    "fanduel": {
+     "point": null,
+     "price": -500
+    },
+    "kalshi": {
+     "point": null,
+     "price": -488
+    },
+    "lowvig": {
+     "point": null,
+     "price": -430
+    },
+    "novig": {
+     "point": null,
+     "price": -506
+    },
+    "polymarket": {
+     "point": null,
+     "price": -525
+    },
+    "prophetx": {
+     "point": null,
+     "price": -510
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV14TOLDET-TOL"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Toledo",
+   "side_label": "Toledo",
+   "size_x": 1.28,
+   "start_source": "odds",
+   "start_utc": "2026-11-14T21:00:00Z",
+   "surge_books": [],
+   "teams": [
+    "Toledo",
+    "Detroit Mercy"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-14T03:10:20Z",
+   "base_depth": 30212,
+   "best_price": 0.805,
+   "best_price_american": -413,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.81,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-14",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 8441,
+     "new_this_side": 40676,
+     "other_side": 4782,
+     "other_side_all_levels": 15850,
+     "ratio": 5.3,
+     "this_side": 25310,
+     "this_side_all_levels": 74407
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "CSU (0)",
+     "price": 0.805,
+     "this_side": 1484
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Colorado State",
+     "price": 0.8077,
+     "this_side": 760
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 48.44,
+    "volume_24h_fp": 48.44,
+    "volume_fp": 48.44
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 48.44,
+    "volume_24h_fp": 48.44,
+    "volume_fp": 48.44
+   },
+   "fade_price": 0.2,
+   "first_seen_utc": "2026-11-14T03:00:25Z",
+   "game": "Loyola Chicago vs Colorado St.",
+   "game_surge_books": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "game_x": 2.43,
+   "key": "kalshi|KXNCAAMBGAME-26NOV14LCHICSU|ml|1",
+   "lead_min": 920,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 40676,
+   "new_x": 0.77,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 48.44,
+      "volume_24h_fp": 48.44,
+      "volume_fp": 48.44
+     },
+     "game_normal": 30613,
+     "game_x": 2.43,
+     "normal": 52552,
+     "now": 74407,
+     "type": "ML",
+     "x": 1.42
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 8060.0,
+      "volume": 8060.0
+     },
+     "game_normal": 640,
+     "game_x": 2.5,
+     "normal": 1969,
+     "now": 1598,
+     "type": "ML",
+     "x": 0.81
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 136,
+     "game_x": 5.6,
+     "normal": 948,
+     "now": 760,
+     "type": "ML",
+     "x": 0.8
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.81,
+   "price_american": -426,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.81,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -450
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -435
+    },
+    "fanatics": {
+     "point": null,
+     "price": -425
+    },
+    "fanduel": {
+     "point": null,
+     "price": -450
+    },
+    "kalshi": {
+     "point": null,
+     "price": -426
+    },
+    "lowvig": {
+     "point": null,
+     "price": -435
+    },
+    "novig": {
+     "point": null,
+     "price": -413
+    },
+    "polymarket": {
+     "point": null,
+     "price": -426
+    },
+    "prophetx": {
+     "point": null,
+     "price": -420
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV14LCHICSU-CSU"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Colorado St.",
+   "side_label": "Colorado St.",
+   "size_x": 1.42,
+   "start_source": "odds",
+   "start_utc": "2026-11-14T18:30:00Z",
+   "surge_books": [],
+   "teams": [
+    "Loyola Chicago",
+    "Colorado St."
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-14T01:30:33Z",
    "base_depth": 187871,
    "best_price": 0.52,
@@ -2065,6 +2603,7 @@
     "volume_fp": 82.4
    },
    "fade_price": 0.5,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-13T20:50:27Z",
    "game": "Milwaukee vs TCU: Point Total",
    "game_surge_books": [],
@@ -2179,12 +2718,13 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAMBTOTAL-26NOV13MILWTCU-156"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 1,
+   "settle_tries": 2,
+   "settled_utc": "2026-11-14T03:10:20Z",
    "sharp_agree": [
     "Under 155.5 (-105)",
     "Under 157.5 (-115)"
@@ -2204,7 +2744,7 @@
     "TCU"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.96
   },
   {
    "alerted_utc": "2026-11-13T20:50:27Z",
@@ -2376,7 +2916,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 1,
+   "settle_tries": 2,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -3321,7 +3861,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 1,
+   "settle_tries": 2,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Illinois St.",
@@ -4706,7 +5246,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 1,
+   "settle_tries": 2,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Virginia",
@@ -4876,7 +5416,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 1,
+   "settle_tries": 2,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Texas St.",
@@ -6450,7 +6990,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 85,
+   "settle_tries": 86,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Fritz",
