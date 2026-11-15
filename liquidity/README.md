@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 14, 10:40 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 41.
+Updated Sat Nov 14, 10:45 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 41.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -12,7 +12,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 14 10:35PM | NCAAF | North Dakota State @ Hawaii | moneyline: NDSU (0) | novig | $37k | -270 | ✅ prophetx | ✅ | +0.0c |  | pending |
 | Nov 14 10:35PM | NFL | Los Angeles R vs Arizona | moneyline: Los Angeles R | kalshi | $472k | -426 | ✅ novig,prophetx |  | +0.0c |  | pending |
-| Nov 14 10:35PM | NBA | Atlanta vs Milwaukee | moneyline: Atlanta | kalshi | $304k | -300 |  |  | +0.0c |  | pending |
+| Nov 14 10:35PM | NBA | Atlanta vs Milwaukee | moneyline: Atlanta | kalshi | $304k | -300 |  |  | -1.0c |  | pending |
 | Nov 14 10:05PM | NCAAF | Colorado St. vs Washington St. | moneyline: Washington St. | kalshi | $227k | -270 | ✅ novig,prophetx | ❌ | +0.0c | yes | pending |
 | Nov 14 10:00PM | NCAAF | Colorado State @ Washington State | spread: CSU +7.5 (-7.5) | novig | $26k | -104 | ✅ prophetx | ✅ | +0.5c | yes | pending |
 | Nov 14 10:00PM | NCAAF | Colorado St. vs Washington St.: Spread | spread: NOT Washington St. wins by over 7.5 points | kalshi | $108k | -108 | ✅ novig,prophetx | ✅ | +0.0c | yes | pending |
