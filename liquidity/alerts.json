@@ -1,6 +1,174 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-15T00:25:33Z",
+   "base_depth": 302752,
+   "best_price": 0.4812,
+   "best_price_american": 108,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.47,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-14",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -28224,
+     "new_this_side": 60661,
+     "other_side": 130334,
+     "other_side_all_levels": 340642,
+     "ratio": 1.6,
+     "this_side": 202110,
+     "this_side_all_levels": 349185
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 16122.3,
+    "volume_24h_fp": 13236.39,
+    "volume_fp": 16361.35
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 3112.09,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 3112.09
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 13010.21,
+    "volume_24h_fp": 13236.39,
+    "volume_fp": 13249.26
+   },
+   "fade_price": 0.54,
+   "first_seen_utc": "2026-11-15T00:20:12Z",
+   "game": "UNLV vs New Mexico: Spread",
+   "game_surge_books": [],
+   "game_x": 1.02,
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNCAAFSPREAD-26NOV14UNLVUNM-UNM21\"}",
+   "lead_min": 4,
+   "league": "NCAAF",
+   "line": -20.5,
+   "market": "spread",
+   "new_money": 60661,
+   "new_x": 4.06,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 16122.3,
+      "volume_24h_fp": 13236.39,
+      "volume_fp": 16361.35
+     },
+     "game_normal": 343449,
+     "game_x": 1.02,
+     "normal": 14952,
+     "now": 349185,
+     "type": "SPREAD",
+     "x": 23.35
+    }
+   },
+   "norm_ready_books": 1,
+   "paper_only": false,
+   "price": 0.47,
+   "price_american": 113,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.47,
+   "prices_by_book": {
+    "betmgm": {
+     "point": -19.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": -20.0,
+     "price": -112
+    },
+    "betrivers": {
+     "point": -18.0,
+     "price": -114
+    },
+    "betus": {
+     "point": -20.0,
+     "price": -110
+    },
+    "bovada": {
+     "point": -20.0,
+     "price": -108
+    },
+    "draftkings": {
+     "point": -19.5,
+     "price": -115
+    },
+    "fanatics": {
+     "point": -19.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": -18.5,
+     "price": -115
+    },
+    "kalshi": {
+     "point": -20.5,
+     "price": 113
+    },
+    "lowvig": {
+     "point": -20.0,
+     "price": -108
+    },
+    "mybookieag": {
+     "point": -20.5,
+     "price": -110
+    },
+    "novig": {
+     "point": -19.5,
+     "price": -102
+    },
+    "polymarket": {
+     "point": -35.5,
+     "price": -4900
+    },
+    "prophetx": {
+     "point": -18.5,
+     "price": -119
+    },
+    "williamhill_us": {
+     "point": -19.5,
+     "price": -107
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFSPREAD-26NOV14UNLVUNM-UNM21"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [
+    "New Mexico Lobos -17.5 (-117)"
+   ],
+   "sharp_oppose": [],
+   "side": "New Mexico",
+   "side_label": "New Mexico wins by over 20.5 points",
+   "size_x": 23.35,
+   "start_source": "odds",
+   "start_utc": "2026-11-15T00:30:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "UNLV",
+    "New Mexico"
+   ],
+   "top25": true,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-15T00:15:54Z",
    "base_depth": 180587,
    "best_price": 0.5,
@@ -46,9 +214,9 @@
     "volume_fp": 10652.76
    },
    "ex_stats_close": {
-    "open_interest_fp": 188534.92,
+    "open_interest_fp": 193405.76,
     "volume_24h_fp": 221015.0,
-    "volume_fp": 221683.72
+    "volume_fp": 226554.56
    },
    "ex_stats_first": {
     "open_interest_fp": 176033.78,
@@ -210,8 +378,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.7619,
-   "clv_cents": 0.6,
+   "close_price": 0.7647,
+   "clv_cents": 0.9,
    "confirmed_after_min": 5,
    "date": "2026-11-14",
    "depth_by_book": {
@@ -294,6 +462,8 @@
    "norm_ready_books": 3,
    "paper_only": false,
    "price": 0.7561,
+   "price_after_15m": 0.765,
+   "price_after_15m_book": "novig",
    "price_american": -310,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.7561,
@@ -393,6 +563,7 @@
    "size_x": 5.32,
    "start_source": "odds",
    "start_utc": "2026-11-15T00:30:00Z",
+   "still_actionable": false,
    "surge_books": [
     "novig",
     "prophetx"
@@ -418,8 +589,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.76,
-   "clv_cents": 1.0,
+   "close_price": 0.765,
+   "clv_cents": 1.5,
    "confirmed_after_min": 5,
    "date": "2026-11-14",
    "depth_by_book": {
@@ -454,8 +625,8 @@
     "volume": 2686764.0
    },
    "ex_stats_close": {
-    "openInterest": 16833560.0,
-    "volume": 33569765.0
+    "openInterest": 17713849.0,
+    "volume": 34925854.0
    },
    "ex_stats_first": {
     "openInterest": 18817558.0,
@@ -515,6 +686,8 @@
    "norm_ready_books": 3,
    "paper_only": false,
    "price": 0.75,
+   "price_after_15m": 0.765,
+   "price_after_15m_book": "novig",
    "price_american": -300,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.75,
@@ -612,6 +785,7 @@
    "size_x": 3.93,
    "start_source": "odds",
    "start_utc": "2026-11-15T00:30:00Z",
+   "still_actionable": false,
    "surge_books": [
     "novig",
     "prophetx"
@@ -846,9 +1020,9 @@
     "volume_fp": 50381.21
    },
    "ex_stats_close": {
-    "open_interest_fp": 2233104.4299999997,
+    "open_interest_fp": 2492594.75,
     "volume_24h_fp": 2374972.98,
-    "volume_fp": 2390590.31
+    "volume_fp": 2655034.79
    },
    "ex_stats_first": {
     "open_interest_fp": 2109282.34,
@@ -909,6 +1083,8 @@
    "norm_ready_books": 3,
    "paper_only": false,
    "price": 0.76,
+   "price_after_15m": 0.765,
+   "price_after_15m_book": "novig",
    "price_american": -317,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.76,
@@ -1006,6 +1182,7 @@
    "size_x": 1.71,
    "start_source": "odds",
    "start_utc": "2026-11-15T00:30:00Z",
+   "still_actionable": false,
    "surge_books": [
     "novig",
     "prophetx"
@@ -1481,8 +1658,8 @@
     "volume": 185169.0
    },
    "ex_stats_close": {
-    "openInterest": 13247637.0,
-    "volume": 20678603.0
+    "openInterest": 13295331.0,
+    "volume": 20726297.0
    },
    "ex_stats_first": {
     "openInterest": 13156023.0,
@@ -4234,8 +4411,8 @@
     "volume": 11000.0
    },
    "ex_stats_close": {
-    "openInterest": 2713487.0,
-    "volume": 4573826.0
+    "openInterest": 3420431.0,
+    "volume": 5296518.0
    },
    "ex_stats_first": {
     "openInterest": 2615375.0,
@@ -4432,8 +4609,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 7267034.0,
-    "volume": 8405161.0
+    "openInterest": 7268299.0,
+    "volume": 8406426.0
    },
    "ex_stats_first": {
     "openInterest": 7191104.0,
@@ -6462,8 +6639,8 @@
     "volume": 4310.0
    },
    "ex_stats_close": {
-    "openInterest": 9721666.0,
-    "volume": 12083044.0
+    "openInterest": 9723390.0,
+    "volume": 12084768.0
    },
    "ex_stats_first": {
     "openInterest": 9434659.0,
@@ -8775,7 +8952,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [
     "Rice Owls -2.5 (-115)"
    ],
@@ -23832,7 +24009,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 42,
+   "settle_tries": 43,
    "sharp_agree": [
     "Over 50.5 (-106)"
    ],
@@ -25458,7 +25635,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 17,
+   "settle_tries": 18,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UCF",
@@ -26695,7 +26872,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 29,
+   "settle_tries": 30,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Rice",
@@ -28361,7 +28538,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 42,
+   "settle_tries": 43,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Auburn",
@@ -33719,7 +33896,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 42,
+   "settle_tries": 43,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Youngstown St.",
