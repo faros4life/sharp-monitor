@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 14, 9:30 PM ET. This run: 0 new, 2 not confirmed, 0 pending. Open alerts: 16.
+Updated Sat Nov 14, 9:40 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 16.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -13,7 +13,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 14 8:40PM | NCAAB | Boise St. vs Nebraska | moneyline: Nebraska | kalshi | $38k | -426 |  |  | +0.0c |  | pending |
 | Nov 14 8:30PM | NCAAB | IU Indy vs Morehead St. | moneyline: Morehead St. | kalshi | $26k | -144 |  |  | +10.0c | yes | pending |
 | Nov 14 7:40PM | NCAAB | UC Davis vs Sacramento St. | moneyline: Sacramento St. | kalshi | $31k | -156 | ✅ novig | ✅ | -4.0c | yes | pending |
-| Nov 14 7:20PM | NCAAB | Utah Valley vs Nevada: Spread | spread: NOT Nevada wins by over 9.5 points | kalshi | $47k | +108 |  |  | +1.0c |  | pending |
+| Nov 14 7:20PM | NCAAB | Utah Valley vs Nevada: Spread | spread: NOT Nevada wins by over 9.5 points | kalshi | $47k | +108 |  |  | +2.0c |  | pending |
 | Nov 14 6:30PM | NCAAB | Louisiana Tech vs Nicholls St. | moneyline: Louisiana Tech | kalshi | $61k | +104 |  |  | +1.0c | yes | pending |
 | Nov 14 6:20PM | NCAAB | Rider vs Villanova: Point Total | total: NOT Over 145.5 points | kalshi | $29k | -104 |  | ✅ | +0.0c | yes | L |
 | Nov 14 4:50PM | NCAAB | Utah Valley vs Nevada | moneyline: Nevada | kalshi | $170k | -525 | ✅ novig |  | -1.0c | yes | pending |
