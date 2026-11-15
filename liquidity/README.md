@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 15, 4:10 AM ET. This run: 2 new, 0 not confirmed, 0 pending. Open alerts: 47.
+Updated Sun Nov 15, 4:15 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 47.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -21,7 +21,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 15 1:55AM | NBA | San Antonio vs Utah: Spread | spread: NOT San Antonio wins by over 16.5 points | kalshi | $25k | +104 |  |  | +1.0c | yes | pending |
 | Nov 15 1:30AM | NFL | Seattle vs Las Vegas: Spread | spread: Seattle wins by over 6.5 points | kalshi | $101k | -100 |  |  | +0.0c |  | pending |
 | Nov 15 1:05AM | NFL | Minnesota vs Green Bay: Spread | spread: NOT Green Bay wins by over 2.5 points | kalshi | $148k | +108 |  |  | +0.0c |  | pending |
-| Nov 15 1:05AM | NFL | Miami vs Indianapolis: Spread | spread: NOT Indianapolis wins by over 4.5 points | kalshi | $220k | -108 | ✅ novig |  | +0.0c |  | pending |
+| Nov 15 1:05AM | NFL | Miami vs Indianapolis: Spread | spread: NOT Indianapolis wins by over 4.5 points | kalshi | $220k | -108 | ✅ novig |  | -1.0c |  | pending |
 | Nov 15 1:05AM | NFL | Jacksonville vs Tennessee: Spread | spread: NOT Jacksonville wins by over 10.5 points | kalshi | $150k | +104 | ✅ prophetx |  | +1.0c |  | pending |
 | Nov 15 1:05AM | NFL | Houston vs Cleveland: Spread | spread: NOT Houston wins by over 4.5 points | kalshi | $165k | -104 | ✅ novig | ✅ | +0.0c |  | pending |
 | Nov 15 1:05AM | NFL | Carolina vs New Orleans: Spread | spread: NOT New Orleans wins by over 1.5 points | kalshi | $158k | -100 | ✅ novig |  | +0.0c |  | pending |
