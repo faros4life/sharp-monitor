@@ -1,6 +1,211 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-15T00:40:18Z",
+   "base_depth": 272678,
+   "best_price": 0.61,
+   "best_price_american": -156,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.61,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-14",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 7133,
+     "new_this_side": 31339,
+     "other_side": 66619,
+     "other_side_all_levels": 193069,
+     "ratio": 1.5,
+     "this_side": 101363,
+     "this_side_all_levels": 309881
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "Sacramento State (0)",
+     "price": 0.61,
+     "this_side": 30132
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Sacramento State",
+     "price": 0.6154,
+     "this_side": 4169
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 8568.01,
+    "volume_24h_fp": 8441.11,
+    "volume_fp": 8575.2
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 127.87,
+    "volume_24h_fp": 61.3,
+    "volume_fp": 127.87
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 8440.14,
+    "volume_24h_fp": 8379.810000000001,
+    "volume_fp": 8447.33
+   },
+   "fade_price": 0.4,
+   "first_seen_utc": "2026-11-15T00:30:27Z",
+   "game": "UC Davis vs Sacramento St.",
+   "game_surge_books": [],
+   "game_x": 1.45,
+   "key": "kalshi|KXNCAAMBGAME-26NOV14UCDSAC|ml|1",
+   "lead_min": 25,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 31339,
+   "new_x": 0.58,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 8568.01,
+      "volume_24h_fp": 8441.11,
+      "volume_fp": 8575.2
+     },
+     "game_normal": 214144,
+     "game_x": 1.45,
+     "normal": 53985,
+     "now": 309881,
+     "type": "ML",
+     "x": 5.74
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 2709052.0,
+      "volume": 2942440.0
+     },
+     "game_normal": 18586,
+     "game_x": 1.63,
+     "normal": 5830,
+     "now": 30365,
+     "type": "ML",
+     "x": 5.21
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 3183,
+     "game_x": 1.39,
+     "normal": 906,
+     "now": 4430,
+     "type": "ML",
+     "x": 4.89
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.61,
+   "price_american": -156,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.61,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -170
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -165
+    },
+    "betopenly": {
+     "point": null,
+     "price": -155
+    },
+    "betrivers": {
+     "point": null,
+     "price": -167
+    },
+    "betus": {
+     "point": null,
+     "price": -165
+    },
+    "bovada": {
+     "point": null,
+     "price": -160
+    },
+    "draftkings": {
+     "point": null,
+     "price": -170
+    },
+    "fanatics": {
+     "point": null,
+     "price": -170
+    },
+    "fanduel": {
+     "point": null,
+     "price": -160
+    },
+    "kalshi": {
+     "point": null,
+     "price": -156
+    },
+    "lowvig": {
+     "point": null,
+     "price": -165
+    },
+    "novig": {
+     "point": null,
+     "price": -156
+    },
+    "polymarket": {
+     "point": null,
+     "price": -156
+    },
+    "prophetx": {
+     "point": null,
+     "price": -160
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -165
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV14UCDSAC-SAC"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [
+    "Sacramento St Hornets -3.5 (-108)"
+   ],
+   "sharp_oppose": [],
+   "side": "Sacramento St.",
+   "side_label": "Sacramento St.",
+   "size_x": 5.74,
+   "start_source": "odds",
+   "start_utc": "2026-11-15T01:05:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "teams": [
+    "UC Davis",
+    "Sacramento St."
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-15T00:20:16Z",
    "base_depth": 50153,
    "best_price": 0.495,
@@ -99,6 +304,8 @@
    "norm_ready_books": 2,
    "paper_only": false,
    "price": 0.48,
+   "price_after_15m": 0.4975,
+   "price_after_15m_book": "kalshi",
    "price_american": 108,
    "price_rule": "ok",
    "price_when_first_seen": 0.48,
@@ -177,6 +384,7 @@
    "size_x": 4.85,
    "start_source": "odds",
    "start_utc": "2026-11-15T03:00:00Z",
+   "still_actionable": false,
    "surge_books": [
     "kalshi",
     "novig"
@@ -240,9 +448,9 @@
     "volume_fp": 39.4
    },
    "ex_stats_close": {
-    "open_interest_fp": 1746.6399999999999,
-    "volume_24h_fp": 1736.61,
-    "volume_fp": 1752.32
+    "open_interest_fp": 1761.5,
+    "volume_24h_fp": 1747.61,
+    "volume_fp": 1767.18
    },
    "ex_stats_first": {
     "open_interest_fp": 1227.08,
@@ -615,9 +823,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 3633.2000000000003,
-    "volume_24h_fp": 6854.099999999999,
-    "volume_fp": 6854.099999999999
+    "open_interest_fp": 3638.7200000000003,
+    "volume_24h_fp": 6859.62,
+    "volume_fp": 6859.62
    },
    "ex_stats_first": {
     "open_interest_fp": 2634.69,
@@ -999,8 +1207,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.48,
-   "clv_cents": -15.0,
+   "close_price": 0.32,
+   "clv_cents": -31.0,
    "confirmed_after_min": 10,
    "date": "2026-11-14",
    "depth_by_book": {
@@ -1025,9 +1233,9 @@
     "volume_fp": 237.87
    },
    "ex_stats_close": {
-    "open_interest_fp": 159911.39,
-    "volume_24h_fp": 212306.68,
-    "volume_fp": 214110.91999999998
+    "open_interest_fp": 194857.55,
+    "volume_24h_fp": 250815.91999999998,
+    "volume_fp": 260774.36
    },
    "ex_stats_first": {
     "open_interest_fp": 2907.54,
@@ -1922,9 +2130,9 @@
     "volume_fp": 0.07
    },
    "ex_stats_close": {
-    "open_interest_fp": 1746.6399999999999,
-    "volume_24h_fp": 1736.61,
-    "volume_fp": 1752.32
+    "open_interest_fp": 1761.5,
+    "volume_24h_fp": 1747.61,
+    "volume_fp": 1767.18
    },
    "ex_stats_first": {
     "open_interest_fp": 1110.3,
@@ -4575,9 +4783,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 2446.8399999999997,
-    "volume_24h_fp": 2505.6099999999997,
-    "volume_fp": 2505.6099999999997
+    "open_interest_fp": 2471.19,
+    "volume_24h_fp": 2529.96,
+    "volume_fp": 2529.96
    },
    "ex_stats_first": {
     "open_interest_fp": 75.23,
@@ -8720,7 +8928,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 40,
+   "settle_tries": 41,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Cornell",
@@ -14461,7 +14669,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 214,
+   "settle_tries": 215,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Fritz",
