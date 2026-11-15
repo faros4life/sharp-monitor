@@ -1,29 +1,29 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 14, 7:50 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 29.
+Updated Sat Nov 14, 8:00 PM ET. This run: 0 new, 1 not confirmed, 1 pending. Open alerts: 28.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 263-156 (-23.28u flat) | rule met: 48-42
+**Record:** 264-156 (-22.52u flat) | rule met: 48-42
 
-**Fade (paper, betting against the print):** 131-228 (+19.80u flat, after fees)
+**Fade (paper, betting against the print):** 131-229 (+18.80u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 14 7:40PM | NCAAB | UC Davis vs Sacramento St. | moneyline: Sacramento St. | kalshi | $31k | -156 | ✅ novig | ✅ | +0.0c |  | pending |
-| Nov 14 7:20PM | NCAAB | Utah Valley vs Nevada: Spread | spread: NOT Nevada wins by over 9.5 points | kalshi | $47k | +108 |  |  | +0.0c |  | pending |
-| Nov 14 6:30PM | NCAAB | Louisiana Tech vs Nicholls St. | moneyline: Louisiana Tech | kalshi | $61k | +104 |  |  | +1.0c |  | pending |
+| Nov 14 7:40PM | NCAAB | UC Davis vs Sacramento St. | moneyline: Sacramento St. | kalshi | $31k | -156 | ✅ novig | ✅ | -4.0c | yes | pending |
+| Nov 14 7:20PM | NCAAB | Utah Valley vs Nevada: Spread | spread: NOT Nevada wins by over 9.5 points | kalshi | $47k | +108 |  |  | +1.0c |  | pending |
+| Nov 14 6:30PM | NCAAB | Louisiana Tech vs Nicholls St. | moneyline: Louisiana Tech | kalshi | $61k | +104 |  |  | +1.0c | yes | pending |
 | Nov 14 6:20PM | NCAAB | Rider vs Villanova: Point Total | total: NOT Over 145.5 points | kalshi | $29k | -104 |  | ✅ | +0.0c | yes | pending |
-| Nov 14 4:50PM | NCAAB | Utah Valley vs Nevada | moneyline: Nevada | kalshi | $170k | -525 | ✅ novig |  | -1.0c |  | pending |
+| Nov 14 4:50PM | NCAAB | Utah Valley vs Nevada | moneyline: Nevada | kalshi | $170k | -525 | ✅ novig |  | -1.0c | yes | pending |
 | Nov 14 4:50PM | NCAAB | UAB vs Jacksonville St. | moneyline: UAB | kalshi | $86k | -127 | ✅ novig |  | +0.0c | yes | pending |
-| Nov 14 4:40PM | NCAAB | Penn vs Saint Joseph's | moneyline: Saint Joseph's | kalshi | $39k | -170 |  |  | -9.0c | yes | pending |
+| Nov 14 4:40PM | NCAAB | Penn vs Saint Joseph's | moneyline: Saint Joseph's | kalshi | $39k | -170 |  |  | +5.0c | yes | pending |
 | Nov 14 3:50PM | NCAAB | Southern Utah vs Wake Forest: Spread | spread: NOT Wake Forest wins by over 18.5 points | kalshi | $40k | -104 |  |  | -1.0c | yes | L |
 | Nov 14 3:40PM | NCAAB | Lipscomb vs Western Carolina | moneyline: Western Carolina | kalshi | $29k | -156 |  | ✅ | +1.0c | yes | pending |
 | Nov 14 1:50PM | NCAAB | Coppin St. vs South Florida: Point Total | total: Over 149.5 points | kalshi | $50k | -100 |  |  | +8.0c | yes | L |
 | Nov 14 12:30PM | NCAAB | UC Riverside vs Fresno St. | moneyline: UC Riverside | kalshi | $29k | +156 |  |  | +1.0c | yes | pending |
 | Nov 14 12:10PM | NCAAB | Louisiana Tech vs Nicholls St. | moneyline: Nicholls St. | kalshi | $33k | -104 |  |  | +0.0c | yes | pending |
 | Nov 14 12:00PM | NCAAB | LSU vs Gonzaga: Point Total | total: NOT Over 160.5 points | kalshi | $28k | -100 |  |  | +1.0c | yes | L |
-| Nov 14 12:00PM | NCAAB | Manhattan vs Le Moyne | moneyline: Le Moyne | kalshi | $73k | -122 |  |  | +0.0c |  | pending |
+| Nov 14 12:00PM | NCAAB | Manhattan vs Le Moyne | moneyline: Le Moyne | kalshi | $73k | -122 |  |  | +0.0c |  | W |
 | Nov 14 12:00PM | NCAAB | Drexel vs Maine | moneyline: Drexel | kalshi | $87k | -156 |  |  | +0.0c | yes | W |
 | Nov 14 11:50AM | NCAAB | Portland St. vs San Francisco: Spread | spread: NOT San Francisco wins by over 9.5 points | kalshi | $25k | -108 |  | ✅ | +3.0c | yes | pending |
 | Nov 14 11:20AM | NCAAB | Rice vs Stephen F. Austin: Spread | spread: NOT Stephen F. Austin wins by over 8.5 points | kalshi | $28k | +117 |  | ✅ | +2.0c | yes | W |
