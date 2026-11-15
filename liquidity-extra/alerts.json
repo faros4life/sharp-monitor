@@ -1,6 +1,182 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-15T09:00:25Z",
+   "base_depth": 55283,
+   "best_price": 0.7372,
+   "best_price_american": -281,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.73,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-15",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 13120,
+     "new_this_side": 46153,
+     "other_side": 10775,
+     "other_side_all_levels": 26964,
+     "ratio": 4.5,
+     "this_side": 48033,
+     "this_side_all_levels": 98304
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Montana State",
+     "price": 0.7333,
+     "this_side": 886
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 72.08,
+    "volume_24h_fp": 72.08,
+    "volume_fp": 72.08
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 8.1,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 72.08,
+    "volume_24h_fp": 63.98,
+    "volume_fp": 72.08
+   },
+   "fade_price": 0.28,
+   "first_seen_utc": "2026-11-15T08:50:19Z",
+   "game": "Cal Poly vs Montana St.",
+   "game_surge_books": [
+    "prophetx"
+   ],
+   "game_x": 1.49,
+   "key": "kalshi|KXNCAAMBGAME-26NOV15CPMTST|ml|1",
+   "lead_min": 840,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 46153,
+   "new_x": 1.2,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 72.08,
+      "volume_24h_fp": 72.08,
+      "volume_fp": 72.08
+     },
+     "game_normal": 65770,
+     "game_x": 1.49,
+     "normal": 38550,
+     "now": 98304,
+     "type": "ML",
+     "x": 2.55
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 540,
+     "game_x": 2.13,
+     "normal": 521,
+     "now": 1148,
+     "type": "ML",
+     "x": 2.2
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": false,
+   "price": 0.73,
+   "price_american": -270,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.73,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -300
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -295
+    },
+    "betrivers": {
+     "point": null,
+     "price": -315
+    },
+    "betus": {
+     "point": null,
+     "price": -295
+    },
+    "bovada": {
+     "point": null,
+     "price": -300
+    },
+    "draftkings": {
+     "point": null,
+     "price": -305
+    },
+    "fanatics": {
+     "point": null,
+     "price": -300
+    },
+    "fanduel": {
+     "point": null,
+     "price": -310
+    },
+    "kalshi": {
+     "point": null,
+     "price": -270
+    },
+    "lowvig": {
+     "point": null,
+     "price": -295
+    },
+    "novig": {
+     "point": null,
+     "price": -270
+    },
+    "polymarket": {
+     "point": null,
+     "price": -270
+    },
+    "prophetx": {
+     "point": null,
+     "price": -275
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV15CPMTST-MTST"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Montana St.",
+   "side_label": "Montana St.",
+   "size_x": 2.55,
+   "start_source": "odds",
+   "start_utc": "2026-11-15T23:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "prophetx"
+   ],
+   "teams": [
+    "Cal Poly",
+    "Montana St."
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-15T07:20:26Z",
    "base_depth": 51627,
    "best_price": 0.7341,
@@ -14,8 +190,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.73,
-   "clv_cents": 1.0,
+   "close_price": 0.72,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-11-15",
    "depth_by_book": {
@@ -40,9 +216,9 @@
     "volume_fp": 7.03
    },
    "ex_stats_close": {
-    "open_interest_fp": 26596.66,
-    "volume_24h_fp": 33321.73,
-    "volume_fp": 33355.05
+    "open_interest_fp": 26603.78,
+    "volume_24h_fp": 33355.05,
+    "volume_fp": 33362.17
    },
    "ex_stats_first": {
     "open_interest_fp": 24647.08,
@@ -157,9 +333,9 @@
     "volume_fp": 203.98
    },
    "ex_stats_close": {
-    "open_interest_fp": 83623.88,
-    "volume_24h_fp": 88227.6,
-    "volume_fp": 92340.28
+    "open_interest_fp": 83877.70999999999,
+    "volume_24h_fp": 89266.44,
+    "volume_fp": 92745.95000000001
    },
    "ex_stats_first": {
     "open_interest_fp": 37666.229999999996,
@@ -289,9 +465,9 @@
     "volume_fp": 93.14
    },
    "ex_stats_close": {
-    "open_interest_fp": 65846.83,
-    "volume_24h_fp": 65204.85,
-    "volume_fp": 66715.03
+    "open_interest_fp": 65882.02,
+    "volume_24h_fp": 65212.58,
+    "volume_fp": 66750.22
    },
    "ex_stats_first": {
     "open_interest_fp": 62067.61,
@@ -427,7 +603,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 437.74,
-    "volume_24h_fp": 433.09999999999997,
+    "volume_24h_fp": 437.74,
     "volume_fp": 437.74
    },
    "ex_stats_first": {
@@ -818,7 +994,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 256.27,
-    "volume_24h_fp": 213.69,
+    "volume_24h_fp": 218.16000000000003,
     "volume_fp": 256.27
    },
    "ex_stats_first": {
@@ -1170,9 +1346,9 @@
     "volume_fp": 2.06
    },
    "ex_stats_close": {
-    "open_interest_fp": 1921.1100000000001,
+    "open_interest_fp": 1946.35,
     "volume_24h_fp": 1512.7,
-    "volume_fp": 1951.98
+    "volume_fp": 1977.2199999999998
    },
    "ex_stats_first": {
     "open_interest_fp": 852.0699999999999,
@@ -1370,7 +1546,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 821.47,
-    "volume_24h_fp": 653.25,
+    "volume_24h_fp": 677.71,
     "volume_fp": 821.47
    },
    "ex_stats_first": {
@@ -10944,7 +11120,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 90,
+   "settle_tries": 91,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Cornell",
