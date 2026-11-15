@@ -1,6 +1,201 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-14T23:30:24Z",
+   "base_depth": 121733,
+   "best_price": 0.505,
+   "best_price_american": -102,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.5,
+   "clv_cents": 1.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-14",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 16948,
+     "new_this_side": 61070,
+     "other_side": 11807,
+     "other_side_all_levels": 82799,
+     "ratio": 8.7,
+     "this_side": 102417,
+     "this_side_all_levels": 179489
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "LT (0)",
+     "price": 0.505,
+     "this_side": 2529
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Louisiana Tech",
+     "price": 0.5074,
+     "this_side": 960
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 1266.48,
+    "volume_24h_fp": 1217.05,
+    "volume_fp": 1272.16
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 39.4,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 39.4
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 1615.73,
+    "volume_24h_fp": 1305.7,
+    "volume_fp": 1621.41
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 1227.08,
+    "volume_24h_fp": 1217.05,
+    "volume_fp": 1232.76
+   },
+   "fade_price": 0.51,
+   "first_seen_utc": "2026-11-14T23:20:17Z",
+   "game": "Louisiana Tech vs Nicholls St.",
+   "game_surge_books": [],
+   "game_x": 1.67,
+   "key": "kalshi|KXNCAAMBGAME-26NOV14LTNICH|ml|0",
+   "lead_min": 90,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 61070,
+   "new_x": 0.99,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 1266.48,
+      "volume_24h_fp": 1217.05,
+      "volume_fp": 1272.16
+     },
+     "game_normal": 107378,
+     "game_x": 1.67,
+     "normal": 61617,
+     "now": 179489,
+     "type": "ML",
+     "x": 2.91
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 404507.0,
+      "volume": 454320.0
+     },
+     "game_normal": 2667,
+     "game_x": 1.17,
+     "normal": 6172,
+     "now": 3129,
+     "type": "ML",
+     "x": 0.51
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 1038,
+     "game_x": 1.02,
+     "normal": 1060,
+     "now": 1060,
+     "type": "ML",
+     "x": 1.0
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.49,
+   "price_after_15m": 0.505,
+   "price_after_15m_book": "novig",
+   "price_american": 104,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.49,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -115
+    },
+    "betopenly": {
+     "point": null,
+     "price": -104
+    },
+    "betrivers": {
+     "point": null,
+     "price": -103
+    },
+    "bovada": {
+     "point": null,
+     "price": -110
+    },
+    "draftkings": {
+     "point": null,
+     "price": -110
+    },
+    "fanatics": {
+     "point": null,
+     "price": -110
+    },
+    "fanduel": {
+     "point": null,
+     "price": -110
+    },
+    "kalshi": {
+     "point": null,
+     "price": 104
+    },
+    "novig": {
+     "point": null,
+     "price": -104
+    },
+    "polymarket": {
+     "point": null,
+     "price": -104
+    },
+    "prophetx": {
+     "point": null,
+     "price": -103
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV14LTNICH-LT"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Louisiana Tech",
+   "side_label": "Louisiana Tech",
+   "size_x": 2.91,
+   "start_source": "odds",
+   "start_utc": "2026-11-15T01:00:00Z",
+   "still_actionable": true,
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "Louisiana Tech",
+    "Nicholls St."
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-14T23:20:17Z",
    "base_depth": 56128,
    "best_price": 0.5275,
@@ -14,6 +209,7 @@
     "novig",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.51,
    "clv_cents": 0.0,
    "confirmed_after_min": 10,
@@ -38,6 +234,11 @@
     "open_interest_fp": 0.0,
     "volume_24h_fp": 0.0,
     "volume_fp": 0.0
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 13609.73,
+    "volume_24h_fp": 13135.8,
+    "volume_fp": 13609.73
    },
    "ex_stats_first": {
     "open_interest_fp": 12626.93,
@@ -76,6 +277,8 @@
    "norm_ready_books": 1,
    "paper_only": false,
    "price": 0.51,
+   "price_after_15m": 0.5275,
+   "price_after_15m_book": "kalshi",
    "price_american": -104,
    "price_rule": "ok",
    "price_when_first_seen": 0.51,
@@ -141,7 +344,8 @@
      "price": -110
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-15T00:01:57Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNCAAMBTOTAL-26NOV14RIDVILL-146"
@@ -160,6 +364,7 @@
    "size_x": 5.74,
    "start_source": "odds",
    "start_utc": "2026-11-15T00:00:00Z",
+   "still_actionable": true,
    "surge_books": [
     "kalshi"
    ],
@@ -222,9 +427,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 3101.2000000000003,
-    "volume_24h_fp": 6322.099999999999,
-    "volume_fp": 6322.099999999999
+    "open_interest_fp": 3438.1000000000004,
+    "volume_24h_fp": 6475.65,
+    "volume_fp": 6659.0
    },
    "ex_stats_first": {
     "open_interest_fp": 2634.69,
@@ -393,6 +598,7 @@
     "novig",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.56,
    "clv_cents": 0.0,
    "confirmed_after_min": 10,
@@ -431,9 +637,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 6820.79,
-    "volume_24h_fp": 6809.79,
-    "volume_fp": 6820.79
+    "open_interest_fp": 8681.33,
+    "volume_24h_fp": 8670.33,
+    "volume_fp": 8681.33
    },
    "ex_stats_first": {
     "open_interest_fp": 6491.02,
@@ -558,7 +764,8 @@
      "price": -135
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-15T00:01:57Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAMBGAME-26NOV14UABJVST-UAB"
@@ -604,8 +811,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.63,
-   "clv_cents": 0.0,
+   "close_price": 0.49,
+   "clv_cents": -14.0,
    "confirmed_after_min": 10,
    "date": "2026-11-14",
    "depth_by_book": {
@@ -630,9 +837,9 @@
     "volume_fp": 237.87
    },
    "ex_stats_close": {
-    "open_interest_fp": 9779.85,
-    "volume_24h_fp": 7691.75,
-    "volume_fp": 9961.85
+    "open_interest_fp": 93848.93,
+    "volume_24h_fp": 101487.82,
+    "volume_fp": 118822.05
    },
    "ex_stats_first": {
     "open_interest_fp": 2907.54,
@@ -675,7 +882,8 @@
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.63,
    "prices_by_book": {},
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-14T23:30:24Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAMBGAME-26NOV14PENNJOES-JOES"
@@ -909,6 +1117,7 @@
     "novig",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.62,
    "clv_cents": 1.0,
    "confirmed_after_min": 10,
@@ -947,9 +1156,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 926.69,
-    "volume_24h_fp": 920.53,
-    "volume_fp": 926.69
+    "open_interest_fp": 978.8199999999999,
+    "volume_24h_fp": 946.4000000000001,
+    "volume_fp": 978.8199999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 902.6500000000001,
@@ -1058,7 +1267,8 @@
      "price": -180
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-15T00:01:57Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAMBGAME-26NOV14LIPWCU-WCU"
@@ -1524,9 +1734,9 @@
     "volume_fp": 0.07
    },
    "ex_stats_close": {
-    "open_interest_fp": 1227.08,
-    "volume_24h_fp": 1217.05,
-    "volume_fp": 1232.76
+    "open_interest_fp": 1615.73,
+    "volume_24h_fp": 1305.7,
+    "volume_fp": 1621.41
    },
    "ex_stats_first": {
     "open_interest_fp": 1110.3,
@@ -2262,6 +2472,7 @@
     "novig",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.55,
    "clv_cents": 3.0,
    "confirmed_after_min": 10,
@@ -2294,9 +2505,9 @@
     "volume_fp": 814.79
    },
    "ex_stats_close": {
-    "open_interest_fp": 7416.16,
-    "volume_24h_fp": 7764.41,
-    "volume_fp": 7814.41
+    "open_interest_fp": 7891.41,
+    "volume_24h_fp": 8087.37,
+    "volume_fp": 8351.76
    },
    "ex_stats_first": {
     "open_interest_fp": 1085.12,
@@ -2408,7 +2619,8 @@
      "price": -110
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-15T00:01:57Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNCAAMBSPREAD-26NOV14PRSTSF-SF10"
@@ -2811,6 +3023,7 @@
     "novig",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.44,
    "clv_cents": 0.0,
    "confirmed_after_min": 10,
@@ -2843,9 +3056,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 6820.79,
-    "volume_24h_fp": 6809.79,
-    "volume_fp": 6820.79
+    "open_interest_fp": 8681.33,
+    "volume_24h_fp": 8670.33,
+    "volume_fp": 8681.33
    },
    "ex_stats_first": {
     "open_interest_fp": 3013.25,
@@ -2954,7 +3167,8 @@
      "price": 115
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-15T00:01:57Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAMBGAME-26NOV14UABJVST-JVST"
@@ -2997,8 +3211,9 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.59,
-   "clv_cents": 4.0,
+   "close_frozen": true,
+   "close_price": 0.6,
+   "clv_cents": 5.0,
    "confirmed_after_min": 10,
    "date": "2026-11-14",
    "depth_by_book": {
@@ -3023,9 +3238,9 @@
     "volume_fp": 149.3
    },
    "ex_stats_close": {
-    "open_interest_fp": 5392.31,
-    "volume_24h_fp": 5563.96,
-    "volume_fp": 5582.08
+    "open_interest_fp": 5703.49,
+    "volume_24h_fp": 5893.26,
+    "volume_fp": 5893.26
    },
    "ex_stats_first": {
     "open_interest_fp": 3326.32,
@@ -3127,7 +3342,8 @@
      "price": -110
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-15T00:01:57Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNCAAMBSPREAD-26NOV14BRWNSIE-SIE12"
@@ -3355,6 +3571,7 @@
     "novig",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.63,
    "clv_cents": -2.0,
    "confirmed_after_min": 10,
@@ -3387,9 +3604,9 @@
     "volume_fp": 2.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 7117.139999999999,
-    "volume_24h_fp": 7207.139999999999,
-    "volume_fp": 7217.139999999999
+    "open_interest_fp": 7205.84,
+    "volume_24h_fp": 7295.84,
+    "volume_fp": 7305.84
    },
    "ex_stats_first": {
     "open_interest_fp": 111.55,
@@ -3489,7 +3706,8 @@
      "price": -205
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-15T00:01:57Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAMBGAME-26NOV14UWGACHSO-CHSO"
@@ -3746,6 +3964,7 @@
     "novig",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.66,
    "clv_cents": 1.0,
    "confirmed_after_min": 10,
@@ -3778,9 +3997,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 2402.51,
-    "volume_24h_fp": 2417.4300000000003,
-    "volume_fp": 2429.51
+    "open_interest_fp": 2411.98,
+    "volume_24h_fp": 2431.33,
+    "volume_fp": 2438.98
    },
    "ex_stats_first": {
     "open_interest_fp": 89.64,
@@ -3879,7 +4098,8 @@
      "price": -195
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-15T00:01:57Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAMBGAME-26NOV14UTRGVUTA-UTA"
@@ -3959,9 +4179,9 @@
     "volume_fp": 230.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 2296.08,
-    "volume_24h_fp": 1889.19,
-    "volume_fp": 2300.08
+    "open_interest_fp": 3071.36,
+    "volume_24h_fp": 2462.12,
+    "volume_fp": 3075.36
    },
    "ex_stats_first": {
     "open_interest_fp": 519.04,
@@ -4166,9 +4386,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 392.81,
-    "volume_24h_fp": 392.81,
-    "volume_fp": 392.81
+    "open_interest_fp": 2342.4599999999996,
+    "volume_24h_fp": 408.23,
+    "volume_fp": 2401.23
    },
    "ex_stats_first": {
     "open_interest_fp": 75.23,
@@ -4559,9 +4779,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 2984.13,
-    "volume_24h_fp": 2926.7200000000003,
-    "volume_fp": 3061.58
+    "open_interest_fp": 3262.7400000000002,
+    "volume_24h_fp": 3235.8900000000003,
+    "volume_fp": 3340.19
    },
    "ex_stats_first": {
     "open_interest_fp": 1611.28,
@@ -4702,6 +4922,7 @@
     "novig",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.8,
    "clv_cents": -5.0,
    "confirmed_after_min": 10,
@@ -4734,9 +4955,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1429.72,
-    "volume_24h_fp": 1418.16,
-    "volume_fp": 1466.72
+    "open_interest_fp": 1909.25,
+    "volume_24h_fp": 1901.3799999999999,
+    "volume_fp": 1946.25
    },
    "ex_stats_first": {
     "open_interest_fp": 81.77,
@@ -4887,6 +5108,7 @@
     "novig",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.84,
    "clv_cents": 3.0,
    "confirmed_after_min": 10,
@@ -4925,9 +5147,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1450.3200000000002,
-    "volume_24h_fp": 1445.62,
-    "volume_fp": 1451.3200000000002
+    "open_interest_fp": 3136.33,
+    "volume_24h_fp": 3136.33,
+    "volume_fp": 3137.33
    },
    "ex_stats_first": {
     "open_interest_fp": 416.39,
@@ -5071,6 +5293,7 @@
     "novig",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.83,
    "clv_cents": -2.0,
    "confirmed_after_min": 10,
@@ -5109,9 +5332,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 6883.95,
-    "volume_24h_fp": 6972.530000000001,
-    "volume_fp": 6988.790000000001
+    "open_interest_fp": 6906.85,
+    "volume_24h_fp": 7145.570000000001,
+    "volume_fp": 7154.6900000000005
    },
    "ex_stats_first": {
     "open_interest_fp": 418.96000000000004,
@@ -5434,6 +5657,7 @@
     "novig",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.87,
    "clv_cents": 3.0,
    "confirmed_after_min": 10,
@@ -5460,9 +5684,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1504.32,
-    "volume_24h_fp": 1489.85,
-    "volume_fp": 1504.32
+    "open_interest_fp": 2292.2200000000003,
+    "volume_24h_fp": 2291.2200000000003,
+    "volume_fp": 2292.2200000000003
    },
    "ex_stats_first": {
     "open_interest_fp": 12.559999999999999,
@@ -5974,6 +6198,7 @@
     "volume_fp": 70.38
    },
    "fade_price": 0.25,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-14T06:40:19Z",
    "game": "USC Upstate vs Campbell",
    "game_surge_books": [
@@ -6065,11 +6290,13 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAMBGAME-26NOV14SCUSCAMP-CAMP"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settle_tries": 3,
+   "settled_utc": "2026-11-14T23:49:48Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Campbell",
@@ -6084,7 +6311,7 @@
     "Campbell"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.31
   },
   {
    "alerted_utc": "2026-11-14T06:50:18Z",
@@ -8303,7 +8530,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 33,
+   "settle_tries": 37,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Cornell",
@@ -14044,7 +14271,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 207,
+   "settle_tries": 211,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Fritz",
