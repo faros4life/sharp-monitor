@@ -1,23 +1,23 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 15, 2:05 AM ET. This run: 0 new, 1 not confirmed, 0 pending. Open alerts: 42.
+Updated Sun Nov 15, 2:10 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 41.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 1522-1172 (-17.59u flat) | rule met: 920-713
+**Record:** 1523-1172 (-17.23u flat) | rule met: 921-713
 
-**Fade (paper, betting against the print):** 906-1249 (-213.59u flat, after fees)
+**Fade (paper, betting against the print):** 906-1250 (-214.59u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 15 1:55AM | NBA | San Antonio vs Utah: Spread | spread: NOT San Antonio wins by over 16.5 points | kalshi | $25k | +104 |  |  | +0.0c | yes | pending |
+| Nov 15 1:55AM | NBA | San Antonio vs Utah: Spread | spread: NOT San Antonio wins by over 16.5 points | kalshi | $25k | +104 |  |  | +1.0c | yes | pending |
 | Nov 15 1:30AM | NFL | Seattle vs Las Vegas: Spread | spread: Seattle wins by over 6.5 points | kalshi | $101k | -100 |  |  | +0.0c |  | pending |
 | Nov 15 1:05AM | NFL | Minnesota vs Green Bay: Spread | spread: NOT Green Bay wins by over 2.5 points | kalshi | $148k | +108 |  |  | +0.0c |  | pending |
 | Nov 15 1:05AM | NFL | Miami vs Indianapolis: Spread | spread: NOT Indianapolis wins by over 4.5 points | kalshi | $220k | -108 | ✅ novig |  | +0.0c |  | pending |
 | Nov 15 1:05AM | NFL | Jacksonville vs Tennessee: Spread | spread: NOT Jacksonville wins by over 10.5 points | kalshi | $150k | +104 | ✅ prophetx |  | +0.0c |  | pending |
 | Nov 15 1:05AM | NFL | Houston vs Cleveland: Spread | spread: NOT Houston wins by over 4.5 points | kalshi | $165k | -104 | ✅ novig | ✅ | +0.0c |  | pending |
 | Nov 15 1:05AM | NFL | Carolina vs New Orleans: Spread | spread: NOT New Orleans wins by over 1.5 points | kalshi | $158k | -100 | ✅ novig |  | +0.0c |  | pending |
-| Nov 15 1:05AM | NFL | Buffalo vs New York J: Spread | spread: NOT Buffalo wins by over 7.5 points | kalshi | $154k | +104 | ✅ novig |  | +0.0c |  | pending |
+| Nov 15 1:05AM | NFL | Buffalo vs New York J: Spread | spread: NOT Buffalo wins by over 7.5 points | kalshi | $154k | +104 | ✅ novig |  | +1.0c |  | pending |
 | Nov 15 12:50AM | NFL | Los Angeles R vs Arizona: Spread | spread: Los Angeles R wins by over 9.5 points | kalshi | $70k | -100 | ✅ novig |  | +0.0c |  | pending |
 | Nov 15 12:45AM | NBA | Houston vs Washington | moneyline: Houston | kalshi | $66k | -376 |  |  | -1.0c |  | pending |
 | Nov 15 12:10AM | NFL | Carolina Panthers @ New Orleans Saints | moneyline: NO (0) | novig | $56k | -117 | ✅ prophetx |  | +0.0c |  | pending |
@@ -43,7 +43,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 14 9:45PM | NFL | New England vs Detroit: Total Points | total: Over 49.5 points | kalshi | $200k | -104 | ✅ novig |  | +1.0c | yes | pending |
 | Nov 14 9:45PM | NFL | Kansas City vs Atlanta | moneyline: Kansas City | kalshi | $153k | -170 | ✅ novig,prophetx |  | +0.0c | yes | pending |
 | Nov 14 9:40PM | NCAAF | North Dakota St. vs Hawai'i | moneyline: North Dakota St. | kalshi | $134k | -257 |  |  | +8.0c | yes | pending |
-| Nov 14 9:40PM | NCAAF | Idaho St. vs Montana | moneyline: Montana | kalshi | $76k | -285 | ✅ novig |  | +0.0c | yes | pending |
+| Nov 14 9:40PM | NCAAF | Idaho St. vs Montana | moneyline: Montana | kalshi | $76k | -285 | ✅ novig |  | +0.0c | yes | W |
 | Nov 14 9:35PM | NFL | New England vs Detroit: Spread | spread: NOT Detroit wins by over 2.5 points | kalshi | $172k | +108 | ✅ novig |  | +1.0c |  | pending |
 | Nov 14 9:30PM | NHL | New York I vs Anaheim: Total Goals | total: Over 6.5 goals scored | kalshi | $28k | -127 | ✅ novig |  | +1.0c | yes | W |
 | Nov 14 9:25PM | NFL | Minnesota vs Green Bay | moneyline: Green Bay | kalshi | $137k | -144 | ✅ novig |  | +0.0c | yes | pending |
