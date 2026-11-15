@@ -1,0 +1,67 @@
+name: reporting-ledger
+
+# Peter, 15 Nov 2026: durable, append-only reporting history, because the execution registry
+# keeps orders for only 4 days (a risk control that must not change).
+#
+# REPORTING ONLY. No executor import, no registry write, no venue or trading credential, no
+# OddsPapi key. Secrets passed: TRACKER_PASSPHRASE (encrypt/decrypt) and REGISTRY_TOKEN (read).
+#
+# BRANCH-ONLY for now: it fires on a push to reporting-ledger and commits the encrypted ledger back
+# to that branch. A daily schedule needs this file on main, which needs Peter's separate approval.
+# Pushes made by this job use GITHUB_TOKEN and cannot retrigger it.
+
+on:
+  push:
+    branches: [reporting-ledger]
+    paths: [reporting_ledger.py, .github/workflows/reporting-ledger.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: reporting-ledger
+  cancel-in-progress: false
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Synthetic tests
+        run: python test_reporting_ledger.py
+      - name: Pull the latest tracker and CLV ledger from main (read-only)
+        run: |
+          git fetch -q --depth=1 origin main
+          git checkout origin/main -- tracker/state.enc clv/state.enc
+      - name: Snapshot into the append-only ledger (counts only in this log)
+        env:
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+          REGISTRY_TOKEN: ${{ secrets.REGISTRY_TOKEN }}
+        run: python -u reporting_ledger.py
+      - name: Guard - only the encrypted ledger changes, and it is ciphertext
+        run: |
+          git restore --staged tracker/state.enc clv/state.enc 2>/dev/null || true
+          git checkout -- tracker/state.enc clv/state.enc
+          python - <<'PY'
+          import json
+          b = json.load(open("reporting/ledger.enc"))
+          assert set(b) == {"s", "i", "c", "n"} and len(b["c"]) > 200, "FAIL: ledger is not AES-GCM ciphertext"
+          print(f"guard ok: {len(b['c'])} b64 chars of ciphertext")
+          PY
+          git status --porcelain --untracked-files=all -- . ':!reporting/ledger.enc' > "$RUNNER_TEMP/d"
+          if [ -s "$RUNNER_TEMP/d" ]; then echo "FAIL: unexpected changes:"; cat "$RUNNER_TEMP/d"; exit 1; fi
+      - name: Commit the ledger to this branch
+        run: |
+          git config user.name "reporting-ledger"
+          git config user.email "reporting-ledger@users.noreply.github.com"
+          git add reporting/ledger.enc
+          git diff --cached --quiet && { echo "no change"; exit 0; }
+          git commit -q -m "reporting ledger snapshot $(date -u +%Y-%m-%dT%H:%MZ)"
+          git push -q origin HEAD:reporting-ledger
+          echo "committed to reporting-ledger"
