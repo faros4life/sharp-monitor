@@ -1,6 +1,202 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-15T06:30:24Z",
+   "base_depth": 69127,
+   "best_price": 0.7438,
+   "best_price_american": -290,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.73,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-15",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 2746,
+     "new_this_side": 39413,
+     "other_side": 3342,
+     "other_side_all_levels": 22777,
+     "ratio": 11.5,
+     "this_side": 38516,
+     "this_side_all_levels": 108531
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "WMU (0)",
+     "price": 0.75,
+     "this_side": 1491
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Western Michigan",
+     "price": 0.7561,
+     "this_side": 914
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 336.43,
+    "volume_24h_fp": 336.43,
+    "volume_fp": 336.43
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 1.46,
+    "volume_24h_fp": 1.46,
+    "volume_fp": 1.46
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 334.97,
+    "volume_24h_fp": 334.97,
+    "volume_fp": 334.97
+   },
+   "fade_price": 0.26,
+   "first_seen_utc": "2026-11-15T06:20:18Z",
+   "game": "Western Michigan vs Southern Indiana",
+   "game_surge_books": [],
+   "game_x": 1.73,
+   "key": "kalshi|KXNCAAMBGAME-26NOV15WMUUSI|ml|0",
+   "lead_min": 900,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 39413,
+   "new_x": 1.12,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 336.43,
+      "volume_24h_fp": 336.43,
+      "volume_fp": 336.43
+     },
+     "game_normal": 62770,
+     "game_x": 1.73,
+     "normal": 35038,
+     "now": 108531,
+     "type": "ML",
+     "x": 3.1
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 58310.0,
+      "volume": 105251.0
+     },
+     "game_normal": 1743,
+     "game_x": 1.0,
+     "normal": 2522,
+     "now": 1740,
+     "type": "ML",
+     "x": 0.69
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 1020,
+     "game_x": 1.31,
+     "normal": 545,
+     "now": 1337,
+     "type": "ML",
+     "x": 2.45
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.73,
+   "price_american": -270,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.73,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -325
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -310
+    },
+    "betopenly": {
+     "point": null,
+     "price": -285
+    },
+    "betrivers": {
+     "point": null,
+     "price": -345
+    },
+    "betus": {
+     "point": null,
+     "price": -310
+    },
+    "bovada": {
+     "point": null,
+     "price": -310
+    },
+    "draftkings": {
+     "point": null,
+     "price": -310
+    },
+    "fanatics": {
+     "point": null,
+     "price": -320
+    },
+    "fanduel": {
+     "point": null,
+     "price": -345
+    },
+    "kalshi": {
+     "point": null,
+     "price": -270
+    },
+    "lowvig": {
+     "point": null,
+     "price": -310
+    },
+    "novig": {
+     "point": null,
+     "price": -300
+    },
+    "polymarket": {
+     "point": null,
+     "price": -300
+    },
+    "prophetx": {
+     "point": null,
+     "price": -310
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV15WMUUSI-WMU"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Western Michigan",
+   "side_label": "Western Michigan",
+   "size_x": 3.1,
+   "start_source": "odds",
+   "start_utc": "2026-11-15T21:30:00Z",
+   "surge_books": [
+    "kalshi",
+    "prophetx"
+   ],
+   "teams": [
+    "Western Michigan",
+    "Southern Indiana"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-15T06:20:18Z",
    "base_depth": 19804,
    "best_price": 0.625,
@@ -50,6 +246,11 @@
     "open_interest_fp": 1.22,
     "volume_24h_fp": 1.22,
     "volume_fp": 1.22
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 14669.91,
+    "volume_24h_fp": 16881.940000000002,
+    "volume_fp": 16881.940000000002
    },
    "ex_stats_first": {
     "open_interest_fp": 14668.689999999999,
@@ -230,6 +431,11 @@
     "volume_24h_fp": 0.0,
     "volume_fp": 0.0
    },
+   "ex_stats_close": {
+    "open_interest_fp": 241.32999999999998,
+    "volume_24h_fp": 203.22,
+    "volume_fp": 241.32999999999998
+   },
    "ex_stats_first": {
     "open_interest_fp": 239.75,
     "volume_24h_fp": 201.64000000000001,
@@ -409,6 +615,11 @@
     "volume_24h_fp": 31.34,
     "volume_fp": 2.95
    },
+   "ex_stats_close": {
+    "open_interest_fp": 1746.6499999999999,
+    "volume_24h_fp": 1876.4199999999998,
+    "volume_fp": 1876.4199999999998
+   },
    "ex_stats_first": {
     "open_interest_fp": 1743.7,
     "volume_24h_fp": 1845.08,
@@ -566,6 +777,11 @@
     "open_interest_fp": 2.06,
     "volume_24h_fp": 2.06,
     "volume_fp": 2.06
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 880.57,
+    "volume_24h_fp": 453.66,
+    "volume_fp": 892.9399999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 852.0699999999999,
@@ -758,6 +974,11 @@
     "volume_24h_fp": 0.0,
     "volume_fp": 0.0
    },
+   "ex_stats_close": {
+    "open_interest_fp": 663.26,
+    "volume_24h_fp": 523.15,
+    "volume_fp": 663.26
+   },
    "ex_stats_first": {
     "open_interest_fp": 661.95,
     "volume_24h_fp": 521.8399999999999,
@@ -927,9 +1148,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 199.27,
-    "volume_24h_fp": 193.08,
-    "volume_fp": 209.46
+    "open_interest_fp": 200.18,
+    "volume_24h_fp": 193.99,
+    "volume_fp": 210.37
    },
    "ex_stats_first": {
     "open_interest_fp": 199.27,
@@ -968,6 +1189,8 @@
    "norm_ready_books": 1,
    "paper_only": false,
    "price": 0.44,
+   "price_after_15m": 0.4572,
+   "price_after_15m_book": "kalshi",
    "price_american": 127,
    "price_rule": "ml_edge_ok",
    "price_when_first_seen": 0.44,
@@ -989,6 +1212,7 @@
    "size_x": 2.03,
    "start_source": "kalshi",
    "start_utc": "2026-11-15T22:00:00Z",
+   "still_actionable": true,
    "surge_books": [
     "kalshi"
    ],
@@ -1052,7 +1276,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 9445.32,
-    "volume_24h_fp": 8201.36,
+    "volume_24h_fp": 8200.23,
     "volume_fp": 10193.77
    },
    "ex_stats_first": {
@@ -10323,7 +10547,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 75,
+   "settle_tries": 76,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Cornell",
@@ -16064,7 +16288,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 249,
+   "settle_tries": 250,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Fritz",
