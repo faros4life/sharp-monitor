@@ -130,6 +130,19 @@ def main():
     rr = reg.rows()
     if rr is None:
         sys.exit("registry unreadable - lane identity cannot be proven; nothing reported")
+    # 15 Nov: the registry prunes orders after 4 days. Orders it no longer holds are restored from the
+    # durable reporting ledger so older positions keep their exact lane instead of falling to UNATTRIBUTED.
+    import report_sections as rs
+    import reporting_ledger as rl
+    import os as _os
+    ledger_orders, ledger_fills = [], {}
+    if _os.path.exists(rl.OUT):
+        cur = rl.latest(rl.load_ledger())
+        ledger_orders = [d for (k, _i), (_f, d) in cur.items() if k == "order"]
+        ledger_fills = {i: d for (k, i), (_f, d) in cur.items() if k == "fill"}
+    else:
+        print("durable ledger ABSENT - registry window only")
+    rr, ledger_extra = rs.merge_orders(rr, ledger_orders)
     # Lane comes from the registry row itself (registry.row_lane: 'source' = rules|board|r1|lane2, or a lane prefix on the key).
     # executor is NOT imported: executor.lane_of reads row['live'] as a dict, but ledger rows store 'live' as a BOOL, so it would
     # label every order PHASE 1; and importing executor pulls in every venue module. An unknown source proves nothing.
@@ -155,7 +168,13 @@ def main():
     links = link_index(fills, trades, {"nv": nok, "px": pok})
     print(f"venue reads: novig fills {len(fills)} ({nf}) | prophetx trades {len(trades)} ({nt}) | tracker rows with a venue link "
           f"{sum(1 for r in rows if str(r.get('id') or '') in links)} of {len(rows)} | complete: novig {nok}, prophetx {pok}")
-    rep = build(rows, index, reg._venue, links)
+    import clv_ledger as cl
+    import clv_stale as cstale
+    cb = (tb.dec(json.load(open(cl.STATE))) or {}).get("bets") or {}
+    stale = cstale.stale_map(cb, st.get("bets") or {})
+    clv = {k: r["clv"] for k, r in cb.items()
+           if r.get("clv") is not None and not r.get("fixture_doubt") and k not in stale}
+    rep = build(rows, index, reg._venue, links, clv)
     print("bot rows:", len(rows), "| with a venue order id (order_ref):", sum(1 for r in rows if r.get("order_ref")),
           "| registry order ids:", len(index), "| registry rows with no provable lane:", no_lane, "| join:", rep["join"])
     td = {}
@@ -172,6 +191,16 @@ def main():
     print("FUZZY lanes are the tracker's own text-matched labels (UNVERIFIED). EXACT = venue order id or venue fill/trade link "
           "to ONE registry claim per order, one lane per position.")
     text, csv_rows = render(rep)
+    fills_all = dict(ledger_fills)
+    fills_all.update(reg.fills() or {})
+    p1 = rs.project1(rows, clv)
+    integ = rs.integrity(rr, fills_all, rows, clv, rep, pok)
+    text += rs.render(p1, integ, ledger_extra)
+    print(f"ledger orders restored {ledger_extra} | project1 first-seen {p1['first_seen_since_start']} graded {p1['graded']} "
+          f"missing close {p1['missing_close']} | integrity: placed {integ['placed_orders_since_start']} "
+          f"without fill record {integ['placed_orders_without_fill_record']}, not-terminal fills "
+          f"{integ['fill_records_not_terminal']}, settled missing CLV {integ['settled_missing_certified_clv']}, "
+          f"not exact {integ['positions_without_exact_lane']}")
     return 0 if send_private(text, csv_rows) else 1
 
 
