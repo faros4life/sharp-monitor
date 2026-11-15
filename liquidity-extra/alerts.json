@@ -1,6 +1,312 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-15T17:50:26Z",
+   "base_depth": 42964,
+   "best_price": 0.5,
+   "best_price_american": -100,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-15",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 8220,
+     "new_this_side": 28922,
+     "other_side": 6329,
+     "other_side_all_levels": 30960,
+     "ratio": 7.4,
+     "this_side": 46722,
+     "this_side_all_levels": 71752
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "Under 144.5 (144.5)",
+     "price": 0.5,
+     "this_side": 6650
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "under 144.5 (144.5)",
+     "price": 0.5,
+     "this_side": 508
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 2016.29,
+    "volume_24h_fp": 2016.29,
+    "volume_fp": 2016.29
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 2016.29,
+    "volume_24h_fp": 2016.29,
+    "volume_fp": 2016.29
+   },
+   "fade_price": 0.51,
+   "first_seen_utc": "2026-11-15T17:40:19Z",
+   "game": "Purdue Fort Wayne vs Eastern Illinois: Point Total",
+   "game_surge_books": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "game_x": 2.36,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAMBTOTAL-26NOV15PFWEIU-145\"}",
+   "lead_min": 130,
+   "league": "NCAAB",
+   "line": 144.5,
+   "market": "total",
+   "new_money": 28922,
+   "new_x": 1.98,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 2016.29,
+      "volume_24h_fp": 2016.29,
+      "volume_fp": 2016.29
+     },
+     "game_normal": 30398,
+     "game_x": 2.36,
+     "normal": 14594,
+     "now": 71752,
+     "type": "UNDER",
+     "x": 4.92
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 184452.0,
+      "volume": 334447.0
+     },
+     "game_normal": 1020,
+     "game_x": 6.68,
+     "normal": 1684,
+     "now": 6811,
+     "type": "UNDER",
+     "x": 4.04
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 141,
+     "game_x": 4.3,
+     "normal": 192,
+     "now": 608,
+     "type": "UNDER",
+     "x": 3.17
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.5,
+   "price_american": -100,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.5,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 144.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 144.5,
+     "price": -115
+    },
+    "betopenly": {
+     "point": 144.5,
+     "price": 100
+    },
+    "betrivers": {
+     "point": 144.5,
+     "price": -108
+    },
+    "betus": {
+     "point": 144.5,
+     "price": -110
+    },
+    "bovada": {
+     "point": 144.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 144.5,
+     "price": -108
+    },
+    "fanatics": {
+     "point": 144.5,
+     "price": -110
+    },
+    "fanduel": {
+     "point": 144.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": 144.5,
+     "price": 100
+    },
+    "lowvig": {
+     "point": 144.5,
+     "price": -113
+    },
+    "novig": {
+     "point": 150.5,
+     "price": -9900
+    },
+    "polymarket": {
+     "point": 144.5,
+     "price": -104
+    },
+    "prophetx": {
+     "point": 144.5,
+     "price": 100
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAMBTOTAL-26NOV15PFWEIU-145"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "NOT Over 144.5 points",
+   "size_x": 4.92,
+   "start_source": "odds",
+   "start_utc": "2026-11-15T20:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "teams": [
+    "Purdue Fort Wayne",
+    "Eastern Illinois"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-15T17:50:26Z",
+   "base_depth": 67428,
+   "best_price": 0.5075,
+   "best_price_american": -103,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.49,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-15",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -447,
+     "new_this_side": 25530,
+     "other_side": 31063,
+     "other_side_all_levels": 72175,
+     "ratio": 0.7,
+     "this_side": 22639,
+     "this_side_all_levels": 91277
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 17689.21,
+    "volume_24h_fp": 17952.15,
+    "volume_fp": 17952.15
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 595.72,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 17689.21,
+    "volume_24h_fp": 17356.43,
+    "volume_fp": 17952.15
+   },
+   "fade_price": 0.52,
+   "first_seen_utc": "2026-11-15T17:40:19Z",
+   "game": "University at Albany vs Holy Cross: Spread",
+   "game_surge_books": [],
+   "game_x": 1.53,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAMBSPREAD-26NOV15ALBYHC-ALBY3\"}",
+   "lead_min": 250,
+   "league": "NCAAB",
+   "line": 2.5,
+   "market": "spread",
+   "new_money": 25530,
+   "new_x": 1.4,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 17689.21,
+      "volume_24h_fp": 17952.15,
+      "volume_fp": 17952.15
+     },
+     "game_normal": 59682,
+     "game_x": 1.53,
+     "normal": 18195,
+     "now": 91277,
+     "type": "SPREAD",
+     "x": 5.02
+    }
+   },
+   "norm_ready_books": 1,
+   "paper_only": false,
+   "price": 0.49,
+   "price_american": 104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.49,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAMBSPREAD-26NOV15ALBYHC-ALBY3"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "University",
+   "side_label": "NOT University at Albany wins by over 2.5 points",
+   "size_x": 5.02,
+   "start_source": "kalshi",
+   "start_utc": "2026-11-15T22:00:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "University",
+    "Albany vs Holy Cross"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-15T17:30:22Z",
    "base_depth": 232805,
    "best_price": 0.6,
@@ -52,9 +358,9 @@
     "volume_fp": 397.81
    },
    "ex_stats_close": {
-    "open_interest_fp": 15582.470000000001,
-    "volume_24h_fp": 14670.800000000001,
-    "volume_fp": 15812.080000000002
+    "open_interest_fp": 16108.42,
+    "volume_24h_fp": 14889.420000000002,
+    "volume_fp": 16349.23
    },
    "ex_stats_first": {
     "open_interest_fp": 14958.07,
@@ -112,6 +418,8 @@
    "norm_ready_books": 3,
    "paper_only": false,
    "price": 0.6,
+   "price_after_15m": 0.605,
+   "price_after_15m_book": "novig",
    "price_american": -150,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.6,
@@ -198,6 +506,7 @@
    "size_x": 5.07,
    "start_source": "odds",
    "start_utc": "2026-11-15T20:00:00Z",
+   "still_actionable": false,
    "surge_books": [
     "kalshi",
     "novig",
@@ -250,9 +559,9 @@
     "volume_fp": 287.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 3758.79,
+    "open_interest_fp": 3767.3,
     "volume_24h_fp": 4441.59,
-    "volume_fp": 4441.59
+    "volume_fp": 4450.1
    },
    "ex_stats_first": {
     "open_interest_fp": 2306.87,
@@ -432,9 +741,9 @@
     "volume_fp": 256.19
    },
    "ex_stats_close": {
-    "open_interest_fp": 4870.11,
-    "volume_24h_fp": 4766.49,
-    "volume_fp": 4878.24
+    "open_interest_fp": 4924.9,
+    "volume_24h_fp": 4776.0,
+    "volume_fp": 4933.030000000001
    },
    "ex_stats_first": {
     "open_interest_fp": 4237.37,
@@ -633,9 +942,9 @@
     "volume_fp": 303.24
    },
    "ex_stats_close": {
-    "open_interest_fp": 5199.01,
-    "volume_24h_fp": 5087.48,
-    "volume_fp": 5199.01
+    "open_interest_fp": 5424.38,
+    "volume_24h_fp": 5199.01,
+    "volume_fp": 5424.38
    },
    "ex_stats_first": {
     "open_interest_fp": 894.94,
@@ -783,8 +1092,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.49,
-   "clv_cents": 2.0,
+   "close_price": 0.5,
+   "clv_cents": 3.0,
    "confirmed_after_min": 10,
    "date": "2026-11-15",
    "depth_by_book": {
@@ -816,7 +1125,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 13450.08,
-    "volume_24h_fp": 14256.12,
+    "volume_24h_fp": 14295.52,
     "volume_fp": 14295.52
    },
    "ex_stats_first": {
@@ -999,7 +1308,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 7052.48,
-    "volume_24h_fp": 2614.35,
+    "volume_24h_fp": 7089.69,
     "volume_fp": 7089.69
    },
    "ex_stats_first": {
@@ -1145,8 +1454,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.52,
-   "clv_cents": 2.0,
+   "close_price": 0.51,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-15",
    "depth_by_book": {
@@ -1177,9 +1486,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 3154.32,
-    "volume_24h_fp": 2453.66,
-    "volume_fp": 3154.32
+    "open_interest_fp": 3156.32,
+    "volume_24h_fp": 2464.66,
+    "volume_fp": 3156.32
    },
    "ex_stats_first": {
     "open_interest_fp": 0.0,
@@ -1373,9 +1682,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1792.5500000000002,
+    "open_interest_fp": 1855.8200000000002,
     "volume_24h_fp": 1925.13,
-    "volume_fp": 1925.13
+    "volume_fp": 1988.4
    },
    "ex_stats_first": {
     "open_interest_fp": 879.45,
@@ -1507,7 +1816,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 674.9100000000001,
-    "volume_24h_fp": 663.77,
+    "volume_24h_fp": 671.9100000000001,
     "volume_fp": 674.9100000000001
    },
    "ex_stats_first": {
@@ -1659,8 +1968,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.73,
-   "clv_cents": 1.0,
+   "close_price": 0.72,
+   "clv_cents": 0.0,
    "confirmed_after_min": 10,
    "date": "2026-11-15",
    "depth_by_book": {
@@ -1685,9 +1994,9 @@
     "volume_fp": 7.03
    },
    "ex_stats_close": {
-    "open_interest_fp": 67353.2,
-    "volume_24h_fp": 74017.48,
-    "volume_fp": 76503.78
+    "open_interest_fp": 70150.42,
+    "volume_24h_fp": 76415.38,
+    "volume_fp": 79551.01999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 24647.08,
@@ -1938,9 +2247,9 @@
     "volume_fp": 93.14
    },
    "ex_stats_close": {
-    "open_interest_fp": 156009.97,
-    "volume_24h_fp": 134781.96,
-    "volume_fp": 169491.4
+    "open_interest_fp": 158843.24,
+    "volume_24h_fp": 136318.08000000002,
+    "volume_fp": 172388.57
    },
    "ex_stats_first": {
     "open_interest_fp": 62067.61,
@@ -2467,9 +2776,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 14325.35,
-    "volume_24h_fp": 14256.84,
-    "volume_fp": 14325.35
+    "open_interest_fp": 14562.69,
+    "volume_24h_fp": 14287.24,
+    "volume_fp": 14562.69
    },
    "ex_stats_first": {
     "open_interest_fp": 239.75,
@@ -2654,9 +2963,9 @@
     "volume_fp": 2.95
    },
    "ex_stats_close": {
-    "open_interest_fp": 22357.91,
-    "volume_24h_fp": 21421.8,
-    "volume_fp": 22739.91
+    "open_interest_fp": 22332.57,
+    "volume_24h_fp": 22701.5,
+    "volume_fp": 22832.61
    },
    "ex_stats_first": {
     "open_interest_fp": 1743.7,
@@ -2820,9 +3129,9 @@
     "volume_fp": 2.06
    },
    "ex_stats_close": {
-    "open_interest_fp": 13923.23,
-    "volume_24h_fp": 11627.25,
-    "volume_fp": 14699.48
+    "open_interest_fp": 15364.19,
+    "volume_24h_fp": 14189.63,
+    "volume_fp": 16140.439999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 852.0699999999999,
@@ -3020,9 +3329,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 2975.79,
-    "volume_24h_fp": 2809.06,
-    "volume_fp": 3057.51
+    "open_interest_fp": 3060.79,
+    "volume_24h_fp": 2877.06,
+    "volume_fp": 3142.51
    },
    "ex_stats_first": {
     "open_interest_fp": 661.95,
@@ -3323,9 +3632,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 45116.979999999996,
-    "volume_24h_fp": 32244.41,
-    "volume_fp": 46162.86
+    "open_interest_fp": 47539.6,
+    "volume_24h_fp": 43733.35,
+    "volume_fp": 48585.479999999996
    },
    "ex_stats_first": {
     "open_interest_fp": 7657.290000000001,
@@ -12595,7 +12904,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 144,
+   "settle_tries": 145,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Cornell",
