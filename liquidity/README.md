@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 15, 4:45 PM ET. This run: 0 new, 1 not confirmed, 3 pending. Open alerts: 60.
+Updated Sun Nov 15, 4:50 PM ET. This run: 1 new, 1 not confirmed, 1 pending. Open alerts: 61.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 15 4:50PM | NBA | Houston vs Washington: Total Points | total: Over 223.5 points | kalshi | $33k | +104 |  |  | +0.0c |  | pending |
 | Nov 15 4:30PM | NHL | Vancouver vs Vegas: Spread | spread: Vegas wins by over 2.5 goals | kalshi | $36k | +117 | ✅ novig |  | +0.0c |  | pending |
 | Nov 15 4:10PM | NFL | Pittsburgh Steelers @ Cincinnati Bengals | moneyline: CIN (0) | novig | $49k | -182 | ✅ kalshi,prophetx |  | +0.0c |  | pending |
 | Nov 15 3:55PM | NBA | Houston vs Washington: Spread | spread: NOT Houston wins by over 8.5 points | kalshi | $25k | -108 | ✅ novig | ✅ | -1.0c |  | pending |
@@ -20,7 +21,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 15 2:10PM | NFL | Pittsburgh vs Cincinnati: Spread | spread: Cincinnati wins by over 3.5 points | kalshi | $465k | -104 |  |  | +0.0c |  | pending |
 | Nov 15 2:00PM | NFL | San Francisco vs Dallas: Spread | spread: NOT San Francisco wins by over 3.5 points | kalshi | $224k | -100 |  |  | +1.0c | yes | pending |
 | Nov 15 1:50PM | NBA | San Antonio vs Utah: Total Points | total: NOT Over 225.5 points | kalshi | $49k | -100 | ✅ novig | ✅ | +6.0c | yes | pending |
-| Nov 15 1:45PM | NBA | Atlanta Hawks at Milwaukee Bucks | moneyline: Atlanta Hawks | prophetx | $45k | -280 | ✅ kalshi,novig | ✅ | +0.0c |  | pending |
+| Nov 15 1:45PM | NBA | Atlanta Hawks at Milwaukee Bucks | moneyline: Atlanta Hawks | prophetx | $45k | -280 | ✅ kalshi,novig | ✅ | +0.3c |  | pending |
 | Nov 15 1:45PM | NBA | Atlanta Hawks @ Milwaukee Bucks | moneyline: ATL (0) | novig | $45k | -277 | ✅ kalshi,prophetx | ✅ | +0.5c |  | pending |
 | Nov 15 1:30PM | NBA | New York vs Toronto: Spread | spread: New York wins by over 5.5 points | kalshi | $27k | -100 |  | ✅ | -5.0c | yes | pending |
 | Nov 15 1:30PM | NBA | Atlanta vs Milwaukee: Spread | spread: Atlanta wins by over 8.5 points | kalshi | $28k | -100 |  | ✅ | +0.0c | yes | pending |
@@ -107,7 +108,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 14 11:05PM | NBA | Dallas vs Boston | moneyline: Boston | kalshi | $181k | -525 |  |  | +4.0c |  | pending |
 | Nov 14 10:35PM | NCAAF | North Dakota State @ Hawaii | moneyline: NDSU (0) | novig | $37k | -270 | ✅ prophetx | ✅ | +0.0c |  | W |
 | Nov 14 10:35PM | NFL | Los Angeles R vs Arizona | moneyline: Los Angeles R | kalshi | $472k | -426 | ✅ novig,prophetx |  | +1.0c | yes | pending |
-| Nov 14 10:35PM | NBA | Atlanta vs Milwaukee | moneyline: Atlanta | kalshi | $304k | -300 |  |  | -2.0c |  | pending |
+| Nov 14 10:35PM | NBA | Atlanta vs Milwaukee | moneyline: Atlanta | kalshi | $304k | -300 |  |  | -1.0c |  | pending |
 | Nov 14 10:05PM | NCAAF | Colorado St. vs Washington St. | moneyline: Washington St. | kalshi | $227k | -270 | ✅ novig,prophetx | ❌ | +0.0c | yes | W |
 | Nov 14 10:00PM | NCAAF | Colorado State @ Washington State | spread: CSU +7.5 (-7.5) | novig | $26k | -104 | ✅ prophetx | ✅ | +0.5c | yes | L |
 | Nov 14 10:00PM | NCAAF | Colorado St. vs Washington St.: Spread | spread: NOT Washington St. wins by over 7.5 points | kalshi | $108k | -108 | ✅ novig,prophetx | ✅ | +0.0c | yes | L |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 14 11:20AM | NCAAF | Lafayette vs Colgate: Total Points | total: NOT Over 46.5 points | kalshi | $35k | -108 |  |  | +0.0c | yes | W |
 | Nov 14 11:15AM | NCAAF | Georgetown vs Fordham | moneyline: Georgetown | kalshi | $44k | +104 |  |  | +0.0c | yes | L |
 | Nov 14 11:10AM | NCAAF | East Carolina vs Charlotte: Spread | spread: NOT East Carolina wins by over 10.5 points | kalshi | $62k | -104 |  |  | -2.0c |  | W |
-| Nov 14 11:10AM | NCAAF | Bucknell vs William & Mary: Spread | spread: NOT William & Mary wins by over 5.5 points | kalshi | $32k | -100 |  |  | +0.0c | yes | L |
