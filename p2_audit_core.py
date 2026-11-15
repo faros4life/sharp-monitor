@@ -108,13 +108,19 @@ def resolve(row, index, norm=_norm):
     return "exact", ln, k
 
 
-def classify(rows, index, norm=_norm):
+def classify(rows, index, norm=_norm, links=None):
     """-> (items, stats, conflicts). Each item: (row, bucket, group_key or None).
     Any non-empty tracker lane or lane_fuzzy that differs from the registry lane (after canon_lane) is a CONFLICT, whatever
     lane_src says: the row goes to CONFLICT(registry=<lane>), is listed in conflicts, is never merged and never counted EXACT."""
     items, st, conflicts = [], Counter(), []
     for i, r in enumerate(rows):
         status, lane, key = resolve(r, index, norm)
+        via = "order_ref"
+        if status == "no_order_ref" and links is not None:
+            ls, ll, lk = resolve_link(r, links, index, norm)
+            st["link:" + ls] += 1
+            if ls == "exact_link":
+                status, lane, key, via = "exact", ll, lk, "venue_link"
         if status == "exact":
             reg_c = canon_lane(lane)
             seen = {canon_lane(r.get(f)) for f in ("lane", "lane_fuzzy")} - {None}
@@ -124,7 +130,11 @@ def classify(rows, index, norm=_norm):
                 items.append((r, f"CONFLICT(registry={reg_c})", None))
                 continue
             st["exact"] += 1
-            items.append((r, "EXACT:" + reg_c, (norm(r.get("book")), key, reg_c)))
+            if via == "venue_link":
+                st["exact_via_venue_link"] += 1
+            # a venue-linked POSITION is its own play (never merged with another row); an order_ref row groups by claim
+            gk = (norm(r.get("book")), key, reg_c) if via == "order_ref" else ("link", str(r.get("id")), reg_c)
+            items.append((r, "EXACT:" + reg_c, gk))
             continue
         st[status] += 1
         status = status.split(":", 1)[0]
@@ -214,8 +224,8 @@ def bucket_report(plays):
             "units": "UNAVAILABLE (no verified unit schedule)", "time_diag": time_diag(plays)}
 
 
-def build(rows, index, norm=_norm):
-    items, stats, conflicts = classify(rows, index, norm)
+def build(rows, index, norm=_norm, links=None):
+    items, stats, conflicts = classify(rows, index, norm, links)
     return {"join": stats, "lane_conflicts": conflicts,
             "buckets": {b: bucket_report(ps) for b, ps in sorted(consolidate(items).items())}}
 
@@ -251,3 +261,71 @@ def render(rep):
                  f"possible splits flagged (not merged) {v['possible_split_flagged_NOT_MERGED']}")
         L.append("")
     return "\n".join(L), rows
+
+
+# ------------------------------------------------------------------ venue links (Peter, Nov 14 23:33: "Build it")
+# A tracker row with no order_ref can still be tied to registry orders through the VENUE's own records, with no text match:
+#   Novig     registry live_order.order_id (our client id) == fill.clientId; the fill carries marketId + outcomeId, which
+#             IS the tracker key nv|{marketId}|{outcomeId}  (verified on real fills, clv-link-recon run 43240507919)
+#   ProphetX  registry order_id == trade.order_id; the trade's id IS the tracker key px|{trade.id}
+# A tracker row is a POSITION on Novig: every fill on it is an order, and the row is EXACT only if EVERY order resolves to
+# a registry claim and they are all ONE lane. Money is never split across lanes; anything else fails closed.
+PX_TRADES_CAP = 100   # every recorded GET /v4/mm/get_trades returned exactly 100 rows (px_fee_check, positions, link recon):
+                      # treated as a CAP. No paging parameter is documented or used anywhere in the repo.
+
+
+def px_trades_complete(trades, data_keys=()):
+    """False when the ProphetX read may be truncated: it hit the observed 100-row cap, or the response carries any
+    paging marker. A partial trade set must never produce EXACT (a missing trade could hide a second lane)."""
+    marker = {k.lower() for k in data_keys} & {"next", "cursor", "next_cursor", "has_more", "page", "offset", "pagination"}
+    return len(trades or []) < PX_TRADES_CAP and not marker
+
+
+def link_index(fills, trades, complete=None):
+    """{tracker id: [frozenset(order ids of one fill / trade), ...]} from venue fill and trade rows. Pure.
+    complete = {"nv": bool, "px": bool}: a venue whose read may be truncated contributes NO link; its rows are marked
+    in out["_incomplete"] so resolve_link reports link_source_incomplete instead of a wrong EXACT."""
+    complete = {"nv": True, "px": True, **(complete or {})}
+    out = {"_incomplete": {v for v, ok in complete.items() if not ok}}
+    if not complete["nv"]:
+        fills = []
+    if not complete["px"]:
+        trades = []
+    for f in fills or []:
+        f = f if isinstance(f, dict) else {}
+        mk, oc = f.get("marketId"), f.get("outcomeId")
+        ids = frozenset(str(x) for x in (f.get("clientId"), f.get("orderId")) if x not in (None, ""))
+        if mk and oc and ids:
+            out.setdefault(f"nv|{mk}|{oc}", []).append(ids)
+    for t in trades or []:
+        t = t if isinstance(t, dict) else {}
+        if t.get("id") not in (None, "") and t.get("order_id") not in (None, ""):
+            out.setdefault(f"px|{t['id']}", []).append(frozenset([str(t["order_id"])]))
+    return out
+
+
+def resolve_link(row, links, index, norm=_norm):
+    """-> (status, lane, key). status: exact_link | no_venue_link | link_source_incomplete | link_order_not_in_registry |
+    link_order_ambiguous | link_position_multi_lane | venue_unmatched"""
+    rid = str(row.get("id") or "")
+    if rid.split("|", 1)[0] in (links or {}).get("_incomplete", set()):
+        return "link_source_incomplete", None, None
+    orders = (links or {}).get(rid)
+    if not orders:
+        return "no_venue_link", None, None
+    ven = norm(row.get("book"))
+    if not ven:
+        return "venue_unmatched", None, None
+    lanes, keys = set(), set()
+    for ids in set(orders):
+        claims = {(k, ln) for i in ids for v, k, ln in index.get(i, []) if v and norm(v) == ven}
+        if not claims:
+            return "link_order_not_in_registry", None, None
+        ls = {canon_lane(ln) for _k, ln in claims}
+        if len(ls) != 1 or None in ls:
+            return "link_order_ambiguous", None, None
+        lanes |= ls
+        keys |= {k for k, _ln in claims}
+    if len(lanes) != 1:
+        return "link_position_multi_lane", None, None
+    return "exact_link", next(iter(lanes)), "|".join(sorted(keys))

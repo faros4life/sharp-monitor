@@ -264,7 +264,11 @@ def t_send_private_public_log_carries_no_figures_or_token():
 def t_workflow_secrets_are_exactly_the_needed_four():
     import re as _re
     wf = open(os.path.join(HERE, ".github", "workflows", "p2-audit.yml")).read()
-    assert set(_re.findall(r"secrets\.([A-Z_]+)", wf)) == {"TRACKER_PASSPHRASE", "REGISTRY_TOKEN", "TELEGRAM_BOT_TOKEN", "TELEGRAM_CHAT_ID"}
+    assert set(_re.findall(r"secrets\.([A-Z_]+)", wf)) == {"TRACKER_PASSPHRASE", "REGISTRY_TOKEN", "TELEGRAM_BOT_TOKEN", "TELEGRAM_CHAT_ID",
+                                                           "NOVIG_READ_KEY_ID", "NOVIG_READ_KEY_PEM", "NOVIG_TRADE_KEY_ID",
+                                                           "PROPHETX_ACCESS_KEY", "PROPHETX_SECRET_KEY"}
+    for bad in ("NOVIG_TRADE_KEY_PEM", "PX_TRADE", "PROPHETX_TRADE", "GMAIL", "ODDSPAPI", "KALSHI", "PMUS"):
+        assert bad not in wf, bad
     assert "contents: read" in wf and "upload-artifact" not in wf and "actions/cache" not in wf and "git push" not in wf and "git commit" not in wf
 
 
@@ -290,6 +294,115 @@ def t_time_diag_counts():
     d = c.time_diag(ps, now)
     assert d["game_start"] == {"present": 2, "unparseable": 0, "after_run": 1, "midnight_utc": 1}, d["game_start"]
     assert d["settled"]["midnight_utc"] == 1 and d["placed"]["unparseable"] == 1
+
+
+# ---- venue links (Novig fill clientId -> nv|market|outcome; ProphetX trade order_id -> px|trade id)
+NVX = {"c1": [("novig", "K1", "board")], "c2": [("novig", "K2", "board")], "c3": [("novig", "K3", "r1")],
+       "c4": [("novig", "K4", "board"), ("novig", "K5", "r1")], "P9": [("prophetx", "K9", "rules")]}
+F = lambda m, o, cid, oid=None: {"marketId": m, "outcomeId": o, "clientId": cid, "orderId": oid}
+NV = lambda tid, **k: R(id=tid, book="Novig", **k)
+
+
+def t_link_index_keys_are_the_tracker_keys():
+    li = c.link_index([F("M", "O", "c1", "v1"), F("M", "O", "c2"), F(None, "O", "c9"), {"x": 1}],
+                      [{"id": 77, "order_id": "P9"}, {"id": None, "order_id": "P8"}])
+    assert set(li) - {"_incomplete"} == {"nv|M|O", "px|77"} and li["nv|M|O"][0] == frozenset({"c1", "v1"}) and li["px|77"] == [frozenset({"P9"})]
+
+
+def t_link_position_one_lane_is_exact():
+    li = c.link_index([F("M", "O", "c1"), F("M", "O", "c2")], [])
+    rep = c.build([NV("nv|M|O")], NVX, links=li)
+    assert rep["join"].get("exact") == 1 and rep["join"].get("exact_via_venue_link") == 1 and "EXACT:BOARD V3" in rep["buckets"]
+
+
+def t_link_position_two_lanes_is_not_exact():
+    li = c.link_index([F("M", "O", "c1"), F("M", "O", "c3")], [])
+    rep = c.build([NV("nv|M|O")], NVX, links=li)
+    assert rep["join"].get("link:link_position_multi_lane") == 1 and not any(b.startswith("EXACT") for b in rep["buckets"])
+
+
+def t_link_one_unregistered_fill_fails_the_position():
+    li = c.link_index([F("M", "O", "c1"), F("M", "O", "manual-xyz")], [])
+    assert c.resolve_link(NV("nv|M|O"), li, NVX)[0] == "link_order_not_in_registry"
+
+
+def t_link_ambiguous_order_fails():
+    li = c.link_index([F("M", "O", "c4")], [])
+    assert c.resolve_link(NV("nv|M|O"), li, NVX)[0] == "link_order_ambiguous"
+
+
+def t_link_is_venue_scoped():
+    li = c.link_index([F("M", "O", "P9")], [])                    # a ProphetX id used as a Novig client id
+    assert c.resolve_link(NV("nv|M|O"), li, NVX)[0] == "link_order_not_in_registry"
+    li2 = c.link_index([], [{"id": 5, "order_id": "P9"}])
+    assert c.resolve_link(R(id="px|5", book="ProphetX"), li2, NVX) == ("exact_link", "PHASE 1", "K9")
+
+
+def t_link_rows_never_merge_and_conflict_still_applies():
+    li = c.link_index([F("M", "O", "c1"), F("M", "Q", "c2")], [])
+    rep = c.build([NV("nv|M|O"), NV("nv|M|Q"), NV("nv|M|O", lane="R1")], NVX, links=li)
+    assert rep["buckets"]["EXACT:BOARD V3"]["all"]["settled"] == 2 and rep["join"]["lane_conflict"] == 1
+
+
+def t_order_ref_path_unchanged_by_links():
+    li = c.link_index([F("M", "O", "c1")], [])
+    assert c.build([R(order_ref="A")], IDX, links=li)["join"] == {"exact": 1}
+
+
+def t_no_link_stays_unattributed():
+    rep = c.build([NV("nv|Z|Z")], NVX, links={})
+    assert rep["join"] == {"no_order_ref": 1, "link:no_venue_link": 1} and "UNATTRIBUTED(no_order_ref)" in rep["buckets"]
+
+
+def t_runner_venue_reads_are_read_only():
+    src = open(os.path.join(HERE, "p2_audit.py")).read()
+    body = src[src.index("def read_novig_fills"):src.index("def send_private")]
+    paths = set(__import__("re").findall(r'"(/v[0-9][^"]*)"', body))
+    assert paths == {"/v3/portfolio/fills", "/v4/mm/get_trades"}, paths   # px_login's POST /auth/login lives in book_check
+    for bad in ("place", "cancel", "order(", "/orders", "trade_key", "TRADE_KEY_PEM", "px_live", "book_live", "executor"):
+        assert bad not in body, bad
+    assert "nv.ready()" in body          # Novig refuses to run unless the key is confirmed read-only
+
+
+# ---- completeness: a possibly-truncated venue read never yields EXACT
+def t_px_cap_or_paging_marker_is_incomplete():
+    assert c.px_trades_complete([{}] * 99) and not c.px_trades_complete([{}] * 100) and not c.px_trades_complete([{}] * 250)
+    for k in ("next", "cursor", "next_cursor", "has_more", "pagination", "Offset"):
+        assert not c.px_trades_complete([{}] * 3, ["trades", k]), k
+    assert c.px_trades_complete([{}] * 3, ["trades", "status"])
+
+
+def t_incomplete_venue_fails_closed():
+    fills = [F("M", "O", "c1")]
+    trades = [{"id": 5, "order_id": "P9"}]
+    li = c.link_index(fills, trades, {"nv": False, "px": True})
+    assert c.resolve_link(NV("nv|M|O"), li, NVX)[0] == "link_source_incomplete"
+    assert c.resolve_link(R(id="px|5", book="ProphetX"), li, NVX)[0] == "exact_link"
+    li2 = c.link_index(fills, trades, {"nv": True, "px": False})
+    assert c.resolve_link(R(id="px|5", book="ProphetX"), li2, NVX)[0] == "link_source_incomplete"
+    rep = c.build([NV("nv|M|O")], NVX, links=li)
+    assert not any(b.startswith("EXACT") for b in rep["buckets"]) and rep["join"].get("link:link_source_incomplete") == 1
+
+
+def t_novig_page_cap_marks_truncated():
+    import types
+    m = _runner()
+    calls = []
+    fake = types.SimpleNamespace(ready=lambda: True, _S={"id": "K"},
+                                 get=lambda path, prm: (calls.append(prm), {"w": {"items": [{"fillId": len(calls)}], "next": "cur"}})[1])
+    sys.modules["novig_signed"] = fake
+    try:
+        os.environ.pop("NOVIG_TRADE_KEY_ID", None)
+        fills, note, ok = m.read_novig_fills()
+    finally:
+        sys.modules.pop("novig_signed", None)
+    assert ok is False and "TRUNCATED" in note and len(calls) == 40 and len(fills) == 40
+    fake2 = types.SimpleNamespace(ready=lambda: True, _S={"id": "K"}, get=lambda path, prm: {"w": {"items": [{"fillId": 1}], "next": None}})
+    sys.modules["novig_signed"] = fake2
+    try:
+        assert m.read_novig_fills()[2] is True
+    finally:
+        sys.modules.pop("novig_signed", None)
 
 
 _n = 0

@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Project 2 audit runner - READ-ONLY. Reads tracker/state.enc and the private registry (GET only).
-No Gmail, no order endpoint, no state change, no commit. Public log = counts only. The dollar / ROI report goes ONLY to Peter's
+No Gmail, no order endpoint, no state change, no commit. Public log = counts only. Venue reads (Nov 14 23:33, Peter "Build it"):
+Novig GET /v3/portfolio/fills with the READ-ONLY key (verified read-only by novig_signed.ready), and ProphetX with the DATA key:
+POST /auth/login (authentication only) then GET trades - no trading key, no order route, no odds API. The dollar / ROI report goes ONLY to Peter's
 private Telegram (Peter approved Nov 14 18:06 ET), the same route as last50_report.send_telegram; nothing is written to disk.
 Fails closed: unreadable registry -> nothing is reported. executor is NOT imported (see the index block)."""
 import csv
@@ -9,7 +11,64 @@ import json
 import os
 import sys
 
-from p2_audit_core import CSV_FIELDS, build, render
+from p2_audit_core import CSV_FIELDS, build, link_index, render
+
+
+def read_novig_fills():
+    """(fills, note, complete). complete is False when the 40-page guard stops with a cursor still pending. READ-ONLY: novig_signed.ready() confirms with Novig that the key is read-only before any call, and
+    fails closed. Both wallets (main + the bot sub-wallet, whose key ID only is passed), paginated - the same read
+    clv_link_recon uses (run 43240507919). The note is a fixed label; no response text is ever printed."""
+    try:
+        import novig_signed as nv
+        if not nv.ready():
+            return [], "novig read key not ready", False
+        fills, complete = [], True
+        for kid in dict.fromkeys([nv._S["id"], (os.environ.get("NOVIG_TRADE_KEY_ID") or "").strip()]):
+            if not kid:
+                continue
+            after, pages = None, 0
+            while pages < 40:
+                pages += 1
+                prm = {"limit": 100, "keyId": kid}
+                if after:
+                    prm["after"] = after
+                d = nv.get("/v3/portfolio/fills", prm)
+                got, nxt = [], None
+                for v in (d.values() if isinstance(d, dict) else [d]):
+                    if isinstance(v, list):
+                        got += v
+                    elif isinstance(v, dict):
+                        got += v.get("items") or v.get("fills") or v.get("data") or []
+                        nxt = nxt or v.get("next")
+                if isinstance(d, dict):
+                    nxt = nxt or d.get("next")
+                fills += got
+                if not got or not nxt:
+                    break
+                after = nxt
+            else:
+                complete = False          # page cap reached with a cursor still pending: TRUNCATED, never "ok"
+        return fills, ("ok" if complete else "TRUNCATED at the 40-page guard"), complete
+    except Exception as e:
+        return [], f"novig fills unreadable ({type(e).__name__})", False
+
+
+def read_px_trades():
+    """(trades, note, complete). ProphetX DATA key. Two calls: POST /auth/login (authentication only - no order, no state
+    change) then GET /v4/mm/get_trades. No paging parameter is documented or used in this repo and every recorded read
+    returned exactly 100 rows, so 100 rows or any paging marker = possibly TRUNCATED -> no ProphetX EXACT from it."""
+    from p2_audit_core import px_trades_complete
+    try:
+        import book_check as bc
+        if not bc.px_login():
+            return [], "prophetx login failed", False
+        d = bc.px_call("/v4/mm/get_trades") or {}
+        data = d.get("data") or {}
+        trades = data.get("trades") or []
+        ok = px_trades_complete(trades, list(data) + list(d))
+        return trades, ("ok" if ok else "POSSIBLY TRUNCATED (100-row cap or paging marker)"), ok
+    except Exception as e:
+        return [], f"prophetx trades unreadable ({type(e).__name__})", False
 
 
 def send_private(text, rows):
@@ -91,7 +150,12 @@ def main():
         for lo in placed:
             index.setdefault(str(lo["order_id"]), []).append((reg._venue(lo.get("book") or row.get("fill_book")), str(key), lane))
 
-    rep = build(rows, index, reg._venue)
+    fills, nf, nok = read_novig_fills()
+    trades, nt, pok = read_px_trades()
+    links = link_index(fills, trades, {"nv": nok, "px": pok})
+    print(f"venue reads: novig fills {len(fills)} ({nf}) | prophetx trades {len(trades)} ({nt}) | tracker rows with a venue link "
+          f"{sum(1 for r in rows if str(r.get('id') or '') in links)} of {len(rows)} | complete: novig {nok}, prophetx {pok}")
+    rep = build(rows, index, reg._venue, links)
     print("bot rows:", len(rows), "| with a venue order id (order_ref):", sum(1 for r in rows if r.get("order_ref")),
           "| registry order ids:", len(index), "| registry rows with no provable lane:", no_lane, "| join:", rep["join"])
     td = {}
@@ -105,8 +169,8 @@ def main():
         a = v["all"]
         print(f"{b}: settled {a['settled']} (verified money {a['verified_money']}), open/ambiguous {v['open_or_ambiguous']}, "
               f"no-time {v['settled_no_time']}, mixed time basis {v['MIXED_TIME_BASIS']}")
-    print("FUZZY lanes are the tracker's own labels and UNVERIFIED (tracker_build KEY_LANE uses executor.lane_of on rows whose "
-          "'live' is a bool).")
+    print("FUZZY lanes are the tracker's own text-matched labels (UNVERIFIED). EXACT = venue order id or venue fill/trade link "
+          "to ONE registry claim per order, one lane per position.")
     text, csv_rows = render(rep)
     return 0 if send_private(text, csv_rows) else 1
 
