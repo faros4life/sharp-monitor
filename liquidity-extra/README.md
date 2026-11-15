@@ -1,25 +1,26 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 15, 10:00 AM ET. This run: 1 new, 0 not confirmed, 1 pending. Open alerts: 18.
+Updated Sun Nov 15, 10:10 AM ET. This run: 1 new, 0 not confirmed, 0 pending. Open alerts: 18.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 280-165 (-22.84u flat) | rule met: 49-45
+**Record:** 281-165 (-22.42u flat) | rule met: 49-45
 
-**Fade (paper, betting against the print):** 140-245 (+22.16u flat, after fees)
+**Fade (paper, betting against the print):** 140-246 (+21.16u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 15 10:00AM | NCAAB | Niagara vs Iowa St.: Point Total | total: Over 143.5 points | kalshi | $32k | -100 |  |  | +0.0c |  | pending |
+| Nov 15 10:10AM | NCAAB | Norfolk St. vs Georgia St.: Point Total | total: NOT Over 144.5 points | kalshi | $28k | -100 |  |  | +0.0c |  | pending |
+| Nov 15 10:00AM | NCAAB | Niagara vs Iowa St.: Point Total | total: Over 143.5 points | kalshi | $32k | -100 |  |  | +1.0c |  | pending |
 | Nov 15 4:20AM | TENNIS | Medvedev vs Cobolli | moneyline: Medvedev | kalshi | $66k | -335 |  |  | +0.0c |  | pending |
 | Nov 15 4:00AM | NCAAB | Cal Poly vs Montana St. | moneyline: Montana St. | kalshi | $46k | -270 |  |  | +0.0c | yes | pending |
 | Nov 15 2:20AM | TENNIS | Svitolina vs Andreeva | moneyline: Andreeva | kalshi | $43k | -257 |  |  | +1.0c |  | pending |
-| Nov 15 2:10AM | TENNIS | Zverev vs Jodar | moneyline: Zverev | kalshi | $72k | -233 |  |  | +2.0c |  | pending |
+| Nov 15 2:10AM | TENNIS | Zverev vs Jodar | moneyline: Zverev | kalshi | $72k | -233 |  |  | +2.0c |  | W |
 | Nov 15 2:10AM | TENNIS | Shelton vs Fils | moneyline: Shelton | kalshi | $25k | -170 |  |  | +0.0c |  | pending |
 | Nov 15 1:30AM | NCAAB | Western Michigan vs Southern Indiana | moneyline: Western Michigan | kalshi | $39k | -270 |  |  | +2.0c | yes | pending |
 | Nov 15 1:20AM | NCAAB | Quinnipiac vs Central Connecticut St. | moneyline: Quinnipiac | kalshi | $26k | -170 |  |  | +0.0c |  | pending |
 | Nov 15 1:20AM | NCAAB | Princeton vs Rhode Island | moneyline: Rhode Island | kalshi | $34k | -335 |  |  | -1.0c |  | pending |
-| Nov 15 1:20AM | NCAAB | Norfolk St. vs Georgia St. | moneyline: Georgia St. | kalshi | $59k | -567 |  |  | +0.0c |  | pending |
+| Nov 15 1:20AM | NCAAB | Norfolk St. vs Georgia St. | moneyline: Georgia St. | kalshi | $59k | -567 |  |  | +2.0c |  | pending |
 | Nov 15 1:20AM | NCAAB | Louisville vs Memphis | moneyline: Louisville | kalshi | $50k | -355 |  |  | +0.0c | yes | pending |
 | Nov 15 1:20AM | NCAAB | High Point vs Saint Louis | moneyline: Saint Louis | kalshi | $25k | -257 |  |  | +0.0c |  | pending |
 | Nov 15 1:10AM | NCAAB | University at Albany vs Holy Cross | moneyline: University | kalshi | $29k | +127 |  |  | -2.0c |  | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 7 8:20AM | TENNIS | Damir Dzumhur vs Inaki Montes-de la Torre | moneyline: Inaki Montes | kalshi | $106k | -194 |  |  | +27.0c | yes | W |
 | Nov 7 6:30AM | TENNIS | Viktor Durasovic vs Alexander Shevchenko | moneyline: Alexander Shevchenko | kalshi | $28k | -376 |  |  | +0.0c | yes | W |
 | Nov 7 4:50AM | NCAAB | Portland St. vs Seattle | moneyline: Seattle | kalshi | $39k | -525 |  |  | +1.0c |  | W |
-| Nov 7 2:20AM | TENNIS | Luca Van Assche vs Ben Shelton | moneyline: Ben Shelton | kalshi | $29k | -335 | ✅ novig |  | -1.0c |  | W |

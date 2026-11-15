@@ -1,6 +1,170 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-15T15:10:19Z",
+   "base_depth": 17350,
+   "best_price": 0.5175,
+   "best_price_american": -107,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.5,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-15",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 6705,
+     "new_this_side": 27852,
+     "other_side": 3841,
+     "other_side_all_levels": 22897,
+     "ratio": 3.4,
+     "this_side": 13101,
+     "this_side_all_levels": 49474
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 1190.35,
+    "volume_24h_fp": 1151.71,
+    "volume_fp": 1190.35
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 38.64,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 38.64
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 1151.71,
+    "volume_24h_fp": 1151.71,
+    "volume_fp": 1151.71
+   },
+   "fade_price": 0.51,
+   "first_seen_utc": "2026-11-15T15:00:32Z",
+   "game": "Norfolk St. vs Georgia St.: Point Total",
+   "game_surge_books": [
+    "kalshi"
+   ],
+   "game_x": 4.22,
+   "key": "kalshi|{\"kalshi_side\": \"no\", \"market_ticker\": \"KXNCAAMBTOTAL-26NOV15NORFGAST-145\"}",
+   "lead_min": 170,
+   "league": "NCAAB",
+   "line": 144.5,
+   "market": "total",
+   "new_money": 27852,
+   "new_x": 2.96,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 1190.35,
+      "volume_24h_fp": 1151.71,
+      "volume_fp": 1190.35
+     },
+     "game_normal": 11737,
+     "game_x": 4.22,
+     "normal": 9395,
+     "now": 49474,
+     "type": "UNDER",
+     "x": 5.27
+    }
+   },
+   "norm_ready_books": 1,
+   "paper_only": false,
+   "price": 0.5,
+   "price_american": -100,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.5,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 145.5,
+     "price": -110
+    },
+    "betonlineag": {
+     "point": 145.0,
+     "price": -110
+    },
+    "betopenly": {
+     "point": 144.5,
+     "price": 104
+    },
+    "betrivers": {
+     "point": 144.5,
+     "price": -108
+    },
+    "bovada": {
+     "point": 144.5,
+     "price": -110
+    },
+    "draftkings": {
+     "point": 144.5,
+     "price": -110
+    },
+    "fanatics": {
+     "point": 144.5,
+     "price": -105
+    },
+    "fanduel": {
+     "point": 144.5,
+     "price": -110
+    },
+    "kalshi": {
+     "point": 144.5,
+     "price": 100
+    },
+    "lowvig": {
+     "point": 145.0,
+     "price": -108
+    },
+    "novig": {
+     "point": 125.5,
+     "price": -100000
+    },
+    "polymarket": {
+     "point": 144.5,
+     "price": 100
+    },
+    "prophetx": {
+     "point": 144.5,
+     "price": -106
+    },
+    "williamhill_us": {
+     "point": 144.5,
+     "price": -110
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAMBTOTAL-26NOV15NORFGAST-145"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "UNDER",
+   "side_label": "NOT Over 144.5 points",
+   "size_x": 5.27,
+   "start_source": "odds",
+   "start_utc": "2026-11-15T18:00:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "Norfolk St.",
+    "Georgia St."
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-15T15:00:32Z",
    "base_depth": 28090,
    "best_price": 0.5,
@@ -14,8 +178,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.5,
-   "clv_cents": 0.0,
+   "close_price": 0.51,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-15",
    "depth_by_book": {
@@ -44,6 +208,11 @@
     "open_interest_fp": 0.0,
     "volume_24h_fp": 0.0,
     "volume_fp": 0.0
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 38.64,
+    "volume_24h_fp": 38.64,
+    "volume_fp": 38.64
    },
    "ex_stats_first": {
     "open_interest_fp": 0.0,
@@ -234,9 +403,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1411.35,
-    "volume_24h_fp": 1543.93,
-    "volume_fp": 1543.93
+    "open_interest_fp": 1413.87,
+    "volume_24h_fp": 1546.45,
+    "volume_fp": 1546.45
    },
    "ex_stats_first": {
     "open_interest_fp": 879.45,
@@ -546,9 +715,9 @@
     "volume_fp": 7.03
    },
    "ex_stats_close": {
-    "open_interest_fp": 46621.67,
-    "volume_24h_fp": 54736.89,
-    "volume_fp": 54759.740000000005
+    "open_interest_fp": 47327.03,
+    "volume_24h_fp": 55448.17,
+    "volume_fp": 55465.17
    },
    "ex_stats_first": {
     "open_interest_fp": 24647.08,
@@ -674,6 +843,7 @@
     "volume_fp": 40371.47
    },
    "fade_price": 0.3,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-15T07:00:23Z",
    "game": "Zverev vs Jodar",
    "game_surge_books": [],
@@ -726,12 +896,13 @@
     "kalshi_side": "yes",
     "market_ticker": "KXATPMATCH-26NOV15ZVEJOD-ZVE"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 1,
+   "settle_tries": 2,
+   "settled_utc": "2026-11-15T15:10:19Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Zverev",
@@ -749,7 +920,7 @@
     "Jodar"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.42
   },
   {
    "alerted_utc": "2026-11-15T07:10:21Z",
@@ -797,9 +968,9 @@
     "volume_fp": 93.14
    },
    "ex_stats_close": {
-    "open_interest_fp": 107590.95999999999,
-    "volume_24h_fp": 87690.28,
-    "volume_fp": 108733.92
+    "open_interest_fp": 108057.0,
+    "volume_24h_fp": 88138.59999999999,
+    "volume_fp": 109215.43
    },
    "ex_stats_first": {
     "open_interest_fp": 62067.61,
@@ -1139,9 +1310,9 @@
     "volume_fp": 1.22
    },
    "ex_stats_close": {
-    "open_interest_fp": 19033.35,
-    "volume_24h_fp": 21291.34,
-    "volume_fp": 21291.34
+    "open_interest_fp": 19098.61,
+    "volume_24h_fp": 21356.6,
+    "volume_fp": 21356.6
    },
    "ex_stats_first": {
     "open_interest_fp": 14668.689999999999,
@@ -1487,8 +1658,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.85,
-   "clv_cents": 0.0,
+   "close_price": 0.87,
+   "clv_cents": 2.0,
    "confirmed_after_min": 10,
    "date": "2026-11-15",
    "depth_by_book": {
@@ -1513,9 +1684,9 @@
     "volume_fp": 2.95
    },
    "ex_stats_close": {
-    "open_interest_fp": 5150.0599999999995,
-    "volume_24h_fp": 5311.84,
-    "volume_fp": 5326.4400000000005
+    "open_interest_fp": 5535.81,
+    "volume_24h_fp": 5707.46,
+    "volume_fp": 5712.1900000000005
    },
    "ex_stats_first": {
     "open_interest_fp": 1743.7,
@@ -1679,9 +1850,9 @@
     "volume_fp": 2.06
    },
    "ex_stats_close": {
-    "open_interest_fp": 5999.110000000001,
-    "volume_24h_fp": 5379.34,
-    "volume_fp": 6038.23
+    "open_interest_fp": 6128.26,
+    "volume_24h_fp": 5704.54,
+    "volume_fp": 6167.38
    },
    "ex_stats_first": {
     "open_interest_fp": 852.0699999999999,
@@ -1879,9 +2050,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1521.0300000000002,
-    "volume_24h_fp": 1385.24,
-    "volume_fp": 1561.8899999999999
+    "open_interest_fp": 1601.3200000000002,
+    "volume_24h_fp": 1418.09,
+    "volume_fp": 1642.18
    },
    "ex_stats_first": {
     "open_interest_fp": 661.95,
@@ -2055,9 +2226,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 1928.8899999999999,
-    "volume_24h_fp": 2224.42,
-    "volume_fp": 2240.8
+    "open_interest_fp": 1930.53,
+    "volume_24h_fp": 2226.06,
+    "volume_fp": 2242.44
    },
    "ex_stats_first": {
     "open_interest_fp": 199.27,
@@ -2182,9 +2353,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 14557.970000000001,
-    "volume_24h_fp": 13081.58,
-    "volume_fp": 15374.880000000001
+    "open_interest_fp": 18869.68,
+    "volume_24h_fp": 17393.29,
+    "volume_fp": 19686.59
    },
    "ex_stats_first": {
     "open_interest_fp": 7657.290000000001,
@@ -11454,7 +11625,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 128,
+   "settle_tries": 129,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Cornell",
