@@ -116,3 +116,42 @@ def render(p1, integ, ledger_extra):
         L.append(f"  {k}: {v}")
     L.append(f"  orders restored from the durable ledger (pruned from the registry): {ledger_extra}")
     return "\n".join(L)
+
+
+def day_selections(day, orders, fills, bot_rows, clv, row_bucket):
+    """PRIVATE ONLY: every bot order decided on ET `day` and every bot position whose game starts that day.
+    Lets Peter tick off his own list: anything he bet that is absent here was not placed by the bot."""
+    d = lambda x: x if isinstance(x, dict) else {}
+    pk = {str(f.get("play_key")): f for f in fills.values() if f.get("play_key")}
+    out_o = []
+    for o in orders:
+        if (o.get("et_day") or _et_day(o.get("decided_utc"))) != day:
+            continue
+        key = str(o.get("key") or "")
+        lo = d(o.get("live_order"))
+        f = fills.get(str(lo.get("order_id"))) or fills.get(str(lo.get("client_id"))) or pk.get(key) or pk.get(key.split("|", 1)[-1]) or {}
+        out_o.append({"key": key, "lane_src": o.get("source"), "order_status": lo.get("status"),
+                      "venue": lo.get("book") or o.get("fill_book"), "fill_state": f.get("state") or "NO FILL RECORD"})
+    out_p = []
+    for b in bot_rows:
+        if _et_day(b.get("game_start")) != day:
+            continue
+        i = str(b.get("id") or "")
+        out_p.append({"game": b.get("game"), "bet": b.get("bet"), "book": b.get("book"),
+                      "bucket": row_bucket.get(i, "?"), "result": b.get("result") or "OPEN",
+                      "net": b.get("profit"), "clv": ("MISSING" if clv.get(i) is None else f"{100 * clv[i]:+.2f}%")})
+    return out_o, out_p
+
+
+def render_day(day, out_o, out_p, once):
+    L = ["", f"SECTION E - BOT SELECTIONS FOR {day} (private; anything you bet that is not here was not a bot bet)",
+         f"  exactly-once check: {'OK' if once.get('ok') else 'FAILED'} ({once.get('rows')} bot rows, "
+         f"{once.get('rows_in_plays')} in plays, {once.get('distinct')} distinct)"]
+    L.append(f"  bot orders decided that day: {len(out_o)}")
+    for o in out_o:
+        L.append(f"   - {o['key']} | lane {o['lane_src']} | {o['venue']} | order {o['order_status']} | fill {o['fill_state']}")
+    L.append(f"  bot positions with a game that day: {len(out_p)}")
+    for p in out_p:
+        net = "" if p["net"] is None else f" | net {p['net']:+.2f}"
+        L.append(f"   - {p['game']} | {p['bet']} | {p['book']} | {p['bucket']} | {p['result']}{net} | CLV {p['clv']}")
+    return "\n".join(L)

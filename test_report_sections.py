@@ -56,6 +56,26 @@ check("FUZZY Phase 1 never gets units", core.units_for("FUZZY:PHASE 1", ["2026-1
 check("R1 units at 200 from 11 Nov", core.units_for("EXACT:R1", ["2026-11-12T00:00:00+00:00"], 200.0) == 1.0)
 check("Board V3 before 11 Nov gets no units", core.units_for("EXACT:BOARD V3", ["2026-11-10T00:00:00+00:00"], 200.0) is None)
 check("CONFLICT and UNATTRIBUTED never get units", core.units_for("CONFLICT(registry=BOARD V3)", ["2026-11-12T00:00:00+00:00"], 200.0) is None)
+# exactly-once over a real build: two partial-fill rows of one order merge into ONE play, never two
+idx = {"o1": [("novig", "board|NFL|a+b|side|a", "board")]}
+rws = [{"id": "r1", "source": "bot", "order_ref": "o1", "book": "novig", "result": "W", "stake": 50, "profit": 45, "settled": "2026-11-15T21:00:00Z"},
+       {"id": "r2", "source": "bot", "order_ref": "o1", "book": "novig", "result": "W", "stake": 50, "profit": 45, "settled": "2026-11-15T21:00:00Z"},
+       {"id": "r3", "source": "bot", "book": "novig", "result": "L", "stake": 100, "profit": -100, "settled": "2026-11-15T21:00:00Z"}]
+rep = core.build(rws, idx, lambda x: x, None, {"r1": 0.01})
+eo = rep["exactly_once"]
+check("every bot row lands in exactly one play", eo["ok"] and eo["rows"] == 3 and eo["distinct"] == 3, eo)
+check("each row's bucket is recorded", set(rep["row_bucket"]) == {"r1", "r2", "r3"})
+so, sp = rs.day_selections("2026-11-15",
+    [{"key": "board|NFL|a+b|side|a", "source": "board", "et_day": "2026-11-15", "live_order": {"status": "placed", "order_id": "o1"}},
+     {"key": "r1|NCAAF|c+d|side|c", "source": "r1", "et_day": "2026-11-14"}],
+    {"o1": {"state": "PARTIAL"}},
+    [dict(r, game="A @ B", bet="A +3", game_start="2026-11-15T18:00:00Z") for r in rws[:1]] +
+    [{"id": "r9", "source": "bot", "game": "X @ Y", "bet": "Over 232.5", "game_start": "2026-11-16T01:00:00Z"}],
+    {"r1": 0.01}, rep["row_bucket"])
+check("only orders decided that ET day are listed", len(so) == 1 and so[0]["fill_state"] == "PARTIAL", so)
+check("an 8 PM ET game (01:00Z next day) belongs to the ET day it is played", len(sp) == 2, sp)
+check("an unsettled position shows OPEN and missing CLV, never zero",
+      any(p["result"] == "OPEN" and p["clv"] == "MISSING" for p in sp))
 if fails:
     print("FAILED", fails); sys.exit(1)
 print("test_report_sections: all passed")

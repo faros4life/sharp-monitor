@@ -196,6 +196,16 @@ def main():
     p1 = rs.project1(rows, clv)
     integ = rs.integrity(rr, fills_all, rows, clv, rep, pok)
     text += rs.render(p1, integ, ledger_extra)
+    # Section E covers the previous ET day (the scheduled 04:52 ET run reports yesterday's slate);
+    # REPORT_DAY overrides it for a one-off check of a specific day.
+    from datetime import datetime as _dt, timedelta as _td
+    day = _os.environ.get("REPORT_DAY") or (_dt.now(rs.ET) - _td(days=1)).strftime("%Y-%m-%d")
+    so, sp = rs.day_selections(day, rr, fills_all, rows, clv, rep.get("row_bucket") or {})
+    text += rs.render_day(day, so, sp, rep.get("exactly_once") or {})
+    eo = rep.get("exactly_once") or {}
+    print(f"section E {day}: bot orders {len(so)}, bot positions {len(sp)} "
+          f"(settled {sum(1 for p in sp if p['result'] != 'OPEN')}, CLV missing {sum(1 for p in sp if p['clv'] == 'MISSING')}) | "
+          f"exactly-once {'OK' if eo.get('ok') else 'FAILED'} rows {eo.get('rows')} in-plays {eo.get('rows_in_plays')} distinct {eo.get('distinct')}")
     print(f"ledger orders restored {ledger_extra} | project1 first-seen {p1['first_seen_since_start']} graded {p1['graded']} "
           f"missing close {p1['missing_close']} | integrity: placed {integ['placed_orders_since_start']} "
           f"(fill by id {integ['fill_record_by_id']}, by play_key {integ['fill_record_by_play_key']}) without fill record {integ['placed_orders_without_fill_record']}, not-terminal fills "

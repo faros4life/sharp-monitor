@@ -5,7 +5,12 @@ name: p2-audit
 on:
   schedule:
     - cron: "52 9 * * *"     # 04:52 ET daily, after reporting-ledger (04:32 ET). One private Telegram report a day.
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      report_day:
+        description: "ET day for section E (YYYY-MM-DD); blank = yesterday"
+        required: false
+        default: ""
 permissions:
   contents: read
 concurrency:
@@ -25,6 +30,7 @@ jobs:
         run: python test_p2_audit_core.py
       - name: Project 2 audit (read-only)
         env:
+          REPORT_DAY: ${{ inputs.report_day }}
           TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
           REGISTRY_TOKEN: ${{ secrets.REGISTRY_TOKEN }}   # contents read on the private registry
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}   # private delivery only (same route as last50-report)

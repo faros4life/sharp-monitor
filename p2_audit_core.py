@@ -245,8 +245,15 @@ def bucket_report(plays, clv=None):
 
 def build(rows, index, norm=_norm, links=None, clv=None):
     items, stats, conflicts = classify(rows, index, norm, links)
-    return {"join": stats, "lane_conflicts": conflicts,
-            "buckets": {b: bucket_report(ps, clv) for b, ps in sorted(consolidate(items).items())}}
+    groups = consolidate(items)
+    # Exactly-once: every bot row must sit in exactly one play in exactly one bucket (partial fills merge into
+    # their play, never into a second one). A failure here means the recap double- or under-counts.
+    ids = [i for ps in groups.values() for p in ps for i in p.get("ids") or []]
+    once = {"rows": len(rows), "rows_in_plays": len(ids), "distinct": len(set(ids)),
+            "ok": len(ids) == len(set(ids)) == len(rows)}
+    return {"join": stats, "lane_conflicts": conflicts, "exactly_once": once,
+            "row_bucket": {str(r.get("id") or ""): b for r, b, _k in items},
+            "buckets": {b: bucket_report(ps, clv) for b, ps in sorted(groups.items())}}
 
 
 CSV_FIELDS = ("bucket", "segment", "book", "plays", "verified_money", "W", "L", "P", "risked", "net", "roi_pct", "first", "last")
