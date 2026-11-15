@@ -1,6 +1,113 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-15T06:10:27Z",
+   "base_depth": 25150,
+   "best_price": 0.4572,
+   "best_price_american": 119,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.44,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-15",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 2964,
+     "new_this_side": 29254,
+     "other_side": 3230,
+     "other_side_all_levels": 26996,
+     "ratio": 2.3,
+     "this_side": 7361,
+     "this_side_all_levels": 71262
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 199.27,
+    "volume_24h_fp": 193.08,
+    "volume_fp": 209.46
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 199.27,
+    "volume_24h_fp": 193.08,
+    "volume_fp": 209.46
+   },
+   "fade_price": 0.42,
+   "first_seen_utc": "2026-11-15T06:00:29Z",
+   "game": "University at Albany vs Holy Cross",
+   "game_surge_books": [
+    "kalshi"
+   ],
+   "game_x": 4.07,
+   "key": "kalshi|KXNCAAMBGAME-26NOV15ALBYHC|ml|0",
+   "lead_min": 950,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 29254,
+   "new_x": 0.83,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 199.27,
+      "volume_24h_fp": 193.08,
+      "volume_fp": 209.46
+     },
+     "game_normal": 17509,
+     "game_x": 4.07,
+     "normal": 35084,
+     "now": 71262,
+     "type": "ML",
+     "x": 2.03
+    }
+   },
+   "norm_ready_books": 1,
+   "paper_only": false,
+   "price": 0.44,
+   "price_american": 127,
+   "price_rule": "ml_edge_ok",
+   "price_when_first_seen": 0.44,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "no",
+    "market_ticker": "KXNCAAMBGAME-26NOV15ALBYHC-HC"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "University",
+   "side_label": "University",
+   "size_x": 2.03,
+   "start_source": "kalshi",
+   "start_utc": "2026-11-15T22:00:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "University",
+    "Albany vs Holy Cross"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-15T01:40:18Z",
    "base_depth": 80133,
    "best_price": 0.805,
@@ -52,9 +159,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 9376.48,
-    "volume_24h_fp": 8133.99,
-    "volume_fp": 10124.93
+    "open_interest_fp": 9435.48,
+    "volume_24h_fp": 8191.52,
+    "volume_fp": 10183.93
    },
    "ex_stats_first": {
     "open_interest_fp": 7657.290000000001,
@@ -9324,7 +9431,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 73,
+   "settle_tries": 74,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Cornell",
@@ -15065,7 +15172,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 247,
+   "settle_tries": 248,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Fritz",
