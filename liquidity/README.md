@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 15, 3:10 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 100.
+Updated Sun Nov 15, 3:15 PM ET. This run: 0 new, 1 not confirmed, 0 pending. Open alerts: 100.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -47,7 +47,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 15 10:45AM | NFL | Carolina Panthers @ New Orleans Saints | moneyline: CAR (0) | novig | $36k | -100 | ✅ kalshi | ✅ | +2.0c | yes | pending |
 | Nov 15 10:45AM | NFL | Miami Dolphins @ Indianapolis Colts | spread: MIA +4.5 (-4.5) | novig | $97k | -102 |  |  | -1.5c | yes | pending |
 | Nov 15 10:30AM | NHL | Calgary vs Anaheim: Spread | spread: NOT Anaheim wins by over 1.5 goals | kalshi | $46k | -186 | ✅ novig |  | -1.0c |  | pending |
-| Nov 15 10:10AM | NFL | Los Angeles Rams @ Arizona Cardinals | moneyline: LAR (0) | novig | $31k | -426 | ✅ kalshi,prophetx | ✅ | +0.0c |  | pending |
+| Nov 15 10:10AM | NFL | Los Angeles Rams @ Arizona Cardinals | moneyline: LAR (0) | novig | $31k | -426 | ✅ kalshi,prophetx | ✅ | +0.5c |  | pending |
 | Nov 15 10:05AM | NBA | Atlanta vs Milwaukee: Spread | spread: Atlanta wins by over 7.5 points | kalshi | $30k | -108 |  |  | +2.0c | yes | pending |
 | Nov 15 9:45AM | NFL | Houston Texans @ Cleveland Browns | moneyline: HOU (0) | novig | $26k | -203 | ✅ kalshi,prophetx | ❌ | -2.5c |  | pending |
 | Nov 15 9:20AM | NFL | Jacksonville vs Tennessee: Total Points | total: NOT Over 45.5 points | kalshi | $184k | -104 | ✅ novig,prophetx | ✅ | +0.0c | yes | pending |
@@ -97,7 +97,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 14 11:05PM | NHL | Vancouver vs Vegas | moneyline: Vegas | kalshi | $67k | -400 |  |  | -1.0c | yes | pending |
 | Nov 14 11:05PM | NHL | Nashville vs San Jose | moneyline: Nashville | kalshi | $43k | -163 |  |  | -1.0c | yes | pending |
 | Nov 14 11:05PM | NHL | Calgary vs Anaheim | moneyline: Anaheim | kalshi | $27k | -138 |  |  | +0.0c | yes | pending |
-| Nov 14 11:05PM | NBA | Dallas vs Boston | moneyline: Boston | kalshi | $181k | -525 |  |  | +3.0c |  | pending |
+| Nov 14 11:05PM | NBA | Dallas vs Boston | moneyline: Boston | kalshi | $181k | -525 |  |  | +4.0c |  | pending |
 | Nov 14 10:35PM | NCAAF | North Dakota State @ Hawaii | moneyline: NDSU (0) | novig | $37k | -270 | ✅ prophetx | ✅ | +0.0c |  | W |
 | Nov 14 10:35PM | NFL | Los Angeles R vs Arizona | moneyline: Los Angeles R | kalshi | $472k | -426 | ✅ novig,prophetx |  | +0.0c | yes | pending |
 | Nov 14 10:35PM | NBA | Atlanta vs Milwaukee | moneyline: Atlanta | kalshi | $304k | -300 |  |  | -2.0c |  | pending |
@@ -125,7 +125,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 14 7:45PM | NBA | Detroit vs Miami: Total Points | total: Over 227.5 points | kalshi | $42k | -113 |  |  | +0.0c | yes | W |
 | Nov 14 7:45PM | NBA | Brooklyn vs Memphis | moneyline: Brooklyn | kalshi | $359k | +163 |  | ✅ | +0.0c | yes | L |
 | Nov 14 7:40PM | NHL | San Jose vs Utah | moneyline: Utah | kalshi | $358k | -170 | ✅ novig |  | +0.0c | yes | L |
-| Nov 14 7:35PM | NFL | Seattle Seahawks @ Las Vegas Raiders | spread: LV +6.5 (6.5) | novig | $28k | -108 | ✅ prophetx |  | -1.0c |  | pending |
+| Nov 14 7:35PM | NFL | Seattle Seahawks @ Las Vegas Raiders | spread: LV +6.5 (6.5) | novig | $28k | -108 | ✅ prophetx |  | -1.5c |  | pending |
 | Nov 14 7:35PM | NBA | Brooklyn vs Memphis | moneyline: Memphis | kalshi | $228k | -186 | ✅ novig,prophetx | ✅ | -2.0c | yes | W |
 | Nov 14 7:25PM | NCAAF | UNLV vs New Mexico: Spread | spread: New Mexico wins by over 20.5 points | kalshi | $61k | +113 |  | ✅ | +0.0c |  | L |
 | Nov 14 7:15PM | NBA | Brooklyn vs Memphis: Spread | spread: Memphis wins by over 4.5 points | kalshi | $27k | -100 |  | ✅ | +0.0c | yes | W |
