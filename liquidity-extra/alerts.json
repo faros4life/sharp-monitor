@@ -51,6 +51,11 @@
     "volume_24h_fp": 1.46,
     "volume_fp": 1.46
    },
+   "ex_stats_close": {
+    "open_interest_fp": 336.43,
+    "volume_24h_fp": 336.43,
+    "volume_fp": 336.43
+   },
    "ex_stats_first": {
     "open_interest_fp": 334.97,
     "volume_24h_fp": 334.97,
@@ -210,8 +215,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.63,
-   "clv_cents": 0.0,
+   "close_price": 0.61,
+   "clv_cents": -2.0,
    "confirmed_after_min": 10,
    "date": "2026-11-15",
    "depth_by_book": {
@@ -248,9 +253,9 @@
     "volume_fp": 1.22
    },
    "ex_stats_close": {
-    "open_interest_fp": 14669.91,
-    "volume_24h_fp": 16881.940000000002,
-    "volume_fp": 16881.940000000002
+    "open_interest_fp": 16644.260000000002,
+    "volume_24h_fp": 18856.29,
+    "volume_fp": 18856.29
    },
    "ex_stats_first": {
     "open_interest_fp": 14668.689999999999,
@@ -310,6 +315,8 @@
    "norm_ready_books": 3,
    "paper_only": false,
    "price": 0.63,
+   "price_after_15m": 0.605,
+   "price_after_15m_book": "novig",
    "price_american": -170,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.63,
@@ -372,6 +379,7 @@
    "size_x": 1.31,
    "start_source": "odds",
    "start_utc": "2026-11-15T18:00:00Z",
+   "still_actionable": true,
    "surge_books": [],
    "teams": [
     "Quinnipiac",
@@ -492,6 +500,8 @@
    "norm_ready_books": 3,
    "paper_only": false,
    "price": 0.77,
+   "price_after_15m": 0.765,
+   "price_after_15m_book": "novig",
    "price_american": -335,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.77,
@@ -566,6 +576,7 @@
    "size_x": 2.96,
    "start_source": "odds",
    "start_utc": "2026-11-15T19:00:00Z",
+   "still_actionable": true,
    "surge_books": [
     "kalshi"
    ],
@@ -655,6 +666,8 @@
    "norm_ready_books": 1,
    "paper_only": false,
    "price": 0.85,
+   "price_after_15m": 0.8589,
+   "price_after_15m_book": "kalshi",
    "price_american": -567,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.85,
@@ -717,6 +730,7 @@
    "size_x": 4.61,
    "start_source": "odds",
    "start_utc": "2026-11-15T18:00:00Z",
+   "still_actionable": true,
    "surge_books": [
     "kalshi"
    ],
@@ -839,6 +853,8 @@
    "norm_ready_books": 3,
    "paper_only": false,
    "price": 0.78,
+   "price_after_15m": 0.78,
+   "price_after_15m_book": "novig",
    "price_american": -355,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.78,
@@ -913,6 +929,7 @@
    "size_x": 5.06,
    "start_source": "odds",
    "start_utc": "2026-11-15T18:00:00Z",
+   "still_actionable": true,
    "surge_books": [
     "kalshi"
    ],
@@ -1035,6 +1052,8 @@
    "norm_ready_books": 3,
    "paper_only": false,
    "price": 0.72,
+   "price_after_15m": 0.715,
+   "price_after_15m_book": "novig",
    "price_american": -257,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.72,
@@ -1097,6 +1116,7 @@
    "size_x": 2.38,
    "start_source": "odds",
    "start_utc": "2026-11-15T20:00:00Z",
+   "still_actionable": true,
    "surge_books": [
     "kalshi",
     "prophetx"
@@ -10547,7 +10567,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 76,
+   "settle_tries": 77,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Cornell",
