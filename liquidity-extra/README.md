@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 15, 12:10 PM ET. This run: 0 new, 0 not confirmed, 3 pending. Open alerts: 21.
+Updated Sun Nov 15, 12:20 PM ET. This run: 1 new, 2 not confirmed, 1 pending. Open alerts: 22.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,6 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 15 12:20PM | NCAAB | William & Mary vs Michigan: Point Total | total: Over 165.5 points | kalshi | $25k | -127 |  |  | +0.0c |  | pending |
 | Nov 15 12:00PM | NCAAB | Creighton vs Iowa | moneyline: Iowa | kalshi | $33k | -178 | ✅ novig | ✅ | +0.0c |  | pending |
 | Nov 15 11:20AM | NCAAB | Baylor vs Texas: Spread | spread: Texas wins by over 2.5 points | kalshi | $30k | -117 |  | ❌ | +0.0c |  | pending |
 | Nov 15 10:30AM | NCAAB | Norfolk St. vs Georgia St.: Spread | spread: NOT Georgia St. wins by over 11.5 points | kalshi | $33k | +113 |  |  | +2.0c |  | pending |
@@ -20,8 +21,8 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 15 2:20AM | TENNIS | Svitolina vs Andreeva | moneyline: Andreeva | kalshi | $43k | -257 |  |  | +1.0c |  | pending |
 | Nov 15 2:10AM | TENNIS | Zverev vs Jodar | moneyline: Zverev | kalshi | $72k | -233 |  |  | +2.0c |  | W |
 | Nov 15 2:10AM | TENNIS | Shelton vs Fils | moneyline: Shelton | kalshi | $25k | -170 |  |  | -1.0c |  | pending |
-| Nov 15 1:30AM | NCAAB | Western Michigan vs Southern Indiana | moneyline: Western Michigan | kalshi | $39k | -270 |  |  | +1.0c | yes | pending |
-| Nov 15 1:20AM | NCAAB | Quinnipiac vs Central Connecticut St. | moneyline: Quinnipiac | kalshi | $26k | -170 |  |  | +5.0c |  | pending |
+| Nov 15 1:30AM | NCAAB | Western Michigan vs Southern Indiana | moneyline: Western Michigan | kalshi | $39k | -270 |  |  | +0.0c | yes | pending |
+| Nov 15 1:20AM | NCAAB | Quinnipiac vs Central Connecticut St. | moneyline: Quinnipiac | kalshi | $26k | -170 |  |  | -6.0c |  | pending |
 | Nov 15 1:20AM | NCAAB | Princeton vs Rhode Island | moneyline: Rhode Island | kalshi | $34k | -335 |  |  | -1.0c |  | pending |
 | Nov 15 1:20AM | NCAAB | Norfolk St. vs Georgia St. | moneyline: Georgia St. | kalshi | $59k | -567 |  |  | +2.0c |  | pending |
 | Nov 15 1:20AM | NCAAB | Louisville vs Memphis | moneyline: Louisville | kalshi | $50k | -355 |  |  | +2.0c | yes | pending |
@@ -209,4 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 7 9:50AM | NCAAB | Old Dominion vs Bucknell | moneyline: Old Dominion | kalshi | $29k | -178 |  |  | +5.0c | yes | W |
 | Nov 7 9:50AM | NCAAB | Houston Christian vs Western Illinois | moneyline: Houston Christian | kalshi | $28k | -400 |  |  | +1.0c | yes | W |
 | Nov 7 9:40AM | TENNIS | Luca Van Assche vs Ben Shelton | moneyline: Luca Van Assche | kalshi | $363k | -104 |  |  | -46.0c | yes | L |
-| Nov 7 9:20AM | NCAAB | Northern Iowa vs Furman | moneyline: Furman | kalshi | $25k | -194 |  |  | +0.0c |  | W |
