@@ -54,7 +54,7 @@
    "kill_bar": ">= 30 resulted at <= -0.1u/play -> CLOSED",
    "status": "ELIGIBLE at next review",
    "closed_utc": null,
-   "plays": 132,
+   "plays": 133,
    "resulted": 125,
    "W": 70,
    "L": 55,
@@ -75,7 +75,7 @@
    "kill_bar": ">= 30 resulted at <= -0.1u/play -> CLOSED",
    "status": "CLOSED",
    "closed_utc": "2026-11-01T03:35:12Z",
-   "plays": 132,
+   "plays": 133,
    "resulted": 125,
    "W": 70,
    "L": 55,
@@ -538,12 +538,12 @@
    "status": "CLOSED",
    "closed_utc": "2026-10-27T10:00:00Z",
    "plays": 873,
-   "resulted": 862,
+   "resulted": 864,
    "W": 446,
-   "L": 416,
+   "L": 418,
    "P": 0,
-   "units": -24.08,
-   "u_per_play": -0.028,
+   "units": -26.08,
+   "u_per_play": -0.03,
    "true_close_value_pct": null,
    "true_close_n": 0,
    "closed_note": "Closed by Peter, Oct 27, on Muse's complete-log read: 191 resulted, -32.15u (-0.17/play), negative in every time block and every lead window."
@@ -592,22 +592,22 @@
    "status": "CLOSED",
    "closed_utc": "2026-10-28T06:05:10Z",
    "plays": 441,
-   "resulted": 411,
-   "W": 231,
-   "L": 180,
+   "resulted": 413,
+   "W": 232,
+   "L": 181,
    "P": 0,
-   "units": -1.1,
-   "u_per_play": -0.003,
+   "units": -1.91,
+   "u_per_play": -0.005,
    "true_close_value_pct": null,
    "true_close_n": 0,
    "all_history": {
     "plays": 546,
-    "resulted": 516,
-    "W": 279,
-    "L": 237,
+    "resulted": 518,
+    "W": 280,
+    "L": 238,
     "P": 0,
-    "units": -25.45,
-    "u_per_play": -0.049,
+    "units": -26.26,
+    "u_per_play": -0.051,
     "true_close_value_pct": null,
     "true_close_n": 0
    }
@@ -767,16 +767,16 @@
   "status": "PAUSE LIVE"
  },
  "gaps": {
-  "gaps": 228,
-  "per_day": 19.0,
-  "edge_pct_median": 7.475,
+  "gaps": 229,
+  "per_day": 17.6,
+  "edge_pct_median": 7.41,
   "edge_pct_p90": 26.39,
-  "size_est_median_upper_bound": 526.5,
+  "size_est_median_upper_bound": 526,
   "seen_once_share": 0.45,
-  "lifetime_min_median": 15.0,
+  "lifetime_min_median": 15,
   "lived_10min_plus": 124,
-  "with_200_both_legs_upper_bound": 156,
-  "scan_sec_median": 256.5
+  "with_200_both_legs_upper_bound": 157,
+  "scan_sec_median": 256
  },
  "untimed": {
   "ntfy_evening": 0,
@@ -785,5 +785,5 @@
   "liq_evening": 0
  },
  "resulted_rule": "resulted = result W, L or P with a unit value (pushes count as 0u); liquidity artifacts excluded; pending and ungraded plays do not count",
- "updated_utc": "2026-11-15T02:40:18Z"
+ "updated_utc": "2026-11-15T02:45:23Z"
 }
