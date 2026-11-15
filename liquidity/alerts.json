@@ -1,6 +1,215 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-15T00:40:18Z",
+   "base_depth": 105825,
+   "best_price": 0.62,
+   "best_price_american": -163,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.63,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-14",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 84274,
+     "new_this_side": 357537,
+     "other_side": 214951,
+     "other_side_all_levels": 320261,
+     "ratio": 1.2,
+     "this_side": 264994,
+     "this_side_all_levels": 465239
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "UTA (0)",
+     "price": 0.62,
+     "this_side": 35737
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "Utah Mammoth",
+     "price": 0.6269,
+     "this_side": 14565
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 31259.02,
+    "volume_24h_fp": 26177.82,
+    "volume_fp": 32098.65
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 409.38,
+    "volume_24h_fp": 642.5,
+    "volume_fp": 409.38
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 30849.64,
+    "volume_24h_fp": 25535.32,
+    "volume_fp": 31689.269999999997
+   },
+   "fade_price": 0.38,
+   "first_seen_utc": "2026-11-15T00:35:39Z",
+   "game": "San Jose vs Utah",
+   "game_surge_books": [],
+   "game_x": null,
+   "key": "kalshi|KXNHLGAME-26NOV14SJUTA|ml|1",
+   "lead_min": 80,
+   "league": "NHL",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 357537,
+   "new_x": 0.66,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 31259.02,
+      "volume_24h_fp": 26177.82,
+      "volume_fp": 32098.65
+     },
+     "game_normal": null,
+     "game_x": null,
+     "normal": 542955,
+     "now": 465239,
+     "type": "ML",
+     "x": 0.86
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 5920181.0,
+      "volume": 6878736.0
+     },
+     "game_normal": 34847,
+     "game_x": 1.03,
+     "normal": 17442,
+     "now": 35897,
+     "type": "ML",
+     "x": 2.06
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 14588,
+     "game_x": 1.02,
+     "normal": 12589,
+     "now": 14840,
+     "type": "ML",
+     "x": 1.18
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.63,
+   "price_american": -170,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.63,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -190
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -180
+    },
+    "betopenly": {
+     "point": null,
+     "price": -167
+    },
+    "betrivers": {
+     "point": null,
+     "price": -190
+    },
+    "betus": {
+     "point": null,
+     "price": -180
+    },
+    "bovada": {
+     "point": null,
+     "price": -180
+    },
+    "draftkings": {
+     "point": null,
+     "price": -185
+    },
+    "fanatics": {
+     "point": null,
+     "price": -190
+    },
+    "fanduel": {
+     "point": null,
+     "price": -188
+    },
+    "kalshi": {
+     "point": null,
+     "price": -170
+    },
+    "lowvig": {
+     "point": null,
+     "price": -180
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -184
+    },
+    "novig": {
+     "point": null,
+     "price": -163
+    },
+    "polymarket": {
+     "point": null,
+     "price": -170
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -170
+    },
+    "prophetx": {
+     "point": null,
+     "price": -168
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -185
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNHLGAME-26NOV14SJUTA-UTA"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Utah",
+   "side_label": "Utah",
+   "size_x": 0.86,
+   "start_source": "odds",
+   "start_utc": "2026-11-15T02:00:00Z",
+   "surge_books": [
+    "novig"
+   ],
+   "teams": [
+    "San Jose",
+    "Utah"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-15T00:35:39Z",
    "base_depth": 54738,
    "best_price": 0.5196,
@@ -42,6 +251,10 @@
    "ex_stats_change": {
     "openInterest": 145519.0,
     "volume": 215519.0
+   },
+   "ex_stats_close": {
+    "openInterest": 14860069.0,
+    "volume": 18748320.0
    },
    "ex_stats_first": {
     "openInterest": 14714550.0,
@@ -197,8 +410,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.65,
-   "clv_cents": 0.0,
+   "close_price": 0.64,
+   "clv_cents": -1.0,
    "confirmed_after_min": 5,
    "date": "2026-11-14",
    "depth_by_book": {
@@ -233,6 +446,11 @@
     "open_interest_fp": 4805.23,
     "volume_24h_fp": 13077.87,
     "volume_fp": 48272.35
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 628497.28,
+    "volume_24h_fp": 701413.72,
+    "volume_fp": 708225.38
    },
    "ex_stats_first": {
     "open_interest_fp": 615346.6499999999,
@@ -616,9 +834,9 @@
     "volume_fp": 10652.76
    },
    "ex_stats_close": {
-    "open_interest_fp": 193903.89,
-    "volume_24h_fp": 226785.73,
-    "volume_fp": 227052.69
+    "open_interest_fp": 195256.29,
+    "volume_24h_fp": 228182.35,
+    "volume_fp": 228405.09
    },
    "ex_stats_first": {
     "open_interest_fp": 176033.78,
@@ -1569,7 +1787,8 @@
      "price": -355
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-15T00:40:18Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNBAGAME-26NOV14DALCLE-DAL"
@@ -2065,8 +2284,8 @@
     "volume": 185169.0
    },
    "ex_stats_close": {
-    "openInterest": 15454083.0,
-    "volume": 22961137.0
+    "openInterest": 16227475.0,
+    "volume": 23734529.0
    },
    "ex_stats_first": {
     "openInterest": 13156023.0,
@@ -5538,7 +5757,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [
     "Washington Huskies -2.5 (-111)"
    ],
@@ -5722,7 +5941,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -6773,7 +6992,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Arizona St.",
@@ -8605,7 +8824,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [],
    "sharp_oppose": [
     "Michigan State Spartans +3.5 (-117)"
@@ -9363,7 +9582,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 14,
+   "settle_tries": 15,
    "sharp_agree": [
     "Rice Owls -2.5 (-115)"
    ],
@@ -10295,7 +10514,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UCF",
@@ -24421,7 +24640,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 45,
+   "settle_tries": 46,
    "sharp_agree": [
     "Over 50.5 (-106)"
    ],
@@ -26047,7 +26266,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 20,
+   "settle_tries": 21,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UCF",
@@ -27284,7 +27503,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 32,
+   "settle_tries": 33,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Rice",
@@ -28950,7 +29169,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 45,
+   "settle_tries": 46,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Auburn",
@@ -34308,7 +34527,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 45,
+   "settle_tries": 46,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Youngstown St.",
