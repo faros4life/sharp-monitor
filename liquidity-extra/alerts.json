@@ -1,6 +1,185 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-15T01:40:18Z",
+   "base_depth": 80133,
+   "best_price": 0.805,
+   "best_price_american": -413,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.81,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-15",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 6258,
+     "new_this_side": 38451,
+     "other_side": 8457,
+     "other_side_all_levels": 19079,
+     "ratio": 4.0,
+     "this_side": 33907,
+     "this_side_all_levels": 118933
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "NEB (0)",
+     "price": 0.805,
+     "this_side": 3549
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Nebraska",
+     "price": 0.8077,
+     "this_side": 316
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 7657.290000000001,
+    "volume_24h_fp": 6481.68,
+    "volume_fp": 8355.75
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 464.59,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 7657.290000000001,
+    "volume_24h_fp": 6017.09,
+    "volume_fp": 8355.75
+   },
+   "fade_price": 0.2,
+   "first_seen_utc": "2026-11-15T01:30:22Z",
+   "game": "Boise St. vs Nebraska",
+   "game_surge_books": [],
+   "game_x": 1.39,
+   "key": "kalshi|KXNCAAMBGAME-26NOV15BSUNEB|ml|1",
+   "lead_min": 980,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 38451,
+   "new_x": 0.83,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 7657.290000000001,
+      "volume_24h_fp": 6481.68,
+      "volume_fp": 8355.75
+     },
+     "game_normal": 85756,
+     "game_x": 1.39,
+     "normal": 46488,
+     "now": 118933,
+     "type": "ML",
+     "x": 2.56
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 210863.0,
+      "volume": 232724.0
+     },
+     "game_normal": 2636,
+     "game_x": 1.39,
+     "normal": 4856,
+     "now": 3671,
+     "type": "ML",
+     "x": 0.76
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 540,
+     "game_x": 1.65,
+     "normal": 773,
+     "now": 892,
+     "type": "ML",
+     "x": 1.15
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.81,
+   "price_american": -426,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.81,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -475
+    },
+    "betrivers": {
+     "point": null,
+     "price": -385
+    },
+    "bovada": {
+     "point": null,
+     "price": -490
+    },
+    "draftkings": {
+     "point": null,
+     "price": -470
+    },
+    "fanatics": {
+     "point": null,
+     "price": -425
+    },
+    "fanduel": {
+     "point": null,
+     "price": -465
+    },
+    "kalshi": {
+     "point": null,
+     "price": -426
+    },
+    "novig": {
+     "point": null,
+     "price": -426
+    },
+    "polymarket": {
+     "point": null,
+     "price": -426
+    },
+    "prophetx": {
+     "point": null,
+     "price": -420
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV15BSUNEB-NEB"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Nebraska",
+   "side_label": "Nebraska",
+   "size_x": 2.56,
+   "start_source": "odds",
+   "start_utc": "2026-11-15T18:00:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "Boise St.",
+    "Nebraska"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-15T01:30:22Z",
    "base_depth": 40829,
    "best_price": 0.6069,
@@ -14,8 +193,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.59,
-   "clv_cents": 0.0,
+   "close_price": 0.65,
+   "clv_cents": 6.0,
    "confirmed_after_min": 10,
    "date": "2026-11-14",
    "depth_by_book": {
@@ -38,6 +217,11 @@
     "open_interest_fp": 810.06,
     "volume_24h_fp": 505.96,
     "volume_fp": 810.06
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 29635.339999999997,
+    "volume_24h_fp": 19473.690000000002,
+    "volume_fp": 32411.61
    },
    "ex_stats_first": {
     "open_interest_fp": 17597.79,
@@ -78,7 +262,8 @@
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.59,
    "prices_by_book": {},
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-15T01:40:18Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAMBGAME-26NOV14IUINMORE-MORE"
@@ -364,7 +549,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 1488.07,
-    "volume_24h_fp": 1415.29,
+    "volume_24h_fp": 1532.4,
     "volume_fp": 1532.4
    },
    "ex_stats_first": {
@@ -937,9 +1122,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 4426.6,
-    "volume_24h_fp": 7647.5,
-    "volume_fp": 7647.5
+    "open_interest_fp": 4441.360000000001,
+    "volume_24h_fp": 7655.82,
+    "volume_fp": 7662.26
    },
    "ex_stats_first": {
     "open_interest_fp": 2634.69,
@@ -9058,7 +9243,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 46,
+   "settle_tries": 47,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Cornell",
@@ -14799,7 +14984,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 220,
+   "settle_tries": 221,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Fritz",
