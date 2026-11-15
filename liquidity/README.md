@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 14, 8:00 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 50.
+Updated Sat Nov 14, 8:05 PM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 50.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -38,7 +38,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 14 5:40PM | NCAAF | Florida Atlantic vs Tulsa | moneyline: Tulsa | kalshi | $100k | -213 | ✅ prophetx |  | +0.0c |  | pending |
 | Nov 14 5:30PM | NCAAF | Florida @ Kentucky | spread: UK -2.5 (-2.5) | novig | $51k | -117 |  |  | -0.5c |  | pending |
 | Nov 14 5:30PM | NFL | Seattle Seahawks @ Las Vegas Raiders | moneyline: SEA (0) | novig | $100k | -264 | ✅ prophetx |  | -0.5c |  | pending |
-| Nov 14 5:30PM | NFL | Buffalo Bills @ New York Jets | moneyline: BUF (0) | novig | $31k | -376 | ✅ prophetx |  | +0.0c |  | pending |
+| Nov 14 5:30PM | NFL | Buffalo Bills @ New York Jets | moneyline: BUF (0) | novig | $31k | -376 | ✅ prophetx |  | +0.5c |  | pending |
 | Nov 14 5:30PM | NCAAF | Texas Tech vs Oklahoma St.: Total Points | total: NOT Over 73.5 points | kalshi | $40k | -104 | ✅ novig |  | -1.0c |  | pending |
 | Nov 14 5:20PM | NCAAF | Washington vs Michigan St.: Spread | spread: Washington wins by over 2.5 points | kalshi | $67k | -113 | ✅ novig | ✅ | +0.0c | yes | pending |
 | Nov 14 4:50PM | NCAAF | Arizona St. vs UCF: Total Points | total: NOT Over 46.5 points | kalshi | $83k | -113 |  |  | +0.0c | yes | pending |
