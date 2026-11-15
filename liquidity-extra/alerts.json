@@ -1,6 +1,253 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-15T07:10:21Z",
+   "base_depth": 189677,
+   "best_price": 0.705,
+   "best_price_american": -239,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.7,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-15",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 21492,
+     "new_this_side": 72483,
+     "other_side": 54476,
+     "other_side_all_levels": 94525,
+     "ratio": 3.4,
+     "this_side": 187448,
+     "this_side_all_levels": 282545
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "A. Zverev (0)",
+     "price": 0.705,
+     "this_side": 9994
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 37803.05,
+    "volume_24h_fp": 37499.88,
+    "volume_fp": 40575.45
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 136.82,
+    "volume_24h_fp": -121.23,
+    "volume_fp": 203.98
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 37666.229999999996,
+    "volume_24h_fp": 37621.11,
+    "volume_fp": 40371.47
+   },
+   "fade_price": 0.3,
+   "first_seen_utc": "2026-11-15T07:00:23Z",
+   "game": "Zverev vs Jodar",
+   "game_surge_books": [],
+   "game_x": 1.47,
+   "key": "kalshi|KXATPMATCH-26NOV15ZVEJOD|ml|0",
+   "lead_min": 350,
+   "league": "TENNIS",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 72483,
+   "new_x": 0.86,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 37803.05,
+      "volume_24h_fp": 37499.88,
+      "volume_fp": 40575.45
+     },
+     "game_normal": 192574,
+     "game_x": 1.47,
+     "normal": 84020,
+     "now": 282545,
+     "type": "ML",
+     "x": 3.36
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 323372.0,
+      "volume": 331992.0
+     },
+     "game_normal": 11966,
+     "game_x": 0.84,
+     "normal": 565,
+     "now": 10009,
+     "type": "ML",
+     "x": 17.73
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": true,
+   "price": 0.7,
+   "price_american": -233,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.7,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXATPMATCH-26NOV15ZVEJOD-ZVE"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Zverev",
+   "side_label": "Zverev",
+   "size_x": 3.36,
+   "start_source": "novig",
+   "start_utc": "2026-11-15T13:00:00Z",
+   "surge_books": [
+    "kalshi",
+    "novig"
+   ],
+   "teams": [
+    "Zverev",
+    "Jodar"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-15T07:10:21Z",
+   "base_depth": 108847,
+   "best_price": 0.625,
+   "best_price_american": -167,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.63,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-15",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 3402,
+     "new_this_side": 25029,
+     "other_side": 49037,
+     "other_side_all_levels": 83526,
+     "ratio": 2.1,
+     "this_side": 104218,
+     "this_side_all_levels": 162931
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "B. Shelton (0)",
+     "price": 0.625,
+     "this_side": 9863
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 62160.75,
+    "volume_24h_fp": 61492.49,
+    "volume_fp": 63028.95
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 93.14,
+    "volume_24h_fp": -44.25,
+    "volume_fp": 93.14
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 62067.61,
+    "volume_24h_fp": 61536.740000000005,
+    "volume_fp": 62935.81
+   },
+   "fade_price": 0.38,
+   "first_seen_utc": "2026-11-15T07:00:23Z",
+   "game": "Shelton vs Fils",
+   "game_surge_books": [],
+   "game_x": 1.24,
+   "key": "kalshi|KXATPMATCH-26NOV15SHEFIL|ml|0",
+   "lead_min": 740,
+   "league": "TENNIS",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 25029,
+   "new_x": 0.3,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 62160.75,
+      "volume_24h_fp": 61492.49,
+      "volume_fp": 63028.95
+     },
+     "game_normal": 131406,
+     "game_x": 1.24,
+     "normal": 84020,
+     "now": 162931,
+     "type": "ML",
+     "x": 1.94
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 283504.0,
+      "volume": 314025.0
+     },
+     "game_normal": 8248,
+     "game_x": 1.2,
+     "normal": 565,
+     "now": 9863,
+     "type": "ML",
+     "x": 17.47
+    }
+   },
+   "norm_ready_books": 2,
+   "paper_only": true,
+   "price": 0.63,
+   "price_american": -170,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.63,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXATPMATCH-26NOV15SHEFIL-SHE"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "none_10k",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Shelton",
+   "side_label": "Shelton",
+   "size_x": 1.94,
+   "start_source": "novig",
+   "start_utc": "2026-11-15T19:30:00Z",
+   "surge_books": [
+    "novig"
+   ],
+   "teams": [
+    "Shelton",
+    "Fils"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-15T06:30:24Z",
    "base_depth": 69127,
    "best_price": 0.7438,
@@ -443,9 +690,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 249.54999999999998,
-    "volume_24h_fp": 211.44,
-    "volume_fp": 249.54999999999998
+    "open_interest_fp": 250.53,
+    "volume_24h_fp": 212.42000000000002,
+    "volume_fp": 250.53
    },
    "ex_stats_first": {
     "open_interest_fp": 239.75,
@@ -796,9 +1043,9 @@
     "volume_fp": 2.06
    },
    "ex_stats_close": {
-    "open_interest_fp": 952.3699999999999,
-    "volume_24h_fp": 541.9,
-    "volume_fp": 981.1800000000001
+    "open_interest_fp": 1084.41,
+    "volume_24h_fp": 612.02,
+    "volume_fp": 1113.22
    },
    "ex_stats_first": {
     "open_interest_fp": 852.0699999999999,
@@ -995,9 +1242,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 704.46,
-    "volume_24h_fp": 564.35,
-    "volume_fp": 704.46
+    "open_interest_fp": 711.8499999999999,
+    "volume_24h_fp": 571.74,
+    "volume_fp": 711.8499999999999
    },
    "ex_stats_first": {
     "open_interest_fp": 661.95,
@@ -1145,8 +1392,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.44,
-   "clv_cents": 0.0,
+   "close_price": 0.42,
+   "clv_cents": -2.0,
    "confirmed_after_min": 10,
    "date": "2026-11-15",
    "depth_by_book": {
@@ -1298,9 +1545,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 9466.58,
-    "volume_24h_fp": 8221.49,
-    "volume_fp": 10215.029999999999
+    "open_interest_fp": 9467.82,
+    "volume_24h_fp": 8222.73,
+    "volume_fp": 10216.27
    },
    "ex_stats_first": {
     "open_interest_fp": 7657.290000000001,
@@ -10570,7 +10817,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 79,
+   "settle_tries": 80,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Cornell",
