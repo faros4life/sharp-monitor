@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 15, 5:15 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 63.
+Updated Sun Nov 15, 5:20 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 63.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -11,7 +11,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 15 5:10PM | NBA | Houston Rockets at Washington Wizards | moneyline: Houston Rockets | prophetx | $33k | -295 | ✅ kalshi,novig | ❌ | +0.0c |  | pending |
-| Nov 15 4:56PM | NBA | Dallas vs Boston: Spread | spread: NOT Boston wins by over 15.5 points | kalshi | $46k | -113 |  | ❌ | +1.0c |  | pending |
+| Nov 15 4:56PM | NBA | Dallas vs Boston: Spread | spread: NOT Boston wins by over 15.5 points | kalshi | $46k | -113 |  | ❌ | +0.0c |  | pending |
 | Nov 15 4:50PM | NBA | Houston vs Washington: Total Points | total: Over 223.5 points | kalshi | $33k | +104 |  |  | +0.0c |  | pending |
 | Nov 15 4:30PM | NHL | Vancouver vs Vegas: Spread | spread: Vegas wins by over 2.5 goals | kalshi | $36k | +117 | ✅ novig |  | +0.0c |  | pending |
 | Nov 15 4:10PM | NFL | Pittsburgh Steelers @ Cincinnati Bengals | moneyline: CIN (0) | novig | $49k | -182 | ✅ kalshi,prophetx |  | +0.0c |  | pending |
