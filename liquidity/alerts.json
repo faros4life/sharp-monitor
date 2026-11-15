@@ -1,6 +1,212 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-15T01:45:40Z",
+   "base_depth": 844204,
+   "best_price": 0.42,
+   "best_price_american": 138,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.42,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-14",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -3219,
+     "new_this_side": 101548,
+     "other_side": 305824,
+     "other_side_all_levels": 680535,
+     "ratio": 2.1,
+     "this_side": 632760,
+     "this_side_all_levels": 924992
+    },
+    "novig": {
+     "heavier_side": false,
+     "label": "SDSU (0)",
+     "price": 0.42,
+     "this_side": 39163
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "San Diego State",
+     "price": 0.4274,
+     "this_side": 19263
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 77244.08,
+    "volume_24h_fp": 22685.480000000003,
+    "volume_fp": 77911.4
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 76.77,
+    "volume_24h_fp": 768.29,
+    "volume_fp": 76.77
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 77167.31,
+    "volume_24h_fp": 21917.190000000002,
+    "volume_fp": 77834.63
+   },
+   "fade_price": 0.59,
+   "first_seen_utc": "2026-11-15T01:40:13Z",
+   "game": "Utah St. vs San Diego St.",
+   "game_surge_books": [],
+   "game_x": 1.16,
+   "key": "kalshi|KXNCAAFGAME-26NOV14USUSDSU|ml|1",
+   "lead_min": 44,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 101548,
+   "new_x": 0.79,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 77244.08,
+      "volume_24h_fp": 22685.480000000003,
+      "volume_fp": 77911.4
+     },
+     "game_normal": 797884,
+     "game_x": 1.16,
+     "normal": 128472,
+     "now": 924992,
+     "type": "ML",
+     "x": 7.2
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 7496308.0,
+      "volume": 7912711.0
+     },
+     "game_normal": 43041,
+     "game_x": 1.01,
+     "normal": 25338,
+     "now": 43353,
+     "type": "ML",
+     "x": 1.71
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 19830,
+     "game_x": 0.97,
+     "normal": 6431,
+     "now": 19273,
+     "type": "ML",
+     "x": 3.0
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.42,
+   "price_american": 138,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.42,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": 125
+    },
+    "betonlineag": {
+     "point": null,
+     "price": 135
+    },
+    "betopenly": {
+     "point": null,
+     "price": 138
+    },
+    "betrivers": {
+     "point": null,
+     "price": 125
+    },
+    "betus": {
+     "point": null,
+     "price": 134
+    },
+    "bovada": {
+     "point": null,
+     "price": 130
+    },
+    "draftkings": {
+     "point": null,
+     "price": 124
+    },
+    "fanatics": {
+     "point": null,
+     "price": 125
+    },
+    "fanduel": {
+     "point": null,
+     "price": 120
+    },
+    "kalshi": {
+     "point": null,
+     "price": 138
+    },
+    "lowvig": {
+     "point": null,
+     "price": 135
+    },
+    "mybookieag": {
+     "point": null,
+     "price": 123
+    },
+    "novig": {
+     "point": null,
+     "price": 135
+    },
+    "polymarket": {
+     "point": null,
+     "price": 133
+    },
+    "prophetx": {
+     "point": null,
+     "price": 134
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": 124
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26NOV14USUSDSU-SDSU"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "prophetx"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "San Diego St.",
+   "side_label": "San Diego St.",
+   "size_x": 7.2,
+   "start_source": "odds",
+   "start_utc": "2026-11-15T02:30:00Z",
+   "surge_books": [
+    "kalshi",
+    "prophetx"
+   ],
+   "teams": [
+    "Utah St.",
+    "San Diego St."
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-15T01:20:16Z",
    "base_depth": 458912,
    "best_price": 0.5,
@@ -52,9 +258,9 @@
     "volume_fp": 209.65
    },
    "ex_stats_close": {
-    "open_interest_fp": 103332.97,
-    "volume_24h_fp": 95849.69,
-    "volume_fp": 105154.24
+    "open_interest_fp": 104005.15,
+    "volume_24h_fp": 102438.0,
+    "volume_fp": 105826.42
    },
    "ex_stats_first": {
     "open_interest_fp": 94775.09,
@@ -231,8 +437,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.8,
-   "clv_cents": 5.0,
+   "close_price": 0.84,
+   "clv_cents": 9.0,
    "confirmed_after_min": 5,
    "date": "2026-11-14",
    "depth_by_book": {
@@ -257,9 +463,9 @@
     "volume_fp": 1432.1
    },
    "ex_stats_close": {
-    "open_interest_fp": 30908.129999999997,
-    "volume_24h_fp": 32575.44,
-    "volume_fp": 33274.32
+    "open_interest_fp": 30915.39,
+    "volume_24h_fp": 33113.18,
+    "volume_fp": 33465.72
    },
    "ex_stats_first": {
     "open_interest_fp": 28209.83,
@@ -378,7 +584,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 117387.2,
-    "volume_24h_fp": 85296.8,
+    "volume_24h_fp": 89218.58,
     "volume_fp": 131528.31
    },
    "ex_stats_first": {
@@ -989,9 +1195,9 @@
     "volume_fp": 409.38
    },
    "ex_stats_close": {
-    "open_interest_fp": 44312.08,
-    "volume_24h_fp": 35083.59,
-    "volume_fp": 45181.93
+    "open_interest_fp": 46301.22,
+    "volume_24h_fp": 39077.76,
+    "volume_fp": 47171.07
    },
    "ex_stats_first": {
     "open_interest_fp": 30849.64,
@@ -5929,7 +6135,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 6,
+   "settle_tries": 7,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Kentucky",
@@ -6191,8 +6397,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 10176057.0,
-    "volume": 11350596.0
+    "openInterest": 10435255.0,
+    "volume": 11609920.0
    },
    "ex_stats_first": {
     "openInterest": 7191104.0,
@@ -6713,7 +6919,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 15,
+   "settle_tries": 16,
    "sharp_agree": [
     "Washington Huskies -2.5 (-111)"
    ],
@@ -6897,7 +7103,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 15,
+   "settle_tries": 16,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -7755,7 +7961,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 9,
+   "settle_tries": 10,
    "sharp_agree": [
     "Marshall Thundering Herd +1.5 (-106)"
    ],
@@ -7955,7 +8161,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 15,
+   "settle_tries": 16,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Arizona St.",
@@ -9203,7 +9409,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 9,
+   "settle_tries": 10,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Appalachian St.",
@@ -9377,7 +9583,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 9,
+   "settle_tries": 10,
    "sharp_agree": [
     "Boise State Broncos -14.5 (-110)"
    ],
@@ -9789,7 +9995,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 15,
+   "settle_tries": 16,
    "sharp_agree": [],
    "sharp_oppose": [
     "Michigan State Spartans +3.5 (-117)"
@@ -11482,7 +11688,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 15,
+   "settle_tries": 16,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UCF",
@@ -11699,7 +11905,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 6,
+   "settle_tries": 7,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Kentucky",
@@ -27238,7 +27444,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 33,
+   "settle_tries": 34,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UCF",
