@@ -1,22 +1,22 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 15, 12:30 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 7.
+Updated Sun Nov 15, 12:40 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 5.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 279-164 (-22.86u flat) | rule met: 49-44
+**Record:** 280-165 (-22.84u flat) | rule met: 49-45
 
-**Fade (paper, betting against the print):** 139-244 (+18.60u flat, after fees)
+**Fade (paper, betting against the print):** 140-245 (+22.16u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 14 8:40PM | NCAAB | Boise St. vs Nebraska | moneyline: Nebraska | kalshi | $38k | -426 |  |  | +1.0c |  | pending |
 | Nov 14 8:30PM | NCAAB | IU Indy vs Morehead St. | moneyline: Morehead St. | kalshi | $26k | -144 |  |  | +10.0c | yes | W |
 | Nov 14 7:40PM | NCAAB | UC Davis vs Sacramento St. | moneyline: Sacramento St. | kalshi | $31k | -156 | ✅ novig | ✅ | -4.0c | yes | L |
-| Nov 14 7:20PM | NCAAB | Utah Valley vs Nevada: Spread | spread: NOT Nevada wins by over 9.5 points | kalshi | $47k | +108 |  |  | +2.0c | yes | pending |
+| Nov 14 7:20PM | NCAAB | Utah Valley vs Nevada: Spread | spread: NOT Nevada wins by over 9.5 points | kalshi | $47k | +108 |  |  | +2.0c | yes | W |
 | Nov 14 6:30PM | NCAAB | Louisiana Tech vs Nicholls St. | moneyline: Louisiana Tech | kalshi | $61k | +104 |  |  | +1.0c | yes | L |
 | Nov 14 6:20PM | NCAAB | Rider vs Villanova: Point Total | total: NOT Over 145.5 points | kalshi | $29k | -104 |  | ✅ | +0.0c | yes | L |
-| Nov 14 4:50PM | NCAAB | Utah Valley vs Nevada | moneyline: Nevada | kalshi | $170k | -525 | ✅ novig |  | -1.0c | yes | pending |
+| Nov 14 4:50PM | NCAAB | Utah Valley vs Nevada | moneyline: Nevada | kalshi | $170k | -525 | ✅ novig |  | -1.0c | yes | L |
 | Nov 14 4:50PM | NCAAB | UAB vs Jacksonville St. | moneyline: UAB | kalshi | $86k | -127 | ✅ novig |  | +0.0c | yes | L |
 | Nov 14 4:40PM | NCAAB | Penn vs Saint Joseph's | moneyline: Saint Joseph's | kalshi | $39k | -170 |  |  | +24.0c | yes | W |
 | Nov 14 3:50PM | NCAAB | Southern Utah vs Wake Forest: Spread | spread: NOT Wake Forest wins by over 18.5 points | kalshi | $40k | -104 |  |  | -1.0c | yes | L |

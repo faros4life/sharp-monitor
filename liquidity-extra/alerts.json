@@ -52,9 +52,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 9307.43,
-    "volume_24h_fp": 8123.96,
-    "volume_fp": 10055.880000000001
+    "open_interest_fp": 9357.23,
+    "volume_24h_fp": 8173.76,
+    "volume_fp": 10105.68
    },
    "ex_stats_first": {
     "open_interest_fp": 7657.290000000001,
@@ -576,6 +576,7 @@
     "volume_fp": 964.1
    },
    "fade_price": 0.53,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-15T00:10:24Z",
    "game": "Utah Valley vs Nevada: Spread",
    "game_surge_books": [
@@ -688,12 +689,13 @@
     "kalshi_side": "no",
     "market_ticker": "KXNCAAMBSPREAD-26NOV14UVUNEV-NEV10"
    },
-   "result": null,
+   "result": "W",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 4,
+   "settle_tries": 5,
+   "settled_utc": "2026-11-15T05:40:19Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Utah Valley",
@@ -711,7 +713,7 @@
     "Nevada"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 1.02
   },
   {
    "alerted_utc": "2026-11-14T23:30:24Z",
@@ -1159,6 +1161,7 @@
     "volume_fp": 5687.42
    },
    "fade_price": 0.17,
+   "fade_units": 4.56,
    "first_seen_utc": "2026-11-14T21:40:18Z",
    "game": "Utah Valley vs Nevada",
    "game_surge_books": [
@@ -1280,14 +1283,15 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAMBGAME-26NOV14UVUNEV-NEV"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 4,
+   "settle_tries": 5,
+   "settled_utc": "2026-11-15T05:40:19Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Nevada",
@@ -1306,7 +1310,7 @@
     "Nevada"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-14T21:50:18Z",
@@ -9320,7 +9324,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 70,
+   "settle_tries": 71,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Cornell",
@@ -15061,7 +15065,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 244,
+   "settle_tries": 245,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Fritz",
