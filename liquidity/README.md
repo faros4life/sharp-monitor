@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 14, 7:55 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 53.
+Updated Sat Nov 14, 8:00 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 50.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 1494-1143 (-7.42u flat) | rule met: 900-694
+**Record:** 1496-1144 (-7.54u flat) | rule met: 900-694
 
-**Fade (paper, betting against the print):** 877-1221 (-231.63u flat, after fees)
+**Fade (paper, betting against the print):** 878-1223 (-229.90u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -42,10 +42,10 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 14 5:30PM | NCAAF | Texas Tech vs Oklahoma St.: Total Points | total: NOT Over 73.5 points | kalshi | $40k | -104 | ✅ novig |  | -1.0c |  | pending |
 | Nov 14 5:20PM | NCAAF | Washington vs Michigan St.: Spread | spread: Washington wins by over 2.5 points | kalshi | $67k | -113 | ✅ novig | ✅ | +0.0c | yes | pending |
 | Nov 14 4:50PM | NCAAF | Arizona St. vs UCF: Total Points | total: NOT Over 46.5 points | kalshi | $83k | -113 |  |  | +0.0c | yes | pending |
-| Nov 14 4:45PM | NCAAF | Alcorn St. vs Southern University | moneyline: Southern University | kalshi | $31k | -203 |  |  | -5.0c | yes | pending |
+| Nov 14 4:45PM | NCAAF | Alcorn St. vs Southern University | moneyline: Southern University | kalshi | $31k | -203 |  |  | -5.0c | yes | W |
 | Nov 14 4:35PM | NCAAF | Baylor vs BYU: Total Points | total: Over 49.5 points | kalshi | $47k | -104 | ✅ novig | ✅ | -2.0c | yes | pending |
 | Nov 14 4:35PM | NCAAF | Texas vs LSU | moneyline: LSU | kalshi | $202k | -186 | ✅ novig,prophetx |  | -1.0c | yes | pending |
-| Nov 14 4:35PM | NCAAF | Mississippi Valley St. vs Florida A&M | moneyline: Florida A&M | kalshi | $42k | -223 |  |  | +12.0c | yes | pending |
+| Nov 14 4:35PM | NCAAF | Mississippi Valley St. vs Florida A&M | moneyline: Florida A&M | kalshi | $42k | -223 |  |  | +12.0c | yes | W |
 | Nov 14 4:35PM | NCAAF | Appalachian St. vs Marshall | moneyline: Marshall | kalshi | $75k | -104 |  | ✅ | +1.0c | yes | pending |
 | Nov 14 4:30PM | NCAAF | Arizona St. vs UCF: Spread | spread: NOT UCF wins by over 3.5 points | kalshi | $281k | -108 |  |  | +2.0c |  | pending |
 | Nov 14 4:00PM | NCAAF | Texas @ LSU | moneyline: LSU (0) | novig | $30k | -182 | ✅ kalshi,prophetx |  | -0.5c |  | pending |
@@ -198,7 +198,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 13 4:05AM | NHL | Nashville vs Vegas: Spread | spread: NOT Vegas wins by over 1.5 goals | kalshi | $98k | -156 | ✅ novig |  | +2.0c |  | W |
 | Nov 13 1:00AM | NCAAF | Houston vs Colorado: Total Points | total: Over 51.5 points | kalshi | $30k | -100 | ✅ novig |  | +5.0c | yes | W |
 | Nov 13 1:00AM | NCAAF | Norfolk St. vs Morgan St. | moneyline: Morgan St. | kalshi | $44k | -138 |  |  | -2.0c | yes | W |
-| Nov 13 1:00AM | NCAAF | Illinois St. vs Youngstown St. | moneyline: Youngstown St. | kalshi | $49k | -426 |  |  | +1.0c | yes | pending |
+| Nov 13 1:00AM | NCAAF | Illinois St. vs Youngstown St. | moneyline: Youngstown St. | kalshi | $49k | -426 |  |  | +1.0c | yes | L |
 | Nov 13 1:00AM | NCAAF | Georgetown vs Fordham | moneyline: Fordham | kalshi | $47k | -104 |  |  | +1.0c | yes | W |
 | Nov 13 1:00AM | NCAAF | Columbia vs Brown | moneyline: Brown | kalshi | $55k | -426 |  |  | +2.0c | yes | W |
 | Nov 13 1:00AM | NCAAF | Butler vs Marist | moneyline: Butler | kalshi | $34k | -285 |  |  | -5.0c | yes | W |
