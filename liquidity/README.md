@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sat Nov 14, 11:40 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 41.
+Updated Sat Nov 14, 11:45 PM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 41.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -45,7 +45,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 14 7:45PM | NBA | Detroit vs Miami: Total Points | total: Over 227.5 points | kalshi | $42k | -113 |  |  | +0.0c | yes | W |
 | Nov 14 7:45PM | NBA | Brooklyn vs Memphis | moneyline: Brooklyn | kalshi | $359k | +163 |  | ✅ | +0.0c | yes | L |
 | Nov 14 7:40PM | NHL | San Jose vs Utah | moneyline: Utah | kalshi | $358k | -170 | ✅ novig |  | +0.0c | yes | pending |
-| Nov 14 7:35PM | NFL | Seattle Seahawks @ Las Vegas Raiders | spread: LV +6.5 (6.5) | novig | $28k | -108 | ✅ prophetx |  | +0.0c |  | pending |
+| Nov 14 7:35PM | NFL | Seattle Seahawks @ Las Vegas Raiders | spread: LV +6.5 (6.5) | novig | $28k | -108 | ✅ prophetx |  | -0.5c |  | pending |
 | Nov 14 7:35PM | NBA | Brooklyn vs Memphis | moneyline: Memphis | kalshi | $228k | -186 | ✅ novig,prophetx | ✅ | -2.0c | yes | W |
 | Nov 14 7:25PM | NCAAF | UNLV vs New Mexico: Spread | spread: New Mexico wins by over 20.5 points | kalshi | $61k | +113 |  | ✅ | +0.0c |  | L |
 | Nov 14 7:15PM | NBA | Brooklyn vs Memphis: Spread | spread: Memphis wins by over 4.5 points | kalshi | $27k | -100 |  | ✅ | +0.0c | yes | W |
