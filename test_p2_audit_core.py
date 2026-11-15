@@ -306,7 +306,7 @@ NV = lambda tid, **k: R(id=tid, book="Novig", **k)
 def t_link_index_keys_are_the_tracker_keys():
     li = c.link_index([F("M", "O", "c1", "v1"), F("M", "O", "c2"), F(None, "O", "c9"), {"x": 1}],
                       [{"id": 77, "order_id": "P9"}, {"id": None, "order_id": "P8"}])
-    assert set(li) == {"nv|M|O", "px|77"} and li["nv|M|O"][0] == frozenset({"c1", "v1"}) and li["px|77"] == [frozenset({"P9"})]
+    assert set(li) - {"_incomplete"} == {"nv|M|O", "px|77"} and li["nv|M|O"][0] == frozenset({"c1", "v1"}) and li["px|77"] == [frozenset({"P9"})]
 
 
 def t_link_position_one_lane_is_exact():
@@ -358,10 +358,51 @@ def t_runner_venue_reads_are_read_only():
     src = open(os.path.join(HERE, "p2_audit.py")).read()
     body = src[src.index("def read_novig_fills"):src.index("def send_private")]
     paths = set(__import__("re").findall(r'"(/v[0-9][^"]*)"', body))
-    assert paths == {"/v3/portfolio/fills", "/v4/mm/get_trades"}, paths
+    assert paths == {"/v3/portfolio/fills", "/v4/mm/get_trades"}, paths   # px_login's POST /auth/login lives in book_check
     for bad in ("place", "cancel", "order(", "/orders", "trade_key", "TRADE_KEY_PEM", "px_live", "book_live", "executor"):
         assert bad not in body, bad
     assert "nv.ready()" in body          # Novig refuses to run unless the key is confirmed read-only
+
+
+# ---- completeness: a possibly-truncated venue read never yields EXACT
+def t_px_cap_or_paging_marker_is_incomplete():
+    assert c.px_trades_complete([{}] * 99) and not c.px_trades_complete([{}] * 100) and not c.px_trades_complete([{}] * 250)
+    for k in ("next", "cursor", "next_cursor", "has_more", "pagination", "Offset"):
+        assert not c.px_trades_complete([{}] * 3, ["trades", k]), k
+    assert c.px_trades_complete([{}] * 3, ["trades", "status"])
+
+
+def t_incomplete_venue_fails_closed():
+    fills = [F("M", "O", "c1")]
+    trades = [{"id": 5, "order_id": "P9"}]
+    li = c.link_index(fills, trades, {"nv": False, "px": True})
+    assert c.resolve_link(NV("nv|M|O"), li, NVX)[0] == "link_source_incomplete"
+    assert c.resolve_link(R(id="px|5", book="ProphetX"), li, NVX)[0] == "exact_link"
+    li2 = c.link_index(fills, trades, {"nv": True, "px": False})
+    assert c.resolve_link(R(id="px|5", book="ProphetX"), li2, NVX)[0] == "link_source_incomplete"
+    rep = c.build([NV("nv|M|O")], NVX, links=li)
+    assert not any(b.startswith("EXACT") for b in rep["buckets"]) and rep["join"].get("link:link_source_incomplete") == 1
+
+
+def t_novig_page_cap_marks_truncated():
+    import types
+    m = _runner()
+    calls = []
+    fake = types.SimpleNamespace(ready=lambda: True, _S={"id": "K"},
+                                 get=lambda path, prm: (calls.append(prm), {"w": {"items": [{"fillId": len(calls)}], "next": "cur"}})[1])
+    sys.modules["novig_signed"] = fake
+    try:
+        os.environ.pop("NOVIG_TRADE_KEY_ID", None)
+        fills, note, ok = m.read_novig_fills()
+    finally:
+        sys.modules.pop("novig_signed", None)
+    assert ok is False and "TRUNCATED" in note and len(calls) == 40 and len(fills) == 40
+    fake2 = types.SimpleNamespace(ready=lambda: True, _S={"id": "K"}, get=lambda path, prm: {"w": {"items": [{"fillId": 1}], "next": None}})
+    sys.modules["novig_signed"] = fake2
+    try:
+        assert m.read_novig_fills()[2] is True
+    finally:
+        sys.modules.pop("novig_signed", None)
 
 
 _n = 0

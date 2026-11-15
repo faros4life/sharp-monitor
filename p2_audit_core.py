@@ -270,9 +270,27 @@ def render(rep):
 #   ProphetX  registry order_id == trade.order_id; the trade's id IS the tracker key px|{trade.id}
 # A tracker row is a POSITION on Novig: every fill on it is an order, and the row is EXACT only if EVERY order resolves to
 # a registry claim and they are all ONE lane. Money is never split across lanes; anything else fails closed.
-def link_index(fills, trades):
-    """{tracker id: [frozenset(order ids of one fill / trade), ...]} from venue fill and trade rows. Pure."""
-    out = {}
+PX_TRADES_CAP = 100   # every recorded GET /v4/mm/get_trades returned exactly 100 rows (px_fee_check, positions, link recon):
+                      # treated as a CAP. No paging parameter is documented or used anywhere in the repo.
+
+
+def px_trades_complete(trades, data_keys=()):
+    """False when the ProphetX read may be truncated: it hit the observed 100-row cap, or the response carries any
+    paging marker. A partial trade set must never produce EXACT (a missing trade could hide a second lane)."""
+    marker = {k.lower() for k in data_keys} & {"next", "cursor", "next_cursor", "has_more", "page", "offset", "pagination"}
+    return len(trades or []) < PX_TRADES_CAP and not marker
+
+
+def link_index(fills, trades, complete=None):
+    """{tracker id: [frozenset(order ids of one fill / trade), ...]} from venue fill and trade rows. Pure.
+    complete = {"nv": bool, "px": bool}: a venue whose read may be truncated contributes NO link; its rows are marked
+    in out["_incomplete"] so resolve_link reports link_source_incomplete instead of a wrong EXACT."""
+    complete = {"nv": True, "px": True, **(complete or {})}
+    out = {"_incomplete": {v for v, ok in complete.items() if not ok}}
+    if not complete["nv"]:
+        fills = []
+    if not complete["px"]:
+        trades = []
     for f in fills or []:
         f = f if isinstance(f, dict) else {}
         mk, oc = f.get("marketId"), f.get("outcomeId")
@@ -287,9 +305,12 @@ def link_index(fills, trades):
 
 
 def resolve_link(row, links, index, norm=_norm):
-    """-> (status, lane, key). status: exact_link | no_venue_link | link_order_not_in_registry | link_order_ambiguous |
-    link_position_multi_lane | venue_unmatched"""
-    orders = (links or {}).get(str(row.get("id") or ""))
+    """-> (status, lane, key). status: exact_link | no_venue_link | link_source_incomplete | link_order_not_in_registry |
+    link_order_ambiguous | link_position_multi_lane | venue_unmatched"""
+    rid = str(row.get("id") or "")
+    if rid.split("|", 1)[0] in (links or {}).get("_incomplete", set()):
+        return "link_source_incomplete", None, None
+    orders = (links or {}).get(rid)
     if not orders:
         return "no_venue_link", None, None
     ven = norm(row.get("book"))
