@@ -1,6 +1,224 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-15T00:05:43Z",
+   "base_depth": 903395,
+   "best_price": 0.75,
+   "best_price_american": -300,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.76,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-14",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -991,
+     "new_this_side": 234064,
+     "other_side": 194569,
+     "other_side_all_levels": 355847,
+     "ratio": 4.1,
+     "this_side": 798168,
+     "this_side_all_levels": 1524692
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "DAL (0)",
+     "price": 0.75,
+     "this_side": 110633
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Dallas Mavericks",
+     "price": 0.7561,
+     "this_side": 104961
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 2158319.9699999997,
+    "volume_24h_fp": 2253752.2800000003,
+    "volume_fp": 2312655.99
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 49037.63,
+    "volume_24h_fp": 1284989.48,
+    "volume_fp": 50381.21
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 2109282.34,
+    "volume_24h_fp": 968762.8,
+    "volume_fp": 2262274.7800000003
+   },
+   "fade_price": 0.24,
+   "first_seen_utc": "2026-11-15T00:00:26Z",
+   "game": "Dallas vs Cleveland",
+   "game_surge_books": [
+    "novig",
+    "prophetx"
+   ],
+   "game_x": 1.53,
+   "key": "kalshi|KXNBAGAME-26NOV14DALCLE|ml|0",
+   "lead_min": 24,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 234064,
+   "new_x": 0.26,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 2158319.9699999997,
+      "volume_24h_fp": 2253752.2800000003,
+      "volume_fp": 2312655.99
+     },
+     "game_normal": 999002,
+     "game_x": 1.53,
+     "normal": 893853,
+     "now": 1524692,
+     "type": "ML",
+     "x": 1.71
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 18817558.0,
+      "volume": 29474469.0
+     },
+     "game_normal": 42737,
+     "game_x": 3.14,
+     "normal": 33271,
+     "now": 134385,
+     "type": "ML",
+     "x": 4.04
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 33234,
+     "game_x": 3.36,
+     "normal": 19693,
+     "now": 111669,
+     "type": "ML",
+     "x": 5.67
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.76,
+   "price_american": -317,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.76,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -350
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -340
+    },
+    "betopenly": {
+     "point": null,
+     "price": -315
+    },
+    "betrivers": {
+     "point": null,
+     "price": -315
+    },
+    "betus": {
+     "point": null,
+     "price": -340
+    },
+    "bovada": {
+     "point": null,
+     "price": -330
+    },
+    "draftkings": {
+     "point": null,
+     "price": -344
+    },
+    "fanatics": {
+     "point": null,
+     "price": -340
+    },
+    "fanduel": {
+     "point": null,
+     "price": -350
+    },
+    "kalshi": {
+     "point": null,
+     "price": -335
+    },
+    "limitless": {
+     "point": null,
+     "price": -344
+    },
+    "lowvig": {
+     "point": null,
+     "price": -336
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -330
+    },
+    "novig": {
+     "point": null,
+     "price": -300
+    },
+    "polymarket": {
+     "point": null,
+     "price": -317
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -317
+    },
+    "prophetx": {
+     "point": null,
+     "price": -310
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -355
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNBAGAME-26NOV14DALCLE-DAL"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig",
+    "prophetx"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Dallas",
+   "side_label": "Dallas",
+   "size_x": 1.71,
+   "start_source": "odds",
+   "start_utc": "2026-11-15T00:30:00Z",
+   "surge_books": [
+    "novig",
+    "prophetx"
+   ],
+   "teams": [
+    "Dallas",
+    "Cleveland"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-14T23:50:13Z",
    "base_depth": 460956,
    "best_price": 0.54,
@@ -14,6 +232,7 @@
     "novig",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.54,
    "clv_cents": 0.0,
    "confirmed_after_min": 6,
@@ -112,6 +331,8 @@
    "norm_ready_books": 3,
    "paper_only": false,
    "price": 0.54,
+   "price_after_15m": 0.5673,
+   "price_after_15m_book": "kalshi",
    "price_american": -117,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.54,
@@ -205,6 +426,7 @@
    "size_x": 0.89,
    "start_source": "odds",
    "start_utc": "2026-11-15T00:00:00Z",
+   "still_actionable": false,
    "surge_books": [
     "novig"
    ],
@@ -229,8 +451,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.68,
-   "clv_cents": 1.0,
+   "close_price": 0.69,
+   "clv_cents": 2.0,
    "confirmed_after_min": 4,
    "date": "2026-11-14",
    "depth_by_book": {
@@ -261,9 +483,9 @@
     "volume_fp": 642.58
    },
    "ex_stats_close": {
-    "open_interest_fp": 12311.78,
-    "volume_24h_fp": 11947.89,
-    "volume_fp": 13079.18
+    "open_interest_fp": 12318.97,
+    "volume_24h_fp": 13027.08,
+    "volume_fp": 13086.37
    },
    "ex_stats_first": {
     "open_interest_fp": 8609.25,
@@ -460,7 +682,7 @@
    },
    "ex_stats_close": {
     "openInterest": 13182243.0,
-    "volume": 20532571.0
+    "volume": 20534223.0
    },
    "ex_stats_first": {
     "openInterest": 13156023.0,
@@ -841,6 +1063,7 @@
     "novig",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.47,
    "clv_cents": 0.0,
    "confirmed_after_min": 5,
@@ -1012,7 +1235,8 @@
      "price": -102
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-15T00:05:43Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNHLTOTAL-26NOV14EDMTOR-7"
@@ -1258,6 +1482,7 @@
     "novig",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.68,
    "clv_cents": 0.0,
    "confirmed_after_min": 5,
@@ -3405,8 +3630,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 7260486.0,
-    "volume": 8398613.0
+    "openInterest": 7261751.0,
+    "volume": 8399878.0
    },
    "ex_stats_first": {
     "openInterest": 7191104.0,
@@ -7273,6 +7498,7 @@
    "ex_stats_change": null,
    "ex_stats_first": null,
    "fade_price": 0.2632,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-14T20:10:13Z",
    "game": "USC at Indiana",
    "game_surge_books": [
@@ -7280,6 +7506,7 @@
     "prophetx"
    ],
    "game_x": 3.92,
+   "graded_by": "espn",
    "key": "prophetx|{\"line\": 0, \"px_event\": 1704709053, \"px_market\": 219, \"side\": \"1\"}",
    "lead_min": 10,
    "league": "NCAAF",
@@ -7402,7 +7629,7 @@
     "px_market": 219,
     "side": "1"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "kalshi",
@@ -7410,7 +7637,8 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 13,
+   "settle_tries": 14,
+   "settled_utc": "2026-11-15T00:05:43Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Indiana",
@@ -7428,7 +7656,7 @@
     "Indiana"
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": 0.34
   },
   {
    "alerted_utc": "2026-11-14T20:20:19Z",
@@ -7745,7 +7973,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 7,
+   "settle_tries": 8,
    "sharp_agree": [
     "Rice Owls -2.5 (-115)"
    ],
@@ -15485,12 +15713,14 @@
     "volume": 18013237.0
    },
    "fade_price": 0.25,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-14T14:25:40Z",
    "game": "USC @ Indiana",
    "game_surge_books": [
     "novig"
    ],
    "game_x": 3.42,
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1b2a4-4736-7183-9d34-754dbcf19ee6\", \"outcome_id\": \"01a1b2a4-4736-7183-9d34-75571add7ead\"}",
    "lead_min": 360,
    "league": "NCAAF",
@@ -15600,14 +15830,15 @@
     "market_id": "01a1b2a4-4736-7183-9d34-754dbcf19ee6",
     "outcome_id": "01a1b2a4-4736-7183-9d34-75571add7ead"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "prophetx"
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 13,
+   "settle_tries": 14,
+   "settled_utc": "2026-11-15T00:05:43Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Indiana",
@@ -15625,7 +15856,7 @@
     "Indiana"
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": 0.32
   },
   {
    "alerted_utc": "2026-11-14T14:25:40Z",
@@ -22799,7 +23030,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 38,
+   "settle_tries": 39,
    "sharp_agree": [
     "Over 50.5 (-106)"
    ],
@@ -24425,7 +24656,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 13,
+   "settle_tries": 14,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UCF",
@@ -25662,7 +25893,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 25,
+   "settle_tries": 26,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Rice",
@@ -27328,7 +27559,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 38,
+   "settle_tries": 39,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Auburn",
@@ -32686,7 +32917,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 38,
+   "settle_tries": 39,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Youngstown St.",
