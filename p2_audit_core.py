@@ -252,11 +252,26 @@ def build(rows, index, norm=_norm, links=None, clv=None):
 CSV_FIELDS = ("bucket", "segment", "book", "plays", "verified_money", "W", "L", "P", "risked", "net", "roi_pct", "first", "last")
 
 
+# Verified unit schedule: (lane, effective-from UTC, unit in dollars to win). Peter, 15 Nov 2026: "Lane 1 300";
+# executor.LIVE_UNIT records the change $200 -> $300 on 9 Nov. A segment gets units ONLY when EXACT-attributed
+# to that lane and every play in it is dated on/after the effective time. Other lanes: UNAVAILABLE until confirmed.
+UNIT_SCHEDULE = {"PHASE 1": ("2026-11-09T00:00:00+00:00", 300.0)}
+
+
+def units_for(bucket, seg_range, net):
+    lane = bucket.split(":", 1)[1] if bucket.startswith("EXACT:") else None
+    if lane not in UNIT_SCHEDULE or not seg_range or not seg_range[0]:
+        return None
+    since, unit = UNIT_SCHEDULE[lane]
+    t0, t1 = utc(seg_range[0]), utc(since)
+    return round(net / unit, 2) if t0 and t1 and t0 >= t1 else None
+
+
 def render(rep):
     """(text, csv_rows) for PRIVATE delivery only. Aggregates per bucket and segment; never a game, bet, ticket or row."""
     L = ["PROJECT 2 - live lane audit (private). Buckets never mix: EXACT = venue order id -> one registry claim;",
          "FUZZY = the tracker's own lane label (UNVERIFIED); UNATTRIBUTED = no provable lane; CONFLICT = tracker vs registry disagree.",
-         "Units: UNAVAILABLE (no verified unit schedule with effective dates). ROI = net / risked on verified-money plays only.",
+         "Units: Lane 1 (PHASE 1) at 300 to win from 9 Nov, EXACT plays only; other lanes UNAVAILABLE until confirmed. ROI = net / risked on verified-money plays.",
          f"Join: {rep.get('join')} | lane conflicts: {len(rep.get('lane_conflicts') or [])}", ""]
     rows = []
     for b, v in (rep.get("buckets") or {}).items():
@@ -266,6 +281,8 @@ def render(rep):
         for seg in ("all", "H1", "H2", "last50"):
             a = v[seg]
             roi = "n/a" if a["roi_pct"] is None else f"{a['roi_pct']:+.2f}%"
+            u_ = units_for(b, v.get("settled_range"), a["net"]) if a["verified_money"] else None
+            roi += "  units " + ("UNAVAILABLE" if u_ is None else f"{u_:+.2f}u")
             L.append(f"  {seg:<6} plays {a['settled']:>4} verified {a['verified_money']:>4}  W-L-P {a['W']}-{a['L']}-{a['P']}  "
                      f"risked {a['risked']:.2f} net {a['net']:+.2f} ROI {roi}")
             if a.get("clv_n") is not None:
