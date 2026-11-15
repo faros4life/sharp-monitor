@@ -112,6 +112,8 @@
    "norm_ready_books": 3,
    "paper_only": false,
    "price": 0.81,
+   "price_after_15m": 0.805,
+   "price_after_15m_book": "novig",
    "price_american": -426,
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.81,
@@ -174,6 +176,7 @@
    "size_x": 2.56,
    "start_source": "odds",
    "start_utc": "2026-11-15T18:00:00Z",
+   "still_actionable": true,
    "surge_books": [
     "kalshi"
    ],
@@ -198,8 +201,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.71,
-   "clv_cents": 12.0,
+   "close_price": 0.6,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-14",
    "depth_by_book": {
@@ -224,9 +227,9 @@
     "volume_fp": 810.06
    },
    "ex_stats_close": {
-    "open_interest_fp": 30043.019999999997,
-    "volume_24h_fp": 19473.690000000002,
-    "volume_fp": 33066.09
+    "open_interest_fp": 31806.32,
+    "volume_24h_fp": 34817.21,
+    "volume_fp": 41301.61
    },
    "ex_stats_first": {
     "open_interest_fp": 17597.79,
@@ -556,9 +559,9 @@
     "volume_fp": 41.6
    },
    "ex_stats_close": {
-    "open_interest_fp": 1517.62,
-    "volume_24h_fp": 1532.4,
-    "volume_fp": 1561.95
+    "open_interest_fp": 1545.52,
+    "volume_24h_fp": 1589.85,
+    "volume_fp": 1589.85
    },
    "ex_stats_first": {
     "open_interest_fp": 964.1,
@@ -1058,6 +1061,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settle_tries": 1,
    "sharp_agree": [
     "Under 145.5 (-104)"
    ],
@@ -1130,9 +1134,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 4608.67,
-    "volume_24h_fp": 7655.82,
-    "volume_fp": 7887.67
+    "open_interest_fp": 4640.18,
+    "volume_24h_fp": 7913.93,
+    "volume_fp": 7919.18
    },
    "ex_stats_first": {
     "open_interest_fp": 2634.69,
@@ -1481,6 +1485,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UAB",
@@ -1983,6 +1988,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settle_tries": 1,
    "sharp_agree": [
     "Western Carolina Catamounts -3.5 (-104)"
    ],
@@ -3342,6 +3348,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settle_tries": 1,
    "sharp_agree": [
     "Portland St Vikings +10.5 (-122)"
    ],
@@ -3890,6 +3897,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Jacksonville St.",
@@ -4065,6 +4073,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Brown",
@@ -4429,6 +4438,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Charleston Southern",
@@ -4821,6 +4831,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UT Arlington",
@@ -5793,6 +5804,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "San Francisco",
@@ -5978,6 +5990,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Davidson",
@@ -6175,6 +6188,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Siena",
@@ -6498,6 +6512,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
+   "settle_tries": 1,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Fairfield",
@@ -9251,7 +9266,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 48,
+   "settle_tries": 49,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Cornell",
@@ -14992,7 +15007,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 222,
+   "settle_tries": 223,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Fritz",
