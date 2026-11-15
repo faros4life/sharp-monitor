@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 15, 3:55 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 46.
+Updated Sun Nov 15, 4:00 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 45.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 1524-1172 (-16.86u flat) | rule met: 922-713
+**Record:** 1525-1172 (-16.50u flat) | rule met: 922-713
 
-**Fade (paper, betting against the print):** 906-1251 (-215.59u flat, after fees)
+**Fade (paper, betting against the print):** 906-1252 (-216.59u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -48,7 +48,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 14 9:55PM | NFL | Buffalo vs New York J | moneyline: Buffalo | kalshi | $232k | -400 | ✅ novig,prophetx |  | +0.0c | yes | pending |
 | Nov 14 9:45PM | NFL | New England vs Detroit: Total Points | total: Over 49.5 points | kalshi | $200k | -104 | ✅ novig |  | +1.0c | yes | pending |
 | Nov 14 9:45PM | NFL | Kansas City vs Atlanta | moneyline: Kansas City | kalshi | $153k | -170 | ✅ novig,prophetx |  | +0.0c | yes | pending |
-| Nov 14 9:40PM | NCAAF | North Dakota St. vs Hawai'i | moneyline: North Dakota St. | kalshi | $134k | -257 |  |  | +8.0c | yes | pending |
+| Nov 14 9:40PM | NCAAF | North Dakota St. vs Hawai'i | moneyline: North Dakota St. | kalshi | $134k | -257 |  |  | +8.0c | yes | W |
 | Nov 14 9:40PM | NCAAF | Idaho St. vs Montana | moneyline: Montana | kalshi | $76k | -285 | ✅ novig |  | +0.0c | yes | W |
 | Nov 14 9:35PM | NFL | New England vs Detroit: Spread | spread: NOT Detroit wins by over 2.5 points | kalshi | $172k | +108 | ✅ novig |  | +1.0c |  | pending |
 | Nov 14 9:30PM | NHL | New York I vs Anaheim: Total Goals | total: Over 6.5 goals scored | kalshi | $28k | -127 | ✅ novig |  | +1.0c | yes | W |
