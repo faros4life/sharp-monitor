@@ -1,12 +1,12 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 15, 5:20 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 16.
+Updated Sun Nov 15, 5:30 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 13.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 288-172 (-25.77u flat) | rule met: 50-46
+**Record:** 290-173 (-25.31u flat) | rule met: 51-47
 
-**Fade (paper, betting against the print):** 147-253 (+25.05u flat, after fees)
+**Fade (paper, betting against the print):** 148-255 (+24.64u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -17,10 +17,10 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 15 1:20PM | NCAAB | Purdue Fort Wayne vs Eastern Illinois | moneyline: Purdue Fort Wayne | kalshi | $30k | -150 | ✅ novig |  | +0.0c | yes | W |
 | Nov 15 12:50PM | NCAAB | Purdue Fort Wayne vs Eastern Illinois: Point Total | total: NOT Over 144.5 points | kalshi | $29k | -100 |  |  | +2.0c | yes | L |
 | Nov 15 12:50PM | NCAAB | University at Albany vs Holy Cross: Spread | spread: NOT University at Albany wins by over 2.5 points | kalshi | $26k | +104 |  |  | +19.0c | yes | pending |
-| Nov 15 12:30PM | NCAAB | Baylor vs Texas | moneyline: Texas | kalshi | $39k | -150 | ✅ novig | ❌ | +1.0c |  | pending |
+| Nov 15 12:30PM | NCAAB | Baylor vs Texas | moneyline: Texas | kalshi | $39k | -150 | ✅ novig | ❌ | +1.0c |  | W |
 | Nov 15 12:20PM | NCAAB | William & Mary vs Michigan: Point Total | total: Over 165.5 points | kalshi | $25k | -127 |  |  | +5.0c | yes | W |
-| Nov 15 12:00PM | NCAAB | Creighton vs Iowa | moneyline: Iowa | kalshi | $33k | -178 | ✅ novig | ✅ | -1.0c |  | pending |
-| Nov 15 11:20AM | NCAAB | Baylor vs Texas: Spread | spread: Texas wins by over 2.5 points | kalshi | $30k | -117 |  | ❌ | +1.0c |  | pending |
+| Nov 15 12:00PM | NCAAB | Creighton vs Iowa | moneyline: Iowa | kalshi | $33k | -178 | ✅ novig | ✅ | -1.0c |  | L |
+| Nov 15 11:20AM | NCAAB | Baylor vs Texas: Spread | spread: Texas wins by over 2.5 points | kalshi | $30k | -117 |  | ❌ | +1.0c |  | W |
 | Nov 15 10:30AM | NCAAB | Norfolk St. vs Georgia St.: Spread | spread: NOT Georgia St. wins by over 11.5 points | kalshi | $33k | +113 |  |  | +3.0c |  | L |
 | Nov 15 10:10AM | NCAAB | Norfolk St. vs Georgia St.: Point Total | total: NOT Over 144.5 points | kalshi | $28k | -100 |  |  | +3.0c | yes | W |
 | Nov 15 10:00AM | NCAAB | Niagara vs Iowa St.: Point Total | total: Over 143.5 points | kalshi | $32k | -100 |  |  | +1.0c |  | L |
