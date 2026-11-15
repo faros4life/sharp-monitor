@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 15, 9:35 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 65.
+Updated Sun Nov 15, 9:40 AM ET. This run: 0 new, 0 not confirmed, 2 pending. Open alerts: 65.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -13,7 +13,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 15 9:20AM | NFL | Jacksonville vs Tennessee: Total Points | total: NOT Over 45.5 points | kalshi | $184k | -104 | ✅ novig,prophetx | ✅ | +0.0c |  | pending |
 | Nov 15 8:55AM | NFL | Jacksonville vs Tennessee: Total Points | total: NOT Over 46.5 points | kalshi | $234k | -108 |  |  | +1.0c | yes | pending |
 | Nov 15 8:46AM | NFL | Carolina vs New Orleans | moneyline: New Orleans | kalshi | $111k | -108 |  | ❌ | -1.0c | yes | pending |
-| Nov 15 8:30AM | NFL | Jacksonville Jaguars @ Tennessee Titans | moneyline: JAX (0) | novig | $42k | -525 | ✅ kalshi,prophetx |  | +0.5c |  | pending |
+| Nov 15 8:30AM | NFL | Jacksonville Jaguars @ Tennessee Titans | moneyline: JAX (0) | novig | $42k | -525 | ✅ kalshi,prophetx |  | +0.0c |  | pending |
 | Nov 15 8:15AM | NHL | Florida vs Dallas | moneyline: Dallas | kalshi | $43k | -138 |  |  | -1.0c |  | pending |
 | Nov 15 8:05AM | NHL | Florida vs Dallas: Total Goals | total: Over 5.5 goals scored | kalshi | $33k | -117 | ✅ novig |  | +0.0c |  | pending |
 | Nov 15 7:55AM | NBA | Indiana vs Philadelphia | moneyline: Philadelphia | kalshi | $226k | -270 | ✅ novig |  | +0.0c |  | pending |
