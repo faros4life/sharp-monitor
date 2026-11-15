@@ -1,17 +1,17 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 15, 4:30 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 21.
+Updated Sun Nov 15, 4:40 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 20.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 285-169 (-24.36u flat) | rule met: 49-45
+**Record:** 286-169 (-24.05u flat) | rule met: 49-45
 
-**Fade (paper, betting against the print):** 144-250 (+23.62u flat, after fees)
+**Fade (paper, betting against the print):** 144-251 (+22.62u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 15 4:20PM | NCAAB | Western Michigan vs Southern Indiana: Point Total | total: Over 141.5 points | kalshi | $38k | +108 |  | ❌ | +0.0c |  | pending |
-| Nov 15 4:10PM | NCAAB | Coastal Carolina vs Wisconsin: Point Total | total: NOT Over 149.5 points | kalshi | $33k | -113 |  |  | +0.0c |  | pending |
+| Nov 15 4:10PM | NCAAB | Coastal Carolina vs Wisconsin: Point Total | total: NOT Over 149.5 points | kalshi | $33k | -113 |  |  | +0.0c | yes | pending |
 | Nov 15 2:20PM | NCAAB | Missouri vs Marquette | moneyline: Marquette | kalshi | $43k | -133 | ✅ novig | ✅ | +0.0c |  | pending |
 | Nov 15 1:20PM | NCAAB | Purdue Fort Wayne vs Eastern Illinois | moneyline: Purdue Fort Wayne | kalshi | $30k | -150 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 15 12:50PM | NCAAB | Purdue Fort Wayne vs Eastern Illinois: Point Total | total: NOT Over 144.5 points | kalshi | $29k | -100 |  |  | +2.0c | yes | pending |
@@ -30,7 +30,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 15 2:10AM | TENNIS | Shelton vs Fils | moneyline: Shelton | kalshi | $25k | -170 |  |  | +0.0c |  | pending |
 | Nov 15 1:30AM | NCAAB | Western Michigan vs Southern Indiana | moneyline: Western Michigan | kalshi | $39k | -270 |  |  | +0.0c | yes | pending |
 | Nov 15 1:20AM | NCAAB | Quinnipiac vs Central Connecticut St. | moneyline: Quinnipiac | kalshi | $26k | -170 |  |  | +25.0c |  | L |
-| Nov 15 1:20AM | NCAAB | Princeton vs Rhode Island | moneyline: Rhode Island | kalshi | $34k | -335 |  |  | -1.0c |  | pending |
+| Nov 15 1:20AM | NCAAB | Princeton vs Rhode Island | moneyline: Rhode Island | kalshi | $34k | -335 |  |  | -1.0c |  | W |
 | Nov 15 1:20AM | NCAAB | Norfolk St. vs Georgia St. | moneyline: Georgia St. | kalshi | $59k | -567 |  |  | +2.0c |  | W |
 | Nov 15 1:20AM | NCAAB | Louisville vs Memphis | moneyline: Louisville | kalshi | $50k | -355 |  |  | +2.0c | yes | L |
 | Nov 15 1:20AM | NCAAB | High Point vs Saint Louis | moneyline: Saint Louis | kalshi | $25k | -257 |  |  | +1.0c |  | pending |
