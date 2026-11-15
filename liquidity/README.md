@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 15, 10:45 AM ET. This run: 2 new, 0 not confirmed, 3 pending. Open alerts: 71.
+Updated Sun Nov 15, 10:50 AM ET. This run: 2 new, 0 not confirmed, 1 pending. Open alerts: 73.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,10 +10,12 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Nov 15 10:50AM | NFL | San Francisco 49ers @ Dallas Cowboys | moneyline: SF (0) | novig | $44k | -190 | ✅ kalshi,prophetx |  | +0.0c |  | pending |
+| Nov 15 10:50AM | NFL | Kansas City Chiefs @ Atlanta Falcons | moneyline: KC (0) | novig | $35k | -170 | ✅ kalshi,prophetx |  | +0.0c |  | pending |
 | Nov 15 10:45AM | NFL | Carolina Panthers @ New Orleans Saints | moneyline: CAR (0) | novig | $36k | -100 | ✅ kalshi | ✅ | +0.0c |  | pending |
-| Nov 15 10:45AM | NFL | Miami Dolphins @ Indianapolis Colts | spread: MIA +4.5 (-4.5) | novig | $97k | -102 |  |  | +0.0c |  | pending |
+| Nov 15 10:45AM | NFL | Miami Dolphins @ Indianapolis Colts | spread: MIA +4.5 (-4.5) | novig | $97k | -102 |  |  | -0.5c |  | pending |
 | Nov 15 10:30AM | NHL | Calgary vs Anaheim: Spread | spread: NOT Anaheim wins by over 1.5 goals | kalshi | $46k | -186 | ✅ novig |  | +0.0c |  | pending |
-| Nov 15 10:10AM | NFL | Los Angeles Rams @ Arizona Cardinals | moneyline: LAR (0) | novig | $31k | -426 | ✅ kalshi,prophetx | ✅ | +0.0c |  | pending |
+| Nov 15 10:10AM | NFL | Los Angeles Rams @ Arizona Cardinals | moneyline: LAR (0) | novig | $31k | -426 | ✅ kalshi,prophetx | ✅ | -0.5c |  | pending |
 | Nov 15 10:05AM | NBA | Atlanta vs Milwaukee: Spread | spread: Atlanta wins by over 7.5 points | kalshi | $30k | -108 |  |  | +1.0c | yes | pending |
 | Nov 15 9:45AM | NFL | Houston Texans @ Cleveland Browns | moneyline: HOU (0) | novig | $26k | -203 | ✅ kalshi,prophetx | ❌ | +0.0c |  | pending |
 | Nov 15 9:20AM | NFL | Jacksonville vs Tennessee: Total Points | total: NOT Over 45.5 points | kalshi | $184k | -104 | ✅ novig,prophetx | ✅ | +0.0c |  | pending |
@@ -52,7 +54,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 15 1:05AM | NFL | Buffalo vs New York J: Spread | spread: NOT Buffalo wins by over 7.5 points | kalshi | $154k | +104 | ✅ novig |  | +1.0c |  | pending |
 | Nov 15 12:50AM | NFL | Los Angeles R vs Arizona: Spread | spread: Los Angeles R wins by over 9.5 points | kalshi | $70k | -100 | ✅ novig |  | +1.0c | yes | pending |
 | Nov 15 12:45AM | NBA | Houston vs Washington | moneyline: Houston | kalshi | $66k | -376 |  |  | -3.0c | yes | pending |
-| Nov 15 12:10AM | NFL | Carolina Panthers @ New Orleans Saints | moneyline: NO (0) | novig | $56k | -117 | ✅ prophetx |  | -3.5c | yes | pending |
+| Nov 15 12:10AM | NFL | Carolina Panthers @ New Orleans Saints | moneyline: NO (0) | novig | $56k | -117 | ✅ prophetx |  | -3.0c | yes | pending |
 | Nov 15 12:10AM | NFL | Houston vs Cleveland: Total Points | total: Over 40.5 points | kalshi | $64k | -104 | ✅ novig |  | +2.0c | yes | pending |
 | Nov 15 12:10AM | NFL | Pittsburgh vs Cincinnati | moneyline: Cincinnati | kalshi | $200k | -178 | ✅ novig,prophetx |  | +0.0c | yes | pending |
 | Nov 14 11:50PM | NBA | Oklahoma City vs Sacramento | moneyline: Oklahoma City | kalshi | $65k | -426 |  |  | +0.0c | yes | pending |
@@ -208,5 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 14 3:55AM | NCAAF | Villanova vs Holy Cross | moneyline: Villanova | kalshi | $94k | -257 |  |  | +2.0c | yes | L |
 | Nov 14 3:55AM | NCAAF | North Alabama vs West Georgia | moneyline: North Alabama | kalshi | $35k | -525 |  |  | +0.0c | yes | W |
 | Nov 14 3:55AM | NCAAF | North Carolina Central vs South Carolina St. | moneyline: South Carolina St. | kalshi | $109k | -400 |  |  | -1.0c | yes | W |
-| Nov 14 3:55AM | NCAAF | Murray St. vs Indiana St. | moneyline: Indiana St. | kalshi | $60k | -300 |  |  | +0.0c | yes | L |
-| Nov 14 3:55AM | NCAAF | Lehigh vs Richmond | moneyline: Lehigh | kalshi | $51k | -567 |  |  | +0.0c | yes | W |
