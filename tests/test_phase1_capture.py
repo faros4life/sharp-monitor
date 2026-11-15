@@ -84,6 +84,30 @@ ck("A row: manual source with no lane -> manual-source, lane left unset", tb.ass
 b = {"order_ref": "DUP", "source": "bot"}
 ck("A row: ambiguous id is not resolved", tb.assign_lane_src(b, idx, rg.lane_of) == "none")
 
+# ---- tracker KEY_LANE from the registry row (not executor.lane_of)
+tb.KEY_LANE.clear(); tb.KEY_LANE_CONFLICT.clear()
+ck("K board source -> BOARD V3 (executor.lane_of would have raised on live=True)",
+   tb.key_lane_put({"key": "NBA|A @ B|total|OVER", "source": "board", "live": True}) == "BOARD V3")
+ck("K r1 / rules", tb.key_lane_put({"key": "NFL|C @ D|side|C", "source": "r1", "live": False}) == "R1"
+   and tb.key_lane_put({"key": "NBA|E @ F|total|UNDER", "source": "rules", "live": True}) == "PHASE 1")
+ck("K unknown legacy source labels nothing (no PHASE 1 default)", tb.key_lane_put({"key": "NBA|G @ H|total|OVER", "source": "muse"}) is None
+   and "NBA|G @ H|total|OVER" not in tb.KEY_LANE)
+tb.key_lane_put({"key": "NBA|A @ B|total|OVER", "source": "r1"})
+ck("K one key under two lanes -> conflict, unlabelled", "NBA|A @ B|total|OVER" not in tb.KEY_LANE and "NBA|A @ B|total|OVER" in tb.KEY_LANE_CONFLICT)
+ck("K a conflicted key stays conflicted", tb.key_lane_put({"key": "NBA|A @ B|total|OVER", "source": "board"}) is None)
+_bm = tb.bot_match
+tb.bot_match = lambda b, keys: next(iter(keys)) in b["_m"]
+try:
+    ck("K row matching one lane's keys -> that lane", tb.bot_row_lane({"_m": {"NFL|C @ D|side|C"}}) == "R1")
+    ck("K row matching two lanes -> None", tb.bot_row_lane({"_m": {"NFL|C @ D|side|C", "NBA|E @ F|total|UNDER"}}) is None)
+    ck("K row matching a conflicted key -> None", tb.bot_row_lane({"_m": {"NBA|A @ B|total|OVER"}}) is None)
+    ck("K row matching nothing -> None", tb.bot_row_lane({"_m": set()}) is None)
+finally:
+    tb.bot_match = _bm
+    tb.KEY_LANE.clear(); tb.KEY_LANE_CONFLICT.clear()
+src_tb = open(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "tracker_build.py")).read()
+ck("K tracker no longer labels lanes with executor.lane_of", "ex.lane_of(" not in src_tb)
+
 # ---- P1-C identity at first observation
 full = {"league": "NBA", "game": "A @ B", "game_start": "2026-11-20T00:00:00Z", "bet": "Over 220.5"}
 ck("C complete row has no gaps", tb.ingest_missing(full) == [], str(tb.ingest_missing(full)))

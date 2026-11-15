@@ -73,6 +73,18 @@ def canon_lane(v):
     return LANE_CANON.get(n, str(v).strip().upper())
 
 
+def ambiguity_kind(claims):
+    """Fixed label for WHY one order id has several (key, lane) claims - counts only, no identifier.
+    different_lanes | same_lane_prefix_variant (one key is the other with a lane prefix) | same_lane_different_keys"""
+    lanes = {canon_lane(ln) for _k, ln in claims}
+    if len(lanes) > 1:
+        return "different_lanes"
+    keys = [str(k) for k, _ln in claims]
+    if len(keys) == 2 and any(a != b and a.split("|", 1)[-1] == b for a in keys for b in keys):
+        return "same_lane_prefix_variant"
+    return "same_lane_different_keys"
+
+
 def resolve(row, index, norm=_norm):
     """index: {order_id: [(venue, play_key, lane), ...]}.
     -> (status, lane, play_key). status: exact | no_order_ref | ref_not_in_registry | venue_unmatched | ambiguous_claims
@@ -89,7 +101,7 @@ def resolve(row, index, norm=_norm):
     if not claims:
         return "venue_unmatched", None, None
     if len(claims) > 1:
-        return "ambiguous_claims", None, None
+        return "ambiguous_claims:" + ambiguity_kind(claims), None, None
     (k, ln), = claims
     if not ln or not k:
         return "ambiguous_claims", None, None          # a claim without a lane or key proves nothing
@@ -115,6 +127,7 @@ def classify(rows, index, norm=_norm):
             items.append((r, "EXACT:" + reg_c, (norm(r.get("book")), key, reg_c)))
             continue
         st[status] += 1
+        status = status.split(":", 1)[0]
         if r.get("lane"):
             items.append((r, "FUZZY:" + (canon_lane(r["lane"]) or str(r["lane"])), None))
         else:
@@ -169,6 +182,19 @@ def _agg(plays):
             "roi_pct": round(net / risked * 100, 2) if risked else None, "by_book": by_book}
 
 
+def time_diag(plays, now=None):
+    """Counts only: per time field, how many plays carry it, how many lie AFTER the run time (a scheduled game_start can, a
+    settlement should not), and how many are exactly 00:00:00 UTC (often a date-only default, not a real time)."""
+    now = now or datetime.now(timezone.utc)
+    out = {}
+    for f in TIME_FIELDS:
+        ts = [t for t in (utc(p.get(f)) for p in plays) if t is not None]
+        raw = [p.get(f) for p in plays if p.get(f)]
+        out[f] = {"present": len(ts), "unparseable": len(raw) - len(ts), "after_run": sum(1 for t in ts if t > now),
+                  "midnight_utc": sum(1 for t in ts if (t.hour, t.minute, t.second) == (0, 0, 0))}
+    return out
+
+
 def bucket_report(plays):
     """Halves and last 50 are cut on ALL settled plays that have a time, BEFORE any money exclusion."""
     settled = [p for p in plays if p.get("result") in SETTLED]
@@ -185,7 +211,7 @@ def bucket_report(plays):
             "game_start_range": rng("game_start"), "multi_row_plays": sum(p["rows"] > 1 for p in plays),
             "mixed_result_plays": sum(p["mixed_results"] for p in plays),
             "possible_split_flagged_NOT_MERGED": sum(v - 1 for v in Counter((p.get("game"), p.get("bet"), p.get("book")) for p in plays).values() if v > 1),
-            "units": "UNAVAILABLE (no verified unit schedule)"}
+            "units": "UNAVAILABLE (no verified unit schedule)", "time_diag": time_diag(plays)}
 
 
 def build(rows, index, norm=_norm):
@@ -219,6 +245,8 @@ def render(rep):
             for bk, x in a["by_book"].items():
                 rows.append({"bucket": b, "segment": seg, "book": bk, "plays": x["n"], "verified_money": x["n"], "W": "", "L": "",
                              "P": "", "risked": x["risked"], "net": x["net"], "roi_pct": x["roi_pct"], "first": "", "last": ""})
+        L.append("  time fields (present / after run / 00:00 UTC): " + ", ".join(
+            f"{f_} {d_['present']}/{d_['after_run']}/{d_['midnight_utc']}" for f_, d_ in v["time_diag"].items()))
         L.append(f"  multi-row plays {v['multi_row_plays']}, mixed-result plays {v['mixed_result_plays']}, "
                  f"possible splits flagged (not merged) {v['possible_split_flagged_NOT_MERGED']}")
         L.append("")
