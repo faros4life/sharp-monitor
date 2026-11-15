@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 15, 12:00 PM ET. This run: 0 new, 0 not confirmed, 4 pending. Open alerts: 82.
+Updated Sun Nov 15, 12:05 PM ET. This run: 2 new, 2 not confirmed, 3 pending. Open alerts: 84.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,12 +10,14 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 15 11:55AM | NFL | Buffalo Bills at New York Jets | spread: Buffalo Bills -7.5 (-7.5) | prophetx | $35k | -103 | ✅ novig |  | +0.2c | yes | pending |
+| Nov 15 12:05PM | NBA | Indiana Pacers at Philadelphia 76ers | moneyline: Philadelphia 76ers | prophetx | $25k | -285 | ✅ kalshi,novig |  | +0.0c |  | pending |
+| Nov 15 12:05PM | NCAAF | Ole Miss @ Oklahoma | moneyline: OU (0) | novig | $26k | -122 |  |  | +0.0c |  | pending |
+| Nov 15 11:55AM | NFL | Buffalo Bills at New York Jets | spread: Buffalo Bills -7.5 (-7.5) | prophetx | $35k | -103 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 15 11:50AM | NFL | Los Angeles Rams at Arizona Cardinals | moneyline: Los Angeles Rams | prophetx | $33k | -430 | ✅ kalshi,novig | ✅ | +0.0c |  | pending |
 | Nov 15 11:50AM | NFL | Carolina vs New Orleans: Spread | spread: NOT Carolina wins by over 1.5 points | kalshi | $165k | -117 |  | ❌ | +0.0c |  | pending |
 | Nov 15 11:45AM | NFL | Buffalo Bills at New York Jets | spread: New York Jets +7.5 (+7.5) | prophetx | $28k | +101 | ✅ kalshi |  | +0.0c |  | pending |
 | Nov 15 11:40AM | NFL | Minnesota Vikings @ Green Bay Packers | moneyline: GB (0) | novig | $114k | -135 | ✅ kalshi |  | +0.5c |  | pending |
-| Nov 15 11:33AM | NBA | Indiana vs Philadelphia: Spread | spread: NOT Philadelphia wins by over 7.5 points | kalshi | $35k | -104 |  |  | -4.0c | yes | pending |
+| Nov 15 11:33AM | NBA | Indiana vs Philadelphia: Spread | spread: NOT Philadelphia wins by over 7.5 points | kalshi | $35k | -104 |  |  | -5.0c | yes | pending |
 | Nov 15 11:25AM | NHL | Florida vs Dallas: Spread | spread: NOT Dallas wins by over 1.5 goals | kalshi | $31k | -223 |  |  | +0.0c |  | pending |
 | Nov 15 11:10AM | NFL | Houston vs Cleveland: Spread | spread: NOT Houston wins by over 3.5 points | kalshi | $173k | -100 |  | ✅ | +1.0c | yes | pending |
 | Nov 15 11:05AM | NFL | Houston Texans @ Cleveland Browns | spread: HOU -3.5 (3.5) | novig | $29k | -104 |  | ❌ | -0.5c |  | pending |
@@ -35,7 +37,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 15 8:05AM | NHL | Florida vs Dallas: Total Goals | total: Over 5.5 goals scored | kalshi | $33k | -117 | ✅ novig |  | +0.0c |  | pending |
 | Nov 15 7:55AM | NBA | Indiana vs Philadelphia | moneyline: Philadelphia | kalshi | $226k | -270 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 15 7:50AM | NBA | Dallas vs Boston: Total Points | total: Over 219.5 points | kalshi | $31k | -100 |  | ✅ | +2.0c | yes | pending |
-| Nov 15 7:45AM | NBA | Charlotte vs Los Angeles C: Spread | spread: NOT Los Angeles C wins by over 1.5 points | kalshi | $30k | -104 |  |  | +3.0c | yes | pending |
+| Nov 15 7:45AM | NBA | Charlotte vs Los Angeles C: Spread | spread: NOT Los Angeles C wins by over 1.5 points | kalshi | $30k | -104 |  |  | +2.0c | yes | pending |
 | Nov 15 7:45AM | NHL | Calgary vs Anaheim | moneyline: Calgary | kalshi | $26k | +133 |  |  | +0.0c | yes | pending |
 | Nov 15 7:40AM | NBA | Atlanta vs Milwaukee: Total Points | total: Over 233.5 points | kalshi | $30k | -113 |  | ✅ | +0.0c | yes | pending |
 | Nov 15 7:40AM | NBA | New York vs Toronto: Spread | spread: NOT New York wins by over 4.5 points | kalshi | $45k | -104 |  |  | -2.0c | yes | pending |
@@ -208,5 +210,3 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 14 7:40AM | NCAAF | Merrimack vs Monmouth: Spread | spread: NOT Monmouth wins by over 14.5 points | kalshi | $29k | +104 |  |  | +1.0c | yes | W |
 | Nov 14 7:35AM | NCAAF | Bryant vs Sacred Heart | moneyline: Sacred Heart | kalshi | $89k | -104 |  |  | -1.0c | yes | L |
 | Nov 14 5:30AM | NCAAF | Presbyterian vs Morehead St.: Spread | spread: NOT Presbyterian wins by over 2.5 points | kalshi | $30k | -104 |  |  | -2.0c | yes | W |
-| Nov 14 5:10AM | NCAAF | East Carolina vs Charlotte: Total Points | total: NOT Over 45.5 points | kalshi | $43k | -104 |  |  | -2.0c | yes | W |
-| Nov 14 5:10AM | NCAAF | Bucknell vs William & Mary | moneyline: William & Mary | kalshi | $52k | -223 |  |  | -1.0c | yes | W |
