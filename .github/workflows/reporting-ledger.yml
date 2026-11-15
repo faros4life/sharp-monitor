@@ -6,11 +6,13 @@ name: reporting-ledger
 # REPORTING ONLY. No executor import, no registry write, no venue or trading credential, no
 # OddsPapi key. Secrets passed: TRACKER_PASSPHRASE (encrypt/decrypt) and REGISTRY_TOKEN (read).
 #
-# BRANCH-ONLY for now: it fires on a push to reporting-ledger and commits the encrypted ledger back
-# to that branch. A daily schedule needs this file on main, which needs Peter's separate approval.
+# It commits the encrypted ledger back to the branch it ran on (main once merged). Until Peter
+# approves the merge it only ever runs on the reporting-ledger branch.
 # Pushes made by this job use GITHUB_TOKEN and cannot retrigger it.
 
 on:
+  schedule:
+    - cron: "32 9 * * *"     # 04:32 ET daily, before p2-audit; snapshots well inside the 4-day prune window
   push:
     branches: [reporting-ledger]
     paths: [reporting_ledger.py, .github/workflows/reporting-ledger.yml]
@@ -63,5 +65,13 @@ jobs:
           git add reporting/ledger.enc
           git diff --cached --quiet && { echo "no change"; exit 0; }
           git commit -q -m "reporting ledger snapshot $(date -u +%Y-%m-%dT%H:%MZ)"
-          git push -q origin HEAD:reporting-ledger
-          echo "committed to reporting-ledger"
+          # main moves constantly with bot commits: rebase only this one-file commit and retry
+          for i in 1 2 3 4 5; do
+            git push -q origin "HEAD:${GITHUB_REF_NAME}" && { echo "committed to ${GITHUB_REF_NAME}"; exit 0; }
+            cp reporting/ledger.enc "$RUNNER_TEMP/ledger.enc"
+            git fetch -q --depth=1 origin "${GITHUB_REF_NAME}" && git reset -q --hard FETCH_HEAD || exit 1
+            mkdir -p reporting && cp "$RUNNER_TEMP/ledger.enc" reporting/ledger.enc
+            git add reporting/ledger.enc && git commit -q -m "reporting ledger snapshot $(date -u +%Y-%m-%dT%H:%MZ)"
+            sleep 3
+          done
+          echo "FAIL: could not push the ledger"; exit 1

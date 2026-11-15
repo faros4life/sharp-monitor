@@ -160,7 +160,8 @@ def _combine(rows):
     return {"result": result, "stake": sum(sv) if ok else None, "profit": sum(pv) if ok else None,
             "game_start": pick("game_start", min), "settled": pick("settled", max), "placed": pick("placed", min),
             "first_seen": pick("first_seen", min), "book": rows[0].get("book"), "game": rows[0].get("game"),
-            "bet": rows[0].get("bet"), "rows": len(rows), "mixed_results": len(res) > 1}
+            "bet": rows[0].get("bet"), "rows": len(rows), "mixed_results": len(res) > 1,
+            "ids": [str(r.get("id") or "") for r in rows]}
 
 
 def consolidate(items):
@@ -178,7 +179,23 @@ def consolidate(items):
     return out
 
 
-def _agg(plays):
+def _clv(plays, clv):
+    """Certified Pinnacle CLV per play: the mean of its rows' certified values, and ONLY when every row
+    carries one. A play with any missing close is counted missing, never as zero (Peter, 15 Nov)."""
+    if clv is None:
+        return {"clv_n": None}
+    vals = []
+    for p in plays:
+        v = [clv.get(i) for i in p.get("ids") or []]
+        if v and None not in v:
+            vals.append(sum(v) / len(v))
+    n = len(vals)
+    return {"clv_n": n, "clv_missing": len(plays) - n,
+            "clv_mean_pct": round(100 * sum(vals) / n, 2) if n else None,
+            "clv_beat_pct": round(100 * sum(v > 0 for v in vals) / n, 1) if n else None}
+
+
+def _agg(plays, clv=None):
     ok = [p for p in plays if verified_money(p)]
     risked, net = sum(p["stake"] for p in ok), sum(p["profit"] for p in ok)
     by_book = {}
@@ -189,7 +206,8 @@ def _agg(plays):
     return {"settled": len(plays), "verified_money": len(ok), "unverified_money": len(plays) - len(ok),
             "W": sum(p["result"] == "W" for p in plays), "L": sum(p["result"] == "L" for p in plays),
             "P": sum(p["result"] == "P" for p in plays), "risked": round(risked, 2), "net": round(net, 2),
-            "roi_pct": round(net / risked * 100, 2) if risked else None, "by_book": by_book}
+            "roi_pct": round(net / risked * 100, 2) if risked else None, "by_book": by_book,
+            **_clv(plays, clv)}
 
 
 def time_diag(plays, now=None):
@@ -205,7 +223,7 @@ def time_diag(plays, now=None):
     return out
 
 
-def bucket_report(plays):
+def bucket_report(plays, clv=None):
     """Halves and last 50 are cut on ALL settled plays that have a time, BEFORE any money exclusion."""
     settled = [p for p in plays if p.get("result") in SETTLED]
     timed = sorted([p for p in settled if time_basis(p)[0]], key=lambda p: time_basis(p)[1])   # aware UTC datetimes
@@ -215,7 +233,8 @@ def bucket_report(plays):
         v = sorted(t for t in (utc(p.get(f)) for p in plays) if t is not None)
         return [v[0].isoformat(), v[-1].isoformat()] if v else None
     return {"open_or_ambiguous": len(plays) - len(settled), "settled_no_time": len(settled) - len(timed),
-            "all": _agg(settled), "H1": _agg(timed[:h]), "H2": _agg(timed[h:]), "last50": _agg(timed[-50:]),
+            "all": _agg(settled, clv), "H1": _agg(timed[:h], clv), "H2": _agg(timed[h:], clv),
+            "last50": _agg(timed[-50:], clv),
             "time_basis_used": dict(basis), "MIXED_TIME_BASIS": len(basis) > 1,
             "placed_range": rng("placed"), "first_seen_range": rng("first_seen"), "settled_range": rng("settled"),
             "game_start_range": rng("game_start"), "multi_row_plays": sum(p["rows"] > 1 for p in plays),
@@ -224,10 +243,10 @@ def bucket_report(plays):
             "units": "UNAVAILABLE (no verified unit schedule)", "time_diag": time_diag(plays)}
 
 
-def build(rows, index, norm=_norm, links=None):
+def build(rows, index, norm=_norm, links=None, clv=None):
     items, stats, conflicts = classify(rows, index, norm, links)
     return {"join": stats, "lane_conflicts": conflicts,
-            "buckets": {b: bucket_report(ps) for b, ps in sorted(consolidate(items).items())}}
+            "buckets": {b: bucket_report(ps, clv) for b, ps in sorted(consolidate(items).items())}}
 
 
 CSV_FIELDS = ("bucket", "segment", "book", "plays", "verified_money", "W", "L", "P", "risked", "net", "roi_pct", "first", "last")
@@ -249,6 +268,10 @@ def render(rep):
             roi = "n/a" if a["roi_pct"] is None else f"{a['roi_pct']:+.2f}%"
             L.append(f"  {seg:<6} plays {a['settled']:>4} verified {a['verified_money']:>4}  W-L-P {a['W']}-{a['L']}-{a['P']}  "
                      f"risked {a['risked']:.2f} net {a['net']:+.2f} ROI {roi}")
+            if a.get("clv_n") is not None:
+                cm = "n/a" if a["clv_mean_pct"] is None else f"{a['clv_mean_pct']:+.2f}%"
+                bp = "n/a" if a["clv_beat_pct"] is None else f"{a['clv_beat_pct']}%"
+                L.append(f"         CLV {cm} on {a['clv_n']} certified, beat close {bp}, missing close {a['clv_missing']}")
             rows.append({"bucket": b, "segment": seg, "book": "ALL", "plays": a["settled"], "verified_money": a["verified_money"],
                          "W": a["W"], "L": a["L"], "P": a["P"], "risked": a["risked"], "net": a["net"], "roi_pct": a["roi_pct"],
                          "first": rg[0] if seg == "all" else "", "last": rg[1] if seg == "all" else ""})
