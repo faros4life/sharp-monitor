@@ -7,7 +7,10 @@ from datetime import datetime, timezone, timedelta
 
 START_ET = "2026-11-12"
 ET = timezone(timedelta(hours=-5))
-P1_BASELINE_UTC = None   # NOT CONFIRMED. Until Peter confirms it, no fill is called "qualifying".
+# Project 1 counts "the first 20 NEW graded fills" after the Phase 1 forward-capture merge. The
+# first-seen stamp (ingest_checked) is written only by that code, first committed in d646659 at this
+# time; a stamp cannot predate it, so the floor is conservative rather than tuned.
+P1_BASELINE_UTC = "2026-11-14T17:57:29Z"
 SETTLED = ("W", "L", "P")
 
 

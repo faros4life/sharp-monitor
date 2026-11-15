@@ -17,7 +17,7 @@ rows = [{"id": "a", "result": "W", "settled": "2026-11-13T05:00:00Z", "ingest_ch
         {"id": "c", "ingest_checked": "2026-11-14T20:00:00Z"},
         {"id": "d", "result": "W", "settled": "2026-11-10T05:00:00Z", "ingest_checked": "2026-11-09T20:00:00Z"}]
 clv = {"a": 0.01, "d": 0.05}
-p1 = rs.project1(rows, clv)
+p1 = rs.project1(rows, clv, None)
 check("only rows first seen from 12 Nov ET count", p1["first_seen_since_start"] == 3, p1)
 check("graded / pending / missing close separated", p1["graded"] == 2 and p1["pending"] == 1 and p1["missing_close"] == 1, p1)
 check("a missing close is never a zero CLV", p1["clv_mean_pct"] == 1.0, p1)
@@ -45,6 +45,9 @@ o2 = [{"key": "board|NBA|a+b|total|OVER", "et_day": "2026-11-13", "live_order": 
 ig2 = rs.integrity(o2, {"f": {"state": "FILLED", "play_key": "NBA|a+b|total|OVER"}}, [], {}, {}, True)
 check("a fill joined by unprefixed play_key is NOT reported missing",
       ig2["placed_orders_without_fill_record"] == 0 and ig2["fill_record_by_play_key"] == 1, ig2)
+check("the baseline is the Phase 1 capture commit time", rs.P1_BASELINE_UTC == "2026-11-14T17:57:29Z")
+check("rows stamped before the baseline never qualify",
+      rs.project1([{"id": "q", "result": "W", "ingest_checked": "2026-11-13T00:00:00Z"}], {})["qualifying"] == 0)
 if fails:
     print("FAILED", fails); sys.exit(1)
 print("test_report_sections: all passed")
