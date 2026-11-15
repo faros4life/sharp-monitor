@@ -51,6 +51,11 @@
     "volume_24h_fp": 0.0,
     "volume_fp": 209.65
    },
+   "ex_stats_close": {
+    "open_interest_fp": 96283.31,
+    "volume_24h_fp": 94045.06,
+    "volume_fp": 98067.58
+   },
    "ex_stats_first": {
     "open_interest_fp": 94775.09,
     "volume_24h_fp": 93053.81,
@@ -223,8 +228,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.75,
-   "clv_cents": 0.0,
+   "close_price": 0.76,
+   "clv_cents": 1.0,
    "confirmed_after_min": 5,
    "date": "2026-11-14",
    "depth_by_book": {
@@ -247,6 +252,11 @@
     "open_interest_fp": 404.82,
     "volume_24h_fp": 0.0,
     "volume_fp": 1432.1
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 30253.57,
+    "volume_24h_fp": 30619.56,
+    "volume_fp": 32533.72
    },
    "ex_stats_first": {
     "open_interest_fp": 28209.83,
@@ -289,7 +299,8 @@
    "price_rule": "ml_edge_fail",
    "price_when_first_seen": 0.75,
    "prices_by_book": {},
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-15T01:25:39Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26NOV14MCNSSELA-MCNS"
@@ -361,7 +372,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 113683.13,
-    "volume_24h_fp": 85071.12,
+    "volume_24h_fp": 85291.12,
     "volume_fp": 127600.85
    },
    "ex_stats_first": {
@@ -413,6 +424,8 @@
    "norm_ready_books": 2,
    "paper_only": false,
    "price": 0.5,
+   "price_after_15m": 0.5,
+   "price_after_15m_book": "novig",
    "price_american": -100,
    "price_rule": "ok",
    "price_when_first_seen": 0.5,
@@ -502,6 +515,7 @@
    "size_x": 11.64,
    "start_source": "odds",
    "start_utc": "2026-11-15T02:30:00Z",
+   "still_actionable": true,
    "surge_books": [
     "kalshi",
     "novig"
@@ -969,9 +983,9 @@
     "volume_fp": 409.38
    },
    "ex_stats_close": {
-    "open_interest_fp": 38002.17,
-    "volume_24h_fp": 31152.3,
-    "volume_fp": 38846.8
+    "open_interest_fp": 38194.22,
+    "volume_24h_fp": 32804.22,
+    "volume_fp": 39064.07
    },
    "ex_stats_first": {
     "open_interest_fp": 30849.64,
@@ -1178,8 +1192,8 @@
     "volume": 215519.0
    },
    "ex_stats_close": {
-    "openInterest": 15051214.0,
-    "volume": 18939465.0
+    "openInterest": 15081826.0,
+    "volume": 18977577.0
    },
    "ex_stats_first": {
     "openInterest": 14714550.0,
@@ -5909,7 +5923,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Kentucky",
@@ -6693,7 +6707,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [
     "Washington Huskies -2.5 (-111)"
    ],
@@ -6877,7 +6891,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -7735,7 +7749,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [
     "Marshall Thundering Herd +1.5 (-106)"
    ],
@@ -7935,7 +7949,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Arizona St.",
@@ -8211,8 +8225,8 @@
     "volume": 4310.0
    },
    "ex_stats_close": {
-    "openInterest": 9730768.0,
-    "volume": 12116052.0
+    "openInterest": 9742941.0,
+    "volume": 12232876.0
    },
    "ex_stats_first": {
     "openInterest": 9434659.0,
@@ -9183,7 +9197,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Appalachian St.",
@@ -9357,7 +9371,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [
     "Boise State Broncos -14.5 (-110)"
    ],
@@ -9769,7 +9783,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [],
    "sharp_oppose": [
     "Michigan State Spartans +3.5 (-117)"
@@ -11462,7 +11476,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 11,
+   "settle_tries": 12,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UCF",
@@ -11679,7 +11693,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Kentucky",
@@ -27218,7 +27232,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 29,
+   "settle_tries": 30,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UCF",
