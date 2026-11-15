@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 15, 3:00 AM ET. This run: 0 new, 1 not confirmed, 0 pending. Open alerts: 42.
+Updated Sun Nov 15, 3:05 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 42.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -10,7 +10,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Nov 15 2:50AM | NBA | Charlotte vs Los Angeles C | moneyline: Charlotte | kalshi | $74k | +104 |  |  | +0.0c |  | pending |
+| Nov 15 2:50AM | NBA | Charlotte vs Los Angeles C | moneyline: Charlotte | kalshi | $74k | +104 |  |  | +0.0c | yes | pending |
 | Nov 15 2:35AM | NFL | Los Angeles R vs Arizona: Total Points | total: Over 38.5 points | kalshi | $30k | -108 |  |  | +0.0c |  | pending |
 | Nov 15 1:55AM | NBA | San Antonio vs Utah: Spread | spread: NOT San Antonio wins by over 16.5 points | kalshi | $25k | +104 |  |  | +1.0c | yes | pending |
 | Nov 15 1:30AM | NFL | Seattle vs Las Vegas: Spread | spread: Seattle wins by over 6.5 points | kalshi | $101k | -100 |  |  | +0.0c |  | pending |
