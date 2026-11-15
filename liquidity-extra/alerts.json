@@ -1,6 +1,109 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-15T07:20:26Z",
+   "base_depth": 51627,
+   "best_price": 0.7341,
+   "best_price_american": -276,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.72,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-15",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 8379,
+     "new_this_side": 42788,
+     "other_side": 20247,
+     "other_side_all_levels": 42325,
+     "ratio": 3.0,
+     "this_side": 61431,
+     "this_side_all_levels": 107784
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 24654.11,
+    "volume_24h_fp": 31222.1,
+    "volume_fp": 31222.1
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 7.03,
+    "volume_24h_fp": 18.52,
+    "volume_fp": 7.03
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 24647.08,
+    "volume_24h_fp": 31203.58,
+    "volume_fp": 31215.07
+   },
+   "fade_price": 0.29,
+   "first_seen_utc": "2026-11-15T07:10:21Z",
+   "game": "Svitolina vs Andreeva",
+   "game_surge_books": [],
+   "game_x": 1.91,
+   "key": "kalshi|KXWTAMATCH-26NOV15SVIAND|ml|1",
+   "lead_min": 820,
+   "league": "TENNIS",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 42788,
+   "new_x": 0.51,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 24654.11,
+      "volume_24h_fp": 31222.1,
+      "volume_fp": 31222.1
+     },
+     "game_normal": 56285,
+     "game_x": 1.91,
+     "normal": 84216,
+     "now": 107784,
+     "type": "ML",
+     "x": 1.28
+    }
+   },
+   "norm_ready_books": 1,
+   "paper_only": true,
+   "price": 0.72,
+   "price_american": -257,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.72,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXWTAMATCH-26NOV15SVIAND-AND"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Andreeva",
+   "side_label": "Andreeva",
+   "size_x": 1.28,
+   "start_source": "kalshi",
+   "start_utc": "2026-11-15T21:00:00Z",
+   "surge_books": [],
+   "teams": [
+    "Svitolina",
+    "Andreeva"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-15T07:10:21Z",
    "base_depth": 189677,
    "best_price": 0.705,
@@ -14,8 +117,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.7,
-   "clv_cents": 0.0,
+   "close_price": 0.71,
+   "clv_cents": 1.0,
    "confirmed_after_min": 10,
    "date": "2026-11-15",
    "depth_by_book": {
@@ -44,6 +147,11 @@
     "open_interest_fp": 136.82,
     "volume_24h_fp": -121.23,
     "volume_fp": 203.98
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 43516.59,
+    "volume_24h_fp": 43351.5,
+    "volume_fp": 46467.84
    },
    "ex_stats_first": {
     "open_interest_fp": 37666.229999999996,
@@ -168,6 +276,11 @@
     "open_interest_fp": 93.14,
     "volume_24h_fp": -44.25,
     "volume_fp": 93.14
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 64596.55,
+    "volume_24h_fp": 64009.43,
+    "volume_fp": 65464.75
    },
    "ex_stats_first": {
     "open_interest_fp": 62067.61,
@@ -877,9 +990,9 @@
     "volume_fp": 2.95
    },
    "ex_stats_close": {
-    "open_interest_fp": 1758.45,
-    "volume_24h_fp": 1888.5,
-    "volume_fp": 1888.5
+    "open_interest_fp": 1787.96,
+    "volume_24h_fp": 1923.76,
+    "volume_fp": 1923.76
    },
    "ex_stats_first": {
     "open_interest_fp": 1743.7,
@@ -1043,9 +1156,9 @@
     "volume_fp": 2.06
    },
    "ex_stats_close": {
-    "open_interest_fp": 1084.41,
-    "volume_24h_fp": 612.02,
-    "volume_fp": 1113.22
+    "open_interest_fp": 1209.16,
+    "volume_24h_fp": 798.69,
+    "volume_fp": 1237.97
    },
    "ex_stats_first": {
     "open_interest_fp": 852.0699999999999,
@@ -1545,9 +1658,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 9467.82,
-    "volume_24h_fp": 8222.73,
-    "volume_fp": 10216.27
+    "open_interest_fp": 9524.39,
+    "volume_24h_fp": 8279.3,
+    "volume_fp": 10272.84
    },
    "ex_stats_first": {
     "open_interest_fp": 7657.290000000001,
@@ -10817,7 +10930,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 80,
+   "settle_tries": 81,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Cornell",
