@@ -1,6 +1,251 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-15T02:40:12Z",
+   "base_depth": 1581442,
+   "best_price": 0.7341,
+   "best_price_american": -276,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.72,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 4,
+   "date": "2026-11-14",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -21545,
+     "new_this_side": 134075,
+     "other_side": 146599,
+     "other_side_all_levels": 506564,
+     "ratio": 6.8,
+     "this_side": 996526,
+     "this_side_all_levels": 1707390
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 151525.27,
+    "volume_24h_fp": 40893.729999999996,
+    "volume_fp": 154200.72
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 148.41,
+    "volume_24h_fp": 432.33,
+    "volume_fp": 148.41
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 151376.86,
+    "volume_24h_fp": 40461.4,
+    "volume_fp": 154052.31
+   },
+   "fade_price": 0.29,
+   "first_seen_utc": "2026-11-15T02:35:44Z",
+   "game": "North Dakota St. vs Hawai'i",
+   "game_surge_books": [],
+   "game_x": 1.09,
+   "key": "kalshi|KXNCAAFGAME-26NOV14NDSUHAW|ml|0",
+   "lead_min": 260,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 134075,
+   "new_x": 0.78,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 151525.27,
+      "volume_24h_fp": 40893.729999999996,
+      "volume_fp": 154200.72
+     },
+     "game_normal": 1565597,
+     "game_x": 1.09,
+     "normal": 172710,
+     "now": 1707390,
+     "type": "ML",
+     "x": 9.89
+    }
+   },
+   "norm_ready_books": 1,
+   "paper_only": false,
+   "price": 0.72,
+   "price_american": -257,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.72,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26NOV14NDSUHAW-NDSU"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "North Dakota St.",
+   "side_label": "North Dakota St.",
+   "size_x": 9.89,
+   "start_source": "kalshi",
+   "start_utc": "2026-11-15T07:00:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "North Dakota St.",
+    "Hawai'i"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-15T02:40:12Z",
+   "base_depth": 494045,
+   "best_price": 0.7337,
+   "best_price_american": -276,
+   "best_price_book": "prophetx",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.74,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 4,
+   "date": "2026-11-14",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 21260,
+     "new_this_side": 76095,
+     "other_side": 36247,
+     "other_side_all_levels": 151455,
+     "ratio": 2.0,
+     "this_side": 73558,
+     "this_side_all_levels": 583001
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "MONT (0)",
+     "price": 0.74,
+     "this_side": 10528
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Montana",
+     "price": 0.7297,
+     "this_side": 1582
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 17784.71,
+    "volume_24h_fp": 13000.789999999999,
+    "volume_fp": 18181.02
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 169.36,
+    "volume_24h_fp": 382.37,
+    "volume_fp": 169.36
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 17615.35,
+    "volume_24h_fp": 12618.42,
+    "volume_fp": 18011.66
+   },
+   "fade_price": 0.27,
+   "first_seen_utc": "2026-11-15T02:35:44Z",
+   "game": "Idaho St. vs Montana",
+   "game_surge_books": [],
+   "game_x": 1.06,
+   "key": "kalshi|KXNCAAFGAME-26NOV14IDSTMONT|ml|1",
+   "lead_min": 50,
+   "league": "NCAAF",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 76095,
+   "new_x": 0.44,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 17784.71,
+      "volume_24h_fp": 13000.789999999999,
+      "volume_fp": 18181.02
+     },
+     "game_normal": 551446,
+     "game_x": 1.06,
+     "normal": 172710,
+     "now": 583001,
+     "type": "ML",
+     "x": 3.38
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 38773.0,
+      "volume": 38773.0
+     },
+     "game_normal": 22662,
+     "game_x": 0.95,
+     "normal": 26755,
+     "now": 21419,
+     "type": "ML",
+     "x": 0.8
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 1845,
+     "game_x": 1.17,
+     "normal": 7198,
+     "now": 2157,
+     "type": "ML",
+     "x": 0.3
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.74,
+   "price_american": -285,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.74,
+   "prices_by_book": {},
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAFGAME-26NOV14IDSTMONT-MONT"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Montana",
+   "side_label": "Montana",
+   "size_x": 3.38,
+   "start_source": "prophetx",
+   "start_utc": "2026-11-15T03:30:00Z",
+   "surge_books": [
+    "kalshi"
+   ],
+   "teams": [
+    "Idaho St.",
+    "Montana"
+   ],
+   "top25": false,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-15T02:35:44Z",
    "base_depth": 1084839,
    "best_price": 0.48,
@@ -44,6 +289,11 @@
     "open_interest_fp": 1760.12,
     "volume_24h_fp": 8701.92,
     "volume_fp": 1760.12
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 232701.92,
+    "volume_24h_fp": 138323.97,
+    "volume_fp": 259323.47
    },
    "ex_stats_first": {
     "open_interest_fp": 230275.2,
@@ -202,8 +452,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.56,
-   "clv_cents": 0.0,
+   "close_price": 0.57,
+   "clv_cents": 1.0,
    "confirmed_after_min": 5,
    "date": "2026-11-14",
    "depth_by_book": {
@@ -240,9 +490,9 @@
     "volume_fp": 2078.81
    },
    "ex_stats_close": {
-    "open_interest_fp": 7853.6,
-    "volume_24h_fp": 7441.78,
-    "volume_fp": 8281.93
+    "open_interest_fp": 9339.3,
+    "volume_24h_fp": 9691.96,
+    "volume_fp": 9767.63
    },
    "ex_stats_first": {
     "open_interest_fp": 5014.41,
@@ -452,9 +702,9 @@
     "volume_fp": 938.31
    },
    "ex_stats_close": {
-    "open_interest_fp": 1469005.6800000002,
-    "volume_24h_fp": 287759.06,
-    "volume_fp": 1639765.41
+    "open_interest_fp": 1471817.26,
+    "volume_24h_fp": 287009.02999999997,
+    "volume_fp": 1642620.12
    },
    "ex_stats_first": {
     "open_interest_fp": 1464733.81,
@@ -668,9 +918,9 @@
     "volume_fp": 670.73
    },
    "ex_stats_close": {
-    "open_interest_fp": 170080.26,
-    "volume_24h_fp": 50447.75,
-    "volume_fp": 195977.77000000002
+    "open_interest_fp": 170738.57,
+    "volume_24h_fp": 51621.11,
+    "volume_fp": 196746.06
    },
    "ex_stats_first": {
     "open_interest_fp": 168388.12,
@@ -879,9 +1129,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 4547.12,
-    "volume_24h_fp": 4642.67,
-    "volume_fp": 4711.84
+    "open_interest_fp": 4616.35,
+    "volume_24h_fp": 4711.9,
+    "volume_fp": 4781.07
    },
    "ex_stats_first": {
     "open_interest_fp": 4351.12,
@@ -1083,9 +1333,9 @@
     "volume_fp": 254.95
    },
    "ex_stats_close": {
-    "open_interest_fp": 258439.22,
-    "volume_24h_fp": 50551.66,
-    "volume_fp": 280458.23
+    "open_interest_fp": 258618.22,
+    "volume_24h_fp": 50687.84,
+    "volume_fp": 280695.39
    },
    "ex_stats_first": {
     "open_interest_fp": 254291.55000000002,
@@ -1303,9 +1553,9 @@
     "volume_fp": 474.51
    },
    "ex_stats_close": {
-    "open_interest_fp": 406935.93000000005,
-    "volume_24h_fp": 106473.84,
-    "volume_fp": 451930.92000000004
+    "open_interest_fp": 407446.54,
+    "volume_24h_fp": 107137.76000000001,
+    "volume_fp": 452460.37
    },
    "ex_stats_first": {
     "open_interest_fp": 404535.06,
@@ -1524,9 +1774,9 @@
     "volume_fp": 98.46
    },
    "ex_stats_close": {
-    "open_interest_fp": 824057.3,
-    "volume_24h_fp": 39832.130000000005,
-    "volume_fp": 878430.3099999999
+    "open_interest_fp": 824564.5900000001,
+    "volume_24h_fp": 39927.61,
+    "volume_fp": 878940.51
    },
    "ex_stats_first": {
     "open_interest_fp": 821672.4,
@@ -1956,9 +2206,9 @@
     "volume_fp": 209.65
    },
    "ex_stats_close": {
-    "open_interest_fp": 124519.12,
-    "volume_24h_fp": 121798.22,
-    "volume_fp": 127039.73999999999
+    "open_interest_fp": 130051.66,
+    "volume_24h_fp": 128791.17,
+    "volume_fp": 132574.2
    },
    "ex_stats_first": {
     "open_interest_fp": 94775.09,
@@ -2136,8 +2386,8 @@
     "novig",
     "prophetx"
    ],
-   "close_price": 0.33,
-   "clv_cents": -42.0,
+   "close_price": 0.16,
+   "clv_cents": -59.0,
    "confirmed_after_min": 5,
    "date": "2026-11-14",
    "depth_by_book": {
@@ -2162,9 +2412,9 @@
     "volume_fp": 1432.1
    },
    "ex_stats_close": {
-    "open_interest_fp": 59502.53,
-    "volume_24h_fp": 77529.86,
-    "volume_fp": 81010.22
+    "open_interest_fp": 63150.740000000005,
+    "volume_24h_fp": 85862.63,
+    "volume_fp": 87365.93
    },
    "ex_stats_first": {
     "open_interest_fp": 28209.83,
@@ -3106,8 +3356,8 @@
     "volume": 215519.0
    },
    "ex_stats_close": {
-    "openInterest": 15780299.0,
-    "volume": 19676150.0
+    "openInterest": 15780610.0,
+    "volume": 19676461.0
    },
    "ex_stats_first": {
     "openInterest": 14714550.0,
@@ -3630,7 +3880,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [
     "New Mexico Lobos -17.5 (-117)"
    ],
@@ -4043,7 +4293,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Dallas Mavericks",
@@ -4267,7 +4517,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Dallas Mavericks",
@@ -4443,7 +4693,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "OVER",
@@ -4668,7 +4918,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Dallas",
@@ -4889,7 +5139,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 8,
+   "settle_tries": 9,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Minnesota",
@@ -5090,7 +5340,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 4,
+   "settle_tries": 5,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Colorado",
@@ -5504,7 +5754,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 8,
+   "settle_tries": 9,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UNDER",
@@ -5722,7 +5972,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 8,
+   "settle_tries": 9,
    "sharp_agree": [],
    "sharp_oppose": [
     "Over 6.5 (-127)"
@@ -5924,7 +6174,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 8,
+   "settle_tries": 9,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Philadelphia",
@@ -6126,7 +6376,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 8,
+   "settle_tries": 9,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Boston",
@@ -6325,7 +6575,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 8,
+   "settle_tries": 9,
    "sharp_agree": [
     "Air Force Falcons -11.5 (-110)"
    ],
@@ -6549,7 +6799,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 8,
+   "settle_tries": 9,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Denver Nuggets",
@@ -6633,6 +6883,7 @@
     "volume_fp": 208949.39
    },
    "fade_price": 0.17,
+   "fade_units": -1.0,
    "first_seen_utc": "2026-11-14T23:10:12Z",
    "game": "Denver vs New Orleans",
    "game_surge_books": [
@@ -6770,7 +7021,7 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNBAGAME-26NOV14DENNOP-DEN"
    },
-   "result": null,
+   "result": "W",
    "rule_met": true,
    "second_book": [
     "novig",
@@ -6778,7 +7029,8 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 8,
+   "settle_tries": 9,
+   "settled_utc": "2026-11-15T02:40:12Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Denver",
@@ -6797,7 +7049,7 @@
     "New Orleans"
    ],
    "top25": null,
-   "units_flat": null
+   "units_flat": 0.19
   },
   {
    "alerted_utc": "2026-11-14T23:00:25Z",
@@ -6999,7 +7251,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 8,
+   "settle_tries": 9,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "New Jersey",
@@ -7130,7 +7382,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 8,
+   "settle_tries": 9,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Southeastern Louisiana",
@@ -7659,7 +7911,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 5,
+   "settle_tries": 6,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Tulsa",
@@ -7730,12 +7982,14 @@
     "volume": 13118348.0
    },
    "fade_price": 0.47,
+   "fade_units": 1.13,
    "first_seen_utc": "2026-11-14T22:20:25Z",
    "game": "Florida @ Kentucky",
    "game_surge_books": [
     "novig"
    ],
    "game_x": 2.44,
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1af50-0ee4-7433-b8a7-cd46bd5b7991\", \"outcome_id\": \"01a1af50-0ee4-7433-b8a7-cd527a0db218\"}",
    "lead_min": 45,
    "league": "NCAAF",
@@ -7849,12 +8103,13 @@
     "market_id": "01a1af50-0ee4-7433-b8a7-cd46bd5b7991",
     "outcome_id": "01a1af50-0ee4-7433-b8a7-cd527a0db218"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 17,
+   "settle_tries": 18,
+   "settled_utc": "2026-11-15T02:40:12Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Kentucky",
@@ -7872,7 +8127,7 @@
     "Kentucky"
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-14T22:30:16Z",
@@ -9160,7 +9415,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 8,
+   "settle_tries": 9,
    "sharp_agree": [
     "Over 49.5 (-105)"
    ],
@@ -9380,7 +9635,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "LSU",
@@ -10105,7 +10360,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 2,
+   "settle_tries": 3,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "LSU",
@@ -10170,8 +10425,8 @@
     "volume": 4310.0
    },
    "ex_stats_close": {
-    "openInterest": 10619396.0,
-    "volume": 13800559.0
+    "openInterest": 10735675.0,
+    "volume": 13959098.0
    },
    "ex_stats_first": {
     "openInterest": 9434659.0,
@@ -10710,7 +10965,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 8,
+   "settle_tries": 9,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Louisville",
@@ -10928,7 +11183,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 8,
+   "settle_tries": 9,
    "sharp_agree": [
     "BYU Cougars -7.5 (-110)"
    ],
@@ -11213,12 +11468,14 @@
     "volume": 3002241.0
    },
    "fade_price": 0.49,
+   "fade_units": 1.04,
    "first_seen_utc": "2026-11-14T20:30:22Z",
    "game": "Oregon State @ Boise State",
    "game_surge_books": [
     "novig"
    ],
    "game_x": 3.05,
+   "graded_by": "espn",
    "key": "novig|{\"market_id\": \"01a1bb25-08ed-7ce1-930d-6071ffd00542\", \"outcome_id\": \"01a1bb25-08ed-7ce1-930d-608be7b5043d\"}",
    "lead_min": 140,
    "league": "NCAAF",
@@ -11315,12 +11572,13 @@
     "market_id": "01a1bb25-08ed-7ce1-930d-6071ffd00542",
     "outcome_id": "01a1bb25-08ed-7ce1-930d-608be7b5043d"
    },
-   "result": null,
+   "result": "L",
    "rule_met": false,
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "no_match",
-   "settle_tries": 20,
+   "settle_tries": 21,
+   "settled_utc": "2026-11-15T02:40:12Z",
    "sharp_agree": [
     "Boise State Broncos -14.5 (-110)"
    ],
@@ -11339,7 +11597,7 @@
     "Boise State"
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-14T20:40:20Z",
@@ -11953,7 +12211,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 8,
+   "settle_tries": 9,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Troy",
@@ -13515,10 +13773,12 @@
     "volume_fp": 1252059.58
    },
    "fade_price": 0.41,
+   "fade_units": 1.34,
    "first_seen_utc": "2026-11-14T18:45:40Z",
    "game": "Florida vs Kentucky",
    "game_surge_books": [],
    "game_x": null,
+   "graded_by": "espn",
    "key": "kalshi|KXNCAAFGAME-26NOV14FLAUK|ml|1",
    "lead_min": 259,
    "league": "NCAAF",
@@ -13641,7 +13901,7 @@
     "kalshi_side": "yes",
     "market_ticker": "KXNCAAFGAME-26NOV14FLAUK-UK"
    },
-   "result": null,
+   "result": "L",
    "rule_met": true,
    "second_book": [
     "novig",
@@ -13649,7 +13909,8 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 17,
+   "settle_tries": 18,
+   "settled_utc": "2026-11-15T02:40:12Z",
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Kentucky",
@@ -13668,7 +13929,7 @@
     "Kentucky"
    ],
    "top25": true,
-   "units_flat": null
+   "units_flat": -1.0
   },
   {
    "alerted_utc": "2026-11-14T18:45:40Z",
