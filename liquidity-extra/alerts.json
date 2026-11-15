@@ -1,6 +1,203 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-15T18:20:24Z",
+   "base_depth": 69081,
+   "best_price": 0.595,
+   "best_price_american": -147,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.6,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 10,
+   "date": "2026-11-15",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": 7502,
+     "new_this_side": 29618,
+     "other_side": 18705,
+     "other_side_all_levels": 59641,
+     "ratio": 3.0,
+     "this_side": 56457,
+     "this_side_all_levels": 95651
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "PFW (0)",
+     "price": 0.595,
+     "this_side": 14339
+    },
+    "prophetx": {
+     "heavier_side": false,
+     "label": "Purdue Fort Wayne",
+     "price": 0.6,
+     "this_side": 3207
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 177.85,
+    "volume_24h_fp": 113.19,
+    "volume_fp": 177.85
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 0.0,
+    "volume_24h_fp": 0.0,
+    "volume_fp": 0.0
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 177.85,
+    "volume_24h_fp": 113.19,
+    "volume_fp": 177.85
+   },
+   "fade_price": 0.41,
+   "first_seen_utc": "2026-11-15T18:10:24Z",
+   "game": "Purdue Fort Wayne vs Eastern Illinois",
+   "game_surge_books": [],
+   "game_x": 1.1,
+   "key": "kalshi|KXNCAAMBGAME-26NOV15PFWEIU|ml|0",
+   "lead_min": 100,
+   "league": "NCAAB",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 29618,
+   "new_x": 0.52,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 177.85,
+      "volume_24h_fp": 113.19,
+      "volume_fp": 177.85
+     },
+     "game_normal": 86644,
+     "game_x": 1.1,
+     "normal": 56583,
+     "now": 95651,
+     "type": "ML",
+     "x": 1.69
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 1528269.0,
+      "volume": 1551450.0
+     },
+     "game_normal": 15832,
+     "game_x": 0.92,
+     "normal": 8076,
+     "now": 14584,
+     "type": "ML",
+     "x": 1.81
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 2504,
+     "game_x": 1.31,
+     "normal": 982,
+     "now": 3274,
+     "type": "ML",
+     "x": 3.34
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.6,
+   "price_american": -150,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.6,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -160
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -160
+    },
+    "betopenly": {
+     "point": null,
+     "price": -152
+    },
+    "betrivers": {
+     "point": null,
+     "price": -177
+    },
+    "betus": {
+     "point": null,
+     "price": -160
+    },
+    "bovada": {
+     "point": null,
+     "price": -160
+    },
+    "draftkings": {
+     "point": null,
+     "price": -162
+    },
+    "fanatics": {
+     "point": null,
+     "price": -165
+    },
+    "fanduel": {
+     "point": null,
+     "price": -154
+    },
+    "kalshi": {
+     "point": null,
+     "price": -150
+    },
+    "lowvig": {
+     "point": null,
+     "price": -160
+    },
+    "novig": {
+     "point": null,
+     "price": -147
+    },
+    "polymarket": {
+     "point": null,
+     "price": -156
+    },
+    "prophetx": {
+     "point": null,
+     "price": -150
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNCAAMBGAME-26NOV15PFWEIU-PFW"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "novig"
+   ],
+   "second_book_fresh": false,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Purdue Fort Wayne",
+   "side_label": "Purdue Fort Wayne",
+   "size_x": 1.69,
+   "start_source": "odds",
+   "start_utc": "2026-11-15T20:00:00Z",
+   "surge_books": [
+    "prophetx"
+   ],
+   "teams": [
+    "Purdue Fort Wayne",
+    "Eastern Illinois"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-15T17:50:26Z",
    "base_depth": 42964,
    "best_price": 0.5,
@@ -179,7 +376,8 @@
      "price": 100
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-15T18:20:24Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNCAAMBTOTAL-26NOV15PFWEIU-145"
@@ -251,7 +449,7 @@
    "ex_stats_close": {
     "open_interest_fp": 17689.21,
     "volume_24h_fp": 18045.94,
-    "volume_fp": 18045.94
+    "volume_fp": 18055.79
    },
    "ex_stats_first": {
     "open_interest_fp": 17689.21,
@@ -294,7 +492,8 @@
    "price_rule": "ok",
    "price_when_first_seen": 0.49,
    "prices_by_book": {},
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-15T18:20:24Z",
    "ref": {
     "kalshi_side": "no",
     "market_ticker": "KXNCAAMBSPREAD-26NOV15ALBYHC-ALBY3"
@@ -374,9 +573,9 @@
     "volume_fp": 397.81
    },
    "ex_stats_close": {
-    "open_interest_fp": 16407.67,
-    "volume_24h_fp": 15663.039999999999,
-    "volume_fp": 16648.48
+    "open_interest_fp": 16456.59,
+    "volume_24h_fp": 15733.789999999999,
+    "volume_fp": 16697.399999999998
    },
    "ex_stats_first": {
     "open_interest_fp": 14958.07,
@@ -757,9 +956,9 @@
     "volume_fp": 256.19
    },
    "ex_stats_close": {
-    "open_interest_fp": 5246.110000000001,
-    "volume_24h_fp": 5012.32,
-    "volume_fp": 5254.24
+    "open_interest_fp": 5253.87,
+    "volume_24h_fp": 5152.0,
+    "volume_fp": 5262.0
    },
    "ex_stats_first": {
     "open_interest_fp": 4237.37,
@@ -958,9 +1157,9 @@
     "volume_fp": 303.24
    },
    "ex_stats_close": {
-    "open_interest_fp": 5679.13,
-    "volume_24h_fp": 5670.16,
-    "volume_fp": 5679.13
+    "open_interest_fp": 5688.08,
+    "volume_24h_fp": 5679.13,
+    "volume_fp": 5688.08
    },
    "ex_stats_first": {
     "open_interest_fp": 894.94,
@@ -1699,7 +1898,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 1919.7200000000003,
-    "volume_24h_fp": 1988.4,
+    "volume_24h_fp": 2052.3,
     "volume_fp": 2052.3
    },
    "ex_stats_first": {
@@ -1832,7 +2031,7 @@
    },
    "ex_stats_close": {
     "open_interest_fp": 760.76,
-    "volume_24h_fp": 671.9100000000001,
+    "volume_24h_fp": 757.76,
     "volume_fp": 760.76
    },
    "ex_stats_first": {
@@ -2010,9 +2209,9 @@
     "volume_fp": 7.03
    },
    "ex_stats_close": {
-    "open_interest_fp": 71433.59,
-    "volume_24h_fp": 80461.28,
-    "volume_fp": 80834.32
+    "open_interest_fp": 72894.04999999999,
+    "volume_24h_fp": 80834.32,
+    "volume_fp": 82304.36
    },
    "ex_stats_first": {
     "open_interest_fp": 24647.08,
@@ -2263,9 +2462,9 @@
     "volume_fp": 93.14
    },
    "ex_stats_close": {
-    "open_interest_fp": 167641.14,
-    "volume_24h_fp": 140450.32,
-    "volume_fp": 181199.08000000002
+    "open_interest_fp": 169766.57,
+    "volume_24h_fp": 144730.14,
+    "volume_fp": 184824.51
    },
    "ex_stats_first": {
     "open_interest_fp": 62067.61,
@@ -2792,9 +2991,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 17268.39,
+    "open_interest_fp": 19978.88,
     "volume_24h_fp": 17230.28,
-    "volume_fp": 17268.39
+    "volume_fp": 19978.88
    },
    "ex_stats_first": {
     "open_interest_fp": 239.75,
@@ -3345,9 +3544,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 5086.84,
-    "volume_24h_fp": 3015.06,
-    "volume_fp": 5168.5599999999995
+    "open_interest_fp": 5144.83,
+    "volume_24h_fp": 4988.11,
+    "volume_fp": 5226.55
    },
    "ex_stats_first": {
     "open_interest_fp": 661.95,
@@ -3521,9 +3720,9 @@
     "volume_fp": 0.0
    },
    "ex_stats_close": {
-    "open_interest_fp": 2723.06,
-    "volume_24h_fp": 2999.79,
-    "volume_fp": 3034.9700000000003
+    "open_interest_fp": 2751.88,
+    "volume_24h_fp": 3018.59,
+    "volume_fp": 3063.79
    },
    "ex_stats_first": {
     "open_interest_fp": 199.27,
@@ -12920,7 +13119,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 148,
+   "settle_tries": 149,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Cornell",
