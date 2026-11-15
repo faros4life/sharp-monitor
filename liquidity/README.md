@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 15, 7:00 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 53.
+Updated Sun Nov 15, 7:05 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 53.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -17,7 +17,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 15 4:30AM | NFL | San Francisco vs Dallas: Spread | spread: NOT San Francisco wins by over 4.5 points | kalshi | $163k | -113 |  |  | +0.0c | yes | pending |
 | Nov 15 4:25AM | NHL | Edmonton vs Philadelphia: Spread | spread: NOT Edmonton wins by over 1.5 goals | kalshi | $72k | -194 | ✅ novig |  | +0.0c |  | pending |
 | Nov 15 4:10AM | NFL | Seattle vs Las Vegas: Spread | spread: NOT Seattle wins by over 6.5 points | kalshi | $150k | -104 | ✅ novig |  | +0.0c | yes | pending |
-| Nov 15 4:10AM | NFL | Los Angeles R vs Arizona: Spread | spread: NOT Los Angeles R wins by over 9.5 points | kalshi | $138k | -104 |  |  | +0.0c | yes | pending |
+| Nov 15 4:10AM | NFL | Los Angeles R vs Arizona: Spread | spread: NOT Los Angeles R wins by over 9.5 points | kalshi | $138k | -104 |  |  | -1.0c | yes | pending |
 | Nov 15 3:35AM | NFL | New England vs Detroit | moneyline: Detroit | kalshi | $226k | -138 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 15 3:20AM | NHL | Nashville vs San Jose: Total Goals | total: NOT Over 6.5 goals scored | kalshi | $61k | -113 | ✅ novig |  | +0.0c |  | pending |
 | Nov 15 3:20AM | NHL | Nashville vs San Jose | moneyline: San Jose | kalshi | $47k | +156 |  |  | +1.0c |  | pending |
@@ -32,7 +32,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 15 1:05AM | NFL | Houston vs Cleveland: Spread | spread: NOT Houston wins by over 4.5 points | kalshi | $165k | -104 | ✅ novig | ✅ | +0.0c | yes | pending |
 | Nov 15 1:05AM | NFL | Carolina vs New Orleans: Spread | spread: NOT New Orleans wins by over 1.5 points | kalshi | $158k | -100 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 15 1:05AM | NFL | Buffalo vs New York J: Spread | spread: NOT Buffalo wins by over 7.5 points | kalshi | $154k | +104 | ✅ novig |  | +1.0c |  | pending |
-| Nov 15 12:50AM | NFL | Los Angeles R vs Arizona: Spread | spread: Los Angeles R wins by over 9.5 points | kalshi | $70k | -100 | ✅ novig |  | +0.0c | yes | pending |
+| Nov 15 12:50AM | NFL | Los Angeles R vs Arizona: Spread | spread: Los Angeles R wins by over 9.5 points | kalshi | $70k | -100 | ✅ novig |  | +1.0c | yes | pending |
 | Nov 15 12:45AM | NBA | Houston vs Washington | moneyline: Houston | kalshi | $66k | -376 |  |  | -2.0c | yes | pending |
 | Nov 15 12:10AM | NFL | Carolina Panthers @ New Orleans Saints | moneyline: NO (0) | novig | $56k | -117 | ✅ prophetx |  | -0.5c |  | pending |
 | Nov 15 12:10AM | NFL | Houston vs Cleveland: Total Points | total: Over 40.5 points | kalshi | $64k | -104 | ✅ novig |  | +0.0c | yes | pending |
