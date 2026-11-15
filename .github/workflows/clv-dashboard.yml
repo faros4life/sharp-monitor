@@ -21,6 +21,11 @@ name: clv-dashboard
 on:
   schedule:
     - cron: "12 9 * * *"
+    # BACKUP slot, 15 Nov 2026: the 04:12 ET slot did not fire on 15 Nov while other workflows'
+    # schedules did. The primary slot is unchanged. If both fire, the second run rebuilds the same
+    # page and sends NO second email: the committed one-per-ET-day marker is checked before the
+    # send (clv_dashboard.send_email), which is what makes this safe.
+    - cron: "47 10 * * *"
   workflow_dispatch:
     inputs:
       email:
@@ -137,3 +142,37 @@ jobs:
           tracked="$(git ls-files dash | sort | tr '\n' ' ')"
           [ "$tracked" = "dash/index.html dash/last_email.txt " ] || { echo "FAIL: unexpected tracked files under dash/: $tracked"; exit 1; }
           echo "clean: clv/, tracker/, liquidity/ and the published scorecard untouched"
+      - name: Post-deploy check - the live /dash/ URL serves the committed encrypted page
+        run: |
+          # The decrypt check above reads the COMMITTED file. This one asks the public URL, because
+          # a green run does not mean GitHub Pages is serving it. Counts and flags only.
+          git fetch -q origin main
+          git show origin/main:dash/index.html > "$RUNNER_TEMP/want.html"
+          want="$(sha256sum "$RUNNER_TEMP/want.html" | cut -d' ' -f1)"
+          url="https://faros4life.github.io/sharp-monitor/dash/"
+          code=000
+          for i in $(seq 1 30); do                       # Pages deploys lag a push by a minute or more
+            code="$(curl -sS -o "$RUNNER_TEMP/got.html" -w '%{http_code}' "$url?cb=${GITHUB_RUN_ID}-$i" || echo 000)"
+            if [ "$code" = "200" ] && [ "$(sha256sum "$RUNNER_TEMP/got.html" | cut -d' ' -f1)" = "$want" ]; then
+              break
+            fi
+            sleep 20
+          done
+          echo "http=$code attempts=$i"
+          [ "$code" = "200" ] || { echo "FAIL: /dash/ did not return HTTP 200"; exit 1; }
+          python - <<'PY'
+          import json, os, re
+          h = open(os.environ["RUNNER_TEMP"] + "/got.html").read()
+          m = re.search(r"let BLOB=(\{.*?\});", h, re.S)
+          assert m, "FAIL: the served page has no encrypted blob"
+          b = json.loads(m.group(1))
+          assert set(("s", "i", "c", "n")) <= set(b) and len(b["c"]) > 200, "FAIL: served blob is not AES-GCM shaped"
+          body = re.sub(r"<script.*?</script>", "", h, flags=re.S)
+          for bad in ("PHASE 1", "BOARD V3", "LIQ-BOT", "VERIFIED_PINNACLE", "Hornets", "CLV "):
+              assert bad not in body, f"FAIL: cleartext '{bad}' in the served markup"
+          assert len(body) < 4000, "FAIL: served markup too large to be a prompt"
+          print(f"served page ok: encrypted blob {len(b['c'])} b64 chars, {len(body)} bytes of markup")
+          PY
+          [ "$(sha256sum "$RUNNER_TEMP/got.html" | cut -d' ' -f1)" = "$want" ] \
+            || { echo "FAIL: the served page is not the committed page (Pages is stale)"; exit 1; }
+          echo "live page matches the committed encrypted page"
