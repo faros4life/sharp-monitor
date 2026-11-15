@@ -60,7 +60,10 @@ def project1(bot_rows, clv, baseline_utc=P1_BASELINE_UTC):
 def integrity(orders, fills, bot_rows, clv, rep, px_complete, now=None):
     now = now or datetime.now(timezone.utc)
     d = lambda x: x if isinstance(x, dict) else {}
-    placed_ids, placed_missing = 0, 0
+    placed_ids, placed_missing, by_id, by_key = 0, 0, 0, 0
+    # Two proven joins, counted separately: fill record id == order/client id, or the fill's play_key ==
+    # the order key with or without its lane prefix (the venue runner writes play_key unprefixed).
+    pk = {str(f.get("play_key")) for f in fills.values() if f.get("play_key")}
     for o in orders:
         day = o.get("et_day") or _et_day(o.get("decided_utc")) or ""
         if day < START_ET:
@@ -69,7 +72,12 @@ def integrity(orders, fills, bot_rows, clv, rep, px_complete, now=None):
         for lo in [d(o.get("live_order")), d(o.get("live_rest"))] + [d(x) for x in (more if isinstance(more, list) else [])]:
             if lo.get("status") == "placed" and (lo.get("order_id") or lo.get("client_id")):
                 placed_ids += 1
-                if not any(str(lo.get(k)) in fills for k in ("order_id", "client_id") if lo.get(k)):
+                key = str(o.get("key") or "")
+                if any(str(lo.get(k)) in fills for k in ("order_id", "client_id") if lo.get(k)):
+                    by_id += 1
+                elif key in pk or key.split("|", 1)[-1] in pk:
+                    by_key += 1
+                else:
                     placed_missing += 1
     nonterm = sum(1 for f in fills.values() if f.get("state") in ("PLACED", "RESTING"))
     since = [b for b in bot_rows if (_et_day(b.get("settled")) or "") >= START_ET or not b.get("settled")]
@@ -78,7 +86,8 @@ def integrity(orders, fills, bot_rows, clv, rep, px_complete, now=None):
     buckets = (rep or {}).get("buckets") or {}
     not_exact = sum(v["all"]["settled"] + v["open_or_ambiguous"] for b, v in buckets.items() if not b.startswith("EXACT"))
     last_src = max([str(b.get("settled") or "") for b in bot_rows] + [str(b.get("ingest_checked") or "") for b in bot_rows] or [""])
-    return {"placed_orders_since_start": placed_ids, "placed_orders_without_fill_record": placed_missing,
+    return {"placed_orders_since_start": placed_ids, "fill_record_by_id": by_id, "fill_record_by_play_key": by_key,
+            "placed_orders_without_fill_record": placed_missing,
             "fill_records_not_terminal": nonterm,
             "bot_rows_since_start": len(since), "settled_missing_certified_clv": sum(1 for b in settled if clv.get(str(b.get("id"))) is None),
             "open_bot_rows": sum(1 for b in since if b.get("result") not in SETTLED),

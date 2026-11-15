@@ -198,7 +198,7 @@ def main():
     text += rs.render(p1, integ, ledger_extra)
     print(f"ledger orders restored {ledger_extra} | project1 first-seen {p1['first_seen_since_start']} graded {p1['graded']} "
           f"missing close {p1['missing_close']} | integrity: placed {integ['placed_orders_since_start']} "
-          f"without fill record {integ['placed_orders_without_fill_record']}, not-terminal fills "
+          f"(fill by id {integ['fill_record_by_id']}, by play_key {integ['fill_record_by_play_key']}) without fill record {integ['placed_orders_without_fill_record']}, not-terminal fills "
           f"{integ['fill_records_not_terminal']}, settled missing CLV {integ['settled_missing_certified_clv']}, "
           f"not exact {integ['positions_without_exact_lane']}")
     return 0 if send_private(text, csv_rows) else 1

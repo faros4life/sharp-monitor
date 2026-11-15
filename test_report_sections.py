@@ -41,6 +41,10 @@ check("a play with any row missing a close is counted missing", core._clv([play]
 check("CLV off by default keeps the old shape", core._agg([play])["clv_n"] is None)
 txt = rs.render(p1, ig, 1)
 check("render carries no currency sign", "$" not in txt)
+o2 = [{"key": "board|NBA|a+b|total|OVER", "et_day": "2026-11-13", "live_order": {"status": "placed", "order_id": "zz"}}]
+ig2 = rs.integrity(o2, {"f": {"state": "FILLED", "play_key": "NBA|a+b|total|OVER"}}, [], {}, {}, True)
+check("a fill joined by unprefixed play_key is NOT reported missing",
+      ig2["placed_orders_without_fill_record"] == 0 and ig2["fill_record_by_play_key"] == 1, ig2)
 if fails:
     print("FAILED", fails); sys.exit(1)
 print("test_report_sections: all passed")
