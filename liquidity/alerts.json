@@ -1,6 +1,593 @@
 {
  "alerts": [
   {
+   "alerted_utc": "2026-11-15T00:10:14Z",
+   "base_depth": 75709,
+   "best_price": 0.75,
+   "best_price_american": -300,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": true,
+   "book": "prophetx",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.7561,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-14",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Dallas",
+     "price": 0.76,
+     "this_side": 877430
+    },
+    "novig": {
+     "heavier_side": true,
+     "label": "DAL (0)",
+     "price": 0.75,
+     "this_side": 109123
+    },
+    "prophetx": {
+     "new_other_side": 5287,
+     "new_this_side": 35960,
+     "other_side": 30413,
+     "other_side_all_levels": 30432,
+     "ratio": 3.3,
+     "this_side": 99069,
+     "this_side_all_levels": 106942
+    }
+   },
+   "ex_stats_alert": null,
+   "ex_stats_change": null,
+   "ex_stats_first": null,
+   "fade_price": 0.2532,
+   "first_seen_utc": "2026-11-15T00:05:43Z",
+   "game": "Dallas Mavericks at Cleveland Cavaliers",
+   "game_surge_books": [
+    "novig",
+    "prophetx"
+   ],
+   "game_x": 2.85,
+   "key": "prophetx|{\"line\": 0, \"px_event\": 1704741185, \"px_market\": 219, \"side\": \"0\"}",
+   "lead_min": 20,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 35960,
+   "new_x": 1.79,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 2176078.21,
+      "volume_24h_fp": 2323521.14,
+      "volume_fp": 2332291.41
+     },
+     "game_normal": 1042145,
+     "game_x": 1.49,
+     "normal": 890336,
+     "now": 1552558,
+     "type": "ML",
+     "x": 1.74
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 16985995.0,
+      "volume": 32161233.0
+     },
+     "game_normal": 47925,
+     "game_x": 2.77,
+     "normal": 33793,
+     "now": 132874,
+     "type": "ML",
+     "x": 3.93
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 37516,
+     "game_x": 2.85,
+     "normal": 20116,
+     "now": 106942,
+     "type": "ML",
+     "x": 5.32
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.7561,
+   "price_american": -310,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.7561,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -350
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -340
+    },
+    "betopenly": {
+     "point": null,
+     "price": -315
+    },
+    "betrivers": {
+     "point": null,
+     "price": -315
+    },
+    "betus": {
+     "point": null,
+     "price": -340
+    },
+    "bovada": {
+     "point": null,
+     "price": -330
+    },
+    "draftkings": {
+     "point": null,
+     "price": -344
+    },
+    "fanatics": {
+     "point": null,
+     "price": -350
+    },
+    "fanduel": {
+     "point": null,
+     "price": -375
+    },
+    "kalshi": {
+     "point": null,
+     "price": -317
+    },
+    "limitless": {
+     "point": null,
+     "price": -365
+    },
+    "lowvig": {
+     "point": null,
+     "price": -336
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -330
+    },
+    "novig": {
+     "point": null,
+     "price": -300
+    },
+    "polymarket": {
+     "point": null,
+     "price": -335
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -317
+    },
+    "prophetx": {
+     "point": null,
+     "price": -310
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -355
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "line": 0,
+    "px_event": 1704741185,
+    "px_market": 219,
+    "side": "0"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi",
+    "novig"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Dallas Mavericks",
+   "side_label": "Dallas Mavericks",
+   "size_x": 5.32,
+   "start_source": "odds",
+   "start_utc": "2026-11-15T00:30:00Z",
+   "surge_books": [
+    "novig",
+    "prophetx"
+   ],
+   "teams": [
+    "Dallas Mavericks",
+    "Cleveland Cavaliers"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-15T00:10:14Z",
+   "base_depth": 105101,
+   "best_price": 0.75,
+   "best_price_american": -300,
+   "best_price_book": "novig",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "novig",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.75,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-14",
+   "depth_by_book": {
+    "kalshi": {
+     "heavier_side": true,
+     "label": "Dallas",
+     "price": 0.76,
+     "this_side": 877430
+    },
+    "novig": {
+     "new_other_side": 6619,
+     "new_this_side": 29284,
+     "other_side": 33120,
+     "other_side_all_levels": 39690,
+     "ratio": 3.3,
+     "this_side": 109123,
+     "this_side_all_levels": 132874
+    },
+    "prophetx": {
+     "heavier_side": true,
+     "label": "Dallas Mavericks",
+     "price": 0.7561,
+     "this_side": 99069
+    }
+   },
+   "ex_stats_alert": {
+    "openInterest": 16985995.0,
+    "volume": 32161233.0
+   },
+   "ex_stats_change": {
+    "openInterest": -1831563.0,
+    "volume": 2686764.0
+   },
+   "ex_stats_first": {
+    "openInterest": 18817558.0,
+    "volume": 29474469.0
+   },
+   "fade_price": 0.255,
+   "first_seen_utc": "2026-11-15T00:05:43Z",
+   "game": "Dallas Mavericks @ Cleveland Cavaliers",
+   "game_surge_books": [
+    "novig",
+    "prophetx"
+   ],
+   "game_x": 2.77,
+   "key": "novig|{\"market_id\": \"01a1d896-b352-7961-9e27-1a3b760eab27\", \"outcome_id\": \"01a1d896-b352-7961-9e27-1a58afa688b3\"}",
+   "lead_min": 20,
+   "league": "NBA",
+   "line": null,
+   "market": "moneyline",
+   "new_money": 29284,
+   "new_x": 0.87,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 2176078.21,
+      "volume_24h_fp": 2323521.14,
+      "volume_fp": 2332291.41
+     },
+     "game_normal": 1042145,
+     "game_x": 1.49,
+     "normal": 890336,
+     "now": 1552558,
+     "type": "ML",
+     "x": 1.74
+    },
+    "novig": {
+     "ex_stats": {
+      "openInterest": 16985995.0,
+      "volume": 32161233.0
+     },
+     "game_normal": 47925,
+     "game_x": 2.77,
+     "normal": 33793,
+     "now": 132874,
+     "type": "ML",
+     "x": 3.93
+    },
+    "prophetx": {
+     "ex_stats": null,
+     "game_normal": 37516,
+     "game_x": 2.85,
+     "normal": 20116,
+     "now": 106942,
+     "type": "ML",
+     "x": 5.32
+    }
+   },
+   "norm_ready_books": 3,
+   "paper_only": false,
+   "price": 0.75,
+   "price_american": -300,
+   "price_rule": "ml_edge_fail",
+   "price_when_first_seen": 0.75,
+   "prices_by_book": {
+    "betmgm": {
+     "point": null,
+     "price": -350
+    },
+    "betonlineag": {
+     "point": null,
+     "price": -340
+    },
+    "betopenly": {
+     "point": null,
+     "price": -315
+    },
+    "betrivers": {
+     "point": null,
+     "price": -315
+    },
+    "betus": {
+     "point": null,
+     "price": -340
+    },
+    "bovada": {
+     "point": null,
+     "price": -330
+    },
+    "draftkings": {
+     "point": null,
+     "price": -344
+    },
+    "fanatics": {
+     "point": null,
+     "price": -350
+    },
+    "fanduel": {
+     "point": null,
+     "price": -375
+    },
+    "kalshi": {
+     "point": null,
+     "price": -317
+    },
+    "limitless": {
+     "point": null,
+     "price": -365
+    },
+    "lowvig": {
+     "point": null,
+     "price": -336
+    },
+    "mybookieag": {
+     "point": null,
+     "price": -330
+    },
+    "novig": {
+     "point": null,
+     "price": -300
+    },
+    "polymarket": {
+     "point": null,
+     "price": -335
+    },
+    "polymarket_us": {
+     "point": null,
+     "price": -317
+    },
+    "prophetx": {
+     "point": null,
+     "price": -310
+    },
+    "williamhill_us": {
+     "point": null,
+     "price": -355
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "market_id": "01a1d896-b352-7961-9e27-1a3b760eab27",
+    "outcome_id": "01a1d896-b352-7961-9e27-1a58afa688b3"
+   },
+   "result": null,
+   "rule_met": true,
+   "second_book": [
+    "kalshi",
+    "prophetx"
+   ],
+   "second_book_fresh": true,
+   "second_book_status": "ok",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "Dallas Mavericks",
+   "side_label": "DAL (0)",
+   "size_x": 3.93,
+   "start_source": "odds",
+   "start_utc": "2026-11-15T00:30:00Z",
+   "surge_books": [
+    "novig",
+    "prophetx"
+   ],
+   "teams": [
+    "Dallas Mavericks",
+    "Cleveland Cavaliers"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
+   "alerted_utc": "2026-11-15T00:10:14Z",
+   "base_depth": 85027,
+   "best_price": 0.5075,
+   "best_price_american": -103,
+   "best_price_book": "kalshi",
+   "bid_improved": false,
+   "bid_improved_at_pending": false,
+   "book": "kalshi",
+   "books_live": [
+    "kalshi",
+    "novig",
+    "prophetx"
+   ],
+   "close_price": 0.49,
+   "clv_cents": 0.0,
+   "confirmed_after_min": 5,
+   "date": "2026-11-14",
+   "depth_by_book": {
+    "kalshi": {
+     "new_other_side": -73599,
+     "new_this_side": 51847,
+     "other_side": 25287,
+     "other_side_all_levels": 49441,
+     "ratio": 3.1,
+     "this_side": 79017,
+     "this_side_all_levels": 125746
+    }
+   },
+   "ex_stats_alert": {
+    "open_interest_fp": 17473.27,
+    "volume_24h_fp": 17473.09,
+    "volume_fp": 17473.27
+   },
+   "ex_stats_change": {
+    "open_interest_fp": 9.85,
+    "volume_24h_fp": 2023.1,
+    "volume_fp": 9.85
+   },
+   "ex_stats_first": {
+    "open_interest_fp": 17463.42,
+    "volume_24h_fp": 15449.99,
+    "volume_fp": 17463.42
+   },
+   "fade_price": 0.52,
+   "first_seen_utc": "2026-11-15T00:05:43Z",
+   "game": "Colorado vs Montreal: Total Goals",
+   "game_surge_books": [],
+   "game_x": 0.67,
+   "key": "kalshi|{\"kalshi_side\": \"yes\", \"market_ticker\": \"KXNHLTOTAL-26NOV14COLMTL-7\"}",
+   "lead_min": 10,
+   "league": "NHL",
+   "line": 6.5,
+   "market": "total",
+   "new_money": 51847,
+   "new_x": 0.44,
+   "norm_by_book": {
+    "kalshi": {
+     "ex_stats": {
+      "open_interest_fp": 17473.27,
+      "volume_24h_fp": 17473.09,
+      "volume_fp": 17473.27
+     },
+     "game_normal": 186541,
+     "game_x": 0.67,
+     "normal": 117777,
+     "now": 125746,
+     "type": "OVER",
+     "x": 1.07
+    }
+   },
+   "norm_ready_books": 1,
+   "paper_only": false,
+   "price": 0.49,
+   "price_american": 104,
+   "price_rule": "ok",
+   "price_when_first_seen": 0.49,
+   "prices_by_book": {
+    "betmgm": {
+     "point": 6.5,
+     "price": 100
+    },
+    "betonlineag": {
+     "point": 6.5,
+     "price": 103
+    },
+    "betopenly": {
+     "point": 6.5,
+     "price": 108
+    },
+    "betus": {
+     "point": 6.5,
+     "price": 100
+    },
+    "bovada": {
+     "point": 6.5,
+     "price": 100
+    },
+    "draftkings": {
+     "point": 6.5,
+     "price": -102
+    },
+    "fanatics": {
+     "point": 6.5,
+     "price": 100
+    },
+    "fanduel": {
+     "point": 6.5,
+     "price": 100
+    },
+    "kalshi": {
+     "point": 6.5,
+     "price": 104
+    },
+    "lowvig": {
+     "point": 6.5,
+     "price": 103
+    },
+    "mybookieag": {
+     "point": 6.5,
+     "price": 101
+    },
+    "novig": {
+     "point": 6.5,
+     "price": 108
+    },
+    "polymarket": {
+     "point": 6.5,
+     "price": 108
+    },
+    "prophetx": {
+     "point": 8.0,
+     "price": 325
+    },
+    "williamhill_us": {
+     "point": 6.5,
+     "price": -105
+    }
+   },
+   "pulled": false,
+   "ref": {
+    "kalshi_side": "yes",
+    "market_ticker": "KXNHLTOTAL-26NOV14COLMTL-7"
+   },
+   "result": null,
+   "rule_met": false,
+   "second_book": [],
+   "second_book_fresh": false,
+   "second_book_status": "no_match",
+   "sharp_agree": [],
+   "sharp_oppose": [],
+   "side": "OVER",
+   "side_label": "Over 6.5 goals scored",
+   "size_x": 1.07,
+   "start_source": "odds",
+   "start_utc": "2026-11-15T00:20:00Z",
+   "surge_books": [],
+   "teams": [
+    "Colorado",
+    "Montreal"
+   ],
+   "top25": null,
+   "units_flat": null
+  },
+  {
    "alerted_utc": "2026-11-15T00:05:43Z",
    "base_depth": 903395,
    "best_price": 0.75,
@@ -50,6 +637,11 @@
     "open_interest_fp": 49037.63,
     "volume_24h_fp": 1284989.48,
     "volume_fp": 50381.21
+   },
+   "ex_stats_close": {
+    "open_interest_fp": 2176078.21,
+    "volume_24h_fp": 2323521.14,
+    "volume_fp": 2332291.41
    },
    "ex_stats_first": {
     "open_interest_fp": 2109282.34,
@@ -483,9 +1075,9 @@
     "volume_fp": 642.58
    },
    "ex_stats_close": {
-    "open_interest_fp": 12318.97,
-    "volume_24h_fp": 13027.08,
-    "volume_fp": 13086.37
+    "open_interest_fp": 12451.43,
+    "volume_24h_fp": 13228.06,
+    "volume_fp": 13228.06
    },
    "ex_stats_first": {
     "open_interest_fp": 8609.25,
@@ -681,8 +1273,8 @@
     "volume": 185169.0
    },
    "ex_stats_close": {
-    "openInterest": 13182243.0,
-    "volume": 20534223.0
+    "openInterest": 13182473.0,
+    "volume": 20541175.0
    },
    "ex_stats_first": {
     "openInterest": 13156023.0,
@@ -2105,6 +2697,7 @@
     "novig",
     "prophetx"
    ],
+   "close_frozen": true,
    "close_price": 0.85,
    "clv_cents": 1.0,
    "confirmed_after_min": 10,
@@ -2284,7 +2877,8 @@
      "price": -600
     }
    },
-   "pulled": false,
+   "pulled": true,
+   "pulled_utc": "2026-11-15T00:10:14Z",
    "ref": {
     "kalshi_side": "yes",
     "market_ticker": "KXNBAGAME-26NOV14DENNOP-DEN"
@@ -3630,8 +4224,8 @@
     "volume": 0.0
    },
    "ex_stats_close": {
-    "openInterest": 7261751.0,
-    "volume": 8399878.0
+    "openInterest": 7262383.0,
+    "volume": 8400510.0
    },
    "ex_stats_first": {
     "openInterest": 7191104.0,
@@ -7973,7 +8567,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 8,
+   "settle_tries": 9,
    "sharp_agree": [
     "Rice Owls -2.5 (-115)"
    ],
@@ -23030,7 +23624,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 39,
+   "settle_tries": 40,
    "sharp_agree": [
     "Over 50.5 (-106)"
    ],
@@ -24656,7 +25250,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 14,
+   "settle_tries": 15,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "UCF",
@@ -25893,7 +26487,7 @@
    ],
    "second_book_fresh": false,
    "second_book_status": "ok",
-   "settle_tries": 26,
+   "settle_tries": 27,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Rice",
@@ -27559,7 +28153,7 @@
    ],
    "second_book_fresh": true,
    "second_book_status": "ok",
-   "settle_tries": 39,
+   "settle_tries": 40,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Auburn",
@@ -32917,7 +33511,7 @@
    "second_book": [],
    "second_book_fresh": false,
    "second_book_status": "none_10k",
-   "settle_tries": 39,
+   "settle_tries": 40,
    "sharp_agree": [],
    "sharp_oppose": [],
    "side": "Youngstown St.",
