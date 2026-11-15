@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 15, 2:40 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 27.
+Updated Sun Nov 15, 2:50 PM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 27.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -13,7 +13,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 15 2:20PM | NCAAB | Missouri vs Marquette | moneyline: Marquette | kalshi | $43k | -133 | ✅ novig | ✅ | +0.0c |  | pending |
 | Nov 15 1:20PM | NCAAB | Purdue Fort Wayne vs Eastern Illinois | moneyline: Purdue Fort Wayne | kalshi | $30k | -150 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 15 12:50PM | NCAAB | Purdue Fort Wayne vs Eastern Illinois: Point Total | total: NOT Over 144.5 points | kalshi | $29k | -100 |  |  | +2.0c | yes | pending |
-| Nov 15 12:50PM | NCAAB | University at Albany vs Holy Cross: Spread | spread: NOT University at Albany wins by over 2.5 points | kalshi | $26k | +104 |  |  | -3.0c | yes | pending |
+| Nov 15 12:50PM | NCAAB | University at Albany vs Holy Cross: Spread | spread: NOT University at Albany wins by over 2.5 points | kalshi | $26k | +104 |  |  | -11.0c | yes | pending |
 | Nov 15 12:30PM | NCAAB | Baylor vs Texas | moneyline: Texas | kalshi | $39k | -150 | ✅ novig | ❌ | +1.0c |  | pending |
 | Nov 15 12:20PM | NCAAB | William & Mary vs Michigan: Point Total | total: Over 165.5 points | kalshi | $25k | -127 |  |  | +5.0c | yes | pending |
 | Nov 15 12:00PM | NCAAB | Creighton vs Iowa | moneyline: Iowa | kalshi | $33k | -178 | ✅ novig | ✅ | -1.0c |  | pending |
@@ -32,7 +32,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 15 1:20AM | NCAAB | Norfolk St. vs Georgia St. | moneyline: Georgia St. | kalshi | $59k | -567 |  |  | +2.0c |  | pending |
 | Nov 15 1:20AM | NCAAB | Louisville vs Memphis | moneyline: Louisville | kalshi | $50k | -355 |  |  | +2.0c | yes | pending |
 | Nov 15 1:20AM | NCAAB | High Point vs Saint Louis | moneyline: Saint Louis | kalshi | $25k | -257 |  |  | +1.0c |  | pending |
-| Nov 15 1:10AM | NCAAB | University at Albany vs Holy Cross | moneyline: University | kalshi | $29k | +127 |  |  | -12.0c |  | pending |
+| Nov 15 1:10AM | NCAAB | University at Albany vs Holy Cross | moneyline: University | kalshi | $29k | +127 |  |  | -13.0c |  | pending |
 | Nov 14 8:40PM | NCAAB | Boise St. vs Nebraska | moneyline: Nebraska | kalshi | $38k | -426 |  |  | +1.0c |  | pending |
 | Nov 14 8:30PM | NCAAB | IU Indy vs Morehead St. | moneyline: Morehead St. | kalshi | $26k | -144 |  |  | +10.0c | yes | W |
 | Nov 14 7:40PM | NCAAB | UC Davis vs Sacramento St. | moneyline: Sacramento St. | kalshi | $31k | -156 | ✅ novig | ✅ | -4.0c | yes | L |
