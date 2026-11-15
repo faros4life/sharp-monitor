@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 15, 12:50 AM ET. This run: 1 new, 2 not confirmed, 0 pending. Open alerts: 43.
+Updated Sun Nov 15, 12:55 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 43.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -13,7 +13,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 15 12:50AM | NFL | Los Angeles R vs Arizona: Spread | spread: Los Angeles R wins by over 9.5 points | kalshi | $70k | -100 | ✅ novig |  | +0.0c |  | pending |
 | Nov 15 12:45AM | NBA | Houston vs Washington | moneyline: Houston | kalshi | $66k | -376 |  |  | +0.0c |  | pending |
 | Nov 15 12:10AM | NFL | Carolina Panthers @ New Orleans Saints | moneyline: NO (0) | novig | $56k | -117 | ✅ prophetx |  | +0.0c |  | pending |
-| Nov 15 12:10AM | NFL | Houston vs Cleveland: Total Points | total: Over 40.5 points | kalshi | $64k | -104 | ✅ novig |  | +0.0c |  | pending |
+| Nov 15 12:10AM | NFL | Houston vs Cleveland: Total Points | total: Over 40.5 points | kalshi | $64k | -104 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 15 12:10AM | NFL | Pittsburgh vs Cincinnati | moneyline: Cincinnati | kalshi | $200k | -178 | ✅ novig,prophetx |  | +0.0c | yes | pending |
 | Nov 14 11:50PM | NBA | Oklahoma City vs Sacramento | moneyline: Oklahoma City | kalshi | $65k | -426 |  |  | +0.0c |  | pending |
 | Nov 14 11:30PM | NFL | San Francisco vs Dallas | moneyline: San Francisco | kalshi | $188k | -194 | ✅ novig,prophetx |  | +0.0c | yes | pending |
@@ -31,9 +31,9 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 14 10:00PM | NCAAF | Colorado State @ Washington State | spread: CSU +7.5 (-7.5) | novig | $26k | -104 | ✅ prophetx | ✅ | +0.5c | yes | pending |
 | Nov 14 10:00PM | NCAAF | Colorado St. vs Washington St.: Spread | spread: NOT Washington St. wins by over 7.5 points | kalshi | $108k | -108 | ✅ novig,prophetx | ✅ | +0.0c | yes | pending |
 | Nov 14 9:55PM | NFL | Seattle vs Las Vegas | moneyline: Seattle | kalshi | $440k | -270 | ✅ novig,prophetx |  | -1.0c |  | pending |
-| Nov 14 9:55PM | NFL | Buffalo vs New York J | moneyline: Buffalo | kalshi | $232k | -400 | ✅ novig,prophetx |  | +0.0c |  | pending |
+| Nov 14 9:55PM | NFL | Buffalo vs New York J | moneyline: Buffalo | kalshi | $232k | -400 | ✅ novig,prophetx |  | +0.0c | yes | pending |
 | Nov 14 9:45PM | NFL | New England vs Detroit: Total Points | total: Over 49.5 points | kalshi | $200k | -104 | ✅ novig |  | +1.0c | yes | pending |
-| Nov 14 9:45PM | NFL | Kansas City vs Atlanta | moneyline: Kansas City | kalshi | $153k | -170 | ✅ novig,prophetx |  | +0.0c |  | pending |
+| Nov 14 9:45PM | NFL | Kansas City vs Atlanta | moneyline: Kansas City | kalshi | $153k | -170 | ✅ novig,prophetx |  | +0.0c | yes | pending |
 | Nov 14 9:40PM | NCAAF | North Dakota St. vs Hawai'i | moneyline: North Dakota St. | kalshi | $134k | -257 |  |  | +8.0c | yes | pending |
 | Nov 14 9:40PM | NCAAF | Idaho St. vs Montana | moneyline: Montana | kalshi | $76k | -285 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 14 9:35PM | NFL | New England vs Detroit: Spread | spread: NOT Detroit wins by over 2.5 points | kalshi | $172k | +108 | ✅ novig |  | +1.0c |  | pending |
