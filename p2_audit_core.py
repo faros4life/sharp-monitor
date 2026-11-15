@@ -255,7 +255,10 @@ CSV_FIELDS = ("bucket", "segment", "book", "plays", "verified_money", "W", "L", 
 # Verified unit schedule: (lane, effective-from UTC, unit in dollars to win). Peter, 15 Nov 2026: "Lane 1 300";
 # executor.LIVE_UNIT records the change $200 -> $300 on 9 Nov. A segment gets units ONLY when EXACT-attributed
 # to that lane and every play in it is dated on/after the effective time. Other lanes: UNAVAILABLE until confirmed.
-UNIT_SCHEDULE = {"PHASE 1": ("2026-11-09T00:00:00+00:00", 300.0)}
+# R1 and BOARD V3: executor.R1_UNIT / BOARD_UNIT, both "Peter, 11 Nov" written approvals, unchanged since.
+UNIT_SCHEDULE = {"PHASE 1": ("2026-11-09T00:00:00+00:00", 300.0),
+                 "R1": ("2026-11-11T00:00:00+00:00", 200.0),
+                 "BOARD V3": ("2026-11-11T00:00:00+00:00", 200.0)}
 
 
 def units_for(bucket, seg_range, net):
@@ -271,7 +274,7 @@ def render(rep):
     """(text, csv_rows) for PRIVATE delivery only. Aggregates per bucket and segment; never a game, bet, ticket or row."""
     L = ["PROJECT 2 - live lane audit (private). Buckets never mix: EXACT = venue order id -> one registry claim;",
          "FUZZY = the tracker's own lane label (UNVERIFIED); UNATTRIBUTED = no provable lane; CONFLICT = tracker vs registry disagree.",
-         "Units: Lane 1 (PHASE 1) at 300 to win from 9 Nov, EXACT plays only; other lanes UNAVAILABLE until confirmed. ROI = net / risked on verified-money plays.",
+         "Units (EXACT plays only, dated on/after the unit's start): Lane 1 300 from 9 Nov; R1 200 and Board V3 200 from 11 Nov. ROI = net / risked.",
          f"Join: {rep.get('join')} | lane conflicts: {len(rep.get('lane_conflicts') or [])}", ""]
     rows = []
     for b, v in (rep.get("buckets") or {}).items():

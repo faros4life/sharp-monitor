@@ -53,8 +53,9 @@ check("Lane 1 units only on EXACT Phase 1 plays dated on/after 9 Nov",
 check("a segment reaching back before 9 Nov gets no units",
       core.units_for("EXACT:PHASE 1", ["2026-11-01T00:00:00+00:00", "x"], 300.0) is None)
 check("FUZZY Phase 1 never gets units", core.units_for("FUZZY:PHASE 1", ["2026-11-12T00:00:00+00:00"], 300.0) is None)
-check("R1 / Board V3 stay UNAVAILABLE until confirmed",
-      core.units_for("EXACT:R1", ["2026-11-12T00:00:00+00:00"], 200.0) is None)
+check("R1 units at 200 from 11 Nov", core.units_for("EXACT:R1", ["2026-11-12T00:00:00+00:00"], 200.0) == 1.0)
+check("Board V3 before 11 Nov gets no units", core.units_for("EXACT:BOARD V3", ["2026-11-10T00:00:00+00:00"], 200.0) is None)
+check("CONFLICT and UNATTRIBUTED never get units", core.units_for("CONFLICT(registry=BOARD V3)", ["2026-11-12T00:00:00+00:00"], 200.0) is None)
 if fails:
     print("FAILED", fails); sys.exit(1)
 print("test_report_sections: all passed")
