@@ -1,17 +1,17 @@
 # Liquidity alerts (paper)
 
-Updated Sun Nov 15, 12:55 AM ET. This run: 0 new, 0 not confirmed, 0 pending. Open alerts: 43.
+Updated Sun Nov 15, 1:00 AM ET. This run: 0 new, 0 not confirmed, 6 pending. Open alerts: 42.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
-**Record:** 1518-1167 (-15.89u flat) | rule met: 917-708
+**Record:** 1519-1167 (-15.32u flat) | rule met: 918-708
 
-**Fade (paper, betting against the print):** 901-1245 (-214.85u flat, after fees)
+**Fade (paper, betting against the print):** 901-1246 (-215.85u flat, after fees)
 
 | Logged (ET) | League | Game | Bet | Book | New $ | Price | Rule | Sharp | CLV | Pulled | Result |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Nov 15 12:50AM | NFL | Los Angeles R vs Arizona: Spread | spread: Los Angeles R wins by over 9.5 points | kalshi | $70k | -100 | ✅ novig |  | +0.0c |  | pending |
-| Nov 15 12:45AM | NBA | Houston vs Washington | moneyline: Houston | kalshi | $66k | -376 |  |  | +0.0c |  | pending |
+| Nov 15 12:45AM | NBA | Houston vs Washington | moneyline: Houston | kalshi | $66k | -376 |  |  | -1.0c |  | pending |
 | Nov 15 12:10AM | NFL | Carolina Panthers @ New Orleans Saints | moneyline: NO (0) | novig | $56k | -117 | ✅ prophetx |  | +0.0c |  | pending |
 | Nov 15 12:10AM | NFL | Houston vs Cleveland: Total Points | total: Over 40.5 points | kalshi | $64k | -104 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 15 12:10AM | NFL | Pittsburgh vs Cincinnati | moneyline: Cincinnati | kalshi | $200k | -178 | ✅ novig,prophetx |  | +0.0c | yes | pending |
@@ -23,7 +23,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 14 11:05PM | NHL | Vancouver vs Vegas | moneyline: Vegas | kalshi | $67k | -400 |  |  | +0.0c |  | pending |
 | Nov 14 11:05PM | NHL | Nashville vs San Jose | moneyline: Nashville | kalshi | $43k | -163 |  |  | +0.0c | yes | pending |
 | Nov 14 11:05PM | NHL | Calgary vs Anaheim | moneyline: Anaheim | kalshi | $27k | -138 |  |  | +1.0c | yes | pending |
-| Nov 14 11:05PM | NBA | Dallas vs Boston | moneyline: Boston | kalshi | $181k | -525 |  |  | +3.0c |  | pending |
+| Nov 14 11:05PM | NBA | Dallas vs Boston | moneyline: Boston | kalshi | $181k | -525 |  |  | +2.0c |  | pending |
 | Nov 14 10:35PM | NCAAF | North Dakota State @ Hawaii | moneyline: NDSU (0) | novig | $37k | -270 | ✅ prophetx | ✅ | +0.0c |  | pending |
 | Nov 14 10:35PM | NFL | Los Angeles R vs Arizona | moneyline: Los Angeles R | kalshi | $472k | -426 | ✅ novig,prophetx |  | +0.0c | yes | pending |
 | Nov 14 10:35PM | NBA | Atlanta vs Milwaukee | moneyline: Atlanta | kalshi | $304k | -300 |  |  | -2.0c |  | pending |
@@ -40,7 +40,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 14 9:30PM | NHL | New York I vs Anaheim: Total Goals | total: Over 6.5 goals scored | kalshi | $28k | -127 | ✅ novig |  | +1.0c | yes | W |
 | Nov 14 9:25PM | NFL | Minnesota vs Green Bay | moneyline: Green Bay | kalshi | $137k | -144 | ✅ novig |  | +0.0c | yes | pending |
 | Nov 14 9:25PM | NFL | Houston vs Cleveland | moneyline: Houston | kalshi | $100k | -213 | ✅ novig,prophetx |  | +0.0c | yes | pending |
-| Nov 14 9:20PM | NHL | Calgary vs Los Angeles: Spread | spread: NOT Los Angeles wins by over 1.5 goals | kalshi | $29k | -170 | ✅ novig |  | +0.0c | yes | pending |
+| Nov 14 9:20PM | NHL | Calgary vs Los Angeles: Spread | spread: NOT Los Angeles wins by over 1.5 goals | kalshi | $29k | -170 | ✅ novig |  | +0.0c | yes | W |
 | Nov 14 9:05PM | NFL | Carolina vs New Orleans | moneyline: Carolina | kalshi | $265k | +117 | ✅ novig |  | +1.0c | yes | pending |
 | Nov 14 9:00PM | NFL | Jacksonville vs Tennessee | moneyline: Jacksonville | kalshi | $255k | -525 | ✅ novig,prophetx |  | +0.0c | yes | pending |
 | Nov 14 8:55PM | NFL | Miami vs Indianapolis | moneyline: Indianapolis | kalshi | $3,628k | -203 | ✅ novig,prophetx |  | +0.0c |  | pending |
