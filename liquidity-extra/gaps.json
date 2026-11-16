@@ -2,38 +2,6 @@
  "note": "PAPER ONLY (Oct 25; persistence added Oct 26): opposite sides of the same game/market/line on two different exchanges whose combined cost after fees is under $1 (Kalshi/Novig/ProphetX; Polymarket here is the global book, excluded). edge_pct = locked profit per $ staked at first sight; max/last_edge_pct while open. size_est = smaller leg's near-price depth (UPPER BOUND). first/last_seen_utc, scans_seen, lifetime_min = how long the gap stayed open (scan-interval resolution; a 1-scan gap may be a feed artifact). scan_sec = seconds from run start to this save, the most the two legs' reads can be apart. Measurement only: never alerted, never bet.",
  "gaps": [
   {
-   "seen_utc": "2026-11-02T00:10:17Z",
-   "league": "NCAAB",
-   "game": "South Carolina Upstate @ East Carolina",
-   "market": "moneyline",
-   "line": null,
-   "edge_pct": 2.81,
-   "total_cost": 0.9727,
-   "size_est": 295,
-   "legs": [
-    {
-     "book": "novig",
-     "side": "ECU (0)",
-     "price": 0.93,
-     "cost_after_fee": 0.93
-    },
-    {
-     "book": "kalshi",
-     "side": "Western Carolina",
-     "price": 0.04,
-     "cost_after_fee": 0.0427
-    }
-   ],
-   "first_seen_utc": "2026-11-02T00:10:17Z",
-   "last_seen_utc": "2026-11-02T00:50:16Z",
-   "scans_seen": 5,
-   "max_edge_pct": 2.81,
-   "scan_sec": 162,
-   "lifetime_min": 40,
-   "last_edge_pct": 2.81,
-   "last_size_est": 275
-  },
-  {
    "seen_utc": "2026-11-02T00:55:45Z",
    "league": "NCAAB",
    "game": "UCLA @ Arizona",
