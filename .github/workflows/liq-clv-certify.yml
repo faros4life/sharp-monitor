@@ -1,0 +1,49 @@
+name: liq-clv-certify
+# Peter, 16 Nov 2026: certified Pinnacle CLV for LIQ-SMALL / LIQ-BOT from EXISTING cached data only.
+# Dispatch only. Restores the shared history cache (never saves it). No OddsPapi key is passed, so no
+# API call - paid or free - is possible. Writes only liquidity/clv_certified.json (CLV percents, no money).
+on:
+  workflow_dispatch: {}
+permissions:
+  contents: write
+concurrency:
+  group: liq-clv-certify
+  cancel-in-progress: false
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q cryptography
+      - name: Offline tests
+        run: python test_liq_clv_certify.py
+      - name: Restore shared OddsPapi history cache (restore only, never saved)
+        uses: actions/cache/restore@v4
+        with:
+          path: hcache
+          key: hcache-${{ github.run_id }}
+          restore-keys: hcache-
+      - name: Certify (cache-only; counts in this log)
+        env:
+          TRACKER_PASSPHRASE: ${{ secrets.TRACKER_PASSPHRASE }}
+        run: python -u liq_clv_certify.py
+      - name: Commit the certified file only
+        run: |
+          git status --porcelain --untracked-files=all -- . ':!liquidity/clv_certified.json' ':!hcache' > "$RUNNER_TEMP/d"
+          if [ -s "$RUNNER_TEMP/d" ]; then echo "FAIL: unexpected changes"; cat "$RUNNER_TEMP/d"; exit 1; fi
+          git config user.name "liq-clv-certify"; git config user.email "liq-clv-certify@users.noreply.github.com"
+          git add liquidity/clv_certified.json
+          git diff --cached --quiet && { echo "no change"; exit 0; }
+          git commit -q -m "liquidity: certified Pinnacle CLV (cache-only)"
+          for i in 1 2 3 4 5; do
+            git push -q origin HEAD:main && { echo committed; exit 0; }
+            cp liquidity/clv_certified.json "$RUNNER_TEMP/c.json"
+            git fetch -q --depth=1 origin main && git reset -q --hard FETCH_HEAD || exit 1
+            cp "$RUNNER_TEMP/c.json" liquidity/clv_certified.json
+            git add liquidity/clv_certified.json && git commit -q -m "liquidity: certified Pinnacle CLV (cache-only)"; sleep 3
+          done
+          echo "FAIL: push"; exit 1

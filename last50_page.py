@@ -15,7 +15,7 @@ def add(name, rows, note="", group="paper"):
     h = len(w) // 2
     h1, h2, ho = r.half_stats(w[:h]), r.half_stats(w[h:]), r.half_stats(w)
     ci = r.ci_mean(ho["us"])
-    f = lambda x: {k: x[k] for k in ("n", "w", "l", "units", "roi", "clv", "clv_n", "clv_ci", "pclv", "pclv_n", "pclv_src")}
+    f = lambda x: {k: x[k] for k in ("n", "w", "l", "units", "roi", "clv", "clv_n", "clv_ci", "clv_pos_pct", "pclv", "pclv_n", "pclv_src")}
     tests.append({"name": name, "note": note, "group": group, "n": len(w), "total": total, "from": w[0]["ts"][:10],
                   "to": w[-1]["ts"][:10], "h1": f(h1), "h2": f(h2), "all": f(ho), "ci": ci,
                   "verdict": r.verdict(w, h1, h2, ho), "conf": r.confidence(ho["n"], ho["clv_n"]),
@@ -40,8 +40,8 @@ paper = [
     ("Sharp alerts, sent to phone", [x for x in S if x["sent"]], ""),
     ("Sharp alerts, NBA unders", [x for x in S if x["lg"] == "NBA" and "under" in x["bet"].lower()], "Stand-in for Lane 1's market, not its fills"),
     ("Liquidity, NBA under (Kalshi)", [x for x in Q if x["lg"] == "NBA" and x["mk"] == "total" and x["side"] == "UNDER" and x["book"] == "kalshi"], "Bettable venue only"),
-    ("LIQ-BOT, NBA totals 4h+", [x for x in Q if x["lg"] == "NBA" and x["mk"] == "total" and x["lead"] is not None and x["lead"] >= 240], "Registry 9"),
-    ("LIQ-SMALL, NBA totals $25-50k prints", [x for x in Q if x["lg"] == "NBA" and x["mk"] == "total" and x["nm"] is not None and 25000 <= x["nm"] <= 50000], "Registry 13"),
+    ("LIQ-BOT, NBA totals 4h+", r.liq_certified([x for x in Q if x["lg"] == "NBA" and x["mk"] == "total" and x["lead"] is not None and x["lead"] >= 240]), "Registry 9"),
+    ("LIQ-SMALL, NBA totals $25-50k prints", r.liq_certified([x for x in Q if x["lg"] == "NBA" and x["mk"] == "total" and x["nm"] is not None and 25000 <= x["nm"] <= 50000]), "Registry 13"),
     ("Pull-fade", r.lane_rows("pull_fade"), "Paper lane; registry 25"),
     ("Solo", r.lane_rows("solo"), "Paper lane; registry 26"),
     ("Bets Board PLAY calls", r.board_rows(), "Frozen call log; registry 7"),

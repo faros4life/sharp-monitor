@@ -100,13 +100,15 @@ def half_stats(xs):
             "l": sum(1 for r in xs if r["res"] == "L"), "units": sum(us),
             "roi": (100 * sum(us) / len(us)) if us else None, "us": us,
             "clv": st.mean(clvs) if clvs else None, "clv_n": len(clvs), "clv_ci": ci_mean(clvs),
+            "clv_pos_pct": (100 * sum(1 for c in clvs if c > 0) / len(clvs)) if clvs else None,
             "pclv": st.mean(pcl) if pcl else None, "pclv_n": len(pcl),
             "pclv_src": next((r.get("pclv_src") for r in xs if r.get("pclv") is not None), None)}
 
 
 def fmt(h):
     roi = "n/a" if h["roi"] is None else f"{h['roi']:+.1f}%"
-    clv = "n/a" if h["clv"] is None else f"{h['clv']:+.2f}% (n {h['clv_n']})"
+    clv = "n/a" if h["clv"] is None else (f"{h['clv']:+.2f}% (n {h['clv_n']}, beat close {h['clv_pos_pct']:.0f}%"
+                                          + (f", 95% CI [{h['clv_ci'][0]:+.2f}, {h['clv_ci'][1]:+.2f}]" if h.get("clv_ci") else "") + ")")
     pv = "" if not h.get("pclv_n") else f" | provisional, NOT certified: {h['pclv']:+.2f}% (n {h['pclv_n']})"
     return f"n {h['n']:2d} | {h['w']}-{h['l']} | {h['units']:+6.2f}u | ROI {roi} | CERTIFIED CLV {clv}{pv}"
 
@@ -168,6 +170,21 @@ PROV_ALERT = "provisional: live feed read 5-30 min before start, line not verifi
 PROV_VENUE = "not Pinnacle: the alerting venue's own last pregame price"
 
 
+def liq_certified(rows, path="liquidity/clv_certified.json"):
+    """16 Nov: certified Pinnacle CLV from liq_clv_certify (cache-only, clv_obs_audit waterfall) onto LIQ rows.
+    Applied ONLY to LIQ-SMALL and LIQ-BOT. A row without a certified entry keeps clv None; its venue close stays
+    in pclv, labelled. Returns new row dicts; the inputs and their W-L/units are untouched."""
+    try:
+        cert = (json.load(open(path)) or {}).get("certified") or {}
+    except (OSError, ValueError):
+        cert = {}
+    out = []
+    for r in rows:
+        c = cert.get(r.get("aid") or "")
+        out.append(dict(r, clv=c["clv_pct"]) if c and c.get("clv_pct") is not None else dict(r))
+    return out
+
+
 def sharp_rows():
     S = load("alerts.json") or []
     rows = []
@@ -197,6 +214,7 @@ def liq_rows():
         # 16 Nov: close_price is the ALERTING VENUE'S own last pregame price (liquidity_monitor), not Pinnacle.
         rows.append({"ts": str(x.get("alerted_utc") or ""), "game": x.get("game") or "", "am": am,
                      "res": x["result"], "clv": None, "pclv": c, "pclv_src": PROV_VENUE,
+                     "aid": f"{x.get('key')}|{x.get('alerted_utc')}",
                      "lg": x.get("league"), "mk": x.get("market"),
                      "side": x.get("side"), "book": x.get("book"), "lead": x.get("lead_min"),
                      "nm": x.get("new_money"),
@@ -488,10 +506,10 @@ def main():
          "PROXY for Lane 1's market only, not Lane 1's fills"),
         (None, "LIQ - NBA UNDER, Kalshi-triggered", [r for r in Q if r["lg"] == "NBA" and r["mk"] == "total"
                                                      and r["side"] == "UNDER" and r["book"] == "kalshi"], "bettable venue only"),
-        (9, "LIQ-BOT (reg 9) - NBA totals, 4h+ lead", [r for r in Q if r["lg"] == "NBA" and r["mk"] == "total"
-                                                       and r["lead"] is not None and r["lead"] >= 240], ""),
-        (13, "LIQ-SMALL (reg 13) - NBA totals, $25-50k prints", [r for r in Q if r["lg"] == "NBA" and r["mk"] == "total"
-                                                                and r["nm"] is not None and 25000 <= r["nm"] <= 50000], ""),
+        (9, "LIQ-BOT (reg 9) - NBA totals, 4h+ lead", liq_certified([r for r in Q if r["lg"] == "NBA" and r["mk"] == "total"
+                                                       and r["lead"] is not None and r["lead"] >= 240]), ""),
+        (13, "LIQ-SMALL (reg 13) - NBA totals, $25-50k prints", liq_certified([r for r in Q if r["lg"] == "NBA" and r["mk"] == "total"
+                                                                and r["nm"] is not None and 25000 <= r["nm"] <= 50000]), ""),
         (25, "PULL_FADE (reg 25)", lane_rows("pull_fade"), "price is the logged probability"),
         (26, "SOLO (reg 26)", lane_rows("solo"), "price is the logged probability"),
         (7, "BETS BOARD PLAYS (reg 7)", board_rows(), "PLAY calls only; frozen call log"),
