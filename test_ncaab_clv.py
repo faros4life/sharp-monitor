@@ -98,26 +98,29 @@ def fake_api(path, billable, apikey=None, **params):
 
 cl.api = fake_api
 LO, HI = datetime(2026, 11, 12, tzinfo=timezone.utc), datetime(2026, 11, 15, tzinfo=timezone.utc)
+check("no verified tournament id -> blocked, nothing spent",
+      cl.NCAAB_VERIFIED_TID is None and cl.ncaab_fx_once({"bets": {}}, NOW, "NCAAB", LO, HI, set()).startswith("blocked")
+      and CALLS == [])
+cl.NCAAB_VERIFIED_TID = 777
 st = {"bets": {}}
 CALLS.clear()
-got = cl.ncaab_fx_once(st, NOW, "NCAAB", LO, HI, set())
-check("no stored tournament id: at most two billable calls (tournament + fixtures)",
-      CALLS == ["/tournaments", "/fixtures"] and st["ncaab_fx_once"]["billable"] == 2, )
-check("the fixture is persisted in the ledger's own cache", "fx1" in st.get("fixtures", {}) and st.get("ncaab_tid") == 777)
+cl.ncaab_fx_once(st, NOW, "NCAAB", LO, HI, set())
+check("verified id: exactly one call (fixtures), never a tournament lookup",
+      CALLS == ["/fixtures"] and st["ncaab_fx_once"]["billable"] == 1 and st["ncaab_tid"] == 777)
+check("the fixture is persisted in the ledger's own cache", "fx1" in st.get("fixtures", {}))
 CALLS.clear()
 check("never repeated", cl.ncaab_fx_once(st, NOW, "NCAAB", LO, HI, set()) == "already used" and CALLS == [])
-st = {"bets": {}, "ncaab_tid": 777}
 CALLS.clear()
-cl.ncaab_fx_once(st, NOW, "NCAAB", LO, HI, set())
-check("stored tournament id: exactly one call", CALLS == ["/fixtures"] and st["ncaab_fx_once"]["billable"] == 1)
+check("a stored id that differs from the verified one -> blocked",
+      cl.ncaab_fx_once({"bets": {}, "ncaab_tid": 555}, NOW, "NCAAB", LO, HI, set()).startswith("blocked") and CALLS == [])
 _cap = cl.CAP
-cl.CAP = cl.used_this_period({"bets": {}}, NOW) + 1          # room for one call only
+cl.CAP = cl.used_this_period({"bets": {}}, NOW)          # no room
 st = {"bets": {}}
 CALLS.clear()
 r = cl.ncaab_fx_once(st, NOW, "NCAAB", LO, HI, set())
-check("budget short of the calls it may need -> refused, nothing spent", r.startswith("refused") and CALLS == []
-      and "ncaab_fx_once" not in st)
+check("budget short -> refused, nothing spent", r.startswith("refused") and CALLS == [] and "ncaab_fx_once" not in st)
 cl.CAP = _cap
+cl.NCAAB_VERIFIED_TID = None
 src = open("clv_ledger.py").read()
 check("only the four reopened rows can queue the lookup",
       'if lg in CACHE_ONLY_FX and not (rec.get("ncaab_reopened") and not st.get("ncaab_fx_once")):' in src)

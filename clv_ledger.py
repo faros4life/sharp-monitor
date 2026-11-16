@@ -55,7 +55,7 @@ FETCH_DAYS = 45                  # Nov 5 (Peter, explicit release): was 14. The 
 FX_KEEP_DAYS = FETCH_DAYS + 14   # fixture cache retention - always longer than the window, never inside it
 SPORT = {"NBA": 11, "NFL": 14, "NCAAF": 14, "NHL": 15}
 TOURN = {"NBA": 132, "NFL": 31, "NHL": 234}           # NCAAF looked up once (the probe's 850 was wrong)
-ML_MARKET = {11: "111", 14: "141", 15: "151"}
+ML_MARKET = {11: "111", 14: "141", 15: "151"}         # Winner incl. overtime (hockey: incl. OT and penalties)
 # Nov 16 (Peter, approved): NCAAB is SCORED with the same certified close as every other league.
 # SPORT itself is unchanged so no other job's league list moves. NCAAB fixtures are CACHE-ONLY:
 # a fixture lookup for NCAAB is a paid call and is not approved, so this ledger never asks for one;
@@ -63,7 +63,12 @@ ML_MARKET = {11: "111", 14: "141", 15: "151"}
 SCORE_SPORT = dict(SPORT, NCAAB=11)
 CACHE_ONLY_FX = frozenset({"NCAAB"})
 NCAAB_REOPEN_START_ET = "2026-11-12"   # report_sections.START_ET: the four settled bot rows Peter named
-NCAAB_REOPEN_EXPECT = 4         # Winner incl. overtime (hockey: incl. OT and penalties)
+NCAAB_REOPEN_EXPECT = 4
+# Peter, Nov 16 16:07: the NCAAB tournament must be verified as NCAA Division I men's basketball from
+# authoritative metadata BEFORE any paid fixture call. tournament()'s "most upcoming NCAA" pick is not
+# verification, and it returned no id on both prior attempts (ncaab-probe, Nov 14). Until a verified id
+# is recorded here, the one-time fixture recovery is BLOCKED and spends nothing.
+NCAAB_VERIFIED_TID = None
 FRESH_MIN = 24 * 60  # history stores CHANGES: a line's last pre-start tick is its price at the start unless it is a day old
 SCORE_AFTER_MIN = 10  # score a bet this long after its listed start
 MAX_TRIES = 8
@@ -1282,7 +1287,12 @@ def ncaab_fx_once(st, now, lg, lo, hi, fetched):
     The once-flag is set as soon as any call has billed, so no later run can repeat it."""
     if st.get("ncaab_fx_once"):
         return "already used"
-    n = (0 if st.get("ncaab_tid") else 1) + 1
+    if not NCAAB_VERIFIED_TID:
+        return "blocked: no verified NCAA Division I men's tournament id - no paid call made"
+    if st.get("ncaab_tid") not in (None, NCAAB_VERIFIED_TID):
+        return "blocked: stored NCAAB tournament id differs from the verified id - no paid call made"
+    st["ncaab_tid"] = NCAAB_VERIFIED_TID
+    n = 1
     used0 = used_this_period(st, now)
     if not can_bill(st, now, n):
         return f"refused: budget would not cover {n} call(s) (used {used0} of {CAP})"
