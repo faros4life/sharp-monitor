@@ -1,6 +1,6 @@
 # Liquidity alerts (paper)
 
-Updated Mon Nov 16, 11:40 AM ET. This run: 0 new, 1 not confirmed, 0 pending. Open alerts: 27.
+Updated Mon Nov 16, 11:45 AM ET. This run: 0 new, 0 not confirmed, 1 pending. Open alerts: 27.
 
 New money ($25k+, 10% of the side, capped at $100k) that stayed on the next check. **Rule** = a second book has $10k+ on the same side and line. **Sharp** = a sharp-monitor alert agrees. **CLV** = cents the exchange price moved toward this side before the game.
 
@@ -31,7 +31,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 15 10:30PM | NBA | Phoenix vs Denver | moneyline: Denver | kalshi | $79k | -376 |  |  | +0.0c |  | pending |
 | Nov 15 10:25PM | NBA | Houston vs Miami | moneyline: Miami | kalshi | $29k | +127 |  |  | +0.0c |  | pending |
 | Nov 15 9:00PM | NBA | Chicago vs Cleveland | moneyline: Cleveland | kalshi | $103k | -355 |  |  | -2.0c |  | pending |
-| Nov 15 8:55PM | NBA | Orlando vs Boston | moneyline: Boston | kalshi | $109k | -426 |  |  | -5.0c | yes | pending |
+| Nov 15 8:55PM | NBA | Orlando vs Boston | moneyline: Boston | kalshi | $109k | -426 |  |  | -4.0c | yes | pending |
 | Nov 15 8:50PM | NBA | Golden State vs New Orleans | moneyline: Golden State | kalshi | $98k | -127 |  |  | +4.0c |  | pending |
 | Nov 15 8:45PM | NBA | Oklahoma City vs Sacramento: Total Points | total: NOT Over 221.5 points | kalshi | $59k | -104 | ✅ novig |  | +0.0c | yes | L |
 | Nov 15 8:35PM | NBA | Philadelphia vs Brooklyn | moneyline: Philadelphia | kalshi | $118k | -223 |  |  | -1.0c |  | pending |
@@ -79,7 +79,7 @@ New money ($25k+, 10% of the side, capped at $100k) that stayed on the next chec
 | Nov 15 12:25PM | NFL | Buffalo vs New York J: Total Points | total: Over 50.5 points | kalshi | $142k | -104 |  |  | +1.0c | yes | L |
 | Nov 15 12:20PM | NFL | Miami Dolphins @ Indianapolis Colts | spread: IND -4.5 (-4.5) | novig | $29k | -102 | ✅ kalshi |  | +1.0c |  | L |
 | Nov 15 12:15PM | NBA | Indiana Pacers @ Philadelphia 76ers | moneyline: PHI (0) | novig | $61k | -277 | ✅ kalshi,prophetx | ✅ | -2.0c |  | W |
-| Nov 15 12:10PM | NFL | Los Angeles C vs Baltimore | moneyline: Baltimore | kalshi | $267k | -203 | ✅ novig,prophetx |  | +1.0c |  | pending |
+| Nov 15 12:10PM | NFL | Los Angeles C vs Baltimore | moneyline: Baltimore | kalshi | $267k | -203 | ✅ novig,prophetx |  | +2.0c |  | pending |
 | Nov 15 12:05PM | NBA | Indiana Pacers at Philadelphia 76ers | moneyline: Philadelphia 76ers | prophetx | $25k | -285 | ✅ kalshi,novig |  | -2.6c |  | W |
 | Nov 15 12:05PM | NCAAF | Ole Miss @ Oklahoma | moneyline: OU (0) | novig | $26k | -122 |  |  | +0.0c |  | W |
 | Nov 15 11:55AM | NFL | Buffalo Bills at New York Jets | spread: Buffalo Bills -7.5 (-7.5) | prophetx | $35k | -103 | ✅ novig |  | -0.2c | yes | W |
