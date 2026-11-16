@@ -155,3 +155,77 @@ def render_day(day, out_o, out_p, once):
         net = "" if p["net"] is None else f" | net {p['net']:+.2f}"
         L.append(f"   - {p['game']} | {p['bet']} | {p['book']} | {p['bucket']} | {p['result']}{net} | CLV {p['clv']}")
     return "\n".join(L)
+
+
+def fill_exceptions(orders, fills, venue_order_ids, px_complete):
+    """Every placed order since START_ET with no registry fill record, classified by VENUE evidence.
+    venue_order_ids: every order/client id seen in the venues' own fill and trade reads."""
+    d = lambda x: x if isinstance(x, dict) else {}
+    pk = {str(f.get("play_key")) for f in fills.values() if f.get("play_key")}
+    out = []
+    for o in orders:
+        day = o.get("et_day") or _et_day(o.get("decided_utc")) or ""
+        if day < START_ET:
+            continue
+        key = str(o.get("key") or "")
+        more = o.get("live_more")
+        for lo in [d(o.get("live_order")), d(o.get("live_rest"))] + [d(x) for x in (more if isinstance(more, list) else [])]:
+            ids = [str(lo.get(k)) for k in ("order_id", "client_id") if lo.get(k)]
+            if lo.get("status") != "placed" or not ids:
+                continue
+            if any(i in fills for i in ids) or key in pk or key.split("|", 1)[-1] in pk:
+                continue
+            venue = str(lo.get("book") or o.get("fill_book") or "?").lower()
+            if any(i in venue_order_ids for i in ids):
+                cat = "VENUE SHOWS A FILL - registry fill record missing (record gap, position is real)"
+            elif "prophet" in venue and not px_complete:
+                cat = "UNKNOWN - ProphetX trade read capped at 100, cannot prove fill or no fill"
+            elif "novig" in venue or "prophet" in venue:
+                cat = "NO FILL AT VENUE - complete venue read shows none (unfilled; not a position)"
+            else:
+                cat = f"UNKNOWN - no venue read for {venue}"
+            out.append({"day": day, "key": key, "venue": venue, "category": cat})
+    return out
+
+
+def clv_exceptions(bot_rows, clv_rows, certified, stale_ids):
+    """Every settled bot row since START_ET without a certified CLV, with the ledger's own reason."""
+    out = []
+    for b in bot_rows:
+        i = str(b.get("id") or "")
+        if b.get("result") not in SETTLED or (_et_day(b.get("game_start") or b.get("settled")) or "") < START_ET:
+            continue
+        if certified.get(i) is not None:
+            continue
+        r = clv_rows.get(i)
+        if r is None:
+            cat = "NOT IN CLV LEDGER - never scored (ingest gap)"
+        elif i in stale_ids:
+            cat = "EXCLUDED AS STALE - ledger row superseded/stale"
+        elif r.get("fixture_doubt"):
+            cat = "FIXTURE DOUBT - Pinnacle fixture match not certain"
+        elif r.get("clv") is None and not r.get("done"):
+            cat = f"PENDING - not yet scored (tries {r.get('tries') or 0}); {str(r.get('why') or 'no reason recorded')[:60]}"
+        else:
+            cat = f"UNRECOVERABLE - {str(r.get('why') or 'no reason recorded')[:60]}"
+        out.append({"game": b.get("game"), "bet": b.get("bet"), "book": b.get("book"), "category": cat})
+    return out
+
+
+def render_exceptions(fx, cx):
+    L = ["", f"SECTION G - RECONCILIATION OF EXCEPTIONS (from {START_ET} ET)",
+         f"  placed orders with no registry fill record: {len(fx)}"]
+    for e in fx:
+        L.append(f"   - {e['day']} | {e['key']} | {e['venue']} | {e['category']}")
+    L.append(f"  settled bot bets without certified CLV: {len(cx)} (never counted as zero)")
+    for e in cx:
+        L.append(f"   - {e['game']} | {e['bet']} | {e['book']} | {e['category']}")
+    return "\n".join(L)
+
+
+def category_counts(xs):
+    c = {}
+    for e in xs:
+        k = e["category"].split(" - ")[0]
+        c[k] = c.get(k, 0) + 1
+    return c

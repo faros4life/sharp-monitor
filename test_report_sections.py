@@ -76,6 +76,31 @@ check("only orders decided that ET day are listed", len(so) == 1 and so[0]["fill
 check("an 8 PM ET game (01:00Z next day) belongs to the ET day it is played", len(sp) == 2, sp)
 check("an unsettled position shows OPEN and missing CLV, never zero",
       any(p["result"] == "OPEN" and p["clv"] == "MISSING" for p in sp))
+od = [{"key": "board|NFL|a|side|a", "et_day": "2026-11-13", "live_order": {"status": "placed", "order_id": "v1", "book": "novig"}},
+      {"key": "r1|NCAAF|b|side|b", "et_day": "2026-11-13", "live_order": {"status": "placed", "order_id": "p1", "book": "prophetx"}},
+      {"key": "r1|NCAAF|c|side|c", "et_day": "2026-11-13", "live_order": {"status": "placed", "order_id": "n2", "book": "novig"}},
+      {"key": "rule|NBA|d|total|U", "et_day": "2026-11-13", "live_order": {"status": "placed", "order_id": "f1", "book": "novig"}}]
+fx = rs.fill_exceptions(od, {"f1": {"state": "FILLED"}}, {"v1"}, False)
+cats = {e["key"]: e["category"] for e in fx}
+check("an order with a fill record is not an exception", "rule|NBA|d|total|U" not in cats)
+check("venue evidence of a fill = record gap, position real", cats["board|NFL|a|side|a"].startswith("VENUE SHOWS A FILL"))
+check("ProphetX with a capped read = UNKNOWN, never 'no fill'", cats["r1|NCAAF|b|side|b"].startswith("UNKNOWN"))
+check("complete Novig read with no fill = NO FILL AT VENUE", cats["r1|NCAAF|c|side|c"].startswith("NO FILL AT VENUE"))
+br = [{"id": "a", "result": "W", "game_start": "2026-11-13T18:00:00Z"}, {"id": "b", "result": "L", "game_start": "2026-11-13T18:00:00Z"},
+      {"id": "c", "result": "W", "game_start": "2026-11-13T18:00:00Z"}, {"id": "d", "result": "W", "game_start": "2026-11-13T18:00:00Z"},
+      {"id": "e", "result": "W", "game_start": "2026-11-13T18:00:00Z"}, {"id": "old", "result": "W", "game_start": "2026-11-01T18:00:00Z"}]
+cx = {e["game"] or "": e for e in []}
+cx = rs.clv_exceptions([dict(r, game=r["id"]) for r in br],
+                       {"b": {"clv": None, "tries": 2, "why": "no Pinnacle tick within 60 min"}, "c": {"clv": 0.01},
+                        "d": {"clv": None, "done": True, "why": "league XYZ not covered"}, "e": {"clv": 0.02, "fixture_doubt": {"why": "x"}}},
+                       {"a": 0.01}, {"c"})
+cc = {e["game"]: e["category"] for e in cx}
+check("certified rows and pre-12-Nov rows are not exceptions", "a" not in cc and "old" not in cc and len(cc) == 4, cc)
+check("not scored yet = PENDING with tries", cc["b"].startswith("PENDING") and "tries 2" in cc["b"])
+check("stale-excluded named as such", cc["c"].startswith("EXCLUDED AS STALE"))
+check("done without a close = UNRECOVERABLE with the reason", cc["d"].startswith("UNRECOVERABLE") and "not covered" in cc["d"])
+check("fixture doubt named as such", cc["e"].startswith("FIXTURE DOUBT"))
+check("category counts are names only", rs.category_counts(fx) == {"VENUE SHOWS A FILL": 1, "UNKNOWN": 1, "NO FILL AT VENUE": 1})
 if fails:
     print("FAILED", fails); sys.exit(1)
 print("test_report_sections: all passed")

@@ -199,6 +199,15 @@ def main():
     p1 = rs.project1(rows, clv)
     integ = rs.integrity(rr, fills_all, rows, clv, rep, pok)
     text += rs.render(p1, integ, ledger_extra)
+    # SECTION G (Peter, 16 Nov): every missing fill record and every missing certified CLV since 12 Nov, each with
+    # the evidence-based reason. Detail is private; the public log carries category counts only.
+    venue_ids_seen = {i for t, ids_l in links.items() if t != "_incomplete" for ids in ids_l for i in ids}
+    fx = rs.fill_exceptions(rr, fills_all, venue_ids_seen, pok)
+    raw_clv = {k: r for k, r in cb.items()}
+    cx = rs.clv_exceptions(rows, raw_clv, clv, set(stale))
+    text += rs.render_exceptions(fx, cx)
+    print(f"section G: no-fill-record orders {len(fx)} {rs.category_counts(fx)} | settled without certified CLV {len(cx)} "
+          f"{rs.category_counts(cx)}")
     # Section E covers the previous ET day (the scheduled 04:52 ET run reports yesterday's slate);
     # REPORT_DAY overrides it for a one-off check of a specific day.
     from datetime import datetime as _dt, timedelta as _td
